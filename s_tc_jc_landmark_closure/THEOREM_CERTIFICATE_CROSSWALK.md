@@ -1,65 +1,66 @@
 # Theorem-to-certificate crosswalk
 
-Status: **VERIFIED — FINAL OUTCOME P**
+Status: **VERIFIED — FINAL OUTCOME A**
 
-This is the active evidence map for Outcome P.  Historical artifacts are not
-theorem inputs unless named here.  Counts below are deterministic checksums of
-structurally proved finite universes, never substitutes for exhaustiveness
-proofs.
+The persistent archive is sealed in two layers: this core crosswalk and the
+core artifact manifest are inside the archive, while
+`release_artifacts/RELEASE_ENVELOPE.json` records the immutable source commit,
+clean-clone transcript hashes, and final archive digest.
 
-| Theorem node | Mathematical role | Primary proof | Independent evidence | Exact replay |
-|---|---|---|---|---|
-| `D` | Locked `sd_0`, LSA rootings, `W_TC/S_TC`, no-omnian criterion | `docs/DEFINITIONS_LOCK.md` | `reviews/final_standard_convention/` | `bash reviews/final_standard_convention/verify_all.sh` |
-| `U` | Cycle/four-theta primitive cores, repairs, rigid supports, automatic unique triangle | `docs/GENERATOR_AND_SUPPORT_THEOREM.md` | convention census and the active structural scope of `reviews/root_probe/` | `python3 reviews/root_probe/verify_active_structural.py` |
-| `Q` | Root factor to independently chosen real incoming boundary | `docs/ROOT_REDUCTION_THEOREM.md` | `reviews/root_probe/REVIEW.md` | same read-only active structural replay; the scope-limited historical atlas audit is not invoked |
-| `C` | Pointwise cut iff flattening rank at most four; both cut inclusions | bridge/cut proof summarized in `docs/SHARP_BOUNDARY_THEOREM.md` | `reviews/global_bridge/` | `bash reviews/global_bridge/verify_all.sh --with-upstream-replay` |
-| `B` | Exact full incidence-scaling bridge fiber, slices, no compensation | Section 4 of the theorem proof | `reviews/global_bridge/REVIEW.md` | same global bridge replay |
-| `A3` | Complete three-outgoing directed local relation universe | theorem-derived primitive cores, repairs, supports, completions, and assignments | `reviews/n3_universe_generator/` independently regenerates the raw and merged universes; `reviews/bounded_directed_relation_cleanroom/` independently checks every decorated relation and algebraic label | `bash reviews/n3_universe_generator/verify.sh` and `bash reviews/bounded_directed_relation_cleanroom/verify_n3.sh` |
-| `A4-filter` | Complete five-port theta-2 invariant filter and presentation binding | theorem-derived completion grammar | `reviews/theta2_signature_gate/` | `bash reviews/theta2_signature_gate/verify.sh` |
-| `A4-cover` | All 132 five-port nonretaining roots terminate in separation/isomorphism | schema-3 hard-cover streams | `reviews/final_hard_cover_cleanroom/` and `reviews/final_hard_cover_adversary/` | `bash reviews/final_hard_cover_cleanroom/verify_schema3_n4_full.sh` |
-| `S` | Marginal submersion, restoration direction, common anchor, coherent arbitrary words, ten-port bound | `docs/HARD_COVER_THEOREM.md` and `docs/GENERATOR_AND_SUPPORT_THEOREM.md` | restoration terminals: `reviews/compact_probe_clean_clone_gate/`; direct residuals: `reviews/direct_anchor_probe_closure/` | `bash reviews/compact_probe_clean_clone_gate/verify_full.sh` plus `bash reviews/direct_anchor_probe_closure/verify.sh` |
-| `T` | Ordinary triangle redirection has a common regular projective germ | `docs/TRIANGLE_MOVE_LOCK.md` | `reviews/triangle_redirection_cleanroom/` | `bash reviews/triangle_redirection_cleanroom/verify_all.sh` |
-| `G` | Local-to-global necessity and simultaneous converse gluing | `docs/SHARP_BOUNDARY_THEOREM.md` | `reviews/global_bridge/` and `reviews/final_theorem_logic/` | bounded semantic replay in the global bridge package |
-| `W` | All-`n` weak-but-not-strong sharpness pair | frozen `../s_tc_jc_sharp_boundary/source/paper/main.tex` | frozen independent verifier | `python3 ../s_tc_jc_sharp_boundary/reproducibility/verify_release.py` |
-| `V_final` | Whole-proof adversarial attack | integrated theorem and manuscript | `reviews/final_outcome_p_referee_v2/` | `python3 reviews/final_outcome_p_referee_v2/verify_review_certificate.py` |
+Manuscript: **Strong Tree-Childness Is a Sharp Identifiability Boundary for
+Level-2 Jukes–Cantor Networks**
+
+Counts below are deterministic checksums of theorem-derived finite universes,
+not substitutes for their exhaustiveness proofs.
+
+| Node | Mathematical role | Primary proof | Independent evidence and replay |
+|---|---|---|---|
+| `D` | Fixed `sd_0`, LSA rootings, `W_TC/S_TC`, no omnians | `docs/DEFINITIONS_LOCK.md` | `reviews/final_standard_convention/`; `bash reviews/final_standard_convention/verify_all.sh` |
+| `U` | Cycle/four-theta cores, repairs, supports, unique triangle | `docs/GENERATOR_AND_SUPPORT_THEOREM.md` | `reviews/root_probe/`; `python reviews/root_probe/verify_active_structural.py` |
+| `C` | Pointwise cut iff and both cut inclusions | `docs/SHARP_BOUNDARY_THEOREM.md` | `reviews/global_bridge/`; `bash reviews/global_bridge/verify_all.sh --with-upstream-replay` |
+| `B` | Full incidence bridge fibre, slices, localization | manuscript bridge section | same independent global bridge replay |
+| `A3` | Three-outgoing decorated relation universe | primitive completion grammar | `reviews/n3_universe_generator/` and `reviews/bounded_directed_relation_cleanroom/` |
+| `A4` | Four-outgoing theta filter, transports, restoration cover | primitive completion grammar | `reviews/theta2_signature_gate/`, `reviews/final_hard_cover_cleanroom/`, and adversary |
+| `S` | Submersion, restoration, common anchor, coherent words | `docs/HARD_COVER_THEOREM.md` | `reviews/compact_probe_clean_clone_gate/` and `reviews/direct_anchor_probe_closure/` |
+| `T` | Ordinary triangle common strict regular germ | `docs/TRIANGLE_MOVE_LOCK.md` | `reviews/triangle_redirection_cleanroom/` |
+| `G` | Global necessity and converse gluing | `docs/SHARP_BOUNDARY_THEOREM.md` | `reviews/global_bridge/` and `reviews/final_theorem_logic/` |
+| `O` | Triangle-free Omega topology, equality, rank 9, all-`n` inverse | `omega_audit/reports/OMEGA_GATE_REPORT.md` | frozen-orbit import checked by `omega_audit/runtime_compat/verify_orbit_constant.py` and injected by `run_historical_omega.py`; primary historical replay plus `omega_audit/independent/verify_omega_release.py` and `verify_omega_rank_readability.py`; adversarial O6 PASS |
+| `W` | Triangle-containing Theta rank-8 family for all `n` | `s_tc_jc_sharp_boundary/source/paper/main.tex` | frozen independent verifier in `s_tc_jc_sharp_boundary/` |
+| `V_final` | Whole-paper adversarial logic and release review | unified manuscript | active final referee packet and clean-clone transcripts |
+| `V_hold` | Post-HOLD structural, cut, exposition, disclosure, and Figure 4 repairs | `reviews/post_hold_revision/REPORT.md` | revised clean replay, exact Omega rank certificate, two-renderer PDF audit, and immutable public tag |
+| `V11` | Final noncut compression, four-active cut handoff, normalized marginal submersion, endpoint provenance, and simultaneous gluing | revised manuscript | `reviews/v1_1_proof_hardening/PRIMARY_REVISION_REPORT.md`, `ADVERSARIAL_REVIEW.md`, `REPAIR_RESPONSE.md`, and both independent proof-hardening verifiers |
 
 ## Exact local checksums
 
 - Three-outgoing gate: 10,826 raw and 10,466 canonical decorated directed
-  relations; 5,284 strict; 5,120 pending canonical with 5,344 raw root
-  coverages; 62 direct residuals, all isomorphism or ordinary `T`.
-- Independent three-outgoing universe regeneration gives exactly the same raw
-  and merged normalized multisets, with 10,106 singleton and 360 double
-  canonical multiplicities; six relation-deletion, duplication, transport,
-  orientation, and assignment mutations are rejected.
-- Three-outgoing hard cover: 68,584 states, comprising 56,055 generic
-  separations, 8,349 refinements, 4,036 strict separations, 120 isomorphism
-  terminals, and 24 ordinary-`T` terminals.
-- Theta-2 five-port gate: 6,138 completion records; three necessary equal
-  signature pairs; 192 raw survivor presentations partitioned as 18 direct
-  isomorphisms, 42 incoming-root duplicates, and 132 restoration roots.
-- Theta-2 hard cover: 2,106 states, comprising 1,860 generic separations, 114
-  refinements, and 132 isomorphism terminals.
-- Common-anchor probes: 101,148 three-outgoing and 168,582 theta-2 relations;
+  relations; 5,284 strict; 5,344 raw restoration roots; 62 direct residuals.
+- Three-outgoing restoration forest: 68,584 states, ending in 120 labelled
+  isomorphism and 24 ordinary-`T` terminals after exact separation.
+- Four-outgoing gate: 6,138 completion records and 192 raw survivors,
+  intrinsically partitioned as 18 direct isomorphisms, 42 incoming-rooting
+  duplicates, and 132 restoration roots.
+- Four-outgoing restoration forest: 2,106 states, with 1,860 generic
+  separations, 114 refinements, and 132 isomorphism terminals.
+- Coherent probes: 101,148 three-outgoing and 168,582 theta-2 relations;
   exact maximum ten tensor ports.
-- Direct residual anchors: 62 unique bases (34 isomorphisms, 28 ordinary
-  `T`); 2,642 one-port and 18,224 two-port relations; 18,520 strict or generic
-  separators; no unresolved relation; 12/12 mutations rejected.
+- Direct residuals: 2,642 one-port and 18,224 two-port relations, no unresolved
+  relation, and 12/12 mutations rejected.
+- Omega: four fixed rooted presentations; seven admissible rootings and two
+  tree-child rootings per mixed graph; all 256 Fourier and 256 inverse-pattern
+  entries; exact model/intersection dimension nine; readable core-rank
+  determinant `-723/8589934592`; 12/12 mutations rejected.
+- Theta: all 256 Fourier coordinates, strict quadratic point, two rank-eight
+  minors, both complete physical points and gauge definitions, and positive
+  analytic leaf-substitution inverse.
+- v1.1 cut compression: 3,112 / 58,380 / 58,380 / 91,464 / 117,252 bounded
+  two-colour occupancies across the five primitive cores; 20/20 adversarial
+  mutations rejected.  The four named two-active minors are independently
+  regenerated from their stated Fourier blocks.
 
-## Quarantined claims
+## Explicit exclusions
 
-The following are explicitly not ancestors of Outcome P:
-
-- the reciprocal-only bridge chart;
-- physical bridge-parameter recovery;
-- Theta as a move inside `S_TC`;
-- Omega and Omega-chain;
-- `R_root`, `C_root`, `Psi`, and non-`T` portions of historical `R3`;
-- schema-2 relation streams that merged rooted presentations;
-- target-only counts 1,152 and 1,686;
-- equality of complete stochastic images under `T`;
-- pointwise realization of every `T` orientation at every generic
-  distribution.
-
-Preserved failed certificates and mutation-design failures are evidence of
-the fail-closed process, not positive theorem inputs.
+No active theorem uses a reciprocal-only bridge chart, a hidden cleanup-fibre
+rooting convention, a weak-class gadget as a move in `S_TC`, a root-presentation
+move as a distinct semi-directed topology, target-only counts, equality of
+complete stochastic images under `T`, physical bridge-parameter recovery, or
+K2P/K3P claims.

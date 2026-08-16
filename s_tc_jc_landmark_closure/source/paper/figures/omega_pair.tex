@@ -1,0 +1,28 @@
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[scale=.73,every node/.style={font=\small}]
+\foreach \shift/\a/\b/\c/\d/\title in {-4.25/1/2/3/4/$\Omega_4$,4.25/2/1/4/3/$\Omega'_4$}{
+  \begin{scope}[xshift=\shift cm]
+    \node[treev] (U) at (-1.6,0) {$U$};
+    \node[treev] (P0) at (-.9,1.35) {$P_0$};
+    \node[treev] (P1) at (.65,1.35) {$P_1$};
+    \node[reticv] (V) at (1.55,0) {$V$};
+    \node[treev] (P4) at (.65,-1.35) {$P_4$};
+    \node[reticv] (X) at (-.9,-1.35) {$X$};
+    \draw (U)--(P0)--(P1); \draw[reticedge] (P1)--(V);
+    \draw[reticedge] (U)--(V); \draw[reticedge] (U)--(X);
+    \draw (V)--(P4); \draw[reticedge] (P4)--(X);
+    \node[leaf] (l0) at (-2.05,1.95) {\a}; \draw (P0)--(l0);
+    \node[leaf] (l1) at (1.15,2.05) {\b}; \draw (P1)--(l1);
+    \node[leaf] (l2) at (1.45,-2.15) {\c}; \draw (P4)--(l2);
+    \node[leaf] (l3) at (-1.65,-2.2) {\d}; \draw (X)--(l3);
+    \node at (0,-2.85) {\title};
+  \end{scope}
+}
+\end{tikzpicture}
+\caption{The triangle-free Omega sharpness pair.  Both mixed graphs have
+cycle lengths $4,4,6$ and the same arrowhead pattern; the labelled pendant
+attachments are $(1,2,3,4)$ on the left and $(2,1,4,3)$ on the right.
+Each graph has seven admissible rootings, exactly two of which are tree-child.}
+\label{fig:omega-pair}
+\end{figure}

@@ -1,0 +1,53 @@
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[scale=.68,every node/.style={font=\scriptsize},
+  arr/.style={-{Stealth[length=1.6mm]},line width=.55pt}]
+  \begin{scope}[xshift=-7.2cm]
+    \node[vertex] (c1) at (0,1.15) {}; \node[vertex] (c2) at (1.1,.35) {};
+    \node[reticv] (c3) at (.7,-.95) {$X$}; \node[vertex] (c4) at (-.7,-.95) {};
+    \node[vertex] (c5) at (-1.1,.35) {$S$};
+    \draw[arr] (c5)--(c1)--(c2)--(c3); \draw[arr] (c5)--(c4)--(c3);
+    \node at (0,-1.55) {cycle};
+  \end{scope}
+  \begin{scope}[xshift=-3.6cm]
+    \node[vertex] (s) at (0,1.45) {$S$}; \node[treev] (u) at (-1,0) {$U$};
+    \node[reticv] (v) at (1,0) {$V$}; \node[reticv] (x) at (0,-1.4) {$X$};
+    \draw[arr] (s)--(u); \draw[arr] (s)--(v); \draw[arr] (u)--(v);
+    \draw[arr] (u)--(x); \draw[arr] (v)--(x);
+    \node at (0,-2) {$\theta_0$};
+  \end{scope}
+  \begin{scope}[xshift=0cm]
+    \node[vertex] (s) at (-1.2,1.35) {$S$}; \node[treev] (u) at (-1,0) {$U$};
+    \node[reticv] (v) at (1,0) {$V$}; \node[reticv] (x) at (1.2,-1.35) {$X$};
+    \draw[arr] (s)--(u); \draw[arr] (s)--(x); \draw[arr] (v)--(x);
+    \draw[arr,bend left=18] (u) to (v); \draw[arr,bend right=18] (u) to (v);
+    \node at (0,-2) {$\theta_1$};
+  \end{scope}
+  \begin{scope}[xshift=3.8cm]
+    \node[vertex] (s) at (0,1.5) {$S$}; \node[treev] (u) at (-1,0) {$U$};
+    \node[treev] (v) at (1,0) {$V$};
+    \node[reticv] (x0) at (-.8,-1.45) {$X_0$};
+    \node[reticv] (x1) at (.8,-1.45) {$X_1$};
+    \draw[arr] (s)--(u); \draw[arr] (s)--(v);
+    \draw[arr] (u)--(x0); \draw[arr] (v)--(x0);
+    \draw[arr] (u)--(x1); \draw[arr] (v)--(x1);
+    \node at (0,-2) {$\theta_2$};
+  \end{scope}
+  \begin{scope}[xshift=7.4cm]
+    \node[vertex] (s) at (-1.1,1.4) {$S$}; \node[treev] (u) at (-1,0) {$U$};
+    \node[treev] (v) at (1,0) {$V$};
+    \node[reticv] (x0) at (.95,1.35) {$X_0$};
+    \node[reticv] (x1) at (0,-1.45) {$X_1$};
+    \draw[arr] (s)--(u); \draw[arr] (s)--(x0);
+    \draw[arr] (u)--(v); \draw[arr] (v)--(x0);
+    \draw[arr] (u)--(x1); \draw[arr] (v)--(x1);
+    \node at (0,-2) {$\theta_3$};
+  \end{scope}
+\end{tikzpicture}
+\caption{The primitive directed skeletons used by the local theorem: one
+cycle and four theta orientations.  Parallel skeleton sides, visible in
+$\theta_1$, must be subdivided by an occupied port before the fixed mixed
+graph is admitted as simple.  Minimum strong repairs and arbitrary port
+subdivisions are added to these skeletons by the structural theorem.}
+\label{fig:core-atlas}
+\end{figure}

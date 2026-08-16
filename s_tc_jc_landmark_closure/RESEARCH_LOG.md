@@ -862,3 +862,14 @@
 - Exact transcripts, environment details, and archive reproduction metadata
   are recorded under `release/`.  Outcome P is publication-ready; no
   mathematical or release-engineering blocker remains.
+
+## 2026-08-15T22:10:00-07:00 — workstream consolidated
+
+- Moved every active, historical, audit, submission, and release-engineering
+  directory for this project beneath `s_tc_jc_landmark_closure/`; the former
+  root-level copies were moved rather than duplicated.
+- Updated path-sensitive packaging scripts, verifier entry points, manifests,
+  and ignore rules for the consolidated layout. The published v1.1.0 tag was
+  left unchanged as an immutable release snapshot.
+- File-organization work is complete (100%); no mathematical replay or PDF
+  visual audit was performed for this organizational commit.

@@ -81,9 +81,11 @@ invariant under both operations.
 
 ## The preserved descriptor-cache failure
 
-**EXACTLY COMPUTED.** The verifier reads the graph stream in
-`quarantine/descriptor_cache_scope_failure/schema3_n3` and independently
-reconstructs the two rooted graph presentations
+**EXACTLY COMPUTED.** The superseded quarantined bulk stream was intentionally
+removed after its failure witness had been isolated.  The verifier therefore
+reads the corrected active graph inventory in `primary/certificates/` and,
+by exact immutable content ID, independently reconstructs the same two rooted
+graph presentations
 
 - `513afdd7dd8826c2bba2eaff47af1d37bacf98fd3a2906de825bf5705a70f2a2`;
 - `83fbeab153b433dea88528707b25a74898a924b90b1eff000c5a7c10257c8dd8`.

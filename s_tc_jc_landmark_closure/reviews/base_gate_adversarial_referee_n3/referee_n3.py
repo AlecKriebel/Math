@@ -50,7 +50,7 @@ EXPECTED = {
     "graphs_physical": "c1cccad20a589a7fbd6f91075f916d4965f97a0a626ae11244315b01e836fc29",
     "roots_physical": "45cc312e3d915c8015824673ef1a27050f375b3575e2e64fbff3f55f32a27929",
     "polynomials_physical": "11b3e2f8870fc711b7986df083b1e1d3aa2806ede321fd38eab60d0a25f789d6",
-    "definitions": "3108a20e924a37b069cc4aeb53b051b03463176eafce9d590dfec378e2ad16a2",
+    "definitions": "5ba5a4c9bbd66553d3cb98915b2c1afeacb98034bf89471b881f06dc591b3005",
     "euclid_path_audit": "6e304691ffeea6d9bc1118b59d778a1051e8fc1f9c3430e06b77fe48c82d8a97",
     "euclid_auditor": "fa2314a9e01220293f0706101d10f2a6bb52bd1a301f5add100391c0b9e50d85",
     "euclid_graph": "4c21cbc301eeab502b722b5e71cee3f14616c2874a142a43e95fcc581b1309a1",

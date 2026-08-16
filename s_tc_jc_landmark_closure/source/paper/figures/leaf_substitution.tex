@@ -1,0 +1,19 @@
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[every node/.style={font=\small}]
+  \node[ellipse,draw,minimum width=2.2cm,minimum height=1.2cm] (P) at (-3,0) {$P$};
+  \node[leaf] (a) at (-1,0) {$a$}; \draw (P)--(a);
+  \draw[-{Stealth[length=2.5mm]},thick] (0,0)--(1.2,0);
+  \node[ellipse,draw,minimum width=2.2cm,minimum height=1.2cm] (Q) at (3.1,0) {$P$};
+  \node[treev] (s) at (4.7,0) {$s$}; \draw (Q)--(s);
+  \node[leaf] (a1) at (6,.8) {$a_1$}; \node[leaf] (a2) at (6,-.8) {$a_2$};
+  \draw (s)--(a1) node[midway,above] {$u$};
+  \draw (s)--(a2) node[midway,below] {$v$};
+\end{tikzpicture}
+\caption{Identical cherry substitution at corresponding leaves.  In Fourier
+coordinates the two new arms multiply the old port tensor, and positive
+ratios recover $u$, $v$, and the original tensor analytically.  Each added
+leaf therefore contributes exactly two dimensions while leaving every
+nontrivial blob unchanged.}
+\label{fig:leaf-substitution}
+\end{figure}
