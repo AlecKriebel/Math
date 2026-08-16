@@ -1,0 +1,18 @@
+\begin{tikzpicture}[>=Stealth,node distance=6mm and 8mm,every node/.style={font=\small},box/.style={draw,rounded corners,align=center,inner sep=5pt,fill=white},open/.style={draw,dashed,rounded corners,align=center,inner sep=5pt}]
+\node[box] (core) {polytopal maximal-\\intersection core};
+\node[box,right=of core] (mono) {polytope\\monotonicity};
+\node[box,right=of mono] (del) {single-word and\\binary-meet reductions};
+\node[box,below=of del] (bridge) {finite rational\\interval bridge};
+\node[box,left=of bridge] (fixed) {fixed-arrangement\\one-neuron theorem};
+\node[box,left=of fixed] (super) {protected polytopal\\supercode};
+\node[box,below=of super] (atlas) {finite whole-word\\repair atlas};
+\node[open,right=20mm of atlas] (global) {finite simultaneous globalization\\for repeated neurons (open)};
+\draw[->] (core)--(mono);
+\draw[->] (mono)--(del);
+\draw[->] (del)--(bridge);
+\draw[->] (bridge)--(fixed);
+\draw[->] (super)--(atlas);
+\draw[->] (fixed.west) to[bend right=15] (super.east);
+\draw[->,dashed] (atlas)--(global);
+\draw[->,dashed] (bridge.south) to[bend left=12] (global.north);
+\end{tikzpicture}

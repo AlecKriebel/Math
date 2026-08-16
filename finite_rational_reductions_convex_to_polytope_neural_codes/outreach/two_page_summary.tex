@@ -1,0 +1,86 @@
+\documentclass[10pt]{article}
+\ifdefined\pdfinfoomitdate\pdfinfoomitdate=1\fi
+\ifdefined\pdftrailerid\pdftrailerid{}\fi
+\ifdefined\pdfsuppressptexinfo\pdfsuppressptexinfo=-1\fi
+\usepackage[margin=0.64in]{geometry}
+\usepackage{amsmath,amssymb,enumitem,microtype,tikz,xcolor}
+\usetikzlibrary{arrows.meta,positioning}
+\usepackage[hidelinks]{hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\pagestyle{plain}
+\newcommand{\C}{\mathcal C}
+\newcommand{\D}{\mathcal D}
+\newcommand{\E}{\mathcal E}
+\newcommand{\code}{\operatorname{code}}
+\newcommand{\conv}{\operatorname{conv}}
+\begin{document}
+\begin{center}
+{\Large\bfseries Finite Rational Reductions for the Convex-to-Polytope Conjecture in Neural Codes}\par
+\vspace{2mm}
+{\large Independent-reader summary}\par
+\vspace{1mm}
+Alec Kriebel --- Independent Researcher --- \texttt{me@aleckriebel.com}
+\end{center}
+
+\textbf{What a neural code records.}
+Given an open convex ambient set $X$ and open convex receptive fields $U_1,\ldots,U_n$, a codeword $\sigma\subseteq[n]$ occurs when some point lies in exactly the $U_i$ with $i\in\sigma$.  Thus the code records every relative membership atom, not merely which intersections are nonempty.  This distinction is why ordinary nerve-preserving approximation is insufficient: shrinking a field can create a smaller codeword, while enlarging one can create a larger codeword.
+
+\textbf{The conjecture.}
+A code is \emph{polytope convex} if it can be realized by interiors of convex polytopes, possibly in a higher dimension.  Kunin--Lienkaemper--Rosen proved that these are precisely the codes lying below positive-covector codes of finite real-representable oriented matroids.  Every planar open convex code is polygonal, but in higher dimensions it remains open whether every open convex code is polytope convex.
+
+\textbf{The paper's thesis.}
+The conjecture has a sharply reduced finite and rational local form.  Curvature of one new neuron over a fixed polytopal arrangement is never an obstruction, and an arbitrary curved realization can be replaced by a finite protected polytopal supercode with finitely many local whole-word repairs.  The unresolved step is to attach those repairs simultaneously while every repeated neuron remains one convex polytope.
+
+\textbf{1. Polytope monotonicity and polytopal cores.}
+If $\mathcal A$ is polytope convex and
+\[
+ \mathcal A\subseteq\mathcal E\subseteq\Delta(\mathcal A),
+\]
+then $\mathcal E$ is polytope convex.  The proof uses one independent cap coordinate for each added nonmaximal word and treats mixed apex combinations and equality at the cap threshold exactly.  Combining this construction with the standard maximal-intersection core yields a finite polytopal realization of every max-intersection-complete code, including every intersection-complete code.
+
+\textbf{2. Three universal reductions.}
+Universal polyhedralization is equivalent, as a universally quantified theorem scheme, to each of the following tasks:
+\begin{enumerate}[leftmargin=5mm,itemsep=1pt,topsep=1pt]
+\item lift every immediate cover from a polytopal lower code;
+\item delete one nonmaximal word from a polytopal code whenever the deletion remains open convex;
+\item treat only deletions
+\[
+ \mathcal E=\mathcal D\setminus\{\sigma\},
+ \qquad \sigma=\tau\cap\upsilon,
+\]
+where $\tau$ and $\upsilon$ are strict surviving superwords.
+\end{enumerate}
+The binary-meet normal form comes from an inclusion-minimal family of maximal words and a deletion order by nondecreasing cardinality.
+
+\newpage
+\textbf{3. Finite rational bridges.}
+In an open-convex binary-meet deletion, choose witnesses $x\in A_\tau$ and $y\in A_\upsilon$.  Along the segment
+\[
+ z(t)=(1-t)x+ty,
+\]
+each neuron outside $\sigma$ is active on an open interval $J_j$.  Because the $\sigma$ atom is absent, these intervals cover the complete parameter interval: the relative empty word never occurs.  Every trace word is a strict superword already present in $\mathcal E$.  Only the finite weak order and equality classes of interval endpoints matter, so all endpoints can be replaced by rational numbers without changing the complete trace, including simultaneous starts and ends.
+
+\textbf{4. One-neuron polyhedralization over a fixed arrangement.}
+Suppose the old neurons already form a finite polytopal arrangement and one added neuron is an arbitrary open convex set.  The old arrangement has finitely many relatively open cells.  Cells wholly outside the new neuron, and selected outside witnesses from split atoms, can be weakly separated from the new neuron by finitely many halfspaces.  Their intersection is one polytope with exactly the same inside/outside status on every old atom.  Tangent closures and lower-dimensional cells are included.  Therefore essential curvature of one new neuron over a fixed arrangement is never the obstruction.
+
+\textbf{5. Protected supercodes and finite repair atlases.}
+Choose one witness $x_\rho$ for every target word $\rho$.  Around it choose a small simplex $S_\rho$ lying inside every active source neuron, and define
+\[
+ P_i=\conv\bigcup_{\rho\ni i}S_\rho.
+\]
+Then the resulting polytopal code $\mathcal D$ satisfies
+\[
+ \mathcal C\subseteq\mathcal D\subseteq\Delta(\mathcal C),
+\]
+has the same maximal words, and keeps every protected witness exact.  Every unwanted complete carrier in $\mathcal D\setminus\mathcal C$ is compact and is covered by finitely many full-dimensional source-contained polytopes labelled by complete source superwords.  Since there are finitely many unwanted words, the entire local repair problem is finite.  In particular, zero geometric margin does not force infinitely many local repair charts.
+
+\textbf{Why the final step is nontrivial.}
+An exact rational example shows that repairing one neuron and then taking another hull can recreate an earlier forbidden word.  A synchronized whole-word enlargement succeeds in the same example.  Thus one cannot globalize the finite atlas by independent per-neuron convex hulls.
+
+\textbf{What remains open.}
+The missing theorem is a finite simultaneous attachment result: activate every repair label synchronously, remove every unwanted carrier, preserve all target witnesses, and combine all occurrences of each repeated original neuron into one convex polytope without creating a forbidden intermediate word.  Proving this would settle the conjecture; the present paper does not.
+
+\vfill
+\footnotesize Verification package: exact rational scripts replay the bridge, arrangement-cell, and repair calibrations.  The universal theorems are supported by human-readable proofs rather than finite exhaustive computation.
+\end{document}

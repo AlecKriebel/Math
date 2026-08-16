@@ -1,0 +1,92 @@
+\section{Finite rational bridges for binary-meet deletions}
+\label{sec:rational-bridges}
+
+The binary-meet reduction is combinatorial.  Open convexity supplies additional one-dimensional geometry that is both finite and exactly rationalizable.
+
+\begin{definition}[Strict relative trunk]
+For any $\sigma\subseteq[n]$, define
+\[
+ \ST_\C(\sigma)
+ =\{\varnothing\}\cup
+ \{\rho\setminus\sigma:\rho\in\C,\ \sigma\subsetneq\rho\}.
+\]
+\end{definition}
+
+\begin{theorem}[Rational interval bridge]
+\label{thm:rational-bridge}
+Let
+\[
+ \E=\D\setminus\{\sigma\}
+\]
+be open convex and suppose $\tau,\upsilon\in\E$ are strict superwords with $\sigma=\tau\cap\upsilon$.  Then there are a bounded open interval $T$, open intervals $J_j\subseteq T$ for $j\notin\sigma$ (possibly empty or all of $T$), and marked points $t_\tau,t_\upsilon\in T$ such that:
+\begin{enumerate}[label=\textup{(\roman*)}]
+\item the $J_j$ cover $T$;
+\item every relative word
+\[
+ \rho(t)=\{j\notin\sigma:t\in J_j\}
+\]
+satisfies $\sigma\cup\rho(t)\in\E$;
+\item the marked words are $\tau\setminus\sigma$ and $\upsilon\setminus\sigma$;
+\item the relative empty word never occurs on $T$;
+\item $T$, every endpoint, and both marked points may be chosen rational without changing the complete trace code, including simultaneous events.
+\end{enumerate}
+Thus the mandatory-empty-word interval code
+\[
+ \{\varnothing\}\cup\{\rho(t):t\in T\}
+\]
+is a rational subcode of $\ST_\E(\sigma)$.
+\end{theorem}
+
+\begin{proof}
+Choose witnesses
+\[
+ x\in A_\tau,
+ \qquad
+ y\in A_\upsilon
+\]
+in an open convex realization $(X;U_1,\ldots,U_n)$ of $\E$.  Let
+\[
+ z(t)=(1-t)x+ty.
+\]
+Because $x,y\in X$ and $x,y\in U_i$ for every $i\in\sigma$, convexity gives
+\[
+ z([0,1])\subseteq X\cap\bigcap_{i\in\sigma}U_i.
+\]
+The $\sigma$ atom is absent.  Hence every point of this compact segment belongs to some $U_j$ with $j\notin\sigma$.  The inverse image under $z$ of
+\[
+ \left(X\cap\bigcap_{i\in\sigma}U_i\right)
+ \cap\bigcup_{j\notin\sigma}U_j
+\]
+is an open subset of $\R$ containing $[0,1]$.  Choose a bounded open interval $T$ with $[0,1]\subset T$ inside that inverse image.
+
+For $j\notin\sigma$, set
+\[
+ J_j=T\cap z^{-1}(U_j).
+\]
+The inverse image of an open convex set under an affine map is an open convex subset of a line, hence an open interval, possibly empty or all of $T$.  The intervals cover $T$.  At any $t\in T$, the full word of $z(t)$ is a word of $\E$, contains $\sigma$, and strictly contains it because at least one $J_j$ covers $t$.  At $t=0$ and $t=1$, the words are $\tau$ and $\upsilon$.
+
+For rationalization, record the two endpoints of $T$, the endpoints of every nonempty proper $J_j$, and the two marked points.  These form a finite total preorder.  Equal endpoints, simultaneous starts or ends, and marked points in the same equality class are retained together.  Map the distinct classes order-preservingly to rational numbers.  Membership in an open interval depends only on the strict order of a test point relative to its endpoint classes.  Thus every open cell and every endpoint class has the same membership vector before and after the reparameterization.
+\end{proof}
+
+\begin{corollary}[Finite event path]
+The bridge words form a finite path of endpoint events.  Between consecutive endpoint classes the word is constant; at one endpoint class all intervals beginning or ending there change simultaneously.  No genericity or one-event-at-a-time assumption is required.
+\end{corollary}
+
+\begin{figure}[t]
+\centering
+\input{figures/rational_bridge}
+\caption{A rational interval bridge.  Vertical marks are endpoint equality classes; several neurons may change simultaneously.  Coverage prevents the relative empty word.}
+\label{fig:rational-bridge}
+\end{figure}
+
+\subsection{An explicit finite bridge module}
+
+The theorem above is trace data rather than a global attachment theorem.  It can nevertheless be realized as an independent finite polytopal module.  After an affine rescaling take $T=(0,1)$.  For every proper interval $J_j=(a_j,b_j)$ choose the concave tent
+\[
+ h_j(t)=\min\{t-a_j,b_j-t\};
+\]
+use a positive constant for $J_j=T$ and a negative constant for $J_j=\varnothing$.  Then $J_j=\{h_j>0\}$.  The hypograph description of the tents gives a finite rational polyhedral realization in a two-dimensional strip, and a small simplex factor makes every protected trace word full dimensional if desired.
+
+\begin{remark}[The remaining attachment problem]
+The bridge is finite, one-dimensional, rational, and covered.  These properties do not imply that it can be inserted into an arbitrary polytopal lower realization while every old occurrence of each repeated neuron remains part of one convex polytope.  That global insertion problem is precisely what remains open after the reductions in this paper.
+\end{remark}

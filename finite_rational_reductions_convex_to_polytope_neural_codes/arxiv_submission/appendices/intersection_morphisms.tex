@@ -1,0 +1,44 @@
+\section{Intersection completeness under morphisms}
+\label{app:intersection-morphisms}
+
+The following fact is known from \citet[Theorem~1.5]{Jeffs2020}.  We include a convention-compatible proof because it closes a tempting shortcut.
+
+\begin{proposition}[Intersection-morphism theorem]
+If $\D$ is intersection complete and
+\[
+ f:\D\twoheadrightarrow\C
+\]
+is a surjective code morphism, then for every finite nonempty family $d_1,\ldots,d_m\in\D$,
+\[
+ f\left(\bigcap_{a=1}^m d_a\right)
+ =\bigcap_{a=1}^m f(d_a).
+\]
+Consequently $\C$ is intersection complete.
+\end{proposition}
+
+\begin{proof}
+For each output neuron $j$, let
+\[
+ T_j=f^{-1}(\Tk_\C(j)).
+\]
+If $T_j=\varnothing$, coordinate $j$ is constantly absent.  Otherwise, intersection completeness gives a principal root
+\[
+ r_j=\bigcap_{d\in T_j}d
+\]
+with $T_j=\Tk_\D(r_j)$; a full trunk is represented by $r_j=\varnothing$.  Coordinatewise,
+\[
+ \begin{aligned}
+ j\in f(\bigcap_a d_a)
+ &\Longleftrightarrow r_j\subseteq\bigcap_a d_a\\
+ &\Longleftrightarrow r_j\subseteq d_a\text{ for every }a\\
+ &\Longleftrightarrow j\in f(d_a)\text{ for every }a.
+ \end{aligned}
+\]
+Surjectivity then shows that finite intersections of target words lie in $\C$.
+\end{proof}
+
+\begin{corollary}[No intersection-completion retraction]
+A non-intersection-complete code is not a surjective morphic image of an intersection-complete code.  In particular, it is not a morphic retract of its intersection completion.
+\end{corollary}
+
+This corollary explains why the polytopality of $\widehat\C$ cannot be followed by a purely categorical retraction to an arbitrary $\C$.

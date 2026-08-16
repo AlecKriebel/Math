@@ -1,0 +1,176 @@
+\section{Polytope monotonicity and polytopal cores}
+\label{sec:monotonicity}
+
+The open-convex monotonicity theorem of \citet{CruzEtAl2019} states that adding nonmaximal words beneath fixed maximal words preserves open convexity.  Their work also gives the standard hyperplane-arrangement realization of the maximal-intersection core.  We retain that core construction in bounded polytopal form and prove the finite cap counterpart of monotonicity needed throughout this paper.
+
+\begin{theorem}[Polytope monotonicity]
+\label{thm:polytope-monotonicity}
+Let $\A$ be polytope convex and suppose
+\[
+ \A\subseteq\E\subseteq\Delta(\A).
+\]
+Then $\E$ is polytope convex.  If $r=|\E\setminus\A|$, the construction uses $r$ additional coordinates and one polyhedral cap for each added word.
+\end{theorem}
+
+\begin{proof}
+Remove trivial inactive coordinates and restore them at the end.  Start with
+\[
+ \A=\code(\{\operatorname{int}P_i\}_{i=1}^n,\operatorname{int}K)
+\]
+in $\R^d$, where $K$ is a full-dimensional polytope containing one chosen witness from every atom.  Enumerate
+\[
+ \E\setminus\A=\{\sigma_1,\ldots,\sigma_r\}.
+\]
+For each $s$, choose a maximal word $m_s\in\A$ containing $\sigma_s$.  The atom $A_{m_s}$ is open in the ambient: if a point in all fields indexed by $m_s$ belonged to an additional field, its word would strictly contain $m_s$.  Choose
+\[
+ a_s\in A_{m_s},\qquad \rho_s>0,
+ \qquad \overline B(a_s,\rho_s)\subset A_{m_s}\cap\operatorname{int}K.
+\]
+
+Work in $\R^{d+r}$ with coordinates $(x,z_1,\ldots,z_r)$.  Put
+\[
+ B_0=K\times[-1,1]^r,
+ \qquad v_s=(a_s,4e_s),
+ \qquad Q'=\conv(B_0\cup\{v_1,\ldots,v_r\}).
+\]
+Let $\pi(x,z)=x$ and define preliminary old-neuron polytopes
+\[
+ \widetilde P_i=Q'\cap\pi^{-1}(P_i).
+\]
+Every interior point of $Q'$ projects to $\operatorname{int}K$, and membership in $\operatorname{int}\widetilde P_i$ depends only on the old projection.  Hence the preliminary code remains $\A$, and every old witness survives at height zero.
+
+Choose $1<h_s<4$ and set
+\[
+ \lambda_s=\frac{h_s-1}{3}
+\]
+so that
+\[
+ \lambda_s>\frac12,
+ \qquad
+ (1-\lambda_s)\diam(K)<\rho_s.
+\]
+If
+\[
+ y=b_0p_0+\sum_{t=1}^rb_tv_t,
+ \qquad b_t\ge0,
+ \qquad b_0+\sum_tb_t=1,
+ \qquad p_0\in B_0,
+\]
+then the $s$th height satisfies
+\[
+ z_s(y)\le b_0+4b_s\le 1+3b_s.
+\]
+Consequently
+\[
+ z_s(y)\ge h_s\quad\Longrightarrow\quad b_s\ge\lambda_s.
+\]
+All projected vertices lie in $K$, so
+\[
+ \|\pi(y)-a_s\|
+ \le(1-b_s)\diam(K)
+ \le(1-\lambda_s)\diam(K)<\rho_s.
+\]
+Thus the entire closed cap $Q'\cap\{z_s\ge h_s\}$ projects into the maximal atom $A_{m_s}$.  Two closed caps are disjoint, because simultaneous activation of caps $s\ne t$ would imply $b_s,b_t>1/2$.
+
+Define the final polytopes by
+\[
+ P_i'=\widetilde P_i\cap
+ \bigcap_{\{s:i\notin\sigma_s\}}\{z_s\le h_s\}.
+\]
+Below all thresholds the old word is unchanged.  If $z_s>h_s$, the preliminary word is $m_s$, and the $s$th family of cuts removes exactly the neurons in $m_s\setminus\sigma_s$.  Every other cap threshold is strict, so the final word is $\sigma_s$.
+
+At equality $z_s=h_s$, the projection still lies in $A_{m_s}$.  A neuron with $i\notin\sigma_s$ lies on a supporting hyperplane of $P_i'$ and is therefore absent from its interior; a neuron in $\sigma_s$ is uncut at this threshold and remains interior because the projection lies in the open maximal atom.  No second threshold can be active.  Hence the boundary word is again $\sigma_s$, not a new intermediate word.
+
+Every cap contains an interior point of $Q'$ above its threshold, so every new word occurs.  Every old witness remains at height zero.  The code is exactly $\E$.
+\end{proof}
+
+\begin{remark}[Why the coefficient $1/2$ matters]
+The cap argument is not a heuristic ``one apex dominates'' statement.  Equation $b_s>1/2$ is used only after the height inequality forces it.  It implies pairwise cap disjointness even when a point has nonzero coefficients at many apices and no coefficient is initially distinguished.  The equality case is treated by the strict-interior convention rather than discarded as measure zero.
+\end{remark}
+
+\begin{corollary}[Open-convex monotonicity]
+\label{cor:open-monotonicity}
+If $\A$ is open convex and
+\[
+ \A\subseteq\E\subseteq\Delta(\A),
+\]
+then $\E$ is open convex.
+\end{corollary}
+
+\begin{proof}
+First use \Cref{lem:bounded-realization} to restrict to a bounded realization inside a polytope $K$ containing all witnesses.  Repeat the cap construction, replacing the preliminary polytopes by inverse images of the open convex traces and replacing each closed cut by the corresponding open halfspace.  The projection and disjoint-cap analysis is unchanged.  This recovers the known monotonicity theorem of \citet{CruzEtAl2019} in the present convention.
+\end{proof}
+
+\subsection{The maximal-intersection core}
+
+Let $m_1,\ldots,m_k$ be the maximal nonempty words of $\C$.  Define
+\[
+ \Bcore(\C)
+ =\{\varnothing\}\cup
+ \left\{\bigcap_{a\in R}m_a:
+ \varnothing\ne R\subseteq[k]\right\},
+\]
+where duplicate intersections are retained only once.
+
+\begin{proposition}[Explicit polytopal core]
+\label{prop:core-realization}
+The code $\Bcore(\C)$ has a finite polytopal realization.  If $k\ge2$, it may be realized in dimension $k-1$.
+\end{proposition}
+
+\begin{proof}
+Work in the affine hyperplane
+\[
+ H=\left\{x\in\R^k:\sum_{a=1}^kx_a=1\right\}.
+\]
+For each nontrivial neuron $i$, let
+\[
+ R_i=\{a\in[k]:i\in m_a\}
+\]
+and define the open polyhedral field
+\[
+ U_i=\{x\in H:x_b<0\text{ for every }b\notin R_i\}.
+\]
+For $x\in H$, put
+\[
+ \rho(x)=\{a:x_a\ge0\}.
+\]
+The set $\rho(x)$ is nonempty because the coordinates sum to $1$.  Moreover,
+\[
+ i\in c(x)
+ \quad\Longleftrightarrow\quad
+ \rho(x)\subseteq R_i
+ \quad\Longleftrightarrow\quad
+ i\in\bigcap_{a\in\rho(x)}m_a.
+\]
+Every nonempty subset $R\subseteq[k]$ occurs as $\rho(x)$: choose positive coordinates on $R$ and sufficiently small negative coordinates off $R$, then normalize the sum to $1$.
+
+Choose one witness for each distinct nonempty intersection word and a full-dimensional polytope $K\subset H$ whose interior contains them.  Let $Q\supsetneq K$ be a larger full-dimensional polytope and put
+\[
+ P_i=K\cap\bigcap_{b\notin R_i}\{x_b\le0\}.
+\]
+Inside $\operatorname{int}K$, the strict inequalities give exactly the nonempty intersections of maximal words.  Every point of $\operatorname{int}Q\setminus K$ belongs to no $\operatorname{int}P_i$ and supplies the empty word.  This realizes $\Bcore(\C)$.  The case $k=1$ uses one common inner interval for all neurons of $m_1$ inside a larger ambient interval.
+\end{proof}
+
+\begin{theorem}[Max-intersection-complete codes are polytopal]
+\label{thm:mic-polytopal}
+Every finite max-intersection-complete neural code is polytope convex.  In particular, every intersection-complete code is polytope convex.
+\end{theorem}
+
+\begin{proof}
+Let $\C$ be max-intersection-complete.  Its core $\Bcore(\C)$ has the same maximal words, and
+\[
+ \Bcore(\C)\subseteq\C\subseteq\Delta(\Bcore(\C)).
+\]
+Apply \Cref{thm:polytope-monotonicity}.  An intersection-complete code is max-intersection-complete.
+\end{proof}
+
+\begin{figure}[t]
+\centering
+\input{figures/inclusion_chain}
+\caption{The maximal-intersection core and polytope monotonicity.  The core is realized explicitly; every intermediate code with the same maximal words is obtained by finite caps.}
+\label{fig:inclusion-chain}
+\end{figure}
+
+\begin{remark}[Priority and role]
+The open and closed convexity of max-intersection-complete codes, together with an embedding-dimension bound, is due to \citet{CruzEtAl2019}.  The construction above extracts an explicit bounded polytopal core and combines it with the cap theorem.  We use the result as the positive starting point for the deletion reductions, not as a characterization of all convex codes.
+\end{remark}

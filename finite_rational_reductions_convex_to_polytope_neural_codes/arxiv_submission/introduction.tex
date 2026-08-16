@@ -1,0 +1,54 @@
+\section{Introduction}
+\label{sec:introduction}
+
+A population code records which neurons are active together.  If neuron $i$ is active on a receptive field $U_i$ inside a stimulus space $X$, then a codeword $\sigma$ occurs when there is a point lying in exactly the receptive fields indexed by $\sigma$.  In models of place-cell activity, the $U_i$ are commonly idealized as convex regions.  The resulting \emph{convex neural codes} lie at an intersection of combinatorics, convex geometry, topology, and the geometry of neural representations; see \citet{CurtoEtAl2017,CruzEtAl2019,ChenFrickShiu2019}.
+
+The present paper concerns a sharper geometric question.  An open convex realization may have curved boundaries.  Must the same finite atom code always be realizable by interiors of convex polytopes, perhaps after increasing the dimension?  Kunin, Lienkaemper, and Rosen proved that polytope-convex codes are exactly the minors of positive-covector codes of finite real-representable oriented matroids \cite{KuninLienkaemperRosen2023}.  Thus a positive answer would place every open convex code inside a finite real hyperplane arrangement.  The planar case is known: every planar open convex code admits a polygonal realization \cite{BukhJeffs2023}.  In higher dimension, the conjecture remains open \cite{KuninLienkaemperRosen2023,JeffsTrang2025}.
+
+The difficulty is not the preservation of the nerve.  A nerve records nonempty intersections, whereas a neural code records every relative atom.  Inner approximation can remove memberships and create smaller codewords; outer approximation can add memberships and create larger ones.  Boundary-supported and lower-dimensional atoms prevent one from assuming positive geometric margins.  The main purpose of this paper is to isolate what can nevertheless be made finite and rational.
+
+\subsection*{Main contributions}
+The results form one reduction chain.
+
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.5em]
+\item \textbf{Polytope monotonicity.}  If $\A$ is polytope convex and
+\[
+ \A\subseteq\E\subseteq\Delta(\A),
+\]
+then $\E$ is polytope convex.  The proof is an explicit finite cap construction with one independent height coordinate per added word.  It includes threshold equality and simultaneous-cap analysis.
+
+\item \textbf{Polytopal maximal-intersection cores.}  The code consisting of the empty word and all nonempty intersections of the maximal words has the affine-hyperplane realization of \citet{CruzEtAl2019}, which we record in a bounded polytopal form.  Combining this construction with polytope monotonicity yields polytope convexity for every max-intersection-complete code, and hence for every intersection-complete code.  The contribution here is the bounded finite formulation and its role in the reduction chain, not priority for the underlying core construction.
+
+\item \textbf{Three universal reductions.}  Universal polyhedralization is equivalent, as a theorem scheme, to lifting every immediate cover from a polytopal lower code.  It is also equivalent to deleting one nonmaximal word from a polytopal code whenever the deletion is open convex.  Finally, it suffices to treat deletions
+\[
+ \E=\D\setminus\{\sigma\},\qquad \sigma=\tau\cap\upsilon,
+\]
+where $\tau$ and $\upsilon$ are strict surviving superwords.  The last reduction uses an inclusion-minimal family of maximal words and a deletion order by nondecreasing cardinality.
+
+\item \textbf{Finite rational bridges.}  For every open-convex binary-meet deletion, the segment between witnesses of $\tau$ and $\upsilon$ produces a covered interval code in the strict trunk above $\sigma$.  Only the weak order and equality classes of finitely many interval endpoints matter, so the entire trace can be rationalized without changing simultaneous events.
+
+\item \textbf{One-neuron polyhedralization over a fixed arrangement.}  If the old receptive fields already form a finite polytopal arrangement, then one additional arbitrary open convex neuron can be replaced by one polytope in the same dimension while preserving every atom.  The proof uses the finite face decomposition of the old arrangement and weak separation of every outside cell or outside witness.
+
+\item \textbf{Finite protected supercodes and repair atlases.}  Every bounded open convex realization admits a finite inner-polytopal supercode $\D$ with
+\[
+ \C\subseteq\D\subseteq\Delta(\C),
+\]
+the same maximal words, and an exact protected witness for every target word.  Every unwanted carrier in $\D\setminus\C$ is covered by finitely many full-dimensional polytopes lying inside complete source words.  Hence zero margin does not force infinitely many local repair charts.
+\end{enumerate}
+
+The last statement is not a simultaneous-globalization theorem.  We give an exact rational example in which repairing one word and then convexifying a second neuron recreates the first forbidden word; synchronized whole-word enlargement succeeds in the same example.  This proves that the remaining step is a genuine finite compatibility problem rather than a routine convex-hull operation.
+
+\begin{figure}[t]
+\centering
+\input{figures/dependency_diagram}
+\caption{The theorem dependency chain.  Solid arrows are proved implications.  The dashed final arrow is the open simultaneous-globalization step.}
+\label{fig:dependency}
+\end{figure}
+
+\subsection*{Relation to prior work}
+Open-convex monotonicity and open/closed convexity of max-intersection-complete codes were established by \citet{CruzEtAl2019}.  Morphisms and the code-minor poset were developed by \citet{Jeffs2020}, with an erratum in \citet{JeffsErratum2022}; the covering relations were later classified by \citet{JeffsTrang2025}.  The representable-oriented-matroid characterization of polytope-convex codes is due to \citet{KuninLienkaemperRosen2023}, and planar polygonalization to \citet{BukhJeffs2023}.  Our contributions are the polytopal cap upgrade and its combination with the known core realization, the precise deletion and binary-meet reduction chain, rational bridge extraction, fixed-arrangement one-neuron theorem, and the protected-supercode/finite-atlas package.  The priority status of each theorem is recorded in the accompanying audit.
+
+\subsection*{Organization and scope}
+\Cref{sec:preliminaries} fixes conventions.  \Cref{sec:monotonicity} gives the cap construction and maximal-intersection cores.  \Cref{sec:universal-reductions} proves the three reductions.  \Cref{sec:rational-bridges} constructs and rationalizes interval bridges.  \Cref{sec:fixed-arrangement} proves one-neuron polyhedralization.  \Cref{sec:finite-supercodes,sec:repair-atlases} produce the finite protected supercode and repair atlas.  \Cref{sec:failed-shortcuts} gives exact failure calibrations and states the remaining theorem.  The appendices contain the convention crosswalk, full cap audit, a known intersection-morphism fact that rules out a tempting shortcut, and verifier specifications.
+
+The central thesis is therefore precise: the convex-to-polytope conjecture reduces to a canonical binary-meet deletion operation with finite rational bridge data; local curvature of one neuron over a fixed arrangement is never the obstruction; and arbitrary realizations admit finite protected supercodes with finite repair atlases.  What remains is global simultaneous convex attachment of those finite data while every repeated original neuron remains one convex polytope.

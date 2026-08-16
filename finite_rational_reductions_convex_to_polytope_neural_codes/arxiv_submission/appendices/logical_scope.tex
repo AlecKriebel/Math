@@ -1,0 +1,50 @@
+\section{Logical scope, finiteness, and quantitative bookkeeping}
+\label{app:logical-scope}
+
+This appendix records the exact quantifiers in the three universal reductions and the finiteness information supplied by the constructive theorems.  It is included to prevent two common overreadings: that a reduction is itself an algorithm on abstract codes, or that a finite local atlas already provides a simultaneous global realization.
+
+\subsection{Theorem-scheme equivalences}
+
+Let $\mathbf{UP}$ denote the statement that every finite open convex code is polytope convex.  Let $\mathbf{CL}$ denote the universally quantified cover-lifting statement from \Cref{thm:saturated-chain}, $\mathbf{DL}$ the one-word deletion statement from \Cref{thm:single-deletion}, and $\mathbf{BM}$ the binary-meet deletion statement from \Cref{thm:binary-meet-reduction}.  Then
+\[
+ \mathbf{UP}\Longleftrightarrow\mathbf{CL}
+ \Longleftrightarrow\mathbf{DL}
+ \Longleftrightarrow\mathbf{BM}.
+\]
+The reverse implications from $\mathbf{UP}$ are formal: the upper code in each local statement is assumed open convex, so $\mathbf{UP}$ makes it polytopal.  The forward implications are constructive inductions on finite code data:
+\begin{enumerate}[label=\textup{(\alph*)}]
+\item $\mathbf{CL}\Rightarrow\mathbf{UP}$ follows along a saturated chain in the finite interval below a fixed code;
+\item $\mathbf{DL}\Rightarrow\mathbf{UP}$ starts from the maximal-intersection completion and deletes missing nonmaximal words one at a time;
+\item $\mathbf{BM}\Rightarrow\mathbf{DL}$ orders the missing maximal-word intersections by nondecreasing cardinality and uses an inclusion-minimal family of maximal words to express each deleted word as a meet of two strict survivors.
+\end{enumerate}
+
+These are equivalences of universal statements, not a claim that arbitrary immediate covers, arbitrary deletions, and binary-meet deletions are the same geometric operation.  The binary-meet formulation is preferred because open convexity supplies the rational interval bridge of \Cref{thm:rational-bridge}.
+
+\subsection{Finite construction bounds}
+
+The present proofs provide the following explicit finiteness data.
+\begin{center}
+\begin{tabular}{p{0.31\linewidth}p{0.24\linewidth}p{0.35\linewidth}}
+\toprule
+Construction & Added dimension & Finite data\\
+\midrule
+Polytope monotonicity & $|\E\setminus\A|$ & one apex and one threshold per added word\\
+Maximal-intersection core & at most $k-1$ for $k$ maximal words & one coordinate halfspace for each missing maximal-word incidence\\
+Rational bridge & one-dimensional trace; optional simplex thickening & at most two endpoints per nontrivial relative neuron, modulo equality classes\\
+Fixed-arrangement selector & no dimension increase & finitely many old arrangement cells and one separator per outside cell/witness\\
+Protected inner supercode & no dimension increase & one compact simplex per source word\\
+Whole-word repair atlas & no dimension increase locally & a finite subcover for each compact unwanted carrier\\
+\bottomrule
+\end{tabular}
+\end{center}
+No uniform numerical bound on the last atlas size is asserted from the abstract code alone, because its extraction uses a supplied convex realization.  Likewise, none of these bounds gives a computable bound on the size of a representable-oriented-matroid completion for every open convex code.
+
+\subsection{Two finite objects that must not be conflated}
+
+The rational bridge and the whole-word atlas solve different local problems.
+
+The bridge is attached to one missing binary meet $\sigma=\tau\cap\upsilon$.  It records a finite covered path of strict superwords between two protected endpoint words.  It supplies interface data but does not select a compatible placement in a pre-existing polytopal arrangement.
+
+The atlas is extracted after choosing a protected inner-polytopal supercode.  It covers the complete compact carrier of every unwanted word by source-contained modules labelled by complete target words.  It removes the possibility that zero margin requires infinitely many local charts, but modules carrying the same neuron may occur in several geometrically separated places.  Convexifying those occurrences independently can create remote mixed words, as shown in \Cref{ex:sequential-failure}.
+
+Thus the final open statement is finite in two independent senses: there are finitely many unwanted carriers, and each has finitely many complete-word modules.  The missing theorem is compatibility of their simultaneous convex attachment, not extraction of further local data.

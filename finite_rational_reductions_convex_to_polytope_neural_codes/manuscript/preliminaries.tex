@@ -1,0 +1,72 @@
+\section{Conventions and preliminaries}
+\label{sec:preliminaries}
+
+Fix $[n]=\{1,\ldots,n\}$.  A \emph{neural code} is a finite set
+\[
+ \C\subseteq 2^{[n]}
+\]
+containing $\varnothing$.  The mandatory empty word is convenient for the code-minor category and for ambient regions outside all receptive fields.
+
+\begin{definition}[Atoms and codes]
+Let $X$ be an open convex subset of a finite-dimensional affine space and let $U_1,\ldots,U_n\subseteq X$ be open convex sets.  For $\sigma\subseteq[n]$, define
+\[
+ A_\sigma(\mathcal U,X)
+ =X\cap\bigcap_{i\in\sigma}U_i\setminus\bigcup_{j\notin\sigma}U_j.
+\]
+The code of the realization is
+\[
+ \code(\mathcal U,X)=\{\sigma\subseteq[n]:A_\sigma(\mathcal U,X)\ne\varnothing\}.
+\]
+The code is \emph{open convex} if it has such a realization.  It is \emph{open polytope convex}, or simply \emph{polytope convex}, if
+\[
+ U_i=\operatorname{int}P_i,
+ \qquad X=\operatorname{int}Q
+\]
+for finite-dimensional convex polytopes $P_i,Q$, with interiors taken in the common ambient affine hull.
+\end{definition}
+
+A neuron may be trivial, duplicate, full, or redundant.  Trivial inactive neurons may be represented by lower-dimensional polytopes with empty ambient interior; a full neuron may be represented by the ambient polytope itself.  We retain such coordinates when they matter combinatorially, but remove and restore them during constructions when this simplifies dimension statements.
+
+\begin{definition}[Simplicial completion and maximal words]
+The simplicial completion of $\C$ is
+\[
+ \Delta(\C)=\{\sigma:\sigma\subseteq\tau\text{ for some }\tau\in\C\}.
+\]
+The inclusion-maximal words of $\C$ are denoted $\Max(\C)$.  The code is \emph{max-intersection-complete} if every nonempty intersection of maximal words belongs to $\C$; by convention $\varnothing\in\C$ as well.
+\end{definition}
+
+\begin{definition}[Trunks and morphisms]
+For $\sigma\subseteq[n]$, the trunk rooted at $\sigma$ is
+\[
+ \Tk_\C(\sigma)=\{\tau\in\C:\sigma\subseteq\tau\}.
+\]
+A proper trunk is nonempty and not all of $\C$.  A code morphism is a map whose inverse image of every proper trunk is a proper trunk.  We write $\C\le\D$ when there is a surjective morphism $\D\twoheadrightarrow\C$.
+\end{definition}
+
+The minor convention used here is the mandatory-empty-word version of the poset introduced by \citet{Jeffs2020}.  The exact operation-by-operation comparison with the older convention is given in \Cref{app:crosswalk}.  We use two established facts: surjective code morphisms preserve open convexity \cite{Jeffs2020}, and polytope-convex codes are exactly the minors of positive-covector codes of finite real-representable oriented matroids \cite{KuninLienkaemperRosen2023}.
+
+\begin{lemma}[Bounded realization]
+\label{lem:bounded-realization}
+Every finite open convex neural code has a bounded open convex realization in the same dimension.
+\end{lemma}
+
+\begin{proof}
+Choose one witness $x_\sigma\in A_\sigma$ for every $\sigma\in\C$, including $x_\varnothing$, and put
+\[
+ K=\conv\{x_\sigma:\sigma\in\C\}.
+\]
+The compact set $K$ lies in the open convex ambient set $X$.  Hence, for some $\eps>0$,
+\[
+ K+\eps\overline B\subseteq X.
+\]
+Set
+\[
+ X'=\operatorname{int}(K+\eps\overline B),
+ \qquad U_i'=U_i\cap X'.
+\]
+Restriction cannot create a word, and every selected witness lies in $X'$.  Therefore the code is unchanged; the empty atom is retained; and the new ambient is bounded, open, and convex.
+\end{proof}
+
+\begin{remark}[Strict interiors]
+The code depends on strict membership.  A point on a facet of $P_i$ is absent from the neuron $\operatorname{int}P_i$.  This convention is used explicitly in the cap-boundary and interval-endpoint arguments below.
+\end{remark}
