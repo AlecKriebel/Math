@@ -1,6 +1,7 @@
 # Priority and equivalence audit
 
-Audit date: **27 July 2026** (America/Los_Angeles).
+Initial audit: **27 July 2026**. Fresh priority/reference audit:
+**16 August 2026** (America/Los_Angeles).
 
 ## Bottom line
 
@@ -22,6 +23,28 @@ No searched source supplied the five-word Pauli formula, an equivalent
 ordinary \(16\times16\) unitary Hecke operator, or a four-dimensional
 ordinary localization of the \((3,6)\) Jones--Wenzl tower. This is a
 provisional priority conclusion, not proof of absolute novelty.
+
+The 16 August refresh found no intervening public collision. Lechner remained
+at arXiv v1 with no journal reference or DOI; exact-title, identifier,
+parameter, formula-fingerprint, citation-index, and authenticated public-code
+searches found no later construction. Seven Yang--Baxter arXiv papers posted
+between the two audit dates were inspected and concerned other problems. Weak
+or unavailable indexing signals are treated only as limitations, never as
+positive novelty evidence.
+
+The intervening arXiv records inspected were
+[2607.28626](https://arxiv.org/abs/2607.28626),
+[2607.29660](https://arxiv.org/abs/2607.29660),
+[2608.01884](https://arxiv.org/abs/2608.01884),
+[2608.04097](https://arxiv.org/abs/2608.04097),
+[2608.06736](https://arxiv.org/abs/2608.06736),
+[2608.08688](https://arxiv.org/abs/2608.08688), and
+[2608.09081](https://arxiv.org/abs/2608.09081). The closest recent generalized
+Yang--Baxter backstops,
+[2605.30007](https://arxiv.org/abs/2605.30007) and
+[2606.26510](https://arxiv.org/abs/2606.26510), concern extraspecial or
+multisite-integrability constructions, do not cite Lechner, and do not give
+the ordinary four-dimensional Hecke localization here.
 
 ## Primary-source boundary
 
@@ -64,7 +87,7 @@ new \((3,2)\) active form has been established.
 
 ### Lechner's classification
 
-- [arXiv:2603.20158v1](https://arxiv.org/abs/2603.20158), submitted
+- [arXiv:2603.20158v1](https://arxiv.org/abs/2603.20158v1), submitted
   20 March 2026 at 17:34:47 UTC.
 - The abstract says one even-dimensional class larger than two may or may
   not exist.
@@ -86,8 +109,8 @@ dimensions \(4m+2\) beyond two remain open.
   equations, [arXiv:0706.1761](https://arxiv.org/abs/0706.1761).
 - Vasquez--Wang--Wong, metaplectic anyons,
   [arXiv:1602.08536](https://arxiv.org/abs/1602.08536).
-- Sinha et al., *Hidden Ising models in multi-site Yang--Baxter
-  systems*, [arXiv:2605.30007](https://arxiv.org/abs/2605.30007).
+- Sinha et al., *Hidden Ising models from the generalized Yang--Baxter
+  equation*, [arXiv:2605.30007](https://arxiv.org/abs/2605.30007).
 
 These sources contain generalized, Gaussian, extraspecial, or metaplectic
 operators, but the audit found no ordinary representative of
@@ -115,9 +138,17 @@ no public result before the repository checkpoint. Search-engine results for
 “exceptional \(R\)-matrix” mostly concerned exceptional Lie algebras, a
 different use of “exceptional.”
 
-The Lechner arXiv record had no later arXiv version at audit time. An
-OpenAlex metadata query reported zero citations, but this is only a weak
-indexing signal and is not treated as evidence of novelty.
+The Lechner arXiv record still had no later version on 16 August 2026.
+Crossref, zbMATH, Google Scholar, OpenAlex, and exact-title/identifier searches
+found no later publication or citing work; Semantic Scholar rate-limited the
+refresh. These are incomplete negative signals and are not treated as proof of
+novelty.
+
+All six bibliography records, DOI targets, and the manuscript's cited
+sections, equations, theorem, lemma, remark, and page claims were checked
+against primary sources in the refresh. Wenzl's official title is “Hecke
+algebras of type \(A_n\) and subfactors”; that subscript is retained in the
+paper.
 
 ## Equivalence risks
 

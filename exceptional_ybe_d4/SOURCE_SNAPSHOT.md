@@ -1,16 +1,20 @@
 # Source snapshot and provenance
 
-Snapshot opened on 27 July 2026 (America/Los_Angeles).
+Snapshot opened on 27 July 2026 and re-audited on 16 August 2026
+(America/Los_Angeles).
 
 ## Supplied exact verifier
 
-- Original local path:
-  `/Users/alec/Downloads/verify_exceptional_ybe_d4.py`
+- Original supplied filename: `verify_exceptional_ybe_d4.py`.
 - Size: 1,552 bytes
 - Local modification time: 2026-07-27 17:53:50 PDT
 - SHA-256:
   `df5ccbc8807c20a2f782762681100e3ad06cb95a750b7e052839584006fe3677`
-- Repository copy: `verify_supplied.py`, retained byte for byte.
+- Repository copy: `verify_supplied_original.py`, retained byte for byte.
+
+`verify_supplied.py` is the supported hardened adaptation. It rejects
+optimized Python and uses explicit scientific checks; it is intentionally not
+byte-identical to the supplied file.
 
 The supplied file verifies only the final witness.  It does not contain or
 reconstruct the numerical search that reportedly discovered the five-word
@@ -34,8 +38,7 @@ question.
   Mathematics Research Notices 2013(3), 693--731.
 - Advance access publication: 14 February 2012.
 - DOI: <https://doi.org/10.1093/imrn/rnr269>
-- Author-supplied local PDF:
-  `/Users/alec/Desktop/galindo2012.pdf`
+- Author-supplied local PDF used during the audit; not redistributed.
 - Size: 335,860 bytes.
 - SHA-256:
   `ce68f021303048dffb4badd498291865e56c860a309901d6463a18b5d938cdf7`.
@@ -49,4 +52,3 @@ search in a real Pauli--Clifford basis found the five words, after which the
 coefficients were recognized exactly.  The original search program, random
 seeds, and raw numerical trace were not retained.  No claim of exhaustive
 search, uniqueness, or reproducible discovery is made.
-

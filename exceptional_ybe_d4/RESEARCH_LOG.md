@@ -7,9 +7,11 @@ All times are America/Los_Angeles (PDT, UTC-07:00).
 - **19:33:15** -- Opened an independent audit of the proposed \(16\times16\)
   witness for the exceptional class
   \([e^{i\pi/3},\tfrac12,4]\).
-- Preserved the supplied verifier as `verify_supplied.py`.  The retained file
-  checks the final witness but is not evidence about how the witness was
-  discovered.
+- Initially preserved the supplied verifier under `verify_supplied.py`. In
+  version 1.1.1 the byte-for-byte file was renamed
+  `verify_supplied_original.py`, while `verify_supplied.py` became the hardened
+  supported adaptation. The original checks the final witness but is not
+  evidence about how the witness was discovered.
 - Audit scope fixed before publication: exact matrix and tensor-word checks;
   tensor ordering; Hecke normalization; spectrum and partial traces; the
   Markov-trace/localization claim; amplification to larger dimensions;
@@ -136,3 +138,62 @@ All times are America/Los_Angeles (PDT, UTC-07:00).
     identical to the frozen repository copy.
   - A live browser rendering showed no horizontal overflow at desktop width.
     The complete ten-page PDF had already passed page-by-page visual review.
+
+## 16 August 2026 — Submission-readiness hardening
+
+- **10:03 PDT** -- Began a fresh line-by-line mathematical, reference,
+  verifier, archive, Zenodo, arXiv, and journal audit from exact current
+  `origin/main` commit `8fbf2c358eb4ac1e35ce20a0eb30dde42a458c60`.
+- **10:20 PDT** -- Reconfirmed all three exact mathematical routes in the
+  locked Python 3.14.6 / SymPy 1.14.0 / mpmath 1.3.0 environment. Independent
+  dense checks also confirmed both partial traces, both obstruction norms,
+  site swapping, generalized Yang--Baxter, and far commutativity. No
+  scope-changing mathematical defect was found.
+- **10:32 PDT** -- Reproduced two archival blockers: optimized Python could
+  disable scientific assertions, and the package checksum file referred to a
+  stale website hash and to website files absent from the curated archive.
+- **10:45 PDT** -- Found that the active GitHub--Zenodo integration had placed
+  seven unrelated monorepo releases under concept DOI
+  `10.5281/zenodo.21753404`. Recorded a hard rule to disable that integration
+  before future releases and to use a fresh manual upload/DOI family for this
+  paper. No Zenodo state was changed.
+- **10:52 PDT** -- Completed current official submission-policy checks.
+  Journal of Algebra is the first target and applies Elsevier research-data
+  Option C; JPAA is the sequential fallback. arXiv `math.QA` is the primary
+  category, `math.RT` is a defensible cross-list, and `quant-ph` remains a
+  moderator/endorsement-dependent attempt rather than a manuscript claim.
+- **10:58 PDT** -- Completed the refreshed priority and bibliography audit
+  through 16 August. No public collision or citation of Lechner's preprint was
+  found; all bibliography records and pinpoint citations were validated. The
+  only bibliographic correction was Wenzl's official “type A_n” title.
+- **11:00 PDT** -- Hardened all supported verifiers, retained the original
+  attachment byte for byte, added mutation and optimized-mode negative tests,
+  made checksums package-local and path-safe, pinned the build environment,
+  and added explicit licenses and complete Zenodo/arXiv/journal handoff
+  metadata. The mathematical claims and scope were unchanged.
+- **11:44 PDT** -- Closed the final adversarial manuscript and verifier audit.
+  - The line-by-line proof audit found no gap, normalization error,
+    convention error, unsupported theorem dependency, or scope-changing
+    mathematical issue.
+  - Every bibliography entry, DOI, title, version-sensitive locator, and
+    substantive citation was rechecked against primary sources. A fresh
+    priority search through this date found no public collision; the paper
+    retains the deliberately limited “appears new” claim.
+  - The verifiers now bind the positive phase (q=e^{+i\pi/3}), bind the
+    printed four-qubit witness to the independently encoded active witness,
+    and distinguish the two partial-trace legs on an asymmetric test matrix.
+    Fourteen negative tests reject optimized execution, phase and coefficient
+    drift, algebra mutations, unsafe checksum paths, and archive-boundary
+    violations.
+  - A clean Tectonic 0.16.9/default-bundle-v33 rebuild was byte reproducible.
+    The 11-page PDF has SHA-256
+    `946e2b6595a67ff2fc9148d54ed5fa07a5fc4d6744270622caf3c0cf548b2dc3`;
+    both mirrors match, all fonts are embedded, all 12 external links are
+    valid, and every page passed a fresh visual inspection.
+  - Submission policy and provenance were re-audited for Zenodo, arXiv,
+    Journal of Algebra, and JPAA. The handoff now reserves a fresh manual
+    Zenodo DOI before publication and builds one consistent DOI-bearing
+    manuscript edition. The author-supplied full postal address and phone
+    remain an explicit journal-only human gate; neither was invented here.
+- No outside individual was contacted, and no Zenodo, arXiv, or journal
+  submission was initiated.

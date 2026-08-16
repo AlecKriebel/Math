@@ -7,6 +7,11 @@ the supplied verifier.
 """
 
 from fractions import Fraction
+import sys
+
+
+if sys.flags.optimize:
+    raise RuntimeError("optimized Python is not permitted for scientific verification")
 
 
 class Q23:
@@ -129,6 +134,13 @@ ZERO = CQ23()
 ONE = CQ23(1)
 
 
+def require(condition, label):
+    """Raise explicitly; unlike ``assert``, this survives optimized Python."""
+
+    if not condition:
+        raise AssertionError(label)
+
+
 def zero_matrix(n):
     return [dict() for _ in range(n)]
 
@@ -150,7 +162,7 @@ def dense_integer_matrix(rows):
 
 
 def matrix_add(a, b):
-    assert len(a) == len(b)
+    require(len(a) == len(b), "matrix_add dimension mismatch")
     out = zero_matrix(len(a))
     for i, (row_a, row_b) in enumerate(zip(a, b)):
         keys = set(row_a) | set(row_b)
@@ -180,7 +192,7 @@ def scalar_mul(scalar, a):
 
 
 def matmul(a, b):
-    assert len(a) == len(b)
+    require(len(a) == len(b), "matmul dimension mismatch")
     n = len(a)
     out = zero_matrix(n)
     for i, row_a in enumerate(a):
@@ -236,7 +248,10 @@ def assert_equal(label, a, b):
 
 
 def partial_trace_right(a, left_dim, right_dim):
-    assert len(a) == left_dim * right_dim
+    require(
+        len(a) == left_dim * right_dim,
+        "partial_trace_right dimension mismatch",
+    )
     out = zero_matrix(left_dim)
     for i in range(left_dim):
         for j in range(left_dim):
@@ -249,7 +264,10 @@ def partial_trace_right(a, left_dim, right_dim):
 
 
 def partial_trace_left(a, left_dim, right_dim):
-    assert len(a) == left_dim * right_dim
+    require(
+        len(a) == left_dim * right_dim,
+        "partial_trace_left dimension mismatch",
+    )
     out = zero_matrix(right_dim)
     for i in range(right_dim):
         for j in range(right_dim):
@@ -276,7 +294,10 @@ def qubit_permutation(output_sources):
     """Matrix sending |b_0...b_{n-1}> to |b_{p_0}...b_{p_{n-1}}>."""
 
     n_qubits = len(output_sources)
-    assert sorted(output_sources) == list(range(n_qubits))
+    require(
+        sorted(output_sources) == list(range(n_qubits)),
+        "output_sources is not a qubit permutation",
+    )
     dimension = 2**n_qubits
     out = zero_matrix(dimension)
     for input_index in range(dimension):
@@ -300,6 +321,17 @@ TERMS = (
     ("JIJZ", INV_SQRT_6),
     ("XIXX", -INV_SQRT_3),
 )
+PRINTED_KH_TERMS = (
+    ("ZZZ", -INV_SQRT_6),
+    ("ZJJ", -INV_SQRT_6),
+    ("JJZ", -INV_SQRT_6),
+    ("JZJ", INV_SQRT_6),
+    ("XXX", -INV_SQRT_3),
+)
+EXPECTED_Q = CQ23(
+    Q23(Fraction(1, 2)),
+    Q23(0, 0, Fraction(1, 2), 0),
+)
 
 
 def build_h(terms):
@@ -318,11 +350,26 @@ def ybe_residual(left, right):
 
 def main():
     i2, i4, i8, i16 = eye(2), eye(4), eye(8), eye(16)
+    # A deliberately asymmetric toy case certifies that the two partial-trace
+    # helpers use different tensor legs rather than accidentally duplicating one.
+    partial_trace_toy = dense_integer_matrix(
+        [[1, 0, 0, 0], [0, 2, 0, 0], [0, 0, 3, 0], [0, 0, 0, 5]]
+    )
+    require(
+        partial_trace_right(partial_trace_toy, 2, 2)
+        == dense_integer_matrix([[3, 0], [0, 8]]),
+        "right partial-trace convention failed on the asymmetric toy case",
+    )
+    require(
+        partial_trace_left(partial_trace_toy, 2, 2)
+        == dense_integer_matrix([[4, 0], [0, 7]]),
+        "left partial-trace convention failed on the asymmetric toy case",
+    )
     h = build_h(TERMS)
 
     assert_equal("H is Hermitian", adjoint(h), h)
     assert_equal("H^2 = I_16", matmul(h, h), i16)
-    assert trace(h) == ZERO
+    require(trace(h) == ZERO, "Tr(H) != 0")
     print("[ok] Tr(H) = 0")
 
     h1, h2 = kron(h, i4), kron(i4, h)
@@ -333,7 +380,10 @@ def main():
     cubic_right = scalar_mul(Fraction(1, 3), matrix_sub(h1, h2))
     assert_equal("cubic reflection identity on 64 dimensions", cubic_left, cubic_right)
 
-    q = CQ23(Q23(Fraction(1, 2)), Q23(0, 0, Fraction(1, 2), 0))
+    # Construct q separately from its independently encoded expected value so
+    # a conjugation/sign drift cannot pass the invariant checks below.
+    q = (ONE + CQ23(0, Q23(0, 0, 1, 0))) / 2
+    require(q == EXPECTED_Q, "q is not exp(+i*pi/3)")
     a = (q - 1) / 2
     b = (q + 1) / 2
     r = matrix_add(scalar_mul(a, i16), scalar_mul(b, h))
@@ -341,7 +391,7 @@ def main():
 
     assert_equal("P^2 = P", matmul(p, p), p)
     assert_equal("P is Hermitian", adjoint(p), p)
-    assert trace(p) == CQ23(8)
+    require(trace(p) == CQ23(8), "Tr(P) != 8")
     print("[ok] Tr(P) = rank(P) = 8")
 
     assert_equal("R is unitary", matmul(adjoint(r), r), i16)
@@ -350,7 +400,7 @@ def main():
         matrix_sub(r, scalar_mul(q, i16)),
     )
     assert_equal("(R + I)(R - qI) = 0", hecke, zero_matrix(16))
-    assert trace(r) == 8 * (q - 1)
+    require(trace(r) == 8 * (q - 1), "Tr(R) != 8(q - 1)")
     print("[ok] Tr(R) = 8(q - 1) = -4 + 4i*sqrt(3)")
 
     r1, r2 = kron(r, i4), kron(i4, r)
@@ -378,7 +428,10 @@ def main():
         scalar_mul(Fraction(1, 3), p1),
     )
     tl_norm = trace(matmul(adjoint(tl_obstruction), tl_obstruction)) / 64
-    assert tl_norm == CQ23(Fraction(1, 18))
+    require(
+        tl_norm == CQ23(Fraction(1, 18)),
+        f"d=3 TL obstruction norm is {tl_norm}, not 1/18",
+    )
     print("[ok] exceptional trace norm of the d=3 TL obstruction = 1/18")
 
     q_projection = matrix_sub(i16, p)
@@ -396,7 +449,10 @@ def main():
         )
         / 64
     )
-    assert complementary_tl_norm == CQ23(Fraction(1, 18))
+    require(
+        complementary_tl_norm == CQ23(Fraction(1, 18)),
+        f"complementary d=3 obstruction norm is {complementary_tl_norm}, not 1/18",
+    )
     print("[ok] exceptional trace norm of the complementary d=3 obstruction = 1/18")
 
     # Remove the spectator second qubit, then exchange the last two active
@@ -404,11 +460,16 @@ def main():
     # (a_i, b_{i+1}, a_{i+1}).
     active_terms = []
     for word, coefficient in TERMS:
-        assert word[1] == "I"
+        require(word[1] == "I", f"{word} has no spectator second qubit")
         active = word[0] + word[2] + word[3]
         standard_order = active[0] + active[2] + active[1]
         active_terms.append((standard_order, coefficient))
-    k_h = build_h(tuple(active_terms))
+    require(
+        tuple(active_terms) == PRINTED_KH_TERMS,
+        "derived active terms do not equal the independently encoded printed K_H",
+    )
+    print("[ok] derived active terms equal the independently encoded printed K_H")
+    k_h = build_h(PRINTED_KH_TERMS)
     sitewise_swap = qubit_permutation((1, 0, 3, 2))
     swapped_two_site_h = matmul(matmul(sitewise_swap, h), adjoint(sitewise_swap))
     assert_equal(
@@ -417,6 +478,14 @@ def main():
         kron(i2, k_h),
     )
     k_r = matrix_add(scalar_mul(a, i8), scalar_mul(b, k_h))
+    assert_equal(
+        "active K satisfies the Hecke polynomial",
+        matmul(
+            matrix_add(k_r, i8),
+            matrix_sub(k_r, scalar_mul(q, i8)),
+        ),
+        zero_matrix(8),
+    )
     swapped_two_site_r = matmul(matmul(sitewise_swap, r), adjoint(sitewise_swap))
     assert_equal(
         "sitewise-swapped R factors as I_2 tensor K",

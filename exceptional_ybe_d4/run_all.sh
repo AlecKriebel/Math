@@ -2,25 +2,47 @@
 set -euo pipefail
 
 YBE_SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-YBE_SYMPY_PYTHON="${YBE_SYMPY_PYTHON:-python3}"
+YBE_PYTHON="${YBE_PYTHON:-${YBE_SYMPY_PYTHON:-python3}}"
 
 cd "$YBE_SCRIPT_DIR"
 
+if ! "$YBE_PYTHON" -c 'import sys; raise SystemExit(0 if sys.flags.optimize == 0 else 1)'; then
+  echo "Optimized Python is not permitted for scientific verification." >&2
+  exit 2
+fi
+
+if ! "$YBE_PYTHON" -c 'import sympy, mpmath; raise SystemExit(0 if (sympy.__version__, mpmath.__version__) == ("1.14.0", "1.3.0") else 1)' >/dev/null 2>&1; then
+  echo "This package requires SymPy 1.14.0 and mpmath 1.3.0." >&2
+  echo "Install requirements.txt into the selected YBE_PYTHON environment." >&2
+  exit 2
+fi
+
+"$YBE_PYTHON" - <<'PY'
+import platform
+import sys
+import mpmath
+import sympy
+
+print(
+    "verification environment: "
+    f"Python {platform.python_version()}; "
+    f"SymPy {sympy.__version__}; "
+    f"mpmath {mpmath.__version__}; "
+    f"optimization={sys.flags.optimize}"
+)
+PY
+
+echo
 echo "== dependency-free exact matrix verifier =="
-python3 verify_exact.py
+"$YBE_PYTHON" verify_exact.py
 
 echo
 echo "== abstract tensor-word verifier =="
-python3 verify_tensor_words.py
+"$YBE_PYTHON" verify_tensor_words.py
 
 echo
-echo "== preserved SymPy verifier =="
-if ! "$YBE_SYMPY_PYTHON" -c "import sympy" >/dev/null 2>&1; then
-  echo "SymPy is unavailable to $YBE_SYMPY_PYTHON." >&2
-  echo "Install requirements.txt or set YBE_SYMPY_PYTHON to a compatible interpreter." >&2
-  exit 2
-fi
-"$YBE_SYMPY_PYTHON" verify_supplied.py
+echo "== hardened SymPy verifier =="
+"$YBE_PYTHON" verify_supplied.py
 
 echo
 echo "All three verification routes passed."

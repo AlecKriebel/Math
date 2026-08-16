@@ -1,5 +1,10 @@
 # Revision audit for version 1.1.0
 
+> **Historical record.** This file records decisions made for version 1.1.0
+> on 27 July 2026. It is not the submission-readiness assessment for version
+> 1.1.1; the current declarations and validation record are in `main.tex`,
+> `RELEASE_NOTES_v1.1.1.md`, and `VERIFICATION_ENVIRONMENT.md`.
+
 Audit date: **27 July 2026** (America/Los_Angeles).
 
 This file records the disposition of the independent review supplied after

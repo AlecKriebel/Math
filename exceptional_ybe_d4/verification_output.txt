@@ -1,3 +1,5 @@
+verification environment: Python 3.14.6; SymPy 1.14.0; mpmath 1.3.0; optimization=0
+
 == dependency-free exact matrix verifier ==
 [ok] H is Hermitian
 [ok] H^2 = I_16
@@ -14,7 +16,9 @@
 [ok] Tr_left(P) = 2 I_4
 [ok] exceptional trace norm of the d=3 TL obstruction = 1/18
 [ok] exceptional trace norm of the complementary d=3 obstruction = 1/18
+[ok] derived active terms equal the independently encoded printed K_H
 [ok] sitewise-swapped H factors as I_2 tensor K_H
+[ok] active K satisfies the Hecke polynomial
 [ok] sitewise-swapped R factors as I_2 tensor K
 [ok] active 8x8 operator is unitary
 [ok] standard (3,2)-generalized Yang--Baxter equation
@@ -44,6 +48,7 @@ standard active form: unitary (3,2)-gYB operator on three qubits
 [ok] H(alpha,beta)^2 = (alpha^2 + beta^2) I
 [ok] the cubic residual has exactly the printed 18-word certificate
 [ok] all 18 coefficients vanish for alpha^2=2/3, beta^2=1/3
+[ok] alpha=0, beta=0, and nondegenerate converse branches are certified
 
 The 18 surviving words and their coefficients are:
   -1/2*alpha*beta^2 + 1/6*alpha                           : IIJIJZ, JIZJII, ZIJJII, ZIZZII
@@ -57,7 +62,7 @@ All tensor-word checks passed.
 On alpha^2 + beta^2 = 1, the only nondegenerate obstruction is
 3 beta^2 - 1; hence beta^2 = 1/3 and alpha^2 = 2/3.
 
-== preserved SymPy verifier ==
+== hardened SymPy verifier ==
 All exact checks passed.
 base dimension = 4
 matrix size = 16 x 16

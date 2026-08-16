@@ -1,6 +1,6 @@
-# Exceptional four-dimensional Hecke Yang--Baxter operator
+# Exceptional four-dimensional Hecke Yang–Baxter operator
 
-Version 1.1.0 · [versioned release](https://github.com/AlecKriebel/Math/releases/tag/exceptional-ybe-d4-v1.1.0)
+Submission package version 1.1.1 · 16 August 2026
 
 ## Result
 
@@ -109,31 +109,50 @@ known quaternionic \((3,1)\) construction.
 
 ## Reproduce the checks
 
-The all-in-one command is:
+Create a clean Python 3.14.6 environment, install the hash-locked wheels, and
+run the complete suite:
 
 ```text
-YBE_SYMPY_PYTHON=/path/to/python-with-sympy ./run_all.sh
+python3.14 -m venv .venv
+.venv/bin/python -m pip install --require-hashes --only-binary=:all: \
+  -r requirements.txt
+YBE_PYTHON=.venv/bin/python ./run_all.sh
+.venv/bin/python test_failure_modes.py
+.venv/bin/python verify_checksums.py
 ```
 
 Or run the routes separately:
 
 ```text
-python3 verify_exact.py
-python3 verify_tensor_words.py
-python3 verify_supplied.py
+.venv/bin/python verify_exact.py
+.venv/bin/python verify_tensor_words.py
+.venv/bin/python verify_supplied.py
 ```
 
 - `verify_exact.py` uses only the Python standard library and directly
   multiplies sparse exact matrices over
   \(\mathbb Q(\sqrt2,\sqrt3,i)\), including the two dimension-three
-  obstructions, the explicit sitewise-swap factorization, and the
-  generalized Yang--Baxter equation.
+  obstructions, both partial traces, the literal active operator and its Hecke
+  relation, the explicit sitewise-swap factorization, the generalized
+  Yang--Baxter equation, and far commutativity.
 - `verify_tensor_words.py` never constructs a matrix. It verifies the
   involution relations and all 18 coefficients of the generic cubic
   residual in the abstract Pauli algebra.
-- `verify_supplied.py` is the byte-for-byte source attachment and requires
-  SymPy 1.14.0.
-- `verification_output.txt` is the frozen successful release run.
+- `verify_supplied.py` is the supported, optimization-safe SymPy route and
+  requires exactly SymPy 1.14.0 and mpmath 1.3.0.
+- `verify_supplied_original.py` is the byte-for-byte original attachment. It
+  uses Python assertions and is retained only for provenance, not execution.
+- `test_failure_modes.py` rejects optimized execution and deliberately mutates
+  each supported route to confirm that scientific failures cannot pass.
+- `verify_checksums.py` validates the package-local manifest without allowing
+  absolute or parent-directory paths.
+- `verification_output.txt` is the frozen successful reference run.
+
+All supported checks use explicit failures and reject optimized Python. The
+finite programs check the stated matrix, word, trace, obstruction, and
+generalized-operator identities. Tower faithfulness, the dimension-three
+classification reduction, and priority remain printed mathematical or
+literature arguments.
 
 The [typeset paper](output/pdf/exceptional_ybe_d4.pdf), [priority
 audit](PRIORITY_AUDIT.md), [revision audit](REVISION_AUDIT.md), [source
@@ -147,17 +166,35 @@ the PDF with:
 ./build_paper.sh
 ```
 
+The build requires Tectonic 0.16.9 and uses the explicit default bundle v33.
+See [VERIFICATION_ENVIRONMENT.md](VERIFICATION_ENVIRONMENT.md) for the fixed
+environment. Generate deterministic manual-upload artifacts with:
+
+```text
+.venv/bin/python package_submission.py
+```
+
+The source ZIP contains exactly the verified `SHA256SUMS` allowlist plus the
+manifest itself. The builder refuses unexpected files in `submission/`, so a
+local virtual environment, cache, note, or unrelated file cannot be archived
+silently.
+
+The exact Zenodo, arXiv, and journal handoff fields are in
+[ZENODO_DEPOSIT.md](ZENODO_DEPOSIT.md), [ARXIV_METADATA.md](ARXIV_METADATA.md),
+and [SUBMISSION_CHECKLIST.md](SUBMISSION_CHECKLIST.md). The licenses are CC BY
+4.0 for the manuscript/documentation and MIT for verifier/runner code.
+
 ## Scope and status
 
-The focused audit found no prior public ordinary four-dimensional
-localization or equivalent five-word formula. The construction therefore
-appears to answer the existence question in
-[arXiv:2603.20158](https://arxiv.org/abs/2603.20158), but absolute priority
-cannot be certified. It gives examples in all base dimensions \(4m\) after
-tensoring with identities; the dimensions \(6,10,14,\ldots\) remain open.
-
-Alec Kriebel is the named human author. He is not a specialist in this area
-and has not independently validated every argument without AI assistance.
-No independent specialist review has yet been obtained. This is an
-AI-assisted research artifact requiring qualified review, not an established
-result.
+A fresh audit through 16 August 2026 found no prior public ordinary
+four-dimensional localization or equivalent five-word formula. The
+construction therefore appears to answer the existence question in
+[arXiv:2603.20158v1](https://arxiv.org/abs/2603.20158v1), but absolute
+priority cannot be certified. It gives examples in all base dimensions
+\(4m\) after tensoring with identities; the dimensions
+\(6,10,14,\ldots\) remain open. No claim of
+absolute priority, uniqueness, a classification in every even dimension, or
+equivalence with the older quaternionic \((3,1)\) model is made. Substantive
+generative-AI use is disclosed in the paper; the human author determines the
+released scope and claims and assumes responsibility for the manuscript and
+verification package.

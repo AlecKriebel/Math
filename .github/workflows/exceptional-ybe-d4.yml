@@ -1,0 +1,86 @@
+name: Exceptional YBE D4 submission checks
+
+on:
+  push:
+    paths:
+      - "exceptional_ybe_d4/**"
+      - "docs/papers/exceptional-ybe-d4/**"
+      - ".github/workflows/exceptional-ybe-d4.yml"
+  pull_request:
+    paths:
+      - "exceptional_ybe_d4/**"
+      - "docs/papers/exceptional-ybe-d4/**"
+      - ".github/workflows/exceptional-ybe-d4.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  certify:
+    runs-on: ubuntu-24.04
+    defaults:
+      run:
+        working-directory: exceptional_ybe_d4
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          sparse-checkout: |
+            exceptional_ybe_d4
+            docs/papers/exceptional-ybe-d4
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version-file: exceptional_ybe_d4/.python-version
+          cache: pip
+          cache-dependency-path: exceptional_ybe_d4/requirements.txt
+      - name: Install hash-locked dependencies
+        run: |
+          python -m pip install --require-hashes --only-binary=:all: -r requirements.txt
+      - name: Reproduce all supported exact routes
+        run: |
+          YBE_PYTHON=python ./run_all.sh > /tmp/exceptional-ybe-output.txt
+          cmp /tmp/exceptional-ybe-output.txt verification_output.txt
+      - name: Reject optimized and deliberately mutated checks
+        run: python test_failure_modes.py
+      - uses: wtfjoke/setup-tectonic@eb29fd68b7d3f76011906b6e45ea4320c8de5d2f # v4.0.5
+        with:
+          tectonic-version: "0.16.9"
+      - name: Rebuild and require the committed PDF
+        run: |
+          ./build_paper.sh
+          cmp output/pdf/exceptional_ybe_d4.pdf ../docs/papers/exceptional-ybe-d4/paper.pdf
+          pdf_sha="$(sha256sum output/pdf/exceptional_ybe_d4.pdf | cut -d' ' -f1)"
+          grep -F "$pdf_sha" VERIFICATION_ENVIRONMENT.md
+          grep -F "$pdf_sha" ../docs/papers/exceptional-ybe-d4/index.html
+      - name: Verify package hashes and deterministic upload artifacts
+        run: |
+          python verify_checksums.py
+          python package_submission.py
+          (cd submission && sha256sum -c SHA256SUMS)
+          (cd submission && sha256sum -c ARXIV_SHA256SUMS)
+          git ls-files --error-unmatch \
+            submission/exceptional-ybe-d4-v1.1.1.pdf \
+            submission/exceptional-ybe-d4-v1.1.1-source.zip \
+            submission/exceptional-ybe-d4-v1.1.1-arxiv.zip \
+            submission/SHA256SUMS \
+            submission/ARXIV_SHA256SUMS
+          git diff --exit-code -- . ../docs/papers/exceptional-ybe-d4/paper.pdf
+          test -z "$(git status --porcelain --untracked-files=all -- . ../docs/papers/exceptional-ybe-d4/paper.pdf)"
+      - name: Smoke-test a clean source extraction
+        run: |
+          extraction="$(mktemp -d)"
+          python -m zipfile -e submission/exceptional-ybe-d4-v1.1.1-source.zip "$extraction"
+          cd "$extraction/exceptional-ybe-d4-v1.1.1"
+          python verify_checksums.py
+          YBE_PYTHON=python bash ./run_all.sh > /tmp/exceptional-ybe-extracted-output.txt
+          cmp /tmp/exceptional-ybe-extracted-output.txt verification_output.txt
+      - name: Compile the isolated arXiv source
+        run: |
+          extraction="$(mktemp -d)"
+          python -m zipfile -e submission/exceptional-ybe-d4-v1.1.1-arxiv.zip "$extraction"
+          mkdir "$extraction/output"
+          SOURCE_DATE_EPOCH=1786903200 tectonic -X compile "$extraction/main.tex" \
+            --bundle https://relay.fullyjustified.net/default_bundle_v33.tar \
+            --outdir "$extraction/output"
+          cmp "$extraction/output/main.pdf" output/pdf/exceptional_ybe_d4.pdf

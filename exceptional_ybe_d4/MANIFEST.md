@@ -1,7 +1,7 @@
 # Release manifest
 
-This manifest describes version 1.1.0, tagged
-`exceptional-ybe-d4-v1.1.0`.
+This manifest describes submission package version 1.1.1, dated 16 August
+2026. No GitHub release or DOI is claimed for this working package.
 
 ## Mathematical sources
 
@@ -11,28 +11,52 @@ This manifest describes version 1.1.0, tagged
 - `README.md` — construction and reproducibility overview.
 - `PRIORITY_AUDIT.md` — primary-source novelty and equivalence audit.
 - `REVISION_AUDIT.md` — adjudication of the independent revision proposals.
-- `RELEASE_NOTES_v1.1.0.md` — version-specific change and scope record.
+- `RELEASE_NOTES_v1.1.0.md` — prior version's historical release record.
+- `RELEASE_NOTES_v1.1.1.md` — current change and scope record.
 - `SOURCE_SNAPSHOT.md` — provenance and hashes of supplied inputs.
 - `RESEARCH_LOG.md` — timestamped audit and publication log.
 
 ## Verification
 
-- `verify_supplied.py` — byte-for-byte preserved user attachment; SymPy.
+- `verify_supplied_original.py` — byte-for-byte preserved original attachment;
+  archival only.
+- `verify_supplied.py` — hardened supported SymPy route.
 - `verify_exact.py` — independent standard-library sparse exact matrices
   over \(\mathbb Q(\sqrt2,\sqrt3,i)\).
 - `verify_tensor_words.py` — independent abstract Pauli-word certificate;
   no matrices.
 - `run_all.sh` — runs all three routes.
+- `test_failure_modes.py` — optimization and deliberate-mutation tests.
+- `verify_checksums.py` — portable, path-safe package-integrity verifier.
 - `verification_output.txt` — frozen output from the release run.
-- `requirements.txt` — pinned dependency for the supplied checker.
-- `SHA256SUMS` — release hashes, including byte-identical public copies.
+- `.python-version` and `requirements.txt` — pinned interpreter and
+  hash-locked dependencies.
+- `VERIFICATION_ENVIRONMENT.md` — reference toolchain and commands.
+- `SHA256SUMS` — self-contained package-local hashes. It deliberately does not
+  hash itself or repository website mirrors.
 
-## Public page
+## Submission and licensing
 
-- `docs/papers/exceptional-ybe-d4/index.html` — article page in the
-  repository root.
-- `docs/papers/exceptional-ybe-d4/paper.pdf` — byte-identical public PDF.
+- `LICENSE` — package-level dual-license notice.
+- `LICENSE-MANUSCRIPT.txt` — CC BY 4.0 manuscript/documentation license.
+- `LICENSE-CODE.txt` — MIT verifier/runner code license.
+- `CITATION.cff` — citation metadata without an invented DOI.
+- `HIGHLIGHTS.txt` — Journal of Algebra highlights.
+- `ZENODO_DEPOSIT.md`, `ARXIV_METADATA.md`, and
+  `SUBMISSION_CHECKLIST.md` — exact handoff instructions and portal fields.
+- `package_submission.py` — deterministic source/PDF/arXiv artifact builder.
+- `submission/` — ready-to-upload artifacts and their outer checksums.
 
-Temporary downloaded sources, rendered source-paper pages, TeX build files,
-and caches live under ignored or untracked temporary paths and are not part
-of the release.
+## Repository website mirrors
+
+- `docs/papers/exceptional-ybe-d4/index.html` — article page outside the
+  curated package tree.
+- `docs/papers/exceptional-ybe-d4/paper.pdf` — byte-identical public PDF
+  outside the curated package tree.
+
+These deployment mirrors are updated in the repository, but they are excluded
+from the self-contained source archive and its internal `SHA256SUMS` file.
+
+Temporary downloaded sources, rendered pages, TeX intermediates, virtual
+environments, and caches live under ignored or untracked temporary paths and
+are not part of the package.
