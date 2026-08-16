@@ -3,7 +3,7 @@ set -euo pipefail
 
 PROJECT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 REPO="$(cd "$PROJECT/.." && pwd)"
-VENV="$REPO/.venv"
+VENV="$PROJECT/.venv"
 LOCK="$PROJECT/requirements.txt"
 STAMP="$VENV/.stc_jc_requirements.sha256"
 

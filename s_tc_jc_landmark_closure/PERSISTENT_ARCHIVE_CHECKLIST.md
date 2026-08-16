@@ -32,7 +32,7 @@ Status: **PREPARED — DOI NOT YET ISSUED**
 The deterministic archive is built from the immutable source commit with:
 
 ```bash
-python reproducibility/build_biorxiv_release.py archive --commit <source-commit>
+python s_tc_jc_landmark_closure/reproducibility/build_biorxiv_release.py archive --commit <source-commit>
 ```
 
 The archive contains a commit-independent core manifest and

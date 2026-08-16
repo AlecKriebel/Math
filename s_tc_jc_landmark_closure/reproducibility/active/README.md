@@ -8,9 +8,9 @@ sharpness input at `s_tc_jc_sharp_boundary/`.
 The only supported entry points are:
 
 ```bash
-bash reproducibility/verify_quick.sh
-bash reproducibility/verify_full.sh
-bash reproducibility/verify_regenerate_all.sh
+bash s_tc_jc_landmark_closure/reproducibility/verify_quick.sh
+bash s_tc_jc_landmark_closure/reproducibility/verify_full.sh
+bash s_tc_jc_landmark_closure/reproducibility/verify_regenerate_all.sh
 ```
 
 The active status, outcome, dependency graph, crosswalk, and release metadata

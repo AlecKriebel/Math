@@ -20,13 +20,13 @@ PYTHON="$STC_JC_PYTHON" bash reviews/direct_anchor_probe_closure/verify_regenera
 PYTHON_BIN="$STC_JC_PYTHON" bash reviews/compact_probe_clean_clone_gate/verify_full.sh
 bash reviews/global_bridge/verify_all.sh --with-upstream-replay
 bash reviews/triangle_redirection_cleanroom/verify_all.sh
-"$STC_JC_PYTHON" ../s_tc_jc_sharp_boundary/reproducibility/verify_release.py
-"$STC_JC_PYTHON" ../omega_audit/runtime_compat/verify_orbit_constant.py
-"$STC_JC_PYTHON" ../omega_audit/runtime_compat/run_historical_omega.py
-PYTHONPATH="../omega_audit/frozen_input/historical/src" \
-  "$STC_JC_PYTHON" ../omega_audit/frozen_input/historical/src/verify_jc_omega_move_stdlib.py
-"$STC_JC_PYTHON" ../omega_audit/independent/verify_omega_release.py
-"$STC_JC_PYTHON" ../omega_audit/independent/verify_omega_rank_readability.py
+"$STC_JC_PYTHON" s_tc_jc_sharp_boundary/reproducibility/verify_release.py
+"$STC_JC_PYTHON" omega_audit/runtime_compat/verify_orbit_constant.py
+"$STC_JC_PYTHON" omega_audit/runtime_compat/run_historical_omega.py
+PYTHONPATH="omega_audit/frozen_input/historical/src" \
+  "$STC_JC_PYTHON" omega_audit/frozen_input/historical/src/verify_jc_omega_move_stdlib.py
+"$STC_JC_PYTHON" omega_audit/independent/verify_omega_release.py
+"$STC_JC_PYTHON" omega_audit/independent/verify_omega_rank_readability.py
 "$STC_JC_PYTHON" reproducibility/verify_active_release.py
 
 echo "VERIFIED: all theorem-forced bounded records regenerated"

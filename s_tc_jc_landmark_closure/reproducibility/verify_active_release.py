@@ -99,7 +99,7 @@ def transcript_checks(path: Path, source_commit: str) -> None:
 
 def source_envelope_checks(final, metadata) -> str:
     """Verify an outer envelope, extracted archive, or immutable tagged source."""
-    envelope_path = REPO / "release_artifacts/RELEASE_ENVELOPE.json"
+    envelope_path = PROJECT / "release_artifacts/RELEASE_ENVELOPE.json"
     archive_marker = REPO / "ARCHIVE_SOURCE_COMMIT.txt"
     if envelope_path.is_file():
         envelope = load_json(envelope_path)
@@ -115,7 +115,7 @@ def source_envelope_checks(final, metadata) -> str:
         require(envelope["final_outcome_sha256"] ==
                 sha256(PROJECT / "FINAL_OUTCOME.json"),
                 "outer envelope final-outcome commitment changed")
-        manifest_path = REPO / "release_artifacts/RELEASE_ASSET_SHA256SUMS"
+        manifest_path = PROJECT / "release_artifacts/RELEASE_ASSET_SHA256SUMS"
         require(manifest_path.is_file(), "outer release-asset manifest missing")
         manifest = manifest_path.read_text(encoding="utf-8").splitlines()
         for name, record in envelope["external_artifacts"].items():
@@ -127,11 +127,11 @@ def source_envelope_checks(final, metadata) -> str:
                     f"external manifest commitment missing: {name}")
         for name in ("verify_quick.log", "verify_full.log", "verify_regenerate_all.log"):
             transcript_checks(
-                REPO / "release_artifacts/clean_clone_transcripts" / name,
+                PROJECT / "release_artifacts/clean_clone_transcripts" / name,
                 source_commit,
             )
-        sidecar = REPO / "release_artifacts/stc_jc_sharp_boundary_reproducibility.tar.gz.sha256"
-        archive = REPO / "release_artifacts/stc_jc_sharp_boundary_reproducibility.tar.gz"
+        sidecar = PROJECT / "release_artifacts/stc_jc_sharp_boundary_reproducibility.tar.gz.sha256"
+        archive = PROJECT / "release_artifacts/stc_jc_sharp_boundary_reproducibility.tar.gz"
         require(sidecar.read_text(encoding="utf-8").split()[0] == sha256(archive),
                 "persistent-archive sidecar changed")
         return source_commit
@@ -139,7 +139,7 @@ def source_envelope_checks(final, metadata) -> str:
         source_commit = archive_marker.read_text(encoding="utf-8").strip()
         require(re.fullmatch(r"[0-9a-f]{40}", source_commit) is not None,
                 "archive source-commit marker is invalid")
-        transcript_dir = REPO / "release/final_biorxiv/transcripts"
+        transcript_dir = PROJECT / "release/final_biorxiv/transcripts"
         for name in ("verify_quick.log", "verify_full.log", "verify_regenerate_all.log"):
             transcript_checks(transcript_dir / name, source_commit)
         return source_commit
@@ -277,7 +277,7 @@ def component_checks() -> None:
             triangle["stochastic_conclusion"]["complete_open_stochastic_image_equality"] ==
             "NOT CLAIMED", "ordinary triangle scope changed")
 
-    omega = load_json(REPO / "omega_audit/independent/output/omega_release_audit.json")
+    omega = load_json(PROJECT / "omega_audit/independent/output/omega_release_audit.json")
     require(omega["status"] == "OMEGA-PASS-ALL-(n)" and
             omega["all_n"]["dimension_formula"] == "2*n+1" and
             omega["stochastic"]["local_dimensions"] == {
@@ -293,7 +293,7 @@ def component_checks() -> None:
                 "Omega topology census changed")
 
     omega_rank = load_json(
-        REPO / "omega_audit/independent/output/omega_rank_readability.json"
+        PROJECT / "omega_audit/independent/output/omega_rank_readability.json"
     )
     require(omega_rank["status"] == "EXACTLY COMPUTED" and
             omega_rank["core_jacobian_shape"] == [14, 10] and

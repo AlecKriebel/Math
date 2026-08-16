@@ -12,15 +12,15 @@ import subprocess
 import tarfile
 
 
-REPO = Path(__file__).resolve().parents[1]
-PROJECT = REPO / "s_tc_jc_landmark_closure"
-RELEASE = REPO / "release_artifacts"
+PROJECT = Path(__file__).resolve().parents[1]
+REPO = PROJECT.parent
+RELEASE = PROJECT / "release_artifacts"
 ARCHIVE = RELEASE / "stc_jc_sharp_boundary_reproducibility.tar.gz"
 ARCHIVE_PREFIX = "stc_jc_sharp_boundary_reproducibility"
 SOURCE_BINDING = {
     "scheme": "external-envelope-v1",
     "archive_marker": "ARCHIVE_SOURCE_COMMIT.txt",
-    "outer_envelope": "release_artifacts/RELEASE_ENVELOPE.json",
+    "outer_envelope": "s_tc_jc_landmark_closure/release_artifacts/RELEASE_ENVELOPE.json",
     "description": (
         "The core manifest is commit-independent and lives inside the archive; "
         "the outer envelope binds the immutable source commit and archive hash."
@@ -50,17 +50,17 @@ def core_artifacts() -> dict[str, dict[str, str]]:
         "supplement_source": record(
             "s_tc_jc_landmark_closure/source/supplement/supplement.tex"
         ),
-        "main_pdf": record("biorxiv_submission/Strong_Tree_Childness_Sharp_Level2_JC.pdf"),
+        "main_pdf": record("s_tc_jc_landmark_closure/biorxiv_submission/Strong_Tree_Childness_Sharp_Level2_JC.pdf"),
         "supplement_pdf": record(
-            "biorxiv_submission/Strong_Tree_Childness_Sharp_Level2_JC_supplement.pdf"
+            "s_tc_jc_landmark_closure/biorxiv_submission/Strong_Tree_Childness_Sharp_Level2_JC_supplement.pdf"
         ),
         "source_zip": record(
-            "biorxiv_submission/Strong_Tree_Childness_Sharp_Level2_JC_source.zip"
+            "s_tc_jc_landmark_closure/biorxiv_submission/Strong_Tree_Childness_Sharp_Level2_JC_source.zip"
         ),
-        "pdf_visual_audit": record("release/final_biorxiv/PDF_VISUAL_AUDIT.md"),
-        "omega_record": record("omega_audit/independent/output/omega_release_audit.json"),
-        "omega_reviewer": record("omega_audit/reports/ADVERSARIAL_O6_REVIEW.md"),
-        "theta_verifier": record("s_tc_jc_sharp_boundary/reproducibility/verify_release.py"),
+        "pdf_visual_audit": record("s_tc_jc_landmark_closure/release/final_biorxiv/PDF_VISUAL_AUDIT.md"),
+        "omega_record": record("s_tc_jc_landmark_closure/omega_audit/independent/output/omega_release_audit.json"),
+        "omega_reviewer": record("s_tc_jc_landmark_closure/omega_audit/reports/ADVERSARIAL_O6_REVIEW.md"),
+        "theta_verifier": record("s_tc_jc_landmark_closure/s_tc_jc_sharp_boundary/reproducibility/verify_release.py"),
         "v1_1_primary_report": record(
             "s_tc_jc_landmark_closure/reviews/v1_1_proof_hardening/PRIMARY_REVISION_REPORT.md"
         ),
@@ -118,7 +118,7 @@ def archive_member_bytes(name: str) -> bytes:
 
 
 def transcript_record(name: str, source_commit: str) -> dict[str, str]:
-    path = f"release_artifacts/clean_clone_transcripts/{name}"
+    path = f"s_tc_jc_landmark_closure/release_artifacts/clean_clone_transcripts/{name}"
     target = REPO / path
     text = target.read_text(encoding="utf-8", errors="replace")
     required = [
@@ -130,7 +130,9 @@ def transcript_record(name: str, source_commit: str) -> dict[str, str]:
     for needle in required:
         if needle not in text:
             raise AssertionError(f"{path}: missing {needle}")
-    archived = archive_member_bytes(f"release/final_biorxiv/transcripts/{name}")
+    archived = archive_member_bytes(
+        f"s_tc_jc_landmark_closure/release/final_biorxiv/transcripts/{name}"
+    )
     if archived != target.read_bytes():
         raise AssertionError(f"archive transcript differs: {name}")
     return record(path, distribution="release_asset")
@@ -157,14 +159,14 @@ def seal_envelope(source_commit_arg: str) -> None:
             "verify_regenerate_all.log", source_commit
         ),
         "persistent_archive": record(
-            "release_artifacts/stc_jc_sharp_boundary_reproducibility.tar.gz",
+            "s_tc_jc_landmark_closure/release_artifacts/stc_jc_sharp_boundary_reproducibility.tar.gz",
             distribution="release_asset",
         ),
         "archive_checksum": record(
-            "release_artifacts/stc_jc_sharp_boundary_reproducibility.tar.gz.sha256"
+            "s_tc_jc_landmark_closure/release_artifacts/stc_jc_sharp_boundary_reproducibility.tar.gz.sha256"
         ),
     }
-    final_report = "release_artifacts/FINAL_RELEASE_ENGINEERING_REPORT.md"
+    final_report = "s_tc_jc_landmark_closure/release_artifacts/FINAL_RELEASE_ENGINEERING_REPORT.md"
     if (REPO / final_report).is_file():
         external["final_release_referee"] = record(final_report)
 

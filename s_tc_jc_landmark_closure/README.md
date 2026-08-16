@@ -18,9 +18,9 @@ second triangle-containing family of dimension `2n`.
 
 ## Main files
 
-- `../biorxiv_submission/Strong_Tree_Childness_Sharp_Level2_JC.pdf` — final
+- `biorxiv_submission/Strong_Tree_Childness_Sharp_Level2_JC.pdf` — final
   manuscript.
-- `../biorxiv_submission/Strong_Tree_Childness_Sharp_Level2_JC_supplement.pdf`
+- `biorxiv_submission/Strong_Tree_Childness_Sharp_Level2_JC_supplement.pdf`
   — reader-oriented supplement.
 - `source/paper/main.tex` — manuscript source.
 - `docs/SHARP_BOUNDARY_THEOREM.md` — expanded theorem proof.
@@ -35,9 +35,9 @@ second triangle-containing family of dimension `2n`.
 From the repository root:
 
 ```bash
-bash reproducibility/verify_quick.sh
-bash reproducibility/verify_full.sh
-bash reproducibility/verify_regenerate_all.sh
+bash s_tc_jc_landmark_closure/reproducibility/verify_quick.sh
+bash s_tc_jc_landmark_closure/reproducibility/verify_full.sh
+bash s_tc_jc_landmark_closure/reproducibility/verify_regenerate_all.sh
 ```
 
 The bootstrap creates a pinned local environment.  Regeneration is confined

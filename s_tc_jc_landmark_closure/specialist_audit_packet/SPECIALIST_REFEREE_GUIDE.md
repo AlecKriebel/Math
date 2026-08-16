@@ -8,7 +8,7 @@
 4. Run:
 
    ```bash
-   bash reproducibility/verify_quick.sh
+   bash s_tc_jc_landmark_closure/reproducibility/verify_quick.sh
    ```
 
 5. For a complete replay, run the full and regenerate-all commands listed in

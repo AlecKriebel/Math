@@ -74,8 +74,8 @@ def assert_active_text_uses_fixed_graph_scope() -> None:
         "Convention_Closed" + "_Level2_JC_Theorem",
     )
     roots = [PROJECT]
-    if (REPO / "biorxiv_submission").exists():
-        roots.append(REPO / "biorxiv_submission")
+    if (PROJECT / "biorxiv_submission").exists():
+        roots.append(PROJECT / "biorxiv_submission")
     suffixes = {".md", ".tex", ".json", ".py", ".sh", ".cff", ".txt"}
     this_file = Path(__file__).resolve()
     failures: list[str] = []

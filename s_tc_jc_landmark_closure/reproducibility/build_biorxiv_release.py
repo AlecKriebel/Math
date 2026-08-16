@@ -16,11 +16,11 @@ import tempfile
 import zipfile
 
 
-REPO = Path(__file__).resolve().parents[1]
-PROJECT = REPO / "s_tc_jc_landmark_closure"
-SUBMISSION = REPO / "biorxiv_submission"
+PROJECT = Path(__file__).resolve().parents[1]
+REPO = PROJECT.parent
+SUBMISSION = PROJECT / "biorxiv_submission"
 SOURCE = PROJECT / "source"
-RELEASE_ASSETS = REPO / "release_artifacts"
+RELEASE_ASSETS = PROJECT / "release_artifacts"
 SOURCE_DATE_EPOCH = "1786665600"  # 2026-08-14 00:00:00 UTC
 ZIP_TIME = (2026, 8, 14, 0, 0, 0)
 
@@ -120,19 +120,7 @@ def build_persistent_archive(commit: str) -> None:
     resolved = subprocess.check_output(
         ["git", "rev-parse", "--verify", f"{commit}^{{commit}}"], cwd=REPO, text=True
     ).strip()
-    prefixes = [
-        "PERSISTENT_ARCHIVE_CHECKLIST.md",
-        "biorxiv_submission",
-        "history/baseline_before_final_omega",
-        "history/rejected_outcome_q",
-        "omega_audit",
-        "release/final_biorxiv",
-        "reproducibility",
-        "s_tc_jc_landmark_closure",
-        "s_tc_jc_sharp_boundary",
-        "specialist_audit_packet",
-        "strong_level2_phylo_identifiability",
-    ]
+    prefixes = ["s_tc_jc_landmark_closure"]
     RELEASE_ASSETS.mkdir(parents=True, exist_ok=True)
     output = RELEASE_ASSETS / ARCHIVE_NAME
     archive_command = [
@@ -157,7 +145,7 @@ def build_persistent_archive(commit: str) -> None:
             for path in sorted(transcript_dir.glob("*.log")):
                 data = path.read_bytes()
                 info = tarfile.TarInfo(
-                    f"{prefix}/release/final_biorxiv/transcripts/{path.name}"
+                    f"{prefix}/s_tc_jc_landmark_closure/release/final_biorxiv/transcripts/{path.name}"
                 )
                 info.size = len(data)
                 info.mode = 0o644
