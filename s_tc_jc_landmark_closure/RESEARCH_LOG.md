@@ -873,3 +873,18 @@
   left unchanged as an immutable release snapshot.
 - File-organization work is complete (100%); no mathematical replay or PDF
   visual audit was performed for this organizational commit.
+
+## 2026-08-16T17:25:00-07:00 — targeted v1.1.1 referee hardening
+
+- Adjudicated the final adversarial report item by item without de-scoping the
+  theorem.  The bridge locus is now explicitly componentwise normalized, and
+  the finite target-completion union is connected to the bounded theorem by
+  the semialgebraic finite-cover lemma.
+- Expanded the physical analytic-section, image-tangent, genericity, triangle
+  context, and simultaneous-gluing arguments at their exact handoff points.
+- Updated the title to advertise generic identifiability precisely, synchronized
+  the supplement and submission metadata, and removed the Figure 2 label
+  overlap.
+- A fail-closed regression and response table are under
+  `reviews/v1_1_1_referee_revision/`.  Exact full replay and final adversarial
+  release review are the remaining gates.

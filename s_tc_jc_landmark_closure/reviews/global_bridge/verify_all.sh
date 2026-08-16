@@ -3,7 +3,19 @@ set -euo pipefail
 
 HERE="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
 CLOSURE="$(CDPATH= cd -- "$HERE/../.." && pwd)"
-PYTHON="$CLOSURE/../.venv/bin/python"
+PYTHON="${STC_JC_PYTHON:-${PYTHON_BIN:-python3}}"
+
+if [[ "$PYTHON" == */* ]]; then
+  [[ -x "$PYTHON" ]] || {
+    echo "Python interpreter is not executable: $PYTHON" >&2
+    exit 2
+  }
+else
+  command -v "$PYTHON" >/dev/null 2>&1 || {
+    echo "Python interpreter is not available: $PYTHON" >&2
+    exit 2
+  }
+fi
 
 PYTHONDONTWRITEBYTECODE=1 "$PYTHON" "$HERE/exact_audit.py" \
   --output "$HERE/exact_audit_certificate.json"
@@ -11,7 +23,7 @@ PYTHONDONTWRITEBYTECODE=1 "$PYTHON" "$HERE/mutation_tests.py" \
   --output "$HERE/mutation_certificate.json"
 
 if [[ "${1:-}" == "--with-upstream-replay" ]]; then
-  PYTHONDONTWRITEBYTECODE=1 python3 \
+  PYTHONDONTWRITEBYTECODE=1 "$PYTHON" \
     "$CLOSURE/independent/bridge_cut/verify_bridge.py" \
     --output "$HERE/upstream_bridge_replay.json"
   PYTHONDONTWRITEBYTECODE=1 "$PYTHON" \

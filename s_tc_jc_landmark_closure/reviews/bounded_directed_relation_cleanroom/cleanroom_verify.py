@@ -429,7 +429,7 @@ def polynomial_record_id(poly: Polynomial, variable_count: int) -> str:
 
 
 def load_invariant_orbit(repo: Path) -> Tuple[Tuple[Tuple[Tuple[int, ...], int], ...], ...]:
-    template_path = repo.parent / "strong_level2_phylo_identifiability" / "src" / "jc_root_spanning_atlas_data.py"
+    template_path = repo / "strong_level2_phylo_identifiability" / "src" / "jc_root_spanning_atlas_data.py"
     tree = ast.parse(template_path.read_text(encoding="utf-8"), filename=str(template_path))
     base = None
     for node in tree.body:
@@ -1067,7 +1067,7 @@ def external_input_manifest(repo: Path, input_lock: Mapping[str, Any], families:
         merged = read_json(merged_path)
         paths.add(resolve_declared(repo, merged["support_universe_path"]))
         paths.add(resolve_declared(repo, merged["seventh_template_path"]))
-        template = (repo.parent / merged["template_path"]).resolve()
+        template = (repo / merged["template_path"]).resolve()
         if not template.is_file():
             raise AuditFailure("invariant template named by merged summary is missing")
         paths.add(template)
@@ -2074,7 +2074,7 @@ def audit_family(
     outgoing = int(run["outgoing"])
     if int(summary.get("invariant_orbit_size", -1)) != len(invariants):
         raise AuditFailure("merged summary invariant count mismatch")
-    template_path = repo.parent / summary["template_path"]
+    template_path = repo / summary["template_path"]
     seventh_path = resolve_declared(repo, summary["seventh_template_path"])
     support_path = resolve_declared(repo, summary["support_universe_path"])
     if file_hash(template_path) != summary["template_sha256"]:

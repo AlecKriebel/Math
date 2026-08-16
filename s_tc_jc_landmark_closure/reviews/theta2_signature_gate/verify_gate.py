@@ -24,7 +24,7 @@ from typing import Iterable, Sequence
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parent.parent
-TEMPLATE_PATH = PROJECT.parent / "strong_level2_phylo_identifiability/src/jc_root_spanning_atlas_data.py"
+TEMPLATE_PATH = PROJECT / "strong_level2_phylo_identifiability/src/jc_root_spanning_atlas_data.py"
 SEVENTH_PATH = PROJECT / "primary/seventh_invariant.json"
 CORE_PATH = PROJECT / "primary/certificates/core_universe.json"
 ROOT_PATH = PROJECT / "primary/certificates/hard_cover_root_cases_n4_schema3_theta2_full.jsonl.gz"

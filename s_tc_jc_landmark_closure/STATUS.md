@@ -2,11 +2,11 @@
 
 Status: **PROVED — FINAL OUTCOME A**
 
-Release revision: **v1.1.0 proof-hardened**.  The bounded independent review
-found no blocker; its two mathematical handoff findings and two exposition
-findings were repaired in the sole permitted response pass.
+Release revision: **v1.1.1 referee-hardened**.  A targeted adversarial review
+found no counterexample; its bridge-normalization and finite-cover findings,
+along with the associated analytic and expository hardening, are incorporated.
 
-Manuscript: **Strong Tree-Childness Is a Sharp Identifiability Boundary for
+Manuscript: **Strong Tree-Childness Is a Sharp Generic-Identifiability Boundary for
 Level-2 Jukes–Cantor Networks**
 
 The active release proves the exact one-sided classification

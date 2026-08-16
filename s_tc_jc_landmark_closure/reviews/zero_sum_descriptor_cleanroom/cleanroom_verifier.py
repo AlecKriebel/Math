@@ -28,7 +28,7 @@ WITNESS_GRAPH_STREAM = (
     PRIMARY / "certificates" / "hard_cover_graphs_n3_schema3_n3_full.jsonl.gz"
 )
 TEMPLATE_FILE = (
-    REPO.parent
+    REPO
     / "strong_level2_phylo_identifiability"
     / "src"
     / "jc_root_spanning_atlas_data.py"

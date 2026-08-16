@@ -8,7 +8,7 @@ Status: **PREPARED — DOI NOT YET ISSUED**
 - SHA-256: recorded after the revised immutable source commit is replayed, in
   `release_artifacts/RELEASE_ENVELOPE.json` and the checksum sidecar
   `release_artifacts/stc_jc_sharp_boundary_reproducibility.tar.gz.sha256`.
-- Recommended title: **Reproducibility package for “Strong Tree-Childness Is a Sharp Identifiability Boundary for Level-2 Jukes–Cantor Networks”**
+- Recommended title: **Reproducibility package for “Strong Tree-Childness Is a Sharp Generic-Identifiability Boundary for Level-2 Jukes–Cantor Networks”**
 - Author: Alec Kriebel
 - ORCID: 0009-0001-9320-500X
 - Affiliation: Independent Researcher
@@ -42,7 +42,7 @@ clean-clone transcripts live in the external, non-self-referential
 the bytes being digested.
 
 The immutable source commit is also marked by the annotated tag
-`stc-jc-sharp-boundary-v1.1.0`.  In a source-only clone the active verifier
+`stc-jc-sharp-boundary-v1.1.1`.  In a source-only clone the active verifier
 requires that exact tag to peel to a clean checkout.  In a deposited release
 bundle it instead verifies the external envelope and every accompanying
 asset.  The large archive and its outer envelope are intentionally release

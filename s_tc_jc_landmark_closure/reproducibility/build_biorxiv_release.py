@@ -21,8 +21,8 @@ REPO = PROJECT.parent
 SUBMISSION = PROJECT / "biorxiv_submission"
 SOURCE = PROJECT / "source"
 RELEASE_ASSETS = PROJECT / "release_artifacts"
-SOURCE_DATE_EPOCH = "1786665600"  # 2026-08-14 00:00:00 UTC
-ZIP_TIME = (2026, 8, 14, 0, 0, 0)
+SOURCE_DATE_EPOCH = "1786838400"  # 2026-08-16 00:00:00 UTC
+ZIP_TIME = (2026, 8, 16, 0, 0, 0)
 
 MAIN_NAME = "Strong_Tree_Childness_Sharp_Level2_JC.pdf"
 SUPPLEMENT_NAME = "Strong_Tree_Childness_Sharp_Level2_JC_supplement.pdf"

@@ -79,6 +79,25 @@ def core_artifacts() -> dict[str, dict[str, str]]:
         "zero_sum_descriptor_verifier": record(
             "s_tc_jc_landmark_closure/reviews/zero_sum_descriptor_cleanroom/cleanroom_verifier.py"
         ),
+        "v1_1_1_referee_regression": record(
+            "s_tc_jc_landmark_closure/reviews/v1_1_1_referee_revision/verify_referee_regressions.py"
+        ),
+        "v1_1_1_referee_response": record(
+            "s_tc_jc_landmark_closure/reviews/v1_1_1_referee_revision/REFEREE_RESPONSE.md"
+        ),
+        "v1_1_1_adversarial_review": record(
+            "s_tc_jc_landmark_closure/reviews/v1_1_1_referee_revision/ADVERSARIAL_REVIEW.md"
+        ),
+        "core_atlas_figure": record(
+            "s_tc_jc_landmark_closure/source/paper/figures/core_atlas.tex"
+        ),
+        "biorxiv_metadata": record(
+            "s_tc_jc_landmark_closure/biorxiv_submission/BIORXIV_METADATA.md"
+        ),
+        "submission_sha256s": record(
+            "s_tc_jc_landmark_closure/biorxiv_submission/SHA256SUMS"
+        ),
+        "requirements_lock": record("s_tc_jc_landmark_closure/requirements.txt"),
     }
 
 

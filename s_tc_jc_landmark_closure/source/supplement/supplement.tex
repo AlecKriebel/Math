@@ -17,12 +17,12 @@
 \newcommand{\bowtiejc}{\mathbin{\bowtie}_{\!\JC}}
 
 \hypersetup{
-  pdftitle={Supplement to Strong Tree-Childness Is a Sharp Identifiability Boundary for Level-2 Jukes--Cantor Networks},
+  pdftitle={Supplement to Strong Tree-Childness Is a Sharp Generic-Identifiability Boundary for Level-2 Jukes--Cantor Networks},
   pdfauthor={Alec Kriebel}
 }
 
 \title{Supplement to\\
-Strong Tree-Childness Is a Sharp Identifiability Boundary\\
+Strong Tree-Childness Is a Sharp Generic-Identifiability Boundary\\
 for Level-2 Jukes--Cantor Networks}
 \author{Alec Kriebel\\\small Independent Researcher}
 \date{August 2026}
@@ -75,6 +75,9 @@ one-sided generic containment.  The logical dependencies are:
       recover physical bridge multipliers.  The physical fibre is the ambient
       incidence orbit intersected with the complete open realization locus,
       including every local-arm, bridge, and inheritance constraint.
+      Every component tensor is normalized by
+      $P_v(0,\ldots,0)=1$; this excludes an additional constant scalar orbit
+      that is not part of the incidence action.
       Analytic incidence slices give a local product chart in projective
       local tensors and normalized effective bridge scales.
 \item Every nontrivial level-2 factor contracts to a cycle or one of four
@@ -98,7 +101,7 @@ determines the labelled topology modulo $\Tmove$.
 
 \section{Exact convention checks}
 
-The independent convention implementation reconstructs rooted bidegrees,
+The separately implemented convention checker reconstructs rooted bidegrees,
 acyclicity, the lowest-stable-ancestor condition, one-step root suppression,
 mixed-graph simplicity, retained arrowheads, admissible rootings, and the
 tree-child property.  Its relevant exact checks are:
@@ -203,7 +206,8 @@ four exact rank-nine minors are
 \]
 With the four pendant multipliers set to one, the core Jacobian has shape
 $14\times10$ and exact rational-function rank six.  In the edge order of the
-paper, the first six nonconstant orbit rows and columns
+paper, at the strict source core coordinates in the pendant-one gauge, the
+orbit rows $(A,B,C,D,E,F)$ and columns
 $(a_0,a_1,a_2,a_3,a_4,a_7)$ have determinant
 \[
 -\frac{723}{8589934592}\ne0
@@ -227,7 +231,7 @@ replaced rank-nine minor.
 
 \section{Triangle-containing Theta sharpness certificate}
 
-The independent frozen Theta package verifies a second mechanism.  Its two
+The separately implemented frozen Theta package verifies a second mechanism.  Its two
 four-leaf theta graphs are nonisomorphic and not $\Tmove$-equivalent, lie in
 $W_{\mathrm{TC}}\setminus S_{\mathrm{TC}}$, agree on all 256 Fourier
 coordinates at a strict quadratic point, and have nonzero rank-eight minors.
@@ -287,7 +291,7 @@ These inequalities put the three nonrational entries strictly in $(0,1)$;
 all remaining entries are visibly strict.  Substitution into the two
 factorized rank-eight determinants printed in the article gives nonzero
 values, because every listed factor is nonzero on this interval.  The frozen
-quadratic-field verifier independently reduces all $256$ Fourier-coordinate
+quadratic-field verifier separately reduces all $256$ Fourier-coordinate
 differences to zero.
 
 For the source determinant, fix
@@ -327,7 +331,7 @@ bash reproducibility/verify_full.sh
 bash reproducibility/verify_regenerate_all.sh
 \end{verbatim}
 The quick command checks active scope, hashes, crosswalks, convention
-regressions, and the independent Omega release record.  The full command
+regressions, and the separately implemented Omega release record.  The full command
 replays every committed exact component certificate.  The regeneration
 command starts from primitive graph encodings and rebuilds the bounded
 relation, bridge, restoration, probe, triangle, Omega, and Theta evidence.

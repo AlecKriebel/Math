@@ -14,11 +14,11 @@ import sys
 PROJECT = Path(__file__).resolve().parents[1]
 REPO = PROJECT.parent
 TITLE = (
-    "Strong Tree-Childness Is a Sharp Identifiability Boundary for "
+    "Strong Tree-Childness Is a Sharp Generic-Identifiability Boundary for "
     "Level-2 Jukes-Cantor Networks"
 )
 SOURCE_BINDING_SCHEME = "external-envelope-v1"
-RELEASE_TAG = "stc-jc-sharp-boundary-v1.1.0"
+RELEASE_TAG = "stc-jc-sharp-boundary-v1.1.1"
 
 
 def sha256(path: Path) -> str:
@@ -50,8 +50,10 @@ def active_surface_checks(final, metadata) -> None:
         "THEOREM_CERTIFICATE_CROSSWALK.md": crosswalk,
     }.items():
         require("FINAL OUTCOME A" in text, f"{name}: final outcome disagrees")
-        require("Strong Tree-Childness Is a Sharp Identifiability Boundary" in text,
+        require("Strong Tree-Childness Is a Sharp Generic-Identifiability Boundary" in text,
                 f"{name}: manuscript title missing")
+    require("V111" in dependency and "V111" in crosswalk,
+            "v1.1.1 referee gate is absent from the dependency records")
     require(final["outcome"] == metadata["outcome"] == "A",
             "machine-readable outcome is not A")
     require(final["status"] == metadata["status"] == "PROVED",
@@ -77,7 +79,10 @@ def artifact_checks(metadata) -> None:
         "omega_reviewer", "theta_verifier", "v1_1_primary_report",
         "v1_1_adversarial_review", "v1_1_repair_response",
         "v1_1_noncut_verifier", "v1_1_endpoint_verifier",
-        "zero_sum_descriptor_verifier",
+        "zero_sum_descriptor_verifier", "v1_1_1_referee_regression",
+        "v1_1_1_referee_response", "v1_1_1_adversarial_review",
+        "core_atlas_figure", "biorxiv_metadata", "submission_sha256s",
+        "requirements_lock",
     }
     require(set(metadata["artifacts"]) == required,
             "release artifact inventory is incomplete or contains stale entries")
@@ -183,6 +188,7 @@ def source_envelope_checks(final, metadata) -> str:
 
 def manuscript_checks() -> None:
     paper = (PROJECT / "source/paper/main.tex").read_text(encoding="utf-8")
+    compact = " ".join(paper.split())
     required = [
         r"\begin{theorem}[Strong-class classification]",
         r"N\preceqjc N'",
@@ -193,7 +199,13 @@ def manuscript_checks() -> None:
         r"\begin{theorem}[Theta pendant-transfer sharpness]",
         "does not recover physical bridge multipliers",
         "intersection of this ambient incidence orbit",
+        r"P_v(0,\ldots,0)=1",
+        "componentwise normalized tensor locus",
         "the slice tensors need not themselves be physical",
+        r"\{Y_\tau\}_{\tau\in\mathcal T}",
+        r"\phi_{\rm selected}\circ\delta_R",
+        "certificate assigns every canonical decorated directed relation",
+        "orbit rows $(A,B,C,D,E,F)$ and columns",
         "Theorem~2.2.1",
         "Propositions~2.8.2, 2.8.4, 2.8.5, and",
         "Theorem~2.8.8",
@@ -209,7 +221,7 @@ def manuscript_checks() -> None:
         "not an independent human review",
     ]
     for needle in required:
-        require(needle in paper, f"paper scope/proof phrase missing: {needle}")
+        require(needle in compact, f"paper scope/proof phrase missing: {needle}")
     prohibited = [
         "physical bridge multipliers are identifiable",
         "Theta is an S_TC move",
@@ -217,7 +229,6 @@ def manuscript_checks() -> None:
         "every rooted network that can collapse to the same final mixed graph",
         "Distinct complete mask rows give distinct selected edge coordinates",
     ]
-    compact = " ".join(paper.split())
     for phrase in prohibited:
         require(phrase not in compact, f"withdrawn claim leaked into paper: {phrase}")
     require("/Users/" not in paper, "absolute local path leaked into manuscript")

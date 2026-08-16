@@ -7,7 +7,7 @@ commit-independent. `ARCHIVE_SOURCE_COMMIT.txt` and the external
 `release_artifacts/RELEASE_ENVELOPE.json` jointly bind the immutable source
 commit, replay transcripts, and archive digest without a self-reference.
 
-Manuscript: **Strong Tree-Childness Is a Sharp Identifiability Boundary for
+Manuscript: **Strong Tree-Childness Is a Sharp Generic-Identifiability Boundary for
 Level-2 Jukes–Cantor Networks**
 
 Every ancestor of the final release node has a primary exact implementation,
@@ -30,6 +30,7 @@ load-bearing gates.
 | `W` | Frozen all-`n` triangle-containing Theta weak-class theorem | VERIFIED |
 | `V` | Clean-room replay, mutation suites, manuscript audit, and release consistency | VERIFIED |
 | `V11` | Independent v1.1 mathematical review, four bounded repairs, and proof-text mutation regressions | VERIFIED AFTER CORRECTION |
+| `V111` | Targeted bridge normalization, finite-cover handoff, analytic hardening, Figure 2 repair, and eight-mutation referee regression | VERIFIED AFTER CORRECTION |
 | `F` | Unified sharp-boundary bioRxiv release (`P + O + W`) | PROVED — OUTCOME A |
 
 Dependency flow:
@@ -43,6 +44,7 @@ O --------------------------------/
 W --------------------------------/
 V --------------------------------/
 V11 ------------------------------/
+V111 -----------------------------/
 ```
 
 Historical target-only tables, reciprocal-only bridge coordinates, hidden

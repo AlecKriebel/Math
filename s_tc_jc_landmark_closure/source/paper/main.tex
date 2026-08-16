@@ -52,13 +52,13 @@
 }
 
 \hypersetup{
-  pdftitle={Strong Tree-Childness Is a Sharp Identifiability Boundary for Level-2 Jukes--Cantor Networks},
+  pdftitle={Strong Tree-Childness Is a Sharp Generic-Identifiability Boundary for Level-2 Jukes--Cantor Networks},
   pdfauthor={Alec Kriebel},
   pdfsubject={Generic identifiability of level-2 phylogenetic networks under the Jukes--Cantor model},
   pdfkeywords={phylogenetic networks, Jukes--Cantor, identifiability, level 2, strongly tree-child, semi-directed networks}
 }
 
-\title{Strong Tree-Childness Is a Sharp Identifiability Boundary\\
+\title{Strong Tree-Childness Is a Sharp Generic-Identifiability Boundary\\
 for Level-2 Jukes--Cantor Networks}
 \author{Alec Kriebel\\
 \small Independent Researcher\\
@@ -503,9 +503,13 @@ and interchange of undistinguished poles or sinks produce only the displayed
 symmetries, not additional event types.
 \end{proof}
 
+Here and below a \emph{complete factor} is a ported blob factor with every
+physical cut-edge attachment retained as a labelled boundary port, including
+the child port below each path-sink reticulation.
+
 \begin{proposition}[Primitive-core theorem]\label{prop:cores}
 Every nontrivial factor obtained from a standard binary level-2 blob has a
-cycle core or one of four directed theta cores.  Every full factor is
+cycle core or one of four directed theta cores.  Every complete factor is
 recovered uniquely by finite ordered words of port-bearing subdivisions on
 the directed core segments and by one real child port below every path-sink
 reticulation.
@@ -580,6 +584,8 @@ V\!\to X_1,U\!\to V$
 \bottomrule
 \end{tabular}
 \end{center}
+Within each row, segment indices start at $0$ and follow the left-to-right
+order in the directed-segment column; the repair sets refer to those indices.
 Occupying one listed repair is necessary and sufficient because occupancy is
 monotone and the repairs respectively give a nonreticulate child to each
 offending tail, separate a reticulation child, or split a parallel core pair.
@@ -771,7 +777,7 @@ same rank.
 \begin{lemma}[Exact cut certificate]\label{lem:cut-certificate}
 The endpoint dichotomy \eqref{eq:endpoint-dichotomy} and every one-active
 case used in \cref{thm:cuts} have graph-derived exact certificates.  The
-independent replay contains $67$ endpoint types with $\Delta>0$, $9$ with
+separately implemented replay contains $67$ endpoint types with $\Delta>0$, $9$ with
 $\Delta=0$ and $\Gamma>0$, the ordinary endpoint with
 $\Delta=\Gamma=0$, and $204$ strict one-active
 minors.  All inequalities hold throughout the complete open parameter cube.
@@ -823,16 +829,20 @@ least four boundaries.  Thus component decorations agree as well.
 \section{Projective bridge peeling}\label{sec:bridge}
 
 Let $T$ be the recovered bridge tree.  A component tensor $P_v$ is supported
-on assignments satisfying local character conservation.  For a bridge
+on assignments satisfying local character conservation and is normalized by
+\[
+P_v(0,\ldots,0)=1.
+\]
+For a bridge
 $e=uv$ with multiplier $x_e$, the global Fourier tensor is
 \begin{equation}\label{eq:bridge-product}
 \Gamma(P,x)(g)=\prod_v P_v(g_v,h_v)
 \prod_{e\in E(T)}x_e^{\mathbf1[h_e\ne0]}.
 \end{equation}
-The \emph{positive incidence-saturated tensor locus} is the ambient space in
-which every conservation-supported component coordinate and every bridge
-scale is positive, the tensors are JC-symmetric, and all positive incidence
-rescalings in \eqref{eq:incidence} are allowed.  A physical network model is
+The \emph{positive incidence-saturated tensor locus} is the saturation under
+\eqref{eq:incidence} of the positive, conservation-supported, JC-symmetric,
+componentwise normalized tensor locus together with positive bridge scales.
+A physical network model is
 the semialgebraic subset cut out by its local realizability and open
 parameter inequalities.
 
@@ -863,7 +873,8 @@ network tensors.
 Cut $T$ at one bridge and fix a character sector $h$.  The corresponding
 flattening block is a positive rank-one matrix.  Uniqueness of positive
 rank-one factors gives a sector scale $c_e(h)$ on one side and its reciprocal
-on the other.  The all-zero entry fixes $c_e(0)=1$.  The six automorphisms of
+on the other.  Since both normalized subtree contractions have all-zero
+coordinate one, $c_e(0)=1$.  The six automorphisms of
 $\State$ act transitively on the three nonzero characters, and both factorizations
 are JC-symmetric, so $c_e(h)$ has one common value for $h\ne0$.
 
@@ -942,20 +953,32 @@ the exact fiber theorem shows that contraction after extraction returns the
 original tensor.  Thus contraction and extraction are local inverses.  The
 bridge graph is a tree, so the recursive normalizations cannot acquire
 holonomy.  Shrinking the chart keeps it inside the open physical realization
-locus on which it was constructed.
+locus on which it was constructed.  More explicitly, at each regular
+physical parameter point the constant-rank theorem gives a local analytic
+section onto the chosen smooth local image branch associated with that
+preimage.  Composing this section with the incidence normalizer makes the
+normalized projective tensor coordinates analytic on a physical local image
+germ.  The ambient normalized tensor locus, the physical realization locus,
+its projective image, and the chosen incidence slice are therefore distinct
+objects; in particular, a slice representative need not itself be physical.
 \end{proof}
 
-\begin{lemma}[Finite semialgebraic cover]\label{lem:finite-cover}
-If a nonempty relatively open subset $U$ of a smooth $d$-dimensional
-semialgebraic manifold is covered by finitely many semialgebraic sets, then
-one member has dimension $d$ and contains a nonempty relatively open subset
-of $U$.
+\begin{lemma}[Semialgebraic interior and finite covers]\label{lem:finite-cover}
+Let $M$ be a smooth $d$-dimensional semialgebraic manifold and
+$S\subseteq M$ semialgebraic.  Then $\dim S=d$ if and only if $S$ has
+nonempty relative interior in $M$.  Consequently, if a nonempty relatively
+open subset $U\subseteq M$ is covered by finitely many semialgebraic sets,
+one intersection with $U$ has dimension $d$ and contains a nonempty
+relatively open subset of $U$.
 \end{lemma}
 
 \begin{proof}
-Semialgebraic dimension of a finite union is the maximum of the dimensions of
-its members.  Hence one member has dimension $d$.  A $d$-dimensional
-semialgebraic subset of the $d$-manifold has nonempty relative interior; see
+The dimension/interior equivalence is the standard local dimension property
+for semialgebraic subsets of a smooth manifold.  Semialgebraic dimension of a
+finite union is the maximum of the dimensions of its members, so some
+intersection of a covering set with $U$ has dimension $d$ and therefore
+relative interior in $U$.
+See
 Bochnak--Coste--Roy~\cite[Propositions~2.8.2, 2.8.4, and
 2.8.13]{BochnakCosteRoy1998}.
 \end{proof}
@@ -1038,16 +1061,26 @@ descriptor map from full to selected physical parameters is therefore onto
 and submersive.
 
 Choose a regular parameter point of the selected model and lift it through
-the descriptor.  The selected-rank minor and a generic full-model rank minor
+the descriptor, denoted $\delta_R$.  The selected-rank minor and a generic
+full-model rank minor
 are nonzero polynomials on the irreducible full parameter space: the first is
 nonzero because of that lift and the second by the definition of full model
-dimension.  Their nonvanishing loci therefore meet.  Choose the lift in this
-intersection, leaving omitted parameters in their open intervals.  The chain
-rule for
-$R\circ\phi_{\rm full}=\phi_{\rm selected}\circ d_R$ shows that $dR$ on the
-full source-image tangent space attains the selected model dimension.  Its
-rank-drop locus on the smooth source stratum is a proper semialgebraic
-algebraic-minor locus and therefore has empty relative interior.  Every
+dimension.  The preimage of the smooth locus of the irreducible full-model
+variety is also a nonempty Zariski-open set.  These three open sets therefore
+meet.  Choose $\theta$ in their intersection, leaving omitted parameters in
+their open intervals, and let $M_{\rm full}$ be the smooth source-image
+stratum through $\phi_{\rm full}(\theta)$.  The chain rule for
+$R\circ\phi_{\rm full}=\phi_{\rm selected}\circ\delta_R$ gives the required
+rank on parameter space.  At this full-model regular point,
+\[
+T_{\phi_{\rm full}(\theta)}M_{\rm full}
+=\operatorname{Im}D\phi_{\rm full}(\theta).
+\]
+Consequently the restriction of $DR$ to this image tangent space has the
+same selected-model rank.  The generic-rank theorem applied to the algebraic
+restriction of $R$ to the smooth full-model locus now makes its rank-drop set
+a proper algebraic-minor locus there, hence a semialgebraic set with empty
+relative interior.  Every
 nonempty source-relative open containment meets the dense maximal-rank locus.
 At such a point the constant-rank theorem makes $R$ an open map onto a
 relative neighborhood in the selected smooth image.  Semialgebraicity and
@@ -1089,6 +1122,15 @@ through a positive product.  Conversely, contracting unselected ordinary
 subdivisions in a full strong target produces exactly one such raw record.
 Hence the completion grammar is onto every selected target tensor.
 
+Let $\{Y_\tau\}_{\tau\in\mathcal T}$ be the selected projective images of
+the finitely many target incoming/completion types produced by this grammar.
+The source-relative open selected germ $U$ is contained in
+$\bigcup_{\tau\in\mathcal T}Y_\tau$, and every $Y_\tau$ is semialgebraic.
+By \cref{lem:finite-cover}, some $Y_\tau$ contains a nonempty relatively open
+full-dimensional subgerm $U_\tau\subseteq U$.  Fix that decorated directed
+relation before applying the bounded theorem below.  Thus no continuous
+choice of target parameters or completion type is assumed.
+
 For each displayed switching and physical edge, record the descendant mask
 on the selected ports and normalize its complete row by its zero-sum JC
 indicator signature, including split complements.  Edges in one normalized
@@ -1126,8 +1168,9 @@ graphs.
 \begin{theorem}[Finite decorated-relation theorem]\label{lem:atlas}
 \begin{center}
 \fbox{\begin{minipage}{.91\linewidth}
-For every canonical decorated directed relation in the certified bounded
-universe, exactly one of the following holds:
+The certificate assigns every canonical decorated directed relation in the
+certified bounded universe to exactly one of the following categories, and
+the stated certificate property holds in that category:
 \begin{enumerate}[label=\textup{\Alph*.}]
 \item a regenerated exact pullback or flattening minor strictly separates
       the relation on the open cube;
@@ -1262,14 +1305,17 @@ Let $f_i:\Theta_i\to\mathcal Q$ be the normalized triangle-tensor map for
 orientation $i$.  Since $df_i$ has rank four, after shrinking about the
 certified point the constant-rank theorem gives a common open tensor
 neighborhood $U$ and analytic local sections $s_i:U\to\Theta_i$.  For the
-unchanged external context choose a connected positive tensor--context chart
-$\mathcal U\times\mathcal C$ meeting $U\times\mathcal C$, let
-$\Phi(Q,C)$ be the common tensor contraction, and let $d$ be its generic rank
-on that chart.  By definition, some $d$-minor of $D\Phi$ is not identically
-zero there.  Its nonvanishing locus is dense and open, so choose
-$(Q,C)\in U\times\mathcal C$ where the
-minor is nonzero.  The chain rule at $(s_i(Q),C)$ shows that both physical
-blob parameterizations have rank $d$ there.  Shrinking once more,
+unchanged external network, choose a connected positive physical
+context-parameter chart $\mathcal C$ and consider the common contraction map
+\[
+\Phi:U\times\mathcal C\longrightarrow\mathcal P.
+\]
+Let $d$ be its generic rank on that chart.  By definition, some $d$-minor of
+$D\Phi$ is not identically zero there.  Its nonvanishing locus is dense and
+open, so choose $(Q,C)\in U\times\mathcal C$ where the
+minor is nonzero.  The chain rule at $(s_i(Q),C)$ shows that the physical
+parameterization for each selected orientation has rank $d$ there.
+Shrinking once more,
 $\Phi(U\times\mathcal C)$ is a common $d$-dimensional regular germ, equal to
 the full local model dimension on both sides.  This is a forward contraction,
 not an attempted inverse factorization of a theta into two hidden-pole
@@ -1308,7 +1354,8 @@ x_e^{(k)}=\frac{z_e}{a_{u,e}^{(k)}a_{v,e}^{(k)}}.
 Positivity gives $x_e^{(k)}>0$, and the uniform lower bounds on the products
 $a_{u,e}^{(k)}a_{v,e}^{(k)}$ permit the same
 interval to make both multipliers less than one.  Bridge choices are
-independent because the bridge graph is a tree.  Incidence factors cancel in
+made edge by edge; the tree structure additionally ensures that the
+associated incidence normalizations have no holonomy.  Incidence factors cancel in
 \eqref{eq:bridge-product}, so the two contractions agree.  Finally,
 \cref{lem:product-chart} supplies an analytic extraction map inverse to
 contraction on this physical locus.  Hence the product of the local germs and
@@ -1340,15 +1387,24 @@ $t=n+r-2$, and a rooted presentation has at most $4n-3$ vertices.
 
 For a fixed topology $N$, put $d_N=\dim\V_N^{\JC}$.  Its complex model
 closure is irreducible as the closure of a polynomial image of an
-irreducible parameter space.  Let
+irreducible parameter space.  For each competing topology $N'$, define
+\[
+Z_N(N')=
+\overline{\M_N^{\JC}\cap\M_{N'}^{\JC}}^{\,Z,\V_N},
+\]
+the Zariski closure inside $\V_N^{\JC}$.  Then let
 \[
 E_{\rm top}(N)=
 \bigcup_{N'\not\sim_{\Tmove}N}
-\overline{\M_N^{\JC}\cap\M_{N'}^{\JC}}^{\,Z,\V_N}.
+Z_N(N').
 \]
-Every member is proper.  Otherwise its semialgebraic intersection would have
-full real dimension on a regular source stratum and hence nonempty relative
-interior, giving $N\preceqjc N'$ contrary to \cref{thm:main}.
+Every member is proper.  Indeed, by \cref{lem:finite-cover} and the cited
+semialgebraic dimension results, a semialgebraic subset of a nonempty smooth
+real $d_N$-stratum has dimension $d_N$ exactly when it has nonempty relative
+interior there.  Thus a nonproper $Z_N(N')$ would force the real
+semialgebraic intersection to have full dimension on a regular source
+stratum and hence relative interior, giving $N\preceqjc N'$ contrary to
+\cref{thm:main}.
 Tarski--Seidenberg makes every projected intersection semialgebraic
 \cite[Theorem~2.2.1]{BochnakCosteRoy1998}.  The dimension and boundary results
 of Bochnak--Coste--Roy\cite[Propositions~2.8.2, 2.8.4, 2.8.5, and
@@ -1412,7 +1468,7 @@ not imply complete stochastic-image equality.
 
 We now prove \cref{thm:sharpness}.  The argument is included to make the
 boundary theorem self-contained; its exact verifier is also released as a
-frozen independent package.
+frozen separately implemented package.
 
 \subsection{Identical leaf substitution}
 
@@ -1493,7 +1549,8 @@ ten core coordinates $(a_0,\ldots,a_7,\lambda_V,\lambda_X)$ in the edge order
 of \eqref{eq:omega-arcs}.  The Jacobian of the fourteen nonconstant orbit
 coordinates is $14\times10$.  Exact row reduction over the rational-function
 field gives rank six.  As a readable lower witness for that core calculation,
-at the strict source point the first six orbit rows and columns
+at the strict source core coordinates in the pendant-one gauge, the orbit
+rows $(A,B,C,D,E,F)$ and columns
 $(a_0,a_1,a_2,a_3,a_4,a_7)$ have determinant
 \[
 -\frac{723}{8589934592}\ne0.
@@ -1644,9 +1701,11 @@ and for $K'_4$ the corresponding determinant is
 \]
 Both are nonzero at the common point.  Thus both images are
 eight-dimensional local submanifolds of the same smooth irreducible locus.
-The positive branch $L=\sqrt{BEH}$ and the reconstruction equations force
-the remaining coordinates from the first eight, so the images share a
-relative eight-dimensional neighborhood.
+Since projection to $(A,\ldots,H)$ is a local coordinate system on the
+positive smooth branch $L=\sqrt{BEH}$, rank eight of this projection for each
+physical parameterization implies that each image contains a relative
+neighborhood of the common point in that same branch.  The reconstruction
+equations then force the remaining coordinates from the first eight.
 
 \begin{proof}[Proof of \cref{thm:theta-sharpness}]
 The four-leaf case is \cref{prop:weak-topology} and the exact overlap above.
@@ -1861,10 +1920,10 @@ Final proof hardening
 
 \section*{Data and code availability}
 
-All graph encodings, sparse invariants, exact certificates, independent
-verifiers, mutation transcripts, source, and deterministic reproduction
+All graph encodings, sparse invariants, exact certificates, separately
+implemented verifiers, mutation transcripts, source, and deterministic reproduction
 commands accompany this manuscript at
-\url{https://github.com/AlecKriebel/Math/tree/stc-jc-sharp-boundary-v1.1.0}.
+\url{https://github.com/AlecKriebel/Math/tree/stc-jc-sharp-boundary-v1.1.1}.
 The deposit-ready archive checksum and instructions for adding a persistent
 identifier are included with the release; no unissued DOI is claimed.  No
 specialized phylogenetic-network classification package is required.
@@ -1891,7 +1950,7 @@ algebra, code generation and implementation, drafting, and adversarial
 review.  Several earlier automated claims failed adversarial audit, including
 a reciprocal-only bridge chart and candidate ambiguity moves outside the
 locked standard strong class; those claims are withdrawn and preserved only
-in quarantined history.  Here ``independent replay'' means a code-independent
+in quarantined history.  Here ``separately implemented replay'' means a code-independent
 implementation, not an independent human review.  The active theorem is
 supported by exact graph-derived certificates and such separately written
 replays.  No human specialist review is claimed.  The author accepts

@@ -5,6 +5,7 @@ HERE="$(cd "$(dirname "$0")" && pwd)"
 source "$HERE/bootstrap.sh"
 cd "$STC_JC_PROJECT"
 
+"$STC_JC_PYTHON" reviews/v1_1_1_referee_revision/verify_referee_regressions.py
 "$STC_JC_PYTHON" reproducibility/verify_active_release.py
 "$STC_JC_PYTHON" reproducibility/verify_fixed_graph_scope.py
 "$STC_JC_PYTHON" reviews/v1_1_proof_hardening/verify_endpoint_and_analytic_regressions.py

@@ -7,7 +7,7 @@ core artifact manifest are inside the archive, while
 `release_artifacts/RELEASE_ENVELOPE.json` records the immutable source commit,
 clean-clone transcript hashes, and final archive digest.
 
-Manuscript: **Strong Tree-Childness Is a Sharp Identifiability Boundary for
+Manuscript: **Strong Tree-Childness Is a Sharp Generic-Identifiability Boundary for
 Level-2 Jukes–Cantor Networks**
 
 Counts below are deterministic checksums of theorem-derived finite universes,
@@ -29,6 +29,7 @@ not substitutes for their exhaustiveness proofs.
 | `V_final` | Whole-paper adversarial logic and release review | unified manuscript | active final referee packet and clean-clone transcripts |
 | `V_hold` | Post-HOLD structural, cut, exposition, disclosure, and Figure 4 repairs | `reviews/post_hold_revision/REPORT.md` | revised clean replay, exact Omega rank certificate, two-renderer PDF audit, and immutable public tag |
 | `V11` | Final noncut compression, four-active cut handoff, normalized marginal submersion, endpoint provenance, and simultaneous gluing | revised manuscript | `reviews/v1_1_proof_hardening/PRIMARY_REVISION_REPORT.md`, `ADVERSARIAL_REVIEW.md`, `REPAIR_RESPONSE.md`, and both independent proof-hardening verifiers |
+| `V111` | Componentwise normalized bridge fibre, finite target-type selection, physical sections, image-tangent rank, genericity handoff, and Figure 2 clearance | v1.1.1 manuscript and `reviews/v1_1_1_referee_revision/REFEREE_RESPONSE.md` | `verify_referee_regressions.py`, eight mutation tests, final adversarial report, and clean v1.1.1 replay transcripts |
 
 ## Exact local checksums
 
@@ -56,6 +57,9 @@ not substitutes for their exhaustiveness proofs.
   two-colour occupancies across the five primitive cores; 20/20 adversarial
   mutations rejected.  The four named two-active minors are independently
   regenerated from their stated Fourier blocks.
+- v1.1.1 referee regression: normalized zero sector, corrected finite-cover
+  intersection dimension, smooth-image tangent rank, synchronized titles,
+  measured Figure 2 clearance, and 8/8 targeted mutations rejected.
 
 ## Explicit exclusions
 
