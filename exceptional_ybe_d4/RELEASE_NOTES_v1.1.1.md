@@ -31,6 +31,6 @@ the stated construction, theorem, proof scope, or novelty claim.
 - Added commit-pinned continuous-integration gates for clean-environment
   verification, mutation tests, PDF reproduction, and isolated archive checks.
 
-Version 1.1.1 uses a fresh manual Zenodo record and dedicated DOI family under
-the reserve-before-publication procedure in `ZENODO_DEPOSIT.md`; the unrelated
-monorepo concept DOI must not be reused.
+Version 1.1.1 was prepared for a fresh manual Zenodo record and dedicated DOI
+family under the reserve-before-publication procedure in `ZENODO_DEPOSIT.md`;
+the unrelated monorepo concept DOI must not be reused.

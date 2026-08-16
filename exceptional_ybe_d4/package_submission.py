@@ -13,7 +13,7 @@ from verify_checksums import main as verify_package_checksums
 
 ROOT = Path(__file__).resolve().parent
 OUT = ROOT / "submission"
-VERSION = "1.1.1"
+VERSION = "1.1.2"
 # ZIP timestamps have no timezone field; use the visible release time in PDT.
 ZIP_TIME = (2026, 8, 16, 11, 0, 0)
 PDF_NAME = f"exceptional-ybe-d4-v{VERSION}.pdf"
@@ -29,6 +29,9 @@ CURRENT_OUTPUTS = {
 DEPRECATED_OUTPUTS = {
     f"exceptional-ybe-d4-v{VERSION}-source.tar.gz",
     f"exceptional-ybe-d4-v{VERSION}-arxiv.tar.gz",
+    "exceptional-ybe-d4-v1.1.1.pdf",
+    "exceptional-ybe-d4-v1.1.1-source.zip",
+    "exceptional-ybe-d4-v1.1.1-arxiv.zip",
 }
 
 

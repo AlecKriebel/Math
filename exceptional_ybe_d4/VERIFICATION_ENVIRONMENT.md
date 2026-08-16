@@ -1,6 +1,6 @@
 # Verification environment
 
-Version 1.1.1 was certified on 16 August 2026 on an Apple M1 Pro Mac running
+Version 1.1.2 was certified on 16 August 2026 on an Apple M1 Pro Mac running
 macOS, using the following reference environment:
 
 - CPython 3.14.6 with optimization disabled;
@@ -47,13 +47,15 @@ package-local source artifacts. The Zenodo upload hashes are in
 `submission/ARXIV_SHA256SUMS`.
 
 - Frozen verification output SHA-256:
-  `e076c91ca7fe7d76828b014ff1629e3a1813ab91ca82298dc0962c4787abd587`.
+  `b24067217009d8fbee4e412ef5b02dd3c4923de8ac699a19900a97de5524f83f`.
 - Final PDF SHA-256:
-  `946e2b6595a67ff2fc9148d54ed5fa07a5fc4d6744270622caf3c0cf548b2dc3`.
+  `5be8c8b90410db7c22bdc29ef0f7c3ad74065cdc8cb310e61ee84ea2ae4159a6`.
 
 The exact programs certify the displayed finite matrix identities, both
-partial traces, both dimension-three obstruction norms, the generalized
-operator and far commutativity, and the generic tensor-word certificate.
+partial traces, both dimension-three obstruction trace-square identities,
+the generalized operator and far commutativity, the literal GHR comparison
+and six-dimensional three-strand image, and the generic tensor-word
+certificate.
 They do not replace the printed proofs of tower faithfulness, the
 dimension-three classification reduction, or the literature-based priority
 claim.

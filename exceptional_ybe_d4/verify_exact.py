@@ -7,6 +7,7 @@ the supplied verifier.
 """
 
 from fractions import Fraction
+import itertools
 import sys
 
 
@@ -161,6 +162,30 @@ def dense_integer_matrix(rows):
     return out
 
 
+def dense_matrix(rows):
+    """Build a sparse matrix whose entries may already lie in the exact field."""
+
+    out = zero_matrix(len(rows))
+    for i, row in enumerate(rows):
+        require(len(row) == len(rows), "dense_matrix requires a square matrix")
+        for j, value in enumerate(row):
+            value = as_cq23(value)
+            if value:
+                out[i][j] = value
+    return out
+
+
+def block_diag(a, b):
+    require(len(a) == len(b), "block_diag dimension mismatch")
+    n = len(a)
+    out = zero_matrix(2 * n)
+    for i, row in enumerate(a):
+        out[i].update(row)
+    for i, row in enumerate(b):
+        out[n + i].update({n + j: value for j, value in row.items()})
+    return out
+
+
 def matrix_add(a, b):
     require(len(a) == len(b), "matrix_add dimension mismatch")
     out = zero_matrix(len(a))
@@ -236,6 +261,23 @@ def adjoint(a):
 
 def trace(a):
     return sum((row.get(i, ZERO) for i, row in enumerate(a)), ZERO)
+
+
+def frobenius_inner(a, b):
+    """Unnormalized Hilbert--Schmidt inner product Tr(a^* b)."""
+
+    require(len(a) == len(b), "frobenius_inner dimension mismatch")
+    total = ZERO
+    for row_a, row_b in zip(a, b):
+        for j in row_a.keys() & row_b.keys():
+            total += row_a[j].conjugate() * row_b[j]
+    return total
+
+
+def frobenius_squared(a):
+    """Unnormalized squared Frobenius norm Tr(a^* a)."""
+
+    return frobenius_inner(a, a)
 
 
 def assert_equal(label, a, b):
@@ -348,6 +390,35 @@ def ybe_residual(left, right):
     )
 
 
+def shifted_ybe_residual(matrix, shift_qubits):
+    """gYB residual when adjacent copies shift by ``shift_qubits`` qubits."""
+
+    identity = eye(2**shift_qubits)
+    return ybe_residual(kron(matrix, identity), kron(identity, matrix))
+
+
+def gram_determinant(matrices):
+    """Exact Gram determinant for a short list of sparse matrices."""
+
+    require(matrices, "gram_determinant requires at least one matrix")
+    gram = [
+        [frobenius_inner(left, right) for right in matrices]
+        for left in matrices
+    ]
+    determinant = ZERO
+    for permutation in itertools.permutations(range(len(matrices))):
+        inversions = sum(
+            permutation[i] > permutation[j]
+            for i in range(len(permutation))
+            for j in range(i + 1, len(permutation))
+        )
+        term = ONE
+        for row, column in enumerate(permutation):
+            term *= gram[row][column]
+        determinant += -term if inversions % 2 else term
+    return determinant
+
+
 def main():
     i2, i4, i8, i16 = eye(2), eye(4), eye(8), eye(16)
     # A deliberately asymmetric toy case certifies that the two partial-trace
@@ -384,6 +455,73 @@ def main():
     # a conjugation/sign drift cannot pass the invariant checks below.
     q = (ONE + CQ23(0, Q23(0, 0, 1, 0))) / 2
     require(q == EXPECTED_Q, "q is not exp(+i*pi/3)")
+
+    # Literal transcription of Galindo--Hong--Rowell, Eq. (5.2).  Their
+    # zeta is exp(i*pi/4), and both displayed blocks carry the same factor
+    # -exp(-i*pi/3)/sqrt(2) = -conjugate(q)/sqrt(2).
+    sqrt2 = Q23(0, 1, 0, 0)
+    zeta = CQ23(sqrt2 / 2, sqrt2 / 2)
+    zeta_inverse = zeta.conjugate()
+    ghr_prefactor = -q.conjugate() * (sqrt2 / 2)
+    ghr_block_a = dense_matrix(
+        [
+            [zeta_inverse, 0, -zeta_inverse, 0],
+            [0, zeta, 0, zeta],
+            [zeta, 0, zeta, 0],
+            [0, -zeta_inverse, 0, zeta_inverse],
+        ]
+    )
+    ghr_block_b = dense_matrix(
+        [
+            [zeta, 0, zeta, 0],
+            [0, zeta_inverse, 0, -zeta_inverse],
+            [-zeta_inverse, 0, zeta_inverse, 0],
+            [0, zeta, 0, zeta],
+        ]
+    )
+    ghr = block_diag(
+        scalar_mul(ghr_prefactor, ghr_block_a),
+        scalar_mul(ghr_prefactor, ghr_block_b),
+    )
+    # An orientation-sensitive fingerprint independently binds the literal
+    # block order and the sign of zeta in the displayed GHR matrix.  The
+    # unitary, Hecke, and generalized-YBE invariants below do not distinguish
+    # every symmetry-related transcription.
+    ghr_entry_00 = CQ23(
+        Q23(Fraction(-1, 4), 0, Fraction(1, 4), 0),
+        Q23(Fraction(1, 4), 0, Fraction(1, 4), 0),
+    )
+    ghr_entry_11 = CQ23(
+        Q23(Fraction(-1, 4), 0, Fraction(-1, 4), 0),
+        Q23(Fraction(-1, 4), 0, Fraction(1, 4), 0),
+    )
+    require(
+        (
+            ghr[0].get(0, ZERO),
+            ghr[1].get(1, ZERO),
+            ghr[4].get(4, ZERO),
+            ghr[6].get(4, ZERO),
+        )
+        == (ghr_entry_00, ghr_entry_11, ghr_entry_11, -ghr_entry_00),
+        "GHR Eq. (5.2) literal block orientation fingerprint failed",
+    )
+    print("[ok] GHR Eq. (5.2) literal block orientation fingerprint")
+    assert_equal(
+        "GHR Eq. (5.2) operator is unitary",
+        matmul(adjoint(ghr), ghr),
+        i8,
+    )
+    assert_equal(
+        "GHR Eq. (5.2) operator satisfies the normalized Hecke polynomial",
+        matmul(
+            matrix_add(ghr, i8),
+            matrix_sub(ghr, scalar_mul(q, i8)),
+        ),
+        zero_matrix(8),
+    )
+    require(trace(ghr) == 4 * (q - 1), "GHR spectral multiplicities are not 4+4")
+    print("[ok] GHR Eq. (5.2) has normalized spectrum {-1,q}, multiplicities 4+4")
+
     a = (q - 1) / 2
     b = (q + 1) / 2
     r = matrix_add(scalar_mul(a, i16), scalar_mul(b, h))
@@ -432,7 +570,7 @@ def main():
         tl_norm == CQ23(Fraction(1, 18)),
         f"d=3 TL obstruction norm is {tl_norm}, not 1/18",
     )
-    print("[ok] exceptional trace norm of the d=3 TL obstruction = 1/18")
+    print("[ok] exceptional trace-square value of the d=3 TL obstruction = 1/18")
 
     q_projection = matrix_sub(i16, p)
     q1, q2 = kron(q_projection, i4), kron(i4, q_projection)
@@ -453,7 +591,7 @@ def main():
         complementary_tl_norm == CQ23(Fraction(1, 18)),
         f"complementary d=3 obstruction norm is {complementary_tl_norm}, not 1/18",
     )
-    print("[ok] exceptional trace norm of the complementary d=3 obstruction = 1/18")
+    print("[ok] exceptional trace-square value of the complementary d=3 obstruction = 1/18")
 
     # Remove the spectator second qubit, then exchange the last two active
     # coordinates.  This gives the standard (3,2)-gYB ordering
@@ -495,10 +633,37 @@ def main():
     assert_equal("active 8x8 operator is unitary", matmul(adjoint(k_r), k_r), i8)
 
     k1, k2 = kron(k_r, i4), kron(i4, k_r)
+    active_shift_two_residual = ybe_residual(k1, k2)
     assert_equal(
         "standard (3,2)-generalized Yang--Baxter equation",
-        ybe_residual(k1, k2),
+        active_shift_two_residual,
         zero_matrix(32),
+    )
+
+    ghr_shift_one_residual = shifted_ybe_residual(ghr, 1)
+    ghr_shift_two_residual = shifted_ybe_residual(ghr, 2)
+    active_shift_one_residual = shifted_ybe_residual(k_r, 1)
+    residual_norms = (
+        frobenius_squared(ghr_shift_one_residual),
+        frobenius_squared(ghr_shift_two_residual),
+        frobenius_squared(active_shift_one_residual),
+        frobenius_squared(active_shift_two_residual),
+    )
+    expected_residual_norms = tuple(CQ23(value) for value in (0, 48, 24, 0))
+    require(
+        residual_norms == expected_residual_norms,
+        f"unexpected unnormalized squared Frobenius residuals: {residual_norms}",
+    )
+    print(
+        "[ok] unnormalized squared Frobenius residuals: "
+        "GHR (m=1,m=2)=(0,48); active K=(24,0)"
+    )
+
+    ghr_far_left, ghr_far_right = kron(ghr, i4), kron(i4, ghr)
+    assert_equal(
+        "GHR (3,1)-gYB far commutativity",
+        matmul(ghr_far_left, ghr_far_right),
+        matmul(ghr_far_right, ghr_far_left),
     )
     far_left, far_right = kron(k_r, i16), kron(i16, k_r)
     assert_equal(
@@ -506,6 +671,22 @@ def main():
         matmul(far_left, far_right),
         matmul(far_right, far_left),
     )
+
+    active_h3_images = (
+        eye(len(k1)),
+        k1,
+        k2,
+        matmul(k1, k2),
+        matmul(k2, k1),
+        matmul(matmul(k1, k2), k1),
+    )
+    active_h3_gram_determinant = gram_determinant(active_h3_images)
+    require(
+        active_h3_gram_determinant == CQ23(63700992),
+        "the six standard active H_3(q) word images are not independent "
+        f"with the expected Gram determinant: {active_h3_gram_determinant}",
+    )
+    print("[ok] dim span rho_3(H_3(q)) for the active representation = 6")
 
     print()
     print("All dependency-free exact checks passed.")

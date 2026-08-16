@@ -27,7 +27,7 @@
 - [x] Exact verifier environment, locked dependencies, negative tests, and
       portable checksums
 - [x] Separate CC BY 4.0 manuscript and MIT code licenses
-- [x] Journal of Algebra highlights (five lines, each at most 85 characters)
+- [x] Journal of Algebra highlights (five bullet points, each at most 85 characters)
 - [x] Self-contained Zenodo and arXiv archives
 - [ ] Fresh reserved Zenodo version DOI inserted before publication
 

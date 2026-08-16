@@ -1,7 +1,7 @@
 \documentclass[11pt]{article}
 
 \usepackage[margin=1.02in]{geometry}
-\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{amsmath,amssymb,amsthm,amscd,mathtools}
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{enumitem}
@@ -61,18 +61,20 @@ class
 \[
   \left[e^{i\pi/3},\frac12,4\right].
 \]
-It is the smallest-dimensional unresolved member of the sole remaining
-existence family in Lechner's classification up to braid-character
-equivalence, and it corresponds to the ordinary-localization question
-highlighted by Galindo, Hong, and Rowell for the
-\(\cC(\mathfrak{sl}_3,6)\) Jones--Wenzl sequence.
-Writing \(\bbC^4\cong\bbC^2\otimes\bbC^2\), the associated reflection has a
-five-word real Pauli expansion.  Four words combine into an involution \(M\),
-a fifth involution \(E\) anticommutes with \(M\), and the braid relation selects
+It is the smallest-dimensional previously unresolved class in the exceptional
+even-dimensional family left open in Lechner's 2026 classification preprint,
+and it corresponds to the ordinary-localization question highlighted by
+Galindo, Hong, and Rowell for the \(\cC(\mathfrak{sl}_3,6)\) Jones--Wenzl
+sequence.  Writing \(\bbC^4\cong\bbC^2\otimes\bbC^2\), the associated
+reflection has a five-word real Pauli--Clifford expansion.  Four words combine
+into an involution \(M\), a fifth involution \(E\) anticommutes with \(M\), and
+the braid relation restricts the reflection circle \(\alpha M+\beta E\) to the
+four points
 \[
-  H=\sqrt{\frac23}\,M-\frac1{\sqrt3}E
+  \alpha^2=\frac23,\qquad \beta^2=\frac13.
 \]
-from the circle of involutions \(\alpha M+\beta E\).
+Choosing \((\alpha,\beta)=(\sqrt{2/3},-1/\sqrt3)\) gives the displayed
+operator.
 The resulting spectral projection has both unnormalized partial traces equal
 to \(2\Id_4\), so normalized matrix trace induces the \(\eta=1/2\) Markov
 trace.  Hence the tensor-space representation induces a faithful
@@ -80,6 +82,9 @@ representation of \(H_n(3,6)\) for every \(n\), providing an ordinary unitary
 localization of the \(\cC(\mathfrak{sl}_3,6)\) Jones--Wenzl sequence.
 Together with the known dimension-two obstruction and a dimension-three
 argument, this proves that the minimum local dimension is four.
+Consequently, the Galindo--Hong--Rowell localization conjecture is verified
+for the \(\cC(\mathfrak{sl}_3,6)\) generator, the case they singled out as a
+possible counterexample.
 \end{abstract}
 
 \medskip
@@ -109,21 +114,28 @@ trace
 \[
   \eta=\frac{\rank P}{(\dim V)^2},
 \]
-and the unresolved classes are
+and the classes left unresolved by that analysis are
 \[
   \left[e^{i\pi/3},\frac12,2m\right]\qquad(m\ge1).
 \]
-The class in base dimension two is empty; base dimension four is the
-smallest-dimensional unresolved member of this remaining family.
+The class in base dimension two is empty; base dimension four was therefore
+the smallest unresolved member of this remaining family.
 
 This question traces back to the case study of Galindo, Hong, and
 Rowell~\cite[\S5.6]{GHR2013}.  They showed that the Jones--Wenzl
-representations associated with \(\cC(\mathfrak{sl}_3,6)\) have a unitary
-quasi-localization and an \(8\times8\) \((3,1)\)-generalized localization,
+representations associated with \(\cC(\mathfrak{sl}_3,6)\) have a
+two-dimensional unitary quasi-localization and an \(8\times8\)
+\((3,1)\)-generalized localization,
 but no two-dimensional ordinary unitary localization.  They wrote that the
 sequence did not appear to have an ordinary localization and noted it as a
-possible counterexample to the localization conjecture.  Lechner's work
-later isolated the precise matrix family above.
+possible counterexample to the localization conjecture.  Lechner isolated
+this family as the sole remaining case in his classification preprint and
+explicitly identified it with the unknown localization arising from the GHR
+\(\cC(\mathfrak{sl}_3,6)\) case study~\cite[p.~16]{Lechner2026}.  The present
+paper supplies an explicit operator in that family.  The existence and
+localization arguments below are independent of Lechner's classification;
+only the proof of dimension-four minimality uses
+\cite[Theorem~3.4]{Lechner2026}.
 
 The following is the central result of this paper.
 
@@ -137,7 +149,9 @@ There is an explicit unitary \(R\in\End(\bbC^4\otimes\bbC^4)\) such that
   (R+\Id_{16})(R-q\Id_{16})=0,\qquad
   R_1R_2R_1=R_2R_1R_2,
 \]
-and each eigenvalue \(-1,q\) has multiplicity eight.  Its
+and each eigenvalue \(-1,q\) has multiplicity eight.  With the conventions
+\(\Tr_1=\Tr\otimes\operatorname{id}\) and
+\(\Tr_2=\operatorname{id}\otimes\Tr\), its
 \((-1)\)-spectral projection \(P\) satisfies
 \[
   \Tr_1(P)=\Tr_2(P)=2\Id_4.
@@ -180,6 +194,9 @@ Put \(V=\bbC^2\otimes\bbC^2\cong\bbC^4\), and define the real matrices
   Z=\begin{pmatrix}1&0\\0&-1\end{pmatrix},\quad
   J=\begin{pmatrix}0&-1\\1&0\end{pmatrix}.
 \]
+Here \(J=XZ=-iY\), so \(\{I,X,Z,J\}\) is the real Pauli--Clifford basis of
+\(M_2(\bbC)\); every tensor word in this basis is a real signed orthogonal
+matrix.
 A word such as \(ZIZZ\) denotes
 \(Z\otimes I\otimes Z\otimes Z\) on \(V\otimes V\).  Define
 \begin{equation}
@@ -199,6 +216,11 @@ and
 \end{equation}
 Equations~\eqref{eq:H}--\eqref{eq:R} are an exact specification of all
 \(256\) matrix entries in the computational basis.
+The visible identity in the second qubit is not an ordinary two-site identity
+amplification of a \(4\times4\) Yang--Baxter operator: the active part uses one
+qubit of the first four-dimensional site and both qubits of the second.
+Section~\ref{sec:gybe} identifies it instead as a \((3,2)\)-generalized
+operator.
 
 The relevant multiplication table is
 \[
@@ -316,16 +338,21 @@ coefficient & words\\
 \end{tabular}
 \end{center}
 This is a finite certificate: each row follows by repeated use of the
-displayed \(2\times2\) multiplication table.  On
+displayed \(2\times2\) multiplication table.  Since \(\{I,X,Z,J\}\) is a
+basis of \(M_2(\bbC)\), its sixfold tensor words form a basis of
+\(\End((\bbC^2)^{\otimes6})\).  Hence the residual vanishes if and only if
+every displayed coefficient vanishes.  On
 \(\alpha^2+\beta^2=1\),
 \[
   \alpha^2-2\beta^2=1-3\beta^2,\qquad
   3\alpha^2-3\beta^2-1=2(1-3\beta^2).
 \]
-Hence all coefficients vanish when \(3\beta^2=1\).  Conversely,
-\(\alpha=0\) or \(\beta=0\) leaves a displayed coefficient nonzero, and when
-\(\alpha\beta\ne0\) the first and third groups force
-\(3\beta^2=1\).  The claim follows.
+Hence all coefficients vanish when \(3\beta^2=1\).  Conversely, if
+\(\alpha=0\), the coefficient of \(IIXIXX\) is
+\(4\beta/3\ne0\).  If \(\beta=0\), the coefficient of \(IIJIJZ\) is
+\(\alpha/6\ne0\).  If \(\alpha\beta\ne0\), the first coefficient group forces
+\(3\beta^2=1\), and the unit-circle condition then gives
+\(\alpha^2=2/3\).  The claim follows.
 \end{proof}
 
 Choosing
@@ -422,7 +449,7 @@ For the \(\eta=1/2\) Markov trace, write
   \operatorname{Ann}_n
   =
   \left\{x\in H_n(q):
-  \operatorname{tr}_{1/2}(yx)=0\ \text{for every }y\in H_n(q)\right\}.
+  \operatorname{tr}^{(n)}_{1/2}(yx)=0\ \text{for every }y\in H_n(q)\right\}.
 \]
 
 \begin{proposition}\label{prop:markov}
@@ -466,59 +493,102 @@ Moreover,
 so the traces are consistent under the standard inclusions.
 Together with normalization and traciality, this is the defining Markov
 property.  Uniqueness of the Markov trace with prescribed
-\(\operatorname{tr}(e_i)=1/2\) identifies it with the trace defining
-\(H_n(3,6)\)~\cite{Wenzl1988}.  Explicitly, in the normalization used for
-this quotient,
+\(\operatorname{tr}^{(n)}_{1/2}(e_i)=1/2\) identifies it with the trace defining
+\(H_n(3,6)\)~\cite[Eq.~(3.2)]{Wenzl1988}.  Explicitly, in the normalization
+used for this quotient,
 \[
   \eta_{6,3}
   =\frac{1-q^{-2}}{(1+q)(1-q^{-3})}
   =\frac12,
   \qquad q=e^{i\pi/3}.
 \]
-This is the identification used in \cite[Theorem 5.28]{GHR2013}.
+This is the Wenzl Markov parameter for \(H_n(3,6)\).  GHR \(\S5.6\) identifies
+this quotient tower with the \(\cC(\mathfrak{sl}_3,6)\) Jones--Wenzl sequence,
+and Theorem~5.28 uses that identification for its generalized localization,
+subject to the following convention note.\footnote{The published text of GHR
+\(\S5.6\) uses two \(q\)-normalizations: its opening paragraph prints
+\(q=e^{2\pi i/3}\), whereas the braid eigenvalues and Theorem~5.28 use
+\(q=e^{2\pi i/6}\).  We use the latter eigenvalue normalization.  That theorem
+also prints \(\eta=(1-q^{-2})/(1+q^3)\), whose denominator vanishes at this
+value.  The Wenzl parameter in the displayed formula above is
+\(\eta_{6,3}=1/2\).}
 
-If \(x\in\operatorname{Ann}_n\), take \(y=x^*\) to obtain
+The equality \(\tau_n\circ\rho_n=\operatorname{tr}^{(n)}_{1/2}\) now gives
+both kernel inclusions explicitly.  If \(x\in\operatorname{Ann}_n\), then
 \[
-  0=\operatorname{tr}_{1/2}(x^*x)
-   =\tau_n\!\left(\rho_n(x)^*\rho_n(x)\right).
+\begin{aligned}
+  x\in\operatorname{Ann}_n
+  &\Longrightarrow
+  0=\operatorname{tr}^{(n)}_{1/2}(x^*x)
+   =\tau_n\!\left(\rho_n(x)^*\rho_n(x)\right)\\
+  &\Longrightarrow \rho_n(x)=0,
+\end{aligned}
 \]
-Normalized matrix trace is faithful, hence \(\rho_n(x)=0\).
-The reverse inclusion is immediate.  Thus the kernel is exactly the
-annihilator and the induced map on the quotient is injective.
+because normalized matrix trace is faithful.  Conversely, for every
+\(y\in H_n(q)\),
+\[
+  \rho_n(x)=0
+  \Longrightarrow
+  \operatorname{tr}^{(n)}_{1/2}(yx)
+  =\tau_n\!\left(\rho_n(y)\rho_n(x)\right)=0,
+\]
+so \(x\in\operatorname{Ann}_n\).  Thus the kernel is exactly the annihilator
+and the induced map on the quotient is injective.
 \end{proof}
 
 Equation~\eqref{eq:tower-compatibility} and Proposition~\ref{prop:markov}
-also give
+give the quotient-tower compatibility explicitly:
 \[
-  \iota_n^{-1}(\operatorname{Ann}_{n+1})=\operatorname{Ann}_n.
+\begin{aligned}
+  x\in\iota_n^{-1}(\operatorname{Ann}_{n+1})
+  &\Longleftrightarrow \rho_{n+1}(\iota_n(x))=0\\
+  &\Longleftrightarrow \rho_n(x)\otimes\Id_4=0\\
+  &\Longleftrightarrow \rho_n(x)=0\\
+  &\Longleftrightarrow x\in\operatorname{Ann}_n.
+\end{aligned}
 \]
-Thus the inclusions descend to the semisimple quotients, and the induced
-injections \(\overline\rho_n\) satisfy
+Thus the inclusions descend to the semisimple quotients and give the
+commuting square
 \[
-  \overline\rho_{n+1}(\overline\iota_n(x))
-  =\overline\rho_n(x)\otimes\Id_4.
+\begin{CD}
+  H_n(3,6) @>{\overline\iota_n}>> H_{n+1}(3,6)\\
+  @V{\overline\rho_n}VV @VV{\overline\rho_{n+1}}V\\
+  \End(V^{\otimes n}) @>{T\mapsto T\otimes\Id_4}>>
+  \End(V^{\otimes(n+1)}).
+\end{CD}
 \]
 
 Galindo, Hong, and Rowell recall the braid-equivariant isomorphism
 \[
-  \End_{\cC}(X^{\otimes n})\cong H_n(3,6)
+  \bbC\,\rho_X(B_n)
+  \cong\End_{\cC}(X^{\otimes n})\cong H_n(3,6)
 \]
-for the two-dimensional simple generator \(X\) of
-\(\cC(\mathfrak{sl}_3,6)\)~\cite[\S5.6]{GHR2013}.  Proposition
-\ref{prop:markov} and the displayed tower compatibility therefore give a
-faithful unitary \(*\)-morphism of towers, completing the localization
-assertion in Theorem~\ref{thm:main} in the sense of
-\cite[Definition 4.10]{GHR2013}.
+for the simple tensor generator \(X\) of \(\cC(\mathfrak{sl}_3,6)\), with
+\(\operatorname{FPdim}(X)=2\)~\cite[\S5.6]{GHR2013}.  Since the braid image is
+the entire algebra being localized, the compatible quotient embeddings above
+are precisely the injective algebra maps required by
+\cite[Definition~1.3]{GHR2013}.  Equivalently, by
+\cite[Proposition~4.12 and Definition~4.13]{GHR2013}, they define an ordinary
+unitary \(\mathrm{Hilb}_f\)-localization of the Jones--Wenzl sequence.
 
 \begin{corollary}\label{cor:not-counterexample}
-This Jones--Wenzl sequence is not the possible counterexample to the
-localization conjecture contemplated in
-\cite[Remark 6.2(2)]{GHR2013}.
+GHR Conjecture~1.5 holds for the simple tensor generator \(X\) of
+\(\cC(\mathfrak{sl}_3,6)\): one has
+\[
+  \operatorname{FPdim}(X)^2=4,
+\]
+and the associated Jones--Wenzl sequence admits an ordinary unitary
+localization.  Hence the case singled out in
+\cite[Remark~6.2(2)]{GHR2013} is not a counterexample.
 \end{corollary}
 
 \begin{proof}
-Theorem~\ref{thm:main} supplies the ordinary unitary localization whose
-possible nonexistence motivated that remark.
+Theorem~\ref{thm:main} supplies the asserted localization, and GHR \(\S5.6\)
+gives \(\operatorname{FPdim}(X)=2\).  This does not contradict
+\cite[Theorem~5.27]{GHR2013}: that result excludes a fiber functor by showing
+that one would force a localization of dimension exactly
+\(\operatorname{FPdim}(X)=2\), whereas the present ordinary localization has
+local dimension four.
 \end{proof}
 
 \section{Minimality and amplification}\label{sec:consequences}
@@ -526,7 +596,11 @@ possible nonexistence motivated that remark.
 \begin{proof}[Proof of Corollary~\ref{cor:minimal}]
 A one-dimensional local space cannot carry the required two-eigenvalue
 generator.  Galindo, Hong, and Rowell prove that no two-dimensional ordinary
-unitary localization exists~\cite[Lemma 5.26]{GHR2013}.
+unitary localization exists~\cite[Lemma 5.26]{GHR2013}.  That lemma quotes the
+two-dimensional classification up to an overall scalar: a representative
+with spectrum \(\{-\chi,\chi q\}\) is normalized by multiplication by
+\(\chi^{-1}\), which leaves its spectral projection and Markov parameter
+unchanged.
 
 It remains to exclude local dimension three.  Suppose such an ordinary
 unitary localization existed, with local braid operator
@@ -538,42 +612,83 @@ braid generators,
 Injectivity at two strands rules out either spectral projection vanishing,
 so both eigenvalues \(-1\) and \(q\) occur.  Thus \(F\) belongs to one of the
 dimension-three Hecke classes in
-\cite[Theorem 3.4]{Lechner2026}.  At \(q=e^{i\pi/3}\), the possible Markov
+\cite[Theorem~3.4]{Lechner2026}.  At \(q=e^{i\pi/3}\), the possible Markov
 parameters are \(1/3,1/2,2/3\).  The value \(1/2\) is impossible in dimension
-three because it would require a projection of rank \(9/2\).  At \(1/3\) the
-representation is of Temperley--Lieb type; at \(2/3\) its complementary
-projection is of Temperley--Lieb type
-\cite[Lemma 3.5 and the following discussion]{Lechner2026}.
+three because it would require a projection of rank \(9/2\).  By
+\cite[Lemma~3.1]{Lechner2026}, the normalized matrix character of each such
+Hecke operator is the corresponding positive Markov trace.
 
-Both cases kill an element that is nonzero in the exceptional quotient.
-Indeed, in \(H_3(3,6)\) put
+We now exclude the two remaining parameters directly.  In \(H_3(q)\), put
 \[
-  e_i^\perp=\Id-e_i,\qquad
   c=\frac{q}{(1+q)^2}=\frac13,
+  \qquad T=e_1e_2e_1-ce_1.
 \]
+The projection-form Hecke relation is
 \[
-  T=e_1e_2e_1-ce_1,\qquad
-  T^\perp=e_1^\perp e_2^\perp e_1^\perp-ce_1^\perp.
+  e_1e_2e_1-e_2e_1e_2=c(e_1-e_2).
 \]
-The calculation in~\cite[Lemma 3.5]{Lechner2026}, applied to \(e_i\) and to
-the flipped Hecke projections \(e_i^\perp\), gives
+For the Markov trace \(\operatorname{tr}^{(3)}_\eta\) with
+\(\operatorname{tr}^{(3)}_\eta(e_i)=\eta\), multiply relation~(3.1) of
+\cite{Lechner2026} on the right by \(e_2\).  Cyclicity and the Markov property
+give
 \[
-  \operatorname{tr}_{1/2}(T^*T)
-  =
-  \operatorname{tr}_{1/2}((T^\perp)^*T^\perp)
+\begin{aligned}
+  \operatorname{tr}^{(3)}_\eta(e_1e_2e_1e_2)
+  &=\operatorname{tr}^{(3)}_\eta(e_2e_1e_2)
+    +c\operatorname{tr}^{(3)}_\eta(e_1e_2)
+    -c\operatorname{tr}^{(3)}_\eta(e_2)\\
+  &=\eta^2-c\eta+c\eta^2,
+\end{aligned}
+\]
+and hence
+\[
+\begin{aligned}
+  \operatorname{tr}^{(3)}_\eta(T^*T)
+  &=\operatorname{tr}^{(3)}_\eta(e_1e_2e_1e_2)
+    -2c\eta^2+c^2\eta\\
+  &=(1-c)\eta(\eta-c).
+\end{aligned}
+\]
+Thus a parameter-\(1/3\) candidate kills \(T\): its normalized matrix trace
+is faithful on its image, while the displayed squared norm is zero.  In the
+target \(\eta=1/2\) quotient, however,
+\[
+  \operatorname{tr}^{(3)}_{1/2}(T^*T)=\frac1{18}>0,
+\]
+so \(T\) is nonzero.
+
+For the remaining case put \(f_i=\Id-e_i\).  The complemented projections
+satisfy the same relation with the same \(c\), since
+\[
+  f_1f_2f_1-f_2f_1f_2
+  =-\bigl(e_1e_2e_1-e_2e_1e_2\bigr)=c(f_1-f_2),
+\]
+and their Markov parameter is \(1-\eta\).  At \(\eta=2/3\), therefore, the
+candidate kills
+\[
+  T^\perp=f_1f_2f_1-cf_1,
+\]
+whereas in the target quotient
+\[
+  \operatorname{tr}^{(3)}_{1/2}\!\left((T^\perp)^*T^\perp\right)
   =\frac1{18}>0.
 \]
-Hence both elements are nonzero in \(H_3(3,6)\).  A parameter-\(1/3\)
-candidate kills \(T\), while a parameter-\(2/3\) candidate kills
-\(T^\perp\), so neither can be faithful.  Theorem~\ref{thm:main} supplies
-dimension four.
+Neither dimension-three candidate is faithful.  Theorem~\ref{thm:main}
+supplies dimension four.
 \end{proof}
 
-There is also an immediate infinite family.  If \(\Id_m\) denotes the
-identity Yang--Baxter operator on \(\bbC^m\otimes\bbC^m\), the reshuffled
-tensor product \(R\boxt\Id_m\) is a unitary Yang--Baxter operator on a base
-space of dimension \(4m\)~\cite[\S3]{Lechner2026}.  Its two eigenvalues and
-normalized spectral rank are unchanged.  Therefore
+There is also an immediate infinite family.  For vector spaces \(V,W\), let
+\(\Sigma_{23}:(V\otimes W)^{\otimes2}\to V^{\otimes2}\otimes W^{\otimes2}\)
+exchange the middle tensor factors.  For
+\(R\in\End(V^{\otimes2})\) and \(S\in\End(W^{\otimes2})\), define the
+reshuffled tensor product
+\[
+  R\boxt S=\Sigma_{23}^{-1}(R\otimes S)\Sigma_{23}.
+\]
+Taking \(S=\Id_{W^{\otimes2}}\) with \(W=\bbC^m\) gives a unitary
+Yang--Baxter operator on the base space \(V\otimes W\), of dimension
+\(4m\)~\cite[\S3]{Lechner2026}.  Its two eigenvalues and normalized spectral
+rank are unchanged.  Therefore
 \begin{equation}
   \left[e^{i\pi/3},\frac12,4m\right]\ne\varnothing
   \qquad(m\ge1).
@@ -582,22 +697,15 @@ normalized spectral rank are unchanged.  Therefore
 This does not settle the remaining base dimensions
 \(6,10,14,\ldots\).
 
-\begin{corollary}\label{cor:endomorphism}
-The Yang--Baxter endomorphism associated with \(R\), in the terminology used
-by Lechner, has Jones index \(4\) and is standard braided.
-\end{corollary}
-
-\begin{proof}
-Lechner observes that every member of the exceptional class
-\([e^{i\pi/3},1/2,2m]\) has these two properties
-\cite[p.~16]{Lechner2026}; Theorem~\ref{thm:main} supplies such a member.
-\end{proof}
-
 \section{A (3,2)-generalized normal form}\label{sec:gybe}
 
 The visible identity in the second qubit of every word in~\eqref{eq:H}
 does have a precise chain-level interpretation, but a coordinate swap is
-essential.  Write the \(i\)-th four-dimensional site as
+essential.  We use the generalized braid placement of
+\cite[Eq.~(3.9) and Remark~3.10(2)]{GHR2013} and the associated tower and
+localization conventions of
+\cite[Example~4.23 and Definition~4.24]{GHR2013}.  Write the \(i\)-th
+four-dimensional site as
 \[
   V_i=\bbC^2_{a_i}\otimes\bbC^2_{b_i},
 \]
@@ -647,14 +755,20 @@ representation, explicitly
   \Id_2^{\otimes2(i-1)}\otimes K
   \otimes\Id_2^{\otimes2(n-i-1)},
 \]
-then for every \(n\) and every braid-algebra element \(x\),
+then for every \(n\) and every \(x\in\bbC B_n\),
 \[
   U_n\rho_R^{(n)}(x)U_n^*
   =
   \Id_{b_1}\otimes\rho_K^{(n)}(x).
 \]
-Consequently \(K\) gives a faithful unitary \((3,2)\)-localization of
-\(H_n(3,6)\) in the convention of~\cite[Definition 4.24]{GHR2013}.
+Moreover, for the standard inclusion \(\iota_n:\bbC B_n\hookrightarrow
+\bbC B_{n+1}\), the placement formula gives
+\[
+  \rho_K^{(n+1)}(\iota_n(x))
+  =\rho_K^{(n)}(x)\otimes\Id_4.
+\]
+Consequently \(K\) gives a faithful unitary \((3,2)\)-localization of the
+tower \(\{H_n(3,6)\}_{n\ge2}\).
 \end{proposition}
 
 \begin{proof}
@@ -666,6 +780,8 @@ After factoring out the global spectator \(b_1\), the ordinary
 Yang--Baxter equation~\eqref{eq:ybe} is precisely
 \eqref{eq:32gybe}; nonadjacent triples are disjoint, so far commutativity
 holds.  The displayed chain conjugacy follows generator by generator.
+The same placement formula gives the displayed compatibility with
+\(\iota_n\).
 Tensoring by a spectator identity does not change the kernel, and
 Proposition~\ref{prop:markov} proves faithfulness on \(H_n(3,6)\).
 \end{proof}
@@ -677,44 +793,60 @@ blocks into an ordinary operator \(\Id_W\otimes K\) on the local space
 observation explains why the present \(8\times8\) active operator yields a
 \(16\times16\) ordinary one.
 
-The known operator in~\cite[Eq.~(5.2), Theorem~5.28, and
-Remark~5.29(1)]{GHR2013} is instead of type
-\((3,1)\) and comes from a quaternionic realization.  No equivalence between
-that generalized localization and~\eqref{eq:KH} is claimed here.  The same
-paper also records a different \((3,2)\) operator in Example~3.14.  Its two
+There is an exact tensor-structural distinction from the known operator
+\(K_{\mathrm{GHR}}\) in
+\cite[Eq.~(5.2), Theorem~5.28, and Remark~5.29(1)]{GHR2013}.  For an
+operator \(L\) on three qubits, define
+\[
+\begin{aligned}
+  \mathcal Y_m(L)={}&
+  (L\otimes\Id_{2^m})(\Id_{2^m}\otimes L)(L\otimes\Id_{2^m})\\
+  &-(\Id_{2^m}\otimes L)(L\otimes\Id_{2^m})(\Id_{2^m}\otimes L).
+\end{aligned}
+\]
+Direct exact calculation gives, with \(\|\cdot\|_F\) the Frobenius norm,
+\[
+\begin{array}{c@{\qquad}cc}
+\toprule
+ & \|\mathcal Y_1(\,\cdot\,)\|_F^2
+ & \|\mathcal Y_2(\,\cdot\,)\|_F^2\\
+\midrule
+K_{\mathrm{GHR}} & 0 & 48\\
+K                  & 24 & 0\\
+\bottomrule
+\end{array}
+\]
+Thus the displayed GHR operator is of type \((3,1)\), while the present
+operator is of type \((3,2)\).  The distinction concerns tensor placement,
+not the two matrices as bare normal operators: they have the same two
+eigenvalues with the same multiplicities and hence are unitarily similar
+after forgetting tensor structure.  The \((3,2)\) shift is what permits the
+spectator blocking \(\Id_2\otimes K\) into an ordinary operator on the local
+space \(\bbC^2\otimes\bbC^2\); the GHR operator does not yield this ordinary
+blocking in its displayed \((3,1)\) tensor structure.
+
+GHR also records a different \((3,2)\) operator in Example~3.14.  Its two
 eigenvalues have projective ratio \(i\) (up to inversion), whereas the ratio
-for \(K\) is \(-q=e^{-2\pi i/3}\) (up to inversion).  The two local operators
-are therefore not unitarily conjugate up to a phase.  In particular, being
-of type \((3,2)\) is not by itself the new feature here; the exceptional
-Hecke spectrum and faithful \((3,6)\) localization are.
+for \(K\) is \(-q=e^{-2\pi i/3}\) (up to inversion).  Those two local
+operators are therefore not unitarily conjugate up to a phase.  In
+particular, being of type \((3,2)\) is not by itself the new feature here;
+the exceptional Hecke spectrum and faithful \((3,6)\) localization are.
 
 \section{Verification and provenance}\label{sec:verification}
 
-The public source package contains three supported verification routes and the
-unaltered original attachment from which one route was hardened.
-\begin{enumerate}[leftmargin=2em]
-  \item \texttt{verify\_supplied.py} is a hardened SymPy implementation of
-  the original attachment.  It uses explicit, optimization-safe checks and
-  reconstructs the matrices and main identities exactly.  The byte-for-byte
-  original is retained separately as \texttt{verify\_supplied\_original.py}
-  for provenance and is not a supported execution path.
-  \item \texttt{verify\_exact.py} is an independent implementation using
-  only the Python standard library.  It performs sparse exact arithmetic in
-  \(\bbQ(\sqrt2,\sqrt3,i)\), directly checks the \(16\times16\) identities,
-  the \(64\times64\) Yang--Baxter equation, both partial traces, both
-  dimension-three obstruction norms, the active Hecke relation, the literal
-  printed active operator, the \(32\times32\) generalized
-  equation~\eqref{eq:32gybe}, and far commutativity.
-  \item \texttt{verify\_tensor\_words.py} never constructs a matrix.  It
-  reduces the abstract Pauli-word algebra and checks the complete
-  \(18\)-word certificate in Proposition~\ref{prop:circle}.
-\end{enumerate}
-The latter two programs were written independently of the supplied checker.
-All comparisons are exact; floating-point tolerances are not used.  These
-finite computations verify the displayed matrix, word, trace, and obstruction
-identities.  Tower faithfulness, the dimension-three classification step, and
-the priority conclusion remain mathematical or literature arguments rather
-than finite computational checks.
+The public package supplies three supported exact-verification routes: a
+hardened SymPy route based on the original discovery-era checker; an
+independently written standard-library route using a separate sparse
+exact-arithmetic representation and code path over
+\(\bbQ(\sqrt2,\sqrt3,i)\); and a matrix-free Pauli-word route checking the
+complete \(18\)-word certificate in Proposition~\ref{prop:circle}.  They
+check the displayed matrix identities, partial traces, both dimension-three
+obstructions, the six-dimensional three-strand Hecke image, the generalized
+operator and far commutativity, and the exact comparison with the GHR matrix.
+All comparisons are exact, and negative tests deliberately mutate each route.
+The README records the commands and scope.  These finite checks do not replace
+the printed tower-faithfulness proof, Lechner's dimension-three classification
+step, or the literature-based priority assessment.
 
 The five-word support was originally found by an AI-assisted structured
 numerical search in a real Pauli--Clifford basis.  The discovery code and
@@ -722,11 +854,10 @@ random seeds were not retained.  Accordingly, this paper makes no claim that
 the search was reproducible, exhaustive, or established uniqueness.  The
 generative-AI systems identified in the declaration below were also used for
 mathematical exploration and derivation, adversarial proof analysis, verifier
-development, literature support, and manuscript preparation.  Every claim in
-the theorem is supported by the printed derivation, and the finite identities
-and trace calculations are checked by the exact programs described above.
-No mathematical conclusion depends on accepting an AI-generated assertion or
-on reproducing the original numerical search.
+development, literature support, and manuscript preparation.  Every theorem
+claim is supported by the printed derivation, and the finite identities are
+checked by the exact programs.  No conclusion depends on accepting model
+output as evidence or reproducing the original numerical search.
 
 \section{Related work, novelty, and limitations}\label{sec:priority}
 
@@ -740,15 +871,13 @@ identified \([e^{i\pi/3},1/2,2m]\) as the sole remaining existence family
 up to braid-character equivalence and stated that its dimension-two member
 is empty~\cite[p.~16]{Lechner2026}.
 
-A focused search through 16 August 2026 of primary sources, scholarly indexes,
-general web results,
-later papers mentioning the preprint, and public code found no earlier
-formula equivalent to~\eqref{eq:H} and no published ordinary
-four-dimensional localization.  The defensible conclusion is therefore
-that the construction \emph{appears new} and answers the open class
-identified in~\cite{Lechner2026}.  This is not proof of absolute priority:
-an unindexed, unpublished, paywalled, differently parameterized, or
-concurrent equivalent may exist.
+A focused search through 16 August 2026 found no earlier construction
+realizing \([e^{i\pi/3},1/2,4]\) and no previously published ordinary
+four-dimensional localization of this Jones--Wenzl sequence.  The
+construction therefore \emph{appears new} and answers the open class
+identified in~\cite{Lechner2026}.  This negative search is not proof of
+absolute priority; unindexed, unpublished, paywalled, differently
+parameterized, or concurrent work may exist.
 
 The broad ordinary-localization question dates to the 2012 case study; the
 exact \(16\times16\) formulation was isolated in 2026.  The result does not
@@ -762,13 +891,14 @@ in the
 \href{https://github.com/AlecKriebel/Math/tree/main/exceptional_ybe_d4}
 {public source package} in the
 \href{https://github.com/AlecKriebel/Math}{AlecKriebel/Math repository}.
-The curated submission package supplies SHA-256 checksums and explicit
-manuscript and code licenses.  The maintained
+The curated source package supplies SHA-256 checksums and explicit manuscript
+and code licenses.  The maintained
 \href{https://aleckriebel.github.io/Math/papers/exceptional-ybe-d4/}
 {project page} links the current edition.  No empirical dataset was generated
-or analyzed; the exact code, frozen outputs, and sources reproduce all
-computational claims and accompany this manuscript in a dedicated archival
-record whose DOI is cited in the submitted edition.
+or analyzed.  The public source package contains the exact code, frozen
+outputs, and sources used to reproduce the computational claims.  A fresh
+dedicated Zenodo version DOI will be reserved and inserted before this
+manuscript is deposited or submitted.
 
 \section*{CRediT authorship contribution statement}
 
@@ -784,21 +914,14 @@ This research received no external funding.
 The author declares no competing interests.
 
 \section*{Declaration of generative AI and AI-assisted technologies in the
-research and manuscript-preparation process}
+manuscript preparation process}
 
-OpenAI ChatGPT 5.6 Sol Pro through chatgpt.com and OpenAI ChatGPT 5.6 Sol
-Ultra through the ChatGPT desktop application were used for research, review,
-and composition.  Anthropic Claude Opus 5 Max through claude.ai was used for
-review.  Uses included mathematical exploration and derivation, adversarial
-proof analysis, symbolic and software work, literature support, and manuscript
-preparation.
-The work was developed through an iterative, human-directed research process.
-The author determined the scope and claims released here, curated the resulting
-package, reviewed and edited the content, and assumes responsibility for the
-submitted manuscript and public verification materials.  The author takes
-full responsibility for every claim released here.  The proof and exact
-artifacts are supplied to make the AI-mediated research independently
-checkable.
+During preparation of this work, the author used OpenAI GPT-5.6 Sol in
+ChatGPT at chatgpt.com using Pro mode and OpenAI GPT-5.6 Sol via Codex in the
+ChatGPT desktop application using Ultra mode for research support, review,
+and composition, and Anthropic Claude through claude.ai for review.  The
+author reviewed and edited the content as needed and takes full responsibility
+for the content of the publication.
 
 \begin{thebibliography}{10}
 

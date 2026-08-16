@@ -1,6 +1,6 @@
 # Exceptional four-dimensional Hecke Yang–Baxter operator
 
-Submission package version 1.1.1 · 16 August 2026
+Submission package version 1.1.2 · 16 August 2026
 
 ## Result
 
@@ -18,6 +18,8 @@ X=\begin{pmatrix}0&1\\1&0\end{pmatrix},\quad
 Z=\begin{pmatrix}1&0\\0&-1\end{pmatrix},\quad
 J=\begin{pmatrix}0&-1\\1&0\end{pmatrix}.
 \]
+
+Thus \(J=XZ=-iY\), and \(\{I,X,Z,J\}\) is the real Pauli--Clifford basis.
 
 If a four-letter word denotes a Kronecker product, define
 
@@ -54,21 +56,25 @@ The \((-1)\)-spectral projection \(P=(I-H)/2\) has rank eight and
 \]
 
 The partial-trace identity identifies the normalized tensor-space trace with
-the \(\eta=1/2\) Markov trace. Its trace radical is exactly the kernel of the
-unital \(*\)-representation, and the maps are compatible with the standard
-tower inclusions. Thus the construction gives faithful embeddings
+the \(\eta=1/2\) Markov trace. Both inclusions between its trace radical and
+the representation kernel follow from matrix-trace faithfulness, and the
+quotient maps commute with the standard tower inclusions. Since GHR identify
+the entire categorical endomorphism algebra with the braid image and
+\(H_n(3,6)\), the construction gives precisely the faithful embeddings
 
 \[
 H_n(3,6)\hookrightarrow
 \operatorname{End}\!\left((\mathbb C^4)^{\otimes n}\right)
 \]
 
-for all \(n\). Thus it is an ordinary unitary localization of the
-\(\mathcal C(\mathfrak{sl}_3,6)\) Jones--Wenzl representation sequence.
+for all \(n\). Thus it is an ordinary unitary localization of the simple
+tensor generator \(X\) of \(\mathcal C(\mathfrak{sl}_3,6)\), with
+\(\operatorname{FPdim}(X)=2\). In particular, the GHR localization conjecture
+holds in the case their 2012 paper singled out as a possible counterexample.
 The paper also proves that four is the minimum possible local dimension.
 In dimension three, the Temperley--Lieb and complementary
-Temperley--Lieb obstructions both have nonzero exceptional trace norm
-\(1/18\).
+Temperley--Lieb obstructions both have squared \(L^2\)-norm \(1/18\) with
+respect to the exceptional trace.
 
 ## Simplified structure
 
@@ -104,8 +110,11 @@ After swapping the two qubits inside each four-dimensional site, the
 \(8\times8\) \((3,2)\)-generalized Yang--Baxter operator. This is a structural
 normal form. The global sitewise swap proves that its generalized braid
 representation has the same kernel as the ordinary one, so it is also a
-faithful \((3,2)\)-localization. This is not a claimed equivalence with the
-known quaternionic \((3,1)\) construction.
+faithful \((3,2)\)-localization. An exact comparison with the displayed
+quaternionic GHR operator gives unnormalized squared Frobenius residuals
+\((0,48)\) at shifts \((1,2)\), while the present active operator gives
+\((24,0)\). This distinguishes their displayed \((3,1)\) and \((3,2)\)
+tensor structures, not the matrices after tensor structure is forgotten.
 
 ## Reproduce the checks
 
@@ -132,18 +141,21 @@ Or run the routes separately:
 - `verify_exact.py` uses only the Python standard library and directly
   multiplies sparse exact matrices over
   \(\mathbb Q(\sqrt2,\sqrt3,i)\), including the two dimension-three
-  obstructions, both partial traces, the literal active operator and its Hecke
-  relation, the explicit sitewise-swap factorization, the generalized
-  Yang--Baxter equation, and far commutativity.
+  obstructions, both partial traces, the literal active and GHR operators,
+  their Hecke relations and exact generalized residual table, the
+  six-dimensional three-strand Hecke image, the explicit sitewise-swap
+  factorization, and far commutativity.
 - `verify_tensor_words.py` never constructs a matrix. It verifies the
   involution relations and all 18 coefficients of the generic cubic
   residual in the abstract Pauli algebra.
 - `verify_supplied.py` is the supported, optimization-safe SymPy route and
   requires exactly SymPy 1.14.0 and mpmath 1.3.0.
-- `verify_supplied_original.py` is the byte-for-byte original attachment. It
-  uses Python assertions and is retained only for provenance, not execution.
-- `test_failure_modes.py` rejects optimized execution and deliberately mutates
-  each supported route to confirm that scientific failures cannot pass.
+- `verify_supplied_original.py` is the byte-for-byte original discovery-era
+  checker. It uses Python assertions and is retained only for provenance, not
+  execution.
+- `test_failure_modes.py` rejects optimized execution and includes selected
+  deliberate mutations of each supported route to confirm that those
+  mutations are detected.
 - `verify_checksums.py` validates the package-local manifest without allowing
   absolute or parent-directory paths.
 - `verification_output.txt` is the frozen successful reference run.
@@ -155,9 +167,10 @@ classification reduction, and priority remain printed mathematical or
 literature arguments.
 
 The [typeset paper](output/pdf/exceptional_ybe_d4.pdf), [priority
-audit](PRIORITY_AUDIT.md), [revision audit](REVISION_AUDIT.md), [source
-snapshot](SOURCE_SNAPSHOT.md), and [research log](RESEARCH_LOG.md) are
-included.
+audit](PRIORITY_AUDIT.md), [current review
+adjudication](REVIEW_ADJUDICATION_v1.1.2.md), [historical revision
+audit](REVISION_AUDIT.md), [source snapshot](SOURCE_SNAPSHOT.md), and
+[research log](RESEARCH_LOG.md) are included.
 
 With [Tectonic](https://tectonic-typesetting.github.io/) installed, rebuild
 the PDF with:
@@ -186,9 +199,10 @@ and [SUBMISSION_CHECKLIST.md](SUBMISSION_CHECKLIST.md). The licenses are CC BY
 
 ## Scope and status
 
-A fresh audit through 16 August 2026 found no prior public ordinary
-four-dimensional localization or equivalent five-word formula. The
-construction therefore appears to answer the existence question in
+A focused search through 16 August 2026 found no earlier construction
+realizing \([e^{i\pi/3},1/2,4]\) and no previously published ordinary
+four-dimensional localization of this Jones--Wenzl sequence. The construction
+therefore appears new and appears to answer the existence question in
 [arXiv:2603.20158v1](https://arxiv.org/abs/2603.20158v1), but absolute
 priority cannot be certified. It gives examples in all base dimensions
 \(4m\) after tensoring with identities; the dimensions

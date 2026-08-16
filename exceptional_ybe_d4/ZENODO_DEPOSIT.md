@@ -21,7 +21,7 @@ deposit, or integration change was made while preparing this package.
 - Creator: Kriebel, Alec
 - ORCID: `0009-0001-9320-500X`
 - Affiliation: Independent researcher
-- Version: `1.1.1`
+- Version: `1.1.2`
 - Publication date: `2026-08-16`
 - Publisher: Zenodo
 - Access: Open
@@ -53,9 +53,15 @@ Insert that DOI in all of the following places:
 
 - the manuscript's data/code/source availability statement and formal
   bibliography;
+- `README.md` and the current package-status language in `MANIFEST.md`;
 - `CITATION.cff`;
 - the project page's structured metadata and suggested citation; and
 - the bracketed template in `ARXIV_METADATA.md`.
+
+Run a package-wide DOI/status sweep before rebuilding. Historical logs and
+prior-version release notes may retain clearly dated pre-reservation facts,
+but no file describing version 1.1.2 as current may say that its archive is
+still only planned.
 
 Then run the complete final rebuild and checksum workflow: rebuild both PDF
 mirrors, refresh and verify the package-local `SHA256SUMS`, rerun all supported
@@ -78,8 +84,8 @@ Official DOI-reservation instructions:
 
 From `submission/`:
 
-- `exceptional-ybe-d4-v1.1.1.pdf`;
-- `exceptional-ybe-d4-v1.1.1-source.zip`;
+- `exceptional-ybe-d4-v1.1.2.pdf`;
+- `exceptional-ybe-d4-v1.1.2-source.zip`;
 - `SHA256SUMS`.
 
 Set the PDF as the default preview. Upload the final DOI-bearing versions of

@@ -45,6 +45,14 @@ question.
 
 The local PDF is used for research but is not redistributed in this repository.
 
+## Final consolidated review input
+
+On 16 August 2026 the author supplied a 24,165-byte consolidated text containing
+two additional model reviews. Its SHA-256 is
+`9670856928cee77362e804df048b6f4eaba5539b599ca9b4b02fdbca09a94697`.
+The input is not redistributed; the itemized, source-checked disposition is
+recorded in `REVIEW_ADJUDICATION_v1.1.2.md`.
+
 ## Discovery provenance
 
 The formula was supplied with the explanation that a structured numerical

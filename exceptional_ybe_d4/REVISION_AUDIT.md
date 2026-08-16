@@ -2,8 +2,9 @@
 
 > **Historical record.** This file records decisions made for version 1.1.0
 > on 27 July 2026. It is not the submission-readiness assessment for version
-> 1.1.1; the current declarations and validation record are in `main.tex`,
-> `RELEASE_NOTES_v1.1.1.md`, and `VERIFICATION_ENVIRONMENT.md`.
+> 1.1.2; the current declarations and validation record are in `main.tex`,
+> `REVIEW_ADJUDICATION_v1.1.2.md`, `RELEASE_NOTES_v1.1.2.md`, and
+> `VERIFICATION_ENVIRONMENT.md`.
 
 Audit date: **27 July 2026** (America/Los_Angeles).
 
@@ -35,7 +36,8 @@ preprint.
    T=e_1e_2e_1-\tfrac13e_1,\qquad
    T^\perp=e_1^\perp e_2^\perp e_1^\perp-\tfrac13e_1^\perp
    \]
-   and proves that each has exceptional trace norm \(1/18\).
+   and proves that each has squared \(L^2\)-norm \(1/18\) with respect to the
+   exceptional trace.
    `verify_exact.py` independently checks both norms.
 
 3. **The generalized form is a proposition.** The within-site flip

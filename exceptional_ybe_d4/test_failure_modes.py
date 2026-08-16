@@ -93,6 +93,33 @@ class FailureModeTests(unittest.TestCase):
             "    q = (ONE - CQ23(0, Q23(0, 0, 1, 0))) / 2",
         )
 
+    def test_exact_ghr_matrix_sign_mutation_fails(self):
+        self.assert_mutation_fails(
+            "verify_exact.py",
+            "            [-zeta_inverse, 0, zeta_inverse, 0],",
+            "            [zeta_inverse, 0, zeta_inverse, 0],",
+        )
+
+    def test_exact_ghr_block_swap_mutation_fails(self):
+        self.assert_mutation_fails(
+            "verify_exact.py",
+            """    ghr = block_diag(
+        scalar_mul(ghr_prefactor, ghr_block_a),
+        scalar_mul(ghr_prefactor, ghr_block_b),
+    )""",
+            """    ghr = block_diag(
+        scalar_mul(ghr_prefactor, ghr_block_b),
+        scalar_mul(ghr_prefactor, ghr_block_a),
+    )""",
+        )
+
+    def test_exact_ghr_zeta_conjugation_mutation_fails(self):
+        self.assert_mutation_fails(
+            "verify_exact.py",
+            "    zeta = CQ23(sqrt2 / 2, sqrt2 / 2)",
+            "    zeta = CQ23(sqrt2 / 2, -sqrt2 / 2)",
+        )
+
     def test_tensor_multiplication_mutation_fails(self):
         self.assert_mutation_fails(
             "verify_tensor_words.py",
@@ -161,6 +188,15 @@ class FailureModeTests(unittest.TestCase):
             expected.add(name)
         actual = {relative.as_posix() for _, relative in package_files()}
         self.assertEqual(actual, expected)
+
+    def test_current_release_records_are_in_the_source_archive(self):
+        actual = {relative.as_posix() for _, relative in package_files()}
+        self.assertTrue(
+            {
+                "RELEASE_NOTES_v1.1.2.md",
+                "REVIEW_ADJUDICATION_v1.1.2.md",
+            }.issubset(actual)
+        )
 
     def test_packager_rejects_unexpected_outputs_and_symlink_directory(self):
         with tempfile.TemporaryDirectory(

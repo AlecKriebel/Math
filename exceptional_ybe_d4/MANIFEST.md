@@ -1,7 +1,7 @@
 # Release manifest
 
-This manifest describes submission package version 1.1.1, dated 16 August
-2026. It is deposited through a fresh manual Zenodo record, not a GitHub
+This manifest describes submission package version 1.1.2, dated 16 August
+2026. It is prepared for deposit through a fresh manual Zenodo record, not a GitHub
 release or a pre-existing DOI family; `ZENODO_DEPOSIT.md` governs reservation
 and insertion of its dedicated version DOI before publication.
 
@@ -12,20 +12,23 @@ and insertion of its dedicated version DOI before publication.
 - `output/pdf/exceptional_ybe_d4.pdf` — typeset paper.
 - `README.md` — construction and reproducibility overview.
 - `PRIORITY_AUDIT.md` — primary-source novelty and equivalence audit.
-- `REVISION_AUDIT.md` — adjudication of the independent revision proposals.
+- `REVISION_AUDIT.md` — historical adjudication for version 1.1.0.
 - `RELEASE_NOTES_v1.1.0.md` — prior version's historical release record.
-- `RELEASE_NOTES_v1.1.1.md` — current change and scope record.
+- `RELEASE_NOTES_v1.1.1.md` — prior submission-hardening record.
+- `RELEASE_NOTES_v1.1.2.md` — current review-adjudication record.
+- `REVIEW_ADJUDICATION_v1.1.2.md` — itemized disposition of the two
+  frontier-model reviews and the fresh adversarial re-audit.
 - `SOURCE_SNAPSHOT.md` — provenance and hashes of supplied inputs.
 - `RESEARCH_LOG.md` — timestamped audit and publication log.
 
 ## Verification
 
-- `verify_supplied_original.py` — byte-for-byte preserved original attachment;
+- `verify_supplied_original.py` — byte-for-byte preserved original discovery-era checker;
   archival only.
 - `verify_supplied.py` — hardened supported SymPy route.
-- `verify_exact.py` — independent standard-library sparse exact matrices
-  over \(\mathbb Q(\sqrt2,\sqrt3,i)\).
-- `verify_tensor_words.py` — independent abstract Pauli-word certificate;
+- `verify_exact.py` — separately written standard-library sparse exact matrices
+  over \(\mathbb Q(\sqrt2,\sqrt3,i)\), including the GHR comparison.
+- `verify_tensor_words.py` — matrix-free abstract Pauli-word certificate;
   no matrices.
 - `run_all.sh` — runs all three routes.
 - `test_failure_modes.py` — optimization and deliberate-mutation tests.

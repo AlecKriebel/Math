@@ -2,7 +2,7 @@
 
 > **Historical record.** These notes describe the 27 July 2026 release and
 > are superseded for submission-readiness purposes by
-> `RELEASE_NOTES_v1.1.1.md` and the current manuscript declarations.
+> `RELEASE_NOTES_v1.1.2.md` and the current manuscript declarations.
 
 This release is a formal-completeness and provenance revision of the first
 public research note. The central matrix and theorem are unchanged.
@@ -12,7 +12,8 @@ public research note. The central matrix and theorem are unchanged.
 - made the conjugate-linear \(*\)-structure, tower compatibility, and
   quotient-tower injections explicit;
 - replaced the informal dimension-three discussion with both exact
-  Temperley--Lieb obstructions, each of trace norm \(1/18\);
+  Temperley--Lieb obstructions, each of squared \(L^2\)-norm \(1/18\) with
+  respect to the exceptional trace;
 - formalized the sitewise swap and faithful \((3,2)\)-generalized
   localization as a proposition;
 - added the historical non-counterexample consequence and Lechner's

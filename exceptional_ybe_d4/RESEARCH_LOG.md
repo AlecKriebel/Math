@@ -104,7 +104,8 @@ All times are America/Los_Angeles (PDT, UTC-07:00).
     sitewise-swap proposition, historical consequence, and
     index-\(4\)/standard-braided consequence.
   - The complementary Temperley--Lieb obstruction was independently checked
-    and added to the dependency-free exact verifier; its trace norm is also
+    and added to the dependency-free exact verifier; its squared \(L^2\)-norm
+    with respect to the exceptional trace is also
     \(1/18\).
   - Corrected both unnumbered-display label defects.  The review mentioned
     only the cubic identity; the Markov display had the same defect.
@@ -197,3 +198,49 @@ All times are America/Los_Angeles (PDT, UTC-07:00).
     remain an explicit journal-only human gate; neither was invented here.
 - No outside individual was contacted, and no Zenodo, arXiv, or journal
   submission was initiated.
+
+## 16 August 2026 — Version 1.1.2 frontier-review adjudication
+
+- **14:05 PDT** -- Began an item-by-item audit of two additional
+  frontier-model reviews. Every proposed mathematical edit was checked
+  against the published Galindo--Hong--Rowell article, Lechner's immutable
+  arXiv v1, the printed argument, and exact calculations. No incorrect theorem
+  or scope-changing issue was found.
+- **14:42 PDT** -- Completed the manuscript revision without changing the
+  operator or theorem scope. The revision expands the trace-kernel and tower
+  bridge, prints the dimension-three obstruction calculation, corrects
+  categorical-dimension language, states the GHR conjectural consequence,
+  and makes the generalized tower compatibility explicit.
+- **15:10 PDT** -- Extended the dependency-free exact route with a literal
+  transcription of GHR Equation (5.2), its normalized Hecke checks, the exact
+  residual table \((0,48)\) versus \((24,0)\), far commutativity, and the
+  six-dimensional three-strand image. Orientation-sensitive fingerprints and
+  deliberate sign, block-order, and \(\zeta\)-orientation mutations bind the
+  published transcription rather than merely its symmetry-invariant data.
+- **15:25 PDT** -- Refreshed the same-day priority and reference audit. No
+  public construction realizing the class or prior ordinary
+  four-dimensional localization was found; the qualified “appears new” claim
+  and the paper's stated limitations remain unchanged.
+- **15:38 PDT** -- Rebuilt the final 12-page manuscript with Tectonic 0.16.9
+  and default bundle v33. The build has no TeX warning, overfull box, or
+  undefined-reference diagnostic. The PDF SHA-256 is
+  `5be8c8b90410db7c22bdc29ef0f7c3ad74065cdc8cb310e61ee84ea2ae4159a6`.
+  All three supported verification routes passed in the locked Python 3.14.6
+  / SymPy 1.14.0 / mpmath 1.3.0 environment, and their frozen output has
+  SHA-256
+  `b24067217009d8fbee4e412ef5b02dd3c4923de8ac699a19900a97de5524f83f`.
+- **15:42 PDT** -- All 18 adversarial failure-mode tests passed. They reject
+  optimized execution, altered witness coefficients and phases, the three
+  guarded GHR transcription drifts, algebra mutations, unsafe checksum
+  paths, omitted current-release records, and archive-boundary violations.
+- **15:44 PDT** -- Rendered and inspected all 12 final PDF pages. No clipped,
+  overlapping, missing, or malformed content was found. All 30 used fonts are
+  embedded; the PDF contains 12 external-link annotations to 11 unique
+  targets; its title, author, date, page count, and other metadata are correct.
+- **15:45 PDT** -- Built the deterministic version-1.1.2 Zenodo and arXiv
+  artifacts from the package-local allowlist. Both outer checksum files
+  verified. A clean extraction passed all 33 internal hashes and reproduced
+  the frozen output of all three routes; the isolated one-file arXiv archive
+  reproduced the final PDF byte for byte.
+- No outside individual was contacted, and no Zenodo, arXiv, journal, or
+  GitHub release action was initiated.

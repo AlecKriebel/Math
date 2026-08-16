@@ -22,7 +22,7 @@ Comments (fill from the reserved DOI before Zenodo publication, then use after
 the record is published):
 
 ```text
-11 pages. Exact verification package: https://doi.org/[ZENODO VERSION DOI].
+12 pages. Exact verification package: https://doi.org/[ZENODO VERSION DOI].
 ```
 
 Replace the bracketed field with the actual fresh reserved version DOI. The abstract

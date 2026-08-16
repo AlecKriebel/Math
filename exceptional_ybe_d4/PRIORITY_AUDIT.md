@@ -19,18 +19,25 @@ The stronger historically accurate statement is:
 > from 2012 onward; Lechner isolated the exact exceptional \(16\times16\)
 > matrix question in 2026.
 
-No searched source supplied the five-word Pauli formula, an equivalent
-ordinary \(16\times16\) unitary Hecke operator, or a four-dimensional
-ordinary localization of the \((3,6)\) Jones--Wenzl tower. This is a
-provisional priority conclusion, not proof of absolute novelty.
+No searched source supplied an earlier construction realizing
+\([e^{i\pi/3},1/2,4]\) or a previously published four-dimensional ordinary
+localization of the \((3,6)\) Jones--Wenzl tower. This is a provisional
+priority conclusion, not proof of absolute novelty.
 
 The 16 August refresh found no intervening public collision. Lechner remained
-at arXiv v1 with no journal reference or DOI; exact-title, identifier,
+at arXiv v1 with no journal reference or external publication DOI; exact-title, identifier,
 parameter, formula-fingerprint, citation-index, and authenticated public-code
 searches found no later construction. Seven Yang--Baxter arXiv papers posted
 between the two audit dates were inspected and concerned other problems. Weak
 or unavailable indexing signals are treated only as limitations, never as
 positive novelty evidence.
+
+A final same-day refresh after the version 1.1.2 review again checked the
+paper title, Lechner identifier together with “solution” and “localization,”
+the exact Pauli-word fingerprint, and the exceptional class parameters. It
+found no external candidate, and the official Lechner record still listed
+only v1. This last negative search changes neither the qualified wording nor
+the limitations above.
 
 The intervening arXiv records inspected were
 [2607.28626](https://arxiv.org/abs/2607.28626),
@@ -63,6 +70,12 @@ the ordinary four-dimensional Hecke localization here.
 - Equation (5.2) and Theorem 5.28 give an \(8\times8\)
   \((3,1)\)-generalized localization, derived from quaternionic
   representations.
+- An exact recheck of the displayed tensor structures gives unnormalized
+  squared Frobenius residuals \((0,48)\) for Equation (5.2) at shifts
+  \((1,2)\), and \((24,0)\) for the new active operator. Thus they realize
+  the respective \((3,1)\) and \((3,2)\) generalized equations. This does not
+  distinguish them as bare normal matrices; their common spectral data imply
+  unrestricted unitary similarity after tensor structure is forgotten.
 - Remark 5.29 distinguishes the nonunitary \(9\times9\) Jimbo solution,
   whose braid representation has extraneous sectors.
 - Remark 6.2 notes that this case might have been a counterexample to the
@@ -97,7 +110,7 @@ new \((3,2)\) active form has been established.
   \([e^{i\pi/3},1/2,2m]\) was unknown, cites the 2012 case study, and
   proves the \(d=1\) member (base dimension two) empty.
 
-The new matrix exactly answers the first unresolved member, base dimension
+The new matrix answers the previously unresolved member in base dimension
 four. Tensoring with identity operators supplies base dimensions \(4m\);
 dimensions \(4m+2\) beyond two remain open.
 
@@ -166,15 +179,16 @@ The visible spectator qubit does yield a valid \((3,2)\)-generalized
 operator after swapping the two qubits inside every ququart. The global
 sitewise swap conjugates the ordinary representation to a spectator identity
 tensored with this generalized representation, so it faithfully localizes
-the same quotient. This does not identify it with the published \((3,1)\)
-operator: their overlap geometries differ, so an equivalence would require
-an explicit intertwining theorem between the two generalized models.
+the same quotient. The exact residual table distinguishes its displayed
+\((3,2)\) tensor placement from the published operator's \((3,1)\) placement;
+it does not rule out an intertwining relation between broader generalized
+models.
 
 ## Claim language approved by this audit
 
 Appropriate:
 
-- “an explicit exact solution of the first unresolved exceptional class”;
+- “an explicit exact solution of a previously unresolved exceptional class”;
 - “appears to give the first ordinary four-dimensional localization found
   in the searched literature”;
 - “resolves the existence question stated in arXiv:2603.20158, subject to
