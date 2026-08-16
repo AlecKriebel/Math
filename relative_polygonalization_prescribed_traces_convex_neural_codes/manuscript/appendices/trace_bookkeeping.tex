@@ -1,0 +1,28 @@
+\section{Trace bookkeeping in affine coordinates}\label{app:traces}
+
+Fix an affine coordinate $s$ on a prescribed line $L$.  After the bounded
+reduction, the closed section of a source field is one of
+\[
+ \varnothing,
+ \qquad \{a\},
+ \qquad [a,b],
+\]
+and the open section is respectively empty, empty, or $(a,b)$ unless $L$
+lies in a supporting face.  The representative package stores the extreme
+points of the closed section in all cases and stores two off-line points when
+the open section is nonempty.
+
+Let the ambient section be a closed interval $F\cap L=[c,d]$.  The relative
+open trace is
+\[
+ (a,b)\cap[c,d],
+\]
+which can be empty, open, half-open, or closed as a subset of $L$.  Because
+the output first satisfies $L\cap\operatorname{int}P=(a,b)$ and is clipped
+only afterward, all four possibilities are automatic.  Coincident endpoint
+events from different neurons are retained as literal equalities of points.
+
+For a tangent contact $L\cap\overline U=\{a\}$, one adds $a$ to the finite
+representative package.  The final closed polygon contains $a$ but lies on
+one side of the supporting line, so $a$ is not an interior point and the
+strict trace is empty.

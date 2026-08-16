@@ -1,0 +1,52 @@
+\section{A coherent tetrahedral-boundary model}\label{sec:tetra}
+
+Let $p_1,p_2,p_3,p_4$ be affinely independent protected source witnesses in
+an open convex ambient set $X$, and put
+\[
+ T=\conv\{p_1,p_2,p_3,p_4\}.
+\]
+After a small homothety about the barycenter if necessary, the four witnesses
+lie in a bounded relative carrier compactly contained in $X$.
+
+For each neuron and each of the six edges $e_{rs}=[p_r,p_s]$, convexity gives
+a relatively open interval trace, possibly empty or the whole edge.  Record
+all six traces in one common affine parametrization before treating the
+faces.
+
+\begin{theorem}[Coherent tetrahedral-boundary model]\label{thm:tetra}
+The four triangular faces of $T$ admit polygonal neural-code models such
+that:
+\begin{enumerate}
+\item the code on each face equals the source code restricted to the relative
+      interior of that face and is therefore a subcode of the global source
+      code;
+\item every source word occurring on a face survives;
+\item every strict trace on each of the six edges is unchanged;
+\item the two incident face models agree pointwise on every shared edge,
+      including endpoint positions and simultaneous events.
+\end{enumerate}
+Thus $\partial T$ carries a coherent finite facewise polygonal output model.
+\end{theorem}
+
+\begin{proof}
+Apply \cref{thm:main} to each triangular face in its relative affine plane,
+prescribing its three edge-supporting lines and protecting the desired face
+witnesses.  A shared edge carries one source subset for every neuron, and
+both incident applications preserve it exactly.  The statements follow.
+\end{proof}
+
+\begin{figure}[t]
+\centering
+\input{figures/tetrahedron.tikz}
+\caption{All six source edge traces are frozen first; the four faces are then
+polygonalized independently but coherently along the shared edges.}
+\label{fig:tetrahedron}
+\end{figure}
+
+\begin{remark}[What is not supplied]
+The theorem does not construct convex three-dimensional polytopes whose
+boundary traces are the four face models.  In particular, it does not match
+numerical gauge values, supporting facets, or inward normal derivatives
+across an edge.  Those are genuinely additional three-dimensional
+compatibility conditions.
+\end{remark}

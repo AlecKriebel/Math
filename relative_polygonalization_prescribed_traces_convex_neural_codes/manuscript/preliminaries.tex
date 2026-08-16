@@ -1,0 +1,54 @@
+\section{Preliminaries}\label{sec:prelim}
+
+For $n\ge1$, write $[n]=\{1,\ldots,n\}$.  Let $X\subseteq\R^d$ and let
+$\cU=(U_1,\ldots,U_n)$ be a finite family of subsets of $X$.  For
+$x\in X$, its membership pattern is
+\[
+  \patt_{\cU}(x)=\{i\in[n]:x\in U_i\}.
+\]
+The associated code is
+\[
+  \code(\cU;X)=\{\patt_{\cU}(x):x\in X\}\subseteq2^{[n]}.
+\]
+Equivalently, a word $\sigma\subseteq[n]$ occurs when its atom
+\[
+ A_\sigma(\cU;X)
+ =X\cap\bigcap_{i\in\sigma}U_i
+       \setminus\bigcup_{j\notin\sigma}U_j
+\]
+is nonempty.  We call the code \emph{open convex} when $X$ and all $U_i$
+are open and convex in a common finite-dimensional affine space.
+
+Throughout the planar theorem, $F\subset\R^2$ is a compact convex polygon.
+The relative source code is
+\[
+ \code_F(\cU)=
+ \code(U_1\cap\operatorname{int}F,\ldots,
+       U_n\cap\operatorname{int}F;\operatorname{int}F).
+\]
+A \emph{protected witness} is a selected point
+$x\in\operatorname{int}F$ together with its source word
+$\patt_{\cU}(x)$.  Preserving it means that its membership word is unchanged
+in the output realization.
+
+Let $L$ be an affine line.  The \emph{open trace} of $U_i$ on $L$ relative
+to $F$ is
+\[
+  L\cap U_i\cap F,
+\]
+and the corresponding \emph{closed trace} is
+$L\cap\overline{U_i}\cap F$.  The ambient factor $F$ is closed in these
+expressions.  Thus an open source interval can become half-open or closed
+after clipping by $F$.
+
+A compact convex polygon is permitted to be empty when the corresponding
+neuron is trivial.  In the one- and zero-dimensional relative versions,
+``polygon'' means respectively a compact interval or a point, with the same
+empty-set convention.
+
+\begin{remark}[Relative and ambient interiors]
+The output field associated with a two-dimensional polygon $P_i$ is its
+Euclidean interior.  On a segment or a point carrier, all interiors are
+understood in the relative affine hull.  A closed tangent contact may be
+retained even though it does not belong to the strict open trace.
+\end{remark}

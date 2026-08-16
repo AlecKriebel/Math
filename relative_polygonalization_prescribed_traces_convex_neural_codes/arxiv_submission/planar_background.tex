@@ -1,0 +1,158 @@
+\section{The inclusion-minimal planar construction}\label{sec:background}
+
+We recall the parts of the planar argument of \citet{BukhJeffs2023} that
+are needed for the relative theorem.  The two points that matter are: a
+compact convex realization can be shrunk subject to finitely many retained
+incidences, and an inclusion-minimal planar realization is polygonal.
+
+\subsection{Constrained inclusion-minimal tuples}
+
+Let $\mathcal X=(X_0,\ldots,X_n)$ be a tuple of compact convex subsets of
+$\mathbb R^2$, and let $R\subset\mathbb R^2$ be finite.  We say that a
+subtuple $\mathcal Y=(Y_0,\ldots,Y_n)$ is \emph{$R$-admissible} when
+\[
+ Y_i\subseteq X_i,\qquad Y_i\cap R=X_i\cap R,
+ \qquad \code(\mathcal Y)=\code(\mathcal X).
+\]
+
+\begin{lemma}[Constrained minimal tuple]\label{lem:minimal}
+Assume that $R$ contains a representative of every word of
+$\code(\mathcal X)$.  Then every nonempty family of $R$-admissible tuples
+contains a coordinatewise inclusion-minimal member.
+\end{lemma}
+
+\begin{proof}
+Order the admissible tuples by coordinatewise inclusion.  For a descending
+chain, take the coordinatewise intersection.  Compactness and convexity are
+preserved, as are the incidences on $R$.  Every source word still occurs,
+because $R$ will contain a representative for every closed-code word.  If a
+word is realized at a point of the chain intersection, then, for each
+coordinate absent at that point, choose a member of the chain that already
+excludes the point.  One member of the totally ordered chain is contained in
+all finitely many chosen members and realizes the same word.  Thus no new
+word appears in the intersection.  Zorn's lemma gives a minimal member.
+\end{proof}
+
+\subsection{Planar polygonality}
+
+The geometric result of \citet{BukhJeffs2023} is the following constrained
+form of their inclusion-minimality proposition.
+
+\begin{lemma}[Planar polygonality]\label{lem:polygonal}
+Every member of an $R$-admissible inclusion-minimal tuple in the plane is a
+convex polygon, a segment, a point, or the empty set.
+\end{lemma}
+
+\begin{proof}[Proof sketch and retained constraints]
+The proof is the local planar simplification argument of
+\citet{BukhJeffs2023}.  If one member has infinitely many extreme points,
+choose an extreme accumulation point outside the finite representative set.
+Inside a sufficiently small disk, every incident convex boundary meets the
+circle in one connected arc and no unrelated boundary or representative is
+encountered.  Replace each incident set locally by the cone from the chosen
+point over its circular trace.  Radial projection to the circle shows that
+no membership pattern changes, while at least one coordinate shrinks
+properly, contradicting inclusion minimality.
+
+The argument tolerates finitely many additional retained points because the
+local disk is chosen disjoint from them.  It also tolerates a coordinate
+that is a fixed polygon and contains all its vertices in $R$: a local
+simplification at a nonvertex boundary point does not change the convex hull
+of those vertices.  Segments, points, and the empty set are already
+polytopal.  We use no vertex-count estimate in this paper.
+\end{proof}
+
+\subsection{Open codes from closed realizations}
+
+Let $\mathcal U=(U_0,\ldots,U_n)$ be bounded open convex sets in the plane
+and put $X_i=\overline{U_i}$.  Passing to closures may introduce codewords,
+but only on lower-dimensional active intersections.
+
+\begin{lemma}[Closure-only words]\label{lem:closureonly}
+If
+$c\in\code(X_0,\ldots,X_n)\setminus\code(U_0,\ldots,U_n)$, then
+$\bigcap_{i\in c}X_i$ has empty Euclidean interior.
+\end{lemma}
+
+\begin{proof}
+Assume the active closed intersection has nonempty interior.  Let $q$ realize
+$c$ in the closed tuple and choose $p$ in the interior of the active
+intersection.  The segment from $p$ to $q$, except possibly at $q$, lies in
+that interior.  Since $q$ has positive distance from every inactive closed
+set, a nearby point $q'$ on the segment still avoids all inactive sets.  It
+lies in $\operatorname{int}X_i=U_i$ for all active $i$, and therefore
+realizes $c$ in the open tuple, a contradiction.
+\end{proof}
+
+For every nonempty $\eta$ such that
+\[
+ X_\eta:=\bigcap_{i\in\eta}X_i
+\]
+is nonempty and has empty interior, choose one affine line $L_\eta$
+containing $X_\eta$; convexity in the plane makes this possible.  Denote the
+finite set of these lines by $\mathcal L_{\rm deg}$.
+
+\begin{lemma}[Open-code recovery]\label{lem:openrecovery}
+Let $\mathcal Y=(Y_0,\ldots,Y_n)$ be a compact convex subtuple of
+$\mathcal X=(X_0,\ldots,X_n)$ with the same closed code.  Suppose:
+\begin{enumerate}
+\item for every $L\in\mathcal L_{\rm deg}$ and every $i$,
+      \[
+        L\cap\operatorname{int}Y_i=L\cap U_i;
+      \]
+\item for every word $c\in\code(\mathcal U)$, a retained triangle has
+      vertices in $Y_i$ for all $i\in c$ and contains a source point of
+      word $c$ in its interior.
+\end{enumerate}
+Then
+\[
+ \code(\operatorname{int}Y_0,\ldots,\operatorname{int}Y_n)
+ =\code(\mathcal U).
+\]
+\end{lemma}
+
+\begin{proof}
+First prove the inclusion from the new open code to the source open code.
+On every line in $\mathcal L_{\rm deg}$, the complete strict membership
+pattern is unchanged by hypothesis.  Let
+$L=\bigcup_{\eta}L_\eta$, and take $p\notin L$.  Put
+$c=\patt_{\mathcal Y}(p)$.  Since $\code(\mathcal Y)=\code(\mathcal X)$,
+this word belongs to the closed source code.  By
+\cref{lem:closureonly}, any closed-source word absent from the open source
+can occur only inside one of the active intersections used to define
+$\mathcal L_{\rm deg}$, and hence only on $L$.  Thus $c$ is a source open
+word.
+
+The retained triangle for $c$ implies that
+$\bigcap_{i\in c}Y_i$ has nonempty interior; choose
+$q$ in that interior.  For sufficiently small $\varepsilon>0$, set
+\[
+ p_\varepsilon=p+\varepsilon(p-q).
+\]
+The perturbation continues the ray from the interior point $q$ through
+$p$.  If $p\in\operatorname{int}Y_i$, then $p_\varepsilon$ remains in
+$Y_i$ for all sufficiently small $\varepsilon$.  If
+$p\in\partial Y_i$ and $q\in\operatorname{int}Y_i$, convexity implies
+that every sufficiently small point beyond $p$ on this ray lies outside
+$Y_i$.  Finally, if $p\notin Y_i$, nonmembership persists for small
+$\varepsilon$ because $Y_i$ is closed.  Hence
+\[
+ \patt_{(\operatorname{int}Y_i)}(p)
+ =\patt_{\mathcal Y}(p_\varepsilon).
+\]
+Taking $\varepsilon$ small also keeps $p_\varepsilon\notin L$, so the
+right-hand word is a source open word.  This proves that no new open word is
+created away from $L$, and the trace hypothesis handles points on $L$.
+
+Conversely, take $c\in\code(\mathcal U)$ and its retained triangle.  The
+source witness in the interior of that triangle lies in
+$\operatorname{int}Y_i$ for every $i\in c$.  For $j\notin c$, the witness
+lies outside $U_j=\operatorname{int}X_j$; since $Y_j\subseteq X_j$, it
+cannot lie in $\operatorname{int}Y_j$.  Hence the witness retains the exact
+word $c$.
+\end{proof}
+
+The preceding proof is the open-to-closed step of
+\citet{BukhJeffs2023}, with the finite line traces and witness triangles
+made explicit.  The prescribed lines in our theorem will simply be added to
+$\mathcal L_{\rm deg}$.
