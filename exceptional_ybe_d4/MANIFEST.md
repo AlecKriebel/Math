@@ -1,7 +1,9 @@
 # Release manifest
 
 This manifest describes submission package version 1.1.1, dated 16 August
-2026. No GitHub release or DOI is claimed for this working package.
+2026. It is deposited through a fresh manual Zenodo record, not a GitHub
+release or a pre-existing DOI family; `ZENODO_DEPOSIT.md` governs reservation
+and insertion of its dedicated version DOI before publication.
 
 ## Mathematical sources
 
