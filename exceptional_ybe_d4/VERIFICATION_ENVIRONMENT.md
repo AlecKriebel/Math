@@ -49,7 +49,7 @@ package-local source artifacts. The Zenodo upload hashes are in
 - Frozen verification output SHA-256:
   `b24067217009d8fbee4e412ef5b02dd3c4923de8ac699a19900a97de5524f83f`.
 - Final PDF SHA-256:
-  `0c7c115229995ac32e9237b00461507a203c0f4a3d86692815f02392d1f287ff`.
+  `f119f7a33285f37017ed4c76a964ae6d6d17415e03c7503e9bc079f7a96a93bb`.
 
 The exact programs certify the displayed finite matrix identities, both
 partial traces, both dimension-three obstruction trace-square identities,

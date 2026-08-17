@@ -1,0 +1,1159 @@
+\ifdefined\japsubmission
+\begin{abstract}
+Stochastic reaction networks model populations changed by random reaction
+events.  A central stability question is whether they admit a stationary law
+rather than escape to infinity.  Under weak reversibility, we prove that the
+states reachable from each initial population form a closed communicating
+class.  If the finite network also has one linkage class and molecularity at most two,
+then every nonabsorbing reachable class is positive recurrent for every
+positive rate vector; an absorbing singleton has its point-mass law.  Thus
+every initial population has a unique stationary law on its reachable class.
+This removes the previous theorem's pure-species condition.  Multiple linkage
+classes and higher molecularity remain open.
+\end{abstract}
+\else
+\begin{abstract}
+Weak reversibility is conjectured to imply positive recurrence for stochastic
+mass-action systems.  We prove the conjecture for finite bimolecular networks with
+one linkage class, removing the earlier requirement that every species occur
+in a pure unary or pure-double complex.  Under weak reversibility, the states
+reachable from each initial population form a closed communicating class.
+Under the additional one-linkage and bimolecular hypotheses, for every positive
+rate vector each nonabsorbing reachable class is positive recurrent, whereas
+an absorbing singleton carries its point-mass law; consequently every
+reachable class has a unique stationary probability distribution.  The
+closure statement follows by lifting directed return paths of complexes to
+population states.
+For recurrence, the proof marks the target of the most recently fired channel
+and applies a log-factorial potential after subtracting that target.  Its
+increment is exactly the logarithm of a target/source falling-factorial ratio,
+so following the carried target has zero reward.  Finite target-following paths
+propagate the negative drift of a rare terminal source, while a normalized-log
+compactification and a bimolecular top-complex alternative rule out all other
+divergent sequences.  The same return-cycle construction recovers nonexplosion
+directly.  Multiple linkage classes and molecularity above two remain open.
+\end{abstract}
+\fi
+
+\noindent\textbf{Keywords.}
+Stochastic reaction network; systems biology; chemical master equation;
+positive recurrence; mass-action kinetics; weak reversibility; continuous-time
+Markov chain; Foster--Lyapunov method.
+
+\medskip
+\noindent\textbf{2020 Mathematics Subject Classification.}
+Primary 60J27; secondary 60J28, 60J74, 92C42.
+
+\section{Introduction}\label{sec:intro}
+
+Stochastic reaction networks are continuous-time Markov-chain models for
+interacting populations whose transition rates are determined by a finite
+reaction graph.  In systems biology they describe random molecule counts in
+low-copy-number intracellular networks, including signalling and enzymatic
+systems, gene-regulatory circuits, and synthetic biochemical networks
+\citep{AndersonKurtz2015}.  Such models are often called chemical-master-equation
+models.  For a nonexplosive nonabsorbing irreducible component, a basic
+stability question
+is whether it has a stationary probability distribution, or equivalently
+whether its states have finite mean return times.  A stationary law gives a
+long-run molecule-count distribution and expectations of bounded observables
+within that component; moments of unbounded count observables require separate
+integrability.  Positive recurrence does not imply that sample paths remain
+in a bounded set.  The result below gives a structural, rate-independent
+stability criterion for the low-copy-number biochemical models that satisfy
+its graph hypotheses.
+
+The deterministic counterpart supplies additional motivation.  Weakly
+reversible single-linkage mass-action systems are bounded
+\citep{Anderson2011Boundedness} and permanent \citep{BorosHofbauer2020} under
+their deterministic dynamics.  Those results express a strong structural
+stability of concentrations, but deterministic boundedness or permanence does
+not by itself prove recurrence of the discrete stochastic model.  Positive
+recurrence is the corresponding class-wise stochastic question addressed
+here.
+
+\citet{AndersonKim2018} formulated the positive-recurrence conjecture that
+weak reversibility should force this stability for stochastic mass-action
+systems.  They established several structural sufficient conditions.
+\citet{AndersonCappellettiKim2020} subsequently proved the binary,
+one-linkage case under the additional condition
+\begin{equation}\label{eq:ACK-condition}
+  \{S_i,2S_i\}\cap\mathcal C\ne\varnothing
+  \qquad\text{for every species }S_i.
+\end{equation}
+Thus each species had to occur in a pure unary or pure double complex.  The
+proof of \citet{AndersonCappellettiKim2020} applies an entropy-like function
+to an \(n\)-step embedded chain.  In their published Section~6, a tier
+criterion, a finite reaction word, and a sampled-chain Foster argument are
+combined to prove positive recurrence.  In the boundary case of
+Section~6.1, a D-top mixed complex \(S_u+S_v\) is disabled because the
+\(u\)-coordinate is zero while the \(v\)-coordinate diverges.  Their
+pure-species assumption forces \(S_v\) to be a complex after \(2S_v\) is
+excluded by D-tier maximality; \(S_v\) then supplies the needed source-rate
+comparison \citep[Section~6, especially Section~6.1]{AndersonCappellettiKim2020}.
+The marked-target construction here avoids the corresponding
+boundary-availability step: the carried target is automatically enabled at
+the post-jump state, and a directed target-following path propagates its
+reward until the top-complex alternative supplies a rare terminal source.  It
+therefore does not require a unary or pure-double complex for every species.
+
+Other progress includes complex-balanced product-form systems
+\citep{AndersonCraciunKurtz2010}, strongly endotactic structures
+\citep{AndersonCappellettiKimNguyen2020}, one-dimensional classifications
+\citep{WiufXu2023}, a path method for exponential ergodicity
+\citep{AndersonCappellettiFanKim2025}, and nonexplosion of all second-order
+weakly reversible systems \citep{Xu2026}.  A complementary two-species
+positive-recurrence theorem has been publicly announced in conference talks
+since 2022 \citep{Agazzi2022Talk,Agazzi2025Talk}.  The current ConStRAINeD
+project page describes the proof as complete and sketches its approach, while
+listing the five-author manuscript as in preparation
+\citep{ConStRAINeDResults}.  We did not locate a public manuscript for that
+result as of 16 August 2026.  The public descriptions concern two species and
+permit broader network structure; the present theorem permits arbitrarily many
+species but assumes one linkage class and molecularity at most two.  Neither
+result should be presented as superseding the other without the announced
+manuscript.  The May 2026
+revision of \citet{Xu2026} still records the bimolecular positive-recurrence
+problem as open.
+
+The present paper removes \eqref{eq:ACK-condition} while retaining the binary
+and one-linkage assumptions.  Its theorem contains the positive-recurrence
+conclusion of \citet{AndersonCappellettiKim2020} as a special case: the
+additional condition \eqref{eq:ACK-condition} is unnecessary here, and the
+states reachable from any initial population form one closed communicating
+class.  The exact theorem is stated in Theorem~\ref{thm:main}.  It does not
+address multiple linkage classes or complexes of molecularity above two, and
+therefore does not settle the full positive-recurrence conjecture.
+
+A small motivating example is the directed cycle
+\begin{equation}\label{eq:stress}
+  0\longrightarrow A+B\longrightarrow B\longrightarrow0.
+\end{equation}
+Species \(A\) occurs in neither \(A\) nor \(2A\), so
+\eqref{eq:ACK-condition} fails.  At the boundary state \((n,0)\), only the
+reaction \(0\to A+B\) is enabled and the one-step drift of total population
+is positive.  The restoring effect is delayed: the created \(B\) enables a
+fast reaction consuming \(A\).  This is representative of why a one-step
+radial Lyapunov function is not the right universal object.
+
+The delayed correction can be seen directly.  Give the three channels in
+\eqref{eq:stress} rate constants \(\kappa_0,\kappa_1,\kappa_2\), in the order
+displayed, and begin at the reachable marked state \(((n,0),0)\).  The two
+designated target-following reactions \(0\to A+B\) and \(A+B\to B\) each
+have zero residual-potential increment.  The second is selected with
+probability
+\[
+ \frac{\kappa_1(n+1)}{\kappa_0+\kappa_2+\kappa_1(n+1)}=1-O(n^{-1}).
+\]
+At the resulting marked state \(((n,1),B)\), the expected next increment is
+\begin{equation}\label{eq:stress-drift}
+ -\frac{\kappa_1n}{\kappa_0+\kappa_2+\kappa_1n}\log n
+ =-\log n+o(\log n).
+\end{equation}
+The exceptional branches at the preceding phase have probability
+\(O(n^{-1})\) and increments of order at most \(\log n\).  Thus the complete
+target-following episode has a restoring drift of order \(-\log n\), even
+though the first boundary jump increases the total population.
+
+The proof instead uses four ideas.  First, we augment the embedded jump chain
+by marking the actual reaction channel that fired and retaining its target
+complex.  Second, after removing that target from the population, the
+log-factorial potential has the exact increment
+\[
+  \log\frac{(x)_t}{(x)_s}
+\]
+when the carried target is \(t\) and the next source is \(s\).  Following the
+carried target therefore costs exactly zero.  Third, a finite episode follows
+a fixed directed path from the carried target toward a selected terminal
+complex.  A sharp scalar envelope shows that a terminal source probability
+tending to zero forces the complete episode drift to tend to \(-\infty\), no
+matter how the intermediate source rates are separated.  Fourth, a
+normalized-log compactification of an arbitrary divergent sequence gives an
+exhaustive top-complex case split.  Bimolecularity implies either the
+existence of a higher-weight source enabled over a lower terminal complex or
+a reaction-wise linear invariant that contradicts divergence inside a fixed
+communicating class.  A finite-family random-time drift argument and a finite
+trace-chain construction complete the proof.
+
+\section{Reaction networks and the stochastic model}\label{sec:model}
+
+Let \(\mathcal S=\{S_1,\dots,S_d\}\) be a finite species set.  A
+\emph{complex} is a vector \(y=(y_1,\dots,y_d)\in\mathbb N_0^d\), identified
+with the formal sum \(\sum_i y_iS_i\).  Its molecularity is
+\(|y|=\sum_i y_i\).  A \emph{reaction channel} is a labelled ordered pair
+\(r:y_r\to y_r'\), together with a positive rate constant \(\kappa_r\).
+Parallel channels are allowed.  The reaction graph has the complexes as
+vertices and the reaction channels as directed edges.  Its linkage classes
+are the connected components of the underlying undirected graph.  A network
+is \emph{weakly reversible} when each linkage class is strongly connected.
+With one linkage class, weak reversibility is simply strong connectivity of
+the entire complex graph.
+
+We call the network \emph{binary} or \emph{bimolecular} when
+\begin{equation}\label{eq:binary}
+  |y|\le2\qquad\text{for every }y\in\mathcal C.
+\end{equation}
+Because every complex in a weakly reversible graph is a reaction source, this
+agrees here with the usual second-order/bimolecular terminology.
+
+For \(x\in\mathbb N_0^d\), define the multivariate falling factorial
+\begin{equation}\label{eq:falling}
+  (x)_y=
+  \begin{cases}
+  \displaystyle\prod_{i=1}^d\frac{x_i!}{(x_i-y_i)!},&x\ge y,\\[1ex]
+  0,&\text{otherwise}.
+  \end{cases}
+\end{equation}
+The stochastic mass-action propensity of channel \(r\) is
+\(\lambda_r(x)=\kappa_r(x)_{y_r}\), and the formal generator is
+\begin{equation}\label{eq:generator}
+  \mathcal Lf(x)=\sum_r\kappa_r(x)_{y_r}
+  \bigl[f(x+y_r'-y_r)-f(x)\bigr].
+\end{equation}
+The convention using products of binomial coefficients is equivalent after
+rescaling each positive rate constant by a fixed factorial factor.
+
+Write \(x\leadsto z\) when a finite sequence of enabled reaction channels
+takes population \(x\) to population \(z\), allowing the empty sequence, and
+put
+\[
+  \Gamma(x_0)=\{z\in\mathbb N_0^d:x_0\leadsto z\}.
+\]
+A \emph{communicating class} is an equivalence class under mutual
+accessibility: \(x\) and \(z\) are equivalent when both \(x\leadsto z\) and
+\(z\leadsto x\).  It is \emph{closed} when no enabled channel from one of its
+states exits the class.  In a nonabsorbing class, let \(\tau_1\) be the first
+jump time and define the positive return time to \(x\) by
+\(T_x^+=\inf\{t\ge \tau_1:X(t)=x\}\).  The class is \emph{positive recurrent}
+when one, equivalently every, state has \(\mathbb E_xT_x^+<\infty\).
+Absorbing singleton classes are handled separately: their stationary
+probability is the point mass at the absorbing state.  Henceforth positive
+return times are discussed only for nonabsorbing irreducible classes.  For a
+nonexplosive irreducible countable-state CTMC, positive recurrence is
+equivalent to the existence of a stationary probability distribution
+\citep{Norris1997}.
+
+\begin{theorem}[Binary one-linkage positive recurrence]\label{thm:main}
+Let a finite stochastic mass-action reaction network be weakly reversible,
+have one linkage class, and satisfy \eqref{eq:binary}.  For every positive rate
+vector and every initial population \(x_0\), the reachable set
+\(\Gamma(x_0)\) is a closed communicating class.  If it is nonabsorbing, the
+minimal CTMC on \(\Gamma(x_0)\) is nonexplosive and positive recurrent.  If it
+is an absorbing singleton, its stationary law is the point mass.
+\end{theorem}
+
+\begin{lemma}[Lifted state-return cycle]\label{lem:state-cycle}
+In any weakly reversible reaction network, every enabled one-step population
+transition has a return path.  Consequently accessibility is symmetric,
+every reachability set is a communicating class, every communicating class is
+closed, and every initial state already belongs to the closed irreducible
+component \(\Gamma(x_0)\).
+These conclusions require neither one linkage class nor bimolecularity.
+\end{lemma}
+
+\begin{proof}
+Suppose the channel \(y\to y'\) is enabled at \(x\).  Write \(x=\rho+y\) with
+\(\rho\in\mathbb N_0^d\), so firing it gives \(x'=\rho+y'\).  Weak reversibility
+supplies a directed complex path
+\[
+  y'=z_0\longrightarrow z_1\longrightarrow\cdots
+      \longrightarrow z_m=y.
+\]
+At population \(\rho+z_j\), the source \(z_j\) is present, so the corresponding
+channel is enabled and produces \(\rho+z_{j+1}\).  The path therefore lifts to
+\[
+  x'=\rho+z_0\longrightarrow \rho+z_1\longrightarrow\cdots
+      \longrightarrow \rho+z_m=x.
+\]
+Thus every enabled edge can be reversed by a finite enabled path.  Reversing
+the edges of any reachability path in reverse order proves
+\(x\leadsto z\Rightarrow z\leadsto x\).  Hence all states in
+\(\Gamma(x_0)\) communicate.  An enabled edge leaving a state reachable from
+\(x_0\) has a reachable endpoint by definition, so \(\Gamma(x_0)\) is closed.
+By symmetry it is exactly the communication class of \(x_0\), proving that
+every communicating class is closed.
+This property was recorded as ``recurrence'' of a discrete reaction network by
+\citet[Lemmas~4.5--4.6]{PauleveCraciunKoeppl2014}; that combinatorial term
+means symmetric reachability, not positive recurrence of a Markov chain.  The
+lifted proof is included for the exact population-state interface used here.
+\end{proof}
+
+The proof includes the zero complex and boundary states because the common
+residual \(\rho\) is merely nonnegative.  It also applies channel by channel to
+parallel reactions or identical population displacements, and every lifted
+step respects any parity or lattice restriction.  A self-channel creates no
+population edge and has the empty return path.  If no population-changing
+channel is enabled, the reachable set is the absorbing singleton
+\(\Gamma(x_0)=\{x_0\}\).
+
+\begin{corollary}[Stationary probability]\label{cor:stationary}
+Under the hypotheses of Theorem~\ref{thm:main}, every reachable class
+\(\Gamma(x_0)\) admits a unique stationary probability distribution.
+\end{corollary}
+
+A channel \(y\to y\) has zero population increment and contributes zero to
+\eqref{eq:generator}; discard it.  This deletion leaves the generator and the
+minimal population-valued CTMC unchanged.  Exact parallel channels with the same
+source and target may be combined by adding their rates.  Channels having the
+same population displacement but different sources or targets remain
+distinct, because the proof marks the actual channel.
+All reaction-indexed sums and rate quantities below, including \(\Lambda\)
+and \(\bar\kappa_y\), refer to this reduced set of genuine channels.
+
+Every finite nonabsorbing reachable class is positive recurrent:
+its finite irreducible jump chain has a stationary probability distribution,
+all state rates are finite, and the associated finite-state CTMC is
+nonexplosive \citep{Norris1997}.  If
+the complex graph has one vertex, all closed classes are absorbing
+singletons.  If all complexes have the same molecularity, every reaction
+preserves \(|x|_1\), so each communicating class lies in a finite shell.  We
+therefore fix henceforth an initial state whose reachable class
+\(\Gamma=\Gamma(x_0)\) is infinite.  By
+Lemma~\ref{lem:state-cycle}, it is closed and irreducible.  The complex graph
+is strongly connected, has at least two complexes, and has no self channels.
+Every complex then has a genuine outgoing channel.  Write
+\begin{equation}\label{eq:kbar}
+  \bar\kappa_y=\sum_{r:y_r=y}\kappa_r,
+  \qquad
+  \bar\kappa_- =\min_{y\in\mathcal C}\bar\kappa_y>0,
+  \qquad
+  \bar\kappa_+ =\max_{y\in\mathcal C}\bar\kappa_y.
+\end{equation}
+
+\section{The marked target-augmented chain}\label{sec:marked}
+
+We first define the embedded chain without assuming nonexplosion.  At a
+nonabsorbing population state \(x\), sample the actual labelled reaction
+channel \(r\) with probability
+\begin{equation}\label{eq:channel-kernel}
+  \frac{\kappa_r(x)_{y_r}}{\Lambda(x)},
+  \qquad
+  \Lambda(x)=\sum_q\kappa_q(x)_{y_q}.
+\end{equation}
+This discrete chain can be constructed independently of its holding times.
+After the sampled channel \(r\) fires, record its target \(t=y_r'\).  The mark
+is therefore obtained from the actual channel and is never inferred from the
+population displacement.  Once exact parallel channels with the same source
+and target have been aggregated, retaining the target is the only part of the
+previous channel needed below.  Write \(Z_n\) for this target-augmented
+embedded chain.  A reachable augmented state is denoted \((x,t)\), where
+\(x\) is the post-jump population.  If the next sampled
+channel is \(q:s\to u\), then
+\begin{equation}\label{eq:aug-transition}
+  (x,t)\longmapsto(x-s+u,u).
+\end{equation}
+The channel law depends on \(x\), not on the historical mark, so the augmented
+process is Markov, and projection onto \(x\) is the ordinary population
+embedded chain.
+
+Let \(\widetilde\Gamma\) be the augmented states reachable after genuine
+jumps within \(\Gamma\).  It is closed under \eqref{eq:aug-transition}.  It is
+also irreducible, and its projection onto the population coordinate is exactly
+\(\Gamma\).  For the latter assertion, every \(x\in\Gamma\) terminates a
+positive-length population path: irreducibility gives such a path directly,
+or, if necessary, one may take a genuine outgoing jump and a return path.
+The final channel supplies a reachable mark over \(x\).  For irreducibility,
+given \((x,t),(x',t')\in\widetilde\Gamma\), choose
+a channel \(s'\to t'\) and predecessor population
+\(z=x'-t'+s'\in\Gamma\) witnessing reachability of the second pair.
+Population irreducibility supplies a positive-probability marked-channel path
+from \(x\) to \(z\); appending \(s'\to t'\) reaches \((x',t')\).
+
+The carried target is always enabled.  If the preceding channel was
+\(s\to t\), then its post-jump state has the form \(x=z-s+t\ge t\).  Put
+\begin{equation}\label{eq:residual}
+  \rho=x-t\in\mathbb N_0^d,
+  \qquad
+  V(x,t)=\sum_{i=1}^d\log((x_i-t_i)!)=\sum_i\log(\rho_i!).
+\end{equation}
+We use \(\log(0!)=0\).  Thus \(V\ge0\).  Every sublevel set of \(V\) in
+\(\widetilde\Gamma\) is finite, because \(\log(n!)\to\infty\), each residual
+coordinate is bounded on a sublevel, and the target set is finite.
+
+The entropy growth in \eqref{eq:residual} is classical.  With
+\(0\log0=0\), Stirling's formula gives
+\begin{equation}\label{eq:stirling-entropy}
+ \sum_i\log(\rho_i!)
+ =\sum_i\bigl(\rho_i\log \rho_i-\rho_i\bigr)
+  +O\!\left(\sum_i\log(\rho_i+1)\right).
+\end{equation}
+This leading term is in the pseudo-Helmholtz or Horn--Jackson family
+\[
+ G_c(\rho)=\sum_i\left[\rho_i\bigl(\log(\rho_i/c_i)-1\bigr)+c_i\right],
+ \qquad c_i>0,
+\]
+used in deterministic and stochastic chemical reaction network theory
+\citep{HornJackson1972,AndersonCraciunGopalkrishnanWiuf2015}.  Thus the residual log-factorial
+potential is a discrete, target-shifted analogue of that classical entropy,
+not the Horn--Jackson function itself.  The target shift is the new feature in
+this argument: subtracting the complex actually produced by the preceding
+channel gives the exact identity below, rather than only an asymptotic
+Lyapunov estimate, and makes every target-following jump have exactly zero
+increment.
+
+\begin{remark}[The Anderson--Cappelletti--Kim boundary example]\label{rem:ack-example}
+The target shift can be isolated on Example~4.1 of
+\citet{AndersonCappellettiKim2020},
+\[
+ A\xrightarrow{\kappa_1}A+B\xrightarrow{\kappa_2}A+C
+ \xrightarrow{\kappa_3}C\xrightarrow{\kappa_4}2B
+ \xrightarrow{\kappa_5}A.
+\]
+For \(n\ge2\), at \(x_n=(n,1,0)\), their unshifted entropy-like function has
+generator drift \(\kappa_1n(2\log2-1)\to+\infty\).  For the marked construction,
+choose the reachable mark \(A\): starting at \(x_n\), the first four channels
+reach \((n-1,3,0)\), and the last returns to \(x_n\) with target \(A\).
+Follow the fixed path \(A\to A+B\to A+C\to C\), then take the terminal
+ordinary jump.  Its complete episode reward is exactly
+\begin{equation}\label{eq:ack-episode}
+ J_n=p_0\{\delta_1+p_1(\delta_2+p_2\delta_3)\},
+\end{equation}
+where
+\[
+\begin{gathered}
+ p_0=\frac{\kappa_1}{\kappa_1+\kappa_2},\quad
+ L_1=n(\kappa_1+2\kappa_2)+2\kappa_5,\quad
+ p_1=\frac{2\kappa_2n}{L_1},\\
+ \delta_1=\frac{\kappa_1n}{L_1}\log2
+       +\frac{2\kappa_5}{L_1}\log n,\\
+ L_2=n(\kappa_1+\kappa_2+\kappa_3)+\kappa_4,\quad
+ p_2=\frac{\kappa_3n}{L_2},\quad
+ \delta_2=\frac{\kappa_4}{L_2}\log n,\\
+ L_3=(n-1)(\kappa_1+\kappa_2+\kappa_3)+\kappa_4,\quad
+ \delta_3=-\frac{(n-1)(\kappa_1+\kappa_2+\kappa_3)}{L_3}\log(n-1).
+\end{gathered}
+\]
+Thus
+\[
+ J_n=-\alpha\log n+O(1),\qquad
+ \alpha=\frac{\kappa_1}{\kappa_1+\kappa_2}
+        \frac{2\kappa_2}{\kappa_1+2\kappa_2}
+        \frac{\kappa_3}{\kappa_1+\kappa_2+\kappa_3}>0.
+\]
+On the example used by Anderson, Cappelletti, and Kim to demonstrate failure
+of unshifted one-step entropy drift, the carried-target episode therefore has
+strictly negative logarithmic drift.  This is precisely what the target
+augmentation adds.
+\end{remark}
+
+\begin{lemma}[Exact target/source identity]\label{lem:identity}
+At \((x,t)\), if the next marked channel has source \(s\) and target \(u\),
+then
+\begin{equation}\label{eq:identity}
+  V(x-s+u,u)-V(x,t)=\log\frac{(x)_t}{(x)_s}.
+\end{equation}
+In particular, a channel sourced at the carried target has zero increment.
+\end{lemma}
+
+\begin{proof}
+The new residual is \((x-s+u)-u=x-s\).  Since both \(s\) and \(t\) are
+enabled,
+\[
+ \exp(\Delta V)
+ =\prod_i\frac{(x_i-s_i)!}{(x_i-t_i)!}
+ =\frac{(x)_t}{(x)_s}.
+\]
+\end{proof}
+
+This identity gives a precise ``complete-credit'' interpretation: a product
+complex remains credited in full until the chain chooses a different source.
+The interpretation is not used in place of the algebraic identity.
+
+For enabled source complexes define
+\begin{equation}\label{eq:source-prob}
+  p_x(y)=\frac{\bar\kappa_y(x)_y}{\Lambda(x)}.
+\end{equation}
+Set \(p_x(y)=0\) for disabled sources, and use \(0\log0=0\) in entropy
+expressions.  Unless explicitly stated otherwise, sums in this subsection
+range only over enabled source complexes.  Because the carried target is
+enabled, \(p_x(t)>0\).  The expected one-jump increment is
+\begin{equation}\label{eq:delta-def}
+  \delta(x,t)=\sum_{s:\,x\ge s}p_x(s)
+  \log\frac{(x)_t}{(x)_s}.
+\end{equation}
+
+\begin{lemma}[Source-probability bound]\label{lem:entropy}
+For every reachable augmented state,
+\begin{equation}\label{eq:entropy-identity}
+\begin{split}
+  \delta(x,t)
+  ={}&\log p_x(t)-\sum_{s:\,x\ge s} p_x(s)\log p_x(s)\\
+    &+\sum_{s:\,x\ge s} p_x(s)\log\bar\kappa_s
+      -\log\bar\kappa_t,
+\end{split}
+\end{equation}
+and consequently
+\begin{equation}\label{eq:entropy-bound}
+  \delta(x,t)\le\log p_x(t)+C_0,
+  \qquad
+  C_0=\log|\mathcal C|+
+  \log\frac{\bar\kappa_+}{\bar\kappa_-}.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+For each enabled \(s\),
+\((x)_s=p_x(s)\Lambda(x)/\bar\kappa_s\).  Substitution into
+\eqref{eq:delta-def} gives \eqref{eq:entropy-identity}.  The entropy of a
+probability vector supported on at most \(|\mathcal C|\) points is at most
+\(\log|\mathcal C|\), and the last line contributes at most
+\(\log(\bar\kappa_+/\bar\kappa_-)\).  The zero complex creates no exception,
+since \((x)_0=1\).
+\end{proof}
+
+\section{Propagation along target-following paths}\label{sec:paths}
+
+For every ordered pair \((t,c)\in\mathcal C^2\), fix a simple directed path
+of marked channels
+\begin{equation}\label{eq:path}
+ t=y_0\longrightarrow y_1\longrightarrow\cdots
+ \longrightarrow y_m=c,
+ \qquad 0\le m\le|\mathcal C|-1.
+\end{equation}
+Strong connectivity supplies the path.  Starting from \((\rho+t,t)\), define
+the \((t,c)\)-episode as follows.  At phase \(y_k\), \(k<m\), continue only
+when the exact designated channel \(y_k\to y_{k+1}\) fires; after any other
+channel, stop immediately.  If the path reaches \(c\), take one final
+ordinary jump and stop.  When \(c=t\), the path has length zero and the
+episode is just that final jump.
+
+This is a stopping time for the marked embedded filtration.  On designated
+edges the lifted populations are
+\begin{equation}\label{eq:lift}
+  \rho+y_0\longrightarrow \rho+y_1\longrightarrow\cdots\longrightarrow \rho+c.
+\end{equation}
+Every designated source is literally present, the residual remains \(\rho\),
+and closedness of \(\Gamma\) keeps the entire lift in the class.  The episode
+has between one and \(|\mathcal C|\) jumps and only finitely many terminal
+branches.
+
+For the designated channel at phase \(k\), put
+\begin{equation}\label{eq:qk}
+ q_k=\frac{\kappa_{y_k\to y_{k+1}}}{\bar\kappa_{y_k}}>0,
+ \qquad p_k=p_{\rho+y_k}(y_k).
+\end{equation}
+Let \(J_k(\rho)\) be the expected remaining \(V\)-increment from phase \(k\).
+
+\begin{lemma}[Exact episode recursion]\label{lem:recursion}
+The episode rewards satisfy
+\begin{equation}\label{eq:recursion}
+  J_m(\rho)=\delta(\rho+c,c),
+  \qquad
+  J_k(\rho)=\delta(\rho+y_k,y_k)+q_kp_kJ_{k+1}(\rho).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+At phase \(k\), the first jump has expected increment
+\(\delta(\rho+y_k,y_k)\).  Continuation occurs exactly when the designated channel
+fires, with probability \(q_kp_k\).  That channel is sourced at the carried
+target and has zero immediate increment by Lemma~\ref{lem:identity}; the
+remaining conditional expectation is \(J_{k+1}(\rho)\).
+\end{proof}
+
+The following scalar calculation controls all possible intermediate source
+probabilities.
+
+\begin{lemma}[Scalar envelope]\label{lem:envelope}
+For \(q>0\) and \(M\in\mathbb R\), define
+\[
+  F_q(M)=\sup_{0<p\le1}\{\log p+C_0+qpM\}.
+\]
+The function \(F_q\) is nondecreasing in \(M\).
+Then
+\begin{equation}\label{eq:F-piecewise}
+  F_q(M)=
+  \begin{cases}
+    C_0+qM,&M\ge-1/q,\\
+    C_0-1-\log(-qM),&M<-1/q.
+  \end{cases}
+\end{equation}
+Consequently, if \(M_n\to-\infty\), then \(F_q(M_n)\to-\infty\).
+\end{lemma}
+
+\begin{proof}
+For each fixed \(p\in(0,1]\), the displayed objective is increasing in
+\(M\), with slope \(qp>0\); taking its supremum proves monotonicity.
+The objective has derivative \(p^{-1}+qM\) and second derivative
+\(-p^{-2}<0\).  If \(M\ge-1/q\), its derivative at \(p=1\) is nonnegative,
+so concavity places the maximum at \(p=1\).  If \(M<-1/q\), the unique
+maximizer is \(p=(-qM)^{-1}\in(0,1)\), which gives the second line of
+\eqref{eq:F-piecewise}.  The final assertion follows immediately.
+\end{proof}
+
+\begin{proposition}[Propagation of terminal drift]\label{prop:propagation}
+Fix a target-following path \eqref{eq:path}.  If along a sequence of residuals
+\(\rho^{(n)}\) one has
+\[
+  p_{\rho^{(n)}+c}(c)\longrightarrow0,
+\]
+then the expected increment of the complete \((t,c)\)-episode tends to
+\(-\infty\).
+\end{proposition}
+
+\begin{proof}
+At the terminal phase, Lemma~\ref{lem:entropy} gives
+\(J_m\le\log p_{\rho+c}(c)+C_0\to-\infty\).  If \(J_{k+1}\le M\), then the
+monotonicity just proved and
+Lemmas~\ref{lem:entropy} and \ref{lem:recursion} give
+\[
+  J_k\le\sup_{0<p\le1}\{\log p+C_0+q_kpM\}=F_{q_k}(M).
+\]
+Apply Lemma~\ref{lem:envelope} backward through the finite path.
+\end{proof}
+
+The proof preserves every reaction-rate monomial: no edge is replaced and no
+unrelated rates are compared.  Arbitrarily many nested source-rate scales are
+absorbed by the finite scalar recursion.
+
+\section{Logarithmic compactification and the top-complex alternative}
+\label{sec:compact}
+
+We now show that every divergent augmented sequence supplies the terminal
+rarity required by Proposition~\ref{prop:propagation}, unless a linear
+stoichiometric invariant already makes such divergence impossible.
+
+Take a sequence \((x^{(n)},t^{(n)})\in\widetilde\Gamma\) leaving every finite
+set.  Pass to a subsequence with \(t^{(n)}=t\), and set
+\(\rho^{(n)}=x^{(n)}-t\).  A diagonal extraction makes every coordinate of
+\(\rho^{(n)}\) either one fixed nonnegative integer or divergent to infinity.
+Let \(I\) be the set of divergent coordinates and put
+\begin{equation}\label{eq:Rn}
+  R_n=\sum_{i\in I}\log(\rho_i^{(n)}+1).
+\end{equation}
+After a further subsequence, the limits
+\begin{equation}\label{eq:weights}
+  w_i=\lim_{n\to\infty}
+  \frac{\log(\rho_i^{(n)}+1)}{R_n}
+  \quad(i\in I),
+  \qquad w_i=0\quad(i\notin I)
+\end{equation}
+exist.  Thus \(w\ge0\) and \(\sum_iw_i=1\).
+
+\begin{remark}[Slower divergent tiers]\label{rem:zero-weight}
+A coordinate can diverge while having \(w_i=0\).  It remains in \(I\): zero
+normalized logarithmic weight means growth on a slower divergent tier, not a
+bounded species.  This distinction is essential in the availability and
+signed-invariant branches of Lemma~\ref{lem:top}.
+\end{remark}
+
+\begin{lemma}[Falling-factorial asymptotics]\label{lem:ff-asymptotic}
+Let \(c\) and \(y\) be fixed complexes, and suppose \(y\) is enabled at
+\(\rho^{(n)}+c\) for all sufficiently large \(n\).  Then
+\begin{equation}\label{eq:ff-asymptotic}
+  \log(\rho^{(n)}+c)_y=R_n\,w\cdot y+o(R_n).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+For \(y_i=1\) and a divergent coordinate,
+\(\log(\rho_i^{(n)}+c_i)=\log(\rho_i^{(n)}+1)+o(R_n)\); a fixed coordinate
+contributes \(O(1)\).  For \(y_i=2\) and \(\rho_i^{(n)}\to\infty\),
+\[
+ \log\bigl((\rho_i^{(n)}+c_i)(\rho_i^{(n)}+c_i-1)\bigr)
+ =2\log(\rho_i^{(n)}+1)+o(R_n).
+\]
+If that coordinate is fixed, enabledness makes its contribution finite and
+hence \(O(1)\).  Summing the coordinate contributions proves the claim.
+\end{proof}
+
+For a complex \(y\), write \(h(y)=w\cdot y\), and define
+\begin{equation}\label{eq:top}
+  h_\star=\max_{y\in\mathcal C}h(y),
+  \qquad
+  \mathcal T=\{y\in\mathcal C:h(y)=h_\star\}.
+\end{equation}
+The next lemma contains the decisive use of bimolecularity.
+
+\begin{lemma}[Top-complex availability or invariant]\label{lem:top}
+Along the divergent sequence, at least one of the following conclusions is
+available:
+
+\begin{enumerate}[label=\textup{(\roman*)},leftmargin=2.5em]
+\item a reaction-wise linear stoichiometric invariant has value tending to
+      infinity along the sequence, contradicting membership in the fixed
+      communicating class; or
+\item there are fixed complexes \(s,c\in\mathcal C\) with
+      \(h(s)>h(c)\) such that both \(s\) and \(c\) are enabled at
+      \(\rho^{(n)}+c\) for all sufficiently large \(n\).
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+The exhaustive trichotomy is
+\[
+\begin{array}{ll}
+\textup{(A)}&\mathcal T=\mathcal C;\\
+\textup{(B)}&\mathcal T\ne\mathcal C\text{ and some }s\in\mathcal T
+  \text{ contains two particles supported on }I;\\
+\textup{(C)}&\mathcal T\ne\mathcal C\text{ and every }s\in\mathcal T
+  \text{ contains exactly one particle supported on }I.
+\end{array}
+\]
+Indeed, \(\mathcal T\ne\mathcal C\) implies \(h_\star>0\), so every top
+complex contains a positive-weight, hence divergent, particle; bimolecularity
+leaves only \textup{(B)} or \textup{(C)}.
+
+In case \textup{(A)}, \(w\cdot(y'-y)=0\) for every channel.  Therefore
+\(w\cdot X\) is a nonnegative linear invariant.  A coordinate with positive
+weight diverges, so the invariant value tends to infinity, which is impossible
+inside one communicating class.
+
+In case \textup{(B)}, a top complex \(s\) contains two particles supported on
+coordinates in \(I\).  Bimolecularity forces \(s\) to contain no particle
+supported on a bounded coordinate.  Both required particles are eventually
+present in \(\rho^{(n)}\), including the case \(s=2S_i\).  Hence \(s\) is
+enabled at \(\rho^{(n)}+c\) for every lower \(c\notin\mathcal T\), and
+\(h(s)>h(c)\).
+
+In case \textup{(C)}, define the divergent species represented in top
+complexes by
+\[
+  \mathcal J:=\{i\in I:y_i\ge1\text{ for some }y\in\mathcal T\}.
+\]
+If \(i\in\mathcal J\), the remaining possible particle in that top complex is
+supported on a bounded coordinate and therefore has weight zero; consequently
+\(w_i=h_\star\).  No complex contains two \(\mathcal J\)-particles, since its
+weight would be at least \(2h_\star>h_\star\).  Moreover,
+\begin{equation}\label{eq:top-iff}
+  y\in\mathcal T\quad\Longleftrightarrow\quad
+  q_{\mathcal J}(y):=\sum_{i\in\mathcal J}y_i=1.
+\end{equation}
+The forward implication follows from the definition of \(\mathcal J\).
+Conversely, one \(\mathcal J\)-particle already contributes \(h_\star\);
+maximality forces all other weight to be zero and makes the complex top.
+
+If every complex had \(q_{\mathcal J}=1\), then \eqref{eq:top-iff} would give
+\(\mathcal T=\mathcal C\), the all-top case already handled above.  There
+remain three subcases.
+
+\begin{enumerate}[label=\textup{(\alph*)},leftmargin=2.5em]
+\item If a unary top complex \(S_i\), \(i\in\mathcal J\), exists, it is enabled
+      over every lower terminal complex, giving conclusion (ii).
+\item Otherwise every top complex has the form \(S_i+D\), where
+      \(D\notin I\); call \(D\) a bounded companion species.  If a lower complex
+      \(c\) contains such a \(D\), the corresponding top source \(S_i+D\)
+      is enabled at \(\rho^{(n)}+c\), giving conclusion (ii).
+\item If no lower complex contains any bounded companion species, let
+      \(\mathcal D\) be the set of distinct companion species.  The signed
+      linear functional
+      \begin{equation}\label{eq:signed-invariant}
+        \ell(x):=\sum_{i\in\mathcal J}x_i-\sum_{D\in\mathcal D}x_D
+      \end{equation}
+      has value zero on every complex: each top complex contains one
+      \(\mathcal J\)-particle and one companion particle, whereas a lower
+      complex contains neither.  It is therefore reaction-wise invariant.  Its
+      positive part diverges, while every companion coordinate lies outside
+      \(I\) and is fixed along the subsequence.  Its value tends to infinity,
+      contradicting the fixed communicating class.
+\end{enumerate}
+
+This exhausts all binary complexes.  We reserve ``conservation law'' for the
+nonnegative invariants above; \eqref{eq:signed-invariant} is a signed linear
+stoichiometric invariant.
+\end{proof}
+
+The invariant contradiction is exact: if \(\ell\cdot(y'-y)=0\) on every
+channel, then \(\ell\cdot x\) is constant along every path in \(\Gamma\).
+In the signed branch, the coordinates with negative coefficients are fixed along
+the extracted sequence, so the invariant really does tend to \(+\infty\).
+A species absent from every complex is itself reaction-wise invariant; thus an
+absent coordinate cannot diverge along a fixed communicating class.
+
+\begin{lemma}[Vanishing terminal source probability]\label{lem:terminal}
+Under conclusion \textup{(ii)} of Lemma~\ref{lem:top},
+\begin{equation}\label{eq:terminal-zero}
+  p_{\rho^{(n)}+c}(c)\longrightarrow0.
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Both \(s\) and \(c\) are enabled.  Lemma~\ref{lem:ff-asymptotic} and the
+strict gap \(h(s)>h(c)\) give
+\[
+  \frac{(\rho^{(n)}+c)_s}{(\rho^{(n)}+c)_c}\longrightarrow\infty.
+\]
+Consequently,
+\[
+ p_{\rho^{(n)}+c}(c)
+ \le
+ \frac{\bar\kappa_c(\rho^{(n)}+c)_c}
+      {\bar\kappa_s(\rho^{(n)}+c)_s}
+ \longrightarrow0.
+\]
+\end{proof}
+
+\section{Uniform random-time drift outside a finite set}\label{sec:uniform}
+
+For each \(c\in\mathcal C\), let \(D_c(x,t)\) denote the exact expected
+increment of the fixed \((t,c)\)-episode.  Define
+\begin{equation}\label{eq:K}
+ K=\left\{(x,t)\in\widetilde\Gamma:
+          \min_{c\in\mathcal C}D_c(x,t)>-1\right\}.
+\end{equation}
+
+\begin{proposition}[Finite and nonempty exceptional set]\label{prop:K}
+The set \(K\) is finite and nonempty.
+\end{proposition}
+
+\begin{proof}
+Suppose first that \(K\) were infinite.  Properness of \(V\) supplies a
+sequence in \(K\) leaving every finite set.  Apply the compactification of
+Section~\ref{sec:compact}.  An invariant conclusion from
+Lemma~\ref{lem:top} contradicts membership in one communicating class.
+Otherwise, Lemma~\ref{lem:terminal} and
+Proposition~\ref{prop:propagation} supply a fixed terminal complex \(c\) for
+which \(D_c(x^{(n)},t)\to-\infty\).  This contradicts the definition of
+\(K\).  Thus \(K\) is finite.
+
+To prove nonemptiness, select any augmented state \(z_0\).  The finite
+nonempty sublevel set \(\{z:V(z)\le V(z_0)\}\) contains a global minimizer
+\(z_*\) of \(V\).  Every endpoint of every target-following episode remains
+in \(\widetilde\Gamma\), so its potential is at least \(V(z_*)\).  Hence
+\(D_c(z_*)\ge0\) for every \(c\), and \(z_*\in K\).
+\end{proof}
+
+\begin{remark}[Rate dependence of the exceptional set]\label{rem:rate-dependence}
+The finiteness proof is qualitative and cannot give a rate-independent bound
+on the location of \(K\).  Consider the directed cycle
+\[
+ 0\xrightarrow{\kappa_0}A
+ \xrightarrow{\kappa_1}A+B
+ \xrightarrow{\kappa_2}0
+\]
+and the augmented state \(((m,0),A)\), \(m\ge2\).  The population chain is
+irreducible on \(\mathbb N_0^2\), and each such marked state is reachable
+after a \(0\to A\) jump from \((m-1,0)\); hence all these states lie in one
+fixed augmented class.  For the target-following path from \(A\) through
+\(A+B\) to terminal \(0\), the exact recursion gives
+\begin{equation}\label{eq:rate-example}
+ D_0(m,A)=a_m+p_m\bigl(b_m+q_mc_m\bigr),
+\end{equation}
+where
+\[
+\begin{gathered}
+ a_m=\frac{\kappa_0\log m}{\kappa_0+\kappa_1m},\qquad
+ p_m=\frac{\kappa_1m}{\kappa_0+\kappa_1m},\\
+ b_m=\frac{\kappa_0\log m}{\kappa_0+(\kappa_1+\kappa_2)m},\qquad
+ q_m=\frac{\kappa_2m}{\kappa_0+(\kappa_1+\kappa_2)m},\\
+ c_m=-\frac{\kappa_1(m-1)}{\kappa_0+\kappa_1(m-1)}\log(m-1).
+\end{gathered}
+\]
+The three terms are respectively the drift at carried targets \(A\),
+\(A+B\), and \(0\), with \(p_m\) and \(q_m\) the exact continuation
+probabilities.  Hence
+\begin{equation}\label{eq:rate-example-asymptotic}
+ D_0(m,A)=-\frac{\kappa_2}{\kappa_1+\kappa_2}\log m
+ +O\!\left(\frac{\log m}{m}\right).
+\end{equation}
+For the other two possible terminals, the same path library gives
+\(D_A(m,A)=a_m>0\) and
+\(D_{A+B}(m,A)=a_m+p_mb_m>0\).  With \(\kappa_0,\kappa_1\) fixed,
+one has \(b_m\to a_m\) and \(q_mc_m\to0\), so
+\begin{equation}\label{eq:rate-example-limit}
+  D_0(m,A)\longrightarrow a_m(1+p_m)>0
+  \qquad(\kappa_2\downarrow0)
+\end{equation}
+for each fixed \(m\).  Thus, for every finite
+\(M\), a sufficiently small positive \(\kappa_2\) puts all the states
+\(((m,0),A)\), \(2\le m\le M\), in \(K\).  At the same time the negative
+coefficient in \eqref{eq:rate-example-asymptotic} can be arbitrarily small.
+Consequently, neither the location nor the diameter of \(K\) is bounded by the
+numbers of species and complexes alone, uniformly over positive rate vectors.
+\end{remark}
+
+Outside \(K\), choose the lexicographically first terminal complex minimizing
+\(D_c(x,t)\), before the episode begins.  This is a deterministic measurable
+selector on the countable state space and is compatible with restarting
+under the strong Markov property.  Its episode stopping time \(\tau\) obeys
+\begin{equation}\label{eq:episode-drift}
+  1\le\tau\le N_{\mathcal C}:=|\mathcal C|,
+  \qquad
+  \mathbb E_{(x,t)}[V(Z_\tau)-V(x,t)]\le-1,
+  \quad (x,t)\notin K.
+\end{equation}
+The coordinate overshoot in one episode is deterministically bounded by
+\(2N_{\mathcal C}\), because each binary reaction changes each population coordinate by
+at most two.
+
+\section{Positive recurrence}\label{sec:recurrence}
+
+The following argument is a short specialization of standard sampled-chain
+Foster theory \citep{MeynTweedie2009}; we include it to record the exact
+stopping and return interfaces used here.
+
+Let \(Y_0=z\).  If \(Y_n\notin K\), let \(Y_{n+1}\) be the endpoint of the
+episode selected at \(Y_n\); if \(Y_n\in K\), set \(Y_{n+1}=Y_n\).  Thus the
+endpoint chain is stopped upon entering \(K\).  Put
+\(
+ \sigma_K=\inf\{n\ge0:Y_n\in K\}.
+\)
+Let \(\mathcal G_n\) be the endpoint-chain filtration and define
+\[
+ W_n=V(Y_{n\wedge\sigma_K})+(n\wedge\sigma_K).
+\]
+The drift bound \eqref{eq:episode-drift} makes \((W_n)\) a nonnegative
+supermartingale.  Its terms are integrable: after at most \(N\) episodes, each
+population coordinate is bounded above by its initial value plus
+\(2N_{\mathcal C}N\), by the deterministic overshoot bound following
+\eqref{eq:episode-drift}.  Each residual coordinate is nonnegative and no
+larger than the corresponding population coordinate, so the finite target set
+then bounds \(V\).  Applying the supermartingale inequality
+at the bounded time \(N\) gives
+\begin{equation}\label{eq:stopped-drift}
+  \mathbb E_zV(Y_{N\wedge\sigma_K})
+  +\mathbb E_z(N\wedge\sigma_K)
+  \le V(z).
+\end{equation}
+Because \(V\ge0\), expectations and monotone convergence yield
+\begin{equation}\label{eq:episodes-to-K}
+  \mathbb E_z\sigma_K\le V(z).
+\end{equation}
+The original augmented embedded chain therefore hits \(K\) in finite
+expected jump count, bounded by \(N_{\mathcal C} V(z)\).
+
+The following finite trace argument turns hitting \(K\) into positive return
+to one state; the finite-chain step is standard \citep{Norris1997}, while the
+conversion from trace excursions to original jumps is recorded explicitly.
+
+\begin{proposition}[Finite trace-chain closure]\label{prop:trace}
+The augmented embedded chain has a state with finite expected positive return
+time.
+\end{proposition}
+
+\begin{proof}
+Let \(T_K^+=\inf\{n\ge1:Z_n\in K\}\).  From \(k\in K\), take one ordinary
+jump.  There are finitely many channel successors, and from each successor
+the expected hitting time of \(K\) is finite by \eqref{eq:episodes-to-K}.
+Thus \(\mathbb E_kT_K^+<\infty\) for every \(k\in K\).
+
+Record successive visits to \(K\).  The resulting trace chain is finite and
+irreducible.  Indeed, any augmented path between two points of \(K\), with
+its intermediate \(K\)-visits retained, gives a positive-probability trace
+path.  Fix \(k_*\in K\).  From every trace state choose a finite
+positive-probability trace path to \(k_*\).  Finiteness supplies common
+constants \(m<\infty\) and \(\varepsilon>0\) such that, from every trace
+state, \(k_*\) is hit within the next \(m\) trace transitions with probability
+at least \(\varepsilon\).  Starting from \(k_*\), first take one trace
+transition and then apply this estimate in successive blocks of \(m\)
+transitions.  The number of blocks before the next visit to \(k_*\) is
+geometrically dominated, so the positive trace return time has finite mean.
+
+Finally, set
+\[
+  B=\max_{k\in K}\mathbb E_kT_K^+<\infty.
+\]
+If \(M\) is the positive trace return count and \(E_j\) is the number of
+original jumps in its \(j\)-th trace excursion, let \(\mathcal F_j\) be the
+sigma-field at the start of that excursion.  Continue the trace chain after
+its return to \(k_*\), so these objects are defined for all \(j\ge0\).  Then
+\(\{j<M\}\in\mathcal F_j\), and the strong Markov property gives
+\(\mathbb E[E_j\mid\mathcal F_j]\le B\).  Tonelli's theorem and the tail-sum
+formula therefore yield
+\[
+\begin{aligned}
+  \mathbb E\!\left[\sum_{j=0}^{M-1}E_j\right]
+  &=\sum_{j\ge0}\mathbb E\!\left[
+      \mathbf1_{\{j<M\}}E_j\right]\\
+  &\le B\sum_{j\ge0}\mathbb P(j<M)
+   =B\,\mathbb E M<\infty.
+\end{aligned}
+\]
+
+\noindent
+Hence the augmented embedded chain has finite expected positive return time
+to \(k_*\).
+\end{proof}
+
+Projection away from the target mark shows that the population embedded chain
+has finite expected positive return to the population coordinate \(x_*\) of
+\(k_*\).  The projected transition law depends only on the population, so the
+projection started from \(k_*\) has exactly the law of the population embedded
+chain started from \(x_*\); its first positive population return occurs no
+later than the marked return to \(k_*\).
+It remains to construct physical time and rule out explosion.
+
+\begin{proposition}[Embedded-chain-to-CTMC conversion]\label{prop:ctmc}
+Let a countable irreducible embedded chain be positive recurrent.  Suppose a
+pure-jump construction assigns a finite rate \(\Lambda(x)>0\) at every state
+and that \(\inf_x\Lambda(x)>0\).  Then the resulting minimal CTMC is
+nonexplosive and positive recurrent.
+\end{proposition}
+
+\begin{proof}
+Let \(N\) be a finite-mean positive return count to a recurrent embedded state
+\(x_*\), and let \(H_j\) be the holding times.  Conditional on the embedded
+path, \(H_j\) is exponential with mean \(1/\Lambda(X_j)\).  Tonelli's theorem
+and conditional expectation give
+\[
+ \mathbb E\sum_{j=0}^{N-1}H_j
+ =\mathbb E\sum_{j\ge0}\mathbf1_{\{j<N\}}
+   \frac1{\Lambda(X_j)}
+ \le\frac{\mathbb EN}{\inf_x\Lambda(x)}<\infty.
+\]
+Thus the expected physical return time is finite, provided the construction
+is nonexplosive.
+
+Finite mean return makes \(x_*\) recurrent for the embedded chain, so it is
+visited infinitely often almost surely.  On each visit, the following
+holding time has the same exponential law of finite rate \(\Lambda(x_*)\).
+The strong Markov construction makes these recurrent holding times
+independent copies.  Their infinite sum diverges almost surely.  Since total
+physical time dominates this subseries, jump times cannot accumulate at a
+finite time.  The minimal CTMC is nonexplosive and has finite mean positive
+return time to \(x_*\).
+\end{proof}
+
+Apply Proposition~\ref{prop:ctmc} directly to the population embedded chain on
+\(\Gamma\).  Let \(\kappa_{\min}=\min_r\kappa_r>0\), with the minimum taken
+over the finite reduced set of genuine channels.  Every \(x\in\Gamma\) enables
+at least one such channel \(r\); otherwise \(x\) would be absorbing and the
+infinite irreducible class \(\Gamma\) would be a singleton.  Since a positive
+falling factorial is an integer,
+\begin{equation}\label{eq:rate-lower}
+  \Lambda(x)\ge\kappa_r(x)_{y_r}\ge\kappa_{\min},
+  \qquad x\in\Gamma.
+\end{equation}
+Together with the finite and absorbing reductions in
+Section~\ref{sec:model}, Propositions~\ref{prop:trace} and \ref{prop:ctmc}
+therefore prove the recurrence and nonexplosion assertions of
+Theorem~\ref{thm:main}; its closure assertion is
+Lemma~\ref{lem:state-cycle}.  For context, nonexplosion was previously obtained for
+complex-balanced stochastic systems through a stationary-integrability
+argument \citep{AndersonCappellettiKoyamaKurtz2018}.  For the present subclass,
+the return-cycle construction recovers nonexplosion directly, consistently
+with the more general second-order endotactic nonexplosion theorem of
+\citet{Xu2026}.
+
+The same return cycle yields Corollary~\ref{cor:stationary}.  Explicitly, for
+the positive return time \(T_{x_*}^+\) defined in Section~\ref{sec:model},
+\begin{equation}\label{eq:occupation-formula}
+ \pi_\Gamma(y)=
+ \frac{\displaystyle
+   \mathbb E_{x_*}\!\left[\int_0^{T_{x_*}^+}
+      \mathbf1_{\{X(t)=y\}}\,dt\right]}
+ {\mathbb E_{x_*}T_{x_*}^+},
+ \qquad y\in\Gamma,
+\end{equation}
+is the normalized mean occupation measure of one regenerative cycle.  Here
+\(0<\mathbb E_{x_*}T_{x_*}^+<\infty\) by the preceding return-time argument.
+Each numerator is finite, and Tonelli's theorem, applied to
+\(\sum_{y\in\Gamma}\mathbf1_{\{X(t)=y\}}=1\), shows that the denominator
+normalizes \eqref{eq:occupation-formula} to a probability measure.  The strong
+Markov property at successive returns to \(x_*\) makes these cycles
+regenerative, so the standard regenerative occupation theorem makes this
+measure stationary \citep{Asmussen2003}; irreducibility gives uniqueness.  For
+an absorbing singleton, the unique stationary law is the point mass, as stated
+in Theorem~\ref{thm:main}.
+
+\section{Scope and further questions}\label{sec:scope}
+
+The proof is class-wise.  Coordinate faces, siphons, parity restrictions, and
+other lattice constraints require no separate interior argument: every
+constructed target-following path consists of actual enabled channels and
+therefore remains in the fixed closed class.  Species absent from all
+complexes are constant on each class and appear automatically in the
+invariant branch of Lemma~\ref{lem:top}.
+
+Lemma~\ref{lem:state-cycle} shows that weak reversibility itself makes the
+reachability class of every initial state closed, even with multiple linkage
+classes or higher molecularity.  The positive-recurrence argument is narrower:
+it still requires one linkage class and bimolecularity.  Those extensions, and
+the full weakly reversible stochastic positive-recurrence conjecture, remain
+open.
+
+The one-linkage hypothesis is used at one decisive point: for every carried
+target \(t\) and selected terminal complex \(c\), a directed path
+\eqref{eq:path} must exist.  With several linkage classes, a carried target
+need not reach a terminal source belonging to another class, so the finite
+path library does not directly glue.  That extension remains open here.
+
+Bimolecularity is used in the exhaustive case split of
+Lemma~\ref{lem:top}: a top complex either contains two particles supported on
+divergent coordinates or exactly one such particle, leaving at most one
+bounded companion species.  Complexes of molecularity three or higher admit
+additional top configurations not covered by the argument.  No claim is made
+for them.
+
+The potentially reusable part of the proof is the combination of marked
+reaction-channel augmentation, subtraction of the carried target, the exact
+residual-factorial increment, finite target-following propagation, and
+normalized-log top-complex compactification.  The multiple-linkage obstruction
+is precise: a target in one linkage class need not have a directed path to a
+useful terminal complex in another linkage class.  Overcoming that obstruction
+would require an additional mechanism and is not a routine extension of the
+present path argument.
+
+The proof establishes positive recurrence and the existence of a stationary
+probability distribution.  It does not provide a product form, explicit tail
+bounds, exponential ergodicity, or quantitative mixing rates.  The finite set
+\(K\) is obtained by analytic compactness, not by enumeration, and the proof
+gives no practically useful universal estimate of its location or diameter.
+Its scale can depend arbitrarily strongly on positive rate ratios, as the
+exact example following Proposition~\ref{prop:K} illustrates.  Effective
+rate-dependent recurrence, tail, and mixing estimates remain open.
+The theorem gives no explicit stationary formula and no moment, tail, or
+mixing guarantee; unbounded molecule-count moments require separate
+integrability.  Its structural hypotheses are not asserted to hold for all
+biological reaction networks, and no empirical or organism-specific claim is
+made.
+
+\section*{Declarations}
+
+\paragraph{Author information.}
+Alec Kriebel, Independent researcher.\\
+Correspondence: \mbox{\href{mailto:me@aleckriebel.com}{me@aleckriebel.com}}.\\
+ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}.
+
+\paragraph{Data availability.}
+No empirical or third-party dataset was used.  All deterministic calibration
+inputs and generated outputs are included in the verification package
+described below.
+
+\paragraph{Code and supporting materials availability.}
+The dependency-free verifier, tests, canonical verification reports,
+manuscript source, release manifest, and supporting materials are available in
+\href{https://github.com/AlecKriebel/Math/tree/bimolecular-positive-recurrence-v1.2.2/bimolecular_positive_recurrence_submission_v1_2_2}{the tagged Version~1.2.2 repository directory}.
+The release records its exact Git commit and SHA-256 checksums.  No computation
+is used in the universal proof; the finite checks are reproducibility and
+falsification aids and neither prove recurrence nor enumerate the analytic set
+\(K\).
+
+\paragraph{Preprint status.}
+This is an unrefereed preprint.  A journal submission is planned.  Earlier
+versioned repository copies remain publicly available and are superseded by
+Version~1.2.2.
+
+\paragraph{Funding.}
+This research received no specific grant from any funding agency in the public,
+commercial, or not-for-profit sectors.
+
+\paragraph{Competing interests.}
+The author declares no competing interests.
+
+\subsection*{A note on the use of AI}
+Generative-AI systems were used materially from 5--16 August 2026.  The tools
+were OpenAI ChatGPT with GPT-5.6 Pro through the web interface; Anthropic
+Claude with Opus 5 at Max effort through claude.ai; Anthropic Claude Code with
+Opus 5 through its command-line application; and OpenAI Codex desktop with a
+GPT-5-family coding/research deployment whose exact backend identifier was not
+exposed.
+
+The systems were asked to assist with mathematical exploration and derivation,
+counterexample search, adversarial proof criticism, symbolic computation and
+verification code, literature-search support, drafting, editorial revision,
+publication preparation, and reproducibility review.  Outputs retained in the
+released work were checked against the displayed proof, exact calculations and
+tests, or cited primary sources, as appropriate.  Rejected approaches included universal
+one-step Lyapunov claims, rate-changing cycle comparisons without a uniform
+bound, and incomplete fast--slow hierarchy arguments; none is part of the
+released proof.
+
+The author directed the research, reviewed and edited the outputs, determined
+the released scope and claims, and assumes responsibility for the manuscript
+and verification materials.  No AI system is an author.  Tool-by-tool dates,
+access routes, uses, and safeguards are recorded in
+\href{https://github.com/AlecKriebel/Math/blob/bimolecular-positive-recurrence-v1.2.2/bimolecular_positive_recurrence_submission_v1_2_2/supplement/ai_use_full_statement.md}{supplement/ai\_use\_full\_statement.md}.
+
+\bibliographystyle{plainnat}
+\bibliography{references}
