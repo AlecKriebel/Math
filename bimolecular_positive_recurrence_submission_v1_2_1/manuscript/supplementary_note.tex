@@ -1,0 +1,150 @@
+\ifdefined\pdfinfoomitdate
+  \pdfinfoomitdate=1
+\fi
+\ifdefined\pdfsuppressptexinfo
+  \pdfsuppressptexinfo=15
+\fi
+\documentclass[10pt]{article}
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{amsmath,amssymb}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  pdftitle={Supplementary Note: Positive Recurrence for Single-Linkage Bimolecular Weakly Reversible Stochastic Reaction Networks},
+  pdfauthor={Alec Kriebel},
+  pdfsubject={Trace-chain, physical-time, and computational verification interfaces},
+  pdfkeywords={stochastic reaction networks, positive recurrence, supplementary note, reproducibility}
+}
+\setlength{\parindent}{1.2em}
+\setlength{\parskip}{0pt}
+\emergencystretch=2em
+
+\title{\bfseries Supplementary Note:\\[0.25em]
+Positive Recurrence for Single-Linkage Bimolecular\\
+Weakly Reversible Stochastic Reaction Networks}
+\author{Alec Kriebel\\[0.2em]
+\small Independent researcher\\
+\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{Supplementary Note --- 16 August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This supplementary note collects edge-case clarifications and reproducibility
+interfaces supporting the main manuscript.  The finite-trace and
+embedded-chain-to-continuous-time propositions, including their proofs, remain
+in the main manuscript.
+\end{abstract}
+
+\section{Trace-chain and physical-time details}
+
+\subsection{Labelled-channel marking}
+
+The augmented state records the target of the actual labelled channel that
+fired.  If two channels have the same population displacement but different
+sources or targets, their post-jump populations can agree while their carried
+targets or transition probabilities differ.  They therefore remain separate.
+Only channels with identical source and target may be aggregated.
+
+\subsection{Nonemptiness of the Foster set}
+
+The finite set $K$ in the episode-drift construction is nonempty, not merely
+finite.  The global-minimum argument is pathwise: the residual log-factorial
+potential has a global minimum, and every possible episode endpoint has
+potential at least that minimum.  No optional-stopping or integrability claim
+is needed at this step because every episode has uniformly bounded finite
+length.
+
+\subsection{Hitting versus positive return}
+
+The trace-chain proof distinguishes first hitting from positive return.  From
+$k\in K$, one ordinary jump is taken before the next hit of $K$, so the
+resulting return time is positive.  There are only finitely many successors of
+states in $K$, and the endpoint-chain drift estimate gives finite expected
+hitting of $K$ from each successor.  The finite trace chain is considered only
+after this step.  A uniform finite-block chance of reaching one selected trace
+state gives finite expected positive trace return; the random trace excursions
+are then expanded into ordinary embedded jumps using the strong Markov
+property and Tonelli's theorem.
+
+\subsection{Stationary occupation balance}
+
+The return construction gives a finite expected number of embedded jumps and
+a finite expected amount of physical time before the positive return to the
+selected state $x_*$.  During a complete return cycle, the number of arrivals
+at any state $y\ne x_*$ equals the number of departures from $y$ pathwise.  At
+$x_*$ the initial departure and terminal arrival also balance.  Taking
+expectations and weighting each visit by its exponential holding-time mean
+gives the statewise stationary balance equations for the normalized mean
+occupation measure displayed in the manuscript.  This is the elementary
+cycle-level interface behind the cited regenerative occupation theorem.
+
+\subsection{Nonexplosion in physical time}
+
+The population embedded chain is constructed before nonexplosion is known.
+The finite-mean return result for that embedded chain supplies a population
+state $x_*$ visited infinitely often.  At each visit, the following holding time has the same exponential law
+with one fixed finite rate.  The strong Markov construction makes these
+holding times independent copies, and their infinite sum diverges almost
+surely.  Total physical time dominates this subseries, so jump times cannot
+accumulate at a finite time.  This recovers nonexplosion for the present
+subclass; broader bimolecular weakly reversible nonexplosion is already known,
+as cited in the main manuscript.
+
+\subsection{Absorbing singletons}
+
+Absorbing singleton reachability classes are handled before channel
+augmentation and carry their point-mass stationary laws.  In a nonabsorbing
+irreducible class every population state enables a genuine channel; otherwise
+that state would itself be absorbing, and symmetry of accessibility would
+force its reachability class to be the singleton.
+
+\section{Computational verification boundary}
+
+The accompanying dependency-free Python package performs deterministic,
+exact-arithmetic checks of the falling-factorial identity and
+source-probability rewrite.  It also tests state-cycle lifting and accessibility
+symmetry on finite calibration networks, scalar-envelope branch conditions and
+monotonicity, the bimolecular top-complex classification with
+certificate-validated witnesses, absorbing-singleton handling, the corrected
+$\kappa_2\downarrow0$ rate-example limit, the exact logarithmic coefficient,
+the exact Anderson--Cappelletti--Kim Example~4.1 comparison included in the
+paper, and the stationary return-cycle normalization on a finite chain.
+
+The reproducer runs the complete test suite, emits the canonical report twice,
+requires those reports to be byte-identical, and compares the result with the
+committed report.  Environment information is recorded separately so that it
+does not destabilize the canonical JSON.  The canonical report is verified on
+CPython 3.11 through 3.14; no claim is made for future interpreter versions
+until they are added to the test matrix.
+
+These computations are falsification and regression aids.  No finite atlas
+proves the universal theorem, no random test proves recurrence, and no
+computation enumerates the analytic Foster set $K$ or certifies a useful bound
+on its cardinality, location, or diameter.  Those universal conclusions come
+only from the manuscript's analytic argument.
+
+\section{Reproduction pointers}
+
+From the tagged Version~1.2.1 release directory, run:
+
+\begin{verbatim}
+cd code
+./reproduce.sh
+\end{verbatim}
+
+The canonical output is
+\path{code/verification_report.json}; an identical durable copy is retained
+as \path{supplement/verification_report.json}.  The reproducibility environment,
+release identifiers, and complete clean-checkout replay procedure are recorded
+in \path{REPRODUCIBILITY.env} and \path{validation/}; the release manifest is
+\path{supplement/MANIFEST.sha256}.  The package archive is created
+deterministically by \path{supplement/build_release_archive.py} and checked
+byte-for-byte in continuous integration.
+
+\end{document}
