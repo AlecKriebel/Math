@@ -21,7 +21,7 @@ deposit, or integration change was made while preparing this package.
 - Creator: Kriebel, Alec
 - ORCID: `0009-0001-9320-500X`
 - Affiliation: Independent researcher
-- Version: `1.1.2`
+- Version: `1.1.3`
 - Publication date: `2026-08-16`
 - Publisher: Zenodo
 - Access: Open
@@ -60,7 +60,7 @@ Insert that DOI in all of the following places:
 
 Run a package-wide DOI/status sweep before rebuilding. Historical logs and
 prior-version release notes may retain clearly dated pre-reservation facts,
-but no file describing version 1.1.2 as current may say that its archive is
+but no file describing version 1.1.3 as current may say that its archive is
 still only planned.
 
 Then run the complete final rebuild and checksum workflow: rebuild both PDF
@@ -84,8 +84,8 @@ Official DOI-reservation instructions:
 
 From `submission/`:
 
-- `exceptional-ybe-d4-v1.1.2.pdf`;
-- `exceptional-ybe-d4-v1.1.2-source.zip`;
+- `exceptional-ybe-d4-v1.1.3.pdf`;
+- `exceptional-ybe-d4-v1.1.3-source.zip`;
 - `SHA256SUMS`.
 
 Set the PDF as the default preview. Upload the final DOI-bearing versions of

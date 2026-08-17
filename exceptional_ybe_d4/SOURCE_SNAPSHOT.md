@@ -45,6 +45,21 @@ question.
 
 The local PDF is used for research but is not redistributed in this repository.
 
+## Rowell--Wang localization paper
+
+- Eric C. Rowell and Zhenghan Wang, *Localization of Unitary Braid Group
+  Representations*, Communications in Mathematical Physics **311** (2012),
+  595--615.
+- DOI: <https://doi.org/10.1007/s00220-011-1386-7>
+- arXiv source: <https://arxiv.org/abs/1009.0241v2>
+- Author-hosted journal PDF checked during the audit; not redistributed.
+- SHA-256 of the checked journal PDF:
+  `4049ea09174d55596278dc7694b0955f887a07b94cb34f88d7f170e97516adef`.
+
+The published and arXiv texts were checked to bind the foundational
+localization framework: the statement is published Conjecture 3.1 (p. 601)
+and arXiv-v2 Conjecture 4.1. No local copy is redistributed.
+
 ## Final consolidated review input
 
 On 16 August 2026 the author supplied a 24,165-byte consolidated text containing
@@ -52,6 +67,13 @@ two additional model reviews. Its SHA-256 is
 `9670856928cee77362e804df048b6f4eaba5539b599ca9b4b02fdbca09a94697`.
 The input is not redistributed; the itemized, source-checked disposition is
 recorded in `REVIEW_ADJUDICATION_v1.1.2.md`.
+
+## Version 1.1.3 correction review
+
+On 16 August 2026 the author supplied a further review directly in the task
+conversation. It was not provided as a standalone file, so no artificial file
+hash is claimed. Its source-checked disposition is recorded in
+`CORRECTION_AUDIT_v1.1.3.md`.
 
 ## Discovery provenance
 

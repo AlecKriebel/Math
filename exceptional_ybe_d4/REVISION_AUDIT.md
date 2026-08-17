@@ -2,8 +2,8 @@
 
 > **Historical record.** This file records decisions made for version 1.1.0
 > on 27 July 2026. It is not the submission-readiness assessment for version
-> 1.1.2; the current declarations and validation record are in `main.tex`,
-> `REVIEW_ADJUDICATION_v1.1.2.md`, `RELEASE_NOTES_v1.1.2.md`, and
+> 1.1.3; the current declarations and validation record are in `main.tex`,
+> `CORRECTION_AUDIT_v1.1.3.md`, `RELEASE_NOTES_v1.1.3.md`, and
 > `VERIFICATION_ENVIRONMENT.md`.
 
 Audit date: **27 July 2026** (America/Los_Angeles).
@@ -71,7 +71,7 @@ preprint.
 - The related-work section is shorter. The no-contact policy remains in the
   research audit and log rather than the mathematical narrative.
 - The PDF contains a version-specific source and release URL.
-- The webpage links the original 2012 paper and gives runnable
+- The webpage links the 2012 GHR case study and gives runnable
   dependency-free verification commands.
 
 ## Modified or rejected proposals

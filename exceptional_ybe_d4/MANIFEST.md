@@ -1,6 +1,6 @@
 # Release manifest
 
-This manifest describes submission package version 1.1.2, dated 16 August
+This manifest describes submission package version 1.1.3, dated 16 August
 2026. It is prepared for deposit through a fresh manual Zenodo record, not a GitHub
 release or a pre-existing DOI family; `ZENODO_DEPOSIT.md` governs reservation
 and insertion of its dedicated version DOI before publication.
@@ -15,9 +15,12 @@ and insertion of its dedicated version DOI before publication.
 - `REVISION_AUDIT.md` — historical adjudication for version 1.1.0.
 - `RELEASE_NOTES_v1.1.0.md` — prior version's historical release record.
 - `RELEASE_NOTES_v1.1.1.md` — prior submission-hardening record.
-- `RELEASE_NOTES_v1.1.2.md` — current review-adjudication record.
-- `REVIEW_ADJUDICATION_v1.1.2.md` — itemized disposition of the two
-  frontier-model reviews and the fresh adversarial re-audit.
+- `RELEASE_NOTES_v1.1.2.md` — prior frontier-review record.
+- `REVIEW_ADJUDICATION_v1.1.2.md` — historical itemized disposition of the
+  two frontier-model reviews and adversarial re-audit.
+- `RELEASE_NOTES_v1.1.3.md` — current correction and package-refresh record.
+- `CORRECTION_AUDIT_v1.1.3.md` — source-checked disposition of the latest
+  review and the final adversarial re-audit.
 - `SOURCE_SNAPSHOT.md` — provenance and hashes of supplied inputs.
 - `RESEARCH_LOG.md` — timestamped audit and publication log.
 
@@ -50,7 +53,8 @@ and insertion of its dedicated version DOI before publication.
 - `ZENODO_DEPOSIT.md`, `ARXIV_METADATA.md`, and
   `SUBMISSION_CHECKLIST.md` — exact handoff instructions and portal fields.
 - `package_submission.py` — deterministic source/PDF/arXiv artifact builder.
-- `submission/` — ready-to-upload artifacts and their outer checksums.
+- `submission/` — pre-reservation artifacts and their outer checksums; rebuild
+  them after inserting the reserved DOI, as required by `ZENODO_DEPOSIT.md`.
 
 ## Repository website mirrors
 

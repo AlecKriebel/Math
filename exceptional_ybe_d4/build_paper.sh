@@ -4,7 +4,7 @@ set -euo pipefail
 YBE_PAPER_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 YBE_TECTONIC="${YBE_TECTONIC:-tectonic}"
 YBE_TECTONIC_BUNDLE="${YBE_TECTONIC_BUNDLE:-https://relay.fullyjustified.net/default_bundle_v33.tar}"
-YBE_SOURCE_DATE_EPOCH="${YBE_SOURCE_DATE_EPOCH:-1786903200}"
+YBE_SOURCE_DATE_EPOCH="${YBE_SOURCE_DATE_EPOCH:-1786923000}"
 YBE_BUILD_DIR="${YBE_BUILD_DIR:-$YBE_PAPER_DIR/tmp/tex-build}"
 YBE_OUTPUT_DIR="${YBE_OUTPUT_DIR:-$YBE_PAPER_DIR/output/pdf}"
 

@@ -1,5 +1,9 @@
 # Version 1.1.2 release notes
 
+> **Historical record.** Version 1.1.3 supersedes this submission-readiness
+> record and corrects the localization-conjecture attribution; see
+> `RELEASE_NOTES_v1.1.3.md` and `CORRECTION_AUDIT_v1.1.3.md`.
+
 Date: 16 August 2026.
 
 This revision adjudicates two additional adversarial reviews against the

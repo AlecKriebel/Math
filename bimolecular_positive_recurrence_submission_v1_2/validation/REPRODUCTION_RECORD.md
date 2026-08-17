@@ -1,0 +1,43 @@
+# Version 1.2 reproduction record
+
+**Release date:** 16 August 2026
+**Canonical tag:** `bimolecular-positive-recurrence-v1.2`
+
+This record deliberately does not embed a supposedly final commit hash inside
+that same commit. The annotated tag is the immutable identifier, and the exact
+commit is obtained without ambiguity by:
+
+```bash
+git rev-parse bimolecular-positive-recurrence-v1.2^{commit}
+```
+
+The complete replay is executable, rather than copied from an earlier state:
+
+```bash
+git clone https://github.com/AlecKriebel/Math.git
+cd Math
+git checkout --detach bimolecular-positive-recurrence-v1.2
+bimolecular_positive_recurrence_submission_v1_2/validation/replay_release.sh
+```
+
+The replay prints the resolved commit and exact tag, Python/Tectonic/platform
+versions, and SHA-256 values for the canonical report, manifest, four PDFs,
+and release ZIP. It then requires:
+
+- all 57 verifier tests and four release-tool safety tests to pass;
+- two regenerated reports and all three committed report copies to be
+  byte-identical;
+- every durable package file to match both manifest copies;
+- all four rebuilt PDFs to match their committed bytes;
+- a newly generated release archive to match the committed archive; and
+- the package/archive Git status to remain clean.
+
+Continuous integration repeats the verifier on CPython 3.11, 3.12, 3.13, and
+3.14; manifest/archive checks on 3.11 and 3.14; and the four-PDF build twice
+with Tectonic 0.16.9. The tagged-release job retains its console output as a
+GitHub Actions artifact. The canonical inputs, tool versions, bundle URL and
+digest, timestamp, and ZIP format are recorded in `REPRODUCIBILITY.env`.
+
+The Version 1.1 transcript was not copied forward because it described a
+different commit and smaller manifest. Its historical evidence remains in the
+immutable Version 1.1 tag.
