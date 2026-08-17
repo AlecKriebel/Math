@@ -1,6 +1,6 @@
 # Exceptional four-dimensional Hecke Yang–Baxter operator
 
-Submission package version 1.1.2 · 16 August 2026
+Submission package version 1.1.3 · 16 August 2026
 
 ## Result
 
@@ -69,8 +69,9 @@ H_n(3,6)\hookrightarrow
 
 for all \(n\). Thus it is an ordinary unitary localization of the simple
 tensor generator \(X\) of \(\mathcal C(\mathfrak{sl}_3,6)\), with
-\(\operatorname{FPdim}(X)=2\). In particular, the GHR localization conjecture
-holds in the case their 2012 paper singled out as a possible counterexample.
+\(\operatorname{FPdim}(X)=2\). In particular, the Rowell--Wang localization
+conjecture, as restated in GHR Conjecture 1.5, holds in the case the GHR paper
+singled out as a possible counterexample.
 The paper also proves that four is the minimum possible local dimension.
 In dimension three, the Temperley--Lieb and complementary
 Temperley--Lieb obstructions both have squared \(L^2\)-norm \(1/18\) with
@@ -167,7 +168,8 @@ classification reduction, and priority remain printed mathematical or
 literature arguments.
 
 The [typeset paper](output/pdf/exceptional_ybe_d4.pdf), [priority
-audit](PRIORITY_AUDIT.md), [current review
+audit](PRIORITY_AUDIT.md), [current correction
+audit](CORRECTION_AUDIT_v1.1.3.md), [historical frontier-review
 adjudication](REVIEW_ADJUDICATION_v1.1.2.md), [historical revision
 audit](REVISION_AUDIT.md), [source snapshot](SOURCE_SNAPSHOT.md), and
 [research log](RESEARCH_LOG.md) are included.

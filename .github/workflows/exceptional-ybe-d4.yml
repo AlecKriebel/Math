@@ -60,9 +60,9 @@ jobs:
           (cd submission && sha256sum -c SHA256SUMS)
           (cd submission && sha256sum -c ARXIV_SHA256SUMS)
           git ls-files --error-unmatch \
-            submission/exceptional-ybe-d4-v1.1.2.pdf \
-            submission/exceptional-ybe-d4-v1.1.2-source.zip \
-            submission/exceptional-ybe-d4-v1.1.2-arxiv.zip \
+            submission/exceptional-ybe-d4-v1.1.3.pdf \
+            submission/exceptional-ybe-d4-v1.1.3-source.zip \
+            submission/exceptional-ybe-d4-v1.1.3-arxiv.zip \
             submission/SHA256SUMS \
             submission/ARXIV_SHA256SUMS
           git diff --exit-code -- . ../docs/papers/exceptional-ybe-d4/paper.pdf
@@ -70,17 +70,17 @@ jobs:
       - name: Smoke-test a clean source extraction
         run: |
           extraction="$(mktemp -d)"
-          python -m zipfile -e submission/exceptional-ybe-d4-v1.1.2-source.zip "$extraction"
-          cd "$extraction/exceptional-ybe-d4-v1.1.2"
+          python -m zipfile -e submission/exceptional-ybe-d4-v1.1.3-source.zip "$extraction"
+          cd "$extraction/exceptional-ybe-d4-v1.1.3"
           python verify_checksums.py
           YBE_PYTHON=python bash ./run_all.sh > /tmp/exceptional-ybe-extracted-output.txt
           cmp /tmp/exceptional-ybe-extracted-output.txt verification_output.txt
       - name: Compile the isolated arXiv source
         run: |
           extraction="$(mktemp -d)"
-          python -m zipfile -e submission/exceptional-ybe-d4-v1.1.2-arxiv.zip "$extraction"
+          python -m zipfile -e submission/exceptional-ybe-d4-v1.1.3-arxiv.zip "$extraction"
           mkdir "$extraction/output"
-          SOURCE_DATE_EPOCH=1786903200 tectonic -X compile "$extraction/main.tex" \
+          SOURCE_DATE_EPOCH=1786923000 tectonic -X compile "$extraction/main.tex" \
             --bundle https://relay.fullyjustified.net/default_bundle_v33.tar \
             --outdir "$extraction/output"
           cmp "$extraction/output/main.pdf" output/pdf/exceptional_ybe_d4.pdf

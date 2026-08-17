@@ -244,3 +244,64 @@ All times are America/Los_Angeles (PDT, UTC-07:00).
   reproduced the final PDF byte for byte.
 - No outside individual was contacted, and no Zenodo, arXiv, journal, or
   GitHub release action was initiated.
+
+## 16 August 2026 — Version 1.1.3 correction audit
+
+- **16:15 PDT** -- Began an item-by-item audit of a further model review.
+  The three proposed required corrections and the optional presentation
+  changes were checked against primary sources rather than accepted on
+  authority.
+- **16:30 PDT** -- Resolved all version-sensitive source locators.
+  - Lechner's immutable v1 PDF confirms that the projection-form Hecke
+    relation is Equation (3.1), not (3.2); the manuscript nevertheless now
+    refers directly to its displayed relation.
+  - Rowell--Wang arXiv v2 numbers the localization statement Conjecture 4.1,
+    while the published CMP article numbers it Conjecture 3.1 on p. 601.
+  - GHR arXiv v1 numbers the restatement Conjecture 1.4, while the published
+    IMRN article cited by the manuscript numbers it Conjecture 1.5 on p. 695.
+    The manuscript now uses the published locators and credits Rowell--Wang.
+- **16:40 PDT** -- Rechecked the AI product terminology against current
+  official OpenAI documentation. GPT-5.6 Sol remains the model; Pro and Ultra
+  are modes, and the documentation expressly says not to use a separate Pro
+  model slug. The disclosure was made parallel and unambiguous without
+  adopting the review's inaccurate “GPT-5.6 Sol Pro” label.
+- **16:53 PDT** -- Completed a fresh public-collision audit across arXiv,
+  Crossref, DataCite, Zenodo, HAL, and GitHub. No independent candidate was
+  found; Lechner remains at v1. The qualified “appears new” language and its
+  limitations remain unchanged.
+- **16:59 PDT** -- Rebuilt the corrected manuscript with Tectonic 0.16.9 and
+  default bundle v33 under `SOURCE_DATE_EPOCH=1786923000`. The PDF remains 12
+  pages and has SHA-256
+  `66374c63fa4ddefb0c6a848187ca864922bc152f8a7485aeec32e31bb170b4c1`.
+  The supported exact routes reproduced the unchanged frozen output. The
+  promoted GHR convention remark, conjecture credit, Lechner wording, and AI
+  declaration all passed visual inspection.
+- **17:03 PDT** -- All 20 adversarial failure-mode tests passed. The expanded
+  suite binds the current conjecture attribution, published-edition locators,
+  AI terminology, version metadata, and archive epoch in addition to the
+  mathematical mutations and packaging boundaries covered in version 1.1.2.
+  All 35 package-local SHA-256 digests also verified.
+- **17:05 PDT** -- Built the deterministic version-1.1.3 Zenodo and arXiv
+  artifacts. A clean source-archive extraction reproduced the frozen output
+  of all three supported routes and passed all 20 adversarial tests; repacking
+  that extraction reproduced all five submission files byte for byte. The
+  isolated one-file arXiv archive compiled to the final PDF byte for byte.
+  Both outer checksum files verified, all PDF mirrors agree, and the 12-page
+  PDF's fonts, links, metadata, and rendered pages passed the final inspection.
+- **17:12 PDT** -- Completed independent final mathematical/reference,
+  editorial/policy, and artifact/CI red-team passes. The mathematical and
+  artifact audits returned GO. The editorial audit identified one remaining
+  journal-facing bibliography improvement: arXiv's issued DOI for Lechner's
+  preprint. It also recommended two nonblocking historical/status wording
+  cleanups.
+- **17:22 PDT** -- Added `10.48550/arXiv.2603.20158` while retaining the
+  immutable version-1 URL, applied both status cleanups, and repeated the full
+  freeze. The final 12-page PDF has SHA-256
+  `0b73f54a80f45ae57186d04c6f68ae5a45912a41c2990c7ecec7afc13287bedb`;
+  its final reference page is visually clean. All three supported routes
+  reproduced the unchanged frozen output, all 20 adversarial tests passed,
+  and all 35 package hashes and both outer manifests verified. A clean source
+  extraction repeated those checks and reproduced all five submission files
+  byte for byte; the isolated arXiv archive again compiled to the final PDF.
+- No outside individual was contacted, and no Zenodo, arXiv, journal, DOI,
+  GitHub release, or other submission action was initiated.

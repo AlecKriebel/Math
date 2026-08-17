@@ -1,5 +1,9 @@
 # Adjudication of the final frontier-model reviews
 
+> **Historical record.** This file records the version 1.1.2 adjudication.
+> Version 1.1.3 corrects the conjecture credit and adjudicates a later product-
+> terminology challenge in `CORRECTION_AUDIT_v1.1.3.md`.
+
 Audit date: **16 August 2026** (America/Los_Angeles).
 
 Two additional model reviews were treated as proposals rather than evidence.

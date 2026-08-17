@@ -193,9 +193,62 @@ class FailureModeTests(unittest.TestCase):
         actual = {relative.as_posix() for _, relative in package_files()}
         self.assertTrue(
             {
-                "RELEASE_NOTES_v1.1.2.md",
-                "REVIEW_ADJUDICATION_v1.1.2.md",
+                "RELEASE_NOTES_v1.1.3.md",
+                "CORRECTION_AUDIT_v1.1.3.md",
             }.issubset(actual)
+        )
+
+    def test_current_textual_corrections_are_bound(self):
+        manuscript = (ROOT / "main.tex").read_text(encoding="utf-8")
+        self.assertNotIn("Galindo--Hong--Rowell localization conjecture", manuscript)
+        self.assertIn("Rowell--Wang localization conjecture", manuscript)
+        self.assertIn(
+            r"\cite[Conjecture~3.1, p.~601]{RowellWang2012}", manuscript
+        )
+        self.assertIn(r"\cite[Conjecture~1.5]{GHR2013}", manuscript)
+        self.assertNotIn("multiply relation~(3.1) of", manuscript)
+        self.assertIn("multiply the displayed\nprojection-form Hecke relation", manuscript)
+        self.assertIn("10.48550/arXiv.2603.20158", manuscript)
+        current_texts = [manuscript]
+        website_path = ROOT.parent / "docs/papers/exceptional-ybe-d4/index.html"
+        if website_path.exists():
+            current_texts.append(website_path.read_text(encoding="utf-8"))
+        for current_text in current_texts:
+            normalized = " ".join(current_text.split())
+            self.assertNotIn("GPT-5.6 Sol Pro", normalized)
+            self.assertIn("GPT-5.6 Sol in Pro mode", normalized)
+            self.assertIn("GPT-5.6 Sol in Ultra mode", normalized)
+
+    def test_current_version_metadata_is_consistent(self):
+        current_version = "1.1.3"
+        current_files = {
+            "README.md": f"Submission package version {current_version}",
+            "MANIFEST.md": f"submission package version {current_version}",
+            "CITATION.cff": f"version: {current_version}",
+            "VERIFICATION_ENVIRONMENT.md": f"Version {current_version} was certified",
+            "ZENODO_DEPOSIT.md": f"Version: `{current_version}`",
+        }
+        for name, marker in current_files.items():
+            with self.subTest(name=name):
+                self.assertIn(marker, (ROOT / name).read_text(encoding="utf-8"))
+        self.assertEqual(package_submission.VERSION, current_version)
+        epoch = "1786923000"
+        self.assertIn(epoch, (ROOT / "build_paper.sh").read_text(encoding="utf-8"))
+        self.assertIn(epoch, (ROOT / "VERIFICATION_ENVIRONMENT.md").read_text(encoding="utf-8"))
+        website_path = ROOT.parent / "docs/papers/exceptional-ybe-d4/index.html"
+        if website_path.exists():
+            website = website_path.read_text(encoding="utf-8")
+            self.assertIn(f'content="{current_version}"', website)
+        workflow_path = ROOT.parent / ".github/workflows/exceptional-ybe-d4.yml"
+        if workflow_path.exists():
+            self.assertIn(epoch, workflow_path.read_text(encoding="utf-8"))
+        self.assertEqual(package_submission.ZIP_TIME, (2026, 8, 16, 16, 30, 0))
+        self.assertTrue(
+            {
+                "exceptional-ybe-d4-v1.1.2.pdf",
+                "exceptional-ybe-d4-v1.1.2-source.zip",
+                "exceptional-ybe-d4-v1.1.2-arxiv.zip",
+            }.issubset(package_submission.DEPRECATED_OUTPUTS)
         )
 
     def test_packager_rejects_unexpected_outputs_and_symlink_directory(self):

@@ -2,7 +2,7 @@
 
 > **Historical record.** These notes describe the 27 July 2026 release and
 > are superseded for submission-readiness purposes by
-> `RELEASE_NOTES_v1.1.2.md` and the current manuscript declarations.
+> `RELEASE_NOTES_v1.1.3.md` and the current manuscript declarations.
 
 This release is a formal-completeness and provenance revision of the first
 public research note. The central matrix and theorem are unchanged.

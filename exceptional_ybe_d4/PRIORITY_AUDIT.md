@@ -14,10 +14,10 @@ four-dimensional case that Lechner described as unresolved in March 2026:
 
 The stronger historically accurate statement is:
 
-> The broad ordinary-localization question was open in the
-> \(\mathcal C(\mathfrak{sl}_3,6)\) case study of Galindo, Hong, and Rowell
-> from 2012 onward; Lechner isolated the exact exceptional \(16\times16\)
-> matrix question in 2026.
+> Rowell and Wang introduced the ordinary-localization framework and
+> conjecture. The \(\mathcal C(\mathfrak{sl}_3,6)\) case study of Galindo,
+> Hong, and Rowell left the specific problem open from 2012 onward; Lechner
+> isolated the exact exceptional \(16\times16\) matrix question in 2026.
 
 No searched source supplied an earlier construction realizing
 \([e^{i\pi/3},1/2,4]\) or a previously published four-dimensional ordinary
@@ -32,12 +32,13 @@ between the two audit dates were inspected and concerned other problems. Weak
 or unavailable indexing signals are treated only as limitations, never as
 positive novelty evidence.
 
-A final same-day refresh after the version 1.1.2 review again checked the
-paper title, Lechner identifier together with “solution” and “localization,”
-the exact Pauli-word fingerprint, and the exceptional class parameters. It
-found no external candidate, and the official Lechner record still listed
-only v1. This last negative search changes neither the qualified wording nor
-the limitations above.
+A final same-day refresh at 16:53 PDT after the version 1.1.3 correction
+review again checked the paper title, Lechner identifier together with
+“solution” and “localization,” the exact Pauli-word fingerprint, the
+exceptional class parameters, and current arXiv, Crossref, DataCite, Zenodo,
+HAL, and public-code records. It found no independent external candidate, and
+the official Lechner record still listed only v1. This last negative search
+changes neither the qualified wording nor the limitations above.
 
 The intervening arXiv records inspected were
 [2607.28626](https://arxiv.org/abs/2607.28626),
@@ -54,6 +55,22 @@ multisite-integrability constructions, do not cite Lechner, and do not give
 the ordinary four-dimensional Hecke localization here.
 
 ## Primary-source boundary
+
+### Rowell--Wang
+
+- [arXiv:1009.0241v2](https://arxiv.org/abs/1009.0241v2);
+  [published article](https://doi.org/10.1007/s00220-011-1386-7) in
+  *Communications in Mathematical Physics* **311** (2012), 595--615.
+- This paper introduces the localization framework used here. Its published
+  Conjecture 3.1 (p. 601) states that the braid representations associated
+  with a simple object are localizable exactly when the square of its
+  Frobenius--Perron dimension is integral. The arXiv v2 numbering is
+  Conjecture 4.1.
+- The published GHR article explicitly calls this “the main conjecture” of
+  Rowell--Wang and restates it as GHR Conjecture 1.5.
+
+This source is the proper origin of the localization conjecture. It does not
+construct the exceptional ordinary four-dimensional operator studied here.
 
 ### Galindo--Hong--Rowell
 
@@ -79,7 +96,8 @@ the ordinary four-dimensional Hecke localization here.
 - Remark 5.29 distinguishes the nonunitary \(9\times9\) Jimbo solution,
   whose braid representation has extraneous sectors.
 - Remark 6.2 notes that this case might have been a counterexample to the
-  more restrictive ordinary-localization conjecture.
+  Rowell--Wang ordinary-localization conjecture, restated in that article as
+  GHR Conjecture 1.5.
 
 This source is prior art for the representation tower, the localization
 problem, the two-dimensional obstruction, the quaternionic model, and the
@@ -116,7 +134,6 @@ dimensions \(4m+2\) beyond two remain open.
 
 ### Other generalized/local braid literature checked
 
-- [Rowell--Wang, localization of unitary braid representations](https://arxiv.org/abs/1009.0241).
 - [Galindo--Rowell, unitary braided vector spaces](https://arxiv.org/abs/1312.5557).
 - Rowell et al., extraspecial two-groups and generalized Yang--Baxter
   equations, [arXiv:0706.1761](https://arxiv.org/abs/0706.1761).

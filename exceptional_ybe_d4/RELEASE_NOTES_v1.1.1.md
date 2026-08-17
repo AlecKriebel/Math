@@ -1,5 +1,9 @@
 # Version 1.1.1 release notes
 
+> **Historical record.** Version 1.1.3 supersedes this
+> submission-readiness record; see `RELEASE_NOTES_v1.1.3.md` and
+> `CORRECTION_AUDIT_v1.1.3.md`.
+
 Date: 16 August 2026.
 
 This is a submission-readiness and verifier-hardening patch. It does not alter
