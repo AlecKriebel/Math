@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-PACKAGE_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+PACKAGE_ROOT="$(cd "$(dirname "$0")/.." && pwd -P)"
 REPO_ROOT="$(git -C "$PACKAGE_ROOT" rev-parse --show-toplevel)"
 PACKAGE_REL="${PACKAGE_ROOT#"$REPO_ROOT"/}"
 ARCHIVE_REL="${PACKAGE_REL}.zip"
