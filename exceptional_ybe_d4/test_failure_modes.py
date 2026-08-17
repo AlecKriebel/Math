@@ -209,6 +209,22 @@ class FailureModeTests(unittest.TestCase):
         self.assertIn(r"\cite[Conjecture~1.5]{GHR2013}", manuscript)
         self.assertNotIn("multiply relation~(3.1) of", manuscript)
         self.assertIn("multiply the displayed\nprojection-form Hecke relation", manuscript)
+        self.assertIn(
+            "The dimension-four\nconstruction and localization proof are "
+            "independent of Lechner's\nclassification; the minimality argument "
+            r"in Section~\ref{sec:consequences}",
+            manuscript,
+        )
+        self.assertIn(r"\cite[Lemma~3.1 and Theorem~3.4]{Lechner2026}", manuscript)
+        self.assertIn(r"Section~\ref{sec:verification} records verification", manuscript)
+        self.assertIn("solutions on this reflection circle", manuscript)
+        self.assertNotIn("solutions inside this reflection circle", manuscript)
+        self.assertIn(r"\cite[Eq.~(3.2)]{Wenzl1988}", manuscript)
+        self.assertIn(
+            "Hecke\nrepresentation does not factor through the "
+            "Temperley--Lieb quotient",
+            manuscript,
+        )
         self.assertIn("10.48550/arXiv.2603.20158", manuscript)
         self.assertIn("This realizes the smallest-dimensional", manuscript)
         self.assertNotIn("Corresponding author:", manuscript)

@@ -102,3 +102,26 @@ priority claim are unchanged. Version 1.1.3 corrects attribution, removes a
 fragile external locator, improves convention visibility, clarifies product
 terminology, and supplies a single DOI-bearing deterministic submission
 package.
+
+## 6. Final dependency and presentation check
+
+**Accepted without changing the theorem.** The introduction now names both
+Lechner results used by the dimension-four minimality proof, while continuing
+to distinguish that dependency from the independent construction and
+localization proof. The positive obstruction value is followed by its direct
+consequence that the constructed representation does not factor through the
+Temperley--Lieb quotient. The roadmap now includes the verification and
+provenance section, and Proposition 4.1 correctly locates its four solutions
+on the reflection circle.
+
+The original 1988 Wenzl scan was checked directly: printed page 373 labels the
+uniqueness statement for a Markov trace with prescribed
+\(\eta=\operatorname{tr}(e_1)\) as Equation (3.2). The pinpoint is therefore
+retained. No formula, source dependency, or mathematical claim changed.
+
+Primary source checked:
+
+- Wenzl's original 1988 typeset article, official GDZ scan:
+  <https://gdz.sub.uni-goettingen.de/download/pdf/PPN356556735_0092/LOG_0021.pdf>
+- SHA-256 of the checked scan:
+  `a6a55b6166edba2fa05cbcac318d0ce446b1981b8c919029081165585b115c61`.

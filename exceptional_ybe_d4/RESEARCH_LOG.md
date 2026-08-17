@@ -361,3 +361,29 @@ All times are America/Los_Angeles (PDT, UTC-07:00).
 - No paper or archive was submitted or published, no GitHub release was
   created, no external integration was changed, and no outside individual was
   contacted during this final production freeze.
+
+## 16 August 2026 — Final dependency and editorial freeze
+
+- **21:44 PDT** -- Adjudicated the final four review proposals against the
+  manuscript and primary sources. Lechner's immutable version-1 PDF confirms
+  that Lemma 3.1 and Theorem 3.4 are both used only in the dimension-four
+  minimality reduction. The original Wenzl article was inspected directly;
+  printed page 373 confirms that Equation (3.2) is exactly the cited uniqueness
+  statement for a Markov trace with prescribed parameter.
+- **21:46 PDT** -- Applied three scope-preserving manuscript corrections: made
+  the complete Lechner dependency explicit, recorded that the positive
+  obstruction proves the constructed representation is not Temperley--Lieb,
+  and corrected the section roadmap and the location of the four solutions on
+  the reflection circle. The verified Wenzl pinpoint was retained. Regression
+  bindings cover every accepted correction and the rejected old wording.
+- **21:48 PDT** -- Rebuilt with Tectonic 0.16.9 and default bundle v33 under the
+  unchanged release epoch. The paper remains 12 pages, with no TeX diagnostic
+  or visual defect, and the final PDF SHA-256 is
+  `0c7c115229995ac32e9237b00461507a203c0f4a3d86692815f02392d1f287ff`.
+- **21:49 PDT** -- All three supported verification routes reproduced the
+  unchanged frozen output and all 20 hostile failure-mode tests passed. The
+  35-file internal manifest, three submission files, and both outer checksum
+  manifests were regenerated for the DOI-bearing version-1.1.3 freeze.
+- No theorem, operator, proof scope, priority claim, DOI metadata, version, or
+  deterministic epoch changed. No archive was uploaded or published, no tag or
+  GitHub release was created, and no outside individual was contacted.

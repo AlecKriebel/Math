@@ -24,6 +24,13 @@ or qualified novelty claim.
 - Uses the official model/mode terminology: GPT-5.6 Sol in Pro mode through
   ChatGPT and GPT-5.6 Sol in Ultra mode through Codex. It does not invent a
   separate “Sol Pro” model slug.
+- States the complete Lechner dependency of the minimality proof, records
+  explicitly that the constructed representation is not Temperley--Lieb,
+  completes the section roadmap, and corrects “inside” to “on” the reflection
+  circle.
+- Retains the Wenzl equation-number pinpoint after verifying it directly in
+  the original 1988 typeset article: Equation (3.2) on printed page 373 is the
+  cited uniqueness statement for a Markov trace with prescribed parameter.
 
 ## Package hardening and refresh
 
