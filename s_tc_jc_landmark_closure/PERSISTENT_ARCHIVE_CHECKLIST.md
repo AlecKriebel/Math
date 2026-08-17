@@ -29,6 +29,21 @@ Status: **PREPARED — DOI NOT YET ISSUED**
 10. `biorxiv_submission/Strong_Tree_Childness_Sharp_Level2_JC_supplement.pdf`
 11. `biorxiv_submission/SHA256SUMS`
 
+The first eight files are the intended exact public replay assets at
+`https://github.com/AlecKriebel/Math/releases/tag/stc-jc-sharp-boundary-v1.1.2`.
+They become current public evidence only after all eight are uploaded and
+`verify_public_release.py` returns `PUBLIC_RELEASE_VERIFIED`. Before manuscript
+submission, download `RELEASE_ENVELOPE.json` and `RELEASE_ASSET_SHA256SUMS`
+from that page and compare them with the local release. The tracked records
+under `history/superseded_release_evidence/` certify an older 18-page
+manuscript and are not current evidence.
+
+The public manifest is deliberately flat and covers the other seven assets by
+basename, including `RELEASE_ENVELOPE.json`; it does not and cannot hash
+itself.  Treat the downloaded manifest as the trust anchor and run
+`reproducibility/verify_public_release.py` for the complete tag, archive,
+envelope, and transcript check.
+
 The deterministic archive is built from the immutable source commit with:
 
 ```bash
@@ -42,11 +57,13 @@ clean-clone transcripts live in the external, non-self-referential
 the bytes being digested.
 
 The immutable source commit is also marked by the annotated tag
-`stc-jc-sharp-boundary-v1.1.1`.  In a source-only clone the active verifier
+`stc-jc-sharp-boundary-v1.1.2`.  In a source-only clone the active verifier
 requires that exact tag to peel to a clean checkout.  In a deposited release
 bundle it instead verifies the external envelope and every accompanying
 asset.  The large archive and its outer envelope are intentionally release
-assets rather than Git objects.
+assets rather than Git objects. Exact publication commands and the required
+eight-asset list are recorded in `release/UPLOAD_RELEASE_ASSETS.md` and
+`release/PUBLIC_RELEASE_ASSETS.md`.
 
 ## Human selections
 

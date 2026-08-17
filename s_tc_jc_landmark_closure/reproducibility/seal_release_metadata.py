@@ -20,7 +20,10 @@ ARCHIVE_PREFIX = "stc_jc_sharp_boundary_reproducibility"
 SOURCE_BINDING = {
     "scheme": "external-envelope-v1",
     "archive_marker": "ARCHIVE_SOURCE_COMMIT.txt",
-    "outer_envelope": "s_tc_jc_landmark_closure/release_artifacts/RELEASE_ENVELOPE.json",
+    "outer_envelope": (
+        "https://github.com/AlecKriebel/Math/releases/download/"
+        "stc-jc-sharp-boundary-v1.1.2/RELEASE_ENVELOPE.json"
+    ),
     "description": (
         "The core manifest is commit-independent and lives inside the archive; "
         "the outer envelope binds the immutable source commit and archive hash."
@@ -94,8 +97,83 @@ def core_artifacts() -> dict[str, dict[str, str]]:
         "biorxiv_metadata": record(
             "s_tc_jc_landmark_closure/biorxiv_submission/BIORXIV_METADATA.md"
         ),
+        "biorxiv_upload_map": record(
+            "s_tc_jc_landmark_closure/biorxiv_submission/BIORXIV_UPLOAD_MAP.md"
+        ),
+        "biorxiv_human_checklist": record(
+            "s_tc_jc_landmark_closure/biorxiv_submission/FINAL_HUMAN_CHECKLIST.md"
+        ),
         "submission_sha256s": record(
             "s_tc_jc_landmark_closure/biorxiv_submission/SHA256SUMS"
+        ),
+        "journal_package_builder": record(
+            "s_tc_jc_landmark_closure/reproducibility/build_journal_packages.py"
+        ),
+        "submission_source_archive_replay": record(
+            "s_tc_jc_landmark_closure/reproducibility/verify_submission_source_archives.py"
+        ),
+        "public_release_verifier": record(
+            "s_tc_jc_landmark_closure/reproducibility/verify_public_release.py"
+        ),
+        "release_hardening_regression": record(
+            "s_tc_jc_landmark_closure/reviews/v1_1_2_release_hardening/verify_release_hardening.py"
+        ),
+        "release_hardening_disposition": record(
+            "s_tc_jc_landmark_closure/reviews/v1_1_2_release_hardening/REVIEW_DISPOSITION.md"
+        ),
+        "release_hardening_math_review": record(
+            "s_tc_jc_landmark_closure/reviews/v1_1_2_release_hardening/ADVERSARIAL_MATHEMATICAL_SCOPE_REVIEW.md"
+        ),
+        "release_hardening_package_review": record(
+            "s_tc_jc_landmark_closure/reviews/v1_1_2_release_hardening/ADVERSARIAL_RELEASE_PACKAGE_REVIEW.md"
+        ),
+        "public_release_assets": record(
+            "s_tc_jc_landmark_closure/release/PUBLIC_RELEASE_ASSETS.md"
+        ),
+        "release_upload_instructions": record(
+            "s_tc_jc_landmark_closure/release/UPLOAD_RELEASE_ASSETS.md"
+        ),
+        "submission_package_index": record(
+            "s_tc_jc_landmark_closure/SUBMISSION_PACKAGE_INDEX.md"
+        ),
+        "superseded_history_manifest": record(
+            "s_tc_jc_landmark_closure/history/superseded_release_evidence/outcome_p_2026-08-13/SHA256SUMS"
+        ),
+        "systematic_biology_main_pdf": record(
+            "s_tc_jc_landmark_closure/journal_submission/systematic_biology/SB_Main_Manuscript.pdf"
+        ),
+        "systematic_biology_supplement_pdf": record(
+            "s_tc_jc_landmark_closure/journal_submission/systematic_biology/SB_Supplementary_Material.pdf"
+        ),
+        "systematic_biology_cover_letter": record(
+            "s_tc_jc_landmark_closure/journal_submission/systematic_biology/SB_Cover_Letter.pdf"
+        ),
+        "systematic_biology_source_zip": record(
+            "s_tc_jc_landmark_closure/journal_submission/systematic_biology/SB_LaTeX_Source.zip"
+        ),
+        "systematic_biology_upload_map": record(
+            "s_tc_jc_landmark_closure/journal_submission/systematic_biology/SYSTEMATIC_BIOLOGY_UPLOAD_MAP.md"
+        ),
+        "systematic_biology_sha256s": record(
+            "s_tc_jc_landmark_closure/journal_submission/systematic_biology/SHA256SUMS"
+        ),
+        "jmb_main_pdf": record(
+            "s_tc_jc_landmark_closure/journal_submission/journal_of_mathematical_biology/JMB_Main_Manuscript.pdf"
+        ),
+        "jmb_supplement_pdf": record(
+            "s_tc_jc_landmark_closure/journal_submission/journal_of_mathematical_biology/JMB_Supplementary_Information.pdf"
+        ),
+        "jmb_cover_letter": record(
+            "s_tc_jc_landmark_closure/journal_submission/journal_of_mathematical_biology/JMB_Cover_Letter.pdf"
+        ),
+        "jmb_source_zip": record(
+            "s_tc_jc_landmark_closure/journal_submission/journal_of_mathematical_biology/JMB_LaTeX_Source.zip"
+        ),
+        "jmb_upload_map": record(
+            "s_tc_jc_landmark_closure/journal_submission/journal_of_mathematical_biology/JMB_UPLOAD_MAP.md"
+        ),
+        "jmb_sha256s": record(
+            "s_tc_jc_landmark_closure/journal_submission/journal_of_mathematical_biology/SHA256SUMS"
         ),
         "requirements_lock": record("s_tc_jc_landmark_closure/requirements.txt"),
     }
@@ -182,12 +260,16 @@ def seal_envelope(source_commit_arg: str) -> None:
             distribution="release_asset",
         ),
         "archive_checksum": record(
-            "s_tc_jc_landmark_closure/release_artifacts/stc_jc_sharp_boundary_reproducibility.tar.gz.sha256"
+            "s_tc_jc_landmark_closure/release_artifacts/stc_jc_sharp_boundary_reproducibility.tar.gz.sha256",
+            distribution="release_asset",
         ),
     }
     final_report = "s_tc_jc_landmark_closure/release_artifacts/FINAL_RELEASE_ENGINEERING_REPORT.md"
-    if (REPO / final_report).is_file():
-        external["final_release_referee"] = record(final_report)
+    if not (REPO / final_report).is_file():
+        raise FileNotFoundError(REPO / final_report)
+    external["final_release_referee"] = record(
+        final_report, distribution="release_asset"
+    )
 
     envelope = {
         "schema": "stc-jc-external-release-envelope-v1",
@@ -201,9 +283,15 @@ def seal_envelope(source_commit_arg: str) -> None:
     envelope_path = RELEASE / "RELEASE_ENVELOPE.json"
     envelope_path.write_text(json.dumps(envelope, indent=2, sort_keys=True) + "\n")
 
+    flat_records = {
+        Path(value["path"]).name: value["sha256"]
+        for value in external.values()
+    }
+    if len(flat_records) != len(external):
+        raise AssertionError("release asset basenames are not unique")
+    flat_records[envelope_path.name] = digest(envelope_path)
     manifest_lines = [
-        f"{value['sha256']}  {value['path']}"
-        for _, value in sorted(external.items())
+        f"{sha256}  {name}" for name, sha256 in sorted(flat_records.items())
     ]
     (RELEASE / "RELEASE_ASSET_SHA256SUMS").write_text(
         "\n".join(manifest_lines) + "\n", encoding="utf-8"

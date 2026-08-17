@@ -3,15 +3,17 @@
 Status: **CLOSED — FINAL OUTCOME A**
 
 Release binding: the theorem graph and core artifact manifest are
-commit-independent. `ARCHIVE_SOURCE_COMMIT.txt` and the external
-`release_artifacts/RELEASE_ENVELOPE.json` jointly bind the immutable source
-commit, replay transcripts, and archive digest without a self-reference.
+commit-independent. Once the post-upload gate passes,
+`ARCHIVE_SOURCE_COMMIT.txt` and the external `RELEASE_ENVELOPE.json` downloaded
+from the public v1.1.2 GitHub Release jointly bind the immutable source commit,
+replay transcripts, and archive digest without a self-reference. A source
+candidate is not promoted merely because it contains the intended URL.
 
 Manuscript: **Strong Tree-Childness Is a Sharp Generic-Identifiability Boundary for
 Level-2 Jukes–Cantor Networks**
 
 Every ancestor of the final release node has a primary exact implementation,
-an independently implemented replay, and an adversarial review at the
+a separately implemented replay, and an adversarial review at the
 load-bearing gates.
 
 | Node | Claim | Final status |
@@ -31,6 +33,7 @@ load-bearing gates.
 | `V` | Clean-room replay, mutation suites, manuscript audit, and release consistency | VERIFIED |
 | `V11` | Independent v1.1 mathematical review, four bounded repairs, and proof-text mutation regressions | VERIFIED AFTER CORRECTION |
 | `V111` | Targeted bridge normalization, finite-cover handoff, analytic hardening, Figure 2 repair, and eight-mutation referee regression | VERIFIED AFTER CORRECTION |
+| `V112` | Public reproduction commands, current replay provenance, genericity wording, journal upload packages, and a fail-closed post-upload release gate | VERIFIED AFTER CORRECTION |
 | `F` | Unified sharp-boundary bioRxiv release (`P + O + W`) | PROVED — OUTCOME A |
 
 Dependency flow:
@@ -45,6 +48,7 @@ W --------------------------------/
 V --------------------------------/
 V11 ------------------------------/
 V111 -----------------------------/
+V112 -----------------------------/
 ```
 
 Historical target-only tables, reciprocal-only bridge coordinates, hidden

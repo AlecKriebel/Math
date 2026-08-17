@@ -2,15 +2,27 @@
 
 Requirements: Tectonic 0.15 or later with its standard cached bundle.
 
-From `source/paper/`:
+From the monorepository root:
 
 ```bash
+cd s_tc_jc_landmark_closure/source/paper
 tectonic main.tex
 ```
 
-From `source/supplement/`:
+For the supplement:
 
 ```bash
+cd ../supplement
+tectonic supplement.tex
+```
+
+From the root of the extracted bioRxiv source ZIP, use the archive-local
+paths:
+
+```bash
+cd paper
+tectonic main.tex
+cd ../supplement
 tectonic supplement.tex
 ```
 

@@ -1,11 +1,31 @@
 # bioRxiv upload map
 
-Verified against bioRxiv's official **Submission Guide** and **About bioRxiv** pages on 2026-08-14:
+Verified against bioRxiv's official **Submission Guide** and **About bioRxiv** pages on 2026-08-16:
 
 - https://www.biorxiv.org/submit-a-manuscript
 - https://www.biorxiv.org/about-biorxiv
 
-The official guide says that a single PDF containing text and figures is the simplest main upload, supplemental material should be separate, LaTeX should be converted to PDF before submission, article categories include New Results, and the author must select a distribution/reuse option. The official scope page lists Evolutionary Biology as a subject category.
+The official guide says that a single PDF containing text and figures is the simplest main upload, supplemental material should be separate, LaTeX should be converted to PDF before submission, article categories include New Results, and the author must select a distribution/reuse option. The official scope page lists Evolutionary Biology as a subject category. Portal fields can change; recheck both official pages immediately before submission.
+
+## Release-assets gate
+
+Before opening the bioRxiv portal, confirm that the public GitHub release
+`stc-jc-sharp-boundary-v1.1.2` exposes all eight hash-bound replay assets
+listed in `../release/PUBLIC_RELEASE_ASSETS.md`.  Download the outer envelope
+and checksum manifest once from the public release and verify them against the
+local copies.  Do not rely on the superseded 18-page replay records under
+`history/`.
+
+From the monorepository root, require all three commands to pass:
+
+```bash
+(cd s_tc_jc_landmark_closure/biorxiv_submission && shasum -a 256 -c SHA256SUMS)
+python s_tc_jc_landmark_closure/reproducibility/verify_submission_source_archives.py
+python s_tc_jc_landmark_closure/reproducibility/verify_public_release.py
+```
+
+The last command downloads the public tag and all eight replay assets; a URL
+string alone does not satisfy this gate.
 
 ## Portal sequence
 
@@ -18,7 +38,7 @@ The official guide says that a single PDF containing text and figures is the sim
 7. **Author:** enter Alec Kriebel, Independent Researcher, me@aleckriebel.com, ORCID 0009-0001-9320-500X. Do not add an institution or coauthor.
 8. **Funding:** enter “No specific funding supported this work.” Do not invent a grant.
 9. **Competing interests:** enter “The author declares no competing interests.”
-10. **Data/code link:** use the GitHub URL in the metadata and add the persistent repository URL only after the deposit exists.
+10. **Data/code link:** use the tagged GitHub source and public GitHub Release URLs in the metadata. Add a persistent repository URL only after the deposit exists.
 11. **License:** the author must select one of the portal's offered choices. This package intentionally makes no selection.
-12. **Preview:** verify title, author spelling, ORCID, abstract symbols, subject/category, figure rendering, supplement association, page count, and data/code URL.
+12. **Preview:** verify title, author spelling, ORCID, abstract symbols, subject/category, figure rendering, supplement association, the 31-page manuscript count, and both data/code URLs.
 13. **Final stop:** do not click the final submission control until the human author has reviewed the generated PDF, metadata, license choice, and portal preview.

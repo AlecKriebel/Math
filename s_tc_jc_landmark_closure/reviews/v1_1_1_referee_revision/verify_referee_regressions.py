@@ -113,7 +113,7 @@ def check_title_sync() -> None:
     require(final["title"] == metadata["title"] == TITLE,
             "machine-readable titles disagree")
     require(final["release_revision"] == metadata["release_revision"] ==
-            "stc-jc-sharp-boundary-v1.1.1", "release revision disagrees")
+            "stc-jc-sharp-boundary-v1.1.2", "release revision disagrees")
     biorxiv = (PROJECT / "biorxiv_submission/BIORXIV_METADATA.md").read_text()
     require(PDF_TITLE in biorxiv, "bioRxiv title is stale")
     main_pdf = PdfReader(
@@ -192,7 +192,7 @@ def main() -> None:
     mutation_tests(paper, figure)
     print(json.dumps({
         "status": "VERIFIED",
-        "revision": "v1.1.1",
+        "revision": "v1.1.1-gate-replayed-in-v1.1.2",
         "theta_label_positions": [-2.35] * 4,
         "mutations_rejected": 8,
     }, sort_keys=True))

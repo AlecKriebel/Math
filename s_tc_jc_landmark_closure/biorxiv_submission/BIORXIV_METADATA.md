@@ -15,7 +15,7 @@ Strong Tree-Childness Is a Sharp Generic-Identifiability Boundary for Level-2 Ju
 
 Reticulate evolutionary histories encode hybridization, recombination, and lateral transfer, but such histories are scientifically recoverable from sequence data only when distinct networks induce distinguishable site-pattern distributions. We determine this information limit for binary, LSA-rootable, already-simple semi-directed strongly tree-child level-2 networks under the paper's one-step reticulation-preserving convention and the open four-state Jukes–Cantor model. A source-relative full-dimensional regular stochastic containment occurs if and only if the labelled reduced bridge trees agree and every pair of corresponding blobs is labelled-isomorphic or differs by ordinary triangle redirection. Hence no proper one-sided generic containment exists, and an exact generic distribution determines a unique topology modulo that redirection. Fourier cut ranks recover the bridge tree, while positive rank-one factorizations recover only projective local tensors modulo the full incidence-scaling group; physical bridge multipliers are not identified. A graph-to-algebra classification of cycle and theta factors, together with marginal submersions and coherent bounded probes, reconstructs arbitrary subdivisions.
 
-The boundary is sharp even without triangles. For every n ≥ 4 we construct two triangle-free networks that are weakly but not strongly tree-child, nonisomorphic, and not triangle-related, yet whose open JC images share a regular relatively open subset of full dimension 2n + 1. A second triangle-containing family exhibits a distinct pendant-transfer mechanism. All finite-atlas, class-membership, Fourier-equality, sign, and Jacobian claims are supported by exact primary and independently implemented replay certificates.
+The boundary is sharp even without triangles. For every n ≥ 4 we construct two triangle-free networks that are weakly but not strongly tree-child, nonisomorphic, and not triangle-related, yet whose open JC images share a regular relatively open subset of full dimension 2n + 1. A second triangle-containing family exhibits a distinct pendant-transfer mechanism. All finite-atlas, class-membership, Fourier-equality, sign, and Jacobian claims are supported by exact primary and separately implemented replay certificates.
 
 ## Submission classification
 
@@ -40,7 +40,7 @@ Alec Kriebel conceived and directed the study, fixed the mathematical scope and 
 
 ## Data and code availability
 
-All graph encodings, exact certificates, separately implemented verifiers, mutation transcripts, source, and deterministic reproduction commands are provided in the accompanying reproducibility archive and at https://github.com/AlecKriebel/Math/tree/stc-jc-sharp-boundary-v1.1.1. A persistent archive identifier will be added after it is issued; no unissued DOI is claimed.
+All graph encodings, exact certificates, separately implemented verifiers, mutation transcripts, source, and deterministic reproduction commands are provided in the accompanying reproducibility archive and at https://github.com/AlecKriebel/Math/tree/stc-jc-sharp-boundary-v1.1.2. The exact public replay assets are attached at https://github.com/AlecKriebel/Math/releases/tag/stc-jc-sharp-boundary-v1.1.2. A persistent archive identifier will be added after it is issued; no unissued DOI is claimed.
 
 ## Generative-AI disclosure
 

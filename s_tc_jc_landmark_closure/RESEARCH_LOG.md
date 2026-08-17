@@ -888,3 +888,41 @@
 - A fail-closed regression and response table are under
   `reviews/v1_1_1_referee_revision/`.  Exact full replay and final adversarial
   release review are the remaining gates.
+## 2026-08-16 — v1.1.2 public replay and submission-package hardening
+
+- Accepted a fresh adversarial verdict that passed the mathematics but found
+  stale public replay evidence, monorepository-breaking supplement commands,
+  and one missing genericity qualifier.
+- Corrected those issues without changing a theorem, network convention,
+  model domain, local atlas, or sharpness family.
+- Replaced reader-facing “independently implemented replay” with “separately
+  implemented replay” and retained the explicit disclaimer that this is not
+  independent human review.
+- Moved the obsolete 18-page clean-replay record under immutable superseded
+  history and prepared a current non-self-referential v1.1.2 GitHub Release.
+- Built exact portal bundles for bioRxiv, Systematic Biology, and the Journal
+  of Mathematical Biology, including cover letters, editable sources,
+  metadata, checksums, upload maps, and human stop gates.
+- Rendered every page of all delivered PDFs, inspected complete contact
+  sheets and full-size critical pages, and verified all fonts are embedded.
+- Added a fail-closed v1.1.2 package/provenance verifier with active mutation
+  rejection and commissioned separate mathematical-scope and release-package
+  adversarial reviews.
+## 2026-08-16 — v1.1.2 release hardening and journal packages
+
+- Accepted the external review's manuscript corrections: the Section 10
+  biological summary now says “generic,” replay implementations are described
+  as “separately implemented,” and supplement commands work from the public
+  monorepository root.
+- Moved the obsolete 18-page Outcome-P replay records to immutable history and
+  added a local SHA-256 manifest.
+- Added exact bioRxiv, Systematic Biology, and Journal of Mathematical Biology
+  portal packages, metadata, cover letters, upload maps, human checklists, and
+  deterministic source ZIPs. The JMB-specific supplement is Online Resource 1.
+- Added a clean extracted-ZIP replay that executes the documented commands and
+  reproduces all six submission PDFs byte for byte.
+- Split offline candidate verification from the post-upload public-release
+  gate and changed the public manifest to a flat seven-record commitment over
+  the other downloaded assets. Publication remains gated on an annotated
+  v1.1.2 tag, eight exact GitHub Release assets, and
+  `PUBLIC_RELEASE_VERIFIED`.

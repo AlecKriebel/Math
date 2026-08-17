@@ -18,7 +18,7 @@ TITLE = (
     "Level-2 Jukes-Cantor Networks"
 )
 SOURCE_BINDING_SCHEME = "external-envelope-v1"
-RELEASE_TAG = "stc-jc-sharp-boundary-v1.1.1"
+RELEASE_TAG = "stc-jc-sharp-boundary-v1.1.2"
 
 
 def sha256(path: Path) -> str:
@@ -52,8 +52,8 @@ def active_surface_checks(final, metadata) -> None:
         require("FINAL OUTCOME A" in text, f"{name}: final outcome disagrees")
         require("Strong Tree-Childness Is a Sharp Generic-Identifiability Boundary" in text,
                 f"{name}: manuscript title missing")
-    require("V111" in dependency and "V111" in crosswalk,
-            "v1.1.1 referee gate is absent from the dependency records")
+    require(all(node in dependency and node in crosswalk for node in ("V111", "V112")),
+            "v1.1.1 or v1.1.2 release gate is absent from the dependency records")
     require(final["outcome"] == metadata["outcome"] == "A",
             "machine-readable outcome is not A")
     require(final["status"] == metadata["status"] == "PROVED",
@@ -82,6 +82,18 @@ def artifact_checks(metadata) -> None:
         "zero_sum_descriptor_verifier", "v1_1_1_referee_regression",
         "v1_1_1_referee_response", "v1_1_1_adversarial_review",
         "core_atlas_figure", "biorxiv_metadata", "submission_sha256s",
+        "biorxiv_upload_map", "biorxiv_human_checklist",
+        "journal_package_builder", "submission_source_archive_replay",
+        "public_release_verifier", "release_hardening_regression",
+        "release_hardening_disposition", "release_hardening_math_review",
+        "release_hardening_package_review", "public_release_assets",
+        "release_upload_instructions", "submission_package_index",
+        "superseded_history_manifest",
+        "systematic_biology_main_pdf",
+        "systematic_biology_supplement_pdf", "systematic_biology_cover_letter",
+        "systematic_biology_source_zip", "systematic_biology_upload_map",
+        "systematic_biology_sha256s", "jmb_main_pdf", "jmb_supplement_pdf",
+        "jmb_cover_letter", "jmb_source_zip", "jmb_upload_map", "jmb_sha256s",
         "requirements_lock",
     }
     require(set(metadata["artifacts"]) == required,
@@ -122,14 +134,29 @@ def source_envelope_checks(final, metadata) -> str:
                 "outer envelope final-outcome commitment changed")
         manifest_path = PROJECT / "release_artifacts/RELEASE_ASSET_SHA256SUMS"
         require(manifest_path.is_file(), "outer release-asset manifest missing")
-        manifest = manifest_path.read_text(encoding="utf-8").splitlines()
+        manifest_rows = manifest_path.read_text(encoding="utf-8").splitlines()
+        manifest = {}
+        for row in manifest_rows:
+            match = re.fullmatch(r"([0-9a-f]{64})  ([^/]+)", row)
+            require(match is not None, f"malformed public release-manifest row: {row}")
+            value, basename = match.groups()
+            require(basename not in manifest,
+                    f"duplicate public release-manifest name: {basename}")
+            manifest[basename] = value
+        expected_public = {
+            Path(record["path"]).name: record["sha256"]
+            for record in envelope["external_artifacts"].values()
+        }
+        require(len(expected_public) == len(envelope["external_artifacts"]),
+                "external release asset basenames collide")
+        expected_public["RELEASE_ENVELOPE.json"] = sha256(envelope_path)
+        require(manifest == expected_public,
+                "public flat release manifest is incomplete or stale")
         for name, record in envelope["external_artifacts"].items():
             target = REPO / record["path"]
             require(target.is_file(), f"external release artifact missing: {name}")
             require(sha256(target) == record["sha256"],
                     f"external release artifact hash changed: {name}")
-            require(f"{record['sha256']}  {record['path']}" in manifest,
-                    f"external manifest commitment missing: {name}")
         for name in ("verify_quick.log", "verify_full.log", "verify_regenerate_all.log"):
             transcript_checks(
                 PROJECT / "release_artifacts/clean_clone_transcripts" / name,
@@ -330,6 +357,15 @@ def release_review_checks() -> None:
     require(all(f"F{i}" in response_text for i in range(1, 5)) and
             "No theorem statement" in response_text,
             "v1.1 repair response is incomplete")
+    for name in (
+        "ADVERSARIAL_MATHEMATICAL_SCOPE_REVIEW.md",
+        "ADVERSARIAL_RELEASE_PACKAGE_REVIEW.md",
+    ):
+        current = PROJECT / "reviews/v1_1_2_release_hardening" / name
+        require(current.is_file(), f"v1.1.2 adversarial review missing: {name}")
+        review_text = current.read_text(encoding="utf-8").rstrip()
+        require(review_text.endswith("PASS") and "HOLD" not in review_text.splitlines()[-1],
+                f"v1.1.2 adversarial review did not pass: {name}")
 
 
 def main() -> None:

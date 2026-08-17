@@ -6,6 +6,8 @@ source "$HERE/bootstrap.sh"
 cd "$STC_JC_PROJECT"
 
 "$STC_JC_PYTHON" reviews/v1_1_1_referee_revision/verify_referee_regressions.py
+"$STC_JC_PYTHON" reviews/v1_1_2_release_hardening/verify_release_hardening.py
+"$STC_JC_PYTHON" reproducibility/verify_submission_source_archives.py
 "$STC_JC_PYTHON" reproducibility/verify_active_release.py
 "$STC_JC_PYTHON" reproducibility/verify_fixed_graph_scope.py
 "$STC_JC_PYTHON" reviews/v1_1_proof_hardening/verify_endpoint_and_analytic_regressions.py
@@ -21,4 +23,4 @@ PYTHON_BIN="$STC_JC_PYTHON" bash reviews/compact_probe_clean_clone_gate/verify_q
 "$STC_JC_PYTHON" omega_audit/independent/verify_omega_release.py
 "$STC_JC_PYTHON" omega_audit/independent/verify_omega_rank_readability.py
 
-echo "VERIFIED: quick Outcome-A bioRxiv release gates"
+echo "VERIFIED: quick Outcome-A manuscript and submission-package gates"

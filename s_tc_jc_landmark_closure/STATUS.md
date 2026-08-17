@@ -2,9 +2,12 @@
 
 Status: **PROVED — FINAL OUTCOME A**
 
-Release revision: **v1.1.1 referee-hardened**.  A targeted adversarial review
-found no counterexample; its bridge-normalization and finite-cover findings,
-along with the associated analytic and expository hardening, are incorporated.
+Release revision: **v1.1.2 public-replay-hardened**.  The v1.1.1 mathematical
+revision remains unchanged except for a genericity qualifier and terminology;
+v1.1.2 corrects the public commands, removes stale replay records from the
+active release surface, and prepares hash-bound current replay assets. Those
+assets count as published evidence only after the separate public-download
+verifier returns `PUBLIC_RELEASE_VERIFIED`.
 
 Manuscript: **Strong Tree-Childness Is a Sharp Generic-Identifiability Boundary for
 Level-2 Jukes–Cantor Networks**
@@ -38,12 +41,13 @@ stochastic images under `T`, pointwise classification of the exceptional
 locus, K2P/K3P results, or a theorem for arbitrary hidden rooted refinements.
 
 The active manuscript, dependency graph, theorem-to-certificate crosswalk,
-release metadata, exact component verifiers, and clean-clone transcripts are
-the only authoritative release surfaces. Superseded claims are retained only
-under `history/` and are not inputs to any active verifier.
+release metadata, exact component verifiers, and, once generated from the
+immutable source commit, clean-clone transcripts are the only authoritative
+release surfaces. Superseded claims are retained only under `history/` and
+are not inputs to any active verifier.
 
 The release uses a non-self-referential two-layer seal. The core metadata in
 this directory is included in the persistent archive.
 `ARCHIVE_SOURCE_COMMIT.txt` records its immutable source commit, and the
-external `release_artifacts/RELEASE_ENVELOPE.json` binds that commit, the three
-clean transcripts, and the final archive hash.
+external `release_artifacts/RELEASE_ENVELOPE.json`, once sealed, binds that
+commit, the three clean transcripts, and the final archive hash.

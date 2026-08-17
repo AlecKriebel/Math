@@ -1,6 +1,7 @@
 # Sharp generic-identifiability boundary for level-2 JC networks
 
-**Final Outcome A is proved and independently verified.**
+**Final Outcome A is proved and checked by exact primary and separately
+implemented replay certificates.**
 
 For binary already-simple standard semi-directed strongly tree-child
 level-2 networks, open-JC source-relative full-dimensional regular
@@ -54,7 +55,16 @@ is `docs/SHARP_BOUNDARY_THEOREM.md`; the authoritative outcome is
 
 ## Sealed release evidence
 
-The exact certified source commit, clean-clone transcripts, environment
-versions, output hashes, and deterministic archive checksum are recorded in
-`RELEASE_METADATA.json` and `release/final_biorxiv/`. The active archive is a
-deposit-ready release asset; no persistent DOI is claimed before issuance.
+The exact source commit, clean-clone transcripts, environment versions,
+output hashes, and deterministic archive checksum are bound by the two-layer
+seal described in `RELEASE_METADATA.json`. The GitHub Release identified in
+`release/PUBLIC_RELEASE_ASSETS.md` becomes authoritative only after
+`verify_public_release.py` downloads and verifies its exact eight-asset set.
+No persistent DOI is claimed before issuance. Historical 18-page replay
+records are isolated under
+`history/superseded_release_evidence/` and are not active evidence.
+
+Format-specific upload bundles for bioRxiv, Systematic Biology, and the
+Journal of Mathematical Biology are in `biorxiv_submission/` and
+`journal_submission/`.  Their upload maps identify every remaining human
+portal action; no script submits or communicates externally.
