@@ -2,7 +2,14 @@
 
 ## FINAL-RELEASE-READY
 
-The numerical-provenance, theorem-scope, proof-presentation, certificate-visibility, and release-rebuild program is complete. The frozen flagship archive was preserved and verified before reconstruction. Every headline theorem survived. The corrected release was rebuilt from the exact current diffusion profile and one machine-readable numerical source rather than from superseded tables or figure data.
+The numerical-provenance, theorem-scope, proof-presentation,
+certificate-visibility, and release-rebuild program is complete.  This is a
+**recreated corrected release**, not a claim of byte identity with the lost
+archive.  A pre-submission adversarial pass found and repaired a false endpoint
+in the equilibrium-scaled family while preserving every headline conclusion.
+The release was rebuilt from the exact current diffusion profile and one
+machine-readable numerical source rather than from superseded tables or figure
+data.
 
 The release is internally validated and ready for external specialist audit and author-controlled submission. It is not represented as peer reviewed, independently confirmed, posted, or submitted.
 
@@ -79,6 +86,27 @@ A typed stale-claim audit distinguishes:
 - deliberately retained mutation fixtures;
 - claim-bearing stale values, of which none remain.
 
+# ADVERSARIAL THEOREM REPAIR
+
+The earlier scaled-family interval was false in high dimension.  At
+`m=149`, `nu=147`, and its rational endpoint `L=1/21`, the exact homogeneous
+characteristic determinant has an unstable complex pair.  The old 34-term
+check proved positivity of a polynomial that was not connected by the needed
+modulus inequality to that determinant.
+
+The repair keeps the old endpoint for `nu=1` and uses
+
+```text
+L0(nu) = sqrt(5/(4nu)),  nu >= 2.
+```
+
+An exact 22-term certificate now acts directly on `QF-R`, the actual
+homogeneous characteristic determinant.  The spatial 84-term certificate and
+the nonlinear cubic/gauge arguments remain valid on the narrowed interval.
+The endpoint contrasts still both scale as `Theta(sqrt(m))`, and their exact
+product is unchanged.  An exact rational legacy-endpoint regression prevents
+the disconnected certificate from returning.
+
 # GENERAL MATRIX THEOREM
 
 ## Old hypotheses
@@ -112,9 +140,12 @@ The proof now separates:
 
 1. the principal-minor expansion;
 2. positivity of every higher coefficient;
-3. uniqueness and simplicity of the nonzero positive root when `beta_1<0`;
+3. uniqueness and scalar simplicity of the nonzero positive dispersion root
+   when `beta_1<0`;
 4. strict monotonicity of `lambda -> det(lambda I+sD-J)` on `lambda>=0`;
-5. the exact positive-real-eigenvalue band.
+5. the exact positive-real-eigenvalue band;
+6. ordinary algebraic simplicity of the zero eigenvalue at threshold from
+   `chi'_(s_*)(0)>0`, rather than from a generalized-pencil inference.
 
 Thus, when `beta_1(D)<0`, there is one unique positive threshold `s_*`, and
 
@@ -196,7 +227,7 @@ The supplement prints or tabulates every certificate used in a headline claim, i
 - the fourteen-term boundary-triad Routh-Hurwitz expression;
 - the corrected homogeneous certificate;
 - the unit-profile 77-term spatial certificate;
-- the scaled-family 34-term homogeneous and 84-term spatial certificates;
+- the scaled-family 22-term homogeneous and 84-term spatial certificates;
 - shifted polynomial coefficient lists used in the cubic sign proofs;
 - the comparison proving `N_m(L)>1/200`;
 - the unique equality terms for each half-plane certificate.
@@ -213,7 +244,11 @@ or, in the public package,
 python independent_verifier/verify_symbolic_certificates.py
 ```
 
-from the repository root. The command regenerates the exact expressions, compares all coefficient tables, checks signs and equality cases, and exits nonzero under the prescribed mutations.
+from the repository root. The command regenerates the exact expressions,
+checks the machine-readable coefficient data from which the printed tables are
+generated, verifies signs, determinant connections, and equality cases, and
+exits nonzero under the prescribed endpoint, Fourier-factor, and certificate
+mutations.
 
 # STABLE UNIT DESIGN
 
@@ -253,10 +288,16 @@ Distinct notation is used throughout:
 - `r_m` for the critical eigenvector;
 - `nu=m-2` for the dimension offset.
 
-For
+For `nu=1`, retain the interval
 
 ```text
-L in [1/sqrt(3nu), 90nu/(90nu+1)],
+L in [1/sqrt(3), 90/91].
+```
+
+For `nu>=2`, use
+
+```text
+L in [sqrt(5/(4nu)), 90nu/(90nu+1)].
 ```
 
 the proof follows the complete chain:
@@ -278,13 +319,16 @@ the proof follows the complete chain:
 14. `eta_m(L)>0`, `c_m(L)<0`;
 15. exchange of stability.
 
-The lower endpoint
+The lower endpoint is therefore
 
 ```text
-L_0=1/sqrt(3(m-2))
+L_0 = 1/sqrt(3)                    if nu=1,
+L_0 = sqrt(5/(4nu))                if nu>=2.
 ```
 
-is identified as the sufficient boundary of the present exact modulus certificate, not as a proved intrinsic dynamical boundary. The endpoint is called the **square-root-scaling endpoint**, not a balanced point with equal constants.
+It is identified as a sufficient certificate boundary, not as a proved
+intrinsic dynamical boundary. The endpoint is called the
+**square-root-scaling endpoint**, not a balanced point with equal constants.
 
 The theorem establishes globally optimal square-root exponents for simultaneous diffusion and equilibrium contrast. It does not establish globally optimal constants or the complete Pareto frontier.
 
@@ -292,7 +336,11 @@ The theorem establishes globally optimal square-root exponents for simultaneous 
 
 The paper states the exact non-improvability consequence supported by the mathematics: the endpoint `n-1` in general principal unstable-subsystem localization cannot be reduced within binary-complex classical mass action, even when locally stable patterned branches are required.
 
-The general subsystem-order range is anchored to Satnoianu-Menzinger-Maini, and the unstable-subsystem mechanism to Anma-Sakamoto-Yoneda. The manuscript does not state that either source posed this exact result as a conjecture.
+The general subsystem-order range is anchored to
+Satnoianu--Menzinger--Maini, the unstable-subsystem mechanism to
+Anma--Sakamoto--Yoneda, and the statistical many-species diffusion-threshold
+comparison to Haas--Goldstein. The manuscript does not state that any source
+posed this exact result as a conjecture.
 
 A separate paragraph compares the topology with equal-diffusion Turing-network literature. Equal diagonal diffusion cannot destabilize this topology; the exact required stationary heterogeneity is
 
@@ -335,8 +383,8 @@ Repairs include:
 
 - Final title: *Exact Diffusion Design for Maximally Collective Stable Turing Patterns in Binary-Complex Mass-Action Networks*
 - Subtitle: *Topology-Wide All-Spectrum Localization and Exponent-Optimal Heterogeneity Trade-Offs*
-- Abstract length: 196 words
-- Main manuscript: 15 pages
+- Abstract: below the 250-word limits used by the planned venues
+- Main manuscript: 16 pages
 - Technical supplement: 12 pages
 - Theorem summary: 2 pages
 - Proof skeleton: 5 pages
@@ -372,7 +420,13 @@ SUBMISSION_BUNDLE_FRESHNESS_PASS
 ALL_FINAL_RELEASE_REPLAY_CHECKS_PASS
 ```
 
-The downloadable release archive is also replayed after extraction. Its checksum is recorded in the companion `.zip.sha256` file because a ZIP cannot self-contain its own final checksum without changing that checksum.
+The self-contained portable replay and the exact, numerical, document, and
+package checks for this repaired release are recorded in
+`release/REPLAY_STATUS.md`. The five frozen historical-lineage archives are
+external prerequisites for the top-level lineage stage and are not bundled;
+they were unavailable in the final repair environment, so no post-repair full
+lineage replay is claimed. For an ordinary third-party downloader, the
+self-contained command is `cd public/repository && bash replay.sh`.
 
 # EXTERNAL AUDIT
 
@@ -400,13 +454,18 @@ Nothing was sent automatically.
 
 Fresh packages were rebuilt from the revised source tree for:
 
-- bioRxiv Systems Biology;
-- arXiv `q-bio.MN`, with `q-bio.QM` and `nlin.PS` metadata;
-- Journal of Mathematical Biology;
-- SIAM Journal on Applied Dynamical Systems;
-- Physica D.
+- bioRxiv Systems Biology / New Results;
+- arXiv `q-bio.MN`, with `q-bio.QM` and `nlin.PS` metadata as an optional
+  fallback;
+- a provisional planning bundle for the later SIAM Journal on Applied
+  Dynamical Systems submission.
 
-Each source ZIP is detached-built and integrity-tested. No preprint, submission, endorsement request, specialist inquiry, or email was sent automatically. The factual AI-assistance disclosure remains marked for author approval.
+Each source ZIP is detached-built and integrity-tested. The SIADS planning
+bundle is not portal-ready: current journal formatting, keywords/MSC,
+supplement indexing, line numbering, and human confirmations remain listed in
+`submission/journal/README.md`. No preprint, submission, endorsement request,
+specialist inquiry, or email was sent automatically. The factual AI-assistance
+disclosure remains marked for author approval.
 
 # LIMITATIONS
 
@@ -438,8 +497,11 @@ The corrected project contains:
 - `submission/arxiv/`;
 - `submission/journal/`;
 - `release/one_command_replay.sh`;
-- `release/replay.log`;
+- `release/REPLAY_STATUS.md`;
+- `release/BUNDLE_SHA256.txt`;
 - `release/reproducibility.md`;
 - `release/sha256_manifest.txt`.
 
-The complete downloadable archive and its SHA-256 companion are created outside the project tree after the final detached replays.
+The tracked manifest covers the corrected project artifacts. Canonical ZIP
+construction for each public, submission, and specialist bundle is part of
+the repository replay; no untracked outer-release archive is claimed here.

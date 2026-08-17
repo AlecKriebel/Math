@@ -2,6 +2,13 @@
 """One-command exact verification of all load-bearing symbolic certificates."""
 import subprocess,sys
 from pathlib import Path
+
+if not __debug__:
+    raise SystemExit(
+        "Exact certificate verification requires assertions; "
+        "unset PYTHONOPTIMIZE and do not use python -O"
+    )
+
 HERE=Path(__file__).resolve().parent
 checks=[
  "verify_all_spectrum.py",
@@ -13,6 +20,7 @@ checks=[
  "dd_verify_mode_isolation.py",
  "dd_verify_harmonic_corrections.py",
  "dd_verify_cubic_sign.py",
+ "frontier_verify_determinant_identity.py",
  "frontier_verify_mode_certificates.py",
  "frontier_verify_master_certificate.py",
  "frontier_verify_cubic_bound.py",

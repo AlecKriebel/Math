@@ -3,6 +3,8 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 PUB="$ROOT/public/repository"
 DATAZIP="$ROOT/public/data_archive/final_release_data.zip"
+export SOURCE_DATE_EPOCH=1786752000 TZ=UTC LC_ALL=C PYTHONOPTIMIZE=0
+export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1
 
 copy_files() {
   local srcroot="$1" dstroot="$2"; shift 2
@@ -15,7 +17,7 @@ copy_files() {
 # ---------- portable public repository: strict allowlist ----------
 rm -rf "$PUB" "$ROOT/public/data_archive"
 mkdir -p "$PUB" "$ROOT/public/data_archive"
-copy_files "$ROOT" "$PUB" LICENSE CITATION.cff requirements.txt
+copy_files "$ROOT" "$PUB" LICENSE CITATION.cff RESEARCH_LOG.md requirements.txt
 
 cat > "$PUB/README.md" <<'EOF'
 # Exact Diffusion Design for Maximally Collective Stable Turing Patterns
@@ -28,7 +30,11 @@ Portable exact source, proof certificates, independent verifiers, current-profil
 bash replay.sh
 ```
 
-The full command regenerates the current exact finite data, verifies the all-dimensional certificates, reruns mutation tests and numerical illustrations, rebuilds all three figures, and compiles the manuscript and supplement. Numerical illustrations are not used in any proof.
+The full command regenerates the current exact finite data, verifies the all-dimensional certificates, reruns mutation tests and numerical illustrations, rebuilds all four figures, and compiles the manuscript and supplement. Numerical illustrations are not used in any proof.
+
+`verification_outputs/` records the current repair campaign, and
+`sha256_manifest.txt` verifies the initially downloaded tree. Running the
+replay regenerates both for the local toolchain.
 EOF
 cat > "$PUB/CERTIFICATES.md" <<'EOF'
 # All-dimensional proof certificates
@@ -47,14 +53,16 @@ The all-dimensional arguments are human-readable in `proof_audit/` and checked b
 - `python independent_verifier/frontier_verify_mode_certificates.py`
 - `python independent_verifier/frontier_verify_master_certificate.py`
 - `python independent_verifier/frontier_verify_cubic_bound.py`
+- `python independent_verifier/frontier_verify_determinant_identity.py`
 - `python independent_verifier/verify_symbolic_certificates.py`
 
-Printed coefficient tables are `data/certificate_tables.tex` and `data/sign_certificate_tables.tex`. The single exact source for all displayed finite values is `data/current_profile_exact.json`. Finite instances are regression checks, not replacements for the symbolic proof.
+Printed coefficient tables are `data/certificate_tables.tex`, `data/sign_certificate_tables.tex`, and `data/triad_routh_gap.tex`. The single exact source for all displayed finite values is `data/current_profile_exact.json`. Finite instances are regression checks, not replacements for the symbolic proof.
 EOF
 
 COMPUTATION=(
   computation/audit_manuscript.py
   computation/audit_numerical_provenance.py
+  computation/audit_pdfs.py
   computation/audit_stale_claims.py
   computation/generate_current_profile_data.py
   computation/generate_tables.py
@@ -78,6 +86,7 @@ DATA_FILES=(
  data/contrast_table.tex
  data/certificate_tables.tex
  data/sign_certificate_tables.tex
+ data/triad_routh_gap.tex
  data/branch_amplitudes.csv
  data/refinement_checks.csv
  data/simulation_parameters.json
@@ -119,7 +128,34 @@ cat > "$PUB/replay.sh" <<'EOF'
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 cd "$ROOT"
-export PYTHONHASHSEED=0 MPLBACKEND=Agg SOURCE_DATE_EPOCH=1786752000 FORCE_SOURCE_DATE=1 TZ=UTC
+export PYTHONOPTIMIZE=0
+export PYTHONHASHSEED=0 MPLBACKEND=Agg SOURCE_DATE_EPOCH=1786752000 FORCE_SOURCE_DATE=1 TZ=UTC LC_ALL=C
+export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1
+required_commands=(python pdflatex biber pdffonts sha256sum awk grep find sort xargs tail)
+for command_name in "${required_commands[@]}"; do
+  if ! command -v "$command_name" >/dev/null 2>&1; then
+    printf 'missing required command: %s\n' "$command_name" >&2
+    exit 2
+  fi
+done
+python - <<'PY'
+import importlib
+import re
+import sys
+
+if sys.flags.optimize:
+    raise SystemExit("replay requires Python assertions; do not use -O")
+minimums = {
+    "matplotlib": (3, 7), "numpy": (1, 24), "pandas": (2, 0),
+    "pypdf": (6, 0), "pytest": (8, 0), "scipy": (1, 10), "sympy": (1, 12),
+}
+for name, required in minimums.items():
+    module = importlib.import_module(name)
+    match = re.match(r"(\d+)\.(\d+)", module.__version__)
+    if match is None or tuple(map(int, match.groups())) < required:
+        raise SystemExit(f"{name} {module.__version__} is below {required}")
+    print(f"PYTHON_PACKAGE={name}=={module.__version__}")
+PY
 OUT="$ROOT/verification_outputs"
 mkdir -p "$OUT" data/network_instances data/exact_instances
 
@@ -131,7 +167,7 @@ python computation/generate_sign_certificate_tables.py
 echo '[2/8] exact tests and source audits'
 python -m pytest -q computation/tests > "$OUT"/pytest.txt
 python computation/audit_manuscript.py > "$OUT"/manuscript_audit.txt
-python independent_verifier/verify_current_numerical_provenance.py > "$OUT"/detached_provenance.txt
+python independent_verifier/verify_current_numerical_provenance.py > "$OUT"/detached_numerical_provenance.txt
 python independent_verifier/verify_symbolic_certificates.py > "$OUT"/symbolic_certificates.txt
 
 echo '[3/8] integrated exact designs'
@@ -182,24 +218,62 @@ for f in manuscript/main.log manuscript/supplement.log; do
 done
 
 echo '[8/8] portability, PDF, and manifest'
-for f in manuscript/main.pdf manuscript/supplement.pdf figures/network_family.pdf figures/stable_tradeoff.pdf figures/stable_profiles.pdf; do test -s "$f"; done
+for f in manuscript/main.pdf manuscript/supplement.pdf figures/network_family.pdf figures/stable_tradeoff.pdf figures/stable_profiles.pdf figures/amplitude_scaling.pdf; do test -s "$f"; done
 for f in manuscript/main.pdf manuscript/supplement.pdf; do pdffonts "$f" | tail -n +3 | awk 'NF && $5!="yes" {bad=1} END{exit bad}'; done
+python computation/audit_pdfs.py --profile public > "$OUT"/pdf_semantic_audit.txt
 if grep -RIl --include='*.py' --include='*.md' --include='*.tex' --include='*.json' --include='*.sh' '/mnt/data/' . | grep -v '^./replay.sh$' | grep .; then exit 1; fi
 if [[ "${FINAL_RELEASE_QUICK:-0}" == 1 ]]; then
   rm -rf data/simulations_quick data/branch_amplitudes_quick.csv data/refinement_checks_quick.csv
+  rm -f "$OUT/simulations_quick.txt"
 fi
+rm -f figures/contrast_table.csv figures/stable_tradeoff.png \
+  figures/stable_profiles.png figures/amplitude_scaling.png \
+  figures/network_family_standalone.pdf
 rm -rf .pytest_cache
 find . -type d -name '__pycache__' -prune -exec rm -rf {} +
-find . -type f \( -name '*.aux' -o -name '*.log' -o -name '*.bcf' -o -name '*.blg' -o -name '*.fls' -o -name '*.fdb_latexmk' -o -name '*.run.xml' -o -name '*.out' -o -name '*.toc' \) -delete
-find . -type f ! -path './.pytest_cache/*' ! -path '*/__pycache__/*' ! -name '*.pyc' ! -name '*.aux' ! -name '*.log' ! -name '*.bcf' ! -name '*.blg' ! -name '*.fls' ! -name '*.fdb_latexmk' ! -name '*.run.xml' ! -name '*.out' ! -name '*.toc' ! -name 'sha256_manifest.txt' -print0 | sort -z | xargs -0 sha256sum > sha256_manifest.txt
+find . -type f \( -name '*.aux' -o -name '*.log' -o -name '*.bcf' -o -name '*.blg' -o -name '*.fls' -o -name '*.fdb_latexmk' -o -name '*.run.xml' -o -name '*.out' -o -name '*.toc' -o -name '*.xdv' \) -delete
+find . -type f ! -path './.pytest_cache/*' ! -path '*/__pycache__/*' ! -name '*.pyc' ! -name '*.aux' ! -name '*.log' ! -name '*.bcf' ! -name '*.blg' ! -name '*.fls' ! -name '*.fdb_latexmk' ! -name '*.run.xml' ! -name '*.out' ! -name '*.toc' ! -name '*.xdv' ! -name 'sha256_manifest.txt' -print0 | sort -z | xargs -0 sha256sum > sha256_manifest.txt
+grep -Fq '  ./RESEARCH_LOG.md' sha256_manifest.txt
 sha256sum -c sha256_manifest.txt >/dev/null
 echo PUBLIC_REPLAY_PASS
 EOF
 chmod +x "$PUB/replay.sh"
 
+# Current portable evidence and an initial self-verifying manifest. The replay
+# regenerates these files for a downloader's own toolchain.
+VERIFICATION_FILES=(
+  detached_numerical_provenance.txt
+  integrated_designs.txt
+  manuscript_audit.txt
+  numerical_provenance.txt
+  pdf_semantic_audit.txt
+  principal_minor_diffusion_ray.txt
+  pytest.txt
+  simulations.txt
+  stale_claim_audit.txt
+  symbolic_certificates.txt
+)
+copy_files "$ROOT/release/verification_outputs" "$PUB/verification_outputs" "${VERIFICATION_FILES[@]}"
+PUBLIC_PDF_PREFLIGHT_FILES=(
+  SUMMARY.txt
+  manuscript_main_pdf.txt
+  manuscript_supplement_pdf.txt
+  figures_network_family_pdf.txt
+  figures_stable_tradeoff_pdf.txt
+  figures_stable_profiles_pdf.txt
+  figures_amplitude_scaling_pdf.txt
+)
+copy_files "$ROOT/release/pdf_preflight" "$PUB/verification_outputs/pdf_preflight" \
+  "${PUBLIC_PDF_PREFLIGHT_FILES[@]}"
+(
+  cd "$PUB"
+  find . -type f ! -path './.pytest_cache/*' ! -path '*/__pycache__/*' ! -name '*.pyc' ! -name '*.aux' ! -name '*.log' ! -name '*.bcf' ! -name '*.blg' ! -name '*.fls' ! -name '*.fdb_latexmk' ! -name '*.run.xml' ! -name '*.out' ! -name '*.toc' ! -name '*.xdv' ! -name 'sha256_manifest.txt' -print0 | sort -z | xargs -0 sha256sum > sha256_manifest.txt
+  grep -Fq '  ./RESEARCH_LOG.md' sha256_manifest.txt
+  sha256sum -c sha256_manifest.txt >/dev/null
+)
+
 # ---------- open data archive ----------
-rm -f "$DATAZIP"
-(cd "$ROOT/data" && zip -Xqr "$DATAZIP" .)
+python "$ROOT/release/deterministic_zip.py" "$ROOT/data" "$DATAZIP"
 
 # ---------- self-contained submission source bundles ----------
 prepare_source() {
@@ -212,7 +286,7 @@ prepare_source() {
   cp "$ROOT/manuscript/main.bbl" "$base/main.bbl"
   cp "$ROOT/figures/network_family.tex" "$base/figures/"
   cp "$ROOT/figures/stable_tradeoff.pdf" "$ROOT/figures/stable_profiles.pdf" "$base/figures/"
-  cp "$ROOT/data/contrast_table.tex" "$ROOT/data/certificate_tables.tex" "$ROOT/data/sign_certificate_tables.tex" "$base/data/"
+  cp "$ROOT/data/contrast_table.tex" "$ROOT/data/certificate_tables.tex" "$ROOT/data/sign_certificate_tables.tex" "$ROOT/data/triad_routh_gap.tex" "$base/data/"
   python - "$base" <<'PY'
 from pathlib import Path
 import sys
@@ -223,14 +297,16 @@ for fn in ('main.tex','supplement.tex'):
 PY
 }
 for base in "$ROOT/submission/biorxiv/source" "$ROOT/submission/arxiv/source" "$ROOT/submission/journal/source"; do prepare_source "$base"; done
+# Let arXiv's selected TeX Live toolchain run Biber against its own biblatex
+# version rather than shipping a potentially format-incompatible .bbl file.
+rm -f "$ROOT/submission/arxiv/source/main.bbl"
 cp "$ROOT/manuscript/main.pdf" "$ROOT/submission/biorxiv/manuscript.pdf"
 cp "$ROOT/manuscript/supplement.pdf" "$ROOT/submission/biorxiv/supplement.pdf"
 cp "$ROOT/manuscript/main.pdf" "$ROOT/submission/journal/manuscript.pdf"
 cp "$ROOT/manuscript/supplement.pdf" "$ROOT/submission/journal/supplement.pdf"
-rm -f "$ROOT/submission/biorxiv/source_package.zip" "$ROOT/submission/arxiv/arxiv_source.zip" "$ROOT/submission/journal/source_package.zip"
-(cd "$ROOT/submission/biorxiv/source" && zip -Xqr "$ROOT/submission/biorxiv/source_package.zip" .)
-(cd "$ROOT/submission/arxiv/source" && zip -Xqr "$ROOT/submission/arxiv/arxiv_source.zip" .)
-(cd "$ROOT/submission/journal/source" && zip -Xqr "$ROOT/submission/journal/source_package.zip" .)
+python "$ROOT/release/deterministic_zip.py" "$ROOT/submission/biorxiv/source" "$ROOT/submission/biorxiv/source_package.zip"
+python "$ROOT/release/deterministic_zip.py" "$ROOT/submission/arxiv/source" "$ROOT/submission/arxiv/arxiv_source.zip"
+python "$ROOT/release/deterministic_zip.py" "$ROOT/submission/journal/source" "$ROOT/submission/journal/source_package.zip"
 
 # ---------- external specialist packets ----------
 MIN="$ROOT/external_audit/minimal_verifier"
@@ -241,6 +317,12 @@ cat > "$MIN/replay.sh" <<'EOF'
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$0")"
+export PYTHONOPTIMIZE=0
+python - <<'PY'
+import sys
+if sys.flags.optimize:
+    raise SystemExit("replay requires Python assertions; do not use -O")
+PY
 python verify_principal_minor_diffusion_ray.py
 python verify_symbolic_certificates.py
 python verify_improved_profile.py
@@ -290,12 +372,27 @@ cat > "$PACKROOT/symbolic/questions.md" <<'EOF'
 
 1. Is the generalized principal-minor derivative monotonicity proof valid under its stated coefficient hypotheses?
 2. Are the complete omission-minor table and factor-eight mechanism correct?
-3. Are the equality cases in the 34-, 35-, 77-, and 84-term certificates correct?
-4. Is the gauge comparison `N_m(L)>1/200` a valid all-m cubic-sign proof?
+3. Does the 22-term homogeneous certificate control the actual determinant
+   `QF-R`, and does it correctly reject the superseded `1/sqrt(3 nu)` endpoint?
+4. Are the equality cases in the 22-, 35-, 77-, and 84-term certificates correct?
+5. Is the gauge comparison `N_m(L)>1/200` a valid all-m cubic-sign proof?
 EOF
 for kind in reaction_network pde symbolic; do
-  rm -f "$PACKROOT/${kind}_audit_packet.zip"
-  (cd "$PACKROOT/$kind" && zip -Xqr "../${kind}_audit_packet.zip" .)
+  python "$ROOT/release/deterministic_zip.py" "$PACKROOT/$kind" "$PACKROOT/${kind}_audit_packet.zip"
 done
+
+(
+  cd "$ROOT"
+  sha256sum \
+    public/data_archive/final_release_data.zip \
+    submission/biorxiv/source_package.zip \
+    submission/arxiv/arxiv_source.zip \
+    submission/journal/source_package.zip \
+    external_audit/packets/reaction_network_audit_packet.zip \
+    external_audit/packets/pde_audit_packet.zip \
+    external_audit/packets/symbolic_audit_packet.zip \
+    > release/BUNDLE_SHA256.txt
+  sha256sum -c release/BUNDLE_SHA256.txt >/dev/null
+)
 
 echo PACKAGES_REFRESHED

@@ -8,13 +8,17 @@ Core commands:
 python independent_verifier/verify_family.py
 python independent_verifier/verify_realization_space.py
 python independent_verifier/verify_all_spectrum.py
-python independent_verifier/verify_one_bad_minor.py
+python independent_verifier/verify_principal_minor_diffusion_ray.py
+python independent_verifier/verify_network_one_bad_minor.py
 python independent_verifier/verify_diffusion_criterion.py
 python independent_verifier/verify_contrast_bounds.py
 python independent_verifier/verify_improved_profile.py
-python independent_verifier/verify_pareto_family.py
+python independent_verifier/frontier_verify_pareto.py
 python independent_verifier/verify_symbolic_certificates.py
 python independent_verifier/verify_branch_stability.py
 ```
 
 The all-dimensional proof objects are the source proofs in `proof_audit/`, the coefficient tables in `data/certificate_tables.tex`, and the exact JSON certificates in this directory. Finite dimensions are regression tests only.
+
+The exact verifiers require normal Python assertion mode. Canonical entrypoints
+fail immediately under `python -O` or a nonzero `PYTHONOPTIMIZE` setting.

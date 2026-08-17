@@ -1,5 +1,8 @@
+import json
 from pathlib import Path
 import sys
+
+import pytest
 import sympy as sp
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -8,6 +11,8 @@ sys.path.insert(0, str(ROOT / "independent_verifier"))
 import stable_core as sc
 import core as dc
 import pareto_core as pc
+import frontier_verify_master_certificate as master_certificate
+import frontier_verify_mode_certificates as mode_certificates
 
 
 def test_family_flux_and_conservation():
@@ -72,6 +77,61 @@ def test_pareto_exact_contrasts_and_cubic_sign():
             assert sp.N(pc.den_formula(m, L)) < 0
 
 
+def test_repaired_pareto_endpoint_and_legacy_counterexample():
+    assert sp.factor(pc.L0(3) - 1 / sp.sqrt(3)) == 0
+    for m in (4, 5, 6, 8, 10, 149):
+        assert sp.factor((m - 2) * pc.L0(m) ** 2 - sp.Rational(5, 4)) == 0
+    # An exact Rouche comparison encloses an unstable root at the superseded
+    # m=149 endpoint L=1/sqrt(3*(m-2))=1/21.
+    mode_certificates.legacy_endpoint_rouche_regression()
+
+
+def test_homogeneous_certificate_coefficient_mutation_is_rejected(tmp_path):
+    source = ROOT / "independent_verifier" / "pareto_all_m_certificate.json"
+    payload = json.loads(source.read_text())
+    term = payload["modulus"]["homogeneous"]["terms"][0]
+    original = term["coefficient_in_U_ascending"][0]
+    term["coefficient_in_U_ascending"][0] = str(sp.Rational(original) + 1)
+    mutated = tmp_path / "mutated_mode_certificate.json"
+    mutated.write_text(json.dumps(payload))
+    with pytest.raises(AssertionError):
+        mode_certificates.verify(mutated)
+
+
+def test_endpoint_factor_mutation_is_rejected(tmp_path):
+    source = ROOT / "independent_verifier" / "frontier_certificate.json"
+    payload = json.loads(source.read_text())
+    payload["pareto_family"]["L0"]["r_ge_2"] = "sqrt(5)/(3*sqrt(r))"
+    mutated = tmp_path / "mutated_master_certificate.json"
+    mutated.write_text(json.dumps(payload))
+    with pytest.raises(AssertionError):
+        master_certificate.verify(mutated)
+
+
+def test_fourier_factor_mutations_are_rejected():
+    m = 5
+    A = dc.Avec(m)
+    r, d, ell = dc.selected(m)
+    D = sp.diag(*d)
+    Brr = dc.B(m, r, r)
+    w0 = dc.w0(m)
+    w2 = dc.w2(m)
+
+    # The cosine-square projection contributes -1/4 to both stable equations.
+    assert A * w0 != -sp.Rational(1, 2) * Brr
+    assert (A - 4 * D) * w2 != -sp.Rational(1, 2) * Brr
+    # The second harmonic has wave-number square four, not two.
+    assert (A - 2 * D) * w2 != -sp.Rational(1, 4) * Brr
+
+    H = dc.Hsum(m)
+    correct = sp.factor(
+        (ell.T * (dc.B(m, r, w0) + sp.Rational(1, 2) * dc.B(m, r, w2)))[0]
+    )
+    mutated = sp.factor((ell.T * (dc.B(m, r, w0) + dc.B(m, r, w2)))[0])
+    assert sp.factor(correct - dc.N_formula(m, H)) == 0
+    assert sp.factor(mutated - dc.N_formula(m, H)) != 0
+
+
 def test_mutations_are_detected():
     m = 5
     A = dc.Avec(m)
@@ -86,7 +146,6 @@ def test_mutations_are_detected():
 
 
 def test_current_profile_single_source_and_m3_regression():
-    import json
     data=json.loads((ROOT/'data'/'current_profile_exact.json').read_text())
     assert data['schema']=='current-profile-exact-v1'
     row=data['rows'][0]
@@ -100,7 +159,6 @@ def test_current_profile_single_source_and_m3_regression():
 
 
 def test_old_profile_mutation_is_rejected_by_provenance():
-    import json
     data=json.loads((ROOT/'data'/'current_profile_exact.json').read_text())
     row=data['rows'][0]
     old_first='257/240'

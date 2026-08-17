@@ -30,8 +30,18 @@ if missing_cites: raise AssertionError(f'missing bib keys {missing_cites}')
 envs={}
 for typ in ('theorem','proposition','lemma','corollary','remark','definition'):
     for body in re.findall(r'\\begin\{'+typ+r'\}(.*?)\\end\{'+typ+r'\}',clean,re.S):
-        for lab in re.findall(r'\\label\{([^}]+)\}',body): envs[lab]=typ
-# Named cleveref references are allowed; reject stale literal "Theorem 3.1" etc.
+        prefix={'theorem':'thm','proposition':'prop','lemma':'lem',
+                'corollary':'cor','remark':'rem','definition':'def'}[typ]+':'
+        for lab in re.findall(r'\\label\{([^}]+)\}',body):
+            if lab.startswith(prefix): envs[lab]=typ
+# The theorem-like environments share a counter.  Without alias counters,
+# cleveref can silently print the wrong environment type, so require an
+# explicit semantic noun for every theorem-like reference.
+for group in re.findall(r'\\(?:c|C)ref\{([^}]+)\}',clean):
+    named=[x.strip() for x in group.split(',') if x.strip() in envs]
+    if named:
+        raise AssertionError(f'theorem-like cleveref reference remains: {named}')
+# Reject brittle literal number references as well.
 if re.search(r'\b(?:Theorem|Proposition|Lemma|Corollary|Remark)\s+\d+\.\d+',clean):
     raise AssertionError('literal numbered environment reference remains')
 
@@ -78,6 +88,14 @@ for stale in ('0.1054','1.311','57/56','1589m','227m-451'):
     if stale in claim_text: raise AssertionError(f'stale numerical artifact {stale}')
 if '143636/7451873' not in (ROOT/'data'/'current_profile_exact.json').read_text():
     raise AssertionError('mandatory m=3 eta regression missing')
+
+for marker in ('22 nonzero monomials',r'\nu L^2\ge5/4',
+               r'q_3=(\lambda+7)(\lambda^2+5\lambda+2)'):
+    if marker not in clean:
+        raise AssertionError(f'missing repaired-proof marker {marker}')
+triad=(ROOT/'data'/'triad_routh_gap.tex').read_text()
+if '16 b^{2} h_{1} h_{Z}^{2}' not in triad:
+    raise AssertionError('generated triad Routh gap is missing the h_1 h_Z^2 term')
 
 print('MANUSCRIPT_AUDIT_PASS')
 print('labels',len(labels),'references',len(refs),'bibkeys',len(bibkeys),'citations',len(cites),'abstract_words',len(words))

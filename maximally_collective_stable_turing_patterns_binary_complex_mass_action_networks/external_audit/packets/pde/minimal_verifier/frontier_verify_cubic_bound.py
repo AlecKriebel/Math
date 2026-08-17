@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
 """Independently check the all-r cubic-sign comparison certificate."""
 from __future__ import annotations
+
+if not __debug__:
+    raise SystemExit(
+        "Exact verifier requires assertions; unset PYTHONOPTIMIZE and do not use python -O"
+    )
+
 import sympy as sp
 r,u,H,L,y=sp.symbols('r u H L y',positive=True)
 m=r+2

@@ -3,6 +3,7 @@ from pathlib import Path
 import json
 import pandas as pd
 import matplotlib.pyplot as plt
+plt.rcParams.update({'pdf.fonttype': 42, 'ps.fonttype': 42})
 ROOT=Path(__file__).resolve().parents[1]
 DATA=ROOT/'data'/'simulations'
 fig,(ax1,ax2)=plt.subplots(1,2,figsize=(10.2,4.3),constrained_layout=True)

@@ -2,6 +2,7 @@
 from pathlib import Path
 import pandas as pd
 import matplotlib.pyplot as plt
+plt.rcParams.update({'pdf.fonttype': 42, 'ps.fonttype': 42})
 ROOT=Path(__file__).resolve().parents[1]
 df=pd.read_csv(ROOT/'data'/'branch_amplitudes.csv');df=df[(df.modes==16)&(df.precision=='base')]
 fig,ax=plt.subplots(figsize=(6.3,4.6),constrained_layout=True)

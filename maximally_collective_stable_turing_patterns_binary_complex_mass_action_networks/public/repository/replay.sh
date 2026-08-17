@@ -2,7 +2,34 @@
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 cd "$ROOT"
-export PYTHONHASHSEED=0 MPLBACKEND=Agg SOURCE_DATE_EPOCH=1786752000 FORCE_SOURCE_DATE=1 TZ=UTC
+export PYTHONOPTIMIZE=0
+export PYTHONHASHSEED=0 MPLBACKEND=Agg SOURCE_DATE_EPOCH=1786752000 FORCE_SOURCE_DATE=1 TZ=UTC LC_ALL=C
+export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1
+required_commands=(python pdflatex biber pdffonts sha256sum awk grep find sort xargs tail)
+for command_name in "${required_commands[@]}"; do
+  if ! command -v "$command_name" >/dev/null 2>&1; then
+    printf 'missing required command: %s\n' "$command_name" >&2
+    exit 2
+  fi
+done
+python - <<'PY'
+import importlib
+import re
+import sys
+
+if sys.flags.optimize:
+    raise SystemExit("replay requires Python assertions; do not use -O")
+minimums = {
+    "matplotlib": (3, 7), "numpy": (1, 24), "pandas": (2, 0),
+    "pypdf": (6, 0), "pytest": (8, 0), "scipy": (1, 10), "sympy": (1, 12),
+}
+for name, required in minimums.items():
+    module = importlib.import_module(name)
+    match = re.match(r"(\d+)\.(\d+)", module.__version__)
+    if match is None or tuple(map(int, match.groups())) < required:
+        raise SystemExit(f"{name} {module.__version__} is below {required}")
+    print(f"PYTHON_PACKAGE={name}=={module.__version__}")
+PY
 OUT="$ROOT/verification_outputs"
 mkdir -p "$OUT" data/network_instances data/exact_instances
 
@@ -14,7 +41,7 @@ python computation/generate_sign_certificate_tables.py
 echo '[2/8] exact tests and source audits'
 python -m pytest -q computation/tests > "$OUT"/pytest.txt
 python computation/audit_manuscript.py > "$OUT"/manuscript_audit.txt
-python independent_verifier/verify_current_numerical_provenance.py > "$OUT"/detached_provenance.txt
+python independent_verifier/verify_current_numerical_provenance.py > "$OUT"/detached_numerical_provenance.txt
 python independent_verifier/verify_symbolic_certificates.py > "$OUT"/symbolic_certificates.txt
 
 echo '[3/8] integrated exact designs'
@@ -65,15 +92,21 @@ for f in manuscript/main.log manuscript/supplement.log; do
 done
 
 echo '[8/8] portability, PDF, and manifest'
-for f in manuscript/main.pdf manuscript/supplement.pdf figures/network_family.pdf figures/stable_tradeoff.pdf figures/stable_profiles.pdf; do test -s "$f"; done
+for f in manuscript/main.pdf manuscript/supplement.pdf figures/network_family.pdf figures/stable_tradeoff.pdf figures/stable_profiles.pdf figures/amplitude_scaling.pdf; do test -s "$f"; done
 for f in manuscript/main.pdf manuscript/supplement.pdf; do pdffonts "$f" | tail -n +3 | awk 'NF && $5!="yes" {bad=1} END{exit bad}'; done
+python computation/audit_pdfs.py --profile public > "$OUT"/pdf_semantic_audit.txt
 if grep -RIl --include='*.py' --include='*.md' --include='*.tex' --include='*.json' --include='*.sh' '/mnt/data/' . | grep -v '^./replay.sh$' | grep .; then exit 1; fi
 if [[ "${FINAL_RELEASE_QUICK:-0}" == 1 ]]; then
   rm -rf data/simulations_quick data/branch_amplitudes_quick.csv data/refinement_checks_quick.csv
+  rm -f "$OUT/simulations_quick.txt"
 fi
+rm -f figures/contrast_table.csv figures/stable_tradeoff.png \
+  figures/stable_profiles.png figures/amplitude_scaling.png \
+  figures/network_family_standalone.pdf
 rm -rf .pytest_cache
 find . -type d -name '__pycache__' -prune -exec rm -rf {} +
-find . -type f \( -name '*.aux' -o -name '*.log' -o -name '*.bcf' -o -name '*.blg' -o -name '*.fls' -o -name '*.fdb_latexmk' -o -name '*.run.xml' -o -name '*.out' -o -name '*.toc' \) -delete
-find . -type f ! -path './.pytest_cache/*' ! -path '*/__pycache__/*' ! -name '*.pyc' ! -name '*.aux' ! -name '*.log' ! -name '*.bcf' ! -name '*.blg' ! -name '*.fls' ! -name '*.fdb_latexmk' ! -name '*.run.xml' ! -name '*.out' ! -name '*.toc' ! -name 'sha256_manifest.txt' -print0 | sort -z | xargs -0 sha256sum > sha256_manifest.txt
+find . -type f \( -name '*.aux' -o -name '*.log' -o -name '*.bcf' -o -name '*.blg' -o -name '*.fls' -o -name '*.fdb_latexmk' -o -name '*.run.xml' -o -name '*.out' -o -name '*.toc' -o -name '*.xdv' \) -delete
+find . -type f ! -path './.pytest_cache/*' ! -path '*/__pycache__/*' ! -name '*.pyc' ! -name '*.aux' ! -name '*.log' ! -name '*.bcf' ! -name '*.blg' ! -name '*.fls' ! -name '*.fdb_latexmk' ! -name '*.run.xml' ! -name '*.out' ! -name '*.toc' ! -name '*.xdv' ! -name 'sha256_manifest.txt' -print0 | sort -z | xargs -0 sha256sum > sha256_manifest.txt
+grep -Fq '  ./RESEARCH_LOG.md' sha256_manifest.txt
 sha256sum -c sha256_manifest.txt >/dev/null
 echo PUBLIC_REPLAY_PASS

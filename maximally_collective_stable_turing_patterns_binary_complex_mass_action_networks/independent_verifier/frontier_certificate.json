@@ -12,20 +12,31 @@
   },
   "pareto_family": {
     "r": "m-2",
-    "L0": "1/sqrt(3*r)",
+    "L0": {
+      "r_eq_1": "1/sqrt(3)",
+      "r_ge_2": "sqrt(5)/(2*sqrt(r))"
+    },
     "L1": "90*r/(90*r+1)",
     "h_interior": "K_i/(L*K_{i-1})",
     "physical_d_interior": "1/(L*K_{i-1})",
     "chi_D": "(23/63)*(91*r*L)",
     "chi_H": "(91*r-1)/(91*r*L)",
     "product": "23*(91*r-1)/63",
-    "L0_chi_D": "2093*sqrt(r)/(63*sqrt(3))",
-    "L0_chi_H": "sqrt(3*r)*(91*r-1)/(91*r)"
+    "L0_chi_D": {
+      "r_eq_1": "2093/(63*sqrt(3))",
+      "r_ge_2": "2093*sqrt(5)*sqrt(r)/126"
+    },
+    "L0_chi_H": {
+      "r_eq_1": "90*sqrt(3)/91",
+      "r_ge_2": "2*sqrt(r)*(91*r-1)/(sqrt(5)*91*r)"
+    }
   },
   "mode_certificate": {
-    "homogeneous_terms": 34,
+    "homogeneous_terms": 22,
     "spatial_terms": 84,
-    "B": "1/3"
+    "homogeneous_B": "5/4",
+    "spatial_B": "1/3",
+    "homogeneous_coefficient_shift": "U=A-1/4"
   },
   "normal_form": {
     "zero_mode_rhs_factor": "-1/4",

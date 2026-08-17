@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
 """Verify the topology-wide all-spectrum principal-subsystem theorem."""
 from __future__ import annotations
+
+if not __debug__:
+    raise SystemExit(
+        "Exact verifier requires assertions; unset PYTHONOPTIMIZE and do not use python -O"
+    )
+
 import argparse
 import itertools
 import sympy as sp

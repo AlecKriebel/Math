@@ -4,7 +4,15 @@ from __future__ import annotations
 import csv, json, math
 from pathlib import Path
 import sympy as sp
+
+if not __debug__:
+    raise SystemExit(
+        "audit_numerical_provenance.py requires assertions; "
+        "unset PYTHONOPTIMIZE and do not use python -O"
+    )
+
 ROOT=Path(__file__).resolve().parents[1]
+REFINEMENT_RELATIVE_DIFFERENCE_LIMIT = 2e-8
 exact=json.loads((ROOT/'data'/'current_profile_exact.json').read_text())
 rows={int(r['m']):r for r in exact['rows']}
 assert rows[3]['ell_dot_r']=='-7451873/924210'
@@ -42,6 +50,14 @@ for m in (3,5,8):
     assert all(errs[i]>errs[i+1] for i in range(len(errs)-1)), (m,errs)
 
 with open(ROOT/'data'/'refinement_checks.csv',newline='') as f:
-    for z in csv.DictReader(f):
-        assert float(z['relative_difference'])<1e-6
+    refinement_differences = [
+        float(z['relative_difference']) for z in csv.DictReader(f)
+    ]
+assert refinement_differences
+max_refinement_difference = max(refinement_differences)
+print(f'MAX_REFINEMENT_RELATIVE_DIFFERENCE={max_refinement_difference:.17g}')
+assert max_refinement_difference < REFINEMENT_RELATIVE_DIFFERENCE_LIMIT, (
+    max_refinement_difference,
+    REFINEMENT_RELATIVE_DIFFERENCE_LIMIT,
+)
 print('NUMERICAL_PROVENANCE_PASS')

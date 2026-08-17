@@ -14,6 +14,10 @@
 \newcommand{\1}{\mathbf1}
 \newcommand{\rank}{\operatorname{rank}}
 \newcommand{\im}{\operatorname{im}}
+\renewcommand{\thesection}{S\arabic{section}}
+\makeatletter
+\renewcommand*\l@section{\@dottedtocline{1}{1.5em}{2.8em}}
+\makeatother
 \allowdisplaybreaks
 \title{Technical Supplement to\\[0.2em]
 \large Exact Diffusion Design for Maximally Collective Stable Turing Patterns\\
@@ -83,16 +87,7 @@ $X_1\to X_m$; edge deletion can split but cannot merge strongly connected
 components, so the same list remains exhaustive.
 
 For the boundary triad, the Routh--Hurwitz difference expands as
-\begin{align*}
-c_1c_2-c_3={}&4a^3h_1^2h_m+16a^3h_1h_m^2
- +4a^2bh_1^2h_m+23a^2bh_1h_m^2\\
-&+16a^2bh_1h_mh_Z+4a^2bh_1^2h_Z
- +64a^2bh_m^2h_Z\\
-&+7ab^2h_1^2h_m+7ab^2h_1h_m^2
- +28ab^2h_1h_mh_Z\\
-&+4ab^2h_1^2h_Z+20ab^2h_1h_mh_Z
- +16ab^2h_m^2h_Z+64ab^2h_mh_Z^2.
-\end{align*}
+\input{data/triad_routh_gap.tex}
 Every monomial is strictly positive.  The two long-cycle modulus inequalities
 are strict because $a+b>a$ and $4a+b>4a$.  Frobenius permutation therefore
 proves Hurwitz stability of every smaller principal block.
@@ -126,8 +121,9 @@ For $k\ge2$, every contributing set has order at most $n-2$, so the stated coeff
 
 The bracket $q_D(s)=\beta_1+\beta_2s+\cdots+\beta_ns^{n-1}$ is strictly
 increasing for $s>0$.  If $\beta_1<0$, it has exactly one positive zero and
-its derivative there is positive.  Since
-$\det(sD-J)=\det(D)\det(sI-D^{-1}J)$, the zero is algebraically simple.
+its derivative there is positive.  This proves scalar simplicity of the
+dispersion root.  Ordinary algebraic simplicity of zero as an eigenvalue of
+$J-s_*D$ follows from the characteristic-polynomial derivative below.
 
 For the positive-real-eigenvalue band, differentiate
 \[
@@ -137,7 +133,9 @@ Every order-at-most-$(n-2)$ contribution is nonnegative for $\lambda\ge0$.
 The order-$(n-1)$ contribution to $\chi_s'$ is the constant
 $\sum_{|I|=n-1}a_I$.  This is positive by hypothesis.  Under the common spectral corollary it equals the coefficient of $s$ in $\det(sI-J)$, and equal damping sends the simple zero and all stable eigenvalues left.  Thus $\chi_s'>0$ on the
 nonnegative real axis.  The sign of $\chi_s(0)$ then determines whether there
-is exactly one positive real eigenvalue.
+is exactly one positive real eigenvalue.  At $s=s_*$,
+$\chi_{s_*}(0)=0$ and $\chi_{s_*}'(0)>0$, so zero is an algebraically simple
+eigenvalue of $J-s_*D$.
 
 The theorem says nothing about nonreal unstable eigenvalues when $s>s_*$.
 The all-mode certificates below are separate, profile-specific results.
@@ -237,6 +235,17 @@ The homogeneous determinant has
 with
 $P=\lambda^4+12\lambda^3+42\lambda^2+47\lambda+16$ and
 $R=5\lambda^2+33\lambda+16$.
+For $m=3$,
+\[
+ q_3=(\lambda+7)(\lambda^2+5\lambda+2)
+\]
+is Hurwitz.  For $m\ge4$, the exact 35-term certificate for
+$|1+\lambda|^2|P|^2-|R|^2$ is strictly positive away from the origin in the
+closed right half-plane.  Since $|1+\lambda|\ge1$ there, a nonzero
+closed-right-half-plane root of $q_m$ would contradict
+$(1+\lambda)^{m-3}P=R$.  Finally, $q_m(0)=16m-34>0$, so the conservation zero
+is simple and the complementary homogeneous spectrum is stable for every
+$m\ge3$.
 For a mode with damping factor $t$,
 \[
  \det(\lambda I-A_m+tD_m)=Q_mF-G,
@@ -341,10 +350,25 @@ $c_m<0$.
 
 \section{Equilibrium-scaled stable family}
 
-Let $\nu=m-2$ and
-$L\in[1/\sqrt{3\nu},90\nu/(90\nu+1)]$.  The lower endpoint is the
-sufficient boundary of the present modulus certificate
-$\nu L^2\ge1/3$, not a proved intrinsic dynamical boundary.  Set
+Let $\nu=m-2$ and define
+\[
+ \kappa_\nu=\begin{cases}
+ 1/\sqrt3,&\nu=1,\\
+ \sqrt5/2,&\nu\ge2,
+ \end{cases}
+ \qquad
+ L_0(\nu)=\frac{\kappa_\nu}{\sqrt\nu},
+ \qquad
+ L_1(\nu)=\frac{90\nu}{90\nu+1}.
+\]
+This interval is nonempty.  For $\nu=1$, square both positive sides and use
+$8281<24300$.  For $\nu\ge2$,
+\[
+ (90\nu+1)^2\le(91\nu)^2<6480\nu^3,
+\]
+which is equivalent to $L_0(\nu)<L_1(\nu)$.  The lower endpoints are
+sufficient boundaries of the certificates below, not proved intrinsic
+dynamical boundaries.  For $L\in[L_0,L_1]$, set
 \[
  h_1=h_m=h_Z=1,\qquad h_i=\frac{K_i}{LK_{i-1}}.
 \]
@@ -368,8 +392,51 @@ When $t\ge1$ and $\Re\lambda\ge0$,
  \ge\left(\frac{91}{90}\right)^2
  \left(1+2\nu L\Re\lambda+\frac13(\Im\lambda)^2\right).
 \]
-The 34- and 84-term coefficient tables in Section~S8 prove homogeneous and
-all-mode stability.
+The last inequality holds because $\nu L^2\ge1/3$ throughout the certified
+interval.  The 84-term spatial coefficient table in Section~S8 is
+nonnegative and is strict except at $(\lambda,t)=(0,1)$.
+
+Homogeneous stability uses a different boundary polynomial.  At $t=0$,
+\[
+ \frac{\det(\lambda I-H A_m)}{\det H}=Q(\lambda)F(\lambda)-R(\lambda),
+\]
+where
+\[
+ Q=\prod_{i=2}^{m-1}\left(1+L\frac{K_{i-1}}{K_i}\lambda\right),\qquad
+ F=\lambda^3+11\lambda^2+31\lambda+16,
+ \qquad R=5\lambda^2+33\lambda+16.
+\]
+For $\Re\lambda=x\ge0$, every factor in $Q$ has modulus at least
+$|1+L\lambda|$.  If $\nu\ge2$, then
+\[
+ |Q|^2\ge |1+L\lambda|^{2\nu}
+ \ge 1+2\nu Lx+\nu L^2(\Im\lambda)^2
+ \ge 1+Ax+\frac54(\Im\lambda)^2,
+ \qquad A=2\nu L.
+\]
+Here $A\ge\sqrt{5\nu}\ge\sqrt{10}>1/4$.
+The exact polynomial
+\[
+ \left(1+Ax+\frac54(\Im\lambda)^2\right)|F|^2-|R|^2
+\]
+has 22 nonzero monomials.  With $U=A-1/4$, its coefficient polynomials have
+nonnegative rational coefficients and the expression is strict away from
+$\lambda=0$.  Thus there is no nonzero homogeneous eigenvalue in the closed
+right half-plane.  Moreover
+\[
+ (QF-R)'(0)=16L\sum_{i=2}^{m-1}\frac{K_{i-1}}{K_i}-2>0,
+\]
+where the inequality uses $K_{i-1}/K_i>1$ and
+$L\ge\sqrt5/(2\sqrt\nu)$.  Thus the conservation zero is simple.  If
+$\nu=1$, put $c=91L/90$.  Direct
+division by the conservation factor gives
+\[
+ \frac{QF-R}{\lambda}
+ =c\lambda^3+(1+11c)\lambda^2+(6+31c)\lambda+(16c-2).
+\]
+Here $c>1/8$, and the remaining cubic Routh--Hurwitz difference is
+$6+99c+325c^2>0$.  This proves homogeneous relative stability in the
+exceptional dimension as well.
 
 Let
 $\rho_m=(2,-2,\ldots,-2,0,1)^T$.  The physical zero-mode gauge is
@@ -393,24 +460,33 @@ so $N_m(L)>1/200$.  Also
  -\frac{11180}{1467}L(m-2)<0.
 \]
 Therefore the family is uniformly supercritical over the certified interval.
+Indeed, the cubic comparison was proved on the broader range
+$L\ge1/\sqrt{3\nu}$; the present lower endpoint agrees with this value for
+$\nu=1$ and is larger for $\nu\ge2$.
 
 The contrasts are
 \[
  \chi_D(L)=\frac{23}{63}(91\nu L),\qquad
  \chi_H(L)=\frac{91\nu-1}{91\nu L},
 \]
-with constant product $23(91\nu-1)/63$.  At $L=1/\sqrt{3\nu}$, both have
-square-root growth.
+with constant product $23(91\nu-1)/63$.  At $L=L_0$,
+\[
+ \chi_D=\frac{2093}{63}\kappa_\nu\sqrt\nu,
+ \qquad
+ \chi_H=\frac{\sqrt\nu}{\kappa_\nu}\frac{91\nu-1}{91\nu},
+\]
+so both contrasts have square-root growth.
 
 \section{Exact coefficient tables}\label{sec:coefftables}
 
 Each row below records the exponent vector and exact coefficient of the
-corresponding polynomial.  In the Pareto tables, the coefficient column is a
-polynomial in $A=2\nu L\Re\lambda$ (or any positive lower coefficient replacing
-it).  All listed coefficients are nonnegative; the strict first-order rows
-identify the unique equality case.  The command
-\texttt{python verify\_symbolic\_certificates.py} regenerates and checks the
-tables from exact symbolic expressions.
+corresponding polynomial.  In the Pareto spatial table, coefficient entries
+are polynomials in $A=2\nu L$.  In the Pareto homogeneous table, they are
+polynomials in $U=A-1/4$.  All listed coefficients are nonnegative; the
+strict rows identify the unique equality case.  From the repository root,
+the command
+\texttt{python independent\_verifier/verify\_symbolic\_certificates.py}
+regenerates and checks the tables from exact symbolic expressions.
 
 \input{data/certificate_tables.tex}
 

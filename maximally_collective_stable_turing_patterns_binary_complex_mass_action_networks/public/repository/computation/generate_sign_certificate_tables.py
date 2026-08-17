@@ -64,4 +64,26 @@ $N_m^{\rm ref}>1/100$, $S_m>-1/10$, and
 $\tau_m(L)<1/20$ to obtain $N_m(L)>1/200$.'''
 ]
 (ROOT/'data'/'sign_certificate_tables.tex').write_text('\n\n'.join(parts)+'\n')
+
+# Regenerate the printed boundary-triad Routh--Hurwitz gap from the defining
+# coefficients.  Keeping this display generated prevents transcription drift.
+a,b,h1,hm,hz=sp.symbols('a b h_1 h_m h_Z', positive=True)
+c1=a*h1+4*a*hm+b*h1+b*hm+4*b*hz
+c2=a*(4*a*h1*hm+7*b*h1*hm+4*b*h1*hz+16*b*hm*hz)
+c3=16*a*a*b*h1*hm*hz
+gap=sp.Poly(sp.expand((c1*c2-c3)/a),a,b,h1,hm,hz)
+gap_terms=[]
+for monomial,coefficient in gap.terms():
+    assert coefficient>0
+    term=coefficient
+    for variable,power in zip((a,b,h1,hm,hz),monomial):
+        term*=variable**power
+    gap_terms.append(sp.latex(term))
+assert len(gap_terms)==14
+rows=['+'.join(gap_terms[i:i+4]) for i in range(0,len(gap_terms),4)]
+triad=[r'\begin{align*}',r'c_1c_2-c_3={}&a\bigl('+rows[0]+r'\\']
+triad.extend(r'&+'+row+(r'\\' if i<len(rows)-1 else r'\bigr).')
+             for i,row in enumerate(rows[1:],start=1))
+triad.append(r'\end{align*}')
+(ROOT/'data'/'triad_routh_gap.tex').write_text('\n'.join(triad)+'\n')
 print('SIGN_CERTIFICATE_TABLES_GENERATED')

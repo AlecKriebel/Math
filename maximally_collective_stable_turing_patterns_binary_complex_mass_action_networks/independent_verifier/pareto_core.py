@@ -67,7 +67,18 @@ def ellref(m):
     return sp.Matrix([-sp.Rational(266,815)]+[sp.Rational(78260*(m-2),163*K(m,i-1)) for i in range(2,m)]+[sp.Rational(18368,7335),1])
 
 def Hsum(m): return sp.Add(*(sp.Rational(1,K(m,j)) for j in range(1,m-1)),evaluate=True)
-def L0(m): return 1/sp.sqrt(3*(m-2))
+def endpoint_kappa(m):
+    """Dimension-dependent constant in the certified lower endpoint.
+
+    The exceptional case m=3 is handled by a direct cubic Routh--Hurwitz
+    calculation.  Starting at m=4, the homogeneous half-plane certificate
+    requires (m-2)*L**2 >= 5/4.
+    """
+    if m < 3:
+        raise ValueError
+    return 1/sp.sqrt(3) if m == 3 else sp.sqrt(5)/2
+
+def L0(m): return sp.factor(endpoint_kappa(m)/sp.sqrt(m-2))
 def L1(m):
     r=m-2; return sp.Rational(90*r,90*r+1)
 def Hlist(m,L): return [1]+[sp.factor(K(m,i)/(L*K(m,i-1))) for i in range(2,m)]+[1,1]

@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$0")"
+export PYTHONOPTIMIZE=0
+python - <<'PY'
+import sys
+if sys.flags.optimize:
+    raise SystemExit("replay requires Python assertions; do not use -O")
+PY
 python verify_principal_minor_diffusion_ray.py
 python verify_symbolic_certificates.py
 python verify_improved_profile.py

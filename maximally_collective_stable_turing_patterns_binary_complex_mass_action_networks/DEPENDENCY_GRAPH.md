@@ -22,7 +22,9 @@ improved unit profile
   -> c_m<0 -> supercritical branches -> exponential H1 stability
 
 equilibrium-scaling family
-  -> 34/84-term spectral certificates
+  -> piecewise L0: 1/sqrt(3) at nu=1, sqrt(5/(4nu)) at nu>=2
+  -> direct nu=1 cubic + 22-term homogeneous certificate
+  -> 84-term spatial certificate
   -> physical fixed-mass gauge correction
   -> N_m(L)>1/200 and c_m(L)<0
   -> exact stable trade-off curve

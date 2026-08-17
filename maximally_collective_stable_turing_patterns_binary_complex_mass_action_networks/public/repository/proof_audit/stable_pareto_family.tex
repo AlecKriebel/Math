@@ -1,7 +1,12 @@
 \section*{Stable Pareto theorem}
 For every integer $m\ge3$, write $\nu=m-2$ and let
 \[
- L_0=\frac1{\sqrt{3\nu}},
+ \kappa_\nu=\begin{cases}
+ 1/\sqrt3,&\nu=1,\\
+ \sqrt5/2,&\nu\ge2,
+ \end{cases}
+ \qquad
+ L_0=\frac{\kappa_\nu}{\sqrt\nu},
  \qquad
  L_1=\frac{90\nu}{90\nu+1}.
 \]
@@ -75,7 +80,7 @@ The fixed physical conservation class becomes the normalized constraint with
 left vector $\mathsf H_m(L)^{-1}c$.
 
 
-\section*{All-mode stability for $rL^2\ge1/3$}
+\section*{All-mode stability on the certified interval}
 For a mode with scalar damping $t$, row scaling gives
 \[
  \det(\lambda I-\mathsf H_m(L)(A_m-t\Delta_m))
@@ -100,9 +105,10 @@ If $t\ge1$ and $\operatorname{Re}\lambda\ge0$, then
 \[
  |Q_m|^2\ge\left(\frac{91}{90}\right)^2|1+L\lambda|^{2\nu}
  \ge\left(\frac{91}{90}\right)^2
- \left(1+2rLx+rL^2y^2\right),
+ \left(1+2\nu Lx+\nu L^2y^2\right),
 \]
-where $x=\operatorname{Re}\lambda$.  If $rL^2\ge1/3$, this dominates the
+where $x=\operatorname{Re}\lambda$ and $y=\operatorname{Im}\lambda$.
+Throughout the certified interval $\nu L^2\ge1/3$, so this dominates the
 lower bound with coefficient $1/3$ in $y^2$.
 
 The exact polynomial
@@ -117,26 +123,57 @@ of $x$, $y^2$, and $t-1$ are strictly positive, so equality occurs only at
 $(\lambda,t)=(0,1)$.  This proves a simple isolated first-mode zero and
 Hurwitz stability for every $t>1$.
 
-For the homogeneous mode, each interior factor satisfies
+The homogeneous mode uses a different boundary polynomial.  At $t=0$,
 \[
- \left|1+L\frac{K_{i-1}}{K_i}\lambda\right|
- \ge|1+L\lambda|.
+ \frac{\det(\lambda I-\mathsf H_m(L)A_m)}{
+ \det\mathsf H_m(L)}=Q(\lambda)F_0(\lambda)-R(\lambda),
 \]
-The corresponding fixed boundary polynomials are
+where
 \[
- P=\lambda^4+12\lambda^3+42\lambda^2+47\lambda+16,
+ Q=\prod_{i=2}^{m-1}
+ \left(1+L\frac{K_{i-1}}{K_i}\lambda\right),
+ \quad F_0=\lambda^3+11\lambda^2+31\lambda+16,
  \qquad R=5\lambda^2+33\lambda+16.
 \]
-The polynomial
+For $x\ge0$, each factor in $Q$ has modulus at least $|1+L\lambda|$.
+If $\nu\ge2$, Bernoulli's inequality and the definition of $L_0$ give
 \[
- \left(1+A x+\frac13y^2\right)|P|^2-|R|^2
+ |Q|^2\ge |1+L\lambda|^{2\nu}
+ \ge1+2\nu Lx+\nu L^2y^2
+ \ge1+Ax+\frac54y^2,
+ \qquad A=2\nu L.
 \]
-has 34 nonzero monomials, again with nonnegative coefficient polynomials in
-$A$ and strict equality only at the origin.  Hence the only closed-right-
-half-plane homogeneous eigenvalue is the conservation zero.
+Here $A\ge\sqrt{5\nu}\ge\sqrt{10}>1/4$.
+The exact polynomial
+\[
+ \left(1+Ax+\frac54y^2\right)|F_0|^2-|R|^2
+\]
+has 22 nonzero monomials.  After the shift $U=A-1/4$, every coefficient is a
+polynomial in $U$ with nonnegative rational coefficients, and equality occurs
+only at $\lambda=0$.  Hence no nonzero closed-right-half-plane homogeneous
+root exists.  Also
+\[
+ (QF_0-R)'(0)
+ =16L\sum_{i=2}^{m-1}\frac{K_{i-1}}{K_i}-2>0,
+\]
+because every ratio is greater than one and
+$L\ge\sqrt5/(2\sqrt\nu)$.  Thus the conservation zero is simple.
 
-Both coefficient tables are in `pareto_all_m_certificate.json` and are
-regenerated independently.
+For $\nu=1$, put $c=91L/90$.  Then
+\[
+ \frac{QF_0-R}{\lambda}
+ =c\lambda^3+(1+11c)\lambda^2+(6+31c)\lambda+(16c-2).
+\]
+Here $c>1/8$, all coefficients are positive, and the cubic Routh--Hurwitz
+difference is
+\[
+ (1+11c)(6+31c)-c(16c-2)=6+99c+325c^2>0.
+\]
+Thus the complementary homogeneous spectrum is Hurwitz in the exceptional
+dimension as well.
+
+The 22- and 84-term coefficient tables are in
+\texttt{pareto\_all\_m\_certificate.json} and are regenerated independently.
 
 
 \section*{Uniform supercritical sign along the scaling family}
@@ -221,16 +258,28 @@ The normal-form coefficients are
 \[
  c_m(L)=\frac{N_m(L)}{\ell_m^T\mathsf H_m(L)^{-1}r_m}<0.
 \]
-Thus every member with $L\ge1/\sqrt{3\nu}$ is supercritical.
+Thus every member with $L\ge1/\sqrt{3\nu}$ is supercritical.  The certified
+spectral interval below is a subset of this range: its lower endpoint agrees
+with $1/\sqrt{3\nu}$ for $\nu=1$ and is larger for $\nu\ge2$.
 
 
 \section*{Certified stable Pareto curve}
 Set
 \[
- L_0(\nu)=\frac1{\sqrt{3\nu}},
+ \kappa_\nu=\begin{cases}
+ 1/\sqrt3,&\nu=1,\\
+ \sqrt5/2,&\nu\ge2,
+ \end{cases}
+ \qquad
+ L_0(\nu)=\frac{\kappa_\nu}{\sqrt\nu},
  \qquad L_1(\nu)=\frac{90\nu}{90\nu+1}.
 \]
-The interval is nonempty for every $\nu\ge1$.  For
+The interval is nonempty for every $\nu\ge1$.  When $\nu=1$, the squared
+inequality $L_0<L_1$ is $8281<24300$.  When $\nu\ge2$, it follows from
+\[
+ (90\nu+1)^2\le(91\nu)^2<6480\nu^3,
+\]
+which is the squared endpoint inequality.  For
 $L\in[L_0,L_1]$, every interior equilibrium scaling satisfies $h_i\ge1$.
 The largest is
 \[
@@ -262,9 +311,9 @@ dominate one another within the curve.
 
 At the certified square-root-scaling endpoint $L=L_0$,
 \[
- \chi_D=\frac{2093}{63\sqrt3}\sqrt{\nu},
+ \chi_D=\frac{2093}{63}\kappa_\nu\sqrt{\nu},
  \qquad
- \chi_H=\sqrt{3\nu}\frac{91\nu-1}{91\nu}.
+ \chi_H=\frac{\sqrt\nu}{\kappa_\nu}\frac{91\nu-1}{91\nu}.
 \]
 Hence both contrasts are $\Theta(\sqrt m)$.
 

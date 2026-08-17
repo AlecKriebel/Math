@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Independent construction of the conservative all-spectrum family.
+"""Independent construction of the codimension-one all-spectrum family
+with a semipositive conservation law.
 
 Species order: X1,...,Xm,Z.
 Reaction order:

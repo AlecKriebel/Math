@@ -23,14 +23,14 @@ def texfrac(s: str) -> str:
     return s.replace("*", r"\,")
 
 
-def polyA(coeffs):
+def polynomial(coeffs, variable):
     out=[]
     for k,c in enumerate(coeffs):
         if c=='0': continue
         ct=texfrac(c)
         if k==0: out.append(ct)
-        elif k==1: out.append(('' if c=='1' else ct)+r'A')
-        else: out.append(('' if c=='1' else ct)+rf'A^{{{k}}}')
+        elif k==1: out.append(('' if c=='1' else ct)+variable)
+        else: out.append(('' if c=='1' else ct)+rf'{variable}^{{{k}}}')
     return '+'.join(out) or '0'
 
 
@@ -40,7 +40,11 @@ def cert_table(title, variables, terms, pareto=False):
            ' & '.join([rf'$\deg_{{{v}}}$' for v in variables]+['coefficient'])+r'\\',r'\toprule',r'\endfirsthead',
            ' & '.join([rf'$\deg_{{{v}}}$' for v in variables]+['coefficient'])+r'\\',r'\toprule',r'\endhead']
     for t in terms:
-        coeff=polyA(t['coefficient_in_A_ascending']) if pareto else texfrac(t['coefficient'])
+        if pareto:
+            key='coefficient_in_U_ascending' if 'coefficient_in_U_ascending' in t else 'coefficient_in_A_ascending'
+            coeff=polynomial(t[key], 'U' if key.endswith('_U_ascending') else 'A')
+        else:
+            coeff=texfrac(t['coefficient'])
         lines.append(' & '.join([str(x) for x in t['powers']]+[rf'${coeff}$'])+r'\\')
     lines += [r'\bottomrule',r'\end{longtable}']
     return '\n'.join(lines)
@@ -60,7 +64,7 @@ def main():
     lines += [r'\bottomrule',r'\end{tabular}']
     (ROOT/'data'/'contrast_table.tex').write_text('\n'.join(lines)+'\n')
     with open(ROOT/'figures'/'contrast_table.csv','w',newline='') as f:
-        w=csv.writer(f)
+        w=csv.writer(f, lineterminator='\n')
         w.writerow(['m','n','chiD_unit','chiD_scale','chiH_scale','product','minimax_lower','eta','cubic','amplitude_coefficient'])
         w.writerows(csvrows)
 
@@ -70,7 +74,7 @@ def main():
     parts=[
       cert_table('35-term homogeneous certificate',D['homogeneous']['variables'],D['homogeneous']['terms']),
       cert_table('77-term improved-profile spatial certificate',D['improved_mode']['variables'],D['improved_mode']['terms']),
-      cert_table('34-term equilibrium-scaled homogeneous certificate',P['modulus']['homogeneous']['variables'],P['modulus']['homogeneous']['terms'],True),
+      cert_table(r'22-term equilibrium-scaled homogeneous certificate ($U=A-1/4$)',P['modulus']['homogeneous']['variables'],P['modulus']['homogeneous']['terms'],True),
       cert_table('84-term equilibrium-scaled spatial certificate',P['modulus']['spatial']['variables'],P['modulus']['spatial']['terms'],True),
     ]
     (ROOT/'data'/'certificate_tables.tex').write_text('\n\n'.join(parts)+'\n')

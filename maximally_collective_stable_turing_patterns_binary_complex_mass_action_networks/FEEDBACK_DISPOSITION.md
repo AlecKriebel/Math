@@ -8,7 +8,7 @@
 | Do not overclaim the Pareto frontier | APPLY | Only exponent optimality is claimed; constants remain open. |
 | Semipositive terminology | REQUIRES REPAIR | All “conservative network” language was removed or replaced by codimension-one semipositive conservation. |
 | Main-text proof sufficiency | APPLY | SCC exhaustion, one-bad-minor proof, omission table, certificate architecture, normal form, and exchange of stability are visible in the main text. |
-| Certificate visibility | APPLY | Full 14/34/35/77/84-term tables and commands are in the supplement and public verifier. |
+| Certificate visibility | APPLY | Full 14/22/35/77/84-term tables and commands are in the supplement and public verifier. |
 | Precise stability meaning | APPLY | Local exponential asymptotic stability is stated in fixed-mass $H^1$ with hypotheses. |
 | Local well-posedness and positivity | APPLY | Quasi-positivity, local semilinear theory, and the local-in-phase-space forward-global conclusion are stated. |
 | Robustness or removal | APPLY | A retuned codimension-one theorem is retained; no uniform radius is claimed. |
@@ -21,3 +21,23 @@
 | T-ALG integration | REMOVED | No private complexity result enters the paper. |
 
 | Stale current-profile numerical table | REPAIRED | All finite values now derive from `data/current_profile_exact.json`; old-profile mutations fail. |
+
+## Pre-submission adversarial review — 16 August 2026
+
+| Supplied review item | Disposition | Action |
+|---|---|---|
+| `Theorem 3.1` should be `Lemma 3.1` | ACCEPT | Replaced the mixed-counter `cleveref` output with an explicit lemma reference and added source/PDF semantic gates. |
+| `Theorems 4.1 and 5.1` mixes a theorem and proposition | ACCEPT | Replaced it with explicit theorem and proposition references and added a PDF-text regression. |
+| Figure 1 says “shaded” although the set is outlined | ACCEPT | Caption now describes the dashed outline. |
+| Scalar pencil-root simplicity implies ordinary eigenvalue simplicity | ACCEPT OBJECTION | Removed the invalid implication; ordinary simplicity now follows from the already-proved characteristic-polynomial derivative. |
+| Top-level replay is portable without historical inputs | ACCEPT QUALIFICATION | The five frozen lineage archives are explicit prerequisites; the public replay remains self-contained. |
+| Two code docstrings call the family conservative | ACCEPT | Replaced with codimension-one/semipositive terminology. |
+| Improve Figure 2 grayscale robustness | ACCEPT | Stable curves, lower bounds, and endpoint markers now share dimension colors and use distinct markers/dotted bounds. |
+| No further theorem work is warranted | REJECT | Independent determinant reconstruction found that the old scaled-family endpoint is homogeneously unstable at `m=149`. The invalid 34-term certificate was replaced by an exact 22-term certificate and a narrower endpoint that preserves the square-root theorem. |
+| Recreated archive is byte-identical to the lost release | NOT CLAIMED | Release documentation describes a recreated corrected release and regenerates a current project manifest and canonical bundle hashes after rebuilding. |
+
+Additional independent findings applied in the same pass include the corrected
+14-term boundary-triad display, the missing `m=3` homogeneous-stability base
+case, a definition of `chi_stable`, S-prefixed supplement numbering, a runnable
+verifier command, a corrected Figure 2 endpoint caption, and a close-literature
+comparison with Haas--Goldstein (2021).

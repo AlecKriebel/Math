@@ -14,9 +14,11 @@ def verify(m:int):
     assert min(hs,key=lambda z:float(z))==1
     assert max(hs,key=lambda z:float(z))==hs[1]
     chiD=sp.factor(ds[0]/ds[1]);chiH=sp.factor(hs[1]);prod=sp.factor(chiD*chiH)
-    assert sp.factor(chiD-sp.Rational(2093,63)*sp.sqrt(sp.Rational(r,3)))==0
-    assert sp.factor(chiH-sp.sqrt(3*r)*sp.Rational(91*r-1,91*r))==0
+    kappa=endpoint_kappa(m)
+    assert sp.factor(chiD-sp.Rational(2093,63)*kappa*sp.sqrt(r))==0
+    assert sp.factor(chiH-sp.sqrt(r)/kappa*sp.Rational(91*r-1,91*r))==0
     assert prod==sp.Rational(23*(91*r-1),63)
+    assert sp.factor(r*L**2-(sp.Rational(1,3) if r==1 else sp.Rational(5,4)))==0
     assert sp.simplify(chiD*chiH-8*r)>0
     assert sp.simplify(max(float(chiD),float(chiH))-float(sp.sqrt(8*r)))>0
     return {'m':m,'chi_D':str(chiD),'chi_H':str(chiH),'product':str(prod)}

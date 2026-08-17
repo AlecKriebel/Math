@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Export exact balanced-endpoint Pareto regression instances."""
+"""Export exact certified square-root-scaling endpoint instances."""
 from __future__ import annotations
 import argparse, json, sys
 from pathlib import Path

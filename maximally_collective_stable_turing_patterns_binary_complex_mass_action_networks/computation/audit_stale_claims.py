@@ -20,6 +20,7 @@ STALE = {
     "old_product_ratio": "57/56",
     "old_contrast_coefficient": "1589m",
     "old_affine_denominator": "227m-451",
+    "superseded_all_dimensional_endpoint": r"At $L=1/\sqrt{3(m-2)}$",
 }
 
 # Only prose, theorem, documentation, and generated claim tables are scanned.

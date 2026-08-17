@@ -55,7 +55,8 @@ $d_Z>8h_Z\sum_{j=2}^{n-2}d_j/h_j$.  This gives the nonattained fixed-equilibrium
 contrast infimum, the unit-equilibrium value $8(n-3)$, and the universal
 trade-off $\chi_D\chi_H>8(n-3)$.  At unit equilibrium, an exact rational design
 undergoes a primary supercritical bifurcation with locally exponentially
-stable positive patterns.  A second exact family redistributes heterogeneity
+stable positive patterns in the fixed-integrated-mass class.  A second exact
+family redistributes heterogeneity
 between diffusion and equilibrium concentrations so that both contrasts are
 $\Theta(\sqrt n)$, matching the universal minimax lower bound in exponent.
 The proof uses explicit flux-cone design, exhaustive strongly connected block
@@ -76,6 +77,9 @@ question is whether the instability can always be attributed to a smaller
 unstable subsystem.  General matrix theories allow responsible principal
 subsystems of orders up to $n-1$ and distinguish stationary from wave
 instabilities \cite{Satnoianu2000,Anma2012,VillarChampneys2023,VillarCorrection2023}.
+Random-matrix studies also find that diffusion thresholds often decrease with
+component count and that many sampled instabilities resist reduction to fewer
+diffusing species \cite{HaasGoldstein2021}.
 Reaction-network approaches instead constrain the Jacobian by stoichiometry,
 positive steady fluxes, and mass-action derivatives
 \cite{MinchevaCraciun2013,Diego2018,Scholes2019,VassenaStadler2024}.
@@ -174,8 +178,8 @@ species and $n+1$ indexed reactions and satisfies \eqref{eq:binary}.
 \begin{figure}[t]
 \centering
 \input{../figures/network_family.tex}
-\caption{The synthetic topology $\widehat N_m$.  The shaded principal species
-set $\cC_m=\{X_1,\ldots,X_m\}$ is the unique order-$(n-1)$ block with negative
+\caption{The synthetic topology $\widehat N_m$.  The dashed outline marks the
+principal species set $\cC_m=\{X_1,\ldots,X_m\}$, the unique order-$(n-1)$ block with negative
 signed determinant.  The separate $Z$ boundary pair controls the exact
 diffusion law.}
 \label{fig:network}
@@ -333,7 +337,7 @@ All coefficients are positive, and $c_1c_2-c_3$ is $a$ times fourteen
 strictly positive monomials (Supplement, Section S2).  The cubic
 Routh--Hurwitz criterion and direct one- and two-dimensional checks establish
 Hurwitz stability of every triad principal block.  The result for all smaller
-sets follows from \cref{lem:scc} and Frobenius block triangularization.
+sets follows from Lemma~\ref{lem:scc} and Frobenius block triangularization.
 
 Finally, sparse chain expansion gives
 \begin{equation}\label{eq:coreminor}
@@ -386,9 +390,9 @@ Principal-minor expansion gives \cref{eq:pdbeta,eq:betak}; the constant term
 vanishes because $\det J=0$.  For $k\ge2$, every summand has
 $|I|\le n-2$ and is strictly positive.  Hence the bracket in
 \eqref{eq:pdbeta} is strictly increasing on $s\ge0$, proving the threshold
-criterion, uniqueness, and scalar simplicity.  Since
-$p_D(s)=\det(D)\det(sI-D^{-1}J)$, scalar simplicity is algebraic simplicity of
-the zero eigenvalue of $J-s_*D$.
+criterion, uniqueness, and scalar simplicity of the dispersion root $s_*$.  Ordinary
+algebraic simplicity of the zero eigenvalue of $J-s_*D$ follows below from
+$\chi_{s_*}'(0)>0$.
 
 For fixed $s>0$,
 \begin{equation}\label{eq:chis}
@@ -400,7 +404,9 @@ $\lambda\ge0$.  The total contribution from $|I|=n-1$ is the positive number
 $\sum_{|I|=n-1}a_I$ in \eqref{eq:pmhyp}, while the full-order contribution
 vanishes.  Therefore $\chi_s'(\lambda)>0$ for all $\lambda\ge0$.  Since
 $\chi_s(0)=p_D(s)$ and $\chi_s(\lambda)\to\infty$, the exact band
-\eqref{eq:exactband} follows.
+\eqref{eq:exactband} follows.  At $s=s_*$,
+$\chi_{s_*}(0)=0$ and $\chi_{s_*}'(0)>0$; hence zero is an algebraically
+simple eigenvalue of $J-s_*D$.
 \end{proof}
 
 \begin{remark}\label{rem:spectralhyp}
@@ -415,7 +421,7 @@ order-$(n-1)$ minors is needed in the general theorem.
 \section{Exact diffusion design and sharp linear contrast}
 
 The all-spectrum theorem supplies the lower-order hypotheses of
-\cref{thm:diffusionray}.  The remaining information is the complete order-$m$
+Theorem~\ref{thm:diffusionray}.  The remaining information is the complete order-$m$
 omission table.
 
 \begin{proposition}[Order-$(n-1)$ omission minors]\label{prop:omissions}
@@ -488,7 +494,8 @@ $D\mapsto\gamma D$ sends $s_*\mapsto s_*/\gamma$.
 \end{theorem}
 
 \begin{proof}
-Combine \cref{thm:diffusionray,prop:omissions}.  A second derivation uses the left vector $c$ and the right zero vector
+Combine Theorem~\ref{thm:diffusionray} and
+Proposition~\ref{prop:omissions}.  A second derivation uses the left vector $c$ and the right zero vector
 \[
  r_0=H^{-1}(2,-2,\ldots,-2,0,1)^T.
 \]
@@ -508,7 +515,7 @@ conservation eigenvalue initially moves right exactly under
 \end{proof}
 
 For a Neumann interval $(0,L)$, mode $k$ has $s=q_k^2=(k\pi/L)^2$.
-Therefore every mode with $q_k^2<s_*$ has a positive real eigenvalue, and no
+Therefore every nonzero mode with $0<q_k^2<s_*$ has a positive real eigenvalue, and no
 mode with $q_k^2>s_*$ has one.  A separate spectral certificate is required to
 exclude wave instability for a chosen diffusion profile.
 
@@ -571,6 +578,11 @@ $d_{\min}=d_2=(91m-183)^{-1}$ and $d_{\max}=d_1=23/63$, so
 \begin{equation}\label{eq:improvedcontrast}
  \chi_D^{\rm unit}(m)=\frac{23(91m-183)}{63}.
 \end{equation}
+Let $\chi_{\rm stable}(m)$ denote the infimum of diffusion contrast, at unit
+equilibrium, over positive realizations and positive diagonal diffusion
+profiles admitting a primary stationary bifurcation with a nearby positive,
+patterned branch that is locally exponentially asymptotically stable in the
+fixed-integrated-mass $H^1$ phase space.
 
 \begin{theorem}[Primary supercritical stable design]\label{thm:unitstable}
 On $(0,\pi)$ with Neumann conditions, consider
@@ -610,9 +622,13 @@ The homogeneous characteristic determinant is
 \end{equation}
 where
 $P=\lambda^4+12\lambda^3+42\lambda^2+47\lambda+16$ and
-$R=5\lambda^2+33\lambda+16$.  The exact difference
-$|1+\lambda|^2|P|^2-|R|^2$ has 35 nonnegative monomials in
-$\Re\lambda$ and $(\Im\lambda)^2$, with equality only at the origin.
+$R=5\lambda^2+33\lambda+16$.  For $m=3$,
+$q_3=(\lambda+7)(\lambda^2+5\lambda+2)$ is Hurwitz.  For $m\ge4$, the exact
+difference $|1+\lambda|^2|P|^2-|R|^2$ has 35 nonnegative monomials in
+$\Re\lambda$ and $(\Im\lambda)^2$, with equality only at the origin.  Thus a
+nonzero closed-right-half-plane root of $q_m$ would contradict
+$(1+\lambda)^{m-3}P=R$.  Since $q_m(0)=16m-34>0$, the conservation zero is
+simple and the complementary homogeneous spectrum is stable.
 
 For damping $tD_m$, sparse chain elimination gives
 \begin{equation}\label{eq:qfgunit}
@@ -675,11 +691,16 @@ coefficient tables and algebra appear in the Supplement.
 Put $\nu=m-2$ and retain the effective diffusion matrix $\Delta_m$ from
 \eqref{eq:Dimp}.  Define
 \begin{equation}\label{eq:Lrange}
- L_0(\nu)=\frac1{\sqrt{3\nu}},\qquad
+ \kappa_\nu=\begin{cases}
+ 1/\sqrt3,&\nu=1,\\
+ \sqrt5/2,&\nu\ge2,
+ \end{cases}
+ \qquad L_0(\nu)=\frac{\kappa_\nu}{\sqrt\nu},\qquad
  L_1(\nu)=\frac{90\nu}{90\nu+1}.
 \end{equation}
-The lower endpoint $L_0(\nu)$ is the boundary of the present exact modulus
-certificate through $\nu L^2\ge1/3$; it is not asserted to be an intrinsic
+For $\nu\ge2$, the lower endpoint is the boundary of the homogeneous modulus
+estimate $\nu L^2\ge5/4$ used below.  The exceptional case $\nu=1$ is proved
+directly.  Each sufficient endpoint is not asserted to be an intrinsic
 dynamical boundary of the family.
 For $L\in[L_0(\nu),L_1(\nu)]$, set
 \begin{equation}\label{eq:HL}
@@ -699,7 +720,8 @@ $k_r=(x^*)^{-y_r}$.
 For every $m\ge3$ and $L\in[L_0(\nu),L_1(\nu)]$, the physical realization
 \eqref{eq:HL}--\eqref{eq:Dphys} has a primary simple transverse first-mode
 stationary bifurcation, a negative cubic coefficient, and two nearby positive
-locally exponentially asymptotically stable patterned equilibria.  Its
+patterned equilibria that are locally exponentially asymptotically stable in
+the fixed-integrated-mass $H^1$ phase space.  Its
 physical contrasts are
 \begin{align}
  \chi_D(L)&=\frac{23}{63}\,91\nu L,\label{eq:chiDpareto}\\
@@ -708,9 +730,9 @@ physical contrasts are
 \end{align}
 At $L=L_0$,
 \begin{equation}\label{eq:scalingendpoint}
- \chi_D=\frac{2093}{63\sqrt3}\sqrt\nu,
+ \chi_D=\frac{2093}{63}\kappa_\nu\sqrt\nu,
  \qquad
- \chi_H=\sqrt{3\nu}\frac{91\nu-1}{91\nu}.
+ \chi_H=\frac{\sqrt\nu}{\kappa_\nu}\frac{91\nu-1}{91\nu}.
 \end{equation}
 Thus both contrasts are $\Theta(\sqrt m)$.  Since every stationary crossing
 obeys
@@ -742,10 +764,53 @@ If $t\ge1$ and $\lambda=x+iy$ with $x\ge0$, then
  \ge\left(\frac{91}{90}\right)^2
  \left(1+2\nu Lx+\frac13y^2\right),
 \]
-because $\nu L^2\ge1/3$.  The corresponding boundary difference has 84
-nonnegative monomials and equality only at $(\lambda,t)=(0,1)$.  A separate
-34-term certificate proves homogeneous relative stability.  Hence the primary
-mode and all higher-mode conclusions hold throughout the certified interval.
+ because $\nu L^2\ge1/3$ throughout the new interval.  The corresponding
+boundary difference has 84 nonnegative monomials and equality only at
+$(\lambda,t)=(0,1)$.
+
+The homogeneous mode requires a different boundary polynomial.  At $t=0$,
+\[
+ \frac{\det(\lambda I-\mathsf H_m(L)A_m)}{\det\mathsf H_m(L)}
+ =Q(\lambda)F(\lambda)-R(\lambda),
+\]
+where
+\[
+ Q=\prod_{i=2}^{m-1}\left(1+L\frac{K_{i-1}}{K_i}\lambda\right),\quad
+ F=\lambda^3+11\lambda^2+31\lambda+16,
+ \quad R=5\lambda^2+33\lambda+16.
+\]
+For $x\ge0$, every factor in $Q$ has modulus at least
+$|1+L\lambda|$, because, with $r_i=K_{i-1}/K_i>1$,
+\[
+ |1+Lr_i\lambda|^2-|1+L\lambda|^2
+ =2L(r_i-1)x+L^2(r_i^2-1)(x^2+y^2)\ge0.
+\]
+If $\nu\ge2$, then
+\[
+ |Q|^2\ge |1+L\lambda|^{2\nu}
+ \ge1+2\nu Lx+\nu L^2y^2
+ \ge1+Ax+\frac54y^2,\qquad A=2\nu L.
+\]
+On this domain $A\ge\sqrt{5\nu}\ge\sqrt{10}>1/4$.
+The exact difference
+\[
+ \left(1+Ax+\frac54y^2\right)|F|^2-|R|^2
+\]
+has 22 nonzero monomials in $x$ and $y^2$.  After writing
+$A=U+1/4$, every coefficient is nonnegative, and the difference is strict
+away from $\lambda=0$.  Thus no nonzero homogeneous eigenvalue lies in the
+closed right half-plane.  Moreover
+$(QF-R)'(0)=16L\sum_{i=2}^{m-1}K_{i-1}/K_i-2>0$, so the conservation zero is
+simple.  For $\nu=1$, putting $c=91L/90$ gives
+\[
+ \frac{QF-R}{\lambda}
+ =c\lambda^3+(1+11c)\lambda^2+(6+31c)\lambda+(16c-2).
+\]
+Here $c>1/8$ and the remaining cubic Routh--Hurwitz determinant is
+$6+99c+325c^2>0$.  Hence the primary mode and all higher-mode conclusions
+hold throughout the certified interval.  The interval is nonempty: the case
+$\nu=1$ is immediate, while for $\nu\ge2$ one has
+$\sqrt{5/(4\nu)}<4/5<90\nu/(90\nu+1)$.
 
 The proof then follows the physical-to-normalized chain explicitly.  The
 positive equilibrium is $x^*=\mathsf H_m(L)^{-1}\1$, the physical diffusion is
@@ -768,13 +833,16 @@ The exact cubic numerator is
 The symbolic bounds
 $N_m^{\rm ref}>1/100$, $-1/10<S_m<0$, and $\tau_m(L)<1/20$ imply
 $N_m(L)>1/200$.  Their complete shifted coefficient lists are printed in the
-Supplement and regenerated by \texttt{python verify\_symbolic\_certificates.py}.  Meanwhile
+Supplement and regenerated from the repository root by
+\texttt{python independent\_verifier/verify\_symbolic\_certificates.py}.
+Meanwhile
 \[
  \ell_m^T\mathsf H_m(L)^{-1}r_m
  =-\frac{485873}{924210}-\frac{11180}{1467}L\nu<0.
 \]
 Therefore $\eta_m(L)>0$ and $c_m(L)<0$.  The branch and stability proof is the
-same sectorial exchange-of-stability argument as in \cref{thm:unitstable}.
+same sectorial exchange-of-stability argument as in
+Theorem~\ref{thm:unitstable}.
 The contrast formulas follow by comparing the explicit entries of
 $\mathsf H_m(L)$ and $D_m^{\rm phys}(L)$ on the interval \eqref{eq:Lrange}.
 Finally \eqref{eq:minimaxlower} is the geometric-mean consequence of
@@ -785,10 +853,11 @@ Finally \eqref{eq:minimaxlower} is the geometric-mean consequence of
 \centering
 \includegraphics[width=.78\linewidth]{../figures/stable_tradeoff.pdf}
 \caption{Exact heterogeneity trade-offs for representative dimensions.  The
-dashed hyperbolas are the universal necessary bounds
+dotted hyperbolas are the universal necessary bounds
 $\chi_D\chi_H=8(m-2)$; the solid curves are certified stable families with
-product $23(91(m-2)-1)/63$.  The marked point is the certified square-root-scaling
-endpoint.  Constants are not claimed optimal.}
+product $23(91(m-2)-1)/63$.  Each marked point is the certified
+square-root-scaling endpoint for its dimension.  Constants are not claimed
+optimal.}
 \label{fig:tradeoff}
 \end{figure}
 
@@ -825,10 +894,12 @@ all-dimensional claim.}
 \end{table}
 
 \begin{proposition}[Retuned local robustness]\label{prop:robust}
-Fix $m$ and a certified $L$.  Sufficiently small perturbations of positive
-rate constants, equilibrium coordinates, diffusion ratios, and interval
-length admit a unique nearby scalar diffusion multiplier at which the primary
-supercritical bifurcation and local exponential stability persist.
+Fix $m$ and a certified $L$.  Sufficiently small perturbations within the
+positive-equilibrium realization manifold---equivalently, of positive steady
+fluxes and equilibrium coordinates with rates reconstructed accordingly---as
+well as small perturbations of diffusion ratios and interval length, admit a
+unique nearby scalar diffusion multiplier at which the primary supercritical
+bifurcation and local exponential stability persist.
 \end{proposition}
 
 \begin{proof}
@@ -886,6 +957,13 @@ equilibrium realization, all-spectrum stability of every smaller principal
 block, exact diffusion design, and stable nonlinear patterned branches in
 every dimension.
 
+Haas and Goldstein quantified diffusion thresholds statistically for random
+Jacobians through six components and found that many sampled instabilities
+cannot be reduced to fewer diffusing species \cite{HaasGoldstein2021}.  Here
+the scope is deterministic and complementary: one constrained mass-action
+topology is treated exactly in every dimension, with all positive
+realizations quantified and nonlinear branch stability proved.
+
 Mincheva and Craciun's principal projected-network injectivity condition is a
 different reaction-network notion and is not identified with principal-block
 Hurwitz localization \cite{MinchevaCraciun2013}.  Interaction-topology and
@@ -940,7 +1018,8 @@ hidden and provides a focused nonlinear design problem.
 
 \paragraph{Data and code availability.}
 Exact certificates, independent verifiers, mutation tests, numerical data,
-figure scripts, and a one-command replay accompany the manuscript.
+figure scripts, and replay instructions are available at
+\url{https://github.com/AlecKriebel/Math/tree/main/maximally_collective_stable_turing_patterns_binary_complex_mass_action_networks}.
 
 \paragraph{AI-assisted research disclosure.}
 AI systems assisted with exploratory theorem discovery, symbolic derivation,
@@ -950,5 +1029,9 @@ manuscript.  Central claims are supported by explicit proofs and independent
 exact implementations; neither numerical agreement nor AI confidence is
 treated as proof.
 
+\begingroup
+\renewcommand*{\bibfont}{\small}
+\sloppy
 \printbibliography
+\endgroup
 \end{document}

@@ -8,7 +8,7 @@
 | homogeneous stability | `critical_mode/homogeneous_stability.tex` | `proof_audit/homogeneous_stability.tex` |
 | primary crossing and mode isolation | `critical_mode/` | `proof_audit/improved_unit_profile.tex`, `proof_audit/mode_isolation.tex` |
 | Hessian and harmonic corrections | `nonlinear/` | corresponding `proof_audit/` files |
-| cubic sign | `nonlinear/coefficient_*` | `proof_audit/cubic_coefficient.tex`, `coefficient_sign.tex` |
+| cubic sign | `nonlinear/coefficient_*` | `proof_audit/cubic_coefficient.tex`, `proof_audit/cubic_sign.tex` |
 | exchange of stability | `stability/` | `proof_audit/branch_stability.tex` |
 | nonlinear asymptotic stability | new derivation | `proof_audit/branch_stability.tex` |
 | asymptotics | new derivation from closed formulas | `proof_audit/asymptotics.tex` |

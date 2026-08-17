@@ -1,18 +1,30 @@
 # Final rendered-PDF audit
 
-Date: 2026-08-15
+Date: 2026-08-16
 
-Rendered with the PDF skill renderer and inspected page by page.
+Rendered with Poppler and inspected page by page. Page counts, document
+properties, extractable text, and font resources were also checked with
+`pdfinfo`, pypdf, and pdfplumber.
 
-- Main manuscript: 14 pages; no clipped text, overlapping labels, black boxes, or broken glyphs.
-- Technical supplement: 8 pages; dense certificate displays remain within the text block.
+- Main manuscript: 16 pages; no clipped text, overlapping labels, black boxes, or broken glyphs.
+- Technical supplement: 12 pages; dense certificate displays remain within the text block.
 - Theorem summary: 2 pages.
-- Proof skeleton: 4 pages.
-- Standalone family diagram: 1 vector page, grayscale-compatible.
-- Numerical figures: stable profiles, amplitude scaling, and asymptotic scaling render cleanly.
-- Fonts are embedded in all release PDFs.
-- `pdf_preflight.py` reports every principal PDF openable, unencrypted, and not scan-like.
+- Proof skeleton: 5 pages.
+- Standalone figures: amplitude scaling, network family, stable profiles, and
+  stable trade-off are each 1 page and render cleanly; the network diagram is
+  vector and grayscale-compatible.
+- Fonts are self-contained in all release PDFs. The three Matplotlib figures
+  use embedded CID TrueType fonts rather than Type 3 glyph fonts; the
+  manuscript preserves those embedded resources where the figures appear.
+- `computation/audit_pdfs.py` reports every principal PDF openable, with the
+  expected page count, extractable text, self-contained page fonts, and no
+  rendered semantic regression.
 
 A first standalone-diagram build produced separate float/caption pages and a label overlap. The figure source was split into a nonfloating TikZ body plus manuscript caption, the boundary module was moved downward, and the final one-page rendering was reinspected.
 
-The clean-copy replay compares manuscript page counts and extracted layout text. Byte equality is not required for manuscript PDFs because pdfTeX font-subset streams can differ across absolute build roots; the standalone vector figure remains byte-identical.
+The clean-copy replay compares manuscript page counts and extracted layout
+text. Byte equality is not required for manuscript PDFs because TeX-engine
+metadata and font-subset streams can differ across absolute build roots; the
+standalone vector figure remains byte-identical under the recorded toolchain.
+
+These counts describe the PDFs rebuilt after the final source corrections.

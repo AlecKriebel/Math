@@ -15,6 +15,7 @@ The paper proves a topology-wide all-spectrum localization theorem, an exact sta
 - `public/repository/` — portable public package;
 - `external_audit/` — specialist packets;
 - `submission/` — author-controlled bioRxiv, arXiv, and journal bundles;
-- `release/one_command_replay.sh` — full replay.
+- `release/one_command_replay.sh` — full provenance replay (requires the five
+  frozen lineage archives listed in `release/reproducibility.md`).
 
 No file has been submitted or sent automatically.

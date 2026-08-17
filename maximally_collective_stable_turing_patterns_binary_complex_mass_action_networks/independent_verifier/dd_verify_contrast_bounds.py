@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+if not __debug__:
+ raise SystemExit('Exact verifier requires assertions; unset PYTHONOPTIMIZE and do not use python -O')
+
 import sympy as sp
 for m in range(3,21):
  d=[sp.Rational(23,63)]+[sp.Rational(1,91*m-181-i) for i in range(2,m)]+[sp.Rational(1,7),sp.Rational(16,45)]

@@ -14,6 +14,7 @@ import sympy as sp
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "independent_verifier"))
 import core  # current 91m improved profile
+import pareto_core
 
 MS = tuple(range(3, 11))
 
@@ -51,8 +52,9 @@ def entry(m: int) -> dict:
     amp_sq = sp.factor(-eta / cubic)
     nu = m - 2
     chi_unit = sp.factor(sp.Rational(23, 63) * (91 * m - 183))
-    chi_d_scale = sp.Rational(2093, 63) * sp.sqrt(sp.Rational(nu, 3))
-    chi_h_scale = sp.sqrt(3 * nu) * sp.Rational(91 * nu - 1, 91 * nu)
+    scale_endpoint = pareto_core.L0(m)
+    chi_d_scale = sp.factor(sp.Rational(2093, 63) * nu * scale_endpoint)
+    chi_h_scale = sp.factor(sp.Rational(91 * nu - 1, 91 * nu) / scale_endpoint)
     product = sp.factor(sp.Rational(23, 63) * (91 * nu - 1))
     assert sp.simplify(chi_d_scale * chi_h_scale - product) == 0
     assert sp.simplify(chi_unit - product) == 0
@@ -102,7 +104,7 @@ def main() -> None:
     assert row3["ell_dot_Dr"] == "-71818/462105"
     assert row3["eta"]["exact"] == "143636/7451873"
     print("CURRENT_PROFILE_EXACT_DATA_PASS")
-    print(out)
+    print(out.relative_to(ROOT))
 
 
 if __name__ == "__main__":

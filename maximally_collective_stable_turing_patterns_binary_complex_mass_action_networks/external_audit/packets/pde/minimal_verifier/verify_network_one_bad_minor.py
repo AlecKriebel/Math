@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 """Exact interface checks for the network-specific one-bad-minor corollary on the flagship family."""
+
+if not __debug__:
+    raise SystemExit(
+        "Exact verifier requires assertions; unset PYTHONOPTIMIZE and do not use python -O"
+    )
+
 from itertools import combinations
 import sympy as sp
 from core import Avec

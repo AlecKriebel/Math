@@ -45,13 +45,16 @@ For the stronger positive-real band, define
 Every derivative contribution from $|I|\le n-2$ is nonnegative. The total
 order-$(n-1)$ derivative is $\sum_{|I|=n-1}a_I>0$, the coefficient of
 $\lambda$ in $\det(\lambda I-J)$. Hence $\chi_s'(\lambda)>0$ for $\lambda\ge0$. The sign of $\chi_s(0)$ therefore gives a positive real eigenvalue exactly for $0<s<s_*$.
+At threshold, $\chi_{s_*}(0)=0$ and $\chi_{s_*}'(0)>0$; this, rather than
+scalar simplicity of the generalized-pencil root alone, proves ordinary
+algebraic simplicity of zero for $J-s_*D$.
 
 For $A_m(a,b)H$, compute every order-$m$ omission minor. Omitting $Z$ gives weight $-2$; omitting an interior $X_j$ gives $+16$; omitting $X_1$ or $X_m$ gives zero. Thus
 \[
 \beta_1=2a^{m-1}b\prod_{i=1}^mh_i
 \left(8h_Z\sum_{j=2}^{m-1}\frac{d_j}{h_j}-d_Z\right).
 \]
-This proves the exact criterion. The same sign follows from first-order perturbation of the conservation eigenvalue. For fixed $H$, minimizing $d_{\max}/d_{\min}$ under the strict inequality gives the nonattained infimum $T(H)=8h_Z\sum h_j^{-1}$. At $H=I$, $T=8(m-2)$, and $h_Z/h_j\ge1/\chi_H$ gives $\chi_D\chi_H>8(m-2)$.
+This proves the exact criterion. The same sign follows from first-order perturbation of the conservation eigenvalue. For fixed $H$, minimizing $d_{\max}/d_{\min}$ under the strict inequality gives the nonattained infimum $T(H)=8h_Z\sum_{j=2}^{m-1} h_j^{-1}$. At $H=I$, $T=8(m-2)$, and $h_Z/h_j\ge1/\chi_H$ gives $\chi_D\chi_H>8(m-2)$.
 
 \newpage
 \section*{3. Improved unit-equilibrium primary bifurcation}
@@ -67,8 +70,12 @@ Homogeneous stability follows from
 \lambda q_m=(1+\lambda)^{m-3}P(\lambda)-R(\lambda),
 \]
 where $P=\lambda^4+12\lambda^3+42\lambda^2+47\lambda+16$ and $R=5\lambda^2+33\lambda+16$. The exact difference $|1+\lambda|^2|P|^2-|R|^2$ expands into 35 nonnegative monomials in $x=\Re\lambda$ and $y^2=(\Im\lambda)^2$, with equality only at the origin.
+For $m=3$, $q_3=(\lambda+7)(\lambda^2+5\lambda+2)$ is Hurwitz.  For
+$m\ge4$, $|1+\lambda|\ge1$ makes the 35-term strict inequality incompatible
+with $(1+\lambda)^{m-3}P=R$ at any nonzero closed-right-half-plane root.
+Since $q_m(0)=16m-34>0$, the conservation zero is simple.
 
-For spatial damping $tD_m$, chain elimination gives $\det(\lambda I-A_m+tD_m)=Q_mF-G$. At $t=1$, the interior product telescopes to $91/90$. Retaining one exact factor yields a 77-term nonnegative boundary difference in $(x,y^2,t-1)$, strict except at $(0,0,0)$. Hence the first mode has one simple zero, all other first-mode eigenvalues are stable, and all $t>1$ modes are Hurwitz.
+For spatial damping $tD_m$, chain elimination gives $\det(\lambda I-A_m+tD_m)=Q_mF-G$. At $(\lambda,t)=(0,1)$, the interior product telescopes to $91/90$. Retaining one exact factor yields a 77-term nonnegative boundary difference in $(x,y^2,t-1)$, strict except at $(0,0,0)$. Hence the first mode has one simple zero, all other first-mode eigenvalues are stable, and all $t>1$ modes are Hurwitz.
 
 The exact unit contrast is
 \[
@@ -102,7 +109,19 @@ Crandall--Rabinowitz gives two positive branches for $\mu>0$. Their center eigen
 
 \newpage
 \section*{5. Equilibrium-scaled stable trade-off and audit boundaries}
-Let $\nu=m-2$, $L_0=(3\nu)^{-1/2}$, $L_1=90\nu/(90\nu+1)$, set $h_1=h_m=h_Z=1$, $h_i=K_i/(LK_{i-1})$, and choose physical diffusion $D^{\rm phys}=H\Delta$. Under $z=Hx$,
+Let $\nu=m-2$ and
+\[
+ \kappa_\nu=\begin{cases}1/\sqrt3,&\nu=1,\\
+ \sqrt5/2,&\nu\ge2,
+ \end{cases}
+ \qquad L_0=\frac{\kappa_\nu}{\sqrt\nu},
+ \qquad L_1=\frac{90\nu}{90\nu+1}.
+\]
+The interval is nonempty: for $\nu=1$ the squared inequality is
+$8281<24300$, while for $\nu\ge2$ it follows from
+$(90\nu+1)^2\le(91\nu)^2<6480\nu^3$.  Set $h_1=h_m=h_Z=1$,
+$h_i=K_i/(LK_{i-1})$, and choose physical diffusion
+$D^{\rm phys}=H\Delta$. Under $z=Hx$,
 \[
 z_t=H\{f(z)+\Delta z_{xx}\}.
 \]
@@ -112,18 +131,67 @@ Chain elimination now gives interior factors
 \[
 g_i=\frac{K_{i-1}}{K_i}(1+L\lambda)+\frac{t-1}{K_i}.
 \]
-The bounds $rL^2\ge1/3$ and Bernoulli's inequality reduce homogeneous and spatial half-plane exclusion to 34- and 84-term nonnegative certificates. The second harmonic is unchanged, while the zero harmonic changes by $w_0(L)=w_0^{\rm ref}+\tau_m(L)\rho$. The cubic numerator is $N_m(L)=N_m^{\rm ref}+\tau_m(L)S_m$. Exact bounds
+For $t\ge1$, Bernoulli's inequality and $\nu L^2\ge1/3$ reduce spatial
+half-plane exclusion to the 84-term nonnegative certificate, strict except at
+the first-mode zero.
+
+At $t=0$, the exact homogeneous determinant, after dividing by $\det H$, is
+\[
+ QF_0-R,\qquad
+ Q=\prod_{i=2}^{m-1}\left(1+L\frac{K_{i-1}}{K_i}\lambda\right),
+\]
+\[
+ F_0=\lambda^3+11\lambda^2+31\lambda+16,
+ \qquad R=5\lambda^2+33\lambda+16.
+\]
+Every factor of $Q$ has modulus at least $|1+L\lambda|$ for
+$\Re\lambda=x\ge0$.  If $\nu\ge2$, then
+\[
+ |Q|^2\ge1+2\nu Lx+\nu L^2y^2
+ \ge1+Ax+\frac54y^2,\qquad A=2\nu L.
+\]
+On the certified domain $A\ge\sqrt{5\nu}\ge\sqrt{10}>1/4$.
+The difference $(1+Ax+\tfrac54y^2)|F_0|^2-|R|^2$ has 22 nonzero
+monomials.  After $U=A-1/4$, all coefficient polynomials are nonnegative and
+equality is possible only at $\lambda=0$.  Also
+\[
+ (QF_0-R)'(0)=16L\sum_{i=2}^{m-1}K_{i-1}/K_i-2>0,
+\]
+so the conservation zero is simple.  If $\nu=1$, putting $c=91L/90$ gives
+\[
+ \frac{QF_0-R}{\lambda}
+ =c\lambda^3+(1+11c)\lambda^2+(6+31c)\lambda+(16c-2),
+\]
+whose coefficients and Routh--Hurwitz difference
+$6+99c+325c^2$ are positive because $c>1/8$.
+
+The second harmonic is unchanged, while the zero harmonic changes by
+$w_0(L)=w_0^{\rm ref}+\tau_m(L)\rho$. The cubic numerator is
+$N_m(L)=N_m^{\rm ref}+\tau_m(L)S_m$. Exact bounds
 \[
 N_m^{\rm ref}>1/100,\qquad -1/10<S_m<0,\qquad \tau_m(L)<1/20
 \]
-give $N_m(L)>1/200$, hence $c_m(L)<0$ throughout the certified interval.
+were proved on the broader range $L\ge1/\sqrt{3\nu}$, which contains the
+new certified interval. They give $N_m(L)>1/200$, hence $c_m(L)<0$ throughout.
 
 The physical contrasts are
 \[
 \chi_D=\frac{23}{63}91\nu L,\qquad
 \chi_H=\frac{91\nu-1}{91\nu L}.
 \]
-At $L_0$, both are $\Theta(\sqrt m)$. The universal product lower bound implies any simultaneous control must have $\max(\chi_D,\chi_H)>\sqrt{8\nu}$, so exponent $1/2$ is optimal. Constants remain open.
+At $L_0$,
+\[
+ \chi_D=\frac{2093}{63}\kappa_\nu\sqrt\nu,
+ \qquad
+ \chi_H=\frac{\sqrt\nu}{\kappa_\nu}\frac{91\nu-1}{91\nu},
+\]
+so both are $\Theta(\sqrt m)$. The universal product lower bound implies any
+simultaneous control must have $\max(\chi_D,\chi_H)>\sqrt{8\nu}$, so exponent
+$1/2$ is optimal. Constants remain open.
 
-\paragraph{External failure tests.} Verify the SCC exhaustion at $b=2a$; the principal-minor derivative argument; all certificate equality cases; the transformed physical diffusion; the fixed-mass gauge; and the comparison $N_m(L)>1/200$. No finite regression substitutes for these all-$m$ identities.
+\paragraph{Failure tests.} Verify the SCC exhaustion at $b=2a$; the
+principal-minor derivative argument; the 22/35/77/84-term equality cases and
+the direct $\nu=1$ cubic; the transformed physical diffusion; the fixed-mass
+gauge; and the comparison $N_m(L)>1/200$. No finite regression substitutes
+for these all-$m$ identities.
 \end{document}

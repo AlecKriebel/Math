@@ -6,6 +6,12 @@ It builds Gamma,Y,A and the Hessian from the indexed reactions, solves the
 zero- and second-harmonic systems directly, and compares exact rationals.
 """
 from __future__ import annotations
+
+if not __debug__:
+    raise SystemExit(
+        "Exact verifier requires assertions; unset PYTHONOPTIMIZE and do not use python -O"
+    )
+
 import json
 from pathlib import Path
 import sympy as sp

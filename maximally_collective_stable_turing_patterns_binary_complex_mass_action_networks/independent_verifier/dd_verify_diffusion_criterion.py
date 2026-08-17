@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+if not __debug__:
+ raise SystemExit('Exact verifier requires assertions; unset PYTHONOPTIMIZE and do not use python -O')
+
 import sympy as sp
 from itertools import combinations
 from common import Avec

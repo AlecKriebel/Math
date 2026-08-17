@@ -6,6 +6,7 @@ These notes are private audit aids; the manuscript uses paraphrases and conventi
 |---|---|---|
 | Turing 1952 | DOI 10.1098/rstb.1952.0012 | diffusion-driven morphogenesis mechanism |
 | Satnoianu et al. 2000 | DOI 10.1007/s002850000056 | general multicomponent Turing conditions and subsystem orders |
+| Haas--Goldstein 2021 | DOI 10.1103/PhysRevLett.126.238101 | random-matrix diffusion thresholds through six components and failures of lower-dimensional reduction |
 | Anma et al. 2012 | DOI 10.2996/kmj/1341401049 | unstable principal subsystems causing stationary/wave instability |
 | Mincheva--Craciun 2013 | DOI 10.3934/mbe.2013.10.1207 | projected-network injectivity/SR-graph exclusion |
 | Diego et al. 2018 | DOI 10.1103/PhysRevX.8.021071 | interaction-topology features |

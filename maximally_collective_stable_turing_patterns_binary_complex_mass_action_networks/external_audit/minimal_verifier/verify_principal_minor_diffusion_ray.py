@@ -7,6 +7,12 @@ is printed in the manuscript/supplement; these checks are mutation-sensitive
 interfaces, not a finite substitute for that proof.
 """
 from __future__ import annotations
+
+if not __debug__:
+    raise SystemExit(
+        "Exact verifier requires assertions; unset PYTHONOPTIMIZE and do not use python -O"
+    )
+
 from itertools import combinations
 import sympy as sp
 from core import Avec
