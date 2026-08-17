@@ -9,7 +9,7 @@ indexed reactions
        -> order-(n-1) block unstable
 
 all-spectrum theorem + omission-minor table
-  -> one-bad-minor coefficient beta_1
+  -> network one-bad-minor coefficient beta_1
   -> exact diffusion criterion
   -> unique threshold and exact positive-real band
   -> fixed-H infimum, unit-H infimum, chi_D chi_H lower bound

@@ -3,7 +3,7 @@
 | Requirement or prior criticism | Disposition | Final action |
 |---|---|---|
 | One central all-spectrum topology | APPLY | No competing old family appears in the title, abstract, or theorem suite. |
-| Exact diffusion design | APPLY | General one-bad-minor theorem, omission table, criterion, and threshold band are integrated. |
+| Exact diffusion design | APPLY | General principal-minor diffusion-ray theorem, network one-bad-minor corollary, omission table, criterion, and threshold band are integrated. |
 | Asymptotic/heterogeneity transparency | APPLY | Sharp linear bounds, improved unit contrast, product lower bound, and square-root endpoint are explicit. |
 | Do not overclaim the Pareto frontier | APPLY | Only exponent optimality is claimed; constants remain open. |
 | Semipositive terminology | REQUIRES REPAIR | All “conservative network” language was removed or replaced by codimension-one semipositive conservation. |
@@ -16,6 +16,8 @@
 | Exact literature distinction | APPLY | Fixed-J, projected-injectivity, parameter-rich core, atlas, and mass-action scopes are separated. |
 | Cross-reference and DOI audit | APPLY | Literal and automated audits completed; correction notice included. |
 | Old minimum-reaction and reaction-minimal claims | REMOVED | They belong to a different full-rank topology. |
-| Old coefficient-1589 diffusion profile | REMOVED | Superseded by the improved unit profile and stable trade-off family. |
+| Superseded high-contrast diffusion profile | REMOVED | Superseded by the improved unit profile and stable trade-off family. |
 | Projected-injectivity sharpness | NOT APPLICABLE | Not implied and not claimed. |
 | T-ALG integration | REMOVED | No private complexity result enters the paper. |
+
+| Stale current-profile numerical table | REPAIRED | All finite values now derive from `data/current_profile_exact.json`; old-profile mutations fail. |

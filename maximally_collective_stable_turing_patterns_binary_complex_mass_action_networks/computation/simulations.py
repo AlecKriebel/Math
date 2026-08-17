@@ -12,10 +12,25 @@ from dataclasses import dataclass, asdict
 from pathlib import Path
 import numpy as np
 import pandas as pd
+import sympy as sp
 from scipy.integrate import solve_ivp
 ROOT=Path(__file__).resolve().parents[1]
-sys.path.insert(0,str(ROOT/'independent_verifier'))
-from core import d_seed, r_seed, ell_seed, Hsum, ell_Dr_formula, ell_r_formula, cubic_num_formula
+EXACT_PATH=ROOT/'data'/'current_profile_exact.json'
+
+def _exact_rows():
+    payload=json.loads(EXACT_PATH.read_text())
+    return {int(z['m']):z for z in payload['rows']}
+
+def _sx(text):
+    return sp.sympify(text, locals={'sqrt':sp.sqrt})
+
+def current_data(m):
+    z=_exact_rows()[m]
+    r=np.array([float(_sx(x)) for x in z['right_critical_vector']],dtype=float)
+    d=np.array([float(_sx(x)) for x in z['diffusion_profile']],dtype=float)
+    ell=np.array([float(_sx(x)) for x in z['left_critical_vector']],dtype=float)
+    eta=float(_sx(z['eta']['exact'])); cubic=float(_sx(z['cubic']['exact']))
+    return r,d,ell,eta,cubic
 
 @dataclass(frozen=True)
 class Config:
@@ -51,18 +66,15 @@ def reaction_coefficients(m:int,C:np.ndarray)->np.ndarray:
     return out
 
 def coefficients(m:int):
-    h=Hsum(m); er=ell_r_formula(m,h); ed=ell_Dr_formula(m,h)
-    return float(ed/er),float(cubic_num_formula(m,h)/er)
+    return current_data(m)[3:]
 
 def evaluate(C:np.ndarray,grid:np.ndarray)->np.ndarray:
     return C@np.cos(np.outer(np.arange(C.shape[1]),grid))
 
 def simulate(cfg:Config,outdir:Path):
     n=cfg.m+1; K=cfg.modes
-    D=np.array([float(x) for x in d_seed(cfg.m)])
-    r=np.array([float(x) for x in r_seed(cfg.m)]).ravel()
-    ell=np.array([float(x) for x in ell_seed(cfg.m)]).ravel()
-    eta,cubic=coefficients(cfg.m); pred=np.sqrt(-eta*cfg.mu/cubic)
+    r,D,ell,eta,cubic=current_data(cfg.m)
+    pred=np.sqrt(-eta*cfg.mu/cubic)
     C0=np.zeros((n,K+1)); C0[:,0]=1.; C0[:,1]=cfg.initial_fraction*pred*r
     k2=np.arange(K+1,dtype=float)**2
     diff=(1-cfg.mu)*D
@@ -91,7 +103,8 @@ def simulate(cfg:Config,outdir:Path):
           'relative_error':float(abs(abs(meas)-pred)/pred),
           'minimum_concentration':float(X.min()),'eta':eta,'cubic':cubic,
           'diffusion':diff.tolist(),'nfev':sol.nfev,'message':sol.message,
-          'max_omitted_mode_proxy':float(np.max(np.abs(C[:,-2:]))) if K>=2 else 0.}
+          'max_omitted_mode_proxy':float(np.max(np.abs(C[:,-2:]))) if K>=2 else 0.,
+          'exact_source':'data/current_profile_exact.json'}
     (outdir/f'parameters_{tag}.json').write_text(json.dumps(meta,indent=2)+'\n')
     return meta
 
@@ -100,16 +113,21 @@ def _simulate_pair(item):
     return simulate(cfg,outdir)
 
 def configs_full():
+    # Three decreasing mu values for every displayed dimension, plus spatial
+    # and temporal refinements at the middle value.  Final times scale with
+    # the exact center decay rate and are intentionally conservative.
+    specs={
+      3:[(.04,7000),(.02,13000),(.01,25000)],
+      5:[(.04,12000),(.02,23000),(.01,45000)],
+      8:[(.04,22000),(.02,43000),(.01,85000)],
+    }
     out=[]
-    for m,times in [(3,(6000,4200,2800)),(5,(8000,5200,3400))]:
-        out += [
-          Config(m,.0025,16,times[0]),
-          Config(m,.005,16,times[1]),
-          Config(m,.005,32,times[1],precision='spatial-fine'),
-          Config(m,.005,16,times[1],precision='time-tight',rtol=5e-10,atol=5e-12),
-          Config(m,.01,16,times[2]),
-        ]
-    out.append(Config(8,.005,16,6800))
+    for m,pairs in specs.items():
+        for mu,tfinal in pairs:
+            out.append(Config(m,mu,16,tfinal,initial_fraction=.92))
+        mu,tfinal=pairs[1]
+        out.append(Config(m,mu,32,tfinal,precision='spatial-fine',initial_fraction=.92))
+        out.append(Config(m,mu,16,tfinal,precision='time-tight',rtol=5e-10,atol=5e-12,initial_fraction=.92))
     return out
 
 def main():
@@ -130,20 +148,24 @@ def main():
         c=r['config']; rows.append({'m':c['m'],'mu':c['mu'],'modes':c['modes'],'precision':c['precision'],
           'predicted_amplitude':r['predicted_amplitude'],'measured_amplitude':abs(r['measured_amplitude']),
           'relative_error':r['relative_error'],'minimum_concentration':r['minimum_concentration']})
-    df=pd.DataFrame(rows); df.to_csv(ROOT/'data'/'branch_amplitudes.csv',index=False)
+    df=pd.DataFrame(rows)
+    if args.quick:
+        df.to_csv(ROOT/'data'/'branch_amplitudes_quick.csv',index=False)
+    else:
+        df.to_csv(ROOT/'data'/'branch_amplitudes.csv',index=False)
     if not args.quick:
-        for m in (3,5):
-            tag=f'm{m}_mu0p005_K32_spatial-fine'
+        for m in (3,5,8):
+            tag=f'm{m}_mu0p02_K32_spatial-fine'
             shutil.copyfile(args.outdir/f'profile_{tag}.csv',args.outdir/f'profile_m{m}_modes32.csv')
         refs=[]
-        for m in (3,5):
-            base=df[(df.m==m)&(df.mu==.005)&(df.modes==16)&(df.precision=='base')].iloc[0]
-            spatial=df[(df.m==m)&(df.mu==.005)&(df.modes==32)].iloc[0]
-            temporal=df[(df.m==m)&(df.mu==.005)&(df.precision=='time-tight')].iloc[0]
-            refs.append({'m':m,'mu':.005,'comparison':'spatial','base_modes':16,'refined_modes':32,
+        for m in (3,5,8):
+            base=df[(df.m==m)&(df.mu==.02)&(df.modes==16)&(df.precision=='base')].iloc[0]
+            spatial=df[(df.m==m)&(df.mu==.02)&(df.modes==32)].iloc[0]
+            temporal=df[(df.m==m)&(df.mu==.02)&(df.precision=='time-tight')].iloc[0]
+            refs.append({'m':m,'mu':.02,'comparison':'spatial','base_modes':16,'refined_modes':32,
               'base_amplitude':base.measured_amplitude,'refined_amplitude':spatial.measured_amplitude,
               'relative_difference':abs(base.measured_amplitude-spatial.measured_amplitude)/abs(spatial.measured_amplitude)})
-            refs.append({'m':m,'mu':.005,'comparison':'temporal_tolerance','base_rtol':2e-8,'refined_rtol':5e-10,
+            refs.append({'m':m,'mu':.02,'comparison':'temporal_tolerance','base_rtol':2e-8,'refined_rtol':5e-10,
               'base_amplitude':base.measured_amplitude,'refined_amplitude':temporal.measured_amplitude,
               'relative_difference':abs(base.measured_amplitude-temporal.measured_amplitude)/abs(temporal.measured_amplitude)})
         pd.DataFrame(refs).to_csv(ROOT/'data'/'refinement_checks.csv',index=False)

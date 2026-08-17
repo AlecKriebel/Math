@@ -1,7 +1,7 @@
 # Final decision
 
-## Outcome: FLAGSHIP-READY
+## Outcome: FINAL-RELEASE-READY
 
-Every headline theorem survives independent manuscript-level reconstruction and exact replay. The one-bad-minor monotonicity and the equilibrium-scaled fixed-mass gauge—the two most delicate cross-project interfaces—were rederived separately and retained. No headline theorem was narrowed.
+Every headline theorem survives the numerical-provenance repair, generalized matrix-theorem audit, stable-domain clarification, expanded SCC and omission-minor proofs, printed certificate audit, current-profile simulation regeneration, and detached package replays.
 
-The package is ready for external specialist audit and author-controlled preprint or journal submission. It is not represented as peer reviewed, externally confirmed, or submitted.
+The release is ready for external specialist audit and author-controlled submission. It is not represented as peer reviewed, independently confirmed, posted, or submitted.

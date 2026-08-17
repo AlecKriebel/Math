@@ -2,22 +2,30 @@
 
 ## Outcome
 
-`FLAGSHIP-READY` after independent reconstruction of the four frozen sources, exact verifier replay, one-paper integration, literature and editorial audit, and clean-room release reproduction.
+`FINAL-RELEASE-READY`.
 
-## Central topology
+## Numerical provenance
 
-The sole central construction is the codimension-one binary-complex family $\widehat N_m$. It has one semipositive conservation law, not a positive conservation law and not a conservative-network designation.
+All finite numerical claims and illustrations derive from `data/current_profile_exact.json`, regenerated from the current improved profile. The mandatory exact regression is
 
-## Final theorem suite
+```text
+eta_3 = 143636/7451873.
+```
 
-1. Complete positive-realization Jacobian family $A_m(a,b)H$.
-2. Topology-wide all-spectrum localization first at order $n-1$.
-3. General one-bad-minor diffusion-ray theorem and exact positive-real band.
-4. Necessary-and-sufficient topology-specific stationary diffusion criterion.
+The stale profile and amplitude values remain only inside deliberate mutation fixtures and are rejected by the typed provenance audit.
+
+## Mathematical status
+
+1. Complete positive-realization Jacobian family.
+2. Topology-wide all-spectrum localization first at order `n-1`.
+3. General principal-minor diffusion-ray theorem and exact positive-real band.
+4. Topology-specific necessary-and-sufficient stationary diffusion law.
 5. Sharp fixed-equilibrium and unit-equilibrium linear contrast infima.
-6. Universal diffusion--equilibrium product lower bound.
-7. Exact supercritical stable unit-equilibrium design with improved contrast.
-8. Exact stable trade-off family with both contrasts $\Theta(\sqrt n)$ and globally optimal exponent.
-9. Conservation-compatible primary bifurcation and local exponential asymptotic stability in fixed-mass $H^1$.
+6. Universal diffusion-equilibrium product lower bound.
+7. Exact current-profile supercritical stable unit-equilibrium design.
+8. Exact stable trade-off family with both contrasts `Theta(sqrt(n))` and globally optimal exponent.
+9. Conservation-compatible primary bifurcation and local exponential asymptotic stability in fixed-mass `H^1`.
 
-No global attraction, constant-optimal Pareto frontier, exact stable-contrast infimum, biochemical realization, or private complexity claim is included.
+## Scope
+
+The complete homogeneously stable equilibrium-scaling region, arbitrary wave-instability threshold, constant-optimal nonlinear frontier, global attraction, and dimension-uniform robustness remain open.

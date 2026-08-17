@@ -1,9 +1,9 @@
-# Maximally Collective Stable Turing Patterns
+# Exact Diffusion Design for Maximally Collective Stable Turing Patterns
 
 This repository contains the flagship paper and exact reproducibility package for
 
-**Maximally Collective Stable Turing Patterns in Binary-Complex Mass-Action Networks**  
-*Exact Diffusion Design and Exponent-Optimal Heterogeneity Trade-Offs*
+**Exact Diffusion Design for Maximally Collective Stable Turing Patterns in Binary-Complex Mass-Action Networks**  
+*Topology-Wide All-Spectrum Localization and Exponent-Optimal Heterogeneity Trade-Offs*
 
 The paper proves a topology-wide all-spectrum localization theorem, an exact stationary diffusion law, sharp linear heterogeneity bounds, an improved stable unit-equilibrium design, and an exact stable diffusion--equilibrium trade-off family.
 

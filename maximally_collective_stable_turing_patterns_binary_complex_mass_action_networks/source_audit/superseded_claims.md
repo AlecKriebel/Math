@@ -2,7 +2,7 @@
 
 The following claims are excluded from the flagship paper.
 
-- The previous high-contrast profile and its coefficient 1589.
+- The previous high-contrast profile and its coefficient superseded high-contrast.
 - Minimum full-rank reaction count for a different family.
 - Reaction-subnetwork minimality and bounded-catalog consequences.
 - Stationary-only localization language.

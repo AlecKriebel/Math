@@ -7,7 +7,7 @@
 | Complete positive-realization family | TOPOLOGY_WIDE | exact flux parametrization and converse rate construction |
 | Every principal block below order $n-1$ is Hurwitz | TOPOLOGY_WIDE | SCC exhaustion, two cycle inequalities, triad Routh--Hurwitz |
 | Order-$n-1$ block is unstable | TOPOLOGY_WIDE | exact signed determinant |
-| One-bad-minor threshold and positive-real band | PROVED_ALL_m | principal-minor expansion and strict spectral-parameter monotonicity |
+| Principal-minor diffusion-ray threshold and positive-real band | PROVED_ALL_m | principal-minor expansion and strict spectral-parameter monotonicity |
 | Exact diffusion criterion | LINEAR_OPTIMUM_PROVED | complete omission table |
 | Fixed-$H$, unit-$H$, and product contrast lower bounds | LINEAR_OPTIMUM_PROVED | sharp infimum constructions |
 | Improved unit stable profile | STABLE_PATTERN_PROVED | 35/77-term certificates and exact cubic sign |

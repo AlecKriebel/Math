@@ -1,245 +1,227 @@
-# OUTCOME:
+# OUTCOME
 
-## FLAGSHIP-READY
+## FINAL-RELEASE-READY
 
-The final flagship paper has been reconstructed around one reaction topology and one theorem suite. The topology-wide all-spectrum theorem, the general one-bad-minor diffusion theorem, the exact network diffusion law, sharp linear contrast bounds, the improved unit-equilibrium stable design, and the equilibrium-scaled stable trade-off family all survived independent manuscript-level reconstruction and exact verification.
+The numerical-provenance, theorem-scope, proof-presentation, certificate-visibility, and release-rebuild program is complete. The frozen flagship archive was preserved and verified before reconstruction. Every headline theorem survived. The corrected release was rebuilt from the exact current diffusion profile and one machine-readable numerical source rather than from superseded tables or figure data.
 
-No former stationary-only family, high-contrast profile, reaction-minimality claim, weak-reversibility theorem, projected-injectivity theorem, or private complexity result is required by the manuscript. The result is ready for external specialist audit and author-controlled submission. It is not represented as peer reviewed, externally confirmed, or submitted.
+The release is internally validated and ready for external specialist audit and author-controlled submission. It is not represented as peer reviewed, independently confirmed, posted, or submitted.
 
-# CENTRAL TOPOLOGY:
+# NUMERICAL PROVENANCE
 
-For every integer `m >= 3`, let `Nhat_m` have species
+## Stale items found
 
-```text
-X1, ..., Xm, Z
-```
+The inherited Table 1 and its dependent finite-dimensional illustrations mixed the current improved diffusion profile with normal-form coefficients from the superseded profile. In particular, the displayed value near `0.1054` for the base dimension did not belong to the profile used by the final theorem.
 
-and indexed reactions
+## Exact corrected values
 
-```text
-R0:  0 -> X1
-Ri:  X1 + Xi -> X1 + X(i+1),      2 <= i <= m-2
-Ra:  X1 + X(m-1) -> 2Xm
-Rb:  2Xm -> X2
-R+:  2Z -> X1 + Xm
-R-:  X1 + Xm -> 2Z
-```
-
-The `Ri` range is empty at `m=3`. Writing `n=m+1`, the topology has `n` species and `n+1` indexed reactions. Every source and every target complex has total molecularity at most two; this is the exact meaning of **binary-complex mass action** in the paper.
-
-The topology has one semipositive conservation law
+For the current unit-equilibrium profile at `m=3`, independent reconstruction from the indexed reactions gives
 
 ```text
-c = (0,4,...,4,2,1)^T.
+ell^T r   = -7451873/924210
+ell^T D r = -71818/462105
+eta_3     = 143636/7451873
+          = 0.0192751540451642158...
+
+c_3       = -10077013332773/4123806134995638
+          = -0.00244361955991504413...
+
+sqrt(-eta_3/c_3)
+          = sqrt(874356983548776/110847146660503)
+          = 2.80854982195923431...
 ```
 
-It is described as stoichiometric codimension one, not as conservative, closed, or mass conserving. The conserved functional does not contain `X1`.
+The exact values for `m=3,4,5,6,7,8,9,10` are stored in `data/current_profile_exact.json` and generated anew from the current reaction family, critical vectors, diffusion profile, conservation-gauged harmonic corrections, and cubic contraction.
 
-# COMPLETE REALIZATION SPACE:
+## Table regeneration
 
-Direct reconstruction from the reaction list gives
+`data/current_profile_exact.json` is the single source of truth for:
+
+- Table 1;
+- finite values in the manuscript and supplement;
+- theorem-summary examples;
+- normal-form predictions;
+- simulation parameter files;
+- public-repository demonstrations;
+- submission-package numerical claims.
+
+The exact table generator defines separately:
+
+- `chi_D^unit`, the current unit-equilibrium stable-profile contrast;
+- `chi_D^scale`, the diffusion contrast at the certified square-root-scaling endpoint;
+- `chi_H^scale`, the equilibrium contrast there;
+- their exact product;
+- the universal square-root lower bound;
+- the current `eta_m`, `c_m`, and amplitude coefficient.
+
+The identity
 
 ```text
-c^T Gamma_m = 0,
-rank Gamma_m = m,
-im Gamma_m = c^perp,
+chi_D^unit = chi_D^scale * chi_H^scale
 ```
 
-and
+is verified algebraically for the construction.
+
+## Figure regeneration
+
+All numerical figures were regenerated from the corrected source. The stable-profile figure now contains a profile panel and a measured-to-predicted amplitude panel; no nonexistent “right panel” is referenced. The prediction uses the current quantity
 
 ```text
-ker Gamma_m
-  = span{(1_m,0,0),(0_m,1,1)}.
+sqrt(-eta_m * mu / c_m).
 ```
 
-Thus the complete positive steady-flux cone is
+## Simulation convergence
+
+For `m=3,5,8`, multiple decreasing positive values of `mu` were simulated. The measured-to-predicted amplitude ratio converges monotonically toward one as `mu` decreases. Spatial and temporal refinement discrepancies are below `2e-8` in the recorded audit. These simulations remain illustrations and are not used in any proof.
+
+A typed stale-claim audit distinguishes:
+
+- current raw simulation values;
+- deliberately retained mutation fixtures;
+- claim-bearing stale values, of which none remain.
+
+# GENERAL MATRIX THEOREM
+
+## Old hypotheses
+
+The earlier presentation called the reusable result a one-bad-minor theorem and included a restriction on order-`n-1` minors that its proof did not consume.
+
+## Generalized hypotheses
+
+The corrected **principal-minor diffusion-ray theorem** assumes, in coefficient form,
 
 ```text
-{v>0 : Gamma_m v=0}
-  = {(a 1_m,b,b): a>0, b>0}.
+det J = 0,
+a_I = (-1)^|I| det J[I,I] > 0 for |I| <= n-2,
+sum_{|I|=n-1} a_I > 0.
 ```
 
-At a general positive equilibrium every Jacobian is exactly
+The spectral formulation used in applications—one algebraically simple zero eigenvalue and all remaining eigenvalues in the open left half-plane—implies the final coefficient condition.
+
+For positive diagonal `D`,
 
 ```text
-J_m(a,b,H) = A_m(a,b) H,
+p_D(s) = det(sD-J)
+       = s[beta_1(D)+beta_2(D)s+...+beta_n(D)s^(n-1)],
 ```
 
-where `a,b>0` and `H` is positive diagonal. Conversely, every such triple is physically realized by
+with `beta_k(D)>0` for every `k>=2`.
 
-```text
-x_i^* = h_i^{-1},
-k_r = v_r/(x^*)^{y_r} > 0.
-```
+## Proof changes
 
-The universal theorem therefore quantifies over every positive-equilibrium realization of the indexed topology, not over one tuned Jacobian and not through black-box semialgebraic elimination.
+The proof now separates:
 
-# ALL-SPECTRUM LOCALIZATION:
+1. the principal-minor expansion;
+2. positivity of every higher coefficient;
+3. uniqueness and simplicity of the nonzero positive root when `beta_1<0`;
+4. strict monotonicity of `lambda -> det(lambda I+sD-J)` on `lambda>=0`;
+5. the exact positive-real-eigenvalue band.
 
-For every `m>=3`, every `a,b>0`, every positive diagonal `H`, and every principal species set `I` with `|I|<m`, the block
-
-```text
-J_m(a,b,H)[I,I]
-```
-
-is Hurwitz.
-
-The exhaustive strongly connected diagonal blocks of every such principal matrix are:
-
-1. the long cycle on `X1,...,X(m-1)`;
-2. the long cycle on `X2,...,Xm`;
-3. a principal block of the boundary triad `{X1,Xm,Z}`;
-4. a negative singleton.
-
-The two long cycles satisfy strict right-half-plane product inequalities. The full boundary triad has characteristic polynomial
-
-```text
-lambda^3 + c1 lambda^2 + c2 lambda + c3
-```
-
-with
-
-```text
-c1 = a h1 + 4a hm + b h1 + b hm + 4b hZ,
-c2 = a(4a h1 hm + 7b h1 hm + 4b h1 hZ + 16b hm hZ),
-c3 = 16a^2 b h1 hm hZ,
-```
-
-and `c1 c2-c3` is a sum of fourteen strictly positive monomials. The case `b=2a`, where one graph edge vanishes, only refines the Frobenius decomposition.
-
-For
-
-```text
-C_m = {X1,...,Xm},
-```
-
-one has
-
-```text
-(-1)^m det J[C_m,C_m]
-  = -2 a^(m-1) b product_i h_i < 0.
-```
-
-Hence this order-`m` block has a positive real eigenvalue. Throughout every positive realization,
-
-```text
-min{|I| : alpha(J[I,I])>0} = m = n-1.
-```
-
-Every smaller block is Hurwitz, excluding both positive-real and complex-pair instability below the largest possible proper order.
-
-# GENERAL DIFFUSION THEOREM:
-
-Let a real `n x n` matrix `J` have one semisimple zero eigenvalue and otherwise stable spectrum. Assume every principal block of order at most `n-2` is Hurwitz and at most one signed principal minor of order `n-1` is negative. For `D>0` diagonal,
-
-```text
-p_D(s)=det(sD-J)
-      =s(beta_1+beta_2 s+...+beta_n s^(n-1)),
-```
-
-with `beta_k>0` for every `k>=2`.
-
-A nonzero stationary threshold exists on the ray `sD` if and only if
-
-```text
-beta_1(D)<0.
-```
-
-When it exists, the threshold `s_*` is unique and algebraically simple. Moreover,
+Thus, when `beta_1(D)<0`, there is one unique positive threshold `s_*`, and
 
 ```text
 J-sD has a positive real eigenvalue
-  iff 0<s<s_*.
+if and only if
+0 < s < s_*.
 ```
 
-The stronger band statement follows from strict monotonicity of
+The theorem controls stationary positive-real eigenvalues. It does not classify arbitrary oscillatory diffusion-driven instability.
+
+## Application corollary
+
+The reaction topology remains a genuine one-bad-minor application: omitting `Z` gives the unique negative order-`n-1` contribution, omitting an interior chain species gives a positive contribution, and omitting `X_1` or `X_m` gives zero.
+
+# HOMOGENEOUS-STABILITY DOMAIN
+
+For each `m`, the corrected release defines
 
 ```text
-lambda -> det(lambda I+sD-J)
+S_m = {(a,b,H): a,b>0, H positive diagonal,
+       J_m(a,b,H)|_(c^perp) is Hurwitz}.
 ```
 
-on `lambda>=0`; the total order-`(n-1)` derivative contribution is the positive linear coefficient of `det(lambda I-J)`. The theorem does not exclude a nonreal wave instability outside the positive-real band.
+Every fixed-`H` diffusion and contrast theorem is stated on this domain.
 
-# EXACT NETWORK DESIGN LAW:
-
-The complete signed order-`m=n-1` omission table is
+Homogeneous stability implies
 
 ```text
-omit Z:
-  (-1)^m det J_hatZ
-    = -2 a^(m-1) b product_{i=1}^m h_i;
-
-omit interior X_j, 2<=j<=m-1:
-  (-1)^m det J_hatXj
-    = 16 a^(m-1) b h_Z product_{i!=j} h_i;
-
-omit X1 or Xm:
-  determinant = 0.
+T(H) = 8 h_Z sum_{j=2}^{m-1} 1/h_j > 1.
 ```
 
-Consequently
+The converse is not claimed. The complete homogeneously stable equilibrium-scaling region is not characterized. The fixed-`H` contrast formula applies to every `H` in that region.
+
+The product lower bound is described as sharp as an infimum over homogeneously stable realizations admitting a stationary crossing. No constant-optimal nonlinear stable-pattern frontier is claimed.
+
+# ALL-SPECTRUM PROOF
+
+## SCC cases
+
+For every proper principal species set, every nontrivial strongly connected diagonal block is proved to be one of:
+
+1. the long cycle on `X_1,...,X_(m-1)`;
+2. the long cycle on `X_2,...,X_m`;
+3. a principal block of `{X_1,X_m,Z}`;
+4. a negative singleton.
+
+The revised proof gives the full boundary-vertex and chain-segment case analysis. It explains how each long cycle closes, why proper chain segments do not create additional feedback blocks, why adding another boundary vertex to a complete long cycle requires at least `m` species, and why all remaining feedback lies in the boundary triad.
+
+## The hypersurface `b=2a`
+
+At `b=2a`, one Jacobian edge disappears. Deleting that edge can only refine the strongly connected decomposition; it cannot create a larger strongly connected block. All Hurwitz conclusions therefore persist.
+
+## Cross-reference status
+
+The previously incorrect “Theorem 3.1” reference now points to the actual SCC classification, **Lemma 3.1**. The semantic cross-reference audit verifies environment types, not merely label existence.
+
+# OMISSION MINORS
+
+The corrected proof presents the complete general-`m` signed order-`m=n-1` table:
 
 ```text
-beta_1(D)
- = 2 a^(m-1) b product_i h_i
-   [8 h_Z sum_{j=2}^{m-1} d_j/h_j - d_Z].
+(-1)^m det J[omit Z]
+  = -2 a^(m-1) b product_{i=1}^m h_i,
+
+(-1)^m det J[omit X_j]
+  = 16 a^(m-1) b h_Z product_{i != j} h_i,
+  2 <= j <= m-1,
+
+det J[omit X_1] = det J[omit X_m] = 0.
 ```
 
-For every homogeneously stable realization,
+The manuscript and supplement expose the block/permutation structure, the surviving boundary determinant, the negative singleton factors, and the sign accounting. The coefficient `8` in the network diffusion law is visibly the ratio `16/2` between the interior positive and `Z`-omission negative weights.
 
-```text
-a stationary zero crossing occurs on the ray sD
-iff
-d_Z > 8 h_Z sum_{j=2}^{m-1} d_j/h_j.
+# SYMBOLIC CERTIFICATES
+
+The supplement prints or tabulates every certificate used in a headline claim, including:
+
+- the fourteen-term boundary-triad Routh-Hurwitz expression;
+- the corrected homogeneous certificate;
+- the unit-profile 77-term spatial certificate;
+- the scaled-family 34-term homogeneous and 84-term spatial certificates;
+- shifted polynomial coefficient lists used in the cubic sign proofs;
+- the comparison proving `N_m(L)>1/200`;
+- the unique equality terms for each half-plane certificate.
+
+Run
+
+```bash
+python independent_verifier/verify_symbolic_certificates.py
 ```
 
-The same sign is obtained independently from perturbation of the conservation eigenvalue. The coefficient eight is the exact ratio `16/2` between the positive interior-omission weights and the magnitude of the unique negative `Z`-omission weight.
+or, in the public package,
 
-# CONTRAST OPTIMALITY:
-
-Define
-
-```text
-T(H)=8 h_Z sum_{j=2}^{m-1} 1/h_j,
-chi_D=d_max/d_min,
-chi_H=h_max/h_min=x_max^*/x_min^*.
+```bash
+python independent_verifier/verify_symbolic_certificates.py
 ```
 
-For fixed `H`,
+from the repository root. The command regenerates the exact expressions, compares all coefficient tables, checks signs and equality cases, and exits nonzero under the prescribed mutations.
+
+# STABLE UNIT DESIGN
+
+The current unit-equilibrium profile is
 
 ```text
-inf{chi_D : D satisfies the stationary criterion}=T(H).
-```
-
-The infimum is not attained because the criterion is strict. At the unit equilibrium,
-
-```text
-inf chi_D = 8(m-2).
-```
-
-Every stationary crossing satisfies the universal strict product bound
-
-```text
-chi_D chi_H > 8(m-2).
-```
-
-The product lower bound is sharp as an infimum over stable realizations. Equal diffusion cannot destabilize because it shifts the nonzero homogeneous spectrum and conservation zero strictly left.
-
-# UNIT-EQUILIBRIUM STABLE DESIGN:
-
-At
-
-```text
-a=b=1,
-H=I,
-x^*=1,
-```
-
-put `K_i=91m-181-i` and use
-
-```text
-d1 = 23/63,
-d_i = 1/K_i,       2<=i<=m-1,
+d_1 = 23/63,
+d_i = 1/(91m-181-i),  2 <= i <= m-1,
 d_m = 1/7,
 d_Z = 16/45.
 ```
@@ -247,360 +229,217 @@ d_Z = 16/45.
 The exact contrast is
 
 ```text
-chi_D(m)=23(91m-183)/63.
+chi_D^unit(m) = 23(91m-183)/63.
 ```
 
-An exact critical vector satisfies `(A_m-D_m)r=0`. A 35-term homogeneous right-half-plane certificate and a 77-term spatial certificate prove:
+The corrected finite table contains only current-profile `eta_m`, `c_m`, and amplitude coefficients. Exact data and decimal renderings are generated automatically; no row is manually transcribed.
 
-- homogeneous stability on `c^perp`;
-- one algebraically simple zero in the first nonzero Neumann mode;
-- stability of every other first-mode eigenvalue;
-- stability of every higher mode;
-- no simultaneous complex crossing;
-- transversality with `eta_m>0`.
-
-The conservation-gauged stable-mode equations are
+The 35-term homogeneous certificate, 77-term mode certificate, conservation-compatible harmonic equations, cubic telescoping identity, and shifted-positive sign proof establish for every `m>=3`:
 
 ```text
-A_m w_0 = -(1/4)B(r,r),     c^T w_0=0,
-(A_m-4D_m)w_2 = -(1/4)B(r,r).
+eta_m > 0,
+c_m < 0,
 ```
 
-The exact normal form is
+followed by the supercritical locally exponentially asymptotically stable patterned branches in the fixed integrated-mass `H^1` phase space.
+
+# STABLE TRADE-OFF FAMILY
+
+Distinct notation is used throughout:
+
+- `mathcal H_m` for harmonic sums;
+- `mathsf H_m(L)` for the equilibrium-scaling matrix;
+- `rho_m` for the right homogeneous kernel vector;
+- `r_m` for the critical eigenvector;
+- `nu=m-2` for the dimension offset.
+
+For
 
 ```text
-dA/dt = eta_m mu A + c_m A^3
-        + O(|A|^5+|A|^3|mu|+|A||mu|^2),
+L in [1/sqrt(3nu), 90nu/(90nu+1)],
 ```
 
-with
+the proof follows the complete chain:
+
+1. physical equilibrium scaling `mathsf H_m(L)`;
+2. physical diffusion `D_phys=mathsf H_m(L) Delta_m`;
+3. normalized concentration coordinates;
+4. mode operator `mathsf H_m(L)(A-t Delta_m)`;
+5. chain-factor decomposition;
+6. exact homogeneous and higher-mode certificates;
+7. transformed left eigenvector and fixed-mass vector;
+8. gauge correction `w_0(L)=w_0^ref+tau_m(L)rho_m`;
+9. unchanged second harmonic;
+10. cubic numerator `N_m(L)=N_m^ref+tau_m(L)S_m`;
+11. exact bounds
+   `N_m^ref>1/100`, `-1/10<S_m<0`, and `tau_m(L)<1/20`;
+12. conclusion `N_m(L)>1/200`;
+13. sign of the critical denominator;
+14. `eta_m(L)>0`, `c_m(L)<0`;
+15. exchange of stability.
+
+The lower endpoint
 
 ```text
-c_m = ell^T[B(r,w_0)+(1/2)B(r,w_2)]/(ell^T r).
+L_0=1/sqrt(3(m-2))
 ```
 
-A four-factor chain recurrence and shifted-positive polynomial certificate prove `c_m<0` for every `m>=3`. Therefore
+is identified as the sufficient boundary of the present exact modulus certificate, not as a proved intrinsic dynamical boundary. The endpoint is called the **square-root-scaling endpoint**, not a balanced point with equal constants.
+
+The theorem establishes globally optimal square-root exponents for simultaneous diffusion and equilibrium contrast. It does not establish globally optimal constants or the complete Pareto frontier.
+
+# LITERATURE FRAMING
+
+The paper states the exact non-improvability consequence supported by the mathematics: the endpoint `n-1` in general principal unstable-subsystem localization cannot be reduced within binary-complex classical mass action, even when locally stable patterned branches are required.
+
+The general subsystem-order range is anchored to Satnoianu-Menzinger-Maini, and the unstable-subsystem mechanism to Anma-Sakamoto-Yoneda. The manuscript does not state that either source posed this exact result as a conjecture.
+
+A separate paragraph compares the topology with equal-diffusion Turing-network literature. Equal diagonal diffusion cannot destabilize this topology; the exact required stationary heterogeneity is
 
 ```text
-8(m-2) <= chi_stable(m) <= 23(91m-183)/63.
+d_Z > 8 h_Z sum d_j/h_j.
 ```
 
-The exact unit-equilibrium stable infimum remains open.
-
-# STABLE TRADE-OFF FAMILY:
-
-Let
+At unit equilibrium, the contrast infimum is `8(m-2)`, while equilibrium scaling yields the universal product cost
 
 ```text
-r=m-2,
-L_0=1/sqrt(3r),
-L_1=90r/(90r+1).
+chi_D chi_H > 8(m-2).
 ```
 
-For any `L in [L_0,L_1]`, set
+These are presented as topology-specific quantitative results, not universal statements about all binary-complex networks.
 
-```text
-h1=h_m=h_Z=1,
-h_i=K_i/(L K_(i-1)),       2<=i<=m-1,
-H_m(L)=diag(h),
-D_phys(L)=H_m(L) Delta_m,
-x^*=H_m(L)^(-1) 1,
-```
+A numbered open problem asks for the exact threshold for oscillatory diffusion-driven instability and whether wave instability can occur below the sharp stationary contrast. No stationary theorem is described as a complete wave criterion.
 
-where `Delta_m` is the improved unit-equilibrium effective diffusion profile. Positive rates are chosen to give unit reaction flux.
+# EDITORIAL REPAIRS
 
-For every certified `L`, a 34-term homogeneous certificate, an 84-term spatial certificate, and a gauge-corrected cubic comparison prove a primary simple transverse stationary crossing, a negative cubic coefficient, and positive locally exponentially stable patterned branches.
+The release uses one title consistently:
 
-The exact physical contrasts are
-
-```text
-chi_D(L) = (23/63) 91rL,
-chi_H(L) = (91r-1)/(91rL),
-chi_D(L) chi_H(L) = 23(91r-1)/63.
-```
-
-At the square-root-balanced endpoint `L=L_0`,
-
-```text
-chi_D = [2093/(63 sqrt(3))] sqrt(r),
-chi_H = sqrt(3r) (91r-1)/(91r).
-```
-
-# EXPONENT OPTIMALITY:
-
-The universal product bound implies
-
-```text
-max(chi_D,chi_H) > sqrt(8(m-2)).
-```
-
-The certified stable family has
-
-```text
-chi_D = Theta(sqrt(m)),
-chi_H = Theta(sqrt(m)).
-```
-
-Thus exponent `1/2` is globally optimal when diffusion and equilibrium heterogeneity are controlled simultaneously. The theorem does not claim optimal constants or the complete global Pareto frontier.
-
-# NONLINEAR FRONTIER:
-
-For the canonical near-threshold path at `m=3`,
-
-```text
-c_3(epsilon)
- = 6/1379
-   + (421985/11409846) epsilon
-   + O(epsilon^2),
-```
-
-and exact rational remainder bounds give
-
-```text
-c_3(epsilon)>0
-for 0<epsilon<=10^(-3).
-```
-
-This rigorously shows that approaching the sharp linear threshold does not automatically preserve supercriticality. It is not promoted to a universal nonlinear gap.
-
-The manuscript states three open problems:
-
-1. determine whether `chi_stable(m)=8(m-2)` as an infimum at unit equilibrium;
-2. determine whether stable supercritical patterns require a strict nonlinear contrast gap;
-3. determine the constant-optimal stable diffusion-equilibrium frontier.
-
-# PDE STABILITY:
-
-The bifurcation is formulated on the real fixed-integrated-mass phase space
-
-```text
-H_c^1
- = {u in H^1((0,pi);R^(m+1)) : integral c^T u = 0},
-```
-
-with Neumann `H^2` operator domain. Positive diagonal Neumann diffusion is sectorial and generates an analytic semigroup. In one dimension, `H^1` is a Banach algebra and the quadratic mass-action Nemytskii map is smooth into `L^2`.
-
-The fixed-mass restriction removes the homogeneous conservation zero, and the Neumann interval has no continuous translation-generated neutral mode. The center eigenvalue on either supercritical branch is
-
-```text
--2 eta_m mu + O(mu^2) < 0,
-```
-
-while the complementary spectral gap persists. For every fixed `m` and certified `L`, sufficiently close nonnegative initial data in the same integrated conservation class generate forward-global solutions that converge exponentially in `H^1` to the selected patterned equilibrium.
-
-This is a local-in-phase-space conclusion. No arbitrary-data global existence, global attraction, explicit basin, far-from-onset persistence, or dimension-uniform radius is asserted.
-
-# PRIOR FEEDBACK:
-
-Applied:
-
-- one central all-spectrum topology;
-- exact diffusion design and visible omission table;
-- sharp strict-infimum language;
-- semipositive rather than conservative terminology;
-- improved diffusion profile replacing the coefficient-1589 profile;
-- exponent-only Pareto optimality;
-- main-text visibility of the SCC, diffusion, mode, and cubic proof architectures;
-- full symbolic certificate tables and exact verification command;
-- precise local exponential stability statement;
-- retuned codimension-one robustness;
-- literal reference, DOI, cross-reference, and figure audits.
-
-Removed as obsolete or inapplicable:
-
-- the former full-rank stationary-only family as a competing theorem;
-- minimum-reaction and reaction-subnetwork-minimality claims;
-- no-bounded-catalog corollaries;
-- the old high-contrast profile and 49-term certificate;
-- weak-reversibility obstruction as a central theorem;
-- projected-injectivity sharpness;
-- private T-ALG claims;
-- constant-optimal Pareto language.
-
-# LITERATURE:
-
-The manuscript anchors principal-subsystem order to Satnoianu-Menzinger-Maini and Anma-Sakamoto-Yoneda, while explicitly stating that order `n-1` for arbitrary fixed matrices is not new. It distinguishes the flagship theorem from:
-
-- Mincheva-Craciun projected-network injectivity;
-- interaction-topology and finite atlas studies;
-- fixed-J stationary and wave criteria;
-- parameter-rich unstable-core theory;
-- minimal two-species reaction schemes and their weakly nonlinear analysis;
-- selected biochemical network screens;
-- monomial-steady-state sufficient conditions;
-- results showing that linear Turing instability alone need not yield persistent patterns.
-
-The claimed distinction is the conjunction of one indexed binary-complex classical mass-action topology, every positive realization, every smaller principal block Hurwitz, order-`n-1` instability, exact diffusion design, sharp heterogeneity lower bounds, and stable nonlinear branches in every dimension.
-
-Every bibliography entry was checked against a DOI, publisher page, or primary preprint. Detailed priority-screen limitations remain in private audit files rather than manuscript prose. External specialists and referees remain the appropriate arbiters of novelty.
-
-# MANUSCRIPT:
-
-Final title:
-
-> **Maximally Collective Stable Turing Patterns in Binary-Complex Mass-Action Networks**
+> **Exact Diffusion Design for Maximally Collective Stable Turing Patterns in Binary-Complex Mass-Action Networks**
 >
-> *Exact Diffusion Design and Exponent-Optimal Heterogeneity Trade-Offs*
+> *Topology-Wide All-Spectrum Localization and Exponent-Optimal Heterogeneity Trade-Offs*
 
-Current deliverables:
+Repairs include:
 
-```text
-Abstract:              203 words
-Main manuscript:        14 pages
-Technical supplement:   11 pages
-Theorem summary:         2 pages
-Proof skeleton:          5 pages
-```
+- bibliography and DOI checks;
+- environment-type-aware cross-reference checking;
+- final notation separation;
+- defined Table 1 columns;
+- corrected figure caption and panels;
+- removal of stale profile names and values;
+- replacement of the old theorem name;
+- exact stationary-versus-wave scope;
+- honest `L`-interval and optimality language;
+- identical title and claims across manuscript, supplement, summaries, packets, and cover letters.
 
-Paths:
+# MANUSCRIPT
 
-```text
-/mnt/data/qbio_mass_action_turing_final_flagship/manuscript/main.pdf
-/mnt/data/qbio_mass_action_turing_final_flagship/manuscript/supplement.pdf
-```
+- Final title: *Exact Diffusion Design for Maximally Collective Stable Turing Patterns in Binary-Complex Mass-Action Networks*
+- Subtitle: *Topology-Wide All-Spectrum Localization and Exponent-Optimal Heterogeneity Trade-Offs*
+- Abstract length: 196 words
+- Main manuscript: 15 pages
+- Technical supplement: 12 pages
+- Theorem summary: 2 pages
+- Proof skeleton: 5 pages
 
-The main paper contains three principal figures: the reaction topology, the exact diffusion-equilibrium trade-off, and stable patterned-profile illustrations.
+The PDFs were rebuilt after the corrections. Final rendered-page and font audits are part of the replay.
 
-# REPRODUCIBILITY:
+# REPRODUCIBILITY
 
-Full command:
+Full working-tree replay:
 
 ```bash
-cd /mnt/data/qbio_mass_action_turing_final_flagship
 bash release/one_command_replay.sh
 ```
 
-Portable command:
+Portable public replay:
 
 ```bash
-cd public/repository
-bash replay.sh
+bash public/repository/replay.sh
 ```
 
-The replay verifies the four frozen source archives; runs unit and mutation tests; checks the topology-wide, one-bad-minor, omission, diffusion, contrast, improved-profile, Pareto, cubic, and branch-stability certificates; regenerates exact `m=3,4,5,6,8,10` instances; rebuilds printed coefficient tables, simulations, figures, manuscripts, specialist packets, and submission bundles; performs clean-copy replay and PDF/font audits; and verifies the final SHA-256 manifest.
-
-All-dimensional proof objects are listed in
+The full replay emits the required markers:
 
 ```text
-public/repository/CERTIFICATES.md
+NUMERICAL_PROVENANCE_PASS
+MATRIX_THEOREM_GENERALIZATION_PASS
+STABLE_DOMAIN_SCOPE_PASS
+SCC_EXHAUSTION_PASS
+OMISSION_MINOR_PASS
+SYMBOLIC_CERTIFICATE_VISIBILITY_PASS
+TABLE_REGENERATION_PASS
+FIGURE_REGENERATION_PASS
+SUBMISSION_BUNDLE_FRESHNESS_PASS
+ALL_FINAL_RELEASE_REPLAY_CHECKS_PASS
 ```
 
-and verified by
+The downloadable release archive is also replayed after extraction. Its checksum is recorded in the companion `.zip.sha256` file because a ZIP cannot self-contain its own final checksum without changing that checksum.
 
-```bash
-python independent_verifier/verify_symbolic_certificates.py
-```
+# EXTERNAL AUDIT
 
-Final replay markers:
-
-```text
-ALL_FINAL_FLAGSHIP_REPLAY_CHECKS_PASS
-PUBLIC_REPLAY_PASS
-```
-
-The immutable source manifest contains 755 entries. The final archive checksum is supplied in the adjacent `.zip.sha256` file.
-
-# EXTERNAL AUDIT:
-
-Three unsent specialist packets are prepared:
+Updated unsent packets are provided for:
 
 1. reaction-network and Turing localization;
 2. PDE bifurcation and stability;
 3. symbolic and algebraic verification.
 
-Each packet contains the two-page theorem summary, five-page proof skeleton, network diagram, exact unit and Pareto `m=3,4` instances, targeted questions, and a minimal independent verifier.
+Each packet contains the corrected theorem summary, proof skeleton, network figure, exact low-dimensional instances, targeted questions, and detached minimal verifier.
 
-The most failure-prone questions isolated for review are:
+The main remaining specialist questions concern:
 
-- SCC exhaustion, including `b=2a`;
-- the one-bad-minor derivative monotonicity;
-- the complete omission-minor table;
-- equality cases in the 34-, 35-, 77-, and 84-term certificates;
-- physical equilibrium scaling and fixed-mass gauge correction;
-- the comparison `N_m(L)>1/200`;
-- the semilinear linearized-stability upgrade.
+- the exhaustive SCC classification;
+- derivative monotonicity in the generalized diffusion-ray theorem;
+- the omission-minor calculation;
+- equality cases in the large modulus certificates;
+- the physical equilibrium-scaling and fixed-mass gauge correction;
+- the cubic comparison `N_m(L)>1/200`;
+- the semilinear principle-of-linearized-stability application.
 
-Nothing has been sent automatically.
+Nothing was sent automatically.
 
-# SUBMISSION:
+# SUBMISSION
 
-Prepared but not submitted:
+Fresh packages were rebuilt from the revised source tree for:
 
-- bioRxiv-first package, proposed category **Systems Biology**, article type **New Results**;
-- arXiv fallback source, proposed primary `q-bio.MN`, secondary `q-bio.QM`, cross-list `nlin.PS`;
-- journal-neutral source plus cover letters for the *Journal of Mathematical Biology*, SIADS, and *Physica D*.
+- bioRxiv Systems Biology;
+- arXiv `q-bio.MN`, with `q-bio.QM` and `nlin.PS` metadata;
+- Journal of Mathematical Biology;
+- SIAM Journal on Applied Dynamical Systems;
+- Physica D.
 
-The bioRxiv package includes manuscript and supplement PDFs, complete source, metadata, 203-word abstract, significance statement, data/code statements, scope note, checklist, and a factual AI-assistance disclosure marked for author approval.
+Each source ZIP is detached-built and integrity-tested. No preprint, submission, endorsement request, specialist inquiry, or email was sent automatically. The factual AI-assistance disclosure remains marked for author approval.
 
-No ORCID, repository URL, DOI, funding declaration, or competing-interest declaration was invented. Author confirmation remains required before submission.
+# LIMITATIONS
 
-# LIMITATIONS:
-
-- The reaction family is synthetic and is not proposed as a natural biochemical mechanism.
-- The system has one semipositive conservation law and an inflow; `X1` is not bounded by that law.
+- The reaction family is synthetic and is not claimed to be a natural biochemical mechanism.
+- It has one semipositive conservation law; `X_1` is not bounded by that conserved functional.
 - All species use strictly positive diagonal diffusion.
-- Immobile species, cross-diffusion, nonlocal transport, and other spatial geometries are not classified.
-- The exact stable unit-equilibrium contrast infimum remains unknown.
-- The globally constant-optimal diffusion-equilibrium frontier remains unknown.
-- The one-bad-minor theorem controls positive-real stationary eigenvalues; arbitrary wave instability remains separate unless an explicit mode certificate is supplied.
-- The nonlinear branch and robustness results are local for every fixed dimension.
-- No arbitrary-data global boundedness, global attraction, explicit basin, far-from-onset persistence, or dimension-uniform stability radius is proved.
-- No reaction minimality, species minimality, minimum-reaction theorem, projected-injectivity theorem, weak-reversibility theorem, or complexity theorem is claimed.
+- The complete homogeneously stable equilibrium-scaling region is not classified.
+- The exact nonlinear stable contrast infimum and constant-optimal Pareto frontier remain open.
+- The general diffusion-ray theorem controls stationary positive-real eigenvalues, not arbitrary wave instability.
+- Selected profiles have exact all-mode stability certificates; arbitrary diffusion vectors satisfying the stationary scalar inequality need not.
+- Bifurcation, robustness, and nonlinear stability are local for each fixed dimension.
+- No arbitrary-data global boundedness, global attraction, explicit basin, far-from-onset theorem, or dimension-uniform stability radius is proved.
+- No projected-injectivity, weak-reversibility, biochemical, cross-diffusion, immobile-species, reaction-minimality, species-minimality, or complexity theorem is claimed.
 - External specialist review and peer review remain outstanding.
-- The AI disclosure and final submission metadata require human approval.
+- Final submission metadata and the AI disclosure require human approval.
 
-# FILES:
+# FILES
 
-Project root:
+The corrected project contains:
 
-```text
-/mnt/data/qbio_mass_action_turing_final_flagship/
-```
+- `manuscript/main.pdf`;
+- `manuscript/supplement.pdf`;
+- `data/current_profile_exact.json`;
+- `independent_verifier/`;
+- `public/repository/`;
+- `public/data_archive/final_release_data.zip`;
+- `external_audit/packets/`;
+- `submission/biorxiv/`;
+- `submission/arxiv/`;
+- `submission/journal/`;
+- `release/one_command_replay.sh`;
+- `release/replay.log`;
+- `release/reproducibility.md`;
+- `release/sha256_manifest.txt`.
 
-Primary files:
-
-```text
-manuscript/main.pdf
-manuscript/supplement.pdf
-release/FINAL_REPORT.md
-release/one_command_replay.sh
-release/reproducibility.md
-release/sha256_manifest.txt
-```
-
-External audit:
-
-```text
-external_audit/theorem_summary.pdf
-external_audit/proof_skeleton.pdf
-external_audit/packets/reaction_network_audit_packet.zip
-external_audit/packets/pde_audit_packet.zip
-external_audit/packets/symbolic_audit_packet.zip
-```
-
-Submission:
-
-```text
-submission/biorxiv/manuscript.pdf
-submission/biorxiv/supplement.pdf
-submission/biorxiv/source_package.zip
-submission/arxiv/arxiv_source.zip
-submission/journal/source_package.zip
-submission/journal/cover_letter_JMB.md
-submission/journal/cover_letter_SIADS.md
-submission/journal/cover_letter_PhysicaD.md
-```
-
-Public package:
-
-```text
-public/repository/
-public/data_archive/flagship_data.zip
-```
-
-Complete release archive:
-
-```text
-/mnt/data/qbio_mass_action_turing_final_flagship.zip
-SHA-256: recorded in the adjacent `qbio_mass_action_turing_final_flagship.zip.sha256` file
-```
+The complete downloadable archive and its SHA-256 companion are created outside the project tree after the final detached replays.

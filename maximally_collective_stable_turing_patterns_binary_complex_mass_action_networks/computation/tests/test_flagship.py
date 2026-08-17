@@ -83,3 +83,50 @@ def test_mutations_are_detected():
     assert (A - bad_D) * r != sp.zeros(m + 1, 1)
     # Changing the exact factor eight invalidates the unit-threshold identity.
     assert 7 * (m - 2) != 8 * (m - 2)
+
+
+def test_current_profile_single_source_and_m3_regression():
+    import json
+    data=json.loads((ROOT/'data'/'current_profile_exact.json').read_text())
+    assert data['schema']=='current-profile-exact-v1'
+    row=data['rows'][0]
+    assert row['m']==3
+    assert row['ell_dot_r']=='-7451873/924210'
+    assert row['ell_dot_Dr']=='-71818/462105'
+    assert row['eta']['exact']=='143636/7451873'
+    assert row['diffusion_profile'][0]=='23/63'
+    assert row['diffusion_profile'][-1]=='16/45'
+    assert row['eta']['decimal'].startswith('0.0192751540451642')
+
+
+def test_old_profile_mutation_is_rejected_by_provenance():
+    import json
+    data=json.loads((ROOT/'data'/'current_profile_exact.json').read_text())
+    row=data['rows'][0]
+    old_first='257/240'
+    old_eta='0.1054'
+    assert old_first not in row['diffusion_profile']
+    assert not row['eta']['decimal'].startswith(old_eta)
+    table=(ROOT/'data'/'contrast_table.tex').read_text()
+    assert old_eta not in table
+    assert '1.306' not in table
+
+
+def test_general_matrix_theorem_uses_exact_coefficient_domain():
+    text=(ROOT/'manuscript'/'main.tex').read_text()
+    sec=text.split('\\section{A principal-minor diffusion-ray theorem}',1)[1].split('\\section{Exact diffusion design',1)[0]
+    assert 'sum_{|I|=n-1}a_I>0' in sec
+    assert 'at most one' not in sec
+    assert '\\label{thm:diffusionray}' in sec
+
+
+def test_scope_and_certificate_honesty_markers():
+    text=(ROOT/'manuscript'/'main.tex').read_text()
+    assert '\\mathfrak S_m' in text
+    assert 'not classified here' in text
+    assert 'not asserted to be an intrinsic' in text
+    assert 'wave instability' in text
+    assert 'b=2a' in text
+    assert 'N_m(L)>1/200' in text
+    assert 'square-root-balanced' not in text
+    assert 'right panel' not in text

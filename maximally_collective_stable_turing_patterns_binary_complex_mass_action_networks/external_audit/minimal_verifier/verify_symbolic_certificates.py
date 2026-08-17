@@ -5,7 +5,8 @@ from pathlib import Path
 HERE=Path(__file__).resolve().parent
 checks=[
  "verify_all_spectrum.py",
- "verify_one_bad_minor.py",
+ "verify_principal_minor_diffusion_ray.py",
+ "verify_network_one_bad_minor.py",
  "dd_verify_order_m_minors.py",
  "dd_verify_diffusion_criterion.py",
  "dd_verify_contrast_bounds.py",

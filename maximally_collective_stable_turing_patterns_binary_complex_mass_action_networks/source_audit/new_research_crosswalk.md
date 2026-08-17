@@ -6,7 +6,7 @@
 | all-spectrum localization | `inherited_interface/all_spectrum_theorem.tex` | `proof_audit/all_spectrum_localization.tex` |
 | conservation and fixed-mass spaces | `conservation/` | `proof_audit/conservation.tex` |
 | homogeneous stability | `critical_mode/homogeneous_stability.tex` | `proof_audit/homogeneous_stability.tex` |
-| primary crossing and mode isolation | `critical_mode/` | `proof_audit/primary_crossing.tex`, `mode_isolation.tex` |
+| primary crossing and mode isolation | `critical_mode/` | `proof_audit/improved_unit_profile.tex`, `proof_audit/mode_isolation.tex` |
 | Hessian and harmonic corrections | `nonlinear/` | corresponding `proof_audit/` files |
 | cubic sign | `nonlinear/coefficient_*` | `proof_audit/cubic_coefficient.tex`, `coefficient_sign.tex` |
 | exchange of stability | `stability/` | `proof_audit/branch_stability.tex` |

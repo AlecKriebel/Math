@@ -1,14 +1,29 @@
 # Reproducibility
 
-## Full flagship replay
+## Corrected full release replay
 
-From the project root:
+From the corrected project root:
 
 ```bash
 bash release/one_command_replay.sh
 ```
 
-The replay verifies the four frozen source archives, runs independent all-dimensional symbolic checks and mutation tests, regenerates exact instances and coefficient tables, recomputes the numerical illustrations, rebuilds the figures and PDFs, assembles submission and specialist-audit packages, runs a clean portable repository replay, performs PDF/font checks, and writes the release SHA-256 manifest.
+The command verifies all frozen source hashes; regenerates `data/current_profile_exact.json`; rebuilds the finite table, printed certificate tables, simulations, and figures; runs the generalized principal-minor theorem and all network-specific exact verifiers; compiles the manuscript, supplement, and external-audit documents; rebuilds every public and submission bundle; and writes the immutable release manifest.
+
+The successful log must contain:
+
+```text
+NUMERICAL_PROVENANCE_PASS
+MATRIX_THEOREM_GENERALIZATION_PASS
+STABLE_DOMAIN_SCOPE_PASS
+SCC_EXHAUSTION_PASS
+OMISSION_MINOR_PASS
+SYMBOLIC_CERTIFICATE_VISIBILITY_PASS
+TABLE_REGENERATION_PASS
+FIGURE_REGENERATION_PASS
+SUBMISSION_BUNDLE_FRESHNESS_PASS
+ALL_FINAL_RELEASE_REPLAY_CHECKS_PASS
+```
 
 ## Portable public replay
 
@@ -17,12 +32,16 @@ cd public/repository
 bash replay.sh
 ```
 
-This command has no dependency on the private source projects. The all-dimensional proof certificates are listed in `public/repository/CERTIFICATES.md`; finite `m` calculations are regressions only.
+This replay has no dependency on the private source archives. It rebuilds all current-profile values and all-dimensional proof certificates from the portable sources. `FINAL_RELEASE_QUICK=1 bash replay.sh` is a smoke-test mode; the release qualification uses the full command.
+
+## Single source of numerical truth
+
+`data/current_profile_exact.json` is regenerated from the indexed reactions and current improved diffusion profile. Table 1, normal-form predictions, simulation metadata, figures, finite examples, and public demonstrations derive from this file. The mandatory regression is
+
+```text
+eta_3 = 143636/7451873
+```
 
 ## Software environment
 
-Python dependencies are listed in `requirements.txt`. The build also requires a TeX distribution with `pdflatex`, `biber`, TikZ, `biblatex`, and the standard AMS packages, plus `poppler-utils` for PDF audit commands.
-
-## Numerical scope
-
-Cosine-Galerkin integrations are deterministic illustrations. They are not used in any theorem, sign proof, or certificate.
+Python dependencies are in `requirements.txt`. PDF builds require `pdflatex`, `biber`, TikZ, `biblatex`, AMS packages, and Poppler utilities. Numerical integrations are deterministic cosine-Galerkin illustrations and are not used in any proof.

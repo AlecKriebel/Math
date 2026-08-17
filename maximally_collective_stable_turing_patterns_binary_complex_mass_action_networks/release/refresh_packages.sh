@@ -2,21 +2,25 @@
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 PUB="$ROOT/public/repository"
-DATAZIP="$ROOT/public/data_archive/flagship_data.zip"
+DATAZIP="$ROOT/public/data_archive/final_release_data.zip"
 
-# ---------- portable public repository ----------
-rm -rf "$PUB"
+copy_files() {
+  local srcroot="$1" dstroot="$2"; shift 2
+  for rel in "$@"; do
+    mkdir -p "$dstroot/$(dirname "$rel")"
+    cp -a "$srcroot/$rel" "$dstroot/$rel"
+  done
+}
+
+# ---------- portable public repository: strict allowlist ----------
+rm -rf "$PUB" "$ROOT/public/data_archive"
 mkdir -p "$PUB" "$ROOT/public/data_archive"
-cp "$ROOT/LICENSE" "$ROOT/CITATION.cff" "$ROOT/requirements.txt" "$PUB/"
+copy_files "$ROOT" "$PUB" LICENSE CITATION.cff requirements.txt
+
 cat > "$PUB/README.md" <<'EOF'
-# Maximally Collective Stable Turing Patterns
+# Exact Diffusion Design for Maximally Collective Stable Turing Patterns
 
-Portable source, exact certificates, independent verifiers, numerical illustrations, and manuscript files for
-
-**Maximally Collective Stable Turing Patterns in Binary-Complex Mass-Action Networks**  
-*Exact Diffusion Design and Exponent-Optimal Heterogeneity Trade-Offs*
-
-The central all-dimensional proof objects are listed in `CERTIFICATES.md`. Finite values of `m` are regression checks only.
+Portable exact source, proof certificates, independent verifiers, current-profile numerical illustrations, and manuscript sources for the corrected final release.
 
 ## Replay
 
@@ -24,100 +28,145 @@ The central all-dimensional proof objects are listed in `CERTIFICATES.md`. Finit
 bash replay.sh
 ```
 
-The command reconstructs the reaction family, verifies the all-spectrum and diffusion-design theorems, regenerates exact tables and instances, runs mutation tests and numerical illustrations, rebuilds the figures, and compiles the manuscript and supplement.
-
-Numerical illustrations are not used in any proof.
+The full command regenerates the current exact finite data, verifies the all-dimensional certificates, reruns mutation tests and numerical illustrations, rebuilds all three figures, and compiles the manuscript and supplement. Numerical illustrations are not used in any proof.
 EOF
 cat > "$PUB/CERTIFICATES.md" <<'EOF'
 # All-dimensional proof certificates
 
-The following files, together with their human-readable derivations in `proof_audit/`, constitute the all-dimensional certificates.
+The all-dimensional arguments are human-readable in `proof_audit/` and checked by these exact commands:
 
-- `independent_verifier/improved_modulus_certificate.json`: 35-term homogeneous and 77-term improved-profile spatial half-plane certificates.
-- `independent_verifier/pareto_all_m_certificate.json`: 34-term homogeneous and 84-term equilibrium-scaled spatial certificates.
-- `independent_verifier/frontier_certificate.json`: master stable trade-off and gauge-comparison data.
-- `data/certificate_tables.tex`: exact coefficient tables printed in the supplement.
-- `independent_verifier/verify_symbolic_certificates.py`: aggregate exact symbolic checker.
-- `independent_verifier/verify_one_bad_minor.py`: independent one-bad-minor interface and stationary-band audit.
-- `independent_verifier/verify_pareto_family.py`: physical equilibrium-scaling and contrast checks.
-- `independent_verifier/verify_exchange_of_stability.py` and `verify_branch_stability.py`: nonlinear stability checks.
+- `python independent_verifier/verify_all_spectrum.py`
+- `python independent_verifier/verify_principal_minor_diffusion_ray.py`
+- `python independent_verifier/verify_network_one_bad_minor.py`
+- `python independent_verifier/dd_verify_order_m_minors.py`
+- `python independent_verifier/dd_verify_diffusion_criterion.py`
+- `python independent_verifier/dd_verify_contrast_bounds.py`
+- `python independent_verifier/dd_verify_mode_isolation.py`
+- `python independent_verifier/dd_verify_harmonic_corrections.py`
+- `python independent_verifier/dd_verify_cubic_sign.py`
+- `python independent_verifier/frontier_verify_mode_certificates.py`
+- `python independent_verifier/frontier_verify_master_certificate.py`
+- `python independent_verifier/frontier_verify_cubic_bound.py`
+- `python independent_verifier/verify_symbolic_certificates.py`
 
-Finite JSON instances in `data/network_instances/` and `data/exact_instances/` are regression artifacts, not substitutes for the symbolic proof.
+Printed coefficient tables are `data/certificate_tables.tex` and `data/sign_certificate_tables.tex`. The single exact source for all displayed finite values is `data/current_profile_exact.json`. Finite instances are regression checks, not replacements for the symbolic proof.
 EOF
 
-for d in computation independent_verifier data figures proof_audit literature; do
-  mkdir -p "$PUB/$d"
-  rsync -a --delete \
-    --exclude='__pycache__/' --exclude='*.pyc' --exclude='.pytest_cache/' \
-    --exclude='*.aux' --exclude='*.log' --exclude='*.fls' --exclude='*.fdb_latexmk' \
-    --exclude='*.bcf' --exclude='*.blg' --exclude='*.run.xml' --exclude='*.out' --exclude='*.toc' \
-    "$ROOT/$d/" "$PUB/$d/"
-done
-mkdir -p "$PUB/manuscript"
-cp "$ROOT/manuscript/main.tex" "$ROOT/manuscript/supplement.tex" "$ROOT/manuscript/references.bib" \
-   "$ROOT/manuscript/main.pdf" "$ROOT/manuscript/supplement.pdf" "$PUB/manuscript/"
+COMPUTATION=(
+  computation/audit_manuscript.py
+  computation/audit_numerical_provenance.py
+  computation/audit_stale_claims.py
+  computation/generate_current_profile_data.py
+  computation/generate_tables.py
+  computation/generate_sign_certificate_tables.py
+  computation/export_instance.py
+  computation/export_pareto_instance.py
+  computation/simulations.py
+  computation/tests/test_flagship.py
+)
+copy_files "$ROOT" "$PUB" "${COMPUTATION[@]}"
+
+mkdir -p "$PUB/independent_verifier"
+rsync -a --delete --exclude='__pycache__/' --exclude='*.pyc' "$ROOT/independent_verifier/" "$PUB/independent_verifier/"
+mkdir -p "$PUB/proof_audit" "$PUB/literature"
+rsync -a --delete "$ROOT/proof_audit/" "$PUB/proof_audit/"
+rsync -a --delete "$ROOT/literature/" "$PUB/literature/"
+
+DATA_FILES=(
+ data/README.md
+ data/current_profile_exact.json
+ data/contrast_table.tex
+ data/certificate_tables.tex
+ data/sign_certificate_tables.tex
+ data/branch_amplitudes.csv
+ data/refinement_checks.csv
+ data/simulation_parameters.json
+ data/network_instances/Nhat_m3.json
+ data/network_instances/Nhat_m4.json
+ data/network_instances/Nhat_m5.json
+ data/network_instances/Nhat_m6.json
+ data/network_instances/Nhat_m8.json
+ data/network_instances/Nhat_m10.json
+ data/exact_instances/pareto_m3_L0.json
+ data/exact_instances/pareto_m4_L0.json
+)
+copy_files "$ROOT" "$PUB" "${DATA_FILES[@]}"
+mkdir -p "$PUB/data/simulations"
+rsync -a --delete "$ROOT/data/simulations/" "$PUB/data/simulations/"
+
+FIG_FILES=(
+ figures/network_family.tex
+ figures/network_family_standalone.tex
+ figures/network_family.pdf
+ figures/stable_tradeoff.py
+ figures/stable_tradeoff.pdf
+ figures/stable_profiles.py
+ figures/stable_profiles.pdf
+ figures/amplitude_scaling.py
+ figures/amplitude_scaling.pdf
+)
+copy_files "$ROOT" "$PUB" "${FIG_FILES[@]}"
+
+MANUSCRIPT_FILES=(
+ manuscript/main.tex manuscript/supplement.tex manuscript/references.bib
+ manuscript/main.bbl manuscript/main.pdf manuscript/supplement.pdf
+)
+copy_files "$ROOT" "$PUB" "${MANUSCRIPT_FILES[@]}"
+copy_files "$ROOT" "$PUB" external_audit/theorem_summary.tex external_audit/proof_skeleton.tex
+
 cat > "$PUB/replay.sh" <<'EOF'
 #!/usr/bin/env bash
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")" && pwd)"
 cd "$ROOT"
-export PYTHONHASHSEED=0
-export MPLBACKEND=Agg
-export SOURCE_DATE_EPOCH=1786752000
-export FORCE_SOURCE_DATE=1
-export TZ=UTC
+export PYTHONHASHSEED=0 MPLBACKEND=Agg SOURCE_DATE_EPOCH=1786752000 FORCE_SOURCE_DATE=1 TZ=UTC
+OUT="$ROOT/verification_outputs"
+mkdir -p "$OUT" data/network_instances data/exact_instances
 
-mkdir -p verification_outputs
-echo '[1/8] exact tests and manuscript audit'
-python -m pytest -q computation/tests > verification_outputs/pytest.txt
-python computation/audit_manuscript.py > verification_outputs/manuscript_audit.txt
+echo '[1/8] current exact source and tables'
+python computation/generate_current_profile_data.py
+python computation/generate_tables.py
+python computation/generate_sign_certificate_tables.py
 
-echo '[2/8] independent symbolic and nonlinear verifiers'
-python independent_verifier/verify_symbolic_certificates.py > verification_outputs/symbolic_certificates.txt
-if [[ "${FLAGSHIP_QUICK:-0}" == "1" ]]; then
-  { python independent_verifier/frontier_verify_family.py 3 4; python independent_verifier/frontier_verify_pareto.py 3 4; } > verification_outputs/quick_pareto.txt
-else
-  {
-    python independent_verifier/verify_improved_profile.py
-    python independent_verifier/frontier_verify_family.py 3 4 5 6 8 10
-    python independent_verifier/frontier_verify_normal_form.py 3
-    python independent_verifier/frontier_verify_pareto.py 3 4 5 6 8 10
-    python independent_verifier/verify_exchange_of_stability.py
-    python independent_verifier/verify_branch_stability.py
-  } > verification_outputs/integrated_designs.txt
-fi
+echo '[2/8] exact tests and source audits'
+python -m pytest -q computation/tests > "$OUT"/pytest.txt
+python computation/audit_manuscript.py > "$OUT"/manuscript_audit.txt
+python independent_verifier/verify_current_numerical_provenance.py > "$OUT"/detached_provenance.txt
+python independent_verifier/verify_symbolic_certificates.py > "$OUT"/symbolic_certificates.txt
 
-echo '[3/8] exact finite regression instances and printed certificate tables'
-if [[ "${FLAGSHIP_QUICK:-0}" == "1" ]]; then MS=(3 4); else MS=(3 4 5 6 8 10); fi
-for m in "${MS[@]}"; do
-  python computation/export_instance.py "$m" --out "data/network_instances/Nhat_m${m}.json" >/dev/null
-done
+echo '[3/8] integrated exact designs'
+rm -f "$OUT/integrated_designs.txt"
+python independent_verifier/verify_improved_profile.py >> "$OUT"/integrated_designs.txt
+python independent_verifier/frontier_verify_family.py 3 4 5 6 8 10 >> "$OUT"/integrated_designs.txt
+python independent_verifier/frontier_verify_normal_form.py 3 >> "$OUT"/integrated_designs.txt
+python independent_verifier/frontier_verify_pareto.py 3 4 5 6 8 10 >> "$OUT"/integrated_designs.txt
+python independent_verifier/verify_exchange_of_stability.py >> "$OUT"/integrated_designs.txt
+python independent_verifier/verify_branch_stability.py >> "$OUT"/integrated_designs.txt
+
+echo '[4/8] finite regression instances'
+for m in 3 4 5 6 8 10; do python computation/export_instance.py "$m" --out "data/network_instances/Nhat_m${m}.json" >/dev/null; done
 python computation/export_pareto_instance.py 3 --out data/exact_instances/pareto_m3_L0.json >/dev/null
 python computation/export_pareto_instance.py 4 --out data/exact_instances/pareto_m4_L0.json >/dev/null
-python computation/generate_tables.py > verification_outputs/generated_tables.txt
 
-echo '[4/8] deterministic numerical illustrations'
-if [[ "${FLAGSHIP_QUICK:-0}" == "1" ]]; then
-  rm -rf data/simulations_test
-  python computation/simulations.py --quick --outdir data/simulations_test > verification_outputs/simulations_quick.txt
+echo '[5/8] current-profile numerical illustrations'
+if [[ "${FINAL_RELEASE_QUICK:-0}" == 1 ]]; then
+  rm -rf data/simulations_quick
+  python computation/simulations.py --quick --outdir data/simulations_quick > "$OUT"/simulations_quick.txt
 else
   rm -rf data/simulations
-  python computation/simulations.py --outdir data/simulations --jobs 4 > verification_outputs/simulations.txt
+  python computation/simulations.py --outdir data/simulations --jobs 3 > "$OUT"/simulations.txt
+  python computation/audit_numerical_provenance.py > "$OUT"/numerical_provenance.txt
 fi
 
-echo '[5/8] figures'
+echo '[6/8] figures'
 python figures/stable_tradeoff.py
-if [[ "${FLAGSHIP_QUICK:-0}" != "1" ]]; then
+if [[ "${FINAL_RELEASE_QUICK:-0}" != 1 ]]; then
   python figures/stable_profiles.py
   python figures/amplitude_scaling.py
 fi
-(
- cd figures
- pdflatex -interaction=nonstopmode -halt-on-error network_family_standalone.tex >/dev/null
- cp network_family_standalone.pdf network_family.pdf
-)
+(cd figures && pdflatex -interaction=nonstopmode -halt-on-error network_family_standalone.tex >/dev/null && cp network_family_standalone.pdf network_family.pdf)
 
-echo '[6/8] manuscripts'
+echo '[7/8] manuscript and supplement'
 (
  cd manuscript
  pdflatex -interaction=nonstopmode -halt-on-error main.tex >/dev/null
@@ -132,30 +181,27 @@ for f in manuscript/main.log manuscript/supplement.log; do
   ! grep -Eiq 'undefined references|undefined citations|LaTeX Warning: Reference|Overfull \\hbox' "$f"
 done
 
-echo '[7/8] PDF and portability checks'
-for f in manuscript/main.pdf manuscript/supplement.pdf figures/network_family.pdf figures/stable_tradeoff.pdf figures/stable_profiles.pdf; do
-  test -s "$f"
-  pdffonts "$f" | tail -n +3 | awk 'NF && $5!="yes" {bad=1} END{exit bad}'
-done
-! grep -RIl --include='*.py' --include='*.md' --include='*.tex' --include='*.json' --include='*.sh' '/mnt/data/' README.md CERTIFICATES.md computation independent_verifier proof_audit manuscript figures data | grep .
-
-echo '[8/8] local source manifest'
-find . -type f \
-  ! -path './.pytest_cache/*' ! -path '*/__pycache__/*' ! -name '*.pyc' \
-  ! -name '*.aux' ! -name '*.log' ! -name '*.bcf' ! -name '*.blg' \
-  ! -name '*.fls' ! -name '*.fdb_latexmk' ! -name '*.run.xml' ! -name '*.out' ! -name '*.toc' \
-  ! -name 'sha256_manifest.txt' -print0 | sort -z | xargs -0 sha256sum > sha256_manifest.txt
+echo '[8/8] portability, PDF, and manifest'
+for f in manuscript/main.pdf manuscript/supplement.pdf figures/network_family.pdf figures/stable_tradeoff.pdf figures/stable_profiles.pdf; do test -s "$f"; done
+for f in manuscript/main.pdf manuscript/supplement.pdf; do pdffonts "$f" | tail -n +3 | awk 'NF && $5!="yes" {bad=1} END{exit bad}'; done
+if grep -RIl --include='*.py' --include='*.md' --include='*.tex' --include='*.json' --include='*.sh' '/mnt/data/' . | grep -v '^./replay.sh$' | grep .; then exit 1; fi
+if [[ "${FINAL_RELEASE_QUICK:-0}" == 1 ]]; then
+  rm -rf data/simulations_quick data/branch_amplitudes_quick.csv data/refinement_checks_quick.csv
+fi
+rm -rf .pytest_cache
+find . -type d -name '__pycache__' -prune -exec rm -rf {} +
+find . -type f \( -name '*.aux' -o -name '*.log' -o -name '*.bcf' -o -name '*.blg' -o -name '*.fls' -o -name '*.fdb_latexmk' -o -name '*.run.xml' -o -name '*.out' -o -name '*.toc' \) -delete
+find . -type f ! -path './.pytest_cache/*' ! -path '*/__pycache__/*' ! -name '*.pyc' ! -name '*.aux' ! -name '*.log' ! -name '*.bcf' ! -name '*.blg' ! -name '*.fls' ! -name '*.fdb_latexmk' ! -name '*.run.xml' ! -name '*.out' ! -name '*.toc' ! -name 'sha256_manifest.txt' -print0 | sort -z | xargs -0 sha256sum > sha256_manifest.txt
 sha256sum -c sha256_manifest.txt >/dev/null
-
 echo PUBLIC_REPLAY_PASS
 EOF
 chmod +x "$PUB/replay.sh"
 
 # ---------- open data archive ----------
 rm -f "$DATAZIP"
-(cd "$ROOT/data" && zip -qr "$DATAZIP" .)
+(cd "$ROOT/data" && zip -Xqr "$DATAZIP" .)
 
-# ---------- self-contained submission sources ----------
+# ---------- self-contained submission source bundles ----------
 prepare_source() {
   local base="$1"
   rm -rf "$base"
@@ -166,32 +212,25 @@ prepare_source() {
   cp "$ROOT/manuscript/main.bbl" "$base/main.bbl"
   cp "$ROOT/figures/network_family.tex" "$base/figures/"
   cp "$ROOT/figures/stable_tradeoff.pdf" "$ROOT/figures/stable_profiles.pdf" "$base/figures/"
-  cp "$ROOT/data/contrast_table.tex" "$ROOT/data/certificate_tables.tex" "$base/data/"
+  cp "$ROOT/data/contrast_table.tex" "$ROOT/data/certificate_tables.tex" "$ROOT/data/sign_certificate_tables.tex" "$base/data/"
   python - "$base" <<'PY'
 from pathlib import Path
 import sys
 base=Path(sys.argv[1])
 for fn in ('main.tex','supplement.tex'):
     p=base/fn
-    s=p.read_text().replace('../figures/','figures/').replace('../data/','data/')
-    p.write_text(s)
+    p.write_text(p.read_text().replace('../figures/','figures/').replace('../data/','data/'))
 PY
 }
-for base in "$ROOT/submission/biorxiv/source" "$ROOT/submission/arxiv/source" "$ROOT/submission/journal/source"; do
-  prepare_source "$base"
-done
-
+for base in "$ROOT/submission/biorxiv/source" "$ROOT/submission/arxiv/source" "$ROOT/submission/journal/source"; do prepare_source "$base"; done
 cp "$ROOT/manuscript/main.pdf" "$ROOT/submission/biorxiv/manuscript.pdf"
 cp "$ROOT/manuscript/supplement.pdf" "$ROOT/submission/biorxiv/supplement.pdf"
 cp "$ROOT/manuscript/main.pdf" "$ROOT/submission/journal/manuscript.pdf"
 cp "$ROOT/manuscript/supplement.pdf" "$ROOT/submission/journal/supplement.pdf"
-
-rm -f "$ROOT/submission/biorxiv/source_package.zip" \
-      "$ROOT/submission/arxiv/arxiv_source.zip" \
-      "$ROOT/submission/journal/source_package.zip"
-(cd "$ROOT/submission/biorxiv/source" && zip -qr "$ROOT/submission/biorxiv/source_package.zip" .)
-(cd "$ROOT/submission/arxiv/source" && zip -qr "$ROOT/submission/arxiv/arxiv_source.zip" .)
-(cd "$ROOT/submission/journal/source" && zip -qr "$ROOT/submission/journal/source_package.zip" .)
+rm -f "$ROOT/submission/biorxiv/source_package.zip" "$ROOT/submission/arxiv/arxiv_source.zip" "$ROOT/submission/journal/source_package.zip"
+(cd "$ROOT/submission/biorxiv/source" && zip -Xqr "$ROOT/submission/biorxiv/source_package.zip" .)
+(cd "$ROOT/submission/arxiv/source" && zip -Xqr "$ROOT/submission/arxiv/arxiv_source.zip" .)
+(cd "$ROOT/submission/journal/source" && zip -Xqr "$ROOT/submission/journal/source_package.zip" .)
 
 # ---------- external specialist packets ----------
 MIN="$ROOT/external_audit/minimal_verifier"
@@ -202,33 +241,28 @@ cat > "$MIN/replay.sh" <<'EOF'
 #!/usr/bin/env bash
 set -euo pipefail
 cd "$(dirname "$0")"
+python verify_principal_minor_diffusion_ray.py
 python verify_symbolic_certificates.py
-if [[ "${MINIMAL_FAST:-0}" == "1" ]]; then
-  python frontier_verify_family.py 3 4
-  python frontier_verify_pareto.py 3 4
-else
-  python verify_improved_profile.py
-  python frontier_verify_family.py 3 4 5 6 8 10
-  python frontier_verify_normal_form.py 3
-  python frontier_verify_pareto.py 3 4 5 6 8 10
-  python verify_exchange_of_stability.py
-  python verify_branch_stability.py
-fi
+python verify_improved_profile.py
+python frontier_verify_family.py 3 4 5 6 8 10
+python frontier_verify_normal_form.py 3
+python frontier_verify_pareto.py 3 4 5 6 8 10
+python verify_exchange_of_stability.py
+python verify_branch_stability.py
 echo MINIMAL_VERIFIER_PASS
 EOF
 chmod +x "$MIN/replay.sh"
 cat > "$MIN/README.md" <<'EOF'
 # Minimal exact verifier
 
-Run `bash replay.sh`. The verifier reconstructs the reaction family and checks the topology-wide block theorem, one-bad-minor interface, omission table, exact diffusion law, contrast bounds, improved unit profile, equilibrium-scaled stable family, cubic signs, and branch stability. It imports no discovery-side module.
+Run `bash replay.sh`. It reconstructs the family and checks the generalized principal-minor diffusion-ray theorem, network-specific omission table and diffusion law, all-spectrum localization, current stable unit design, equilibrium-scaled stable family, cubic signs, and exchange of stability. It imports no discovery-side implementation.
 EOF
 
 PACKROOT="$ROOT/external_audit/packets"
 rm -rf "$PACKROOT"
 mkdir -p "$PACKROOT"
 for kind in reaction_network pde symbolic; do
-  p="$PACKROOT/$kind"
-  mkdir -p "$p"
+  p="$PACKROOT/$kind"; mkdir -p "$p"
   cp "$ROOT/external_audit/theorem_summary.pdf" "$ROOT/external_audit/proof_skeleton.pdf" "$p/"
   cp "$ROOT/figures/network_family.pdf" "$p/"
   cp "$ROOT/data/network_instances/Nhat_m3.json" "$ROOT/data/network_instances/Nhat_m4.json" "$p/"
@@ -240,8 +274,8 @@ cat > "$PACKROOT/reaction_network/questions.md" <<'EOF'
 
 1. Is the all-m SCC exhaustion complete, including the edge loss at `b=2a`?
 2. Does the complete positive-flux parametrization capture every positive-equilibrium Jacobian?
-3. Are the order-(n-1) omission table and exact factor-eight diffusion law correct?
-4. Is the topology-wide `n-1` sharpness statement positioned correctly relative to fixed-J unstable-subsystem theory?
+3. Are the order-(n-1) omission table and exact factor-eight stationary diffusion law correct?
+4. Is the endpoint `n-1` positioned accurately relative to published unstable-subsystem theory?
 EOF
 cat > "$PACKROOT/pde/questions.md" <<'EOF'
 # PDE bifurcation and stability audit questions
@@ -249,19 +283,19 @@ cat > "$PACKROOT/pde/questions.md" <<'EOF'
 1. Is the physical scaling `z=Hx`, `D_phys=H Delta` correct?
 2. Is the semipositive fixed-integrated-mass Fredholm and zero-mode gauge formulation correct?
 3. Are the Fourier factors and cubic contraction normalized correctly?
-4. Do the branch spectrum and sectorial hypotheses justify local exponential convergence in fixed-mass `H^1`?
+4. Do the sectorial and spectral hypotheses justify local exponential convergence in fixed-mass `H^1`?
 EOF
 cat > "$PACKROOT/symbolic/questions.md" <<'EOF'
 # Symbolic and algebraic audit questions
 
-1. Is the one-bad-minor derivative monotonicity proof valid under exactly its hypotheses?
-2. Are the equality cases in the 34-, 35-, 77-, and 84-term certificates correct?
-3. Is the four-factor second-harmonic recurrence exact at both chain boundaries?
-4. Is the gauge comparison `N_m(L)>1/200` a valid all-m cubic sign proof?
+1. Is the generalized principal-minor derivative monotonicity proof valid under its stated coefficient hypotheses?
+2. Are the complete omission-minor table and factor-eight mechanism correct?
+3. Are the equality cases in the 34-, 35-, 77-, and 84-term certificates correct?
+4. Is the gauge comparison `N_m(L)>1/200` a valid all-m cubic-sign proof?
 EOF
 for kind in reaction_network pde symbolic; do
   rm -f "$PACKROOT/${kind}_audit_packet.zip"
-  (cd "$PACKROOT/$kind" && zip -qr "../${kind}_audit_packet.zip" .)
+  (cd "$PACKROOT/$kind" && zip -Xqr "../${kind}_audit_packet.zip" .)
 done
 
 echo PACKAGES_REFRESHED
