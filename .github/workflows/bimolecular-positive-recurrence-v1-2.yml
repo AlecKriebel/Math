@@ -1,0 +1,115 @@
+name: Bimolecular positive recurrence Version 1.2 checks
+
+on:
+  push:
+    branches: [main]
+    tags: [bimolecular-positive-recurrence-v1.2]
+    paths:
+      - "bimolecular_positive_recurrence_submission_v1_2/**"
+      - "bimolecular_positive_recurrence_submission_v1_2.zip"
+      - ".github/workflows/bimolecular-positive-recurrence-v1-2.yml"
+  pull_request:
+    paths:
+      - "bimolecular_positive_recurrence_submission_v1_2/**"
+      - "bimolecular_positive_recurrence_submission_v1_2.zip"
+      - ".github/workflows/bimolecular-positive-recurrence-v1-2.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verifier:
+    name: Verifier (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12", "3.13", "3.14"]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1b # v7.0.1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install editable package
+        working-directory: bimolecular_positive_recurrence_submission_v1_2/code
+        run: python -m pip install -e .
+      - name: Reproduce canonical report and tests
+        working-directory: bimolecular_positive_recurrence_submission_v1_2/code
+        run: ./reproduce.sh
+
+  release-integrity:
+    name: Manifest and archive (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.14"]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1b # v7.0.1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Verify every durable package file
+        working-directory: bimolecular_positive_recurrence_submission_v1_2
+        run: |
+          python -m unittest supplement/test_release_tools.py -v
+          python supplement/verify_manifest.py
+      - name: Require identical manifest and report copies
+        run: |
+          cmp bimolecular_positive_recurrence_submission_v1_2/supplement/MANIFEST.sha256 bimolecular_positive_recurrence_submission_v1_2/validation/MANIFEST.sha256
+          cmp bimolecular_positive_recurrence_submission_v1_2/code/verification_report.json bimolecular_positive_recurrence_submission_v1_2/supplement/verification_report.json
+          cmp bimolecular_positive_recurrence_submission_v1_2/code/verification_report.json bimolecular_positive_recurrence_submission_v1_2/validation/VERIFICATION_REPORT.json
+      - name: Rebuild and compare the deterministic release archive
+        working-directory: bimolecular_positive_recurrence_submission_v1_2
+        run: python supplement/build_release_archive.py --check
+
+  manuscript-build:
+    name: Four canonical PDFs
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1b # v7.0.1
+      - uses: wtfjoke/setup-tectonic@eb29fd68b7d3f76011906b6e45ea4320c8de5d2f # v4.0.5
+        with:
+          tectonic-version: "0.16.9"
+      - name: Compile twice and require deterministic committed PDFs
+        working-directory: bimolecular_positive_recurrence_submission_v1_2/manuscript
+        run: |
+          ./build.sh
+          cp main_arxiv.pdf "$RUNNER_TEMP/main_arxiv.pdf"
+          cp main_biorxiv.pdf "$RUNNER_TEMP/main_biorxiv.pdf"
+          cp main_jap.pdf "$RUNNER_TEMP/main_jap.pdf"
+          cp supplementary_note.pdf "$RUNNER_TEMP/supplementary_note.pdf"
+          ./build.sh
+          cmp main_arxiv.pdf "$RUNNER_TEMP/main_arxiv.pdf"
+          cmp main_biorxiv.pdf "$RUNNER_TEMP/main_biorxiv.pdf"
+          cmp main_jap.pdf "$RUNNER_TEMP/main_jap.pdf"
+          cmp supplementary_note.pdf "$RUNNER_TEMP/supplementary_note.pdf"
+      - name: Require byte-identical committed PDFs
+        run: git diff --exit-code -- bimolecular_positive_recurrence_submission_v1_2/manuscript
+
+  tagged-release-replay:
+    name: Clean tagged release replay
+    if: startsWith(github.ref, 'refs/tags/bimolecular-positive-recurrence-v1.2')
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1b # v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: "3.14"
+      - uses: wtfjoke/setup-tectonic@eb29fd68b7d3f76011906b6e45ea4320c8de5d2f # v4.0.5
+        with:
+          tectonic-version: "0.16.9"
+      - name: Replay the complete tagged release
+        shell: bash
+        run: |
+          set -o pipefail
+          bimolecular_positive_recurrence_submission_v1_2/validation/replay_release.sh \
+            2>&1 | tee "$RUNNER_TEMP/bimolecular-positive-recurrence-v1.2-replay.txt"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: bimolecular-positive-recurrence-v1.2-replay
+          path: ${{ runner.temp }}/bimolecular-positive-recurrence-v1.2-replay.txt
+          if-no-files-found: error
