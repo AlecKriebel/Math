@@ -174,7 +174,7 @@ found no later publication or citing work; Semantic Scholar rate-limited the
 refresh. These are incomplete negative signals and are not treated as proof of
 novelty.
 
-All six bibliography records, DOI targets, and the manuscript's cited
+All six external bibliography records, DOI targets, and the manuscript's cited
 sections, equations, theorem, lemma, remark, and page claims were checked
 against primary sources in the refresh. Wenzl's official title is “Hecke
 algebras of type \(A_n\) and subfactors”; that subscript is retained in the

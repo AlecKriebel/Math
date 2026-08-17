@@ -2,6 +2,9 @@
 
 Submission package version 1.1.3 · 16 August 2026
 
+Version-specific Zenodo DOI:
+[10.5281/zenodo.21971507](https://doi.org/10.5281/zenodo.21971507)
+
 ## Result
 
 This package gives an exact representative of the exceptional class

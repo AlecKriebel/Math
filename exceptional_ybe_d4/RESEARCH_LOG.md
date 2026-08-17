@@ -305,3 +305,59 @@ All times are America/Los_Angeles (PDT, UTC-07:00).
   byte for byte; the isolated arXiv archive again compiled to the final PDF.
 - No outside individual was contacted, and no Zenodo, arXiv, journal, DOI,
   GitHub release, or other submission action was initiated.
+
+## 16 August 2026 — Reserved-DOI final production freeze
+
+- **18:30 PDT** -- The human author supplied the version DOI
+  `10.5281/zenodo.21971507`, reserved in a fresh manual Zenodo draft. Public
+  DOI, DataCite, and Zenodo lookups remained unresolved, as expected before
+  publication of a private draft. No automated process opened, edited,
+  uploaded to, or published the draft.
+- **18:36 PDT** -- Applied the three accepted editorial changes without
+  altering the operator, theorem, proofs, or scope: made the abstract
+  antecedent explicit, simplified the public title block to “Independent
+  researcher” with email and ORCID, and moved the GHR convention remark to
+  immediately after the proof it qualifies. A full postal address and phone
+  remain a separate journal-only human gate.
+- **18:40 PDT** -- Inserted the reserved version DOI in the manuscript,
+  bibliography, citation metadata, project page, handoff files, and current
+  release records. The OpenAI declaration was rechecked against official
+  product guidance and retained: GPT-5.6 Sol is the model, with Pro and Ultra
+  identified as the respective modes.
+- **18:42 PDT** -- Rebuilt the manuscript with Tectonic 0.16.9 and default
+  bundle v33 under `SOURCE_DATE_EPOCH=1786930200`. Concise but complete
+  bibliography formatting keeps the paper at 12 pages. The PDF SHA-256 at this
+  checkpoint was
+  `9a18d2206987cdebf77b2a1efff4b1eb8b7688da25f5fddebf4db7ee36922f87`.
+  All 12 rendered pages were inspected; the public author block, relocated
+  remark, DOI availability statement, and seven references are clean, with no
+  clipping, overlap, malformed glyphs, or layout warning.
+- **18:45 PDT** -- All three supported verification routes reproduced the
+  unchanged frozen output, and all 20 adversarial failure-mode tests passed,
+  including the new DOI, title-block, abstract, remark-placement, epoch, and
+  metadata bindings.
+- **18:48 PDT** -- Regenerated the 35-file package manifest and all five
+  deterministic submission files. Both outer checksum manifests verified. A
+  clean source extraction passed every internal hash, reproduced the three
+  supported routes and all 20 adversarial tests, and repacked byte identically
+  under both Python 3.14.6 and Python 3.11. The isolated one-file arXiv archive
+  compiled to the final PDF byte for byte.
+- **18:51 PDT** -- Completed the final format audit. The CFF 1.2 metadata
+  validates against the official schema; the HTML structured metadata parses;
+  all 24 PDF fonts are embedded; and all 16 external-link annotations were
+  inspected, including the reserved version DOI. The DOI remains intentionally
+  unresolved until the human publishes the private Zenodo draft.
+- **18:57 PDT** -- An independent final read-through caught a single page-flow
+  defect: page 11 ended with the article “The.” A nonbreaking phrase and a
+  shorter equivalent availability sentence now leave page 11 at a complete
+  sentence and begin page 12 with “The version-specific Zenodo record.” The
+  re-rendered pages are clean. The final PDF remains 12 pages and has SHA-256
+  `af1255b7702f78e73ba9981ca29d2cdfffcb26e6aa093b7b5d0a2bcaebf03ec8`.
+- **18:59 PDT** -- Repeated the complete freeze after that page-flow edit. A
+  clean extraction again passed all 35 hashes, all three supported routes, and
+  all 20 adversarial tests; Python 3.14.6 and 3.11 repacks were byte-identical;
+  the isolated arXiv source again reproduced the final PDF; and all mirrors,
+  archive boundaries, timestamps, modes, CRCs, and outer checksums agreed.
+- No paper or archive was submitted or published, no GitHub release was
+  created, no external integration was changed, and no outside individual was
+  contacted during this final production freeze.

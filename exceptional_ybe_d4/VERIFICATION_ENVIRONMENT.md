@@ -8,7 +8,7 @@ macOS, using the following reference environment:
 - mpmath 1.3.0;
 - Tectonic 0.16.9;
 - Tectonic default bundle v33;
-- `SOURCE_DATE_EPOCH=1786923000` (16 August 2026, 16:30 PDT).
+- `SOURCE_DATE_EPOCH=1786930200` (16 August 2026, 18:30 PDT).
 
 Create a clean environment and install the two universal wheels with their
 published hashes:
@@ -49,7 +49,7 @@ package-local source artifacts. The Zenodo upload hashes are in
 - Frozen verification output SHA-256:
   `b24067217009d8fbee4e412ef5b02dd3c4923de8ac699a19900a97de5524f83f`.
 - Final PDF SHA-256:
-  `0b73f54a80f45ae57186d04c6f68ae5a45912a41c2990c7ecec7afc13287bedb`.
+  `af1255b7702f78e73ba9981ca29d2cdfffcb26e6aa093b7b5d0a2bcaebf03ec8`.
 
 The exact programs certify the displayed finite matrix identities, both
 partial traces, both dimension-three obstruction trace-square identities,

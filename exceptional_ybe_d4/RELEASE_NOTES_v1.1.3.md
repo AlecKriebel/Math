@@ -19,6 +19,8 @@ or qualified novelty claim.
 - Adds Lechner's arXiv-issued DOI while retaining the immutable version-1 URL
   used for page and theorem locators.
 - Promotes the GHR normalization note from a footnote to a visible remark.
+- Moves that remark outside the proposition proof, fixes the abstract's
+  antecedent, and simplifies the sole-author public title block.
 - Uses the official model/mode terminology: GPT-5.6 Sol in Pro mode through
   ChatGPT and GPT-5.6 Sol in Ultra mode through Codex. It does not invent a
   separate “Sol Pro” model slug.
@@ -33,6 +35,8 @@ or qualified novelty claim.
   internal and outer hashes, and repeats the full mathematical, mutation,
   extraction, arXiv, and visual audits.
 
-The dedicated Zenodo DOI remains a later human-controlled reservation gate.
-No Zenodo record, arXiv submission, journal submission, GitHub release, or
-outside contact was made while preparing this revision.
+The human author supplied the fresh draft's reserved version DOI,
+`10.5281/zenodo.21971507`. It is embedded throughout the manuscript, metadata,
+project page, and regenerated deterministic artifacts. The draft remains
+unpublished. No Zenodo publication, arXiv submission, journal submission,
+GitHub release, or outside contact was made while preparing this revision.

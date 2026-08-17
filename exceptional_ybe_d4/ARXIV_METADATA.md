@@ -18,16 +18,15 @@ first with `(cd submission && shasum -a 256 -c ARXIV_SHA256SUMS)`.
 - DOI: leave blank; the Zenodo supporting-record DOI does not belong here
 - ORCID: link `0009-0001-9320-500X` in the author's arXiv account
 
-Comments (fill from the reserved DOI before Zenodo publication, then use after
-the record is published):
+Comments (use after the Zenodo record is published):
 
 ```text
-12 pages. Exact verification package: https://doi.org/[ZENODO VERSION DOI].
+12 pages. Exact verification package: https://doi.org/10.5281/zenodo.21971507.
 ```
 
-Replace the bracketed field with the actual fresh reserved version DOI. The abstract
-in `main.tex` is within arXiv's 1,920-character limit. Copy it as plain ASCII
-metadata and inspect arXiv's generated PDF page by page before submission.
+The abstract in `main.tex` is within arXiv's 1,920-character limit. Copy it as
+plain ASCII metadata and inspect arXiv's generated PDF page by page before
+submission.
 
 Significant generative-AI use is disclosed in the manuscript. The author must
 personally complete any category endorsement workflow. No endorsement request

@@ -79,18 +79,26 @@ GHR Theorem 5.28. A final editorial audit also added Lechner's arXiv-issued
 DOI, `10.48550/arXiv.2603.20158`, to the bibliography while retaining the
 immutable version-1 URL used for the theorem and page locators.
 
-## 5. Archival and journal gates
+## 5. Final editorial and archival freeze
 
-**Retained, not executed.** The current package remains deliberately
-pre-reservation. A human must create a fresh manual Zenodo draft, reserve its
-new version DOI, insert it everywhere listed in `ZENODO_DEPOSIT.md`, and rerun
-the complete freeze before publication. The journal-only full postal address
-and portal phone gate also remains. No DOI was reserved, no record was
-published, no submission was made, and no outside person was contacted.
+**Accepted and completed.** A final review found three small presentation
+issues but no mathematical defect. The abstract now has an unambiguous
+antecedent, the public sole-author block omits the redundant “Corresponding
+author” label and unnecessary location, and the GHR convention remark follows
+rather than interrupts the proof of Proposition 5.1.
+
+The human author supplied the fresh manual Zenodo draft's reserved version DOI,
+`10.5281/zenodo.21971507`. The DOI was inserted in every current manuscript,
+citation, metadata, and project-page surface, after which the PDF, manifests,
+verifiers, and deterministic archives were rebuilt and rechecked. The draft
+remains unpublished. The separate journal-only full postal address and portal
+phone gate also remains. No Zenodo publication, arXiv submission, journal
+submission, GitHub release, or outside contact occurred in this freeze.
 
 ## Conclusion
 
 The operator, theorem, proof scope, exact verifier results, and qualified
 priority claim are unchanged. Version 1.1.3 corrects attribution, removes a
 fragile external locator, improves convention visibility, clarifies product
-terminology, and refreshes the complete deterministic submission package.
+terminology, and supplies a single DOI-bearing deterministic submission
+package.

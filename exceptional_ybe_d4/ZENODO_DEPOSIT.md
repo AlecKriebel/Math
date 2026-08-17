@@ -1,8 +1,9 @@
 # Manual Zenodo deposit record
 
-This package is ready to start a **new manual upload**. Do not create a GitHub
-release and do not select **New version** on any existing record. Reserve the
-new record's version DOI and complete the gate below before publishing it.
+The human author created a fresh manual **New upload** draft and supplied its
+reserved version DOI, `10.5281/zenodo.21971507`. The draft remains unpublished.
+Do not create a GitHub release and do not select **New version** on any existing
+record.
 
 ## Mandatory repository safeguard
 
@@ -11,8 +12,9 @@ GitHub integration toggle for `AlecKriebel/Math`. That integration has placed
 seven unrelated releases under concept DOI `10.5281/zenodo.21753404` and
 archives the whole monorepo. This paper must not use or cite that DOI family.
 
-Create a fresh record with Zenodo **New upload**. No draft, DOI reservation,
-deposit, or integration change was made while preparing this package.
+The reserved DOI was supplied by the human author. No Zenodo draft was opened,
+edited, uploaded to, or published by the automated preparation process, and no
+integration setting was changed.
 
 ## Exact metadata for the new record
 
@@ -22,6 +24,7 @@ deposit, or integration change was made while preparing this package.
 - ORCID: `0009-0001-9320-500X`
 - Affiliation: Independent researcher
 - Version: `1.1.3`
+- Reserved version DOI: `10.5281/zenodo.21971507`
 - Publication date: `2026-08-16`
 - Publisher: Zenodo
 - Access: Open
@@ -43,38 +46,29 @@ Description:
 > compilable TeX source, three exact verification routes, negative tests,
 > frozen output, checksums, provenance, and submission metadata.
 
-## Reserved-DOI completion gate
+## DOI-bearing freeze completed
 
-In the fresh **New upload** draft, use Zenodo's **Reserve DOI** control before
-uploading or publishing. Record the newly reserved **version DOI** (not a
-concept DOI), but do not publish the record yet.
+The supplied DOI is the fresh draft's **version DOI**, not a concept DOI. It is
+embedded in the manuscript, bibliography, `CITATION.cff`, project-page
+metadata and citation, and `ARXIV_METADATA.md`. The DOI-bearing PDF, hashes,
+source archive, and arXiv archive were then rebuilt and reverified under the
+fixed environment recorded in `VERIFICATION_ENVIRONMENT.md`.
 
-Insert that DOI in all of the following places:
+The completed DOI surfaces are:
 
 - the manuscript's data/code/source availability statement and formal
   bibliography;
 - `README.md` and the current package-status language in `MANIFEST.md`;
 - `CITATION.cff`;
 - the project page's structured metadata and suggested citation; and
-- the bracketed template in `ARXIV_METADATA.md`.
+- the arXiv Comments text in `ARXIV_METADATA.md`.
 
-Run a package-wide DOI/status sweep before rebuilding. Historical logs and
-prior-version release notes may retain clearly dated pre-reservation facts,
-but no file describing version 1.1.3 as current may say that its archive is
-still only planned.
-
-Then run the complete final rebuild and checksum workflow: rebuild both PDF
-mirrors, refresh and verify the package-local `SHA256SUMS`, rerun all supported
-verifiers and negative tests, run `package_submission.py`, verify both outer
-checksum files, and compile the regenerated arXiv ZIP. Commit and push that
-DOI-bearing source, page, and PDF without creating a GitHub release. Wait for
-GitHub Pages to deploy, then confirm that the live project page and live PDF
-show the same DOI-bearing edition before publishing the Zenodo draft.
+Historical logs and prior-version release notes retain clearly dated
+pre-reservation facts. The current version-1.1.3 files and artifacts are the
+single DOI-bearing freeze.
 
 This reserve-before-publication sequence gives the Zenodo, repository, arXiv,
-and journal copies the same DOI-bearing manuscript content and provenance. If
-the reserved DOI is not yet available, stop; do not publish first and retrofit
-a self-citation afterward.
+and journal copies the same DOI-bearing manuscript content and provenance.
 
 Official DOI-reservation instructions:
 
@@ -93,7 +87,8 @@ exactly those three files to the same draft. Before publishing, download all
 three, check their names and sizes, and verify the downloaded `SHA256SUMS` in a
 directory containing the downloaded PDF and source ZIP. Preview the record,
 confirm that the reserved DOI is the one printed in the files and metadata,
-and only then publish. The arXiv archive and its separate
+confirm that the live repository page and PDF show the same DOI-bearing
+edition, and only then publish. The arXiv archive and its separate
 `ARXIV_SHA256SUMS` are not part of the Zenodo record.
 
 After Zenodo publication, submit the already checked DOI-bearing arXiv ZIP.

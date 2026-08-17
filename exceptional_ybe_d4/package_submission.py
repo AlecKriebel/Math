@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parent
 OUT = ROOT / "submission"
 VERSION = "1.1.3"
 # ZIP timestamps have no timezone field; use the visible release time in PDT.
-ZIP_TIME = (2026, 8, 16, 16, 30, 0)
+ZIP_TIME = (2026, 8, 16, 18, 30, 0)
 PDF_NAME = f"exceptional-ybe-d4-v{VERSION}.pdf"
 SOURCE_NAME = f"exceptional-ybe-d4-v{VERSION}-source.zip"
 ARXIV_NAME = f"exceptional-ybe-d4-v{VERSION}-arxiv.zip"

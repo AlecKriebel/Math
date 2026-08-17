@@ -200,6 +200,7 @@ class FailureModeTests(unittest.TestCase):
 
     def test_current_textual_corrections_are_bound(self):
         manuscript = (ROOT / "main.tex").read_text(encoding="utf-8")
+        doi = "10.5281/zenodo.21971507"
         self.assertNotIn("Galindo--Hong--Rowell localization conjecture", manuscript)
         self.assertIn("Rowell--Wang localization conjecture", manuscript)
         self.assertIn(
@@ -209,10 +210,33 @@ class FailureModeTests(unittest.TestCase):
         self.assertNotIn("multiply relation~(3.1) of", manuscript)
         self.assertIn("multiply the displayed\nprojection-form Hecke relation", manuscript)
         self.assertIn("10.48550/arXiv.2603.20158", manuscript)
+        self.assertIn("This realizes the smallest-dimensional", manuscript)
+        self.assertNotIn("Corresponding author:", manuscript)
+        self.assertNotIn("San Francisco, California", manuscript)
+        self.assertIn(
+            "\\end{proof}\n\n\\begin{remark}[Conventions in GHR",
+            manuscript,
+        )
+        doi_files = (
+            "main.tex",
+            "README.md",
+            "CITATION.cff",
+            "MANIFEST.md",
+            "ZENODO_DEPOSIT.md",
+            "ARXIV_METADATA.md",
+            "SUBMISSION_CHECKLIST.md",
+            "RELEASE_NOTES_v1.1.3.md",
+            "CORRECTION_AUDIT_v1.1.3.md",
+        )
+        for name in doi_files:
+            with self.subTest(doi_file=name):
+                self.assertIn(doi, (ROOT / name).read_text(encoding="utf-8"))
         current_texts = [manuscript]
         website_path = ROOT.parent / "docs/papers/exceptional-ybe-d4/index.html"
         if website_path.exists():
-            current_texts.append(website_path.read_text(encoding="utf-8"))
+            website = website_path.read_text(encoding="utf-8")
+            self.assertIn(doi, website)
+            current_texts.append(website)
         for current_text in current_texts:
             normalized = " ".join(current_text.split())
             self.assertNotIn("GPT-5.6 Sol Pro", normalized)
@@ -232,7 +256,7 @@ class FailureModeTests(unittest.TestCase):
             with self.subTest(name=name):
                 self.assertIn(marker, (ROOT / name).read_text(encoding="utf-8"))
         self.assertEqual(package_submission.VERSION, current_version)
-        epoch = "1786923000"
+        epoch = "1786930200"
         self.assertIn(epoch, (ROOT / "build_paper.sh").read_text(encoding="utf-8"))
         self.assertIn(epoch, (ROOT / "VERIFICATION_ENVIRONMENT.md").read_text(encoding="utf-8"))
         website_path = ROOT.parent / "docs/papers/exceptional-ybe-d4/index.html"
@@ -242,7 +266,7 @@ class FailureModeTests(unittest.TestCase):
         workflow_path = ROOT.parent / ".github/workflows/exceptional-ybe-d4.yml"
         if workflow_path.exists():
             self.assertIn(epoch, workflow_path.read_text(encoding="utf-8"))
-        self.assertEqual(package_submission.ZIP_TIME, (2026, 8, 16, 16, 30, 0))
+        self.assertEqual(package_submission.ZIP_TIME, (2026, 8, 16, 18, 30, 0))
         self.assertTrue(
             {
                 "exceptional-ybe-d4-v1.1.2.pdf",

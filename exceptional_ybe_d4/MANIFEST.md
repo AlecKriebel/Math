@@ -1,9 +1,10 @@
 # Release manifest
 
 This manifest describes submission package version 1.1.3, dated 16 August
-2026. It is prepared for deposit through a fresh manual Zenodo record, not a GitHub
-release or a pre-existing DOI family; `ZENODO_DEPOSIT.md` governs reservation
-and insertion of its dedicated version DOI before publication.
+2026. Its fresh manual Zenodo draft has the reserved version DOI
+`10.5281/zenodo.21971507`; the draft is separate from every pre-existing DOI
+family and remains unpublished. `ZENODO_DEPOSIT.md` governs the remaining
+upload, download-verification, preview, and publication gate.
 
 ## Mathematical sources
 
@@ -48,13 +49,13 @@ and insertion of its dedicated version DOI before publication.
 - `LICENSE` — package-level dual-license notice.
 - `LICENSE-MANUSCRIPT.txt` — CC BY 4.0 manuscript/documentation license.
 - `LICENSE-CODE.txt` — MIT verifier/runner code license.
-- `CITATION.cff` — citation metadata without an invented DOI.
+- `CITATION.cff` — citation metadata with the reserved version-specific DOI.
 - `HIGHLIGHTS.txt` — Journal of Algebra highlights.
 - `ZENODO_DEPOSIT.md`, `ARXIV_METADATA.md`, and
   `SUBMISSION_CHECKLIST.md` — exact handoff instructions and portal fields.
 - `package_submission.py` — deterministic source/PDF/arXiv artifact builder.
-- `submission/` — pre-reservation artifacts and their outer checksums; rebuild
-  them after inserting the reserved DOI, as required by `ZENODO_DEPOSIT.md`.
+- `submission/` — final DOI-bearing PDF, source ZIP, arXiv ZIP, and their outer
+  checksums.
 
 ## Repository website mirrors
 

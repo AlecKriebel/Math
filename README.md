@@ -116,8 +116,9 @@ embeddings of every \(H_n(3,6)\) and an ordinary unitary localization of the
 dimension four is minimal and records a \((3,2)\)-generalized active form.
 The public priority audit found no earlier ordinary four-dimensional
 localization, but absolute novelty is not claimed. See the
-[paper page](https://aleckriebel.github.io/Math/papers/exceptional-ybe-d4/)
-and [version 1.1.0 source package](https://github.com/AlecKriebel/Math/releases/tag/exceptional-ybe-d4-v1.1.0).
+[paper page](https://aleckriebel.github.io/Math/papers/exceptional-ybe-d4/),
+[current source and verification package](https://github.com/AlecKriebel/Math/tree/main/exceptional_ybe_d4),
+and [version-specific Zenodo DOI](https://doi.org/10.5281/zenodo.21971507).
 
 **Excluding Parameter Three at Order Thirteen in the \(\gamma\)--\(\theta\)
 Conjecture** proves that no graph on 13 vertices satisfies
