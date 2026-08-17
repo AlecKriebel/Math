@@ -15,18 +15,21 @@ import tarfile
 import tempfile
 import zipfile
 
+from build_verifier_entrypoint_capsule import build as build_verifier_capsule
+
 
 PROJECT = Path(__file__).resolve().parents[1]
 REPO = PROJECT.parent
 SUBMISSION = PROJECT / "biorxiv_submission"
 SOURCE = PROJECT / "source"
 RELEASE_ASSETS = PROJECT / "release_artifacts"
-SOURCE_DATE_EPOCH = "1786838400"  # 2026-08-16 00:00:00 UTC
-ZIP_TIME = (2026, 8, 16, 0, 0, 0)
+SOURCE_DATE_EPOCH = "1786924800"  # 2026-08-17 00:00:00 UTC
+ZIP_TIME = (2026, 8, 17, 0, 0, 0)
 
 MAIN_NAME = "Strong_Tree_Childness_Sharp_Level2_JC.pdf"
 SUPPLEMENT_NAME = "Strong_Tree_Childness_Sharp_Level2_JC_supplement.pdf"
 SOURCE_ZIP_NAME = "Strong_Tree_Childness_Sharp_Level2_JC_source.zip"
+VERIFIER_ZIP_NAME = "Strong_Tree_Childness_Sharp_Level2_JC_verifier_entrypoints.zip"
 ARCHIVE_NAME = "stc_jc_sharp_boundary_reproducibility.tar.gz"
 
 
@@ -101,6 +104,7 @@ def write_submission_sums() -> None:
         MAIN_NAME,
         SUPPLEMENT_NAME,
         SOURCE_ZIP_NAME,
+        VERIFIER_ZIP_NAME,
         "BIORXIV_METADATA.md",
         "BIORXIV_UPLOAD_MAP.md",
         "FINAL_HUMAN_CHECKLIST.md",
@@ -113,6 +117,7 @@ def build_submission() -> None:
     SUBMISSION.mkdir(parents=True, exist_ok=True)
     build_pdfs()
     build_source_zip()
+    build_verifier_capsule(SUBMISSION / VERIFIER_ZIP_NAME)
     write_submission_sums()
 
 

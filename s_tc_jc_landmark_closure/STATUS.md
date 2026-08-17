@@ -2,12 +2,16 @@
 
 Status: **PROVED — FINAL OUTCOME A**
 
-Release revision: **v1.1.2 public-replay-hardened**.  The v1.1.1 mathematical
-revision remains unchanged except for a genericity qualifier and terminology;
-v1.1.2 corrects the public commands, removes stale replay records from the
-active release surface, and prepares hash-bound current replay assets. Those
-assets count as published evidence only after the separate public-download
-verifier returns `PUBLIC_RELEASE_VERIFIED`.
+Release revision: **v1.1.3 Englander-crosswalk and portal-package hardened**.
+The v1.1.2 proof and public-replay release remains mathematically unchanged.
+v1.1.3 locks the exact Englander-v4/Omega comparison, prints complete Omega
+rank-minor provenance, adds the quartet-distance comparison, and places a
+small verifier-entrypoint ZIP in every submission-support set.  The bioRxiv
+map uploads it as supplementary code; the journal maps route it to the
+external repository in accordance with their current policies.  The full
+graph/certificate archive remains an external hash-bound release asset and
+counts as published evidence only after the separate public-download verifier
+returns `PUBLIC_RELEASE_VERIFIED`.
 
 Manuscript: **Strong Tree-Childness Is a Sharp Generic-Identifiability Boundary for
 Level-2 Jukes–Cantor Networks**

@@ -23,14 +23,16 @@ import subprocess
 import tempfile
 import zipfile
 
+from build_verifier_entrypoint_capsule import build as build_verifier_capsule
+
 
 PROJECT = Path(__file__).resolve().parents[1]
 REPO = PROJECT.parent
 SOURCE = PROJECT / "source"
 SB = PROJECT / "journal_submission/systematic_biology"
 JMB = PROJECT / "journal_submission/journal_of_mathematical_biology"
-SOURCE_DATE_EPOCH = "1786838400"  # 2026-08-16 00:00:00 UTC
-ZIP_TIME = (2026, 8, 16, 0, 0, 0)
+SOURCE_DATE_EPOCH = "1786924800"  # 2026-08-17 00:00:00 UTC
+ZIP_TIME = (2026, 8, 17, 0, 0, 0)
 
 ALT_TEXT = {
     "bridge_projective.tex": (
@@ -108,9 +110,13 @@ def copy_paper_tree(destination: Path) -> None:
     shutil.copytree(SOURCE / "supplement", destination / "supplement")
     (destination / "BUILD.md").write_text(
         "# Deterministic LaTeX build\n\n"
-        "Requirements: Tectonic 0.15 or later with its standard cached bundle.\n\n"
+        "Exact-byte replay was tested with Tectonic 0.16.9, default bundle v33,\n"
+        "and SOURCE_DATE_EPOCH=1786924800. requirements.txt in the complete\n"
+        "project archive is the Python dependency lock; Tectonic and its bundle\n"
+        "are separate build requirements.\n\n"
         "From this extracted source directory:\n\n"
         "```bash\n"
+        "export SOURCE_DATE_EPOCH=1786924800\n"
         "cd paper\ntectonic main.tex\ncd ../supplement\ntectonic supplement.tex\n"
         "```\n",
         encoding="utf-8",
@@ -271,12 +277,14 @@ def build_systematic_biology() -> None:
         SB / "SB_Supplementary_Material.pdf",
     )
     compile_tex(SB / "SB_Cover_Letter.tex", SB / "SB_Cover_Letter.pdf")
+    build_verifier_capsule(SB / "SB_Exact_Verifier_Entry_Points.zip")
     write_sums(SB, [
         "SB_Main_Manuscript.pdf",
         "SB_Supplementary_Material.pdf",
         "SB_LaTeX_Source.zip",
         "SB_Cover_Letter.tex",
         "SB_Cover_Letter.pdf",
+        "SB_Exact_Verifier_Entry_Points.zip",
         "SB_SUBMISSION_METADATA.md",
         "SYSTEMATIC_BIOLOGY_UPLOAD_MAP.md",
         "FINAL_HUMAN_CHECKLIST.md",
@@ -295,12 +303,14 @@ def build_jmb() -> None:
         )
         deterministic_zip(variant, JMB / "JMB_LaTeX_Source.zip", "JMB_LaTeX_Source")
     compile_tex(JMB / "JMB_Cover_Letter.tex", JMB / "JMB_Cover_Letter.pdf")
+    build_verifier_capsule(JMB / "JMB_Exact_Verifier_Entry_Points.zip")
     write_sums(JMB, [
         "JMB_Main_Manuscript.pdf",
         "JMB_Supplementary_Information.pdf",
         "JMB_LaTeX_Source.zip",
         "JMB_Cover_Letter.tex",
         "JMB_Cover_Letter.pdf",
+        "JMB_Exact_Verifier_Entry_Points.zip",
         "JMB_SUBMISSION_METADATA.md",
         "JMB_UPLOAD_MAP.md",
         "FINAL_HUMAN_CHECKLIST.md",

@@ -27,11 +27,10 @@ PYTHONPATH="omega_audit/frozen_input/historical/src" \
   "$STC_JC_PYTHON" omega_audit/frozen_input/historical/src/verify_jc_omega_move_stdlib.py
 "$STC_JC_PYTHON" omega_audit/independent/verify_omega_release.py
 "$STC_JC_PYTHON" omega_audit/independent/verify_omega_rank_readability.py
-"$STC_JC_PYTHON" reviews/v1_1_1_referee_revision/verify_referee_regressions.py
 "$STC_JC_PYTHON" reproducibility/build_biorxiv_release.py submission
 "$STC_JC_PYTHON" reproducibility/build_journal_packages.py
 "$STC_JC_PYTHON" reproducibility/verify_submission_source_archives.py
-"$STC_JC_PYTHON" reviews/v1_1_2_release_hardening/verify_release_hardening.py
+"$STC_JC_PYTHON" reviews/v1_1_3_englander_revision/verify_englander_revision.py
 "$STC_JC_PYTHON" reproducibility/verify_active_release.py
 
 echo "VERIFIED: all theorem-forced bounded records regenerated"

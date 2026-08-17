@@ -140,7 +140,13 @@ Sullivant~\cite{Sullivant2026}.  Invariant-based network separation was
 developed for large-cycle JC models by Gross and Long~\cite{GrossLong2018},
 and Hollering and Sullivant~\cite{HolleringSullivant2021} introduced an
 algebraic-matroid/Jacobian strategy for generic phylogenetic
-identifiability.
+identifiability.  Complementary combinatorial work reconstructs
+outer-labeled-planar, galled level-2 networks up to a canonical form from
+displayed quartets and inter-taxon quartet distances
+\cite{HoltgrefeEtAl2025Quartets}.  The present result instead concerns
+full-dimensional containment of open JC model images, does not assume
+galledness, and recovers the standard semi-directed topology modulo ordinary
+triangle redirection.
 
 \paragraph{Precise comparison with Englander et al.}
 In version~4, their Theorem~3.2 proves generic JC distinguishability for
@@ -217,6 +223,10 @@ statement is different: we prove one common full-dimensional regular
 Euclidean-open germ, not equality or density of the complete stochastic
 images.
 
+Both all-$n$ sharpness families are obtained from certified four-leaf base
+collisions by the positive analytically invertible identical-cherry
+substitution of \cref{sec:sharpness}.
+
 \section{Conventions and observational relations}\label{sec:definitions}
 
 \subsection{Rooted and semi-directed networks}
@@ -243,10 +253,11 @@ later degree-two or parallel cleanup is part of $\operatorname{sd}_0$.
 Isomorphisms preserve labels, undirected edges, retained arrowheads, and
 vertex roles.  An \emph{admissible rooting} of a mixed graph is an LSA-valid
 rooted binary network whose $\operatorname{sd}_0$ image is exactly that
-graph.  This is the already-simple convention used by Englander et
-al.~\cite{EnglanderEtAl2026} and the binary LSA-valid specialization of
-Holtgrefe et al.~\cite{HoltgrefeEtAl2026}; it is not a broader exhaustive
-cleanup after taking an induced subnetwork.
+graph.  For the already-simple mixed graphs compared here, this agrees with
+the rooted-partner convention of Englander et
+al.~\cite[Definitions~2.1--2.3]{EnglanderEtAl2026} and is the binary
+LSA-valid specialization of Holtgrefe et al.~\cite{HoltgrefeEtAl2026}; it is
+not a broader exhaustive cleanup after taking an induced subnetwork.
 \end{definition}
 
 A simple binary mixed graph admitted by \cref{def:fixed-mixed} will be called
@@ -280,6 +291,11 @@ Let $N$ be a standard semi-directed network with an admissible rooting.  Then
 $N\in\TCs$ if and only if every tail of a retained reticulation edge is
 incident with two undirected edges.
 \end{lemma}
+
+This is exactly the incidence criterion stated for strongly tree-child
+semi-directed networks by Englander et
+al.~\cite[Definition~2.3]{EnglanderEtAl2026}; the proof below records its
+binary, LSA-valid, fixed-$\operatorname{sd}_0$ specialization.
 
 \begin{proof}
 Suppose first that a tail $v$ fails the incidence condition.  Binary degree
@@ -1100,12 +1116,15 @@ is pointwise rigid.  Its outgoing sizes are
 4\quad(\theta_2).
 \]
 The minimal two-outgoing cycle is handled directly by
-\begin{equation}\label{eq:F}
-F=q_{011}q_{101}q_{110}-q_{123}^2,
+\begin{equation}\label{eq:trinet-invariant}
+\mathcal I_{\mathrm{tri}}
+:=q_{011}q_{101}q_{110}-q_{123}^2,
 \end{equation}
 which vanishes on an ordinary median and is strictly positive on every open
 three-sunlet.  This trinet polynomial and its tree--reticulation sign
 dichotomy are due to Englander et al.~\cite[Proposition~2.15]{EnglanderEtAl2026}.
+In their collapsed JC notation, the orbit coordinate denoted here by
+$q_{123}$ is denoted $q_{111}$.
 Our use here is its integration into the complete directed level-2 atlas and
 the restored-support argument.  The three sunlet orientations are exactly
 $\Tmove$.
@@ -1438,7 +1457,7 @@ distribution known to arise in the class.
 \item Fourier-transform the pattern probabilities.
 \item Test split flattenings using \cref{thm:cuts}; recover the compatible cut
       system and build the labelled reduced bridge tree.
-\item Use \eqref{eq:F} to distinguish ordinary degree-three components from
+\item Use \eqref{eq:trinet-invariant} to distinguish ordinary degree-three components from
       three-sunlets.
 \item Factor the positive rank-one cut blocks and impose the analytic
       incidence normalizers from \cref{thm:bridge-fiber}; recover every
@@ -1555,8 +1574,11 @@ $(a_0,a_1,a_2,a_3,a_4,a_7)$ have determinant
 \[
 -\frac{723}{8589934592}\ne0.
 \]
-The target has the same unlabelled rooted core, so label and coordinate
-transport gives the same upper bound there.  Restoring the four pendant
+The two displayed-rooting presentations have the same arc set and differ
+only by a permutation of the taxon labels.  That leaf permutation induces an
+invertible permutation of the Fourier coordinates and hence a linear
+isomorphism between their model images.  Their dimensions are therefore
+equal, so the source upper bound also holds for the target.  Restoring the four pendant
 parameters adds at most four torus directions.  The coordinatewise Euler
 identity
 \[
@@ -1566,12 +1588,18 @@ a_4\frac{\partial c_g}{\partial a_4}
 \]
 shows that the pendant direction for leaf $4$ is already a linear combination
 of two core directions.  Thus the complete model rank is at most
-$6+4-1=9$.  Exact nonzero
-rank-nine minors at the source and target give the reverse inequality and
-regularity.  The rational correspondence is defined and remains strict on a
-neighborhood of the certified source point, and its common coordinate map has
-rank nine.  Its image is therefore a common nine-dimensional local
-submanifold, relatively open in each nine-dimensional model image.
+$6+4-1=9$.  The four explicit rank-nine minors listed with their row and
+column sets in Supplement~\S5 give the reverse inequality and regularity.
+The rational correspondence is defined and remains strict on a neighborhood
+of the certified source point, and its common coordinate map has rank nine.
+Its image is therefore a common nine-dimensional local submanifold,
+relatively open in each nine-dimensional model image.
+
+This calculation is also an explicit instance of the lower-than-naive model
+dimensions noted by Englander et al.~\cite[Discussion]{EnglanderEtAl2026}.
+Here the pendant-one core has exact rank six, and the Euler relation exhibits
+one further dependency between a pendant torus direction and the core tangent
+space.
 \end{proof}
 
 The switching calculation gives a useful, but insufficient by itself,
@@ -1582,13 +1610,23 @@ equal, while the rational map in \cref{app:omega} redistributes core and
 pendant edge factors.  The equality is therefore not root relocation and
 still requires the complete Fourier and rank certificates.
 
-This pair is consistent with known positive results.  Its displayed quartet
-set is the same on both sides, so a displayed-quartet separator cannot
-distinguish it.  It lies outside the strong class of Englander et
-al.~\cite{EnglanderEtAl2026} by the retained-edge tail at $U$.  It is not a
-galled network: $V$ is ancestral to $X$ inside their common blob.  Its mixed
-topology is already simple under \cref{def:fixed-mixed}.  No claim is made
-about the distinct type-1b ideal question in that work.
+\paragraph{Relation to Englander et al.}
+Up to reflection, both $\Omega_4$ and $\Omega'_4$ are differently labelled
+quarnets of type~(2c) in Englander et
+al.~\cite[Figure~5]{EnglanderEtAl2026}.  Their Theorem~2.11 does not separate
+the pair because the two networks have the same displayed-quartet set (in
+fact, the same multiplicity pattern).  Their Lemma~2.14 treats specified
+relabellings of type~(1b), all distinct type~(2a) quarnets, and distinct
+quarnets of types~(3a), (3c), and (3d), but contains no type-(2c)-versus-type-(2c)
+distinction.  Corollary~2.17 separates type~(2c) from quarnets having a prune
+leaf, not from another type~(2c) labelling.  Finally, both Omega networks lie
+outside their strongly tree-child class: $U$ tails two retained reticulation
+edges but has only one undirected incidence.  Thus the collision is
+consistent with every applicable result there, while showing that
+Lemma~2.14(b) cannot be extended from type~(2a) to all type-(2) quarnets.
+The pair is also not galled, because $V$ is ancestral to $X$ inside their
+common blob, and its mixed topology is already simple under
+\cref{def:fixed-mixed}.
 
 \begin{proof}[Proof of \cref{thm:sharpness}]
 The four-leaf case is \cref{prop:omega-topology,prop:omega-overlap}.
@@ -1923,7 +1961,7 @@ Final proof hardening
 All graph encodings, sparse invariants, exact certificates, separately
 implemented verifiers, mutation transcripts, source, and deterministic reproduction
 commands accompany this manuscript at
-\url{https://github.com/AlecKriebel/Math/tree/stc-jc-sharp-boundary-v1.1.2}.
+\url{https://github.com/AlecKriebel/Math/tree/stc-jc-sharp-boundary-v1.1.3}.
 The deposit-ready archive checksum and instructions for adding a persistent
 identifier are included with the release; no unissued DOI is claimed.  No
 specialized phylogenetic-network classification package is required.
@@ -1956,7 +1994,9 @@ supported by exact graph-derived certificates and such separately written
 replays.  No human specialist review is claimed.  The author accepts
 responsibility for the mathematical statement, code, and final submission.
 
+{\small
 \bibliographystyle{plain}
 \bibliography{references}
+}
 
 \end{document}

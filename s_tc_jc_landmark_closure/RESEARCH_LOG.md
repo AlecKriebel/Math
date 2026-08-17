@@ -926,3 +926,30 @@
   the other downloaded assets. Publication remains gated on an annotated
   v1.1.2 tag, eight exact GitHub Release assets, and
   `PUBLIC_RELEASE_VERIFIED`.
+
+## 2026-08-17 — v1.1.3 Englander-v4 crosswalk and submission hardening
+
+- Audited the supplied Englander et al. v4 PDF line by line against the Omega
+  comparison.  Both Omega networks are differently labelled type-(2c)
+  quarnets up to reflection; no cited type-(2c)-versus-type-(2c) result
+  separates them, and both fail the cited strong tree-child incidence
+  criterion.
+- Replaced the target-dimension handoff by the exact leaf-coordinate
+  permutation argument, printed all four Omega rank-nine row/column witnesses,
+  reconciled the `q123`/`q111` trinet notation, and added the 2025
+  quartet-distance comparison.
+- Added compact verifier-entrypoint capsules to all three submission-support
+  directories.  The bioRxiv map uploads its capsule, while the Systematic
+  Biology and Journal of Mathematical Biology maps route theirs to the
+  external repository according to the journals' current instructions.
+- Two successive adversarial reproducibility reviews found and forced repairs
+  to the deterministic source-build environment, annotated-tag/archive byte
+  binding, journal routing, clone-versus-archive commands, and current package
+  manifest coverage.  Both failed reviews are preserved verbatim under
+  `reviews/v1_1_3_englander_revision/`.
+- The literal commands inside all three source ZIPs now reproduce all six
+  article/supplement PDFs and both cover letters byte for byte without an
+  inherited build epoch.  Every package manifest and targeted v1.1.3
+  regression passes.  A third fresh adversarial release review rejected
+  seventeen mutation classes and returned `PASS`.  No DOI has been requested,
+  invented, or inserted.

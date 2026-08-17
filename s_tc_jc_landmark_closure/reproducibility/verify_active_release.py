@@ -18,7 +18,7 @@ TITLE = (
     "Level-2 Jukes-Cantor Networks"
 )
 SOURCE_BINDING_SCHEME = "external-envelope-v1"
-RELEASE_TAG = "stc-jc-sharp-boundary-v1.1.2"
+RELEASE_TAG = "stc-jc-sharp-boundary-v1.1.3"
 
 
 def sha256(path: Path) -> str:
@@ -52,14 +52,17 @@ def active_surface_checks(final, metadata) -> None:
         require("FINAL OUTCOME A" in text, f"{name}: final outcome disagrees")
         require("Strong Tree-Childness Is a Sharp Generic-Identifiability Boundary" in text,
                 f"{name}: manuscript title missing")
-    require(all(node in dependency and node in crosswalk for node in ("V111", "V112")),
-            "v1.1.1 or v1.1.2 release gate is absent from the dependency records")
+    require(all(node in dependency and node in crosswalk for node in
+                ("V111", "V112", "V113")),
+            "v1.1.1, v1.1.2, or v1.1.3 release gate is absent from the dependency records")
     require(final["outcome"] == metadata["outcome"] == "A",
             "machine-readable outcome is not A")
     require(final["status"] == metadata["status"] == "PROVED",
             "machine-readable status is not PROVED")
     require(final["title"] == metadata["title"] == TITLE,
             "machine-readable titles disagree")
+    require(final["release_revision"] == metadata["release_revision"] ==
+            RELEASE_TAG, "release revision disagrees")
     require(final["sharpness"]["omega"]["status"] ==
             metadata["omega_disposition"] == "OMEGA-PASS-ALL-(n)",
             "Omega disposition disagrees")
@@ -75,7 +78,8 @@ def active_surface_checks(final, metadata) -> None:
 def artifact_checks(metadata) -> None:
     required = {
         "manuscript_source", "bibliography", "main_pdf", "supplement_pdf",
-        "supplement_source", "source_zip", "pdf_visual_audit", "omega_record",
+        "supplement_source", "source_zip", "biorxiv_verifier_capsule",
+        "pdf_visual_audit", "omega_record",
         "omega_reviewer", "theta_verifier", "v1_1_primary_report",
         "v1_1_adversarial_review", "v1_1_repair_response",
         "v1_1_noncut_verifier", "v1_1_endpoint_verifier",
@@ -83,17 +87,23 @@ def artifact_checks(metadata) -> None:
         "v1_1_1_referee_response", "v1_1_1_adversarial_review",
         "core_atlas_figure", "biorxiv_metadata", "submission_sha256s",
         "biorxiv_upload_map", "biorxiv_human_checklist",
-        "journal_package_builder", "submission_source_archive_replay",
+        "journal_package_builder", "verifier_capsule_builder",
+        "submission_source_archive_replay",
         "public_release_verifier", "release_hardening_regression",
         "release_hardening_disposition", "release_hardening_math_review",
-        "release_hardening_package_review", "public_release_assets",
+        "release_hardening_package_review", "englander_revision_disposition",
+        "englander_v4_crosswalk", "englander_revision_regression",
+        "v1_1_3_mathematical_review", "v1_1_3_reproducibility_review",
+        "prior_work_comparison", "public_release_assets",
         "release_upload_instructions", "submission_package_index",
         "superseded_history_manifest",
         "systematic_biology_main_pdf",
         "systematic_biology_supplement_pdf", "systematic_biology_cover_letter",
-        "systematic_biology_source_zip", "systematic_biology_upload_map",
+        "systematic_biology_source_zip", "systematic_biology_verifier_capsule",
+        "systematic_biology_upload_map",
         "systematic_biology_sha256s", "jmb_main_pdf", "jmb_supplement_pdf",
-        "jmb_cover_letter", "jmb_source_zip", "jmb_upload_map", "jmb_sha256s",
+        "jmb_cover_letter", "jmb_source_zip", "jmb_verifier_capsule",
+        "jmb_upload_map", "jmb_sha256s",
         "requirements_lock",
     }
     require(set(metadata["artifacts"]) == required,
@@ -179,7 +189,7 @@ def source_envelope_checks(final, metadata) -> str:
     # only when the exact advertised annotated tag peels to this clean commit.
     # This makes deletion of the external envelope fail closed before tagging,
     # while allowing the immutable public source tag to be verified without
-    # downloading the separately distributed 338 MB archive.
+    # downloading the separately distributed large archive.
     try:
         source_commit = subprocess.check_output(
             ["git", "rev-parse", "HEAD"], cwd=REPO, text=True
@@ -238,6 +248,12 @@ def manuscript_checks() -> None:
         "Theorem~2.8.8",
         "choose the lexicographically least one",
         "Proposition~2.15",
+        "type~(2c)",
+        "contains no type-(2c)-versus-type-(2c) distinction",
+        r"\mathcal I_{\mathrm{tri}}",
+        "denoted $q_{111}$",
+        "HoltgrefeEtAl2025Quartets",
+        "four explicit rank-nine minors listed with their row and",
         r"\texttt{omega\_audit/}",
         r"reviews/v1\_1\_proof\_hardening/",
         "has zero survivors",
@@ -366,6 +382,15 @@ def release_review_checks() -> None:
         review_text = current.read_text(encoding="utf-8").rstrip()
         require(review_text.endswith("PASS") and "HOLD" not in review_text.splitlines()[-1],
                 f"v1.1.2 adversarial review did not pass: {name}")
+    for name in (
+        "ADVERSARIAL_MATHEMATICAL_REVIEW.md",
+        "ADVERSARIAL_REPRODUCIBILITY_REVIEW.md",
+    ):
+        current = PROJECT / "reviews/v1_1_3_englander_revision" / name
+        require(current.is_file(), f"v1.1.3 adversarial review missing: {name}")
+        review_text = current.read_text(encoding="utf-8").rstrip()
+        require(review_text.endswith("PASS"),
+                f"v1.1.3 adversarial review did not pass: {name}")
 
 
 def main() -> None:

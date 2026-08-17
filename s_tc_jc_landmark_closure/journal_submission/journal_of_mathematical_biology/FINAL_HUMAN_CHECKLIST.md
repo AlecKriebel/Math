@@ -11,8 +11,8 @@
 - [ ] I reviewed and approve all Statements and Declarations, including AI use.
 - [ ] I confirm that no human specialist review is claimed.
 - [ ] I verified `SHA256SUMS` and the public release envelope.
+- [ ] I retained `JMB_Exact_Verifier_Entry_Points.zip` in the external repository package and did not mislabel it as an Online Resource.
 - [ ] I inspected the portal-generated proof and supplement association.
 - [ ] I selected publishing and license options myself.
 - [ ] I approve the cover-letter originality, funding, and competing-interest statements.
 - [ ] I understand that this package does not itself submit or communicate with the journal.
-

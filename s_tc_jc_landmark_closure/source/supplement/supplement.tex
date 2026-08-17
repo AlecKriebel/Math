@@ -176,11 +176,11 @@ merged source embeddings, altered port matches, source--target reversal,
 separator reassignment, broken transports, missing hard-cover keys, and
 incoherent probes.
 
-The frozen endpoint code retains its historical names
-\texttt{F=abc-t\char94 2} and \texttt{G=a-bc}; these are respectively
-$\Delta$ and $\Gamma$ in the article.  The code's state-group name
-\texttt{G} is $\mathcal G$ in the article.  This notation-only transport does
-not change a certificate polynomial.
+The frozen endpoint code retains the historical polynomial names
+\texttt{F=abc-t\char94 2} and \texttt{G=a-bc}, corresponding respectively
+to $\Delta$ and $\Gamma$ in the article.  Separately, the article denotes
+the JC state group by $\mathcal G=\mathbb Z_2^2$.  These notation choices do
+not alter any certificate polynomial.
 
 \section{Triangle-free Omega sharpness certificate}
 
@@ -194,16 +194,36 @@ $\{2,4\}$ in the target.
 
 The exact nine-variable rational correspondence annihilates all 64 zero-sum
 Fourier differences.  At its certified point, all 256 Fourier entries and all
-256 inverse-pattern probabilities agree and every parameter is strict.  The
-four exact rank-nine minors are
-\[
--\frac{171}{2305843009213693952000000},\quad
--\frac{513}{9223372036854775808000000},
-\]
-\[
-\frac{57}{576460752303423488000000},\quad
-\frac{189}{2305843009213693952000000}.
-\]
+256 inverse-pattern probabilities agree and every parameter is strict.  All
+four rank-nine witnesses use orbit rows $(A,B,C,D,E,F,G,H,K)$.  In the
+declared parameter order $(e_0,\ldots,e_{11},\lambda_V,\lambda_X)$, their
+columns and exact determinants are as follows; no uniqueness of these minors
+is claimed.  The displayed-rooting columns use the ordered arc list in the
+article's exact Omega correspondence; the alternative-rooting columns use
+the corresponding ordered arc arrays in
+\path{omega_audit/independent/output/omega_release_audit.json}.
+
+\begin{center}
+\scriptsize
+\begin{tabular}{@{}p{.25\linewidth}p{.30\linewidth}p{.34\linewidth}@{}}
+\toprule
+Model point & Parameter columns (zero based) & Determinant\\
+\midrule
+Displayed-rooting source
+& $(0,1,2,3,4,7,8,9,10)$
+& $-171/2305843009213693952000000$\\
+Displayed-rooting target
+& $(0,1,2,3,4,7,8,9,10)$
+& $-513/9223372036854775808000000$\\
+Alternative-rooting source
+& $(0,1,2,3,5,7,8,9,10)$
+& $57/576460752303423488000000$\\
+Alternative-rooting target
+& $(0,1,2,3,5,7,8,9,10)$
+& $189/2305843009213693952000000$\\
+\bottomrule
+\end{tabular}
+\end{center}
 With the four pendant multipliers set to one, the core Jacobian has shape
 $14\times10$ and exact rational-function rank six.  In the edge order of the
 paper, at the strict source core coordinates in the pendant-one gauge, the
@@ -349,7 +369,7 @@ transcripts.
 \begin{longtable}{>{\raggedright\arraybackslash}p{.34\linewidth}
                   >{\raggedright\arraybackslash}p{.58\linewidth}}
 \toprule
-Claim & Repository-relative evidence\\
+Claim & Monorepository-root-relative evidence\\
 \midrule
 \endhead
 Convention and no-omnian characterization
@@ -369,9 +389,9 @@ Restoration and coherent probes
 Ordinary triangle germ
 & \path{s_tc_jc_landmark_closure/reviews/triangle_redirection_cleanroom/}\\
 Triangle-free Omega family
-& \path{omega_audit/}\\
+& \path{s_tc_jc_landmark_closure/omega_audit/}\\
 Triangle-containing Theta family
-& \path{s_tc_jc_sharp_boundary/}\\
+& \path{s_tc_jc_landmark_closure/s_tc_jc_sharp_boundary/}\\
 Active release consistency
 & \path{s_tc_jc_landmark_closure/reproducibility/verify_active_release.py}\\
 \bottomrule

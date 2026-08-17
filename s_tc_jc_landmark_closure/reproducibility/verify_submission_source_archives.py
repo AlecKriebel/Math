@@ -3,8 +3,8 @@
 
 This is intentionally an extracted-archive test.  It does not import either
 package builder, and it executes the documented archive-local shell commands
-verbatim before comparing the resulting PDFs byte for byte with the portal
-upload files.
+verbatim before comparing the resulting PDFs byte for byte with the delivered
+files.
 """
 
 from __future__ import annotations
@@ -20,7 +20,7 @@ import zipfile
 
 
 PROJECT = Path(__file__).resolve().parents[1]
-SOURCE_DATE_EPOCH = "1786838400"
+SOURCE_DATE_EPOCH = "1786924800"
 
 
 PACKAGES = (
@@ -67,6 +67,37 @@ COVER_LETTERS = (
     ),
 )
 
+VERIFIER_CAPSULES = (
+    PROJECT / "biorxiv_submission/Strong_Tree_Childness_Sharp_Level2_JC_verifier_entrypoints.zip",
+    PROJECT / "journal_submission/systematic_biology/SB_Exact_Verifier_Entry_Points.zip",
+    PROJECT / "journal_submission/journal_of_mathematical_biology/JMB_Exact_Verifier_Entry_Points.zip",
+)
+
+PACKAGE_MANIFESTS = {
+    PROJECT / "biorxiv_submission": frozenset({
+        "Strong_Tree_Childness_Sharp_Level2_JC.pdf",
+        "Strong_Tree_Childness_Sharp_Level2_JC_supplement.pdf",
+        "Strong_Tree_Childness_Sharp_Level2_JC_source.zip",
+        "Strong_Tree_Childness_Sharp_Level2_JC_verifier_entrypoints.zip",
+        "BIORXIV_METADATA.md", "BIORXIV_UPLOAD_MAP.md",
+        "FINAL_HUMAN_CHECKLIST.md",
+    }),
+    PROJECT / "journal_submission/systematic_biology": frozenset({
+        "SB_Main_Manuscript.pdf", "SB_Supplementary_Material.pdf",
+        "SB_LaTeX_Source.zip", "SB_Cover_Letter.tex",
+        "SB_Cover_Letter.pdf", "SB_Exact_Verifier_Entry_Points.zip",
+        "SB_SUBMISSION_METADATA.md", "SYSTEMATIC_BIOLOGY_UPLOAD_MAP.md",
+        "FINAL_HUMAN_CHECKLIST.md",
+    }),
+    PROJECT / "journal_submission/journal_of_mathematical_biology": frozenset({
+        "JMB_Main_Manuscript.pdf", "JMB_Supplementary_Information.pdf",
+        "JMB_LaTeX_Source.zip", "JMB_Cover_Letter.tex",
+        "JMB_Cover_Letter.pdf", "JMB_Exact_Verifier_Entry_Points.zip",
+        "JMB_SUBMISSION_METADATA.md", "JMB_UPLOAD_MAP.md",
+        "FINAL_HUMAN_CHECKLIST.md",
+    }),
+}
+
 
 def digest(path: Path) -> str:
     h = hashlib.sha256()
@@ -79,6 +110,52 @@ def digest(path: Path) -> str:
 def require(condition: bool, message: str) -> None:
     if not condition:
         raise AssertionError(message)
+
+
+def verify_outer_manifest(directory: Path, expected_names: frozenset[str]) -> None:
+    manifest_path = directory / "SHA256SUMS"
+    require(manifest_path.is_file(), f"package manifest missing: {directory}")
+    records: dict[str, str] = {}
+    for line in manifest_path.read_text(encoding="utf-8").splitlines():
+        match = re.fullmatch(r"([0-9a-f]{64})  ([^/]+)", line)
+        require(match is not None,
+                f"malformed package checksum: {directory}:{line}")
+        value, name = match.groups()
+        require(name not in records,
+                f"duplicate package checksum: {directory}:{name}")
+        records[name] = value
+    require(set(records) == expected_names,
+            f"package manifest file set differs: {directory}")
+    for name, value in records.items():
+        target = directory / name
+        require(target.is_file(), f"manifested package file missing: {target}")
+        require(digest(target) == value, f"package checksum differs: {target}")
+
+
+def mutation_test_outer_manifest() -> None:
+    """A manifest that drops the verifier capsule must fail closed."""
+    with tempfile.TemporaryDirectory(prefix="stc-jc-manifest-mutation-") as name:
+        directory = Path(name)
+        article = directory / "article.pdf"
+        capsule = directory / "verifier.zip"
+        article.write_bytes(b"article")
+        capsule.write_bytes(b"capsule")
+        manifest = directory / "SHA256SUMS"
+        manifest.write_text(
+            f"{digest(article)}  {article.name}\n"
+            f"{digest(capsule)}  {capsule.name}\n",
+            encoding="utf-8",
+        )
+        expected = frozenset({article.name, capsule.name})
+        verify_outer_manifest(directory, expected)
+        manifest.write_text(
+            f"{digest(article)}  {article.name}\n", encoding="utf-8"
+        )
+        try:
+            verify_outer_manifest(directory, expected)
+        except AssertionError:
+            return
+        raise AssertionError("capsule-omitting package manifest mutation escaped")
 
 
 def safe_extract(archive_path: Path, destination: Path) -> None:
@@ -105,6 +182,7 @@ def documented_commands(build_text: str, anchor: str) -> str:
     require(match is not None, f"archive-local bash block missing after: {anchor}")
     commands = match.group(1).strip()
     require(commands == (
+        "export SOURCE_DATE_EPOCH=1786924800\n"
         "cd paper\n"
         "tectonic main.tex\n"
         "cd ../supplement\n"
@@ -118,7 +196,7 @@ def verify_package(spec: dict[str, object]) -> dict[str, str]:
     assert isinstance(archive_path, Path)
     require(archive_path.is_file(), f"source archive missing: {archive_path}")
     env = os.environ.copy()
-    env["SOURCE_DATE_EPOCH"] = SOURCE_DATE_EPOCH
+    env.pop("SOURCE_DATE_EPOCH", None)
     with tempfile.TemporaryDirectory(prefix=f"stc-jc-source-replay-{spec['name']}-") as name:
         extracted = Path(name)
         safe_extract(archive_path, extracted)
@@ -167,6 +245,39 @@ def verify_cover_letter(source: Path, expected: Path) -> str:
     return digest(expected)
 
 
+def verify_verifier_capsule(path: Path) -> str:
+    require(path.is_file(), f"verifier-entrypoint capsule missing: {path}")
+    with zipfile.ZipFile(path) as archive:
+        names = archive.namelist()
+        require(names and len(names) == len(set(names)),
+                f"empty or duplicate verifier capsule members: {path}")
+        require("README.md" in names and "SHA256SUMS" in names,
+                f"verifier capsule metadata missing: {path}")
+        readme = archive.read("README.md").decode("utf-8")
+        for needle in (
+            "not the complete proof archive",
+            "stc-jc-sharp-boundary-v1.1.3",
+            "verify_quick.sh",
+            "verify_full.sh",
+            "verify_regenerate_all.sh",
+            "No script submits a manuscript",
+        ):
+            require(needle in readme, f"verifier capsule README missing: {needle}")
+        expected: dict[str, str] = {}
+        for line in archive.read("SHA256SUMS").decode("utf-8").splitlines():
+            match = re.fullmatch(r"([0-9a-f]{64})  ([^/].*)", line)
+            require(match is not None, f"malformed capsule checksum: {line}")
+            value, name = match.groups()
+            require(name not in expected, f"duplicate capsule checksum: {name}")
+            expected[name] = value
+        require(set(expected) == set(names) - {"SHA256SUMS"},
+                f"capsule checksum coverage differs: {path}")
+        for name, value in expected.items():
+            require(hashlib.sha256(archive.read(name)).hexdigest() == value,
+                    f"capsule member checksum differs: {path}:{name}")
+    return digest(path)
+
+
 def main() -> None:
     if shutil.which("tectonic") is None and not Path("/opt/homebrew/bin/tectonic").is_file():
         raise RuntimeError("Tectonic is required for extracted-source replay")
@@ -174,17 +285,25 @@ def main() -> None:
     # local setup even when Homebrew is not already in PATH.
     if shutil.which("tectonic") is None:
         os.environ["PATH"] = f"/opt/homebrew/bin:{os.environ.get('PATH', '')}"
+    mutation_test_outer_manifest()
+    for directory, expected_names in PACKAGE_MANIFESTS.items():
+        verify_outer_manifest(directory, expected_names)
     records = {str(spec["name"]): verify_package(spec) for spec in PACKAGES}
     covers = {
         source.name: verify_cover_letter(source, expected)
         for source, expected in COVER_LETTERS
     }
+    capsules = {path.name: verify_verifier_capsule(path) for path in VERIFIER_CAPSULES}
+    require(len(set(capsules.values())) == 1,
+            "submission-support verifier capsules are not byte-identical")
     print("VERIFIED: source replays reproduce all eight delivered PDFs")
     for package, outputs in records.items():
         for relative, value in sorted(outputs.items()):
             print(f"{package}:{relative} {value}")
     for name, value in sorted(covers.items()):
         print(f"cover:{name} {value}")
+    for name, value in sorted(capsules.items()):
+        print(f"verifier_capsule:{name} {value}")
 
 
 if __name__ == "__main__":

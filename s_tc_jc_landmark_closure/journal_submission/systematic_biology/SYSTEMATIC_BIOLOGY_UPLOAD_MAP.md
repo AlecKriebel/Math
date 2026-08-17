@@ -42,19 +42,24 @@ after any release asset is replaced.
    ragged-right text, page numbers, embedded figures, and alt text.
 4. Upload `SB_Supplementary_Material.pdf` and designate it **Supplementary
    Material**.
-5. Upload `SB_Cover_Letter.pdf` as the cover letter.
-6. Do not upload `SB_LaTeX_Source.zip` for initial review unless ScholarOne
+5. Do **not** upload `SB_Exact_Verifier_Entry_Points.zip` to ScholarOne.  The
+   current journal instructions direct scripts and code to Zenodo rather than
+   the manuscript system.  Include this small capsule in the repository
+   deposit together with the complete certificate archive, and provide the
+   issued reviewer link or DOI in ScholarOne only after it exists.
+6. Upload `SB_Cover_Letter.pdf` as the cover letter.
+7. Do not upload `SB_LaTeX_Source.zip` for initial review unless ScholarOne
    explicitly requests it; retain it for acceptance.
-7. Enter the title, abstract, author, ORCID, keywords, funding, conflicts, and
+8. Enter the title, abstract, author, ORCID, keywords, funding, conflicts, and
    AI disclosure from `SB_SUBMISSION_METADATA.md`.
-8. Enter the Zenodo DOI for code/scripts.  This study uses no empirical
+9. Enter the Zenodo DOI for code/scripts if one has actually issued.  This study uses no empirical
    sequence dataset.  If ScholarOne requires a Dryad reviewer URL despite
    that fact, follow the portal's current instruction before submitting.
-9. Supply each figure's alt text from the text printed directly below its
+10. Supply each figure's alt text from the text printed directly below its
    legend in the review PDF if the portal also provides an alt-text field.
-10. Review the ScholarOne-generated PDF and verify equations, figures,
+11. Review the ScholarOne-generated PDF and verify equations, figures,
     references, supplement linkage, line numbers, and hyperlinks.
-11. Stop before the final submission control until Alec Kriebel has completed
+12. Stop before the final submission control until Alec Kriebel has completed
     `FINAL_HUMAN_CHECKLIST.md`.
 
 ## After acceptance

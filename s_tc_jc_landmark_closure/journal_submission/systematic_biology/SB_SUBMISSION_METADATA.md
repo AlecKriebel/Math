@@ -19,10 +19,13 @@ verbatim.  Do not introduce a DOI or repository identifier until it exists.
 
 This is a theorem and exact-computation paper; it analyzes no empirical
 sequence dataset.  The exact graph records, code, certificates, and replay
-logs constitute the supporting computational material.  Before journal
-submission, deposit the release archive in Zenodo and replace the placeholder
-in the portal and manuscript with the issued DOI.  The journal's current
-instructions direct scripts/code to Zenodo and empirical datasets to Dryad.
+logs constitute the supporting computational material.  The local
+submission-support directory includes a small verifier-entrypoint ZIP; place
+it in the repository deposit with the complete hash-bound archive, not in
+ScholarOne.  Before journal submission, deposit the release archive in Zenodo
+and replace the placeholder in the portal and manuscript with the issued DOI.
+The journal's current instructions direct scripts/code to Zenodo and
+empirical datasets to Dryad.
 If ScholarOne nevertheless requires a Dryad entry for these nonempirical
 certificate records, follow the portal/editorial instruction rather than
 inventing a dataset URL.
@@ -36,4 +39,3 @@ quarantined. “Separately implemented replay” means a code-independent
 implementation, not independent human review. No human specialist review is
 claimed. The human author accepts responsibility for the final manuscript,
 code, and submission.
-

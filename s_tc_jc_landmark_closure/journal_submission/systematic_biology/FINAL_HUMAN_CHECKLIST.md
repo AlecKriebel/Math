@@ -10,8 +10,8 @@
 - [ ] I reviewed and approve the substantive generative-AI disclosure.
 - [ ] I confirm that no human specialist review is claimed.
 - [ ] I verified `SHA256SUMS` and the public release envelope.
+- [ ] I included `SB_Exact_Verifier_Entry_Points.zip` in the repository deposit and did not upload code to ScholarOne.
 - [ ] I inspected the ScholarOne-generated PDF, including all alt text and line numbers.
 - [ ] I selected any publishing/license options myself.
 - [ ] I approve the cover-letter originality, funding, and competing-interest statements.
 - [ ] I understand that this package does not itself submit or communicate with the journal.
-

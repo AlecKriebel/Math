@@ -22,7 +22,7 @@ SOURCE_BINDING = {
     "archive_marker": "ARCHIVE_SOURCE_COMMIT.txt",
     "outer_envelope": (
         "https://github.com/AlecKriebel/Math/releases/download/"
-        "stc-jc-sharp-boundary-v1.1.2/RELEASE_ENVELOPE.json"
+        "stc-jc-sharp-boundary-v1.1.3/RELEASE_ENVELOPE.json"
     ),
     "description": (
         "The core manifest is commit-independent and lives inside the archive; "
@@ -59,6 +59,9 @@ def core_artifacts() -> dict[str, dict[str, str]]:
         ),
         "source_zip": record(
             "s_tc_jc_landmark_closure/biorxiv_submission/Strong_Tree_Childness_Sharp_Level2_JC_source.zip"
+        ),
+        "biorxiv_verifier_capsule": record(
+            "s_tc_jc_landmark_closure/biorxiv_submission/Strong_Tree_Childness_Sharp_Level2_JC_verifier_entrypoints.zip"
         ),
         "pdf_visual_audit": record("s_tc_jc_landmark_closure/release/final_biorxiv/PDF_VISUAL_AUDIT.md"),
         "omega_record": record("s_tc_jc_landmark_closure/omega_audit/independent/output/omega_release_audit.json"),
@@ -109,6 +112,9 @@ def core_artifacts() -> dict[str, dict[str, str]]:
         "journal_package_builder": record(
             "s_tc_jc_landmark_closure/reproducibility/build_journal_packages.py"
         ),
+        "verifier_capsule_builder": record(
+            "s_tc_jc_landmark_closure/reproducibility/build_verifier_entrypoint_capsule.py"
+        ),
         "submission_source_archive_replay": record(
             "s_tc_jc_landmark_closure/reproducibility/verify_submission_source_archives.py"
         ),
@@ -126,6 +132,24 @@ def core_artifacts() -> dict[str, dict[str, str]]:
         ),
         "release_hardening_package_review": record(
             "s_tc_jc_landmark_closure/reviews/v1_1_2_release_hardening/ADVERSARIAL_RELEASE_PACKAGE_REVIEW.md"
+        ),
+        "englander_revision_disposition": record(
+            "s_tc_jc_landmark_closure/reviews/v1_1_3_englander_revision/FEEDBACK_DISPOSITION.md"
+        ),
+        "englander_v4_crosswalk": record(
+            "s_tc_jc_landmark_closure/reviews/v1_1_3_englander_revision/ENGLANDER_V4_CROSSWALK.md"
+        ),
+        "englander_revision_regression": record(
+            "s_tc_jc_landmark_closure/reviews/v1_1_3_englander_revision/verify_englander_revision.py"
+        ),
+        "v1_1_3_mathematical_review": record(
+            "s_tc_jc_landmark_closure/reviews/v1_1_3_englander_revision/ADVERSARIAL_MATHEMATICAL_REVIEW.md"
+        ),
+        "v1_1_3_reproducibility_review": record(
+            "s_tc_jc_landmark_closure/reviews/v1_1_3_englander_revision/ADVERSARIAL_REPRODUCIBILITY_REVIEW.md"
+        ),
+        "prior_work_comparison": record(
+            "s_tc_jc_landmark_closure/PRIOR_WORK_COMPARISON.md"
         ),
         "public_release_assets": record(
             "s_tc_jc_landmark_closure/release/PUBLIC_RELEASE_ASSETS.md"
@@ -151,6 +175,9 @@ def core_artifacts() -> dict[str, dict[str, str]]:
         "systematic_biology_source_zip": record(
             "s_tc_jc_landmark_closure/journal_submission/systematic_biology/SB_LaTeX_Source.zip"
         ),
+        "systematic_biology_verifier_capsule": record(
+            "s_tc_jc_landmark_closure/journal_submission/systematic_biology/SB_Exact_Verifier_Entry_Points.zip"
+        ),
         "systematic_biology_upload_map": record(
             "s_tc_jc_landmark_closure/journal_submission/systematic_biology/SYSTEMATIC_BIOLOGY_UPLOAD_MAP.md"
         ),
@@ -168,6 +195,9 @@ def core_artifacts() -> dict[str, dict[str, str]]:
         ),
         "jmb_source_zip": record(
             "s_tc_jc_landmark_closure/journal_submission/journal_of_mathematical_biology/JMB_LaTeX_Source.zip"
+        ),
+        "jmb_verifier_capsule": record(
+            "s_tc_jc_landmark_closure/journal_submission/journal_of_mathematical_biology/JMB_Exact_Verifier_Entry_Points.zip"
         ),
         "jmb_upload_map": record(
             "s_tc_jc_landmark_closure/journal_submission/journal_of_mathematical_biology/JMB_UPLOAD_MAP.md"

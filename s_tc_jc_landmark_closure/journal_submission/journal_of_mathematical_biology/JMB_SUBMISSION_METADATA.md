@@ -17,6 +17,14 @@ The JMB-specific supplementary PDF is **Online Resource 1** and contains the
 article title, journal name, author, affiliation, corresponding email, and its
 own transformed source in `JMB_LaTeX_Source.zip`.
 
+The local support package also includes
+`JMB_Exact_Verifier_Entry_Points.zip`, a small repository-deposit capsule
+containing the executable replay commands, Python dependency lock,
+external-tool requirements, theorem map, and checksums.  It is not designated
+as an additional Online Resource.  The complete graph/certificate archive and
+capsule are published at the immutable external release rather than duplicated
+in the portal.
+
 Springer's title-page instructions ask unaffiliated authors for city and
 country.  Those facts were not supplied to this project and are intentionally
 not invented.  Alec Kriebel must enter the requested city and country in the

@@ -1,13 +1,15 @@
 # Submission package index
 
-Release: `stc-jc-sharp-boundary-v1.1.2`
+Release: `stc-jc-sharp-boundary-v1.1.3`
 
 All three packages derive from the same canonical article and supplement. The
-SHA-256 manifest in each directory covers every file intended for portal use.
+SHA-256 manifest in each directory covers every delivered file, including
+repository-deposit or acceptance-stage support files that the corresponding
+upload map says not to send through the initial manuscript portal.
 From the monorepository root, the exact package gate is:
 
 ```bash
-python s_tc_jc_landmark_closure/reviews/v1_1_2_release_hardening/verify_release_hardening.py
+python s_tc_jc_landmark_closure/reviews/v1_1_3_englander_revision/verify_englander_revision.py
 python s_tc_jc_landmark_closure/reproducibility/verify_submission_source_archives.py
 ```
 
@@ -23,6 +25,7 @@ Directory: `biorxiv_submission/`
 - main PDF: `Strong_Tree_Childness_Sharp_Level2_JC.pdf`
 - supplement: `Strong_Tree_Childness_Sharp_Level2_JC_supplement.pdf`
 - source: `Strong_Tree_Childness_Sharp_Level2_JC_source.zip`
+- verifier entry points: `Strong_Tree_Childness_Sharp_Level2_JC_verifier_entrypoints.zip`
 - metadata: `BIORXIV_METADATA.md`
 - portal steps: `BIORXIV_UPLOAD_MAP.md`
 - human gate: `FINAL_HUMAN_CHECKLIST.md`
@@ -35,6 +38,7 @@ Directory: `journal_submission/systematic_biology/`
 - supplement: `SB_Supplementary_Material.pdf`
 - cover letter: `SB_Cover_Letter.pdf`
 - acceptance-stage source: `SB_LaTeX_Source.zip`
+- repository-deposit verifier entry points (do not upload to ScholarOne): `SB_Exact_Verifier_Entry_Points.zip`
 - metadata: `SB_SUBMISSION_METADATA.md`
 - ScholarOne steps: `SYSTEMATIC_BIOLOGY_UPLOAD_MAP.md`
 - human gate: `FINAL_HUMAN_CHECKLIST.md`
@@ -49,6 +53,7 @@ Directory: `journal_submission/journal_of_mathematical_biology/`
 - main PDF: `JMB_Main_Manuscript.pdf`
 - supplement: `JMB_Supplementary_Information.pdf`
 - complete editable source: `JMB_LaTeX_Source.zip`
+- repository-deposit verifier entry points (not an Online Resource): `JMB_Exact_Verifier_Entry_Points.zip`
 - cover letter: `JMB_Cover_Letter.pdf`
 - metadata: `JMB_SUBMISSION_METADATA.md`
 - portal steps: `JMB_UPLOAD_MAP.md`

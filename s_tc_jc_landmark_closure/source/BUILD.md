@@ -1,10 +1,14 @@
 # Deterministic manuscript build
 
-Requirements: Tectonic 0.15 or later with its standard cached bundle.
+Exact-byte replay was tested with Tectonic 0.16.9, default bundle v33,
+and `SOURCE_DATE_EPOCH=1786924800`.  `requirements.txt` at project root is
+the Python dependency lock; Tectonic and its bundle are separate build
+requirements.
 
 From the monorepository root:
 
 ```bash
+export SOURCE_DATE_EPOCH=1786924800
 cd s_tc_jc_landmark_closure/source/paper
 tectonic main.tex
 ```
@@ -12,6 +16,7 @@ tectonic main.tex
 For the supplement:
 
 ```bash
+export SOURCE_DATE_EPOCH=1786924800
 cd ../supplement
 tectonic supplement.tex
 ```
@@ -20,6 +25,7 @@ From the root of the extracted bioRxiv source ZIP, use the archive-local
 paths:
 
 ```bash
+export SOURCE_DATE_EPOCH=1786924800
 cd paper
 tectonic main.tex
 cd ../supplement

@@ -13,8 +13,9 @@ Do not submit until every box is checked by Alec Kriebel.
 - [ ] I confirm that Omega is stated only as a weak-but-not-strong triangle-free sharpness family.
 - [ ] I reviewed `PRIOR_WORK_COMPARISON.md` and the cited theorem/version descriptions.
 - [ ] I ran or reviewed the clean-clone quick, full, and regenerate-all transcripts.
-- [ ] I downloaded the public v1.1.2 release envelope and checksum manifest and verified that they bind the submitted PDFs and final source commit.
+- [ ] I downloaded the public v1.1.3 release envelope and checksum manifest and verified that they bind the submitted PDFs and final source commit.
 - [ ] I checked the SHA-256 manifest against the uploaded files.
+- [ ] I uploaded the small verifier-entrypoint ZIP and confirmed that its README points to the same immutable full release as the manuscript.
 - [ ] I selected the desired bioRxiv license myself.
 - [ ] I verified the persistent repository URL, or left only the accurate GitHub URL if no persistent identifier has issued.
 - [ ] I inspected the bioRxiv-generated preview and confirmed that all figures, equations, references, and supplementary files render correctly.
