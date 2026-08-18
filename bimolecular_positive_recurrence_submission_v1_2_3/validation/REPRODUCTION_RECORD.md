@@ -41,5 +41,6 @@ digest, timestamp, and ZIP format are recorded in `REPRODUCIBILITY.env`.
 
 The Version 1.2.2 tag, archive, manifests, PDFs, and hosted replay remain
 unchanged. This patch release carries the verifier component byte-for-byte and
-changes only mathematical exposition, one bibliographic year, current dates,
-and outer release records. The theorem and proof dependencies are unchanged.
+changes mathematical exposition, bibliography and literature-status records,
+current dates, submission and preservation guidance, and outer release
+records. The theorem and proof dependencies are unchanged.

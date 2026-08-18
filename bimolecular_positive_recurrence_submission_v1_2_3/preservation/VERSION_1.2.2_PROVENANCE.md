@@ -14,6 +14,8 @@ immutable Version 1.2.2 release. Version 1.2.2 remains available at:
   `dc14127494eaa6ccf3b36a91f5d714ba6f79e76476f8d199760bd3b5faeed586`.
 
 The Version 1.2.2 main-branch workflow, exact-tag replay, and Pages deployment
-passed. Version 1.2.3 changes mathematical exposition, one bibliographic year,
-current dates, and outer release records. It does not change the theorem,
-standalone Version 1.2.0 verifier, tests, or canonical verification report.
+passed. Version 1.2.3 changes mathematical exposition, bibliography and
+literature-status records, current dates,
+submission and preservation guidance, and outer release records. It does not
+change the theorem, standalone Version 1.2.0 verifier, tests, or canonical
+verification report.
