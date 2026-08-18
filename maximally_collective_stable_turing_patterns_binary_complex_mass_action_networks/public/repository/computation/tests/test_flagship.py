@@ -13,6 +13,7 @@ import core as dc
 import pareto_core as pc
 import frontier_verify_master_certificate as master_certificate
 import frontier_verify_mode_certificates as mode_certificates
+import frontier_verify_exposition_identities as exposition_identities
 
 
 def test_family_flux_and_conservation():
@@ -106,6 +107,73 @@ def test_endpoint_factor_mutation_is_rejected(tmp_path):
     mutated.write_text(json.dumps(payload))
     with pytest.raises(AssertionError):
         master_certificate.verify(mutated)
+
+
+def test_printed_exposition_identities_and_modulus_sources():
+    exposition_identities.verify()
+
+
+def test_77_and_84_term_source_mutations_are_rejected(tmp_path):
+    unit_source = ROOT / "independent_verifier" / "improved_modulus_certificate.json"
+    unit_payload = json.loads(unit_source.read_text())
+    unit_payload["improved_mode"]["terms"][0]["coefficient"] = "2"
+    mutated_unit = tmp_path / "mutated_unit_modulus.json"
+    mutated_unit.write_text(json.dumps(unit_payload))
+    with pytest.raises(AssertionError):
+        exposition_identities.verify_modulus_source_polynomials(
+            unit_certificate=mutated_unit,
+        )
+
+    pareto_source = ROOT / "independent_verifier" / "pareto_all_m_certificate.json"
+    pareto_payload = json.loads(pareto_source.read_text())
+    coefficient = pareto_payload["modulus"]["spatial"]["terms"][0][
+        "coefficient_in_A_ascending"
+    ]
+    coefficient[0] = str(sp.Rational(coefficient[0]) + 1)
+    mutated_pareto = tmp_path / "mutated_pareto_modulus.json"
+    mutated_pareto.write_text(json.dumps(pareto_payload))
+    with pytest.raises(AssertionError):
+        exposition_identities.verify_modulus_source_polynomials(
+            pareto_certificate=mutated_pareto,
+        )
+
+
+def test_printed_rational_identity_mutation_is_rejected(tmp_path):
+    source = ROOT / "data" / "sign_certificate_tables.tex"
+    mutated_text = source.read_text().replace(
+        r"C_m=-\frac{215P_C(m)}",
+        r"C_m=-\frac{214P_C(m)}",
+        1,
+    )
+    assert mutated_text != source.read_text()
+    mutated = tmp_path / "mutated_sign_certificate_tables.tex"
+    mutated.write_text(mutated_text)
+    with pytest.raises(AssertionError):
+        exposition_identities.verify_printed_scalar_table(mutated)
+
+
+def test_printed_modulus_table_mutation_is_rejected(tmp_path):
+    source = ROOT / "data" / "certificate_tables.tex"
+    mutated_text = source.read_text().replace(
+        r"10 & 0 & $1$\\",
+        r"10 & 0 & $2$\\",
+        1,
+    )
+    assert mutated_text != source.read_text()
+    mutated = tmp_path / "mutated_certificate_tables.tex"
+    mutated.write_text(mutated_text)
+    with pytest.raises(AssertionError):
+        exposition_identities.verify_printed_modulus_table(mutated)
+
+
+def test_printed_triad_table_mutation_is_rejected(tmp_path):
+    source = ROOT / "data" / "triad_routh_gap.tex"
+    mutated_text = source.read_text().replace("4 a^{2}", "5 a^{2}", 1)
+    assert mutated_text != source.read_text()
+    mutated = tmp_path / "mutated_triad_routh_gap.tex"
+    mutated.write_text(mutated_text)
+    with pytest.raises(AssertionError):
+        exposition_identities.verify_printed_triad_table(mutated)
 
 
 def test_fourier_factor_mutations_are_rejected():

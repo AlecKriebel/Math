@@ -117,7 +117,7 @@ rm -f release/verification_outputs/integrated_designs.txt
 python independent_verifier/verify_improved_profile.py >> release/verification_outputs/integrated_designs.txt
 python independent_verifier/frontier_verify_family.py 3 4 5 6 8 10 >> release/verification_outputs/integrated_designs.txt
 python independent_verifier/frontier_verify_normal_form.py 3 >> release/verification_outputs/integrated_designs.txt
-python independent_verifier/frontier_verify_pareto.py 3 4 5 6 8 10 >> release/verification_outputs/integrated_designs.txt
+python independent_verifier/frontier_verify_pareto.py 3 4 5 6 8 10 149 >> release/verification_outputs/integrated_designs.txt
 python independent_verifier/verify_exchange_of_stability.py >> release/verification_outputs/integrated_designs.txt
 python independent_verifier/verify_branch_stability.py >> release/verification_outputs/integrated_designs.txt
 echo SCC_EXHAUSTION_PASS

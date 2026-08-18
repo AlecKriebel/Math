@@ -15,6 +15,7 @@ The all-dimensional arguments are human-readable in `proof_audit/` and checked b
 - `python independent_verifier/frontier_verify_master_certificate.py`
 - `python independent_verifier/frontier_verify_cubic_bound.py`
 - `python independent_verifier/frontier_verify_determinant_identity.py`
+- `python independent_verifier/frontier_verify_exposition_identities.py`
 - `python independent_verifier/verify_symbolic_certificates.py`
 
 Printed coefficient tables are `data/certificate_tables.tex`, `data/sign_certificate_tables.tex`, and `data/triad_routh_gap.tex`. The single exact source for all displayed finite values is `data/current_profile_exact.json`. Finite instances are regression checks, not replacements for the symbolic proof.

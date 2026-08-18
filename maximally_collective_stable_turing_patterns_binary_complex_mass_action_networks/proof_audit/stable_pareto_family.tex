@@ -31,11 +31,15 @@ asymptotically stable in the fixed-mass $H^1$ phase space;
 \end{enumerate}
 Consequently
 \[
- \chi_D(L)\chi_H(L)=\frac{23(91\nu-1)}{63},
+ \chi_D(L)\chi_H(L)=\frac{23(91\nu-1)}{63}
+ =\frac{23(91m-183)}{63}=\chi_D^{\rm unit}(m),
 \]
-and at $L=L_0$ both contrasts are $\Theta(\sqrt{\nu})$.  Since every stationary
-crossing in the topology satisfies $\chi_D\chi_H>8\nu$, the simultaneous
-square-root exponents are optimal.
+and at $L=L_0$ both contrasts are $\Theta(\sqrt{\nu})$.  Thus $L$ reallocates
+a fixed contrast product between physical diffusion and equilibrium
+concentration scales; it reduces $\max(\chi_D,\chi_H)$, not their product.
+Since every stationary crossing in this topology satisfies
+$\chi_D\chi_H>8\nu$, the simultaneous square-root exponents are optimal among
+stationary-crossing realizations of $\widehat N_m$.
 
 
 \section*{An exact equilibrium-scaling family}
@@ -74,10 +78,12 @@ Writing $z=\mathsf H_m(L)x$, the reaction--diffusion equation becomes
 Thus the stationary bracket and its critical right vector are unchanged by
 $\mathsf H_m(L)$.  The dynamic left critical vector is
 \[
- q_m(L)=\mathsf H_m(L)^{-1}\ell_m.
+ \widetilde\ell_m(L)=\mathsf H_m(L)^{-1}\ell_m.
 \]
 The fixed physical conservation class becomes the normalized constraint with
 left vector $\mathsf H_m(L)^{-1}c$.
+Here $\chi_H$ measures equilibrium concentration-scale separation, not a
+universal measure of biological expense or implausibility.
 
 
 \section*{All-mode stability on the certified interval}
@@ -111,10 +117,11 @@ where $x=\operatorname{Re}\lambda$ and $y=\operatorname{Im}\lambda$.
 Throughout the certified interval $\nu L^2\ge1/3$, so this dominates the
 lower bound with coefficient $1/3$ in $y^2$.
 
-The exact polynomial
+With $z=y^2$ and $s=t-1$, the exact 84-term source polynomial is
 \[
- \left(\frac{91}{90}\right)^2
- \left(1+A x+\frac13y^2\right)|F|^2-|G|^2,
+ E_{84}(x,z,s;A)=\left(\frac{91}{90}\right)^2
+ \left(1+A x+\frac13z\right)
+ |F(x+i\sqrt z,1+s)|^2-|G(x+i\sqrt z,1+s)|^2,
  \qquad A>0,
 \]
 has 84 nonzero monomials in $(x,y^2,t-1)$.  Every coefficient is a
@@ -144,14 +151,20 @@ If $\nu\ge2$, Bernoulli's inequality and the definition of $L_0$ give
  \qquad A=2\nu L.
 \]
 Here $A\ge\sqrt{5\nu}\ge\sqrt{10}>1/4$.
-The exact polynomial
+With $U=A-1/4$, the exact 22-term source polynomial is
 \[
- \left(1+Ax+\frac54y^2\right)|F_0|^2-|R|^2
+ E_{22}(x,z;U)=
+ \left[1+\left(U+\frac14\right)x+\frac54z\right]
+ |F_0(x+i\sqrt z)|^2-|R(x+i\sqrt z)|^2.
 \]
-has 22 nonzero monomials.  After the shift $U=A-1/4$, every coefficient is a
+It has 22 nonzero monomials.  Every coefficient is a
 polynomial in $U$ with nonnegative rational coefficients, and equality occurs
 only at $\lambda=0$.  Hence no nonzero closed-right-half-plane homogeneous
-root exists.  Also
+root exists.  The coefficient $5/4$ is sharp for this coefficientwise
+certificate only: replacing it by $B$ makes the coefficient of $z=y^2$ at
+$x=0$ equal to $256B-320$, which is zero at $B=5/4$ and negative below it.
+This identifies the boundary of the present modulus certificate, not an
+intrinsic dynamical boundary for $L_0$.  Also
 \[
  (QF_0-R)'(0)
  =16L\sum_{i=2}^{m-1}\frac{K_{i-1}}{K_i}-2>0,
@@ -179,11 +192,11 @@ The 22- and 84-term coefficient tables are in
 \section*{Uniform supercritical sign along the scaling family}
 Let
 \[
- \mathcal H_m=\sum_{j=1}^{m-2}\frac1{K_j}.
+ \mathfrak h_m=\sum_{j=1}^{m-2}\frac1{K_j}.
 \]
 Then
 \[
- \frac1{91}\le\mathcal H_m<\frac1{90}.
+ \frac1{91}\le\mathfrak h_m<\frac1{90}.
 \]
 Let $w_0^{\rm ref}$ denote the reference zero-mode correction satisfying
 $c^Tw_0^{\rm ref}=0$, and let $\rho_m$ generate $\ker A_m$.  The corrected
@@ -207,43 +220,91 @@ The cubic numerator has the exact decomposition
 \[
  N_m(L)=N_m^{\rm ref}+\tau_m(L)S_m,
 \]
+Put $\nu=m-2$.  Since $C_m<0$ and
+$\mathfrak h_m\le\nu/(90\nu+1)$, exact clearing gives
+\[
+ N_m^{\rm ref}-\frac1{100}\ge\frac{P_{\rm ref}(\nu)}{D_{\rm ref}(\nu)},
+\]
 where
+\begin{align*}
+P_{\rm ref}={}&3790502986637265684840\nu^5
+-974216530468600286489\nu^4-53103567440921218871\nu^3\\
+&-576386186827093561\nu^2+3649732858601219\nu+55281268032918,
+\end{align*}
+\begin{align*}
+D_{\rm ref}={}&715296950550(8\nu-1)(90\nu+1)\\
+&\times(589180301\nu^3+35065866\nu^2+629431\nu+3306).
+\end{align*}
+The denominator is positive.  After $\nu=v+1$, the descending coefficients
+of $P_{\rm ref}$ are
 \[
- S_m=-\frac4{462105}(1760850\mathcal H_m-10253),
- \qquad -\frac1{10}<S_m<0.
-\]
-The reference certificate gives
-\[
- N_m^{\rm ref}>\frac1{100}.
-\]
-Indeed $N_m^{\rm ref}=R_m+C_m\mathcal H_m$, with $C_m<0$; substituting the
-upper harmonic bound and writing $m-2=u+1$ produces the positive coefficient
-list
-\[
-\begin{split}
-&(3790502986637265684840,
-17978298402717728137711,
+\begin{gathered}
+3790502986637265684840,17978298402717728137711,
 33955060177057334483573,\\
-&31899843595051464379292,
-14895188986348368035728,
-2762610207555043720056).
-\end{split}
+31899843595051464379292,14895188986348368035728,
+2762610207555043720056,
+\end{gathered}
 \]
+so $N_m^{\rm ref}>1/100$.
 
-Put $\nu=m-2$.  The exact rational expression for the gauge is
+Separately,
 \[
- \tau=-\frac{
-1494249120\mathcal H L\nu^2-69786990\mathcal H L\nu
-+108738630L\nu^2+1214388L\nu-8521L-125249670\nu^2+1031940\nu}
-{15876(8\nu-1)(32760\mathcal H L\nu+32760L\nu^2+4L-4095\nu)}.
+ S_m=-\frac{4(1760850\mathfrak h_m-10253)}{462105}.
 \]
-On $L\ge1/\sqrt{3\nu}$ its derivatives with respect to both $\mathcal H$ and
-$L$ are negative.  Hence its maximum occurs at
-$\mathcal H=1/91$ and $L=1/\sqrt{3\nu}$.  After writing
-$y=\sqrt{3\nu}$, the inequality $\tau<1/20$ reduces to two negative
-polynomials.  For $\nu=1$ use $\sqrt3<7/4$; for $\nu\ge2$ use
-$\sqrt{3\nu}\le5\nu/4$.  The independent verifier checks the exact resulting
-integer inequalities.
+The bounds $1/91\le\mathfrak h_m<1/90$ and the exact comparisons
+\[
+ \frac{1760850}{91}-10253>0,
+ \qquad
+ \frac4{462105}\left(\frac{1760850}{90}-10253\right)<\frac1{10}
+\]
+prove $-1/10<S_m<0$.  For the gauge, define
+\begin{align*}
+A_\tau={}&1494249120\mathfrak h_mL\nu^2-69786990\mathfrak h_mL\nu
++108738630L\nu^2\\
+&+1214388L\nu-8521L-125249670\nu^2+1031940\nu,
+\end{align*}
+\[
+B_\tau=32760\mathfrak h_mL\nu+32760L\nu^2+4L-4095\nu,
+\qquad
+\tau_m(L)=-\frac{A_\tau}{15876(8\nu-1)B_\tau}.
+\]
+On $L\ge1/\sqrt{3\nu}$,
+$B_\tau=4095\nu[8L(\nu+\mathfrak h_m)-1]+4L>0$ because
+$L\nu\ge1/\sqrt3$, and
+\[
+\partial_{\mathfrak h}\tau_m
+=-\frac{4225L\nu^2(182448L\nu+1008L-7513)}{2B_\tau^2}<0,
+\]
+\[
+\partial_L\tau_m
+=-\frac{65\nu(-61531470\mathfrak h_m\nu+125249670\nu^2
++1031940\nu-7513)}{252B_\tau^2}<0.
+\]
+Thus its maximum occurs at $\mathfrak h_m=1/91$ and
+$L=1/\sqrt{3\nu}$.  With $y=\sqrt{3\nu}$, define
+\[
+P_\tau=-1040195520\nu^3+756272790\nu^2y-507201030\nu^2
+-21412755\nu y-935658\nu+58481.
+\]
+Then
+\[
+\tau_m(1/91,1/y)-\frac1{20}
+=-\frac{P_\tau}{79380(8\nu-1)
+(-32760\nu^2+4095\nu y-360\nu-4)}.
+\]
+The denominator is negative because $y<2\nu$.
+For $\nu=1$, $\sqrt3<7/4$ gives
+$P_\tau<-1049074663/4<0$.  For $\nu\ge2$, $y\le5\nu/4$ gives
+$P_\tau<P_{\rm up}$, where
+\[
+P_{\rm up}=-\frac{189709065}{2}\nu^3-507201030\nu^2-935658\nu+58481.
+\]
+Since
+\[
+P_{\rm up}'=-\frac{569127195}{2}\nu^2-1014402060\nu-935658<0,
+\qquad P_{\rm up}(2)=-2789453215<0,
+\]
+the endpoint, and hence the full range, satisfies $\tau_m(L)<1/20$.
 
 If $\tau\le0$, then $\tau S_m\ge0$.  If $0<\tau<1/20$, then
 $\tau S_m>-1/200$.  Therefore
@@ -303,11 +364,12 @@ Their minimum is $d_2=1/(91\nu L)$ and their maximum is $d_1$, so
 \]
 Consequently
 \[
- \boxed{\chi_D(L)\chi_H(L)=\frac{23(91\nu-1)}{63}}
+ \boxed{\chi_D(L)\chi_H(L)=\frac{23(91\nu-1)}{63}
+ =\chi_D^{\rm unit}(m)}
 \]
 throughout the certified stable curve.  Increasing $L$ increases diffusion
-contrast and decreases equilibrium contrast, so no two points of this curve
-dominate one another within the curve.
+contrast and decreases equilibrium contrast, reallocating a fixed product.
+Thus no two points of this curve dominate one another within the curve.
 
 At the certified square-root-scaling endpoint $L=L_0$,
 \[
@@ -317,8 +379,8 @@ At the certified square-root-scaling endpoint $L=L_0$,
 \]
 Hence both contrasts are $\Theta(\sqrt m)$.
 
-For every stationary crossing, the exact diffusion law gives the universal
-trade-off
+For every stationary crossing of $\widehat N_m$, the exact diffusion law gives
+the strict topology-wide trade-off
 \[
  \chi_D\chi_H>8\nu.
 \]
@@ -327,6 +389,7 @@ In particular
  \max(\chi_D,\chi_H)>\sqrt{8\nu}.
 \]
 The construction therefore attains the optimal square-root exponent in both
-coordinates.  The global constant-optimal Pareto frontier is not determined:
-the constructed product has asymptotic coefficient $2093/63$, while the
-universal lower coefficient is $8$.
+coordinates among stationary-crossing realizations of this topology.  The
+complete constant-optimal diffusion--equilibrium Pareto frontier is not
+determined: the constructed product has asymptotic coefficient $2093/63$,
+while the topology-specific stationary lower coefficient is $8$.

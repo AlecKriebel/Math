@@ -81,3 +81,29 @@
 - Recorded the SIADS materials as synchronized but provisional pending the
   author's required metadata and journal-format decisions. No submission,
   outreach, or other external communication was initiated.
+
+## 2026-08-17 17:04:25 PDT
+
+- Completed the final pre-submission proof-exposition pass without changing
+  the reaction topology, repaired piecewise endpoint, current-profile data, or
+  theorem content.
+- Scoped every lower bound and optimality statement to stationary crossings of
+  the indexed topology; framed equilibrium contrast as concentration-scale
+  separation; and made the fixed contrast-product identity prominent.
+- Printed the complete $R_m$, $C_m$, $L_m$, $N_m^{\rm ref}$, gauge-tail, and
+  clearing-factor bridges, together with explicit source polynomials, sign
+  conventions, term counts, and equality cases for all four modulus tables.
+- Separated the supplement's coefficientwise-nonnegative and signed
+  certificates; removed the remaining notation collisions; and restricted the
+  robustness statement to the positive-equilibrium realization manifold.
+- Verified the subsystem-endpoint comparison against the published general-$n$
+  terminology of Satnoianu--Menzinger--Maini and the complementary
+  three-component analysis of Anma--Sakamoto--Yoneda. No external contact was
+  initiated.
+- Added exact freshness gates for the printed modulus, triad, and signed-scalar
+  tables. All 18 mutation/regression tests and the complete symbolic aggregate
+  pass, including the direct $m=149$ Pareto check.
+- Rebuilt and visually inspected all 45 pages across the eight principal PDFs;
+  independently compiled all three submission source archives to 16 main and
+  17 supplement pages; refreshed and hash-checked all seven deterministic ZIPs;
+  and completed a full detached portable replay of the final public package.

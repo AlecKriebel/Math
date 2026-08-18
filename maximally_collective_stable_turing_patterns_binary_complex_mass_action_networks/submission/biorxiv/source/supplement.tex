@@ -213,16 +213,16 @@ Direct substitution gives $(A_m-D_m)r=0$.  With $\ell_Z=1$, the left vector is
 \]
 Define
 \[
- \mathcal H_m=\sum_{j=1}^{m-2}\frac1{91m-181-j}.
+ \mathfrak h_m=\sum_{j=1}^{m-2}\frac1{91m-181-j}.
 \]
 Then
 \[
- \ell^Tr=-\frac{7043400m-13600927-7043400\mathcal H_m}{924210}<0,
+ \ell^Tr=-\frac{7043400m-13600927-7043400\mathfrak h_m}{924210}<0,
 \]
 \[
- \ell^TD_mr=-\frac{2(1760850\mathcal H_m+16559)}{462105}<0.
+ \ell^TD_mr=-\frac{2(1760850\mathfrak h_m+16559)}{462105}<0.
 \]
-The harmonic bound $\mathcal H_m\le(m-2)/(90m-179)$ makes the first sign an elementary
+The harmonic bound $\mathfrak h_m\le(m-2)/(90m-179)$ makes the first sign an elementary
 shifted-polynomial inequality.
 
 \subsection*{Homogeneous and spatial determinants}
@@ -313,7 +313,7 @@ the chain recurrence is
 \]
 Its boundary denominator is
 \[
- Q_m=589180301m^3-3500015940m^2+6930529579m-4574434500.
+ \mathcal Q_m=589180301m^3-3500015940m^2+6930529579m-4574434500.
 \]
 After $m=u+3$, the coefficients are
 \[
@@ -326,8 +326,46 @@ The cubic coefficient is
 \[
  c_m=\frac{\ell^T\{B(r,w_0)+\tfrac12B(r,w_2)\}}{\ell^Tr}.
 \]
-The numerator equals $R_m+C_m\mathcal H_m$, where $R_m>0$ and $C_m<0$.  Substitution of
-$\mathcal H_m\le(m-2)/(90m-179)$ reduces positivity to the degree-five polynomial
+For the cubic numerator, introduce
+\begin{align*}
+ P_R(m)={}&68605040480814208768m^4
+ -550882186169626030957m^3\\
+ &+1658612632937449670852m^2
+ -2219226476204103501323m\\
+ &+1113379274975809565700,
+\end{align*}
+and
+\begin{align*}
+ P_C(m)={}&652054120726848m^4
+ -5151971981328467m^3\\
+ &+15265080924982572m^2
+ -20102347725659113m\\
+ &+9927281930180400.
+\end{align*}
+Then the exact decomposition is
+\[
+ N_m=N_m^{\rm ref}=R_m+C_m\mathfrak h_m,
+\]
+where
+\[
+ R_m=\frac{P_R(m)}
+ {286118780220(8m-17)\mathcal Q_m},
+ \qquad
+ C_m=-\frac{215P_C(m)}
+ {11645046(8m-17)\mathcal Q_m}.
+\]
+The shifted-positive coefficient certificates in Section~S8.2 show that
+$\mathcal Q_m>0$, $P_R(m)>0$, and $P_C(m)>0$ for $m\ge3$.
+Consequently $R_m>0$ and $C_m<0$; in the latter conclusion the external
+factor $-215$ reverses the sign of the positive polynomial $P_C$.
+
+The exact clearing identity is
+\[
+ R_m+C_m\frac{m-2}{90m-179}
+ =\frac{L_m}
+ {286118780220(8m-17)(90m-179)\mathcal Q_m},
+\]
+where
 \begin{align*}
 L_m={}&2729945147827667886720m^5
 -27755132420474170999952m^4\\
@@ -335,6 +373,7 @@ L_m={}&2729945147827667886720m^5
 -229153280695458887386228m^2\\
 &+232620996871721820873517m
 -94412163900120968220300.
+\tag{S6.1}\label{eq:Lmpoly}
 \end{align*}
 After $m=u+3$, its coefficients are
 \begin{gather*}
@@ -345,8 +384,13 @@ After $m=u+3$, its coefficients are
 11736484608366875120374,
 2243933770033305838488,
 \end{gather*}
-all positive.  Hence the cubic numerator is positive and, since $\ell^Tr<0$,
-$c_m<0$.
+all positive.  Since $C_m<0$ and
+$\mathfrak h_m\le(m-2)/(90m-179)$, the complete comparison is
+\[
+ R_m+C_m\mathfrak h_m
+ \ge R_m+C_m\frac{m-2}{90m-179}>0.
+\]
+Thus the cubic numerator is positive and, since $\ell^Tr<0$, $c_m<0$.
 
 \section{Equilibrium-scaled stable family}
 
@@ -372,15 +416,19 @@ dynamical boundaries.  For $L\in[L_0,L_1]$, set
 \[
  h_1=h_m=h_Z=1,\qquad h_i=\frac{K_i}{LK_{i-1}}.
 \]
-The physical equilibrium is $x^*=H^{-1}\1$ and the physical diffusion matrix
-is $D^{\rm phys}=H\Delta$, where $\Delta$ is the improved unit profile.
-In normalized variables $z=Hx$,
+Write $\mathsf H_m(L)=\diag(h_1,\ldots,h_m,h_Z)$.  The physical
+equilibrium is $x^*=\mathsf H_m(L)^{-1}\1$ and the physical diffusion matrix
+is $D^{\rm phys}=\mathsf H_m(L)\Delta$, where $\Delta$ is the improved unit
+profile.  In normalized variables $z=\mathsf H_m(L)x$,
 \[
- z_t=H\{f_m(z)+\Delta z_{\xi\xi}\}.
+ z_t=\mathsf H_m(L)\{f_m(z)+\Delta z_{\xi\xi}\}.
 \]
 The stationary bracket and critical right vector are unchanged.  The dynamic
-left vector is $H^{-1}\ell$ and the physical conservation gauge uses
-$H^{-1}c$.
+left vector is
+\[
+ \widetilde\ell_m(L)=\mathsf H_m(L)^{-1}\ell_m,
+\]
+and the physical conservation gauge uses $\mathsf H_m(L)^{-1}c$.
 
 For interior chain factors,
 \[
@@ -398,12 +446,13 @@ nonnegative and is strict except at $(\lambda,t)=(0,1)$.
 
 Homogeneous stability uses a different boundary polynomial.  At $t=0$,
 \[
- \frac{\det(\lambda I-H A_m)}{\det H}=Q(\lambda)F(\lambda)-R(\lambda),
+ \frac{\det(\lambda I-\mathsf H_m(L) A_m)}{\det \mathsf H_m(L)}
+ =Q(\lambda)F_0(\lambda)-R(\lambda),
 \]
 where
 \[
  Q=\prod_{i=2}^{m-1}\left(1+L\frac{K_{i-1}}{K_i}\lambda\right),\qquad
- F=\lambda^3+11\lambda^2+31\lambda+16,
+ F_0=\lambda^3+11\lambda^2+31\lambda+16,
  \qquad R=5\lambda^2+33\lambda+16.
 \]
 For $\Re\lambda=x\ge0$, every factor in $Q$ has modulus at least
@@ -417,21 +466,27 @@ $|1+L\lambda|$.  If $\nu\ge2$, then
 Here $A\ge\sqrt{5\nu}\ge\sqrt{10}>1/4$.
 The exact polynomial
 \[
- \left(1+Ax+\frac54(\Im\lambda)^2\right)|F|^2-|R|^2
+ \left(1+Ax+\frac54(\Im\lambda)^2\right)|F_0|^2-|R|^2
 \]
 has 22 nonzero monomials.  With $U=A-1/4$, its coefficient polynomials have
 nonnegative rational coefficients and the expression is strict away from
 $\lambda=0$.  Thus there is no nonzero homogeneous eigenvalue in the closed
-right half-plane.  Moreover
+right half-plane.  The coefficient $5/4$ is sharp for this coefficientwise
+certificate.  If it
+is replaced by $B$, then at $x=0$ the coefficient of $z=y^2$ in
+$(1+Bz)|F_0|^2-|R|^2$ is $256B-320$.  It vanishes at $B=5/4$ and is negative
+for $B<5/4$.  This does not show that $L_0$ is an intrinsic dynamical
+boundary; it identifies only the boundary of the present exact modulus
+certificate.  Moreover
 \[
- (QF-R)'(0)=16L\sum_{i=2}^{m-1}\frac{K_{i-1}}{K_i}-2>0,
+ (QF_0-R)'(0)=16L\sum_{i=2}^{m-1}\frac{K_{i-1}}{K_i}-2>0,
 \]
 where the inequality uses $K_{i-1}/K_i>1$ and
 $L\ge\sqrt5/(2\sqrt\nu)$.  Thus the conservation zero is simple.  If
 $\nu=1$, put $c=91L/90$.  Direct
 division by the conservation factor gives
 \[
- \frac{QF-R}{\lambda}
+ \frac{QF_0-R}{\lambda}
  =c\lambda^3+(1+11c)\lambda^2+(6+31c)\lambda+(16c-2).
 \]
 Here $c>1/8$, and the remaining cubic Routh--Hurwitz difference is
@@ -443,20 +498,132 @@ $\rho_m=(2,-2,\ldots,-2,0,1)^T$.  The physical zero-mode gauge is
 \[
  w_0(L)=w_0^{\rm ref}+\tau_m(L)\rho_m,
  \qquad
- \tau_m(L)=-\frac{(H^{-1}c)^Tw_0^{\rm ref}}{(H^{-1}c)^T\rho_m}.
+ \tau_m(L)=-\frac{(\mathsf H_m(L)^{-1}c)^Tw_0^{\rm ref}}
+ {(\mathsf H_m(L)^{-1}c)^T\rho_m}.
 \]
 The second harmonic is unchanged.  The cubic numerator satisfies
 \[
  N_m(L)=N_m^{\rm ref}+\tau_m(L)S_m,
 \]
+where $N_m^{\rm ref}=R_m+C_m\mathfrak h_m$.  To make its quantitative margin
+explicit, set
+\begin{align*}
+ P_{\rm ref}(\nu)={}&3790502986637265684840\nu^5
+ -974216530468600286489\nu^4\\
+ &-53103567440921218871\nu^3
+ -576386186827093561\nu^2\\
+ &+3649732858601219\nu+55281268032918
+\end{align*}
+and
+\begin{align*}
+ D_{\rm ref}(\nu)={}&715296950550(8\nu-1)(90\nu+1)\\
+ &\mathrel{}\times
+ (589180301\nu^3+35065866\nu^2+629431\nu+3306).
+\end{align*}
+Since $C_m<0$ and $\mathfrak h_m\le\nu/(90\nu+1)$, exact clearing gives
 \[
- N_m^{\rm ref}>\frac1{100},\qquad
- -\frac1{10}<S_m<0,\qquad
- \tau_m(L)<\frac1{20},
+ N_m^{\rm ref}-\frac1{100}
+ \ge \frac{P_{\rm ref}(\nu)}{D_{\rm ref}(\nu)}.
 \]
-so $N_m(L)>1/200$.  Also
+The denominator is positive for $\nu\ge1$.  After $\nu=v+1$, the coefficients
+of $P_{\rm ref}$, in descending powers $v^5,\ldots,v^0$, are
+\begin{gather*}
+3790502986637265684840,
+17978298402717728137711,
+33955060177057334483573,\\
+31899843595051464379292,
+14895188986348368035728,
+2762610207555043720056.
+\end{gather*}
+They are positive, so $P_{\rm ref}(\nu)>0$ and
+$N_m^{\rm ref}>1/100$.
+
+Separately,
 \[
- \ell^TH^{-1}r=-\frac{485873}{924210}
+ S_m=-\frac{4(1760850\mathfrak h_m-10253)}{462105}.
+\]
+The bounds $1/91\le\mathfrak h_m<1/90$ give $S_m<0$ because
+\[
+ \frac{1760850}{91}-10253>0,
+\]
+and give $S_m>-1/10$ because
+\[
+ \frac4{462105}\left(\frac{1760850}{90}-10253\right)<\frac1{10}.
+\]
+
+For the remaining gauge estimate, define
+\begin{align*}
+ A_\tau={}&1494249120\mathfrak h_mL\nu^2
+ -69786990\mathfrak h_mL\nu+108738630L\nu^2\\
+ &+1214388L\nu-8521L-125249670\nu^2+1031940\nu,
+\end{align*}
+\[
+ B_\tau=32760\mathfrak h_mL\nu+32760L\nu^2+4L-4095\nu.
+\]
+Then the closed form is
+\[
+ \tau_m(L)=-\frac{A_\tau}{15876(8\nu-1)B_\tau}.
+\]
+On the broader certified cubic range $L\ge1/\sqrt{3\nu}$,
+\[
+ B_\tau=4095\nu\bigl[8L(\nu+\mathfrak h_m)-1\bigr]+4L>0,
+\]
+because $L\nu\ge1/\sqrt3$.  Exact differentiation then gives
+\[
+ \partial_{\mathfrak h}\tau_m
+ =-\frac{4225L\nu^2(182448L\nu+1008L-7513)}{2B_\tau^2}<0,
+\]
+\[
+ \partial_L\tau_m
+ =-\frac{65\nu(-61531470\mathfrak h_m\nu
+ +125249670\nu^2+1031940\nu-7513)}{252B_\tau^2}<0.
+\]
+For the first sign, $L\nu\ge1/\sqrt3>1/2$ makes the parenthesis positive.
+For the second, use $\mathfrak h_m<1/90$ and $\nu\ge1$.  Thus the maximum
+occurs at $\mathfrak h_m=1/91$ and $L=1/\sqrt{3\nu}$.
+
+Put $y=\sqrt{3\nu}$ and define the unreduced endpoint polynomial
+\begin{align*}
+ P_\tau(\nu,y)={}&-1040195520\nu^3+756272790\nu^2y
+ -507201030\nu^2\\
+ &-21412755\nu y-935658\nu+58481
+\end{align*}
+and $D_\tau(\nu,y)=-32760\nu^2+4095\nu y-360\nu-4$.  Direct
+substitution gives
+\[
+ \tau_m(1/91,1/y)-\frac1{20}
+ =-\frac{P_\tau(\nu,y)}{79380(8\nu-1)D_\tau(\nu,y)}.
+\]
+Since $y<2\nu$, $D_\tau<0$.  For $\nu=1$, the coefficient of $y$ in
+$P_\tau(1,y)$ is positive and $\sqrt3<7/4$, whence
+\[
+ P_\tau(1,\sqrt3)<P_\tau(1,7/4)=-\frac{1049074663}{4}<0.
+\]
+For $\nu\ge2$, $y\le5\nu/4$ and deletion of the negative term
+$-21412755\nu y$ gives $P_\tau(\nu,y)<P_{\rm up}(\nu)$, where
+\[
+ P_{\rm up}(\nu)=-\frac{189709065}{2}\nu^3-507201030\nu^2
+ -935658\nu+58481.
+\]
+This upper-bound polynomial is human-checkable:
+\[
+ P_{\rm up}'(\nu)=-\frac{569127195}{2}\nu^2-1014402060\nu-935658<0
+ \qquad(\nu\ge0),
+\]
+and
+\[
+ P_{\rm up}(2)=-2789453215<0.
+\]
+Hence $P_{\rm up}(\nu)<0$ for every $\nu\ge2$, and therefore
+$P_\tau(\nu,y)<0$ in all dimensions.  Because the displayed denominator
+$79380(8\nu-1)D_\tau$ is negative, the exact endpoint comparison proves
+$\tau_m(L)<1/20$.
+
+If $\tau_m(L)\le0$, then $\tau_m(L)S_m\ge0$.  If instead
+$0<\tau_m(L)<1/20$, then $\tau_m(L)S_m>-1/200$.  Together with
+$N_m^{\rm ref}>1/100$, this yields $N_m(L)>1/200$.  Also
+\[
+ \ell^T\mathsf H_m(L)^{-1}r=-\frac{485873}{924210}
  -\frac{11180}{1467}L(m-2)<0.
 \]
 Therefore the family is uniformly supercritical over the certified interval.
@@ -469,7 +636,15 @@ The contrasts are
  \chi_D(L)=\frac{23}{63}(91\nu L),\qquad
  \chi_H(L)=\frac{91\nu-1}{91\nu L},
 \]
-with constant product $23(91\nu-1)/63$.  At $L=L_0$,
+where $\chi_H$ measures equilibrium concentration-scale separation, not a
+universal measure of biological expense or implausibility.  Their product is
+fixed:
+\[
+ \chi_D(L)\chi_H(L)=\frac{23(91\nu-1)}{63}
+ =\frac{23(91m-183)}{63}=\chi_D^{\rm unit}(m).
+\]
+Thus $L$ reallocates contrast between diffusion and equilibrium concentration
+scales and reduces $\max(\chi_D,\chi_H)$, not their product.  At $L=L_0$,
 \[
  \chi_D=\frac{2093}{63}\kappa_\nu\sqrt\nu,
  \qquad
@@ -479,18 +654,98 @@ so both contrasts have square-root growth.
 
 \section{Exact coefficient tables}\label{sec:coefftables}
 
-Each row below records the exponent vector and exact coefficient of the
-corresponding polynomial.  In the Pareto spatial table, coefficient entries
-are polynomials in $A=2\nu L$.  In the Pareto homogeneous table, they are
-polynomials in $U=A-1/4$.  All listed coefficients are nonnegative; the
-strict rows identify the unique equality case.  From the repository root,
-the command
+\subsection{Coefficientwise-nonnegative modulus certificates}
+
+The first four tables below are coefficientwise-nonnegative modulus
+certificates.  Each row records an exponent vector and the exact coefficient
+of the corresponding polynomial.  The later shifted-polynomial tables are
+signed scalar certificates; for each such table we state the polynomial, any
+overall sign prefactor, the parameter domain, and the sign conclusion
+separately.
+
+By conjugation, take $y\ge0$ and use the variables
+\[
+ \lambda=x+i y=x+i\sqrt z,\qquad z=y^2,\qquad t=1+s,
+ \qquad x,y,z,s\ge0.
+\]
+For the unit-profile spatial calculation, define
+\[
+ g_1=\lambda+2+\frac{23}{63}t,\qquad
+ g_m=\lambda+5+\frac17t,\qquad
+ g_Z=\lambda+4+\frac{16}{45}t,
+\]
+\[
+ F=g_1g_mg_Z-4g_1-4g_m+g_Z,
+ \qquad G=g_Z(4g_1+g_m)-36.
+\]
+The 77-term table is exactly the expansion in $(x,z,s)$ of
+\[
+ E_{77}(x,z,s)=
+ \left[\left(\frac{91}{90}\right)^2+z\right]
+ \left|F(x+i\sqrt z,1+s)\right|^2
+ -\left|G(x+i\sqrt z,1+s)\right|^2.
+\]
+Every one of its 77 displayed coefficients is strictly positive; there is no
+constant term.  Hence equality occurs only at $x=z=s=0$, equivalently
+$(\lambda,t)=(0,1)$.
+
+For the equilibrium-scaled spatial calculation, put $A=2\nu L>0$.  The
+84-term table is exactly the expansion in $(x,z,s)$ of
+\[
+ E_{84}(x,z,s;A)=
+ \left(\frac{91}{90}\right)^2
+ \left(1+Ax+\frac z3\right)
+ \left|F(x+i\sqrt z,1+s)\right|^2
+ -\left|G(x+i\sqrt z,1+s)\right|^2.
+\]
+Its 84 coefficients are polynomials in $A$ with nonnegative rational
+coefficients and are positive for $A>0$.  Again there is no constant term,
+and equality occurs only at $x=z=s=0$, equivalently
+$(\lambda,t)=(0,1)$.
+
+For the equilibrium-scaled homogeneous calculation, define
+\[
+ F_0(\lambda)=\lambda^3+11\lambda^2+31\lambda+16,
+ \qquad R(\lambda)=5\lambda^2+33\lambda+16,
+ \qquad U=A-\frac14.
+\]
+The 22-term table is exactly the expansion in $(x,z)$ of
+\[
+ E_{22}(x,z;U)=
+ \left[1+\left(U+\frac14\right)x+\frac54z\right]
+ |F_0(x+i\sqrt z)|^2-|R(x+i\sqrt z)|^2.
+\]
+For $U\ge0$, all 22 coefficient polynomials are nonnegative, and the
+expression vanishes only at $x=z=0$, equivalently $\lambda=0$.
+
+Finally, with
+\[
+ P(\lambda)=\lambda^4+12\lambda^3+42\lambda^2+47\lambda+16,
+\]
+the unit-profile homogeneous table is the 35-term expansion in $(x,z)$ of
+\[
+ E_{35}(x,z)=|1+\lambda|^2|P(\lambda)|^2-|R(\lambda)|^2,
+ \qquad \lambda=x+i\sqrt z.
+\]
+All 35 coefficients are strictly positive, there is no constant term, and
+equality occurs only at $x=z=0$, equivalently $\lambda=0$.
+
+From the repository root, the command
 \texttt{python independent\_verifier/verify\_symbolic\_certificates.py}
 regenerates and checks the tables from exact symbolic expressions.
 
 \input{data/certificate_tables.tex}
 
-\subsection*{Shifted-polynomial and cubic-comparison certificates}
+\subsection{Signed scalar and rational-function certificates}
+
+Each generated row below states the exact scalar polynomial or rational
+expression, the descending coefficient order after its indicated shift, the
+sign of the polynomial on its parameter domain, and whether an external
+negative prefactor reverses that sign.  The shifts use $u=m-3$ and
+$v=\nu-1$, leaving $z=y^2$ reserved for the modulus tables.  In particular,
+the $P_C$ row certifies $C_m<0$ through its external factor $-215$; the sign
+of $S_m$ is certified separately.
+
 \input{data/sign_certificate_tables.tex}
 
 \section{Near-threshold control example}
@@ -533,16 +788,18 @@ conservation zero, and Neumann boundary conditions on an interval leave no
 continuous translation-neutral mode.  Strict spectral negativity therefore
 implies local exponential asymptotic stability in $H^1$.
 
-For robustness, use one scalar diffusion multiplier as the implicit variable.
-The critical eigenvalue derivative is nonzero, so the implicit function
-theorem continues the crossing under small perturbations of rates,
-equilibrium coordinates, diffusion ratios, and interval length.  Low-mode
-gaps persist by analytic perturbation.  A positive diffusion lower bound and
-a reaction-Jacobian upper bound give one neighborhood controlling all high
+For robustness, perturb positive steady fluxes and equilibrium coordinates
+within the positive-equilibrium realization manifold, reconstructing the
+rate constants accordingly; also allow small perturbations of diffusion
+ratios and interval length.  Use one scalar diffusion multiplier as the
+implicit variable.  The critical eigenvalue derivative is nonzero, so the
+implicit function theorem continues the crossing.  Low-mode gaps persist by
+analytic perturbation.  A positive diffusion lower bound and a
+reaction-Jacobian upper bound give one neighborhood controlling all high
 modes.  Smooth dependence of the Lyapunov--Schmidt coefficients preserves the
 negative cubic sign and the branch spectral gap.  This is a retuned
-codimension-one statement and is not a claim that every nearby point is
-itself at bifurcation.
+codimension-one statement, not a claim that arbitrary nearby parameter points
+are already critical, and no dimension-uniform radius is claimed.
 
 \section{Numerical protocol and independent verification}
 

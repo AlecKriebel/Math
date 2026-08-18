@@ -16,7 +16,7 @@ and checked after the remaining author decisions and journal-format work.
 - Add continuous line numbering if the selected SIAM template or review mode
   does not supply it.
 - Keep the abstract to one paragraph and no more than 250 words. The present
-  bioRxiv abstract is 194 words, but the final journal abstract must be checked
+  bioRxiv abstract is 200 words, but the final journal abstract must be checked
   after editing.
 - Keep the complete manuscript within the general 40-page and 10-megabyte
   limits, or justify an exception in the cover letter. Embed all ordinary

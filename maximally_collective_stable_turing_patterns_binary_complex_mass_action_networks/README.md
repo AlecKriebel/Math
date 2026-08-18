@@ -3,9 +3,9 @@
 This repository contains the flagship paper and exact reproducibility package for
 
 **Exact Diffusion Design for Maximally Collective Stable Turing Patterns in Binary-Complex Mass-Action Networks**  
-*Topology-Wide All-Spectrum Localization and Exponent-Optimal Heterogeneity Trade-Offs*
+*Topology-Wide All-Spectrum Localization and Exponent-Optimal Stationary Heterogeneity Trade-Offs*
 
-The paper proves a topology-wide all-spectrum localization theorem, an exact stationary diffusion law, sharp linear heterogeneity bounds, an improved stable unit-equilibrium design, and an exact stable diffusion--equilibrium trade-off family.
+The paper proves a topology-wide all-spectrum localization theorem, an exact stationary diffusion law, sharp topology-specific stationary heterogeneity bounds, an improved stable unit-equilibrium design, and an exact stable diffusion--equilibrium trade-off family.
 
 ## Main files
 

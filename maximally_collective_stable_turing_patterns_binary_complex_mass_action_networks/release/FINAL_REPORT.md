@@ -57,7 +57,7 @@ The exact table generator defines separately:
 - `chi_D^scale`, the diffusion contrast at the certified square-root-scaling endpoint;
 - `chi_H^scale`, the equilibrium contrast there;
 - their exact product;
-- the universal square-root lower bound;
+- the topology-specific stationary square-root lower bound;
 - the current `eta_m`, `c_m`, and amplitude coefficient.
 
 The identity
@@ -330,7 +330,7 @@ It is identified as a sufficient certificate boundary, not as a proved
 intrinsic dynamical boundary. The endpoint is called the
 **square-root-scaling endpoint**, not a balanced point with equal constants.
 
-The theorem establishes globally optimal square-root exponents for simultaneous diffusion and equilibrium contrast. It does not establish globally optimal constants or the complete Pareto frontier.
+The theorem establishes a square-root exponent that is optimal among stationary-crossing realizations of the indexed topology. It does not establish optimal constants, a result for other topologies or arbitrary wave instability, or the complete diffusion--equilibrium Pareto frontier.
 
 # LITERATURE FRAMING
 
@@ -348,13 +348,17 @@ A separate paragraph compares the topology with equal-diffusion Turing-network l
 d_Z > 8 h_Z sum d_j/h_j.
 ```
 
-At unit equilibrium, the contrast infimum is `8(m-2)`, while equilibrium scaling yields the universal product cost
+At unit equilibrium, the contrast infimum is `8(m-2)`, while equilibrium
+scaling yields the topology-wide necessary product bound for stationary
+crossings
 
 ```text
 chi_D chi_H > 8(m-2).
 ```
 
-These are presented as topology-specific quantitative results, not universal statements about all binary-complex networks.
+These are presented as topology-specific stationary results, not statements
+about other topologies, arbitrary wave instability, or every pattern-forming
+mechanism.
 
 A numbered open problem asks for the exact threshold for oscillatory diffusion-driven instability and whether wave instability can occur below the sharp stationary contrast. No stationary theorem is described as a complete wave criterion.
 
@@ -382,12 +386,12 @@ Repairs include:
 # MANUSCRIPT
 
 - Final title: *Exact Diffusion Design for Maximally Collective Stable Turing Patterns in Binary-Complex Mass-Action Networks*
-- Subtitle: *Topology-Wide All-Spectrum Localization and Exponent-Optimal Heterogeneity Trade-Offs*
+- Subtitle: *Topology-Wide All-Spectrum Localization and Exponent-Optimal Stationary Heterogeneity Trade-Offs*
 - Abstract: below the 250-word limits used by the planned venues
 - Main manuscript: 16 pages
-- Technical supplement: 12 pages
+- Technical supplement: 17 pages
 - Theorem summary: 2 pages
-- Proof skeleton: 5 pages
+- Proof skeleton: 6 pages
 
 The PDFs were rebuilt after the corrections. Final rendered-page and font audits are part of the replay.
 

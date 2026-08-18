@@ -24,6 +24,7 @@ checks=[
  "frontier_verify_mode_certificates.py",
  "frontier_verify_master_certificate.py",
  "frontier_verify_cubic_bound.py",
+ "frontier_verify_exposition_identities.py",
 ]
 for name in checks:
     subprocess.run([sys.executable,str(HERE/name)],check=True)

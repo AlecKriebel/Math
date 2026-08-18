@@ -14,11 +14,16 @@ python independent_verifier/verify_diffusion_criterion.py
 python independent_verifier/verify_contrast_bounds.py
 python independent_verifier/verify_improved_profile.py
 python independent_verifier/frontier_verify_pareto.py
+python independent_verifier/frontier_verify_exposition_identities.py
 python independent_verifier/verify_symbolic_certificates.py
 python independent_verifier/verify_branch_stability.py
 ```
 
-The all-dimensional proof objects are the source proofs in `proof_audit/`, the coefficient tables in `data/certificate_tables.tex`, and the exact JSON certificates in this directory. Finite dimensions are regression tests only.
+The all-dimensional proof objects are the source proofs in `proof_audit/`, the
+modulus and signed-scalar coefficient tables in `data/`, and the exact JSON
+certificates in this directory. The exposition-identity verifier reconstructs
+the printed clearing identities, gauge derivatives, source polynomials, and
+fixed contrast product. Finite dimensions are regression tests only.
 
 The exact verifiers require normal Python assertion mode. Canonical entrypoints
 fail immediately under `python -O` or a nonzero `PYTHONOPTIMIZE` setting.

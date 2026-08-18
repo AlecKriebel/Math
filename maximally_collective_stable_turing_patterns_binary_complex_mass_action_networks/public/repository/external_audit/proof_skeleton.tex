@@ -7,10 +7,11 @@
 \newcommand{\diag}{\operatorname{diag}}
 \begin{document}
 \begin{center}
-{\Large\bf Five-page proof skeleton}\par
+{\Large\bf Proof skeleton}\par
 {\large Exact Diffusion Design for Maximally Collective Stable Turing Patterns}\\
 {\normalsize in Binary-Complex Mass-Action Networks}\\
-{\small Topology-wide all-spectrum localization and exponent-optimal heterogeneity trade-offs}
+{\small Topology-Wide All-Spectrum Localization and
+Exponent-Optimal Stationary Heterogeneity Trade-Offs}
 \end{center}
 
 \section*{1. Reaction algebra and topology-wide localization}
@@ -75,7 +76,20 @@ $m\ge4$, $|1+\lambda|\ge1$ makes the 35-term strict inequality incompatible
 with $(1+\lambda)^{m-3}P=R$ at any nonzero closed-right-half-plane root.
 Since $q_m(0)=16m-34>0$, the conservation zero is simple.
 
-For spatial damping $tD_m$, chain elimination gives $\det(\lambda I-A_m+tD_m)=Q_mF-G$. At $(\lambda,t)=(0,1)$, the interior product telescopes to $91/90$. Retaining one exact factor yields a 77-term nonnegative boundary difference in $(x,y^2,t-1)$, strict except at $(0,0,0)$. Hence the first mode has one simple zero, all other first-mode eigenvalues are stable, and all $t>1$ modes are Hurwitz.
+For spatial damping $tD_m$, set
+$g_1=\lambda+2+(23/63)t$, $g_m=\lambda+5+t/7$,
+$g_Z=\lambda+4+(16/45)t$,
+$F=g_1g_mg_Z-4g_1-4g_m+g_Z$, and $G=g_Z(4g_1+g_m)-36$.
+Chain elimination gives $\det(\lambda I-A_m+tD_m)=Q_mF-G$.
+At $(\lambda,t)=(0,1)$, the interior
+product telescopes to $91/90$.  With $z=y^2$ and $s=t-1$, the exact source
+\[
+E_{77}=\left[(91/90)^2+z\right]|F(x+i\sqrt z,1+s)|^2
+-|G(x+i\sqrt z,1+s)|^2
+\]
+has 77 strictly positive coefficients and no constant term.  Thus equality
+occurs only at $(x,z,s)=(0,0,0)$. Hence the first mode has one simple zero,
+all other first-mode eigenvalues are stable, and all $t>1$ modes are Hurwitz.
 
 The exact unit contrast is
 \[
@@ -103,7 +117,36 @@ Projection onto the adjoint critical mode yields
 \[
 c_m=\frac{\ell^T\{B(r,w_0)+\tfrac12B(r,w_2)\}}{\ell^Tr}.
 \]
-The numerator telescopes to $R_m+C_m\mathcal H_m$. A rational upper bound on $\mathcal H_m$ and shifted coefficientwise-positive polynomials prove the numerator positive, while $\ell^Tr<0$; therefore $c_m<0$ for every $m\ge3$.
+Writing $\mathfrak h_m=\sum_{j=1}^{m-2}K_j^{-1}$, the numerator telescopes to
+$R_m+C_m\mathfrak h_m$.  The supplement prints $R_m$, $C_m$, their positive
+denominators, and the exact $L_m$ clearing identity.  Shifted
+coefficientwise-positive polynomials prove the numerator positive, while
+$\ell^Tr<0$; therefore $c_m<0$ for every $m\ge3$.
+For a direct audit, put
+\[
+\mathcal Q_m=589180301m^3-3500015940m^2+6930529579m-4574434500,
+\]
+\begin{align*}
+P_R={}&68605040480814208768m^4-550882186169626030957m^3
++1658612632937449670852m^2\\
+&-2219226476204103501323m+1113379274975809565700,\\
+P_C={}&652054120726848m^4-5151971981328467m^3
++15265080924982572m^2\\
+&-20102347725659113m+9927281930180400.
+\end{align*}
+Then
+\[
+R_m=\frac{P_R}{286118780220(8m-17)\mathcal Q_m},\qquad
+C_m=-\frac{215P_C}{11645046(8m-17)\mathcal Q_m},
+\]
+and exact clearing gives
+\[
+R_m+C_m\frac{m-2}{90m-179}
+=\frac{L_m}{286118780220(8m-17)(90m-179)\mathcal Q_m}.
+\]
+The shifted coefficients of $\mathcal Q_m,P_R,P_C,L_m$ are positive, so
+$C_m<0$ and
+$R_m+C_m\mathfrak h_m\ge R_m+C_m(m-2)/(90m-179)>0$.
 
 Crandall--Rabinowitz gives two positive branches for $\mu>0$. Their center eigenvalue is $-2\eta_m\mu+O(\mu^2)<0$. The complementary spectrum is separated at onset and remains separated under analytic perturbation. Positive Neumann diffusion is sectorial on fixed-mass $L^2$, its fractional $H^1$ domain is a Banach algebra in one dimension, and the quadratic Nemytskii map is smooth. The principle of linearized stability gives local exponential convergence in $H^1$ for sufficiently close nonnegative initial data in the same conservation class.
 
@@ -121,21 +164,30 @@ The interval is nonempty: for $\nu=1$ the squared inequality is
 $8281<24300$, while for $\nu\ge2$ it follows from
 $(90\nu+1)^2\le(91\nu)^2<6480\nu^3$.  Set $h_1=h_m=h_Z=1$,
 $h_i=K_i/(LK_{i-1})$, and choose physical diffusion
-$D^{\rm phys}=H\Delta$. Under $z=Hx$,
+$D^{\rm phys}=\mathsf H_m(L)\Delta$. Under $z=\mathsf H_m(L)x$,
 \[
-z_t=H\{f(z)+\Delta z_{xx}\}.
+z_t=\mathsf H_m(L)\{f(z)+\Delta z_{xx}\}.
 \]
-The effective critical bracket and right vector are unchanged; the dynamic left vector is $H^{-1}\ell$. The physical fixed-mass functional is $(H^{-1}c)^Tz$.
+The effective critical bracket and right vector are unchanged; the dynamic
+left vector is $\widetilde\ell_m(L)=\mathsf H_m(L)^{-1}\ell_m$. The physical
+fixed-mass functional is $(\mathsf H_m(L)^{-1}c)^Tz$.
 
 Chain elimination now gives interior factors
 \[
 g_i=\frac{K_{i-1}}{K_i}(1+L\lambda)+\frac{t-1}{K_i}.
 \]
 For $t\ge1$, Bernoulli's inequality and $\nu L^2\ge1/3$ reduce spatial
-half-plane exclusion to the 84-term nonnegative certificate, strict except at
-the first-mode zero.
+half-plane exclusion to the exact source polynomial
+\[
+E_{84}=(91/90)^2(1+Ax+z/3)|F(x+i\sqrt z,1+s)|^2
+-|G(x+i\sqrt z,1+s)|^2,
+\quad A=2\nu L, z=y^2, s=t-1.
+\]
+Its 84 coefficients are coefficientwise nonnegative in $A>0$, and equality
+occurs only at the first-mode zero $(x,z,s)=(0,0,0)$.
 
-At $t=0$, the exact homogeneous determinant, after dividing by $\det H$, is
+At $t=0$, the exact homogeneous determinant, after dividing by
+$\det\mathsf H_m(L)$, is
 \[
  QF_0-R,\qquad
  Q=\prod_{i=2}^{m-1}\left(1+L\frac{K_{i-1}}{K_i}\lambda\right),
@@ -151,9 +203,16 @@ $\Re\lambda=x\ge0$.  If $\nu\ge2$, then
  \ge1+Ax+\frac54y^2,\qquad A=2\nu L.
 \]
 On the certified domain $A\ge\sqrt{5\nu}\ge\sqrt{10}>1/4$.
-The difference $(1+Ax+\tfrac54y^2)|F_0|^2-|R|^2$ has 22 nonzero
-monomials.  After $U=A-1/4$, all coefficient polynomials are nonnegative and
-equality is possible only at $\lambda=0$.  Also
+With $z=y^2$ and $U=A-1/4$, the exact source
+\[
+E_{22}=\left[1+(U+1/4)x+(5/4)z\right]|F_0(x+i\sqrt z)|^2
+-|R(x+i\sqrt z)|^2
+\]
+has 22 nonzero monomials.  All coefficient polynomials are nonnegative and
+equality is possible only at $\lambda=0$.  The coefficient $5/4$ is sharp for
+this certificate only: replacing it by $B$ makes the $z=y^2$ coefficient at
+$x=0$ equal to $256B-320$.  This does not identify an intrinsic dynamical
+boundary.  Also
 \[
  (QF_0-R)'(0)=16L\sum_{i=2}^{m-1}K_{i-1}/K_i-2>0,
 \]
@@ -167,27 +226,75 @@ $6+99c+325c^2$ are positive because $c>1/8$.
 
 The second harmonic is unchanged, while the zero harmonic changes by
 $w_0(L)=w_0^{\rm ref}+\tau_m(L)\rho$. The cubic numerator is
-$N_m(L)=N_m^{\rm ref}+\tau_m(L)S_m$. Exact bounds
+$N_m(L)=N_m^{\rm ref}+\tau_m(L)S_m$.  With
+$1/91\le\mathfrak h_m<1/90$,
 \[
-N_m^{\rm ref}>1/100,\qquad -1/10<S_m<0,\qquad \tau_m(L)<1/20
+S_m=-\frac{4(1760850\mathfrak h_m-10253)}{462105},
+\qquad -\frac1{10}<S_m<0.
 \]
-were proved on the broader range $L\ge1/\sqrt{3\nu}$, which contains the
-new certified interval. They give $N_m(L)>1/200$, hence $c_m(L)<0$ throughout.
+Since $C_m<0$, exact clearing gives
+\[
+N_m^{\rm ref}-\frac1{100}\ge\frac{P_{\rm ref}(\nu)}{D_{\rm ref}(\nu)},
+\]
+where
+\begin{align*}
+P_{\rm ref}={}&3790502986637265684840\nu^5
+-974216530468600286489\nu^4-53103567440921218871\nu^3\\
+&-576386186827093561\nu^2+3649732858601219\nu+55281268032918,\\
+D_{\rm ref}={}&715296950550(8\nu-1)(90\nu+1)\\
+&\times(589180301\nu^3+35065866\nu^2+629431\nu+3306).
+\end{align*}
+$D_{\rm ref}>0$, and the shift $\nu=v+1$ gives six positive coefficients for
+$P_{\rm ref}$, proving $N_m^{\rm ref}>1/100$.
+
+For the gauge, set
+\begin{align*}
+A_\tau={}&1494249120\mathfrak h_mL\nu^2-69786990\mathfrak h_mL\nu
++108738630L\nu^2\\
+&+1214388L\nu-8521L-125249670\nu^2+1031940\nu,\\
+B_\tau={}&32760\mathfrak h_mL\nu+32760L\nu^2+4L-4095\nu.
+\end{align*}
+Then $\tau_m=-A_\tau/[15876(8\nu-1)B_\tau]$ and
+$B_\tau=4095\nu[8L(\nu+\mathfrak h_m)-1]+4L>0$.  The exact derivatives
+are negative on $L\ge1/\sqrt{3\nu}$, so the maximum is at
+$(\mathfrak h_m,L)=(1/91,1/\sqrt{3\nu})$.  For $\nu\ge2$ its endpoint sign
+is bounded by
+\[
+P_{\rm up}(\nu)=-\frac{189709065}{2}\nu^3-507201030\nu^2-935658\nu+58481,
+\]
+with
+\[
+P_{\rm up}'=-\frac{569127195}{2}\nu^2-1014402060\nu-935658<0,
+\quad P_{\rm up}(2)=-2789453215<0.
+\]
+The case $\nu=1$ uses the exact unreduced endpoint expression and
+$\sqrt3<7/4$.  Hence $\tau_m(L)<1/20$.  These bounds hold on the broader
+cubic range $L\ge1/\sqrt{3\nu}$ and give
+$N_m(L)>1/200$, hence $c_m(L)<0$ throughout the certified interval.
 
 The physical contrasts are
 \[
 \chi_D=\frac{23}{63}91\nu L,\qquad
 \chi_H=\frac{91\nu-1}{91\nu L}.
 \]
+Here $\chi_H$ measures equilibrium concentration-scale separation, not a
+universal measure of biological expense.  Moreover
+\[
+\chi_D(L)\chi_H(L)=\frac{23(91\nu-1)}{63}
+=\frac{23(91m-183)}{63}=\chi_D^{\rm unit}(m).
+\]
+Thus $L$ reallocates a fixed product and reduces
+$\max(\chi_D,\chi_H)$, not the product.
 At $L_0$,
 \[
  \chi_D=\frac{2093}{63}\kappa_\nu\sqrt\nu,
  \qquad
  \chi_H=\frac{\sqrt\nu}{\kappa_\nu}\frac{91\nu-1}{91\nu},
 \]
-so both are $\Theta(\sqrt m)$. The universal product lower bound implies any
-simultaneous control must have $\max(\chi_D,\chi_H)>\sqrt{8\nu}$, so exponent
-$1/2$ is optimal. Constants remain open.
+so both are $\Theta(\sqrt m)$. The topology-specific necessary bound for
+stationary crossings implies any such realization must have
+$\max(\chi_D,\chi_H)>\sqrt{8\nu}$, so exponent $1/2$ is optimal among
+stationary-crossing realizations of $\widehat N_m$. Constants remain open.
 
 \paragraph{Failure tests.} Verify the SCC exhaustion at $b=2a$; the
 principal-minor derivative argument; the 22/35/77/84-term equality cases and

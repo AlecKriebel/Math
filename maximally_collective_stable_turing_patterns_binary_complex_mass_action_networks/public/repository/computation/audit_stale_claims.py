@@ -21,6 +21,18 @@ STALE = {
     "old_contrast_coefficient": "1589m",
     "old_affine_denominator": "227m-451",
     "superseded_all_dimensional_endpoint": r"At $L=1/\sqrt{3(m-2)}$",
+    "overscoped_minimax": "universal minimax lower bound",
+    "overscoped_tradeoff": "universal trade-off",
+    "overscoped_global_optimality": "globally optimal",
+    "overscoped_stationary_bound": "universal necessary bound",
+    "overscoped_cost": "universal cost",
+    "biological_cost_language": "biological cost",
+    "concentration_price_language": "price paid in concentrations",
+    "mixed_certificate_sign_claim": "All listed coefficients are nonnegative",
+    "mislabeled_C_polynomial": "polynomial whose sign gives $S_m<0$",
+    "old_transformed_left_vector": "q_m(L)=",
+    "harmonic_sum_notation_collision": r"\mathcal H_m",
+    "modulus_shift_notation_collision": r"\nu=z+1",
 }
 
 # Only prose, theorem, documentation, and generated claim tables are scanned.
@@ -49,7 +61,9 @@ ALLOW_PARTS = {
 ALLOW_NAMES = {
     "audit_manuscript.py",
     "audit_numerical_provenance.py",
+    "audit_pdfs.py",
     "audit_stale_claims.py",
+    "stale_claim_audit.txt",
 }
 SKIP_DIRS = {
     ".git", ".pytest_cache", "__pycache__", "simulations", "simulations_quick",
@@ -95,8 +109,19 @@ def main() -> int:
         scanned += 1
         for line_no, line in enumerate(text.splitlines(), 1):
             for label, token in STALE.items():
-                if token in line:
+                if token.lower() in line.lower():
                     hits.append((label, path.relative_to(ROOT), line_no, line.strip()))
+            if "rates, equilibrium coordinates" in line.lower():
+                lines=text.splitlines()
+                context=" ".join(lines[max(0,line_no-3):min(len(lines),line_no+3)])
+                if not (
+                    "positive-equilibrium realization manifold" in context.lower()
+                    or "equilibrium-realization manifold" in context.lower()
+                ):
+                    hits.append((
+                        "unqualified_rate_equilibrium_perturbation",
+                        path.relative_to(ROOT),line_no,line.strip(),
+                    ))
     if hits:
         for label, path, line_no, line in hits:
             print(f"STALE {label}: {path}:{line_no}: {line}")

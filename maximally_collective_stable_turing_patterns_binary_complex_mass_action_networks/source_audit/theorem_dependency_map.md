@@ -28,5 +28,5 @@ equilibrium-scaling family
   -> physical fixed-mass gauge correction
   -> N_m(L)>1/200 and c_m(L)<0
   -> exact stable trade-off curve
-  -> square-root upper construction + universal square-root lower bound
+  -> square-root upper construction + topology-specific stationary square-root lower bound
 ```

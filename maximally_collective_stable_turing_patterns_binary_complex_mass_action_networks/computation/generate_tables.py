@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import csv, json, pathlib
+import argparse, csv, json, pathlib
 import sympy as sp
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -51,6 +51,12 @@ def cert_table(title, variables, terms, pareto=False):
 
 
 def main():
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        '--check-certificate-table',type=pathlib.Path,
+        help='fail unless the specified modulus-certificate TeX matches exact generation',
+    )
+    args=parser.parse_args()
     payload=json.loads(DATA.read_text())
     rows=payload['rows']
     lines=[r'\begin{tabular}{rrrrrrrrrr}',r'\toprule',
@@ -62,12 +68,6 @@ def main():
         lines.append(f"{z['m']}&{z['n']}&"+'&'.join(fnum(x,6) for x in vals)+r'\\')
         csvrows.append([z['m'],z['n']]+[float(sp.N(sx(x),18)) for x in vals])
     lines += [r'\bottomrule',r'\end{tabular}']
-    (ROOT/'data'/'contrast_table.tex').write_text('\n'.join(lines)+'\n')
-    with open(ROOT/'figures'/'contrast_table.csv','w',newline='') as f:
-        w=csv.writer(f, lineterminator='\n')
-        w.writerow(['m','n','chiD_unit','chiD_scale','chiH_scale','product','minimax_lower','eta','cubic','amplitude_coefficient'])
-        w.writerows(csvrows)
-
     iv=ROOT/'independent_verifier'
     D=json.load(open(iv/'improved_modulus_certificate.json'))
     P=json.load(open(iv/'pareto_all_m_certificate.json'))
@@ -77,7 +77,19 @@ def main():
       cert_table(r'22-term equilibrium-scaled homogeneous certificate ($U=A-1/4$)',P['modulus']['homogeneous']['variables'],P['modulus']['homogeneous']['terms'],True),
       cert_table('84-term equilibrium-scaled spatial certificate',P['modulus']['spatial']['variables'],P['modulus']['spatial']['terms'],True),
     ]
-    (ROOT/'data'/'certificate_tables.tex').write_text('\n\n'.join(parts)+'\n')
+    certificate_text='\n\n'.join(parts)+'\n'
+    if args.check_certificate_table is not None:
+        candidate=args.check_certificate_table
+        if not candidate.is_file() or candidate.read_text()!=certificate_text:
+            raise SystemExit(f'STALE_GENERATED_MODULUS_TABLE: {candidate}')
+        print('MODULUS_CERTIFICATE_TABLE_FRESH')
+        return
+    (ROOT/'data'/'contrast_table.tex').write_text('\n'.join(lines)+'\n')
+    with open(ROOT/'figures'/'contrast_table.csv','w',newline='') as f:
+        w=csv.writer(f, lineterminator='\n')
+        w.writerow(['m','n','chiD_unit','chiD_scale','chiH_scale','product','minimax_lower','eta','cubic','amplitude_coefficient'])
+        w.writerows(csvrows)
+    (ROOT/'data'/'certificate_tables.tex').write_text(certificate_text)
     print('TABLES_GENERATED_FROM_CURRENT_PROFILE')
 
 if __name__=='__main__':

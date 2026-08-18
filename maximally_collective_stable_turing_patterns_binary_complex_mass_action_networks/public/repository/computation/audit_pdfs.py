@@ -21,9 +21,9 @@ class Document:
 
 FULL_DOCUMENTS = (
     Document("manuscript/main.pdf", 16, True),
-    Document("manuscript/supplement.pdf", 12, True),
+    Document("manuscript/supplement.pdf", 17, True),
     Document("external_audit/theorem_summary.pdf", 2, True),
-    Document("external_audit/proof_skeleton.pdf", 5, True),
+    Document("external_audit/proof_skeleton.pdf", 6, True),
     Document("figures/network_family.pdf", 1),
     Document("figures/stable_tradeoff.pdf", 1),
     Document("figures/stable_profiles.pdf", 1),
@@ -42,6 +42,19 @@ FORBIDDEN_PHRASES = (
     "The shaded principal species set",
     "The marked point is",
     "python verify_symbolic_certificates.py",
+    "universal trade-off",
+    "universal minimax lower bound",
+    "globally optimal",
+    "universal necessary bound",
+    "universal cost",
+    "biological cost",
+    "price paid in concentrations",
+    "All listed coefficients are nonnegative",
+)
+
+FORBIDDEN_PATTERNS = (
+    ("mislabeled P_C coefficient row", r"polynomial whose sign gives\s*S\s*m\s*<\s*0"),
+    ("old transformed-left-vector notation", r"\bq\s*m\s*\(L\)\s*="),
 )
 
 SUPPLEMENT_SECTION_PREFIXES = (
@@ -179,8 +192,20 @@ def audit(root: Path, output_dir: Path, documents: tuple[Document, ...]) -> None
         if document.semantic_text
     )
     for phrase in FORBIDDEN_PHRASES:
-        if phrase in semantic_corpus:
+        if phrase.lower() in semantic_corpus.lower():
             failures.append(f"forbidden rendered phrase: {phrase!r}")
+    for label, pattern in FORBIDDEN_PATTERNS:
+        if re.search(pattern, semantic_corpus, re.I):
+            failures.append(f"forbidden rendered pattern ({label}): {pattern!r}")
+
+    for match in re.finditer(r"rates,\s*equilibrium coordinates", semantic_corpus, re.I):
+        context = semantic_corpus[max(0, match.start() - 260) : match.end() + 260]
+        if not re.search(
+            r"(?:positive-equilibrium|equilibrium[- ]realization)\s+manifold",
+            context,
+            re.I,
+        ):
+            failures.append("rendered robustness statement leaves rate/equilibrium perturbations unqualified")
 
     supplement = extracted.get("manuscript/supplement.pdf", "")
     if supplement:

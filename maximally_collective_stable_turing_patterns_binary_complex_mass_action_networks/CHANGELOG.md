@@ -1,5 +1,22 @@
 # Changelog
 
+## Final proof-exposition release — 17 August 2026
+
+- Scoped every contrast lower bound and exponent-optimality statement to
+  stationary crossings of the indexed topology.
+- Made the signed scalar, gauge, harmonic-sum, and clearing-factor certificates
+  human-checkable by printing their exact source identities and sign directions.
+- Promoted the fixed contrast-product identity and described equilibrium
+  contrast as concentration-scale separation rather than a general expense metric.
+- Removed notation collisions, aligned robustness with the positive-equilibrium
+  realization manifold, and anchored the subsystem endpoint to the correct
+  general-$n$ and complementary three-component sources.
+- Added exact exposition-identity regressions and rebuilt every document,
+  public package, specialist packet, and submission source archive.
+- Extended the exact release gate to freshness-check every printed modulus,
+  triad, and signed-scalar certificate table; 18 adversarial regressions now
+  include direct printed-table mutations.
+
 ## Pre-submission adversarial repair — 16 August 2026
 
 - Replaced a false high-dimensional endpoint in the equilibrium-scaled family

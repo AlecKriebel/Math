@@ -13,7 +13,7 @@
 \hypersetup{
  pdftitle={Exact Diffusion Design for Maximally Collective Stable Turing Patterns in Binary-Complex Mass-Action Networks},
  pdfauthor={Alec Kriebel},
- pdfsubject={Topology-wide all-spectrum localization and exponent-optimal heterogeneity trade-offs},
+ pdfsubject={Topology-wide all-spectrum localization and exponent-optimal stationary heterogeneity trade-offs},
  pdfkeywords={mass-action kinetics, Turing bifurcation, reaction network, unstable subsystem, diffusion design, stable patterns}
 }
 \newtheorem{theorem}{Theorem}[section]
@@ -29,13 +29,12 @@
 \newcommand{\rank}{\operatorname{rank}}
 \newcommand{\1}{\mathbf 1}
 \newcommand{\cC}{\mathcal C}
-\newcommand{\cH}{\mathcal H}
 \newcommand{\alphaS}{\alpha}
 \allowdisplaybreaks
 
 \title{Exact Diffusion Design for Maximally Collective Stable Turing Patterns\\
 \large in Binary-Complex Mass-Action Networks\\[0.25em]
-\normalsize Topology-Wide All-Spectrum Localization and Exponent-Optimal Heterogeneity Trade-Offs}
+\normalsize Topology-Wide All-Spectrum Localization and Exponent-Optimal Stationary Heterogeneity Trade-Offs}
 \author{Alec Kriebel\\\small Independent researcher\\\small \texttt{me@aleckriebel.com}}
 \date{August 2026}
 
@@ -52,13 +51,14 @@ general principal-minor diffusion-ray theorem and obtain an exact network law:
 for any homogeneously stable realization, a stationary crossing occurs along a
 positive diagonal diffusion ray exactly when
 $d_Z>8h_Z\sum_{j=2}^{n-2}d_j/h_j$.  This gives the nonattained fixed-equilibrium
-contrast infimum, the unit-equilibrium value $8(n-3)$, and the universal
-trade-off $\chi_D\chi_H>8(n-3)$.  At unit equilibrium, an exact rational design
+contrast infimum, the unit-equilibrium value $8(n-3)$, and the topology-wide
+stationary trade-off $\chi_D\chi_H>8(n-3)$.  At unit equilibrium, an exact rational design
 undergoes a primary supercritical bifurcation with locally exponentially
 stable positive patterns in the fixed-integrated-mass class.  A second exact
 family redistributes heterogeneity
 between diffusion and equilibrium concentrations so that both contrasts are
-$\Theta(\sqrt n)$, matching the universal minimax lower bound in exponent.
+$\Theta(\sqrt n)$, matching the topology-specific stationary minimax lower
+bound in exponent.
 The proof uses explicit flux-cone design, exhaustive strongly connected block
 classification, conservation-compatible Lyapunov--Schmidt reduction, and
 inspectable symbolic certificates.  The networks are synthetic; the
@@ -122,8 +122,8 @@ unique positive threshold on each eligible diffusion ray;
 $8(m-2)$ at the unit equilibrium;
 \item a rational unit-equilibrium supercritical stable-pattern realization;
 \item a one-parameter stable family with
-$\chi_D,\chi_H=\Theta(\sqrt m)$, matching the universal minimax lower bound in
-exponent.
+$\chi_D,\chi_H=\Theta(\sqrt m)$, matching the stationary minimax lower bound
+for this topology in exponent.
 \end{enumerate}
 The topology was deliberately designed so that its positive-flux image and
 induced strongly connected blocks are explicit; no black-box real-algebraic
@@ -348,14 +348,17 @@ Its characteristic polynomial is negative at zero and positive for large
 positive $\lambda$, so the block has a positive real eigenvalue.
 \end{proof}
 
-\begin{corollary}[Sharpness of the general subsystem-order endpoint]\label{cor:endpoint}
-The upper endpoint $n-1$ in principal unstable-subsystem localization cannot
-be lowered within binary-complex classical mass action: for every $n\ge4$,
-one indexed topology has every principal subsystem below order $n-1$ Hurwitz
-throughout every positive realization, while an order-$(n-1)$ subsystem is
-unstable and the full reaction--diffusion system admits locally stable
-patterns.
+\begin{corollary}[Mass-action sharpness at the subsystem endpoint]\label{cor:endpoint}
+General $n$-component matrix theory permits unstable (activator) subsystem
+dimensions through $p=n-1$ \cite{Satnoianu2000}.  This endpoint is sharp even
+within binary-complex classical mass action: for every $n\ge4$, one indexed
+topology has every principal subsystem below order $n-1$ Hurwitz throughout
+every positive realization, while an order-$(n-1)$ subsystem is unstable and
+the full reaction--diffusion system admits locally stable patterns.
 \end{corollary}
+Anma, Sakamoto, and Yoneda \cite{Anma2012} provide complementary analysis of
+stable--unstable and unstable--unstable pairs of subsystems in the
+three-component setting, distinguishing steady and wave instability.
 
 \section{A principal-minor diffusion-ray theorem}
 
@@ -514,7 +517,8 @@ conservation eigenvalue initially moves right exactly under
 \eqref{eq:criterion}.
 \end{proof}
 
-For a Neumann interval $(0,L)$, mode $k$ has $s=q_k^2=(k\pi/L)^2$.
+For a Neumann interval $(0,\mathcal L)$, mode $k$ has
+$s=q_k^2=(k\pi/\mathcal L)^2$.
 Therefore every nonzero mode with $0<q_k^2<s_*$ has a positive real eigenvalue, and no
 mode with $q_k^2>s_*$ has one.  A separate spectral certificate is required to
 exclude wave instability for a chosen diffusion profile.
@@ -527,6 +531,9 @@ Fix $(a,b,H)\in\mathfrak S_m$ and define
  \chi_H=\frac{h_{\max}}{h_{\min}}=
  \frac{x^*_{\max}}{x^*_{\min}}.
 \end{equation}
+The quantity $\chi_H$ measures equilibrium concentration-scale separation.
+We do not interpret it as a universal measure of biological expense or
+implausibility.
 Homogeneous stability implies $T(H)>1$, and
 \begin{equation}\label{eq:fixedHinf}
  \inf\{\chi_D:D\succ0\text{ satisfies \eqref{eq:criterion}}\}=T(H).
@@ -535,7 +542,8 @@ The infimum is not attained.  At $H=I$,
 \begin{equation}\label{eq:unitinf}
  \inf\chi_D=8(m-2).
 \end{equation}
-Every stationary crossing satisfies the universal strict trade-off
+Every stationary crossing of this topology satisfies the strict topology-wide
+trade-off
 \begin{equation}\label{eq:productlower}
  \boxed{\quad \chi_D\chi_H>8(m-2).\quad}
 \end{equation}
@@ -670,8 +678,8 @@ factors.  Fourier projection gives
 \begin{equation}\label{eq:cubicformula}
  c_m=\frac{\ell^T\{B_m(r,w_0)+\tfrac12B_m(r,w_2)\}}{\ell^Tr}.
 \end{equation}
-Its numerator reduces to $R_m+C_m\mathcal H_m$ with
-$\mathcal H_m=\sum_{j=1}^{m-2}K_j^{-1}$.  The exact shifted-polynomial
+Its numerator reduces to $R_m+C_m\mathfrak h_m$ with
+$\mathfrak h_m=\sum_{j=1}^{m-2}K_j^{-1}$.  The exact shifted-polynomial
 certificate proves the numerator positive and the denominator negative for
 all $m\ge3$, hence $c_m<0$.
 
@@ -728,6 +736,14 @@ physical contrasts are
  \chi_H(L)&=\frac{91\nu-1}{91\nu L},\label{eq:chiHpareto}\\
  \chi_D(L)\chi_H(L)&=\frac{23(91\nu-1)}{63}.\label{eq:productpareto}
 \end{align}
+This product equals the unit-equilibrium stable-profile contrast:
+\[
+ \chi_D(L)\chi_H(L)=\chi_D^{\rm unit}(m)
+ =\frac{23(91m-183)}{63}.
+\]
+Thus $L$ reallocates a fixed contrast product between physical diffusion and
+equilibrium concentrations.  It reduces $\max(\chi_D,\chi_H)$, not their
+product.
 At $L=L_0$,
 \begin{equation}\label{eq:scalingendpoint}
  \chi_D=\frac{2093}{63}\kappa_\nu\sqrt\nu,
@@ -739,8 +755,9 @@ obeys
 \begin{equation}\label{eq:minimaxlower}
  \max(\chi_D,\chi_H)>\sqrt{8(m-2)},
 \end{equation}
-the simultaneous exponent $1/2$ is globally optimal.  No constant-optimality
-or complete global Pareto-frontier claim is made.
+the simultaneous exponent $1/2$ is optimal among stationary-crossing
+realizations of $\widehat N_m$.  No constant-optimality or complete global
+Pareto-frontier claim is made.
 \end{theorem}
 
 \begin{proof}[Proof architecture]
@@ -750,7 +767,7 @@ In normalized concentrations $z=\mathsf H_m(L)x$, the PDE is
 \end{equation}
 The stationary bracket $f_m(z)+\Delta_mz_{\xi\xi}$ and its critical right
 vector are unchanged.  The dynamic left vector is
-$q_m(L)=\mathsf H_m(L)^{-1}\ell_m$, and the physical fixed-mass vector becomes
+$\widetilde\ell_m(L)=\mathsf H_m(L)^{-1}\ell_m$, and the physical fixed-mass vector becomes
 $\mathsf H_m(L)^{-1}c$.
 
 For $2\le i\le m-1$, chain elimination gives
@@ -816,8 +833,9 @@ The proof then follows the physical-to-normalized chain explicitly.  The
 positive equilibrium is $x^*=\mathsf H_m(L)^{-1}\1$, the physical diffusion is
 $D_m^{\rm phys}=\mathsf H_m(L)\Delta_m$, and the change $z=\mathsf H_m(L)x$
 produces the row-scaled mode operator $\mathsf H_m(L)(A_m-t\Delta_m)$.
-The left critical vector becomes $q_m(L)=\mathsf H_m(L)^{-1}\ell_m$ and the
-fixed-mass covector becomes $\mathsf H_m(L)^{-1}c$.  The second harmonic is
+The left critical vector becomes
+$\widetilde\ell_m(L)=\mathsf H_m(L)^{-1}\ell_m$ and the fixed-mass covector
+becomes $\mathsf H_m(L)^{-1}c$.  The second harmonic is
 unchanged by the invertible row factor.  The homogeneous correction changes
 by a kernel gauge:
 \begin{equation}\label{eq:gauge}
@@ -853,9 +871,9 @@ Finally \eqref{eq:minimaxlower} is the geometric-mean consequence of
 \centering
 \includegraphics[width=.78\linewidth]{figures/stable_tradeoff.pdf}
 \caption{Exact heterogeneity trade-offs for representative dimensions.  The
-dotted hyperbolas are the universal necessary bounds
-$\chi_D\chi_H=8(m-2)$; the solid curves are certified stable families with
-product $23(91(m-2)-1)/63$.  Each marked point is the certified
+dotted hyperbolas are the topology-specific necessary bounds for stationary
+crossings of $\widehat N_m$, $\chi_D\chi_H=8(m-2)$; the solid curves are
+certified stable families with product $23(91(m-2)-1)/63$.  Each marked point is the certified
 square-root-scaling endpoint for its dimension.  Constants are not claimed
 optimal.}
 \label{fig:tradeoff}
@@ -948,10 +966,12 @@ proof.}
 
 \section{Relation to prior work and limitations}
 
-The possibility of order-$(n-1)$ responsible subsystems for general fixed
-matrices is established in multicomponent Turing theory
-\cite{Satnoianu2000,Anma2012}; that fixed-matrix possibility is not claimed as
-new.  The present distinction is the conjunction of one indexed
+The possibility of order-$(n-1)$ unstable (activator) subsystems for general
+fixed matrices is established in multicomponent Turing theory
+\cite{Satnoianu2000}; that fixed-matrix possibility is not claimed as new.
+Anma, Sakamoto, and Yoneda give complementary three-component
+unstable-subsystem analysis \cite{Anma2012}.  The present distinction is the
+conjunction of one indexed
 binary-complex classical mass-action topology, every positive rate and
 equilibrium realization, all-spectrum stability of every smaller principal
 block, exact diffusion design, and stable nonlinear patterned branches in
@@ -969,7 +989,7 @@ different reaction-network notion and is not identified with principal-block
 Hurwitz localization \cite{MinchevaCraciun2013}.  Interaction-topology and
 atlas studies identify broad structural features and finite collections of
 Turing-capable networks \cite{Marcon2016,Diego2018,Scholes2019}; the present
-result instead gives one exact infinite topology family with a universal
+result instead gives one exact infinite topology family with a topology-wide
 over-realizations theorem.
 Marcon and collaborators showed that some architectures can pattern with
 equally diffusing signals under their modeling assumptions \cite{Marcon2016}.
@@ -977,7 +997,8 @@ For the present topology, equal diagonal diffusion cannot destabilize: it only
 shifts the homogeneous spectrum left.  Instead, the required stationary
 heterogeneity is quantified exactly by \eqref{eq:criterion}; at unit
 equilibrium its contrast floor is $8(m-2)$, and with equilibrium scaling the
-universal cost is \eqref{eq:productlower}.  This is a complementary,
+topology-specific stationary heterogeneity requirement is
+\eqref{eq:productlower}.  This is a complementary,
 topology-specific quantitative result about differential-diffusion tuning, not
 a statement about all binary-complex networks.  Parameter-rich unstable cores
 allow derivative
@@ -1008,12 +1029,16 @@ omission minor is the one omitting $Z$, which collapses stationary diffusion
 design to one coefficient.  Finally, equilibrium scaling redistributes the
 necessary heterogeneity between concentrations and physical diffusion without
 changing the effective critical bracket or losing the negative cubic sign.
+Along the certified scaled family, this is a contrast allocation rather than
+a product reduction: $\chi_D(L)\chi_H(L)=\chi_D^{\rm unit}(m)$ is fixed while
+$L$ reduces the larger of the two contrasts.
 
 The resulting conclusion is both structural and quantitative.  The largest
 proper unstable-subsystem order is unavoidable within this mass-action class;
-the exact diffusion cost is computable; stable positive patterns occur; and
-diffusion and equilibrium contrasts can be controlled simultaneously at the globally optimal square-root
-exponent.  The remaining constant gap is explicit rather than
+the exact diffusion contrast is computable; stable positive patterns occur;
+and diffusion and equilibrium contrasts can be controlled simultaneously at
+the stationary-optimal square-root exponent for this topology.  The remaining
+constant gap is explicit rather than
 hidden and provides a focused nonlinear design problem.
 
 \paragraph{Data and code availability.}
@@ -1030,7 +1055,7 @@ exact implementations; neither numerical agreement nor AI confidence is
 treated as proof.
 
 \begingroup
-\renewcommand*{\bibfont}{\small}
+\renewcommand*{\bibfont}{\footnotesize}
 \sloppy
 \printbibliography
 \endgroup

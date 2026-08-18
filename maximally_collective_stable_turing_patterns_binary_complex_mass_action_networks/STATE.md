@@ -21,9 +21,9 @@ The stale profile and amplitude values remain only inside deliberate mutation fi
 3. General principal-minor diffusion-ray theorem and exact positive-real band.
 4. Topology-specific necessary-and-sufficient stationary diffusion law.
 5. Sharp fixed-equilibrium and unit-equilibrium linear contrast infima.
-6. Universal diffusion-equilibrium product lower bound.
+6. Topology-wide stationary diffusion-equilibrium product lower bound.
 7. Exact current-profile supercritical stable unit-equilibrium design.
-8. Exact stable trade-off family with both contrasts `Theta(sqrt(n))` and globally optimal exponent.
+8. Exact stable trade-off family with both contrasts `Theta(sqrt(n))` and exponent optimality among stationary-crossing realizations of this topology.
 9. Conservation-compatible primary bifurcation and local exponential asymptotic stability in fixed-mass `H^1`.
 
 ## Scope

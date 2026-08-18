@@ -49,7 +49,7 @@ rm -f "$OUT/integrated_designs.txt"
 python independent_verifier/verify_improved_profile.py >> "$OUT"/integrated_designs.txt
 python independent_verifier/frontier_verify_family.py 3 4 5 6 8 10 >> "$OUT"/integrated_designs.txt
 python independent_verifier/frontier_verify_normal_form.py 3 >> "$OUT"/integrated_designs.txt
-python independent_verifier/frontier_verify_pareto.py 3 4 5 6 8 10 >> "$OUT"/integrated_designs.txt
+python independent_verifier/frontier_verify_pareto.py 3 4 5 6 8 10 149 >> "$OUT"/integrated_designs.txt
 python independent_verifier/verify_exchange_of_stability.py >> "$OUT"/integrated_designs.txt
 python independent_verifier/verify_branch_stability.py >> "$OUT"/integrated_designs.txt
 

@@ -12,7 +12,7 @@
 | Fixed-$H$, unit-$H$, and product contrast lower bounds | LINEAR_OPTIMUM_PROVED | sharp infimum constructions |
 | Improved unit stable profile | STABLE_PATTERN_PROVED | 35/77-term certificates and exact cubic sign |
 | Stable equilibrium-scaled family | STABLE_PATTERN_PROVED | direct $\nu=1$ cubic, 22/84-term certificates for the certified piecewise endpoint, and gauge-corrected cubic bound |
-| Square-root heterogeneity exponent optimality | PARETO_EXPONENT_PROVED | universal product lower bound plus matching stable family |
+| Square-root heterogeneity exponent optimality | PARETO_EXPONENT_PROVED | topology-specific stationary product lower bound plus matching stable family |
 | Local exponential asymptotic stability | STABLE_PATTERN_PROVED | sectorial semigroup and linearized-stability theorem |
 | Retuned local robustness for fixed $m,L$ | PROVED_ALL_m | implicit function and spectral-gap persistence |
 | Exact stable contrast constants / full Pareto frontier | REMOVED | remains open |

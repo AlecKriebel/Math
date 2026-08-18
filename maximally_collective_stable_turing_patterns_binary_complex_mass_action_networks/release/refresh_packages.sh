@@ -54,6 +54,7 @@ The all-dimensional arguments are human-readable in `proof_audit/` and checked b
 - `python independent_verifier/frontier_verify_master_certificate.py`
 - `python independent_verifier/frontier_verify_cubic_bound.py`
 - `python independent_verifier/frontier_verify_determinant_identity.py`
+- `python independent_verifier/frontier_verify_exposition_identities.py`
 - `python independent_verifier/verify_symbolic_certificates.py`
 
 Printed coefficient tables are `data/certificate_tables.tex`, `data/sign_certificate_tables.tex`, and `data/triad_routh_gap.tex`. The single exact source for all displayed finite values is `data/current_profile_exact.json`. Finite instances are regression checks, not replacements for the symbolic proof.
@@ -175,7 +176,7 @@ rm -f "$OUT/integrated_designs.txt"
 python independent_verifier/verify_improved_profile.py >> "$OUT"/integrated_designs.txt
 python independent_verifier/frontier_verify_family.py 3 4 5 6 8 10 >> "$OUT"/integrated_designs.txt
 python independent_verifier/frontier_verify_normal_form.py 3 >> "$OUT"/integrated_designs.txt
-python independent_verifier/frontier_verify_pareto.py 3 4 5 6 8 10 >> "$OUT"/integrated_designs.txt
+python independent_verifier/frontier_verify_pareto.py 3 4 5 6 8 10 149 >> "$OUT"/integrated_designs.txt
 python independent_verifier/verify_exchange_of_stability.py >> "$OUT"/integrated_designs.txt
 python independent_verifier/verify_branch_stability.py >> "$OUT"/integrated_designs.txt
 
@@ -328,7 +329,7 @@ python verify_symbolic_certificates.py
 python verify_improved_profile.py
 python frontier_verify_family.py 3 4 5 6 8 10
 python frontier_verify_normal_form.py 3
-python frontier_verify_pareto.py 3 4 5 6 8 10
+python frontier_verify_pareto.py 3 4 5 6 8 10 149
 python verify_exchange_of_stability.py
 python verify_branch_stability.py
 echo MINIMAL_VERIFIER_PASS
