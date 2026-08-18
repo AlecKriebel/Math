@@ -16,7 +16,7 @@ import zipfile
 
 PROJECT = Path(__file__).resolve().parents[1]
 ZIP_TIME = (2026, 8, 17, 0, 0, 0)
-RELEASE_TAG = "stc-jc-sharp-boundary-v1.1.3"
+RELEASE_TAG = "stc-jc-sharp-boundary-v1.1.4"
 CANONICAL_NAME = "Strong_Tree_Childness_Sharp_Level2_JC_verifier_entrypoints.zip"
 
 MEMBERS = (
@@ -35,6 +35,10 @@ MEMBERS = (
     "reproducibility/verify_extracted_archive.py",
     "reproducibility/verify_public_release.py",
     "reproducibility/verify_submission_source_archives.py",
+    "reviews/v1_1_4_bcr_and_figure_revision/verify_v1_1_4_revision.py",
+    "reviews/v1_1_4_bcr_and_figure_revision/FEEDBACK_DISPOSITION.md",
+    "reviews/v1_1_4_bcr_and_figure_revision/BCR_CITATION_AUDIT.md",
+    "reviews/v1_1_4_bcr_and_figure_revision/BCR_SOURCE_AUDIT.json",
 )
 
 

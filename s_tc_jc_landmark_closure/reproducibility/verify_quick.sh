@@ -6,7 +6,7 @@ source "$HERE/bootstrap.sh"
 cd "$STC_JC_PROJECT"
 
 "$STC_JC_PYTHON" reproducibility/verify_submission_source_archives.py
-"$STC_JC_PYTHON" reviews/v1_1_3_englander_revision/verify_englander_revision.py
+"$STC_JC_PYTHON" reviews/v1_1_4_bcr_and_figure_revision/verify_v1_1_4_revision.py
 "$STC_JC_PYTHON" reproducibility/verify_active_release.py
 "$STC_JC_PYTHON" reproducibility/verify_fixed_graph_scope.py
 "$STC_JC_PYTHON" reviews/v1_1_proof_hardening/verify_endpoint_and_analytic_regressions.py

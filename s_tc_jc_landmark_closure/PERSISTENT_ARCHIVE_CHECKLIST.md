@@ -30,7 +30,7 @@ Status: **PREPARED — DOI NOT YET ISSUED**
 11. `biorxiv_submission/SHA256SUMS`
 
 The first eight files are the intended exact public replay assets at
-`https://github.com/AlecKriebel/Math/releases/tag/stc-jc-sharp-boundary-v1.1.3`.
+`https://github.com/AlecKriebel/Math/releases/tag/stc-jc-sharp-boundary-v1.1.4`.
 They become current public evidence only after all eight are uploaded and
 `verify_public_release.py` returns `PUBLIC_RELEASE_VERIFIED`. Before manuscript
 submission, download `RELEASE_ENVELOPE.json` and `RELEASE_ASSET_SHA256SUMS`
@@ -57,7 +57,7 @@ clean-clone transcripts live in the external, non-self-referential
 the bytes being digested.
 
 The immutable source commit is also marked by the annotated tag
-`stc-jc-sharp-boundary-v1.1.3`.  In a source-only clone the active verifier
+`stc-jc-sharp-boundary-v1.1.4`.  In a source-only clone the active verifier
 requires that exact tag to peel to a clean checkout.  In a deposited release
 bundle it instead verifies the external envelope and every accompanying
 asset.  The large archive and its outer envelope are intentionally release

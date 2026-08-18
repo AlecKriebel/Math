@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Download and verify the published v1.1.3 GitHub Release fail-closed."""
+"""Download and verify the published v1.1.4 GitHub Release fail-closed."""
 
 from __future__ import annotations
 
@@ -14,7 +14,7 @@ import tempfile
 
 
 REPO_SLUG = "AlecKriebel/Math"
-TAG = "stc-jc-sharp-boundary-v1.1.3"
+TAG = "stc-jc-sharp-boundary-v1.1.4"
 ARCHIVE = "stc_jc_sharp_boundary_reproducibility.tar.gz"
 PREFIX = "stc_jc_sharp_boundary_reproducibility"
 MANIFEST = "RELEASE_ASSET_SHA256SUMS"

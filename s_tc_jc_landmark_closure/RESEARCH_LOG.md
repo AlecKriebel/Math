@@ -953,3 +953,25 @@
   regression passes.  A third fresh adversarial release review rejected
   seventeen mutation classes and returned `PASS`.  No DOI has been requested,
   invented, or inserted.
+
+## 2026-08-17 — v1.1.4 bounded proof, citation, and Figure 7 revision
+
+- Inspected only the cited pages of the author-supplied 429-page
+  Bochnak--Coste--Roy text.  Theorem 2.2.1 and Propositions 2.8.2, 2.8.4,
+  2.8.5(i)--(ii), 2.8.13, and Theorem 2.8.8 match the uses recorded in
+  `reviews/v1_1_4_bcr_and_figure_revision/BCR_CITATION_AUDIT.md`.
+- Replaced the finite-cover proof by a chartwise semialgebraic argument that
+  keeps the original arbitrary relatively open set and chooses a smaller
+  semialgebraic neighborhood internally.  The local projective containment
+  relation is now formally distinct from global JC containment.
+- Removed the production-fragile box around the bounded atlas theorem,
+  corrected the theorem label and bibliography metadata, narrowed the final
+  Englander comparison, and printed the alternative Omega rooting arc array.
+- Moved leaf 2 left of vertex D in both Figure 7 panels.  The final pendant
+  edges are plainly visible in both Poppler and PDFium renderings.
+- Rebuilt the bioRxiv and both journal packages.  Extracted source archives
+  reproduce all eight delivered PDFs byte-for-byte; all pages were rerendered,
+  all font programs are embedded and subsetted, and the updated visual audit
+  is sealed under `release/final_biorxiv/`.
+- No theorem statement, model domain, network class, sharpness family, or DOI
+  claim changed in this bounded revision.

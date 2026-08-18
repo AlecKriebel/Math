@@ -1,6 +1,6 @@
 # Submission package index
 
-Release: `stc-jc-sharp-boundary-v1.1.3`
+Release: `stc-jc-sharp-boundary-v1.1.4`
 
 All three packages derive from the same canonical article and supplement. The
 SHA-256 manifest in each directory covers every delivered file, including
@@ -9,7 +9,7 @@ upload map says not to send through the initial manuscript portal.
 From the monorepository root, the exact package gate is:
 
 ```bash
-python s_tc_jc_landmark_closure/reviews/v1_1_3_englander_revision/verify_englander_revision.py
+python s_tc_jc_landmark_closure/reviews/v1_1_4_bcr_and_figure_revision/verify_v1_1_4_revision.py
 python s_tc_jc_landmark_closure/reproducibility/verify_submission_source_archives.py
 ```
 

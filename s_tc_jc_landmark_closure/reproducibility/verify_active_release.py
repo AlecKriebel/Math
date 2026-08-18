@@ -18,7 +18,7 @@ TITLE = (
     "Level-2 Jukes-Cantor Networks"
 )
 SOURCE_BINDING_SCHEME = "external-envelope-v1"
-RELEASE_TAG = "stc-jc-sharp-boundary-v1.1.3"
+RELEASE_TAG = "stc-jc-sharp-boundary-v1.1.4"
 
 
 def sha256(path: Path) -> str:
@@ -53,8 +53,8 @@ def active_surface_checks(final, metadata) -> None:
         require("Strong Tree-Childness Is a Sharp Generic-Identifiability Boundary" in text,
                 f"{name}: manuscript title missing")
     require(all(node in dependency and node in crosswalk for node in
-                ("V111", "V112", "V113")),
-            "v1.1.1, v1.1.2, or v1.1.3 release gate is absent from the dependency records")
+                ("V111", "V112", "V113", "V114")),
+            "a v1.1.1--v1.1.4 release gate is absent from the dependency records")
     require(final["outcome"] == metadata["outcome"] == "A",
             "machine-readable outcome is not A")
     require(final["status"] == metadata["status"] == "PROVED",
@@ -104,7 +104,10 @@ def artifact_checks(metadata) -> None:
         "systematic_biology_sha256s", "jmb_main_pdf", "jmb_supplement_pdf",
         "jmb_cover_letter", "jmb_source_zip", "jmb_verifier_capsule",
         "jmb_upload_map", "jmb_sha256s",
-        "requirements_lock",
+        "requirements_lock", "theta_pair_figure", "v1_1_4_disposition",
+        "v1_1_4_bcr_audit", "v1_1_4_bcr_record",
+        "v1_1_4_revision_regression", "v1_1_4_mathematical_review",
+        "v1_1_4_release_review",
     }
     require(set(metadata["artifacts"]) == required,
             "release artifact inventory is incomplete or contains stale entries")
@@ -243,9 +246,11 @@ def manuscript_checks() -> None:
         r"\phi_{\rm selected}\circ\delta_R",
         "certificate assigns every canonical decorated directed relation",
         "orbit rows $(A,B,C,D,E,F)$ and columns",
-        "Theorem~2.2.1",
-        "Propositions~2.8.2, 2.8.4, 2.8.5, and",
+        "Theorem~2.2.1, applied iteratively",
+        "Proposition~2.8.5(i), applied to the finite atlas",
         "Theorem~2.8.8",
+        r"\newcommand{\preceqproj}",
+        r"\PM_H\preceqproj\PM_{H'}",
         "choose the lexicographically least one",
         "Proposition~2.15",
         "type~(2c)",
@@ -253,7 +258,7 @@ def manuscript_checks() -> None:
         r"\mathcal I_{\mathrm{tri}}",
         "denoted $q_{111}$",
         "HoltgrefeEtAl2025Quartets",
-        "four explicit rank-nine minors listed with their row and",
+        "displayed-rooting source and target minors listed with their",
         r"\texttt{omega\_audit/}",
         r"reviews/v1\_1\_proof\_hardening/",
         "has zero survivors",
@@ -340,6 +345,30 @@ def component_checks() -> None:
             } and len(omega["mandatory_mutations"]) == 12 and
             all(row["rejected"] for row in omega["mandatory_mutations"]),
             "Omega release record changed")
+    require(
+        omega["stochastic"]["exact_common_parameter_vectors"] == {
+            "order": "e_0,...,e_11,lambda_V,lambda_X0",
+            "vectors": {
+                "N16_source": [
+                    "1/2", "1/4", "1/2", "1/2", "1/2", "1/2", "1/2",
+                    "1/20", "1/2", "1/2", "1/10", "1/2", "1/2", "1/2",
+                ],
+                "N16_target": [
+                    "7/12", "1/7", "1/2", "41/48", "28/41", "1/2", "1/2",
+                    "12/205", "1/2", "1/2", "3/40", "1/2", "1/2", "1/2",
+                ],
+                "N26_source": [
+                    "1/4", "1/2", "1/2", "3/4", "2/3", "1/4", "1/2",
+                    "1/20", "1/2", "1/2", "1/10", "1/2", "1/2", "1/2",
+                ],
+                "N26_target": [
+                    "1/7", "1/2", "41/48", "19/24", "14/19", "14/41", "1/2",
+                    "12/205", "1/2", "1/2", "3/40", "1/2", "1/2", "1/2",
+                ],
+            },
+        },
+        "Omega exact common parameter vectors changed",
+    )
     for topology in omega["topology"].values():
         require(topology["admissible_rooting_count"] == 7 and
                 topology["tree_child_rooting_count"] == 2 and
@@ -391,6 +420,15 @@ def release_review_checks() -> None:
         review_text = current.read_text(encoding="utf-8").rstrip()
         require(review_text.endswith("PASS"),
                 f"v1.1.3 adversarial review did not pass: {name}")
+    for name in (
+        "ADVERSARIAL_MATHEMATICAL_REVIEW.md",
+        "ADVERSARIAL_RELEASE_REVIEW.md",
+    ):
+        current = PROJECT / "reviews/v1_1_4_bcr_and_figure_revision" / name
+        require(current.is_file(), f"v1.1.4 adversarial review missing: {name}")
+        review_text = current.read_text(encoding="utf-8").rstrip()
+        require(review_text.endswith("PASS"),
+                f"v1.1.4 adversarial review did not pass: {name}")
 
 
 def main() -> None:

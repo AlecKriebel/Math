@@ -2,7 +2,7 @@
 
 Do not submit until every box is checked by Alec Kriebel.
 
-- [ ] I read the complete 31-page manuscript PDF, not only the abstract.
+- [ ] I read the complete 32-page manuscript PDF, not only the abstract.
 - [ ] I read the supplement and agree that it accurately maps claims to evidence.
 - [ ] If available before posting, I asked a human specialist to inspect the corrected primitive-core proof, crossing-quartet cut proof, complete bridge-fibre proof, and Omega rank argument; the package itself does not claim that such a review occurred.
 - [ ] I confirm the title, name, affiliation, email, and ORCID.
@@ -13,7 +13,7 @@ Do not submit until every box is checked by Alec Kriebel.
 - [ ] I confirm that Omega is stated only as a weak-but-not-strong triangle-free sharpness family.
 - [ ] I reviewed `PRIOR_WORK_COMPARISON.md` and the cited theorem/version descriptions.
 - [ ] I ran or reviewed the clean-clone quick, full, and regenerate-all transcripts.
-- [ ] I downloaded the public v1.1.3 release envelope and checksum manifest and verified that they bind the submitted PDFs and final source commit.
+- [ ] I downloaded the public v1.1.4 release envelope and checksum manifest and verified that they bind the submitted PDFs and final source commit.
 - [ ] I checked the SHA-256 manifest against the uploaded files.
 - [ ] I uploaded the small verifier-entrypoint ZIP and confirmed that its README points to the same immutable full release as the manuscript.
 - [ ] I selected the desired bioRxiv license myself.

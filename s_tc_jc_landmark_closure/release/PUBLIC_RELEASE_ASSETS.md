@@ -2,8 +2,8 @@
 
 The authoritative external release location is:
 
-- tag: `stc-jc-sharp-boundary-v1.1.3`
-- release page: <https://github.com/AlecKriebel/Math/releases/tag/stc-jc-sharp-boundary-v1.1.3>
+- tag: `stc-jc-sharp-boundary-v1.1.4`
+- release page: <https://github.com/AlecKriebel/Math/releases/tag/stc-jc-sharp-boundary-v1.1.4>
 
 It is active only when `reproducibility/verify_public_release.py` returns
 `PUBLIC_RELEASE_VERIFIED`.  The release page then carries the exact eight

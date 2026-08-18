@@ -6,7 +6,7 @@ The persistent archive is sealed in two layers: this core crosswalk and the
 core artifact manifest are inside the archive, while the external
 `RELEASE_ENVELOPE.json` records the immutable source commit, clean-clone
 transcript hashes, and final archive digest. It is accepted as public evidence
-only when the bounded post-upload verifier downloads it from the v1.1.3
+only when the bounded post-upload verifier downloads it from the v1.1.4
 GitHub Release and returns `PUBLIC_RELEASE_VERIFIED`.
 
 Manuscript: **Strong Tree-Childness Is a Sharp Generic-Identifiability Boundary for
@@ -32,8 +32,9 @@ not substitutes for their exhaustiveness proofs.
 | `V_hold` | Post-HOLD structural, cut, exposition, disclosure, and Figure 4 repairs | `reviews/post_hold_revision/REPORT.md` | revised clean replay, exact Omega rank certificate, two-renderer PDF audit, and immutable public tag |
 | `V11` | Final noncut compression, four-active cut handoff, normalized marginal submersion, endpoint provenance, and simultaneous gluing | revised manuscript | `reviews/v1_1_proof_hardening/PRIMARY_REVISION_REPORT.md`, `ADVERSARIAL_REVIEW.md`, `REPAIR_RESPONSE.md`, and both independent proof-hardening verifiers |
 | `V111` | Componentwise normalized bridge fibre, finite target-type selection, physical sections, image-tangent rank, genericity handoff, and Figure 2 clearance | v1.1.1 manuscript and `reviews/v1_1_1_referee_revision/REFEREE_RESPONSE.md` | `verify_referee_regressions.py`, eight mutation tests, final adversarial report, and the v1.1.1 gate replayed in the current transcripts |
-| `V112` | Correct public commands and scope wording; v1.1.2 replay provenance and package baseline | v1.1.2 manuscript and `reviews/v1_1_2_release_hardening/REVIEW_DISPOSITION.md` | Version-specific `verify_release_hardening.py` and the preserved v1.1.2 public GitHub Release; it is historical evidence, not the parser for current v1.1.3 manifests |
-| `V113` | Exact Englander-v4/Omega crosswalk, explicit Omega rank-nine row/column sets, quartet-distance comparison, and journal-aware verifier capsules | v1.1.3 manuscript and `reviews/v1_1_3_englander_revision/FEEDBACK_DISPOSITION.md` | `verify_englander_revision.py`, `verify_submission_source_archives.py` with exact current manifest sets, exact Omega release record, source-archive/capsule replay, final adversarial reviews, and public release hashes |
+| `V112` | Correct public commands and scope wording; v1.1.2 replay provenance and package baseline | v1.1.2 manuscript and `reviews/v1_1_2_release_hardening/REVIEW_DISPOSITION.md` | Version-specific `verify_release_hardening.py` and the preserved v1.1.2 public GitHub Release; it is historical evidence, not the parser for current v1.1.4 manifests |
+| `V113` | Exact Englander-v4/Omega crosswalk, explicit Omega rank-nine row/column sets, quartet-distance comparison, and journal-aware verifier capsules | v1.1.3 manuscript and `reviews/v1_1_3_englander_revision/FEEDBACK_DISPOSITION.md` | Preserved `verify_englander_revision.py`, exact Omega release record, source-archive/capsule replay, final adversarial reviews, and immutable v1.1.3 public release hashes; current manifests are parsed by `V114` |
+| `V114` | Formal projective containment, source-grounded semialgebraic finite-cover proof, exact BCR pin-cites, Figure 7 clearance, and Omega rooted-rank exposition | v1.1.4 manuscript and `reviews/v1_1_4_bcr_and_figure_revision/FEEDBACK_DISPOSITION.md` | `verify_v1_1_4_revision.py`, bounded BCR source audit, nine mutation tests, source-archive replay, final mathematical/reproducibility adversarial reviews, and public release hashes |
 
 ## Exact local checksums
 
@@ -71,6 +72,10 @@ not substitutes for their exhaustiveness proofs.
 - v1.1.3 revision regression: Englander-v4 type-(2c) taxonomy and theorem
   crosswalk, trinet-notation transport, all four Omega rank-nine witnesses,
   synchronized verifier capsules, and targeted mutation rejection.
+- v1.1.4 revision regression: exact semialgebraic source crosswalk, distinct
+  projective containment relation, ordinary theorem layout, measured Figure 7
+  clearance, explicit alternative-rooting arc order, and 7/7 targeted
+  mutations rejected.
 
 ## Explicit exclusions
 

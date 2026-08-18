@@ -22,7 +22,7 @@ SOURCE_BINDING = {
     "archive_marker": "ARCHIVE_SOURCE_COMMIT.txt",
     "outer_envelope": (
         "https://github.com/AlecKriebel/Math/releases/download/"
-        "stc-jc-sharp-boundary-v1.1.3/RELEASE_ENVELOPE.json"
+        "stc-jc-sharp-boundary-v1.1.4/RELEASE_ENVELOPE.json"
     ),
     "description": (
         "The core manifest is commit-independent and lives inside the archive; "
@@ -147,6 +147,27 @@ def core_artifacts() -> dict[str, dict[str, str]]:
         ),
         "v1_1_3_reproducibility_review": record(
             "s_tc_jc_landmark_closure/reviews/v1_1_3_englander_revision/ADVERSARIAL_REPRODUCIBILITY_REVIEW.md"
+        ),
+        "theta_pair_figure": record(
+            "s_tc_jc_landmark_closure/source/paper/figures/theta_pair.tex"
+        ),
+        "v1_1_4_disposition": record(
+            "s_tc_jc_landmark_closure/reviews/v1_1_4_bcr_and_figure_revision/FEEDBACK_DISPOSITION.md"
+        ),
+        "v1_1_4_bcr_audit": record(
+            "s_tc_jc_landmark_closure/reviews/v1_1_4_bcr_and_figure_revision/BCR_CITATION_AUDIT.md"
+        ),
+        "v1_1_4_bcr_record": record(
+            "s_tc_jc_landmark_closure/reviews/v1_1_4_bcr_and_figure_revision/BCR_SOURCE_AUDIT.json"
+        ),
+        "v1_1_4_revision_regression": record(
+            "s_tc_jc_landmark_closure/reviews/v1_1_4_bcr_and_figure_revision/verify_v1_1_4_revision.py"
+        ),
+        "v1_1_4_mathematical_review": record(
+            "s_tc_jc_landmark_closure/reviews/v1_1_4_bcr_and_figure_revision/ADVERSARIAL_MATHEMATICAL_REVIEW.md"
+        ),
+        "v1_1_4_release_review": record(
+            "s_tc_jc_landmark_closure/reviews/v1_1_4_bcr_and_figure_revision/ADVERSARIAL_RELEASE_REVIEW.md"
         ),
         "prior_work_comparison": record(
             "s_tc_jc_landmark_closure/PRIOR_WORK_COMPARISON.md"

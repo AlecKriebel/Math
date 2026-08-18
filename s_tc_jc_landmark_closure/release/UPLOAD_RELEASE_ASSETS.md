@@ -1,4 +1,4 @@
-# Publish the exact v1.1.3 replay assets
+# Publish the exact v1.1.4 replay assets
 
 This is a human-authorized release-engineering step, not journal submission.
 The release tag and source commit must already be public before these commands
@@ -21,9 +21,9 @@ cp s_tc_jc_landmark_closure/release_artifacts/RELEASE_ASSET_SHA256SUMS "$stage_d
 Create the GitHub Release and upload the exact assets:
 
 ```bash
-gh release create stc-jc-sharp-boundary-v1.1.3 \
+gh release create stc-jc-sharp-boundary-v1.1.4 \
   --repo AlecKriebel/Math \
-  --title "STC/JC sharp-boundary reproducibility v1.1.3" \
+  --title "STC/JC sharp-boundary reproducibility v1.1.4" \
   --notes-file s_tc_jc_landmark_closure/release/PUBLIC_RELEASE_ASSETS.md \
   s_tc_jc_landmark_closure/release_artifacts/stc_jc_sharp_boundary_reproducibility.tar.gz \
   s_tc_jc_landmark_closure/release_artifacts/stc_jc_sharp_boundary_reproducibility.tar.gz.sha256 \

@@ -37,6 +37,7 @@
 \newcommand{\xor}{\mathbin\oplus}
 \newcommand{\whp}{\widehat p}
 \newcommand{\preceqjc}{\preceq_{\!\JC}}
+\newcommand{\preceqproj}{\preceq_{\!\mathrm{proj}}}
 \newcommand{\bowtiejc}{\mathbin{\bowtie}_{\!\JC}}
 \newcommand{\PM}{\mathbb P\!\M}
 
@@ -74,7 +75,7 @@ lateral transfer, but such histories are scientifically recoverable from
 sequence data only when distinct networks induce distinguishable site-pattern
 distributions.  We determine this information limit for binary, LSA-rootable,
 already-simple semi-directed strongly tree-child level-2 networks under the
-one-step reticulation-preserving convention of Definition~\ref{def:fixed-mixed}
+fixed one-step reticulation-preserving semi-directed convention used here
 and the open four-state Jukes--Cantor model.  A source-relative
 full-dimensional regular stochastic containment occurs if and only if the
 labelled reduced bridge trees agree and every pair of corresponding blobs is
@@ -983,20 +984,40 @@ objects; in particular, a slice representative need not itself be physical.
 Let $M$ be a smooth $d$-dimensional semialgebraic manifold and
 $S\subseteq M$ semialgebraic.  Then $\dim S=d$ if and only if $S$ has
 nonempty relative interior in $M$.  Consequently, if a nonempty relatively
-open subset $U\subseteq M$ is covered by finitely many semialgebraic sets,
-one intersection with $U$ has dimension $d$ and contains a nonempty
-relatively open subset of $U$.
+open subset $U\subseteq M$ is covered by finitely many semialgebraic subsets
+$A_1,\ldots,A_m\subseteq M$, then, for some $i$, the intersection $A_i\cap U$
+contains a nonempty relatively open subset of $U$.
 \end{lemma}
 
 \begin{proof}
-The dimension/interior equivalence is the standard local dimension property
-for semialgebraic subsets of a smooth manifold.  Semialgebraic dimension of a
-finite union is the maximum of the dimensions of its members, so some
-intersection of a covering set with $U$ has dimension $d$ and therefore
-relative interior in $U$.
-See
-Bochnak--Coste--Roy~\cite[Propositions~2.8.2, 2.8.4, and
-2.8.13]{BochnakCosteRoy1998}.
+Choose a finite semialgebraic atlas of $M$.  Semialgebraic bijections preserve
+dimension by Bochnak--Coste--Roy, Theorem~2.8.8.  If $S$ has nonempty relative
+interior, one chart image of $S$ contains a nonempty open semialgebraic subset
+of $\R^d$, which has dimension $d$ by Proposition~2.8.4.
+
+Conversely, suppose that $S$ has empty relative interior.  In any chart with
+open image $O\subseteq\R^d$, let $S'$ be the chart image of the corresponding
+part of $S$ and put $C=O\setminus S'$.  Then $C$ is dense in $O$.  Since
+$O\subseteq\overline C$, Propositions~2.8.2 and 2.8.4 give $\dim C=d$.
+Proposition~2.8.13 gives
+\[
+  \dim(\overline C\setminus C)<d,
+\]
+and $S'\subseteq\overline C\setminus C$.  Hence every chart part of $S$ has
+dimension less than $d$.  Proposition~2.8.5(i), applied to the finite atlas,
+gives $\dim S<d$.
+
+For the finite-cover conclusion, choose a nonempty relatively open
+semialgebraic neighborhood $V\subseteq U$.  Then
+\[
+  V=\bigcup_{i=1}^m(V\cap A_i)
+\]
+for the finitely many covering sets $A_1,\ldots,A_m$, and $\dim V=d$.
+Proposition~2.8.5(i) makes some $V\cap A_i$ $d$-dimensional.  By the first
+part, it has nonempty relative interior in $M$; because it lies in $U$, it
+contains a nonempty relatively open subset of $U$.
+See \cite[Theorem~2.8.8 and Propositions~2.8.2, 2.8.4,
+2.8.5(i), and 2.8.13]{BochnakCosteRoy1998}.
 \end{proof}
 
 \begin{proposition}[Localization and no compensation]\label{prop:localize}
@@ -1027,14 +1048,24 @@ For a port tensor $P(g_1,\ldots,g_k)$, quotient by the positive action
 P(g)\longmapsto P(g)\prod_i a_i^{\mathbf1[g_i\ne0]}.
 \]
 Let $\PM_H$ denote the resulting open projective JC model of a complete
-ported factor $H$.
+ported factor $H$.  Put $d_H=\dim\PM_H$, and let $(\PM_H)_{\rm reg}$ be the
+set of projective tensors having a physical parameter preimage at which the
+projective parameterization has rank $d_H$.  For complete ported factors
+$H,H'$ on the same labelled boundary set, write
+\[
+  \PM_H\preceqproj\PM_{H'}
+\]
+if there are a point
+$P\in(\PM_H)_{\rm reg}\cap\PM_{H'}$ and a relatively open neighborhood $U$
+of $P$ in $(\PM_H)_{\rm reg}$ such that $U\subseteq\PM_{H'}$.  The target
+dimension is allowed to be larger.
 
 \begin{theorem}[Local blob-containment theorem]\label{thm:local}
 Let $H,H'$ be complete nontrivial factors on the same labelled physical
 boundary set, induced by standard semi-directed $\TCs$ level-2 networks.
 Choose admissible incoming presentations independently.  Then
 \[
-\PM_H\preceq\PM_{H'}
+\PM_H\preceqproj\PM_{H'}
 \quad\Longleftrightarrow\quad
 H\text{ and }H'\text{ are labelled-isomorphic or }\Tmove\text{-related}.
 \]
@@ -1101,7 +1132,7 @@ nonempty source-relative open containment meets the dense maximal-rank locus.
 At such a point the constant-rank theorem makes $R$ an open map onto a
 relative neighborhood in the selected smooth image.  Semialgebraicity and
 the asserted density follow from Tarski--Seidenberg and the dimension results
-in Bochnak--Coste--Roy~\cite[Theorem~2.2.1 and
+in Bochnak--Coste--Roy~\cite[Theorem~2.2.1, applied iteratively, and
 Propositions~2.8.2, 2.8.4, and 2.8.13]{BochnakCosteRoy1998}.
 \end{proof}
 
@@ -1184,9 +1215,7 @@ machine-certified dependency is the following bounded directed-relation
 statement; every polynomial used in it is regenerated from its two decorated
 graphs.
 
-\begin{theorem}[Finite decorated-relation theorem]\label{lem:atlas}
-\begin{center}
-\fbox{\begin{minipage}{.91\linewidth}
+\begin{theorem}[Finite decorated-relation theorem]\label{thm:atlas}
 The certificate assigns every canonical decorated directed relation in the
 certified bounded universe to exactly one of the following categories, and
 the stated certificate property holds in that category:
@@ -1199,8 +1228,6 @@ the stated certificate property holds in that category:
 \end{enumerate}
 No nonisomorphic, non-$\Tmove$ relation survives in either containment
 direction.
-\end{minipage}}
-\end{center}
 \end{theorem}
 
 \begin{proof}
@@ -1245,7 +1272,8 @@ rigid supports, and set $A=Q_s\cup Q_t$.  Every target dummy role is filled by
 its actual physical label in the full comparison.  For each prefix $D_j$ of
 those labels,
 \[
-H|_{Q_s\cup D_j}\preceq H'|_{Q_s\cup D_j}
+\PM_{\,H|_{Q_s\cup D_j}}\preceqproj
+\PM_{\,H'|_{Q_s\cup D_j}}
 \]
 is a direct marginal of the original full containment.  By
 \cref{lem:marginal-open}, each prefix contains a source-relative open
@@ -1293,7 +1321,7 @@ orders, and inconsistent $\Tmove$ choices.  Every mutation is rejected.
 \end{proof}
 
 The left-to-right implication of \cref{thm:local} now follows from
-\cref{lem:atlas,lem:probes}.
+\cref{thm:atlas,lem:probes}.
 
 \subsection{The ordinary triangle converse}
 
@@ -1425,20 +1453,22 @@ semialgebraic intersection to have full dimension on a regular source
 stratum and hence relative interior, giving $N\preceqjc N'$ contrary to
 \cref{thm:main}.
 Tarski--Seidenberg makes every projected intersection semialgebraic
-\cite[Theorem~2.2.1]{BochnakCosteRoy1998}.  The dimension and boundary results
-of Bochnak--Coste--Roy\cite[Propositions~2.8.2, 2.8.4, 2.8.5, and
-2.8.13]{BochnakCosteRoy1998} then imply that,
-on a smooth $d_N$-stratum, a semialgebraic subset of dimension $d_N$ has
-nonempty relative interior, whereas its boundary has smaller dimension and a
-lower-dimensional semialgebraic set has proper Zariski closure.
+\cite[Theorem~2.2.1, applied iteratively]{BochnakCosteRoy1998}.
+Bochnak--Coste--Roy~\cite[Propositions~2.8.2, 2.8.5(i), and
+2.8.13]{BochnakCosteRoy1998} imply that finite unions preserve the maximum
+dimension, that a lower-dimensional semialgebraic subset has proper Zariski
+closure, and that
+\[
+  \dim(\overline A\setminus A)<\dim A.
+\]
 Enlarge this finite union by the singular locus and by the Zariski closures
 of images of parameter loci on which the Jacobian rank is less than $d_N$.
 Stratify each such locus into finitely many smooth semialgebraic pieces of
 constant rank.  The constant-rank theorem bounds every image piece by that
 rank, and Tarski--Seidenberg preserves semialgebraicity; hence each image has
-dimension at most $d_N-1$ and proper Zariski closure; invariance of
-semialgebraic dimension under semialgebraic homeomorphism is
-\cite[Theorem~2.8.8]{BochnakCosteRoy1998}.
+dimension at most $d_N-1$ and proper Zariski closure; semialgebraic bijections
+preserve dimension by
+Bochnak--Coste--Roy~\cite[Theorem~2.8.8]{BochnakCosteRoy1998}.
 Finally adjoin only the zero sets of the observable Fourier cut anchors and
 atlas-witness pullbacks that the exact crosswalk certifies to be
 nonidentically zero on $N$'s intended regular stratum.  This is a finite
@@ -1588,8 +1618,11 @@ a_4\frac{\partial c_g}{\partial a_4}
 \]
 shows that the pendant direction for leaf $4$ is already a linear combination
 of two core directions.  Thus the complete model rank is at most
-$6+4-1=9$.  The four explicit rank-nine minors listed with their row and
-column sets in Supplement~\S5 give the reverse inequality and regularity.
+$6+4-1=9$.  The displayed-rooting source and target minors listed with their
+row and column sets in Supplement~\S5 give the reverse rank inequality and
+regularity.  The corresponding alternative-rooting minors give an additional
+exact check that the rank certificate is invariant under the admissible
+rooted presentation.
 The rational correspondence is defined and remains strict on a neighborhood
 of the certified source point, and its common coordinate map has rank nine.
 Its image is therefore a common nine-dimensional local submanifold,
@@ -1623,7 +1656,9 @@ leaf, not from another type~(2c) labelling.  Finally, both Omega networks lie
 outside their strongly tree-child class: $U$ tails two retained reticulation
 edges but has only one undirected incidence.  Thus the collision is
 consistent with every applicable result there, while showing that
-Lemma~2.14(b) cannot be extended from type~(2a) to all type-(2) quarnets.
+the type-(2a) statement of Lemma~2.14(b) does not extend to all type-(2c)
+relabellings; the present obstruction lies outside their strongly tree-child
+class.
 The pair is also not galled, because $V$ is ancestral to $X$ inside their
 common blob, and its mixed topology is already simple under
 \cref{def:fixed-mixed}.
@@ -1897,6 +1932,9 @@ $87763/26214400$.
 
 \section{Certificate crosswalk}\label{app:crosswalk}
 
+All paths in this appendix are relative to the project root
+\texttt{s\_tc\_jc\_landmark\_closure/} within the tagged monorepository.
+
 \begin{longtable}{>{\raggedright\arraybackslash}p{.29\linewidth}
                   >{\raggedright\arraybackslash}p{.62\linewidth}}
 \toprule
@@ -1961,7 +1999,7 @@ Final proof hardening
 All graph encodings, sparse invariants, exact certificates, separately
 implemented verifiers, mutation transcripts, source, and deterministic reproduction
 commands accompany this manuscript at
-\url{https://github.com/AlecKriebel/Math/tree/stc-jc-sharp-boundary-v1.1.3}.
+\url{https://github.com/AlecKriebel/Math/tree/stc-jc-sharp-boundary-v1.1.4}.
 The deposit-ready archive checksum and instructions for adding a persistent
 identifier are included with the release; no unissued DOI is claimed.  No
 specialized phylogenetic-network classification package is required.

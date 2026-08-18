@@ -32,6 +32,16 @@ INDEPENDENT = FROZEN / "prior_audit" / "independent"
 EXPECTED_CERTIFICATE_SHA256 = (
     "c0b8f907d557d23169a2e132d7a85b789d6fa3fe03d4d90bab286eec206e960f"
 )
+EXPECTED_N26_PARAMETER_VECTORS = {
+    "N26_source": [
+        "1/4", "1/2", "1/2", "3/4", "2/3", "1/4", "1/2",
+        "1/20", "1/2", "1/2", "1/10", "1/2", "1/2", "1/2",
+    ],
+    "N26_target": [
+        "1/7", "1/2", "41/48", "19/24", "14/19", "14/41", "1/2",
+        "12/205", "1/2", "1/2", "3/40", "1/2", "1/2", "1/2",
+    ],
+}
 
 
 def load_module(name: str, path: Path):
@@ -290,6 +300,15 @@ def complete_stochastic_audit(certificate, certificate_path=CERTIFICATE,
     correspondence = clean_algebra["symbolic_parameter_correspondence"]
     require(correspondence["identically_zero_differences"] == 64,
             "rational correspondence does not match all zero-sum coordinates")
+    parameter_vectors = {
+        name: list(points[name])
+        for name in ("N16_source", "N16_target", "N26_source", "N26_target")
+    }
+    require(
+        {name: parameter_vectors[name] for name in EXPECTED_N26_PARAMETER_VECTORS}
+        == EXPECTED_N26_PARAMETER_VECTORS,
+        "alternative-rooting common parameter vectors changed",
+    )
     return {
         "all_parameters_strictly_in_open_JC_domain": True,
         "complete_Fourier_coordinates_checked_per_network": 256,
@@ -299,6 +318,10 @@ def complete_stochastic_audit(certificate, certificate_path=CERTIFICATE,
         "complete_pattern_probability_equality": True,
         "probability_sum": "1",
         "strictly_positive_pattern_probabilities": True,
+        "exact_common_parameter_vectors": {
+            "order": "e_0,...,e_11,lambda_V,lambda_X0",
+            "vectors": parameter_vectors,
+        },
         "independent_algebra_audit": clean_algebra,
         "local_dimensions": {
             "M_Omega": 9,
@@ -340,6 +363,19 @@ def validate_release_record(record):
     require(stochastic["complete_tensor_equality"], "Fourier coordinate changed")
     require(stochastic["complete_pattern_probability_equality"],
             "pattern coordinate changed")
+    require(
+        stochastic["exact_common_parameter_vectors"]["order"]
+        == "e_0,...,e_11,lambda_V,lambda_X0",
+        "parameter-vector order changed",
+    )
+    require(
+        {
+            name: stochastic["exact_common_parameter_vectors"]["vectors"][name]
+            for name in EXPECTED_N26_PARAMETER_VECTORS
+        }
+        == EXPECTED_N26_PARAMETER_VECTORS,
+        "alternative-rooting parameter vector changed",
+    )
     require(stochastic["local_dimensions"] == {
         "M_Omega": 9, "M_Omega_prime": 9, "intersection_at_common_point": 9
     }, "rank/dimension certificate changed")

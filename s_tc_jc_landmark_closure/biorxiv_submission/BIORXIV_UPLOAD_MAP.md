@@ -10,7 +10,7 @@ The official guide says that a single PDF containing text and figures is the sim
 ## Release-assets gate
 
 Before opening the bioRxiv portal, confirm that the public GitHub release
-`stc-jc-sharp-boundary-v1.1.3` exposes all eight hash-bound replay assets
+`stc-jc-sharp-boundary-v1.1.4` exposes all eight hash-bound replay assets
 listed in `../release/PUBLIC_RELEASE_ASSETS.md`.  Download the outer envelope
 and checksum manifest once from the public release and verify them against the
 local copies.  Do not rely on the superseded 18-page replay records under

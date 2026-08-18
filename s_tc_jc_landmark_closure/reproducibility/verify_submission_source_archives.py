@@ -73,6 +73,33 @@ VERIFIER_CAPSULES = (
     PROJECT / "journal_submission/journal_of_mathematical_biology/JMB_Exact_Verifier_Entry_Points.zip",
 )
 
+# This list is deliberately repeated here rather than imported from the
+# capsule builder.  The replay verifier must reject a self-consistent capsule
+# that silently omits one of the promised entry points.
+VERIFIER_CAPSULE_MEMBER_SET = frozenset({
+    "README.md",
+    "SHA256SUMS",
+    "requirements.txt",
+    "STATUS.md",
+    "FINAL_OUTCOME.json",
+    "CLAIM_DEPENDENCY_GRAPH.md",
+    "THEOREM_CERTIFICATE_CROSSWALK.md",
+    "PERSISTENT_ARCHIVE_CHECKLIST.md",
+    "release/PUBLIC_RELEASE_ASSETS.md",
+    "reproducibility/bootstrap.sh",
+    "reproducibility/verify_quick.sh",
+    "reproducibility/verify_full.sh",
+    "reproducibility/verify_regenerate_all.sh",
+    "reproducibility/verify_active_release.py",
+    "reproducibility/verify_extracted_archive.py",
+    "reproducibility/verify_public_release.py",
+    "reproducibility/verify_submission_source_archives.py",
+    "reviews/v1_1_4_bcr_and_figure_revision/verify_v1_1_4_revision.py",
+    "reviews/v1_1_4_bcr_and_figure_revision/FEEDBACK_DISPOSITION.md",
+    "reviews/v1_1_4_bcr_and_figure_revision/BCR_CITATION_AUDIT.md",
+    "reviews/v1_1_4_bcr_and_figure_revision/BCR_SOURCE_AUDIT.json",
+})
+
 PACKAGE_MANIFESTS = {
     PROJECT / "biorxiv_submission": frozenset({
         "Strong_Tree_Childness_Sharp_Level2_JC.pdf",
@@ -251,12 +278,12 @@ def verify_verifier_capsule(path: Path) -> str:
         names = archive.namelist()
         require(names and len(names) == len(set(names)),
                 f"empty or duplicate verifier capsule members: {path}")
-        require("README.md" in names and "SHA256SUMS" in names,
-                f"verifier capsule metadata missing: {path}")
+        require(set(names) == VERIFIER_CAPSULE_MEMBER_SET,
+                f"verifier capsule mandatory member set differs: {path}")
         readme = archive.read("README.md").decode("utf-8")
         for needle in (
             "not the complete proof archive",
-            "stc-jc-sharp-boundary-v1.1.3",
+            "stc-jc-sharp-boundary-v1.1.4",
             "verify_quick.sh",
             "verify_full.sh",
             "verify_regenerate_all.sh",
@@ -278,6 +305,36 @@ def verify_verifier_capsule(path: Path) -> str:
     return digest(path)
 
 
+def mutation_test_verifier_capsule_member() -> None:
+    """A re-sealed capsule missing one mandatory entry point must fail."""
+    source = VERIFIER_CAPSULES[0]
+    require(source.is_file(), f"verifier capsule missing before mutation: {source}")
+    with zipfile.ZipFile(source) as archive:
+        payloads = {
+            name: archive.read(name)
+            for name in archive.namelist()
+            if name != "SHA256SUMS"
+        }
+    removed = "reproducibility/verify_active_release.py"
+    require(removed in payloads, f"mutation target missing: {removed}")
+    del payloads[removed]
+    internal_sums = "".join(
+        f"{hashlib.sha256(data).hexdigest()}  {name}\n"
+        for name, data in payloads.items()
+    ).encode("utf-8")
+    with tempfile.TemporaryDirectory(prefix="stc-jc-capsule-mutation-") as name:
+        mutated = Path(name) / "mutated_capsule.zip"
+        with zipfile.ZipFile(mutated, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+            for member, data in payloads.items():
+                archive.writestr(member, data)
+            archive.writestr("SHA256SUMS", internal_sums)
+        try:
+            verify_verifier_capsule(mutated)
+        except AssertionError:
+            return
+    raise AssertionError("mandatory-member capsule mutation escaped")
+
+
 def main() -> None:
     if shutil.which("tectonic") is None and not Path("/opt/homebrew/bin/tectonic").is_file():
         raise RuntimeError("Tectonic is required for extracted-source replay")
@@ -288,6 +345,7 @@ def main() -> None:
     mutation_test_outer_manifest()
     for directory, expected_names in PACKAGE_MANIFESTS.items():
         verify_outer_manifest(directory, expected_names)
+    mutation_test_verifier_capsule_member()
     records = {str(spec["name"]): verify_package(spec) for spec in PACKAGES}
     covers = {
         source.name: verify_cover_letter(source, expected)
@@ -296,7 +354,8 @@ def main() -> None:
     capsules = {path.name: verify_verifier_capsule(path) for path in VERIFIER_CAPSULES}
     require(len(set(capsules.values())) == 1,
             "submission-support verifier capsules are not byte-identical")
-    print("VERIFIED: source replays reproduce all eight delivered PDFs")
+    print("VERIFIED: source ZIPs reproduce six article/supplement PDFs; "
+          "standalone TeX reproduces two cover-letter PDFs")
     for package, outputs in records.items():
         for relative, value in sorted(outputs.items()):
             print(f"{package}:{relative} {value}")

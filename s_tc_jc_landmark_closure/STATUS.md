@@ -2,13 +2,15 @@
 
 Status: **PROVED — FINAL OUTCOME A**
 
-Release revision: **v1.1.3 Englander-crosswalk and portal-package hardened**.
-The v1.1.2 proof and public-replay release remains mathematically unchanged.
-v1.1.3 locks the exact Englander-v4/Omega comparison, prints complete Omega
-rank-minor provenance, adds the quartet-distance comparison, and places a
-small verifier-entrypoint ZIP in every submission-support set.  The bioRxiv
-map uploads it as supplementary code; the journal maps route it to the
-external repository in accordance with their current policies.  The full
+Release revision: **v1.1.4 source-grounded proof and final-figure hardened**.
+The classification and sharpness theorems remain mathematically unchanged.
+v1.1.4 gives the semialgebraic finite-cover argument a proposition-level
+source proof, formally separates projective local containment from the global
+JC relation, clarifies the Omega rooted-presentation rank checks, corrects
+bibliographic metadata, and makes the leaf-2 edge in Figure 7 unambiguous.
+The bioRxiv map uploads a small verifier-entrypoint ZIP as supplementary code;
+the journal maps route it to the external repository in accordance with their
+current policies.  The full
 graph/certificate archive remains an external hash-bound release asset and
 counts as published evidence only after the separate public-download verifier
 returns `PUBLIC_RELEASE_VERIFIED`.
