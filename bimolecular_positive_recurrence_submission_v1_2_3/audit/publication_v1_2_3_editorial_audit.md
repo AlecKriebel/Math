@@ -30,15 +30,17 @@ checks; proof-order and exposition review; release and rendering validation.
 - Corrected the Xu arXiv entry to its canonical 2024 publication year while
   retaining the official Version 2 title and 9 May 2026 revision note:
   <https://arxiv.org/abs/2409.05340>.
+- Added the public recording of Daniele Cappelletti's 22 June 2022 Cornell
+  talk as a second contemporaneous record of the four-person announcement,
+  without calling it the earliest record. The Geneva program cited alongside
+  it is dated 10 June 2022:
+  <https://vod.video.cornell.edu/media/t/1_hn76x7n9/261126952>.
+- Corrected the arXiv page-count metadata and current AI-use date, and refreshed
+  the human-only bioRxiv and Zenodo operational checklists against their live
+  official guidance.
 
 ## Suggestions not applied
 
-- No Cornell citation was added. The existing Geneva program dated 10 June
-  2022 is earlier and already identifies the four-person joint work. Cornell's
-  institutional event and recording metadata place Cappelletti's talk on 22
-  June, while the speaker page gives conflicting conference dates. A second
-  citation would not strengthen the paper's deliberately limited claim that
-  the result was publicly announced in talks.
 - The invariant branches of the top-complex lemma were not removed or expanded.
   They remain mathematically useful, and the finite-set proof already states
   why they are impossible within one communicating class.
@@ -55,6 +57,6 @@ substance. No theorem-breaking defect was found in this review.
 
 ## Release validation
 
-The final local and hosted validation results, deterministic artifact hashes,
-and visual-PDF verdict are recorded in the release manifest, reproduction
-record, and tagged replay for Version 1.2.3.
+Local validation, deterministic artifact hashes, and the visual-PDF verdict
+are recorded in the release manifest and reproduction record. Hosted main- and
+tag-workflow validation is supplied by the release workflows after publication.

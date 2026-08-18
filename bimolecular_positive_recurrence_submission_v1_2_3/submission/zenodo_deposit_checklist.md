@@ -15,9 +15,10 @@ many unrelated research programs.
 
 Use the package-root `CITATION.cff` for the title, author, ORCID, version, date,
 abstract, keywords, preferred citation, and tagged source URL. Classify the
-record as a research package or other research output accompanying an
-unrefereed preprint, according to the live Zenodo choices. Do not describe the
-finite verifier as proof of the universal theorem.
+mixed composite ZIP as **Other**, and describe it as a research package
+accompanying an unrefereed preprint. Zenodo's current controlled vocabulary
+does not contain a separate “research package” type. Do not describe the finite
+verifier as proof of the universal theorem.
 
 ## Deposit-day checks
 
@@ -26,8 +27,11 @@ finite verifier as proof of the universal theorem.
 - Compare the ZIP hash with the public `SHA256SUMS.txt` entry.
 - Recheck Zenodo's current metadata and licensing fields rather than relying
   on a stored API-schema guess.
-- Keep the manuscript-rights selection consistent with `LICENSE.md`; the code
-  alone is MIT-licensed.
+- The license field is required and currently defaults to CC BY 4.0. Remove
+  that default unless deliberately relicensing the package. Add MIT for the
+  `code/` subtree and a custom all-rights-reserved entry matching `LICENSE.md`
+  for the manuscript and other materials; state each scope in the record
+  description and verify both licenses before publishing.
 - If bioRxiv has posted, add the bioRxiv DOI as a related identifier with the
   correct relation, not as the Zenodo DOI or journal DOI.
 - After deposition, add the minted Zenodo DOI to a new version of the
@@ -35,3 +39,9 @@ finite verifier as proof of the universal theorem.
 
 The Zenodo deposit and any metadata entry must be completed by the human
 author. This package performs no external upload.
+
+## Official guidance rechecked 17 August 2026
+
+- Resource types: <https://help.zenodo.org/docs/deposit/describe-records/resource-type/>
+- Required, multiple, and custom licenses:
+  <https://help.zenodo.org/docs/deposit/describe-records/licenses/>

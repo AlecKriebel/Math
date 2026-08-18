@@ -46,7 +46,7 @@ directly. Multiple linkage classes and molecularity above two remain open.
 
 **Comments**
 
-> 15 pages; no figures. Includes a deterministic verification package and
+> 16 pages; no figures. Includes a deterministic verification package and
 > supplementary note. This is an unrefereed preprint.
 
 **Report number:**

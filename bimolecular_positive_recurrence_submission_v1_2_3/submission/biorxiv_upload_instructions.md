@@ -27,10 +27,12 @@ Upload the two files separately:
 1. **Main manuscript:** `manuscript/main_biorxiv.pdf`
 2. **Supplementary material:** `manuscript/supplementary_note.pdf`
 
+If the supplemental-upload form requests a label, use **Supplementary Note**.
+
 Expected SHA-256 values for the sealed Version 1.2.3 files:
 
 - `main_biorxiv.pdf`:
-  `99274c779312a5a0ce87211a3e5ecef505578373ffecdc06034785b25f384315`
+  `e87820343db0a7399cc0fc6084156c0d8985e7a4e6e9f3a9fa87875ea5f7fa7d`
 - `supplementary_note.pdf`:
   `8f5dca8146df45b96fb6ab61ef5790559aeb847f49243b1d0a03d97368864fb1`
 
@@ -168,9 +170,9 @@ Uploading files alone does not submit the manuscript. On the proof page:
 
 Save the acknowledgment and manuscript identifier, record the DOI if shown,
 and save a copy or screenshot of the final entered metadata. Confirm that the
-submission appears in the Author Area queue. Screening typically
-takes 24--48 hours, but may take longer; bioRxiv does not provide a requested
-posting time or embargo.
+submission appears in the Author Area queue. bioRxiv says preprints usually
+appear within 72 hours after final approval, although screening may take
+longer; it does not provide a requested posting time or embargo.
 
 ## 7. Submission-day literature and date check
 

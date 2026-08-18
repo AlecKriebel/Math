@@ -107,7 +107,7 @@ information, identifiable data, or biological specimens.
 
 **Generative-AI use:**
 The manuscript includes a three-paragraph reader-facing note. Full system,
-model, date, access-route, use, checking, and responsibility details through 16
+model, date, access-route, use, checking, and responsibility details through 17
 August 2026 are recorded at
 <https://github.com/AlecKriebel/Math/blob/bimolecular-positive-recurrence-v1.2.3/bimolecular_positive_recurrence_submission_v1_2_3/supplement/ai_use_full_statement.md>.
 No AI system is an author. The public guidance requires disclosure in the

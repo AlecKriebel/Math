@@ -14,11 +14,15 @@ tag, PDFs, archive, validation record, theorem, and standalone verifier.
 - Added a qualified tier-lineage paragraph, made the properness selection
   literal, and reordered the CTMC conversion proof to establish nonexplosion
   before finite expected physical return time.
-- Retained the earlier Geneva priority citation rather than adding a later,
-  redundant Cornell item whose institutional date records conflict.
+- Added the public 22 June Cornell recording alongside the earlier 10 June
+  Geneva program as a second contemporaneous record, without calling the
+  Cornell talk the earliest announcement.
 - Updated current literature and AI-use dates through 17 August 2026 and
   corrected the Xu arXiv entry to its canonical 2024 publication year while
   preserving the official Version 2 title and revision date.
+- Refreshed the upload checklist's current screening-time and supplement-label
+  instructions and made the optional Zenodo resource-type and mixed-license
+  selections explicit.
 - Rebuilt and revalidated the outer manuscript, package, and public artifacts;
   the Version 1.2.0 verifier and canonical report remain byte-for-byte
   unchanged.

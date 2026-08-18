@@ -60,10 +60,11 @@ outside scrutiny could be most informative.
 ## Andrea Agazzi
 
 - Check the priority note's description of the publicly announced
-  two-species result: the current ConStRAINeD overview describes the proof as
-  complete and sketches its approach, while item 16 lists the five-author
-  manuscript as in preparation and no public manuscript was located as of
-  17 August 2026.
+  two-species result: the 10 June Geneva program and 22 June Cornell recording
+  document the four-person 2022 announcement; the current ConStRAINeD overview
+  describes the proof as complete and sketches its approach, while item 16
+  lists the five-author manuscript as in preparation and no public manuscript
+  was located as of 17 August 2026.
 - Verify the claimed orthogonality of scopes: two species with broader network
   structure versus arbitrarily many species under one linkage class and
   molecularity at most two.

@@ -11,10 +11,13 @@ work only; no external contact or submission was made.
   4.1 drift, the tier-method lineage, the current Xu Version 2 record, and the
   two simultaneous facets of the ConStRAINeD announcement.
 - Accepted narrow exposition improvements to the entropy remark, tier lineage,
-  properness selection, and CTMC proof order. Rejected a redundant Cornell
-  citation and redundant invariant/verifier clarifications.
+  properness selection, CTMC proof order, and public-record documentation.
+  Retained the invariant branches and existing verifier-version explanation.
 - Prepared Version 1.2.3 as an immutable successor while preserving Version
   1.2.2 and carrying the standalone Version 1.2.0 verifier byte-for-byte.
+- Rechecked current bioRxiv timing/label guidance and Zenodo's resource-type
+  and mixed-license fields; updated the human-only checklists without making
+  any external submission or deposit.
 
 ## 16 August 2026
 
