@@ -5,11 +5,11 @@ and `SOURCE_DATE_EPOCH=1786924800`.  `requirements.txt` at project root is
 the Python dependency lock; Tectonic and its bundle are separate build
 requirements.
 
-From the monorepository root:
+From the project root:
 
 ```bash
 export SOURCE_DATE_EPOCH=1786924800
-cd s_tc_jc_landmark_closure/source/paper
+cd source/paper
 tectonic main.tex
 ```
 

@@ -40,7 +40,7 @@ Alec Kriebel conceived and directed the study, fixed the mathematical scope and 
 
 ## Data and code availability
 
-The submission includes a small verifier-entrypoint ZIP containing the executable commands, Python dependency lock, external-tool requirements, theorem map, and checksums. All graph encodings, exact certificates, separately implemented verifiers, mutation transcripts, source, and deterministic replay records are provided in the complete hash-bound archive at https://github.com/AlecKriebel/Math/tree/stc-jc-sharp-boundary-v1.1.4 and https://github.com/AlecKriebel/Math/releases/tag/stc-jc-sharp-boundary-v1.1.4. A persistent archive identifier will be added only after it is issued; no unissued DOI is claimed.
+The load-bearing finite atlas, exact per-relation certificates, restoration and probe records, primitive graph inputs, primary verifier, and separately implemented replay verifier are archived in `stc_jc_sharp_boundary_atlas_certificates_v1.1.5.tar.gz` at https://doi.org/ZENODO_DOI_PENDING. The same Zenodo record contains the secondary full reproducibility snapshot. The small verifier capsule supplied with bioRxiv contains entry points, environment information, and checksums only; it is not the complete proof archive. Replace `ZENODO_DOI_PENDING` with the reserved DOI before submission.
 
 ## Generative-AI disclosure
 

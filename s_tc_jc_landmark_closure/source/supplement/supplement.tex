@@ -371,17 +371,21 @@ and the target values are the corresponding entries of the target table.
 
 \section{Deterministic reproduction}
 
-From the monorepository root, in a clean checkout, run
+Extract the curated certificate archive, enter its top-level directory, and
+run
 \begin{verbatim}
-bash s_tc_jc_landmark_closure/reproducibility/verify_quick.sh
-bash s_tc_jc_landmark_closure/reproducibility/verify_full.sh
-bash s_tc_jc_landmark_closure/reproducibility/verify_regenerate_all.sh
+bash verify.sh quick
+bash verify.sh full
+bash verify.sh regenerate-all
 \end{verbatim}
-The quick command checks active scope, hashes, crosswalks, convention
-regressions, and the separately implemented Omega release record.  The full command
-replays every committed exact component certificate.  The regeneration
-command starts from primitive graph encodings and rebuilds the bounded
-relation, bridge, restoration, probe, triangle, Omega, and Theta evidence.
+The archive filename is
+\path{stc_jc_sharp_boundary_atlas_certificates_v1.1.5.tar.gz}; its Zenodo DOI
+is \texttt{ZENODO\_DOI\_PENDING} until the depositor reserves it.  This token
+must be replaced before submission.  The quick
+command authenticates every byte and checks the frozen theorem summaries.
+The full command replays every load-bearing exact component certificate.  The
+regeneration command performs two isolated rebuilds from primitive graph
+encodings and requires their logical commitments to agree exactly.
 
 The whole-proof checker is a fail-closed consistency gate, not a substitute
 for the component calculations.  The mathematical evidence is supplied by
@@ -396,31 +400,29 @@ transcripts.
 \begin{longtable}{>{\raggedright\arraybackslash}p{.34\linewidth}
                   >{\raggedright\arraybackslash}p{.58\linewidth}}
 \toprule
-Claim & Monorepository-root-relative evidence\\
+Claim & Certificate-bundle-relative evidence\\
 \midrule
 \endhead
-Convention and no-omnian characterization
-& \path{s_tc_jc_landmark_closure/reviews/final_standard_convention/}\\
-Pointwise cut preservation and bridge fibre
-& \path{s_tc_jc_landmark_closure/reviews/global_bridge/}\\
-Final cut-compression and analytic hardening
-& \path{s_tc_jc_landmark_closure/reviews/v1_1_proof_hardening/}\\
-Decorated bounded relation atlas
-& \path{s_tc_jc_landmark_closure/reviews/n3_universe_generator/} and
-  \path{s_tc_jc_landmark_closure/reviews/bounded_directed_relation_cleanroom/}\\
-Four-outgoing theta gate
-& \path{s_tc_jc_landmark_closure/reviews/theta2_signature_gate/}\\
-Restoration and coherent probes
-& \path{s_tc_jc_landmark_closure/reviews/final_hard_cover_cleanroom/}
-  and \path{s_tc_jc_landmark_closure/reviews/direct_anchor_probe_closure/}\\
-Ordinary triangle germ
-& \path{s_tc_jc_landmark_closure/reviews/triangle_redirection_cleanroom/}\\
-Triangle-free Omega family
-& \path{s_tc_jc_landmark_closure/omega_audit/}\\
-Triangle-containing Theta family
-& \path{s_tc_jc_landmark_closure/s_tc_jc_sharp_boundary/}\\
-Active release consistency
-& \path{s_tc_jc_landmark_closure/reproducibility/verify_active_release.py}\\
+Convention, primitive supports, cut recovery, and bridge fibre
+& \path{primary/certificates/core_universe.json},
+  \path{primary/certificates/support_universe.json},
+  \path{reviews/root_probe/}, and \path{independent/bridge_cut/}.\\
+The complete three- and four-outgoing finite atlas
+& \path{atlas/ATLAS_INDEX.csv.gz}, the bounded relation streams in
+  \path{primary/certificates/}, and their indexed verifier and transport
+  records.\\
+Restoration, arbitrary subdivisions, and coherent probes
+& the \path{hard_cover_*} and \path{compact_probe_*} streams and
+  \path{reviews/direct_anchor_probe_closure/certificates/}.\\
+Ordinary triangle common germ
+& \path{primary/certificates/jc_triangle_redirection_active.json} and
+  \path{reviews/triangle_redirection_cleanroom/}.\\
+Omega and Theta sharpness families
+& \path{omega_audit/independent/} and
+  \path{s_tc_jc_sharp_boundary/reproducibility/}.\\
+Integrity, totality, deterministic regeneration, and mutations
+& \path{ACTIVE_MANIFEST.json}, \path{atlas/ATLAS_INDEX.csv.gz},
+  \path{expected_outputs/}, and \path{verify.sh}.\\
 \bottomrule
 \end{longtable}
 \normalsize

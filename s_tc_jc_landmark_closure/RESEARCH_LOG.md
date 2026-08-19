@@ -975,3 +975,22 @@
   is sealed under `release/final_biorxiv/`.
 - No theorem statement, model domain, network class, sharpness family, or DOI
   claim changed in this bounded revision.
+
+## 2026-08-19 — v1.1.5 curated proof-certificate release
+
+- Replaced the broad development snapshot as the primary proof object by a
+  curated reviewer-facing atlas bundle containing only primitive inputs,
+  complete finite records, exact certificates/transports, primary and
+  separately implemented verifiers, and archive-local entry points.
+- Added a per-relation index for all 10,466 three-outgoing relations and all
+  192 four-outgoing survivors, with distinct base and restoration-closure
+  certificate/verifier fields.
+- Added fail-closed package mutation tests and a two-run deterministic logical
+  regeneration gate. Quick, full, and regenerate-all modes pass in isolated
+  copies; complete run logs are distributed outside the self-authenticating
+  archive.
+- Reduced every manuscript/supplement certificate crosswalk to six active
+  rows and removed audit reports and development-history paths from the
+  evidentiary surface. Submission capsules are now navigation-only.
+- Prepared a DOI finalization tool and Zenodo-first upload sequence without
+  requesting, inventing, or publishing an identifier.

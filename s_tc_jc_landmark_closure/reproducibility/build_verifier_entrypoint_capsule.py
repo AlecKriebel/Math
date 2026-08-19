@@ -1,45 +1,19 @@
 #!/usr/bin/env python3
-"""Build the small deterministic verifier-entrypoint ZIP used by submissions.
-
-The capsule makes the executable entry points and theorem map available with
-the submission itself.  It is intentionally not a duplicate of the complete
-graph/certificate archive; the README directs readers to the immutable public
-release for those inputs and the clean-checkout transcripts.
-"""
+"""Build the navigation-only verifier capsule supplied with submissions."""
 
 from __future__ import annotations
 
 import hashlib
+import json
 from pathlib import Path
 import zipfile
 
 
 PROJECT = Path(__file__).resolve().parents[1]
-ZIP_TIME = (2026, 8, 17, 0, 0, 0)
-RELEASE_TAG = "stc-jc-sharp-boundary-v1.1.4"
+ZIP_TIME = (2026, 8, 19, 0, 0, 0)
 CANONICAL_NAME = "Strong_Tree_Childness_Sharp_Level2_JC_verifier_entrypoints.zip"
-
-MEMBERS = (
-    "requirements.txt",
-    "STATUS.md",
-    "FINAL_OUTCOME.json",
-    "CLAIM_DEPENDENCY_GRAPH.md",
-    "THEOREM_CERTIFICATE_CROSSWALK.md",
-    "PERSISTENT_ARCHIVE_CHECKLIST.md",
-    "release/PUBLIC_RELEASE_ASSETS.md",
-    "reproducibility/bootstrap.sh",
-    "reproducibility/verify_quick.sh",
-    "reproducibility/verify_full.sh",
-    "reproducibility/verify_regenerate_all.sh",
-    "reproducibility/verify_active_release.py",
-    "reproducibility/verify_extracted_archive.py",
-    "reproducibility/verify_public_release.py",
-    "reproducibility/verify_submission_source_archives.py",
-    "reviews/v1_1_4_bcr_and_figure_revision/verify_v1_1_4_revision.py",
-    "reviews/v1_1_4_bcr_and_figure_revision/FEEDBACK_DISPOSITION.md",
-    "reviews/v1_1_4_bcr_and_figure_revision/BCR_CITATION_AUDIT.md",
-    "reviews/v1_1_4_bcr_and_figure_revision/BCR_SOURCE_AUDIT.json",
-)
+ARCHIVE_NAME = "stc_jc_sharp_boundary_atlas_certificates_v1.1.5.tar.gz"
+ENVELOPE = PROJECT / "release_artifacts/CERTIFICATE_BUNDLE_ENVELOPE.json"
 
 
 def digest_bytes(data: bytes) -> str:
@@ -54,55 +28,83 @@ def zip_write(archive: zipfile.ZipFile, name: str, data: bytes, mode: int = 0o10
     archive.writestr(info, data, compress_type=zipfile.ZIP_DEFLATED, compresslevel=9)
 
 
-def readme() -> bytes:
-    return f"""# Exact verifier entry points
+def release_record() -> dict:
+    if ENVELOPE.is_file():
+        return json.loads(ENVELOPE.read_text(encoding="utf-8"))
+    return {
+        "archive": ARCHIVE_NAME,
+        "archive_sha256": "TO_BE_FILLED_AFTER_FINAL_SEAL",
+        "zenodo_doi": "ZENODO_DOI_PENDING",
+        "version": "1.1.5",
+    }
 
-This small submission-support capsule exposes the exact commands, Python dependency
-lock, active theorem map, and release-provenance checker used for the
-manuscript.  Exact PDF replay additionally requires Bash, checksum utilities,
-Tectonic 0.16.9 with default bundle v33, and (for the public-download gate)
-GitHub CLI `gh`; these tools are not installed by `requirements.txt`.
-It is not the complete proof archive: the graph encodings, regenerated
-relations, exact polynomial records, and clean-checkout transcripts are too
-large and are published as the hash-bound assets of the immutable release:
 
-https://github.com/AlecKriebel/Math/releases/tag/{RELEASE_TAG}
+def readme(record: dict) -> bytes:
+    doi = record.get("zenodo_doi", "ZENODO_DOI_PENDING")
+    return f"""# Verifier entry points — navigation capsule only
 
-After cloning that tag, run from the monorepository root:
+This small ZIP is not the proof archive. It contains the archive identity,
+checksum, minimal theorem map, runtime requirements, and a checksum verifier
+so a submission reader can locate and authenticate the load-bearing object.
+
+Canonical proof object: `{record['archive']}`
+SHA-256: `{record['archive_sha256']}`
+Zenodo DOI: `{doi}`
+
+After downloading and extracting the canonical archive, run from its root:
 
 ```bash
-bash s_tc_jc_landmark_closure/reproducibility/verify_quick.sh
-bash s_tc_jc_landmark_closure/reproducibility/verify_full.sh
-bash s_tc_jc_landmark_closure/reproducibility/verify_regenerate_all.sh
-python s_tc_jc_landmark_closure/reproducibility/verify_public_release.py
+bash verify.sh quick
+bash verify.sh full
+bash verify.sh regenerate-all
 ```
 
-The last command downloads and verifies the public release assets.  A plain
-archive extraction has no Git history, so its fail-closed gate is instead:
-
-```bash
-python s_tc_jc_landmark_closure/reproducibility/verify_active_release.py
-```
-
-The public verifier also executes the extracted-archive gate automatically.
-The
-internal `SHA256SUMS` file authenticates every file in this capsule relative
-to the submission package's outer manifest.  No script submits a manuscript,
-contacts an editor, chooses a license, or creates a DOI.
+The archive contains the complete finite atlas, every per-relation exact
+certificate and transport, restoration and probe records, primitive inputs,
+and both primary and separately implemented verifiers. This capsule contains
+none of those large proof records and must not be cited as the proof object.
+No included script uploads files, creates a DOI, submits a manuscript, or
+chooses a license.
 """.encode("utf-8")
 
 
+def archive_verifier(record: dict) -> bytes:
+    expected = record["archive_sha256"]
+    return f'''#!/usr/bin/env python3
+"""Authenticate the downloaded curated proof archive."""
+import hashlib
+from pathlib import Path
+import sys
+
+EXPECTED_NAME = {record["archive"]!r}
+EXPECTED_SHA256 = {expected!r}
+path = Path(sys.argv[1] if len(sys.argv) > 1 else EXPECTED_NAME)
+if path.name != EXPECTED_NAME:
+    raise SystemExit(f"expected filename {{EXPECTED_NAME}}, got {{path.name}}")
+h = hashlib.sha256()
+with path.open("rb") as stream:
+    for block in iter(lambda: stream.read(1 << 20), b""):
+        h.update(block)
+actual = h.hexdigest()
+if actual != EXPECTED_SHA256:
+    raise SystemExit(f"SHA-256 mismatch: {{actual}}")
+print(f"VERIFIED {{path.name}} {{actual}}")
+'''.encode("utf-8")
+
+
 def build(output: Path) -> None:
-    records: list[tuple[str, bytes, int]] = [("README.md", readme(), 0o100644)]
-    for relative in MEMBERS:
-        path = PROJECT / relative
-        if not path.is_file():
-            raise FileNotFoundError(path)
-        mode = 0o100755 if path.suffix == ".sh" else 0o100644
-        records.append((relative, path.read_bytes(), mode))
-    sums = "".join(
-        f"{digest_bytes(data)}  {name}\n" for name, data, _mode in records
-    ).encode("utf-8")
+    record = release_record()
+    records: list[tuple[str, bytes, int]] = [
+        ("README_FIRST.md", readme(record), 0o100644),
+        ("CERTIFICATE_BUNDLE_ENVELOPE.json",
+         (json.dumps(record, sort_keys=True, indent=2) + "\n").encode(), 0o100644),
+        ("THEOREM_CERTIFICATE_CROSSWALK.md",
+         (PROJECT / "THEOREM_CERTIFICATE_CROSSWALK.md").read_bytes(), 0o100644),
+        ("RUNTIME_AND_HARDWARE.md",
+         (PROJECT / "certificate_bundle/RUNTIME_AND_HARDWARE.md").read_bytes(), 0o100644),
+        ("verify_downloaded_archive.py", archive_verifier(record), 0o100755),
+    ]
+    sums = "".join(f"{digest_bytes(data)}  {name}\n" for name, data, _ in records).encode()
     records.append(("SHA256SUMS", sums, 0o100644))
 
     output.parent.mkdir(parents=True, exist_ok=True)
