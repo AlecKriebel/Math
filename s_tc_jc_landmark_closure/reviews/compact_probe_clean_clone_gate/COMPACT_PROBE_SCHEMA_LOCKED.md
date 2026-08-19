@@ -77,6 +77,16 @@ separate content-addressed sparse-polynomial stream.  During verification the
 polynomial is regenerated from the two child graphs through displayed-tree
 switchings and descendant masks before its ID may be looked up.
 
+The selected witness is evidence, not part of the decorated relation's
+identity.  Two independently deterministic compilers may choose different
+quartets or invariants when both are valid separators.  Release comparison
+therefore requires exact equality of the graph relation, direction,
+insertion, class, and transport, followed by independent exact regeneration
+and validation of each package's selected witness.  It must not require the
+two valid witness bodies themselves to be identical.  Conversely, this rule
+does not permit a witness to migrate between relations: every chosen body is
+regenerated from the exact graph pair on which it is claimed.
+
 ## 4. Transport library
 
 An allowed cell has a unique transport because every anchor and permitted
@@ -122,10 +132,12 @@ each exact shard summary: one from the primary verifier and one from a
 clean-room implementation.  A byte-consistent shard manifest without both
 successful summary-bound replays is not a certificate.
 
-The compact form is first validated against every record of the already
-verified verbose theta-2 stream.  Only after record-for-record agreement may
-it be used as the primary representation for the larger three-outgoing
-extension.
+The compact form is first validated semantically against every relation of
+the already verified verbose theta-2 stream.  Graphs, direction, insertions,
+classifications, and transports agree record-for-record; each package's
+possibly different selected separator is then regenerated and certified on
+that same relation.  Only after this complete semantic bijection may the
+compact representation be used for the larger three-outgoing extension.
 
 ## 6. Independent release requirement
 

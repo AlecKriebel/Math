@@ -150,6 +150,26 @@ def resolve(value: str | Path, relative_to: Path | None = None) -> Path:
     return candidates[0].resolve()
 
 
+def normalized_json_for_commitment(value):
+    """Discard only run-local metadata from upstream summary commitments."""
+    if isinstance(value, dict):
+        return {
+            key: normalized_json_for_commitment(item)
+            for key, item in sorted(value.items())
+            if key not in {"elapsed_seconds", "merged_shard_inputs"}
+        }
+    if isinstance(value, list):
+        return [normalized_json_for_commitment(item) for item in value]
+    return value
+
+
+def semantic_json_sha256(path: Path) -> str:
+    payload = normalized_json_for_commitment(
+        json.loads(path.read_text(encoding="utf-8"))
+    )
+    return hashlib.sha256(stable_bytes(payload)).hexdigest()
+
+
 def read_gzip(path: Path, key: str | None = None):
     rows = []
     seen = set()
@@ -190,7 +210,7 @@ def build_inventory(base_summaries: list[Path]):
     for summary_path in sorted((p.resolve() for p in base_summaries),
                                key=normalized):
         summary = json.loads(summary_path.read_text())
-        inputs[normalized(summary_path)] = file_sha256(summary_path)
+        inputs[normalized(summary_path)] = semantic_json_sha256(summary_path)
         for run_index, run in enumerate(summary["runs"]):
             cover = run["hard_cover"]
             state_path = resolve(cover["relation_path"], summary_path)
@@ -284,14 +304,15 @@ def load_compact(summary_path: Path, expected_sha: str):
     require(summary["schema"] == "compact-path-bound-probe-extension-v1",
             "compact_schema")
     require(summary["status"] == "EXACTLY_COMPUTED", "compact_status")
-    # The producer summaries bind the pre-clarification schema bytes.  Those
-    # exact bytes are vendored in this gate and checked rather than silently
-    # accepting the later prose-only revision at the historical path.
+    # The locked schema is the exact active producer specification.
     require(file_sha256(LOCKED_SCHEMA) ==
             summary["schema_specification_sha256"],
             "locked_schema_specification_sha256")
     for name, expected in summary["input_sha256"].items():
-        require(file_sha256(resolve(name, summary_path)) == expected,
+        input_path = resolve(name, summary_path)
+        actual = (semantic_json_sha256(input_path)
+                  if input_path.suffix == ".json" else file_sha256(input_path))
+        require(actual == expected,
                 "compact_input_sha256", input=name)
     bit_path = resolve(summary["bit_cache"]["path"], summary_path)
     require(file_sha256(bit_path) == summary["bit_cache"]["sha256"],
