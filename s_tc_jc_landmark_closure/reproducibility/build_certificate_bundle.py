@@ -108,6 +108,7 @@ FINAL_HARD_COVER = (
     "certificates/schema3_n4_theta2_full_audit.json",
     "certificates/schema3_n4_theta2_mutation_certificate.json",
     "certificates/schema3_n4_theta2_terminal_records.jsonl.gz",
+    "certificates/family_n3.json.gz",
 )
 
 COMPACT_GATE = (
