@@ -2,6 +2,16 @@
 
 Status: **CURATED PROOF OBJECT VERIFIED — DOI PENDING**
 
+Current pre-DOI candidate (the hash will change when the reserved DOI is
+inserted and the archive is resealed):
+
+- source commit: `7162788834e1ebde2ede4e597ca14c9b4ff56e7e`
+- archive SHA-256: `88a182b90551351bff663769fe30e6210a5a35a94db98cab8ac602195d081750`
+- record-level evidence commitment:
+  `09adbe4c639246b8a966d183984f1e1883246b92bd8927e2552a3cc5a25b505b`
+- finite universe: 10,466 three-outgoing relations and 192 four-outgoing
+  survivors
+
 ## Record metadata
 
 - Recommended title: **Computer-assisted proof certificates and reproducibility package for “Strong Tree-Childness Is a Sharp Generic-Identifiability Boundary for Level-2 Jukes–Cantor Networks”**
@@ -35,6 +45,10 @@ Recommended secondary files:
 
 The curated archive is the canonical proof object cited by Theorem 6.3. The
 broader snapshot is secondary provenance and should be labelled accordingly.
+Legacy `RELEASE_ENVELOPE.json`, `RELEASE_ASSET_SHA256SUMS`, and older
+clean-clone transcripts are not part of this v1.1.5 deposit unless they are
+regenerated after DOI finalization.  The authoritative envelope for the
+curated object is `CERTIFICATE_BUNDLE_ENVELOPE.json`.
 
 ## DOI handoff
 

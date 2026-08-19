@@ -27,6 +27,12 @@ not merely find a matching URL string.
 1. **Main manuscript:** upload `Strong_Tree_Childness_Sharp_Level2_JC.pdf` as the article PDF.
 2. **Supplementary material:** upload `Strong_Tree_Childness_Sharp_Level2_JC_supplement.pdf`.
 3. **Verifier entry points:** upload `Strong_Tree_Childness_Sharp_Level2_JC_verifier_entrypoints.zip` as supplementary code (or supplementary material if the portal has no code-specific type). It is a navigation capsule containing the Zenodo archive identity, checksum, runtime requirements, minimal theorem map, and a download verifier. The complete proof object remains at Zenodo.
+
+   This split is intentional: Zenodo supplies the single persistent,
+   DOI-citable, versioned and checksummed copy of the load-bearing proof
+   archive, while the small bioRxiv attachment makes that object immediately
+   discoverable.  Do not upload a second authoritative copy of the complete
+   archive to bioRxiv unless the portal specifically requires it.
 4. **Optional source supplement:** `Strong_Tree_Childness_Sharp_Level2_JC_source.zip` contains LaTeX, BibTeX, TikZ sources, and deterministic build instructions. bioRxiv's guide permits LaTeX source as supplemental material but requires the rendered PDF as the main article.
 5. **Title and abstract:** paste the exact fields from `BIORXIV_METADATA.md`; compare the portal preview character-for-character with the PDF.
 6. **Subject:** select **Evolutionary Biology**.
