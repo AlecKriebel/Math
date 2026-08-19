@@ -1217,7 +1217,9 @@ graphs.  The complete canonical relation universe, raw-to-canonical
 transports, per-relation exact certificates, restoration and probe records,
 and primary and separately implemented replay verifiers are archived in the
 curated proof-certificate bundle \cite{KriebelAtlas2026}.
-Its \texttt{ACTIVE\_MANIFEST.json} authenticates every included file, while
+Its \texttt{ACTIVE\_MANIFEST.json} authenticates every proof-payload file,
+\texttt{SHA256SUMS} is checked as its exact projection, and the external
+archive SHA-256 authenticates the complete compressed object.  The file
 \texttt{atlas/ATLAS\_EVIDENCE\_BINDINGS.jsonl.gz} binds each decorated
 relation to its exact evidence and replay program.  The command
 \texttt{bash verify.sh regenerate-all} reconstructs the complete frozen atlas

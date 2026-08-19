@@ -30,14 +30,18 @@ bash verify.sh full
 bash verify.sh regenerate-all
 ```
 
-`quick` authenticates every byte and checks the frozen theorem summaries.
+The archive's external SHA-256 authenticates the complete compressed object.
+After extraction, `quick` authenticates every proof-payload file, checks that
+`SHA256SUMS` is the exact projection of `ACTIVE_MANIFEST.json`, and checks the
+frozen theorem summaries.
 `full` replays every load-bearing exact component certificate with the
 primary and separately implemented programs.  `regenerate-all` additionally
 rebuilds the complete relation, restoration, and probe streams from the
 committed primitive graph and invariant inputs, compares them with the frozen
-proof records, and repeats that regeneration in a second isolated copy.  Every
-mode works in a temporary copy so the extracted proof object remains
-immutable.
+proof records, and repeats that regeneration in a second isolated copy.  The
+mathematical gates work in temporary copies.  On first use `verify.sh` adds
+only a local `.venv` alongside the authenticated payload; it does not alter
+any authenticated proof-payload file.
 
 The scripts create a local `.venv` on first use.  That first installation
 requires either access to the Python package index or a local wheel cache;
@@ -48,8 +52,11 @@ temporary work directory.
 
 ## What is authoritative
 
-- `ACTIVE_MANIFEST.json` and `SHA256SUMS` authenticate every included file;
-  they do not replace the mathematical row-level checks.
+- `ACTIVE_MANIFEST.json` inventories and authenticates every proof-payload
+  file, and `SHA256SUMS` is checked as its exact projection.  The external
+  archive SHA-256 authenticates those two metadata files and the archive
+  container.  None of these integrity checks replaces the mathematical
+  row-level checks.
 - `atlas/ATLAS_EVIDENCE_BINDINGS.jsonl.gz` is the authoritative row-level
   map.  For every canonical three-outgoing relation and every four-outgoing
   survivor it binds the decorated graph relation, direction, disposition,

@@ -285,7 +285,11 @@ def prepare(stage: Path) -> None:
     lock = json.loads(lock_path.read_text())
     for row in lock["inputs"]:
         row["path"] = row["path"].removeprefix("s_tc_jc_landmark_closure/")
-    lock["source_commit"] = lock.pop("git_commit", source_commit())
+    # This hash records the commit that originally produced the compact-probe
+    # input lock.  It is provenance for that component, not the source commit
+    # of the assembled bundle (which is recorded in ACTIVE_MANIFEST.json and
+    # the external envelope).
+    lock["producer_commit"] = lock.pop("git_commit", source_commit())
     lock_path.write_text(json.dumps(lock, sort_keys=True, indent=2) + "\n")
     verifier_path = stage / "reviews/compact_probe_clean_clone_gate/verify_tracked_inputs.py"
     verifier_path.write_text(

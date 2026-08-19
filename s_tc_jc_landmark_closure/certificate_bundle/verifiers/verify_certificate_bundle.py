@@ -45,6 +45,17 @@ def verify_manifest(root: Path) -> dict:
         path = root / relative
         require(path.stat().st_size == row["bytes"], f"size mismatch: {relative}")
         require(sha256(path) == row["sha256"], f"hash mismatch: {relative}")
+    checksum_rows: dict[str, str] = {}
+    for line in (root / "SHA256SUMS").read_text(encoding="utf-8").splitlines():
+        if not line.strip():
+            continue
+        digest, relative = line.split("  ", 1)
+        require(relative not in checksum_rows,
+                f"duplicate SHA256SUMS path: {relative}")
+        checksum_rows[relative] = digest
+    require(checksum_rows == {relative: row["sha256"]
+                              for relative, row in expected.items()},
+            "SHA256SUMS is not the exact projection of ACTIVE_MANIFEST.json")
     return payload
 
 

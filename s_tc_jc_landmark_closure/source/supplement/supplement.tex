@@ -381,8 +381,11 @@ bash verify.sh regenerate-all
 The archive filename is
 \path{stc_jc_sharp_boundary_atlas_certificates_v1.1.5.tar.gz}; its Zenodo DOI
 is \texttt{ZENODO\_DOI\_PENDING} until the depositor reserves it.  This token
-must be replaced before submission.  The quick
-command authenticates every byte and checks the frozen theorem summaries.
+must be replaced before submission.  The archive's external SHA-256
+authenticates the complete compressed object.  After extraction, the quick
+command authenticates every proof-payload file, checks that
+\path{SHA256SUMS} is the exact projection of
+\path{ACTIVE_MANIFEST.json}, and checks the frozen theorem summaries.
 The full command replays every load-bearing exact component certificate.  The
 regeneration command performs two isolated rebuilds from primitive graph
 encodings and requires their logical commitments to agree exactly.
@@ -390,9 +393,10 @@ encodings and requires their logical commitments to agree exactly.
 The whole-proof checker is a fail-closed consistency gate, not a substitute
 for the component calculations.  The mathematical evidence is supplied by
 the graph-derived component scripts and their separately implemented
-replays.  Complete commands, environment versions, elapsed times, peak-memory
-records, output hashes, and clean-status checks are stored in the release
-transcripts.
+replays.  The supplied transcripts record the complete commands and outputs;
+the pinned runtime versions are stated in
+\path{environment/exact_tool_versions.txt} and
+\path{RUNTIME_AND_HARDWARE.md}.
 
 \section{Theorem-to-artifact crosswalk}
 
