@@ -32,20 +32,30 @@ bash verify.sh regenerate-all
 
 `quick` authenticates every byte and checks the frozen theorem summaries.
 `full` replays every load-bearing exact component certificate with the
-primary and clean-room implementations.  `regenerate-all` additionally
-rebuilds the theorem-forced normalized relation, restoration, and probe
-records from the committed primitive inputs.  Every mode works in a temporary
-copy so the extracted proof object remains immutable.
+primary and separately implemented programs.  `regenerate-all` additionally
+rebuilds the complete relation, restoration, and probe streams from the
+committed primitive graph and invariant inputs, compares them with the frozen
+proof records, and repeats that regeneration in a second isolated copy.  Every
+mode works in a temporary copy so the extracted proof object remains
+immutable.
 
-The scripts create a local virtual environment on first use.  They do not
-contact an editor, upload data, choose a license, create a DOI, or alter files
-outside the extracted directory and a temporary work directory.
+The scripts create a local `.venv` on first use.  That first installation
+requires either access to the Python package index or a local wheel cache;
+after the pinned dependencies are installed, the mathematical checks make no
+network requests.  The scripts do not contact an editor, upload data, choose
+a license, create a DOI, or alter files outside the extracted directory and a
+temporary work directory.
 
 ## What is authoritative
 
-- `ACTIVE_MANIFEST.json` and `SHA256SUMS` authenticate the complete bundle.
-- `atlas/ATLAS_INDEX.csv.gz` gives one row for every canonical
-  three-outgoing relation and every four-outgoing survivor.
+- `ACTIVE_MANIFEST.json` and `SHA256SUMS` authenticate every included file;
+  they do not replace the mathematical row-level checks.
+- `atlas/ATLAS_EVIDENCE_BINDINGS.jsonl.gz` is the authoritative row-level
+  map.  For every canonical three-outgoing relation and every four-outgoing
+  survivor it binds the decorated graph relation, direction, disposition,
+  exact evidence, transports when applicable, and replay program.
+- `atlas/ATLAS_INDEX.csv.gz` is a human-readable projection of that evidence
+  map.  The verifier regenerates both and checks the projection exactly.
 - `THEOREM_CERTIFICATE_CROSSWALK.md` is the minimal theorem-to-file map.
 - `REGENERATION_MAP.md` states exactly which program reconstructs each
   logical proof object.

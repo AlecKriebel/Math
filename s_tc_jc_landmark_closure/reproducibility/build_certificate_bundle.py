@@ -11,6 +11,7 @@ import argparse
 import csv
 import gzip
 import hashlib
+import importlib.util
 import io
 import json
 import os
@@ -90,8 +91,7 @@ N3_UNIVERSE = (
 )
 
 BOUNDED_CLEANROOM = (
-    "cleanroom_verify.py", "INPUT_LOCK.json", "certificates/n3_full_replay.json",
-    "certificates/n3_mutation_replay.json",
+    "cleanroom_verify.py", "INPUT_LOCK.json",
 )
 
 THETA_GATE = (
@@ -102,13 +102,15 @@ THETA_GATE = (
 )
 
 FINAL_HARD_COVER = (
-    "audit_candidate_stream.py", "graph_model.py", "jc_exact.py",
+    "audit_candidate_stream.py", "derived_invariants.py", "family_engine.py",
+    "graph_model.py", "jc_exact.py", "pq_extension.py", "relation_universe.py",
     "mutation_schema3_stream.py", "verify_schema3_n4_certificates.py",
     "certificates/schema3_n3_path_audit.json",
     "certificates/schema3_n4_theta2_full_audit.json",
     "certificates/schema3_n4_theta2_mutation_certificate.json",
     "certificates/schema3_n4_theta2_terminal_records.jsonl.gz",
     "certificates/family_n3.json.gz",
+    "certificates/family_n4_minimum.json.gz",
 )
 
 COMPACT_GATE = (
@@ -306,85 +308,23 @@ def gzip_csv(path: Path, fields: tuple[str, ...], rows: list[dict]) -> None:
 def build_atlas_index(stage: Path) -> None:
     atlas = stage / "atlas"
     atlas.mkdir()
-    fields = (
-        "universe", "relation_id", "source_graph_id", "target_graph_id", "direction",
-        "disposition", "base_certificate_path", "transport_path",
-        "closure_certificate_path", "base_verifier", "closure_verifier",
-    )
-    rows: list[dict] = []
-    relation_path = stage / "primary/certificates/bounded_relation_n3_schema3_n3_all_filtered_relations.jsonl.gz"
-    with gzip.open(relation_path, "rt", encoding="utf-8") as handle:
-        for line in handle:
-            item = json.loads(line)
-            classification = item["classification"]
-            if classification == "strict_open_cube_separation":
-                base_certificate = "primary/certificates/bounded_relation_n3_schema3_n3_all_filtered_polynomials.jsonl.gz"
-                transport = ""
-                closure_certificate = ""
-                base_verifier = "reviews/base_gate_adversarial_referee_n3/referee_n3.py"
-                closure_verifier = ""
-            elif classification == "pending_support_completion":
-                base_certificate = "primary/certificates/bounded_relation_n3_schema3_n3_all_filtered_relations.jsonl.gz"
-                transport = "primary/certificates/bounded_relation_n3_hard_cover_crosswalk.jsonl.gz"
-                closure_certificate = "primary/certificates/hard_cover_n3_schema3_n3_full.jsonl.gz"
-                base_verifier = "reviews/bounded_directed_relation_cleanroom/cleanroom_verify.py"
-                closure_verifier = "reviews/compact_probe_clean_clone_gate/semantic_gate.py"
-            else:
-                base_certificate = "primary/certificates/bounded_relation_n3_schema3_n3_all_filtered_relations.jsonl.gz"
-                transport = ""
-                closure_certificate = ""
-                base_verifier = "reviews/bounded_directed_relation_cleanroom/cleanroom_verify.py"
-                closure_verifier = ""
-            rows.append({
-                "universe": "three_outgoing", "relation_id": item["relation_id"],
-                "source_graph_id": item["source_graph_id"],
-                "target_graph_id": item["target_completion_graph_id"],
-                "direction": item["direction"], "disposition": classification,
-                "base_certificate_path": base_certificate,
-                "transport_path": transport,
-                "closure_certificate_path": closure_certificate,
-                "base_verifier": base_verifier,
-                "closure_verifier": closure_verifier,
-            })
+    module_path = stage / "verifiers/evidence_bindings.py"
+    spec = importlib.util.spec_from_file_location("bundle_evidence_builder", module_path)
+    if spec is None or spec.loader is None:
+        raise AssertionError("cannot load evidence-binding builder")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    evidence_rows = module.reconstruct_rows(stage)
+    module.write_rows(atlas / "ATLAS_EVIDENCE_BINDINGS.jsonl.gz", evidence_rows)
 
-    crosswalk = stage / "reviews/theta2_signature_gate/presentation_crosswalk.jsonl"
-    with crosswalk.open(encoding="utf-8") as handle:
-        for line in handle:
-            item = json.loads(line)
-            relation = item["normalized_relation"]
-            dummy_count = len(relation["target_dummy_roles"])
-            selected_incoming = bool(relation["target_provenance"][-1])
-            if selected_incoming and dummy_count == 0:
-                disposition = "direct_labelled_isomorphism"
-                base_certificate = "reviews/theta2_signature_gate/canonical_quotient_certificate.json"
-                transport = "reviews/theta2_signature_gate/frozen_presentation_transports.jsonl"
-                closure_certificate = ""
-                closure_verifier = ""
-            elif selected_incoming:
-                disposition = "selected_incoming_rooting_duplicate"
-                base_certificate = "reviews/theta2_signature_gate/canonical_quotient_certificate.json"
-                transport = "reviews/theta2_signature_gate/canonical_duplicate_transports.jsonl"
-                closure_certificate = ""
-                closure_verifier = ""
-            else:
-                disposition = "fixed_full_restoration_root"
-                base_certificate = "reviews/theta2_signature_gate/presentation_crosswalk.jsonl"
-                transport = "reviews/theta2_signature_gate/presentation_crosswalk.jsonl"
-                closure_certificate = "primary/certificates/hard_cover_n4_schema3_theta2_full.jsonl.gz"
-                closure_verifier = "reviews/compact_probe_clean_clone_gate/semantic_gate.py"
-            rows.append({
-                "universe": "four_outgoing_survivor",
-                "relation_id": item["normalized_relation_sha256"],
-                "source_graph_id": item["normalized_relation_sha256"],
-                "target_graph_id": relation["selected_signature_sha256"],
-                "direction": relation["direction"], "disposition": disposition,
-                "base_certificate_path": base_certificate,
-                "transport_path": transport,
-                "closure_certificate_path": closure_certificate,
-                "base_verifier": "reviews/base_gate_adversarial_referee/referee.py",
-                "closure_verifier": closure_verifier,
-            })
-    rows.sort(key=lambda row: (row["universe"], row["relation_id"]))
+    # This compact table is for human navigation.  The JSONL file above is the
+    # authoritative, verifier-reconstructed record-level evidence map.
+    fields = (
+        "universe", "relation_id", "presentation_ordinal", "source_graph_id",
+        "target_graph_id", "direction", "disposition", "base_verifier",
+        "closure_verifier", "evidence_binding_sha256",
+    )
+    rows = [{field: row.get(field, "") for field in fields} for row in evidence_rows]
     gzip_csv(atlas / "ATLAS_INDEX.csv.gz", fields, rows)
 
 

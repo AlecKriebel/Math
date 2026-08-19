@@ -10,16 +10,18 @@ audit reports are provenance only and are not theorem dependencies.
 | Article claim | Minimal exact evidence | Replay |
 |---|---|---|
 | Fixed mixed-graph convention, primitive supports, cut recovery, and full incidence-scaling bridge fibre | `primary/certificates/{core_universe,support_universe}.json`, `reviews/root_probe/`, `independent/bridge_cut/` | `bash verify.sh full` |
-| Theorem 6.3: complete three- and four-outgoing directed relation universes | `atlas/ATLAS_INDEX.csv.gz`, bounded relation streams in `primary/certificates/`, four-outgoing gate and restoration streams indexed there | `bash verify.sh full` and `regenerate-all` |
-| Restoration, arbitrary subdivisions, and coherent one-/two-port probes | `hard_cover_*` and `compact_probe_*` streams; `reviews/direct_anchor_probe_closure/certificates/` | `bash verify.sh full` and `regenerate-all` |
+| Theorem 6.3, including every three-/four-outgoing relation and its restoration/probe closure | `atlas/ATLAS_EVIDENCE_BINDINGS.jsonl.gz`; the exact streams named in each record | `bash verify.sh full` and `bash verify.sh regenerate-all` |
+| Deterministic graph-to-certificate regeneration | primitive inputs and compilers under `primary/`; frozen streams under `primary/certificates/` | `verifiers/regenerate_load_bearing.py`, invoked twice by `regenerate-all` |
 | Ordinary triangle common germ | `primary/certificates/jc_triangle_redirection_active.json`, `reviews/triangle_redirection_cleanroom/` | `bash verify.sh full` |
 | Omega and Theta sharpness families | `omega_audit/independent/`, `s_tc_jc_sharp_boundary/reproducibility/` | `bash verify.sh full` |
-| Bundle integrity, relation totality, deterministic regeneration, and mutation sensitivity | `ACTIVE_MANIFEST.json`, `SHA256SUMS`, `atlas/ATLAS_INDEX.csv.gz`, `expected_outputs/`, `verifiers/package_mutation_tests.py` | all three modes |
+| Bundle integrity, relation totality, and mutation sensitivity | `ACTIVE_MANIFEST.json`, `SHA256SUMS`, `atlas/ATLAS_EVIDENCE_BINDINGS.jsonl.gz`, `expected_outputs/`, `verifiers/package_mutation_tests.py` | all three modes |
 
-The per-relation index has 10,466 three-outgoing rows and 192 four-outgoing
-survivor rows. Every row names its certificate, transport (when applicable),
-and verifier. The archive excludes referee prose, research logs, superseded
-claims, manuscripts, and release-engineering workspaces.
+The authoritative evidence map has 10,466 three-outgoing records and 192
+four-outgoing survivor records.  Every record binds its decorated graphs,
+direction, certificate, transport when applicable, and verifier.  The CSV is
+a checked human-readable projection.  The archive excludes referee prose,
+research logs, superseded claims, manuscripts, and release-engineering
+workspaces.
 
 ## Explicit exclusions
 

@@ -39,14 +39,14 @@ UPSTREAM_FULL_AUDIT = PROJECT / "reviews/final_hard_cover_cleanroom/certificates
 UPSTREAM_MUTATIONS = PROJECT / "reviews/final_hard_cover_cleanroom/certificates/schema3_n4_theta2_mutation_certificate.json"
 
 EXPECTED = {
-    "summary": "915bed0a3add001c1a94d6d862a2359e6ad75b3489f8d71b7adf006952b5ce37",
+    "summary": "dde4040865d055427e85c83e7dfe18bebce1f6bfb737a54032be9e3f3827b824",
     "relations_physical": "0d6cbe5c8d25d86a01f05bfae4c45eb8429e99c08417798ae0132d47a13a1bb4",
     "graphs_physical": "9fd26a4e4f01e931fcfd1906a41576867f86299925d47adb41c06cf89241f492",
     "roots_physical": "330c4b4cee816bb67aaf6070775669c98eb0a1a17a6bc355d8af91eb935ea3ac",
     "polynomials_physical": "a55059f58f6b1885940e8d99ac7c407d1988b12708cd4638fab99ed2fad98a87",
     "definitions": "5ba5a4c9bbd66553d3cb98915b2c1afeacb98034bf89471b881f06dc591b3005",
-    "upstream_full_audit": "8778aa2af23e6c7f286ee26883efc076f070bfc07ed8f10cfa1b504c3b218390",
-    "upstream_mutations": "c24dfc03e68fb196c0b48e172394c4772e867c5e9bfc3ef9003d51ec4f8e2d6a",
+    "upstream_full_audit": "cbd1b550ce1d58b1ff77f512d6d5731bf5a11da2d9e309189ae754f93432f180",
+    "upstream_mutations": "015bf21159e3989e06198d225e3d687eeaeb5041240eb3da3b3845c9bf24f4a8",
     "templates": "dd4b47f018d8f261fe296430513cedc1691b39cdb57fa075e42d884ecfba9ee3",
     "seventh": "f737f9bee9cc04045355416b95629c18cb5aa9bc31d9719e319eb0a3907babed",
     "multidegrees": "a8f50b3704d564ff5f484ea140bb85b1dfea561f043f2c29b30c0ce3227f5eae",
@@ -1411,7 +1411,7 @@ def main() -> None:
     upstream_meta_ok = (
         upstream_full.get("status") == "VERIFIED"
         and upstream_full.get("normalized_sha256_without_hash") ==
-        "5cea78208f1ccbce93b22fb7f5c71e73999a9abea51e23d7182b9cfa4f1be1c6"
+        "0a1206bfb70ebf913525301bfeff39bd619078f4172d58cea936675155a33d13"
         and upstream_mutations.get("status") == "VERIFIED"
         and len(upstream_mutations.get("mutations", {})) == 13
         and all(row.get("rejected") is True

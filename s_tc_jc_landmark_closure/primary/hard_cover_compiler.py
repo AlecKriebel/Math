@@ -832,7 +832,13 @@ def main():
             list_root_cases=args.list_root_cases,
             tag=args.tag,
         )
-        rows.append({"bounded_summary": summary, "hard_cover": cover})
+        # Wall-clock timing is intentionally excluded from the proof object so
+        # direct and sharded summaries are byte-reproducible across machines.
+        bounded_summary = {
+            key: value for key, value in summary.items()
+            if key != "elapsed_seconds"
+        }
+        rows.append({"bounded_summary": bounded_summary, "hard_cover": cover})
         print(json.dumps(cover, sort_keys=True), flush=True)
         if not args.list_root_cases and cover["unresolved"]:
             raise SystemExit(f"unresolved hard-cover relations at n={n}")

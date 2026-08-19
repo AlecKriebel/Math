@@ -26,8 +26,14 @@ Bernstein sign certificate regenerated from its graph.  Equality terminals
 are accepted only after independent labelled mixed-graph canonicalization as
 an isomorphism or ordinary triangle redirection.
 
-`atlas/ATLAS_INDEX.csv.gz` has one row per canonical relation. Its separate
-base and closure fields make the restoration/probe dependency explicit:
-direct strict/equality rows terminate at the base certificate, while pending
-rows name both their raw-to-restoration transport and the exact closure
-certificate/verifier.
+`atlas/ATLAS_EVIDENCE_BINDINGS.jsonl.gz` has one authoritative record per
+canonical relation.  Each record binds the source and target decorated
+graphs, direction, disposition, exact base evidence, and—when required—the
+raw-to-restoration transport and exact closure evidence.  The complete map is
+regenerated from the frozen graph and certificate streams during every
+verification mode.
+
+`atlas/ATLAS_INDEX.csv.gz` is a compact human-readable projection of those
+records.  It is useful for navigation but is not a substitute for the exact
+JSONL evidence map.  The verifier requires the CSV to be the exact projection
+of the regenerated evidence records.

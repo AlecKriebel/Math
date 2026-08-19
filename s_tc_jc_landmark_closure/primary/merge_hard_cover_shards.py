@@ -21,6 +21,34 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def normalized_json(value):
+    """Remove only nonsemantic, run-specific fields from JSON commitments."""
+    if isinstance(value, dict):
+        return {
+            key: normalized_json(item)
+            for key, item in sorted(value.items())
+            if key not in {"elapsed_seconds", "merged_shard_inputs"}
+        }
+    if isinstance(value, list):
+        return [normalized_json(item) for item in value]
+    return value
+
+
+def semantic_json_sha256(path: Path) -> str:
+    payload = normalized_json(json.loads(path.read_text(encoding="utf-8")))
+    return hashlib.sha256(
+        json.dumps(payload, sort_keys=True, separators=(",", ":")).encode()
+    ).hexdigest()
+
+
+def normalized_path(path: Path) -> str:
+    path = path.resolve()
+    try:
+        return str(path.relative_to(PROJECT.resolve()))
+    except ValueError:
+        return path.name
+
+
 def read_stream(path: Path, key: str) -> dict[str, dict]:
     rows = {}
     with gzip.open(path, "rt", encoding="utf-8") as handle:
@@ -88,7 +116,9 @@ def main() -> None:
             raise AssertionError((summary_path, "expected one run"))
         run = payload["runs"][0]
         cover = run["hard_cover"]
-        input_hashes[str(summary_path)] = sha256(summary_path)
+        input_hashes[normalized_path(summary_path)] = semantic_json_sha256(
+            summary_path
+        )
         if bounded is None:
             bounded = normalized_bounded(run["bounded_summary"])
             first_cover = cover
@@ -132,7 +162,7 @@ def main() -> None:
         )
         for destination, relative, key, label in streams:
             path = PROJECT / relative
-            input_hashes[str(path)] = sha256(path)
+            input_hashes[normalized_path(path)] = sha256(path)
             incoming = read_stream(path, key)
             if label == "states":
                 state_rows_total += len(incoming)

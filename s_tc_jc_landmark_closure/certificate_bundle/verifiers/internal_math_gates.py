@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import gzip
 import json
 import os
 from pathlib import Path
@@ -27,6 +28,15 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def logical_sha256(path: Path) -> str:
+    digest = hashlib.sha256()
+    opener = gzip.open if path.suffix == ".gz" else open
+    with opener(path, "rb") as handle:
+        for block in iter(lambda: handle.read(1 << 20), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
 def run(*command: str, cwd: Path = ROOT) -> None:
     print("\n==> " + " ".join(command), flush=True)
     subprocess.run(command, cwd=cwd, env=os.environ.copy(), check=True)
@@ -35,6 +45,14 @@ def run(*command: str, cwd: Path = ROOT) -> None:
 def compare(generated: Path, expected: Path) -> None:
     if generated.read_bytes() != expected.read_bytes():
         raise AssertionError(f"replay differs from frozen certificate: {expected.relative_to(ROOT)}")
+
+
+def compare_logical_gzip(generated: Path, expected: Path) -> None:
+    with gzip.open(generated, "rb") as left, gzip.open(expected, "rb") as right:
+        if left.read() != right.read():
+            raise AssertionError(
+                f"logical replay differs from frozen certificate: {expected.relative_to(ROOT)}"
+            )
 
 
 def convention_gate() -> None:
@@ -82,6 +100,42 @@ def base_gate(n3: bool) -> None:
             "certificate_sha256": sha256(out / "certificate.json"),
             "mutations_sha256": sha256(out / "mutations.json"),
         }
+
+
+def full_n4_exact_audit() -> None:
+    here = ROOT / "reviews/final_hard_cover_cleanroom"
+    summary = ROOT / "primary/certificates/hard_cover_schema3_theta2_full_summary.json"
+    with tempfile.TemporaryDirectory(prefix="n4-full-exact-") as raw:
+        out = Path(raw)
+        run(
+            PYTHON, str(here / "audit_candidate_stream.py"),
+            "--relations", "primary/certificates/hard_cover_n4_schema3_theta2_full.jsonl.gz",
+            "--graphs", "primary/certificates/hard_cover_graphs_n4_schema3_theta2_full.jsonl.gz",
+            "--roots", "primary/certificates/hard_cover_root_cases_n4_schema3_theta2_full.jsonl.gz",
+            "--polynomials", "primary/certificates/hard_cover_polynomials_n4_schema3_theta2_full.jsonl.gz",
+            "--summary", str(summary.relative_to(ROOT)),
+            "--expected-summary-sha256", sha256(summary),
+            "--invariant-metadata", "primary/certificates/invariant_multihomogeneity.json",
+            "--family-tag", "n4_minimum",
+            "--output", str(out / "audit.json"),
+            "--terminal-records-output", str(out / "terminals.jsonl.gz"),
+        )
+        compare(
+            out / "audit.json",
+            here / "certificates/schema3_n4_theta2_full_audit.json",
+        )
+        compare_logical_gzip(
+            out / "terminals.jsonl.gz",
+            here / "certificates/schema3_n4_theta2_terminal_records.jsonl.gz",
+        )
+        COMMITMENTS["n4_all_record_exact_audit"] = {
+            "audit_sha256": sha256(out / "audit.json"),
+            "terminal_stream_logical_sha256": logical_sha256(
+                out / "terminals.jsonl.gz"
+            ),
+        }
+    run(PYTHON, str(here / "mutation_schema3_stream.py"))
+    run(PYTHON, str(here / "verify_schema3_n4_certificates.py"))
 
 
 def omega_gate(full: bool) -> None:
@@ -151,6 +205,7 @@ def full(regenerate: bool) -> None:
     run(PYTHON, "reviews/theta2_signature_gate/verify_gate.py")
     run(PYTHON, "reviews/theta2_signature_gate/canonicalize_relations.py")
     base_gate(True)
+    full_n4_exact_audit()
     base_gate(False)
     run(PYTHON, "reviews/final_hard_cover_cleanroom/verify_schema3_n4_certificates.py")
     if regenerate:
@@ -165,6 +220,19 @@ def full(regenerate: bool) -> None:
     triangle_gate()
     run(PYTHON, "s_tc_jc_sharp_boundary/reproducibility/verify_math.py")
     omega_gate(True)
+
+    if regenerate:
+        with tempfile.TemporaryDirectory(prefix="complete-regeneration-output-") as raw:
+            regenerated = Path(raw) / "regeneration_commitment.json"
+            run(
+                PYTHON,
+                "verifiers/regenerate_load_bearing.py",
+                "--output",
+                str(regenerated),
+            )
+            COMMITMENTS["primitive_regeneration"] = json.loads(
+                regenerated.read_text(encoding="utf-8")
+            )
 
     for relative in (
         "reviews/n3_universe_generator/n3_universe_certificate.json",

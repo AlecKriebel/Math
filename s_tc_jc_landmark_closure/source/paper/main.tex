@@ -1216,10 +1216,12 @@ statement; every polynomial used in it is regenerated from its two decorated
 graphs.  The complete canonical relation universe, raw-to-canonical
 transports, per-relation exact certificates, restoration and probe records,
 and primary and separately implemented replay verifiers are archived in the
-curated proof-certificate bundle \cite{KriebelAtlas2026}.  Its
-\texttt{ACTIVE\_MANIFEST.json} binds every generated record to its primitive
-inputs and verifier, while \texttt{bash verify.sh regenerate-all} reconstructs
-the frozen atlas from those inputs.
+curated proof-certificate bundle \cite{KriebelAtlas2026}.
+Its \texttt{ACTIVE\_MANIFEST.json} authenticates every included file, while
+\texttt{atlas/ATLAS\_EVIDENCE\_BINDINGS.jsonl.gz} binds each decorated
+relation to its exact evidence and replay program.  The command
+\texttt{bash verify.sh regenerate-all} reconstructs the complete frozen atlas
+and those row-level bindings from the primitive inputs.
 
 \begin{theorem}[Finite decorated-relation theorem]\label{thm:atlas}
 The certificate assigns every canonical decorated directed relation in the
@@ -1953,14 +1955,12 @@ Convention, primitive supports, cut recovery, and bridge fibre
 & \path{primary/certificates/core_universe.json},
   \path{primary/certificates/support_universe.json},
   \path{reviews/root_probe/}, and \path{independent/bridge_cut/}.\\
-Theorem~\ref{thm:atlas}: complete three- and four-outgoing finite universes
-& \path{atlas/ATLAS_INDEX.csv.gz}, the bounded three-outgoing streams in
-  \path{primary/certificates/}, and the four-outgoing gate and restoration
-  streams indexed there.\\
-Restoration, arbitrary subdivisions, and coherent probes
-& the three- and four-outgoing \path{hard_cover_*} streams,
-  \path{reviews/direct_anchor_probe_closure/certificates/}, and the
-  \path{compact_probe_*} streams.\\
+Theorem~\ref{thm:atlas}, including restoration and coherent probes
+& \path{atlas/ATLAS_EVIDENCE_BINDINGS.jsonl.gz} and the exact graph,
+  polynomial, transport, and probe streams named in each record.\\
+Complete deterministic regeneration from primitive inputs
+& \path{verifiers/regenerate_load_bearing.py}, invoked twice by
+  \path{verify.sh} in \texttt{regenerate-all} mode.\\
 Ordinary triangle common germ
 & \path{primary/certificates/jc_triangle_redirection_active.json} and
   \path{reviews/triangle_redirection_cleanroom/}.\\
@@ -1968,7 +1968,8 @@ Omega and Theta sharpness families
 & \path{omega_audit/independent/} and
   \path{s_tc_jc_sharp_boundary/reproducibility/}.\\
 Bundle integrity, totality, deterministic regeneration, and mutation tests
-& \path{ACTIVE_MANIFEST.json}, \path{atlas/ATLAS_INDEX.csv.gz},
+& \path{ACTIVE_MANIFEST.json},
+  \path{atlas/ATLAS_EVIDENCE_BINDINGS.jsonl.gz},
   \path{expected_outputs/}, and \path{verify.sh} in all three modes.\\
 \bottomrule
 \end{longtable}

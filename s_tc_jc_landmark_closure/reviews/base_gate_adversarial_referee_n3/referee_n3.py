@@ -45,18 +45,18 @@ TRIANGLE_CERTIFICATE = PROJECT / "reviews/triangle_redirection_cleanroom/certifi
 STRICT_FACTORS = HERE / "strict_factor_certificate.json"
 
 EXPECTED = {
-    "summary": "791844a802af61f64cba937a5adbe9d1d381d3fd7e55165914d4e4c885908e65",
+    "summary": "8ea833f92f8fe2777043fb95b643e0478ce162871e6694ef3c403f5f1c854cf8",
     "relations_physical": "dc128b64f5bdfbfa99c3db763112edd6491753b2c8b5341dd81aac14e8c416ca",
     "graphs_physical": "c1cccad20a589a7fbd6f91075f916d4965f97a0a626ae11244315b01e836fc29",
     "roots_physical": "45cc312e3d915c8015824673ef1a27050f375b3575e2e64fbff3f55f32a27929",
     "polynomials_physical": "11b3e2f8870fc711b7986df083b1e1d3aa2806ede321fd38eab60d0a25f789d6",
     "definitions": "5ba5a4c9bbd66553d3cb98915b2c1afeacb98034bf89471b881f06dc591b3005",
-    "euclid_path_audit": "6e304691ffeea6d9bc1118b59d778a1051e8fc1f9c3430e06b77fe48c82d8a97",
+    "euclid_path_audit": "7bc39e682721eaaf173b3c4bd23dfc3d1b3fbfd7f57c6d1043f1783070906307",
     "euclid_auditor": "fa2314a9e01220293f0706101d10f2a6bb52bd1a301f5add100391c0b9e50d85",
     "euclid_graph": "4c21cbc301eeab502b722b5e71cee3f14616c2874a142a43e95fcc581b1309a1",
     "euclid_algebra": "520140dda3260098c7e937a1dc38197bae65192dcb2149511f3db473fb87f1a9",
     "triangle_certificate": "d4b118fef3036829fe05c6b4176d0c4e637b39f45637b903eefba2b5ac5283fd",
-    "strict_factor_certificate": "5f14ddfafdd5a3fa165f4f2b832c542fde1ece041d39f30e39e9972f3dde0492",
+    "strict_factor_certificate": "76693387c7a98afc75b06ffe3fb7057b9b95c54330e5417d4812920b53ee82b1",
     "templates": "dd4b47f018d8f261fe296430513cedc1691b39cdb57fa075e42d884ecfba9ee3",
     "seventh": "f737f9bee9cc04045355416b95629c18cb5aa9bc31d9719e319eb0a3907babed",
     "multidegrees": "a8f50b3704d564ff5f484ea140bb85b1dfea561f043f2c29b30c0ce3227f5eae",

@@ -11,7 +11,7 @@ cd "$repo_dir"
   --roots primary/certificates/hard_cover_root_cases_n4_schema3_theta2_full.jsonl.gz \
   --polynomials primary/certificates/hard_cover_polynomials_n4_schema3_theta2_full.jsonl.gz \
   --summary primary/certificates/hard_cover_schema3_theta2_full_summary.json \
-  --expected-summary-sha256 915bed0a3add001c1a94d6d862a2359e6ad75b3489f8d71b7adf006952b5ce37 \
+  --expected-summary-sha256 dde4040865d055427e85c83e7dfe18bebce1f6bfb737a54032be9e3f3827b824 \
   --invariant-metadata primary/certificates/invariant_multihomogeneity.json \
   --family-tag n4_minimum \
   --output reviews/final_hard_cover_cleanroom/certificates/schema3_n4_theta2_full_audit.json \

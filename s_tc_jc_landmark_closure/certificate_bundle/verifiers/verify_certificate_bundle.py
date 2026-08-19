@@ -10,6 +10,8 @@ import hashlib
 import json
 from pathlib import Path
 
+import evidence_bindings
+
 
 def sha256(path: Path) -> str:
     digest = hashlib.sha256()
@@ -77,6 +79,10 @@ def verify_counts(root: Path) -> dict:
     hard4 = json.loads((cert / "hard_cover_schema3_theta2_full_summary.json").read_text())
     require(hard4["runs"][0]["hard_cover"]["canonical_restored_relations"] == 2106,
             "n4 restoration state count")
+    evidence = evidence_bindings.verify_frozen(root)
+    require(evidence["three_outgoing"] == 10466, "evidence map n3 count")
+    require(evidence["four_outgoing_survivor"] == 192, "evidence map n4 count")
+
     index = root / "atlas" / "ATLAS_INDEX.csv.gz"
     with gzip.open(index, "rt", encoding="utf-8", newline="") as handle:
         rows = list(csv.DictReader(handle))
@@ -84,27 +90,32 @@ def verify_counts(root: Path) -> dict:
     n4_rows = sum(row["universe"] == "four_outgoing_survivor" for row in rows)
     require(n3_rows == 10466, "atlas index n3 count")
     require(n4_rows == 192, "atlas index n4 count")
-    require(len({(row["universe"], row["relation_id"]) for row in rows}) == len(rows),
-            "atlas index relation identifiers are not unique")
+    frozen_evidence = evidence_bindings.read_rows(
+        root / "atlas/ATLAS_EVIDENCE_BINDINGS.jsonl.gz"
+    )
+    expected_index = [{field: str(row.get(field, "")) for field in rows[0]}
+                      for row in frozen_evidence]
+    require(rows == expected_index, "human atlas index is not the projection of evidence map")
+    require(len({(row["universe"], row["relation_id"], row["presentation_ordinal"])
+                 for row in rows}) == len(rows),
+            "atlas index presentation identifiers are not unique")
     for row in rows:
         require(row["direction"] == "source_precedes_target", "relation direction")
-        for field in ("base_certificate_path", "base_verifier"):
-            require((root / row[field]).is_file(), f"missing indexed {field}: {row[field]}")
-        transport = row["transport_path"]
-        if transport:
-            require((root / transport).is_file(), f"missing indexed transport: {transport}")
-        for field in ("closure_certificate_path", "closure_verifier"):
-            if row[field]:
-                require((root / row[field]).is_file(),
-                        f"missing indexed {field}: {row[field]}")
-        require(bool(row["closure_certificate_path"]) == bool(row["closure_verifier"]),
-                "closure certificate/verifier pairing")
+        require((root / row["base_verifier"]).is_file(),
+                f"missing indexed base verifier: {row['base_verifier']}")
+        if row["closure_verifier"]:
+            require((root / row["closure_verifier"]).is_file(),
+                    f"missing indexed closure verifier: {row['closure_verifier']}")
     four = [row["disposition"] for row in rows if row["universe"] == "four_outgoing_survivor"]
     require(four.count("direct_labelled_isomorphism") == 18, "n4 direct survivors")
     require(four.count("selected_incoming_rooting_duplicate") == 42,
             "n4 rooting-duplicate survivors")
     require(four.count("fixed_full_restoration_root") == 132, "n4 restoration roots")
-    return {"three_outgoing": n3_rows, "four_outgoing_survivors": n4_rows}
+    return {
+        "three_outgoing": n3_rows,
+        "four_outgoing_survivors": n4_rows,
+        "record_level_evidence_sha256": evidence["logical_sha256"],
+    }
 
 
 def verify_scope(root: Path) -> None:
@@ -120,6 +131,12 @@ def verify_scope(root: Path) -> None:
         require(path.name not in forbidden_names, f"audit prose leaked: {relative}")
         require(("land" + "mark") not in path.name.casefold(),
                 f"obsolete filename token: {relative}")
+        if path.is_file() and path.suffix.casefold() in {
+            ".cff", ".csv", ".json", ".md", ".py", ".sh", ".txt",
+        }:
+            text = path.read_text(encoding="utf-8", errors="strict")
+            require(("land" + "mark") not in text.casefold(),
+                    f"obsolete text token: {relative}")
 
 
 def main() -> None:
