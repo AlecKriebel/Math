@@ -5,8 +5,8 @@ Status: **CURATED PROOF OBJECT VERIFIED — DOI PENDING**
 Current pre-DOI candidate (the hash will change when the reserved DOI is
 inserted and the archive is resealed):
 
-- source commit: `7162788834e1ebde2ede4e597ca14c9b4ff56e7e`
-- archive SHA-256: `88a182b90551351bff663769fe30e6210a5a35a94db98cab8ac602195d081750`
+- source commit: `8f28b6238b815bd531b621ea3ad629d173708712`
+- archive SHA-256: `b165b6e65615c144c0a8b60e4381e453c20a6bb02602134384aa037f80cd26f7`
 - record-level evidence commitment:
   `09adbe4c639246b8a966d183984f1e1883246b92bd8927e2552a3cc5a25b505b`
 - finite universe: 10,466 three-outgoing relations and 192 four-outgoing
