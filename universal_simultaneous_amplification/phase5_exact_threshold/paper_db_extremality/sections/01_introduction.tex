@@ -1,0 +1,120 @@
+\section{Introduction}
+
+The Moran process is a foundational finite-population model of selection and
+genetic drift \citep{Moran1958}.  On a structured population, the fixation
+probability of a new mutant depends on both selection and the geometry of
+replacement.  The complete graph is the well-mixed baseline, while directed
+and weighted evolutionary graphs can amplify or suppress selection under
+particular update rules and fitness ranges
+\citep{Lieberman2005,Shakarian2012,Masuda2009,Allen2017,Allen2020}.
+Birth--death and death--Birth updating behave especially differently
+\citep{Kaveh2015}: the latter exposes every mutant to a uniformly sampled
+death event before local competition, which severely constrains
+amplification \citep{Hindersin2015,Tkadlec2020}.
+
+For a loopless directed weighting, multiply all incoming weights at a fixed
+target by the same positive number.  This changes no death--Birth transition.
+The intrinsic object is therefore a loopless row-stochastic replacement
+kernel $P$, with a row indexed by the dead target and a column by a potential
+parent.  Let $J_n$ be the uniform off-diagonal kernel and write
+\[
+ D_n(P,r)=\rho_{\dB}(J_n,r)-\rho_{\dB}(P,r)                 \tag{1.1}\label{1.1}
+\]
+for the uniformly initialized fixation deficit.  Global nonnegativity of
+$D_n(P,2)$ for every $n$ and every undirected weighted graph remains open.
+This paper resolves two transverse rigidity problems for the same surface
+$D_n(P,r)$.
+
+First, we approach the complete kernel in structure space while holding
+fitness fixed at two.  For every $n\ge3$ and every nonzero loopless
+row-zero perturbation $\delta$,
+\[
+ D_n(J_n+\varepsilon\delta,2)
+   =\kappa_n(\delta)\varepsilon^2+O(\varepsilon^3),
+ \qquad \kappa_n(\delta)>0.                                \tag{1.2}\label{1.2}
+\]
+Thus $J_n$ is a strict nondegenerate local maximizer among all positive
+loopless row-stochastic replacement kernels.  This is stronger than a
+reversible or undirected statement: column imbalance and directed circulation
+are both allowed.  It is nevertheless genuinely local.  Its neighborhood
+may depend on $n$, and it does not constrain a sequence that stays far from
+$J_n$.
+
+Second, we hold an arbitrary finite structure fixed and let $r\to\infty$.
+On complete directed support,
+\[
+ D_n(P,r)=\frac{\calE_{\rm dir}(P)}{n^2(n-2)r}+O(r^{-2}),   \tag{1.3}\label{1.3}
+\]
+where $\calE_{\rm dir}$ is an explicit incoming-column sum of squares.  Its
+zero set consists exactly of the kernels dynamically equivalent to $J_n$.
+Together with the noncomplete-support theorem of \citet{Tkadlec2020} and a
+source-component bound, this rules out one fixed
+finite directed weighting that amplifies for every $r>1$.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[>=Latex,scale=1]
+  \draw[->,thick] (0,0)--(7.5,0) node[right] {$r$};
+  \draw[->,thick] (0,0)--(0,3.7) node[above] {distance from $J_n$};
+  \fill (2.3,0) circle (2pt) node[below=4pt] {$r=2$};
+  \draw[very thick,blue!65!black] (2.3,0.15)--(2.3,1.45);
+  \draw[densely dashed,blue!35!black] (2.3,1.45)--(2.3,3.1);
+  \node[align=right,anchor=east,font=\small,blue!55!black] at (2.05,2.45)
+    {strict local maximum\\in every normalized direction};
+  \draw[very thick,red!70!black,->] (4.45,2.15)--(7.05,2.15);
+  \node[align=center,font=\small,red!60!black] at (5.75,2.65)
+    {fixed-structure\\strong-selection rigidity};
+  \node[align=center,font=\small] at (4.3,0.65)
+    {global all-$P$ statement at $r=2$ remains open};
+\end{tikzpicture}
+\caption{The two proved axes of the same complete-kernel deficit.  The
+fitness-two theorem is local in the full normalized structure space and all-order in
+population size; the strong-selection theorem is global in fixed finite
+structure and asymptotic in fitness.}
+\label{fig:axes}
+\end{figure}
+
+The mechanism behind \eqref{1.2} is different from ordinary weak-selection
+perturbation.  At $r=2$, a death--Birth update is an additive Boolean OR of a
+fair-geometric number of potential parents.  Reversing the graphical maps
+produces an exact finite union-valued ancestry chain; no independent-lineage
+approximation is made.  Its stationary law represents the fixation committor
+as a completely alternating coverage function.  A marked version turns the
+stationary mean ancestral-set size into a collision probability.  At $J_n$,
+the first variation vanishes by rank projection.  The Hessian is an
+$S_n$-invariant quadratic form on all loopless row-zero matrices.  The
+tangent space splits without multiplicity into standard,
+symmetric-balanced, and antisymmetric-balanced sectors.  We prove all three
+scalars positive by rank-recursion and phase-contraction certificates.  The
+standard sector is exactly the column-imbalance direction and requires a
+separate signed three-channel argument.
+
+The global low-order results sharpen the picture.  Every nonuniform positive
+weighted triangle is a strict suppressor for every $r>1$.  Two maximally
+symmetric weighted $K_4$ families obey the same conclusion.  These theorems
+are not inferred from local curvature; they follow from independent exact
+sum-of-squares certificates.
+
+An earlier unrefereed research release established the strong-selection and
+low-order portions of this argument \citep{Kriebel2026Archive}.  The present
+manuscript is a major superseding version.  The coverage and collision
+representations, the full directed fitness-two Hessian theorem, the three
+all-order sector certificates, and the synthesis of the two extremal axes are
+new here; the earlier strong-selection and low-order proofs are retained and
+reorganized so that the quantifier boundaries can be compared in one place.
+
+The quantifiers matter.  The fixed-graph theorem proves
+\[
+ \forall P\ \exists r_0(P)\ \forall r>r_0(P):\quad D_n(P,r)>0
+\]
+unless $P$ is dynamically complete.  It does not rule out a single
+fitness-independent sequence $(P_n)$ satisfying, for each fixed $r$,
+$D_n(P_n,r)<0$ once $n$ is sufficiently large.  We keep this distinction
+explicit throughout.
+
+The paper is organized as follows.  Section~\ref{sec:model-results} states
+the model and theorem suite.  Sections~\ref{sec:duality}--\ref{sec:hessian}
+prove the fitness-two local theorem.  Section~\ref{sec:strong} treats fixed
+structures at strong selection.  Section~\ref{sec:small} gives the global
+low-order classifications.  The appendices contain the exact phase
+certificates, the symmetric $K_4$ algebra, and a quantifier ledger.

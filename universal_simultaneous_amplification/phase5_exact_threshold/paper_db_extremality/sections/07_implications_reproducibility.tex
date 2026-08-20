@@ -1,0 +1,116 @@
+\section{Implications, limitations, and reproducibility}
+
+\subsection{A necessary condition for asymptotic universal amplification}
+
+The fixed-graph result does not interchange $n$ and $r$.  It nevertheless
+implies a useful support condition for undirected graph sequences.  Fixation
+is monotone in fitness under a common dead target and common uniform update
+threshold.  Proposition~\ref{prop:support-limit} therefore gives, for every
+finite connected undirected graph,
+\[
+ \rho_{\dB}(W,r)\le1-\frac1n\sum_i\frac1{s_i+1}.              \tag{7.1}\label{7.1}
+\]
+
+\begin{proposition}[support degree must diverge]\label{prop:degree}
+Let $W_n$ be connected undirected weighted graphs of order $n\to\infty$.
+If, for every fixed $r>1$, $W_n$ is eventually a dB amplifier, then
+\[
+ \frac1n\sum_i\frac1{s_i+1}\longrightarrow0.                \tag{7.2}\label{7.2}
+\]
+Consequently the support degree of a uniformly chosen vertex tends to
+infinity in probability.
+\end{proposition}
+
+\begin{proof}
+At fixed $R>1$, eventual amplification and \eqref{7.1} give
+\[
+ \limsup_{n\to\infty}\frac1n\sum_i\frac1{s_i+1}
+ \le\lim_{n\to\infty}\{1-\rho_{\dB}(J_n,R)\}=\frac1R.
+\]
+Let $R\to\infty$.  For fixed $K$, the fraction with $s_i\le K$ is at most
+$(K+1)$ times the average in \eqref{7.2}.
+\end{proof}
+
+This excludes uniformly bounded-support families, but not supports completed
+by arbitrarily weak positive edges, diffuse perturbations, mesoscopic
+modules, or singular population-dependent kernels.
+
+\subsection{What the local theorem does and does not say}
+
+Theorem~\ref{thm:local} proves strict negative fixation curvature in every
+nonzero normalized directed direction at fixed order.  In particular,
+neither column imbalance nor directed circulation escapes the local maximum.
+The theorem does not supply a radius uniform in $n$, global concavity along
+rays, or a path from an arbitrary kernel to $J_n$ on which fixation is monotone.  The
+global conjecture
+\[
+ \rho_{\dB}(P,2)\le\rho_{\dB}(J_n,2)                         \tag{7.3}\label{7.3}
+\]
+for every undirected weighted graph remains open.
+
+\subsection{Exact verification and proof status}
+
+The archive contains independent exact implementations for the two theorem
+axes.  The strong-selection suite constructs literal subset-state chains,
+checks row normalization and complete-graph lumpability, differentiates the
+absorption equations, verifies the incoming-column sum of squares, and
+replays the triangle and $K_4$ certificates.  The fitness-two suite
+independently builds the marked and active chains, verifies the collision
+normalization, reconstructs the rank Poisson equation, checks the tangent
+decomposition, and replays all three irreducible-sector certificates.
+
+The standard sector has an analytic tail certificate for $N\ge10$ and exact
+rational closure for $2\le N\le9$.  The symmetric sector uses exact solves
+for $3\le N\le39$, exact rational phase margins for $40\le N\le287$, and a
+coefficient/discriminant certificate for $N\ge288$.  All arithmetic in these
+finite ranges is rational.  The verifiers discharge the finite
+computer-assisted portions; sampled numerical values are never used to
+extend a quantifier.
+
+The one-command replay is
+\begin{verbatim}
+./replay.sh
+\end{verbatim}
+from the paper package.  The package-level integration audit separately
+checks the complete active stationary law, the full tangent decomposition,
+all three physical sector normalizations, the strong-selection column identity, and
+conversion from inverse-mean to fixation curvature.
+
+\section*{Statements and Declarations}
+
+\noindent\textbf{Data and code availability.}
+No empirical data are used.  Complete LaTeX source, exact rational and
+symbolic verifiers, coefficient certificates, build scripts, and adversarial
+audit reports accompany this manuscript in the development repository
+\url{https://github.com/AlecKriebel/Math}.  The earlier strong-selection and
+low-order version is archived at
+\url{https://doi.org/10.5281/zenodo.21753405}; that record does not contain
+the new fitness-two local theorem.  The accompanying standalone source bundle
+freezes every dependency needed to replay the expanded manuscript and is
+intended for versioned deposit with the preprint.
+
+\medskip
+\noindent\textbf{Funding.}
+No external funding supported this work.
+
+\medskip
+\noindent\textbf{Competing interests.}
+The author declares no competing interests.
+
+\medskip
+\noindent\textbf{Author contributions.}
+A.K. conceived the study, developed and checked the proofs, wrote and audited
+the exact software, and prepared the manuscript.
+
+\medskip
+\noindent\textbf{Ethics approval and consent.}
+Not applicable.  This study uses no human participants, animals, or empirical
+biological data.
+
+\medskip
+\noindent\textbf{AI-assisted research disclosure.}
+Generative-AI systems were used substantively in mathematical exploration,
+derivation, adversarial proof analysis, software development, and manuscript
+preparation.  The author determined the scope and claims, independently
+replayed the exact certificates, and accepts responsibility for the
+manuscript and accompanying materials.

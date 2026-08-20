@@ -1,0 +1,163 @@
+\section{Fixed structures at strong selection}\label{sec:strong}
+
+We now prove Theorem~\ref{thm:strong-complete},
+Corollary~\ref{cor:fixed}, and Proposition~\ref{prop:support-limit}.
+
+\subsection{Complete-graph baseline}
+
+Let $\phi_k$ be complete-graph fixation from $k$ mutants and let
+$\gamma_k$ be the ratio of the probabilities of decreasing and increasing
+$k$.  First-step equations give
+\[
+ \phi_1=\left(1+\sum_{j=1}^{n-1}\prod_{k=1}^j\gamma_k\right)^{-1}.
+                                                                    \tag{5.1}\label{5.1}
+\]
+Under dB updating,
+\[
+ \gamma_k=\frac{n-1+(r-1)k}{r\{n-1+(r-1)(k-1)\}},                 \tag{5.2}\label{5.2}
+\]
+so the product telescopes and yields \eqref{2.4}.  For $n\ge3$,
+\[
+ \rho_{\dB}(J_n,r)=\frac{n-1}{n}-\frac{n-1}{nr}+O(r^{-2}).       \tag{5.3}\label{5.3}
+\]
+
+We use the following standard finite-state observation.
+
+\begin{lemma}[finite-state perturbation]\label{lem:finite-perturb}
+Let a finite absorbing transition matrix depend analytically on
+$\varepsilon$ near zero.  If the transient restriction at $\varepsilon=0$
+has spectral radius below one, then all absorption probabilities are analytic
+near zero.  More generally, if a limiting reachable transient class has a
+bounded fundamental matrix and one-step leakage is $O(\varepsilon)$, then
+leakage before absorption is $O(\varepsilon)$.
+\end{lemma}
+
+\begin{proof}
+Write the transient absorption equation as $(I-Q(\varepsilon))h=b$.  The
+inverse exists near zero and is analytic by the adjugate formula.  On a
+restricted limiting class, its bounded fundamental matrix times the leakage
+vector bounds the probability of leaving before absorption.
+\end{proof}
+
+\subsection{Complete directed support}
+
+Assume $n\ge3$ and $w_{uv}>0$ for $u\ne v$.  Put
+\[
+ \varepsilon=r^{-1},\qquad
+ a_{uv}=\frac{d_v^--w_{uv}}{w_{uv}}.                         \tag{5.4}\label{5.4}
+\]
+Let $q_S(\varepsilon)$ be extinction probability from mutant set $S$.  At
+$\varepsilon=0$, every set with at least two mutants fixates, while
+$q_{\{i\}}(0)=1/n$.  The limiting transient chain absorbs, so Lemma
+\ref{lem:finite-perturb} gives analyticity.
+
+Differentiate the exact first-step system.  If $3\le|S|\le n-1$, a
+first-order loss still leaves at least two mutants, whose zeroth-order
+extinction is zero.  The derivative therefore satisfies
+\[
+ (n-|S|)q'_S(0)=\sum_{v\notin S}q'_{S\cup\{v\}}(0).           \tag{5.5}\label{5.5}
+\]
+Backward induction from $q'_V(0)=0$ gives
+\[
+ q_S(\varepsilon)=O(\varepsilon^2),\qquad |S|\ge3.           \tag{5.6}\label{5.6}
+\]
+
+For a pair $S=\{i,j\}$, loss of target $i$ has probability
+\[
+ \frac1n\frac{\varepsilon(d_i^--w_{ji})}
+ {w_{ji}+\varepsilon(d_i^--w_{ji})}
+ =\frac{\varepsilon a_{ji}}n+O(\varepsilon^2),               \tag{5.7}\label{5.7}
+\]
+and similarly for target $j$.  The leading self-loop mass is $2/n$, the
+leading gain mass is $(n-2)/n$, and a resulting singleton has extinction
+$1/n+O(\varepsilon)$.  Hence
+\[
+ q_{\{i,j\}}(\varepsilon)
+ =\frac{a_{ij}+a_{ji}}{n(n-2)}\varepsilon+O(\varepsilon^2).  \tag{5.8}\label{5.8}
+\]
+
+From singleton $\{i\}$, death of resident target $v$ creates the pair
+$\{i,v\}$ with probability
+\[
+ t_{iv}=\frac1n\frac{w_{iv}}
+ {w_{iv}+\varepsilon(d_v^--w_{iv})}
+ =\frac1n(1-a_{iv}\varepsilon)+O(\varepsilon^2).             \tag{5.9}\label{5.9}
+\]
+Death of $i$ causes extinction with probability $1/n$.  Removing holding
+probabilities gives
+\[
+ \left(\frac1n+\sum_{v\ne i}t_{iv}\right)q_{\{i\}}
+ =\frac1n+\sum_{v\ne i}t_{iv}q_{\{i,v\}}.                   \tag{5.10}\label{5.10}
+\]
+Define
+\[
+ O_i=\sum_{v\ne i}a_{iv},\qquad I_i=\sum_{u\ne i}a_{ui}.    \tag{5.11}\label{5.11}
+\]
+Substitution of \eqref{5.8} into \eqref{5.10} yields
+\[
+ q_{\{i\}}(\varepsilon)
+ =\frac1n+\frac{\varepsilon}{n^2}
+ \left[O_i+\frac{O_i+I_i}{n-2}\right]+O(\varepsilon^2).    \tag{5.12}\label{5.12}
+\]
+Since $\sum_iO_i=\sum_iI_i=:T_{\rm dir}(W)$, uniform averaging gives
+\[
+ \rho_{\dB}(W,r)
+ =\frac{n-1}{n}-\frac{T_{\rm dir}(W)}{n^2(n-2)r}+O(r^{-2}), \tag{5.13}\label{5.13}
+\]
+where
+\[
+ T_{\rm dir}(W)=\sum_v\sum_{u\ne v}\frac{d_v^--w_{uv}}{w_{uv}}.
+                                                                    \tag{5.14}\label{5.14}
+\]
+
+For each target column, the elementary identity
+\[
+ d_v^-\sum_{u\ne v}\frac1{w_{uv}}-(n-1)^2
+ =\sum_{\substack{u<z\\u,z\ne v}}
+   \frac{(w_{uv}-w_{zv})^2}{w_{uv}w_{zv}}                   \tag{5.15}\label{5.15}
+\]
+gives
+\[
+ T_{\rm dir}(W)-n(n-1)(n-2)=\calE_{\rm dir}(W).             \tag{5.16}\label{5.16}
+\]
+Equations \eqref{5.3}, \eqref{5.13}, and \eqref{5.16} prove
+Theorem~\ref{thm:strong-complete}.  Equality in \eqref{5.15} forces each
+incoming column to be constant.  Such column constants cancel from every
+parent competition, so the full chain is exactly the $J_n$ chain.
+
+\subsection{Noncomplete supports and fixed-graph closure}
+
+If the positive directed support is strongly connected but noncomplete,
+\citet{Tkadlec2020} prove eventual strict dB suppression.  It
+remains to remove strong connectivity.
+
+Consider the condensation DAG.  If it has at least two source strongly
+connected components, then a uniformly initialized singleton leaves at least
+one source component entirely resident and unable to receive mutant ancestry;
+fixation is impossible.  Otherwise let $C\subsetneq V$ be the unique source
+component.  Initial mutants outside $C$ cannot fixate.  For $i\in C$, let
+$s_i^+$ be its positive out-support size.  While $i$ is the only mutant, its
+chance to make a first gain before dying is at most $s_i^+/(s_i^++1)$.  Thus
+\[
+ \rho_{\dB}(W,r)
+ \le\frac1n\sum_{i\in C}\frac{s_i^+}{s_i^++1}
+ \le\frac{(n-1)^2}{n^2}.                                  \tag{5.17}\label{5.17}
+\]
+The complete baseline tends to $(n-1)/n$, leaving limiting gap
+$(n-1)/n^2$.  Combining this case, the cited strongly connected
+noncomplete-support theorem, and Theorem~\ref{thm:strong-complete} proves
+Corollary~\ref{cor:fixed}.
+
+\subsection{Undirected incomplete support}
+
+Fix an initial mutant $i$ in a connected undirected support.  At
+$r=\infty$, death of $i$ causes extinction, while death of any one of its
+$s_i$ neighbors creates an adjacent mutant pair.  After deleting holding
+steps, the probability of reaching a pair first is $s_i/(s_i+1)$.  Once an
+adjacent pair exists, the mutant set remains support-connected; every mutant
+has a mutant neighbor and cannot be replaced by a resident in the limiting
+chain, while every boundary resident death produces monotone growth.  The
+limiting chain therefore reaches fixation almost surely from the pair.
+Lemma~\ref{lem:finite-perturb} controls $O(1/r)$ leakage from this limiting
+class.  Uniform averaging proves \eqref{2.11}; elementary subtraction proves
+\eqref{2.12}.

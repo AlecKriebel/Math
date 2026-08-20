@@ -1,0 +1,160 @@
+\section{Boolean ancestry, coverage, and collision}\label{sec:duality}
+
+This section is valid for every positive loopless row-stochastic $P$;
+reversibility is not used.
+
+\subsection{The fair-geometric union dual}
+
+At fitness two, \eqref{2.2} becomes $2x/(1+x)$.  This is a finite additive
+graphical system in the sense of \citet{Harris1978}.  Let $L$ have the fair
+geometric law
+\[
+ \Pp(L=\ell)=2^{-\ell},\qquad \ell\ge1,                       \tag{3.1}\label{3.1}
+\]
+and, conditionally on target $v$, draw $U_1,\ldots,U_L$
+independently from row $P_v$.  For any mutant set $S$,
+\[
+ \Pp(U_1,\ldots,U_L\notin S)
+ =\E(1-P_{vS})^L=\frac{1-P_{vS}}{1+P_{vS}}.                  \tag{3.2}\label{3.2}
+\]
+Thus the forward update at $v$ is exactly the additive Boolean map
+\[
+ x_v\longleftarrow x_{U_1}\vee\cdots\vee x_{U_L}.           \tag{3.3}\label{3.3}
+\]
+The transpose graphical map sends a nonempty ancestral set $A$ to
+\[
+ A\longmapsto
+ \begin{cases}
+ (A\setminus\{v\})\cup\{U_1,\ldots,U_L\},&v\in A,\\
+ A,&v\notin A.
+ \end{cases}                                                 \tag{3.4}\label{3.4}
+\]
+Because $P_{vv}=0$, the updated set in the first line omits $v$ and is
+always nonempty; hence the dual remains a proper nonempty subset whenever it
+starts there.
+
+Using the same graphical marks forward and backward gives the exact duality
+\[
+ \Pp_S(X_t\cap A\ne\varnothing)
+ =\Pp_A(S\cap A_t\ne\varnothing).                            \tag{3.5}\label{3.5}
+\]
+For positive $P$, the dual is irreducible on the proper nonempty subsets.
+Let $\Pi_P$ denote its stationary law and put
+\[
+ m(P)=\E_{\Pi_P}|A|.                                         \tag{3.6}\label{3.6}
+\]
+
+\begin{proposition}[coverage representation]\label{prop:coverage}
+The fixation committor at fitness two is
+\[
+ h_P(S)=\Pp_{A\sim\Pi_P}(A\cap S\ne\varnothing),            \tag{3.7}\label{3.7}
+\]
+and therefore
+\[
+ \rho_{\dB}(P,2)=\frac{m(P)}n.                              \tag{3.8}\label{3.8}
+\]
+Moreover, for every nonempty $T$ disjoint from $S$,
+\[
+ (-1)^{|T|+1}\Delta_T h_P(S)
+ =\Pp_{\Pi_P}(A\cap S=\varnothing,\ T\subseteq A)\ge0.      \tag{3.9}\label{3.9}
+\]
+Thus $h_P$ is a normalized completely alternating coverage function.
+\end{proposition}
+
+\begin{proof}
+The finite forward chain absorbs almost surely.  Start the dual from $V$ in
+\eqref{3.5} and let $t\to\infty$.  The left side converges to the fixation
+probability from $S$, while the recurrent dual law converges to $\Pi_P$,
+giving \eqref{3.7}.  Averaging $h_P(\{i\})=\Pp(i\in A)$ over $i$ proves
+\eqref{3.8}.  For fixed $A$, the indicator
+$\one_{\{A\cap S\ne\varnothing\}}$ has mixed difference
+$(-1)^{|T|+1}\Delta_T$ equal to
+$\one_{\{A\cap S=\varnothing,\ T\subseteq A\}}$; averaging proves
+\eqref{3.9}.
+\end{proof}
+
+\subsection{A one-sample active chain}
+
+The geometric burst can be factored into one-sample steps.  Let
+\[
+ \mathcal Y_n=\{(B,v):\varnothing\ne B\subseteq V\setminus\{v\}\}. \tag{3.10}\label{3.10}
+\]
+From $y=(B,v)$, with $b=|B|$, define $K(P)$ by the following fair mixture:
+\begin{enumerate}
+\item sample $i$ from row $P_v$ and move to $(B\cup\{i\},v)$;
+\item choose $w$ uniformly from $B$, sample $i$ from row $P_w$, and move to
+      $((B\setminus\{w\})\cup\{i\},w)$.
+\end{enumerate}
+Each branch has probability $1/2$.  The first branch continues a geometric
+burst; the second stops it and retargets the active ancestral mark.
+
+\begin{lemma}[active collision identity]\label{lem:active}
+Let $\nu(P)$ be the stationary law of $K(P)$ and put
+\[
+ H(B,v)=\frac1{|B|}.                                        \tag{3.11}\label{3.11}
+\]
+Then
+\[
+ \nu(P)H=\frac1{m(P)}=\frac1{n\rho_{\dB}(P,2)}.             \tag{3.12}\label{3.12}
+\]
+The map $P\mapsto K(P)$ is linear.
+\end{lemma}
+
+\begin{proof}
+We include the marked-current calculation because it is the bridge from the
+coverage law to the Hessian.  Let $T_v(A,B)$ be the transition kernel of one
+union-dual update with target fixed at $v$.  For $v\notin C$, define
+\[
+ \sigma_v(C)=\Pi_P(C\cup\{v\}),\qquad
+ \eta_v(C)=\sum_A\Pi_P(A)T_v(A,C)-\Pi_P(C).                 \tag{3.13a}\label{3.13a}
+\]
+The subtracted term is exactly the passive current from $A=C$, for which
+$v\notin A$ and no ancestral update occurs; hence $\eta_v(C)$ is the
+nonnegative active current arriving at output $(C,v)$.  Stationarity of the
+union dual, after summing its $n$ equally likely target updates, gives
+\[
+ \sum_{v\notin B}\eta_v(B)=|B|\Pi_P(B).                    \tag{3.13}\label{3.13}
+\]
+If $A_v$ adjoins one sample from row $P_v$, the fair-geometric resolvent
+identity gives
+\[
+ \lambda_v=\frac{\sigma_v+\eta_v}{2},\qquad
+ \eta_v=\lambda_vA_v.                                      \tag{3.14}\label{3.14}
+\]
+Write $A$ for the one-sample channel and $R$ for the fair
+continue-or-retarget channel.  After the sample, continuing contributes
+$\eta_v(B)/2$ to $(B,v)$.  Stopping, choosing $w$ uniformly from $B$, and
+ending at $(B\setminus\{w\},w)$ contributes, by \eqref{3.13},
+$\Pi_P(B)/2=\sigma_w(B\setminus\{w\})/2$.  Hence
+$\lambda AR=\lambda$.  Since $\eta=\lambda A$, associativity gives
+$\eta RA=\eta$; the push-forward $RA$ is precisely the active kernel
+$K(P)$ defined above.  Both $\sigma_v$ and $\eta_v$ have total mass
+$\Pp_{\Pi_P}(v\in A)$, so
+\[
+ \sum_{v,C}\lambda_v(C)=m(P).                              \tag{3.15}\label{3.15}
+\]
+Normalizing the pushed-forward law gives $\nu(P)=\eta/m(P)$.  Dividing
+\eqref{3.13} by $|B|$ and summing over $B$ yields
+\[
+ \nu(P)H=\sum_{k\ge1}\frac{k\Pi_P(|A|=k)}{m(P)}\frac1k
+ =\frac1{m(P)}.                                             \tag{3.16}\label{3.16}
+\]
+Both active moves contain exactly one use of a row of $P$, proving linearity.
+\end{proof}
+
+At the complete kernel, put $N=n-1$.  Direct substitution gives
+\[
+ \nu_0(B,v)=\frac{|B|}{nN2^{N-1}},\qquad
+ c_0:=\nu_0H=\frac{2^N-1}{N2^{N-1}}=\frac1{m_n}.             \tag{3.17}\label{3.17}
+\]
+This agrees with \eqref{2.4} at $r=2$.
+
+The collision interpretation is literal.  In one stationary marked-chain
+step, let $I$ be the sampled source; if the fair continue-or-stop coin stops,
+let $W$ be the new target chosen uniformly from $B$.  Then
+\[
+ \Pp(\mathrm{stop},W=I)=\frac1{2m(P)},\qquad
+ \Pp(W=I\mid\mathrm{stop})=\frac1{m(P)}.                  \tag{3.18}\label{3.18}
+\]
+Thus maximizing fixation is equivalent to minimizing this stationary
+collision rate.

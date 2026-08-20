@@ -1,0 +1,60 @@
+# bioRxiv submission checklist
+
+> **DRAFT — NOT POSTED.** Only the human author may enter private metadata,
+> accept terms, choose a license, or press the submission button.
+
+## Scientific and document checks
+
+- [ ] Confirm the final PDF title, author, abstract, theorem statements, and
+      limitation statements match `BIORXIV_METADATA.md` exactly.
+- [ ] Confirm the submission remains biological research in evolutionary
+      dynamics and is presented as a research article with new mathematical
+      results and reproducible exact outputs.
+- [ ] Select **New Results** as the article type and **Evolutionary Biology**
+      as the subject category.
+- [ ] Upload the final manuscript PDF and any supporting archive accepted by
+      the live portal.
+- [ ] Confirm all fonts render, hyperlinks work, and no tracked-change or
+      internal-review material appears in the PDF.
+- [ ] Confirm the abstract and keywords copied into the portal are identical
+      to the frozen manuscript.
+
+## Author-only fields and choices
+
+- [ ] Confirm `me@aleckriebel.com` is the intended corresponding email.
+- [ ] Replace `[[POSTAL_ADDRESS]]` everywhere it occurs if the portal asks for
+      an address or residence.
+- [ ] Confirm the author name, Independent Researcher affiliation, and ORCID.
+- [ ] Select and approve the preprint license after reading the live options.
+- [ ] Read and accept the current bioRxiv terms and screening declarations.
+- [ ] Confirm that no simultaneous journal consideration conflicts with the
+      intended journal workflow.
+
+## Integrity and provenance
+
+- [ ] Disclose the public software snapshot at DOI
+      `10.5281/zenodo.21753405`, which contains the earlier fixed-graph
+      obstruction manuscript and code superseded by this consolidated paper.
+- [ ] If requested, disclose DOIs `10.5281/zenodo.21850042` and
+      `10.5281/zenodo.21852072` as related **software archives** for the
+      separate simultaneous-amplification workstream, not as prior
+      publications of this manuscript.
+- [ ] Confirm that any public project webpage containing an earlier draft is
+      disclosed wherever the portal asks about prior online dissemination.
+- [ ] Use the substantive AI-assistance statement in `DECLARATIONS.md` and
+      verify it against the live policy.
+- [ ] Confirm no third-party copyrighted figure or table requires permission.
+- [ ] Confirm no human participants, animals, clinical material, personal
+      data, or empirical dataset are involved.
+
+## Reproducibility and freeze
+
+- [ ] Run `../release_bundle.sh` and retain the printed archive SHA-256.
+- [ ] Verify the internal `MANIFEST.sha256` after clean extraction.
+- [ ] Run `submission/bootstrap_replay.sh` from the extracted copy.
+- [ ] Rebuild and visually inspect the deterministic manuscript PDF.
+- [ ] Create a versioned public release for the present consolidated package
+      only after the author approves the frozen files.
+- [ ] Add the new persistent identifier to the manuscript, portal metadata,
+      and availability statement after it exists; do not reuse a prior DOI.
+- [ ] Human author performs the final submission and retains the confirmation.
