@@ -1014,3 +1014,6 @@
   a pending or already-finalized checkout.  A temporary end-to-end simulation
   of the documented reserve/finalize sequence passed without leaving a DOI
   placeholder on any publication surface.
+- The final read-only adversarial release review returned `PASS`, reported no
+  blocking defect, and approved the candidate for DOI reservation followed by
+  the documented finalization, reseal, verification, and rebuild sequence.
