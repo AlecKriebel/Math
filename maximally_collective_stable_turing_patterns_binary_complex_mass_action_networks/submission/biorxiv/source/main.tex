@@ -4,6 +4,7 @@
 \usepackage{lmodern}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
 \usepackage{booktabs,array,enumitem,microtype,graphicx,longtable}
+\usepackage{float}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,fit,positioning}
 \usepackage[hidelinks]{hyperref}
@@ -60,7 +61,7 @@ between diffusion and equilibrium concentrations so that both contrasts are
 $\Theta(\sqrt n)$, matching the topology-specific stationary minimax lower
 bound in exponent.
 The proof uses explicit flux-cone design, exhaustive strongly connected block
-classification, conservation-compatible Lyapunov--Schmidt reduction, and
+classification, conservation-compatible center-manifold reduction, and
 inspectable symbolic certificates.  The networks are synthetic; the
 bifurcation, stability, and robustness conclusions are local for each fixed
 dimension, and the stationary diffusion law does not classify arbitrary wave
@@ -255,7 +256,7 @@ For a real square matrix $M$, write
 $\alphaS(M)=\max\{\Re\lambda:\lambda\in\sigma(M)\}$.
 
 \begin{lemma}[Exhaustive strongly connected blocks]\label{lem:scc}
-Let $I$ be a principal species set with $|I|<m$.  Every nontrivial strongly
+Let $I$ be a principal species set with $0<|I|<m$.  Every nontrivial strongly
 connected component of the induced Jacobian graph on $I$ is one of
 \begin{enumerate}[leftmargin=2em]
 \item the complete long cycle $X_1,\ldots,X_{m-1}$;
@@ -264,7 +265,7 @@ connected component of the induced Jacobian graph on $I$ is one of
 \item a negative singleton.
 \end{enumerate}
 After a simultaneous permutation of rows and columns, every principal matrix
-with $|I|<m$ is block upper triangular with diagonal blocks of these forms.
+with $0<|I|<m$ is block upper triangular with diagonal blocks of these forms.
 On the hypersurface $b=2a$, the edge $X_1\to X_m$ is absent; this can only
 split components and hence refines the same classification.
 \end{lemma}
@@ -299,7 +300,7 @@ merge strongly connected components, so no new case arises.
 
 \begin{theorem}[Maximal all-spectrum localization]\label{thm:allspectrum}
 For every $m\ge3$, $a,b>0$, positive diagonal $H$, and principal set $I$ with
-$|I|<m$,
+$0<|I|<m$,
 \begin{equation}\label{eq:lowerhurwitz}
  \alphaS(J_m(a,b,H)_{I,I})<0.
 \end{equation}
@@ -353,8 +354,9 @@ General $n$-component matrix theory permits unstable (activator) subsystem
 dimensions through $p=n-1$ \cite{Satnoianu2000}.  This endpoint is sharp even
 within binary-complex classical mass action: for every $n\ge4$, one indexed
 topology has every principal subsystem below order $n-1$ Hurwitz throughout
-every positive realization, while an order-$(n-1)$ subsystem is unstable and
-the full reaction--diffusion system admits locally stable patterns.
+every positive realization, while an order-$(n-1)$ subsystem is unstable.
+Moreover, the topology admits a selected positive realization whose full
+reaction--diffusion system has locally stable patterns.
 \end{corollary}
 Anma, Sakamoto, and Yoneda \cite{Anma2012} provide complementary analysis of
 stable--unstable and unstable--unstable pairs of subsystems in the
@@ -605,12 +607,15 @@ restricted to $c^\perp$, is stable;
 right vector \eqref{eq:rimp}; every other first-mode eigenvalue and every
 higher mode is stable, and no complex pair is critical;
 \item the crossing is transverse;
-\item a conservation-compatible Lyapunov--Schmidt reduction has
+\item in the adjoint-projection coordinate, the one-dimensional
+center-manifold normal form is
 \begin{equation}\label{eq:NFunit}
  \dot A=\eta_m\mu A+c_mA^3+
  O(|A|^5+|A|^3|\mu|+|A||\mu|^2),
  \qquad \eta_m>0,\quad c_m<0;
 \end{equation}
+setting $\dot A=0$ gives the associated stationary Lyapunov--Schmidt
+bifurcation equation;
 \item for sufficiently small $\mu>0$, the two positive nonconstant branches
 are locally exponentially asymptotically stable in the fixed-integrated-mass
 $H^1$ phase space.
@@ -683,6 +688,10 @@ $\mathfrak h_m=\sum_{j=1}^{m-2}K_j^{-1}$.  The exact shifted-polynomial
 certificate proves the numerator positive and the denominator negative for
 all $m\ge3$, hence $c_m<0$.
 
+The sectorial fixed-mass semiflow has a one-dimensional center manifold
+\cite[Chapter~6]{Henry1981}.  In the adjoint-projection coordinate its reduced
+vector field has the coefficients $\eta_m,c_m$ above; setting that vector
+field to zero gives the stationary Lyapunov--Schmidt equation.
 Crandall--Rabinowitz gives branches
 $A_\pm(\mu)=\pm\sqrt{-\eta_m\mu/c_m}+O(\mu^{3/2})$.
 The center eigenvalue is $-2\eta_m\mu+O(\mu^2)<0$; the complementary gap
@@ -927,7 +936,7 @@ the nonzero transversality pairing.  The implicit function theorem gives the
 nearby critical multiplier and equilibrium.  Homogeneous and finitely many
 low-mode gaps persist by analytic perturbation.  In a common neighborhood,
 a positive diffusion lower bound and a reaction-Jacobian upper bound control
-all high modes.  The Lyapunov--Schmidt coefficients and branch spectral
+all high modes.  The reduced normal-form coefficients and branch spectral
 projection depend smoothly on parameters, so the negative cubic sign and
 complementary branch gap persist.  One scalar multiplier is retuned; arbitrary
 nearby parameter points are not asserted to be critical.
@@ -954,7 +963,7 @@ first-mode amplitude with the adjoint projection, and repeated the
 calculations under spatial and temporal refinement.  Parameters, tolerances,
 profiles, and open-format data accompany the code.
 
-\begin{figure}[t]
+\begin{figure}[H]
 \centering
 \includegraphics[width=.92\linewidth]{figures/stable_profiles.pdf}
 \caption{Numerical illustrations of the rigorously proved local patterned

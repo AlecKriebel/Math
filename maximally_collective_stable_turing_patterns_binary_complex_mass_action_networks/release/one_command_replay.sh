@@ -199,7 +199,7 @@ echo '[9/9] immutable manifest'
 rm -rf .pytest_cache
 find . -type d -name '__pycache__' -prune -exec rm -rf {} +
 find manuscript external_audit figures -type f \( -name '*.aux' -o -name '*.bcf' -o -name '*.blg' -o -name '*.fls' -o -name '*.fdb_latexmk' -o -name '*.run.xml' -o -name '*.out' -o -name '*.toc' -o -name '*.xdv' \) -delete
-find . -type f ! -path './release/replay.log' ! -path './release/sha256_manifest.txt' ! -path '*/.pytest_cache/*' ! -path '*/__pycache__/*' ! -name '*.pyc' \( ! -name '*.log' -o -path './release/build_logs/*.log' \) ! -name '*.aux' ! -name '*.bcf' ! -name '*.blg' ! -name '*.fls' ! -name '*.fdb_latexmk' ! -name '*.run.xml' ! -name '*.out' ! -name '*.toc' ! -name '*.xdv' -print0 | sort -z | xargs -0 sha256sum > release/sha256_manifest.txt
+find . -type f ! -path './release/replay.log' ! -path './release/sha256_manifest.txt' ! -path '*/.pytest_cache/*' ! -path '*/__pycache__/*' ! -name '*.pyc' \( ! -name '*.log' -o -path './release/build_logs/*.log' -o -path './release/public_full_replay.log' \) ! -name '*.aux' ! -name '*.bcf' ! -name '*.blg' ! -name '*.fls' ! -name '*.fdb_latexmk' ! -name '*.run.xml' ! -name '*.out' ! -name '*.toc' ! -name '*.xdv' -print0 | sort -z | xargs -0 sha256sum > release/sha256_manifest.txt
 grep -Fq '  ./RESEARCH_LOG.md' release/sha256_manifest.txt
 sha256sum -c release/sha256_manifest.txt >/dev/null
 printf 'MANIFEST_ENTRIES=%s\n' "$(wc -l < release/sha256_manifest.txt)"

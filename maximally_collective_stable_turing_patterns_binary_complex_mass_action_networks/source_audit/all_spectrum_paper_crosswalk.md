@@ -5,7 +5,7 @@ The previous paper package supplied the editorial infrastructure, literature rec
 | Previous component | Flagship disposition |
 |---|---|
 | Central reaction topology and all-spectrum localization | Retained after independent reconstruction |
-| Conservation-compatible Lyapunov--Schmidt framework | Retained and re-audited |
+| Fixed-mass center-manifold normal form and stationary Lyapunov--Schmidt framework | Retained and re-audited |
 | Diffusion profile with contrast coefficient superseded high-contrast | Removed from theorem suite |
 | Old 49-term spatial certificate | Historical only; replaced by 77- and 84-term certificates |
 | Submission/public infrastructure | Rebuilt around the final theorem suite |

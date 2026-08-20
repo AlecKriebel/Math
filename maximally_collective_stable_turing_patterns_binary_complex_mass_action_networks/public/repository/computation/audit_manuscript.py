@@ -57,7 +57,9 @@ forbidden=[r'\bT-ALG\b',r'\bPhase\s+[IVX]+\b',r'reaction-minimal',r'minimum reac
            r'universal cost',r'globally optimal',r'biological cost',
            r'price paid in concentrations',r'All listed coefficients are nonnegative',
            r'polynomial whose sign gives\s*\$?S_m\$?\s*<\s*0',
-           r'q_m\s*\(L\)\s*=',r'\\mathcal\s*H_m',r'\\nu\s*=\s*z\s*\+\s*1']
+           r'q_m\s*\(L\)\s*=',r'\\mathcal\s*H_m',r'\\nu\s*=\s*z\s*\+\s*1',
+           r'conservation-compatible Lyapunov--Schmidt reduction',
+           r'Lyapunov--Schmidt coefficients']
 for pat in forbidden:
     if re.search(pat,clean,re.I): raise AssertionError(f'obsolete wording: {pat}')
 
@@ -150,6 +152,21 @@ if not re.search(
     raise AssertionError('fixed contrast-product identity is not printed')
 if 'measures equilibrium concentration-scale separation' not in main_flat:
     raise AssertionError('chi_H scale-separation qualification is missing')
+if main.count(r'0<|I|<m') < 3:
+    raise AssertionError('nonempty principal-set domain is not explicit throughout Section 3')
+if 'selected positive realization' not in main_flat:
+    raise AssertionError('Corollary 3.3 does not scope stable patterns to a selected realization')
+if 'one-dimensional center-manifold normal form is' not in main_flat:
+    raise AssertionError('dynamical amplitude equation is not identified as a center-manifold normal form')
+if r'(0,\mathcal L)' not in main or r'q_k^2=(k\pi/\mathcal L)^2' not in main:
+    raise AssertionError('physical interval length is not consistently written as mathcal L')
+profiles_figure = re.search(
+    r'\\begin\{figure\}\[H\].*?\\label\{fig:profiles\}.*?\\end\{figure\}',
+    main,
+    re.S,
+)
+if profiles_figure is None:
+    raise AssertionError('Figure 3 lacks hard placement after the numerical-method paragraph')
 if not re.search(
     r'perturb positive steady fluxes and equilibrium coordinates.*?positive-equilibrium realization manifold',
     supp_flat,

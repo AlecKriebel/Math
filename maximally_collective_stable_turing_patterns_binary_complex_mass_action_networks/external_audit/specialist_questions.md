@@ -2,7 +2,7 @@
 
 ## Reaction-network and Turing specialist
 
-1. Is the SCC exhaustion complete for every proper principal species set, including the hypersurface `b=2a` where one edge vanishes?
+1. Is the SCC exhaustion complete for every nonempty proper principal species set, including the hypersurface `b=2a` where one edge vanishes?
 2. Does topology-wide Hurwitz stability of every smaller principal Jacobian block throughout every positive realization of `\widehat N_m` justify the stated all-spectrum localization order `n-1`?
 3. Is the complete positive-realization family `A_m(a,b)H` derived without omitting alternative positive equilibria?
 4. Is the principal-minor diffusion-ray theorem interpreted correctly as a stationary positive-real-eigenvalue result, with wave instability explicitly left separate for arbitrary diffusion vectors?
@@ -11,7 +11,7 @@
 ## PDE bifurcation and stability specialist
 
 1. Is the physical equilibrium-scaling transformation `z=Hx`, with `D_phys=H Delta`, correct?
-2. Is the fixed-integrated-mass Lyapunov–Schmidt setup correct when the conservation vector is semipositive rather than positive?
+2. Is the stationary fixed-integrated-mass Lyapunov–Schmidt setup, and its consistency with the dynamical center-manifold normal form, correct when the conservation vector is semipositive rather than positive?
 3. Are the `1/4` and `1/2` Fourier factors in `w_0`, `w_2`, and the cubic coefficient correct?
 4. Does the gauge change `w_0(L)=w_0^ref+tau rho` correctly impose the physical mass constraint?
 5. Do sectoriality, the fixed-mass spectral gap, and the principle of linearized stability justify local exponential asymptotic stability in `H^1`?

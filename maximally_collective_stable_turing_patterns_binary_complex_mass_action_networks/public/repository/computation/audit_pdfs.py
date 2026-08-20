@@ -20,7 +20,7 @@ class Document:
 
 
 FULL_DOCUMENTS = (
-    Document("manuscript/main.pdf", 16, True),
+    Document("manuscript/main.pdf", 17, True),
     Document("manuscript/supplement.pdf", 17, True),
     Document("external_audit/theorem_summary.pdf", 2, True),
     Document("external_audit/proof_skeleton.pdf", 6, True),
@@ -50,6 +50,8 @@ FORBIDDEN_PHRASES = (
     "biological cost",
     "price paid in concentrations",
     "All listed coefficients are nonnegative",
+    "a conservation-compatible Lyapunov–Schmidt reduction has",
+    "Lyapunov–Schmidt coefficients",
 )
 
 FORBIDDEN_PATTERNS = (
@@ -213,6 +215,28 @@ def audit(root: Path, output_dir: Path, documents: tuple[Document, ...]) -> None
             pattern = rf"(?:^|\s)S{section}\.?\s*{re.escape(title_prefix)}"
             if not re.search(pattern, supplement):
                 failures.append(f"supplement lacks rendered S{section} section numbering")
+
+    main_text = extracted.get("manuscript/main.pdf", "")
+    if main_text:
+        if not re.search(r"0\s*<\s*\|I\|\s*<\s*m", main_text):
+            failures.append("main theorem does not visibly exclude the empty principal set")
+        for phrase, label in (
+            ("one-dimensional center-manifold normal form is", "center-manifold normal-form attribution"),
+            ("selected positive realization", "selected-realization scope in Corollary 3.3"),
+        ):
+            if phrase.lower() not in main_text.lower():
+                failures.append(f"main PDF lacks {label}")
+        order_markers = (
+            "3. Determine the constant-optimal stable diffusion–equilibrium frontier",
+            "4. Determine the exact threshold for oscillatory diffusion-driven instability",
+            "9 Numerical illustrations",
+            "Figure 3: Numerical illustrations",
+        )
+        positions = [main_text.find(marker) for marker in order_markers]
+        if any(position < 0 for position in positions):
+            failures.append("main PDF lacks one or more Figure 3 placement markers")
+        elif positions != sorted(positions):
+            failures.append("Figure 3 interrupts the open-problem list or precedes Section 9")
 
     summary = output_dir / "SUMMARY.txt"
     if failures:

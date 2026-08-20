@@ -33,6 +33,9 @@ STALE = {
     "old_transformed_left_vector": "q_m(L)=",
     "harmonic_sum_notation_collision": r"\mathcal H_m",
     "modulus_shift_notation_collision": r"\nu=z+1",
+    "dynamic_LS_misattribution": "conservation-compatible Lyapunov--Schmidt reduction has",
+    "stale_LS_robustness_coefficients": "Lyapunov--Schmidt coefficients",
+    "physical_interval_length_collision": r"q_k^2=(k\pi/L)^2",
 }
 
 # Only prose, theorem, documentation, and generated claim tables are scanned.

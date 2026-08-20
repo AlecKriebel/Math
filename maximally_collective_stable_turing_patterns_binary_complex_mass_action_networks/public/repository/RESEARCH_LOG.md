@@ -107,3 +107,22 @@
   independently compiled all three submission source archives to 16 main and
   17 supplement pages; refreshed and hash-checked all seven deterministic ZIPs;
   and completed a full detached portable replay of the final public package.
+
+## 2026-08-19 21:27:06 PDT
+
+- Completed a fresh adversarial pre-submission revision without changing the
+  reaction topology, repaired piecewise endpoint, numerical data, or theorem
+  conclusions.
+- Distinguished the dynamical one-dimensional center-manifold normal form from
+  the associated stationary Lyapunov--Schmidt zero equation, excluded the empty
+  principal set from the spectral-max statements, and made the selected-
+  realization quantifier in the subsystem-endpoint corollary explicit.
+- Replaced floating-point ordering in the exact Pareto verifier and mutation
+  test with symbolic pairwise certificates, including the repaired `m=149`
+  endpoint regression.
+- Consolidated the crowded `R_3,\ldots,R_{m-2}` labels in the topology figure
+  and fixed the numerical-figure float so it no longer interrupts the open-
+  problem list.
+- Rebuilt and visually inspected all 46 pages across the eight principal PDFs;
+  the main manuscript is now 17 pages, the supplement 17, the theorem summary
+  2, and the proof skeleton 6. No external communication was initiated.

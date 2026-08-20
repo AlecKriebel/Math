@@ -16,6 +16,14 @@ import frontier_verify_mode_certificates as mode_certificates
 import frontier_verify_exposition_identities as exposition_identities
 
 
+def assert_exact_minimum(values, candidate):
+    assert all(sp.factor(value - candidate).is_nonnegative is True for value in values)
+
+
+def assert_exact_maximum(values, candidate):
+    assert all(sp.factor(candidate - value).is_nonnegative is True for value in values)
+
+
 def test_family_flux_and_conservation():
     for m in (3, 4, 5, 6, 8, 10):
         rs = sc.reactions(m)
@@ -66,16 +74,20 @@ def test_pareto_exact_contrasts_and_cubic_sign():
         for L in (pc.L0(m), sp.Rational(1, 2) * (pc.L0(m) + pc.L1(m)), pc.L1(m)):
             hs = pc.Hlist(m, L)
             ds = pc.Dphys(m, L)
-            assert all(sp.N(x) > 0 for x in hs + ds)
-            chiD = sp.factor(max(ds, key=lambda x: float(sp.N(x))) / min(ds, key=lambda x: float(sp.N(x))))
-            chiH = sp.factor(max(hs, key=lambda x: float(sp.N(x))) / min(hs, key=lambda x: float(sp.N(x))))
+            assert all(sp.sympify(x).is_positive is True for x in hs + ds)
+            assert_exact_minimum(ds, ds[1])
+            assert_exact_maximum(ds, ds[0])
+            assert_exact_minimum(hs, sp.Integer(1))
+            assert_exact_maximum(hs, hs[1])
+            chiD = sp.factor(ds[0] / ds[1])
+            chiH = sp.factor(hs[1])
             assert sp.simplify(chiD - sp.Rational(23, 63) * 91 * r * L) == 0
             assert sp.simplify(chiH - sp.Rational(91 * r - 1, 91 * r) / L) == 0
             Hs = pc.Hsum(m)
             tau = pc.tau_formula(m, Hs, L)
             num = sp.factor(pc.N0(m, Hs) + tau * pc.Sterm(m, Hs))
-            assert sp.N(num) > 0
-            assert sp.N(pc.den_formula(m, L)) < 0
+            assert num.is_positive is True
+            assert pc.den_formula(m, L).is_negative is True
 
 
 def test_repaired_pareto_endpoint_and_legacy_counterexample():

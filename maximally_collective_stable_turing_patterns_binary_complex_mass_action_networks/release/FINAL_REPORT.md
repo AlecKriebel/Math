@@ -368,7 +368,7 @@ The release uses one title consistently:
 
 > **Exact Diffusion Design for Maximally Collective Stable Turing Patterns in Binary-Complex Mass-Action Networks**
 >
-> *Topology-Wide All-Spectrum Localization and Exponent-Optimal Heterogeneity Trade-Offs*
+> *Topology-Wide All-Spectrum Localization and Exponent-Optimal Stationary Heterogeneity Trade-Offs*
 
 Repairs include:
 
@@ -388,7 +388,7 @@ Repairs include:
 - Final title: *Exact Diffusion Design for Maximally Collective Stable Turing Patterns in Binary-Complex Mass-Action Networks*
 - Subtitle: *Topology-Wide All-Spectrum Localization and Exponent-Optimal Stationary Heterogeneity Trade-Offs*
 - Abstract: below the 250-word limits used by the planned venues
-- Main manuscript: 16 pages
+- Main manuscript: 17 pages
 - Technical supplement: 17 pages
 - Theorem summary: 2 pages
 - Proof skeleton: 6 pages
