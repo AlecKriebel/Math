@@ -14,6 +14,7 @@ TOKEN = "ZENODO_DOI_PENDING"
 TEX_TOKEN = TOKEN.replace("_", r"\_")
 
 TEXT_FILES = (
+    "THEOREM_CERTIFICATE_CROSSWALK.md",
     "source/paper/references.bib",
     "source/supplement/supplement.tex",
     "biorxiv_submission/BIORXIV_METADATA.md",

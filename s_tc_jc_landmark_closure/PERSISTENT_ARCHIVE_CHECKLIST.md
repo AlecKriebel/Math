@@ -61,6 +61,7 @@ git diff --check
 # Review the DOI-only diff, then commit it before sealing so the archive's
 # source_commit identifies the DOI-bearing source state.
 git add source certificate_bundle biorxiv_submission journal_submission \
+        THEOREM_CERTIFICATE_CROSSWALK.md \
         release_artifacts/CERTIFICATE_BUNDLE_ENVELOPE.json
 git commit -m "Insert reserved Zenodo certificate DOI"
 

@@ -1,6 +1,7 @@
 # Theorem-to-certificate crosswalk
 
-Status: **v1.1.5 certificate bundle prepared; Zenodo DOI pending**
+Status: **v1.1.5 certificate bundle prepared; Zenodo DOI
+`ZENODO_DOI_PENDING`**
 
 The authoritative computer-assisted proof object is
 `stc_jc_sharp_boundary_atlas_certificates_v1.1.5.tar.gz`. All paths below are
@@ -10,7 +11,7 @@ audit reports are provenance only and are not theorem dependencies.
 | Article claim | Minimal exact evidence | Replay |
 |---|---|---|
 | Fixed mixed-graph convention, primitive supports, cut recovery, and full incidence-scaling bridge fibre | `primary/certificates/{core_universe,support_universe}.json`, `reviews/root_probe/`, `independent/bridge_cut/` | `bash verify.sh full` |
-| Theorem 6.3, including every three-/four-outgoing relation and its restoration/probe closure | `atlas/ATLAS_EVIDENCE_BINDINGS.jsonl.gz`; the exact streams named in each record | `bash verify.sh full` and `bash verify.sh regenerate-all` |
+| Theorem 6.3, including every three-/four-outgoing relation and its restoration/probe closure | `atlas/ATLAS_EVIDENCE_BINDINGS.jsonl.gz` binds every row to its base evidence and closure verifier; compact probe streams are under `primary/certificates/compact_probe_*`, and direct anchors are under `reviews/direct_anchor_probe_closure/certificates/` | `bash verify.sh full` and `bash verify.sh regenerate-all` |
 | Deterministic graph-to-certificate regeneration | primitive inputs and compilers under `primary/`; frozen streams under `primary/certificates/` | `verifiers/regenerate_load_bearing.py`, invoked twice by `regenerate-all` |
 | Ordinary triangle common germ | `primary/certificates/jc_triangle_redirection_active.json`, `reviews/triangle_redirection_cleanroom/` | `bash verify.sh full` |
 | Omega and Theta sharpness families | `omega_audit/independent/`, `s_tc_jc_sharp_boundary/reproducibility/` | `bash verify.sh full` |
