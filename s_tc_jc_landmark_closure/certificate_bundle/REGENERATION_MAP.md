@@ -9,6 +9,7 @@ commitment.  The two commitments must agree exactly.
 | Proof object | Reconstruction / replay program |
 |---|---|
 | Primitive core, completion, and support universes | `primary/core_universe.py`, `primary/completion_universe.py`, `primary/support_universe.py`, plus the convention/root fixtures |
+| Descriptor invariant-bit table used as a performance cache | `primary/atlas_compiler.py --sizes 3 4`; `regenerate_load_bearing.py` first deletes the bundled derived cache, reconstructs it from the regenerated primitive inputs and invariant templates, and requires exact equality before downstream use |
 | 10,826 raw and 10,466 canonical three-outgoing relations | `reviews/n3_universe_generator/generate_universe.py` |
 | Complete three-outgoing graph-to-switching-to-mask-to-tensor-to-certificate association | `reviews/bounded_directed_relation_cleanroom/cleanroom_verify.py` |
 | Four-outgoing invariant filter and 192 surviving presentations | `reviews/theta2_signature_gate/verify_gate.py` and `canonicalize_relations.py` |

@@ -52,13 +52,35 @@ curated object is `CERTIFICATE_BUNDLE_ENVELOPE.json`.
 
 ## DOI handoff
 
-Reserve the DOI in the Zenodo draft, then run:
+Reserve the DOI in the Zenodo draft, then run the following sequence from the
+project root.  The certificate archive itself must be rebuilt after the DOI is
+inserted; changing only the manuscript or release envelope is insufficient.
 
 ```bash
 python reproducibility/finalize_zenodo_doi.py --doi 10.5281/zenodo.<issued-number>
+python reproducibility/test_finalize_zenodo_doi.py
+git diff --check
+# Review the DOI-only diff, then commit it before sealing so the archive's
+# source_commit identifies the DOI-bearing source state.
+git add source certificate_bundle biorxiv_submission journal_submission \
+        release_artifacts/CERTIFICATE_BUNDLE_ENVELOPE.json
+git commit -m "Insert reserved Zenodo certificate DOI"
+
+python reproducibility/build_certificate_bundle.py prepare
+python reproducibility/build_certificate_bundle.py seal
+bash release_artifacts/stc_jc_sharp_boundary_atlas_certificates_v1.1.5/verify.sh quick
+bash release_artifacts/stc_jc_sharp_boundary_atlas_certificates_v1.1.5/verify.sh full
+bash release_artifacts/stc_jc_sharp_boundary_atlas_certificates_v1.1.5/verify.sh regenerate-all
+
+python reproducibility/build_biorxiv_release.py submission
+python reproducibility/build_journal_packages.py
+python reproducibility/verify_submission_source_archives.py
 ```
 
-Rebuild the article, supplement, capsule, and journal packages after this
-step. Publish the Zenodo record only after the DOI-bearing files and exact
-archive bytes are in the draft. Never invent or pre-register a number in the
+Capture the three verifier transcripts beside the newly sealed archive and
+update this checklist with its final SHA-256. Publish the Zenodo record only
+after the DOI-bearing archive, papers, capsule, manifests, and exact logs are
+in the draft. Download the published archive and authenticate it with
+`reproducibility/verify_certificate_zenodo_release.py` before submitting the
+same DOI-bearing PDFs to bioRxiv. Never invent or pre-register a number in the
 repository.

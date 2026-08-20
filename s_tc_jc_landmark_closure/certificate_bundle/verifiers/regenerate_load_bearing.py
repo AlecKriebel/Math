@@ -126,6 +126,26 @@ def primary_regeneration(work: Path) -> None:
     run(work, PYTHON, "primary/support_universe.py")
 
     cache = "primary/certificates/descriptor_bits_cache.json.gz"
+    cache_path = work / cache
+    # The extracted proof object contains this performance cache so that
+    # ordinary verification is fast.  A complete regeneration must not trust
+    # it.  Delete it, reconstruct all descriptor bits from the freshly rebuilt
+    # primitive core/completion/support inputs and invariant templates, and
+    # require the reconstructed cache to equal the frozen one before any
+    # downstream compiler is allowed to load it.
+    if not cache_path.is_file():
+        raise AssertionError(("missing frozen descriptor cache", cache))
+    cache_path.unlink()
+    if cache_path.exists():
+        raise AssertionError(("failed to remove derived descriptor cache", cache))
+    run(
+        work, PYTHON, "primary/atlas_compiler.py", "--sizes", "3", "4",
+        "--write-bit-cache", cache,
+        "--output", "primary/certificates/bounded_atlas_summary.json",
+    )
+    if sha256(cache_path) != sha256(ROOT / cache):
+        raise AssertionError(("primitive cache regeneration mismatch", cache))
+
     shard_specs = (
         ("cycle", "schema3_n3_cycle_filtered", "bounded_relation_n3_cycle_filtered_summary.json"),
         ("theta-0", "schema3_n3_theta0_filtered", "bounded_relation_n3_theta0_filtered_summary.json"),
@@ -238,6 +258,7 @@ def verify_regeneration(work: Path) -> dict[str, object]:
         "primary/certificates/core_universe.json",
         "primary/certificates/completion_universe.json",
         "primary/certificates/support_universe.json",
+        "primary/certificates/descriptor_bits_cache.json.gz",
         "primary/certificates/bounded_relation_n3_schema3_n3_all_filtered_relations.jsonl.gz",
         "primary/certificates/bounded_relation_n3_schema3_n3_all_filtered_graphs.jsonl.gz",
         "primary/certificates/bounded_relation_n3_schema3_n3_all_filtered_polynomials.jsonl.gz",
@@ -279,6 +300,7 @@ def verify_regeneration(work: Path) -> dict[str, object]:
     }
 
     summaries = (
+        "primary/certificates/bounded_atlas_summary.json",
         "primary/certificates/bounded_relation_n3_all_filtered_summary.json",
         "primary/certificates/hard_cover_schema3_n3_full_summary.json",
         "primary/certificates/bounded_relation_n3_hard_cover_crosswalk.summary.json",
