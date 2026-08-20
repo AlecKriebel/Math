@@ -1,5 +1,15 @@
 # Priority and equivalence audit
 
+> **Historical search record.** This file records the negative search through
+> 16 August 2026 and is retained for provenance. On 17 August 2026,
+> Galindo--Rowell arXiv:2608.16865v1 supplied an independent concurrent
+> construction with the same existence and strict-localization conclusion and
+> the same minimum within Lechner's exceptional family. The current chronology,
+> exact comparison, and revised scholarly position are in
+> `CONCURRENT_WORK_AND_CHRONOLOGY_v1.2.0.md`. Statements below about no found
+> collision or no established intertwiner are dated findings, not current
+> claims.
+
 Initial audit: **27 July 2026**. Fresh priority/reference audit:
 **16 August 2026** (America/Los_Angeles).
 

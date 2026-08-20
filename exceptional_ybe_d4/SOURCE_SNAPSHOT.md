@@ -1,6 +1,7 @@
 # Source snapshot and provenance
 
-Snapshot opened on 27 July 2026 and re-audited on 16 August 2026
+Snapshot opened on 27 July 2026, re-audited on 16 August 2026, and extended
+for the concurrent-work revision on 18 August 2026
 (America/Los_Angeles).
 
 ## Supplied exact verifier
@@ -74,6 +75,62 @@ On 16 August 2026 the author supplied a further review directly in the task
 conversation. It was not provided as a standalone file, so no artificial file
 hash is claimed. Its source-checked disposition is recorded in
 `CORRECTION_AUDIT_v1.1.3.md`.
+
+## Galindo--Rowell concurrent preprint
+
+- C. Galindo and E. C. Rowell, *Unitary Yang--Baxter Operators: Towards a
+  Classification*, arXiv:2608.16865v1 [math.QA].
+- Official record: <https://arxiv.org/abs/2608.16865v1>.
+- Submitted: 2026-08-17 17:47:15 UTC.
+- Supplied source archive: `arXiv-2608.16865v1.tar.gz`, 62,866 bytes.
+- SHA-256:
+  `b7bc3fb2d1906140247e7643d82fda2bb02ee6cc53e6367956a087fa96d814ab`.
+- The archive contains only regular, safe paths. Its `main.tex` is SHA-256
+  `069fd53e0be504c6e5369b8646e63e42992971ac187b4571c6432c0111534aff`.
+
+Section 13 was read literally for the independent encoding of `P_Z`, `P_X`,
+`U`, `V`, and `R_GR`. The source does not state the reported earlier private
+circulation; that fact is attributed as a report and supported by separately
+preserved private records, not by the arXiv text. Neither the supplied archive
+nor any private correspondence is redistributed in the public source package.
+
+## Quaternionic braid source
+
+- Eric C. Rowell, *A quaternionic braid representation (after Goldschmidt and
+  Jones)*, Quantum Topology **2** (2011), 173--182.
+- DOI: <https://doi.org/10.4171/QT/18>.
+- The published article was inspected directly for Theorem 3.1 (finite image),
+  Lemma 3.2 (the `H_n(3,6)` braid-generated subalgebra), Lemma 3.3 (finiteness
+  of the generated group), and the normal basis on p. 176.
+
+The audit corrects a locator in Galindo--Rowell v1: its reference to Rowell
+“Lemma 3.4” corresponds to published Lemma 3.2. The source PDF is not
+redistributed.
+
+## Enhanced-Yang--Baxter and topological sources
+
+- V. G. Turaev, *The Yang--Baxter equation and invariants of links*, Invent.
+  Math. **92** (1988), 527--553,
+  <https://doi.org/10.1007/BF01393746>. The audited original typeset scan had
+  SHA-256
+  `d59c4f4de43d62a21a7ce07c261e1bd3ab9ed2c1cad7af74a5ae2bf5e0c148d8`.
+- W. B. R. Lickorish and K. C. Millett, *Some evaluations of link
+  polynomials*, Comment. Math. Helv. **61** (1986), 349--359,
+  <https://doi.org/10.1007/BF02621920>. The audited original typeset scan had
+  SHA-256
+  `a5acc50000f17616a1af076eac16769505272ab41ab4eec40a959c74e9cdb437`.
+
+The exact convention and sign crosswalk is recorded in
+`TOPOLOGICAL_NORMALIZATION_AUDIT_v1.2.0.md`. The PDFs are research inputs and
+are not redistributed.
+
+## Final global-strengthening program
+
+On 18 August 2026 the author supplied a 35,753-byte final strengthening
+program. Its SHA-256 is
+`d5ceba1b691b9da802b2efa1d0d2e69e10950afda3f6cf9d8508bd68ac441010`.
+The input is not redistributed. Its source-checked disposition is recorded in
+`GLOBAL_STRENGTHENING_ADJUDICATION_v1.2.0.md`.
 
 ## Discovery provenance
 

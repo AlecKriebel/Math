@@ -45,4 +45,12 @@ echo "== hardened SymPy verifier =="
 "$YBE_PYTHON" verify_supplied.py
 
 echo
-echo "All three verification routes passed."
+echo "== concurrent-work exact equivalence verifier =="
+"$YBE_PYTHON" verify_concurrent_equivalence.py
+
+echo
+echo "== global braid-and-link exact verifier =="
+"$YBE_PYTHON" verify_braid_link.py
+
+echo
+echo "All five verification routes passed."

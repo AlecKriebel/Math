@@ -103,8 +103,9 @@ narrow low-setting observations. See the
 [merged source package](cyclic_bell_exact_values_and_randomness/), and
 [preserved historical versions](PUBLICATION.md).
 
-**An exceptional four-dimensional unitary Hecke Yang--Baxter operator**
-gives an exact representative of the previously unresolved class
+**An exceptional four-dimensional unitary Hecke Yang--Baxter operator: a
+five-word Pauli--Clifford normal form** gives an exact representative of the
+exceptional class
 \[
 \left[e^{i\pi/3},\frac12,4\right].
 \]
@@ -114,11 +115,18 @@ projection has rank eight and both partial traces \(2I_4\), yielding faithful
 embeddings of every \(H_n(3,6)\) and an ordinary unitary localization of the
 \(\mathcal C(\mathfrak{sl}_3,6)\) Jones--Wenzl tower. The note proves local
 dimension four is minimal and records a \((3,2)\)-generalized active form.
-The public priority audit found no earlier ordinary four-dimensional
-localization, but absolute novelty is not claimed. See the
+Version 1.1.0 publicly disclosed the complete construction on 28 July 2026.
+Galindo--Rowell arXiv:2608.16865v1 independently gives the same existence and
+strict-localization conclusion, with dimension four smallest in Lechner's
+exceptional family, through a broader quaternionic twisted-group-algebra construction;
+the version-1.2.0 revision proves exact local and all-strand comparisons,
+transports the known finite-image and Clifford properties, and directly
+identifies its enhanced trace with twice the HOMFLYPT specialization at
+\((i,i)\). It treats the works as independent and concurrent. See the
 [paper page](https://aleckriebel.github.io/Math/papers/exceptional-ybe-d4/),
 [current source and verification package](https://github.com/AlecKriebel/Math/tree/main/exceptional_ybe_d4),
-and [version-specific Zenodo DOI](https://doi.org/10.5281/zenodo.21971507).
+[version-1.2.0 Zenodo DOI](https://doi.org/10.5281/zenodo.22013710), and
+[archived version-1.1.3 Zenodo DOI](https://doi.org/10.5281/zenodo.21971507).
 
 **Excluding Parameter Three at Order Thirteen in the \(\gamma\)--\(\theta\)
 Conjecture** proves that no graph on 13 vertices satisfies

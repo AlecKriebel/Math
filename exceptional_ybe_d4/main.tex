@@ -16,7 +16,7 @@
   linkcolor=deepblue,
   citecolor=deepblue,
   urlcolor=deepblue,
-  pdftitle={An exceptional four-dimensional unitary Hecke Yang--Baxter operator},
+  pdftitle={An exceptional four-dimensional unitary Hecke Yang--Baxter operator: a five-word Pauli--Clifford normal form},
   pdfauthor={Alec Kriebel}
 }
 
@@ -45,58 +45,53 @@
 \newcommand{\boxt}{\mathbin{\boxtimes}}
 
 \title{\vspace{-1.4cm}\textbf{An exceptional four-dimensional unitary}\\[0.2em]
-\textbf{Hecke Yang--Baxter operator}}
+\textbf{Hecke Yang--Baxter operator:}\\[0.2em]
+\textbf{a five-word Pauli--Clifford normal form}}
 \author{Alec Kriebel\\[-0.1em]
 \small Independent researcher\\[-0.1em]
 \small \href{mailto:me@aleckriebel.com}{me@aleckriebel.com}
 \quad\textperiodcentered\quad
 \href{https://orcid.org/0009-0001-9320-500X}{ORCID 0009-0001-9320-500X}}
-\date{16 August 2026}
+\date{Version 1.2.0 --- 19 August 2026}
 
 \begin{document}
 \maketitle
 
 \begin{abstract}
-We construct an explicit \(16\times16\) unitary Yang--Baxter operator in the
-class
+We give an explicit \(16\times16\) unitary Yang--Baxter operator in the class
 \[
   \left[e^{i\pi/3},\frac12,4\right].
 \]
-This realizes the smallest-dimensional previously unresolved class in the
-exceptional even-dimensional family left open in Lechner's 2026 classification
-preprint, and that class corresponds to the ordinary-localization question
-highlighted by Galindo, Hong, and Rowell for the
-\(\cC(\mathfrak{sl}_3,6)\) Jones--Wenzl sequence.  Writing
-\(\bbC^4\cong\bbC^2\otimes\bbC^2\), the associated
-reflection has a five-word real Pauli--Clifford expansion.  Four words combine
-into an involution \(M\), a fifth involution \(E\) anticommutes with \(M\), and
-the braid relation restricts the reflection circle \(\alpha M+\beta E\) to the
-four points
+On \(\bbC^4\cong\bbC^2\otimes\bbC^2\), its reflection has a five-word real
+Pauli--Clifford expansion.  Four words combine into an involution \(M\), a fifth
+involution \(E\) anticommutes with \(M\), and an explicit \(18\)-word cubic
+certificate restricts the reflection circle \(\alpha M+\beta E\) exactly to
 \[
   \alpha^2=\frac23,\qquad \beta^2=\frac13.
 \]
-Choosing \((\alpha,\beta)=(\sqrt{2/3},-1/\sqrt3)\) gives the displayed
-operator.
-The resulting spectral projection has both unnormalized partial traces equal
-to \(2\Id_4\), so normalized matrix trace induces the \(\eta=1/2\) Markov
-trace.  Hence the tensor-space representation induces a faithful
-representation of \(H_n(3,6)\) for every \(n\), providing an ordinary unitary
-localization of the \(\cC(\mathfrak{sl}_3,6)\) Jones--Wenzl sequence.
-Together with the known dimension-two obstruction and a dimension-three
-argument, this proves that the minimum local dimension is four.
-Consequently, the Rowell--Wang localization conjecture, in the form of GHR
-Conjecture~1.5, is confirmed for the \(\cC(\mathfrak{sl}_3,6)\) generator, a
-case Galindo, Hong, and Rowell singled out as a possible counterexample.
+The spectral projection has both unnormalized partial traces \(2\Id_4\), so
+normalized matrix trace induces the \(\eta=1/2\) Markov trace and a faithful
+representation of \(H_n(3,6)\) for every \(n\).  A direct dimension-three
+obstruction, together with the known dimension-two obstruction, proves that
+four is minimal.  Galindo and Rowell independently obtained the same local
+solution through a quaternionic twisted-group-algebra construction.  We
+identify the present matrix exactly with a local-unitary normal form of the
+opposite of their Family~III operator and extend the comparison to all braid
+strands.  Transporting known Family~III results shows that the braid images are
+finite and Clifford in a fixed conjugated Pauli frame.  A direct scalar
+enhancement and skein calculation identify the trace invariant as
+\(2P_{\mathrm H}(L;i,i)\); the Galindo--Rowell metric-family algorithm then
+gives exact deterministic polynomial-time evaluation.
 \end{abstract}
 
 \medskip
 \noindent\textbf{Keywords.}
 Yang--Baxter operator; Hecke algebra; braid group representation; unitary
-localization; fusion category.
+localization; fusion category; link invariant; Clifford group.
 
 \smallskip
 \noindent\textbf{2020 Mathematics Subject Classification.}
-20C08 (primary); 20F36, 16T25, 81R50 (secondary).
+20C08 (primary); 20F36, 16T25, 57K14, 81R50 (secondary).
 
 \section{Introduction and main result}
 
@@ -143,6 +138,26 @@ construction and localization proof are independent of Lechner's
 classification; the minimality argument in Section~\ref{sec:consequences}
 uses \cite[Lemma~3.1 and Theorem~3.4]{Lechner2026}.
 
+\medskip
+\noindent\textbf{Note added: independent concurrent work.}
+Version 1.1.0 of this manuscript, containing the explicit operator and the
+existence, localization, and minimum-dimension results, was publicly released
+on 28 July 2026.\footnote{Release tag
+\href{https://github.com/AlecKriebel/Math/releases/tag/exceptional-ybe-d4-v1.1.0}
+{\texttt{exceptional-ybe-d4-v1.1.0}}, published at 2026-07-28 04:10:58 UTC;
+artifact commit
+\texttt{e2669c5b2f99\allowbreak338c79381dc4\allowbreak2bdbc61ee8b9\allowbreak63c3};
+historical
+PDF SHA-256
+\texttt{af4ff57c4b8c5cd3\allowbreak7f47f8a6da880b4f\allowbreak93b9c22d6e2908a3\allowbreak{}ef1f6ebf5fb1d049}.}
+Galindo and Rowell subsequently posted an independent quaternionic
+construction~\cite{GalindoRowell2026} and report having obtained and privately
+circulated it earlier.  The works are treated here as independent and
+concurrent; no claim is made about private discovery priority.
+Section~\ref{sec:quaternionic} compares the local formulas exactly, and
+Section~\ref{sec:global} transfers the resulting braid and link structures to
+the five-word representative.
+
 The following is the central result of this paper.
 
 \begin{theorem}\label{thm:main}
@@ -182,12 +197,41 @@ The minimum local dimension of an ordinary unitary localization of this
 Jones--Wenzl sequence is four.
 \end{corollary}
 
+\begin{theorem}[Global braid and link consequences]\label{thm:global-summary}
+Put \(\kappa=q-1=q^2=e^{2\pi i/3}\), and let
+\(\rho_n:B_n\to\mathrm U((\bbC^4)^{\otimes n})\) be generated by the adjacent copies of
+\(R\).  Then \((R,\Id_4,\kappa,2)\) is an enhanced Yang--Baxter operator, with
+oriented-link invariant
+\[
+  \mathcal J_R(\widehat\xi)
+  =\kappa^{-\operatorname{wr}(\xi)}2^{-n}\Tr(\rho_n(\xi)).
+\]
+For the normalized HOMFLYPT polynomial used below,
+\[
+  \mathcal J_R(L)=2P_{\mathrm H}(L;i,i).
+\]
+If \(c(L)\) is the number of components and
+\(d_2(L)=\dim_{\mathbb F_2}H_1(\Sigma_3(L);\mathbb F_2)\) for the oriented
+triple cyclic cover specified in Section~\ref{sec:global}, then
+\[
+  \mathcal J_R(L)=2(-1)^{c(L)-1}(-2)^{d_2(L)/2}.
+\]
+Via the all-strand equivalence of Theorem~\ref{thm:all-strand} and the
+Family~III results cited in Section~\ref{sec:global}, every image
+\(\rho_n(B_n)\) is finite, its generators are Clifford operators in a fixed
+conjugated Pauli frame, and \(\mathcal J_R\) is exactly computable by a
+deterministic classical algorithm in time polynomial in the strand number and
+braid-word length.
+\end{theorem}
+
 The formula for \(R\) is given in Section~\ref{sec:construction}; the matrix
 identities are proved in Sections~\ref{sec:reflection} and
 \ref{sec:ybe}.  Section~\ref{sec:localization} proves the full localization
 claim rather than only the two-site spectral statement.  The minimality
 argument is in Section~\ref{sec:consequences}.  Section~\ref{sec:gybe}
-records a generalized Yang--Baxter normal form,
+records a generalized Yang--Baxter normal form, Section~\ref{sec:quaternionic}
+gives the quaternionic factorization and concurrent comparison, and
+Section~\ref{sec:global} proves Theorem~\ref{thm:global-summary}.
 Section~\ref{sec:verification} records verification and provenance, and
 Section~\ref{sec:priority} discusses related work, novelty, and limitations.
 
@@ -416,6 +460,12 @@ site.  Hence
 \end{proof}
 
 \section{The full localization statement}\label{sec:localization}
+
+Galindo--Rowell also establish strict localization in local dimension four
+\cite[\S13]{GalindoRowell2026}.
+This section and Section~\ref{sec:consequences} retain the independent direct
+proofs in public version 1.1.0, including scalar partial traces, the
+kernel--annihilator equality, and the explicit dimension-three obstruction.
 
 We now verify that the construction localizes the whole Jones--Wenzl tower,
 not merely its two-site generator.  Let \(H_n(q)\) be the specialized Hecke
@@ -651,7 +701,12 @@ Markov property give
   &=\eta^2-c\eta+c\eta^2,
 \end{aligned}
 \]
-and hence
+while cyclicity and \(e_1^2=e_1\) give
+\[
+  \operatorname{tr}^{(3)}_\eta(e_1e_2e_1e_2e_1)
+  =\operatorname{tr}^{(3)}_\eta(e_1e_2e_1e_2).
+\]
+Consequently,
 \[
 \begin{aligned}
   \operatorname{tr}^{(3)}_\eta(T^*T)
@@ -673,10 +728,15 @@ For the remaining case put \(f_i=\Id-e_i\).  The complemented projections
 satisfy the same relation with the same \(c\), since
 \[
   f_1f_2f_1-f_2f_1f_2
-  =-\bigl(e_1e_2e_1-e_2e_1e_2\bigr)=c(f_1-f_2),
+  =-\bigl(e_1e_2e_1-e_2e_1e_2\bigr)=c(f_1-f_2).
 \]
-and their Markov parameter is \(1-\eta\).  At \(\eta=2/3\), therefore, the
-candidate kills
+Their Markov parameter is \(1-\eta\), because for \(x\in H_n(q)\),
+\[
+  \operatorname{tr}_\eta(xf_n)
+  =\operatorname{tr}_\eta(x)-\operatorname{tr}_\eta(xe_n)
+  =(1-\eta)\operatorname{tr}_\eta(x).
+\]
+At \(\eta=2/3\), therefore, the candidate kills
 \[
   T^\perp=f_1f_2f_1-cf_1,
 \]
@@ -712,8 +772,8 @@ This does not settle the remaining base dimensions
 \section{A (3,2)-generalized normal form}\label{sec:gybe}
 
 The visible identity in the second qubit of every word in~\eqref{eq:H}
-does have a precise chain-level interpretation, but a coordinate swap is
-essential.  We use the generalized braid placement of
+does have a precise chain-level interpretation: after a within-site coordinate
+swap the chain-level structure becomes explicit.  We use the generalized braid placement of
 \cite[Eq.~(3.9) and Remark~3.10(2)]{GHR2013} and the associated tower and
 localization conventions of
 \cite[Example~4.23 and Definition~4.24]{GHR2013}.  Write the \(i\)-th
@@ -721,9 +781,10 @@ four-dimensional site as
 \[
   V_i=\bbC^2_{a_i}\otimes\bbC^2_{b_i},
 \]
-let \(\Sigma(u\otimes v)=v\otimes u\) be the within-site qubit swap, and put
+let \(\Sigma_{\mathrm q}(u\otimes v)=v\otimes u\) be the within-site qubit
+swap, and put
 \[
-  U_n=\Sigma^{\otimes n}.
+  U_n=\Sigma_{\mathrm q}^{\otimes n}.
 \]
 In the factor order obtained after applying \(U_n\),
 \[
@@ -806,7 +867,7 @@ observation explains why the present \(8\times8\) active operator yields a
 \(16\times16\) ordinary one.
 
 There is an exact tensor-structural distinction from the known operator
-\(K_{\mathrm{GHR}}\) in
+\(K_{\mathrm{GHR}}^{\mathrm{gen}}\) in
 \cite[Eq.~(5.2), Theorem~5.28, and Remark~5.29(1)]{GHR2013}.  For an
 operator \(L\) on three qubits, define
 \[
@@ -823,11 +884,13 @@ Direct exact calculation gives, with \(\|\cdot\|_F\) the Frobenius norm,
  & \|\mathcal Y_1(\,\cdot\,)\|_F^2
  & \|\mathcal Y_2(\,\cdot\,)\|_F^2\\
 \midrule
-K_{\mathrm{GHR}} & 0 & 48\\
+K_{\mathrm{GHR}}^{\mathrm{gen}} & 0 & 48\\
 K                  & 24 & 0\\
 \bottomrule
 \end{array}
 \]
+The two nonzero values occur in different ambient matrix dimensions; only
+their vanishing or nonvanishing is used here.
 Thus the displayed GHR operator is of type \((3,1)\), while the present
 operator is of type \((3,2)\).  The distinction concerns tensor placement,
 not the two matrices as bare normal operators: they have the same two
@@ -839,27 +902,562 @@ blocking in its displayed \((3,1)\) tensor structure.
 
 GHR also records a different \((3,2)\) operator in Example~3.14.  Its two
 eigenvalues have projective ratio \(i\) (up to inversion), whereas the ratio
-for \(K\) is \(-q=e^{-2\pi i/3}\) (up to inversion).  Those two local
-operators are therefore not unitarily conjugate up to a phase.  In
-particular, being of type \((3,2)\) is not by itself the new feature here;
-what is new is the exceptional Hecke spectrum together with a faithful
-localization of the \(H_n(3,6)\) Jones--Wenzl tower.
+for \(K\) is \(-q=e^{-2\pi i/3}\) (up to inversion), so it is a different
+spectral class.  In particular, being of type \((3,2)\) is not by itself the
+distinctive feature here; the relevant structure is the exceptional Hecke
+spectrum together with a faithful localization of the \(H_n(3,6)\)
+Jones--Wenzl tower.
+
+\section{Quaternionic factorization and concurrent comparison}
+\label{sec:quaternionic}
+
+The Pauli--Clifford reflection admits an intrinsic quaternionic factorization.
+This both explains its relation to Family~III in the concurrent work of
+Galindo and Rowell and gives an exact bridge between the two explicit local
+formulas.  To distinguish the operator in this section from the
+eight-dimensional generalized operator \(K_{\mathrm{GHR}}^{\mathrm{gen}}\)
+above, write
+\(R_{\mathrm K}:=R\).
+
+\begin{proposition}[Intrinsic Family III form]\label{prop:family-three}
+With \(M,E\) as in Lemma~\ref{lem:reflection}, define
+\[
+  \mathsf A=-i\sqrt2\,M,\qquad \mathsf B=iE,
+\]
+and
+\[
+  U_{\mathrm K}=\frac{\mathsf A+\mathsf A\mathsf B}{2},
+  \qquad
+  V_{\mathrm K}=\frac{\mathsf A-\mathsf A\mathsf B}{2}.
+\]
+Then
+\[
+  U_{\mathrm K}^2=V_{\mathrm K}^2=-\Id_{16},\qquad
+  U_{\mathrm K}V_{\mathrm K}=-V_{\mathrm K}U_{\mathrm K}=\mathsf B,
+\]
+and \(U_{\mathrm K},V_{\mathrm K}\) are skew-Hermitian unitaries:
+\[
+  U_{\mathrm K}^\dagger=-U_{\mathrm K},\qquad
+  V_{\mathrm K}^\dagger=-V_{\mathrm K},\qquad
+  U_{\mathrm K}^\dagger U_{\mathrm K}
+  =V_{\mathrm K}^\dagger V_{\mathrm K}=\Id_{16}.
+\]
+Moreover,
+\begin{equation}
+  U_{\mathrm K}+V_{\mathrm K}+U_{\mathrm K}V_{\mathrm K}
+  =-i\sqrt3\,H.
+  \label{eq:quaternionic-sum}
+\end{equation}
+If \(\zeta=e^{\pi i/6}\), so that \(q=\zeta^2\), then
+\begin{equation}
+  R_{\mathrm K}
+  =\frac{i\zeta}{2}
+   \left(\Id_{16}+U_{\mathrm K}+V_{\mathrm K}
+   +U_{\mathrm K}V_{\mathrm K}\right).
+  \label{eq:family-three}
+\end{equation}
+Thus the five-word representative has the abstract quaternionic Family~III
+form used in \cite[\S13]{GalindoRowell2026}.
+\end{proposition}
+
+\begin{proof}
+Lemma~\ref{lem:reflection} gives
+\[
+  \mathsf A^2=-2\Id,\qquad \mathsf B^2=-\Id,\qquad
+  \mathsf A\mathsf B=-\mathsf B\mathsf A.
+\]
+Write \(U_{\mathrm K}=\frac12\mathsf A(\Id+\mathsf B)\) and
+\(V_{\mathrm K}=\frac12\mathsf A(\Id-\mathsf B)\).  Since
+\((\Id\pm\mathsf B)\mathsf A=\mathsf A(\Id\mp\mathsf B)\), direct
+multiplication gives the two squares and
+\(U_{\mathrm K}V_{\mathrm K}=\mathsf B=-V_{\mathrm K}U_{\mathrm K}\).
+Since \(M\) and \(E\) are Hermitian, \(\mathsf A\) and \(\mathsf B\) are
+skew-Hermitian.  The displayed formulas for \(U_{\mathrm K},V_{\mathrm K}\),
+together with \(\mathsf A\mathsf B=-\mathsf B\mathsf A\), show that they too
+are skew-Hermitian; their squares then prove unitarity.
+Moreover,
+\[
+  U_{\mathrm K}+V_{\mathrm K}+U_{\mathrm K}V_{\mathrm K}
+  =\mathsf A+\mathsf B
+  =-i\sqrt2\,M+iE=-i\sqrt3\,H,
+\]
+where the last equality uses \(H=\sqrt{2/3}\,M-E/\sqrt3\).  Finally
+\(i\zeta=q-1\) and \(\sqrt3\,\zeta=q+1\), so
+substituting~\eqref{eq:quaternionic-sum} into~\eqref{eq:family-three} yields
+Equation~\eqref{eq:R}.
+\end{proof}
+
+We now encode the Galindo--Rowell local operator from their literal tensor
+placements.  On \(W=\bbC^2\otimes\bbC^2\), set
+\[
+  P_Z=(I\otimes Z)\otimes(Z\otimes I),\qquad
+  P_X=(X\otimes I)\otimes(X\otimes X),
+\]
+\begin{equation}
+  U=iP_Z,\qquad V=iP_X,\qquad
+  R_{\mathrm{GR}}=\frac{i\zeta}{2}
+  \left(\Id_{16}+U+V+UV\right).
+  \label{eq:RGR}
+\end{equation}
+These are the formulas in \cite[\S13]{GalindoRowell2026}, not the older
+\(8\times8\) operator \(K_{\mathrm{GHR}}^{\mathrm{gen}}\) from GHR
+Equation~(5.2).
+Let \(\Sigma(x\otimes y)=y\otimes x\) swap the two four-dimensional sites.
+
+\begin{proposition}[Exact comparison with Galindo--Rowell]
+\label{prop:concurrent-comparison}
+Let \(\varepsilon_0,\varepsilon_1\) be the standard basis of \(\bbC^2\).  In
+the ordered basis
+\((\varepsilon_0\otimes\varepsilon_0,\varepsilon_0\otimes\varepsilon_1,
+\varepsilon_1\otimes\varepsilon_0,\varepsilon_1\otimes\varepsilon_1)\) of \(W\),
+the matrix
+\[
+S=\frac14\begin{pmatrix}
+2+\sqrt2 & -i\sqrt2 & i\sqrt2 & 2-\sqrt2\\
+\sqrt2 & i(2+\sqrt2) & i(2-\sqrt2) & -\sqrt2\\
+-(2-\sqrt2) & -i\sqrt2 & i\sqrt2 & -(2+\sqrt2)\\
+-\sqrt2 & i(2-\sqrt2) & i(2+\sqrt2) & \sqrt2
+\end{pmatrix}
+\]
+is unitary and satisfies
+\begin{equation}
+  R_{\mathrm K}
+  =(S^\dagger\otimes S^\dagger)\,
+    \Sigma R_{\mathrm{GR}}\Sigma\,(S\otimes S).
+  \label{eq:concurrent-comparison}
+\end{equation}
+Hence \(R_{\mathrm K}\) is a local-unitary normal form of the opposite
+operator \(R_{\mathrm{GR},21}:=\Sigma R_{\mathrm{GR}}\Sigma\).
+\end{proposition}
+
+\begin{proof}
+Exact row inner products give \(SS^\dagger=\Id_4\), hence
+\(S^\dagger S=\Id_4\).  For
+\[
+  \mathcal C(T)=(S^\dagger\otimes S^\dagger)\Sigma T\Sigma(S\otimes S),
+\]
+substitution of the displayed matrices gives
+\[
+  \mathcal C(U)=U_{\mathrm K},\qquad
+  \mathcal C(V)=V_{\mathrm K},\qquad
+  \mathcal C(UV)=U_{\mathrm K}V_{\mathrm K}.
+\]
+Applying \(\mathcal C\) to~\eqref{eq:RGR} and using
+Proposition~\ref{prop:family-three} proves~\eqref{eq:concurrent-comparison}.
+All entries in these finite products lie in
+\(\bbQ(\sqrt2,\sqrt3,i)\); the independent exact verifier in the source
+package checks the three generator identities as well as the resulting
+operator identity.
+\end{proof}
+
+Equation~\eqref{eq:concurrent-comparison} includes a site reversal.  The
+transformation \(R\mapsto\Sigma R\Sigma\) preserves the Yang--Baxter equation,
+so the opposite is again a Yang--Baxter operator.  Galindo--Rowell's stated
+local-equivalence relation permits a unit scalar and a common local basis
+change~\cite[\S2]{GalindoRowell2026}, but does not include this site reversal.
+Proposition~\ref{prop:concurrent-comparison} therefore proves local-unitary
+equivalence to the opposite operator \(R_{\mathrm{GR},21}\).  It does not
+determine whether a direct local-unitary equivalence to \(R_{\mathrm{GR}}\)
+also exists.  The two formulas represent the same underlying local solution up
+to opposite and local basis change.  This comparison is separate from the
+preceding residual table for \(K_{\mathrm{GHR}}^{\mathrm{gen}}\), which
+distinguishes the displayed \((3,1)\) and \((3,2)\) generalized tensor
+placements.
+
+\section{Finite braid images and the enhanced link invariant}
+\label{sec:global}
+
+We now pass from the exact two-site comparison to the full braid
+representations and to the link invariant in the normalization of the
+five-word matrix.  Put
+\[
+  \kappa=q-1=q^2=e^{2\pi i/3}.
+\]
+Propositions~\ref{prop:enhancement}--\ref{prop:twists} are direct calculations
+from the displayed five-word operator and its scalar partial traces.
+Theorem~\ref{thm:all-strand} promotes the local opposite comparison to all
+strands.  Corollaries~\ref{cor:clifford}--\ref{cor:algorithm} transfer the known
+Family~III consequences, while Corollary~\ref{cor:branched-cover} records the
+classical Lickorish--Millett identification.
+
+\begin{proposition}[Scalar enhancement]\label{prop:enhancement}
+The quadruple
+\[
+  (R,\mu,\alpha,\beta)=(R,\Id_4,\kappa,2)
+\]
+is an enhanced unitary Yang--Baxter operator in Turaev's convention.  Its
+oriented-link invariant is
+\begin{equation}
+  \mathcal J_R(\widehat\xi)
+  =\kappa^{-\operatorname{wr}(\xi)}2^{-n}
+   \Tr(\rho_n(\xi)),
+  \qquad \xi\in B_n,
+  \label{eq:enhanced-invariant}
+\end{equation}
+where \(\Tr\) is the ordinary unnormalized trace on the \(4^n\)-dimensional
+tensor space and \(\operatorname{wr}\) is the braid exponent sum.  In
+particular, \(\mathcal J_R(\bigcirc)=2\).  Since \(\mu=\Id_4\), the factor
+\(\mu^{\otimes n}\) in Turaev's general trace formula is \(\Id_{4^n}\) and is
+suppressed in~\eqref{eq:enhanced-invariant}.
+\end{proposition}
+
+\begin{proof}
+Equations~\eqref{eq:R} and~\eqref{eq:H-identities}, together with the partial
+traces computed in the proof of Theorem~\ref{thm:main}, give
+\[
+  \Tr_1(R)=\Tr_2(R)=2\kappa\Id_4.
+\]
+The spectral decomposition also gives
+\[
+  R^{-1}=\frac{q^{-1}-1}{2}\Id_{16}
+         +\frac{q^{-1}+1}{2}H.
+\]
+Since \(q^{-1}-1=\kappa^{-1}\),
+\[
+  \Tr_1(R^{-1})=\Tr_2(R^{-1})=2\kappa^{-1}\Id_4.
+\]
+Turaev's enhancement conditions are
+\[
+  R(\mu\otimes\mu)=(\mu\otimes\mu)R,
+\]
+\[
+  \Tr_2(R(\mu\otimes\mu))=\alpha\beta\mu,
+  \qquad
+  \Tr_2(R^{-1}(\mu\otimes\mu))=\alpha^{-1}\beta\mu
+\]
+\cite[\S\S2.2--2.3]{Turaev1988}.  They hold with the displayed scalars; the
+commutation is immediate.  Turaev's trace formula and Markov theorem then give
+\eqref{eq:enhanced-invariant}
+\cite[\S\S3.1--3.2, especially Theorem~3.1.2]{Turaev1988}.  For the closure of the identity in
+\(B_1\), this is \(2^{-1}\Tr(\Id_4)=2\).
+\end{proof}
+
+\begin{proposition}[HOMFLYPT specialization]\label{prop:homflypt}
+Let \(P_{\mathrm H}\) be the normalized HOMFLYPT polynomial in the convention
+\[
+  aP_{\mathrm H}(L_+)-a^{-1}P_{\mathrm H}(L_-)
+  =zP_{\mathrm H}(L_0),
+  \qquad P_{\mathrm H}(\bigcirc)=1.
+\]
+Then
+\begin{equation}
+  \mathcal J_R(L)=2P_{\mathrm H}(L;i,i).
+  \label{eq:homflypt-specialization}
+\end{equation}
+Consequently \(\mathcal J_R\) is invariant under mirror image, and the
+\(c\)-component unlink has value \(2^c\).
+\end{proposition}
+
+\begin{proof}
+Multiplying the Hecke relation by \(R^{-1}\) yields
+\begin{equation}
+  R-qR^{-1}=(q-1)\Id_{16}=\kappa\Id_{16}.
+  \label{eq:matrix-skein}
+\end{equation}
+Apply ordinary trace to braid closures that differ only by \(R\), \(R^{-1}\),
+or the identity at one crossing.  Accounting for their writhes in
+\eqref{eq:enhanced-invariant} gives
+\[
+  \mathcal J_R(L_+)-q\kappa^{-2}\mathcal J_R(L_-)
+  =\mathcal J_R(L_0).
+\]
+Because \(\kappa=q^2\) and \(q^3=-1\),
+\[
+  q\kappa^{-2}=q^{-3}=-1,
+\]
+and hence
+\begin{equation}
+  \mathcal J_R(L_+)+\mathcal J_R(L_-)=\mathcal J_R(L_0).
+  \label{eq:plus-skein}
+\end{equation}
+At \((a,z)=(i,i)\), the displayed HOMFLYPT relation is exactly the same
+relation.  Its normalized skein characterization and
+\(\mathcal J_R(\bigcirc)=2\) prove~\eqref{eq:homflypt-specialization}.  The
+relation~\eqref{eq:plus-skein} is symmetric under interchange of positive and
+negative crossings, giving mirror invariance.  The unlink value follows either
+from the standard split-union factor or directly from
+\eqref{eq:enhanced-invariant}.
+\end{proof}
+
+\begin{proposition}[Local order and twist periodicity]\label{prop:twists}
+One has
+\[
+  R^3=-\Id_{16},\qquad R^6=\Id_{16}.
+\]
+If \(L_m=\widehat{x\sigma_i^m y}\), with the other braid factors fixed, then
+\[
+  \mathcal J_R(L_{m+3})=-\mathcal J_R(L_m),\qquad
+  \mathcal J_R(L_{m+6})=\mathcal J_R(L_m).
+\]
+\end{proposition}
+
+\begin{proof}
+The eigenvalues of \(R\) are \(-1,q\), and both have cube \(-1\).  This proves
+the two operator identities.  Replacing \(m\) by \(m+3\) multiplies the
+represented braid by \(-\Id\) and increases writhe by three.  Since
+\(\kappa^3=1\), the writhe factor is unchanged, proving the first formula; the
+second follows by iteration.  This is periodicity within a local twist family,
+not an identification of the full braid image group.
+\end{proof}
+
+\begin{theorem}[All-strand equivalence]\label{thm:all-strand}
+Let \(\rho_n^{\mathrm K}\) and \(\rho_n^{\mathrm{GR}}\) denote the braid
+representations generated by \(R_{\mathrm K}\) and \(R_{\mathrm{GR}}\),
+respectively, and put \(S_n=S^{\otimes n}\).  Let
+\(\mathsf{Rev}_n\) reverse the order of the \(n\) four-dimensional tensor
+sites, and let \(\theta_n\in\operatorname{Aut}(B_n)\) be defined by
+\(\theta_n(\sigma_i)=\sigma_{n-i}\).  Then
+\begin{equation}
+  \mathsf{Rev}_nS_n\rho_n^{\mathrm K}(\xi)
+  S_n^\dagger\mathsf{Rev}_n^\dagger
+  =\rho_n^{\mathrm{GR}}(\theta_n(\xi))
+  \qquad(\xi\in B_n).
+  \label{eq:reflected-global}
+\end{equation}
+Moreover, for the Garside half twist
+\[
+  \Delta_n=(\sigma_1\cdots\sigma_{n-1})
+  (\sigma_1\cdots\sigma_{n-2})\cdots\sigma_1,
+\]
+put
+\[
+  D_n=\rho_n^{\mathrm{GR}}(\Delta_n),\qquad
+  \mathcal U_n=D_n^\dagger\mathsf{Rev}_nS_n.
+\]
+Then
+\begin{equation}
+  \mathcal U_n\rho_n^{\mathrm K}(\xi)\mathcal U_n^\dagger
+  =\rho_n^{\mathrm{GR}}(\xi)
+  \qquad(\xi\in B_n).
+  \label{eq:same-word-global}
+\end{equation}
+Thus the image groups are unitarily conjugate and ordinary traces agree on the
+same braid word.
+\end{theorem}
+
+\begin{proof}
+Equation~\eqref{eq:concurrent-comparison} is equivalent to
+\[
+  (S\otimes S)R_{\mathrm K}(S^\dagger\otimes S^\dagger)
+  =\Sigma R_{\mathrm{GR}}\Sigma.
+\]
+Conjugating a two-site block by the global site reversal reverses its two
+internal sites and moves positions \((i,i+1)\) to \((n-i,n-i+1)\).  The two
+reversals cancel, so generator by generator
+\[
+  \mathsf{Rev}_nS_n\rho_n^{\mathrm K}(\sigma_i)
+  S_n^\dagger\mathsf{Rev}_n^\dagger
+  =\rho_n^{\mathrm{GR}}(\sigma_{n-i}).
+\]
+This proves~\eqref{eq:reflected-global}.  The standard half-twist identity
+\[
+  \Delta_n\sigma_i\Delta_n^{-1}=\sigma_{n-i}
+\]
+says \(\theta_n=\operatorname{Ad}_{\Delta_n}\).  Hence the right side of
+\eqref{eq:reflected-global} is
+\(D_n\rho_n^{\mathrm{GR}}(\xi)D_n^\dagger\); conjugating by \(D_n^\dagger\)
+proves~\eqref{eq:same-word-global}.  The local comparison includes an opposite,
+but the Garside conjugation removes the reflected generator indices at the
+level of the complete \(n\)-strand representation.  It does not establish a
+direct two-site local equivalence without the opposite.
+\end{proof}
+
+\begin{corollary}[Finite images and a Clifford frame]\label{cor:clifford}
+For every \(n\ge2\), the group \(\rho_n^{\mathrm K}(B_n)\) is finite.  It is
+Clifford with respect to a fixed conjugated Pauli frame.  In particular, the
+images are not dense in the ambient unitary groups and are not computationally
+universal by braiding alone in the usual density-based sense.
+\end{corollary}
+
+\begin{proof}
+In the Galindo--Rowell realization, \(U=iP_Z\) and \(V=iP_X\) for the Hermitian
+Pauli words in~\eqref{eq:RGR}.  Since \(i\zeta=\kappa\),
+\[
+  R_{\mathrm{GR}}
+  =\kappa\left(\frac{\Id+U}{\sqrt2}\right)
+             \left(\frac{\Id+V}{\sqrt2}\right)
+  =\kappa e^{i\pi P_Z/4}e^{i\pi P_X/4}.
+\]
+Each factor is a Pauli quarter-turn and hence normalizes the Pauli group; this
+is the Family~III Clifford structure of
+\cite[Proposition~8.1]{GalindoRowell2026}.  If \(\mathcal P_{2n}\) is the
+standard Pauli group on the \(2n\) qubits, then the original generators
+normalize the uniformly conjugated frame
+\[
+  (\mathsf{Rev}_nS_n)^\dagger\mathcal P_{2n}(\mathsf{Rev}_nS_n).
+\]
+The need for the conjugated frame is concrete.  Using the standard Hermitian
+Pauli \(Y=iJ\) and writing \(XIII=X\otimes I\otimes I\otimes I\), exact
+conjugation gives
+\[
+\begin{aligned}
+  R_{\mathrm K}(XIII)R_{\mathrm K}^\dagger
+  =\frac1{2\sqrt2}\bigl(&YIYY-YIYZ+YIZY-YIZZ\\
+                         &{}-ZIYY+ZIYZ-ZIZY+ZIZZ\bigr).
+\end{aligned}
+\]
+The eight Pauli words are distinct, so \(R_{\mathrm K}\) does not normalize the
+standard computational Pauli group; its Clifford statement is specifically
+relative to the displayed conjugated frame.  No assertion that \(S\) itself is
+a standard computational Clifford operator is needed.  Finiteness of the
+quaternionic braid image is
+\cite[Theorem~3.1]{Rowell2011}; after the finite-order scalar normalization, it
+also follows in the broader Family~III framework from
+\cite[Theorem~8.4]{GalindoRowell2026}.  Theorem~\ref{thm:all-strand} transfers it
+to \(\rho_n^{\mathrm K}\).
+\end{proof}
+
+\begin{corollary}[Quaternionic tower]\label{cor:quaternionic-tower}
+Under the all-strand equivalence, the localized quotient is the
+braid-generated subalgebra of the explicit quaternionic twisted-group-algebra
+tower, where \(s_i\) denotes Rowell's quaternionic braid generator:
+\[
+  H_n(3,6)\cong
+  \langle s_1,\ldots,s_{n-1}\rangle_{\mathrm{alg}}
+  \subset \mathcal A_n(Q_8).
+\]
+The full tower algebra has the normal basis
+\[
+  u_1^{\epsilon_1}v_1^{\delta_1}\cdots
+  u_{n-1}^{\epsilon_{n-1}}v_{n-1}^{\delta_{n-1}},
+  \qquad \epsilon_i,\delta_i\in\{0,1\},
+\]
+and
+\[
+  \dim_{\bbC}\mathcal A_n(Q_8)=4^{n-1}.
+\]
+\end{corollary}
+
+\begin{proof}
+The basis and dimension are the literal construction in
+\cite[\S13.1]{GalindoRowell2026}.  The identification of the braid-generated
+subalgebra with \(H_n(3,6)\) is
+\cite[Lemma~3.2, p.~176]{Rowell2011}.  This does not identify
+\(H_n(3,6)\) with the full \(4^{n-1}\)-dimensional tower algebra.
+\end{proof}
+
+\begin{corollary}[Exact classical evaluation]\label{cor:algorithm}
+Given \(\xi\in B_n\), the value \(\mathcal J_R(\widehat\xi)\) is exactly
+computable by a deterministic classical algorithm in time polynomial in
+\(n+|\xi|\).
+\end{corollary}
+
+\begin{proof}
+For Family~III with the fixed metric group \(A=\mathbb Z/2\mathbb Z\),
+\cite[Theorem~7.10]{GalindoRowell2026} gives an exact deterministic algorithm,
+polynomial in strand number plus braid-word length, for the coefficient-trace
+invariant.  To match normalizations, put
+\[
+  r_0=\kappa^{-1}R_{\mathrm{GR}}
+  =\frac12(\Id+U+V+UV).
+\]
+If \(\varepsilon_n\) is their identity-coefficient functional and \(\Phi_n\)
+the Pauli realization, then \cite[Theorem~7.3]{GalindoRowell2026} gives
+\[
+  \Tr\!\circ\!\Phi_n=4^n\varepsilon_n.
+\]
+Because \(\rho_{R_{\mathrm{GR}}}(\xi)
+=\kappa^{\operatorname{wr}(\xi)}\Phi_n(\rho_{r_0}(\xi))\), its enhanced trace
+is \(2^n\varepsilon_n(\rho_{r_0}(\xi))\), exactly the invariant covered by
+that theorem.  The same-word equivalence~\eqref{eq:same-word-global} transfers
+the algorithm to \(R_{\mathrm K}\).  This complexity statement comes from the
+cited algorithm, not from the exponentially growing dimension in
+Corollary~\ref{cor:quaternionic-tower}.
+\end{proof}
+
+\begin{corollary}[Triple cyclic branched cover]\label{cor:branched-cover}
+Let \(L\) be an oriented link with \(c(L)\) components.  Let
+\(\Sigma_3(L)\) be the connected triple cyclic cover of \(S^3\) branched over
+\(L\), obtained by completing the cover of \(S^3\setminus L\) associated with
+the homomorphism that sends every positively oriented meridian to
+\(1\in\mathbb Z/3\mathbb Z\).  Put
+\[
+  d_2(L)=\dim_{\mathbb F_2}H_1(\Sigma_3(L);\mathbb F_2).
+\]
+Then \(d_2(L)\) is even and
+\begin{equation}
+  \mathcal J_R(L)=2(-1)^{c(L)-1}(-2)^{d_2(L)/2}.
+  \label{eq:branched-cover}
+\end{equation}
+\end{corollary}
+
+\begin{proof}
+Lickorish--Millett normalize their polynomial \(P_L(\ell,m)\) by
+\[
+  P_{\bigcirc}=1,\qquad
+  \ell P_{L_+}+\ell^{-1}P_{L_-}+mP_{L_0}=0.
+\]
+Their Theorem~2, together with the parity-preserving dimension calculation in
+its proof, gives
+\[
+  d_2(L)\in2\mathbb Z,\qquad P_L(1,1)=(-2)^{d_2(L)/2}
+\]
+\cite[Theorem~2 and pp.~353--355]{LickorishMillett1986}.  In an oriented skein
+triple, \(c(L_+)=c(L_-)\), while \(c(L_0)\) differs by one.  Therefore
+\[
+  Q(L)=(-1)^{c(L)-1}P_L(1,1)
+\]
+satisfies \(Q(L_+)+Q(L_-)=Q(L_0)\) and \(Q(\bigcirc)=1\).  Comparison with the
+normalization in Proposition~\ref{prop:homflypt} gives
+\[
+  P_{\mathrm H}(L;i,i)=(-1)^{c(L)-1}(-2)^{d_2(L)/2}.
+\]
+Equation~\eqref{eq:homflypt-specialization} proves~\eqref{eq:branched-cover}.
+This is the classical Lickorish--Millett evaluation; the point here is its exact
+identification with the invariant of the displayed five-word matrix.
+\end{proof}
+
+For orientation and crossing conventions, the exact matrix trace gives the
+following small checks:
+\[
+\begin{array}{c@{\qquad}c}
+\toprule
+\text{closure} & \mathcal J_R\\
+\midrule
+1\in B_1\ (\text{unknot}) & 2\\
+1\in B_2\ (\text{two-component unlink}) & 4\\
+\sigma_1^{\pm2}\in B_2\ (\text{Hopf links}) & -2\\
+\sigma_1^{\pm3}\in B_2\ (\text{trefoils}) & -4\\
+\bigl(\sigma_1\sigma_2^{-1}\bigr)^2\in B_3\ (\text{figure-eight knot}) & -4\\
+\bigl(\sigma_1\sigma_2^{-1}\bigr)^3\in B_3\ (\text{Borromean rings}) & 2\\
+\bottomrule
+\end{array}
+\]
+These values agree with~\eqref{eq:branched-cover}; the positive and negative
+closures also illustrate mirror insensitivity.  For the \(B_3\) rows,
+\(\sigma_1\) and \(\sigma_2\) act by the adjacent placements
+\(R\otimes\Id_4\) and \(\Id_4\otimes R\), respectively.
 
 \section{Verification and provenance}\label{sec:verification}
 
-The public package supplies three supported exact-verification routes: a
-hardened SymPy route based on the original discovery-era checker; an
-independently written standard-library route using a separate sparse
-exact-arithmetic representation and code path over
-\(\bbQ(\sqrt2,\sqrt3,i)\); and a matrix-free Pauli-word route checking the
-complete \(18\)-word certificate in Proposition~\ref{prop:circle}.  They
-check the displayed matrix identities, partial traces, both dimension-three
-obstructions, the six-dimensional three-strand Hecke image, the generalized
-operator and far commutativity, and the exact comparison with the GHR matrix.
-All comparisons are exact, and negative tests deliberately mutate each route.
-The README records the commands and scope.  These finite checks do not replace
-the printed tower-faithfulness proof, Lechner's dimension-three classification
-step, or the literature-based priority assessment.
+The source package supplies five supported exact-verification routes:
+\begin{enumerate}[leftmargin=2.2em,itemsep=0.25em]
+\item a hardened SymPy matrix verifier based on the original discovery-era
+checker;
+\item an independently written standard-library matrix verifier over
+\(\bbQ(\sqrt2,\sqrt3,i)\);
+\item a matrix-free Pauli-word verifier for the complete \(18\)-word
+certificate in Proposition~\ref{prop:circle};
+\item an independently encoded verifier for the intrinsic quaternionic form,
+the literal Galindo--Rowell operator, the site swap, and \(S\); and
+\item a braid-and-link verifier that rechecks the intrinsic factorization,
+\(S\)-unitarity, and two-site comparison, then checks the scalar enhancement,
+matrix skein identity, local order, two- and three-strand link values, the
+standard-frame non-Clifford witness, Pauli quarter-turns, and the global
+reversal and Garside conjugacies at \(n=3,4\).
+\end{enumerate}
+Together these routes check the displayed matrix identities, partial traces,
+both dimension-three obstructions, the six-dimensional three-strand Hecke
+image, the generalized operator and far commutativity, the exact residual
+comparison with \(K_{\mathrm{GHR}}^{\mathrm{gen}}\), and the finite identities
+in Sections~\ref{sec:quaternionic}--\ref{sec:global}.  All comparisons are
+exact.  Negative tests deliberately alter coefficients, tensor placements,
+the local unitary, the quarter-turn order, \(\zeta\), \(\kappa\), the writhe
+factor, the skein sign, a reversed generator index, and the Garside word.  The
+README records the commands and scope.  These finite checks do not replace the
+printed tower-faithfulness and all-strand conjugacy proofs, Lechner's
+classification input, or the literature-based interpretation of the
+concurrent and topological results.
 
 The five-word support was originally found by an AI-assisted structured
 numerical search in a real Pauli--Clifford basis.  The discovery code and
@@ -875,48 +1473,56 @@ output as evidence or reproducing the original numerical search.
 \section{Related work, novelty, and limitations}\label{sec:priority}
 
 Rowell and Wang introduced the localization framework and conjecture
-\cite{RowellWang2012}.  Galindo, Hong, and Rowell's 2012 advance publication
-then studied the
+\cite{RowellWang2012}.  Galindo, Hong, and Rowell then studied the
 \(\cC(\mathfrak{sl}_3,6)\) sequence, excluded ordinary local dimension two,
 and supplied quasi- and \((3,1)\)-generalized localizations, but no ordinary
 dimension-four operator~\cite[\S5.6]{GHR2013}.  Rowell's quaternionic model
-and the unitary-braided-vector-space literature provide close prior
-art~\cite{Rowell2011,GalindoRowell2014}.  Lechner then
-identified \([e^{i\pi/3},1/2,2m]\) as the sole remaining existence family
-up to braid-character equivalence and stated that its dimension-two member is
-empty~\cite[p.~16, discussion following Proposition~3.6]{Lechner2026}.
+and the unitary-braided-vector-space literature are foundational prior art
+\cite{Rowell2011,GalindoRowell2014}.  Lechner later identified
+\([e^{i\pi/3},1/2,2m]\) as the remaining existence family up to
+braid-character equivalence and stated that its dimension-two member is empty
+\cite[p.~16, discussion following Proposition~3.6]{Lechner2026}.
 
-A focused search through 16 August 2026 found no earlier construction
-realizing \([e^{i\pi/3},1/2,4]\) and no previously published ordinary
-four-dimensional localization of this Jones--Wenzl sequence.  The
-construction therefore \emph{appears new} and answers the open class
-identified in~\cite{Lechner2026}.  This negative search is not proof of
-absolute priority; unindexed, unpublished, paywalled, differently
-parameterized, or concurrent work may exist.
+Galindo and Rowell independently realized the same exceptional local class and
+proved faithful strict localization of \(H_n(3,6)\) in local dimension four,
+the smallest dimension in Lechner's exceptional family, using a quaternionic
+twisted-group-algebra tower
+\cite[\S13]{GalindoRowell2026}.  Their construction is substantially broader
+in its classification setting.  The present proof architecture is different:
+it gives a five-word real Pauli--Clifford representative, reduces the braid
+relation to two anticommuting involutions, prints the complete \(18\)-word
+cubic certificate, derives the Markov trace from scalar partial traces, proves
+the dimension-three obstruction directly, and exhibits the active
+\((3,2)\)-generalized normal form.  Proposition~\ref{prop:concurrent-comparison}
+supplies an exact bridge to their Family~III formula, and
+Theorem~\ref{thm:all-strand} extends it to every braid word.
 
-The broad ordinary-localization question dates to Rowell and Wang; the
-specific \(\cC(\mathfrak{sl}_3,6)\) case was highlighted by GHR in 2012, and
-the exact \(16\times16\) formulation was isolated in 2026.  The result does not
-classify the exceptional family in every even dimension, prove uniqueness,
-or identify an intertwiner with the known quaternionic \((3,1)\) model.
+The public and reported private chronology is recorded in the Note added in
+the Introduction; the papers are treated throughout as independent and
+concurrent.  The finite-image, Clifford, twisted-tower, and classical
+link-evaluation phenomena are known for the quaternionic representation.  The
+contribution here is their exact transfer to, and transparent derivation from,
+the sparse five-word representative, including its scalar enhancement and
+matrix-trace normalization.  No new HOMFLYPT evaluation, branched-cover
+theorem, or all-\(n\) finite-image group classification is claimed.  The result
+does not classify the exceptional family in every even dimension or prove
+uniqueness.  The comparison theorem concerns the \(16\times16\) ordinary
+Family~III operator \(R_{\mathrm{GR}}\), not the older \(8\times8\) generalized
+operator \(K_{\mathrm{GHR}}^{\mathrm{gen}}\).
 
 \section*{Data, code, and source availability}
 
-The source, exact verifiers, frozen outputs, and audit materials are maintained
-in the
-\href{https://github.com/AlecKriebel/Math/tree/main/exceptional_ybe_d4}
-{public source package} in the
-\href{https://github.com/AlecKriebel/Math}{AlecKriebel/Math repository}.
-The curated source package supplies SHA-256 checksums and explicit manuscript
-and code licenses.  The maintained
-\href{https://aleckriebel.github.io/Math/papers/exceptional-ybe-d4/}
-{project page} links the current edition.  No empirical dataset was generated
-or analyzed.  The public source package contains the exact code, frozen
-outputs, and sources supporting the computational claims.  The~
-version-specific Zenodo record for this manuscript and its exact-verification
-package is identified by
+The source, exact verifiers, frozen outputs, checksums, and audit materials for
+this edition accompany the manuscript in a deterministic version 1.2.0
+package identified by the version-specific Zenodo DOI
+\href{https://doi.org/10.5281/zenodo.22013710}
+{doi:10.5281/zenodo.22013710}~\cite{Kriebel2026Zenodo}.  The preceding version
+1.1.3 package remains permanently archived at
 \href{https://doi.org/10.5281/zenodo.21971507}
-{doi:10.5281/zenodo.21971507}~\cite{Kriebel2026Zenodo}.
+{doi:10.5281/zenodo.21971507}; it is not overwritten by this revision.  The
+maintained \href{https://aleckriebel.github.io/Math/papers/exceptional-ybe-d4/}
+{project page} provides the public manuscript and verification links.  No
+empirical dataset was generated or analyzed.
 
 \section*{CRediT authorship contribution statement}
 
@@ -955,12 +1561,28 @@ C.~Galindo and E.~C. Rowell,
 \newblock \emph{J. Math. Phys.} \textbf{55} (2014), 061702.
 \newblock \href{https://doi.org/10.1063/1.4880196}{doi:10.1063/1.4880196}.
 
+\bibitem{GalindoRowell2026}
+C.~Galindo and E.~C. Rowell,
+\newblock Unitary Yang--Baxter operators: towards a classification,
+\newblock arXiv:2608.16865v1 (17 August 2026).
+\newblock \href{https://doi.org/10.48550/arXiv.2608.16865}
+{doi:10.48550/arXiv.2608.16865};
+\url{https://arxiv.org/abs/2608.16865v1}.
+
 \bibitem{Kriebel2026Zenodo}
 A.~Kriebel,
-\newblock An exceptional four-dimensional unitary Hecke Yang--Baxter operator,
-\newblock Zenodo, version 1.1.3 (2026).
-\newblock \href{https://doi.org/10.5281/zenodo.21971507}
-{doi:10.5281/zenodo.21971507}.
+\newblock An exceptional four-dimensional unitary Hecke Yang--Baxter operator:
+a five-word Pauli--Clifford normal form,
+\newblock Zenodo, version 1.2.0 (2026).
+\newblock \href{https://doi.org/10.5281/zenodo.22013710}
+{doi:10.5281/zenodo.22013710}.
+
+\bibitem{LickorishMillett1986}
+W.~B.~R. Lickorish and K.~C. Millett,
+\newblock Some evaluations of link polynomials,
+\newblock \emph{Comment. Math. Helv.} \textbf{61} (1986), no.~1, 349--359.
+\newblock \href{https://doi.org/10.1007/BF02621920}
+{doi:10.1007/BF02621920}.
 
 \bibitem{Lechner2026}
 G.~Lechner,
@@ -983,6 +1605,13 @@ E.~C. Rowell and Z.~Wang,
 \newblock \emph{Comm. Math. Phys.} \textbf{311} (2012), 595--615.
 \newblock \href{https://doi.org/10.1007/s00220-011-1386-7}
 {doi:10.1007/s00220-011-1386-7}.
+
+\bibitem{Turaev1988}
+V.~G. Turaev,
+\newblock The Yang--Baxter equation and invariants of links,
+\newblock \emph{Invent. Math.} \textbf{92} (1988), no.~3, 527--553.
+\newblock \href{https://doi.org/10.1007/BF01393746}
+{doi:10.1007/BF01393746}.
 
 \bibitem{Wenzl1988}
 H.~Wenzl,

@@ -387,3 +387,166 @@ All times are America/Los_Angeles (PDT, UTC-07:00).
 - No theorem, operator, proof scope, priority claim, DOI metadata, version, or
   deterministic epoch changed. No archive was uploaded or published, no tag or
   GitHub release was created, and no outside individual was contacted.
+
+## 18 August 2026 — Private concurrent-work revision
+
+- **13:55 PDT** -- Began a private version-1.2.0 revision after receipt of
+  Galindo--Rowell arXiv:2608.16865v1. The historical v1.1.0 tag, artifact
+  commit, released files, and dedicated v1.1.3 Zenodo record were treated as
+  read-only. No commit, push, release, submission, repository edit, or external
+  communication was authorized.
+- **14:20 PDT** -- Inspected the supplied arXiv source literally and encoded
+  its Section 13 Pauli placements independently. Exact arithmetic over
+  \(\mathbb Q(\sqrt2,\sqrt3,i)\) verified the intrinsic quaternionic
+  factorization, the essential factor \(-i\), unitarity of the displayed
+  four-dimensional matrix, and the local-unitary comparison after reversal of
+  the two four-dimensional sites. Omitting the site reversal gives a nonzero
+  exact residual.
+- **14:35 PDT** -- Audited the public chronology and the historical v1.1.0
+  source. The tagged July source already contains all ten recorded
+  construction, localization, minimality, amplification, and generalized-form
+  items. Public timestamps were normalized to UTC; reported earlier private
+  circulation was explicitly separated from the public record and was not
+  used to adjudicate private discovery priority.
+- **15:15 PDT** -- Completed the manuscript and handoff revision. The paper
+  now cites Galindo--Rowell prominently, distinguishes their 16-by-16 ordinary
+  Family III operator from the older 8-by-8 GHR generalized operator, and
+  states the opposite/site-reversal qualification explicitly. The cover
+  letter and two human-gated communication drafts remain private and unsent.
+- **15:43 PDT** -- Rebuilt with Tectonic 0.16.9 and default bundle v33 under
+  `SOURCE_DATE_EPOCH=1787090400`. The final 15-page PDF has SHA-256
+  `27b121f40ad16520413f31587b1a7dfa315d4f2bfd4cee0d787f75165b26b77e`.
+  Every rendered page was inspected, and the TeX log has no warning,
+  overfull box, unresolved reference, clipping, or collision. All four
+  supported exact routes reproduced frozen output SHA-256
+  `31642749ae1a5b68b23f80763d7c3e70c9b0bebc18099abab4cac014a44e9dc0`;
+  the standalone concurrent transcript has SHA-256
+  `69aec973c78bdc44e1a4fa4f11e4c467c715dd2ca83a90b7c7c2d898dffd15bc`.
+  All 25 adversarial tests passed, including all five new comparison-specific
+  mutations. The internal manifest and deterministic v1.2.0 Zenodo/arXiv
+  artifacts were regenerated and verified from a clean extraction.
+- No external state was changed and no outside individual was contacted. The
+  new Zenodo version DOI remains a human-only post-review gate.
+
+## 18 August 2026 — Final global braid-and-link strengthening
+
+- **21:25 PDT** -- Began the closed strengthening pass specified by the human
+  author. Rechecked the original matrix/localization/minimality baseline and
+  audited the literal Galindo--Rowell, Rowell, Turaev, and
+  Lickorish--Millett sources. No open-ended theorem search was undertaken.
+- **21:35 PDT** -- Exact arithmetic verified the scalar enhancement, matrix
+  skein identity, local order, low-link values, Pauli quarter-turn
+  factorization, complete local Pauli normalization, and the tensor-reversal
+  and Garside orientations at strand numbers three and four. The printed
+  all-strand proof and the primary-source normalization crosswalks were then
+  completed.
+- **21:43 PDT** -- The five supported routes passed in the locked CPython
+  3.14.6 / SymPy 1.14.0 / mpmath 1.3.0 environment. Their frozen transcript
+  has SHA-256
+  `5e97e82aa2716db6ef40ad1f7ef4a844ec10c2e12ecaab0d329fc9b3abf03519`;
+  the standalone braid-and-link transcript has SHA-256
+  `7e2dfd704df1100068bde7bdd03ce35a0ffa723a46a8aec6b6825af296190d40`.
+- **21:51 PDT** -- All 31 adversarial tests passed in 144.333 seconds after a
+  first run was interrupted solely by exhaustion of the operating system's
+  temporary-disk space. The successful rerun rejected every optimized or
+  deliberately mutated route. The final 19-page manuscript PDF has SHA-256
+  `769187195ebc53bae1b75af63e0aa1608ba32b581d13f30c275246dfb4336f5f`.
+- The exact branched-cover formula was retained only after all five source
+  gates passed. No finite image group was named, no necessity of site reversal
+  was claimed, and no classical topological result was presented as new.
+- No commit, push, release, deposit, DOI reservation, submission, email, or
+  other external write occurred. Historical releases and the v1.1.3 Zenodo
+  record were not modified.
+
+## 19 August 2026 — Section 9 attribution and frame-clarity hardening
+
+- **05:45 PDT** -- Began the final targeted pass. No theorem search or proof
+  compression was undertaken. The abstract, Theorem 1.3, and Section 9 were
+  separated explicitly into direct matrix consequences, the all-strand
+  comparison, transported Family III results, and classical topological
+  evaluations.
+- **05:52 PDT** -- Independent exact arithmetic verified
+  \(R(XIII)R^\dagger\) as the printed eight-term Pauli sum. A one-sign mutation
+  has Frobenius norm squared eight and is rejected. Literal five-word
+  three-strand calculations give \(-4\) for the figure-eight closure and \(2\)
+  for the Borromean closure.
+- **06:05 PDT** -- The five-route clean run passed in the locked CPython
+  3.14.6 / SymPy 1.14.0 / mpmath 1.3.0 environment. Its frozen transcript has
+  SHA-256
+  `108233f563373cc2b3e3e9fb4012f7f8ea52fb1149f58c2f6795344bfc5f3064`;
+  the standalone braid-and-link transcript has SHA-256
+  `9081354712384deef6043ad15c2d6f28f8a4b7988148fc1d246a77b02ae0042a`.
+- **06:18 PDT** -- Full-page visual inspection caught and repaired the literal
+  TeX typo `qquad` in the Lickorish--Millett display. The rebuilt 20-page PDF
+  has SHA-256
+  `d50c1c3583dd9d8270c09ec2b99223bf0b74ad67254c8739d03597fc652ce691`;
+  all rendered pages are clean and the TeX log has no unresolved references or
+  overfull boxes.
+- The final freeze gate ran and passed all 32 adversarial tests against the
+  refreshed package manifest and deterministically reconstructed both
+  archives. No
+  historical release, DOI record, repository branch, website, submission, or
+  communication is modified externally.
+
+## 19 August 2026 — Reserved v1.2.0 DOI insertion
+
+- **06:55 PDT** -- The human author supplied the reserved version DOI
+  `10.5281/zenodo.22013710`. Inserted it in the manuscript, bibliography,
+  package citation metadata, Zenodo/arXiv/journal handoff, and prepared website
+  metadata. No theorem, proof, verifier, historical release, or external
+  record was changed.
+- Rebuilt the DOI-bearing PDF and deterministic submission artifacts, refreshed
+  all dependent hashes, and prepared exactly the PDF, source ZIP, and matching
+  `SHA256SUMS` for human upload. The DOI-bearing 20-page PDF has SHA-256
+  `6f1b74c294932ccd3fa7ddfc4e75775e1e6bffffe423962f884ba2ee97fc986f`.
+  Zenodo publication remains human-only.
+
+## 19 August 2026 — Final two-sentence attribution polish
+
+- Tightened the abstract to state that the scalar enhancement together with
+  the skein calculation identifies the HOMFLYPT specialization, and added the
+  audited Galindo--Rowell Section 13 citation at its first Section 5 use.
+- Retained the 18 August manuscript-version date and the existing AI wording:
+  the former records the completed scholarly edition, while current official
+  OpenAI model guidance treats Pro as a mode of the selected GPT-5.6 model.
+  No theorem, proof, formula, verifier, or historical record changed. The
+  rebuilt 20-page PDF has SHA-256
+  `7ad5ebe720a55428c64b80c548b39ee0e796c89cc11b7170db6622d5f2692916`.
+
+## 19 August 2026 — Public source-package curation
+
+- Removed four private operational documents from the public source-archive
+  allowlist while retaining them locally: the journal cover letter, submission
+  checklist, arXiv metadata handoff, and Zenodo deposit handoff.
+- Updated the manifest, README, license attribution title, and archive-boundary
+  regression test. The verified 20-page manuscript PDF remained byte-for-byte
+  unchanged; only the public source ZIP and matching outer checksum changed.
+
+## 19 August 2026 — Final public-status and punctuation freeze
+
+- Replaced the remaining current private/prepublication labels in the public
+  README, manifest, and version-1.2.0 release notes with durable archival-release
+  language. Historical private-staging statements remain unchanged as
+  provenance.
+- Corrected the sentence-ending punctuation in the complemented-projection
+  argument of Section 6. No formula, claim, proof step, or verifier changed.
+  The rebuilt 20-page PDF has SHA-256
+  `a3bdfee715fb37e156b4d3e30a4d53818bf45f2f1fef6739874302ca2e343ba2`.
+
+## 19 August 2026 — Durable chronology-status cleanup
+
+- Replaced the final pre-deposit wording in the public chronology record with
+  the version-1.2.0 archival DOI and removed the obsolete private-candidate
+  closing paragraph from the release notes.
+- Extended the public-status regression test to bind those corrections. The
+  manuscript and PDF were not changed.
+
+## 19 August 2026 — Final launch-date normalization
+
+- Advanced the current version-1.2.0 manuscript, citation, release, website,
+  and deposit dates to 19 August 2026 while preserving every historical July
+  and 18 August chronology checkpoint.
+- Advanced the deterministic build epoch to `1787176800` (19 August 2026,
+  15:00 PDT) and the source-archive timestamp to the same local wall time.
+  The rebuilt 20-page PDF has SHA-256
+  `a769689a4b5b9c48bf675f79d3b80916a7821ad5a8db0b9ec246df460dffb8de`.

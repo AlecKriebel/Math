@@ -19,7 +19,13 @@ from package_submission import package_files
 
 
 ROOT = Path(__file__).resolve().parent
-SUPPORTED = ("verify_exact.py", "verify_tensor_words.py", "verify_supplied.py")
+SUPPORTED = (
+    "verify_exact.py",
+    "verify_tensor_words.py",
+    "verify_supplied.py",
+    "verify_concurrent_equivalence.py",
+    "verify_braid_link.py",
+)
 OPTIMIZATION_GUARDED = SUPPORTED + ("verify_checksums.py", "package_submission.py")
 
 
@@ -148,6 +154,90 @@ class FailureModeTests(unittest.TestCase):
             "q = sp.Rational(1, 2) - sp.I * sp.sqrt(3) / 2",
         )
 
+    def test_concurrent_unitary_sign_mutation_fails(self):
+        self.assert_mutation_fails(
+            "verify_concurrent_equivalence.py",
+            "[two + SQRT2, -IUNIT * SQRT2, IUNIT * SQRT2, two - SQRT2],",
+            "[two + SQRT2, IUNIT * SQRT2, IUNIT * SQRT2, two - SQRT2],",
+        )
+
+    def test_concurrent_site_swap_omission_fails(self):
+        self.assert_mutation_fails(
+            "verify_concurrent_equivalence.py",
+            "    opposite = mmul(mmul(sigma, r_gr), sigma)",
+            "    opposite = r_gr",
+        )
+
+    def test_concurrent_zeta_conjugation_fails(self):
+        self.assert_mutation_fails(
+            "verify_concurrent_equivalence.py",
+            "    zeta = (SQRT3 + IUNIT) / 2",
+            "    zeta = (SQRT3 - IUNIT) / 2",
+        )
+
+    def test_concurrent_tensor_placement_mutation_fails(self):
+        self.assert_mutation_fails(
+            "verify_concurrent_equivalence.py",
+            "    p_z = kron(I2, Z, Z, I2)",
+            "    p_z = kron(Z, I2, I2, Z)",
+        )
+
+    def test_concurrent_minus_i_omission_fails(self):
+        self.assert_mutation_fails(
+            "verify_concurrent_equivalence.py",
+            "        equal(intrinsic_sum, smul(-IUNIT * SQRT3, h)),",
+            "        equal(intrinsic_sum, smul(SQRT3, h)),",
+        )
+
+    def test_braid_link_quarter_turn_order_mutation_fails(self):
+        self.assert_mutation_fails(
+            "verify_braid_link.py",
+            "    quarter_product = pauli_sum_product(quarter_z, quarter_x)",
+            "    quarter_product = pauli_sum_product(quarter_x, quarter_z)",
+        )
+
+    def test_braid_link_wrong_writhe_factor_fails(self):
+        self.assert_mutation_fails(
+            "verify_braid_link.py",
+            "    hopf_writhe_factor = scalar_power(kappa, -2)",
+            "    hopf_writhe_factor = scalar_power(kappa, 2)",
+        )
+
+    def test_braid_link_kappa_replacement_fails(self):
+        self.assert_mutation_fails(
+            "verify_braid_link.py",
+            "    enhancement_positive = 2 * kappa",
+            "    enhancement_positive = 2 * q",
+        )
+
+    def test_braid_link_homflypt_sign_mutation_fails(self):
+        self.assert_mutation_fails(
+            "verify_braid_link.py",
+            '    require(q * kappa_inverse * kappa_inverse == -ONE, "HOMFLYPT skein sign")',
+            '    require(q * kappa_inverse * kappa_inverse == ONE, "HOMFLYPT skein sign")',
+        )
+
+    def test_braid_link_reversal_index_mutation_fails(self):
+        self.assert_mutation_fails(
+            "verify_braid_link.py",
+            "            target = strand_count - 2 - site",
+            "            target = site",
+        )
+
+    def test_braid_link_garside_word_mutation_fails(self):
+        self.assert_mutation_fails(
+            "verify_braid_link.py",
+            "        for site in range(last - 1, -1, -1)",
+            "        for site in range(last - 1, 0, -1)",
+        )
+
+    def test_braid_link_standard_frame_witness_sign_mutation_fails(self):
+        self.assert_mutation_fails(
+            "verify_braid_link.py",
+            '        "YIYY": SQRT2 / 4,',
+            '        "YIYY": -SQRT2 / 4,',
+        )
+
     def test_generic_converse_branches_are_exercised(self):
         result = run_script(ROOT / "verify_tensor_words.py")
         self.assertEqual(result.returncode, 0, result.stderr)
@@ -193,14 +283,32 @@ class FailureModeTests(unittest.TestCase):
         actual = {relative.as_posix() for _, relative in package_files()}
         self.assertTrue(
             {
-                "RELEASE_NOTES_v1.1.3.md",
-                "CORRECTION_AUDIT_v1.1.3.md",
+                "CHANGELOG_v1.2.0.md",
+                "RELEASE_NOTES_v1.2.0.md",
+                "CONCURRENT_WORK_AND_CHRONOLOGY_v1.2.0.md",
+                "verify_concurrent_equivalence.py",
+                "concurrent_equivalence_output.txt",
+                "GLOBAL_BRAID_SOURCE_AUDIT_v1.2.0.md",
+                "TOPOLOGICAL_NORMALIZATION_AUDIT_v1.2.0.md",
+                "GLOBAL_STRENGTHENING_ADJUDICATION_v1.2.0.md",
+                "SECTION9_HARDENING_ADJUDICATION_v1.2.0.md",
+                "verify_braid_link.py",
+                "braid_link_output.txt",
             }.issubset(actual)
+        )
+        self.assertTrue(
+            {
+                "ARXIV_METADATA.md",
+                "JOURNAL_OF_ALGEBRA_COVER_LETTER.md",
+                "SUBMISSION_CHECKLIST.md",
+                "ZENODO_DEPOSIT.md",
+            }.isdisjoint(actual)
         )
 
     def test_current_textual_corrections_are_bound(self):
         manuscript = (ROOT / "main.tex").read_text(encoding="utf-8")
-        doi = "10.5281/zenodo.21971507"
+        historical_doi = "10.5281/zenodo.21971507"
+        current_doi = "10.5281/zenodo.22013710"
         self.assertNotIn("Galindo--Hong--Rowell localization conjecture", manuscript)
         self.assertIn("Rowell--Wang localization conjecture", manuscript)
         self.assertIn(
@@ -225,54 +333,109 @@ class FailureModeTests(unittest.TestCase):
             "Temperley--Lieb quotient",
             manuscript,
         )
+        self.assertIn(r"=c(f_1-f_2)." + "\n" + r"\]", manuscript)
         self.assertIn("10.48550/arXiv.2603.20158", manuscript)
-        self.assertIn("This realizes the smallest-dimensional", manuscript)
+        abstract = manuscript.split(r"\begin{abstract}", 1)[1].split(
+            r"\end{abstract}", 1
+        )[0]
+        self.assertNotIn("2026-", abstract)
+        self.assertNotIn("public release", abstract)
         self.assertNotIn("Corresponding author:", manuscript)
         self.assertNotIn("San Francisco, California", manuscript)
         self.assertIn(
             "\\end{proof}\n\n\\begin{remark}[Conventions in GHR",
             manuscript,
         )
-        doi_files = (
+        historical_doi_files = (
             "main.tex",
             "README.md",
-            "CITATION.cff",
             "MANIFEST.md",
-            "ZENODO_DEPOSIT.md",
-            "ARXIV_METADATA.md",
-            "SUBMISSION_CHECKLIST.md",
             "RELEASE_NOTES_v1.1.3.md",
             "CORRECTION_AUDIT_v1.1.3.md",
         )
-        for name in doi_files:
+        for name in historical_doi_files:
             with self.subTest(doi_file=name):
-                self.assertIn(doi, (ROOT / name).read_text(encoding="utf-8"))
+                self.assertIn(
+                    historical_doi, (ROOT / name).read_text(encoding="utf-8")
+                )
+        current_doi_files = (
+            "main.tex",
+            "README.md",
+            "MANIFEST.md",
+            "CITATION.cff",
+        )
+        for name in current_doi_files:
+            with self.subTest(current_doi_file=name):
+                self.assertIn(
+                    current_doi, (ROOT / name).read_text(encoding="utf-8")
+                )
+        self.assertIn("GalindoRowell2026", manuscript)
+        self.assertNotIn("earlier documented public disclosure", manuscript)
+        self.assertIn("2026-07-28 04:10:58 UTC", manuscript)
+        self.assertIn(r"=-i\sqrt3\,H", manuscript)
+        self.assertIn(r"R_{\mathrm{GR},21}", manuscript)
+        self.assertIn("does not\ndetermine whether a direct local-unitary equivalence", manuscript)
+        self.assertNotIn("site reversal in~\\eqref{eq:concurrent-comparison} is essential", manuscript)
+        self.assertNotIn("\\emph{appears new}", manuscript)
+        self.assertNotIn("inequivalent", manuscript.lower())
+        self.assertIn(r"P_Z=(I\otimes Z)\otimes(Z\otimes I)", manuscript)
+        self.assertIn(r"P_X=(X\otimes I)\otimes(X\otimes X)", manuscript)
+        self.assertIn("a five-word Pauli--Clifford normal form", manuscript)
+        self.assertIn(r"(R,\mu,\alpha,\beta)=(R,\Id_4,\kappa,2)", manuscript)
+        self.assertIn(r"\mathcal J_R(L)=2P_{\mathrm H}(L;i,i)", manuscript)
+        self.assertIn(r"\Delta_n\sigma_i\Delta_n^{-1}=\sigma_{n-i}", manuscript)
+        self.assertIn(r"2(-1)^{c(L)-1}(-2)^{d_2(L)/2}", manuscript)
+        self.assertIn(r"K_{\mathrm{GHR}}^{\mathrm{gen}}", manuscript)
         current_texts = [manuscript]
         website_path = ROOT.parent / "docs/papers/exceptional-ybe-d4/index.html"
         if website_path.exists():
             website = website_path.read_text(encoding="utf-8")
-            self.assertIn(doi, website)
+            self.assertIn(historical_doi, website)
             current_texts.append(website)
         for current_text in current_texts:
             normalized = " ".join(current_text.split())
             self.assertNotIn("GPT-5.6 Sol Pro", normalized)
             self.assertIn("GPT-5.6 Sol in Pro mode", normalized)
             self.assertIn("GPT-5.6 Sol in Ultra mode", normalized)
+        public_status_files = (
+            "README.md",
+            "MANIFEST.md",
+            "RELEASE_NOTES_v1.2.0.md",
+            "CONCURRENT_WORK_AND_CHRONOLOGY_v1.2.0.md",
+        )
+        for name in public_status_files:
+            with self.subTest(public_status_file=name):
+                text = (ROOT / name).read_text(encoding="utf-8")
+                self.assertNotIn("private release candidate", text)
+                self.assertNotIn("not yet published or submitted", text)
+                self.assertNotIn("private version-1.2.0 revision", text)
+                self.assertNotIn("private candidate", text)
+        chronology = (
+            ROOT / "CONCURRENT_WORK_AND_CHRONOLOGY_v1.2.0.md"
+        ).read_text(encoding="utf-8")
+        self.assertNotIn("must be deposited", chronology)
+        self.assertIn("archival release", chronology)
+        self.assertIn(current_doi, chronology)
+        release_notes = (ROOT / "RELEASE_NOTES_v1.2.0.md").read_text(
+            encoding="utf-8"
+        )
+        self.assertNotIn("no record was created or edited", release_notes)
 
     def test_current_version_metadata_is_consistent(self):
-        current_version = "1.1.3"
+        current_version = "1.2.0"
         current_files = {
             "README.md": f"Submission package version {current_version}",
-            "MANIFEST.md": f"submission package version {current_version}",
-            "CITATION.cff": f"version: {current_version}",
+            "MANIFEST.md": f"public source package for version\n{current_version}",
             "VERIFICATION_ENVIRONMENT.md": f"Version {current_version} was certified",
-            "ZENODO_DEPOSIT.md": f"Version: `{current_version}`",
         }
         for name, marker in current_files.items():
             with self.subTest(name=name):
                 self.assertIn(marker, (ROOT / name).read_text(encoding="utf-8"))
         self.assertEqual(package_submission.VERSION, current_version)
-        epoch = "1786930200"
+        cff = (ROOT / "CITATION.cff").read_text(encoding="utf-8")
+        self.assertEqual(cff.count(f"\nversion: {current_version}\n"), 1)
+        self.assertEqual(cff.count(f"\n  version: {current_version}\n"), 1)
+        epoch = "1787176800"
         self.assertIn(epoch, (ROOT / "build_paper.sh").read_text(encoding="utf-8"))
         self.assertIn(epoch, (ROOT / "VERIFICATION_ENVIRONMENT.md").read_text(encoding="utf-8"))
         website_path = ROOT.parent / "docs/papers/exceptional-ybe-d4/index.html"
@@ -282,12 +445,12 @@ class FailureModeTests(unittest.TestCase):
         workflow_path = ROOT.parent / ".github/workflows/exceptional-ybe-d4.yml"
         if workflow_path.exists():
             self.assertIn(epoch, workflow_path.read_text(encoding="utf-8"))
-        self.assertEqual(package_submission.ZIP_TIME, (2026, 8, 16, 18, 30, 0))
+        self.assertEqual(package_submission.ZIP_TIME, (2026, 8, 19, 15, 0, 0))
         self.assertTrue(
             {
-                "exceptional-ybe-d4-v1.1.2.pdf",
-                "exceptional-ybe-d4-v1.1.2-source.zip",
-                "exceptional-ybe-d4-v1.1.2-arxiv.zip",
+                "exceptional-ybe-d4-v1.1.3.pdf",
+                "exceptional-ybe-d4-v1.1.3-source.zip",
+                "exceptional-ybe-d4-v1.1.3-arxiv.zip",
             }.issubset(package_submission.DEPRECATED_OUTPUTS)
         )
 
