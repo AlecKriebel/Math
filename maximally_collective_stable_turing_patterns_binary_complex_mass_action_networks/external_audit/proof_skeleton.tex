@@ -4,6 +4,7 @@
 \usepackage{amsmath,amssymb,booktabs,enumitem}
 \setlist{nosep,leftmargin=1.45em}
 \pagestyle{plain}
+\emergencystretch=2em
 \newcommand{\diag}{\operatorname{diag}}
 \begin{document}
 \begin{center}
@@ -15,13 +16,29 @@ Exponent-Optimal Stationary Heterogeneity Trade-Offs}
 \end{center}
 
 \section*{1. Reaction algebra and topology-wide localization}
-Construct $Y_m$ and $\Gamma_m$ directly from the indexed reactions. Reaction-by-reaction verification gives $c^T\Gamma_m=0$ for $c=(0,4,\ldots,4,2,1)^T$. An explicit $m\times m$ minor proves $\operatorname{rank}\Gamma_m=m$, while solving the balance equations yields
+Construct $Y_m$ and $\Gamma_m$ directly from the indexed reactions.
+Reaction-by-reaction verification gives $c^T\Gamma_m=0$ for
+$c=(0,4,\ldots,4,2,1)^T$.  Solving the balance equations gives exactly
 \[
 \ker\Gamma_m=\operatorname{span}\{(\mathbf1_m,0,0),(0_m,1,1)\}.
 \]
-Therefore every positive flux is $(a\mathbf1_m,b,b)$. Differentiation at the unit equilibrium gives $A_m(a,b)$; at a general equilibrium $x^*=H^{-1}\mathbf1$, the Jacobian is $A_m(a,b)H$. Conversely $k_r=v_r/(x^*)^{y_r}$ realizes every $a,b,H>0$.
+Because $\Gamma_m$ has $m+2$ columns, rank--nullity gives
+$\operatorname{rank}\Gamma_m=m$.  Independently, the maximal minor on rows
+$X_1,X_3,\ldots,X_m,Z$ and columns
+$R_2,\ldots,R_{m-2},R_a,R_b,R_+$ has determinant $4(-1)^m$.
+Therefore every positive flux is $(a\mathbf1_m,b,b)$.  Differentiation at the
+unit equilibrium gives $A_m(a,b)$; at a general equilibrium
+$x^*=H^{-1}\mathbf1$, the Jacobian is $A_m(a,b)H$.  Conversely, the choice
+\[
+ k_r=\frac{v_r}{(x^*)^{y_r}}
+\]
+realizes every $a,b,H>0$.
 
 For a nonempty principal set with fewer than $m$ vertices, Frobenius decomposition reduces every nontrivial SCC to: the $X_1,\ldots,X_{m-1}$ long cycle; the $X_2,\ldots,X_m$ long cycle; a principal boundary-triad block; or a negative singleton. At $b=2a$ one directed edge disappears and only refines the decomposition. The two cycle characteristic equations are excluded from $\Re\lambda\ge0$ by strict product inequalities. The full triad has positive cubic coefficients and $c_1c_2-c_3$ is a sum of fourteen positive monomials. Every lower-order principal matrix is thus Hurwitz. Sparse expansion of the $X_1,\ldots,X_m$ block gives the negative signed determinant $-2a^{m-1}b\prod h_i$, forcing a positive real eigenvalue.
+
+For $m=3$, the two long cycles are $\{X_1,X_2\}$ and $\{X_2,X_3\}$,
+and every other nontrivial SCC is a principal subgraph of
+$\{X_1,X_3,Z\}$.  Thus the chain argument is applied only for $m\ge4$.
 
 \paragraph{Audit object.} Independently generate every induced SCC for $m=3,\ldots,8$ at generic $b$ and at $b=2a$, while the proof uses the all-$m$ graph classification rather than enumeration.
 
@@ -108,9 +125,17 @@ On the fixed integrated-mass class, the critical mode is $r\cos\xi$. Since $\cos
 A_mw_0=-\tfrac14B(r,r),\quad c^Tw_0=0,
 \qquad (A_m-4D_m)w_2=-\tfrac14B(r,r).
 \]
-The first is an augmented nonsingular solve; the second is invertible by mode isolation. The interior $w_2$ recurrence telescopes through four consecutive $K_i$ factors, leaving an explicit $3\times3$ boundary system.
+The first is an augmented nonsingular solve; the second is invertible by mode
+isolation.  The interior $w_2$ recurrence telescopes through four consecutive
+$K_i$ factors, leaving an explicit $4\times4$ system in the four retained
+boundary values.  Its determinant is
+$64\mathcal Q_m/[6615(91m-183)(91m-181)(91m-180)]>0$.
 
 The fixed-mass sectorial semiflow has a one-dimensional center manifold.
+The spatial reflection $\xi\mapsto\pi-\xi$ commutes with the Neumann
+semiflow, preserves the mass class, and sends $r\cos\xi$ to its negative.
+An equivariant center manifold therefore has an odd reduced vector field, and
+reflection exchanges the two nonzero branches.
 Projection of its reduced vector field onto the adjoint critical mode yields
 \[
 \dot A=\eta_m\mu A+c_mA^3+O(|A|^5+|A|^3|\mu|+|A||\mu|^2),
@@ -151,7 +176,9 @@ The shifted coefficients of $\mathcal Q_m,P_R,P_C,L_m$ are positive, so
 $C_m<0$ and
 $R_m+C_m\mathfrak h_m\ge R_m+C_m(m-2)/(90m-179)>0$.
 
-Crandall--Rabinowitz gives two positive branches for $\mu>0$. Their center eigenvalue is $-2\eta_m\mu+O(\mu^2)<0$. The complementary spectrum is separated at onset and remains separated under analytic perturbation. Positive Neumann diffusion is sectorial on fixed-mass $L^2$, its fractional $H^1$ domain is a Banach algebra in one dimension, and the quadratic Nemytskii map is smooth. The principle of linearized stability gives local exponential convergence in $H^1$ for sufficiently close nonnegative initial data in the same conservation class.
+Crandall--Rabinowitz gives the stationary local curve; reflection equivariance
+and the odd normal form identify its two positive nonconstant halves for
+$\mu>0$. Their center eigenvalue is $-2\eta_m\mu+O(\mu^2)<0$. The complementary spectrum is separated at onset and remains separated under analytic perturbation. Positive Neumann diffusion is sectorial on fixed-mass $L^2$, its fractional $H^1$ domain is a Banach algebra in one dimension, and the quadratic Nemytskii map is smooth. The principle of linearized stability gives local exponential convergence in $H^1$ for sufficiently close nonnegative initial data in the same conservation class.
 
 \newpage
 \section*{5. Equilibrium-scaled stable trade-off and audit boundaries}
@@ -167,13 +194,15 @@ The interval is nonempty: for $\nu=1$ the squared inequality is
 $8281<24300$, while for $\nu\ge2$ it follows from
 $(90\nu+1)^2\le(91\nu)^2<6480\nu^3$.  Set $h_1=h_m=h_Z=1$,
 $h_i=K_i/(LK_{i-1})$, and choose physical diffusion
-$D^{\rm phys}=\mathsf H_m(L)\Delta$. Under $z=\mathsf H_m(L)x$,
+$D^{\rm phys}=\mathsf H_m(L)\Delta$. Under
+$\widehat x=\mathsf H_m(L)x$,
 \[
-z_t=\mathsf H_m(L)\{f(z)+\Delta z_{xx}\}.
+\partial_t\widehat x=\mathsf H_m(L)
+\{f(\widehat x)+(1-\mu)\Delta\partial_{xx}\widehat x\}.
 \]
-The effective critical bracket and right vector are unchanged; the dynamic
+At $\mu=0$, the effective stationary bracket and right vector are unchanged; the dynamic
 left vector is $\widetilde\ell_m(L)=\mathsf H_m(L)^{-1}\ell_m$. The physical
-fixed-mass functional is $(\mathsf H_m(L)^{-1}c)^Tz$.
+fixed-mass functional is $(\mathsf H_m(L)^{-1}c)^T\widehat x$.
 
 Chain elimination now gives interior factors
 \[
@@ -219,13 +248,15 @@ boundary.  Also
 \[
  (QF_0-R)'(0)=16L\sum_{i=2}^{m-1}K_{i-1}/K_i-2>0,
 \]
-so the conservation zero is simple.  If $\nu=1$, putting $c=91L/90$ gives
+so the conservation zero is simple.  If $\nu=1$, putting
+$\gamma=91L/90$ gives
 \[
  \frac{QF_0-R}{\lambda}
- =c\lambda^3+(1+11c)\lambda^2+(6+31c)\lambda+(16c-2),
+ =\gamma\lambda^3+(1+11\gamma)\lambda^2
+ +(6+31\gamma)\lambda+(16\gamma-2),
 \]
 whose coefficients and Routh--Hurwitz difference
-$6+99c+325c^2$ are positive because $c>1/8$.
+$6+99\gamma+325\gamma^2$ are positive because $\gamma>1/8$.
 
 The second harmonic is unchanged, while the zero harmonic changes by
 $w_0(L)=w_0^{\rm ref}+\tau_m(L)\rho$. The cubic numerator is

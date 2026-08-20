@@ -1,8 +1,8 @@
 # Final rendered-PDF audit
 
-Date: 2026-08-19
+Date: 2026-08-20
 
-Rendered with Poppler and inspected page by page. Page counts, document
+Rendered with Poppler and inspected page by page (46 pages total). Page counts, document
 properties, extractable text, and font resources were also checked with
 `pdfinfo`, pypdf, and pdfplumber.
 
@@ -24,6 +24,8 @@ A first standalone-diagram build produced separate float/caption pages and a
 label overlap. The figure source was split into a nonfloating TikZ body plus
 manuscript caption, the boundary module was moved downward, and the long-chain
 reaction labels were consolidated into one centered range label. The final
+annotation now describes the outlined reaction complexes literally rather
+than identifying the outline with the species principal block. The final
 one-page rendering was reinspected.
 
 The clean-copy replay compares manuscript page counts and extracted layout

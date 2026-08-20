@@ -59,7 +59,11 @@ forbidden=[r'\bT-ALG\b',r'\bPhase\s+[IVX]+\b',r'reaction-minimal',r'minimum reac
            r'polynomial whose sign gives\s*\$?S_m\$?\s*<\s*0',
            r'q_m\s*\(L\)\s*=',r'\\mathcal\s*H_m',r'\\nu\s*=\s*z\s*\+\s*1',
            r'conservation-compatible Lyapunov--Schmidt reduction',
-           r'Lyapunov--Schmidt coefficients']
+           r'Lyapunov--Schmidt coefficients',r'2\^\{m-2\}',
+           r'z\s*=\s*\\mathsf\s*H_m\s*\(L\)\s*x',
+           r'r_i\s*=\s*\\frac\{K_\{i-1\}\}\{K_i\}',
+           r'c\s*=\s*\\frac\{91L\}\{90\}',
+           r'The dashed outline marks the principal species set']
 for pat in forbidden:
     if re.search(pat,clean,re.I): raise AssertionError(f'obsolete wording: {pat}')
 
@@ -160,6 +164,41 @@ if 'one-dimensional center-manifold normal form is' not in main_flat:
     raise AssertionError('dynamical amplitude equation is not identified as a center-manifold normal form')
 if r'(0,\mathcal L)' not in main or r'q_k^2=(k\pi/\mathcal L)^2' not in main:
     raise AssertionError('physical interval length is not consistently written as mathcal L')
+for name,section in (("main",main_flat),("supplement",supp_flat)):
+    if not re.search(
+        r'For\s+\$m=3\$.*?\\\{X_1,X_2\\\}.*?\\\{X_2,X_3\\\}.*?assume\s+\$m\\geq?4\$',
+        section,
+        re.I,
+    ):
+        raise AssertionError(f'{name} omits the direct m=3 SCC base case')
+for name,section in (("main",main_flat),("supplement",supp_flat)):
+    reflection_markers = (
+        r'(\mathcal Ru)(\xi)=u(\pi-\xi)',
+        'reduced vector field is odd',
+    )
+    if not all(marker in section for marker in reflection_markers):
+        raise AssertionError(f'reflection-equivariant odd normal form is not explicit in the {name}')
+    if not re.search(r'\\mathcal R.{0,80}?A\\mapsto-A',section):
+        raise AssertionError(f'{name} omits the induced A-to-minus-A reflection action')
+    if not re.search(r'(?:exchanged by reflection|reflection exchanges)',section,re.I):
+        raise AssertionError(f'{name} omits reflection pairing of the two branches')
+for name,section in (("main",main_flat),("supplement",supp_flat)):
+    if not re.search(
+        r'\\partial_t\\widehat x\s*=\s*\\mathsf H_m\(L\).*?\(1-\\mu\)\\Delta(?:_m)?\\partial_\{\\xi\\xi\}\\widehat x',
+        section,
+        re.S,
+    ):
+        raise AssertionError(f'{name} omits the bifurcation parameter in the scaled-family PDE')
+if 'long-circuit complexes associated with the principal species block' not in main_flat:
+    raise AssertionError('Figure 1 caption does not describe its dashed complex outline literally')
+for marker in (
+    r'\begin{pmatrix}-218/63&-T_{m-1}&-1&2',
+    r'\delta_m=\frac{\sigma}{3}\left(T_{m-1}K_2-K_{m-1}\right)',
+    r'b^{(2)}_1+\delta_m',
+    r'\frac{64\mathcalQ_m}{6615(91m-183)(91m-181)(91m-180)}',
+):
+    if marker not in ''.join(supp.split()):
+        raise AssertionError(f'missing printed w2 boundary-system marker {marker}')
 profiles_figure = re.search(
     r'\\begin\{figure\}\[H\].*?\\label\{fig:profiles\}.*?\\end\{figure\}',
     main,

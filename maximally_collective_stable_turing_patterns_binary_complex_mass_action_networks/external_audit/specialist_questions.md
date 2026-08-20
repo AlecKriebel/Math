@@ -10,7 +10,7 @@
 
 ## PDE bifurcation and stability specialist
 
-1. Is the physical equilibrium-scaling transformation `z=Hx`, with `D_phys=H Delta`, correct?
+1. Is the physical equilibrium-scaling transformation `\widehat x=Hx`, with `D_phys=H Delta`, and the placement of `(1-mu)` in the scaled PDE correct?
 2. Is the stationary fixed-integrated-mass Lyapunov–Schmidt setup, and its consistency with the dynamical center-manifold normal form, correct when the conservation vector is semipositive rather than positive?
 3. Are the `1/4` and `1/2` Fourier factors in `w_0`, `w_2`, and the cubic coefficient correct?
 4. Does the gauge change `w_0(L)=w_0^ref+tau rho` correctly impose the physical mass constraint?

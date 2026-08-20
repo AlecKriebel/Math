@@ -70,13 +70,16 @@ rate constant as the reciprocal of its source monomial at $x^*$ realizes
 unit reaction flux.  Hence every parameter is positive and the physical
 Jacobian is $\mathsf H_m(L)A_m$ in normalized concentration coordinates.
 
-Writing $z=\mathsf H_m(L)x$, the reaction--diffusion equation becomes
+Writing $\widehat x=\mathsf H_m(L)x$, the parameterized reaction--diffusion
+equation becomes
 \[
- z_t=\mathsf H_m(L)\{f_m(z)+D_m^{\rm eff}z_{\xi\xi}\},
+ \partial_t\widehat x=\mathsf H_m(L)
+ \{f_m(\widehat x)+(1-\mu)D_m^{\rm eff}
+ \partial_{\xi\xi}\widehat x\},
  \qquad D_m^{\rm eff}=\Delta_m.
 \]
-Thus the stationary bracket and its critical right vector are unchanged by
-$\mathsf H_m(L)$.  The dynamic left critical vector is
+Thus, at $\mu=0$, the stationary bracket and its critical right vector are
+unchanged by $\mathsf H_m(L)$.  The dynamic left critical vector is
 \[
  \widetilde\ell_m(L)=\mathsf H_m(L)^{-1}\ell_m.
 \]
@@ -172,15 +175,17 @@ intrinsic dynamical boundary for $L_0$.  Also
 because every ratio is greater than one and
 $L\ge\sqrt5/(2\sqrt\nu)$.  Thus the conservation zero is simple.
 
-For $\nu=1$, put $c=91L/90$.  Then
+For $\nu=1$, put $\gamma=91L/90$.  Then
 \[
  \frac{QF_0-R}{\lambda}
- =c\lambda^3+(1+11c)\lambda^2+(6+31c)\lambda+(16c-2).
+ =\gamma\lambda^3+(1+11\gamma)\lambda^2
+ +(6+31\gamma)\lambda+(16\gamma-2).
 \]
-Here $c>1/8$, all coefficients are positive, and the cubic Routh--Hurwitz
+Here $\gamma>1/8$, all coefficients are positive, and the cubic Routh--Hurwitz
 difference is
 \[
- (1+11c)(6+31c)-c(16c-2)=6+99c+325c^2>0.
+ (1+11\gamma)(6+31\gamma)-\gamma(16\gamma-2)
+ =6+99\gamma+325\gamma^2>0.
 \]
 Thus the complementary homogeneous spectrum is Hurwitz in the exceptional
 dimension as well.
@@ -322,6 +327,9 @@ The normal-form coefficients are
 Thus every member with $L\ge1/\sqrt{3\nu}$ is supercritical.  The certified
 spectral interval below is a subset of this range: its lower endpoint agrees
 with $1/\sqrt{3\nu}$ for $\nu=1$ and is larger for $\nu\ge2$.
+The diagonal scaling commutes with spatial reflection
+$\xi\mapsto\pi-\xi$; consequently the scaled reduced vector field remains
+odd and reflection exchanges its two nonzero branches.
 
 
 \section*{Certified stable Pareto curve}

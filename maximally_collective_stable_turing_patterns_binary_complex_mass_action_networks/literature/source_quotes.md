@@ -12,6 +12,7 @@ These notes are private audit aids; the manuscript uses paraphrases and conventi
 | Diego et al. 2018 | DOI 10.1103/PhysRevX.8.021071 | interaction-topology features |
 | Scholes et al. 2019 | DOI 10.1016/j.cels.2019.07.007 | finite atlas and robustness |
 | Villar-Sepúlveda--Champneys 2023 | DOI 10.1007/s00285-023-01870-3 and correction 10.1007/s00285-023-01884-x | fixed-J stationary and wave criteria |
+| Villar-Sepúlveda--Champneys--Krause 2025 | DOI 10.1007/s00285-025-02274-1 | design of stationary and wave instabilities using generally non-diagonal reaction--cross-diffusion tensors at fixed linearized kinetics, or conversely fixed transport |
 | Waters et al. 2024/2025 | DOIs 10.1098/rsif.2023.0490 and 10.1016/j.physd.2024.134427 | minimal schemes and weakly nonlinear classification |
 | Krause et al. 2024 | DOI 10.1007/s11538-023-01250-4 | linear instability need not ensure persistent patterning |
 | Conradi et al. 2026 | arXiv:2605.16049 | sufficient conditions under monomial steady-state parametrization |

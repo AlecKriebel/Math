@@ -43,9 +43,12 @@ Thus
  \ker\Gamma_m=
  \operatorname{span}\{(\1_m,0,0),(0_m,1,1)\}.
 \]
-An $m\times m$ minor formed by deleting one circuit reaction and one member of
-the reversible pair is triangular after elementary row operations and has
-absolute determinant $2^{m-2}$.  Therefore $\rank\Gamma_m=m$.
+The balance equations show that this kernel is exactly two-dimensional.
+Since $\Gamma_m$ has $m+2$ columns, rank--nullity gives
+$\rank\Gamma_m=m$.  As an independent explicit check, retain the rows
+$X_1,X_3,\ldots,X_m,Z$ and the columns
+$R_2,\ldots,R_{m-2},R_a,R_b,R_+$, with the chain range empty when $m=3$.
+The resulting maximal minor has determinant $4(-1)^m$.
 The vector
 \[
  c=(0,4,\ldots,4,2,1)^T
@@ -66,6 +69,11 @@ nonzero.  The interior arrows are the one-way chain
 $X_2\to X_3\to\cdots\to X_{m-1}$.  The boundary arrows are those incident to
 $X_1,X_m,Z$ and the returns $X_{m-1}\to X_1$, $X_m\to X_2$.  The following
 case analysis is exhaustive for an induced set with fewer than $m$ vertices.
+
+For $m=3$, inspect the principal sets of order at most two directly.  The sets
+$\{X_1,X_2\}$ and $\{X_2,X_3\}$ are the two complete long cycles; every
+other nontrivial strongly connected component is a principal subgraph of
+$\{X_1,X_3,Z\}$.  Hence assume $m\ge4$ in the chain argument below.
 
 \begin{enumerate}[leftmargin=2em]
 \item If a component contains a chain arrow and returns through
@@ -319,8 +327,46 @@ After $m=u+3$, the coefficients are
 \[
 589180301,\quad1802606769,\quad1838302066,\quad624878904,
 \]
-so it never vanishes for $m\ge3$.  The complete boundary values are provided
-in the machine-readable certificate and in the public verifier.
+so it never vanishes for $m\ge3$.  The complete boundary solve is exposed
+as follows.  Write
+\[
+ W_1=(w_2)_1,\quad W_2=(w_2)_2,\quad
+ W_m=(w_2)_m,\quad W_Z=(w_2)_Z,
+ \qquad b^{(2)}=-\frac14B(r,r),
+\]
+and set
+\[
+ \delta_m=\frac{\sigma}{3}
+ \left(T_{m-1}K_2-K_{m-1}\right).
+\]
+Substitution of the recurrence into the four boundary rows gives the complete
+system
+\[
+\begin{pmatrix}
+-218/63&-T_{m-1}&-1&2\\
+-1&-(1+4/K_2)&2&0\\
+1&2T_{m-1}&-39/7&2\\
+2&0&2&-244/45
+\end{pmatrix}
+\begin{pmatrix}W_1\\W_2\\W_m\\W_Z\end{pmatrix}
+=
+\begin{pmatrix}
+b^{(2)}_1+\delta_m\\
+b^{(2)}_2\\
+b^{(2)}_m-2\delta_m\\
+b^{(2)}_Z
+\end{pmatrix}.
+\]
+Its determinant is exactly
+\[
+ \frac{64\mathcal Q_m}
+ {6615(91m-183)(91m-181)(91m-180)}.
+\]
+All factors in the denominator are positive for $m\ge3$, while the displayed
+shifted-positive certificate proves $\mathcal Q_m>0$.  Thus the four boundary
+values are the unique solution of this displayed system.  Their expanded
+rational forms are supplied in the machine-readable archive for convenient
+verification.
 
 The cubic coefficient is
 \[
@@ -328,7 +374,12 @@ The cubic coefficient is
 \]
 This is the cubic coefficient of the one-dimensional center-manifold normal
 form in the adjoint-projection coordinate.  Setting the reduced vector field
-to zero gives the associated stationary Lyapunov--Schmidt equation.
+to zero gives the associated stationary Lyapunov--Schmidt equation.  The
+spatial reflection $(\mathcal Ru)(\xi)=u(\pi-\xi)$ commutes with the Neumann
+semiflow, preserves the fixed integrated-mass class, and sends
+$r\cos\xi$ to $-r\cos\xi$.  On an equivariant center manifold the
+adjoint-projection action is $\mathcal R:A\mapsto-A$; hence the reduced vector
+field is odd in $A$, and reflection exchanges the two nonzero branches.
 For the cubic numerator, introduce
 \begin{align*}
  P_R(m)={}&68605040480814208768m^4
@@ -422,12 +473,14 @@ dynamical boundaries.  For $L\in[L_0,L_1]$, set
 Write $\mathsf H_m(L)=\diag(h_1,\ldots,h_m,h_Z)$.  The physical
 equilibrium is $x^*=\mathsf H_m(L)^{-1}\1$ and the physical diffusion matrix
 is $D^{\rm phys}=\mathsf H_m(L)\Delta$, where $\Delta$ is the improved unit
-profile.  In normalized variables $z=\mathsf H_m(L)x$,
+profile.  In normalized variables $\widehat x=\mathsf H_m(L)x$,
 \[
- z_t=\mathsf H_m(L)\{f_m(z)+\Delta z_{\xi\xi}\}.
+ \partial_t\widehat x=\mathsf H_m(L)
+ \{f_m(\widehat x)+(1-\mu)\Delta\partial_{\xi\xi}\widehat x\}.
 \]
-The stationary bracket and critical right vector are unchanged.  The dynamic
-left vector is
+At $\mu=0$, the stationary bracket
+$f_m(\widehat x)+\Delta\partial_{\xi\xi}\widehat x$ and its critical right
+vector are unchanged.  The dynamic left vector is
 \[
  \widetilde\ell_m(L)=\mathsf H_m(L)^{-1}\ell_m,
 \]
@@ -486,14 +539,15 @@ certificate.  Moreover
 \]
 where the inequality uses $K_{i-1}/K_i>1$ and
 $L\ge\sqrt5/(2\sqrt\nu)$.  Thus the conservation zero is simple.  If
-$\nu=1$, put $c=91L/90$.  Direct
+$\nu=1$, put $\gamma=91L/90$.  Direct
 division by the conservation factor gives
 \[
  \frac{QF_0-R}{\lambda}
- =c\lambda^3+(1+11c)\lambda^2+(6+31c)\lambda+(16c-2).
+ =\gamma\lambda^3+(1+11\gamma)\lambda^2
+ +(6+31\gamma)\lambda+(16\gamma-2).
 \]
-Here $c>1/8$, and the remaining cubic Routh--Hurwitz difference is
-$6+99c+325c^2>0$.  This proves homogeneous relative stability in the
+Here $\gamma>1/8$, and the remaining cubic Routh--Hurwitz difference is
+$6+99\gamma+325\gamma^2>0$.  This proves homogeneous relative stability in the
 exceptional dimension as well.
 
 Let
@@ -633,6 +687,10 @@ Therefore the family is uniformly supercritical over the certified interval.
 Indeed, the cubic comparison was proved on the broader range
 $L\ge1/\sqrt{3\nu}$; the present lower endpoint agrees with this value for
 $\nu=1$ and is larger for $\nu\ge2$.
+The diagonal concentration scaling commutes with the same spatial reflection
+$\xi\mapsto\pi-\xi$.  Hence the scaled center-manifold vector field remains
+odd in its adjoint-projection amplitude, and reflection exchanges the two
+nonzero patterned branches.
 
 The contrasts are
 \[

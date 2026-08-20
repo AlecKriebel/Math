@@ -36,6 +36,11 @@ STALE = {
     "dynamic_LS_misattribution": "conservation-compatible Lyapunov--Schmidt reduction has",
     "stale_LS_robustness_coefficients": "Lyapunov--Schmidt coefficients",
     "physical_interval_length_collision": r"q_k^2=(k\pi/L)^2",
+    "false_stoichiometric_minor": r"2^{m-2}",
+    "old_scaled_state_notation": r"z=\mathsf H_m(L)x",
+    "old_chain_ratio_notation": r"r_i=\frac{K_{i-1}}{K_i}",
+    "old_exceptional_scalar_notation": r"c=\frac{91L}{90}",
+    "misdescribed_network_outline": "The dashed outline marks the principal species set",
 }
 
 # Only prose, theorem, documentation, and generated claim tables are scanned.

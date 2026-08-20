@@ -22,6 +22,7 @@ from typing import Optional
 
 import sympy as sp
 
+import core as dc
 import pareto_core as pc
 
 
@@ -229,6 +230,81 @@ def verify_gauge_identities() -> None:
         ).subs(y, sp.Rational(5, 4) * nu)
         - P_up
     ) == 0
+
+
+def verify_second_harmonic_boundary_system() -> None:
+    """Reconstruct the displayed four-variable solve for ``w_2`` exactly."""
+
+    m = sp.symbols("m", integer=True, positive=True)
+    Qcal = (
+        589180301 * m**3
+        - 3500015940 * m**2
+        + 6930529579 * m
+        - 4574434500
+    )
+    K = lambda i: 91 * m - 181 - i
+    T_last = sp.factor(
+        K(m - 4) * K(m - 3) * K(m - 2) * K(m - 1)
+        / (K(-1) * K(0) * K(1) * K(2))
+    )
+    boundary_matrix = sp.Matrix(
+        [
+            [-sp.Rational(218, 63), -T_last, -1, 2],
+            [-1, -(1 + 4 / K(2)), 2, 0],
+            [1, 2 * T_last, -sp.Rational(39, 7), 2],
+            [2, 0, 2, -sp.Rational(244, 45)],
+        ]
+    )
+    displayed_determinant = (
+        sp.Integer(64)
+        * Qcal
+        / (
+            sp.Integer(6615)
+            * (91 * m - 183)
+            * (91 * m - 181)
+            * (91 * m - 180)
+        )
+    )
+    assert sp.factor(boundary_matrix.det() - displayed_determinant) == 0
+    shifted_Q = sp.Poly(sp.expand(Qcal.subs(m, sp.Symbol("u") + 3)))
+    assert shifted_Q.all_coeffs() == [589180301, 1802606769, 1838302066, 624878904]
+
+    # Verify that the displayed right-hand side is exactly what remains after
+    # substituting the interior recurrence into the four boundary rows.  The
+    # base dimension m=3 is included: then the recurrence range is empty and
+    # T_{m-1}=T_2=1, so the same four-variable system still applies.
+    for dimension in (3, 4, 5, 6, 8, 10):
+        r, d, _ = dc.selected(dimension)
+        D = sp.diag(*d)
+        b2 = -sp.Rational(1, 4) * dc.B(dimension, r, r)
+        sigma = sp.Rational(1, 126 * (dimension - 2))
+        T = dc.T(dimension, dimension - 1)
+        K2 = dc.K(dimension, 2)
+        Klast = dc.K(dimension, dimension - 1)
+        M = boundary_matrix.subs(m, dimension)
+        rhs = sp.Matrix(
+            [
+                b2[0] + T * sigma * K2 / 3 - sigma * Klast / 3,
+                b2[1],
+                b2[dimension - 1]
+                - 2 * T * sigma * K2 / 3
+                + 2 * sigma * Klast / 3,
+                b2[dimension],
+            ]
+        )
+        w2 = dc.w2(dimension)
+        boundary_values = sp.Matrix([w2[0], w2[1], w2[dimension - 1], w2[dimension]])
+        assert sp.simplify(M * boundary_values - rhs) == sp.zeros(4, 1)
+        assert sp.simplify(M.inv() * rhs - boundary_values) == sp.zeros(4, 1)
+        for i in range(3, dimension):
+            recurrence_value = (
+                dc.T(dimension, i) * (w2[1] + sigma * K2 / 3)
+                - sigma * dc.K(dimension, i) / 3
+            )
+            assert sp.factor(w2[i - 1] - recurrence_value) == 0
+        assert sp.simplify((dc.Avec(dimension) - 4 * D) * w2 - b2) == sp.zeros(
+            dimension + 1, 1
+        )
 
 
 def verify_modulus_source_polynomials(
@@ -466,6 +542,7 @@ def verify_printed_triad_table(triad_table: Optional[Path] = None) -> None:
 def verify() -> None:
     verify_reference_cubic_identities()
     verify_gauge_identities()
+    verify_second_harmonic_boundary_system()
     verify_modulus_source_polynomials()
     verify_contrast_product_identity()
     project_root = HERE.parent

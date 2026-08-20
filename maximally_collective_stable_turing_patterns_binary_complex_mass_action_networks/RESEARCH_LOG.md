@@ -126,3 +126,28 @@
 - Rebuilt and visually inspected all 46 pages across the eight principal PDFs;
   the main manuscript is now 17 pages, the supplement 17, the theorem summary
   2, and the proof skeleton 6. No external communication was initiated.
+
+## 2026-08-20 09:11:57 PDT
+
+- Independently confirmed and corrected a false, unused dimension-dependent
+  value for a maximal stoichiometric minor.  The balance
+  equations give the exact two-dimensional kernel and rank $m$ by
+  rank--nullity; an explicit maximal minor has determinant $4(-1)^m$.
+- Added the direct $m=3$ SCC base case and the Neumann reflection argument that
+  makes the one-dimensional center-manifold vector field odd, exchanges the
+  two patterned branches, and justifies the stated odd remainder.
+- Restored the bifurcation factor $(1-\mu)$ in the equilibrium-scaled PDE,
+  removed three local notation collisions, and printed the exact four-variable
+  second-harmonic boundary system with determinant
+  $64\mathcal Q_m/[6615(91m-183)(91m-181)(91m-180)]$.
+- Corrected Figure 1's outline description and reinspected the centered
+  $R_3,\ldots,R_{m-2}$ label.  Added the adjacent 2025
+  reaction--cross-diffusion design paper and assigned distinct roles to the
+  functional-analytic references without guessing theorem numbers.
+- Added exact stoichiometric-minor and second-harmonic regressions plus source
+  and PDF semantic gates.  All 19 tests and the complete symbolic aggregate
+  pass, including the exact Pareto check through $m=149$.
+- Rebuilt and visually inspected all 46 pages across the eight principal PDFs,
+  refreshed and hash-checked all seven deterministic bundles, and completed a
+  full portable replay.  Prepared immutable release version 1.0.3; no archival
+  DOI is claimed and no external communication or submission was initiated.

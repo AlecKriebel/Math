@@ -6,3 +6,7 @@ bundle includes `references.bib` and all figures/tables but intentionally omits
 `main.bbl`, so arXiv runs Biber using the biblatex version in its selected TeX
 Live toolchain instead of consuming a potentially incompatible local BBL
 format. Nothing has been posted automatically.
+
+The corresponding immutable code-and-data snapshot is
+<https://github.com/AlecKriebel/Math/releases/tag/maximally-collective-stable-turing-v1.0.3>;
+the `main` branch remains the development location.

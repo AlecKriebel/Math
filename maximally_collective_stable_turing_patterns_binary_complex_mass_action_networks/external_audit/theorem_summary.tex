@@ -1,5 +1,5 @@
 \documentclass[10pt]{article}
-\usepackage[margin=.58in]{geometry}
+\usepackage[margin=.45in]{geometry}
 \usepackage[T1]{fontenc}\usepackage{lmodern,microtype}
 \usepackage{amsmath,amssymb,booktabs,enumitem}
 \setlist{nosep,leftmargin=1.45em}
@@ -26,10 +26,16 @@ The chain range is empty for $m=3$. With $n=m+1$, there are $n$ species and $n+1
 \[
 \ker\Gamma_m=\operatorname{span}\{(\mathbf1_m,0,0),(0_m,1,1)\}.
 \]
+The exact two-dimensional kernel and the $m+2$ columns give the stated rank by
+rank--nullity; the maximal minor on rows $X_1,X_3,\ldots,X_m,Z$ and columns
+$R_2,\ldots,R_{m-2},R_a,R_b,R_+$ has determinant $4(-1)^m$.
 Every positive steady flux is $(a\mathbf1_m,b,b)$, and every positive-equilibrium Jacobian is exactly $J_m(a,b,H)=A_m(a,b)H$ with $a,b>0$ and $H\succ0$ diagonal. Conversely every such triple is physically realized.
 
 \paragraph{Topology-wide localization.}
-For every positive realization and every principal species set $I$ with $0<|I|<m$, $J_{I,I}$ is Hurwitz. Every nontrivial strongly connected diagonal block is one of two stable long cycles, a principal block of the boundary triad $\{X_1,X_m,Z\}$, or a negative singleton. The triad satisfies the cubic Routh--Hurwitz inequalities coefficientwise. In contrast,
+For every positive realization and every principal species set $I$ with $0<|I|<m$, $J_{I,I}$ is Hurwitz. Every nontrivial strongly connected diagonal block is one of two stable long cycles, a principal block of the boundary triad $\{X_1,X_m,Z\}$, or a negative singleton. The triad satisfies the cubic Routh--Hurwitz inequalities coefficientwise.
+For $m=3$, the two cycles $\{X_1,X_2\}$ and $\{X_2,X_3\}$ and all remaining
+principal subgraphs are checked directly; the chain classification is used
+for $m\ge4$.  In contrast,
 \[
 (-1)^m\det J_{\{X_1,\ldots,X_m\},\{X_1,\ldots,X_m\}}
 =-2a^{m-1}b\prod_{i=1}^m h_i<0.
@@ -93,6 +99,9 @@ c_m=\frac{\ell^T\{B(r,w_0)+\tfrac12B(r,w_2)\}}{\ell^Tr}.
 This is the one-dimensional center-manifold normal-form coefficient in the
 adjoint-projection coordinate; setting the reduced vector field to zero gives
 the stationary Lyapunov--Schmidt equation.
+Spatial reflection $\xi\mapsto\pi-\xi$ sends $r\cos\xi$ to its negative
+and acts as $A\mapsto-A$ on an equivariant center manifold.  Hence the reduced
+field is odd and the two nonzero branches are exchanged by reflection.
 A four-factor recurrence and a shifted-polynomial certificate prove $c_m<0$ for every $m\ge3$. The two supercritical positive branches are locally exponentially asymptotically stable in the fixed-integrated-mass $H^1$ phase space.
 
 \paragraph{Stable diffusion--equilibrium trade-off.}
@@ -110,7 +119,12 @@ h_1=h_m=h_Z=1,\qquad h_i=\frac{K_i}{LK_{i-1}},\qquad
 D_m^{\rm phys}(L)=\mathsf H_m(L)\Delta_m,
 \]
 where $\Delta_m$ is the effective unit profile above. The physical equilibrium
-is $\mathsf H_m(L)^{-1}\mathbf1$. The interval is nonempty in every dimension.  A
+is $\mathsf H_m(L)^{-1}\mathbf1$.  Under
+$\widehat x=\mathsf H_m(L)x$, the scaled PDE retains the parameter as
+$\partial_t\widehat x=\mathsf H_m(L)\{f_m(\widehat x)
++(1-\mu)\Delta_m\partial_{\xi\xi}\widehat x\}$; at $\mu=0$ its
+stationary bracket and critical right vector are unchanged.  The interval is
+nonempty in every dimension.  A
 22-term homogeneous certificate for $\nu\ge2$, a direct Routh--Hurwitz
 calculation for $\nu=1$, an 84-term spatial certificate, and a
 gauge-corrected cubic comparison prove a primary supercritical branch that is

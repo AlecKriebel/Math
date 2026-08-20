@@ -50,7 +50,7 @@ The author must review or provide the following before upload:
   funding, and permissions confirmations;
 - final author-contribution and AI-assistance disclosures in the wording
   required by the journal;
-- archival repository URL/DOI, data-and-code availability statement, licenses,
+- immutable versioned-release URL, any later archival DOI, data-and-code availability statement, licenses,
   and the exact supplementary files to accompany the article;
 - any editor or reviewer suggestions requested by the portal; and
 - final approval of the cover letter and every portal-entered field.

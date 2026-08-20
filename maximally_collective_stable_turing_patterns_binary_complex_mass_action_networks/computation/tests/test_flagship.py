@@ -14,6 +14,7 @@ import pareto_core as pc
 import frontier_verify_master_certificate as master_certificate
 import frontier_verify_mode_certificates as mode_certificates
 import frontier_verify_exposition_identities as exposition_identities
+import verify_family as family_verifier
 
 
 def assert_exact_minimum(values, candidate):
@@ -30,12 +31,22 @@ def test_family_flux_and_conservation():
         assert len(rs) == m + 2
         assert all(sum(r.y) <= 2 and sum(r.yp) <= 2 for r in rs)
         G, Y = sc.gamma_y(m)
+        selected_minor = family_verifier.selected_stoichiometric_minor(m, G)
+        assert sp.factor(selected_minor.det()) == 4 * (-1) ** m
+        family_verifier.verify_selected_minor(m, G)
         assert G.rank() == m
         assert len(G.nullspace()) == 2
         assert sc.conservation(m).T * G == sp.zeros(1, m + 2)
         a, b = sp.symbols("a b", positive=True)
         assert G * sc.flux(m, a, b) == sp.zeros(m + 1, 1)
         assert sc.A_matrix(m, a, b) == G * sp.diag(*list(sc.flux(m, a, b))) * Y.T
+
+
+def test_pareto_verifiers_do_not_use_floating_ordering():
+    for name in ("frontier_verify_pareto.py", "frontier_verify_pareto_curve.py"):
+        text = (ROOT / "independent_verifier" / name).read_text()
+        for forbidden in ("float(", ".evalf(", "sp.N("):
+            assert forbidden not in text
 
 
 def test_improved_profile_critical_harmonics_and_signs():

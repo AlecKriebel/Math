@@ -5,9 +5,13 @@
 **Competing interests:** Author to confirm before submission.
 
 **Data and code:** Exact proof certificates, independent verifiers, numerical
-data, and replay instructions accompany the manuscript and are available at
-https://github.com/AlecKriebel/Math/tree/main/maximally_collective_stable_turing_patterns_binary_complex_mass_action_networks .
-A DOI may be added after archival deposit.
+data, and replay instructions accompany the manuscript and are frozen in
+version 1.0.3 at
+https://github.com/AlecKriebel/Math/releases/tag/maximally-collective-stable-turing-v1.0.3 .
+The exact tagged source tree is
+https://github.com/AlecKriebel/Math/tree/maximally-collective-stable-turing-v1.0.3/maximally_collective_stable_turing_patterns_binary_complex_mass_action_networks ;
+the `main` branch remains the development location. No archival DOI has been
+assigned; one may be added after a later archival deposit.
 
 **Author contributions:** Alec Kriebel: conception, mathematical analysis, software, validation, visualization, and writing.
 

@@ -1,6 +1,6 @@
 # Closest results and exact boundary
 
-Audit date: 16 August 2026.
+Audit date: 20 August 2026.
 
 - **Turing (1952)** introduced diffusion-driven instability, not topology-wide realization or nonlinear stable branches for an arbitrary-dimensional mass-action family.
 - **Satnoianu, Menzinger, and Maini (2000)** treat general multicomponent systems and allow unstable subsystems through order $n-1$ for a selected kinetic Jacobian. The flagship proves that the endpoint is forced throughout every positive realization of one indexed reaction topology.
@@ -9,6 +9,7 @@ Audit date: 16 August 2026.
 - **Mincheva and Craciun (2013)** use principal projected reaction networks, injectivity, and SR-graph conditions. That notion is not identified with principal-block spectral localization here.
 - **Diego et al. (2018)** and **Scholes et al. (2019)** study interaction-topology principles and finite network atlases, rather than a complete positive-realization family with exact diffusion design.
 - **Villar-Sepúlveda and Champneys (2023), including the correction**, and **Piskovsky (2025)** provide fixed-Jacobian stationary/wave criteria. The flagship's exact ray criterion is coupled to a specific classical mass-action topology and complete flux/equilibrium quantifier.
+- **Villar-Sepúlveda, Champneys, and Krause (2025)** design stationary and wave instabilities by choosing a generally non-diagonal reaction--cross-diffusion tensor at fixed linearized kinetics, or conversely the kinetics at fixed transport. The flagship instead uses positive diagonal self-diffusion and quantifies over every positive-equilibrium realization of one indexed classical mass-action topology.
 - **Vassena and Stadler (2024)** treat unstable cores in parameter-rich kinetics and well-mixed instability; their derivative freedoms differ from classical mass action.
 - **Waters, Yates, and Dawes (2024, 2025)** classify minimal two-species reaction schemes and their weakly nonlinear behavior under a broader interaction-order convention. The flagship is arbitrary-dimensional and restricts both sides of every reaction.
 - **Paul, Adetunji, and Hong (2024)** screen selected interpretable biochemical networks. The flagship family is synthetic and extremal.

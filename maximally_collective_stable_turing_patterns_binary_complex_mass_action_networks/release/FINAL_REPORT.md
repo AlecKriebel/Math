@@ -7,6 +7,11 @@ certificate-visibility, and release-rebuild program is complete.  This is a
 **recreated corrected release**, not a claim of byte identity with the lost
 archive.  A pre-submission adversarial pass found and repaired a false endpoint
 in the equilibrium-scaled family while preserving every headline conclusion.
+The final source audit also removed a false, unused stoichiometric-minor value,
+replacing it with rank--nullity and the exact maximal minor $4(-1)^m$; it added
+the $m=3$ SCC base case, reflection-equivariant oddness, the scaled bifurcation
+parameter, and a paper-visible second-harmonic boundary system.  None changes a
+theorem statement or the repaired piecewise endpoint.
 The release was rebuilt from the exact current diffusion profile and one
 machine-readable numerical source rather than from superseded tables or figure
 data.

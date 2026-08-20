@@ -22,8 +22,11 @@ python independent_verifier/verify_branch_stability.py
 The all-dimensional proof objects are the source proofs in `proof_audit/`, the
 modulus and signed-scalar coefficient tables in `data/`, and the exact JSON
 certificates in this directory. The exposition-identity verifier reconstructs
-the printed clearing identities, gauge derivatives, source polynomials, and
-fixed contrast product. Finite dimensions are regression tests only.
+the printed second-harmonic boundary system, clearing identities, gauge
+derivatives, source polynomials, and fixed contrast product.  The family
+verifier also checks the explicit maximal stoichiometric minor
+`det=4(-1)^m` through the same two-step expansion used in the proof.  Finite
+dimensions are regression tests only.
 
 The exact verifiers require normal Python assertion mode. Canonical entrypoints
 fail immediately under `python -O` or a nonzero `PYTHONOPTIMIZE` setting.

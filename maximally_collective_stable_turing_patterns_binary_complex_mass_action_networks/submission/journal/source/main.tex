@@ -179,10 +179,10 @@ species and $n+1$ indexed reactions and satisfies \eqref{eq:binary}.
 \begin{figure}[t]
 \centering
 \input{figures/network_family.tex}
-\caption{The synthetic topology $\widehat N_m$.  The dashed outline marks the
-principal species set $\cC_m=\{X_1,\ldots,X_m\}$, the unique order-$(n-1)$ block with negative
-signed determinant.  The separate $Z$ boundary pair controls the exact
-diffusion law.}
+\caption{The synthetic topology $\widehat N_m$.  The dashed outline highlights
+the long-circuit complexes associated with the principal species block
+$\cC_m=\{X_1,\ldots,X_m\}$, the unique order-$(n-1)$ block with negative signed
+determinant.  The separate $Z$ boundary pair controls the exact diffusion law.}
 \label{fig:network}
 \end{figure}
 
@@ -211,10 +211,10 @@ The functional $c^Tx$ is semipositive: it does not bound $X_1$.
 \begin{proof}
 Each reaction vector is orthogonal to $c$.  The $X_i$ balance equations along
 the long circuit successively equate its $m$ reaction fluxes, and the $Z$
-balance equates the final reversible pair.  The two displayed kernel vectors
-are independent.  Deleting one reaction from each circuit leaves an explicit
-$m\times m$ triangular stoichiometric minor with nonzero diagonal, so the rank
-is $m$.  The image and positive-cone statements follow.
+balance equates the final reversible pair.  Thus these equations have exactly
+two independent free fluxes and the kernel is precisely the displayed
+two-dimensional space.  Since $\Gamma_m$ has $m+2$ columns, rank--nullity gives
+$\rank\Gamma_m=m$.  The image and positive-cone statements follow.
 \end{proof}
 
 At unit equilibrium and flux $(a\1_m,b,b)$, the vector field is
@@ -272,7 +272,11 @@ split components and hence refines the same classification.
 
 \begin{proof}
 Use the directed convention $X_j\to X_i$ when the $(i,j)$ Jacobian entry is
-nonzero.  Along the interior chain the only off-diagonal arrows are
+nonzero.  For $m=3$, inspect the principal sets of order at most two directly.
+The sets $\{X_1,X_2\}$ and $\{X_2,X_3\}$ are the two complete long cycles;
+every other nontrivial strongly connected component is a principal subgraph
+of $\{X_1,X_3,Z\}$.  Hence assume $m\ge4$ below.  Along the interior chain the
+only off-diagonal arrows are
 $X_i\to X_{i+1}$ for $2\le i\le m-2$.  Thus a retained proper chain segment
 cannot close by itself.
 
@@ -690,17 +694,31 @@ all $m\ge3$, hence $c_m<0$.
 
 The sectorial fixed-mass semiflow has a one-dimensional center manifold
 \cite[Chapter~6]{Henry1981}.  In the adjoint-projection coordinate its reduced
-vector field has the coefficients $\eta_m,c_m$ above; setting that vector
-field to zero gives the stationary Lyapunov--Schmidt equation.
-Crandall--Rabinowitz gives branches
-$A_\pm(\mu)=\pm\sqrt{-\eta_m\mu/c_m}+O(\mu^{3/2})$.
+vector field has the coefficients $\eta_m,c_m$ above.  The reflection
+$(\mathcal Ru)(\xi)=u(\pi-\xi)$ commutes with the Neumann
+reaction--diffusion semiflow, preserves the fixed integrated-mass class, and
+sends the critical eigenfunction $r\cos\xi$ to $-r\cos\xi$.  The center
+manifold may therefore be chosen reflection-equivariant, and in the
+adjoint-projection coordinate $\mathcal R$ acts as $A\mapsto-A$.  Consequently
+the reduced vector field is odd in $A$; setting it to zero gives the associated
+stationary Lyapunov--Schmidt equation, and the two nonzero branches are
+exchanged by reflection.  The stationary simple-eigenvalue theorem of
+Crandall--Rabinowitz supplies the local bifurcating curve
+\cite{CrandallRabinowitz1971}; oddness and the signs above give its two halves,
+\[
+ A_\pm(\mu)=\pm\sqrt{-\eta_m\mu/c_m}+O(\mu^{3/2}).
+\]
 The center eigenvalue is $-2\eta_m\mu+O(\mu^2)<0$; the complementary gap
-persists.  On the real fixed-mass $L^2$ space, positive Neumann diffusion with
-domain $H_N^2$ is sectorial, while in one dimension the quadratic Nemytskii
-map is smooth from $H^1$ to $L^2$.  The principle of linearized stability
-then gives local exponential asymptotic stability in $H^1$
-\cite{CrandallRabinowitz1971,Kato1995,Henry1981,Kielhoefer2012}.  The complete
-coefficient tables and algebra appear in the Supplement.
+persists: Kato's stability and analytic perturbation theories continue the
+isolated center eigenvalue and its spectral projection and preserve separation
+from the complementary spectrum \cite[Chapters~IV and~VII]{Kato1995}.  On the
+real fixed-mass $L^2$ space, positive Neumann diffusion with domain $H_N^2$ is
+sectorial, while in one dimension the quadratic Nemytskii map is smooth from
+$H^1$ to $L^2$.  Henry's principle of linearized stability then gives local
+exponential asymptotic stability in $H^1$ \cite[Chapter~5]{Henry1981}.  For
+complementary local bifurcation and stability background, see
+\cite[Chapter~I]{Kielhoefer2012}.  The complete coefficient tables and algebra
+appear in the Supplement.
 \end{proof}
 
 \section{A stable diffusion--equilibrium trade-off family}
@@ -770,12 +788,15 @@ Pareto-frontier claim is made.
 \end{theorem}
 
 \begin{proof}[Proof architecture]
-In normalized concentrations $z=\mathsf H_m(L)x$, the PDE is
+In normalized concentrations $\widehat x=\mathsf H_m(L)x$, the parameterized
+PDE is
 \begin{equation}\label{eq:normalizedPDE}
- z_t=\mathsf H_m(L)\{f_m(z)+\Delta_m z_{\xi\xi}\}.
+ \partial_t\widehat x=\mathsf H_m(L)
+ \{f_m(\widehat x)+(1-\mu)\Delta_m\partial_{\xi\xi}\widehat x\}.
 \end{equation}
-The stationary bracket $f_m(z)+\Delta_mz_{\xi\xi}$ and its critical right
-vector are unchanged.  The dynamic left vector is
+At $\mu=0$, the stationary bracket
+$f_m(\widehat x)+\Delta_m\partial_{\xi\xi}\widehat x$ and its critical
+right vector are unchanged.  The dynamic left vector is
 $\widetilde\ell_m(L)=\mathsf H_m(L)^{-1}\ell_m$, and the physical fixed-mass vector becomes
 $\mathsf H_m(L)^{-1}c$.
 
@@ -806,10 +827,10 @@ where
  \quad R=5\lambda^2+33\lambda+16.
 \]
 For $x\ge0$, every factor in $Q$ has modulus at least
-$|1+L\lambda|$, because, with $r_i=K_{i-1}/K_i>1$,
+$|1+L\lambda|$, because, with $\theta_i=K_{i-1}/K_i>1$,
 \[
- |1+Lr_i\lambda|^2-|1+L\lambda|^2
- =2L(r_i-1)x+L^2(r_i^2-1)(x^2+y^2)\ge0.
+ |1+L\theta_i\lambda|^2-|1+L\lambda|^2
+ =2L(\theta_i-1)x+L^2(\theta_i^2-1)(x^2+y^2)\ge0.
 \]
 If $\nu\ge2$, then
 \[
@@ -827,20 +848,22 @@ $A=U+1/4$, every coefficient is nonnegative, and the difference is strict
 away from $\lambda=0$.  Thus no nonzero homogeneous eigenvalue lies in the
 closed right half-plane.  Moreover
 $(QF-R)'(0)=16L\sum_{i=2}^{m-1}K_{i-1}/K_i-2>0$, so the conservation zero is
-simple.  For $\nu=1$, putting $c=91L/90$ gives
+simple.  For $\nu=1$, putting $\gamma=91L/90$ gives
 \[
  \frac{QF-R}{\lambda}
- =c\lambda^3+(1+11c)\lambda^2+(6+31c)\lambda+(16c-2).
+ =\gamma\lambda^3+(1+11\gamma)\lambda^2
+ +(6+31\gamma)\lambda+(16\gamma-2).
 \]
-Here $c>1/8$ and the remaining cubic Routh--Hurwitz determinant is
-$6+99c+325c^2>0$.  Hence the primary mode and all higher-mode conclusions
-hold throughout the certified interval.  The interval is nonempty: the case
+Here $\gamma>1/8$ and the remaining cubic Routh--Hurwitz determinant is
+$6+99\gamma+325\gamma^2>0$.  Hence the primary mode and all higher-mode
+conclusions hold throughout the certified interval.  The interval is nonempty: the case
 $\nu=1$ is immediate, while for $\nu\ge2$ one has
 $\sqrt{5/(4\nu)}<4/5<90\nu/(90\nu+1)$.
 
 The proof then follows the physical-to-normalized chain explicitly.  The
 positive equilibrium is $x^*=\mathsf H_m(L)^{-1}\1$, the physical diffusion is
-$D_m^{\rm phys}=\mathsf H_m(L)\Delta_m$, and the change $z=\mathsf H_m(L)x$
+$D_m^{\rm phys}=\mathsf H_m(L)\Delta_m$, and the change
+$\widehat x=\mathsf H_m(L)x$
 produces the row-scaled mode operator $\mathsf H_m(L)(A_m-t\Delta_m)$.
 The left critical vector becomes
 $\widetilde\ell_m(L)=\mathsf H_m(L)^{-1}\ell_m$ and the fixed-mass covector
@@ -869,7 +892,9 @@ Meanwhile
 \]
 Therefore $\eta_m(L)>0$ and $c_m(L)<0$.  The branch and stability proof is the
 same sectorial exchange-of-stability argument as in
-Theorem~\ref{thm:unitstable}.
+Theorem~\ref{thm:unitstable}.  Diagonal concentration scaling does not alter
+the spatial reflection $\xi\mapsto\pi-\xi$, so the scaled reduced vector
+field is again odd and its two nonzero branches are exchanged by reflection.
 The contrast formulas follow by comparing the explicit entries of
 $\mathsf H_m(L)$ and $D_m^{\rm phys}(L)$ on the interval \eqref{eq:Lrange}.
 Finally \eqref{eq:minimaxlower} is the geometric-mean consequence of
@@ -1012,8 +1037,16 @@ topology-specific quantitative result about differential-diffusion tuning, not
 a statement about all binary-complex networks.  Parameter-rich unstable cores
 allow derivative
 freedoms absent from classical mass action \cite{VassenaStadler2024}.
-Exact fixed-three-species criteria address a different, fixed-Jacobian scope
-\cite{Piskovsky2025}.  Biochemical screens study interpretable reaction
+Exact necessary-and-sufficient linear criteria for Turing and Turing--Hopf
+instabilities in general three-species systems address a different
+fixed-dimension scope \cite{Piskovsky2025}.  Complementarily,
+Villar-Sep\'ulveda, Champneys, and Krause design Turing and wave instabilities
+of prescribed wavelength by choosing a generally non-diagonal diffusion
+tensor at fixed linearized kinetics, or conversely choosing linearized
+kinetics at fixed transport \cite{VillarChampneysKrause2025}; here diffusion
+is positive diagonal self-diffusion, and the Jacobians arise from---and are
+quantified over---all positive-equilibrium realizations of one indexed
+classical mass-action topology.  Biochemical screens study interpretable reaction
 architectures rather than the synthetic extremal design here
 \cite{Paul2024}.  Monomial-steady-state results give sufficient spatial
 instability conditions for a restricted mass-action class
@@ -1052,8 +1085,9 @@ hidden and provides a focused nonlinear design problem.
 
 \paragraph{Data and code availability.}
 Exact certificates, independent verifiers, mutation tests, numerical data,
-figure scripts, and replay instructions are available at
-\url{https://github.com/AlecKriebel/Math/tree/main/maximally_collective_stable_turing_patterns_binary_complex_mass_action_networks}.
+figure scripts, and replay instructions are frozen in the
+\href{https://github.com/AlecKriebel/Math/tree/maximally-collective-stable-turing-v1.0.3/maximally_collective_stable_turing_patterns_binary_complex_mass_action_networks}{version 1.0.3 tagged release source tree}.
+The \href{https://github.com/AlecKriebel/Math/tree/main/maximally_collective_stable_turing_patterns_binary_complex_mass_action_networks}{mutable development source} remains on the main branch.
 
 \paragraph{AI-assisted research disclosure.}
 AI systems assisted with exploratory theorem discovery, symbolic derivation,

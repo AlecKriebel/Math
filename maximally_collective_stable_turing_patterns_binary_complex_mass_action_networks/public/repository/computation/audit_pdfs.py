@@ -52,11 +52,14 @@ FORBIDDEN_PHRASES = (
     "All listed coefficients are nonnegative",
     "a conservation-compatible Lyapunov–Schmidt reduction has",
     "Lyapunov–Schmidt coefficients",
+    "The dashed outline marks the principal species set",
 )
 
 FORBIDDEN_PATTERNS = (
     ("mislabeled P_C coefficient row", r"polynomial whose sign gives\s*S\s*m\s*<\s*0"),
     ("old transformed-left-vector notation", r"\bq\s*m\s*\(L\)\s*="),
+    ("false stoichiometric-minor determinant", r"absolute determinant\s+2\s*m\s*[−-]\s*2"),
+    ("old scaled-state notation", r"\bz\s*=\s*H\s*m\s*\(L\)\s*x"),
 )
 
 SUPPLEMENT_SECTION_PREFIXES = (
@@ -223,6 +226,8 @@ def audit(root: Path, output_dir: Path, documents: tuple[Document, ...]) -> None
         for phrase, label in (
             ("one-dimensional center-manifold normal form is", "center-manifold normal-form attribution"),
             ("selected positive realization", "selected-realization scope in Corollary 3.3"),
+            ("reduced vector field is odd", "reflection-equivariant odd normal form"),
+            ("long-circuit complexes associated with the principal species block", "literal Figure 1 outline description"),
         ):
             if phrase.lower() not in main_text.lower():
                 failures.append(f"main PDF lacks {label}")
@@ -237,6 +242,14 @@ def audit(root: Path, output_dir: Path, documents: tuple[Document, ...]) -> None
             failures.append("main PDF lacks one or more Figure 3 placement markers")
         elif positions != sorted(positions):
             failures.append("Figure 3 interrupts the open-problem list or precedes Section 9")
+
+    if supplement:
+        for phrase, label in (
+            ("reduced vector field is odd", "reflection-equivariant odd normal form"),
+            ("The four boundary values are the unique solution", "printed second-harmonic boundary system"),
+        ):
+            if phrase.lower() not in supplement.lower():
+                failures.append(f"supplement PDF lacks {label}")
 
     summary = output_dir / "SUMMARY.txt"
     if failures:
