@@ -7,7 +7,7 @@ out_dir="$paper_dir/output/pdf"
 render_dir="$paper_dir/output/rendered"
 
 mkdir -p "$tmp_dir" "$out_dir" "$render_dir"
-export SOURCE_DATE_EPOCH=1786147200
+export SOURCE_DATE_EPOCH=1787270400
 export FORCE_SOURCE_DATE=1
 export TZ=UTC
 

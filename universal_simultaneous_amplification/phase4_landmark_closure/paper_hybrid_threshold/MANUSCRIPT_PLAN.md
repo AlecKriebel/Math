@@ -1,65 +1,60 @@
-# Replacement-manuscript plan
+# Paper II theorem and evidence map
 
-Date: 2026-08-08 (America/Los_Angeles)
+Date: 2026-08-20 (America/Los_Angeles)
 
-## Editorial decision
+## Headline and claim boundary
 
-The central statement is now the strict improvement
+The paper proves
 
 \[
-R_{\rm sim}\ge 1.5028569127905696\ldots>3/2,
+R_{\rm sim}\ge 1.5028569127905696\ldots>3/2.
 \]
 
-not an exact `3/2` phase transition. The former endpoint-impossibility
-candidate is false. The fixed-affine-separator program is also closed:
-an exact endpoint witness violates the only coefficient not already excluded
-by clique--pendant sharpness.
-
-The previous lower-bound paper remains correct as a theorem about its own
-center--triangle family, but this manuscript supersedes it.
+The construction is one graph sequence selected independently of fitness.
+For every fixed fitness in the open interval, both update rules amplify for
+all sufficiently large population indices.  The algebraic endpoint is exact
+for the paper's pair--pendant leading-order architecture, not for all growing
+weighted graphs.  The unrestricted exact threshold and any finite universal
+upper bound remain open.
 
 ## Proof architecture
 
-1. Define the model, complete-graph baselines, and the quantifiers in
-   `R_sim`.
-2. Display the dilute hybrid: a large clique with hub pendants and weakly
-   coupled internally heavy `K_2` satellites.
-3. Prove exact orbit lumpability and the finite weak-cut Schur trace.
-4. Prove the center singleton estimates, including the path from a
-   mesoscopic core seed to full fixation.
-5. Derive the two pair-gate odds and prove the post-gate sweep.
-6. Obtain the normalized coefficients
-   \[
-   B={2(\sigma-1)\over1+\sigma(r^2-1)}
-     +{\lambda\over r-1},\qquad
-   D={2(r(2-r)-\sigma)\over\sigma+2r(r-1)}-\lambda.
-   \]
-7. Optimize the feasible interval `L<lambda<U`, producing the sextic and
-   its isolated root `R_hyb`.
-8. State both fitness-independent diagonals: the transparent `C=t^4`
-   count scale and the independent least-integer iterated diagonal.
-9. Separate exact proof, exact computation, numerical hostile audit, and
-   open problems.
+1. Define both update rules, complete-graph baselines, and the quantifier order
+   in `R_sim`.
+2. Construct a large clique with dilute hub pendants and dilute internally
+   heavy two-vertex satellites, connected by a uniformly selected dyadic cut.
+3. Derive the exact finite weak-cut Schur trace.
+4. Prove compact-uniform center establishment, full cleanup, and reciprocal-
+   invasion estimates at the gain scale `q/C`.
+5. Derive the exact pair-gate macro chain and control the post-gate sweep.
+6. Obtain the two leading response functions and optimize their common
+   positivity interval.
+7. Isolate the sextic root and prove tangency, class optimality, and the fully
+   rational specialization crossing `3/2`.
+8. Separate exact computational audits from the analytic asymptotic proof and
+   state the unrestricted open problem.
 
 ## Evidence map
 
-| Claim | Analytic source | Independent replay |
+| Claim | Analytic source | Exact replay boundary |
 |---|---|---|
-| finite orbit lumping | labelled event aggregation | `verify_hybrid_lumping.py` |
-| pair and leaf coefficients | trace equations | `verify_hybrid_coefficients.py` |
-| sextic/tangency | quadratic optimization | `verify_leading_algebra.py` |
-| center error at strict scale | logarithmic cutoff and cleanup blocks | `HYBRID_CONSTRUCTION_AUDIT.md` |
-| effective iterated diagonal | compact-uniform two-step limit | `DILUTE_HYBRID_THEOREM.md` |
-| novelty context | narrow post-proof audit | `LITERATURE_AUDIT.md` |
+| finite orbit lumping | manuscript orbit argument | `verify_hybrid_lumping.py` checks all 512 labelled states and 108 fibres on the audit instance |
+| finite weak-cut trace | manuscript block-matrix/Schur proof | no machine proof; finite algebra is stated and proved in text |
+| center estimates and reciprocal invasion | manuscript stopped comparisons | no numerical diagnostic is a proof dependency |
+| pair and pendant coefficients | trace equations | `verify_hybrid_coefficients.py` |
+| sextic, tangency, and architecture optimization | quadratic minimization | `verify_leading_algebra.py` and the coefficient audit |
+| cross-section integration | manuscript theorem proof | `verify_paper_claims.py` |
+| novelty and provenance | manuscript bibliography and release note | `LITERATURE_AUDIT.md` and submission provenance note |
 
-## Release checklist
+## Freeze gates
 
-- [x] Complete a line-by-line hostile proof audit of `main.tex`.
-- [x] Compile and visually inspect every page of the PDF.
-- [x] Add equation-level cross-references to every verifier.
-- [x] Update the project claims ledger without overwriting parallel work.
-- [x] Use a title that does not suggest that `3/2` is the boundary.
-- [x] State explicitly that the exact value of `R_sim` remains open.
-- [x] Add and test a pinned clean-archive replay bootstrap.
-- [x] Regenerate the deterministic manifest after the final source edits.
-- [x] Create and verify the tagged release and source archive.
+- [ ] Final hostile mathematical review reports no theorem, rate, scale, or
+      quantifier defect.
+- [ ] Exact development replay and submission static audit exit zero.
+- [ ] Deterministic archive is byte-identical across two generations.
+- [ ] Fresh extraction passes its internal manifest and pinned exact replay.
+- [ ] PDF rebuilt from the extraction is byte-identical with the frozen PDF.
+- [ ] Every rendered page receives visual review after the last manuscript
+      edit.
+- [ ] Human author supplies only the private postal-address field, rechecks
+      live venue rules, chooses licenses, and performs any submission.

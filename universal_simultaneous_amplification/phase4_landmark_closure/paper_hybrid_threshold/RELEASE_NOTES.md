@@ -1,55 +1,49 @@
-# Simultaneous amplification beyond fitness three halves — preprint v1.0.0
+# Paper II superseding-version release notes
 
-This public preprint proves a strict improvement to the known robust
-simultaneous-amplification interval for Birth–death and death–Birth updating.
+## Result
 
-- Permanent record: https://doi.org/10.5281/zenodo.21852072
-- Project page:
-  https://aleckriebel.github.io/Math/papers/simultaneous-amplification-beyond-three-halves/
-
-## Main theorem
-
-Let
+Let `R_hyb` be the unique root in `(3/2,151/100)` of
 
 \[
-P(R)=R^6-8R^5+22R^4-30R^3+21R^2-6R+1
+R^6-8R^5+22R^4-30R^3+21R^2-6R+1.
 \]
 
-and let
+One fitness-independent family of finite connected loopless undirected
+weighted graphs simultaneously amplifies every fixed `1<r<R_hyb` for all
+sufficiently large population indices.  Thus
 
 \[
-R_{\mathrm{hyb}}=1.5028569127905696\ldots
+R_{\rm sim}\ge R_{\rm hyb}=1.5028569127905696\ldots>3/2.
 \]
 
-be its unique root in `(3/2,151/100)`.  The paper constructs one explicit
-fitness-independent family of finite connected undirected weighted graphs
-that eventually amplifies every fixed `1<r<R_hyb` under both update rules.
-Consequently,
+The release also gives a rational specialization with threshold
+`1.50176815223369...>3/2` and proves architecture-optimality for the displayed
+pair--pendant response cone.  It does not determine the unrestricted value of
+`R_sim` or prove a universal upper bound.
 
-\[
-R_{\mathrm{sim}}\ge R_{\mathrm{hyb}}>3/2.
-\]
+## Reproducibility boundary
 
-This exactly refutes the proposed threshold `R_sim=3/2`.
+The standalone 19-member archive contains the manuscript source and PDF,
+three paper-local exact certifiers, the paper-level integration audit, pinned
+dependencies, and deterministic replay/build/release scripts.  The manuscript
+itself is the analytic proof.  The archive omits duplicate or stale proof
+notes, discovery scripts, sparse numerical diagnostics, the retired affine
+workstream, temporary compiler products, rendered QA images, virtual
+environments, venue metadata, and cover letters.
 
-## Construction and certificates
+The exact programs audit finite transition aggregation and symbolic/rational
+identities.  The all-order weak-cut, establishment, cleanup, reciprocal-
+invasion, and sweep estimates are analytic arguments in the manuscript and
+are not replaced by computation.
 
-The family combines a clique core, ordinary hub leaves, and dilute internally
-heavy `K_2` satellites.  The release includes:
+## Related public versions
 
-- the complete manuscript and deterministic PDF;
-- exact labelled-chain lumping and transition checks;
-- exact rational coefficient identities;
-- Sturm and tangency certificates for the algebraic threshold;
-- a second independently derived asymptotic proof path;
-- the exact counterexample excluding every graph-independent convex affine
-  endpoint separator;
-- hostile-audit and page-by-page PDF QA records; and
-- a one-command replay script, plus a pinned clean-archive bootstrap.
+- <https://doi.org/10.5281/zenodo.21852072> is the v1 source/software archive
+  containing an earlier manuscript version of the beyond-`3/2` result.
+- <https://doi.org/10.5281/zenodo.21850042> is the superseded source/software
+  archive for the earlier `R_sim>=3/2` construction.
 
-## Scope
-
-The value `R_hyb` is exact for the displayed two-mechanism dilute regime.  The
-unrestricted exact value of `R_sim` and a matching universal upper bound remain
-open.  This preprint is a public research release, not peer-reviewed journal
-publication.  No journal submission or external contact is claimed.
+Both records are unrefereed repository snapshots rather than peer-reviewed
+articles or bioRxiv postings, and neither is the persistent identifier for
+this superseding manuscript package.  A new versioned deposit may be named
+only after the human author creates it.

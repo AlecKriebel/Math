@@ -1,16 +1,13 @@
 # External-communication boundary
 
-No specialist-outreach email, message, reviewer invitation, or audit request
-is prepared or sent in this package. The independent-research policy permits
-only the human researcher to communicate externally on behalf of the project.
+No email, message, reviewer suggestion, specialist-audit request, cover-letter
+delivery, or portal submission has been sent or initiated.  The cover letters
+in this directory are drafts for the human author to review and use
+personally.
 
-Independent specialist review would be valuable for:
-
-1. the compact-uniform weak-coupling diagonal;
-2. the post-establishment (o(q/C)) estimates;
-3. the class-optimal sextic optimization; and
-4. the remaining fitness-two stationary promotion inequality.
-
-If the human chooses to seek such review, the human must independently choose
-recipients, write and approve the communication, and send it outside this
-workflow. No contact information is collected here.
+Independent specialist review could be valuable for the compact-uniform weak-
+cut diagonal, the gain-scale establishment and cleanup bounds, reciprocal
+invasion, the global pair sweep, and the architecture-optimal sextic
+optimization.  Under the independent-research policy, only the human
+researcher may identify or contact any outside person.  No contact list is
+collected or proposed here.

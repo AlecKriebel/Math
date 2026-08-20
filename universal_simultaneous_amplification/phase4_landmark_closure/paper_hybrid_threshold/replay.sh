@@ -1,8 +1,17 @@
 #!/bin/sh
 set -eu
 
-root=$(CDPATH= cd -- "$(dirname -- "$0")/../../.." && pwd)
-cd "$root"
+paper_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+project=$(CDPATH= cd -- "$paper_dir/../.." && pwd)
+python=${PYTHON:-"$project/.venv/bin/python"}
 
-./universal_simultaneous_amplification/phase4_landmark_closure/threshold/dilute_pair_leaf_hybrid/replay.sh
-./universal_simultaneous_amplification/phase4_landmark_closure/threshold/endpoint_affine_global_v2/replay.sh
+if [ ! -x "$python" ]; then
+  python=${PYTHON:-python3}
+fi
+
+export PYTHONDONTWRITEBYTECODE=1
+
+"$python" "$paper_dir/certificates/verify_leading_algebra.py"
+"$python" "$paper_dir/certificates/verify_hybrid_lumping.py"
+"$python" "$paper_dir/certificates/verify_hybrid_coefficients.py"
+"$python" "$paper_dir/verify_paper_claims.py"
