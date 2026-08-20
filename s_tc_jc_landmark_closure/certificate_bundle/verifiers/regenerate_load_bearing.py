@@ -140,8 +140,9 @@ def primary_regeneration(work: Path) -> None:
         raise AssertionError(("failed to remove derived descriptor cache", cache))
     run(
         work, PYTHON, "primary/atlas_compiler.py", "--sizes", "3", "4",
+        "--disable-target-signature-prefilter",
         "--write-bit-cache", cache,
-        "--output", "primary/certificates/bounded_atlas_summary.json",
+        "--output", "primary/certificates/primitive_cache_regeneration_summary.json",
     )
     if sha256(cache_path) != sha256(ROOT / cache):
         raise AssertionError(("primitive cache regeneration mismatch", cache))
@@ -300,7 +301,6 @@ def verify_regeneration(work: Path) -> dict[str, object]:
     }
 
     summaries = (
-        "primary/certificates/bounded_atlas_summary.json",
         "primary/certificates/bounded_relation_n3_all_filtered_summary.json",
         "primary/certificates/hard_cover_schema3_n3_full_summary.json",
         "primary/certificates/bounded_relation_n3_hard_cover_crosswalk.summary.json",

@@ -50,7 +50,6 @@ PRIMARY_CERTS = (
     "core_universe.json", "completion_universe.json", "support_universe.json",
     "invariant_multihomogeneity.json", "zero_sum_root_normalization.json",
     "jc_triangle_redirection_active.json", "descriptor_bits_cache.json.gz",
-    "bounded_atlas_summary.json",
     "bounded_relation_n3_all_filtered_summary.json",
     "bounded_relation_n3_cycle_filtered_summary.json",
     "bounded_relation_n3_theta0_filtered_summary.json",
