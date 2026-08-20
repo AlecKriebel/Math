@@ -2,7 +2,7 @@
 
 Do not submit until every box is checked by Alec Kriebel.
 
-- [ ] I read the complete 32-page manuscript PDF, not only the abstract.
+- [ ] I read the complete 31-page manuscript PDF, not only the abstract.
 - [ ] I read the supplement and agree that it accurately maps claims to evidence.
 - [ ] If available before posting, I asked a human specialist to inspect the corrected primitive-core proof, crossing-quartet cut proof, complete bridge-fibre proof, and Omega rank argument; the package itself does not claim that such a review occurred.
 - [ ] I confirm the title, name, affiliation, email, and ORCID.
