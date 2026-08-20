@@ -5,8 +5,8 @@ Status: **CURATED PROOF OBJECT VERIFIED — DOI PENDING**
 Current pre-DOI candidate (the hash will change when the reserved DOI is
 inserted and the archive is resealed):
 
-- source commit: `8f28b6238b815bd531b621ea3ad629d173708712`
-- archive SHA-256: `b165b6e65615c144c0a8b60e4381e453c20a6bb02602134384aa037f80cd26f7`
+- source commit: `61c869db9db15848a5328d7ee45b725ae6770688`
+- archive SHA-256: `66f0e324b9cdb1448806eecd9cd9397f9e8c45f4762ff48c5750cd64d2938e6a`
 - record-level evidence commitment:
   `09adbe4c639246b8a966d183984f1e1883246b92bd8927e2552a3cc5a25b505b`
 - finite universe: 10,466 three-outgoing relations and 192 four-outgoing
@@ -20,7 +20,7 @@ inserted and the archive is resealed):
 - Affiliation: Independent Researcher
 - Version: v1.1.5
 - Primary resource type: Dataset (computer-assisted proof certificates)
-- Description: Curated primitive graph inputs, complete finite directed-relation atlases, exact per-relation polynomial/sign/rank certificates, raw-to-canonical transports, restoration and probe records, and primary plus separately implemented verifiers supporting the associated preprint. The record also contains a secondary full reproducibility snapshot and the article/supplement PDFs.
+- Description: Curated primitive graph inputs, complete finite directed-relation atlases, exact per-relation polynomial/sign/rank certificates, raw-to-canonical transports, restoration and probe records, and primary plus separately implemented verifiers supporting the associated preprint. The record also contains the article and supplement PDFs.
 - Suggested keywords: phylogenetic networks; identifiability; Jukes–Cantor; level-2 networks; strongly tree-child; algebraic statistics; exact symbolic verification
 - License: human selection required. The archive contains separate code and manuscript license notices; do not infer the Zenodo record license automatically.
 
@@ -35,16 +35,14 @@ Required proof object:
 5. `certificate_bundle_logs/verify_full.log`
 6. `certificate_bundle_logs/verify_regenerate_all.log`
 
-Recommended secondary files:
+Recommended reader-facing files:
 
-7. `stc_jc_sharp_boundary_reproducibility.tar.gz`
-8. `stc_jc_sharp_boundary_reproducibility.tar.gz.sha256`
-9. final article PDF
-10. final supplement PDF
-11. a plain copy of `certificate_bundle/README_FIRST.md`
+7. final article PDF
+8. final supplement PDF
+9. a plain copy of `certificate_bundle/README_FIRST.md`
 
-The curated archive is the canonical proof object cited by Theorem 6.3. The
-broader snapshot is secondary provenance and should be labelled accordingly.
+The curated archive is complete and is the canonical proof object cited by
+Theorem 6.3. No omnibus development snapshot is required for verification.
 Legacy `RELEASE_ENVELOPE.json`, `RELEASE_ASSET_SHA256SUMS`, and older
 clean-clone transcripts are not part of this v1.1.5 deposit unless they are
 regenerated after DOI finalization.  The authoritative envelope for the

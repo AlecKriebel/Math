@@ -15,8 +15,8 @@ manuscript.  Full LaTeX sources are requested on acceptance.
 ## Before opening ScholarOne
 
 1. Deposit `stc_jc_sharp_boundary_atlas_certificates_v1.1.5.tar.gz`, its
-   checksum and envelope, and the secondary full reproducibility snapshot in
-   Zenodo; insert the issued DOI in the manuscript and metadata.
+   checksum and envelope in Zenodo; insert the issued DOI in the manuscript
+   and metadata.
 2. Rebuild this directory and verify `SHA256SUMS`.
 3. Read the complete manuscript, supplement, cover letter, and metadata.
 4. Confirm that the manuscript is not simultaneously under consideration.

@@ -994,10 +994,17 @@
   evidentiary surface. Submission capsules are now navigation-only.
 - Prepared a DOI finalization tool and Zenodo-first upload sequence without
   requesting, inventing, or publishing an identifier.
+- Removed the obsolete recommendation to deposit an omnibus development
+  snapshot: the curated archive is self-contained and is the sole canonical
+  machine-proof object.
 - Final pre-DOI candidate archive SHA-256:
-  `b165b6e65615c144c0a8b60e4381e453c20a6bb02602134384aa037f80cd26f7`;
+  `66f0e324b9cdb1448806eecd9cd9397f9e8c45f4762ff48c5750cd64d2938e6a`;
   record-level evidence commitment:
   `09adbe4c639246b8a966d183984f1e1883246b92bd8927e2552a3cc5a25b505b`.
   Quick, full, and complete two-copy regeneration all passed on the exact
-  archive, and the delivered source archives reproduced six manuscript or
-  supplement PDFs and two cover letters byte for byte.
+  archive.  In regeneration mode the frozen descriptor cache is deleted,
+  rebuilt from freshly regenerated primitive graph inputs and invariant
+  templates, and matched byte for byte before any downstream compiler may
+  use it; both isolated runs then reproduced all 69 load-bearing objects.
+  The delivered source archives reproduced six manuscript or supplement PDFs
+  and two cover letters byte for byte.
