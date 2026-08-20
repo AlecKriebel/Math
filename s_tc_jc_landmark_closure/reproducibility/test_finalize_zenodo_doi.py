@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+import re
 import shutil
 import tempfile
 
@@ -24,6 +25,38 @@ def main() -> None:
             destination = target / relative
             destination.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(PROJECT / relative, destination)
+
+        # Make the fixture independent of whether the active checkout is
+        # pre-DOI or already finalized.  A finalized checkout is normalized
+        # back to the exact pending form in the temporary directory only.
+        for relative in TEXT_FILES:
+            path = target / relative
+            text = path.read_text(encoding="utf-8")
+            replacement = TEX_TOKEN if path.suffix == ".tex" else TOKEN
+            text = re.sub(r"10\.5281/zenodo\.\d+", replacement, text)
+            path.write_text(text, encoding="utf-8")
+
+        bib = target / "source/paper/references.bib"
+        bib_text = bib.read_text(encoding="utf-8")
+        if "Zenodo DOI pending; version 1.1.5" not in bib_text:
+            bib_text, count = re.subn(
+                r"\n\s*doi\s*=\s*\{" + re.escape(TOKEN) +
+                r"\},\n\s*url\s*=\s*\{https://doi\.org/" +
+                re.escape(TOKEN) +
+                r"\},\n\s*note\s*=\s*\{Version 1\.1\.5\}",
+                "\n  note         = {Zenodo DOI pending; version 1.1.5}",
+                bib_text,
+                count=1,
+            )
+            assert count == 1
+            bib.write_text(bib_text, encoding="utf-8")
+
+        cff = target / "certificate_bundle/CITATION.cff"
+        cff_text = re.sub(
+            r'^doi:\s*"[^"]+"\s*$', "", cff.read_text(encoding="utf-8"),
+            flags=re.MULTILINE,
+        ).rstrip() + "\n"
+        cff.write_text(cff_text, encoding="utf-8")
         envelope = target / "release_artifacts/CERTIFICATE_BUNDLE_ENVELOPE.json"
         envelope.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(
@@ -40,7 +73,11 @@ def main() -> None:
             target / "certificate_bundle/CITATION.cff"
         ).read_text(encoding="utf-8")
         assert json.loads(envelope.read_text(encoding="utf-8"))["zenodo_doi"] == doi
-    print(json.dumps({"status": "VERIFIED", "escaped_placeholder": True}, sort_keys=True))
+    print(json.dumps({
+        "status": "VERIFIED",
+        "escaped_placeholder": True,
+        "pre_or_post_finalization_fixture": True,
+    }, sort_keys=True))
 
 
 if __name__ == "__main__":

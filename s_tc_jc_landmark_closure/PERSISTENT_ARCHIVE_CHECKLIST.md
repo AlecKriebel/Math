@@ -55,8 +55,8 @@ project root.  The certificate archive itself must be rebuilt after the DOI is
 inserted; changing only the manuscript or release envelope is insufficient.
 
 ```bash
-python reproducibility/finalize_zenodo_doi.py --doi 10.5281/zenodo.<issued-number>
 python reproducibility/test_finalize_zenodo_doi.py
+python reproducibility/finalize_zenodo_doi.py --doi 10.5281/zenodo.<issued-number>
 git diff --check
 # Review the DOI-only diff, then commit it before sealing so the archive's
 # source_commit identifies the DOI-bearing source state.

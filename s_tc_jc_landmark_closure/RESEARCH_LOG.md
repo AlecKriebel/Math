@@ -1008,3 +1008,9 @@
   use it; both isolated runs then reproduced all 69 load-bearing objects.
   The delivered source archives reproduced six manuscript or supplement PDFs
   and two cover letters byte for byte.
+- Adversarial release review then found and forced two final capsule-handoff
+  repairs: the navigation crosswalk now points to the global compact-probe and
+  direct-anchor streams accurately, and the DOI regression works from either
+  a pending or already-finalized checkout.  A temporary end-to-end simulation
+  of the documented reserve/finalize sequence passed without leaving a DOI
+  placeholder on any publication surface.
