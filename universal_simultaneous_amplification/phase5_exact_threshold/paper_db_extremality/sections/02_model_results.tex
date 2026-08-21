@@ -6,10 +6,12 @@ degree $d_v^-=\sum_{u\ne v}w_{uv}$ is positive.  Normalize
 \[
  P_{vu}=\frac{w_{uv}}{d_v^-}.                              \tag{2.1}\label{2.1}
 \]
-Then $P$ is loopless and row stochastic.  Conversely, every such $P$ is a
-normalized directed replacement structure.  This quotient removes exactly
-the dynamically irrelevant positive rescalings of individual incoming
-columns.
+Write $P(W)$ for this kernel.  Then $P(W)$ is loopless and row stochastic.
+Conversely, every such $P$ is a normalized directed replacement structure.
+This quotient removes exactly the dynamically irrelevant positive rescalings
+of individual incoming columns.  When weights rather than their normalized
+kernel are displayed, we use the shorthand
+$\rho_{\dB}(W,r):=\rho_{\dB}(P(W),r)$.
 
 A uniformly chosen target dies.  If the current mutant set is $S$ and mutant
 fitness is $r>0$, the probability that target $v$ receives a mutant parent is
@@ -80,12 +82,19 @@ trivial.  Thus the expansion in Theorem~\ref{thm:local} is proved entirely
 inside the positive kernel polytope before being interpreted at its tangent
 space.
 
-For the fixed-structure result, return to unnormalized weights on complete
-directed support and define
+For a positive normalized kernel on complete directed support, define the
+scale-free defect
+\[
+ \calE_{\rm dir}(P)=
+ \sum_v\sum_{\substack{u<z\\u,z\ne v}}
+ \frac{(P_{vu}-P_{vz})^2}{P_{vu}P_{vz}}.                   \tag{2.9}\label{2.9}
+\]
+For unnormalized weights $W$, set
+$\calE_{\rm dir}(W):=\calE_{\rm dir}(P(W))$; equivalently,
 \[
  \calE_{\rm dir}(W)=
  \sum_v\sum_{\substack{u<z\\u,z\ne v}}
- \frac{(w_{uv}-w_{zv})^2}{w_{uv}w_{zv}}.                   \tag{2.9}\label{2.9}
+ \frac{(w_{uv}-w_{zv})^2}{w_{uv}w_{zv}}.                  \tag{2.9b}\label{2.9b}
 \]
 
 \begin{theorem}[complete-support strong-selection correction]

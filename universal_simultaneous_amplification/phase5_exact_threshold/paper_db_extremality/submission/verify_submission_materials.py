@@ -34,9 +34,13 @@ TITLE = (
 )
 
 
-def words(text: str) -> int:
+def word_tokens(text: str) -> list[str]:
     plain = re.sub(r"\\[A-Za-z]+|[$\\{}~]", " ", text)
-    return len(re.findall(r"[A-Za-z0-9]+(?:[-'][A-Za-z0-9]+)*", plain))
+    return re.findall(r"[A-Za-z0-9]+(?:[-'][A-Za-z0-9]+)*", plain)
+
+
+def words(text: str) -> int:
+    return len(word_tokens(text))
 
 
 def normalized(text: str) -> str:
@@ -63,6 +67,26 @@ def main() -> None:
     assert "New Results" in metadata and "Evolutionary Biology" in metadata
     assert "strict nondegenerate local maximizer" in metadata
     assert "full normalized kernel polytope" in metadata
+    metadata_abstract = metadata.split("## Abstract", 1)[1].split("**Word count:**", 1)[0]
+    assert word_tokens(metadata_abstract) == word_tokens(manuscript_abstract)
+    assert f"**Word count:** {abstract_words} words" in metadata
+    assert "Tkadlec" not in manuscript_abstract
+
+    submission_readme = (HERE / "README.md").read_text(encoding="utf-8")
+    assert "https://www.biorxiv.org/collection/evolutionary-biology" in submission_readme
+
+    responsibility_phrase = "reviewed the final manuscript and public artifacts"
+    for cover_name in ("JMB_COVER_LETTER.md", "TPB_COVER_LETTER.md"):
+        cover = (HERE / cover_name).read_text(encoding="utf-8")
+        assert responsibility_phrase in normalized(cover)
+        assert "reviewed the released manuscript and artifacts" not in normalized(cover)
+
+    introduction = (PAPER / "sections/01_introduction.tex").read_text(
+        encoding="utf-8"
+    )
+    references = (PAPER / "references.tex").read_text(encoding="utf-8")
+    assert r"\citep{Kriebel2026Hybrid}" in introduction
+    assert "21852072" in references and "Unrefereed companion manuscript" in references
 
     highlights = (HERE / "TPB_HIGHLIGHTS.txt").read_text(encoding="utf-8").splitlines()
     assert 3 <= len(highlights) <= 5
@@ -81,6 +105,7 @@ def main() -> None:
     for doi in ("21850042", "21852072"):
         assert re.search(rf"{doi}.{{0,180}}software archive", combined, re.I | re.S)
     assert "incorporates that material" in combined
+    assert "bounded-interval construction cited in the manuscript" in combined
 
     requirements = [
         line

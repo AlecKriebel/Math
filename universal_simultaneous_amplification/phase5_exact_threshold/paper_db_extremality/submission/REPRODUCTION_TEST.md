@@ -31,7 +31,7 @@ reusing it.
 The host document tools separately reported Tectonic 0.16.9 and Poppler
 26.08.0 (`pdfinfo` and `pdftoppm`), matching `ENVIRONMENT.md`. The manuscript
 was also built inside a fresh extraction. The resulting 26-page PDF matched
-the current repository PDF byte for byte.
+the then-current repository PDF byte for byte.
 
 This records a tested development checkpoint, not an immutable public
 release. Regenerate the archive and repeat the clean-extraction checks after
@@ -60,3 +60,22 @@ PDF was byte-for-byte identical to the repository PDF and had SHA-256
 As before, the archive-level digest is intentionally not embedded inside the
 archive that it hashes; it is printed by `release_bundle.sh` after the final
 source bytes are frozen.
+
+## 2026-08-21 second-review revision
+
+The second external review was adjudicated against the exact chains and
+certificates.  The final symmetric-sector verifier now asserts the exact
+minimum margin printed in Appendix A, and the paper-level audit checks its
+displayed SHA-256 binding.
+
+The complete development replay exited zero.  A deterministic 84-member
+archive was extracted into a new temporary directory, every internal manifest
+entry passed, and `submission/bootstrap_replay.sh` created a fresh Python
+3.14.6 environment with SymPy 1.14.0, python-flint 0.9.0, and mpmath 1.3.0.
+The entire exact replay again exited zero.  The manuscript rebuilt in that
+extraction to 30 pages and matched the repository PDF byte for byte, with
+SHA-256
+`229747f2a62906dea8976bbad747d0b8a109fb606a4a7695548613a245a93e66`.
+Two independent archive generations from the same pre-log inputs were also
+byte-for-byte identical.  The final archive digest is recorded outside the
+archive after these reproduction notes are frozen, avoiding a self-hash.

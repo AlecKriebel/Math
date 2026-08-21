@@ -63,6 +63,13 @@ Let $\Pi_P$ denote its stationary law and put
 \[
  m(P)=\E_{\Pi_P}|A|.                                         \tag{3.6}\label{3.6}
 \]
+For a set function $f$ and $i\notin S$, write
+\[
+ \Delta_i f(S)=f(S\cup\{i\})-f(S),\qquad
+ \Delta_T=\prod_{i\in T}\Delta_i
+ \quad(T\cap S=\varnothing).                                \tag{3.6a}\label{3.6a}
+\]
+The difference operators in the product commute.
 
 \begin{proposition}[coverage representation]\label{prop:coverage}
 The fixation committor at fitness two is
@@ -82,7 +89,10 @@ Thus $h_P$ is a normalized completely alternating coverage function.
 \end{proposition}
 
 \begin{proof}
-The finite forward chain absorbs almost surely.  Start the dual from $V$ in
+The finite forward chain absorbs almost surely.  Indeed, from every
+nonabsorbing mutant set, a sequence of resident-target deaths followed by
+mutant-parent choices gives a positive-probability path to $V$; hence the
+finite chain has no other closed communicating class.  Start the dual from $V$ in
 \eqref{3.5}.  Its first active update sends $V$ to $V\setminus\{v\}$ because
 all sampled parents differ from the target $v$; Lemma~\ref{lem:dual-ergodic}
 then gives convergence to $\Pi_P$.  Letting $t\to\infty$, the left side
@@ -97,11 +107,21 @@ $\one_{\{A\cap S=\varnothing,\ T\subseteq A\}}$; averaging proves
 
 \subsection{A one-sample active chain}
 
-The geometric burst can be factored into one-sample steps.  Let
+The geometric burst can be factored into one-sample steps.  Two phase spaces
+are required:
 \[
- \mathcal Y_n=\{(B,v):\varnothing\ne B\subseteq V\setminus\{v\}\}. \tag{3.10}\label{3.10}
+ \mathcal Z_n=\{(C,v):C\subseteq V\setminus\{v\}\},\qquad
+ \mathcal Y_n=\{(B,v):\varnothing\ne B\subseteq V\setminus\{v\}\}.
+                                                                    \tag{3.10}\label{3.10}
 \]
-From $y=(B,v)$, with $b=|B|$, define $K(P)$ by the following fair mixture:
+The pre-sampling space $\mathcal Z_n$ permits the empty cache created when a
+singleton is stopped.  Let $A:\mathcal Z_n\to\mathcal Y_n$ adjoin one source
+$i$ sampled from row $P_v$.  Let $R:\mathcal Y_n\to\mathcal Z_n$ be the fair
+continue-or-retarget channel: on continue it sends $(B,v)$ to $(B,v)$, while
+on stop it chooses $w$ uniformly from $B$ and sends $(B,v)$ to
+$(B\setminus\{w\},w)$.  Row laws act on the right, so $K(P)=RA$ is a kernel
+on $\mathcal Y_n$ and $M(P)=AR$ is a kernel on $\mathcal Z_n$.  Explicitly,
+from $y=(B,v)$, with $b=|B|$, $K(P)$ is the following fair mixture:
 \begin{enumerate}
 \item sample $i$ from row $P_v$ and move to $(B\cup\{i\},v)$;
 \item choose $w$ uniformly from $B$, sample $i$ from row $P_w$, and move to
@@ -111,7 +131,8 @@ Each branch has probability $1/2$.  The first branch continues a geometric
 burst; the second stops it and retargets the active ancestral mark.
 
 \begin{lemma}[active collision identity]\label{lem:active}
-Let $\nu(P)$ be the stationary law of $K(P)$ and put
+The active kernel $K(P)$ is irreducible and aperiodic.  Let $\nu(P)$ be its
+unique stationary law and put
 \[
  H(B,v)=\frac1{|B|}.                                        \tag{3.11}\label{3.11}
 \]
@@ -125,7 +146,9 @@ The map $P\mapsto K(P)$ is linear.
 \begin{proof}
 We include the marked-current calculation because it is the bridge from the
 coverage law to the Hessian.  Let $T_v(A,B)$ be the transition kernel of one
-union-dual update with target fixed at $v$.  For $v\notin C$, define
+union-dual update with target fixed at $v$.  Extend $\Pi_P$ by zero off the
+proper nonempty subsets of $V$.  For $v\notin C$, including
+$C=\varnothing$, define
 \[
  \sigma_v(C)=\Pi_P(C\cup\{v\}),\qquad
  \eta_v(C)=\sum_A\Pi_P(A)T_v(A,C)-\Pi_P(C).                 \tag{3.13a}\label{3.13a}
@@ -143,19 +166,27 @@ identity gives
  \lambda_v=\frac{\sigma_v+\eta_v}{2},\qquad
  \eta_v=\lambda_vA_v.                                      \tag{3.14}\label{3.14}
 \]
-Write $A$ for the one-sample channel and $R$ for the fair
-continue-or-retarget channel.  After the sample, continuing contributes
+For the rectangular channels just defined, after the sample, continuing contributes
 $\eta_v(B)/2$ to $(B,v)$.  Stopping, choosing $w$ uniformly from $B$, and
 ending at $(B\setminus\{w\},w)$ contributes, by \eqref{3.13},
 $\Pi_P(B)/2=\sigma_w(B\setminus\{w\})/2$.  Hence
-$\lambda AR=\lambda$.  Since $\eta=\lambda A$, associativity gives
-$\eta RA=\eta$; the push-forward $RA$ is precisely the active kernel
-$K(P)$ defined above.  Both $\sigma_v$ and $\eta_v$ have total mass
+$\lambda AR=\lambda$.  Thus $\lambda$ is stationary on $\mathcal Z_n$ for
+$M=AR$.  Since $\eta=\lambda A$, associativity gives $\eta RA=\eta$; hence
+$\eta$ is stationary on $\mathcal Y_n$ for the active kernel $K=RA$.  Both
+$\sigma_v$ and $\eta_v$ have total mass
 $\Pp_{\Pi_P}(v\in A)$, so
 \[
  \sum_{v,C}\lambda_v(C)=m(P).                              \tag{3.15}\label{3.15}
 \]
-Normalizing the pushed-forward law gives $\nu(P)=\eta/m(P)$.  Dividing
+Normalizing gives the probability laws $\lambda/m(P)$ on $\mathcal Z_n$ and
+$\nu(P)=\eta/m(P)$ on $\mathcal Y_n$.  The latter stationary law is unique:
+if $|B|\ge2$, a stop at $w\in B$ followed by sampling a member of
+$B\setminus\{w\}$ shrinks $B$ by one.  From a singleton state, one or two
+positive stop moves reach any prescribed singleton--target pair $(\{j\},v)$
+with $j\ne v$.  Positive continue moves then sample the remaining members of
+any prescribed active set.  Hence $K(P)$ is irreducible; sampling an already
+present source on a continue move gives a self-loop, so it is also aperiodic.
+Dividing
 \eqref{3.13} by $|B|$ and summing over $B$ yields
 \[
  \nu(P)H=\sum_{k\ge1}\frac{k\Pi_P(|A|=k)}{m(P)}\frac1k

@@ -14,6 +14,12 @@ if [ ! -x "$python" ]; then
   python=${PYTHON:-python3}
 fi
 
+if ! "$python" -c 'import sympy, flint' >/dev/null 2>&1; then
+  echo "Paper I replay dependencies are missing for: $python" >&2
+  echo "Run ./submission/bootstrap_replay.sh first, or set PYTHON to the pinned environment." >&2
+  exit 2
+fi
+
 export PYTHONDONTWRITEBYTECODE=1
 
 cd "$root"

@@ -20,7 +20,14 @@ four-vertex families provide global low-order slices.  The paper does **not**
 claim global complete-kernel maximality at fitness two or a local radius
 uniform in population size.
 
-From this folder run:
+In a fresh clone or extracted source bundle, first create the pinned replay
+environment and run the suite with:
+
+```sh
+./submission/bootstrap_replay.sh
+```
+
+In an already prepared development tree, run:
 
 ```sh
 ./replay.sh

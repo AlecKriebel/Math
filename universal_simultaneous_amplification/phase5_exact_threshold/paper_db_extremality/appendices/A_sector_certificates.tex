@@ -332,7 +332,7 @@ every $N\ge2$.
 For a symmetric balanced $\delta$, put
 \[
  x(B,v)=\sum_{i\in B}\delta_{vi},\qquad
- z(B)=\sum_{w\ne i\in B}\delta_{wi}.                       \tag{A.11}\label{A.11}
+ z(B)=\sum_{\substack{w,i\in B\\w\ne i}}\delta_{wi}.       \tag{A.11}\label{A.11}
 \]
 Functions in this sector have the form $a_kx+b_kz$.  Transpose the exact
 two-channel rank operator and split its positive and negative channels:
@@ -548,7 +548,7 @@ $t_j$, $\beta_N$, and $\varepsilon_N$ for all 248 remaining finite orders,
 asserts every sign and the minimum in \eqref{A.33}, and uses no floating-point
 arithmetic.  Its SHA-256 is
 \begin{center}
-\small\nolinkurl{b8d3fc1bf9280845a99d4d44e4eba0a27e9912e1be90d89b5b5a7d24abb5c97d}.
+\small\nolinkurl{b4d45a83ce5f21a1fd3e09403b376e071330290a01affff64711574b69e024bc}.
 \end{center}
 Successful execution ends with
 \begin{center}
@@ -565,7 +565,7 @@ the numerator
 $2u(N-j+u)+u-N$, where $u=\sqrt{N/2}$; it is minimized at $j=N-1$ and
 equals $3u>0$.  Since $u\le N/24$ in this range,
 $t_j\ge24N/(25N-24j)$.  The bound
-$\beta_N\le19/20$ is then equivalent, after clearing positive factors, to
+$\beta_N<19/20$ follows, after clearing positive factors, from
 $G_N(j)>0$, where
 \[
 \begin{aligned}
@@ -583,7 +583,9 @@ Its discriminant is $-500D_N$, and the coefficients of $D_{288+M}$ are
 \end{gathered}                                             \tag{A.35}\label{A.35}
 \]
 Thus $G_N$ has one negative real root and is positive on every physical
-rank.  Also $\varepsilon_N\le1/20$ for $N\ge46$.  Therefore
+rank.  Also $\varepsilon_N<1/20$ for $N\ge46$: after clearing its positive
+denominator this is $22N^2-1066N+2555>0$, which holds at $N=46$ and is
+increasing thereafter.  Therefore
 $\beta_N+\varepsilon_N<1$ for all $N\ge288$.
 
 Finally, \eqref{A.25}, \eqref{A.27}, and positivity of $\ell$ give

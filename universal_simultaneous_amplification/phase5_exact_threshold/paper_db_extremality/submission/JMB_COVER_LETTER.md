@@ -2,7 +2,7 @@
 
 > **DRAFT — NOT SENT.** No editor or other person has received this letter.
 
-20 August 2026
+21 August 2026
 
 Editors
 *Journal of Mathematical Biology*
@@ -40,7 +40,9 @@ at DOI `10.5281/zenodo.21753405`; the present paper incorporates that material
 and adds the fitness-two local theorem and its proof framework. Two additional Zenodo records,
 `10.5281/zenodo.21850042` and `10.5281/zenodo.21852072`, are software archives
 for a separate companion workstream on simultaneous amplification and are not
-prior publications of this manuscript. At the date of this draft, the present
+prior publications of this manuscript. The latter contains the unrefereed
+bounded-interval construction cited in the manuscript, extending simultaneous
+amplification beyond fitness three halves. At the date of this draft, the present
 consolidated manuscript has no assigned preprint DOI. Any bioRxiv DOI assigned
 before journal submission will be disclosed in the journal portal and final
 letter.
@@ -55,8 +57,8 @@ bundle manifest.
 Generative-AI systems were used substantively in mathematical exploration,
 derivation, adversarial proof analysis, software development, exact
 verification, literature support, visualization, and manuscript preparation.
-The named human author determined the scope and claims, reviewed the released
-manuscript and artifacts, and accepts responsibility for the work. All exact
+The named human author determined the scope and claims, reviewed the final
+manuscript and public artifacts, and accepts responsibility for the work. All exact
 certificates are supplied for independent replay, and numerical evidence is
 explicitly separated from proof. AI systems are not listed as authors.
 

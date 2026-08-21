@@ -147,3 +147,35 @@
 - Best-guess completion: 97% of the adversarial-review revision.  Only the
   final independent hostile review, any resulting repair, and the final
   commit/push remain.
+
+## 2026-08-21 — second adversarial review and final validation
+
+- Adjudicated the revised-paper review point by point.  Accepted the genuine
+  formal repairs: rectangular sample/retarget phase spaces, stationary-law
+  uniqueness, mixed-difference definitions, normalized-kernel/raw-weight
+  notation, and neutral disclosure of the public simultaneous-amplification
+  companion.  The purported large-order strictness issue was a presentation
+  gap rather than a theorem gap; the already positive certificate supplies
+  the strict inequality.
+- Added exact integration guards for the empty-cache phase boundary and raw-
+  versus-normalized strong-selection defect.  Strengthened the finite
+  symmetric certificate so that it explicitly asserts the exact minimum
+  rational margin printed in Appendix A, then bound the manuscript to the
+  verifier's updated SHA-256
+  `b4d45a83ce5f21a1fd3e09403b376e071330290a01affff64711574b69e024bc`.
+- The full development replay and a genuinely fresh Python 3.14.6 bootstrap
+  replay both exited zero.  Every internal archive-manifest entry passed, and
+  two independently generated 84-member archives at the pre-log checkpoint
+  were byte-for-byte identical.
+- Rebuilt the 30-page PDF inside the clean extraction.  It was byte-for-byte
+  identical to the repository PDF, with SHA-256
+  `229747f2a62906dea8976bbad747d0b8a109fb606a4a7695548613a245a93e66`.
+  A visual audit caught and repaired one floating $K_4$ figure; the final
+  every-page recheck found no clipping, malformed equations, stretched
+  bibliography text, or misplaced floats.
+- Independent mathematical, visual, submission, and reproducibility audits
+  reported no remaining actionable defect.  Human-only submission fields
+  (city/country, postal address, factual funding/conflict confirmation, and a
+  future persistent release identifier) remain deliberately unfilled.
+- Paper I completion: 100% of the requested second-review revision,
+  validation, and reproducibility cycle.

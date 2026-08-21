@@ -54,7 +54,7 @@ keywords, MSC codes, corresponding-author details, and statements and
 declarations. The bioRxiv screening description and Evolutionary Biology
 category were checked at
 <https://connect.biorxiv.org/news/2022/06/13/screening_procedures> and
-<https://connect.biorxiv.org/relate/content/181/channel/175>.
+<https://www.biorxiv.org/collection/evolutionary-biology>.
 
 Elsevier's current journal guide should be reopened directly from the
 *Theoretical Population Biology* journal page immediately before submission.

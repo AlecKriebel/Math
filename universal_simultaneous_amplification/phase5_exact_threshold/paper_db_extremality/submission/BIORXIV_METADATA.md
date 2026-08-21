@@ -36,18 +36,18 @@ decomposes the inverse-mean Hessian into standard, symmetric-balanced, and
 antisymmetric-balanced permutation sectors with positive sector certificates
 valid for every population size, using exact rational computer assistance over
 an explicitly finite range. Second, we close the complete-support case
-left outside the formal strongly connected noncomplete-support obstruction of
-Tkadlec et al. The leading strong-selection deficit is an explicit sum of
-squared discrepancies within incoming columns, with equality exactly for
-kernels dynamically equivalent to \(J_n\). Together with the prior
+left outside the prior strongly connected noncomplete-support obstruction.
+The leading strong-selection deficit is an explicit sum of
+squared discrepancies within incoming columns, with equality exactly at
+\(J_n\) after normalization. Together with the prior
 obstruction and a source-component bound, this shows that no fixed finite
 directed weighting is a strict amplifier for every beneficial fitness. We also prove global
-all-beneficial-fitness maximality on positive weighted triangles and two
-symmetric weighted \(K_4\) families. These results establish full local
+all-beneficial-fitness maximality on positive weighted triangles and within
+two symmetric weighted \(K_4\) families. These results establish full local
 rigidity at fitness two and fixed-graph rigidity at strong selection, but not
 global complete-graph maximality at fitness two.
 
-**Word count:** 242 words under the package's plain-text count.
+**Word count:** 237 words under the package's plain-text count.
 
 ## Keywords
 

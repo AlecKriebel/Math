@@ -9,8 +9,16 @@ It deliberately does not import any discovery script.
 from __future__ import annotations
 
 from fractions import Fraction as F
+import hashlib
 from itertools import combinations
 from math import comb
+from pathlib import Path
+
+
+HERE = Path(__file__).resolve().parent
+SYMMETRIC_VERIFIER_SHA256 = (
+    "b4d45a83ce5f21a1fd3e09403b376e071330290a01affff64711574b69e024bc"
+)
 
 
 def solve_linear(matrix: list[list[F]], rhs: list[F]) -> list[F]:
@@ -78,6 +86,37 @@ def check_active_normalization() -> None:
     print("PASS: complete active law, collision normalization, and dB baseline")
 
 
+def check_rectangular_phase_typing() -> None:
+    for n in range(3, 6):
+        marked = [
+            (mask, v)
+            for v in range(n)
+            for mask in range(1 << n)
+            if not (mask >> v) & 1
+        ]
+        active = [(mask, v) for mask, v in marked if mask]
+        marked_set = set(marked)
+        active_set = set(active)
+        assert len(marked) == n * 2 ** (n - 1)
+        assert len(active) == n * (2 ** (n - 1) - 1)
+
+        # A: every marked cache receives one loopless sample and becomes active.
+        for mask, v in marked:
+            for source in range(n):
+                if source != v:
+                    assert (mask | (1 << source), v) in active_set
+
+        # R: continue stays marked; stopping a singleton reaches the empty cache.
+        for mask, v in active:
+            assert (mask, v) in marked_set
+            for stopped in range(n):
+                if (mask >> stopped) & 1:
+                    assert (mask & ~(1 << stopped), stopped) in marked_set
+        assert any(mask == 0 for mask, _v in marked)
+        assert all(mask != 0 for mask, _v in active)
+    print("PASS: rectangular marked/active phase spaces and empty-cache boundary")
+
+
 def check_tangent_decomposition() -> None:
     # A genuinely directed row-zero tangent; exact values are arbitrary.
     delta = [
@@ -142,6 +181,7 @@ def check_incoming_column_sos() -> None:
     n = len(weights)
     total = F(0)
     defect = F(0)
+    normalized_defect = F(0)
     for target in range(n):
         incoming = [F(weights[source][target]) for source in range(n) if source != target]
         degree = sum(incoming, F(0))
@@ -150,7 +190,13 @@ def check_incoming_column_sos() -> None:
             ((x - y) ** 2 / (x * y) for x, y in combinations(incoming, 2)),
             F(0),
         )
+        normalized = [w / degree for w in incoming]
+        normalized_defect += sum(
+            ((x - y) ** 2 / (x * y) for x, y in combinations(normalized, 2)),
+            F(0),
+        )
     assert total - n * (n - 1) * (n - 2) == defect
+    assert normalized_defect == defect
     assert defect > 0
     uniform = [[0 if i == j else (j + 2) for j in range(n)] for i in range(n)]
     uniform_defect = F(0)
@@ -162,6 +208,48 @@ def check_incoming_column_sos() -> None:
         )
     assert uniform_defect == 0
     print("PASS: incoming-column strong-selection sum of squares and equality gauge")
+
+
+def check_formal_source_guards() -> None:
+    dual = (HERE / "sections/03_duality_collision.tex").read_text(encoding="utf-8")
+    model = (HERE / "sections/02_model_results.tex").read_text(encoding="utf-8")
+    intro = (HERE / "sections/01_introduction.tex").read_text(encoding="utf-8")
+    appendix = (HERE / "appendices/A_sector_certificates.tex").read_text(
+        encoding="utf-8"
+    )
+    references = (HERE / "references.tex").read_text(encoding="utf-8")
+
+    for marker in (
+        r"\mathcal Z_n=\{(C,v):C\subseteq V\setminus\{v\}\}",
+        r"A:\mathcal Z_n\to\mathcal Y_n",
+        r"R:\mathcal Y_n\to\mathcal Z_n",
+        r"\Delta_i f(S)=f(S\cup\{i\})-f(S)",
+        "Extend $\\Pi_P$ by zero off the",
+        "unique stationary law",
+    ):
+        assert marker in dual, marker
+    assert r"\rho_{\dB}(W,r):=\rho_{\dB}(P(W),r)" in model
+    assert r"\calE_{\rm dir}(W):=\calE_{\rm dir}(P(W))" in model
+    assert "Kriebel2026Hybrid" in intro and "Kriebel2026Hybrid" in references
+    assert r"\sum_{\substack{w,i\in B\\w\ne i}}\delta_{wi}" in appendix
+    assert "$\\beta_N<19/20$" in appendix
+    assert r"\sum_{w\ne i\in B}" not in appendix
+    print("PASS: formal phase, difference, normalization, and disclosure guards")
+
+
+def check_symmetric_certificate_binding() -> None:
+    verifier = (
+        HERE.parent / "r2_determinant"
+        / "verify_true_inverse_rank_symmetric_phase.py"
+    )
+    digest = hashlib.sha256(verifier.read_bytes()).hexdigest()
+    appendix = (HERE / "appendices/A_sector_certificates.tex").read_text(
+        encoding="utf-8"
+    )
+    assert digest == SYMMETRIC_VERIFIER_SHA256
+    assert SYMMETRIC_VERIFIER_SHA256 in appendix
+    assert "639304267467075678841" in verifier.read_text(encoding="utf-8")
+    print("PASS: displayed symmetric-certificate hash and exact minimum are bound")
 
 
 def check_physical_standard_normalization() -> None:
@@ -210,8 +298,11 @@ def check_second_derivative_conversion() -> None:
 
 if __name__ == "__main__":
     check_active_normalization()
+    check_rectangular_phase_typing()
     check_tangent_decomposition()
     check_physical_standard_normalization()
     check_incoming_column_sos()
     check_second_derivative_conversion()
+    check_formal_source_guards()
+    check_symmetric_certificate_binding()
     print("PASS: paper-level theorem integration audit")

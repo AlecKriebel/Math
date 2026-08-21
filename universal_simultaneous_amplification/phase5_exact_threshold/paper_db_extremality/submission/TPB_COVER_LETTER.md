@@ -3,7 +3,7 @@
 > **DRAFT — NOT SENT.** Use only if the *Journal of Mathematical Biology*
 > submission has ended. No editor or other person has received this letter.
 
-20 August 2026
+21 August 2026
 
 Editors
 *Theoretical Population Biology*
@@ -41,6 +41,8 @@ preserved in the Zenodo **software archive** at DOI
 and adds the fitness-two local theorem and its proof framework. The related DOIs `10.5281/zenodo.21850042` and
 `10.5281/zenodo.21852072` are software archives for the separate
 simultaneous-amplification workstream, not prior publications of this paper.
+The latter contains the unrefereed bounded-interval construction cited in the
+manuscript, extending simultaneous amplification beyond fitness three halves.
 Any bioRxiv posting of the consolidated manuscript will be disclosed in the
 submission system.
 
@@ -53,8 +55,8 @@ included in the reproducibility package.
 Generative-AI systems were used substantively in mathematical exploration,
 derivation, adversarial proof analysis, software development, exact
 verification, literature support, visualization, and manuscript preparation.
-The named human author determined the scope and claims, reviewed the released
-manuscript and artifacts, and accepts responsibility for the work. All exact
+The named human author determined the scope and claims, reviewed the final
+manuscript and public artifacts, and accepts responsibility for the work. All exact
 certificates are supplied for independent replay, and numerical evidence is
 explicitly separated from proof. AI systems are not listed as authors.
 

@@ -271,6 +271,10 @@ def check_finite_certificates():
         assert margin > 0
         margins.append(margin)
     assert min(margins) == margins[0]
+    assert margins[0] == Q(
+        639304267467075678841,
+        115369588296792467144716,
+    )
 
 
 def check_large_order_polynomials():
