@@ -7,9 +7,9 @@
 
 - **Article type:** New Results
 - **Subject category:** Evolutionary Biology
-- **Title:** Complete-Graph Extremality under Death--Birth Updating:
-  Fitness-Two Local Optimality and Strong-Selection Rigidity
-- **Running title, if requested:** Complete-graph extremality for death--Birth
+- **Title:** Local Complete-Graph Optimality at Fitness Two and
+  Strong-Selection Rigidity under Death--Birth Updating
+- **Running title, if requested:** Local complete-graph optimality for death--Birth
 - **Language:** English
 
 ## Author
@@ -33,19 +33,21 @@ directed and nonreversible perturbations. The proof represents the fixation
 committor as a completely alternating coverage function of a fair-geometric
 union dual, converts fixation into a stationary collision observable, and
 decomposes the inverse-mean Hessian into standard, symmetric-balanced, and
-antisymmetric-balanced permutation sectors with all-order positive
-certificates. Second, no fixed finite directed weighting is a strict amplifier
-for every beneficial fitness. On complete support the leading
-strong-selection deficit is an explicit sum of squared discrepancies within
-incoming columns, with equality exactly for kernels dynamically equivalent to
-\(J_n\); the remaining support cases follow from a source-component bound and
-a known noncomplete-support obstruction. We also prove global
+antisymmetric-balanced permutation sectors with positive sector certificates
+valid for every population size, using exact rational computer assistance over
+an explicitly finite range. Second, we close the complete-support case
+left outside the formal strongly connected noncomplete-support obstruction of
+Tkadlec et al. The leading strong-selection deficit is an explicit sum of
+squared discrepancies within incoming columns, with equality exactly for
+kernels dynamically equivalent to \(J_n\). Together with the prior
+obstruction and a source-component bound, this shows that no fixed finite
+directed weighting is a strict amplifier for every beneficial fitness. We also prove global
 all-beneficial-fitness maximality on positive weighted triangles and two
 symmetric weighted \(K_4\) families. These results establish full local
 rigidity at fitness two and fixed-graph rigidity at strong selection, but not
 global complete-graph maximality at fitness two.
 
-**Word count:** 216 words under the package's plain-text count.
+**Word count:** 242 words under the package's plain-text count.
 
 ## Keywords
 

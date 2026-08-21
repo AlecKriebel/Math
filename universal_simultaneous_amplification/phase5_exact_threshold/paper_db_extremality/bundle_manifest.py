@@ -72,16 +72,14 @@ EXCLUDED_PREFIXES = ("explore_", "scan_", "search_")
 EXCLUDED_SUFFIXES = frozenset(
     {".aux", ".log", ".out", ".pyc", ".synctex.gz", ".toc"}
 )
-PRIVATE_SUBMISSION_FILES = frozenset(
+PUBLIC_SUBMISSION_FILES = frozenset(
     {
-        f"{PAPER}/submission/BIORXIV_METADATA.md",
-        f"{PAPER}/submission/BIORXIV_CHECKLIST.md",
-        f"{PAPER}/submission/JMB_COVER_LETTER.md",
-        f"{PAPER}/submission/JMB_CHECKLIST.md",
-        f"{PAPER}/submission/TPB_COVER_LETTER.md",
-        f"{PAPER}/submission/TPB_HIGHLIGHTS.txt",
-        f"{PAPER}/submission/TPB_CHECKLIST.md",
-        f"{PAPER}/submission/verify_submission_materials.py",
+        f"{PAPER}/submission/BUNDLE_REPRODUCTION.md",
+        f"{PAPER}/submission/DECLARATIONS.md",
+        f"{PAPER}/submission/ENVIRONMENT.md",
+        f"{PAPER}/submission/PROVENANCE_AND_RELATED_RELEASES.md",
+        f"{PAPER}/submission/REPRODUCTION_TEST.md",
+        f"{PAPER}/submission/bootstrap_replay.sh",
     }
 )
 
@@ -91,8 +89,9 @@ def sha256(data: bytes) -> str:
 
 
 def excluded(relative: PurePosixPath) -> bool:
-    if relative.as_posix() in PRIVATE_SUBMISSION_FILES:
-        return True
+    name = relative.as_posix()
+    if name.startswith(f"{PAPER}/submission/"):
+        return name not in PUBLIC_SUBMISSION_FILES
     if any(part in EXCLUDED_PARTS for part in relative.parts):
         return True
     if relative.name in EXCLUDED_NAMES:
@@ -137,13 +136,15 @@ def tar_info(name: str, size: int, executable: bool = False) -> tarfile.TarInfo:
 
 def synthetic_metadata() -> bytes:
     return (
-        "Package: Complete-Graph Extremality under Death--Birth Updating\n"
-        "Contents: manuscript source, exact certificates, and replay dependencies\n"
+        "Package: Local Complete-Graph Optimality at Fitness Two and "
+        "Strong-Selection Rigidity under Death--Birth Updating\n"
+        "Contents: manuscript PDF and source, exact certificates, and replay dependencies\n"
         "Archive format: deterministic POSIX tar compressed with deterministic gzip\n"
         f"SOURCE_DATE_EPOCH: {EPOCH}\n"
         "Python: 3.14.6\n"
         "SymPy: 1.14.0\n"
         "python-flint: 0.9.0\n"
+        "mpmath: 1.3.0\n"
         "PDF toolchain: Tectonic 0.16.9; Poppler 26.08.0\n"
         "Replay entry point: universal_simultaneous_amplification/"
         "phase5_exact_threshold/paper_db_extremality/replay.sh\n"
@@ -187,6 +188,7 @@ def write_archive(repo_root: Path, output: Path) -> tuple[int, str]:
                         info = tar_info(name, len(data), executable)
                         archive.addfile(info, io.BytesIO(data))
         os.replace(temporary_path, output)
+        os.chmod(output, 0o644)
     finally:
         temporary_path.unlink(missing_ok=True)
 
@@ -208,6 +210,15 @@ def verify_archive(output: Path) -> None:
         }
 
     manifest = extracted.pop("MANIFEST.sha256").decode("utf-8")
+    submission_prefix = f"{PAPER}/submission/"
+    bundled_submission = {
+        name for name in extracted if name.startswith(submission_prefix)
+    }
+    if bundled_submission != PUBLIC_SUBMISSION_FILES:
+        raise RuntimeError("archive public-submission allowlist mismatch")
+    private_token = b"[[POSTAL" + b"_ADDRESS]]"
+    if any(private_token in data for data in extracted.values()):
+        raise RuntimeError("archive contains the private postal-address token")
     expected: dict[str, str] = {}
     for line in manifest.splitlines():
         digest, name = line.split("  ", 1)

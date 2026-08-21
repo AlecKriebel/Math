@@ -11,6 +11,8 @@ Birth--death and death--Birth updating behave especially differently
 \citep{Kaveh2015}: the latter exposes every mutant to a uniformly sampled
 death event before local competition, which severely constrains
 amplification \citep{Hindersin2015,Tkadlec2020}.
+Transient dB amplifiers have since been studied through exact computation and
+guided spectral edge deletion \citep{Allen2020,Richter2023}.
 
 For a loopless directed weighting, multiply all incoming weights at a fixed
 target by the same positive number.  This changes no death--Birth transition.
@@ -38,7 +40,8 @@ loopless row-stochastic replacement kernels.  This is stronger than a
 reversible or undirected statement: column imbalance and directed circulation
 are both allowed.  It is nevertheless genuinely local.  Its neighborhood
 may depend on $n$, and it does not constrain a sequence that stays far from
-$J_n$.
+$J_n$.  To our knowledge, no previous result establishes this strict local
+maximality in the full directed normalized kernel space.
 
 Second, we hold an arbitrary finite structure fixed and let $r\to\infty$.
 On complete directed support,
@@ -47,9 +50,13 @@ On complete directed support,
 \]
 where $\calE_{\rm dir}$ is an explicit incoming-column sum of squares.  Its
 zero set consists exactly of the kernels dynamically equivalent to $J_n$.
-Together with the noncomplete-support theorem of \citet{Tkadlec2020} and a
-source-component bound, this rules out one fixed
-finite directed weighting that amplifies for every $r>1$.
+Theorem~1 of \citet{Tkadlec2020} applies to every fixed
+strongly connected noncomplete population structure, including directed and
+weighted supports.  Thus complete directed support with unequal normalized
+weights is the residual strongly connected case.  Equation~\eqref{1.3}
+closes it sharply; together with the cited theorem and a source-component
+bound for non-strong supports, it rules out one fixed finite directed
+weighting that amplifies for every $r>1$.
 
 \begin{figure}[t]
 \centering
@@ -68,24 +75,31 @@ finite directed weighting that amplifies for every $r>1$.
     {global all-$P$ statement at $r=2$ remains open};
 \end{tikzpicture}
 \caption{The two proved axes of the same complete-kernel deficit.  The
-fitness-two theorem is local in the full normalized structure space and all-order in
+fitness-two theorem is local in the full normalized structure space and valid for every
 population size; the strong-selection theorem is global in fixed finite
 structure and asymptotic in fitness.}
 \label{fig:axes}
 \end{figure}
 
 The mechanism behind \eqref{1.2} is different from ordinary weak-selection
-perturbation.  At $r=2$, a death--Birth update is an additive Boolean OR of a
-fair-geometric number of potential parents.  Reversing the graphical maps
-produces an exact finite union-valued ancestry chain; no independent-lineage
-approximation is made.  Its stationary law represents the fixation committor
-as a completely alternating coverage function.  A marked version turns the
-stationary mean ancestral-set size into a collision probability.  At $J_n$,
+perturbation.  Branching and coalescing genealogical duals under selection
+have a substantial population-genetic history
+\citep{KroneNeuhauser1997,EtheridgeGriffiths2009,Mano2009}; related spatial
+dB work constructs the process and its dual on integer lattices
+\citep{Foo2024}.  Here we specialize this framework to arbitrary finite
+directed kernels at $r=2$: the update is an additive Boolean OR of a
+fair-geometric number of potential parents.
+Reversing the graphical maps produces a finite union-valued ancestry chain;
+no independent-lineage approximation is made.  Its stationary law represents
+the fixation committor as a completely alternating coverage function, and a
+marked one-sample factorization turns the stationary mean ancestral-set size
+into a collision probability.  At $J_n$,
 the first variation vanishes by rank projection.  The Hessian is an
 $S_n$-invariant quadratic form on all loopless row-zero matrices.  The
 tangent space splits without multiplicity into standard,
 symmetric-balanced, and antisymmetric-balanced sectors.  We prove all three
-scalars positive by rank-recursion and phase-contraction certificates.  The
+scalars positive, for every population size, by rank-recursion and
+phase-contraction certificates.  The
 standard sector is exactly the column-imbalance direction and requires a
 separate signed three-channel argument.
 
@@ -96,12 +110,32 @@ are not inferred from local curvature; they follow from independent exact
 sum-of-squares certificates.
 
 An earlier unrefereed research release established the strong-selection and
-low-order portions of this argument \citep{Kriebel2026Archive}.  The present
-manuscript is a major superseding version.  The coverage and collision
-representations, the full directed fitness-two Hessian theorem, the three
-all-order sector certificates, and the synthesis of the two extremal axes are
-new here; the earlier strong-selection and low-order proofs are retained and
-reorganized so that the quantifier boundaries can be compared in one place.
+low-order portions of this argument \citep{Kriebel2026Archive}.  This
+manuscript incorporates and revises those proofs while adding the fitness-two
+theory.  The following ledger makes that provenance explicit.
+
+\begin{center}
+\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.45\linewidth}
+                    >{\raggedright\arraybackslash}p{0.47\linewidth}@{}}
+\toprule
+Component & Status relative to the earlier release\\
+\midrule
+Complete-support strong-selection expansion and fixed-graph closure
+  & Previously released; proof revised and integrated here.\\
+Undirected support limit and support-degree consequence
+  & Previously released; proof revised and integrated here.\\
+Weighted triangles and the two symmetric $K_4$ families
+  & Previously released; reorganized here.\\
+$r=2$ coverage representation and active collision identity
+  & First included here.\\
+Full directed Hessian decomposition and all-$n$ positivity of its three sectors
+  & First included here.\\
+Comparison of the local and strong-selection quantifier axes
+  & First included here.\\
+\bottomrule
+\end{tabular}
+\end{center}
 
 The quantifiers matter.  The fixed-graph theorem proves
 \[
@@ -109,8 +143,11 @@ The quantifiers matter.  The fixed-graph theorem proves
 \]
 unless $P$ is dynamically complete.  It does not rule out a single
 fitness-independent sequence $(P_n)$ satisfying, for each fixed $r$,
-$D_n(P_n,r)<0$ once $n$ is sufficiently large.  We keep this distinction
-explicit throughout.
+$D_n(P_n,r)<0$ once $n$ is sufficiently large.  Such growing-family
+quantifiers are substantive: \citet{Svoboda2024} construct one family that is
+independent of fitness and whose sufficiently large members simultaneously
+amplify under both Bd and dB updating for every fixed $1<r<1.2$.  We keep
+this distinction explicit throughout.
 
 The paper is organized as follows.  Section~\ref{sec:model-results} states
 the model and theorem suite.  Sections~\ref{sec:duality}--\ref{sec:hessian}

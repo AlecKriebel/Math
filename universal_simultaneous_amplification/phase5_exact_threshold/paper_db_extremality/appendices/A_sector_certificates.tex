@@ -1,4 +1,4 @@
-\section{All-order Hessian-sector certificates}\label{app:sectors}
+\section{Hessian-sector certificates for every population size}\label{app:sectors}
 
 This appendix proves Theorem~\ref{thm:sectors}.  Throughout, $N=n-1$ and
 \[
@@ -124,6 +124,15 @@ $\sigma(R_k)/[2(N+1)]$.  Therefore
  \boxed{{\frac{\Rtwo_n(E(\xi))}{\|\xi\|^2}}
  = {\frac{\Phi_N}{4(N+1)^2(N-1)}}.}                            \tag{A.12s}\label{A.12s}
 \]
+The table in Section~\ref{sec:hessian} instead uses Frobenius normalization
+on the embedded matrix.  Direct summation of \eqref{4.8} gives
+\[
+ \|E(\xi)\|_F^2
+ =\frac{n-1}{n(n-2)}\|\xi\|^2,                               \tag{A.12n}\label{A.12n}
+\]
+and therefore the Frobenius-normalized standard eigenvalue is
+$\Phi_N/[4N(N+1)]$.  For example, the canonical $n=3$ ratio
+$\Rtwo_3(E(\xi))/\|\xi\|^2=2/33$ becomes the table value $1/11$.
 
 It remains to prove $\Phi_N>0$.  Put
 \[
@@ -231,7 +240,7 @@ N&\Phi_N&N&\Phi_N\\ \hline
 5&2268275/128288&9&19782952499295763/524622207176704.
 \end{array}                                                \tag{A.23s}\label{A.23s}
 \]
-This proves the standard-sector sign in every order.  The supplementary
+This proves the standard-sector sign for every population size.  The supplementary
 verifier independently reconstructs the quotient, normalization, barriers,
 shifted polynomials, and every value in \eqref{A.23s}.
 
@@ -245,15 +254,49 @@ Direct expansion of the active moves gives
 \[
  \Delta h(B,v)=\frac{d_k}{2}x(B,v),\qquad k=|B|.             \tag{A.5}\label{A.5}
 \]
+\begin{lemma}[strict rank-Poisson gradients]\label{lem:rank-gradient}
 The Poisson gradients satisfy
 \[
  d_1>d_2>\cdots>d_{N-1}>0.                                  \tag{A.6}\label{A.6}
 \]
-To see this, couple adjacent complete rank chains by refreshing the same
-bit.  Until their distinguished unequal bit is refreshed, the forcing
-difference is $1/(X+1)-1/(X+2)>0$; adding a shared occupied bit decreases
-that difference.  Summing the convergent Poisson series proves positivity
-and strict monotonicity.
+\end{lemma}
+
+\begin{proof}
+Realize the chain \eqref{A.2} on $N-1$ Boolean coordinates.  At each step
+choose uniformly among these coordinates and one dummy slot; a genuine
+coordinate, when chosen, is refreshed to an independent fair bit, whereas
+the dummy leaves the configuration unchanged.  If $K_t$ is one plus the
+number of occupied coordinates, its transition probabilities are exactly
+\eqref{A.2}.  For $f(k)=k^{-1}-c_0$, stationarity gives $\pi f=0$, and finite
+ergodicity gives the convergent Poisson representation, modulo an irrelevant
+constant,
+\[
+ h_k=\sum_{t\ge0}\E_k f(K_t).
+\]
+
+Couple configurations of ranks $k$ and $k+1$ that differ only at a
+distinguished bit $a$, using the same chosen slots and fair refreshes.  Until
+the first refresh of $a$, write $X_t$ for the number of occupied common
+coordinates.  The forcing difference is
+\[
+ g(X_t):=\frac1{X_t+1}-\frac1{X_t+2}>0;
+\]
+after that refresh the two chains coalesce.  Termwise summation of the
+Poisson series therefore gives $d_k>0$.
+
+For $1\le k\le N-2$, choose another bit $b$ and a set $S$ of $k-1$
+occupied bits, disjoint from $a,b$.  Start four chains from
+\[
+ S,\qquad S\cup\{a\},\qquad S\cup\{b\},\qquad S\cup\{a,b\},
+\]
+and again use identical refreshes.  The first pair represents $d_k$ and the
+second represents $d_{k+1}$.  The common configuration of the second pair
+contains that of the first until $b$ is refreshed, after which the
+corresponding common configurations coincide.  Since $g$ is strictly
+decreasing, every summand for $d_k$ dominates the corresponding summand for
+$d_{k+1}$, and the inequality is strict already at time zero.  Hence
+$d_k>d_{k+1}$, proving the lemma.
+\end{proof}
 
 For any rank sequence $f_k$,
 \[
@@ -333,7 +376,7 @@ then the fixed-count orbit identities give
  =\sum_{k=1}^{N-1}\pi_k\frac{N-k}{(N-1)(N+1)}r_k
  =g^{\mathsf T}(I-K)^{-1}s=:\mathcal S_N.                  \tag{A.17}\label{A.17}
 \]
-Here is the all-order labelled normalization.  Let
+Here is the labelled normalization valid for every $n$.  Let
 $c=1/[nN2^{N-1}]$ and write $\mu=\nu_0\Delta$.  For an output state $(B,v)$
 of rank $k$, the four predecessor families contribute, respectively,
 \[
@@ -366,7 +409,7 @@ which is the first expression in \eqref{A.17}.  The identities
 \]
 show that the coefficients in \eqref{A.17b} are exactly $g_k^a,g_k^b$.
 Hence the orbit average is
-$g^{\mathsf T}(a,b)=g^{\mathsf T}(I-K)^{-1}s$.  This is an all-order labelled
+$g^{\mathsf T}(a,b)=g^{\mathsf T}(I-K)^{-1}s$.  This is a labelled
 derivation; the exact replay independently reconstructs it for
 $4\le n\le12$ before taking a sign.
 
@@ -483,14 +526,38 @@ Define
  \varepsilon_N&={\frac{25}{11}}{\frac{c_N}{1-c_N}}.
 \end{aligned}                                              \tag{A.32}\label{A.32}
 \]
-Exact rational recurrence \eqref{A.20} gives
-$\beta_N+\varepsilon_N<1$ for $40\le N\le287$; its smallest
-margin is
+\begin{lemma}[finite exact symmetric-sector certificate]
+\label{lem:symmetric-finite}
+The scalar $\mathcal S_N$ is positive for $3\le N\le39$.  For each of the
+248 integer orders $40\le N\le287$,
+$\beta_N+\varepsilon_N<1$; the smallest certified margin occurs at $N=40$
+and is
 \[
 1-\beta_{40}-\varepsilon_{40}
 ={\frac{639304267467075678841}{115369588296792467144716}}>0.  \tag{A.33}\label{A.33}
 \]
-This is a finite exact calculation.
+\end{lemma}
+
+\begin{proof}[Computer-assisted proof]
+The included exact-arithmetic program
+\begin{center}
+\small\path{verify_true_inverse_rank_symmetric_phase.py}
+\end{center}
+directly solves the rational systems for $3\le N\le39$, recursively constructs the rational
+$t_j$, $\beta_N$, and $\varepsilon_N$ for all 248 remaining finite orders,
+asserts every sign and the minimum in \eqref{A.33}, and uses no floating-point
+arithmetic.  Its SHA-256 is
+\begin{center}
+\small\nolinkurl{b8d3fc1bf9280845a99d4d44e4eba0a27e9912e1be90d89b5b5a7d24abb5c97d}.
+\end{center}
+Successful execution ends with
+\begin{center}
+\small\texttt{PASS: stationary symmetric inverse-rank phase certificate}
+\end{center}
+and prints
+the three ranges $3\!:\!39$, $40\!:\!287$, and $N\ge288$ separately.  The
+deterministic source bundle contains this exact file and its dependencies.
+\end{proof}
 
 For $N\ge288$, induction in \eqref{A.20} gives
 $t_j\ge N/(N-j+\sqrt{N/2})$.  Indeed, substituting the inductive bound leaves
@@ -529,7 +596,7 @@ Together with \eqref{A.31} this yields
  \mathcal S_N\ge(1-\beta_N-\varepsilon_N)\ell f_0>0       \tag{A.36}\label{A.36}
 \]
 for every $N\ge40$.  The finitely many orders $3\le N\le39$ are solved
-exactly over $\mathbb Q$; the first values are
+exactly over $\mathbb Q$ by Lemma~\ref{lem:symmetric-finite}; the first values are
 $\mathcal S_3=3/208$ and $\mathcal S_4=359/26660$.
 
 The supplementary verifier reconstructs every rational boundary solve,

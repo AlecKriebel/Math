@@ -173,16 +173,25 @@ def check_physical_standard_normalization() -> None:
         3: F(261, 40),
         4: F(343400, 28657),
     }
-    expected = {
+    expected_xi = {
         2: F(2, 33),
         3: F(261, 5120),
         4: F(3434, 85971),
     }
+    expected_frobenius = {
+        2: F(1, 11),
+        3: F(87, 640),
+        4: F(8585, 57314),
+    }
     for N, value in phi.items():
-        normalized = value / (4 * (N + 1) ** 2 * (N - 1))
-        assert normalized == expected[N]
-        assert normalized > 0
-    print("PASS: physical standard-sector phase normalization")
+        normalized_xi = value / (4 * (N + 1) ** 2 * (N - 1))
+        embedding_norm_ratio = F(N, (N + 1) * (N - 1))
+        normalized_frobenius = normalized_xi / embedding_norm_ratio
+        assert normalized_xi == expected_xi[N]
+        assert normalized_frobenius == expected_frobenius[N]
+        assert normalized_frobenius == value / (4 * N * (N + 1))
+        assert normalized_frobenius > 0
+    print("PASS: standard-sector phase and Frobenius normalizations")
 
 
 def check_second_derivative_conversion() -> None:

@@ -18,10 +18,10 @@ and prints its SHA-256 digest. An alternative output path may be supplied as
 the first argument. Before archiving, it checks submission identity, abstract
 length, highlights, placeholder scope, and release-provenance wording.
 
-The pinned replay environment is Python 3.14.6, SymPy 1.14.0, and
-python-flint 0.9.0. The deterministic PDF toolchain is Tectonic 0.16.9 and
-Poppler 26.08.0. See `ENVIRONMENT.md` for checks and the boundary between the
-exact replay and document rendering.
+The pinned replay environment is Python 3.14.6, SymPy 1.14.0,
+python-flint 0.9.0, and mpmath 1.3.0. The deterministic PDF toolchain is
+Tectonic 0.16.9 and Poppler 26.08.0. See `ENVIRONMENT.md` for checks and the
+boundary between the exact replay and document rendering.
 
 The archive deliberately preserves the repository-relative path
 
@@ -58,6 +58,6 @@ installs the pinned dependencies, and runs the exact replay. It does not
 contact anyone or submit any artifact. Building the PDF additionally requires
 Tectonic and Poppler's `pdfinfo` and `pdftoppm` commands.
 
-The exact programs verify finite symbolic and rational identities supporting
-the analytic arguments. They do not replace the all-order proofs printed in
-the manuscript and certificate notes.
+The exact programs discharge the finite symbolic and rational ranges
+explicitly identified in the manuscript.  The remaining population sizes are
+covered by the printed analytic certificates.

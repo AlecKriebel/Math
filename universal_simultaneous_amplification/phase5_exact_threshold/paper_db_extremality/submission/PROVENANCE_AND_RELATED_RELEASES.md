@@ -13,14 +13,12 @@ source, and exact verification materials. The Zenodo record is a **software
 archive** created from a public GitHub release. It is not a peer-reviewed
 journal article and not a bioRxiv preprint.
 
-The present Paper I is a major superseding version. It incorporates that
-fixed-graph theorem and adds the full
+The present Paper I incorporates that fixed-graph theorem and adds the full
 fitness-two local-optimality theorem, the ancestry-coverage and stationary-
-collision framework, the all-order Hessian-sector certificates, and a unified
-scope and quantifier analysis. It should therefore be disclosed as a
-substantial consolidation and extension that supersedes the earlier
-manuscript version. The old DOI must not be used as the persistent identifier
-for the new paper.
+collision framework, Hessian-sector certificates valid for every population
+size, and a unified scope and quantifier analysis. It should be disclosed
+neutrally as incorporating and extending the earlier manuscript version. The
+old DOI must not be used as the persistent identifier for the new paper.
 
 ## Separate companion workstream (Paper II)
 

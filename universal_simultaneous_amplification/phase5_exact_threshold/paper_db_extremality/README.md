@@ -1,10 +1,10 @@
-# Complete-graph extremality under death--Birth updating
+# Local complete-graph optimality under death--Birth updating
 
 This folder contains the manuscript, paper-level audit, and entry points into
 the repository-wide exact-replay package for
 
-> **Complete-Graph Extremality under Death--Birth Updating: Fitness-Two Local
-> Optimality and Strong-Selection Rigidity**.
+> **Local Complete-Graph Optimality at Fitness Two and Strong-Selection
+> Rigidity under Death--Birth Updating**.
 
 The paper combines two complementary theorems about the same normalized
 replacement-kernel gap:

@@ -26,7 +26,11 @@ import sys
 assert sys.version_info[:3] == (3, 14, 6), sys.version
 assert metadata.version("sympy") == "1.14.0"
 assert metadata.version("python-flint") == "0.9.0"
-print("PASS: Python 3.14.6, SymPy 1.14.0, python-flint 0.9.0")
+assert metadata.version("mpmath") == "1.3.0"
+print(
+    "PASS: Python 3.14.6, SymPy 1.14.0, "
+    "python-flint 0.9.0, mpmath 1.3.0"
+)
 '
 
 PYTHON="$venv/bin/python" "$paper_dir/replay.sh"

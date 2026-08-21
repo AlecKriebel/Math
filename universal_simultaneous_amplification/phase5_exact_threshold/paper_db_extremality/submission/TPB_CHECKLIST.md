@@ -48,8 +48,8 @@
 ## Prior public material
 
 - [ ] Disclose software archive DOI `10.5281/zenodo.21753405` as the
-      fixed-graph predecessor and describe this paper as a major superseding
-      version.
+      fixed-graph predecessor and distinguish the incorporated results from
+      the new fitness-two theorem.
 - [ ] If requested, disclose `10.5281/zenodo.21850042` and
       `10.5281/zenodo.21852072` as software archives for the distinct companion
       workstream.

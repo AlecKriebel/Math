@@ -13,13 +13,10 @@ The author declares no financial or non-financial competing interests.
 
 ## Author contribution
 
-Alec Kriebel: Conceptualization, methodology, formal analysis, investigation,
-software, validation, visualization, writing--original draft, and
-writing--review and editing.
-
-The named author determined the scope and claims, approves the submitted
-version, and accepts responsibility for the integrity of the work and its
-reproducibility materials.
+Alec Kriebel determined the research questions, scope, and claim boundaries,
+reviewed the manuscript and reproducibility artifacts, and accepts
+responsibility for the integrity of the work and its reproducibility
+materials. The human author must approve the final submitted version.
 
 ## Data and code availability
 
@@ -58,8 +55,10 @@ Generative-AI systems were used substantively in mathematical exploration,
 derivation, adversarial proof analysis, software development, exact
 verification, literature support, visualization, and manuscript preparation.
 The named human author determined the scope and claims, reviewed the final
-manuscript and public artifacts, and accepts responsibility for the work. AI
-systems are not listed as authors.
+manuscript and public artifacts, and accepts responsibility for the work. All
+exact certificates are supplied for independent replay, and numerical
+evidence is explicitly separated from proof. AI systems are not listed as
+authors.
 
 ## Acknowledgments
 

@@ -38,7 +38,27 @@ Using the same graphical marks forward and backward gives the exact duality
  \Pp_S(X_t\cap A\ne\varnothing)
  =\Pp_A(S\cap A_t\ne\varnothing).                            \tag{3.5}\label{3.5}
 \]
-For positive $P$, the dual is irreducible on the proper nonempty subsets.
+
+\begin{lemma}[ergodicity of the union dual]\label{lem:dual-ergodic}
+If every off-diagonal entry of $P$ is positive, then the chain in
+\eqref{3.4} is irreducible and aperiodic on the proper nonempty subsets of
+$V$.
+\end{lemma}
+
+\begin{proof}
+From any set $A$ of size at least two, choose a target $v\in A$, take $L=1$,
+and sample $U_1\in A\setminus\{v\}$.  This removes $v$ and changes no other
+element.  Repetition reaches a singleton.  Conversely, fix any proper
+nonempty destination $B$ and choose $x\notin B$.  A singleton can first be
+moved to $\{x\}$ using a one-sample update.  An update targeted at $x$ whose
+finite geometric burst visits every element of $B$ and no element outside
+$B$ then has output exactly $B$.  Every event just described has positive
+probability because $P$ is positive off the diagonal and every finite value
+of $L$ has positive probability.  Hence the chain is irreducible.  Finally,
+every proper $A$ has a target outside $A$; choosing it leaves $A$ unchanged,
+so every state has a positive self-loop and the chain is aperiodic.
+\end{proof}
+
 Let $\Pi_P$ denote its stationary law and put
 \[
  m(P)=\E_{\Pi_P}|A|.                                         \tag{3.6}\label{3.6}
@@ -63,9 +83,11 @@ Thus $h_P$ is a normalized completely alternating coverage function.
 
 \begin{proof}
 The finite forward chain absorbs almost surely.  Start the dual from $V$ in
-\eqref{3.5} and let $t\to\infty$.  The left side converges to the fixation
-probability from $S$, while the recurrent dual law converges to $\Pi_P$,
-giving \eqref{3.7}.  Averaging $h_P(\{i\})=\Pp(i\in A)$ over $i$ proves
+\eqref{3.5}.  Its first active update sends $V$ to $V\setminus\{v\}$ because
+all sampled parents differ from the target $v$; Lemma~\ref{lem:dual-ergodic}
+then gives convergence to $\Pi_P$.  Letting $t\to\infty$, the left side
+converges to the fixation probability from $S$, giving \eqref{3.7}.
+Averaging $h_P(\{i\})=\Pp(i\in A)$ over $i$ proves
 \eqref{3.8}.  For fixed $A$, the indicator
 $\one_{\{A\cap S\ne\varnothing\}}$ has mixed difference
 $(-1)^{|T|+1}\Delta_T$ equal to
@@ -149,9 +171,26 @@ At the complete kernel, put $N=n-1$.  Direct substitution gives
 \]
 This agrees with \eqref{2.4} at $r=2$.
 
-The collision interpretation is literal.  In one stationary marked-chain
-step, let $I$ be the sampled source; if the fair continue-or-stop coin stops,
-let $W$ be the new target chosen uniformly from $B$.  Then
+The collision interpretation uses the conjugate sample-then-retarget chain,
+not the retarget-then-sample phase order of $K=RA$.  Specifically,
+\[
+ \frac{\lambda}{m(P)}\xrightarrow{\ A\ }
+ \frac{\eta}{m(P)}=\nu(P)\xrightarrow{\ R\ }
+ \frac{\lambda}{m(P)},
+ \qquad
+ \frac{\eta}{m(P)}\xrightarrow{\ R\ }
+ \frac{\lambda}{m(P)}\xrightarrow{\ A\ }
+ \frac{\eta}{m(P)}.                                      \tag{3.18a}\label{3.18a}
+\]
+Thus $M(P)=AR$ has stationary law $\lambda/m(P)$, while $K(P)=RA$ has
+stationary law $\eta/m(P)=\nu(P)$.  In one $M(P)$ step, let $I$ be the source
+drawn by $A$.  The post-sampling set $B$ contains $I$ and has law $\nu(P)$.
+If the subsequent fair coin in $R$ stops, it chooses the new target $W$
+uniformly from that same set $B$.  Consequently
+\[
+ \Pp(W=I\mid B,\mathrm{stop})=\frac1{|B|},
+\]
+and averaging with \eqref{3.12} gives
 \[
  \Pp(\mathrm{stop},W=I)=\frac1{2m(P)},\qquad
  \Pp(W=I\mid\mathrm{stop})=\frac1{m(P)}.                  \tag{3.18}\label{3.18}

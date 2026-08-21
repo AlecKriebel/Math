@@ -7,10 +7,12 @@ The release package records and tests the following versions:
 | Python | 3.14.6 | exact-verifier interpreter |
 | SymPy | 1.14.0 | symbolic identities and rational functions |
 | python-flint | 0.9.0 | exact rational matrix computations |
+| mpmath | 1.3.0 | pinned SymPy runtime dependency |
 | Tectonic | 0.16.9 | deterministic LaTeX compilation |
 | Poppler | 26.08.0 | PDF metadata checks and page rendering |
 
-`requirements.txt` pins the two Python libraries. The clean-extraction command
+`requirements.txt` pins the three Python libraries, including SymPy's runtime
+dependency. The clean-extraction command
 
 ```sh
 submission/bootstrap_replay.sh

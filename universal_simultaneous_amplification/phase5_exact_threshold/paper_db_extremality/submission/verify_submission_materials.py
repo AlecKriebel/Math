@@ -29,8 +29,8 @@ REQUIRED = {
 }
 ALLOWED_PLACEHOLDERS = {"POSTAL_ADDRESS"}
 TITLE = (
-    "Complete-Graph Extremality under Death--Birth Updating: "
-    "Fitness-Two Local Optimality and Strong-Selection Rigidity"
+    "Local Complete-Graph Optimality at Fitness Two and "
+    "Strong-Selection Rigidity under Death--Birth Updating"
 )
 
 
@@ -80,7 +80,7 @@ def main() -> None:
     assert placeholders <= ALLOWED_PLACEHOLDERS, placeholders
     for doi in ("21850042", "21852072"):
         assert re.search(rf"{doi}.{{0,180}}software archive", combined, re.I | re.S)
-    assert "major superseding version" in combined
+    assert "incorporates that material" in combined
 
     requirements = [
         line
@@ -90,9 +90,17 @@ def main() -> None:
     assert requirements == [
         "sympy==1.14.0",
         "python-flint==0.9.0",
+        "mpmath==1.3.0",
     ]
     environment = (HERE / "ENVIRONMENT.md").read_text(encoding="utf-8")
-    for version in ("3.14.6", "1.14.0", "0.9.0", "0.16.9", "26.08.0"):
+    for version in (
+        "3.14.6",
+        "1.14.0",
+        "0.9.0",
+        "1.3.0",
+        "0.16.9",
+        "26.08.0",
+    ):
         assert version in environment
 
     bootstrap = HERE / "bootstrap_replay.sh"

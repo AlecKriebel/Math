@@ -3,7 +3,12 @@ set -eu
 
 paper_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 root=$(CDPATH= cd -- "$paper_dir/../.." && pwd)
-python=${PYTHON:-"$root/.venv/bin/python"}
+if [ -x "$root/.venv-paper1/bin/python" ]; then
+  default_python="$root/.venv-paper1/bin/python"
+else
+  default_python="$root/.venv/bin/python"
+fi
+python=${PYTHON:-"$default_python"}
 
 if [ ! -x "$python" ]; then
   python=${PYTHON:-python3}

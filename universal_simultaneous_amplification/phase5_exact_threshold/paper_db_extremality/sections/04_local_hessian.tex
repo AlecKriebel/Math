@@ -5,7 +5,11 @@ $\delta\in\calT_n$.  By linearity,
 \[
  K(P_\varepsilon)=K_0+\varepsilon\Delta.                    \tag{4.1}\label{4.1}
 \]
-All entries are analytic for $\varepsilon$ near zero, and $K_0$ is
+Because every off-diagonal entry of $J_n$ is $1/(n-1)$, each fixed
+$\delta$ admits $\varepsilon_0>0$ such that $P_\varepsilon$ remains strictly
+positive off the diagonal for $|\varepsilon|<\varepsilon_0$.  Thus all
+positive-kernel identities from Section~\ref{sec:duality} apply in the
+neighborhood used below.  All entries are analytic there, and $K_0$ is
 irreducible.  Put
 \[
  q=H-c_0\one,\qquad
@@ -121,9 +125,11 @@ strict.  For the symmetric sector, the exact quotient has a good/bad block form
 with $S,C,D,Q$ nonnegative.  Schur elimination converts every completed bad
 excursion into one factor of a nonnegative return operator $A$.  Explicit
 positive phase barriers dominate the alternating resolvent $(I+A)^{-1}$.
-All large orders are covered by coefficientwise polynomial certificates;
-the finitely many boundary orders are solved exactly over $\mathbb Q$ by the
-included replay.
+The computer-assisted part is finite and exact: rational stationary solves
+cover $3\le N\le39$, and rational phase-margin checks cover
+$40\le N\le287$.  Coefficientwise polynomial and discriminant certificates
+prove the remaining range $N\ge288$.  Appendix~\ref{app:sectors} states the
+finite computation as a formal lemma and identifies its exact verifier.
 
 For orientation, the first sector eigenvalues are
 \[
@@ -147,7 +153,8 @@ $\Rtwo_{n}(\delta)>0$ for every nonzero $\delta\in\calT_n$.  Equations
 \]
 Differentiation yields \eqref{2.8}.  To obtain a neighborhood rather than
 only directional statements, restrict the analytic fixation map to a small
-ball around $J_n$ in the affine space $J_n+\calT_n$.  The smallest
+ball around $J_n$ in the affine space $J_n+\calT_n$, chosen inside the
+strictly positive off-diagonal region.  The smallest
 $\Rtwo_{n}$-eigenvalue on the unit sphere is positive.  Taylor's theorem with
 a uniform third-derivative bound on a smaller compact ball makes the
 negative quadratic term dominate the remainder.  Hence every other kernel

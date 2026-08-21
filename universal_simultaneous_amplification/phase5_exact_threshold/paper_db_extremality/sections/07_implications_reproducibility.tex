@@ -2,11 +2,35 @@
 
 \subsection{A necessary condition for asymptotic universal amplification}
 
-The fixed-graph result does not interchange $n$ and $r$.  It nevertheless
-implies a useful support condition for undirected graph sequences.  Fixation
-is monotone in fitness under a common dead target and common uniform update
-threshold.  Proposition~\ref{prop:support-limit} therefore gives, for every
-finite connected undirected graph,
+The fixed-graph result does not interchange $n$ and $r$.  We first record the
+monotonicity needed for a useful support condition on graph sequences.
+
+\begin{lemma}[fitness monotonicity]\label{lem:fitness-monotone}
+For every loopless row-stochastic replacement kernel $P$ and every initial
+mutant set, the dB fixation probability is nondecreasing in mutant fitness
+$r>0$.
+\end{lemma}
+
+\begin{proof}
+For $0\le x\le1$,
+\[
+ \frac{\partial f_r(x)}{\partial r}
+ =\frac{x(1-x)}{[1+(r-1)x]^2}\ge0,
+ \qquad
+ \frac{\partial f_r(x)}{\partial x}
+ =\frac{r}{[1+(r-1)x]^2}>0.
+\]
+Couple chains with $r\le r'$ by using the same dead target $v$ and the same
+uniform threshold $U$ at every update, declaring the replacement mutant when
+$U\le f_r(P_{vS})$.  If their current mutant sets satisfy $S\subseteq T$,
+then $P_{vS}\le P_{vT}$ and the two displayed monotonicities preserve the
+inclusion after the update.  Starting both chains from the same set, fixation
+of the $r$-chain therefore implies fixation of the $r'$-chain.
+\end{proof}
+
+Lemma~\ref{lem:fitness-monotone} and
+Proposition~\ref{prop:support-limit} give, for every finite connected
+undirected graph,
 \[
  \rho_{\dB}(W,r)\le1-\frac1n\sum_i\frac1{s_i+1}.              \tag{7.1}\label{7.1}
 \]
@@ -99,8 +123,9 @@ The author declares no competing interests.
 
 \medskip
 \noindent\textbf{Author contributions.}
-A.K. conceived the study, developed and checked the proofs, wrote and audited
-the exact software, and prepared the manuscript.
+A.K. determined the research questions, scope, and claim boundaries, reviewed
+the manuscript and reproducibility artifacts, and accepts responsibility for
+the work.
 
 \medskip
 \noindent\textbf{Ethics approval and consent.}
@@ -110,7 +135,10 @@ biological data.
 \medskip
 \noindent\textbf{AI-assisted research disclosure.}
 Generative-AI systems were used substantively in mathematical exploration,
-derivation, adversarial proof analysis, software development, and manuscript
-preparation.  The author determined the scope and claims, independently
-replayed the exact certificates, and accepts responsibility for the
-manuscript and accompanying materials.
+derivation, adversarial proof analysis, software development, exact
+verification, literature support, visualization, and manuscript preparation.
+The named human author determined the scope and claims, reviewed the final
+manuscript and public artifacts, and accepts responsibility for the work.  All
+exact certificates are supplied for independent replay, and numerical
+evidence is explicitly separated from proof.  AI systems are not listed as
+authors.

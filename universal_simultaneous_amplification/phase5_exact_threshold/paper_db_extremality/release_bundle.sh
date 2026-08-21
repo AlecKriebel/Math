@@ -12,6 +12,8 @@ case "$output" in
 esac
 
 mkdir -p "$(dirname -- "$output")"
+"$paper_dir/replay.sh"
+"$paper_dir/build.sh"
 if [ -f "$paper_dir/submission/verify_submission_materials.py" ]; then
   python3 "$paper_dir/submission/verify_submission_materials.py"
 fi

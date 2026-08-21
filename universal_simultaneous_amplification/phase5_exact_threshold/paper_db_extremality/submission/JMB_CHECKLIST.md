@@ -51,8 +51,8 @@
 
 - [ ] Confirm the manuscript is not under simultaneous journal consideration.
 - [ ] Disclose the superseded software archive DOI
-      `10.5281/zenodo.21753405` and explain the new fitness-two theorem and
-      why the consolidated manuscript is a major superseding version.
+      `10.5281/zenodo.21753405` and explain neutrally which earlier results
+      are incorporated and which fitness-two results are added here.
 - [ ] Disclose the companion-workstream software archives
       `10.5281/zenodo.21850042` and `10.5281/zenodo.21852072` if the portal asks
       for related manuscripts or public records.
