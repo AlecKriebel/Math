@@ -47,3 +47,18 @@
   numerical libraries, sorted semantic JSON, timing/RSS excluded from record
   hashes, validated pickle hashes before unpickling, and serial-versus-parallel
   normalized record equivalence.
+
+## 2026-08-20 19:07 PDT — Exact artifacts imported
+
+- The user downloaded the retained chat archives into `~/Downloads`, removing
+  the cross-conversation attachment transport blocker.
+- Moved five K2P archives into `archives/original/`, including both names of
+  the byte-identical first checkpoint archive, the second continuation, the
+  non-pickle transport subset, and the complete four-port package.
+- Extracted the two checkpoints and complete four-port package under
+  `package/original/`.  The original files remain untouched; optimization will
+  occur only in a separate `package/referee/` copy.
+- The complete four-port ZIP matches the preserved archive SHA-256
+  `53d8f6771589197b16690ff0fb790cc2aa845fa91e86424e589476ffe352c875`.
+- The 60-minute optimization clock starts after the artifact-import commit is
+  published to `main`.

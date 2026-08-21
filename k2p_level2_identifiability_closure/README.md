@@ -14,12 +14,17 @@ coverage.
 
 ## Layout
 
-- `package/`: portable, referee-facing sweep and verification code.
+- `archives/original/`: every downloaded archive produced by the referenced
+  conversation, retained unchanged.
+- `package/original/`: extracted checkpoint and four-port files, retained
+  unchanged.
+- `package/referee/`: optimized, referee-facing sweep and verification code.
 - `runs/`: local resumable outputs (ignored by Git except for small final
   manifests selected for publication).
 - `benchmarks/`: reproducible profiling and equivalence results.
 - `RESEARCH_LOG.md`: chronological decisions, findings, and checkpoints.
 
-The final runner and exact invocation will be documented here after the
-bounded optimization pass.
-
+The original four-port package is under
+`package/original/four_port/k2p_offline_sweep_portable`.  The final optimized
+runner and exact invocation will be documented here after the bounded
+optimization pass.
