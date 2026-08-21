@@ -69,7 +69,9 @@ one-sided generic containment.  The logical dependencies are:
       topology class and imply that a level-2 strong blob has at most one
       triangle.
 \item Exact Fourier flattening minors recover every cut split pointwise,
-      including the crossing case with two active endpoint tensors.
+      including the crossing case with two active endpoint tensors.  A
+      run-order lemma reduces every four-through-eight-port binary word to a
+      direct obstruction or a certified finite palette.
 \item Positive rank-one cut factorization recovers the bridge tree's local
       tensors only modulo the full incidence-scaling action.  It does not
       recover physical bridge multipliers.  The physical fibre is the ambient
@@ -159,6 +161,8 @@ Direct residual anchors & 62\\
 Four-outgoing completion records & 6,138\\
 Four-outgoing raw survivors & 192\\
 Direct / rooting-duplicate / restoration-root survivors & 18 / 42 / 132\\
+Four-outgoing direct quotient classes & 3\\
+Four-outgoing nonretaining quotient classes & 57\\
 Four-outgoing restoration states & 2,106\\
 Four-outgoing generic / refined / isomorphism states & 1,860 / 114 / 132\\
 One-port direct-anchor probes & 2,642\\
@@ -168,6 +172,13 @@ Four-outgoing compact path-bound probes & 168,582\\
 \bottomrule
 \end{longtable}
 
+The evidence map has one row per three-outgoing canonical directed relation
+and one row per four-outgoing normalized survivor presentation.  In the
+four-outgoing rows the presentation identifier and the further quotient-
+canonical digest are separate fields.  Thus all $192$ presentation-level
+transports are retained even though they form only $3$ direct and $57$
+nonretaining quotient classes.
+
 Every strict relation has a regenerated exact polynomial, flattening minor,
 or Bernstein-basis sign certificate on the complete open cube.  Every equality
 terminal is independently canonicalized and accepted only as a labelled
@@ -176,11 +187,31 @@ merged source embeddings, altered port matches, source--target reversal,
 separator reassignment, broken transports, missing hard-cover keys, and
 incoherent probes.
 
-The frozen endpoint code retains the historical polynomial names
-\texttt{F=abc-t\char94 2} and \texttt{G=a-bc}, corresponding respectively
-to $\Delta$ and $\Gamma$ in the article.  Separately, the article denotes
-the JC state group by $\mathcal G=\mathbb Z_2^2$.  These notation choices do
-not alter any certificate polynomial.
+For cut-word exhaustiveness, the standalone reduction verifier enumerates all
+$808{,}642$ balanced binary word distributions with four through eight active
+ports.  It assigns $229{,}988$ to the direct three-run path obstruction and
+$578{,}654$ to the direct or singleton-doubled short palette, with no
+unclassified record.  Independent graph/switching implementations agree on
+all $379{,}742$ valid reduced-palette presentations and find no survivor.
+
+For every nonordinary three-port endpoint, the exact code identifies the
+unique complete central singleton-signature edge class and sets its effective
+product to one before evaluating
+$\Delta=abc-t^2$ and $\Gamma=a-bc$.  The normalized census has $67$ cases
+with $\Delta>0$, $2$ with $\Delta=0,\Gamma>0$, and $7$ with
+$\Delta=\Gamma=0$; the ordinary trivalent endpoint adds one further zero-zero
+case.  Thus the certificate proves precisely the weak dichotomy used in the
+article.  The JC state group is denoted by
+$\mathcal G=\mathbb Z_2^2$.
+
+The marginal-submersion replay groups complete zero-sum
+split/complement-normalized switching rows, discards tensor-invisible rows,
+constructs the product-map Jacobian over $\mathbb Q$, and verifies a nonzero
+minor for all $42{,}908$ bounded completions.  The auxiliary probe census
+honestly records $372$ one-port ambiguity groups: these are the reason that
+two-port probes are required, not failures of coherence.  The load-bearing
+direct-anchor and compact semantic gates verify every exact two-port parent
+transport and reject altered pair orders.
 
 \section{Triangle-free Omega sharpness certificate}
 
@@ -224,7 +255,9 @@ N26_{\rm target}:\quad
 \end{aligned}
 \]
 The arc arrays and these parameter vectors are stored in
-\path{omega_audit/independent/output/omega_release_audit.json}.
+\path{sharpness/omega/inputs/jc_omega_move.json};
+\path{sharpness/omega/cleanroom/verify_omega_release.py} regenerates the
+complete exact replay record.
 
 \begin{center}
 \scriptsize
@@ -379,7 +412,7 @@ bash verify.sh full
 bash verify.sh regenerate-all
 \end{verbatim}
 The archive filename is
-\path{stc_jc_sharp_boundary_atlas_certificates_v1.1.5.tar.gz}; its Zenodo DOI
+\path{stc_jc_sharp_boundary_atlas_certificates_v1.1.6.tar.gz}; its Zenodo DOI
 is \texttt{ZENODO\_DOI\_PENDING} until the depositor reserves it.  This token
 must be replaced before submission.  The archive's external SHA-256
 authenticates the complete compressed object.  After extraction, the quick
@@ -410,12 +443,16 @@ Claim & Certificate-bundle-relative evidence\\
 Convention, primitive supports, cut recovery, and bridge fibre
 & \path{primary/certificates/core_universe.json},
   \path{primary/certificates/support_universe.json},
-  \path{reviews/root_probe/}, and \path{independent/bridge_cut/}.\\
+  \path{independent/bridge_cut/palette_reduction_certificate.json},
+  \path{reviews/global_bridge/palette_cleanroom_certificate.json},
+  the remaining \path{independent/bridge_cut/} certificates, and
+  \path{reviews/global_bridge/exact_audit_certificate.json}.\\
 The complete three- and four-outgoing finite atlas, restoration, and probes
-& \path{atlas/ATLAS_EVIDENCE_BINDINGS.jsonl.gz}, which binds every row to
-  its base evidence and closure verifier; the compact probe streams under
-  \path{primary/certificates/compact_probe_*} and direct-anchor records under
-  \path{reviews/direct_anchor_probe_closure/certificates/}.\\
+& \path{atlas/ATLAS_EVIDENCE_BINDINGS.jsonl.gz}, whose theorem rows point to
+  \path{atlas/RESTORATION_CLOSURE_BINDINGS.jsonl.gz} or
+  \path{atlas/DIRECT_ANCHOR_CLOSURE_BINDINGS.jsonl.gz}; restoration terminals
+  point onward to \path{atlas/COMPACT_PATH_CLOSURE_BINDINGS.jsonl.gz}, binding
+  every exact path, transport, witness, and polynomial record.\\
 Complete deterministic regeneration from primitive inputs
 & \path{verifiers/regenerate_load_bearing.py}, invoked twice by
   \path{verify.sh} in \texttt{regenerate-all} mode.\\
@@ -423,11 +460,10 @@ Ordinary triangle common germ
 & \path{primary/certificates/jc_triangle_redirection_active.json} and
   \path{reviews/triangle_redirection_cleanroom/}.\\
 Omega and Theta sharpness families
-& \path{omega_audit/independent/} and
-  \path{s_tc_jc_sharp_boundary/reproducibility/}.\\
+& \path{sharpness/omega/} and \path{sharpness/theta/}.\\
 Integrity, totality, deterministic regeneration, and mutations
 & \path{ACTIVE_MANIFEST.json},
-  \path{atlas/ATLAS_EVIDENCE_BINDINGS.jsonl.gz},
+  all four \path{atlas/*BINDINGS.jsonl.gz} streams,
   \path{expected_outputs/}, and \path{verify.sh}.\\
 \bottomrule
 \end{longtable}

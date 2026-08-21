@@ -726,28 +726,62 @@ def audit_published_cut_records(data):
 
         claimed_case = record["dichotomy"]["case"]
         if not signatures and reticulations == 0:
-            actual_case = "F_zero_G_zero_ordinary"
+            actual_case = "Delta_zero_Gamma_zero_ordinary"
         else:
             tensor = PublishedTensor(signatures, reticulations)
-            a = tensor.coordinate((1, 1, 0))
-            b = tensor.coordinate((1, 0, 1))
-            c = tensor.coordinate((0, 1, 1))
-            t = tensor.coordinate((1, 2, 3))
-            F = sp.Poly(sp.expand((a * b * c - t * t).as_expr()), *tensor.symbols, domain=sp.QQ)
-            if F.is_zero:
-                Gpoly = sp.Poly(sp.expand((a - b * c).as_expr()), *tensor.symbols, domain=sp.QQ)
-                assert exact_open_cube_direction(Gpoly, tensor.edge_symbols, tensor.lambda_symbols) == 1
-                actual_case = "F_zero_G_positive"
+            central = [
+                index
+                for index, row in enumerate(signatures)
+                if len(set(row)) == 1 and row[0] in (3, 4)
+            ]
+            assert len(central) == 1
+            central_index = central[0]
+            substitution = {tensor.edge_symbols[central_index]: 1}
+
+            def normalized_coordinate(assignment):
+                return sp.Poly(
+                    sp.expand(tensor.coordinate(assignment).as_expr().subs(substitution)),
+                    *tensor.symbols,
+                    domain=sp.QQ,
+                )
+
+            a = normalized_coordinate((1, 1, 0))
+            b = normalized_coordinate((1, 0, 1))
+            c = normalized_coordinate((0, 1, 1))
+            t = normalized_coordinate((1, 2, 3))
+            Delta = sp.Poly(
+                sp.expand((a * b * c - t * t).as_expr()),
+                *tensor.symbols,
+                domain=sp.QQ,
+            )
+            if Delta.is_zero:
+                Gamma = sp.Poly(
+                    sp.expand((a - b * c).as_expr()),
+                    *tensor.symbols,
+                    domain=sp.QQ,
+                )
+                if Gamma.is_zero:
+                    actual_case = "Delta_zero_Gamma_zero"
+                else:
+                    assert exact_open_cube_direction(
+                        Gamma, tensor.edge_symbols, tensor.lambda_symbols
+                    ) == 1
+                    actual_case = "Delta_zero_Gamma_positive"
             else:
-                assert exact_open_cube_direction(F, tensor.edge_symbols, tensor.lambda_symbols) == 1
-                actual_case = "F_positive"
+                assert exact_open_cube_direction(
+                    Delta, tensor.edge_symbols, tensor.lambda_symbols
+                ) == 1
+                actual_case = "Delta_positive"
         assert actual_case == claimed_case
         endpoint_counts[actual_case] += 1
 
     u, v, w = sp.symbols("u v w", positive=True)
-    ordinary_F = sp.expand((u * v) * (u * w) * (v * w) - (u * v * w) ** 2)
-    ordinary_G = sp.factor((u * v) - (u * w) * (v * w))
-    assert ordinary_F == 0 and sp.expand(ordinary_G - u * v * (1 - w**2)) == 0
+    ordinary_Delta = sp.expand((u * v) * (u * w) * (v * w) - (u * v * w) ** 2)
+    ordinary_physical_Gamma = sp.factor((u * v) - (u * w) * (v * w))
+    ordinary_normalized_Gamma = sp.expand(ordinary_physical_Gamma.subs({w: 1}))
+    assert ordinary_Delta == 0
+    assert sp.expand(ordinary_physical_Gamma - u * v * (1 - w**2)) == 0
+    assert ordinary_normalized_Gamma == 0
 
     strict_minor_count = 0
     displayed_count = 0
@@ -794,9 +828,10 @@ def audit_published_cut_records(data):
             strict_minor_count += 1
 
     assert endpoint_counts == {
-        "F_positive": 67,
-        "F_zero_G_positive": 9,
-        "F_zero_G_zero_ordinary": 1,
+        "Delta_positive": 67,
+        "Delta_zero_Gamma_positive": 2,
+        "Delta_zero_Gamma_zero": 7,
+        "Delta_zero_Gamma_zero_ordinary": 1,
     }
     assert strict_minor_count == 204 and displayed_count == 12
     return {

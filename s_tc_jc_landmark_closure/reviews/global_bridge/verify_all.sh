@@ -21,6 +21,16 @@ PYTHONDONTWRITEBYTECODE=1 "$PYTHON" "$HERE/exact_audit.py" \
   --output "$HERE/exact_audit_certificate.json"
 PYTHONDONTWRITEBYTECODE=1 "$PYTHON" "$HERE/mutation_tests.py" \
   --output "$HERE/mutation_certificate.json"
+PYTHONDONTWRITEBYTECODE=1 "$PYTHON" "$HERE/verify_palette_cleanroom.py" \
+  --output "$HERE/palette_cleanroom_certificate.json"
+
+TMPDIR_LOCAL="$(mktemp -d "${TMPDIR:-/tmp}/stc-jc-cut-palette.XXXXXX")"
+trap 'rm -rf "$TMPDIR_LOCAL"' EXIT
+PYTHONDONTWRITEBYTECODE=1 "$PYTHON" \
+  "$CLOSURE/independent/bridge_cut/verify_palette_reduction.py" \
+  --output "$TMPDIR_LOCAL/palette_reduction.json"
+cmp "$CLOSURE/independent/bridge_cut/palette_reduction_certificate.json" \
+    "$TMPDIR_LOCAL/palette_reduction.json"
 
 if [[ "${1:-}" == "--with-upstream-replay" ]]; then
   PYTHONDONTWRITEBYTECODE=1 "$PYTHON" \
@@ -43,6 +53,9 @@ fi
 shasum -a 256 \
   "$HERE/exact_audit.py" \
   "$HERE/mutation_tests.py" \
+  "$HERE/verify_palette_cleanroom.py" \
   "$HERE/exact_audit_certificate.json" \
   "$HERE/mutation_certificate.json" \
+  "$HERE/palette_cleanroom_certificate.json" \
+  "$CLOSURE/independent/bridge_cut/palette_reduction_certificate.json" \
   "$CLOSURE/independent/bridge_cut/cut_certificate.json"

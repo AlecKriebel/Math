@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import copy
 import importlib.util
+import json
 from pathlib import Path
 
 import evidence_bindings
@@ -56,6 +57,18 @@ def main() -> None:
     evidence_bindings.assert_rows_equal(frozen, expected)
     mutations = 0
 
+    regenerated_closures = evidence_bindings.reconstruct_closure_rows(ROOT)
+    frozen_closures = tuple(
+        evidence_bindings.read_rows(ROOT / relative)
+        for relative in (
+            evidence_bindings.COMPACT_CLOSURE_REL,
+            evidence_bindings.RESTORATION_CLOSURE_REL,
+            evidence_bindings.DIRECT_CLOSURE_REL,
+        )
+    )
+    for actual, regenerated in zip(frozen_closures, regenerated_closures):
+        evidence_bindings.assert_rows_equal(actual, regenerated)
+
     expect_rejection("delete_decorated_relation", frozen[:-1], expected); mutations += 1
     expect_rejection("duplicate_decorated_relation", [*frozen, copy.deepcopy(frozen[-1])], expected); mutations += 1
 
@@ -93,6 +106,33 @@ def main() -> None:
         rebind(rows[i]); rebind(rows[j])
     expect_rejection("swap_valid_restoration_bindings", mutated(expected, swap_restoration_roots), expected); mutations += 1
 
+    def delete_restoration_closure_reference(rows):
+        binding = rows[pending_indices[0]]["evidence"]["restoration_roots"][0]
+        binding.pop("closure")
+        rebind(rows[pending_indices[0]])
+    expect_rejection(
+        "delete_relation_to_restoration_closure",
+        mutated(expected, delete_restoration_closure_reference), expected,
+    ); mutations += 1
+
+    direct_anchor_indices = pick(
+        expected,
+        lambda row: row["universe"] == "three_outgoing"
+        and row["disposition"] == "isomorphism_or_T",
+        2,
+    )
+    def swap_direct_anchor_closures(rows):
+        i, j = direct_anchor_indices
+        rows[i]["evidence"]["direct_anchor_closure"], rows[j]["evidence"]["direct_anchor_closure"] = (
+            rows[j]["evidence"]["direct_anchor_closure"],
+            rows[i]["evidence"]["direct_anchor_closure"],
+        )
+        rebind(rows[i]); rebind(rows[j])
+    expect_rejection(
+        "swap_direct_anchor_probe_closures",
+        mutated(expected, swap_direct_anchor_closures), expected,
+    ); mutations += 1
+
     n4_transport_indices = pick(expected, lambda row: row["universe"] == "four_outgoing_survivor" and "presentation_transport" in row["evidence"], 2)
     def swap_n4_transports(rows):
         i, j = n4_transport_indices
@@ -111,6 +151,39 @@ def main() -> None:
         rows[direct_i]["presentation_ordinal"] += 1; rebind(rows[direct_i])
     expect_rejection("alter_n4_presentation_locator", mutated(expected, alter_presentation_ordinal), expected); mutations += 1
 
+    # Mutations below attack the authoritative closure streams themselves,
+    # not merely their references in the relation index.
+    compact_expected = regenerated_closures[0]
+    compact_mutated = copy.deepcopy(compact_expected)
+    fixture = next(row for row in compact_mutated if row["witnesses"])
+    fixture["witnesses"].pop()
+    fixture.pop("closure_binding_sha256")
+    fixture["closure_binding_sha256"] = evidence_bindings.stable_hash(fixture)
+    expect_rejection(
+        "delete_compact_probe_witness_reference", compact_mutated, compact_expected
+    ); mutations += 1
+
+    restoration_expected = regenerated_closures[1]
+    restoration_mutated = copy.deepcopy(restoration_expected)
+    fixture = next(row for row in restoration_mutated if row["compact_terminals"])
+    fixture["compact_terminals"].pop()
+    fixture.pop("closure_binding_sha256")
+    fixture["closure_binding_sha256"] = evidence_bindings.stable_hash(fixture)
+    expect_rejection(
+        "delete_restoration_to_compact_path_reference",
+        restoration_mutated, restoration_expected,
+    ); mutations += 1
+
+    direct_expected = regenerated_closures[2]
+    direct_mutated = copy.deepcopy(direct_expected)
+    fixture = next(row for row in direct_mutated if row["two_port_relations"])
+    fixture["two_port_relations"].pop()
+    fixture.pop("closure_binding_sha256")
+    fixture["closure_binding_sha256"] = evidence_bindings.stable_hash(fixture)
+    expect_rejection(
+        "delete_direct_anchor_two_port_reference", direct_mutated, direct_expected
+    ); mutations += 1
+
     certificate = ROOT / "primary/certificates/core_universe.json"
     original = certificate.read_bytes()
     try:
@@ -127,14 +200,56 @@ def main() -> None:
     manifest = ROOT / "ACTIVE_MANIFEST.json"
     original = manifest.read_bytes()
     try:
-        manifest.write_bytes(original.replace(b'"version": "1.1.5"', b'"version": "0.0.0"', 1))
+        manifest.write_bytes(original.replace(b'"version": "1.1.6"', b'"version": "0.0.0"', 1))
         try:
             payload = verifier.verify_manifest(ROOT)
-            assert payload["version"] == "1.1.5", "bundle version"
+            assert payload["version"] == "1.1.6", "bundle version"
         except AssertionError:
             mutations += 1
         else:
             raise AssertionError("altered bundle version was accepted")
+    finally:
+        manifest.write_bytes(original)
+
+    original = manifest.read_bytes()
+    try:
+        payload = json.loads(original)
+        payload["files"].append(copy.deepcopy(payload["files"][0]))
+        manifest.write_text(json.dumps(payload, sort_keys=True, indent=2) + "\n")
+        try:
+            verifier.verify_manifest(ROOT)
+        except AssertionError:
+            mutations += 1
+        else:
+            raise AssertionError("duplicate manifest path was accepted")
+    finally:
+        manifest.write_bytes(original)
+
+    original = manifest.read_bytes()
+    try:
+        payload = json.loads(original)
+        payload["prepared_payload_sha256"] = "0" * 64
+        manifest.write_text(json.dumps(payload, sort_keys=True, indent=2) + "\n")
+        try:
+            verifier.verify_manifest(ROOT)
+        except AssertionError:
+            mutations += 1
+        else:
+            raise AssertionError("altered clean-source payload commitment was accepted")
+    finally:
+        manifest.write_bytes(original)
+
+    original = manifest.read_bytes()
+    try:
+        payload = json.loads(original)
+        payload["files"][0]["executable_bits"] ^= 0o111
+        manifest.write_text(json.dumps(payload, sort_keys=True, indent=2) + "\n")
+        try:
+            verifier.verify_manifest(ROOT)
+        except AssertionError:
+            mutations += 1
+        else:
+            raise AssertionError("altered executable-mode binding was accepted")
     finally:
         manifest.write_bytes(original)
 
@@ -162,6 +277,36 @@ def main() -> None:
             raise AssertionError("obsolete text token was accepted")
     finally:
         scope_text.unlink(missing_ok=True)
+
+    palette = ROOT / "independent/bridge_cut/palette_reduction_certificate.json"
+    original = palette.read_bytes()
+    try:
+        payload = json.loads(original)
+        payload["totals"]["balanced_total"] -= 1
+        palette.write_text(json.dumps(payload, sort_keys=True, indent=2) + "\n")
+        try:
+            verifier.verify_counts(ROOT)
+        except AssertionError:
+            mutations += 1
+        else:
+            raise AssertionError("truncated arbitrary-word cut universe was accepted")
+    finally:
+        palette.write_bytes(original)
+
+    cleanroom = ROOT / "reviews/global_bridge/palette_cleanroom_certificate.json"
+    original = cleanroom.read_bytes()
+    try:
+        payload = json.loads(original)
+        payload["survivor_count"] = 1
+        cleanroom.write_text(json.dumps(payload, sort_keys=True, indent=2) + "\n")
+        try:
+            verifier.verify_counts(ROOT)
+        except AssertionError:
+            mutations += 1
+        else:
+            raise AssertionError("cut-palette survivor mutation was accepted")
+    finally:
+        cleanroom.write_bytes(original)
 
     verifier.verify_manifest(ROOT)
     verifier.verify_scope(ROOT)

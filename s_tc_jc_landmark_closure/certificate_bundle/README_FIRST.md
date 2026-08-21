@@ -35,7 +35,9 @@ After extraction, `quick` authenticates every proof-payload file, checks that
 `SHA256SUMS` is the exact projection of `ACTIVE_MANIFEST.json`, and checks the
 frozen theorem summaries.
 `full` replays every load-bearing exact component certificate with the
-primary and separately implemented programs.  `regenerate-all` additionally
+primary and separately implemented programs, including the complete
+arbitrary-word cut reduction and a clean-room graph/switching replay of its
+reduced palette.  `regenerate-all` additionally
 rebuilds the complete relation, restoration, and probe streams from the
 committed primitive graph and invariant inputs, compares them with the frozen
 proof records, and repeats that regeneration in a second isolated copy.  The
@@ -56,11 +58,31 @@ temporary work directory.
   file, and `SHA256SUMS` is checked as its exact projection.  The external
   archive SHA-256 authenticates those two metadata files and the archive
   container.  None of these integrity checks replaces the mathematical
-  row-level checks.
-- `atlas/ATLAS_EVIDENCE_BINDINGS.jsonl.gz` is the authoritative row-level
-  map.  For every canonical three-outgoing relation and every four-outgoing
-  survivor it binds the decorated graph relation, direction, disposition,
-  exact evidence, transports when applicable, and replay program.
+  row-level checks.  The manifest also records the exact 40-hex source commit,
+  certifies that the builder observed a clean project tree, and records the
+  SHA-256 commitment of the complete pre-seal payload.  During sealing the
+  builder independently re-prepares that payload from the clean commit,
+  rejects any byte or executable-mode difference from the requested stage,
+  and archives only the fresh reconstruction.  The extracted verifier
+  recomputes the payload commitment and checks every recorded byte and mode;
+  the external clean-checkout sealing transcript is what attests the source
+  commit named in the manifest.  The extracted verifier alone checks the
+  commit's syntax and internal binding, not existence in a remote Git
+  repository; the repository-level release gate checks that Git object and
+  cross-checks it against the external envelope.
+  Both preparation invocations use Python isolated mode with `site` startup
+  disabled, and the detached child receives no inherited Python startup path,
+  user-site configuration, or global `sitecustomize` hook.
+- `atlas/ATLAS_EVIDENCE_BINDINGS.jsonl.gz` is the authoritative theorem-row
+  map.  Every restoration row points to
+  `RESTORATION_CLOSURE_BINDINGS.jsonl.gz`; every direct residual equality row
+  points to `DIRECT_ANCHOR_CLOSURE_BINDINGS.jsonl.gz`; and every equality
+  terminal in a restoration tree points onward to
+  `COMPACT_PATH_CLOSURE_BINDINGS.jsonl.gz`.  Those content-addressed closure
+  rows name every restoration state, compact path, transport, witness,
+  polynomial, and direct one-/two-port relation used to discharge the theorem
+  row.  The verifier reconstructs all four streams independently of the
+  frozen index.
 - `atlas/ATLAS_INDEX.csv.gz` is a human-readable projection of that evidence
   map.  The verifier regenerates both and checks the projection exactly.
 - `THEOREM_CERTIFICATE_CROSSWALK.md` is the minimal theorem-to-file map.
@@ -73,6 +95,12 @@ temporary work directory.
 
 The broader development snapshot is useful for provenance, but it is not
 needed to check the theorem and is not part of this bundle.
+
+The active sharpness material is isolated under `sharpness/omega/` and
+`sharpness/theta/`.  Each contains only the immutable machine-readable input,
+the producer engine needed for exact replay, and a separately implemented
+clean-room verifier.  No development audit directory or superseded sharpness
+claim is part of the bundle.
 
 ## Scope and licensing
 

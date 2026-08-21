@@ -13,6 +13,7 @@ from __future__ import annotations
 import argparse
 import gzip
 import hashlib
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -61,6 +62,40 @@ def restore_bundled_program(work: Path, relative: str) -> None:
     shutil.copy2(source, destination)
     if sha256(source) != sha256(destination):
         raise AssertionError(("regeneration program staging mismatch", relative))
+
+
+def remove_regenerated_outputs(work: Path) -> None:
+    """Make no-op or partial producers fail instead of inheriting frozen bytes."""
+
+    explicit = (
+        "primary/certificates/core_universe.json",
+        "primary/certificates/completion_universe.json",
+        "primary/certificates/support_universe.json",
+        "primary/certificates/descriptor_bits_cache.json.gz",
+        "reviews/final_hard_cover_cleanroom/certificates/schema3_n4_theta2_full_audit.json",
+        "reviews/final_hard_cover_cleanroom/certificates/schema3_n4_theta2_terminal_records.jsonl.gz",
+        "atlas/ATLAS_EVIDENCE_BINDINGS.jsonl.gz",
+        "atlas/COMPACT_PATH_CLOSURE_BINDINGS.jsonl.gz",
+        "atlas/RESTORATION_CLOSURE_BINDINGS.jsonl.gz",
+        "atlas/DIRECT_ANCHOR_CLOSURE_BINDINGS.jsonl.gz",
+    )
+    patterns = (
+        "primary/certificates/bounded_relation_n3_*",
+        "primary/certificates/bounded_relations_n3_*",
+        "primary/certificates/hard_cover_*schema3_n3_*",
+        "primary/certificates/hard_cover_*schema3_theta2_*",
+        "primary/certificates/compact_probe_*",
+        "reviews/direct_anchor_probe_closure/certificates/*.json",
+        "reviews/direct_anchor_probe_closure/certificates/*.jsonl.gz",
+    )
+    targets = {work / relative for relative in explicit}
+    for pattern in patterns:
+        targets.update(work.glob(pattern))
+    for path in sorted(targets):
+        if path.is_file():
+            path.unlink()
+    if any(path.exists() for path in targets):
+        raise AssertionError("failed to clear one or more declared regeneration outputs")
 
 
 def normalize_json(value):
@@ -133,11 +168,8 @@ def primary_regeneration(work: Path) -> None:
     # primitive core/completion/support inputs and invariant templates, and
     # require the reconstructed cache to equal the frozen one before any
     # downstream compiler is allowed to load it.
-    if not cache_path.is_file():
-        raise AssertionError(("missing frozen descriptor cache", cache))
-    cache_path.unlink()
     if cache_path.exists():
-        raise AssertionError(("failed to remove derived descriptor cache", cache))
+        raise AssertionError(("descriptor cache survived clean regeneration start", cache))
     run(
         work, PYTHON, "primary/atlas_compiler.py", "--sizes", "3", "4",
         "--disable-target-signature-prefilter",
@@ -229,6 +261,25 @@ def primary_regeneration(work: Path) -> None:
     run(work, PYTHON, "reviews/direct_anchor_probe_closure/compile_direct_anchor_probes.py")
 
 
+def regenerate_evidence_bindings(work: Path) -> None:
+    module_path = work / "verifiers/evidence_bindings.py"
+    spec = importlib.util.spec_from_file_location(
+        "regenerated_bundle_evidence_bindings", module_path
+    )
+    if spec is None or spec.loader is None:
+        raise AssertionError("cannot load evidence-binding regeneration module")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    closures = module.reconstruct_closure_rows(work)
+    module.write_rows(work / module.COMPACT_CLOSURE_REL, closures[0])
+    module.write_rows(work / module.RESTORATION_CLOSURE_REL, closures[1])
+    module.write_rows(work / module.DIRECT_CLOSURE_REL, closures[2])
+    module.write_rows(
+        work / "atlas/ATLAS_EVIDENCE_BINDINGS.jsonl.gz",
+        module.reconstruct_rows(work, closures),
+    )
+
+
 def full_n4_audit(work: Path) -> None:
     summary = work / "primary/certificates/hard_cover_schema3_theta2_full_summary.json"
     for relative in (
@@ -280,6 +331,10 @@ def verify_regeneration(work: Path) -> dict[str, object]:
         "reviews/direct_anchor_probe_closure/certificates/q_relations.jsonl.gz",
         "reviews/direct_anchor_probe_closure/certificates/witnesses.jsonl.gz",
         "reviews/direct_anchor_probe_closure/certificates/summary.json",
+        "atlas/ATLAS_EVIDENCE_BINDINGS.jsonl.gz",
+        "atlas/COMPACT_PATH_CLOSURE_BINDINGS.jsonl.gz",
+        "atlas/RESTORATION_CLOSURE_BINDINGS.jsonl.gz",
+        "atlas/DIRECT_ANCHOR_CLOSURE_BINDINGS.jsonl.gz",
     ]
     for prefix in ("schema3_n3_compact", "theta2_compact_n4"):
         for shard in range(4):
@@ -339,8 +394,10 @@ def main() -> None:
         ):
             if not (work / relative).is_file():
                 raise AssertionError(("disposable copy omitted bundled program", relative))
+        remove_regenerated_outputs(work)
         primary_regeneration(work)
         full_n4_audit(work)
+        regenerate_evidence_bindings(work)
         return verify_regeneration(work)
 
     if args.keep_work is not None:

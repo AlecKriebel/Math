@@ -2,12 +2,15 @@
 
 Status: **PROVED — FINAL OUTCOME A**
 
-Release revision: **v1.1.4 source-grounded proof and final-figure hardened**.
+Release revision: **v1.1.5 referee-audited and certificate-exhaustiveness hardened**.
 The classification and sharpness theorems remain mathematically unchanged.
-v1.1.4 gives the semialgebraic finite-cover argument a proposition-level
-source proof, formally separates projective local containment from the global
-JC relation, clarifies the Omega rooted-presentation rank checks, corrects
-bibliographic metadata, and makes the leaf-2 edge in Figure 7 unambiguous.
+v1.1.5 proves the missing arbitrary-word cut reduction, corrects the
+central-edge normalization crosswalk, makes every localization and contextual
+triangle branch choice explicit, replaces two tautological diagnostics by
+exact split-normalized Jacobian and honest probe certificates, and separates
+four-port presentations from their further quotient classes.  The curated
+computer-assisted proof bundle is version 1.1.6; its DOI remains pending until
+the human author reserves and publishes the Zenodo record.
 The bioRxiv map uploads a small verifier-entrypoint ZIP as supplementary code;
 the journal maps route it to the external repository in accordance with their
 current policies.  The full
@@ -52,8 +55,8 @@ immutable source commit, clean-clone transcripts are the only authoritative
 release surfaces. Superseded claims are retained only under `history/` and
 are not inputs to any active verifier.
 
-The release uses a non-self-referential two-layer seal. The core metadata in
-this directory is included in the persistent archive.
-`ARCHIVE_SOURCE_COMMIT.txt` records its immutable source commit, and the
-external `release_artifacts/RELEASE_ENVELOPE.json`, once sealed, binds that
-commit, the three clean transcripts, and the final archive hash.
+The curated proof object uses a non-self-referential two-layer seal.
+`ACTIVE_MANIFEST.json` inside the archive records the clean immutable source
+commit.  External `release_artifacts/CERTIFICATE_BUNDLE_ENVELOPE.json`, once
+sealed, binds that commit, the archive filename, byte count, and SHA-256; the
+three source-bound run transcripts are distributed beside it.

@@ -525,11 +525,11 @@ physical cut-edge attachment retained as a labelled boundary port, including
 the child port below each path-sink reticulation.
 
 \begin{proposition}[Primitive-core theorem]\label{prop:cores}
-Every nontrivial factor obtained from a standard binary level-2 blob has a
-cycle core or one of four directed theta cores.  Every complete factor is
-recovered uniquely by finite ordered words of port-bearing subdivisions on
-the directed core segments and by one real child port below every path-sink
-reticulation.
+Every nontrivial blob factor induced by a standard semi-directed network in
+$\TCs$ has a cycle core or one of four directed theta cores.  Every such
+complete factor is recovered uniquely by finite ordered words of port-bearing
+subdivisions on the directed core segments and by one real child port below
+every path-sink reticulation.
 \end{proposition}
 
 \begin{proof}
@@ -665,12 +665,13 @@ positive arms.  These two alternatives exhaust the reduced bridge tree.
 \end{proof}
 
 \begin{lemma}[Noncut-preserving word compression]\label{lem:noncut-compression}
-Let a two-color split of the labelled ports of a complete standard level-2
-factor be noncut, with at least two labels of each color.  There is a
-restriction to at most eight ports that retains the primitive core, one
-complete minimum strong repair, every path-sink child, at least two actual
-labels of each color, and a blob crossing the proposed split.  In particular,
-the restricted split remains noncut.
+Let $H$ be a complete level-2 factor induced by a standard semi-directed
+network in $\TCs$.  Let a two-color split of its labelled ports be noncut,
+with at least two labels of each color.  There is a restriction to at most
+eight ports that retains the primitive core, one complete minimum strong
+repair, every path-sink child, at least two actual labels of each color, and a
+blob crossing the proposed split.  In particular, the restricted split
+remains noncut.
 \end{lemma}
 
 \begin{proof}
@@ -722,11 +723,23 @@ zero-character completion port, and supplies a strict block minor.  Thus its
 Fourier flattening has rank at least five.
 
 For the two-active case, number the two outer boundaries of the first
-endpoint by $1,2$ and its central boundary by $3$.  Divide the endpoint
-tensor by its physical central-arm multiplier and absorb the two removed
-central-arm multipliers into the physical bridge multiplier.  Thus the
-effective central scale is $z=xuv\in(0,1)$, where $x,u,v\in(0,1)$ are the
-original bridge and central-arm multipliers.  In this central-normalized
+endpoint by $1,2$ and its central boundary by $3$.  After all selected-leaf-
+free serial paths have been contracted, let $u\in(0,1]$ be the product of
+the complete effective edge class whose zero-sum signature is
+$\mathbf1[h_3\ne0]$; an empty serial class has $u=1$, so
+$u\in(0,1]$.  If $\widetilde P$ is the physical endpoint tensor,
+define its central-normalized representative sectorwise by
+\[
+P(g_1,g_2,h_3)=u^{-\mathbf1[h_3\ne0]}
+\widetilde P(g_1,g_2,h_3).
+\]
+Define $Q$ and $v\in(0,1]$ analogously at the other endpoint.  Term by term,
+\[
+\widetilde P(\cdot,h)\,x^{\mathbf1[h\ne0]}
+\widetilde Q(\cdot,h)
+=P(\cdot,h)\,(xuv)^{\mathbf1[h\ne0]}Q(\cdot,h).
+\]
+Thus the normalized effective central scale is $z=xuv\in(0,1)$.  In this
 chart write
 \[
 a=P(1,1,0),\quad b=P(1,0,1),\quad c=P(0,1,1),
@@ -794,25 +807,53 @@ same rank.
 \begin{lemma}[Exact cut certificate]\label{lem:cut-certificate}
 The endpoint dichotomy \eqref{eq:endpoint-dichotomy} and every one-active
 case used in \cref{thm:cuts} have graph-derived exact certificates.  The
-separately implemented replay contains $67$ endpoint types with $\Delta>0$, $9$ with
-$\Delta=0$ and $\Gamma>0$, the ordinary endpoint with
-$\Delta=\Gamma=0$, and $204$ strict one-active
-minors.  All inequalities hold throughout the complete open parameter cube.
+separately implemented replay contains $67$ endpoint types with $\Delta>0$,
+$2$ with $\Delta=0$ and $\Gamma>0$, $7$ nonordinary endpoint types with
+$\Delta=\Gamma=0$, the ordinary endpoint with $\Delta=\Gamma=0$, and $204$
+strict one-active minors.  All inequalities hold throughout the complete
+open parameter cube.
 \end{lemma}
 
 \begin{proof}
 For every primitive completion the verifier enumerates the displayed
 switchings, computes descendant masks, forms the exact Fourier tensor, and
-pulls back $\Delta,\Gamma$ or the selected flattening minor.  Each nonzero pullback is
+pulls back $\Delta,\Gamma$ or the selected flattening minor.  For an endpoint,
+the complete central singleton-signature edge class is first identified and
+its effective product is set to one; this is exactly the sectorwise
+normalization in the proof of \cref{thm:cuts}.  Each nonzero pullback is
 factored or converted to the Bernstein basis on the unit cube; all
 coefficients required for strict sign have one sign.  A second implementation
 reconstructs all graph-to-polynomial assignments without importing the
 producer.  The full normalized records and all $204$ minors agree.
 
 Here is the exact handoff from the at-most-eight-port compression to those
-four-active-port records.  A separate two-colour switching compiler checks
-every compressed root and nonroot primitive completion and has zero survivors:
-no balanced noncut colouring is displayed by every switching.
+four-active-port records.  On each directed segment, if the colour word has
+three monochromatic runs $c,d,c$, then in every switching the path between
+the two outer $c$ attachments contains the middle $d$ attachment.  No tree
+edge can separate the complete colour classes: a segment edge separates the
+outer $c$ ports or keeps the middle $d$ with them, a pendant edge isolates one
+port, and a second $d$ port exists elsewhere.  Such a word is therefore a
+direct all-switching obstruction.
+
+Otherwise every segment has at most two runs.  Restrict to one actual port
+per run, preserving every occupied segment and fixed extra role.  Each word
+is then one of
+\[
+(),\quad(0),\quad(1),\quad(0,1),\quad(1,0).
+\]
+If one colour now has only one representative, all its original occurrences
+lay in that run; retain a second adjacent actual port there.  This is the
+singleton-doubled palette case.  Segment occupancy, the minimum repair, and
+standard-strong validity are unchanged.  Since every displayed split remains
+displayed after leaf restriction, an all-switching survivor before reduction
+would survive in this finite palette.
+
+A standalone combinatorial implementation exhausts all $808{,}642$ balanced
+four-through-eight-port binary word distributions and verifies this
+partition.  A separately written graph/switching implementation and the
+producer independently check the complete direct and singleton-doubled
+palette; both have zero survivors.  Thus no balanced noncut colouring is
+displayed by every switching.
 Choose a switching that does not display the selected split.  The ordinary
 tree quartet criterion then gives two actual labels of each colour whose
 induced quartet still fails to display that split.  Every other selected
@@ -1028,9 +1069,18 @@ of $H'$.  Parameters in other blobs cannot compensate for a local separator.
 \end{proposition}
 
 \begin{proof}
-By \cref{lem:product-chart}, in source slice coordinates the common
-source-open set contains a smaller product box of local tensor germs and
-effective bridge intervals.  Vary one
+Let $p$ and $U$ witness $N\preceqjc N'$, and choose a source parameter
+preimage of $p$ having rank $d_N$.  A nonzero maximal minor remains nonzero
+near that preimage, so the constant-rank theorem supplies its smooth
+$d_N$-dimensional local source-image branch.  The smooth locus of the
+irreducible source model closure is dense.  After moving the base point
+inside the same source-open containment and shrinking, we may therefore take
+$U$ to be a nonempty relatively open subgerm of one smooth source branch,
+still contained in the target model.  No target parameter section is chosen.
+
+By \cref{lem:product-chart}, in source slice coordinates this germ contains a
+smaller product box of local tensor germs and effective bridge intervals.
+Vary one
 focal factor and fix the other coordinates.  Every target realization of the
 same distribution has the same intrinsically extracted focal projective
 orbit by \cref{thm:bridge-fiber}.  The finitely many target incoming and
@@ -1358,25 +1408,100 @@ also the normalized three-port ambient dimension, so every orientation maps
 submersively onto a neighborhood of the common tensor.  Positive port-arm
 scaling preserves a common projective germ.
 
-Let $f_i:\Theta_i\to\mathcal Q$ be the normalized triangle-tensor map for
-orientation $i$.  Since $df_i$ has rank four, after shrinking about the
-certified point the constant-rank theorem gives a common open tensor
-neighborhood $U$ and analytic local sections $s_i:U\to\Theta_i$.  For the
-unchanged external network, choose a connected positive physical
-context-parameter chart $\mathcal C$ and consider the common contraction map
+We now separate the one projective tensor direction from the three incidence
+directions, and put $\epsilon(h)=\mathbf1[h\ne0]$.  Write
+$F_i:\Theta_i\to\mathcal O$ for the physical triangle
+parameterization into a common positive four-dimensional tensor neighborhood
+$\mathcal O$ of the certified tensor.  Fix its three pair coordinates
+$q_{12}^*,q_{13}^*,q_{23}^*$.  Every $Q\in\mathcal O$ has a unique analytic
+decomposition
 \[
-\Phi:U\times\mathcal C\longrightarrow\mathcal P.
+ Q(\mathbf h)=\overline Q_u(\mathbf h)
+       \prod_{j=1}^3a_j(Q)^{\epsilon(h_j)},
+ \qquad
+ q_{12}(\overline Q_u)=q_{12}^*,\quad
+ q_{13}(\overline Q_u)=q_{13}^*,\quad
+ q_{23}(\overline Q_u)=q_{23}^*.
 \]
-Let $d$ be its generic rank on that chart.  By definition, some $d$-minor of
+Indeed, putting $b_{jk}=q_{jk}(Q)/q_{jk}^*$ gives
+\[
+ a_1=\sqrt{b_{12}b_{13}/b_{23}},\qquad
+ a_2=\sqrt{b_{12}b_{23}/b_{13}},\qquad
+ a_3=\sqrt{b_{13}b_{23}/b_{12}}.
+\]
+Thus the incidence normalizer is a local analytic diffeomorphism
+$\mathcal O\simeq\mathcal Q\times\mathcal A$, where $\mathcal Q$ is the
+one-dimensional representative slice through the common tensor and
+$\mathcal A\subset\mathbb R_{>0}^3$ records the incidence scales.  Equivalently,
+$q_{123}^2/(q_{12}q_{13}q_{23})$ is a local coordinate on the quotient.
+
+Let $f_i:\Theta_i\to\mathcal Q$ be $F_i$ followed by projection of this
+normalizer to $\mathcal Q$.  Since $F_i$ has rank four and the normalizer is a
+local diffeomorphism, $df_i$ has rank one.  After shrinking about the certified
+point, the constant-rank theorem gives a common open interval
+$U\subset\mathcal Q$ and analytic sections $s_i:U\to\Theta_i$.  They need not
+realize the slice representative itself: for positive analytic functions
+$a_{ij}(u)$,
+\[
+ F_i(s_i(u))(\mathbf h)=\overline Q_u(\mathbf h)
+       \prod_{j=1}^3a_{ij}(u)^{\epsilon(h_j)}.
+\]
+
+To make contextual substitution explicit, cut the three attachment edges
+between the triangle and its unchanged context.  Shrink $U$ so that the
+$a_{ij}$ and their
+reciprocals are bounded.  Choose common effective boundary
+scales $z_j>0$ sufficiently small and set
+\[
+r_{ij}(u,\mathbf z)=\frac{z_j}{a_{ij}(u)}\in(0,1).
+\]
+Then the physical boundary arms give the termwise identity
+\[
+F_i(s_i(u))(\mathbf h)
+ \prod_{j=1}^3r_{ij}(u,\mathbf z)^{\epsilon(h_j)}
+=\overline Q_u(\mathbf h)
+ \prod_{j=1}^3z_j^{\epsilon(h_j)}.
+\]
+If $C(g;\mathbf h,c)$ is the arbitrary multi-boundary Fourier tensor of the
+unchanged context, all orientations therefore feed into the same multilinear
+contraction
+\[
+\Phi(u,c,\mathbf z)(g)=
+\sum_{\mathbf h\in\mathcal G^3}
+C(g;\mathbf h,c)\overline Q_u(\mathbf h)
+\prod_{j=1}^3z_j^{\epsilon(h_j)}.
+\]
+The context tensor may reconnect two triangle terminals inside one theta
+factor; no tensor-product independence is assumed.
+
+Choose a connected positive chart $\mathcal C$ for $(c,\mathbf z)$ and let
+$d$ be the generic rank of this common map on $U\times\mathcal C$.  The one
+coordinate $u$ and three effective boundary scales $\mathbf z$ retain all four
+local triangle-tensor directions.
+By definition, some $d$-minor of
 $D\Phi$ is not identically zero there.  Its nonvanishing locus is dense and
-open, so choose $(Q,C)\in U\times\mathcal C$ where the
-minor is nonzero.  The chain rule at $(s_i(Q),C)$ shows that the physical
-parameterization for each selected orientation has rank $d$ there.
-Shrinking once more,
-$\Phi(U\times\mathcal C)$ is a common $d$-dimensional regular germ, equal to
-the full local model dimension on both sides.  This is a forward contraction,
-not an attempted inverse factorization of a theta into two hidden-pole
-pieces.
+open, so choose $(u_0,c_0,\mathbf z_0)\in U\times\mathcal C$ where the
+minor is nonzero.  The sections $s_i$ together with the physical arms
+$r_{ij}$ define analytic physical sections
+$\sigma_i:U\times\mathcal C\to\Theta_i^{\rm context}$ satisfying
+$\phi_i\circ\sigma_i=\Phi$.  Hence the physical contextual map $\phi_i$ has
+rank at least $d$ there.
+
+For the reverse inequality, take an arbitrary nearby physical parameter point
+of orientation $i$ and apply the explicit three-leg normalizer above to its
+triangle tensor.  If its incidence coordinates are $a_j$, and its three
+physical boundary multipliers are $r_j$, define $z_j=a_jr_j$.  Together with
+the unchanged context coordinates this is a direct analytic map
+$\pi_i:\Theta_i^{\rm context}\to U\times\mathcal C$ for which
+$\phi_i=\Phi\circ\pi_i$, as the displayed multilinear identity verifies
+termwise.  No bridge-cut extraction, and in particular no application of
+\cref{lem:product-chart}, is used here: two of the three terminals may
+reconnect inside one theta factor.  Thus
+$\operatorname{rank}D\phi_i\le d$.  The two inequalities give equality.  Shrinking once
+more, $\Phi(U\times\mathcal C)$ is therefore a common $d$-dimensional regular
+germ equal to the full local model dimension on every orientation.  This is a
+forward contraction and an incidence normalization, not an attempted inverse
+factorization of a theta into two hidden-pole pieces.
 \end{proof}
 
 Labelled isomorphism is immediate, and \cref{lem:T-germ} proves the converse
@@ -1958,10 +2083,11 @@ Convention, primitive supports, cut recovery, and bridge fibre
   \path{primary/certificates/support_universe.json},
   \path{reviews/root_probe/}, and \path{independent/bridge_cut/}.\\
 Theorem~\ref{thm:atlas}, including restoration and coherent probes
-& \path{atlas/ATLAS_EVIDENCE_BINDINGS.jsonl.gz}, which binds every row to
-  its base evidence and closure verifier; the compact probe streams under
-  \path{primary/certificates/compact_probe_*} and direct-anchor records under
-  \path{reviews/direct_anchor_probe_closure/certificates/}.\\
+& \path{atlas/ATLAS_EVIDENCE_BINDINGS.jsonl.gz}, whose theorem rows point to
+  \path{atlas/RESTORATION_CLOSURE_BINDINGS.jsonl.gz} or
+  \path{atlas/DIRECT_ANCHOR_CLOSURE_BINDINGS.jsonl.gz}; restoration terminals
+  point onward to \path{atlas/COMPACT_PATH_CLOSURE_BINDINGS.jsonl.gz}, binding
+  every exact path, transport, witness, and polynomial record.\\
 Complete deterministic regeneration from primitive inputs
 & \path{verifiers/regenerate_load_bearing.py}, invoked twice by
   \path{verify.sh} in \texttt{regenerate-all} mode.\\
@@ -1969,11 +2095,10 @@ Ordinary triangle common germ
 & \path{primary/certificates/jc_triangle_redirection_active.json} and
   \path{reviews/triangle_redirection_cleanroom/}.\\
 Omega and Theta sharpness families
-& \path{omega_audit/independent/} and
-  \path{s_tc_jc_sharp_boundary/reproducibility/}.\\
+& \path{sharpness/omega/} and \path{sharpness/theta/}.\\
 Bundle integrity, totality, deterministic regeneration, and mutation tests
 & \path{ACTIVE_MANIFEST.json},
-  \path{atlas/ATLAS_EVIDENCE_BINDINGS.jsonl.gz},
+  all four \path{atlas/*BINDINGS.jsonl.gz} streams,
   \path{expected_outputs/}, and \path{verify.sh} in all three modes.\\
 \bottomrule
 \end{longtable}

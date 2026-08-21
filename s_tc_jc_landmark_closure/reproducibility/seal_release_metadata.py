@@ -18,15 +18,13 @@ RELEASE = PROJECT / "release_artifacts"
 ARCHIVE = RELEASE / "stc_jc_sharp_boundary_reproducibility.tar.gz"
 ARCHIVE_PREFIX = "stc_jc_sharp_boundary_reproducibility"
 SOURCE_BINDING = {
-    "scheme": "external-envelope-v1",
-    "archive_marker": "ARCHIVE_SOURCE_COMMIT.txt",
-    "outer_envelope": (
-        "https://github.com/AlecKriebel/Math/releases/download/"
-        "stc-jc-sharp-boundary-v1.1.4/RELEASE_ENVELOPE.json"
-    ),
+    "scheme": "certificate-bundle-envelope-v1",
+    "archive_marker": "ACTIVE_MANIFEST.json",
+    "outer_envelope": "release_artifacts/CERTIFICATE_BUNDLE_ENVELOPE.json",
     "description": (
-        "The core manifest is commit-independent and lives inside the archive; "
-        "the outer envelope binds the immutable source commit and archive hash."
+        "The curated certificate archive carries its clean immutable source "
+        "commit in ACTIVE_MANIFEST.json; the external envelope binds that "
+        "commit, the archive bytes, and the archive SHA-256."
     ),
 }
 
@@ -168,6 +166,18 @@ def core_artifacts() -> dict[str, dict[str, str]]:
         ),
         "v1_1_4_release_review": record(
             "s_tc_jc_landmark_closure/reviews/v1_1_4_bcr_and_figure_revision/ADVERSARIAL_RELEASE_REVIEW.md"
+        ),
+        "v1_1_5_disposition": record(
+            "s_tc_jc_landmark_closure/reviews/v1_1_5_referee_repair/FEEDBACK_DISPOSITION.md"
+        ),
+        "v1_1_5_revision_regression": record(
+            "s_tc_jc_landmark_closure/reviews/v1_1_5_referee_repair/verify_referee_repairs.py"
+        ),
+        "v1_1_5_mathematical_review": record(
+            "s_tc_jc_landmark_closure/reviews/v1_1_5_referee_repair/ADVERSARIAL_MATHEMATICAL_REVIEW.md"
+        ),
+        "v1_1_5_release_review": record(
+            "s_tc_jc_landmark_closure/reviews/v1_1_5_referee_repair/ADVERSARIAL_RELEASE_REVIEW.md"
         ),
         "prior_work_comparison": record(
             "s_tc_jc_landmark_closure/PRIOR_WORK_COMPARISON.md"

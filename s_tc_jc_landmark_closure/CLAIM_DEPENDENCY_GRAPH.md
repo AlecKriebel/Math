@@ -5,7 +5,7 @@ Status: **CLOSED — FINAL OUTCOME A**
 Release binding: the theorem graph and core artifact manifest are
 commit-independent. Once the post-upload gate passes,
 `ARCHIVE_SOURCE_COMMIT.txt` and the external `RELEASE_ENVELOPE.json` downloaded
-from the public v1.1.4 GitHub Release jointly bind the immutable source commit,
+from the public v1.1.5 GitHub Release jointly bind the immutable source commit,
 replay transcripts, and archive digest without a self-reference. A source
 candidate is not promoted merely because it contains the intended URL.
 
@@ -36,6 +36,7 @@ load-bearing gates.
 | `V112` | Public reproduction commands, v1.1.2 replay provenance, genericity wording, journal upload packages, and a fail-closed post-upload release gate | VERIFIED AFTER CORRECTION |
 | `V113` | Exact Englander-v4/Omega crosswalk, complete rank-minor provenance, quartet-distance comparison, and journal-aware verifier-entrypoint capsules | VERIFIED AFTER CORRECTION |
 | `V114` | Source-grounded semialgebraic finite-cover proof, formal projective containment, Figure 7 repair, Omega rooted-rank clarification, and bibliography audit | VERIFIED AFTER CORRECTION |
+| `V115` | Arbitrary-word cut exhaustiveness, corrected endpoint normalization, smooth-branch and contextual-gluing handoffs, split-normalized submersion, honest probe diagnostics, and four-port quotient crosswalk | VERIFIED AFTER CORRECTION |
 | `F` | Unified sharp-boundary bioRxiv release (`P + O + W`) | PROVED — OUTCOME A |
 
 Dependency flow:
@@ -53,6 +54,7 @@ V111 -----------------------------/
 V112 -----------------------------/
 V113 -----------------------------/
 V114 -----------------------------/
+V115 -----------------------------/
 ```
 
 Historical target-only tables, reciprocal-only bridge coordinates, hidden

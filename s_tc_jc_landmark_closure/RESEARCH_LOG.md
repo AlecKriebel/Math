@@ -1017,3 +1017,65 @@
 - The final read-only adversarial release review returned `PASS`, reported no
   blocking defect, and approved the candidate for DOI reservation followed by
   the documented finalization, reseal, verification, and rebuild sequence.
+- 2026-08-21T08:26:18-07:00 — August 20 referee repairs reached the
+  regression gate (estimated 70% complete toward a resealed submission
+  package).  Independent inspection confirmed D1--D8 as genuine proof-package
+  or exposition defects but found no theorem-level counterexample and required
+  no weakening of the main result.  The active repair now includes: an exact
+  all-word cut-palette reduction over 808,642 balanced configurations; a
+  separately implemented graph/switching replay over 379,742 valid palette
+  presentations; corrected central-edge normalization and the 67/2/7/1
+  endpoint partition; smooth-source-branch localization; exact rational
+  submersion ranks for all 42,908 completion records; a non-tautological census
+  of 372 one-port ambiguity groups; explicit contextual triangle contraction;
+  and a presentation-versus-quotient crosswalk for the 192 four-outgoing
+  records.  The consolidated fail-closed regression passes.  Remaining work is
+  package regeneration, complete verification, adversarial release review,
+  PDF rebuild/visual inspection, and final commit/push.  The Zenodo DOI remains
+  intentionally pending for the human author.
+- 2026-08-21T09:34:00-07:00 — The referee repair reached final mathematical
+  sign-off (estimated 92% complete toward the resealed pre-DOI package).  The
+  curated atlas now carries row-level, content-addressed closure records for
+  every compact path, restoration state, and direct-anchor relation used by
+  each theorem-evidence row.  Regeneration deletes every declared derived
+  object before rebuilding it, compares 73 load-bearing outputs in two
+  isolated copies, and refuses to seal from a dirty or synthetic source tree.
+  Active Omega and Theta dependencies were copied into dedicated
+  `sharpness/` inputs and clean-room engines; no history or audit directory is
+  required by the curated archive.  A package dry run passed integrity and 21
+  package-level mutations, while independent standalone replays passed for
+  both sharpness mechanisms.
+
+  An adversarial mathematical reviewer rejected the first revision of the
+  contextual triangle proof because a four-coordinate tensor modulo three
+  locally free incidence scales has a one-, not four-dimensional,
+  representative slice.  The final proof now uses exactly one projective
+  coordinate plus three effective boundary scales, gives explicit positive
+  square-root normalizer formulas, and derives both physical rank inequalities
+  by direct parameter-space maps without applying bridge-cut extraction at
+  nonbridge incidences.  The same reviewer then returned `PASS`; no theorem
+  scope was weakened.  All article and journal source archives reproduce their
+  PDFs, and every page of all eight PDFs was rerendered and visually inspected.
+  Remaining work is the clean-source commit, immutable archive seal, complete
+  quick/full/regeneration replay, final package adversarial sign-off, and push.
+
+- 2026-08-21T11:20:00-07:00 — Release provenance hardening reached a second
+  adversarial gate (estimated 95% complete toward the resealed pre-DOI
+  package).  The first package re-review correctly found that byte-comparing a
+  requested stage with a second working-tree preparation did not bind either
+  preparation to the recorded Git object.  The second review then exposed the
+  sharper ignored-file variant: a working-tree glob could select an ignored,
+  uncommitted verifier while scoped Git status still appeared clean.  The
+  builder now exports the exact recorded Git commit, executes the builder
+  contained in that detached export, compares every payload path, byte count,
+  executable bit, and SHA-256 with the requested stage, and archives only the
+  detached reconstruction.  A disposable-Git regression confirms that an
+  ignored injected verifier is absent from the export.  Manifest verification
+  now rejects duplicate paths and recomputes the payload commitment; the
+  repository-level gate cross-checks the archived manifest and external
+  envelope and verifies that the source commit is an actual local Git object.
+  In-bundle mutations now number 24, with five additional stage/source-binding
+  attacks.  No mathematical statement or theorem scope changed.  Remaining
+  work is final package-review sign-off, source commit, archive-local complete
+  replay, release-asset rebuild, final status commit, and push; the Zenodo DOI
+  remains intentionally pending for the human author.

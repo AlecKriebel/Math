@@ -64,7 +64,15 @@ def main() -> int:
     require(not root["summary"]["sink_omission_preserves_core"], "sink omission must lose core")
 
     probe = load("probe_coherence_certificate.json")
-    require(probe["coherence_collision_count"] == 0, "probe coherence")
+    require(probe["one_port_ambiguity_group_count"] == 372,
+            "one-port ambiguity census")
+    require(probe["one_port_max_two_port_completion_multiplicity"] == 2,
+            "one-port completion multiplicity")
+    require(
+        probe["two_port_full_graph_bindings"]
+        == probe["two_extra_port_presentation_count"],
+        "two-port binding coverage",
+    )
     require(probe["max_eligible_triangle_count_in_any_probe"] <= 1, "one triangle")
     require(all(row["collision_count"] == 0 for row in probe["abstract_three_extra_label_checks"]), "word order deck")
 
@@ -88,6 +96,17 @@ def main() -> int:
 
     parameter = load("parameter_submersion_certificate.json")
     require(parameter["full_row_rank_failure_count"] == 0, "parameter submersion")
+    require(
+        parameter["raw_to_normalized_class_reduction_counts"]
+        == {"1": 14878, "2": 27806, "3": 208, "4": 16},
+        "zero-sum normalization census",
+    )
+    require(
+        parameter["general_open_product_certificate"][
+            "jacobian_constructed_and_ranked_over_Q"
+        ],
+        "product-map Jacobian rank",
+    )
     require(parameter["input_stable_during_run"], "parameter input changed")
 
     redstar = load("redstar_partition_certificate.json")

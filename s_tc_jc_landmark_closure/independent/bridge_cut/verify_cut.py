@@ -10,8 +10,9 @@ minors.  No historical catalogue, tensor engine, separator table, or
 polynomial certificate is imported.
 
 The generated finite certificate supports the arbitrary-subdivision proof in
-``PROOF.md``; the combinatorial lift itself is a mathematical argument rather
-than a finite computation.
+``CUT_PALETTE_REDUCTION.md``.  The companion standalone program
+``verify_palette_reduction.py`` verifies the complete combinatorial handoff
+to the finite word palette used here.
 """
 
 from __future__ import annotations
@@ -965,24 +966,71 @@ def endpoint_certificate(signatures, reticulation_count):
     # endpoint with F=G=0 before arm scaling.
     if not signatures and reticulation_count == 0:
         return True, {
-            "case": "F_zero_G_zero_ordinary",
+            "case": "Delta_zero_Gamma_zero_ordinary",
             "certificate": {
-                "F": "0",
-                "G": "0",
+                "Delta": "0",
+                "Gamma": "0",
                 "method": "exact_constant_ordinary_component",
             },
         }
     tensor = FourierTensor(signatures, reticulation_count)
-    coordinates = {name: tensor.coordinate(assignment) for name, assignment in THREE_ASSIGNMENTS.items()}
+    # ``three_port_endpoint_variants`` puts the central boundary in position
+    # two.  Under the zero-sum split/complement convention its complete
+    # effective incidence class is the unique constant row 3 or 4.  Setting
+    # the corresponding product multiplier to one removes the whole serial
+    # central arm, exactly as in the projective chart used in the article.
+    central = [
+        index
+        for index, row in enumerate(signatures)
+        if len(set(row)) == 1 and row[0] in (3, 4)
+    ]
+    if len(central) != 1:
+        return False, {
+            "case": "invalid_central_incidence_class",
+            "certificate": {"indices": central},
+        }
+    central_index = central[0]
+    substitution = {tensor.edge_symbols[central_index]: 1}
+    coordinates = {
+        name: sp.Poly(
+            sp.expand(tensor.coordinate(assignment).as_expr().subs(substitution)),
+            *tensor.symbols,
+            domain=sp.QQ,
+        )
+        for name, assignment in THREE_ASSIGNMENTS.items()
+    }
     expression = coordinates["a"] * coordinates["b"] * coordinates["c"] - coordinates["t"] ** 2
     expression = sp.Poly(sp.expand(expression.as_expr()), *tensor.symbols, domain=sp.QQ)
     if expression.is_zero:
         auxiliary = coordinates["a"] - coordinates["b"] * coordinates["c"]
         auxiliary = sp.Poly(sp.expand(auxiliary.as_expr()), *tensor.symbols, domain=sp.QQ)
         sign, certificate = strict_sign(auxiliary, tensor.lambda_symbols)
-        return sign == 1, {"case": "F_zero_G_positive", "certificate": certificate}
+        normalization = {
+            "central_effective_signature": list(signatures[central_index]),
+            "central_effective_edge_index": central_index,
+            "substitution": f"{tensor.edge_symbols[central_index]}=1",
+        }
+        if sign == 0:
+            return True, {
+                "case": "Delta_zero_Gamma_zero",
+                "normalization": normalization,
+                "certificate": certificate,
+            }
+        return sign == 1, {
+            "case": "Delta_zero_Gamma_positive",
+            "normalization": normalization,
+            "certificate": certificate,
+        }
     sign, certificate = strict_sign(expression, tensor.lambda_symbols)
-    return sign == 1, {"case": "F_positive", "certificate": certificate}
+    return sign == 1, {
+        "case": "Delta_positive",
+        "normalization": {
+            "central_effective_signature": list(signatures[central_index]),
+            "central_effective_edge_index": central_index,
+            "substitution": f"{tensor.edge_symbols[central_index]}=1",
+        },
+        "certificate": certificate,
+    }
 
 
 def displayed_split_status(signatures, split):

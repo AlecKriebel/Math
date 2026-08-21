@@ -57,7 +57,7 @@ is not a bridge/cut failure.
 | A sufficiently small common effective-scale interval glues | **VERIFIED** | Positivity of all incidence representatives gives a uniform nonempty interval after shrinking the local germs. |
 | Full strong completions may induce weak selected marginals | **VERIFIED** | The compiler checks strongness on the dummy-restored full graph and imposes no strongness claim on the selected tensor. |
 | Dummy completion leaves imply selected weakness | **FALSE** | Dummy leaves encode omitted roles at character zero; their presence does not classify the reduced selected marginal. |
-| Three-port endpoint dichotomy, including the ordinary endpoint | **VERIFIED** | Counts are `67 + 9 + 1`; the ordinary record has `F=G=0`. |
+| Three-port endpoint dichotomy, including the ordinary endpoint | **VERIFIED AFTER CORRECTION** | In the projective central-signature normalization the counts are `67` with $\Delta>0$, `2` with $\Delta=0,\Gamma>0$, `7` with $\Delta=\Gamma=0$, plus the ordinary record.  Restoring the positive central factor makes the seven nonordinary weak cases strict in the physical tensor. |
 | One-active strict noncut minors | **VERIFIED** | All 204 minors independently reconstruct and have the certified strict open-cube sign. |
 | Two-active crossing | **VERIFIED** | Twenty minors up to sign regenerate; `f_1,...,f_4` and all three identities have zero remainder. |
 | Pointwise rank-at-most-four iff cut | **VERIFIED** | True cuts have four rank-one blocks; every noncut has a strict block minor at every open point. |
@@ -225,12 +225,15 @@ a=P(1,1,0),\quad b=P(1,0,1),\quad c=P(0,1,1),
 \quad t=P(1,2,3),
 \]
 
-and set `F=abc-t^2`, `G=a-bc`.  Independent graph-to-polynomial reconstruction
+and set $\Delta=abc-t^2$, $\Gamma=a-bc$.  The complete effective central
+singleton-signature edge class is identified and normalized to multiplier
+one before these polynomials are evaluated.  Independent graph-to-polynomial reconstruction
 gave:
 
-- 67 nontrivial endpoints with `F>0` on the whole open cube;
-- 9 nontrivial endpoints with `F=0` and `G>0`;
-- the ordinary trivalent median with `F=G=0`.
+- 67 nontrivial endpoints with $\Delta>0$ on the whole open cube;
+- 2 nontrivial endpoints with $\Delta=0$ and $\Gamma>0$;
+- 7 nontrivial endpoints with $\Delta=\Gamma=0$;
+- the ordinary trivalent median with $\Delta=\Gamma=0$.
 
 For arbitrary terminal arms `u,v in (0,1)` and `w in (0,1]`, the coordinates
 scale as
@@ -239,13 +242,14 @@ scale as
 (a,b,c,t)\mapsto(uv,a,uw,b,vw,c,uvw,t).
 \]
 
-Therefore `F` acquires the positive factor `(uvw)^2`.  On the `F=0` branch,
+Therefore $\Delta$ acquires the positive square of the appropriate arm
+factor.  On the $\Delta=0$ branch,
 
 \[
-G\mapsto uv(a-w^2bc)\ge uv(a-bc).
+\Gamma\mapsto uv(a-w^2bc)\ge uv(a-bc).
 \]
 
-For the ordinary median this is `uv(1-w^2)>=0`.  The exact universal endpoint
+For the ordinary median this is $uv(1-w^2)\ge0$.  The exact universal endpoint
 statement is consequently
 
 \[

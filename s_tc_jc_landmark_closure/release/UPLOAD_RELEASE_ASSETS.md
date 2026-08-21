@@ -1,50 +1,46 @@
-# Publish the exact v1.1.4 replay assets
+# Human Zenodo deposit sequence
 
-This is a human-authorized release-engineering step, not journal submission.
-The release tag and source commit must already be public before these commands
-are run.
+These are instructions for the human author.  No command below uploads a file,
+publishes a record, chooses a license, or submits a manuscript.
 
-From the monorepository root, stage the seven manifest-covered assets in one
-flat temporary directory and verify them exactly as a public downloader will:
+1. Create a Zenodo draft and reserve its DOI.
+2. From a clean project checkout, insert that exact DOI:
 
-```bash
-stage_dir=$(mktemp -d)
-cp s_tc_jc_landmark_closure/release_artifacts/stc_jc_sharp_boundary_reproducibility.tar.gz "$stage_dir/"
-cp s_tc_jc_landmark_closure/release_artifacts/stc_jc_sharp_boundary_reproducibility.tar.gz.sha256 "$stage_dir/"
-cp s_tc_jc_landmark_closure/release_artifacts/RELEASE_ENVELOPE.json "$stage_dir/"
-cp s_tc_jc_landmark_closure/release_artifacts/FINAL_RELEASE_ENGINEERING_REPORT.md "$stage_dir/"
-cp s_tc_jc_landmark_closure/release_artifacts/clean_clone_transcripts/*.log "$stage_dir/"
-cp s_tc_jc_landmark_closure/release_artifacts/RELEASE_ASSET_SHA256SUMS "$stage_dir/"
-(cd "$stage_dir" && shasum -a 256 -c RELEASE_ASSET_SHA256SUMS)
-```
+   ```bash
+   python reproducibility/test_finalize_zenodo_doi.py
+   python reproducibility/finalize_zenodo_doi.py --doi 10.5281/zenodo.<number>
+   ```
 
-Create the GitHub Release and upload the exact assets:
+3. Review the DOI-only changes, rebuild all article and journal packages, and
+   commit the DOI-bearing source state.
+4. From that clean commit, build and seal the curated archive.  The complete
+   `release_artifacts/` tree is ignored build output.  Sealing independently
+   prepares a second payload from the clean commit, requires exact byte and
+   executable-mode equality, and archives only that fresh reconstruction:
 
-```bash
-gh release create stc-jc-sharp-boundary-v1.1.4 \
-  --repo AlecKriebel/Math \
-  --title "STC/JC sharp-boundary reproducibility v1.1.4" \
-  --notes-file s_tc_jc_landmark_closure/release/PUBLIC_RELEASE_ASSETS.md \
-  s_tc_jc_landmark_closure/release_artifacts/stc_jc_sharp_boundary_reproducibility.tar.gz \
-  s_tc_jc_landmark_closure/release_artifacts/stc_jc_sharp_boundary_reproducibility.tar.gz.sha256 \
-  s_tc_jc_landmark_closure/release_artifacts/RELEASE_ENVELOPE.json \
-  s_tc_jc_landmark_closure/release_artifacts/RELEASE_ASSET_SHA256SUMS \
-  s_tc_jc_landmark_closure/release_artifacts/FINAL_RELEASE_ENGINEERING_REPORT.md \
-  s_tc_jc_landmark_closure/release_artifacts/clean_clone_transcripts/verify_quick.log \
-  s_tc_jc_landmark_closure/release_artifacts/clean_clone_transcripts/verify_full.log \
-  s_tc_jc_landmark_closure/release_artifacts/clean_clone_transcripts/verify_regenerate_all.log
-```
+   ```bash
+   python -I -S reproducibility/build_certificate_bundle.py prepare
+   python -I -S reproducibility/build_certificate_bundle.py seal
+   ```
 
-Then run the bounded post-upload verifier, which resolves the annotated tag,
-downloads all eight assets, checks the exact asset set and flat manifest,
-opens the archive, validates its metadata and source marker, and checks every
-clean transcript:
+5. Run, without interruption, from the staged archive root:
 
-```bash
-python s_tc_jc_landmark_closure/reproducibility/verify_public_release.py
-```
+   ```bash
+   bash release_artifacts/stc_jc_sharp_boundary_atlas_certificates_v1.1.6/verify.sh quick
+   bash release_artifacts/stc_jc_sharp_boundary_atlas_certificates_v1.1.6/verify.sh full
+   bash release_artifacts/stc_jc_sharp_boundary_atlas_certificates_v1.1.6/verify.sh regenerate-all
+   ```
 
-Capture its `PUBLIC_RELEASE_VERIFIED` output in the final release transcript.
+6. Preserve the complete source-commit-bound output of those commands in
+   `release_artifacts/certificate_bundle_logs/`.
+7. Upload exactly the files listed in `PERSISTENT_ARCHIVE_CHECKLIST.md` to the
+   Zenodo draft.  Confirm every filename, byte count, and SHA-256 against
+   `CERTIFICATE_BUNDLE_ENVELOPE.json`.
+8. Publish the Zenodo record manually, download the public archive, and run
+   `reproducibility/verify_certificate_zenodo_release.py` on that download.
+9. Only after the public DOI resolves and the download verifies, submit the
+   same DOI-bearing article and supplement to bioRxiv.  The small verifier ZIP
+   is a navigation capsule, not the proof object.
 
-If the release already exists, use `gh release upload ... --clobber` only
-after checking that the tag still peels to the exact sealed source commit.
+The older GitHub-release instructions and omnibus development archive are
+superseded provenance only; they are not required by the active theorem.

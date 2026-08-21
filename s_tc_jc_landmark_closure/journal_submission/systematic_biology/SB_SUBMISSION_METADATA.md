@@ -22,7 +22,7 @@ This is a theorem and exact-computation paper; it analyzes no empirical
 sequence dataset.  The exact graph records, code, certificates, and replay
 logs constitute the supporting computational material.  The local
 submission-support directory includes a small navigation-only verifier ZIP;
-the load-bearing object is the curated v1.1.5 atlas-certificate archive at the
+the load-bearing object is the curated v1.1.6 atlas-certificate archive at the
 DOI above. Place the capsule and the broader secondary reproducibility
 snapshot in the same Zenodo record, not in ScholarOne.
 The journal's current instructions direct scripts/code to Zenodo and

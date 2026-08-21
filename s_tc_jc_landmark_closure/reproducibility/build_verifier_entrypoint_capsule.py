@@ -12,7 +12,7 @@ import zipfile
 PROJECT = Path(__file__).resolve().parents[1]
 ZIP_TIME = (2026, 8, 19, 0, 0, 0)
 CANONICAL_NAME = "Strong_Tree_Childness_Sharp_Level2_JC_verifier_entrypoints.zip"
-ARCHIVE_NAME = "stc_jc_sharp_boundary_atlas_certificates_v1.1.5.tar.gz"
+ARCHIVE_NAME = "stc_jc_sharp_boundary_atlas_certificates_v1.1.6.tar.gz"
 ENVELOPE = PROJECT / "release_artifacts/CERTIFICATE_BUNDLE_ENVELOPE.json"
 
 
@@ -35,7 +35,7 @@ def release_record() -> dict:
         "archive": ARCHIVE_NAME,
         "archive_sha256": "TO_BE_FILLED_AFTER_FINAL_SEAL",
         "zenodo_doi": "ZENODO_DOI_PENDING",
-        "version": "1.1.5",
+        "version": "1.1.6",
     }
 
 

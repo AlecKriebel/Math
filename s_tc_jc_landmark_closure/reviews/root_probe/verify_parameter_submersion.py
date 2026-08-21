@@ -14,10 +14,74 @@ import itertools
 import json
 import math
 from collections import Counter, defaultdict, deque
+from fractions import Fraction
 from pathlib import Path
 from typing import Dict, Iterable, Iterator, Mapping, Sequence, Tuple
 
 from verify_root_probe import canonical_json_bytes, sha256_bytes
+
+
+def rational_rank(matrix: Sequence[Sequence[Fraction]]) -> int:
+    if not matrix:
+        return 0
+    work = [[Fraction(value) for value in row] for row in matrix]
+    height = len(work)
+    width = len(work[0])
+    pivot_row = 0
+    for column in range(width):
+        pivot = next(
+            (row for row in range(pivot_row, height) if work[row][column]),
+            None,
+        )
+        if pivot is None:
+            continue
+        work[pivot_row], work[pivot] = work[pivot], work[pivot_row]
+        lead = work[pivot_row][column]
+        work[pivot_row] = [value / lead for value in work[pivot_row]]
+        for row in range(height):
+            if row == pivot_row or not work[row][column]:
+                continue
+            scale = work[row][column]
+            work[row] = [
+                left - scale * right
+                for left, right in zip(work[row], work[pivot_row])
+            ]
+        pivot_row += 1
+        if pivot_row == height:
+            break
+    return pivot_row
+
+
+def normalize_zero_sum_row(row: Sequence[int], full_mask: int) -> Tuple[int, ...]:
+    """Return the JC split/complement class seen by zero-sum characters."""
+    return tuple(
+        0 if mask in (0, full_mask) else min(mask, full_mask ^ mask)
+        for mask in row
+    )
+
+
+def normalization_mutation_tests() -> dict:
+    """Reject the three normalization errors found by the referee audit."""
+    full_mask = 0b1111
+    invisible = normalize_zero_sum_row((full_mask, full_mask), full_mask)
+    split = normalize_zero_sum_row((0b0001, 0b0010), full_mask)
+    complement = normalize_zero_sum_row((0b1110, 0b1101), full_mask)
+    distinct = normalize_zero_sum_row((0b0001, 0b0100), full_mask)
+    tests = {
+        "full_split_is_tensor_invisible": invisible == (0, 0),
+        "complementary_splits_have_one_class": split == complement,
+        "distinct_split_classes_are_not_merged": split != distinct,
+    }
+    if not all(tests.values()):
+        raise AssertionError(tests)
+    return {
+        **tests,
+        "full_mask": full_mask,
+        "split_row": list(split),
+        "complement_row": list(complement),
+        "distinct_row": list(distinct),
+        "all_mutations_rejected": True,
+    }
 
 
 def weak_compositions(total: int, bins: int) -> Iterator[Tuple[int, ...]]:
@@ -154,35 +218,72 @@ def switching_signatures(graph: dict) -> dict:
         mask("ROOT")
         for i in active:
             signatures[i][display_index] = mask(arcs[i][1])
-    nonzero = [tuple(row) for row in signatures if any(row)]
-    classes: Dict[Tuple[int, ...], list[int]] = defaultdict(list)
-    for edge_index, row in enumerate(signatures):
-        if any(row):
-            classes[tuple(row)].append(edge_index)
     full_mask = (1 << len(ordered_labels)) - 1
-    columns = []
-    complement_columns = []
-    class_rows = tuple(sorted(classes))
-    for display in range(1 << len(retics)):
-        column = tuple(row[display] for row in class_rows)
-        columns.append(column)
-        complement_columns.append(tuple(min(mask, full_mask ^ mask) for mask in column))
-    invisible_classes = sum(
-        all(mask in (0, full_mask) for mask in row) for row in class_rows
-    )
+    raw_classes: Dict[Tuple[int, ...], list[int]] = defaultdict(list)
+    normalized_classes: Dict[Tuple[int, ...], list[int]] = defaultdict(list)
+    normalized_rows = []
+    for edge_index, row in enumerate(signatures):
+        raw_row = tuple(row)
+        if any(raw_row):
+            raw_classes[raw_row].append(edge_index)
+        normalized = normalize_zero_sum_row(raw_row, full_mask)
+        normalized_rows.append(normalized)
+        if any(normalized):
+            normalized_classes[normalized].append(edge_index)
+
+    class_rows = tuple(sorted(normalized_classes))
+    target_dimension = len(class_rows) + len(retics)
+    physical_dimension = len(arcs) + len(retics)
+
+    # Construct the actual Jacobian of y_C=product_{e in C} x_e together
+    # with the inherited identity coordinates.  Evaluation at x_e=1/2 gives
+    # the exact block entries 2^{-(|C|-1)}.  The selected columns form a
+    # diagonal square minor, but its rank is computed independently below.
+    jacobian = [
+        [Fraction(0) for _ in range(physical_dimension)]
+        for _ in range(target_dimension)
+    ]
+    selected_columns = []
+    determinant = Fraction(1)
+    for row_index, signature in enumerate(class_rows):
+        members = normalized_classes[signature]
+        derivative = Fraction(1, 2 ** (len(members) - 1))
+        for edge_index in members:
+            jacobian[row_index][edge_index] = derivative
+        selected_columns.append(members[0])
+        determinant *= derivative
+    for reticulation_index in range(len(retics)):
+        row_index = len(class_rows) + reticulation_index
+        column_index = len(arcs) + reticulation_index
+        jacobian[row_index][column_index] = Fraction(1)
+        selected_columns.append(column_index)
+    rank = rational_rank(jacobian)
+
     return {
         "reticulation_count": len(retics),
         "physical_edge_count": len(arcs),
-        "effective_edge_class_count": len(classes),
-        "discarded_zero_edge_count": len(arcs) - sum(len(v) for v in classes.values()),
-        "class_sizes": sorted(len(v) for v in classes.values()),
+        "raw_descendant_edge_class_count": len(raw_classes),
+        "effective_edge_class_count": len(normalized_classes),
+        "discarded_tensor_invisible_edge_count": (
+            len(arcs) - sum(len(value) for value in normalized_classes.values())
+        ),
+        "class_sizes": sorted(len(v) for v in normalized_classes.values()),
         "signature_rows": [list(row) for row in class_rows],
-        "jacobian_row_rank_at_open_point": len(classes) + len(retics),
-        "parameter_target_dimension": len(classes) + len(retics),
-        "physical_parameter_dimension": len(arcs) + len(retics),
-        "duplicate_exact_switching_columns": len(columns) - len(set(columns)),
-        "duplicate_columns_mod_zero_sum_complement": len(complement_columns) - len(set(complement_columns)),
-        "tensor_invisible_effective_edge_classes": invisible_classes,
+        "jacobian_evaluation_point": "all visible physical edge multipliers = 1/2",
+        "jacobian_row_rank_at_open_point": rank,
+        "parameter_target_dimension": target_dimension,
+        "physical_parameter_dimension": physical_dimension,
+        "nonzero_minor": {
+            "rows": list(range(target_dimension)),
+            "physical_parameter_columns": selected_columns,
+            "determinant_numerator": determinant.numerator,
+            "determinant_denominator": determinant.denominator,
+        },
+        "raw_to_normalized_class_reduction": len(raw_classes) - len(normalized_classes),
+        "zero_sum_normalization": (
+            "each switching mask m maps to 0 for m in {0,full}, otherwise "
+            "min(m,full xor m); complete normalized rows are then grouped"
+        ),
     }
 
 
@@ -196,7 +297,7 @@ def enumerate_completions(core_data: dict, sizes: Sequence[int]) -> Iterator[dic
                 # zeroed, all n+1 selected boundaries occupy outgoing roles.
                 selected_count = source_outgoing if incoming_selected else source_outgoing + 1
                 for sink_mask in range(1 << len(sinks)):
-                    ordinary = selected_count - sink_mask.bit_count()
+                    ordinary = selected_count - bin(sink_mask).count("1")
                     if ordinary < 0:
                         continue
                     for counts in weak_compositions(ordinary, len(core["arcs"])):
@@ -231,7 +332,7 @@ def audit(core_data: dict) -> dict:
     commitment = hashlib.sha256()
     failures = []
     counts = Counter()
-    duplicate_columns = Counter()
+    normalization_reductions = Counter()
     invisible = Counter()
     max_class = 0
     max_fiber = 0
@@ -250,16 +351,15 @@ def audit(core_data: dict) -> dict:
             max_fiber,
             signature["physical_parameter_dimension"] - signature["parameter_target_dimension"],
         )
-        if signature["duplicate_exact_switching_columns"]:
-            duplicate_columns["exact"] += 1
-        if signature["duplicate_columns_mod_zero_sum_complement"]:
-            duplicate_columns["mod_complement"] += 1
-        if signature["tensor_invisible_effective_edge_classes"]:
+        reduction = signature["raw_to_normalized_class_reduction"]
+        normalization_reductions[str(reduction)] += 1
+        if signature["discarded_tensor_invisible_edge_count"]:
             invisible["completion_count"] += 1
-            invisible["class_count"] += signature["tensor_invisible_effective_edge_classes"]
+            invisible["physical_edge_count"] += signature[
+                "discarded_tensor_invisible_edge_count"
+            ]
         if redundant_example is None and (
-            signature["duplicate_columns_mod_zero_sum_complement"]
-            or signature["tensor_invisible_effective_edge_classes"]
+            reduction or signature["discarded_tensor_invisible_edge_count"]
         ):
             redundant_example = {
                 "core_id": row["core_id"],
@@ -293,17 +393,22 @@ def audit(core_data: dict) -> dict:
         "failures": failures[:5],
         "maximum_effective_product_class_size_in_bounded_census": max_class,
         "maximum_parameter_fiber_dimension_in_bounded_census": max_fiber,
-        "switching_column_redundancy_counts": dict(sorted(duplicate_columns.items())),
+        "raw_to_normalized_class_reduction_counts": dict(
+            sorted(normalization_reductions.items(), key=lambda row: int(row[0]))
+        ),
         "tensor_invisible_parameter_counts": dict(sorted(invisible.items())),
         "redundant_parameter_example": redundant_example,
         "completion_signature_commitment_sha256": commitment.hexdigest(),
         "general_open_product_certificate": {
             "map": "y=product(x_i), lambda'=lambda or 1-lambda",
             "class_blocks_are_disjoint_by_equivalence_partition": True,
+            "jacobian_constructed_and_ranked_over_Q": True,
+            "exact_evaluation_point": "all visible edge multipliers = 1/2",
             "derivative_nonzero_for_every_positive_class_coordinate": True,
             "onto_witness": "x_i=y^(1/k) for each class of size k",
             "semialgebraic": True,
         },
+        "normalization_mutation_tests": normalization_mutation_tests(),
         "interpretation_caveat": (
             "Full row rank is for the physical-to-descriptor parameter map. "
             "Some descriptor coordinates are tensor-invisible or inheritance-redundant "
@@ -321,7 +426,7 @@ def main() -> int:
     before = hashlib.sha256(args.core_certificate.read_bytes()).hexdigest()
     core_data = json.loads(args.core_certificate.read_text())
     payload = {
-        "schema": "selected-parameter-submersion-clean-room-v1",
+        "schema": "selected-parameter-submersion-clean-room-v2",
         "core_certificate_sha256": before,
         **audit(core_data),
     }
@@ -335,7 +440,7 @@ def main() -> int:
         "completion_count": payload["completion_count"],
         "full_row_rank_failures": payload["full_row_rank_failure_count"],
         "max_product_class": payload["maximum_effective_product_class_size_in_bounded_census"],
-        "redundancies": payload["switching_column_redundancy_counts"],
+        "normalization_reductions": payload["raw_to_normalized_class_reduction_counts"],
         "invisible": payload["tensor_invisible_parameter_counts"],
     }, indent=2, sort_keys=True))
     return 0

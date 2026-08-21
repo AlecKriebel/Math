@@ -88,16 +88,19 @@ enumerate every mixed-graph automorphism fixing all port labels pointwise.
 The claim passes only if every admissible primitive has a support of outgoing
 size at most four with trivial pointwise stabilizer.
 
-For arbitrary added labels, the verifier will also test that the deck of
-support-plus-one records fixes each segment/anchor side and the deck of
-support-plus-two records fixes all same-segment pair orders.
+For arbitrary added labels, one-port decks need not determine pair order.
+The verifier must record those ambiguities honestly and test that explicit
+support-plus-two parent transports fix every same-segment pair order.
 
 ## 5. Marginal-submersion criterion
 
 For a fixed displayed-choice indexing, restrict every edge's descendant mask
-to the selected ports.  Edges with identical full signature vectors form a
-partition, and each surviving effective edge coordinate is the product of
-one signature class.  Together with retained/permuted inheritance
+to the selected ports.  Normalize every complete switching row by sending
+the empty and full masks to zero and identifying a nontrivial split mask with
+its complement.  Edges with identical nonzero normalized zero-sum JC
+indicator rows form a partition, and each surviving effective edge coordinate
+is the product of one signature class; all-zero rows are tensor-invisible.
+Together with retained/permuted inheritance
 coordinates, this map is a product of maps on disjoint variable blocks.  Its
 Jacobian has full row rank everywhere in the open cube, and every effective
 multiplier has an open positive root factorization.

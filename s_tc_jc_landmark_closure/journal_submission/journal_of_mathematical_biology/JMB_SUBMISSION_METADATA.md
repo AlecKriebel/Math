@@ -24,7 +24,7 @@ The local support package also includes
 `JMB_Exact_Verifier_Entry_Points.zip`, a small repository-deposit capsule
 containing navigation, runtime information, the minimal theorem map, and
 checksums. It is not designated as an additional Online Resource. The
-load-bearing object is the curated v1.1.5 atlas-certificate archive at Zenodo;
+load-bearing object is the curated v1.1.6 atlas-certificate archive at Zenodo;
 the broader reproducibility snapshot is secondary.
 
 Springer's title-page instructions ask unaffiliated authors for city and

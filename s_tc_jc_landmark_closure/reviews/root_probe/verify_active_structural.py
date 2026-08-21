@@ -96,8 +96,15 @@ def main() -> None:
                     for value in rows), "support rigidity changed")
 
         probe = load(probe_path)
-        require(probe["coherence_collision_count"] == 0,
-                "probe coherence collision")
+        require(probe["one_port_ambiguity_group_count"] == 372,
+                "one-port ambiguity census changed")
+        require(probe["one_port_max_two_port_completion_multiplicity"] == 2,
+                "one-port completion multiplicity changed")
+        require(
+            probe["two_port_full_graph_bindings"]
+            == probe["two_extra_port_presentation_count"],
+            "two-port binding coverage changed",
+        )
         require(probe["max_eligible_triangle_count_in_any_probe"] <= 1,
                 "multiple probe triangles")
         require(all(row["collision_count"] == 0
@@ -126,12 +133,32 @@ def main() -> None:
         parameter = load(parameter_path)
         require(parameter["full_row_rank_failure_count"] == 0,
                 "path-product submersion rank failure")
+        require(
+            parameter["raw_to_normalized_class_reduction_counts"]
+            == {"1": 14878, "2": 27806, "3": 208, "4": 16},
+            "zero-sum split/complement normalization census changed",
+        )
+        require(
+            parameter["general_open_product_certificate"][
+                "jacobian_constructed_and_ranked_over_Q"
+            ],
+            "product-map Jacobian was not independently ranked",
+        )
+        require(
+            parameter["normalization_mutation_tests"][
+                "all_mutations_rejected"
+            ],
+            "zero-sum normalization mutations were not rejected",
+        )
         require(parameter["input_stable_during_run"],
                 "parameter-submersion input changed during replay")
 
         print(json.dumps({
             "status": "VERIFIED",
-            "scope": "active root reduction, incoming role, probe coherence, and submersion",
+            "scope": (
+                "active root reduction, incoming role, honest one-port ambiguity "
+                "diagnostics, pair-order sanity checks, and submersion"
+            ),
             "root_certificate_sha256": sha256(root_path),
             "probe_presentations": probe["two_extra_port_presentation_count"],
             "incoming_bijections": incoming["boundary_bijection_counts"][

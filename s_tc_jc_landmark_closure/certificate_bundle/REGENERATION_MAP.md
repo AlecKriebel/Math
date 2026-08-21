@@ -17,8 +17,10 @@ commitment.  The two commitments must agree exactly.
 | Three-/four-outgoing restoration forests | `primary/hard_cover_compiler.py`, `primary/merge_hard_cover_shards.py`, and the all-record audit `reviews/final_hard_cover_cleanroom/audit_candidate_stream.py` |
 | 2,642 one-port and 18,224 two-port direct-anchor relations | `reviews/direct_anchor_probe_closure/compile_direct_anchor_probes.py` followed by its verifier and mutations |
 | 269,730 compact path-bound probe relations | `primary/compact_probe_extension_compiler.py`, followed by `reviews/compact_probe_clean_clone_gate/semantic_gate.py` and mutation tests |
-| Per-relation graph/evidence binding and human index | `verifiers/evidence_bindings.py`; the verifier requires `atlas/ATLAS_INDEX.csv.gz` to be its exact projection |
-| Cut/bridge, ordinary triangle, Omega, and Theta component certificates | the primary and separately implemented component programs named in `THEOREM_CERTIFICATE_CROSSWALK.md` |
+| Per-relation graph/evidence binding, transitive restoration/compact/direct closure bindings, and human index | `verifiers/evidence_bindings.py` reconstructs all four content-addressed JSONL streams; the verifier requires `atlas/ATLAS_INDEX.csv.gz` to be the exact projection of the theorem-row stream |
+| Arbitrary-word cut reduction | `independent/bridge_cut/verify_palette_reduction.py` partitions every balanced four-through-eight-port segment word into a direct three-run obstruction or a short-palette reduction; `reviews/global_bridge/verify_palette_cleanroom.py` independently reconstructs every primitive rooted graph and switching and checks that the reduced palette has no survivor |
+| Normalized endpoint dichotomy and crossing minors | `independent/bridge_cut/verify_cut.py` and the separate implementation `reviews/global_bridge/exact_audit.py` identify the complete central singleton-signature class, normalize it, and replay every exact sign/minor certificate |
+| Bridge fibre, ordinary triangle, Omega, and Theta component certificates | the primary and separately implemented component programs named in `THEOREM_CERTIFICATE_CROSSWALK.md` |
 
 The large compressed streams are retained as frozen proof records so a
 reviewer can inspect the finite universe without first running a long build.
@@ -27,3 +29,10 @@ graph-to-certificate associations, sign/equality decisions, restoration
 transports, probe records, and normalized commitments from the included
 primitive inputs.  It compares decompressed logical streams, not incidental
 compressed-container metadata.
+
+Before invoking any producer, the regeneration driver deletes every declared
+derived output in its disposable copy.  A no-op, partial, or stale-output
+producer therefore fails because a required stream is absent; it cannot pass
+by leaving the bundled frozen bytes untouched.  The immutable expected bytes
+remain only in the separate extracted bundle against which regenerated
+logical streams are compared.

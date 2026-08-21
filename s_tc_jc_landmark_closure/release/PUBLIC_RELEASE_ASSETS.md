@@ -1,40 +1,40 @@
-# Public release assets
+# Persistent proof-certificate assets
 
-The authoritative external release location is:
+Status: **PRE-DOI CANDIDATE — HUMAN DEPOSIT REQUIRED**
 
-- tag: `stc-jc-sharp-boundary-v1.1.4`
-- release page: <https://github.com/AlecKriebel/Math/releases/tag/stc-jc-sharp-boundary-v1.1.4>
+The authoritative external proof object is the curated Zenodo deposit prepared
+from `release_artifacts/`.  It replaces the earlier omnibus development
+snapshot and contains only the transitive closure of active theorem evidence.
+The human author must reserve and publish the DOI; no repository command does
+that automatically.
 
-It is active only when `reproducibility/verify_public_release.py` returns
-`PUBLIC_RELEASE_VERIFIED`.  The release page then carries the exact eight
-non-Git assets needed for a complete replay:
+Required Zenodo files:
 
-1. `stc_jc_sharp_boundary_reproducibility.tar.gz`
-2. `stc_jc_sharp_boundary_reproducibility.tar.gz.sha256`
-3. `RELEASE_ENVELOPE.json`
-4. `RELEASE_ASSET_SHA256SUMS`
-5. `FINAL_RELEASE_ENGINEERING_REPORT.md`
-6. `verify_quick.log`
-7. `verify_full.log`
-8. `verify_regenerate_all.log`
+1. `stc_jc_sharp_boundary_atlas_certificates_v1.1.6.tar.gz`
+2. `stc_jc_sharp_boundary_atlas_certificates_v1.1.6.tar.gz.sha256`
+3. `CERTIFICATE_BUNDLE_ENVELOPE.json`
+4. `certificate_bundle_logs/verify_quick.log`
+5. `certificate_bundle_logs/verify_full.log`
+6. `certificate_bundle_logs/verify_regenerate_all.log`
+7. the final article PDF
+8. the final supplement PDF
+9. a plain copy of `certificate_bundle/README_FIRST.md`
 
-`RELEASE_ENVELOPE.json` binds the immutable source commit, the deterministic
-archive, and all three clean-checkout transcripts.  The flat
-`RELEASE_ASSET_SHA256SUMS` covers the other seven downloaded assets by
-basename, including the envelope, so this command works from one download
-directory:
+The archive contains the complete finite theorem universe, per-record exact
+certificates and transports, restoration and probe closure, primitive inputs,
+primary implementations, and separately implemented replays.  The three run
+logs are source-commit-bound external records; they are not embedded in the
+self-authenticating archive.
+
+Before publication, the human author must replace `ZENODO_DOI_PENDING` by
+running the documented DOI-finalization command, commit that DOI-bearing source
+state, reseal the archive from a clean tree, and rerun all three archive-local
+commands.  After publishing the Zenodo record, download the archive and run:
 
 ```bash
-shasum -a 256 -c RELEASE_ASSET_SHA256SUMS
+python reproducibility/verify_certificate_zenodo_release.py \
+  /path/to/stc_jc_sharp_boundary_atlas_certificates_v1.1.6.tar.gz
 ```
 
-The manifest cannot contain its own digest and is therefore the downloaded
-trust anchor; its hash is recorded in the machine-readable
-`PUBLIC_RELEASE_VERIFIED` verdict and final release transcript. A reader can
-either verify the annotated tagged source
-checkout or download all eight assets and run the extracted-archive verifier
-described in the engineering report.
-
-The files formerly stored directly under `release/` certified an older
-18-page manuscript. They are historical only and now live under
-`history/superseded_release_evidence/outcome_p_2026-08-13/`.
+Only that exact DOI-bearing archive and the PDFs rebuilt from the same source
+commit should be submitted to bioRxiv or a journal.

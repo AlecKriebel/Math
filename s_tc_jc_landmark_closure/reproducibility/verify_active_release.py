@@ -5,10 +5,12 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 from pathlib import Path
 import re
 import subprocess
 import sys
+import tarfile
 
 
 PROJECT = Path(__file__).resolve().parents[1]
@@ -17,8 +19,17 @@ TITLE = (
     "Strong Tree-Childness Is a Sharp Generic-Identifiability Boundary for "
     "Level-2 Jukes-Cantor Networks"
 )
-SOURCE_BINDING_SCHEME = "external-envelope-v1"
-RELEASE_TAG = "stc-jc-sharp-boundary-v1.1.4"
+SOURCE_BINDING_SCHEME = "certificate-bundle-envelope-v1"
+RELEASE_TAG = "stc-jc-sharp-boundary-v1.1.5"
+
+
+def clean_git_environment() -> dict[str, str]:
+    allowed = {"PATH", "LANG", "LC_ALL", "LC_CTYPE", "SYSTEMROOT"}
+    environment = {
+        key: value for key, value in os.environ.items() if key in allowed
+    }
+    environment["LC_ALL"] = "C"
+    return environment
 
 
 def sha256(path: Path) -> str:
@@ -38,6 +49,19 @@ def load_json(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def archived_bundle_manifest(archive_path: Path) -> dict:
+    with tarfile.open(archive_path, "r:gz") as archive:
+        matches = [
+            member for member in archive.getmembers()
+            if member.name.endswith("/ACTIVE_MANIFEST.json") and member.isfile()
+        ]
+        require(len(matches) == 1,
+                "certificate archive does not contain one active manifest")
+        stream = archive.extractfile(matches[0])
+        require(stream is not None, "cannot read archived active manifest")
+        return json.loads(stream.read().decode("utf-8"))
+
+
 def active_surface_checks(final, metadata) -> None:
     status = (PROJECT / "STATUS.md").read_text(encoding="utf-8")
     dependency = (PROJECT / "CLAIM_DEPENDENCY_GRAPH.md").read_text(encoding="utf-8")
@@ -53,8 +77,8 @@ def active_surface_checks(final, metadata) -> None:
         require("Strong Tree-Childness Is a Sharp Generic-Identifiability Boundary" in text,
                 f"{name}: manuscript title missing")
     require(all(node in dependency and node in crosswalk for node in
-                ("V111", "V112", "V113", "V114")),
-            "a v1.1.1--v1.1.4 release gate is absent from the dependency records")
+                ("V111", "V112", "V113", "V114", "V115")),
+            "a v1.1.1--v1.1.5 release gate is absent from the dependency records")
     require(final["outcome"] == metadata["outcome"] == "A",
             "machine-readable outcome is not A")
     require(final["status"] == metadata["status"] == "PROVED",
@@ -108,6 +132,8 @@ def artifact_checks(metadata) -> None:
         "v1_1_4_bcr_audit", "v1_1_4_bcr_record",
         "v1_1_4_revision_regression", "v1_1_4_mathematical_review",
         "v1_1_4_release_review",
+        "v1_1_5_disposition", "v1_1_5_revision_regression",
+        "v1_1_5_mathematical_review", "v1_1_5_release_review",
     }
     require(set(metadata["artifacts"]) == required,
             "release artifact inventory is incomplete or contains stale entries")
@@ -129,6 +155,50 @@ def transcript_checks(path: Path, source_commit: str) -> None:
 
 def source_envelope_checks(final, metadata) -> str:
     """Verify an outer envelope, extracted archive, or immutable tagged source."""
+    certificate_envelope = PROJECT / "release_artifacts/CERTIFICATE_BUNDLE_ENVELOPE.json"
+    if certificate_envelope.is_file():
+        envelope = load_json(certificate_envelope)
+        require(envelope["schema"] == "stc-jc-certificate-bundle-envelope-v1" and
+                envelope["version"] == "1.1.6" and
+                envelope["source_tree_clean"] is True,
+                "curated certificate envelope status changed")
+        source_commit = envelope["source_commit"]
+        require(re.fullmatch(r"[0-9a-f]{40}", source_commit) is not None,
+                "curated certificate source commit is invalid")
+        commit_check = subprocess.run(
+            ["git", "cat-file", "-e", f"{source_commit}^{{commit}}"],
+            cwd=REPO,
+            env=clean_git_environment(),
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+        )
+        require(commit_check.returncode == 0,
+                "curated certificate source commit is not a local Git object")
+        archive = PROJECT / "release_artifacts" / envelope["archive"]
+        sidecar = archive.with_suffix(archive.suffix + ".sha256")
+        require(archive.is_file() and sidecar.is_file(),
+                "curated certificate archive or sidecar missing")
+        require(sha256(archive) == envelope["archive_sha256"],
+                "curated certificate archive hash changed")
+        require(sidecar.read_text(encoding="utf-8").split() ==
+                [envelope["archive_sha256"], archive.name],
+                "curated certificate sidecar changed")
+        manifest = archived_bundle_manifest(archive)
+        require(manifest["source_commit"] == source_commit and
+                manifest["source_tree_clean"] is True and
+                manifest["prepared_payload_sha256"] ==
+                envelope["prepared_payload_sha256"],
+                "archive manifest and external source envelope disagree")
+        log_dir = PROJECT / "release_artifacts/certificate_bundle_logs"
+        for name in ("verify_quick.log", "verify_full.log",
+                     "verify_regenerate_all.log"):
+            log = log_dir / name
+            require(log.is_file(), f"curated certificate transcript missing: {name}")
+            text = log.read_text(encoding="utf-8", errors="replace")
+            require(f"source_commit={source_commit}" in text and
+                    "exit_status=0" in text,
+                    f"curated certificate transcript is not source-bound: {name}")
+        return source_commit
     envelope_path = PROJECT / "release_artifacts/RELEASE_ENVELOPE.json"
     archive_marker = REPO / "ARCHIVE_SOURCE_COMMIT.txt"
     if envelope_path.is_file():
@@ -195,23 +265,27 @@ def source_envelope_checks(final, metadata) -> str:
     # downloading the separately distributed large archive.
     try:
         source_commit = subprocess.check_output(
-            ["git", "rev-parse", "HEAD"], cwd=REPO, text=True
+            ["git", "rev-parse", "HEAD"], cwd=REPO, text=True,
+            env=clean_git_environment(),
         ).strip()
         status = subprocess.check_output(
             ["git", "status", "--porcelain", "--untracked-files=all"],
             cwd=REPO,
             text=True,
+            env=clean_git_environment(),
         )
         tag_type = subprocess.check_output(
             ["git", "cat-file", "-t", f"refs/tags/{RELEASE_TAG}"],
             cwd=REPO,
             text=True,
             stderr=subprocess.DEVNULL,
+            env=clean_git_environment(),
         ).strip()
         tagged_commit = subprocess.check_output(
             ["git", "rev-parse", f"{RELEASE_TAG}^{{commit}}"],
             cwd=REPO,
             text=True,
+            env=clean_git_environment(),
         ).strip()
     except Exception as exc:
         raise AssertionError(
@@ -267,6 +341,14 @@ def manuscript_checks() -> None:
         "selected split mask with its complement",
         "Discard the all-zero signature",
         "not an independent human review",
+        "complete central singleton-signature edge class",
+        "three monochromatic runs $c,d,c$",
+        "No target parameter section is chosen",
+        r"C(g;\mathbf h,c)\overline Q_u(\mathbf h)",
+        "one-dimensional representative slice",
+        "$df_i$ has rank one",
+        "three effective boundary scales $\\mathbf z$ retain all four",
+        "no application of \\cref{lem:product-chart}",
     ]
     for needle in required:
         require(needle in compact, f"paper scope/proof phrase missing: {needle}")
@@ -375,6 +457,47 @@ def component_checks() -> None:
                 topology["statistics"]["cycle_lengths"] == [4, 4, 6],
                 "Omega topology census changed")
 
+    cut_reduction = load_json(
+        PROJECT / "independent/bridge_cut/palette_reduction_certificate.json"
+    )
+    require(
+        cut_reduction["failure_count"] == 0
+        and cut_reduction["totals"] == {
+            "balanced_total": 808642,
+            "direct_palette": 544350,
+            "singleton_doubled_palette": 34304,
+            "three_run_path_obstruction": 229988,
+        },
+        "arbitrary-word cut reduction changed",
+    )
+    cut_cleanroom = load_json(
+        PROJECT / "reviews/global_bridge/palette_cleanroom_certificate.json"
+    )
+    require(
+        cut_cleanroom["total_valid_palette_presentations"] == 379742
+        and cut_cleanroom["survivor_count"] == 0,
+        "clean-room cut-palette replay changed",
+    )
+
+    parameter = load_json(
+        PROJECT / "reviews/root_probe/parameter_submersion_certificate.json"
+    )
+    require(
+        parameter["completion_count"] == 42908
+        and parameter["full_row_rank_failure_count"] == 0
+        and parameter["normalization_mutation_tests"][
+            "all_mutations_rejected"
+        ],
+        "split-normalized submersion certificate changed",
+    )
+    probe = load_json(PROJECT / "reviews/root_probe/probe_coherence_certificate.json")
+    require(
+        probe["one_port_ambiguity_group_count"] == 372
+        and probe["one_port_max_two_port_completion_multiplicity"] == 2
+        and "coherence_collision_count" not in probe,
+        "honest one-port ambiguity diagnostic changed",
+    )
+
     omega_rank = load_json(
         PROJECT / "omega_audit/independent/output/omega_rank_readability.json"
     )
@@ -429,6 +552,15 @@ def release_review_checks() -> None:
         review_text = current.read_text(encoding="utf-8").rstrip()
         require(review_text.endswith("PASS"),
                 f"v1.1.4 adversarial review did not pass: {name}")
+    for name in (
+        "ADVERSARIAL_MATHEMATICAL_REVIEW.md",
+        "ADVERSARIAL_RELEASE_REVIEW.md",
+    ):
+        current = PROJECT / "reviews/v1_1_5_referee_repair" / name
+        require(current.is_file(), f"v1.1.5 adversarial review missing: {name}")
+        review_text = current.read_text(encoding="utf-8").rstrip()
+        require(review_text.endswith("PASS"),
+                f"v1.1.5 adversarial review did not pass: {name}")
 
 
 def main() -> None:

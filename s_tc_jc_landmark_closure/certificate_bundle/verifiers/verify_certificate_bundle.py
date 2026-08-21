@@ -9,6 +9,7 @@ import gzip
 import hashlib
 import json
 from pathlib import Path
+import re
 
 import evidence_bindings
 
@@ -26,10 +27,32 @@ def require(condition: bool, message: str) -> None:
         raise AssertionError(message)
 
 
+def payload_commitment(records: dict[str, tuple[int, int, str]]) -> str:
+    """Recompute the clean-source payload commitment recorded at sealing."""
+    commitment = hashlib.sha256()
+    for relative, (size, executable_bits, digest) in sorted(records.items()):
+        commitment.update(relative.encode("utf-8") + b"\0")
+        commitment.update(str(size).encode("ascii") + b"\0")
+        commitment.update(f"{executable_bits:o}".encode("ascii") + b"\0")
+        commitment.update(digest.encode("ascii") + b"\n")
+    return commitment.hexdigest()
+
+
 def verify_manifest(root: Path) -> dict:
     payload = json.loads((root / "ACTIVE_MANIFEST.json").read_text())
     require(payload["schema"] == "stc-jc-proof-bundle-manifest-v1", "manifest schema")
-    expected = {row["path"]: row for row in payload["files"]}
+    require(payload.get("source_tree_clean") is True,
+            "bundle was not sealed from a clean source tree")
+    require(re.fullmatch(r"[0-9a-f]{40}", str(payload.get("source_commit", "")))
+            is not None, "bundle source commit is not an exact Git object")
+    require(re.fullmatch(r"[0-9a-f]{64}",
+                         str(payload.get("prepared_payload_sha256", "")))
+            is not None, "clean-source prepared payload commitment is absent")
+    file_rows = payload["files"]
+    manifest_paths = [row["path"] for row in file_rows]
+    require(len(manifest_paths) == len(set(manifest_paths)),
+            "duplicate path in ACTIVE_MANIFEST.json")
+    expected = {row["path"]: row for row in file_rows}
     actual = {
         path.relative_to(root).as_posix()
         for path in root.rglob("*")
@@ -45,6 +68,21 @@ def verify_manifest(root: Path) -> dict:
         path = root / relative
         require(path.stat().st_size == row["bytes"], f"size mismatch: {relative}")
         require(sha256(path) == row["sha256"], f"hash mismatch: {relative}")
+        require(isinstance(row.get("executable_bits"), int),
+                f"missing executable-mode binding: {relative}")
+        require(path.stat().st_mode & 0o111 == row["executable_bits"],
+                f"executable-mode mismatch: {relative}")
+    actual_records = {
+        relative: (
+            expected[relative]["bytes"],
+            expected[relative]["executable_bits"],
+            expected[relative]["sha256"],
+        )
+        for relative in expected
+    }
+    require(payload_commitment(actual_records)
+            == payload["prepared_payload_sha256"],
+            "prepared payload commitment mismatch")
     checksum_rows: dict[str, str] = {}
     for line in (root / "SHA256SUMS").read_text(encoding="utf-8").splitlines():
         if not line.strip():
@@ -93,6 +131,11 @@ def verify_counts(root: Path) -> dict:
     evidence = evidence_bindings.verify_frozen(root)
     require(evidence["three_outgoing"] == 10466, "evidence map n3 count")
     require(evidence["four_outgoing_survivor"] == 192, "evidence map n4 count")
+    require(evidence["closure_counts"] == {
+        "COMPACT_PATH_CLOSURE_BINDINGS.jsonl.gz": 276,
+        "RESTORATION_CLOSURE_BINDINGS.jsonl.gz": 5476,
+        "DIRECT_ANCHOR_CLOSURE_BINDINGS.jsonl.gz": 62,
+    }, "closure-binding stream counts")
 
     index = root / "atlas" / "ATLAS_INDEX.csv.gz"
     with gzip.open(index, "rt", encoding="utf-8", newline="") as handle:
@@ -117,14 +160,83 @@ def verify_counts(root: Path) -> dict:
         if row["closure_verifier"]:
             require((root / row["closure_verifier"]).is_file(),
                     f"missing indexed closure verifier: {row['closure_verifier']}")
+    for row in frozen_evidence:
+        if row["universe"] == "three_outgoing":
+            if row["disposition"] == "pending_support_completion":
+                require(all(
+                    binding.get("closure", {}).get("path")
+                    == evidence_bindings.RESTORATION_CLOSURE_REL
+                    for binding in row["evidence"]["restoration_roots"]
+                ), "pending relation lacks record-level restoration closure")
+            elif row["disposition"] == "isomorphism_or_T":
+                require(
+                    row["evidence"].get("direct_anchor_closure", {}).get("path")
+                    == evidence_bindings.DIRECT_CLOSURE_REL,
+                    "direct residual relation lacks probe closure",
+                )
+        elif row["disposition"] in {
+            "fixed_full_restoration_root", "selected_incoming_rooting_duplicate"
+        }:
+            require(
+                row["evidence"].get("restoration_closure", {}).get("path")
+                == evidence_bindings.RESTORATION_CLOSURE_REL,
+                "four-outgoing presentation lacks restoration closure",
+            )
     four = [row["disposition"] for row in rows if row["universe"] == "four_outgoing_survivor"]
     require(four.count("direct_labelled_isomorphism") == 18, "n4 direct survivors")
     require(four.count("selected_incoming_rooting_duplicate") == 42,
             "n4 rooting-duplicate survivors")
     require(four.count("fixed_full_restoration_root") == 132, "n4 restoration roots")
+    cut_reduction = json.loads(
+        (root / "independent/bridge_cut/palette_reduction_certificate.json").read_text()
+    )
+    require(cut_reduction["status"] == "EXACTLY COMPUTED", "cut reduction status")
+    require(cut_reduction["failure_count"] == 0, "cut reduction failures")
+    require(cut_reduction["totals"]["balanced_total"] == 808642,
+            "cut reduction balanced universe")
+    require(cut_reduction["totals"]["three_run_path_obstruction"] == 229988,
+            "cut reduction direct obstruction count")
+    require(
+        cut_reduction["totals"]["direct_palette"]
+        + cut_reduction["totals"]["singleton_doubled_palette"]
+        == 578654,
+        "cut reduction palette count",
+    )
+    cut_cleanroom = json.loads(
+        (root / "reviews/global_bridge/palette_cleanroom_certificate.json").read_text()
+    )
+    require(cut_cleanroom["status"] == "EXACTLY COMPUTED", "cut cleanroom status")
+    require(cut_cleanroom["total_valid_palette_presentations"] == 379742,
+            "cut cleanroom valid-presentation count")
+    require(cut_cleanroom["survivor_count"] == 0, "cut cleanroom survivor")
+    cut_primary = json.loads(
+        (root / "independent/bridge_cut/cut_certificate.json").read_text()
+    )
+    primary_family_counts = {
+        (row["core"], row["role"]): (
+            row["balanced_compressed_checked"],
+            row["valid_balanced_compressed"],
+            row["valid_singleton_doubled"],
+            len(row["survivors"]),
+        )
+        for row in cut_primary["switching_compression"]["families"]
+    }
+    cleanroom_family_counts = {
+        (row["core"], row["role"]): (
+            row["balanced_compressed_checked"],
+            row["valid_balanced_compressed"],
+            row["valid_singleton_doubled"],
+            row["survivor_count"],
+        )
+        for row in cut_cleanroom["families"]
+    }
+    require(cleanroom_family_counts == primary_family_counts,
+            "primary/clean-room cut family counts disagree")
     return {
         "three_outgoing": n3_rows,
         "four_outgoing_survivors": n4_rows,
+        "cut_balanced_words": 808642,
+        "cut_valid_palette_presentations": 379742,
         "record_level_evidence_sha256": evidence["logical_sha256"],
     }
 

@@ -55,6 +55,68 @@ def compare_logical_gzip(generated: Path, expected: Path) -> None:
             )
 
 
+def cut_palette_gate() -> None:
+    """Replay both independent halves of the arbitrary-word cut reduction."""
+
+    primary = ROOT / "independent/bridge_cut"
+    cleanroom = ROOT / "reviews/global_bridge"
+    with tempfile.TemporaryDirectory(prefix="cut-palette-") as raw:
+        out = Path(raw)
+        run(
+            PYTHON,
+            str(primary / "verify_palette_reduction.py"),
+            "--output",
+            str(out / "reduction.json"),
+        )
+        compare(out / "reduction.json", primary / "palette_reduction_certificate.json")
+        run(
+            PYTHON,
+            str(cleanroom / "verify_palette_cleanroom.py"),
+            "--output",
+            str(out / "cleanroom.json"),
+        )
+        compare(out / "cleanroom.json", cleanroom / "palette_cleanroom_certificate.json")
+        reduction = json.loads((out / "reduction.json").read_text())
+        replay = json.loads((out / "cleanroom.json").read_text())
+        cut = json.loads((primary / "cut_certificate.json").read_text())
+        assert reduction["failure_count"] == 0
+        assert reduction["totals"]["balanced_total"] == 808642
+        assert reduction["totals"]["three_run_path_obstruction"] == 229988
+        assert (
+            reduction["totals"]["direct_palette"]
+            + reduction["totals"]["singleton_doubled_palette"]
+            == 578654
+        )
+        assert replay["total_valid_palette_presentations"] == 379742
+        assert replay["survivor_count"] == 0
+        primary_rows = {
+            (row["core"], row["role"]): {
+                "balanced_compressed_checked": row["balanced_compressed_checked"],
+                "valid_balanced_compressed": row["valid_balanced_compressed"],
+                "valid_singleton_doubled": row["valid_singleton_doubled"],
+                "survivor_count": len(row["survivors"]),
+            }
+            for row in cut["switching_compression"]["families"]
+        }
+        cleanroom_rows = {
+            (row["core"], row["role"]): {
+                key: row[key]
+                for key in (
+                    "balanced_compressed_checked",
+                    "valid_balanced_compressed",
+                    "valid_singleton_doubled",
+                    "survivor_count",
+                )
+            }
+            for row in replay["families"]
+        }
+        assert cleanroom_rows == primary_rows
+        COMMITMENTS["cut_palette_reduction"] = {
+            "reduction_sha256": sha256(out / "reduction.json"),
+            "cleanroom_sha256": sha256(out / "cleanroom.json"),
+        }
+
+
 def convention_gate() -> None:
     # Exercise the exact finite fixtures without importing literature files or
     # audit prose, which are not mathematical inputs.
@@ -140,16 +202,16 @@ def full_n4_exact_audit() -> None:
 
 def omega_gate(full: bool) -> None:
     if full:
-        run(PYTHON, "omega_audit/runtime_compat/verify_orbit_constant.py")
-        run(PYTHON, "omega_audit/runtime_compat/run_historical_omega.py")
+        run(PYTHON, "sharpness/omega/compat/verify_orbit_constant.py")
+        run(PYTHON, "sharpness/omega/compat/run_producer_replay.py")
         env = os.environ.copy()
-        env["PYTHONPATH"] = str(ROOT / "omega_audit/frozen_input/historical/src")
-        print("\n==> historical standard-library Omega replay", flush=True)
-        subprocess.run([PYTHON, "omega_audit/frozen_input/historical/src/verify_jc_omega_move_stdlib.py"],
+        env["PYTHONPATH"] = str(ROOT / "sharpness/omega/inputs/producer_engine")
+        print("\n==> active standard-library Omega producer replay", flush=True)
+        subprocess.run([PYTHON, "sharpness/omega/inputs/producer_engine/verify_jc_omega_move_stdlib.py"],
                        cwd=ROOT, env=env, check=True)
-    run(PYTHON, "omega_audit/independent/verify_omega_release.py")
-    run(PYTHON, "omega_audit/independent/verify_omega_rank_readability.py")
-    generated = ROOT / "omega_audit/independent/output"
+    run(PYTHON, "sharpness/omega/cleanroom/verify_omega_release.py")
+    run(PYTHON, "sharpness/omega/cleanroom/verify_omega_rank_readability.py")
+    generated = ROOT / "sharpness/omega/cleanroom/output"
     if generated.is_dir():
         COMMITMENTS["omega"] = {
             path.name: sha256(path) for path in sorted(generated.glob("*.json"))
@@ -160,6 +222,7 @@ def omega_gate(full: bool) -> None:
 def quick() -> None:
     run(PYTHON, "verifiers/package_mutation_tests.py")
     run(PYTHON, "reviews/root_probe/verify_active_structural.py")
+    cut_palette_gate()
     run(PYTHON, "reviews/global_bridge/exact_audit.py",
         "--output", "reviews/global_bridge/exact_audit_certificate.json")
     run(PYTHON, "reviews/global_bridge/mutation_tests.py",
@@ -168,7 +231,7 @@ def quick() -> None:
     run(PYTHON, "reviews/direct_anchor_probe_closure/mutation_tests.py")
     run(PYTHON, "reviews/compact_probe_clean_clone_gate/verify_tracked_inputs.py")
     triangle_gate()
-    run(PYTHON, "s_tc_jc_sharp_boundary/reproducibility/verify_math.py")
+    run(PYTHON, "sharpness/theta/verify_math.py")
     omega_gate(False)
 
 
@@ -176,6 +239,7 @@ def full(regenerate: bool) -> None:
     run(PYTHON, "verifiers/package_mutation_tests.py")
     convention_gate()
     run(PYTHON, "reviews/root_probe/verify_active_structural.py")
+    cut_palette_gate()
     run(PYTHON, "reviews/global_bridge/exact_audit.py",
         "--output", "reviews/global_bridge/exact_audit_certificate.json")
     run(PYTHON, "reviews/global_bridge/mutation_tests.py",
@@ -218,7 +282,7 @@ def full(regenerate: bool) -> None:
     run(PYTHON, "reviews/compact_probe_clean_clone_gate/mutation_tests.py")
     run(PYTHON, "reviews/compact_probe_clean_clone_gate/verify_tracked_inputs.py")
     triangle_gate()
-    run(PYTHON, "s_tc_jc_sharp_boundary/reproducibility/verify_math.py")
+    run(PYTHON, "sharpness/theta/verify_math.py")
     omega_gate(True)
 
     if regenerate:

@@ -34,7 +34,7 @@ by this review.
 | Proposed sink-plus-minimum-repair criterion as generic `red_*`-reduced `S_TC` strength | **FALSE** | Omitting the cycle sink reduces to a strong two-boundary tree. |
 | Sink-plus-minimum-repair criterion for **strong retention of the original primitive core** | **VERIFIED** | Across all five cores, every occupancy pattern and every alternate repair, it agrees exactly with the intrinsic all-rootings census when all genuine sinks are retained. |
 | Pointwise rigidity of bounded supports | **VERIFIED** | Every alternate clean support and all 579 primary support/probe records have pointwise stabilizer one. |
-| Support-plus-one/two reconstruction and conditional probe coherence | **VERIFIED** | No collision in 8,976 exact two-extra-port presentations; three-extra-label order decks are injective for all 24, 210, and 336 words on 2, 5, and 6 segments.  The revised proof contains the required triangle-destruction case split. |
+| Support-plus-one/two reconstruction and conditional probe coherence | **VERIFIED AFTER CORRECTION** | The honest one-port grouping has 372 ambiguity groups among 8,976 two-extra-port presentations, demonstrating why pair probes are necessary.  The direct-anchor and compact semantic gates verify every two-port parent transport; three-extra-label order decks are injective for all 24, 210, and 336 words on 2, 5, and 6 segments.  The revised proof contains the required triangle-destruction case split. |
 | “Every probe-level `T` choice refers to a triangle present in every probe” | **FALSE** | Adding a port on an edge of the support triangle destroys that triangle.  Coherence survives because this probe has no `T` ambiguity and fixes literal orientation. |
 | Selected physical-parameter to descriptor map is an onto semialgebraic submersion | **VERIFIED** | All 42,908 corrected bounded completion maps, in both incoming modes, have full row rank; the product-class proof works for arbitrary class size. |
 | Descriptor cube is a minimal-coordinate selected model-image manifold | **FALSE** | 37,400 completions have repeated switching columns after core collapse; inheritance coordinates can be tensor-redundant. |
@@ -185,10 +185,13 @@ be recomputed.  That is an artifact gate, not a completion-partition defect.
 
 ## 4. Exact selected-parameter submersion
 
-Fix the displayed-choice indexing and selected labels.  Each physical edge
-has one complete vector of descendant masks.  Equality of these vectors is an
-equivalence relation on edges, so distinct classes are disjoint.  The map to
-one effective coordinate per nonzero class is
+Fix the displayed-choice indexing and selected labels.  Normalize each
+physical edge's complete switching row by sending the empty and full masks to
+zero and identifying every nontrivial mask with its complement.  Equality of
+these normalized zero-sum JC indicator rows is an equivalence relation on
+visible edges, so distinct classes are disjoint; all-zero rows are tensor-
+invisible and discarded.  The map to one effective coordinate per visible
+class is
 
 ```text
 y_C = product_{e in C} x_e.
@@ -200,7 +203,10 @@ have full rank.  Reticulation permutations/flips append an identity or signed
 permutation block `lambda -> lambda` or `1-lambda`.  Surjectivity is witnessed
 by `x_e=y_C^(1/|C|)` in each class.  Positive roots are semialgebraic.
 
-This verifies the map between **parameter cubes** used by the atlas.  It must
+The verifier constructs this Jacobian over $\mathbb Q$ at the point where
+every visible edge multiplier is $1/2$, computes its row rank independently,
+and records a nonzero minor.  This verifies the map between **parameter
+cubes** used by the atlas.  It must
 not be described as a minimal-coordinate map between model-image manifolds.
 For example, after omitting the cycle sink, both switching columns are
 identical and the inheritance coordinate is tensor-redundant.  Such
@@ -224,8 +230,10 @@ criterion, and pointwise automorphism count one.
 Once the labelled `Q` restriction is fixed on both sides, pointwise rigidity
 makes its literal core map unique.  `Q+p` then fixes the segment and anchor
 side of `p`; `Q+p+q` fixes each same-segment pair order.  Pair comparisons
-coming from actual total orders assemble uniquely.  Exact clean tests found
-no deck collision.
+coming from actual total orders assemble uniquely.  One-port decks alone do
+not determine pair order: the corrected grouping finds 372 expected
+ambiguities.  The exact two-port parent transports in the direct-anchor and
+compact semantic gates resolve them and reject altered pair orders.
 
 The earlier triangle sentence was false.  A cycle support `Q` can be a
 triangle, while adding `p` on its unsubdivided edge makes `Q+p` a four-cycle.

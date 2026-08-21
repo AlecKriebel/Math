@@ -250,10 +250,11 @@ Apply the intrinsic analytic extraction map furnished by (2.8) to the common
 distributions.  Projection to any focal slice maps a relative-open source
 product germ onto a relative-open source local projective germ.  Every image
 point is simultaneously the projective factor extracted from a target
-factorization.  Thus the focal source projective germ is contained in the
-corresponding target projective model (or in one member of a finite union of
-target incoming-role completions).  A finite semialgebraic union containing a
-source-full-dimensional set has a source-full-dimensional member.
+factorization.  Thus the focal source projective germ is covered by finitely
+many target incoming-role completion images.  A finite semialgebraic union
+containing a source-full-dimensional set has a source-full-dimensional member,
+so one fixed completion contains a relatively open full-dimensional source
+subgerm; the entire original germ need not lie in that member.
 
 This argument selects no target parameters continuously.  Since projective
 extraction is a function of the distribution, changes in other blobs cannot
@@ -346,16 +347,18 @@ For a positive JC-symmetric three-port tensor in the port order
  \quad t=P(1,2,3),
 \]
 
-and \(F=abc-t^2\), \(G=a-bc\).
+and \(\Delta=abc-t^2\), \(\Gamma=a-bc\).
 
 **EXACTLY COMPUTED.** The primitive compiler generated 76 nontrivial
-canonical central-role endpoint tensors.  In 67 cases an exact
-factor/Bernstein or inheritance-Bernstein certificate proves \(F>0\)
-throughout the complete open cube.  In the remaining nine, \(F=0\)
-identically and an exact certificate proves \(G>0\) throughout the complete
-open cube.  The compiler also records the ordinary trivalent median
+canonical central-role endpoint tensors.  Before evaluating the two
+polynomials, it identifies the unique complete effective central singleton-
+signature edge class and sets its product multiplier to one.  In 67 cases an
+exact factor/Bernstein or inheritance-Bernstein certificate proves
+\(\Delta>0\) throughout the complete open cube.  Among the remaining nine,
+two have \(\Delta=0,\Gamma>0\) and seven have
+\(\Delta=\Gamma=0\).  The compiler also records the ordinary trivalent median
 component, whose sliced local tensor is exactly constant and therefore has
-\(F=G=0\).  Every nonconstant polynomial was regenerated
+\(\Delta=\Gamma=0\).  Every nonconstant polynomial was regenerated
 from
 
 \[
@@ -365,27 +368,22 @@ from
 
 the stored graph-to-mask transport is checked before the polynomial is used.
 
-An arbitrary three-terminal endpoint has a unique median bridge-tree
-component.  Everything else lies on one of three terminal arms and collapses
-to positive scalars \(u,v\in(0,1)\) and \(w\in(0,1]\); the central arm may
-have length zero.  Arm scaling sends
-
+If the physical endpoint tensor is \(\widetilde P\) and the complete central
+effective class has product \(w\in(0,1]\) (with \(w=1\) for an empty serial
+class), define
+\(P(g_1,g_2,h)=w^{-\mathbf1[h\ne0]}\widetilde P(g_1,g_2,h)\).
+Then
 \[
- (a,b,c,t)\mapsto(uv,a,uw,b,vw,c,uvw,t).
+\widetilde a=a,\qquad \widetilde b=wb,\qquad
+\widetilde c=wc,\qquad \widetilde t=wt,
 \]
-
-Hence \(F\mapsto(uvw)^2F\).  If \(F=0,G>0\), then
-
-\[
- G\mapsto uv(a-w^2bc)\ge uv(a-bc)>0.
-\]
-
-For the ordinary component \(a=b=c=t=1\) before arm scaling, so the same
-formula gives \(F=0\) and \(G=uv(1-w^2)\ge0\), with equality allowed only
-when its central arm has length zero.  Thus every arbitrary endpoint satisfies
+so \(\widetilde\Delta=w^2\Delta\) while
+\(\widetilde\Gamma=\Gamma+(1-w^2)bc\).  The unnormalized physical
+quantity is therefore strict in seven cases where the projective normalized
+\(\Gamma\) is zero.  In the normalized chart every endpoint satisfies
 
 \[
- F>0\quad\hbox{or}\quad F=0\text{ and }a\ge bc.
+ \Delta>0\quad\hbox{or}\quad \Delta=0\text{ and }a\ge bc.
  \tag{3.1}
 \]
 
@@ -406,8 +404,8 @@ Independent positive arm scales act by invertible row and column diagonal
 matrices on each Fourier block.  They multiply a chosen minor by a positive
 monomial, so the conclusion survives arbitrary outside branches.
 
-**EXACTLY COMPUTED.** A separate two-colour switching compiler checked all ten
-root/nonroot primitive families after run compression and found no balanced
+**EXACTLY COMPUTED.** Separate two-colour switching implementations checked
+all ten root/nonroot primitive families after run compression and found no balanced
 noncut colouring displayed by every switching.  The compression is complete
 for the following reason.  A colour word with two transitions on one directed
 segment already prevents the split from being displayed by any switching:
@@ -419,7 +417,10 @@ original side had at least two taxa, retain a second adjacent occurrence at
 the same segment.  These are exactly the words enumerated by the compiler.  If
 the full split were displayed by every switching, its balanced restriction
 would remain displayed by every restricted switching.  The zero survivor
-count therefore lifts to arbitrary subdivisions.
+count therefore lifts to arbitrary subdivisions.  A standalone combinatorial
+implementation independently partitions all 808,642 balanced four-through-
+eight-port words into 229,988 direct three-run obstructions and 578,654
+palette reductions, with no unclassified record.
 
 If one switching fails to display the compressed split, the ordinary tree
 quartet criterion supplies two taxa of each colour whose induced quartet also
@@ -523,5 +524,5 @@ consequence are mathematical deductions and are labelled **PROVED**.
 **UNRESOLVED HERE.** This work does not classify the projective local model
 germs up to ordinary triangle redirection.  It does not prove the bounded
 local topology atlas, probe coherence, root reduction, or converse gluing.
-Those are separate nodes in the landmark program.  The present result closes
+Those are separate nodes in the larger classification program.  The present result closes
 only the bridge/no-compensation and one-sided cut-preservation nodes.

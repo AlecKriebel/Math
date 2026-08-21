@@ -258,8 +258,8 @@ def abstract_three_label_order_check(segment_count: int) -> dict:
 def audit_probe_decks() -> dict:
     cores = [derive_cycle_event_core(), *derive_theta_event_cores()]
     extras = ("P0", "P1")
-    groups: Dict[Tuple[str, str, str, str], set[str]] = defaultdict(set)
-    group_examples: Dict[Tuple[str, str, str, str], dict] = {}
+    one_port_groups: Dict[Tuple[str, str, str], set[str]] = defaultdict(set)
+    group_examples: Dict[Tuple[str, str, str], dict] = {}
     commitment = hashlib.sha256()
     presentation_count = 0
     support_count = 0
@@ -305,9 +305,15 @@ def audit_probe_decks() -> dict:
                         codes.append(code)
                         triangle_counts.append(triangles)
                     max_eligible_triangles = max(max_eligible_triangles, *triangle_counts)
-                    key = (support_code, codes[0], codes[1], codes[2])
+                    # The support and two one-port marginals deliberately do
+                    # not determine the order of P0 and P1 on one segment.
+                    # The value below is the genuinely omitted two-port graph,
+                    # so collisions are expected and certify why pair probes
+                    # are necessary.  The load-bearing compact semantic gate
+                    # separately verifies every exact parent transport.
+                    key = (support_code, codes[0], codes[1])
                     full_code = codes[2]
-                    groups[key].add(full_code)
+                    one_port_groups[key].add(full_code)
                     row = {
                         "core": f"{core.family}-{core.placement}",
                         "repair": sorted(repair),
@@ -321,14 +327,10 @@ def audit_probe_decks() -> dict:
                     }
                     commitment.update(canonical_json_bytes(row))
                     group_examples.setdefault(key, row)
-    collisions = []
-    # With exactly two extra labels the two-port probe is the full graph, so a
-    # disagreement here would expose a canonicalization inconsistency.  The
-    # independent three-label check below verifies the nontrivial assembly of
-    # all pair orders for longer words.
-    for key, full_codes in groups.items():
+    ambiguities = []
+    for key, full_codes in one_port_groups.items():
         if len(full_codes) > 1:
-            collisions.append({
+            ambiguities.append({
                 "probe_key_hashes": [sha256_bytes(code.encode()) for code in key],
                 "full_code_hashes": sorted(sha256_bytes(code.encode()) for code in full_codes),
                 "example": group_examples[key],
@@ -336,9 +338,19 @@ def audit_probe_decks() -> dict:
     return {
         "support_presentation_count": support_count,
         "two_extra_port_presentation_count": presentation_count,
-        "probe_group_count": len(groups),
-        "coherence_collision_count": len(collisions),
-        "coherence_collisions": collisions[:10],
+        "one_port_probe_group_count": len(one_port_groups),
+        "one_port_ambiguity_group_count": len(ambiguities),
+        "one_port_max_two_port_completion_multiplicity": max(
+            map(len, one_port_groups.values()), default=0
+        ),
+        "one_port_ambiguity_examples": ambiguities[:10],
+        "two_port_full_graph_bindings": presentation_count,
+        "interpretation": (
+            "One-port decks locate individual ports but do not determine pair "
+            "order.  The recorded ambiguities are resolved by the explicit "
+            "two-port probes; exact graph-parent transports are checked by "
+            "the direct-anchor and compact semantic gates."
+        ),
         "max_eligible_triangle_count_in_any_probe": max_eligible_triangles,
         "presentation_commitment_sha256": commitment.hexdigest(),
         "support_presentations": support_rows,
@@ -363,7 +375,7 @@ def main() -> int:
         "sha256": sha256_bytes(raw),
         "supports": payload["support_presentation_count"],
         "presentations": payload["two_extra_port_presentation_count"],
-        "collisions": payload["coherence_collision_count"],
+        "one_port_ambiguity_groups": payload["one_port_ambiguity_group_count"],
         "three_label_checks": payload["abstract_three_extra_label_checks"],
     }, indent=2, sort_keys=True))
     return 0

@@ -50,11 +50,13 @@ flattening has rank one.  For a noncut split, the independent compiler gives
 strict nonzero minors in the one-active-component case.  In the omitted
 two-active crossing, a nontrivial endpoint satisfies the exact dichotomy
 
-    F=abc-t^2>0,
+    Delta=abc-t^2>0,
 
-or `F=0` and `G=a-bc>0`; the ordinary trivalent endpoint has `F=G=0`.
-Thus every endpoint with `F=0` satisfies `a>=bc`.  Rank one would force
-`F=F'=0` and
+or `Delta=0` and `Gamma=a-bc>=0`; the normalized finite certificate has 67
+strict-Delta, 2 strict-Gamma, and 7 nonordinary weak-Gamma endpoint types,
+plus the ordinary trivalent endpoint.  Restoring the positive central factor
+preserves the needed weak inequality.  Thus every endpoint with `Delta=0`
+satisfies `a>=bc`.  Rank one would force `Delta=Delta'=0` and
 
     aA=z^2bcBC,
 

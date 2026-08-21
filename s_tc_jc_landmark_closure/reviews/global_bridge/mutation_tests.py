@@ -30,7 +30,7 @@ def require_endpoint_coverage(data):
     ordinary = [
         record
         for record in records
-        if record["dichotomy"]["case"] == "F_zero_G_zero_ordinary"
+        if record["dichotomy"]["case"] == "Delta_zero_Gamma_zero_ordinary"
     ]
     assert len(ordinary) == 1 and ordinary[0]["reticulation_count"] == 0
     assert ordinary[0]["signatures"] == []
@@ -221,13 +221,13 @@ def main():
     deleted["three_port_endpoint_dichotomy"]["records"] = [
         record
         for record in deleted["three_port_endpoint_dichotomy"]["records"]
-        if record["dichotomy"]["case"] != "F_zero_G_zero_ordinary"
+        if record["dichotomy"]["case"] != "Delta_zero_Gamma_zero_ordinary"
     ]
     mutations.append(
         rejected(
             "delete_ordinary_trivalent_endpoint",
             lambda: require_endpoint_coverage(deleted),
-            "The weak a>=bc branch and F=G=0 ordinary endpoint are mandatory coverage.",
+            "The normalized weak a>=bc branch and ordinary endpoint are mandatory coverage.",
         )
     )
 
