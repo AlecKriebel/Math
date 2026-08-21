@@ -3800,6 +3800,23 @@ Timestamps use America/Los_Angeles unless explicitly marked otherwise.
   **45%** toward a complete parameter-three theorem, and **18%** toward a
   universal resolution.  These are workload estimates, not probabilities.
 
+## 2026-08-20 — final local-worktree archive
+
+- Closed the dedicated `Math-kissing5` worktree and preserved the complete
+  human-readable proof portfolio, search and verification source, compact
+  run metadata, hostile reviews, and this chronological log on
+  `codex/kissing5-final-archive`.
+- Omitted regenerable CNF/DRAT/LRAT solver products, replay locks and logs,
+  compiled checker binaries, tool builds, caches, and virtual environments.
+  The retained generators in `src/synthesis_k3/`, the verification sources,
+  and the compact outcome JSON records identify how the omitted solver
+  products were produced and record their hashes and run parameters.
+- The mathematical state is frozen at the preceding estimates; closing this
+  worktree does not promote any discovery evidence to a universal theorem.
+- Best-guess completion of the archival handoff: **100%**. The underlying
+  parameter-three and universal-resolution estimates remain **63%** and
+  **21%**, respectively.
+
 ## 2026-07-28 15:31 PDT — static holonomy refuted; QQ1 outer layer saturated
 
 - Promoted C-164 as a deliberately `REFUTED` proof route.  The accepted

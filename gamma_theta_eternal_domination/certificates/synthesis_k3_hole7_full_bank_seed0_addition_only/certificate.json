@@ -1,0 +1,261 @@
+{
+  "artifacts": {
+    "SOUNDNESS.md": {
+      "path": "SOUNDNESS.md",
+      "sha256": "bcf65e4cf265c255f107ab99abe0363e99bdc545cdc279a4d6a4f6fab091ada7",
+      "size_bytes": 2079
+    },
+    "checker/original-warning.stderr": {
+      "path": "checker/original-warning.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    "checker/original-warning.stdout": {
+      "path": "checker/original-warning.stdout",
+      "sha256": "b97edcc8af5943614eba3c1c5e2243e913a74edf53cd56fb7be02308f57f0e22",
+      "size_bytes": 12391
+    },
+    "checker/strict.stderr": {
+      "path": "checker/strict.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    "checker/strict.stdout": {
+      "path": "checker/strict.stdout",
+      "sha256": "127d0c33e15e3e52c073d0580734d439f3384069a92a9a5d6989f1b14fbfa863",
+      "size_bytes": 412
+    },
+    "proof/addition-only.rup.drat": {
+      "path": "proof/addition-only.rup.drat",
+      "sha256": "e8052df40d3e0c39b945a8735889039daba55eacc351e1822828b3d94f7baae9",
+      "size_bytes": 18093724
+    },
+    "repro/hole7_deletion_strip_auditor.py": {
+      "path": "repro/hole7_deletion_strip_auditor.py",
+      "sha256": "befcc896a6df818f94a7ce03c08207f8c0add471eb59cf5e4db24d69c17e97d8",
+      "size_bytes": 44245
+    }
+  },
+  "claim": "the exact full-bank order-12 parameter-three hole7 CNF is unsatisfiable",
+  "claim_boundary": {
+    "graph_theoretic_use_requires_separate_coverage_proofs": true,
+    "hole5_addressed": false,
+    "order": 12,
+    "parameter": 3,
+    "template": "hole7",
+    "universal_conjecture_resolved": false
+  },
+  "cnf": {
+    "clause_count": 21718,
+    "literal_count": 148551,
+    "sha256": "6a011e685e58ef517f2ab8253ca40987bd7b742a470bedbacdc3a5e94fc995a7",
+    "size_bytes": 621864,
+    "variable_count": 6886
+  },
+  "original_warning_diagnostic": {
+    "checker_sha256": "31df522b8b2b71acd357723b0e826cf488826ed78ad9e3a7bcad241271812beb",
+    "checker_source_sha256": "f7619bdc338bc8151b2f6bb87488052795c926b048d5040cf165742eb1ba9a26",
+    "cnf_sha256": "6a011e685e58ef517f2ab8253ca40987bd7b742a470bedbacdc3a5e94fc995a7",
+    "command_flags": [
+      "-I",
+      "-f",
+      "-W",
+      "-v",
+      "-t",
+      "600"
+    ],
+    "exit_code": 80,
+    "first_trigger": {
+      "checker_internal_clause": "[8166] -741 -17 -12 -1 0",
+      "checker_internal_instruction": 90747,
+      "deletion": "d -741 -1 -12 -17 0",
+      "deletion_proof_line": 2375,
+      "unit_addition": "-741 0",
+      "unit_addition_proof_line": 2374
+    },
+    "normalized_command": [
+      "$CHECKER",
+      "$CNF",
+      "$ORIGINAL_PROOF",
+      "-I",
+      "-f",
+      "-W",
+      "-v",
+      "-t",
+      "600"
+    ],
+    "original_proof_sha256": "7ceb4a63d393d8ff6fec33569c6284fee61533be4f15fd733777b85b08ee2b85",
+    "source_mechanism": {
+      "W_option_assignment_line": 1409,
+      "hardwarning_definition_line": 54,
+      "hardwarning_exit_line": 811,
+      "hardwarning_value": 80,
+      "meaning": "forward verification preserves the pseudo-unit reason clause and ignores its deletion; -W makes that ignored optimization instruction fatal",
+      "pseudo_unit_deletion_comment_line": 808,
+      "warning_print_line": 810
+    },
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "b97edcc8af5943614eba3c1c5e2243e913a74edf53cd56fb7be02308f57f0e22"
+  },
+  "reproduction": {
+    "audit_command": [
+      "python3",
+      "repro/hole7_deletion_strip_auditor.py",
+      "audit",
+      "--package",
+      "$CERTIFICATE_ROOT",
+      "--replay-checker"
+    ],
+    "auditor": "repro/hole7_deletion_strip_auditor.py"
+  },
+  "schema": "gamma-theta-hole7-addition-only-recovery-v1",
+  "schema_version": 1,
+  "source_audit": {
+    "claim_status": "NO_MATHEMATICAL_CLAIM",
+    "original_checker_exit_code": 80,
+    "records": {
+      "bank": {
+        "path": "results/synthesis_k3_template_bank_packages/hole7/coloring_bank.json",
+        "sha256": "371ab3b01ce2add1138e0c0c78d267a796bcc536c79f95050face4bfcd4d11a7",
+        "size_bytes": 156495
+      },
+      "checker": {
+        "path": "tools/drat_trim_2023_05_22/drat-trim",
+        "sha256": "31df522b8b2b71acd357723b0e826cf488826ed78ad9e3a7bcad241271812beb",
+        "size_bytes": 70088
+      },
+      "checker_source": {
+        "path": "tools/drat_trim_2023_05_22/drat-trim.c",
+        "sha256": "f7619bdc338bc8151b2f6bb87488052795c926b048d5040cf165742eb1ba9a26",
+        "size_bytes": 59498
+      },
+      "cnf": {
+        "path": "results/synthesis_k3_template_bank_packages/hole7/instance.cnf",
+        "sha256": "6a011e685e58ef517f2ab8253ca40987bd7b742a470bedbacdc3a5e94fc995a7",
+        "size_bytes": 621864
+      },
+      "original_checker_stderr": {
+        "path": "results/synthesis_k3_template_bank_runs/hole7_seed0_600s/checker.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size_bytes": 0
+      },
+      "original_checker_stdout": {
+        "path": "results/synthesis_k3_template_bank_runs/hole7_seed0_600s/checker.stdout",
+        "sha256": "1d4d2e1f99c505742e9d1c698983257816b5be474aa423aa3fb4a1c81ab508ca",
+        "size_bytes": 113
+      },
+      "outcome": {
+        "path": "results/synthesis_k3_template_bank_runs/hole7_seed0_600s/outcome.json",
+        "sha256": "ffb19de770a003341b7050941531fca845626fe4cd086b727287122c57d510ff",
+        "size_bytes": 5592
+      },
+      "package_manifest": {
+        "path": "results/synthesis_k3_template_bank_packages/hole7/manifest.json",
+        "sha256": "7c46b015dd58e321428c7d0bb8b896d27ae8ce0fb4bc9566199e43f86fa17185",
+        "size_bytes": 3140
+      },
+      "proof": {
+        "path": "results/synthesis_k3_template_bank_runs/hole7_seed0_600s/proof.drat",
+        "sha256": "7ceb4a63d393d8ff6fec33569c6284fee61533be4f15fd733777b85b08ee2b85",
+        "size_bytes": 35285574
+      },
+      "run_config": {
+        "path": "results/synthesis_k3_template_bank_runs/hole7_seed0_600s/run_config.json",
+        "sha256": "8cce1b89c3381e6b685b4d351c22b9edf2aaa17b42d1374631e878f323472dc9",
+        "size_bytes": 3570
+      },
+      "solver_result": {
+        "path": "results/synthesis_k3_template_bank_runs/hole7_seed0_600s/solver.result",
+        "sha256": "bde6e1eede96772c07c8ce29fd18088863815bd043aa59a06f11f5838cf8a162",
+        "size_bytes": 16
+      },
+      "solver_stderr": {
+        "path": "results/synthesis_k3_template_bank_runs/hole7_seed0_600s/solver.stderr",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size_bytes": 0
+      },
+      "solver_stdout": {
+        "path": "results/synthesis_k3_template_bank_runs/hole7_seed0_600s/solver.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size_bytes": 0
+      }
+    },
+    "run_status": "UNSAT_UNVERIFIED_CHECKER_EXIT",
+    "solver_exit_code": 20,
+    "solver_wall_seconds": 11.381240792004974
+  },
+  "status": "VERIFIED_FINITE_CERTIFICATE",
+  "strict_checker": {
+    "checker_sha256_after": "31df522b8b2b71acd357723b0e826cf488826ed78ad9e3a7bcad241271812beb",
+    "checker_sha256_before": "31df522b8b2b71acd357723b0e826cf488826ed78ad9e3a7bcad241271812beb",
+    "cnf_sha256_after": "6a011e685e58ef517f2ab8253ca40987bd7b742a470bedbacdc3a5e94fc995a7",
+    "cnf_sha256_before": "6a011e685e58ef517f2ab8253ca40987bd7b742a470bedbacdc3a5e94fc995a7",
+    "command_flags": [
+      "-I",
+      "-f",
+      "-W",
+      "-U",
+      "-t",
+      "600"
+    ],
+    "exit_code": 0,
+    "normalized_command": [
+      "$CHECKER",
+      "$CNF",
+      "$ADDITION_ONLY_PROOF",
+      "-I",
+      "-f",
+      "-W",
+      "-U",
+      "-t",
+      "600"
+    ],
+    "proof_sha256_after": "e8052df40d3e0c39b945a8735889039daba55eacc351e1822828b3d94f7baae9",
+    "proof_sha256_before": "e8052df40d3e0c39b945a8735889039daba55eacc351e1822828b3d94f7baae9",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stdout_sha256": "127d0c33e15e3e52c073d0580734d439f3384069a92a9a5d6989f1b14fbfa863",
+    "verified_line_count": 1,
+    "warning_free": true,
+    "zero_rat_lemmas_in_core": true
+  },
+  "transformation": {
+    "addition_only": {
+      "addition_count": 284317,
+      "addition_literal_count": 4720044,
+      "addition_stream_sha256": "e8052df40d3e0c39b945a8735889039daba55eacc351e1822828b3d94f7baae9",
+      "addition_stream_size_bytes": 18093724,
+      "byte_count": 18093724,
+      "deletion_count": 0,
+      "deletion_literal_count": 0,
+      "deletion_stream_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "deletion_stream_size_bytes": 0,
+      "empty_addition_count": 1,
+      "final_empty_line": 284317,
+      "first_deletion_line": null,
+      "line_count": 284317,
+      "maximum_clause_length": 218,
+      "maximum_variable": 6886,
+      "proof_sha256": "e8052df40d3e0c39b945a8735889039daba55eacc351e1822828b3d94f7baae9"
+    },
+    "all_additions_preserved_byte_for_byte_in_order": true,
+    "operation": "delete_only_lines_whose_exact_prefix_is_d_space",
+    "original": {
+      "addition_count": 284317,
+      "addition_literal_count": 4720044,
+      "addition_stream_sha256": "e8052df40d3e0c39b945a8735889039daba55eacc351e1822828b3d94f7baae9",
+      "addition_stream_size_bytes": 18093724,
+      "byte_count": 35285574,
+      "deletion_count": 263162,
+      "deletion_literal_count": 4336626,
+      "deletion_stream_sha256": "61239d917c91413bb5d035e93b088073c30a2048ec8d0b0ca5f72acb7cc228dd",
+      "deletion_stream_size_bytes": 17191850,
+      "empty_addition_count": 1,
+      "final_empty_line": 547479,
+      "first_deletion_line": 239,
+      "line_count": 547479,
+      "maximum_clause_length": 220,
+      "maximum_variable": 6886,
+      "proof_sha256": "7ceb4a63d393d8ff6fec33569c6284fee61533be4f15fd733777b85b08ee2b85"
+    }
+  }
+}

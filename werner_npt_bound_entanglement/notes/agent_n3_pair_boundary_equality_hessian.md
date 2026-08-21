@@ -18,7 +18,9 @@ This note proves three exact results about
    mechanisms: a factor--Hodge family and a trace-zero three-qubit
    spin-flip family.  Thus equality is not one local-unitary orbit of
    the displayed matrix-unit example.
-3. At their canonical intersection
+3. Every factor--Hodge equality has a dimension-independent sharp
+   transverse support-opening gap with constant \(2/9\).
+4. At the canonical intersection
    \[
    C_0=|000\rangle\langle110|+|001\rangle\langle111|,
    \tag{3}
@@ -168,6 +170,156 @@ is an exact equality matrix.  Its left one-site support ranks are
 \((1,1,2)\), while its right ranks are \((2,2,2)\).  The canonical
 matrix (3) has ranks \((1,1,2)\) on both sides, so (16) is not related
 to (3) by local unitaries, site permutations, phase, or adjunction.
+
+### 2.1 A sharp transverse gap for every factor equality
+
+The support-opening coefficient \(2/9\) found below at the canonical
+point is not an accident of product vectors.  It persists throughout
+the whole factor--Hodge family.
+
+Normalize \(a,b\), choose an orthonormal basis \(e_0,e_1\) of \(W\),
+and let \(q\) span \(W^\perp\).  The factor equality has singular
+frames
+\[
+ U_0e_r=a\otimes e_r,\qquad V_0e_r=b\otimes e_r
+ \quad(r=0,1).
+ \tag{16a}
+\]
+Consider arbitrary transverse frame velocities
+\[
+ Xe_r=x_r\otimes q,\qquad Ye_r=y_r\otimes q,
+ \tag{16b}
+\]
+and polar-normalize \(U_0+tX\) and \(V_0+tY\).  Put
+\[
+ \alpha_r=\langle a,x_r\rangle,\qquad
+ \beta_r=\langle b,y_r\rangle,
+\quad
+ x_r^\perp=x_r-\alpha_ra,\quad
+ y_r^\perp=y_r-\beta_rb.
+ \tag{16c}
+\]
+
+#### Proposition
+
+The transverse quadratic coefficient \({\cal G}^{(2)}\) obeys
+\[
+ \boxed{
+ {\cal G}^{(2)}
+ \geq
+ \frac23\sum_{r=0}^1|\alpha_r-\beta_r|^2
+ \frac29\sum_{r=0}^1
+ \left(\|x_r^\perp\|^2+\|y_r^\perp\|^2\right).
+ }
+ \tag{16d}
+\]
+Moreover,
+\[
+\begin{aligned}
+ [t^2]\det\operatorname{Tr}_{12}P_{U(t)}
+ &=\sum_r\|x_r^\perp\|^2,\\
+ [t^2]\det\operatorname{Tr}_{12}P_{V(t)}
+ &=\sum_r\|y_r^\perp\|^2.
+\end{aligned}
+\tag{16e}
+\]
+Thus \(2/9\) is a transverse local-support determinant gap for every
+factor equality.  It is sharp.
+
+#### Proof
+
+We first need a two-site rank-one estimate.  For
+\(Z=|x\rangle\langle b|\) on
+\(\mathbb C^3\otimes\mathbb C^3\), with \(\|b\|=1\), orthogonal
+scalar/traceless decomposition gives
+\[
+ \|\Pi_1^{(2)}Z\|^2
+ =
+ \frac13\left(
+ \|\operatorname{Tr}_1Z\|^2+
+ \|\operatorname{Tr}_2Z\|^2\right)
+ -\frac29|\operatorname{Tr}Z|^2.
+ \tag{16f}
+\]
+The elementary two-replica identity
+\[
+ \langle x\otimes b|
+ (I-F_1)(I-F_2)|x\otimes b\rangle\geq0
+ \]
+is exactly
+\[
+ \|\operatorname{Tr}_1Z\|^2+
+ \|\operatorname{Tr}_2Z\|^2
+ \leq\|x\|^2+|\langle b,x\rangle|^2.
+ \tag{16g}
+\]
+Equations (16f)--(16g) imply the sharp bound
+\[
+ \boxed{\qquad
+ \|\Pi_1^{(2)}(|x\rangle\langle b|)\|^2
+ \leq\frac49\|x\|^2.
+ \qquad}
+ \tag{16h}
+\]
+
+Expand the polar frames to order two.  Their first-order coefficient
+matrix is
+\[
+ \sum_r
+ \left(
+ |x_r\rangle\langle b|\otimes|q\rangle\langle e_r|
+ +
+ |a\rangle\langle y_r|\otimes|e_r\rangle\langle q|
+ \right).
+ \tag{16i}
+\]
+All displayed third-site matrix units are traceless and mutually
+orthogonal.  Hence their pair-sector projection keeps exactly the
+degree-one part of the corresponding two-site dyad.  The pure
+left and right contributions are therefore
+\[
+\begin{aligned}
+ g_L(x_r)&=\frac23\|x_r\|^2
+ -\|\Pi_1^{(2)}(|x_r\rangle\langle b|)\|^2,\\
+ g_R(y_r)&=\frac23\|y_r\|^2
+ -\|\Pi_1^{(2)}(|a\rangle\langle y_r|)\|^2.
+\end{aligned}
+\tag{16j}
+\]
+
+The only nonzero curvature pairing with the base comes from
+\[
+ XY^\dagger
+ =\sum_r|x_r\rangle\langle y_r|\otimes|q\rangle\langle q|.
+\]
+Because \(E=|a\rangle\langle b|\) is entirely degree two, this pairing
+is
+\[
+ -\frac43\operatorname{Re}
+ \sum_r\alpha_r\overline{\beta_r}.
+ \tag{16k}
+\]
+The polar-normalization terms lie in the logical \(2\times2\) block;
+their pairing with the base vanishes identically.  The same local
+sector orthogonality decouples the transverse block from internal
+first-order directions.
+
+Now \(\Pi_1^{(2)}E=0\).  Substituting (16c) into (16j) therefore
+splits off \(2|\alpha_r|^2/3\) and \(2|\beta_r|^2/3\), with no cross
+term.  Combining these terms with (16k) gives
+\[
+ \frac23|\alpha_r-\beta_r|^2.
+\]
+Applying (16h) to \(x_r^\perp\) and \(y_r^\perp\) gives the remaining
+\(2/9\) terms, proving (16d).
+
+Finally, the base one-site reductions are
+\(\operatorname{diag}(1,1,0)\).  Their determinant Schur complements
+remove exactly the old environment components
+\(\alpha_ra\) and \(\beta_rb\), which proves (16e).
+Sharpness is attained at the canonical factor equality by taking,
+for example, \(x_0=b=|11\rangle\perp a=|00\rangle\) and all other
+velocities zero. \(\square\)
 
 ## 3. The trace-zero spin-flip equality family
 

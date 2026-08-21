@@ -312,6 +312,30 @@ struct Search {
     return total;
   }
 
+  // Sum the six log determinants of the left and right code-plane
+  // reductions separately.  This is the barrier relevant to the exact
+  // n=3 boundary theorem: a negative qutrit witness must keep every one
+  // of these six determinants strictly positive.  The older
+  // support_logdet routine only controls the determinant of their sum
+  // and can therefore hide a rank-deficient singular plane.
+  double separate_support_logdet(
+      const Vec& left, const Vec& right,
+      Vec* left_gradient = nullptr,
+      Vec* right_gradient = nullptr,
+      double ridge = 1e-10,
+      double* smallest_pivot = nullptr) const {
+    Vec zero(2 * D, 0.0);
+    double left_smallest = std::numeric_limits<double>::infinity();
+    double right_smallest = std::numeric_limits<double>::infinity();
+    const double left_value = support_logdet(
+        left, zero, left_gradient, nullptr, ridge, &left_smallest);
+    const double right_value = support_logdet(
+        right, zero, right_gradient, nullptr, ridge, &right_smallest);
+    if (smallest_pivot)
+      *smallest_pivot = std::min(left_smallest, right_smallest);
+    return left_value + right_value;
+  }
+
   double general_start(
       int iterations, Vec& best_matrix,
       double initial_step = 0.08,
@@ -549,6 +573,236 @@ struct Search {
     return q;
   }
 
+  double determinant_start(
+      int iterations, Vec& best_left, Vec& best_right,
+      double initial_step = 0.04) {
+    Vec left(2 * D), right(2 * D);
+    for (Complex& entry : left)
+      entry = Complex(normal(rng), normal(rng));
+    for (Complex& entry : right)
+      entry = Complex(normal(rng), normal(rng));
+    orthonormalize(left);
+    orthonormalize(right);
+
+    auto value_gradient = [&](
+        const Vec& current_left, const Vec& current_right,
+        Vec* left_gradient, Vec* right_gradient) {
+      const std::vector<double> first = {1.0, 0.0};
+      const std::vector<double> second = {0.0, 1.0};
+      const Vec d1 =
+          general_matrix(current_left, current_right, first);
+      const Vec d2 =
+          general_matrix(current_left, current_right, second);
+      const Vec image1 = apply_l(d1);
+      const Vec image2 = apply_l(d2);
+      const double a = real_inner(d1, image1);
+      const double b = real_inner(d2, image2);
+      Complex c = 0.0;
+      for (int index = 0; index < D * D; ++index)
+        c += std::conj(d1[index]) * image2[index];
+      const double value = a * b - std::norm(c);
+      if (!left_gradient || !right_gradient) return value;
+
+      left_gradient->assign(2 * D, 0.0);
+      right_gradient->assign(2 * D, 0.0);
+      Vec matrix_gradient1(D * D), matrix_gradient2(D * D);
+      for (int index = 0; index < D * D; ++index) {
+        matrix_gradient1[index] =
+            2.0 * (b * image1[index] -
+                   std::conj(c) * image2[index]);
+        matrix_gradient2[index] =
+            2.0 * (a * image2[index] - c * image1[index]);
+      }
+      for (int row = 0; row < D; ++row)
+        for (int column = 0; column < D; ++column) {
+          const Complex g1 = matrix_gradient1[row * D + column];
+          const Complex g2 = matrix_gradient2[row * D + column];
+          (*left_gradient)[2 * row] +=
+              g1 * current_right[2 * column];
+          (*left_gradient)[2 * row + 1] +=
+              g2 * current_right[2 * column + 1];
+          (*right_gradient)[2 * column] +=
+              std::conj(g1) * current_left[2 * row];
+          (*right_gradient)[2 * column + 1] +=
+              std::conj(g2) * current_left[2 * row + 1];
+        }
+      tangent_project(current_left, *left_gradient);
+      tangent_project(current_right, *right_gradient);
+      return value;
+    };
+
+    double best = std::numeric_limits<double>::infinity();
+    double step = initial_step;
+    for (int iteration = 0; iteration < iterations; ++iteration) {
+      Vec left_gradient, right_gradient;
+      const double value = value_gradient(
+          left, right, &left_gradient, &right_gradient);
+      if (value < best) {
+        best = value;
+        best_left = left;
+        best_right = right;
+      }
+      const double gradient_squared =
+          norm_squared(left_gradient) + norm_squared(right_gradient);
+      if (gradient_squared < 1e-24) break;
+
+      bool accepted = false;
+      double trial = step;
+      for (int backtrack = 0; backtrack < 30; ++backtrack) {
+        Vec trial_left = left, trial_right = right;
+        for (int index = 0; index < 2 * D; ++index) {
+          trial_left[index] -= trial * left_gradient[index];
+          trial_right[index] -= trial * right_gradient[index];
+        }
+        orthonormalize(trial_left);
+        orthonormalize(trial_right);
+        const double trial_value =
+            value_gradient(trial_left, trial_right, nullptr, nullptr);
+        if (trial_value <=
+            value - 1e-5 * trial * gradient_squared) {
+          left.swap(trial_left);
+          right.swap(trial_right);
+          step = std::min(initial_step, 1.2 * trial);
+          accepted = true;
+          break;
+        }
+        trial *= 0.5;
+      }
+      if (!accepted) break;
+    }
+    return best;
+  }
+
+  double determinant_barrier_start(
+      int iterations, Vec& final_left, Vec& final_right,
+      double mu, double ridge, double initial_step = 0.02,
+      double* final_augmented = nullptr,
+      double* final_smallest_pivot = nullptr,
+      bool separate_planes = false) {
+    Vec left(2 * D), right(2 * D);
+    for (Complex& entry : left)
+      entry = Complex(normal(rng), normal(rng));
+    for (Complex& entry : right)
+      entry = Complex(normal(rng), normal(rng));
+    orthonormalize(left);
+    orthonormalize(right);
+
+    auto value_gradient = [&](
+        const Vec& current_left, const Vec& current_right,
+        Vec* left_gradient, Vec* right_gradient,
+        double* determinant_value, double* barrier_value) {
+      const std::vector<double> first = {1.0, 0.0};
+      const std::vector<double> second = {0.0, 1.0};
+      const Vec d1 =
+          general_matrix(current_left, current_right, first);
+      const Vec d2 =
+          general_matrix(current_left, current_right, second);
+      const Vec image1 = apply_l(d1);
+      const Vec image2 = apply_l(d2);
+      const double a = real_inner(d1, image1);
+      const double b = real_inner(d2, image2);
+      Complex c = 0.0;
+      for (int index = 0; index < D * D; ++index)
+        c += std::conj(d1[index]) * image2[index];
+      const double determinant = a * b - std::norm(c);
+      Vec barrier_left, barrier_right;
+      const double barrier = separate_planes
+          ? separate_support_logdet(
+                current_left, current_right,
+                left_gradient ? &barrier_left : nullptr,
+                right_gradient ? &barrier_right : nullptr, ridge)
+          : support_logdet(
+                current_left, current_right,
+                left_gradient ? &barrier_left : nullptr,
+                right_gradient ? &barrier_right : nullptr, ridge);
+      if (determinant_value) *determinant_value = determinant;
+      if (barrier_value) *barrier_value = barrier;
+      if (!left_gradient || !right_gradient)
+        return determinant - mu * barrier;
+
+      left_gradient->assign(2 * D, 0.0);
+      right_gradient->assign(2 * D, 0.0);
+      Vec matrix_gradient1(D * D), matrix_gradient2(D * D);
+      for (int index = 0; index < D * D; ++index) {
+        matrix_gradient1[index] =
+            2.0 * (b * image1[index] -
+                   std::conj(c) * image2[index]);
+        matrix_gradient2[index] =
+            2.0 * (a * image2[index] - c * image1[index]);
+      }
+      for (int row = 0; row < D; ++row)
+        for (int column = 0; column < D; ++column) {
+          const Complex g1 = matrix_gradient1[row * D + column];
+          const Complex g2 = matrix_gradient2[row * D + column];
+          (*left_gradient)[2 * row] +=
+              g1 * current_right[2 * column];
+          (*left_gradient)[2 * row + 1] +=
+              g2 * current_right[2 * column + 1];
+          (*right_gradient)[2 * column] +=
+              std::conj(g1) * current_left[2 * row];
+          (*right_gradient)[2 * column + 1] +=
+              std::conj(g2) * current_left[2 * row + 1];
+        }
+      for (int index = 0; index < 2 * D; ++index) {
+        (*left_gradient)[index] -= mu * barrier_left[index];
+        (*right_gradient)[index] -= mu * barrier_right[index];
+      }
+      tangent_project(current_left, *left_gradient);
+      tangent_project(current_right, *right_gradient);
+      return determinant - mu * barrier;
+    };
+
+    double step = initial_step;
+    for (int iteration = 0; iteration < iterations; ++iteration) {
+      Vec left_gradient, right_gradient;
+      const double value = value_gradient(
+          left, right, &left_gradient, &right_gradient, nullptr, nullptr);
+      const double gradient_squared =
+          norm_squared(left_gradient) + norm_squared(right_gradient);
+      if (gradient_squared < 1e-24) break;
+
+      bool accepted = false;
+      double trial = step;
+      for (int backtrack = 0; backtrack < 35; ++backtrack) {
+        Vec trial_left = left, trial_right = right;
+        for (int index = 0; index < 2 * D; ++index) {
+          trial_left[index] -= trial * left_gradient[index];
+          trial_right[index] -= trial * right_gradient[index];
+        }
+        orthonormalize(trial_left);
+        orthonormalize(trial_right);
+        const double trial_value = value_gradient(
+            trial_left, trial_right, nullptr, nullptr, nullptr, nullptr);
+        if (trial_value <=
+            value - 1e-5 * trial * gradient_squared) {
+          left.swap(trial_left);
+          right.swap(trial_right);
+          step = std::min(initial_step, 1.2 * trial);
+          accepted = true;
+          break;
+        }
+        trial *= 0.5;
+      }
+      if (!accepted) break;
+    }
+
+    final_left = left;
+    final_right = right;
+    double determinant = 0.0, barrier = 0.0;
+    value_gradient(
+        left, right, nullptr, nullptr, &determinant, &barrier);
+    double smallest = 0.0;
+    if (separate_planes)
+      separate_support_logdet(
+          left, right, nullptr, nullptr, ridge, &smallest);
+    else
+      support_logdet(
+          left, right, nullptr, nullptr, ridge, &smallest);
+    if (final_augmented) *final_augmented = determinant - mu * barrier;
+    if (final_smallest_pivot) *final_smallest_pivot = smallest;
+    return determinant;
+  }
+
   double normal_start(
       int iterations, Vec& best_matrix,
       double initial_step = 0.08) {
@@ -675,7 +929,8 @@ struct Search {
 int main(int argc, char** argv) {
   if (argc < 6) {
     std::cerr
-        << "usage: search_rank2_complex general|fixed|normal|barrier d n "
+        << "usage: search_rank2_complex general|fixed|normal|barrier|"
+           "determinant|detbarrier|det6barrier d n "
         << "starts iterations [seed] [output] [mu-or-s0] [ridge]\n";
     return 2;
   }
@@ -699,6 +954,10 @@ int main(int argc, char** argv) {
     double minimum_real_determinant =
         std::numeric_limits<double>::infinity();
     double minimum_energy_monge =
+        std::numeric_limits<double>::infinity();
+    double minimum_unshifted_energy_monge =
+        std::numeric_limits<double>::infinity();
+    double minimum_unshifted_determinant =
         std::numeric_limits<double>::infinity();
     double maximum_exterior_difference = 0.0;
     double maximum_feature_plucker_violation =
@@ -799,11 +1058,21 @@ int main(int argc, char** argv) {
                        (crossed_b - ground)));
       minimum_energy_monge =
           std::min(minimum_energy_monge, monge);
+      minimum_unshifted_energy_monge = std::min(
+          minimum_unshifted_energy_monge,
+          a * b - crossed_a * crossed_b);
+      minimum_unshifted_determinant = std::min(
+          minimum_unshifted_determinant,
+          a * b - std::norm(c));
     }
     std::cout << std::setprecision(17)
               << "min_abs_shifted " << minimum_shifted_determinant
               << " min_real_shifted " << minimum_real_determinant
               << " min_energy_monge " << minimum_energy_monge
+              << " min_unshifted_energy_monge "
+              << minimum_unshifted_energy_monge
+              << " min_unshifted_determinant "
+              << minimum_unshifted_determinant
               << " max_exterior_difference "
               << maximum_exterior_difference
               << " ground " << ground;
@@ -832,7 +1101,15 @@ int main(int argc, char** argv) {
     double augmented = 0.0;
     double smallest_pivot = 0.0;
     const double value =
-        mode == "normal"
+        mode == "determinant"
+            ? search.determinant_start(
+                  iterations, barrier_left, barrier_right)
+        : (mode == "detbarrier" || mode == "det6barrier")
+            ? search.determinant_barrier_start(
+                  iterations, barrier_left, barrier_right,
+                  mu, ridge, 0.02, &augmented, &smallest_pivot,
+                  mode == "det6barrier")
+        : mode == "normal"
             ? search.normal_start(iterations, matrix)
             : (mode == "barrier"
                    ? search.barrier_start(
@@ -851,7 +1128,16 @@ int main(int argc, char** argv) {
       global_best = value;
       global_matrix.swap(matrix);
       if (!output.empty()) {
-        search.save_matrix(output, global_matrix);
+        if (mode == "determinant" || mode == "detbarrier" ||
+            mode == "det6barrier") {
+          std::vector<double> unit_singular = {
+              std::sqrt(0.5), std::sqrt(0.5)};
+          search.save_barrier_state(
+              output + ".state", barrier_left, barrier_right,
+              unit_singular);
+        } else {
+          search.save_matrix(output, global_matrix);
+        }
         if (mode == "barrier" || mode == "even" ||
             mode == "even_fixed")
           search.save_barrier_state(
@@ -862,7 +1148,8 @@ int main(int argc, char** argv) {
     std::cout << "start " << start << " value "
               << std::setprecision(17) << value
               << " global " << global_best;
-    if (mode == "barrier")
+    if (mode == "barrier" || mode == "detbarrier" ||
+        mode == "det6barrier")
       std::cout << " augmented " << augmented
                 << " smallest_pivot " << smallest_pivot;
     std::cout << "\n";

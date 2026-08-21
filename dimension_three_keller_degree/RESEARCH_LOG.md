@@ -1714,3 +1714,18 @@ lemma: **5%**.  No novel theorem is claimed at this timestamp.
   6/14\text{ open}.
   \]
   The universal degree floor remains four.
+
+## 2026-08-20 — final local-worktree archive
+
+- Closed the dedicated `Math-kissing5` worktree after preserving all
+  human-readable proof notes, exact derivation and verification programs,
+  hostile-review records, and research logs on
+  `codex/kissing5-final-archive`.
+- Regenerable build products, interpreter environments, solver transcripts,
+  and numerical caches were intentionally omitted from the archive commit.
+- The archived program state remains exactly as reported above: 7 of 14
+  taxonomy rows certified, 1 provisional, and 6 open. No completion theorem
+  is claimed.
+- Best-guess completion of the archival handoff: **100%**. Best-guess
+  completion of the underlying degree program remains **50%** at the frozen
+  row-count level.

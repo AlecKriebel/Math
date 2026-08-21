@@ -103,6 +103,7 @@ void normalize(std::vector<C>& x) {
 }
 
 void project_sector(std::vector<C>& x, int mask);
+int swapped_index(int pair_index, int site);
 
 double sector_mass(const std::vector<C>& u, const std::vector<C>& v,
                    int mask) {
@@ -186,6 +187,7 @@ void probe_file(const char* path) {
   double absolute_sum = 0, square_sum = 0, frobenius_sum = 0;
   double filtered_gram_determinant_sum = 0;
   std::array<C, 81> determinant_tensor{};
+  std::array<std::array<C, 4>, 81> hodge_matrices{};
   std::array<std::array<C, 81>, 8> sector_determinant_tensor{};
   std::array<int, 8> odd_masks{1, 2, 4, 7, 8, 11, 13, 14};
   std::array<std::vector<C>, 8> sector_omega;
@@ -212,6 +214,7 @@ void probe_file(const char* path) {
     const auto av = apply_hodge(v, ks);
     const C s00 = bilinear(u, au), s01 = bilinear(u, av);
     const C s10 = bilinear(v, au), s11 = bilinear(v, av);
+    hodge_matrices[code] = {s00, s01, s10, s11};
     const C det = s00 * s11 - s01 * s10;
     determinant_tensor[code] = det;
     determinant_sum += det;
@@ -251,6 +254,48 @@ void probe_file(const char* path) {
     const double right = sector_mass(u, v, 15 ^ mask);
     complement_geometric_sum += 2.0 * std::sqrt(left * right);
   }
+  double polarized_tensor_norm_squared = 0;
+  std::array<C, 6561> polarized_tensor{};
+  for (int left = 0; left < 81; ++left) {
+    const auto& a = hodge_matrices[left];
+    for (int right = 0; right < 81; ++right) {
+      const auto& b = hodge_matrices[right];
+      const C coefficient =
+          0.5 * (a[0] * b[3] + b[0] * a[3]
+                 - a[1] * b[2] - b[1] * a[2]);
+      polarized_tensor[81 * left + right] = coefficient;
+      polarized_tensor_norm_squared += std::norm(coefficient);
+    }
+  }
+  std::array<double, 16> label_swap_moments{}, label_sector_norms{};
+  for (int mask = 0; mask < 16; ++mask) {
+    C value = 0;
+    for (int pair = 0; pair < 6561; ++pair) {
+      int swapped = pair;
+      for (int site = 0; site < 4; ++site)
+        if ((mask >> site) & 1)
+          swapped = swapped_index(swapped, site);
+      value += std::conj(polarized_tensor[pair])
+               * polarized_tensor[swapped];
+    }
+    label_swap_moments[mask] = std::real(value);
+  }
+  for (int sector = 0; sector < 16; ++sector)
+    for (int mask = 0; mask < 16; ++mask)
+      label_sector_norms[sector] +=
+          ((__builtin_popcount(static_cast<unsigned>(sector & mask)) & 1U)
+               ? -1.0
+               : 1.0)
+          * label_swap_moments[mask] / 16.0;
+  std::array<std::array<C, 3>, 3> all_antisymmetric_effect{};
+  for (const auto& matrix : hodge_matrices) {
+    const std::array<C, 3> row{
+        matrix[0], std::sqrt(2.0) * matrix[1], matrix[3]};
+    for (int a = 0; a < 3; ++a)
+      for (int b = 0; b < 3; ++b)
+        all_antisymmetric_effect[a][b] +=
+            std::conj(row[a]) * row[b] / 16.0;
+  }
   double phase_rank_one_residual = 0;
   for (int site = 0; site < 4; ++site) {
     int stride = 1;
@@ -284,7 +329,18 @@ void probe_file(const char* path) {
             << " frob=" << frobenius_sum
             << " gramdet=" << filtered_gram_determinant_sum
             << " oddpair=" << complement_geometric_sum
+            << " dettensor2=" << polarized_tensor_norm_squared
             << " phase-rank1-resid=" << phase_rank_one_residual << "\n";
+  std::cout << "  label-sector-norms";
+  for (int sector = 0; sector < 16; ++sector)
+    if ((__builtin_popcount(static_cast<unsigned>(sector)) & 1) == 0)
+      std::cout << " " << sector << ":" << label_sector_norms[sector];
+  std::cout << "\n";
+  std::cout << "  all-antisymmetric-effect";
+  for (int a = 0; a < 3; ++a)
+    for (int b = 0; b < 3; ++b)
+      std::cout << " " << all_antisymmetric_effect[a][b];
+  std::cout << "\n";
   for (int r = 0; r < 8; ++r) {
     double l1 = 0, l2 = 0;
     C sum = 0;
@@ -334,7 +390,9 @@ void probe_uniform_odd(std::uint64_t seed) {
   std::mt19937_64 rng(seed);
   std::normal_distribution<double> normal;
   std::vector<C> omega(6561);
-  for (int mask = 1; mask < 16; mask += 2) {
+  for (int mask = 0; mask < 16; ++mask) {
+    if ((__builtin_popcount(static_cast<unsigned>(mask)) & 1) == 0)
+      continue;
     std::vector<C> x(6561);
     for (C& z : x) z = C(normal(rng), normal(rng));
     project_sector(x, mask);
@@ -343,6 +401,7 @@ void probe_uniform_odd(std::uint64_t seed) {
   }
   double absolute_sum = 0;
   C determinant_sum = 0;
+  double polarized_norm_squared = 0;
   for (int code = 0; code < 81; ++code) {
     int z = code;
     std::array<int, 4> ks{};
@@ -379,14 +438,186 @@ void probe_uniform_odd(std::uint64_t seed) {
     determinant_sum += value;
     absolute_sum += std::abs(value);
   }
+  for (int left_code = 0; left_code < 81; ++left_code) {
+    int left_value = left_code;
+    std::array<int, 4> left_labels{};
+    for (int site = 3; site >= 0; --site) {
+      left_labels[site] = left_value % 3;
+      left_value /= 3;
+    }
+    for (int right_code = 0; right_code < 81; ++right_code) {
+      int right_value = right_code;
+      std::array<int, 4> right_labels{};
+      for (int site = 3; site >= 0; --site) {
+        right_labels[site] = right_value % 3;
+        right_value /= 3;
+      }
+      polarized_norm_squared += std::norm(
+          bilinear_hodge_sparse(
+              omega,
+              {left_labels[0], left_labels[1],
+               left_labels[2], left_labels[3],
+               right_labels[0], right_labels[1],
+               right_labels[2], right_labels[3]}));
+    }
+  }
   std::cout << "uniform-odd seed=" << seed
             << " detsum=" << determinant_sum
-            << " abs=" << absolute_sum << "\n";
+            << " abs=" << absolute_sum
+            << " raw2=" << polarized_norm_squared << "\n";
+}
+
+void probe_decomposable_samples(int count) {
+  for (int sample = 0; sample < count; ++sample) {
+    std::mt19937_64 rng(UINT64_C(700001) + sample);
+    std::normal_distribution<double> normal;
+    std::vector<C> u(81), v(81);
+    for (int i = 0; i < 81; ++i) {
+      u[i] = C(normal(rng), normal(rng));
+      v[i] = C(normal(rng), normal(rng));
+    }
+    normalize(u);
+    const C overlap = inner(u, v);
+    for (int i = 0; i < 81; ++i) v[i] -= overlap * u[i];
+    normalize(v);
+
+    std::array<std::array<C, 4>, 81> matrices{};
+    for (int code = 0; code < 81; ++code) {
+      int value = code;
+      std::vector<int> labels(4);
+      for (int site = 3; site >= 0; --site) {
+        labels[site] = value % 3;
+        value /= 3;
+      }
+      const auto au = apply_hodge(u, labels);
+      const auto av = apply_hodge(v, labels);
+      matrices[code] = {
+          bilinear(u, au), bilinear(u, av),
+          bilinear(v, au), bilinear(v, av)};
+    }
+    double raw_norm_squared = 0;
+    std::array<std::array<C, 3>, 3> spin_gram{};
+    for (const auto& matrix : matrices) {
+      const std::array<C, 3> row{
+          matrix[0], std::sqrt(2.0) * matrix[1], matrix[3]};
+      for (int a = 0; a < 3; ++a)
+        for (int b = 0; b < 3; ++b)
+          spin_gram[a][b] += std::conj(row[a]) * row[b] / 16.0;
+    }
+    for (const auto& left : matrices)
+      for (const auto& right : matrices) {
+        const C coefficient =
+            0.5 * (left[0] * right[3] + right[0] * left[3]
+                   - left[1] * right[2] - right[1] * left[2]);
+        raw_norm_squared += std::norm(coefficient);
+      }
+    const C spin_determinant =
+        spin_gram[0][0]
+            * (spin_gram[1][1] * spin_gram[2][2]
+               - spin_gram[1][2] * spin_gram[2][1])
+        - spin_gram[0][1]
+            * (spin_gram[1][0] * spin_gram[2][2]
+               - spin_gram[1][2] * spin_gram[2][0])
+        + spin_gram[0][2]
+            * (spin_gram[1][0] * spin_gram[2][1]
+               - spin_gram[1][1] * spin_gram[2][0]);
+    // Convert the symmetric-logical effect to the Cartesian spin-one
+    // basis.  The inverse Pauli reshuffling then recovers the unique
+    // alternating Pauli Gram with scalar entry equal to the spatial
+    // trace.  This is discovery-only diagnostics for the observed
+    // generalized eigenvalue -2.
+    const double inv_sqrt_two = 1.0 / std::sqrt(2.0);
+    const std::array<std::array<C, 3>, 3> cartesian{{
+        {{inv_sqrt_two, C(0.0, inv_sqrt_two), 0.0}},
+        {{0.0, 0.0, 1.0}},
+        {{-inv_sqrt_two, C(0.0, inv_sqrt_two), 0.0}},
+    }};
+    std::array<std::array<C, 3>, 3> cartesian_effect{};
+    for (int a = 0; a < 3; ++a)
+      for (int b = 0; b < 3; ++b)
+        for (int i = 0; i < 3; ++i)
+          for (int j = 0; j < 3; ++j)
+            cartesian_effect[a][b] +=
+                std::conj(cartesian[i][a]) * spin_gram[i][j]
+                * cartesian[j][b];
+    std::array<std::array<double, 4>, 4> shifted_lorentz{};
+    const double scalar =
+        16.0 * std::real(
+            cartesian_effect[0][0] + cartesian_effect[1][1]
+            + cartesian_effect[2][2]);
+    shifted_lorentz[0][0] = scalar + 2.0;
+    for (int a = 0; a < 3; ++a)
+      shifted_lorentz[a + 1][a + 1] =
+          2.0 - scalar + 32.0 * std::real(cartesian_effect[a][a]);
+    shifted_lorentz[1][2] = shifted_lorentz[2][1] =
+        -32.0 * std::real(cartesian_effect[0][1]);
+    shifted_lorentz[1][3] = shifted_lorentz[3][1] =
+        -32.0 * std::real(cartesian_effect[0][2]);
+    shifted_lorentz[2][3] = shifted_lorentz[3][2] =
+        32.0 * std::real(cartesian_effect[1][2]);
+    shifted_lorentz[0][3] =
+        32.0 * std::imag(cartesian_effect[0][1]);
+    shifted_lorentz[3][0] = -shifted_lorentz[0][3];
+    shifted_lorentz[0][2] =
+        -32.0 * std::imag(cartesian_effect[0][2]);
+    shifted_lorentz[2][0] = -shifted_lorentz[0][2];
+    shifted_lorentz[0][1] =
+        -32.0 * std::imag(cartesian_effect[1][2]);
+    shifted_lorentz[1][0] = -shifted_lorentz[0][1];
+    double shifted_lorentz_determinant = 0.0;
+    const std::array<std::array<int, 4>, 24> permutations{{
+        {{0,1,2,3}},{{0,1,3,2}},{{0,2,1,3}},{{0,2,3,1}},
+        {{0,3,1,2}},{{0,3,2,1}},{{1,0,2,3}},{{1,0,3,2}},
+        {{1,2,0,3}},{{1,2,3,0}},{{1,3,0,2}},{{1,3,2,0}},
+        {{2,0,1,3}},{{2,0,3,1}},{{2,1,0,3}},{{2,1,3,0}},
+        {{2,3,0,1}},{{2,3,1,0}},{{3,0,1,2}},{{3,0,2,1}},
+        {{3,1,0,2}},{{3,1,2,0}},{{3,2,0,1}},{{3,2,1,0}},
+    }};
+    for (const auto& permutation : permutations) {
+      int inversions = 0;
+      double term = 1.0;
+      for (int a = 0; a < 4; ++a) {
+        term *= shifted_lorentz[a][permutation[a]];
+        for (int b = a + 1; b < 4; ++b)
+          inversions += permutation[a] > permutation[b];
+      }
+      shifted_lorentz_determinant += (inversions & 1) ? -term : term;
+    }
+
+    std::array<double, 16> probabilities{};
+    for (int mask = 0; mask < 16; ++mask)
+      if (__builtin_popcount(static_cast<unsigned>(mask)) & 1)
+        probabilities[mask] = sector_mass(u, v, mask);
+    std::array<double, 8> moments{};
+    for (int mask = 0; mask < 8; ++mask)
+      for (int sector = 0; sector < 16; ++sector)
+        if (__builtin_popcount(static_cast<unsigned>(sector)) & 1)
+          moments[mask] +=
+              ((__builtin_popcount(
+                    static_cast<unsigned>(mask & sector)) & 1)
+                   ? -1.0
+                   : 1.0)
+              * probabilities[sector];
+    std::cout << "decomposable";
+    for (double value : moments) std::cout << " " << value;
+    std::cout << " " << raw_norm_squared
+              << " detE=" << std::real(spin_determinant)
+              << " trE=" << std::real(
+                     spin_gram[0][0] + spin_gram[1][1]
+                     + spin_gram[2][2])
+              << " detAplus2=" << shifted_lorentz_determinant
+              << "\n";
+  }
 }
 
 int main(int argc, char** argv) {
   std::cout << std::setprecision(14);
   if (argc == 2) {
+    const std::string argument(argv[1]);
+    if (argument.rfind("samples=", 0) == 0) {
+      probe_decomposable_samples(std::stoi(argument.substr(8)));
+      return 0;
+    }
     probe_file(argv[1]);
     return 0;
   }

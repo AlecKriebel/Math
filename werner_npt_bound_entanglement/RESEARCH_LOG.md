@@ -8796,3 +8796,19 @@ u_1u_1^\dagger\bigr].
 - This is discovery evidence only.  The cap-500 Gamma-A cone is still
   indefinite, larger Gamma-A blocks are untested, the other two grouped PPT
   cones remain, and no exact extension certificate follows.
+
+## 2026-08-20 — final local-worktree archive
+
+- Closed the dedicated `Math-kissing5` worktree after preserving the proof
+  notes, exact and numerical source programs, verification code, compact
+  metadata, and this chronological log on
+  `codex/kissing5-final-archive`.
+- Omitted regenerable `.pkl` and `.npz` numerical checkpoints, compiled probe
+  binaries, logs, caches, and virtual environments. The retained `agent_*`,
+  `probe_*`, `search_*`, and `verify_*` sources plus the notes above record
+  the algorithms, parameters, observed values, and selected checkpoint
+  hashes needed to reproduce the computational exploration.
+- The final state remains discovery evidence rather than an exact extension
+  certificate; no stronger theorem is claimed by this archive operation.
+- Best-guess completion of the archival handoff: **100%**. The underlying
+  research question remains unresolved.

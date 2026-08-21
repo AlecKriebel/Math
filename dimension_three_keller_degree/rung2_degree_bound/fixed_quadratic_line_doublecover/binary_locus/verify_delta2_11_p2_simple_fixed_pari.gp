@@ -1,0 +1,132 @@
+\\ Independent PARI/GP replay of the h=p^2 simple-fixed {1,1} exclusion.
+
+p='p; q='q; r='r; z='z;
+vars=[p,q,r];
+jacmat(H)=matrix(3,3,i,j,deriv(H[i],vars[j]));
+jac2(f,g)=deriv(f,p)*deriv(g,q)-deriv(f,q)*deriv(g,p);
+check_zero(value,message)={if(value!=0,error(Str("FAIL: ",message,"; residual = ",value)))};
+hc(f,degree,index)=polcoeff(subst(f,q,1),degree-index,p);
+cv(f,degree)=vector(degree+1,index,hc(f,degree,index-1));
+
+AA='AA; BB='BB; CC='CC; ss='ss; rrho='rrho;
+x5='x5; y5='y5;
+XX='XX; YY='YY; ZZ='ZZ;
+P=p^4; Q=p^2*q^2;
+R=p*(AA*p^2+BB*p*q+CC*q^2);
+alpha=jac2(Q,R); beta=-jac2(P,R); gam=jac2(P,Q);
+check_zero(gcd(gcd(alpha,beta),gam)-2*p^2,"generic gcd");
+check_zero(gcd(gcd(subst(alpha,AA,0),subst(beta,AA,0)),gam)-2*p^2,"A=0 gcd");
+check_zero(gcd(gcd(subst(alpha,BB,0),subst(beta,BB,0)),gam)-2*p^2*q,"B=0 deeper gcd");
+check_zero(gcd(gcd(subst(alpha,CC,0),subst(beta,CC,0)),gam)-2*p^3,"C=0 deeper gcd");
+
+Delta=4*AA*CC-BB^2;
+N1=[16*CC*p^2,-2*q*(3*BB*p-2*CC*q),3*Delta*p];
+N2=[-8*BB*p^2,2*q*(6*AA*p-BB*q),3*Delta*q];
+for(index=1,2,{
+  N=if(index==1,N1,N2);
+  check_zero(alpha*N[1]+beta*N[2]+gam*N[3],Str("general E7 tangent ",index))
+});
+N=vector(3,index,ss*N1[index]+rrho*N2[index]);
+H4=[P,Q,0]~;
+H3=[r*N[1],r*N[2],R]~;
+H2=[x5*r^2,y5*r^2,r*N[3]]~;
+D=matdet(z*jacmat(H2)+z^2*jacmat(H3)+z^3*jacmat(H4));
+check_zero(polcoeff(D,7,z),"general E7 determinant");
+E6r=polcoeff(polcoeff(D,6,z),1,r);
+colX=cv(substvec(E6r,[ss,rrho,x5,y5],[1,0,0,0]),5);
+colZ=cv(substvec(E6r,[ss,rrho,x5,y5],[0,1,0,0]),5);
+colY=cv(substvec(E6r,[ss,rrho,x5,y5],[1,1,0,0]),5)-colX-colZ;
+colx=cv(substvec(E6r,[ss,rrho,x5,y5],[0,0,1,0]),5);
+coly=cv(substvec(E6r,[ss,rrho,x5,y5],[0,0,0,1]),5);
+M=matrix(6,5,i,j,[colX,colY,colZ,colx,coly][j][i]);
+K=[24*AA*CC+BB^2,-BB*CC,-32*CC^2,576*CC^2*Delta,-9*Delta*(32*AA*CC+BB^2)]~;
+check_zero(M*K,"general contact kernel");
+common=36864*BB*CC*Delta^2;
+signed=vector(5,index,0)~;
+signed[1]=matdet(vecextract(M,[1,2,3,4],[2,3,4,5]));
+signed[2]=-matdet(vecextract(M,[1,2,3,4],[1,3,4,5]));
+signed[3]=matdet(vecextract(M,[1,2,3,4],[1,2,4,5]));
+signed[4]=-matdet(vecextract(M,[1,2,3,4],[1,2,3,5]));
+signed[5]=matdet(vecextract(M,[1,2,3,4],[1,2,3,4]));
+check_zero(signed-common*K,"general signed minors");
+check_zero(K[2]^2-K[1]*K[3]-3*CC^2*(256*AA*CC+11*BB^2),"Veronese obstruction");
+check_zero(subst(Delta,AA,-11*BB^2/(256*CC))+75*BB^2/64,"survivor lies off Delta=0");
+print("PASS PARI signed-minor/Veronese contact divisor");
+
+\\ Delta=0 endpoint chart.
+Ad=BB^2/(4*CC);
+Rd=subst(R,AA,Ad);
+N1d=[8*CC*p^2,-3*BB*p*q+2*CC*q^2,0];
+N2d=[0,2*p*q,BB*p+2*CC*q];
+alphad=subst(alpha,AA,Ad); betad=subst(beta,AA,Ad);
+for(index=1,2,{
+  Nd=if(index==1,N1d,N2d);
+  check_zero(alphad*Nd[1]+betad*Nd[2]+gam*Nd[3],Str("Delta=0 E7 tangent ",index))
+});
+Nd=vector(3,index,ss*N1d[index]+rrho*N2d[index]);
+H3d=[r*Nd[1],r*Nd[2],Rd]~;
+H2d=[x5*r^2,y5*r^2,r*Nd[3]]~;
+Dd=matdet(z*jacmat(H2d)+z^2*jacmat(H3d)+z^3*jacmat(H4));
+check_zero(polcoeff(Dd,7,z),"Delta=0 E7 determinant");
+E6rd=polcoeff(polcoeff(Dd,6,z),1,r);
+colXd=cv(substvec(E6rd,[ss,rrho,x5,y5],[1,0,0,0]),5);
+colZd=cv(substvec(E6rd,[ss,rrho,x5,y5],[0,1,0,0]),5);
+colYd=cv(substvec(E6rd,[ss,rrho,x5,y5],[1,1,0,0]),5)-colXd-colZd;
+colxd=cv(substvec(E6rd,[ss,rrho,x5,y5],[0,0,1,0]),5);
+colyd=cv(substvec(E6rd,[ss,rrho,x5,y5],[0,0,0,1]),5);
+Md=matrix(6,5,i,j,[colXd,colYd,colZd,colxd,colyd][j][i]);
+Kd=[8,15*BB,0,192*CC^2,-27*BB^2]~;
+check_zero(Md*Kd,"Delta=0 contact kernel");
+commond=4096*BB*CC^4;
+signedd=vector(5,index,0)~;
+signedd[1]=matdet(vecextract(Md,[1,2,3,4],[2,3,4,5]));
+signedd[2]=-matdet(vecextract(Md,[1,2,3,4],[1,3,4,5]));
+signedd[3]=matdet(vecextract(Md,[1,2,3,4],[1,2,4,5]));
+signedd[4]=-matdet(vecextract(Md,[1,2,3,4],[1,2,3,5]));
+signedd[5]=matdet(vecextract(Md,[1,2,3,4],[1,2,3,4]));
+check_zero(signedd-commond*Kd,"Delta=0 signed minors");
+check_zero(Kd[2]^2-Kd[1]*Kd[3]-225*BB^2,"Delta=0 Veronese obstruction");
+print("PASS PARI Delta=0 endpoint and B=0/C=0 mutations");
+
+\\ Mandatory rational E6 survivor, retaining every lower coefficient.
+kk='kk;
+u0='u0; u1='u1; u2='u2; u3='u3;
+v0='v0; v1='v1; v2='v2; v3='v3;
+t0='t0; t1='t1; t2='t2;
+x0='x0; x1='x1; x2='x2; x3='x3; x4='x4;
+y0='y0; y1='y1; y2='y2; y3='y3; y4='y4;
+l0='l0; l1='l1; l2='l2; l3='l3; l4='l4;
+l5='l5; l6='l6; l7='l7; l8='l8;
+R0=p*(-11*p^2+16*p*q+q^2);
+Nu=4*p^2; Nv=6*p*q+q^2; Nt=15*p+30*q;
+U0=u0*p^3+u1*p^2*q+u2*p*q^2+u3*q^3;
+V0=v0*p^3+v1*p^2*q+v2*p*q^2+v3*q^3;
+T0=t0*p^2+t1*p*q+t2*q^2;
+A0=x0*p^2+x1*p*q+x2*q^2;
+B0=y0*p^2+y1*p*q+y2*q^2;
+H3f=[U0+kk*r*Nu,V0+kk*r*Nv,R0]~;
+H2f=[A0+r*(x3*p+x4*q)+6*kk^2*r^2,B0+r*(y3*p+y4*q)+9*kk^2*r^2,T0+kk*r*Nt]~;
+L0=[l0,l1,l2;l3,l4,l5;l6,l7,l8];
+Df=matdet(L0+z*jacmat(H2f)+z^2*jacmat(H3f)+z^3*jacmat(H4));
+E8=polcoeff(Df,8,z); E7=polcoeff(Df,7,z);
+E6=polcoeff(Df,6,z); E5=polcoeff(Df,5,z);
+check_zero(E8,"full E8");
+check_zero(E7,"full E7");
+check_zero(polcoeff(E6,1,r),"full E6 r");
+x3s=kk*(-4*t2+3*u0+3*u1+108*v3);
+x4s=kk*(3*u1/2+6*u2+6*v3);
+y3s=3*kk*(v0+v1);
+y4s=kk*(-t1/2+10*t2+3*v1/2+6*v2-621*v3/2);
+l8s=kk*(2*t0-t1+113*t2-3375*v3);
+vars6=[x3,x4,y3,y4,l8,u3];
+vals6=[x3s,x4s,y3s,y4s,l8s,0];
+check_zero(substvec(E6,vars6,vals6),"complete full E6 solve");
+E6c=polcoeff(E6,0,r);
+unknown6=[x3,x4,y3,y4,l8,t0,t1,t2,u0,u1,u2,u3,v0,v1,v2,v3];
+M6=matrix(7,16,i,j,polcoeff(hc(E6c,6,i-1),1,unknown6[j]));
+check_zero(matdet(vecextract(M6,[1,2,3,4,5,7],[1,2,3,4,5,12]))+49152*kk,"full E6 rank minor");
+E5done=substvec(E5,vars6,vals6);
+expected=-24*kk^3*(72*p^3+7*p^2*q-11*p*q^2+q^3);
+check_zero(polcoeff(E5done,2,r)-expected,"decisive E5 r^2");
+print("PASS PARI mandatory rational survivor and full E5 obstruction");
+print("ALL PARI P2 SIMPLE-FIXED {1,1} CHECKS PASSED");

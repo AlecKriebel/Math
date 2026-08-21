@@ -131,6 +131,55 @@ def prepare_mixed_blocks(local_ranges, support_blocks):
     return blocks
 
 
+def restrict_mixed_blocks_to_exposed_face(blocks, face_tensor, tolerance=1e-9):
+    """Replace each L block by ker(P_L face_tensor P_L)."""
+    total_before = sum(block["kernel"].shape[1] for block in blocks)
+    total_after = 0
+    positive_rank = 0
+    for block in blocks:
+        kernel = block["kernel"]
+        if not kernel.shape[1]:
+            continue
+        matrix = get_block(face_tensor, block["indices"], block["dimensions"])
+        compressed = kernel.T @ ((matrix + matrix.T) / 2) @ kernel
+        values, vectors = la.eigh(compressed)
+        keep = values < tolerance
+        positive_rank += int(np.sum(~keep))
+        block["kernel"] = kernel @ vectors[:, keep]
+        total_after += block["kernel"].shape[1]
+    print("mixed exposed-face restriction:", total_before, "->", total_after,
+          "exposed rank", positive_rank, "tolerance", tolerance)
+    return blocks
+
+
+def restrict_mixed_blocks_to_product_face(blocks, checkpoint):
+    """Use block range bases reconstructed from exact physical product twirls.
+
+    The checkpoint convention is ``L_ijk @ q_ijk`` in the full mixed
+    multiplicity block, where ``L`` is the original support kernel and ``q``
+    is an orthonormal face basis in its coordinates.
+    """
+    total_before = sum(block["kernel"].shape[1] for block in blocks)
+    total_after = 0
+    maximum_orthogonality_error = 0.0
+    for block in blocks:
+        key = "".join(str(s) for s in block["shapes"])
+        basis = checkpoint[f"L_{key}"] @ checkpoint[f"q_{key}"]
+        expected_rows = int(np.prod(block["dimensions"]))
+        assert basis.shape[0] == expected_rows
+        if basis.shape[1]:
+            error = la.norm(basis.T @ basis - np.eye(basis.shape[1]), ord=2)
+            maximum_orthogonality_error = max(maximum_orthogonality_error,
+                                               float(error))
+        block["kernel"] = basis
+        total_after += basis.shape[1]
+    print("mixed exact-product-face restriction:", total_before, "->",
+          total_after, "max basis orthogonality error",
+          maximum_orthogonality_error)
+    assert maximum_orthogonality_error < 1e-8
+    return blocks
+
+
 def positive_part(matrix):
     matrix = (matrix + matrix.T) / 2
     values, vectors = la.eigh(matrix)
@@ -221,6 +270,16 @@ def solve(args):
     hol_blocks, objective, trace = prepare_hol_blocks(hol_ranges)
     print("preparing 216 mixed blocks")
     mixed_blocks = prepare_mixed_blocks(mixed_ranges, support)
+    if args.mixed_face and args.product_face:
+        raise ValueError("choose only one of --mixed-face and --product-face")
+    if args.product_face:
+        restrict_mixed_blocks_to_product_face(
+            mixed_blocks, np.load(args.product_face))
+    elif args.mixed_face:
+        face_checkpoint = np.load(args.mixed_face)
+        face_tensor = face_checkpoint[args.mixed_face_field]
+        restrict_mixed_blocks_to_exposed_face(
+            mixed_blocks, face_tensor, args.face_tol)
     print("hol supported dimensions:", sum(b["basis"].shape[1] for b in hol_blocks))
     print("mixed supported dimensions:", sum(b["kernel"].shape[1] for b in mixed_blocks))
 
@@ -233,7 +292,9 @@ def solve(args):
               args.load_rho, "to", args.rho)
     else:
         # A deterministic trace-one hol start, followed by a mixed projection.
-        x = project_hol_trace_one(-objective / max(args.rho, 1e-12), hol_blocks)
+        x = project_hol_trace_one(
+            -args.objective_scale * objective / max(args.rho, 1e-12),
+            hol_blocks)
         ux = crossing_apply(local, x)
         z = project_mixed(ux, mixed_blocks)
         dual = np.zeros_like(x)
@@ -241,7 +302,8 @@ def solve(args):
     start = time.time()
 
     for iteration in range(1, args.iterations + 1):
-        v = crossing_apply(local, z - dual, transpose=True) - objective / args.rho
+        v = (crossing_apply(local, z - dual, transpose=True)
+             - args.objective_scale * objective / args.rho)
         x = project_hol_trace_one(v, hol_blocks)
         ux = crossing_apply(local, x)
         relaxed = args.alpha * ux + (1 - args.alpha) * z
@@ -276,10 +338,15 @@ def main():
     parser.add_argument("--iterations", type=int, default=500)
     parser.add_argument("--rho", type=float, default=1.0)
     parser.add_argument("--alpha", type=float, default=1.0)
+    parser.add_argument("--objective-scale", type=float, default=1.0)
     parser.add_argument("--report", type=int, default=10)
     parser.add_argument("--save")
     parser.add_argument("--load")
     parser.add_argument("--load-rho", type=float, default=1.0)
+    parser.add_argument("--mixed-face")
+    parser.add_argument("--product-face")
+    parser.add_argument("--mixed-face-field", default="a")
+    parser.add_argument("--face-tol", type=float, default=1e-9)
     args = parser.parse_args()
     solve(args)
 

@@ -99,6 +99,21 @@ def prepare_full_blocks(local_ranges, multiplicities):
     return blocks
 
 
+def prepare_reduced_gamma5_blocks(local_ranges, multiplicities, face):
+    blocks = []
+    for shapes in itertools.product(range(6), repeat=3):
+        dimensions = tuple(multiplicities[s] for s in shapes)
+        key = "".join(map(str, shapes))
+        basis = face[f"range_{key}"]
+        blocks.append({
+            "shapes": shapes,
+            "dimensions": dimensions,
+            "indices": primal.block_indices(local_ranges, shapes),
+            "basis": basis,
+        })
+    return blocks
+
+
 def symmetrize(matrix):
     return (matrix + matrix.T) / 2
 
@@ -152,8 +167,10 @@ def install_equality_faces(hol_blocks, blocks1, blocks5, x0, local1, local5,
         census["gamma1_active"] += int(rank > 0)
 
     for block in blocks5:
+        basis = block["basis"]
         matrix = primal.get_block(z5, block["indices"], block["dimensions"])
-        face, values = null_face_basis(matrix, tolerance)
+        compressed = basis.T @ symmetrize(matrix) @ basis
+        face, values = null_face_basis(compressed, tolerance)
         rank = len(values) - face.shape[1]
         block["dual_face"] = face
         census["gamma5_rank"] += rank
@@ -335,7 +352,15 @@ def solve(args):
     print("preparing holomorphic, Gamma1-product, and Gamma5-full blocks")
     hol_blocks, objective, _ = primal.prepare_hol_blocks(hol_ranges)
     blocks1 = prepare_product_blocks(mixed_ranges, product)
-    blocks5 = prepare_full_blocks(final_ranges, final_mults)
+    if args.gamma5_face:
+        gamma5_face = np.load(args.gamma5_face)
+        blocks5 = prepare_reduced_gamma5_blocks(
+            final_ranges, final_mults, gamma5_face)
+        gamma5_full = False
+        print("using facially reduced Gamma5 cone", args.gamma5_face)
+    else:
+        blocks5 = prepare_full_blocks(final_ranges, final_mults)
+        gamma5_full = True
     print("supported dimensions hol/Gamma1/Gamma5:",
           sum(b["basis"].shape[1] for b in hol_blocks),
           sum(b["basis"].shape[1] for b in blocks1),
@@ -367,7 +392,8 @@ def solve(args):
         seed1 = args.primal_dual_sign * rho * checkpoint["dual1"]
         seed5 = args.primal_dual_sign * rho * checkpoint["dual5"]
         a1 = project_cone(seed1, blocks1, args.equality_face, full=False)
-        a5 = project_cone(seed5, blocks5, args.equality_face, full=True)
+        a5 = project_cone(seed5, blocks5, args.equality_face,
+                          full=gamma5_full)
         b1, b5 = project_slack_pair(
             a1, a5, local1, local5, objective, hol_blocks,
             args.equality_face)
@@ -379,7 +405,8 @@ def solve(args):
     else:
         zero = np.zeros((103, 103, 103), dtype=float)
         a1 = project_cone(zero, blocks1, args.equality_face, full=False)
-        a5 = project_cone(zero, blocks5, args.equality_face, full=True)
+        a5 = project_cone(zero, blocks5, args.equality_face,
+                          full=gamma5_full)
         b1, b5 = project_slack_pair(
             a1, a5, local1, local5, objective, hol_blocks,
             args.equality_face)
@@ -395,7 +422,7 @@ def solve(args):
         a1 = project_cone(b1 - dual1, blocks1,
                           args.equality_face, full=False)
         a5 = project_cone(b5 - dual5, blocks5,
-                          args.equality_face, full=True)
+                          args.equality_face, full=gamma5_full)
         relaxed1 = args.alpha * a1 + (1 - args.alpha) * b1
         relaxed5 = args.alpha * a5 + (1 - args.alpha) * b5
         b1, b5 = project_slack_pair(
@@ -451,6 +478,7 @@ def main():
         "--product-face", default="/tmp/dth_product_face_bases.npz")
     parser.add_argument(
         "--gamma5-cache", default="/tmp/dth_gamma5_local_crossing_root.npz")
+    parser.add_argument("--gamma5-face")
     parser.add_argument(
         "--equality", default="/tmp/dth_computational_equality.npz")
     parser.add_argument("--equality-face", action="store_true")
