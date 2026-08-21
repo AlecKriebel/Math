@@ -19,8 +19,8 @@ It contains no claim that a numerical solve proves an asymptotic statement.
 | global sweep | the two-coordinate macro chain retains adverse reversals and controls all `q` satellites | analytic proof |
 | response functions | center, pair, pendant, and baseline terms occur on one common scale with correct signs | exact algebra plus analytic estimates |
 | sextic threshold | root count, quadratic minimizer, tangency, and derivative signs are exact | two symbolic certificates |
-| rational family | endpoint margins and algebraic threshold are exact | symbolic certificate |
-| claim boundary | optimality is limited to the displayed architecture; no unrestricted upper bound is inferred | abstract, theorem, discussion, and package integration audit |
+| rational-edge family | endpoint margins and algebraic threshold are exact | symbolic certificate |
+| claim boundary | optimality is limited to fixed positive parameters in the displayed first-order response model; no unrestricted upper bound is inferred | abstract, theorem, discussion, and package integration audit |
 | computational boundary | replay coverage is not described as a computer proof of the weak-cut or population asymptotics | Data and Code Availability and package notes |
 
 The finite affine-separator calculation from the v1 package is intentionally
@@ -32,9 +32,12 @@ public replay and release archive.
 ## Final verdict
 
 Three independent final reviewers re-read the corrected theorem chain and
-the frozen manuscript after the literature update.  No substantive theorem,
-rate, scale, quantifier, citation, rendering, replay, or package objection
-remained.  The deterministic archive was independently regenerated and
+the frozen manuscript after the literature update and the major-revision
+response.  In particular, they re-audited the adapted hidden-coordinate
+drift, nested cleanup blocks, adverse pendant reset, killed-Green tail, and
+rule-specific reciprocal renewal at the claimed gain scales.  No substantive
+theorem, rate, scale, quantifier, citation, rendering, replay, or package
+objection remained.  The deterministic archive was independently regenerated and
 clean-extracted; its internal manifest, pinned replay, and byte-identical PDF
 rebuild all passed.  Human confirmation of contact, funding,
 competing-interest, contribution, license, and portal fields remains an

@@ -15,7 +15,9 @@ def main() -> None:
     assert polynomial.count_roots(sp.Rational(1), sp.Rational(3, 2)) == 0
     assert polynomial.count_roots(sp.Rational(3, 2), sp.Rational(151, 100)) == 1
     assert p.subs(r, sp.Rational(3, 2)) == sp.Rational(1, 64)
-    assert p.subs(r, sp.Rational(151, 100)) < 0
+    assert p.subs(r, sp.Rational(151, 100)) == -sp.Rational(
+        39866792399, 10**12
+    )
     root = sp.CRootOf(polynomial, 0)
     assert sp.Rational(3, 2) < root < sp.Rational(151, 100)
 

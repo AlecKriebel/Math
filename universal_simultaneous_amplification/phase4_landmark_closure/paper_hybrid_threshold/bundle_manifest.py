@@ -107,7 +107,12 @@ def tar_info(name: str, size: int, executable: bool = False) -> tarfile.TarInfo:
 
 def synthetic_metadata() -> bytes:
     return (
-        "Package: A fitness-independent simultaneous amplifier beyond fitness 3/2\n"
+        "Package: A fitness-independent family of simultaneous amplifiers beyond relative fitness 3/2\n"
+        "Author: Alec Kriebel\n"
+        "ORCID: 0009-0001-9320-500X\n"
+        "Status: superseding manuscript submission candidate; no new persistent identifier\n"
+        "License: MIT\n"
+        "Prior source/software DOI: 10.5281/zenodo.21852072\n"
         "Contents: manuscript source, PDF, exact certificates, and replay tooling\n"
         "Archive format: deterministic POSIX tar compressed with deterministic gzip\n"
         f"SOURCE_DATE_EPOCH: {EPOCH}\n"

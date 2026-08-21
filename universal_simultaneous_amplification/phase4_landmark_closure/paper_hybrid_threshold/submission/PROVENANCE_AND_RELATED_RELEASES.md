@@ -17,9 +17,9 @@ journal article and was not posted through bioRxiv.
 The present Paper II is a major superseding revision of that manuscript.  It
 retains the same central lower-bound theorem while consolidating the finite
 weak-cut Schur argument, gain-scale establishment and cleanup estimates,
-reciprocal-invasion and sweep bounds, architecture-optimality boundary,
-rational specialization, literature context, declarations, and deterministic
-standalone package.  The old DOI must be disclosed as a prior public version,
+reciprocal-invasion and sweep bounds, fixed-parameter response-optimality
+boundary, rational specialization, literature context, declarations, and
+deterministic standalone package.  The old DOI must be disclosed as a prior public version,
 not reused as the persistent identifier for the revised package.
 
 The public project page

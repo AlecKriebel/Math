@@ -10,8 +10,9 @@ Editors
 
 Dear Editors,
 
-Please consider “A fitness-independent simultaneous amplifier beyond fitness
-3/2” as an original research article in *Theoretical Population Biology*.
+Please consider “A fitness-independent family of simultaneous amplifiers
+beyond relative fitness 3/2” as an original research article in
+*Theoretical Population Biology*.
 
 The paper studies whether one growing population structure, chosen without
 knowing an advantageous mutant's exact fitness, can increase its uniformly
@@ -34,8 +35,9 @@ The analysis resolves local weak-cut excursions through a finite Schur trace,
 proves establishment and complete cleanup at the scale of the eventual gain,
 and retains adverse reversals in an exact two-coordinate satellite sweep.
 The resulting response functions yield an algebraic sextic endpoint and prove
-optimality within the displayed pair--pendant leading-order architecture.  A
-fully rational parameter choice already
+optimality among fixed positive parameters in the displayed first-order
+dilute pair--pendant response model.  A parameter choice with entirely
+rational edge weights already
 works beyond fitness 3/2.  The unrestricted largest interval, and even a
 finite universal upper bound, remain open.
 

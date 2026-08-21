@@ -13,9 +13,9 @@ R_{\rm sim}\ge 1.5028569127905696\ldots>3/2.
 The construction is one graph sequence selected independently of fitness.
 For every fixed fitness in the open interval, both update rules amplify for
 all sufficiently large population indices.  The algebraic endpoint is exact
-for the paper's pair--pendant leading-order architecture, not for all growing
-weighted graphs.  The unrestricted exact threshold and any finite universal
-upper bound remain open.
+among fixed positive parameters in the paper's displayed first-order dilute
+pair--pendant response model, not for all growing weighted graphs.  The
+unrestricted exact threshold and any finite universal upper bound remain open.
 
 ## Proof architecture
 
@@ -23,14 +23,15 @@ upper bound remain open.
    in `R_sim`.
 2. Construct a large clique with dilute hub pendants and dilute internally
    heavy two-vertex satellites, connected by a uniformly selected dyadic cut.
-3. Derive the exact finite weak-cut Schur trace.
+3. Derive the weak-cut limiting trace exactly from the finite-state chain.
 4. Prove compact-uniform center establishment, full cleanup, and reciprocal-
    invasion estimates at the gain scale `q/C`.
 5. Derive the exact pair-gate macro chain and control the post-gate sweep.
 6. Obtain the two leading response functions and optimize their common
    positivity interval.
-7. Isolate the sextic root and prove tangency, class optimality, and the fully
-   rational specialization crossing `3/2`.
+7. Isolate the sextic root and prove tangency, fixed-parameter response
+   optimality, and a specialization with entirely rational edge weights
+   crossing `3/2`.
 8. Separate exact computational audits from the analytic asymptotic proof and
    state the unrestricted open problem.
 
@@ -42,7 +43,7 @@ upper bound remain open.
 | finite weak-cut trace | manuscript block-matrix/Schur proof | no machine proof; finite algebra is stated and proved in text |
 | center estimates and reciprocal invasion | manuscript stopped comparisons | no numerical diagnostic is a proof dependency |
 | pair and pendant coefficients | trace equations | `verify_hybrid_coefficients.py` |
-| sextic, tangency, and architecture optimization | quadratic minimization | `verify_leading_algebra.py` and the coefficient audit |
+| sextic, tangency, and fixed-parameter response optimization | quadratic minimization | `verify_leading_algebra.py` and the coefficient audit |
 | cross-section integration | manuscript theorem proof | `verify_paper_claims.py` |
 | novelty and provenance | manuscript bibliography and release note | `LITERATURE_AUDIT.md` and submission provenance note |
 

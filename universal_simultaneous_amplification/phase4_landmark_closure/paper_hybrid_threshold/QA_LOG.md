@@ -32,9 +32,9 @@ Date: 2026-08-20 (America/Los_Angeles)
 - [x] Final hostile review is repeated after all corrections.
 
 The frozen public archive contains 19 regular members and has SHA-256
-`ad6164df555e029d69c1abb698a4e50e94c848866f95f6ce65f3fec8fb2292d0`.
-The 15-page PDF has SHA-256
-`6d379ad45c20bae1ba8d4e22617571c1712f141b1fc9d626f27885bab2a92318`.
+`76916d91fcc96bceeb4e7a9516571839d4871a0fa63e32fbe25d4a19ebb8cfc6`.
+The 19-page PDF has SHA-256
+`602e41f0959cde299c6bd0d7acad5dfc3b6a5afc501d4721c4015f3c8ec31dcf`.
 All fonts are embedded; the page size is US letter; the PDF is unencrypted.
 
 The earlier ten-page v1 PDF and its release hashes are historical checkpoints,

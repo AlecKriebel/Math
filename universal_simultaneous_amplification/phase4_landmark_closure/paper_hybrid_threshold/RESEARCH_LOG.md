@@ -5,8 +5,9 @@
 - Chose the robust simultaneous-amplification lower bound as Paper II's sole
   headline: one fitness-independent graph sequence works for every fixed
   `1<r<R_hyb`, with `R_hyb>3/2` the isolated sextic root.
-- Fixed the scope boundary: `R_hyb` is optimal only in the displayed pair--
-  pendant leading-order architecture; no unrestricted upper bound is claimed.
+- Fixed the scope boundary: `R_hyb` is optimal only among fixed positive
+  `(sigma,lambda)` in the displayed first-order dilute pair--pendant response
+  model; no unrestricted upper bound is claimed.
 - Removed the logically redundant finite affine-separator result and its
   replay dependency.  Simultaneous amplification at fitness `3/2` already
   gives the relevant endpoint consequence.
@@ -23,7 +24,7 @@
 
 - Copied the three exact scientific certifiers into a paper-local
   `certificates/` directory: leading-response/tangency algebra, labelled
-  hybrid lumping, and hybrid coefficient/rational-family algebra.  The replay
+  hybrid lumping, and hybrid coefficient/rational-edge-family algebra.  The replay
   is now self-contained and adds a paper-level integration audit.
 - Restricted the public archive to an exact 17-source-file whitelist (19
   members after synthetic metadata and manifest).  Excluded older proof notes
@@ -65,3 +66,45 @@
   rules.
 - Kept the priority language theorem-specific and avoided claiming an
   unrestricted first result beyond what the cited literature supports.
+
+## 2026-08-20 — adversarial major-revision pass
+
+- Classified the external adversarial report point by point.  The center
+  probability objection, fixed-parameter scope, workstream chronology,
+  revision-specific archive pointer, title, wording, CRediT statement, and PDF
+  metadata were valid and worth revising.  The effective dyadic construction
+  was already logically present but was promoted to a named exact-computability
+  lemma.  An explicit numerical upper bound on the dyadic exponent was not
+  needed for constructivity.
+- Split the center argument into five stopped-process lemmas and replaced
+  hidden-state birth--death shorthand by conditional-intensity couplings,
+  exponential generator estimates, explicit pendant waiting/cleanup bounds,
+  killed-Green tail estimates, and rule-specific reciprocal renewal
+  inequalities at the required `o(C^-1)` scale.
+- Narrowed response optimality to fixed positive parameters in the displayed
+  first-order model and added exact endpoint signs plus Sturm isolation above
+  `R_hyb`.  Added the fixed-graph quantifier contrast and version-specific
+  provenance for all predecessor research releases.
+- Deliberately omitted a finite amplification table.  Accessible exactly
+  audited finite instances did not simultaneously amplify, and the theorem
+  supplies no useful finite `t_0(r)`; a trace-only or numerical illustration
+  would risk being mistaken for evidence for the asymptotic theorem.
+- Exact replay and a clean 20-page build pass at this pre-freeze checkpoint.
+  Final independent rereview, visual QA, deterministic archive regeneration,
+  and clean-extraction replay remain.  Estimated completion: **88%**.
+
+## 2026-08-20 — adversarial revision closed
+
+- Three independent hostile passes found and then cleared the remaining
+  stopped-integral, block-restart, hidden-reseed, and reciprocal-renewal
+  seams.  The final verdict found no substantive theorem, scale, quantifier,
+  framing, or provenance defect.
+- Exact replay, static submission checks, clean compilation, PDF text scans,
+  embedded metadata/fonts, and page-by-page visual inspection pass on the
+  final 19-page manuscript.  A missing-backslash TeX separator found during
+  visual QA was fixed and added to the paper-level regression checks.
+- The deterministic archive is ready for final regeneration and independent
+  clean extraction.  Human-only address, funding, competing-interest,
+  contribution, license, and submission-portal confirmations remain clearly
+  separated from the research package.  Research/manuscript completion:
+  **100%**; external submission remains a human action.

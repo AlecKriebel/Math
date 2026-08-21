@@ -1,4 +1,4 @@
-# A fitness-independent simultaneous amplifier beyond fitness 3/2
+# A fitness-independent family of simultaneous amplifiers beyond relative fitness 3/2
 
 This folder contains the manuscript, paper-level exact audit, deterministic
 release tooling, and human submission handoff for Paper II of the universal-
@@ -20,9 +20,9 @@ updating.  Consequently,
 R_{\rm sim}\ge R_{\rm hyb}>3/2.
 \]
 
-The endpoint is exact only within the paper's dilute heavy-pair plus hub-
-pendant leading-order architecture.  The unrestricted value of `R_sim`, and
-even a finite universal upper bound, remain open.
+The endpoint is exact only among fixed positive response parameters in the
+paper's displayed first-order dilute pair--pendant model.  The unrestricted
+value of `R_sim`, and even a finite universal upper bound, remain open.
 
 From this folder run:
 

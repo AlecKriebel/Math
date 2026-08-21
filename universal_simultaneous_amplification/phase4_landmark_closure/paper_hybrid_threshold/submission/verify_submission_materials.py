@@ -27,7 +27,10 @@ REQUIRED = {
     "REPRODUCTION_TEST.md",
 }
 ALLOWED_PLACEHOLDERS = {"POSTAL_ADDRESS"}
-TITLE = "A fitness-independent simultaneous amplifier beyond fitness $3/2$"
+TITLE = (
+    "A fitness-independent family of simultaneous amplifiers beyond "
+    "relative fitness $3/2$"
+)
 
 
 def words(text: str) -> int:
@@ -63,7 +66,7 @@ def main() -> None:
     for phrase in (
         "fitness-independent family",
         "1.5028569127905696",
-        "pair--pendant leading-order architecture",
+        "first-order dilute pair--pendant response model",
         "finite universal upper bound",
     ):
         assert phrase in metadata_normalized, phrase
@@ -98,7 +101,7 @@ def main() -> None:
     assert "[HUMAN:" not in combined
     assert not re.search(r"PLOS", combined, re.I)
 
-    for doi in ("21850042", "21852072"):
+    for doi in ("21753405", "21850042", "21852072"):
         assert re.search(
             rf"{doi}.{{0,240}}(?:source/software|software/source) archive",
             combined,

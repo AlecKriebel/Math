@@ -49,7 +49,7 @@ def main():
     assert sp.factor(G_b - (lam - lower) / (r - 1)) == 0
     assert sp.factor(G_d - (upper - lam)) == 0
 
-    # A completely rational family already crosses 3/2.
+    # A family with entirely rational edge weights already crosses 3/2.
     rational_sigma, rational_lam = sp.Rational(19, 137), sp.Rational(20, 27)
     endpoint_b = sp.factor(G_b.subs({r: sp.Rational(3, 2), sigma: rational_sigma, lam: rational_lam}))
     endpoint_d = sp.factor(G_d.subs({r: sp.Rational(3, 2), sigma: rational_sigma, lam: rational_lam}))
@@ -106,7 +106,7 @@ def main():
     assert derivative_remainder == 0
 
     print(f"rational endpoint margins: Bd={endpoint_b}, dB={endpoint_d}")
-    print(f"rational-family threshold ~{float(rational_threshold):.15g}")
+    print(f"rational-edge-family threshold ~{float(rational_threshold):.15g}")
     print(f"optimized phase root ~{float(R_decimal):.15g}")
     print(f"optimized sigma ~{float(sigma_decimal):.15g}, lambda ~{float(lambda_decimal):.15g}")
     print("PASS exact hybrid coefficient and phase-polynomial audit")

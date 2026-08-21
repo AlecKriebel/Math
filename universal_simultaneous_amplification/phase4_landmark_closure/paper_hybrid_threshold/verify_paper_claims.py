@@ -68,7 +68,9 @@ def check_feasibility_and_tangency() -> None:
     assert polynomial.count_roots(sp.Rational(1), sp.Rational(3, 2)) == 0
     assert polynomial.count_roots(sp.Rational(3, 2), sp.Rational(151, 100)) == 1
     assert phase.subs(r, sp.Rational(3, 2)) == sp.Rational(1, 64)
-    assert phase.subs(r, sp.Rational(151, 100)) < 0
+    assert phase.subs(r, sp.Rational(151, 100)) == -sp.Rational(
+        39866792399, 10**12
+    )
     print("PASS: feasibility gap, quadratic minimum, and isolated sextic root")
 
 
@@ -93,7 +95,7 @@ def check_rational_specialization() -> None:
     for exponent in range(1, 9):
         cut = F(1, 2**exponent)
         assert cut > 0 and cut.denominator == 2**exponent
-    print("PASS: rational margins, rational threshold, and dyadic-cut schedule")
+    print("PASS: rational margins, algebraic response threshold, and dyadic-cut schedule")
 
 
 def check_manuscript_scope() -> None:
@@ -103,7 +105,16 @@ def check_manuscript_scope() -> None:
     required = (
         "fitness-independent",
         r"\Rsim\geq\Rhyb",
-        "Architecture-optimality",
+        "Effective dyadic diagonal",
+        "Early ordinary-core establishment",
+        "Supercritical completion and core confinement",
+        "Pendant synchronization and pendant initialization",
+        "Reciprocal killed-Green bounds",
+        "Reciprocal hub-excursion renewal",
+        "Fixed-parameter response optimality",
+        r"P(3/2)=\frac1{64}>0",
+        "Kriebel2026fixed",
+        "10.5281/zenodo.21753405",
         "unrestricted value of $\\Rsim$",
         "the weak-cut and population\n"
         "asymptotics are analytic proofs in the manuscript",
@@ -118,7 +129,22 @@ def check_manuscript_scope() -> None:
         assert fragment in manuscript, f"missing manuscript scope marker: {fragment}"
     assert "endpoint_affine_global_v2" not in manuscript
     assert "audit_core_uniformity.py" not in manuscript
-    print("PASS: theorem, architecture, open-problem, and replay boundaries are explicit")
+    assert r"K=A\log C" not in manuscript
+    assert r"B\log C" not in manuscript
+    for malformed in (
+        ",qquad",
+        "&qquad",
+        ",quad",
+        "&quad",
+        "&left",
+        ",left",
+        "&right",
+        ",right",
+    ):
+        assert malformed not in manuscript, f"malformed TeX token: {malformed}"
+    print(
+        "PASS: theorem, response-model, open-problem, and replay boundaries are explicit"
+    )
 
 
 if __name__ == "__main__":

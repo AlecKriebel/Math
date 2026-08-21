@@ -9,9 +9,9 @@ Editors
 
 Dear Editors,
 
-Please consider the manuscript, “A fitness-independent simultaneous amplifier
-beyond fitness 3/2,” as an original research article in the *Journal of
-Mathematical Biology*.
+Please consider the manuscript, “A fitness-independent family of simultaneous
+amplifiers beyond relative fitness 3/2,” as an original research article in
+the *Journal of Mathematical Biology*.
 
 The paper addresses a robustness question in evolutionary graph theory: can
 one population-structure sequence, selected without knowing mutant fitness,
@@ -34,8 +34,9 @@ The proof derives a finite weak-cut Schur trace, gain-scale establishment and
 cleanup estimates, reciprocal-invasion bounds, and the exact two-coordinate
 pair sweep.  It then reduces both normalized fixation corrections to explicit
 rational response functions.  Exact optimization gives the sextic endpoint
-and proves optimality within the displayed pair--pendant leading-order
-architecture.  A fully rational specialization also crosses 3/2.  The paper
+and proves optimality among fixed positive parameters in the displayed
+first-order dilute pair--pendant response model.  A specialization with
+entirely rational edge weights also crosses 3/2.  The paper
 carefully leaves the unrestricted exact threshold, and even a finite universal
 upper bound, open.
 

@@ -7,7 +7,7 @@ personally.
 
 Independent specialist review could be valuable for the compact-uniform weak-
 cut diagonal, the gain-scale establishment and cleanup bounds, reciprocal
-invasion, the global pair sweep, and the architecture-optimal sextic
+invasion, the global pair sweep, and the fixed-parameter response sextic
 optimization.  Under the independent-research policy, only the human
 researcher may identify or contact any outside person.  No contact list is
 collected or proposed here.

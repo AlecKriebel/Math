@@ -16,10 +16,11 @@ sufficiently large population indices.  Thus
 R_{\rm sim}\ge R_{\rm hyb}=1.5028569127905696\ldots>3/2.
 \]
 
-The release also gives a rational specialization with threshold
-`1.50176815223369...>3/2` and proves architecture-optimality for the displayed
-pair--pendant response cone.  It does not determine the unrestricted value of
-`R_sim` or prove a universal upper bound.
+The release also gives a specialization with entirely rational edge weights
+and threshold `1.50176815223369...>3/2`.  It proves optimality among fixed
+positive parameters in the displayed first-order pair--pendant response
+model.  It does not determine the unrestricted value of `R_sim` or prove a
+universal upper bound.
 
 ## Reproducibility boundary
 

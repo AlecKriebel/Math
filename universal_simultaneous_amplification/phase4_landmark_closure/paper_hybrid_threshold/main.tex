@@ -9,6 +9,13 @@
 \usepackage[hidelinks]{hyperref}
 \allowdisplaybreaks[2]
 
+\hypersetup{
+  pdftitle={A fitness-independent family of simultaneous amplifiers beyond relative fitness 3/2},
+  pdfauthor={Alec Kriebel},
+  pdfsubject={Simultaneous amplification under Birth--death and death--Birth Moran updating},
+  pdfkeywords={evolutionary graph theory, Moran process, fixation probability, simultaneous amplification, Birth--death updating, death--Birth updating}
+}
+
 \newtheorem{theorem}{Theorem}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{lemma}[theorem]{Lemma}
@@ -25,7 +32,7 @@
 \newcommand{\eps}{\varepsilon}
 \newcommand{\Prob}{\mathbb P}
 
-\title{A fitness-independent simultaneous amplifier beyond fitness $3/2$}
+\title{A fitness-independent family of simultaneous amplifiers beyond relative fitness $3/2$}
 \author{Alec Kriebel\\
 Independent Researcher\\
 \href{mailto:me@aleckriebel.com}{me@aleckriebel.com}\\
@@ -51,13 +58,14 @@ Therefore
 $\Rsim\geq\Rhyb=1.5028569127905696\ldots>3/2$.
 
 The construction combines a large clique with dilute hub pendants and
-dilute, internally heavy two-vertex satellites.  An exact finite weak-cut
-Schur trace, together with uniform establishment, cleanup, and
+dilute, internally heavy two-vertex satellites.  An exact finite-state
+derivation of the weak-cut limiting trace, together with uniform establishment, cleanup, and
 reciprocal-invasion estimates at the scale of the eventual gain, reduces the two
 normalized fixation corrections to explicit response functions.  Optimizing
 their common positivity interval yields the displayed sextic.  The same
-analysis proves that $\Rhyb$ is optimal within this pair--pendant
-leading-order architecture; a fully rational specialization already crosses
+analysis proves that $\Rhyb$ is optimal among fixed positive
+$(\sigma,\lambda)$ in the displayed first-order dilute pair--pendant response
+model; a specialization with entirely rational edge weights already crosses
 $3/2$.  Thus $3/2$ is not the exact simultaneous-amplification threshold.
 The unrestricted value of $\Rsim$, and even a finite universal upper bound,
 remain open.
@@ -101,10 +109,21 @@ asymptotic problem has the quantifier order
 \]
 The graphs and weights may depend on $t$, but not on $r$.
 
+A complementary fixed-graph obstruction has the opposite quantifier order.
+No fixed finite weighted structure is a strict dB amplifier for every
+$r>1$: every structure not dB-equivalent to the complete graph is suppressing
+above a graph-dependent threshold $R_G$, whereas the equivalent class ties
+the baseline \citep{Kriebel2026fixed}.  This
+$\forall G\,\exists R_G$ statement supplies no graph-uniform threshold and
+therefore does not rule out the present
+$\exists\{G_t\}\,\forall r<R\,\exists t_0(r)$ order; the thresholds
+$R_{G_t}$ may vary with $t$.
+
 \citet{Svoboda2024} constructed simultaneous amplifiers on $1<r<1.2$.
-A preceding public manuscript established $\Rsim\geq3/2$ with a
+A preliminary unrefereed research release established $\Rsim\geq3/2$ with a
 center--triangle family, while that particular family suppresses at its
-endpoint \citep{Kriebel2026half}.  The present construction crosses $3/2$.
+endpoint \citep{Kriebel2026half}.  The present manuscript supersedes that
+release in its lower-bound conclusion by crossing $3/2$.
 The numerical increment is small, but the conclusion is qualitative: the
 earlier endpoint is not the unrestricted phase boundary.
 
@@ -115,9 +134,9 @@ entire path to fixation at the smaller $q/C$ scale of the final gain.  Third,
 the exact two-coordinate macro chain retains adverse reversals while deriving
 the pair gate.  Finally, optimizing the two resulting response functions
 produces an algebraic tangency and the degree-six polynomial in the abstract.
-This also proves optimality within the stated pair--pendant leading-order
-architecture.  No universal upper bound is inferred; the unrestricted value
-of $\Rsim$ remains open.
+This also proves fixed-parameter optimality within the displayed first-order
+pair--pendant response model.  No universal upper bound is inferred; the
+unrestricted value of $\Rsim$ remains open.
 
 \section{Model, baselines, and threshold}
 
@@ -271,11 +290,34 @@ least positive integer such that, for $\eps_t=2^{-e_t}$,
  \quad (U=\Bd,\dB).
 \]
 For the finitely many empty intervals, take $e_t=1$.
-Finite Schur-complement continuity proves existence.  At fixed $t,e$, all
-entries are algebraic rational functions of $r$, denominators are positive,
-and the two uniform inequalities are decidable by exact real-algebraic
-arithmetic.  Thus this is an effective graph definition, and every weight is
-fixed before $r$ is quantified.
+
+\begin{lemma}[Effective dyadic diagonal]
+\label{lem:effective-diagonal}
+The integer $e_t$ exists and is computable by exact real-algebraic
+arithmetic.  In particular, the family $\{G_t\}$ is effectively defined and
+every one of its weights is fixed before fitness is quantified.
+\end{lemma}
+
+\begin{proof}
+Work over the algebraic number field $\mathbb K=\mathbb Q(\Rhyb)$.
+Both $\sigma_*$ and $\lambda_*$ lie in $\mathbb K$, and
+$m_t=\lfloor\lambda_*t\rfloor$ is obtained by an exact comparison of real
+algebraic numbers.  For fixed $t,e$ and either update rule, the transient
+first-step system of $G_t(2^{-e})$ has entries in $\mathbb K(r)$.  Cramer's
+rule therefore puts its fixation probability in $\mathbb K(r)$; the same is
+true of the finite separated trace and the complete-graph baseline.  Event
+denominators and the determinant of the transient absorbing system are
+strictly positive on $I_t$.
+
+After clearing those positive denominators, each of the two absolute-value
+conditions defining $e_t$ is a pair of polynomial inequalities over
+$\mathbb K$ quantified on the algebraic interval $I_t$.  Its truth is
+decidable by Sturm--subresultant arithmetic, equivalently by quantifier
+elimination in the real closure of $\mathbb K$.  Proposition
+\ref{prop:weak-trace} gives uniform convergence on $I_t$, so some exponent is
+admissible.  Testing $e=1,2,\ldots$ by the exact decision procedure therefore
+terminates at the least admissible $e_t$.
+\end{proof}
 
 \begin{theorem}[Main theorem]
 \label{thm:main}
@@ -291,7 +333,7 @@ Consequently
 \]
 \end{theorem}
 
-\section{Exact lumping and the finite weak-cut trace}
+\section{Exact lumping and the weak-cut limiting trace}
 \label{sec:trace}
 
 A configuration has orbit label
@@ -332,7 +374,7 @@ the finite first-step matrix into mixed-module states $F$ and all
 monomorphic-module states $M$, explicitly including global extinction and
 fixation.  Their two harmonic values remain fixed at zero and one.
 
-\begin{proposition}[Finite weak-cut trace]
+\begin{proposition}[Finite-state weak-cut limiting trace]
 \label{prop:weak-trace}
 Let $a_H^U,a_P^U$ be the uniformly initialized isolated fixation
 probabilities of the center and one pair, and let $P_U^H,P_U^P$ be fixation
@@ -421,11 +463,12 @@ At reciprocal fitness $1/r$,
 where $J_H$ is the dB portal functional defined below.
 \end{proposition}
 
-\begin{proof}
-We give the quantitative argument because an $o(1)$ establishment
-approximation would be too weak: the final gain is only of order $q/C$.
-Write a center state as $(h,i,\ell)$, put $c=C-1$, $d=c+m$, and suppress a
-common positive statewise time factor.  The six Bd changing rates are
+We prove the proposition through five stopped-process lemmas.  This detail is
+needed because an $o(1)$ establishment approximation would be too weak: the
+final gain is only of order $q/C$.  Fix throughout a compact interval
+$\mathcal R=[r_-,r_+]\Subset(1,\infty)$.  Write a center state as
+$(h,i,\ell)$, put $c=C-1$, $d=c+m$, and suppress a common positive statewise
+time factor.  The six Bd changing rates are
 \[
 \begin{array}{c|c}
 \text{change}&\text{rate}\\ \hline
@@ -451,9 +494,24 @@ i\to i-1&i\dfrac{c-i+1-h}{c+(r-1)(i-1+h)}\\[1mm]
 These tables follow by summing the labelled parent--target and
 death--parent events and are the only estimates used below.
 
+\begin{lemma}[Early ordinary-core establishment]
+\label{lem:early-establishment}
 Start from one ordinary clique mutant, with resident hub and no mutant
-leaves.  Stop $i$ on hitting $0$ or $K=A\log C$.  Before the first hub
-change, the exact embedded up/down odds are
+pendants.  Let $\chi$ be the first change of the hub or pendant coordinates,
+let $K=\lceil A_0\log C\rceil$, and let
+$\tau_j=\inf\{s:i_s=j\}$ and
+$\tau_{0,K}=\tau_0\wedge\tau_K$.  Uniformly for
+$r\in\mathcal R$ and $U\in\{\Bd,\dB\}$,
+\begin{align}
+ \Prob(\chi<\tau_{0,K})&=O(K^2/C),\label{eq:early-mark}\\
+ \Prob_1(\tau_K<\tau_0)
+ &=1-\frac1r+O(K^2/C)+O(r^{-K}).\label{eq:early-est}
+\end{align}
+The constants are uniform for every fixed $A_0$.
+\end{lemma}
+
+\begin{proof}
+Until $\chi$, the exact embedded ordinary-count up/down odds are
 \begin{align}
  R_{\Bd}(i)
  &=r\,\frac{c-i}{c-i+c/(c+m)},\\
@@ -461,20 +519,55 @@ change, the exact embedded up/down odds are
  &=r\,\frac{c-i}{c-i+1}
  \frac{c+(r-1)(i-1)}{c+(r-1)i}.
 \end{align}
-Both equal $r\{1+O(K/C)\}$.  At $i\leq K$, the hub-change hazard divided by
-the ordinary-change hazard is $O(K/C)$.  A biased walk started at one makes
-$O(K)$ expected ordinary changes before hitting $\{0,K\}$, uniformly on a
-fitness compact bounded away from one.  Charging the first hub change as an
-error event therefore costs $O(K^2/C)$.
+Thus $\lambda_i^U:=(R_U(i))^{-1}=r^{-1}\{1+O(K/C)\}$ uniformly for
+$1\leq i<K$.  For large $C$, the embedded ordinary walk has conditional
+upward probability at least $1/2+\eta$ for some $\eta>0$ depending only on
+$\mathcal R$.  If $N$ is its number of changes before $\{0,K\}$, optional
+stopping applied to the count minus its uniform positive drift gives
+$\mathbb E_1N\leq K/(2\eta)=O(K)$.  At every visited state the hub-change
+hazard divided by the ordinary-change hazard is $O(K/C)$; a union bound over
+the stopped changes gives \eqref{eq:early-mark}.  Pendant coordinates cannot
+change before the initially resident hub does.
 
-The product-odds gambler's-ruin formula therefore gives
+Suppressing that killing event, the product-odds formula is
 \[
- \Prob_1(T_K<T_0)
- =p+O(K^2/C)+O(r^{-K}).
+ \Prob_1(\tau_K<\tau_0)
+ =\left(1+\sum_{k=1}^{K-1}\prod_{j=1}^k\lambda_j^U\right)^{-1}.
 \]
-For every hub and leaf state, the ordinary-count odds remain bounded below
-by a constant $r_0>1$ from $K$ to a fixed positive core density.  Indeed,
-the two tables give the uniform lower bounds
+For $k<K$, the product is
+$r^{-k}\exp\{O(kK/C)\}$; summing the geometric tail and restoring the
+killing event changes the answer by
+$O(K^2/C)+O(r^{-K})$.  This proves \eqref{eq:early-est}.
+\end{proof}
+\begin{lemma}[Supercritical completion and core confinement]
+\label{lem:core-confinement}
+There are constants $\delta>0$, $r_0>1$, $a,b,\gamma>0$, and an integer
+$R_0$, depending only on $\mathcal R$, with the following properties.
+Uniformly in the hub and pendant coordinates, a core family starting at
+$i=K$ reaches $i\geq(1-\delta)c$ before extinction except with probability
+\[
+ O(r_0^{-K})+e^{-\gamma C}.
+\]
+If $R=c-i$ and $R(0)\leq\delta c$, then for every fixed $M$,
+\begin{equation}
+ \Prob\!\left(\sup_{s\leq C^M}R_s\geq2\delta c\right)
+ \leq C_M C^{M+1}e^{-\gamma C},
+\label{eq:core-confinement}
+\end{equation}
+where time is measured in the displayed continuous-time clock.  Before the
+exceptional exit, the bounded strip is reached with the uniform tail
+\begin{equation}
+ \Prob\bigl(\tau_{\{R\leq R_0\}}>a\log C+x,
+             \tau_{2\delta c}>\tau_{\{R\leq R_0\}}\bigr)
+ \leq a e^{-bx}.
+\label{eq:deficit-return}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+For every hub and pendant state, the ordinary-count odds remain bounded
+below by a constant $r_0>1$ from $K$ to a fixed positive core density.
+Indeed, the two tables give the uniform lower bounds
 \[
  \frac{q^+_{\Bd}}{q^-_{\Bd}}
  \geq\frac{r}{1+c/\{d(c-i)\}},\qquad
@@ -482,11 +575,23 @@ the two tables give the uniform lower bounds
  =r\,\frac{h+i}{i}\frac{c-i}{c-i+1-h}
  \frac{c+(r-1)(i-1+h)}{c+(r-1)(i+h)}.
 \]
-Hence return to zero costs $O(r_0^{-K})$.  Once $i$ reaches a fixed positive
-density, the same comparison carries it to $i=(1-\delta)c$ with failure
-$\exp\{-\Omega(C)\}$.  Write $R=c-i$ for the resident-core deficit.  In the
-upper strip $1\leq R\leq2\delta c$, the two rate tables give, uniformly in
-the hub and leaf coordinates,
+For $K\to\infty$ and $i\leq(1-\delta)c$, their infimum is strictly larger
+than one.  This comparison remains valid although the hidden coordinates
+move.  At successive $i$-change epochs, condition on the complete past.  The
+pointwise intensity ratio implies that the conditional probability of an
+upward step is at least $r_0/(1+r_0)$: this follows equivalently by comparing
+the two compensator integrals up to the next $i$-change.  Thus
+$r_0^{-i_n}$ is a supermartingale for the embedded adapted process.  Stopping
+on $\{0,\lfloor(1-\delta)c\rfloor\}$ gives
+\[
+ \Prob_K\bigl(\tau_0<\tau_{\lfloor(1-\delta)c\rfloor}\bigr)
+ \leq r_0^{-K}.
+\]
+Applying the same conditional-bias comparison across any subsequent
+fixed-density interval gives an $e^{-\gamma C}$ failure bound.
+
+In the upper strip $1\leq R\leq2\delta c$, the same tables give, uniformly
+in the hub and pendant coordinates,
 \begin{equation}
  \frac{q(R\mapsto R-1)}{q(R\mapsto R+1)}
  \geq r(1-2\delta)\frac{R}{R+1}\{1-o(1)\}.
@@ -501,148 +606,430 @@ Then one may take $\alpha=(r_-+1)/2>1$ and, for all sufficiently large
 $C$, replace the right side of \eqref{eq:deficit-odds} by
 $\alpha R/(R+1)$.  It is larger than $1+\eta_0$ above the fixed integer
 $R_0=\lceil(\alpha+1)/(\alpha-1)\rceil$; no statewise drift assertion is
-made below $R_0$.  Exponential gambler's ruin between $R_0$ and
-$2\delta c$, followed by the strong Markov property at returns to $R_0$,
-shows that for every fixed $M$, in the displayed continuous-time
-statewise clock,
-\begin{equation}
- \Prob\!\left(\left.\sup_{s\leq C^M}R_s\geq2\delta c
- \ \right|\ R(0)\leq\delta c\right)
- \leq C_M C^{M+1}e^{-\gamma C}.
-\label{eq:core-confinement}
-\end{equation}
-The polynomial factor bounds the number of uniformized $R$-changes.  The
-same comparison gives an $O(\log C)$ hitting time of the bounded strip and a
-geometric tail for each excursion away from it, except on the event in
-\eqref{eq:core-confinement}.
-
-It remains to synchronize the hub and its pendants while the core is
-confined.  Under Bd, freeze $(i,R,\ell)$ between hub and leaf events and put
+made below $R_0$.  The hidden hub and pendant coordinates do not make the
+deficit marginal Markov, so we use a conditional-bias coupling rather than
+assuming that they do.  At successive $R$-change epochs, condition on the
+entire past.  Whenever $R>R_0$, the probability of an outward step divided
+by that of an inward step is at most $(1+\eta_0)^{-1}$.  Choose
+$0<\theta<\log(1+\eta_0)$.  Then
 \[
- A=r(i/c+\ell),\quad B=R/c+m-\ell,
- \quad u=\frac{r(m-\ell)}{c+m},\quad v=\frac{\ell}{c+m}.
+ \exp\{\theta R_{n\wedge\tau}\},\qquad
+ \tau=\tau_{\{R\leq R_0\}}\wedge\tau_{\{R\geq2\delta c\}},
+\]
+is a supermartingale for the embedded adapted process.  Optional stopping
+therefore gives, uniformly in all hidden-coordinate histories,
+\begin{equation}
+ \sup_{k\leq\delta c}
+ \Prob_k(\tau_{\{R\geq2\delta c\}}<\tau_{\{R\leq R_0\}})
+ \leq e^{-\theta\delta c}=e^{-\gamma C}.
+\label{eq:deficit-initial-excursion}
+\end{equation}
+The same estimate, started at $R_0+1$, controls every later excursion.
+The total $R$-change intensity in the displayed clock is at most $\Lambda C$.
+Its compensator through time $C^M$ is therefore at most
+$\Lambda C^{M+1}$.  Applying the strong Markov property at successive
+entries into $R_0+1$ and multiplying the last excursion bound by the expected
+number of entries proves \eqref{eq:core-confinement}; Markov's inequality for
+the compensator already suffices.
+
+For completeness, the stopped generator calculation behind the return-time
+claim is also explicit.  Substituting $i=c-R$ in the two tables gives
+\begin{align*}
+ \mathcal G_{\Bd}R
+ &=(c-R)\left\{\frac{1-h}{d}+\frac Rc\right\}
+   -rR\left\{\frac hd+\frac{c-R}{c}\right\},\\
+ \mathcal G_{\dB}R
+ &=(c-R)\frac{R+1-h}{c+(r-1)(c-R-1+h)}
+   -R\frac{r(c-R+h)}{c+(r-1)(c-R+h)}.
+\end{align*}
+After increasing $R_0$ and decreasing $\delta$ if necessary, both are at
+most $-\kappa R$ for $R_0<R<2\delta c$, uniformly in $h,\ell$, and
+$r\in\mathcal R$.  Thus
+$e^{\kappa(s\wedge\tau)}R_{s\wedge\tau}$ is a supermartingale in the
+displayed clock.  On the event in \eqref{eq:deficit-return} it has not yet
+hit either boundary at time $a\log C+x$.  Hence
+\[
+ \Prob(\tau_{\{R\leq R_0\}}>a\log C+x,
+       \tau_{\{R\geq2\delta c\}}>\tau_{\{R\leq R_0\}})
+ \leq \frac{\delta C}{R_0}e^{-\kappa(a\log C+x)}.
+\]
+Taking $a>2/\kappa$ proves \eqref{eq:deficit-return}.  The states below
+$R_0$ form the announced boundary layer and require no statewise drift claim.
+\end{proof}
+
+\begin{lemma}[Pendant synchronization and pendant initialization]
+\label{lem:pendant-cleanup}
+For every fixed $B_0>0$ there is a fixed $D=D(B_0)$ such that, under either update
+rule and uniformly in $r\in\mathcal R$, a state with
+$i\geq(1-\delta)c$ reaches fixation within time $C^D$, except with
+probability
+\[
+ O(C^{-B_0})+O(C^{D+1}e^{-\gamma C}).
+\]
+Moreover, fixation from one mutant pendant satisfies
+\[
+ u_{\rm leaf}^{\Bd}(r)=1-o(1),\qquad
+ u_{\rm leaf}^{\dB}(r)=O(C^{-1}).
+\]
+\end{lemma}
+
+\begin{proof}
+We first synchronize the hub and its pendants while the core is confined.
+Under Bd, freeze $(i,R,\ell)$ between hub and pendant events and put
+\[
+ H_+=r(i/c+\ell),\quad H_-=R/c+m-\ell,
+ \quad U_\ell=\frac{r(m-\ell)}{c+m},\quad
+ V_\ell=\frac{\ell}{c+m}.
 \]
 If $p_h$ is the probability that the next leaf event is upward, conditional
 on the current hub type $h$, renewal at the next hub flip gives
 \[
- p_0=\frac{A}{A+v}p_1,\qquad
- p_1=\frac{u}{B+u}+\frac{B}{B+u}p_0.
+ p_0=\frac{H_+}{H_++V_\ell}p_1,\qquad
+ p_1=\frac{U_\ell}{H_-+U_\ell}
+     +\frac{H_-}{H_-+U_\ell}p_0.
 \]
-Consequently the next-leaf up/down odds, from either hub phase, are bounded
-below by
+To make the interruption comparison formal, replace these rates by
+\[
+ \underline H_+=r_-(1-2\delta+\ell),\qquad
+ \overline H_-=2\delta+m-\ell,
+ \qquad \underline U_\ell=\frac{r_-(m-\ell)}{c+m},
+\]
+and let $(\underline p_0,\underline p_1)$ solve the same two equations with
+these worst rates and $V_\ell$.  The resulting two-state hitting function is
+subharmonic for the full $(h,i,\ell)$ generator until the next pendant-count
+change: core jumps leave it unchanged, while
+$H_+\geq\underline H_+$, $H_-\leq\overline H_-$, and
+$U_\ell\geq\underline U_\ell$ move its generator in the favorable direction.
+Optional stopping therefore makes it a lower bound even with an adapted
+sequence of core interruptions.  Its next-leaf up/down odds, from either hub
+phase, are bounded below by
 \begin{equation}
- \frac{Au}{Bv}\frac1{1+u/B}
- =\frac{r^2(i/c+\ell)(m-\ell)}
- {(R/c+m-\ell)\ell}\{1-O(C^{-1})\}
+ \frac{\underline H_+\underline U_\ell}
+      {\overline H_-V_\ell}
+ \frac1{1+\underline U_\ell/\overline H_-}
  \geq\frac{r_-^2}{1+2\delta}\{1-o(1)\}>1.
 \label{eq:leaf-trace-odds}
 \end{equation}
-for $1\leq\ell<m$.  This lower bound survives core-count interruptions.
-Indeed, during an $h=0$ phase the competing-hazard bound gives
-$\Prob(\text{leaf down before hub activation})\leq v/(A+v)$; during an
-$h=1$ phase it gives
-$\Prob(\text{leaf up before hub deactivation})\geq u/(B+u)$.  A core jump
-changes neither $h$ nor $\ell$ and merely restarts one of these races with
-the same uniform bounds.  The strong Markov property at successive hub
-cycles therefore gives eventual up/down odds at least
-the uniform final bound in \eqref{eq:leaf-trace-odds}.  From $\ell=0$,
-a mutant-leaf immigration occurs in $O(C)$ mean time.  The leaf trace is
-therefore dominated below by a reflected biased walk and reaches $m$ in
-$O(Cm)$ mean time.  Once the leaves are mutant, a resident hub reactivates
-before the next leaf loss with probability $1-O(C^{-1})$.  While the hub is
-mutant, the ordinary deficit has inward odds bounded below by $r_-$ and
-hub-loss hazard $O(R/C)$, so starting anywhere in the confined strip it has
-probability at least $e^{-O(\delta)}>0$ of hitting $R=0$ first.  Thus one
-block of $C^2$ time succeeds with probability
-at least a fixed $s_0>0$.  Repeating $O_B(\log C)$ blocks makes cleanup
-failure $O(C^{-B})$ for any prescribed fixed $B$.
+for $1\leq\ell<m$.
+
+The calendar-time estimate can be checked without suppressing core events.
+During an $h=0$ phase the activation-or-loss intensity is bounded below by a
+positive constant, and during an $h=1$ phase the deactivation-or-gain
+intensity is at least $m-\ell\geq1$.  Moreover,
+\begin{align*}
+ \Prob(\text{loss before activation}\mid h=0)
+ &\geq \frac{V_\ell}{r_+(1+\ell)+V_\ell}\geq\frac{c_0}{C},\\
+ \Prob(\text{gain before deactivation}\mid h=1)
+ &\geq\frac{\underline U_\ell}
+ {2\delta+m-\ell+\underline U_\ell}\geq\frac{c_0}{C}.
+\end{align*}
+Core jumps contribute zero to functions of $(h,\ell)$ and do not pause these
+competing clocks.  Hence the number of hub phases before the next pendant
+change is dominated by a geometric variable of mean $O(C)$, and each phase
+has uniformly bounded mean duration.  Thus
+\begin{equation}
+ \mathbb E(\sigma_{j+1}-\sigma_j\mid\mathcal F_{\sigma_j})
+ \leq K_0C,
+\label{eq:leaf-wait}
+\end{equation}
+where $\sigma_j$ are successive pendant-count changes.
+Thus the pendant trace is dominated below by a reflected walk whose
+up/down odds are at least a fixed $\beta>1$.  It makes $O(m)$ expected
+changes before reaching $m$; together with \eqref{eq:leaf-wait},
+\begin{equation}
+ \sup_{R\leq2\delta c}\mathbb E\tau_{\{\ell=m\}}=O(Cm).
+\label{eq:leaf-hitting-time}
+\end{equation}
+
+At $\ell=m$, a resident hub activates before the next pendant loss with
+probability $1-O(C^{-1})$.  After activation, first suppress hub loss and
+keep $\ell=m$.  The Bd deficit generator is then exactly
+\[
+ \mathcal G R
+ =-R\left\{\frac r{c+m}+(r-1)\left(1-\frac Rc\right)\right\}.
+\]
+After shrinking $\delta$ once, the bracket is at least a compact-uniform
+$\kappa>0$ on $R\leq3\delta c$.  Starting from $R\leq2\delta c$ and stopping
+at $\tau=\tau_0\wedge\tau_{\{R\geq3\delta c\}}$, Dynkin's formula gives
+\[
+ \mathbb E\int_0^\tau R_s\,ds\leq\frac{R(0)}\kappa
+ \leq\frac{2\delta c}\kappa.
+\]
+The same adapted step calculation, now with $3\delta$ in place of
+$2\delta$, also gives
+$\Prob(\tau_{\{R\geq3\delta c\}}<\tau_0)\leq e^{-\gamma C}$.  Conditional
+on the suppressed path, the probability of no hub loss is
+$\exp\{-\int_0^\tau R_s/c\,ds\}$.  Jensen's inequality and subtraction of
+the upper-exit event therefore yield
+\begin{equation}
+ \Prob(\hbox{no hub loss and }\tau_0<\tau_{\{R\geq3\delta c\}})
+ \geq e^{-2\delta/\kappa}-e^{-\gamma C}=:s_1+o(1)>0.
+\label{eq:Bd-final-cleanup}
+\end{equation}
+The same exponential Lyapunov estimate makes this final cleanup occur within
+$C^2$ with probability $1-o(1)$.  Together with
+\eqref{eq:leaf-hitting-time} and $m=o(C)$, Markov's inequality gives a fixed
+$s_0>0$ chance of full cleanup in a block of $2C^2$ time.  If hub loss ends
+an unsuccessful final attempt, the same adapted deficit comparison, now
+using the nested strips $2\delta c<3\delta c<4\delta c$ after shrinking
+$\delta$, returns the process to $R\leq\delta c$ in polynomial time before
+the next block; escape to $4\delta c$ before that return costs
+$e^{-\gamma C}$.  Starting the next block from $R\leq\delta c$ puts it back
+under the $2\delta c$ confinement estimate.  The earlier
+hit of $3\delta c$ in \eqref{eq:Bd-final-cleanup} is charged to this same
+exceptional event rather than recycled as a new block.  Repeating
+$O_{B_0}(\log C)$ blocks makes Bd cleanup failure $O(C^{-B_0})$.
 
 Under dB, every pendant copies the hub at its next death.  In the bounded
-$R$ strip the hub activation rate is bounded below, whereas its deactivation
-rate when mutant is $O(m/C)$.  An activated interval of length $B\log C$
-therefore clears all pendants with failure at most $mC^{-B}$, drives $R$ to
-zero with a compact-uniform subcritical tail, and is interrupted with
-probability $O((m/C)\log C)=o(1)$.  Repeating $O_B(\log C)$ attempts again
-gives failure $O(C^{-B})$ in polynomial time.  Combining either cleanup
-with \eqref{eq:core-confinement} makes the probability of a resident core
-lineage returning to positive density $\exp\{-\Omega(C)\}$ throughout.
+$R$ strip, first wait for $R\leq R_0$ using
+\eqref{eq:deficit-return}.  The hub activation rate is then bounded below.
+During a mutant-hub interval, its deactivation intensity is at most
+$K(R+m-\ell)/C$.  Suppressing that deactivation, direct substitution in the
+dB table gives $\mathcal G R\leq-\kappa R$ while $R\leq2\delta c$, and the
+number $m-\ell$ of resident pendants is a pure-death chain with drift
+$-(m-\ell)$.  Therefore, for $T=B_0\log C$,
+\begin{align*}
+ \Prob(\ell_T<m)&\leq me^{-T},\\
+ \Prob(R_T>0,\ \tau_\uparrow>T)
+ &\leq R_0e^{-\kappa T},\\
+ \Prob(\text{hub deactivates before }T\wedge\tau_\uparrow)
+ &\leq \mathbb E\int_0^{T\wedge\tau_\uparrow}
+ K\frac{R_s+m-\ell_s}{C}\,ds
+   \leq\frac K C\left(\frac{R_0}{\kappa}+m\right)=o(1).
+\end{align*}
+Here $\tau_\uparrow=\tau_{\{R\geq2\delta c\}}$; its omitted upper-strip exit
+has probability $e^{-\gamma C}$.  By increasing
+the constant multiplying $\log C$ in $T$, the two surviving-coordinate
+probabilities are $O(C^{-B_0-2})$, whereas hub survival has probability
+$1-o(1)$.  Thus an activated attempt started in $R\leq R_0$ succeeds with
+probability at least $1/2$ for large $C$.  After a failed attempt, confinement
+and \eqref{eq:deficit-return} return the process to $R\leq R_0$ in
+polynomial time; unless fixation has already occurred, the hub is activated
+again at a rate bounded below.  The strong Markov property over
+$O_{B_0}(\log C)$ such attempts gives failure $O(C^{-B_0})$, while their
+total duration is polynomial.  Taking $D$ larger than the two block
+exponents and using \eqref{eq:core-confinement} proves the first assertion.
 
-Choose $A$ and then $B$ uniformly on the fitness compact so that all of
-\[
- O(K^2/C)+O(r^{-K})+O(r_0^{-K})+O(C^{-B})+
- \exp\{-\Omega(C)\}
-\]
-are $o(q/C)=o(C^{-3/4})$.  The hub starting vertex has weight
-$C^{-1}=o(q/C)$.  This proves \eqref{eq:core} and controls the route from
-establishment to fixation.
+For a Bd mutant leaf, use the standard graphical construction with base
+reproduction arrows of rate one and extra mutant-only arrows of rate $r-1$;
+deleting mutants can only decrease the mutant set.  Fix the original mutant
+pendant.  At every regeneration with resident hub, no ordinary mutants, and
+that pendant still alive, delete all other mutants and suppress births to
+the other pendants.  This produces the adverse lower state $(h,i,\ell)=(0,0,1)$.
+In its resident-hub phase, activation has rate $r$ and loss of the
+distinguished pendant has rate $1/d$, so loss before activation is
+$O(C^{-1})$.  In the ensuing mutant-hub phase, an ordinary seed has rate at
+least $rc/d\geq a_0$, while hub loss has rate $m$; hence a seed precedes hub
+loss with probability at least $a_1/m$.
 
-For a Bd mutant leaf, hub activation has order-one rate and leaf loss has
-rate $O(C^{-1})$.  During an activated excursion, whose return rate is
-$m+O(1)$, a successful ordinary-core mark occurs with probability
-$\Theta(1/m)$.  Resolving successive excursions gives loss-before-mark
-probability $O(m/C)+o(1)$; failed finite core families have a geometrically
-summable conditioned progeny tail.  This proves \eqref{eq:leaf-Bd}.
+After a seed, stop the ordinary count on $\{0,K\}$.  For every hidden hub
+and pendant state, the Bd up/down odds on $1\leq i<K$ are at least a fixed
+$r_1>1$.  The conditional-bias argument therefore gives
+$\Prob_1(\tau_K<\tau_0)\geq p_0>0$.  The embedded walk makes $O(K)$ expected
+changes, and its changing intensity is bounded below, so
+$\mathbb E\tau_{0,K}=O(K)$.  The distinguished-pendant loss intensity is at
+most $1/d$, giving $O(K/C)$ loss during this stopped trial.  If the count
+hits zero while the pendant survives, wait for resident-hub regeneration,
+suppressing or deleting every ordinary reseed and every additional mutant
+pendant until hub loss.  This is again an adverse graphical coupling: the
+distinguished pendant cannot be lost while its sole neighbor is mutant, and
+any subsequent resident-phase loss is charged as trial failure.  Delete the
+extra mutants again at regeneration.  If it hits $K$, the preceding completion
+argument fixes with probability $1-o(1)$.  Thus a trial succeeds with
+probability at least $a_2/m$, whereas it loses the distinguished pendant
+with probability $O((1+K)/C)$.  The elementary renewal inequality for these
+competing outcomes gives loss before success
+$O(m(1+K)/C)=o(1)$.  Hence $u_{\rm leaf}^{\Bd}(r)=1-o(1)$.
 Under dB, the leaf dies at rate one after the common death-clock time change,
-whereas hub activation is at most $r/C$, proving \eqref{eq:leaf-dB}.
+whereas hub activation is at most $r_+/C$.  Fixation requires that activation,
+so $u_{\rm leaf}^{\dB}(r)=O(C^{-1})$.
+\end{proof}
 
-At reciprocal fitness $s=1/r$, the ordinary core family before its first hub
-change is uniformly subcritical.  Its killed Green function has bounded
-expected total particle-time and an exponentially decreasing occupation
-tail, uniformly when $s$ ranges over the reciprocal compact.  Since the
-hub-change hazard is $O(i/C)$ at ordinary count $i$, an ordinary start
-changes the hub with probability $O(C^{-1})$, and the ordinary count at that
-event is tight.
+\begin{lemma}[Reciprocal killed-Green bounds]
+\label{lem:killed-green}
+Put $s=1/r$ and suppress hub changes while $h=0,\ell=0$.  Stop the resulting
+ordinary-count chain $I$ on hitting $0$ or $\lceil\delta c\rceil$, and define
+\[
+ G_C^U(i,j)=\mathbb E_i\int_0^\tau
+             \mathbf1_{\{I_z=j\}}\,dz.
+\]
+For every fixed $L$ there are $a_L,\kappa,\theta>0$, uniform for
+$s\in[1/r_+,1/r_-]$ and $U\in\{\Bd,\dB\}$, such that
+\begin{align}
+ \sup_{i\leq L}\Prob_i(\tau_{\lceil\delta c\rceil}<\tau_0)
+ &\leq a_Le^{-\kappa C},\label{eq:green-macro}\\
+ \sup_{i\leq L}\sum_jjG_C^U(i,j)&\leq a_L,
+ \label{eq:green-mass}\\
+ \sup_{i\leq L}\sum_{j>L'}jG_C^U(i,j)
+ &\leq a_Le^{-\theta L'}.
+ \label{eq:green-tail}
+\end{align}
+Consequently the probability of a hub change before ordinary extinction is
+$O_L(C^{-1})$, and the ordinary count at that change has an exponentially
+decreasing tail after multiplication by $C$.
+\end{lemma}
 
-We need the sharper fact that this rare event is not itself fixation.  Under
-Bd, a mutant hub reverts at rate $m+O(1)$, while its total rate of creating a
-new core or leaf mutant is $O(1+m/C)$; its probability of a productive
-excursion is therefore $O(m^{-1})+O(C^{-1})=o(1)$.  Under dB, the mutant-hub
-lifetime is tight.  It may create $O(m)$ mutant leaves, but after hub loss
-their total chance of reactivating it before they die is $O(m/C)=o(1)$, and
-the number of core descendants remains tight.  Exponentially long hub
-episodes have probability $o(1)$.
+\begin{proof}
+For $i\leq\delta c$, the reciprocal-fitness versions of the two rate tables
+give
+\[
+ \frac{q_i^+}{q_i^-}\leq s_+\{1+O(\delta)+O(C^{-1})\}\leq\vartheta<1
+\]
+after decreasing $\delta$, where $s_+=1/r_-$.  They also give
+$q_i^--q_i^+\geq\kappa_0i$ in the displayed clock.  The product-odds formula
+for the dominated nearest-neighbor walk proves \eqref{eq:green-macro}.
+Dynkin's formula for $I_{z\wedge\tau}$ gives
+\[
+ \kappa_0\mathbb E_i\int_0^\tau I_z\,dz\leq i,
+\]
+which is \eqref{eq:green-mass}.  To obtain \eqref{eq:green-tail}, let $\nu$
+be the first hit of $L'+1$.  Conditional bias gives
+$\Prob_i(\nu<\tau_0)\leq K_L\vartheta^{L'-L}$.  After $\nu$, the same Dynkin
+estimate bounds the expected remaining particle-time by
+$(L'+1)/\kappa_0$.  Therefore
+\[
+ \mathbb E_i\int_0^\tau I_s\mathbf1_{\{I_s>L'\}}\,ds
+ \leq \frac{K_L(L'+1)}{\kappa_0}\vartheta^{L'-L}
+ \leq a_Le^{-\theta L'},
+\]
+after decreasing $\theta$.
 
-For completeness, a two-pass renewal argument makes the little-oh gain
-explicit.  For fixed $L$, let $x^U_{C,L}$ be the largest fixation
-probability among states with resident hub, no mutant pendants, and at most
-$L$ mutant ordinary vertices; define $y^U_{C,L}$ analogously with a mutant
-hub.  The killed-Green bounds above first give the coarse estimate
+With resident hub and no mutant pendants, the hub-change intensity in either
+rule is at most $K_1I_z/C$.  If $\chi$ is that first change, the two precise
+consequences are
+\begin{align}
+ \Prob_i(\chi<\tau)&\leq \frac{K_1a_L}{C},\label{eq:green-hub-change}\\
+ \Prob_i(\chi<\tau,\ I_\chi>L')
+ &\leq\frac{K_1}{C}\mathbb E_i\int_0^\tau
+ I_s\mathbf1_{\{I_s>L'\}}\,ds
+ \leq\frac{K_1a_L}{C}e^{-\theta L'}.
+\label{eq:green-hub-tail}
+\end{align}
+This proves the asserted change-event bounds.
+\end{proof}
+
+\begin{lemma}[Reciprocal hub-excursion renewal]
+\label{lem:reciprocal-renewal}
+Uniformly for $r\in\mathcal R$,
 \[
- x^U_{C,L}\leq e^{-\kappa C}+A_L/C=O_L(C^{-1}).
+ u_{\mathrm{core}}^{\Bd}(1/r)=o(C^{-1}),\qquad
+ J_H(1/r)=o(C^{-1}).
 \]
-Indeed, before the hub changes such a state must either create a macroscopic
-core family, at exponentially small cost, or incur a hub-change event, whose
-integrated hazard is at most $A_L/C$.  On a mutant-hub excursion, the Bd and
-dB estimates in the preceding paragraph show that direct productive escape
-has probability $e_C=o(1)$.  After an unproductive return, the hub is
-resident; after all surviving pendants die without reactivation, the number
-of ordinary descendants is tight.  Thus for every fixed $L$ there are tails
-$\tau_{L,L'}\downarrow0$ as $L'\to\infty$, uniformly in $C$, such that
+\end{lemma}
+
+\begin{proof}
+For fixed $L$, let $X_L$ be the states with resident hub, no mutant pendants,
+and at most $L$ mutant ordinary vertices; let $Y_L$ be the analogous states
+with mutant hub.  Write $x^U_{C,L}$ and $y^U_{C,L}$ for the largest fixation
+probabilities on these two sets.  Lemma~\ref{lem:killed-green} first gives
+the coarse bound
+\begin{equation}
+ x^U_{C,L}\leq a_Le^{-\kappa C}+a_L/C=O_L(C^{-1}).
+\label{eq:renewal-coarse}
+\end{equation}
+
+We now make the hub-excursion stopping decomposition explicit.  For Bd,
+start from $Y_L$.  The hub-loss rate is at least $m$, while the total
+ordinary-changing rate is $O_L(1)$ and the pendant-seeding rate is $O(m/C)$.
+If hub loss is the first such event, the return state lies in $X_L$ exactly;
+charging every other first event as successful fixation gives
+\begin{equation}
+ y^{\Bd}_{C,L}\leq x^{\Bd}_{C,L}+K_Lm^{-1}+K C^{-1}=o(1).
+\label{eq:renewal-y-Bd}
+\end{equation}
+
+For dB, let $\zeta$ be the first hub loss.  Until the ordinary count reaches
+$\delta c$, its intensity is bounded below explicitly:
 \[
- y^U_{C,L}\leq e_C+x^U_{C,L'}+\tau_{L,L'}.
+ q_{h:1\mapsto0}
+ =\frac{d-i-\ell}{d+(s-1)(i+\ell)}
+ \geq\frac{(1-\delta)c}{d}=:k_h>0.
 \]
-For dB, after truncating the ordinary cloud at $L'$, its contribution to hub
-reactivation while the leaves clear is $O_{L'}(C^{-1})$; the complementary
-cloud event is included in $\tau_{L,L'}$.
-Taking first $C\to\infty$ and then $L'\to\infty$ proves
-$y^U_{C,L}=o(1)$.  Finally return to a single ordinary mutant.  Conditional
-on its first hub change, the ordinary count has an exponentially decreasing
-tail.  Truncating that count at $L$ and using the refined hub-excursion bound
-gives
+While the hub is mutant, the ordinary count is dominated by a
+subcritical birth--death process with immigration:
 \[
- x^U_{C,1}
- \leq e^{-\kappa C}+\frac{A}{C}
-       \bigl(y^U_{C,L}+\tau_L\bigr),
- \qquad \tau_L\downarrow0.
+ q_i^+\leq b(i+1),\qquad q_i^-\geq d_0i,\qquad b<d_0,
 \]
-Hence $x^U_{C,1}=o(C^{-1})$, first letting $C\to\infty$ and then
-$L\to\infty$, while a hub start has fixation probability $o(1)$.  Averaging
-over clique starts, or weighting them by reciprocal degree for $J_H$, now
-gives $o(C^{-1})$ in both cases.
-The initialization identities \eqref{eq:center-Bd}--\eqref{eq:center-dB}
-now follow by averaging the $C-1$ ordinary clique starts, the hub start, and
-the $m$ pendant starts.  The exceptional hub contribution has normalized
-mass $O(C^{-1})=o(q/C)$.
+after decreasing $\delta$.  Consequently the ordinary cloud before $\zeta$
+is tight.  Explicitly, if $\bar I$ is that comparison process, then for
+fixed $T$ and fixed $L_1<\delta c$
+\[
+ \Prob\!\left(\sup_{s<\zeta}I_s>L_1\right)
+ \leq e^{-k_hT}+\Prob\!\left(\sup_{s\leq T}\bar I_s>L_1\right)
+ =:\eta_L(L_1,T),
+\]
+and first $L_1\to\infty$ and then $T\to\infty$ make this bound vanish,
+uniformly in $C$ and reciprocal fitness.
+
+On the complementary event, suppress hub reactivation after $\zeta$.
+The mutant pendants are then pure deaths, so
+$\mathbb E\int_0^\infty\ell_s\,ds\leq m$; the killed-Green bound gives
+$\mathbb E\int_0^\tau I_s\,ds\leq a_{L_1}$.  Since the hub-reactivation
+intensity is at most $K(I_s+\ell_s)/C$, its probability before pendant
+clearance and ordinary extinction is at most
+$K(m+a_{L_1})/C$.  Conditional bias also gives
+\[
+ \Prob_{\{I\leq L_1\}}(\tau_{L_2}<\tau_0)
+ \leq K_{L_1}\vartheta^{L_2-L_1}.
+\]
+If neither event occurs, the process enters $X_{L_2}$.  Restoring the
+suppressed reactivation only adds its displayed probability, so the strong
+Markov property yields
+\begin{equation}
+ y^{\dB}_{C,L}
+ \leq \eta_L(L_1,T)+\frac{K(m+a_{L_1})}{C}
+      +K_{L_1}\vartheta^{L_2-L_1}+x^{\dB}_{C,L_2}.
+\label{eq:renewal-y-dB}
+\end{equation}
+For fixed $L_1,L_2,T$, let $C\to\infty$; then let $L_2\to\infty$,
+$L_1\to\infty$, and $T\to\infty$ in that order.  Equations
+\eqref{eq:renewal-y-Bd}--\eqref{eq:renewal-y-dB} prove
+$y^U_{C,L}=o(1)$ for each fixed $L$.
+
+Return now to one ordinary mutant.  At its first hub change, the explicit
+hazard-weighted estimates \eqref{eq:green-macro} and
+\eqref{eq:green-hub-tail} give a constant $a$ such that
+\begin{equation}
+ x^U_{C,1}\leq a e^{-\kappa C}
+ +\frac aC\bigl(y^U_{C,L}+e^{-\theta L}\bigr).
+\label{eq:renewal-refined}
+\end{equation}
+Therefore
+$\limsup_{C\to\infty}Cx^U_{C,1}\leq ae^{-\theta L}$; letting $L\to\infty$
+proves $x^U_{C,1}=o(C^{-1})$, while
+\eqref{eq:renewal-y-Bd}--\eqref{eq:renewal-y-dB} give
+$y^U_{C,0}=o(1)$.  Hence
+\begin{align*}
+ u_{\mathrm{core}}^{\Bd}(1/r)
+ &\leq\frac{C-1}{C}x^{\Bd}_{C,1}+\frac1Cy^{\Bd}_{C,0}
+ =o(C^{-1}),\\
+ J_H(1/r)
+ &\leq x^{\dB}_{C,1}+\frac{y^{\dB}_{C,0}}{c+m}
+ =o(C^{-1}),
+\end{align*}
+because every ordinary clique vertex has degree $c$ and the hub has degree
+$c+m$.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{prop:center}]
+Choose $A_0$ so that both $r^{-K}$ and $r_0^{-K}$ in
+Lemmas~\ref{lem:early-establishment} and \ref{lem:core-confinement} are
+$o(q/C)=o(C^{-3/4})$, and then choose $B_0>3/4$ in
+Lemma~\ref{lem:pendant-cleanup}.  Since
+\[
+ K^2/C=o(C^{-3/4}),\qquad C^{-B_0}=o(C^{-3/4}),
+\]
+the early-establishment probability is $p+o(q/C)$ and every established
+family completes fixation with failure $o(q/C)$.  The hub starting vertex
+has normalized mass $C^{-1}=o(q/C)$.  This proves \eqref{eq:core};
+Lemma~\ref{lem:pendant-cleanup} proves \eqref{eq:leaf-Bd} and
+\eqref{eq:leaf-dB}; and Lemma~\ref{lem:reciprocal-renewal} proves the two
+reciprocal estimates.
+
+Finally, average the $C-1$ ordinary starts, the hub start, and the $m$
+pendant starts.  Their contributions give
+\eqref{eq:center-Bd}--\eqref{eq:center-dB}; the exceptional hub mass is
+$O(C^{-1})=o(q/C)$.
 \end{proof}
 
 \section{Pair gates and the complete post-establishment path}
@@ -862,31 +1249,40 @@ every weak-edge weight, was fixed before $r$ was chosen, which is exactly the
 quantifier order in the definition of $\Rsim$.
 \end{proof}
 
-\begin{proposition}[Architecture-optimality]
-\label{prop:architecture-optimal}
-Within the dilute heavy-pair plus hub-leaf leading regime
-\eqref{eq:B}--\eqref{eq:D}, $\Rhyb$ is the exact largest threshold of an
-interval beginning at one on which a fixed pair $(\sigma,\lambda)$ can make
-both corrections positive.
+\begin{proposition}[Fixed-parameter response optimality]
+\label{prop:fixed-response-optimal}
+Among fixed positive $(\sigma,\lambda)$ in the displayed first-order dilute
+pair--pendant response model \eqref{eq:B}--\eqref{eq:D}, $\Rhyb$ is the exact
+largest threshold of an interval beginning at one on which both corrections
+can remain positive.
 \end{proposition}
 
 \begin{proof}
 For fixed positive $\sigma$, feasibility implies $F_r(\sigma)<0$, and hence
 $\min_{s\in\mathbb R}F_r(s)<0$.  At $\Rhyb$ the unconstrained minimum is
-zero at the admissible value $0<\sigma_*<1$.  Immediately above $\Rhyb$ the
-minimum is positive, so no positive $\sigma$---indeed no real $\sigma$---is
-feasible.  Since the fixed pair $(\sigma_*,\lambda_*)$ works throughout
-$(1,\Rhyb)$, no interval beginning at one can extend farther.
+zero at the admissible value $0<\sigma_*<1$.  Exact evaluation gives
+\[
+ P(3/2)=\frac1{64}>0,\qquad
+ P(151/100)=-\frac{39866792399}{10^{12}}<0.
+\]
+The Sturm count in Lemma~\ref{lem:tangency} shows that $\Rhyb$ is the only
+root between these endpoints.  Hence $P(r)<0$ on
+$(\Rhyb,151/100]$ and
+$\min_sF_r(s)=-P(r)/\{4(r-1)\}>0$ there.  No positive $\sigma$---indeed no
+real $\sigma$---is feasible immediately beyond $\Rhyb$.  Since the fixed
+pair $(\sigma_*,\lambda_*)$ works throughout $(1,\Rhyb)$, no interval
+beginning at one can extend farther within this response model.
 \end{proof}
 
-\begin{corollary}[A rational family]
+\begin{corollary}[A rational-edge family]
 \label{cor:rational}
 Taking $\sigma=19/137$ and $\lambda=20/27$ gives, exactly at $r=3/2$,
 \[
  B=\frac{232}{17361}>0,\qquad
  D=\frac{65}{12123}>0.
 \]
-This completely rational parameter choice has threshold
+This choice gives a family with entirely rational edge weights and algebraic
+response threshold
 \[
  R_{\mathbb Q}
  =\frac{5069+12\sqrt{147001}}{6439}
@@ -943,10 +1339,12 @@ claim of empirical optimality: it identifies a mechanism by which rare
 structural heterogeneities can overcome update-order antagonism in this
 beneficial-fitness regime.
 
-There are two sharp limitations.  Proposition~\ref{prop:architecture-optimal}
-optimizes only the displayed pair--pendant leading-order response cone.  It
-does not preclude other modules, non-dilute interactions, or a different
-population-scale hierarchy from extending the interval.  Conversely, the
+There are two sharp limitations.  Proposition~\ref{prop:fixed-response-optimal}
+optimizes only fixed positive $(\sigma,\lambda)$ in the displayed
+first-order dilute response model.  It does not classify size-dependent or
+singular choices $\sigma_t,\lambda_t$, different pair or pendant density
+scales, second-order gains on a vanishing first-order boundary, nonseparated
+pair dynamics, other modules, or non-dilute interactions.  Conversely, the
 paper supplies no finite universal upper bound on $\Rsim$.  Establishing
 such a bound would require a comparison that couples Bd and dB fixation on
 arbitrary growing weighted graphs, rather than a classification of this
@@ -963,15 +1361,19 @@ no claim of empirical or finite-population optimality.
 
 \noindent\textbf{Data and code availability.}
 No empirical data are used.  The LaTeX source, exact symbolic and rational
-verifiers, labelled-chain audit, build scripts, and adversarial review record
-accompany the manuscript in the development repository
-\url{https://github.com/AlecKriebel/Math}.  Version 1.0.0 is contained in the
-full-repository software snapshot archived at
-\url{https://doi.org/10.5281/zenodo.21852072}; that unrefereed release
-contains the v1 manuscript together with its source and software, and is not
-a peer-reviewed publication.  The present manuscript is a major
-superseding revision, and its standalone deterministic bundle is intended
-for versioned deposit with the preprint.
+verifiers, labelled-chain audit, and pinned build and replay scripts accompany
+this revision as the deterministic Supplementary Material archive
+\nolinkurl{simultaneous_amplifier_beyond_three_halves_source_and_certificates.tar.gz}.
+It contains an internal SHA-256 manifest and a fresh-environment bootstrap.
+The corresponding development sources are in the
+\href{https://github.com/AlecKriebel/Math/tree/main/universal_simultaneous_amplification/phase4_landmark_closure/paper_hybrid_threshold}{paper-specific repository directory}.
+The full-repository software snapshot at
+\href{https://doi.org/10.5281/zenodo.21852072}{doi:10.5281/zenodo.21852072}
+contains the unrefereed v1
+manuscript, source, and software, not this superseding revision.  No new
+persistent identifier has yet been assigned.  When this revision is posted
+as a preprint, the same frozen bundle will be deposited alongside it and this
+statement updated with the assigned identifier.
 The replay enumerates all $512$ configurations and $108$ orbit fibres of its
 finite audit graph and independently checks the response algebra, rational
 margins, Sturm isolation, and tangency.  These certificates audit finite
@@ -989,8 +1391,9 @@ The author declares no competing interests.
 
 \medskip
 \noindent\textbf{Author contributions.}
-A.K. conceived and supervised the study, set its scope and claims, and
-accepts responsibility for the proof, software, and manuscript.
+Conceptualization, formal analysis, methodology, software, validation,
+visualization, and writing: A.K.  The author determined the scope and claims
+and accepts responsibility for the proof, software, and manuscript.
 
 \medskip
 \noindent\textbf{Ethics approval and consent.}
@@ -1006,6 +1409,7 @@ responsibility for the manuscript and accompanying materials.  All exact
 certificates are supplied for independent replay, and numerical evidence is
 explicitly separated from proof.
 
+\small\raggedright
 \begin{thebibliography}{99}
 
 \bibitem[Allen et al.(2017)]{Allen2017}
@@ -1047,7 +1451,14 @@ dynamics, but suppressors of selection for death--birth dynamics.
 \href{https://doi.org/10.1371/journal.pcbi.1004437}
 {doi:10.1371/journal.pcbi.1004437}.
 
-\bibitem[Kriebel(2026)]{Kriebel2026half}
+\bibitem[Kriebel(2026a)]{Kriebel2026fixed}
+A.~Kriebel.
+No universal death--Birth amplifier on a finite weighted population
+structure.  Unrefereed source and software release, version 1.0.0 (2026).
+\href{https://doi.org/10.5281/zenodo.21753405}
+{doi:10.5281/zenodo.21753405}.
+
+\bibitem[Kriebel(2026b)]{Kriebel2026half}
 A.~Kriebel.
 A fitness-independent family of simultaneous amplifiers below fitness three
 halves.  Unrefereed research release, version 1.0.0 (2026).
