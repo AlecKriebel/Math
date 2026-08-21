@@ -73,8 +73,10 @@ def active_surface_checks(final, metadata) -> None:
         "CLAIM_DEPENDENCY_GRAPH.md": dependency,
         "THEOREM_CERTIFICATE_CROSSWALK.md": crosswalk,
     }.items():
+        normalized = " ".join(text.split())
         require("FINAL OUTCOME A" in text, f"{name}: final outcome disagrees")
-        require("Strong Tree-Childness Is a Sharp Generic-Identifiability Boundary" in text,
+        require("Strong Tree-Childness Is a Sharp Generic-Identifiability Boundary"
+                in normalized,
                 f"{name}: manuscript title missing")
     require(all(node in dependency and node in crosswalk for node in
                 ("V111", "V112", "V113", "V114", "V115")),
@@ -333,9 +335,9 @@ def manuscript_checks() -> None:
         "denoted $q_{111}$",
         "HoltgrefeEtAl2025Quartets",
         "displayed-rooting source and target minors listed with their",
-        r"\texttt{omega\_audit/}",
-        r"reviews/v1\_1\_proof\_hardening/",
-        "has zero survivors",
+        r"\path{sharpness/omega/}",
+        r"\path{atlas/ATLAS_EVIDENCE_BINDINGS.jsonl.gz}",
+        "both have zero survivors",
         "$72$ active-labelled tensors",
         "same zero-sum JC indicator",
         "selected split mask with its complement",

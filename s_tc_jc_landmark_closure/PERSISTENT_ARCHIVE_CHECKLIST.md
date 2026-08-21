@@ -6,9 +6,12 @@ Current pre-DOI candidate (the hash will change when the reserved DOI is
 inserted and the archive is resealed):
 
 - source commit: `61c869db9db15848a5328d7ee45b725ae6770688`
-- archive SHA-256: `66f0e324b9cdb1448806eecd9cd9397f9e8c45f4762ff48c5750cd64d2938e6a`
+- archive SHA-256: `032574f590c27a1f80d1e5dfa1b84b6f46b1e09d8d6f19a2d7c435597690b376`
 - record-level evidence commitment:
-  `09adbe4c639246b8a966d183984f1e1883246b92bd8927e2552a3cc5a25b505b`
+  `980b92addcca9bb0d74d35c7f542cd54acbc27c5650e9008de78986f3cf795b9`
+- clean source commit: `9c6c9c5f2878671b5b32ceee254bab96da854b73`
+- authenticated payload files: `241`
+- archive bytes: `94,157,050`
 - finite universe: 10,466 three-outgoing relations and 192 four-outgoing
   survivors
 

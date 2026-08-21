@@ -48,3 +48,5 @@ was to display the dependence of the physical arm as
 
 Final verdict: **the repaired mathematical argument passes without weakening
 the headline theorem.**
+
+PASS

@@ -59,7 +59,7 @@ def check_paper(text: str) -> None:
         "displayed-rooting source and target minors listed with their",
         "alternative-rooting minors give an additional",
         "type-(2a) statement of Lemma~2.14(b) does not extend to all type-(2c)",
-        r"All paths in this appendix are relative to the project root",
+        r"All paths in this appendix are relative to the extracted proof-certificate bundle",
     ):
         require(needle in flat, f"required v1.1.4 paper phrase missing: {needle}")
 
@@ -119,7 +119,7 @@ def check_supplement(text: str) -> None:
         r"\frac{41}{48}",
         r"N26_{\rm target}",
         r"\frac{14}{41}",
-        "Monorepository-root-relative evidence",
+        "Certificate-bundle-relative evidence",
     ):
         require(needle in flat, f"supplement v1.1.4 evidence missing: {needle}")
 
@@ -205,11 +205,14 @@ def main() -> None:
     mutation_tests(paper, figure, bibliography, supplement, omega_record)
 
     final = json.loads((PROJECT / "FINAL_OUTCOME.json").read_text(encoding="utf-8"))
-    require(final["release_revision"] == TAG,
-            "active release revision is not v1.1.4")
+    active = final["release_revision"]
+    match = re.fullmatch(r"stc-jc-sharp-boundary-v(\d+)\.(\d+)\.(\d+)", active)
+    require(match is not None and tuple(map(int, match.groups())) >= (1, 1, 4),
+            "active release predates the v1.1.4 regression floor")
     print(json.dumps({
         "status": "VERIFIED",
-        "release": TAG,
+        "regression_floor": TAG,
+        "active_release": active,
         "bcr_source_sha256": BCR_SHA256,
         "mutations_rejected": 9,
     }, sort_keys=True))

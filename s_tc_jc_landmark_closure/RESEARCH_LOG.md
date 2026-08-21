@@ -1079,3 +1079,22 @@
   work is final package-review sign-off, source commit, archive-local complete
   replay, release-asset rebuild, final status commit, and push; the Zenodo DOI
   remains intentionally pending for the human author.
+
+- 2026-08-21T16:21:47-07:00 — August 20 referee repair and curated proof
+  package reached release closure (estimated 100% complete for the pre-DOI
+  submission state).  The source repair was committed as
+  `9c6c9c5f2878671b5b32ceee254bab96da854b73`, and a detached export of that
+  exact Git object produced the 241-file, 94,157,050-byte certificate archive
+  with SHA-256
+  `032574f590c27a1f80d1e5dfa1b84b6f46b1e09d8d6f19a2d7c435597690b376`
+  and payload commitment
+  `980b92addcca9bb0d74d35c7f542cd54acbc27c5650e9008de78986f3cf795b9`.
+  Its quick, full, and complete two-copy regeneration modes passed from the
+  extracted archive in 464.052, 1,821.795, and 18,060.942 seconds,
+  respectively, with identical tree commitments before and after each run.
+  The final repository quick suite also passed after rebuilding every
+  submission source archive byte for byte.  Independent mathematical and
+  release adversaries both returned literal `PASS`; the headline theorem was
+  not weakened.  No DOI, tag, GitHub release, Zenodo deposit, or external
+  upload was created; DOI reservation and publication remain human-author
+  actions.
