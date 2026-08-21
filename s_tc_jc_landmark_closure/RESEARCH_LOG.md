@@ -975,3 +975,45 @@
   is sealed under `release/final_biorxiv/`.
 - No theorem statement, model domain, network class, sharpness family, or DOI
   claim changed in this bounded revision.
+
+## 2026-08-19 — v1.1.5 curated proof-certificate release
+
+- Replaced the broad development snapshot as the primary proof object by a
+  curated reviewer-facing atlas bundle containing only primitive inputs,
+  complete finite records, exact certificates/transports, primary and
+  separately implemented verifiers, and archive-local entry points.
+- Added a per-relation index for all 10,466 three-outgoing relations and all
+  192 four-outgoing survivors, with distinct base and restoration-closure
+  certificate/verifier fields.
+- Added fail-closed package mutation tests and a two-run deterministic logical
+  regeneration gate. Quick, full, and regenerate-all modes pass in isolated
+  copies; complete run logs are distributed outside the self-authenticating
+  archive.
+- Reduced every manuscript/supplement certificate crosswalk to six active
+  rows and removed audit reports and development-history paths from the
+  evidentiary surface. Submission capsules are now navigation-only.
+- Prepared a DOI finalization tool and Zenodo-first upload sequence without
+  requesting, inventing, or publishing an identifier.
+- Removed the obsolete recommendation to deposit an omnibus development
+  snapshot: the curated archive is self-contained and is the sole canonical
+  machine-proof object.
+- Final pre-DOI candidate archive SHA-256:
+  `66f0e324b9cdb1448806eecd9cd9397f9e8c45f4762ff48c5750cd64d2938e6a`;
+  record-level evidence commitment:
+  `09adbe4c639246b8a966d183984f1e1883246b92bd8927e2552a3cc5a25b505b`.
+  Quick, full, and complete two-copy regeneration all passed on the exact
+  archive.  In regeneration mode the frozen descriptor cache is deleted,
+  rebuilt from freshly regenerated primitive graph inputs and invariant
+  templates, and matched byte for byte before any downstream compiler may
+  use it; both isolated runs then reproduced all 69 load-bearing objects.
+  The delivered source archives reproduced six manuscript or supplement PDFs
+  and two cover letters byte for byte.
+- Adversarial release review then found and forced two final capsule-handoff
+  repairs: the navigation crosswalk now points to the global compact-probe and
+  direct-anchor streams accurately, and the DOI regression works from either
+  a pending or already-finalized checkout.  A temporary end-to-end simulation
+  of the documented reserve/finalize sequence passed without leaving a DOI
+  placeholder on any publication surface.
+- The final read-only adversarial release review returned `PASS`, reported no
+  blocking defect, and approved the candidate for DOI reservation followed by
+  the documented finalization, reseal, verification, and rebuild sequence.

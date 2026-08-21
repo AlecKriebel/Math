@@ -9,8 +9,8 @@ import json
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[1]
 CERTIFICATE = HERE / "certificates/schema3_n3_path_audit.json"
-EXPECTED_SUMMARY = "791844a802af61f64cba937a5adbe9d1d381d3fd7e55165914d4e4c885908e65"
-EXPECTED_CERTIFICATE = "d9dfc6d5e6e300bff00bd940adbf55395f609031aba8adeae0f38494dacadee6"
+EXPECTED_SUMMARY = "8ea833f92f8fe2777043fb95b643e0478ce162871e6694ef3c403f5f1c854cf8"
+EXPECTED_CERTIFICATE = "329510a396326e978aad8dfc77642f60048e26681014b733570a4c76c037fb3b"
 
 
 def stable(value):

@@ -2061,6 +2061,7 @@ def audit_family(
     crosswalk_summary_path: Optional[Path] = None,
     hard_cover_summary_path: Optional[Path] = None,
     hard_cover_summary_sha256: Optional[str] = None,
+    include_history_regression: bool = True,
 ) -> dict:
     if expected_summary_sha256 is not None and file_hash(summary_path) != expected_summary_sha256:
         raise AuditFailure(f"merged summary hash mismatch: {summary_path.name}")
@@ -2155,7 +2156,7 @@ def audit_family(
             crosswalk_summary["root_stream_logical_sha256"],
             int(crosswalk_summary["fixed_full_roots"]),
         )
-        if outgoing == 3:
+        if outgoing == 3 and include_history_regression:
             quarantine_audit = audit_quarantined_finalization_failure(
                 repo,
                 crosswalk_summary["crosswalk_file_sha256"],
@@ -2271,6 +2272,7 @@ def full_mutation_tests(
     summary_path: Path,
     crosswalk_summary_path: Optional[Path],
     invariants: Sequence[Tuple[Tuple[Tuple[int, ...], int], ...]],
+    include_history_regression: bool = True,
 ) -> dict:
     """Mutation-sensitive checks against the actual final family artifacts."""
     summary = read_json(summary_path)
@@ -2524,7 +2526,8 @@ def full_mutation_tests(
         "preserved_failure": audit_quarantined_finalization_failure(
             repo,
             read_json(crosswalk_summary_path)["crosswalk_file_sha256"],
-        ) if outgoing == 3 and crosswalk_summary_path is not None else None,
+        ) if (include_history_regression and outgoing == 3
+              and crosswalk_summary_path is not None) else None,
     }
 
 
@@ -2535,6 +2538,11 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     parser.add_argument("--mutation-output", type=Path, required=True)
     parser.add_argument("--manifest-output", type=Path, required=True)
     parser.add_argument("--family", choices=("all", "n3"), default="all")
+    parser.add_argument(
+        "--omit-history-regressions",
+        action="store_true",
+        help="omit preserved development-failure fixtures from a proof-only bundle",
+    )
     args = parser.parse_args(argv)
     repo = args.repo.resolve()
     result: dict = {
@@ -2568,9 +2576,13 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
             n3_crosswalk,
             n3_hard_cover,
             n3_lock["hard_cover_summary_sha256"],
+            not args.omit_history_regressions,
         )
         result["checks"]["n3"] = n3
-        n3_mutations = full_mutation_tests(repo, n3_summary, n3_crosswalk, invariants)
+        n3_mutations = full_mutation_tests(
+            repo, n3_summary, n3_crosswalk, invariants,
+            not args.omit_history_regressions,
+        )
         mutation_payload: dict = {
             "schema": 1,
             "fixture_mutations": fixture_mutations,
@@ -2613,9 +2625,13 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
                     n4_crosswalk,
                     n4_hard_cover,
                     n4_lock["hard_cover_summary_sha256"],
+                    not args.omit_history_regressions,
                 )
                 result["checks"]["n4"] = n4
-                mutation_payload["n4"] = full_mutation_tests(repo, n4_summary, n4_crosswalk, invariants)
+                mutation_payload["n4"] = full_mutation_tests(
+                    repo, n4_summary, n4_crosswalk, invariants,
+                    not args.omit_history_regressions,
+                )
                 result["status"] = STATUS_PASS
         write_json(args.mutation_output, mutation_payload)
     except AuditFailure as exc:

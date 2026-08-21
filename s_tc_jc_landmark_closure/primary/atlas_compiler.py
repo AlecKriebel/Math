@@ -48,7 +48,7 @@ from sign_certificate import certify as certify_sign
 
 
 HERE = Path(__file__).resolve().parent
-PROJECT = HERE.parent.parent
+PROJECT = HERE.parent
 TEMPLATE_FILE = PROJECT / "strong_level2_phylo_identifiability" / "src" / "jc_root_spanning_atlas_data.py"
 EXPECTED_TEMPLATE_SHA = "dd4b47f018d8f261fe296430513cedc1691b39cdb57fa075e42d884ecfba9ee3"
 SEVENTH_TEMPLATE_FILE = HERE / "seventh_invariant.json"
@@ -1028,6 +1028,9 @@ def main() -> None:
             )
             if row["bounded_relation_certificate"]["failure_count"]:
                 raise SystemExit(f"relation failures at n={n}")
+        # Runtime is diagnostic output, not part of the finite proof object.
+        # Omitting it makes every shard summary byte-reproducible.
+        row.pop("elapsed_seconds", None)
         runs.append(row)
         if args.write_bit_cache:
             write_bit_cache(args.write_bit_cache, cache)

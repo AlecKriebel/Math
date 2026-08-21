@@ -12,7 +12,7 @@ from jc_tensor import invariant_orbit, jc_representatives, parse_literal
 
 
 HERE = Path(__file__).resolve().parent
-PROJECT = HERE.parent.parent
+PROJECT = HERE.parent
 TEMPLATES = PROJECT / "strong_level2_phylo_identifiability" / "src" / "jc_root_spanning_atlas_data.py"
 SEVENTH = HERE / "seventh_invariant.json"
 OUT = HERE / "certificates" / "invariant_multihomogeneity.json"

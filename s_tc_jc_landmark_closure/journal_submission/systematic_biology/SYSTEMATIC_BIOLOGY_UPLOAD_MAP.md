@@ -14,19 +14,19 @@ manuscript.  Full LaTeX sources are requested on acceptance.
 
 ## Before opening ScholarOne
 
-1. Deposit `stc_jc_sharp_boundary_reproducibility.tar.gz` and its outer
-   release envelope in Zenodo; insert the issued DOI in the manuscript and
-   metadata.  Do not fabricate a DOI.
+1. Deposit `stc_jc_sharp_boundary_atlas_certificates_v1.1.5.tar.gz`, its
+   checksum and envelope in Zenodo; insert the issued DOI in the manuscript
+   and metadata.
 2. Rebuild this directory and verify `SHA256SUMS`.
 3. Read the complete manuscript, supplement, cover letter, and metadata.
 4. Confirm that the manuscript is not simultaneously under consideration.
 
-Run the exact local package checks from the monorepository root:
+Run the exact local package checks from the project root:
 
 ```bash
-(cd s_tc_jc_landmark_closure/journal_submission/systematic_biology && shasum -a 256 -c SHA256SUMS)
-python s_tc_jc_landmark_closure/reproducibility/verify_submission_source_archives.py
-python s_tc_jc_landmark_closure/reproducibility/verify_public_release.py
+(cd journal_submission/systematic_biology && shasum -a 256 -c SHA256SUMS)
+python reproducibility/verify_submission_source_archives.py
+python reproducibility/verify_certificate_zenodo_release.py /path/to/downloaded/archive.tar.gz
 ```
 
 The final command is the post-upload release-provenance gate. Run it again
@@ -42,10 +42,10 @@ after any release asset is replaced.
    ragged-right text, page numbers, embedded figures, and alt text.
 4. Upload `SB_Supplementary_Material.pdf` and designate it **Supplementary
    Material**.
-5. Do **not** upload `SB_Exact_Verifier_Entry_Points.zip` to ScholarOne.  The
+5. Do **not** upload `SB_Exact_Verifier_Entry_Points.zip` to ScholarOne. The
    current journal instructions direct scripts and code to Zenodo rather than
    the manuscript system.  Include this small capsule in the repository
-   deposit together with the complete certificate archive, and provide the
+   deposit together with the curated certificate archive, and provide the
    issued reviewer link or DOI in ScholarOne only after it exists.
 6. Upload `SB_Cover_Letter.pdf` as the cover letter.
 7. Do not upload `SB_LaTeX_Source.zip` for initial review unless ScholarOne

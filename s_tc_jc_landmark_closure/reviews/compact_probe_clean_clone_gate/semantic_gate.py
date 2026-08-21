@@ -89,10 +89,10 @@ FAMILIES = {
         "n3",
         "compact_probe_schema3_n3_compact_s{shard}_summary.json",
         (
-            "dc7b806f9afc1af9909682f47ea4bdc9ac5a8631d78ce3a6b15d41c4f171ad73",
-            "996084af49c3e4ddf63b62cfa951be652a886e3424674f6e34d664b5a4901a37",
-            "a8162d2bb136668ce2f204ce2012c85eb4dbb5e42c7037307d974b5f9ebf2286",
-            "b246614dafc669784f8ef5e16ef62db79f08929b2afc2a6d14ce7f50bd7b7942",
+            "2c8eef2becf296de0fead675dea98badafc440fb3428c3b77ce32b4a3783df16",
+            "2da8ae022317fdd0a9a647ca35fdb4fb8d0bcf7d6171e97b238b0a6af924c582",
+            "b7c0509a085de82a4f6a21b44b41d7bc76d13f20376516ac742741ed33ccb48c",
+            "c00d82c98a388b0c396d78109c6023c6c664d894c4307e704da49970fed611e3",
         ),
         144,
         (
@@ -110,10 +110,10 @@ FAMILIES = {
         "theta2_n4",
         "compact_probe_theta2_compact_n4_s{shard}_summary.json",
         (
-            "9649b08315dbd5d9dca8b8e4e1892deefe4cecacd81ea6f1880d994e56bd0863",
-            "ea0c7181389d4bb73a7a1332ec396f0223cf0e9746efde9f39bc79d3d3029de1",
-            "ab678bcbd268ffd704fa79c45ac8a1eb89e2907132eb5e12a99a625cc606ebbd",
-            "ffa5658edfaac800da9614fcaf32a576a09d26d6d1449fc89a2ac66efff551d6",
+            "a15674a2791cffef43b2f4f97c2e79929fbce545c188ec2ea0a7dcb3d42c9292",
+            "b3f5fe428ec8ffb76a651cac333bd1791e006a8892f831aa4d0fdf997d862e64",
+            "caa16156d9da420f5c908c4daa38dba6972f0f799921cfeb1acd962ac27c1b17",
+            "ca7b3cdec834c9a95d6b2f671df022e15750cb66e80cff7c14775d6cda0ccee4",
         ),
         132,
         (("generic_polynomial_separation", 153072),
@@ -148,6 +148,26 @@ def resolve(value: str | Path, relative_to: Path | None = None) -> Path:
         if candidate.exists():
             return candidate.resolve()
     return candidates[0].resolve()
+
+
+def normalized_json_for_commitment(value):
+    """Discard only run-local metadata from upstream summary commitments."""
+    if isinstance(value, dict):
+        return {
+            key: normalized_json_for_commitment(item)
+            for key, item in sorted(value.items())
+            if key not in {"elapsed_seconds", "merged_shard_inputs"}
+        }
+    if isinstance(value, list):
+        return [normalized_json_for_commitment(item) for item in value]
+    return value
+
+
+def semantic_json_sha256(path: Path) -> str:
+    payload = normalized_json_for_commitment(
+        json.loads(path.read_text(encoding="utf-8"))
+    )
+    return hashlib.sha256(stable_bytes(payload)).hexdigest()
 
 
 def read_gzip(path: Path, key: str | None = None):
@@ -190,7 +210,7 @@ def build_inventory(base_summaries: list[Path]):
     for summary_path in sorted((p.resolve() for p in base_summaries),
                                key=normalized):
         summary = json.loads(summary_path.read_text())
-        inputs[normalized(summary_path)] = file_sha256(summary_path)
+        inputs[normalized(summary_path)] = semantic_json_sha256(summary_path)
         for run_index, run in enumerate(summary["runs"]):
             cover = run["hard_cover"]
             state_path = resolve(cover["relation_path"], summary_path)
@@ -284,14 +304,15 @@ def load_compact(summary_path: Path, expected_sha: str):
     require(summary["schema"] == "compact-path-bound-probe-extension-v1",
             "compact_schema")
     require(summary["status"] == "EXACTLY_COMPUTED", "compact_status")
-    # The producer summaries bind the pre-clarification schema bytes.  Those
-    # exact bytes are vendored in this gate and checked rather than silently
-    # accepting the later prose-only revision at the historical path.
+    # The locked schema is the exact active producer specification.
     require(file_sha256(LOCKED_SCHEMA) ==
             summary["schema_specification_sha256"],
             "locked_schema_specification_sha256")
     for name, expected in summary["input_sha256"].items():
-        require(file_sha256(resolve(name, summary_path)) == expected,
+        input_path = resolve(name, summary_path)
+        actual = (semantic_json_sha256(input_path)
+                  if input_path.suffix == ".json" else file_sha256(input_path))
+        require(actual == expected,
                 "compact_input_sha256", input=name)
     bit_path = resolve(summary["bit_cache"]["path"], summary_path)
     require(file_sha256(bit_path) == summary["bit_cache"]["sha256"],

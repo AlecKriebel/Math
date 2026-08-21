@@ -13,17 +13,18 @@
 - **Competing interests:** The author declares no competing interests.
 
 Use the abstract in the manuscript or `biorxiv_submission/BIORXIV_METADATA.md`
-verbatim.  Do not introduce a DOI or repository identifier until it exists.
+verbatim. Certificate DOI: https://doi.org/ZENODO_DOI_PENDING. Replace the
+placeholder only with the real reserved Zenodo DOI before submission.
 
 ## Data and code
 
 This is a theorem and exact-computation paper; it analyzes no empirical
 sequence dataset.  The exact graph records, code, certificates, and replay
 logs constitute the supporting computational material.  The local
-submission-support directory includes a small verifier-entrypoint ZIP; place
-it in the repository deposit with the complete hash-bound archive, not in
-ScholarOne.  Before journal submission, deposit the release archive in Zenodo
-and replace the placeholder in the portal and manuscript with the issued DOI.
+submission-support directory includes a small navigation-only verifier ZIP;
+the load-bearing object is the curated v1.1.5 atlas-certificate archive at the
+DOI above. Place the capsule and the broader secondary reproducibility
+snapshot in the same Zenodo record, not in ScholarOne.
 The journal's current instructions direct scripts/code to Zenodo and
 empirical datasets to Dryad.
 If ScholarOne nevertheless requires a Dryad entry for these nonempirical

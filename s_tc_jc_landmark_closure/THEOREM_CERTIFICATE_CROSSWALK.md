@@ -1,86 +1,32 @@
 # Theorem-to-certificate crosswalk
 
-Status: **VERIFIED — FINAL OUTCOME A**
+Status: **v1.1.5 certificate bundle prepared; Zenodo DOI
+`ZENODO_DOI_PENDING`**
 
-The persistent archive is sealed in two layers: this core crosswalk and the
-core artifact manifest are inside the archive, while the external
-`RELEASE_ENVELOPE.json` records the immutable source commit, clean-clone
-transcript hashes, and final archive digest. It is accepted as public evidence
-only when the bounded post-upload verifier downloads it from the v1.1.4
-GitHub Release and returns `PUBLIC_RELEASE_VERIFIED`.
+The authoritative computer-assisted proof object is
+`stc_jc_sharp_boundary_atlas_certificates_v1.1.5.tar.gz`. All paths below are
+relative to its extracted root. The broad development snapshot and historical
+audit reports are provenance only and are not theorem dependencies.
 
-Manuscript: **Strong Tree-Childness Is a Sharp Generic-Identifiability Boundary for
-Level-2 Jukes–Cantor Networks**
+| Article claim | Minimal exact evidence | Replay |
+|---|---|---|
+| Fixed mixed-graph convention, primitive supports, cut recovery, and full incidence-scaling bridge fibre | `primary/certificates/{core_universe,support_universe}.json`, `reviews/root_probe/`, `independent/bridge_cut/` | `bash verify.sh full` |
+| Theorem 6.3, including every three-/four-outgoing relation and its restoration/probe closure | `atlas/ATLAS_EVIDENCE_BINDINGS.jsonl.gz` binds every row to its base evidence and closure verifier; compact probe streams are under `primary/certificates/compact_probe_*`, and direct anchors are under `reviews/direct_anchor_probe_closure/certificates/` | `bash verify.sh full` and `bash verify.sh regenerate-all` |
+| Deterministic graph-to-certificate regeneration | primitive inputs and compilers under `primary/`; frozen streams under `primary/certificates/` | `verifiers/regenerate_load_bearing.py`, invoked twice by `regenerate-all` |
+| Ordinary triangle common germ | `primary/certificates/jc_triangle_redirection_active.json`, `reviews/triangle_redirection_cleanroom/` | `bash verify.sh full` |
+| Omega and Theta sharpness families | `omega_audit/independent/`, `s_tc_jc_sharp_boundary/reproducibility/` | `bash verify.sh full` |
+| Bundle integrity, relation totality, and mutation sensitivity | `ACTIVE_MANIFEST.json`, `SHA256SUMS`, `atlas/ATLAS_EVIDENCE_BINDINGS.jsonl.gz`, `expected_outputs/`, `verifiers/package_mutation_tests.py` | all three modes |
 
-Counts below are deterministic checksums of theorem-derived finite universes,
-not substitutes for their exhaustiveness proofs.
-
-| Node | Mathematical role | Primary proof | Independent evidence and replay |
-|---|---|---|---|
-| `D` | Fixed `sd_0`, LSA rootings, `W_TC/S_TC`, no omnians | `docs/DEFINITIONS_LOCK.md` | `reviews/final_standard_convention/`; `bash reviews/final_standard_convention/verify_all.sh` |
-| `U` | Cycle/four-theta cores, repairs, supports, unique triangle | `docs/GENERATOR_AND_SUPPORT_THEOREM.md` | `reviews/root_probe/`; `python reviews/root_probe/verify_active_structural.py` |
-| `C` | Pointwise cut iff and both cut inclusions | `docs/SHARP_BOUNDARY_THEOREM.md` | `reviews/global_bridge/`; `bash reviews/global_bridge/verify_all.sh --with-upstream-replay` |
-| `B` | Full incidence bridge fibre, slices, localization | manuscript bridge section | same independent global bridge replay |
-| `A3` | Three-outgoing decorated relation universe | primitive completion grammar | `reviews/n3_universe_generator/` and `reviews/bounded_directed_relation_cleanroom/` |
-| `A4` | Four-outgoing theta filter, transports, restoration cover | primitive completion grammar | `reviews/theta2_signature_gate/`, `reviews/final_hard_cover_cleanroom/`, and adversary |
-| `S` | Submersion, restoration, common anchor, coherent words | `docs/HARD_COVER_THEOREM.md` | `reviews/compact_probe_clean_clone_gate/` and `reviews/direct_anchor_probe_closure/` |
-| `T` | Ordinary triangle common strict regular germ | `docs/TRIANGLE_MOVE_LOCK.md` | `reviews/triangle_redirection_cleanroom/` |
-| `G` | Global necessity and converse gluing | `docs/SHARP_BOUNDARY_THEOREM.md` | `reviews/global_bridge/` and `reviews/final_theorem_logic/` |
-| `O` | Triangle-free Omega topology, equality, rank 9, all-`n` inverse | `omega_audit/reports/OMEGA_GATE_REPORT.md` | frozen-orbit import checked by `omega_audit/runtime_compat/verify_orbit_constant.py` and injected by `run_historical_omega.py`; primary historical replay plus `omega_audit/independent/verify_omega_release.py` and `verify_omega_rank_readability.py`; adversarial O6 PASS |
-| `W` | Triangle-containing Theta rank-8 family for all `n` | `s_tc_jc_sharp_boundary/source/paper/main.tex` | frozen independent verifier in `s_tc_jc_sharp_boundary/` |
-| `V_final` | Whole-paper adversarial logic and release review | unified manuscript | active final referee packet and clean-clone transcripts |
-| `V_hold` | Post-HOLD structural, cut, exposition, disclosure, and Figure 4 repairs | `reviews/post_hold_revision/REPORT.md` | revised clean replay, exact Omega rank certificate, two-renderer PDF audit, and immutable public tag |
-| `V11` | Final noncut compression, four-active cut handoff, normalized marginal submersion, endpoint provenance, and simultaneous gluing | revised manuscript | `reviews/v1_1_proof_hardening/PRIMARY_REVISION_REPORT.md`, `ADVERSARIAL_REVIEW.md`, `REPAIR_RESPONSE.md`, and both independent proof-hardening verifiers |
-| `V111` | Componentwise normalized bridge fibre, finite target-type selection, physical sections, image-tangent rank, genericity handoff, and Figure 2 clearance | v1.1.1 manuscript and `reviews/v1_1_1_referee_revision/REFEREE_RESPONSE.md` | `verify_referee_regressions.py`, eight mutation tests, final adversarial report, and the v1.1.1 gate replayed in the current transcripts |
-| `V112` | Correct public commands and scope wording; v1.1.2 replay provenance and package baseline | v1.1.2 manuscript and `reviews/v1_1_2_release_hardening/REVIEW_DISPOSITION.md` | Version-specific `verify_release_hardening.py` and the preserved v1.1.2 public GitHub Release; it is historical evidence, not the parser for current v1.1.4 manifests |
-| `V113` | Exact Englander-v4/Omega crosswalk, explicit Omega rank-nine row/column sets, quartet-distance comparison, and journal-aware verifier capsules | v1.1.3 manuscript and `reviews/v1_1_3_englander_revision/FEEDBACK_DISPOSITION.md` | Preserved `verify_englander_revision.py`, exact Omega release record, source-archive/capsule replay, final adversarial reviews, and immutable v1.1.3 public release hashes; current manifests are parsed by `V114` |
-| `V114` | Formal projective containment, source-grounded semialgebraic finite-cover proof, exact BCR pin-cites, Figure 7 clearance, and Omega rooted-rank exposition | v1.1.4 manuscript and `reviews/v1_1_4_bcr_and_figure_revision/FEEDBACK_DISPOSITION.md` | `verify_v1_1_4_revision.py`, bounded BCR source audit, nine mutation tests, source-archive replay, final mathematical/reproducibility adversarial reviews, and public release hashes |
-
-## Exact local checksums
-
-- Three-outgoing gate: 10,826 raw and 10,466 canonical decorated directed
-  relations; 5,284 strict; 5,344 raw restoration roots; 62 direct residuals.
-- Three-outgoing restoration forest: 68,584 states, ending in 120 labelled
-  isomorphism and 24 ordinary-`T` terminals after exact separation.
-- Four-outgoing gate: 6,138 completion records and 192 raw survivors,
-  intrinsically partitioned as 18 direct isomorphisms, 42 incoming-rooting
-  duplicates, and 132 restoration roots.
-- Four-outgoing restoration forest: 2,106 states, with 1,860 generic
-  separations, 114 refinements, and 132 isomorphism terminals.
-- Coherent probes: 101,148 three-outgoing and 168,582 theta-2 relations;
-  exact maximum ten tensor ports.
-- Direct residuals: 2,642 one-port and 18,224 two-port relations, no unresolved
-  relation, and 12/12 mutations rejected.
-- Omega: four fixed rooted presentations; seven admissible rootings and two
-  tree-child rootings per mixed graph; all 256 Fourier and 256 inverse-pattern
-  entries; exact model/intersection dimension nine; readable core-rank
-  determinant `-723/8589934592`; 12/12 mutations rejected.
-- Theta: all 256 Fourier coordinates, strict quadratic point, two rank-eight
-  minors, both complete physical points and gauge definitions, and positive
-  analytic leaf-substitution inverse.
-- v1.1 cut compression: 3,112 / 58,380 / 58,380 / 91,464 / 117,252 bounded
-  two-colour occupancies across the five primitive cores; 20/20 adversarial
-  mutations rejected.  The four named two-active minors are independently
-  regenerated from their stated Fourier blocks.
-- v1.1.1 referee regression: normalized zero sector, corrected finite-cover
-  intersection dimension, smooth-image tangent rank, synchronized titles,
-  measured Figure 2 clearance, and 8/8 targeted mutations rejected.
-- v1.1.2 release regression: version-specific monorepository-root commands,
-  explicit genericity, separately implemented terminology, stale-evidence
-  quarantine, and v1.1.2 public release-asset provenance.  Current package
-  manifests are checked by `V113`, not by rewriting this historical gate.
-- v1.1.3 revision regression: Englander-v4 type-(2c) taxonomy and theorem
-  crosswalk, trinet-notation transport, all four Omega rank-nine witnesses,
-  synchronized verifier capsules, and targeted mutation rejection.
-- v1.1.4 revision regression: exact semialgebraic source crosswalk, distinct
-  projective containment relation, ordinary theorem layout, measured Figure 7
-  clearance, explicit alternative-rooting arc order, and 7/7 targeted
-  mutations rejected.
+The authoritative evidence map has 10,466 three-outgoing records and 192
+four-outgoing survivor records.  Every record binds its decorated graphs,
+direction, certificate, transport when applicable, and verifier.  The CSV is
+a checked human-readable projection.  The archive excludes referee prose,
+research logs, superseded claims, manuscripts, and release-engineering
+workspaces.
 
 ## Explicit exclusions
 
 No active theorem uses a reciprocal-only bridge chart, a hidden cleanup-fibre
-rooting convention, a weak-class gadget as a move in `S_TC`, a root-presentation
-move as a distinct semi-directed topology, target-only counts, equality of
-complete stochastic images under `T`, physical bridge-parameter recovery, or
-K2P/K3P claims.
+rooting convention, a weak-class gadget as a move in the strong class,
+target-only counts, equality of complete stochastic images under ordinary
+triangle redirection, physical bridge-parameter recovery, or K2P/K3P claims.

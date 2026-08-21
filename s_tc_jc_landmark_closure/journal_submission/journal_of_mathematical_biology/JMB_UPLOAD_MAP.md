@@ -16,12 +16,12 @@ page displayed a site-under-development warning.  Therefore do **not** rely on
 a hard-coded portal URL in this package.  On the submission day, begin from
 the official journal page above and use its live **Submit manuscript** link.
 
-Before opening that link, run from the monorepository root:
+Before opening that link, run from the project root:
 
 ```bash
-(cd s_tc_jc_landmark_closure/journal_submission/journal_of_mathematical_biology && shasum -a 256 -c SHA256SUMS)
-python s_tc_jc_landmark_closure/reproducibility/verify_submission_source_archives.py
-python s_tc_jc_landmark_closure/reproducibility/verify_public_release.py
+(cd journal_submission/journal_of_mathematical_biology && shasum -a 256 -c SHA256SUMS)
+python reproducibility/verify_submission_source_archives.py
+python reproducibility/verify_certificate_zenodo_release.py /path/to/downloaded/archive.tar.gz
 ```
 
 These commands check the exact portal set, reproducible article/supplement and
@@ -40,7 +40,7 @@ cover-letter builds, and the public eight-asset replay envelope.
 5. Do not designate `JMB_Exact_Verifier_Entry_Points.zip` as a second Online
    Resource.  Retain it in the local support package and include it in the
    external repository deposit.  The manuscript cites Online Resource 1; the
-   complete graph/certificate archive and verifier capsule are reached through
+   curated atlas-certificate archive and verifier capsule are reached through
    its data/code statement.
 6. Upload `JMB_Cover_Letter.pdf` if the portal requests a cover letter.
 7. Enter the metadata from `JMB_SUBMISSION_METADATA.md`.

@@ -77,27 +77,12 @@ VERIFIER_CAPSULES = (
 # capsule builder.  The replay verifier must reject a self-consistent capsule
 # that silently omits one of the promised entry points.
 VERIFIER_CAPSULE_MEMBER_SET = frozenset({
-    "README.md",
+    "README_FIRST.md",
     "SHA256SUMS",
-    "requirements.txt",
-    "STATUS.md",
-    "FINAL_OUTCOME.json",
-    "CLAIM_DEPENDENCY_GRAPH.md",
+    "CERTIFICATE_BUNDLE_ENVELOPE.json",
     "THEOREM_CERTIFICATE_CROSSWALK.md",
-    "PERSISTENT_ARCHIVE_CHECKLIST.md",
-    "release/PUBLIC_RELEASE_ASSETS.md",
-    "reproducibility/bootstrap.sh",
-    "reproducibility/verify_quick.sh",
-    "reproducibility/verify_full.sh",
-    "reproducibility/verify_regenerate_all.sh",
-    "reproducibility/verify_active_release.py",
-    "reproducibility/verify_extracted_archive.py",
-    "reproducibility/verify_public_release.py",
-    "reproducibility/verify_submission_source_archives.py",
-    "reviews/v1_1_4_bcr_and_figure_revision/verify_v1_1_4_revision.py",
-    "reviews/v1_1_4_bcr_and_figure_revision/FEEDBACK_DISPOSITION.md",
-    "reviews/v1_1_4_bcr_and_figure_revision/BCR_CITATION_AUDIT.md",
-    "reviews/v1_1_4_bcr_and_figure_revision/BCR_SOURCE_AUDIT.json",
+    "RUNTIME_AND_HARDWARE.md",
+    "verify_downloaded_archive.py",
 })
 
 PACKAGE_MANIFESTS = {
@@ -280,14 +265,15 @@ def verify_verifier_capsule(path: Path) -> str:
                 f"empty or duplicate verifier capsule members: {path}")
         require(set(names) == VERIFIER_CAPSULE_MEMBER_SET,
                 f"verifier capsule mandatory member set differs: {path}")
-        readme = archive.read("README.md").decode("utf-8")
+        readme = archive.read("README_FIRST.md").decode("utf-8")
         for needle in (
-            "not the complete proof archive",
-            "stc-jc-sharp-boundary-v1.1.4",
-            "verify_quick.sh",
-            "verify_full.sh",
-            "verify_regenerate_all.sh",
-            "No script submits a manuscript",
+            "navigation capsule only",
+            "not the proof archive",
+            "stc_jc_sharp_boundary_atlas_certificates_v1.1.5.tar.gz",
+            "bash verify.sh quick",
+            "bash verify.sh full",
+            "bash verify.sh regenerate-all",
+            "No included script uploads files",
         ):
             require(needle in readme, f"verifier capsule README missing: {needle}")
         expected: dict[str, str] = {}
@@ -315,7 +301,7 @@ def mutation_test_verifier_capsule_member() -> None:
             for name in archive.namelist()
             if name != "SHA256SUMS"
         }
-    removed = "reproducibility/verify_active_release.py"
+    removed = "verify_downloaded_archive.py"
     require(removed in payloads, f"mutation target missing: {removed}")
     del payloads[removed]
     internal_sums = "".join(

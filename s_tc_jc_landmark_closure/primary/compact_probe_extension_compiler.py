@@ -87,6 +87,26 @@ def stable_bytes(payload: dict) -> bytes:
     return json.dumps(payload, sort_keys=True, separators=(",", ":")).encode()
 
 
+def normalized_json_for_commitment(value):
+    """Discard run-local metadata while preserving mathematical content."""
+    if isinstance(value, dict):
+        return {
+            key: normalized_json_for_commitment(item)
+            for key, item in sorted(value.items())
+            if key not in {"elapsed_seconds", "merged_shard_inputs"}
+        }
+    if isinstance(value, list):
+        return [normalized_json_for_commitment(item) for item in value]
+    return value
+
+
+def semantic_json_sha256(path: Path) -> str:
+    payload = normalized_json_for_commitment(
+        json.loads(path.read_text(encoding="utf-8"))
+    )
+    return hashlib.sha256(stable_bytes(payload)).hexdigest()
+
+
 class JsonlGzipWriter:
     def __init__(self, path: Path):
         self.path = path
@@ -157,7 +177,9 @@ def collect_base_paths(summary_paths: list[Path]):
     summaries = sorted((path.resolve() for path in summary_paths), key=normalized_path)
     for summary_path in summaries:
         summary = json.loads(summary_path.read_text())
-        input_hashes[normalized_path(summary_path)] = sha256(summary_path)
+        input_hashes[normalized_path(summary_path)] = semantic_json_sha256(
+            summary_path
+        )
         for run_index, run in enumerate(summary["runs"]):
             cover = run["hard_cover"]
             state_path = resolve(cover["relation_path"], relative_to=summary_path)

@@ -4,9 +4,9 @@ These packages are generated from the same canonical article and supplement
 used for bioRxiv.  Run:
 
 ```bash
-python s_tc_jc_landmark_closure/reproducibility/build_biorxiv_release.py submission
-python s_tc_jc_landmark_closure/reproducibility/build_journal_packages.py
-python s_tc_jc_landmark_closure/reproducibility/verify_submission_source_archives.py
+python reproducibility/build_biorxiv_release.py submission
+python reproducibility/build_journal_packages.py
+python reproducibility/verify_submission_source_archives.py
 ```
 
 The final command independently extracts each source ZIP, follows the

@@ -1,0 +1,463 @@
+#!/usr/bin/env python3
+"""Build the deterministic reviewer-facing v1.1.5 proof-certificate bundle.
+
+The selection below is intentionally explicit. It is the transitive closure
+of the mathematical entry points, not a copy of the development worktree.
+"""
+
+from __future__ import annotations
+
+import argparse
+import csv
+import gzip
+import hashlib
+import importlib.util
+import io
+import json
+import os
+from pathlib import Path
+import shutil
+import stat
+import subprocess
+import tarfile
+import tempfile
+
+
+PROJECT = Path(__file__).resolve().parents[1]
+VERSION = "1.1.5"
+ROOT_NAME = f"stc_jc_sharp_boundary_atlas_certificates_v{VERSION}"
+
+STATIC = (
+    "README_FIRST.md", "PROOF_BOUNDARY.md", "THEOREM_CERTIFICATE_CROSSWALK.md",
+    "ATLAS_SUMMARY.md", "REGENERATION_MAP.md", "RUNTIME_AND_HARDWARE.md",
+    "CITATION.cff", "verify.sh",
+)
+
+PRIMARY_CODE = (
+    "COMPACT_PROBE_SCHEMA.md", "atlas_compiler.py", "compact_probe_extension_compiler.py",
+    "completion_universe.py", "core_universe.py", "cycle_theta_union_compiler.py",
+    "graph_model.py", "hard_cover_compiler.py", "jc_tensor.py",
+    "merge_bounded_relation_shards.py", "merge_compact_probe_shards.py",
+    "merge_hard_cover_shards.py", "probe_extension_compiler.py", "seventh_invariant.json",
+    "sign_certificate.py", "support_universe.py", "verify_bounded_relations.py",
+    "verify_compact_probe_extension.py", "verify_hard_cover_artifacts.py",
+    "verify_multihomogeneity.py", "verify_probe_extension.py",
+    "verify_relation_hard_cover_crosswalk.py", "verify_triangle_redirection.py",
+    "verify_zero_sum_root_normalization.py",
+)
+
+PRIMARY_CERTS = (
+    "core_universe.json", "completion_universe.json", "support_universe.json",
+    "invariant_multihomogeneity.json", "zero_sum_root_normalization.json",
+    "jc_triangle_redirection_active.json", "descriptor_bits_cache.json.gz",
+    "bounded_relation_n3_all_filtered_summary.json",
+    "bounded_relation_n3_cycle_filtered_summary.json",
+    "bounded_relation_n3_theta0_filtered_summary.json",
+    "bounded_relation_n3_theta1_filtered_summary.json",
+    "bounded_relation_n3_theta3_filtered_summary.json",
+    "bounded_relations_n3_schema3_n3_cycle_filtered.jsonl.gz",
+    "bounded_relations_n3_schema3_n3_theta0_filtered.jsonl.gz",
+    "bounded_relations_n3_schema3_n3_theta1_filtered.jsonl.gz",
+    "bounded_relations_n3_schema3_n3_theta3_filtered.jsonl.gz",
+    "bounded_relation_n3_schema3_n3_all_filtered_graphs.jsonl.gz",
+    "bounded_relation_n3_schema3_n3_all_filtered_polynomials.jsonl.gz",
+    "bounded_relation_n3_schema3_n3_all_filtered_relations.jsonl.gz",
+    "bounded_relation_n3_schema3_n3_all_filtered_signs.json",
+    "bounded_relation_n3_hard_cover_crosswalk.jsonl.gz",
+    "bounded_relation_n3_hard_cover_crosswalk.summary.json",
+    "hard_cover_graphs_n3_schema3_n3_full.jsonl.gz",
+    "hard_cover_n3_schema3_n3_full.jsonl.gz",
+    "hard_cover_polynomials_n3_schema3_n3_full.jsonl.gz",
+    "hard_cover_root_cases_n3_schema3_n3_full.jsonl.gz",
+    "hard_cover_schema3_n3_full_summary.json",
+    "hard_cover_graphs_n4_schema3_theta2_full.jsonl.gz",
+    "hard_cover_n4_schema3_theta2_full.jsonl.gz",
+    "hard_cover_polynomials_n4_schema3_theta2_full.jsonl.gz",
+    "hard_cover_root_cases_n4_schema3_theta2_full.jsonl.gz",
+    "hard_cover_schema3_theta2_full_summary.json",
+)
+
+ROOT_PROBE = (
+    "verify_active_structural.py", "verify_root_probe.py", "verify_probe_coherence.py",
+    "verify_incoming_coverage.py", "verify_parameter_submersion.py",
+    "root_probe_certificate.json", "probe_coherence_certificate.json",
+    "incoming_coverage_certificate.json", "parameter_submersion_certificate.json",
+    "counterexamples/fixed_incoming_relative_role.json",
+)
+
+N3_UNIVERSE = (
+    "generate_universe.py", "verify_manifest.py", "n3_universe_certificate.json",
+    "n3_normalized_raw_relations.jsonl.gz", "n3_normalized_merged_relations.jsonl.gz",
+)
+
+BOUNDED_CLEANROOM = (
+    "cleanroom_verify.py", "INPUT_LOCK.json",
+)
+
+THETA_GATE = (
+    "verify_gate.py", "canonicalize_relations.py", "verify_manifest.py",
+    "signature_certificate.json", "canonical_quotient_certificate.json",
+    "presentation_crosswalk.jsonl", "canonical_duplicate_transports.jsonl",
+    "frozen_presentation_transports.jsonl", "mutation_results.json",
+)
+
+FINAL_HARD_COVER = (
+    "audit_candidate_stream.py", "derived_invariants.py", "family_engine.py",
+    "graph_model.py", "jc_exact.py", "pq_extension.py", "relation_universe.py",
+    "mutation_schema3_stream.py", "verify_schema3_n4_certificates.py",
+    "certificates/schema3_n3_path_audit.json",
+    "certificates/schema3_n4_theta2_full_audit.json",
+    "certificates/schema3_n4_theta2_mutation_certificate.json",
+    "certificates/schema3_n4_theta2_terminal_records.jsonl.gz",
+    "certificates/family_n3.json.gz",
+    "certificates/family_n4_minimum.json.gz",
+)
+
+COMPACT_GATE = (
+    "COMPACT_PROBE_SCHEMA_LOCKED.md", "TRACKED_INPUTS.json", "semantic_gate.py",
+    "mutation_tests.py", "invariant_templates.py", "verify_tracked_inputs.py",
+    "verify_quick.py", "certificates/compact_only_semantic_replay.json",
+    "certificates/mutation_tests.json",
+)
+
+
+def source_commit() -> str:
+    override = os.environ.get("STC_JC_SOURCE_COMMIT")
+    if override:
+        return override
+    try:
+        return subprocess.check_output(
+            ["git", "rev-parse", "HEAD"], cwd=PROJECT.parent, text=True
+        ).strip()
+    except (OSError, subprocess.CalledProcessError):
+        return "source-commit-unavailable"
+
+
+def digest(path: Path) -> str:
+    h = hashlib.sha256()
+    with path.open("rb") as stream:
+        for block in iter(lambda: stream.read(1 << 20), b""):
+            h.update(block)
+    return h.hexdigest()
+
+
+def copy_file(relative: str | Path, stage: Path) -> None:
+    relative = Path(relative)
+    source = PROJECT / relative
+    if not source.is_file():
+        raise FileNotFoundError(relative)
+    destination = stage / relative
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(source, destination)
+    if source.suffix == ".sh" or os.access(source, os.X_OK):
+        destination.chmod(destination.stat().st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
+
+
+def copy_group(prefix: str, names: tuple[str, ...], stage: Path) -> None:
+    for name in names:
+        copy_file(Path(prefix) / name, stage)
+
+
+def compact_certificates() -> tuple[str, ...]:
+    names: list[str] = []
+    for shard in range(4):
+        names.extend((
+            f"compact_probe_paths_schema3_n3_compact_s{shard}.jsonl.gz",
+            f"compact_probe_polynomials_schema3_n3_compact_s{shard}.jsonl.gz",
+            f"compact_probe_schema3_n3_compact_s{shard}_summary.json",
+            f"compact_probe_transports_schema3_n3_compact_s{shard}.jsonl.gz",
+            f"compact_probe_witnesses_schema3_n3_compact_s{shard}.jsonl.gz",
+            f"compact_probe_paths_theta2_compact_n4_s{shard}.jsonl.gz",
+            f"compact_probe_polynomials_theta2_compact_n4_s{shard}.jsonl.gz",
+            f"compact_probe_theta2_compact_n4_s{shard}_summary.json",
+            f"compact_probe_transports_theta2_compact_n4_s{shard}.jsonl.gz",
+            f"compact_probe_witnesses_theta2_compact_n4_s{shard}.jsonl.gz",
+        ))
+    return tuple(names)
+
+
+def copy_direct_anchor(stage: Path) -> None:
+    copy_group("reviews/direct_anchor_probe_closure", (
+        "compile_direct_anchor_probes.py", "exact_engine.py", "mutation_tests.py",
+        "verify_direct_anchor_probes.py", "certificates/anchors.jsonl.gz",
+        "certificates/graphs.jsonl.gz", "certificates/p_relations.jsonl.gz",
+        "certificates/q_relations.jsonl.gz", "certificates/witnesses.jsonl.gz",
+        "certificates/summary.json", "certificates/mutation_results.json",
+    ), stage)
+
+
+def copy_omega(stage: Path) -> None:
+    files = [
+        "omega_audit/frozen_input/historical/jc_omega_move.json",
+        "omega_audit/independent/verify_omega_release.py",
+        "omega_audit/independent/verify_omega_rank_readability.py",
+        "omega_audit/runtime_compat/probe_four_leaf_jc_atlas.py",
+        "omega_audit/runtime_compat/verify_orbit_constant.py",
+        "omega_audit/runtime_compat/run_historical_omega.py",
+    ]
+    historical = (
+        "enumerate_four_leaf_root_theta.py", "enumerate_theta_orientation_cores.py",
+        "fourier_models.py", "generic_fourier_network.py", "model_robustness_invariants.py",
+        "probe_four_leaf_jc_atlas.py", "verify_jc_four_network_class.py",
+        "verify_jc_omega_move.py", "verify_jc_omega_move_stdlib.py",
+        "verify_model_robustness.py",
+    )
+    prior = ("audit_omega_algebra.py", "audit_omega_graphs.py", "exact_fourier.py")
+    files.extend(f"omega_audit/frozen_input/historical/src/{name}" for name in historical)
+    files.extend(f"omega_audit/frozen_input/prior_audit/independent/{name}" for name in prior)
+    for relative in files:
+        copy_file(relative, stage)
+
+
+def copy_theta(stage: Path) -> None:
+    copy_group("s_tc_jc_sharp_boundary/reproducibility", (
+        "networks.json", "verify_math.py", "verify_primary.py",
+        "independent/verify_sharpness.py", "independent/instance.json",
+        "independent/expected_certificate.json",
+    ), stage)
+
+
+def prepare(stage: Path) -> None:
+    if stage.exists():
+        shutil.rmtree(stage)
+    stage.mkdir(parents=True)
+    static = PROJECT / "certificate_bundle"
+    for name in STATIC:
+        destination = stage / name
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(static / name, destination)
+        if name.endswith(".sh"):
+            destination.chmod(destination.stat().st_mode | stat.S_IXUSR | stat.S_IXGRP | stat.S_IXOTH)
+    for path in sorted((static / "verifiers").glob("*.py")):
+        destination = stage / "verifiers" / path.name
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(path, destination)
+
+    copy_group("primary", PRIMARY_CODE, stage)
+    copy_group("primary/certificates", PRIMARY_CERTS + compact_certificates(), stage)
+    copy_group("reviews/root_probe", ROOT_PROBE, stage)
+    copy_group("reviews/n3_universe_generator", N3_UNIVERSE, stage)
+    copy_group("reviews/bounded_directed_relation_cleanroom", BOUNDED_CLEANROOM, stage)
+    copy_group("reviews/theta2_signature_gate", THETA_GATE, stage)
+    copy_group("reviews/final_hard_cover_cleanroom", FINAL_HARD_COVER, stage)
+    copy_group("reviews/compact_probe_clean_clone_gate", COMPACT_GATE, stage)
+    copy_direct_anchor(stage)
+
+    copy_group("reviews/final_standard_convention", ("verify_conventions.py", "convention_certificate.json"), stage)
+    copy_group("reviews/global_bridge", (
+        "exact_audit.py", "mutation_tests.py", "exact_audit_certificate.json",
+        "mutation_certificate.json", "upstream_bridge_replay.json",
+        "upstream_cut_replay.json", "upstream_mutation_replay.json",
+    ), stage)
+    copy_group("independent/bridge_cut", (
+        "verify_bridge.py", "verify_cut.py", "verify_mutations.py",
+        "bridge_certificate.json", "cut_certificate.json", "mutation_certificate.json",
+    ), stage)
+    copy_group("reviews/base_gate_adversarial_referee_n3", (
+        "referee_n3.py", "regenerate_strict_factors.py", "certificate.json",
+        "strict_factor_certificate.json", "mutation_results.json",
+    ), stage)
+    copy_group("reviews/base_gate_adversarial_referee", (
+        "referee.py", "certificate.json", "mutation_results.json",
+    ), stage)
+    copy_group("reviews/compact_probe_format/final_n3_cleanroom", ("engine_n3.py",), stage)
+    copy_group("reviews/compact_probe_format/final_n4_cleanroom", ("engine.py",), stage)
+    copy_group("reviews/triangle_redirection_cleanroom", (
+        "cleanroom_verify.py", "certificate.json", "mutation_results.json",
+    ), stage)
+    copy_file("strong_level2_phylo_identifiability/src/jc_root_spanning_atlas_data.py", stage)
+    copy_file("docs/DEFINITIONS_LOCK.md", stage)
+    copy_omega(stage)
+    copy_theta(stage)
+
+    (stage / "environment").mkdir()
+    (stage / "environment/requirements.txt").write_text(
+        "mpmath==1.3.0\nnetworkx==3.2.1\nsympy==1.14.0\n", encoding="utf-8"
+    )
+    (stage / "environment/exact_tool_versions.txt").write_text(
+        "Python >= 3.10\nmpmath 1.3.0\nnetworkx 3.2.1\nsympy 1.14.0\n", encoding="utf-8"
+    )
+    (stage / "LICENSES").mkdir()
+    shutil.copy2(PROJECT / "s_tc_jc_sharp_boundary/LICENSE-CODE.txt",
+                 stage / "LICENSES/CODE_MIT.txt")
+
+    lock_path = stage / "reviews/compact_probe_clean_clone_gate/TRACKED_INPUTS.json"
+    lock = json.loads(lock_path.read_text())
+    for row in lock["inputs"]:
+        row["path"] = row["path"].removeprefix("s_tc_jc_landmark_closure/")
+    # This hash records the commit that originally produced the compact-probe
+    # input lock.  It is provenance for that component, not the source commit
+    # of the assembled bundle (which is recorded in ACTIVE_MANIFEST.json and
+    # the external envelope).
+    lock["producer_commit"] = lock.pop("git_commit", source_commit())
+    lock_path.write_text(json.dumps(lock, sort_keys=True, indent=2) + "\n")
+    verifier_path = stage / "reviews/compact_probe_clean_clone_gate/verify_tracked_inputs.py"
+    verifier_path.write_text(
+        verifier_path.read_text().replace("REPO = HERE.parents[2]", "REPO = HERE.parents[1]")
+    )
+
+    build_atlas_index(stage)
+    build_expected_counts(stage)
+
+
+def gzip_csv(path: Path, fields: tuple[str, ...], rows: list[dict]) -> None:
+    with path.open("wb") as raw:
+        with gzip.GzipFile(filename="", fileobj=raw, mode="wb", mtime=0) as compressed:
+            with io.TextIOWrapper(compressed, encoding="utf-8", newline="") as handle:
+                writer = csv.DictWriter(handle, fieldnames=fields)
+                writer.writeheader()
+                writer.writerows(rows)
+
+
+def build_atlas_index(stage: Path) -> None:
+    atlas = stage / "atlas"
+    atlas.mkdir()
+    module_path = stage / "verifiers/evidence_bindings.py"
+    spec = importlib.util.spec_from_file_location("bundle_evidence_builder", module_path)
+    if spec is None or spec.loader is None:
+        raise AssertionError("cannot load evidence-binding builder")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    evidence_rows = module.reconstruct_rows(stage)
+    module.write_rows(atlas / "ATLAS_EVIDENCE_BINDINGS.jsonl.gz", evidence_rows)
+
+    # This compact table is for human navigation.  The JSONL file above is the
+    # authoritative, verifier-reconstructed record-level evidence map.
+    fields = (
+        "universe", "relation_id", "presentation_ordinal", "source_graph_id",
+        "target_graph_id", "direction", "disposition", "base_verifier",
+        "closure_verifier", "evidence_binding_sha256",
+    )
+    rows = [{field: row.get(field, "") for field in fields} for row in evidence_rows]
+    gzip_csv(atlas / "ATLAS_INDEX.csv.gz", fields, rows)
+
+
+def build_expected_counts(stage: Path) -> None:
+    expected = stage / "expected_outputs"
+    expected.mkdir()
+    counts = {
+        "schema": "stc-jc-atlas-expected-counts-v1",
+        "bounded_three_outgoing": {
+            "raw_presentations": 10826, "canonical_relations": 10466,
+            "strict": 5284, "pending_restoration": 5120, "isomorphism_or_T": 62,
+        },
+        "four_outgoing": {
+            "completion_records": 6138, "raw_survivors": 192,
+            "direct": 18, "rooting_duplicates": 42, "restoration_roots": 132,
+        },
+        "restoration_states": {"three_outgoing": 68584, "four_outgoing": 2106},
+        "direct_anchors": {"one_port": 2642, "two_port": 18224},
+        "compact_probes": {"three_outgoing": 101148, "four_outgoing": 168582},
+    }
+    (expected / "expected_counts.json").write_text(
+        json.dumps(counts, sort_keys=True, indent=2) + "\n", encoding="utf-8"
+    )
+
+
+def seal(stage: Path) -> None:
+    files = []
+    categories = {
+        "primary": "primary generator or frozen exact certificate",
+        "independent": "separately implemented replay",
+        "reviews": "clean-room verifier or replay certificate",
+        "omega_audit": "Omega sharpness certificate",
+        "s_tc_jc_sharp_boundary": "Theta sharpness certificate",
+        "atlas": "per-relation reviewer index",
+        "verifiers": "standalone orchestration and integrity checks",
+        "environment": "runtime lock", "LICENSES": "license",
+        "expected_outputs": "machine-readable expected results",
+    }
+    for path in sorted(stage.rglob("*")):
+        if (not path.is_file() or path.name in {"ACTIVE_MANIFEST.json", "SHA256SUMS"}
+                or ".venv" in path.parts or "__pycache__" in path.parts):
+            continue
+        relative = path.relative_to(stage).as_posix()
+        top = relative.split("/", 1)[0]
+        files.append({
+            "path": relative, "bytes": path.stat().st_size, "sha256": digest(path),
+            "role": categories.get(top, "bundle metadata"),
+        })
+    payload = {
+        "schema": "stc-jc-proof-bundle-manifest-v1", "version": VERSION,
+        "source_commit": source_commit(),
+        "paper_title": "Strong Tree-Childness Is a Sharp Generic-Identifiability Boundary for Level-2 Jukes-Cantor Networks",
+        "files": files,
+    }
+    (stage / "ACTIVE_MANIFEST.json").write_text(
+        json.dumps(payload, sort_keys=True, indent=2) + "\n", encoding="utf-8"
+    )
+    (stage / "SHA256SUMS").write_text(
+        "\n".join(f"{row['sha256']}  {row['path']}" for row in files) + "\n",
+        encoding="utf-8",
+    )
+
+
+def deterministic_tar(stage: Path, output: Path) -> None:
+    output.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix="stc-jc-tar-") as raw:
+        plain = Path(raw) / "bundle.tar"
+        with tarfile.open(plain, "w", format=tarfile.PAX_FORMAT) as archive:
+            paths = [stage, *stage.rglob("*")]
+            for path in sorted(paths, key=lambda p: p.relative_to(stage.parent).as_posix()):
+                if ".venv" in path.parts or "__pycache__" in path.parts:
+                    continue
+                arcname = path.relative_to(stage.parent).as_posix()
+                info = archive.gettarinfo(str(path), arcname)
+                info.uid = info.gid = 0
+                info.uname = info.gname = ""
+                info.mtime = 0
+                if path.is_file():
+                    with path.open("rb") as handle:
+                        archive.addfile(info, handle)
+                else:
+                    archive.addfile(info)
+        with plain.open("rb") as source, output.open("wb") as raw_out:
+            with gzip.GzipFile(filename="", fileobj=raw_out, mode="wb", mtime=0, compresslevel=9) as compressed:
+                shutil.copyfileobj(source, compressed, length=1 << 20)
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("command", choices=("prepare", "seal"))
+    parser.add_argument("--stage", type=Path,
+                        default=PROJECT / "release_artifacts" / ROOT_NAME)
+    parser.add_argument("--output", type=Path,
+                        default=PROJECT / "release_artifacts" / f"{ROOT_NAME}.tar.gz")
+    args = parser.parse_args()
+    if args.command == "prepare":
+        prepare(args.stage)
+        print(args.stage)
+        return
+    seal(args.stage)
+    deterministic_tar(args.stage, args.output)
+    checksum = digest(args.output)
+    checksum_path = args.output.with_suffix(args.output.suffix + ".sha256")
+    checksum_path.write_text(f"{checksum}  {args.output.name}\n", encoding="utf-8")
+    previous_envelope = args.output.parent / "CERTIFICATE_BUNDLE_ENVELOPE.json"
+    zenodo_doi = "ZENODO_DOI_PENDING"
+    if previous_envelope.is_file():
+        prior = json.loads(previous_envelope.read_text(encoding="utf-8"))
+        zenodo_doi = prior.get("zenodo_doi", zenodo_doi)
+    envelope = {
+        "schema": "stc-jc-certificate-bundle-envelope-v1",
+        "version": VERSION,
+        "archive": args.output.name,
+        "archive_sha256": checksum,
+        "archive_bytes": args.output.stat().st_size,
+        "source_commit": source_commit(),
+        "zenodo_doi": zenodo_doi,
+        "verification_commands": [
+            "bash verify.sh quick",
+            "bash verify.sh full",
+            "bash verify.sh regenerate-all",
+        ],
+        "finite_universe": {"three_outgoing": 10466, "four_outgoing_survivors": 192},
+    }
+    envelope_path = previous_envelope
+    envelope_path.write_text(json.dumps(envelope, sort_keys=True, indent=2) + "\n",
+                             encoding="utf-8")
+    print(json.dumps({"archive": str(args.output), "sha256": checksum}, sort_keys=True))
+
+
+if __name__ == "__main__":
+    main()

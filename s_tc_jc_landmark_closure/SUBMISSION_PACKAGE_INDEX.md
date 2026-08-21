@@ -1,16 +1,15 @@
 # Submission package index
 
-Release: `stc-jc-sharp-boundary-v1.1.4`
+Release generation: `v1.1.5` (Zenodo DOI pending)
 
 All three packages derive from the same canonical article and supplement. The
 SHA-256 manifest in each directory covers every delivered file, including
 repository-deposit or acceptance-stage support files that the corresponding
 upload map says not to send through the initial manuscript portal.
-From the monorepository root, the exact package gate is:
+From the project root, the exact package gate is:
 
 ```bash
-python s_tc_jc_landmark_closure/reviews/v1_1_4_bcr_and_figure_revision/verify_v1_1_4_revision.py
-python s_tc_jc_landmark_closure/reproducibility/verify_submission_source_archives.py
+python reproducibility/verify_submission_source_archives.py
 ```
 
 The second command extracts all three source ZIPs into fresh temporary
@@ -66,21 +65,11 @@ development during package preparation.
 
 ## 4. Exact replay assets
 
-The eight public assets and their publication command are listed in:
-
-- `release/PUBLIC_RELEASE_ASSETS.md`
-- `release/UPLOAD_RELEASE_ASSETS.md`
-
-After those eight assets are public, run:
-
-```bash
-python s_tc_jc_landmark_closure/reproducibility/verify_public_release.py
-```
-
-Only its `PUBLIC_RELEASE_VERIFIED` result closes the external provenance gate.
-
-The active source tag and public release envelope replace the superseded
-18-page replay record stored under `history/superseded_release_evidence/`.
+The canonical proof object is
+`release_artifacts/stc_jc_sharp_boundary_atlas_certificates_v1.1.5.tar.gz`.
+Its checksum, envelope, and three run logs are the primary Zenodo assets. The
+broader reproducibility snapshot is secondary. Authenticate a public download
+with `reproducibility/verify_certificate_zenodo_release.py`.
 
 No command in this repository submits a manuscript, selects a license, or
 contacts an editor.  Those actions remain exclusively with the human author.
