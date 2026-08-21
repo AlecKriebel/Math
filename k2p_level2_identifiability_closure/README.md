@@ -25,6 +25,35 @@ coverage.
 - `RESEARCH_LOG.md`: chronological decisions, findings, and checkpoints.
 
 The original four-port package is under
-`package/original/four_port/k2p_offline_sweep_portable`.  The final optimized
-runner and exact invocation will be documented here after the bounded
-optimization pass.
+`package/original/four_port/k2p_offline_sweep_portable`.  The qualified runner
+is under `package/referee/k2p_offline_sweep_portable`.
+
+## Qualified local invocation
+
+The exact matching interpreter currently available on this machine is
+
+```text
+/Users/alec/Documents/Math-lalonde20/lalonde20_quantum_coloring/.venv/bin/python
+```
+
+From the referee package, qualification is:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 \
+  /Users/alec/Documents/Math-lalonde20/lalonde20_quantum_coloring/.venv/bin/python \
+  verify_package.py
+```
+
+The guarded, resumable production command is:
+
+```bash
+/Users/alec/Documents/Math-lalonde20/lalonde20_quantum_coloring/.venv/bin/python \
+  guarded_run.py ../../../runs/four_port_full \
+  --python /Users/alec/Documents/Math-lalonde20/lalonde20_quantum_coloring/.venv/bin/python \
+  --workers 1
+```
+
+Qualification passed.  Production preflight currently refuses to launch
+because only 2.61 GiB disk is free; 20 GiB is required.  The safety gate is
+intentional because another exact research computation is active and the
+machine already has substantial compressed memory and swap pressure.
