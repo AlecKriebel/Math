@@ -37,6 +37,9 @@ def main():
             records=list((pathlib.Path(tmp)/'source_0'/'records').glob('*.json'))
             if len(records)!=4:raise SystemExit('RECORD_COUNT_FAIL')
             if any(json.loads(p.read_text())['status']!='separated' for p in records):raise SystemExit('HARD_CASE_SMOKE_FAIL')
+            manifest=json.loads((pathlib.Path(tmp)/'source_0'/'residual_manifest.json').read_text())
+            if manifest.get('schema')!='k2p-four-port-residual-manifest-v2':raise SystemExit('MANIFEST_SCHEMA_FAIL')
+            if manifest.get('record_schema')!='k2p-four-port-record-v3':raise SystemExit('MANIFEST_RECORD_SCHEMA_FAIL')
     if not args.skip_mutations:
         subprocess.run([sys.executable,str(root/'test_mutations.py'),'--package-root',str(root)],check=True)
     print('K2P_OFFLINE_SWEEP_PACKAGE_PASS')

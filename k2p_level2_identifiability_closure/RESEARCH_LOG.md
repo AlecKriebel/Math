@@ -120,3 +120,27 @@
   careful restriction of the hard-case conclusion to its proven `D_plus`
   domain.  These are recorded as closure requirements; the optimized sweep
   must not itself be described as a completed final theorem.
+
+## 2026-08-20 20:36 PDT — Manifest schema repair and completed lane recovery
+
+- After disk cleanup, recovered and resumed the guarded four-port production
+  records. All six source lanes now have complete contiguous manifests with
+  source class counts `536, 747, 276, 276, 64, 32`; the resumable driver
+  reused every retained record on the final replay.
+- The first final merge exposed a package defect rather than a mathematical
+  failure: immutable record metadata overwrote the residual manifest's own
+  schema tag. The driver now preserves the v2 manifest schema separately from
+  `record_schema`, and the package smoke test checks both fields.
+- Updated the fail-closed input lock for the repaired driver and verifier.
+  Exact sparse-kernel differential tests, portable-driver mutation tests, the
+  complete package gate, and the 4,012-presentation prepared-relation audit
+  all pass under Python 3.14.6.
+- A fresh post-lock six-source sweep processed all 1,931 canonical classes with
+  zero errors and produced six complete v2 residual manifests. Its qualified
+  merge correctly remains non-final because 36 classes retain the explicit
+  `unresolved` status; the exploratory merge nevertheless passes all schema,
+  hash, binding, and exact-coverage checks.
+- This closes the production-run and manifest-engineering milestone but not
+  the theorem-level obligations listed above. Best-guess completion is
+  **100%** for the exact six-lane production milestone and **80%** for the
+  overall K2P closure program.

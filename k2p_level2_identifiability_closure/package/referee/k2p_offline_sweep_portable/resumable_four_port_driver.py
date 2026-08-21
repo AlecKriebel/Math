@@ -531,9 +531,10 @@ def build_manifest(
             "child_requests": row["child_requests"],
         })
     manifest = {
+        **immutable,
+        "record_schema": immutable["schema"],
         "schema": MANIFEST_SCHEMA,
         "source_index": source_index,
-        **immutable,
         "canonical_class_count": class_count,
         "record_count": len(records),
         "complete": len(records) == class_count and class_ids == set(range(class_count)),
