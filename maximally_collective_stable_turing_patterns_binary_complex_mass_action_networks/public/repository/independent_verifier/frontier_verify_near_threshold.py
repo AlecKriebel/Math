@@ -1,17 +1,62 @@
 #!/usr/bin/env python3
 from __future__ import annotations
 import sympy as sp
+from pareto_core import A
 
-e,t,M,theta,r,k=sp.symbols('epsilon t M theta r k',positive=True)
+if not __debug__:
+    raise SystemExit(
+        "Exact verifier requires assertions; unset PYTHONOPTIMIZE and do not use python -O"
+    )
+
+
+def verify_affine_ansatz(m: int) -> None:
+    """Reconstruct every printed affine-vector diffusion identity exactly."""
+    u0, v0, p0, q0 = sp.symbols("u v p q", nonzero=True)
+    r_aff = sp.Matrix(
+        [1]
+        + [
+            -(u0 + v0 * sp.Rational(m - 1 - i, m - 2))
+            for i in range(2, m)
+        ]
+        + [-p0, q0]
+    )
+    d = [
+        -2 + u0 + p0 + 2 * q0,
+        sp.factor(
+            (
+                1
+                + 2 * p0
+                - u0
+                - v0 * sp.Rational(m - 3, m - 2)
+            )
+            / (u0 + v0 * sp.Rational(m - 3, m - 2))
+        ),
+    ]
+    d += [
+        sp.factor(v0 / ((m - 2) * u0 + v0 * (m - 1 - i)))
+        for i in range(3, m)
+    ]
+    d += [
+        sp.factor((2 * u0 - 5 * p0 - 2 * q0 - 1) / p0),
+        sp.factor((2 - 2 * p0 - 4 * q0) / q0),
+    ]
+    residual = (A(m) - sp.diag(*d)) * r_aff
+    assert all(sp.factor(entry) == 0 for entry in residual)
+
+
+for dimension in (3, 4, 5, 6, 8, 10):
+    verify_affine_ansatz(dimension)
+
+e,t,M,theta,nu,k=sp.symbols('epsilon t M theta nu k',positive=True)
 p=e;u=1+(2-t)*e+theta*e**2;v=t*e-theta*e**2
 q=sp.Rational(1,2)-(sp.Rational(1,2)+t)*e+(theta-M/sp.Integer(2))*e**2
 d1=sp.factor(-2+u+p+2*q);dm=sp.factor((2*u-5*p-2*q-1)/p);dz=sp.factor((2-2*p-4*q)/q)
-di=sp.factor(v/(r*u+v*k))
+di=sp.factor(v/(nu*u+v*k))
 assert sp.expand(d1-(e*(2-3*t)+(3*theta-M)*e**2))==0
 assert sp.expand(dm-M*e)==0
-sum2=sp.factor(sp.summation(sp.series(di,e,0,3).removeO(),(k,0,r-1)))
+sum2=sp.factor(sp.summation(sp.series(di,e,0,3).removeO(),(k,0,nu-1)))
 delta=sp.factor(sp.series(dz-8*sum2,e,0,3).removeO())
-assert sp.factor(delta-4*e**2*(M*r+3*r*t**2+6*r*t-t**2)/r)==0
+assert sp.factor(delta-4*e**2*(M*nu+3*nu*t**2+6*nu*t-t**2)/nu)==0
 # Exact m=3 prescribed path control.
 N=(18718533*e**12+746773020*e**11+6223086873*e**10+19157763816*e**9+12668661720*e**8-49876101168*e**7-103878539968*e**6-37609207926*e**5+68189826636*e**4+62316267192*e**3+9680484312*e**2-3464522928*e-238085568)
 D1=81*e**4+531*e**3+708*e**2-1102*e-1182

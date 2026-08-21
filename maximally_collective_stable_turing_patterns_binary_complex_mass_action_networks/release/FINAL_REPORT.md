@@ -386,7 +386,11 @@ Repairs include:
 - replacement of the old theorem name;
 - exact stationary-versus-wave scope;
 - honest `L`-interval and optimality language;
-- identical title and claims across manuscript, supplement, summaries, packets, and cover letters.
+- identical title and claims across manuscript, supplement, summaries, packets, and cover letters;
+- a self-contained near-threshold affine ansatz with all induced diffusion
+  formulas, checked directly from $(A_m-D)r^{\rm aff}=0$;
+- the explicit equilibrium-scaled transversality numerator; and
+- a nonempty-set qualifier in the localization minimum.
 
 # MANUSCRIPT
 
@@ -394,8 +398,8 @@ Repairs include:
 - Subtitle: *Topology-Wide All-Spectrum Localization and Exponent-Optimal Stationary Heterogeneity Trade-Offs*
 - Abstract: below the 250-word limits used by the planned venues
 - Main manuscript: 17 pages
-- Technical supplement: 17 pages
-- Theorem summary: 2 pages
+- Technical supplement: 18 pages
+- Theorem summary: 3 pages
 - Proof skeleton: 6 pages
 
 The PDFs were rebuilt after the corrections. Final rendered-page and font audits are part of the replay.
@@ -436,6 +440,10 @@ external prerequisites for the top-level lineage stage and are not bundled;
 they were unavailable in the final repair environment, so no post-repair full
 lineage replay is claimed. For an ordinary third-party downloader, the
 self-contained command is `cd public/repository && bash replay.sh`.
+
+The immutable release source is indexed by the stable Zenodo concept DOI
+`10.5281/zenodo.21753404`; the version-specific DOI is recorded after Zenodo
+finishes ingesting the final v1.0.4 GitHub release.
 
 # EXTERNAL AUDIT
 

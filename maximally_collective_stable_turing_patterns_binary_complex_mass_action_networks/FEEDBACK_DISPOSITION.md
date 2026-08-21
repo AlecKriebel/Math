@@ -1,5 +1,15 @@
 # Feedback disposition
 
+## Fresh adversarial review — 20 August 2026
+
+| Supplied review item | Disposition | Action |
+|---|---|---|
+| S9 prints $\nu$ instead of Latin $u$ | REJECT AS STALE | Current source, v1.0.3 source, and rendered PDF already use Latin $u$. Added a regression forbidding the alleged typo. |
+| S9 omits the affine critical vector and induced diffusion profile | ACCEPT | Printed $r^{\rm aff}$, all five diffusion formulas, and $(A_m-D)r^{\rm aff}=0$; added exact reconstruction tests. |
+| Scaled-family transversality numerator is implicit | ACCEPT | Printed $\widetilde\ell^T\mathsf H\Delta r=\ell^T\Delta r<0$ and the positive quotient for $\eta_m(L)$. |
+| Localization minimum includes a formally undefined empty block | ACCEPT | Restricted the minimum to $\varnothing\ne I\subseteq[n]$ in the theorem and proof summaries. |
+| Publish a new immutable snapshot | ACCEPT | Prepared v1.0.4 metadata and the stable Zenodo concept DOI; release publication follows final replay and audit closure. |
+
 | Requirement or prior criticism | Disposition | Final action |
 |---|---|---|
 | One central all-spectrum topology | APPLY | No competing old family appears in the title, abstract, or theorem suite. |

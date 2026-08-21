@@ -127,6 +127,22 @@
   the main manuscript is now 17 pages, the supplement 17, the theorem summary
   2, and the proof skeleton 6. No external communication was initiated.
 
+## 2026-08-20 21:30:43 PDT — round-4 source checkpoint
+
+- Independently rejected the alleged S9 $\nu/u$ typo: the current source,
+  immutable v1.0.3 source, and rendered supplement all already use Latin $u$.
+- Verified the reviewer-supplied affine-vector and diffusion formulas directly
+  from $(A_m-D)r^{\rm aff}=0$ for $m=3,\ldots,10$, then printed them in S9.
+- Printed the exact transformed transversality numerator and restricted the
+  localization minimum to nonempty principal sets.  No theorem, endpoint,
+  topology, or numerical profile changed.
+- Added exact source and symbolic regressions and corrected archive metadata:
+  v1.0.3 has version DOI `10.5281/zenodo.22032277`, while all versions share
+  concept DOI `10.5281/zenodo.21753404`.
+- Best-guess completion toward the pre-submission v1.0.4 release: **70%**.
+  Remaining work is document rebuilding, visual inspection, package replay,
+  independent final audits, manifests, and immutable publication.
+
 ## 2026-08-20 09:11:57 PDT
 
 - Independently confirmed and corrected a false, unused dimension-dependent
@@ -151,3 +167,32 @@
   refreshed and hash-checked all seven deterministic bundles, and completed a
   full portable replay.  Prepared immutable release version 1.0.3; no archival
   DOI is claimed and no external communication or submission was initiated.
+
+## 2026-08-20 21:52:11 PDT — round-4 final verification checkpoint
+
+- Confirmed that the reported S9 Greek-$\nu$ typo was absent from both v1.0.3
+  and the current source; retained Latin $u$ and added a defensive regression.
+  Made S9 self-contained by printing the affine critical vector and every
+  induced diffusion entry, all verified exactly from
+  $(A_m-D)r^{\rm aff}=0$.
+- Printed the equilibrium-scaled transversality numerator and restricted the
+  localization minimum explicitly to nonempty principal sets.  No topology,
+  endpoint, current-profile datum, numerical table, or theorem conclusion
+  changed.
+- The full symbolic aggregate, all 20 mutation/regression tests, manuscript
+  audit, stale-claim audit, numerical-provenance audit, and PDF semantic audit
+  pass.  Exact finite checks include the repaired Pareto family at $m=149$ and
+  the generic near-threshold ansatz through representative dimensions.
+- Rebuilt and inspected all 48 pages across the eight principal PDFs: 17-page
+  main manuscript, 18-page supplement, 3-page theorem summary, 6-page proof
+  skeleton, and four one-page figures.  No clipping, overlap, unresolved
+  reference, or font defect remains.
+- Refreshed and hash-checked all seven deterministic bundles, independently
+  rebuilt all three submission archives, and completed an isolated full public
+  replay ending in `PUBLIC_REPLAY_PASS`.  Three independent final audits found
+  no mathematical, manuscript, or release blocker.
+- Prepared v1.0.4 metadata with ORCID `0009-0001-9320-500X` and stable Zenodo
+  concept DOI `10.5281/zenodo.21753404`.  No external communication or
+  submission was initiated.
+- Best-guess completion toward the round-4 pre-submission revision and
+  verification goal: **100%**.

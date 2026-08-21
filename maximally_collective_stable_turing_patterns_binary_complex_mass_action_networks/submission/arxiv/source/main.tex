@@ -36,7 +36,9 @@
 \title{Exact Diffusion Design for Maximally Collective Stable Turing Patterns\\
 \large in Binary-Complex Mass-Action Networks\\[0.25em]
 \normalsize Topology-Wide All-Spectrum Localization and Exponent-Optimal Stationary Heterogeneity Trade-Offs}
-\author{Alec Kriebel\\\small Independent researcher\\\small \texttt{me@aleckriebel.com}}
+\author{Alec Kriebel\\\small Independent researcher\\
+\small \href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}\\
+\small \texttt{me@aleckriebel.com}}
 \date{August 2026}
 
 \begin{document}
@@ -312,7 +314,8 @@ For
 $\cC_m=\{X_1,\ldots,X_m\}$, the block $J_{\cC_m,\cC_m}$ has a positive real
 eigenvalue.  Thus every positive realization of the topology satisfies
 \begin{equation}\label{eq:maxorder}
- \min\{|I|:\alphaS(J_{I,I})>0\}=m=n-1.
+ \boxed{\min\left\{|I|:\varnothing\ne I\subseteq[n],
+ \alphaS(J_{I,I})>0\right\}=m=n-1.}
 \end{equation}
 No smaller principal subsystem supports either stationary or oscillatory
 instability.
@@ -890,7 +893,18 @@ Meanwhile
  \ell_m^T\mathsf H_m(L)^{-1}r_m
  =-\frac{485873}{924210}-\frac{11180}{1467}L\nu<0.
 \]
-Therefore $\eta_m(L)>0$ and $c_m(L)<0$.  The branch and stability proof is the
+The transformed transversality numerator is the unit-profile numerator:
+\[
+ \widetilde\ell_m(L)^T\mathsf H_m(L)\Delta_m r_m
+ =\ell_m^T\Delta_m r_m<0.
+\]
+Consequently
+\[
+ \eta_m(L)=
+ \frac{\widetilde\ell_m(L)^T\mathsf H_m(L)\Delta_m r_m}
+ {\widetilde\ell_m(L)^Tr_m}>0,
+\]
+and $c_m(L)<0$.  The branch and stability proof is the
 same sectorial exchange-of-stability argument as in
 Theorem~\ref{thm:unitstable}.  Diagonal concentration scaling does not alter
 the spatial reflection $\xi\mapsto\pi-\xi$, so the scaled reduced vector
@@ -920,7 +934,8 @@ The exact unit-equilibrium stable infimum is open.  The completed bounds are
  8(m-2)\le\chi_{\rm stable}(m)
  \le\frac{23(91m-183)}{63}.
 \end{equation}
-A canonical near-threshold affine path has, at $m=3$,
+A canonical near-threshold affine path, defined in Supplement Section~S9,
+has, at $m=3$,
 \begin{equation}\label{eq:nearcritical}
  c_3(\varepsilon)=\frac6{1379}+
  \frac{421985}{11409846}\varepsilon+O(\varepsilon^2),
@@ -1086,7 +1101,9 @@ hidden and provides a focused nonlinear design problem.
 \paragraph{Data and code availability.}
 Exact certificates, independent verifiers, mutation tests, numerical data,
 figure scripts, and replay instructions are frozen in the
-\href{https://github.com/AlecKriebel/Math/tree/maximally-collective-stable-turing-v1.0.3/maximally_collective_stable_turing_patterns_binary_complex_mass_action_networks}{version 1.0.3 tagged release source tree}.
+\href{https://github.com/AlecKriebel/Math/tree/maximally-collective-stable-turing-v1.0.4/maximally_collective_stable_turing_patterns_binary_complex_mass_action_networks}{version 1.0.4 tagged release source tree}.
+The versioned archive is indexed by the stable
+\href{https://doi.org/10.5281/zenodo.21753404}{Zenodo concept DOI}.
 The \href{https://github.com/AlecKriebel/Math/tree/main/maximally_collective_stable_turing_patterns_binary_complex_mass_action_networks}{mutable development source} remains on the main branch.
 
 \paragraph{AI-assisted research disclosure.}

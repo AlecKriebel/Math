@@ -24,6 +24,10 @@ cat > "$PUB/README.md" <<'EOF'
 
 Portable exact source, proof certificates, independent verifiers, current-profile numerical illustrations, and manuscript sources for the corrected final release.
 
+The immutable version 1.0.4 snapshot is published at
+<https://github.com/AlecKriebel/Math/releases/tag/maximally-collective-stable-turing-v1.0.4>;
+archived versions share <https://doi.org/10.5281/zenodo.21753404>.
+
 ## Replay
 
 ```bash
@@ -52,6 +56,7 @@ The all-dimensional arguments are human-readable in `proof_audit/` and checked b
 - `python independent_verifier/dd_verify_cubic_sign.py`
 - `python independent_verifier/frontier_verify_mode_certificates.py`
 - `python independent_verifier/frontier_verify_master_certificate.py`
+- `python independent_verifier/frontier_verify_near_threshold.py`
 - `python independent_verifier/frontier_verify_cubic_bound.py`
 - `python independent_verifier/frontier_verify_determinant_identity.py`
 - `python independent_verifier/frontier_verify_exposition_identities.py`

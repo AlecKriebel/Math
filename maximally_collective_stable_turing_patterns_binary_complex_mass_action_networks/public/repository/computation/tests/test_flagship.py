@@ -99,6 +99,59 @@ def test_pareto_exact_contrasts_and_cubic_sign():
             num = sp.factor(pc.N0(m, Hs) + tau * pc.Sterm(m, Hs))
             assert num.is_positive is True
             assert pc.den_formula(m, L).is_negative is True
+            Hmat = sp.diag(*hs)
+            Delta = sp.diag(*pc.Deff(m))
+            right = pc.rcrit(m)
+            left = pc.ellref(m)
+            transformed_left = Hmat.inv() * left
+            transformed_numerator = sp.factor(
+                (transformed_left.T * Hmat * Delta * right)[0]
+            )
+            unit_numerator = sp.factor((left.T * Delta * right)[0])
+            assert transformed_numerator == unit_numerator
+            assert unit_numerator == pc.eta_num(m, Hs)
+            assert unit_numerator.is_negative is True
+
+
+def test_near_threshold_affine_ansatz_and_printed_source():
+    for m in (3, 4, 5, 6, 8, 10):
+        u, v, p, q = sp.symbols("u v p q", nonzero=True)
+        right = sp.Matrix(
+            [1]
+            + [
+                -(u + v * sp.Rational(m - 1 - i, m - 2))
+                for i in range(2, m)
+            ]
+            + [-p, q]
+        )
+        diffusion = [
+            -2 + u + p + 2 * q,
+            sp.factor(
+                (1 + 2 * p - u - v * sp.Rational(m - 3, m - 2))
+                / (u + v * sp.Rational(m - 3, m - 2))
+            ),
+        ]
+        diffusion += [
+            sp.factor(v / ((m - 2) * u + v * (m - 1 - i)))
+            for i in range(3, m)
+        ]
+        diffusion += [
+            sp.factor((2 * u - 5 * p - 2 * q - 1) / p),
+            sp.factor((2 - 2 * p - 4 * q) / q),
+        ]
+        residual = (pc.A(m) - sp.diag(*diffusion)) * right
+        assert all(sp.factor(entry) == 0 for entry in residual)
+
+    supplement = (ROOT / "manuscript" / "supplement.tex").read_text()
+    assert r"\nu=1+(2-t)\varepsilon" not in supplement
+    for marker in (
+        r"r^{\rm aff}",
+        r"(A_m-D)r^{\rm aff}=0",
+        r"d_1=-2+u+p+2q",
+        r"d_m=\frac{2u-5p-2q-1}{p}",
+        r"d_Z=\frac{2-2p-4q}{q}",
+    ):
+        assert marker in supplement
 
 
 def test_repaired_pareto_endpoint_and_legacy_counterexample():

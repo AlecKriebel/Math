@@ -10,9 +10,11 @@ The paper proves a topology-wide all-spectrum localization theorem, an exact sta
 ## Versioned release
 
 The immutable pre-submission snapshot is
-[version 1.0.3](https://github.com/AlecKriebel/Math/releases/tag/maximally-collective-stable-turing-v1.0.3),
+[version 1.0.4](https://github.com/AlecKriebel/Math/releases/tag/maximally-collective-stable-turing-v1.0.4),
 with its exact project source under the corresponding
-[Git tag](https://github.com/AlecKriebel/Math/tree/maximally-collective-stable-turing-v1.0.3/maximally_collective_stable_turing_patterns_binary_complex_mass_action_networks).
+[Git tag](https://github.com/AlecKriebel/Math/tree/maximally-collective-stable-turing-v1.0.4/maximally_collective_stable_turing_patterns_binary_complex_mass_action_networks).
+All archived versions share the stable
+[Zenodo concept DOI](https://doi.org/10.5281/zenodo.21753404).
 Continued development remains on the
 [`main` branch](https://github.com/AlecKriebel/Math/tree/main/maximally_collective_stable_turing_patterns_binary_complex_mass_action_networks).
 

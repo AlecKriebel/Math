@@ -21,8 +21,8 @@ class Document:
 
 FULL_DOCUMENTS = (
     Document("manuscript/main.pdf", 17, True),
-    Document("manuscript/supplement.pdf", 17, True),
-    Document("external_audit/theorem_summary.pdf", 2, True),
+    Document("manuscript/supplement.pdf", 18, True),
+    Document("external_audit/theorem_summary.pdf", 3, True),
     Document("external_audit/proof_skeleton.pdf", 6, True),
     Document("figures/network_family.pdf", 1),
     Document("figures/stable_tradeoff.pdf", 1),
@@ -60,6 +60,7 @@ FORBIDDEN_PATTERNS = (
     ("old transformed-left-vector notation", r"\bq\s*m\s*\(L\)\s*="),
     ("false stoichiometric-minor determinant", r"absolute determinant\s+2\s*m\s*[−-]\s*2"),
     ("old scaled-state notation", r"\bz\s*=\s*H\s*m\s*\(L\)\s*x"),
+    ("near-threshold dimension-variable typo", r"\bν\s*=\s*1\s*\+\s*\(2\s*[−-]\s*t\)\s*ε"),
 )
 
 SUPPLEMENT_SECTION_PREFIXES = (
@@ -247,6 +248,9 @@ def audit(root: Path, output_dir: Path, documents: tuple[Document, ...]) -> None
         for phrase, label in (
             ("reduced vector field is odd", "reflection-equivariant odd normal form"),
             ("The four boundary values are the unique solution", "printed second-harmonic boundary system"),
+            ("affine-chain critical vector", "printed near-threshold affine-vector ansatz"),
+            ("with u the Latin letter", "unambiguous Latin near-threshold parameter"),
+            ("The crossing numerator is unchanged", "scaled-family transversality numerator"),
         ):
             if phrase.lower() not in supplement.lower():
                 failures.append(f"supplement PDF lacks {label}")

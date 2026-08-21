@@ -45,12 +45,13 @@ The author must review or provide the following before upload:
 
 - final title, abstract, significance text if used, keywords, and Mathematics
   Subject Classification codes;
-- author name, affiliation, postal address, email, and ORCID, if supplied;
+- author name, affiliation, postal address, email, and supplied ORCID
+  `0009-0001-9320-500X`;
 - exclusivity, prior-dissemination/preprint, authorship, competing-interest,
   funding, and permissions confirmations;
 - final author-contribution and AI-assistance disclosures in the wording
   required by the journal;
-- immutable versioned-release URL, any later archival DOI, data-and-code availability statement, licenses,
+- immutable versioned-release URL, Zenodo concept DOI, data-and-code availability statement, licenses,
   and the exact supplementary files to accompany the article;
 - any editor or reviewer suggestions requested by the portal; and
 - final approval of the cover letter and every portal-entered field.

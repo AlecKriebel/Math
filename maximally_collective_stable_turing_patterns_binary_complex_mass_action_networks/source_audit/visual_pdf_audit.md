@@ -2,13 +2,13 @@
 
 Date: 2026-08-20
 
-Rendered with Poppler and inspected page by page (46 pages total). Page counts, document
+Rendered with Poppler and inspected page by page (48 pages total). Page counts, document
 properties, extractable text, and font resources were also checked with
 `pdfinfo`, pypdf, and pdfplumber.
 
 - Main manuscript: 17 pages; no clipped text, overlapping labels, black boxes, or broken glyphs.
-- Technical supplement: 17 pages; dense certificate displays remain within the text block.
-- Theorem summary: 2 pages.
+- Technical supplement: 18 pages; dense certificate displays remain within the text block.
+- Theorem summary: 3 pages.
 - Proof skeleton: 6 pages.
 - Standalone figures: amplitude scaling, network family, stable profiles, and
   stable trade-off are each 1 page and render cleanly; the network diagram is

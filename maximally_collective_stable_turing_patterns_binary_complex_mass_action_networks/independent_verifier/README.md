@@ -14,6 +14,7 @@ python independent_verifier/verify_diffusion_criterion.py
 python independent_verifier/verify_contrast_bounds.py
 python independent_verifier/verify_improved_profile.py
 python independent_verifier/frontier_verify_pareto.py
+python independent_verifier/frontier_verify_near_threshold.py
 python independent_verifier/frontier_verify_exposition_identities.py
 python independent_verifier/verify_symbolic_certificates.py
 python independent_verifier/verify_branch_stability.py

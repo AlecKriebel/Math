@@ -63,6 +63,7 @@ forbidden=[r'\bT-ALG\b',r'\bPhase\s+[IVX]+\b',r'reaction-minimal',r'minimum reac
            r'z\s*=\s*\\mathsf\s*H_m\s*\(L\)\s*x',
            r'r_i\s*=\s*\\frac\{K_\{i-1\}\}\{K_i\}',
            r'c\s*=\s*\\frac\{91L\}\{90\}',
+           r'\\nu\s*=\s*1\s*\+\s*\(2-t\)\\varepsilon',
            r'The dashed outline marks the principal species set']
 for pat in forbidden:
     if re.search(pat,clean,re.I): raise AssertionError(f'obsolete wording: {pat}')
@@ -158,6 +159,11 @@ if 'measures equilibrium concentration-scale separation' not in main_flat:
     raise AssertionError('chi_H scale-separation qualification is missing')
 if main.count(r'0<|I|<m') < 3:
     raise AssertionError('nonempty principal-set domain is not explicit throughout Section 3')
+if not re.search(
+    r'\\min\\left\\\{\|I\|:\\varnothing\\neI\\subseteq\[n\],\\alphaS\(J_\{I,I\}\)>0',
+    ''.join(main.split()),
+):
+    raise AssertionError('localization minimum is not restricted to nonempty principal sets')
 if 'selected positive realization' not in main_flat:
     raise AssertionError('Corollary 3.3 does not scope stable patterns to a selected realization')
 if 'one-dimensional center-manifold normal form is' not in main_flat:
@@ -189,6 +195,34 @@ for name,section in (("main",main_flat),("supplement",supp_flat)):
         re.S,
     ):
         raise AssertionError(f'{name} omits the bifurcation parameter in the scaled-family PDE')
+for name,section,delta in (
+    ("main", main_flat, r"\Delta_m"),
+    ("supplement", supp_flat, r"\Delta"),
+):
+    compact = ''.join(section.split())
+    numerator = (
+        r'\widetilde\ell_m(L)^T\mathsfH_m(L)'
+        + delta
+        + r'r_m=\ell_m^T'
+        + delta
+        + r'r_m<0'
+    )
+    if numerator not in compact:
+        raise AssertionError(f'{name} omits the transformed transversality numerator')
+
+if r'\nu=1+(2-t)\varepsilon' in supp:
+    raise AssertionError('near-threshold path reuses the dimension offset nu in place of Latin u')
+for marker in (
+    r'r^{\rm aff}=(r_1,\ldots,r_m,r_Z)^T',
+    r'(A_m-D)r^{\rm aff}=0',
+    r'd_1=-2+u+p+2q',
+    r'd_2=\frac{1+2p-u-v(m-3)/(m-2)}{u+v(m-3)/(m-2)}',
+    r'd_i=\frac{v}{(m-2)u+v(m-1-i)}',
+    r'd_m=\frac{2u-5p-2q-1}{p}',
+    r'd_Z=\frac{2-2p-4q}{q}',
+):
+    if ''.join(marker.split()) not in ''.join(supp.split()):
+        raise AssertionError(f'missing printed near-threshold affine identity {marker}')
 if 'long-circuit complexes associated with the principal species block' not in main_flat:
     raise AssertionError('Figure 1 caption does not describe its dashed complex outline literally')
 for marker in (

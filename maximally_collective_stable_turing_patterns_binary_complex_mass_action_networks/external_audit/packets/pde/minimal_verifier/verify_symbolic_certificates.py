@@ -23,6 +23,7 @@ checks=[
  "frontier_verify_determinant_identity.py",
  "frontier_verify_mode_certificates.py",
  "frontier_verify_master_certificate.py",
+ "frontier_verify_near_threshold.py",
  "frontier_verify_cubic_bound.py",
  "frontier_verify_exposition_identities.py",
 ]

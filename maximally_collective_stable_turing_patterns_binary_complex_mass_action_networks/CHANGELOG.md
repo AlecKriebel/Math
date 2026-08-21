@@ -1,5 +1,19 @@
 # Changelog
 
+## Near-threshold exposition hardening — 20 August 2026
+
+- Made Supplement S9 self-contained by printing the affine critical-vector
+  ansatz and every induced diffusion entry satisfying $(A_m-D)r^{\rm aff}=0$.
+- Printed the equilibrium-scaled transversality numerator and its positive
+  crossing quotient in the manuscript, supplement, and proof-audit summaries.
+- Restricted the localization-order minimum explicitly to nonempty principal
+  sets, without changing its value or any theorem scope.
+- Added exact affine-ansatz, transformed-transversality, source-string, and
+  rendered-PDF regressions; the pre-existing Latin $u$ notation is now also
+  protected against accidental replacement by the dimension offset $\nu$.
+- Prepared immutable release version 1.0.4 and added the verified ORCID and
+  stable Zenodo concept DOI to release and submission metadata.
+
 ## Final proof-exposition release — 17 August 2026
 
 - Scoped every contrast lower bound and exponent-optimality statement to
