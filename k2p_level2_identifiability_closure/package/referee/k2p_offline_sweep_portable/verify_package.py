@@ -40,6 +40,21 @@ def main():
             manifest=json.loads((pathlib.Path(tmp)/'source_0'/'residual_manifest.json').read_text())
             if manifest.get('schema')!='k2p-four-port-residual-manifest-v2':raise SystemExit('MANIFEST_SCHEMA_FAIL')
             if manifest.get('record_schema')!='k2p-four-port-record-v3':raise SystemExit('MANIFEST_RECORD_SCHEMA_FAIL')
+            cubic_cmd=[sys.executable,str(root/'resumable_four_port_driver.py'),'--package-root',str(root),
+                       '--source-index','5','--start','9','--end','11','--output-root',tmp]
+            cubic_first=subprocess.run(cubic_cmd,text=True,capture_output=True,check=True)
+            cubic_second=subprocess.run(cubic_cmd,text=True,capture_output=True,check=True)
+            if '"processed": 2' not in cubic_first.stdout or '"reused": 2' not in cubic_second.stdout:
+                raise SystemExit(('CUBIC_RESUME_SMOKE_FAIL',cubic_first.stdout,cubic_second.stdout))
+            cubic_records=[json.loads(p.read_text()) for p in sorted(
+                (pathlib.Path(tmp)/'source_5'/'records').glob('*.json')
+            )]
+            if len(cubic_records)!=2 or any(
+                row.get('status')!='separated'
+                or row.get('certificate',{}).get('type')!='exact_multihomogeneous_cubic'
+                for row in cubic_records
+            ):
+                raise SystemExit('CUBIC_CERTIFICATE_SMOKE_FAIL')
     if not args.skip_mutations:
         subprocess.run([sys.executable,str(root/'test_mutations.py'),'--package-root',str(root)],check=True)
     print('K2P_OFFLINE_SWEEP_PACKAGE_PASS')

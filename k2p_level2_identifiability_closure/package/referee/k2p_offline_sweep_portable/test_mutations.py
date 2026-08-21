@@ -50,6 +50,18 @@ def main():
         # 6. Wrong command-line lock pins.
         must_fail(run(base+['--expected-compiler-sha256','0'*64]),'compiler hash mismatch')
         must_fail(run(base+['--expected-canonicalizer-sha256','0'*64]),'canonicalizer hash mismatch')
+
+        # 7. A cubic coefficient cannot be changed and rehashed into a
+        # reusable exact certificate.  The fixed four-port universe has cubic
+        # cases only at source 5, classes 9 and 10.
+        cubic_base=[sys.executable,str(driver),'--package-root',str(root),'--source-index','5','--start','9','--end','11','--output-root',tmp]
+        subprocess.run(cubic_base,check=True,stdout=subprocess.PIPE,text=True)
+        cubic_record=pathlib.Path(tmp)/'source_5'/'records'/'class_000009.json'
+        cubic_original=cubic_record.read_text();data=json.loads(cubic_original)
+        data['certificate']['coefficients'][0]+=1
+        data['certificate_payload_sha256']=mod.sha_object(data['certificate'])
+        rehash(mod,data);cubic_record.write_text(json.dumps(data,sort_keys=True,indent=2)+'\n')
+        must_fail(run(cubic_base),'cubic case binding');cubic_record.write_text(cubic_original)
     print('PORTABLE_DRIVER_MUTATIONS_PASS')
 
 if __name__=='__main__':main()

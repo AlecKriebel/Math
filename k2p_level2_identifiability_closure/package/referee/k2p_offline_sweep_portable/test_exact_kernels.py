@@ -50,6 +50,14 @@ def main() -> None:
                     column[key] = Fraction(numerator, randomizer.randint(1, 3))
             columns.append(column)
         check(core, columns)
+    # Cubic four-port blocks reach width 40.  Exercise the optimized kernel at
+    # its actual production width as well as the exhaustive tiny cases above.
+    independent_40 = [{(index,): Fraction(index + 1)} for index in range(40)]
+    check(core, independent_40)
+    one_relation_40 = independent_40[:-1] + [
+        {(0,): Fraction(1), (1,): Fraction(2)}
+    ]
+    check(core, one_relation_40)
     print("EXACT_SPARSE_KERNEL_DIFFERENTIAL_PASS")
 
 

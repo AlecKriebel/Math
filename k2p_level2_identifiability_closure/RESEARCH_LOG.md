@@ -144,3 +144,89 @@
   the theorem-level obligations listed above. Best-guess completion is
   **100%** for the exact six-lane production milestone and **80%** for the
   overall K2P closure program.
+
+## 2026-08-20 21:05 PDT — Proof-first analysis of the 36 direct residuals
+
+- Cancelled the no-longer-relevant hourly sweep monitor after confirming that
+  the 94-second process had finished normally. The speed was explained by the
+  110 MB precompiled descriptor/rank inputs: the run classified 1,931 retained
+  classes and did not regenerate the topology universe or close restoration.
+- Reduced the 36 direct rows to three symmetry families rather than launching
+  a broad higher-degree atlas. Exact graph-derived parameterizations were used
+  as the proof objects; modular/kernel searches served only as finders.
+- Found a 14-term cubic separating source-5 classes 9 and 10. Independent
+  characteristic-zero substitution gives zero target pullbacks, a shared
+  96-term nonzero source pullback, and a strict positive-domain witness.
+- Found one 32-term quintic whose port orbit separates all 22 non-symmetric
+  `theta0` repair-1 relabelings. Exact replay over all 24 permutations leaves
+  zeros only at the identity and the sole semi-directed graph symmetry.
+- Found three sparse quartics whose symmetry transports cover all 12 remaining
+  `theta1/theta3` and `theta3/theta3` rows. Direct displayed-tree expansion,
+  bridge multihomogeneity, strict witnesses, and 145 coefficient/index
+  mutations all passed.
+
+## 2026-08-20 21:36 PDT — Unified direct-candidate proof closure
+
+- Built one deterministic verifier binding the exact 36 production records to
+  the 22 quintic, 12 quartic, and 2 cubic proofs. It reconstructs paired-sector
+  Fourier maps directly from graph switches and loads neither atlas pickle nor
+  separator search code.
+- The first adversarial review independently rescanned all 1,931 records and
+  replayed every obstruction. It found no mathematical counterexample, but it
+  exposed two qualification defects: Python `-O` disabled assertions, and the
+  first unified script trusted non-candidate census fields.
+- Refactored the verifier to reject optimized mode and to recompute all six
+  semantic manifest hashes, the 1,931-row status census, the merged payload,
+  and the complete semantic sweep root before any proof PASS is possible.
+
+## 2026-08-20 22:07 PDT — Current-lock release run and fail-closed cubic repair
+
+- Integrated the exhaustive degree-3 pass into the optimized driver. A fresh
+  run moves source-5 classes 9 and 10 from `unresolved` to exact cubic
+  `separated`, leaving 34 higher-degree proof-overlay rows.
+- An adversarial resume mutation showed that cubic records were initially
+  shape-checked but not bound to the exact fixed certificate. Added an exact
+  case/payload binding and a mutation test that changes a coefficient,
+  recomputes every outer hash, and must still be rejected.
+- Generated the final current-lock run with one low-priority process in
+  361.42 seconds. All 1,931 records merged with counts
+  `845/20/35/997/34/0` (separated/isomorphic/triangle/restoration/unresolved/
+  error), peak recorded RSS 1,502,134,272 bytes, and semantic sweep root
+  `2a9a19ba3e9498df1c77582b07fcfd5ac315a4437ee634d25ce8ec4aa5cbaab0`.
+- Froze the six complete manifests plus the 36 proof-relevant raw records in
+  the referee package. Separate engine and direct-closure locks avoid a hash
+  cycle while keeping the run reproducible and fail-closed.
+
+## 2026-08-20 22:19 PDT — Referee release frozen and replayed from archive
+
+- Added a separate 60-file direct-closure lock binding 9,455,330 bytes of
+  proof, result, and release-harness inputs. Its SHA-256 is
+  `89ebf377aa30fd27cd6480382fedcdd895519905f5accb51537a584b5dd8bc92`;
+  the underlying immutable engine lock remains unchanged.
+- The outer harness independently reconstructs all 1,931 manifest summaries,
+  the six semantic manifest roots, and the complete sweep root before replaying
+  the 36 obstructions. It rejects Python optimized mode and contains no
+  assertion-dependent qualification checks.
+- A freshly re-locked mutation suite rejected changes to the merged root,
+  manifest status and unresolved lists, missing or swapped records, port and
+  semantic hashes, and one coefficient in each of the quintic, quartic, and
+  cubic proof families.
+- Built the 7,117,602-byte referee archive
+  `archives/k2p_four_port_direct_closure_referee_20260820.zip`, SHA-256
+  `73b60f9815d428e5220ab6f7d0b3391073559fc6eb982b84b6747599047b69c0`.
+  ZIP integrity passed.
+- Extracted that archive at a different absolute path and ran the full
+  one-command qualification. It passed in 106.12 seconds with a maximum RSS of
+  1,508,294,656 bytes, reproduced the golden proof certificate byte for byte,
+  and returned `remaining_unproved_among_36=0`.
+- Completion estimate: **100%** for the fixed 36-candidate direct-residual
+  milestone and a conservative **82%** for the overall final-theorem program.
+  The latter remains deliberately low because restoration, raw-universe
+  certification, mixed-sign scope, and global theorem assembly are still
+  load-bearing.
+- Two final read-only reviewers independently accepted the current archive.
+  One reconstructed the exact 76-file lock partition and ran the full
+  fresh-path gate in 105.69 seconds; the other replayed under Python 3.11 and
+  3.14 with pinned dependencies and a randomized hash seed. Both recovered
+  the same 1,931-class root and 36-case proof census, and neither found a
+  mathematical, portability, or packaging blocker for the scoped release.

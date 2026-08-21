@@ -1,40 +1,58 @@
 # K2P Closure Status
 
-The strong-class theorem is complete conditional on the finite assertion
+## Closed in this checkpoint
+
+The current-lock six-source four-port computation is complete and independently
+merged: 1,931 canonical classes, six contiguous manifests, and zero errors.
+The semantic sweep root is
 
 ```text
-FA+: every remaining bounded/restored strong relation is isomorphic or
-ordinary-triangle-related.
+2a9a19ba3e9498df1c77582b07fcfd5ac315a4437ee634d25ce8ec4aa5cbaab0
 ```
 
-The direct algebraic stratum is closed, including exact separation of all four
-no-dummy `theta0(0) -> theta3` records.  The physical two-sector bridge fibre,
-paired `(s,g)` marginal open-image theorem, decorated tree-of-blobs recovery,
-restoration logic, global gluing, genericity, reconstruction,
-continuous-time extension, and weak tree-child sharpness are already closed.
+All 36 direct candidates singled out by the finite pass now have exact
+bridge-multihomogeneous target obstructions:
 
-The sole load-bearing remaining computation is the exhaustive classification
-of every four-port dummy-role/restoration record, with zero unresolved entries
-and every direct five-port child bound into the resulting manifest.
+- 22 `theta0` repair-1 relabelings: one quintic and its port orbit;
+- 12 lower-theta records: three quartics and symmetry transports; and
+- 2 `theta3` records: one cubic substituted independently into both targets.
 
-The optimized referee runner is fully qualified, but the production sweep is
-not running: its resource preflight found only 2.61 GiB free disk, below the
-20 GiB launch threshold.  No unsafe override was used.  Once disk headroom is
-available, the exact resumable command is documented in the top-level README.
+Every target pullback is identically zero over the exact coefficient ring.
+Every source pullback is nonzero, has a stored monomial witness, and is nonzero
+at an explicit strict `D_plus` K2P point including physical pendant edges.
+Independent replayers and coefficient/index mutations found no surviving
+counterexample. Thus the exact 36-class direct-residual milestone is 100%
+complete.
 
-An adversarial package audit also exposed closure obligations beyond executing
-the retained rows: publish a complete topology/rank exclusion ledger with
-dimension upper bounds, bind every restoration request to its constructed
-five-port child, ship exact graph/certificate witnesses or replay, and avoid
-extending the four hard-case `D_plus` proof to mixed-sign strict-stochastic
-parameters without a separate argument.  The sweep result cannot be promoted
-to the final theorem until those gates are discharged.
+Overlaying these proofs on the sweep gives the finite four-port census
 
-The preserved original portable archive has SHA-256
+```text
+separated 879; isomorphic 20; triangle 35; restoration_parent 997;
+unproved direct candidates 0; errors 0.
+```
+
+## Gates that remain before a final theorem
+
+This checkpoint does not promote the conditional strong-class theorem to an
+unconditional final theorem. The remaining load-bearing obligations are:
+
+1. Construct and bind every one of the 997 restoration-parent requests to its
+   required direct five-port child, and replay the restoration implication.
+2. Publish a graph-derived ledger partitioning the raw completion/port universe
+   into retained, topology-excluded, and rank-excluded rows, with valid
+   dimension upper bounds rather than one-point Jacobian lower bounds alone.
+3. Bind exact witnesses for every graph-relation status used by the finite
+   theorem and independently replay the relevant marginal/restoration links.
+4. Reconcile the proven positive-domain (`D_plus`) scope with any desired
+   claim over mixed-sign strict-stochastic K2P parameters; the present physical
+   witnesses do not establish that extension.
+5. Assemble and replay the archived bridge, marginal-open-image, gluing,
+   genericity, reconstruction, and sharpness layers against the final finite
+   certificate before stating the necessary-and-sufficient theorem.
+
+The optimized runner, proof overlay, and current result subset are packaged for
+referees. The original portable archive remains preserved with SHA-256
 
 ```text
 53d8f6771589197b16690ff0fb790cc2aa845fa91e86424e589476ffe352c875
 ```
-
-and size 6,575,939 bytes.  Per-file sizes and hashes are recorded in the two
-`PRESERVED_PACKAGE_*` files in this directory.

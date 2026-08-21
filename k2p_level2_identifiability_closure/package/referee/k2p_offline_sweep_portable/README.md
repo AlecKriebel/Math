@@ -3,7 +3,8 @@
 This directory is an optimized, fail-closed derivative of the hash-preserved
 portable sweep.  It contains the corrected graph-derived K2P compiler, the
 complete four-port descriptor/rank inputs, the exact hand certificate for the
-four direct hard relations, and an atomic resumable driver.
+four direct hard relations, an exhaustive cubic pass on the direct residual
+stratum, and an atomic resumable driver.
 
 The mathematical universe is unchanged.  The optimization keeps one loaded
 universe alive for several sources, caches only fixed-source algebra, discards
@@ -26,7 +27,9 @@ The input lock rejects missing or mismatched files and dependency versions.
 The verifier checks the six source counts and ranks, binds the four hard cases
 to exact finite-atlas classes, exhaustively compares the frozen and prepared
 mixed-graph relation routines on every rank-eligible presentation, exercises
-atomic resume, and runs adversarial record mutations.
+atomic resume, differentially checks exact sparse kernels through the cubic
+production width of 40, replays the two known cubic residual certificates, and
+runs adversarial record mutations.
 
 ## Resource-safe full sweep
 
@@ -96,7 +99,7 @@ only for a declared benchmark sample.
 
 Per-class statuses are:
 
-- `separated`: exact quadratic or exact F2/F3/F4 certificate;
+- `separated`: exact quadratic, exact cubic, or exact F2/F3/F4 certificate;
 - `isomorphic`: exact labelled mixed-graph isomorphism;
 - `triangle`: exact ordinary-triangle quotient;
 - `restoration_parent`: at least one omitted physical role, with exact direct

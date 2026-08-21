@@ -50,6 +50,9 @@ DIAGNOSTIC_FIELDS = frozenset({
 VALID_STATUSES = frozenset({
     "separated", "isomorphic", "triangle", "restoration_parent", "unresolved", "error"
 })
+DIRECT_CUBIC_CERTIFICATE_SHA256 = (
+    "48bd0a83abbc8fcc15356868af06dba48819c6c04253e6322d82fdfe943a7955"
+)
 
 
 def sha_bytes(value: bytes) -> str:
@@ -330,6 +333,23 @@ def classify_one(
         elif omitted:
             status = "restoration_parent"
             certificate = {"type": "requires_direct_child_restoration"}
+        else:
+            # The direct residual stratum is small.  Exhaust all four-port
+            # cubic weight blocks here; k=4 has maximum block width 40.
+            cubic = atlas.cubic_separator_fast(
+                source_descriptor, target_descriptor, max_block_size=40
+            )
+            if cubic:
+                status = "separated"
+                certificate = {
+                    "type": "exact_multihomogeneous_cubic",
+                    "degree": 3,
+                    "weight": cubic["weight"],
+                    "coordinate_triples": cubic["coordinate_triples"],
+                    "coefficients": cubic["coefficients"],
+                    "source_nonzero_terms": cubic["source_nonzero_terms"],
+                    "source_pullback_sha256": sha_object(cubic["source_pullback"]),
+                }
 
     if any(direct_flags) and not all(direct_flags):
         raise AssertionError("descriptor class mixes direct and dummy presentations")
@@ -401,11 +421,36 @@ def validate_record_semantics(row: dict, path: Path, hard_certificate_hash: str 
     }
     status = row["status"]
     if status == "separated":
-        if certificate_type not in {"exact_multihomogeneous_quadratic", "direct_hard_case_F2_F3_F4"}:
+        if certificate_type not in {
+            "exact_multihomogeneous_quadratic",
+            "exact_multihomogeneous_cubic",
+            "direct_hard_case_F2_F3_F4",
+        }:
             record_problem(path, "separated certificate")
         if certificate_type == "exact_multihomogeneous_quadratic":
             if certificate.get("degree") != 2 or not certificate.get("coefficients"):
                 record_problem(path, "quadratic certificate")
+        elif certificate_type == "exact_multihomogeneous_cubic":
+            triples = certificate.get("coordinate_triples")
+            coefficients = certificate.get("coefficients")
+            if (
+                certificate.get("degree") != 3
+                or not isinstance(triples, list)
+                or not isinstance(coefficients, list)
+                or len(triples) != len(coefficients)
+                or not any(coefficients)
+                or not isinstance(certificate.get("source_nonzero_terms"), int)
+                or certificate["source_nonzero_terms"] <= 0
+                or not isinstance(certificate.get("source_pullback_sha256"), str)
+                or len(certificate["source_pullback_sha256"]) != 64
+            ):
+                record_problem(path, "cubic certificate")
+            if (
+                row.get("source_index") != 5
+                or row.get("canonical_class_id") not in {9, 10}
+                or certificate_hash != DIRECT_CUBIC_CERTIFICATE_SHA256
+            ):
+                record_problem(path, "cubic case binding")
         else:
             class_id = row.get("canonical_class_id")
             if row.get("source_index") != 0 or class_id not in {206, 207, 208, 209}:
