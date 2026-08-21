@@ -38,9 +38,12 @@ Best-guess completion: **22%**.
   archived endpoint replay checks `G=a-bc` before that removal. The needed
   weak normalized inequality follows by letting the independent central-arm
   multiplier tend to one. Direct evaluation of all nine `Delta=0` records
-  gives seven normalized zero cases and two strict cases, so the proof's
-  dichotomy survives, while its claim of nine strict normalized `Gamma`
-  records does not.
+  exposes an ambiguity in “central arm”: removing the complete effective
+  singleton-signature incidence class gives seven normalized zeros and two
+  strict cases, while removing only the literal pendant edge gives two zeros
+  and seven strict cases. Neither convention gives a negative case. The
+  proof's dichotomy therefore survives, while its claim of nine strict
+  normalized `Gamma` records and its normalization convention need repair.
 - Found a reproducibility defect in
   `reviews/root_probe/verify_parameter_submersion.py`: it partitions physical
   edges by raw descendant-mask rows, not by the split/complement-normalized
@@ -93,3 +96,51 @@ Best-guess completion: **72%**.
   genericity.
 
 Best-guess completion: **82%**.
+
+## 2026-08-20 22:55 PDT - Checkpoint 5: full audit synthesis and mandated replays
+
+- `bash verify.sh quick` completed from the extracted archive root with exit
+  status 0 and the final bundle-mode verification line.
+- `bash verify.sh full` completed from the same root with exit status 0 after
+  the exact cut/bridge, atlas, clean-room, probe, triangle, Omega, and Theta
+  gates. The run's successful auxiliary root/probe summaries were not treated
+  as evidence because source inspection established the submersion and probe
+  defects recorded above.
+- Started one uninterrupted `bash verify.sh regenerate-all` process. It remains
+  active at this checkpoint; no stored log, restart, or smaller substitute has
+  been used.
+- Completed `REFEREE_REPORT.md` and subjected it to independent core-proof,
+  global-proof, and code/archive citation review. The report distinguishes the
+  two plausible central-arm normalization conventions, narrows the
+  smooth-branch comment to Proposition 5.5's transition, and discloses the
+  direct-anchor compiler/verifier's shared exact engine.
+- Current editorial assessment: no theorem-level counterexample; a material
+  load-bearing cut-certificate coverage gap requires a new authenticated
+  universe/replay or a valid reduction lemma. The remaining defects are local
+  proof exposition, auxiliary verification, schema documentation, and DOI
+  repairs.
+
+Best-guess completion: **96%**.
+
+## 2026-08-21 02:35 PDT - Checkpoint 6: uninterrupted regeneration complete
+
+- The original `bash verify.sh regenerate-all` process completed with exit
+  status 0 after approximately four hours. It was not restarted, replaced, or
+  reduced.
+- Both isolated full rebuilds reached equal normalized logical commitment
+  objects. The second regenerated copy reverified the 232-file bundle, with
+  10,466 three-outgoing relations, 192 four-outgoing survivor presentations,
+  and record-level evidence SHA-256
+  `09adbe4c639246b8a966d183984f1e1883246b92bd8927e2552a3cc5a25b505b`.
+- Final output included `VERIFIED: all exact mathematical gates
+  (regenerate-all)` and `VERIFIED: certificate bundle mode=regenerate-all`.
+- This establishes deterministic regeneration of the archive's encoded proof
+  universe. It does not cure the independently established cut-word omission,
+  because the regeneration faithfully rebuilds that same short-palette
+  universe.
+- The referee report is complete. No theorem-level counterexample was found;
+  the result appears mathematically valid after the audit repairs, but the
+  submitted authenticated proof object needs substantive revision at the cut
+  exhaustiveness handoff.
+
+Best-guess completion: **100%**.

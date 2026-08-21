@@ -168,7 +168,7 @@ noted above.
 #### Material archive-coverage defect and independent expanded census
 
 Manuscript Lemma 4.4 claims that a two-colour compiler checks "every compressed
-root and nonroot primitive completion" (PDF p. 11,
+root and nonroot primitive completion" (PDF pp. 11--12,
 `main.tex:812-826`). The actual compiler does not:
 
 - `independent/bridge_cut/verify_cut.py:32-35` fixes
@@ -248,17 +248,21 @@ The repair is valid but must be stated. The certificate proves
 `Gamma_phys(u)>0` for every `0<u<1`; continuity as `u -> 1` therefore gives
 `Gamma_normalized>=0`. (`Delta=0` and its sign are invariant up to a positive
 square factor.) I also extracted all nine `Delta=0, Gamma>0` records from
-`independent/bridge_cut/cut_certificate.json` and removed their transported
-central singleton-signature factor. The record IDs and normalized outcomes
-are:
+`independent/bridge_cut/cut_certificate.json`. The phrase “central arm” admits
+two readings in the current presentation. The resulting exact outcomes are:
 
-| record IDs | normalized `Gamma` |
-|---|---|
-| 6, 7, 56, 58, 74, 75, 76 | exactly zero |
-| 67, 72 | strictly positive |
+| normalization convention | zero record IDs | strictly positive record IDs |
+|---|---|---|
+| complete effective singleton-signature incidence class | 6, 7, 56, 58, 74, 75, 76 | 67, 72 |
+| literal physical pendant edge only | 58, 74 | 6, 7, 56, 67, 72, 75, 76 |
 
-For IDs 67 and 72 the normalized expression is respectively a positive arm
-monomial times `1-q^2`, where
+The first convention is natural for the normalized projective endpoint after
+selected-path contraction; the second follows the manuscript's literal phrase
+“physical central-arm multiplier.” Under the second convention, the seven
+strict records retain a nontrivial serial product from other physical edges in
+the same effective singleton signature class. For IDs 67 and 72 the expression
+under the first convention is respectively a positive arm monomial times
+`1-q^2`, where
 `q=-(1-lambda)x-lambda y` lies strictly in `(-1,0)`. Hence all nine satisfy the
 needed weak inequality. This confirms validity, but Lemma 4.4's prose
 (`main.tex:794-810`) overstates what the archived verifier directly checks.
@@ -312,10 +316,11 @@ a local separator. See PDF p. 15, `main.tex:1023-1042`.
 
 One exposition detail worth adding: the regular set in Definition 2.4 need not
 globally be one manifold (a regular preimage can map to an image
-self-intersection). The proof implicitly shrinks to a smooth maximal-rank image
-stratum before applying the product and finite-cover arguments. Such a stratum
-is dense and every source-open germ contains a full-dimensional branch, so
-this does not change the conclusion.
+self-intersection). Lemma 5.3 already chooses a smooth local image branch. In
+the application of Proposition 5.5 to an arbitrary source-open relation, the
+proof should explicitly replace the initial point by a generic point of such a
+branch inside the open set before forming the focal product box. Such strata
+are dense, so this does not change the conclusion.
 
 ### Marginal submersion, restoration, probes, and local theorem
 
@@ -392,7 +397,7 @@ dimension bound, so there is no circularity.
 ### Material reproducibility / proof-certificate defect
 
 1. **The two-colour compiler is not exhaustive despite the manuscript's exact
-   claim.** Manuscript Lemma 4.4, PDF p. 11,
+   claim.** Manuscript Lemma 4.4, PDF pp. 11--12,
    `main.tex:812-826`; archive
    `independent/bridge_cut/verify_cut.py:32-35,654-681`. It omits 393,400 valid
    configurations in the full stated eight-port universe. No omitted case is
@@ -418,11 +423,12 @@ dimension bound, so there is no circularity.
    strong hypothesis. Restrict both statements to factors induced by the
    theorem's `S_TC` class (or provide broader proofs).
 
-4. **Smooth-stratum shrinking is implicit.** Definition 2.4 regularity does
-   not make the entire regular-image set one manifold. The applications in
-   Lemma 5.3, Proposition 5.5, Lemma 6.2, and the genericity proof should state
-   that they first shrink to a smooth maximal-rank image branch. This is a
-   standard valid repair, not a change of claim.
+4. **One smooth-branch transition is implicit.** Definition 2.4 regularity
+   does not make the entire regular-image set one manifold. Lemma 5.3, Lemma
+   6.2, and the genericity proof already state their smooth-stratum choices;
+   Proposition 5.5's application should explicitly move within the
+   source-open set to a generic smooth-branch point before using its product
+   box. This is a standard valid repair, not a change of claim.
 
 ### Supplement/reproducibility presentation defect
 
@@ -437,7 +443,9 @@ Strongest verified:
 
 - all four two-active minors and all three elimination identities are exact;
 - every one of the nine `Delta=0` endpoint types satisfies the **normalized**
-  weak `Gamma` inequality (seven equalities, two strict positives);
+  weak `Gamma` inequality; the zero/strict split is 7/2 under complete
+  effective-incidence normalization and 2/7 if only the literal pendant edge
+  is removed;
 - the complete binary-word universe through the manuscript's eight-port bound
   has 479,374 valid standard-strong colourings and zero all-switching
   survivors;
@@ -458,7 +466,7 @@ Exact remaining gaps for the overall paper:
 - the full validity of the main theorem still depends on the separate audit of
   Theorem 6.3's complete decorated atlas, restoration forests, and probe
   records; I did not duplicate that row-level code audit here;
-- the endpoint normalization continuity sentence, `S_TC` scope restrictions,
-  and smooth-stratum shrinkings should be inserted into the manuscript;
+- the endpoint normalization convention/continuity sentence, `S_TC` scope
+  restrictions, and Proposition 5.5 smooth-branch transition should be made
+  explicit in the manuscript;
 - the pending DOI token must be resolved before publication.
-
