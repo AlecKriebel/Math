@@ -152,12 +152,13 @@ The proof now separates:
 6. ordinary algebraic simplicity of the zero eigenvalue at threshold from
    `chi'_(s_*)(0)>0`, rather than from a generalized-pencil inference.
 
-Thus, when `beta_1(D)<0`, there is one unique positive threshold `s_*`, and
+Thus, when `beta_1(D)<0`, there is one unique positive threshold
+`s_*(a,b,H,D)` for the network application, and
 
 ```text
 J-sD has a positive real eigenvalue
 if and only if
-0 < s < s_*.
+0 < s < s_*(a,b,H,D).
 ```
 
 The theorem controls stationary positive-real eigenvalues. It does not classify arbitrary oscillatory diffusion-driven instability.
@@ -281,13 +282,17 @@ eta_m > 0,
 c_m < 0,
 ```
 
+The selected zero is algebraically simple by the exact identity
+`Pi'_m(0)=-(163/45) ell_m^T r_m>0`; hence the critical kernel and cokernel are
+one-dimensional before the fixed-mass bifurcation argument is applied.
+
 followed by the supercritical locally exponentially asymptotically stable patterned branches in the fixed integrated-mass `H^1` phase space.
 
 # STABLE TRADE-OFF FAMILY
 
 Distinct notation is used throughout:
 
-- `mathcal H_m` for harmonic sums;
+- `mathfrak h_m` for harmonic sums;
 - `mathsf H_m(L)` for the equilibrium-scaling matrix;
 - `rho_m` for the right homogeneous kernel vector;
 - `r_m` for the critical eigenvector;
@@ -397,7 +402,7 @@ Repairs include:
 - Final title: *Exact Diffusion Design for Maximally Collective Stable Turing Patterns in Binary-Complex Mass-Action Networks*
 - Subtitle: *Topology-Wide All-Spectrum Localization and Exponent-Optimal Stationary Heterogeneity Trade-Offs*
 - Abstract: below the 250-word limits used by the planned venues
-- Main manuscript: 17 pages
+- Main manuscript: 18 pages
 - Technical supplement: 18 pages
 - Theorem summary: 3 pages
 - Proof skeleton: 6 pages
@@ -442,8 +447,8 @@ lineage replay is claimed. For an ordinary third-party downloader, the
 self-contained command is `cd public/repository && bash replay.sh`.
 
 The immutable release source is indexed by the stable Zenodo concept DOI
-`10.5281/zenodo.21753404`; the version-specific DOI is recorded after Zenodo
-finishes ingesting the final v1.0.4 GitHub release.
+`10.5281/zenodo.21753404`.  Each published GitHub release note records its
+version-specific DOI after Zenodo creates the corresponding public record.
 
 # EXTERNAL AUDIT
 

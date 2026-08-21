@@ -1,12 +1,12 @@
 # Final rendered-PDF audit
 
-Date: 2026-08-20
+Date: 2026-08-21
 
-Rendered with Poppler and inspected page by page (48 pages total). Page counts, document
+Rendered with Poppler and inspected page by page (49 pages total). Page counts, document
 properties, extractable text, and font resources were also checked with
 `pdfinfo`, pypdf, and pdfplumber.
 
-- Main manuscript: 17 pages; no clipped text, overlapping labels, black boxes, or broken glyphs.
+- Main manuscript: 18 pages; no clipped text, overlapping labels, black boxes, or broken glyphs.
 - Technical supplement: 18 pages; dense certificate displays remain within the text block.
 - Theorem summary: 3 pages.
 - Proof skeleton: 6 pages.

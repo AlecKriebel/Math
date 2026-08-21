@@ -64,7 +64,9 @@ forbidden=[r'\bT-ALG\b',r'\bPhase\s+[IVX]+\b',r'reaction-minimal',r'minimum reac
            r'r_i\s*=\s*\\frac\{K_\{i-1\}\}\{K_i\}',
            r'c\s*=\s*\\frac\{91L\}\{90\}',
            r'\\nu\s*=\s*1\s*\+\s*\(2-t\)\\varepsilon',
-           r'The dashed outline marks the principal species set']
+           r'The dashed outline marks the principal species set',
+           r's_\*\s*\(H,D\)',r'explicit two-parameter Jacobian image',
+           r'topology-wide over-realizations theorem']
 for pat in forbidden:
     if re.search(pat,clean,re.I): raise AssertionError(f'obsolete wording: {pat}')
 
@@ -209,6 +211,35 @@ for name,section,delta in (
     )
     if numerator not in compact:
         raise AssertionError(f'{name} omits the transformed transversality numerator')
+
+# Mathematical-precision closures from the final adversarial review.
+compact_main=''.join(main.split())
+compact_supp=''.join(supp.split())
+derivative_identity=(
+    r"\Pi_m'(0)=\frac{7043400m-13600927-7043400\mathfrakh_m}{255150}"
+    r"=-\frac{163}{45}\,\ell_m^Tr_m>0"
+)
+for name,section in (("main",compact_main),("supplement",compact_supp)):
+    if derivative_identity not in section:
+        raise AssertionError(f'{name} omits the all-dimensional selected-zero derivative identity')
+for marker,label in (
+    (r'\ker\!\left[\mathsfH_m(L)(A_m-\Delta_m)\right]',
+     'scaled-family kernel identity'),
+    (r'\mathsfH_m(L)(A_m-\Delta_m)v=r_m',
+     'scaled-family generalized-vector contradiction'),
+    (r'Fredholmofindexzero','stationary Fredholm interface'),
+    (r'(\pi/2)\ell_m^TD_mr_m\ne0','Crandall--Rabinowitz transversality pairing'),
+    (r'\sum_{|I|=n-1}(-1)^{|I|}\detJ_{I,I}>0',
+     'network application order-(n-1) coefficient bridge'),
+):
+    if marker not in compact_main:
+        raise AssertionError(f'main omits {label}')
+for name,section in texts.items():
+    if not re.search(r'(?:Let\s+\$n\\ge2|For\s+\$n\\ge2)',section):
+        raise AssertionError(f'{name} omits the n>=2 diffusion-ray domain')
+proof_criterion=(ROOT/'proof_audit'/'exact_diffusion_criterion.tex').read_text()
+if 's_*(H,D)' in proof_criterion or 's_*(a,b,H,D)' not in proof_criterion:
+    raise AssertionError('proof-audit threshold notation suppresses the flux parameters')
 
 if r'\nu=1+(2-t)\varepsilon' in supp:
     raise AssertionError('near-threshold path reuses the dimension offset nu in place of Latin u')

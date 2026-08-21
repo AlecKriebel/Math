@@ -36,6 +36,53 @@ E=sp.Poly(sp.expand((q*q+z)*y2z(F*sp.conjugate(F))-y2z(G*sp.conjugate(G))),x,z,s
 terms={(tuple(t['powers']),sp.Rational(t['coefficient'])) for t in cert['improved_mode']['terms']}
 assert terms=={(mon,sp.factor(c)) for mon,c in E.terms()}
 
+def verify_selected_zero_derivative():
+    """Prove the all-dimensional algebraic-simplicity identity at onset."""
+
+    m,hfrak,index=sp.symbols('m hfrak index',integer=True,positive=True)
+    lam0=sp.symbols('lam0')
+
+    # At t=1, the chain factors telescope and their logarithmic derivative
+    # is (m-2)-hfrak, where hfrak=sum_{j=1}^{m-2} 1/K_j.
+    K=lambda j: 91*m-181-j
+    assert sp.factor(1+1/K(index)-K(index-1)/K(index))==0
+    assert sp.factor(1/(1+1/K(index))-(1-1/K(index-1)))==0
+    assert sp.factor(K(1)/K(m-1)-sp.Rational(91,90))==0
+    Q0=sp.Rational(91,90)
+    Qprime0=Q0*(m-2-hfrak)
+
+    g1=lam0+2+sp.Rational(23,63)
+    gm=lam0+5+sp.Rational(1,7)
+    gz=lam0+4+sp.Rational(16,45)
+    F0=sp.expand(g1*gm*gz-4*g1-4*gm+gz)
+    G0=sp.expand(gz*(4*g1+gm)-36)
+    determinant_derivative=sp.factor(
+        Qprime0*F0.subs(lam0,0)
+        +Q0*sp.diff(F0,lam0).subs(lam0,0)
+        -sp.diff(G0,lam0).subs(lam0,0)
+    )
+    expected=(7043400*m-13600927-7043400*hfrak)/sp.Integer(255150)
+    assert sp.factor(determinant_derivative-expected)==0
+
+    from common import ellr_formula
+    assert sp.factor(
+        determinant_derivative+sp.Rational(163,45)*ellr_formula(m,hfrak)
+    )==0
+
+    # The existing harmonic upper bound makes the numerator positive.  Its
+    # cleared lower bound is the printed shifted-positive polynomial.
+    harmonic_upper=(m-2)/(90*m-179)
+    cleared=sp.together(
+        (7043400*m-13600927-7043400*harmonic_upper)
+    ).as_numer_denom()[0]
+    u=sp.symbols('u',nonnegative=True)
+    shifted=sp.Poly(sp.expand(cleared.subs(m,u+3)),u).all_coeffs()
+    assert shifted==[633906000,1311540570,678120443]
+    assert all(coefficient>0 for coefficient in shifted)
+
+
+verify_selected_zero_derivative()
+
 # Exact finite reconstruction of the sparse determinant formula.
 from common import Avec,selected
 for mm in [3,4,5]:

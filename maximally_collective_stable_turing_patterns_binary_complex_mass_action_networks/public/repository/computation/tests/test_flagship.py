@@ -104,6 +104,13 @@ def test_pareto_exact_contrasts_and_cubic_sign():
             right = pc.rcrit(m)
             left = pc.ellref(m)
             transformed_left = Hmat.inv() * left
+            scaled_operator = Hmat * (pc.A(m) - Delta)
+            assert sp.simplify(scaled_operator * right) == sp.zeros(m + 1, 1)
+            assert sp.simplify(scaled_operator.T * transformed_left) == sp.zeros(m + 1, 1)
+            assert scaled_operator.rank() == m
+            # A generalized vector would solve scaled_operator*v=right.
+            # Exact augmented-rank inconsistency rules that out.
+            assert scaled_operator.row_join(right).rank() == m + 1
             transformed_numerator = sp.factor(
                 (transformed_left.T * Hmat * Delta * right)[0]
             )
@@ -317,9 +324,42 @@ def test_old_profile_mutation_is_rejected_by_provenance():
 def test_general_matrix_theorem_uses_exact_coefficient_domain():
     text=(ROOT/'manuscript'/'main.tex').read_text()
     sec=text.split('\\section{A principal-minor diffusion-ray theorem}',1)[1].split('\\section{Exact diffusion design',1)[0]
+    assert 'Let $n\\ge2$' in sec
     assert 'sum_{|I|=n-1}a_I>0' in sec
     assert 'at most one' not in sec
     assert '\\label{thm:diffusionray}' in sec
+
+
+def test_threshold_and_algebraic_simplicity_precision_closures():
+    main=(ROOT/'manuscript'/'main.tex').read_text()
+    supplement=(ROOT/'manuscript'/'supplement.tex').read_text()
+    proof_criterion=(ROOT/'proof_audit'/'exact_diffusion_criterion.tex').read_text()
+
+    assert 's_*(H,D)' not in main
+    assert 's_*(H,D)' not in proof_criterion
+    assert 's_*(a,b,H,D)' in main
+
+    compact_main=''.join(main.split())
+    compact_supplement=''.join(supplement.split())
+    derivative_formula=(
+        r"\Pi_m'(0)=\frac{7043400m-13600927-7043400\mathfrakh_m}{255150}"
+        r"=-\frac{163}{45}\,\ell_m^Tr_m>0"
+    )
+    assert derivative_formula in compact_main
+    assert derivative_formula in compact_supplement
+    for marker in (
+        r'\ker\!\left[\mathsfH_m(L)(A_m-\Delta_m)\right]',
+        r'\mathsfH_m(L)(A_m-\Delta_m)v=r_m',
+        r'Fredholmofindexzero',
+        r'(\pi/2)\ell_m^TD_mr_m\ne0',
+    ):
+        assert marker in compact_main
+
+    m,hfrak=sp.symbols('m hfrak',integer=True,positive=True)
+    derivative=(7043400*m-13600927-7043400*hfrak)/sp.Integer(255150)
+    assert sp.factor(
+        derivative+sp.Rational(163,45)*dc.ellr_formula(m,hfrak)
+    )==0
 
 
 def test_scope_and_certificate_honesty_markers():

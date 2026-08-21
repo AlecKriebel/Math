@@ -67,8 +67,10 @@ def audit(J: sp.Matrix, d: list[sp.Expr], expect_crossing: bool) -> None:
     assert sp.factor(derivative-manual)==0
 
 
-# No-crossing singular stable M-matrix example.
-for n in (3,4,5):
+# No-crossing singular stable M-matrix example.  Include n=2, the lower
+# endpoint of the theorem's stated domain; there the bracket has the positive
+# linear coefficient beta_2 and is genuinely strictly increasing.
+for n in (2,3,4,5):
     J=sp.ones(n)-n*sp.eye(n)  # eigenvalues 0,-n,...,-n
     audit(J,[sp.Rational(j+2,j+1) for j in range(n)],False)
 

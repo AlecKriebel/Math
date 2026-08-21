@@ -1,5 +1,20 @@
 # Changelog
 
+## Critical-zero and threshold-notation hardening — 21 August 2026
+
+- Restored the steady-flux dependence in the unique stationary threshold
+  notation while retaining the flux-independent diffusion criterion.
+- Added an all-dimensional characteristic-derivative identity proving that
+  the selected unit critical zero is algebraically simple, and an explicit
+  generalized-vector exclusion for the row-scaled family.
+- Printed the missing network-to-matrix hypothesis bridge and the
+  fixed-mass Fredholm/transversality interface used by the stationary
+  bifurcation theorem.
+- Distinguished the two positive steady-flux parameters from arbitrary
+  positive equilibrium scaling and repaired the S9 punctuation.
+- Prepared immutable release version 1.0.5; archived versions remain indexed
+  by the stable Zenodo concept DOI.
+
 ## Near-threshold exposition hardening — 20 August 2026
 
 - Made Supplement S9 self-contained by printing the affine critical-vector

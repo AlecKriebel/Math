@@ -42,6 +42,9 @@ STALE = {
     "old_exceptional_scalar_notation": r"c=\frac{91L}{90}",
     "misdescribed_network_outline": "The dashed outline marks the principal species set",
     "near_threshold_dimension_variable_typo": r"\nu=1+(2-t)\varepsilon",
+    "threshold_omits_flux_parameters": "s_*(H,D)",
+    "full_jacobian_misdescribed_as_two_parameter": "explicit two-parameter Jacobian image",
+    "awkward_over_realizations_wording": "topology-wide over-realizations theorem",
 }
 
 # Only prose, theorem, documentation, and generated claim tables are scanned.

@@ -1,5 +1,19 @@
 # Feedback disposition
 
+## Fresh adversarial review — 21 August 2026
+
+| Supplied review item | Disposition | Action |
+|---|---|---|
+| Threshold written as $s_*(H,D)$ although its location depends on $a,b$ | ACCEPT | Replaced it by $s_*(a,b,H,D)$, including the mode band and ray-scaling identity; added an exact $m=3$ dependence regression. |
+| The 77-term certificate does not by itself prove multiplicity one at zero | ACCEPT | Printed and verified the exact all-dimensional characteristic derivative and its equality to $-(163/45)\ell_m^Tr_m>0$. |
+| Row scaling needs an explicit algebraic-simplicity argument | ACCEPT | Printed the unchanged kernel, transformed left vector, and generalized-vector contradiction. |
+| The network application leaves the last matrix-theorem hypothesis implicit | ACCEPT | Derived rank $n-1$, the simple conservation zero, and the positive order-$(n-1)$ coefficient from homogeneous stability. |
+| The general matrix theorem should state $n\ge2$ | ACCEPT | Added the domain restriction; all applications already have $n\ge4$. |
+| The Crandall--Rabinowitz interface is implicit | ACCEPT | Printed the fixed-mass domain/codomain, Fredholm index, kernel, cokernel, and exact transversality pairing. |
+| The full Jacobian image is described as two-parameter | ACCEPT | Separated the two-flux factor $A_m(a,b)$ from arbitrary positive right-diagonal scaling $H$. |
+| Supplement S9 has a comma splice | ACCEPT | Replaced it with a complete sentence. |
+| GitHub release and Zenodo DOI are unresolved | REJECT AS STALE | The public v1.0.4 release and both the concept and version DOIs resolve; no reserved-DOI qualification is needed. |
+
 ## Fresh adversarial review — 20 August 2026
 
 | Supplied review item | Disposition | Action |

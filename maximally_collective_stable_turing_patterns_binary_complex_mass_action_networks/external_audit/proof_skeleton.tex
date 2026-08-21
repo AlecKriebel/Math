@@ -44,7 +44,8 @@ $\{X_1,X_3,Z\}$.  Thus the chain argument is applied only for $m\ge4$.
 
 \newpage
 \section*{2. Principal-minor diffusion-ray theorem and exact network law}
-For $a_I=(-1)^{|I|}\det J_{I,I}$ and $D\succ0$, multilinearity gives
+Let $n\ge2$.  For $a_I=(-1)^{|I|}\det J_{I,I}$ and $D\succ0$,
+multilinearity gives
 \[
 \det(sD-J)=\sum_Ia_I\prod_{j\notin I}sd_j
 =s(\beta_1+\beta_2s+\cdots+\beta_ns^{n-1}).
@@ -72,7 +73,16 @@ For $A_m(a,b)H$, compute every order-$m$ omission minor. Omitting $Z$ gives weig
 \beta_1=2a^{m-1}b\prod_{i=1}^mh_i
 \left(8h_Z\sum_{j=2}^{m-1}\frac{d_j}{h_j}-d_Z\right).
 \]
-This proves the exact criterion. The same sign follows from first-order perturbation of the conservation eigenvalue. For fixed $H$, minimizing $d_{\max}/d_{\min}$ under the strict inequality gives the nonattained infimum $T(H)=8h_Z\sum_{j=2}^{m-1} h_j^{-1}$. At $H=I$, $T=8(m-2)$, and $h_Z/h_j\ge1/\chi_H$ gives $\chi_D\chi_H>8(m-2)$.
+Homogeneous stability on $c^\perp$, together with $c^TJ=0$, gives rank
+$n-1$, an algebraically simple conservation zero, and a positive
+order-$(n-1)$ characteristic coefficient, so every hypothesis of the general
+theorem holds.  This proves the exact criterion.  The criterion is independent
+of $a,b$, but its unique root is $s_*(a,b,H,D)$.  The same sign follows from
+first-order perturbation of the conservation eigenvalue. For fixed $H$,
+minimizing $d_{\max}/d_{\min}$ under the strict inequality gives the
+nonattained infimum $T(H)=8h_Z\sum_{j=2}^{m-1} h_j^{-1}$. At $H=I$,
+$T=8(m-2)$, and $h_Z/h_j\ge1/\chi_H$ gives
+$\chi_D\chi_H>8(m-2)$.
 
 \newpage
 \section*{3. Improved unit-equilibrium primary bifurcation}
@@ -105,8 +115,17 @@ E_{77}=\left[(91/90)^2+z\right]|F(x+i\sqrt z,1+s)|^2
 -|G(x+i\sqrt z,1+s)|^2
 \]
 has 77 strictly positive coefficients and no constant term.  Thus equality
-occurs only at $(x,z,s)=(0,0,0)$. Hence the first mode has one simple zero,
-all other first-mode eigenvalues are stable, and all $t>1$ modes are Hurwitz.
+occurs only at $(x,z,s)=(0,0,0)$.  Algebraic simplicity at that point is the
+separate exact identity, with
+$\mathfrak h_m=\sum_{j=1}^{m-2}K_j^{-1}$,
+\[
+ \left.\frac{d}{d\lambda}\det(\lambda I-A_m+D_m)\right|_{\lambda=0}
+ =\frac{7043400m-13600927-7043400\mathfrak h_m}{255150}
+ =-\frac{163}{45}\ell_m^Tr_m>0.
+\]
+Hence the first mode has one algebraically simple zero with one-dimensional
+kernel and cokernel, all other first-mode eigenvalues are stable, and all
+$t>1$ modes are Hurwitz.
 
 The exact unit contrast is
 \[
@@ -176,7 +195,15 @@ The shifted coefficients of $\mathcal Q_m,P_R,P_C,L_m$ are positive, so
 $C_m<0$ and
 $R_m+C_m\mathfrak h_m\ge R_m+C_m(m-2)/(90m-179)>0$.
 
-Crandall--Rabinowitz gives the stationary local curve; reflection equivariance
+On
+\[
+ X_c=\{u\in H_N^2:\textstyle\int_0^\pi c^Tu=0\},\qquad
+ Y_c=\{g\in L^2:\textstyle\int_0^\pi c^Tg=0\},
+\]
+the stationary linearization is Fredholm of index zero, with kernel
+$\operatorname{span}\{r_m\cos\xi\}$, cokernel
+$\operatorname{span}\{\ell_m\cos\xi\}$, and transversality pairing
+$(\pi/2)\ell_m^TD_mr_m\ne0$.  Crandall--Rabinowitz gives the stationary local curve; reflection equivariance
 and the odd normal form identify its two positive nonconstant halves for
 $\mu>0$. Their center eigenvalue is $-2\eta_m\mu+O(\mu^2)<0$. The complementary spectrum is separated at onset and remains separated under analytic perturbation. Positive Neumann diffusion is sectorial on fixed-mass $L^2$, its fractional $H^1$ domain is a Banach algebra in one dimension, and the quadratic Nemytskii map is smooth. The principle of linearized stability gives local exponential convergence in $H^1$ for sufficiently close nonnegative initial data in the same conservation class.
 
@@ -210,6 +237,13 @@ Moreover,
 \qquad \widetilde\ell_m(L)^Tr_m<0,
 \]
 so the scaled crossing coefficient $\eta_m(L)$ is positive.
+Invertibility of $\mathsf H_m(L)$ preserves the kernel:
+\[
+ \ker[\mathsf H_m(L)(A_m-\Delta_m)]
+ =\ker(A_m-\Delta_m)=\operatorname{span}\{r_m\}.
+\]
+A generalized vector would force $0=\widetilde\ell_m(L)^Tr_m$, so the scaled
+zero is algebraically simple.
 
 Chain elimination now gives interior factors
 \[

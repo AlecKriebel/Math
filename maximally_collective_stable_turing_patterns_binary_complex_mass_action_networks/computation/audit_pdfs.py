@@ -20,7 +20,7 @@ class Document:
 
 
 FULL_DOCUMENTS = (
-    Document("manuscript/main.pdf", 17, True),
+    Document("manuscript/main.pdf", 18, True),
     Document("manuscript/supplement.pdf", 18, True),
     Document("external_audit/theorem_summary.pdf", 3, True),
     Document("external_audit/proof_skeleton.pdf", 6, True),
@@ -53,6 +53,8 @@ FORBIDDEN_PHRASES = (
     "a conservation-compatible Lyapunov–Schmidt reduction has",
     "Lyapunov–Schmidt coefficients",
     "The dashed outline marks the principal species set",
+    "explicit two-parameter Jacobian image",
+    "topology-wide over-realizations theorem",
 )
 
 FORBIDDEN_PATTERNS = (
@@ -61,6 +63,7 @@ FORBIDDEN_PATTERNS = (
     ("false stoichiometric-minor determinant", r"absolute determinant\s+2\s*m\s*[−-]\s*2"),
     ("old scaled-state notation", r"\bz\s*=\s*H\s*m\s*\(L\)\s*x"),
     ("near-threshold dimension-variable typo", r"\bν\s*=\s*1\s*\+\s*\(2\s*[−-]\s*t\)\s*ε"),
+    ("threshold omits flux parameters", r"\bs\s*[∗*]\s*\(\s*H\s*,\s*D\s*\)"),
 )
 
 SUPPLEMENT_SECTION_PREFIXES = (
@@ -229,6 +232,10 @@ def audit(root: Path, output_dir: Path, documents: tuple[Document, ...]) -> None
             ("selected positive realization", "selected-realization scope in Corollary 3.3"),
             ("reduced vector field is odd", "reflection-equivariant odd normal form"),
             ("long-circuit complexes associated with the principal species block", "literal Figure 1 outline description"),
+            ("Fredholm of index zero", "stationary Fredholm interface"),
+            ("cokernel pairing is", "Crandall–Rabinowitz transversality pairing"),
+            ("If a generalized eigenvector", "scaled-family algebraic-simplicity closure"),
+            ("Thus all hypotheses of Theorem", "network diffusion-ray hypothesis bridge"),
         ):
             if phrase.lower() not in main_text.lower():
                 failures.append(f"main PDF lacks {label}")
@@ -243,6 +250,11 @@ def audit(root: Path, output_dir: Path, documents: tuple[Document, ...]) -> None
             failures.append("main PDF lacks one or more Figure 3 placement markers")
         elif positions != sorted(positions):
             failures.append("Figure 3 interrupts the open-problem list or precedes Section 9")
+        if not re.search(
+            r"\bs\s*[∗*]\s*\(\s*a\s*,\s*b\s*,\s*H\s*,\s*D\s*\)",
+            main_text,
+        ):
+            failures.append("main PDF does not show the flux-dependent threshold notation")
 
     if supplement:
         for phrase, label in (
@@ -251,6 +263,8 @@ def audit(root: Path, output_dir: Path, documents: tuple[Document, ...]) -> None
             ("affine-chain critical vector", "printed near-threshold affine-vector ansatz"),
             ("with u the Latin letter", "unambiguous Latin near-threshold parameter"),
             ("The crossing numerator is unchanged", "scaled-family transversality numerator"),
+            ("all-dimensional identity", "selected-zero derivative identity"),
+            ("generalized eigenvector", "scaled-family algebraic-simplicity closure"),
         ):
             if phrase.lower() not in supplement.lower():
                 failures.append(f"supplement PDF lacks {label}")

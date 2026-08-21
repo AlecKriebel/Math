@@ -1,4 +1,4 @@
-# Replay status for the 20 August 2026 pre-submission proof repair
+# Replay status for the 21 August 2026 pre-submission proof repair
 
 This file distinguishes current-release verification from historical-lineage
 verification. It supersedes the pre-repair replay logs, which were removed
@@ -9,7 +9,7 @@ because they described different sources and artifacts.
 The following were rerun after the high-dimensional endpoint repair and final
 source edits:
 
-- 20 mutation/regression tests;
+- 21 mutation/regression tests;
 - the complete symbolic aggregate, including the determinant-identity bridge,
   the 22-term homogeneous certificate, the 84-term spatial certificate, the
   exceptional `m=3` cubic, and the exact legacy-endpoint counterexample;
@@ -19,7 +19,7 @@ source edits:
 - full current-profile cosine-Galerkin simulations and the strengthened
   refinement audit (maximum recorded relative discrepancy
   `1.6246526173879546e-08`, below the `2e-8` gate);
-- all eight principal PDFs: 17-page manuscript, 18-page supplement, 3-page
+- all eight principal PDFs: 18-page manuscript, 18-page supplement, 3-page
   theorem summary, 6-page proof skeleton, and four one-page figures;
 - all seven ZIP integrity checks and all three detached submission-source
   builds; and
@@ -37,15 +37,22 @@ The final exposition pass also reconstructs the generic near-threshold affine
 critical vector and all induced diffusion entries from
 $(A_m-D)r^{\rm aff}=0$, prints the scaled transversality numerator, and
 restricts the localization minimum explicitly to nonempty principal sets.
+The 21 August precision pass additionally verifies the explicit
+$a,b$-dependence of $s_*(a,b,H,D)$, the all-dimensional identity
+$\Pi_m'(0)=-(163/45)\ell_m^Tr_m>0$, the generalized-vector exclusion after
+positive row scaling, the final order-$(n-1)$ coefficient hypothesis in the
+network application, and the fixed-mass Fredholm/transversality interface.
 
 The portable replay used Python 3.9.6, Matplotlib 3.7.1, NumPy 1.24.3,
 Pandas 2.3.3, pypdf 6.10.0, pytest 8.4.2, SciPy 1.10.1, and SymPy 1.14.0.
 Because pdfTeX was unavailable in the repair environment, its `pdflatex`
 invocations were routed through a local Tectonic 0.16.9 compatibility shim;
-Biber 2.17 generated the bibliography. Each submission source ZIP was also
-built independently with Tectonic and Biber and produced the expected 17-page
-main and 18-page supplement. Numerical outputs are certified to the recorded tolerances,
-not asserted to be byte-identical across BLAS/SciPy toolchains.
+the already verified Biber 2.17 bibliography output was retained because the
+bibliography did not change. Each submission source ZIP was also built
+independently with Tectonic against that frozen bibliography and produced the
+expected 18-page main and 18-page supplement. Numerical outputs are certified
+to the recorded tolerances, not asserted to be byte-identical across
+BLAS/SciPy toolchains.
 
 ## Historical-lineage stage: not rerun after the repair
 

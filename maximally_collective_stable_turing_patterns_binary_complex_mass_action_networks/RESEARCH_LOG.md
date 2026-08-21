@@ -196,3 +196,58 @@
   submission was initiated.
 - Best-guess completion toward the round-4 pre-submission revision and
   verification goal: **100%**.
+
+## 2026-08-21 13:34:07 PDT — round-5 mathematical-precision checkpoint
+
+- Independently reproduced the reviewer’s $m=3$ threshold polynomial and
+  confirmed that the threshold location depends on the steady-flux parameters
+  $a,b$, although the exact crossing criterion does not.
+- Derived the all-dimensional selected-mode identity
+  $\Pi_m'(0)=-(163/45)\ell_m^Tr_m>0$ directly from the sparse determinant,
+  closing algebraic simplicity at the unique equality point of the 77-term
+  certificate.
+- Verified that invertible positive row scaling preserves the selected kernel
+  and that the transformed left-right pairing excludes every generalized
+  zero eigenvector.  No theorem conclusion, topology, endpoint, or numerical
+  profile changed.
+- Confirmed publicly that the v1.0.4 GitHub release and Zenodo concept/version
+  DOIs resolve; the review’s broken-metadata concern was stale.
+- Best-guess completion toward the round-5 pre-submission revision and
+  verification goal: **55%**.
+
+## 2026-08-21 13:59:07 PDT — round-5 rebuilt-release checkpoint
+
+- Propagated the flux-dependent threshold notation, selected-zero derivative,
+  network-to-matrix coefficient bridge, row-scaled generalized-vector
+  exclusion, and fixed-mass Fredholm/transversality interface through the
+  manuscript, supplement, theorem summary, proof skeleton, and exact audits.
+- The full symbolic aggregate and all 21 mutation/regression tests pass.  The
+  rebuilt PDFs contain 49 pages in total (18-page main, 18-page supplement,
+  3-page theorem summary, 6-page proof skeleton, and four one-page figures),
+  all visually inspected without clipping or overlap.
+- Regenerated and hash-checked all seven deterministic packages; all three
+  submission source bundles independently rebuild to 18-page main and
+  18-page supplement PDFs.
+- Completed a full detached portable replay through `PUBLIC_REPLAY_PASS`,
+  including current-profile simulations, exact certificates, regenerated
+  figures, documents, and a self-verifying manifest.
+- Best-guess completion toward the round-5 pre-submission revision and
+  verification goal: **90%**.  Remaining work is independent final audit,
+  manifest closure, immutable publication, and final remote-access sync.
+
+## 2026-08-21 14:10:06 PDT — round-5 final verification checkpoint
+
+- Corrected the final S9 punctuation defect found during adversarial page
+  inspection and rebuilt the affected supplement and every derived package.
+- Three independent audits found no mathematical, manuscript, PDF, or release
+  blocker.  The exact symbolic aggregate, all 21 mutation/regression tests,
+  manuscript and stale-claim audits, numerical provenance checks, and PDF
+  semantic checks pass.
+- Visually inspected all 49 pages across the eight principal PDFs and verified
+  the seven deterministic bundles, all submission and specialist mirrors, and
+  the full detached public replay ending in `PUBLIC_REPLAY_PASS`.
+- Prepared the v1.0.5 immutable snapshot and synchronized the final main TeX
+  and bibliography to the local Google Drive mobile-access folder.  No
+  external communication or submission was initiated.
+- Best-guess completion toward the round-5 pre-submission revision and
+  verification goal: **100%**.
