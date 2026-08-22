@@ -1,0 +1,129 @@
+R2 ADVERSARIAL REMEDIATION AUDIT — STATIC COMMAND LOG
+Date: 2026-08-22 America/Los_Angeles
+Auditor task: /root/software_source_audit
+
+POLICY
+Static text/archive inspection only. No delivered shell/Python program was
+executed, no delivered Python module was imported, no dependency was installed,
+and no network request was made. Package files were not modified. The only
+writes were the two audit records under records/ via apply_patch.
+
+[01] pwd; rg --files work/package | sort; rg --files records | sort
+cwd: /Users/alec/Documents/Math
+status: 0
+result: enumerated the package and pre-existing R2 records.
+
+[02] nl -ba run_all_referee_checks.sh; nl -ba verify_referee_package.py;
+     nl -ba .../submission/bootstrap_replay.sh; nl -ba .../replay.sh
+cwd: .../complete_graph_extremality_r2_rereview_2026-08-22/work/package
+status: 0
+result: line-numbered static entry-point and package-verifier inspection.
+
+[03] nl -ba submission/verify_execution_safety.py; nl -ba build.sh;
+     nl -ba bundle_manifest.py; nl -ba requirements-lock.txt;
+     nl -ba submission/ENVIRONMENT.md;
+     nl -ba submission/BUNDLE_REPRODUCTION.md
+cwd: .../paper_db_extremality
+status: 0
+result: line-numbered safety, lock, archive, and document-chain inspection.
+
+[04] rg --files prior records; rg -n <risk terms> prior
+     software_source_audit.md and adversarial_falsification.md
+status: 0
+result: located and compared the prior findings.
+
+[05] nl -ba prior adversarial_falsification.md | sed -n '66,165p';
+     nl -ba prior software_source_audit.md | sed -n '38,130p';
+     nl -ba README_FIRST.md; nl -ba VERSION.md
+status: 0
+result: inspected exact prior finding and current identity/instruction lines.
+
+[06] find package -type l -print;
+     find package ! -type d ! -type f ! -type l -print;
+     find package (cache/pyc/pyo names) -print
+status: 0
+result: no symlink, special node, __pycache__, .pyc, or .pyo found.
+
+[07] tar -tvzf source archive | head/tail; tar -tzf source archive | wc -l
+status: 0
+result: 71 members; displayed members were regular, and the complete type-column
+inspection found no link/non-regular member.
+
+[08] wc -l PACKAGE_MANIFEST.sha256 source_and_certificates/MANIFEST.sha256
+status: 0
+result: 81 and 70 lines respectively (the archive has manifest plus 70 payloads).
+
+[09] rg -c -- '--hash=sha256:' requirements-lock.txt
+status: 0
+result: 32 hash clauses.
+
+[10] rg -n '^assert |^[[:space:]]+assert ' source_and_certificates --glob '*.py'
+status: 1 (expected no-match status)
+result: no bare Python assert statement found.
+
+[11] rg -n '^def require\(' source_and_certificates --glob '*.py' | wc -l
+status: 0
+result: 21 explicit require helpers (20 scientific files plus safety verifier).
+
+[12] rg -n <dynamic-execution terms> source_and_certificates --glob '*.py'
+status: 0
+result: only SymPy polynomial .eval calls matched; no subprocess, os.system,
+Popen, Python exec/eval/compile, pickle, or marshal use matched.
+
+[13] nl -ba all.sh; nl -ba release_bundle.sh; nl -ba requirements.txt;
+     rg -n <interpreter/imported-helper/marker terms> selected tree
+status: 0
+result: inspected auxiliary entry points and confirmed the public marker and
+arbitrary PYTHON/BOOTSTRAP_PYTHON boundaries.
+
+[14] nl -ba CLAIM_CODE_MAP.md; nl -ba README_FIRST.md;
+     nl -ba source_and_certificates/BUNDLE_METADATA.txt;
+     rg -n <environment/hash/cache terms> package
+status: 0
+result: cross-checked advertised invocation, environment, and resource claims.
+
+[15] diff -u prior/current run_all_referee_checks.sh || true;
+     diff -u prior/current bootstrap_replay.sh || true;
+     diff -u prior/current replay.sh || true
+wrapper status: 0; each substantive diff status: 1 (files intentionally differ)
+result: confirmed the R2 sanitizer, safety/negative-control, hash-lock, and
+direct-invocation changes relative to round 1.
+
+[16] rg -n wheel names/hashes in prior and R2 records | head -n 100
+status: 0
+result: local records identify a macOS arm64 cp314 python-flint wheel in a
+separate replay transcript; this audit did not use that run as static proof of
+the lock's full platform coverage.
+
+[17] apply_patch: create records/ADVERSARIAL_REMEDIATION_AUDIT.md
+status: 0
+result: report written; no package file altered.
+
+[18] apply_patch: create this command log
+status: 0
+result: command/status record written; no package file altered.
+
+[19] wc -l audit report/command log; shasum -a 256 both records;
+     sed -n selected report ranges
+status: 0
+result before this final log amendment: report 397 lines, log 104 lines;
+report SHA-256 f703062e087ee413a71c1cc73ab4d6d1bf794e27256be17ac2af93a61fb0fce1;
+pre-amendment log SHA-256
+0ed6b9bf3f62b43eebf09c6073c904d7be44d1e419620cac32e7829fb2a1bba7.
+
+[20] rg -n <dynamic-outcome terms> records/COMMANDS.log | tail -n 300;
+     nl -ba records/COMMANDS.log | sed -n selected evidence ranges
+status: 0
+result: read the root-supplied transcript as static text. Located the clean
+package run, public-token spoof, timestamp-valid pycache execution, standalone
+manifest behavior, dependency-hash rejection, bundle-digest rejection, and
+inherited-optimization rejection. No delivered program was rerun.
+
+[21] apply_patch: update R2-SC-2 severity and append the confirmed-evidence,
+     remediation, and final-verdict addendum to ADVERSARIAL_REMEDIATION_AUDIT.md
+status: 0
+result: report updated from supplied evidence only; no package file altered.
+
+[22] apply_patch: append entries [20]-[22] to this command log
+status: 0
+result: audit provenance updated; no package file altered.

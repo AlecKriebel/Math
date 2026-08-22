@@ -1,0 +1,214 @@
+# Static R2 replay audit command log
+# Scope: text/read-only inspection only. No delivered shell or Python entry point
+# was executed, and no delivered Python module was imported.
+# Working directory unless stated otherwise: /Users/alec/Documents/Math
+
+2026-08-22T22:17:21Z status=0
+  date -u; pwd; git branch --show-current; git status --short -- <R2 audit root>;
+  find <R2 package> -maxdepth 3 -type f -o -type l | sort | sed -n 1,240p
+  Result: branch main; R2 audit directory untracked; initial package inventory read.
+
+2026-08-22T22:17:26Z status=0
+  rg --files <R2 source_and_certificates> | sort
+  rg --files <R1 source_and_certificates> | sort
+  Result: complete frozen file inventories captured for comparison.
+
+2026-08-22T22:17:31Z status=0
+  sed -n 1,280p <R1 report/REFEREE_REPORT.md>
+  sed -n 1,320p <R1 records/software_source_audit.md>
+  sed -n 1,320p <R1 records/invocation_graph.md>
+  Result: prior findings and prior static topology read; display was truncated by
+  the tool, so targeted reads followed.
+
+2026-08-22T22:17:37Z status=0
+  rg -n '^### F|^### SA-' <R1 report and source audit>
+  sed -n 250,430p <R1 report>
+  sed -n 1,210p <R1 source audit>
+  Result: exact five final-report findings and nine detailed static findings read.
+
+2026-08-22T22:17:43Z status=0 (diff itself reported expected differences)
+  diff -qr <R1 package> <R2 package> || true
+  Result: change set isolated to manifests/metadata/PDF, replay hardening,
+  assertion migration, documentation wording, dependency lock, and Makefile removal.
+
+2026-08-22T22:17:52Z status=0
+  nl -ba <R2 run_all_referee_checks.sh>
+  nl -ba <R2 verify_referee_package.py>
+  nl -ba <R2 README_FIRST.md>
+  nl -ba <R2 CLAIM_CODE_MAP.md>
+  nl -ba <R2 VERSION.md>
+  Result: package-level entry point, integrity verifier, and advertised scope read.
+
+2026-08-22T22:18:05Z status=0
+  nl -ba <R2 bootstrap_replay.sh>
+  nl -ba <R2 verify_execution_safety.py>
+  nl -ba <R2 replay.sh>
+  nl -ba <R2 build.sh>
+  nl -ba <R2 all.sh>
+  nl -ba <R2 requirements.txt>
+  nl -ba <R2 requirements-lock.txt>
+  nl -ba <R2 project requirements.txt>
+  Result: full mandatory bootstrap/replay/build path read without execution.
+
+2026-08-22T22:18:13Z status=0 (diff itself reported expected difference)
+  nl -ba <R2 bundle_manifest.py>
+  nl -ba <R2 release_bundle.sh>
+  nl -ba <R2 submission/BUNDLE_REPRODUCTION.md>
+  nl -ba <R2 submission/ENVIRONMENT.md>
+  nl -ba <R2 sections/07_implications_reproducibility.tex> | sed -n 65,150p
+  diff -u <R1 appendix A> <R2 appendix A> || true
+  Result: archive inclusion/exclusion rules, release path, revised proof-status
+  wording, and sole Appendix-A digest update read.
+
+2026-08-22T22:19:15Z status=0, with one documented rg syntax error
+  rg -n '(?<![A-Za-z_])assert(?:\\s|\\()' <R2 source> -g '*.py' || true
+  rg -n '^def require\\b|^class .*Failure' <R2 source> -g '*.py'
+  rg -n 'require aliases/imports' <R2 source> -g '*.py' || true
+  rg -n 'PASS/PROVED/OPEN prints' <R2 source> -g '*.py'
+  Result: the first PCRE lookbehind search was rejected by ripgrep; no file was
+  changed. Subsequent portable searches located every explicit checker and output.
+
+2026-08-22T22:19:22Z status=0
+  rg -n '\\bassert\\b' <R2 source> -g '*.py' || true
+  for each file defining require: sed -n '/^def require/,/^$/p'
+  Result: no bare Assert statement token remains; all 21 require implementations
+  (20 scientific files plus safety verifier) explicitly raise on false conditions.
+
+2026-08-22T22:19:35Z status=0 (diffs themselves reported expected differences)
+  git diff --no-index --stat -- <R1 source> <R2 source> || true
+  diff -u each core verifier <R1> <R2> || true
+  Result: assertion migration inspected in directed, obstruction, triangle, K4,
+  and phase-3 programs; expressions were preserved.
+
+2026-08-22T22:19:51Z status=0 with one expected missing-path diagnostic
+  git -C /Users/alec/Documents/Math-universal-amplification cat-file -t e63cc447...
+  git -C ... show e63cc447...:Makefile
+  git -C ... ls-tree -r --name-only e63cc447... | rg <selected paths>
+  Result: commit exists; repository-root Makefile path was correctly found to be
+  project-prefixed, prompting the corrected read below.
+
+2026-08-22T22:19:59Z status=0 with a zsh parameter-expansion quoting error on show
+  git -C ... ls-tree -r --name-only e63cc447... | rg '(^|/)Makefile$'
+  git -C ... show "$C:universal_simultaneous_amplification/Makefile"
+  Result: Makefile paths found; the unbraced zsh revision:path expression was
+  mis-expanded. No state changed. Corrected below.
+
+2026-08-22T22:20:05Z status=0
+  git -C ... show "${C}:universal_simultaneous_amplification/Makefile" | nl -ba
+  Result: historical full-repository Makefile and paper1 target read.
+
+2026-08-22T22:20:11Z status=0
+  git -C ... ls-tree -r --name-only "$C" |
+    rg '^universal_simultaneous_amplification/(paper/main\\.tex|output/pdf/)'
+  git -C ... status --short -- universal_simultaneous_amplification/Makefile
+  Result: both paths required by historical paper1 target exist at the source
+  commit; no tracked Makefile modification in the repository.
+
+2026-08-22T22:20:20Z status=0
+  nl -ba <R2 verify_directed_db_strong.py> | sed -n 125,235p
+  nl -ba <R2 verify_antisymmetric_hessian.py> | sed -n 130,180p
+  rg -n <finite/analytic/universal wording patterns> <relevant R2 sources>
+  Result: revised finite-versus-analytic wording verified at source and manuscript.
+
+2026-08-22T22:21:12Z status=0
+  rg -c 'require\\(' <R2 source> -g '*.py' | sort
+  Result: textual per-file counts equal EXPECTED_SCIENTIFIC_CHECKS plus one local
+  require definition per file.
+
+2026-08-22T22:21:27Z status=0 (diffs themselves reported expected differences)
+  diff -u each remaining verifier <R1> <R2> |
+    filter changed lines excluding assert/require boilerplate
+  Result: no mathematical expression change found; intended non-mechanical edits
+  were output-scope wording and the revised symmetric-certificate digest.
+
+2026-08-22T22:21:39Z status=0
+  nl -ba <tests/test_exact_markov.py and four importing programs> | sed selected lines
+  rg -n helper-call patterns <marked-lift and direct-flow files>
+  Result: transitive local import and function-call topology reconstructed.
+
+2026-08-22T22:23:32Z status=0
+  stat -f '%Sp %N' <mandatory scripts and safety verifier>
+  find <R2 package> for Makefile/__pycache__/*.pyc/*.pyo
+  rg -n <hardening artifact names> <package and internal manifests>
+  Result: required shell/Python entry points executable as appropriate; no Makefile
+  or bytecode cache is delivered; hardening artifacts are manifest-bound.
+
+2026-08-22T22:23:39Z status=0
+  rg --files <R2 source> | rg '\\.py$' | sort | nl -ba
+  rg --files <R2 source> | rg '\\.sh$' | sort | nl -ba
+  Result: 26 bundled Python files and five shell entry points inventoried.
+
+2026-08-22T22:24:40Z status=0 (diff itself reported expected differences)
+  nl -ba <R2 BUNDLE_METADATA.txt>
+  diff -u <R1 run_all_referee_checks.sh> <R2 run_all_referee_checks.sh> || true
+  Result: exact launcher hardening delta and metadata claims inspected.
+
+2026-08-22T22:24:49Z status=0
+  rg -n '\\bassert\\b' <full R2 package> -g '*.py' || true
+  rg -n <exception/failure-swallowing patterns> <mandatory path files> || true
+  Result: only prose mentions the word assert; no mandatory-path failure suppression
+  found. pdftoppm output is hidden, but set -e preserves its status.
+
+2026-08-22T22:25:10Z status=0
+  rg -n '^def main|^if __name__' <three imported helpers>
+  enumerate all delivered main guards
+  Result: guarded helper mains remain inert; exact current line numbers recorded.
+
+2026-08-22T22:25:19Z status=0
+  find <R2 audit root> -maxdepth 2 -type f | sort
+  Result: checked shared-agent artifacts before creating this report/log; no overlap.
+
+2026-08-22T22:25:46Z status=0
+  count prior assert-token lines; count revised require occurrences excluding
+  definitions; count revised Python files
+  Result: 406 prior scientific assert lines; 418 revised require calls total,
+  comprising 406 migrated scientific checks plus 12 safety-verifier calls; 26 files.
+
+2026-08-22T22:25:57Z status=0
+  inspect requirements-lock.txt pin/hash counts and validate lowercase 64-hex syntax
+  Result: three exact version pins, 32 wheel hashes, zero malformed hashes.
+
+2026-08-22T22:26Z web-read status=success (not a shell command)
+  Opened official PyPI JSON metadata for SymPy 1.14.0, python-flint 0.9.0,
+  and mpmath 1.3.0.
+  Result: the universal SymPy and mpmath wheel hashes exactly match the lock;
+  python-flint 0.9.0 publishes CPython 3.14 macOS arm64 wheels. The actual pip
+  --require-hashes replay remains the decisive platform-artifact validation.
+
+2026-08-22T22:31Z web-read status=success (not a shell command)
+  Searched the official Python 3 command-line/environment documentation for
+  PYTHONDONTWRITEBYTECODE and bytecode-cache validation semantics.
+  Result: the setting is expressly a no-write control; it is not a no-read
+  control, supporting the direct reused-tree caveat in SR-2.
+
+# Static phase status: READY for the authoritative package-level replay;
+# direct replay caveats are documented in STATIC_REPLAY_AUDIT.md.
+
+2026-08-22T22:29:41Z status=0
+  wc -l and full segmented sed read of both new audit artifacts; git diff --check
+  Result: content inspected; ordinary git diff did not inspect untracked files.
+
+2026-08-22T22:30:39Z status=0
+  targeted remediation-matrix read; reference/backtick search; git status
+  Result: broken two-line F4 table cell found and corrected; both artifacts remain
+  isolated untracked additions.
+
+2026-08-22T22:31:15Z status=2
+  git diff --no-index --check /dev/null on both new files
+  Result: detected two intentional Markdown hard-break spaces in the report header;
+  removed them. No scientific/package file was touched.
+
+2026-08-22T22:33:14Z status=0
+  rg dynamic replay/token/pycache evidence across records; targeted sed reads of
+  records/COMMANDS.log and records/ADVERSARIAL_REMEDIATION_AUDIT.md
+  Result: independently read the preserved authoritative replay and hostile-test
+  transcripts without executing or importing delivered code. Confirmed top-level
+  status 0/PDF identity and both reproduced direct-entry bypasses.
+
+2026-08-22T22:34Z status=0
+  rg advertised replay/bootstrap/run_all entry points across README_FIRST,
+  CLAIM_CODE_MAP, BUNDLE_METADATA, source README, reproduction instructions,
+  and manuscript Section 7; nl -ba source README lines 18-42
+  Result: direct replay is an advertised interface, while README_FIRST separately
+  recommends the sound package-level launcher; this distinction controls verdict
+  classification.
