@@ -9,7 +9,7 @@ central-edge normalization crosswalk, made every localization and contextual
 triangle branch choice explicit, replaced two tautological diagnostics by
 exact split-normalized Jacobian and honest probe certificates, and separated
 four-port presentations from their further quotient classes.  v1.1.7 adds
-clean deletion, regeneration, and byte comparison of the nine auxiliary
+clean deletion, regeneration, and byte-or-logical-hash comparison of the nine auxiliary
 atlas outputs; fail-closed stale/no-op/partial-producer mutations; a standalone
 public convention replay; precise serialized-transport scope; and the direct
 Currie et al. attribution at the ordinary-triangle lemma.  The curated

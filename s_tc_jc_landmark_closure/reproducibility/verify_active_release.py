@@ -192,12 +192,23 @@ def source_envelope_checks(final, metadata) -> str:
                 envelope["prepared_payload_sha256"],
                 "archive manifest and external source envelope disagree")
         log_dir = PROJECT / "release_artifacts/certificate_bundle_logs"
+        log_records = envelope.get("verification_logs")
+        require(isinstance(log_records, dict),
+                "curated certificate transcript commitments are missing")
         for name in ("verify_quick.log", "verify_full.log",
                      "verify_regenerate_all.log"):
             log = log_dir / name
             require(log.is_file(), f"curated certificate transcript missing: {name}")
             text = log.read_text(encoding="utf-8", errors="replace")
+            record = log_records.get(name)
+            require(isinstance(record, dict) and
+                    record.get("source_commit") == source_commit and
+                    record.get("archive_sha256") == envelope["archive_sha256"] and
+                    record.get("exit_status") == 0 and
+                    record.get("sha256") == sha256(log),
+                    f"curated certificate transcript commitment changed: {name}")
             require(f"source_commit={source_commit}" in text and
+                    f"archive_sha256={envelope['archive_sha256']}" in text and
                     "exit_status=0" in text,
                     f"curated certificate transcript is not source-bound: {name}")
         return source_commit

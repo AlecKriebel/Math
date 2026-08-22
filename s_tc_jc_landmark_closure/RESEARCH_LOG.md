@@ -1113,3 +1113,28 @@
   intentionally unchanged for the human author's next step.  Remaining work
   is the sealed-bundle replay, PDF/package rebuild, adversarial final review,
   and final status commit.
+
+- 2026-08-22T14:33:49-07:00 — The v1.1.7 referee repair reached complete
+  pre-DOI closure (estimated 100% complete for this milestone).  The detached
+  source commit `6ae493191e2f080d2d902d8580c4819012ff27fd` produced the
+  241-file, 94,158,712-byte certificate archive with SHA-256
+  `01f8a81ae402893a58d87c80520005d9190f0c672c9e7c839769e5eb06ac4842`.
+  Its quick, full, and two-copy `regenerate-all` entry points all passed; the
+  latter rebuilt and compared all three n=3 generator outputs and all six
+  four-port signature/crosswalk/quotient outputs and returned identical
+  logical commitments.  The three complete transcripts are now bound to that
+  source commit and archive hash, hash-committed in the external envelope,
+  and summarized by a v1.1.7 verification record.
+
+  Two fresh read-only adversarial reviewers first found, then verified the
+  repairs of, a supplement sentence that incorrectly said all 192
+  presentation transports were serialized and three release-record defects
+  involving unbound logs, stale v1.1.6 checklist values, and byte-versus-
+  logical-hash wording.  The corrected supplement distinguishes the 132
+  restoration-root and 42 duplicate-presentation transports from the 18
+  direct classification records.  Rebuilt bioRxiv, Systematic Biology, and
+  Journal of Mathematical Biology source archives reproduce every delivered
+  PDF byte for byte; Poppler and PDFium renderings show no new layout defect.
+  Both adversarial re-reviews returned `PASS`.  No theorem statement or scope
+  was weakened, and `ZENODO_DOI_PENDING` remains intentionally unchanged for
+  the human author's next step.

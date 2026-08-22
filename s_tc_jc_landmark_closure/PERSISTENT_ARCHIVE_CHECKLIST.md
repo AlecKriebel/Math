@@ -5,13 +5,17 @@ Status: **CURATED PROOF OBJECT VERIFIED — DOI PENDING**
 Current pre-DOI candidate (the hash will change when the reserved DOI is
 inserted and the archive is resealed):
 
-- source commit: `61c869db9db15848a5328d7ee45b725ae6770688`
-- archive SHA-256: `032574f590c27a1f80d1e5dfa1b84b6f46b1e09d8d6f19a2d7c435597690b376`
+- source commit: `6ae493191e2f080d2d902d8580c4819012ff27fd`
+- archive SHA-256: `01f8a81ae402893a58d87c80520005d9190f0c672c9e7c839769e5eb06ac4842`
 - record-level evidence commitment:
-  `980b92addcca9bb0d74d35c7f542cd54acbc27c5650e9008de78986f3cf795b9`
-- clean source commit: `9c6c9c5f2878671b5b32ceee254bab96da854b73`
+  `38e6f9aa59e799de23711824dd5d1934aad1fd734a57564784119e3348a534c4`
+- clean source commit: `6ae493191e2f080d2d902d8580c4819012ff27fd`
 - authenticated payload files: `241`
-- archive bytes: `94,157,050`
+- archive bytes: `94,158,712`
+- transcript SHA-256 values:
+  - quick: `06309f4baff2d1f580c68a97ecec2058f0397227c6243e5bff71963702291ebf`
+  - full: `a91af0e1ed5a2f7bda49790ec64fff0a4c76f5958fe8a4080e5d824e8f3b681b`
+  - regenerate-all: `9cf6d8ca814f8a45cf16a0173b087ba7c60ec18cde781be03d7beb96de853a22`
 - finite universe: 10,466 three-outgoing relations and 192 four-outgoing
   survivors
 
