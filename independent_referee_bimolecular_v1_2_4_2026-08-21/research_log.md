@@ -112,3 +112,57 @@
   REQUIRED**; provisional recommendation **minor revision**, contingent on
   canonical replay, mutations, artifact rebuild, and record comparison.
 - Estimated completion: 52%.
+
+## 2026-08-21 22:52 PDT — checkpoint 4: replay, mutations, and author records
+
+- The exact packet command `./RUN_ALL_CHECKS.sh` exited 0 in 26.556 seconds.
+  All 57 verifier tests and all four release-tool tests passed with no skips;
+  both report regenerations, both 82-file manifests, all three report copies,
+  all four PDF byte rebuilds, and the 84-member ZIP byte rebuild agreed.
+- The canonical report SHA-256 is
+  `dc14127494eaa6ccf3b36a91f5d714ba6f79e76476f8d199760bd3b5faeed586`;
+  the manifest SHA-256 is
+  `e8562cfb54fd411e4c1926bd2e15cf394a1ece014def06d3621e12a0fcce5caf`;
+  the release ZIP SHA-256 is
+  `66e1f89f97840650f400ae917ccb76ce5f08a9291a3a7692fe7bf2222d8af54f`.
+- Production-free oracles completed 528,810 factorial, 1,153 entropy,
+  40,537 lifted-cycle, 118,261 top-alternative, 5,800 episode, 700 stationary-
+  cycle, and 37,587 scalar cases without failure. These remain finite
+  falsification evidence, not proof.
+- Golden-report, unlisted-Python, mathematical-source, manifest/content,
+  PDF, and ZIP mutations all failed closed at the expected layer.
+- A clean disposable Git repository with the exact package but no tag exposed
+  a material provenance failure: `validation/replay_release.sh` printed
+  `Exact tag: none`, completed every check, exited 0, and printed a Version
+  1.2.4 PASS. The script never asserts the expected tag, contrary to the packet
+  README. Together with the absent public tag, this makes v1.2.4 Git provenance
+  unverified even though standalone content reproducibility passes.
+- Post-barrier author records agree with the proof audit but are derivative,
+  author-generated, AI-assisted inventories rather than independent evidence.
+  They disclose no prior independent human expert review. Their research log
+  also says public release sequencing remained pending, contradicting current
+  present-tense release claims.
+- Mathematical conclusion remains unchanged; final report drafting and the
+  bounded literature sweep remain.
+- Estimated completion: 88%.
+
+## 2026-08-21 23:02 PDT — checkpoint 5: final referee report
+
+- Completed the bounded primary-source literature pass. The ACK theorem and
+  Section 6.1 dependency, Xu v2 nonexplosion/open-problem boundary,
+  Pauleve--Craciun--Koeppl reachability terminology, deterministic
+  boundedness/permanence results, and official two-species announcements all
+  match the manuscript. No exact public overlap was found through the cutoff;
+  absolute priority and the unpublished two-species proof remain unverified.
+- Completed the final seven-part referee report with the exact theorem, all
+  twelve proof obligations, severity-ranked findings, complete computational
+  and artifact outcomes, author-record comparison, and residual uncertainty.
+- Final report SHA-256:
+  `ca859338d1e06cf1785e1377f72c1b5e8ec854b873dfb77eff50697185cc96b4`.
+- Final mathematical status: **CORE RESULT SOUND, REVISION REQUIRED**.
+- Journal recommendation: **minor revision**.
+- Exact repair condition: publish and externally resolve the intended v1.2.4
+  annotated tag and make the release replay fail on absent/wrong tags, or
+  remove tagged-release claims and describe the packet as an untagged
+  candidate. No mathematical repair is required.
+- Estimated completion: 100%.
