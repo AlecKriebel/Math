@@ -24,12 +24,13 @@ universal upper bound.
 
 ## Reproducibility boundary
 
-The standalone 19-member archive contains the manuscript source and PDF,
+The standalone 23-member archive contains the manuscript source and PDF,
 three paper-local exact certifiers, the paper-level integration audit, pinned
-dependencies, and deterministic replay/build/release scripts.  The manuscript
-itself is the analytic proof.  The archive omits duplicate or stale proof
-notes, discovery scripts, sparse numerical diagnostics, the retired affine
-workstream, temporary compiler products, rendered QA images, virtual
+dependencies with their two hash-pinned pure-Python wheels, a verifier
+failure-regression test, and deterministic replay/build/release scripts.  The
+manuscript itself is the analytic proof.  The archive omits duplicate or stale
+proof notes, discovery scripts, sparse numerical diagnostics, the retired
+affine workstream, temporary compiler products, rendered QA images, virtual
 environments, venue metadata, and cover letters.
 
 The exact programs audit finite transition aggregation and symbolic/rational
@@ -45,8 +46,24 @@ bound for its dominating immigration--death process.
 The final submission correction writes the dB attempt duration as
 `T=beta_0(B_0) log C` and displays the two coefficient inequalities that give
 the claimed `O(C^(-B_0-2))` coordinate-survival bounds.  The manuscript source
-link is frozen at the repository tag
-`simultaneous-amplification-beyond-three-halves-v2.0.1`.
+link is frozen at the annotated, unsigned repository tag
+`simultaneous-amplification-beyond-three-halves-v2.0.2`.
+
+The post-referee correction stops pendant synchronization at either its target
+state or upper-strip exit.  It gives the exit favorable boundary value in the
+trace comparison, proves `O(m)` expected stopped trace outcomes and `O(C)`
+calendar time per outcome, and treats the zero-pendant boundary separately.
+This fixes two false unstopped expectations without changing the theorem or
+any asymptotic scale.
+
+All verification conditions now raise explicitly and every verifier rejects
+optimized Python.  The clean bootstrap exercises disposable exact-identity
+and integration-marker mutations and checks that failures propagate without a
+whole-replay success sentinel.  Python dependencies install offline from the
+bundled hash-pinned wheels; the PDF toolchain remains externally provisioned.
+Archive entry-point modes are explicit and checked.  Package hashes establish
+internal consistency, not authorship or cryptographic authentication of the
+unsigned Git tag.
 
 ## Related public versions
 

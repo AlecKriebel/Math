@@ -3,7 +3,19 @@
 
 from __future__ import annotations
 
+import sys
+
 import sympy as sp
+
+
+def require(condition: object, message: str) -> None:
+    if not bool(condition):
+        raise RuntimeError(message)
+
+
+def reject_optimized_python() -> None:
+    if sys.flags.optimize != 0:
+        raise RuntimeError("optimized Python is not permitted for certificate replay")
 
 
 def sturm_count(poly, variable, left, right):
@@ -13,7 +25,10 @@ def sturm_count(poly, variable, left, right):
         signs = []
         for entry in sequence:
             value = sp.sign(entry.subs(variable, point))
-            assert value in (-1, 0, 1)
+            require(
+                value in (-1, 0, 1),
+                f"non-real or indeterminate Sturm sign at {point}: {value}",
+            )
             if value:
                 signs.append(int(value))
         return sum(a != b for a, b in zip(signs, signs[1:]))
@@ -22,6 +37,7 @@ def sturm_count(poly, variable, left, right):
 
 
 def main():
+    reject_optimized_python()
     r, sigma, lam = sp.symbols("r sigma lam", positive=True)
     p = (r - 1) / r
 
@@ -39,54 +55,112 @@ def main():
     expected_d = 2 * (r * (2 - r) - sigma) / (
         sigma + 2 * r * (r - 1)
     )
-    assert sp.factor(F_b - expected_b) == 0
-    assert sp.factor(F_d - expected_d) == 0
+    require(sp.factor(F_b - expected_b) == 0, "Bd pair response identity failed")
+    require(sp.factor(F_d - expected_d) == 0, "dB pair response identity failed")
 
     G_b = sp.factor(F_b + lam / (r - 1))
     G_d = sp.factor(F_d - lam)
     lower = sp.factor(-(r - 1) * F_b)
     upper = sp.factor(F_d)
-    assert sp.factor(G_b - (lam - lower) / (r - 1)) == 0
-    assert sp.factor(G_d - (upper - lam)) == 0
+    require(
+        sp.factor(G_b - (lam - lower) / (r - 1)) == 0,
+        "Bd admissible-lambda identity failed",
+    )
+    require(
+        sp.factor(G_d - (upper - lam)) == 0,
+        "dB admissible-lambda identity failed",
+    )
 
     # A family with entirely rational edge weights already crosses 3/2.
     rational_sigma, rational_lam = sp.Rational(19, 137), sp.Rational(20, 27)
     endpoint_b = sp.factor(G_b.subs({r: sp.Rational(3, 2), sigma: rational_sigma, lam: rational_lam}))
     endpoint_d = sp.factor(G_d.subs({r: sp.Rational(3, 2), sigma: rational_sigma, lam: rational_lam}))
-    assert endpoint_b == sp.Rational(232, 17361)
-    assert endpoint_d == sp.Rational(65, 12123)
+    require(
+        endpoint_b == sp.Rational(232, 17361),
+        "rational Bd endpoint margin is incorrect",
+    )
+    require(
+        endpoint_d == sp.Rational(65, 12123),
+        "rational dB endpoint margin is incorrect",
+    )
     rational_b = sp.factor(G_b.subs({sigma: rational_sigma, lam: rational_lam}))
     rational_d = sp.factor(G_d.subs({sigma: rational_sigma, lam: rational_lam}))
-    assert sp.factor(rational_b - 4 * (95 * r**2 - 1593 * r + 2183) / (
-        27 * (r - 1) * (19 * r**2 + 118)
-    )) == 0
-    assert sp.factor(rational_d + 2 * (6439 * r**2 - 10138 * r + 703) / (
-        27 * (274 * r**2 - 274 * r + 19)
-    )) == 0
+    require(
+        sp.factor(
+            rational_b
+            - 4
+            * (95 * r**2 - 1593 * r + 2183)
+            / (27 * (r - 1) * (19 * r**2 + 118))
+        )
+        == 0,
+        "rational Bd response factorization failed",
+    )
+    require(
+        sp.factor(
+            rational_d
+            + 2
+            * (6439 * r**2 - 10138 * r + 703)
+            / (27 * (274 * r**2 - 274 * r + 19))
+        )
+        == 0,
+        "rational dB response factorization failed",
+    )
     rational_threshold = (sp.Integer(5069) + 12 * sp.sqrt(147001)) / 6439
-    assert sp.factor(6439 * rational_threshold**2 - 10138 * rational_threshold + 703) == 0
-    assert sp.Rational(3, 2) < rational_threshold < sp.Rational(151, 100)
-    assert rational_b.subs(r, rational_threshold) > 0
+    require(
+        sp.factor(6439 * rational_threshold**2 - 10138 * rational_threshold + 703)
+        == 0,
+        "rational-family threshold equation failed",
+    )
+    require(
+        sp.Rational(3, 2) < rational_threshold < sp.Rational(151, 100),
+        "rational-family threshold lies outside the claimed interval",
+    )
+    require(
+        rational_b.subs(r, rational_threshold) > 0,
+        "Bd rational response is not positive at the dB threshold",
+    )
 
     # Optimize the two-parameter leading family.  Equality of the lower and
     # upper admissible lambda bounds is quadratic in sigma.  Its discriminant
     # is the displayed degree-six phase polynomial.
     phase = r**6 - 8 * r**5 + 22 * r**4 - 30 * r**3 + 21 * r**2 - 6 * r + 1
     equality_numerator = sp.factor(sp.together(lower - upper).as_numer_denom()[0])
-    assert sp.factor(sp.discriminant(equality_numerator, sigma) - 4 * r**2 * phase) == 0
-    assert sturm_count(phase, r, sp.Rational(3, 2), sp.Rational(151, 100)) == 1
+    require(
+        sp.factor(sp.discriminant(equality_numerator, sigma) - 4 * r**2 * phase)
+        == 0,
+        "phase-polynomial discriminant identity failed",
+    )
+    require(
+        sturm_count(phase, r, sp.Rational(3, 2), sp.Rational(151, 100)) == 1,
+        "phase polynomial does not have one root in the isolating interval",
+    )
     # There are only two real roots; the smaller is the desired one.
-    assert sturm_count(phase, r, -100, 100) == 2
+    require(
+        sturm_count(phase, r, -100, 100) == 2,
+        "phase polynomial real-root count is not two",
+    )
 
     real_roots = [root for root in sp.nroots(phase, n=50) if abs(sp.im(root)) < sp.Rational(1, 10) ** 40]
     small = min(real_roots, key=lambda value: abs(sp.re(value) - sp.Rational(3, 2)))
-    assert sp.Rational(3, 2) < sp.re(small) < sp.Rational(151, 100)
+    require(
+        sp.Rational(3, 2) < sp.re(small) < sp.Rational(151, 100),
+        "numerical phase root lies outside the exact isolating interval",
+    )
     R_decimal = sp.re(small)
     sigma_decimal = (-R_decimal**3 + 4 * R_decimal**2 - 3 * R_decimal - 1) / (2 * (R_decimal - 1))
     lambda_decimal = lower.subs({r: R_decimal, sigma: sigma_decimal})
-    assert abs(float(R_decimal) - 1.5028569127905696) < 1e-15
-    assert abs(float(sigma_decimal) - 0.13067728228704838) < 1e-15
-    assert abs(float(lambda_decimal) - 0.7508064830318805) < 1e-15
+    require(
+        abs(float(R_decimal) - 1.5028569127905696) < 1e-15,
+        "displayed phase-root decimal is inaccurate",
+    )
+    require(
+        abs(float(sigma_decimal) - 0.13067728228704838) < 1e-15,
+        "displayed sigma decimal is inaccurate",
+    )
+    require(
+        abs(float(lambda_decimal) - 0.7508064830318805) < 1e-15,
+        "displayed lambda decimal is inaccurate",
+    )
 
     # The exact algebraic definitions use the unique root in the rational
     # isolating interval.  Substitution modulo the phase polynomial verifies
@@ -97,13 +171,16 @@ def main():
         phase,
         domain=sp.QQ,
     )
-    assert remainder == 0
+    require(remainder == 0, "exact double-root response identity failed")
     derivative_remainder = sp.rem(
         sp.together(sp.diff(equality_numerator, sigma).subs(sigma, sigma_star)).as_numer_denom()[0],
         phase,
         domain=sp.QQ,
     )
-    assert derivative_remainder == 0
+    require(
+        derivative_remainder == 0,
+        "exact tangency derivative identity failed",
+    )
 
     print(f"rational endpoint margins: Bd={endpoint_b}, dB={endpoint_d}")
     print(f"rational-edge-family threshold ~{float(rational_threshold):.15g}")

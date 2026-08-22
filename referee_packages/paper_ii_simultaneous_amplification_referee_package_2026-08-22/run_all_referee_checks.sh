@@ -13,6 +13,16 @@ case "$tmp_base" in
   *) echo "TMPDIR must be an absolute path: $tmp_base" >&2; exit 2 ;;
 esac
 
+"$bootstrap_python" -c '
+import sys
+if sys.flags.optimize != 0:
+    raise SystemExit(
+        "ERROR: optimized Python is unsupported because verification checks must remain active"
+    )
+if sys.version_info[:3] != (3, 14, 6):
+    raise SystemExit(f"ERROR: Python 3.14.6 is required; found {sys.version}")
+'
+
 "$bootstrap_python" "$package_dir/verify_referee_package.py"
 
 for command_name in tectonic pdfinfo pdftoppm; do
@@ -50,9 +60,11 @@ trap cleanup EXIT HUP INT TERM
 cp -R "$package_dir/source_and_certificates/." "$work_dir/"
 paper_dir="$work_dir/universal_simultaneous_amplification/phase4_landmark_closure/paper_hybrid_threshold"
 
-BOOTSTRAP_PYTHON="$bootstrap_python" "$paper_dir/bootstrap_replay.sh"
+PIP_NO_INDEX=1 BOOTSTRAP_PYTHON="$bootstrap_python" \
+  "$paper_dir/bootstrap_replay.sh"
 rebuilt_archive="$work_dir/rebuilt-source-and-certificates.tar.gz"
-"$paper_dir/release_bundle.sh" "$rebuilt_archive"
+PYTHON="$work_dir/universal_simultaneous_amplification/.venv-paper2/bin/python" \
+  "$paper_dir/release_bundle.sh" "$rebuilt_archive"
 cmp \
   "$package_dir/simultaneous_amplifier_beyond_three_halves_source_and_certificates.tar.gz" \
   "$rebuilt_archive"

@@ -10,11 +10,13 @@ correction required, invalid, or inconclusive / review incomplete.
 
 Work only on a disposable copy of the delivered package, preferably in an
 unprivileged sandbox or container with no personal credentials.  Do not
-contact any person, upload any file, or change any external system.  If
-dependency installation is needed, restrict network access to the configured
-Python package index and, only for document rendering, Tectonic's standard
-resource-bundle endpoint.  Record every command, exit status, software
-version, and independent calculation used in the review.
+contact any person, upload any file, or change any external system.  The
+Python dependencies are included for offline installation; no package-index
+access should be needed.  If document rendering needs a missing Tectonic
+resource, restrict network access to Tectonic's standard resource-bundle
+endpoint.  An optional read-only Git provenance check may use the stated
+remote.  Record every command, exit status, software version, and independent
+calculation used in the review.
 
 ## 1. Establish identity, completeness, and scope
 
@@ -23,9 +25,13 @@ version, and independent calculation used in the review.
    checksum, and archive's internal `MANIFEST.sha256`.  Confirm that archive
    members are safe regular files, the extracted tree is byte-identical to
    the archive payload, and the convenience PDF equals the PDF inside it.
-3. If network access is available, confirm that the stated immutable tag
-   resolves to the stated scientific commit.  A failure to perform this
-   optional network check is not a mathematical defect; record it.
+3. The source tag is annotated and unsigned.  If an independently obtained
+   repository checkout is available, inspect `verify_git_binding.py` and run
+   it to compare the tag object, peeled commit, all archived repository blobs,
+   and their modes.  Optionally confirm the tag and peeled commit against the
+   stated remote.  Neither check authenticates the signer, hosting account, or
+   authorship; record that provenance limitation.  Failure to perform this
+   optional check is not a mathematical defect.
 4. Read the entire PDF and LaTeX source, including declarations, limitations,
    and references.  Make a theorem ledger of every hypothesis, quantifier,
    uniformity statement, asymptotic scale, equality or strictness condition,
@@ -78,6 +84,12 @@ uniformity, and limiting order.
   stopped embedded-walk estimate and every `K^2/C` and `r^{-K}` error.
 - Audit continuous-time core confinement and every nested strip, entrance,
   synchronization, restart, success, escape, and block-duration stopping time.
+- In the Bd synchronization argument, verify that every pendant phase stops at
+  the next pendant-count change or upper-strip exit, that exit is assigned the
+  favorable terminal trace level, and the stopped submartingale proves
+  `O(m)` expected outcomes.  Check the separate `ell=0` two-phase boundary and
+  the initial resident-hub state at `ell=m`; do not accept an unstopped
+  pendant-hitting expectation.
 - For Bd cleanup, confirm that conditional estimates at block starts justify
   the geometric strong-Markov recursion without an independence assumption.
 - For dB cleanup, check the choice
@@ -126,10 +138,12 @@ uniformity, and limiting order.
 
 Use `CLAIM_CODE_MAP.md` only as an index.  Inspect
 `run_all_referee_checks.sh`, `verify_referee_package.py`,
-`bootstrap_replay.sh`, `replay.sh`, `build.sh`, `requirements.txt`, all four
-verifier programs, and every import before running them.  For each assertion,
-identify the exact manuscript statement it is intended to check and determine
-whether it checks that statement rather than a weaker surrogate.
+`verify_git_binding.py`, `bootstrap_replay.sh`, `replay.sh`, `build.sh`,
+`release_bundle.sh`, `bundle_manifest.py`, `requirements.txt`,
+`tests/test_verifier_fail_closed.py`, both bundled wheels, all four verifier
+programs, and every import before running them.  For each condition, identify
+the exact manuscript statement it is intended to check and determine whether
+it checks that statement rather than a weaker surrogate.
 
 In particular, check that:
 
@@ -142,16 +156,19 @@ In particular, check that:
 - hard-coded expected expressions are independently derived rather than
   accepted because the same expression occurs in both premise and check;
 - all failures propagate to a nonzero exit status and no exception or failed
-  assertion is suppressed;
+  condition is suppressed;
+- no verifier relies on a bare Python `assert`, optimized Python is rejected,
+  and the disposable early/late mutation regressions genuinely exercise
+  failure propagation;
 - `verify_paper_claims.py` is recognized as a marker/integration audit rather
   than a proof checker; and
 - no program is credited with proving the weak-cut or stochastic asymptotics.
 
 The finite lumping program uses one rational nine-vertex instance at fitness
-`3/2`; determine exactly what this tests and what it cannot establish.  The
-Python dependencies are version-pinned but their downloaded artifacts are not
-hash-pinned; record this as a reproducibility or supply-chain limitation if it
-matters in your environment, not automatically as a mathematical defect.
+`3/2`; determine exactly what this tests and what it cannot establish.  Inspect
+the two included pure-Python wheels, their hashes, metadata, and licenses, and
+confirm that bootstrap installation disables indexes and requires the stated
+hashes.  Python itself and the document toolchain are externally provisioned.
 
 ## 4. Execute and independently cross-check
 
@@ -159,9 +176,10 @@ After source inspection, run `./run_all_referee_checks.sh` from the package
 root with Python 3.14.6 (set `BOOTSTRAP_PYTHON` if needed).  Preserve the full
 transcript and exit status.  The command verifies package identity, checks the
 stated document-tool versions, creates a disposable source copy, installs the
-pinned Python dependencies, runs every delivered verifier, rebuilds the source
-archive and PDF through the standalone release entry point, and compares both
-byte-for-byte with the delivered artifacts.
+bundled hash-pinned Python dependencies offline, runs every delivered verifier
+and fail-closed regression, rebuilds the source archive and PDF through the
+standalone release entry point, and compares both byte-for-byte with the
+delivered artifacts.
 
 If a required tool is unavailable or has the wrong version, record the
 limitation and run the remaining checks manually; do not report complete

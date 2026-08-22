@@ -15,7 +15,17 @@ fi
 
 export PYTHONDONTWRITEBYTECODE=1
 
+"$python" -c '
+import sys
+if sys.flags.optimize != 0:
+    raise SystemExit(
+        "ERROR: optimized Python is unsupported because verification checks must remain active"
+    )
+'
+
 "$python" "$paper_dir/certificates/verify_leading_algebra.py"
 "$python" "$paper_dir/certificates/verify_hybrid_lumping.py"
 "$python" "$paper_dir/certificates/verify_hybrid_coefficients.py"
 "$python" "$paper_dir/verify_paper_claims.py"
+
+echo "PASS: Paper II verifier replay complete"

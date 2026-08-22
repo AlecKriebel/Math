@@ -52,7 +52,13 @@ asks for closely related work.  This note does not authorize external contact.
 
 ## Current Paper II status
 
-At the date of this note, the superseding Paper II package has no new Zenodo
-record, bioRxiv DOI, or journal publication.  A deterministic archive can be
-generated locally.  Publication-status text may be updated only after a
-human-authorized release or submission actually occurs.
+The superseding scientific source is frozen at commit
+`03e94e877ce10d9d459fd284bd652934cde08bb3` and annotated, unsigned tag
+`simultaneous-amplification-beyond-three-halves-v2.0.2`.  The source archive
+and 21-page PDF are deterministic local artifacts, and a copied neutral
+referee handoff reproduces both byte-for-byte.  The unsigned tag and local
+hashes establish consistency, not signer or authorship authentication.
+
+At the date of this note, this superseding Paper II package has no new Zenodo
+record, bioRxiv DOI, or journal publication.  Publication-status text may be
+updated only after a human-authorized release or submission actually occurs.

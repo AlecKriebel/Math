@@ -49,13 +49,13 @@ unrestricted exact threshold and any finite universal upper bound remain open.
 
 ## Freeze gates
 
-- [ ] Final hostile mathematical review reports no theorem, rate, scale, or
+- [x] Final hostile mathematical review reports no theorem, rate, scale, or
       quantifier defect.
-- [ ] Exact development replay and submission static audit exit zero.
-- [ ] Deterministic archive is byte-identical across two generations.
-- [ ] Fresh extraction passes its internal manifest and pinned exact replay.
-- [ ] PDF rebuilt from the extraction is byte-identical with the frozen PDF.
-- [ ] Every rendered page receives visual review after the last manuscript
+- [x] Exact development replay and submission static audit exit zero.
+- [x] Deterministic archive is byte-identical across two generations.
+- [x] Fresh extraction passes its internal manifest and pinned exact replay.
+- [x] PDF rebuilt from the extraction is byte-identical with the frozen PDF.
+- [x] Every rendered page receives visual review after the last manuscript
       edit.
 - [ ] Human author supplies only the private postal-address field, rechecks
       live venue rules, chooses licenses, and performs any submission.
