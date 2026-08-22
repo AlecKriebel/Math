@@ -267,3 +267,16 @@
   `c79fa2d3cb6431207823e3c66c3440cbeb94226d8a9925960883efca7dca2416`.
   The deterministic 14-page theorem PDF has SHA-256
   `a176f8c67a8a0b3dcf0d22acf9268cfea020367ab6ef296f9c964b6c67a38ca5`.
+
+## 2026-08-22 11:01 PDT — final clean-replay dependency repair (98%)
+
+- The first detached-checkout exhaustive replay passed all mathematical gates
+  reached in 620.14 seconds, then exposed a clean-room staging omission before
+  the exact-rank calculation: `k2p_atlas_core.py` had not been copied into the
+  temporary rank verifier tree.
+- The rank stage now hash-checks and copies that exact locked module, rejects a
+  deliberate omission with the expected import error, and runs a positive
+  import-closure preflight with ambient `PYTHONPATH` disabled.
+- The rebuilt release remains promotion-ready with no mathematical blockers.
+  Best-guess completion is 98% pending the repaired full replay, final PDF QA,
+  and deterministic referee archive.

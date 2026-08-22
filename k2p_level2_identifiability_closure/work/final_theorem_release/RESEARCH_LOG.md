@@ -330,3 +330,22 @@
   mutations reject.
 - Completion estimate is 98% pending a clean final full replay, deterministic
   archive, final PDF render/inspection, and immutable package hash binding.
+
+## 2026-08-22 11:01 PDT — clean full-replay staging defect isolated (98%)
+
+- A detached-checkout full replay passed every layer through both regenerated
+  full-map truth families and the composite reseal differential, then stopped
+  before rank computation because the temporary rank stage omitted
+  `k2p_atlas_core.py`. This was a packaging failure, not a rank or theorem
+  discrepancy.
+- Repaired the stage by copying the exact locked atlas module and checking its
+  SHA-256 before use. Ambient `PYTHONPATH` is now disabled for this gate.
+- Added an adversarial omission mutation that must fail with
+  `ModuleNotFoundError`, followed by a positive complete-import preflight,
+  before the expensive exact-rank replay begins.
+- Rebuilt the promotion-ready 198-file lock with payload
+  `9e83cae3f6274d5fc10a81c6be04f0b2ed17974f53185662334fbeb41037e11b`.
+  The recursive 374-file evidence closure is 434,694,608 bytes with content
+  root `0cab2517c8528c980dadc2637806e27a1e22e158e62fe4269e2a6435a955c890`.
+- Completion remains 98% until the repaired clean full replay passes and the
+  final reader package, PDFs, and deterministic archive are bound.

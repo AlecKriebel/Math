@@ -6,7 +6,6 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import os
 import shutil
 import subprocess
 import sys
@@ -57,13 +56,17 @@ def run_child(
     timeout: float,
     terminal_markers: tuple[bytes, ...] = (),
     cwd: Path = PROJECT,
+    environment_overrides: dict[str, str] | None = None,
 ) -> dict[str, Any]:
     started = time.perf_counter()
+    environment = child_environment()
+    if environment_overrides is not None:
+        environment.update(environment_overrides)
     try:
         result = subprocess.run(
             command,
             cwd=cwd,
-            env=child_environment(),
+            env=environment,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             timeout=timeout,
@@ -83,6 +86,53 @@ def run_child(
         "stdout_sha256": hashlib.sha256(result.stdout).hexdigest(),
         "stderr_sha256": hashlib.sha256(result.stderr).hexdigest(),
         "returncode": result.returncode,
+    }
+    print(
+        f"K2P_FINAL_LAYER_PASS name={name} elapsed_seconds={elapsed:.3f}",
+        flush=True,
+    )
+    return row
+
+
+def run_expected_failure(
+    name: str,
+    command: list[str],
+    *,
+    timeout: float,
+    required_markers: tuple[bytes, ...],
+    cwd: Path = PROJECT,
+    environment_overrides: dict[str, str] | None = None,
+) -> dict[str, Any]:
+    """Certify that an isolated dependency-omission mutation is rejected."""
+
+    started = time.perf_counter()
+    environment = child_environment()
+    if environment_overrides is not None:
+        environment.update(environment_overrides)
+    try:
+        result = subprocess.run(
+            command,
+            cwd=cwd,
+            env=environment,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            timeout=timeout,
+            check=False,
+        )
+    except subprocess.TimeoutExpired as error:
+        raise ReleaseFailure(f"EXPECTED_FAILURE_TIMEOUT:{name}:{timeout}") from error
+    elapsed = time.perf_counter() - started
+    output = result.stdout + result.stderr
+    require(result.returncode != 0, "EXPECTED_FAILURE_ACCEPTED", name)
+    for marker in required_markers:
+        require(marker in output, "EXPECTED_FAILURE_MARKER_MISSING", f"{name}:{marker!r}")
+    row = {
+        "name": name,
+        "status": "PASS",
+        "elapsed_seconds": round(elapsed, 6),
+        "stdout_sha256": hashlib.sha256(result.stdout).hexdigest(),
+        "stderr_sha256": hashlib.sha256(result.stderr).hexdigest(),
+        "observed_nonzero_returncode": result.returncode,
     }
     print(
         f"K2P_FINAL_LAYER_PASS name={name} elapsed_seconds={elapsed:.3f}",
@@ -648,6 +698,47 @@ def replay_rank_full(rows: list[dict[str, Any]], timeout: float) -> None:
             PROJECT / "package/referee/k2p_offline_sweep_portable/atlas",
             target_is_directory=True,
         )
+        rank_environment = {
+            "PYTHONPATH": "",
+            "PYTHONNOUSERSITE": "1",
+        }
+        rows.append(
+            run_expected_failure(
+                "four_port_exact_rank_staged_atlas_omission_mutation",
+                [
+                    str(qualified_python()),
+                    "-B",
+                    str(destination / "verify_rank_upper_certificates.py"),
+                    "--help",
+                ],
+                cwd=root,
+                timeout=min(timeout, 60.0),
+                required_markers=(b"ModuleNotFoundError", b"k2p_atlas_core"),
+                environment_overrides=rank_environment,
+            )
+        )
+        staged_atlas_module = destination / "k2p_atlas_core.py"
+        source_atlas_module = atlas / "k2p_atlas_core.py"
+        shutil.copy2(source_atlas_module, staged_atlas_module)
+        require(
+            sha_file(staged_atlas_module) == sha_file(source_atlas_module),
+            "RANK_STAGED_ATLAS_MODULE_HASH_DRIFT",
+        )
+        rows.append(
+            run_child(
+                "four_port_exact_rank_import_preflight",
+                [
+                    str(qualified_python()),
+                    "-B",
+                    str(destination / "verify_rank_upper_certificates.py"),
+                    "--help",
+                ],
+                cwd=root,
+                timeout=min(timeout, 60.0),
+                terminal_markers=(b"usage:",),
+                environment_overrides=rank_environment,
+            )
+        )
         rows.append(
             run_child(
                 "four_port_exact_rank_full",
@@ -661,6 +752,7 @@ def replay_rank_full(rows: list[dict[str, Any]], timeout: float) -> None:
                 cwd=root,
                 timeout=timeout,
                 terminal_markers=(b'"zero_unresolved": true',),
+                environment_overrides=rank_environment,
             )
         )
         compare_bytes(
