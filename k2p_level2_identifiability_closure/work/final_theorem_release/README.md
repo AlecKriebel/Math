@@ -44,6 +44,16 @@ drift, historical-artifact promotion or omission, and optimized-Python
 execution. The outer suite has 23 conceptual gates, all operating in isolated
 temporary copies.
 
+The release additionally binds the correction of an original certificate
+serialization defect. `verify_full_map_reseal.py` proves that the raw-four and
+theta2 truth certificates changed only in 8 and 85 domain-description leaves,
+their dependent nested seals, and their top seals; it also rejects arbitrary
+fully resealed domain prose and stale seals. In full mode,
+`verify_composite_reseal_diff.py` proves that the raw-four composite is
+byte-identical and that exactly 2,528 theta2 rows changed at the single leaf
+`evidence_binding.coefficient_certificate_sha256`, while reconstructing the
+prior theta2 gzip byte-for-byte.
+
 ## Referee commands
 
 The locked bundle does not contain a machine-specific virtual environment.
@@ -86,10 +96,12 @@ desired:
 .venv/bin/python -B work/final_theorem_release/verify_final_theorem_release.py --full
 ```
 
-Quick mode executes the final promotion guard and unified independent replay
-as well as every standard theorem layer. Full mode additionally regenerates
-the raw/rank, direct, theta2, corrected probe, independent primitive-graph
-probe audit, and unified mutation packages in isolated temporary trees.
+Quick mode executes the final promotion guard, the fail-closed full-map reseal
+audit, and the unified independent replay as well as every standard theorem
+layer. Full mode additionally reconstructs the composite reseal differential
+and regenerates the raw/rank, direct, theta2, corrected probe, independent
+primitive-graph probe audit, and unified mutation packages in isolated
+temporary trees.
 
 Every entry point explicitly rejects `python -O`. The ordinary-triangle
 replayer contains no Python `assert` statements and uses explicit exact

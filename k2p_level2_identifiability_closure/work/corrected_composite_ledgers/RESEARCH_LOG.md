@@ -107,3 +107,26 @@ All times are 2026-08-21 PDT.
 - Zero unresolved composite records.
 - Completion estimate for this bounded goal: **100%**.
 
+## 2026-08-22 — Full-map domain prose resealed and replayed
+
+- A clean full replay exposed an original byte-reproducibility defect: the
+  raw-four and theta2 full-map producers emitted the precise open-unit-cube
+  domain statement, while their frozen certificates retained an older
+  ambiguous sentence.
+- Regenerated and resealed both truth certificates.  An independent audit
+  proves that the old and new raw-four certificates differ in exactly 8
+  domain leaves, 8 dependent nested seals, and the top seal; theta2 differs in
+  exactly 85 domain leaves, 85 dependent nested seals, and the top seal.  No
+  mathematical field changed.
+- Regenerated both composite ledgers from primitive inputs.  Raw-four remained
+  byte-identical at `431dac8898ad...`.  Theta2 now has SHA-256
+  `805fc7f5a3de...`; all and only its 2,528 `full_map_Ti_strict_sign` rows
+  changed, at the single leaf
+  `evidence_binding.coefficient_certificate_sha256`.
+- Reconstructed the prior theta2 gzip byte-for-byte from the new package by
+  reversing those 2,528 seals, then independently regenerated the new ledger
+  byte-for-byte.  Both composite mutation suites again had zero survivors.
+- Updated outer composite-contract replay payload:
+  `5fd774fb9335a7ce1900dd80226c79fab8459f8fa3738c5274237c131113cde7`.
+- Completion estimate for the bounded composite layer: **100%**; completion
+  estimate for the final clean submission/release package: **94%**.

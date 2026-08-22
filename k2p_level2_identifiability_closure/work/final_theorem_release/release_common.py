@@ -123,10 +123,10 @@ COMPOSITE_SERIALIZATION = {
     "row_order": "raw_id_ascending",
 }
 PROMOTION_MANUSCRIPT_FILES = {
-    "work/global_theorem_closure/promotion_manuscript/K2P_SAME_PROMOTION_MANUSCRIPT.md": "6cd540649c146b5ff5932c432dcaac07745d57de77b18031ae1ebf8b9c704670",
+    "work/global_theorem_closure/promotion_manuscript/K2P_SAME_PROMOTION_MANUSCRIPT.md": "3e51241a2aca9b068f04cd3c954b442c09d6128d87c3a83a94f0df943c3a4c16",
     "work/global_theorem_closure/promotion_manuscript/QUANTIFIER_AUDIT.md": "425a041bc3e4cc7bd4f74c952455623ff26f430d9c4ceb006edcac9e8c3765d8",
     "work/global_theorem_closure/promotion_manuscript/PROBE_PROMOTION_PLACEHOLDER.json": "b3ae68a58280c2ebb686c2a1ea40074723916be2a1142b5255f91e3676825207",
-    "work/global_theorem_closure/promotion_manuscript/verify_promotion_gate.py": "6e3e301c2ae7b4c1867843603e360f31b3c1c34dc041f291255dc3d897a8e2d7",
+    "work/global_theorem_closure/promotion_manuscript/verify_promotion_gate.py": "62e0a1c30d281c0f4f176d1e265923915d0413ad2709782a18a019353b1f1a7b",
 }
 PROMOTION_GUARD_CENSUS = {
     "frozen_inputs_verified": 23,
@@ -367,6 +367,10 @@ def fixed_evidence_files() -> dict[str, str]:
         "work/final_theorem_release/build_release_lock.py": "harness",
         "work/final_theorem_release/verify_final_theorem_release.py": "harness",
         "work/final_theorem_release/run_release_mutations.py": "harness",
+        "work/final_theorem_release/verify_full_map_reseal.py": "corrected_finite_universe:full_map_reseal",
+        "work/final_theorem_release/full_map_reseal_audit.json": "corrected_finite_universe:full_map_reseal",
+        "work/final_theorem_release/verify_composite_reseal_diff.py": "corrected_finite_universe:composite_reseal",
+        "work/final_theorem_release/composite_reseal_diff_audit.json": "corrected_finite_universe:composite_reseal",
         "work/final_theorem_release/README.md": "harness",
         "work/final_theorem_release/RESEARCH_LOG.md": "harness",
         "work/final_theorem_release/CORRECTED_FINITE_UNIVERSE_CONTRACT.md": "harness",

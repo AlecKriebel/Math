@@ -160,7 +160,10 @@ def bernstein_certificate(polynomial):
         "positive_coefficients": signs[1],
         "minimum_coefficient": str(min(values)),
         "maximum_coefficient": str(max(values)),
-        "domain": "0<every edge-sector and inheritance variable<1 (hence D_plus)",
+        "domain": (
+            "the full open unit cube in edge-sector and inheritance variables; "
+            "therefore also its physical D_plus subset"
+        ),
         "conclusion": "strictly_negative",
     }
     result["certificate_sha256"] = sha(result)

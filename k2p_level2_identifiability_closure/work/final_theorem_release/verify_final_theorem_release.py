@@ -457,6 +457,14 @@ def quick_replays(rows: list[dict[str, Any]], timeout: float) -> None:
     replay_promotion_guard(rows, timeout)
     replay_output_program(
         rows,
+        name="full_map_domain_reseal",
+        script=HERE / "verify_full_map_reseal.py",
+        expected=HERE / "full_map_reseal_audit.json",
+        markers=(b'"status": "PASS"',),
+        timeout=timeout,
+    )
+    replay_output_program(
+        rows,
         name="corrected_universe_independent_replay",
         script=HERE / "verify_corrected_universe_independent.py",
         expected=HERE / "corrected_universe_independent_replay.json",
@@ -865,6 +873,14 @@ def full_replays(rows: list[dict[str, Any]], timeout: float) -> None:
         timeout=max(timeout, 4_000.0),
     )
     replay_full_map_truth(rows, timeout)
+    replay_output_program(
+        rows,
+        name="composite_domain_reseal_diff",
+        script=HERE / "verify_composite_reseal_diff.py",
+        expected=HERE / "composite_reseal_diff_audit.json",
+        markers=(b'"status": "PASS"',),
+        timeout=max(timeout, 1_200.0),
+    )
     replay_rank_full(rows, timeout)
     replay_raw4_corrected_overlay_full(rows, timeout)
     rows.append(

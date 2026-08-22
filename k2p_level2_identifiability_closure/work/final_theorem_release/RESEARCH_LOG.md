@@ -305,3 +305,28 @@
 - Best estimate is temporarily 99% while the final lock, clean-copy quick
   qualification, affected mutation suite, and independent sharpness re-audit
   are rerun. No mathematical finite-universe blocker is open.
+
+## 2026-08-22 — Domain-certificate reseal and strict replay repair (98%)
+
+- The first clean full replay exposed a genuine reproducibility defect in the
+  original raw-four and theta2 full-map certificate freezes: the producer
+  already emitted the precise open-unit-cube domain sentence, but the frozen
+  JSON retained an older ambiguous sentence. The mathematical payloads were
+  otherwise identical.
+- Chose the stricter repair over a tolerant comparator. Regenerated and
+  resealed the authoritative certificates, updated the independent theta2
+  verifier, and rejected all 10 theta2 and all 9 corrected-overlay mutations.
+- Added a deterministic reseal audit. It reconstructs the old raw-four file
+  from exactly 17 changed leaves and the old theta2 file from exactly 171
+  changed leaves; six targeted mutations covering arbitrary resealed prose,
+  stale nested seals, and stale top seals all reject.
+- Regenerated 405,216 raw-four and 2,946,240 theta2 composite rows. Raw-four
+  remained byte-identical. The theta2 differential is exactly 2,528
+  `full_map_Ti_strict_sign` rows and exactly one changed evidence-seal leaf per
+  row; the prior gzip is reconstructible byte-for-byte from the new package.
+- Both independent composite replays and all 26 composite mutations passed.
+  The refreshed unified five-family certificate and independent replay pass
+  with unchanged censuses and zero unresolved records; all 22 cross-layer
+  mutations reject.
+- Completion estimate is 98% pending a clean final full replay, deterministic
+  archive, final PDF render/inspection, and immutable package hash binding.

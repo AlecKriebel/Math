@@ -147,22 +147,22 @@ The authoritative producer package is now frozen.  The raw-four ledger has
 file SHA-256
 `431dac8898ad2a724d12c200687de1b377723e302214a79a11a03524a4084b96`
 and summary payload
-`9cbb689ab060d4ead06ab5bc995343267ad4abab7cd62aeca5b4cf39046e0190`.
+`8154acc38ad58b49e4f0f5b34f6fdb9999c0392dd947f91bc6017d8e2ab8d5cf`.
 Its independent primitive replay checks all 405,216 rows, including exact
 whole-map replay of the 16,974 corrected sign rows, and has payload
-`1a51d5ff1ab6b00fdb16259ac31a457d5d84fe9c272dbe1ea1c2ba70795e4bbe`.
+`0e167e742907394a77a0eab1614366e2460b86b13241577ad25e902822241ea8`.
 Its 14/14 temporary-copy mutation report has payload
-`63eca71e79f2447ec8bb1b3b84396f9fb63adc9138a8db4ab08640ed4a52c341`.
+`88bd552f75c87d0b084ab6a9fa09421ef16867b274a2be25b513ff9fdf9f010d`.
 
 The theta2 ledger has file SHA-256
-`4cbd7b774adccaafc81338ce9093e33f4abcae8d75664c9d4c9ecc582a80cc58`
+`805fc7f5a3de9dad2c63a210208075cf19910cf811ffd08878f32782ce71b659`
 and summary payload
-`6109900c2aa380cdfcf0b75fa3a12f283e8d3a35373e9498a2f976ba7b2c6059`.
+`480c27d82924bbf12adf1357f9e3bc216d1818dce68d061bb134f387e9737194`.
 Its independent primitive replay checks all 2,946,240 rows, including exact
 whole-map replay of the 2,528 corrected sign rows, and has payload
-`0e80f8c42cdaef062cc335c871b4daddd9e85592c3fad108903c634f448218a4`.
+`2fa46fd0ca70dbe00e8231686bfd790f57d76d9a33ddc4b07cffaa72e3b07e8b`.
 Its 12/12 temporary-copy mutation report has payload
-`18eaed9823eaafe3dbf726e6cf60e30abeb22aff0e404a06f1f36ecce506e536`.
+`5fce45398dc5f3ad948078ec5b66583d28e3af2cf3991f4f0931c0bfaf332e77`.
 The descendant ledger derives 56 restored roots, 864 children, and 832 leaves;
 these values are checked but are not enumeration controls.
 

@@ -15,11 +15,11 @@ theorem or make a mixed-sign claim.
 
 | Family | Rows | Compressed SHA-256 | Summary payload | Independent replay payload | Mutations |
 |---|---:|---|---|---|---:|
-| raw-four | 405,216 | `431dac8898ad2a724d12c200687de1b377723e302214a79a11a03524a4084b96` | `9cbb689ab060d4ead06ab5bc995343267ad4abab7cd62aeca5b4cf39046e0190` | `1a51d5ff1ab6b00fdb16259ac31a457d5d84fe9c272dbe1ea1c2ba70795e4bbe` | 14/14 rejected |
-| theta2 | 2,946,240 | `4cbd7b774adccaafc81338ce9093e33f4abcae8d75664c9d4c9ecc582a80cc58` | `6109900c2aa380cdfcf0b75fa3a12f283e8d3a35373e9498a2f976ba7b2c6059` | `0e80f8c42cdaef062cc335c871b4daddd9e85592c3fad108903c634f448218a4` | 12/12 rejected |
+| raw-four | 405,216 | `431dac8898ad2a724d12c200687de1b377723e302214a79a11a03524a4084b96` | `8154acc38ad58b49e4f0f5b34f6fdb9999c0392dd947f91bc6017d8e2ab8d5cf` | `0e167e742907394a77a0eab1614366e2460b86b13241577ad25e902822241ea8` | 14/14 rejected |
+| theta2 | 2,946,240 | `805fc7f5a3de9dad2c63a210208075cf19910cf811ffd08878f32782ce71b659` | `480c27d82924bbf12adf1357f9e3bc216d1818dce68d061bb134f387e9737194` | `2fa46fd0ca70dbe00e8231686bfd790f57d76d9a33ddc4b07cffaa72e3b07e8b` | 12/12 rejected |
 
 The current outer release-contract replay has payload
-`df840ff7962386c224edb9320d8f86dc184feaaa67256f8e56f0f65e83ab194f`.
+`5fd774fb9335a7ce1900dd80226c79fab8459f8fa3738c5274237c131113cde7`.
 
 ## Authoritative partition
 
@@ -97,7 +97,7 @@ Uncompressed stream sizes and SHA-256 values are:
 - raw-four: 391,559,514 bytes,
   `f3fa7f6568551e1f5daa5aa0fbeb7cfd5773c8fd1277588efed3f98a7c8f4033`;
 - theta2: 2,766,984,898 bytes,
-  `230392ee6f2bfb7844246f5700942259142c4b4981827cacd14abbd8bcd1ea39`.
+  `550e8c2d9d7f683d79e8955b91629f1fc527fc8b72a1f592e85d6ecc74642bb7`.
 
 ## Reproduction
 
@@ -134,4 +134,3 @@ independent temporary copies and verify that source fingerprints are unchanged.
 - `artifacts/release_contract_replay.json`: current outer-contract acceptance.
 
 No final-theorem locator was modified by this package.
-

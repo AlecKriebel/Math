@@ -124,36 +124,36 @@ FROZEN = {
         None,
     ),
     "work/corrected_composite_ledgers/artifacts/raw4_corrected_composite_summary.json": (
-        "ceeddc78bb128f73534055aa2017b00d2ee21d7514813862d595eff9c43cb694",
-        "9cbb689ab060d4ead06ab5bc995343267ad4abab7cd62aeca5b4cf39046e0190",
+        "515d6fea22d8388ab13c68066d0a57164b96baa684bf24b8f6da7da21bf6726c",
+        "8154acc38ad58b49e4f0f5b34f6fdb9999c0392dd947f91bc6017d8e2ab8d5cf",
     ),
     "work/corrected_composite_ledgers/artifacts/raw4_corrected_composite_independent_replay.json": (
-        "3e067178ca56f94672151dcf42d48e3b05b5cec411cd709c8b1ae00faf20b620",
-        "1a51d5ff1ab6b00fdb16259ac31a457d5d84fe9c272dbe1ea1c2ba70795e4bbe",
+        "d44705d2266aa1360acec19cdb8bf0fea648fc9c029ae96adb437a04ad5cce10",
+        "0e167e742907394a77a0eab1614366e2460b86b13241577ad25e902822241ea8",
     ),
     "work/corrected_composite_ledgers/artifacts/raw4_terminal_certificate_registry.json.gz": (
         "0a1818655429d60660c1ed87f3fbe412701f386b081562b3a4caa54079069f1d",
         None,
     ),
     "work/corrected_composite_ledgers/artifacts/raw4_corrected_composite_mutations.json": (
-        "2e5f23694ca89b1a021dfc58af829b6596cd497ec7469ca2f038095699b1e672",
-        "63eca71e79f2447ec8bb1b3b84396f9fb63adc9138a8db4ab08640ed4a52c341",
+        "449228fa4013234280434495e5c79468750de2785d5a2a2a8ad7d91bbdcae3a7",
+        "88bd552f75c87d0b084ab6a9fa09421ef16867b274a2be25b513ff9fdf9f010d",
     ),
     "work/corrected_composite_ledgers/artifacts/theta2_corrected_composite_ledger.jsonl.gz": (
-        "4cbd7b774adccaafc81338ce9093e33f4abcae8d75664c9d4c9ecc582a80cc58",
+        "805fc7f5a3de9dad2c63a210208075cf19910cf811ffd08878f32782ce71b659",
         None,
     ),
     "work/corrected_composite_ledgers/artifacts/theta2_corrected_composite_summary.json": (
-        "c2cbd444cc5de65f41352d87f3a4c7b809b4a250cdaad0af9be776ba3ea3b876",
-        "6109900c2aa380cdfcf0b75fa3a12f283e8d3a35373e9498a2f976ba7b2c6059",
+        "5c0c7c091982b3ce235f0380eeb6e4531419bf7d3dcbfe44b9535f1b0e122086",
+        "480c27d82924bbf12adf1357f9e3bc216d1818dce68d061bb134f387e9737194",
     ),
     "work/corrected_composite_ledgers/artifacts/theta2_corrected_composite_independent_replay.json": (
-        "58c37895cc896c69ba1c25db1476f83cd22dd2e2986535b358222698de94cc42",
-        "0e80f8c42cdaef062cc335c871b4daddd9e85592c3fad108903c634f448218a4",
+        "ed57b46c5e05a73f08a26afc99ae1bd5f0076e941b2da7ac411ecc52f3b63e58",
+        "2fa46fd0ca70dbe00e8231686bfd790f57d76d9a33ddc4b07cffaa72e3b07e8b",
     ),
     "work/corrected_composite_ledgers/artifacts/theta2_corrected_composite_mutations.json": (
-        "8f1915f313ebcd9012ea0b8448165b7733cae370e709dece0ad2c662f46b7fbe",
-        "18eaed9823eaafe3dbf726e6cf60e30abeb22aff0e404a06f1f36ecce506e536",
+        "c1c8012941ac58ae3f01a890caaa9e9ad05e8342d11a41d8a911de18dc3e6775",
+        "5fce45398dc5f3ad948078ec5b66583d28e3af2cf3991f4f0931c0bfaf332e77",
     ),
     "work/restoration_sign_reclassification/corrected_restoration_forest.json": (
         "43bd2be5e7626a954fc4fa4cf45e8d0e6483c947ddc9cba80f2b1a13351bc3a8",
