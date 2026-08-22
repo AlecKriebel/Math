@@ -32,7 +32,7 @@ If the supplemental-upload form requests a label, use **Supplementary Note**.
 Expected SHA-256 values for the sealed Version 1.2.4 files:
 
 - `main_biorxiv.pdf`:
-  `14c59978aa297cfda8870a9c33a4dc88caa32e8c4a8054a8fba315609aa34c47`
+  `8201ae7f8ab18d82ba7d87da4e1caf5c24fe2e40f1bb7115310db504a4dd4fe4`
 - `supplementary_note.pdf`:
   `8838eefbb4233f0cbaba988544c060efd483b94f6ab69781b2f7023134733d98`
 

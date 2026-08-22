@@ -33,7 +33,11 @@ product-form stationary distribution, moment or tail bound, mixing rate,
 exponential ergodicity, bounded-path guarantee, or useful uniform bound on the
 finite Foster set. Positive recurrence supplies long-run state frequencies
 and expectations of bounded observables; unbounded molecule-count moments
-require separate integrability.
+require separate integrability. Even at unit rates, a homodimer-cycle family
+shows that the logarithmic restoring coefficient produced by this particular
+episode/Foster construction can decay super-exponentially with the number of
+complexes; this is a limitation of the method, not a lower bound on the
+chain's return or mixing rate.
 
 The theorem removes the pure unary/pure-double-complex hypothesis from the
 binary one-linkage positive-recurrence result of Anderson, Cappelletti, and Kim

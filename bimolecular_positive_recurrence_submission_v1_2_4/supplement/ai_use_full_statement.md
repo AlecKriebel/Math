@@ -65,7 +65,9 @@ Stable tagged location:
   final definition and scope refinements, and preparation and validation of
   Version 1.2.4; followed by adjudication of an independently prompted
   AI-referee report, fail-closed tag-provenance tests, final submission-scope
-  wording, and release-package validation.
+  wording, and release-package validation; then adjudication of a differently
+  trained model's feedback, reconstruction of its unit-rate limitation claim,
+  and final proof-exposition review.
 
 The listed systems are proprietary services developed by OpenAI or Anthropic.
 They were used without fine-tuning, model modification, or training on a

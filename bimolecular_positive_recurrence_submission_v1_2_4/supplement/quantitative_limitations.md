@@ -112,6 +112,75 @@ This conclusion does not say that $K$ is infinite for a fixed rate vector;
 the theorem proves the opposite. It says that the finite set can move
 arbitrarily far out as rates degenerate.
 
+## Unit-rate structural attenuation
+
+The small restoring coefficient is not solely a rate-degeneration effect.
+For $r\ge2$, consider the unit-rate cycle on $r$ species
+
+\[
+ 0\longrightarrow y_1\longrightarrow\cdots\longrightarrow y_r
+ \longrightarrow0,
+ \qquad y_j=2S_j.
+\]
+
+Let $N\ge2$ be even, put $\rho_N=(N,\ldots,N)$, and carry target $y_1$ at
+$z_N=(\rho_N+y_1,y_1)$. These states belong to one augmented class: starting
+from zero, create $rN/2$ copies of $y_1$, pass the required pairs successively
+down the cycle to leave $N$ particles of every species, and then fire
+$0\to y_1$ once more to create the mark. Weak reversibility supplies return
+paths.
+
+Set
+
+\[
+ H_N=N(N-1),\qquad G_N=(N+2)(N+1),
+ \qquad T_N=1+G_N+(r-1)H_N,
+\]
+
+\[
+ p_N=\frac{G_N}{T_N},\qquad
+ \eta_N=\frac{\log G_N+(r-1)H_N\log(G_N/H_N)}{T_N}>0,
+\]
+
+and
+
+\[
+ \xi_N=-\frac{rH_N}{1+rH_N}\log H_N.
+\]
+
+At every nonzero phase, $\eta_N$ is the expected one-jump reward and $p_N$
+is the continuation probability. At terminal zero, $\xi_N$ is the expected
+ordinary-jump reward. Since the directed-cycle paths are unique, the exact
+recursion gives
+
+\[
+ D_0(z_N)=\eta_N\sum_{j=0}^{r-1}p_N^j+p_N^r\xi_N,
+ \qquad
+ D_{y_j}(z_N)=\eta_N\sum_{k=0}^{j-1}p_N^k>0.
+\]
+
+For each fixed $r$,
+
+\[
+ p_N=\frac1r+O_r(N^{-1}),\qquad
+ \eta_N=O_r(N^{-1}),\qquad
+ \xi_N=-2\log N+O\!\left(\frac{\log N}{N}\right),
+\]
+
+and therefore
+
+\[
+ D_0(z_N)=-\frac{2}{r^r}\log N
+ +O_r\!\left(\frac{\log N}{N}\right).
+\]
+
+Thus the present episode/Foster construction can produce a logarithmic
+restoring coefficient that decays super-exponentially in the number $r+1$ of
+complexes even though every rate constant is one. This is a quantitative
+limitation of this proof calibration. It is not evidence that the CTMC itself
+has a comparably slow return or mixing rate, and it does not rule out a more
+effective proof method.
+
 ## Claims not supplied by the theorem or verifier
 
 The proof and computational package do not provide:

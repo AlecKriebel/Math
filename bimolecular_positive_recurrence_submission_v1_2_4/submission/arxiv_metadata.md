@@ -25,8 +25,8 @@ Independent researcher
 
 **Abstract**
 
-Weak reversibility is conjectured to imply positive recurrence for stochastic
-mass-action systems. We prove the conjecture for finite bimolecular networks with one
+The Anderson--Kim conjecture asserts that weak reversibility implies positive
+recurrence for stochastic mass-action systems. We prove it for finite bimolecular networks with one
 linkage class, removing the earlier requirement that every species occur in a
 pure unary or pure-double complex. Under weak reversibility, the states
 reachable from each initial population form a closed communicating class.

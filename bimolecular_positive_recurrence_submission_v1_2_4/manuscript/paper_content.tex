@@ -14,8 +14,8 @@ classes and higher molecularity remain open.
 \else
 \begin{abstract}
 Stochastic mass-action reaction networks are chemical-master-equation models
-of low-copy-number biochemical systems.  Weak reversibility is conjectured to
-imply positive recurrence for such systems.  We prove the conjecture for finite bimolecular networks with
+of low-copy-number biochemical systems.  The Anderson--Kim conjecture asserts
+that weak reversibility implies positive recurrence.  We prove it for finite bimolecular networks with
 one linkage class, removing the earlier requirement that every species occur
 in a pure unary or pure-double complex.  Under weak reversibility, the states
 reachable from each initial population form a closed communicating class.
@@ -83,7 +83,9 @@ one-linkage case under the additional condition
   \{S_i,2S_i\}\cap\mathcal C\ne\varnothing
   \qquad\text{for every species }S_i.
 \end{equation}
-Thus each species had to occur in a pure unary or pure double complex.  The
+Under binaryity, this is equivalent to the authors' summary that each species
+has a complex that is a positive multiple of it: each species had to occur in
+a pure unary or pure double complex.  The
 proof of \citet{AndersonCappellettiKim2020} applies an entropy-like function
 to an \(n\)-step embedded chain.  In their published Section~6, a tier
 criterion, a finite reaction word, and a sampled-chain Foster argument are
@@ -636,6 +638,8 @@ Let \(I\) be the set of divergent coordinates and put
 \begin{equation}\label{eq:Rn}
   R_n=\sum_{i\in I}\log(\rho_i^{(n)}+1).
 \end{equation}
+Because the sequence leaves every finite set while \(t\) is fixed,
+\(I\ne\varnothing\) and \(R_n\to\infty\).
 After a further subsequence, the limits
 \begin{equation}\label{eq:weights}
   w_i=\lim_{n\to\infty}
@@ -888,6 +892,26 @@ for each fixed \(m\).  Thus, for every finite
 coefficient in \eqref{eq:rate-example-asymptotic} can be arbitrarily small.
 Consequently, neither the location nor the diameter of \(K\) is bounded by the
 numbers of species and complexes alone, uniformly over positive rate vectors.
+
+Severe attenuation in this particular construction is not confined to rate
+degeneration.  For \(r\ge2\), consider the unit-rate cycle
+\[
+  0\longrightarrow y_1\longrightarrow\cdots\longrightarrow y_r
+  \longrightarrow0,
+  \qquad y_j=2S_j.
+\]
+For even \(N\), the marked states
+\(z_N=((N,\ldots,N)+y_1,y_1)\) are reachable in one augmented class.  Along
+the unique path from \(y_1\) to \(0\), the exact recursion gives
+\begin{equation}\label{eq:unit-rate-attenuation}
+  D_0(z_N)=-\frac{2}{r^r}\log N
+  +O_r\!\left(\frac{\log N}{N}\right),
+\end{equation}
+whereas the episode drift to every nonzero terminal is positive.  Thus the
+logarithmic restoring coefficient supplied by the episode/Foster construction
+can decay super-exponentially in the number \(r+1\) of complexes even when all
+rates equal one.  This is a limitation of the construction, not a lower bound
+on the CTMC's true return or mixing rate.
 \end{remark}
 
 Outside \(K\), choose the lexicographically first terminal complex minimizing
@@ -1116,8 +1140,10 @@ probability distribution.  It does not provide explicit tail bounds,
 exponential ergodicity, or quantitative mixing rates.  The finite set
 \(K\) is obtained by analytic compactness, not by enumeration, and the proof
 gives no practically useful universal estimate of its location or diameter.
-Its scale can depend arbitrarily strongly on positive rate ratios, as the
-exact example following Proposition~\ref{prop:K} illustrates.  Effective
+Its scale can depend arbitrarily strongly on positive rate ratios, and its
+restoring coefficient can deteriorate super-exponentially with path length
+even at unit rates, as the exact examples following
+Proposition~\ref{prop:K} illustrate.  Effective
 rate-dependent recurrence, tail, and mixing estimates remain open.
 Equation~\eqref{eq:occupation-formula} gives a regenerative representation,
 but not a closed-form or product-form stationary distribution; unbounded

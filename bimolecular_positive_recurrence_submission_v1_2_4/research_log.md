@@ -5,6 +5,19 @@ work only; no external contact or submission was made.
 
 ## 22 August 2026
 
+- Adjudicated a second, differently trained model's feedback against the
+  current source and primary records. The report had reviewed an earlier
+  snapshot; its venue, title, Xu, corollary, wrapper, and disclosure concerns
+  did not identify current defects.
+- Reconstructed the proposed unit-rate deterioration example independently.
+  Rejected its underspecified threshold table, but retained the valid and
+  fully specified homodimer-cycle calculation showing a method-specific
+  coefficient $2r^{-r}$. Explicitly distinguished this proof calibration
+  from the CTMC's unknown quantitative return and mixing behavior.
+- Named the Anderson--Kim conjecture in the preprint abstract, stated
+  $I\ne\varnothing$ and $R_n\to\infty$ in the compactification, and noted
+  the equivalence between the published ACK condition and its positive-multiple
+  summary under binaryity. No theorem or proof mechanism changed.
 - Adjudicated an independently prompted AI-referee report whose separated
   proof, software, and adversarial tracks found the theorem established and
   the release content reproducible. No theorem or proof change was required.

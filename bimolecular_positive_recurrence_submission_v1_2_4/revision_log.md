@@ -28,6 +28,13 @@ tag, PDFs, archive, validation record, theorem, and standalone verifier.
   August 2026. Rebuilt the outer manuscript, package, and public artifacts.
   The Version 1.2.0 verifier and canonical report remain byte-for-byte
   unchanged.
+- Adjudicated a differently trained model's feedback without importing its
+  underspecified unit-rate threshold table. Added the rigorous unit-rate
+  homodimer-cycle coefficient $2r^{-r}$ as a method-specific quantitative
+  limitation, made $I\ne\varnothing$ and $R_n\to\infty$ explicit, named
+  the Anderson--Kim conjecture in the preprint abstract, and clarified the
+  binary equivalence of the ACK condition. The theorem and proof mechanism
+  remain unchanged.
 
 ## Version 1.2.3 editorial patch — 17 August 2026
 

@@ -167,7 +167,11 @@ $q_mc_m\to0$, hence
 The negative logarithmic coefficient can approach zero through positive rate
 ratios. Thus no bound on the location or diameter of the proof's finite Foster
 set $K$ can depend only on the numbers of species and complexes uniformly
-over all positive rate vectors. No stronger quantitative claim is made.
+over all positive rate vectors. Separately, the unit-rate homodimer cycle
+$0\to2S_1\to\cdots\to2S_r\to0$ gives a method-specific logarithmic
+coefficient $2r^{-r}$ along balanced residuals. This records severe path-length
+attenuation in the episode construction, not a lower bound on the CTMC's
+return or mixing rate.
 
 ## 8. Markov-chain and physical-time closure
 
@@ -229,10 +233,12 @@ certifies a useful bound on it.
 Release identifiers and the replay procedure are recorded under `validation/`;
 durable file hashes are in `supplement/MANIFEST.sha256`. The last full
 submission audit is `audit/publication_v1_2_submission_audit.md`; the current
-referee-response record is
-`audit/publication_v1_2_4_independent_referee_response.md`, and the preceding
-editorial record is `audit/publication_v1_2_4_editorial_audit.md`. Intervening
-focused records remain under `audit/` with their historical dates. The focused Version 1.1
+feedback record is
+`audit/publication_v1_2_4_diverse_model_feedback_audit.md`, following the
+independent-referee response in
+`audit/publication_v1_2_4_independent_referee_response.md` and the editorial
+record in `audit/publication_v1_2_4_editorial_audit.md`. Intervening focused
+records remain under `audit/` with their historical dates. The focused Version 1.1
 mathematical and primary-source replays remain, with their historical dates,
 in `supplement/v1_1_mathematical_audit.md` and
 `supplement/publication_v1_1_literature_audit.md`.
