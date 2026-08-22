@@ -677,8 +677,9 @@ Moreover, fixation from one mutant pendant satisfies
 \end{lemma}
 
 \begin{proof}
-We first synchronize the hub and its pendants while the core is confined.
-Under Bd, freeze $(i,R,\ell)$ between hub and pendant events and put
+We first synchronize the hub and its pendants while the core is confined.  Put
+$\tau_\uparrow=\inf\{s\geq0:R_s\geq2\delta c\}$.  Under Bd, freeze
+$(i,R,\ell)$ between hub and pendant events and put
 \[
  H_+=r(i/c+\ell),\quad H_-=R/c+m-\ell,
  \quad U_\ell=\frac{r(m-\ell)}{c+m},\quad
@@ -698,9 +699,11 @@ To make the interruption comparison formal, replace these rates by
  \qquad \underline U_\ell=\frac{r_-(m-\ell)}{c+m},
 \]
 and let $(\underline p_0,\underline p_1)$ solve the same two equations with
-these worst rates and $V_\ell$.  The resulting two-state hitting function is
+these worst rates and $V_\ell$.  Extend this two-state hitting function by
+giving an upper-strip exit the boundary value one.  The resulting function is
 subharmonic for the full $(h,i,\ell)$ generator until the next pendant-count
-change: core jumps leave it unchanged, while
+change or $\tau_\uparrow$: core jumps inside the strip leave it unchanged, a
+jump through the upper boundary can only increase it, and
 $H_+\geq\underline H_+$, $H_-\leq\overline H_-$, and
 $U_\ell\geq\underline U_\ell$ move its generator in the favorable direction.
 Indeed, the two renewal equations give
@@ -713,9 +716,10 @@ Indeed, the two renewal equations give
 direct differentiation shows that both are increasing in $H_+$ and
 $U_\ell$ and decreasing in $H_-$.  This proves the asserted favorable
 monotonicity rather than leaving it implicit.
-Optional stopping therefore makes it a lower bound even with an adapted
-sequence of core interruptions.  Its next-leaf up/down odds, from either hub
-phase, are bounded below by
+Optional stopping therefore makes it a lower bound for the probability that
+the next stopped outcome is an upward pendant change or upper-strip exit, even
+with an adapted sequence of core interruptions.  For $1\leq\ell<m$, its
+up-or-exit/down odds, from either hub phase, are bounded below by
 \begin{equation}
  \frac{\underline H_+\underline U_\ell}
       {\overline H_-V_\ell}
@@ -723,40 +727,76 @@ phase, are bounded below by
  \geq\frac{r_-^2}{1+2\delta}\{1-o(1)\}>1.
 \label{eq:leaf-trace-odds}
 \end{equation}
-for $1\leq\ell<m$.
 
-The calendar-time estimate can be checked without suppressing core events.
-During an $h=0$ phase the activation-or-loss intensity is bounded below by a
-positive constant, and during an $h=1$ phase the deactivation-or-gain
-intensity is at least $m-\ell\geq1$.  Moreover,
+We now keep the same stopping boundary in the calendar-time estimate.  For an
+initial state with $\ell<m$, let
+$\xi=\tau_{\{\ell=m\}}\wedge\tau_\uparrow$, put $\sigma_0=0$, and, while
+$\sigma_j<\xi$, set
+\[
+ \sigma_{j+1}
+ =\inf\{s>\sigma_j:\ell_s\ne\ell_{\sigma_j}\}\wedge\tau_\uparrow.
+\]
+Assign the stopped trace the level
+$\widehat\ell_j=\ell_{\sigma_j}$ when $\sigma_j<\tau_\uparrow$ and the level
+$\widehat\ell_j=m$ when $\sigma_j=\tau_\uparrow$, and keep it at $m$
+thereafter.  Put $N=\inf\{j:\widehat\ell_j=m\}$.  The stopped committor
+comparison above gives a fixed $\beta>1$ such that, on $\{j<N\}$, the
+conditional up-or-exit/down odds of $\widehat\ell$ are at least $\beta$; at
+$\ell=0$ a downward move is impossible.  Thus, with
+$\varepsilon=(\beta-1)/(\beta+1)>0$,
+$\widehat\ell_{j\wedge N}-\varepsilon(j\wedge N)$ is a submartingale.
+Optional stopping at $N\wedge k$ gives
+\[
+ \varepsilon\,\mathbb E(N\wedge k)
+ \leq\mathbb E\widehat\ell_{N\wedge k}-\ell_0\leq m,
+\]
+and monotone convergence gives $\mathbb EN\leq m/\varepsilon=O(m)$.
+
+It remains to convert stopped trace changes into calendar time.  Before
+$\tau_\uparrow$, during an $h=0$ phase the activation-or-loss intensity is
+bounded below by a positive constant, and during an $h=1$ phase with
+$\ell<m$ the deactivation-or-gain intensity is at least
+$m-\ell\geq1$.  Moreover,
 \begin{align*}
- \Prob(\text{loss before activation}\mid h=0)
- &\geq \frac{V_\ell}{r_+(1+\ell)+V_\ell}\geq\frac{c_0}{C},\\
- \Prob(\text{gain before deactivation}\mid h=1)
+ \Prob(\text{loss or upper exit before activation}\mid h=0)
+ &\geq \frac{V_\ell}{r_+(1+\ell)+V_\ell}\geq\frac{c_0}{C},
+ &&1\leq\ell<m,\\
+ \Prob(\text{gain or upper exit before deactivation}\mid h=1)
  &\geq\frac{\underline U_\ell}
- {2\delta+m-\ell+\underline U_\ell}\geq\frac{c_0}{C}.
+ {2\delta+m-\ell+\underline U_\ell}\geq\frac{c_0}{C},
+ &&0\leq\ell<m.
 \end{align*}
-Core jumps contribute zero to functions of $(h,\ell)$ and do not pause these
-competing clocks.  Hence the number of hub phases before the next pendant
-change is dominated by a geometric variable of mean $O(C)$, and each phase
-has uniformly bounded mean duration.  Thus
+At $\ell=0$ a resident-hub phase has no loss, but it ends by activation (or
+upper exit), after which the mutant-hub bound applies.  Core jumps contribute
+zero to functions of $(h,\ell)$ and do not pause these competing clocks.
+Consequently, grouping at most two consecutive hub phases, the number of
+phases before the next pendant change or upper-strip exit has conditional mean
+$O(C)$, and every phase has uniformly bounded conditional mean duration.
+Thus, on $\{j<N\}$,
 \begin{equation}
  \mathbb E(\sigma_{j+1}-\sigma_j\mid\mathcal F_{\sigma_j})
  \leq K_0C,
 \label{eq:leaf-wait}
 \end{equation}
-where $\sigma_j$ are successive pendant-count changes.
-Thus the pendant trace is dominated below by a reflected walk whose
-up/down odds are at least a fixed $\beta>1$.  It makes $O(m)$ expected
-changes before reaching $m$; together with \eqref{eq:leaf-wait},
+and summing over $j<N$ yields
+$\mathbb E\xi\leq K_0C\,\mathbb EN=O(Cm)$.  If initially
+$(h,\ell)=(0,m)$, activation, pendant loss, or upper-strip exit occurs in
+bounded mean time.  The probability that loss occurs first is $O(C^{-1})$;
+activation or exit stops the synchronization, while after a loss the preceding
+trace starts from $m-1$.  Therefore, for
+\[
+ \Sigma=\inf\{s\geq0:(h_s,\ell_s)=(1,m)
+                         \text{ or }R_s\geq2\delta c\},
+\]
 \begin{equation}
- \sup_{R\leq2\delta c}\mathbb E\tau_{\{\ell=m\}}=O(Cm).
+ \sup_{\substack{0\leq R<2\delta c,\ h\in\{0,1\}\\0\leq\ell\leq m}}
+ \mathbb E_{h,R,\ell}\Sigma=O(Cm).
 \label{eq:leaf-hitting-time}
 \end{equation}
 
-At $\ell=m$, a resident hub activates before the next pendant loss with
-probability $1-O(C^{-1})$.  After activation, first suppress hub loss and
-keep $\ell=m$.  The Bd deficit generator is then exactly
+On the nonexceptional event $\{\Sigma<\tau_\uparrow\}$ the process is at
+$(h,\ell)=(1,m)$.  First suppress hub loss and keep $\ell=m$.  The Bd deficit
+generator is then exactly
 \[
  \mathcal G R
  =-R\left\{\frac r{c+m}+(r-1)\left(1-\frac Rc\right)\right\}.
@@ -781,8 +821,9 @@ the upper-exit event therefore yield
 \end{equation}
 The same exponential Lyapunov estimate makes this final cleanup occur within
 $C^2$ with probability $1-o(1)$.  Together with
-\eqref{eq:leaf-hitting-time} and $m=o(C)$, Markov's inequality gives a fixed
-$s_0>0$ chance of full cleanup in a block of $2C^2$ time.  If hub loss ends
+\eqref{eq:leaf-hitting-time}, $m=o(C)$, Markov's inequality, and
+\eqref{eq:core-confinement}, this gives a fixed $s_0>0$ chance of full cleanup
+in a block of $2C^2$ time.  If hub loss ends
 an unsuccessful final attempt, the same adapted deficit comparison, now
 using the nested strips $2\delta c<3\delta c<4\delta c$ after shrinking
 $\delta$, returns the process to $R\leq\delta c$ in polynomial time before
@@ -802,9 +843,7 @@ put
  \Sigma_j=\inf\{s\geq S_j:(h_s,\ell_s)=(1,m)
                          \text{ or }R_s\geq2\delta c\}.
 \]
-At each visit to $\ell=m$ with resident hub, activation precedes the next
-pendant loss with probability $1-O(C^{-1})$; after a loss the same pendant
-trace restarts.  Thus \eqref{eq:leaf-hitting-time} also gives
+The stopped synchronization estimate \eqref{eq:leaf-hitting-time} gives
 $\mathbb E(\Sigma_j-S_j\mid\mathcal F_{S_j})\leq K C m$, with a hit of
 $2\delta c$ charged as exceptional.  From a nonexceptional $\Sigma_j$, run
 the final cleanup until fixation, hub loss, or a hit of $3\delta c$;
@@ -881,9 +920,10 @@ and put $T=\beta_0\log C$.  Then
  K\frac{R_s+m-\ell_s}{C}\,ds
    \leq\frac K C\left(\frac{R_0}{\kappa}+m\right)=o(1).
 \end{align*}
-Here $\tau_\uparrow=\tau_{\{R\geq2\delta c\}}$; its omitted upper-strip exit
-has probability $e^{-\gamma C}$.  Since $m=O(C^{1/4})$, the choice of
-$\beta_0$ makes the first two displayed probabilities $O(C^{-B_0-2})$,
+The upper-strip exit at the already defined $\tau_\uparrow$ is omitted from
+these displays and has probability $e^{-\gamma C}$.  Since $m=O(C^{1/4})$,
+the choice of $\beta_0$ makes the first two displayed probabilities
+$O(C^{-B_0-2})$,
 whereas hub survival has probability $1-o(1)$.  Thus an activated attempt
 started in $R\leq R_0$ succeeds with
 probability at least $1/2$ for large $C$.  After a failed attempt, confinement
@@ -1472,8 +1512,13 @@ verifiers, labelled-chain audit, and pinned build and replay scripts accompany
 this revision as the deterministic Supplementary Material archive
 \nolinkurl{simultaneous_amplifier_beyond_three_halves_source_and_certificates.tar.gz}.
 It contains an internal SHA-256 manifest and a fresh-environment bootstrap.
+The two pure-Python dependencies are supplied as hash-pinned wheels, so the
+exact certificate replay requires no package-index access once Python 3.14.6
+is available.  Rebuilding the document separately requires externally
+installed Tectonic and Poppler tools and may require Tectonic's standard
+resource cache or endpoint.
 The corresponding development sources are in the
-\href{https://github.com/AlecKriebel/Math/tree/simultaneous-amplification-beyond-three-halves-v2.0.1/universal_simultaneous_amplification/phase4_landmark_closure/paper_hybrid_threshold}{paper-specific frozen repository directory}.
+\href{https://github.com/AlecKriebel/Math/tree/simultaneous-amplification-beyond-three-halves-v2.0.2/universal_simultaneous_amplification/phase4_landmark_closure/paper_hybrid_threshold}{paper-specific frozen repository directory}.
 The full-repository software snapshot at
 \href{https://doi.org/10.5281/zenodo.21852072}{doi:10.5281/zenodo.21852072}
 contains the unrefereed v1

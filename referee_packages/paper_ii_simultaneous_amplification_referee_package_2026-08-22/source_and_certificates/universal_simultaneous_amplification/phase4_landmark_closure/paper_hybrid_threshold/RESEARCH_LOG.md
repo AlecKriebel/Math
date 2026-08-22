@@ -25,7 +25,7 @@
 - Copied the three exact scientific certifiers into a paper-local
   `certificates/` directory: leading-response/tangency algebra, labelled
   hybrid lumping, and hybrid coefficient/rational-edge-family algebra.  The replay
-  is now self-contained and adds a paper-level integration audit.
+  is now paper-local and adds a paper-level integration audit.
 - Restricted the public archive to an exact 17-source-file whitelist (19
   members after synthetic metadata and manifest).  Excluded older proof notes
   and wrappers, discovery searches, sparse numerical diagnostics, the retired
@@ -176,5 +176,71 @@
   The referee runner will now rebuild and compare both the PDF and source
   archive from its disposable extraction.
 - Advanced the deterministic source epoch to 22 August 2026 UTC and reserved
-  the immutable v2.0.1 tag for this superseding reproducibility-only freeze.
+  the frozen annotated, unsigned v2.0.1 tag for this superseding
+  reproducibility-only freeze.
   No theorem, proof, certificate identity, or response value changed.
+
+## 2026-08-22 — neutral AI-referee handoff closed
+
+- Froze the scientific source at commit `2302d7c6ae17fc061a985da322df6d0600b66672`
+  and annotated, unsigned tag
+  `simultaneous-amplification-beyond-three-halves-v2.0.1` before constructing
+  the later wrapper, avoiding a self-referential package identity.
+- Created a copied referee folder and transferable outer archive containing
+  the manuscript PDF, deterministic 19-member source archive, exact extracted
+  tree, whole-package manifest, claim-to-code map, neutral prompt, report
+  template, integrity verifier, and isolated all-check runner.  Prior verdicts
+  and saved successful output are excluded from the handoff.
+- The final runner verified 29 wrapper payloads and all 19 internal members,
+  ran every exact certificate, and rebuilt both the source archive and 20-page
+  PDF byte-for-byte.  Negative tests confirmed nonzero exits for altered
+  package bytes, a nonregular node, an altered certificate, a missing tool,
+  and an invalid temporary-directory setting.
+- Independent prompt, package-integrity, and blind theorem/code adversaries
+  found no remaining actionable issue.  The prompt permits an inconclusive
+  verdict when material checks cannot be completed and explicitly separates
+  analytic stochastic proofs from finite exact certificates.  Workstream and
+  handoff completion: **100%**; external submission remains a human action.
+
+## 2026-08-22 — independent referee correction cycle opened
+
+- Reproduced the referee's mathematical counterexample to the two unstopped
+  pendant waiting-time displays.  The needed claim is the synchronization-or-
+  upper-exit stopping time already used by the block recursion, so the repair
+  is localized and changes neither the theorem nor its gain scale.
+- Independently found and corrected the adjacent `ell=0` boundary of the
+  resident-hub loss estimate.  The zero-pendant state is handled by a block of
+  at most two hub phases.
+- Reproduced the optimized-Python false pass and replaced every critical bare
+  assertion with an explicit failure.  Added direct optimized-mode rejection,
+  disposable early and late mutations, and whole-replay failure-propagation
+  tests.
+- Vendored and hash-pinned the two pure-Python dependency wheels for offline
+  certificate replay, routed one selected interpreter through release
+  construction, and made source/archive executable modes explicit.  The PDF
+  toolchain remains externally provisioned and is described accordingly.
+- Revised sources and focused tests pass.  Full rendering, clean extraction,
+  wrapper regeneration, independent post-repair review, and final freeze
+  remain.  Estimated completion of this correction cycle: **88%**.
+
+## 2026-08-22 — post-referee scientific correction closed
+
+- A fresh full-manuscript adversary independently re-read the 1,660-line
+  theorem chain after the stopping repair.  It verified the stopped committor,
+  positive-drift trace, calendar-time conversion, both boundary cases, and all
+  cleanup/regeneration uses, and found no remaining mathematical issue.
+- Every violated mathematical and integration condition now raises explicitly
+  under an ordinary interpreter, and every entry point rejects optimized Python.  The
+  regression suite passes direct optimized-mode, early exact-identity, late
+  integration-marker, and shell failure-propagation tests.
+- The Python replay now installs offline from the included, hash-pinned SymPy
+  and mpmath wheels.  The archive builder uses one selected Python 3.14.6,
+  enforces exact source and member modes, and rejects malformed, unsafe, or
+  duplicate internal-manifest entries.  Internal hashes are documented as
+  consistency evidence rather than authorship authentication.
+- Exact replay, the static submission audit, two deterministic archive
+  generations, fresh extraction, offline bootstrap, archive/PDF regeneration,
+  compiler-log and font checks, and visual inspection of all 21 pages pass.
+  The scientific correction is **100% complete** and ready for the annotated,
+  unsigned v2.0.2 source freeze; wrapper regeneration and external submission
+  remain procedural tasks.

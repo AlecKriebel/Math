@@ -122,4 +122,16 @@ theorem.
 
 **Post-repair verdict:** no theorem, rate, scale, quantifier, verifier,
 reproducibility, or rendering issue remains in the scientific source.  The
-next freeze must use a new v2.0.2 tag rather than moving v2.0.1.
+corrected source was frozen without moving v2.0.1 at commit
+`03e94e877ce10d9d459fd284bd652934cde08bb3` and annotated, unsigned tag
+`simultaneous-amplification-beyond-three-halves-v2.0.2`.
+
+The regenerated neutral wrapper then passed its own exact 34-payload
+manifest, all 23 source-archive members, a full clean offline Python replay,
+byte-identical source-archive and PDF regeneration, and comparison of all 21
+repository-backed archive blobs and modes with the frozen tag.  Optimized
+execution and independent top-level and extracted-source mode mutations were
+rejected.  Its deterministic 35-file outer archive has SHA-256
+`2216c6a31545b38d9ca89c9d43c5a309bfcc6c2c1f7ab63ea5fabc171116e1d2`.
+The tag remains unsigned and the optional Git comparison is consistency
+evidence, not signer or authorship authentication.

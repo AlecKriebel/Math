@@ -8,7 +8,12 @@ venv="$project_root/.venv-paper2"
 
 "$bootstrap_python" -c '
 import sys
-assert sys.version_info[:3] == (3, 14, 6), sys.version
+if sys.flags.optimize != 0:
+    raise SystemExit(
+        "ERROR: optimized Python is unsupported because verification checks must remain active"
+    )
+if sys.version_info[:3] != (3, 14, 6):
+    raise SystemExit(f"ERROR: Python 3.14.6 is required; found {sys.version}")
 '
 
 if [ ! -x "$venv/bin/python" ]; then
@@ -23,10 +28,24 @@ fi
 "$venv/bin/python" -c '
 import importlib.metadata as metadata
 import sys
-assert sys.version_info[:3] == (3, 14, 6), sys.version
-assert metadata.version("sympy") == "1.14.0"
-assert metadata.version("mpmath") == "1.3.0"
+if sys.flags.optimize != 0:
+    raise SystemExit(
+        "ERROR: optimized Python is unsupported because verification checks must remain active"
+    )
+if sys.version_info[:3] != (3, 14, 6):
+    raise SystemExit(f"ERROR: Python 3.14.6 is required; found {sys.version}")
+sympy_version = metadata.version("sympy")
+mpmath_version = metadata.version("mpmath")
+if sympy_version != "1.14.0":
+    raise SystemExit(
+        f"ERROR: SymPy 1.14.0 is required; found {sympy_version}"
+    )
+if mpmath_version != "1.3.0":
+    raise SystemExit(
+        f"ERROR: mpmath 1.3.0 is required; found {mpmath_version}"
+    )
 print("PASS: Python 3.14.6, SymPy 1.14.0, and mpmath 1.3.0")
 '
 
 PYTHON="$venv/bin/python" "$paper_dir/replay.sh"
+"$venv/bin/python" "$paper_dir/tests/test_verifier_fail_closed.py"

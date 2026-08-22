@@ -64,3 +64,34 @@ not QA evidence for this revised manuscript.
 
 This wrapper record is historical.  A new v2.0.2 wrapper will be recorded
 below after the corrected scientific commit and tag are frozen.
+
+## Corrected v2.0.2 neutral referee wrapper
+
+- Scientific source commit:
+  `03e94e877ce10d9d459fd284bd652934cde08bb3`.
+- Annotated, unsigned tag:
+  `simultaneous-amplification-beyond-three-halves-v2.0.2`; tag object
+  `be3946c051c7f7e2073d6adf81bca31ae750251a`.  The remote tag object and
+  peeled commit were checked against the local freeze.
+- Referee folder: 34 manifested payloads plus
+  `PACKAGE_MANIFEST.sha256`, for 35 regular files total.
+- Nested source archive: 23 members, SHA-256
+  `d2145513f8abe295e9e7fab62f062fa9d0f7a6282de95e8155f3db4621485274`.
+- Nested and convenience manuscript PDF: 21 pages, SHA-256
+  `4e86597bb0baff388e8ce7ccf6ffd808f86b5ea846acf6f2188b31016fd2572c`.
+- Deterministic outer referee archive: 35 regular files, reproduced
+  byte-for-byte, SHA-256
+  `2216c6a31545b38d9ca89c9d43c5a309bfcc6c2c1f7ab63ea5fabc171116e1d2`.
+- A fresh outer-archive extraction passed wrapper and nested manifests,
+  offline pinned Python bootstrap, every exact verifier and fail-closed
+  regression, source-archive regeneration, PDF regeneration, and both
+  byte-identity comparisons.
+- The optional Git binding check matched all 21 archived repository source
+  blobs and modes to the supplied checkout and frozen tag.  It explicitly
+  does not authenticate the unsigned tag, checkout, or authorship.
+- Separate hostile tests rejected optimized Python and wrong top-level and
+  extracted-source executable modes before any success verdict.
+
+The corrected paper, scientific archive, and neutral referee handoff are
+internally consistent.  Research and packaging completion: **100%**; public
+release, preprint posting, and journal submission remain human actions.

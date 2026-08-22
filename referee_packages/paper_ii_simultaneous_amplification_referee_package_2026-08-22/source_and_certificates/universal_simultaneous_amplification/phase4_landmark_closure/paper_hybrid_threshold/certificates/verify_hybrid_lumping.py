@@ -11,12 +11,31 @@ from __future__ import annotations
 
 from fractions import Fraction as F
 from itertools import combinations
+import sys
 
 
 R = F(3, 2)
 CORE, PAIRS, PENDANTS = 3, 2, 2
 SIGMA, EPSILON = F(19, 137), F(1, 100)
 PAIR_WEIGHT = F(CORE, 1) / SIGMA
+
+
+class VerificationError(RuntimeError):
+    """Raised when a labelled transition row fails to lump exactly."""
+
+
+def require(condition: object, message: str) -> None:
+    """Fail closed without relying on optimization-sensitive assertions."""
+    if not bool(condition):
+        raise VerificationError(message)
+
+
+def reject_optimized_python() -> None:
+    if sys.flags.optimize != 0:
+        raise SystemExit(
+            "ERROR: optimized Python is unsupported because verification "
+            "checks must remain active"
+        )
 
 
 def graph():
@@ -148,6 +167,7 @@ def declared(state, rule: str):
 
 
 def main():
+    reject_optimized_python()
     n = CORE + 2 * PAIRS + PENDANTS
     fibres = {}
     for mask in range(1 << n):
@@ -156,7 +176,13 @@ def main():
         for state, masks in fibres.items():
             expected = declared(state, rule)
             for mask in masks:
-                assert labelled(mask, rule) == expected, (rule, state, mask)
+                actual = labelled(mask, rule)
+                require(
+                    actual == expected,
+                    "labelled row mismatch for "
+                    f"rule={rule}, state={state}, mask={mask}: "
+                    f"actual={actual}, expected={expected}",
+                )
     print(f"PASS exact labelled hybrid lumping: n={n}, masks={1<<n}, fibres={len(fibres)}")
 
 

@@ -39,10 +39,13 @@ box warnings; all fonts are embedded.  Every page was rendered and visually
 inspected for clipping, overlap, missing glyphs, malformed equations, stale
 content, and link/layout defects.
 
-The source link and integration marker name the planned annotated, unsigned
-tag `simultaneous-amplification-beyond-three-halves-v2.0.2`.  This checkpoint
-becomes the frozen record only after that tag is placed on the exact scientific
-commit and its remote peeled commit is verified.
+The source link and integration marker name the annotated, unsigned tag
+`simultaneous-amplification-beyond-three-halves-v2.0.2`.  That tag was placed
+on exact scientific commit
+`03e94e877ce10d9d459fd284bd652934cde08bb3`; its remote tag object
+`be3946c051c7f7e2073d6adf81bca31ae750251a` and peeled commit were verified.
+Because the tag is unsigned, this establishes repository consistency rather
+than signer or authorship authentication.
 
 This file records tested checkpoints, not an immutable public release.  A
 prior v1 archive or PDF hash is not evidence for the current superseding

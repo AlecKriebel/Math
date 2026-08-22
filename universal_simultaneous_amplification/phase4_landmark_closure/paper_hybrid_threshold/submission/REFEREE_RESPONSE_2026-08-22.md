@@ -54,6 +54,10 @@ unsigned.  The referee instructions retain an optional independent remote
 tag/blob/mode comparison and no longer describe that check as cryptographic
 authentication.  No signature was fabricated: a signed tag would be useful
 only with an already trusted signing key controlled by the human author.
+The exact freeze is commit
+`03e94e877ce10d9d459fd284bd652934cde08bb3`, tag
+`simultaneous-amplification-beyond-three-halves-v2.0.2`, and tag object
+`be3946c051c7f7e2073d6adf81bca31ae750251a`.
 
 ## REPRO-01: dependency artifacts were not frozen offline
 

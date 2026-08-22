@@ -14,7 +14,8 @@ Choose exactly one after completing the review:
 
 - Package manifest result:
 - Source archive and internal manifest result:
-- Scientific source commit/tag checked:
+- Scientific source commit/annotated unsigned tag checked:
+- Git blob/mode comparison completed, and provenance limitation:
 - Operating system and architecture:
 - Python, SymPy, and mpmath versions:
 - Tectonic and Poppler versions:
@@ -48,9 +49,12 @@ Choose exactly one after completing the review:
 | `verify_hybrid_coefficients.py` |  |  |  |  |
 | `verify_paper_claims.py` |  |  |  |  |
 | `verify_referee_package.py` |  |  |  |  |
+| `verify_git_binding.py` |  |  |  |  |
 | `run_all_referee_checks.sh` |  |  |  |  |
 | `bootstrap_replay.sh` and `replay.sh` |  |  |  |  |
+| `tests/test_verifier_fail_closed.py` |  |  |  |  |
 | `build.sh` and `requirements.txt` |  |  |  |  |
+| `release_bundle.sh` and `bundle_manifest.py` |  |  |  |  |
 
 ## Findings
 
