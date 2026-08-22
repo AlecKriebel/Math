@@ -154,7 +154,11 @@ def include_submission_source(relative: PurePosixPath) -> bool:
         return False
     if relative.as_posix() == MANIFEST_RELATIVE:
         return False
-    if "output" in relative.parts or "__pycache__" in relative.parts:
+    if (
+        "output" in relative.parts
+        or "__pycache__" in relative.parts
+        or any(part.startswith(".") for part in relative.parts[1:-1])
+    ):
         return False
     if relative.name in {".DS_Store"} or relative.suffix in {".pyc", ".pyo"}:
         return False
@@ -187,6 +191,15 @@ def collect_submission_ledger() -> dict[str, dict[str, int | str]]:
         "proof_compression_submission/crosswalk/build_revised_referee_bundle.py",
         "proof_compression_submission/crosswalk/check_revised_referee_bundle.py",
         "proof_compression_submission/crosswalk/test_crosswalk_bundle_mutations.py",
+        "proof_compression_submission/analysis/WEAK_SHARPNESS_COLUMN_CROSSWALK.json",
+        "proof_compression_submission/analysis/build_weak_sharpness_column_crosswalk.py",
+        "proof_compression_submission/analysis/verify_weak_sharpness_column_crosswalk.py",
+        "proof_compression_submission/analysis/test_weak_sharpness_column_crosswalk_mutations.py",
+        "proof_compression_submission/templates/PRINTED_CERTIFICATE_APPENDIX.json",
+        "proof_compression_submission/templates/build_printed_certificate_appendix.py",
+        "proof_compression_submission/templates/verify_printed_certificate_appendix.py",
+        "proof_compression_submission/templates/test_printed_certificate_appendix_mutations.py",
+        "proof_compression_submission/supplement/certificate_appendix.tex",
     }
     missing = sorted(required - set(ledger))
     if missing:
@@ -227,7 +240,7 @@ def build_manifest() -> dict[str, Any]:
             "files": submission,
             "policy": {
                 "base": "proof_compression_submission",
-                "excluded_components": ["output", "__pycache__"],
+                "excluded_components": ["output", "__pycache__", "dot-prefixed directories"],
                 "excluded_names": [".DS_Store", MANIFEST_RELATIVE],
                 "excluded_suffixes": [".pyc", ".pyo"],
                 "symlinks_allowed": False,

@@ -58,6 +58,9 @@ def main() -> None:
     article_path = submission / "article" / "main.tex"
     supplement_path = submission / "supplement" / "supplement.tex"
     compression_path = submission / "supplement" / "compression_tables.tex"
+    certificate_tex_path = submission / "supplement" / "certificate_appendix.tex"
+    certificate_json_path = submission / "templates" / "PRINTED_CERTIFICATE_APPENDIX.json"
+    sharpness_columns_path = submission / "analysis" / "WEAK_SHARPNESS_COLUMN_CROSSWALK.json"
     bib_path = submission / "article" / "references.bib"
     release_path = project / "work" / "final_theorem_release" / "RELEASE_LOCK.json"
     universe_path = (
@@ -71,6 +74,9 @@ def main() -> None:
         article_path,
         supplement_path,
         compression_path,
+        certificate_tex_path,
+        certificate_json_path,
+        sharpness_columns_path,
         bib_path,
         release_path,
         universe_path,
@@ -80,8 +86,32 @@ def main() -> None:
     article = article_path.read_text(encoding="utf-8")
     supplement = supplement_path.read_text(encoding="utf-8")
     compression = compression_path.read_text(encoding="utf-8")
+    certificate_tex = certificate_tex_path.read_text(encoding="utf-8")
+    certificate_json = read_json(certificate_json_path)
+    sharpness_columns = read_json(sharpness_columns_path)
     bib = bib_path.read_text(encoding="utf-8")
-    all_tex = article + "\n" + supplement + "\n" + compression
+    supplement_source = supplement + "\n" + compression + "\n" + certificate_tex
+    all_tex = article + "\n" + supplement_source
+
+    require(isinstance(certificate_json, dict), "PRINTED_APPENDIX_NOT_OBJECT")
+    require(
+        certificate_json.get("schema") == "k2p-printed-certificate-appendix-v1"
+        and certificate_json.get("status") == "PASS"
+        and certificate_json.get("quadratic_template_count") == 23
+        and certificate_json.get("high_degree_base_count") == 5,
+        "PRINTED_APPENDIX_SCHEMA_OR_CENSUS_DRIFT",
+    )
+    require(isinstance(sharpness_columns, dict), "SHARPNESS_CROSSWALK_NOT_OBJECT")
+    require(
+        sharpness_columns.get("schema")
+        == "k2p-weak-sharpness-column-crosswalk-v1",
+        "SHARPNESS_CROSSWALK_SCHEMA_DRIFT",
+    )
+    require(
+        sha256(certificate_json_path) in supplement
+        and sha256(sharpness_columns_path) in supplement,
+        "PRINTED_SUBMISSION_HASH_BINDING_STALE",
+    )
 
     require(
         sha256(release_path)
@@ -121,7 +151,7 @@ def main() -> None:
     ):
         require(token in all_tex, f"SUBMISSION_COUNT_OR_STATUS_MISSING:{token}")
 
-    for source_name, source in (("article", article), ("supplement", supplement)):
+    for source_name, source in (("article", article), ("supplement", supplement_source)):
         label_occurrences = re.findall(r"\\label\{([^}]+)\}", source)
         require(
             len(label_occurrences) == len(set(label_occurrences)),
@@ -136,12 +166,16 @@ def main() -> None:
         )
 
     bib_keys = set(re.findall(r"@\w+\{([^,]+),", bib))
-    citations = tex_keys(article, "cite") + tex_keys(supplement, "cite")
+    citations = tex_keys(article, "cite") + tex_keys(supplement_source, "cite")
     require(not (set(citations) - bib_keys), "UNRESOLVED_CITATION_KEY")
     require(not (bib_keys - set(citations)), "UNUSED_BIBLIOGRAPHY_ENTRY")
 
-    for relative in re.findall(r"\\path\{([^}]+)\}", supplement):
-        if relative.startswith("supplement/") or relative.startswith("k2p_"):
+    for relative in re.findall(r"\\path\{([^}]+)\}", supplement_source):
+        if (
+            "/" not in relative
+            or relative.startswith("supplement/")
+            or relative.startswith("k2p_")
+        ):
             continue
         require((project / relative).exists(), f"CROSSWALK_PATH_MISSING:{relative}")
 
@@ -161,6 +195,45 @@ def main() -> None:
     require(
         "It does not assert equality of the complete\nstochastic images" in article,
         "COMPLETE_IMAGE_NONCLAIM_GUARD_MISSING",
+    )
+    require("Huber et al." in article and "HuberEtAl2025" in all_tex, "HUBER_ATTRIBUTION_MISSING")
+    require(
+        "topology-only primitive theorem of Englander" not in article,
+        "STALE_ENGLANDER_OVERATTRIBUTION",
+    )
+    require(
+        "Complete graph-derived marginal descriptor" in article
+        and "tensor-invisible" in article
+        and "not an inheritance-complement quotient" in article,
+        "MARGINAL_DESCRIPTOR_GUARDS_MISSING",
+    )
+    require(
+        "analytic submersion theorem" in article
+        and "J_0=" in article
+        and "J_\\perp=" in article
+        and "The inverse function theorem gives strict analytic sections" not in article,
+        "TRIANGLE_SUBMERSION_REPAIR_MISSING",
+    )
+    require(
+        "repair-tagged directed completion descriptors" in article
+        and "untagged cycle convention" in article,
+        "REPAIR_TAGGED_COMPLETION_SEMANTICS_MISSING",
+    )
+    require(
+        "23 literal quadratic bodies" in certificate_tex
+        and "Five high-degree bases" in certificate_tex
+        and "Three worked paths" in certificate_tex
+        and "schema/version" in certificate_tex,
+        "PRINTED_CERTIFICATE_APPENDIX_INCOMPLETE",
+    )
+    require(
+        "s_{ZX}" in article and "s_{VX_1}" in article
+        and "WEAK_SHARPNESS_COLUMN_CROSSWALK.json" in supplement,
+        "NAMED_SHARPNESS_COLUMNS_MISSING",
+    )
+    require(
+        "Proposition~2.8.2" in article and "generic complex Jacobian rank" in article,
+        "GENERIC_DIMENSION_HARDENING_MISSING",
     )
 
     for pending in (
@@ -254,10 +327,12 @@ def main() -> None:
 
     crosswalk_fields = (
         "schema/version",
-        "semantic payload SHA-256",
-        "expected runtime",
+        "producer command",
+        "replay command",
+        "mutation command",
+        "file SHA-256",
     )
-    if not all(field in supplement for field in crosswalk_fields):
+    if not all(field in supplement_source for field in crosswalk_fields):
         findings.append(
             {
                 "severity": "moderate_submission",
@@ -337,6 +412,9 @@ def main() -> None:
             "article/references.bib": sha256(bib_path),
             "supplement/supplement.tex": sha256(supplement_path),
             "supplement/compression_tables.tex": sha256(compression_path),
+            "supplement/certificate_appendix.tex": sha256(certificate_tex_path),
+            "templates/PRINTED_CERTIFICATE_APPENDIX.json": sha256(certificate_json_path),
+            "analysis/WEAK_SHARPNESS_COLUMN_CROSSWALK.json": sha256(sharpness_columns_path),
         },
         "frozen_release_sha256": sha256(release_path),
         "frozen_counts": expected_inputs,

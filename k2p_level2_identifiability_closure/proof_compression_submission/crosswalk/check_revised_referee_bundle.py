@@ -148,7 +148,11 @@ def include_source(relative: PurePosixPath) -> bool:
         return False
     if relative.as_posix() == MANIFEST_RELATIVE:
         return False
-    if "output" in relative.parts or "__pycache__" in relative.parts:
+    if (
+        "output" in relative.parts
+        or "__pycache__" in relative.parts
+        or any(part.startswith(".") for part in relative.parts[1:-1])
+    ):
         return False
     if relative.name == ".DS_Store" or relative.suffix in {".pyc", ".pyo"}:
         return False
@@ -307,7 +311,7 @@ def validate(manifest_path: Path) -> dict[str, Any]:
     policy = manifest["submission_sources"].get("policy")
     expected_policy = {
         "base": "proof_compression_submission",
-        "excluded_components": ["output", "__pycache__"],
+        "excluded_components": ["output", "__pycache__", "dot-prefixed directories"],
         "excluded_names": [".DS_Store", MANIFEST_RELATIVE],
         "excluded_suffixes": [".pyc", ".pyo"],
         "symlinks_allowed": False,

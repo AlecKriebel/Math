@@ -40,6 +40,10 @@ not represented as a fictitious hand quotient. Primary reader artifacts are:
 - `COMPRESSED_BOUNDED_THEOREM.md`;
 - `PROOF_COMPRESSION_RESULT.md` and `.json`;
 - `THEOREM_TO_TEMPLATE_CROSSWALK.md` and `.json`;
+- `templates/PRINTED_CERTIFICATE_APPENDIX.json` and the generated
+  `supplement/certificate_appendix.tex`, with independent replay and mutations;
+- `analysis/WEAK_SHARPNESS_COLUMN_CROSSWALK.json`, with independent graph and
+  determinant replay;
 - `crosswalk/THEOREM_ARTIFACT_CROSSWALK.md` and `.json`; and
 - `adversarial_review/ADVERSARIAL_ARTICLE_AUDIT.md`.
 

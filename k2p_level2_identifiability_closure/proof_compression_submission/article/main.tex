@@ -14,6 +14,7 @@
 \setlength{\parskip}{0.35em}
 \setlength{\parindent}{0pt}
 \setlength{\emergencystretch}{3em}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{proposition}[theorem]{Proposition}
@@ -53,7 +54,8 @@
 
 \hypersetup{
   pdftitle={Generic Identifiability and Directed Containment for Strongly
-    Tree-Child Level-2 Networks under the Kimura Two-Parameter Model},
+    Tree-Child Level-2 Networks under the Kimura Two-Parameter Model:
+    The Principal Positive Domain and Strict Continuous Time},
   pdfauthor={Alec Kriebel},
   pdfsubject={Generic identifiability of level-2 phylogenetic networks under K2P},
   pdfkeywords={phylogenetic networks, Kimura two-parameter model,
@@ -63,7 +65,8 @@
 
 \title{Generic Identifiability and Directed Containment for\\
 Strongly Tree-Child Level-2 Networks under the\\
-Kimura Two-Parameter Model}
+Kimura Two-Parameter Model\\
+\large The Principal Positive Domain and Strict Continuous Time}
 \author{Alec Kriebel\\
 \small Independent Researcher\\
 \small ORCID: \href{https://orcid.org/0009-0001-9320-500X}
@@ -139,15 +142,22 @@ quartet-based reconstruction for outer-labelled planar galled networks give
 complementary partial classifications
 \cite{Ardiyansyah2021,HoltgrefeEtAl2025Quartets}.
 
-At level two the first broad structural result is due to Englander et
-al.~\cite{EnglanderEtAl2026}.  Their topology-only primitive and repair
-theorems reduce strongly tree-child blobs to a finite family of cycle and
-directed theta cores.  Their Propositions~2.9--2.10 and Theorem~2.11 apply to
-JC or K2P and show that different displayed-quartet sets are pointwise
-separated; Corollary~2.12 recovers the labelled tree of blobs.  Their main
-level-2 algebraic theorem is for JC.  The present work retains their graph
-layer but rebuilds every algebraic layer for K2P, whose nonzero Fourier
-characters split into two orbits rather than one.
+Huber et al.~\cite[Lemma~4.2 and Figure~8]{HuberEtAl2025} classify the two
+semi-directed level-2 generator types underlying simple strict level-2
+networks.  Englander et al.~\cite{EnglanderEtAl2026} use these generators in
+their strongly tree-child analysis.  Their Propositions~2.9--2.10 and
+Theorem~2.11 prove, for JC and K2P, pointwise separation of networks with
+different displayed-quartet sets; their Corollary~2.12 combines this
+separation with the quarnet structure to recover the labelled tree of blobs.
+Their main level-2 algebraic classification is for JC.
+
+The directed ported refinement used here, and also in the companion JC
+classification~\cite{KriebelJC2026}, additionally records the incoming
+source, internal reticulation events, path-sink child roles, minimum strong
+repairs, and ordered boundary words.  This refinement produces the four event
+placements \(\theta_0,\ldots,\theta_3\).  The present work proves that graph
+layer in \cref{prop:cores} and rebuilds every algebraic layer for K2P, whose
+nonzero Fourier characters split into two orbits rather than one.
 
 Our classification concerns a source-relative analytic containment with a
 physical target section, not merely inclusion of complex varieties.  This
@@ -450,7 +460,7 @@ pointwise.  In particular, \(N\preceqplus N'\) forces the same labelled tree
 of blobs.
 \end{corollary}
 
-\subsection{The whole-map \(\mathcal T_i\) polynomial}
+\subsection{The whole-map \texorpdfstring{\(\mathcal T_i\)}{Ti} polynomial}
 
 For a three-leaf tensor use character zero \(0\) and put
 \[
@@ -682,6 +692,16 @@ local physical analytic section.
 \end{lemma}
 
 \begin{proof}
+First the product of physical factors remains physical.  It is enough to
+check two factors.  Put \(S=s_1s_2\) and \(G=g_1g_2\).  Positivity and the
+upper bounds are immediate.  If \(S\leq1/2\), then \(G>2S-1\) is automatic.
+If \(S>1/2\), then both \(s_i>1/2\), and
+\[
+ G>(2s_1-1)(2s_2-1)
+  =(2S-1)+2(1-s_1)(1-s_2)>2S-1.
+\]
+Induction proves that the displayed product map lands in \(\Dplus\).
+
 The case \(m=1\) is immediate.  Given \((S,G)\in\Dplus\) and \(m\ge2\),
 choose \(r\in(0,1)\) satisfying
 \[
@@ -692,6 +712,58 @@ Use \((r,r)\) on the first \(m-1\) edges and
 factor in \(\Dplus\), and the same fixed \(r\) works on a neighborhood of
 \((S,G)\).  The \(s\)- and \(g\)-rows of the differential have disjoint
 nonzero supports and are independent.
+\end{proof}
+
+\begin{proposition}[Complete graph-derived marginal descriptor]
+\label{prop:marginal-descriptor}
+Let \(Y\) be the retained boundary labels in any selected restriction used
+below, and extend \(\mathbf x\in\G^Y\) by zero on the omitted labels.  For an
+edge \(e\) and a displayed switching \(\sigma\), let
+\(h_{e,\sigma}(\mathbf x)\) be the group sum below \(e\) when
+\(e\in T_\sigma\), and put \(h_{e,\sigma}(\mathbf x)=\bot\) otherwise.  Define
+\[
+ \epsilon_e^s(\sigma,\mathbf x)
+   =\1[h_{e,\sigma}(\mathbf x)\in\{C,T\}],\qquad
+ \epsilon_e^g(\sigma,\mathbf x)
+   =\1[h_{e,\sigma}(\mathbf x)=G].
+\]
+The \emph{complete visible signature} of \(e\) is the pair of these arrays
+over all \((\sigma,\mathbf x)\).  Edges with the same
+non-identically-zero signature form one effective product class \(E\), with
+coordinates
+\[
+ S_E=\prod_{e\in E}s_e,\qquad G_E=\prod_{e\in E}g_e.
+\]
+Edges with identically zero signatures, and tensor-invisible inheritance
+coordinates, are forgotten.  The exact graph transport permutes surviving
+inheritance coordinates; only
+when it reverses the recorded order of the two parents at a retained
+reticulation does it apply \(\lambda_r\mapsto1-\lambda_r\).  Consequently the
+effective restriction descriptor is a product of the paired serial maps of
+\cref{lem:marginal}, coordinate projections and permutations, and these
+recorded affine parent-order flips.  It maps the physical parameter domain
+onto the effective child domain, is a submersion, and has local physical
+analytic sections.
+\end{proposition}
+
+\begin{proof}
+Here a reticulation is \emph{tensor-invisible} precisely when, after every
+choice at the other reticulations is fixed, its two parent choices induce the
+same retained switching and the same visible edge-sector exponent arrays for
+every retained character assignment.  Only under this condition is its
+inheritance coordinate forgotten; otherwise the compiler retains it.
+Set omitted characters to zero in \eqref{eq:k2p-fourier} and group full
+switchings by their induced switching on the retained graph.  Equal visible
+signatures contribute in the same K2P sector in every monomial, hence only
+through \((S_E,G_E)\).  Each invisible reticulation contributes
+\(\lambda+(1-\lambda)=1\); every surviving reticulation is carried by the
+exact graph transport, with a complement precisely when that transport
+reverses its stored parent order.  This gives the asserted factorization.
+\Cref{lem:marginal} handles each product class, coordinate projections are
+submersions onto the retained coordinates, and permutations and parent flips
+are analytic diffeomorphisms of the open physical domain.  The flips here are
+not an inheritance-complement quotient between records: they occur only when
+the certified graph transport reverses a parent order.
 \end{proof}
 
 We use the following standard semialgebraic fact in a form that makes the
@@ -752,9 +824,11 @@ separation of every physical child excludes the fixed full parent.
 \begin{proof}
 Marginalization sets the restored leaf character to zero.  The pendant factor
 becomes one and all newly serial edges multiply to the old effective edge.
-\Cref{lem:marginal}, together with the identity on other source parameters,
-gives a physical source-open image.  The actual attachments and transport of
-the fixed networks are one row of the exhaustive child construction.
+\Cref{prop:marginal-descriptor}, together with the identity on other source
+parameters, gives a physical source-open image and retains every inheritance
+coordinate that is not tensor-invisible.  The actual attachments and
+transport of the fixed networks are one row of the exhaustive child
+construction.
 Therefore a separating certificate for every child contradicts the assumed
 full relation.  This argument neither lifts an abstract selected relation nor
 inverts an arbitrary target deletion map.
@@ -813,10 +887,12 @@ between the two degree-three poles, hence a theta.  Acyclic binary placement
 of the unique incoming source and the two reticulation events gives four
 possibilities: one reticulate pole with source and internal sink on different
 or equal paths (\(\theta_0,\theta_1\)); or two internal sinks with the source
-on the third path or sharing a sink path (\(\theta_2,\theta_3\)).  This is the
-topology-only primitive theorem of Englander et
-al.~\cite{EnglanderEtAl2026}.  Reading port vertices along the oriented
-segments recovers the unique words.
+on the third path or sharing a sink path (\(\theta_2,\theta_3\)).  Deleting
+the incoming arm and suppressing its resulting degree-two source yields one
+of the two semi-directed level-2 generators classified by Huber et
+al.~\cite[Lemma~4.2 and Figure~8]{HuberEtAl2025}.  The four-way
+incoming-source refinement is established by the preceding case analysis.
+Reading port vertices along the oriented segments recovers the unique words.
 \end{proof}
 
 The segment templates and minimal strong repairs are:
@@ -845,8 +921,10 @@ every offending tail, separates a reticulation child, or splits a parallel
 core pair.  The reader supplement records the exact completion grammar.
 
 For a target core \(H\), let \(m_H\) be its number of directed segments,
-\(q_H\) its path-sink count, and \(r_H\) its number of minimum repair
-choices.  If \(k\) physical boundaries are selected and
+\(q_H\) its path-sink count, and \(r_H\) its number of compiler
+target-repair tags.  For theta targets these tags are the listed minimum
+repairs; cycle targets use one untagged target convention.  If \(k\)
+physical boundaries are selected and
 \(\epsilon=1\) when the incoming boundary is selected
 (\(\epsilon=0\) when it is marginalized), then the exact number of target
 completions is
@@ -855,9 +933,21 @@ completions is
  \binom{q_H}{j}
  \binom{k-\epsilon-j+m_H-1}{m_H-1}.
 \end{equation}
-Indeed, choose the \(j\) selected path sinks and weakly distribute the
-remaining \(k-\epsilon-j\) selected boundaries among the \(m_H\) ordered
-segments.  The five tuples \((m_H,q_H,r_H)\) are
+This counts repair-tagged directed completion descriptors, not untagged mixed
+graphs.  First choose the \(j\) selected path sinks and weakly distribute the
+remaining \(k-\epsilon-j\) selected physical labels among the \(m_H\)
+ordered segment words.  For a chosen theta repair, every required segment
+whose physical word is empty then receives one deterministically named
+zero-character completion leaf; an already occupied required segment
+receives no extra leaf.  These completion roles consume no selected label and
+therefore do not alter the stars-and-bars term.  The repair index remains part
+of the raw descriptor even when two repair witnesses construct the same final
+mixed graph.  Unselected path-sink roles and a marginalized incoming role
+likewise receive deterministic dummy labels.  Cycle targets use the single
+untagged target-repair convention; their two minimum repaired supports enter
+the source multiplier rather than \(C\).
+
+The five tuples \((m_H,q_H,r_H)\) are
 \[
  (2,1,1),\ (5,1,2),\ (5,1,2),\ (6,2,4),\ (6,2,2)
 \]
@@ -888,8 +978,9 @@ following mutually exclusive evidence types, applied in order:
 
 The target completion grammar takes every primitive core, every allowed
 path-sink child subset, every weak composition of the available port roles
-among directed segments, every minimum strong repair, and either a selected
-incoming boundary or a marginalized incoming role.  It produces 831
+among directed segments, every theta minimum-repair tag (and the single
+untagged cycle convention), and either a selected incoming boundary or a
+marginalized incoming role.  It produces 831
 selected-incoming and 1,983 marginalized-incoming four-port targets.  At five
 ports it produces 1,983 selected-incoming and 4,155 marginalized-incoming
 targets.  These are counts of complete graph-derived target descriptors, not
@@ -999,7 +1090,7 @@ The safe reductions are summarized below.
 
 \begin{center}
 \small
-\begin{tabular}{p{.25\linewidth}p{.27\linewidth}p{.38\linewidth}}
+\begin{tabular}{L{.25\linewidth}L{.27\linewidth}L{.38\linewidth}}
 \toprule
 layer & compressed explanation & exact residue retained \\
 \midrule
@@ -1057,12 +1148,48 @@ orbit coordinates are \(1/12\), and its three mixed triple-orbit coordinates
 are \(1/48\).  Every edge satisfies \(g>s^2\).
 
 At this symmetric point the K2P Jacobian decomposes into four symmetric and
-five anisotropic output directions.  In logarithmic edge coordinates, exact
-minors of the two blocks have determinants \(-1/2\) and \(-1/4\); their
-product is \(1/8\).  Thus every orientation has rank nine.  The inverse
-function theorem gives strict analytic sections over one common output
-neighborhood.  Notice from \eqref{eq:Ti-factor} that this common germ remains
-strictly separated from the three-leaf tree model.
+five anisotropic output directions.  Write
+\(U=q_{CGT},V=q_{CTG},W=q_{GCT}\).  Use the output logarithms
+\[
+ z_0=(\log X_s,\log Y_s,\log Z_s,\log W),
+\]
+and
+\[
+ z_\perp=\bigl(\log(X_g/X_s),\log(Y_g/Y_s),\log(Z_g/Z_s),
+               \log(U/W),\log(V/W)\bigr).
+\]
+For the symmetric block vary the common logarithmic \(s,g\) scales of
+\(a,b,c,f\).  For the anisotropic block vary
+\(\log(a_g/a_s),\log(b_g/b_s),\log(c_g/c_s),
+\log(d_g/d_s),\log(f_g/f_s)\), holding the other paired coordinates and the
+\(e\)-anisotropy fixed.  Direct differentiation of \eqref{eq:sunlet-map}
+gives a block-upper-triangular nine-dimensional slice with diagonal blocks
+\[
+ J_0=\begin{pmatrix}
+ 1&1&0&1\\
+ 1&0&1&1/4\\
+ 0&1&1&1/4\\
+ 1&1&1&1
+ \end{pmatrix},\qquad \det J_0=-\frac12,
+\]
+and
+\[
+ J_\perp=\begin{pmatrix}
+ 1&1&0&0&1\\
+ 1&0&1&3/4&1/4\\
+ 0&1&1&1/4&1/4\\
+ -1&1&0&0&0\\
+ -1&0&1&1/2&-1/2
+ \end{pmatrix},\qquad \det J_\perp=-\frac14.
+\]
+Their product is \(1/8\), so every orientation has rank nine.  Since
+\(\dim Q=9\), each orientation map is an analytic submersion at the common
+tensor.  The analytic submersion theorem gives a physical analytic section
+over an output neighborhood for each orientation; strict continuous time is
+open, so the sections stay inside that cone after shrinking.  Intersecting
+the three output neighborhoods gives the common regular germ.  Notice from
+\eqref{eq:Ti-factor} that it remains strictly separated from the three-leaf
+tree model.
 \end{proof}
 
 \begin{lemma}[Contextual triangle sufficiency]\label{lem:context-triangle}
@@ -1074,8 +1201,9 @@ global K2P images share a full-dimensional regular physical germ.
 \begin{proof}
 An isomorphism transports physical parameters.  For one triangle,
 \cref{lem:triangle-germ} gives a common open set \(U\subset Q\) and physical
-sections of every orientation.  Let \(C\) be the parameter space of the
-identical exterior context and write its contraction as
+sections of every orientation.  Let \(C\) be an open strict physical
+parameter chart of the identical exterior context and write its contraction
+as
 \[
  \mathcal H:Q\times C\longrightarrow Y.
 \]
@@ -1086,10 +1214,24 @@ Choose \((q,c)\) in the nonempty open subset of \(U\times C\) on which
  \operatorname{rank}D\bigl(\mathcal H\circ
  (\tau_i\times\mathrm{id}_C)\bigr)=R.
 \]
-Thus \(\mathcal H(U\times C)\) is the same full-dimensional contextual germ,
-even if the three arms reconnect inside another level-2 factor.  For several
-triangles use the product of all \(Q_j,U_j\) and make the rank choice once;
-no induction assumes that an already chosen context remains generic.
+By maximality of \(R\) and persistence of a nonzero \(R\)-minor, shrink to a
+neighborhood \(V\subset U\times C\) on which \(\mathcal H\) has constant rank
+\(R\).  The analytic constant-rank theorem supplies a local analytic section
+\(\eta:\mathcal H(V)\to V\) over this \(R\)-dimensional image germ.  If
+\(s_i:U\to\Theta_i\) is the triangle section, then
+\[
+ y\longmapsto
+ \bigl(s_i(\operatorname{pr}_Q\eta(y)),
+       \operatorname{pr}_C\eta(y)\bigr)
+\]
+is a physical analytic section of
+\(\mathcal H\circ(\tau_i\times\mathrm{id}_C)\).  Thus the
+\(R\)-dimensional germ \(\mathcal H(V)\) is the same full-dimensional
+contextual image germ for every orientation, even if the three arms reconnect
+inside another level-2 factor.  For several triangles use the product of all
+\(Q_j,U_j\) and their
+product sections, and make the rank choice once; no induction assumes that
+an already chosen context remains generic.
 
 Finally glue bridge incidence scales physically.  If the two local sections
 have paired and singleton incidence products \(A_e^{(k)},B_e^{(k)}>0\),
@@ -1147,7 +1289,12 @@ Let
 denote the complex Zariski closure of the polynomial K2P map after complexifying
 its \(m_N\) edge and inheritance coordinates.  It is irreducible because it is
 the closure of the image of an irreducible affine space, and
-\(\dim\V_N=d_N\).
+\(\dim\V_N=d_N\).  Indeed, let \(r\) be the generic complex Jacobian rank.
+Every Jacobian minor has real-polynomial coefficients and some
+\(r\)-by-\(r\) minor is nonzero.  Since \(\Theta_+(N)\) contains a nonempty
+Euclidean-open subset of \(\R^{m_N}\), that polynomial cannot vanish
+throughout \(\Theta_+(N)\); hence \(d_N\ge r\).  The reverse inequality is
+immediate, while the generic-rank theorem gives \(r=\dim\V_N\).
 
 \begin{theorem}[Generic identifiability modulo triangles]
 \label{thm:genericity}
@@ -1186,8 +1333,11 @@ section over that output germ.  An analytic constant-rank chart for
 neighborhood, constant along the local source fibres.  This is
 \(N\preceqplus N'\), contradicting
 \cref{thm:main}.  Hence every competing physical intersection has
-semialgebraic dimension at most \(d_N-1\), and its Zariski closure inside
-\(\V_N\) is proper.
+semialgebraic dimension at most \(d_N-1\).  By
+\cite[Proposition~2.8.2]{BochnakCosteRoy1998}, a semialgebraic set and its
+real Zariski closure have the same dimension; extension of scalars from
+\(\R\) to \(\C\) preserves Krull dimension.  Its complex Zariski closure
+inside \(\V_N\) therefore has dimension at most \(d_N-1\) and is proper.
 
 Take the finite union of these closures and the singular locus of \(\V_N\).
 For every output polynomial \(P(q)\) used by reconstruction---a quartet,
@@ -1417,16 +1567,34 @@ direct four-switch expansion gives the same tensor on both networks:
  q_h&=\frac45\delta^3 &&\text{on the three all-nonzero coordinates}.
 \end{align*}
 
-Order each normalized map's parameter columns as
-\((s_0,g_0,s_1,g_1,\ldots,s_6,g_6,\lambda_0,\lambda_1)\), with edge classes
-in the canonical descendant-signature order stored by the exact certificate.
-For \(W\), rows \((1,2,3,5,4,7,6,8,9)\) of \eqref{eq:sharp-order} and columns
-\((0,1,\ldots,8)\) give determinant
+The graph-derived canonical descendant-signature orders of the seven visible
+edge classes are
+\[
+ \begin{array}{c|ccccccc}
+ W&ZX&SV&rS&SU&UV&VZ&UX\\
+ W'&VX_1&VX_0&UV&rS&SX_0&SU&UX_1.
+ \end{array}
+\]
+Order each normalized map's full parameter list by the paired \((s,g)\)
+coordinates of these seven classes, followed by \(\lambda_0,\lambda_1\).
+Thus the named minor columns are
+\[
+ \begin{aligned}
+ W:;&(s_{ZX},g_{ZX},s_{SV},g_{SV},s_{rS},g_{rS},
+       s_{SU},g_{SU},s_{UV}),\\
+ W':;&(s_{VX_1},g_{VX_1},s_{VX_0},g_{VX_0},s_{UV},g_{UV},
+       s_{rS},g_{rS},s_{SX_0}).
+ \end{aligned}
+\]
+The derived column crosswalk in the supplement independently reconstructs
+these orders from the graph encodings and binds them to the frozen descriptor
+hashes.  For \(W\), rows \((1,2,3,5,4,7,6,8,9)\) of
+\eqref{eq:sharp-order} and the displayed named columns give determinant
 \[
  \frac{10368019213741323}
  {563981315074464023964442388464888915634290688}\ne0.
 \]
-For \(W'\), rows \((1,2,3,5,4,6,7,8,9)\) and the same columns give
+For \(W'\), rows \((1,2,3,5,4,6,7,8,9)\) and its displayed named columns give
 \[
  \frac{1435825}{85002596691653613846528}\ne0.
 \]
@@ -1510,12 +1678,14 @@ implemented program, not an independent human review.
 
 \section*{Data and code availability}
 
-The exact certificate and replay files are contained in the accompanying
-repository under \path{k2p_level2_identifiability_closure}.  A final public
-repository URL, immutable tag or DOI, archive SHA-256, and paper/data/code
-license statements are \textbf{pending human confirmation}.  This draft does
-not infer or assert a license.  The reader supplement provides a relative-path
-crosswalk that remains valid in the local reproducibility tree.
+The exact certificate and replay files are contained in the public repository
+\url{https://github.com/AlecKriebel/Math} under
+\path{k2p_level2_identifiability_closure}.  An immutable submission tag or
+DOI and paper/data/code license statements are \textbf{pending human
+confirmation}.  This draft does not infer or assert a license.  The reader
+supplement provides a relative-path crosswalk that remains valid in the local
+reproducibility tree; the deterministic archive hash is emitted as external
+release metadata to avoid a self-referential archive.
 
 \section*{Author contributions}
 
@@ -1550,8 +1720,8 @@ statement, code, and final submission.
 \section*{Acknowledgment of pending submission metadata}
 
 The corresponding email address, author-contribution statement, funding
-statement, competing-interests declaration, final public repository/DOI, and
-all license choices remain pending explicit human confirmation and must be
+statement, competing-interests declaration, immutable release tag/DOI, and all
+license choices remain pending explicit human confirmation and must be
 supplied before submission.
 
 {\small

@@ -1,5 +1,26 @@
 # Research log
 
+## 2026-08-22 09:14 PDT - Fresh targeted review audited
+
+- Scrutinized all nine fresh referee items against the article, supplement,
+  primitive compiler convention, frozen theorem package, weak-sharpness
+  certificate, and primary literature records.
+- Found no counterexample or theorem-level failure.  Accepted the attribution,
+  submersion, marginal-descriptor, completion-count, printed-template,
+  sharpness-column, generic-dimension, and final-replay recommendations as
+  genuine improvements.
+- Qualified three overstatements: repeated quadratic bodies are not graph
+  orbits; one worked restoration parent need not display every global terminal
+  mechanism; and the existing machine package already bound schemas and source
+  hashes even though the PDF did not print enough of them.
+- Kept author identity, contribution approval, funding, competing interests,
+  licenses, immutable tag, and DOI as human-only decisions.  Confirmed the
+  mutable public repository URL and the immutable released JC companion.
+- Best-guess completion toward the targeted revision and fully replayed local
+  referee package: **72%**.  Remaining work is generated-appendix integration,
+  independent source audit, PDF QA, clean full replay, deterministic archive,
+  and commit/push.
+
 ## 2026-08-21 20:47 PDT - Adversarial feedback scrutinized
 
 - Read the complete proof-compression review and compared it with the promoted

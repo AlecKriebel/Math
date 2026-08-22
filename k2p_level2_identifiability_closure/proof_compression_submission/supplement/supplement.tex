@@ -3,7 +3,7 @@
 \usepackage{lmodern,microtype}
 \usepackage[margin=.85in]{geometry}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
-\usepackage{booktabs,array,enumitem,longtable}
+\usepackage{booktabs,array,enumitem,longtable,seqsplit}
 \usepackage{xcolor,url}
 \usepackage[colorlinks=true,linkcolor=blue!55!black,
   citecolor=green!35!black,urlcolor=blue!55!black]{hyperref}
@@ -12,8 +12,9 @@
 \setlength{\parskip}{0.4em}
 \setlength{\parindent}{0pt}
 \setlength{\emergencystretch}{3em}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 
-\newcommand{\hashvalue}[1]{{\scriptsize\ttfamily #1}}
+\newcommand{\hashvalue}[1]{{\scriptsize\ttfamily\seqsplit{#1}}}
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
@@ -35,7 +36,8 @@
 
 \title{Reader Supplement to\\
 \emph{Generic Identifiability and Directed Containment for Strongly
-Tree-Child Level-2 Networks under the Kimura Two-Parameter Model}}
+Tree-Child Level-2 Networks under the Kimura Two-Parameter Model:\\
+The Principal Positive Domain and Strict Continuous Time}}
 \author{Alec Kriebel\\
 \small Independent Researcher\\
 \small ORCID: \href{https://orcid.org/0009-0001-9320-500X}
@@ -147,7 +149,7 @@ left-to-right segment order.
 
 \begin{center}
 \footnotesize
-\begin{tabular}{p{.10\linewidth}p{.57\linewidth}p{.22\linewidth}}
+\begin{tabular}{L{.10\linewidth}L{.57\linewidth}L{.22\linewidth}}
 \toprule
 core & directed segments & minimum repair sets\\
 \midrule
@@ -169,8 +171,10 @@ V\!\to X_1,U\!\to V\)
 An occupied segment contains at least one port-bearing subdivision.  The
 minimum repairs are the minimal occupancy sets satisfying the no-omnian and
 simple-graph requirements.  A complete factor additionally retains one child
-port below every path-sink reticulation.  Arbitrary factors arise by replacing
-each occupied segment by an ordered word of distinct labelled ports.
+role below every path-sink reticulation.  Here ``occupied'' includes a named
+zero-character completion role inserted by the compiler; it need not be a
+selected physical port.  Arbitrary physical factors arise by replacing each
+selected segment word by an ordered word of distinct labelled ports.
 
 \subsection{Completion grammar and the numbers 831, 1983, and 4155}
 
@@ -179,7 +183,9 @@ For each core the compiler enumerates:
   \item every allowed subset of path-sink child roles;
   \item every weak composition of the remaining labelled port roles among the
         directed segments;
-  \item every minimum-repair completion;
+  \item for a theta target, every minimum-repair tag; for a cycle target,
+        the single untagged target convention (the two repaired cycle supports
+        occur on the source side);
   \item the selected-incoming mode, in which a real incoming boundary remains
         a port, and the marginalized-incoming mode, in which that role has
         been omitted; and
@@ -187,10 +193,19 @@ For each core the compiler enumerates:
 \end{enumerate}
 
 The directed completion grammar yields 831 four-port target descriptors in
-selected-incoming mode and 1,983 in marginalized-incoming mode.  Five-port targets
-number 1,983 and 4,155 in the corresponding modes.  These numbers count
-graph-derived target descriptors before source multiplication and port
-permutations.  Thus
+selected-incoming mode and 1,983 in marginalized-incoming mode.  Five-port
+targets number 1,983 and 4,155 in the corresponding modes.  These are
+repair-tagged descriptors, not necessarily distinct untagged mixed graphs.
+The compiler first weakly distributes the selected physical labels.  For a
+chosen theta repair it then inserts one deterministically named zero-character
+leaf on each required segment whose physical word is empty, and inserts
+nothing extra on an already occupied required segment.  The repair tag stays
+in the raw identity even when another repair witness yields the same final
+mixed graph.  Unselected sink roles and a marginalized incoming role receive
+their own deterministic dummies.  Consequently these roles consume no
+selected labels and the stars-and-bars count in the article is unchanged.
+The numbers are taken before source multiplication and port permutations.
+Thus
 \[
  6(831+1983)4!=405{,}216,\qquad
  4(1983+4155)5!=2{,}946{,}240.
@@ -217,7 +232,7 @@ into canonical terminal or restoration classes.
 
 The classifier uses proof types in a fixed precedence order.
 
-\begin{longtable}{p{.19\linewidth}p{.33\linewidth}p{.39\linewidth}}
+\begin{longtable}{L{.19\linewidth}L{.33\linewidth}L{.39\linewidth}}
 \toprule
 type & mathematical implication & exact stored evidence\\
 \midrule
@@ -435,6 +450,8 @@ and evaluates it at a rational point satisfying every strict K2P and
 inheritance inequality.  Degrees two, three, four, and five are stored and
 mutated separately so that certificate reassignment is rejected.
 
+\input{certificate_appendix.tex}
+
 \section{Full weak-class certificate}\label{sec:sharpness}
 
 The base graphs are encoded by
@@ -452,7 +469,7 @@ unique triangle of each graph.
 Put \(\delta=2^{-30}\).  The complete parameter mapping is:
 \begin{center}
 \small
-\begin{tabular}{p{.18\linewidth}p{.35\linewidth}p{.35\linewidth}}
+\begin{tabular}{L{.18\linewidth}L{.35\linewidth}L{.35\linewidth}}
 \toprule
 datum & \(W\) & \(W'\)\\
 \midrule
@@ -498,8 +515,30 @@ and
 \frac9{4096},\frac9{4096},\frac5{512},\frac9{4096},\frac{27}{512}\right).
 \]
 
-The nonzero rank-nine minors use parameter columns \(0,\ldots,8\).  Their
-rows and determinants are
+The graph-derived canonical orders of the visible edge classes are
+\[
+ W:(ZX,SV,rS,SU,UV,VZ,UX),\qquad
+ W':(VX_1,VX_0,UV,rS,SX_0,SU,UX_1).
+\]
+Accordingly, columns \(0,\ldots,8\) mean
+\[
+ \begin{aligned}
+ W:;&(s_{ZX},g_{ZX},s_{SV},g_{SV},s_{rS},g_{rS},
+       s_{SU},g_{SU},s_{UV}),\\
+ W':;&(s_{VX_1},g_{VX_1},s_{VX_0},g_{VX_0},s_{UV},g_{UV},
+       s_{rS},g_{rS},s_{SX_0}).
+ \end{aligned}
+\]
+These names are a derived crosswalk, not an unstated field of the frozen
+certificate: the crosswalk verifier reconstructs the descendant signatures
+from the two primitive graphs, binds the frozen graph and descriptor hashes,
+and rejects a reordered column.  The sealed artifact and independent checker
+are, respectively,
+\begin{quote}\small
+\path{proof_compression_submission/analysis/WEAK_SHARPNESS_COLUMN_CROSSWALK.json}\par
+\path{proof_compression_submission/analysis/verify_weak_sharpness_column_crosswalk.py}.
+\end{quote}
+The minors' rows and determinants are
 \begin{center}
 \small
 \begin{tabular}{lll}
@@ -544,7 +583,7 @@ runtime is known or deliberately null.  Executable entry points are invoked
 from the project root with the pinned Python environment shown in
 Section~\ref{sec:replay}.
 
-\begin{longtable}{p{.22\linewidth}p{.36\linewidth}p{.34\linewidth}}
+\begin{longtable}{L{.22\linewidth}L{.36\linewidth}L{.34\linewidth}}
 \toprule
 claim & primary proof/certificate & independent replay or mutation\\
 \midrule
@@ -583,6 +622,11 @@ Five-port \(\theta_2\)
 & \path{work/corrected_composite_ledgers/verify_corrected_composites_independent.py};
   \path{work/corrected_composite_ledgers/run_composite_mutations.py}, family
   \texttt{theta2}\\
+Printed direct templates and worked paths
+& \path{proof_compression_submission/templates/PRINTED_CERTIFICATE_APPENDIX.json};
+  \path{proof_compression_submission/supplement/certificate_appendix.tex}
+& \path{proof_compression_submission/templates/verify_printed_certificate_appendix.py};
+  \path{proof_compression_submission/templates/test_printed_certificate_appendix_mutations.py}\\
 997-parent forest
 & \path{work/restoration_sign_reclassification/corrected_restoration_forest.json}
 & \path{work/restoration_sign_reclassification/corrected_restoration_replay_certificate.json};
@@ -610,10 +654,13 @@ Primitive probe audit
   \path{work/global_proof_adversary/probe_full_audit/independent_probe_mutation_report.json}\\
 Weak sharpness
 & \path{work/weak_sharpness_closure/PROOF.md};
-  \path{work/weak_sharpness_closure/weak_sharpness_certificate.json}
+  \path{work/weak_sharpness_closure/weak_sharpness_certificate.json};
+  \path{proof_compression_submission/analysis/WEAK_SHARPNESS_COLUMN_CROSSWALK.json}
 & \path{work/weak_sharpness_audit/PROOF_AUDIT.md};
   \path{work/weak_sharpness_audit/audit_certificate.json};
-  \path{work/weak_sharpness_audit/test_mutations.py}\\
+  \path{work/weak_sharpness_audit/test_mutations.py};
+  \path{proof_compression_submission/analysis/verify_weak_sharpness_column_crosswalk.py};
+  \path{proof_compression_submission/analysis/test_weak_sharpness_column_crosswalk_mutations.py}\\
 Unified theorem lock
 & \path{work/final_theorem_release/RELEASE_LOCK.json};
   \path{work/final_theorem_release/verify_final_theorem_release.py}
@@ -622,6 +669,68 @@ Unified theorem lock
 \bottomrule
 \end{longtable}
 
+\subsection{Printed finite-layer replay metadata}
+
+For the principal computed layers, each row below supplies the requested
+schema/version, authoritative file SHA-256, producer command, independent
+replay command, and mutation command.  Commands run from the project root;
+none may be invoked with optimized Python.
+
+\begingroup\scriptsize
+\begin{longtable}{L{.18\linewidth}L{.76\linewidth}}
+\toprule layer & exact machine metadata\\\midrule\endhead
+raw four-port topology ledger
+& schema/version: \texttt{\seqsplit{k2p-four-port-raw-ledger-summary-v1}};
+  authority: \path{work/raw_ledger_audit/artifacts/raw_ledger_summary.json};
+  SHA-256: \hashvalue{07890bfb28e8aa3f3c6883e903911e7639264d86c9c99eef3acb2223b44217c0};
+  producer command: \texttt{\detokenize{.venv/bin/python -B work/raw_ledger_audit/generate_raw_ledger.py}};
+  replay command: \texttt{\detokenize{.venv/bin/python -B work/raw_ledger_audit/verify_raw_ledger.py}};
+  mutation command: \texttt{\detokenize{.venv/bin/python -B work/raw_ledger_audit/test_mutations.py}}.\\
+four-port exact-rank filter
+& schema/version: \texttt{\seqsplit{k2p-four-port-exact-generic-rank-upper-coverage-v1}};
+  authority: \path{work/rank_upper_certificates/rank_upper_coverage.json};
+  SHA-256: \hashvalue{c52c5730494eb894360c17b6e54ae5c260fca3cddb8702d5c796750c7df874bc};
+  producer command: \texttt{PYTHONPATH=}\path{package/referee/k2p_offline_sweep_portable/atlas}\texttt{:}\path{work/rank_upper_certificates}
+  \path{.venv/bin/python} \texttt{-B}
+  \path{work/rank_upper_certificates/build_rank_upper_coverage.py};
+  replay command: \texttt{PYTHONPATH=}\path{package/referee/k2p_offline_sweep_portable/atlas}\texttt{:}\path{work/rank_upper_certificates}
+  \path{.venv/bin/python} \texttt{-B}
+  \path{work/rank_upper_certificates/verify_rank_upper_certificates.py};
+  mutation command: \texttt{PYTHONPATH=}\path{package/referee/k2p_offline_sweep_portable/atlas}\texttt{:}\path{work/rank_upper_certificates}
+  \path{.venv/bin/python} \texttt{-B}
+  \path{work/rank_upper_certificates/mutation_tests.py}.\\
+direct terminal templates
+& schema/version: \texttt{\seqsplit{k2p-printed-certificate-appendix-v1}};
+  authority: \path{proof_compression_submission/templates/PRINTED_CERTIFICATE_APPENDIX.json};
+  SHA-256: \hashvalue{1a4a8469b41590c0153e9f2e3c8e24270ade3eacfecea89c06c2651f55e151cc};
+  producer command: \texttt{\detokenize{.venv/bin/python -B proof_compression_submission/templates/build_printed_certificate_appendix.py --write}};
+  replay command: \texttt{\detokenize{.venv/bin/python -B proof_compression_submission/templates/verify_printed_certificate_appendix.py}};
+  mutation command: \texttt{\detokenize{.venv/bin/python -B proof_compression_submission/templates/test_printed_certificate_appendix_mutations.py}}.\\
+997-parent restoration forest
+& schema/version: \texttt{\seqsplit{k2p-corrected-restoration-forest-v3}};
+  authority: \path{work/restoration_sign_reclassification/corrected_restoration_forest.json};
+  SHA-256: \hashvalue{43bd2be5e7626a954fc4fa4cf45e8d0e6483c947ddc9cba80f2b1a13351bc3a8};
+  producer command: \texttt{\detokenize{.venv/bin/python -B work/restoration_sign_reclassification/build_corrected_restoration_forest.py}};
+  replay command: \texttt{\detokenize{.venv/bin/python -B work/restoration_sign_reclassification/verify_corrected_restoration_forest.py}};
+  mutation command: \texttt{\detokenize{.venv/bin/python -B work/restoration_sign_reclassification/mutate_corrected_restoration_forest.py}}.\\
+one-/two-port probe closure
+& schema/version: \texttt{\seqsplit{k2p-corrected-coherent-probe-closure-v1}};
+  authority: \path{work/probe_coherence_corrected/probe_coherence_certificate.json};
+  SHA-256: \hashvalue{6c228e0d495fbc68b1df4ddb571558425a35e081cc22b954f232f8a3458991d3};
+  producer command: \texttt{\detokenize{.venv/bin/python -B work/probe_coherence_corrected/build_probe_coherence_corrected.py}};
+  replay command: \texttt{\detokenize{.venv/bin/python -B work/probe_coherence_corrected/verify_probe_coherence_corrected.py}};
+  mutation command: \texttt{\detokenize{.venv/bin/python -B work/probe_coherence_corrected/run_probe_coherence_mutations.py}}.\\
+weak-sharpness named columns
+& schema/version: \texttt{\seqsplit{k2p-weak-sharpness-column-crosswalk-v1}};
+  authority: \path{proof_compression_submission/analysis/WEAK_SHARPNESS_COLUMN_CROSSWALK.json};
+  SHA-256: \hashvalue{827fc4a81b27da05916040e76e4de5b512c7a71e38577e495860a2cf63ee1af5};
+  producer command: \texttt{\detokenize{.venv/bin/python -B proof_compression_submission/analysis/build_weak_sharpness_column_crosswalk.py}};
+  replay command: \texttt{\detokenize{.venv/bin/python -B proof_compression_submission/analysis/verify_weak_sharpness_column_crosswalk.py}};
+  mutation command: \texttt{\detokenize{.venv/bin/python -B proof_compression_submission/analysis/test_weak_sharpness_column_crosswalk_mutations.py}}.\\
+\bottomrule
+\end{longtable}
+\endgroup
+
 \section{Frozen hash anchors}\label{sec:hashes}
 
 The following SHA-256 values are the compact anchors most useful for checking
@@ -629,7 +738,7 @@ that the intended finite universe has been unpacked.  The outer release lock
 authenticates all nested files and should remain the authority if any table is
 updated.
 
-\begin{longtable}{p{.36\linewidth}p{.56\linewidth}}
+\begin{longtable}{L{.36\linewidth}L{.56\linewidth}}
 \toprule
 artifact & file SHA-256\\
 \midrule
@@ -738,7 +847,7 @@ Citation metadata were checked on 21 August 2026 against primary publisher or
 authoritative preprint records where available:
 \begin{center}
 \small
-\begin{tabular}{p{.27\linewidth}p{.63\linewidth}}
+\begin{tabular}{L{.27\linewidth}L{.63\linewidth}}
 \toprule
 source & verified locator and status\\
 \midrule
@@ -768,13 +877,21 @@ the publisher records a 14 January 2026 correction.\\
 Holtgrefe et al. (2026) \cite{HoltgrefeEtAl2026}
 & Springer version of record,
 \url{https://doi.org/10.1007/s12064-025-00453-8}, Theory Biosci. 145:4.\\
-Englander et al. \cite{EnglanderEtAl2026}
+Huber et al. (2025) \cite{HuberEtAl2025}
+& Springer version of record,
+\url{https://doi.org/10.1007/s11538-025-01510-5}, Bull. Math. Biol. 87:136;
+Lemma~4.2 is the two-generator result used here.\\
+Englander et al. (2025) \cite{EnglanderEtAl2026}
 & bioRxiv DOI \url{https://doi.org/10.1101/2025.04.18.649493}; theorem
 numbering and the 4 July 2026 version-4 content were checked against the
 locally archived source XML/PDF.\\
 Brits et al. (2026) \cite{BritsEtAl2026}
 & arXiv primary record \url{https://arxiv.org/abs/2607.12919v2}; version 2
 dated 29 July 2026.\\
+Kriebel (2026) \cite{KriebelJC2026}
+& versioned public companion JC repository release
+\url{https://github.com/AlecKriebel/Math/releases/tag/stc-jc-sharp-boundary-v1.1.4},
+source commit \texttt{b5b855f5e6552e1d87f32d90851ea2def5330364}; no DOI is claimed.\\
 \bottomrule
 \end{tabular}
 \end{center}
@@ -793,15 +910,18 @@ The following items require explicit human decisions before submission:
   \item final article and supplement titles, journal formatting, and submission
         date;
   \item paper, data, and code license choices;
-  \item final public repository URL, immutable commit/tag, and archive SHA-256;
+  \item immutable submission commit/tag and the accompanying externally
+        published deterministic-archive SHA-256;
   \item whether and when to create a GitHub/Zenodo release and DOI; and
   \item final clean full-replay wall time and peak-memory report.
 \end{itemize}
 
-No email address, funding statement, competing-interests declaration, or
-license has been inferred from older project files.  This draft asserts none
-of them.  A DOI-bearing release should be created only for a genuinely final
-immutable submission package.
+The mutable public repository is
+\url{https://github.com/AlecKriebel/Math}; the project lives under
+\path{k2p_level2_identifiability_closure}.  No email address, funding
+statement, competing-interests declaration, or license has been inferred from
+older project files.  This draft asserts none of them.  A DOI-bearing release
+should be created only for a genuinely final immutable submission package.
 
 \section*{Disclosure}
 

@@ -295,17 +295,22 @@ def build() -> dict[str, Any]:
             "compression_status": "PC-PARTIAL_quadratic_literals_and_certified_high_degree_families",
             "authoritative_artifacts": rows([
                 ("proof_compression_submission/templates/DIRECT_CERTIFICATE_TEMPLATE_TABLE.json", "compressed direction-safe template table", False),
+                ("proof_compression_submission/templates/PRINTED_CERTIFICATE_APPENDIX.json", "sealed printed-formula and worked-example appendix", False),
+                ("proof_compression_submission/supplement/certificate_appendix.tex", "generated reader appendix", False),
                 ("package/referee/k2p_offline_sweep_portable/proofs/four_port_direct_residual_closure_certificate.json", "frozen direct-36 certificate", True),
                 ("package/referee/k2p_offline_sweep_portable/DIRECT_CLOSURE_LOCK.json", "nested direct closure lock", True),
             ]),
             "producer_artifacts": rows([
                 ("proof_compression_submission/templates/derive_direct_templates.py", "literal-body and certified-orbit grouper", False),
+                ("proof_compression_submission/templates/build_printed_certificate_appendix.py", "printed appendix producer and deterministic checker", False),
             ]),
             "replay_artifacts": rows([
                 ("package/referee/k2p_offline_sweep_portable/verify_direct_closure_release.py", "direct closure replay", True),
+                ("proof_compression_submission/templates/verify_printed_certificate_appendix.py", "independent printed-formula and worked-example replay", False),
             ]),
             "mutation_artifacts": rows([
                 ("package/referee/k2p_offline_sweep_portable/test_direct_closure_release_mutations.py", "direct certificate mutation runner", True),
+                ("proof_compression_submission/templates/test_printed_certificate_appendix_mutations.py", "printed appendix mutation runner", False),
                 outer_mutation,
             ]),
             "environment_profile": "frozen-python-k2p-v1",
@@ -464,18 +469,22 @@ def build() -> dict[str, Any]:
             "authoritative_artifacts": rows([
                 ("work/weak_sharpness_closure/PROOF.md", "sharpness proof", True),
                 ("work/weak_sharpness_closure/weak_sharpness_certificate.json", "exact sharpness certificate", True),
+                ("proof_compression_submission/analysis/WEAK_SHARPNESS_COLUMN_CROSSWALK.json", "derived named-column crosswalk", False),
             ]),
             "producer_artifacts": rows([
                 ("work/weak_sharpness_closure/verify_weak_sharpness.py", "sharpness certificate producer", True),
+                ("proof_compression_submission/analysis/build_weak_sharpness_column_crosswalk.py", "graph-derived named-column producer", False),
             ]),
             "replay_artifacts": rows([
                 ("work/weak_sharpness_audit/PROOF_AUDIT.md", "independent proof audit", True),
                 ("work/weak_sharpness_audit/audit_weak_sharpness.py", "independent exact replay", True),
                 ("work/weak_sharpness_audit/audit_certificate.json", "independent audit report", True),
+                ("proof_compression_submission/analysis/verify_weak_sharpness_column_crosswalk.py", "independent graph and determinant crosswalk replay", False),
             ]),
             "mutation_artifacts": rows([
                 ("work/weak_sharpness_audit/test_mutations.py", "sharpness mutation runner", True),
                 ("work/weak_sharpness_audit/mutation_report.json", "sharpness mutation report", True),
+                ("proof_compression_submission/analysis/test_weak_sharpness_column_crosswalk_mutations.py", "named-column mutation runner", False),
                 outer_mutation,
             ]),
             "environment_profile": "frozen-python-k2p-v1",
