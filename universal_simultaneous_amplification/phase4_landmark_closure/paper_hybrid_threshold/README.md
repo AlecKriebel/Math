@@ -40,6 +40,9 @@ script creates
 
 The exact replay audits labelled finite-state lumping, the pair and pendant
 response algebra, rational endpoint margins, and the sextic optimization.
+Every verification condition is explicit and optimized Python is rejected;
+the clean bootstrap also runs disposable early- and late-mutation tests to
+check failure propagation.
 The analytic weak-cut, establishment, cleanup, reciprocal-invasion, and sweep
 estimates are proved in the manuscript; they are not machine-verified by
 these finite certificates.  No sampled numerical calculation carries a
@@ -47,7 +50,21 @@ theorem quantifier.
 
 For a fresh archive extraction, the single canonical bootstrap is
 `bootstrap_replay.sh`.  It pins Python 3.14.6, SymPy 1.14.0, and SymPy's
-numerical dependency mpmath 1.3.0.
+numerical dependency mpmath 1.3.0.  The two pure-Python dependency wheels are
+included under `vendor/`; installation disables package indexes and verifies
+their SHA-256 hashes, so the certificate replay is offline once Python 3.14.6
+is available.
+
+The document toolchain is a separate boundary.  Tectonic 0.16.9 and Poppler
+26.08.0 must be installed externally, and Tectonic may require either its
+pre-populated resource cache or network access.  The archive is therefore a
+complete scientific-source and certificate handoff, not a fully offline
+operating-system or document-tool image.
+
+The internal manifests establish byte and file-set consistency relative to a
+trusted archive digest.  They do not authenticate authorship or independently
+prove that a repository tag resolves to the stated commit; that provenance
+check must use the repository or a separately authenticated deposit.
 
 DOI `10.5281/zenodo.21852072` is the public v1 source/software archive for an
 earlier manuscript version in this same workstream.  This package is a major

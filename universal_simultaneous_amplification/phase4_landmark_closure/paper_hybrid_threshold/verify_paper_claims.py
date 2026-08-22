@@ -10,11 +10,30 @@ from __future__ import annotations
 
 from fractions import Fraction as F
 from pathlib import Path
+import sys
 
 import sympy as sp
 
 
 HERE = Path(__file__).resolve().parent
+
+
+class VerificationError(RuntimeError):
+    """Raised when an encoded paper claim does not verify."""
+
+
+def require(condition: object, message: str) -> None:
+    """Fail closed without relying on optimization-sensitive assertions."""
+    if not bool(condition):
+        raise VerificationError(message)
+
+
+def reject_optimized_python() -> None:
+    if sys.flags.optimize != 0:
+        raise SystemExit(
+            "ERROR: optimized Python is unsupported because verification "
+            "checks must remain active"
+        )
 
 
 def check_module_responses() -> None:
@@ -29,22 +48,36 @@ def check_module_responses() -> None:
     expected_pair_db = 2 * (r * (2 - r) - sigma) / (
         sigma + 2 * r * (r - 1)
     )
-    assert sp.factor(pair_bd - expected_pair_bd) == 0
-    assert sp.factor(pair_db - expected_pair_db) == 0
+    require(
+        sp.factor(pair_bd - expected_pair_bd) == 0,
+        "Bd pair response does not match the claimed formula",
+    )
+    require(
+        sp.factor(pair_db - expected_pair_db) == 0,
+        "dB pair response does not match the claimed formula",
+    )
 
     # A dilute pendant replaces one baseline core start: 1/p-1 for Bd and
     # 0/p-1 for dB.
     leaf_bd = sp.factor(1 / p - 1)
     leaf_db = sp.Integer(-1)
-    assert leaf_bd == 1 / (r - 1)
+    require(
+        leaf_bd == 1 / (r - 1),
+        "Bd pendant response does not equal 1/(r-1)",
+    )
 
     response_bd = sp.factor(pair_bd + lam * leaf_bd)
     response_db = sp.factor(pair_db + lam * leaf_db)
     expected_bd = expected_pair_bd + lam / (r - 1)
     expected_db = expected_pair_db - lam
-    assert sp.factor(response_bd - expected_bd) == 0
-    assert sp.factor(response_db - expected_db) == 0
-    print("PASS: pair and pendant modules reconstruct both response functions")
+    require(
+        sp.factor(response_bd - expected_bd) == 0,
+        "Bd hybrid response does not reconstruct from pair and pendant terms",
+    )
+    require(
+        sp.factor(response_db - expected_db) == 0,
+        "dB hybrid response does not reconstruct from pair and pendant terms",
+    )
 
 
 def check_feasibility_and_tangency() -> None:
@@ -58,20 +91,36 @@ def check_feasibility_and_tangency() -> None:
         + r * (2 * r - 3)
     )
     gap_numerator = sp.factor(sp.together(upper - lower).as_numer_denom()[0])
-    assert sp.expand(gap_numerator + 2 * r * quadratic) == 0
+    require(
+        sp.expand(gap_numerator + 2 * r * quadratic) == 0,
+        "feasibility-gap numerator does not equal the claimed quadratic",
+    )
 
     minimizing_sigma = (-r**3 + 4 * r**2 - 3 * r - 1) / (2 * (r - 1))
     minimum = sp.factor(quadratic.subs(sigma, minimizing_sigma))
-    assert sp.factor(minimum + phase / (4 * (r - 1))) == 0
+    require(
+        sp.factor(minimum + phase / (4 * (r - 1))) == 0,
+        "quadratic minimum does not reduce to the phase polynomial",
+    )
 
     polynomial = sp.Poly(phase, r, domain=sp.QQ)
-    assert polynomial.count_roots(sp.Rational(1), sp.Rational(3, 2)) == 0
-    assert polynomial.count_roots(sp.Rational(3, 2), sp.Rational(151, 100)) == 1
-    assert phase.subs(r, sp.Rational(3, 2)) == sp.Rational(1, 64)
-    assert phase.subs(r, sp.Rational(151, 100)) == -sp.Rational(
-        39866792399, 10**12
+    require(
+        polynomial.count_roots(sp.Rational(1), sp.Rational(3, 2)) == 0,
+        "phase polynomial has an unexpected root in (1,3/2)",
     )
-    print("PASS: feasibility gap, quadratic minimum, and isolated sextic root")
+    require(
+        polynomial.count_roots(sp.Rational(3, 2), sp.Rational(151, 100)) == 1,
+        "phase polynomial does not have exactly one root in (3/2,151/100)",
+    )
+    require(
+        phase.subs(r, sp.Rational(3, 2)) == sp.Rational(1, 64),
+        "phase-polynomial value at 3/2 is not 1/64",
+    )
+    require(
+        phase.subs(r, sp.Rational(151, 100))
+        == -sp.Rational(39866792399, 10**12),
+        "phase-polynomial value at 151/100 is incorrect",
+    )
 
 
 def check_rational_specialization() -> None:
@@ -83,24 +132,44 @@ def check_rational_specialization() -> None:
         2 * (r * (2 - r) - sigma) / (sigma + 2 * r * (r - 1)) - lam
     )
     endpoint = sp.Rational(3, 2)
-    assert sp.factor(response_bd.subs(r, endpoint)) == sp.Rational(232, 17361)
-    assert sp.factor(response_db.subs(r, endpoint)) == sp.Rational(65, 12123)
+    require(
+        sp.factor(response_bd.subs(r, endpoint)) == sp.Rational(232, 17361),
+        "rational Bd endpoint margin is incorrect",
+    )
+    require(
+        sp.factor(response_db.subs(r, endpoint)) == sp.Rational(65, 12123),
+        "rational dB endpoint margin is incorrect",
+    )
 
     rational_threshold = (sp.Integer(5069) + 12 * sp.sqrt(147001)) / 6439
-    assert sp.factor(6439 * rational_threshold**2 - 10138 * rational_threshold + 703) == 0
-    assert sp.Rational(3, 2) < rational_threshold < sp.Rational(151, 100)
-    assert sp.factor(response_bd.subs(r, rational_threshold)) > 0
+    require(
+        sp.factor(
+            6439 * rational_threshold**2 - 10138 * rational_threshold + 703
+        )
+        == 0,
+        "rational-family threshold does not satisfy its defining quadratic",
+    )
+    require(
+        sp.Rational(3, 2) < rational_threshold < sp.Rational(151, 100),
+        "rational-family threshold lies outside its claimed interval",
+    )
+    require(
+        sp.factor(response_bd.subs(r, rational_threshold)) > 0,
+        "Bd response is not positive at the rational-family threshold",
+    )
 
     # The explicit weak cut is a positive rational for every integer exponent.
     for exponent in range(1, 9):
         cut = F(1, 2**exponent)
-        assert cut > 0 and cut.denominator == 2**exponent
-    print("PASS: rational margins, algebraic response threshold, and dyadic-cut schedule")
+        require(
+            cut > 0 and cut.denominator == 2**exponent,
+            f"invalid dyadic cut at exponent {exponent}: {cut}",
+        )
 
 
 def check_manuscript_scope() -> None:
     manuscript_bytes = (HERE / "main.tex").read_bytes()
-    assert b"\r" not in manuscript_bytes, "main.tex contains CR bytes"
+    require(b"\r" not in manuscript_bytes, "main.tex contains CR bytes")
     manuscript = manuscript_bytes.decode("utf-8")
     required = (
         "fitness-independent",
@@ -113,6 +182,12 @@ def check_manuscript_scope() -> None:
         "Reciprocal hub-excursion renewal",
         r"I-Q(r)$ is a nonsingular $M$-matrix",
         r"\mathcal E_C=\{R\leq\delta c\}",
+        r"\tau_\uparrow=\inf\{s\geq0:R_s\geq2\delta c\}",
+        r"\widehat\ell_{j\wedge N}-\varepsilon(j\wedge N)",
+        r"\mathbb EN\leq m/\varepsilon=O(m)",
+        r"\mathbb E_{h,R,\ell}\Sigma=O(Cm)",
+        r"At $\ell=0$ a resident-hub phase has no loss",
+        "next pendant change or upper-strip exit",
         r"\beta_0-\frac14\geq B_0+2",
         r"\kappa\beta_0\geq B_0+2",
         r"T=\beta_0\log C",
@@ -132,15 +207,31 @@ def check_manuscript_scope() -> None:
         r"P_U^P=\frac{A}{A+D}\,p_{1,1}",
         r"where $p_{1,1}$ is the macro-fixation probability from $(1,1)$",
         r"P_U^P=[A/(A+D)][(B+C')/B]P_U^H",
-        "simultaneous-amplification-beyond-three-halves-v2.0.1",
+        "simultaneous-amplification-beyond-three-halves-v2.0.2",
     )
     for fragment in required:
-        assert fragment in manuscript, f"missing manuscript scope marker: {fragment}"
-    assert "endpoint_affine_global_v2" not in manuscript
-    assert "audit_core_uniformity.py" not in manuscript
-    assert r"K=A\log C" not in manuscript
-    assert r"B\log C" not in manuscript
-    assert r"T=B_0\log C" not in manuscript
+        require(
+            fragment in manuscript,
+            f"missing manuscript scope marker: {fragment}",
+        )
+    require(
+        "endpoint_affine_global_v2" not in manuscript,
+        "manuscript cites a forbidden discovery artifact",
+    )
+    require(
+        "audit_core_uniformity.py" not in manuscript,
+        "manuscript cites a forbidden exploratory audit",
+    )
+    require(r"K=A\log C" not in manuscript, "obsolete establishment scale remains")
+    require(r"B\log C" not in manuscript, "obsolete cleanup scale remains")
+    require(
+        r"T=B_0\log C" not in manuscript,
+        "obsolete dB cleanup-time coefficient remains",
+    )
+    require(
+        r"\mathbb E\tau_{\{\ell=m\}}" not in manuscript,
+        "unstopped pendant-hitting expectation remains",
+    )
     for malformed in (
         ",qquad",
         "&qquad",
@@ -151,13 +242,14 @@ def check_manuscript_scope() -> None:
         "&right",
         ",right",
     ):
-        assert malformed not in manuscript, f"malformed TeX token: {malformed}"
-    print(
-        "PASS: theorem, response-model, open-problem, and replay boundaries are explicit"
-    )
+        require(
+            malformed not in manuscript,
+            f"malformed TeX token: {malformed}",
+        )
 
 
 if __name__ == "__main__":
+    reject_optimized_python()
     check_module_responses()
     check_feasibility_and_tangency()
     check_rational_specialization()

@@ -28,17 +28,19 @@ The pinned replay environment is Python 3.14.6 with SymPy 1.14.0 and mpmath
 rendering.
 
 The archive preserves repository-relative paths, but the replay is fully
-paper-local.  Its exact public whitelist consists of 17 source files:
+paper-local.  Its exact public whitelist consists of 21 source files:
 
 - the project license;
 - the manuscript source and PDF;
 - three copied certifiers under `certificates/` and the paper-level integration
   audit;
-- pinned requirements and exact replay, PDF build, and archive scripts; and
+- pinned requirements, two vendored dependency wheels and their provenance
+  note, the failure-regression test, and exact replay, PDF build, and archive
+  scripts; and
 - the public README, research log, and release notes.
 
 Synthetic bundle metadata and the internal manifest bring the final archive
-to exactly 19 regular members.  The manuscript itself is the analytic proof;
+to exactly 23 regular members.  The manuscript itself is the analytic proof;
 older proof notes and wrappers are deliberately absent because they duplicate
 the argument and can retain superseded intermediate wording.
 
@@ -65,9 +67,11 @@ paper_hybrid_threshold/bootstrap_replay.sh
 
 `sha256sum` may be used instead of `shasum` where available.  The bootstrap
 creates an isolated project-local Python environment, installs the two pinned
-libraries, verifies versions, and runs the exact replay.  It does not contact
-any person or submit any artifact.  Building and rendering the PDF
-additionally requires Tectonic and Poppler.
+libraries offline from the included hash-checked wheels, verifies versions,
+runs the exact replay, and runs the fail-closed mutation regressions.  It does
+not contact any person or submit any artifact.  Building and rendering the PDF
+additionally requires externally installed Tectonic and Poppler; Tectonic may
+require its standard resource cache or endpoint.
 
 The exact programs verify finite labelled transition aggregation and exact
 symbolic/rational identities.  They do not replace the manuscript's analytic

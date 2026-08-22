@@ -58,9 +58,10 @@ compact-uniformity, or quantifier defect was found.
 The complete exact replay, fresh archive extraction, pinned bootstrap,
 byte-identical PDF rebuild, compiler-log scan, embedded-font check, and visual
 inspection of the changed pages all pass.  The compact 20-page bibliography
-remains readable.  No blocker or minor mathematical issue remains in the
-scientific source checkpoint; the immutable v2.0.1 tag must be placed on the
-exact commit before the frozen source link is relied upon.
+remains readable.  At that checkpoint no blocker or minor mathematical issue
+had been identified; the later independent referee audit recorded below
+supersedes that verdict.  The annotated, unsigned v2.0.1 tag was placed on the
+exact scientific commit before its frozen source link was relied upon.
 
 A subsequent package-integrity adversary found one reproducibility-only gap:
 the clean bootstrap created `.venv-paper2`, while the standalone release
@@ -73,12 +74,52 @@ No mathematical or certificate claim changed.
 The final wrapper received three independent adversarial passes.  The prompt
 audit required and then confirmed an honest incomplete-review verdict,
 non-exhaustive counterexample search, and full wrapper/dependency inspection.
-The package audit confirmed safe canonical members, exact commit/tag binding,
-deterministic archive and PDF regeneration, bounded temporary cleanup, and
-failure propagation under five negative tests.  A fresh blind referee
+The package audit confirmed safe canonical members, internal byte consistency,
+an independent remote tag/blob/mode comparison, deterministic archive and PDF
+regeneration, bounded temporary cleanup, and failure propagation under five
+negative tests.  The annotated tag was unsigned, so the comparison did not
+constitute independent signer authentication.  A fresh blind referee
 independently re-derived the gate rates, response functions, tangency data,
 and corrected cleanup exponents and reported no theorem, software, or package
-defect.  The only remaining limitations---online dependency artifacts are
-version-pinned but not hash-vendored, and stochastic asymptotics are analytic
-rather than machine-certified---are disclosed in the neutral handoff and are
-not used to overstate the certificates.
+defect at that checkpoint.  A later referee found the missing synchronization
+stop and optimized-Python false pass described in the superseding audit below.
+
+## 2026-08-22 superseding post-referee audit
+
+The referee's mathematical counterexample was reproduced.  The former
+unstopped next-pendant and `ell=m` expectations could be infinite after
+positive-probability extinction.  The revised proof stops at upper-strip exit,
+gives that exit favorable boundary value in the pendant committor, derives an
+explicit positive-drift stopped trace with `O(m)` expected outcomes, and then
+derives `O(C)` expected calendar time per outcome.  A separate hostile pass
+also found and repaired the adjacent `ell=0` boundary of the resident-hub loss
+bound.  The resulting synchronization-or-exit estimate is precisely the one
+used by the later block recursion.
+
+A fresh full-manuscript adversary then rechecked every theorem dependency from
+the model and weak-cut trace through reciprocal invasion, gate sweep, response
+optimization, rational specialization, and the final diagonal quantifiers.  It
+found no remaining blocking or minor mathematical issue and no unsupported
+downstream use of the repaired estimate.
+
+The optimized-Python false pass was also reproduced.  Every critical condition
+now raises explicitly, all verifier entry points reject optimized execution,
+and disposable early and late mutations prove that failures suppress the
+whole-replay success sentinel.  The Python dependency wheels are included and
+hash-pinned for offline replay; one verified interpreter is used throughout
+release construction; archive modes and internal manifest syntax, paths, and
+uniqueness are checked.  Negative tests covered optimized entry points,
+mutated identities, a corrupted wheel, wrong source modes, a corrupted archive
+payload, and a duplicate manifest entry.
+
+Two deterministic archive generations, a fresh offline bootstrap, archive and
+PDF regeneration, compiler-log and embedded-font checks, and visual inspection
+of all 21 pages pass.  Tectonic/Poppler and Tectonic resources remain externally
+provisioned; the Git tag is annotated but unsigned; the literature search is
+not exhaustive; and the stochastic asymptotics are analytic rather than
+machine-formal.  These are stated limitations, not evidence supplied for the
+theorem.
+
+**Post-repair verdict:** no theorem, rate, scale, quantifier, verifier,
+reproducibility, or rendering issue remains in the scientific source.  The
+next freeze must use a new v2.0.2 tag rather than moving v2.0.1.
