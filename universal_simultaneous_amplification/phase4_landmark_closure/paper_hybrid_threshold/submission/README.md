@@ -7,14 +7,18 @@
 
 The intended sequence is:
 
-1. bioRxiv, **Evolutionary Biology**, article type **New Results**;
+1. bioRxiv, **Evolutionary Biology**, article category **New Results**;
 2. *Journal of Mathematical Biology*, as an original research article; and
 3. *Theoretical Population Biology* if the first journal declines the paper.
 
 Files in this directory:
 
-- `BIORXIV_METADATA.md` and `BIORXIV_CHECKLIST.md`: preprint metadata and
-  human sign-off gates;
+- `BIORXIV_SUBMISSION_INSTRUCTIONS.md`: the current portal walkthrough, exact
+  upload set, proof checks, and post-submission recordkeeping;
+- `BIORXIV_METADATA.md`: plain-text, copy-ready preprint fields and
+  declarations;
+- `BIORXIV_CHECKLIST.md`: preverified package facts and human-only sign-off
+  gates;
 - `JMB_COVER_LETTER.md` and `JMB_CHECKLIST.md`: primary-journal materials;
 - `TPB_COVER_LETTER.md`, `TPB_HIGHLIGHTS.txt`, and `TPB_CHECKLIST.md`:
   fallback-journal materials;
@@ -30,11 +34,14 @@ Files in this directory:
 - `verify_submission_materials.py`: static checks for identity, abstract
   length, highlights, placeholder scope, dependency pins, and provenance.
 
-Only one field is intentionally unresolved: the private postal address token.
-It must be replaced by the author in a private cover-letter copy or portal
-entry.  The public source-and-certificate archive excludes all venue metadata,
-cover letters, checklists, and the submission validator, so it cannot publish
-that private value accidentally.
+Several items are intentionally left for the human author and authenticated
+portal: private address/location fields, truthful affiliation information,
+verified email access, license choice and authority, any newly displayed
+policy fields, acceptance of the live terms, and the bioRxiv identifiers
+assigned after submission.  The public source-and-certificate archive excludes
+all venue metadata, cover letters,
+checklists, and the submission validator, so it cannot publish a private
+address token accidentally.
 
 Venue rules and portal fields can change.  The human author must reopen the
 official guidance immediately before each submission, confirm the current

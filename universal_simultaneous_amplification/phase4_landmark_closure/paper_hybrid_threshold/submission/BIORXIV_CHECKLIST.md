@@ -1,57 +1,83 @@
 # bioRxiv submission checklist
 
-> **DRAFT — NOT POSTED.** Only the human author may enter private metadata,
-> accept terms, choose a license, or press the submission button.
+> **READY FOR HUMAN SUBMISSION — NOT POSTED.** Completed boxes are frozen
+> technical facts that have already been checked. Open boxes require the human
+> author or the authenticated bioRxiv portal.
 
-## Scientific and document checks
+## Preverified package and metadata
 
-- [ ] Confirm the final PDF title, author, abstract, theorem statements, and
-      limitations agree with `BIORXIV_METADATA.md`.
-- [ ] Select **New Results** as the article type and **Evolutionary Biology**
-      as the subject category.
-- [ ] Confirm that the submission is presented as evolutionary-dynamics
-      research with new mathematical results and reproducible exact outputs.
-- [ ] Upload the final manuscript PDF and any supporting archive accepted by
-      the live portal.
-- [ ] Confirm fonts, mathematics, hyperlinks, and the diagram render correctly
-      and no internal-review or tracked-change material appears.
-- [ ] Confirm the abstract and six keywords copied into the portal are
-      identical to the frozen manuscript.
+- [x] Final manuscript is a 21-page, US-Letter portrait PDF with embedded
+      fonts, no encryption or permission restrictions, and no separate image
+      files required.
+- [x] Final PDF SHA-256 is
+      `4e86597bb0baff388e8ce7ccf6ffd808f86b5ea846acf6f2188b31016fd2572c`.
+- [x] Supplemental source-and-certificate archive has 23 regular members,
+      passes its manifest and clean replay, and has SHA-256
+      `d2145513f8abe295e9e7fab62f062fa9d0f7a6282de95e8155f3db4621485274`.
+- [x] The title and scientific claims in `BIORXIV_METADATA.md` match the frozen
+      manuscript; its portal abstract is plain-text, ASCII-safe, and 224 words.
+- [x] The intended selections are **New Results** and **Evolutionary Biology**.
+- [x] The scope note frames the theorem as original evolutionary-dynamics
+      research with direct life-science relevance.
+- [x] Prior public versions and the distinct Paper I workstream are identified
+      in `PROVENANCE_AND_RELATED_RELEASES.md`.
+- [x] The final automated submission-material verifier passes with ordinary
+      Python and refuses optimization mode.
 
-## Author-only fields and choices
+## Human-only identity, policy, and consent checks
 
-- [ ] Confirm `me@aleckriebel.com`, the author name, Independent Researcher
-      affiliation, and ORCID.
-- [ ] Replace `[[POSTAL_ADDRESS]]` in any private cover-letter copy or portal
-      field that requests it.
-- [ ] Read and choose among the live preprint-license options.
-- [ ] Read and accept the current bioRxiv terms and screening declarations.
-- [ ] Confirm the journal workflow and any concurrent-preprint disclosure
-      comply with the live policies.
+- [ ] Sign in with the verified author account and confirm
+      `me@aleckriebel.com`.
+- [ ] Confirm Alec Kriebel, ORCID `0009-0001-9320-500X`, sole authorship, and
+      corresponding-author status.
+- [ ] Use the truthful manuscript affiliation **Independent Researcher** if the
+      live form accepts it; otherwise stop and enter only truthful current
+      information without inventing an institution or affiliation.
+- [ ] Enter any requested private postal address, city, region, postal code,
+      and country; never paste `[[POSTAL_ADDRESS]]` into the portal.
+- [ ] Confirm the sole author consents to posting and all author details are
+      correct.
+- [ ] Read the current license choices and make the human selection. The
+      recommended default is CC BY 4.0.
+- [ ] Confirm ownership or control of the necessary copyright and authority to
+      grant the selected license, including compatibility with the terms of
+      the two prior Zenodo deposits.
+- [ ] Read and personally accept the current bioRxiv terms and screening
+      declarations.
+- [ ] Confirm no external funding, no competing interests, and the
+      non-applicability of human, animal, clinical, and empirical-data ethics.
+- [ ] Approve the AI-assistance statement and prior-online-material disclosure
+      as accurate in every field where the live portal requests them.
+- [ ] If asked whether this manuscript or substantially similar material has
+      appeared online, disclose both Zenodo records; do not answer **No** merely
+      because neither record was on bioRxiv.
+- [ ] Answer any additional authenticated-form questions truthfully; do not
+      infer answers from this checklist when the portal asks something new.
 
-## Integrity and provenance
+## Human upload and proof checks
 
-- [ ] Disclose DOI `10.5281/zenodo.21852072` as the public v1
-      **source/software archive** containing an earlier manuscript version;
-      do not call it the DOI of the present revision.
-- [ ] Disclose DOI `10.5281/zenodo.21850042` as the superseded
-      **source/software archive** for the earlier `R_sim>=3/2` construction.
-- [ ] If asked about related work, disclose Paper I separately as described in
-      `PROVENANCE_AND_RELATED_RELEASES.md`.
-- [ ] Confirm the public project webpage and any earlier manuscript draft are
-      disclosed wherever the live portal requests prior online versions.
-- [ ] Approve the substantive AI-assistance statement against the live policy.
-- [ ] Confirm that no empirical data, participants, animals, clinical
-      material, personal data, or third-party copyrighted figures are used.
+- [ ] Upload only the frozen main PDF and frozen supplemental archive listed in
+      `BIORXIV_SUBMISSION_INSTRUCTIONS.md`.
+- [ ] If the portal rejects the supplemental archive, stop and preserve the
+      exact error instead of silently omitting or modifying the supplement.
+- [ ] Proof the title, author record, affiliation, abstract, keywords,
+      declarations, and prior-version disclosure in the portal.
+- [ ] Proof all 21 PDF pages, including equations, construction diagram,
+      references, hyperlinks, fonts, and page breaks.
+- [ ] Confirm no internal-review material, tracked changes, or private
+      placeholder appears in either the metadata or the displayed PDF.
+- [ ] Confirm the supplemental archive's filename and descriptive label.
+- [ ] Press the final approval/submit control only after every portal section
+      is correct, then retain the confirmation.
 
-## Reproducibility and freeze
+## After submission and posting
 
-- [ ] Run `../release_bundle.sh` and retain the printed archive SHA-256.
-- [ ] Verify the internal `MANIFEST.sha256` after fresh extraction.
-- [ ] Run `bootstrap_replay.sh` from the extracted copy.
-- [ ] Rebuild and visually inspect every page of the deterministic PDF.
-- [ ] Create a new versioned public deposit only after the author approves the
-      frozen package.
-- [ ] Add a new persistent identifier to the manuscript and portal metadata
-      only after it exists; never reuse a predecessor DOI.
-- [ ] Human author performs the final submission and retains confirmation.
+- [ ] Record the exact bioRxiv manuscript ID, DOI, posted URL, and posting date;
+      do not assume a DOI prefix.
+- [ ] Compare the posted files with the frozen local artifacts where download
+      access permits.
+- [ ] Update `BIORXIV_METADATA.md` and
+      `PROVENANCE_AND_RELATED_RELEASES.md` with the assigned record.
+- [ ] Disclose the bioRxiv preprint in the later journal submission.
+- [ ] For every bioRxiv revision, keep the revised manuscript and matching
+      verifier/source supplement synchronized.
