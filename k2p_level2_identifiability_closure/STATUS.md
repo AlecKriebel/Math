@@ -1,58 +1,65 @@
 # K2P Closure Status
 
-## Closed in this checkpoint
+## Theorem status: complete on the principal positive domain
 
-The current-lock six-source four-port computation is complete and independently
-merged: 1,931 canonical classes, six contiguous manifests, and zero errors.
-The semantic sweep root is
-
-```text
-2a9a19ba3e9498df1c77582b07fcfd5ac315a4437ee634d25ce8ec4aa5cbaab0
-```
-
-All 36 direct candidates singled out by the finite pass now have exact
-bridge-multihomogeneous target obstructions:
-
-- 22 `theta0` repair-1 relabelings: one quintic and its port orbit;
-- 12 lower-theta records: three quartics and symmetry transports; and
-- 2 `theta3` records: one cubic substituted independently into both targets.
-
-Every target pullback is identically zero over the exact coefficient ring.
-Every source pullback is nonzero, has a stored monomial witness, and is nonzero
-at an explicit strict `D_plus` K2P point including physical pendant edges.
-Independent replayers and coefficient/index mutations found no surviving
-counterexample. Thus the exact 36-class direct-residual milestone is 100%
-complete.
-
-Overlaying these proofs on the sweep gives the finite four-port census
+The unconditional `K2P-SAME` classification, generic-identifiability
+corollary, exact reconstruction theorem, strict continuous-time corollary, and
+weak-class `4n-3` sharpness theorem are complete. The promotion manuscript
+and 370-file transitive evidence bundle have independent replay and mutation
+coverage. The frozen outer release lock is
 
 ```text
-separated 879; isomorphic 20; triangle 35; restoration_parent 997;
-unproved direct candidates 0; errors 0.
+0c17eeaa3344f0982998ea694c1eb92f72f5ced0841e2acad0d39566e2ec71c3
 ```
 
-## Gates that remain before a final theorem
+Every finite gate has zero unresolved mathematical records. The corrected
+finite universe includes:
 
-This checkpoint does not promote the conditional strong-class theorem to an
-unconditional final theorem. The remaining load-bearing obligations are:
+- 405,216 raw four-port directions;
+- 2,946,240 raw minimum-repaired five-port `theta2` directions;
+- 13,440 raw three-port cycle directions;
+- 997 restoration parents, 2,540 physical member roots, and a terminating
+  36,824-edge forest;
+- 176 physical equality anchors;
+- 29,964 one-port and 544,571 two-port probe directions; and
+- exact upper and lower rank certificates for every filtered descriptor.
 
-1. Construct and bind every one of the 997 restoration-parent requests to its
-   required direct five-port child, and replay the restoration implication.
-2. Publish a graph-derived ledger partitioning the raw completion/port universe
-   into retained, topology-excluded, and rank-excluded rows, with valid
-   dimension upper bounds rather than one-point Jacobian lower bounds alone.
-3. Bind exact witnesses for every graph-relation status used by the finite
-   theorem and independently replay the relevant marginal/restoration links.
-4. Reconcile the proven positive-domain (`D_plus`) scope with any desired
-   claim over mixed-sign strict-stochastic K2P parameters; the present physical
-   witnesses do not establish that extension.
-5. Assemble and replay the archived bridge, marginal-open-image, gluing,
-   genericity, reconstruction, and sharpness layers against the final finite
-   certificate before stating the necessary-and-sufficient theorem.
+## Adversarial proof-compression result
 
-The optimized runner, proof overlay, and current result subset are packaged for
-referees. The original portable archive remains preserved with SHA-256
+The supplied adversarial review was evaluated claim by claim rather than
+applied verbatim. Its request for a self-contained paper and smaller
+mathematical catalogue was valid. Its proposed rooted tree/sunlet classifier,
+triangle-as-polynomial symmetry, and uncertified complement/pole/sink
+quotients were rejected as unsafe.
 
-```text
-53d8f6771589197b16690ff0fb790cc2aa845fa91e86424e589476ffe352c875
-```
+The bounded compression outcome is `PC-PARTIAL`:
+
+- one exact stars-and-bars completion formula replaces raw count folklore;
+- literal quadratic bodies reduce to 8/4/6/5 in the four-port, `theta2`,
+  cycle, and restoration layers;
+- 36 higher-degree directions are presented by three certified transport
+  families while retaining 27 direction-specific bodies;
+- one universal rank mechanism covers 3,515 descriptors, with 75 exact
+  exceptional representatives covering the other 864;
+- 297 restoration fingerprints compress exposition but do not replace the
+  997 exact parent assignments; and
+- a uniform word theorem explains the probe layer while its finite separation
+  and transport premises remain explicit.
+
+Old/new equivalence and targeted semantic mutations pass. The article and
+reader supplement have an independent mathematical and static-source audit
+with no open load-bearing findings.
+
+## Remaining before journal submission
+
+No theorem gate remains. The following require the human author:
+
+1. corresponding email;
+2. author-contribution statement approval;
+3. funding and competing-interests declarations;
+4. paper, data, and code license choices;
+5. public repository URL and immutable submission tag;
+6. whether to mint a GitHub/Zenodo DOI release; and
+7. optionally, a final clean full-replay wall-time and peak-memory report.
+
+No mixed-sign K2P claim is pending or implied.

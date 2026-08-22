@@ -1,66 +1,74 @@
 # K2P Level-2 Identifiability Closure
 
-This directory contains the exact four-port K2P relation sweep, its optimized
-referee runner, and the proof-first closure of all 36 direct candidate
-relations for binary strongly tree-child level-2 semi-directed networks.
+This research folder contains the completed principal-domain classification
+for binary standard semi-directed strongly tree-child level-2 phylogenetic
+networks under the Kimura two-parameter model.
 
-The program continues the ChatGPT research conversation
-`6a83c53c-d49c-83e8-9506-b0da8de1c534`. The downloaded checkpoint archives
-are preserved unchanged; every later optimization and proof artifact lives in
-this dedicated research folder.
+## Main result
 
-## Current exact milestone
+On
 
-The final current-lock sweep processed all 1,931 canonical four-port classes
-with zero errors. Its raw status census is:
+```text
+D_plus = {(s,g): 0<s<1, 0<g<1, g>2s-1},
+```
 
-- 845 separated;
-- 20 mixed-graph isomorphic;
-- 35 ordinary-triangle-related;
-- 997 restoration parents; and
-- 34 direct rows unresolved by the runner's quadratic/cubic pass.
+a regular full-dimensional directed containment germ exists exactly when the
+two labelled networks agree modulo independent ordinary-triangle
+redirections. Thus no proper one-sided containment occurs; the structural
+triangle class is generically identifiable and exactly reconstructible away
+from a proper algebraic exceptional set. The classification restricts to the
+strict continuous-time cone `0<s<1, s^2<g<1`. A separate construction shows
+that strong tree-childness is sharp by producing a full-dimensional `4n-3`
+ambiguity in the weak class.
 
-An independent exact proof overlay closes those 34 rows and replays the two
-cubic rows already found by the runner. The 36 named direct candidates are
-therefore all separated: 22 by a transported quintic, 12 by quartics, and 2 by
-a cubic. Each proof is a direct graph-switch substitution with a strict
-positive-domain K2P witness; it is not an inference from a numerical rank or a
-larger atlas search.
+The frozen theorem release is rooted at
+`work/final_theorem_release/RELEASE_LOCK.json`, whose SHA-256 is
 
-This is a complete **direct four-port residual** milestone, not yet the final
-global theorem. The remaining theorem gates are listed in [STATUS.md](STATUS.md).
+```text
+0c17eeaa3344f0982998ea694c1eb92f72f5ced0841e2acad0d39566e2ec71c3
+```
+
+The theorem is deliberately limited to the principal positive component; no
+mixed-sign extension is claimed.
+
+## Proof-compressed submission draft
+
+`proof_compression_submission/` contains the adversarially reviewed article,
+reader supplement, theorem-to-artifact crosswalk, and one bounded
+proof-compression pass. The compression verdict is `PC-PARTIAL`: completion
+arithmetic, polynomial catalogues, and arbitrary-word reconstruction now have
+compact mathematical formulations, while exact direction-sensitive rank,
+restoration, and probe ledgers remain load-bearing. The frozen theorem is
+unchanged and every old/new comparison passes.
 
 ## Layout
 
-- `archives/original/`: every downloaded archive from the referenced
-  conversation, retained unchanged.
-- `package/original/`: extracted original checkpoints and four-port package,
-  retained unchanged.
-- `package/referee/k2p_offline_sweep_portable/`: optimized sweep, frozen
-  current-lock result subset, exact proof certificates, and release verifier.
-- `runs/`: local resumable outputs, ignored by Git except selected release
-  inputs copied into the referee package.
-- `work/` and `analysis/`: proof discovery, independent replays, and
-  adversarial audit artifacts.
-- `benchmarks/`: profiling, qualification, and proof replay transcripts.
-- `RESEARCH_LOG.md`: chronological decisions and findings.
+- `archives/original/`: downloaded checkpoint archives, unchanged.
+- `package/original/`: extracted original checkpoints, unchanged.
+- `package/referee/k2p_offline_sweep_portable/`: portable direct-sweep release.
+- `work/final_theorem_release/`: promotion-grade unified release and lock.
+- `work/`: graph-derived proofs, independent replays, and adversarial audits.
+- `proof_compression_submission/`: article, supplement, compressed finite
+  theorem, reproducibility crosswalk, and final PDFs.
+- `RESEARCH_LOG.md`: project chronology.
 
-## Referee qualification
+## Reproduction
 
-Create the pinned environment described by the package's `requirements.txt`,
-then run from the referee package:
+Create the pinned environment described in
+`work/final_theorem_release/requirements.txt`, then run from this project root:
 
 ```bash
-python verify_direct_closure_release.py
+.venv/bin/python -B work/final_theorem_release/build_release_lock.py \
+  --check --require-ready
+.venv/bin/python -B work/final_theorem_release/verify_final_theorem_release.py \
+  --quick
+.venv/bin/python -B proof_compression_submission/verify_compressed_release.py \
+  --check
+.venv/bin/python -B proof_compression_submission/verify_old_new_equivalence.py \
+  --check
+.venv/bin/python -B proof_compression_submission/run_compression_mutations.py \
+  --check
 ```
 
-This qualifies the immutable sweep engine, checks both release locks,
-recomputes the six complete manifest roots, replays all 36 exact obstructions,
-and requires byte identity with the committed certificates. Detailed
-regeneration commands and scope boundaries are in
-`package/referee/k2p_offline_sweep_portable/README_DIRECT_CLOSURE.md`.
-
-On the local M1 Pro, the fully current cubic-aware sweep took about six minutes
-with one low-priority process and peaked near 1.5 GB RSS. The earlier
-94-second run was legitimate but narrower: it classified a precompiled finite
-universe only through its then-enabled quadratic/direct-hard/graph stages.
+See `STATUS.md` for the exact completion state and the remaining human-only
+submission metadata.
