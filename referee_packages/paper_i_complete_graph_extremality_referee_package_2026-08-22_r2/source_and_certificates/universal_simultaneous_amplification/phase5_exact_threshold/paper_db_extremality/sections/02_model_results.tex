@@ -1,0 +1,151 @@
+\section{Model and main results}\label{sec:model-results}
+
+Let $V=\{1,\ldots,n\}$ and let $w_{uv}\ge0$ be the weight with which source
+$u$ competes to replace target $v$.  We assume $w_{vv}=0$ and every incoming
+degree $d_v^-=\sum_{u\ne v}w_{uv}$ is positive.  Normalize
+\[
+ P_{vu}=\frac{w_{uv}}{d_v^-}.                              \tag{2.1}\label{2.1}
+\]
+Write $P(W)$ for this kernel.  Then $P(W)$ is loopless and row stochastic.
+Conversely, every such $P$ is a normalized directed replacement structure.
+This quotient removes exactly the dynamically irrelevant positive rescalings
+of individual incoming columns.  When weights rather than their normalized
+kernel are displayed, we use the shorthand
+$\rho_{\dB}(W,r):=\rho_{\dB}(P(W),r)$.
+
+A uniformly chosen target dies.  If the current mutant set is $S$ and mutant
+fitness is $r>0$, the probability that target $v$ receives a mutant parent is
+\[
+ f_r(P_{vS})=\frac{rP_{vS}}{1+(r-1)P_{vS}},
+ \qquad P_{vS}=\sum_{u\in S}P_{vu}.                         \tag{2.2}\label{2.2}
+\]
+The all-resident and all-mutant states are absorbing.  We write
+$\rho_{\dB}(P,r)$ for fixation probability averaged over a uniformly random
+singleton mutant.  For the complete kernel
+\[
+ (J_n)_{vu}=\frac1{n-1}\quad(u\ne v),                       \tag{2.3}\label{2.3}
+\]
+one-dimensional first-step equations give
+\[
+ \rho_{\dB}(J_n,r)
+ =\frac{n-1}{n}\frac{1-r^{-1}}{1-r^{-(n-1)}}.               \tag{2.4}\label{2.4}
+\]
+At $r=1$, the right-hand side is understood by continuity and equals $1/n$.
+
+Let
+\[
+ \calT_n=\{\delta\in\mathbb R^{n\times n}:
+     \delta_{ii}=0,\ \delta\one=0\}                       \tag{2.5}\label{2.5}
+\]
+be the tangent space to the normalized kernel polytope at $J_n$, and let
+\[
+ \calB_n=\{\delta\in\calT_n:\one^{\mathsf T}\delta=0\}       \tag{2.5b}\label{2.5b}
+\]
+be its balanced, or bistochastic, tangent subspace.
+
+\begin{theorem}[fitness-two strict local optimality]
+\label{thm:local}
+For every $n\ge3$ there is a quadratic form $\Rtwo_{n}$ on $\calT_n$ such
+that, for every $\delta\in\calT_n$ and all sufficiently small
+$\varepsilon$ for which $J_n+\varepsilon\delta$ is nonnegative,
+\[
+ \frac1{n\rho_{\dB}(J_n+\varepsilon\delta,2)}
+ =\frac1{m_n}+\varepsilon^2\Rtwo_{n}(\delta)
+   +O(\varepsilon^3),                                      \tag{2.6}\label{2.6}
+\]
+where
+\[
+ m_n=\frac{(n-1)2^{n-2}}{2^{n-1}-1}.                       \tag{2.7}\label{2.7}
+\]
+The quadratic form $\Rtwo_n$ is positive definite on $\calT_n$.
+Consequently, the first variation vanishes for every $\delta\in\calT_n$,
+and, for every nonzero $\delta\in\calT_n$,
+\[
+ \left.\frac{d}{d\varepsilon}\rho_{\dB}
+ (J_n+\varepsilon\delta,2)\right|_{0}=0,
+ \qquad
+ \left.\frac{d^2}{d\varepsilon^2}\rho_{\dB}
+ (J_n+\varepsilon\delta,2)\right|_{0}
+ =-\frac{2m_n^2}{n}\Rtwo_{n}(\delta)<0.                    \tag{2.8}\label{2.8}
+\]
+Thus $J_n$ is a strict nondegenerate local maximizer in the full positive
+loopless row-stochastic kernel polytope.  For $n=2$ every positive weighting
+induces the same two-vertex chain and ties the baseline.
+\end{theorem}
+
+For clarity, the positive-kernel hypothesis used by the duality proof loses
+no tangent direction.  For fixed nonzero $\delta\in\calT_n$, put
+$M=\max_{i\ne j}|\delta_{ij}|$.  Whenever
+$|\varepsilon|<1/[(n-1)M]$, every off-diagonal entry of
+$J_n+\varepsilon\delta$ is strictly positive.  The zero direction is
+trivial.  Thus the expansion in Theorem~\ref{thm:local} is proved entirely
+inside the positive kernel polytope before being interpreted at its tangent
+space.
+
+For a positive normalized kernel on complete directed support, define the
+scale-free defect
+\[
+ \calE_{\rm dir}(P)=
+ \sum_v\sum_{\substack{u<z\\u,z\ne v}}
+ \frac{(P_{vu}-P_{vz})^2}{P_{vu}P_{vz}}.                   \tag{2.9}\label{2.9}
+\]
+For unnormalized weights $W$, set
+$\calE_{\rm dir}(W):=\calE_{\rm dir}(P(W))$; equivalently,
+\[
+ \calE_{\rm dir}(W)=
+ \sum_v\sum_{\substack{u<z\\u,z\ne v}}
+ \frac{(w_{uv}-w_{zv})^2}{w_{uv}w_{zv}}.                  \tag{2.9b}\label{2.9b}
+\]
+
+\begin{theorem}[complete-support strong-selection correction]
+\label{thm:strong-complete}
+Let $n\ge3$ and suppose $w_{uv}>0$ for every $u\ne v$.  For fixed $W$,
+\[
+ \rho_{\dB}(J_n,r)-\rho_{\dB}(W,r)
+ =\frac{\calE_{\rm dir}(W)}{n^2(n-2)r}+O(r^{-2})
+ \qquad(r\to\infty).                                      \tag{2.10}\label{2.10}
+\]
+The defect vanishes if and only if, for every target $v$, all incoming
+weights $w_{uv}$ with $u\ne v$ are equal.  In that equality class the entire
+chain, not merely the asymptotic expansion, equals the complete-graph chain.
+\end{theorem}
+
+\begin{corollary}[no fixed finite universal dB amplifier]
+\label{cor:fixed}
+No finite loopless directed weighting with positive incoming degrees is a
+strict dB amplifier for every $r>1$.  More precisely, it is strictly
+suppressing for all sufficiently large fitness unless it has complete
+support and is dynamically equivalent to $J_n$; in the latter case it ties
+the baseline for every fitness.
+\end{corollary}
+
+For undirected weights, write $s_i$ for the number of positive-weight
+neighbors of $i$.
+
+\begin{proposition}[undirected support limit]\label{prop:support-limit}
+For every finite connected undirected weighted graph,
+\[
+ \lim_{r\to\infty}\rho_{\dB}(W,r)
+ =\frac1n\sum_{i=1}^n\frac{s_i}{s_i+1}.                     \tag{2.11}\label{2.11}
+\]
+Hence an incomplete support has the positive limiting deficit
+\[
+ \frac{n-1}{n}-\frac1n\sum_i\frac{s_i}{s_i+1}
+ =\sum_i\frac{n-1-s_i}{n^2(s_i+1)}.                         \tag{2.12}\label{2.12}
+\]
+\end{proposition}
+
+Finally, the complete kernel is globally extremal on the smallest
+nontrivial undirected order.
+
+\begin{theorem}[weighted triangles]\label{thm:triangle}
+For every positive undirected weighted triangle and every $r>1$,
+\[
+ \rho_{\dB}(W,r)\le\rho_{\dB}(J_3,r)=\frac{2r}{3(r+1)}.     \tag{2.13}\label{2.13}
+\]
+Equality holds if and only if the three edge weights are equal.
+\end{theorem}
+
+The two symmetric $K_4$ families and their equality statements are recorded
+in Appendix~\ref{app:k4}.  They provide global four-vertex slices but are not
+needed for Theorems~\ref{thm:local} or \ref{thm:strong-complete}.

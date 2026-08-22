@@ -270,3 +270,34 @@
 - Best-guess completion: 75% of the referee-correction task.  The corrected
   source release, r2 referee package, mobile-access copy, independent hostile
   review, and final commit/push remain.
+
+## 2026-08-22 15:07 PDT — corrected r2 referee package and final hostile pass
+
+- Bound the corrected scientific source, release archive, and manuscript to
+  commit `e63cc44748e4084ade67c5ff7dc5d1bf2a872f7c`.  The 71-member source
+  archive has SHA-256
+  `1754bee519537105f192a40d98f83a4b2fd5097897e0632d88ace1e9892d59ed`;
+  the 30-page PDF has SHA-256
+  `22142ee518e75c00d1948b19c210818ec797946df86a5e3272c9d1017800b0f4`.
+- Built the separately named r2 referee folder with an 81-entry outer payload
+  manifest and an exact extracted source tree.  Its deterministic transport
+  archive has SHA-256
+  `a39d45004fa7bd5cd5a8df01f91ae96f93f5a1a9821ef6f1a5a34e5c39938936`.
+- Executed the delivered command in a hostile inherited environment.  All
+  four negative controls, six unit tests, seventeen verifier/cross-check
+  programs, hashed dependency checks, pinned document-tool checks, and the
+  deterministic PDF identity comparison passed.  The package manifest still
+  passed after execution.
+- A final independent hostile audit byte-compared all 69 project-source
+  members to the bound commit, independently checked all manifests and
+  sidecars, verified the exact wheel-hash inventory and claim-to-code map,
+  repeated the fail-closed controls and full workflow, and confirmed that the
+  package tree digest was unchanged.  It reported a clean pass with no
+  blocker or minor finding.
+- Copied, without replacing the original referee delivery, the r2 folder,
+  transport archive, detached checksum, current `main.tex`, and bibliography
+  source `references.tex` to the existing Google Drive Paper I folder.  The
+  copied package passed its own integrity verifier and the three top-level
+  files were byte-identical to their source copies.
+- Paper I independent-referee correction and r2 handoff: 100% complete.  No
+  theorem or proof changed; only human-controlled submission actions remain.
