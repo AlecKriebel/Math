@@ -1,31 +1,31 @@
-# Replay status for the 22 August 2026 pre-submission notation repair
+# Replay status for the 22 August 2026 pre-submission proof-closure repair
 
 This file distinguishes current-release verification from historical-lineage
 verification. It supersedes the pre-repair replay logs, which were removed
 because they described different sources and artifacts.
 
-## Round-6 source status: passed
+## Round-7 source status: passed
 
-The full-vector notation repair, self-contained scaled PDE statement, local
-S9 parameter rename, and displayed scaled cubic quotient target immutable
-version 1.0.6.  The documents, seven bundles, submission packages, portable
+The branch-positivity closure, exact within-family contrast-minimum statement,
+positive-diagonal diffusion quantifier, and SCC terminology cleanup target
+immutable version 1.0.7.  The documents, seven bundles, submission packages, portable
 repository, and manifests have now been regenerated from those exact sources.
-All 21 mutation/regression tests, the complete symbolic aggregate, the source
+All 22 mutation/regression tests, the complete symbolic aggregate, the source
 and PDF semantic audits, three isolated submission-source builds, and the
 detached full portable replay pass.
 
-## v1.0.6 current source: passed checks
+## v1.0.7 current source: passed checks
 
 The following were rerun after the high-dimensional endpoint repair and final
 source edits:
 
-- 21 mutation/regression tests;
+- 22 mutation/regression tests;
 - the complete symbolic aggregate, including the determinant-identity bridge,
   the 22-term homogeneous certificate, the 84-term spatial certificate, the
   exceptional `m=3` cubic, and the exact legacy-endpoint counterexample;
 - current-profile and detached numerical provenance;
 - finite integrated designs at `m=3,4,5,6,8,10`, with the repaired Pareto
-  family also checked at `m=149`;
+  family also checked at `m=149` and `m=200`;
 - full current-profile cosine-Galerkin simulations and the strengthened
   refinement audit (maximum recorded relative discrepancy
   `1.6246526173879546e-08`, below the `2e-8` gate);
@@ -53,6 +53,15 @@ $\Pi_m'(0)=-(163/45)\ell^Tr>0$, the
 generalized-vector exclusion after
 positive row scaling, the final order-$(n-1)$ coefficient hypothesis in the
 network application, and the fixed-mass Fredholm/transversality interface.
+The final 22 August closure proves componentwise branch positivity from
+$H_N^2\hookrightarrow C^0$ for each fixed parameter choice, verifies exactly
+that $\chi_D(L)>\chi_H(L)$ throughout the certified scaling interval and that
+the within-family maximum is uniquely minimized at $L_0$, and makes the
+positive diagonal $D$ explicit in the exact network diffusion theorem.  It
+also separates negative singleton SCCs from the non-singleton classification.
+The stable Zenodo concept DOI remains `10.5281/zenodo.21753404`; the exact
+preceding v1.0.6 snapshot is `10.5281/zenodo.22058969`, and is not
+misidentified as the new v1.0.7 source.
 
 The portable replay used Python 3.9.6, Matplotlib 3.7.1, NumPy 1.24.3,
 Pandas 2.3.3, pypdf 6.10.0, pytest 8.4.2, SciPy 1.10.1, and SymPy 1.14.0.

@@ -1,5 +1,15 @@
 # Feedback disposition
 
+## Final adversarial review — 22 August 2026
+
+| Supplied review item | Disposition | Action |
+|---|---|---|
+| Explicitly close positivity of both patterned branches | ACCEPT | Added the $H_N^2\hookrightarrow C^0$ closure for each fixed parameter choice and stated that positive diagonal physical rescaling preserves componentwise positivity. |
+| “$L$ reduces the maximum” is ambiguous or false within the family | ACCEPT | Exact comparison gives $\chi_D(L)>\chi_H(L)$ throughout the certified interval; the maximum is $\chi_D(L)$, is strictly increasing, and is uniquely minimized at $L_0$.  The manuscript, supplement, summaries, and regressions now state this precisely. |
+| Theorem 5.2 does not quantify $D$ | ACCEPT | Declared $D=\operatorname{diag}(d_1,\ldots,d_m,d_Z)\succ0$ in the theorem itself and propagated the domain to the proof-audit interfaces. |
+| “Nontrivial SCC” includes a negative singleton | ACCEPT OPTIONAL CLEANUP | Recast the classification as negative singletons plus three non-singleton block forms. |
+| Add exact v1.0.6 DOI to the current source metadata | ACCEPT WITH VERSION QUALIFICATION | Verified `10.5281/zenodo.22058969` as the exact immutable v1.0.6 DOI and recorded it as the preceding snapshot.  Because the accepted edits produce different files, they target v1.0.7 and do not misassign the v1.0.6 DOI to the new tree.  The concept DOI remains `10.5281/zenodo.21753404`; v1.0.7's exact DOI belongs in its release record after minting. |
+
 ## Fresh adversarial review — 22 August 2026
 
 | Supplied review item | Disposition | Action |

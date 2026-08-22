@@ -56,6 +56,8 @@ FORBIDDEN_PHRASES = (
     "explicit two-parameter Jacobian image",
     "topology-wide over-realizations theorem",
     "physical fixed-mass vector becomes",
+    "reduces max(χD, χH)",
+    "reduces the larger of the two contrasts",
 )
 
 FORBIDDEN_PATTERNS = (
@@ -241,6 +243,8 @@ def audit(root: Path, output_dir: Path, documents: tuple[Document, ...]) -> None
             ("Thus all hypotheses of Theorem", "network diffusion-ray hypothesis bridge"),
             ("homogeneous Neumann boundary conditions, consider", "self-contained scaled-family PDE domain"),
             ("physical fixed-mass covector becomes", "fixed-mass covector terminology"),
+            ("componentwise strictly positive", "patterned-branch positivity closure"),
+            ("uniquely minimized", "within-family contrast-minimum statement"),
         ):
             if phrase.lower() not in main_text.lower():
                 failures.append(f"main PDF lacks {label}")
@@ -260,6 +264,8 @@ def audit(root: Path, output_dir: Path, documents: tuple[Document, ...]) -> None
             main_text,
         ):
             failures.append("main PDF does not show the flux-dependent threshold notation")
+        if not re.search(r"D\s*=\s*diag\s*\(d1,.*?dZ\)\s*[≻>]\s*0", main_text, re.I):
+            failures.append("main PDF does not quantify the positive diagonal D in the exact diffusion law")
         if not re.search(r"c\s*m\s*\(L\)\s*=\s*N\s*m\s*\(L\)", main_text):
             failures.append("main PDF does not show the scaled cubic quotient")
 
@@ -279,6 +285,8 @@ def audit(root: Path, output_dir: Path, documents: tuple[Document, ...]) -> None
             ("The crossing numerator is unchanged", "scaled-family transversality numerator"),
             ("all-dimensional identity", "selected-zero derivative identity"),
             ("generalized eigenvector", "scaled-family algebraic-simplicity closure"),
+            ("componentwise strictly positive", "patterned-branch positivity closure"),
+            ("uniquely minimized", "within-family contrast-minimum statement"),
         ):
             if phrase.lower() not in supplement.lower():
                 failures.append(f"supplement PDF lacks {label}")

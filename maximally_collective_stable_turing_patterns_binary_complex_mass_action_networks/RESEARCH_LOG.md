@@ -316,3 +316,44 @@
 - Best-guess completion toward the round-6 pre-submission revision and
   verification goal: **100%**.  The source is ready for immutable v1.0.6
   publication and author-controlled external audit/submission.
+
+## 2026-08-22 13:10:36 PDT — round-7 proof-closure checkpoint
+
+- Scrutinized the three requested edits independently.  Accepted the branch
+  positivity closure, the explicit positive-diagonal diffusion quantifier,
+  and the correction of the within-family contrast interpretation.  Exact
+  comparison proves $\chi_D(L)>\chi_H(L)$ throughout the certified interval,
+  so the maximum is strictly increasing in $L$ and uniquely minimized at
+  $L_0$.  No topology, endpoint, numerical profile, or theorem conclusion
+  changed.
+- Applied the optional SCC terminology cleanup.  Verified the v1.0.6 exact DOI
+  `10.5281/zenodo.22058969`, but retained it only as the preceding immutable
+  snapshot because the edited source targets distinct version 1.0.7.
+- Regenerated exact tables, passed all 22 tests and the complete symbolic
+  aggregate, rebuilt and semantically audited the 18-page manuscript,
+  18-page supplement, 3-page theorem summary, and 6-page proof skeleton, and
+  visually inspected all 45 pages.  All seven bundle hashes and all three
+  clean submission-source builds pass; a detached full public replay ended in
+  `PUBLIC_REPLAY_PASS`.
+- Best-guess completion toward the round-7 pre-submission revision and
+  verification goal: **95%**.  Remaining work is final independent audit,
+  manifest closure, mobile-source sync, commit/push, and immutable v1.0.7
+  publication.
+
+## 2026-08-22 13:18:28 PDT — round-7 final verification checkpoint
+
+- Independent mathematical, document, and release audits found no remaining
+  blocker.  Exact rechecking confirmed branch positivity, the scaled-family
+  transversality and contrast comparisons, the positive-diagonal diffusion
+  quantifier, and the corrected SCC terminology.
+- Rebuilt and inspected the 18-page manuscript, 18-page supplement, 3-page
+  theorem summary, and 6-page proof skeleton.  All 45 pages are free of
+  clipping, overlap, broken glyphs, and unresolved references, and all fonts
+  are embedded.
+- A final detached replay from the refreshed public repository ended in
+  `PUBLIC_REPLAY_PASS`.  All 22 regression tests, the complete symbolic
+  aggregate, manuscript audit, 439-file stale-claim audit, full PDF semantic
+  audit, seven bundle hashes, and three clean submission-source builds pass.
+- Best-guess completion toward the round-7 pre-submission revision and
+  verification goal: **100%**.  The source is ready for mobile-source sync,
+  commit/push, and immutable v1.0.7 publication.

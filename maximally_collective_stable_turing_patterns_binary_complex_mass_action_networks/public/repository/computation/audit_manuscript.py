@@ -22,9 +22,26 @@ if dups: raise AssertionError(f'duplicate labels {dups}')
 cites=[]
 for group in re.findall(r'\\cite\{([^}]+)\}',clean): cites += [x.strip() for x in group.split(',')]
 bib=(ROOT/'manuscript'/'references.bib').read_text()
+cff=(ROOT/'CITATION.cff').read_text()
 bibkeys=set(re.findall(r'@\w+\{([^,]+),',bib))
 missing_cites=sorted(set(cites)-bibkeys)
 if missing_cites: raise AssertionError(f'missing bib keys {missing_cites}')
+
+for marker in (
+    'version: "1.0.7"',
+    'maximally-collective-stable-turing-v1.0.7',
+    '10.5281/zenodo.21753404',
+    '10.5281/zenodo.22058969',
+    'authors:',
+):
+    if marker not in cff:
+        raise AssertionError(f'CITATION.cff lacks release marker {marker}')
+if not all(marker in main for marker in (
+    'version 1.0.7 tagged release source tree',
+    '10.5281/zenodo.21753404',
+    '10.5281/zenodo.22058969',
+)):
+    raise AssertionError('data statement does not distinguish the current tag, concept DOI, and preceding version DOI')
 
 # Semantic environment-type audit for explicit numbered references.
 envs={}
@@ -68,7 +85,9 @@ forbidden=[r'\bT-ALG\b',r'\bPhase\s+[IVX]+\b',r'reaction-minimal',r'minimum reac
            r'The dashed outline marks the principal species set',
            r's_\*\s*\(H,D\)',r'explicit two-parameter Jacobian image',
            r'topology-wide over-realizations theorem',
-           r'physical fixed-mass vector becomes']
+           r'physical fixed-mass vector becomes',
+           r'reduces\s*\$?\\max\s*\(\\chi_D,\\chi_H\)',
+           r'reduces the larger of the two contrasts']
 for pat in forbidden:
     if re.search(pat,clean,re.I): raise AssertionError(f'obsolete wording: {pat}')
 
@@ -176,6 +195,15 @@ if not re.search(
     main_flat,
 ):
     raise AssertionError('fixed contrast-product identity is not printed')
+for name,section in (("main",main_flat),("supplement",supp_flat)):
+    if 'componentwise strictly positive' not in section:
+        raise AssertionError(f'{name} does not close componentwise positivity of the branch')
+    if not re.search(
+        r'\\chi_D\(L\)>\\chi_H\(L\).*?uniquely minimized.*?\$L=L_0\$',
+        section,
+        re.S,
+    ):
+        raise AssertionError(f'{name} does not state the exact within-family minimax conclusion')
 if 'measures equilibrium concentration-scale separation' not in main_flat:
     raise AssertionError('chi_H scale-separation qualification is missing')
 if main.count(r'0<|I|<m') < 3:
@@ -234,6 +262,12 @@ for name,section,delta in (
 # Mathematical-precision closures from the final adversarial review.
 compact_main=''.join(main.split())
 compact_supp=''.join(supp.split())
+
+diffusion_law = main.split(r'\label{thm:diffusionlaw}',1)[1].split(r'\end{theorem}',1)[0]
+if r'D=\diag(d_1,\ldots,d_m,d_Z)\succ0' not in ''.join(diffusion_law.split()):
+    raise AssertionError('Theorem 5.2 does not quantify its positive diagonal diffusion matrix')
+if 'either a singleton, whose corresponding diagonal entry is negative' not in main_flat:
+    raise AssertionError('SCC classification does not separate negative singletons from non-singleton blocks')
 
 # The component lists must be assembled into explicitly named full vectors.
 # This prevents a future edit from silently reverting r_m or ell_m to a dual

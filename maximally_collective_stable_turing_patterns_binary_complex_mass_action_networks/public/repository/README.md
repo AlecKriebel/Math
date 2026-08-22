@@ -2,9 +2,11 @@
 
 Portable exact source, proof certificates, independent verifiers, current-profile numerical illustrations, and manuscript sources for the corrected final release.
 
-The immutable version 1.0.6 snapshot is published at
-<https://github.com/AlecKriebel/Math/releases/tag/maximally-collective-stable-turing-v1.0.6>;
-archived versions share <https://doi.org/10.5281/zenodo.21753404>.
+The immutable version 1.0.7 snapshot is published at
+<https://github.com/AlecKriebel/Math/releases/tag/maximally-collective-stable-turing-v1.0.7>;
+archived versions share <https://doi.org/10.5281/zenodo.21753404>.  The exact
+preceding version 1.0.6 snapshot has DOI <https://doi.org/10.5281/zenodo.22058969>;
+the v1.0.7 release record carries its own immutable version DOI once minted.
 
 ## Replay
 

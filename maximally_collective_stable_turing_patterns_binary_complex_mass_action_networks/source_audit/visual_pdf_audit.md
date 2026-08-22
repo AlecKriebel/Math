@@ -43,3 +43,13 @@ scaled cubic quotient render without crowding.  Supplement S9 uses the local
 design parameter $\omega$ throughout.  Contact-sheet inspection of every page
 and full-resolution inspection of every changed page found no new overlap,
 clipping, broken glyph, or ambiguous line wrap.
+
+The round-7 proof-closure PDFs were rebuilt and inspected again.  The new
+positive-diagonal display in Theorem 5.2, the componentwise-positivity
+closures, the exact $L_0$ minimax comparison, the SCC terminology, and the DOI
+lineage statement all fit without overfull boxes or page-count changes.  The
+18-page main manuscript, 18-page supplement, 3-page theorem summary, and
+6-page proof skeleton were rendered at 110--140 dpi and checked across all 45
+pages; all four unchanged standalone figures retain their previously inspected
+one-page renderings.  No clipping, overlap, broken glyph, malformed equation,
+or anomalous blank page was found.

@@ -47,6 +47,8 @@ STALE = {
     "full_jacobian_misdescribed_as_two_parameter": "explicit two-parameter Jacobian image",
     "awkward_over_realizations_wording": "topology-wide over-realizations theorem",
     "fixed_mass_covector_called_vector": "physical fixed-mass vector becomes",
+    "ambiguous_within_family_minimax": r"reduces $\max(\chi_D,\chi_H)$",
+    "ambiguous_discussion_minimax": "reduces the larger of the two contrasts",
     # r_m and ell_m are scalar X_m components.  These tokens used them as
     # whole critical vectors before the notation repair.
     "component_left_used_as_vector": r"\ell_m^T",

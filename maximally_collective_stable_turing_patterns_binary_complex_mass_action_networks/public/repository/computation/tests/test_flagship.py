@@ -94,6 +94,7 @@ def test_pareto_exact_contrasts_and_cubic_sign():
             chiH = sp.factor(hs[1])
             assert sp.simplify(chiD - sp.Rational(23, 63) * 91 * r * L) == 0
             assert sp.simplify(chiH - sp.Rational(91 * r - 1, 91 * r) / L) == 0
+            assert sp.simplify(chiD - chiH).is_positive is True
             Hs = pc.Hsum(m)
             tau = pc.tau_formula(m, Hs, L)
             num = sp.factor(pc.N0(m, Hs) + tau * pc.Sterm(m, Hs))
@@ -120,6 +121,23 @@ def test_pareto_exact_contrasts_and_cubic_sign():
             assert transformed_numerator == unit_numerator
             assert unit_numerator == pc.eta_num(m, Hs)
             assert unit_numerator.is_negative is True
+
+
+def test_pareto_minimax_is_exactly_at_lower_endpoint():
+    nu = sp.symbols("nu", integer=True, positive=True)
+    L = sp.symbols("L", positive=True)
+    chiD = sp.Rational(2093, 63) * nu * L
+    chiH = (91 * nu - 1) / (91 * nu * L)
+    assert sp.diff(chiD, L).is_positive is True
+    assert sp.diff(chiH, L).is_negative is True
+    assert sp.factor(sp.Rational(27209, 2430) - 1) > 0
+    ratio_minus_one = sp.factor(
+        sp.Rational(136045, 36) * nu / (91 * nu - 1) - 1
+    )
+    assert sp.simplify(
+        ratio_minus_one - (132769 * nu + 36) / (36 * (91 * nu - 1))
+    ) == 0
+    assert ratio_minus_one.is_positive is True
 
 
 def test_near_threshold_affine_ansatz_and_printed_source():

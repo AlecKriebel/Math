@@ -1,5 +1,22 @@
 # Changelog
 
+## Final positivity and contrast-interpretation closure — 22 August 2026
+
+- Closed the componentwise positivity argument for the unit and
+  equilibrium-scaled patterned branches using $H_N^2\hookrightarrow C^0$ for
+  each fixed parameter choice and positivity of the physical diagonal scaling.
+- Corrected the interpretation of the fixed-product family: throughout its
+  certified interval $\chi_D(L)>\chi_H(L)$, so the maximum is uniquely
+  minimized at $L_0$ and increasing $L$ does not reduce it.
+- Made the positive diagonal diffusion matrix explicit in the exact network
+  diffusion theorem and separated negative singleton SCCs from non-singleton
+  SCC terminology.
+- Added exact and rendered regressions for all three closures, rebuilt the
+  manuscript, supplement, external-audit documents, public package, and all
+  submission bundles, and prepared the distinct immutable v1.0.7 snapshot.
+- Recorded the exact preceding v1.0.6 DOI without assigning it to the new
+  source tree; all versions remain indexed by the stable concept DOI.
+
 ## Critical-vector notation and scaled-family exposition — 22 August 2026
 
 - Reserved $r_m$ and $\ell_m$ for the $X_m$ components and explicitly defined
