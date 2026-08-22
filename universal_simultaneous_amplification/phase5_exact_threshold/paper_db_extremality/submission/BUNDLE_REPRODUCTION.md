@@ -23,9 +23,11 @@ Before archiving, it checks submission identity, abstract length, highlights,
 placeholder scope, and release-provenance wording.
 
 The pinned replay environment is Python 3.14.6, SymPy 1.14.0,
-python-flint 0.9.0, and mpmath 1.3.0. The deterministic PDF toolchain is
-Tectonic 0.16.9 and Poppler 26.08.0. See `ENVIRONMENT.md` for checks and the
-boundary between the exact replay and document rendering.
+python-flint 0.9.0, and mpmath 1.3.0.  The Python wheels are SHA-256-bound in
+`requirements-lock.txt`. The deterministic PDF toolchain is Tectonic 0.16.9,
+the content-pinned standard v33 bundle, and Poppler 26.08.0. See
+`ENVIRONMENT.md` for checks and the boundary between the exact replay and
+document rendering.
 
 The archive deliberately preserves the repository-relative path
 
@@ -37,7 +39,9 @@ universal_simultaneous_amplification/
 because `replay.sh` invokes exact certificate families elsewhere under that
 project root. The archive contains only the manuscript package and the source,
 tests, certificate families, and project support files reached by the replay;
-it excludes the legacy manuscript build, discovery scripts, virtual environments, caches,
+all seventeen verifier/cross-check programs are invoked directly, without the
+project Makefile. It excludes the legacy manuscript build, discovery scripts,
+virtual environments, caches,
 temporary compiler products, rendered page images, unrelated research
 programs, and version-control metadata.
 
@@ -60,11 +64,13 @@ paper_db_extremality/submission/bootstrap_replay.sh
 ```
 
 On a platform providing `sha256sum`, it may be used instead of `shasum`.
-`bootstrap_replay.sh` creates an isolated project-local Python environment,
-installs the pinned dependencies, and runs the exact replay. It does not
-contact anyone or submit any artifact. Building the PDF additionally requires
-Tectonic and Poppler's `pdfinfo` and `pdftoppm` commands.
+`bootstrap_replay.sh` rejects optimized execution and inherited import/build
+overrides, creates a fresh project-local Python environment, installs only
+hash-verified wheels, scans for bare assertions, and runs the exact replay. It
+does not contact anyone or submit any artifact. Building the PDF additionally
+requires Tectonic and Poppler's `pdfinfo` and `pdftoppm` commands.
 
 The exact programs discharge the finite symbolic and rational ranges
-explicitly identified in the manuscript.  The remaining population sizes are
-covered by the printed analytic certificates.
+explicitly identified in the manuscript and check ingredients of the analytic
+arguments.  The universal directed and all-order antisymmetric conclusions are
+proved in the manuscript, not inferred from finite executable ranges.

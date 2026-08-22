@@ -16,6 +16,16 @@ from typing import Dict, Iterable, List, Sequence, Tuple
 import sympy as sp
 
 
+class CertificateFailure(RuntimeError):
+    """Raised when an explicit certificate check fails."""
+
+
+def require(condition, detail="certificate check failed"):
+    """Raise a failure that remains active under optimized Python."""
+    if not condition:
+        raise CertificateFailure(str(detail))
+
+
 r = sp.symbols("r", positive=True)
 x = sp.symbols("x", positive=True)
 
@@ -23,9 +33,9 @@ x = sp.symbols("x", positive=True)
 def matrix(weights: Sequence[Sequence[int]]) -> Tuple[Tuple[sp.Rational, ...], ...]:
     w = tuple(tuple(sp.Rational(value) for value in row) for row in weights)
     n = len(w)
-    assert n >= 2 and all(len(row) == n for row in w)
-    assert all(w[i][i] == 0 for i in range(n))
-    assert all(w[i][j] == w[j][i] >= 0 for i in range(n) for j in range(n))
+    require(n >= 2 and all(len(row) == n for row in w))
+    require(all(w[i][i] == 0 for i in range(n)))
+    require(all(w[i][j] == w[j][i] >= 0 for i in range(n) for j in range(n)))
     return w
 
 
@@ -106,12 +116,12 @@ def transition_rows(
         else:
             raise ValueError(rule)
         row[mask] = sp.cancel(1 - sum(row.values()))
-        assert sp.cancel(sum(row.values()) - 1) == 0
-        assert all(coefficient_nonnegative_on_r_gt_one(p) for p in row.values())
-        assert all(
+        require(sp.cancel(sum(row.values()) - 1) == 0)
+        require(all(coefficient_nonnegative_on_r_gt_one(p) for p in row.values()))
+        require(all(
             target == mask or (target ^ mask) & ((target ^ mask) - 1) == 0
             for target in row
-        )
+        ))
         rows.append(row)
     return rows
 
@@ -170,7 +180,7 @@ def verify_complete_lumping(n: int, rule: str) -> None:
                     for target_cell in cells
                 )
             )
-        assert all(aggregate == aggregates[0] for aggregate in aggregates)
+        require(all(aggregate == aggregates[0] for aggregate in aggregates))
 
 
 def support_limit(weights: Tuple[Tuple[int, ...], ...]) -> sp.Rational:
@@ -201,8 +211,8 @@ def strict_sign_by_shift(polynomial: sp.Expr, wanted: int) -> Dict[str, object]:
         shifted = sp.Poly(sp.cancel(shifted.as_expr() / x), x)
         multiplicity += 1
     signed = shifted if wanted > 0 else -shifted
-    assert all(coefficient >= 0 for coefficient in signed.all_coeffs())
-    assert any(coefficient > 0 for coefficient in signed.all_coeffs())
+    require(all(coefficient >= 0 for coefficient in signed.all_coeffs()))
+    require(any(coefficient > 0 for coefficient in signed.all_coeffs()))
     return {
         "sign": wanted,
         "endpoint_multiplicity": multiplicity,
@@ -215,15 +225,15 @@ def main() -> None:
     for n in (2, 3, 4):
         for rule in ("Bd", "dB"):
             verify_complete_lumping(n, rule)
-            assert sp.cancel(solve_average(complete_weights(n), rule) - baseline(n, rule)) == 0
+            require(sp.cancel(solve_average(complete_weights(n), rule) - baseline(n, rule)) == 0)
 
     path4 = ((0, 1, 0, 0), (1, 0, 1, 0), (0, 1, 0, 1), (0, 0, 1, 0))
     star4 = ((0, 1, 1, 1), (1, 0, 0, 0), (1, 0, 0, 0), (1, 0, 0, 0))
     for weights, expected in ((path4, sp.Rational(7, 12)), (star4, sp.Rational(9, 16))):
         rho = solve_average(weights, "dB")
-        assert support_limit(weights) == expected
-        assert sp.limit(rho, r, sp.oo) == expected
-        assert expected < sp.Rational(3, 4)
+        require(support_limit(weights) == expected)
+        require(sp.limit(rho, r, sp.oo) == expected)
+        require(expected < sp.Rational(3, 4))
 
     triangle = ((0, 2, 3), (2, 0, 5), (3, 5, 0))
     weighted_k4 = ((0, 1, 2, 3), (1, 0, 4, 5), (2, 4, 0, 6), (3, 5, 6, 0))
@@ -233,8 +243,8 @@ def main() -> None:
         rho = solve_average(weights, "dB")
         extracted = sp.limit(r * (sp.Rational(n - 1, n) - rho), r, sp.oo)
         predicted = predicted_complete_coefficient(weights)
-        assert extracted == predicted
-        assert predicted > sp.Rational(n - 1, n)
+        require(extracted == predicted)
+        require(predicted > sp.Rational(n - 1, n))
         extracted_coefficients.append(extracted)
 
     # Exact comparison certificate for a nonuniform weighted triangle.

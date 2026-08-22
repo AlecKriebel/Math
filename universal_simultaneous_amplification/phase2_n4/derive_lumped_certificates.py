@@ -13,6 +13,16 @@ from typing import Sequence, Tuple
 import sympy as sp
 
 
+class CertificateFailure(RuntimeError):
+    """Raised when an explicit certificate check fails."""
+
+
+def require(condition, detail="certificate check failed"):
+    """Raise a failure that remains active under optimized Python."""
+    if not condition:
+        raise CertificateFailure(str(detail))
+
+
 r = sp.symbols("r", positive=True)
 x, y = sp.symbols("x y", positive=True)
 g = sp.symbols("g", positive=True)
@@ -196,44 +206,44 @@ def main() -> None:
     rho13, _, _ = solve_average(1, 3, 0, x, 1)
     difference13 = sp.cancel(rho13 - baseline_k4())
     F13, P13, claimed13 = certificate_13()
-    assert sp.cancel(difference13 - claimed13) == 0
-    assert positive_integer_coefficients(F13, r, x)
-    assert positive_integer_coefficients(P13, r, x)
+    require(sp.cancel(difference13 - claimed13) == 0)
+    require(positive_integer_coefficients(F13, r, x))
+    require(positive_integer_coefficients(P13, r, x))
 
     # 2+2: internal weights x,y and cross weight 1.
     rho22, matrix22, _ = solve_average(2, 2, x, y, 1)
     difference22 = sp.cancel(rho22 - baseline_k4())
     numerator22, denominator22 = sp.fraction(difference22)
     H22 = sp.cancel(-numerator22 / (r**2 * (r - 1)))
-    assert sp.denom(H22) == 1
+    require(sp.denom(H22) == 1)
 
     # Symmetrize in x,y, then use xy=g^2 and x+y=2g+d.
     symmetric, remainder, mapping = sp.symmetrize(sp.expand(H22), [x, y], formal=True)
-    assert remainder == 0
+    require(remainder == 0)
     s1_symbol, s2_symbol = mapping[0][0], mapping[1][0]
     transformed = sp.expand(
         symmetric.subs({s1_symbol: 2 * g + d, s2_symbol: g**2, r: 1 + t})
     )
     R0, coefficients = certificate_22_coefficients()
     claimed_transformed = sp.expand(sum(coefficients[k] * d**k for k in range(5)))
-    assert sp.expand(transformed - claimed_transformed) == 0
+    require(sp.expand(transformed - claimed_transformed) == 0)
 
     # Machine-check every elementary coefficient-positivity assertion.
-    assert positive_integer_coefficients(R0, g, t)
+    require(positive_integer_coefficients(R0, g, t))
     C0, C1, C2, C3, C4 = coefficients
     leading_C1 = sp.Poly(C1, t).nth(6)
-    assert sp.expand(
+    require(sp.expand(
         leading_C1 - 2 * ((g**2 - 1) ** 2 + 4 * g * (g**2 + 1))
-    ) == 0
+    ) == 0)
     for power in range(6):
-        assert positive_integer_coefficients(sp.Poly(C1, t).nth(power), g)
+        require(positive_integer_coefficients(sp.Poly(C1, t).nth(power), g))
     for coefficient in (C2, C3, C4):
-        assert positive_integer_coefficients(coefficient, g, t)
+        require(positive_integer_coefficients(coefficient, g, t))
 
     # The reduced denominator is manifestly positive as a polynomial.
     P22 = sp.cancel(denominator22 / (4 * (r**2 + r + 1)))
-    assert sp.denom(P22) == 1
-    assert positive_integer_coefficients(P22, r, x, y)
+    require(sp.denom(P22) == 1)
+    require(positive_integer_coefficients(P22, r, x, y))
 
     # Independent denominator identity: P22 is the numerator of det(M22).
     determinant = sp.cancel(matrix22.det(method="domain-ge"))
@@ -248,8 +258,8 @@ def main() -> None:
         * (r * x + r + 1)
         * (r * y + r + 1)
     )
-    assert sp.expand(det_numerator - P22) == 0
-    assert sp.expand(det_denominator - 128 * local_product) == 0
+    require(sp.expand(det_numerator - P22) == 0)
+    require(sp.expand(det_denominator - 128 * local_product) == 0)
 
     print("[EXACTLY DERIVED] 1+3 and 2+2 orbit chains solved over rational functions")
     print("[PROVED] 1+3 is strictly dB-suppressing for x!=1 and every r>1")

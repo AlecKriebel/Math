@@ -15,6 +15,16 @@ from typing import Sequence, Tuple
 import sympy as sp
 
 
+class CertificateFailure(RuntimeError):
+    """Raised when an explicit certificate check fails."""
+
+
+def require(condition, detail="certificate check failed"):
+    """Raise a failure that remains active under optimized Python."""
+    if not condition:
+        raise CertificateFailure(str(detail))
+
+
 r = sp.symbols("r", positive=True)
 x, y = sp.symbols("x y", positive=True)
 a, b, c = sp.symbols("a b c", positive=True)
@@ -134,10 +144,10 @@ def verify_sum_of_squares_identities() -> None:
         + 3 * (Z * (X - Y) ** 2 + Y * (X - Z) ** 2 + X * (Y - Z) ** 2)
     )
 
-    assert sp.expand(s1**2 - 3 * s2 - square_gap_1) == 0
-    assert sp.expand(s2**2 - 3 * s1 * s3 - square_gap_2) == 0
-    assert sp.expand(s1 * s2 - 9 * s3 - weighted_gap) == 0
-    assert sp.expand(s2**3 - 27 * s3**2 - cubic_gap) == 0
+    require(sp.expand(s1**2 - 3 * s2 - square_gap_1) == 0)
+    require(sp.expand(s2**2 - 3 * s1 * s3 - square_gap_2) == 0)
+    require(sp.expand(s1 * s2 - 9 * s3 - weighted_gap) == 0)
+    require(sp.expand(s2**3 - 27 * s3**2 - cubic_gap) == 0)
 
     A, D, E, _ = sign_polynomials(a, b, c)
     D_certificate = (
@@ -148,9 +158,9 @@ def verify_sum_of_squares_identities() -> None:
     E_certificate = 4 * s2 * (
         3 * s2 * (s1**2 - 3 * s2) + (s2**2 - 3 * s1 * s3)
     )
-    assert sp.expand(A - 3 * s3 * weighted_gap) == 0
-    assert sp.expand(D - D_certificate) == 0
-    assert sp.expand(E - E_certificate) == 0
+    require(sp.expand(A - 3 * s3 * weighted_gap) == 0)
+    require(sp.expand(D - D_certificate) == 0)
+    require(sp.expand(E - E_certificate) == 0)
 
 
 def main() -> None:
@@ -160,14 +170,14 @@ def main() -> None:
 
     # Strict diagonal dominance is encoded by M*1=1: every diagonal entry is
     # one plus the sum of the magnitudes of the nonpositive off-diagonal entries.
-    assert matrix * sp.ones(6, 1) == sp.ones(6, 1)
+    require(matrix * sp.ones(6, 1) == sp.ones(6, 1))
 
     solution = matrix.inv(method="DM") * rhs
     rho = sp.cancel(sum(solution[index, 0] for index in range(3)) / 3)
     baseline = sp.cancel(2 * r / (3 * (r + 1)))
     derived_difference = sp.cancel(rho - baseline)
     certified_difference = formula_difference(1, x, y)
-    assert sp.cancel(derived_difference - certified_difference) == 0
+    require(sp.cancel(derived_difference - certified_difference) == 0)
 
     # P is positive because it is a positive local-denominator product times
     # one third of the determinant of a strictly diagonally dominant M-matrix.
@@ -176,14 +186,14 @@ def main() -> None:
     determinant = sp.cancel(generic_matrix.det(method="domain-ge"))
     P = denominator_polynomial(a, b, c)
     local_product = local_denominator_product(a, b, c)
-    assert sp.cancel(determinant - 3 * P / local_product) == 0
+    require(sp.cancel(determinant - 3 * P / local_product) == 0)
 
     A, D, E, H = sign_polynomials(a, b, c)
-    assert sp.expand(H - (A * (r - 1) ** 4 + D * r * (r - 1) ** 2 + E * r**2)) == 0
+    require(sp.expand(H - (A * (r - 1) ** 4 + D * r * (r - 1) ** 2 + E * r**2)) == 0)
     verify_sum_of_squares_identities()
 
-    assert sp.expand(H.subs({a: 1, b: 1, c: 1})) == 0
-    assert sp.factor(P.subs({a: 1, b: 1, c: 1})) == 9 * (r + 1) ** 2 * (r**2 + 3 * r + 1) ** 2
+    require(sp.expand(H.subs({a: 1, b: 1, c: 1})) == 0)
+    require(sp.factor(P.subs({a: 1, b: 1, c: 1})) == 9 * (r + 1) ** 2 * (r**2 + 3 * r + 1) ** 2)
 
     print("[EXACTLY COMPUTED] solved all six transient dB equations over QQ(r,x,y)")
     print("[CERTIFIED IDENTITY] rho-rho_K3 = -r(r-1)H/[3(r+1)P]")

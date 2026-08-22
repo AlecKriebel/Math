@@ -8,6 +8,16 @@ from fractions import Fraction
 from typing import Callable, Dict, Hashable, List, Sequence, Tuple
 
 
+class CertificateFailure(RuntimeError):
+    """Raised when an explicit certificate check fails."""
+
+
+def require(condition, detail="certificate check failed"):
+    """Raise a failure that remains active under optimized Python."""
+    if not condition:
+        raise CertificateFailure(str(detail))
+
+
 F = Fraction
 Signature = Hashable
 
@@ -57,7 +67,7 @@ def transition_row(
                 row[new_mask] += probability
     else:
         raise ValueError(rule)
-    assert sum(row.values(), F(0)) == 1
+    require(sum(row.values(), F(0)) == 1)
     return dict(row)
 
 
@@ -75,11 +85,11 @@ def verify_partition(
             aggregate[signature(target)] += probability
         source_signature = signature(mask)
         if source_signature in references:
-            assert references[source_signature] == dict(aggregate), (
+            require(references[source_signature] == dict(aggregate), (
                 source_signature,
                 references[source_signature],
                 dict(aggregate),
-            )
+            ))
         else:
             references[source_signature] = dict(aggregate)
     return len(references)

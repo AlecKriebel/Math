@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Exact verifier for the all-order antisymmetric Hessian certificate."""
+"""Finite exact checks accompanying the analytic all-order Hessian proof."""
 
 from __future__ import annotations
 
@@ -7,6 +7,16 @@ from fractions import Fraction as F
 from math import comb
 
 from flint import fmpq as Q, fmpq_mat
+
+
+class CertificateFailure(RuntimeError):
+    """Raised when an explicit certificate check fails."""
+
+
+def require(condition, detail="certificate check failed"):
+    """Raise a failure that remains active under optimized Python."""
+    if not condition:
+        raise CertificateFailure(str(detail))
 
 
 def solve(matrix, rhs):
@@ -48,10 +58,10 @@ def antisymmetric_eigenvalue(n):
     c0 = F(2**N - 1, N * 2 ** (N - 1))
     h = solve(fundamental, [F(1, k) - c0 for k in range(1, N + 1)])
     differences = [h[k - 1] - h[k] for k in range(1, N)]
-    assert all(value > 0 for value in differences)
-    assert all(
+    require(all(value > 0 for value in differences))
+    require(all(
         differences[i] > differences[i + 1] for i in range(len(differences) - 1)
-    )
+    ))
 
     r = [F(0) for _ in range(N + 2)]
     for k in range(N - 1, 0, -1):
@@ -59,8 +69,8 @@ def antisymmetric_eigenvalue(n):
             N * differences[k - 1] + (N - k - 1) * r[k + 1],
             2 * N - k,
         )
-        assert F(0) < r[k] <= F(N, N + 1) * differences[k - 1]
-        assert r[k] > r[k + 1]
+        require(F(0) < r[k] <= F(N, N + 1) * differences[k - 1])
+        require(r[k] > r[k + 1])
 
     # Equation (31) after dividing by ||delta||_F^2.
     answer = F(0)
@@ -70,9 +80,9 @@ def antisymmetric_eigenvalue(n):
         if k > 1:
             bracket += F((k - 1) * (N - k + 1), N - 1) * (r[k - 1] - r[k])
         bracket += (N - k + 1) * r[k]
-        assert bracket >= 0
+        require(bracket >= 0)
         answer += rank_law[k - 1] * bracket / (2 * n * N)
-    assert answer > 0
+    require(answer > 0)
     return answer
 
 
@@ -108,10 +118,10 @@ def full_active_audit(n):
     for i, j in ((0, 1), (1, 2), (2, 0)):
         delta_rows[i][j] = Q(1)
         delta_rows[j][i] = Q(-1)
-    assert all(sum(row, Q(0)) == 0 for row in delta_rows)
+    require(all(sum(row, Q(0)) == 0 for row in delta_rows))
     states, complete = active_operator(complete_rows)
     delta_states, direction = active_operator(delta_rows)
-    assert states == delta_states
+    require(states == delta_states)
     size = len(states)
     nu = [Q(B.bit_count(), n * N * 2 ** (N - 1)) for B, _ in states]
     fundamental = fmpq_mat(size, size, [
@@ -128,7 +138,7 @@ def full_active_audit(n):
     second = direction * response
     full_value = sum((nu[i] * second[i, 0] for i in range(size)), Q(0))
     expected = antisymmetric_eigenvalue(n)
-    assert full_value == 6 * Q(expected.numerator, expected.denominator)
+    require(full_value == 6 * Q(expected.numerator, expected.denominator))
     return full_value
 
 
@@ -148,13 +158,13 @@ def main():
     for n in range(3, 41):
         value = antisymmetric_eigenvalue(n)
         if n in known:
-            assert value == known[n]
+            require(value == known[n])
     for n in range(3, 8):
-        assert full_active_audit(n) > 0
+        require(full_active_audit(n) > 0)
     print("PASS: exact heat-bath Poisson gradients decrease for 3<=n<=40")
-    print("PASS: exact positive two-tree recurrence and displayed n<=12 values")
+    print("PASS: exact recurrence evaluations and displayed n<=12 values agree")
     print("PASS: independent full active-chain Hessian agrees for 3<=n<=7")
-    print("PROVED ANALYTICALLY: antisymmetric Hessian sector is positive for every n>=3")
+    print("PASS: finite exact checks agree with the all-n analytic proof in Appendix A")
 
 
 if __name__ == "__main__":

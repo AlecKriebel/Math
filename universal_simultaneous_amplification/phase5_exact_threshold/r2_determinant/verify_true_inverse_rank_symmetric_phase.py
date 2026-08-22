@@ -20,6 +20,16 @@ from flint import fmpq, fmpq_mat
 import sympy as sp
 
 
+class CertificateFailure(RuntimeError):
+    """Raised when an explicit certificate check fails."""
+
+
+def require(condition, detail="certificate check failed"):
+    """Raise a failure that remains active under optimized Python."""
+    if not condition:
+        raise CertificateFailure(str(detail))
+
+
 def inverse(matrix):
     size = len(matrix)
     augmented = [
@@ -64,7 +74,7 @@ def rank_data(N: int):
     d = [Q(0)] * (N + 1)
     for k in range(1, N):
         d[k] = ((k - 1) * d[k - 1] + 2 * N * (Q(1, k) - c0)) / (N - k)
-    assert (N - 1) * d[N - 1] + 2 * N * (Q(1, N) - c0) == 0
+    require((N - 1) * d[N - 1] + 2 * N * (Q(1, N) - c0) == 0)
 
     ga = [Q(comb(N - 2, k - 1), 2 ** (N - 1) * (N + 1)) for k in range(1, N)]
     qb = [Q(comb(N - 3, k - 2), 2 ** (N - 2) * (N + 1)) for k in range(2, N)]
@@ -136,7 +146,7 @@ def check_phase_identity(N: int):
     C = [row[na:] for row in H[:na]]
     D = [[-entry for entry in row[:na]] for row in H[na:]]
     Qblock = [row[na:] for row in H[na:]]
-    assert all(entry >= 0 for block in (S, C, D, Qblock) for row in block for entry in row)
+    require(all(entry >= 0 for block in (S, C, D, Qblock) for row in block for entry in row))
 
     RS = inverse([[Q(int(i == j)) - S[i][j] for j in range(na)] for i in range(na)])
     nb = N - 2
@@ -164,7 +174,7 @@ def check_phase_identity(N: int):
         (x * y for x, y in zip(sb, W)), Q(0)
     )
     direct = exact_small_scalar(N)
-    assert fmpq(value.numerator, value.denominator) == direct
+    require(fmpq(value.numerator, value.denominator) == direct)
 
 
 def phase_contraction(N: int) -> Q:
@@ -209,16 +219,16 @@ def check_local_identities():
         for k in range(1, N):
             tail -= comb(N - 1, k - 1)
             error = Q(4 * tail, 2**N * (N - 1) * comb(N - 2, k - 1))
-            assert d[k] == Q(2, k) - error
-            assert Q(2 * (N - 2), N * k) <= d[k] <= Q(2, k)
+            require(d[k] == Q(2, k) - error)
+            require(Q(2 * (N - 2), N * k) <= d[k] <= Q(2, k))
         for k in range(2, N):
-            assert qb[k - 2] == ga[k - 1] * Q(2 * (k - 1), N - 2)
+            require(qb[k - 2] == ga[k - 1] * Q(2 * (k - 1), N - 2))
 
     # The upper radial ratio used by the good-to-bad phase majorant.
     for N in range(3, 200):
         for j, t in enumerate(radial_ratio_sequence(N), 1):
             bound = Q(N * N - j, (N - 2) * (N - j))
-            assert t <= bound
+            require(t <= bound)
 
     # Exact local supersolutions and their contraction constants.
     for N in range(12, 250):
@@ -233,10 +243,10 @@ def check_local_identities():
                 residual -= Q(N - k - 1, 2 * N) * h[i - 1]
             if k + 1 < N:
                 residual -= Q(k * (k - 1), 2 * (k + 1) * N) * h[i + 1]
-            assert residual >= t[k - 2] * ga[k - 2] / N
+            require(residual >= t[k - 2] * ga[k - 2] / N)
 
         c = phase_contraction(N)
-        assert c <= Q(1, 12)
+        require(c <= Q(1, 12))
 
     # The left occupation supersolution Y and its exact positive residual.
     for N in range(3, 250):
@@ -249,7 +259,7 @@ def check_local_identities():
                 residual -= Q((k - 1) * (k - 2), 2 * k * N) * Y[i - 1]
             if k + 1 < N:
                 residual -= Q(N - k - 2, 2 * N) * Y[i + 1]
-            assert residual >= Q(1, k * (k - 1))
+            require(residual >= Q(1, k * (k - 1)))
 
 
 def check_finite_certificates():
@@ -257,10 +267,10 @@ def check_finite_certificates():
     small = []
     for N in range(3, 40):
         value = exact_small_scalar(N)
-        assert value > 0
+        require(value > 0)
         small.append(value)
-    assert small[0] == fmpq(3, 208)
-    assert small[1] == fmpq(359, 26660)
+    require(small[0] == fmpq(3, 208))
+    require(small[1] == fmpq(359, 26660))
     for N in range(3, 9):
         check_phase_identity(N)
 
@@ -268,13 +278,13 @@ def check_finite_certificates():
     margins = []
     for N in range(40, 288):
         margin = 1 - finite_debt_ratio(N) - tail_ratio(N)
-        assert margin > 0
+        require(margin > 0)
         margins.append(margin)
-    assert min(margins) == margins[0]
-    assert margins[0] == Q(
+    require(min(margins) == margins[0])
+    require(margins[0] == Q(
         639304267467075678841,
         115369588296792467144716,
-    )
+    ))
 
 
 def check_large_order_polynomials():
@@ -285,19 +295,19 @@ def check_large_order_polynomials():
         + 50 * k**3 + 36 * k**2 - 14 * k
     )
     w_disc = sp.factor(sp.discriminant(wpoly, k))
-    assert sp.expand(w_disc + 8 * (
+    require(sp.expand(w_disc + 8 * (
         5733 * n**6 - 123739 * n**5 - 344667 * n**4 - 933837 * n**3
         - 1594496 * n**2 - 983556 * n - 100352
-    )) == 0
+    )) == 0)
     w_disc_shift = sp.Poly(sp.expand((-w_disc / 8).subs(n, m + 25)), m).all_coeffs()
-    assert w_disc_shift == [5733, 736211, 37934833, 982793213, 12893444604, 70866894144, 41021531998]
-    assert all(value > 0 for value in w_disc_shift)
+    require(w_disc_shift == [5733, 736211, 37934833, 982793213, 12893444604, 70866894144, 41021531998])
+    require(all(value > 0 for value in w_disc_shift))
     # The isolated N=24 endpoint certificate.
-    assert min(
+    require(min(
         21 * 24**2 * k + 14 * 24**2 - 64 * 24 * k**2 - 57 * 24 * k
         + 50 * k**3 + 36 * k**2 - 14 * k
         for k in range(2, 24)
-    ) == 24
+    ) == 24)
 
     # Large-order termwise debt comparison.  These are the coefficients of
     # the discriminant polynomial after N=M+288.
@@ -306,15 +316,15 @@ def check_large_order_polynomials():
         - 10032 * n + 6000 * k**3 + 12000 * k**2 + 10032 * k + 12540
     )
     debt_disc = sp.factor(sp.discriminant(debt_poly, k))
-    assert sp.expand(debt_disc + 500 * (
+    require(sp.expand(debt_disc + 500 * (
         43034652243 * n**6 - 2423163812652 * n**5 + 23347885394764 * n**4
         - 127704595269984 * n**3 - 84188066366592 * n**2
         + 68423285855232 * n + 172450813860864
-    )) == 0
+    )) == 0)
     debt_disc_shift = sp.Poly(
         sp.expand((-debt_disc / 500).subs(n, m + 288)), m
     ).all_coeffs()
-    assert debt_disc_shift == [
+    require(debt_disc_shift == [
         43034652243,
         71940715263252,
         50075984929826764,
@@ -322,8 +332,8 @@ def check_large_order_polynomials():
         3873653773133773223808,
         430447522448513182675968,
         19913301794000751100222464,
-    ]
-    assert all(value > 0 for value in debt_disc_shift)
+    ])
+    require(all(value > 0 for value in debt_disc_shift))
 
     # Directly audit the integer cubics at representative orders, including
     # both analytic thresholds.
@@ -334,7 +344,7 @@ def check_large_order_polynomials():
                     21 * N * N * k + 14 * N * N - 64 * N * k * k
                     - 57 * N * k + 50 * k**3 + 36 * k * k - 14 * k
                 )
-                assert wpoly > 0
+                require(wpoly > 0)
         if N >= 288:
             for k in range(1, N - 1):
                 debt_poly = (
@@ -342,11 +352,11 @@ def check_large_order_polynomials():
                     - 21278 * N * k - 10032 * N + 6000 * k**3
                     + 12000 * k * k + 10032 * k + 12540
                 )
-                assert debt_poly > 0
+                require(debt_poly > 0)
 
     # The alternating phase tail is at most 1/20 from N=46 onward.
     for N in range(46, 500):
-        assert tail_ratio(N) <= Q(1, 20)
+        require(tail_ratio(N) <= Q(1, 20))
 
 
 def main():

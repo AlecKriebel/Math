@@ -11,6 +11,7 @@ import os
 from pathlib import Path, PurePosixPath
 import shutil
 import subprocess
+import sys
 import tarfile
 import tempfile
 
@@ -240,25 +241,27 @@ and PDF were generated, avoiding a self-referential package hash.
 
 Prior review verdicts, research diaries, and saved successful output are
 deliberately absent. Proof documents and independent checking programs remain.
+The three imported exploratory helper modules have inert guarded mains: only
+the function-level reach described in `CLAIM_CODE_MAP.md` is advertised.
 
 ## Suggested order
 
 1. Independently inspect the PDF, LaTeX, proof documents, replay entry point,
    every invoked verifier, and imported helpers.
-2. Verify package identity with `python3 verify_referee_package.py`.
+2. Verify package identity with `python3 -I verify_referee_package.py`.
 3. With Python 3.14.6 available, run `./run_all_referee_checks.sh`. If
    `python3` is not that exact interpreter, set for example
    `BOOTSTRAP_PYTHON=/path/to/python3.14.6`.
 4. Preserve the transcript and complete an independent mathematical and code
    audit using the neutral prompt.
 
-The replay pins SymPy 1.14.0, python-flint 0.9.0, and mpmath 1.3.0. The PDF
-rebuild requires Tectonic 0.16.9 and Poppler 26.08.0 (`pdfinfo` and
-`pdftoppm`). The bootstrap may access the configured Python package index to
-install the pinned dependencies; it does not contact any person or submit any
-artifact. A fresh document build may also populate Tectonic's standard v33
-resource-bundle cache. The exact theorem replay is independent of the document
-tools, and the final PDF comparison detects any rendering difference.
+The replay binds the accepted wheels for SymPy 1.14.0, python-flint 0.9.0, and
+mpmath 1.3.0 by SHA-256. The PDF rebuild requires Tectonic 0.16.9, the pinned
+standard v33 bundle content, and Poppler 26.08.0 (`pdfinfo` and `pdftoppm`).
+The bootstrap may access the configured Python package index to retrieve only
+hash-matching wheels; it does not contact any person or submit any artifact.
+The exact theorem replay is independent of the document tools, and the final
+PDF comparison detects any rendering difference.
 """
     (target / "README_FIRST.md").write_text(content, encoding="utf-8")
 
@@ -269,7 +272,7 @@ def main() -> None:
         "--output-dir",
         type=Path,
         default=REPO
-        / "referee_packages/paper_i_complete_graph_extremality_referee_package_2026-08-22",
+        / "referee_packages/paper_i_complete_graph_extremality_referee_package_2026-08-22_r2",
     )
     args = parser.parse_args()
 
@@ -314,14 +317,16 @@ def main() -> None:
 
 The scientific source commit predates the wrapping commit that may add this
 copied referee folder. It is the commit from which the archive and PDF were
-built. `PACKAGE_MANIFEST.sha256` binds every delivered file except itself.
+built. `PACKAGE_MANIFEST.sha256` checks every other delivered file; the
+detached transport-archive digest binds the package as a whole.
 """
     (target / "VERSION.md").write_text(version, encoding="utf-8")
     write_readme(target, source_commit, archive_digest, pdf_digest)
     payload_count = write_package_manifest(target)
 
     subprocess.run(
-        ("python3", str(target / "verify_referee_package.py")), check=True
+        (sys.executable, "-I", str(target / "verify_referee_package.py")),
+        check=True,
     )
     transport, transport_digest = write_transport_archive(target)
     print(f"WROTE_FOLDER: {target}")

@@ -22,6 +22,16 @@ from verify_fisher_route import (
 )
 
 
+class CertificateFailure(RuntimeError):
+    """Raised when an explicit certificate check fails."""
+
+
+def require(condition, detail="certificate check failed"):
+    """Raise a failure that remains active under optimized Python."""
+    if not condition:
+        raise CertificateFailure(str(detail))
+
+
 def matrix_from_edges(n: int, values) -> list[list[int]]:
     weights = [[0 for _ in range(n)] for _ in range(n)]
     for value, (u, v) in zip(values, combinations(range(n), 2)):
@@ -52,7 +62,7 @@ def exact_gap(weights) -> F:
         for v in range(n)
     ]
     complete_states, QK = proper_generator(complete_P)
-    assert states == complete_states
+    require(states == complete_states)
     L, V, _, _, _ = green_data(weights, P, states, QK, pi)
     return V - L
 
@@ -64,11 +74,11 @@ def screen(label: str, graphs) -> tuple[int, F]:
         if not connected(weights):
             continue
         gap = exact_gap(weights)
-        assert gap >= 0, (label, weights, gap)
+        require(gap >= 0, (label, weights, gap))
         if smallest is None or gap < smallest:
             smallest = gap
         tested += 1
-    assert tested and smallest is not None
+    require(tested and smallest is not None)
     minimum_text = "0" if smallest == 0 else f">0 (~{float(smallest):.12g})"
     print(
         f"PASS: {label}: {tested} connected exact graphs; "
@@ -109,7 +119,7 @@ def main() -> None:
         (3, 300, 2, 5, 1, 3, 3, 1, 300, 1, 1, 1, 20, 1, 1),
     )
     gap = exact_gap(split_witness)
-    assert gap > 0
+    require(gap > 0)
     print(f"PASS: frozen n=6 split witness has exact V-L>0 (~{float(gap):.10g})")
     print("PASS: direct L-V exact hostile screen (finite validation only)")
 

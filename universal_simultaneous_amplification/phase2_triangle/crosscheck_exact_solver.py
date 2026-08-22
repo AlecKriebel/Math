@@ -14,6 +14,16 @@ from pathlib import Path
 import sympy as sp
 
 
+class CertificateFailure(RuntimeError):
+    """Raised when an explicit certificate check fails."""
+
+
+def require(condition, detail="certificate check failed"):
+    """Raise a failure that remains active under optimized Python."""
+    if not condition:
+        raise CertificateFailure(str(detail))
+
+
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -38,8 +48,8 @@ def main() -> None:
 
     # Independent subset-state transition rows are exact and stochastic.
     rows = transition_matrix(weights, "dB", r)
-    assert len(rows) == 8
-    assert all(sp.cancel(sum(row.values()) - 1) == 0 for row in rows)
+    require(len(rows) == 8)
+    require(all(sp.cancel(sum(row.values()) - 1) == 0 for row in rows))
 
     reference = fixation_vector(weights, "dB", r)
     matrix, rhs = build_six_state_system(weights)
@@ -48,13 +58,13 @@ def main() -> None:
     for vertex in range(3):
         singleton_mask = 1 << vertex
         doubleton_mask = full ^ singleton_mask
-        assert sp.cancel(reference[singleton_mask] - manual[vertex, 0]) == 0
-        assert sp.cancel(reference[doubleton_mask] - manual[3 + vertex, 0]) == 0
+        require(sp.cancel(reference[singleton_mask] - manual[vertex, 0]) == 0)
+        require(sp.cancel(reference[doubleton_mask] - manual[3 + vertex, 0]) == 0)
 
     rho_reference = average_single_mutant_fixation(weights, "dB", r)
     baseline_reference = complete_baseline(3, "dB", r)
-    assert sp.cancel(baseline_reference - 2 * r / (3 * (r + 1))) == 0
-    assert sp.cancel(rho_reference - baseline_reference - formula_difference(1, x, y)) == 0
+    require(sp.cancel(baseline_reference - 2 * r / (3 * (r + 1))) == 0)
+    require(sp.cancel(rho_reference - baseline_reference - formula_difference(1, x, y)) == 0)
 
     # Additional exact specializations exercise cancellation and signs without
     # floating point.  Uniform weights tie; every listed nonuniform case is strict.
@@ -71,9 +81,9 @@ def main() -> None:
                 formula_difference(1, edge_x, edge_y).subs(r, fitness)
             )
             if edge_x == edge_y == 1:
-                assert exact_value == 0
+                require(exact_value == 0)
             else:
-                assert exact_value < 0
+                require(exact_value < 0)
 
     print("[INDEPENDENTLY VERIFIED] all eight subset-state transition rows sum exactly to one")
     print("[INDEPENDENTLY VERIFIED] all six transient fixation values match the manual system")

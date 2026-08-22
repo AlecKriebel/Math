@@ -16,6 +16,16 @@ from fractions import Fraction as F
 import sympy as sp
 
 
+class CertificateFailure(RuntimeError):
+    """Raised when an explicit certificate check fails."""
+
+
+def require(condition, detail="certificate check failed"):
+    """Raise a failure that remains active under optimized Python."""
+    if not condition:
+        raise CertificateFailure(str(detail))
+
+
 def gaussian_solve(matrix: list[list[F]], rhs: list[F]) -> list[F]:
     """Solve a nonsingular rational system by exact Gauss--Jordan elimination."""
 
@@ -114,7 +124,7 @@ def solve_v(n: int) -> dict[int, F]:
     values = gaussian_solve(matrix, rhs)
     result = {1: F(0), n - 1: F(0)}
     result.update(zip(ranks, values, strict=True))
-    assert all(result[k] > 0 for k in ranks)
+    require(all(result[k] > 0 for k in ranks))
     return result
 
 
@@ -171,7 +181,7 @@ def response_coefficients(n: int) -> dict[int, F]:
             * first_down(k + 1)
             * (-q2(k + 1) + 2 * in2(k + 1))
         )
-    assert all(value > 0 for value in result.values())
+    require(all(value > 0 for value in result.values()))
     return result
 
 
@@ -198,7 +208,7 @@ def verify_finite_ranks() -> None:
     }
     for n, value in expected.items():
         actual = exact_hessian_per_edge_norm(n)
-        assert actual == value, (n, actual, value)
+        require(actual == value, (n, actual, value))
 
     # For n=6,7,8 the comparison v <= bar_v and the following exact total
     # ratios close the proof.  For n>=9 a pointwise certificate is used below.
@@ -211,14 +221,14 @@ def verify_finite_ranks() -> None:
         coefficients = response_coefficients(n)
         bound = sum(coefficients[k] * bar_v(n, k) for k in coefficients)
         direct = direct_magnitude(n)
-        assert bound / direct == expected_ratio
-        assert bound < direct
+        require(bound / direct == expected_ratio)
+        require(bound < direct)
 
 
 def positive_coefficients(expression: sp.Expr, *variables: sp.Symbol) -> None:
     polynomial = sp.Poly(sp.cancel(expression), *variables)
-    assert polynomial.coeffs()
-    assert all(coefficient > 0 for coefficient in polynomial.coeffs())
+    require(polynomial.coeffs())
+    require(all(coefficient > 0 for coefficient in polynomial.coeffs()))
 
 
 def verify_supersolution_certificate() -> None:
@@ -250,11 +260,11 @@ def verify_supersolution_certificate() -> None:
     numerator, denominator = sp.fraction(residual)
     positive_coefficients(numerator, a, b)
     quotient, remainder = sp.div(numerator, a + b + 3, a, b)
-    assert remainder == 0
+    require(remainder == 0)
     barrier_polynomial = sp.Poly(quotient, a, b)
-    assert len(barrier_polynomial.terms()) == 45
-    assert min(barrier_polynomial.coeffs()) == 16
-    assert all(coefficient > 0 for coefficient in barrier_polynomial.coeffs())
+    require(len(barrier_polynomial.terms()) == 45)
+    require(min(barrier_polynomial.coeffs()) == 16)
+    require(all(coefficient > 0 for coefficient in barrier_polynomial.coeffs()))
     # Every displayed factor of this denominator is positive on a,b>=0.
     expected_denominator = (
         80
@@ -267,7 +277,7 @@ def verify_supersolution_certificate() -> None:
         * (2 * a + b + 5) ** 2
         * (2 * a + b + 6)
     )
-    assert sp.expand(denominator - expected_denominator) == 0
+    require(sp.expand(denominator - expected_denominator) == 0)
 
 
 def verify_pointwise_large_n_certificate() -> None:
@@ -313,7 +323,7 @@ def verify_pointwise_large_n_certificate() -> None:
     h_poly = sp.Poly(h, q)
     h_zero = h_poly.coeff_monomial(1)
     h_one = h_poly.coeff_monomial(q)
-    assert sp.expand(h - h_zero - q * h_one) == 0
+    require(sp.expand(h - h_zero - q * h_one) == 0)
 
     # If b=0,...,4, the condition a+b>=5 is parameterized by
     # a=c+5-b.  The five exact univariate certificates have only positive
@@ -330,8 +340,8 @@ def verify_pointwise_large_n_certificate() -> None:
         )
         positive_coefficients(specialized, c)
         polynomial = sp.Poly(specialized, c)
-        assert polynomial.degree() == 8
-        assert min(polynomial.coeffs()) == (784, 696, 652, 630, 619)[b_value]
+        require(polynomial.degree() == 8)
+        require(min(polynomial.coeffs()) == (784, 696, 652, 630, 619)[b_value])
 
     # If b>=5, write b=c+5.  H_0 and 128 H_0+H_1 have positive
     # coefficients.  Since q<=1/128, this proves H_0+q H_1>0 whether
@@ -342,9 +352,9 @@ def verify_pointwise_large_n_certificate() -> None:
     )
     positive_coefficients(large_h_zero.as_expr(), a, c)
     positive_coefficients(large_combination.as_expr(), a, c)
-    assert len(large_h_zero.terms()) == len(large_combination.terms()) == 45
-    assert min(large_h_zero.coeffs()) == 19
-    assert min(large_combination.coeffs()) == 2413
+    require(len(large_h_zero.terms()) == len(large_combination.terms()) == 45)
+    require(min(large_h_zero.coeffs()) == 19)
+    require(min(large_combination.coeffs()) == 2413)
 
 
 def main() -> None:

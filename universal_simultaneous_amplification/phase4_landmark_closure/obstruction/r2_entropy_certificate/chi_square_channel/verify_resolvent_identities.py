@@ -11,6 +11,16 @@ from __future__ import annotations
 from fractions import Fraction as F
 
 
+class CertificateFailure(RuntimeError):
+    """Raised when an explicit certificate check fails."""
+
+
+def require(condition, detail="certificate check failed"):
+    """Raise a failure that remains active under optimized Python."""
+    if not condition:
+        raise CertificateFailure(str(detail))
+
+
 def inverse(matrix: list[list[F]]) -> list[list[F]]:
     n = len(matrix)
     aug = [row[:] + [F(int(i == j)) for j in range(n)]
@@ -46,7 +56,7 @@ def union_law(row: list[F]) -> dict[int, F]:
                      if mask >> j & 1)
         if values[mask]:
             answer[actual] = values[mask]
-    assert sum(answer.values()) == 1
+    require(sum(answer.values()) == 1)
     return answer
 
 
@@ -68,7 +78,7 @@ def solve(weights: list[list[int]]):
                 for U, probability in laws[v].items():
                     B = (A & ~(1 << v)) | U
                     kernel[index[A]][index[B]] += probability
-            assert sum(kernel[index[A]]) == 1
+            require(sum(kernel[index[A]]) == 1)
         kernels.append(kernel)
         for i in range(len(states)):
             for j in range(len(states)):
@@ -83,8 +93,8 @@ def solve(weights: list[list[int]]):
     inv = inverse(matrix)
     pi = [sum(inv[i][j] * rhs[j] for j in range(size))
           for i in range(size)]
-    assert sum(pi) == 1
-    assert all(x > 0 for x in pi)
+    require(sum(pi) == 1)
+    require(all(x > 0 for x in pi))
     return P, states, index, kernels, pi
 
 
@@ -121,7 +131,7 @@ def measures(weights: list[list[int]]):
     sigma_add = [add(v, sigma[v]) for v in range(n)]
     for v in range(n):
         for B in range(full_size):
-            assert 2 * nu[v][B] == sigma_add[v][B] + nu_add[v][B]
+            require(2 * nu[v][B] == sigma_add[v][B] + nu_add[v][B])
 
     mean = sum(pi_all[B] * B.bit_count() for B in states)
     qmass = n - mean
@@ -137,8 +147,8 @@ def measures(weights: list[list[int]]):
 
     # Verify the pointwise aggregate effective-incoming identity.
     for B in states:
-        assert sum(nu[v][B] for v in range(n) if not (B >> v) & 1) \
-            == B.bit_count() * pi_all[B]
+        require(sum(nu[v][B] for v in range(n) if not (B >> v) & 1) \
+            == B.bit_count() * pi_all[B])
 
     revealed_excess = sum(
         sum(nu[v][B] ** 2 / pi_all[B]
@@ -151,17 +161,17 @@ def measures(weights: list[list[int]]):
 def main() -> None:
     path = [[0, 1, 0], [1, 0, 1], [0, 1, 0]]
     mean, qmass, energy, add_energy, i2, revealed = measures(path)
-    assert mean == F(11, 9)
-    assert qmass == F(16, 9)
-    assert energy == F(13, 9)
-    assert add_energy == F(19, 9)
-    assert i2 == F(17, 9)
-    assert add_energy - energy == F(2, 3)
+    require(mean == F(11, 9))
+    require(qmass == F(16, 9))
+    require(energy == F(13, 9))
+    require(add_energy == F(19, 9))
+    require(i2 == F(17, 9))
+    require(add_energy - energy == F(2, 3))
 
     triangle = [[0, 7, 1], [7, 0, 1], [1, 1, 0]]
     values = measures(triangle)
     revealed_gap = values[-1] - 1
-    assert revealed_gap > 0
+    require(revealed_gap > 0)
 
     print("PASS: exact midpoint resolvent on the path and weighted triangle")
     print(f"PASS: path L2 expansion = {add_energy-energy}")
