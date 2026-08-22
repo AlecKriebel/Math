@@ -230,3 +230,40 @@
   3.14 with pinned dependencies and a randomized hash seed. Both recovered
   the same 1,931-class root and 36-case proof census, and neither found a
   mathematical, portability, or packaging blocker for the scoped release.
+
+## 2026-08-21 18:12 PDT — Principal-domain K2P theorem closure promoted
+
+- Promoted the principal-domain classification to unconditional `K2P-SAME`:
+  for binary standard semi-directed strongly tree-child level-2 networks on
+  \(\mathcal D_+\), directed containment, equality up to ordinary-triangle
+  moves, and generic model intersection coincide. No mixed-sign extension is
+  claimed.
+- Independently regenerated the complete four-port and theta2 primitive raw
+  universes, proved exact rank upper bounds for every retained descriptor, and
+  replaced the invalid rooted tree/sunlet oracle with full-map Fourier
+  certificates. The corrected four-port ledger has 405,216 raw rows and the
+  corrected theta2 ledger has 2,946,240 raw rows, with zero unclassified rows.
+- Closed all 997 four-port restoration parents: 2,540 physical roots generate
+  36,568 first-level and 256 second-level edges, with 36,792 terminal leaves,
+  zero missing children, zero cycles, and zero unresolved leaves.
+- Closed the all-primitive coherence layer from 176 physical equality anchors.
+  The one-port ledger has 29,964 rows and 2,107 equality survivors; the
+  two-port ledger has 544,571 rows and 32,729 equality terminals. Every
+  transport, restriction, reverse marginal, and global triangle choice was
+  independently replayed, with zero unresolved or incoherent records.
+- Assembled the main classification theorem, generic-identifiability and exact
+  reconstruction corollaries, strict continuous-time corollary, and the weak
+  tree-child \(4n-3\)-dimensional sharpness theorem. The final manuscript SHA-256
+  is `6cd540649c146b5ff5932c432dcaac07745d57de77b18031ae1ebf8b9c704670`.
+- Froze the fail-closed referee release in
+  `work/final_theorem_release/RELEASE_LOCK.json`, SHA-256
+  `0c17eeaa3344f0982998ea694c1eb92f72f5ced0841e2acad0d39566e2ec71c3`,
+  with `promotion_ready=true`, no blockers, and 194 outer locked files. A bare
+  clean copy passed all 19 quick qualification layers and all 23 outer
+  mutations; optimized mode, missing dependencies, and every tested ledger,
+  rank, child, transport, and separator corruption failed closed.
+- The recursively locked evidence bundle contains 369 unique files; including
+  the release lock it is 434,661,763 bytes with canonical content-ledger root
+  `c79fa2d3cb6431207823e3c66c3440cbeb94226d8a9925960883efca7dca2416`.
+  The deterministic 14-page theorem PDF has SHA-256
+  `a176f8c67a8a0b3dcf0d22acf9268cfea020367ab6ef296f9c964b6c67a38ca5`.

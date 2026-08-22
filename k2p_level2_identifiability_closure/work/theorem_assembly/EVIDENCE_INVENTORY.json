@@ -1,0 +1,222 @@
+{
+  "archive_sources": [
+    {
+      "path": "archives/original/k2p_identifiability_checkpoint_full.zip",
+      "role": "first theorem-hardening checkpoint",
+      "sha256": "5181862c0f75184b6aa9c76fdad72ec9aa9a89f241252999bcfdb29906759312"
+    },
+    {
+      "path": "archives/original/k2p_identifiability_checkpoint_continuation2.zip",
+      "role": "exact three-port continuation",
+      "sha256": "d3e5976d968217397c58aec9950e51b9d62c56b61710ed9e83f8d6063e461d03"
+    },
+    {
+      "path": "package/referee/k2p_offline_sweep_portable/DIRECT_CLOSURE_LOCK.json",
+      "role": "current direct-four-port referee release lock",
+      "sha256": "89ebf377aa30fd27cd6480382fedcdd895519905f5accb51537a584b5dd8bc92"
+    }
+  ],
+  "conversation_claim_source": {
+    "agent_message_id": "f91f3d7f-4865-4a7e-a525-1445f4d900ec",
+    "conversation_id": "6a83c53c-d49c-83e8-9506-b0da8de1c534",
+    "evidence_rule": "Conversation text is documentary provenance only. Missing chatgpt-content-reference attachments cannot satisfy a replay gate.",
+    "turn_id": "32912adc-ac55-476f-b9ac-76b5bbc47ac4"
+  },
+  "layers": [
+    {
+      "claim": "The strict stochastic edge inequalities, nonsingular condition, near-identity subdivision, and continuous-time cone are as stated in the first checkpoint.",
+      "evidence_level": "documentary_plus_regression_code",
+      "id": "principal_domain_and_subdivision",
+      "local_evidence": [
+        {
+          "path": "package/original/checkpoint_1/k2p_identifiability_program/TECHNICAL_SUMMARY.md",
+          "sha256": "3861005c767a773958a11feac1a4de646524dccae9918afbc939c1e0e4a4180a"
+        },
+        {
+          "path": "package/original/checkpoint_1/k2p_identifiability_program/code/k2p_cleanroom/domain.py",
+          "sha256": "a54859c11fbc2e5f21f25cdcb072f445dae55a2422ce4b0f5e816517abeadb12"
+        },
+        {
+          "path": "package/original/checkpoint_1/k2p_identifiability_program/tests/test_mutations.py",
+          "sha256": "fe8f91fcc5003fa9e24c056541c1aeb75e22ad32ce46d645b273465ec01f0879"
+        }
+      ],
+      "missing_bindings": [
+        "The archive's quick_check.sh names code/verify_k2p_domain.py, but that file is absent.",
+        "No archived exact replay proves the stated epsilon bound and rooting invariance end to end."
+      ],
+      "promotion_eligible": false
+    },
+    {
+      "claim": "The ambient K2P bridge action has independent repeated-s and singleton-g incidence scales and nonzero-anchor analytic slices.",
+      "evidence_level": "documentary_only",
+      "id": "archived_ambient_two_sector_bridge",
+      "local_evidence": [
+        {
+          "path": "package/original/checkpoint_1/k2p_identifiability_program/PARTIAL_PROGRESS.md",
+          "sha256": "2e36a2bcbc7af0ea021056ae4bdaeecc1a039d812d66a631247dc1f79abf12f0"
+        }
+      ],
+      "missing_bindings": [
+        "The archive's quick_check.sh names code/verify_k2p_bridge_fibre.py, but that file is absent.",
+        "The first checkpoint explicitly left equality of ambient and physical fibres open."
+      ],
+      "promotion_eligible": false
+    },
+    {
+      "claim": "The complete positive physical bridge fibre, analytic normalizers, freeness, no holonomy, local product chart, and simultaneous D+ gluing are closed.",
+      "evidence_level": "conversation_claim_only",
+      "id": "physical_two_sector_bridge_and_gluing",
+      "local_evidence": [],
+      "missing_bindings": [
+        "No bridge proof manuscript, normalizer matrices, component case table, or replay script is present locally.",
+        "The content-reference attachments cited by the conversation answer were not recovered."
+      ],
+      "promotion_eligible": false
+    },
+    {
+      "claim": "Serial classes map to paired products, admit physical D+ lifts, and give a marginal map that is onto and submersive on the dense regular source locus.",
+      "evidence_level": "conversation_claim_only",
+      "id": "paired_marginal_open_image",
+      "local_evidence": [],
+      "missing_bindings": [
+        "No complete switching-signature ledger is present.",
+        "No graph-indexed restriction table or tangent-transfer replay is present.",
+        "No proof artifact binds inheritance parent flips and invisible classes for every restriction used by restoration."
+      ],
+      "promotion_eligible": false
+    },
+    {
+      "claim": "The three ordinary triangle orientations share a rank-nine strict germ, including in continuous time, and the tree--sunlet invariant has the stated exact factorization.",
+      "evidence_level": "exact_replayable",
+      "id": "ordinary_triangle_and_tree_sunlet",
+      "local_evidence": [
+        {
+          "path": "package/original/checkpoint_2/continuation_2/verify_triangle_and_sunlet.py",
+          "sha256": "3b6c69caf6e72818fe5d931b1c30beabb7860c0c3686d300aff998c48741ccd6"
+        },
+        {
+          "path": "package/original/checkpoint_2/continuation_2/certificate.json",
+          "sha256": "8f38a5e6a9498dd2649a687d467efe2641040b4b7e5d145af320d176b2ebcada"
+        },
+        {
+          "path": "package/original/checkpoint_2/continuation_2/replay.log",
+          "sha256": "a984331729a5d20b0a1e96e22929c2035d75e50dabbf29016ce5dc55f9792bff"
+        }
+      ],
+      "missing_bindings": [
+        "This three-port replay does not by itself prove the global theorem."
+      ],
+      "promotion_eligible": true,
+      "replay": {
+        "command": [
+          "{python}",
+          "-B",
+          "package/original/checkpoint_2/continuation_2/verify_triangle_and_sunlet.py"
+        ],
+        "stdout_golden": "package/original/checkpoint_2/continuation_2/replay.log"
+      }
+    },
+    {
+      "claim": "All 36 named direct four-port candidates are exactly separated by the 22 quintic, 12 quartic, and two cubic replays.",
+      "evidence_level": "hash_bound_replayable",
+      "id": "direct_four_port_overlay",
+      "local_evidence": [
+        {
+          "path": "package/referee/k2p_offline_sweep_portable/verify_direct_closure_release.py",
+          "sha256": "08a188809833bc429053b01a2243542ab4a25e8b50a14409f82649e29160243a"
+        },
+        {
+          "path": "package/referee/k2p_offline_sweep_portable/proofs/four_port_direct_residual_closure_certificate.json",
+          "sha256": "d39ef18b8a58383c4f35aa9cc8fffc69d87928c77a27ddeb60c39b067e24fe21"
+        }
+      ],
+      "missing_bindings": [
+        "The overlay explicitly excludes restoration, raw-universe exhaustiveness, gluing, and the global theorem."
+      ],
+      "promotion_eligible": true,
+      "replay": {
+        "command": [
+          "{python}",
+          "-B",
+          "package/referee/k2p_offline_sweep_portable/verify_direct_closure_release.py",
+          "--quick"
+        ],
+        "terminal_line": "K2P_FOUR_PORT_DIRECT_CLOSURE_RELEASE_PASS"
+      }
+    },
+    {
+      "claim": "The complete graph-derived raw four-/five-port universe is partitioned with exact topology exclusions, dimension upper bounds, and raw-to-canonical maps.",
+      "evidence_level": "absent",
+      "id": "raw_universe_exhaustiveness",
+      "local_evidence": [],
+      "missing_bindings": [
+        "The two retained pickles have locked hashes but no retained historical generator command.",
+        "No raw ledger partitions all presentations.",
+        "No dimension upper-bound certificate binds every rank exclusion."
+      ],
+      "promotion_eligible": false
+    },
+    {
+      "claim": "Every restoration parent has bound direct five-port children and a replayed restoration implication with coherent probes.",
+      "evidence_level": "absent",
+      "id": "restoration_and_coherent_probes",
+      "local_evidence": [],
+      "missing_bindings": [
+        "The release contains 997 restoration parents and 2,962 child requests but zero bound child records.",
+        "No restoration forest, unique parent transport, or coherent one-/two-port probe certificate is present."
+      ],
+      "promotion_eligible": false
+    },
+    {
+      "claim": "One-sided containment recovers the labelled decorated tree of blobs.",
+      "evidence_level": "conversation_claim_only",
+      "id": "decorated_tree_of_blobs_recovery",
+      "local_evidence": [],
+      "missing_bindings": [
+        "The cited published K2P disjointness theorem and exact applicability statement are not bound locally.",
+        "No graph-derived decoration certificate is present."
+      ],
+      "promotion_eligible": false
+    },
+    {
+      "claim": "Conditional on the finite assertion, restoration, coherent probes, gluing, genericity, and a terminating reconstruction algorithm complete the global theorem.",
+      "evidence_level": "conversation_claim_only",
+      "id": "conditional_global_theorem_layers",
+      "local_evidence": [],
+      "missing_bindings": [
+        "No local proof manuscript or dependency-checked replay artifacts survive for these layers.",
+        "The conditional theorem cannot discharge the finite assertion that it assumes."
+      ],
+      "promotion_eligible": false
+    },
+    {
+      "claim": "The global strong-class theorem and the all-n weak-class sharpness construction remain inside the strict continuous-time cone.",
+      "evidence_level": "mixed",
+      "id": "continuous_time_extension",
+      "local_evidence": [
+        {
+          "path": "package/original/checkpoint_2/continuation_2/verify_triangle_and_sunlet.py",
+          "sha256": "3b6c69caf6e72818fe5d931b1c30beabb7860c0c3686d300aff998c48741ccd6"
+        }
+      ],
+      "missing_bindings": [
+        "Only the ordinary-triangle common point is locally replayed in the continuous-time cone.",
+        "No global continuous-time bridge lift, marginal lift, or all-n sharpness replay is present."
+      ],
+      "promotion_eligible": false
+    },
+    {
+      "claim": "Omega and pendant-transfer Theta lose one tangent dimension, while explicit weak-but-not-strong root-spanning theta pairs have an all-n full-dimensional K2P ambiguity of dimension 4n-3.",
+      "evidence_level": "conversation_claim_only",
+      "id": "weak_class_sharpness",
+      "local_evidence": [],
+      "missing_bindings": [
+        "No rooted arc lists, admissible-rooting census, common tensor, exact rank minor, cherry-substitution map, or independent replay is present locally.",
+        "The cited content-reference attachments were not recovered."
+      ],
+      "promotion_eligible": false
+    }
+  ],
+  "schema": "k2p-theorem-evidence-inventory-v1"
+}
