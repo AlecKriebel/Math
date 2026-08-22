@@ -12,12 +12,16 @@ work only; no external contact or submission was made.
 - Reconstructed the proposed unit-rate deterioration example independently.
   Rejected its underspecified threshold table, but retained the valid and
   fully specified homodimer-cycle calculation showing a method-specific
-  coefficient $2r^{-r}$. Explicitly distinguished this proof calibration
+  coefficient $2d^{-d}$. Explicitly distinguished this proof calibration
   from the CTMC's unknown quantitative return and mixing behavior.
-- Named the Anderson--Kim conjecture in the preprint abstract, stated
+- Attributed the conjecture directly to Anderson and Kim in the preprint abstract, stated
   $I\ne\varnothing$ and $R_n\to\infty$ in the compactification, and noted
   the equivalence between the published ACK condition and its positive-multiple
   summary under binaryity. No theorem or proof mechanism changed.
+- A final independent consistency pass rederived the unit-rate calculation,
+  then removed its temporary collision with the global reaction-index symbol,
+  softened the abstract attribution to the primary source's exact posture, and
+  normalized copy-ready metadata punctuation.
 - Adjudicated an independently prompted AI-referee report whose separated
   proof, software, and adversarial tracks found the theorem established and
   the release content reproducible. No theorem or proof change was required.

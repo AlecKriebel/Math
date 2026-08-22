@@ -168,8 +168,8 @@ The negative logarithmic coefficient can approach zero through positive rate
 ratios. Thus no bound on the location or diameter of the proof's finite Foster
 set $K$ can depend only on the numbers of species and complexes uniformly
 over all positive rate vectors. Separately, the unit-rate homodimer cycle
-$0\to2S_1\to\cdots\to2S_r\to0$ gives a method-specific logarithmic
-coefficient $2r^{-r}$ along balanced residuals. This records severe path-length
+$0\to2S_1\to\cdots\to2S_d\to0$ gives a method-specific logarithmic
+coefficient $2d^{-d}$ along balanced residuals. This records severe path-length
 attenuation in the episode construction, not a lower bound on the CTMC's
 return or mixing rate.
 

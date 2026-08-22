@@ -30,10 +30,12 @@ tag, PDFs, archive, validation record, theorem, and standalone verifier.
   unchanged.
 - Adjudicated a differently trained model's feedback without importing its
   underspecified unit-rate threshold table. Added the rigorous unit-rate
-  homodimer-cycle coefficient $2r^{-r}$ as a method-specific quantitative
-  limitation, made $I\ne\varnothing$ and $R_n\to\infty$ explicit, named
-  the Anderson--Kim conjecture in the preprint abstract, and clarified the
-  binary equivalence of the ACK condition. The theorem and proof mechanism
+  homodimer-cycle coefficient $2d^{-d}$ as a method-specific quantitative
+  limitation, made $I\ne\varnothing$ and $R_n\to\infty$ explicit, attributed
+  the conjecture directly to Anderson and Kim in the preprint abstract, and
+  clarified the binary equivalence of the ACK condition. A final consistency
+  pass renamed the family index to the global species-count symbol $d$ and
+  normalized copy-ready metadata punctuation. The theorem and proof mechanism
   remain unchanged.
 
 ## Version 1.2.3 editorial patch — 17 August 2026
@@ -373,7 +375,7 @@ package, not to the Version 1.1 directory.
 ### Scope retained
 
 Version 1.0 does not claim multiple linkage classes, molecularity greater than
-two, the full Anderson--Kim positive-recurrence conjecture, finite expected
+two, the full positive-recurrence conjecture of Anderson and Kim, finite expected
 entry into a closed component from an arbitrary nonclosed state, product-form
 stationary laws, quantitative tails, explicit mixing rates, exponential
 ergodicity, or bounded sample paths.

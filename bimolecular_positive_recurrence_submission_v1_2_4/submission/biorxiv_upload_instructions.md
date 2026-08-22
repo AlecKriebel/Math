@@ -32,7 +32,7 @@ If the supplemental-upload form requests a label, use **Supplementary Note**.
 Expected SHA-256 values for the sealed Version 1.2.4 files:
 
 - `main_biorxiv.pdf`:
-  `8201ae7f8ab18d82ba7d87da4e1caf5c24fe2e40f1bb7115310db504a4dd4fe4`
+  `e6aff788f16d413d9ddbff3bf00bf570f239bb2247b1f317af29c6d5365202fb`
 - `supplementary_note.pdf`:
   `8838eefbb4233f0cbaba988544c060efd483b94f6ab69781b2f7023134733d98`
 
@@ -92,7 +92,7 @@ synchronized with the bioRxiv PDF.
 
 stochastic reaction network; systems biology; chemical master equation;
 positive recurrence; mass-action kinetics; weak reversibility; continuous-time
-Markov chain; Foster--Lyapunov method
+Markov chain; Foster–Lyapunov method
 
 The public instructions do not state a numeric keyword limit. Obey any counter
 shown by the live form.
@@ -199,7 +199,7 @@ Verify the posted record's:
 - main PDF, supplementary note, posting date, and version number.
 
 Allow up to 24 hours for DOI resolution and recheck the generated HTML/XML and
-extracted metadata after 24--48 hours. Then record the DOI and posting date in
+extracted metadata after 24–48 hours. Then record the DOI and posting date in
 a new successor release, the future journal cover letter, repository page, and
 journal metadata. Do not rewrite the immutable Version 1.2.4 release.
 

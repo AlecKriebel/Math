@@ -24,8 +24,8 @@ audit, not independent expert human peer review.
   exact minima. A three-species table also has at most six distinct quadratic
   complexes and cannot by itself support an asymptotic claim as network size
   grows. The manuscript instead records the fully specified unit-rate family
-  $0\to2S_1\to\cdots\to2S_r\to0$, for which exact recursion gives
-  $D_0=-(2/r^r)\log N+O_r((\log N)/N)$ on one augmented class and positive
+  $0\to2S_1\to\cdots\to2S_d\to0$, for which exact recursion gives
+  $D_0=-(2/d^d)\log N+O_d((\log N)/N)$ on one augmented class and positive
   drift for all nonzero terminals. The text labels this as a limitation of the
   present episode/Foster construction, not a lower bound on the CTMC's true
   return or mixing rate. The original fixed-network, rate-degeneration example
@@ -39,9 +39,10 @@ audit, not independent expert human peer review.
   displayed condition
   \(\{S_i,2S_i\}\cap\mathcal C\ne\varnothing\). The manuscript now notes the
   equivalence under binaryity; the displayed condition remains unchanged.
-- **Abstract attribution:** accepted. The non-journal abstract now names the
-  Anderson--Kim conjecture before stating the proved subclass, and the bioRxiv,
-  arXiv, and public-page metadata are synchronized.
+- **Abstract attribution:** accepted. The non-journal abstract now attributes
+  the conjecture directly to Anderson and Kim before stating the proved
+  subclass; the corresponding bioRxiv, arXiv, and public-page metadata were
+  updated consistently.
 - **Stationary corollary:** no change. Its statement already has an immediate
   forward proof pointer, and the end of the recurrence section explicitly
   invokes it and displays the regenerative formula.
@@ -89,3 +90,9 @@ not change the theorem, its proof mechanism, or its scope. Best-guess
 completion is **100% of mathematical and local release-content work**. The
 annotated public tag and hosted detached-checkout replay remain the external
 release gate.
+
+A final independent read-only pass rederived the unit-rate formulas and found
+no mathematical defect. Its polish findings were retained: the family uses the
+global species-count symbol $d$ rather than the reaction-channel index $r$;
+the abstract attributes the conjecture directly without coining an eponym; and
+copy-ready metadata uses rendered en dashes.

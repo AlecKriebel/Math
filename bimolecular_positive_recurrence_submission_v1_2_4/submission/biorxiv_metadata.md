@@ -45,8 +45,8 @@ until after the preprint is posted.
 **Abstract:**
 
 Stochastic mass-action reaction networks are chemical-master-equation models
-of low-copy-number biochemical systems. The Anderson--Kim conjecture asserts
-that weak reversibility implies positive recurrence. We prove it for finite bimolecular networks with one
+of low-copy-number biochemical systems. Anderson and Kim conjectured that
+weak reversibility implies positive recurrence. We prove this for finite bimolecular networks with one
 linkage class, removing the earlier requirement that every species occur in a
 pure unary or pure-double complex. Under weak reversibility, the states
 reachable from each initial population form a closed communicating class.
@@ -68,7 +68,7 @@ remain open.
 **Keywords:**
 stochastic reaction network; systems biology; chemical master equation;
 positive recurrence; mass-action kinetics; weak reversibility; continuous-time
-Markov chain; Foster--Lyapunov method
+Markov chain; Foster–Lyapunov method
 
 **Competing-interest statement:**
 The author declares no competing interests.
