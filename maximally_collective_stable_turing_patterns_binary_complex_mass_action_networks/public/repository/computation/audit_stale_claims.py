@@ -42,9 +42,20 @@ STALE = {
     "old_exceptional_scalar_notation": r"c=\frac{91L}{90}",
     "misdescribed_network_outline": "The dashed outline marks the principal species set",
     "near_threshold_dimension_variable_typo": r"\nu=1+(2-t)\varepsilon",
+    "near_threshold_damping_parameter_collision": r"u=1+(2-t)\varepsilon",
     "threshold_omits_flux_parameters": "s_*(H,D)",
     "full_jacobian_misdescribed_as_two_parameter": "explicit two-parameter Jacobian image",
     "awkward_over_realizations_wording": "topology-wide over-realizations theorem",
+    "fixed_mass_covector_called_vector": "physical fixed-mass vector becomes",
+    # r_m and ell_m are scalar X_m components.  These tokens used them as
+    # whole critical vectors before the notation repair.
+    "component_left_used_as_vector": r"\ell_m^T",
+    "component_scaled_left_used_as_vector": r"\widetilde\ell_m",
+    "component_right_used_as_kernel_vector": r"\operatorname{span}\{r_m",
+    "component_left_used_as_cokernel_vector": r"\operatorname{span}\{\ell_m",
+    "component_right_used_in_parameter_direction": r"D_mr_m",
+    "component_right_used_in_scaled_direction": r"\Delta_m r_m",
+    "component_right_used_in_supplement_direction": r"\Delta r_m",
 }
 
 # Only prose, theorem, documentation, and generated claim tables are scanned.

@@ -3,7 +3,8 @@
 ## FINAL-RELEASE-READY
 
 The numerical-provenance, theorem-scope, proof-presentation,
-certificate-visibility, and release-rebuild program is complete.  This is a
+certificate-visibility, and release-rebuild program through v1.0.6 is
+complete.  This is a
 **recreated corrected release**, not a claim of byte identity with the lost
 archive.  A pre-submission adversarial pass found and repaired a false endpoint
 in the equilibrium-scaled family while preserving every headline conclusion.
@@ -16,7 +17,20 @@ The release was rebuilt from the exact current diffusion profile and one
 machine-readable numerical source rather than from superseded tables or figure
 data.
 
-The release is internally validated and ready for external specialist audit and author-controlled submission. It is not represented as peer reviewed, independently confirmed, posted, or submitted.
+The 22 August source pass reserves $r_m$ and $\ell_m$ for components and uses
+$r=(r_1,\ldots,r_m,r_Z)^T$ and $\ell=(\ell_1,\ldots,\ell_m,\ell_Z)^T$ for
+full critical vectors.  It
+also makes the scaled PDE statement self-contained, renames the local S9
+design parameter, and displays the scaled cubic quotient.  These are
+notation/proof-exposition changes only.  Release-facing metadata targets a new
+immutable v1.0.6 snapshot; v1.0.5 remains unchanged.  The v1.0.6 document,
+package, submission-source, portable-replay, and manifest checks recorded in
+`REPLAY_STATUS.md` are now complete.
+
+The v1.0.6 source and package are internally validated and ready for external
+specialist audit and author-controlled submission.  Neither version is
+represented as peer reviewed, independently confirmed, posted as a preprint,
+or submitted.
 
 # NUMERICAL PROVENANCE
 

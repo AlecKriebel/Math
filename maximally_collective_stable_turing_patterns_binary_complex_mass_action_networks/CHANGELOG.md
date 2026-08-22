@@ -1,5 +1,24 @@
 # Changelog
 
+## Critical-vector notation and scaled-family exposition — 22 August 2026
+
+- Reserved $r_m$ and $\ell_m$ for the $X_m$ components and explicitly defined
+  $r=(r_1,\ldots,r_m,r_Z)^T$ and $\ell=(\ell_1,\ldots,\ell_m,\ell_Z)^T$ for
+  the complete critical vectors throughout the proof and audit interfaces.
+- Made the equilibrium-scaled theorem independently quotable by stating its
+  spatial domain, Neumann boundary conditions, and parameterized physical
+  diffusion, and corrected the fixed-mass object to a covector.
+- Renamed the supplementary near-threshold design parameter from $t$ to
+  $\omega$ and printed the scaled cubic coefficient as its numerator divided by
+  the transformed critical pairing.
+- Replaced the last dimension-offset uses of $r$ by $\nu$ in the
+  machine-readable certificate, distinguished its harmonic scalar from its
+  scaling matrix, added exact metadata regressions, and made the proof skeleton
+  use one diffusion-matrix symbol consistently.
+- Independently confirmed that the public v1.0.5 GitHub release, tagged tree,
+  stable concept DOI, and version DOI all resolve.  Prepared the distinct
+  immutable v1.0.6 target rather than modifying v1.0.5.
+
 ## Critical-zero and threshold-notation hardening — 21 August 2026
 
 - Restored the steady-flux dependence in the unique stationary threshold

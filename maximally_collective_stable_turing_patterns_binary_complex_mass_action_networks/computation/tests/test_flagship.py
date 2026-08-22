@@ -98,7 +98,9 @@ def test_pareto_exact_contrasts_and_cubic_sign():
             tau = pc.tau_formula(m, Hs, L)
             num = sp.factor(pc.N0(m, Hs) + tau * pc.Sterm(m, Hs))
             assert num.is_positive is True
-            assert pc.den_formula(m, L).is_negative is True
+            denominator = pc.den_formula(m, L)
+            assert denominator.is_negative is True
+            assert sp.factor(num / denominator).is_negative is True
             Hmat = sp.diag(*hs)
             Delta = sp.diag(*pc.Deff(m))
             right = pc.rcrit(m)
@@ -149,16 +151,69 @@ def test_near_threshold_affine_ansatz_and_printed_source():
         residual = (pc.A(m) - sp.diag(*diffusion)) * right
         assert all(sp.factor(entry) == 0 for entry in residual)
 
+    epsilon, omega, theta, M, nu, k = sp.symbols(
+        "epsilon omega theta M nu k", positive=True
+    )
+    p = epsilon
+    u = 1 + (2 - omega) * epsilon + theta * epsilon**2
+    v = omega * epsilon - theta * epsilon**2
+    q = (
+        sp.Rational(1, 2)
+        - (sp.Rational(1, 2) + omega) * epsilon
+        + (theta - M / 2) * epsilon**2
+    )
+    d_z = sp.factor((2 - 2 * p - 4 * q) / q)
+    d_i = sp.factor(v / (nu * u + v * k))
+    sum_interior = sp.factor(
+        sp.summation(sp.series(d_i, epsilon, 0, 3).removeO(), (k, 0, nu - 1))
+    )
+    excess = sp.factor(
+        sp.series(d_z - 8 * sum_interior, epsilon, 0, 3).removeO()
+    )
+    expected = 4 * epsilon**2 * (
+        M + 6 * omega + 3 * omega**2 - omega**2 / nu
+    )
+    assert sp.factor(excess - expected) == 0
+
     supplement = (ROOT / "manuscript" / "supplement.tex").read_text()
     assert r"\nu=1+(2-t)\varepsilon" not in supplement
+    assert r"u=1+(2-t)\varepsilon" not in supplement
     for marker in (
         r"r^{\rm aff}",
         r"(A_m-D)r^{\rm aff}=0",
         r"d_1=-2+u+p+2q",
         r"d_m=\frac{2u-5p-2q-1}{p}",
         r"d_Z=\frac{2-2p-4q}{q}",
+        r"u=1+(2-\omega)\varepsilon+\theta\varepsilon^2",
+        r"v=\omega\varepsilon-\theta\varepsilon^2",
+        r"(\omega,\theta,M)=(2/9,1/2,1)",
     ):
-        assert marker in supplement
+        assert ''.join(marker.split()) in ''.join(supplement.split())
+
+    certificate = json.loads(
+        (ROOT / "independent_verifier" / "pareto_all_m_certificate.json").read_text()
+    )
+    bounds = certificate["bounds"]
+    assert bounds["harmonic_bounds"]["upper"] == "nu/(90*nu+1)"
+    assert bounds["reference_N0_lower_bound"]["shift"] == "nu=v+1"
+    assert "8*nu-1" in bounds["reference_N0_lower_bound"]["denominator"]
+    assert bounds["tau_bound"]["nu_ge_2_sqrt_bound"] == "sqrt(3*nu) <= 5*nu/4"
+    assert bounds["tau_bound"]["claim"] == (
+        "tau(hfrak,L) < 1/20 for hfrak>=1/91 and L>=1/sqrt(3*nu)"
+    )
+    assert bounds["tau_bound"]["monotone_in_hfrak"] == "decreasing"
+    assert "monotone_in_H" not in bounds["tau_bound"]
+    assert bounds["cubic_conclusion"]["claim"] == (
+        "N_L=N0+tau*S > 1/200 and ell^T Hmat^{-1}r<0, hence c<0"
+    )
+    path = certificate["near_threshold"]["general_affine_path"]
+    assert path == {
+        "p": "epsilon",
+        "u": "1+(2-omega)*epsilon+theta*epsilon^2",
+        "v": "omega*epsilon-theta*epsilon^2",
+        "q": "1/2-(1/2+omega)*epsilon+(theta-M/2)*epsilon^2",
+        "delta_leading": "4*(M+6*omega+3*omega^2-omega^2/nu)*epsilon^2",
+    }
 
 
 def test_repaired_pareto_endpoint_and_legacy_counterexample():
@@ -343,17 +398,40 @@ def test_threshold_and_algebraic_simplicity_precision_closures():
     compact_supplement=''.join(supplement.split())
     derivative_formula=(
         r"\Pi_m'(0)=\frac{7043400m-13600927-7043400\mathfrakh_m}{255150}"
-        r"=-\frac{163}{45}\,\ell_m^Tr_m>0"
+        r"=-\frac{163}{45}\,\ell^Tr>0"
     )
     assert derivative_formula in compact_main
     assert derivative_formula in compact_supplement
     for marker in (
         r'\ker\!\left[\mathsfH_m(L)(A_m-\Delta_m)\right]',
-        r'\mathsfH_m(L)(A_m-\Delta_m)v=r_m',
+        r'\mathsfH_m(L)(A_m-\Delta_m)v=r',
         r'Fredholmofindexzero',
-        r'(\pi/2)\ell_m^TD_mr_m\ne0',
+        r'(\pi/2)\ell^TD_mr\ne0',
     ):
         assert marker in compact_main
+
+    for compact in (compact_main, compact_supplement):
+        assert r'r=(r_1,\ldots,r_m,r_Z)^T' in compact
+        assert r'\ell=(\ell_1,\ldots,\ell_m,\ell_Z)^T' in compact
+        assert r'\widetilde\ell(L)=\mathsfH_m(L)^{-1}\ell' in compact
+        assert r'c_m(L)=\frac{N_m(L)}{\widetilde\ell(L)^Tr}' in compact
+
+    pareto_theorem=main.split(r'\label{thm:pareto}',1)[1].split(r'\end{theorem}',1)[0]
+    compact_pareto=''.join(pareto_theorem.split())
+    assert r'On$(0,\pi)$withhomogeneousNeumannboundaryconditions' in compact_pareto
+    assert (
+        r'\partial_tx=f_m\!\left(\mathsfH_m(L)x\right)+(1-\mu)'
+        r'D_m^{\rmphys}(L)\partial_{\xi\xi}x'
+    ) in compact_pareto
+    assert 'physical fixed-mass covector becomes' in ' '.join(main.split())
+
+    ill_typed = (
+        r'\ell_m^T', r'\widetilde\ell_m',
+        r'\operatorname{span}\{r_m', r'\operatorname{span}\{\ell_m',
+        r'D_mr_m',
+    )
+    corpus=main+supplement
+    assert all(token not in corpus for token in ill_typed)
 
     m,hfrak=sp.symbols('m hfrak',integer=True,positive=True)
     derivative=(7043400*m-13600927-7043400*hfrak)/sp.Integer(255150)

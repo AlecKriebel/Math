@@ -90,7 +90,9 @@ Set $a=b=1$, $H=I$, $K_i=91m-181-i$, and use
 \[
 d_1=23/63,\quad d_i=K_i^{-1},\quad d_m=1/7,\quad d_Z=16/45.
 \]
-An explicit right vector satisfies $(A_m-D_m)r=0$ and an explicit left vector satisfies $(A_m-D_m)^T\ell=0$. Exact harmonic-sum formulas prove $\ell^Tr<0$ and $\ell^TD_mr<0$, hence transversality $\eta_m>0$.
+The full vectors $r=(r_1,\ldots,r_m,r_Z)^T$ and
+$\ell=(\ell_1,\ldots,\ell_m,\ell_Z)^T$ satisfy
+$(A_m-D_m)r=0$ and $(A_m-D_m)^T\ell=0$. Exact harmonic-sum formulas prove $\ell^Tr<0$ and $\ell^TD_mr<0$, hence transversality $\eta_m>0$.
 
 Homogeneous stability follows from
 \[
@@ -121,7 +123,7 @@ $\mathfrak h_m=\sum_{j=1}^{m-2}K_j^{-1}$,
 \[
  \left.\frac{d}{d\lambda}\det(\lambda I-A_m+D_m)\right|_{\lambda=0}
  =\frac{7043400m-13600927-7043400\mathfrak h_m}{255150}
- =-\frac{163}{45}\ell_m^Tr_m>0.
+ =-\frac{163}{45}\ell^Tr>0.
 \]
 Hence the first mode has one algebraically simple zero with one-dimensional
 kernel and cokernel, all other first-mode eigenvalues are stable, and all
@@ -201,9 +203,9 @@ On
  Y_c=\{g\in L^2:\textstyle\int_0^\pi c^Tg=0\},
 \]
 the stationary linearization is Fredholm of index zero, with kernel
-$\operatorname{span}\{r_m\cos\xi\}$, cokernel
-$\operatorname{span}\{\ell_m\cos\xi\}$, and transversality pairing
-$(\pi/2)\ell_m^TD_mr_m\ne0$.  Crandall--Rabinowitz gives the stationary local curve; reflection equivariance
+$\operatorname{span}\{r\cos\xi\}$, cokernel
+$\operatorname{span}\{\ell\cos\xi\}$, and transversality pairing
+$(\pi/2)\ell^TD_mr\ne0$.  Crandall--Rabinowitz gives the stationary local curve; reflection equivariance
 and the odd normal form identify its two positive nonconstant halves for
 $\mu>0$. Their center eigenvalue is $-2\eta_m\mu+O(\mu^2)<0$. The complementary spectrum is separated at onset and remains separated under analytic perturbation. Positive Neumann diffusion is sectorial on fixed-mass $L^2$, its fractional $H^1$ domain is a Banach algebra in one dimension, and the quadratic Nemytskii map is smooth. The principle of linearized stability gives local exponential convergence in $H^1$ for sufficiently close nonnegative initial data in the same conservation class.
 
@@ -228,21 +230,21 @@ $\widehat x=\mathsf H_m(L)x$,
 \{f(\widehat x)+(1-\mu)\Delta\partial_{xx}\widehat x\}.
 \]
 At $\mu=0$, the effective stationary bracket and right vector are unchanged; the dynamic
-left vector is $\widetilde\ell_m(L)=\mathsf H_m(L)^{-1}\ell_m$. The physical
+left vector is $\widetilde\ell(L)=\mathsf H_m(L)^{-1}\ell$. The physical
 fixed-mass functional is $(\mathsf H_m(L)^{-1}c)^T\widehat x$.
 Moreover,
 \[
-\widetilde\ell_m(L)^T\mathsf H_m(L)\Delta r_m
-=\ell_m^T\Delta r_m<0,
-\qquad \widetilde\ell_m(L)^Tr_m<0,
+\widetilde\ell(L)^T\mathsf H_m(L)\Delta r
+=\ell^T\Delta r<0,
+\qquad \widetilde\ell(L)^Tr<0,
 \]
 so the scaled crossing coefficient $\eta_m(L)$ is positive.
 Invertibility of $\mathsf H_m(L)$ preserves the kernel:
 \[
- \ker[\mathsf H_m(L)(A_m-\Delta_m)]
- =\ker(A_m-\Delta_m)=\operatorname{span}\{r_m\}.
+ \ker[\mathsf H_m(L)(A_m-\Delta)]
+ =\ker(A_m-\Delta)=\operatorname{span}\{r\}.
 \]
-A generalized vector would force $0=\widetilde\ell_m(L)^Tr_m$, so the scaled
+A generalized vector would force $0=\widetilde\ell(L)^Tr$, so the scaled
 zero is algebraically simple.
 
 Chain elimination now gives interior factors
@@ -345,7 +347,12 @@ P_{\rm up}'=-\frac{569127195}{2}\nu^2-1014402060\nu-935658<0,
 The case $\nu=1$ uses the exact unreduced endpoint expression and
 $\sqrt3<7/4$.  Hence $\tau_m(L)<1/20$.  These bounds hold on the broader
 cubic range $L\ge1/\sqrt{3\nu}$ and give
-$N_m(L)>1/200$, hence $c_m(L)<0$ throughout the certified interval.
+$N_m(L)>1/200$.  Since $\widetilde\ell(L)^Tr
+=\ell^T\mathsf H_m(L)^{-1}r<0$, the exact quotient
+\[
+c_m(L)=\frac{N_m(L)}{\widetilde\ell(L)^Tr}<0
+\]
+holds throughout the certified interval.
 
 The physical contrasts are
 \[

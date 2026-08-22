@@ -204,7 +204,8 @@ $T(H)>1$ is necessary under homogeneous stability; its converse is not proved.
 
 \section{Improved unit-equilibrium critical profile}
 
-Put $K_i=91m-181-i$.  The right vector and diffusion profile are
+Put $K_i=91m-181-i$.  The right vector
+$r=(r_1,\ldots,r_m,r_Z)^T$ and diffusion profile are
 \[
  r_1=1,\quad r_i=-\frac{K_i}{63(m-2)},\quad
  r_m=-\frac29,\quad r_Z=\frac5{14},
@@ -213,7 +214,8 @@ Put $K_i=91m-181-i$.  The right vector and diffusion profile are
  d_1=\frac{23}{63},\quad d_i=\frac1{K_i},\quad
  d_m=\frac17,\quad d_Z=\frac{16}{45}.
 \]
-Direct substitution gives $(A_m-D_m)r=0$.  With $\ell_Z=1$, the left vector is
+Direct substitution gives $(A_m-D_m)r=0$.  With $\ell_Z=1$, the left vector
+$\ell=(\ell_1,\ldots,\ell_m,\ell_Z)^T$ is
 \[
  \ell_1=-\frac{266}{815},\quad
  \ell_i=\frac{78260(m-2)}{163(91m-180-i)},\quad
@@ -281,7 +283,7 @@ one has the all-dimensional identity
 \[
  \Pi_m'(0)=
  \frac{7043400m-13600927-7043400\mathfrak h_m}{255150}
- =-\frac{163}{45}\,\ell_m^Tr_m>0.
+ =-\frac{163}{45}\,\ell^Tr>0.
 \]
 Thus zero is algebraically simple and the kernel and cokernel of $A_m-D_m$
 are one-dimensional.
@@ -494,29 +496,29 @@ At $\mu=0$, the stationary bracket
 $f_m(\widehat x)+\Delta\partial_{\xi\xi}\widehat x$ and its critical right
 vector are unchanged.  The dynamic left vector is
 \[
- \widetilde\ell_m(L)=\mathsf H_m(L)^{-1}\ell_m,
+ \widetilde\ell(L)=\mathsf H_m(L)^{-1}\ell,
 \]
 and the physical conservation gauge uses $\mathsf H_m(L)^{-1}c$.
 The crossing numerator is unchanged by the row scaling:
 \[
- \widetilde\ell_m(L)^T\mathsf H_m(L)\Delta r_m
- =\ell_m^T\Delta r_m<0.
+ \widetilde\ell(L)^T\mathsf H_m(L)\Delta r
+ =\ell^T\Delta r<0.
 \]
-Together with $\widetilde\ell_m(L)^Tr_m<0$, this gives
+Together with $\widetilde\ell(L)^Tr<0$, this gives
 \[
  \eta_m(L)=
- \frac{\widetilde\ell_m(L)^T\mathsf H_m(L)\Delta r_m}
- {\widetilde\ell_m(L)^Tr_m}>0.
+ \frac{\widetilde\ell(L)^T\mathsf H_m(L)\Delta r}
+ {\widetilde\ell(L)^Tr}>0.
 \]
 Moreover,
 \[
  \ker\!\left[\mathsf H_m(L)(A_m-\Delta)\right]
- =\ker(A_m-\Delta)=\operatorname{span}\{r_m\},
+ =\ker(A_m-\Delta)=\operatorname{span}\{r\},
 \]
 because $\mathsf H_m(L)$ is invertible and the unit critical zero is simple.
-If $\mathsf H_m(L)(A_m-\Delta)v=r_m$ for a generalized eigenvector $v$, then
-left multiplication by $\widetilde\ell_m(L)^T$ would imply
-$0=\widetilde\ell_m(L)^Tr_m$, a contradiction.  Hence the scaled critical
+If $\mathsf H_m(L)(A_m-\Delta)v=r$ for a generalized eigenvector $v$, then
+left multiplication by $\widetilde\ell(L)^T$ would imply
+$0=\widetilde\ell(L)^Tr$, a contradiction.  Hence the scaled critical
 zero is algebraically simple as well.
 
 For interior chain factors,
@@ -716,6 +718,11 @@ $N_m^{\rm ref}>1/100$, this yields $N_m(L)>1/200$.  Also
  \ell^T\mathsf H_m(L)^{-1}r=-\frac{485873}{924210}
  -\frac{11180}{1467}L(m-2)<0.
 \]
+Thus the scaled cubic coefficient is explicitly
+\[
+ c_m(L)=\frac{N_m(L)}{\widetilde\ell(L)^Tr}
+ =\frac{N_m(L)}{\ell^T\mathsf H_m(L)^{-1}r}<0.
+\]
 Therefore the family is uniformly supercritical over the certified interval.
 Indeed, the cubic comparison was proved on the broader range
 $L\ge1/\sqrt{3\nu}$; the present lower endpoint agrees with this value for
@@ -871,24 +878,24 @@ $(A_m-D)r^{\rm aff}=0$ has entries
  \qquad
  d_Z=\frac{2-2p-4q}{q}.
 \]
-The near-threshold affine path is
+For design parameters $\omega,\theta,M$, the near-threshold affine path is
 \[
 p=\varepsilon,\quad
-u=1+(2-t)\varepsilon+\theta\varepsilon^2,\quad
-v=t\varepsilon-\theta\varepsilon^2,
+u=1+(2-\omega)\varepsilon+\theta\varepsilon^2,\quad
+v=\omega\varepsilon-\theta\varepsilon^2,
 \]
 \[
-q=\frac12-\left(\frac12+t\right)\varepsilon
+q=\frac12-\left(\frac12+\omega\right)\varepsilon
  +\left(\theta-\frac M2\right)\varepsilon^2.
 \]
 Then the critical vector tends to one half of the homogeneous kernel vector.  The
 diffusion excess over the exact linear threshold is
 \[
  d_Z-8\sum_{j=2}^{m-1}d_j
- =4\left(M+6t+3t^2-\frac{t^2}{m-2}\right)\varepsilon^2
+ =4\left(M+6\omega+3\omega^2-\frac{\omega^2}{m-2}\right)\varepsilon^2
  +O(\varepsilon^3).
 \]
-For $(t,\theta,M)=(2/9,1/2,1)$ and $m=3$, exact elimination yields
+For $(\omega,\theta,M)=(2/9,1/2,1)$ and $m=3$, exact elimination yields
 \[
  c_3(\varepsilon)=\frac6{1379}
  +\frac{421985}{11409846}\varepsilon+O(\varepsilon^2),

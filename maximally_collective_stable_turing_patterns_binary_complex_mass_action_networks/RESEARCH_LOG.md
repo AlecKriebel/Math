@@ -203,7 +203,8 @@
   confirmed that the threshold location depends on the steady-flux parameters
   $a,b$, although the exact crossing criterion does not.
 - Derived the all-dimensional selected-mode identity
-  $\Pi_m'(0)=-(163/45)\ell_m^Tr_m>0$ directly from the sparse determinant,
+  $\Pi_m'(0)=-(163/45)\ell^Tr>0$
+  directly from the sparse determinant,
   closing algebraic simplicity at the unique equality point of the 77-term
   certificate.
 - Verified that invertible positive row scaling preserves the selected kernel
@@ -251,3 +252,67 @@
   external communication or submission was initiated.
 - Best-guess completion toward the round-5 pre-submission revision and
   verification goal: **100%**.
+
+## 2026-08-22 07:55:16 PDT — round-6 notation and release-lineage checkpoint
+
+- Accepted the reviewer’s notation objection: component symbols $r_m$ and
+  $\ell_m$ are now reserved for the $X_m$ entries, while the complete right
+  and left critical vectors are explicitly $r=(r_1,\ldots,r_m,r_Z)^T$ and
+  $\ell=(\ell_1,\ldots,\ell_m,\ell_Z)^T$.  The self-contained scaled PDE
+  statement, fixed-mass covector terminology, local S9 parameter $\omega$, and explicit scaled cubic
+  quotient are also being propagated.
+- Independently verified that the existing v1.0.5 annotated tag and release
+  are public, that all nine attached release assets match the local hashes,
+  and that both the stable concept DOI `10.5281/zenodo.21753404` and the
+  version DOI `10.5281/zenodo.22050742` are open and DataCite-Findable.  The
+  review’s archival concern is stale.
+- Prepared release-facing metadata for a new immutable v1.0.6 snapshot dated
+  22 August 2026.  The stable concept DOI remains unchanged; no unminted
+  v1.0.6 version DOI is asserted.
+- Best-guess completion toward the round-6 pre-submission revision and
+  verification goal: **60%**.  Remaining work is exact regression, document
+  rebuild and page inspection, package refresh, portable replay, final audits,
+  manifest closure, and immutable publication.
+
+## 2026-08-22 08:13:04 PDT — round-6 rebuilt-document checkpoint
+
+- Propagated the full-vector/component distinction through the manuscript,
+  supplement, theorem summary, proof skeleton, proof audits, exact verifier,
+  and semantic regression gates.  The scaled-family theorem now states the
+  physical PDE and Neumann domain directly, and the supplement uses $\omega$
+  for its local near-threshold design parameter to avoid both the spatial-mode
+  and gauge symbols.
+- Rebuilt the 18-page manuscript, 18-page supplement, 3-page theorem summary,
+  and 6-page proof skeleton.  Contact-sheet inspection of every page and
+  full-resolution inspection of every changed page found no clipping,
+  overlap, broken glyph, or ambiguous mathematical line wrap; all fonts are
+  embedded.
+- All 21 mutation/regression tests, the complete symbolic aggregate,
+  manuscript audit, numerical-provenance audits, principal-minor verifier, and
+  full PDF semantic audit pass from the exact round-6 sources.  The additional
+  review warning about archival metadata was rejected as stale after checking
+  the live v1.0.5 release and both existing Zenodo records.
+- Best-guess completion toward the round-6 pre-submission revision and
+  verification goal: **90%**.  Remaining work is package refresh, detached
+  portable replay, independent final audits, manifest closure, mobile sync,
+  and immutable v1.0.6 publication.
+
+## 2026-08-22 08:31:13 PDT — round-6 final verification checkpoint
+
+- Three independent final audits found no mathematical, manuscript, PDF, or
+  release blocker.  Their residual notation findings were applied: the
+  machine-readable certificate now distinguishes the full vector $r$, the
+  dimension offset $\nu$, the harmonic scalar `hfrak`, and the scaling matrix
+  `Hmat`; the proof skeleton uses one effective-diffusion symbol consistently.
+- Rebuilt and hash-checked all seven deterministic bundles, independently
+  rebuilt all three submission source ZIPs to 18-page main and 18-page
+  supplement PDFs, and completed the final detached public replay through
+  `PUBLIC_REPLAY_PASS` using recorded Tectonic 0.16.9, Biber 2.17, and Python
+  package versions.
+- The complete symbolic aggregate, all 21 mutation/regression tests,
+  manuscript and 439-file stale-claim audits, numerical provenance checks,
+  embedded-font checks, and full PDF semantic audit pass.  No reaction,
+  theorem, endpoint, numerical datum, or nonlinear conclusion changed.
+- Best-guess completion toward the round-6 pre-submission revision and
+  verification goal: **100%**.  The source is ready for immutable v1.0.6
+  publication and author-controlled external audit/submission.

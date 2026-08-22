@@ -1,11 +1,22 @@
 # Feedback disposition
 
+## Fresh adversarial review — 22 August 2026
+
+| Supplied review item | Disposition | Action |
+|---|---|---|
+| $r_m$ and $\ell_m$ denote both components and full vectors | ACCEPT | Reserved those symbols for the $X_m$ components and explicitly defined $r=(r_1,\ldots,r_m,r_Z)^T$ and $\ell=(\ell_1,\ldots,\ell_m,\ell_Z)^T$ for the full critical vectors, including the transformed vector $\widetilde\ell(L)$.  The final adversarial audit also replaced a residual dimension-offset $r$ by $\nu$ in the machine-readable certificate. |
+| Theorem 7.1 does not state the PDE setting in the theorem | ACCEPT | Added $(0,\pi)$, homogeneous Neumann conditions, and physical diffusion $(1-\mu)D_m^{\rm phys}(L)$ to the statement. |
+| The physical fixed-mass object is called a vector | ACCEPT | Replaced “vector” with “covector.” |
+| Supplement S9 reuses $t$ as an affine-design parameter | ACCEPT | Renamed that local parameter $\omega$, including its base value $\omega=2/9$; $\tau_m(L)$ remains reserved for the zero-mode gauge. |
+| The scaled cubic sign omits the displayed quotient | ACCEPT | Printed $c_m(L)=N_m(L)/(\widetilde\ell(L)^Tr)$ before the sign conclusion. |
+| The release URL or Zenodo concept DOI may be private or merely reserved | REJECT AS STALE | Logged-out HTTP checks and the public APIs confirm that v1.0.5 is released, both GitHub links resolve, the concept DOI is Findable and open, and version DOI `10.5281/zenodo.22050742` is published.  The accepted source edits therefore target a new v1.0.6 tag. |
+
 ## Fresh adversarial review — 21 August 2026
 
 | Supplied review item | Disposition | Action |
 |---|---|---|
 | Threshold written as $s_*(H,D)$ although its location depends on $a,b$ | ACCEPT | Replaced it by $s_*(a,b,H,D)$, including the mode band and ray-scaling identity; added an exact $m=3$ dependence regression. |
-| The 77-term certificate does not by itself prove multiplicity one at zero | ACCEPT | Printed and verified the exact all-dimensional characteristic derivative and its equality to $-(163/45)\ell_m^Tr_m>0$. |
+| The 77-term certificate does not by itself prove multiplicity one at zero | ACCEPT | Printed and verified the exact all-dimensional characteristic derivative and its equality to $-(163/45)\ell^Tr>0$. |
 | Row scaling needs an explicit algebraic-simplicity argument | ACCEPT | Printed the unchanged kernel, transformed left vector, and generalized-vector contradiction. |
 | The network application leaves the last matrix-theorem hypothesis implicit | ACCEPT | Derived rank $n-1$, the simple conservation zero, and the positive order-$(n-1)$ coefficient from homogeneous stability. |
 | The general matrix theorem should state $n\ge2$ | ACCEPT | Added the domain restriction; all applications already have $n\ge4$. |

@@ -591,7 +591,7 @@ Set $a=b=1$, $H=I$, $x^*=\1$, and
 \begin{equation}\label{eq:Ki}
  K_i=91m-181-i.
 \end{equation}
-Define the critical vector
+Define the critical vector $r=(r_1,\ldots,r_m,r_Z)^T$ by
 \begin{equation}\label{eq:rimp}
  r_1=1,\quad
  r_i=-\frac{K_i}{63(m-2)}\ (2\le i\le m-1),\quad
@@ -690,12 +690,12 @@ Exact differentiation gives
 \begin{equation}\label{eq:selectedsimple}
  \Pi_m'(0)=
  \frac{7043400m-13600927-7043400\mathfrak h_m}{255150}
- =-\frac{163}{45}\,\ell_m^Tr_m>0.
+ =-\frac{163}{45}\,\ell^Tr>0.
 \end{equation}
 Hence $\lambda=0$ is an algebraically simple eigenvalue of $A_m-D_m$; in
 particular, its kernel and cokernel are one-dimensional.  Together with the
 77-term exclusion, this proves the complete primary-mode statement.
-An exact left vector is
+An exact left vector $\ell=(\ell_1,\ldots,\ell_m,\ell_Z)^T$ is
 \begin{equation}\label{eq:ellimp}
  \ell_1=-\frac{266}{815},\quad
  \ell_i=\frac{78260(m-2)}{163(91m-180-i)},\quad
@@ -738,10 +738,10 @@ exchanged by reflection.  On the fixed-integrated-mass Neumann tangent spaces
 \]
 the stationary linearization $X_c\to Y_c$ is Fredholm of index zero.  The
 all-mode certificate and \eqref{eq:selectedsimple} give kernel
-$\operatorname{span}\{r_m\cos\xi\}$ and cokernel
-$\operatorname{span}\{\ell_m\cos\xi\}$.  The parameter derivative applied to
-the critical direction is $D_mr_m\cos\xi$, and its cokernel pairing is
-$(\pi/2)\ell_m^TD_mr_m\ne0$.  Thus the stationary simple-eigenvalue theorem
+$\operatorname{span}\{r\cos\xi\}$ and cokernel
+$\operatorname{span}\{\ell\cos\xi\}$.  The parameter derivative applied to
+the critical direction is $D_mr\cos\xi$, and its cokernel pairing is
+$(\pi/2)\ell^TD_mr\ne0$.  Thus the stationary simple-eigenvalue theorem
 of Crandall--Rabinowitz supplies the local bifurcating curve
 \cite{CrandallRabinowitz1971}; oddness and the signs above give its two halves,
 \[
@@ -791,11 +791,17 @@ Positive rates realizing unit reaction flux are given by
 $k_r=(x^*)^{-y_r}$.
 
 \begin{theorem}[Stable exponent-optimal trade-off]\label{thm:pareto}
-For every $m\ge3$ and $L\in[L_0(\nu),L_1(\nu)]$, the physical realization
-\eqref{eq:HL}--\eqref{eq:Dphys} has a primary simple transverse first-mode
-stationary bifurcation, a negative cubic coefficient, and two nearby positive
-patterned equilibria that are locally exponentially asymptotically stable in
-the fixed-integrated-mass $H^1$ phase space.  Its
+On $(0,\pi)$ with homogeneous Neumann boundary conditions, consider the
+physical mass-action realization \eqref{eq:HL}--\eqref{eq:Dphys} governed by
+\[
+ \partial_t x=f_m\!\left(\mathsf H_m(L)x\right)
+ +(1-\mu)D_m^{\rm phys}(L)\partial_{\xi\xi}x.
+\]
+For every $m\ge3$ and $L\in[L_0(\nu),L_1(\nu)]$, at $\mu=0$ this system has a
+primary simple transverse first-mode stationary bifurcation and a negative
+cubic coefficient.  For all sufficiently small $\mu>0$, it has two nearby
+positive patterned equilibria that are locally exponentially asymptotically
+stable in the fixed-integrated-mass $H^1$ phase space.  Its
 physical contrasts are
 \begin{align}
  \chi_D(L)&=\frac{23}{63}\,91\nu L,\label{eq:chiDpareto}\\
@@ -836,7 +842,7 @@ PDE is
 At $\mu=0$, the stationary bracket
 $f_m(\widehat x)+\Delta_m\partial_{\xi\xi}\widehat x$ and its critical
 right vector are unchanged.  The dynamic left vector is
-$\widetilde\ell_m(L)=\mathsf H_m(L)^{-1}\ell_m$, and the physical fixed-mass vector becomes
+$\widetilde\ell(L)=\mathsf H_m(L)^{-1}\ell$, and the physical fixed-mass covector becomes
 $\mathsf H_m(L)^{-1}c$.
 
 For $2\le i\le m-1$, chain elimination gives
@@ -905,7 +911,7 @@ $D_m^{\rm phys}=\mathsf H_m(L)\Delta_m$, and the change
 $\widehat x=\mathsf H_m(L)x$
 produces the row-scaled mode operator $\mathsf H_m(L)(A_m-t\Delta_m)$.
 The left critical vector becomes
-$\widetilde\ell_m(L)=\mathsf H_m(L)^{-1}\ell_m$ and the fixed-mass covector
+$\widetilde\ell(L)=\mathsf H_m(L)^{-1}\ell$ and the fixed-mass covector
 becomes $\mathsf H_m(L)^{-1}c$.  The second harmonic is
 unchanged by the invertible row factor.  The homogeneous correction changes
 by a kernel gauge:
@@ -926,33 +932,37 @@ Supplement and regenerated from the repository root by
 \texttt{python independent\_verifier/verify\_symbolic\_certificates.py}.
 Meanwhile
 \[
- \ell_m^T\mathsf H_m(L)^{-1}r_m
+ \ell^T\mathsf H_m(L)^{-1}r
  =-\frac{485873}{924210}-\frac{11180}{1467}L\nu<0.
 \]
 At the first-mode crossing, invertibility of $\mathsf H_m(L)$ and
 \eqref{eq:selectedsimple} give
 \[
  \ker\!\left[\mathsf H_m(L)(A_m-\Delta_m)\right]
- =\ker(A_m-\Delta_m)=\operatorname{span}\{r_m\}.
+ =\ker(A_m-\Delta_m)=\operatorname{span}\{r\}.
 \]
-Its left nullvector is $\widetilde\ell_m(L)$.  If a generalized eigenvector
+Its left nullvector is $\widetilde\ell(L)$.  If a generalized eigenvector
 $v$ satisfied
-$\mathsf H_m(L)(A_m-\Delta_m)v=r_m$, left multiplication by
-$\widetilde\ell_m(L)^T$ would give
-$0=\widetilde\ell_m(L)^Tr_m$, contradicting the displayed strict inequality.
+$\mathsf H_m(L)(A_m-\Delta_m)v=r$, left multiplication by
+$\widetilde\ell(L)^T$ would give
+$0=\widetilde\ell(L)^Tr$, contradicting the displayed strict inequality.
 Thus the scaled critical zero is algebraically simple.
 The transformed transversality numerator is the unit-profile numerator:
 \[
- \widetilde\ell_m(L)^T\mathsf H_m(L)\Delta_m r_m
- =\ell_m^T\Delta_m r_m<0.
+ \widetilde\ell(L)^T\mathsf H_m(L)\Delta_m r
+ =\ell^T\Delta_m r<0.
 \]
 Consequently
 \[
  \eta_m(L)=
- \frac{\widetilde\ell_m(L)^T\mathsf H_m(L)\Delta_m r_m}
- {\widetilde\ell_m(L)^Tr_m}>0,
+ \frac{\widetilde\ell(L)^T\mathsf H_m(L)\Delta_m r}
+ {\widetilde\ell(L)^Tr}>0,
 \]
-and $c_m(L)<0$.  The branch and stability proof is the
+and the scaled cubic coefficient is explicitly
+\[
+ c_m(L)=\frac{N_m(L)}{\widetilde\ell(L)^Tr}<0.
+\]
+The branch and stability proof is the
 same sectorial exchange-of-stability argument as in
 Theorem~\ref{thm:unitstable}.  Diagonal concentration scaling does not alter
 the spatial reflection $\xi\mapsto\pi-\xi$, so the scaled reduced vector
@@ -1150,7 +1160,7 @@ hidden and provides a focused nonlinear design problem.
 \paragraph{Data and code availability.}
 Exact certificates, independent verifiers, mutation tests, numerical data,
 figure scripts, and replay instructions are frozen in the
-\href{https://github.com/AlecKriebel/Math/tree/maximally-collective-stable-turing-v1.0.5/maximally_collective_stable_turing_patterns_binary_complex_mass_action_networks}{version 1.0.5 tagged release source tree}.
+\href{https://github.com/AlecKriebel/Math/tree/maximally-collective-stable-turing-v1.0.6/maximally_collective_stable_turing_patterns_binary_complex_mass_action_networks}{version 1.0.6 tagged release source tree}.
 The versioned archive is indexed by the stable
 \href{https://doi.org/10.5281/zenodo.21753404}{Zenodo concept DOI}.
 The \href{https://github.com/AlecKriebel/Math/tree/main/maximally_collective_stable_turing_patterns_binary_complex_mass_action_networks}{mutable development source} remains on the main branch.

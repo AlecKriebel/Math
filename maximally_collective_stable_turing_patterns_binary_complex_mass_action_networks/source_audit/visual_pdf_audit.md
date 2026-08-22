@@ -1,6 +1,6 @@
 # Final rendered-PDF audit
 
-Date: 2026-08-21
+Date: 2026-08-22
 
 Rendered with Poppler and inspected page by page (49 pages total). Page counts, document
 properties, extractable text, and font resources were also checked with
@@ -34,3 +34,12 @@ metadata and font-subset streams can differ across absolute build roots; the
 standalone vector figure remains byte-identical under the recorded toolchain.
 
 These counts describe the PDFs rebuilt after the final source corrections.
+
+The 22 August notation repair was also inspected at full rendered resolution.
+In particular, the complete critical vectors are now consistently denoted by
+$r$ and $\ell$ while $r_m$ and $\ell_m$ remain scalar components; the physical
+scaled-family PDE, its Neumann domain, the transformed left vector, and the
+scaled cubic quotient render without crowding.  Supplement S9 uses the local
+design parameter $\omega$ throughout.  Contact-sheet inspection of every page
+and full-resolution inspection of every changed page found no new overlap,
+clipping, broken glyph, or ambiguous line wrap.

@@ -47,16 +47,16 @@ def verify_affine_ansatz(m: int) -> None:
 for dimension in (3, 4, 5, 6, 8, 10):
     verify_affine_ansatz(dimension)
 
-e,t,M,theta,nu,k=sp.symbols('epsilon t M theta nu k',positive=True)
-p=e;u=1+(2-t)*e+theta*e**2;v=t*e-theta*e**2
-q=sp.Rational(1,2)-(sp.Rational(1,2)+t)*e+(theta-M/sp.Integer(2))*e**2
+e,omega,M,theta,nu,k=sp.symbols('epsilon omega M theta nu k',positive=True)
+p=e;u=1+(2-omega)*e+theta*e**2;v=omega*e-theta*e**2
+q=sp.Rational(1,2)-(sp.Rational(1,2)+omega)*e+(theta-M/sp.Integer(2))*e**2
 d1=sp.factor(-2+u+p+2*q);dm=sp.factor((2*u-5*p-2*q-1)/p);dz=sp.factor((2-2*p-4*q)/q)
 di=sp.factor(v/(nu*u+v*k))
-assert sp.expand(d1-(e*(2-3*t)+(3*theta-M)*e**2))==0
+assert sp.expand(d1-(e*(2-3*omega)+(3*theta-M)*e**2))==0
 assert sp.expand(dm-M*e)==0
 sum2=sp.factor(sp.summation(sp.series(di,e,0,3).removeO(),(k,0,nu-1)))
 delta=sp.factor(sp.series(dz-8*sum2,e,0,3).removeO())
-assert sp.factor(delta-4*e**2*(M*nu+3*nu*t**2+6*nu*t-t**2)/nu)==0
+assert sp.factor(delta-4*e**2*(M*nu+3*nu*omega**2+6*nu*omega-omega**2)/nu)==0
 # Exact m=3 prescribed path control.
 N=(18718533*e**12+746773020*e**11+6223086873*e**10+19157763816*e**9+12668661720*e**8-49876101168*e**7-103878539968*e**6-37609207926*e**5+68189826636*e**4+62316267192*e**3+9680484312*e**2-3464522928*e-238085568)
 D1=81*e**4+531*e**3+708*e**2-1102*e-1182

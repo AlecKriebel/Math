@@ -1,10 +1,20 @@
-# Replay status for the 21 August 2026 pre-submission proof repair
+# Replay status for the 22 August 2026 pre-submission notation repair
 
 This file distinguishes current-release verification from historical-lineage
 verification. It supersedes the pre-repair replay logs, which were removed
 because they described different sources and artifacts.
 
-## Current repaired release: passed checks
+## Round-6 source status: passed
+
+The full-vector notation repair, self-contained scaled PDE statement, local
+S9 parameter rename, and displayed scaled cubic quotient target immutable
+version 1.0.6.  The documents, seven bundles, submission packages, portable
+repository, and manifests have now been regenerated from those exact sources.
+All 21 mutation/regression tests, the complete symbolic aggregate, the source
+and PDF semantic audits, three isolated submission-source builds, and the
+detached full portable replay pass.
+
+## v1.0.6 current source: passed checks
 
 The following were rerun after the high-dimensional endpoint repair and final
 source edits:
@@ -39,20 +49,22 @@ $(A_m-D)r^{\rm aff}=0$, prints the scaled transversality numerator, and
 restricts the localization minimum explicitly to nonempty principal sets.
 The 21 August precision pass additionally verifies the explicit
 $a,b$-dependence of $s_*(a,b,H,D)$, the all-dimensional identity
-$\Pi_m'(0)=-(163/45)\ell_m^Tr_m>0$, the generalized-vector exclusion after
+$\Pi_m'(0)=-(163/45)\ell^Tr>0$, the
+generalized-vector exclusion after
 positive row scaling, the final order-$(n-1)$ coefficient hypothesis in the
 network application, and the fixed-mass Fredholm/transversality interface.
 
 The portable replay used Python 3.9.6, Matplotlib 3.7.1, NumPy 1.24.3,
 Pandas 2.3.3, pypdf 6.10.0, pytest 8.4.2, SciPy 1.10.1, and SymPy 1.14.0.
 Because pdfTeX was unavailable in the repair environment, its `pdflatex`
-invocations were routed through a local Tectonic 0.16.9 compatibility shim;
-the already verified Biber 2.17 bibliography output was retained because the
-bibliography did not change. Each submission source ZIP was also built
-independently with Tectonic against that frozen bibliography and produced the
-expected 18-page main and 18-page supplement. Numerical outputs are certified
-to the recorded tolerances, not asserted to be byte-identical across
-BLAS/SciPy toolchains.
+invocations were routed through a local Tectonic 0.16.9 compatibility shim.
+The canonical build retained the already verified Biber 2.17 bibliography
+output because the bibliography did not change. Each submission source ZIP
+was then extracted into a fresh temporary directory and built independently
+with Tectonic and Biber 2.17, producing the expected 18-page main and 18-page
+supplement. The detached public replay used the same compatible pair and ended
+in `PUBLIC_REPLAY_PASS`. Numerical outputs are certified to the recorded
+tolerances, not asserted to be byte-identical across BLAS/SciPy toolchains.
 
 ## Historical-lineage stage: not rerun after the repair
 

@@ -55,6 +55,7 @@ FORBIDDEN_PHRASES = (
     "The dashed outline marks the principal species set",
     "explicit two-parameter Jacobian image",
     "topology-wide over-realizations theorem",
+    "physical fixed-mass vector becomes",
 )
 
 FORBIDDEN_PATTERNS = (
@@ -63,7 +64,9 @@ FORBIDDEN_PATTERNS = (
     ("false stoichiometric-minor determinant", r"absolute determinant\s+2\s*m\s*[−-]\s*2"),
     ("old scaled-state notation", r"\bz\s*=\s*H\s*m\s*\(L\)\s*x"),
     ("near-threshold dimension-variable typo", r"\bν\s*=\s*1\s*\+\s*\(2\s*[−-]\s*t\)\s*ε"),
+    ("near-threshold damping-parameter collision", r"\bu\s*=\s*1\s*\+\s*\(2\s*[−-]\s*t\)\s*ε"),
     ("threshold omits flux parameters", r"\bs\s*[∗*]\s*\(\s*H\s*,\s*D\s*\)"),
+    ("X_m components used as full vectors", r"ℓ\s*T\s*m\s*r\s*m"),
 )
 
 SUPPLEMENT_SECTION_PREFIXES = (
@@ -236,6 +239,8 @@ def audit(root: Path, output_dir: Path, documents: tuple[Document, ...]) -> None
             ("cokernel pairing is", "Crandall–Rabinowitz transversality pairing"),
             ("If a generalized eigenvector", "scaled-family algebraic-simplicity closure"),
             ("Thus all hypotheses of Theorem", "network diffusion-ray hypothesis bridge"),
+            ("homogeneous Neumann boundary conditions, consider", "self-contained scaled-family PDE domain"),
+            ("physical fixed-mass covector becomes", "fixed-mass covector terminology"),
         ):
             if phrase.lower() not in main_text.lower():
                 failures.append(f"main PDF lacks {label}")
@@ -255,8 +260,17 @@ def audit(root: Path, output_dir: Path, documents: tuple[Document, ...]) -> None
             main_text,
         ):
             failures.append("main PDF does not show the flux-dependent threshold notation")
+        if not re.search(r"c\s*m\s*\(L\)\s*=\s*N\s*m\s*\(L\)", main_text):
+            failures.append("main PDF does not show the scaled cubic quotient")
 
     if supplement:
+        if not re.search(
+            r"\bu\s*=\s*1\s*\+\s*\(2\s*[−-]\s*ω\)\s*ε",
+            supplement,
+        ):
+            failures.append("supplement PDF lacks the omega-renamed near-threshold path")
+        if not re.search(r"c\s*m\s*\(L\)\s*=\s*N\s*m\s*\(L\)", supplement):
+            failures.append("supplement PDF does not show the scaled cubic quotient")
         for phrase, label in (
             ("reduced vector field is odd", "reflection-equivariant odd normal form"),
             ("The four boundary values are the unique solution", "printed second-harmonic boundary system"),

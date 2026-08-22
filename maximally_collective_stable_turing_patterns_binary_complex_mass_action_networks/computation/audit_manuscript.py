@@ -64,11 +64,30 @@ forbidden=[r'\bT-ALG\b',r'\bPhase\s+[IVX]+\b',r'reaction-minimal',r'minimum reac
            r'r_i\s*=\s*\\frac\{K_\{i-1\}\}\{K_i\}',
            r'c\s*=\s*\\frac\{91L\}\{90\}',
            r'\\nu\s*=\s*1\s*\+\s*\(2-t\)\\varepsilon',
+           r'u\s*=\s*1\s*\+\s*\(2-t\)\\varepsilon',
            r'The dashed outline marks the principal species set',
            r's_\*\s*\(H,D\)',r'explicit two-parameter Jacobian image',
-           r'topology-wide over-realizations theorem']
+           r'topology-wide over-realizations theorem',
+           r'physical fixed-mass vector becomes']
 for pat in forbidden:
     if re.search(pat,clean,re.I): raise AssertionError(f'obsolete wording: {pat}')
+
+# The subscripted symbols r_m and ell_m denote scalar X_m components.  Reject
+# their former use in whole-vector operations while leaving component
+# definitions such as r_m=-2/9 and ell_m=18368/7335 untouched.
+ill_typed_whole_vector_patterns = (
+    r'\\ell_m\s*\^\s*T',
+    r'\\widetilde\s*\{?\\ell_m\}?',
+    r'\\operatorname\{span\}\s*\\?\{\s*r_m(?:\\cos|\s*\\?\})',
+    r'\\operatorname\{span\}\s*\\?\{\s*\\ell_m(?:\\cos|\s*\\?\})',
+    r'D_m\s*r_m(?:\\cos|\b)',
+    r'\\Delta(?:_m)?\s*r_m\b',
+    r'\(A_m-(?:D_m|\\Delta_m?)\)\s*r_m\b',
+    r'\(A_m-\\Delta_m?\)v\s*=\s*r_m\b',
+)
+for pat in ill_typed_whole_vector_patterns:
+    if re.search(pat,clean):
+        raise AssertionError(f'component symbol used as a whole vector: {pat}')
 
 # A robustness statement may not vary kinetic and equilibrium data as though
 # they were independent coordinates while preserving the same equilibrium.
@@ -203,11 +222,11 @@ for name,section,delta in (
 ):
     compact = ''.join(section.split())
     numerator = (
-        r'\widetilde\ell_m(L)^T\mathsfH_m(L)'
+        r'\widetilde\ell(L)^T\mathsfH_m(L)'
         + delta
-        + r'r_m=\ell_m^T'
+        + r'r=\ell^T'
         + delta
-        + r'r_m<0'
+        + r'r<0'
     )
     if numerator not in compact:
         raise AssertionError(f'{name} omits the transformed transversality numerator')
@@ -215,9 +234,42 @@ for name,section,delta in (
 # Mathematical-precision closures from the final adversarial review.
 compact_main=''.join(main.split())
 compact_supp=''.join(supp.split())
+
+# The component lists must be assembled into explicitly named full vectors.
+# This prevents a future edit from silently reverting r_m or ell_m to a dual
+# scalar/vector role.
+for name,section in (("main",compact_main),("supplement",compact_supp)):
+    for marker,label in (
+        (r'r=(r_1,\ldots,r_m,r_Z)^T','right critical-vector definition'),
+        (r'\ell=(\ell_1,\ldots,\ell_m,\ell_Z)^T','left critical-vector definition'),
+        (r'\widetilde\ell(L)=\mathsfH_m(L)^{-1}\ell','scaled left-vector definition'),
+    ):
+        if marker not in section:
+            raise AssertionError(f'{name} omits the explicit full {label}')
+
+pareto_theorem = main.split(r'\label{thm:pareto}',1)[1].split(r'\end{theorem}',1)[0]
+pareto_compact = ''.join(pareto_theorem.split())
+if r'On$(0,\pi)$withhomogeneousNeumannboundaryconditions' not in pareto_compact:
+    raise AssertionError('Theorem 7.1 does not state its spatial domain and boundary conditions')
+physical_scaled_pde=(
+    r'\partial_tx=f_m\!\left(\mathsfH_m(L)x\right)+(1-\mu)'
+    r'D_m^{\rmphys}(L)\partial_{\xi\xi}x'
+)
+if physical_scaled_pde not in pareto_compact:
+    raise AssertionError('Theorem 7.1 does not print the parameterized physical PDE')
+if 'physical fixed-mass covector becomes' not in main_flat:
+    raise AssertionError('scaled proof does not identify the fixed-mass object as a covector')
+
+scaled_cubic_quotient=(
+    r'c_m(L)=\frac{N_m(L)}{\widetilde\ell(L)^Tr}'
+)
+for name,section in (("main",compact_main),("supplement",compact_supp)):
+    if scaled_cubic_quotient not in section:
+        raise AssertionError(f'{name} omits the explicit scaled cubic quotient')
+
 derivative_identity=(
     r"\Pi_m'(0)=\frac{7043400m-13600927-7043400\mathfrakh_m}{255150}"
-    r"=-\frac{163}{45}\,\ell_m^Tr_m>0"
+    r"=-\frac{163}{45}\,\ell^Tr>0"
 )
 for name,section in (("main",compact_main),("supplement",compact_supp)):
     if derivative_identity not in section:
@@ -225,10 +277,10 @@ for name,section in (("main",compact_main),("supplement",compact_supp)):
 for marker,label in (
     (r'\ker\!\left[\mathsfH_m(L)(A_m-\Delta_m)\right]',
      'scaled-family kernel identity'),
-    (r'\mathsfH_m(L)(A_m-\Delta_m)v=r_m',
+    (r'\mathsfH_m(L)(A_m-\Delta_m)v=r',
      'scaled-family generalized-vector contradiction'),
     (r'Fredholmofindexzero','stationary Fredholm interface'),
-    (r'(\pi/2)\ell_m^TD_mr_m\ne0','Crandall--Rabinowitz transversality pairing'),
+    (r'(\pi/2)\ell^TD_mr\ne0','Crandall--Rabinowitz transversality pairing'),
     (r'\sum_{|I|=n-1}(-1)^{|I|}\detJ_{I,I}>0',
      'network application order-(n-1) coefficient bridge'),
 ):
@@ -241,8 +293,12 @@ proof_criterion=(ROOT/'proof_audit'/'exact_diffusion_criterion.tex').read_text()
 if 's_*(H,D)' in proof_criterion or 's_*(a,b,H,D)' not in proof_criterion:
     raise AssertionError('proof-audit threshold notation suppresses the flux parameters')
 
-if r'\nu=1+(2-t)\varepsilon' in supp:
-    raise AssertionError('near-threshold path reuses the dimension offset nu in place of Latin u')
+for stale_path in (
+    r'\nu=1+(2-t)\varepsilon',
+    r'u=1+(2-t)\varepsilon',
+):
+    if stale_path in ''.join(supp.split()):
+        raise AssertionError(f'near-threshold path retains stale notation {stale_path}')
 for marker in (
     r'r^{\rm aff}=(r_1,\ldots,r_m,r_Z)^T',
     r'(A_m-D)r^{\rm aff}=0',
@@ -254,6 +310,16 @@ for marker in (
 ):
     if ''.join(marker.split()) not in ''.join(supp.split()):
         raise AssertionError(f'missing printed near-threshold affine identity {marker}')
+
+for marker in (
+    r'u=1+(2-\omega)\varepsilon+\theta\varepsilon^2',
+    r'v=\omega\varepsilon-\theta\varepsilon^2',
+    r'q=\frac12-\left(\frac12+\omega\right)\varepsilon+\left(\theta-\fracM2\right)\varepsilon^2',
+    r'4\left(M+6\omega+3\omega^2-\frac{\omega^2}{m-2}\right)\varepsilon^2',
+    r'(\omega,\theta,M)=(2/9,1/2,1)',
+):
+    if ''.join(marker.split()) not in ''.join(supp.split()):
+        raise AssertionError(f'missing omega-renamed near-threshold identity {marker}')
 if 'long-circuit complexes associated with the principal species block' not in main_flat:
     raise AssertionError('Figure 1 caption does not describe its dashed complex outline literally')
 for marker in (
