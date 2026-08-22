@@ -201,3 +201,35 @@
 - Best-guess completion: 70% of this final-review task.  Source validation,
   frozen packaging, a clean referee-package replay, visual inspection, final
   hostile review, and commit/push remain.
+
+## 2026-08-22 10:27 PDT — frozen AI-referee package and final hostile pass
+
+- Replayed the complete Paper I suite while regenerating the final release:
+  all six unit tests and all seventeen invoked verifier/cross-check programs
+  exited zero.  Rebuilt and visually inspected the 30-page manuscript.  Its
+  SHA-256 is
+  `a6bda621b764ca8ee86658f6b68de0245790b84315eb77a6cc7ca45f7953bd2d`.
+- Froze a 70-member scientific source archive after removing prior review
+  verdicts, research diaries, saved successful output, and the historical
+  reproduction report.  All proof documents and independent checking code
+  remain.  The whole-archive SHA-256 is
+  `b1b7b7c4c9393ee4fa85eeacd54cefc4bcc94a3eca759d500c9ee6a362eddd2b`,
+  and every nonsynthetic archive member was byte-checked against source commit
+  `3652cfda20a3edad1b4e9ca75a4e5536f6f7f5ba`.
+- Built the copied referee folder with 80 outer-manifest payloads, an exact
+  extracted source tree, convenience PDF, neutral prompt, claim-to-code map,
+  report template, package verifier, and disposable replay command.  Its
+  deterministic transport archive has SHA-256
+  `d5634b0c8a1adf05d9c623b010a61e357b95869ef4264ca0b3f3aa781dd53b2d`.
+- Executed the delivered referee command end to end from the package with a
+  fresh pinned environment.  It rechecked both manifests, installed Python
+  3.14.6 dependencies, repeated the complete replay, rebuilt the PDF with the
+  pinned document tools, and obtained byte identity.  The 156-line transcript
+  has SHA-256
+  `fcbc301382989fc0119f56c02b8ff13ff5dd39242a94150bc1b8bd0b9064a713`.
+- A final independent hostile audit repeated package, transport, commit-byte,
+  executable-mode, neutrality, replay, and post-run immutability checks.  Its
+  verdict was a clean pass with no remaining blocker or material minor issue.
+- Paper I final-review and AI-referee-handoff task: 100% complete.  Only
+  human-controlled submission metadata and portal actions remain outside this
+  task.

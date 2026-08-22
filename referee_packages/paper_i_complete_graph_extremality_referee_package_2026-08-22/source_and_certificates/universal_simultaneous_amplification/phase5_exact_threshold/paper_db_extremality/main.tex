@@ -1,0 +1,115 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{float}
+\usetikzlibrary{arrows.meta,positioning}
+\usepackage[round,authoryear]{natbib}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,
+  citecolor=blue!55!black,urlcolor=blue!55!black]{hyperref}
+\allowdisplaybreaks[2]
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Bd}{\mathrm{Bd}}
+\newcommand{\dB}{\mathrm{dB}}
+\newcommand{\E}{\mathbb E}
+\newcommand{\Pp}{\mathbb P}
+\newcommand{\one}{\mathbf 1}
+\newcommand{\calT}{\mathcal T}
+\newcommand{\calB}{\mathcal B}
+\newcommand{\calS}{\mathcal S}
+\newcommand{\calA}{\mathcal A}
+\newcommand{\calR}{\mathcal R}
+\newcommand{\calE}{\mathcal E}
+\newcommand{\Rtwo}{\mathcal R^{(2)}}
+
+\title{Local Complete-Graph Optimality at Fitness Two and\\
+Strong-Selection Rigidity under Death--Birth Updating}
+\author{Alec Kriebel\\Independent Researcher\\
+\href{mailto:me@aleckriebel.com}{me@aleckriebel.com}\\
+\href{https://orcid.org/0009-0001-9320-500X}{ORCID 0009-0001-9320-500X}}
+\date{August 22, 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We study fixation from a uniformly random single mutant under death--Birth
+updating on finite loopless directed weighted population structures.  After
+normalizing each target's incoming weights, the dynamics are parametrized by
+a loopless row-stochastic replacement kernel; let $J_n$ denote the uniform
+complete kernel.  We prove two complementary extremality results.  First, at
+mutant fitness two, $J_n$ is a strict nondegenerate local maximizer in the
+full normalized kernel polytope for every $n\ge3$.  This includes arbitrary
+directed and nonreversible perturbations.  The proof represents
+the fixation committor as a completely alternating coverage function of a
+fair-geometric union dual, converts fixation into a stationary collision
+observable, and decomposes the inverse-mean Hessian into standard,
+symmetric-balanced, and antisymmetric-balanced permutation sectors with
+positive sector certificates valid for every population size, using exact
+rational computer assistance over an explicitly finite range.
+Second, we close the complete-support case left outside the prior strongly
+connected noncomplete-support obstruction.  The leading
+strong-selection deficit is an explicit sum of squared discrepancies within
+incoming columns, with equality exactly at $J_n$ after normalization.
+Together with the prior obstruction and a source-component bound,
+this shows that no fixed finite directed weighting is a strict amplifier for
+every beneficial fitness.  We also prove
+global all-beneficial-fitness maximality for positive weighted triangles and
+within two symmetric weighted $K_4$ families.  These results establish strict local
+rigidity at fitness two and fixed-graph rigidity at strong selection, but
+not global complete-graph maximality at fitness two.
+\end{abstract}
+
+\noindent\textbf{Keywords.}
+death--Birth updating; fixation probability; evolutionary graph theory;
+coverage duality; local optimality; strong selection.
+
+\medskip
+\noindent\textbf{Mathematics Subject Classification (2020).}
+92D15; 60J10; 05C81.
+
+\section*{Author summary}
+
+Spatial structure can make a beneficial mutation more or less likely to take
+over a finite population.  For death--Birth updating, a natural unresolved
+question is whether the well-mixed population is globally extremal at fitness
+two.  We prove two complementary pieces of that picture.  At fitness two,
+the well-mixed kernel is strictly locally optimal against every infinitesimal
+perturbation of its normalized replacement kernel, including directed and
+nonreversible ones.  In the strong-selection limit, every
+fixed finite structure is eventually suppressing unless its replacement
+dynamics are exactly well mixed.  The local result comes from an exact ancestry process:
+fixation becomes a coverage probability, then a stationary collision rate,
+whose curvature splits into three symmetry types.  The second result comes
+from a sum of squares measuring unequal competitors for the same death event.
+Weighted triangles provide a global bridge: every nonuniform positive
+triangle suppresses fixation at every beneficial fitness.  The results do not
+show that the complete graph is globally best at fitness two or exclude graph
+sequences whose size threshold depends on fitness.
+
+\input{sections/01_introduction}
+\input{sections/02_model_results}
+\input{sections/03_duality_collision}
+\input{sections/04_local_hessian}
+\input{sections/05_strong_selection}
+\input{sections/06_low_order}
+\input{sections/07_implications_reproducibility}
+
+\appendix
+\input{appendices/A_sector_certificates}
+\input{appendices/B_k4_certificate}
+\input{appendices/C_quantifier_ledger}
+
+\input{references}
+
+\end{document}
