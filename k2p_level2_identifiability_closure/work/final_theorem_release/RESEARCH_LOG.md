@@ -349,3 +349,12 @@
   root `0cab2517c8528c980dadc2637806e27a1e22e158e62fe4269e2a6435a955c890`.
 - Completion remains 98% until the repaired clean full replay passes and the
   final reader package, PDFs, and deterministic archive are bound.
+
+## 2026-08-22 11:02 PDT — release-lock sequencing correction (98%)
+
+- The first repaired detached run stopped in under one second because this
+  locked research log had been updated after the release lock was built. The
+  fail-closed source fingerprint therefore worked exactly as intended.
+- Finalized the locked provenance text before rebuilding the lock. Subsequent
+  replay telemetry will be recorded only in the unlocked submission layer, so
+  the clean replay cannot create another self-referential lock update.
