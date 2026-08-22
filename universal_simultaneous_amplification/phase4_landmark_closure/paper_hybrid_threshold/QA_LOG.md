@@ -32,10 +32,14 @@ Date: 2026-08-22 (America/Los_Angeles)
 - [x] Final hostile review is repeated after all corrections.
 
 The frozen public archive contains 19 regular members and has SHA-256
-`cd6d72187669c7a1df7ba21c71fac42b4699fea340af3f8118b7eafbb9c4f8cc`.
+`ce62bfbdb22681ba48b2a04653155b2e06f52659f140c13f5e0220db365b9250`.
 The 20-page PDF has SHA-256
-`573f29287ca3620fa0bafb298e75b4d2f72dd69dafd4e7cad8446d3656e462bc`.
+`f68142b3d99b95f83ca6ba4688539cb9e0fdb88ed96809aef5316ed22a59888f`.
 All fonts are embedded; the page size is US letter; the PDF is unencrypted.
+
+After the pinned clean bootstrap, a plain isolated `release_bundle.sh`
+invocation also rebuilds this archive byte-for-byte without an explicit
+interpreter override.
 
 The earlier ten-page v1 PDF and its release hashes are historical checkpoints,
 not QA evidence for this revised manuscript.

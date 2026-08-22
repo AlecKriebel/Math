@@ -15,7 +15,7 @@ import tempfile
 
 PROJECT = "universal_simultaneous_amplification"
 PAPER = f"{PROJECT}/phase4_landmark_closure/paper_hybrid_threshold"
-EPOCH = 1_787_270_400
+EPOCH = 1_787_356_800
 
 # This is an exact file whitelist.  No paper directory is included
 # recursively, so a future private handoff file or research artifact cannot

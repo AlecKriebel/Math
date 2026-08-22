@@ -163,3 +163,18 @@
   tagged before a later wrapper commit adds the copied, neutral AI-referee
   handoff.  Research/manuscript completion remains **100%**; external
   submission and DOI assignment remain human actions.
+
+## 2026-08-22 — isolated release replay hardening
+
+- A package adversary found that the clean bootstrap created
+  `.venv-paper2`, while a later standalone `release_bundle.sh` invocation
+  reached `replay.sh`'s older `.venv` default.  The bootstrap itself and the
+  referee runner passed, but release regeneration in an otherwise bare
+  extraction could therefore miss SymPy.
+- Changed `replay.sh` to prefer the pinned `.venv-paper2`, then the development
+  `.venv`, then system Python, while preserving an explicit `PYTHON` override.
+  The referee runner will now rebuild and compare both the PDF and source
+  archive from its disposable extraction.
+- Advanced the deterministic source epoch to 22 August 2026 UTC and reserved
+  the immutable v2.0.1 tag for this superseding reproducibility-only freeze.
+  No theorem, proof, certificate identity, or response value changed.

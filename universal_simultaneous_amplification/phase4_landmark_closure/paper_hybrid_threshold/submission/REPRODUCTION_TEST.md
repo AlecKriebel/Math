@@ -16,16 +16,17 @@ zero after the package scripts were installed.  The replay covered:
 The frozen archive was generated twice from the final source and the two
 outputs were byte-for-byte identical.  It contains 19 regular members and has
 SHA-256
-`cd6d72187669c7a1df7ba21c71fac42b4699fea340af3f8118b7eafbb9c4f8cc`.
+`ce62bfbdb22681ba48b2a04653155b2e06f52659f140c13f5e0220db365b9250`.
 After extraction into a new temporary directory, every entry in
 `MANIFEST.sha256` passed.  The root bootstrap created a fresh Python 3.14.6
 environment, installed SymPy 1.14.0 and mpmath 1.3.0, and the complete replay
-exited zero.
+exited zero.  A subsequent plain `release_bundle.sh` invocation automatically
+reused that environment and reproduced the archive byte-for-byte.
 
 The PDF rebuilt from the extracted source with Tectonic 0.16.9 and Poppler
 26.08.0 was byte-for-byte identical to the repository PDF.  The 20-page PDF
 has SHA-256
-`573f29287ca3620fa0bafb298e75b4d2f72dd69dafd4e7cad8446d3656e462bc`.
+`f68142b3d99b95f83ca6ba4688539cb9e0fdb88ed96809aef5316ed22a59888f`.
 Its compiler log has no undefined references or citations and no material
 box warnings; all fonts are embedded.  Every page was rendered and visually
 inspected for clipping, overlap, missing glyphs, malformed equations, stale

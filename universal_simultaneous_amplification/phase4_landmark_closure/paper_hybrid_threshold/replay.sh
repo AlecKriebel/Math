@@ -3,10 +3,14 @@ set -eu
 
 paper_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 project=$(CDPATH= cd -- "$paper_dir/../.." && pwd)
-python=${PYTHON:-"$project/.venv/bin/python"}
-
-if [ ! -x "$python" ]; then
-  python=${PYTHON:-python3}
+if [ -n "${PYTHON:-}" ]; then
+  python=$PYTHON
+elif [ -x "$project/.venv-paper2/bin/python" ]; then
+  python="$project/.venv-paper2/bin/python"
+elif [ -x "$project/.venv/bin/python" ]; then
+  python="$project/.venv/bin/python"
+else
+  python=python3
 fi
 
 export PYTHONDONTWRITEBYTECODE=1

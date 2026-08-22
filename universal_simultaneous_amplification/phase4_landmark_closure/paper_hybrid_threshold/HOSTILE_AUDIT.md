@@ -59,5 +59,13 @@ The complete exact replay, fresh archive extraction, pinned bootstrap,
 byte-identical PDF rebuild, compiler-log scan, embedded-font check, and visual
 inspection of the changed pages all pass.  The compact 20-page bibliography
 remains readable.  No blocker or minor mathematical issue remains in the
-scientific source checkpoint; the immutable v2.0.0 tag must be placed on the
+scientific source checkpoint; the immutable v2.0.1 tag must be placed on the
 exact commit before the frozen source link is relied upon.
+
+A subsequent package-integrity adversary found one reproducibility-only gap:
+the clean bootstrap created `.venv-paper2`, while the standalone release
+script's replay default preferred only `.venv`.  The replay selector now
+prefers the pinned clean environment, and a fresh extraction has reproduced
+both the 19-member archive and 20-page PDF byte-for-byte through a plain
+`release_bundle.sh` call.  The source epoch now matches 22 August 2026 UTC.
+No mathematical or certificate claim changed.

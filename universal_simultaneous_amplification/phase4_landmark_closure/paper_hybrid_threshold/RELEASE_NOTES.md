@@ -46,7 +46,7 @@ The final submission correction writes the dB attempt duration as
 `T=beta_0(B_0) log C` and displays the two coefficient inequalities that give
 the claimed `O(C^(-B_0-2))` coordinate-survival bounds.  The manuscript source
 link is frozen at the repository tag
-`simultaneous-amplification-beyond-three-halves-v2.0.0`.
+`simultaneous-amplification-beyond-three-halves-v2.0.1`.
 
 ## Related public versions
 
