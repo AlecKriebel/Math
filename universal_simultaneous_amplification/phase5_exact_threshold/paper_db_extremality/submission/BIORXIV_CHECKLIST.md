@@ -50,11 +50,14 @@
 ## Reproducibility and freeze
 
 - [ ] Run `../release_bundle.sh` and retain the printed archive SHA-256.
+- [ ] Supply
+      `complete_graph_extremality_db_source_and_certificates.tar.gz` and its
+      adjacent `.sha256` checksum file with the frozen manuscript materials.
 - [ ] Verify the internal `MANIFEST.sha256` after clean extraction.
 - [ ] Run `submission/bootstrap_replay.sh` from the extracted copy.
 - [ ] Rebuild and visually inspect the deterministic manuscript PDF.
 - [ ] Create a versioned public release for the present consolidated package
       only after the author approves the frozen files.
-- [ ] Add the new persistent identifier to the manuscript, portal metadata,
-      and availability statement after it exists; do not reuse a prior DOI.
+- [ ] If a new archival DOI is created later, add it to a subsequent manuscript
+      and preprint-record version; do not reuse a prior DOI.
 - [ ] Human author performs the final submission and retains the confirmation.

@@ -42,6 +42,12 @@ the Bd cleanup proof now includes a stopped strong-Markov block recursion,
 and the reciprocal dB proof includes a finite-horizon exponential-moment
 bound for its dominating immigration--death process.
 
+The final submission correction writes the dB attempt duration as
+`T=beta_0(B_0) log C` and displays the two coefficient inequalities that give
+the claimed `O(C^(-B_0-2))` coordinate-survival bounds.  The manuscript source
+link is frozen at the repository tag
+`simultaneous-amplification-beyond-three-halves-v2.0.0`.
+
 ## Related public versions
 
 - <https://doi.org/10.5281/zenodo.21852072> is the v1 source/software archive

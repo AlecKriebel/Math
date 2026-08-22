@@ -58,8 +58,8 @@ The 29-page manuscript was then built inside that extraction.  The extracted
 PDF was byte-for-byte identical to the repository PDF and had SHA-256
 `3af20b4648c6a69e1946e6cdd32f5df9557ca55a2ec1a1c16b29a8dbb6e92d98`.
 As before, the archive-level digest is intentionally not embedded inside the
-archive that it hashes; it is printed by `release_bundle.sh` after the final
-source bytes are frozen.
+archive that it hashes; `release_bundle.sh` writes it to the adjacent detached
+`.sha256` file after the final source bytes are frozen.
 
 ## 2026-08-21 second-review revision
 

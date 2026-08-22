@@ -146,3 +146,20 @@
   the deterministic supplement will now be regenerated from these frozen
   sources and tested by fresh extraction.  Research/manuscript completion:
   **100%**; external submission and DOI assignment remain human actions.
+
+## 2026-08-22 — final notation correction and referee handoff freeze
+
+- Accepted the final referee's coefficient-notation objection in the dB
+  cleanup proof.  The attempt length is now
+  $T=\beta_0(B_0)\log C$, with the two explicit inequalities needed to turn
+  $m e^{-T}$ and $R_0e^{-\kappa T}$ into $O(C^{-B_0-2})$.  This records the
+  literal exponent calculation without changing the argument or theorem.
+- Updated the manuscript date, changed the development-source citation from
+  mutable `main` to the planned immutable v2.0.0 tag, and compacted only the
+  bibliography so that the revised paper remains readable and closes on page
+  20.
+- Added regression markers for the corrected coefficient and frozen source
+  reference.  The scientific source/PDF checkpoint will be committed and
+  tagged before a later wrapper commit adds the copied, neutral AI-referee
+  handoff.  Research/manuscript completion remains **100%**; external
+  submission and DOI assignment remain human actions.

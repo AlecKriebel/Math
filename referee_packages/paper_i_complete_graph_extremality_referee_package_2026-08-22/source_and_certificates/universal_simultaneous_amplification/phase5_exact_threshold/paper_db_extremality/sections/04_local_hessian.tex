@@ -1,0 +1,168 @@
+\section{The complete-kernel Hessian}\label{sec:hessian}
+
+Let $P_\varepsilon=J_n+\varepsilon\delta$ with
+$\delta\in\calT_n$.  By linearity,
+\[
+ K(P_\varepsilon)=K_0+\varepsilon\Delta.                    \tag{4.1}\label{4.1}
+\]
+Because every off-diagonal entry of $J_n$ is $1/(n-1)$, each fixed
+$\delta$ admits $\varepsilon_0>0$ such that $P_\varepsilon$ remains strictly
+positive off the diagonal for $|\varepsilon|<\varepsilon_0$.  Thus all
+positive-kernel identities from Section~\ref{sec:duality} apply in the
+neighborhood used below.  All entries are analytic there, and $K_0$ is
+irreducible.  Put
+\[
+ q=H-c_0\one,\qquad
+ G=(I-K_0+\one\nu_0)^{-1}.                                  \tag{4.2}\label{4.2}
+\]
+
+\subsection{Vanishing first variation}
+
+Let $S$ average a function on $\mathcal Y_n$ over all active states of the
+same rank $|B|$.  Permutation symmetry gives $SK_0=K_0S$.  A direct average
+of either active move shows
+\[
+ S\Delta S=0.                                               \tag{4.3}\label{4.3}
+\]
+Indeed, a uniformly random $k$-subset of $V\setminus\{v\}$ contains a
+sample from any row with mean probability $k/N$; after retargeting the
+corresponding mean is $(k-1)/N$.  More explicitly, if $f_k$ is any rank
+function, the two branchwise perturbations at $(B,v)$ are
+\[
+ \frac{f_{k+1}-f_k}{2}\sum_{i\notin B}\delta_{vi},\qquad
+ \frac{f_{k-1}-f_k}{2k}
+   \sum_{w\in B}\sum_{i\in B\setminus\{w\}}\delta_{wi}.    \tag{4.3a}\label{4.3a}
+\]
+Under the uniform rank-$k$ orbit their respective row sums are
+\[
+ \frac{N-k}{N}\sum_{i\ne v}\delta_{vi}=0,\qquad
+ \frac{k-1}{N}\sum_{i\ne w}\delta_{wi}=0.                \tag{4.3b}\label{4.3b}
+\]
+This proves \eqref{4.3} without reversibility.  Because $q$ and $Gq$ are rank functions
+and $\nu_0=\nu_0S$,
+\[
+ \nu_0\Delta Gq=\nu_0S\Delta SGq=0.                         \tag{4.4}\label{4.4}
+\]
+
+Stationary perturbation of the finite chain gives
+\[
+ \nu(P_\varepsilon)q
+ =\varepsilon\nu_0\Delta Gq
+  +\varepsilon^2\nu_0\Delta G\Delta Gq+O(\varepsilon^3).
+                                                                    \tag{4.5}\label{4.5}
+\]
+Define
+\[
+ \Rtwo_{n}(\delta)=\nu_0\Delta G\Delta Gq.                    \tag{4.6}\label{4.6}
+\]
+Equations \eqref{3.12}, \eqref{3.17}, and \eqref{4.4}--\eqref{4.6}
+already prove expansion \eqref{2.6}; it remains to prove that
+$\Rtwo_{n}$ is positive definite on the full tangent space.
+
+\subsection{The three irreducible tangent sectors}
+
+For $\delta\in\calT_n$, let
+\[
+ s_j=\sum_i\delta_{ij},\qquad \sum_js_j=0,                   \tag{4.7}\label{4.7}
+\]
+and define the standard embedding
+\[
+ E(s)_{ij}=\frac{s_i+(n-1)s_j}{n(n-2)}\quad(i\ne j),
+ \qquad E(s)_{ii}=0.                                       \tag{4.8}\label{4.8}
+\]
+Then $E(s)\one=0$ and its column-sum vector is $s$.  Consequently
+$B=\delta-E(s)$ has zero row and column sums, and
+\[
+ \delta=E(s)+\frac{B+B^{\mathsf T}}2
+                +\frac{B-B^{\mathsf T}}2.                    \tag{4.9}\label{4.9}
+\]
+The three terms are Frobenius-orthogonal.  Their dimensions are
+\[
+ n-1,\qquad \frac{n(n-3)}2,\qquad
+ \frac{(n-1)(n-2)}2,                                      \tag{4.10}\label{4.10}
+\]
+which sum to $n(n-2)=\dim\calT_n$.  They are, respectively, the standard,
+symmetric row/column-balanced, and antisymmetric balanced irreducible
+$S_n$-modules.  At $n=3$ the symmetric module has dimension zero.
+
+For completeness, the symmetric off-diagonal matrices form the two-subset
+permutation module
+$\mathbf1\oplus[n-1,1]\oplus[n-2,2]$; its row-balanced kernel is
+$[n-2,2]$.  The antisymmetric balanced kernel is
+$\bigwedge^2[n-1,1]=[n-2,1,1]$, while $E(s)$ realizes $[n-1,1]$.
+Thus the three summands in \eqref{4.9} are pairwise nonisomorphic and occur
+with multiplicity one, including the stated $n=3$ degeneration.
+
+The quadratic form \eqref{4.6} is invariant under simultaneous relabeling of
+targets and sources.  Multiplicity-freeness therefore makes the three spaces
+orthogonal for $\Rtwo_{n}$ as well, and $\Rtwo_{n}$ acts by one scalar on each.
+The balanced subspace is exactly
+\[
+ \calB_n=\calS_n\oplus\calA_n,                              \tag{4.10b}\label{4.10b}
+\]
+where $\calS_n$ and $\calA_n$ denote the symmetric- and
+antisymmetric-balanced summands in \eqref{4.9}.  The standard module $E(s)$
+is precisely the complementary column-imbalance direction.
+
+\begin{theorem}[sector positivity]\label{thm:sectors}
+The standard scalar is positive for every $n\ge3$, the
+symmetric-balanced scalar is positive for every $n\ge4$, and the
+antisymmetric-balanced scalar is positive for every $n\ge3$.
+\end{theorem}
+
+The proof is in Appendix~\ref{app:sectors}.  We summarize its architecture.
+For the standard sector, a signed three-channel quotient separates positive
+and negative orientations.  Schur elimination turns each completed negative
+excursion into a nonnegative re-entry operator.  Exact first-phase barriers
+and a uniform row-sum contraction control the entire alternating resolvent.
+For the antisymmetric sector, a one-feature reduction sends a rank Poisson
+gradient through a positive decreasing recurrence; the second perturbation
+is then a sum of nonnegative sampling-without-replacement terms, at least one
+strict.  For the symmetric sector, the exact quotient has a good/bad block form
+\[
+ \begin{pmatrix}S&C\\-D&Q\end{pmatrix}                     \tag{4.11}\label{4.11}
+\]
+with $S,C,D,Q$ nonnegative.  Schur elimination converts every completed bad
+excursion into one factor of a nonnegative return operator $A$.  Explicit
+positive phase barriers dominate the alternating resolvent $(I+A)^{-1}$.
+The computer-assisted part is finite and exact: rational stationary solves
+cover $3\le N\le39$, and rational phase-margin checks cover
+$40\le N\le287$.  Coefficientwise polynomial and discriminant certificates
+prove the remaining range $N\ge288$.  Appendix~\ref{app:sectors} states the
+finite computation as a formal lemma and identifies its exact verifier.
+
+For orientation, the first sector eigenvalues are
+\[
+\begin{array}{c|ccc}
+n&\lambda_{\rm std}&\lambda_{\rm sym}&\lambda_{\rm anti}\\ \hline
+3&1/11&---&1/9\\
+4&87/640&3/208&57/640\\
+5&8585/57314&359/26660&143/2100.
+\end{array}                                                  \tag{4.12}\label{4.12}
+\]
+These are the Frobenius-normalized quadratic eigenvalues; they are checks,
+not a finite extrapolation.
+
+\begin{proof}[Proof of Theorem~\ref{thm:local}]
+Theorem~\ref{thm:sectors} and the decomposition \eqref{4.9} imply
+$\Rtwo_{n}(\delta)>0$ for every nonzero $\delta\in\calT_n$.  Equations
+\eqref{3.12} and \eqref{4.5} give
+\[
+ \frac1{n\rho_{\dB}(P_\varepsilon,2)}
+ =c_0+\varepsilon^2\Rtwo_{n}(\delta)+O(\varepsilon^3).         \tag{4.13}\label{4.13}
+\]
+Differentiation yields \eqref{2.8}.  To obtain a neighborhood rather than
+only directional statements, restrict the analytic fixation map to a small
+Frobenius ball around $J_n$ in the affine space $J_n+\calT_n$, chosen inside the
+strictly positive off-diagonal region.  The smallest
+$\Rtwo_{n}$-eigenvalue on the Frobenius unit sphere is positive.  Taylor's theorem with
+a uniform third-derivative bound on a smaller compact ball makes the
+negative quadratic term dominate the remainder.  Hence every other kernel
+in that ball has strictly smaller fixation probability.
+\end{proof}
+
+\begin{remark}
+The neighborhood in the last paragraph depends on $n$.  No statement here
+prevents a population sequence from approaching a singular face, or from
+remaining a nonperturbative distance from $J_n$ as $n\to\infty$.
+\end{remark}

@@ -42,8 +42,8 @@ squared discrepancies within incoming columns, with equality exactly at
 \(J_n\) after normalization. Together with the prior
 obstruction and a source-component bound, this shows that no fixed finite
 directed weighting is a strict amplifier for every beneficial fitness. We also prove global
-all-beneficial-fitness maximality on positive weighted triangles and within
-two symmetric weighted \(K_4\) families. These results establish full local
+all-beneficial-fitness maximality for positive weighted triangles and within
+two symmetric weighted \(K_4\) families. These results establish strict local
 rigidity at fitness two and fixed-graph rigidity at strong selection, but not
 global complete-graph maximality at fitness two.
 
@@ -63,10 +63,11 @@ Mathematics Subject Classification 2020: 92D15, 60J10, 05C81.
 - **Funding:** No external funding supported this work.
 - **Competing interests:** The author declares no competing interests.
 - **Data:** No empirical, human, animal, clinical, or personal data were used.
-- **Code and materials:** The source-and-certificate archive described in
-  `BUNDLE_REPRODUCTION.md` contains the manuscript source, exact verifiers,
-  proof certificates, dependency pins, and build scripts. A persistent
-  identifier does not yet exist for the present consolidated manuscript.
+- **Code and materials:** The exact archive
+  `complete_graph_extremality_db_source_and_certificates.tar.gz` is supplied
+  with this version. Its adjacent `.sha256` file records the whole-archive
+  digest, its internal `MANIFEST.sha256` checks every other archive member, and
+  `BUNDLE_REPRODUCTION.md` gives the clean-environment replay procedure.
 - **AI assistance:** Use the complete wording in `DECLARATIONS.md`.
 - **Related public material:** Use the exact disclosure in
   `PROVENANCE_AND_RELATED_RELEASES.md`. In particular, the cited Zenodo

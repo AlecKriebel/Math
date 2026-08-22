@@ -1,6 +1,6 @@
 # Clean-bundle reproduction test
 
-## 2026-08-21 final clean-room checkpoint
+## 2026-08-22 final clean-room checkpoint
 
 The reduced development-tree replay and submission static audit both exited
 zero after the package scripts were installed.  The replay covered:
@@ -16,16 +16,16 @@ zero after the package scripts were installed.  The replay covered:
 The frozen archive was generated twice from the final source and the two
 outputs were byte-for-byte identical.  It contains 19 regular members and has
 SHA-256
-`c228b9e39c50d7f89449bc59a9011a57f8600234667ff5c1712324005803f375`.
+`cd6d72187669c7a1df7ba21c71fac42b4699fea340af3f8118b7eafbb9c4f8cc`.
 After extraction into a new temporary directory, every entry in
 `MANIFEST.sha256` passed.  The root bootstrap created a fresh Python 3.14.6
 environment, installed SymPy 1.14.0 and mpmath 1.3.0, and the complete replay
 exited zero.
 
 The PDF rebuilt from the extracted source with Tectonic 0.16.9 and Poppler
-26.08.0 was byte-for-byte identical to the repository PDF.  The 21-page PDF
+26.08.0 was byte-for-byte identical to the repository PDF.  The 20-page PDF
 has SHA-256
-`5e0bb7f8e444ca4cc44926013fc6cbd8f27b0930b5aae9f748eb18599785d806`.
+`573f29287ca3620fa0bafb298e75b4d2f72dd69dafd4e7cad8446d3656e462bc`.
 Its compiler log has no undefined references or citations and no material
 box warnings; all fonts are embedded.  Every page was rendered and visually
 inspected for clipping, overlap, missing glyphs, malformed equations, stale

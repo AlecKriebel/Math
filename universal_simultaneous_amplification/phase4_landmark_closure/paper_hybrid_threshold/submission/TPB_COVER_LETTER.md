@@ -3,7 +3,7 @@
 > **DRAFT — NOT SENT.** Use only after the *Journal of Mathematical Biology*
 > process has ended.  No editor or other person has received this letter.
 
-21 August 2026
+22 August 2026
 
 Editors
 *Theoretical Population Biology*

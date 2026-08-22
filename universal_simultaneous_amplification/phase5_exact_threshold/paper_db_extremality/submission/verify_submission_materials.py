@@ -71,6 +71,30 @@ def main() -> None:
     assert word_tokens(metadata_abstract) == word_tokens(manuscript_abstract)
     assert f"**Word count:** {abstract_words} words" in metadata
     assert "Tkadlec" not in manuscript_abstract
+    assert "strict local rigidity" in normalized(manuscript_abstract)
+    assert "full local rigidity" not in normalized(manuscript_abstract)
+
+    availability = (PAPER / "sections/07_implications_reproducibility.tex").read_text(
+        encoding="utf-8"
+    )
+    archive_name = "complete_graph_extremality_db_source_and_certificates.tar.gz"
+    for token in (
+        archive_name,
+        f"{archive_name}.sha256",
+        "MANIFEST.sha256",
+        "submission/BUNDLE_REPRODUCTION.md",
+    ):
+        assert token in availability, token
+    future_facing = (
+        "No persistent identifier has yet been assigned",
+        "final availability statement must",
+        "persistent identifier does not yet exist",
+    )
+    declarations = (HERE / "DECLARATIONS.md").read_text(encoding="utf-8")
+    all_submission_prose = "\n".join((availability, metadata, declarations))
+    assert not any(
+        phrase.lower() in all_submission_prose.lower() for phrase in future_facing
+    )
 
     submission_readme = (HERE / "README.md").read_text(encoding="utf-8")
     assert "https://www.biorxiv.org/collection/evolutionary-biology" in submission_readme

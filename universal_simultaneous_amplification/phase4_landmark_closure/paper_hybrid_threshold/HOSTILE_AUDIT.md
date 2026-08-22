@@ -43,3 +43,21 @@ clean-extracted; its internal manifest, pinned replay, and byte-identical PDF
 rebuild all passed.  Human confirmation of contact, funding,
 competing-interest, contribution, license, and portal fields remains an
 explicit pre-submission gate rather than a research-package claim.
+
+## 2026-08-22 final notation-freeze audit
+
+An independent final pass rechecked the only mathematical change after the
+preceding verdict.  With $m=O(C^{1/4})$ and
+$T=\beta_0(B_0)\log C$, the displayed conditions
+$\beta_0-1/4\geq B_0+2$ and $\kappa\beta_0\geq B_0+2$ give, respectively,
+$m e^{-T}=O(C^{-B_0-2})$ and
+$R_0e^{-\kappa T}=O(C^{-B_0-2})$.  The hub-deactivation integral remains
+$o(1)$ because its bound is independent of $T$.  No related exponent,
+compact-uniformity, or quantifier defect was found.
+
+The complete exact replay, fresh archive extraction, pinned bootstrap,
+byte-identical PDF rebuild, compiler-log scan, embedded-font check, and visual
+inspection of the changed pages all pass.  The compact 20-page bibliography
+remains readable.  No blocker or minor mathematical issue remains in the
+scientific source checkpoint; the immutable v2.0.0 tag must be placed on the
+exact commit before the frozen source link is relied upon.

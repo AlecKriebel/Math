@@ -37,7 +37,7 @@
 Independent Researcher\\
 \href{mailto:me@aleckriebel.com}{me@aleckriebel.com}\\
 \href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
-\date{August 21, 2026}
+\date{August 22, 2026}
 
 \begin{document}
 \maketitle
@@ -865,7 +865,13 @@ During a mutant-hub interval, its deactivation intensity is at most
 $K(R+m-\ell)/C$.  Suppressing that deactivation, direct substitution in the
 dB table gives $\mathcal G R\leq-\kappa R$ while $R\leq2\delta c$, and the
 number $m-\ell$ of resident pendants is a pure-death chain with drift
-$-(m-\ell)$.  Therefore, for $T=B_0\log C$,
+$-(m-\ell)$.  Choose a fixed $\beta_0=\beta_0(B_0)>0$ such that
+\[
+ \beta_0-\frac14\geq B_0+2,
+ \qquad
+ \kappa\beta_0\geq B_0+2,
+\]
+and put $T=\beta_0\log C$.  Then
 \begin{align*}
  \Prob(\ell_T<m)&\leq me^{-T},\\
  \Prob(R_T>0,\ \tau_\uparrow>T)
@@ -876,10 +882,10 @@ $-(m-\ell)$.  Therefore, for $T=B_0\log C$,
    \leq\frac K C\left(\frac{R_0}{\kappa}+m\right)=o(1).
 \end{align*}
 Here $\tau_\uparrow=\tau_{\{R\geq2\delta c\}}$; its omitted upper-strip exit
-has probability $e^{-\gamma C}$.  By increasing
-the constant multiplying $\log C$ in $T$, the two surviving-coordinate
-probabilities are $O(C^{-B_0-2})$, whereas hub survival has probability
-$1-o(1)$.  Thus an activated attempt started in $R\leq R_0$ succeeds with
+has probability $e^{-\gamma C}$.  Since $m=O(C^{1/4})$, the choice of
+$\beta_0$ makes the first two displayed probabilities $O(C^{-B_0-2})$,
+whereas hub survival has probability $1-o(1)$.  Thus an activated attempt
+started in $R\leq R_0$ succeeds with
 probability at least $1/2$ for large $C$.  After a failed attempt, confinement
 and \eqref{eq:deficit-return} return the process to $R\leq R_0$ in
 polynomial time; unless fixation has already occurred, the hub is activated
@@ -1467,7 +1473,7 @@ this revision as the deterministic Supplementary Material archive
 \nolinkurl{simultaneous_amplifier_beyond_three_halves_source_and_certificates.tar.gz}.
 It contains an internal SHA-256 manifest and a fresh-environment bootstrap.
 The corresponding development sources are in the
-\href{https://github.com/AlecKriebel/Math/tree/main/universal_simultaneous_amplification/phase4_landmark_closure/paper_hybrid_threshold}{paper-specific repository directory}.
+\href{https://github.com/AlecKriebel/Math/tree/simultaneous-amplification-beyond-three-halves-v2.0.0/universal_simultaneous_amplification/phase4_landmark_closure/paper_hybrid_threshold}{paper-specific frozen repository directory}.
 The full-repository software snapshot at
 \href{https://doi.org/10.5281/zenodo.21852072}{doi:10.5281/zenodo.21852072}
 contains the unrefereed v1
@@ -1510,8 +1516,9 @@ responsibility for the manuscript and accompanying materials.  All exact
 certificates are supplied for independent replay, and numerical evidence is
 explicitly separated from proof.
 
-\small\raggedright
+\scriptsize\raggedright
 \begin{thebibliography}{99}
+\setlength{\itemsep}{0pt}
 
 \bibitem[Allen et al.(2017)]{Allen2017}
 B.~Allen, G.~Lippner, Y.-T.~Chen, B.~Fotouhi, N.~Momeni,
