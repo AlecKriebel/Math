@@ -1,6 +1,6 @@
 # Paper II reproducibility and PDF QA log
 
-Date: 2026-08-21 (America/Los_Angeles)
+Date: 2026-08-22 (America/Los_Angeles)
 
 ## Current superseding-version checkpoint
 
@@ -32,9 +32,9 @@ Date: 2026-08-21 (America/Los_Angeles)
 - [x] Final hostile review is repeated after all corrections.
 
 The frozen public archive contains 19 regular members and has SHA-256
-`c228b9e39c50d7f89449bc59a9011a57f8600234667ff5c1712324005803f375`.
-The 21-page PDF has SHA-256
-`5e0bb7f8e444ca4cc44926013fc6cbd8f27b0930b5aae9f748eb18599785d806`.
+`cd6d72187669c7a1df7ba21c71fac42b4699fea340af3f8118b7eafbb9c4f8cc`.
+The 20-page PDF has SHA-256
+`573f29287ca3620fa0bafb298e75b4d2f72dd69dafd4e7cad8446d3656e462bc`.
 All fonts are embedded; the page size is US letter; the PDF is unencrypted.
 
 The earlier ten-page v1 PDF and its release hashes are historical checkpoints,

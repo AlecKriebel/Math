@@ -113,6 +113,10 @@ def check_manuscript_scope() -> None:
         "Reciprocal hub-excursion renewal",
         r"I-Q(r)$ is a nonsingular $M$-matrix",
         r"\mathcal E_C=\{R\leq\delta c\}",
+        r"\beta_0-\frac14\geq B_0+2",
+        r"\kappa\beta_0\geq B_0+2",
+        r"T=\beta_0\log C",
+        r"Since $m=O(C^{1/4})$",
         r"V(i)=z^i",
         r"w_{uv}/d_u",
         "Fixed-parameter response optimality",
@@ -128,6 +132,7 @@ def check_manuscript_scope() -> None:
         r"P_U^P=\frac{A}{A+D}\,p_{1,1}",
         r"where $p_{1,1}$ is the macro-fixation probability from $(1,1)$",
         r"P_U^P=[A/(A+D)][(B+C')/B]P_U^H",
+        "simultaneous-amplification-beyond-three-halves-v2.0.0",
     )
     for fragment in required:
         assert fragment in manuscript, f"missing manuscript scope marker: {fragment}"
@@ -135,6 +140,7 @@ def check_manuscript_scope() -> None:
     assert "audit_core_uniformity.py" not in manuscript
     assert r"K=A\log C" not in manuscript
     assert r"B\log C" not in manuscript
+    assert r"T=B_0\log C" not in manuscript
     for malformed in (
         ",qquad",
         "&qquad",
