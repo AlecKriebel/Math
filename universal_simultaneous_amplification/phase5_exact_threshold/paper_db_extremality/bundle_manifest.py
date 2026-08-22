@@ -78,7 +78,6 @@ PUBLIC_SUBMISSION_FILES = frozenset(
         f"{PAPER}/submission/DECLARATIONS.md",
         f"{PAPER}/submission/ENVIRONMENT.md",
         f"{PAPER}/submission/PROVENANCE_AND_RELATED_RELEASES.md",
-        f"{PAPER}/submission/REPRODUCTION_TEST.md",
         f"{PAPER}/submission/bootstrap_replay.sh",
     }
 )
@@ -97,6 +96,17 @@ def excluded(relative: PurePosixPath) -> bool:
     if relative.name in EXCLUDED_NAMES:
         return True
     if relative.name.startswith(EXCLUDED_PREFIXES):
+        return True
+    # Prior review verdicts, research diaries, and saved successful output can
+    # anchor a fresh referee. They are not proof dependencies; retain the
+    # underlying independent audit programs but omit these narrative records.
+    lowered = relative.name.lower()
+    if relative.suffix.lower() in {".md", ".txt"} and (
+        "audit" in lowered
+        or "review" in lowered
+        or lowered
+        in {"research_log.md", "manuscript_plan.md", "verification_output.txt"}
+    ):
         return True
     return any(relative.name.endswith(suffix) for suffix in EXCLUDED_SUFFIXES)
 
@@ -219,6 +229,21 @@ def verify_archive(output: Path) -> None:
     private_token = b"[[POSTAL" + b"_ADDRESS]]"
     if any(private_token in data for data in extracted.values()):
         raise RuntimeError("archive contains the private postal-address token")
+    anchoring_records = {
+        name
+        for name in extracted
+        if PurePosixPath(name).suffix.lower() in {".md", ".txt"}
+        and (
+            "audit" in PurePosixPath(name).name.lower()
+            or "review" in PurePosixPath(name).name.lower()
+            or PurePosixPath(name).name.lower()
+            in {"research_log.md", "manuscript_plan.md", "verification_output.txt"}
+        )
+    }
+    if anchoring_records:
+        raise RuntimeError(
+            f"archive contains non-evidentiary anchoring records: {sorted(anchoring_records)}"
+        )
     expected: dict[str, str] = {}
     for line in manifest.splitlines():
         digest, name = line.split("  ", 1)

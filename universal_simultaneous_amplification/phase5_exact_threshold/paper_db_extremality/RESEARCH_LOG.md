@@ -179,3 +179,25 @@
   future persistent release identifier) remain deliberately unfilled.
 - Paper I completion: 100% of the requested second-review revision,
   validation, and reproducibility cycle.
+
+## 2026-08-22 10:08 PDT — final availability and referee-handoff checkpoint
+
+- Adjudicated the final external review.  Its sole required point is correct:
+  the manuscript still contained an internal future-release instruction.
+  Replaced it with final submission prose naming the exact accompanying
+  source archive, its detached whole-archive checksum, its internal payload
+  manifest, and the clean-replay guide.  This avoids both a mutable-branch
+  citation and an impossible archive self-hash.
+- Accepted the three nonblocking clarity edits: smoother triangle/$K_4$
+  grammar, ``strict local rigidity'' in place of ``full local rigidity,'' and
+  a responsibly rounded companion threshold while retaining the rigorous
+  inequality $R_{\rm hyb}>3/2$.  No theorem, hypothesis, equality case, or
+  citation scope changed.
+- Added a neutral AI-referee handoff design: independent-review prompt,
+  theorem-to-code inspection map, report template, package verifier, and a
+  disposable clean-replay/PDF-identity command.  The referee-facing source
+  archive now omits prior verdicts, research diaries, and saved successful
+  output while retaining all proof documents and independent checking code.
+- Best-guess completion: 70% of this final-review task.  Source validation,
+  frozen packaging, a clean referee-package replay, visual inspection, final
+  hostile review, and commit/push remain.

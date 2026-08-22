@@ -20,3 +20,16 @@ fi
 python3 "$paper_dir/bundle_manifest.py" \
   --repo-root "$repo_root" \
   --output "$output"
+python3 - "$output" <<'PY'
+from __future__ import annotations
+
+import hashlib
+from pathlib import Path
+import sys
+
+archive = Path(sys.argv[1]).resolve()
+sidecar = archive.with_name(f"{archive.name}.sha256")
+digest = hashlib.sha256(archive.read_bytes()).hexdigest()
+sidecar.write_text(f"{digest}  {archive.name}\n", encoding="ascii")
+print(f"CHECKSUM: {sidecar}")
+PY

@@ -3,8 +3,11 @@
 The public scientific archive omits venue-specific metadata, cover letters,
 checklists, and their static submission verifier. Those human handoff files
 remain in the development package but may contain private author metadata in
-a submission copy. Their omission does not remove manuscript source, proof
-certificates, replay dependencies, provenance records, or declarations.
+a submission copy. It also omits prior review verdicts, research diaries, and
+saved successful output so that a fresh referee is not anchored by earlier
+assessments. Their omission does not remove manuscript source, proof
+documents, independent audit programs, certificates, replay dependencies,
+provenance records, or declarations.
 
 Run the following from the Paper I directory:
 
@@ -14,9 +17,10 @@ Run the following from the Paper I directory:
 
 The script creates
 `output/release/complete_graph_extremality_db_source_and_certificates.tar.gz`
-and prints its SHA-256 digest. An alternative output path may be supplied as
-the first argument. Before archiving, it checks submission identity, abstract
-length, highlights, placeholder scope, and release-provenance wording.
+and the adjacent detached checksum file with suffix `.sha256`; it also prints
+the digest. An alternative output path may be supplied as the first argument.
+Before archiving, it checks submission identity, abstract length, highlights,
+placeholder scope, and release-provenance wording.
 
 The pinned replay environment is Python 3.14.6, SymPy 1.14.0,
 python-flint 0.9.0, and mpmath 1.3.0. The deterministic PDF toolchain is
@@ -37,7 +41,10 @@ it excludes the legacy manuscript build, discovery scripts, virtual environments
 temporary compiler products, rendered page images, unrelated research
 programs, and version-control metadata.
 
-Every regular file is recorded in the archive-root `MANIFEST.sha256`.
+Every other regular archive member is recorded in the archive-root
+`MANIFEST.sha256`.
+The adjacent `.sha256` file binds the compressed archive as a whole without
+creating a self-reference inside that archive.
 Tar-member ownership, timestamps, and ordering are normalized, and the gzip
 header has a fixed timestamp and no source filename. Running the bundler twice
 over identical inputs therefore yields byte-identical archives.
