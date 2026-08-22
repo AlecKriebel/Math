@@ -157,15 +157,19 @@ def verify_source_archive() -> tuple[int, str]:
 
 def verify_neutral_prompt() -> None:
     prompt = (PACKAGE / "REFEREE_PROMPT.md").read_text(encoding="utf-8")
+    normalized_prompt = " ".join(prompt.lower().split())
     for verdict in (
         "fully validated",
         "valid after minor corrections",
         "major correction required",
         "invalid",
     ):
-        if verdict not in prompt.lower():
+        if verdict not in normalized_prompt:
             raise RuntimeError(f"referee prompt omits verdict option: {verdict}")
-    if "you have not been told whether the results are correct" not in prompt.lower():
+    if (
+        "you have not been told whether the results are correct"
+        not in normalized_prompt
+    ):
         raise RuntimeError("referee prompt lacks explicit neutrality instruction")
 
 
