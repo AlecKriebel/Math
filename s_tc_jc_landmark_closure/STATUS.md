@@ -2,13 +2,17 @@
 
 Status: **PROVED — FINAL OUTCOME A**
 
-Release revision: **v1.1.5 referee-audited and certificate-exhaustiveness hardened**.
+Release revision: **v1.1.7 referee-audited and regeneration-hardened**.
 The classification and sharpness theorems remain mathematically unchanged.
-v1.1.5 proves the missing arbitrary-word cut reduction, corrects the
-central-edge normalization crosswalk, makes every localization and contextual
-triangle branch choice explicit, replaces two tautological diagnostics by
-exact split-normalized Jacobian and honest probe certificates, and separates
-four-port presentations from their further quotient classes.  The curated
+v1.1.5 proved the missing arbitrary-word cut reduction, corrected the
+central-edge normalization crosswalk, made every localization and contextual
+triangle branch choice explicit, replaced two tautological diagnostics by
+exact split-normalized Jacobian and honest probe certificates, and separated
+four-port presentations from their further quotient classes.  v1.1.7 adds
+clean deletion, regeneration, and byte comparison of the nine auxiliary
+atlas outputs; fail-closed stale/no-op/partial-producer mutations; a standalone
+public convention replay; precise serialized-transport scope; and the direct
+Currie et al. attribution at the ordinary-triangle lemma.  The curated
 computer-assisted proof bundle is version 1.1.7; its DOI remains pending until
 the human author reserves and publishes the Zenodo record.
 The bioRxiv map uploads a small verifier-entrypoint ZIP as supplementary code;

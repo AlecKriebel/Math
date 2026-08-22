@@ -20,7 +20,7 @@ TITLE = (
     "Level-2 Jukes-Cantor Networks"
 )
 SOURCE_BINDING_SCHEME = "certificate-bundle-envelope-v1"
-RELEASE_TAG = "stc-jc-sharp-boundary-v1.1.5"
+RELEASE_TAG = "stc-jc-sharp-boundary-v1.1.7"
 
 
 def clean_git_environment() -> dict[str, str]:

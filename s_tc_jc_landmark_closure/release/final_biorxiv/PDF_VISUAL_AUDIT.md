@@ -14,13 +14,13 @@ glyph or malformed text.
 
 | Output | Pages | SHA-256 |
 |---|---:|---|
-| bioRxiv main | 33 | `bbf139a8f68c47ec53562e41918a54372a266b70bc69600974b43349f95ed907` |
-| bioRxiv supplement | 7 | `0de3f4e5982d6cd6db9c2720079e8175dd9943d1569f330625f2164cb035b339` |
-| Systematic Biology main | 45 | `908063bb17b0d4cb42df576a26c423160d01f957b14c240ed382bf9857a95599` |
-| Systematic Biology supplement | 7 | `0de3f4e5982d6cd6db9c2720079e8175dd9943d1569f330625f2164cb035b339` |
+| bioRxiv main | 33 | `3e8966ebffd91fc24dcfa48f93c7da910c9385c05e4691b3bd5f288538bb6ba8` |
+| bioRxiv supplement | 7 | `a409b7bfcc4ada68fce22dc213ca2635d874f490b3f53ee537d349514ca636a8` |
+| Systematic Biology main | 45 | `0c19be4f3ed50e41cd7f199c4141f96f5268f8522fafeb8e706e488063c2e168` |
+| Systematic Biology supplement | 7 | `a409b7bfcc4ada68fce22dc213ca2635d874f490b3f53ee537d349514ca636a8` |
 | Systematic Biology cover letter | 1 | `f0c73d386154fa66ae96d3115d817465673bb3eedc1ed66dfd97c7460897d3e0` |
-| JMB main | 33 | `08cd1d0e2454f81141932bc47fbeab3b2263fe6be777118f0a819b6145cf3b57` |
-| JMB supplement (Online Resource 1) | 7 | `4cab30a2fc9685bfc8c6d0e130bbe2bb3fdcdca96b0b9f6de229f82ffd750443` |
+| JMB main | 33 | `d3aab5c3edc91ee9bc8ebf47938cb95a3971bd7733848f21c8285c0559ad85e2` |
+| JMB supplement (Online Resource 1) | 8 | `0c1fd754db3a34aee0bb86adcdc5dd24460cbe3cdbad46e352afcf699a4a377c` |
 | JMB cover letter | 1 | `fc366d80174d3712b3524dbe97982c6a2328e8ae73e9b28c7553f4e77b3c7096` |
 
 The Systematic Biology supplement is the canonical seven-page supplement. The
@@ -44,25 +44,25 @@ renderings.
 
 | PDF | Renderer | SHA-256 of page manifest |
 |---|---|---|
-| canonical main | Poppler | `9c4014a73b69307f116cb732aedd29c5c090aa949d91c94358d6c28dbc92443c` |
-| canonical main | PDFium | `c8a5cc9766b5b6649d8b1b92852725caa1a7ff31d09a3564d78476ffd9830429` |
-| supplement | Poppler | `06f173f0586f12cf7405ee731bb2e4735d0379bf9a248dfd33378e8a5a983f7c` |
-| supplement | PDFium | `740208f6869d7224c016a93cdccaded45ba60228a110c95fe744a79d5ec7e8b3` |
-| Systematic Biology main | Poppler | `f40fbf28639ebf2a8c3be091458cca5112bce13e32dd451bd19bb52e41e51cf4` |
-| JMB main | Poppler | `884e486160d5290b54f7872524663f71b1a0532396abb0ab8858adc4093c7d33` |
-| JMB supplement | Poppler | `1c3bb9c3a48b19292ddfa8ba2700b71f5ddc408789145850971ebe819dcaf422` |
+| canonical main | Poppler | `da3d61daa865a77a42ea61078e8c68b7f98e7ec51d0cb4cab664d2ca030ebcde` |
+| canonical main | PDFium | `136aa309a4bc595f99de74ebf10d79aa27c428e7949ae3b2560817da85fbaf27` |
+| supplement | Poppler | `be1a6ca7d47cfe5621e930e70b30c3c087329f6559e2c19741c1d10590698f78` |
+| supplement | PDFium | `a9261719a33c1af7e9ed884bdc46db1e80a4b38ef91fec13560fe9043ed59d74` |
+| Systematic Biology main | Poppler | `22336b581c7e4dc8fa98d8ea7a302a86870627cafb5c8a3b757f100df93458fe` |
+| JMB main | Poppler | `50db1385a9d75fcc58fee4653744db3ad659f4cdb0e38af7936932fce505b7a8` |
+| JMB supplement | Poppler | `3d86250d17790feb5077a25ee5ec1c23a09586ee4ef8703f0c349df0e118b0fb` |
 
 Contact-sheet hashes:
 
-- canonical main (Poppler): `48b189dac775d8eb7ee21607dc0390e821809ca158c377cd8de05df717e1633e`
-- canonical main (PDFium): `a14e3db52fd2873ce97896d59523574ebaa2023672152dfae004d2bc9680d618`
-- supplement (Poppler): `2967165cd46044624ebc05a286ac2cce7d1a24dbb55e8a8a5cfe964858499625`
-- supplement (PDFium): `76d7ce3def8aece41b669f62b7452988e86983eaa89827b563e8e0c1dc7d07e1`
-- Systematic Biology main: `e91773768a820af4f7a680c721852f2eab42a2d296e9c88d8a3d6cfb42d6ff0c`
-- Systematic Biology cover: `72bcdcebf78bbe70c9edd15150a9223143fef47f9a9b42f7828e36ac45124dba`
-- JMB main: `5e9ec75f49b464dbbd9eee822202267c6ba18ea336fdf270fb2e2f5482ea55f8`
-- JMB supplement: `17148fb7c57daa00acf5480c5fa37c85aaf51add798e92edd4eaed8adbe0c731`
-- JMB cover: `8e31afa23565ca8bc052aa215a3eb343ad23d097b95897a3a5a340cccfa7ff2b`
+- canonical main (Poppler): `8fb561a859abb02f670c48ca939b042ee18ca84f02a950a637a75d54e1e1876f`
+- canonical main (PDFium): `140930984430b7cbf8d483957daa3195b116bb0657b6597821435c96f25a2bfc`
+- supplement (Poppler): `08715bc1baf033c288cbb0bcfb2241efdf52928b41c1f4c7282bcd62fe96fb85`
+- supplement (PDFium): `e6a70714595269927f17a8b4d3228cf4a827545c2193f6b325463bab70e3b5a8`
+- Systematic Biology main: `aae493d966554d188171898ebd3c28667ebf8f29b79d19a5a3c5284aba853c42`
+- Systematic Biology cover: `a92124a02dcbce3bf9bfada4eb8f6c955681fe2d7070b0e2be2cbca5b27e525e`
+- JMB main: `5a55ebb112fcf5299818240afa15eeb81c8f16b1fad903189b29e85a28ad5cb3`
+- JMB supplement: `903c9c84535dfce9b818e05dfb03209fa7a5fb5eb50f498b5aedb6e59cd99e8a`
+- JMB cover: `7f110108355b91449a4c7610c522f0fd12fb35cb121c373249b93d833fddf19b`
 
 ## Inspection findings
 
