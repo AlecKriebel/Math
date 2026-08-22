@@ -204,7 +204,8 @@ def write_readme(
 ) -> None:
     content = f"""# Read this first
 
-This is a frozen, self-contained referee handoff for *Local Complete-Graph
+This is a frozen, self-contained project-source and certificate handoff for
+*Local Complete-Graph
 Optimality at Fitness Two and Strong-Selection Rigidity under Death--Birth
 Updating*. The package is intended for an independent, submission-style audit;
 it does not prescribe a favorable verdict.
@@ -255,7 +256,9 @@ The replay pins SymPy 1.14.0, python-flint 0.9.0, and mpmath 1.3.0. The PDF
 rebuild requires Tectonic 0.16.9 and Poppler 26.08.0 (`pdfinfo` and
 `pdftoppm`). The bootstrap may access the configured Python package index to
 install the pinned dependencies; it does not contact any person or submit any
-artifact.
+artifact. A fresh document build may also populate Tectonic's standard v33
+resource-bundle cache. The exact theorem replay is independent of the document
+tools, and the final PDF comparison detects any rendering difference.
 """
     (target / "README_FIRST.md").write_text(content, encoding="utf-8")
 

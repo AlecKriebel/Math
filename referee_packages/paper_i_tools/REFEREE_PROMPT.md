@@ -12,8 +12,9 @@ Work only on a disposable copy of the delivered package, preferably in an
 unprivileged sandbox or container with no personal credentials. Do not contact
 any person, upload any file, or change any external system. If dependency
 installation is needed, restrict network access to the configured package
-index. Record every command, exit status, software version, and independent
-calculation used in the review.
+index and, only for document rendering, Tectonic's standard resource-bundle
+endpoint. Prefer preseeded caches. Record every command, exit status, software
+version, and independent calculation used in the review.
 
 ## 1. Establish package identity and scope
 
