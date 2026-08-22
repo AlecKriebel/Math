@@ -37,6 +37,11 @@ identities.  The all-order weak-cut, establishment, cleanup, reciprocal-
 invasion, and sweep estimates are analytic arguments in the manuscript and
 are not replaced by computation.
 
+This checkpoint makes two previously compressed stochastic steps explicit:
+the Bd cleanup proof now includes a stopped strong-Markov block recursion,
+and the reciprocal dB proof includes a finite-horizon exponential-moment
+bound for its dominating immigration--death process.
+
 ## Related public versions
 
 - <https://doi.org/10.5281/zenodo.21852072> is the v1 source/software archive

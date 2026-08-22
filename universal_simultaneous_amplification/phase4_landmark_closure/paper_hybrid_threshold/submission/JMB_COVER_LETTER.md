@@ -2,7 +2,7 @@
 
 > **DRAFT — NOT SENT.** No editor or other person has received this letter.
 
-20 August 2026
+21 August 2026
 
 Editors
 *Journal of Mathematical Biology*

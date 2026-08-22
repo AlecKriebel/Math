@@ -37,7 +37,7 @@
 Independent Researcher\\
 \href{mailto:me@aleckriebel.com}{me@aleckriebel.com}\\
 \href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
-\date{August 20, 2026}
+\date{August 21, 2026}
 
 \begin{document}
 \maketitle
@@ -305,9 +305,11 @@ $m_t=\lfloor\lambda_*t\rfloor$ is obtained by an exact comparison of real
 algebraic numbers.  For fixed $t,e$ and either update rule, the transient
 first-step system of $G_t(2^{-e})$ has entries in $\mathbb K(r)$.  Cramer's
 rule therefore puts its fixation probability in $\mathbb K(r)$; the same is
-true of the finite separated trace and the complete-graph baseline.  Event
-denominators and the determinant of the transient absorbing system are
-strictly positive on $I_t$.
+true of the finite separated trace and the complete-graph baseline.  For
+each $r\in I_t$, every transient block $Q(r)$ occurring in these absorbing
+systems is substochastic with spectral radius less than one.  Hence
+$I-Q(r)$ is a nonsingular $M$-matrix and
+$\det(I-Q(r))>0$; the event denominators are positive as well.
 
 After clearing those positive denominators, each of the two absolute-value
 conditions defining $e_t$ is a pair of polynomial inequalities over
@@ -659,12 +661,13 @@ $R_0$ form the announced boundary layer and require no statewise drift claim.
 
 \begin{lemma}[Pendant synchronization and pendant initialization]
 \label{lem:pendant-cleanup}
-For every fixed $B_0>0$ there is a fixed $D=D(B_0)$ such that, under either update
+For every fixed $B_0>0$ there is a fixed $D_{\rm cl}=D_{\rm cl}(B_0)$ such
+that, under either update
 rule and uniformly in $r\in\mathcal R$, a state with
-$i\geq(1-\delta)c$ reaches fixation within time $C^D$, except with
+$i\geq(1-\delta)c$ reaches fixation within time $C^{D_{\rm cl}}$, except with
 probability
 \[
- O(C^{-B_0})+O(C^{D+1}e^{-\gamma C}).
+ O(C^{-B_0})+O(C^{D_{\rm cl}+1}e^{-\gamma C}).
 \]
 Moreover, fixation from one mutant pendant satisfies
 \[
@@ -700,6 +703,16 @@ subharmonic for the full $(h,i,\ell)$ generator until the next pendant-count
 change: core jumps leave it unchanged, while
 $H_+\geq\underline H_+$, $H_-\leq\overline H_-$, and
 $U_\ell\geq\underline U_\ell$ move its generator in the favorable direction.
+Indeed, the two renewal equations give
+\[
+ p_0=\frac{H_+U_\ell}
+ {H_+U_\ell+V_\ell(H_-+U_\ell)},\qquad
+ p_1=\frac{U_\ell(H_++V_\ell)}
+ {H_+U_\ell+V_\ell(H_-+U_\ell)};
+\]
+direct differentiation shows that both are increasing in $H_+$ and
+$U_\ell$ and decreasing in $H_-$.  This proves the asserted favorable
+monotonicity rather than leaving it implicit.
 Optional stopping therefore makes it a lower bound even with an adapted
 sequence of core interruptions.  Its next-leaf up/down odds, from either hub
 phase, are bounded below by
@@ -777,8 +790,73 @@ the next block; escape to $4\delta c$ before that return costs
 $e^{-\gamma C}$.  Starting the next block from $R\leq\delta c$ puts it back
 under the $2\delta c$ confinement estimate.  The earlier
 hit of $3\delta c$ in \eqref{eq:Bd-final-cleanup} is charged to this same
-exceptional event rather than recycled as a new block.  Repeating
-$O_{B_0}(\log C)$ blocks makes Bd cleanup failure $O(C^{-B_0})$.
+exceptional event rather than recycled as a new block.  We now formalize the
+repetition.
+
+Here is the stopping-time regeneration behind that last sentence.  Put
+$\mathcal E_C=\{R\leq\delta c\}$, write $\tau_{\mathrm{fix}}$ for the
+fixation time, and let $S_1$ be the initial time (or the first entry into
+$\mathcal E_C$).  Given $S_j$, run the following block:
+put
+\[
+ \Sigma_j=\inf\{s\geq S_j:(h_s,\ell_s)=(1,m)
+                         \text{ or }R_s\geq2\delta c\}.
+\]
+At each visit to $\ell=m$ with resident hub, activation precedes the next
+pendant loss with probability $1-O(C^{-1})$; after a loss the same pendant
+trace restarts.  Thus \eqref{eq:leaf-hitting-time} also gives
+$\mathbb E(\Sigma_j-S_j\mid\mathcal F_{S_j})\leq K C m$, with a hit of
+$2\delta c$ charged as exceptional.  From a nonexceptional $\Sigma_j$, run
+the final cleanup until fixation, hub loss, or a hit of $3\delta c$;
+and, after an ordinary hub-loss failure below $3\delta c$, wait for the
+first return to $\mathcal E_C$, charging a hit of $4\delta c$ as exceptional.
+Let $T_j$ be the time of fixation, exceptional escape, or this return.  On
+an ordinary return set $S_{j+1}=T_j$; a hit of $3\delta c$ is charged rather
+than recycled.  For that return, shrink $\delta$ so that
+$\mathcal G R\leq-\kappa R$ on $\delta c<R<4\delta c$, and put
+$\rho=\tau_{\{R\leq\delta c\}}\wedge\tau_{\{R\geq4\delta c\}}$.
+The same adapted-step and generator arguments give, from $R<3\delta c$,
+\[
+ \Prob(\tau_{\{R\geq4\delta c\}}<\tau_{\{R\leq\delta c\}})
+ \leq e^{-\gamma C},\qquad
+ \Prob(\rho>t)\leq3e^{-\kappa t}.
+\]
+Equations
+\eqref{eq:leaf-hitting-time}, \eqref{eq:Bd-final-cleanup}, and
+\eqref{eq:deficit-return}, together with this nested-strip estimate, give
+constants $s_*>0$, $D_*=D_*(B_0)$, and $\gamma_*>0$ such that, uniformly on
+$\mathcal F_{S_j}$,
+\begin{align}
+ \Prob(\hbox{fixation during block }j,\ T_j-S_j\leq C^{D_*}
+       \mid\mathcal F_{S_j})
+ &\geq s_*,\label{eq:Bd-block-success}\\
+ \Prob(\hbox{upper-strip escape during block }j,
+       \ T_j-S_j\leq C^{D_*}\mid\mathcal F_{S_j})
+ &\leq K C^{D_*+1}e^{-\gamma_*C},\label{eq:Bd-block-escape}\\
+ \Prob(T_j-S_j>C^{D_*}\mid\mathcal F_{S_j})
+ &\leq C^{-B_0-2}.
+ \label{eq:Bd-block-duration}
+\end{align}
+For the last bound, the synchronization part has conditional mean $O(Cm)$
+by \eqref{eq:leaf-hitting-time}; the final attempt and return part has
+conditional mean $O(C^2)$ by the stopped Lyapunov estimates.  Markov's
+inequality gives \eqref{eq:Bd-block-duration} after taking, for example,
+$D_*=B_0+4$.  With
+\[
+ N_C=\left\lceil
+ \frac{(B_0+2)\log C}{-\log(1-s_*)}\right\rceil,
+\]
+the strong Markov property at the $S_j$ gives
+\[
+ \Prob(\tau_{\mathrm{fix}}>N_CC^{D_*})
+ \leq(1-s_*)^{N_C}
+   +N_C\{C^{-B_0-2}+K C^{D_*+1}e^{-\gamma_*C}\}
+ =O(C^{-B_0}).
+\]
+Moreover $N_CC^{D_*}\leq C^{D_{\rm cl}}$ for a fixed
+$D_{\rm cl}=D_{\rm cl}(B_0)$.  This proves the
+claimed Bd time and failure bounds without an implicit independence
+assumption between blocks.
 
 Under dB, every pendant copies the hub at its next death.  In the bounded
 $R$ strip, first wait for $R\leq R_0$ using
@@ -807,15 +885,17 @@ and \eqref{eq:deficit-return} return the process to $R\leq R_0$ in
 polynomial time; unless fixation has already occurred, the hub is activated
 again at a rate bounded below.  The strong Markov property over
 $O_{B_0}(\log C)$ such attempts gives failure $O(C^{-B_0})$, while their
-total duration is polynomial.  Taking $D$ larger than the two block
+total duration is polynomial.  Taking $D_{\rm cl}$ larger than the two block
 exponents and using \eqref{eq:core-confinement} proves the first assertion.
 
-For a Bd mutant leaf, use the standard graphical construction with base
-reproduction arrows of rate one and extra mutant-only arrows of rate $r-1$;
-deleting mutants can only decrease the mutant set.  Fix the original mutant
-pendant.  At every regeneration with resident hub, no ordinary mutants, and
-that pendant still alive, delete all other mutants and suppress births to
-the other pendants.  This produces the adverse lower state $(h,i,\ell)=(0,0,1)$.
+For a Bd mutant leaf, use the standard weighted graphical construction: each
+vertex $u$ has a base reproduction clock of rate one and, when it rings,
+targets $v$ with probability $w_{uv}/d_u$; a mutant $u$ has an independent
+extra clock of rate $r-1$ with the same target law.  Deleting mutants can
+only decrease the mutant set.  Fix the original mutant pendant.  At every
+regeneration with resident hub, no ordinary mutants, and that pendant still
+alive, delete all other mutants and suppress births to the other pendants.
+This produces the adverse lower state $(h,i,\ell)=(0,0,1)$.
 In its resident-hub phase, activation has rate $r$ and loss of the
 distinguished pendant has rate $1/d$, so loss before activation is
 $O(C^{-1})$.  In the ensuing mutant-hub phase, an ordinary seed has rate at
@@ -939,7 +1019,7 @@ charging every other first event as successful fixation gives
 \end{equation}
 
 For dB, let $\zeta$ be the first hub loss.  Until the ordinary count reaches
-$\delta c$, its intensity is bounded below explicitly:
+$\delta c$, the hub-loss intensity is bounded below explicitly:
 \[
  q_{h:1\mapsto0}
  =\frac{d-i-\ell}{d+(s-1)(i+\ell)}
@@ -950,15 +1030,36 @@ subcritical birth--death process with immigration:
 \[
  q_i^+\leq b(i+1),\qquad q_i^-\geq d_0i,\qquad b<d_0,
 \]
-after decreasing $\delta$.  Consequently the ordinary cloud before $\zeta$
-is tight.  Explicitly, if $\bar I$ is that comparison process, then for
-fixed $T$ and fixed $L_1<\delta c$
+after decreasing $\delta$.  A common-clock monotone coupling gives
+$I_s\leq\bar I_s$ for $s\leq\zeta$ until the macro boundary, where $\bar I$ has
+birth rate $b(i+1)$ and death rate $d_0i$.  To make its maximum bound
+explicit, choose $1<z<d_0/b$ and put $V(i)=z^i$.  Its generator satisfies
+\[
+ \overline{\mathcal G}V(i)
+ =(z-1)z^i\left[b-\left(\frac{d_0}{z}-b\right)i\right]
+ \leq K_z-\alpha_zV(i)
+\]
+for suitable compact-uniform $K_z,\alpha_z>0$.  If
+$\bar\tau_M=\inf\{s:\bar I_s\geq M\}$, Dynkin's formula stopped at
+$T\wedge\bar\tau_M$ gives
+\begin{equation}
+ \sup_{i\leq L}\Prob_i\!\left(\sup_{s\leq T}\bar I_s\geq M\right)
+ \leq (z^L+K_zT)z^{-M}.
+\label{eq:immigration-maximum}
+\end{equation}
+Consequently the ordinary cloud before $\zeta$ is uniformly tight.
+Indeed, for fixed $T$ and $L\leq L_1<\delta c$,
 \[
  \Prob\!\left(\sup_{s<\zeta}I_s>L_1\right)
- \leq e^{-k_hT}+\Prob\!\left(\sup_{s\leq T}\bar I_s>L_1\right)
+ \leq e^{-k_hT}+(z^L+K_zT)z^{-L_1}
  =:\eta_L(L_1,T),
 \]
-and first $L_1\to\infty$ and then $T\to\infty$ make this bound vanish,
+because on the event that the cloud stays below $L_1$ through time $T$, the
+hub-loss intensity remains at least $k_h$ throughout.  Thus the first term
+is precisely the surviving-hub part of the finite-$T$ split; no
+infinite-horizon maximum estimate is being used.
+For fixed $T$, let $L_1\to\infty$ and then let $T\to\infty$; the bound
+vanishes in that order,
 uniformly in $C$ and reciprocal fitness.
 
 On the complementary event, suppress hub reactivation after $\zeta$.

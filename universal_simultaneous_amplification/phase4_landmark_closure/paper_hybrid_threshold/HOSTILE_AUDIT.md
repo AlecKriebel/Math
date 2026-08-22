@@ -1,6 +1,6 @@
 # Paper II hostile-audit ledger
 
-Date: 2026-08-20 (America/Los_Angeles)
+Date: 2026-08-21 (America/Los_Angeles)
 
 This ledger distinguishes proof obligations from exact computational checks.
 It contains no claim that a numerical solve proves an asymptotic statement.
@@ -32,10 +32,11 @@ public replay and release archive.
 ## Final verdict
 
 Three independent final reviewers re-read the corrected theorem chain and
-the frozen manuscript after the literature update and the major-revision
-response.  In particular, they re-audited the adapted hidden-coordinate
-drift, nested cleanup blocks, adverse pendant reset, killed-Green tail, and
-rule-specific reciprocal renewal at the claimed gain scales.  No substantive
+the frozen manuscript after the literature update, major-revision response,
+and targeted specialist rereview.  In particular, they re-audited the adapted
+hidden-coordinate drift, explicit stopped cleanup recursion, adverse pendant
+reset, killed-Green tail, finite-horizon immigration maximum, and rule-specific
+reciprocal renewal at the claimed gain scales.  No substantive
 theorem, rate, scale, quantifier, citation, rendering, replay, or package
 objection remained.  The deterministic archive was independently regenerated and
 clean-extracted; its internal manifest, pinned replay, and byte-identical PDF

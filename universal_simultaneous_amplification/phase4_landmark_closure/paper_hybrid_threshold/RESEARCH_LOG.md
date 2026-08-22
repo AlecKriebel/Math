@@ -108,3 +108,41 @@
   contribution, license, and submission-portal confirmations remain clearly
   separated from the research package.  Research/manuscript completion:
   **100%**; external submission remains a human action.
+
+## 2026-08-21 — targeted referee hardening opened
+
+- Classified the fresh specialist report point by point.  It found no
+  counterexample and requested two local proof expansions: an explicit
+  stopping-time regeneration for repeated Bd cleanup blocks and a displayed
+  exponential-tail calculation for the reciprocal dB immigration comparison.
+  Both requests are mathematically valid and improve auditability without
+  changing the theorem, construction, or response coefficients.
+- Also accepted the low-cost weighted-arrow, two-state monotonicity,
+  nonsingular-$M$-matrix, and manuscript-date clarifications.  The request to
+  retain the stopped-process lemmas in the main paper requires no change.
+  The named deterministic supplement already exists locally; its final bytes
+  will be regenerated and clean-tested after the new proof text freezes.
+- Added the two stochastic calculations and regression markers.  Exact replay,
+  rendering, independent adversarial rereview, and final archive freeze remain.
+  Estimated completion of this referee-response cycle: **82%**.
+
+## 2026-08-21 — targeted referee hardening closed
+
+- Formalized each Bd cleanup block with an inner restart set, separated
+  $2\delta$/$3\delta$/$4\delta$ escape barriers, explicit entry and terminal
+  stopping times, conditional success/escape/duration bounds, and the strong
+  Markov geometric estimate.  This removes any implicit independence or
+  unsafe boundary-restart reading.
+- Coupled the reciprocal dB cloud to a linear immigration--death process and
+  supplied a stopped exponential-moment calculation for its finite-horizon
+  maximum.  The proof retains the necessary hub-lifetime split and makes no
+  false claim about an infinite-horizon maximum of a recurrent process.
+- Added the weighted ordered-edge arrow rates, solved two-state pendant
+  probabilities and their monotonicities, named the transient nonsingular
+  $M$-matrices in the effective diagonal, updated the manuscript date, and
+  separated the cleanup-time exponent from the later gate-rate notation.
+- Independent probability and full-manuscript adversaries found no remaining
+  blocking or substantive defect.  Exact replay and clean compilation pass;
+  the deterministic supplement will now be regenerated from these frozen
+  sources and tested by fresh extraction.  Research/manuscript completion:
+  **100%**; external submission and DOI assignment remain human actions.
