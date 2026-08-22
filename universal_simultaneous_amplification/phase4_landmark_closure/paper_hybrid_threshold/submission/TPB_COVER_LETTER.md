@@ -55,11 +55,11 @@ and algebraic verifiers, pinned dependencies, and a deterministic SHA-256
 manifest accompany the paper.  The manuscript contains the analytic proof.
 
 Generative-AI systems were used substantively in mathematical exploration,
-derivation, adversarial proof analysis, software development, exact
-verification, literature support, visualization, and manuscript preparation.
-The named human author determined the scope and claims, reviewed the final
-work, and accepts responsibility for it.  AI systems are not listed as
-authors.
+derivation, adversarial proof analysis, software development, and manuscript
+preparation.  The author determined the scope and claims and accepts
+responsibility for the manuscript and accompanying materials.  All exact
+certificates are supplied for independent replay, and numerical evidence is
+explicitly separated from proof.
 
 Thank you for your consideration.
 

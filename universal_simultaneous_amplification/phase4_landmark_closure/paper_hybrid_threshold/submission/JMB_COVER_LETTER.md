@@ -59,10 +59,11 @@ No empirical data, human participants, animals, clinical material, or
 personal data are involved.  No external funding supported the work, and the
 author declares no competing interests.  Generative-AI systems were used
 substantively in mathematical exploration, derivation, adversarial proof
-analysis, software development, exact verification, literature support,
-visualization, and manuscript preparation.  The named human author determined
-the scope and claims, reviewed the final work, and accepts responsibility for
-it.  AI systems are not listed as authors.
+analysis, software development, and manuscript preparation.  The author
+determined the scope and claims and accepts responsibility for the manuscript
+and accompanying materials.  All exact certificates are supplied for
+independent replay, and numerical evidence is explicitly separated from
+proof.
 
 Thank you for your consideration.
 

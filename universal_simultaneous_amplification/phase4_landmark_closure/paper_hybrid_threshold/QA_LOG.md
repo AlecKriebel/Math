@@ -95,3 +95,29 @@ below after the corrected scientific commit and tag are frozen.
 The corrected paper, scientific archive, and neutral referee handoff are
 internally consistent.  Research and packaging completion: **100%**; public
 release, preprint posting, and journal submission remain human actions.
+
+## bioRxiv submission-handoff checkpoint
+
+- Checked the public bioRxiv submission, scope, screening, licensing, funder,
+  and proof-approval guidance on 2026-08-22.
+- Prepared a portal walkthrough and copy-ready plain-text metadata for
+  **Evolutionary Biology**, article category **New Results**.
+- The portal abstract is ASCII-safe, 224 words, and pinned by its normalized
+  SHA-256 in the submission-material verifier.
+- Reconfirmed the 21-page US-Letter PDF, embedded fonts, unencrypted status,
+  and SHA-256
+  `4e86597bb0baff388e8ce7ccf6ffd808f86b5ea846acf6f2188b31016fd2572c`.
+- Reconfirmed the 23-member supplemental archive and SHA-256
+  `d2145513f8abe295e9e7fab62f062fa9d0f7a6282de95e8155f3db4621485274`.
+- The submission verifier now pins identity fields, title, running title,
+  abstract, keywords, contribution roles, prior-version DOIs, upload paths,
+  exact counts, and artifact hashes, and refuses optimized Python.
+- An independent mutation audit confirmed fail-closed rejection of altered
+  identity, category, subject, license, funding, interests, ethics, prior DOI,
+  scientific-claim, file-path, count, role, and artifact-hash fields.
+- Human-only gates remain for authenticated identity/address fields, truthful
+  affiliation entry, author consent, license authority and selection, prior
+  online-material disclosure, live terms, portal proofing, and final approval.
+
+bioRxiv handoff preparation: **100%**.  Portal entry, policy acceptance,
+license selection, and posting remain human actions.

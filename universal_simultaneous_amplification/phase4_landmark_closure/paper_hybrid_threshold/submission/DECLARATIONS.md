@@ -9,17 +9,16 @@ No external funding supported this work.
 
 ## Competing interests
 
-The author declares no financial or non-financial competing interests.
+The author declares no competing interests.
 
 ## Author contribution
 
-Alec Kriebel: Conceptualization, methodology, formal analysis, investigation,
-software, validation, visualization, writing--original draft, and
-writing--review and editing.
+Alec Kriebel: Conceptualization, formal analysis, methodology, software,
+validation, visualization, writing - original draft, and
+writing - review and editing.
 
-The named author determined the scope and claims, approves the submitted
-version, and accepts responsibility for the integrity of the work and its
-reproducibility materials.
+The author determined the scope and claims and accepts responsibility for the
+proof, software, manuscript, and accompanying materials.
 
 ## Data and code availability
 
@@ -51,17 +50,22 @@ information.
 
 No third-party dataset is analyzed.  The manuscript's diagram is generated
 from editable source.  The author must reconfirm before submission that no
-added figure, table, or passage requires third-party permission.
+added figure, table, or passage requires third-party permission.  Before
+posting, the author must also confirm ownership or control of the necessary
+copyright and authority to grant the selected license, including compatibility
+with the terms applied to the prior Zenodo deposits.
 
 ## AI-assisted research disclosure
 
 Generative-AI systems were used substantively in mathematical exploration,
-derivation, adversarial proof analysis, software development, exact
-verification, literature support, visualization, and manuscript preparation.
-The named human author determined the scope and claims, reviewed the final
-manuscript and public artifacts, and accepts responsibility for the work.  AI
-systems are not listed as authors.  Numerical evidence is explicitly
-separated from proof.
+derivation, adversarial proof analysis, software development, and manuscript
+preparation.  The author determined the scope and claims and accepts
+responsibility for the manuscript and accompanying materials.  All exact
+certificates are supplied for independent replay, and numerical evidence is
+explicitly separated from proof.
+
+This is the canonical wording used in the frozen manuscript and the bioRxiv
+metadata. Preserve its substance in any portal field.
 
 ## Acknowledgments
 
