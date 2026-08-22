@@ -247,10 +247,10 @@ def main() -> None:
     manifest = ROOT / "ACTIVE_MANIFEST.json"
     original = manifest.read_bytes()
     try:
-        manifest.write_bytes(original.replace(b'"version": "1.1.6"', b'"version": "0.0.0"', 1))
+        manifest.write_bytes(original.replace(b'"version": "1.1.7"', b'"version": "0.0.0"', 1))
         try:
             payload = verifier.verify_manifest(ROOT)
-            assert payload["version"] == "1.1.6", "bundle version"
+            assert payload["version"] == "1.1.7", "bundle version"
         except AssertionError:
             mutations += 1
         else:

@@ -46,12 +46,12 @@ def finalize(project: Path, doi_value: str) -> dict[str, object]:
 
     bib = project / "source/paper/references.bib"
     text = bib.read_text(encoding="utf-8")
-    marker = "note         = {Zenodo DOI pending; version 1.1.6}"
+    marker = "note         = {Zenodo DOI pending; version 1.1.7}"
     if marker in text:
         text = text.replace(
             marker,
             f"doi          = {{{doi}}},\n  url          = {{https://doi.org/{doi}}},\n"
-            "  note         = {Version 1.1.6}",
+            "  note         = {Version 1.1.7}",
             1,
         )
         bib.write_text(text, encoding="utf-8")

@@ -14,7 +14,7 @@ manuscript.  Full LaTeX sources are requested on acceptance.
 
 ## Before opening ScholarOne
 
-1. Deposit `stc_jc_sharp_boundary_atlas_certificates_v1.1.6.tar.gz`, its
+1. Deposit `stc_jc_sharp_boundary_atlas_certificates_v1.1.7.tar.gz`, its
    checksum and envelope in Zenodo; insert the issued DOI in the manuscript
    and metadata.
 2. Rebuild this directory and verify `SHA256SUMS`.

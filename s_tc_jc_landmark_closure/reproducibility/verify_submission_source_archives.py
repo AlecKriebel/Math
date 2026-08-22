@@ -269,7 +269,7 @@ def verify_verifier_capsule(path: Path) -> str:
         for needle in (
             "navigation capsule only",
             "not the proof archive",
-            "stc_jc_sharp_boundary_atlas_certificates_v1.1.6.tar.gz",
+            "stc_jc_sharp_boundary_atlas_certificates_v1.1.7.tar.gz",
             "bash verify.sh quick",
             "bash verify.sh full",
             "bash verify.sh regenerate-all",

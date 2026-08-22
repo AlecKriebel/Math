@@ -1,6 +1,6 @@
 # Submission package index
 
-Release generation: `v1.1.6` (Zenodo DOI pending)
+Release generation: `v1.1.7` (Zenodo DOI pending)
 
 All three packages derive from the same canonical article and supplement. The
 SHA-256 manifest in each directory covers every delivered file, including
@@ -66,7 +66,7 @@ development during package preparation.
 ## 4. Exact replay assets
 
 The canonical proof object is
-`release_artifacts/stc_jc_sharp_boundary_atlas_certificates_v1.1.6.tar.gz`.
+`release_artifacts/stc_jc_sharp_boundary_atlas_certificates_v1.1.7.tar.gz`.
 Its checksum, envelope, and three run logs are the primary Zenodo assets. The
 broader reproducibility snapshot is secondary. Authenticate a public download
 with `reproducibility/verify_certificate_zenodo_release.py`.

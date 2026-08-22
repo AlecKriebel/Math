@@ -109,7 +109,7 @@ def main() -> None:
         for phrase in ("192", "3 direct", "57 nonretaining"):
             require(phrase in text, f"{label}: n=4 quotient crosswalk lacks {phrase}")
 
-    require('VERSION = "1.1.6"' in builder, "certificate version")
+    require('VERSION = "1.1.7"' in builder, "certificate version")
     for required in (
         '"PROOF.md", "CUT_PALETTE_REDUCTION.md"',
         '"verify_palette_reduction.py"',

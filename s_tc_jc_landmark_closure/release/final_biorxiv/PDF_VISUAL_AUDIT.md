@@ -1,9 +1,9 @@
 # PDF build and visual audit
 
-Status: **VERIFIED — v1.1.6 candidate**
+Status: **VERIFIED — v1.1.7 candidate**
 
 The canonical submission PDFs and both journal variants were rebuilt from the
-v1.1.6 source with `SOURCE_DATE_EPOCH=1786924800`. Extracted source ZIPs
+v1.1.7 source with `SOURCE_DATE_EPOCH=1786924800`. Extracted source ZIPs
 reproduced the six article/supplement PDFs byte for byte, and the two
 standalone cover-letter sources reproduced the remaining PDFs byte for byte.
 Tectonic reported no

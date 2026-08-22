@@ -38,13 +38,13 @@ def main() -> None:
 
         bib = target / "source/paper/references.bib"
         bib_text = bib.read_text(encoding="utf-8")
-        if "Zenodo DOI pending; version 1.1.6" not in bib_text:
+        if "Zenodo DOI pending; version 1.1.7" not in bib_text:
             bib_text, count = re.subn(
                 r"\n\s*doi\s*=\s*\{" + re.escape(TOKEN) +
                 r"\},\n\s*url\s*=\s*\{https://doi\.org/" +
                 re.escape(TOKEN) +
                 r"\},\n\s*note\s*=\s*\{Version 1\.1\.5\}",
-                "\n  note         = {Zenodo DOI pending; version 1.1.6}",
+                "\n  note         = {Zenodo DOI pending; version 1.1.7}",
                 bib_text,
                 count=1,
             )

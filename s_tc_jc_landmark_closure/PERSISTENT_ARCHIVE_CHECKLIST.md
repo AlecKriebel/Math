@@ -21,7 +21,7 @@ inserted and the archive is resealed):
 - Creator: Alec Kriebel
 - ORCID: 0009-0001-9320-500X
 - Affiliation: Independent Researcher
-- Version: v1.1.6
+- Version: v1.1.7
 - Primary resource type: Dataset (computer-assisted proof certificates)
 - Description: Curated primitive graph inputs, complete finite directed-relation atlases, exact per-relation polynomial/sign/rank certificates, raw-to-canonical transports, restoration and probe records, and primary plus separately implemented verifiers supporting the associated preprint. The record also contains the article and supplement PDFs.
 - Suggested keywords: phylogenetic networks; identifiability; Jukes–Cantor; level-2 networks; strongly tree-child; algebraic statistics; exact symbolic verification
@@ -31,8 +31,8 @@ inserted and the archive is resealed):
 
 Required proof object:
 
-1. `stc_jc_sharp_boundary_atlas_certificates_v1.1.6.tar.gz`
-2. `stc_jc_sharp_boundary_atlas_certificates_v1.1.6.tar.gz.sha256`
+1. `stc_jc_sharp_boundary_atlas_certificates_v1.1.7.tar.gz`
+2. `stc_jc_sharp_boundary_atlas_certificates_v1.1.7.tar.gz.sha256`
 3. `CERTIFICATE_BUNDLE_ENVELOPE.json`
 4. `certificate_bundle_logs/verify_quick.log`
 5. `certificate_bundle_logs/verify_full.log`
@@ -47,7 +47,7 @@ Recommended reader-facing files:
 The curated archive is complete and is the canonical proof object cited by
 Theorem 6.3. No omnibus development snapshot is required for verification.
 Legacy `RELEASE_ENVELOPE.json`, `RELEASE_ASSET_SHA256SUMS`, and older
-clean-clone transcripts are not part of this v1.1.6 deposit unless they are
+clean-clone transcripts are not part of this v1.1.7 deposit unless they are
 regenerated after DOI finalization.  The authoritative envelope for the
 curated object is `CERTIFICATE_BUNDLE_ENVELOPE.json`.
 
@@ -73,9 +73,9 @@ git commit -m "Insert reserved Zenodo certificate DOI"
 # only the fresh reconstruction.
 python -I -S reproducibility/build_certificate_bundle.py prepare
 python -I -S reproducibility/build_certificate_bundle.py seal
-bash release_artifacts/stc_jc_sharp_boundary_atlas_certificates_v1.1.6/verify.sh quick
-bash release_artifacts/stc_jc_sharp_boundary_atlas_certificates_v1.1.6/verify.sh full
-bash release_artifacts/stc_jc_sharp_boundary_atlas_certificates_v1.1.6/verify.sh regenerate-all
+bash release_artifacts/stc_jc_sharp_boundary_atlas_certificates_v1.1.7/verify.sh quick
+bash release_artifacts/stc_jc_sharp_boundary_atlas_certificates_v1.1.7/verify.sh full
+bash release_artifacts/stc_jc_sharp_boundary_atlas_certificates_v1.1.7/verify.sh regenerate-all
 
 python reproducibility/build_biorxiv_release.py submission
 python reproducibility/build_journal_packages.py

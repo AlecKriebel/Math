@@ -161,7 +161,7 @@ def source_envelope_checks(final, metadata) -> str:
     if certificate_envelope.is_file():
         envelope = load_json(certificate_envelope)
         require(envelope["schema"] == "stc-jc-certificate-bundle-envelope-v1" and
-                envelope["version"] == "1.1.6" and
+                envelope["version"] == "1.1.7" and
                 envelope["source_tree_clean"] is True,
                 "curated certificate envelope status changed")
         source_commit = envelope["source_commit"]

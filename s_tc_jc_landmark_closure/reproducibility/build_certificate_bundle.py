@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the deterministic reviewer-facing v1.1.6 proof-certificate bundle.
+"""Build the deterministic reviewer-facing v1.1.7 proof-certificate bundle.
 
 The selection below is intentionally explicit. It is the transitive closure
 of the mathematical entry points, not a copy of the development worktree.
@@ -29,7 +29,7 @@ import tempfile
 
 
 PROJECT = Path(__file__).resolve().parents[1]
-VERSION = "1.1.6"
+VERSION = "1.1.7"
 ROOT_NAME = f"stc_jc_sharp_boundary_atlas_certificates_v{VERSION}"
 
 

@@ -26,9 +26,9 @@ publishes a record, chooses a license, or submits a manuscript.
 5. Run, without interruption, from the staged archive root:
 
    ```bash
-   bash release_artifacts/stc_jc_sharp_boundary_atlas_certificates_v1.1.6/verify.sh quick
-   bash release_artifacts/stc_jc_sharp_boundary_atlas_certificates_v1.1.6/verify.sh full
-   bash release_artifacts/stc_jc_sharp_boundary_atlas_certificates_v1.1.6/verify.sh regenerate-all
+   bash release_artifacts/stc_jc_sharp_boundary_atlas_certificates_v1.1.7/verify.sh quick
+   bash release_artifacts/stc_jc_sharp_boundary_atlas_certificates_v1.1.7/verify.sh full
+   bash release_artifacts/stc_jc_sharp_boundary_atlas_certificates_v1.1.7/verify.sh regenerate-all
    ```
 
 6. Preserve the complete source-commit-bound output of those commands in

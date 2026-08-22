@@ -10,8 +10,8 @@ that automatically.
 
 Required Zenodo files:
 
-1. `stc_jc_sharp_boundary_atlas_certificates_v1.1.6.tar.gz`
-2. `stc_jc_sharp_boundary_atlas_certificates_v1.1.6.tar.gz.sha256`
+1. `stc_jc_sharp_boundary_atlas_certificates_v1.1.7.tar.gz`
+2. `stc_jc_sharp_boundary_atlas_certificates_v1.1.7.tar.gz.sha256`
 3. `CERTIFICATE_BUNDLE_ENVELOPE.json`
 4. `certificate_bundle_logs/verify_quick.log`
 5. `certificate_bundle_logs/verify_full.log`
@@ -33,7 +33,7 @@ commands.  After publishing the Zenodo record, download the archive and run:
 
 ```bash
 python reproducibility/verify_certificate_zenodo_release.py \
-  /path/to/stc_jc_sharp_boundary_atlas_certificates_v1.1.6.tar.gz
+  /path/to/stc_jc_sharp_boundary_atlas_certificates_v1.1.7.tar.gz
 ```
 
 Only that exact DOI-bearing archive and the PDFs rebuilt from the same source

@@ -9,7 +9,7 @@ central-edge normalization crosswalk, makes every localization and contextual
 triangle branch choice explicit, replaces two tautological diagnostics by
 exact split-normalized Jacobian and honest probe certificates, and separates
 four-port presentations from their further quotient classes.  The curated
-computer-assisted proof bundle is version 1.1.6; its DOI remains pending until
+computer-assisted proof bundle is version 1.1.7; its DOI remains pending until
 the human author reserves and publishes the Zenodo record.
 The bioRxiv map uploads a small verifier-entrypoint ZIP as supplementary code;
 the journal maps route it to the external repository in accordance with their
