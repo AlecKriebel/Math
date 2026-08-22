@@ -462,13 +462,13 @@ The final corrected probe package is frozen with the following values:
 \[
 \begin{array}{ll}
 \text{primary certificate file SHA-256}
- &\texttt{6c228e0d495fbc68b1df4ddb571558425a35e081cc22b954f232f8a3458991d3}\\
+ &\texttt{93de7b0dd3aa581bdf12288eae8cb9ac42f20a9d9bb3eab35eee8ef9a759d390}\\
 \text{primary payload SHA-256}
  &\texttt{674853fa730c4f54b9ba264d539a51591c8b926ad444195e68df086c26f83825}\\
 \text{independent replay file SHA-256}
- &\texttt{879a397a165e19c162561435e7996a5de5ebdf5e9a7dc38af61a13cc6aa36410}\\
+ &\texttt{47f527dd56ce355d911c44ebc55e24a1e9c7f14f379810902b49ae068261e74f}\\
 \text{independent replay payload SHA-256}
- &\texttt{65160636abfa33de47136a222081ac70bd7b6fae0e029b7a7c379e2d8653df74}\\
+ &\texttt{4492860febc84f4530f67fa50f684ca34fde7c6fc2c6b3ccf906d88d275ac540}\\
 \text{mutation report file SHA-256}
  &\texttt{b0df0584163150c9a823b4e364b8ee46c196ae8abb28fdca4d3d5893a97bfea7}\\
 \text{mutation report payload SHA-256}
@@ -902,10 +902,10 @@ of the corresponding package.
 | Ordinary-triangle common germ | `b81a6cf8da1380f6a682ba6042f6f429ce5d6a47ba0cf62e9c9d8de1b4158885` | `6fd43ae6d38629277c047d3888e970cdab51f4805dce36d71b2430095c1e1aa6` |
 | Frozen probe-input contract | `7f686ae99dd5e6dafc1c04396b711d294a0bddd6a25574f9ea809b831ad7b377` | `579919ca13204ddf959b3a159e4849b69c05ac87861eba2221659ec45bd73f38` |
 | Independent probe-input replay | `54de1bef73e76fc82132ef3f0250a0579ea401274a302ed4d8fbd015c9e8a053` | `96d14bae9b20646abfe64b85a7ac0f61377182f75479031f621ea0dbe2096fce` |
-| Corrected full probe primary | `6c228e0d495fbc68b1df4ddb571558425a35e081cc22b954f232f8a3458991d3` | `674853fa730c4f54b9ba264d539a51591c8b926ad444195e68df086c26f83825` |
-| Independent primitive/graph/full-map probe audit | `879a397a165e19c162561435e7996a5de5ebdf5e9a7dc38af61a13cc6aa36410` | `65160636abfa33de47136a222081ac70bd7b6fae0e029b7a7c379e2d8653df74` |
+| Corrected full probe primary | `93de7b0dd3aa581bdf12288eae8cb9ac42f20a9d9bb3eab35eee8ef9a759d390` | `674853fa730c4f54b9ba264d539a51591c8b926ad444195e68df086c26f83825` |
+| Independent primitive/graph/full-map probe audit | `47f527dd56ce355d911c44ebc55e24a1e9c7f14f379810902b49ae068261e74f` | `4492860febc84f4530f67fa50f684ca34fde7c6fc2c6b3ccf906d88d275ac540` |
 | Independent probe mutation report | `b0df0584163150c9a823b4e364b8ee46c196ae8abb28fdca4d3d5893a97bfea7` | `58006ed7b6677c055b5cdd7249857dc2f752fb3db9cfbcc5bbe5e0a26e31875f` |
-| Independent structural/algebra probe replay | `9b0e45ea62ed30b3502e16677a97a41b99936b2f9eb8cf3b97b2156ee2eb5795` | `b5be07041c7e52cce4828982f295032894c351f41a97cd85f8c753709fe1a8d2` |
+| Independent structural/algebra probe replay | `bdeba4730b6a9b39d8a542119f0630f52600f8a3512835b30d19e30b4446604e` | `971d0fdc3b84cfd4001574ba80d272841eb809213b24984009dda4556ebc6261` |
 | Independent site-transport partition replay | `017068d960e0bfc3d5e44b79b5acc4a8e93195c37d205e8c43321c23a0b77e61` | `a1f80d5ed090a1c6e31067123f0739392384d5124e75296cc76035430710497c` |
 | Weak-sharpness primary | `e66c78a0aeab990b4dc448f4f064b37e1e15ecbff75a5f472bf116d4464378bd` | `dfecd30ea217810a902add48350025e5f00dfa1255718783df790a9c7e1a5182` |
 | Weak-sharpness independent audit | `cfd8d3a2ebc7431d141cac6ebe943e25730eb086fbc84b52833a40bee40a5d52` | `848cc69e28e3cbd8bc1ab7bbad82b0c3e240354079e95965b433c423edc2d8c5` |

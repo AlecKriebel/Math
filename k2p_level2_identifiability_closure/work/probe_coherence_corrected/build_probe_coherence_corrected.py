@@ -1696,12 +1696,17 @@ def base_certificate(
 
 
 def seal_certificate(certificate, started):
-    certificate["operational"] = {"runtime_seconds": time.monotonic() - started}
+    elapsed_seconds = time.monotonic() - started
+    certificate.pop("operational", None)
     logical = dict(certificate)
-    logical.pop("operational")
     logical.pop("payload_sha256", None)
     certificate["payload_sha256"] = sha(logical)
     OUTPUT.write_text(json.dumps(certificate, indent=2, sort_keys=True) + "\n")
+    print(
+        f"K2P_CORRECTED_PROBE_ELAPSED_SECONDS={elapsed_seconds:.6f}",
+        file=sys.stderr,
+        flush=True,
+    )
 
 
 def main():

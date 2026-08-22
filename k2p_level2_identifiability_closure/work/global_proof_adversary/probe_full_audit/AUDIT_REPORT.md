@@ -6,7 +6,7 @@
 one-/two-port probe layer.  The frozen primary payload is
 `674853fa730c4f54b9ba264d539a51591c8b926ad444195e68df086c26f83825`;
 the independent primitive/graph/full-map audit payload is
-`65160636abfa33de47136a222081ac70bd7b6fae0e029b7a7c379e2d8653df74`.
+`4492860febc84f4530f67fa50f684ca34fde7c6fc2c6b3ccf906d88d275ac540`.
 
 ## Exact replay lemmas
 
@@ -58,16 +58,16 @@ the independent primitive/graph/full-map audit payload is
 
 | Artifact | File SHA-256 | Payload SHA-256 |
 |---|---|---|
-| Primary probe certificate | `6c228e0d495fbc68b1df4ddb571558425a35e081cc22b954f232f8a3458991d3` | `674853fa730c4f54b9ba264d539a51591c8b926ad444195e68df086c26f83825` |
-| Clean-room graph audit | `879a397a165e19c162561435e7996a5de5ebdf5e9a7dc38af61a13cc6aa36410` | `65160636abfa33de47136a222081ac70bd7b6fae0e029b7a7c379e2d8653df74` |
+| Primary probe certificate | `93de7b0dd3aa581bdf12288eae8cb9ac42f20a9d9bb3eab35eee8ef9a759d390` | `674853fa730c4f54b9ba264d539a51591c8b926ad444195e68df086c26f83825` |
+| Clean-room graph audit | `47f527dd56ce355d911c44ebc55e24a1e9c7f14f379810902b49ae068261e74f` | `4492860febc84f4530f67fa50f684ca34fde7c6fc2c6b3ccf906d88d275ac540` |
 | Clean-room mutations | `b0df0584163150c9a823b4e364b8ee46c196ae8abb28fdca4d3d5893a97bfea7` | `58006ed7b6677c055b5cdd7249857dc2f752fb3db9cfbcc5bbe5e0a26e31875f` |
-| Independent structural/algebra replay | `9b0e45ea62ed30b3502e16677a97a41b99936b2f9eb8cf3b97b2156ee2eb5795` | `b5be07041c7e52cce4828982f295032894c351f41a97cd85f8c753709fe1a8d2` |
+| Independent structural/algebra replay | `bdeba4730b6a9b39d8a542119f0630f52600f8a3512835b30d19e30b4446604e` | `971d0fdc3b84cfd4001574ba80d272841eb809213b24984009dda4556ebc6261` |
 | Primitive anchor replay | `54de1bef73e76fc82132ef3f0250a0579ea401274a302ed4d8fbd015c9e8a053` | `96d14bae9b20646abfe64b85a7ac0f61377182f75479031f621ea0dbe2096fce` |
 | Site-map partition replay | `017068d960e0bfc3d5e44b79b5acc4a8e93195c37d205e8c43321c23a0b77e61` | `a1f80d5ed090a1c6e31067123f0739392384d5124e75296cc76035430710497c` |
 
 Primary ledger byte hashes are embedded in the clean-room certificate.  The
 frozen probe manifest has SHA-256
-`fae3a09539dc8be0bdce9c5192f75cf970a12c6933f60f46caad1b863b868548`.
+`3cc47c38acbd519dfd865eda0b555c53a3a98b9e701016517dc7a819bea1e9b0`.
 
 ## Scope
 

@@ -27,3 +27,16 @@
 Best-guess completion toward the corrected full-probe audit goal: **100%**.
 Best-guess completion toward unconditional theorem promotion from this layer:
 **100%**; no probe-layer blocker remains.
+
+## 2026-08-22 12:38 PDT — stable-source rebind replay
+
+- Replayed the audit after removing wall-clock telemetry from the primary
+  certificate bytes. The mathematical primary payload remains `674853fa...`;
+  its deterministic file SHA-256 is now `93de7b0d...`.
+- All 176 anchors, 29,964 one-port rows, 544,571 two-port rows, 67,741 exact
+  transports, 4,379 restrictions, and 12 mutations passed again with no census
+  change. The refreshed audit payload is `4492860f...`.
+- Runtime was 456.41 seconds. `/usr/bin/time -l` recorded peak memory footprint
+  2,136,999,808 bytes; the auxiliary audit remains below its 4 GB guard.
+
+Completion remains **100%** for the corrected full-probe audit goal.

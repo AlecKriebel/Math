@@ -77,3 +77,17 @@ package: **100%**.  No mixed-sign claim is made.
 - Re-ran the full promotion guard after the correction.
 
 Completion estimate remains **100%**.
+
+## 2026-08-22 12:29 PDT — probe byte-stability rebind
+
+- A clean full regeneration showed that the probe summary's embedded runtime
+  made its byte hash nondeterministic even though its mathematical payload and
+  all 574,535 rows were unchanged. Runtime is now emitted only operationally;
+  the stable primary certificate SHA-256 is `93de7b0d...` with the same
+  payload `674853fa...`.
+- The refreshed independent graph audit passed every row and all 12 mutations;
+  file SHA-256 `47f527dd...`, payload `4492860f...`. The structural/algebra
+  replay and promotion placeholder were rebound, and the promotion guard still
+  returns the identical canonical PASS census.
+- The theorem remains unconditional `K2P-SAME`. The temporary 99% completion
+  estimate reflects only the fresh full replay and final submission archive.

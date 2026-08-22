@@ -10,7 +10,7 @@ the public ledgers as untrusted claims.
 
 `independent_probe_graph_audit_certificate.json` is **PASS**, semantic payload
 
-`65160636abfa33de47136a222081ac70bd7b6fae0e029b7a7c379e2d8653df74`.
+`4492860febc84f4530f67fa50f684ca34fde7c6fc2c6b3ccf906d88d275ac540`.
 
 It certifies:
 
@@ -40,8 +40,8 @@ builder used 451,903,488 bytes peak RSS (about 0.452 GB) and its verifier used
 about 72 MB (about 0.072 GB).  This auxiliary clean-room audit deliberately
 holds 67,741 public map records plus 2,107 reconstructed equality parents and
 canonical-class graphs in memory so it can apply every map to independently
-rebuilt graphs.  Its measured peak was 2,181,349,376 bytes (2.181 GB decimal)
-and runtime was 617.91 seconds on the M1 reference machine.  It is an
+rebuilt graphs.  Its latest measured peak was 2,136,999,808 bytes (2.137 GB
+decimal) and runtime was 456.41 seconds on the M1 reference machine.  It is an
 additional adversarial audit, not the referee package's required replay path.
 
 The audit enforces a streaming Fourier cache: graph-specific pullbacks and

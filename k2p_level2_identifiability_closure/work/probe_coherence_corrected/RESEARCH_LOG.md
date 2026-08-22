@@ -107,3 +107,22 @@
   runtime 4.62 seconds, and peak RSS 50,806,784 bytes. Zero unresolved rows.
 - Best-guess completion toward the probe-coherence subgoal: 98%, pending only
   the separate adversarial primitive-graph/global-theorem consumer audit.
+
+## 2026-08-22 12:29 PDT — operational telemetry removed from certificate bytes
+
+- A detached full regeneration reproduced all 574,535 probe rows and the
+  logical payload, but the downstream independent replay bound the byte hash
+  of `probe_coherence_certificate.json`, whose embedded wall-clock runtime was
+  necessarily different. This caused a fail-closed logical-comparison stop
+  after the 2,949.341-second primitive build.
+- Removed operational runtime from the authoritative certificate bytes and
+  print it only to stderr. The mathematical payload remains
+  `674853fa730c4f54b9ba264d539a51591c8b926ad444195e68df086c26f83825`;
+  the stable certificate SHA-256 is now
+  `93de7b0dd3aa581bdf12288eae8cb9ac42f20a9d9bb3eab35eee8ef9a759d390`.
+- The deterministic ledger resealer reproduces the stable certificate exactly.
+  The refreshed independent replay passes with payload
+  `971d0fdc3b84cfd4001574ba80d272841eb809213b24984009dda4556ebc6261`,
+  and all 15 targeted mutations plus the nondefault hash-seed replay pass.
+- Best-guess completion toward the probe-coherence subgoal remains 100%; the
+  remaining work is transitive release rebinding and a fresh clean full replay.

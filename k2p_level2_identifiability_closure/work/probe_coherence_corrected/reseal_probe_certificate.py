@@ -241,13 +241,9 @@ def main():
         "one_port_parents_inheriting_triangle": inherited_parent_count,
         "two_port_equalities_inheriting_triangle": equality_global_count,
     })
-    certificate["operational"] = {
-        "runtime_seconds": 2762.68,
-        "resealed_from_primary_ledgers": True,
-    }
+    certificate.pop("operational", None)
     certificate.pop("payload_sha256", None)
     logical = dict(certificate)
-    logical.pop("operational")
     certificate["payload_sha256"] = sha(logical)
     CERTIFICATE.write_text(json.dumps(certificate, indent=2, sort_keys=True) + "\n")
     print(json.dumps({

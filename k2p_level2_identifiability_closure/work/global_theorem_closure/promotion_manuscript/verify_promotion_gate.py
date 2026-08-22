@@ -55,14 +55,14 @@ EXPECTED_ZERO_GATES = {
 EXPECTED_PROBE_ARTIFACT_VALUES = {
     "primary": {
         "path": "work/probe_coherence_corrected/probe_coherence_certificate.json",
-        "file_sha256": "6c228e0d495fbc68b1df4ddb571558425a35e081cc22b954f232f8a3458991d3",
+        "file_sha256": "93de7b0dd3aa581bdf12288eae8cb9ac42f20a9d9bb3eab35eee8ef9a759d390",
         "payload_sha256": "674853fa730c4f54b9ba264d539a51591c8b926ad444195e68df086c26f83825",
         "status": "PASS",
     },
     "independent_replay": {
         "path": "work/global_proof_adversary/probe_full_audit/independent_probe_graph_audit_certificate.json",
-        "file_sha256": "879a397a165e19c162561435e7996a5de5ebdf5e9a7dc38af61a13cc6aa36410",
-        "payload_sha256": "65160636abfa33de47136a222081ac70bd7b6fae0e029b7a7c379e2d8653df74",
+        "file_sha256": "47f527dd56ce355d911c44ebc55e24a1e9c7f14f379810902b49ae068261e74f",
+        "payload_sha256": "4492860febc84f4530f67fa50f684ca34fde7c6fc2c6b3ccf906d88d275ac540",
         "status": "PASS",
     },
     "mutation_report": {

@@ -358,3 +358,19 @@
 - Finalized the locked provenance text before rebuilding the lock. Subsequent
   replay telemetry will be recorded only in the unlocked submission layer, so
   the clean replay cannot create another self-referential lock update.
+
+## 2026-08-22 12:29 PDT — probe certificate made byte-stable (98%)
+
+- The next detached full replay passed all preceding gates, the corrected
+  49-minute primitive probe build, and its independent replay. It then stopped
+  because the freshly generated summary certificate embedded wall-clock
+  runtime, while the independent report correctly bound the resulting byte
+  hash. Only `operational.runtime_seconds` and that dependent source hash
+  differed; every ledger and mathematical field agreed.
+- Rejected a tolerant-comparator repair. Removed runtime telemetry from the
+  authoritative probe certificate, retained runtime on stderr, regenerated
+  the dependent independent and mutation certificates, and began a complete
+  transitive rebind. This makes primitive regeneration byte-stable rather than
+  teaching the release verifier to ignore a changing provenance hash.
+- Completion remains 98% pending the fresh clean full replay and final reader
+  package/archive binding.

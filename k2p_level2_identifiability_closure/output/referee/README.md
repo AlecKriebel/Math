@@ -2,8 +2,8 @@
 
 The authoritative portable set is the recursive closure of
 `work/final_theorem_release/RELEASE_LOCK.json`. It contains 374 files and
-434,696,280 bytes. Its canonical content-ledger root is
-`e7c7e7bb36901b39215ab5ed44a7e8f3ed0871dcf0e69ab22059dca7ef6215d9`.
+434,698,345 bytes. Its canonical content-ledger root is
+`7004e3e26bf359d0a11c07fd51cb1636859b30b07a97ca6c9cfd0dcd082dfc92`.
 
 From the project root, verify the exact set and regenerate its ledger with:
 

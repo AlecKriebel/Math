@@ -123,10 +123,10 @@ COMPOSITE_SERIALIZATION = {
     "row_order": "raw_id_ascending",
 }
 PROMOTION_MANUSCRIPT_FILES = {
-    "work/global_theorem_closure/promotion_manuscript/K2P_SAME_PROMOTION_MANUSCRIPT.md": "3e51241a2aca9b068f04cd3c954b442c09d6128d87c3a83a94f0df943c3a4c16",
+    "work/global_theorem_closure/promotion_manuscript/K2P_SAME_PROMOTION_MANUSCRIPT.md": "d5e33c0ded1a8ae3ec3b7738e3166cb6d6afb7faff76c6bad0b759a0671a38cd",
     "work/global_theorem_closure/promotion_manuscript/QUANTIFIER_AUDIT.md": "425a041bc3e4cc7bd4f74c952455623ff26f430d9c4ceb006edcac9e8c3765d8",
-    "work/global_theorem_closure/promotion_manuscript/PROBE_PROMOTION_PLACEHOLDER.json": "b3ae68a58280c2ebb686c2a1ea40074723916be2a1142b5255f91e3676825207",
-    "work/global_theorem_closure/promotion_manuscript/verify_promotion_gate.py": "62e0a1c30d281c0f4f176d1e265923915d0413ad2709782a18a019353b1f1a7b",
+    "work/global_theorem_closure/promotion_manuscript/PROBE_PROMOTION_PLACEHOLDER.json": "5e316301a53c6f437a3f6ad5f971e67846aaa13de67fd01978bbbc6f9efb9285",
+    "work/global_theorem_closure/promotion_manuscript/verify_promotion_gate.py": "48f5522a70c4c0c5896c2d38382d0abb5ef2a93370bb217fac487fdbf6138136",
 }
 PROMOTION_GUARD_CENSUS = {
     "frozen_inputs_verified": 23,
@@ -214,7 +214,7 @@ HISTORICAL_PROOF_ARTIFACTS = {
         ],
     },
     "work/global_proof_adversary/probe_full_audit/AUDIT_REPORT.md": {
-        "sha256": "58086eac7c5b03135e08da0901f9dc63521c73a5f8a2fe95c2ec1b3ebc57aeb3",
+        "sha256": "9ec50c3573ef0be2b421730cf95258c8927dde165cdd4138a3a596fcfb08f69a",
         "classification": "HISTORICAL_REPAIRED_GAP_PROBE_REPORT",
         "authoritative_replacements": [
             "work/global_proof_adversary/probe_full_audit/independent_probe_graph_audit_certificate.json",
