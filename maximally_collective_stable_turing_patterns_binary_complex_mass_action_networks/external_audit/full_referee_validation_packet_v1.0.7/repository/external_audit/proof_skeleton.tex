@@ -1,0 +1,394 @@
+\documentclass[10pt]{article}
+\usepackage[margin=.62in]{geometry}
+\usepackage[T1]{fontenc}\usepackage{lmodern,microtype}
+\usepackage{amsmath,amssymb,booktabs,enumitem}
+\setlist{nosep,leftmargin=1.45em}
+\pagestyle{plain}
+\emergencystretch=2em
+\newcommand{\diag}{\operatorname{diag}}
+\begin{document}
+\begin{center}
+{\Large\bf Proof skeleton}\par
+{\large Exact Diffusion Design for Maximally Collective Stable Turing Patterns}\\
+{\normalsize in Binary-Complex Mass-Action Networks}\\
+{\small Topology-Wide All-Spectrum Localization and
+Exponent-Optimal Stationary Heterogeneity Trade-Offs}
+\end{center}
+
+\section*{1. Reaction algebra and topology-wide localization}
+Construct $Y_m$ and $\Gamma_m$ directly from the indexed reactions.
+Reaction-by-reaction verification gives $c^T\Gamma_m=0$ for
+$c=(0,4,\ldots,4,2,1)^T$.  Solving the balance equations gives exactly
+\[
+\ker\Gamma_m=\operatorname{span}\{(\mathbf1_m,0,0),(0_m,1,1)\}.
+\]
+Because $\Gamma_m$ has $m+2$ columns, rank--nullity gives
+$\operatorname{rank}\Gamma_m=m$.  Independently, the maximal minor on rows
+$X_1,X_3,\ldots,X_m,Z$ and columns
+$R_2,\ldots,R_{m-2},R_a,R_b,R_+$ has determinant $4(-1)^m$.
+Therefore every positive flux is $(a\mathbf1_m,b,b)$.  Differentiation at the
+unit equilibrium gives $A_m(a,b)$; at a general equilibrium
+$x^*=H^{-1}\mathbf1$, the Jacobian is $A_m(a,b)H$.  Conversely, the choice
+\[
+ k_r=\frac{v_r}{(x^*)^{y_r}}
+\]
+realizes every $a,b,H>0$.
+
+For a nonempty principal set with fewer than $m$ vertices, Frobenius decomposition reduces every SCC to either a negative singleton or one of three non-singleton forms: the $X_1,\ldots,X_{m-1}$ long cycle, the $X_2,\ldots,X_m$ long cycle, or a principal boundary-triad block. At $b=2a$ one directed edge disappears and only refines the decomposition. The two cycle characteristic equations are excluded from $\Re\lambda\ge0$ by strict product inequalities. The full triad has positive cubic coefficients and $c_1c_2-c_3$ is a sum of fourteen positive monomials. Every lower-order principal matrix is thus Hurwitz. Sparse expansion of the $X_1,\ldots,X_m$ block gives the negative signed determinant $-2a^{m-1}b\prod h_i$, forcing a positive real eigenvalue.
+
+For $m=3$, the two long cycles are $\{X_1,X_2\}$ and $\{X_2,X_3\}$,
+and every other non-singleton SCC is a principal subgraph of
+$\{X_1,X_3,Z\}$.  Thus the chain argument is applied only for $m\ge4$.
+
+\paragraph{Audit object.} Independently generate every induced SCC for $m=3,\ldots,8$ at generic $b$ and at $b=2a$, while the proof uses the all-$m$ graph classification rather than enumeration.
+
+\newpage
+\section*{2. Principal-minor diffusion-ray theorem and exact network law}
+Let $n\ge2$.  For $a_I=(-1)^{|I|}\det J_{I,I}$ and $D\succ0$,
+multilinearity gives
+\[
+\det(sD-J)=\sum_Ia_I\prod_{j\notin I}sd_j
+=s(\beta_1+\beta_2s+\cdots+\beta_ns^{n-1}).
+\]
+Assume directly that $a_I>0$ for $|I|\le n-2$ and that
+$\sum_{|I|=n-1}a_I>0$; a simple zero and otherwise stable spectrum supplies
+the latter coefficient condition in the application.  Hence $\beta_k>0$
+for $k\ge2$, and the bracket is strictly increasing on $s>0$, proving the
+unique simple threshold iff $\beta_1<0$.
+
+For the stronger positive-real band, define
+\[
+\chi_s(\lambda)=\det(\lambda I+sD-J)
+=\sum_Ia_I\prod_{j\notin I}(\lambda+sd_j).
+\]
+Every derivative contribution from $|I|\le n-2$ is nonnegative. The total
+order-$(n-1)$ derivative is $\sum_{|I|=n-1}a_I>0$, the coefficient of
+$\lambda$ in $\det(\lambda I-J)$. Hence $\chi_s'(\lambda)>0$ for $\lambda\ge0$. The sign of $\chi_s(0)$ therefore gives a positive real eigenvalue exactly for $0<s<s_*$.
+At threshold, $\chi_{s_*}(0)=0$ and $\chi_{s_*}'(0)>0$; this, rather than
+scalar simplicity of the generalized-pencil root alone, proves ordinary
+algebraic simplicity of zero for $J-s_*D$.
+
+For $A_m(a,b)H$, compute every order-$m$ omission minor. Omitting $Z$ gives weight $-2$; omitting an interior $X_j$ gives $+16$; omitting $X_1$ or $X_m$ gives zero. Thus
+\[
+\beta_1=2a^{m-1}b\prod_{i=1}^mh_i
+\left(8h_Z\sum_{j=2}^{m-1}\frac{d_j}{h_j}-d_Z\right).
+\]
+Homogeneous stability on $c^\perp$, together with $c^TJ=0$, gives rank
+$n-1$, an algebraically simple conservation zero, and a positive
+order-$(n-1)$ characteristic coefficient, so every hypothesis of the general
+theorem holds.  This proves the exact criterion.  The criterion is independent
+of $a,b$, but its unique root is $s_*(a,b,H,D)$.  The same sign follows from
+first-order perturbation of the conservation eigenvalue. For fixed $H$,
+minimizing $d_{\max}/d_{\min}$ under the strict inequality gives the
+nonattained infimum $T(H)=8h_Z\sum_{j=2}^{m-1} h_j^{-1}$. At $H=I$,
+$T=8(m-2)$, and $h_Z/h_j\ge1/\chi_H$ gives
+$\chi_D\chi_H>8(m-2)$.
+
+\newpage
+\section*{3. Improved unit-equilibrium primary bifurcation}
+Set $a=b=1$, $H=I$, $K_i=91m-181-i$, and use
+\[
+d_1=23/63,\quad d_i=K_i^{-1},\quad d_m=1/7,\quad d_Z=16/45.
+\]
+The full vectors $r=(r_1,\ldots,r_m,r_Z)^T$ and
+$\ell=(\ell_1,\ldots,\ell_m,\ell_Z)^T$ satisfy
+$(A_m-D_m)r=0$ and $(A_m-D_m)^T\ell=0$. Exact harmonic-sum formulas prove $\ell^Tr<0$ and $\ell^TD_mr<0$, hence transversality $\eta_m>0$.
+
+Homogeneous stability follows from
+\[
+\det(\lambda I-A_m)=\lambda q_m(\lambda),\qquad
+\lambda q_m=(1+\lambda)^{m-3}P(\lambda)-R(\lambda),
+\]
+where $P=\lambda^4+12\lambda^3+42\lambda^2+47\lambda+16$ and $R=5\lambda^2+33\lambda+16$. The exact difference $|1+\lambda|^2|P|^2-|R|^2$ expands into 35 nonnegative monomials in $x=\Re\lambda$ and $y^2=(\Im\lambda)^2$, with equality only at the origin.
+For $m=3$, $q_3=(\lambda+7)(\lambda^2+5\lambda+2)$ is Hurwitz.  For
+$m\ge4$, $|1+\lambda|\ge1$ makes the 35-term strict inequality incompatible
+with $(1+\lambda)^{m-3}P=R$ at any nonzero closed-right-half-plane root.
+Since $q_m(0)=16m-34>0$, the conservation zero is simple.
+
+For spatial damping $tD_m$, set
+$g_1=\lambda+2+(23/63)t$, $g_m=\lambda+5+t/7$,
+$g_Z=\lambda+4+(16/45)t$,
+$F=g_1g_mg_Z-4g_1-4g_m+g_Z$, and $G=g_Z(4g_1+g_m)-36$.
+Chain elimination gives $\det(\lambda I-A_m+tD_m)=Q_mF-G$.
+At $(\lambda,t)=(0,1)$, the interior
+product telescopes to $91/90$.  With $z=y^2$ and $s=t-1$, the exact source
+\[
+E_{77}=\left[(91/90)^2+z\right]|F(x+i\sqrt z,1+s)|^2
+-|G(x+i\sqrt z,1+s)|^2
+\]
+has 77 strictly positive coefficients and no constant term.  Thus equality
+occurs only at $(x,z,s)=(0,0,0)$.  Algebraic simplicity at that point is the
+separate exact identity, with
+$\mathfrak h_m=\sum_{j=1}^{m-2}K_j^{-1}$,
+\[
+ \left.\frac{d}{d\lambda}\det(\lambda I-A_m+D_m)\right|_{\lambda=0}
+ =\frac{7043400m-13600927-7043400\mathfrak h_m}{255150}
+ =-\frac{163}{45}\ell^Tr>0.
+\]
+Hence the first mode has one algebraically simple zero with one-dimensional
+kernel and cokernel, all other first-mode eigenvalues are stable, and all
+$t>1$ modes are Hurwitz.
+
+The exact unit contrast is
+\[
+\chi_D=\frac{23(91m-183)}{63},
+\]
+which improves the superseded high-contrast profile and is within a dimension-independent factor of the sharp linear threshold.
+
+\newpage
+\section*{4. Conservation-compatible normal form and stable branch}
+The mass-action field is quadratic:
+\[
+f(\mathbf1+u)=A_mu+\tfrac12B_m(u,u),\qquad c^TB_m(u,v)=0.
+\]
+On the fixed integrated-mass class, the critical mode is $r\cos\xi$. Since $\cos^2\xi=(1+\cos2\xi)/2$, solve
+\[
+A_mw_0=-\tfrac14B(r,r),\quad c^Tw_0=0,
+\qquad (A_m-4D_m)w_2=-\tfrac14B(r,r).
+\]
+The first is an augmented nonsingular solve; the second is invertible by mode
+isolation.  The interior $w_2$ recurrence telescopes through four consecutive
+$K_i$ factors, leaving an explicit $4\times4$ system in the four retained
+boundary values.  Its determinant is
+$64\mathcal Q_m/[6615(91m-183)(91m-181)(91m-180)]>0$.
+
+The fixed-mass sectorial semiflow has a one-dimensional center manifold.
+The spatial reflection $\xi\mapsto\pi-\xi$ commutes with the Neumann
+semiflow, preserves the mass class, and sends $r\cos\xi$ to its negative.
+An equivariant center manifold therefore has an odd reduced vector field, and
+reflection exchanges the two nonzero branches.
+Their perturbations tend to zero in $H_N^2\hookrightarrow C^0$ from
+$\mathbf1$, so both branches remain componentwise strictly positive for
+sufficiently small $\mu>0$ at each fixed $m$.
+Projection of its reduced vector field onto the adjoint critical mode yields
+\[
+\dot A=\eta_m\mu A+c_mA^3+O(|A|^5+|A|^3|\mu|+|A||\mu|^2),
+\]
+\[
+c_m=\frac{\ell^T\{B(r,w_0)+\tfrac12B(r,w_2)\}}{\ell^Tr}.
+\]
+Setting this reduced vector field to zero gives the stationary
+Lyapunov--Schmidt equation.
+Writing $\mathfrak h_m=\sum_{j=1}^{m-2}K_j^{-1}$, the numerator telescopes to
+$R_m+C_m\mathfrak h_m$.  The supplement prints $R_m$, $C_m$, their positive
+denominators, and the exact $L_m$ clearing identity.  Shifted
+coefficientwise-positive polynomials prove the numerator positive, while
+$\ell^Tr<0$; therefore $c_m<0$ for every $m\ge3$.
+For a direct audit, put
+\[
+\mathcal Q_m=589180301m^3-3500015940m^2+6930529579m-4574434500,
+\]
+\begin{align*}
+P_R={}&68605040480814208768m^4-550882186169626030957m^3
++1658612632937449670852m^2\\
+&-2219226476204103501323m+1113379274975809565700,\\
+P_C={}&652054120726848m^4-5151971981328467m^3
++15265080924982572m^2\\
+&-20102347725659113m+9927281930180400.
+\end{align*}
+Then
+\[
+R_m=\frac{P_R}{286118780220(8m-17)\mathcal Q_m},\qquad
+C_m=-\frac{215P_C}{11645046(8m-17)\mathcal Q_m},
+\]
+and exact clearing gives
+\[
+R_m+C_m\frac{m-2}{90m-179}
+=\frac{L_m}{286118780220(8m-17)(90m-179)\mathcal Q_m}.
+\]
+The shifted coefficients of $\mathcal Q_m,P_R,P_C,L_m$ are positive, so
+$C_m<0$ and
+$R_m+C_m\mathfrak h_m\ge R_m+C_m(m-2)/(90m-179)>0$.
+
+On
+\[
+ X_c=\{u\in H_N^2:\textstyle\int_0^\pi c^Tu=0\},\qquad
+ Y_c=\{g\in L^2:\textstyle\int_0^\pi c^Tg=0\},
+\]
+the stationary linearization is Fredholm of index zero, with kernel
+$\operatorname{span}\{r\cos\xi\}$, cokernel
+$\operatorname{span}\{\ell\cos\xi\}$, and transversality pairing
+$(\pi/2)\ell^TD_mr\ne0$.  Crandall--Rabinowitz gives the stationary local curve; reflection equivariance
+and the odd normal form identify its two positive nonconstant halves for
+$\mu>0$. Their center eigenvalue is $-2\eta_m\mu+O(\mu^2)<0$. The complementary spectrum is separated at onset and remains separated under analytic perturbation. Positive Neumann diffusion is sectorial on fixed-mass $L^2$, its fractional $H^1$ domain is a Banach algebra in one dimension, and the quadratic Nemytskii map is smooth. The principle of linearized stability gives local exponential convergence in $H^1$ for sufficiently close nonnegative initial data in the same conservation class.
+
+\newpage
+\section*{5. Equilibrium-scaled stable trade-off and audit boundaries}
+Let $\nu=m-2$ and
+\[
+ \kappa_\nu=\begin{cases}1/\sqrt3,&\nu=1,\\
+ \sqrt5/2,&\nu\ge2,
+ \end{cases}
+ \qquad L_0=\frac{\kappa_\nu}{\sqrt\nu},
+ \qquad L_1=\frac{90\nu}{90\nu+1}.
+\]
+The interval is nonempty: for $\nu=1$ the squared inequality is
+$8281<24300$, while for $\nu\ge2$ it follows from
+$(90\nu+1)^2\le(91\nu)^2<6480\nu^3$.  Set $h_1=h_m=h_Z=1$,
+$h_i=K_i/(LK_{i-1})$, and choose physical diffusion
+$D^{\rm phys}=\mathsf H_m(L)\Delta$. Under
+$\widehat x=\mathsf H_m(L)x$,
+\[
+\partial_t\widehat x=\mathsf H_m(L)
+\{f(\widehat x)+(1-\mu)\Delta\partial_{xx}\widehat x\}.
+\]
+At $\mu=0$, the effective stationary bracket and right vector are unchanged; the dynamic
+left vector is $\widetilde\ell(L)=\mathsf H_m(L)^{-1}\ell$. The physical
+fixed-mass functional is $(\mathsf H_m(L)^{-1}c)^T\widehat x$.
+Moreover,
+\[
+\widetilde\ell(L)^T\mathsf H_m(L)\Delta r
+=\ell^T\Delta r<0,
+\qquad \widetilde\ell(L)^Tr<0,
+\]
+so the scaled crossing coefficient $\eta_m(L)$ is positive.
+Invertibility of $\mathsf H_m(L)$ preserves the kernel:
+\[
+ \ker[\mathsf H_m(L)(A_m-\Delta)]
+ =\ker(A_m-\Delta)=\operatorname{span}\{r\}.
+\]
+A generalized vector would force $0=\widetilde\ell(L)^Tr$, so the scaled
+zero is algebraically simple.
+For each fixed $m$ and $L$, the normalized branch converges to $\mathbf1$ in
+$H_N^2\hookrightarrow C^0$ and remains componentwise positive for small
+$\mu>0$; the positive diagonal physical rescaling preserves this positivity.
+
+Chain elimination now gives interior factors
+\[
+g_i=\frac{K_{i-1}}{K_i}(1+L\lambda)+\frac{t-1}{K_i}.
+\]
+For $t\ge1$, Bernoulli's inequality and $\nu L^2\ge1/3$ reduce spatial
+half-plane exclusion to the exact source polynomial
+\[
+E_{84}=(91/90)^2(1+Ax+z/3)|F(x+i\sqrt z,1+s)|^2
+-|G(x+i\sqrt z,1+s)|^2,
+\quad A=2\nu L, z=y^2, s=t-1.
+\]
+Its 84 coefficients are coefficientwise nonnegative in $A>0$, and equality
+occurs only at the first-mode zero $(x,z,s)=(0,0,0)$.
+
+At $t=0$, the exact homogeneous determinant, after dividing by
+$\det\mathsf H_m(L)$, is
+\[
+ QF_0-R,\qquad
+ Q=\prod_{i=2}^{m-1}\left(1+L\frac{K_{i-1}}{K_i}\lambda\right),
+\]
+\[
+ F_0=\lambda^3+11\lambda^2+31\lambda+16,
+ \qquad R=5\lambda^2+33\lambda+16.
+\]
+Every factor of $Q$ has modulus at least $|1+L\lambda|$ for
+$\Re\lambda=x\ge0$.  If $\nu\ge2$, then
+\[
+ |Q|^2\ge1+2\nu Lx+\nu L^2y^2
+ \ge1+Ax+\frac54y^2,\qquad A=2\nu L.
+\]
+On the certified domain $A\ge\sqrt{5\nu}\ge\sqrt{10}>1/4$.
+With $z=y^2$ and $U=A-1/4$, the exact source
+\[
+E_{22}=\left[1+(U+1/4)x+(5/4)z\right]|F_0(x+i\sqrt z)|^2
+-|R(x+i\sqrt z)|^2
+\]
+has 22 nonzero monomials.  All coefficient polynomials are nonnegative and
+equality is possible only at $\lambda=0$.  The coefficient $5/4$ is sharp for
+this certificate only: replacing it by $B$ makes the $z=y^2$ coefficient at
+$x=0$ equal to $256B-320$.  This does not identify an intrinsic dynamical
+boundary.  Also
+\[
+ (QF_0-R)'(0)=16L\sum_{i=2}^{m-1}K_{i-1}/K_i-2>0,
+\]
+so the conservation zero is simple.  If $\nu=1$, putting
+$\gamma=91L/90$ gives
+\[
+ \frac{QF_0-R}{\lambda}
+ =\gamma\lambda^3+(1+11\gamma)\lambda^2
+ +(6+31\gamma)\lambda+(16\gamma-2),
+\]
+whose coefficients and Routh--Hurwitz difference
+$6+99\gamma+325\gamma^2$ are positive because $\gamma>1/8$.
+
+The second harmonic is unchanged, while the zero harmonic changes by
+$w_0(L)=w_0^{\rm ref}+\tau_m(L)\rho$. The cubic numerator is
+$N_m(L)=N_m^{\rm ref}+\tau_m(L)S_m$.  With
+$1/91\le\mathfrak h_m<1/90$,
+\[
+S_m=-\frac{4(1760850\mathfrak h_m-10253)}{462105},
+\qquad -\frac1{10}<S_m<0.
+\]
+Since $C_m<0$, exact clearing gives
+\[
+N_m^{\rm ref}-\frac1{100}\ge\frac{P_{\rm ref}(\nu)}{D_{\rm ref}(\nu)},
+\]
+where
+\begin{align*}
+P_{\rm ref}={}&3790502986637265684840\nu^5
+-974216530468600286489\nu^4-53103567440921218871\nu^3\\
+&-576386186827093561\nu^2+3649732858601219\nu+55281268032918,\\
+D_{\rm ref}={}&715296950550(8\nu-1)(90\nu+1)\\
+&\times(589180301\nu^3+35065866\nu^2+629431\nu+3306).
+\end{align*}
+$D_{\rm ref}>0$, and the shift $\nu=v+1$ gives six positive coefficients for
+$P_{\rm ref}$, proving $N_m^{\rm ref}>1/100$.
+
+For the gauge, set
+\begin{align*}
+A_\tau={}&1494249120\mathfrak h_mL\nu^2-69786990\mathfrak h_mL\nu
++108738630L\nu^2\\
+&+1214388L\nu-8521L-125249670\nu^2+1031940\nu,\\
+B_\tau={}&32760\mathfrak h_mL\nu+32760L\nu^2+4L-4095\nu.
+\end{align*}
+Then $\tau_m=-A_\tau/[15876(8\nu-1)B_\tau]$ and
+$B_\tau=4095\nu[8L(\nu+\mathfrak h_m)-1]+4L>0$.  The exact derivatives
+are negative on $L\ge1/\sqrt{3\nu}$, so the maximum is at
+$(\mathfrak h_m,L)=(1/91,1/\sqrt{3\nu})$.  For $\nu\ge2$ its endpoint sign
+is bounded by
+\[
+P_{\rm up}(\nu)=-\frac{189709065}{2}\nu^3-507201030\nu^2-935658\nu+58481,
+\]
+with
+\[
+P_{\rm up}'=-\frac{569127195}{2}\nu^2-1014402060\nu-935658<0,
+\quad P_{\rm up}(2)=-2789453215<0.
+\]
+The case $\nu=1$ uses the exact unreduced endpoint expression and
+$\sqrt3<7/4$.  Hence $\tau_m(L)<1/20$.  These bounds hold on the broader
+cubic range $L\ge1/\sqrt{3\nu}$ and give
+$N_m(L)>1/200$.  Since $\widetilde\ell(L)^Tr
+=\ell^T\mathsf H_m(L)^{-1}r<0$, the exact quotient
+\[
+c_m(L)=\frac{N_m(L)}{\widetilde\ell(L)^Tr}<0
+\]
+holds throughout the certified interval.
+
+The physical contrasts are
+\[
+\chi_D=\frac{23}{63}91\nu L,\qquad
+\chi_H=\frac{91\nu-1}{91\nu L}.
+\]
+Here $\chi_H$ measures equilibrium concentration-scale separation, not a
+universal measure of biological expense.  Moreover
+\[
+\chi_D(L)\chi_H(L)=\frac{23(91\nu-1)}{63}
+=\frac{23(91m-183)}{63}=\chi_D^{\rm unit}(m).
+\]
+Thus the family reallocates a fixed product without reducing it.  Throughout
+the certified interval, $\chi_D(L)>\chi_H(L)$, so
+$\max(\chi_D,\chi_H)=\chi_D(L)$ is uniquely minimized at $L=L_0$.
+At $L_0$,
+\[
+ \chi_D=\frac{2093}{63}\kappa_\nu\sqrt\nu,
+ \qquad
+ \chi_H=\frac{\sqrt\nu}{\kappa_\nu}\frac{91\nu-1}{91\nu},
+\]
+so both, and hence their maximum, are $\Theta(\sqrt m)$, compared with
+$\Theta(m)$ for the unit-equilibrium stable profile. The topology-specific necessary bound for
+stationary crossings implies any such realization must have
+$\max(\chi_D,\chi_H)>\sqrt{8\nu}$, so exponent $1/2$ is optimal among
+stationary-crossing realizations of $\widehat N_m$. Constants remain open.
+
+\paragraph{Failure tests.} Verify the SCC exhaustion at $b=2a$; the
+principal-minor derivative argument; the 22/35/77/84-term equality cases and
+the direct $\nu=1$ cubic; the transformed physical diffusion; the fixed-mass
+gauge; and the comparison $N_m(L)>1/200$. No finite regression substitutes
+for these all-$m$ identities.
+\end{document}

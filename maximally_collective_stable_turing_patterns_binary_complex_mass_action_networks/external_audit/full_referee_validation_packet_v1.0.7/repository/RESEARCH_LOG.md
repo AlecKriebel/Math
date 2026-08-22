@@ -357,23 +357,3 @@
 - Best-guess completion toward the round-7 pre-submission revision and
   verification goal: **100%**.  The source is ready for mobile-source sync,
   commit/push, and immutable v1.0.7 publication.
-
-## 2026-08-22 15:28:07 PDT — neutral full-referee handoff checkpoint
-
-- Created a dedicated full-referee validation packet from copies of the
-  immutable v1.0.7 paper, supplement, portable repository, minimal verifier,
-  theorem summary, proof skeleton, claim ledger, and dependency maps.  Prior
-  AI verdicts and feedback reports were deliberately excluded to avoid
-  anchoring an independent referee.
-- Added a neutral referee assignment, tested-environment record, exact
-  provenance, an outer 263-entry SHA-256 manifest, a preserving clean-copy
-  replay wrapper, and an explicit runner for every one of the 38 supplied
-  verifier entrypoints.
-- The complete packet workflow passed: outer and inner manifests, minimal
-  replay, detached full portable replay, all 38 entrypoints, all 22 tests,
-  manuscript, stale-claim, numerical-provenance and PDF audits, embedded-font
-  checks, and visual inspection of all 36 paper and supplement pages.  The
-  deterministic 264-file ZIP was extracted and compared byte-for-byte with
-  the source folder.
-- Best-guess completion toward the independent-referee handoff goal:
-  **100%**.  The packet is ready to give to a journal-style AI referee.

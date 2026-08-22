@@ -15,9 +15,8 @@ with its exact project source under the corresponding
 [Git tag](https://github.com/AlecKriebel/Math/tree/maximally-collective-stable-turing-v1.0.7/maximally_collective_stable_turing_patterns_binary_complex_mass_action_networks).
 All archived versions share the stable
 [Zenodo concept DOI](https://doi.org/10.5281/zenodo.21753404).
-The exact preceding version 1.0.6 snapshot is archived at
-[version DOI 10.5281/zenodo.22058969](https://doi.org/10.5281/zenodo.22058969);
-the v1.0.7 release record carries its own immutable version DOI once minted.
+The exact version 1.0.7 snapshot is archived at
+[version DOI 10.5281/zenodo.22062080](https://doi.org/10.5281/zenodo.22062080).
 Continued development remains on the
 [`main` branch](https://github.com/AlecKriebel/Math/tree/main/maximally_collective_stable_turing_patterns_binary_complex_mass_action_networks).
 
@@ -27,7 +26,9 @@ Continued development remains on the
 - `manuscript/supplement.pdf` — exact technical supplement;
 - `independent_verifier/` — independent exact checks;
 - `public/repository/` — portable public package;
-- `external_audit/` — specialist packets;
+- `external_audit/full_referee_validation_packet_v1.0.7/` — neutral,
+  self-contained full-referee handoff with a preserving complete replay;
+- `external_audit/` — specialist packets and proof-navigation aids;
 - `submission/` — author-controlled bioRxiv, arXiv, and journal bundles;
 - `release/one_command_replay.sh` — full provenance replay (requires the five
   frozen lineage archives listed in `release/reproducibility.md`).
