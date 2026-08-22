@@ -1,0 +1,106 @@
+Independent strong-selection / low-order command record
+UTC date: 2026-08-22
+Working directory: /Users/alec/Documents/Math/complete_graph_extremality_referee_audit_2026-08-22
+
+No delivered verifier or replay program was executed.  The commands below
+created and ran only independently written scratch calculations or read public
+source documents.  The shared records/COMMANDS.log contains the wrapper's
+verbatim argv and output for all labeled runs.
+
+1. Isolated scratch environment
+
+COMMAND:
+python3 -m venv /Users/alec/Documents/Math/complete_graph_extremality_referee_audit_2026-08-22/work/strong_selection_low_order_venv
+LABEL: strong_selection_scratch_venv
+EXIT STATUS: 0
+
+COMMAND:
+/Users/alec/Documents/Math/complete_graph_extremality_referee_audit_2026-08-22/work/strong_selection_low_order_venv/bin/python -m pip install sympy==1.14.0
+LABEL: strong_selection_install_sympy
+EXIT STATUS: 0
+
+2. Independent symbolic and exact-chain calculations
+
+COMMAND:
+/Users/alec/Documents/Math/complete_graph_extremality_referee_audit_2026-08-22/work/strong_selection_low_order_venv/bin/python /Users/alec/Documents/Math/complete_graph_extremality_referee_audit_2026-08-22/work/independent_scratch/triangle_rederive.py
+LABEL: independent_triangle_rederive_v2
+EXIT STATUS: 0
+OUTPUT SUMMARY:
+triangle_identity=PASS
+triangle_full_chain_crosscheck=PASS
+triangle_P_polynomial=PASS
+triangle_centered_SOS_identities=PASS
+
+An earlier version of this same scratch derivation, label
+`independent_triangle_rederive`, was manually interrupted after approximately
+three minutes because a generic symbolic inverse was unnecessarily slow; it
+produced no mathematical result.  The script was changed to the exact
+domain-matrix algorithm and exact-rational independent subset-chain checks,
+then completed in the successful run above.
+
+COMMAND:
+/Users/alec/Documents/Math/complete_graph_extremality_referee_audit_2026-08-22/work/strong_selection_low_order_venv/bin/python /Users/alec/Documents/Math/complete_graph_extremality_referee_audit_2026-08-22/work/independent_scratch/k4_rederive.py
+LABEL: independent_k4_rederive
+EXIT STATUS: 0
+OUTPUT SUMMARY:
+k4_13_identity=PASS
+k4_22_raw_candidate_signature=(123, True)
+k4_22_conditional_candidate=nonpolynomial
+k4_22_determinant_convention=raw
+k4_22_rational_identity=PASS
+k4_22_g_d_t_certificate=PASS
+k4_full_subset_chain_crosschecks=PASS
+
+COMMAND:
+/Users/alec/Documents/Math/complete_graph_extremality_referee_audit_2026-08-22/work/strong_selection_low_order_venv/bin/python /Users/alec/Documents/Math/complete_graph_extremality_referee_audit_2026-08-22/work/independent_scratch/boundary_checks.py
+LABEL: independent_boundary_checks
+EXIT STATUS: 0
+OUTPUT SUMMARY:
+n2_all_positive_weightings_tie=PASS
+r1_uniform_average_endpoints=PASS
+zero_support_connected_boundaries=PASS
+directed_cycle_noncomplete_support=PASS
+directed_complete_monotonicity_spotcheck=PASS
+
+COMMAND:
+/Users/alec/Documents/Math/complete_graph_extremality_referee_audit_2026-08-22/work/strong_selection_low_order_venv/bin/python /Users/alec/Documents/Math/complete_graph_extremality_referee_audit_2026-08-22/work/independent_scratch/strong_asymptotic_spotcheck.py
+LABEL: independent_strong_asymptotic_spotcheck
+EXIT STATUS: 0
+OUTPUT SUMMARY:
+n=3_strong_coefficient=PASS value=17657/20790
+n=4_strong_coefficient=PASS value=123367/192192
+
+3. Cited source acquisition and reading
+
+COMMAND:
+curl -L --fail --silent --show-error 'https://journals.plos.org/ploscompbiol/article/file?id=10.1371/journal.pcbi.1007494&type=printable' -o /Users/alec/Documents/Math/complete_graph_extremality_referee_audit_2026-08-22/work/independent_refs/Tkadlec2020_main.pdf
+LABEL: download_cited_tkadlec_main
+EXIT STATUS: 0
+
+COMMAND:
+curl -L --fail --silent --show-error 'https://journals.plos.org/ploscompbiol/article/file?id=10.1371/journal.pcbi.1007494.s001&type=supplementary' -o /Users/alec/Documents/Math/complete_graph_extremality_referee_audit_2026-08-22/work/independent_refs/Tkadlec2020_S1.pdf
+EXIT STATUS: 0
+
+Both PDFs were extracted with `pdftotext -layout` and located with `rg`.
+`pdfinfo` reported 13 pages for the main article and 12 pages for the
+supplement; each extraction and search exited 0.
+
+4. Software versions
+
+LABEL: strong_selection_versions
+EXIT STATUS: 0
+Python 3.14.6
+SymPy 1.14.0
+pdftotext 26.08.0
+pdfinfo 26.08.0
+curl 8.7.1
+
+5. SHA-256 records (label strong_selection_scratch_hashes; exit 0)
+
+5601fcfd7abaf13f2e6f44deb7ed2f921e49fcd5608d897240b63ec766d0471c  work/independent_scratch/triangle_rederive.py
+14997d3456189ce78c970a01e39b8a396d999dde7fda4d87cbdd7f725e4dd939  work/independent_scratch/k4_rederive.py
+e2b4e82404f4fd899f672885a88787b1fe59f43c2cac291c2fe45869125a480d  work/independent_scratch/boundary_checks.py
+2c1df9085e64322d485a5c0cc8e70370591e62219e75a872f2ee6af4e57cacb7  work/independent_scratch/strong_asymptotic_spotcheck.py
+c476e8da9c5f45f5bead069820c8df16cef5e744f6fe2b9cb96774b1502021fe  work/independent_refs/Tkadlec2020_main.pdf
+9185fcef2a2c423a31a8ba40892e34d5ab67a7ec5a42d0775a08eaefdb91fcde  work/independent_refs/Tkadlec2020_S1.pdf
+

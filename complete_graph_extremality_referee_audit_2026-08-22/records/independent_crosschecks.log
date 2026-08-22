@@ -1,0 +1,268 @@
+Independent computational cross-check transcript
+Date: 2026-08-22
+Working directory: /Users/alec/Documents/Math/complete_graph_extremality_referee_audit_2026-08-22
+
+Scope rule: the checker imported only Python's standard library and did not
+import or execute any delivered Python module. File-reading commands inspected
+the manuscript equations and the completed audit/replay records.
+
+PRE-LOGGER READ-ONLY INSPECTION
+commands:
+  pwd; rg --files complete_graph_extremality_referee_audit_2026-08-22
+  find work/package -type f
+  rg/sed over manuscript sections 02--06 and Appendix B
+output/status:
+  Package and manuscript sources located; equations (2.1)--(2.2),
+  (3.10)--(3.12), (4.1)--(4.12), (5.4)--(5.16), (6.1)--(6.8), and
+  (B.1)--(B.6) inspected. All commands exited 0.
+
+2026-08-22T19:46:22Z
+argv: chmod +x records/run_independent_logged.sh records/independent_crosschecks.py
+exit_status: 0
+
+2026-08-22T19:46:27Z
+argv: /opt/homebrew/bin/python3 records/independent_crosschecks.py
+output:
+  python=3.14.6 optimize=0
+  Initial independent implementation stopped before producing results:
+  KeyError (3, 0) in active_matrix. Cause: zero-probability diagonal source
+  entries were being looked up as invalid active states. The implementation
+  was corrected to skip exactly-zero transition/derivative contributions.
+exit_status: 1
+
+2026-08-22T19:46:40Z and 2026-08-22T19:48:49Z
+argv: /opt/homebrew/bin/python3 records/independent_crosschecks.py
+output (final expanded run):
+  INDEPENDENT EXACT CROSS-CHECKS
+  python=3.14.6 optimize=0
+  arithmetic=fractions.Fraction; delivered_modules_imported=false
+
+  [collision identity: literal subset versus literal active chain]
+  P3-A: n=3 active_states=9 rho2=179596/416271 nuH=138757/179596 n*rho*nuH=1 PASS
+  P3-B: n=3 active_states=9 rho2=1178267/2900142 nuH=966714/1178267 n*rho*nuH=1 PASS
+  P4-A: n=4 active_states=28 rho2=196796111507759984517/473683767269978727580 nuH=118420941817494681895/196796111507759984517 n*rho*nuH=1 PASS
+  P4-B: n=4 active_states=28 rho2=87150802243189417565223/209118271071676443599852 nuH=52279567767919110899963/87150802243189417565223 n*rho*nuH=1 PASS
+
+  [target-by-source orientation and incoming-column gauge]
+  correct_rho2=1994823874198812044599989615561/4995392136150338282032947317056
+  scaled_column_rho2=1994823874198812044599989615561/4995392136150338282032947317056
+  wrong_source_row_rho2=16710880084112087651066519475395/41940651071234278761027035179184
+  correct=scaled and correct!=wrong PASS
+
+  [complete-kernel Hessian sectors: literal active-chain resolvent]
+  n=3 sector=standard active_states=9 R2=4/33 norm2=4/3 normalized=1/11 PASS
+  n=3 sector=antisymmetric-balanced active_states=9 R2=2/3 norm2=6 normalized=1/9 PASS
+  n=4 sector=standard active_states=28 R2=261/2560 norm2=3/4 normalized=87/640 PASS
+  n=4 sector=symmetric-balanced active_states=28 R2=3/26 norm2=8 normalized=3/208 PASS
+  n=4 sector=antisymmetric-balanced active_states=28 R2=57/80 norm2=8 normalized=57/640 PASS
+  n=5 sector=standard active_states=75 R2=6868/85971 norm2=8/15 normalized=8585/57314 PASS
+  n=5 sector=symmetric-balanced active_states=75 R2=718/6665 norm2=8 normalized=359/26660 PASS
+  n=5 sector=antisymmetric-balanced active_states=75 R2=143/210 norm2=10 normalized=143/2100 PASS
+
+  [strong-selection coefficient from independent epsilon differentiation]
+  P3-A: rho0=2/3 rho1=-8/9 Edir=2 gap_coeff=2/9 PASS
+  P3-B: rho0=2/3 rho1=-1853/1260 Edir=1013/140 gap_coeff=1013/1260 PASS
+  P4-A: rho0=3/4 rho1=-43/48 Edir=14/3 gap_coeff=7/48 PASS
+  P4-B: rho0=3/4 rho1=-123/128 Edir=27/4 gap_coeff=27/128 PASS
+
+  [weighted triangles: full subset chain]
+  uniform/equality: weights=(1,1,1) r=2 rho=4/9 baseline=4/9 gap=0 EQUAL PASS
+  nonuniform: weights=(1,2,3) r=2 rho=18764/43223 baseline=4/9 gap=4016/389007 STRICT PASS
+  nonuniform-rational-r: weights=(2,5,7) r=7/3 rho=1366837/3022245 baseline=7/15 gap=43544/3022245 STRICT PASS
+  near-positive-boundary: weights=(1/1000,2,3) r=3/2 rho=9524455332207109/25324414504605702 baseline=2/5 gap=3026552348175859/126622072523028510 STRICT PASS
+  support-boundary-outside-theorem: weights=(0,2,3) r=2 rho=17/42 baseline=4/9 gap=5/126 STRICT PASS
+  neutral-r-boundary: weights=(1,2,3) r=1 rho=1/3 baseline=1/3 gap=0 EQUAL PASS
+
+  [weighted K4 slices: full 14-state subset chain, no lumping]
+  G13-uniform/equality: r=2 rho=3/7 baseline=3/7 gap=0 EQUAL PASS
+  G13-nonuniform: r=2 rho=106/261 baseline=3/7 gap=41/1827 STRICT PASS
+  G13-near-boundary: r=7/3 rho=5479907564368923/15204593884499780 baseline=147/316 gap=62928063835110999/600581458437741310 STRICT PASS
+  G13-support-boundary-outside-theorem: r=2 rho=49/144 baseline=3/7 gap=89/1008 STRICT PASS
+  G22-uniform/equality: r=2 rho=3/7 baseline=3/7 gap=0 EQUAL PASS
+  G22-equal-internal-but-nonuniform: r=3/2 rho=891/2512 baseline=27/76 gap=27/47728 STRICT PASS
+  G22-asymmetric: r=2 rho=93626517/287581468 baseline=3/7 gap=207358785/2013070276 STRICT PASS
+  G22-support-boundary-outside-theorem: r=2 rho=8/19 baseline=3/7 gap=1/133 STRICT PASS
+  G22-neutral-r-boundary: r=1 rho=1/4 baseline=1/4 gap=0 EQUAL PASS
+
+  [endpoint and monotonicity spot checks]
+  P3-A: rho1=1/3 < rho2=179596/416271 < rho3=9329/19313 PASS
+  P3-B: rho1=1/3 < rho2=1178267/2900142 < rho3=651581/1451547 PASS
+  P4-A: rho1=1/4 < rho2=196796111507759984517/473683767269978727580 < rho3=303316127337124858415073/603270918687085102828100 PASS
+  P4-B: rho1=1/4 < rho2=87150802243189417565223/209118271071676443599852 < rho3=32948025654005904067263003/65441088774892826628004852 PASS
+  n=2 raw weights 1/1000,1,1000 tie baseline at r=1,2,7/3 PASS
+  n=3 symmetric-balanced sector dimension 3*(3-3)/2=0 PASS
+
+  ALL INDEPENDENT EXACT CROSS-CHECKS PASSED
+exit_status: 0
+
+2026-08-22T19:46:47Z--19:49:27Z
+read-only inspection commands:
+  sed/rg/nl/tail over records/software_source_audit.md,
+  records/invocation_graph.md, records/fitness_two_local_audit.md,
+  records/strong_selection_low_order_audit.md, records/COMMANDS.log,
+  work/package/CLAIM_CODE_MAP.md, README_FIRST.md, REFEREE_PROMPT.md,
+  manuscript Appendix A, section 07, and reproduction shell/docs.
+output/status:
+  All commands exited 0. The source files themselves retain the complete
+  inspected text. The official clean replay block records exit 0, every
+  theorem-bearing exact program passing, and a byte-identical PDF rebuild.
+  Static count: 406 leading bare assert statements across 20 delivered Python
+  files. Detailed findings are synthesized in independent_crosschecks.md.
+
+2026-08-22T19:49:46Z
+argv: env PYTHONOPTIMIZE=1 /opt/homebrew/bin/python3 records/independent_crosschecks.py
+output/status:
+  The same exact checks and values above passed with optimize=1 because the
+  independent checker uses explicit require()/RuntimeError checks, not assert.
+exit_status: 0
+
+2026-08-22T19:49:52Z
+argv: inspect imports/assert use and hash records/independent_crosschecks.py
+output:
+  imports: __future__.annotations, fractions.Fraction, itertools.combinations,
+           platform, sys
+  no_bare_asserts=true
+  SHA256: 019a599899fa223995ea61ca476e5e841e55bcea3605203f81b593d67f92d578
+exit_status: 0
+
+SANITIZATION NOTE
+At 2026-08-22T19:50:08Z a broad host process-listing diagnostic was mistakenly
+captured. It was outside the scientific scope and included unrelated process
+arguments, so its entire output was deleted immediately and was not used. This
+replacement log contains no such host/process data.
+
+timestamp_utc: 2026-08-22T19:54:46Z
+cwd: /Users/alec/Documents/Math/complete_graph_extremality_referee_audit_2026-08-22
+argv: sh -c wc\ -l\ records/independent_crosschecks.py\ records/independent_crosschecks.md\ records/independent_crosschecks.log\;\ shasum\ -a\ 256\ records/independent_crosschecks.py\ records/independent_crosschecks.md\;\ rg\ -n\ \"TODO\|TBD\|PLACEHOLDER\"\ records/independent_crosschecks.py\ records/independent_crosschecks.md\ \|\|\ true
+     602 records/independent_crosschecks.py
+     311 records/independent_crosschecks.md
+     136 records/independent_crosschecks.log
+    1049 total
+019a599899fa223995ea61ca476e5e841e55bcea3605203f81b593d67f92d578  records/independent_crosschecks.py
+4b730029577cbbd950ceb9a9f3721183e3530e2a15e36676fafcdd88eb9c497f  records/independent_crosschecks.md
+exit_status: 0
+
+timestamp_utc: 2026-08-22T19:55:03Z
+cwd: /Users/alec/Documents/Math/complete_graph_extremality_referee_audit_2026-08-22
+argv: tail -n 120 records/strong_selection_low_order_audit.md
+### Exact open gap at this checkpoint
+
+The remaining work is an adversarial consolidation of monotonicity and all
+endpoints (`n=2`, absent `n=3` symmetric sector, zero-support limits, `r=1`),
+plus a final counterexample search and severity assessment.
+
+## 2026-08-22T19:49:02Z — final checkpoint (completion estimate: 100%)
+
+### Monotonicity and boundary audit
+
+**Fitness monotonicity.**  The manuscript's Lemma 12 (PDF p. 16;
+`sections/07_implications_reproducibility.tex` lines 8–29) is correct.  For
+`f_r(x)=rx/[1+(r-1)x]`,
+
+`partial_r f_r=x(1-x)/[1+(r-1)x]^2 >= 0`,
+`partial_x f_r=r/[1+(r-1)x]^2 > 0`.
+
+Using the same dead target and uniform threshold preserves set inclusion when
+both fitness and the current mutant set are increased.  Reaching the full set
+in the lower chain therefore forces simultaneous fixation in the upper chain.
+This proves nondecreasing, not generally strictly increasing, fixation.  The
+lack of strictness is real: `n=2` and directed cycles with one incoming parent
+per target are fitness-independent.
+
+**`n=2`.**  There is only one loopless row-stochastic kernel.  With one mutant,
+the next state-changing death is the mutant or resident with equal probability,
+so every admissible positive raw weighting has fixation `1/2` for every
+`r>0`.  Formula (2.4) reduces to `1/2`, and the manuscript correctly excludes
+`n=2` from the singular `1/(n-2)` expansion while stating the exact tie in
+Theorem 1.  A zero support entry is incompatible with positive incoming degree
+at this order.
+
+**Absent symmetric sector at `n=3`.**  Its dimension in (4.10) is
+`n(n-3)/2=0`; directly, symmetric off-diagonal variables `(a,b,c)` with row
+sums `a+b=a+c=b+c=0` all vanish.  Thus Theorem 6 correctly starts symmetric
+positivity at `n=4`, the `n=3` table entry is `---`, and the local proof at
+`n=3` needs only the standard and antisymmetric sectors.  There is no endpoint
+gap.  Locations: PDF pp. 11–12; `sections/04_local_hessian.tex` lines 62–111
+and 134–148.
+
+**Zero support.**  The complete-support expansion deliberately requires every
+off-diagonal weight positive; its ratio defect is undefined at a zero and the
+fixed-`W` expansion is not uniform as a positive weight tends to zero.  This is
+not a coverage gap: a strongly connected support with any missing edge is in
+the cited theorem, and a reducible support is in (5.17).  Connected undirected
+graphs with missing edges are explicitly allowed by Proposition 4.  If a zero
+creates a target of incoming degree zero, it leaves the paper's model.
+
+As stronger, unstated checks, the low-order certificates extend without a new
+equality to their connected zero-support faces.  With exactly one zero edge,
+the triangle has `s_3=0`, `V=s_2^2>0`, so its numerator is strict and its
+M-matrix denominator stays positive.  In (B.2), setting `x=0` leaves positive
+`F_13,P_13`; this is the star.  In (B.3) the unit cross edges keep the graph
+connected for all `x,y>=0`, `L_22>0`, and the `(g,d,t)` certificate is strict
+when one or both internal weights vanish.  Exact subset-chain checks at a
+weighted path, `G_13(0)`, `G_22(0,3)`, and `G_22(0,0)` all passed.
+
+**`r=1`.**  On each strongly connected structure, the neutral process's
+eventual ancestor has some probability distribution over vertices; averaging
+a uniformly placed singleton over that distribution gives fixation `1/n`.
+The complete formula explicitly takes this continuous value.  Equations
+(6.5), (B.2), and (B.3) all have a factor `r-1`, so every weighting ties at
+neutrality; their strict equality classifications are correctly restricted to
+`r>1`.  Monotonicity itself is stated on `r>0` and covers `r=1`.
+
+### Counterexample search
+
+No counterexample was found.  Besides the general derivations, literal exact
+subset chains gave the following independent adversarial checks:
+
+- nonsymmetric complete directed examples at `n=3` and `n=4` reproduced the
+  coefficient `E_dir/[n^2(n-2)]` exactly (values `17657/20790` and
+  `123367/192192`);
+- a strongly connected directed 3-cycle gave fitness-independent fixation
+  `1/3`, strictly below the complete baseline for `r>1`, as the cited theorem
+  predicts;
+- nonsymmetric triangle and both K4 families agreed between orbit-reduced and
+  literal subset chains at exact-rational parameter points;
+- the connected zero-support and neutral endpoints listed above agreed with
+  their claimed or limiting behavior.
+
+Independent artifacts and every executed command, version, output summary,
+exit status, and SHA-256 are recorded in
+`records/strong_selection_low_order_commands.log`.  No delivered code was run.
+
+### Validation table and severity assessment
+
+| Claim | Location | Independent status |
+|---|---|---|
+| Complete-support `1/r` expansion and coefficient | Theorem 2, PDF p. 6; (5.4)–(5.16), pp. 13–14 | **Verified** by general first-step derivation and exact `n=3,4` chains |
+| Raw/normalized identity, scale invariance, equality class | (2.9)–(2.10), p. 6; (5.15)–(5.16), p. 14 | **Verified** exactly |
+| Strongly connected noncomplete-support obstruction | Tkadlec et al. main Theorem 1, p. 7; manuscript p. 14 | **Verified against source and source proof** |
+| Reducible source-component closure | (5.17), PDF pp. 14–15 | **Verified** |
+| Undirected support limit and deficit | Proposition 4, p. 6; proof p. 15 | **Verified** |
+| Weighted-triangle global inequality and equality | Theorem 5, p. 6; (6.1)–(6.8), p. 15 | **Verified** by independent symbolic elimination, SOS, and literal chain |
+| `G_13` lumping/certificate/domain/equality | (B.1)–(B.2), PDF p. 27 | **Verified** |
+| `G_22` lumping/determinant/123-term certificate/domain/equality | (B.1), (B.3)–(B.6), PDF pp. 27–28 | **Verified** |
+| Fitness monotonicity | Lemma 12, PDF p. 16 | **Verified** by order-preserving coupling |
+| `n=2`, `n=3` missing sector, zero support, `r=1` | pp. 6, 11–16, 27–28 | **Verified; no endpoint gap** |
+
+I found **no mathematical defect, omitted domain case, incorrect equality
+class, or citation-hypothesis mismatch** in the assigned strong-selection and
+low-order slice.  The cited supplement's theorem-numbering inconsistency is in
+the external source and does not make the manuscript citation ambiguous.  No
+correction is required on the basis of this slice.
+
+### Strongest verified result and exact remaining gaps
+
+The strongest verified result is the full assigned chain of claims: every
+fixed positive complete-support structure has the stated sharp sum-of-squares
+strong-selection deficit; all other supports are eventually strictly
+suppressing unless dynamically equal to `J_n`; and the positive weighted
+triangle plus both stated symmetric weighted-K4 slices satisfy global strict
+complete-graph maximality for all `r>1`, with precisely the stated equality
+classes.
+
+There is **no remaining mathematical gap within this sub-audit's scope**.
+Package-integrity, fitness-two dual/Hessian claims beyond the `n=3` endpoint,
+delivered-code inspection, and full replay are intentionally assigned to the
+other referee workstreams and are not certified here.
+exit_status: 0

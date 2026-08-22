@@ -33,3 +33,49 @@ new issue enlarges the remaining work.
   mathematical derivations, the static software audit, complete replay, and
   cross-checks remain in progress.
 - Completion estimate: 18%.
+
+## 2026-08-22T19:45:00Z - source audit and exact replay checkpoint
+
+- Strongest verified result: a pre-execution inspection traced the mandatory
+  launcher to the unit suite and all 17 named verifier programs.  After an
+  explicit clean-environment gate confirmed Python 3.14.6 with
+  `sys.flags.optimize == 0` and no inherited `PYTHONOPTIMIZE`, `PYTHONPATH`, or
+  `MAKEFLAGS`, the exact one-command referee replay completed with exit status
+  0.  All mathematical stages passed and the rebuilt 30-page PDF had the same
+  SHA-256 (`a6bda621...53bd2d`) as the delivered PDF.
+- New source-audit finding: most scientific checks and the bootstrap version
+  checks use bare Python assertions.  An optimized interpreter can erase those
+  checks while leaving unconditional PASS messages, and the launcher does not
+  prohibit optimization.  This did not affect the sanitized replay, but it is
+  a genuine robustness/reproducibility defect in the delivered command.
+- Exact open gap: the independent strong-selection/low-order reconstruction,
+  alternative checker, and final adversarial proof/code-alignment pass are
+  still in progress.  No overall verdict is assigned at this checkpoint.
+- Completion estimate: 72%.
+
+## 2026-08-22T20:01:30Z - final mathematical and adversarial checkpoint
+
+- Strongest verified result: for every fixed `n>=3`, the independently audited
+  sector decomposition covers the full directed tangent space and every sector
+  scalar is strictly positive on its complete stated order range.  Hence the
+  complete kernel has zero first variation and a strictly negative fixation
+  Hessian at fitness two.  The directed strong-selection coefficient,
+  fixed-graph support closure, triangle theorem, and both stated symmetric
+  weighted-`K_4` families were also independently reconstructed without a
+  mismatch or counterexample.
+- Independent implementation: a new pure-`Fraction` checker, importing no
+  delivered module, passed four nonsymmetric collision identities, all eight
+  displayed `n=3,4,5` sector values, four exact strong-selection derivatives,
+  and low-order equality/strictness/boundary examples.  Final exit status: 0.
+- Adversarial result: no phase-order, sign, normalization, range, equality,
+  boundary, quantifier, citation, or proof/code contradiction was found.
+- Final adverse finding: the optimized-mode replay can print PASS and exit 0
+  with theorem-bearing assertions erased.  The failure was reproduced both on
+  an explicit false assertion and on the complete delivered launcher.  Its
+  remediation is local, so the final verdict is **valid after minor
+  corrections**, not a mathematical major correction.
+- Exact remaining limitations: ordinary trust in CPython/SymPy/python-flint;
+  no second independently authored solver for all 37 small symmetric systems;
+  and version-pinned rather than artifact-hash-pinned dependencies.  The
+  stronger global questions listed by the paper remain nonclaims.
+- Completion estimate: 100% of the requested referee audit.
