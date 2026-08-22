@@ -38,6 +38,16 @@ closed:
   independently reconstructed from the primitive graphs.
 - The generic complex/physical rank comparison and semialgebraic-dimension
   step are stated explicitly.
+- The four directed theta placements and every minimum-repair family now have
+  a self-contained exhaustive case analysis.
+- The finite-topology premise now follows from the explicit tree-child bound
+  (r\leq |\mathcal X|-1) and the resulting vertex bound
+  (|V|\leq4|\mathcal X|-3).
+- The compact compression table is an unconditional source dependency; a
+  clean build with that file removed fails closed.
+- The reconstruction procedure retains all locally unexcluded supports and
+  selects the unique global triangle class by exact semialgebraic feasibility,
+  rather than misusing rank certificates as pointwise tests.
 
 ## Exact validation
 
@@ -74,17 +84,17 @@ cyclic, or unresolved records.
 
 | artifact | SHA-256 |
 |---|---|
-| article source | `4647e050b148a4fd03eae4242347dee3d5387df19947c64bbd795dc08eb46c02` |
+| article source | `480581cec37b9a90e5e96eb1528e6fca6a4bbfafaefd43d9d41357f8e67ac999` |
 | bibliography | `14dbb4901d924b068c8cc2d050e73bae3cf996a72863a22ade90d6f8e6b4057c` |
-| supplement source | `1072c5edc677ac2dcec81c1ce57fdfc21c76cccc9fb133d09ab48550b8709d79` |
+| supplement source | `1989d763d51004f351e42279ccf82374d3c0afa2b4ea96bcfa3026075e6b3ce8` |
 | certificate appendix source | `ef878c24ff3f6b28d70b6c3dbf90c6d1e7d3c85a2bece621c96f47c409ca0ffa` |
-| article PDF | `e30ea98ccde1756bb98ad9ce500c83a64c87d5d9985bc06b432f6d9fc79df064` |
-| supplement PDF | `0a0c55e16b5f7298c9749912a3901d1a0a1323578ab25ef7db13c06e0b912131` |
+| article PDF | `204537cef40f155d1fd418c4b17cd7b8cd5e432773b0de037a829690f8ba77e1` |
+| supplement PDF | `19865ffb832abf5757d5fb5d534e1888d22f3b11ea7ea035e451203359ca275a` |
 
-The article and supplement are 24 pages each. All 48 pages were rendered and
+The article and supplement are 26 and 24 pages, respectively. All 50 pages were rendered and
 visually inspected. There are no clipped elements, overfull boxes, undefined
 references or citations, fatal errors, or hyperref PDF-string warnings; all
-fonts are embedded.
+fonts are embedded. The fail-closed missing-table build test also passes.
 
 ## Remaining hold
 

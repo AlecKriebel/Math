@@ -86,7 +86,7 @@ immutable-release decisions remain before submission.
 - Compression mutations: **PASS**, 11/11 rejected.
 - Printed certificate appendix: **PASS**, 18/18 mutations rejected.
 - Named weak-sharpness columns: **PASS**, 15/15 mutations rejected.
-- Final PDFs: **PASS**, 24 article pages and 24 supplement pages, all fonts
+- Final PDFs: **PASS**, 26 article pages and 24 supplement pages, all fonts
   embedded and all pages visually inspected.
 
 The deterministic archive is intentionally accompanied by an external SHA-256
@@ -102,3 +102,42 @@ record rather than embedding its own hash and creating a self-reference.
   use plain-text alternatives.
 - A second compression cycle is out of scope unless future work finds a new
   mathematical mechanism.
+
+## Disposition of the second fresh review
+
+The later conditional-pass review identified two genuine proof-completeness
+omissions and one useful packaging hardening. They were scrutinized against
+the primitive graph encodings and frozen certificates before editing.
+
+1. **Directed-core and repair exhaustiveness — accepted.**  The article now
+   derives the four directed theta cases by separating the one-reticulate-pole
+   and two-tree-pole configurations, excludes both-reticulate poles and all
+   cyclic orders, and handles the residual pole/sink symmetries.  The repair
+   table is proved complete by explicit obstruction clauses and their minimal
+   transversals.
+2. **Finiteness of the topology list — accepted.**  Disjoint tree-child paths
+   from the root and each reticulation give (r\leq|\mathcal X|-1); binary
+   degree identities then give (|V|\leq4|\mathcal X|-3), which is sufficient
+   for the finite-union argument.
+3. **Fail-closed compact table — accepted.**  The supplement now inputs
+   `compression_tables.tex` unconditionally.  Both a source-manifest mutation
+   and an actual clean-source compilation with the table omitted are rejected.
+4. **Zero-based row convention — accepted.**  It is stated in both documents.
+5. **Reconstruction step R5 — accepted only after correction.**  The reviewer's
+   suggestion to discard candidates using a rank certificate pointwise was not
+   valid: a generic-rank certificate is not a pointwise separator.  The final
+   procedure instead retains all locally unexcluded candidates, reconstructs
+   their global supports, and decides exact semialgebraic model membership;
+   outside the stated exceptional set, exactly one triangle class survives.
+   The exact-input convention is now defined as exact field and polynomial-sign
+   operations plus real-closed-field quantifier elimination; no bit-complexity
+   claim is made.
+6. **ORCID placement — no change.**  This was presentation-only.
+7. **Another full replay — deferred to the immutable submission commit.**  The
+   existing detached 35-layer replay remains bound to the unchanged frozen
+   theorem ledger.  Repeating the 86-minute run before the human metadata,
+   licenses, and tag are fixed would not provide final-commit provenance; the
+   quick, mutation, equivalence, build, and package gates are rerun here.
+
+The final PDFs now contain 26 article pages and 24 supplement pages. All 50
+pages were rendered and inspected, with no visual or build defect.

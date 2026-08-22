@@ -134,3 +134,32 @@
 - Mathematical, proof-compression, and reproducibility workstreams: **100%**.
   Submission readiness: **98%**; the remaining 2% consists only of human
   metadata, license, immutable-tag, and DOI-release decisions.
+
+## 2026-08-22 16:05 PDT - Second fresh-review proof closure
+
+- Scrutinized the later conditional-pass review against the primitive theta
+  encodings, minimum-repair clauses, frozen theorem boundary, and genericity
+  proof. No counterexample, theorem change, or reason to resume atlas search or
+  proof compression was found.
+- Added a self-contained exhaustive derivation of the four directed theta
+  placements and proved the minimum-repair table by its exact obstruction
+  clauses and minimal transversals. Added the tree-child reticulation bound
+  (r\leq|\mathcal X|-1) and binary vertex bound
+  (|V|\leq4|\mathcal X|-3), closing the finite-topology premise.
+- Made `compression_tables.tex` an unconditional source dependency and added
+  an omitted-table manifest mutation. The actual clean-source compilation
+  fails at the missing input, as intended.
+- Accepted the reconstruction clarification only after correcting its proposed
+  misuse of rank certificates. The final exact procedure retains all locally
+  unexcluded supports, reconstructs them globally, and selects the unique
+  triangle class by semialgebraic model-membership decisions outside the
+  declared exceptional set. Its exact-input convention now explicitly assumes
+  exact field/sign operations and real-closed-field quantifier elimination,
+  without claiming a bit-complexity or numerical-stability bound.
+- Rebuilt the 26-page article and 24-page supplement. All 50 rendered pages
+  passed visual inspection; fonts are embedded and both build logs are clean.
+- Mathematical and reproducibility readiness remains **100%**. Submission
+  administration remains **98%** pending only human metadata, licenses, and
+  immutable tag/DOI decisions. The existing 35-layer full replay remains the
+  theorem-ledger authority; one final full replay is reserved for the eventual
+  immutable submission commit.

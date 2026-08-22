@@ -265,6 +265,39 @@ def main() -> None:
         "PRINTED_CERTIFICATE_APPENDIX_INCOMPLETE",
     )
     require(
+        "\\input{compression_tables.tex}" in supplement
+        and "\\IfFileExists{compression_tables.tex}" not in supplement,
+        "COMPRESSION_TABLE_NOT_FAIL_CLOSED",
+    )
+    require(
+        "At most one pole is reticulate" in article
+        and "no source or\nreticulation-event placement is omitted" in article
+        and "minimal transversals of these clause families" in article,
+        "DIRECTED_CORE_OR_REPAIR_EXHAUSTIVENESS_MISSING",
+    )
+    require(
+        "r\\le|\\X|-1" in article and "4|\\X|-3" in article,
+        "TOPOLOGY_FINITE_UNION_BOUND_MISSING",
+    )
+    require(
+        "All output-row indices below are zero-based" in article
+        and "output-row indices in the following table are zero-based"
+        in supplement,
+        "SHARPNESS_ROW_INDEX_CONVENTION_MISSING",
+    )
+    require(
+        "q\\in\\bigcup_{H\\in\\mathcal C}\\M_+(H)" in article
+        and "terminates by quantifier elimination" in article
+        and "exactly one class is feasible" in article,
+        "RECONSTRUCTION_RIGID_SUPPORT_STEP_INCOMPLETE",
+    )
+    require(
+        "polynomial-sign decisions" in article
+        and "exact-real oracle" in article
+        and "not a\nbit-complexity or numerical-stability claim" in article,
+        "EXACT_INPUT_CONVENTION_UNDEFINED",
+    )
+    require(
         "s_{ZX}" in article and "s_{VX_1}" in article
         and "WEAK_SHARPNESS_COLUMN_CROSSWALK.json" in supplement,
         "NAMED_SHARPNESS_COLUMNS_MISSING",

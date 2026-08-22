@@ -85,3 +85,21 @@
 - Inspected all 48 final PDF pages and checked embedded fonts and clean logs.
 - Final adversarial-audit completion: **100%**. The only remaining submission
   hold is explicit human metadata/licensing/immutable-release approval.
+
+## 2026-08-22 — second fresh-review conditional-pass audit
+
+- Independently challenged the asserted four-way directed-core reduction and
+  repair grammar. The completed event-placement case split covers the exact
+  primitive orientation classes, and the obstruction-clause proof produces
+  precisely the stored minimum repairs, with no omitted asymmetric case.
+- Verified that the tree-child path argument injects the root plus all
+  reticulations into distinct leaves and that the binary degree calculation
+  yields the stated finite vertex bound.
+- Rejected the literal proposal to use rank certificates as pointwise
+  eliminators. The revised global reconstruction step uses only pointwise or
+  polynomial local exclusions before exact semialgebraic model membership.
+- Confirmed unconditional inclusion of the compression table, an actual
+  missing-file build failure, zero-based sharpness indices, clean PDF logs,
+  embedded fonts, and visual inspection of all 50 pages.
+- Adversarial-audit completion remains **100%**. No mathematical or package
+  blocker remains beyond the explicitly human release metadata.

@@ -5,11 +5,11 @@
 The unconditional `K2P-SAME` classification, generic-identifiability
 corollary, exact reconstruction theorem, strict continuous-time corollary, and
 weak-class `4n-3` sharpness theorem are complete. The promotion manuscript
-and 370-file transitive evidence bundle have independent replay and mutation
+and 374-file transitive evidence bundle have independent replay and mutation
 coverage. The frozen outer release lock is
 
 ```text
-0c17eeaa3344f0982998ea694c1eb92f72f5ced0841e2acad0d39566e2ec71c3
+58e32bd29f7a039e3da4e47398e32ee8277ad46cf62271a7ed80bf41688b18fb
 ```
 
 Every finite gate has zero unresolved mathematical records. The corrected
@@ -58,8 +58,13 @@ No theorem gate remains. The following require the human author:
 2. author-contribution statement approval;
 3. funding and competing-interests declarations;
 4. paper, data, and code license choices;
-5. public repository URL and immutable submission tag;
+5. immutable submission tag;
 6. whether to mint a GitHub/Zenodo DOI release; and
-7. optionally, a final clean full-replay wall-time and peak-memory report.
+7. after those choices are fixed, one final clean replay from the immutable
+   submission commit before sealing the tag.
+
+The current detached full replay has already passed all 35 layers in 5,172.89
+seconds with recorded wall-time and peak-memory telemetry. The remaining replay
+is a final-commit provenance step, not an open mathematical gate.
 
 No mixed-sign K2P claim is pending or implied.

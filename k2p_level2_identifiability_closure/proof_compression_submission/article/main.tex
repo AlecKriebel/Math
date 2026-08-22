@@ -883,15 +883,53 @@ arms.  Summing indegrees gives \(e=v+r-1\), and therefore
 For \(r=1\), every blob vertex has degree two and the core is a cycle.  For
 \(r=2\), exactly two vertices have degree three and every other vertex has
 degree two.  Biconnectedness makes the blob three internally disjoint paths
-between the two degree-three poles, hence a theta.  Acyclic binary placement
-of the unique incoming source and the two reticulation events gives four
-possibilities: one reticulate pole with source and internal sink on different
-or equal paths (\(\theta_0,\theta_1\)); or two internal sinks with the source
-on the third path or sharing a sink path (\(\theta_2,\theta_3\)).  Deleting
-the incoming arm and suppressing its resulting degree-two source yields one
-of the two semi-directed level-2 generators classified by Huber et
-al.~\cite[Lemma~4.2 and Figure~8]{HuberEtAl2025}.  The four-way
-incoming-source refinement is established by the preceding case analysis.
+between the two degree-three poles, hence a theta.
+
+The incoming cut edge is ordinary.  Indeed, if an arc \(u\to R\) entering a
+reticulation were a cut edge, the two root-to-parent paths together with the
+other incoming arc of \(R\) would still connect \(u\) to \(R\) after deleting
+\(uR\), a contradiction.  Its endpoint in the factor is therefore the unique
+local tree source \(S\).  A theta pole already uses all three binary
+incidences inside the blob, so \(S\) lies in the interior of one of the three
+pole-to-pole paths.  An internal reticulation is necessarily a path sink:
+both path sides enter it and its unique child is its boundary arm.
+
+At most one pole is reticulate.  If both poles were reticulate, the path
+containing \(S\) would point from \(S\) toward both poles, giving each pole
+one incoming side.  Their remaining bidegrees would force the two event-free
+paths to point in opposite directions, and those paths would form a directed
+cycle.
+
+Suppose exactly one pole \(R\) is reticulate and the other pole \(T\) is a
+tree vertex.  The second reticulation is an internal sink \(X\).  If \(S\)
+and \(X\) lie on different paths, their paths point respectively away from
+\(S\) and toward \(X\), and the pole bidegrees force the third path from
+\(T\) to \(R\); this is \(\theta_0\).  If they share a path, its only acyclic
+order from \(T\) to \(R\) is
+\[
+ T-S-X-R.
+\]
+The order \(T-X-S-R\) forces the two event-free paths to have opposite
+directions and hence creates a directed cycle.  Both event-free paths in the
+valid case point from \(T\) to \(R\), giving \(\theta_1\).
+
+Suppose instead that both poles are tree vertices.  The two reticulations are
+internal sinks.  They cannot lie on one path: the path directions into the
+two sinks would force \(S\) between them, after which the pole bidegrees force
+the two event-free paths in opposite directions, again producing a directed
+cycle.  Thus the sinks lie on distinct paths.  If \(S\) lies on the third
+path, both poles feed both sinks, giving \(\theta_2\).  Otherwise \(S\)
+shares a path with one sink; choose as first pole the pole whose other two
+sides point outward.  The shared path then has order
+pole--\(S\)--sink--pole and all remaining directions are forced, giving
+\(\theta_3\).  Reversing the arbitrary pole names or interchanging the two
+sinks yields only the displayed symmetries.  Hence no source or
+reticulation-event placement is omitted.
+
+Deleting the incoming arm and suppressing its resulting degree-two source
+yields one of the two semi-directed level-2 generators classified by Huber et
+al.~\cite[Lemma~4.2 and Figure~8]{HuberEtAl2025}.  The four directed
+incoming-source refinements are exactly the cases above.
 Reading port vertices along the oriented segments recovers the unique words.
 \end{proof}
 
@@ -916,9 +954,42 @@ cycle & \(S\!\to X,S\!\to X\) & \(\{0\},\{1\}\)\\
 \bottomrule
 \end{tabular}
 \end{center}
-Occupancy is monotone; each listed minimal repair gives an ordinary child to
-every offending tail, separates a reticulation child, or splits a parallel
-core pair.  The reader supplement records the exact completion grammar.
+Here is a direct proof that the repair table is complete.  If an occupied
+segment ends at a reticulation, its last port-bearing subdivision replaces
+the original core tail's reticulation incidence by an ordinary edge; the new
+arrow tail has two ordinary incidences, namely its preceding segment edge and
+its port arm.
+Consequently an occupancy set \(A\) is valid exactly when it meets every
+obstruction clause in
+\[
+\begin{array}{c|l}
+\text{core} & \text{clauses that \(A\) must meet}\\
+\hline
+\text{cycle} & \{0,1\}\\
+\theta_0 & \{3\},\ \{2,4\}\\
+\theta_1 & \{2\},\ \{3,4\}\\
+\theta_2 & \{2,4\},\ \{3,5\}\\
+\theta_3 & \{2,4\}.
+\end{array}
+\]
+For the cycle, \(S\) otherwise tails both reticulation edges and the two
+unsubdivided sides are parallel.  In \(\theta_0\), segment \(3\) must be
+occupied to separate the reticulation \(V\) from its reticulation child
+\(X\), while \(U\) requires one of segments \(2,4\).  In \(\theta_1\),
+segment \(2\) separates the reticulation stack, while one of the parallel
+segments \(3,4\) must be occupied both to give \(U\) an ordinary child and
+to make the mixed graph simple.  In \(\theta_2\), \(U\) requires one of
+\(2,4\) and \(V\) one of \(3,5\).  In \(\theta_3\), \(V\) requires one of
+\(2,4\).  All other retained-arrow tails already have two ordinary
+incidences, and every path-sink child arm is retained separately.
+
+The minimal transversals of these clause families are precisely the repair
+sets displayed in the table.  Deleting any member of a displayed repair
+leaves its named clause unmet, whereas every valid occupancy must meet all
+the clauses.  This proves sufficiency, minimality, and exhaustiveness, up to
+the displayed core symmetries, by the no-omnian criterion
+\cref{lem:no-omnian}.  The reader supplement records the exact completion
+grammar.
 
 For a target core \(H\), let \(m_H\) be its number of directed segments,
 \(q_H\) its path-sink count, and \(r_H\) its number of compiler
@@ -1306,7 +1377,24 @@ topology of \(N\) uniquely modulo \(\trianglerel\).
 
 \begin{proof}
 For fixed \(\X\), there are finitely many labelled binary strong level-2
-topologies.  For each competitor \(N'\not\trianglerel N\), form the physical
+topologies.  Indeed, choose an admissible rooting \(\widetilde N\); by strong
+tree-childness it is tree-child.  Starting at the root and at each of its
+\(r\) reticulations, repeatedly choose a tree-vertex or leaf child.  The
+resulting \(r+1\) tree paths end at distinct leaves: at the first merger of
+two paths, a tree vertex or leaf would have two parents.  Thus
+\(r\le|\X|-1\).  If \(t\) is the number of nonroot tree vertices, equality of
+total indegree and outdegree gives
+\[
+ 2+2t+r=t+2r+|\X|,\qquad t=|\X|+r-2.
+\]
+Hence
+\[
+ |V(\widetilde N)|=1+t+r+|\X|
+ =2|\X|+2r-1\le4|\X|-3.
+\]
+There are therefore only finitely many labelled rooted presentations, and
+hence only finitely many standard semi-directed topologies.  For each
+competitor \(N'\not\trianglerel N\), form the physical
 output intersection
 \[
  C_{N,N'}=\M_+(N)\cap\M_+(N')
@@ -1366,6 +1454,12 @@ unique structural class \([N]_\triangle\).
 \end{theorem}
 
 \begin{proof}
+Here ``exact'' means that every input coordinate is supplied in a
+representation supporting exact field operations, polynomial-sign decisions,
+and real-closed-field quantifier elimination (equivalently, through an
+exact-real oracle with those operations).  This is a termination model, not a
+bit-complexity or numerical-stability claim.
+
 Apply the following finite procedure.
 \begin{enumerate}[label=\textbf{R\arabic*.}]
   \item Fourier-transform the exact pattern tensor.
@@ -1375,15 +1469,30 @@ Apply the following finite procedure.
         degree-three component.
   \item Factor positive bridge blocks in the paired and singleton sectors and
         impose the analytic normalizers \eqref{eq:bridge-normalizer}.
-  \item Evaluate the bounded local certificate deck and select one rigid
-        physical support.
-  \item Follow only exact fixed-full restoration records and their stored
-        transports; the depth is at most two.
-  \item Use the certified one-port segment deck and two-port order deck to
-        reconstruct every labelled subdivision word.
-  \item Assemble the coherent labelled mixed graph, quotient its ordinary
-        triangle choices, and return a canonical representative.
+  \item Enumerate the finitely many bounded rigid-support candidates
+        compatible with R2--R4.  Apply the pointwise and polynomial separator
+        tests to the recovered local tensors, retaining every candidate not
+        excluded.
+  \item For each retained candidate, follow only exact fixed-full restoration
+        records and their stored transports; the depth is at most two.
+  \item For each resulting support, use the certified one-port segment deck
+        and two-port order deck to reconstruct every labelled subdivision
+        word.
+  \item Assemble every coherent labelled mixed-graph candidate and group the
+        finite list into ordinary-triangle classes.  For each such class
+        \(\mathcal C\), decide the exact semialgebraic feasibility statement
+        \[
+          q\in\bigcup_{H\in\mathcal C}\M_+(H).
+        \]
+        Since \(q\notin E_N\), exactly one class is feasible; return its
+        canonical representative.
 \end{enumerate}
+Each feasibility query is a finite existential semialgebraic sentence and
+terminates by quantifier elimination under the exact-input convention.  The
+true class is feasible.  If an inequivalent class were also feasible, then
+\(q\) would belong to a competing physical intersection whose Zariski closure
+is contained in \(E_N\), a contradiction.
+
 All decks and forests are finite, and every loop terminates.  The largest
 bounded restriction in the input contract uses at most nine physical ports,
 so a direct implementation uses at most \(O(|\X|^9)\) bounded restrictions
@@ -1586,6 +1695,8 @@ Thus the named minor columns are
        s_{rS},g_{rS},s_{SX_0}).
  \end{aligned}
 \]
+All output-row indices below are zero-based in the order
+\eqref{eq:sharp-order}; thus row \(0\) is \(q_{000}\).
 The derived column crosswalk in the supplement independently reconstructs
 these orders from the graph encodings and binds them to the frozen descriptor
 hashes.  For \(W\), rows \((1,2,3,5,4,7,6,8,9)\) of

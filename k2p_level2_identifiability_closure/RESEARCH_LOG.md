@@ -331,3 +331,42 @@
   corresponding email, contribution approval, funding/conflict statements,
   license choices, and the eventual public tag/DOI remain human decisions and
   were not invented by the research workflow.
+
+## 2026-08-22 16:17 PDT — second conditional-pass review closed
+
+- Scrutinized the later adversarial review independently. Its two remaining
+  proof-completeness findings were valid: the article asserted, but did not
+  display, the exhaustive directed theta event-placement case split, and the
+  genericity argument used finiteness of the topology list without printing a
+  reticulation bound. Both are now proved self-containedly.
+- The four theta orientations were independently regenerated across every pole
+  role: tree/tree gives two classes, one-reticulate-pole gives two more up to
+  pole exchange, and two-reticulate poles give no valid acyclic orientation.
+  The repair obstruction clauses and minimal transversals match the primitive
+  core certificate exactly.
+- Added (r\leq|\mathcal X|-1) and
+  (|V|\leq4|\mathcal X|-3), made the compression table a fail-closed source
+  dependency, stated zero-based sharpness rows, and corrected reconstruction
+  to use global exact semialgebraic membership rather than treating generic
+  rank certificates as pointwise separators. The exact-input convention is
+  now explicit.
+- All compact mathematical gates pass: seven-command old/new equivalence,
+  11 compression mutations, 18 printed-appendix mutations, 15 named-column
+  mutations, and 12 package mutations. Three independent read-only audits
+  found no mathematical blocker after correction.
+- Rebuilt the 26-page article (SHA-256
+  `204537cef40f155d1fd418c4b17cd7b8cd5e432773b0de037a829690f8ba77e1`)
+  and retained the clean 24-page supplement (SHA-256
+  `19865ffb832abf5757d5fb5d534e1888d22f3b11ea7ea035e451203359ca275a`).
+  All 50 pages passed visual inspection, all fonts are embedded, and both logs
+  are clean.
+- The final deterministic 448-member referee archive was built twice
+  byte-identically, passes ZIP integrity, and is 178,014,299 bytes with
+  SHA-256
+  `e641cab404b72fc935f7efd48fbf96bd14981c7405d6ce9efacebba42bcc4e15`.
+  Its manifest binds 374 frozen files plus 73 submission files with payload
+  `dccb7894e5627912b62139b62b7e736d4c35cbc3c932f49d8f79672fe282fd78`.
+- Principal-domain theorem and reproducibility-package completion remain
+  **100%**. Journal-submission administration remains **96%**, pending the
+  human metadata, licenses, immutable tag, DOI choice, and then one final
+  immutable-commit full replay for provenance.

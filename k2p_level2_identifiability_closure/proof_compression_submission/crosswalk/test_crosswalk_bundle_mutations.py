@@ -93,6 +93,17 @@ def run() -> dict[str, Any]:
 
     mutations.append(reject_mutation(base, "omitted_submission_source", omit_source))
 
+    def omit_compression_table(value: dict[str, Any]) -> None:
+        files = value["submission_sources"]["files"]
+        files.pop(
+            "proof_compression_submission/supplement/compression_tables.tex",
+            None,
+        )
+
+    mutations.append(
+        reject_mutation(base, "omitted_compression_table", omit_compression_table)
+    )
+
     def unsafe_source(value: dict[str, Any]) -> None:
         files = value["submission_sources"]["files"]
         row = files.pop(first_key(files))
