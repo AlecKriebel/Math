@@ -43,3 +43,18 @@ interpreter override.
 
 The earlier ten-page v1 PDF and its release hashes are historical checkpoints,
 not QA evidence for this revised manuscript.
+
+## Neutral referee wrapper
+
+- Folder payload manifest: 29 files, all verified.
+- Nested source archive: 19 members, SHA-256
+  `ce62bfbdb22681ba48b2a04653155b2e06f52659f140c13f5e0220db365b9250`.
+- Nested manuscript PDF: SHA-256
+  `f68142b3d99b95f83ca6ba4688539cb9e0fdb88ed96809aef5316ed22a59888f`.
+- Transferable outer archive: 30 files, deterministically reproduced twice,
+  SHA-256
+  `c0a9c93c60d5f985d45d75e6b2f2638065752ed46ee8f05ef96171e74da7cb59`.
+- A fresh extraction of the outer archive passed the standard-library package
+  verifier.  The full isolated runner then passed manifest verification,
+  pinned replay, source-archive regeneration, PDF regeneration, and both
+  byte-identity comparisons.

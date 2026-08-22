@@ -69,3 +69,16 @@ prefers the pinned clean environment, and a fresh extraction has reproduced
 both the 19-member archive and 20-page PDF byte-for-byte through a plain
 `release_bundle.sh` call.  The source epoch now matches 22 August 2026 UTC.
 No mathematical or certificate claim changed.
+
+The final wrapper received three independent adversarial passes.  The prompt
+audit required and then confirmed an honest incomplete-review verdict,
+non-exhaustive counterexample search, and full wrapper/dependency inspection.
+The package audit confirmed safe canonical members, exact commit/tag binding,
+deterministic archive and PDF regeneration, bounded temporary cleanup, and
+failure propagation under five negative tests.  A fresh blind referee
+independently re-derived the gate rates, response functions, tangency data,
+and corrected cleanup exponents and reported no theorem, software, or package
+defect.  The only remaining limitations---online dependency artifacts are
+version-pinned but not hash-vendored, and stochastic asymptotics are analytic
+rather than machine-certified---are disclosed in the neutral handoff and are
+not used to overstate the certificates.

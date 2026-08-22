@@ -178,25 +178,3 @@
 - Advanced the deterministic source epoch to 22 August 2026 UTC and reserved
   the immutable v2.0.1 tag for this superseding reproducibility-only freeze.
   No theorem, proof, certificate identity, or response value changed.
-
-## 2026-08-22 — neutral AI-referee handoff closed
-
-- Froze the scientific source at commit `2302d7c6ae17fc061a985da322df6d0600b66672`
-  and immutable tag
-  `simultaneous-amplification-beyond-three-halves-v2.0.1` before constructing
-  the later wrapper, avoiding a self-referential package identity.
-- Created a copied referee folder and transferable outer archive containing
-  the manuscript PDF, deterministic 19-member source archive, exact extracted
-  tree, whole-package manifest, claim-to-code map, neutral prompt, report
-  template, integrity verifier, and isolated all-check runner.  Prior verdicts
-  and saved successful output are excluded from the handoff.
-- The final runner verified 29 wrapper payloads and all 19 internal members,
-  ran every exact certificate, and rebuilt both the source archive and 20-page
-  PDF byte-for-byte.  Negative tests confirmed nonzero exits for altered
-  package bytes, a nonregular node, an altered certificate, a missing tool,
-  and an invalid temporary-directory setting.
-- Independent prompt, package-integrity, and blind theorem/code adversaries
-  found no remaining actionable issue.  The prompt permits an inconclusive
-  verdict when material checks cannot be completed and explicitly separates
-  analytic stochastic proofs from finite exact certificates.  Workstream and
-  handoff completion: **100%**; external submission remains a human action.
