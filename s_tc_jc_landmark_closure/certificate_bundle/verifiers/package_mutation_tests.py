@@ -7,16 +7,29 @@ import copy
 import importlib.util
 import json
 from pathlib import Path
+import shutil
+import tempfile
 
 import evidence_bindings
 
 
 ROOT = Path(__file__).resolve().parents[1]
 VERIFY_PATH = ROOT / "verifiers/verify_certificate_bundle.py"
+REGENERATION_PATH = ROOT / "verifiers/regenerate_load_bearing.py"
 
 
 def load_verifier():
     spec = importlib.util.spec_from_file_location("bundle_integrity", VERIFY_PATH)
+    assert spec and spec.loader
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def load_regeneration_driver():
+    spec = importlib.util.spec_from_file_location(
+        "bundle_regeneration", REGENERATION_PATH
+    )
     assert spec and spec.loader
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
@@ -51,6 +64,7 @@ def mutated(expected: list[dict], action) -> list[dict]:
 
 def main() -> None:
     verifier = load_verifier()
+    regeneration = load_regeneration_driver()
     path = ROOT / "atlas/ATLAS_EVIDENCE_BINDINGS.jsonl.gz"
     frozen = evidence_bindings.read_rows(path)
     expected = evidence_bindings.reconstruct_rows(ROOT)
@@ -68,6 +82,39 @@ def main() -> None:
     )
     for actual, regenerated in zip(frozen_closures, regenerated_closures):
         evidence_bindings.assert_rows_equal(actual, regenerated)
+
+    # Fail-closed regeneration regressions.  Stale auxiliary bytes must be
+    # deleted before a producer runs; no-op and partial producers must then be
+    # rejected because one or more required outputs remain absent.
+    with tempfile.TemporaryDirectory(prefix="regeneration-mutations-") as raw:
+        work = Path(raw) / "bundle"
+        for relative in regeneration.AUXILIARY_REGENERATION_OUTPUTS:
+            destination = work / relative
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(ROOT / relative, destination)
+        regeneration.remove_regenerated_outputs(work)
+        if any((work / relative).exists()
+               for relative in regeneration.AUXILIARY_REGENERATION_OUTPUTS):
+            raise AssertionError("stale auxiliary regeneration output survived deletion")
+        mutations += 1
+
+        try:
+            regeneration.require_regenerated_outputs(work)
+        except AssertionError:
+            mutations += 1
+        else:
+            raise AssertionError("no-op auxiliary producer was accepted")
+
+        first = regeneration.AUXILIARY_REGENERATION_OUTPUTS[0]
+        destination = work / first
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(ROOT / first, destination)
+        try:
+            regeneration.require_regenerated_outputs(work)
+        except AssertionError:
+            mutations += 1
+        else:
+            raise AssertionError("partial auxiliary producer was accepted")
 
     expect_rejection("delete_decorated_relation", frozen[:-1], expected); mutations += 1
     expect_rejection("duplicate_decorated_relation", [*frozen, copy.deepcopy(frozen[-1])], expected); mutations += 1

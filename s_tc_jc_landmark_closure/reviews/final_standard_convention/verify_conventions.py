@@ -9,12 +9,14 @@ cleanup, admissible-rooting enumeration, and the strong tree-child test.
 
 from __future__ import annotations
 
+import argparse
 from collections import defaultdict, deque
 from dataclasses import dataclass
 from itertools import combinations, product
 import hashlib
 import json
 from pathlib import Path
+import tempfile
 from typing import Iterable, Mapping, Optional
 
 
@@ -533,7 +535,7 @@ def source_hashes() -> dict:
     return records
 
 
-def main() -> None:
+def main(*, include_provenance: bool = True, output: Path = OUT) -> None:
     ordinary = ordinary_tree_fixture()
     assert rooted_binary(ordinary) and tree_child(ordinary)
     ordinary_narrow = narrow_sd0(ordinary)
@@ -629,7 +631,7 @@ def main() -> None:
     payload = {
         "schema": "final-standard-convention-referee-v1",
         "verdict": "VERIFIED_AFTER_CORRECTION",
-        "source_hashes": source_hashes(),
+        "source_hashes": source_hashes() if include_provenance else {},
         "exact_tests": {
             "ordinary_rooting": {
                 "narrow_equals_broad": True,
@@ -671,15 +673,61 @@ def main() -> None:
         },
     }
     payload["payload_sha256_without_hash"] = hashlib.sha256(stable_json(payload)).hexdigest()
-    OUT.write_text(json.dumps(payload, sort_keys=True, indent=2) + "\n")
+    output.write_text(json.dumps(payload, sort_keys=True, indent=2) + "\n")
     print(json.dumps({
         "verdict": payload["verdict"],
-        "certificate": str(OUT),
+        "certificate": str(output),
         "primitive_supports": graph_count,
         "primitive_rootings": rooting_count,
         "mutations_rejected": len(mutations),
     }, sort_keys=True))
 
 
+def mathematical_payload(payload: dict) -> dict:
+    """Remove provenance-only fields before a standalone bundle comparison."""
+
+    normalized = dict(payload)
+    normalized.pop("source_hashes", None)
+    normalized.pop("payload_sha256_without_hash", None)
+    return normalized
+
+
+def standalone_check() -> None:
+    """Replay the finite mathematics without unavailable literature files."""
+
+    with tempfile.TemporaryDirectory(prefix="stc-jc-convention-") as raw:
+        generated = Path(raw) / "convention_certificate.json"
+        main(include_provenance=False, output=generated)
+        actual = json.loads(generated.read_text(encoding="utf-8"))
+    expected = json.loads(OUT.read_text(encoding="utf-8"))
+    if mathematical_payload(actual) != mathematical_payload(expected):
+        raise AssertionError("standalone convention replay differs from bundled certificate")
+    print(json.dumps({
+        "status": "VERIFIED",
+        "mode": "standalone-mathematical-replay",
+        "provenance_files_required": False,
+    }, sort_keys=True))
+
+
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--check-bundled", action="store_true",
+        help="replay and compare the finite mathematics without provenance-only files",
+    )
+    parser.add_argument(
+        "--output", type=Path,
+        help="write a regenerated certificate instead of the bundled default",
+    )
+    parser.add_argument(
+        "--without-provenance", action="store_true",
+        help="omit literature/manuscript hashes when writing a certificate",
+    )
+    args = parser.parse_args()
+    if args.check_bundled:
+        standalone_check()
+    else:
+        main(
+            include_provenance=not args.without_provenance,
+            output=args.output or OUT,
+        )

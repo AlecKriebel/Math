@@ -1294,9 +1294,11 @@ direction.
 The theorem object is the coloured disjoint union of the source and target
 mixed graphs together with side colours, independently distinguished incoming
 boundaries, all physical port labels and matches, omitted-role placeholders,
-and source-to-target direction.  Canonicalization retains explicit vertex,
-edge, inheritance, label, and Fourier-coordinate transports.  Thus two
-relations sharing an unlabelled target cannot be merged by a target hash.
+and source-to-target direction.  Canonicalization reconstructs and validates
+the vertex, edge, inheritance, label, and Fourier-coordinate transports needed
+by each proof branch; the serialized records retain and content-bind every
+transport datum consumed downstream.  Thus two relations sharing an
+unlabelled target cannot be merged by a target hash.
 
 For the three-outgoing supports, independent generation gives $10{,}466$
 canonical relations from $10{,}826$ raw presentations.  For the
@@ -1312,8 +1314,8 @@ sign by exact factors or rational Bernstein coefficients.  For every equality
 terminal, independent standard mixed-graph canonicalization accepts only
 labelled isomorphism or the quotient forgetting the arrowheads of one
 triangle.  Complete normalized primary and clean-room records agree,
-including every raw-to-canonical transport and every restoration-parent
-edge.
+including every serialized raw-to-canonical transport and every
+restoration-parent edge.
 
 The finite universe is exhaustive by \cref{prop:cores}, the onto completion
 grammar, every relative port permutation, and both incoming modes.  The
@@ -1395,6 +1397,13 @@ local context.
 \input{figures/triangle_redirection.tex}
 
 \begin{proof}
+Currie et al.~\cite{CurrieEtAl2026} previously proved pairwise
+full-dimensional stochastic intersections among the three embedded-triangle
+JC models.  The form needed here additionally supplies one exact common
+three-orientation witness, separates one projective coordinate from three
+incidence scales, and proves contextual contraction even when two terminals
+reconnect inside a theta factor.
+
 At an exact rational point, direct displayed-tree summation gives equality of
 all $64$ Fourier entries for all three orientations.  Their four nonconstant
 JC orbit coordinates are

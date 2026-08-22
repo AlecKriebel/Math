@@ -132,9 +132,11 @@ the admissible-rooting set of a fixed mixed graph.
 The finite theorem object is a directed decorated relation, not a target
 graph identifier.  Each normalized record retains both mixed graphs, side
 colours, independently distinguished incoming boundaries, physical port
-matching, source-to-target direction, and all vertex, edge, inheritance,
-label, and Fourier-coordinate transports.  The verifier regenerates the
-chain
+matching, and source-to-target direction.  Across the branch-specific
+records, the verifier reconstructs and validates every vertex, edge,
+inheritance, label, and Fourier-coordinate transport needed by that branch;
+the serialized records retain and content-bind the transport data actually
+consumed downstream.  The verifier regenerates the chain
 \[
 \text{graphs}\to\text{switchings}\to\text{descendant masks}
 \to\text{Fourier tensors}\to\text{pullback}\to\text{sign/rank certificate}.

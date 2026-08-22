@@ -1098,3 +1098,18 @@
   not weakened.  No DOI, tag, GitHub release, Zenodo deposit, or external
   upload was created; DOI reservation and publication remain human-author
   actions.
+
+- 2026-08-22T08:07:02-07:00 — The independent v1.1.6 referee returned
+  `MINOR REVISION` with the theorem itself verified (estimated 70% complete
+  toward the corrected pre-DOI release).  Independent re-audit agreed that
+  C1--C3 and E1 are valid but require no theorem weakening.  The repair now
+  adds fail-closed deletion, production, existence checks, and exact
+  comparison for the three independent n=3 outputs and six four-port
+  signature/crosswalk/quotient outputs; stale, no-op, and partial-producer
+  mutations; a public non-mutating convention replay with no wrapper
+  monkeypatch; branch-accurate transport wording; and direct Currie et al.
+  attribution at the ordinary-triangle lemma.  A disposable clean rebuild
+  reproduced all nine newly covered outputs exactly.  The DOI placeholder is
+  intentionally unchanged for the human author's next step.  Remaining work
+  is the sealed-bundle replay, PDF/package rebuild, adversarial final review,
+  and final status commit.

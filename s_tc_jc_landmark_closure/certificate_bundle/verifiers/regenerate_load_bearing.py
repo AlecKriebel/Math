@@ -26,6 +26,23 @@ import tempfile
 ROOT = Path(__file__).resolve().parents[1]
 PYTHON = sys.executable
 
+N3_GENERATOR_OUTPUTS = (
+    "reviews/n3_universe_generator/n3_universe_certificate.json",
+    "reviews/n3_universe_generator/n3_normalized_raw_relations.jsonl.gz",
+    "reviews/n3_universe_generator/n3_normalized_merged_relations.jsonl.gz",
+)
+
+THETA2_SIGNATURE_OUTPUTS = (
+    "reviews/theta2_signature_gate/signature_certificate.json",
+    "reviews/theta2_signature_gate/presentation_crosswalk.jsonl",
+    "reviews/theta2_signature_gate/mutation_results.json",
+    "reviews/theta2_signature_gate/canonical_quotient_certificate.json",
+    "reviews/theta2_signature_gate/canonical_duplicate_transports.jsonl",
+    "reviews/theta2_signature_gate/frozen_presentation_transports.jsonl",
+)
+
+AUXILIARY_REGENERATION_OUTPUTS = N3_GENERATOR_OUTPUTS + THETA2_SIGNATURE_OUTPUTS
+
 
 def sha256(path: Path) -> str:
     digest = hashlib.sha256()
@@ -78,6 +95,7 @@ def remove_regenerated_outputs(work: Path) -> None:
         "atlas/COMPACT_PATH_CLOSURE_BINDINGS.jsonl.gz",
         "atlas/RESTORATION_CLOSURE_BINDINGS.jsonl.gz",
         "atlas/DIRECT_ANCHOR_CLOSURE_BINDINGS.jsonl.gz",
+        *AUXILIARY_REGENERATION_OUTPUTS,
     )
     patterns = (
         "primary/certificates/bounded_relation_n3_*",
@@ -96,6 +114,17 @@ def remove_regenerated_outputs(work: Path) -> None:
             path.unlink()
     if any(path.exists() for path in targets):
         raise AssertionError("failed to clear one or more declared regeneration outputs")
+
+
+def require_regenerated_outputs(work: Path) -> None:
+    """Reject no-op or partial auxiliary producers after clean deletion."""
+
+    missing = [
+        relative for relative in AUXILIARY_REGENERATION_OUTPUTS
+        if not (work / relative).is_file()
+    ]
+    if missing:
+        raise AssertionError(("auxiliary producer omitted required outputs", missing))
 
 
 def normalize_json(value):
@@ -261,6 +290,22 @@ def primary_regeneration(work: Path) -> None:
     run(work, PYTHON, "reviews/direct_anchor_probe_closure/compile_direct_anchor_probes.py")
 
 
+def regenerate_auxiliary_universes(work: Path) -> None:
+    """Cleanly rebuild the independent n=3 and four-port quotient records."""
+
+    programs = (
+        "reviews/n3_universe_generator/generate_universe.py",
+        "reviews/theta2_signature_gate/verify_gate.py",
+        "reviews/theta2_signature_gate/canonicalize_relations.py",
+    )
+    for relative in programs:
+        restore_bundled_program(work, relative)
+    run(work, PYTHON, programs[0])
+    run(work, PYTHON, programs[1])
+    run(work, PYTHON, programs[2])
+    require_regenerated_outputs(work)
+
+
 def regenerate_evidence_bindings(work: Path) -> None:
     module_path = work / "verifiers/evidence_bindings.py"
     spec = importlib.util.spec_from_file_location(
@@ -335,6 +380,7 @@ def verify_regeneration(work: Path) -> dict[str, object]:
         "atlas/COMPACT_PATH_CLOSURE_BINDINGS.jsonl.gz",
         "atlas/RESTORATION_CLOSURE_BINDINGS.jsonl.gz",
         "atlas/DIRECT_ANCHOR_CLOSURE_BINDINGS.jsonl.gz",
+        *AUXILIARY_REGENERATION_OUTPUTS,
     ]
     for prefix in ("schema3_n3_compact", "theta2_compact_n4"):
         for shard in range(4):
@@ -391,12 +437,16 @@ def main() -> None:
             "primary/compact_probe_extension_compiler.py",
             "reviews/direct_anchor_probe_closure/compile_direct_anchor_probes.py",
             "reviews/final_hard_cover_cleanroom/audit_candidate_stream.py",
+            "reviews/n3_universe_generator/generate_universe.py",
+            "reviews/theta2_signature_gate/verify_gate.py",
+            "reviews/theta2_signature_gate/canonicalize_relations.py",
         ):
             if not (work / relative).is_file():
                 raise AssertionError(("disposable copy omitted bundled program", relative))
         remove_regenerated_outputs(work)
         primary_regeneration(work)
         full_n4_audit(work)
+        regenerate_auxiliary_universes(work)
         regenerate_evidence_bindings(work)
         return verify_regeneration(work)
 

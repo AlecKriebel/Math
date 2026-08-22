@@ -21,7 +21,9 @@ row it:
 4. regenerates the attached polynomial, flattening minor, or equality test;
 5. proves strict sign on the open cube or verifies labelled isomorphism / one
    ordinary triangle redirection;
-6. verifies every raw-to-canonical transport and restoration-parent edge;
+6. reconstructs and validates every branch-required canonical transport,
+   content-binds every serialized transport consumed downstream, and verifies
+   every restoration-parent edge;
 7. checks the exact one- and two-port parent transports used for probe
    coherence.
 

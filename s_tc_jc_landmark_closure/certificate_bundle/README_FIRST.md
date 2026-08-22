@@ -40,7 +40,10 @@ arbitrary-word cut reduction and a clean-room graph/switching replay of its
 reduced palette.  `regenerate-all` additionally
 rebuilds the complete relation, restoration, and probe streams from the
 committed primitive graph and invariant inputs, compares them with the frozen
-proof records, and repeats that regeneration in a second isolated copy.  The
+proof records, and repeats that regeneration in a second isolated copy.
+Before running their producers it also deletes all three independent n=3
+generator outputs and all six four-port signature/crosswalk/quotient outputs;
+no-op, partial, or stale-output producers therefore fail closed.  The
 mathematical gates work in temporary copies.  On first use `verify.sh` adds
 only a local `.venv` alongside the authenticated payload; it does not alter
 any authenticated proof-payload file.

@@ -118,22 +118,14 @@ def cut_palette_gate() -> None:
 
 
 def convention_gate() -> None:
-    # Exercise the exact finite fixtures without importing literature files or
-    # audit prose, which are not mathematical inputs.
-    import importlib.util
-    module_path = ROOT / "reviews/final_standard_convention/verify_conventions.py"
-    spec = importlib.util.spec_from_file_location("fixed_convention", module_path)
-    assert spec and spec.loader
-    module = importlib.util.module_from_spec(spec)
-    sys.modules[spec.name] = module
-    spec.loader.exec_module(module)
-    with tempfile.TemporaryDirectory(prefix="convention-") as raw:
-        module.OUT = Path(raw) / "certificate.json"
-        module.source_hashes = lambda: {}
-        module.main()
-        payload = json.loads(module.OUT.read_text())
-        assert payload["verdict"] == "VERIFIED_AFTER_CORRECTION"
-        assert payload["mutations"]["unexpected_survivors"] == []
+    # Exercise the advertised standalone command directly.  Provenance-only
+    # literature and manuscript hashes are intentionally not mathematical
+    # inputs to this bundle replay.
+    run(
+        PYTHON,
+        "reviews/final_standard_convention/verify_conventions.py",
+        "--check-bundled",
+    )
 
 
 def triangle_gate() -> None:
