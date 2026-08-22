@@ -12,6 +12,16 @@ from typing import Sequence
 import sympy as sp
 
 
+class CertificateFailure(RuntimeError):
+    """Raised when an explicit certificate check fails."""
+
+
+def require(condition, detail="certificate check failed"):
+    """Raise a failure that remains active under optimized Python."""
+    if not condition:
+        raise CertificateFailure(str(detail))
+
+
 R = sp.symbols("r", positive=True)
 
 
@@ -108,7 +118,7 @@ def differentiated_coefficient(weights: Sequence[Sequence[object]]) -> sp.Expr:
         if source != target
     )
     defect = directed_defect(w)
-    assert sp.simplify(a_total - n * (n - 1) * (n - 2) - defect) == 0
+    require(sp.simplify(a_total - n * (n - 1) * (n - 2) - defect) == 0)
     return sp.factor(a_total / (n**2 * (n - 2)))
 
 
@@ -140,8 +150,8 @@ def check_example(weights: Sequence[Sequence[object]]) -> tuple[sp.Expr, sp.Expr
     extracted_difference = sp.factor(
         sp.limit(R * (complete_baseline(n) - rho), R, sp.oo)
     )
-    assert sp.simplify(extracted_graph - predicted_graph) == 0
-    assert sp.simplify(extracted_difference - predicted_difference) == 0
+    require(sp.simplify(extracted_graph - predicted_graph) == 0)
+    require(sp.simplify(extracted_difference - predicted_difference) == 0)
     return extracted_graph, extracted_difference
 
 
@@ -179,9 +189,9 @@ def main() -> None:
         (2, 5, 7, 0),
     )
     rho = directed_db_fixation(column_uniform)
-    assert directed_defect(column_uniform) == 0
-    assert sp.simplify(rho - complete_baseline(4)) == 0
-    assert row_defect(column_uniform) == sp.Rational(1131, 77)
+    require(directed_defect(column_uniform) == 0)
+    require(sp.simplify(rho - complete_baseline(4)) == 0)
+    require(row_defect(column_uniform) == sp.Rational(1131, 77))
     print(
         "column-uniform negative control: exact baseline identity; "
         f"wrong row defect={row_defect(column_uniform)}"
@@ -197,9 +207,9 @@ def main() -> None:
         tuple(scales[target] * original[source][target] for target in range(3))
         for source in range(3)
     )
-    assert sp.simplify(
+    require(sp.simplify(
         directed_db_fixation(original) - directed_db_fixation(scaled)
-    ) == 0
+    ) == 0)
     print("independent incoming-column scaling: exact fixation identity")
 
 

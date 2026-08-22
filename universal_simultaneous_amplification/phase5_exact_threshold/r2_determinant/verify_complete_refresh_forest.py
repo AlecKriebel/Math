@@ -15,6 +15,16 @@ import sympy as sp
 from flint import fmpq as Q, fmpq_mat
 
 
+class CertificateFailure(RuntimeError):
+    """Raised when an explicit certificate check fails."""
+
+
+def require(condition, detail="certificate check failed"):
+    """Raise a failure that remains active under optimized Python."""
+    if not condition:
+        raise CertificateFailure(str(detail))
+
+
 def sympy_active(P):
     n = len(P)
     states = [
@@ -34,7 +44,7 @@ def sympy_active(P):
                 for i in range(n):
                     if P[w][i]:
                         kernel[source, index[C | (1 << i), w]] += P[w][i] / (2 * k)
-        assert sp.factor(sum(kernel[source, j] for j in range(len(states)))) == 1
+        require(sp.factor(sum(kernel[source, j] for j in range(len(states)))) == 1)
     return states, kernel
 
 
@@ -63,7 +73,7 @@ def triangle_certificate():
     ]
     states, kernel = sympy_active(P)
     complete_states, complete = sympy_active(P0)
-    assert states == complete_states and len(states) == 9
+    require(states == complete_states and len(states) == 9)
     interpolated = (1 - alpha) * complete + alpha * kernel
     laplacian = sp.eye(len(states)) - interpolated
     q = sp.Matrix([
@@ -75,14 +85,14 @@ def triangle_certificate():
     numerator, denominator = sp.cancel(
         (laplacian + q * nu0).det(method="domain-ge")
     ).as_numer_denom()
-    assert sp.factor(denominator) == (
+    require(sp.factor(denominator) == (
         65536 * (a + b) ** 2 * (a + c) ** 2 * (b + c) ** 2
-    )
+    ))
     polynomial = sp.Poly(numerator, alpha)
-    assert polynomial.degree() == 6
+    require(polynomial.degree() == 6)
     power = [polynomial.coeff_monomial(alpha**j) for j in range(7)]
     bernstein = bernstein_from_power(power)
-    assert bernstein[0] == bernstein[1] == 0
+    require(bernstein[0] == bernstein[1] == 0)
 
     x, y, z = sp.symbols("x y z")
     table = {
@@ -114,8 +124,8 @@ def triangle_certificate():
             + (b - c) ** 2 * qpoly(j, b, c, a)
             + (c - a) ** 2 * qpoly(j, c, a, b)
         )
-        assert sp.expand(bernstein[j] - certificate) == 0
-        assert all(value >= 0 for value in table[j])
+        require(sp.expand(bernstein[j] - certificate) == 0)
+        require(all(value >= 0 for value in table[j]))
     print("PASS: symbolic triangle complete-refresh determinant")
     print("PASS: every nonzero Bernstein coefficient has a centered positive certificate")
 
@@ -141,7 +151,7 @@ def flint_active(weights):
                 for i, probability in enumerate(P[w]):
                     if probability:
                         kernel[source, index[C | (1 << i), w]] += probability / (2 * k)
-        assert sum((kernel[source, j] for j in range(len(states))), Q(0)) == 1
+        require(sum((kernel[source, j] for j in range(len(states))), Q(0)) == 1)
     return states, kernel
 
 
@@ -152,7 +162,7 @@ def exact_polynomial_values(weights):
     ]
     states, kernel = flint_active(weights)
     complete_states, complete = flint_active(complete_weights)
-    assert states == complete_states
+    require(states == complete_states)
     size = len(states)
     identity = fmpq_mat(size, size, [
         int(i == j) for i in range(size) for j in range(size)
@@ -197,7 +207,7 @@ def exact_bernstein(weights):
         )
         for k in range(degree + 1)
     ]
-    assert bernstein[-1] == values[1]
+    require(bernstein[-1] == values[1])
     return bernstein
 
 
@@ -232,9 +242,9 @@ def finite_screen():
             if not connected(weights):
                 continue
             coefficients = exact_bernstein(weights)
-            assert coefficients[0] == coefficients[1] == 0
-            assert all(value >= 0 for value in coefficients)
-            assert coefficients[-1] > 0
+            require(coefficients[0] == coefficients[1] == 0)
+            require(all(value >= 0 for value in coefficients))
+            require(coefficients[-1] > 0)
             tested += 1
         counts[f"reversible-n{n}"] = tested
 
@@ -248,8 +258,8 @@ def finite_screen():
                 for i in range(n)
             ]
             coefficients = exact_bernstein(weights)
-            assert coefficients[0] == coefficients[1] == 0
-            assert all(value >= 0 for value in coefficients)
+            require(coefficients[0] == coefficients[1] == 0)
+            require(all(value >= 0 for value in coefficients))
         counts[f"directed-n{n}"] = target
     print("PASS: exact finite Bernstein screen", counts)
     print("OPEN: arbitrary-order positivity of all complete-refresh forest coefficients")

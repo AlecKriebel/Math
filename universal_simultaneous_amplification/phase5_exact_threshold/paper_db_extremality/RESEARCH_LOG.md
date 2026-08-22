@@ -233,3 +233,40 @@
 - Paper I final-review and AI-referee-handoff task: 100% complete.  Only
   human-controlled submission metadata and portal actions remain outside this
   task.
+
+## 2026-08-22 14:37 PDT — independent-referee correction checkpoint
+
+- Adjudicated all five findings in the independent referee report.  No
+  mathematical claim, range, normalization, equality case, or theorem proof
+  required repair.  The certification defect under optimized Python was real;
+  the helper-reachability, proof-status wording, dependency provenance, and
+  standalone Make-target findings were also accepted in their narrowed forms.
+- Replaced all 406 bare assertions in the delivered scientific Python files,
+  and all 28 in the development submission guard, by explicit failure checks.
+  An AST comparison confirmed that every original test expression and message
+  was preserved.  The new bundled-source audit finds no remaining
+  optimization-elidable `assert` and at least 406 explicit scientific checks.
+- Hardened every advertised launcher against inherited Python optimization,
+  import-path, and Make overrides.  Added ordinary and `python -O` negative
+  controls, a fresh-environment wheel-only SHA-256 lock, dependency-origin
+  checks, and a pinned Tectonic v33 bundle digest.  Paper I now invokes all
+  seventeen verifier/cross-check programs directly; the historical Make target
+  remains intact for the earlier manuscript but is absent from this archive.
+- Corrected the helper function-level reachability map and finite-versus-
+  analytic proof-status language.  The manuscript now states explicitly that
+  the universal directed and all-order antisymmetric conclusions come from the
+  analytic proofs, while the literal-chain runs are finite consistency tests.
+- A post-fix hostile launcher audit found and closed two additional bypasses:
+  a non-Python command supplied through `PYTHON` could previously return zero
+  without running the preflight, and an inherited external bytecode-cache
+  prefix could affect later non-isolated imports.  Replay now authenticates a
+  preflight sentinel, clears the full import-control set, rejects the false
+  interpreter in a package negative control, and checks the exact per-file
+  inventory of all 406 converted scientific conditions.
+- A fresh Python 3.14.6 bootstrap installed all three hash-verified wheels, and
+  the complete six-test/seventeen-program replay exited zero.  Two document
+  builds were byte-identical; the visually inspected 30-page PDF has SHA-256
+  `22142ee518e75c00d1948b19c210818ec797946df86a5e3272c9d1017800b0f4`.
+- Best-guess completion: 75% of the referee-correction task.  The corrected
+  source release, r2 referee package, mobile-access copy, independent hostile
+  review, and final commit/push remain.

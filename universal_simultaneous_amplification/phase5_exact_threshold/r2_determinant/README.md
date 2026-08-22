@@ -53,7 +53,8 @@ and the exact finite Bernstein screen with
 ../../.venv/bin/python verify_complete_refresh_forest.py
 ```
 
-The all-order antisymmetric proof has two independent exact checks:
+The analytic all-order antisymmetric proof is accompanied by two independent
+finite exact checks:
 
 ```text
 ../../.venv/bin/python verify_antisymmetric_hessian.py

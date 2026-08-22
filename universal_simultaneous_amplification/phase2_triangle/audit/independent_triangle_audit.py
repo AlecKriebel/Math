@@ -15,6 +15,16 @@ from itertools import permutations
 import sympy as sp
 
 
+class CertificateFailure(RuntimeError):
+    """Raised when an explicit certificate check fails."""
+
+
+def require(condition, detail="certificate check failed"):
+    """Raise a failure that remains active under optimized Python."""
+    if not condition:
+        raise CertificateFailure(str(detail))
+
+
 r = sp.symbols("r", positive=True)
 a, b, c = sp.symbols("a b c", positive=True)
 x, y = sp.symbols("x y", positive=True)
@@ -125,13 +135,13 @@ def verify_symmetric_coefficients_and_determinant():
     weights = ((0, a, b), (a, 0, c), (b, c, 0))
     matrix, _, _ = direct_state_system(weights, r)
     row_gaps = matrix * sp.ones(6, 1) - sp.ones(6, 1)
-    assert all(sp.cancel(entry) == 0 for entry in row_gaps)
+    require(all(sp.cancel(entry) == 0 for entry in row_gaps))
 
     data = claimed_polynomials(a, b, c)
     local_product = sp.prod(r * u + v for u, v in permutations((a, b, c), 2))
     cleared_determinant = sp.cancel(matrix.det(method="domain-ge") * local_product / 3)
-    assert sp.denom(cleared_determinant) == 1
-    assert sp.expand(cleared_determinant - data["P"]) == 0
+    require(sp.denom(cleared_determinant) == 1)
+    require(sp.expand(cleared_determinant - data["P"]) == 0)
 
     polynomial = sp.Poly(cleared_determinant, r)
     expected = {
@@ -144,19 +154,19 @@ def verify_symmetric_coefficients_and_determinant():
         0: 9 * data["s3"] ** 2,
     }
     for degree, coefficient in expected.items():
-        assert sp.expand(polynomial.coeff_monomial(r**degree) - coefficient) == 0
+        require(sp.expand(polynomial.coeff_monomial(r**degree) - coefficient) == 0)
 
     for expression in (data["B5"], data["B4"], data["B3"], data["A"], data["D"], data["E"]):
         for permuted in permutations((a, b, c)):
             replacement = {a: permuted[0], b: permuted[1], c: permuted[2]}
-            assert sp.expand(expression.xreplace(replacement) - expression) == 0
+            require(sp.expand(expression.xreplace(replacement) - expression) == 0)
 
 
 def verify_direct_symbolic_difference():
     weights = ((0, 1, x), (1, 0, y), (x, y, 0))
     rho = exact_average(weights, r)
     baseline = 2 * r / (3 * (r + 1))
-    assert sp.cancel(rho - baseline - claimed_difference(1, x, y)) == 0
+    require(sp.cancel(rho - baseline - claimed_difference(1, x, y)) == 0)
 
 
 def verify_sos_identities():
@@ -174,32 +184,32 @@ def verify_sos_identities():
     Z_squares = s2 * V + 3 * (
         Z0 * (X - Y) ** 2 + Y * (X - Z0) ** 2 + X * (Y - Z0) ** 2
     )
-    assert sp.expand(U - U_squares) == 0
-    assert sp.expand(V - V_squares) == 0
-    assert sp.expand(W - W_squares) == 0
-    assert sp.expand(Z - Z_squares) == 0
-    assert sp.expand(data["A"] - 3 * s3 * W) == 0
-    assert sp.expand(data["D"] - (12 * s1 * s3 * U + 3 * s2 * V + Z)) == 0
-    assert sp.expand(data["E"] - 4 * s2 * (3 * s2 * U + V)) == 0
-    assert sp.expand(
+    require(sp.expand(U - U_squares) == 0)
+    require(sp.expand(V - V_squares) == 0)
+    require(sp.expand(W - W_squares) == 0)
+    require(sp.expand(Z - Z_squares) == 0)
+    require(sp.expand(data["A"] - 3 * s3 * W) == 0)
+    require(sp.expand(data["D"] - (12 * s1 * s3 * U + 3 * s2 * V + Z)) == 0)
+    require(sp.expand(data["E"] - 4 * s2 * (3 * s2 * U + V)) == 0)
+    require(sp.expand(
         data["H"]
         - (data["A"] * (r - 1) ** 4 + data["D"] * r * (r - 1) ** 2 + data["E"] * r**2)
-    ) == 0
+    ) == 0)
 
 
 def verify_edge_limits():
     data = claimed_polynomials(a, b, c)
     P_at_zero = sp.factor(data["P"].subs(a, 0))
     H_at_zero = sp.factor(data["H"].subs(a, 0))
-    assert P_at_zero == 12 * b**2 * c**2 * r**2 * (b + c * r) * (b * r + c)
-    assert sp.expand(
+    require(P_at_zero == 12 * b**2 * c**2 * r**2 * (b + c * r) * (b * r + c))
+    require(sp.expand(
         H_at_zero
         - 4
         * b**2
         * c**2
         * r
         * (b * c * (r - 1) ** 2 + r * (3 * b**2 - 2 * b * c + 3 * c**2))
-    ) == 0
+    ) == 0)
 
     t = sp.symbols("t", positive=True)
     paths = (
@@ -209,15 +219,15 @@ def verify_edge_limits():
     )
     for weights, expected_zero, expected_infinity in paths:
         difference = claimed_difference(*weights)
-        assert sp.factor(sp.limit(difference, t, 0, dir="+") - expected_zero) == 0
-        assert sp.factor(sp.limit(difference, t, sp.oo) - expected_infinity) == 0
+        require(sp.factor(sp.limit(difference, t, 0, dir="+") - expected_zero) == 0)
+        require(sp.factor(sp.limit(difference, t, sp.oo) - expected_infinity) == 0)
 
     epsilon = sp.symbols("epsilon", positive=True)
     near_uniform = claimed_difference(1, 1 + epsilon, 1)
     expected_quadratic = -2 * r * (r - 1) / (
         9 * (r + 1) * (r**2 + 3 * r + 1)
     )
-    assert sp.factor(sp.limit(near_uniform / epsilon**2, epsilon, 0) - expected_quadratic) == 0
+    require(sp.factor(sp.limit(near_uniform / epsilon**2, epsilon, 0) - expected_quadratic) == 0)
 
 
 def verify_random_and_extreme_cases():
@@ -246,11 +256,11 @@ def verify_random_and_extreme_cases():
         baseline = 2 * fitness / (3 * (fitness + 1))
         direct_difference = sp.cancel(rho - baseline)
         formula = sp.cancel(claimed_difference(*weights).subs(r, fitness))
-        assert direct_difference == formula
-        assert direct_difference < 0
+        require(direct_difference == formula)
+        require(direct_difference < 0)
         data = claimed_polynomials(*weights)
-        assert data["P"].subs(r, fitness) > 0
-        assert data["H"].subs(r, fitness) > 0
+        require(data["P"].subs(r, fitness) > 0)
+        require(data["H"].subs(r, fitness) > 0)
         checked += 1
 
     extremes = (
@@ -269,16 +279,16 @@ def verify_random_and_extreme_cases():
             exact_average(matrix_weights, fitness) - 2 * fitness / (3 * (fitness + 1))
         )
         formula = sp.cancel(claimed_difference(*weights).subs(r, fitness))
-        assert direct_difference == formula
-        assert direct_difference < 0
+        require(direct_difference == formula)
+        require(direct_difference < 0)
 
     for common in (sp.Rational(1), sp.Rational(7, 13), sp.Rational(10**8)):
         matrix_weights = ((0, common, common), (common, 0, common), (common, common, 0))
         for fitness in (sp.Rational(11, 10), sp.Rational(2), sp.Rational(10**5)):
-            assert sp.cancel(
+            require(sp.cancel(
                 exact_average(matrix_weights, fitness)
                 - 2 * fitness / (3 * (fitness + 1))
-            ) == 0
+            ) == 0)
     return checked, len(extremes)
 
 

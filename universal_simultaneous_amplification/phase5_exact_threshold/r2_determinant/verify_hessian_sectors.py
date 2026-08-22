@@ -8,6 +8,16 @@ from math import comb
 from flint import fmpq as Q, fmpq_mat
 
 
+class CertificateFailure(RuntimeError):
+    """Raised when an explicit certificate check fails."""
+
+
+def require(condition, detail="certificate check failed"):
+    """Raise a failure that remains active under optimized Python."""
+    if not condition:
+        raise CertificateFailure(str(detail))
+
+
 def perturbation(n, sector):
     delta = [[Q(0) for _ in range(n)] for _ in range(n)]
     if sector == "anti":
@@ -34,7 +44,7 @@ def perturbation(n, sector):
         norm = Q(2)
     else:
         raise ValueError(sector)
-    assert all(sum(row, Q(0)) == 0 for row in delta)
+    require(all(sum(row, Q(0)) == 0 for row in delta))
     return delta, marked, norm
 
 
@@ -107,19 +117,19 @@ def complete_orbit_chain(n, marked):
                             n, marked, retained | (1 << sample), new_target
                         )
                         kernel[source, index[destination]] += Q(1, 2 * rank * N)
-        assert sum((kernel[source, j] for j in range(len(keys))), Q(0)) == 1
+        require(sum((kernel[source, j] for j in range(len(keys))), Q(0)) == 1)
 
     denominator = n * N * 2 ** (N - 1)
     stationary = []
     for key in keys:
         subset, _ = representative(n, marked, key)
         stationary.append(Q(orbit_size(n, marked, key) * subset.bit_count(), denominator))
-    assert sum(stationary, Q(0)) == 1
+    require(sum(stationary, Q(0)) == 1)
     for column in range(len(keys)):
-        assert sum(
+        require(sum(
             (stationary[row] * kernel[row, column] for row in range(len(keys))),
             Q(0),
-        ) == stationary[column]
+        ) == stationary[column])
     return keys, index, kernel, stationary
 
 
@@ -185,7 +195,7 @@ def sector_eigenvalue(n, sector):
         for key in keys
     ]
     first = delta_apply(n, marked, delta, keys, index, h)
-    assert sum((mass * value for mass, value in zip(stationary, first)), Q(0)) == 0
+    require(sum((mass * value for mass, value in zip(stationary, first)), Q(0)) == 0)
     fundamental = fmpq_mat(len(keys), len(keys), [
         int(i == j) for i in range(len(keys)) for j in range(len(keys))
     ]) - kernel
@@ -198,7 +208,7 @@ def sector_eigenvalue(n, sector):
     value = sum(
         (mass * entry for mass, entry in zip(stationary, second)), Q(0)
     ) / normalization
-    assert value > 0
+    require(value > 0)
     return value
 
 
@@ -217,13 +227,13 @@ def main():
     }
     for n, expected in known.items():
         standard, symmetric, antisymmetric = expected
-        assert sector_eigenvalue(n, "std") == standard
+        require(sector_eigenvalue(n, "std") == standard)
         if symmetric is not None:
-            assert sector_eigenvalue(n, "sym") == symmetric
-        assert sector_eigenvalue(n, "anti") == antisymmetric
+            require(sector_eigenvalue(n, "sym") == symmetric)
+        require(sector_eigenvalue(n, "anti") == antisymmetric)
     print("PASS: independent exact orbit reduction for all three Hessian sectors, 3<=n<=12")
     print("EXACTLY COMPUTED: every displayed sector value is positive")
-    print("PROVED SEPARATELY: all-n stationary standard and symmetric positivity")
+    print("CONTEXT: all-n standard and symmetric positivity is established in Appendix A")
 
 
 if __name__ == "__main__":

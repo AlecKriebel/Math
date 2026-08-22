@@ -11,6 +11,16 @@ from __future__ import annotations
 import sympy as sp
 
 
+class CertificateFailure(RuntimeError):
+    """Raised when an explicit certificate check fails."""
+
+
+def require(condition, detail="certificate check failed"):
+    """Raise a failure that remains active under optimized Python."""
+    if not condition:
+        raise CertificateFailure(str(detail))
+
+
 def active_kernel(P):
     """Return the exact forward active kernel K_P=R A_P."""
     n = len(P)
@@ -36,7 +46,7 @@ def active_kernel(P):
                 if P[w][i] == 0:
                     continue
                 kernel[source, index[C | (1 << i), w]] += P[w][i] / (2 * b)
-        assert sp.factor(sum(kernel[source, j] for j in range(len(states)))) == 1
+        require(sp.factor(sum(kernel[source, j] for j in range(len(states)))) == 1)
     return states, kernel
 
 
@@ -61,7 +71,7 @@ def triangle_audit():
         for i in range(3)
     ]
     states, kernel = active_kernel(P)
-    assert len(states) == 9
+    require(len(states) == 9)
     trees = cofactors(kernel)
     partition = sp.factor(sum(trees))
     harmonic = [sp.Rational(1, B.bit_count()) for B, _ in states]
@@ -90,19 +100,19 @@ def triangle_audit():
         + (b - c) ** 2 * q(b, c, a)
         + (c - a) ** 2 * q(c, a, b)
     )
-    assert sp.expand(cleared - certificate) == 0
-    assert sp.Poly(certificate, a, b, c).coeff_monomial(a**2 * b**2 * c**2) == -114
+    require(sp.expand(cleared - certificate) == 0)
+    require(sp.Poly(certificate, a, b, c).coeff_monomial(a**2 * b**2 * c**2) == -114)
 
     # Promotion has the larger threshold c_P=3/4+(R-3/2)/24 for n=3.
     row_square = sum(P[i][j] ** 2 for i in range(3) for j in range(3))
     c_P = sp.Rational(3, 4) + (row_square - sp.Rational(3, 2)) / 24
     promotion_coefficient = sp.factor(reward - c_P * partition)
-    assert sp.factor(
+    require(sp.factor(
         collision_coefficient
         - promotion_coefficient
         - (c_P - sp.Rational(3, 4)) * partition
-    ) == 0
-    assert sp.factor(c_P.subs({a: 1, b: 2, c: 3}) - sp.Rational(3, 4)) > 0
+    ) == 0)
+    require(sp.factor(c_P.subs({a: 1, b: 2, c: 3}) - sp.Rational(3, 4)) > 0)
 
     # Check the coefficient-of-epsilon identity independently after exact
     # rational specialization.  Expanding the fully symbolic 9x9 determinant
@@ -116,7 +126,7 @@ def triangle_audit():
         specialized = (sp.eye(kernel.rows) - kernel + epsilon * diagonal).subs(values)
         determinant = specialized.det(method="domain-ge")
         expected = collision_coefficient.subs(values)
-        assert sp.factor(sp.expand(determinant).coeff(epsilon, 1) - expected) == 0
+        require(sp.factor(sp.expand(determinant).coeff(epsilon, 1) - expected) == 0)
 
     print("PASS: nine-state active-tree determinant reconstructed symbolically")
     print("PASS: true triangle collision numerator is a centered positive certificate")

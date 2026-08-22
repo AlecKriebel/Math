@@ -9,6 +9,16 @@ from pathlib import Path
 import sympy as sp
 
 
+class CertificateFailure(RuntimeError):
+    """Raised when an explicit certificate check fails."""
+
+
+def require(condition, detail="certificate check failed"):
+    """Raise a failure that remains active under optimized Python."""
+    if not condition:
+        raise CertificateFailure(str(detail))
+
+
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -93,10 +103,10 @@ def main() -> None:
     )
     for p, q, weights, manual_rho in cases:
         rows = transition_matrix(weights, "dB", r)
-        assert all(sp.cancel(sum(row.values()) - 1) == 0 for row in rows)
+        require(all(sp.cancel(sum(row.values()) - 1) == 0 for row in rows))
         quotient = check_lumping(rows, orbit_cells(p, q))
         quotient_rho = solve_quotient_average(quotient, p, q)
-        assert sp.cancel(quotient_rho - manual_rho) == 0
+        require(sp.cancel(quotient_rho - manual_rho) == 0)
 
     # Full 14-transient-state solves at exact rational weight specializations.
     specializations = (
@@ -110,7 +120,7 @@ def main() -> None:
     )
     for weights, expected in specializations:
         actual = average_single_mutant_fixation(weights, "dB", r)
-        assert sp.cancel(actual - expected) == 0
+        require(sp.cancel(actual - expected) == 0)
         difference = sp.cancel(actual - baseline_k4())
         numerator, denominator = sp.fraction(difference)
         # Exact Sturm-free specialization certificate after r=1+z: the reduced
@@ -118,9 +128,9 @@ def main() -> None:
         z = sp.symbols("z", positive=True)
         signed_numerator = sp.Poly(sp.expand(-numerator.subs(r, 1 + z)), z)
         positive_denominator = sp.Poly(sp.expand(denominator.subs(r, 1 + z)), z)
-        assert all(coefficient >= 0 for coefficient in signed_numerator.all_coeffs())
-        assert any(coefficient > 0 for coefficient in signed_numerator.all_coeffs())
-        assert all(coefficient > 0 for coefficient in positive_denominator.all_coeffs())
+        require(all(coefficient >= 0 for coefficient in signed_numerator.all_coeffs()))
+        require(any(coefficient > 0 for coefficient in signed_numerator.all_coeffs()))
+        require(all(coefficient > 0 for coefficient in positive_denominator.all_coeffs()))
 
     print("[INDEPENDENTLY VERIFIED] full transition rows are exactly stochastic")
     print("[INDEPENDENTLY VERIFIED] both count partitions are strongly lumpable symbolically")

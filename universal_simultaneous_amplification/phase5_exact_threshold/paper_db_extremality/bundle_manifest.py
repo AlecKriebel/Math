@@ -22,7 +22,6 @@ EPOCH = 1_787_270_400
 # explicit without taking unrelated phase-4/phase-5 research programs.
 INCLUDE = (
     f"{PROJECT}/LICENSE",
-    f"{PROJECT}/Makefile",
     f"{PROJECT}/requirements.txt",
     f"{PROJECT}/src",
     f"{PROJECT}/tests",
@@ -79,6 +78,7 @@ PUBLIC_SUBMISSION_FILES = frozenset(
         f"{PAPER}/submission/ENVIRONMENT.md",
         f"{PAPER}/submission/PROVENANCE_AND_RELATED_RELEASES.md",
         f"{PAPER}/submission/bootstrap_replay.sh",
+        f"{PAPER}/submission/verify_execution_safety.py",
     }
 )
 
@@ -155,7 +155,9 @@ def synthetic_metadata() -> bytes:
         "SymPy: 1.14.0\n"
         "python-flint: 0.9.0\n"
         "mpmath: 1.3.0\n"
+        "Python dependency artifacts: requirements-lock.txt; wheel-only SHA-256 lock\n"
         "PDF toolchain: Tectonic 0.16.9; Poppler 26.08.0\n"
+        "Tectonic v33 bundle SHA-256: 6ffe055852f8faf66c0acbe1a7fb27f87b869a90bad1204f3bf4d9683f597c7c\n"
         "Replay entry point: universal_simultaneous_amplification/"
         "phase5_exact_threshold/paper_db_extremality/replay.sh\n"
     ).encode("utf-8")
@@ -263,7 +265,7 @@ def main() -> None:
 
     repo_root = args.repo_root.resolve()
     output = args.output.resolve()
-    if not (repo_root / PROJECT / "Makefile").is_file():
+    if not (repo_root / PAPER / "main.tex").is_file():
         raise SystemExit(f"not the expected repository root: {repo_root}")
 
     count, digest = write_archive(repo_root, output)

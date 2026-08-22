@@ -15,6 +15,16 @@ from itertools import combinations
 from math import comb
 
 
+class CertificateFailure(RuntimeError):
+    """Raised when an explicit certificate check fails."""
+
+
+def require(condition, detail="certificate check failed"):
+    """Raise a failure that remains active under optimized Python."""
+    if not condition:
+        raise CertificateFailure(str(detail))
+
+
 def popcount(state: int) -> int:
     return state.bit_count()
 
@@ -59,7 +69,7 @@ def geometric_union_law(row):
                     )
             if probability:
                 law[sum(1 << u for u in chosen)] = probability
-    assert sum(law.values(), F(0)) == 1
+    require(sum(law.values(), F(0)) == 1)
     return law
 
 
@@ -78,11 +88,11 @@ def proper_generator(P):
             without = state & ~(1 << target)
             for union, probability in laws[target].items():
                 output = without | union
-                assert 0 < output < full
+                require(0 < output < full)
                 if output != state:
                     Q[source][index[output]] += probability
                     Q[source][source] -= probability
-    assert all(sum(row, F(0)) == 0 for row in Q)
+    require(all(sum(row, F(0)) == 0 for row in Q))
     return states, Q
 
 
@@ -106,9 +116,9 @@ def event_kernel(P):
             without = state & ~(1 << target)
             for union, probability in laws[target].items():
                 output = without | union
-                assert 0 < output < full
+                require(0 < output < full)
                 T[source][index[output]] += probability
-        assert sum(T[source], F(0)) == popcount(state)
+        require(sum(T[source], F(0)) == popcount(state))
     return states, T
 
 
@@ -119,12 +129,12 @@ def stationary(Q):
     rhs = [F(0)] * size
     rhs[-1] = F(1)
     pi = solve(matrix, rhs)
-    assert all(value > 0 for value in pi)
-    assert sum(pi, F(0)) == 1
-    assert all(
+    require(all(value > 0 for value in pi))
+    require(sum(pi, F(0)) == 1)
+    require(all(
         sum(pi[row] * Q[row][col] for row in range(size)) == 0
         for col in range(size)
-    )
+    ))
     return pi
 
 
@@ -201,7 +211,7 @@ def green_data(weights, P, states, QK, pi):
                     hit_chi = coefficients[k] * (hit - baseline_hit) ** 2 / (
                         2 - hit
                     )
-                    assert atom == hit_chi
+                    require(atom == hit_chi)
                     value += atom
                     hit_gap += coefficients[k] * (baseline_hit - hit)
         conditional_V.append(value)
@@ -209,14 +219,14 @@ def green_data(weights, P, states, QK, pi):
 
         # The tangent identity h(x)-h(a)=linear-D gives a second, simpler
         # exact form of the direct residual at every dual state.
-        assert value - forcing_value == hit_gap
+        require(value - forcing_value == hit_gap)
 
     L = sum((pi[row] * forcing[row] for row in range(len(states))), F(0))
     V = sum((pi[row] * conditional_V[row] for row in range(len(states))), F(0))
-    assert V - L == sum(
+    require(V - L == sum(
         (pi[row] * conditional_hit_gap[row] for row in range(len(states))),
         F(0),
-    )
+    ))
 
     # Solve Q_K psi = forcing with one gauge equation.  Because the forcing
     # has zero pi_K mean, replacing any one equation is legitimate.
@@ -227,7 +237,7 @@ def green_data(weights, P, states, QK, pi):
     rhs[-1] = F(0)
     psi = solve(matrix, rhs)
     residual = matvec(QK, psi)
-    assert residual == forcing
+    require(residual == forcing)
     return L, V, forcing, conditional_V, psi
 
 
@@ -240,16 +250,16 @@ def audit(label, weights, expected):
         [F(0) if u == v else F(1, N) for u in range(n)] for v in range(n)
     ]
     complete_states, QK = proper_generator(complete_P)
-    assert states == complete_states
+    require(states == complete_states)
     pi = stationary(QP)
     piK = [
         F(n - popcount(state), n * (2 ** (n - 1) - 1)) for state in states
     ]
-    assert sum(piK, F(0)) == 1
-    assert all(
+    require(sum(piK, F(0)) == 1)
+    require(all(
         sum(piK[row] * QK[row][col] for row in range(len(states))) == 0
         for col in range(len(states))
-    )
+    ))
     g = [pi[row] / piK[row] for row in range(len(states))]
 
     # Q_K is not generally reversible.  Record an exact detailed-balance
@@ -267,29 +277,29 @@ def audit(label, weights, expected):
                 break
         if nonreversible:
             break
-    assert nonreversible is not None
+    require(nonreversible is not None)
 
     L, V, forcing, conditional_V, psi = green_data(
         weights, P, states, QK, pi
     )
     # Exact covariance and Poisson representations of L.
-    assert sum((piK[row] * forcing[row] for row in range(len(states))), F(0)) == 0
-    assert L == sum(
+    require(sum((piK[row] * forcing[row] for row in range(len(states))), F(0)) == 0)
+    require(L == sum(
         (piK[row] * (g[row] - 1) * forcing[row] for row in range(len(states))),
         F(0),
-    )
+    ))
 
     # Direct actual-flow compensation.  T_P and T_K include self-events and
     # have the same row mass |A|.  With r_AB=T_P/T_K, actual stationarity
     # cancels the r-weighted work exactly, leaving L as the (1-r)-work.
     event_states, TP = event_kernel(P)
     complete_event_states, TK = event_kernel(complete_P)
-    assert event_states == complete_event_states == states
+    require(event_states == complete_event_states == states)
     for row, state in enumerate(states):
         size = popcount(state)
         for col in range(len(states)):
-            assert QP[row][col] == TP[row][col] - (size if row == col else 0)
-            assert QK[row][col] == TK[row][col] - (size if row == col else 0)
+            require(QP[row][col] == TP[row][col] - (size if row == col else 0))
+            require(QK[row][col] == TK[row][col] - (size if row == col else 0))
     direct_work = F(0)
     actual_work = F(0)
     event_pinsker_lower_bound = F(0)
@@ -299,7 +309,7 @@ def audit(label, weights, expected):
         total_variation = F(0)
         for col in range(len(states)):
             if not TK[row][col]:
-                assert not TP[row][col]
+                require(not TP[row][col])
                 continue
             ratio = TP[row][col] / TK[row][col]
             ratio_mean += TK[row][col] * ratio
@@ -312,21 +322,21 @@ def audit(label, weights, expected):
                 piK[row] * TK[row][col] * g[row] * (1 - ratio) * increment
             )
             actual_work += pi[row] * TP[row][col] * increment
-        assert ratio_mean == popcount(states[row])
+        require(ratio_mean == popcount(states[row]))
         # T_P/|A| and T_K/|A| are probability laws.  Pinsker therefore
         # gives a fully rational lower bound on their rowwise KL cost:
         # |A| KL(T_P/|A| || T_K/|A|) >= 2 TV(T_P,T_K)^2/|A|.
         event_pinsker_lower_bound += (
             pi[row] * F(2, popcount(states[row])) * total_variation**2
         )
-    assert actual_work == 0
-    assert direct_work == L
-    assert V - L == sum(
+    require(actual_work == 0)
+    require(direct_work == L)
+    require(V - L == sum(
         (pi[row] * conditional_V[row] for row in range(len(states))), F(0)
-    ) - direct_work
-    assert event_pinsker_lower_bound == expected["event_pinsker"]
-    assert event_chi_square == expected["event_chi"]
-    assert event_pinsker_lower_bound > V
+    ) - direct_work)
+    require(event_pinsker_lower_bound == expected["event_pinsker"])
+    require(event_chi_square == expected["event_chi"])
+    require(event_pinsker_lower_bound > V)
 
     # The quadratic (chi-square) complete-chain Fisher information remains
     # exact without reversibility because the stationary directed flow is
@@ -352,7 +362,7 @@ def audit(label, weights, expected):
         ),
         F(0),
     ) / 2
-    assert chi_fisher == chi_flow
+    require(chi_fisher == chi_flow)
     psi_energy = sum(
         (
             piK[row]
@@ -396,7 +406,7 @@ def audit(label, weights, expected):
         ),
         F(0),
     )
-    assert symmetric_pairing == symmetric_poisson
+    require(symmetric_pairing == symmetric_poisson)
 
     # Same-rank complete transitions are exactly reversible.  Every
     # rank-changing transition is one-way, and summing its contribution gives
@@ -409,16 +419,16 @@ def audit(label, weights, expected):
             forward_flow = piK[row] * QK[row][col]
             reverse_flow = piK[col] * QK[col][row]
             if popcount(A) == popcount(B):
-                assert forward_flow == reverse_flow
+                require(forward_flow == reverse_flow)
             else:
-                assert reverse_flow == 0
+                require(reverse_flow == 0)
                 circulation += (
                     forward_flow
                     * (g[row] + g[col])
                     * (psi[col] - psi[row])
                     / 2
                 )
-    assert L - symmetric_pairing == circulation
+    require(L - symmetric_pairing == circulation)
 
     statewise_symmetric_residual = []
     for row in range(len(states)):
@@ -429,12 +439,12 @@ def audit(label, weights, expected):
         )
         statewise_symmetric_residual.append(conditional_V[row] - correction)
 
-    assert L == expected["L"]
-    assert V == expected["V"]
-    assert symmetric_pairing == expected["S"]
+    require(L == expected["L"])
+    require(V == expected["V"])
+    require(symmetric_pairing == expected["S"])
     for state, value in expected.get("symmetric_state_residuals", {}).items():
-        assert statewise_symmetric_residual[states.index(state)] == value
-    assert L == sum(
+        require(statewise_symmetric_residual[states.index(state)] == value)
+    require(L == sum(
         (
             pi[row]
             * sum(
@@ -445,7 +455,7 @@ def audit(label, weights, expected):
             for row in range(len(states))
         ),
         F(0),
-    )
+    ))
 
     with localcontext() as context:
         context.prec = 80
@@ -473,9 +483,9 @@ def audit(label, weights, expected):
                     pi[row] * (QP[row][col] - QK[row][col])
                 ) * (logg[col] - logg[row])
         tolerance = Decimal(10) ** -65
-        assert abs(fisher - bregman) < tolerance
-        assert abs(fisher - entropy_forcing) < tolerance
-        assert fisher >= 0
+        require(abs(fisher - bregman) < tolerance)
+        require(abs(fisher - entropy_forcing) < tolerance)
+        require(fisher >= 0)
 
         # Sharp Fenchel--Young generator bound.  For every lambda>0,
         #   L=<g,Q_K psi>_K
@@ -576,8 +586,8 @@ def audit_directed_counterexample():
         ),
         F(0),
     ) / 2
-    assert L - S > 0
-    assert S < V
+    require(L - S > 0)
+    require(S < V)
     print(
         "PASS: exact directed counterexample to L<=S; "
         f"L-S={L-S} (~{float(L-S):.8g})"
@@ -620,9 +630,9 @@ def audit_rank_collapse():
                 ),
                 F(0),
             )
-            assert size * (complete_hits - stationary_elimination) == (
+            require(size * (complete_hits - stationary_elimination) == (
                 rhoK - F(size, n)
-            )
+            ))
     print("PASS: exact Green-coefficient rank collapse for 3<=n<=12")
 
 
@@ -674,16 +684,16 @@ def audit_original_edge_decomposition():
                     U[n - size]
                     * (F(int(contains_pair)) - F(size * (size - 1), n * N))
                 )
-            assert sum(
+            require(sum(
                 (piK[row] * forcing[row] for row in range(len(states))), F(0)
-            ) == 0
+            ) == 0)
             matrix = [row[:] for row in QK]
             rhs = forcing[:]
             matrix[-1] = [F(0)] * len(states)
             matrix[-1][0] = F(1)
             rhs[-1] = F(0)
             eta = solve(matrix, rhs)
-            assert matvec(QK, eta) == forcing
+            require(matvec(QK, eta) == forcing)
             observable = matvec(Qa, eta)
             theta = sum(
                 (pi[row] * observable[row] for row in range(len(states))), F(0)
@@ -691,13 +701,13 @@ def audit_original_edge_decomposition():
             b = F(2, N) - P[u][v] - P[v][u]
             terms[(u, v)] = b * theta
 
-    assert terms == {
+    require(terms == {
         (0, 1): F(4, 13365),
         (0, 2): F(-64, 13365),
         (1, 2): F(-4, 891),
-    }
-    assert sum(terms.values(), F(0)) == F(-8, 891)
-    assert terms[(0, 1)] > 0
+    })
+    require(sum(terms.values(), F(0)) == F(-8, 891))
+    require(terms[(0, 1)] > 0)
     print(
         "PASS: original-pair circulation expansion; termwise sign is false "
         "on path (1,4)"
@@ -744,7 +754,7 @@ def audit_undirected_split_counterexample():
     )
     k4_required_alpha = F(207, 22960) / F(82543, 387450)
     n6_allowed_alpha = V / event_chi
-    assert k4_required_alpha > n6_allowed_alpha
+    require(k4_required_alpha > n6_allowed_alpha)
     S = -sum(
         (
             piK[row]
@@ -757,8 +767,8 @@ def audit_undirected_split_counterexample():
         ),
         F(0),
     ) / 2
-    assert L - S > 0
-    assert L - V < 0
+    require(L - S > 0)
+    require(L - V < 0)
     print(
         "PASS: exact undirected n=6 counterexample to L<=S; "
         f"L-S~{float(L-S):.8g}, while L-V~{float(L-V):.8g}"

@@ -93,8 +93,8 @@ strictness, endpoint coverage, and equality cases.
 Use `CLAIM_CODE_MAP.md` as an index, not as evidence. Before executing any
 delivered code, inspect `run_all_referee_checks.sh`,
 `verify_referee_package.py`, `submission/bootstrap_replay.sh`, `replay.sh`,
-`build.sh`, the project `Makefile`, every program they invoke, and every
-imported helper used by those programs. For every theorem-bearing assertion,
+`build.sh`, every program invoked directly by the replay, and every imported
+helper actually used by those programs. For every theorem-bearing check,
 identify the exact manuscript statement it checks and determine whether the
 code checks that statement rather than a weaker surrogate.
 
@@ -109,9 +109,10 @@ In particular, check that:
 - every finite size range is exhaustive, including endpoints;
 - hard-coded expressions are independently derived rather than copied as
   both premise and expected answer;
-- failures propagate to a nonzero exit status and no exception or failed
-  assertion is suppressed;
-- the replay reaches every load-bearing verifier and imported helper; and
+- failures propagate to a nonzero exit status, including under hostile
+  optimization/import/build environment settings;
+- the replay reaches every load-bearing verifier, and documentation
+  distinguishes called helper functions, module imports, and guarded mains;
 - purportedly independent cross-checks do not merely share the same
   potentially faulty implementation.
 

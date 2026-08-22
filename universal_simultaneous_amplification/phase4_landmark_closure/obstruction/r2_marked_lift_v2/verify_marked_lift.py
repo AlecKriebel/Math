@@ -14,6 +14,16 @@ from math import comb
 from pathlib import Path
 
 
+class CertificateFailure(RuntimeError):
+    """Raised when an explicit certificate check fails."""
+
+
+def require(condition, detail="certificate check failed"):
+    """Raise a failure that remains active under optimized Python."""
+    if not condition:
+        raise CertificateFailure(str(detail))
+
+
 HERE = Path(__file__).resolve().parent
 OBSTRUCTION = HERE.parent
 CHI = OBSTRUCTION / "r2_entropy_certificate" / "chi_square_channel"
@@ -47,7 +57,7 @@ def posterior_midpoint(weights):
         for state, mass in zip(states, incoming):
             if not ((state >> v) & 1):
                 nu[v][state] = mass - pi_all[state]
-                assert nu[v][state] >= 0
+                require(nu[v][state] >= 0)
         for C in range(full):
             if not ((C >> v) & 1):
                 sigma[v][C] = pi_all[C | (1 << v)]
@@ -67,16 +77,16 @@ def posterior_midpoint(weights):
         return image
 
     for v in range(n):
-        assert add_sample(v, lam[v]) == nu[v]
+        require(add_sample(v, lam[v]) == nu[v])
     for B in states:
-        assert sum(
+        require(sum(
             (nu[v][B] for v in range(n) if not ((B >> v) & 1)), F(0)
-        ) == B.bit_count() * pi_all[B]
+        ) == B.bit_count() * pi_all[B])
 
     mean = sum(
         (pi_all[state] * state.bit_count() for state in states), F(0)
     )
-    assert sum((sum(row, F(0)) for row in lam), F(0)) == mean
+    require(sum((sum(row, F(0)) for row in lam), F(0)) == mean)
     return P, states, pi_all, nu, sigma, lam, mean
 
 
@@ -97,13 +107,13 @@ def marked_kernel(P):
             B = C | (1 << i)
             kernel[source][index[B, v]] += P[v][i] / 2
             size = B.bit_count()
-            assert size >= 1
+            require(size >= 1)
             for w in range(n):
                 if (B >> w) & 1:
                     kernel[source][index[B & ~(1 << w), w]] += (
                         P[v][i] / (2 * size)
                     )
-        assert sum(kernel[source], F(0)) == 1
+        require(sum(kernel[source], F(0)) == 1)
     return marked, index, kernel
 
 
@@ -132,7 +142,7 @@ def active_kernel(P):
             for i in range(n):
                 if P[w][i]:
                     kernel[source][index[C | (1 << i), w]] += P[w][i] / (2 * b)
-        assert sum(kernel[source], F(0)) == 1
+        require(sum(kernel[source], F(0)) == 1)
     return active, index, kernel
 
 
@@ -165,7 +175,7 @@ def two_step_gap(P, t):
 def two_step_formula(P, t):
     """Closed sum-of-squares formula for the two-step radial gap."""
     n = len(P)
-    assert n >= 3
+    require(n >= 3)
     row_square = sum(
         (P[v][i] ** 2 for v in range(n) for i in range(n)), F(0)
     )
@@ -176,15 +186,15 @@ def two_step_formula(P, t):
     )
 
     row_defect = row_square - F(n, n - 1)
-    assert row_defect >= 0
+    require(row_defect >= 0)
     transport_defect = (column_square - mutual) - (n - row_square)
     transport_sos = sum(((value - 1) ** 2 for value in columns), F(0))
     transport_sos += sum(
         ((P[v][i] - P[i][v]) ** 2
          for v in range(n) for i in range(n)), F(0)
     ) / 2
-    assert transport_defect == transport_sos
-    assert transport_defect >= 0
+    require(transport_defect == transport_sos)
+    require(transport_defect >= 0)
 
     if n == 3:
         return (1 - t ** 2) * row_defect / 24
@@ -197,15 +207,15 @@ def two_step_formula(P, t):
     alpha = (1 - t ** 2) * (
         (1 + t) ** (s - 1) / 2 - binomial_sum
     ) / (2 * n * 2 ** s)
-    assert alpha >= 0
-    assert beta >= 0
+    require(alpha >= 0)
+    require(beta >= 0)
     return alpha * row_defect + beta * transport_defect
 
 
 def two_step_psi_formula(P):
     """Closed exact value of U M_P^2 psi from the integrated SOS."""
     n = len(P)
-    assert n >= 3
+    require(n >= 3)
     N = n - 1
     complete_inverse_mean = F(2 ** N - 1, N * 2 ** (N - 1))
     row_square = sum(
@@ -218,8 +228,8 @@ def two_step_psi_formula(P):
     )
     row_defect = row_square - F(n, n - 1)
     transport_defect = (column_square - mutual) - (n - row_square)
-    assert row_defect >= 0
-    assert transport_defect >= 0
+    require(row_defect >= 0)
+    require(transport_defect >= 0)
     if n == 3:
         return complete_inverse_mean + row_defect / 24
 
@@ -232,8 +242,8 @@ def two_step_psi_formula(P):
     integrated_half = F(2 ** s - 1, s) - F(2 ** (s + 1) - 1, 2 * (s + 1))
     alpha = (integrated_half - integrated_sum) / (n * 2 ** s)
     beta = integrated_sum / (2 * n * 2 ** s)
-    assert alpha > 0
-    assert beta > 0
+    require(alpha > 0)
+    require(beta > 0)
     return complete_inverse_mean + alpha * row_defect + beta * transport_defect
 
 
@@ -245,11 +255,11 @@ def marked_data(weights):
     lam_vector = [lam[v][C] for C, v in marked]
 
     for target in range(len(marked)):
-        assert sum(
+        require(sum(
             (lam_vector[source] * kernel[source][target]
              for source in range(len(marked))),
             F(0),
-        ) == lam_vector[target]
+        ) == lam_vector[target])
 
     pi_level = [F(0) for _ in range(n + 1)]
     for state in states:
@@ -263,20 +273,20 @@ def marked_data(weights):
             (P[v][i] for i in range(n) if (C >> i) & 1), F(0)
         )
     for k in range(n):
-        assert 2 * Lambda[k] == (k + 1) * pi_level[k + 1] + k * pi_level[k]
+        require(2 * Lambda[k] == (k + 1) * pi_level[k + 1] + k * pi_level[k])
 
     q = [F(0) for _ in range(n + 1)]
     eta = [value / mean for value in Lambda]
     for k in range(1, n):
         q[k] = k * pi_level[k] / mean
-    assert sum(q, F(0)) == 1
+    require(sum(q, F(0)) == 1)
     for k in range(n):
-        assert eta[k] == (q[k] + q[k + 1]) / 2
+        require(eta[k] == (q[k] + q[k + 1]) / 2)
 
     # Aggregated nearest-neighbour flux and stationary rank drift.
-    assert sum(cut_mass, F(0)) == mean / 2
+    require(sum(cut_mass, F(0)) == mean / 2)
     for k in range(1, n):
-        assert cut_mass[k] == k * pi_level[k] / 2
+        require(cut_mass[k] == k * pi_level[k] / 2)
 
     psi = [
         2 * sum(
@@ -286,12 +296,12 @@ def marked_data(weights):
         )
         for j in range(N + 1)
     ]
-    assert sum((eta[k] * psi[k] for k in range(n)), F(0)) == 1 / mean
-    assert sum((q[k] / k for k in range(1, n)), F(0)) == 1 / mean
+    require(sum((eta[k] * psi[k] for k in range(n)), F(0)) == 1 / mean)
+    require(sum((q[k] / k for k in range(1, n)), F(0)) == 1 / mean)
     psi_vector = [psi[C.bit_count()] for C, _ in marked]
     twice = apply_kernel(kernel, apply_kernel(kernel, psi_vector))
     two_step_psi = sum(twice, F(0)) / len(marked)
-    assert two_step_psi == two_step_psi_formula(P)
+    require(two_step_psi == two_step_psi_formula(P))
 
     # The unconditional stopping-and-handoff flow has mass exactly 1/2 in
     # the unnormalised stationary measure, hence probability 1/(2m).
@@ -300,7 +310,7 @@ def marked_data(weights):
         for i in range(n):
             if P[v][i]:
                 handoff += mass * P[v][i] / (2 * (C | (1 << i)).bit_count())
-    assert handoff == F(1, 2)
+    require(handoff == F(1, 2))
 
     return {
         "n": n,
@@ -333,12 +343,12 @@ def audit_two_step_sos():
         ]
         marked, _, kernel = marked_kernel(P)
         parity = [(-1) ** C.bit_count() for C, _ in marked]
-        assert apply_kernel(kernel, parity) == [F(0) for _ in marked]
+        require(apply_kernel(kernel, parity) == [F(0) for _ in marked])
         for t in (F(0), F(1, 5), F(2, 3), F(1)):
-            assert two_step_gap(P, t) == two_step_formula(P, t)
-            assert two_step_formula(P, t) >= 0
+            require(two_step_gap(P, t) == two_step_formula(P, t))
+            require(two_step_formula(P, t) >= 0)
 
-    print("PASS: exact universal two-step sum-of-squares identity")
+    print("PASS: finite exact examples match the stated two-step sum-of-squares identity")
 
 
 def audit_density_factorization():
@@ -401,11 +411,11 @@ def audit_density_factorization():
             output[B, v] = F(N, 2 * b) * value
         return output
 
-    assert reverse_density(g) == h
-    assert sample_density(h) == g
-    assert sum((B.bit_count() * value for (B, _), value in g.items()), F(0)) \
-        == n * N * 2 ** (N - 1)
-    assert sum(g.values(), F(0)) / (n * N * 2 ** (N - 1)) == 1 / mean
+    require(reverse_density(g) == h)
+    require(sample_density(h) == g)
+    require(sum((B.bit_count() * value for (B, _), value in g.items()), F(0)) \
+        == n * N * 2 ** (N - 1))
+    require(sum(g.values(), F(0)) / (n * N * 2 ** (N - 1)) == 1 / mean)
 
     ones = {state: F(1) for state in active}
     first = sample_density(reverse_density(ones))
@@ -413,18 +423,18 @@ def audit_density_factorization():
         row_mass = sum(
             (P[v][i] for i in range(n) if (B >> i) & 1), F(0)
         )
-        assert first[B, v] == F(N, B.bit_count()) * row_mass
+        require(first[B, v] == F(N, B.bit_count()) * row_mass)
     second = sample_density(reverse_density(first))
     transient = sum(second.values(), F(0)) / (n * N * 2 ** (N - 1))
-    assert transient == marked_data(weights)["two_step_psi"]
-    assert sum(g.values(), F(0)) > sum(second.values(), F(0))
+    require(transient == marked_data(weights)["two_step_psi"])
+    require(sum(g.values(), F(0)) > sum(second.values(), F(0)))
 
     # Independently build the forward active chain and verify the exact rank
     # flux, R psi=1/|B|, and the two-step/long-run formulations.
     active_forward, _, forward = active_kernel(P)
-    assert active_forward == active
+    require(active_forward == active)
     stationary = [nu[v][B] / mean for B, v in active]
-    assert propagate_law(stationary, forward) == stationary
+    require(propagate_law(stationary, forward) == stationary)
     for row, (B, v) in zip(forward, active):
         b = B.bit_count()
         up = sum(
@@ -444,22 +454,22 @@ def audit_density_factorization():
              for i in range(n) if (B >> i) & 1),
             F(0),
         )
-        assert up == (1 - p_vB) / 2
-        assert down == internal / (2 * b)
+        require(up == (1 - p_vB) / 2)
+        require(down == internal / (2 * b))
 
     psi_rank = marked_data(weights)["psi"]
     for B, _ in active:
         b = B.bit_count()
-        assert (psi_rank[b] + psi_rank[b - 1]) / 2 == F(1, b)
+        require((psi_rank[b] + psi_rank[b - 1]) / 2 == F(1, b))
     H = [F(1, B.bit_count()) for B, _ in active]
     reference = [
         F(B.bit_count(), n * (n - 1) * 2 ** (n - 2))
         for B, _ in active
     ]
-    assert sum(reference, F(0)) == 1
+    require(sum(reference, F(0)) == 1)
     law = propagate_law(propagate_law(reference, forward), forward)
-    assert sum((mass * value for mass, value in zip(law, H)), F(0)) == transient
-    assert sum((mass * value for mass, value in zip(stationary, H)), F(0)) == 1 / mean
+    require(sum((mass * value for mass, value in zip(law, H)), F(0)) == transient)
+    require(sum((mass * value for mass, value in zip(stationary, H)), F(0)) == 1 / mean)
 
     print("PASS: exact Perron/forward-active factorization and strict P3 promotion")
 
@@ -467,10 +477,10 @@ def audit_density_factorization():
 def audit_complete_and_path():
     path = [[0, 1, 0], [1, 0, 1], [0, 1, 0]]
     data = marked_data(path)
-    assert data["mean"] == F(11, 9)
-    assert data["q"][1:3] == [F(7, 11), F(4, 11)]
-    assert data["eta"] == [F(7, 22), F(1, 2), F(2, 11)]
-    assert 1 / data["mean"] > data["two_step_psi"]
+    require(data["mean"] == F(11, 9))
+    require(data["q"][1:3] == [F(7, 11), F(4, 11)])
+    require(data["eta"] == [F(7, 22), F(1, 2), F(2, 11)])
+    require(1 / data["mean"] > data["two_step_psi"])
 
     for n in range(3, 7):
         complete = [[0 if i == j else 1 for j in range(n)] for i in range(n)]
@@ -479,11 +489,11 @@ def audit_complete_and_path():
         expected_q = [F(0)] + [
             F(comb(n - 2, k - 1), 2 ** (n - 2)) for k in range(1, n)
         ] + [F(0)]
-        assert complete_data["eta"] == expected_eta
-        assert complete_data["q"] == expected_q
+        require(complete_data["eta"] == expected_eta)
+        require(complete_data["q"] == expected_q)
         complete_mean = F((n - 1) * 2 ** (n - 2), 2 ** (n - 1) - 1)
-        assert complete_data["mean"] == complete_mean
-        assert 1 / complete_data["mean"] == complete_data["two_step_psi"]
+        require(complete_data["mean"] == complete_mean)
+        require(1 / complete_data["mean"] == complete_data["two_step_psi"])
 
     print("PASS: exact marked stationarity, path values, and complete binomial law")
 
@@ -497,13 +507,13 @@ def audit_tail_counterexample():
     q = data["q"]
     complete_tail = F(15, 16)
     tail_excess = sum(q[2:], F(0)) - complete_tail
-    assert tail_excess > 0
+    require(tail_excess > 0)
 
     complete_inverse_mean = F(31, 80)
     harmonic_excess = sum((q[k] / k for k in range(1, 6)), F(0)) - complete_inverse_mean
-    assert harmonic_excess > 0
-    assert data["mean"] < F(80, 31)
-    assert 1 / data["mean"] > data["two_step_psi"]
+    require(harmonic_excess > 0)
+    require(data["mean"] < F(80, 31))
+    require(1 / data["mean"] > data["two_step_psi"])
 
     print(
         "PASS: exact n=6 event-rank tail counterexample; "
@@ -538,13 +548,13 @@ def audit_lower_envelope_obstructions():
     for _ in range(37):
         values = apply_kernel(kernel, values)
         sequence.append(sum(values, F(0)) / len(marked))
-    assert sequence[37] < sequence[36]
+    require(sequence[37] < sequence[36])
     stationary_psi = sum(
         (lam[v][C] * value / mean
          for (C, v), value in zip(marked, psi)),
         F(0),
     )
-    assert stationary_psi > sequence[2]
+    require(stationary_psi > sequence[2])
 
     # A different rational reversible K5 shows that the stationary lower
     # envelope is special to psi: it is false for the radial PGF at t=0.
@@ -563,7 +573,7 @@ def audit_lower_envelope_obstructions():
          for (C, v), value in zip(marked, zero_rank)),
         F(0),
     )
-    assert stationary < transient
+    require(stationary < transient)
 
     print("PASS: exact late-time decrease; psi lower envelope still survives")
     print("PASS: exact stationary PGF lower-envelope counterexample at t=0")
