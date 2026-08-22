@@ -1,185 +1,107 @@
-# Adversarial audit of the K2P article and reader supplement
+# Final adversarial audit of the K2P article and reader supplement
 
-Date: 21 August 2026
+Date: 22 August 2026
 
-Final audited source: article SHA-256 `f3fb2af88aa22ea237240e1f13623c6e465b057a18877d993564863da66b96f4`
-
-Frozen theorem authority: `work/final_theorem_release/RELEASE_LOCK.json`
-
-Verdict: **mathematical pass; submission packaging and human metadata remain**
+Verdict: **mathematical and reproducibility pass; human metadata and immutable
+release decisions remain**
 
 ## Executive result
 
-I found no counterexample, false promoted theorem statement, K2P model/domain
-error, stale rooted restriction argument, improper ordinary-triangle image
-claim, count mismatch, or mutation/replay failure.  The final edit round closed
-all load-bearing formal issues found during review.  The article now defines
-the local projective ported-factor relation, uses a Nash/analytic
-constant-rank argument for genericity, constructs the exceptional set in the
-correct output space, displays the sharpness cherry observables, defines the
-continuous-time image and maximal rank, states the full-dimensional sharpness
-conclusion, and prints the completion-count formula.
+No counterexample, theorem-level failure, finite-census discrepancy, unsafe
+graph quotient, direction reversal, or replay/mutation failure was found. The
+principal result remains unconditional `K2P-SAME` on the positive Fourier
+domain, with the strict continuous-time transfer and the full-dimensional
+`4n-3` weak-class sharpness family. `PC-PARTIAL` remains the correct stopping
+point for proof compression: the exact restoration and probe ledgers remain
+load-bearing.
 
-The current manuscript is therefore aligned with the frozen `K2P-SAME`
-promotion.  Remaining review notes are the rendering boundary of the
-machine-readable crosswalk, one bibliographic-year convention, and metadata
-that only the human author can supply.  None calls for reopening the atlas or
-changing the theorem.
+The fresh review's mathematical and expository requests were checked rather
+than applied mechanically. Each was valid in its narrow form and is now
+closed:
 
-## 1. Load-bearing findings: all closed
+- Huber, Englander, and the present directed-ported refinement are attributed
+  at their correct graph-theoretic layers.
+- The ordinary-triangle proof uses the analytic submersion theorem on the
+  displayed rank-nine maps; the contextual step invokes the constant-rank
+  theorem and composes explicit local sections.
+- The exact symmetric and anisotropic Jacobian blocks are printed.
+- The paired K2P marginal descriptor records the two switching signatures,
+  serial products, invisible classes, identities, and only certified parent
+  flips.
+- The completion formula is explicitly identified as counting repair-tagged
+  directed descriptors, including deterministic dummy roles on empty required
+  segments.
+- The 23 quadratic bodies, five high-degree bases, licensed transports,
+  coordinate dictionaries, and three worked certificate paths are printed and
+  independently replayed.
+- The weak-sharpness edge-class and Jacobian-column orders are named and
+  independently reconstructed from the primitive graphs.
+- The generic complex/physical rank comparison and semialgebraic-dimension
+  step are stated explicitly.
 
-### Local ported-factor relation — closed
+## Exact validation
 
-The earlier draft used `H preceq_+ H'` without defining the ported quotient.
-Article lines 643--670 now define `Theta_+(H)`, the normalized boundary tensor,
-the two-sector incidence torus, an analytic slice map, `d_H`, the physical
-analytic local relation, chart independence, port matching, and the local
-ordinary-triangle relation.  This makes the localization proposition and
-bounded theorem formally typed.
+The frozen theorem authority is
+`work/final_theorem_release/RELEASE_LOCK.json`, file SHA-256
+`58e32bd29f7a039e3da4e47398e32ee8277ad46cf62271a7ed80bf41688b18fb`
+and payload SHA-256
+`3b7de4c60315a5820a2623de860f493d6b76a645b5c674ffda89f12fc31a5c90`.
+It is promotion-ready with no blockers. Its transitive referee ledger contains
+374 files and 434,698,345 bytes with content root
+`7004e3e26bf359d0a11c07fd51cb1636859b30b07a97ca6c9cfd0dcd082dfc92`.
 
-### Analytic target section and exceptional set — closed
+A detached clean checkout at commit `1e9ff6c6` passed the complete full replay:
 
-Article lines 1172--1187 now choose Nash (real-analytic semialgebraic)
-constant-rank strata and invoke the analytic constant-rank theorem before
-pulling the section back to a regular source chart.  Lines 1192--1203 now
-distinguish output zero sets `V_N intersect Z(P)` from Zariski closures of
-images of parameter-space rank-drop loci.  The earlier smooth-to-analytic jump
-and parameter/output-space type error are gone.
-
-### Weak-sharpness cherry induction — closed
-
-Article lines 1438--1477 now display the exact Fourier-coordinate ratios
-
-\[
- R_s=Q_{j=C,a=C,b=0}/Q_{j=C,a=0,b=C}=u_s/v_s,
- \qquad P_s=Q_{a=C,b=C}=u_sv_s,
-\]
-
-and their `G` analogues, state nonvanishing on the positive germ, and recover
-old tensor coordinates by division.  The four-dimensional rank increment is
-now an actual tensor-observable argument rather than only a parameter change.
-
-### Continuous-time notation and sharpness quantifier — closed
-
-Article lines 1251--1268 define `M_CT(N)` and state
-`d_CT,N=d_N` by openness and polynomial minors.  Lines 1304--1311 now state
-that the weak-class common germ is full-dimensional, matching the promoted
-theorem.
-
-### Completion compression wording — closed
-
-Article lines 847--867 print the exact binomial-sum formula, the five locked
-core tuples, their stars-and-bars derivation, and the target totals.  Line 1011
-uses “three certified transport families”, while lines 1023--1025 retain the
-essential warning that these are not three literal polynomials.
-
-### Final reader-precision edits — closed
-
-The final narrow edit round makes the abstract say that the structural
-triangle class is exactly reconstructible (article lines 89--91), replaces
-the potentially ambiguous completion-canonicalization wording (supplement
-lines 189--197), displays the cherry Fourier observables and separates their
-analytic inverse from graph pruning (supplement lines 518--530), designates
-the machine crosswalk as the field-rich authority (supplement lines 532--545),
-and marks the author-contribution statement explicitly pending human
-confirmation (article lines 1520--1526 and supplement lines 786--804).  The
-post-edit static and build checks pass.
-
-## 2. Remaining non-load-bearing findings
-
-### P2 submission package: the reader crosswalk is not field-complete
-
-Supplement lines 532--622 list primary and replay paths; lines 625--672 list
-selected hashes; and lines 675--705 give general commands and honestly mark
-final runtime/archive measurements pending.  The supplied feedback requested,
-for every theorem layer, schema/version, producer command, replay command,
-mutation command, file SHA-256, semantic-payload SHA-256, and expected runtime.
-Those fields are not all rendered per layer in the reader supplement.
-
-The supplement now explicitly identifies the machine-readable JSON as the
-field-rich authority and explains deliberately null runtimes.  The residual
-note is only that the requested fields are delegated rather than rendered per
-row in the reader PDF.  The static audit conservatively retains this as a
-moderate submission item, not a mathematical failure.
-
-### Bibliography year reconciliation
-
-All citation keys resolve and every bibliography entry is used.  The entry
-`EnglanderEtAl2026` at bibliography lines 139--150 uses year 2026 because the
-cited theorem numbering is from version 4 dated 4 July 2026; Crossref records
-the DOI as issued/posted on 24 April 2025.  Either convention is defensible if
-made explicit.  A conventional alternative is year 2025 plus the version-4
-date in the note.  This is a reconciliation item, not a theorem issue.
-
-The supplement's refusal at lines 767--769 to cite the provisional local
-K2P/K3P collision manuscript as a published result is prudent.  The feedback
-should not be satisfied by inventing publication metadata.
-
-### Human-only submission gates
-
-The corresponding email, author-contribution statement, funding statement,
-competing-interests declaration, public repository/tag, licenses, archive
-SHA-256, DOI decision, and final full-run performance are visibly pending at
-article lines 1511--1555 and supplement lines 786--804.  This is the correct
-non-inventive treatment, but those fields block submission until the author
-supplies them.
-
-## 3. Independent validation
-
-| Check | Result |
+| check | result |
 |---|---|
-| frozen release lock and promotion-ready guard | PASS |
-| unified quick release replay | PASS, all 19 layers, 334.712 s |
-| compressed family-coverage equivalence | PASS |
-| restoration-archetype replay | PASS: 997 parents, 2,540 roots, 36,824 edges, zero assignment problems |
-| probe word replay | PASS: 176 anchors, 29,964 one-port, 544,571 two-port, 67,741 transports |
-| fail-closed article static audit | PASS with only the three review items above |
-| optimized-Python static-audit mutation | correctly rejected |
-| deterministic static-audit output | PASS; repeated output SHA-256 `1432795c691537a44fc6c1925a1074c158db8cfe3917772c4c0c4361c53b93a3` |
-| clean Tectonic article build | PASS, 22 pages |
-| clean Tectonic supplement build | PASS, 15 pages |
-| undefined references/citations or overfull boxes | zero |
+| full theorem layers | 35/35 PASS |
+| blockers | 0 |
+| wall time | 5,172.89 s |
+| verifier internal time | 5,172.248447 s |
+| maximum resident set size | 1,960,001,536 bytes |
+| peak memory footprint | 491,504,408 bytes |
+| replay report SHA-256 | `7939b389880de80b7d8abd69022e0b69d2dc4188815854b294d3384fa24c9e18` |
+| telemetry SHA-256 | `8779854633d9a52ba3d7bc9278ccbcc3918e51987bb4c30204c0adcd9771ce16` |
 
-The article has four underfull-box warnings in the PC-PARTIAL table.  The
-supplement has 126 underfull-box warnings, concentrated in narrow path/hash
-tables, especially the theorem-to-artifact crosswalk.  They are cosmetic, but
-a ragged-right list, landscape table, or wider path column would read better.
+The seven-command old/new equivalence suite, all 11 compression mutations, all
+18 printed-appendix mutations, and all 15 named-column mutations pass. The
+probe-word replay covers 176 anchors, 29,964 one-port rows, 544,571 two-port
+rows, and 67,741 exact transports. The restoration replay covers 997 parents,
+2,540 physical roots, and 36,824 forest edges with no missing, duplicate,
+cyclic, or unresolved records.
 
-## 4. Frozen count reconciliation
+## Source and PDF freeze
 
-Every audited census agrees with the corrected release:
-
-- four-port raw directions: `405,216`;
-- five-port `theta2` directions: `2,946,240`;
-- three-port cycle directions: `13,440`;
-- terminal presentations/classes: `1,472 / 934`;
-- restoration members/parents: `2,540 / 997`;
-- restoration forest: `36,568 + 256 = 36,824` edges, `36,792` leaves;
-- direct high-degree layer: `36` records, `27` directional bodies, three
-  certified families;
-- equality anchors: `176`;
-- probes: `29,964` one-port and `544,571` two-port rows; and
-- unresolved mathematical records: zero.
-
-## 5. Final content-hash freeze
-
-| Source | SHA-256 |
+| artifact | SHA-256 |
 |---|---|
-| `article/main.tex` | `f3fb2af88aa22ea237240e1f13623c6e465b057a18877d993564863da66b96f4` |
-| `article/references.bib` | `95cd4ecda54495b8f7f7a465ab3ae6e24f06123375695f8d4af8af0609945968` |
-| `supplement/supplement.tex` | `455d613ade6994a81d8b30e09b8ffadbdc82abfff80b9487c5d79f58d5d0f9a5` |
-| `supplement/compression_tables.tex` | `5679e1064e8ed8713288a3d842df197260e5e005721165eb5b3fa8ca81bae225` |
+| article source | `4647e050b148a4fd03eae4242347dee3d5387df19947c64bbd795dc08eb46c02` |
+| bibliography | `14dbb4901d924b068c8cc2d050e73bae3cf996a72863a22ade90d6f8e6b4057c` |
+| supplement source | `1072c5edc677ac2dcec81c1ce57fdfc21c76cccc9fb133d09ab48550b8709d79` |
+| certificate appendix source | `ef878c24ff3f6b28d70b6c3dbf90c6d1e7d3c85a2bece621c96f47c409ca0ffa` |
+| article PDF | `e30ea98ccde1756bb98ad9ce500c83a64c87d5d9985bc06b432f6d9fc79df064` |
+| supplement PDF | `0a0c55e16b5f7298c9749912a3901d1a0a1323578ab25ef7db13c06e0b912131` |
 
-The frozen release-lock SHA-256 is
-`0c17eeaa3344f0982998ea694c1eb92f72f5ced0841e2acad0d39566e2ec71c3`.
-The four manuscript-source hashes were unchanged across the final static
-audit, repeated deterministic check, and both clean builds.
+The article and supplement are 24 pages each. All 48 pages were rendered and
+visually inspected. There are no clipped elements, overfull boxes, undefined
+references or citations, fatal errors, or hyperref PDF-string warnings; all
+fonts are embedded.
 
-## Final recommendation
+## Remaining hold
 
-Retain `K2P-SAME`; do not rerun or redesign the atlas in response to this
-review.  Decide whether the machine-crosswalk delegation is sufficient for the
-target journal, reconcile the Englander year convention, and obtain the human
-metadata/signoff.  After those packaging changes, rerun the static checker and
-one source-bound release verification.  No load-bearing mathematical patch is
-currently outstanding.
+The only open items require the human author: corresponding email,
+author-contribution approval, funding and competing-interests declarations,
+paper/code/data licenses, immutable submission tag, and the decision whether
+and when to create a GitHub/Zenodo DOI release. They are deliberately not
+inferred. The mutable repository URL is already printed.
+
+The deterministic referee archive is sealed by a machine manifest. Its archive
+SHA-256 is recorded in a separate sidecar after construction, avoiding the
+self-reference that would arise from embedding an archive's hash inside the
+archive itself.
+
+## Recommendation
+
+Retain the main theorem, continuous-time corollary, reconstruction theorem,
+and sharpness theorem unchanged. Do not reopen proof compression or the atlas.
+After the human metadata and release choices are supplied, the package is
+ready for preprint and journal circulation.

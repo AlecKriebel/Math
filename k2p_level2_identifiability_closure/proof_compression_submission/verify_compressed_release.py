@@ -27,14 +27,14 @@ SOURCE_PATHS = {
 }
 
 EXPECTED_PAYLOADS = {
-    "baseline": "9a467e69fe97ee0f155429430d3848ce7b983f81c5ed426cd6506ad29c9d2347",
-    "equivalence": "fe84839f136632164144fde2c97e628628cd0b323b2ed389531b15fd4929712b",
-    "templates": "31fe4fbf7faa838147fdc1d02880da7c242a20527a836546e615a5ef119c27c8",
+    "baseline": "55e32e23c6e34943a58d82f7d123a5f8e6e40bd4733b34863a80e12d88bb349a",
+    "equivalence": "7477f886c731244f432d939769121947359d0b7e8ca83751a6bb7d417ab27cb7",
+    "templates": "9d256ca00cfe14e34dbd6bae492ce5c2cdbb00ababfaabbf4f3c2dd5e71b0aa2",
     "restoration": "b1e1065db32c5930a6d584eec754acd0a1f8714a1c5f0032c991a33c561d616b",
     "restoration_verification": "b7dd84a8213602d3053ca61a95225d611daf33b655bc35d33076371b2fa7f94b",
-    "probe": "4b0e6283b2671d83a73a14477a80a9791d4ee5e3ad8becb63a49584447ac1a88",
+    "probe": "d361256c6531c93bdb71e29dc90614a40a25a6f3866526f2a158385bcd36b0e4",
     "crosswalk": "d2591c67eb5168b6601efa81b762e905239accd26acf69fe284f1b690de1d480",
-    "result": "51ffacd91269975c22379d68c40edc5402519917f4d904f81a924f78dea9cd6d",
+    "result": "884c604b21a7d2f48b821fde2d8307f67f1daf5940b97ba4f70d645c840102e2",
 }
 
 EXPECTED_SCHEMAS = {
@@ -218,7 +218,7 @@ def verify_frozen_lock() -> None:
     path = PROJECT / "work/final_theorem_release/RELEASE_LOCK.json"
     need(path.is_file() and not path.is_symlink(), "FROZEN_LOCK_MISSING")
     need(
-        file_sha(path) == "0c17eeaa3344f0982998ea694c1eb92f72f5ced0841e2acad0d39566e2ec71c3",
+        file_sha(path) == "58e32bd29f7a039e3da4e47398e32ee8277ad46cf62271a7ed80bf41688b18fb",
         "FROZEN_LOCK_SHA",
     )
     value = json.loads(path.read_text(encoding="utf-8"))
@@ -226,7 +226,7 @@ def verify_frozen_lock() -> None:
     verify_seal(value, "FROZEN_LOCK")
     need(
         value.get("payload_sha256")
-        == "0e146ccee2352b80a5ceb605ff7aaa612ed28fd3122744b056c891d1e2ed2690",
+        == "3b7de4c60315a5820a2623de860f493d6b76a645b5c674ffda89f12fc31a5c90",
         "FROZEN_LOCK_PAYLOAD",
     )
     need(value.get("candidate_outcome") == "K2P-SAME", "FROZEN_OUTCOME")

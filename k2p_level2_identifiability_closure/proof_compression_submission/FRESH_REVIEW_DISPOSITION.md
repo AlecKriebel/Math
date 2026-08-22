@@ -4,11 +4,11 @@ Date: 22 August 2026
 
 ## Result
 
-The reviewer found no counterexample or theorem-level failure.  Independent
-source, certificate, and literature audits agree with that verdict.  The
-principal-domain `K2P-SAME` theorem is unchanged.  The requested work is a
-targeted proof-writing and reproducibility revision, not another compression
-cycle.
+The reviewer found no counterexample or theorem-level failure. Independent
+source, certificate, and literature audits agree with that verdict. The
+principal-domain `K2P-SAME` theorem is unchanged. The targeted proof-writing
+and reproducibility revision is complete; only human metadata, licensing, and
+immutable-release decisions remain before submission.
 
 ## Item-by-item disposition
 
@@ -64,15 +64,33 @@ cycle.
    and cites the standard semialgebraic-dimension/Zariski-closure fact.  This is
    a hardening of the existing argument, not a changed theorem premise.
 
-9. **Reproducibility and metadata — partly accepted, partly human-only.**  The
+9. **Reproducibility and metadata — accepted; human-only residue retained.**  The
    package already had field-rich machine crosswalks and source/PDF hash
    bindings, so the claim that they were absent was overstated.  The revision
    nevertheless prints the requested schema, producer, replay, mutation, and
    hash metadata; runs the final clean full replay; records wall time and peak
    memory; and builds a deterministic archive with an external SHA-256 record.
-   The public repository URL is supplied.  Corresponding email, contribution
+   The clean detached full replay passed all 35 layers in 5,172.89 seconds,
+   with zero blockers; its exact report and macOS memory telemetry are included
+   in the bundle. The public repository URL is supplied. Corresponding email, contribution
    approval, funding, competing interests, license choices, immutable release
    tag, and DOI remain explicit human decisions and are not inferred.
+
+## Final validation outcome
+
+- Full primitive regeneration: **PASS**, 35/35 layers, zero blockers.
+- Frozen release: **promotion-ready**, 198 outer files and 374 transitive
+  files, content root
+  `7004e3e26bf359d0a11c07fd51cb1636859b30b07a97ca6c9cfd0dcd082dfc92`.
+- Old/new proof-compression equivalence: **PASS**, seven commands.
+- Compression mutations: **PASS**, 11/11 rejected.
+- Printed certificate appendix: **PASS**, 18/18 mutations rejected.
+- Named weak-sharpness columns: **PASS**, 15/15 mutations rejected.
+- Final PDFs: **PASS**, 24 article pages and 24 supplement pages, all fonts
+  embedded and all pages visually inspected.
+
+The deterministic archive is intentionally accompanied by an external SHA-256
+record rather than embedding its own hash and creating a self-reference.
 
 ## Presentation decisions
 

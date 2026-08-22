@@ -15,9 +15,17 @@ PROJECT = Path(__file__).resolve().parents[2]
 DEFAULT_MANIFEST = Path(__file__).with_name("REVISED_REFEREE_BUNDLE_MANIFEST.json")
 LOCK_RELATIVE = "work/final_theorem_release/RELEASE_LOCK.json"
 MANIFEST_RELATIVE = "proof_compression_submission/crosswalk/REVISED_REFEREE_BUNDLE_MANIFEST.json"
-LOCK_SHA256 = "0c17eeaa3344f0982998ea694c1eb92f72f5ced0841e2acad0d39566e2ec71c3"
-LOCK_PAYLOAD_SHA256 = "0e146ccee2352b80a5ceb605ff7aaa612ed28fd3122744b056c891d1e2ed2690"
-FROZEN_CONTENT_ROOT = "c79fa2d3cb6431207823e3c66c3440cbeb94226d8a9925960883efca7dca2416"
+LOCK_SHA256 = "58e32bd29f7a039e3da4e47398e32ee8277ad46cf62271a7ed80bf41688b18fb"
+LOCK_PAYLOAD_SHA256 = "3b7de4c60315a5820a2623de860f493d6b76a645b5c674ffda89f12fc31a5c90"
+FROZEN_CONTENT_ROOT = "7004e3e26bf359d0a11c07fd51cb1636859b30b07a97ca6c9cfd0dcd082dfc92"
+OPERATIONAL_EVIDENCE = {
+    "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY.json",
+    "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY_TELEMETRY.json",
+    "proof_compression_submission/output/K2P_SAME_Principal_Domain_Article.pdf",
+    "proof_compression_submission/output/K2P_SAME_Reader_Supplement.pdf",
+    "proof_compression_submission/output/logs/article.log",
+    "proof_compression_submission/output/logs/supplement.log",
+}
 PENDING_METADATA = [
     "corresponding email address",
     "author-contribution statement",
@@ -26,9 +34,8 @@ PENDING_METADATA = [
     "article license",
     "code license",
     "data license",
-    "final repository URL and immutable submission tag",
+    "immutable submission tag",
     "whether and when to mint a GitHub/Zenodo DOI release",
-    "final clean full-replay wall time and peak memory",
 ]
 
 
@@ -99,7 +106,7 @@ def reconstruct_frozen_bindings() -> dict[str, dict[str, int | str]]:
     if lock.get("promotion_ready") is not True or lock.get("blockers") or lock.get("missing_required_files"):
         fail("RELEASE_LOCK is not promotion-ready")
     files = lock.get("files")
-    if not isinstance(files, dict) or len(files) != 194:
+    if not isinstance(files, dict) or len(files) != 198:
         fail("RELEASE_LOCK outer file count mismatch")
     expected: dict[str, str] = {}
     for relative, row in files.items():
@@ -134,9 +141,9 @@ def reconstruct_frozen_bindings() -> dict[str, dict[str, int | str]]:
         if digest != expected[relative]:
             fail(f"frozen digest mismatch: {relative}")
         actual[relative] = {"bytes": len(data), "sha256": digest}
-    if len(actual) != 370:
+    if len(actual) != 374:
         fail(f"reconstructed frozen file count mismatch: {len(actual)}")
-    if sum(int(row["bytes"]) for row in actual.values()) != 434_661_763:
+    if sum(int(row["bytes"]) for row in actual.values()) != 434_698_345:
         fail("reconstructed frozen byte count mismatch")
     if canonical_hash(actual) != FROZEN_CONTENT_ROOT:
         fail("reconstructed frozen content root mismatch")
@@ -148,6 +155,8 @@ def include_source(relative: PurePosixPath) -> bool:
         return False
     if relative.as_posix() == MANIFEST_RELATIVE:
         return False
+    if relative.as_posix() in OPERATIONAL_EVIDENCE:
+        return True
     if (
         "output" in relative.parts
         or "__pycache__" in relative.parts
@@ -267,10 +276,51 @@ def verify_crosswalk(frozen: dict[str, dict[str, int | str]], submission: dict[s
                 if row.get("declared_schema") != declared_json_schema(path):
                     fail(f"declared schema drift {claim_id}:{path}")
         runtime = claim.get("runtime")
-        if not isinstance(runtime, dict) or runtime.get("status") not in {"unknown", "component_observation_only"}:
+        if not isinstance(runtime, dict) or runtime.get("status") not in {"unknown", "component_observation_only", "clean_full_replay"}:
             fail(f"malformed runtime boundary: {claim_id}")
-        if runtime.get("end_to_end_seconds") is not None:
+        if runtime.get("status") == "clean_full_replay":
+            if claim_id != "C11-global-K2P-SAME-and-reconstruction" or runtime.get("end_to_end_seconds") != 5172.89:
+                fail(f"malformed clean full runtime: {claim_id}")
+            for path_key, sha_key in (("report_path", "report_sha256"), ("telemetry_path", "telemetry_sha256")):
+                path = runtime.get(path_key)
+                if path not in OPERATIONAL_EVIDENCE or submission.get(path, {}).get("sha256") != runtime.get(sha_key):
+                    fail(f"unbound clean full runtime artifact: {claim_id}:{path_key}")
+        elif runtime.get("end_to_end_seconds") is not None:
             fail(f"unsupported inferred end-to-end runtime: {claim_id}")
+
+
+def verify_pdf_build_report(submission: dict[str, dict[str, int | str]]) -> None:
+    report = object_from_path(
+        project_path("proof_compression_submission/PDF_BUILD_REPORT.json"),
+        "PDF build report",
+    )
+    if report.get("schema") != "k2p-submission-pdf-build-report-v2" or report.get("visual_verdict") != "PASS":
+        fail("PDF build report schema/verdict mismatch")
+    checks = report.get("checks")
+    if not isinstance(checks, dict) or checks.get("all_pages_visually_inspected") is not True or checks.get("all_fonts_embedded") is not True:
+        fail("PDF visual/font checks are incomplete")
+    for field in ("fatal_latex_errors", "hyperref_pdf_string_warnings", "overfull_boxes", "undefined_citations", "undefined_references"):
+        if checks.get(field) != 0:
+            fail(f"nonzero PDF build defect count: {field}")
+    for name in ("article", "supplement"):
+        row = report.get(name)
+        if not isinstance(row, dict):
+            fail(f"missing PDF report row: {name}")
+        pdf_path = row.get("pdf_path")
+        source_path = row.get("source_path")
+        if not isinstance(pdf_path, str) or not isinstance(source_path, str):
+            fail(f"malformed PDF report paths: {name}")
+        pdf_binding = submission.get(pdf_path)
+        source_binding = submission.get(source_path)
+        if not isinstance(pdf_binding, dict) or not isinstance(source_binding, dict):
+            fail(f"unbundled PDF/source report path: {name}")
+        if pdf_binding.get("sha256") != row.get("pdf_sha256") or pdf_binding.get("bytes") != row.get("bytes"):
+            fail(f"PDF hash/byte report mismatch: {name}")
+        if source_binding.get("sha256") != row.get("source_sha256"):
+            fail(f"PDF source hash report mismatch: {name}")
+        log_path = f"proof_compression_submission/output/logs/{'article' if name == 'article' else 'supplement'}.log"
+        if submission.get(log_path, {}).get("sha256") != row.get("log_sha256"):
+            fail(f"PDF log hash report mismatch: {name}")
 
 
 def validate(manifest_path: Path) -> dict[str, Any]:
@@ -288,11 +338,22 @@ def validate(manifest_path: Path) -> dict[str, Any]:
     if manifest.get("pending_human_metadata") != PENDING_METADATA:
         fail("manifest pending metadata mismatch")
     runtime = manifest.get("runtime_boundary")
-    if runtime != {
-        "end_to_end_full_runtime_seconds": None,
+    expected_runtime = {
+        "status": "clean_detached_full_replay_pass",
+        "git_commit": "1e9ff6c6",
+        "clean_detached_checkout": True,
+        "end_to_end_full_runtime_seconds": 5172.89,
+        "internal_elapsed_seconds": 5172.248447,
+        "layer_count": 35,
+        "maximum_resident_set_size_bytes": 1960001536,
+        "peak_memory_footprint_bytes": 491504408,
         "end_to_end_quick_runtime_seconds": None,
-        "status": "unknown_not_byte_bound",
-    }:
+        "report_path": "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY.json",
+        "report_sha256": "7939b389880de80b7d8abd69022e0b69d2dc4188815854b294d3384fa24c9e18",
+        "telemetry_path": "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY_TELEMETRY.json",
+        "telemetry_sha256": "8779854633d9a52ba3d7bc9278ccbcc3918e51987bb4c30204c0adcd9771ce16",
+    }
+    if runtime != expected_runtime:
         fail("manifest runtime boundary mismatch")
     frozen = reconstruct_frozen_bindings()
     submission = reconstruct_submission_bindings()
@@ -311,7 +372,7 @@ def validate(manifest_path: Path) -> dict[str, Any]:
     policy = manifest["submission_sources"].get("policy")
     expected_policy = {
         "base": "proof_compression_submission",
-        "excluded_components": ["output", "__pycache__", "dot-prefixed directories"],
+        "excluded_components": ["output except named replay/PDF/log artifacts", "__pycache__", "dot-prefixed directories"],
         "excluded_names": [".DS_Store", MANIFEST_RELATIVE],
         "excluded_suffixes": [".pyc", ".pyo"],
         "symlinks_allowed": False,
@@ -329,11 +390,15 @@ def validate(manifest_path: Path) -> dict[str, Any]:
         "proof_compression_submission/crosswalk/build_revised_referee_bundle.py",
         "proof_compression_submission/crosswalk/check_revised_referee_bundle.py",
         "proof_compression_submission/crosswalk/test_crosswalk_bundle_mutations.py",
+        "proof_compression_submission/PDF_BUILD_REPORT.json",
+        "proof_compression_submission/PDF_BUILD_REPORT.md",
+        *OPERATIONAL_EVIDENCE,
     }
     missing = sorted(required_sources - set(submission))
     if missing:
         fail(f"required source omitted: {missing}")
     verify_crosswalk(frozen, submission)
+    verify_pdf_build_report(submission)
     return {
         "combined_content_root_sha256": manifest["combined_content_root_sha256"],
         "frozen_file_count": len(frozen),

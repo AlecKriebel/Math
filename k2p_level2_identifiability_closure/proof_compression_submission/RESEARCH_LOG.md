@@ -110,3 +110,27 @@
   submission readiness remains **96%** because the remaining decisions are
   human-only metadata, licensing, public-release, and optional final full-run
   performance choices.
+
+## 2026-08-22 14:45 PDT - Fresh-review revision and clean replay closed
+
+- Scrutinized each fresh referee item and applied only the repairs supported by
+  the graph encodings, exact certificates, or standard analytic theorems. No
+  theorem statement was weakened and no second compression search was opened.
+- Rebound every submission-layer certificate to the final byte-stable theorem
+  lock, SHA-256
+  `58e32bd29f7a039e3da4e47398e32ee8277ad46cf62271a7ed80bf41688b18fb`.
+  This caught and repaired one stale probe-word byte binding; the mathematical
+  probe payload and all 574,535 rows were unchanged.
+- A detached clean checkout at commit `1e9ff6c6` passed all 35 full replay
+  layers in 5,172.89 seconds with zero blockers. The report and macOS timing/
+  memory telemetry are byte-bound in the reader package.
+- Replayed the seven-command old/new equivalence suite and 11 compression
+  mutations; independently replayed the printed certificate appendix with
+  18/18 mutations and the named sharpness columns with 15/15 mutations.
+- Rebuilt 24-page article and 24-page supplement PDFs. All 48 pages were
+  rendered and visually inspected; all fonts are embedded and the logs contain
+  no clipping, overfull boxes, undefined references/citations, fatal errors, or
+  PDF-string warnings.
+- Mathematical, proof-compression, and reproducibility workstreams: **100%**.
+  Submission readiness: **98%**; the remaining 2% consists only of human
+  metadata, license, immutable-tag, and DOI-release decisions.

@@ -14,26 +14,32 @@ python3 proof_compression_submission/crosswalk/check_revised_referee_bundle.py
 python3 proof_compression_submission/crosswalk/test_crosswalk_bundle_mutations.py --check
 ```
 
-The revised manifest includes the complete 370-file transitive frozen
-evidence ledger and every current submission source outside build-output and
-cache directories.  Any source edit makes both the primary and independent
-manifest checks fail.  Reseal only after the submission sources are final:
+The revised manifest includes the complete 374-file transitive frozen
+evidence ledger and 73 submission artifacts, including the named clean-replay
+reports, final PDFs, and build logs. Any included source edit makes both the
+primary and independent manifest checks fail. Reseal only after the submission
+sources are final:
 
 ```sh
 python3 proof_compression_submission/crosswalk/build_revised_referee_bundle.py --write
 python3 proof_compression_submission/crosswalk/check_revised_referee_bundle.py
 ```
 
-No large archive was created in this pass.  After the manifest is final, an
-archive can be requested explicitly; the builder fixes member order,
-timestamps, modes, prefix, compression method, and level:
+The final archive is requested explicitly after the manifest is sealed. The
+builder fixes member order, timestamps, modes, prefix, compression method, and
+level:
 
 ```sh
 python3 proof_compression_submission/crosswalk/build_revised_referee_bundle.py \
-  --check --archive /explicit/output/path/k2p_submission_referee.zip
+  --check --archive \
+  proof_compression_submission/output/K2P_Principal_D_Plus_Referee_Package_20260822.zip
 ```
 
+Run `unzip -t` and compare the external `.sha256` sidecar after construction.
+The sidecar is deliberately outside the ZIP, avoiding a self-referential hash.
+
 The manifest remains labelled
-`DRAFT_PC_PARTIAL_PENDING_HUMAN_METADATA`.  Corresponding email, funding,
-competing interests, licenses, repository/tag/DOI decisions, and final clean
-full-replay performance measurements require human confirmation.
+`DRAFT_PC_PARTIAL_PENDING_HUMAN_METADATA`. The detached clean full replay is
+already measured and bound: 35 layers passed in 5,172.89 seconds. Corresponding
+email, contribution approval, funding, competing interests, licenses,
+immutable-tag, and DOI decisions require human confirmation.

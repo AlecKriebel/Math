@@ -299,6 +299,6 @@ ordinary-triangle arrowhead witness, and rejects optimized mode.
 Current coverage artifact:
 
 - file SHA-256:
-  `db141f2f8b8c35791abfdfc6ca630efc725802b618c88c0b2f8641aa2b81eee9`;
+  `a18410c360554426f0290ed9b85ce90f72fbdc76b8a4af67187971dd7ef067e6`;
 - logical payload:
-  `4b0e6283b2671d83a73a14477a80a9791d4ee5e3ad8becb63a49584447ac1a88`.
+  `d361256c6531c93bdb71e29dc90614a40a25a6f3866526f2a158385bcd36b0e4`.

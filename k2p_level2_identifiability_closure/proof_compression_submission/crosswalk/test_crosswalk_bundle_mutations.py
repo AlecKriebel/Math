@@ -121,6 +121,25 @@ def run() -> dict[str, Any]:
 
     mutations.append(reject_mutation(base, "false_crosswalk_binding", false_crosswalk_binding))
 
+    def false_clean_full_runtime(value: dict[str, Any]) -> None:
+        value["runtime_boundary"]["end_to_end_full_runtime_seconds"] = 1.0
+
+    mutations.append(reject_mutation(base, "false_clean_full_runtime", false_clean_full_runtime))
+
+    def omit_article_pdf(value: dict[str, Any]) -> None:
+        value["submission_sources"]["files"].pop(
+            "proof_compression_submission/output/K2P_SAME_Principal_Domain_Article.pdf",
+            None,
+        )
+
+    mutations.append(reject_mutation(base, "omitted_article_pdf", omit_article_pdf))
+
+    def false_supplement_pdf_hash(value: dict[str, Any]) -> None:
+        path = "proof_compression_submission/output/K2P_SAME_Reader_Supplement.pdf"
+        value["submission_sources"]["files"][path]["sha256"] = "2" * 64
+
+    mutations.append(reject_mutation(base, "false_supplement_pdf_hash", false_supplement_pdf_hash))
+
     crosswalk_scripts = [
         HERE / "build_theorem_artifact_crosswalk.py",
         HERE / "build_revised_referee_bundle.py",

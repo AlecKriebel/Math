@@ -70,3 +70,18 @@
   crosswalk-field rendering, the Englander year convention, and human
   submission metadata.  Mathematical verdict remains PASS with zero open
   load-bearing findings.
+
+## 2026-08-22 — final fresh-review and reproducibility audit
+
+- Rechecked the Huber/Englander attribution, triangle submersion argument,
+  complete paired marginal descriptor, repair-tagged completion convention,
+  printed formula appendix, named sharpness columns, and generic-dimension
+  hardening against the exact sources and certificates. All pass.
+- Verified the detached full replay report and independent macOS telemetry:
+  35/35 layers, 5,172.89 seconds, zero blockers, and promotion-ready output.
+- Replayed every bounded compression gate and mutation suite after rebinding to
+  the final byte-stable probe certificate. No theorem or finite-census drift
+  was found.
+- Inspected all 48 final PDF pages and checked embedded fonts and clean logs.
+- Final adversarial-audit completion: **100%**. The only remaining submission
+  hold is explicit human metadata/licensing/immutable-release approval.

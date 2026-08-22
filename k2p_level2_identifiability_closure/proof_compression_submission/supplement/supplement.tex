@@ -702,7 +702,7 @@ four-port exact-rank filter
 direct terminal templates
 & schema/version: \texttt{\seqsplit{k2p-printed-certificate-appendix-v1}};
   authority: \path{proof_compression_submission/templates/PRINTED_CERTIFICATE_APPENDIX.json};
-  SHA-256: \hashvalue{1a4a8469b41590c0153e9f2e3c8e24270ade3eacfecea89c06c2651f55e151cc};
+  SHA-256: \hashvalue{7a24443f1583f1fc2ef57734c7845bc8377dc7da124265d1588f2d41e9555afa};
   producer command: \texttt{\detokenize{.venv/bin/python -B proof_compression_submission/templates/build_printed_certificate_appendix.py --write}};
   replay command: \texttt{\detokenize{.venv/bin/python -B proof_compression_submission/templates/verify_printed_certificate_appendix.py}};
   mutation command: \texttt{\detokenize{.venv/bin/python -B proof_compression_submission/templates/test_printed_certificate_appendix_mutations.py}}.\\
@@ -716,7 +716,7 @@ direct terminal templates
 one-/two-port probe closure
 & schema/version: \texttt{\seqsplit{k2p-corrected-coherent-probe-closure-v1}};
   authority: \path{work/probe_coherence_corrected/probe_coherence_certificate.json};
-  SHA-256: \hashvalue{6c228e0d495fbc68b1df4ddb571558425a35e081cc22b954f232f8a3458991d3};
+  SHA-256: \hashvalue{93de7b0dd3aa581bdf12288eae8cb9ac42f20a9d9bb3eab35eee8ef9a759d390};
   producer command: \texttt{\detokenize{.venv/bin/python -B work/probe_coherence_corrected/build_probe_coherence_corrected.py}};
   replay command: \texttt{\detokenize{.venv/bin/python -B work/probe_coherence_corrected/verify_probe_coherence_corrected.py}};
   mutation command: \texttt{\detokenize{.venv/bin/python -B work/probe_coherence_corrected/run_probe_coherence_mutations.py}}.\\
@@ -727,6 +727,17 @@ weak-sharpness named columns
   producer command: \texttt{\detokenize{.venv/bin/python -B proof_compression_submission/analysis/build_weak_sharpness_column_crosswalk.py}};
   replay command: \texttt{\detokenize{.venv/bin/python -B proof_compression_submission/analysis/verify_weak_sharpness_column_crosswalk.py}};
   mutation command: \texttt{\detokenize{.venv/bin/python -B proof_compression_submission/analysis/test_weak_sharpness_column_crosswalk_mutations.py}}.\\
+full-map certificate reseal
+& schema/version: \texttt{\seqsplit{k2p-full-map-domain-reseal-audit-v1}};
+  authority: \path{work/final_theorem_release/full_map_reseal_audit.json};
+  SHA-256: \hashvalue{8ec6b987422b0dd27a12d590e8aad4f2c34817e341024f0881000013baffc3df};
+  producer/replay/mutation command: \texttt{\detokenize{.venv/bin/python -B work/final_theorem_release/verify_full_map_reseal.py}}.\\
+composite reseal differential
+& schema/version: \texttt{\seqsplit{k2p-composite-domain-reseal-diff-audit-v1}};
+  authority: \path{work/final_theorem_release/composite_reseal_diff_audit.json};
+  SHA-256: \hashvalue{bc91fee3b7541fcae72c4db2e66776fbfc69c43890718239f0eea41bb2cc0654};
+  producer/replay command: \texttt{\detokenize{.venv/bin/python -B work/final_theorem_release/verify_composite_reseal_diff.py}};
+  mutation authority: the six fail-closed seal/domain mutations in the preceding reseal audit.\\
 \bottomrule
 \end{longtable}
 \endgroup
@@ -744,19 +755,25 @@ artifact & file SHA-256\\
 \midrule
 \endhead
 unified release lock
-& \hashvalue{0c17eeaa3344f0982998ea694c1eb92f72f5ced0841e2acad0d39566e2ec71c3}\\
+& \hashvalue{58e32bd29f7a039e3da4e47398e32ee8277ad46cf62271a7ed80bf41688b18fb}\\
 raw-four composite ledger
 & \hashvalue{431dac8898ad2a724d12c200687de1b377723e302214a79a11a03524a4084b96}\\
 raw-four independent replay
-& \hashvalue{3e067178ca56f94672151dcf42d48e3b05b5cec411cd709c8b1ae00faf20b620}\\
+& \hashvalue{d44705d2266aa1360acec19cdb8bf0fea648fc9c029ae96adb437a04ad5cce10}\\
 raw-four terminal registry
 & \hashvalue{0a1818655429d60660c1ed87f3fbe412701f386b081562b3a4caa54079069f1d}\\
 raw-four mutation report
-& \hashvalue{2e5f23694ca89b1a021dfc58af829b6596cd497ec7469ca2f038095699b1e672}\\
+& \hashvalue{449228fa4013234280434495e5c79468750de2785d5a2a2a8ad7d91bbdcae3a7}\\
 five-port \(\theta_2\) composite ledger
-& \hashvalue{4cbd7b774adccaafc81338ce9093e33f4abcae8d75664c9d4c9ecc582a80cc58}\\
+& \hashvalue{805fc7f5a3de9dad2c63a210208075cf19910cf811ffd08878f32782ce71b659}\\
 five-port independent replay
-& \hashvalue{58c37895cc896c69ba1c25db1476f83cd22dd2e2986535b358222698de94cc42}\\
+& \hashvalue{ed57b46c5e05a73f08a26afc99ae1bd5f0076e941b2da7ac411ecc52f3b63e58}\\
+five-port mutation report
+& \hashvalue{c1c8012941ac58ae3f01a890caaa9e9ad05e8342d11a41d8a911de18dc3e6775}\\
+full-map certificate reseal audit
+& \hashvalue{8ec6b987422b0dd27a12d590e8aad4f2c34817e341024f0881000013baffc3df}\\
+composite reseal differential audit
+& \hashvalue{bc91fee3b7541fcae72c4db2e66776fbfc69c43890718239f0eea41bb2cc0654}\\
 corrected 997-parent forest
 & \hashvalue{43bd2be5e7626a954fc4fa4cf45e8d0e6483c947ddc9cba80f2b1a13351bc3a8}\\
 restoration independent replay
@@ -764,9 +781,9 @@ restoration independent replay
 probe input contract
 & \hashvalue{7f686ae99dd5e6dafc1c04396b711d294a0bddd6a25574f9ea809b831ad7b377}\\
 full probe primary
-& \hashvalue{6c228e0d495fbc68b1df4ddb571558425a35e081cc22b954f232f8a3458991d3}\\
+& \hashvalue{93de7b0dd3aa581bdf12288eae8cb9ac42f20a9d9bb3eab35eee8ef9a759d390}\\
 full probe independent graph audit
-& \hashvalue{879a397a165e19c162561435e7996a5de5ebdf5e9a7dc38af61a13cc6aa36410}\\
+& \hashvalue{47f527dd56ce355d911c44ebc55e24a1e9c7f14f379810902b49ae068261e74f}\\
 full probe adversarial mutation report
 & \hashvalue{b0df0584163150c9a823b4e364b8ee46c196ae8abb28fdca4d3d5893a97bfea7}\\
 weak-sharpness primary
@@ -808,10 +825,21 @@ For full primitive regeneration:
 
 The entry points reject optimized Python (\texttt{python -O}).  Full mode
 regenerates large ledgers by streaming; it does not require an uncompressed
-multi-gigabyte temporary JSONL file.  Before a public submission snapshot, a
-clean full replay should be run against the final manuscript/package binding
-and its wall time and peak memory recorded.  Those final performance values
-and the deterministic archive SHA-256 are pending that run.
+multi-gigabyte temporary JSONL file.  A detached clean checkout at commit
+\texttt{1e9ff6c6} completed the full replay on 22 August 2026 with all 35
+layers passing, zero blockers, and \texttt{promotion\_ready=true}.  The
+measured wall time was 5,172.89 seconds (86.2 minutes); the verifier's internal
+elapsed time was 5,172.248447 seconds.  macOS \texttt{/usr/bin/time -l}
+reported maximum resident set size 1,960,001,536 bytes and peak memory
+footprint 491,504,408 bytes; these are distinct operating-system metrics.  The
+byte-exact replay report and telemetry are
+\path{proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY.json}
+(SHA-256
+\hashvalue{7939b389880de80b7d8abd69022e0b69d2dc4188815854b294d3384fa24c9e18})
+and
+\path{proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY_TELEMETRY.json}
+(SHA-256
+\hashvalue{8779854633d9a52ba3d7bc9278ccbcc3918e51987bb4c30204c0adcd9771ce16}).
 
 \section{Mutation coverage}\label{sec:mutations}
 
@@ -913,7 +941,6 @@ The following items require explicit human decisions before submission:
   \item immutable submission commit/tag and the accompanying externally
         published deterministic-archive SHA-256;
   \item whether and when to create a GitHub/Zenodo release and DOI; and
-  \item final clean full-replay wall time and peak-memory report.
 \end{itemize}
 
 The mutable public repository is

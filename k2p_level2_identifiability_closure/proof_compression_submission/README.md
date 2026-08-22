@@ -36,7 +36,7 @@ not represented as a fictitious hand quotient. Primary reader artifacts are:
 - `article/main.tex` and the compiled article in `output/`;
 - `supplement/supplement.tex` and the compiled reader supplement in `output/`;
 - `PDF_BUILD_REPORT.md` and `.json`, recording the final source/PDF hashes and
-  the 37-page visual inspection;
+  the 48-page visual inspection;
 - `COMPRESSED_BOUNDED_THEOREM.md`;
 - `PROOF_COMPRESSION_RESULT.md` and `.json`;
 - `THEOREM_TO_TEMPLATE_CROSSWALK.md` and `.json`;
@@ -56,6 +56,11 @@ From the project root, the compact qualification is:
 .venv/bin/python -B proof_compression_submission/crosswalk/check_revised_referee_bundle.py
 ```
 
+The detached clean-checkout full primitive replay passed all 35 layers in
+5,172.89 seconds. Its byte-exact report and macOS timing/memory telemetry are
+in `output/FINAL_CLEAN_FULL_REPLAY.json` and
+`output/FINAL_CLEAN_FULL_REPLAY_TELEMETRY.json`.
+
 Corresponding email, author-contribution approval, funding,
-competing-interests, license, public-tag, and DOI decisions remain explicitly
+competing-interests, license, immutable-tag, and DOI decisions remain explicitly
 pending human confirmation.

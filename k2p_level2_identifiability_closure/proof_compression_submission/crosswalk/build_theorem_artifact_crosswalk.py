@@ -15,9 +15,11 @@ SUBMISSION = PROJECT / "proof_compression_submission"
 OUTPUT = Path(__file__).with_name("THEOREM_ARTIFACT_CROSSWALK.json")
 MARKDOWN = Path(__file__).with_name("THEOREM_ARTIFACT_CROSSWALK.md")
 LOCK_RELATIVE = "work/final_theorem_release/RELEASE_LOCK.json"
-LOCK_SHA256 = "0c17eeaa3344f0982998ea694c1eb92f72f5ced0841e2acad0d39566e2ec71c3"
-LOCK_PAYLOAD_SHA256 = "0e146ccee2352b80a5ceb605ff7aaa612ed28fd3122744b056c891d1e2ed2690"
-CONTENT_ROOT_SHA256 = "c79fa2d3cb6431207823e3c66c3440cbeb94226d8a9925960883efca7dca2416"
+LOCK_SHA256 = "58e32bd29f7a039e3da4e47398e32ee8277ad46cf62271a7ed80bf41688b18fb"
+LOCK_PAYLOAD_SHA256 = "3b7de4c60315a5820a2623de860f493d6b76a645b5c674ffda89f12fc31a5c90"
+CONTENT_ROOT_SHA256 = "7004e3e26bf359d0a11c07fd51cb1636859b30b07a97ca6c9cfd0dcd082dfc92"
+FULL_REPLAY_REPORT = "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY.json"
+FULL_REPLAY_TELEMETRY = "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY_TELEMETRY.json"
 
 
 def fail(message: str) -> None:
@@ -130,6 +132,44 @@ def observed_runtime(relative: str, field: str, lock: dict[str, Any]) -> dict[st
     }
 
 
+def clean_full_runtime(lock: dict[str, Any]) -> dict[str, Any]:
+    report = read_json(FULL_REPLAY_REPORT)
+    telemetry = read_json(FULL_REPLAY_TELEMETRY)
+    report_row = artifact(FULL_REPLAY_REPORT, "clean full replay report", False, lock)
+    telemetry_row = artifact(FULL_REPLAY_TELEMETRY, "clean full replay telemetry", False, lock)
+    if report.get("schema") != "k2p-principal-d-plus-final-theorem-replay-report-v1":
+        fail("clean full replay report schema mismatch")
+    if report.get("status") != "PASS" or report.get("promotion_ready") is not True or report.get("blockers"):
+        fail("clean full replay did not pass")
+    if report.get("mode") != "full" or len(report.get("layer_replays", [])) != 35:
+        fail("clean full replay layer census mismatch")
+    if report.get("lock_payload_sha256") != LOCK_PAYLOAD_SHA256:
+        fail("clean full replay lock binding mismatch")
+    if telemetry.get("schema") != "k2p-final-clean-full-replay-telemetry-v1" or telemetry.get("status") != "PASS":
+        fail("clean full replay telemetry schema/status mismatch")
+    if telemetry.get("report", {}).get("sha256") != report_row["sha256"]:
+        fail("clean full replay report/telemetry hash mismatch")
+    if telemetry.get("report", {}).get("lock_payload_sha256") != LOCK_PAYLOAD_SHA256:
+        fail("clean full replay telemetry lock binding mismatch")
+    timing = telemetry.get("time_l", {})
+    if timing.get("real_seconds") != 5172.89:
+        fail("clean full replay wall-time drift")
+    return {
+        "end_to_end_seconds": 5172.89,
+        "status": "clean_full_replay",
+        "clean_detached_checkout": True,
+        "git_commit": telemetry.get("git_commit"),
+        "internal_elapsed_seconds": report.get("elapsed_seconds"),
+        "layer_count": len(report["layer_replays"]),
+        "maximum_resident_set_size_bytes": timing.get("maximum_resident_set_size_bytes"),
+        "peak_memory_footprint_bytes": timing.get("peak_memory_footprint_bytes"),
+        "report_path": FULL_REPLAY_REPORT,
+        "report_sha256": report_row["sha256"],
+        "telemetry_path": FULL_REPLAY_TELEMETRY,
+        "telemetry_sha256": telemetry_row["sha256"],
+    }
+
+
 def build() -> dict[str, Any]:
     reject_optimized_mode()
     lock_bytes = project_path(LOCK_RELATIVE).read_bytes()
@@ -146,7 +186,7 @@ def build() -> dict[str, Any]:
         fail("frozen theorem release is not promotion-ready")
     content_ledger = read_json("output/referee/REFEREE_BUNDLE_CONTENTS.json")
     frozen_files = content_ledger.get("files")
-    if not isinstance(frozen_files, dict) or len(frozen_files) != 370:
+    if not isinstance(frozen_files, dict) or len(frozen_files) != 374:
         fail("transitive frozen content ledger file count mismatch")
     if content_ledger.get("schema") != "k2p-principal-d-plus-referee-content-ledger-v1":
         fail("transitive frozen content ledger schema mismatch")
@@ -154,7 +194,7 @@ def build() -> dict[str, Any]:
         fail("transitive frozen content ledger lock binding mismatch")
     if content_ledger.get("release_lock_payload_sha256") != LOCK_PAYLOAD_SHA256:
         fail("transitive frozen content ledger payload binding mismatch")
-    if content_ledger.get("total_bytes") != 434661763:
+    if content_ledger.get("total_bytes") != 434698345:
         fail("transitive frozen content ledger byte count mismatch")
     if canonical_hash(frozen_files) != CONTENT_ROOT_SHA256:
         fail("transitive frozen content root mismatch")
@@ -325,20 +365,27 @@ def build() -> dict[str, Any]:
                 ("work/final_theorem_release/corrected_universe_certificate.json", "corrected universe certificate", True),
                 ("work/corrected_composite_ledgers/artifacts/raw4_corrected_composite_summary.json", "raw4 corrected summary", True),
                 ("work/corrected_composite_ledgers/artifacts/theta2_corrected_composite_summary.json", "theta2 corrected summary", True),
+                ("work/final_theorem_release/full_map_reseal_audit.json", "exact truth-certificate reseal differential", True),
+                ("work/final_theorem_release/composite_reseal_diff_audit.json", "exact composite-ledger reseal differential", True),
                 ("proof_compression_submission/analysis/FAMILY_COVERAGE_EQUIVALENCE_CERTIFICATE.json", "compressed family equivalence certificate", False),
             ]),
             "producer_artifacts": rows([
                 ("work/corrected_composite_ledgers/generate_corrected_composites.py", "corrected composite generator", True),
+                ("work/final_theorem_release/verify_full_map_reseal.py", "truth-certificate reseal producer and validator", True),
+                ("work/final_theorem_release/verify_composite_reseal_diff.py", "composite differential reconstructor", True),
                 ("proof_compression_submission/analysis/verify_family_coverage_equivalence.py", "compressed family builder and verifier", False),
             ]),
             "replay_artifacts": rows([
                 ("work/corrected_composite_ledgers/verify_corrected_composites_independent.py", "independent corrected composite replay", True),
                 ("work/corrected_composite_ledgers/artifacts/release_contract_replay.json", "release-contract replay", True),
+                ("work/final_theorem_release/verify_full_map_reseal.py", "byte-exact reseal replay", True),
+                ("work/final_theorem_release/verify_composite_reseal_diff.py", "prior-ledger byte reconstruction replay", True),
             ]),
             "mutation_artifacts": rows([
                 ("work/corrected_composite_ledgers/run_composite_mutations.py", "corrected composite mutation runner", True),
                 ("work/corrected_composite_ledgers/artifacts/raw4_corrected_composite_mutations.json", "raw4 mutation report", True),
                 ("work/corrected_composite_ledgers/artifacts/theta2_corrected_composite_mutations.json", "theta2 mutation report", True),
+                ("work/final_theorem_release/verify_full_map_reseal.py", "domain and stale-seal mutation gate", True),
                 outer_mutation,
             ]),
             "environment_profile": "frozen-python-k2p-v1",
@@ -436,10 +483,12 @@ def build() -> dict[str, Any]:
                 ("work/final_theorem_release/verify_final_theorem_release.py", "quick/full theorem replay", True),
                 ("work/final_theorem_release/corrected_universe_independent_replay.json", "locked independent corrected-universe replay report", True),
                 ("work/global_theorem_closure/promotion_manuscript/verify_promotion_gate.py", "promotion gate", True),
+                (FULL_REPLAY_REPORT, "clean detached full replay report", False),
+                (FULL_REPLAY_TELEMETRY, "clean detached full replay telemetry", False),
             ]),
             "mutation_artifacts": rows([outer_mutation]),
             "environment_profile": "frozen-python-k2p-v1",
-            "runtime": unknown_runtime(),
+            "runtime": clean_full_runtime(lock),
         },
         {
             "claim_id": "C12-strict-continuous-time-corollary",
@@ -511,11 +560,11 @@ def build() -> dict[str, Any]:
         "frozen_release": {
             "candidate_outcome": "K2P-SAME",
             "content_ledger_root_sha256": CONTENT_ROOT_SHA256,
-            "file_count_including_release_lock": 370,
+            "file_count_including_release_lock": 374,
             "release_lock_path": LOCK_RELATIVE,
             "release_lock_payload_sha256": LOCK_PAYLOAD_SHA256,
             "release_lock_sha256": LOCK_SHA256,
-            "total_bytes_including_release_lock": 434661763,
+            "total_bytes_including_release_lock": 434698345,
         },
         "compression_boundary": {
             "status": "PC-PARTIAL",
@@ -533,8 +582,13 @@ def build() -> dict[str, Any]:
                 "sympy": "1.14.0",
                 "optimized_python": "forbidden",
                 "end_to_end_quick_runtime_seconds": None,
-                "end_to_end_full_runtime_seconds": None,
-                "runtime_status": "unknown_not_byte_bound",
+                "end_to_end_full_runtime_seconds": 5172.89,
+                "full_replay_internal_elapsed_seconds": 5172.248447,
+                "full_replay_maximum_resident_set_size_bytes": 1960001536,
+                "full_replay_peak_memory_footprint_bytes": 491504408,
+                "full_replay_report": artifact(FULL_REPLAY_REPORT, "clean full replay report", False, lock),
+                "full_replay_telemetry": artifact(FULL_REPLAY_TELEMETRY, "clean full replay telemetry", False, lock),
+                "runtime_status": "clean_detached_full_replay_pass",
             }
         },
         "pending_human_metadata": [
@@ -545,9 +599,8 @@ def build() -> dict[str, Any]:
             "article license",
             "code license",
             "data license",
-            "final repository URL and immutable submission tag",
+            "immutable submission tag",
             "whether and when to mint a GitHub/Zenodo DOI release",
-            "final clean full-replay wall time and peak memory",
         ],
         "claims": claims,
         "compression_table": compression_table,
@@ -581,6 +634,8 @@ def render_markdown(value: dict[str, Any]) -> str:
         if runtime["status"] == "component_observation_only":
             observation = runtime["observations"][0]
             runtime_text = f"component {observation['seconds']:.6f}s; end-to-end unknown"
+        elif runtime["status"] == "clean_full_replay":
+            runtime_text = f"clean full replay {runtime['end_to_end_seconds']:.2f}s"
         else:
             runtime_text = "unknown"
         lines.append(
@@ -612,8 +667,9 @@ def render_markdown(value: dict[str, Any]) -> str:
         "The source requires Python 3.10 or newer. The frozen release was qualified",
         "with Python 3.14.6, NetworkX 3.5, and SymPy 1.14.0. Optimized Python is",
         "forbidden. Component observations are reproduced only where a locked JSON",
-        "field records them. Exact quick/full end-to-end times remain unknown and are",
-        "not inferred by adding noncomparable component timings.",
+        "field records them. A detached clean-checkout full replay passed all 35",
+        "layers in 5,172.89 seconds; its exact report and macOS telemetry are bound",
+        "above. No quick-suite runtime is inferred by adding component timings.",
         "",
         "## Pending human metadata",
         "",

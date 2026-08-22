@@ -22,19 +22,19 @@ COMMANDS = (
         "id": "baseline_and_finite_universe_producer",
         "script": "proof_compression_submission/analysis/derive_baseline_and_universe.py",
         "payload_key": "payload_sha256",
-        "payload": "9a467e69fe97ee0f155429430d3848ce7b983f81c5ed426cd6506ad29c9d2347",
+        "payload": "55e32e23c6e34943a58d82f7d123a5f8e6e40bd4733b34863a80e12d88bb349a",
     },
     {
         "id": "direct_template_producer",
         "script": "proof_compression_submission/templates/derive_direct_templates.py",
         "payload_key": "payload_sha256",
-        "payload": "31fe4fbf7faa838147fdc1d02880da7c242a20527a836546e615a5ef119c27c8",
+        "payload": "9d256ca00cfe14e34dbd6bae492ce5c2cdbb00ababfaabbf4f3c2dd5e71b0aa2",
     },
     {
         "id": "independent_family_coverage_equivalence",
         "script": "proof_compression_submission/analysis/verify_family_coverage_equivalence.py",
         "payload_key": "payload_sha256",
-        "payload": "fe84839f136632164144fde2c97e628628cd0b323b2ed389531b15fd4929712b",
+        "payload": "7477f886c731244f432d939769121947359d0b7e8ca83751a6bb7d417ab27cb7",
     },
     {
         "id": "restoration_archetype_producer",
@@ -52,13 +52,13 @@ COMMANDS = (
         "id": "independent_probe_word_replay",
         "script": "proof_compression_submission/probe/verify_probe_word_theorem.py",
         "payload_key": "payload_sha256",
-        "payload": "4b0e6283b2671d83a73a14477a80a9791d4ee5e3ad8becb63a49584447ac1a88",
+        "payload": "d361256c6531c93bdb71e29dc90614a40a25a6f3866526f2a158385bcd36b0e4",
     },
     {
         "id": "minimal_compressed_release_verifier",
         "script": "proof_compression_submission/verify_compressed_release.py",
         "payload_key": "result_payload_sha256",
-        "payload": "51ffacd91269975c22379d68c40edc5402519917f4d904f81a924f78dea9cd6d",
+        "payload": "884c604b21a7d2f48b821fde2d8307f67f1daf5940b97ba4f70d645c840102e2",
     },
 )
 

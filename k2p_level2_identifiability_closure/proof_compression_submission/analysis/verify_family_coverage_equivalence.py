@@ -31,8 +31,8 @@ TABLE_MD = TEMPLATES / "DIRECT_CERTIFICATE_TEMPLATE_TABLE.md"
 OUTPUT = HERE / "FAMILY_COVERAGE_EQUIVALENCE_CERTIFICATE.json"
 
 LOCK_REL = "work/final_theorem_release/RELEASE_LOCK.json"
-LOCK_SHA = "0c17eeaa3344f0982998ea694c1eb92f72f5ced0841e2acad0d39566e2ec71c3"
-LOCK_PAYLOAD = "0e146ccee2352b80a5ceb605ff7aaa612ed28fd3122744b056c891d1e2ed2690"
+LOCK_SHA = "58e32bd29f7a039e3da4e47398e32ee8277ad46cf62271a7ed80bf41688b18fb"
+LOCK_PAYLOAD = "3b7de4c60315a5820a2623de860f493d6b76a645b5c674ffda89f12fc31a5c90"
 ATLAS_REL = "package/referee/k2p_offline_sweep_portable/atlas/k2p_atlas_core.py"
 RAW4_LEDGER = "work/corrected_composite_ledgers/artifacts/raw4_corrected_composite_ledger.jsonl.gz"
 THETA2_LEDGER = "work/corrected_composite_ledgers/artifacts/theta2_corrected_composite_ledger.jsonl.gz"
@@ -183,7 +183,7 @@ def verify_release_and_transitive_hashes() -> dict[str, str]:
             item = str(path.relative_to(PROJECT))
             need(item not in locked or locked[item] == digest, "MANIFEST_HASH_CONFLICT")
             locked[item] = digest
-    need(len(locked) == 369, "TRANSITIVE_FILE_COUNT", len(locked))
+    need(len(locked) == 373, "TRANSITIVE_FILE_COUNT", len(locked))
     return locked
 
 

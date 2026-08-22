@@ -280,3 +280,54 @@
 - The rebuilt release remains promotion-ready with no mathematical blockers.
   Best-guess completion is 98% pending the repaired full replay, final PDF QA,
   and deterministic referee archive.
+
+## 2026-08-22 14:55 PDT — targeted referee revision and clean release complete
+
+- Scrutinized the fresh adversarial report item by item. The mathematical
+  recommendations were valid and were applied without weakening the promoted
+  `K2P-SAME` theorem. The revision corrects the Huber/Englander/current-work
+  provenance split, replaces the triangle inverse-function wording by exact
+  submersion and constant-rank arguments, formalizes the complete paired K2P
+  restriction descriptor, and clarifies the repair-tagged completion census.
+- Exposed the already-derived proof compression rather than beginning a second
+  research cycle: the supplement now prints 23 quadratic templates, five
+  higher-degree bases, their coordinate dictionaries and allowed transports,
+  and three worked examples. It also names every weak-sharpness Jacobian
+  column and adds the generic complex/physical rank justification. Independent
+  template and sharpness replays, with 18 and 15 adversarial mutations
+  respectively, pass.
+- A detached clean checkout regenerated and replayed all 35 release layers in
+  5,172.89 seconds (86.2 minutes), with maximum RSS 1,960,001,536 bytes and
+  measured peak memory footprint 491,504,408 bytes. The report SHA-256 is
+  `7939b389880de80b7d8abd69022e0b69d2dc4188815854b294d3384fa24c9e18`;
+  its telemetry SHA-256 is
+  `8779854633d9a52ba3d7bc9278ccbcc3918e51987bb4c30204c0adcd9771ce16`.
+  All layers pass, `promotion_ready=true`, and the blocker list is empty.
+- Rebuilt and visually inspected all 48 final PDF pages. The 24-page article
+  has SHA-256
+  `e30ea98ccde1756bb98ad9ce500c83a64c87d5d9985bc06b432f6d9fc79df064`;
+  the 24-page supplement has SHA-256
+  `0a0c55e16b5f7298c9749912a3901d1a0a1323578ab25ef7db13c06e0b912131`.
+  Both have embedded fonts and no undefined references, citation failures,
+  overfull boxes, or visual clipping.
+- Built the deterministic 448-member referee archive twice independently;
+  both builds are byte-identical. The 178,002,570-byte archive
+  `proof_compression_submission/output/K2P_Principal_D_Plus_Referee_Package_20260822.zip`
+  passes ZIP integrity and has SHA-256
+  `0e73c6fdd66daf59ede5c919c589e1e6c2f5dfff7e1fdf15b99ffc78f1bb6013`.
+  Its manifest binds 374 frozen files and 73 submission files with combined
+  content root
+  `49f1a24c18f04aee9185aca150ce733acc00943b6c76430a2f363d341defd64d`.
+- The final compact qualification battery passes exact old/new equivalence,
+  proof compression, independent bundle checking, and all associated mutation
+  suites. No mathematical or reproducibility issue remains. PC-PARTIAL is the
+  final proof-compression status and a deliberate stopping point.
+- A final read-only adversary independently checked the repaired 374+73-file
+  crosswalk and the 448-member archive, then cleared the interim submission
+  hold. Its final verdict found no mathematical, computational, packaging, or
+  PDF blocker.
+- Best-guess completion is **100%** for the principal-domain theorem and its
+  reproducibility package. Journal-submission administration is **96%**:
+  corresponding email, contribution approval, funding/conflict statements,
+  license choices, and the eventual public tag/DOI remain human decisions and
+  were not invented by the research workflow.

@@ -22,18 +22,18 @@ CROSSWALK = ROOT / "THEOREM_TO_TEMPLATE_CROSSWALK.json"
 EXPECTED_INPUTS = {
     "analysis/PROOF_COMPRESSION_BASELINE.json": (
         "k2p-proof-compression-baseline-v1",
-        "9a467e69fe97ee0f155429430d3848ce7b983f81c5ed426cd6506ad29c9d2347",
-        "39fd3b0c4fff4ea25032be61e7f27ea2562abb2a9112c5447872e5580dcddc69",
+        "55e32e23c6e34943a58d82f7d123a5f8e6e40bd4733b34863a80e12d88bb349a",
+        "5804e1a6f9315222a12811619f2414a715092e6c82dfcc5788016838784d33bf",
     ),
     "analysis/FAMILY_COVERAGE_EQUIVALENCE_CERTIFICATE.json": (
         "k2p-pc-partial-family-coverage-equivalence-v1",
-        "fe84839f136632164144fde2c97e628628cd0b323b2ed389531b15fd4929712b",
-        "7581357b5e84184a7612d3b6ff17c9c37745a3363ad51887db0bdeab52d263db",
+        "7477f886c731244f432d939769121947359d0b7e8ca83751a6bb7d417ab27cb7",
+        "66948b3d0f6c3c28e16ae7d70573ca78baa34c7173cd5d90264a5aed463fe7ef",
     ),
     "templates/DIRECT_CERTIFICATE_TEMPLATE_TABLE.json": (
         "k2p-direct-certificate-template-table-v1",
-        "31fe4fbf7faa838147fdc1d02880da7c242a20527a836546e615a5ef119c27c8",
-        "9dfcfe06fa980223e9883801ce1549e40a1b7ad062a264ebedb6fdd523c97ec9",
+        "9d256ca00cfe14e34dbd6bae492ce5c2cdbb00ababfaabbf4f3c2dd5e71b0aa2",
+        "febc5e36c07e17dec1ba3dffb70dd0e4f4030dd796225d37dd0e7cc267485fe1",
     ),
     "restoration/RESTORATION_ARCHETYPES.json": (
         "k2p-restoration-descriptive-archetypes-v1",
@@ -47,8 +47,8 @@ EXPECTED_INPUTS = {
     ),
     "probe/PROBE_WORD_COVERAGE.json": (
         "k2p-probe-word-theorem-coverage-v1",
-        "4b0e6283b2671d83a73a14477a80a9791d4ee5e3ad8becb63a49584447ac1a88",
-        "db141f2f8b8c35791abfdfc6ca630efc725802b618c88c0b2f8641aa2b81eee9",
+        "d361256c6531c93bdb71e29dc90614a40a25a6f3866526f2a158385bcd36b0e4",
+        "a18410c360554426f0290ed9b85ce90f72fbdc76b8a4af67187971dd7ef067e6",
     ),
 }
 

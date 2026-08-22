@@ -16,13 +16,21 @@ PROJECT = Path(__file__).resolve().parents[2]
 LOCK_RELATIVE = "work/final_theorem_release/RELEASE_LOCK.json"
 MANIFEST_RELATIVE = "proof_compression_submission/crosswalk/REVISED_REFEREE_BUNDLE_MANIFEST.json"
 MANIFEST_PATH = PROJECT / MANIFEST_RELATIVE
-LOCK_SHA256 = "0c17eeaa3344f0982998ea694c1eb92f72f5ced0841e2acad0d39566e2ec71c3"
-LOCK_PAYLOAD_SHA256 = "0e146ccee2352b80a5ceb605ff7aaa612ed28fd3122744b056c891d1e2ed2690"
-FROZEN_FILE_COUNT = 370
-FROZEN_TOTAL_BYTES = 434_661_763
-FROZEN_CONTENT_ROOT = "c79fa2d3cb6431207823e3c66c3440cbeb94226d8a9925960883efca7dca2416"
+LOCK_SHA256 = "58e32bd29f7a039e3da4e47398e32ee8277ad46cf62271a7ed80bf41688b18fb"
+LOCK_PAYLOAD_SHA256 = "3b7de4c60315a5820a2623de860f493d6b76a645b5c674ffda89f12fc31a5c90"
+FROZEN_FILE_COUNT = 374
+FROZEN_TOTAL_BYTES = 434_698_345
+FROZEN_CONTENT_ROOT = "7004e3e26bf359d0a11c07fd51cb1636859b30b07a97ca6c9cfd0dcd082dfc92"
 ARCHIVE_PREFIX = "k2p_principal_d_plus_submission_referee"
-ARCHIVE_TIMESTAMP = (2026, 8, 21, 0, 0, 0)
+ARCHIVE_TIMESTAMP = (2026, 8, 22, 0, 0, 0)
+OPERATIONAL_EVIDENCE = {
+    "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY.json",
+    "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY_TELEMETRY.json",
+    "proof_compression_submission/output/K2P_SAME_Principal_Domain_Article.pdf",
+    "proof_compression_submission/output/K2P_SAME_Reader_Supplement.pdf",
+    "proof_compression_submission/output/logs/article.log",
+    "proof_compression_submission/output/logs/supplement.log",
+}
 PENDING_METADATA = [
     "corresponding email address",
     "author-contribution statement",
@@ -31,9 +39,8 @@ PENDING_METADATA = [
     "article license",
     "code license",
     "data license",
-    "final repository URL and immutable submission tag",
+    "immutable submission tag",
     "whether and when to mint a GitHub/Zenodo DOI release",
-    "final clean full-replay wall time and peak memory",
 ]
 
 
@@ -76,6 +83,52 @@ def read_json(relative: str) -> dict[str, Any]:
     return value
 
 
+def clean_full_replay_boundary() -> dict[str, Any]:
+    report_relative = "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY.json"
+    telemetry_relative = "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY_TELEMETRY.json"
+    report_path = project_path(report_relative)
+    telemetry_path = project_path(telemetry_relative)
+    report = read_json(report_relative)
+    telemetry = read_json(telemetry_relative)
+    report_sha = sha256_bytes(report_path.read_bytes())
+    telemetry_sha = sha256_bytes(telemetry_path.read_bytes())
+    if report.get("schema") != "k2p-principal-d-plus-final-theorem-replay-report-v1":
+        fail("clean full replay report schema mismatch")
+    if report.get("status") != "PASS" or report.get("promotion_ready") is not True or report.get("blockers"):
+        fail("clean full replay report is not promotion-ready PASS")
+    if report.get("mode") != "full" or len(report.get("layer_replays", [])) != 35:
+        fail("clean full replay mode/layer census mismatch")
+    if report.get("lock_payload_sha256") != LOCK_PAYLOAD_SHA256:
+        fail("clean full replay lock payload mismatch")
+    if telemetry.get("schema") != "k2p-final-clean-full-replay-telemetry-v1" or telemetry.get("status") != "PASS":
+        fail("clean full replay telemetry schema/status mismatch")
+    if telemetry.get("report", {}).get("sha256") != report_sha:
+        fail("clean full replay telemetry report hash mismatch")
+    timing = telemetry.get("time_l", {})
+    expected_timing = {
+        "real_seconds": 5172.89,
+        "maximum_resident_set_size_bytes": 1960001536,
+        "peak_memory_footprint_bytes": 491504408,
+    }
+    if any(timing.get(key) != value for key, value in expected_timing.items()):
+        fail("clean full replay timing/memory drift")
+    return {
+        "status": "clean_detached_full_replay_pass",
+        "git_commit": telemetry.get("git_commit"),
+        "clean_detached_checkout": telemetry.get("clean_detached_checkout"),
+        "end_to_end_full_runtime_seconds": timing["real_seconds"],
+        "internal_elapsed_seconds": report.get("elapsed_seconds"),
+        "layer_count": len(report["layer_replays"]),
+        "maximum_resident_set_size_bytes": timing["maximum_resident_set_size_bytes"],
+        "peak_memory_footprint_bytes": timing["peak_memory_footprint_bytes"],
+        "end_to_end_quick_runtime_seconds": None,
+        "report_path": report_relative,
+        "report_sha256": report_sha,
+        "telemetry_path": telemetry_relative,
+        "telemetry_sha256": telemetry_sha,
+    }
+
+
 def add_manifest_paths(paths: set[str], manifest_relative: str, base_relative: str) -> None:
     manifest = project_path(manifest_relative)
     base = PurePosixPath(base_relative)
@@ -108,7 +161,7 @@ def collect_frozen_ledger() -> dict[str, dict[str, int | str]]:
     if lock.get("promotion_ready") is not True or lock.get("blockers") or lock.get("missing_required_files"):
         fail("frozen theorem release is not promotion-ready")
     outer_files = lock.get("files")
-    if not isinstance(outer_files, dict) or len(outer_files) != 194:
+    if not isinstance(outer_files, dict) or len(outer_files) != 198:
         fail("unexpected frozen outer file map")
     paths = set(outer_files)
     add_manifest_paths(paths, "work/rank_upper_certificates/MANIFEST.sha256", "work/rank_upper_certificates")
@@ -154,6 +207,8 @@ def include_submission_source(relative: PurePosixPath) -> bool:
         return False
     if relative.as_posix() == MANIFEST_RELATIVE:
         return False
+    if relative.as_posix() in OPERATIONAL_EVIDENCE:
+        return True
     if (
         "output" in relative.parts
         or "__pycache__" in relative.parts
@@ -200,6 +255,9 @@ def collect_submission_ledger() -> dict[str, dict[str, int | str]]:
         "proof_compression_submission/templates/verify_printed_certificate_appendix.py",
         "proof_compression_submission/templates/test_printed_certificate_appendix_mutations.py",
         "proof_compression_submission/supplement/certificate_appendix.tex",
+        "proof_compression_submission/PDF_BUILD_REPORT.json",
+        "proof_compression_submission/PDF_BUILD_REPORT.md",
+        *OPERATIONAL_EVIDENCE,
     }
     missing = sorted(required - set(ledger))
     if missing:
@@ -221,7 +279,7 @@ def build_manifest() -> dict[str, Any]:
         "archive_policy": {
             "archive_prefix": ARCHIVE_PREFIX,
             "compression": "ZIP_DEFLATED level 9",
-            "fixed_member_timestamp": "2026-08-21T00:00:00",
+            "fixed_member_timestamp": "2026-08-22T00:00:00",
             "member_mode": "100644",
             "member_order": "project-relative path lexicographic",
             "manifest_included": True,
@@ -240,7 +298,7 @@ def build_manifest() -> dict[str, Any]:
             "files": submission,
             "policy": {
                 "base": "proof_compression_submission",
-                "excluded_components": ["output", "__pycache__", "dot-prefixed directories"],
+                "excluded_components": ["output except named replay/PDF/log artifacts", "__pycache__", "dot-prefixed directories"],
                 "excluded_names": [".DS_Store", MANIFEST_RELATIVE],
                 "excluded_suffixes": [".pyc", ".pyo"],
                 "symlinks_allowed": False,
@@ -250,11 +308,7 @@ def build_manifest() -> dict[str, Any]:
         "combined_content_root_sha256": canonical_hash(combined_binding),
         "combined_file_count_excluding_manifest": len(frozen) + len(submission),
         "pending_human_metadata": PENDING_METADATA,
-        "runtime_boundary": {
-            "end_to_end_full_runtime_seconds": None,
-            "end_to_end_quick_runtime_seconds": None,
-            "status": "unknown_not_byte_bound",
-        },
+        "runtime_boundary": clean_full_replay_boundary(),
     }
     value["payload_sha256"] = canonical_hash(value)
     return value

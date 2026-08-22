@@ -21,7 +21,7 @@ ATLAS = PROJECT / "package/referee/k2p_offline_sweep_portable/atlas/k2p_atlas_co
 OUTPUT = HERE / "PROBE_WORD_COVERAGE.json"
 
 FILES = {
-    "certificate": (PROBE / "probe_coherence_certificate.json", "6c228e0d495fbc68b1df4ddb571558425a35e081cc22b954f232f8a3458991d3"),
+    "certificate": (PROBE / "probe_coherence_certificate.json", "93de7b0dd3aa581bdf12288eae8cb9ac42f20a9d9bb3eab35eee8ef9a759d390"),
     "one": (PROBE / "one_port_ledger.jsonl.gz", "d5fa13d38731bff2403eeb4e4d9e139566c4983b09d30553c6260eaac64c5c90"),
     "two": (PROBE / "two_port_ledger.jsonl.gz", "10f0afcab77f2d61cecfc36d723c6f32065c304ac088b0b8ecf12dfc867fbf9d"),
     "parents": (PROBE / "two_port_parent_inventory.jsonl.gz", "673112e949e08dce0bdbd690be647dd97d0899c2bb12121b4a16ed7a62dba3f8"),
@@ -505,13 +505,18 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     group = parser.add_mutually_exclusive_group()
     group.add_argument("--emit", action="store_true")
+    group.add_argument("--write", action="store_true")
     group.add_argument("--check", type=Path, nargs="?", const=OUTPUT)
     args = parser.parse_args()
     generated = build_coverage()
     if args.emit:
         print(json.dumps(generated, indent=2, sort_keys=True))
         return
-    target = args.check or OUTPUT
+    if args.write:
+        OUTPUT.write_text(json.dumps(generated, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+        target = OUTPUT
+    else:
+        target = args.check or OUTPUT
     require(target.exists(), f"missing probe word coverage:{target}")
     require(json.loads(target.read_text()) == generated, "probe word coverage drift")
     print(json.dumps({

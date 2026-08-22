@@ -33,9 +33,9 @@ BASELINE_MD = HERE / "PROOF_COMPRESSION_BASELINE.md"
 UNIVERSE_MD = HERE / "FINITE_UNIVERSE_COMPLETENESS.md"
 
 RELEASE_LOCK = "work/final_theorem_release/RELEASE_LOCK.json"
-RELEASE_LOCK_SHA256 = "0c17eeaa3344f0982998ea694c1eb92f72f5ced0841e2acad0d39566e2ec71c3"
+RELEASE_LOCK_SHA256 = "58e32bd29f7a039e3da4e47398e32ee8277ad46cf62271a7ed80bf41688b18fb"
 RELEASE_LOCK_PAYLOAD_SHA256 = (
-    "0e146ccee2352b80a5ceb605ff7aaa612ed28fd3122744b056c891d1e2ed2690"
+    "3b7de4c60315a5820a2623de860f493d6b76a645b5c674ffda89f12fc31a5c90"
 )
 RELEASE_LOCK_SCHEMA = "k2p-principal-d-plus-final-theorem-release-lock-v1"
 ATLAS = "package/referee/k2p_offline_sweep_portable/atlas/k2p_atlas_core.py"
@@ -65,7 +65,9 @@ EXPLICIT_INDEPENDENT_MODULES = {
     "work/adversarial_proof_review/audit_theta2_tree_sunlet_full_map.py",
     "work/adversarial_proof_review/verify_cycle_whole_map_independent.py",
     "work/corrected_composite_ledgers/verify_corrected_composites_independent.py",
+    "work/final_theorem_release/verify_composite_reseal_diff.py",
     "work/final_theorem_release/verify_corrected_universe_independent.py",
+    "work/final_theorem_release/verify_full_map_reseal.py",
     "work/global_proof_adversary/probe_full_audit/independent_probe_graph_audit.py",
     "work/global_proof_adversary/verify_component_scales.py",
     "work/theta2_sign_reclassification/verify_theta2_full_map_independent.py",
@@ -248,7 +250,7 @@ def mutation_module(relative: str) -> bool:
 
 def proof_surface(files: dict[str, str]) -> dict[str, Any]:
     python = sorted(relative for relative in files if relative.endswith(".py"))
-    require(len(python) == 95, "LOCKED_PYTHON_MODULE_CENSUS_DRIFT", len(python))
+    require(len(python) == 97, "LOCKED_PYTHON_MODULE_CENSUS_DRIFT", len(python))
     require(INFRASTRUCTURE_MODULES <= set(python), "INFRASTRUCTURE_MODULE_MISSING")
     require(EXPLICIT_INDEPENDENT_MODULES <= set(python), "INDEPENDENT_MODULE_MISSING")
     mutations = {relative for relative in python if mutation_module(relative)}
@@ -281,9 +283,9 @@ def proof_surface(files: dict[str, str]) -> dict[str, Any]:
         "mutation": census(mutations),
         "release_hash_orchestration": census(INFRASTRUCTURE_MODULES),
     }
-    require(sum(row["modules"] for row in categories.values()) == 95, "ROLE_MODULE_SUM")
-    require(sum(row["physical_lines"] for row in categories.values()) == 42286, "ROLE_LOC_SUM")
-    require(sum(row["sloc"] for row in categories.values()) == 38093, "ROLE_SLOC_SUM")
+    require(sum(row["modules"] for row in categories.values()) == 97, "ROLE_MODULE_SUM")
+    require(sum(row["physical_lines"] for row in categories.values()) == 42824, "ROLE_LOC_SUM")
+    require(sum(row["sloc"] for row in categories.values()) == 38564, "ROLE_SLOC_SUM")
     return {
         "classification_boundary": (
             "Conservative file-level audit: primary is an upper bound and explicit "
@@ -291,7 +293,7 @@ def proof_surface(files: dict[str, str]) -> dict[str, Any]:
             "split by line."
         ),
         "categories": categories,
-        "total": {"modules": 95, "physical_lines": 42286, "sloc": 38093},
+        "total": {"modules": 97, "physical_lines": 42824, "sloc": 38564},
     }
 
 
@@ -349,7 +351,7 @@ def baseline_payload() -> dict[str, Any]:
     release = release_anchor()
     cores = locked_cores()
     files = recursively_locked_files()
-    require(len(files) == 369, "TRANSITIVE_FILE_CENSUS_DRIFT", len(files))
+    require(len(files) == 373, "TRANSITIVE_FILE_CENSUS_DRIFT", len(files))
     extension_counts: Counter[str] = Counter()
     extension_bytes: Counter[str] = Counter()
     for relative in files:
@@ -369,7 +371,7 @@ def baseline_payload() -> dict[str, Any]:
     machine_extensions = {".json", ".json.gz", ".jsonl.gz", ".pkl"}
     machine_files = sum(extension_counts[extension] for extension in machine_extensions)
     machine_bytes = sum(extension_bytes[extension] for extension in machine_extensions)
-    require((machine_files, machine_bytes) == (226, 432456552), "MACHINE_DATA_CENSUS_DRIFT")
+    require((machine_files, machine_bytes) == (228, 432464380), "MACHINE_DATA_CENSUS_DRIFT")
 
     manuscript = project_path(
         "work/global_theorem_closure/promotion_manuscript/K2P_SAME_PROMOTION_MANUSCRIPT.md"

@@ -63,6 +63,10 @@ def main() -> None:
     sharpness_columns_path = submission / "analysis" / "WEAK_SHARPNESS_COLUMN_CROSSWALK.json"
     bib_path = submission / "article" / "references.bib"
     release_path = project / "work" / "final_theorem_release" / "RELEASE_LOCK.json"
+    full_replay_path = submission / "output" / "FINAL_CLEAN_FULL_REPLAY.json"
+    full_replay_telemetry_path = (
+        submission / "output" / "FINAL_CLEAN_FULL_REPLAY_TELEMETRY.json"
+    )
     universe_path = (
         project
         / "work"
@@ -80,6 +84,8 @@ def main() -> None:
         bib_path,
         release_path,
         universe_path,
+        full_replay_path,
+        full_replay_telemetry_path,
     ):
         require(path.is_file(), f"MISSING_REQUIRED_FILE:{path}")
 
@@ -115,12 +121,44 @@ def main() -> None:
 
     require(
         sha256(release_path)
-        == "0c17eeaa3344f0982998ea694c1eb92f72f5ced0841e2acad0d39566e2ec71c3",
+        == "58e32bd29f7a039e3da4e47398e32ee8277ad46cf62271a7ed80bf41688b18fb",
         "FROZEN_RELEASE_LOCK_DRIFT",
     )
     release = read_json(release_path)
     require(isinstance(release, dict), "RELEASE_LOCK_NOT_OBJECT")
     require(release.get("promotion_ready") is True, "RELEASE_NOT_PROMOTION_READY")
+
+    full_replay = read_json(full_replay_path)
+    full_replay_telemetry = read_json(full_replay_telemetry_path)
+    require(isinstance(full_replay, dict), "FULL_REPLAY_NOT_OBJECT")
+    require(isinstance(full_replay_telemetry, dict), "FULL_REPLAY_TELEMETRY_NOT_OBJECT")
+    require(
+        sha256(full_replay_path)
+        == "7939b389880de80b7d8abd69022e0b69d2dc4188815854b294d3384fa24c9e18",
+        "FULL_REPLAY_REPORT_DRIFT",
+    )
+    require(
+        sha256(full_replay_telemetry_path)
+        == "8779854633d9a52ba3d7bc9278ccbcc3918e51987bb4c30204c0adcd9771ce16",
+        "FULL_REPLAY_TELEMETRY_DRIFT",
+    )
+    require(
+        full_replay.get("status") == "PASS"
+        and full_replay.get("mode") == "full"
+        and full_replay.get("promotion_ready") is True
+        and full_replay.get("blockers") == []
+        and len(full_replay.get("layer_replays", [])) == 35
+        and full_replay.get("lock_payload_sha256") == release.get("payload_sha256"),
+        "FULL_REPLAY_NOT_PROMOTION_READY_PASS",
+    )
+    require(
+        full_replay_telemetry.get("status") == "PASS"
+        and full_replay_telemetry.get("clean_detached_checkout") is True
+        and full_replay_telemetry.get("report", {}).get("sha256")
+        == sha256(full_replay_path)
+        and full_replay_telemetry.get("time_l", {}).get("real_seconds") == 5172.89,
+        "FULL_REPLAY_TELEMETRY_INCOHERENT",
+    )
 
     universe = read_json(universe_path)
     require(isinstance(universe, dict), "UNIVERSE_NOT_OBJECT")
@@ -417,6 +455,15 @@ def main() -> None:
             "analysis/WEAK_SHARPNESS_COLUMN_CROSSWALK.json": sha256(sharpness_columns_path),
         },
         "frozen_release_sha256": sha256(release_path),
+        "clean_full_replay": {
+            "status": full_replay["status"],
+            "layers": len(full_replay["layer_replays"]),
+            "wall_seconds": full_replay_telemetry["time_l"]["real_seconds"],
+            "maximum_resident_set_size_bytes": full_replay_telemetry["time_l"]["maximum_resident_set_size_bytes"],
+            "peak_memory_footprint_bytes": full_replay_telemetry["time_l"]["peak_memory_footprint_bytes"],
+            "report_sha256": sha256(full_replay_path),
+            "telemetry_sha256": sha256(full_replay_telemetry_path),
+        },
         "frozen_counts": expected_inputs,
         "findings": findings,
     }
