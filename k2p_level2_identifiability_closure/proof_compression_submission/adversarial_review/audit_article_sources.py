@@ -306,6 +306,27 @@ def main() -> None:
         "Proposition~2.8.2" in article and "generic complex Jacobian rank" in article,
         "GENERIC_DIMENSION_HARDENING_MISSING",
     )
+    require(
+        "total} source\nrank-drop locus" in article
+        and "\\Phi_N(R_N)" in article
+        and "deleting \\(\\Phi_N(R_N)\\) cannot lower\nits dimension" in article,
+        "TOTAL_RANK_DROP_IMAGE_ARGUMENT_MISSING",
+    )
+    require(
+        "original frozen\nprincipal-domain computational-evidence lock" in compression
+        and "For C01--C10 and C12--C13" in compression
+        and "global C11 entry" in compression
+        and "all 35 layers passed" in compression
+        and "No byte-bound end-to-end\nquick-suite runtime is claimed" in compression
+        and "No byte-bound\nend-to-end quick or full runtime is present" not in compression,
+        "RUNTIME_BOUNDARY_WORDING_STALE",
+    )
+    require(
+        "frozen principal-domain computational-evidence lock remains unchanged"
+        in supplement
+        and "separately versioned submission sources" in supplement,
+        "COMPUTATIONAL_LOCK_SOURCE_VERSION_DISTINCTION_MISSING",
+    )
 
     for pending in (
         "Corresponding email: \\emph{pending human confirmation}",

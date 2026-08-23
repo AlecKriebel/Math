@@ -103,3 +103,21 @@
   embedded fonts, and visual inspection of all 50 pages.
 - Adversarial-audit completion remains **100%**. No mathematical or package
   blocker remains beyond the explicitly human release metadata.
+
+## 2026-08-22 — third fresh-review release-boundary audit
+
+- Confirmed that the runtime objection was real but terminological: the frozen
+  evidence lock has no timing record, whereas the submission bundle separately
+  binds the detached full replay and telemetry. Reader prose now distinguishes
+  those layers exactly.
+- Accepted the proposed genericity transition only after replacing the
+  ambiguous phrase “rank-drop locus” by the total locus where the full
+  Jacobian rank is below `d_N`. The stratified constant-rank proof excludes the
+  invalid interpretation based on a single vanishing minor.
+- Recompiled clean trees containing only the five required article/supplement
+  source files and found no hidden source dependency. Added explicit package
+  guards for the bibliography and certificate appendix.
+- Preserved every pending human metadata guard. No mathematical or release
+  authority was inferred from the reviewer's suggested declarations.
+- Adversarial-audit completion remains **100%**. The theorem is unchanged;
+  only final human metadata and immutable-release choices remain open.

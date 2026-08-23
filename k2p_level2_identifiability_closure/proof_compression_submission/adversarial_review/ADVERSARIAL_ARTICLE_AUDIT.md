@@ -48,10 +48,17 @@ closed:
 - The reconstruction procedure retains all locally unexcluded supports and
   selects the unique global triangle class by exact semialgebraic feasibility,
   rather than misusing rank certificates as pointwise tests.
+- The total Jacobian-rank-drop locus is stratified before the genericity proof
+  invokes the regular source-image locus; its image has dimension at most
+  (d_N-1).
+- The runtime prose distinguishes the immutable computational-evidence lock
+  from the separately bound detached full-replay telemetry.
+- Exactly five TeX/Bib files form the compile-complete source tree, with no
+  custom style or external figure dependency.
 
 ## Exact validation
 
-The frozen theorem authority is
+The frozen computational-evidence authority is
 `work/final_theorem_release/RELEASE_LOCK.json`, file SHA-256
 `58e32bd29f7a039e3da4e47398e32ee8277ad46cf62271a7ed80bf41688b18fb`
 and payload SHA-256
@@ -74,7 +81,8 @@ A detached clean checkout at commit `1e9ff6c6` passed the complete full replay:
 | telemetry SHA-256 | `8779854633d9a52ba3d7bc9278ccbcc3918e51987bb4c30204c0adcd9771ce16` |
 
 The seven-command old/new equivalence suite, all 11 compression mutations, all
-18 printed-appendix mutations, and all 15 named-column mutations pass. The
+18 printed-appendix mutations, all 15 named-column mutations, and all 14
+source/package mutations pass. The
 probe-word replay covers 176 anchors, 29,964 one-port rows, 544,571 two-port
 rows, and 67,741 exact transports. The restoration replay covers 997 parents,
 2,540 physical roots, and 36,824 forest edges with no missing, duplicate,
@@ -84,17 +92,20 @@ cyclic, or unresolved records.
 
 | artifact | SHA-256 |
 |---|---|
-| article source | `480581cec37b9a90e5e96eb1528e6fca6a4bbfafaefd43d9d41357f8e67ac999` |
+| article source | `1107e5395a0e2ad4da0333cda066ae587d9a9854e61aeba3d2aadcf62e23e45b` |
 | bibliography | `14dbb4901d924b068c8cc2d050e73bae3cf996a72863a22ade90d6f8e6b4057c` |
-| supplement source | `1989d763d51004f351e42279ccf82374d3c0afa2b4ea96bcfa3026075e6b3ce8` |
+| supplement source | `fcb9df1f2ac3d31354e7a67ccb94700f1b67c8ef13db985bef34e327c58d58de` |
+| compression-table source | `c96e994e64f7767f9583bd68d6d0f07af936bb227858c33bb1553e5db23644b8` |
 | certificate appendix source | `ef878c24ff3f6b28d70b6c3dbf90c6d1e7d3c85a2bece621c96f47c409ca0ffa` |
-| article PDF | `204537cef40f155d1fd418c4b17cd7b8cd5e432773b0de037a829690f8ba77e1` |
-| supplement PDF | `19865ffb832abf5757d5fb5d534e1888d22f3b11ea7ea035e451203359ca275a` |
+| article PDF | `86b7ace41d025caddcecae2accb04c496a401501b2a6e65233ad60cfc80e3e2a` |
+| supplement PDF | `177006b4d2a21d958f1811c3920bbbfca18fdff87cda8da99b97c9c950dd15cb` |
 
 The article and supplement are 26 and 24 pages, respectively. All 50 pages were rendered and
 visually inspected. There are no clipped elements, overfull boxes, undefined
 references or citations, fatal errors, or hyperref PDF-string warnings; all
-fonts are embedded. The fail-closed missing-table build test also passes.
+fonts are embedded. Clean five-file builds pass; omission of either required
+supplement input fails at its unconditional input, and package mutations reject
+omission of the bibliography or either generated input.
 
 ## Remaining hold
 

@@ -141,3 +141,44 @@ the primitive graph encodings and frozen certificates before editing.
 
 The final PDFs now contain 26 article pages and 24 supplement pages. All 50
 pages were rendered and inspected, with no visual or build defect.
+
+## Disposition of the third fresh review
+
+The latest mathematical-pass review was again checked against the live source,
+frozen lock, clean-replay telemetry, and isolated five-file TeX builds.
+
+1. **Runtime wording — accepted.**  The old sentence conflated two different
+   provenance layers. The original computational-evidence lock contains no
+   end-to-end timing record, while the submission bundle separately byte-binds
+   a detached 35-layer replay with 5,172.89 seconds wall time. The supplement
+   now states both facts and continues to reject inferred quick-suite timing.
+2. **Evidence lock versus manuscript sources — accepted.**  Reader prose now
+   calls `RELEASE_LOCK.json` the frozen principal-domain computational-evidence
+   lock and explicitly says that the article and supplement are separately
+   versioned sources. Immutable schemas and historical machine identifiers are
+   unchanged.
+3. **Genericity hardening — accepted only for total rank drop.**  Vanishing of
+   one chosen maximal minor would not suffice, because another maximal minor
+   could remain nonzero. The article instead defines the total locus
+   `rank D Phi_N < d_N`, stratifies it, bounds every restricted rank by
+   `d_N-1`, and proves before the full-dimensional-intersection step that its
+   image has smaller semialgebraic dimension.
+4. **Complete bioRxiv text source set — already mathematically satisfied and
+   now surfaced.**  Clean isolated builds require exactly five files in the
+   preserved `article/` and `supplement/` layout. There are no external figures
+   or custom class/style assets. The independent package checker now names the
+   certificate appendix explicitly, and mutations additionally target omission
+   of the bibliography and certificate appendix.
+5. **Human metadata — correctly deferred.**  The suggested email, contribution
+   approval, funding statement, competing-interests statement, licenses, tag,
+   release, and DOI are human, legal, or externally irreversible decisions.
+   None is inferred from the companion JC project or the review text.
+6. **Final full replay — accepted as a final-tag provenance option, not a
+   present mathematical gate.**  These edits do not change a byte of the
+   frozen computational-evidence lock already replayed in full. Compact
+   document, equivalence, mutation, and package gates are rerun now. If the
+   author chooses to claim a replay from the immutable tag candidate, the
+   86-minute run should occur only after metadata and tag contents are final.
+
+No theorem statement, parameter domain, finite census, certificate, or
+proof-compression boundary changes in this revision.

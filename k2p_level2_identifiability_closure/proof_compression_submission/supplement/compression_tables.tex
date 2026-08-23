@@ -56,7 +56,11 @@ probe reconstruction
 The machine-readable theorem-to-artifact crosswalk is
 \path{proof_compression_submission/crosswalk/THEOREM_ARTIFACT_CROSSWALK.json}.
 It records, for each theorem layer, exact file hashes and declared schemas,
-producer, replay, mutation, and environment bindings.  No byte-bound
-end-to-end quick or full runtime is present in the frozen release, so those
-times are marked unknown rather than inferred by summing noncomparable
-component observations.
+producer, replay, mutation, and environment bindings.  The original frozen
+principal-domain computational-evidence lock does not itself contain an
+end-to-end timing record.  For C01--C10 and C12--C13, the theorem-layer
+crosswalk leaves end-to-end runtimes null, preserving locked component
+observations without summing them.  Separately, its global C11 entry and the
+submission bundle bind a detached clean-checkout replay of the unchanged lock:
+all 35 layers passed in 5,172.89 seconds wall time.  No byte-bound end-to-end
+quick-suite runtime is claimed.

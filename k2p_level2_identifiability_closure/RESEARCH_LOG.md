@@ -370,3 +370,38 @@
   **100%**. Journal-submission administration remains **96%**, pending the
   human metadata, licenses, immutable tag, DOI choice, and then one final
   immutable-commit full replay for provenance.
+
+## 2026-08-22 23:15 PDT — third mathematical-pass review reconciled
+
+- Scrutinized the latest adversarial review with three independent read-only
+  audits. No theorem defect or reason to reopen the atlas or proof-compression
+  search was found.
+- Corrected one genuinely stale runtime paragraph: the frozen
+  computational-evidence lock contains no end-to-end timing record, while the
+  crosswalk's global C11 entry and the submission bundle byte-bind the detached
+  35-layer replay and its 5,172.89-second wall time. Entries C01--C10 and
+  C12--C13 retain null end-to-end runtimes; no quick-suite runtime is inferred.
+- Strengthened genericity using the total locus
+  `rank D Phi_N < d_N`. Finite Nash strata have restricted rank at most
+  `d_N-1`, so the image of total rank drop has smaller semialgebraic dimension
+  before the proof invokes a regular source-image germ. This avoids the invalid
+  interpretation based on vanishing of only one maximal minor.
+- Proved source completeness operationally: exactly five TeX/Bib files compile
+  the 26-page article and 24-page supplement in a clean preserved directory
+  tree. No custom class/style, external figure, image, font, or shell-escape
+  asset is required. Package mutations now reject omitted bibliography and
+  certificate appendix as well as the compression table.
+- All compact gates pass: seven-command old/new equivalence, 11 compression
+  mutations, 18 printed-appendix mutations, 15 named-column mutations, and 14
+  package/source mutations. All 50 PDF pages were rendered and visually
+  inspected; logs and embedded-font checks pass.
+- Rebuilt the deterministic 448-member referee archive twice byte-identically.
+  It is 178,019,313 bytes, passes ZIP integrity, and has SHA-256
+  `ab7c3cef83d1bd7bb8c330b25ace118ae7ee583a39f7f55c7363b37e3ab4fe3d`.
+  Its manifest payload is
+  `1e1b545bc62bb822c560a467026374e69546e603aabb49e0491d6e2a56b6ec7c`.
+- Did not infer the suggested email, contribution approval, funding,
+  competing-interests, license, tag, release, or DOI fields. Mathematical and
+  reproducibility completion remains **100%**; journal administration remains
+  **96%** pending those human decisions and any selected final-tag replay
+  provenance claim.

@@ -5,14 +5,17 @@ Both submission documents were rebuilt from the final sources with Tectonic
 
 | document | source SHA-256 | PDF SHA-256 | pages | bytes |
 |---|---|---|---:|---:|
-| main article | `480581cec37b9a90e5e96eb1528e6fca6a4bbfafaefd43d9d41357f8e67ac999` | `204537cef40f155d1fd418c4b17cd7b8cd5e432773b0de037a829690f8ba77e1` | 26 | 192,757 |
-| reader supplement | `1989d763d51004f351e42279ccf82374d3c0afa2b4ea96bcfa3026075e6b3ce8` | `19865ffb832abf5757d5fb5d534e1888d22f3b11ea7ea035e451203359ca275a` | 24 | 158,249 |
+| main article | `1107e5395a0e2ad4da0333cda066ae587d9a9854e61aeba3d2aadcf62e23e45b` | `86b7ace41d025caddcecae2accb04c496a401501b2a6e65233ad60cfc80e3e2a` | 26 | 193,906 |
+| reader supplement | `fcb9df1f2ac3d31354e7a67ccb94700f1b67c8ef13db985bef34e327c58d58de` | `177006b4d2a21d958f1811c3920bbbfca18fdff87cda8da99b97c9c950dd15cb` | 24 | 158,528 |
 
-All 50 rendered pages were inspected, including the new directed-core and
-repair proof, the genericity and reconstruction insertions, and the dense formula, transport,
+All 50 rendered pages were inspected, including the total-rank-drop argument,
+the clarified replay/runtime boundary, and the dense formula, transport,
 crosswalk, hash, and replay tables. No clipping or layout defect was found.
 The logs contain no overfull boxes, undefined references, undefined citations,
 fatal errors, or hyperref PDF-string warnings. `pdffonts` confirms that every
-font is embedded. A clean-source build with `compression_tables.tex` omitted
-failed at the unconditional input, as required. The machine-readable record is
-`PDF_BUILD_REPORT.json`.
+font is embedded. Clean five-file source builds passed. Clean-source builds
+with either `compression_tables.tex` or `certificate_appendix.tex` omitted
+failed at the corresponding unconditional input, as required. Tectonic can
+tolerate a missing bibliography while emitting warnings, so the source
+manifest and its omission mutation enforce `references.bib` independently.
+The machine-readable record is `PDF_BUILD_REPORT.json`.

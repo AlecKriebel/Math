@@ -1,7 +1,8 @@
 # Theorem-to-artifact reproducibility crosswalk
 
-Status: **PASS / PC-PARTIAL**. The immutable theorem release remains
-promotion-ready K2P-SAME; this crosswalk compresses its presentation and
+Status: **PASS / PC-PARTIAL**. The promoted K2P-SAME theorem remains
+unchanged, and the immutable computational-evidence lock remains
+promotion-ready; this crosswalk compresses the proof presentation and
 does not replace any exact ledger or transport certificate.
 
 Every path is relative to the `k2p_level2_identifiability_closure` root.
@@ -42,7 +43,7 @@ prose rather than a top-level JSON object with a `schema` field.
 
 ## Environment and runtime boundary
 
-The source requires Python 3.10 or newer. The frozen release was qualified
+The source requires Python 3.10 or newer. The frozen computational-evidence lock was qualified
 with Python 3.14.6, NetworkX 3.5, and SymPy 1.14.0. Optimized Python is
 forbidden. Component observations are reproduced only where a locked JSON
 field records them. A detached clean-checkout full replay passed all 35

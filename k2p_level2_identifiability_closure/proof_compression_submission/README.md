@@ -2,10 +2,10 @@
 
 This directory contains one bounded proof-compression and article-reconstruction
 phase for the principal-domain `K2P-SAME` theorem.  The promoted theorem and
-the release rooted at
+the principal-domain computational-evidence lock rooted at
 `../work/final_theorem_release/RELEASE_LOCK.json` are immutable comparison
-inputs.  Nothing in this directory changes their mathematical or byte-level
-authority.
+inputs.  Nothing in this directory changes the theorem statement or the
+lock's byte-level authority.
 
 The accepted target is `PC-PARTIAL`: replace ledger-first exposition by safe
 finite-universe formulas, explicit polynomial/rank templates, restoration
@@ -22,7 +22,7 @@ The phase explicitly forbids:
 - changing the principal positive domain or theorem statement to simplify the
   proof;
 - reopening mixed-sign K2P, K3P, or an unbounded invariant search; and
-- modifying the frozen theorem release.
+- modifying the frozen computational-evidence lock.
 
 See `FEEDBACK_DISPOSITION.md` for the adversarial review audit and
 `RESEARCH_LOG.md` for checkpoints and completion estimates.
@@ -33,8 +33,11 @@ The completed outcome is `PC-PARTIAL`, with zero unresolved mathematical
 records. The exact restoration and probe ledgers remain load-bearing and are
 not represented as a fictitious hand quotient. Primary reader artifacts are:
 
-- `article/main.tex` and the compiled article in `output/`;
-- `supplement/supplement.tex` and the compiled reader supplement in `output/`;
+- `article/main.tex`, `article/references.bib`, and the compiled article in
+  `output/`;
+- `supplement/supplement.tex`, its required `compression_tables.tex` and
+  `certificate_appendix.tex` inputs, and the compiled reader supplement in
+  `output/`;
 - `PDF_BUILD_REPORT.md` and `.json`, recording the final source/PDF hashes and
   the 50-page visual inspection;
 - `COMPRESSED_BOUNDED_THEOREM.md`;
@@ -64,3 +67,20 @@ in `output/FINAL_CLEAN_FULL_REPLAY.json` and
 Corresponding email, author-contribution approval, funding,
 competing-interests, license, immutable-tag, and DOI decisions remain explicitly
 pending human confirmation.
+
+## Compile-complete bioRxiv source set
+
+The exact text source set consists of five regular files:
+
+- `article/main.tex`;
+- `article/references.bib`;
+- `supplement/supplement.tex`;
+- `supplement/compression_tables.tex`; and
+- `supplement/certificate_appendix.tex`.
+
+Preserve the `article/` and `supplement/` directory layout. The supplement
+loads its two generated tables locally and uses
+`../article/references.bib`. No custom class, style, bibliography-style,
+external figure, image, font, or shell-escape asset is required; all diagrams
+are inline TikZ and the remaining dependencies are standard TeX-distribution
+packages.

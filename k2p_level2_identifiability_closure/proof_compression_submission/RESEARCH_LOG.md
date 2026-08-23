@@ -163,3 +163,24 @@
   immutable tag/DOI decisions. The existing 35-layer full replay remains the
   theorem-ledger authority; one final full replay is reserved for the eventual
   immutable submission commit.
+
+## 2026-08-22 23:09 PDT - Third fresh-review release-wording audit
+
+- Accepted the runtime correction after separating the immutable
+  computational-evidence lock from the later submission-layer replay and its
+  measured 5,172.89-second wall time. Entries C01--C10 and C12--C13 retain
+  null end-to-end runtimes, the global C11 entry carries the measured full
+  replay, and no byte-bound quick-suite runtime is claimed.
+- Hardened genericity using the total Jacobian-rank-drop locus, not the
+  vanishing locus of a selected maximal minor. Constant-rank Nash strata prove
+  that its physical image has dimension at most `d_N-1` before the proof uses
+  the regular source-image locus.
+- Independently compiled only the five required TeX/Bib files in their
+  preserved two-directory layout. No custom class/style, external graphic,
+  font, shell-escape, or hidden generated input is required.
+- Left email, contributions, funding, conflicts, licenses, tag, release, and
+  DOI fields pending. These are human or externally irreversible decisions,
+  not deductions from the JC companion or referee prose.
+- Mathematical and reproducibility readiness remains **100%**. Submission
+  administration remains **98%** pending those human decisions and any chosen
+  final-tag replay provenance claim.

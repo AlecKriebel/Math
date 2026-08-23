@@ -104,6 +104,26 @@ def run() -> dict[str, Any]:
         reject_mutation(base, "omitted_compression_table", omit_compression_table)
     )
 
+    def omit_bibliography(value: dict[str, Any]) -> None:
+        value["submission_sources"]["files"].pop(
+            "proof_compression_submission/article/references.bib",
+            None,
+        )
+
+    mutations.append(
+        reject_mutation(base, "omitted_bibliography", omit_bibliography)
+    )
+
+    def omit_certificate_appendix(value: dict[str, Any]) -> None:
+        value["submission_sources"]["files"].pop(
+            "proof_compression_submission/supplement/certificate_appendix.tex",
+            None,
+        )
+
+    mutations.append(
+        reject_mutation(base, "omitted_certificate_appendix", omit_certificate_appendix)
+    )
+
     def unsafe_source(value: dict[str, Any]) -> None:
         files = value["submission_sources"]["files"]
         row = files.pop(first_key(files))

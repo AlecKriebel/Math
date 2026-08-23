@@ -1405,7 +1405,28 @@ and the target incidence correspondence
  q=\Phi_{N'}(\theta'),\ q\in\M_+(N)\}.
 \]
 These sets and their projections are semialgebraic by Tarski--Seidenberg
-\cite[Theorem~2.2.1]{BochnakCosteRoy1998}.  Choose finite Nash
+\cite[Theorem~2.2.1]{BochnakCosteRoy1998}.  Let the \emph{total} source
+rank-drop locus be
+\[
+ R_N=\{\theta\in\Theta_+(N):
+       \operatorname{rank}D\Phi_N(\theta)<d_N\}.
+\]
+Choose a finite Nash stratification
+\(R_N=\bigsqcup_\alpha S_\alpha\) on which every
+\(\Phi_N|_{S_\alpha}\) has constant rank.  Since
+\(T_\theta S_\alpha\subseteq T_\theta\Theta_+(N)\),
+\[
+ \operatorname{rank}D(\Phi_N|_{S_\alpha})(\theta)
+ \le \operatorname{rank}D\Phi_N(\theta)\le d_N-1.
+\]
+The constant-rank theorem gives
+\(\dim\Phi_N(S_\alpha)\le d_N-1\), so
+\(\Phi_N(R_N)\) is semialgebraic of dimension at most \(d_N-1\).
+Consequently, a \(d_N\)-dimensional physical intersection meets the regular
+source-image locus in dimension \(d_N\); deleting \(\Phi_N(R_N)\) cannot lower
+its dimension.
+
+Choose finite Nash
 (real-analytic semialgebraic) stratifications of the regular source image,
 the target parameter space, and \(Z_{N'}\), compatible with the relevant
 rank loci and refined so that every restricted polynomial map and projection
@@ -1432,10 +1453,10 @@ For every output polynomial \(P(q)\) used by reconstruction---a quartet,
 \(\mathcal T_i\), bridge-anchor, or finite-separator polynomial---adjoin
 \(\V_N\cap Z(P)\) only when \(P\circ\Phi_N\) is certified
 nonidentically zero on the intended source stratum; this intersection is
-then proper.  For the source Jacobian-rank-drop strata, instead adjoin the
-Zariski closures of their images; every such restricted map has rank strictly
-less than \(d_N\), so its image has smaller dimension.  Every added
-set is therefore a proper closed subset of \(\V_N\); a finite union of such
+then proper.  Also adjoin the complex Zariski closure of \(\Phi_N(R_N)\),
+which is proper by the dimension calculation above and the same
+real-to-complex closure facts.  Every added set is therefore a proper closed
+subset of \(\V_N\); a finite union of such
 sets cannot fill the irreducible \(\V_N\).  The resulting proper set is
 \(E_N\).  Outside it, every realizing topology is triangle-equivalent to
 \(N\).

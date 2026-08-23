@@ -384,6 +384,7 @@ def validate(manifest_path: Path) -> dict[str, Any]:
         "proof_compression_submission/article/references.bib",
         "proof_compression_submission/supplement/supplement.tex",
         "proof_compression_submission/supplement/compression_tables.tex",
+        "proof_compression_submission/supplement/certificate_appendix.tex",
         "proof_compression_submission/crosswalk/THEOREM_ARTIFACT_CROSSWALK.json",
         "proof_compression_submission/crosswalk/THEOREM_ARTIFACT_CROSSWALK.md",
         "proof_compression_submission/crosswalk/build_theorem_artifact_crosswalk.py",
