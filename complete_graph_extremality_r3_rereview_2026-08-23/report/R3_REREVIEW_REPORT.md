@@ -3,7 +3,7 @@
 **Manuscript:** *Local Complete-Graph Optimality at Fitness Two and
 Strong-Selection Rigidity under Death--Birth Updating*  
 **Package:** `paper_i_complete_graph_extremality_referee_package_2026-08-22_r3`  
-**Review date:** 2026-08-22  
+**Review date:** 2026-08-23\
 **Verdict:** **Fully validated**
 
 ## Executive assessment
@@ -50,7 +50,7 @@ caller directory.
 The editor's summary, package documentation, expected messages, manifests,
 and prior conclusions were treated as claims. Review work used the isolated
 copy at
-`/Users/alec/Documents/Math/complete_graph_extremality_r3_rereview_2026-08-22/work/package`.
+`/Users/alec/Documents/Math/complete_graph_extremality_r3_rereview_2026-08-23/work/package`.
 The original R3 delivery remained unchanged and compared recursively equal to
 the review copy both before and after testing.
 
@@ -270,9 +270,9 @@ The authoritative command, run from the audit root, was:
 
 ```sh
 env -i \
-  HOME=/Users/alec/Documents/Math/complete_graph_extremality_r3_rereview_2026-08-22/work/clean_home \
-  TMPDIR=/Users/alec/Documents/Math/complete_graph_extremality_r3_rereview_2026-08-22/work/replay_tmp \
-  XDG_CACHE_HOME=/Users/alec/Documents/Math/complete_graph_extremality_r3_rereview_2026-08-22/work/xdg_cache \
+  HOME=/Users/alec/Documents/Math/complete_graph_extremality_r3_rereview_2026-08-23/work/clean_home \
+  TMPDIR=/Users/alec/Documents/Math/complete_graph_extremality_r3_rereview_2026-08-23/work/replay_tmp \
+  XDG_CACHE_HOME=/Users/alec/Documents/Math/complete_graph_extremality_r3_rereview_2026-08-23/work/xdg_cache \
   PATH=/opt/homebrew/bin:/usr/bin:/bin LANG=C LC_ALL=C TZ=UTC \
   BOOTSTRAP_PYTHON=/opt/homebrew/bin/python3 \
   ./work/package/run_all_referee_checks.sh

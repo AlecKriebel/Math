@@ -2,7 +2,7 @@
 
 set -eu
 
-delivery_manifest="/Users/alec/Documents/Math/complete_graph_extremality_r3_rereview_2026-08-22/work/package/source_and_certificates/MANIFEST.sha256"
+delivery_manifest="/Users/alec/Documents/Math/complete_graph_extremality_r3_rereview_2026-08-23/work/package/source_and_certificates/MANIFEST.sha256"
 source_repo="/Users/alec/Documents/Math-universal-amplification"
 source_commit="b9a415f763e82d9cc45c83de96c895b109e158a4"
 checked=0

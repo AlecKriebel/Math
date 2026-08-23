@@ -33,7 +33,7 @@ correctness question remains governed by the independent proof audits.
 - Frozen baseline:
   `/Users/alec/Documents/Math/complete_graph_extremality_r2_rereview_2026-08-22/work/package`
 - R3 candidate:
-  `/Users/alec/Documents/Math/complete_graph_extremality_r3_rereview_2026-08-22/work/package`
+  `/Users/alec/Documents/Math/complete_graph_extremality_r3_rereview_2026-08-23/work/package`
 - Report and command log were written only under the R3 audit `records/`
   directory. No package file was modified.
 - Until explicit gate clearance from the parent referee, I only inventoried,
@@ -45,23 +45,23 @@ correctness question remains governed by the independent proof audits.
 
 ## Timestamped sub-log
 
-- **2026-08-22 22:44 PDT — 10%:** opened the R3 static regression audit;
+- **2026-08-23 05:44 UTC — 10%:** opened the R3 static regression audit;
   counted 82 R2 files and 84 R3 files; began exhaustive inventory and recursive
   byte comparison.
-- **2026-08-22 22:48 PDT — 45%:** isolated the only LaTeX change to Section 7
+- **2026-08-23 05:48 UTC — 45%:** isolated the only LaTeX change to Section 7
   replay/data-availability prose; confirmed Sections 1--6, all appendices,
   `main.tex`, and `references.tex` were byte-identical.
-- **2026-08-22 22:52 PDT — 75%:** confirmed all 20 scientific-check programs
+- **2026-08-23 05:52 UTC — 75%:** confirmed all 20 scientific-check programs
   and their 406-check inventory were preserved; verified the package/source
   manifests, archive/extracted-tree identity, PDF hashes, certificate binding,
   and exact page-delta set; visually inspected all 30 R3 pages and the changed
   R2 pages.
-- **2026-08-22 22:53 PDT — 82%:** sent the parent an early static-readiness
+- **2026-08-23 05:53 UTC — 82%:** sent the parent an early static-readiness
   finding: no scientific change and no PDF defect; dynamic efficacy remained
   deliberately untested.
-- **2026-08-22 22:54 PDT — 88%:** parent cleared the static gate; launched the
+- **2026-08-23 05:54 UTC — 88%:** parent cleared the static gate; launched the
   sole certified R3 replay from the package root.
-- **2026-08-22 22:58 PDT — 100%:** certified replay exited 0 after all hostile
+- **2026-08-23 05:58 UTC — 100%:** certified replay exited 0 after all hostile
   controls and exact theorem checks; rebuilt PDF SHA-256 matched the delivered
   R3 PDF exactly; completed this report.
 

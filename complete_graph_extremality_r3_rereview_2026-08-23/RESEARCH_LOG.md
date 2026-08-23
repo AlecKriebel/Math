@@ -1,6 +1,6 @@
 # R3 re-review research log
 
-## 2026-08-22 - opened (completion estimate: 3%)
+## 2026-08-23 - opened (completion estimate: 3%)
 
 - Objective: determine independently whether R3 closes the two R2 certified-
   entry defects and the six specifically claimed hostile cases without
@@ -14,7 +14,7 @@
   No person will be contacted, no file uploaded, and no external system
   changed. Existing unrelated repository work will not be altered or staged.
 
-## 2026-08-22 - identity and static gate (completion estimate: 45%)
+## 2026-08-23 - identity and static gate (completion estimate: 45%)
 
 - Independently established an exact 84-file/26-directory package tree and a
   73-member sorted, unique, regular-file archive. The 73-file convenience
@@ -32,7 +32,7 @@
   predicates, formulas, ranges, and certificate values are unchanged from R2.
   Section 7 changes only replay and data-availability prose.
 
-## 2026-08-22 - dynamic replay and hostile controls (completion estimate: 85%)
+## 2026-08-23 - dynamic replay and hostile controls (completion estimate: 85%)
 
 - The sole package-root replay ran under a stripped environment with an
   absolute Python 3.14.6 interpreter, private home/cache/temp directories, and
@@ -61,7 +61,7 @@
   directory, and the first two extra Unix-socket/bytecode-demonstration
   attempts failed from path-length/import-path issues. Corrected reruns passed.
 
-## 2026-08-22 - final referee decision (completion estimate: 100%)
+## 2026-08-23 - final referee decision (completion estimate: 100%)
 
 - Completed the theorem-by-theorem and claim-to-code tables, environment and
   command/status record, trust-boundary disclosure, proof/software consistency
@@ -76,3 +76,13 @@
   verdict correction in the report.
 - The original delivery and review copy remain recursively identical, and the
   final identity check remains status 0. No package payload was changed.
+
+## 2026-08-23 - date normalization (completion estimate: 100%)
+
+- Renamed the reviewer-created audit root with the August 23 date and updated
+  every internal audit-root reference.
+- Normalized reviewer-authored date labels and event timestamps to August 23
+  UTC. Frozen delivery names, prior-review paths, manuscript metadata, and
+  other immutable evidence identifiers were retained verbatim.
+- Re-ran independent package identity and source-commit binding after the
+  rename; both remained status 0.
