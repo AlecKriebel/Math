@@ -1,6 +1,7 @@
 # Submission package index
 
-Release generation: `v1.1.7` (Zenodo DOI pending)
+Release generation: `v1.1.7` (reserved Zenodo DOI
+`10.5281/zenodo.22064121`)
 
 All three packages derive from the same canonical article and supplement. The
 SHA-256 manifest in each directory covers every delivered file, including

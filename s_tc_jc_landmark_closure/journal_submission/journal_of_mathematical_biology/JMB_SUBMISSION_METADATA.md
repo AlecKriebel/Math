@@ -17,8 +17,7 @@ The JMB-specific supplementary PDF is **Online Resource 1** and contains the
 article title, journal name, author, affiliation, corresponding email, and its
 own transformed source in `JMB_LaTeX_Source.zip`.
 
-Certificate DOI: https://doi.org/ZENODO_DOI_PENDING. Replace this placeholder
-only with the real reserved Zenodo DOI before submission.
+Certificate DOI: https://doi.org/10.5281/zenodo.22064121.
 
 The local support package also includes
 `JMB_Exact_Verifier_Entry_Points.zip`, a small repository-deposit capsule

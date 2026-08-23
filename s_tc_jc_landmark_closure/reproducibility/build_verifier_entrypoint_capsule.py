@@ -16,6 +16,17 @@ ARCHIVE_NAME = "stc_jc_sharp_boundary_atlas_certificates_v1.1.7.tar.gz"
 ENVELOPE = PROJECT / "release_artifacts/CERTIFICATE_BUNDLE_ENVELOPE.json"
 
 
+def committed_zenodo_doi() -> str:
+    citation = PROJECT / "certificate_bundle/CITATION.cff"
+    for line in citation.read_text(encoding="utf-8").splitlines():
+        if line.startswith("doi:"):
+            value = line.split(":", 1)[1].strip().strip('"')
+            if not value.startswith("10.5281/zenodo."):
+                raise AssertionError(("invalid committed Zenodo DOI", value))
+            return value
+    return "ZENODO_DOI_PENDING"
+
+
 def digest_bytes(data: bytes) -> str:
     return hashlib.sha256(data).hexdigest()
 
@@ -29,12 +40,17 @@ def zip_write(archive: zipfile.ZipFile, name: str, data: bytes, mode: int = 0o10
 
 
 def release_record() -> dict:
+    committed_doi = committed_zenodo_doi()
     if ENVELOPE.is_file():
-        return json.loads(ENVELOPE.read_text(encoding="utf-8"))
+        record = json.loads(ENVELOPE.read_text(encoding="utf-8"))
+        if record.get("zenodo_doi") != committed_doi:
+            raise AssertionError(("release envelope DOI disagrees with committed DOI",
+                                  record.get("zenodo_doi"), committed_doi))
+        return record
     return {
         "archive": ARCHIVE_NAME,
         "archive_sha256": "TO_BE_FILLED_AFTER_FINAL_SEAL",
-        "zenodo_doi": "ZENODO_DOI_PENDING",
+        "zenodo_doi": committed_doi,
         "version": "1.1.7",
     }
 

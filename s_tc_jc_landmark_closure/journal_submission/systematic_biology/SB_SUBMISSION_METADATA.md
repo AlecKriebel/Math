@@ -13,8 +13,7 @@
 - **Competing interests:** The author declares no competing interests.
 
 Use the abstract in the manuscript or `biorxiv_submission/BIORXIV_METADATA.md`
-verbatim. Certificate DOI: https://doi.org/ZENODO_DOI_PENDING. Replace the
-placeholder only with the real reserved Zenodo DOI before submission.
+verbatim. Certificate DOI: https://doi.org/10.5281/zenodo.22064121.
 
 ## Data and code
 

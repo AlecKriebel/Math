@@ -33,6 +33,19 @@ VERSION = "1.1.7"
 ROOT_NAME = f"stc_jc_sharp_boundary_atlas_certificates_v{VERSION}"
 
 
+def committed_zenodo_doi() -> str:
+    """Read the DOI from committed citation metadata, or return the pre-DOI token."""
+    citation = PROJECT / "certificate_bundle/CITATION.cff"
+    text = citation.read_text(encoding="utf-8")
+    for line in text.splitlines():
+        if line.startswith("doi:"):
+            value = line.split(":", 1)[1].strip().strip('"')
+            if not value.startswith("10.5281/zenodo."):
+                raise AssertionError(("invalid committed Zenodo DOI", value))
+            return value
+    return "ZENODO_DOI_PENDING"
+
+
 def clean_subprocess_environment() -> dict[str, str]:
     """Minimal environment for Git and detached Python subprocesses."""
     allowed = {
@@ -753,10 +766,13 @@ def main() -> None:
     checksum_path = args.output.with_suffix(args.output.suffix + ".sha256")
     checksum_path.write_text(f"{checksum}  {args.output.name}\n", encoding="utf-8")
     previous_envelope = args.output.parent / "CERTIFICATE_BUNDLE_ENVELOPE.json"
-    zenodo_doi = "ZENODO_DOI_PENDING"
+    zenodo_doi = committed_zenodo_doi()
     if previous_envelope.is_file():
         prior = json.loads(previous_envelope.read_text(encoding="utf-8"))
-        zenodo_doi = prior.get("zenodo_doi", zenodo_doi)
+        prior_doi = prior.get("zenodo_doi", "ZENODO_DOI_PENDING")
+        if prior_doi not in {"ZENODO_DOI_PENDING", zenodo_doi}:
+            raise AssertionError(("envelope DOI disagrees with committed DOI",
+                                  prior_doi, zenodo_doi))
     envelope = {
         "schema": "stc-jc-certificate-bundle-envelope-v1",
         "version": VERSION,

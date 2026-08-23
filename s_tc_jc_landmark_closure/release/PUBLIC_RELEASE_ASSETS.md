@@ -1,6 +1,6 @@
 # Persistent proof-certificate assets
 
-Status: **PRE-DOI CANDIDATE — HUMAN DEPOSIT REQUIRED**
+Status: **DOI RESERVED — HUMAN DEPOSIT AND PUBLICATION REQUIRED**
 
 The authoritative external proof object is the curated Zenodo deposit prepared
 from `release_artifacts/`.  It replaces the earlier omnibus development
@@ -26,10 +26,10 @@ primary implementations, and separately implemented replays.  The three run
 logs are source-commit-bound external records; they are not embedded in the
 self-authenticating archive.
 
-Before publication, the human author must replace `ZENODO_DOI_PENDING` by
-running the documented DOI-finalization command, commit that DOI-bearing source
-state, reseal the archive from a clean tree, and rerun all three archive-local
-commands.  After publishing the Zenodo record, download the archive and run:
+The reserved DOI is `10.5281/zenodo.22064121`.  After resealing the archive
+from the committed DOI-bearing source and rerunning all three archive-local
+commands, the human author must upload the resulting assets and publish the
+draft.  After publication, download the archive and run:
 
 ```bash
 python reproducibility/verify_certificate_zenodo_release.py \

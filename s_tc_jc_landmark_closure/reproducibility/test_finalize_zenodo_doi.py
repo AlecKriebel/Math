@@ -43,7 +43,7 @@ def main() -> None:
                 r"\n\s*doi\s*=\s*\{" + re.escape(TOKEN) +
                 r"\},\n\s*url\s*=\s*\{https://doi\.org/" +
                 re.escape(TOKEN) +
-                r"\},\n\s*note\s*=\s*\{Version 1\.1\.5\}",
+                r"\},\n\s*note\s*=\s*\{Version 1\.1\.7\}",
                 "\n  note         = {Zenodo DOI pending; version 1.1.7}",
                 bib_text,
                 count=1,

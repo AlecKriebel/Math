@@ -1149,3 +1149,16 @@
   capsule directly to bioRxiv; treat any full-archive bioRxiv copy only as an
   optional byte-identical mirror.  No duplicate checklist was created, no
   scientific or release artifact was changed, and the DOI remains pending.
+
+- 2026-08-22T20:37:15-07:00 — Began the final DOI-bearing release handoff
+  (estimated 85% complete pending sealed replay).  The human author supplied
+  the reserved Zenodo DOI `10.5281/zenodo.22064121`.  The fail-closed DOI
+  finalizer inserted it into the article bibliography, supplement,
+  certificate citation metadata, theorem crosswalk, and all submission
+  metadata.  Manual diff review removed obsolete placeholder-era
+  instructions and hardened both archive and capsule builders to derive and
+  cross-check the DOI from committed `CITATION.cff`, so a clean detached seal
+  cannot silently fall back to `ZENODO_DOI_PENDING`.  No upload or Zenodo
+  publication was performed.  Remaining work is to commit this DOI-bearing
+  source, reseal the archive, replay all verifier modes, rebuild packages, and
+  bind the final hashes and transcripts.
