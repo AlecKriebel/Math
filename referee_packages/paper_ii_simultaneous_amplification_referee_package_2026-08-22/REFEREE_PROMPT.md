@@ -81,7 +81,7 @@ uniformity, and limiting order.
 
 - Verify each conditional intensity table for both update rules.
 - Re-derive early establishment from one ordinary-core mutant, including the
-  stopped embedded-walk estimate and every `K^2/C` and `r^{-K}` error.
+  stopped embedded-walk estimate and every `K/C` and `r^{-K}` error.
 - Audit continuous-time core confinement and every nested strip, entrance,
   synchronization, restart, success, escape, and block-duration stopping time.
 - In the Bd synchronization argument, verify that every pendant phase stops at

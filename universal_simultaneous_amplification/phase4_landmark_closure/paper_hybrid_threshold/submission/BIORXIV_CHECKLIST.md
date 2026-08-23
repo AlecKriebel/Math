@@ -10,10 +10,10 @@
       fonts, no encryption or permission restrictions, and no separate image
       files required.
 - [x] Final PDF SHA-256 is
-      `4e86597bb0baff388e8ce7ccf6ffd808f86b5ea846acf6f2188b31016fd2572c`.
+      `1e73984abfd64a45797b8ad6dc8b473d82a8d5eb8061efe470a1e603c2d10ad9`.
 - [x] Supplemental source-and-certificate archive has 23 regular members,
       passes its manifest and clean replay, and has SHA-256
-      `d2145513f8abe295e9e7fab62f062fa9d0f7a6282de95e8155f3db4621485274`.
+      `e5b61e79d065a9abec0908e28db7e79366b5fccedeb6efbf22eadd7af3cc57ae`.
 - [x] The title and scientific claims in `BIORXIV_METADATA.md` match the frozen
       manuscript; its portal abstract is plain-text, ASCII-safe, and 224 words.
 - [x] The intended selections are **New Results** and **Evolutionary Biology**.
@@ -26,11 +26,11 @@
 
 ## Human-only identity, policy, and consent checks
 
-- [ ] Sign in with the verified author account and confirm
+- [x] Sign in with the verified author account and confirm
       `me@aleckriebel.com`.
-- [ ] Confirm Alec Kriebel, ORCID `0009-0001-9320-500X`, sole authorship, and
+- [x] Confirm Alec Kriebel, ORCID `0009-0001-9320-500X`, sole authorship, and
       corresponding-author status.
-- [ ] Use the truthful manuscript affiliation **Independent Researcher** if the
+- [x] Use the truthful manuscript affiliation **Independent Researcher** if the
       live form accepts it; otherwise stop and enter only truthful current
       information without inventing an institution or affiliation.
 - [ ] Enter any requested private postal address, city, region, postal code,

@@ -5,11 +5,11 @@
 - Author: Alec Kriebel
 - ORCID: 0009-0001-9320-500X
 - Package date: 2026-08-22 (America/Los_Angeles)
-- Scientific source commit: `03e94e877ce10d9d459fd284bd652934cde08bb3`
-- Annotated tag object: `be3946c051c7f7e2073d6adf81bca31ae750251a`
-- Frozen annotated source tag (unsigned): `simultaneous-amplification-beyond-three-halves-v2.0.2`
-- Source archive SHA-256: `d2145513f8abe295e9e7fab62f062fa9d0f7a6282de95e8155f3db4621485274`
-- Manuscript PDF SHA-256: `4e86597bb0baff388e8ce7ccf6ffd808f86b5ea846acf6f2188b31016fd2572c`
+- Scientific source commit: `bd66a3bbf1c530ef67a4b7be5ee69a6825678457`
+- Annotated tag object: `755969d69cdd7f86ad8eceddb4df52a4fe2b23ee`
+- Frozen annotated source tag (unsigned): `simultaneous-amplification-beyond-three-halves-v2.0.3`
+- Source archive SHA-256: `e5b61e79d065a9abec0908e28db7e79366b5fccedeb6efbf22eadd7af3cc57ae`
+- Manuscript PDF SHA-256: `1e73984abfd64a45797b8ad6dc8b473d82a8d5eb8061efe470a1e603c2d10ad9`
 - Internal source-archive members: 23
 - Python: 3.14.6
 - SymPy: 1.14.0

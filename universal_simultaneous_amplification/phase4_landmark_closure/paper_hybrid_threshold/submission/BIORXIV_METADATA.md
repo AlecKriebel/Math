@@ -42,9 +42,9 @@ truthful current information; do not invent an institution or affiliation.
 
 We study fixation from a uniformly random single mutant on finite connected
 loopless undirected weighted graphs under both Birth-death (Bd) and
-death-Birth (dB) Moran updating. Let R_sim be the supremum of the fitness
-intervals (1, R) on which one graph family, chosen independently of fitness,
-eventually amplifies fixation under both rules. Let R_hyb be the unique root
+death-Birth (dB) Moran updating. Let R_sim be the supremum of R for
+which one fitness-independent graph family eventually amplifies fixation
+under both rules for every fixed r in (1, R). Let R_hyb be the unique root
 in (3/2, 151/100) of
 
 R^6 - 8R^5 + 22R^4 - 30R^3 + 21R^2 - 6R + 1.
@@ -118,10 +118,10 @@ and reproducibility scripts accompany this revision as the supplemental
 archive
 `simultaneous_amplifier_beyond_three_halves_source_and_certificates.tar.gz`
 (SHA-256
-`d2145513f8abe295e9e7fab62f062fa9d0f7a6282de95e8155f3db4621485274`).
+`e5b61e79d065a9abec0908e28db7e79366b5fccedeb6efbf22eadd7af3cc57ae`).
 The corresponding development source is frozen at commit
-`03e94e877ce10d9d459fd284bd652934cde08bb3` and annotated, unsigned tag
-`simultaneous-amplification-beyond-three-halves-v2.0.2`. No new persistent
+`bd66a3bbf1c530ef67a4b7be5ee69a6825678457` and annotated, unsigned tag
+`simultaneous-amplification-beyond-three-halves-v2.0.3`. No new persistent
 identifier has yet been assigned to this superseding package.
 
 **AI-assisted research disclosure**
@@ -177,7 +177,7 @@ compatibility with the terms applied to the two prior Zenodo deposits.
 
 - Pages: 21
 - SHA-256:
-  `4e86597bb0baff388e8ce7ccf6ffd808f86b5ea846acf6f2188b31016fd2572c`
+  `1e73984abfd64a45797b8ad6dc8b473d82a8d5eb8061efe470a1e603c2d10ad9`
 
 **Supplemental Material**
 
@@ -185,7 +185,7 @@ compatibility with the terms applied to the two prior Zenodo deposits.
 
 - Archive members: 23
 - SHA-256:
-  `d2145513f8abe295e9e7fab62f062fa9d0f7a6282de95e8155f3db4621485274`
+  `e5b61e79d065a9abec0908e28db7e79366b5fccedeb6efbf22eadd7af3cc57ae`
 - Suggested portal label: **Source, exact verifiers, and reproducibility archive**
 
 Do not upload the outer AI-referee package, internal review reports, submission

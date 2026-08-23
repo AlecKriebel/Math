@@ -1,9 +1,10 @@
 # Submission handoff for Paper II
 
 > **DRAFT — NOT SUBMITTED OR SENT.** These materials prepare a human-led
-> submission.  No portal has been opened, no declaration has been accepted on
-> the author's behalf, and no editor, reviewer, or specialist has been
-> contacted.
+> submission.  The checklist records the author's sign-in, identity, and
+> live-form affiliation checks as complete.  No declaration has been accepted
+> on the author's behalf, no final submission has been approved, and no editor,
+> reviewer, or specialist has been contacted.
 
 The intended sequence is:
 
@@ -34,10 +35,11 @@ Files in this directory:
 - `verify_submission_materials.py`: static checks for identity, abstract
   length, highlights, placeholder scope, dependency pins, and provenance.
 
-Several items are intentionally left for the human author and authenticated
-portal: private address/location fields, truthful affiliation information,
-verified email access, license choice and authority, any newly displayed
-policy fields, acceptance of the live terms, and the bioRxiv identifiers
+The checklist records verified email access, author identity, and the
+live-form affiliation entry as complete.  Remaining items are intentionally
+left for the human author and authenticated portal: private address/location
+fields, license choice and authority, any newly displayed policy fields,
+acceptance of the live terms, final approval, and the bioRxiv identifiers
 assigned after submission.  The public source-and-certificate archive excludes
 all venue metadata, cover letters,
 checklists, and the submission validator, so it cannot publish a private

@@ -22,9 +22,9 @@ SOURCE_PDF = PurePosixPath(
     "paper_hybrid_threshold/output/pdf/"
     "simultaneous_amplification_beyond_three_halves.pdf"
 )
-COMMIT = "03e94e877ce10d9d459fd284bd652934cde08bb3"
-TAG_OBJECT = "be3946c051c7f7e2073d6adf81bca31ae750251a"
-TAG = "simultaneous-amplification-beyond-three-halves-v2.0.2"
+COMMIT = "bd66a3bbf1c530ef67a4b7be5ee69a6825678457"
+TAG_OBJECT = "755969d69cdd7f86ad8eceddb4df52a4fe2b23ee"
+TAG = "simultaneous-amplification-beyond-three-halves-v2.0.3"
 HEX64 = re.compile(r"[0-9a-f]{64}")
 PACKAGE_EXECUTABLES = frozenset(
     {
