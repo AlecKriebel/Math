@@ -207,7 +207,7 @@ def check_manuscript_scope() -> None:
         r"P_U^P=\frac{A}{A+D}\,p_{1,1}",
         r"where $p_{1,1}$ is the macro-fixation probability from $(1,1)$",
         r"P_U^P=[A/(A+D)][(B+C')/B]P_U^H",
-        "simultaneous-amplification-beyond-three-halves-v2.0.2",
+        "simultaneous-amplification-beyond-three-halves-v2.0.3",
     )
     for fragment in required:
         require(
