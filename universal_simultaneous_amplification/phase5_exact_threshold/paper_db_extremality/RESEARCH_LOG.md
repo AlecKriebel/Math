@@ -334,3 +334,39 @@
 - Best-guess completion: 70% of the R2 re-review correction task.  The frozen
   source archive, r3 referee package, outer certified replay, independent
   hostile review, Drive copy, and final commit/push remain.
+
+## 2026-08-22 22:35 PDT — frozen R3 package and independent hostile pass
+
+- Froze the corrected scientific source at commit
+  `b9a415f763e82d9cc45c83de96c895b109e158a4`.  The 73-member deterministic
+  source archive has SHA-256
+  `12a8c89b77aa898e9c16a1efdf93e77f35ea3cee3eed93ad34c7f497eaad3eb0`;
+  all 71 nonsynthetic members independently byte-match that commit.  A second
+  archive generation was byte-identical.
+- Rebuilt and visually inspected the 30-page manuscript.  Two consecutive
+  builds were byte-identical, with PDF SHA-256
+  `5d2bc6cfa9d02b21e816d3dd30252d067e23b51ecd0c58bb8c3cfb116ab937bd`.
+  No theorem-bearing manuscript text or scientific predicate changed; only
+  the certified-route reproducibility description was revised.
+- Built the R3 referee folder with 83 manifest payloads and 84 total regular
+  files.  Its deterministic transport archive has SHA-256
+  `7e218882df2cf1bba3c5a914a706552bcfe22820dcbc98461df01511286c6717`.
+- Ran the sole certified launcher under hostile inherited import, bytecode-
+  cache, and Make settings.  It rejected the token-printing interpreter,
+  timestamp-valid hostile bytecode, extra regular file, extra empty directory,
+  symlink, and FIFO before project import; then all six unit tests and all
+  seventeen verifier/cross-check programs passed with the private cache empty.
+  The rebuilt PDF matched byte-for-byte.  The 173-line transcript has SHA-256
+  `8312c9a552c0be05459cdb7e6efa6ba61c41acdebef4d94473785a1caa0aa347`.
+- A separate hostile package audit repeated the exact-tree, source-commit,
+  transport, attack-fixture, replay, and PDF-binding checks.  It found no
+  blocker or minor defect; the 110-node package fingerprint was unchanged
+  before and after execution at
+  `dcea48df9a6a1b6f337ff33d45a94a15e2353e9677670f745bc9063c4eb36899`.
+- Copied the separately named R3 folder, transport archive and checksum, and
+  current `main.tex` and `references.tex` into the existing Google Drive Paper
+  I handoff location.  The copied R3 folder passed its own exact package
+  verifier.
+- Paper I R2 re-review correction and R3 handoff: 100% complete.  Both
+  referee findings were real and are closed on the sole certified route; no
+  theorem or proof changed.  Only human-controlled submission actions remain.
