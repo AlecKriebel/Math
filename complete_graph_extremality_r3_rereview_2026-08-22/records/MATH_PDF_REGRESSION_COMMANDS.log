@@ -1,0 +1,210 @@
+R3 MATHEMATICAL/PDF REGRESSION COMMAND LOG
+Audit root: /Users/alec/Documents/Math/complete_graph_extremality_r3_rereview_2026-08-22
+R2 package: /Users/alec/Documents/Math/complete_graph_extremality_r2_rereview_2026-08-22/work/package
+R3 package: /Users/alec/Documents/Math/complete_graph_extremality_r3_rereview_2026-08-22/work/package
+Started: 2026-08-22 22:44 PDT
+Completed: 2026-08-22 22:58 PDT
+
+GATE RECORD
+- Before explicit parent clearance at approximately 22:54 PDT, no delivered
+  program was executed or imported. Only read/diff/hash/inert archive reads,
+  PDF extraction, rendering, and visual inspection were performed.
+- After explicit clearance, the sole certified R3 launcher was run once from
+  the R3 package root. It used disposable extraction/runtime/cache/build trees.
+
+[01] Read the PDF inspection skill completely
+command:
+  sed -n '1,260p' /Users/alec/.codex/plugins/cache/openai-primary-runtime/pdf/26.819.11345/skills/pdf/SKILL.md
+status: 0
+
+[02] Initial inventories
+commands:
+  find <R2> -type f | wc -l
+  find <R3> -type f | wc -l
+status: 0
+result: R2=82 files; R3=84 files.
+
+[03] Exhaustive file-set and recursive byte diff
+commands:
+  find each package -type f | normalize relative path | LC_ALL=C sort
+  comm -3 <R2 inventory> <R3 inventory>
+  diff -qr <R2> <R3>
+statuses: inventory/comm=0; diff=1 (expected because revisions exist)
+result: 33 deltas: 31 changed files, two R3 additions, no removals. Additions:
+  source_and_certificates/universal_simultaneous_amplification/phase5_exact_threshold/paper_db_extremality/submission/create_tree_negative_control.py
+  source_and_certificates/universal_simultaneous_amplification/phase5_exact_threshold/paper_db_extremality/submission/fake_python_public_token.sh
+
+[04] Exhaustive manuscript-input comparison
+command:
+  for every common *.tex or *.bib under paper_db_extremality, run cmp -s R2/file R3/file
+status: 0
+result: 11 identical, one changed. Identical: main.tex, references.tex,
+sections/01--06, appendices/A--C. Changed only:
+sections/07_implications_reproducibility.tex.
+
+[05] Exact Section 7 source diff and line inspection
+commands:
+  diff -u <R2>/.../sections/07_implications_reproducibility.tex <R3>/.../sections/07_implications_reproducibility.tex
+  nl -ba <R3>/.../sections/07_implications_reproducibility.tex | sed -n '82,145p'
+statuses: diff=1 (expected); inspection=0
+result: only replay/data-availability prose at R3 lines 98--114 and 119--131;
+mathematical content through line 97 unchanged.
+
+[06] Exhaustive Python comparison
+command:
+  for every R2 *.py, run cmp -s against R3; then list R3-only *.py
+status: 0
+result: R2=27 Python files, R3=28; 24 common files byte-identical; three
+common infrastructure files changed; one hostile-tree control added. All 20
+files named by EXPECTED_SCIENTIFIC_CHECKS are among the byte-identical set.
+
+[07] Changed proof/classification-note diffs
+command:
+  diff -u R2/file R3/file for phase2_n4 README/classification,
+  phase2_triangle README/classification, symmetric phase note, standard phase
+  theorem note, and standard phase README
+status: 1 for each expected prose revision
+result: command/replay wording only; proof text and predicates unchanged.
+
+[08] Changed infrastructure source inspection
+commands:
+  diff -u on verify_execution_safety.py, verify_referee_package.py,
+  bundle_manifest.py, run_all_referee_checks.sh, bootstrap_replay.sh,
+  replay.sh, all.sh, and release_bundle.sh
+  nl -ba and rg inspections of invocation lists, exact-tree checks, cache
+  checks, expected versions, and expected scientific-check dictionary
+statuses: diffs=1 (expected); inspections=0
+result: operational hardening only. Scientific dictionary remains 20 files and
+406 require calls; direct replay list remains the unit suite plus 17 programs.
+
+[09] Package-manifest check
+command (R3 package root):
+  shasum -a 256 -c PACKAGE_MANIFEST.sha256
+status: 0
+result: every listed package payload OK.
+
+Note: an immediately following combined command mistakenly attempted
+`shasum -a 256 -c MANIFEST.sha256` from the package root, where that file does
+not exist, and therefore ended status 1 after the already-successful package
+check. The source-manifest check was then rerun from its correct directory as
+[10]. This was a path mistake in the audit command, not a package failure.
+
+[10] Internal source-manifest check
+command (R3 package/source_and_certificates):
+  shasum -a 256 -c MANIFEST.sha256
+status: 0
+result: every listed source member OK.
+
+[11] Detached archive checksum and top/nested PDF hashes
+commands (R3 package root):
+  shasum -a 256 -c complete_graph_extremality_db_source_and_certificates.tar.gz.sha256
+  shasum -a 256 complete_graph_extremality_db.pdf source_and_certificates/universal_simultaneous_amplification/phase5_exact_threshold/paper_db_extremality/output/pdf/complete_graph_extremality_db.pdf
+status: 0
+result: archive OK; both R3 PDFs =
+5d2bc6cfa9d02b21e816d3dd30252d067e23b51ecd0c58bb8c3cfb116ab937bd.
+
+[12] Static tar/member comparison without executing delivered code
+commands:
+  tar -tzf <R3 archive>; tar -tvzf <R3 archive>
+  comm -3 <sorted archive names> <sorted extracted regular-file names>
+  python3 -I - (stdlib tarfile/hashlib/pathlib only) to assert every archive
+  member is regular and its bytes equal the corresponding extracted file
+status: 0
+result: 73/73 regular archive members, exact name set, byte-identical to
+source_and_certificates; no link or special archive member.
+
+[13] Symmetric-certificate binding
+commands:
+  rg -n '7a1fa1|SHA-256|hash' appendices verify_paper_claims.py
+  shasum -a 256 .../r2_determinant/verify_true_inverse_rank_symmetric_phase.py
+status: 0
+result: source digest, Appendix A display, and paper integration constant all
+equal 7a1fa1f579c090cc32668392e67b9eb88e696b51ad602a90d069541e402aa512.
+
+[14] PDF structure and font comparison
+commands:
+  pdfinfo <R2 PDF>; pdfinfo <R3 PDF>
+  pdffonts <R2 PDF>; pdffonts <R3 PDF>
+status: 0
+result: both 30 letter pages, PDF 1.5, same metadata properties and all 22
+embedded font rows; R2 size 234169, R3 size 235301 bytes.
+
+[15] Render every page and compare per-page images
+commands:
+  mktemp -d /tmp/codex-r3-pdf-audit.XXXXXX
+  pdftoppm -png -r 120 <R2 PDF> <temp>/r2/page
+  pdftoppm -png -r 120 <R3 PDF> <temp>/r3/page
+  cmp -s for each page pair 1..30
+status: 0
+result: 60 pages rendered. Identical pixels on pages 1--16 and 27--30;
+changed pixels only on pages 17--26.
+
+[16] Extract and compare every PDF page's text
+commands:
+  for p=1..30: pdftotext -f p -l p -layout <R2/R3 PDF> page-p.txt
+  cmp -s each R2/R3 text pair
+  pdftotext -layout whole R2/R3 PDFs; diff -u
+statuses: extraction/comparison loop=0; whole-text diff=1 (expected)
+result: identical extracted text pages 1--16 and 27--30; page-level reflow
+17--26. Whole-document substantive text diff is confined to Section 7 replay
+and data-availability wording.
+
+[17] Visual PDF inspection
+commands/tools:
+  Bundled PDF/image runtime loaded.
+  120-dpi R3 pages composed into eight 2x2 contact sheets.
+  All eight sheets inspected at original detail (all 30 R3 pages).
+  R2 pages 17--26 composed into three sheets and inspected.
+  R3 pages 17, 18, and 26 inspected individually at original detail.
+status: complete
+result: no clipping, overflow, collision, orphaned heading, blank page, missing
+glyph, broken path, or unreadable URL. Exact page delta documented in report.
+
+[18] R2/R3 identity values
+commands:
+  sed -n on R2/R3 VERSION.md and README_FIRST.md
+  shasum -a 256 on both archives and all four top/nested PDFs
+status: 0
+result: recorded commit, archive, and PDF hash transitions are coherent;
+within each version, top and nested PDFs are byte-identical.
+
+[19] Parent static-gate clearance
+event: parent accepted the static regression finding and explicitly authorized
+execution of the independent/delivered exact checks, with mutations confined
+to disposable outputs.
+
+[20] Sole certified R3 replay
+command (R3 package root):
+  ./run_all_referee_checks.sh
+status: 0
+salient exact terminal results:
+  PASS: 83 package payload files match PACKAGE_MANIFEST.sha256
+  PASS: 73 source-archive members match the internal manifest
+  PASS: intentional false check propagates nonzero top-level status
+  PASS: explicit false remains active under python -O
+  PASS: inherited optimized mode rejected
+  PASS: public-token fake interpreter rejected before invocation
+  PASS: bytecode, extra-file, extra-dir, symlink, FIFO trees rejected before import
+  PASS: exact bundle tree = 73 regular files, 25 implied directories
+  PASS: 27 bundled Python files, no bare assert, 406 scientific and 436 total require calls
+  PASS: Python 3.14.6 and hashed SymPy 1.14.0/python-flint 0.9.0/mpmath 1.3.0
+  PASS: all six unit tests
+  PASS: all 17 direct verifier/cross-check programs (see replay.sh for list)
+  PASS: controlled cache remained empty
+  PASS: pinned Tectonic v33 bundle digest
+  REBUILT_PDF_SHA256: 5d2bc6cfa9d02b21e816d3dd30252d067e23b51ecd0c58bb8c3cfb116ab937bd
+  PASS: sole certified package replay verified exact tree, rejected hostile
+        controls, ran hash-locked certificates, and reproduced PDF
+
+[21] Report QA
+commands:
+  sed -n and rg inspections of records/MATH_PDF_REGRESSION.md and this log
+  shasum -a 256 -c PACKAGE_MANIFEST.sha256 (package root)
+  shasum -a 256 -c MANIFEST.sha256 (source_and_certificates root)
+statuses: 0, 0
+note: the first QA wrapper again appended the internal-manifest command while
+still in the package root and therefore returned status 1 after the successful
+package check; rerunning that check from source_and_certificates returned 0.
+This repeated audit-path mistake did not touch the package and is not a package
+failure.
+result: final PASS; no remaining R2/R3 scientific, binding, replay, or PDF gap.

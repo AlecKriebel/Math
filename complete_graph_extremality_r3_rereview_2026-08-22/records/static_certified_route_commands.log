@@ -1,0 +1,178 @@
+R3 CERTIFIED-ROUTE AUDIT COMMAND LOG
+Audit window: 2026-08-23T05:44:41Z--2026-08-23T05:55:23Z
+Auditor task: /root/r2_static_replay_audit
+
+Constraint through the readiness gate: do not execute or import delivered code.
+All commands through entry 18 were read-only host utilities used for text,
+inventory, mode, hash, and archive inspection. No delivered shell/Python entry
+point was run and no delivered module was imported before root clearance.
+
+01  2026-08-23T05:44:41Z  exit 0
+    date -u; pwd; git branch --show-current; git status --short -- <R3 audit root>;
+    find <R3 package> -maxdepth 2 ...
+    Result: cwd /Users/alec/Documents/Math; branch main; audit root untracked.
+
+02  2026-08-23T05:44:47Z  exit 0 (diff differences intentionally accepted)
+    diff -qr <frozen R2 package> <frozen R3 package> || true
+    Result: enumerated every R2-to-R3 changed/new package and source file.
+
+03  2026-08-23T05:44:55Z  exit 0
+    nl -ba <R3>/run_all_referee_checks.sh
+    nl -ba <R3>/verify_referee_package.py
+    nl -ba <R3>/README_FIRST.md
+    nl -ba <R3>/CLAIM_CODE_MAP.md
+    nl -ba <R3>/VERSION.md
+    Result: complete source reads; no code execution.
+
+04  2026-08-23T05:45Z  exit 0 at orchestration layer; diff reported missing paths
+    diff -u <incorrect abbreviated R2 source path> <incorrect abbreviated R3 source path>
+    Result: three "No such file or directory" diagnostics; no state change.
+
+05  2026-08-23T05:45Z  exit 0
+    find <R3>/source_and_certificates/universal_simultaneous_amplification \
+      -maxdepth 4 -type f -print | sort
+    Result: resolved the archive-preserved source layout.
+
+06  2026-08-23T05:46Z  exit 0 (diff differences intentionally accepted)
+    diff -u <R2>/submission/bootstrap_replay.sh <R3>/submission/bootstrap_replay.sh || true
+    diff -u <R2>/replay.sh <R3>/replay.sh || true
+    diff -u <R2>/submission/verify_execution_safety.py \
+      <R3>/submission/verify_execution_safety.py || true
+    Result: isolated all interpreter, exact-tree, and cache-prefix changes.
+
+07  2026-08-23T05:47Z  exit 0
+    nl -ba <R3>/submission/bootstrap_replay.sh
+    nl -ba <R3>/replay.sh
+    nl -ba <R3>/submission/verify_execution_safety.py
+    nl -ba <R3>/submission/create_tree_negative_control.py
+    nl -ba <R3>/submission/fake_python_public_token.sh
+    Result: complete reads of every new/changed mandatory-stage program.
+
+08  2026-08-23T05:48Z  exit 0
+    nl -ba <R3>/run_all_referee_checks.sh
+    nl -ba <R3>/README_FIRST.md
+    nl -ba <R3>/verify_referee_package.py
+    Result: complete package-boundary and extraction trace.
+
+09  2026-08-23T05:48Z  exit 0
+    wc -l <R3>/PACKAGE_MANIFEST.sha256 <R3>/source_and_certificates/MANIFEST.sha256
+    find <R3> -mindepth 1 -type f|-type d|-type l|<special predicates>
+    find <R3> -iname __pycache__ -o -iname '*.pyc' -o -iname '*.pyo'
+    Result: outer 84 regular files/26 directories; inner 73 regular files/25
+    directories; zero links, special nodes, or cache/bytecode entries.
+
+10  2026-08-23T05:49Z  exit 0
+    comm -3 <(manifest regular-file set plus manifest itself) \
+      <(find actual regular-file set)
+    comm -3 <(directories implied by manifest file paths) \
+      <(find actual directory set)
+    Repeated for outer package and source_and_certificates.
+    Result: all four comparisons empty (exact file and directory equality).
+
+11  2026-08-23T05:49Z  exit 0
+    shasum -a 256 -c PACKAGE_MANIFEST.sha256 | <status counter>
+    shasum -a 256 -c MANIFEST.sha256 | <status counter>
+    Result: outer_hashes_ok=83 outer_hashes_bad=0;
+    inner_hashes_ok=72 inner_hashes_bad=0.
+
+12  2026-08-23T05:49Z  exit 0
+    tar -tzf <R3 source archive> | wc -l
+    tar -tzf <archive> | uniq -d
+    diff -u <(tar -tzf <archive>) <(tar -tzf <archive> | LC_ALL=C sort) || true
+    comm -3 <(internal-manifest names plus MANIFEST.sha256) <(tar names)
+    tar -tvzf <archive> | awk 'substr($1,1,1)!="-"{print}'
+    Result: 73 members; unique, already sorted, exact name set, all regular.
+
+13  2026-08-23T05:50Z  exit 0 (diff differences intentionally accepted)
+    diff -u R2/R3 all.sh, bundle_manifest.py, release_bundle.sh || true
+    nl -ba R3 all.sh, bundle_manifest.py, release_bundle.sh, build.sh
+    Result: complete reads of all remaining changed executable source and the
+    unchanged document build invoked by the certified route.
+
+14  2026-08-23T05:50Z  exit 0
+    rg -n -i 'hostile|negative control|six|exact tree|certified|pycache|...'
+      <R3 package> --glob '*.md' --glob '*.tex' --glob '*.sh' --glob '*.py'
+    nl -ba selected ranges of REFEREE_PROMPT.md, CLAIM_CODE_MAP.md,
+      ENVIRONMENT.md, BUNDLE_REPRODUCTION.md, README.md, BUNDLE_METADATA.txt,
+      and sections/07_implications_reproducibility.tex
+    Result: sole-route/lower-stage and finite-check/analytic-proof wording traced.
+
+15  2026-08-23T05:51Z  exit 0
+    find <R3 package> -iname Makefile -o -iname GNUmakefile -o -iname makefile
+    rg -n 'run_python |unittest discover' <R3>/replay.sh
+    cmp -s each of the 17 R2/R3 directly invoked verifier programs
+    Result: no Makefile; one unit-suite command and exactly 17 direct program
+    commands; all 17 program bytes unchanged from frozen R2.
+
+16  2026-08-23T05:51Z  exit 0
+    rg -n 'verify_resolvent|verify_direct_flow|verify_fisher|solve\(|matrix_from_edges|...'
+      verify_marked_lift.py verify_direct_flow_screen.py verify_fisher_route.py
+    nl -ba relevant helper source ranges
+    Result: solve() and matrix_from_edges() calls confirmed; Fisher module only
+    loaded transitively; guarded helper mains remain unreachable.
+
+17  2026-08-23T05:52Z  exit 0
+    stat -f '%Sp %N' run_all_referee_checks.sh verify_referee_package.py \
+      bootstrap_replay.sh replay.sh fake_python_public_token.sh \
+      create_tree_negative_control.py
+    Result: every named entry/control file is regular and executable (0755).
+
+18  2026-08-23T05:54Z  exit 0
+    cmp -s frozen R2/R3 build.sh, requirements-lock.txt, requirements.txt
+    rg -n '^([A-Za-z0-9_.-]+)==|--hash=sha256:' requirements-lock.txt
+    Result: all three files unchanged; three exact pins and 32 hash alternatives
+    remain present.
+
+READINESS GATE SENT TO ROOT
+    READY for authorized dynamic replay. Reported one nonblocking static
+    residual: the hostile pyc writes PYCACHE_EXECUTED relative to cwd while the
+    launcher searches only the negative tree.
+
+POST-GATE AUTHORIZATION
+    Root explicitly authorized delivered R3 execution/import, limited to
+    disposable audit copies and in-scope certified/hostile tests, and requested
+    a practical validation of the marker-location residual.
+
+19  2026-08-23T05:53Z  exit 0
+    command -v python3.14; command -v python3; python3.14 --version
+    Result: /opt/homebrew/bin/python3.14; Python 3.14.6.
+
+20  2026-08-23T05:54Z  NOT EXECUTED (tool policy rejection)
+    First disposable marker-test command included guarded rm -rf cleanup.
+    Result: rejected before process creation by the command safety layer; no
+    delivered code ran and no state changed.
+
+21  2026-08-23T05:54Z  exit 0
+    marker_audit_root=$(mktemp -d /tmp/paper1-marker-audit.XXXXXX)
+    mkdir -m 700 "$marker_audit_root/source" "$marker_audit_root/caller"
+    /opt/homebrew/bin/python3.14 -I <R3>/verify_referee_package.py \
+      --extract-to "$marker_audit_root/source"
+    /opt/homebrew/bin/python3.14 -I \
+      <disposable>/submission/create_tree_negative_control.py \
+      bytecode "$marker_audit_root/source"
+    (cd "$marker_audit_root/caller" && /opt/homebrew/bin/python3.14 -I -B -c \
+      'import sys; sys.path.insert(0, sys.argv[1]); import verify_direct_flow_screen' \
+      "$helper_dir")
+    test/find marker locations
+    Result: adjacent timestamp pyc created; marker_in_caller=yes;
+    marker_in_negative_tree=no. Disposable root:
+    /tmp/paper1-marker-audit.wlOe9I (private /tmp content; no frozen-file change).
+
+22  2026-08-23T05:55:23Z  exit 0
+    date -u '+%Y-%m-%dT%H:%M:%SZ'; date '+%Y-%m-%dT%H:%M:%S%z'
+    Result: 2026-08-23T05:55:23Z / 2026-08-22T22:55:23-0700.
+
+23  2026-08-23T05:56Z  exit 0 (diff differences intentionally accepted)
+    diff -u frozen R2/R3 Section 07, phase2_triangle/README.md, and
+      phase2_n4/README.md || true
+    Result: manuscript delta is certified-route/assurance wording; low-order
+    README deltas replace stale local-venv/exploratory commands with explicit
+    development guidance and the actual certified program reach.
+
+24  2026-08-23T05:56Z  exit 0
+    wc/sed/stat/git-status inspection of the two newly written audit records
+    Result: STATIC_CERTIFIED_ROUTE_AUDIT.md and this log exist; only these
+    requested audit records were added by this subtask.
+
+No commit, push, package edit, network request, or external communication was
+performed. The frozen R2 and R3 packages remained read-only throughout.
