@@ -1,0 +1,8 @@
+timestamp	cwd	command	exit_status	runtime_seconds	classification	outcome
+2026-08-22T21:58:00-07:00	external_audit/full_referee_validation_packet_v1.0.7	shasum -a 256 -c SHA256SUMS.txt	0	<1	integrity	263/263 outer manifest entries matched
+2026-08-22T21:58:00-07:00	external_audit/full_referee_validation_packet_v1.0.7/repository	shasum -a 256 -c sha256_manifest.txt	0	<1	integrity	198/198 inner manifest entries matched
+2026-08-22T21:59:04-07:00	project root	copy pristine packet to source_snapshot and working_packet	0	0.23	preservation	264 regular files in each copy
+2026-08-22T22:01:00-07:00	source_snapshot	static inspection of RUN_COMPLETE_AUDIT.sh, RUN_ALL_VERIFIERS.py, repository/replay.sh, and minimal replay	0	<1	semantic inspection	fail-fast orchestration confirmed; replay mutates generated data/PDFs/outputs and rewrites its own inner manifest
+2026-08-22T22:02:00-07:00	source_snapshot	interrogate Python packages and required external tools	0	2.6	environment	default Python lacks pypdf; pdflatex absent; remaining declared scientific packages and non-TeX tools available
+2026-08-22T22:04:00-07:00	audit root	render all pages of main.pdf and supplement.pdf with Poppler; assemble and inspect contact sheets	0	8.9	PDF read/visual QA	18+18 pages rendered; no visible clipping/overlap/missing content
+2026-08-22T22:11:00-07:00	audit root	python independent_checks/independent_exact_checks.py	0	26.50	independent exact and adversarial check	all exact identities/certificate equality tests passed for stated sampled dimensions; 76,560 random lower-block cases found no counterexample; endpoint spectra through m=149 consistent
