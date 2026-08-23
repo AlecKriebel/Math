@@ -12,8 +12,9 @@
       results and reproducible exact outputs.
 - [ ] Select **New Results** as the article type and **Evolutionary Biology**
       as the subject category.
-- [ ] Upload the final manuscript PDF and any supporting archive accepted by
-      the live portal.
+- [ ] Upload the final manuscript PDF and the enclosing reproducibility
+      package if accepted by the live portal; the inner source archive alone
+      does not contain the certified package-root launcher.
 - [ ] Confirm all fonts render, hyperlinks work, and no tracked-change or
       internal-review material appears in the PDF.
 - [ ] Confirm the abstract and keywords copied into the portal are identical
@@ -50,11 +51,11 @@
 ## Reproducibility and freeze
 
 - [ ] Run `../release_bundle.sh` and retain the printed archive SHA-256.
-- [ ] Supply
-      `complete_graph_extremality_db_source_and_certificates.tar.gz` and its
-      adjacent `.sha256` checksum file with the frozen manuscript materials.
-- [ ] Verify the internal `MANIFEST.sha256` after clean extraction.
-- [ ] Run `submission/bootstrap_replay.sh` from the extracted copy.
+- [ ] Supply the frozen enclosing reproducibility package containing
+      `complete_graph_extremality_db_source_and_certificates.tar.gz`, its
+      detached checksum, package verifier, and certified launcher.
+- [ ] Run `run_all_referee_checks.sh` from the reproducibility-package root;
+      do not substitute plain `shasum -c` or direct internal bootstrap status.
 - [ ] Rebuild and visually inspect the deterministic manuscript PDF.
 - [ ] Create a versioned public release for the present consolidated package
       only after the author approves the frozen files.

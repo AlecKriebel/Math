@@ -63,8 +63,9 @@
 ## Reproducibility and final gate
 
 - [ ] Generate the deterministic archive with `../release_bundle.sh`.
-- [ ] Verify its internal SHA-256 manifest and complete a clean-extraction
-      exact replay.
+- [ ] Build the enclosing reproducibility package and run its sole certified
+      `run_all_referee_checks.sh`; plain manifest checking or a direct internal
+      bootstrap is not equivalent.
 - [ ] Rebuild and visually audit the final PDF after all style changes.
 - [ ] Compare every theorem and scope statement across abstract, cover letter,
       manuscript, certificate notes, and portal fields.

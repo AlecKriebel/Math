@@ -91,12 +91,13 @@ strictness, endpoint coverage, and equality cases.
 ## 3. Audit the software before running it
 
 Use `CLAIM_CODE_MAP.md` as an index, not as evidence. Before executing any
-delivered code, inspect `run_all_referee_checks.sh`,
-`verify_referee_package.py`, `submission/bootstrap_replay.sh`, `replay.sh`,
-`build.sh`, every program invoked directly by the replay, and every imported
-helper actually used by those programs. For every theorem-bearing check,
-identify the exact manuscript statement it checks and determine whether the
-code checks that statement rather than a weaker surrogate.
+delivered code, inspect the package-root `run_all_referee_checks.sh` and
+`verify_referee_package.py`; then, within `source_and_certificates`, inspect
+`submission/bootstrap_replay.sh`, `replay.sh`, `build.sh`, every program
+invoked directly by the replay, and every imported helper actually used by
+those programs. For every theorem-bearing check, identify the exact manuscript
+statement it checks and determine whether the code checks that statement
+rather than a weaker surrogate.
 
 In particular, check that:
 
@@ -111,6 +112,15 @@ In particular, check that:
   both premise and expected answer;
 - failures propagate to a nonzero exit status, including under hostile
   optimization/import/build environment settings;
+- the package-root launcher is the sole certified route; lower bootstrap and
+  replay scripts are internal stages and do not accept arbitrary `PYTHON`;
+- exact tree verification occurs before every project import, compares both
+  regular-file and implied-directory sets, and rejects symlinks, special nodes,
+  `__pycache__`, `.pyc`, and `.pyo`;
+- every interpreter process that can import project code uses the fresh
+  private cache prefix supplied on the command line and cannot read
+  timestamp-valid adjacent bytecode; the preceding exact-tree scanner is
+  standard-library-only and imports no project module;
 - the replay reaches every load-bearing verifier, and documentation
   distinguishes called helper functions, module imports, and guarded mains;
 - purportedly independent cross-checks do not merely share the same
@@ -123,15 +133,20 @@ count the notices as either failures or successes.
 
 ## 4. Execute and independently cross-check
 
-After completing the source audit, run `./run_all_referee_checks.sh` from the
-package root with a Python 3.14.6 interpreter (set `BOOTSTRAP_PYTHON` if
-needed). Preserve the full transcript and exit status. This command verifies
-the manifests, requires the stated document-tool versions, creates a
-disposable source copy, installs the pinned Python dependencies, runs the unit
-suite and all replayed verifier programs, rebuilds the PDF, and compares it
-with the delivered PDF. If a required tool is unavailable or has the wrong
-version, record that limitation and run the remaining checks manually rather
-than reporting a complete execution.
+After completing the source audit, run the sole certified command,
+`./run_all_referee_checks.sh`, from the package root with a Python 3.14.6
+interpreter (set `BOOTSTRAP_PYTHON` if needed). Preserve the full transcript
+and exit status. This command verifies exact package and source node sets and
+hashes, safely extracts only verified regular files into a disposable tree,
+requires the stated document-tool versions, installs the pinned Python
+dependencies into a private environment, runs the unit suite and all replayed
+verifier programs with an empty controlled cache, rebuilds the PDF, and
+compares it with the delivered PDF. Confirm that its hostile controls reject a
+public-token fake interpreter, timestamp-valid adjacent bytecode, an extra
+regular file, an extra empty directory, a symlink, and a FIFO before project
+import. If a required tool is unavailable or has the wrong version, record
+that limitation and run the remaining checks manually rather than reporting a
+complete execution.
 
 Then perform independent spot checks not encoded by the supplied expected
 answers: use several nonsymmetric small kernels, reconstruct selected

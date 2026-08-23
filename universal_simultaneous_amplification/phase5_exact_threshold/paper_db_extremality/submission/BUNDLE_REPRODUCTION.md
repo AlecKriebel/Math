@@ -36,8 +36,9 @@ universal_simultaneous_amplification/
   phase5_exact_threshold/paper_db_extremality/
 ```
 
-because `replay.sh` invokes exact certificate families elsewhere under that
-project root. The archive contains only the manuscript package and the source,
+because the internal verifier stage invokes exact certificate families
+elsewhere under that project root. The archive contains only the manuscript
+package and the source,
 tests, certificate families, and project support files reached by the replay;
 all seventeen verifier/cross-check programs are invoked directly, without the
 project Makefile. It excludes the legacy manuscript build, discovery scripts,
@@ -53,22 +54,31 @@ Tar-member ownership, timestamps, and ordering are normalized, and the gzip
 header has a fixed timestamp and no source filename. Running the bundler twice
 over identical inputs therefore yields byte-identical archives.
 
-## Verify after extraction
+## Certified replay
 
-From the extracted archive root:
+The sole certified end-to-end command is run from the root of the enclosing
+reproducibility package:
 
 ```sh
-shasum -a 256 -c MANIFEST.sha256
-./universal_simultaneous_amplification/phase5_exact_threshold/\
-paper_db_extremality/submission/bootstrap_replay.sh
+./run_all_referee_checks.sh
 ```
 
-On a platform providing `sha256sum`, it may be used instead of `shasum`.
-`bootstrap_replay.sh` rejects optimized execution and inherited import/build
-overrides, creates a fresh project-local Python environment, installs only
-hash-verified wheels, scans for bare assertions, and runs the exact replay. It
-does not contact anyone or submit any artifact. Building the PDF additionally
-requires Tectonic and Poppler's `pdfinfo` and `pdftoppm` commands.
+That launcher verifies exact file and directory sets and every hash, rejects
+links, special nodes, and bytecode/cache entries, safely extracts the already
+verified regular-file archive into a disposable tree, provisions a fresh
+private environment and cache outside the source tree, invokes
+`bootstrap_replay.sh` and `replay.sh` as internal stages, rebuilds the PDF, and
+requires byte identity with the delivered manuscript.
+
+For manual inspection, `shasum -a 256 -c MANIFEST.sha256` (or `sha256sum -c`)
+checks the bytes of listed payloads. It does not reject extra files or
+directories and is not a substitute for the certified package launcher. The
+bootstrap's explicit `--development` mode is a convenience rather than a
+certificate; `replay.sh` is internal-only and rejects standalone invocation.
+Neither lower-stage status establishes package identity or execution of the
+delivered source. The launcher does not contact anyone or submit any artifact.
+Building the PDF additionally requires Tectonic and Poppler's `pdfinfo` and
+`pdftoppm` commands.
 
 The exact programs discharge the finite symbolic and rational ranges
 explicitly identified in the manuscript and check ingredients of the analytic

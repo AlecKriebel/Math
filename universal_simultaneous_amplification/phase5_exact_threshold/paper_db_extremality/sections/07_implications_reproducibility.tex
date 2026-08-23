@@ -95,14 +95,23 @@ antisymmetric-sector conclusion are proved analytically in Section~5 and
 Appendix~A, respectively; their literal-chain executable checks are finite
 consistency tests.
 
-The one-command replay is
+The sole certified end-to-end replay, run from the root of the enclosing
+reproducibility package, is
 \begin{verbatim}
-./replay.sh
+./run_all_referee_checks.sh
 \end{verbatim}
-from the paper package.  The package-level integration audit separately
-checks the complete active stationary law, the full tangent decomposition,
-all three physical sector normalizations, the strong-selection column identity, and
-conversion from inverse-mean to fixation curvature.
+It verifies the exact delivered file set and hashes, rejects links, special
+nodes, extra files or directories, and bytecode/cache entries, safely extracts
+the verified source into a fresh disposable tree, provisions the pinned
+environment and private empty cache, invokes the bootstrap and verifier runner
+as internal stages, rebuilds the manuscript, and compares it byte-for-byte
+with the delivered PDF.  The bootstrap's explicit development mode is a
+convenience rather than a certificate; the verifier runner is internal-only
+and rejects standalone invocation.  Neither lower-stage status certifies
+package identity or execution of the delivered source.  The package-level
+integration audit checks the complete active stationary law, the full tangent
+decomposition, all three physical sector normalizations, the strong-selection
+column identity, and conversion from inverse-mean to fixation curvature.
 
 \section*{Statements and Declarations}
 
@@ -110,14 +119,17 @@ conversion from inverse-mean to fixation curvature.
 No empirical data are used.  Complete LaTeX source, the compiled manuscript,
 exact rational and symbolic verifiers, coefficient certificates, pinned
 dependency specifications, and build and replay scripts for this version are
-supplied with the manuscript in the standalone archive
+supplied with the manuscript in an enclosing reproducibility package whose
+verified source payload is the standalone archive
 \path{complete_graph_extremality_db_source_and_certificates.tar.gz}.  The
 adjacent file
 \path{complete_graph_extremality_db_source_and_certificates.tar.gz.sha256}
 records the whole-archive SHA-256 digest, the archive-root
 \path{MANIFEST.sha256} checks every other archive member, and
 \path{submission/BUNDLE_REPRODUCTION.md} gives the clean-environment replay
-procedure.  An evolving development repository is available at
+procedure.  The package-root \path{run_all_referee_checks.sh} additionally
+checks exact node-set equality and is the certified entry point.  An evolving
+development repository is available at
 \url{https://github.com/AlecKriebel/Math}.  The earlier strong-selection and
 low-order version is archived at
 \url{https://doi.org/10.5281/zenodo.21753405}; that record does not contain

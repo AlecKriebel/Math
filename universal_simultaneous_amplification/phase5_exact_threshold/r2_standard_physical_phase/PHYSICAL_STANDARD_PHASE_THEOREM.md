@@ -497,10 +497,12 @@ normalization (19) proves the physical standard-sector theorem.
 
 ## 9. Independent exact verification
 
-Run
+The certified package launcher runs this verifier. For an individual
+development invocation from this directory, use
 
 ```bash
-../../.venv/bin/python verify_physical_standard_phase.py
+PAPER1_DEV_PYTHON=python3.14
+"$PAPER1_DEV_PYTHON" verify_physical_standard_phase.py
 ```
 
 from this directory.  The verifier independently reconstructs:

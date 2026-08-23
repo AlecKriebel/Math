@@ -63,11 +63,12 @@ Mathematics Subject Classification 2020: 92D15, 60J10, 05C81.
 - **Funding:** No external funding supported this work.
 - **Competing interests:** The author declares no competing interests.
 - **Data:** No empirical, human, animal, clinical, or personal data were used.
-- **Code and materials:** The exact archive
-  `complete_graph_extremality_db_source_and_certificates.tar.gz` is supplied
-  with this version. Its adjacent `.sha256` file records the whole-archive
-  digest, its internal `MANIFEST.sha256` checks every other archive member, and
-  `BUNDLE_REPRODUCTION.md` gives the clean-environment replay procedure.
+- **Code and materials:** The enclosing reproducibility package is supplied
+  with this version. It contains the exact archive
+  `complete_graph_extremality_db_source_and_certificates.tar.gz`, its detached
+  checksum, internal manifest, exact package verifier, and the sole certified
+  launcher `run_all_referee_checks.sh`; `BUNDLE_REPRODUCTION.md` documents the
+  distinction between that route and internal development stages.
 - **AI assistance:** Use the complete wording in `DECLARATIONS.md`.
 - **Related public material:** Use the exact disclosure in
   `PROVENANCE_AND_RELATED_RELEASES.md`. In particular, the cited Zenodo

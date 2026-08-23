@@ -242,11 +242,13 @@ required for a uniformly averaged initial mutant.
 
 ## Independent exact verification
 
-**[EXACTLY COMPUTED] Manual derivation script.**  Run from the research-folder
-root:
+**[EXACTLY COMPUTED] Manual derivation script.** The certified package launcher
+runs this program. For an individual development invocation from the project
+root with its prepared environment, use:
 
 ```bash
-./.venv/bin/python phase2_triangle/derive_certificate.py
+PAPER1_DEV_PYTHON=python3.14
+"$PAPER1_DEV_PYTHON" phase2_triangle/derive_certificate.py
 ```
 
 It independently constructs (1)--(2), solves the six equations over
@@ -255,7 +257,8 @@ It independently constructs (1)--(2), solves the six equations over
 **[INDEPENDENT TRANSITION-CHECK] Full subset-state cross-check.**  Run:
 
 ```bash
-./.venv/bin/python phase2_triangle/crosscheck_exact_solver.py
+PAPER1_DEV_PYTHON=python3.14
+"$PAPER1_DEV_PYTHON" phase2_triangle/crosscheck_exact_solver.py
 ```
 
 This second script uses `src/exact_markov.py`, which independently constructs

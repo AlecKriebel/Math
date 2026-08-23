@@ -442,10 +442,12 @@ This completes the theorem for every population order.
 
 ## 7. Independent verification and remaining gap
 
-Run
+The certified package launcher runs this verifier. For an individual
+development invocation from this directory, use
 
 ```bash
-../../.venv/bin/python verify_true_inverse_rank_symmetric_phase.py
+PAPER1_DEV_PYTHON=python3.14
+"$PAPER1_DEV_PYTHON" verify_true_inverse_rank_symmetric_phase.py
 ```
 
 from this directory.  The verifier independently:

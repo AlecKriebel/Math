@@ -36,6 +36,8 @@ REQUIRED = {
     "ENVIRONMENT.md",
     "REPRODUCTION_TEST.md",
     "bootstrap_replay.sh",
+    "create_tree_negative_control.py",
+    "fake_python_public_token.sh",
     "verify_execution_safety.py",
 }
 ALLOWED_PLACEHOLDERS = {"POSTAL_ADDRESS"}
@@ -94,6 +96,7 @@ def main() -> None:
         f"{archive_name}.sha256",
         "MANIFEST.sha256",
         "submission/BUNDLE_REPRODUCTION.md",
+        "run_all_referee_checks.sh",
     ):
         require(token in availability, token)
     future_facing = (
@@ -163,6 +166,12 @@ def main() -> None:
         "6ffe055852f8faf66c0acbe1a7fb27f87b869a90bad1204f3bf4d9683f597c7c"
         in environment
     )
+    for phrase in (
+        "sole certified end-to-end entry point",
+        "-X pycache_prefix",
+        "Direct lower-stage execution is development-only",
+    ):
+        require(phrase in normalized(environment), phrase)
     for version in (
         "3.14.6",
         "1.14.0",
@@ -175,6 +184,7 @@ def main() -> None:
 
     bootstrap = HERE / "bootstrap_replay.sh"
     require(bootstrap.stat().st_mode & 0o111)
+    require((HERE / "fake_python_public_token.sh").stat().st_mode & 0o111)
     print(
         "PASS: submission identity, abstract range, placeholders, provenance, "
         "and highlights"

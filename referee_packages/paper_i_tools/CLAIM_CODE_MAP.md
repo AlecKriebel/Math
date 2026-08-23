@@ -17,11 +17,15 @@ relative to `source_and_certificates/universal_simultaneous_amplification/`.
 | Standard Hessian sector and physical normalization | Section 4; Appendix A | `phase5_exact_threshold/r2_standard_physical_phase/verify_physical_standard_phase.py`; `phase5_exact_threshold/r2_regular_sector/verify_local_complete_hessian.py`; `phase5_exact_threshold/paper_db_extremality/verify_paper_claims.py` |
 | Cross-sector decomposition, phase typing, defect gauge, and curvature conversion | Sections 3--5; Appendices A and C | `phase5_exact_threshold/paper_db_extremality/verify_paper_claims.py` |
 
-The top-level replay is
-`phase5_exact_threshold/paper_db_extremality/replay.sh`. It invokes the unit
-suite and all seventeen verifier or cross-check programs directly. Three
-bundled modules are imported on that path, but their guarded command-line
-suites are not executed:
+The sole certified end-to-end entry point is
+`./run_all_referee_checks.sh` at the root of the enclosing package. It verifies
+the exact package tree, safely extracts the verified source archive to a fresh
+directory, provisions the pinned runtime and private empty cache, and then
+invokes `submission/bootstrap_replay.sh` and `replay.sh` as internal stages.
+The internal replay invokes the unit suite and all seventeen verifier or
+cross-check programs directly. Direct lower-stage execution is a development
+convenience, not package certification. Three bundled modules are imported on
+the internal path, but their guarded command-line suites are not executed:
 
 - `verify_resolvent_identities.py`: `solve()` is called repeatedly by
   `verify_marked_lift.py`; its `main()` examples are not run;

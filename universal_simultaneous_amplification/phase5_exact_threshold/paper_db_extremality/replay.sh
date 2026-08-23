@@ -1,6 +1,10 @@
 #!/bin/sh
 set -eu
 
+if [ "${PYTHON+x}" = x ]; then
+  echo "PYTHON overrides are forbidden for the internal Paper I replay stage" >&2
+  exit 2
+fi
 case ${PYTHONOPTIMIZE-} in
   ""|0) ;;
   *)
@@ -10,57 +14,52 @@ case ${PYTHONOPTIMIZE-} in
 esac
 unset PYTHONOPTIMIZE PYTHONPATH PYTHONHOME PYTHONSTARTUP PYTHONINSPECT \
   PYTHONWARNINGS PYTHONPYCACHEPREFIX PYTHONCASEOK PYTHONPLATLIBDIR \
-  PYTHONUSERBASE PYTHONEXECUTABLE MAKEFLAGS MFLAGS GNUMAKEFLAGS MAKEOVERRIDES
+  PYTHONUSERBASE PYTHONEXECUTABLE PYTHON MAKEFLAGS MFLAGS GNUMAKEFLAGS \
+  MAKEOVERRIDES
 export PYTHONNOUSERSITE=1
 export PYTHONDONTWRITEBYTECODE=1
 
-paper_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
-root=$(CDPATH= cd -- "$paper_dir/../.." && pwd)
-if [ -x "$root/.venv-paper1/bin/python" ]; then
-  default_python="$root/.venv-paper1/bin/python"
-else
-  default_python="$root/.venv/bin/python"
-fi
-python=${PYTHON:-"$default_python"}
-
-case "$python" in
-  */*)
-    if [ ! -x "$python" ]; then
-      echo "Selected Paper I Python is not executable: $python" >&2
-      exit 2
-    fi
-    ;;
-  *)
-    if ! command -v "$python" >/dev/null 2>&1; then
-      echo "Selected Paper I Python is unavailable: $python" >&2
-      exit 2
-    fi
-    python=$(command -v "$python")
-    ;;
-esac
-
-if ! preflight_output=$("$python" -I \
-  "$paper_dir/submission/verify_execution_safety.py" \
-  --runtime --dependencies --audit-sources); then
-  echo "Selected interpreter failed the Paper I safety preflight: $python" >&2
+if [ "$#" -ne 2 ] || [ "$1" != "--internal-from-bootstrap" ]; then
+  echo "replay.sh is an internal verifier stage; use the enclosing package's run_all_referee_checks.sh" >&2
   exit 2
 fi
-case "$preflight_output" in
-  *PAPER1_EXECUTION_SAFETY_OK*) ;;
+runtime_dir=$2
+case "$runtime_dir" in
+  /*) ;;
   *)
-    echo "Selected command did not execute the Paper I safety preflight: $python" >&2
+    echo "Internal replay runtime must be an absolute directory: $runtime_dir" >&2
     exit 2
     ;;
 esac
-printf '%s\n' "$preflight_output"
+if [ ! -d "$runtime_dir" ]; then
+  echo "Internal replay runtime is missing: $runtime_dir" >&2
+  exit 2
+fi
+runtime_dir=$(CDPATH= cd -- "$runtime_dir" && pwd)
+python="$runtime_dir/venv/bin/python"
+cache="$runtime_dir/pycache"
+if [ ! -x "$python" ]; then
+  echo "Fresh Paper I virtual-environment interpreter is missing: $python" >&2
+  exit 2
+fi
+if [ ! -d "$cache" ] || [ -n "$(find "$cache" -mindepth 1 -print -quit)" ]; then
+  echo "Fresh Paper I bytecode-cache directory is missing or nonempty: $cache" >&2
+  exit 2
+fi
+
+paper_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+root=$(CDPATH= cd -- "$paper_dir/../.." && pwd)
+"$python" -I -B -X "pycache_prefix=$cache" \
+  "$paper_dir/submission/verify_execution_safety.py" \
+  --runtime --dependencies --audit-sources --expected-cache-prefix "$cache"
 
 cd "$root"
 
 # Strong-selection, directed-support, triangle, K4, and lumpability suite.
 # Invoke each check directly so unrelated project Make targets and inherited
-# Make behavior are outside this standalone certificate.
+# Make behavior are outside this internal verifier stage.
 run_python() {
-  PYTHONPATH="$root" "$python" "$@"
+  PYTHONPATH="$root" "$python" -B -X "pycache_prefix=$cache" "$@"
 }
 run_python -m unittest discover -s tests -v
 run_python verification/verify_obstruction.py
@@ -94,3 +93,9 @@ run_python verify_local_complete_hessian.py
 # Paper-level normalization and theorem-integration audit.
 cd "$paper_dir"
 run_python verify_paper_claims.py
+
+if [ -n "$(find "$cache" -mindepth 1 -print -quit)" ]; then
+  echo "Controlled Paper I bytecode cache was unexpectedly populated: $cache" >&2
+  exit 2
+fi
+echo "PASS: internal verifier stage completed with an empty controlled cache"

@@ -246,11 +246,13 @@ This does not classify the unrestricted six-parameter family.
 
 ## Replay and independent verification
 
-**[EXACTLY COMPUTED]**  Run the independent orbit derivation and sign
-certificates with
+**[EXACTLY COMPUTED]** The certified package launcher runs the independent
+orbit derivation and sign certificates. For an individual development
+invocation from the project root, use
 
 ```bash
-./.venv/bin/python phase2_n4/derive_lumped_certificates.py
+PAPER1_DEV_PYTHON=python3.14
+"$PAPER1_DEV_PYTHON" phase2_n4/derive_lumped_certificates.py
 ```
 
 The script constructs (1), solves both quotient chains, verifies (3)--(14),
@@ -260,7 +262,8 @@ checks all claimed coefficient signs, and verifies the determinant identity
 **[INDEPENDENTLY VERIFIED]**  Run
 
 ```bash
-./.venv/bin/python phase2_n4/crosscheck_full_chain.py
+PAPER1_DEV_PYTHON=python3.14
+"$PAPER1_DEV_PYTHON" phase2_n4/crosscheck_full_chain.py
 ```
 
 This uses the separate full subset-state implementation.  It checks every
@@ -268,11 +271,8 @@ transition row, proves both count partitions strongly lumpable symbolically,
 solves the resulting quotient independently, and compares four full
 14-transient-state rational-weight solutions to the family formulas.
 
-**[OBSERVATION REPLAY]**  Run the finite exact search with
-
-```bash
-./.venv/bin/python phase2_n4/search_exact_k4.py
-```
-
-The default 5,000-trial unrestricted search and the 1,352-point family grid
-complete using exact rational arithmetic.
+**[DEVELOPMENT-ONLY OBSERVATION]** The finite exact search script
+`search_exact_k4.py` is intentionally omitted from the public certificate
+bundle. In the full development repository it reproduces the 5,000-trial
+unrestricted search and the 1,352-point family grid using exact rational
+arithmetic. Neither observation carries a theorem quantifier.

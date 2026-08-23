@@ -6,12 +6,15 @@ weights tie exactly.
 
 The self-contained proof is in `triangle_classification.md`.
 
-Replay the independent derivation and the full subset-state cross-check with:
+The certified package launcher runs all three programs. For an individual
+development invocation from the project root after preparing the pinned
+environment, use:
 
 ```bash
-./.venv/bin/python phase2_triangle/derive_certificate.py
-./.venv/bin/python phase2_triangle/crosscheck_exact_solver.py
-./.venv/bin/python phase2_triangle/audit/independent_triangle_audit.py
+PAPER1_DEV_PYTHON=python3.14
+"$PAPER1_DEV_PYTHON" phase2_triangle/derive_certificate.py
+"$PAPER1_DEV_PYTHON" phase2_triangle/crosscheck_exact_solver.py
+"$PAPER1_DEV_PYTHON" phase2_triangle/audit/independent_triangle_audit.py
 ```
 
 None uses floating-point arithmetic.  The derivation script does not import

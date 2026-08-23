@@ -20,25 +20,40 @@ four-vertex families provide global low-order slices.  The paper does **not**
 claim global complete-kernel maximality at fitness two or a local radius
 uniform in population size.
 
-In a fresh clone or extracted source bundle, first create the pinned replay
-environment and run the suite with:
+## Certified replay
+
+The sole certified end-to-end command is run from the root of the enclosing
+frozen reproducibility package:
 
 ```sh
-./submission/bootstrap_replay.sh
+./run_all_referee_checks.sh
 ```
 
-In an already prepared development tree, run:
+It verifies the exact package tree and hashes, safely extracts the verified
+source archive into a fresh directory, rejects links, special nodes,
+unmanifested files/directories, and bytecode caches, creates a pinned private
+runtime, invokes the bootstrap and verifier runner internally, rebuilds the
+PDF, and compares it byte-for-byte with the delivered manuscript.
+
+## Development helpers
+
+In a development checkout, the corresponding component run is:
 
 ```sh
-./replay.sh
+./submission/bootstrap_replay.sh --development
 ./build.sh
 ```
 
-`all.sh` performs both.  The deterministic manuscript PDF is written to
+`all.sh` performs both development operations. Direct execution of
+`bootstrap_replay.sh` or `replay.sh` is not a package-integrity certificate;
+`replay.sh` is an internal stage and rejects standalone invocation. The
+deterministic manuscript PDF is written to
 `output/pdf/complete_graph_extremality_db.pdf`; rendered pages for visual QA
 are written to `output/rendered/`.
 
 The development-tree replay calls exact rational/symbolic certificates tracked
 elsewhere in this repository together with the paper-specific integration
 audit.  The release-bundle script copies those dependencies into a standalone
-archive.  No sampled floating-point calculation carries a theorem quantifier.
+source archive, while the enclosing referee/reproducibility package supplies
+the certified launcher and exact package verifier. No sampled floating-point
+calculation carries a theorem quantifier.

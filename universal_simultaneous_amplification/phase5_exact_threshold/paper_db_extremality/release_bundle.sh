@@ -26,7 +26,8 @@ case "$output" in
 esac
 
 mkdir -p "$(dirname -- "$output")"
-BOOTSTRAP_PYTHON="$bootstrap_python" "$paper_dir/submission/bootstrap_replay.sh"
+BOOTSTRAP_PYTHON="$bootstrap_python" \
+  "$paper_dir/submission/bootstrap_replay.sh" --development
 "$paper_dir/build.sh"
 if [ -f "$paper_dir/submission/verify_submission_materials.py" ]; then
   "$bootstrap_python" -I "$paper_dir/submission/verify_submission_materials.py"

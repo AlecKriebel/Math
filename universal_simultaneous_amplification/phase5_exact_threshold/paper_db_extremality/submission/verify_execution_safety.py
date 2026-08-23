@@ -5,11 +5,14 @@ from __future__ import annotations
 
 import argparse
 import ast
+import hashlib
 import importlib
 import importlib.metadata as metadata
 import importlib.util
 import os
-from pathlib import Path
+from pathlib import Path, PurePosixPath
+import re
+import stat
 import sys
 
 
@@ -58,6 +61,7 @@ EXPECTED_SCIENTIFIC_CHECKS = {
 HERE = Path(__file__).resolve().parent
 PAPER = HERE.parent
 REPO = HERE.parents[3]
+HEX64 = re.compile(r"[0-9a-f]{64}")
 
 
 class CertificateFailure(RuntimeError):
@@ -107,6 +111,153 @@ def check_dependencies() -> None:
     )
 
 
+def digest(path: Path) -> str:
+    value = hashlib.sha256()
+    with path.open("rb") as stream:
+        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+            value.update(chunk)
+    return value.hexdigest()
+
+
+def parse_manifest(path: Path) -> dict[PurePosixPath, str]:
+    expected: dict[PurePosixPath, str] = {}
+    for number, line in enumerate(path.read_text(encoding="ascii").splitlines(), 1):
+        try:
+            claimed, raw_name = line.split("  ", 1)
+        except ValueError as exc:
+            raise CertificateFailure(
+                f"{path.name}:{number}: malformed manifest line"
+            ) from exc
+        name = PurePosixPath(raw_name)
+        require(
+            HEX64.fullmatch(claimed) is not None,
+            f"{path.name}:{number}: malformed SHA-256",
+        )
+        require(
+            not name.is_absolute()
+            and ".." not in name.parts
+            and name.as_posix() == raw_name,
+            f"{path.name}:{number}: unsafe or noncanonical path",
+        )
+        require(name not in expected, f"{path.name}:{number}: duplicate path")
+        require(
+            name != PurePosixPath("MANIFEST.sha256"),
+            "the internal manifest must not list itself",
+        )
+        expected[name] = claimed
+    require(expected, f"{path.name}: empty manifest")
+    return expected
+
+
+def implied_directories(files: set[PurePosixPath]) -> set[PurePosixPath]:
+    directories: set[PurePosixPath] = set()
+    for name in files:
+        parent = name.parent
+        while parent != PurePosixPath("."):
+            directories.add(parent)
+            parent = parent.parent
+    return directories
+
+
+def inspect_tree(root: Path) -> tuple[set[PurePosixPath], set[PurePosixPath]]:
+    require(root.is_absolute(), f"bundle root must be absolute: {root}")
+    root_stat = root.lstat()
+    require(stat.S_ISDIR(root_stat.st_mode), f"bundle root is not a directory: {root}")
+
+    files: set[PurePosixPath] = set()
+    directories: set[PurePosixPath] = set()
+
+    def visit(directory: Path, relative_directory: PurePosixPath) -> None:
+        with os.scandir(directory) as entries:
+            for entry in entries:
+                relative = (
+                    PurePosixPath(entry.name)
+                    if relative_directory == PurePosixPath(".")
+                    else relative_directory / entry.name
+                )
+                details = entry.stat(follow_symlinks=False)
+                mode = details.st_mode
+                require(
+                    not stat.S_ISLNK(mode),
+                    f"bundle tree contains a symlink: {relative}",
+                )
+                if stat.S_ISDIR(mode):
+                    require(
+                        entry.name.casefold() != "__pycache__",
+                        f"bundle tree contains a forbidden bytecode/cache directory: {relative}",
+                    )
+                    directories.add(relative)
+                    visit(Path(entry.path), relative)
+                elif stat.S_ISREG(mode):
+                    require(
+                        relative.suffix.casefold() not in {".pyc", ".pyo"},
+                        f"bundle tree contains forbidden bytecode: {relative}",
+                    )
+                    files.add(relative)
+                else:
+                    raise CertificateFailure(
+                        f"bundle tree contains a special node: {relative}"
+                    )
+
+    visit(root, PurePosixPath("."))
+    return files, directories
+
+
+def check_bundle_tree(root: Path) -> dict[PurePosixPath, str]:
+    root = root.absolute()
+    root_details = root.lstat()
+    require(
+        stat.S_ISDIR(root_details.st_mode),
+        f"bundle root is not a regular directory: {root}",
+    )
+    root = root.resolve(strict=True)
+    actual_files, actual_directories = inspect_tree(root)
+    manifest_path = root / "MANIFEST.sha256"
+    require(manifest_path.is_file(), f"missing internal manifest: {manifest_path}")
+    expected = parse_manifest(manifest_path)
+    expected_files = set(expected) | {PurePosixPath("MANIFEST.sha256")}
+    expected_directories = implied_directories(expected_files)
+    missing_files = sorted(str(path) for path in expected_files - actual_files)
+    unexpected_files = sorted(str(path) for path in actual_files - expected_files)
+    missing_directories = sorted(
+        str(path) for path in expected_directories - actual_directories
+    )
+    unexpected_directories = sorted(
+        str(path) for path in actual_directories - expected_directories
+    )
+    require(
+        actual_files == expected_files and actual_directories == expected_directories,
+        "bundle tree node-set mismatch; "
+        f"missing_files={missing_files}, unexpected_files={unexpected_files}, "
+        f"missing_directories={missing_directories}, "
+        f"unexpected_directories={unexpected_directories}",
+    )
+    for name, claimed in expected.items():
+        require(digest(root / name) == claimed, f"bundle tree hash mismatch: {name}")
+    print(
+        f"PASS: exact bundle tree contains {len(actual_files)} regular files, "
+        f"{len(actual_directories)} implied directories, no links/special nodes, "
+        "and no bytecode/cache entries"
+    )
+    return expected
+
+
+def check_cache_prefix(expected: Path) -> None:
+    expected = expected.resolve(strict=True)
+    actual_text = sys.pycache_prefix
+    require(actual_text is not None, "controlled bytecode-cache prefix is not active")
+    require(
+        Path(actual_text).resolve() == expected,
+        f"wrong bytecode-cache prefix: expected {expected}; found {actual_text}",
+    )
+    require(
+        sys.flags.dont_write_bytecode == 1,
+        "certificate interpreter must disable bytecode writes",
+    )
+    require(not any(expected.iterdir()), f"controlled cache is not empty: {expected}")
+    print(f"PASS: fresh private bytecode-cache prefix is active and empty: {expected}")
+
+
 def load_bundle_manifest():
     source = PAPER / "bundle_manifest.py"
     spec = importlib.util.spec_from_file_location("paper1_bundle_manifest", source)
@@ -116,13 +267,26 @@ def load_bundle_manifest():
     return module
 
 
-def check_sources() -> None:
-    manifest = load_bundle_manifest()
+def check_sources(
+    verified_manifest: dict[PurePosixPath, str] | None = None,
+    bundle_root: Path = REPO,
+) -> None:
+    if verified_manifest is None:
+        manifest = load_bundle_manifest()
+        candidates = manifest.collect(REPO)
+    else:
+        candidates = [
+            (relative, bundle_root / relative)
+            for relative in sorted(
+                verified_manifest,
+                key=lambda path: path.as_posix(),
+            )
+        ]
     python_files = 0
     explicit_checks = 0
     scientific_checks: dict[str, int] = {}
     forbidden: list[str] = []
-    for relative, path in manifest.collect(REPO):
+    for relative, path in candidates:
         if path.suffix != ".py":
             continue
         python_files += 1
@@ -158,6 +322,8 @@ def main() -> None:
     parser.add_argument("--dependencies", action="store_true")
     parser.add_argument("--audit-sources", action="store_true")
     parser.add_argument("--intentional-failure", action="store_true")
+    parser.add_argument("--bundle-root", type=Path)
+    parser.add_argument("--expected-cache-prefix", type=Path)
     args = parser.parse_args()
     require(
         any(vars(args).values()),
@@ -165,13 +331,22 @@ def main() -> None:
     )
     if args.runtime:
         check_runtime()
+    if args.expected_cache_prefix:
+        check_cache_prefix(args.expected_cache_prefix)
+    verified_manifest = None
+    bundle_root = REPO
+    if args.bundle_root:
+        bundle_root = args.bundle_root.resolve(strict=True)
+        verified_manifest = check_bundle_tree(bundle_root)
     if args.dependencies:
         check_dependencies()
     if args.audit_sources:
-        check_sources()
+        check_sources(verified_manifest, bundle_root)
     if args.intentional_failure:
         require(False, "INTENTIONAL_NEGATIVE_CONTROL: explicit false check")
-    print("PAPER1_EXECUTION_SAFETY_OK")
+    if args.expected_cache_prefix:
+        check_cache_prefix(args.expected_cache_prefix)
+    print("PASS: Paper I execution-safety checks completed")
 
 
 if __name__ == "__main__":

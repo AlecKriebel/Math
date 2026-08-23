@@ -301,3 +301,36 @@
   files were byte-identical to their source copies.
 - Paper I independent-referee correction and r2 handoff: 100% complete.  No
   theorem or proof changed; only human-controlled submission actions remain.
+
+## 2026-08-22 22:01 PDT — R2 re-review hardening checkpoint
+
+- Independently reproduced both integrity defects reported in the R2
+  re-review.  A marker-printing program supplied through the public `PYTHON`
+  override could satisfy the old token-based launcher without executing any
+  verifier, and a timestamp-valid adjacent bytecode file could execute from
+  an otherwise hash-valid source extraction.  Both findings are therefore
+  accepted.  Neither affects a theorem, proof, exact certificate, numerical
+  value, or the 406 scientific failure conditions.
+- Replaced the token-authenticated workflow by one sole certified entry point,
+  the package-root `run_all_referee_checks.sh`.  It rejects interpreter
+  overrides, exact-scans the delivered package, extracts only verified regular
+  files into a new empty source directory, and invokes the bootstrap and
+  replay scripts only as internal stages tied to its private runtime.
+- Added exact file-and-directory inventories, `lstat`-based rejection of
+  symlinks and special nodes, explicit rejection of bytecode and cache nodes,
+  and a fresh private cache supplied through `-X pycache_prefix` for every
+  project-Python invocation.  The safety audit derives its AST inventory
+  directly from the verified manifest before importing project code and
+  confirms that the cache is empty both before and after replay.
+- Added fail-closed controls for the former public-token interpreter attack,
+  adjacent hostile bytecode, an extra regular file, an extra empty directory,
+  a symlink, and a FIFO.  The hostile-bytecode control preserves the companion
+  source file's size, modification time, and manifest hash, so it directly
+  exercises the reported cache-selection mechanism.
+- Updated the manuscript and all bundled reproduction documents to distinguish
+  the sole certified package route from development and internal stages.  A
+  clean Python 3.14.6 development replay passed all six unit tests and all
+  seventeen verifier/cross-check programs; the 30-page PDF rebuilt cleanly.
+- Best-guess completion: 70% of the R2 re-review correction task.  The frozen
+  source archive, r3 referee package, outer certified replay, independent
+  hostile review, Drive copy, and final commit/push remain.

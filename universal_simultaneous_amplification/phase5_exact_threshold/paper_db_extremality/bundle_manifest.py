@@ -9,6 +9,7 @@ import hashlib
 import io
 import os
 from pathlib import Path, PurePosixPath
+import stat
 import tarfile
 import tempfile
 
@@ -69,7 +70,7 @@ EXCLUDED_PARTS = frozenset(
 EXCLUDED_NAMES = frozenset({".DS_Store"})
 EXCLUDED_PREFIXES = ("explore_", "scan_", "search_")
 EXCLUDED_SUFFIXES = frozenset(
-    {".aux", ".log", ".out", ".pyc", ".synctex.gz", ".toc"}
+    {".aux", ".log", ".out", ".pyc", ".pyo", ".synctex.gz", ".toc"}
 )
 PUBLIC_SUBMISSION_FILES = frozenset(
     {
@@ -78,6 +79,8 @@ PUBLIC_SUBMISSION_FILES = frozenset(
         f"{PAPER}/submission/ENVIRONMENT.md",
         f"{PAPER}/submission/PROVENANCE_AND_RELATED_RELEASES.md",
         f"{PAPER}/submission/bootstrap_replay.sh",
+        f"{PAPER}/submission/create_tree_negative_control.py",
+        f"{PAPER}/submission/fake_python_public_token.sh",
         f"{PAPER}/submission/verify_execution_safety.py",
     }
 )
@@ -117,12 +120,23 @@ def collect(repo_root: Path) -> list[tuple[PurePosixPath, Path]]:
         source = repo_root / listed
         if not source.exists():
             raise FileNotFoundError(f"required bundle input is missing: {listed}")
-        candidates = [source] if source.is_file() else source.rglob("*")
+        if source.is_symlink():
+            raise ValueError(f"symlinks are not permitted in bundle: {source}")
+        source_mode = source.lstat().st_mode
+        if stat.S_ISREG(source_mode):
+            candidates = [source]
+        elif stat.S_ISDIR(source_mode):
+            candidates = source.rglob("*")
+        else:
+            raise ValueError(f"special nodes are not permitted in bundle: {source}")
         for candidate in candidates:
             if candidate.is_symlink():
                 raise ValueError(f"symlinks are not permitted in bundle: {candidate}")
-            if not candidate.is_file():
+            mode = candidate.lstat().st_mode
+            if stat.S_ISDIR(mode):
                 continue
+            if not stat.S_ISREG(mode):
+                raise ValueError(f"special nodes are not permitted in bundle: {candidate}")
             relative = PurePosixPath(candidate.relative_to(repo_root).as_posix())
             if excluded(relative):
                 continue
@@ -158,7 +172,10 @@ def synthetic_metadata() -> bytes:
         "Python dependency artifacts: requirements-lock.txt; wheel-only SHA-256 lock\n"
         "PDF toolchain: Tectonic 0.16.9; Poppler 26.08.0\n"
         "Tectonic v33 bundle SHA-256: 6ffe055852f8faf66c0acbe1a7fb27f87b869a90bad1204f3bf4d9683f597c7c\n"
-        "Replay entry point: universal_simultaneous_amplification/"
+        "Certified replay: ./run_all_referee_checks.sh at enclosing package root\n"
+        "Internal environment stage (not standalone): universal_simultaneous_amplification/"
+        "phase5_exact_threshold/paper_db_extremality/submission/bootstrap_replay.sh\n"
+        "Internal verifier stage (not standalone): universal_simultaneous_amplification/"
         "phase5_exact_threshold/paper_db_extremality/replay.sh\n"
     ).encode("utf-8")
 

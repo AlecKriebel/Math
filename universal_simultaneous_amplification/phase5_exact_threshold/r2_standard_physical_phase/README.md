@@ -14,11 +14,13 @@ R2(delta) = nu0 Delta G Delta G(H-c0).
 It is not the distinct inverse-rank-weighted reward in the earlier standard
 phase note.
 
-Read `PHYSICAL_STANDARD_PHASE_THEOREM.md` and replay the exact certificate
-with
+The certified package launcher runs the exact certificate. For an individual
+development invocation from this directory after preparing the pinned
+environment, use
 
 ```bash
-../../.venv/bin/python verify_physical_standard_phase.py
+PAPER1_DEV_PYTHON=python3.14
+"$PAPER1_DEV_PYTHON" verify_physical_standard_phase.py
 ```
 
 The verifier uses exact rational arithmetic and symbolic polynomial

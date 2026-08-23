@@ -24,8 +24,9 @@ The files in this directory are:
   software snapshots and the boundary between Papers I and II;
 - `EXTERNAL_COMMUNICATION_BOUNDARY.md`: records the independent-research
   communication constraint; and
-- `BUNDLE_REPRODUCTION.md` and `bootstrap_replay.sh`: clean-extraction replay
-  instructions for the source-and-certificate archive; and
+- `BUNDLE_REPRODUCTION.md`: certified package-level replay instructions;
+- `bootstrap_replay.sh`: an inspectable internal/development provisioning
+  stage, not a standalone artifact certificate; and
 - `ENVIRONMENT.md`: exact interpreter, library, and PDF-toolchain versions;
   and
 - `REPRODUCTION_TEST.md`: the clean-extraction and pinned-environment test
