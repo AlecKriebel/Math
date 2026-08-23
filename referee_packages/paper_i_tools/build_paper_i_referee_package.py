@@ -10,6 +10,7 @@ import io
 import os
 from pathlib import Path, PurePosixPath
 import shutil
+import stat
 import subprocess
 import sys
 import tarfile
@@ -41,6 +42,34 @@ def sha256(path: Path) -> str:
         for chunk in iter(lambda: stream.read(1024 * 1024), b""):
             value.update(chunk)
     return value.hexdigest()
+
+
+def regular_files(root: Path) -> list[Path]:
+    files: list[Path] = []
+
+    def visit(directory: Path) -> None:
+        with os.scandir(directory) as entries:
+            for entry in entries:
+                details = entry.stat(follow_symlinks=False)
+                mode = details.st_mode
+                path = Path(entry.path)
+                if stat.S_ISLNK(mode):
+                    raise RuntimeError(f"package tree contains a symlink: {path}")
+                if stat.S_ISDIR(mode):
+                    if entry.name.casefold() == "__pycache__":
+                        raise RuntimeError(
+                            f"package tree contains a forbidden cache directory: {path}"
+                        )
+                    visit(path)
+                elif stat.S_ISREG(mode):
+                    if path.suffix.casefold() in {".pyc", ".pyo"}:
+                        raise RuntimeError(f"package tree contains bytecode: {path}")
+                    files.append(path)
+                else:
+                    raise RuntimeError(f"package tree contains a special node: {path}")
+
+    visit(root)
+    return sorted(files)
 
 
 def git_output(*args: str) -> str:
@@ -144,10 +173,9 @@ def extract_regular_archive(archive_path: Path, target: Path) -> int:
 
 def write_package_manifest(target: Path) -> int:
     rows: list[str] = []
-    for path in sorted(target.rglob("*")):
-        if path.is_symlink():
-            raise RuntimeError(f"package contains a symlink: {path}")
-        if not path.is_file() or path.name == "PACKAGE_MANIFEST.sha256":
+    manifest_path = target / "PACKAGE_MANIFEST.sha256"
+    for path in regular_files(target):
+        if path == manifest_path:
             continue
         relative = path.relative_to(target).as_posix()
         rows.append(f"{sha256(path)}  {relative}\n")
@@ -184,9 +212,7 @@ def write_transport_archive(target: Path) -> tuple[Path, str]:
                 with tarfile.open(
                     fileobj=compressed, mode="w", format=tarfile.PAX_FORMAT
                 ) as archive:
-                    for path in sorted(target.rglob("*")):
-                        if not path.is_file():
-                            continue
+                    for path in regular_files(target):
                         data = path.read_bytes()
                         name = f"{target.name}/{path.relative_to(target).as_posix()}"
                         info = tar_info(name, len(data), bool(path.stat().st_mode & 0o111))
@@ -212,8 +238,8 @@ Updating*. The package is intended for an independent, submission-style audit;
 it does not prescribe a favorable verdict.
 
 Start by reading `REFEREE_PROMPT.md`. Inspect the paper and code before running
-the convenience command. `CLAIM_CODE_MAP.md` is only a navigation index, and
-`REFEREE_REPORT_TEMPLATE.md` is optional.
+the sole certified package replay. `CLAIM_CODE_MAP.md` is only a navigation
+index, and `REFEREE_REPORT_TEMPLATE.md` is optional.
 
 ## Frozen identity
 
@@ -236,8 +262,10 @@ and PDF were generated, avoiding a self-referential package hash.
 - `source_and_certificates/`: byte-identical extraction of that archive for
   immediate inspection.
 - `verify_referee_package.py`: standard-library integrity verifier.
-- `run_all_referee_checks.sh`: manifest verification, pinned clean replay,
-  deterministic PDF rebuild, and PDF comparison in a disposable directory.
+- `run_all_referee_checks.sh`: the sole certified end-to-end entry point. It
+  verifies the exact package tree, safely extracts the verified source archive
+  to a disposable directory, provisions the pinned runtime, runs all internal
+  stages, rebuilds the PDF, and compares it byte-for-byte.
 
 Prior review verdicts, research diaries, and saved successful output are
 deliberately absent. Proof documents and independent checking programs remain.
@@ -246,8 +274,9 @@ the function-level reach described in `CLAIM_CODE_MAP.md` is advertised.
 
 ## Suggested order
 
-1. Independently inspect the PDF, LaTeX, proof documents, replay entry point,
-   every invoked verifier, and imported helpers.
+1. Independently inspect the PDF, LaTeX, proof documents, certified launcher,
+   internal bootstrap/replay stages, every invoked verifier, and imported
+   helpers.
 2. Verify package identity with `python3 -I verify_referee_package.py`.
 3. With Python 3.14.6 available, run `./run_all_referee_checks.sh`. If
    `python3` is not that exact interpreter, set for example
@@ -255,13 +284,22 @@ the function-level reach described in `CLAIM_CODE_MAP.md` is advertised.
 4. Preserve the transcript and complete an independent mathematical and code
    audit using the neutral prompt.
 
-The replay binds the accepted wheels for SymPy 1.14.0, python-flint 0.9.0, and
-mpmath 1.3.0 by SHA-256. The PDF rebuild requires Tectonic 0.16.9, the pinned
-standard v33 bundle content, and Poppler 26.08.0 (`pdfinfo` and `pdftoppm`).
-The bootstrap may access the configured Python package index to retrieve only
-hash-matching wheels; it does not contact any person or submit any artifact.
-The exact theorem replay is independent of the document tools, and the final
-PDF comparison detects any rendering difference.
+The bootstrap's explicit `--development` mode is a convenience rather than a
+certificate; `replay.sh` is internal-only and rejects standalone invocation.
+Neither lower-stage status certifies package identity or execution of the
+delivered source. The certified launcher rejects links, special nodes, extra
+files/directories, and bytecode/cache entries before any project import, then
+uses a fresh private cache prefix for every Python process that can import
+project code. The preceding exact-tree scanner is standard-library-only and
+imports no project module.
+
+The certified replay binds the accepted wheels for SymPy 1.14.0,
+python-flint 0.9.0, and mpmath 1.3.0 by SHA-256. The PDF rebuild requires
+Tectonic 0.16.9, the pinned standard v33 bundle content, and Poppler 26.08.0
+(`pdfinfo` and `pdftoppm`). The bootstrap may access the configured Python
+package index to retrieve only hash-matching wheels; it does not contact any
+person or submit any artifact. The exact theorem replay is independent of the
+document tools, and the final PDF comparison detects any rendering difference.
 """
     (target / "README_FIRST.md").write_text(content, encoding="utf-8")
 
@@ -272,7 +310,7 @@ def main() -> None:
         "--output-dir",
         type=Path,
         default=REPO
-        / "referee_packages/paper_i_complete_graph_extremality_referee_package_2026-08-22_r2",
+        / "referee_packages/paper_i_complete_graph_extremality_referee_package_2026-08-22_r3",
     )
     args = parser.parse_args()
 
@@ -314,6 +352,7 @@ def main() -> None:
 - Internal source-archive members: {source_members}
 - Archive members byte-checked against the source commit: {commit_member_count}
 - Package format date: 2026-08-22
+- Package remediation level: R3 exact-tree and interpreter-path hardening
 
 The scientific source commit predates the wrapping commit that may add this
 copied referee folder. It is the commit from which the archive and PDF were

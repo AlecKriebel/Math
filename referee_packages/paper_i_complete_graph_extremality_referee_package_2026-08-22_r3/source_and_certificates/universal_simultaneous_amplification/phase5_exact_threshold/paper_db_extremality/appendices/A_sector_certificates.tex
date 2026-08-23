@@ -1,0 +1,607 @@
+\section{Hessian-sector certificates for every population size}\label{app:sectors}
+
+This appendix proves Theorem~\ref{thm:sectors}.  Throughout, $N=n-1$ and
+\[
+ \pi_k=\frac{\binom{N-1}{k-1}}{2^{N-1}},\qquad 1\le k\le N, \tag{A.1}\label{A.1}
+\]
+is the complete active-rank law.  Its rank chain has
+\[
+ R_{k,k+1}=\frac{N-k}{2N},\qquad
+ R_{k,k-1}=\frac{k-1}{2N}.                                  \tag{A.2}\label{A.2}
+\]
+Let $h$ solve $(I-R)h=k^{-1}-c_0$ modulo constants and put
+$d_k=h_k-h_{k+1}$ for $1\le k<N$, with $d_0=d_N=0$.
+Subtracting adjacent Poisson equations
+gives
+\[
+ (N-k)d_k-(k-1)d_{k-1}
+ =2N\left(\frac1k-c_0\right),\qquad 1\le k<N.              \tag{A.3}\label{A.3}
+\]
+
+Solving this recurrence gives, for $1\le k<N$,
+\[
+ \frac{2}{k}-d_k=
+ \frac{2^{2-N}\sum_{r=k}^{N-1}\binom{N-1}{r}}
+  {(N-1)\binom{N-2}{k-1}},
+ \qquad
+ \frac{2(N-2)}{Nk}\le d_k\le \frac{2}{k}.                \tag{A.3a}\label{A.3a}
+\]
+For the lower bound, after clearing the positive denominator it is enough to
+show
+\[
+ Nk\sum_{r=k}^{N-1}\binom{N-1}{r}
+ \le2^N(N-1)\binom{N-2}{k-1}.                              \tag{A.3b}\label{A.3b}
+\]
+For $k\le N/2$, use the full binomial sum and
+$\binom{N-2}{k-1}\ge N-2$ away from the immediate endpoint $k=1$; for
+$k\ge2,N\ge4$, the remaining comparison follows from
+$Nk\le N^2/2\le2(N-1)(N-2)$.  The case $k=1$ is immediate.
+For $k>N/2$, symmetry and monotonicity of the lower half of the binomial
+row give
+\[
+ \sum_{r=k}^{N-1}\binom{N-1}{r}
+ \le (N-k)\frac{N-1}{k}\binom{N-2}{k-1},
+\]
+and $N(N-k)\le2^N$ completes the proof.  The order $N=2$ is direct.
+
+\subsection{Standard column-imbalance directions}
+
+Let $\xi\in\mathbb R^{N+1}$ have coordinate sum zero and let $E(\xi)$ be
+the standard embedding in \eqref{4.8}.  By $S_{N+1}$-invariance and
+irreducibility of the standard module, it is enough to calculate the scalar
+for the canonical vector $\xi=e_x-e_y$; the resulting ratio then holds for
+every zero-sum $\xi$.  Distinguish the labels $x,y$.  The
+signed two-label quotient has positive channels
+\[
+\begin{array}{c|l}
+P_k&v=x,\ x,y\notin B,\quad 1\le k<N,\\
+Q_k&v=x,\ y\in B,\quad 1\le k\le N,\\
+R_k&v\notin\{x,y\},\ x\in B,\ y\notin B,\quad 1\le k<N,
+\end{array}
+\]
+with the negative orientation obtained by exchanging $x,y$.  Use the channel
+orders
+\[
+ \mathcal G=(P_1,\ldots,P_{N-1},R_1,\ldots,R_{N-1}),
+ \qquad \mathcal Q=(Q_1,\ldots,Q_N).
+\]
+In these coordinates the operator is
+\[
+ H=\begin{pmatrix}S&C\\-D&Q\end{pmatrix},                 \tag{A.4s}\label{A.4s}
+\]
+where all four displayed blocks are nonnegative.  The nonzero signed rows
+are
+\[
+ P_k\mapsto {\frac{k}{2N}}P_k+{\frac{N-k-1}{2N}}P_{k+1}
+                   +{\frac{1}{2N}}Q_{k+1},                    \tag{A.5s}\label{A.5s}
+\]
+\[
+\begin{aligned}
+ Q_k\mapsto{}&{\frac{k^2-1}{2kN}}Q_k+{\frac{N-k}{2N}}Q_{k+1}
+ -{\frac{k-1}{2kN}}P_{k-1}-{\frac{N-k}{2kN}}P_k\\
+ &-{\frac{(k-1)^2}{2kN}}R_{k-1}
+ -{\frac{(k-1)(N-k)}{2kN}}R_k,
+\end{aligned}                                               \tag{A.6s}\label{A.6s}
+\]
+and
+\[
+\begin{aligned}
+ R_k\mapsto{}&\left\{{\frac{k}{2N}}+{\frac{(k-1)(N-k)}{2kN}}\right\}R_k
+ +{\frac{N-k-1}{2N}}R_{k+1}+{\frac{(k-1)^2}{2kN}}R_{k-1}\\
+ &+{\frac{1}{2kN}}Q_k+{\frac{k-1}{2kN}}P_{k-1}
+ +{\frac{N-k}{2kN}}P_k .
+\end{aligned}                                               \tag{A.7s}\label{A.7s}
+\]
+Terms outside their physical ranges are absent.  Define the binomial row
+\[
+ \sigma(R_k)={\frac{\binom{N-2}{k-1}}{2^{N-2}}},\qquad
+ \sigma(P_k)=0,\qquad \sigma(Q_k)=0,                       \tag{A.8s}\label{A.8s}
+\]
+and the physical reward
+\[
+\begin{aligned}
+ \gamma(P_k)&=k d_k,\\
+ \gamma(R_k)&=N d_k+{\frac{(N+1)(k-1)}{ k}}d_{k-1},\\
+ \gamma(Q_k)&=-q_k,
+ \quad q_k=(N-k)d_k+{\frac{(N+1)(k-1)}{ k}}d_{k-1}>0.
+\end{aligned}                                               \tag{A.9s}\label{A.9s}
+\]
+The standard-sector scalar is
+\[
+ \Phi_N=\sigma(I-H)^{-1}\gamma.                            \tag{A.10s}\label{A.10s}
+\]
+This is the physical, rather than an auxiliary, reward.  Indeed the first
+perturbation has feature coefficients
+\[
+ a_k={\frac{kd_k}{2(N+1)(N-1)}},\qquad
+ b_k={\frac{Nd_k}{2(N+1)(N-1)}}
+      +{\frac{(k-1)d_{k-1}}{2k(N-1)}},                         \tag{A.11s}\label{A.11s}
+\]
+whose $P,R,Q$ values are $a_k,b_k,a_k-b_k$.  The averaged second
+perturbation annihilates the $a$ feature and has $b_k$ coefficient
+$\sigma(R_k)/[2(N+1)]$.  Therefore
+\[
+ \boxed{{\frac{\Rtwo_n(E(\xi))}{\|\xi\|^2}}
+ = {\frac{\Phi_N}{4(N+1)^2(N-1)}}.}                            \tag{A.12s}\label{A.12s}
+\]
+The table in Section~\ref{sec:hessian} instead uses Frobenius normalization
+on the embedded matrix.  Direct summation of \eqref{4.8} gives
+\[
+ \|E(\xi)\|_F^2
+ =\frac{n-1}{n(n-2)}\|\xi\|^2,                               \tag{A.12n}\label{A.12n}
+\]
+and therefore the Frobenius-normalized standard eigenvalue is
+$\Phi_N/[4N(N+1)]$.  For example, the canonical $n=3$ ratio
+$\Rtwo_3(E(\xi))/\|\xi\|^2=2/33$ becomes the table value $1/11$.
+
+It remains to prove $\Phi_N>0$.  Put
+\[
+ R_S=(I-S)^{-1},\quad R_Q=(I-Q)^{-1},\quad
+ A=R_SCR_QD,
+\]
+where the displayed rows give
+$S\one\le(N-1)\one/N$ and
+$(Q\one)_k=1/2-1/(2kN)$.  Thus both inverses are convergent Neumann series
+and are entrywise nonnegative.  Also put
+\[
+ h=R_Qq,\qquad r_0=\gamma_S-Ch,\qquad f_0=R_Sr_0.          \tag{A.13s}\label{A.13s}
+\]
+Schur elimination of the bad channel gives the exact alternating-phase
+identity
+\[
+ \Phi_N=\sigma(I+A)^{-1}f_0.                               \tag{A.14s}\label{A.14s}
+\]
+
+For $N\ge6$, define
+\[
+ W_1=2N^2d_1,\quad W_2=2Nd_1,\quad
+ W_k={\frac{4N(k-1)}{ k}}d_{k-1}\quad(3\le k\le N).           \tag{A.15s}\label{A.15s}
+\]
+Then $(I-Q)W\ge q$.  At ranks one and two the cleared residuals are
+$2(N^2-N+1)d_1$ and
+\[
+ {\frac{3N-4}{2}}d_1-{\frac{7(N-2)}{3}}d_2
+ \ge {\frac{2(N-2)(N-6)}{3N}}.
+\]
+For $k\ge3$ the residual is $A_kd_{k-1}-B_kd_k$, with
+\[
+ A_k={\frac{(k-1)(3kN-2k^2-k+2)}{ k^2}},\qquad
+ B_k={\frac{(3k+1)(N-k)}{ k+1}}.
+\]
+Using \eqref{A.3a}, it is at least
+$2P(N,k)/[Nk^2(k+1)]$.  On setting $a=k-3$ and $m=N-k$,
+\[
+\begin{aligned}
+P={}&a^4+a^3m+10a^3+5a^2m+37a^2+60a\\
+   &+2am(m-1)+6m^2-22m+32>0.
+\end{aligned}                                               \tag{A.16s}\label{A.16s}
+\]
+the last quadratic has discriminant $-284$.  Thus $h\le W$.  Direct
+substitution now gives
+\[
+\begin{array}{c|c}
+P_1&0\\
+P_k&k(k-1)d_k/(k+1),\quad 2\le k<N\\
+R_1&0\\
+R_2&Nd_2+Nd_1/2\\
+R_k&Nd_k+{\frac{k-1}{ k}}(N+1-2/k)d_{k-1},\quad 3\le k<N
+\end{array}                                                \tag{A.17s}\label{A.17s}
+\]
+for the coordinates of $\gamma_S-CW$.  Hence $f_0\ge0$.
+
+The bad exit and retention row sums satisfy
+\[
+ D\one={\frac{N-1}{2N}}\one,\qquad
+ (Q\one)_k={\frac{1}{2}}-{\frac{1}{2kN}}.                         \tag{A.18s}\label{A.18s}
+\]
+Consequently $R_QD\one\le\one$.  With
+\[
+ z(P_k)=1/N,\qquad z(R_k)=2/(N+k),
+\]
+one has $(I-S)z\ge C\one$.  The $P_k$ gap is $1/(2N^2)$;
+after $a=k-1,m=N-k$, the cleared $R_k$ gap is
+\[
+\begin{aligned}
+Z={}&4a^4+14a^3m+18a^3+14a^2m^2+40a^2m+30a^2\\
+ &+4am^3+24am^2+36am+20a+3m^3+8m^2+9m+4>0.
+\end{aligned}                                               \tag{A.19s}\label{A.19s}
+\]
+Applying the positive inverses proves
+\[
+ A\one\le {\frac{2}{ N+1}}\one.                              \tag{A.20s}\label{A.20s}
+\]
+
+Two elementary barriers control the first phase.  The supersolution
+$u(P_k)=4,u(R_k)=8N$ gives $0\le f_0\le8N\one$.  Indeed its
+$P$ residual is $2(N+1)/N\ge kd_k$, while its $R$ residual exceeds the
+upper bound $2(2N+1)/k$ for $\gamma(R_k)$ by
+$2(4Nk-4N+1)/(Nk)$.  Separately, $q_k\le2N$ and
+\eqref{A.18s} imply $h\le4N\one$.  For $N\ge7$, the subsolution
+$\ell(P_k)=0,\ell(R_k)=2N$ then gives
+\[
+ f_0(R_k)\ge2N,\qquad \sigma f_0\ge2N.                    \tag{A.21s}\label{A.21s}
+\]
+At $k=1$ the margin is $2N-6-(N+1)\ge0$; at $k\ge2$ it is
+$[3N-7-2k-4/N]/k\ge0$.
+
+Set $c_N=2/(N+1)$.  Equations \eqref{A.20s}--\eqref{A.21s} and the
+Neumann series for $(I+A)^{-1}$ yield, for $N\ge10$,
+\[
+ \Phi_N\ge2N-8N\sum_{j\ge1}c_N^j
+ ={\frac{2N(N-9)}{ N-1}}>0.                                   \tag{A.22s}\label{A.22s}
+\]
+The remaining exact values are
+\[
+\begin{array}{c|c@{\qquad}c|c}
+N&\Phi_N&N&\Phi_N\\ \hline
+2&24/11&6&5758562957/248448224\\
+3&261/40&7&141339691089527/4988552903680\\
+4&343400/28657&8&15468663676289/466560376100\\
+5&2268275/128288&9&19782952499295763/524622207176704.
+\end{array}                                                \tag{A.23s}\label{A.23s}
+\]
+This proves the standard-sector sign for every population size.  The supplementary
+verifier independently reconstructs the quotient, normalization, barriers,
+shifted polynomials, and every value in \eqref{A.23s}.
+
+\subsection{Antisymmetric balanced directions}
+
+Let $\delta=-\delta^{\mathsf T}$ have zero row sums and set
+\[
+ x(B,v)=\sum_{i\in B}\delta_{vi}.                            \tag{A.4}\label{A.4}
+\]
+Direct expansion of the active moves gives
+\[
+ \Delta h(B,v)=\frac{d_k}{2}x(B,v),\qquad k=|B|.             \tag{A.5}\label{A.5}
+\]
+\begin{lemma}[strict rank-Poisson gradients]\label{lem:rank-gradient}
+The Poisson gradients satisfy
+\[
+ d_1>d_2>\cdots>d_{N-1}>0.                                  \tag{A.6}\label{A.6}
+\]
+\end{lemma}
+
+\begin{proof}
+Realize the chain \eqref{A.2} on $N-1$ Boolean coordinates.  At each step
+choose uniformly among these coordinates and one dummy slot; a genuine
+coordinate, when chosen, is refreshed to an independent fair bit, whereas
+the dummy leaves the configuration unchanged.  If $K_t$ is one plus the
+number of occupied coordinates, its transition probabilities are exactly
+\eqref{A.2}.  For $f(k)=k^{-1}-c_0$, stationarity gives $\pi f=0$, and finite
+ergodicity gives the convergent Poisson representation, modulo an irrelevant
+constant,
+\[
+ h_k=\sum_{t\ge0}\E_k f(K_t).
+\]
+
+Couple configurations of ranks $k$ and $k+1$ that differ only at a
+distinguished bit $a$, using the same chosen slots and fair refreshes.  Until
+the first refresh of $a$, write $X_t$ for the number of occupied common
+coordinates.  The forcing difference is
+\[
+ g(X_t):=\frac1{X_t+1}-\frac1{X_t+2}>0;
+\]
+after that refresh the two chains coalesce.  Termwise summation of the
+Poisson series therefore gives $d_k>0$.
+
+For $1\le k\le N-2$, choose another bit $b$ and a set $S$ of $k-1$
+occupied bits, disjoint from $a,b$.  Start four chains from
+\[
+ S,\qquad S\cup\{a\},\qquad S\cup\{b\},\qquad S\cup\{a,b\},
+\]
+and again use identical refreshes.  The first pair represents $d_k$ and the
+second represents $d_{k+1}$.  The common configuration of the second pair
+contains that of the first until $b$ is refreshed, after which the
+corresponding common configurations coincide.  Since $g$ is strictly
+decreasing, every summand for $d_k$ dominates the corresponding summand for
+$d_{k+1}$, and the inequality is strict already at time zero.  Hence
+$d_k>d_{k+1}$, proving the lemma.
+\end{proof}
+
+For any rank sequence $f_k$,
+\[
+ K_0\{f_kx(B,v)\}
+ =\frac{kf_k+(N-k-1)f_{k+1}}{2N}x(B,v).                      \tag{A.7}\label{A.7}
+\]
+Thus $G\Delta h=r_kx$, where $r_N=0$ and
+\[
+ (2N-k)r_k-(N-k-1)r_{k+1}=Nd_k.                             \tag{A.8}\label{A.8}
+\]
+Backward induction using \eqref{A.6} gives
+\[
+ 0\le r_{k+1}<r_k\le\frac{N}{N+1}d_k.                       \tag{A.9}\label{A.9}
+\]
+
+Put $T=\|\delta\|_F^2$.  Sampling without replacement and applying
+$\Delta$ a second time yields
+\[
+\begin{aligned}
+ \E_k[\Delta(r_kx)]={\frac{T}{2nN}}\Big[&
+ {\frac{k(N-k)}{ N-1}}(r_k-r_{k+1})+(N-k)r_{k+1}\\
+ &+{\frac{(k-1)(N-k+1)}{ N-1}}(r_{k-1}-r_k)
+ +(N-k+1)r_k\Big].
+\end{aligned}                                               \tag{A.10}\label{A.10}
+\]
+The coefficient of the absent $r_0-r_1$ term is zero.  Every displayed term
+is nonnegative by \eqref{A.9}, and the total is strict when $T>0$.
+Averaging with \eqref{A.1} proves positivity of the antisymmetric sector for
+every $N\ge2$.
+
+\subsection{Symmetric balanced directions}
+
+For a symmetric balanced $\delta$, put
+\[
+ x(B,v)=\sum_{i\in B}\delta_{vi},\qquad
+ z(B)=\sum_{\substack{w,i\in B\\w\ne i}}\delta_{wi}.       \tag{A.11}\label{A.11}
+\]
+Functions in this sector have the form $a_kx+b_kz$.  Transpose the exact
+two-channel rank operator and split its positive and negative channels:
+\[
+ H=K^{\mathsf T}=\begin{pmatrix}S&C\\-D&Q\end{pmatrix}.     \tag{A.12}\label{A.12}
+\]
+Every displayed block is entrywise nonnegative.  The nonzero entries are
+\[
+\begin{aligned}
+ S_{k,k}&={\frac{k}{2N}},&S_{k,k-1}&={\frac{N-k}{2N}},\\
+ Q_{k,k}&={\frac{N(k-2)+k}{2kN}},
+ &Q_{k,k-1}&={\frac{N-k-1}{2N}},\\
+ Q_{k,k+1}&={\frac{k(k-1)}{2(k+1)N}},
+ &D_{k,k-1}&={\frac{1}{ N}},
+\end{aligned}                                               \tag{A.13}\label{A.13}
+\]
+and
+\[
+ C_{k-1,k}={\frac{k-1}{2kN}},\qquad C_{k,k}={\frac{N-k}{2kN}}.      \tag{A.14}\label{A.14}
+\]
+The $a$ channel is indexed by $1\le k<N$ and the $b$ channel by
+$2\le k<N$; entries outside these ranges are zero.  The positive source is
+\[
+ s_k^a={\frac{d_k}{2}},\qquad s_k^b={\frac{d_{k-1}}{2k}},            \tag{A.15}\label{A.15}
+\]
+and the good/bad reward is
+\[
+ g_k^a={\frac{\binom{N-2}{k-1}}{2^{N-1}(N+1)}},\qquad
+ g_k^b=-{\frac{\binom{N-3}{k-2}}{2^{N-2}(N+1)}}.                \tag{A.16}\label{A.16}
+\]
+
+The normalization connecting this quotient to the physical Hessian is
+exact, not merely sign preserving.  If $(a,b)=(I-K)^{-1}s$, set
+$b_1=a_N=b_N=0$ and
+\[
+ r_k=a_k-\frac{2(k-1)}{N-2}b_k,
+\]
+then the fixed-count orbit identities give
+\[
+ \frac{\Rtwo_n(\delta)}{\|\delta\|_F^2}
+ =\sum_{k=1}^{N-1}\pi_k\frac{N-k}{(N-1)(N+1)}r_k
+ =g^{\mathsf T}(I-K)^{-1}s=:\mathcal S_N.                  \tag{A.17}\label{A.17}
+\]
+Here is the labelled normalization valid for every $n$.  Let
+$c=1/[nN2^{N-1}]$ and write $\mu=\nu_0\Delta$.  For an output state $(B,v)$
+of rank $k$, the four predecessor families contribute, respectively,
+\[
+ {\frac{c}{2}}kx(B,v),\quad {\frac{c}{2}}(k-1)x(B,v),\quad
+ {\frac{c}{2}}(N-k)x(B,v),\quad {\frac{c}{2}}(N-k+1)x(B,v).
+\]
+Thus their sum is the exact labelled current
+$\mu(B,v)=x(B,v)/(n2^{N-1})$, including the boundary ranks.  Define
+$f(B,v)=a_{|B|}x(B,v)+b_{|B|}z(B)$.  Conditional on a uniform rank-$k$
+orbit, sampling without replacement gives, with
+$R_v=\sum_i\delta_{vi}^2$,
+\[
+ \E[x^2\mid v]={\frac{k(N-k)}{ N(N-1)}}R_v,\qquad
+ \E[xz\mid v]=-{\frac{2k(k-1)(N-k)}{ N(N-1)(N-2)}}R_v.       \tag{A.17a}\label{A.17a}
+\]
+For the cross term, separate the two coincidences in the ordered triple
+from the all-distinct case; the row and column sums reduce the resulting
+full sums to $-2R_v$.  Summing $R_v$ over $v$ gives
+$\|\delta\|_F^2$.  Therefore
+\[
+ {\frac{\nu_0\Delta f}{\|\delta\|_F^2}}
+ =\sum_{k=1}^{N-1}\pi_k{\frac{N-k}{(N-1)(N+1)}}
+ \left(a_k-{\frac{2(k-1)}{ N-2}}b_k\right),                  \tag{A.17b}\label{A.17b}
+\]
+which is the first expression in \eqref{A.17}.  The identities
+\[
+ \pi_k{\frac{N-k}{ N-1}}
+ ={\frac{\binom{N-2}{k-1}}{2^{N-1}}},\qquad
+ {\frac{k-1}{ N-2}}\binom{N-2}{k-1}=\binom{N-3}{k-2}
+\]
+show that the coefficients in \eqref{A.17b} are exactly $g_k^a,g_k^b$.
+Hence the orbit average is
+$g^{\mathsf T}(a,b)=g^{\mathsf T}(I-K)^{-1}s$.  This is a labelled
+derivation; the exact replay independently reconstructs it for
+$4\le n\le12$ before taking a sign.
+
+Put $R_S=(I-S)^{-1}$ and $R_Q=(I-Q)^{-1}$.  Here $S$ has row sums at most
+$1/2$, while the displayed tridiagonal $Q$ is substochastic and every
+communicating class reaches a strict boundary row.  Hence both inverses are
+convergent entrywise-nonnegative Neumann series.  Define
+\[
+\begin{aligned}
+ W&=R_Q(-g^b),& r&=g^a-CW,& f_0&=R_Sr,\\
+ A&=R_SCR_QD,& \ell&=(s^a)^{\mathsf T}-(s^b)^{\mathsf T}R_QD,&
+ \mathcal D&=(s^b)^{\mathsf T}W.
+\end{aligned}                                               \tag{A.18}\label{A.18}
+\]
+Solving the bad equation first gives the exact Schur identity
+\[
+ \mathcal S_N=\ell(I+A)^{-1}f_0-\mathcal D.                 \tag{A.19}\label{A.19}
+\]
+One factor of the nonnegative matrix $A$ is one completed visit to the bad
+channel.  The inverse in \eqref{A.19} therefore alternates successive
+re-entries, so a first-excursion estimate alone would not suffice.
+
+We now give the full phase certificate.  Put
+\[
+ v=R_Sg^a,\qquad v_k=t_k g_k^a,\qquad
+ t_1={\frac{2N}{2N-1}},\quad
+ t_k={\frac{2N+(k-1)t_{k-1}}{2N-k}}.                           \tag{A.20}\label{A.20}
+\]
+Induction gives
+\[
+ t_k\le {\frac{N^2-k}{(N-2)(N-k)}}.                            \tag{A.21}\label{A.21}
+\]
+The base difference is $(5N-1)/[(N-2)(2N-1)]$; after one step and the
+substitution $m=N-k$, the remaining numerator is
+$N^3-N^2+2Nm^2+2Nm+2m^3+3m^2+m>0$.
+
+For $N\ge24$, let $\overline W=(7N/25)(-g^b)$.  Direct substitution shows
+\[
+ (I-Q)\overline W\ge-g^b,\qquad
+ C\overline W\le {\frac{14}{25}}g^a.                           \tag{A.22}\label{A.22}
+\]
+For the first inequality, after clearing positive binomial factors the
+interior residual is
+\[
+ P_N(k)=21N^2k+14N^2-64Nk^2-57Nk+50k^3+36k^2-14k.          \tag{A.23}\label{A.23}
+\]
+For $N\ge25$, $\operatorname{disc}_kP_N=-8B_N$, where the coefficients of
+$B_{25+M}$ are
+\[
+ (5733,736211,37934833,982793213,12893444604,
+ 70866894144,41021531998).                                 \tag{A.24}\label{A.24}
+\]
+Thus $P_N$ has one real, negative root and is positive for $k\ge0$; at
+$N=24$ its exact minimum over the physical ranks is $24$.  Applying $R_Q$
+in \eqref{A.22} yields
+\[
+ {\frac{11}{25}}v\le f_0\le v.                                \tag{A.25}\label{A.25}
+\]
+
+For $2\le k<N$, define
+\[
+ \widehat h_k={\frac{k}{ N-2}}g^a_{k-1}.                       \tag{A.26}\label{A.26}
+\]
+Equations \eqref{A.13} and \eqref{A.21} give
+$(I-Q)\widehat h\ge Dv$ and
+\[
+ C\widehat h\le c_Ng^a,\qquad
+ c_N={\frac{2N-5}{2N(N-2)}}.
+\]
+Indeed, the interior ratio in the first comparison is
+$(N^2-k+1)/[N(N-2)(N-k+1)]$, and the largest row ratio in the second is
+at rank $N-2$.  At $k=2$ the first boundary residual is
+$(N+1)/[N(N-2)]$, equal to the interior formula; at $k=N-1$ it is
+$(N^2+1)/[2N(N-2)]$, which exceeds the interior value
+$(N^2-N+2)/[2N(N-2)]$.  Thus \eqref{A.21} dominates every boundary row as
+well.  Consequently
+\[
+ Av\le c_Nv.                                               \tag{A.27}\label{A.27}
+\]
+
+For the left occupation debt, put
+\[
+ Y_k={\frac{2(k+1)}{3k(k-1)}}\qquad(2\le k<N).                 \tag{A.28}\label{A.28}
+\]
+With $B=Q^{\mathsf T}$, an interior substitution gives
+\[
+ [(I-B)Y]_k-{\frac{1}{ k(k-1)}}
+ ={\frac{4Nk+2N+2k^3-k^2-5k}{3Nk^2(k-1)(k+1)}}>0,             \tag{A.29}\label{A.29}
+\]
+while the boundary residuals at $k=2$ and $k=N-1$ are, respectively,
+$(5N+7)/(18N)>0$ and
+$(N^2-N+2)/[3N(N-2)(N-1)^2]>0$.  Since
+$s^b_k\le1/[k(k-1)]$, this proves
+$(s^b)^{\mathsf T}R_Q\le Y^{\mathsf T}$ and hence
+$\ell\ge\overline\ell>0$, where
+\[
+ \overline\ell_j={\frac{3Nj+3N-8j-10}{3Nj(j+1)}}.             \tag{A.30}\label{A.30}
+\]
+The absent bad state above the top rank only increases the final margin.
+
+The bad debt and first phase now satisfy
+\[
+ \mathcal D\le\sum_{j=1}^{N-2}
+ {\frac{4(j+2)}{3(j+1)(N-2)}}g_j^a,\qquad
+ \ell f_0\ge{\frac{11}{25}}\sum_{j=1}^{N-1}
+ \overline\ell_jt_jg_j^a.                                \tag{A.31}\label{A.31}
+\]
+Define
+\[
+\begin{aligned}
+ \beta_N&=\max_{1\le j\le N-2}
+ {\frac{4(j+2)}{3(j+1)(N-2)}}
+ \left({\frac{11}{25}}\overline\ell_jt_j\right)^{-1},\\
+ \varepsilon_N&={\frac{25}{11}}{\frac{c_N}{1-c_N}}.
+\end{aligned}                                              \tag{A.32}\label{A.32}
+\]
+\begin{lemma}[finite exact symmetric-sector certificate]
+\label{lem:symmetric-finite}
+The scalar $\mathcal S_N$ is positive for $3\le N\le39$.  For each of the
+248 integer orders $40\le N\le287$,
+$\beta_N+\varepsilon_N<1$; the smallest certified margin occurs at $N=40$
+and is
+\[
+1-\beta_{40}-\varepsilon_{40}
+={\frac{639304267467075678841}{115369588296792467144716}}>0.  \tag{A.33}\label{A.33}
+\]
+\end{lemma}
+
+\begin{proof}[Computer-assisted proof]
+The included exact-arithmetic program
+\begin{center}
+\small\path{verify_true_inverse_rank_symmetric_phase.py}
+\end{center}
+directly solves the rational systems for $3\le N\le39$, recursively constructs the rational
+$t_j$, $\beta_N$, and $\varepsilon_N$ for all 248 remaining finite orders,
+asserts every sign and the minimum in \eqref{A.33}, and uses no floating-point
+arithmetic.  Its SHA-256 is
+\begin{center}
+\small\nolinkurl{7a1fa1f579c090cc32668392e67b9eb88e696b51ad602a90d069541e402aa512}.
+\end{center}
+Successful execution ends with
+\begin{center}
+\small\texttt{PASS: stationary symmetric inverse-rank phase certificate}
+\end{center}
+and prints
+the three ranges $3\!:\!39$, $40\!:\!287$, and $N\ge288$ separately.  The
+deterministic source bundle contains this exact file and its dependencies.
+\end{proof}
+
+For $N\ge288$, induction in \eqref{A.20} gives
+$t_j\ge N/(N-j+\sqrt{N/2})$.  Indeed, substituting the inductive bound leaves
+the numerator
+$2u(N-j+u)+u-N$, where $u=\sqrt{N/2}$; it is minimized at $j=N-1$ and
+equals $3u>0$.  Since $u\le N/24$ in this range,
+$t_j\ge24N/(25N-24j)$.  The bound
+$\beta_N<19/20$ follows, after clearing positive factors, from
+$G_N(j)>0$, where
+\[
+\begin{aligned}
+G_N(j)={}&1881N^2j+1881N^2-6250Nj^2-21278Nj-10032N\\
+         &+6000j^3+12000j^2+10032j+12540.
+\end{aligned}                                               \tag{A.34}\label{A.34}
+\]
+Its discriminant is $-500D_N$, and the coefficients of $D_{288+M}$ are
+\[
+\begin{gathered}
+43034652243,71940715263252,50075984929826764,\\
+18577025353519361184,3873653773133773223808,\\
+430447522448513182675968,
+19913301794000751100222464.
+\end{gathered}                                             \tag{A.35}\label{A.35}
+\]
+Thus $G_N$ has one negative real root and is positive on every physical
+rank.  Also $\varepsilon_N<1/20$ for $N\ge46$: after clearing its positive
+denominator this is $22N^2-1066N+2555>0$, which holds at $N=46$ and is
+increasing thereafter.  Therefore
+$\beta_N+\varepsilon_N<1$ for all $N\ge288$.
+
+Finally, \eqref{A.25}, \eqref{A.27}, and positivity of $\ell$ give
+\[
+ \left|\ell(I+A)^{-1}f_0-\ell f_0\right|
+ \le\varepsilon_N\ell f_0.
+\]
+Together with \eqref{A.31} this yields
+\[
+ \mathcal S_N\ge(1-\beta_N-\varepsilon_N)\ell f_0>0       \tag{A.36}\label{A.36}
+\]
+for every $N\ge40$.  The finitely many orders $3\le N\le39$ are solved
+exactly over $\mathbb Q$ by Lemma~\ref{lem:symmetric-finite}; the first values are
+$\mathcal S_3=3/208$ and $\mathcal S_4=359/26660$.
+
+The supplementary verifier reconstructs every rational boundary solve,
+cleared polynomial, shifted coefficient list, and the labelled
+normalizations \eqref{A.12s} and \eqref{A.17}.  Combining the three
+subsections proves Theorem~\ref{thm:sectors}.

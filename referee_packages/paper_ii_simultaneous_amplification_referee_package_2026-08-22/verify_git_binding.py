@@ -15,9 +15,9 @@ ARCHIVE = PACKAGE / (
     "simultaneous_amplifier_beyond_three_halves_"
     "source_and_certificates.tar.gz"
 )
-COMMIT = "03e94e877ce10d9d459fd284bd652934cde08bb3"
-TAG_OBJECT = "be3946c051c7f7e2073d6adf81bca31ae750251a"
-TAG = "simultaneous-amplification-beyond-three-halves-v2.0.2"
+COMMIT = "bd66a3bbf1c530ef67a4b7be5ee69a6825678457"
+TAG_OBJECT = "755969d69cdd7f86ad8eceddb4df52a4fe2b23ee"
+TAG = "simultaneous-amplification-beyond-three-halves-v2.0.3"
 SYNTHETIC = frozenset(
     {PurePosixPath("BUNDLE_METADATA.txt"), PurePosixPath("MANIFEST.sha256")}
 )

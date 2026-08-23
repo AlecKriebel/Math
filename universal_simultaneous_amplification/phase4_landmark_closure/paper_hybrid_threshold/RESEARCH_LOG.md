@@ -244,3 +244,20 @@
   The scientific correction is **100% complete** and ready for the annotated,
   unsigned v2.0.2 source freeze; wrapper regeneration and external submission
   remain procedural tasks.
+
+## 2026-08-22 — final figure and finite-size audit
+
+- Rebuilt Figure 1 as a genuine five-vertex clique, drew only clearly marked
+  representative weak satellite--clique edges, and moved labels away from
+  vertices and dashed paths.  A rendered-page inspection found no remaining
+  collision or omitted clique edge.
+- Independently triaged a second-model review.  Accepted the unambiguous
+  abstract definition, the sharper `O(K/C)` early-establishment estimate, a
+  clause explaining the reversal union bound, and restrained discussion of
+  the response-model `3/2` boundary and floor-induced finite-index
+  oscillations.  Rejected unsupported numerical `t_0(r)` thresholds,
+  exponential reciprocal asymptotics, and a polynomial weak-edge claim.
+- Replayed the exact sextic, tangency, monotonicity, labelled-lumping, gate,
+  and integration audits successfully.  The theorem and optimized endpoint
+  are unchanged.  Scientific completion remains **100%**; the v2.0.3 freeze,
+  wrapper refresh, and push are the remaining procedural steps.

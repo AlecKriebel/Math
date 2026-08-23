@@ -41,9 +41,9 @@ PORTAL_TITLE = (
 )
 PORTAL_ABSTRACT_WORDS = 224
 PORTAL_ABSTRACT_SHA256 = (
-    "38722f1785b0c24316face5ae2891e5725bf44f84c351e2745adfd2ffd8524b5"
+    "e37bc4152aba8d6485d3656ec5d77987bbe3cc51175cf5df84a9c804eced6ee5"
 )
-MANUSCRIPT_ABSTRACT_WORDS = 208
+MANUSCRIPT_ABSTRACT_WORDS = 207
 PORTAL_RUNNING_TITLE = "Simultaneous amplification beyond 3/2"
 PORTAL_KEYWORDS = (
     "evolutionary graph theory; Moran process; fixation probability; "
@@ -78,12 +78,12 @@ DECLARATIONS_ETHICS = (
     "participants, animals, clinical material, or identifiable personal information."
 )
 PDF_NAME = "simultaneous_amplification_beyond_three_halves.pdf"
-PDF_SHA256 = "4e86597bb0baff388e8ce7ccf6ffd808f86b5ea846acf6f2188b31016fd2572c"
+PDF_SHA256 = "1e73984abfd64a45797b8ad6dc8b473d82a8d5eb8061efe470a1e603c2d10ad9"
 SUPPLEMENT_NAME = (
     "simultaneous_amplifier_beyond_three_halves_source_and_certificates.tar.gz"
 )
 SUPPLEMENT_SHA256 = (
-    "d2145513f8abe295e9e7fab62f062fa9d0f7a6282de95e8155f3db4621485274"
+    "e5b61e79d065a9abec0908e28db7e79366b5fccedeb6efbf22eadd7af3cc57ae"
 )
 AI_DISCLOSURE = (
     "Generative-AI systems were used substantively in mathematical exploration, "
@@ -566,9 +566,9 @@ def main() -> None:
     for marker in (
         "23 regular members",
         "21-page PDF",
-        "d2145513f8abe295e9e7fab62f062fa9d0f7a6282de95e8155f3db4621485274",
-        "4e86597bb0baff388e8ce7ccf6ffd808f86b5ea846acf6f2188b31016fd2572c",
-        "simultaneous-amplification-beyond-three-halves-v2.0.2",
+        "e5b61e79d065a9abec0908e28db7e79366b5fccedeb6efbf22eadd7af3cc57ae",
+        "1e73984abfd64a45797b8ad6dc8b473d82a8d5eb8061efe470a1e603c2d10ad9",
+        "simultaneous-amplification-beyond-three-halves-v2.0.3",
     ):
         require(
             marker in reproduction,

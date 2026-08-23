@@ -47,7 +47,7 @@ The final submission correction writes the dB attempt duration as
 `T=beta_0(B_0) log C` and displays the two coefficient inequalities that give
 the claimed `O(C^(-B_0-2))` coordinate-survival bounds.  The manuscript source
 link is frozen at the annotated, unsigned repository tag
-`simultaneous-amplification-beyond-three-halves-v2.0.2`.
+`simultaneous-amplification-beyond-three-halves-v2.0.3`.
 
 The post-referee correction stops pendant synchronization at either its target
 state or upper-strip exit.  It gives the exit favorable boundary value in the
@@ -64,6 +64,14 @@ bundled hash-pinned wheels; the PDF toolchain remains externally provisioned.
 Archive entry-point modes are explicit and checked.  Package hashes establish
 internal consistency, not authorship or cryptographic authentication of the
 unsigned Git tag.
+
+The v2.0.3 submission polish redraws Figure 1 as an actual five-vertex clique
+and separates its labels and representative weak edges.  It sharpens the
+early-establishment error from `O(K^2/C)` to the directly supported
+`O(K/C)`, clarifies the reversal union bound, defines the abstract's
+supremum without ambiguity, and records the response-model mechanism and
+finite-`t` floor oscillations.  These changes do not alter the theorem,
+threshold, construction, or certificates.
 
 ## Related public versions
 

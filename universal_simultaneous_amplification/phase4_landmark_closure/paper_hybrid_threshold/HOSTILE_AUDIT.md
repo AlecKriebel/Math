@@ -135,3 +135,50 @@ rejected.  Its deterministic 35-file outer archive has SHA-256
 `2216c6a31545b38d9ca89c9d43c5a309bfcc6c2c1f7ab63ea5fabc171116e1d2`.
 The tag remains unsigned and the optional Git comparison is consistency
 evidence, not signer or authorship authentication.
+
+## 2026-08-22 v2.0.3 submission-polish audit
+
+A second-model review was checked claim by claim rather than adopted as a
+block.  The final revision accepts only the supported changes: Figure 1 is now
+a complete five-vertex clique with collision-free representative weak edges;
+the abstract states the supremum quantifiers directly; the early-establishment
+error is sharpened consistently to `O(K/C)`; the reversal union bound states
+the needed implication direction; and the discussion records only the
+response-model `sigma -> 0` mechanism and qualitative `O(1/t)` floor
+oscillations.
+
+The proposed numerical finite-size thresholds were rejected because they
+concern the separated trace rather than the connected diagonal family and do
+not establish an all-later-index threshold.  No exponential reciprocal bound
+or polynomial weak-edge exponent was added because neither follows from the
+proof or certificates.  The optional algebraic-number rewrite and additional
+continuous-time MSC code were omitted as unnecessary presentation changes;
+the model and exact absorbing chains remain correctly classified by 60J10,
+while continuous-time clocks are an auxiliary proof representation.  The
+claimed hidden-coordinate uniformity was already explicit.  Python 3.14.6,
+the cited references, and all three related Zenodo records were independently
+checked.
+
+Independent proof and figure adversaries then re-read the complete v2.0.3
+diff and all 21 rendered pages.  They found no mathematical, quantifier,
+caption, edge, overlap, clipping, or layout defect.  A separate editorial and
+package adversary found one status-note inconsistency: three human-completed
+portal checks conflicted with an old sentence saying that no portal had been
+opened.  The completed boxes were preserved and the status note was corrected;
+re-review was clean.
+
+The exact replay, submission verifier, package verifier, Git-binding check,
+optimized-mode rejection, clean offline bootstrap, and fresh outer-archive
+replay all pass.  Two source-archive builds and two outer-wrapper builds are
+byte-identical.  The scientific source is frozen at commit
+`bd66a3bbf1c530ef67a4b7be5ee69a6825678457`, annotated unsigned tag
+`simultaneous-amplification-beyond-three-halves-v2.0.3`; the PDF, source
+archive, and outer referee archive have SHA-256 values
+`1e73984abfd64a45797b8ad6dc8b473d82a8d5eb8061efe470a1e603c2d10ad9`,
+`e5b61e79d065a9abec0908e28db7e79366b5fccedeb6efbf22eadd7af3cc57ae`,
+and `f4baf76a66a12e4942f13bd7c73bbead0ff31555df5b69a489b914064c597bdf`,
+respectively.
+
+**v2.0.3 verdict:** no actionable mathematical, software, metadata, package,
+or rendering issue remains.  External submission and its remaining consent,
+license, address, terms, proofing, and approval gates remain human actions.

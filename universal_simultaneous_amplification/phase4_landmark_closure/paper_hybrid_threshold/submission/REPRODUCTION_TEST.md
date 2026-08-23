@@ -18,7 +18,7 @@ zero after the package scripts were installed.  The replay covered:
 The frozen archive was generated twice from the corrected source and the two
 outputs were byte-for-byte identical.  It contains 23 regular members and has
 SHA-256
-`d2145513f8abe295e9e7fab62f062fa9d0f7a6282de95e8155f3db4621485274`.
+`e5b61e79d065a9abec0908e28db7e79366b5fccedeb6efbf22eadd7af3cc57ae`.
 After extraction into a new temporary directory, every entry in
 `MANIFEST.sha256` passed.  The root bootstrap created a fresh Python 3.14.6
 environment with package-index access disabled, installed the bundled
@@ -33,17 +33,17 @@ manifest entries.
 The PDF rebuilt from the extracted source with Tectonic 0.16.9 and Poppler
 26.08.0 was byte-for-byte identical to the repository PDF.  The 21-page PDF
 has SHA-256
-`4e86597bb0baff388e8ce7ccf6ffd808f86b5ea846acf6f2188b31016fd2572c`.
+`1e73984abfd64a45797b8ad6dc8b473d82a8d5eb8061efe470a1e603c2d10ad9`.
 Its compiler log has no undefined references or citations and no material
 box warnings; all fonts are embedded.  Every page was rendered and visually
 inspected for clipping, overlap, missing glyphs, malformed equations, stale
 content, and link/layout defects.
 
 The source link and integration marker name the annotated, unsigned tag
-`simultaneous-amplification-beyond-three-halves-v2.0.2`.  That tag was placed
+`simultaneous-amplification-beyond-three-halves-v2.0.3`.  That tag was placed
 on exact scientific commit
-`03e94e877ce10d9d459fd284bd652934cde08bb3`; its remote tag object
-`be3946c051c7f7e2073d6adf81bca31ae750251a` and peeled commit were verified.
+`bd66a3bbf1c530ef67a4b7be5ee69a6825678457`; its remote tag object
+`755969d69cdd7f86ad8eceddb4df52a4fe2b23ee` and peeled commit were verified.
 Because the tag is unsigned, this establishes repository consistency rather
 than signer or authorship authentication.
 
