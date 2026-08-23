@@ -43,6 +43,7 @@ There are no symlinks. Thirteen submitted files carry executable permission, but
 - Independent aggregate over relative path, NUL delimiter, file SHA-256, and newline for all 264 pristine files: `ae955f478dabf85cc3731b57cfa4aebe631d7977df04bdc5e39b271d112aebf5` (2,580,258 bytes).
 - `paper/main.pdf` equals `repository/manuscript/main.pdf` byte for byte; the same is true for the supplement.
 - Every substantive minimal-verifier source/certificate matches its repository counterpart byte for byte. Only the README differs, and only the minimal copy has `replay.sh`. Thus the two replays are useful packaging variants, not implementation-independent evidence.
+- The local tag `maximally-collective-stable-turing-v1.0.7` resolves to declared commit `963594192a494421de6c5984c24d4a41e682da3f`. Every one of the 198 inner-manifest files matches the tag's `maximally_collective_stable_turing_patterns_binary_complex_mass_action_networks/public/repository/` subtree byte for byte; the tagged inner manifest itself has SHA-256 `5b00dd8053ce22ff853826add2ca1b1614473dc9328b334aa4e62c626cd6b6d6`, identical to the packet copy.
 
 ## Reproducibility risks found before execution
 

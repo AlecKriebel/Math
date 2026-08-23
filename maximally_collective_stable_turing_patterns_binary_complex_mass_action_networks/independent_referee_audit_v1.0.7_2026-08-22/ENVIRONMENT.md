@@ -31,7 +31,7 @@ The repository supplies only lower-bound specifiers (`>=`) in `requirements.txt`
 |---|---|---|
 | `bash` | 3.2.57 at `/bin/bash` | available |
 | `biber` | 2.22 at `/opt/homebrew/bin/biber` | available; author provenance used 2.17 |
-| `pdflatex` | **not installed/on PATH** | advertised wrapper stops before any substantive stage; document regeneration unchecked in exact wrapper |
+| `pdflatex` | **not installed/on the base-host PATH** | the first literal wrapper invocation stopped at preflight; later disposable TinyTeX runs covered the stated document route |
 | `tectonic` | 0.16.9 at `/opt/homebrew/bin/tectonic` | available but is not invoked by the supplied replay and is not a drop-in proof that the `pdflatex`/Biber route works |
 | `pdffonts`, `pdftoppm`, `pdfinfo` | Poppler 26.08.0 | available |
 | `sha256sum` | Darwin 1.0 at `/sbin/sha256sum` | available and accepted both supplied manifests |
@@ -39,3 +39,27 @@ The repository supplies only lower-bound specifiers (`>=`) in `requirements.txt`
 | BSD `grep`, `find`, `sort`, `xargs`, `tail`, `cp`, `cmp`, `mktemp` | system versions | available; GNU version pinning is absent |
 
 No runtime network access is used by the verifier, replay, generators, tests, simulations, or document build. Network access would be needed only to install the missing dependencies or independently retrieve cited literature/release records. The source scan found no private user/home path. The only absolute-path sentinel in executable source is the portability audit that deliberately rejects `/mnt/data/` references.
+
+## Disposable document environments used for route coverage
+
+No system TeX or Python installation was changed. The following official
+TinyTeX bundles and a temporary `pypdf==6.10.0` target under `/tmp` were put on
+`PATH`/`PYTHONPATH` only for the recorded commands:
+
+| Environment | Versions | Wrapper result |
+|---|---|---|
+| TinyTeX 2026.08 | pdfTeX 1.40.29; host Biber 2.22 | After installing the manuscript's required LaTeX packages into the disposable bundle, all repository build stages ran. The final PDF audit failed on a 19-page supplement and two version-sensitive extraction/layout probes. |
+| Full TinyTeX 2022.08 | pdfTeX 1.40.24; Biber 2.18 | Both 18-page documents and all figures built. The final PDF audit failed only on the Latin-`u` phrase probe. |
+| Full TinyTeX 2022.04 | pdfTeX 1.40.24; Biber 2.17, matching the recorded Biber generation | Both 18-page documents and all figures built. The final PDF audit again failed only on the Latin-`u` phrase probe. |
+
+Under `pypdf==6.10.0`, both 2022 builds extract the visibly correct source
+phrase `with $u$ the Latin letter` as `withu the Latin letter`. A disposable
+change from literal membership to
+`re.search(r"with\s*u\s+the\s+Latin\s+letter", supplement, re.I)` made that
+audit pass. The submitted `audit_pdfs.py` was not changed in either packet copy.
+The unmodified wrapper therefore remains exit 1/no completion marker, but
+document generation itself is covered.
+
+The 2022.04 regenerated PDFs use `pdfTeX-1.40.24`; the archived PDFs identify
+`xdvipdfmx (0.1)` as producer. They are semantically comparable, not expected
+to be byte-identical products of the same engine.
