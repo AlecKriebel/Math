@@ -25,7 +25,8 @@ python reproducibility/verify_certificate_zenodo_release.py /path/to/downloaded/
 ```
 
 These commands check the exact portal set, reproducible article/supplement and
-cover-letter builds, and the public eight-asset replay envelope.
+cover-letter builds, and the public DOI-bearing curated certificate archive,
+its canonical envelope, and its committed verifier logs.
 
 ## Upload sequence
 

@@ -43,8 +43,9 @@ Directory: `journal_submission/systematic_biology/`
 - ScholarOne steps: `SYSTEMATIC_BIOLOGY_UPLOAD_MAP.md`
 - human gate: `FINAL_HUMAN_CHECKLIST.md`
 
-Before journal submission, the exact code/certificate archive must receive a
-real Zenodo DOI.  No DOI is invented in this package.
+Before journal submission, publish the prepared Zenodo draft so the reserved
+DOI resolves publicly, then authenticate a fresh public download.  The real
+reserved DOI is already embedded in this package.
 
 ## 3. Journal of Mathematical Biology (fallback)
 

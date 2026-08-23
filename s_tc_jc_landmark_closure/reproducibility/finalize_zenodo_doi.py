@@ -51,7 +51,7 @@ def finalize(project: Path, doi_value: str) -> dict[str, object]:
         text = text.replace(
             marker,
             f"doi          = {{{doi}}},\n  url          = {{https://doi.org/{doi}}},\n"
-            "  note         = {Version 1.1.7}",
+            f"  note         = {{Version 1.1.7; \\url{{https://doi.org/{doi}}}}}",
             1,
         )
         bib.write_text(text, encoding="utf-8")
@@ -68,6 +68,20 @@ def finalize(project: Path, doi_value: str) -> dict[str, object]:
     envelope.write_text(json.dumps(payload, sort_keys=True, indent=2) + "\n",
                         encoding="utf-8")
     changed.append("release_artifacts/CERTIFICATE_BUNDLE_ENVELOPE.json")
+
+    release_metadata = project / "RELEASE_METADATA.json"
+    if not release_metadata.is_file():
+        raise FileNotFoundError(release_metadata)
+    metadata = json.loads(release_metadata.read_text(encoding="utf-8"))
+    existing_identifier = metadata.get("persistent_identifier")
+    if existing_identifier not in (None, doi):
+        raise AssertionError("RELEASE_METADATA.json contains a different persistent identifier")
+    metadata["persistent_identifier"] = doi
+    release_metadata.write_text(
+        json.dumps(metadata, sort_keys=True, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    changed.append("RELEASE_METADATA.json")
 
     cff = project / "certificate_bundle/CITATION.cff"
     if not cff.is_file():

@@ -1162,3 +1162,33 @@
   publication was performed.  Remaining work is to commit this DOI-bearing
   source, reseal the archive, replay all verifier modes, rebuild packages, and
   bind the final hashes and transcripts.
+
+- 2026-08-23T02:54:09-07:00 — Completed the DOI-bearing v1.1.7 release handoff
+  (estimated 100% complete for repository preparation; external publication
+  remains a human action).  Clean certificate source commit
+  `fef87ba874b3476ff0383095c67c031ba8c0dc23` produced the 241-file,
+  94,158,772-byte archive with SHA-256
+  `ffcce5398c8be387d6d808620fc939490f31ac41fb48592e22608cf0e7b05db4`
+  and prepared-payload commitment
+  `f6139234c859d22d87f532589e120988268b0cf122ae2db0c34214fbb1c01382`.
+  Quick, full, and two-copy complete regeneration all terminated `VERIFIED`;
+  their transcript SHA-256 values are
+  `43d5b5d4dcdfede81b043cbc51d6badf05bd12ae3a9bd6977e0b8ad5c3b5fb43`,
+  `ba190497dd20e5eace25ffcf8a21cb547b120e238e7e535e44a57db454010f14`,
+  and `3727528cc886b68d111214a8170f12cae31edf42d274d57292474e3cb3d6c54f`.
+  The archive authenticator, all
+  three submission manifests, and byte-for-byte source-archive reproduction
+  passed.  All eight final PDFs have embedded fonts; the article, supplement,
+  and journal variants passed the final rendered-page audit.
+
+  A separate adversarial release reviewer first held the package for stale
+  pre-DOI logs, an obsolete JMB upload phrase, and insufficient distinction
+  between the certificate source commit and later submission packaging.
+  Superseded generated artifacts were quarantined under history, the upload
+  language and metadata were repaired, and the DOI finalizer was hardened to
+  populate `RELEASE_METADATA.json`.  The reviewer then returned literal
+  `PASS`: capsule and external envelope are byte-identical, all active hashes
+  agree, no stale archive identity remains outside history, and the working
+  tree is ready for the final package commit and tag
+  `stc-jc-sharp-boundary-v1.1.7`.  No upload, Zenodo publication, bioRxiv
+  submission, license selection, or DOI creation was performed.

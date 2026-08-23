@@ -30,9 +30,10 @@ must be labelled as a mirror, not a second authoritative release.
 
 ## Proof-archive gate
 
-Before opening the bioRxiv portal, publish the curated certificate archive at
-Zenodo, insert the real reserved DOI with the supplied finalization command,
-and rebuild this package. From the project root, require:
+Before opening the bioRxiv portal, upload the sealed DOI-bearing assets to the
+existing Zenodo draft and publish it.  The reserved DOI is already embedded;
+do not rerun DOI finalization or rebuild unless an artifact changes.  From the
+project root, require:
 
 ```bash
 (cd biorxiv_submission && shasum -a 256 -c SHA256SUMS)

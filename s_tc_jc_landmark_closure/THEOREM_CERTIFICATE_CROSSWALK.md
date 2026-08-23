@@ -5,8 +5,8 @@ a Sharp Generic-Identifiability Boundary for Level-2 Jukes--Cantor Networks*.
 
 Release gates: `V111`, `V112`, `V113`, `V114`, `V115`.
 
-Status: **v1.1.7 certificate bundle prepared; Zenodo DOI
-`10.5281/zenodo.22064121`**
+Status: **v1.1.7 certificate bundle sealed and completely regenerated; Zenodo
+DOI `10.5281/zenodo.22064121`**
 
 The authoritative computer-assisted proof object is
 `stc_jc_sharp_boundary_atlas_certificates_v1.1.7.tar.gz`. All paths below are

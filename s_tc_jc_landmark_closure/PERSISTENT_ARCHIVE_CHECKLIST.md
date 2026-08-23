@@ -1,21 +1,25 @@
 # Zenodo certificate-deposit checklist
 
-Status: **CURATED PROOF OBJECT VERIFIED — DOI PENDING**
+Status: **DOI-BEARING CURATED PROOF OBJECT SEALED AND VERIFIED**
 
-Current pre-DOI candidate (the hash will change when the reserved DOI is
-inserted and the archive is resealed):
+Reserved Zenodo DOI: `10.5281/zenodo.22064121`
 
-- source commit: `6ae493191e2f080d2d902d8580c4819012ff27fd`
-- archive SHA-256: `01f8a81ae402893a58d87c80520005d9190f0c672c9e7c839769e5eb06ac4842`
+Final upload candidate:
+
+- source commit: `fef87ba874b3476ff0383095c67c031ba8c0dc23`
+- final submission/package tag: `stc-jc-sharp-boundary-v1.1.7`
+- archive SHA-256: `ffcce5398c8be387d6d808620fc939490f31ac41fb48592e22608cf0e7b05db4`
+- prepared-payload SHA-256:
+  `f6139234c859d22d87f532589e120988268b0cf122ae2db0c34214fbb1c01382`
 - record-level evidence commitment:
   `38e6f9aa59e799de23711824dd5d1934aad1fd734a57564784119e3348a534c4`
-- clean source commit: `6ae493191e2f080d2d902d8580c4819012ff27fd`
+- clean source commit: `fef87ba874b3476ff0383095c67c031ba8c0dc23`
 - authenticated payload files: `241`
-- archive bytes: `94,158,712`
+- archive bytes: `94,158,772`
 - transcript SHA-256 values:
-  - quick: `06309f4baff2d1f580c68a97ecec2058f0397227c6243e5bff71963702291ebf`
-  - full: `a91af0e1ed5a2f7bda49790ec64fff0a4c76f5958fe8a4080e5d824e8f3b681b`
-  - regenerate-all: `9cf6d8ca814f8a45cf16a0173b087ba7c60ec18cde781be03d7beb96de853a22`
+  - quick: `43d5b5d4dcdfede81b043cbc51d6badf05bd12ae3a9bd6977e0b8ad5c3b5fb43`
+  - full: `ba190497dd20e5eace25ffcf8a21cb547b120e238e7e535e44a57db454010f14`
+  - regenerate-all: `3727528cc886b68d111214a8170f12cae31edf42d274d57292474e3cb3d6c54f`
 - finite universe: 10,466 three-outgoing relations and 192 four-outgoing
   survivors
 
@@ -55,41 +59,23 @@ clean-clone transcripts are not part of this v1.1.7 deposit unless they are
 regenerated after DOI finalization.  The authoritative envelope for the
 curated object is `CERTIFICATE_BUNDLE_ENVELOPE.json`.
 
-## DOI handoff
+## Publication handoff
 
-Reserve the DOI in the Zenodo draft, then run the following sequence from the
-project root.  The certificate archive itself must be rebuilt after the DOI is
-inserted; changing only the manuscript or release envelope is insufficient.
+Upload the files listed above to the existing Zenodo draft, verify their names
+and checksums, and publish the record.  The DOI will not resolve publicly until
+that human publication step is complete.  After publication, download the
+archive from Zenodo and authenticate the downloaded bytes with:
 
 ```bash
-python reproducibility/test_finalize_zenodo_doi.py
-python reproducibility/finalize_zenodo_doi.py --doi 10.5281/zenodo.<issued-number>
-git diff --check
-# Review the DOI-only diff, then commit it before sealing so the archive's
-# source_commit identifies the DOI-bearing source state.
-git add source certificate_bundle biorxiv_submission journal_submission \
-        THEOREM_CERTIFICATE_CROSSWALK.md
-git commit -m "Insert reserved Zenodo certificate DOI"
-
-# The entire release_artifacts/ tree is ignored build output, so preparation
-# does not dirty the committed source. Seal independently prepares a second
-# payload from the same clean commit, byte-compares both stages, and archives
-# only the fresh reconstruction.
-python -I -S reproducibility/build_certificate_bundle.py prepare
-python -I -S reproducibility/build_certificate_bundle.py seal
-bash release_artifacts/stc_jc_sharp_boundary_atlas_certificates_v1.1.7/verify.sh quick
-bash release_artifacts/stc_jc_sharp_boundary_atlas_certificates_v1.1.7/verify.sh full
-bash release_artifacts/stc_jc_sharp_boundary_atlas_certificates_v1.1.7/verify.sh regenerate-all
-
-python reproducibility/build_biorxiv_release.py submission
-python reproducibility/build_journal_packages.py
-python reproducibility/verify_submission_source_archives.py
+python reproducibility/verify_certificate_zenodo_release.py \
+  /path/to/stc_jc_sharp_boundary_atlas_certificates_v1.1.7.tar.gz
 ```
 
-Capture the three verifier transcripts beside the newly sealed archive and
-update this checklist with its final SHA-256. Publish the Zenodo record only
-after the DOI-bearing archive, papers, capsule, manifests, and exact logs are
-in the draft. Download the published archive and authenticate it with
-`reproducibility/verify_certificate_zenodo_release.py` before submitting the
-same DOI-bearing PDFs to bioRxiv. Never invent or pre-register a number in the
-repository.
+Submit only the final DOI-bearing PDFs and capsule listed in the active package
+manifests.  No further DOI insertion or archive resealing is required unless a
+curated-payload file or delivered artifact is changed.
+
+The certificate source commit above identifies the immutable graph-to-algebra
+proof payload.  The final submission tag identifies the later packaging commit
+that contains the DOI-visible PDFs, source archives, and portal manifests; the
+two identifiers intentionally serve different roles.

@@ -26,15 +26,21 @@ primary implementations, and separately implemented replays.  The three run
 logs are source-commit-bound external records; they are not embedded in the
 self-authenticating archive.
 
-The reserved DOI is `10.5281/zenodo.22064121`.  After resealing the archive
-from the committed DOI-bearing source and rerunning all three archive-local
-commands, the human author must upload the resulting assets and publish the
-draft.  After publication, download the archive and run:
+The reserved DOI is `10.5281/zenodo.22064121`.  The DOI-bearing archive has
+been resealed from clean source commit
+`fef87ba874b3476ff0383095c67c031ba8c0dc23`; its SHA-256 is
+`ffcce5398c8be387d6d808620fc939490f31ac41fb48592e22608cf0e7b05db4`.
+All three archive-local commands passed, including two-run complete
+regeneration.  The human author must now upload these exact assets and publish
+the draft.  After publication, download the archive and run:
 
 ```bash
 python reproducibility/verify_certificate_zenodo_release.py \
   /path/to/stc_jc_sharp_boundary_atlas_certificates_v1.1.7.tar.gz
 ```
 
-Only that exact DOI-bearing archive and the PDFs rebuilt from the same source
-commit should be submitted to bioRxiv or a journal.
+Only that exact DOI-bearing archive and the final DOI-bearing PDFs listed in
+the active package manifests should be submitted to bioRxiv or a journal.
+The archive's source commit identifies the immutable certificate payload; Git
+tag `stc-jc-sharp-boundary-v1.1.7` identifies the later submission/package
+commit containing those final PDFs and manifests.

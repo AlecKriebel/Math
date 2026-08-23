@@ -26,6 +26,15 @@ def main() -> None:
             destination.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(PROJECT / relative, destination)
 
+        release_metadata = target / "RELEASE_METADATA.json"
+        shutil.copy2(PROJECT / "RELEASE_METADATA.json", release_metadata)
+        metadata = json.loads(release_metadata.read_text(encoding="utf-8"))
+        metadata["persistent_identifier"] = None
+        release_metadata.write_text(
+            json.dumps(metadata, sort_keys=True, indent=2) + "\n",
+            encoding="utf-8",
+        )
+
         # Make the fixture independent of whether the active checkout is
         # pre-DOI or already finalized.  A finalized checkout is normalized
         # back to the exact pending form in the temporary directory only.
@@ -43,7 +52,9 @@ def main() -> None:
                 r"\n\s*doi\s*=\s*\{" + re.escape(TOKEN) +
                 r"\},\n\s*url\s*=\s*\{https://doi\.org/" +
                 re.escape(TOKEN) +
-                r"\},\n\s*note\s*=\s*\{Version 1\.1\.7\}",
+                r"\},\n\s*note\s*=\s*\{Version 1\.1\.7"
+                r"(?:; \\url\{https://doi\.org/" + re.escape(TOKEN) +
+                r"\})?\}",
                 "\n  note         = {Zenodo DOI pending; version 1.1.7}",
                 bib_text,
                 count=1,
@@ -73,6 +84,9 @@ def main() -> None:
             target / "certificate_bundle/CITATION.cff"
         ).read_text(encoding="utf-8")
         assert json.loads(envelope.read_text(encoding="utf-8"))["zenodo_doi"] == doi
+        assert json.loads(release_metadata.read_text(encoding="utf-8"))[
+            "persistent_identifier"
+        ] == doi
     print(json.dumps({
         "status": "VERIFIED",
         "escaped_placeholder": True,

@@ -13,8 +13,15 @@ clean deletion, regeneration, and byte-or-logical-hash comparison of the nine au
 atlas outputs; fail-closed stale/no-op/partial-producer mutations; a standalone
 public convention replay; precise serialized-transport scope; and the direct
 Currie et al. attribution at the ordinary-triangle lemma.  The curated
-computer-assisted proof bundle is version 1.1.7; its DOI remains pending until
-the human author reserves and publishes the Zenodo record.
+computer-assisted proof bundle is version 1.1.7.  Its reserved Zenodo DOI is
+`10.5281/zenodo.22064121`; the DOI-bearing archive was sealed from clean source
+commit `fef87ba874b3476ff0383095c67c031ba8c0dc23`, has SHA-256
+`ffcce5398c8be387d6d808620fc939490f31ac41fb48592e22608cf0e7b05db4`,
+and passed quick, full, and two-run complete regeneration.  The DOI becomes
+public only when the human author publishes the Zenodo draft.
+The certificate payload is bound to that source commit; the final DOI-visible
+submission packages are identified separately by tag
+`stc-jc-sharp-boundary-v1.1.7`.
 The bioRxiv map uploads a small verifier-entrypoint ZIP as supplementary code;
 the journal maps route it to the external repository in accordance with their
 current policies.  The full
