@@ -1138,3 +1138,14 @@
   Both adversarial re-reviews returned `PASS`.  No theorem statement or scope
   was weakened, and `ZENODO_DOI_PENDING` remains intentionally unchanged for
   the human author's next step.
+
+- 2026-08-22T20:04:56-07:00 — Rechecked the existing bioRxiv upload map
+  against bioRxiv's live official Submission Guide, FAQ, and Submission Help
+  pages (estimated 100% complete for pre-upload guidance).  The official pages
+  confirm that supplemental files are posted as supplied and may use a wide
+  range of formats.  The active map now states the evidentiary hierarchy
+  explicitly: publish and authenticate the complete DOI-citable certificate
+  archive at Zenodo first; attach the small functional verifier/checksum
+  capsule directly to bioRxiv; treat any full-archive bioRxiv copy only as an
+  optional byte-identical mirror.  No duplicate checklist was created, no
+  scientific or release artifact was changed, and the DOI remains pending.

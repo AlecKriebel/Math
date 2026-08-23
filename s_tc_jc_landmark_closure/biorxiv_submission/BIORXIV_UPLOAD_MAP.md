@@ -1,11 +1,32 @@
 # bioRxiv upload map
 
-Verified against bioRxiv's official **Submission Guide** and **About bioRxiv** pages on 2026-08-16:
+Verified against bioRxiv's official **Submission Guide**, **FAQ**, and
+**Submission Help** pages on 2026-08-22:
 
 - https://www.biorxiv.org/submit-a-manuscript
-- https://www.biorxiv.org/about-biorxiv
+- https://www.biorxiv.org/about/FAQ
+- https://submit.biorxiv.org/help/submissionhelp.dtl
 
 The official guide says that a single PDF containing text and figures is the simplest main upload, supplemental material should be separate, LaTeX should be converted to PDF before submission, article categories include New Results, and the author must select a distribution/reuse option. The official scope page lists Evolutionary Biology as a subject category. Portal fields can change; recheck both official pages immediately before submission.
+
+## Short answer: what goes where
+
+**Yes: publish the complete verifier/certificate archive at Zenodo first.**
+The manuscript and capsule must cite an issued, publicly resolving DOI and the
+exact downloaded archive must pass authentication before the bioRxiv
+submission is approved.
+
+bioRxiv should receive the main PDF, reader supplement, and the small verifier
+entry-point ZIP.  The official help pages permit supplemental files in a wide
+range of formats and post them as submitted, so attaching the ZIP is
+appropriate.  The ZIP is deliberately small but functional: it identifies and
+checksums the canonical archive and contains the download authenticator and
+reviewer entry points.  The complete 94 MB proof archive remains on Zenodo,
+whose DOI, versioning, manifest, and checksums make it the authoritative proof
+object.  Uploading the same full archive to bioRxiv as a redundant mirror is
+possible if the live portal accepts its size, but is not required or
+recommended; if done, it must be the identical Zenodo-authenticated bytes and
+must be labelled as a mirror, not a second authoritative release.
 
 ## Proof-archive gate
 
