@@ -125,10 +125,17 @@ def verify_finite(m: int) -> None:
 
 def symbolic_core_determinant_regression() -> None:
     a,b=sp.symbols('a b', positive=True)
+    core_remainder = sp.Matrix([
+        [-(a+b), -a, -b],
+        [-a, -a, 2*a],
+        [2*a-b, 2*a, -(4*a+b)],
+    ])
+    assert sp.factor(core_remainder.det()) == 2*a**2*b
     for m in range(3,9):
         A=A_matrix(m,a,b)
         got=sp.factor((-1)**m*A[:m,:m].det(method='domain-ge'))
         assert got == -2*a**(m-1)*b
+    print('CORE_SCHUR_REMAINDER_PASS det=2*a^2*b')
     print('CORE_DETERMINANT_RECURRENCE_REGRESSION_PASS m=3..8')
 
 

@@ -4,7 +4,14 @@
 All-dimensional claims are checked by the coefficient and comparison
 certificates.  Direct symbolic matrix regressions are intentionally limited to
 small representative dimensions so the public replay remains tractable.
+This aggregate wrapper adds no independent evidence beyond its child scripts.
 """
+
+if not __debug__:
+    raise SystemExit(
+        "Exact verifier requires assertions; unset PYTHONOPTIMIZE and do not use python -O"
+    )
+
 import subprocess,sys
 from pathlib import Path
 HERE=Path(__file__).resolve().parent

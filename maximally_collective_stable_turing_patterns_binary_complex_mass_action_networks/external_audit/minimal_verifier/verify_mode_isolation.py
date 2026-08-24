@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+"""Finite/exact regeneration checks for the unit-profile mode certificates."""
+
+if not __debug__:
+    raise SystemExit(
+        "Exact verifier requires assertions; unset PYTHONOPTIMIZE and do not use python -O"
+    )
+
 import json,sys
 from pathlib import Path
 import sympy as sp

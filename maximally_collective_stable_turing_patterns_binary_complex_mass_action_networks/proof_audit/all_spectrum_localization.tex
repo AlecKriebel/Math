@@ -28,6 +28,11 @@ $\{X_1,X_2\}$ and $\{X_2,X_3\}$; every other non-singleton strongly connected
 component is a principal subgraph of $\{X_1,X_3,Z\}$.  The chain argument
 below is therefore needed only for $m\ge4$.
 
+At $b=2a$, the sole parameter-dependent edge $X_1\to X_m$ disappears.  It
+belongs to neither complete long cycle, so the two cycle blocks are unchanged;
+within the boundary graph, deleting the edge can only split strongly connected
+components and cannot create a new case.
+
 For the first long cycle, a root with $\Re\lambda\geq0$ would satisfy
 \[
 \prod_{i=1}^{m-1}|\lambda+d_i h_i|
@@ -59,7 +64,21 @@ so the cubic is Hurwitz.  Its one- and two-species principal blocks are
 Hurwitz by negative trace and positive determinant.  Frobenius block
 triangularization proves the claim for every smaller principal set.
 
-Finally, sparse determinant expansion along the chain gives
+Finally, factor the core Jacobian's column scalings $\prod_{i=1}^m h_i$.
+For $m\ge4$, Schur-complement the lower-bidiagonal block on
+$X_3,\ldots,X_{m-1}$.  Its determinant is $(-a)^{m-3}$ and the bottom-left
+corner of its inverse is $-1/a$.  The remaining matrix in the order
+$(X_1,X_2,X_m)$ is
+\[
+B_m^{\rm core}=\begin{pmatrix}
+-(a+b)&-a&-b\\
+-a&-a&2a\\
+2a-b&2a&-(4a+b)
+\end{pmatrix},
+\qquad \det B_m^{\rm core}=2a^2b.
+\]
+For $m=3$, the interior block is empty and $B_m^{\rm core}$ is the original
+$X$-species block.  Restoring the column factors gives in all dimensions
 \[
 (-1)^m\det J_{C_m,C_m}
 =-2a^{m-1}b\prod_{i=1}^m h_i<0.

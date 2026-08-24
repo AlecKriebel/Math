@@ -16,6 +16,19 @@ manuscript PDFs, and applies the PDF semantic gate. Use
 `FINAL_RELEASE_QUICK=1 bash replay.sh` only as a smoke test; release
 qualification uses the full command.
 
+Both replay routes first verify the shipped `sha256_manifest.txt` and preserve
+it unchanged. Deterministic exact artifacts regenerated during replay are
+compared against hashes selected from that downloaded baseline. Replay writes
+newly generated tree hashes to the separately named
+`verification_outputs/replay_self_consistency_manifest.txt`; checking that file
+establishes local self-consistency, not equality to the downloaded release.
+The baseline is created only by the packaging command
+`bash release/create_release_manifest.sh`, never by either replay. During
+release qualification, create a provisional manifest after staging all inputs,
+run the full replay, then create and check the final shipped manifest after the
+successful replay has written its retained evidence. This packaging-only final
+step does not retroactively turn a failed replay into a pass.
+
 ## Full provenance replay and its external prerequisites
 
 The top-level provenance replay additionally verifies five historical-lineage
@@ -52,6 +65,8 @@ the top-level command is not self-contained in the downloadable repository.
 The successful full log contains:
 
 ```text
+TOOLCHAIN_LOCK_PASS
+RELEASE_BASELINE_MANIFEST_PASS
 FROZEN_SOURCE_HASHES_PASS
 NUMERICAL_PROVENANCE_PASS
 MATRIX_THEOREM_GENERALIZATION_PASS
@@ -64,6 +79,8 @@ FIGURE_REGENERATION_PASS
 DOCUMENT_BUILD_PASS
 SUBMISSION_BUNDLE_FRESHNESS_PASS
 CLEAN_ARTIFACT_AUDIT_PASS
+RELEASE_EXACT_ARTIFACT_BASELINE_PASS
+REPLAY_SELF_CONSISTENCY_PASS
 ALL_FINAL_RELEASE_REPLAY_CHECKS_PASS
 ```
 
@@ -80,19 +97,30 @@ eta_3 = 143636/7451873
 
 ## Build and artifact checks
 
-Python dependencies, including tested lower bounds for NumPy and SciPy, are in
-`requirements.txt`. The replays reject optimized Python mode because the exact
-verifiers deliberately use assertions, and they record the Python package
-versions used. The full replay preflight also requires `pdflatex`, `biber`,
-`pdfinfo`, `pdffonts`,
-`unzip`, `sha256sum`, and `rsync`; the TeX installation must provide TikZ,
-`biblatex`, AMS packages, and the fonts used by the sources.
+`requirements.txt` records compatibility minima for exploratory use. Release
+qualification instead uses CPython 3.9.6 and the exact pins in
+`requirements-tested.txt`. The document route is TinyTeX 2022.04 / TeX Live
+2022, pdfTeX 1.40.24, and Biber 2.17. Recovered package versions are recorded in
+`environment/texlive-2022.04.lock.txt`, and
+`environment/check_toolchain.sh` rejects a mismatched engine, Python stack, or
+load-bearing TeX package before a replay opens its log. See
+`environment/TESTED_ENVIRONMENT.md` for the full boundary. This pin is
+material: a newer TeX Live generation was independently observed to alter page
+flow and PDF text extraction.
+
+The replays reject optimized Python mode because exact verifiers deliberately
+use assertions, and they record the Python package versions used. The full
+replay preflight also requires `pdfinfo`, `pdffonts`, `unzip`, `sha256sum`,
+`rsync`, and the standard shell utilities used by the scripts.
 
 The document stage recreates `release/build_logs/` and
 `release/pdf_preflight/`. The PDF audit checks opening, page counts, extractable
-text, S-prefixed supplement sections, and known stale rendered phrases. The
-final manifest is regenerated only after all bundles and audits are complete,
-and an explicit gate requires it to cover `RESEARCH_LOG.md`.
+text, embedded fonts, the pinned `pdfTeX-1.40.24` producer for TeX-built
+artifacts, S-prefixed supplement sections, and known stale rendered phrases. The
+release baseline manifest is produced by packaging and is never rewritten by
+replay. An explicit startup gate requires it to cover `RESEARCH_LOG.md`. The
+final replay gate instead verifies deterministic exact artifacts against that
+baseline and writes a separate regenerated self-consistency manifest.
 
 The open-data ZIP, three submission ZIPs, and three specialist-packet ZIPs are
 written in sorted order with a fixed timestamp and normalized permissions.
@@ -102,3 +130,13 @@ toolchains even if compressed byte streams differ. Numerical integrations are
 cosine--Galerkin illustrations reproducible within the recorded solver and
 refinement tolerances. BLAS thread counts are fixed by the replay, package
 versions are logged, and no numerical integration is used in a proof.
+
+`independent_verifier/certificate_schema.json` is descriptive metadata for
+certificate-field interpretation. No replay claim depends on runtime JSON
+Schema validation unless a future release explicitly adds such a validator.
+
+Stored verification-output provenance is tabulated in
+`release/verification_outputs/PROVENANCE.tsv`. In particular, the full-tree and
+public stale-claim audits are generated in their own scopes, and the integrated
+finite regression command includes both the legacy stress dimension 149 and
+the stored dimension 200.

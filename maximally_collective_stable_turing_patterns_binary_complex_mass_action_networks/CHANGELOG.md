@@ -1,5 +1,28 @@
 # Changelog
 
+## Independent-referee reproducibility repair — 23 August 2026
+
+- Preserved the referee-validated theorem suite while making the fixed-mass
+  Fourier/Fredholm decomposition, high-mode inverse estimate, sectoriality,
+  and complementary spectral-gap continuation explicit.
+- Clarified the $b=2a$ SCC case and printed the exact $3\times3$ core Schur
+  remainder with determinant $2a^2b$.
+- Added a standalone symbolic all-dimensional bridge from the second-harmonic
+  recurrence to $R_m+C_m\mathfrak h_m$, and labeled finite, duplicated,
+  floating, and aggregate verifier layers according to their actual roles.
+- Made all 39 direct verifier entrypoints fail closed under optimized Python;
+  all 39 were then run individually under the pinned qualification stack.
+- Pinned CPython, scientific packages, TinyTeX 2022.04, pdfTeX 1.40.24, Biber
+  2.17, and load-bearing TeX package versions; repaired extractor-robust PDF
+  probes and enforced the canonical PDF producer.
+- Preserved shipped manifests during replay, compared deterministic exact
+  artifacts against the downloaded baseline, and separated regenerated-tree
+  self-consistency hashes.  A detached mutation control confirmed that neither
+  manifest can conceal an exact-artifact change.
+- Aligned the stored $m=200$ regression, scoped every verification output by
+  command/version/evidence class, documented the descriptive JSON schema, and
+  recorded v1.0.7's exact DOI as the immutable predecessor of v1.0.8.
+
 ## Final positivity and contrast-interpretation closure — 22 August 2026
 
 - Closed the componentwise positivity argument for the unit and

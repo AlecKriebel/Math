@@ -1,13 +1,19 @@
 #!/usr/bin/env python3
-"""One-command exact verification of all load-bearing symbolic certificates."""
-import subprocess,sys
-from pathlib import Path
+"""Aggregate the load-bearing symbolic certificate entrypoints.
+
+This wrapper adds no independent evidence beyond its children.  In particular,
+``verify_generic_cubic_recurrence.py`` supplies the all-dimensional symbolic
+cubic bridge, while the finite contraction scripts remain regression layers.
+"""
 
 if not __debug__:
     raise SystemExit(
         "Exact certificate verification requires assertions; "
         "unset PYTHONOPTIMIZE and do not use python -O"
     )
+
+import subprocess,sys
+from pathlib import Path
 
 HERE=Path(__file__).resolve().parent
 checks=[
@@ -20,6 +26,7 @@ checks=[
  "dd_verify_mode_isolation.py",
  "dd_verify_harmonic_corrections.py",
  "dd_verify_cubic_sign.py",
+ "verify_generic_cubic_recurrence.py",
  "frontier_verify_determinant_identity.py",
  "frontier_verify_mode_certificates.py",
  "frontier_verify_master_certificate.py",

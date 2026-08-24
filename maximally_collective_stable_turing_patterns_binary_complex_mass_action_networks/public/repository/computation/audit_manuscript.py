@@ -28,18 +28,18 @@ missing_cites=sorted(set(cites)-bibkeys)
 if missing_cites: raise AssertionError(f'missing bib keys {missing_cites}')
 
 for marker in (
-    'version: "1.0.7"',
-    'maximally-collective-stable-turing-v1.0.7',
+    'version: "1.0.8"',
+    'maximally-collective-stable-turing-v1.0.8',
     '10.5281/zenodo.21753404',
-    '10.5281/zenodo.22058969',
+    '10.5281/zenodo.22062080',
     'authors:',
 ):
     if marker not in cff:
         raise AssertionError(f'CITATION.cff lacks release marker {marker}')
 if not all(marker in main for marker in (
-    'version 1.0.7 tagged release source tree',
+    'version 1.0.8 tagged release source tree',
     '10.5281/zenodo.21753404',
-    '10.5281/zenodo.22058969',
+    '10.5281/zenodo.22062080',
 )):
     raise AssertionError('data statement does not distinguish the current tag, concept DOI, and preceding version DOI')
 

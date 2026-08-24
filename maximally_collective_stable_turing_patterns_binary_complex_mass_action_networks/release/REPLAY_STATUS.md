@@ -1,10 +1,36 @@
-# Replay status for the 22 August 2026 pre-submission proof-closure repair
+# Replay status for the v1.0.8 pre-submission release candidate
 
-This file distinguishes current-release verification from historical-lineage
-verification. It supersedes the pre-repair replay logs, which were removed
-because they described different sources and artifacts.
+This file distinguishes the unqualified current release candidate from
+historical v1.0.7 evidence and from historical-lineage verification.
 
-## Round-7 source status: passed
+## v1.0.8 current source: passed current-release qualification
+
+The active metadata and reproducibility infrastructure target version 1.0.8.
+The pinned TinyTeX 2022.04/pdfTeX 1.40.24/Biber 2.17 preflight and exact Python
+lock pass.  The current campaign also passes:
+
+- all 25 mutation/regression tests, including all 39 direct entrypoints under
+  optimized Python, where every one fails closed;
+- every direct verifier entrypoint under normal Python, the complete symbolic
+  aggregate, and the standalone all-dimensional cubic-recurrence bridge;
+- the current-profile exact generators, provenance checks, all 15 numerical
+  illustrations, and the refinement gate;
+- exact integrated designs through the current stress dimensions 149 and 200;
+- the 19-page manuscript, 19-page supplement, 3-page theorem summary, 6-page
+  proof skeleton, and four standalone figures under semantic, producer,
+  embedded-font, clean-log, and page-by-page visual checks;
+- all seven deterministic bundle hashes and clean detached builds of the three
+  submission source ZIPs; and
+- a full replay from a detached copy of the portable public package through
+  `PUBLIC_REPLAY_PASS`.
+
+The portable replay preserves its downloaded manifest, verifies deterministic
+exact artifacts against that baseline, and writes a distinct regenerated-tree
+self-consistency manifest.  A detached mutation control confirmed that an
+exact-profile edit is rejected by both.  The exact preceding v1.0.7 release
+remains archived at `10.5281/zenodo.22062080`.
+
+## Historical v1.0.7 round-7 source status: passed
 
 The branch-positivity closure, exact within-family contrast-minimum statement,
 positive-diagonal diffusion quantifier, and SCC terminology cleanup target
@@ -14,7 +40,7 @@ All 22 mutation/regression tests, the complete symbolic aggregate, the source
 and PDF semantic audits, three isolated submission-source builds, and the
 detached full portable replay pass.
 
-## v1.0.7 current source: passed checks
+## Historical v1.0.7 source: passed checks
 
 The following were rerun after the high-dimensional endpoint repair and final
 source edits:
@@ -75,7 +101,7 @@ supplement. The detached public replay used the same compatible pair and ended
 in `PUBLIC_REPLAY_PASS`. Numerical outputs are certified to the recorded
 tolerances, not asserted to be byte-identical across BLAS/SciPy toolchains.
 
-## Historical-lineage stage: not rerun after the repair
+## Historical-lineage stage: not rerun for v1.0.8
 
 The top-level command additionally requires five frozen source archives listed
 in `release/reproducibility.md`. They were unavailable in the final repair
@@ -83,8 +109,8 @@ environment. Its preflight was exercised against an empty `FROZEN_BASE`: it
 reported all five missing archives, exited with status 2, and did not create or
 truncate `release/replay.log`.
 
-Accordingly, this corrected release claims a current portable replay and direct
-verification of the substantive stages above. It does **not** claim that the
-post-repair tree completed the optional historical-lineage replay. The lineage
+Accordingly, v1.0.8 claims a current portable replay and direct verification of
+the substantive stages above. It does **not** claim that this tree completed
+the optional historical-lineage replay. The lineage
 archives are not consumed by any current proof, data, document, or package
 stage.

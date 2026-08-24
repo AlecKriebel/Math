@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+"""Duplicate exact regeneration layer for the unit-profile mode certificates."""
+
 if not __debug__:
  raise SystemExit('Exact verifier requires assertions; unset PYTHONOPTIMIZE and do not use python -O')
 

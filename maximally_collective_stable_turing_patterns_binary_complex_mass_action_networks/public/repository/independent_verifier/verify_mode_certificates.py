@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
-"""Verify every exact half-plane coefficient certificate used in the paper."""
+"""Aggregate wrapper for the exact half-plane certificate entrypoints."""
+
+if not __debug__:
+    raise SystemExit(
+        "Exact verifier requires assertions; unset PYTHONOPTIMIZE and do not use python -O"
+    )
+
 import subprocess,sys
 from pathlib import Path
 HERE=Path(__file__).resolve().parent

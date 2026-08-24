@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+"""Duplicate exact finite/interface regression for the diffusion-ray criterion."""
+
 if not __debug__:
  raise SystemExit('Exact verifier requires assertions; unset PYTHONOPTIMIZE and do not use python -O')
 

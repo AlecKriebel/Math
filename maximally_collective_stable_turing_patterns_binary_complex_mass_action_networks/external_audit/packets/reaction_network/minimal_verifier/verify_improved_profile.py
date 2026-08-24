@@ -1,5 +1,14 @@
 #!/usr/bin/env python3
-"""Aggregate exact checks for the improved unit-equilibrium stable design."""
+"""Aggregate wrapper for the improved-profile verifier layers.
+
+This entrypoint adds no independent evidence beyond its child scripts.
+"""
+
+if not __debug__:
+    raise SystemExit(
+        "Exact verifier requires assertions; unset PYTHONOPTIMIZE and do not use python -O"
+    )
+
 import subprocess,sys
 from pathlib import Path
 HERE=Path(__file__).resolve().parent

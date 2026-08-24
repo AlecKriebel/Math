@@ -1,6 +1,20 @@
 # OUTCOME
 
-## FINAL-RELEASE-READY
+## V1.0.8 FINAL-RELEASE-READY
+
+The v1.0.8 source, PDFs, public package, specialist packets, and submission
+bundles have passed the current-release qualification recorded in
+`REPLAY_STATUS.md`.  This round repairs the independent referee's
+reproducibility and proof-exposition findings without changing any theorem,
+reaction, endpoint, numerical profile, or nonlinear conclusion.  The immutable
+v1.0.7 source, full-referee packet, and audit remain unchanged at exact version
+DOI `10.5281/zenodo.22062080`.
+
+The remainder of this report records the mathematical and numerical campaign
+through v1.0.7; v1.0.8 adds the pinned toolchain, preserving manifest design,
+39-entrypoint fail-closed audit, all-dimensional cubic bridge, explicit
+fixed-mass Fourier/Fredholm argument, and scoped output provenance described in
+the status and changelog.
 
 The numerical-provenance, theorem-scope, proof-presentation,
 certificate-visibility, and release-rebuild program through v1.0.7 is
@@ -464,11 +478,11 @@ they were unavailable in the final repair environment, so no post-repair full
 lineage replay is claimed. For an ordinary third-party downloader, the
 self-contained command is `cd public/repository && bash replay.sh`.
 
-The immutable release source is indexed by the stable Zenodo concept DOI
-`10.5281/zenodo.21753404`.  The exact preceding v1.0.6 snapshot is archived at
-version DOI `10.5281/zenodo.22058969`; that DOI is not assigned to v1.0.7.
-Each published GitHub release note records its own version-specific DOI after
-Zenodo creates the corresponding public record.
+The immutable release series is indexed by the stable Zenodo concept DOI
+`10.5281/zenodo.21753404`.  The exact preceding v1.0.7 snapshot is archived at
+version DOI `10.5281/zenodo.22062080`.  The v1.0.8 version-specific DOI remains
+pending until Zenodo creates the corresponding public record; the GitHub
+release note will record it when available.
 
 # EXTERNAL AUDIT
 
