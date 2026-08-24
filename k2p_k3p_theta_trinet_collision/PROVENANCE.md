@@ -4,9 +4,12 @@
 
 `k2p_k3p_theta_clarified/` is the sole current manuscript,
 verification, submission, and archival subtree. The paper, summaries,
-certificates, verifiers, and ZIP in this parent directory are retained only as
+certificates, and verifiers outside that subtree are retained only as
 pre-clarification history. They must not be treated as a parallel current
-package or included in a new deposit.
+package or included in a new deposit. The former unversioned parent ZIP was
+removed and replaced by the commit-pinned version `1.0.0` replay supplement
+`k2p-k3p-theta-collision-4100ec652405.zip`; the removed archive remains
+recoverable from Git history.
 
 This repository is public. The pre-clarification combined package first appears
 in repository history at commit `ca21a733`, dated 4 August 2026, and was linked
@@ -16,6 +19,13 @@ its author-facing metadata are prepared in the canonical subtree. The frozen
 source/replay snapshot is version `1.0.0`, identified by the Git tag
 `k2p-k3p-theta-biorxiv-v1.0.0`. No external communication was initiated during
 this preparation checkpoint.
+
+The versioned ZIP was built from full commit
+`4100ec6524054cef1e78441587abc9487d689d0b`. The builder produced byte-stable
+ZIP and tar.gz forms, verified their generated metadata byte-for-byte, and
+validated every internal file hash. Independent clean extraction confirmed
+identical ZIP/tar contents, normal and optimized verifier success, warning-free
+PDF builds, and matching extracted text and rendered pixels.
 
 ## Discovery sequence
 

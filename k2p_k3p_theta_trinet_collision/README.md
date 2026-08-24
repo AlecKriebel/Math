@@ -18,7 +18,9 @@ tag `k2p-k3p-theta-biorxiv-v1.0.0`.
 Files in this parent directory with names such as `combined-paper.tex`,
 `combined-paper.pdf`, `technical-summary.*`, `verify.py`, and the parent
 certificates are retained solely as pre-clarification history. They are not a
-second current version and must not be submitted or included in a new release.
+second current version and must not be submitted. The former unversioned
+`k2p_k3p_theta_clarified.zip` was removed because its contents did not satisfy
+the current release manifest; it remains recoverable from Git history.
 
 Under the conventions stated in Brits, Holtgrefe, van Iersel, and Martin,
 *On Tree--Network Distinguishability and Full Identifiability of Phylogenetic
@@ -55,6 +57,8 @@ Successful complete output ends with `ALL EXACT CHECKS PASSED`.
 - `k2p_k3p_theta_clarified/submission/biorxiv/`: bioRxiv metadata and upload checklist.
 - `k2p_k3p_theta_clarified/CITATION.cff`: citation metadata.
 - `k2p_k3p_theta_clarified/LICENSES.md`: package licensing boundaries.
+- `k2p-k3p-theta-collision-4100ec652405.zip` and its `.sha256` sidecar:
+  commit-pinned version `1.0.0` replay supplement built from the frozen tag.
 
 ## Build and release
 
@@ -68,6 +72,11 @@ The release builder archives only the tracked canonical release files at an
 exact Git commit. It explicitly excludes the author-facing
 `submission/biorxiv/` worksheet/checklists, as well as the legacy parent
 package, untracked caches, and local build debris.
+
+The checked version `1.0.0` ZIP in this directory is ready to upload as a
+supplement. Its internal `RELEASE_PROVENANCE.txt` records full commit
+`4100ec6524054cef1e78441587abc9487d689d0b`, and its internal
+`FILE_SHA256SUMS` passes from a clean extraction.
 
 The package cites arXiv:2607.12919v2, posted 29 July 2026. Submission-specific
 status, unresolved author choices, and official bioRxiv guidance are maintained

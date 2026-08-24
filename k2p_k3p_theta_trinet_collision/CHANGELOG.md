@@ -14,6 +14,15 @@
   commit, and DOI placeholders.
 - Added a deterministic Git-subtree release builder that excludes untracked
   caches and the legacy parent package and performs a two-build byte comparison.
+- Published canonical source/replay tag `k2p-k3p-theta-biorxiv-v1.0.0` at full
+  commit `4100ec6524054cef1e78441587abc9487d689d0b`.
+- Removed the stale unversioned parent ZIP and sidecar (recoverable from Git
+  history) and replaced them with the clean commit-pinned version `1.0.0` ZIP
+  and checksum sidecar.
+- Corrected newline preservation for generated archive manifests/provenance and
+  added byte-for-byte checks of both generated files inside ZIP and tar.gz.
+- Replayed the complete suite normally and with Python optimization from a clean
+  extraction; both passed, and rebuilt PDF text and pixels matched.
 
 ## Displayed-tree clarification revision
 
