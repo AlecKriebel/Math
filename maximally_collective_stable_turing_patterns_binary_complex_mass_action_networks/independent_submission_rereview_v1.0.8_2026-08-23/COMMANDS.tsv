@@ -1,0 +1,30 @@
+timestamp	cwd	command	exit_status	runtime_seconds	classification	outcome
+2026-08-23T20:42:47-07:00	Math repository	git identify v1.0.8 tag and candidate commit	0	<1	provenance	tag maximally-collective-stable-turing-v1.0.8 resolves to b4607c4cc9fe6931cedbbd0c5cd7e6e68a704f9f
+2026-08-23T20:45:00-07:00	Math repository	git archive immutable v1.0.8 project snapshot	0	<1	preservation	1064 files; aggregate SHA-256 436fb12e206edb864acbb017f2260fea61425996bbbec0ac21418e2231f3ef87
+2026-08-23T20:46:00-07:00	immutable source snapshot	verify public/repository/sha256_manifest.txt	0	<1	integrity	all portable repository entries verified before execution
+2026-08-23T20:46:00-07:00	immutable source snapshot	verify release/BUNDLE_SHA256.txt	0	<1	integrity	all 7 canonical bundle hashes verified
+2026-08-23T20:47:00-07:00	immutable source snapshot	verify release/sha256_manifest.txt	1	<1	integrity negative finding	1063 OK; 570 missing ignored v1.0.7 audit/scratch paths; zero existing-file mismatches
+2026-08-23T20:48:00-07:00	disposable public repository	pinned toolchain check	0	<1	environment	CPython 3.9.6/scientific stack/TinyTeX 2022.04/pdfTeX 1.40.24/Biber 2.17 passed
+2026-08-23T20:49:00-07:00	disposable public repository	full portable replay	0	72.55	exact and numerical replay	all 8 stages; baseline/exact/self-consistency gates; PUBLIC_REPLAY_PASS
+2026-08-23T20:52:00-07:00	detached journal source package	unzip test and pinned clean source build	0	6.50	submission build	11-file source bundle valid; main and supplement compiled cleanly
+2026-08-23T20:53:00-07:00	detached journal source package	compare rebuilt and submitted PDF text	0	<1	artifact comparison	layout text byte-identical; only PDF creation metadata differs bytewise
+2026-08-23T20:54:00-07:00	disposable full source	python computation/audit_pdfs.py --profile full	0	1.45	PDF semantic audit	PDF_SEMANTIC_AUDIT_PASS
+2026-08-23T20:54:00-07:00	disposable full source	python computation/audit_manuscript.py	0	0.10	source semantic audit	MANUSCRIPT_AUDIT_PASS; 82 labels; 29 citations; 201 abstract words
+2026-08-23T20:54:00-07:00	disposable full source	python computation/audit_stale_claims.py	0	0.47	stale-claim audit	STALE_CLAIM_AUDIT_PASS across 652 files
+2026-08-23T20:55:00-07:00	immutable source snapshot	bash release/create_release_manifest.sh --check	1	0.23	reproducibility negative finding	clean tagged release manifest fails on absent ignored audit workspaces
+2026-08-23T21:01:00-07:00	disposable external_audit/minimal_verifier	bash replay.sh under pinned qualification environment	0	42.31	exact/minimal replay	MINIMAL_VERIFIER_PASS; packaging duplicate, not independent proof
+2026-08-23T21:02:00-07:00	Zenodo public API	read current concept and version record metadata	0	<1	public metadata verification	v1.0.8 exact DOI is now 10.5281/zenodo.22074358; tagged source still says pending
+2026-08-23T21:04:00-07:00	disposable full source	independent loop over 39 verifier entrypoints with normal Python	0	87.392	exact and finite verifier campaign	39 of 39 passed; semantics individually classified in SOFTWARE_REREVIEW.md
+2026-08-23T21:06:00-07:00	disposable full source	independent loop over 39 verifier entrypoints with optimized Python	0	0.959	negative control	all 39 children rejected disabled assertions with nonzero status
+2026-08-23T21:06:00-07:00	disposable full source	python -m pytest -q computation/tests	0	8.88	mutation and regression suite	25 tests passed
+2026-08-23T21:07:00-07:00	independent core workspace	reaction/Hessian, SCC, Schur, recurrence, sign, and cubic controls	0	<3	independent exact controls	m=3,4,5,8,12 as applicable; all checks passed
+2026-08-23T21:07:00-07:00	independent PDE workspace	fixed-mass kernel/adjoint/transversality, endpoint, and spectral controls	0	1.90	independent exact and numerical controls	m=3,4,7 exact and m=3,4,149 finite spectra passed
+2026-08-23T21:08:00-07:00	disposable full source	mutate exact profile then verify fixed public baseline	1	0.10	negative control	mutated artifact rejected
+2026-08-23T21:08:00-07:00	disposable full source	mutate generic cubic coefficient then run verifier	1	0.884	negative control	material symbolic mutation rejected
+2026-08-23T21:09:00-07:00	disposable toolchain copy	mutate FORMAT and LATEX lock rows to impossible sentinels	0	2.886	negative finding	checker incorrectly emitted TOOLCHAIN_LOCK_PASS
+2026-08-23T21:09:00-07:00	disposable toolchain copy	mutate checked article.cls row to impossible sentinel	2	2.8	negative control	checked package row rejected as expected
+2026-08-23T21:10:00-07:00	disposable toolchain copy	test proposed FORMAT/LATEX enforcement repair	0 then 2	6.3	repair control	original lock accepted; impossible FORMAT rejected
+2026-08-23T21:11:00-07:00	detached journal source	compare two-pass and three-pass supplement builds	0	6.5	build-semantic control	two passes leave stale TOC; third pass equals canonical PDF
+2026-08-23T21:12:00-07:00	disposable embedded v1.0.7 packet	manual outer and inner manifest checks before execution	0	<1	lineage integrity	all entries and canonical PDF comparisons passed
+2026-08-23T21:13:00-07:00	disposable embedded v1.0.7 packet	RUN_COMPLETE_AUDIT.sh initial preflight	2	<1	environment diagnostic	PATH omitted pdffonts; no substantive stage ran
+2026-08-23T21:13:00-07:00	disposable embedded v1.0.7 packet	RUN_COMPLETE_AUDIT.sh with exact recorded Python/TeX/Poppler stack	1	about 94	historical lineage control	outer/inner hashes and minimal replay passed; archived full replay stopped at known v1.0.7 PDF false-negative
