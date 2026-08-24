@@ -6,8 +6,25 @@ X_c=\left\{u\in H_N^2:\int_0^\pi c^Tu\,d\xi=0\right\},
 \qquad
 Y_c=\left\{g\in L^2:\int_0^\pi c^Tg\,d\xi=0\right\}.
 \]
-The stationary operator is analytic, Fredholm of index zero, and at
-$\mu=0$ has kernel $\operatorname{span}\{r\cos\xi\}$ and cokernel
+Because $c^TA_m=0$ and the Neumann diffusion term has zero spatial integral,
+the linearized evolution preserves these fixed-mass spaces.  At onset set
+$\mathcal L_0=A_m+D_m\partial_{\xi\xi}$.  In the Neumann cosine basis its
+$k$th block is $A_m-k^2D_m$.  The homogeneous block is invertible on
+$c^\perp$; the first block has simple kernel $\operatorname{span}\{r\}$ and
+range $\ell^\perp$; all $k\ge2$ blocks are invertible by mode isolation.  For
+all sufficiently large $k$,
+\[
+A_m-k^2D_m=-k^2D_m(I-k^{-2}D_m^{-1}A_m),\qquad
+\|(A_m-k^2D_m)^{-1}\|\le2\|D_m^{-1}\|k^{-2}.
+\]
+The $k^{-2}$ inverse bound and the finitely many low-mode inverses map the
+compatible $L^2$ data into $H_N^2$.  Consequently the range is closed,
+\[
+\ker\mathcal L_0=\operatorname{span}\{r\cos\xi\},\qquad
+\operatorname{ran}\mathcal L_0
+=\left\{g\in Y_c:\int_0^\pi\ell^Tg\cos\xi\,d\xi=0\right\},
+\]
+and $\mathcal L_0:X_c\to Y_c$ is Fredholm of index zero with cokernel
 $\operatorname{span}\{\ell\cos\xi\}$.  The transversality pairing is
 $(\pi/2)\ell^TD_mr\ne0$.  The reflection
 $(\mathcal Ru)(\xi)=u(\pi-\xi)$ preserves these fixed-mass Neumann spaces,
@@ -31,13 +48,22 @@ The center eigenvalue on either branch is
 \]
 At onset, the homogeneous stoichiometric spectrum, the noncritical first-mode
 spectrum, and every higher Neumann mode lie strictly in the left half-plane.
-For each fixed $m$, positive diffusion sends the high-mode spectral bound to
-$-\infty$, so the complementary spectrum has a positive gap.  Analytic
-perturbation preserves this gap along the small branch.
+More explicitly,
+\[
+\alpha(A_m-k^2D_m)
+\le\left\|(A_m+A_m^T)/2\right\|_2-k^2d_{\min}\longrightarrow-\infty.
+\]
+Thus only finitely many modes determine the positive complementary gap.
+Along the small branch, positive diffusion retains a uniform lower bound and
+the reaction Jacobian is a small bounded multiplication perturbation.  The
+high-frequency bound remains uniform, while analytic perturbation preserves
+the finitely many low-mode gaps.
 
 The quadratic mass-action nonlinearity is smooth from the real fixed-mass
 $H^1$ phase space to $L^2$ in one dimension, and the positive diagonal
-Neumann diffusion operator is sectorial.  The fixed-mass restriction removes
+Neumann diffusion operator with domain $H_N^2$ is sectorial with compact
+resolvent; bounded reaction-Jacobian perturbations preserve sectoriality.  Its
+half-order phase space is $H^1$.  The fixed-mass restriction removes
 the conservation zero and Neumann boundaries leave no continuous translation
 mode.  The principle of linearized stability therefore gives local exponential
 asymptotic stability of each branch in fixed-mass $H^1$.  No global basin or

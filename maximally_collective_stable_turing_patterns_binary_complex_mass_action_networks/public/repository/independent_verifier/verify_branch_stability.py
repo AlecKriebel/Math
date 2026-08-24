@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
-"""Finite regression for complementary spectral gaps; all-m proof is certificate based."""
+"""Finite floating spectral-gap regression, not a nonlinear stability proof."""
+
+if not __debug__:
+    raise SystemExit(
+        "Exact verifier requires assertions; unset PYTHONOPTIMIZE and do not use python -O"
+    )
+
 import numpy as np
 from core import Avec, selected
 from pareto_core import A as PA, Deff, Hlist, L0, L1

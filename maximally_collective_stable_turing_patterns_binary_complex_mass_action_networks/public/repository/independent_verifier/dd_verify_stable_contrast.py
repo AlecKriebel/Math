@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+"""Duplicate finite regression for selected-profile coefficient signs and contrast."""
+
+if not __debug__:
+    raise SystemExit(
+        "Exact verifier requires assertions; unset PYTHONOPTIMIZE and do not use python -O"
+    )
+
 import sympy as sp
 from common import Hsum,ellr_formula,ellDr_formula,N_formula
 for m in [3,4,5,6,8,10,20,50]:

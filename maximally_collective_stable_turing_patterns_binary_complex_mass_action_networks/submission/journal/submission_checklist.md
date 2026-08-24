@@ -1,7 +1,7 @@
 # Journal submission checklist
 
 - [ ] Approve all author metadata and declarations.
-- [ ] Verify ORCID `0009-0001-9320-500X`, the immutable version 1.0.7 release URL, the Zenodo concept DOI, and the release-record version DOI in the portal.
+- [ ] Verify ORCID `0009-0001-9320-500X`, the immutable version 1.0.8 release URL, the Zenodo concept DOI, and the release-record version DOI in the portal.
 - [ ] Approve AI-assistance wording.
 - [ ] Upload main manuscript, supplement, editable source, figures, and data/code statement.
 - [ ] Confirm that no source project or private workflow file is included.

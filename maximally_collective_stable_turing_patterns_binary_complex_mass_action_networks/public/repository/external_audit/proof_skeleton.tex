@@ -34,7 +34,7 @@ $x^*=H^{-1}\mathbf1$, the Jacobian is $A_m(a,b)H$.  Conversely, the choice
 \]
 realizes every $a,b,H>0$.
 
-For a nonempty principal set with fewer than $m$ vertices, Frobenius decomposition reduces every SCC to either a negative singleton or one of three non-singleton forms: the $X_1,\ldots,X_{m-1}$ long cycle, the $X_2,\ldots,X_m$ long cycle, or a principal boundary-triad block. At $b=2a$ one directed edge disappears and only refines the decomposition. The two cycle characteristic equations are excluded from $\Re\lambda\ge0$ by strict product inequalities. The full triad has positive cubic coefficients and $c_1c_2-c_3$ is a sum of fourteen positive monomials. Every lower-order principal matrix is thus Hurwitz. Sparse expansion of the $X_1,\ldots,X_m$ block gives the negative signed determinant $-2a^{m-1}b\prod h_i$, forcing a positive real eigenvalue.
+For a nonempty principal set with fewer than $m$ vertices, Frobenius decomposition reduces every SCC to either a negative singleton or one of three non-singleton forms: the $X_1,\ldots,X_{m-1}$ long cycle, the $X_2,\ldots,X_m$ long cycle, or a principal boundary-triad block. At $b=2a$, the deleted edge $X_1\to X_m$ lies on neither long cycle and can only refine the boundary decomposition. The two cycle characteristic equations are excluded from $\Re\lambda\ge0$ by strict product inequalities. The full triad has positive cubic coefficients and $c_1c_2-c_3$ is a sum of fourteen positive monomials. Every lower-order principal matrix is thus Hurwitz. For the core determinant, the interior lower-bidiagonal Schur block has determinant $(-a)^{m-3}$ and bottom-left inverse entry $-1/a$; the remaining $3\times3$ matrix has determinant $2a^2b$. Restoring the column factors gives the negative signed determinant $-2a^{m-1}b\prod h_i$, forcing a positive real eigenvalue.
 
 For $m=3$, the two long cycles are $\{X_1,X_2\}$ and $\{X_2,X_3\}$,
 and every other non-singleton SCC is a principal subgraph of
@@ -205,12 +205,31 @@ On
  X_c=\{u\in H_N^2:\textstyle\int_0^\pi c^Tu=0\},\qquad
  Y_c=\{g\in L^2:\textstyle\int_0^\pi c^Tg=0\},
 \]
+fixed-mass invariance follows from $c^TA_m=0$ and the Neumann boundary
+conditions.  The onset linearization
+$\mathcal L_0=A_m+D_m\partial_{\xi\xi}$ has cosine blocks
+$A_m-k^2D_m$: $k=0$ is invertible on $c^\perp$, $k=1$ has its certified
+simple zero, and every $k\ge2$ block is invertible.  For large $k$,
+\[
+ A_m-k^2D_m=-k^2D_m(I-k^{-2}D_m^{-1}A_m),\qquad
+ \|(A_m-k^2D_m)^{-1}\|\le2\|D_m^{-1}\|k^{-2}.
+\]
+Thus compatible $L^2$ data have an $H_N^2$ preimage, the range is closed, and
 the stationary linearization is Fredholm of index zero, with kernel
 $\operatorname{span}\{r\cos\xi\}$, cokernel
 $\operatorname{span}\{\ell\cos\xi\}$, and transversality pairing
 $(\pi/2)\ell^TD_mr\ne0$.  Crandall--Rabinowitz gives the stationary local curve; reflection equivariance
 and the odd normal form identify its two positive nonconstant halves for
-$\mu>0$. Their center eigenvalue is $-2\eta_m\mu+O(\mu^2)<0$. The complementary spectrum is separated at onset and remains separated under analytic perturbation. Positive Neumann diffusion is sectorial on fixed-mass $L^2$, its fractional $H^1$ domain is a Banach algebra in one dimension, and the quadratic Nemytskii map is smooth. The principle of linearized stability gives local exponential convergence in $H^1$ for sufficiently close nonnegative initial data in the same conservation class.
+$\mu>0$. Their center eigenvalue is $-2\eta_m\mu+O(\mu^2)<0$.  The bound
+$\alpha(A_m-k^2D_m)\le\|(A_m+A_m^T)/2\|_2-k^2d_{\min}\to-\infty$
+reduces the complementary onset gap to finitely many modes.  Positive Neumann
+diffusion is sectorial with compact resolvent on fixed-mass $L^2$; along the
+branch its positive diffusion lower bound controls high frequencies, while
+analytic perturbation preserves the finitely many low spectral gaps.  Its
+fractional $H^1$ domain is a Banach algebra in one dimension, and the quadratic
+Nemytskii map is smooth.  The principle of linearized stability gives local
+exponential convergence in $H^1$ for sufficiently close nonnegative initial
+data in the same conservation class.
 
 \newpage
 \section*{5. Equilibrium-scaled stable trade-off and audit boundaries}

@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+"""Finite exact regression for the closed-form order-m omission minors."""
+
+if not __debug__:
+    raise SystemExit(
+        "Exact verifier requires assertions; unset PYTHONOPTIMIZE and do not use python -O"
+    )
+
 import sympy as sp
 from common import signed_omissions
 for m in [3,4,5,6,8,10]:

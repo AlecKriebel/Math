@@ -1,13 +1,13 @@
 # Final rendered-PDF audit
 
-Date: 2026-08-22
+Date: 2026-08-23
 
-Rendered with Poppler and inspected page by page (49 pages total). Page counts, document
+Rendered with Poppler and inspected page by page (51 pages total). Page counts, document
 properties, extractable text, and font resources were also checked with
 `pdfinfo`, pypdf, and pdfplumber.
 
-- Main manuscript: 18 pages; no clipped text, overlapping labels, black boxes, or broken glyphs.
-- Technical supplement: 18 pages; dense certificate displays remain within the text block.
+- Main manuscript: 19 pages; no clipped text, overlapping labels, black boxes, or broken glyphs.
+- Technical supplement: 19 pages; dense certificate displays remain within the text block.
 - Theorem summary: 3 pages.
 - Proof skeleton: 6 pages.
 - Standalone figures: amplitude scaling, network family, stable profiles, and
@@ -28,10 +28,11 @@ annotation now describes the outlined reaction complexes literally rather
 than identifying the outline with the species principal block. The final
 one-page rendering was reinspected.
 
-The clean-copy replay compares manuscript page counts and extracted layout
-text. Byte equality is not required for manuscript PDFs because TeX-engine
-metadata and font-subset streams can differ across absolute build roots; the
-standalone vector figure remains byte-identical under the recorded toolchain.
+The release-qualified build uses the pinned TinyTeX 2022.04/pdfTeX
+1.40.24/Biber 2.17 route.  The semantic audit requires that producer for the
+four TeX-built review documents, in addition to current page counts and
+extracted content.  Byte equality is not required for PDFs; exact generated
+JSON and TeX artifacts have separate byte-level baseline checks.
 
 These counts describe the PDFs rebuilt after the final source corrections.
 
@@ -44,12 +45,12 @@ design parameter $\omega$ throughout.  Contact-sheet inspection of every page
 and full-resolution inspection of every changed page found no new overlap,
 clipping, broken glyph, or ambiguous line wrap.
 
-The round-7 proof-closure PDFs were rebuilt and inspected again.  The new
-positive-diagonal display in Theorem 5.2, the componentwise-positivity
-closures, the exact $L_0$ minimax comparison, the SCC terminology, and the DOI
-lineage statement all fit without overfull boxes or page-count changes.  The
-18-page main manuscript, 18-page supplement, 3-page theorem summary, and
-6-page proof skeleton were rendered at 110--140 dpi and checked across all 45
-pages; all four unchanged standalone figures retain their previously inspected
-one-page renderings.  No clipping, overlap, broken glyph, malformed equation,
-or anomalous blank page was found.
+The v1.0.8 referee-repair PDFs were rebuilt and inspected again.  The expanded
+fixed-mass Fourier/Fredholm argument, high-mode inverse estimate, explicit
+$3\times3$ Schur remainder, $b=2a$ clarification, and DOI lineage statement
+all fit without overfull boxes.  The 19-page main manuscript, 19-page
+supplement, 3-page theorem summary, and 6-page proof skeleton were rendered at
+120--140 dpi and checked across all 47 review-document pages.  All four
+standalone one-page figures were separately rendered and inspected; Figure 1's
+chain labels are distinct and nonoverlapping.  No clipping, overlap, broken
+glyph, malformed equation, or anomalous blank page was found.

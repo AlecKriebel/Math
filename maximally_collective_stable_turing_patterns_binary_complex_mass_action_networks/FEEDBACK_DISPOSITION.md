@@ -1,5 +1,23 @@
 # Feedback disposition
 
+## Independent journal-style referee audit — 23 August 2026
+
+| Referee item | Disposition | Action |
+|---|---|---|
+| D1: replay fails a brittle PDF extraction probe and the document stack is not pinned | ACCEPT | Made the Latin-$u$ and positive-diagonal probes extractor-robust; pinned CPython, the scientific stack, TinyTeX 2022.04, pdfTeX 1.40.24, Biber 2.17, and load-bearing TeX packages; rebuilt every active PDF with the one enforced producer. |
+| D2: 21 direct verifier entrypoints can run without assertions | ACCEPT | Added fail-closed guards to all 38 prior entrypoints and the new generic checker.  A dynamic test runs all 39 under `python -O` and requires rejection. |
+| D3: some evidence described as all-dimensional or independent is finite, duplicated, floating, or aggregate | ACCEPT | Added a standalone symbolic recurrence-to-$R_m+C_m\mathfrak h_m$ bridge and documented the exact evidentiary role of every layer.  All 39 entrypoints were also run individually. |
+| D4: replay rewrites the downloaded manifest and can self-certify a changed tree | ACCEPT | The shipped manifest is verified before generation and never rewritten; exact artifacts are checked against selected downloaded hashes, and a separately named regenerated-tree manifest is explicitly labeled self-consistency only.  Detached mutation controls reject changes under both manifests. |
+| D5: fixed-mass Fredholm and sectorial steps are too compressed | ACCEPT | Printed the zero/nonzero Fourier blocks, exact range/kernel/cokernel, $O(k^{-2})$ inverse estimate, fixed-mass invariance, sectorial compact-resolvent setting, and finite-low-mode spectral-gap continuation. |
+| D6: stored $m=200$/stale-tree/schema/DOI provenance can be mistaken for current output | ACCEPT WITH CLASSIFICATION | Restored $m=200$ to current integrated coverage, removed the redundant stale numerical sidecar, regenerated stale audits in their own scopes, added command/version/evidence-class provenance, labeled the schema descriptive, and recorded v1.0.7 DOI `10.5281/zenodo.22062080` as the exact predecessor. |
+| State that the $b=2a$ edge belongs to neither long cycle | ACCEPT OPTIONAL | Added the statement to the manuscript, supplement, theorem summary, proof skeleton, and proof audit. |
+| Print the $3\times3$ determinant remainder | ACCEPT OPTIONAL | Printed the distinct core matrix $B_m^{\rm core}$ and verified $\det B_m^{\rm core}=2a^2b$, including the empty-interior $m=3$ case. |
+
+The referee found no mathematical defect and classified the result as valid
+after minor corrections.  None of these accepted items changes the reaction
+topology, theorem domain, repaired endpoint, numerical profile, or nonlinear
+conclusion.
+
 ## Final adversarial review — 22 August 2026
 
 | Supplied review item | Disposition | Action |

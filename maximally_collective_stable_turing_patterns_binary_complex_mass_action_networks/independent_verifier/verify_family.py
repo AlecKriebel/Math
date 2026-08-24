@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
 """Verify reaction family, conservation, flux cone, and Jacobian independently."""
 from __future__ import annotations
+
+if not __debug__:
+    raise SystemExit(
+        "Exact verifier requires assertions; unset PYTHONOPTIMIZE and do not use python -O"
+    )
+
 import argparse
 import sympy as sp
 from stable_core import reactions, gamma_y, conservation, flux, A_matrix

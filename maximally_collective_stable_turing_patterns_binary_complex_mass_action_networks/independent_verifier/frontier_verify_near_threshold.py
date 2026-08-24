@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 from __future__ import annotations
-import sympy as sp
-from pareto_core import A
 
 if not __debug__:
     raise SystemExit(
         "Exact verifier requires assertions; unset PYTHONOPTIMIZE and do not use python -O"
     )
+
+import sympy as sp
+from pareto_core import A
 
 
 def verify_affine_ansatz(m: int) -> None:

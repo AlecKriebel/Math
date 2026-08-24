@@ -91,8 +91,10 @@ complete chain lies inside $\{X_1,X_m,Z\}$.  All other retained chain vertices
 have no return path and therefore form negative singleton diagonal blocks.
 \end{enumerate}
 At $b=2a$, the coefficient $A_{m1}$ vanishes.  This deletes the arrow
-$X_1\to X_m$; edge deletion can split but cannot merge strongly connected
-components, so the same list remains exhaustive.
+$X_1\to X_m$.  That arrow lies on neither complete long cycle, so both
+long-cycle blocks and their characteristic equations are unchanged.  Within
+the boundary graph, edge deletion can split but cannot merge strongly
+connected components, so the same list remains exhaustive.
 
 For the boundary triad, the Routh--Hurwitz difference expands as
 \input{../data/triad_routh_gap.tex}
@@ -100,7 +102,22 @@ Every monomial is strictly positive.  The two long-cycle modulus inequalities
 are strict because $a+b>a$ and $4a+b>4a$.  Frobenius permutation therefore
 proves Hurwitz stability of every smaller principal block.
 
-Sparse expansion on $\{X_1,\ldots,X_m\}$ gives
+For completeness, the core determinant has a short exact Schur-complement
+calculation.  First factor the column scalings $\prod_{i=1}^m h_i$.  For
+$m\ge4$, the lower-bidiagonal block on
+$X_3,\ldots,X_{m-1}$ has determinant $(-a)^{m-3}$, and the bottom-left corner
+of its inverse is $-1/a$.  Eliminating that block leaves, in the order
+$(X_1,X_2,X_m)$,
+\[
+ B_m^{\rm core}=\begin{pmatrix}
+ -(a+b)&-a&-b\\
+ -a&-a&2a\\
+ 2a-b&2a&-(4a+b)
+ \end{pmatrix},
+ \qquad \det B_m^{\rm core}=2a^2b.
+\]
+When $m=3$ the interior block is empty and $B_m^{\rm core}$ is the original $X$-species
+block.  Restoring the column factors therefore gives, in every dimension,
 \[
  (-1)^m\det J_{\widehat Z,\widehat Z}
  =-2a^{m-1}b\prod_{i=1}^m h_i.
@@ -929,9 +946,54 @@ not a universal nonlinear lower bound.
 
 \section{Semilinear stability and robustness}
 
+At onset for the unit-equilibrium family, write
+\[
+ \mathcal L_0=A_m+D_m\partial_{\xi\xi}:X_c\longrightarrow Y_c,
+ \qquad
+ X_c=\left\{u\in H_N^2:\int_0^\pi c^Tu=0\right\},\quad
+ Y_c=\left\{g\in L^2:\int_0^\pi c^Tg=0\right\}.
+\]
+The identity $c^TA_m=0$ and the Neumann boundary conditions make these
+fixed-mass subspaces invariant under the linearized evolution.
+The Neumann cosine transform sends this operator to
+$A_m-k^2D_m$.  On the homogeneous coefficient the mass restriction gives the
+invertible map $A_m:c^\perp\to c^\perp$.  The $k=1$ block has kernel
+$\operatorname{span}\{r\}$ and range $\ell^\perp$, while every $k\ge2$ block
+is invertible by the all-mode certificate.  For
+$k^2\ge2\|D_m^{-1}A_m\|$, the factorization
+\[
+ A_m-k^2D_m=-k^2D_m(I-k^{-2}D_m^{-1}A_m)
+\]
+and the Neumann series give
+\[
+ \|(A_m-k^2D_m)^{-1}\|
+ \le 2\|D_m^{-1}\|k^{-2}.
+\]
+Thus compatible $L^2$ Fourier data have an $H_N^2$ preimage, and
+\[
+ \ker\mathcal L_0=\operatorname{span}\{r\cos\xi\},\qquad
+ \operatorname{ran}\mathcal L_0
+ =\left\{g\in Y_c:\int_0^\pi\ell^Tg\cos\xi\,d\xi=0\right\}.
+\]
+This proves directly that $\mathcal L_0$ is Fredholm of index zero and that
+its cokernel is $\operatorname{span}\{\ell\cos\xi\}$.  The same cosine-block
+argument applies to the equilibrium-scaled family after replacing the mode
+matrices by $\mathsf H_m(L)(A_m-k^2\Delta)$ and the left vector by
+$\widetilde\ell(L)$.
+
 On the real fixed-integrated-mass $L^2$ space, the positive diagonal Neumann
 diffusion operator has domain $H_N^2$, is sectorial, and generates an analytic
-semigroup.  Its half-order fractional domain is $H^1$.  In one space
+semigroup with compact resolvent.  Its half-order fractional domain is $H^1$.
+The reaction Jacobian is a bounded multiplication perturbation.  Moreover,
+\[
+ \alpha(A_m-k^2D_m)
+ \le\left\|\frac{A_m+A_m^T}{2}\right\|_2-k^2d_{\min}\to-\infty,
+\]
+so the onset complementary spectral gap is determined by finitely many low
+modes.  Positive diffusion lower bounds and bounded reaction Jacobians give
+the corresponding uniform high-frequency bound along a sufficiently small
+patterned branch; analytic perturbation preserves the finitely many low-mode
+gaps.  In one space
 dimension, $H^1$ is a Banach algebra and embeds into $C^0$, so the quadratic
 mass-action Nemytskii map is smooth from $H^1$ to $L^2$.  The patterned branch
 lies in $H_N^2$.  The fixed-mass restriction removes the homogeneous

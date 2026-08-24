@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 """Independent exact check of the complete positive-realization parametrization."""
+
+if not __debug__:
+    raise SystemExit(
+        "Exact verifier requires assertions; unset PYTHONOPTIMIZE and do not use python -O"
+    )
+
 import sympy as sp
 from stable_core import gamma_y, flux, A_matrix
 

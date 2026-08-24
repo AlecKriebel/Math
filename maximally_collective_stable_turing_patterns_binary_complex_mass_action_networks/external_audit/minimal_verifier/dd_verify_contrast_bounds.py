@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+"""Duplicate finite regression for the selected unit-profile contrast formulas."""
+
 if not __debug__:
  raise SystemExit('Exact verifier requires assertions; unset PYTHONOPTIMIZE and do not use python -O')
 

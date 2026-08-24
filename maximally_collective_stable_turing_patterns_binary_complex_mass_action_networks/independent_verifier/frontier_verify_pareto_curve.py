@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
 from __future__ import annotations
+
+if not __debug__:
+    raise SystemExit(
+        "Exact verifier requires assertions; unset PYTHONOPTIMIZE and do not use python -O"
+    )
+
 import argparse,sys
 from pathlib import Path
 import sympy as sp

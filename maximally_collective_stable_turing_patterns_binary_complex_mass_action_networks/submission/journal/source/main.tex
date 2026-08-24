@@ -302,8 +302,10 @@ only remaining off-diagonal boundary arrows.  Every retained chain vertex
 outside such a feedback component has no return path and hence forms a
 singleton diagonal block with negative diagonal entry.  Frobenius
 permutation gives the asserted block-triangular form.  When $b=2a$, the sole
-parameter-dependent arrow $X_1\to X_m$ disappears.  Deleting an arrow cannot
-merge strongly connected components, so no new case arises.
+parameter-dependent arrow $X_1\to X_m$ disappears.  This arrow belongs to
+neither complete long cycle, so both long-cycle blocks are unchanged.  Within
+the boundary graph, deleting an arrow can only split strongly connected
+components and cannot merge them, so no new case arises.
 \end{proof}
 
 \begin{theorem}[Maximal all-spectrum localization]\label{thm:allspectrum}
@@ -349,7 +351,8 @@ Routh--Hurwitz criterion and direct one- and two-dimensional checks establish
 Hurwitz stability of every triad principal block.  The result for all smaller
 sets follows from Lemma~\ref{lem:scc} and Frobenius block triangularization.
 
-Finally, sparse chain expansion gives
+Finally, the explicit lower-bidiagonal Schur-complement elimination in
+Supplement, Section~S2, gives
 \begin{equation}\label{eq:coreminor}
  (-1)^m\det J_{\cC_m,\cC_m}
  =-2a^{m-1}b\prod_{i=1}^m h_i<0.
@@ -743,9 +746,32 @@ exchanged by reflection.  On the fixed-integrated-mass Neumann tangent spaces
  X_c=\left\{u\in H_N^2:\int_0^\pi c^Tu\,d\xi=0\right\},\qquad
  Y_c=\left\{g\in L^2:\int_0^\pi c^Tg\,d\xi=0\right\},
 \]
-the stationary linearization $X_c\to Y_c$ is Fredholm of index zero.  The
-all-mode certificate and \eqref{eq:selectedsimple} give kernel
-$\operatorname{span}\{r\cos\xi\}$ and cokernel
+the identity $c^TA_m=0$ and the Neumann boundary conditions make the
+fixed-mass subspaces invariant.  Let
+$\mathcal L_0u=A_mu+D_m\partial_{\xi\xi}u$.  The Neumann cosine expansion
+$u=\sum_{k\ge0}u_k\cos(k\xi)$ reduces $\mathcal L_0$ to the matrix blocks
+\begin{equation}\label{eq:fourier-fredholm}
+ \mathcal L_{0,k}=A_m-k^2D_m.
+\end{equation}
+For $k=0$, the fixed-mass condition is $c^Tu_0=0$, and homogeneous stability
+makes $A_m:c^\perp\to c^\perp$ invertible.  At $k=1$,
+\eqref{eq:selectedsimple} gives a simple kernel $\operatorname{span}\{r\}$ and
+range $\ell^\perp$; every block with $k\ge2$ is invertible by the all-mode
+certificate.  Moreover, for all sufficiently large $k$,
+\begin{equation}\label{eq:high-mode-inverse}
+ A_m-k^2D_m=-k^2D_m
+ \left(I-k^{-2}D_m^{-1}A_m\right),\qquad
+ \left\|(A_m-k^2D_m)^{-1}\right\|
+ \le \frac{2\|D_m^{-1}\|}{k^2}.
+\end{equation}
+Together with the finitely many low-mode inverses, this $k^{-2}$ bound maps
+the compatible $L^2$ Fourier data into $H_N^2$.  Hence the range is closed and
+\[
+ \ker\mathcal L_0=\operatorname{span}\{r\cos\xi\},\qquad
+ \operatorname{ran}\mathcal L_0
+ =\left\{g\in Y_c:\int_0^\pi \ell^Tg\cos\xi\,d\xi=0\right\}.
+\]
+Thus $\mathcal L_0:X_c\to Y_c$ is Fredholm of index zero, with cokernel
 $\operatorname{span}\{\ell\cos\xi\}$.  The parameter derivative applied to
 the critical direction is $D_mr\cos\xi$, and its cokernel pairing is
 $(\pi/2)\ell^TD_mr\ne0$.  Thus the stationary simple-eigenvalue theorem
@@ -759,13 +785,27 @@ perturbation tends to zero in $H_N^2\hookrightarrow C^0$, both
 reflection-related equilibria remain componentwise strictly positive for
 sufficiently small $\mu>0$.
 The center eigenvalue is $-2\eta_m\mu+O(\mu^2)<0$; the complementary gap
-persists: Kato's stability and analytic perturbation theories continue the
-isolated center eigenvalue and its spectral projection and preserve separation
-from the complementary spectrum \cite[Chapters~IV and~VII]{Kato1995}.  On the
-real fixed-mass $L^2$ space, positive Neumann diffusion with domain $H_N^2$ is
-sectorial, while in one dimension the quadratic Nemytskii map is smooth from
-$H^1$ to $L^2$.  Henry's principle of linearized stability then gives local
-exponential asymptotic stability in $H^1$ \cite[Chapter~5]{Henry1981}.  For
+persists.  Indeed, at onset
+\[
+ \alphaS(A_m-k^2D_m)
+ \le \left\|\frac{A_m+A_m^T}{2}\right\|_2-k^2d_{\min}
+ \longrightarrow-\infty,
+\]
+so the all-mode certificate leaves a strictly positive complementary spectral
+gap after only finitely many modes are checked.  Along the small branch the
+linearization has fixed domain $H_N^2$ and is an analytic sectorial
+perturbation of positive diagonal Neumann diffusion: the reaction Jacobian is
+a bounded multiplication operator and the diffusion entries retain a positive
+lower bound.  Standard elliptic coercivity and resolvent estimates therefore
+prevent spectrum from entering from infinity, while Kato's stability and
+analytic perturbation theories continue the finitely many isolated eigenvalues
+and their spectral projections
+\cite[Chapters~IV and~VII]{Kato1995}.  The Neumann diffusion generator on the
+real fixed-mass $L^2$ space is sectorial with compact resolvent, and its
+half-order phase space is $H^1$; in one dimension the quadratic Nemytskii map
+is smooth from $H^1$ to $L^2$.  Henry's principle of linearized stability then
+gives local exponential asymptotic stability in $H^1$
+\cite[Chapter~5]{Henry1981}.  For
 complementary local bifurcation and stability background, see
 \cite[Chapter~I]{Kielhoefer2012}.  The complete coefficient tables and algebra
 appear in the Supplement.
@@ -1194,11 +1234,11 @@ hidden and provides a focused nonlinear design problem.
 \paragraph{Data and code availability.}
 Exact certificates, independent verifiers, mutation tests, numerical data,
 figure scripts, and replay instructions are frozen in the
-\href{https://github.com/AlecKriebel/Math/tree/maximally-collective-stable-turing-v1.0.7/maximally_collective_stable_turing_patterns_binary_complex_mass_action_networks}{version 1.0.7 tagged release source tree}.
+\href{https://github.com/AlecKriebel/Math/tree/maximally-collective-stable-turing-v1.0.8/maximally_collective_stable_turing_patterns_binary_complex_mass_action_networks}{version 1.0.8 tagged release source tree}.
 All archived versions are indexed by the stable
 \href{https://doi.org/10.5281/zenodo.21753404}{Zenodo concept DOI}; the exact
-preceding version 1.0.6 snapshot is archived at
-\href{https://doi.org/10.5281/zenodo.22058969}{version DOI 10.5281/zenodo.22058969}.
+preceding version 1.0.7 snapshot is archived at
+\href{https://doi.org/10.5281/zenodo.22062080}{version DOI 10.5281/zenodo.22062080}.
 The \href{https://github.com/AlecKriebel/Math/tree/main/maximally_collective_stable_turing_patterns_binary_complex_mass_action_networks}{mutable development source} remains on the main branch.
 
 \paragraph{AI-assisted research disclosure.}

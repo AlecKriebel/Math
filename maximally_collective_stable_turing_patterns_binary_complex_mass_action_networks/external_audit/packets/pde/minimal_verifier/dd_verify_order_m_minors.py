@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+"""Duplicate finite exact regression for the closed-form omission minors."""
+
 if not __debug__:
  raise SystemExit('Exact verifier requires assertions; unset PYTHONOPTIMIZE and do not use python -O')
 

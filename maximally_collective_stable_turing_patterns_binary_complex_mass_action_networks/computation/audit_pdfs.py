@@ -17,14 +17,15 @@ class Document:
     relative_path: str
     pages: int
     semantic_text: bool = False
+    producer: str | None = None
 
 
 FULL_DOCUMENTS = (
-    Document("manuscript/main.pdf", 18, True),
-    Document("manuscript/supplement.pdf", 18, True),
-    Document("external_audit/theorem_summary.pdf", 3, True),
-    Document("external_audit/proof_skeleton.pdf", 6, True),
-    Document("figures/network_family.pdf", 1),
+    Document("manuscript/main.pdf", 19, True, "pdfTeX-1.40.24"),
+    Document("manuscript/supplement.pdf", 19, True, "pdfTeX-1.40.24"),
+    Document("external_audit/theorem_summary.pdf", 3, True, "pdfTeX-1.40.24"),
+    Document("external_audit/proof_skeleton.pdf", 6, True, "pdfTeX-1.40.24"),
+    Document("figures/network_family.pdf", 1, False, "pdfTeX-1.40.24"),
     Document("figures/stable_tradeoff.pdf", 1),
     Document("figures/stable_profiles.pdf", 1),
     Document("figures/amplitude_scaling.pdf", 1),
@@ -171,6 +172,7 @@ def audit(root: Path, output_dir: Path, documents: tuple[Document, ...]) -> None
             pages = len(reader.pages)
             text = "\n".join(page.extract_text() or "" for page in reader.pages)
             font_count, missing_fonts = embedded_fonts(reader)
+            producer = str((reader.metadata or {}).get("/Producer", ""))
         except Exception as error:  # pypdf errors have several version-specific types.
             failures.append(f"unreadable PDF {document.relative_path}: {error}")
             continue
@@ -182,6 +184,11 @@ def audit(root: Path, output_dir: Path, documents: tuple[Document, ...]) -> None
             )
         if document.semantic_text and not text.strip():
             failures.append(f"no extractable text in {document.relative_path}")
+        if document.producer is not None and producer != document.producer:
+            failures.append(
+                f"producer regression for {document.relative_path}: "
+                f"expected {document.producer!r}, found {producer!r}"
+            )
         if missing_fonts:
             failures.append(
                 f"unembedded fonts in {document.relative_path}: {', '.join(missing_fonts)}"
@@ -193,6 +200,7 @@ def audit(root: Path, output_dir: Path, documents: tuple[Document, ...]) -> None
             f"PDF: {document.relative_path}\n"
             f"SHA-256: {sha256(path)}\n"
             f"Pages: {pages}\n"
+            f"Producer: {producer}\n"
             "Encrypted: False\n"
             f"Extracted characters: {len(text)}\n"
             f"Distinct page fonts: {font_count}\n"
@@ -264,7 +272,19 @@ def audit(root: Path, output_dir: Path, documents: tuple[Document, ...]) -> None
             main_text,
         ):
             failures.append("main PDF does not show the flux-dependent threshold notation")
-        if not re.search(r"D\s*=\s*diag\s*\(d1,.*?dZ\)\s*[≻>]\s*0", main_text, re.I):
+        # PDF extractors differ in whether subscripts are separated by spaces and
+        # in how the positive-definite glyph is represented.  Accept either the
+        # explicit prose declaration or a rendered comparison, while retaining
+        # the complete diagonal endpoints as semantic anchors.
+        if not re.search(
+            r"(?:"
+            r"positive\s+diagonal\s*:\s*D\s*=\s*diag\s*\(\s*d\s*1\s*,.*?d\s*Z\s*\)"
+            r"|"
+            r"D\s*=\s*diag\s*\(\s*d\s*1\s*,.*?d\s*Z\s*\)\s*[^\w=,;:.]{1,8}\s*0\b"
+            r")",
+            main_text,
+            re.I,
+        ):
             failures.append("main PDF does not quantify the positive diagonal D in the exact diffusion law")
         if not re.search(r"c\s*m\s*\(L\)\s*=\s*N\s*m\s*\(L\)", main_text):
             failures.append("main PDF does not show the scaled cubic quotient")
@@ -281,7 +301,6 @@ def audit(root: Path, output_dir: Path, documents: tuple[Document, ...]) -> None
             ("reduced vector field is odd", "reflection-equivariant odd normal form"),
             ("The four boundary values are the unique solution", "printed second-harmonic boundary system"),
             ("affine-chain critical vector", "printed near-threshold affine-vector ansatz"),
-            ("with u the Latin letter", "unambiguous Latin near-threshold parameter"),
             ("The crossing numerator is unchanged", "scaled-family transversality numerator"),
             ("all-dimensional identity", "selected-zero derivative identity"),
             ("generalized eigenvector", "scaled-family algebraic-simplicity closure"),
@@ -290,6 +309,10 @@ def audit(root: Path, output_dir: Path, documents: tuple[Document, ...]) -> None
         ):
             if phrase.lower() not in supplement.lower():
                 failures.append(f"supplement PDF lacks {label}")
+        # pypdf 6.10.0 may join the adjacent roman and math glyphs as
+        # ``withu``.  Require every word but tolerate extractor whitespace.
+        if not re.search(r"with\s*u\s+the\s+Latin\s+letter", supplement, re.I):
+            failures.append("supplement PDF lacks unambiguous Latin near-threshold parameter")
 
     summary = output_dir / "SUMMARY.txt"
     if failures:

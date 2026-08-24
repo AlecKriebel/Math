@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+import subprocess
 import sys
 
 import pytest
@@ -460,6 +461,7 @@ def test_threshold_and_algebraic_simplicity_precision_closures():
 
 def test_scope_and_certificate_honesty_markers():
     text=(ROOT/'manuscript'/'main.tex').read_text()
+    supplement=(ROOT/'manuscript'/'supplement.tex').read_text()
     assert '\\mathfrak S_m' in text
     assert 'not classified here' in text
     assert 'not asserted to be an intrinsic' in text
@@ -468,3 +470,133 @@ def test_scope_and_certificate_honesty_markers():
     assert 'N_m(L)>1/200' in text
     assert 'square-root-balanced' not in text
     assert 'right panel' not in text
+    for marker in (
+        r'\label{eq:fourier-fredholm}',
+        r'\label{eq:high-mode-inverse}',
+        r'Fredholm of index zero',
+        r'sectorial with compact resolvent',
+        r'neither complete long cycle',
+    ):
+        assert marker in text
+    for marker in (
+        r'B_m^{\rm core}',
+        r'\det B_m^{\rm core}=2a^2b',
+        r'fixed-mass subspaces invariant',
+        r'2\|D_m^{-1}\|k^{-2}',
+    ):
+        assert marker in supplement
+
+
+def test_generic_cubic_recurrence_bridge_is_standalone_and_aggregated():
+    verifier = ROOT / "independent_verifier" / "verify_generic_cubic_recurrence.py"
+    source = verifier.read_text()
+    for forbidden_import in (
+        "from common import",
+        "from core import",
+        "from pareto_core import",
+        "from stable_core import",
+    ):
+        assert forbidden_import not in source
+
+    result = subprocess.run(
+        [sys.executable, str(verifier)],
+        cwd=ROOT,
+        check=True,
+        capture_output=True,
+        text=True,
+        timeout=30,
+    )
+    assert result.stdout.strip() == "GENERIC_CUBIC_RECURRENCE_PASS"
+
+    aggregate = (
+        ROOT / "independent_verifier" / "verify_symbolic_certificates.py"
+    ).read_text()
+    assert '"verify_generic_cubic_recurrence.py"' in aggregate
+
+
+def test_every_direct_verifier_entrypoint_rejects_optimized_python():
+    verifier_dir = ROOT / "independent_verifier"
+    support_modules = {"common.py", "core.py", "pareto_core.py", "stable_core.py"}
+    entrypoints = sorted(
+        path for path in verifier_dir.glob("*.py") if path.name not in support_modules
+    )
+    # The 38 pre-existing direct entrypoints plus the generic cubic bridge.
+    assert len(entrypoints) == 39
+
+    for entrypoint in entrypoints:
+        result = subprocess.run(
+            [sys.executable, "-O", str(entrypoint)],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+            timeout=10,
+        )
+        combined = result.stdout + result.stderr
+        assert result.returncode != 0, f"{entrypoint.name} ran with assertions disabled"
+        assert "requires assertions" in combined, entrypoint.name
+
+
+def test_replay_preserves_release_manifest_and_separates_self_consistency():
+    release_dir = ROOT / "release"
+    if release_dir.is_dir():
+        full_replay = (release_dir / "one_command_replay.sh").read_text()
+        refresh = (release_dir / "refresh_packages.sh").read_text()
+        portable_replay = refresh.split(
+            'cat > "$PUB/replay.sh" <<\'EOF\'', 1
+        )[1].split("\nEOF", 1)[0]
+        cases = (
+            (
+                "full replay",
+                full_replay,
+                'BASELINE_MANIFEST="$ROOT/release/sha256_manifest.txt"',
+                "python computation/generate_current_profile_data.py",
+            ),
+            (
+                "portable replay template",
+                portable_replay,
+                'BASELINE_MANIFEST="$ROOT/sha256_manifest.txt"',
+                "python computation/generate_current_profile_data.py",
+            ),
+        )
+    else:
+        # In the portable package, exercise the materialized replay directly;
+        # the canonical release-only orchestration is intentionally absent.
+        cases = (
+            (
+                "portable replay",
+                (ROOT / "replay.sh").read_text(),
+                'BASELINE_MANIFEST="$ROOT/sha256_manifest.txt"',
+                "python computation/generate_current_profile_data.py",
+            ),
+        )
+    for name, script, baseline_definition, first_generator in cases:
+        baseline_check = 'sha256sum -c "$BASELINE_MANIFEST"'
+        preserve = 'cp "$BASELINE_MANIFEST" "$REPLAY_STATE/downloaded_manifest.txt"'
+        unchanged = 'cmp -s "$BASELINE_MANIFEST" "$REPLAY_STATE/downloaded_manifest.txt"'
+        exact_check = 'sha256sum -c "$EXACT_BASELINE"'
+        self_definition = "SELF_MANIFEST="
+        self_write = '> "$SELF_MANIFEST"'
+
+        for marker in (
+            baseline_definition,
+            baseline_check,
+            preserve,
+            'EXACT_BASELINE="$REPLAY_STATE/exact_artifacts.sha256"',
+            'manifest_line="$(awk -v target="./$relative_path"',
+            '"$REPLAY_STATE/downloaded_manifest.txt")"',
+            '>> "$EXACT_BASELINE"',
+            unchanged,
+            exact_check,
+            self_definition,
+            self_write,
+            "REPLAY_SELF_CONSISTENCY_PASS",
+        ):
+            assert marker in script, f"{name} lacks {marker}"
+
+        assert script.index(baseline_definition) < script.index(baseline_check)
+        assert script.index(baseline_check) < script.index(preserve)
+        assert script.index(preserve) < script.index(first_generator)
+        assert script.index(unchanged) < script.index(exact_check)
+        assert script.index(exact_check) < script.index(self_definition)
+        assert script.index(self_definition) < script.index(self_write)
+        assert '> "$BASELINE_MANIFEST"' not in script
