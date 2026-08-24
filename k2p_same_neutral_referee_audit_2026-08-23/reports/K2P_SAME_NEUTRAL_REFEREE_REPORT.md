@@ -8,7 +8,7 @@ Computational project root: `materials/k2p_principal_d_plus_submission_referee`
 All submitted theorems, stored PASS records, hashes, certificates, and replay
 reports were treated as assertions.  No authoritative file was repaired or
 rewritten.  Independent scripts and reports are outside the copied handoff.
-No person was contacted.
+The review began at `START_HERE.md`.  No person was contacted.
 
 ## 1. Verdict
 
@@ -41,10 +41,9 @@ resealing are required before acceptance.
   independent exact replays pass, but the load-bearing quartet gate is
   semantically blind and returns PASS after mutations that invalidate its
   printed algebraic premise.
-- **Reproducibility: PENDING_FULL_RESULT.**  Outer/inner integrity, deterministic
-  archives, clean source builds, quick replay, supplemental dependency binding,
-  and mutation fail-closed behavior pass.  This line will be finalized after
-  the single required full run terminates.
+- **Reproducibility: PASS.**  Outer/inner integrity, deterministic archives,
+  clean source builds, supplemental dependency binding, mutation fail-closed
+  behavior, the 21/21 quick suite and the fresh 22/22 full suite all pass.
 - **Human metadata and release: HOLD.**  The package accurately labels itself a
   scientific-review candidate, not a public release.  Email confirmation,
   contributions, funding, conflicts, three licenses, immutable tag, and DOI are
@@ -64,8 +63,8 @@ resealing are required before acceptance.
   source↔target reversal, reticulation-parent reversal/illicit inheritance
   complementation, the literal declaration of the `D_plus` inequality, a
   sampled-rank object masquerading as a symbolic proof, a global canonicalizer
-  collision, or a coherently resealed fabricated probe triangle.  Required-command
-  status: `PENDING_FULL_RESULT`.
+  collision, or a coherently resealed fabricated probe triangle.
+  Required-command status: **PASS** (quick 21/21; full 22/22).
 
 ## 3. Claim matrix
 
@@ -85,19 +84,21 @@ resealing are required before acceptance.
 | Exact canonicalizer merge/split behavior over the complete finite universe | **UNVERIFIED** | The canonicalization action and role data were inspected | Locks, submitted replayers, mutations and direct equality presentations pass | Fresh incidence-graph code reconstructed the audited direct equality/ordinary-triangle presentations without calling the submitted canonicalizer | No exhaustive independent alternative partition of all raw, restored and probe records was computed; false merge/split exclusion remains a stated unrun gate |
 | Complete symbolic rank and direct polynomial certificate semantics; crosswalk C05–C07; certificate appendix | **UNVERIFIED** | Universal upper-syzygy/source-minor logic is directionally sound | Stored symbolic upper and exact polynomial suites pass mutations | Raw ID 97 rebuilt from literal graph edges; independent map/Jacobian gives source rank 13, target rank 10 and exact stored minors | The representative check passes, but no independent alternative symbolic derivation was performed for every one of the thousands of rank/polynomial bodies |
 | Quartet terminal certificate semantics across raw4/theta2/cycle/restoration/probes | **FAIL** | Abstract displayed-set theorem is repairable, but the literal printed body is false | Rows store split mismatch plus invariant-family names, not convention-aware coordinate pullbacks | Spectrum and coordinate-label mutations leave the claimed quartet replay unchanged and passing | New symbolic binding is required for every transported split family |
-| PC-PARTIAL boundary; article lines 1155–1191, supplement/crosswalk | **PASS** | Text does not identify literal polynomial equality with graph-orbit equality | Rank, restoration, exceptional and probe residues remain present | Compression contracts and omission/reassignment mutations inspected | No boundary misstatement found; retained residues remain load-bearing |
+| PC-PARTIAL boundary; article lines 1155–1191; supplement source lines 275–338 (PDF pp. 6–9); crosswalk lines 3 and 41–42 | **PASS** | Text does not identify literal polynomial equality with graph-orbit equality | Rank, restoration, exceptional and probe residues remain present | Compression contracts and omission/reassignment mutations inspected | No boundary misstatement found; retained residues remain load-bearing |
 | Rank-nine ordinary-triangle common germ; article lines 1193–1319, PDF pp. 16–17 | **PASS** | Uses submersion/constant rank, not an invalid square inverse; contextual simultaneous gluing checked | Stored triangle certificate replayed | Exact differentiation reproduces pair values `1/12`, mixed triples `1/48`, 4x4 determinant `-1/2`, 5x5 determinant `-1/4`, rank 9 | No gap found |
 | Global equivalence and exclusion of proper one-way containment; article lines 1321–1352, PDF pp. 17–18 | **UNVERIFIED** | Forward triangle-transport/common-germ implication is sound; converse is conditional | Full package replay cannot repair a false premise it does not test | No independent counterexample found after repairing the local formula | Correct/rebind quartet layer, then replay global assembly |
 | Generic identifiability and exceptional-set properness; article lines 1354–1468, PDF pp. 18–20 | **UNVERIFIED** | Irreducibility, physical/generic rank, topology finiteness, rank-drop image, target sections and dimension comparison checked | Supporting rank/census evidence largely passes | Dimension chain independently checked | Conditional on corrected global theorem and fully validated finite directions |
 | Exact reconstruction and termination; article lines 1469–1528, PDF p. 20 | **UNVERIFIED** | Exact-real assumptions, retention of unresolved supports, semialgebraic membership, triangle-class output and termination are explicit | Finite restriction counts and probe structures reconcile | `O(n^9)` restriction bound and finite loops checked | Conditional on corrected separators and validated restoration/probe semantics; no bit/stability/finite-sample theorem inferred |
 | Strict continuous-time transfer; article lines 1529–1578, PDF pp. 21–22 | **UNVERIFIED** | `0<s<1, s^2<g<1`, roots, openness, rank, triangle and bridge inequalities checked | Same exact routines replay on rational witnesses | Exact rational points used, not floating samples | Conditional on repaired principal-domain classification |
 | Weak-but-not-strong `4n-3` sharpness; article lines 1579–1789, PDF pp. 22–24 | **PASS** | Graph properties, common tensor, Jacobians, cherry inverse and induction checked | Stored weak certificate/crosswalk/mutations replayed | Both graphs, rootings, nonisomorphism, switching tensors, two exact determinants and cherry determinant `2464/675` rebuilt independently | No gap found |
-| Five-source manuscripts, archive and replay reproducibility | **PENDING_FULL_RESULT** | Source/PDF semantic consistency checked | Quick suite 21/21 PASS; full status pending | Exact clean builds, omission tests, archive byte comparison, independent ledgers | Await the one already-running full command |
+| Five-source manuscripts, archive and replay reproducibility | **PASS** | Source/PDF semantic consistency checked | Quick suite 21/21 and full suite 22/22 PASS | Exact clean builds, omission tests, archive byte comparison, independent ledgers | No reproducibility gap found; replay PASS does not validate the false quartet body |
 
 The exact per-layer authorities, SHA-256 values, producer/replayer code,
-observed commands, runtimes, output hashes, independent checks, and evidence
-types are recorded in `reports/THEOREM_LAYER_EVIDENCE_REGISTRY.md`.  That
-registry is part of this report, not a replacement for the status judgments in
+observed layer names, runtimes, output hashes, independent checks, and evidence
+types are recorded in `reports/THEOREM_LAYER_EVIDENCE_REGISTRY.md`; retained
+exact command forms and their known gaps are in
+`reports/CONSOLIDATED_EXECUTION_LEDGER.md`.  The registry is
+part of this report, not a replacement for the status judgments in
 the matrix.
 
 ## 4. Numbered findings
@@ -257,6 +258,15 @@ merge or every orbit for a false split.  The independent finite streamer reads
 the submitted category field after independently rebuilding the index domain;
 it does not independently decide every category.
 
+The reason for keeping this gate explicit is concrete: the submitted helper
+`k2p_atlas_core.py` lines 933–957 enumerates each underlying triangle and
+forgets its three head flags without itself checking the licensed
+exactly-two-arrows-to-one-common-reticulation pattern.  Some downstream probe
+code performs that stricter check, and every one of the 196 direct
+presentations audited here has the ordinary pattern, so this observation is
+not an established false merge.  An all-universe replay must nevertheless
+show that no nonordinary candidate ever reaches the quotient action.
+
 Accordingly, the structural counts receive PASS, the directly reconstructed
 relations receive PASS within their audited scope, and the exhaustive
 merge/split assertion remains UNVERIFIED.  This limitation must not be turned
@@ -343,12 +353,12 @@ waits for the process, records return code, wall time and log hash, stops on a
 failure unless diagnostic `--keep-going` was explicitly requested, and marks
 the ledger PASS only if every expected command completed with exit 0.  The
 observed START/PASS stream, 21 quick logs and ledger `argv` rows agree, so each
-printed quick command was actually invoked.  The same check will be applied to
-the 22-row full ledger when it closes.
+printed quick command was actually invoked.  The fresh 22-row full ledger was
+checked the same way and records 22 completed zero-exit stages.
 
-The full-only stage calls `verify_final_theorem_release.py --full`, whose
-static command registry and subprocess results cover the 35 declared theorem
-layers, including primitive/raw regeneration in disposable locations.  I
+The full-only stage calls `verify_final_theorem_release.py --full`.  Its fresh
+35-layer result records every declared primitive/raw regeneration in
+disposable locations as PASS, with exact nested stdout/stderr hashes.  I
 inspected the principal graph generators, atlas/map code, rank-upper verifier,
 corrected composite/restoration/probe producer-replayers, release lock and
 mutation harness.  They check actual subprocess return codes and expected
@@ -387,14 +397,14 @@ and `reports/provenance/execution_ledger.json`.
 | independent archive inspection | 0 | 6.50 s | n/a | `1df225f1ed375fcee2be0ea6e3ac420e2f95a890eb28f610b1b72db9bdd2a4da` |
 | clean `./setup_environment.sh` | 0 | 10.33 s | 165,773,312 B | Python 3.14.6; NetworkX 3.5; SymPy 1.14.0 |
 | `python3 -B check_manuscript_build.py` | 0 | 12.26 s | 254,115,840 B | article/supplement build; both generated-input omissions rejected |
-| retained clean article/supplement builds | 0,0 | 4.71, 3.82 s | 253,263,872; 249,577,472 B | fresh hashes `1e134c...`, `5ce7a9...`; logs match sealed |
-| fixed-epoch article/supplement builds | 0,0 | 3.96, 3.37 s | n/a | byte-identical sealed hashes `86b7ac...`, `177006...` |
+| retained clean article/supplement builds | 0,0 | 4.71, 3.82 s | 253,263,872; 249,577,472 B | fresh hashes `1e134c820ada0e1ce3206d73c500fadf38d783ee7fa26ff3ab0fb73f5a089502`, `5ce7a90f7cdcd1fc60c5e5cdab4cc2cdea38f49f0367478ab22ee80f055f638b`; logs match sealed |
+| fixed-epoch article/supplement builds | 0,0 | 3.96, 3.37 s | n/a | byte-identical sealed hashes `86b7ace41d025caddcecae2accb04c496a401501b2a6e65233ad60cfc80e3e2a`, `177006b4d2a21d958f1811c3920bbbfca18fdff87cda8da99b97c9c950dd15cb` |
 | missing `compression_tables.tex` / `certificate_appendix.tex` | 1,1 | 2.46, 2.45 s | 217,153,536; 217,219,072 B | exact missing-file errors at supplement lines 307 and 441 |
 | physical bibliography omission, outer verifier | 1 | 0.41 s | 197,853,184 B | intended `declared=492 actual=491` |
-| retained crosswalk mutations | 0 | 3.74 s | 550,862,848 B | 14/14; bibliography omission rejected for its missing ledger row; report `9692005c...` |
+| retained crosswalk mutations | 0 | 3.74 s | 550,862,848 B | 14/14; bibliography omission rejected for its missing ledger row; report `9692005ca9c3e69db2f564356e8e588f1e22a997975797f676cbbf2b4e1fb37f` |
 | `run_all_verifiers.py --quick` | 0 | 778.96 s | 1,460,994,048 B | 21/21 PASS; ledger `76236eebb4900c2aa3b616470d5a15fd9de9228c3fe0a5cdc43bd472bc9ef2cd` |
-| `run_all_verifiers.py --full` | `PENDING_FULL_RESULT` | `PENDING_FULL_RESULT` | `PENDING_FULL_RESULT` | launched once; not reinvoked |
-| independent quartet coordinate pullback | 0 | n/a | n/a | semantic result FAIL; JSON `c6517e0659df6a13a970e94af6b238dec02afb95e417f61bd06ebaf94b649017` |
+| `run_all_verifiers.py --full` | 0 | 5,684.81 s | 2,034,221,056 B | 22/22 PASS; ledger `7146e52b0708ba7f459d27a9125203a973aab614668486eb985c908f16bf64cf`; stage 22 took 4,911.44 s, log `ba6a7f291fab27c5772cd15e9ceadfcf5fd36e751cd017635f901128c085ea92` |
+| independent quartet coordinate pullback | 0 | 0.43 s | 81,543,168 B | semantic result FAIL; JSON `c6517e0659df6a13a970e94af6b238dec02afb95e417f61bd06ebaf94b649017` |
 | independent quartet gate-blindness mutations | 0 | 0.13 s | 24,510,464 B | both invalid variants unexpectedly PASS; script `6655d76545baba5efe8eb64405bcc52b01c786401d2eaaff67c842b2b5926938`, JSON `72a033e22826014cf260ae7e0d9766eb5feaab8406cf05fd2f1437dd9fbc76c0` |
 | independent finite census/contract audit | 0 | 30.45 s | 172,212,224 B | PASS; script `50ee021da20e1f337e4463e1075345081305b5946badff2f912264376eb22a1c`, JSON `8f38e03b8caedabfaf738fd084a21ed73ec69efed33188bc8de593ce51672319`, payload `93f67aed4a71d1c93f695042d34070cd9bb4847b83c66f90eba8d756dfa88b2e` |
 | independent graph isomorphism/ordinary-triangle audit | 0 | 6.19 s | 125,763,584 B | 196 presentations PASS; script `2380957fc742cf4186f8099e4c37a703c026fc1d9ab98543001d90879a46904e`, JSON `a431ac1627b00dce9808333ca69037e603bc60e74d52224fdf41f0dd279f194e`, payload `fd101d38cece24bff7ca843f9ceadc03be5c2fe31ad7dd0a35e465c0cf95327b` |
@@ -479,7 +489,7 @@ computational consistency, not proof of the represented mathematics.
 | Rank upper/source minor | Symbolic upper certificate cannot be replaced by sampled rank | Fresh false-rank/upper-binding proxy rejects; separate exact determinant reproduced for one representative | Representative replay independent; literal sampled-engine substitution unrun | PASS representative; global alternative derivation UNVERIFIED |
 | Direct degree reassignment | Quadratic/cubic/quartic/quintic record reassignment must fail semantically | Fresh release suites reject every requested reassignment | Fresh submitted producers/replayers with independent diagnostic inspection | PASS |
 | Weak sharpness | Rebuild graphs, tensors, Jacobians and cherry observables without stored result | Rootings, nonisomorphism, tensor equality, determinants and `4n-3` induction reproduced | Yes | PASS |
-| Stale hash/missing dependency/malformed report | Release cannot convert failure into PASS | Mutation suites reject lock, report, historical promotion and dependency changes | Yes for outer/crosswalk; submitted independent release replay otherwise | PASS |
+| Stale hash/missing dependency/malformed report | Release cannot convert failure into PASS | Mutation suites reject lock, report, historical promotion and dependency changes | Yes for outer/crosswalk; no for the submitted release replay, whose diagnostics were independently inspected | PASS |
 
 ### Requested corruption coverage
 
@@ -643,6 +653,10 @@ compression search, a language rewrite, or unrelated new research.
 - `notes/literature_audit.md` — scope and targeted primary-source search;
   SHA-256 `c8c3c500eb47656b9abd59e0e1726992063824e6bfc5962ccb4b810d6c18a56c`.
 - `reports/THEOREM_LAYER_EVIDENCE_REGISTRY.md` and
-  `reports/CONSOLIDATED_EXECUTION_LEDGER.md` — per-layer evidence and every
-  substantive command; final SHA-256 values are recorded after the full suite
-  closes.
+  `reports/CONSOLIDATED_EXECUTION_LEDGER.md` — per-layer evidence and all
+  retained substantive command forms, with non-retained invocations explicitly
+  identified; SHA-256 values
+  `a26dc4f1cea4e342804ac663c655a34d6ef922218bfbfb7e2c4c2588318c13d0`
+  and `ca75193578ab6feabecd6e0029288532dd8dbaaad2a3ec4ecc562a196f55facd`.
+- `reports/FULL_EXECUTION_LEDGER.json` — fresh 22-row full-suite ledger;
+  SHA-256 `7146e52b0708ba7f459d27a9125203a973aab614668486eb985c908f16bf64cf`.

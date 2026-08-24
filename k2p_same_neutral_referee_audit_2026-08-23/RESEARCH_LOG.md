@@ -156,3 +156,28 @@
 - Completion estimate: **88%**. The scientific disposition is stable at HOLD;
   the remaining work is execution closure, final report reconciliation, and
   release of the independent audit artifacts.
+
+## 2026-08-24T06:40:23Z - Full replay and neutral referee report complete
+
+- The single uninterrupted required full command completed with exit 0:
+  22/22 harness stages PASS in 5,684.81 s, maximum resident set size
+  2,034,221,056 bytes. The full-only 35-layer primitive-regeneration stage
+  took 4,911.44 s. Fresh execution-ledger SHA-256:
+  `7146e52b0708ba7f459d27a9125203a973aab614668486eb985c908f16bf64cf`.
+- The full replay establishes reproducibility PASS but does not alter the
+  independently demonstrated quartet semantic defect: its quartet gate still
+  checks abstract split-set logic rather than the printed Fourier coordinates.
+- Final scientific recommendation: **HOLD**. Mathematics HOLD; computational
+  evidence FAIL; reproducibility PASS; human metadata/release HOLD. The global
+  equivalence, genericity, reconstruction and continuous-time conclusions are
+  UNVERIFIED pending the uniform C/T correction, formula-aware rebinding and
+  resealing.
+- An independent final consistency review checked all eight requested report
+  sections, exact paths/hashes, fresh-versus-frozen mutation labels, command
+  retention limits, and the separation of submitted and genuinely independent
+  replayers. Reporting corrections did not change the scientific disposition.
+- Final report: `reports/K2P_SAME_NEUTRAL_REFEREE_REPORT.md`, SHA-256
+  `f320f1c27abbf7591870e6ba0208a2d9fd441f2a4e61e1e36a4757a8edbbb963`.
+- Completion estimate: **100%**. The stated neutral-referee goal is complete;
+  all remaining actions belong to a corrected submission or to human release
+  choices.
