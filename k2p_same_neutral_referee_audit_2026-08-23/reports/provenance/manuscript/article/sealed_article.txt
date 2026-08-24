@@ -1,0 +1,1619 @@
+Generic Identiﬁability and Directed Containment for
+Strongly Tree-Child Level-2 Networks under the
+Kimura Two-Parameter Model
+The Principal Positive Domain and Strict Continuous Time
+Alec Kriebel
+Independent Researcher
+ORCID: 0009-0001-9320-500X
+Corresponding email: pending human conﬁrmation
+
+Draft, August 2026
+
+Abstract
+We classify regular full-dimensional stochastic containment among binary standard semidirected strongly tree-child level-2 phylogenetic networks under the Kimura two-parameter
+(K2P) model. On the principal positive Fourier domain
+D+ = {(s, g) : 0 < s < 1, 0 < g < 1, g > 2s − 1},
+a directed containment germ exists if and only if the two labelled networks are isomorphic after
+independently redirecting ordinary three-cycle factors. The same condition is equivalent to a
+common full-dimensional regular germ; in particular, no proper one-sided containment occurs.
+It follows that the semi-directed topology is generically identiﬁable modulo ordinary triangle
+redirection, and that its structural triangle class is exactly reconstructible away from a proper
+algebraic exceptional set.
+The proof combines pointwise displayed-quartet inequalities and exact whole-map Ti identities, an exact two-sector bridge-ﬁbre theorem, physical marginal submersions, a ﬁnite localization argument, and a bounded graph-to-algebra classiﬁcation of cycle and theta factors. The
+bounded classiﬁcation is computer-assisted: every directed primitive relation, rank exclusion,
+restoration parent, transport, and one-/two-port probe is represented by an exact certiﬁcate
+and has a separately implemented replay and targeted mutation tests. We state this residue
+explicitly rather than replacing it by an unproved hand-orbit claim. The classiﬁcation transfers
+to the strict continuous-time domain 0 < s < 1, s2 < g < 1. Finally, for every n ≥ 3 we give two
+weakly but not strongly tree-child level-2 networks whose continuous-time K2P images share a
+regular germ of dimension 4n − 3, proving that strong tree-childness is a sharp hypothesis.
+
+Keywords. phylogenetic networks; Kimura two-parameter model; generic identiﬁability; directed
+containment; level-2 networks; strongly tree-child networks; algebraic statistics; computer-assisted
+proof.
+MSC 2020. 92B10, 62R01, 14P10, 05C05.
+
+1
+
+1
+
+Introduction
+
+Phylogenetic networks model reticulate evolutionary events such as hybridization, recombination,
+and lateral transfer. A network-based Markov model assigns a site-pattern distribution to each
+choice of topology, edge parameters, and inheritance probabilities. The basic information question
+is whether diﬀerent topologies can generate the same distributions, or more strongly, whether one
+open model image can contain a full-dimensional regular piece of another.
+The Kimura two-parameter model was introduced to distinguish transition and transversion rates
+while retaining a uniform stationary distribution [13]. Its group-based Fourier form follows the
+general framework of Evans and Speed and of Sturmfels and Sullivant [6, 16]. Algebraic invariants
+and Jacobian or algebraic-matroid methods have separated important network classes, including
+single-cycle and level-1 networks [7, 9, 8]. Recent work proves full K2P identiﬁability for level1 networks modulo triangle redirection [3]. Three-sunlet group-based varieties have also been
+studied directly [4]. At level two, invariant calculations for simple and semisimple networks and
+quartet-based reconstruction for outer-labelled planar galled networks give complementary partial
+classiﬁcations [1, 10].
+Huber et al. [12, Lemma 4.2 and Figure 8] classify the two semi-directed level-2 generator types
+underlying simple strict level-2 networks. Englander et al. [5] use these generators in their strongly
+tree-child analysis. Their Propositions 2.9–2.10 and Theorem 2.11 prove, for JC and K2P, pointwise
+separation of networks with diﬀerent displayed-quartet sets; their Corollary 2.12 combines this
+separation with the quarnet structure to recover the labelled tree of blobs. Their main level-2
+algebraic classiﬁcation is for JC.
+The directed ported reﬁnement used here, and also in the companion JC classiﬁcation [14], additionally records the incoming source, internal reticulation events, path-sink child roles, minimum
+strong repairs, and ordered boundary words. This reﬁnement produces the four event placements
+θ0 , . . . , θ3 . The present work proves that graph layer in proposition 6.2 and rebuilds every algebraic
+layer for K2P, whose nonzero Fourier characters split into two orbits rather than one.
+Our classiﬁcation concerns a source-relative analytic containment with a physical target section,
+not merely inclusion of complex varieties. This distinction is important. Boundary degenerations,
+lower-dimensional intersections, and equality of Zariski closures do not by themselves create an open
+stochastic containment. Conversely, an open containment cannot be excluded only by comparing
+generic dimensions when the source can enter an exceptional target locus. The pointwise topology
+inequalities and the physical localization theorem below address these issues directly.
+The proof has ﬁve layers.
+L1. Exact quartet and three-leaf inequalities recover the labelled decorated tree of blobs at every
+strict physical point.
+L2. Positive rank-one bridge factorizations yield precisely two incidence scales per component–
+bridge incidence: one for the {C, T } sector and one for the G sector. Explicit analytic
+normalizers and strict serial subdivisions turn the ambient quotient into a physical local
+product chart.
+L3. Marginal maps are physical submersions. A ﬁnite semialgebraic-cover argument localizes a
+global directed relation to one incoming and completion type of each primitive factor; remote
+components cannot cancel a local certiﬁcate.
+L4. A bounded exact computation classiﬁes every primitive four- and ﬁve-port direction and discharges every ﬁxed-full restoration obligation. Separately certiﬁed one- and two-port probes
+recover arbitrary labelled subdivision words.
+2
+
+L5. Ordinary triangle orientations share a strict rank-nine K2P germ. Contextual contraction
+and simultaneous physical bridge gluing give the converse global relation.
+The computer-assisted fourth layer is ﬁnite and exact, but it remains a load-bearing residue. Its
+theorem object records both graphs, direction, incoming roles, port permutations, omitted roles,
+transports, polynomial or rank certiﬁcates, and parent–child provenance. The reader supplement
+gives the census, proof schema, representative examples, replay commands, and a claim-to-artifact
+crosswalk. No claim that the millions of raw presentations have already been reduced to a complete
+short hand proof is made here.
+
+2
+
+Networks, K2P, and observational relations
+
+2.1
+
+Rooted and semi-directed conventions
+
+Deﬁnition 2.1 (Rooted binary network). Let X be a ﬁnite set of leaf labels. A rooted binary
+phylogenetic network on X is a ﬁnite directed acyclic graph without parallel arcs in which the root
+has bidegree (0, 2), each tree vertex has bidegree (1, 2), each reticulation has bidegree (2, 1), and each
+leaf has bidegree (1, 0) and a unique label in X . Every vertex is reachable from the root. We require
+the root to be the lowest stable ancestor of the labelled leaves: it lies on every root-to-leaf path, and
+no proper descendant has that property. The presentation is tree-child if every internal vertex has
+a tree vertex or leaf as a child.
+Deﬁnition 2.2 (Standard semi-directed network). From a rooted binary network, mark every arc
+entering a reticulation, undirect every other arc, delete the binary root, and merge its two incident
+arcs into one edge. At either endpoint retain exactly the arrowhead present before root deletion.
+A presentation is admissible here only when this one suppression produces a simple binary mixed
+graph: it creates neither a loop nor a parallel edge and loses no reticulation arrowhead. No later
+exhaustive cleanup is part of this operation. The resulting labelled mixed graph is a standard semidirected network. An admissible rooting of it is a rooted binary network whose one-step suppression
+is exactly that mixed graph.
+Isomorphisms preserve leaf labels, ordinary edges, retained arrowheads, and vertex roles. This ﬁxedmixed-graph convention is the one used by the primitive compiler. Restriction to a leaf subset is a
+diﬀerent operation: after choosing displayed reticulation parents, one may prune unlabelled dead
+ends and suppress unlabelled bivalent vertices. Such cleanup does not enlarge the admissible-rooting
+set of the original mixed graph. Standard references on rooted and semi-directed conventions include
+[15, 11].
+Deﬁnition 2.3 (Weak and strong tree-childness). A standard semi-directed network is weakly
+tree-child when at least one admissible rooting is tree-child. It is strongly tree-child when it has an
+admissible rooting and every admissible rooting is tree-child.
+Lemma 2.4 (No-omnian criterion). In the binary ﬁxed convention, a standard semi-directed network with an admissible rooting is strongly tree-child if and only if every tail of a retained reticulation
+edge is incident with two ordinary edges.
+Proof. If a tail fails the condition, binary degree leaves two cases. It is a reticulation with a
+reticulation child, in which case every admissible rooting already fails tree-childness; or it is an
+ordinary vertex tailing two retained edges. A rooting away from those two edges makes both
+3
+
+reticulations children of that vertex. If an admissible rooting instead subdivides one retained edge,
+move the root to the tail’s unique ordinary incidence. The old root suppresses back to the ﬁrst
+retained edge, all other arrowheads are ﬁxed, and acyclicity is preserved because the tail had
+indegree one. The resulting admissible rooting has two reticulation children at the tail and is not
+tree-child. Thus failure of the incidence condition prevents strong tree-childness.
+Conversely, assume the condition. In any admissible rooting, an ordinary vertex with one reticulation child has, besides that retained edge, two ordinary incidences; one is its parent and the other
+is a tree or leaf child. A reticulation cannot tail a retained edge, since its two incoming retained
+edges plus such an outgoing retained edge would leave no two ordinary incidences. Hence it has
+an ordinary child. A root inserted on an ordinary edge has a tree or leaf endpoint, while a root
+inserted on an edge entering a reticulation has the ordinary tail as a tree child. A root with two
+reticulation children would suppress to an edge with two arrowheads, excluded by deﬁnition 2.2.
+Every admissible rooting is therefore tree-child.
+This is the local criterion used in the primitive repair table of section 6.
+A bridge is an edge whose deletion disconnects the underlying graph. A blob is a maximal nontrivial
+biconnected block. A network is level two when every blob contains at most two reticulations.
+Contract each blob and retain the intervening ordinary branching components; the resulting labelled
+tree is the tree of blobs. Cutting a blob from the network turns every incident bridge into a labelled
+boundary port. A complete ported factor retains every physical port, including a child port below
+each path-sink reticulation.
+Deﬁnition 2.5 (Ordinary triangle relation). An ordinary triangle redirection changes only which
+vertex of a three-cycle factor incident with exactly three external arms is reticulate and redirects
+the two arrowheads entering it. Write N ≡4 N 0 when the labelled decorated trees of blobs agree,
+corresponding nontriangle factors are labelled mixed-graph isomorphic, and each remaining corresponding factor diﬀers by such a redirection, with coherent boundary transports.
+This is a structural quotient. It does not assert equality of the complete stochastic images of two
+redirected networks.
+
+2.2
+
+The K2P network map
+
+Identify the four states and their characters with Z2 × Z2 = {0, C, G, T }, where addition is the
+Klein-four-group operation. A K2P edge e has Fourier spectrum
+fbe = (1, se , ge , se ).
+Equivalently, if Me (x, y) = fe (y − x), inverse Fourier transformation gives
+1 − ge
+1 − 2se + ge
+1 + 2se + ge
+, fe (C) = fe (T ) =
+, fe (G) =
+.
+(1)
+4
+4
+4
+The root state is uniform. At each reticulation r, one incoming edge is selected with probability
+λr ∈ (0, 1) and the other with probability 1 − λr . A vector of choices σ gives a displayed tree Tσ ,
+with positive weight wσ .
+fe (0) =
+
+For a character assignment h = (hi )i∈X , the Fourier network parameterization is
+X
+Y
+
+wσ
+fbe (⊕i∈Ae hi ) ,
+
+
+qN (h) =
+
+σ
+
+
+0,
+
+⊕i∈X hi = 0,
+(2)
+
+e∈Tσ
+
+otherwise,
+4
+
+where Ae | Ace is the displayed-tree split. This is a polynomial map in the Fourier edge coordinates
+and inheritance probabilities.
+Strict positivity of all four entries in (1) is equivalent to
+1 − g > 0,
+
+1 − 2s + g > 0.
+
+1 + 2s + g > 0,
+
+The principal positive-eigenvalue component is
+D+ = {(s, g) : 0 < s < 1, 0 < g < 1, g > 2s − 1}.
+
+(3)
+
+Every edge in the main theorem lies in D+ , and every inheritance probability lies in (0, 1). Write
+Θ+ (N ) for this open parameter space, ΦN for (2), and M+ (N ) = ΦN (Θ+ (N )). Put
+dN =
+
+max rank DΦN (θ).
+
+θ∈Θ+ (N )
+
+A source parameter is regular if its Jacobian rank is dN .
+
+2.3
+
+Directed containment and common germs
+
+Deﬁnition 2.6 (Regular analytic relations). Write N + N 0 if there are a regular source point
+θ0 ∈ Θ+ (N ), a connected open neighborhood U ⊆ Θ+ (N ) on which ΦN has rank dN , and a real
+analytic physical target section σ : U → Θ+ (N 0 ) satisfying
+ΦN = Φ N 0 ◦ σ
+
+on U.
+
+Write N ▷◁+ N 0 if the two images contain a common analytic germ which is regular and fulldimensional in both images and which has physical analytic sections from both parameter spaces.
+These relations are deliberately stronger than nonempty image intersection. They are distinct from
+equality of complete stochastic images, inclusion or equality of complex Zariski closures, lowerdimensional coincidence, and boundary-only intersection. The main theorem proves that + is
+symmetric inside the stated class; symmetry is not built into the deﬁnition.
+
+3
+
+Physical domain and pointwise topology recovery
+
+Lemma 3.1 (Strict subdivision). Every (s, g) ∈ D+ factors into two strict pairs in D+ . More
+precisely, for all suﬃciently small ε > 0,
+
+
+(sB , gB ) = (1 − ε, 1 − ε),
+
+(sA , gA ) =
+
+s
+g
+,
+1−ε 1−ε
+
+
+
+are in D+ and multiply coordinatewise to (s, g).
+Proof. At ε = 0, the second pair is the given interior point and the ﬁrst approaches the identity from
+within D+ . All deﬁning inequalities are strict and continuous. Hence they persist on a suﬃciently
+small positive interval. This avoids the false general assertion that coordinatewise square roots of
+every strict stochastic K2P edge are physical.
+Lemma 3.2 (Root movement). For symmetric K2P, the map ΦN is unchanged by moving the root
+to any admissible rooting of the same standard semi-directed graph.
+5
+
+Proof. Reverse only ordinary arcs on an old-to-new root path. K2P transition matrices are symmetric and the root distribution is uniform, so every displayed-tree probability is unchanged. Use
+lemma 3.1 at the new root and suppress the old root. If the old root is adjacent to an edge entering
+a reticulation, inspect each switching. When that parent is chosen, the two old root arms enter
+only through their serial products. When the other parent is chosen, the remaining one-child stem
+subtends every observed leaf, carries total Fourier character zero, and contributes multiplier one.
+Thus every summand in (2) is unchanged. Strong tree-childness supplies the admissible tree-child
+rootings used later, but the algebraic invariance is reversibility, subdivision, and switching.
+
+3.1
+
+Whole-map quartet separation
+
+Let the three quartet splits be A = 12 | 34, B = 13 | 24, and C = 14 | 23. Deﬁne
+FA = qGGGG − qGGT T ,
+
+(4)
+
+GB = qGGGG − qGGT T − qGT T G + qGT GT .
+
+(5)
+
+Lemma 3.3 (Displayed-quartet sign theorem). On a strict physical K2P quartet tree, FA is zero
+on topology A and strictly positive on B and C. The polynomial GB is zero on A and C and
+strictly positive on B. Consequently two strict network restrictions with diﬀerent displayed-quartet
+sets have disjoint physical images.
+Proof. Substitution in the tree monomial formula (2) cancels the two terms of FA on split A. On
+either crossing split, their diﬀerence is a positive pendant monomial times 1 − a, where a ∈ (0, 1)
+is the eﬀective paired-sector internal multiplier. This proves the ﬁrst claim. The same direct
+substitution shows that GB cancels on A, C and is a positive pendant monomial times 1 − a on B.
+Leaf permutations give Ft , Gt for every split t.
+A network tensor is a positive mixture of all displayed-tree tensors. If one displayed set is the
+singleton {t} and the other contains a diﬀerent topology, Ft is zero on the ﬁrst map and positive
+on the second. If both displayed sets have size at least two and diﬀer, choose a topology t present
+in one and absent from the other; the corresponding Gt is positive on the ﬁrst mixture and zero on
+the second. These cases exhaust the nonempty subsets of the three quartet topologies. This is the
+explicit K2P specialization of the pointwise theorem of Englander et al. [5, Propositions 2.9–2.10
+and Theorem 2.11].
+Marginalization sets omitted Fourier characters to zero. Equality of full tensors would therefore
+imply equality of every quartet marginal. By [5, Corollary 2.12], lemma 3.3 gives:
+Corollary 3.4 (Tree-of-blobs recovery). Every tensor in the strict image determines the labelled
+tree of blobs pointwise. In particular, N + N 0 forces the same labelled tree of blobs.
+
+3.2
+
+The whole-map Ti polynomial
+
+For a three-leaf tensor use character zero 0 and put
+Xh = qhh0 ,
+
+Yh = qh0h ,
+
+Zh = q0hh
+
+(h = s, g),
+
+V = qCT G ,
+
+where h = s means either member of the equal {C, T } sector and h = g means G. Deﬁne
+T3 = V 2 Xg − Xs2 Yg Zg .
+6
+
+(6)
+
+Lemma 3.5 (Whole-map tree–sunlet strict sign). The polynomial T3 vanishes on every three-leaf
+K2P tree. For the three-sunlet whose reticulation is incident with leaf three, write its Fourier map
+as
+qxyz = ax by cz {δfy dz + (1 − δ)fx ez },
+x + y + z = 0,
+(7)
+with edge spectra a, b, c, d, e, f and 0 < δ < 1. Then
+T3 = −a2s b2s ag bg c2g fs2 δ(1 − δ)dg eg (1 − fg )2 < 0.
+
+(8)
+
+The other two orientations have the corresponding leaf-permuted certiﬁcates.
+This lemma is an identity on the original full Fourier maps. It is not a classiﬁer obtained by rooting
+and pruning a three-leaf mixed-graph restriction; that historically tempting shortcut is false for
+some restored and probe presentations.
+Proof. For a three-leaf tree with pendant spectra a, b, c,
+Xs = as bs ,
+
+Xg = ag bg ,
+
+Yg = ag cg ,
+
+Zg = bg cg ,
+
+V = as bs cg ,
+
+so the two monomials in (6) agree. For the sunlet, substitute (7) into (6). After removing the
+common positive monomial, the remaining identity is
+fg {δdg + (1 − δ)eg }2 − {δdg + (1 − δ)fg eg }{δfg dg + (1 − δ)eg } = −δ(1 − δ)dg eg (1 − fg )2 .
+This gives (8). Every factor after the leading minus sign is strictly positive on D+ .
+Thus the ordinary-vertex/three-sunlet decoration of each degree-three node is pointwise determined.
+A strongly tree-child theta factor has at least four physical boundaries, so it cannot be confused
+with an ordinary three-boundary factor. Together with corollary 3.4, this recovers the complete
+labelled decorated tree of blobs before any ﬁnite algebraic classiﬁcation.
+
+4
+
+The complete two-sector bridge ﬁbre
+
+Cut every bridge of the common decorated tree of blobs. Its component-incidence graph is a tree T .
+For a component v, let Pv be its normalized Fourier boundary tensor, including retained physical
+blocks and one character he for each incident bridge; thus Pv (0) = 1. For a bridge e = uv, put
+
+
+
+1,
+
+h = 0,
+ke (h) = se , h ∈ {C, T },
+
+
+g , h = G.
+e
+Character conservation makes the global contraction
+Q(h) =
+
+Y
+
+Pv (h|v )
+
+Y
+
+ke (he ),
+
+(9)
+
+e∈E(T )
+
+v∈V (T )
+
+where he is the group sum of the leaf characters on either side of the bridge cut.
+Call a component marked when its local tensor retains at least one physical boundary block that can
+carry a compensating sector character in an anchor entry; otherwise call it unmarked. Unmarked
+retained components have bridge degree at least three.
+7
+
+Lemma 4.1 (Paired-sector uniqueness). Let a positive normalized component tensor and its
+incidence-scaled image both be invariant under C ↔ T . If the scale at incidence e is ce (h), then
+ce (C) = ce (T ) for every retained component.
+Proof. Normalize ce (0) = 1 and write ρe = ce (C)/ce (T ) > 0. If the component has a retained
+physical block, compare conservation-supported positive entries carrying C, C, and then T, T , at
+that block and incidence e, with zero elsewhere. Invariance before and after scaling gives ρe = 1.
+For an unmarked degree-d component, compare the analogous entries at each pair e 6= f . This
+gives ρe ρf = 1. Three distinct incidences and positivity imply every ρe = 1. The only residual at
+degree two would be (ρ1 , ρ2 ) = (t, t−1 ). No such unmarked factor is retained: cycle, theta, and
+ordinary components have at least three physical incidences in the strong class, while the only
+simple two-boundary theta K4 − e has no tree-child rooting.
+Theorem 4.2 (Complete positive bridge ﬁbre). On the positive normalized K2P component-tensor
+locus, the complete ﬁbre of (9) is exactly
+Pv 7−→ Pv
+se 7−→
+
+Y
+
+e ∈{C,T }] 1[he =G]
+a1[h
+bv,e
+,
+v,e
+
+e3v
+se
+
+au,e av,e
+
+(10)
+ge 7−→
+
+,
+
+ge
+,
+bu,e bv,e
+
+(11)
+
+with positive incidence scales av,e , bv,e . There is no additional positive continuous or discrete gauge,
+the action is free on every retained component, and the bridge tree has no two-sector holonomy. On
+physical networks, the ﬁbre is the intersection of this orbit with all local, inheritance, arm, bridge,
+and K2P inequalities.
+Proof. Cut one bridge and ﬁx its character. The corresponding ﬂattening block is a positive rankone matrix. Positive rank-one factorization is unique up to one positive scalar. All-zero normalization ﬁxes the zero-character scalar; lemma 4.1 identiﬁes the C and T scalars, while the G scalar
+remains independent. Root T temporarily and peel its leaf components. In the paired and singleton
+sectors separately, the resulting cut scalars assign one positive scale to every component incidence
+and give exactly (10)–(11). Induction reaches every component, so no vertex-coupled scale or holonomy remains. Direct cancellation proves the converse, and the observable sector labels exclude a
+discrete interchange.
+It remains to prove freeness and analytic normalization. A marked component uses, for each
+incidence, a positive conservation-supported entry carrying the chosen sector character at that
+incidence and at one retained physical block; its exponent matrix is the identity. For an unmarked
+component of degree d ≥ 3, use in either sector the pair anchors
+(1, 2), (1, 3), (2, 3), (1, 4), . . . , (1, d).
+Their exponent matrix has leading determinant −2 and rank d. If the observed anchor ratios are
+rij , the unique positive scales are
+r
+
+a1 =
+
+r12 r13
+,
+r23
+
+r
+
+a2 =
+
+r12 r23
+,
+r13
+
+r
+
+a3 =
+
+r13 r23
+,
+r12
+
+ak =
+
+r1k
+.
+a1
+
+(12)
+
+Apply the same formula independently in the singleton sector. Positivity makes the normalizers
+real analytic. The excluded degree-two stabilizer is the only possible failure of freeness.
+
+8
+
+The normalizers ﬁrst produce an ambient positive-tensor quotient. The next lemma supplies the
+physically essential saturation.
+Lemma 4.3 (Physical local product chart). Near every regular physical point, the quotient in
+theorem 4.2 is a physical local product chart.
+Proof. Split every eﬀective bridge pair (s, g) into three serial pairs
+
+
+(αu , βu ),
+
+g
+s
+,
+αu αv β u β v
+
+
+
+,
+
+(αv , βv ).
+
+Choose both endpoint pairs suﬃciently near (1, 1) that all three lie strictly in D+ , using lemma 3.1
+twice. Strictness is open; hence the four endpoint coordinates vary independently in a neighborhood
+while the residual pair remains physical. Absorbing the endpoint factors into the adjacent tensors
+realizes all four incidence-scale directions. Perform this independently on the bridge tree and
+intersect the ambient quotient with a constant-rank physical parameter chart.
+For later use we now make the localized relation precise. If H is a complete ported factor, let
+Θ+ (H) contain its internal and retained arm K2P pairs and its inheritance parameters, and let
+PH (θ), with PH (0) = 1, be its normalized boundary Fourier tensor. The positive incidence torus
+AH = (R2>0 )ports(H) acts by
+PH (h) 7−→ PH (h)
+
+Y
+
+e ∈{C,T }] 1[he =G]
+a1[h
+be
+.
+e
+
+e
+
+On any positive anchor chart, (12) gives an analytic slice for this action. Write ΦH for the resulting
+slice map and
+dH = max rank DΦH (θ).
+θ∈Θ+ (H)
+
+After ﬁxing a physical port bijection, deﬁne H + H 0 exactly as in deﬁnition 2.6, with ΦN , ΦN 0
+replaced by ΦH , ΦH 0 , a source neighborhood of rank dH , and a physical analytic target section.
+This deﬁnition is independent of the anchor chart: two such slices diﬀer only by the free analytic
+incidence action of theorem 4.2. The notation H ≡4 H 0 means the restriction of deﬁnition 2.5
+to the two complete ported factors with that same port bijection. Thus every local relation used
+below is a relation between quotient model germs, not merely a comparison of abstract graphs.
+
+5
+
+Marginals, localization, and no compensation
+
+Lemma 5.1 (Paired marginal submersion). For every m ≥ 1, the serial-edge map
+((s1 , g1 ), . . . , (sm , gm )) 7−→
+
+Y
+i
+
+si ,
+
+Y
+
+!
+
+gi
+
+i
+
+m onto D , has diﬀerential rank two, and has a local physical analytic section.
+maps D+
++
+
+Proof. First the product of physical factors remains physical. It is enough to check two factors.
+Put S = s1 s2 and G = g1 g2 . Positivity and the upper bounds are immediate. If S ≤ 1/2, then
+G > 2S − 1 is automatic. If S > 1/2, then both si > 1/2, and
+G > (2s1 − 1)(2s2 − 1) = (2S − 1) + 2(1 − s1 )(1 − s2 ) > 2S − 1.
+9
+
+Induction proves that the displayed product map lands in D+ .
+The case m = 1 is immediate. Given (S, G) ∈ D+ and m ≥ 2, choose r ∈ (0, 1) satisfying
+max{S, G, 2S − G, 0} < rm−1 < 1.
+Use (r, r) on the ﬁrst m − 1 edges and (S/rm−1 , G/rm−1 ) on the last. The displayed inequalities
+put every factor in D+ , and the same ﬁxed r works on a neighborhood of (S, G). The s- and g-rows
+of the diﬀerential have disjoint nonzero supports and are independent.
+Proposition 5.2 (Complete graph-derived marginal descriptor). Let Y be the retained boundary
+labels in any selected restriction used below, and extend x ∈ Z2 × ZY2 by zero on the omitted labels.
+For an edge e and a displayed switching σ, let he,σ (x) be the group sum below e when e ∈ Tσ , and
+put he,σ (x) = ⊥ otherwise. Deﬁne
+ϵse (σ, x) = 1[he,σ (x) ∈ {C, T }],
+
+ϵge (σ, x) = 1[he,σ (x) = G].
+
+The complete visible signature of e is the pair of these arrays over all (σ, x). Edges with the same
+non-identically-zero signature form one eﬀective product class E, with coordinates
+SE =
+
+Y
+
+se ,
+
+GE =
+
+e∈E
+
+Y
+
+ge .
+
+e∈E
+
+Edges with identically zero signatures, and tensor-invisible inheritance coordinates, are forgotten.
+The exact graph transport permutes surviving inheritance coordinates; only when it reverses the
+recorded order of the two parents at a retained reticulation does it apply λr 7→ 1 − λr . Consequently
+the eﬀective restriction descriptor is a product of the paired serial maps of lemma 5.1, coordinate
+projections and permutations, and these recorded aﬃne parent-order ﬂips. It maps the physical
+parameter domain onto the eﬀective child domain, is a submersion, and has local physical analytic
+sections.
+Proof. Here a reticulation is tensor-invisible precisely when, after every choice at the other reticulations is ﬁxed, its two parent choices induce the same retained switching and the same visible
+edge-sector exponent arrays for every retained character assignment. Only under this condition is
+its inheritance coordinate forgotten; otherwise the compiler retains it. Set omitted characters to
+zero in (2) and group full switchings by their induced switching on the retained graph. Equal visible signatures contribute in the same K2P sector in every monomial, hence only through (SE , GE ).
+Each invisible reticulation contributes λ + (1 − λ) = 1; every surviving reticulation is carried by
+the exact graph transport, with a complement precisely when that transport reverses its stored
+parent order. This gives the asserted factorization. Lemma 5.1 handles each product class, coordinate projections are submersions onto the retained coordinates, and permutations and parent ﬂips
+are analytic diﬀeomorphisms of the open physical domain. The ﬂips here are not an inheritancecomplement quotient between records: they occur only when the certiﬁed graph transport reverses
+a parent order.
+We use the following standard semialgebraic fact in a form that makes the ﬁnite-choice step explicit.
+Lemma 5.3 (Finite semialgebraic covers). Let M be a smooth d-dimensional semialgebraic manifold and S ⊆ M semialgebraic. Then dim S = d if and only if S has nonempty relative interior.
+Consequently, if a nonempty relatively open set in M is covered by ﬁnitely many semialgebraic
+subsets, one member contains a nonempty relatively open subset.
+10
+
+Proof. This follows from semialgebraic cell decomposition, invariance of dimension under semialgebraic bijections, the frontier-dimension inequality, and the fact that the dimension of a ﬁnite union
+is the maximum of its dimensions; see [2, Section 2.8].
+Proposition 5.4 (Physical localization and no compensation). Suppose N + N 0 . For each pair of
+corresponding complete ported factors H, H 0 , some ﬁxed target incoming/completion type contains a
+source-relative full-dimensional regular germ of the projective physical K2P model of H. Parameters
+in other factors cannot compensate for a local separator.
+Proof. Choose the regular source neighborhood and physical target section from deﬁnition 2.6.
+Shrink around a nonzero maximal source minor. By lemma 4.3, source slice coordinates contain a
+product box of local factor germs and eﬀective bridge intervals. Fix every coordinate except one
+focal factor. Positive bridge block factorization and the analytic normalizers extract its projective
+incidence orbit intrinsically from the global tensor.
+Only ﬁnitely many target incoming roles and target completion types occur in the primitive grammar. Their semialgebraic realization sets cover the focal source box, because the given target section
+realizes every point. By lemma 5.3, one type contains a source-open subgerm. The intrinsic bridge
+extraction does not depend on remote target coordinates, so a polynomial or rank obstruction on
+the focal orbit cannot be cancelled in a distant component.
+Restoration is used only under one ﬁxed full relation.
+Lemma 5.5 (Fixed-full restoration). Fix actual networks N, N 0 and a full relation N + N 0 . Fix
+an omitted physical label, its source insertion edge, its target attachment, and the induced boundary
+transport. Marginalizing this same relation gives one enumerated child relation, and its source
+restriction is open. Hence exact separation of every physical child excludes the ﬁxed full parent.
+Proof. Marginalization sets the restored leaf character to zero. The pendant factor becomes one
+and all newly serial edges multiply to the old eﬀective edge. Proposition 5.2, together with the identity on other source parameters, gives a physical source-open image and retains every inheritance
+coordinate that is not tensor-invisible. The actual attachments and transport of the ﬁxed networks
+are one row of the exhaustive child construction. Therefore a separating certiﬁcate for every child
+contradicts the assumed full relation. This argument neither lifts an abstract selected relation nor
+inverts an arbitrary target deletion map.
+
+6
+
+Primitive factors and the bounded exact theorem
+
+6.1
+
+Graph reduction
+
+Remove the port arms of one blob and suppress ordinary bivalent vertices that are neither local
+sources nor reticulation sinks. Record every removed port-bearing subdivision as a labelled ordered
+word on the resulting directed segment.
+Lemma 6.1 (Root reduction to a real incoming port). Every root-containing strongly tree-child
+factor has the same open projective K2P germ as an incoming-port presentation at some real leafbearing boundary. For a comparison, source and target incoming boundaries may be chosen independently.
+
+11
+
+Proof. Starting at an admissible root, repeatedly choose a tree or leaf child. This reaches a labelled
+leaf without crossing a reticulation. Move the root down that ordinary path to its boundary arm.
+Reversing the path creates no directed cycle: a ﬁrst re-entry would give an internal path tree vertex
+a second parent. The other old root branch reaches a leaf oﬀ the path, so no proper descendant
+of the new root lies on every root-to-leaf path; the new root is again the lowest stable ancestor.
+One-step suppression returns the same ﬁxed mixed graph, and strong tree-childness makes the
+new rooting tree-child. Lemma 3.2 preserves the K2P map, while strict subdivision or suppression
+changes only positive incidence factors on the chosen arm.
+Proposition 6.2 (Cycle–theta core theorem). Every nontrivial complete blob factor in the strong
+level-2 class has a cycle core or one of four directed theta cores θ0 , θ1 , θ2 , θ3 . It is recovered uniquely
+from that core, one labelled ordered port word on each directed segment, and one child port below
+every path-sink reticulation.
+Proof. Move a root-containing factor to a real incoming boundary using lemma 6.1. Let t, r, v, e be
+its local tree vertices, reticulations, total internal vertices, and blob edges after deleting port arms.
+Summing indegrees gives e = v + r − 1, and therefore
+X
+
+(degB (w) − 2) = 2e − 2v = 2(r − 1).
+
+w∈V (B)
+
+For r = 1, every blob vertex has degree two and the core is a cycle. For r = 2, exactly two vertices
+have degree three and every other vertex has degree two. Biconnectedness makes the blob three
+internally disjoint paths between the two degree-three poles, hence a theta.
+The incoming cut edge is ordinary. Indeed, if an arc u → R entering a reticulation were a cut edge,
+the two root-to-parent paths together with the other incoming arc of R would still connect u to
+R after deleting uR, a contradiction. Its endpoint in the factor is therefore the unique local tree
+source S. A theta pole already uses all three binary incidences inside the blob, so S lies in the
+interior of one of the three pole-to-pole paths. An internal reticulation is necessarily a path sink:
+both path sides enter it and its unique child is its boundary arm.
+At most one pole is reticulate. If both poles were reticulate, the path containing S would point
+from S toward both poles, giving each pole one incoming side. Their remaining bidegrees would
+force the two event-free paths to point in opposite directions, and those paths would form a directed
+cycle.
+Suppose exactly one pole R is reticulate and the other pole T is a tree vertex. The second reticulation is an internal sink X. If S and X lie on diﬀerent paths, their paths point respectively away
+from S and toward X, and the pole bidegrees force the third path from T to R; this is θ0 . If they
+share a path, its only acyclic order from T to R is
+T − S − X − R.
+The order T − X − S − R forces the two event-free paths to have opposite directions and hence
+creates a directed cycle. Both event-free paths in the valid case point from T to R, giving θ1 .
+Suppose instead that both poles are tree vertices. The two reticulations are internal sinks. They
+cannot lie on one path: the path directions into the two sinks would force S between them, after
+which the pole bidegrees force the two event-free paths in opposite directions, again producing a
+directed cycle. Thus the sinks lie on distinct paths. If S lies on the third path, both poles feed
+both sinks, giving θ2 . Otherwise S shares a path with one sink; choose as ﬁrst pole the pole whose
+12
+
+other two sides point outward. The shared path then has order pole–S–sink–pole and all remaining
+directions are forced, giving θ3 . Reversing the arbitrary pole names or interchanging the two sinks
+yields only the displayed symmetries. Hence no source or reticulation-event placement is omitted.
+Deleting the incoming arm and suppressing its resulting degree-two source yields one of the two
+semi-directed level-2 generators classiﬁed by Huber et al. [12, Lemma 4.2 and Figure 8]. The four
+directed incoming-source reﬁnements are exactly the cases above. Reading port vertices along the
+oriented segments recovers the unique words.
+The segment templates and minimal strong repairs are:
+core
+
+directed segments in index order
+
+minimum occupied segments
+
+cycle
+θ0
+θ1
+θ2
+θ3
+
+S → X, S → X
+S → U, S → V, U → X, V → X, U → V
+S → U, S → X, V → X, U → V, U → V
+S → U, S → V, U → X0 , V → X0 , U → X1 , V → X1
+S → U, S → X0 , V → X0 , U → X1 , V → X1 , U → V
+
+{0}, {1}
+{2, 3}, {3, 4}
+{2, 3}, {2, 4}
+{2, 3}, {2, 5}, {3, 4}, {4, 5}
+{2}, {4}
+
+Here is a direct proof that the repair table is complete. If an occupied segment ends at a reticulation,
+its last port-bearing subdivision replaces the original core tail’s reticulation incidence by an ordinary
+edge; the new arrow tail has two ordinary incidences, namely its preceding segment edge and its
+port arm. Consequently an occupancy set A is valid exactly when it meets every obstruction clause
+in
+core clauses that A must meet
+cycle {0, 1}
+θ0
+{3}, {2, 4}
+θ1
+{2}, {3, 4}
+θ2
+{2, 4}, {3, 5}
+{2, 4}.
+θ3
+For the cycle, S otherwise tails both reticulation edges and the two unsubdivided sides are parallel.
+In θ0 , segment 3 must be occupied to separate the reticulation V from its reticulation child X,
+while U requires one of segments 2, 4. In θ1 , segment 2 separates the reticulation stack, while one
+of the parallel segments 3, 4 must be occupied both to give U an ordinary child and to make the
+mixed graph simple. In θ2 , U requires one of 2, 4 and V one of 3, 5. In θ3 , V requires one of 2, 4.
+All other retained-arrow tails already have two ordinary incidences, and every path-sink child arm
+is retained separately.
+The minimal transversals of these clause families are precisely the repair sets displayed in the table.
+Deleting any member of a displayed repair leaves its named clause unmet, whereas every valid
+occupancy must meet all the clauses. This proves suﬃciency, minimality, and exhaustiveness, up
+to the displayed core symmetries, by the no-omnian criterion lemma 2.4. The reader supplement
+records the exact completion grammar.
+For a target core H, let mH be its number of directed segments, qH its path-sink count, and rH its
+number of compiler target-repair tags. For theta targets these tags are the listed minimum repairs;
+cycle targets use one untagged target convention. If k physical boundaries are selected and ϵ = 1
+when the incoming boundary is selected (ϵ = 0 when it is marginalized), then the exact number of
+target completions is
+C(k, ϵ) =
+
+X
+H
+
+rH
+
+qH
+X
+qH
+j=0
+
+!
+
+j
+13
+
+!
+
+k − ϵ − j + mH − 1
+.
+mH − 1
+
+(13)
+
+This counts repair-tagged directed completion descriptors, not untagged mixed graphs. First choose
+the j selected path sinks and weakly distribute the remaining k−ϵ−j selected physical labels among
+the mH ordered segment words. For a chosen theta repair, every required segment whose physical
+word is empty then receives one deterministically named zero-character completion leaf; an already
+occupied required segment receives no extra leaf. These completion roles consume no selected
+label and therefore do not alter the stars-and-bars term. The repair index remains part of the raw
+descriptor even when two repair witnesses construct the same ﬁnal mixed graph. Unselected pathsink roles and a marginalized incoming role likewise receive deterministic dummy labels. Cycle
+targets use the single untagged target-repair convention; their two minimum repaired supports
+enter the source multiplier rather than C.
+The ﬁve tuples (mH , qH , rH ) are
+(2, 1, 1), (5, 1, 2), (5, 1, 2), (6, 2, 4), (6, 2, 2)
+for the cycle and θ0 , . . . , θ3 , respectively. Thus C(4, 1) = 831, C(4, 0) = C(5, 1) = 1,983, and
+C(5, 0) = 4,155. Physical label permutations are applied only after this directed-record enumeration.
+
+6.2
+
+What was computed
+
+For clarity, a raw directed presentation consists of the source graph, target graph, source and target
+incoming modes, all selected or marginalized physical roles, an ordered physical port permutation,
+the source-to-target direction, and the boundary transport. Canonical classes are formed only after
+the raw ledger is complete. A row may terminate only by one of the following mutually exclusive
+evidence types, applied in order:
+(i) a pointwise displayed-quartet or whole-map Ti sign exclusion;
+(ii) a directed exact-rank exclusion, with a nonzero source minor and a symbolic target upper
+certiﬁcate;
+(iii) an exact polynomial separator, zero on the target map and nonzero at a strict rational source
+point;
+(iv) a ﬁxed-full restoration obligation;
+(v) a labelled mixed-graph isomorphism; or
+(vi) an ordinary triangle relation.
+The target completion grammar takes every primitive core, every allowed path-sink child subset, every weak composition of the available port roles among directed segments, every theta
+minimum-repair tag (and the single untagged cycle convention), and either a selected incoming boundary or a marginalized incoming role. It produces 831 selected-incoming and 1,983
+marginalized-incoming four-port targets. At ﬁve ports it produces 1,983 selected-incoming and
+4,155 marginalized-incoming targets. These are counts of complete graph-derived target descriptors, not unexplained numerical ﬁt classes.
+Theorem 6.3 (Computer-assisted bounded classiﬁcation). For every pair H, H 0 of complete ported
+physical cycle/theta factors in the strong level-2 class, including arbitrary admissible restored subdivision words,
+H + H 0
+
+⇐⇒
+
+∼ H 0 as labelled mixed graphs
+H=
+
+or
+
+H ≡4 H 0 .
+
+Every ﬁnite obstruction and every equality transport in this statement has an exact graph-derived
+certiﬁcate. The exhaustive residue consists of the following ﬁnite ledgers and forests.
+14
+
+Finite proof and exact residue. For four-port theta supports, six sources, 831 selected-incoming
+targets, 1,983 marginalized-incoming targets, and 24 physical port permutations give
+6(831 + 1983)4! = 405,216
+raw directions. The exact partition is
+displayed-quartet exclusion
+whole-map Ti strict-sign exclusion
+directed exact-rank exclusion
+direct-terminal presentation
+restoration-member presentation
+
+360,408
+16,974
+23,822
+1,472
+2,540
+
+total
+
+405,216
+
+The 1,472 terminal presentations form 934 canonical classes: 839 exact multihomogeneous quadratics, 36 direct polynomial separators (22 quintic, 12 quartic, and 2 cubic), four additional exact hardcase bindings, 20 labelled isomorphisms, and 35 ordinary-triangle relations. The 2,540 restoration
+members bind to exactly 997 canonical full-parent obligations.
+For the four minimum-repaired ﬁve-port θ2 sources,
+4(1983 + 4155)5! = 2,946,240
+directions partition into 2,942,592 quartet exclusions, 2,528 Ti exclusions, 800 exact-rank exclusions,
+240 direct quadratics, and 80 labelled isomorphisms. The 56 dummy-bearing isomorphism roots
+generate 864 one-parent descendants; their 832 leaves are 760 quartet exclusions and 72 labelled
+isomorphisms.
+For the three-port cycle core, 13,440 base directions partition into 7,452 Ti exclusions, 5,964 ﬁxedfull restoration obligations, eight labelled isomorphisms, and 16 triangle relations. The 5,964 roots
+generate 536,364 physical completions: 535,920 quartet exclusions, 300 Ti exclusions, 132 exact
+quadratics, and 12 isomorphisms.
+The 997 four-port full-parent obligations generate 36,568 ﬁrst children: 35,758 quartet, 606 Ti , 148
+quadratic, 24 transported quartic, and 32 continuations. Those continuations generate 256 second
+children, 248 quartet and eight Ti . Hence the forest has 36,824 edges, 36,792 separator leaves,
+maximum depth two, no cycle, no missing child, no unresolved leaf, and coherent transport on
+every edge. By lemma 5.5, every parent is excluded.
+It remains to pass from bounded rigid supports to arbitrary complete words. The probe input has
+176 physical equality anchors: 143 isomorphisms and 33 triangles. Every physical mixed edge is
+an attachment site, including pendant arms, reticulation-incoming edges, and the root-suppressed
+segment. The exhaustive one-port ledger has 29,964 directions and the two-port ledger has 544,571.
+Their exact terminal censuses are
+29,964 = 27,758 quartet + 99 Ti + 1,915 isomorphism + 192 triangle,
+544,571 = 511,266 quartet + 576 Ti + 30,969 isomorphism + 1,760 triangle.
+Every one-port equality has a unique parent transport; every two-port equality restricts coherently
+to its one-port parent and has its reversed marginal in the ledger. One-port restrictions determine
+the core segment of each omitted boundary. Two-port restrictions determine the order of every pair
+on a common segment. Because these comparisons come from actual words, they are transitive
+15
+
+and reconstruct a unique total labelled word on each segment. The transported words agree on
+overlaps; the only remaining choice is the stored coherent orientation of each ordinary triangle.
+All stated counts, graph relations, pullbacks, rank bounds, parentage, and transport restrictions
+were regenerated by an independent implementation. Mutation suites reject an omitted or duplicated raw row, false rank exclusion, missing child, wrong parent, broken transport, and reassignment
+of quadratic, cubic, quartic, quintic, or Ti certiﬁcates. The supplement identiﬁes the exact ﬁles and
+replay commands. This completes the ﬁnite computer-assisted proof; it is not being replaced here
+by an unveriﬁed assertion that all terminal classes form a smaller hand orbit.
+
+6.3
+
+Bounded proof-compression outcome
+
+A separate bounded normalization and orbit pass was run against the frozen classiﬁer. Its outcome
+is PC-PARTIAL: it substantially reduces the mathematical catalogue, but it does not remove the
+exact coverage ledgers. The safe reductions are summarized below.
+layer
+
+compressed explanation
+
+exact residue retained
+
+primitive completions
+
+one stars-and-bars formula
+
+quadratic separators
+
+literal-body counts (8,4,6,5)
+for four-port, θ2 , cycle, and
+restoration layers
+three certiﬁed transport
+families
+one universal
+polynomial-ﬁeld mechanism
+297 descriptive outcome
+ﬁngerprints
+one segment lemma, one
+order lemma, and coherent
+triangle transport
+
+primitive-core theorem and directed
+record keys
+every direction-preserving certiﬁcate
+transport
+
+higher-degree direct cases
+rank exclusions
+restoration
+arbitrary port words
+
+27 direction-speciﬁc bodies across 36
+records
+75 exceptional orbit representatives
+covering 864 descriptors
+all 997 parent assignments and 36,824
+labelled forest edges
+29,964 one-port and 544,571 two-port
+rows
+
+In particular, the 297 restoration ﬁngerprints are not asserted to be a graph-transport quotient,
+and the three higher-degree propositions are not misreported as three literal polynomials. The compressed veriﬁer checks assignment to these mathematical families and then checks exact agreement
+with the frozen proof system. This is the stopping point of the one-cycle compression attempt;
+a further reduction of the retained transport residue would require new mathematics rather than
+repackaging.
+
+7
+
+Triangle germs and the global classiﬁcation
+
+7.1
+
+The ordinary-triangle common germ
+
+Let τi : Θi → Q, i = 1, 2, 3, be the three normalized K2P maps obtained by placing the reticulation
+at each vertex of an ordinary three-cycle. Here Q is the nine-dimensional aﬃne space of normalized,
+conservation- supported three-leaf K2P Fourier tensors.
+Lemma 7.1 (Exact rank-nine triangle germ). The three physical orientation maps have a common
+strict continuous-time point at which each has rank nine. Consequently they contain one common
+nine-dimensional regular physical analytic germ.
+16
+
+Proof. For the orientation at leaf three use (7) and set
+a = b = c = (1, 12 , 21 , 21 ),
+
+f = (1, 31 , 13 , 31 ),
+
+d = e = (1, 21 , 12 , 21 ),
+
+δ = 12 .
+
+This assignment is invariant under leaf permutations, so all three orientations produce the same
+tensor. Its six nonconstant two-character orbit coordinates are 1/12, and its three mixed triple-orbit
+coordinates are 1/48. Every edge satisﬁes g > s2 .
+At this symmetric point the K2P Jacobian decomposes into four symmetric and ﬁve anisotropic
+output directions. Write U = qCGT , V = qCT G , W = qGCT . Use the output logarithms
+z0 = (log Xs , log Ys , log Zs , log W ),
+and
+
+
+
+z⊥ = log(Xg /Xs ), log(Yg /Ys ), log(Zg /Zs ), log(U/W ), log(V /W ) .
+For the symmetric block vary the common logarithmic s, g scales of a, b, c, f . For the anisotropic
+block vary log(ag /as ), log(bg /bs ), log(cg /cs ), log(dg /ds ), log(fg /fs ), holding the other paired coordinates and the e-anisotropy ﬁxed. Direct diﬀerentiation of (7) gives a block-upper-triangular
+nine-dimensional slice with diagonal blocks
+
+
+1
+1
+
+J0 = 
+0
+1
+and
+
+
+
+1
+ 1
+
+
+J⊥ =  0
+
+−1
+−1
+
+1
+0
+1
+1
+0
+
+1
+0
+1
+1
+
+
+
+0 1
+1 1/4
+
+,
+1 1/4
+1 1
+
+1
+det J0 = − ,
+2
+
+
+0 0
+1
+1 3/4 1/4 
+
+
+1 1/4 1/4  ,
+
+0 0
+0 
+1 1/2 −1/2
+
+1
+det J⊥ = − .
+4
+
+Their product is 1/8, so every orientation has rank nine. Since dim Q = 9, each orientation map is
+an analytic submersion at the common tensor. The analytic submersion theorem gives a physical
+analytic section over an output neighborhood for each orientation; strict continuous time is open, so
+the sections stay inside that cone after shrinking. Intersecting the three output neighborhoods gives
+the common regular germ. Notice from (8) that it remains strictly separated from the three-leaf
+tree model.
+Lemma 7.2 (Contextual triangle suﬃciency). If corresponding factors of two networks are isomorphic or diﬀer only by ordinary triangle redirections, with coherent boundary transports, then
+the global K2P images share a full-dimensional regular physical germ.
+Proof. An isomorphism transports physical parameters. For one triangle, lemma 7.1 gives a common open set U ⊂ Q and physical sections of every orientation. Let C be an open strict physical
+parameter chart of the identical exterior context and write its contraction as
+H : Q × C −→ Y.
+Choose (q, c) in the nonempty open subset of U × C on which DH has generic maximal rank R.
+Since each τi × idC is a submersion,
+
+
+rank D H ◦ (τi × idC ) = R.
+17
+
+By maximality of R and persistence of a nonzero R-minor, shrink to a neighborhood V ⊂ U × C on
+which H has constant rank R. The analytic constant-rank theorem supplies a local analytic section
+η : H(V ) → V over this R-dimensional image germ. If si : U → Θi is the triangle section, then
+y 7−→ si (prQ η(y)), prC η(y)
+
+
+
+is a physical analytic section of H ◦ (τi × idC ). Thus the R-dimensional germ H(V ) is the same fulldimensional contextual image germ for every orientation, even if the three arms reconnect inside
+another level-2 factor. For several triangles use the product of all Qj , Uj and their product sections,
+and make the rank choice once; no induction assumes that an already chosen context remains
+generic.
+Finally glue bridge incidence scales physically. If the two local sections have paired and singleton
+(k)
+(k)
+incidence products Ae , Be > 0, k = 1, 2, choose
+(2)
+0 < se < min{ 21 , A(1)
+e /2, Ae /2},
+
+0 < ge < min{1, Be(1) , Be(2) }.
+
+The original and both gauge-transformed pairs lie in D+ : every relevant s-coordinate is below 1/2,
+so the lower K2P inequality is automatic. Shrink the germs uniformly. Incidence factors cancel
+termwise in (9), and lemma 4.3 supplies the full-rank global product germ.
+Theorem 7.3 (K2P-SAME). Let N, N 0 be binary standard semi-directed strongly tree-child level-2
+networks on the same ﬁnite labelled leaf set. Put every edge in D+ and every inheritance probability
+in (0, 1). Then
+N + N 0 ⇐⇒ N ≡4 N 0 ⇐⇒ N ▷◁+ N 0 .
+(14)
+In particular, no proper one-sided regular-germ containment exists in this class. The conclusion is
+not equality of complete stochastic images.
+Proof. Suppose ﬁrst that N + N 0 . The whole-map inequalities in section 3 force equality of
+the labelled decorated trees of blobs. The complete bridge ﬁbre and physical product chart extract corresponding projective local factors with exactly the two incidence gauges and no holonomy.
+Proposition 5.4 selects one physical target type for each source-open local germ and prevents remote compensation. Theorem 6.3 then makes every corresponding complete factor isomorphic or
+ordinary-triangle related. Its one-/two-port transports reconstruct every labelled segment word
+and make the local relations globally coherent. Thus N ≡4 N 0 .
+Conversely, N ≡4 N 0 implies N ▷◁+ N 0 by lemma 7.2. A common full-dimensional germ with
+physical sections gives the directed relation in both directions by deﬁnition.
+
+8
+
+Generic structural identiﬁability
+
+Let
+VN = ΦN (CmN )
+
+Z
+
+denote the complex Zariski closure of the polynomial K2P map after complexifying its mN edge
+and inheritance coordinates. It is irreducible because it is the closure of the image of an irreducible
+aﬃne space, and dim VN = dN . Indeed, let r be the generic complex Jacobian rank. Every Jacobian
+minor has real-polynomial coeﬃcients and some r-by-r minor is nonzero. Since Θ+ (N ) contains a
+nonempty Euclidean-open subset of RmN , that polynomial cannot vanish throughout Θ+ (N ); hence
+dN ≥ r. The reverse inequality is immediate, while the generic-rank theorem gives r = dim VN .
+18
+
+Theorem 8.1 (Generic identiﬁability modulo triangles). For each ﬁxed network N in the class,
+there is a proper Zariski-closed set EN ⊊ VN such that every exact physical tensor q ∈ M+ (N ) \ EN
+determines the labelled standard semi-directed topology of N uniquely modulo ≡4 .
+Proof. For ﬁxed X , there are ﬁnitely many labelled binary strong level-2 topologies. Indeed, choose
+e ; by strong tree-childness it is tree-child. Starting at the root and at each of
+an admissible rooting N
+its r reticulations, repeatedly choose a tree-vertex or leaf child. The resulting r +1 tree paths end at
+distinct leaves: at the ﬁrst merger of two paths, a tree vertex or leaf would have two parents. Thus
+r ≤ |X | − 1. If t is the number of nonroot tree vertices, equality of total indegree and outdegree
+gives
+2 + 2t + r = t + 2r + |X |,
+t = |X | + r − 2.
+Hence
+
+e )| = 1 + t + r + |X | = 2|X | + 2r − 1 ≤ 4|X | − 3.
+|V (N
+
+There are therefore only ﬁnitely many labelled rooted presentations, and hence only ﬁnitely many
+standard semi-directed topologies. For each competitor N 0 6≡4 N , form the physical output intersection
+CN,N 0 = M+ (N ) ∩ M+ (N 0 )
+and the target incidence correspondence
+ZN 0 = {(q, θ0 ) : q = ΦN 0 (θ0 ), q ∈ M+ (N )}.
+These sets and their projections are semialgebraic by Tarski–Seidenberg [2, Theorem 2.2.1]. Let
+the total source rank-drop locus be
+RN = {θ ∈ Θ+ (N ) : rank DΦN (θ) < dN }.
+F
+
+Choose a ﬁnite Nash stratiﬁcation RN = α Sα on which every ΦN |Sα has constant rank. Since
+Tθ Sα ⊆ Tθ Θ+ (N ),
+rank D(ΦN |Sα )(θ) ≤ rank DΦN (θ) ≤ dN − 1.
+The constant-rank theorem gives dim ΦN (Sα ) ≤ dN −1, so ΦN (RN ) is semialgebraic of dimension at
+most dN − 1. Consequently, a dN -dimensional physical intersection meets the regular source-image
+locus in dimension dN ; deleting ΦN (RN ) cannot lower its dimension.
+Choose ﬁnite Nash (real-analytic semialgebraic) stratiﬁcations of the regular source image, the
+target parameter space, and ZN 0 , compatible with the relevant rank loci and reﬁned so that every
+restricted polynomial map and projection has constant rank on each stratum.
+If CN,N 0 had dimension dN , then lemma 5.3 would give a nonempty relatively open subgerm in
+a regular dN -dimensional source-image stratum. Some Nash stratum of ZN 0 would project onto
+a smaller such germ with rank dN ; the analytic constant-rank theorem supplies a physical realanalytic target section over that output germ. An analytic constant-rank chart for ΦN then pulls
+this section back to an open source-parameter neighborhood, constant along the local source ﬁbres.
+This is N + N 0 , contradicting theorem 7.3. Hence every competing physical intersection has
+semialgebraic dimension at most dN − 1. By [2, Proposition 2.8.2], a semialgebraic set and its real
+Zariski closure have the same dimension; extension of scalars from R to C preserves Krull dimension.
+Its complex Zariski closure inside VN therefore has dimension at most dN − 1 and is proper.
+Take the ﬁnite union of these closures and the singular locus of VN . For every output polynomial
+P (q) used by reconstruction—a quartet, Ti , bridge-anchor, or ﬁnite-separator polynomial—adjoin
+19
+
+VN ∩ Z(P ) only when P ◦ ΦN is certiﬁed nonidentically zero on the intended source stratum; this
+intersection is then proper. Also adjoin the complex Zariski closure of ΦN (RN ), which is proper
+by the dimension calculation above and the same real-to-complex closure facts. Every added set
+is therefore a proper closed subset of VN ; a ﬁnite union of such sets cannot ﬁll the irreducible VN .
+The resulting proper set is EN . Outside it, every realizing topology is triangle-equivalent to N .
+The quantiﬁer is “for each ﬁxed N , outside a proper exceptional set.” This is not pointwise identiﬁability at every parameter and does not identify individual bridge parameters inside the incidencegauge ﬁbre.
+
+9
+
+Exact structural reconstruction
+
+Theorem 9.1 (Finite exact reconstruction). There is a terminating exact procedure which, given
+q ∈ M+ (N ) \ EN for some network N in the class, returns the unique structural class [N ]4 .
+Proof. Here “exact” means that every input coordinate is supplied in a representation supporting
+exact ﬁeld operations, polynomial-sign decisions, and real-closed-ﬁeld quantiﬁer elimination (equivalently, through an exact-real oracle with those operations). This is a termination model, not a
+bit-complexity or numerical-stability claim.
+Apply the following ﬁnite procedure.
+R1. Fourier-transform the exact pattern tensor.
+R2. Evaluate the quartet sign deck and reconstruct the labelled tree of blobs.
+R3. Evaluate all leaf-permuted Ti and decorate every degree-three component.
+R4. Factor positive bridge blocks in the paired and singleton sectors and impose the analytic
+normalizers (12).
+R5. Enumerate the ﬁnitely many bounded rigid-support candidates compatible with R2–R4. Apply the pointwise and polynomial separator tests to the recovered local tensors, retaining
+every candidate not excluded.
+R6. For each retained candidate, follow only exact ﬁxed-full restoration records and their stored
+transports; the depth is at most two.
+R7. For each resulting support, use the certiﬁed one-port segment deck and two-port order deck
+to reconstruct every labelled subdivision word.
+R8. Assemble every coherent labelled mixed-graph candidate and group the ﬁnite list into ordinarytriangle classes. For each such class C, decide the exact semialgebraic feasibility statement
+q∈
+
+[
+
+M+ (H).
+
+H∈C
+
+Since q ∈
+/ EN , exactly one class is feasible; return its canonical representative.
+Each feasibility query is a ﬁnite existential semialgebraic sentence and terminates by quantiﬁer
+elimination under the exact-input convention. The true class is feasible. If an inequivalent class
+were also feasible, then q would belong to a competing physical intersection whose Zariski closure
+is contained in EN , a contradiction.
+All decks and forests are ﬁnite, and every loop terminates. The largest bounded restriction in the
+input contract uses at most nine physical ports, so a direct implementation uses at most O(|X |9 )
+bounded restrictions beyond reading and Fourier-transforming the explicit 4|X | -entry tensor. No
+numerical-stability or bit-complexity bound is asserted.
+20
+
+The output is a structural triangle class. Deciding whether the particular input tensor lies in the
+complete stochastic image of another redirected representative is a separate exact semialgebraic
+membership problem and is not claimed here.
+
+10
+
+Strict continuous-time transfer
+
+For positive continuous-time K2P rates the Fourier coordinates satisfy
+DCT = {(s, g) : 0 < s < 1, s2 < g < 1}.
+
+(15)
+
+This is a nonempty Euclidean-open subset of D+ . Deﬁne ΘCT (N ), MCT (N ) = ΦN (ΘCT (N )), CT ,
+and ▷◁CT by replacing every edge domain by DCT . Because DCT is a nonempty open subset and
+every maximal Jacobian minor is polynomial,
+dCT,N := max rank DΦN = dN .
+ΘCT (N )
+
+Corollary 10.1 (Continuous-time classiﬁcation). The equivalence (14), generic identiﬁability in
+theorem 8.1, and reconstruction in theorem 9.1 hold with + replaced by CT.
+Proof. Necessity follows because DCT is open inside D+ . Positive coordinate power roots stay
+in DCT , giving continuous-time subdivision and the marginal sections. The triangle witness in
+lemma 7.1 is strict continuous-time.
+For simultaneous bridge gluing, let A(k) , B (k) > 0, k = 1, 2, be the two sections’ incidence products
+and put
+(
+)
+B (1)
+B (2)
+L = max 1, (1) 2 , (2) 2 ,
+U = min{1, B (1) , B (2) }.
+(A ) (A )
+Choose explicitly
+0 < s < min{1, A(1) , A(2) ,
+
+q
+
+U/L},
+
+Ls2 < g < U.
+
+Then (s, g) and both transformed pairs (s/A(k) , g/B (k) ) lie in DCT . All inequalities are strict
+and persist on a neighborhood. Finally, every nonzero polynomial witness remains nonzero on a
+dense open part of the continuous-time parameter space, and the semialgebraic arguments restrict
+unchanged.
+No boundary case g = s2 , s = 0, g = 0, or inheritance probability in {0, 1} is included.
+
+11
+
+Sharpness of strong tree-childness
+
+The following construction is independent of the bounded atlas and probe gate.
+Theorem 11.1 (Weak-class 4n − 3 ambiguity). For every integer n ≥ 3, there are two binary level2 standard semi-directed networks on the same n-leaf labelled set which are weakly tree-child but
+not strongly tree-child, are neither labelled-isomorphic nor ordinary-triangle-equivalent, and whose
+strict continuous-time K2P images contain a common full-dimensional regular analytic germ of
+dimension 4n − 3.
+
+21
+
+Proof. We ﬁrst give the three-leaf pair. The rooted presentations W, W 0 have arcs
+Ret(W ) = {V, X},
+
+W : rS, rL0 , SU, SV, U X, V Z, ZX, U V, ZL1 , XL2 ,
+0
+
+Ret(W 0 ) = {X0 , X1 }.
+
+W : rS, rL0 , SU, SX0 , V X0 , U X1 , V X1 , U V, X0 L1 , X1 L2 ,
+
+Suppress r and retain all reticulation arrowheads. Complete edge-rooting enumeration gives
+(# admissible, # tree-child, # non-tree-child) = (5, 2, 3),
+
+(7, 2, 5).
+
+Thus both are weakly but not strongly tree-child. Exact labelled incidence- graph comparison ﬁnds
+no isomorphism. Each underlying graph has one triangle, but forgetting the head ﬂags on those
+triangle edges still gives no isomorphism, so they are not ordinary-triangle equivalent.
+For visual reference, their rooted representatives are:
+r
+0
+
+r
+0
+
+S
+U
+
+S
+
+V
+
+U
+
+V
+
+Z
+
+X1
+
+X0
+
+X
+
+1
+2
+
+2
+
+1
+W0
+
+W
+
+Put δ = 2−30 . In W , assign (s, g) = (1/7, 1/7) to the seven nonpendant arcs
+rS, SU, SV, U X, V Z, ZX, U V.
+At reticulation X, give Z → X weight 15996/16339 and U → X its complement 343/16339. At V ,
+give S → V weight 1/8 and U → V weight 7/8. Give the pendant arms at leaves 0, 1, 2 the strict
+continuous-time diagonal pairs
+
+
+(s, g) = (xi , xi ),
+
+(x0 , x1 , x2 ) =
+
+
+
+86779 320 114373
+δ,
+δ,
+δ .
+80
+253 20240
+
+In W 0 , assign (1/4, 1/4) to
+rS, SU, SX0 , V X0 , U X1 , V X1 , U V.
+At X1 , the edges V → X1 , U → X1 have weights 1/2, 1/2. At X0 , the edges V → X0 , S → X0 have
+weights 1/6, 5/6. The pendant diagonal pairs at leaves 0, 1, 2 are
+
+
+
+
+16 16
+δ, δ ,
+3
+3
+
+
+
+
+
+32 32
+δ, δ ,
+9
+9
+
+
+
+
+
+96 96
+δ, δ .
+5
+5
+
+Every pair lies strictly in DCT .
+These parameters are written on the displayed rooted arcs. When the artiﬁcial root is suppressed,
+the two incident spectra multiply coordinatewise; the resulting eﬀective semi-directed edge also
+remains strict continuous-time.
+Use numeric character codes 0, C, G, T = 0, 1, 2, 3. In the explicit coordinate order
+(000, 0CC, 0GG, C0C, CC0, CGT, CT G, G0G, GCT, GG0),
+22
+
+(16)
+
+direct four-switch expansion gives the same tensor on both networks:
+q000 = 1,
+4
+qh = δ 3
+5
+
+qh = δ 2
+
+on the six two-nonzero coordinates,
+on the three all-nonzero coordinates.
+
+The graph-derived canonical descendant-signature orders of the seven visible edge classes are
+W ZX SV
+rS
+W 0 V X1 V X0 U V
+
+SU
+rS
+
+UV V Z UX
+SX0 SU U X1 .
+
+Order each normalized map’s full parameter list by the paired (s, g) coordinates of these seven
+classes, followed by λ0 , λ1 . Thus the named minor columns are
+W :;(sZX , gZX , sSV , gSV , srS , grS , sSU , gSU , sU V ),
+W 0 :;(sV X1 , gV X1 , sV X0 , gV X0 , sU V , gU V , srS , grS , sSX0 ).
+All output-row indices below are zero-based in the order (16); thus row 0 is q000 . The derived column
+crosswalk in the supplement independently reconstructs these orders from the graph encodings and
+binds them to the frozen descriptor hashes. For W , rows (1, 2, 3, 5, 4, 7, 6, 8, 9) of (16) and the
+displayed named columns give determinant
+10368019213741323
+6= 0.
+563981315074464023964442388464888915634290688
+For W 0 , rows (1, 2, 3, 5, 4, 6, 7, 8, 9) and its displayed named columns give
+1435825
+6= 0.
+85002596691653613846528
+Both normalized maps therefore have rank nine, the full normalized three-leaf dimension. The
+nonzero pendant factors are an invertible diagonal row scaling, so both full physical maps are
+submersions at their common tensor. Their images share a regular nine-dimensional germ.
+To pass from n leaves to n + 1, replace the same labelled leaf on both networks by the same labelled
+cherry. If the two new edge pairs are (us , ug ) and (vs , vg ), call the new leaves a, b, and choose any
+outside leaf j. On the positive common germ the following Fourier coordinates are nonzero, and
+character conservation gives
+Rs =
+
+Qj=C,a=C,b=0, others=0
+us
+= ,
+Qj=C,a=0,b=C, others=0
+vs
+
+Ps = Qa=C,b=C, others=0 = us vs .
+
+Replacing C by G gives Rg = ug /vg and Pg = ug vg . Thus the four quantities below are tensor
+observables, not auxiliary parameter functions:
+Rs = us /vs ,
+
+Ps = us vs ,
+
+Rg = ug /vg ,
+
+Pg = ug vg .
+
+Their Jacobian determinant is
+det
+
+∂(Rs , Ps , Rg , Pg )
+4us ug
+=
+6= 0.
+∂(us , vs , ug , vg )
+vs vg
+
+(17)
+
+For example, the actual pairs (us , ug ) = (2/5, 4/9) and (vs , vg ) = (3/7, 5/11) lie in DCT , and
+(17) equals 2464/675. The extended tensor factors through the old tensor and the four new edge
+23
+
+√
+coordinates,
+giving an upper bound of four new dimensions. The inverse formulas us = Rs Ps ,
+p
+vs = Ps /Rs , and their g-sector analogues recover those four coordinates analytically. Every
+old tensor coordinate is then recovered from a cherry coordinate by dividing by its corresponding
+nonzero u- or v-factor; the old all-zero coordinate is one. Thus these observables together with
+the old tensor give a local inverse. Both extended images contain the image of the same analytic
+map from the common old germ times this four-edge chart. Thus each cherry adds exactly four
+dimensions, and iteration gives 9 + 4(n − 3) = 4n − 3.
+A tree-child and a non-tree-child base rooting both lift through every cherry. Pruning the newest
+labelled cherry and suppressing its parent returns the base graph. Hence weak-not-strong status,
+level two, binary degree, nonisomorphism, and failure of triangle equivalence all persist.
+Thus “strongly” in theorem 7.3 cannot be weakened to “weakly,” even in strict continuous time.
+The theorem does not say that every weak network is ambiguous.
+
+12
+
+Scope, proof status, and reproducibility
+
+The main classiﬁcation excludes stochastic boundary points, singular edge eigenvalues, inheritance
+probabilities zero or one, nonbinary networks, networks of level greater than two, merely weakly
+tree-child networks, and every mixed-sign K2P component outside D+ . It classiﬁes regular analytic
+containment germs and generic structural recovery, not full-image equality, universal numericalparameter identiﬁability, noisy-data estimation, conditioning, or ﬁnite-sample model selection.
+The ﬁnite theorem is supported by a deterministic proof package. A quick entry point checks the
+frozen manifests, exact certiﬁcates, cross-layer censuses, and independent replays. A full entry point
+additionally regenerates the raw four-port and ﬁve-port ledgers, rank certiﬁcates, direct polynomial
+overlay, restoration forest, cycle closure, and one-/two-port probe package from primitive graph
+encodings. Mutations target every load-bearing failure class listed in the proof of theorem 6.3. The
+supplement records the exact paths, SHA-256 bindings, environment, and commands. The theorem
+relies on this exact ﬁnite computation; “independent replay” means a separately implemented
+program, not an independent human review.
+
+Data and code availability
+The exact certiﬁcate and replay ﬁles are contained in the public repository https://github.com/
+AlecKriebel/Math under k2p_level2_identifiability_closure. An immutable submission tag
+or DOI and paper/data/code license statements are pending human conﬁrmation. This draft
+does not infer or assert a license. The reader supplement provides a relative-path crosswalk that
+remains valid in the local reproducibility tree; the deterministic archive hash is emitted as external
+release metadata to avoid a self-referential archive.
+
+Author contributions
+Alec Kriebel conceived and directed the study, ﬁxed the mathematical scope and conventions,
+adjudicated proof and audit results, curated the exact reproducibility package, and accepts responsibility for the ﬁnal claims and submission. This draft contribution statement is pending explicit
+human conﬁrmation.
+24
+
+Funding
+Funding statement: pending human conﬁrmation. This draft makes no funding assertion.
+
+Competing interests
+Competing-interests declaration: pending human conﬁrmation. This draft makes no competinginterests assertion.
+
+Use of generative AI
+Generative AI systems assisted with mathematical exploration, code generation, implementation,
+drafting, and adversarial review. Several earlier automated claims failed audit, including a
+reciprocal-only bridge chart and incomplete restoration/probe narratives; those versions are
+retained only as quarantined history and are not theorem evidence. The active claims are
+supported by exact graph-derived certiﬁcates, direct derivations, separately implemented replays,
+and fail-closed mutation tests. No independent human specialist review is claimed. The author
+accepts responsibility for the mathematical statement, code, and ﬁnal submission.
+
+Acknowledgment of pending submission metadata
+The corresponding email address, author-contribution statement, funding statement, competinginterests declaration, immutable release tag/DOI, and all license choices remain pending explicit
+human conﬁrmation and must be supplied before submission.
+
+References
+[1] Muhammad Ardiyansyah. Distinguishing level-2 phylogenetic networks using phylogenetic invariants,
+2021.
+[2] Jacek Bochnak, Michel Coste, and Marie-Françoise Roy. Real Algebraic Geometry, volume 36 of Ergebnisse der Mathematik und ihrer Grenzgebiete. Springer, Berlin, 1998.
+[3] Jari Brits, Niels Holtgrefe, Leo van Iersel, and Samuel Martin. On tree–network distinguishability and
+full identiﬁability of phylogenetic networks, 2026. Version 2, 29 July 2026.
+[4] Shelby Cox, Elizabeth Gross, and Samuel Martin. Group-based phylogenetic models on 3-sunlet networks. Bulletin of Mathematical Biology, 87:132, 2025.
+[5] Aviva K. Englander, Martin Frohn, Elizabeth Gross, Niels Holtgrefe, Leo van Iersel, Mark Jones, and
+Seth Sullivant. Identiﬁability of phylogenetic level-2 networks under the jukes–cantor model. bioRxiv,
+2025. bioRxiv preprint, ﬁrst posted 24 April 2025; version 4 revised 4 July 2026.
+[6] Steven N. Evans and Terry P. Speed. Invariants of some probability models used in phylogenetic
+inference. The Annals of Statistics, 21(1):355–377, 1993.
+[7] Elizabeth Gross and Colby Long. Distinguishing phylogenetic networks. SIAM Journal on Applied
+Algebra and Geometry, 2(1):72–93, 2018.
+
+25
+
+[8] Elizabeth Gross, Leo van Iersel, Remie Janssen, Mark Jones, Colby Long, and Yukihiro Murakami.
+Distinguishing level-1 phylogenetic networks on the basis of data generated by markov processes. Journal
+of Mathematical Biology, 83(3):32, 2021.
+[9] Benjamin Hollering and Seth Sullivant. Identiﬁability in phylogenetics using algebraic matroids. Journal
+of Symbolic Computation, 104:142–158, 2021.
+[10] Niels Holtgrefe, Elizabeth S. Allman, Hector Baños, Leo van Iersel, Vincent Moulton, John A. Rhodes,
+and Kristina Wicke. Distinguishing phylogenetic level-2 networks with quartets and inter-taxon quartet
+distances. Bulletin of Mathematical Biology, 87(12):168, 2025.
+[11] Niels Holtgrefe, Katharina T. Huber, Leo van Iersel, Mark Jones, and Vincent Moulton. Characterizing
+semi-directed phylogenetic networks and their multi-rootable variants. Theory in Biosciences, 145:4,
+2026.
+[12] Katharina T. Huber, Leo van Iersel, Mark Jones, Vincent Moulton, and Leonie Veenema-Nipius. When
+are quarnets suﬃcient to reconstruct semi-directed phylogenetic networks? Bulletin of Mathematical
+Biology, 87(10):136, 2025.
+[13] Motoo Kimura. A simple method for estimating evolutionary rates of base substitutions through comparative studies of nucleotide sequences. Journal of Molecular Evolution, 16(2):111–120, 1980.
+[14] Alec Kriebel. Strong tree-childness is a sharp generic-identiﬁability boundary for level-2 jukes–cantor
+networks. GitHub release, 2026. Companion manuscript and reproducibility package; source commit
+b5b855f5e6552e1d87f32d90851ea2def5330364.
+[15] Charles Semple and Mike Steel. Phylogenetics, volume 24 of Oxford Lecture Series in Mathematics and
+Its Applications. Oxford University Press, Oxford, 2003.
+[16] Bernd Sturmfels and Seth Sullivant. Toric ideals of phylogenetic invariants. Journal of Computational
+Biology, 12(2):204–228, 2005.
+
+26
+
+

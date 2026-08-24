@@ -1,0 +1,336 @@
+{
+  "schema": "independent-k2p-provenance-execution-ledger-v1",
+  "status": "PASS",
+  "environment": {
+    "operating_system": "macOS 26.5.2 (25F84)",
+    "kernel": "Darwin 25.5.0 arm64",
+    "cpu": "Apple M1 Pro",
+    "physical_memory_bytes": 17179869184,
+    "python": "3.14.6",
+    "networkx": "3.5",
+    "sympy": "1.14.0",
+    "tectonic": "0.16.9",
+    "poppler": "26.08.0",
+    "git": "2.38.2"
+  },
+  "commands": [
+    {
+      "id": "submitted_outer_integrity_initial",
+      "command": "python3 -B verify_handoff.py",
+      "cwd": "isolated_handoff",
+      "returncode": 0,
+      "real_seconds": 0.90,
+      "user_seconds": 0.60,
+      "system_seconds": 0.23,
+      "maximum_resident_set_size_bytes": 283279360,
+      "result": "PASS; 492 outer files, 374 frozen and 73 submission inner files"
+    },
+    {
+      "id": "submitted_outer_mutations",
+      "command": "python3 -B test_handoff_mutations.py",
+      "cwd": "isolated_handoff",
+      "returncode": 0,
+      "real_seconds": 2.63,
+      "user_seconds": 1.60,
+      "system_seconds": 0.64,
+      "maximum_resident_set_size_bytes": 280723456,
+      "result": "PASS; five resealed mutations and optimized Python rejected"
+    },
+    {
+      "id": "independent_ledgers",
+      "command": "python3 -B scripts/provenance/audit_ledgers.py --handoff isolated_handoff --repo /Users/alec/Documents/Math --source-archive /Users/alec/Documents/Math/k2p_level2_identifiability_closure/proof_compression_submission/output/K2P_Principal_D_Plus_Referee_Package_20260822.zip --output reports/provenance/independent_ledger_audit.json",
+      "cwd": "audit root",
+      "returncode": 0,
+      "real_seconds": 1.21,
+      "user_seconds": 0.77,
+      "system_seconds": 0.26,
+      "maximum_resident_set_size_bytes": 32833536,
+      "output_sha256": "ffba4b73cc4ebbf14decfb97c9a418c16d15706bf177108a2c30a18db8f3c41e"
+    },
+    {
+      "id": "outer_mutation_reasons",
+      "command": "python3 -B scripts/provenance/capture_mutation_reasons.py isolated_handoff reports/provenance/outer_mutation_reasons.json",
+      "cwd": "audit root",
+      "returncode": 0,
+      "real_seconds": 2.25,
+      "user_seconds": 1.58,
+      "system_seconds": 0.57,
+      "maximum_resident_set_size_bytes": 283885568,
+      "output_sha256": "cee3fbced5f28a4b11d337a5a4c1dbe4bcacdb5f661a3ebca55256d9bd926972"
+    },
+    {
+      "id": "submitted_five_source_build_gate",
+      "command": "python3 -B check_manuscript_build.py",
+      "cwd": "isolated_handoff",
+      "returncode": 0,
+      "real_seconds": 12.26,
+      "user_seconds": 3.64,
+      "system_seconds": 0.37,
+      "maximum_resident_set_size_bytes": 254115840,
+      "result": "PASS; both documents compiled and both generated-input omissions were rejected",
+      "temporary_article_pdf": {"bytes": 193910, "sha256": "8a9275f11e5c76fb45be88c3fb9a1d37fd22cafd8b207f542f7e2764437d066f"},
+      "temporary_supplement_pdf": {"bytes": 158530, "sha256": "d86cca908f04639637942e0cd00fdc6e9e02d21a41053b7059e2c72753a3c501"}
+    },
+    {
+      "id": "clean_copy_A_verify",
+      "command": "python3 -B verify_handoff.py",
+      "cwd": "tmp/provenance/archive_copy_A/handoff",
+      "returncode": 0,
+      "real_seconds": 0.99,
+      "user_seconds": 0.46,
+      "system_seconds": 0.24,
+      "maximum_resident_set_size_bytes": 262111232,
+      "result": "PASS"
+    },
+    {
+      "id": "clean_copy_B_verify",
+      "command": "python3 -B verify_handoff.py",
+      "cwd": "tmp/provenance/archive_copy_B/handoff",
+      "returncode": 0,
+      "real_seconds": 1.03,
+      "user_seconds": 0.47,
+      "system_seconds": 0.26,
+      "maximum_resident_set_size_bytes": 266141696,
+      "result": "PASS"
+    },
+    {
+      "id": "outer_archive_rebuild_A",
+      "command": "python3 -B build_handoff_archive.py --output archives/outer_rebuild_A.zip",
+      "cwd": "tmp/provenance/archive_copy_A/handoff",
+      "returncode": 0,
+      "real_seconds": 19.01,
+      "user_seconds": 18.49,
+      "system_seconds": 0.33,
+      "maximum_resident_set_size_bytes": 312262656,
+      "output": {"bytes": 178524867, "members": 493, "sha256": "c681f1984dbd95c7a8095593da339488544e03825232b5f8488050e94cdc27fd"}
+    },
+    {
+      "id": "outer_archive_rebuild_B",
+      "command": "python3 -B build_handoff_archive.py --output archives/outer_rebuild_B.zip",
+      "cwd": "tmp/provenance/archive_copy_B/handoff",
+      "returncode": 0,
+      "real_seconds": 19.05,
+      "user_seconds": 18.51,
+      "system_seconds": 0.34,
+      "maximum_resident_set_size_bytes": 316915712,
+      "output": {"bytes": 178524867, "members": 493, "sha256": "c681f1984dbd95c7a8095593da339488544e03825232b5f8488050e94cdc27fd"}
+    },
+    {
+      "id": "independent_archive_inspection",
+      "command": "python3 -B scripts/provenance/audit_archives.py --handoff isolated_handoff --outer-distributed /Users/alec/Documents/Math/k2p_ai_referee_handoff_2026-08-23.zip --outer-a archives/outer_rebuild_A.zip --outer-b archives/outer_rebuild_B.zip --inner /Users/alec/Documents/Math/k2p_level2_identifiability_closure/proof_compression_submission/output/K2P_Principal_D_Plus_Referee_Package_20260822.zip --output reports/provenance/archive_audit.json",
+      "cwd": "audit root",
+      "returncode": 0,
+      "wall_seconds": 6.5,
+      "output_sha256": "1df225f1ed375fcee2be0ea6e3ac420e2f95a890eb28f610b1b72db9bdd2a4da"
+    },
+    {
+      "id": "retained_clean_article_build",
+      "command": "tectonic -X compile main.tex --keep-logs --outdir reports/provenance/manuscript/article",
+      "cwd": "tmp/provenance/manuscript_build/clean/article",
+      "returncode": 0,
+      "real_seconds": 4.71,
+      "user_seconds": 1.82,
+      "system_seconds": 0.16,
+      "maximum_resident_set_size_bytes": 253263872,
+      "pdf": {"bytes": 193906, "sha256": "1e134c820ada0e1ce3206d73c500fadf38d783ee7fa26ff3ab0fb73f5a089502"},
+      "log_sha256": "beff8b7ec3db2966649dd1f3f63608d52466ad9fdedc307f44c6b85de691d5f3"
+    },
+    {
+      "id": "retained_clean_supplement_build",
+      "command": "tectonic -X compile supplement.tex --keep-logs --outdir reports/provenance/manuscript/supplement",
+      "cwd": "tmp/provenance/manuscript_build/clean/supplement",
+      "returncode": 0,
+      "real_seconds": 3.82,
+      "user_seconds": 1.23,
+      "system_seconds": 0.13,
+      "maximum_resident_set_size_bytes": 249577472,
+      "pdf": {"bytes": 158531, "sha256": "5ce7a90f7cdcd1fc60c5e5cdab4cc2cdea38f49f0367478ab22ee80f055f638b"},
+      "log_sha256": "d1bef905c0834714a15918104659ae6139c3fc78766a52ef3a593bf960bc1586"
+    },
+    {
+      "id": "missing_compression_tables",
+      "command": "tectonic -X compile supplement.tex --keep-logs --outdir reports/provenance/manuscript/missing_compression",
+      "cwd": "tmp/provenance/manuscript_build/missing_compression/supplement",
+      "returncode": 1,
+      "real_seconds": 2.46,
+      "user_seconds": 0.31,
+      "system_seconds": 0.05,
+      "maximum_resident_set_size_bytes": 217153536,
+      "exact_error": "supplement.tex:307: ! LaTeX Error: File `compression_tables.tex' not found.",
+      "log_sha256": "4acd49f9b1227fc90ec1e3d10947772825be1e4387745a6bc775e1ebd2187354"
+    },
+    {
+      "id": "missing_certificate_appendix",
+      "command": "tectonic -X compile supplement.tex --keep-logs --outdir reports/provenance/manuscript/missing_appendix",
+      "cwd": "tmp/provenance/manuscript_build/missing_appendix/supplement",
+      "returncode": 1,
+      "real_seconds": 2.45,
+      "user_seconds": 0.33,
+      "system_seconds": 0.06,
+      "maximum_resident_set_size_bytes": 217219072,
+      "exact_error": "supplement.tex:441: ! LaTeX Error: File `certificate_appendix.tex' not found.",
+      "log_sha256": "b5e3e12a3dba74d30df9b5d0a8c1585237575b5c005da7816ee16bca818d5f9f"
+    },
+    {
+      "id": "missing_bibliography_article_compile",
+      "command": "tectonic -X compile main.tex --keep-logs --outdir reports/provenance/manuscript/missing_bib_article",
+      "cwd": "tmp/provenance/manuscript_build/missing_bibliography/article",
+      "returncode": 0,
+      "real_seconds": 3.89,
+      "user_seconds": 1.75,
+      "system_seconds": 0.12,
+      "maximum_resident_set_size_bytes": 254148608,
+      "result": "Tectonic warned that BibTeX errors were ignored; undefined citations and empty bibliography were logged",
+      "log_sha256": "56a42cde6a6d85e98f70ea550f52e4b39a173c96bea4497863bc86bc56c3b05b",
+      "pdf": {"bytes": 187607, "sha256": "be6d6bf29d53e4ae471212a56648a20d9ae5b440eeca88e95e7084272a5843e4"}
+    },
+    {
+      "id": "missing_bibliography_supplement_compile",
+      "command": "tectonic -X compile supplement.tex --keep-logs --outdir reports/provenance/manuscript/missing_bib_supplement",
+      "cwd": "tmp/provenance/manuscript_build/missing_bibliography/supplement",
+      "returncode": 0,
+      "real_seconds": 3.37,
+      "user_seconds": 1.19,
+      "system_seconds": 0.11,
+      "maximum_resident_set_size_bytes": 251101184,
+      "result": "Tectonic warned that BibTeX errors were ignored; undefined citations and empty bibliography were logged",
+      "log_sha256": "a2e4fed466d6827e55dd3589c3531d8f2f6ce5798d26196eaa51a92265b291bb",
+      "pdf": {"bytes": 152973, "sha256": "5e97b69165448d9dcb333a52daca928fd684d39b4f38e693ab35f05a2b98d89c"}
+    },
+    {
+      "id": "physical_bibliography_outer_omission",
+      "command": "python3 -B verify_handoff.py",
+      "cwd": "tmp/provenance/archive_copy_A/handoff after recoverably moving references.bib outside the copy",
+      "returncode": 1,
+      "real_seconds": 0.41,
+      "user_seconds": 0.25,
+      "system_seconds": 0.11,
+      "maximum_resident_set_size_bytes": 197853184,
+      "exact_error": "outer file ledger mismatch: declared=492 actual=491"
+    },
+    {
+      "id": "retained_crosswalk_mutations",
+      "command": ".venv/bin/python -B proof_compression_submission/crosswalk/test_crosswalk_bundle_mutations.py --check",
+      "cwd": "isolated_handoff/materials/k2p_principal_d_plus_submission_referee",
+      "returncode": 0,
+      "real_seconds": 3.74,
+      "user_seconds": 2.54,
+      "system_seconds": 1.05,
+      "maximum_resident_set_size_bytes": 550862848,
+      "result": "14/14 PASS; omitted_bibliography rejected for the exact missing references.bib ledger row",
+      "retained_report_sha256": "9692005ca9c3e69db2f564356e8e588f1e22a997975797f676cbbf2b4e1fb37f"
+    },
+    {
+      "id": "fixed_epoch_article",
+      "command": "SOURCE_DATE_EPOCH=1787465144 tectonic -X compile main.tex --keep-logs --outdir reports/provenance/manuscript/fixed_epoch_article",
+      "cwd": "tmp/provenance/manuscript_build/clean/article",
+      "returncode": 0,
+      "wall_seconds": 3.96,
+      "pdf": {"bytes": 193906, "sha256": "86b7ace41d025caddcecae2accb04c496a401501b2a6e65233ad60cfc80e3e2a", "byte_identical_to_sealed": true}
+    },
+    {
+      "id": "fixed_epoch_supplement",
+      "command": "SOURCE_DATE_EPOCH=1787465911 tectonic -X compile supplement.tex --keep-logs --outdir reports/provenance/manuscript/fixed_epoch_supplement",
+      "cwd": "tmp/provenance/manuscript_build/clean/supplement",
+      "returncode": 0,
+      "wall_seconds": 3.37,
+      "pdf": {"bytes": 158528, "sha256": "177006b4d2a21d958f1811c3920bbbfca18fdff87cda8da99b97c9c950dd15cb", "byte_identical_to_sealed": true}
+    },
+    {
+      "id": "artifact_consistency",
+      "command": "python3 -B scripts/provenance/audit_artifact_consistency.py --handoff isolated_handoff --audit-root . --repo /Users/alec/Documents/Math --output reports/provenance/artifact_consistency_audit.json",
+      "cwd": "audit root",
+      "returncode": 0,
+      "wall_seconds": 0.4,
+      "output_sha256": "c5d67f0ea7c5504a9cf90d9b19a342b28cfeae2f824cf42bc65e77350b799a85"
+    },
+    {
+      "id": "final_outer_integrity",
+      "command": "python3 -B verify_handoff.py",
+      "cwd": "isolated_handoff",
+      "returncode": 0,
+      "real_seconds": 0.82,
+      "user_seconds": 0.60,
+      "system_seconds": 0.21,
+      "maximum_resident_set_size_bytes": 284114944,
+      "result": "PASS; outer count 492"
+    },
+    {
+      "id": "final_manifest_rebuild_check",
+      "command": "python3 -B build_handoff_manifest.py --check",
+      "cwd": "isolated_handoff",
+      "returncode": 0,
+      "real_seconds": 0.54,
+      "user_seconds": 0.41,
+      "system_seconds": 0.13,
+      "maximum_resident_set_size_bytes": 215695360,
+      "result": "PASS; 492 files, 439308215 bytes, payload f56215708d3cb89b43108827fa588330e00c2aec7c3249c00dcf8c9a192c2c7d"
+    },
+    {
+      "id": "englander_historical_current_render_comparison",
+      "commands": [
+        "pdftoppm -png -r 96 /Users/alec/Downloads/2025.04.18.649493v4.full.pdf tmp/literature/render_3c14/page",
+        "pdftoppm -png -r 96 tmp/literature/englander_v4_2026-07-04.pdf tmp/literature/render_69f0/page"
+      ],
+      "cwd": "audit root",
+      "returncodes": [0, 0],
+      "real_seconds": [6.77, 6.73],
+      "user_seconds": [6.61, 6.61],
+      "system_seconds": [0.06, 0.06],
+      "maximum_resident_set_size_bytes": [30720000, 30490624],
+      "result": "PASS; all 31 corresponding PNG files are byte-identical"
+    },
+    {
+      "id": "independent_englander_pdf_provenance",
+      "command": "python3 -B scripts/provenance/audit_englander_pdf.py --historical /Users/alec/Downloads/2025.04.18.649493v4.full.pdf --current tmp/literature/englander_v4_2026-07-04.pdf --historical-renders tmp/literature/render_3c14 --current-renders tmp/literature/render_69f0 --output reports/provenance/englander_pdf_provenance.json",
+      "cwd": "audit root",
+      "returncode": 0,
+      "real_seconds": 0.79,
+      "user_seconds": 0.66,
+      "system_seconds": 0.07,
+      "maximum_resident_set_size_bytes": 29966336,
+      "stdout_sha256": "d40cef588fcdb8361fc21c29c652fd6fdb4ce5aafc4dc66300f1240016854c24",
+      "output_sha256": "77424fc67e4c2c4c8be26a081dfd7aa5e7328853f9d01cd76cc09bc1965b6fe8",
+      "result": "PASS; historical 3c140c36... copy retained, current official 69f04a54... differs in only 55 metadata/trailer-ID bytes, with identical extracted text and renders"
+    },
+    {
+      "id": "englander_retention_search",
+      "commands": [
+        "find /Users/alec/Documents /Users/alec/Downloads /Users/alec/Desktop -type f ( -iname '*649493*' -o -iname '*englander*' ) -print",
+        "git log --all --full-history --name-status -- '*2025.04.18.649493v4*.pdf' '*englander*.pdf' '*Englander*.pdf'",
+        "git cat-file --batch-all-objects --batch-check='%(objectname) %(objecttype) %(objectsize)'",
+        "independent Python scan of all 84 ZIP archives under /Users/alec/Documents/Math by matching member name or 927795-byte size, then SHA-256",
+        "independent Python attempted scan of 63 non-environment files with TAR suffixes under /Users/alec/Documents/Math by matching member name or 927795-byte size, then SHA-256 (60 valid archives; 3 unrelated invalid-header files)"
+      ],
+      "cwd": "/Users/alec/Documents/Math",
+      "returncodes": [0, 0, 0, 0, 0],
+      "result": "The exact 3c140c36... file is retained at /Users/alec/Downloads/2025.04.18.649493v4.full.pdf with a 2026-08-17 local acquisition timestamp and a macOS content-attachment origin record. It is absent from the current Git object database, all 84 readable project ZIP archives, and all 60 readable non-environment TAR archives scanned. Three unrelated files with .tar suffixes had invalid headers and were not readable. Git retains two other 927795-byte metadata renditions (260a977d... and ead61aab...), not the bound bytes."
+    },
+    {
+      "id": "optimized_mode_archive_manifest_build",
+      "commands": [
+        "python3 -O build_handoff_archive.py --output archives/optimized_should_not_exist.zip",
+        "python3 -O build_handoff_manifest.py --check",
+        "python3 -O check_manuscript_build.py"
+      ],
+      "cwd": "disposable handoff copy",
+      "returncodes": [1, 1, 1],
+      "exact_error_each": "optimized Python is forbidden",
+      "archive_output_created": false
+    }
+  ],
+  "render_and_pdf_checks": {
+    "commands": "pdfinfo, pdffonts, pdftotext, and pdftoppm -png -r 96 on both sealed PDFs; pdftoppm on both current clean rebuilds",
+    "returncode": 0,
+    "sealed_pages": 50,
+    "corresponding_raster_pages_byte_identical": 50,
+    "fonts_embedded": true,
+    "visual_inspection": "complete-page montages plus dense representative pages; no apparent clipping, overlap, missing glyph, or unreadable layout"
+  },
+  "audit_process_events": [
+    {
+      "event": "A reviewer-generated article-page-6.png briefly appeared under isolated_handoff/tmp/pdfs after the initial PASS, producing an expected 493-vs-492 mismatch.",
+      "resolution": "The file was moved recoverably to audit-root tmp/pdfs. Final submitted verifier, manifest --check, and independent ledger all passed. Classified as nonblocking reviewer interference, not a submission defect."
+    }
+  ]
+}

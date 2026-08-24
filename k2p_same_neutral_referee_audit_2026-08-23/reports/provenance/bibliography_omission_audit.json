@@ -1,0 +1,42 @@
+{
+  "schema": "independent-k2p-bibliography-omission-audit-v1",
+  "status": "PASS",
+  "source": {
+    "path": "materials/k2p_principal_d_plus_submission_referee/proof_compression_submission/article/references.bib",
+    "bytes": 6977,
+    "sha256": "14dbb4901d924b068c8cc2d050e73bae3cf996a72863a22ade90d6f8e6b4057c"
+  },
+  "physical_outer_omission": {
+    "method": "Moved references.bib recoverably out of a previously verified disposable full handoff copy, ran its outer verifier, then restored the file and reverified the copy.",
+    "command": "python3 -B verify_handoff.py",
+    "returncode": 1,
+    "stderr": "outer file ledger mismatch: declared=492 actual=491\n",
+    "real_seconds": 0.41,
+    "maximum_resident_set_size_bytes": 197853184,
+    "intended_reason_matched": true,
+    "post_restore_verification": "PASS"
+  },
+  "retained_source_manifest_mutation": {
+    "script": "materials/k2p_principal_d_plus_submission_referee/proof_compression_submission/crosswalk/test_crosswalk_bundle_mutations.py",
+    "mutation_id": "omitted_bibliography",
+    "mechanism": "Remove proof_compression_submission/article/references.bib from submission_sources.files, recompute the manifest payload, and call the revised-bundle checker.",
+    "exact_rejection": "submission sources ledger mismatch; missing=['proof_compression_submission/article/references.bib'] extra=[]",
+    "retained_report": "materials/k2p_principal_d_plus_submission_referee/proof_compression_submission/crosswalk/CROSSWALK_BUNDLE_MUTATION_REPORT.json",
+    "retained_report_bytes": 2889,
+    "retained_report_sha256": "9692005ca9c3e69db2f564356e8e588f1e22a997975797f676cbbf2b4e1fb37f",
+    "inner_manifest_binding_matches": true,
+    "command": ".venv/bin/python -B proof_compression_submission/crosswalk/test_crosswalk_bundle_mutations.py --check",
+    "returncode": 0,
+    "real_seconds": 3.74,
+    "maximum_resident_set_size_bytes": 550862848,
+    "mutation_count": 14,
+    "suite_payload_sha256": "c9ab657d10655a029546d59feb2efd621e0ee5acca53956b21a4e602eab260e4"
+  },
+  "compiler_boundary": {
+    "article_missing_bibliography_returncode": 0,
+    "supplement_missing_bibliography_returncode": 0,
+    "observed_bibtex_reason": "I couldn't open database file references.bib (article) / ../article/references.bib (supplement); Tectonic explicitly warned that BibTeX errors were ignored.",
+    "conclusion": "Compiler exit status alone cannot enforce this source; the outer and revised source manifests do enforce it."
+  },
+  "evidence_class": "computational/provenance only"
+}

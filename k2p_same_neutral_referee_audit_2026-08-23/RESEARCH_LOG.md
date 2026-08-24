@@ -80,3 +80,79 @@
   semantics.
 - Completion estimate: **20%**. Quick reproducibility is evidenced, but the
   exhaustive primitive regeneration and most independent attacks remain open.
+
+## 2026-08-24T05:05:37Z - Reviewer scratch contamination detected and removed
+
+- A page-6 PNG rendered for visual inspection was mistakenly written below
+  `isolated_handoff/tmp/pdfs/`. The outer manifest intentionally does not ignore
+  that location, so an independent concurrent check detected one unexpected file
+  (declared 492, actual 493).
+- The scratch PNG was moved recoverably to this audit's ignored `tmp/pdfs/`
+  directory; no submitted byte was edited or deleted.
+- A first attempted recheck used the audit root as its working directory and
+  exited 2 because `verify_handoff.py` is inside `isolated_handoff/`; this was a
+  reviewer command error, not a package failure.
+- Correctly rerun from `isolated_handoff/`, both `python3 -B verify_handoff.py`
+  and `python3 -B build_handoff_manifest.py --check` exited 0, restoring the
+  exact 492-file, 439,308,215-byte outer ledger and payload SHA-256
+  `f56215708d3cb89b43108827fa588330e00c2aec7c3249c00dcf8c9a192c2c7d`.
+- This incident is positive evidence that extra review-side files are detected;
+  it is not a submission defect.
+
+## 2026-08-24T05:26:50Z - Independent mathematical and structural audits converge
+
+- The independent mathematical track completed all sixteen requested theorem
+  layers.  It assigns PASS to the physical-domain, bridge-fibre, core/count,
+  PC-PARTIAL-boundary, triangle-germ, and weak-sharpness arguments; FAIL to the
+  literal quartet formula and its certificate semantics; and UNVERIFIED to the
+  global equivalence and its genericity/reconstruction/continuous-time
+  corollaries until the quartet binding is repaired.
+- Three separate mathematical programs reproduce the convention mismatch, the
+  exact rank-nine triangle blocks, and both weak-sharpness constructions.  The
+  current official Englander version-4 PDF confirms that its theorem and
+  proposition numbering are correct and that it uses the different G/T
+  equal-sector convention.
+- An independent finite-census streamer that imports no submitted generator,
+  classifier, canonicalizer, or verifier reproduces the primitive count
+  formula, raw-ID domains, all requested partitions, restoration forest shape,
+  and all probe totals.  It explicitly treats these as structural checks rather
+  than validation of the terminal algebra.
+- A self-contained graph-to-Fourier/Jacobian replay reconstructs raw ID 97 and
+  reproduces source rank 13, target rank 10, and both exact stored minors.
+- The existing quartet verifier accepts two targeted semantic mutations—one to
+  the declared spectrum and one to the printed coordinate labels—because it
+  checks only abstract split-set logic.  This establishes a computational
+  false-negative mechanism independent of checksums.
+- Preliminary disposition remains **HOLD**: no corrected-theorem counterexample
+  has been found, but a proof and computational-completeness blocker is exact.
+- Completion estimate: **64%**.  The full required replay is running once and
+  uninterrupted; provenance and final adversarial report review are still in
+  progress.
+
+## 2026-08-24T05:49:07Z - Provenance closed; independent mutation scope fixed
+
+- The provenance/reproducibility track independently reconciled all 492 outer
+  and 447 sealed inner rows, all five supplemental dependencies, both archive
+  layers, all five manuscript sources, both PDFs, build reports, locks,
+  crosswalk, and telemetry. Two clean outer archive builds are byte-identical
+  to the distributed ZIP. The package provenance layer is PASS.
+- The historical Englander PDF bound by the handoff was recovered with its
+  exact claimed hash. A fresh official rendering differs only in 55 mutable
+  metadata/identifier bytes; extracted text and all 31 page renders agree.
+- A fresh incidence-graph audit reconstructed 196 direct labelled
+  isomorphism/ordinary-triangle presentations without calling the submitted
+  canonicalizer. A wholly independent all-universe canonical partition remains
+  explicitly UNVERIFIED.
+- The restoration mutation suite was freshly executed in a disposable copy:
+  all 13 corruptions were rejected for the intended semantic reason (exit 0,
+  66.46 s, peak RSS 569,540,608 bytes; report SHA-256
+  `79645c56cc0b4689eafcd7abc5f78f7854dac694e32a5915c905f557e7f1e6c0`).
+  The fresh probe suite and the single uninterrupted full replay are still
+  running.
+- The report now distinguishes fresh injections from frozen sealed mutation
+  reports and leaves literal source/target reversal, inheritance-complement,
+  domain-formula, sampled-for-symbolic, all-universe canonicalizer, and
+  coherently resealed fabricated-triangle mechanisms as explicit unrun gates.
+- Completion estimate: **88%**. The scientific disposition is stable at HOLD;
+  the remaining work is execution closure, final report reconciliation, and
+  release of the independent audit artifacts.
