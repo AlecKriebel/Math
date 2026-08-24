@@ -1,6 +1,6 @@
 # Tested release environment
 
-Release qualification for version 1.0.8 uses one pinned document route and one
+Release qualification for version 1.0.9 uses one pinned document route and one
 exactly recorded Python stack.  This file distinguishes that qualification
 environment from the broader lower bounds in `../requirements.txt`.
 
@@ -32,7 +32,7 @@ was independently observed to change supplement pagination and PDF extraction.
 
 Version 1.0.7 PDFs identified an xdvipdfmx/Tectonic producer even though its
 replay invoked pdfLaTeX.  They remain immutable historical artifacts.  Version
-1.0.8 qualification intentionally rebuilds all active PDFs with the single
+1.0.9 qualification intentionally rebuilds all active PDFs with the single
 pdfLaTeX/Biber route above; byte identity to historical v1.0.7 PDFs is neither
 expected nor claimed.
 

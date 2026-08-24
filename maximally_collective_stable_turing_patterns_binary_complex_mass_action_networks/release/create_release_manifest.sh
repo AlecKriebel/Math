@@ -14,19 +14,20 @@ fi
 
 temporary_manifest="$(mktemp "$ROOT/release/.sha256_manifest.XXXXXX")"
 trap 'rm -f "$temporary_manifest"' EXIT
-find . -type f \
-  ! -name '.DS_Store' \
-  ! -path './release/replay.log' \
-  ! -path './release/sha256_manifest.txt' \
-  ! -path './release/.sha256_manifest.*' \
-  ! -path '*/.pytest_cache/*' \
-  ! -path '*/__pycache__/*' \
-  ! -name '*.pyc' \
-  \( ! -name '*.log' -o -path './release/build_logs/*.log' -o -path './release/public_full_replay.log' \) \
-  ! -name '*.aux' ! -name '*.bcf' ! -name '*.blg' ! -name '*.fls' \
-  ! -name '*.fdb_latexmk' ! -name '*.run.xml' ! -name '*.out' \
-  ! -name '*.toc' ! -name '*.xdv' \
-  -print0 | sort -z | xargs -0 sha256sum > "$temporary_manifest"
+# The immutable release is a Git snapshot.  Enumerating the working directory
+# would let ignored referee scratch files contaminate the manifest with paths
+# that are absent from the tag.  `git ls-files` is NUL-delimited, includes
+# staged additions, and restricts the baseline to the exact tracked project.
+while IFS= read -r -d '' tracked_path; do
+  [[ "$tracked_path" == "$MANIFEST" ]] && continue
+  [[ -f "$tracked_path" ]] || {
+    printf 'tracked release file is absent: %s\n' "$tracked_path" >&2
+    exit 2
+  }
+  printf './%s\0' "$tracked_path"
+done < <(git ls-files -z -- .) \
+  | sort -z \
+  | xargs -0 sha256sum > "$temporary_manifest"
 grep -Fq '  ./RESEARCH_LOG.md' "$temporary_manifest"
 mv "$temporary_manifest" "$MANIFEST"
 trap - EXIT

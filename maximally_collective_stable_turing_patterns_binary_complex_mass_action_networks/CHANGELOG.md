@@ -1,5 +1,29 @@
 # Changelog
 
+## Independent rereview and SIADS packaging repair — 23 August 2026
+
+- Replaced the working-tree manifest scan with a sorted, NUL-safe tracked-file
+  manifest and added a fresh-`git archive` closure check, eliminating ignored
+  audit-scratch contamination.
+- Enforced the `ENGINE`, `FORMAT`, `LATEX`, and `BIBER` lock rows and added a
+  mutation test that requires every impossible special value to fail closed.
+- Stabilized detached supplement builds by comparing auxiliary and table-of-
+  contents state, then comparing extracted main and supplement text with the
+  canonical submission PDFs.
+- Clarified the supplement's already valid shorthand as
+  $\Delta:=\Delta_m$; the reported isolated missing subscript was not a
+  mathematical or notational error once the local definition was considered.
+- Added a separate SIADS review build with a 6-by-8-inch text area, continuous
+  line numbering, visible keywords and MSC2020 codes, a supplementary-materials
+  index, and a maintained PDF cover letter. The ordinary bioRxiv/arXiv layout
+  remains unchanged.
+- Updated active metadata to version 1.0.9, recorded exact predecessor DOI
+  `10.5281/zenodo.22074358`, and added the required single-author AI
+  responsibility sentence without assigning a not-yet-minted DOI to v1.0.9.
+- Reran all 39 verifier entrypoints normally and under optimized Python, all 29
+  tests, exact source and numerical audits, and both canonical and journal PDF
+  semantic checks. No theorem, topology, endpoint, or numerical datum changed.
+
 ## Independent-referee reproducibility repair — 23 August 2026
 
 - Preserved the referee-validated theorem suite while making the fixed-mass

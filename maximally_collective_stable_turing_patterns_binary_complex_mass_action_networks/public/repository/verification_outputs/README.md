@@ -19,7 +19,7 @@ the staged public tree.  The downloaded release manifest is likewise distinct
 from `replay_self_consistency_manifest.txt`: the former is an immutable
 baseline, while the latter records the tree produced by a particular replay.
 
-The current sidecar records the completed v1.0.8 qualification campaign.
+The current sidecar records the completed v1.0.9 qualification campaign.
 Entries explicitly labeled `current-release-qualification` are preserved
 negative-control or exhaustive-entrypoint results from the pristine candidate;
 portable replay does not misrepresent them as newly generated evidence.

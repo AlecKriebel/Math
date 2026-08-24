@@ -8,7 +8,7 @@ export PYTHONOPTIMIZE=0
 # Preflight before opening replay.log: a failed launch must not truncate the
 # archived successful replay.  These five archives certify historical lineage;
 # no proof, data-generation, build, or packaging stage reads or extracts them.
-required_commands=(python bash pdflatex biber kpsewhich pdfinfo pdffonts unzip sha256sum rsync awk grep find sort xargs tee mktemp tail cmp)
+required_commands=(python bash pdflatex biber kpsewhich pdfinfo pdffonts pdftotext unzip sha256sum rsync awk grep find sort xargs tee mktemp tail cmp)
 missing_commands=()
 for command_name in "${required_commands[@]}"; do
   command -v "$command_name" >/dev/null 2>&1 || missing_commands+=("$command_name")
@@ -100,7 +100,7 @@ mkdir -p release/verification_outputs release/build_logs data/network_instances 
 exec > >(tee "$ROOT/release/replay.log") 2>&1
 
 echo '=== FINAL RELEASE REPLAY ==='
-echo RELEASE_VERSION=1.0.8
+echo RELEASE_VERSION=1.0.9
 echo RELEASE_BASELINE_MANIFEST_PASS
 bash environment/check_toolchain.sh
 python - <<'PY'
@@ -186,21 +186,22 @@ echo DOCUMENT_BUILD_PASS
 
 cat > release/verification_outputs/PROVENANCE.tsv <<'EOF'
 artifact	command	evidence_class	scope	release_version	status
-current_profile_generation.txt	python computation/generate_current_profile_data.py	exact-generation	full-source	1.0.8	current
-generated_tables.txt	python computation/generate_tables.py	exact-generation	full-source	1.0.8	current
-generated_sign_tables.txt	python computation/generate_sign_certificate_tables.py	exact-generation	full-source	1.0.8	current
-all_verifier_entrypoints.txt	39 direct verifier commands listed in the file	exact-and-spectral-entrypoint-coverage	full-source	1.0.8	current-release-qualification
-manifest_mutation_test.txt	detached baseline and self-manifest mutation controls	manifest-negative-control	portable-public-copy	1.0.8	current-release-qualification
-detached_numerical_provenance.txt	python independent_verifier/verify_current_numerical_provenance.py	exact-finite-provenance	full-source	1.0.8	current
-numerical_provenance.txt	python computation/audit_numerical_provenance.py	numerical-tolerance-audit	full-source	1.0.8	current
-pytest.txt	python -m pytest -q computation/tests	mutation-and-regression-tests	full-source	1.0.8	current
-manuscript_audit.txt	python computation/audit_manuscript.py	source-semantic-audit	full-source	1.0.8	current
-principal_minor_diffusion_ray.txt	python independent_verifier/verify_principal_minor_diffusion_ray.py	exact-interface-regression	full-source	1.0.8	current
-symbolic_certificates.txt	python independent_verifier/verify_symbolic_certificates.py	exact-aggregate	full-source	1.0.8	current
-integrated_designs.txt	integrated verifier commands in release/one_command_replay.sh	mixed-exact-and-spectral-regression	m=3,4,5,6,8,10,149,200 as applicable	1.0.8	current
-simulations.txt	python computation/simulations.py --outdir data/simulations --jobs 3	numerical-illustration	full-source	1.0.8	current
-pdf_semantic_audit.txt	python computation/audit_pdfs.py --profile full	PDF-semantic-font-layout-audit	full-source	1.0.8	current-after-stage-8
-stale_claim_audit.txt	python computation/audit_stale_claims.py	stale-string-audit	full-source	1.0.8	current-after-stage-8
+current_profile_generation.txt	python computation/generate_current_profile_data.py	exact-generation	full-source	1.0.9	current
+generated_tables.txt	python computation/generate_tables.py	exact-generation	full-source	1.0.9	current
+generated_sign_tables.txt	python computation/generate_sign_certificate_tables.py	exact-generation	full-source	1.0.9	current
+all_verifier_entrypoints.txt	39 direct verifier commands listed in the file	exact-and-spectral-entrypoint-coverage	full-source	1.0.9	current-release-qualification
+all_verifier_optimized_rejections.txt	39 direct verifier commands under python -O	assertion-mode-negative-control	full-source	1.0.9	current-release-qualification
+manifest_mutation_test.txt	detached baseline and self-manifest mutation controls	manifest-negative-control	portable-public-copy	1.0.9	current-release-qualification
+detached_numerical_provenance.txt	python independent_verifier/verify_current_numerical_provenance.py	exact-finite-provenance	full-source	1.0.9	current
+numerical_provenance.txt	python computation/audit_numerical_provenance.py	numerical-tolerance-audit	full-source	1.0.9	current
+pytest.txt	python -m pytest -q computation/tests	mutation-and-regression-tests	full-source	1.0.9	current
+manuscript_audit.txt	python computation/audit_manuscript.py	source-semantic-audit	full-source	1.0.9	current
+principal_minor_diffusion_ray.txt	python independent_verifier/verify_principal_minor_diffusion_ray.py	exact-interface-regression	full-source	1.0.9	current
+symbolic_certificates.txt	python independent_verifier/verify_symbolic_certificates.py	exact-aggregate	full-source	1.0.9	current
+integrated_designs.txt	integrated verifier commands in release/one_command_replay.sh	mixed-exact-and-spectral-regression	m=3,4,5,6,8,10,149,200 as applicable	1.0.9	current
+simulations.txt	python computation/simulations.py --outdir data/simulations --jobs 3	numerical-illustration	full-source	1.0.9	current
+pdf_semantic_audit.txt	python computation/audit_pdfs.py --profile full	PDF-semantic-font-layout-audit	full-source	1.0.9	current-after-stage-8
+stale_claim_audit.txt	python computation/audit_stale_claims.py	stale-string-audit	full-source	1.0.9	current-after-stage-8
 EOF
 
 echo '[7/9] rebuild all portable, audit, and submission bundles'
@@ -209,6 +210,20 @@ for z in public/data_archive/final_release_data.zip submission/biorxiv/source_pa
 sha256sum -c release/BUNDLE_SHA256.txt >/dev/null
 # Build each source package in a detached temporary directory.
 for z in submission/biorxiv/source_package.zip submission/arxiv/arxiv_source.zip submission/journal/source_package.zip; do
+  case "$z" in
+    submission/biorxiv/*)
+      expected_main="$ROOT/submission/biorxiv/manuscript.pdf"
+      expected_supplement="$ROOT/submission/biorxiv/supplement.pdf"
+      ;;
+    submission/arxiv/*)
+      expected_main="$ROOT/manuscript/main.pdf"
+      expected_supplement="$ROOT/manuscript/supplement.pdf"
+      ;;
+    submission/journal/*)
+      expected_main="$ROOT/submission/journal/manuscript.pdf"
+      expected_supplement="$ROOT/submission/journal/supplement.pdf"
+      ;;
+  esac
   td="$(mktemp -d)"; unzip -q "$z" -d "$td"; (
     cd "$td"
     pdflatex -interaction=nonstopmode -halt-on-error main.tex >/dev/null
@@ -216,7 +231,26 @@ for z in submission/biorxiv/source_package.zip submission/arxiv/arxiv_source.zip
     pdflatex -interaction=nonstopmode -halt-on-error main.tex >/dev/null
     pdflatex -interaction=nonstopmode -halt-on-error main.tex >/dev/null
     pdflatex -interaction=nonstopmode -halt-on-error supplement.tex >/dev/null
-    pdflatex -interaction=nonstopmode -halt-on-error supplement.tex >/dev/null
+    cp supplement.aux supplement.aux.previous
+    cp supplement.toc supplement.toc.previous
+    supplement_stable=0
+    for supplement_pass in 2 3 4 5; do
+      pdflatex -interaction=nonstopmode -halt-on-error supplement.tex >/dev/null
+      if cmp -s supplement.aux.previous supplement.aux \
+          && cmp -s supplement.toc.previous supplement.toc; then
+        supplement_stable=1
+        break
+      fi
+      cp supplement.aux supplement.aux.previous
+      cp supplement.toc supplement.toc.previous
+    done
+    [[ "$supplement_stable" == 1 ]]
+    pdftotext -layout main.pdf main.semantic.txt
+    pdftotext -layout "$expected_main" main.expected.txt
+    cmp -s main.semantic.txt main.expected.txt
+    pdftotext -layout supplement.pdf supplement.semantic.txt
+    pdftotext -layout "$expected_supplement" supplement.expected.txt
+    cmp -s supplement.semantic.txt supplement.expected.txt
   ); rm -rf "$td"
 done
 # Exercise the portable replay in a detached copy so the packaged public tree
@@ -237,6 +271,7 @@ for f in manuscript/main.pdf manuscript/supplement.pdf external_audit/theorem_su
 for f in manuscript/main.pdf manuscript/supplement.pdf external_audit/theorem_summary.pdf external_audit/proof_skeleton.pdf; do pdffonts "$f" | tail -n +3 | awk 'NF && $5!="yes" {bad=1} END{exit bad}'; done
 python computation/audit_stale_claims.py > release/verification_outputs/stale_claim_audit.txt
 python computation/audit_pdfs.py --profile full > release/verification_outputs/pdf_semantic_audit.txt
+python computation/audit_pdfs.py --profile journal > release/verification_outputs/journal_pdf_semantic_audit.txt
 grep -q STALE_CLAIM_AUDIT_PASS release/verification_outputs/stale_claim_audit.txt
 if grep -RIl --include='*.py' --include='*.md' --include='*.tex' --include='*.json' --include='*.sh' '/mnt/data/' public/repository | grep -v 'public/repository/replay.sh' | grep .; then exit 1; fi
 echo CLEAN_ARTIFACT_AUDIT_PASS

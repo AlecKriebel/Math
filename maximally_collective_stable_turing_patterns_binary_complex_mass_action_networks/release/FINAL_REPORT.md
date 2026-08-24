@@ -1,20 +1,24 @@
 # OUTCOME
 
-## V1.0.8 FINAL-RELEASE-READY
+## V1.0.9 RELEASE-CANDIDATE REPAIR
 
-The v1.0.8 source, PDFs, public package, specialist packets, and submission
-bundles have passed the current-release qualification recorded in
-`REPLAY_STATUS.md`.  This round repairs the independent referee's
-reproducibility and proof-exposition findings without changing any theorem,
-reaction, endpoint, numerical profile, or nonlinear conclusion.  The immutable
-v1.0.7 source, full-referee packet, and audit remain unchanged at exact version
-DOI `10.5281/zenodo.22062080`.
+Version 1.0.9 repairs the independent rereview's manifest, TeX-lock, detached
+supplement-build, journal-presentation, and metadata findings without changing
+any theorem, reaction, endpoint, numerical profile, or nonlinear conclusion.
+The immutable v1.0.8 source remains unchanged at exact version DOI
+`10.5281/zenodo.22074358`. Current qualification evidence is recorded in
+`REPLAY_STATUS.md`.  The v1.0.9 technical candidate passes the current verifier,
+package, clean-source-build, semantic-PDF, and page-by-page visual campaign.
+Its SIADS cover letter remains an explicit draft until the author confirms the
+funding, competing-interest, and exclusivity declarations; no such facts are
+inferred here.
 
 The remainder of this report records the mathematical and numerical campaign
-through v1.0.7; v1.0.8 adds the pinned toolchain, preserving manifest design,
+through v1.0.7; v1.0.8 added the pinned toolchain, preserving manifest design,
 39-entrypoint fail-closed audit, all-dimensional cubic bridge, explicit
 fixed-mass Fourier/Fredholm argument, and scoped output provenance described in
-the status and changelog.
+the status and changelog. Version 1.0.9 closes the residual reproducibility
+implementation defects identified by the independent v1.0.8 rereview.
 
 The numerical-provenance, theorem-scope, proof-presentation,
 certificate-visibility, and release-rebuild program through v1.0.7 is
@@ -479,10 +483,9 @@ lineage replay is claimed. For an ordinary third-party downloader, the
 self-contained command is `cd public/repository && bash replay.sh`.
 
 The immutable release series is indexed by the stable Zenodo concept DOI
-`10.5281/zenodo.21753404`.  The exact preceding v1.0.7 snapshot is archived at
-version DOI `10.5281/zenodo.22062080`.  The v1.0.8 version-specific DOI remains
-pending until Zenodo creates the corresponding public record; the GitHub
-release note will record it when available.
+`10.5281/zenodo.21753404`. The exact preceding v1.0.8 snapshot is archived at
+version DOI `10.5281/zenodo.22074358`. The corrected source targets the distinct
+v1.0.9 tag and does not misassign a not-yet-minted DOI to that new tree.
 
 # EXTERNAL AUDIT
 

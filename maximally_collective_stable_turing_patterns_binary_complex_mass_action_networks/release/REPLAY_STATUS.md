@@ -1,11 +1,44 @@
-# Replay status for the v1.0.8 pre-submission release candidate
+# Replay status for the v1.0.9 pre-submission release candidate
 
 This file distinguishes the unqualified current release candidate from
-historical v1.0.7 evidence and from historical-lineage verification.
+historical v1.0.8 evidence and from historical-lineage verification.
 
-## v1.0.8 current source: passed current-release qualification
+## v1.0.9 current source
 
-The active metadata and reproducibility infrastructure target version 1.0.8.
+The current candidate fixes the tracked-file release manifest, enforces every
+special TeX lock field with negative controls, stabilizes detached supplement
+builds before semantic comparison, and generates a line-numbered SIADS review
+package with visible keywords and MSC codes, a supplementary-materials index,
+and a PDF cover letter. It cites the exact v1.0.8 predecessor DOI
+`10.5281/zenodo.22074358`. The theorem suite and current-profile data are
+unchanged.
+
+The current qualification campaign passes:
+
+- all 29 mutation/regression tests;
+- all 39 direct verifier entrypoints normally and all 39 expected fail-closed
+  executions under optimized Python;
+- the exact symbolic aggregate, current-profile source/provenance checks,
+  finite integrated designs through `m=200`, simulations, and refinement gate;
+- the 19-page canonical manuscript, 19-page canonical supplement, 3-page
+  theorem summary, and 6-page proof skeleton under semantic, producer,
+  embedded-font, clean-log, and page-by-page visual checks;
+- the separate 23-page SIADS manuscript, 23-page SIADS supplement, and one-page
+  PDF cover letter under the same semantic and visual checks;
+- all seven deterministic bundle hashes and detached builds of the bioRxiv,
+  arXiv, and SIADS source ZIPs, including supplement auxiliary/TOC stabilization
+  and extracted-layout-text equality; and
+- a full replay from a clean copy of the portable repository through
+  `PUBLIC_REPLAY_PASS`.
+
+The final tracked-tree manifest is separately checked against a fresh
+`git archive`.  Author-dependent funding, competing-interest, and exclusivity
+declarations remain explicitly pending and are not part of this technical
+qualification.
+
+## Historical v1.0.8 source: passed substantive qualification, manifest defect recorded
+
+The historical metadata and reproducibility infrastructure targeted version 1.0.8.
 The pinned TinyTeX 2022.04/pdfTeX 1.40.24/Biber 2.17 preflight and exact Python
 lock pass.  The current campaign also passes:
 
@@ -27,8 +60,9 @@ lock pass.  The current campaign also passes:
 The portable replay preserves its downloaded manifest, verifies deterministic
 exact artifacts against that baseline, and writes a distinct regenerated-tree
 self-consistency manifest.  A detached mutation control confirmed that an
-exact-profile edit is rejected by both.  The exact preceding v1.0.7 release
-remains archived at `10.5281/zenodo.22062080`.
+exact-profile edit is rejected by both. The exact v1.0.8 snapshot is archived
+at `10.5281/zenodo.22074358`; its v1.0.7 predecessor remains archived at
+`10.5281/zenodo.22062080`.
 
 ## Historical v1.0.7 round-7 source status: passed
 

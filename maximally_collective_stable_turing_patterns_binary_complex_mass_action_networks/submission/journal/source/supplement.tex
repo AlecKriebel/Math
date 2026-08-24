@@ -1,5 +1,12 @@
 \documentclass[10pt]{article}
-\usepackage[margin=0.72in]{geometry}
+\newif\ifsiadsreview
+\IfFileExists{journal_review_mode.tex}{\siadsreviewtrue}{\siadsreviewfalse}
+\ifsiadsreview
+  \usepackage[left=1.25in,right=1.25in,top=1.5in,bottom=1.5in]{geometry}
+  \usepackage[mathlines]{lineno}
+\else
+  \usepackage[margin=0.72in]{geometry}
+\fi
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
@@ -25,6 +32,7 @@
 \author{Alec Kriebel}
 \date{August 2026}
 \begin{document}
+\ifsiadsreview\linenumbers\fi
 \maketitle
 \tableofcontents
 
@@ -507,8 +515,9 @@ dynamical boundaries.  For $L\in[L_0,L_1]$, set
 \]
 Write $\mathsf H_m(L)=\diag(h_1,\ldots,h_m,h_Z)$.  The physical
 equilibrium is $x^*=\mathsf H_m(L)^{-1}\1$ and the physical diffusion matrix
-is $D^{\rm phys}=\mathsf H_m(L)\Delta$, where $\Delta$ is the improved unit
-profile.  In normalized variables $\widehat x=\mathsf H_m(L)x$,
+is $D^{\rm phys}=\mathsf H_m(L)\Delta$, where, throughout this supplement,
+$\Delta:=\Delta_m$ is the improved unit profile.  In normalized variables
+$\widehat x=\mathsf H_m(L)x$,
 \[
  \partial_t\widehat x=\mathsf H_m(L)
  \{f_m(\widehat x)+(1-\mu)\Delta\partial_{\xi\xi}\widehat x\}.

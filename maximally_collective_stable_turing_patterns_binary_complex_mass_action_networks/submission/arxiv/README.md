@@ -8,8 +8,8 @@ Live toolchain instead of consuming a potentially incompatible local BBL
 format. Nothing has been posted automatically.
 
 The corresponding immutable code-and-data snapshot is
-<https://github.com/AlecKriebel/Math/releases/tag/maximally-collective-stable-turing-v1.0.8>;
+<https://github.com/AlecKriebel/Math/releases/tag/maximally-collective-stable-turing-v1.0.9>;
 archived versions share the concept DOI <https://doi.org/10.5281/zenodo.21753404>.
-The exact preceding v1.0.7 snapshot has DOI <https://doi.org/10.5281/zenodo.22062080>;
-the v1.0.8 release record carries its version DOI once minted.  The `main`
+The exact preceding v1.0.8 snapshot has DOI <https://doi.org/10.5281/zenodo.22074358>.
+The `main`
 branch remains the development location.

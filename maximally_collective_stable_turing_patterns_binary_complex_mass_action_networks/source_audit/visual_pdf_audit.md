@@ -54,3 +54,15 @@ supplement, 3-page theorem summary, and 6-page proof skeleton were rendered at
 standalone one-page figures were separately rendered and inspected; Figure 1's
 chain labels are distinct and nonoverlapping.  No clipping, overlap, broken
 glyph, malformed equation, or anomalous blank page was found.
+
+The v1.0.9 rereview-repair documents received a final independent and primary
+page-by-page inspection.  The canonical manuscript and supplement remain 19
+pages each; the theorem summary and proof skeleton remain 3 and 6 pages.  The
+separate SIADS review presentation is 23 pages for the manuscript and 23 pages
+for the supplement, with a one-page cover letter.  All 94 rendered pages are
+clean.  In particular, continuous line numbers remain outside the 6-by-8-inch
+text block, Figure 1's labels remain separated, dense coefficient tables remain
+legible, and the stabilized supplementary contents correctly place S8/S8.1 on
+page 13, S8.2 on page 19, S9/S10 on page 22, and S11 on page 23.  The visible
+author-confirmation notice in the cover letter is intentional release-state
+text, not a rendering defect.

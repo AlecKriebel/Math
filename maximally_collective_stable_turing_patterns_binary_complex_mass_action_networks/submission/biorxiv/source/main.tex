@@ -1,5 +1,12 @@
 \documentclass[11pt]{article}
-\usepackage[margin=0.82in]{geometry}
+\newif\ifsiadsreview
+\IfFileExists{journal_review_mode.tex}{\siadsreviewtrue}{\siadsreviewfalse}
+\ifsiadsreview
+  \usepackage[left=1.25in,right=1.25in,top=1.5in,bottom=1.5in]{geometry}
+  \usepackage[mathlines]{lineno}
+\else
+  \usepackage[margin=0.82in]{geometry}
+\fi
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
@@ -42,6 +49,7 @@
 \date{August 2026}
 
 \begin{document}
+\ifsiadsreview\linenumbers\fi
 \maketitle
 
 \begin{abstract}
@@ -69,6 +77,14 @@ bifurcation, stability, and robustness conclusions are local for each fixed
 dimension, and the stationary diffusion law does not classify arbitrary wave
 instability.
 \end{abstract}
+
+\noindent\textbf{Keywords:}
+reaction--diffusion systems; Turing instability; mass-action kinetics;
+reaction networks; bifurcation; diffusion design.
+
+\smallskip
+\noindent\textbf{2020 Mathematics Subject Classification:}
+Primary 35K57; Secondary 35B32, 37G10, 80A30, 92C42.
 
 \section{Introduction}
 
@@ -1234,20 +1250,20 @@ hidden and provides a focused nonlinear design problem.
 \paragraph{Data and code availability.}
 Exact certificates, independent verifiers, mutation tests, numerical data,
 figure scripts, and replay instructions are frozen in the
-\href{https://github.com/AlecKriebel/Math/tree/maximally-collective-stable-turing-v1.0.8/maximally_collective_stable_turing_patterns_binary_complex_mass_action_networks}{version 1.0.8 tagged release source tree}.
+\href{https://github.com/AlecKriebel/Math/tree/maximally-collective-stable-turing-v1.0.9/maximally_collective_stable_turing_patterns_binary_complex_mass_action_networks}{version 1.0.9 tagged release source tree}.
 All archived versions are indexed by the stable
 \href{https://doi.org/10.5281/zenodo.21753404}{Zenodo concept DOI}; the exact
-preceding version 1.0.7 snapshot is archived at
-\href{https://doi.org/10.5281/zenodo.22062080}{version DOI 10.5281/zenodo.22062080}.
+preceding version 1.0.8 snapshot is archived at
+\href{https://doi.org/10.5281/zenodo.22074358}{version DOI 10.5281/zenodo.22074358}.
 The \href{https://github.com/AlecKriebel/Math/tree/main/maximally_collective_stable_turing_patterns_binary_complex_mass_action_networks}{mutable development source} remains on the main branch.
 
 \paragraph{AI-assisted research disclosure.}
 AI systems assisted with exploratory theorem discovery, symbolic derivation,
 code generation, adversarial testing, proof organization, and prose editing.
-AI systems are not authors.  The human author assumes responsibility for the
-manuscript.  Central claims are supported by explicit proofs and independent
-exact implementations; neither numerical agreement nor AI confidence is
-treated as proof.
+AI systems are not authors.  Central claims are supported by explicit proofs
+and independent exact implementations; neither numerical agreement nor AI
+confidence is treated as proof.  The author assumes responsibility for all
+content.
 
 \begingroup
 \renewcommand*{\bibfont}{\footnotesize}

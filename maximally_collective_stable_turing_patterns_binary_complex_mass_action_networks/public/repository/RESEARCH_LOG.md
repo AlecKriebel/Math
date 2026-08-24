@@ -411,3 +411,51 @@
 - Best-guess completion toward the v1.0.8 referee-repair and release goal:
   **100%**.  The verified source is ready for commit/push and immutable
   publication.
+
+## 2026-08-23 22:01:17 PDT — independent submission-rereview repair checkpoint
+
+- Read the v1.0.8 rereview report in full and independently checked each
+  finding. Accepted all three reproducibility defects and both submission-
+  preparation findings. Rejected the isolated $\Delta\mapsto\Delta_m$ edit as
+  context-incomplete because $\Delta$ was already the consistently defined
+  shorthand; strengthened that definition to $\Delta:=\Delta_m$ instead.
+- Replaced the contaminated manifest generator with a tracked-file generator,
+  enforced every special TeX lock row with negative controls, and made detached
+  supplement builds stabilize their auxiliary/TOC state before semantic PDF
+  comparison.
+- Built a separate SIADS review presentation with a 6-by-8-inch text area,
+  continuous line numbers, visible keywords and MSC codes, a supplementary-
+  materials index, and a PDF cover letter. Canonical bioRxiv/arXiv PDFs remain
+  19 pages each; SIADS review main and supplement are 23 pages each.
+- Recorded the exact v1.0.8 DOI `10.5281/zenodo.22074358`, targeted distinct
+  v1.0.9 metadata, and added the single-author responsibility sentence. No
+  unminted v1.0.9 DOI or unconfirmed author declaration is asserted.
+- All 39 verifier entrypoints passed normally and all 39 rejected optimized
+  Python. All 29 mutation/regression tests, the exact symbolic aggregate,
+  current-profile provenance, numerical refinement, source audit, stale-claim
+  audit, and canonical/journal PDF semantic audits pass.
+- Best-guess completion toward the v1.0.9 rereview-repair and technical release
+  goal: **92%**. Remaining work is refreshed clean-source replay, fresh-archive
+  manifest closure, page-by-page visual inspection, final author declarations,
+  and commit/push/release publication.
+
+## 2026-08-23 22:12:20 PDT — v1.0.9 technical qualification checkpoint
+
+- Completed a detached full replay of the refreshed portable repository through
+  `PUBLIC_REPLAY_PASS`, all seven bundle-hash checks, and clean independent
+  builds of the bioRxiv, arXiv, and SIADS source archives.  Supplement builds
+  stabilized their auxiliary and contents files on pass three, after which
+  extracted layout text matched the canonical artifacts.
+- Reconfirmed all 39 verifier entrypoints normally and all 39 expected
+  fail-closed results under optimized Python, all 29 mutation/regression tests,
+  the exact symbolic aggregate, current-profile provenance, numerical
+  refinement, and canonical and SIADS PDF semantic audits.
+- Rendered and inspected every current review document page.  The 19-page
+  canonical manuscript, 19-page canonical supplement, 3-page theorem summary,
+  6-page proof skeleton, 23-page SIADS manuscript, 23-page SIADS supplement,
+  and one-page cover letter are free of clipping, overlap, broken glyphs,
+  stale contents entries, and line-number collisions.
+- Best-guess completion toward the v1.0.9 rereview-repair technical goal:
+  **100%**.  Immutable release publication and final SIADS upload remain
+  author-controlled because funding, competing-interest, and exclusivity facts
+  have deliberately not been inferred.

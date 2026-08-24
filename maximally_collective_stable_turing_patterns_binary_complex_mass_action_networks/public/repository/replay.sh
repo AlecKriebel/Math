@@ -133,20 +133,22 @@ find . -type d -name '__pycache__' -prune -exec rm -rf {} +
 find . -type f \( -name '*.aux' -o -name '*.log' -o -name '*.bcf' -o -name '*.blg' -o -name '*.fls' -o -name '*.fdb_latexmk' -o -name '*.run.xml' -o -name '*.out' -o -name '*.toc' -o -name '*.xdv' \) -delete
 cat > "$OUT"/PROVENANCE.tsv <<'PROVENANCE'
 artifact	command	evidence_class	scope	release_version	status
-current_profile_generation.txt	python computation/generate_current_profile_data.py	exact-generation	portable-public	1.0.8	current
-generated_tables.txt	python computation/generate_tables.py	exact-generation	portable-public	1.0.8	current
-generated_sign_tables.txt	python computation/generate_sign_certificate_tables.py	exact-generation	portable-public	1.0.8	current
-all_verifier_entrypoints.txt	39 direct verifier commands listed in the file	exact-and-spectral-entrypoint-coverage	full-source	1.0.8	current-release-qualification
-manifest_mutation_test.txt	detached baseline and self-manifest mutation controls	manifest-negative-control	portable-public-copy	1.0.8	current-release-qualification
-detached_numerical_provenance.txt	python independent_verifier/verify_current_numerical_provenance.py	exact-finite-provenance	portable-public	1.0.8	current
-integrated_designs.txt	integrated verifier commands in replay.sh	mixed-exact-and-spectral-regression	m=3,4,5,6,8,10,149,200 as applicable	1.0.8	current
-manuscript_audit.txt	python computation/audit_manuscript.py	source-semantic-audit	portable-public	1.0.8	current
-numerical_provenance.txt	python computation/audit_numerical_provenance.py	numerical-tolerance-audit	portable-public	1.0.8	current-full-only
-pdf_semantic_audit.txt	python computation/audit_pdfs.py --profile public	PDF-semantic-font-layout-audit	portable-public	1.0.8	current
-pytest.txt	python -m pytest -q computation/tests	mutation-and-regression-tests	portable-public	1.0.8	current
-simulations.txt	python computation/simulations.py --outdir data/simulations --jobs 3	numerical-illustration	portable-public	1.0.8	current-full-only
-stale_claim_audit.txt	python computation/audit_stale_claims.py	stale-string-audit	portable-public	1.0.8	current
-symbolic_certificates.txt	python independent_verifier/verify_symbolic_certificates.py	exact-aggregate	portable-public	1.0.8	current
+current_profile_generation.txt	python computation/generate_current_profile_data.py	exact-generation	portable-public	1.0.9	current
+generated_tables.txt	python computation/generate_tables.py	exact-generation	portable-public	1.0.9	current
+generated_sign_tables.txt	python computation/generate_sign_certificate_tables.py	exact-generation	portable-public	1.0.9	current
+all_verifier_entrypoints.txt	39 direct verifier commands listed in the file	exact-and-spectral-entrypoint-coverage	full-source	1.0.9	current-release-qualification
+all_verifier_optimized_rejections.txt	39 direct verifier commands under python -O	assertion-mode-negative-control	full-source	1.0.9	current-release-qualification
+manifest_mutation_test.txt	detached baseline and self-manifest mutation controls	manifest-negative-control	portable-public-copy	1.0.9	current-release-qualification
+detached_numerical_provenance.txt	python independent_verifier/verify_current_numerical_provenance.py	exact-finite-provenance	portable-public	1.0.9	current
+integrated_designs.txt	integrated verifier commands in replay.sh	mixed-exact-and-spectral-regression	m=3,4,5,6,8,10,149,200 as applicable	1.0.9	current
+manuscript_audit.txt	python computation/audit_manuscript.py	source-semantic-audit	portable-public	1.0.9	current
+numerical_provenance.txt	python computation/audit_numerical_provenance.py	numerical-tolerance-audit	portable-public	1.0.9	current-full-only
+pdf_semantic_audit.txt	python computation/audit_pdfs.py --profile public	PDF-semantic-font-layout-audit	portable-public	1.0.9	current
+journal_pdf_semantic_audit.txt	python computation/audit_pdfs.py --profile journal	PDF-semantic-font-layout-audit	journal-submission	1.0.9	current-release-qualification
+pytest.txt	python -m pytest -q computation/tests	mutation-and-regression-tests	portable-public	1.0.9	current
+simulations.txt	python computation/simulations.py --outdir data/simulations --jobs 3	numerical-illustration	portable-public	1.0.9	current-full-only
+stale_claim_audit.txt	python computation/audit_stale_claims.py	stale-string-audit	portable-public	1.0.9	current
+symbolic_certificates.txt	python independent_verifier/verify_symbolic_certificates.py	exact-aggregate	portable-public	1.0.9	current
 PROVENANCE
 cmp -s "$BASELINE_MANIFEST" "$REPLAY_STATE/downloaded_manifest.txt"
 sha256sum -c "$EXACT_BASELINE" >/dev/null

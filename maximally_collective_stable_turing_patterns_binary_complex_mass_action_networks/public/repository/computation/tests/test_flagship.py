@@ -1,4 +1,5 @@
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -483,6 +484,7 @@ def test_scope_and_certificate_honesty_markers():
         r'\det B_m^{\rm core}=2a^2b',
         r'fixed-mass subspaces invariant',
         r'2\|D_m^{-1}\|k^{-2}',
+        r'\Delta:=\Delta_m',
     ):
         assert marker in supplement
 
@@ -600,3 +602,92 @@ def test_replay_preserves_release_manifest_and_separates_self_consistency():
         assert script.index(exact_check) < script.index(self_definition)
         assert script.index(self_definition) < script.index(self_write)
         assert '> "$BASELINE_MANIFEST"' not in script
+
+
+def test_release_manifest_generator_is_tracked_and_nul_safe():
+    generator_path = ROOT / "release" / "create_release_manifest.sh"
+    if not generator_path.is_file():
+        # The portable package deliberately omits release-only orchestration.
+        assert (ROOT / "sha256_manifest.txt").is_file()
+        return
+    generator = generator_path.read_text()
+    assert "git ls-files -z -- ." in generator
+    assert "printf './%s\\0'" in generator
+    assert "find . -type f" not in generator
+
+
+def test_detached_source_validation_stabilizes_and_compares_documents():
+    replay_path = ROOT / "release" / "one_command_replay.sh"
+    if not replay_path.is_file():
+        return
+    replay = replay_path.read_text()
+    for marker in (
+        "for supplement_pass in 2 3 4 5",
+        "supplement_stable=1",
+        "pdftotext -layout",
+        'expected_supplement=',
+        'cmp -s supplement.semantic.txt supplement.expected.txt',
+    ):
+        assert marker in replay
+
+
+def test_siads_review_bundle_has_explicit_mode_and_required_artifacts():
+    refresh_path = ROOT / "release" / "refresh_packages.sh"
+    if not refresh_path.is_file():
+        return
+    refresh = refresh_path.read_text()
+    main = (ROOT / "manuscript" / "main.tex").read_text()
+    for marker in (
+        'journal_review_mode.tex',
+        'usepackage[mathlines]{lineno}',
+        r'\linenumbers',
+        r'\textbf{Keywords:}',
+        r'\textbf{2020 Mathematics Subject Classification:}',
+    ):
+        assert marker in main or marker in refresh
+    for relative_path in (
+        "submission/journal/cover_letter_SIADS.tex",
+        "submission/journal/supplementary_materials_index.txt",
+    ):
+        assert (ROOT / relative_path).is_file()
+    assert ': > "$ROOT/submission/journal/source/journal_review_mode.tex"' in refresh
+    assert 'journal_supplement_stable=1' in refresh
+
+
+def test_every_special_tex_lock_field_has_a_negative_control(tmp_path):
+    checker = ROOT / "environment" / "check_toolchain.sh"
+    baseline = subprocess.run(
+        ["bash", str(checker), "--quiet"],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+        timeout=30,
+    )
+    if baseline.returncode != 0:
+        pytest.skip("negative lock controls require the pinned release toolchain")
+
+    lock_text = (ROOT / "environment" / "texlive-2022.04.lock.txt").read_text()
+    for field in ("ENGINE", "FORMAT", "LATEX", "BIBER"):
+        mutated_lines = []
+        found = False
+        for line in lock_text.splitlines():
+            if line.startswith(f"{field}|"):
+                mutated_lines.append(f"{field}|IMPOSSIBLE_{field}_VALUE")
+                found = True
+            else:
+                mutated_lines.append(line)
+        assert found
+        mutated = tmp_path / f"{field.lower()}-lock.txt"
+        mutated.write_text("\n".join(mutated_lines) + "\n")
+        env = os.environ.copy()
+        env["TOOLCHAIN_LOCK_FILE"] = str(mutated)
+        result = subprocess.run(
+            ["bash", str(checker), "--quiet"],
+            cwd=ROOT,
+            env=env,
+            capture_output=True,
+            text=True,
+            timeout=30,
+        )
+        assert result.returncode != 0, field
+        assert "TOOLCHAIN_FAIL" in result.stdout + result.stderr, field

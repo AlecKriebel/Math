@@ -37,6 +37,12 @@ PUBLIC_DOCUMENTS = tuple(
     if not document.relative_path.startswith("external_audit/")
 )
 
+JOURNAL_DOCUMENTS = (
+    Document("submission/journal/manuscript.pdf", 23, True, "pdfTeX-1.40.24"),
+    Document("submission/journal/supplement.pdf", 23, True, "pdfTeX-1.40.24"),
+    Document("submission/journal/cover_letter_SIADS.pdf", 1, True, "pdfTeX-1.40.24"),
+)
+
 FORBIDDEN_PHRASES = (
     "Theorem 3.1",
     "Theorems 4.1 and 5.1",
@@ -229,14 +235,18 @@ def audit(root: Path, output_dir: Path, documents: tuple[Document, ...]) -> None
         ):
             failures.append("rendered robustness statement leaves rate/equilibrium perturbations unqualified")
 
-    supplement = extracted.get("manuscript/supplement.pdf", "")
+    supplement = extracted.get("manuscript/supplement.pdf", "") or extracted.get(
+        "submission/journal/supplement.pdf", ""
+    )
     if supplement:
         for section, title_prefix in enumerate(SUPPLEMENT_SECTION_PREFIXES, start=1):
             pattern = rf"(?:^|\s)S{section}\.?\s*{re.escape(title_prefix)}"
             if not re.search(pattern, supplement):
                 failures.append(f"supplement lacks rendered S{section} section numbering")
 
-    main_text = extracted.get("manuscript/main.pdf", "")
+    main_text = extracted.get("manuscript/main.pdf", "") or extracted.get(
+        "submission/journal/manuscript.pdf", ""
+    )
     if main_text:
         if not re.search(r"0\s*<\s*\|I\|\s*<\s*m", main_text):
             failures.append("main theorem does not visibly exclude the empty principal set")
@@ -289,6 +299,33 @@ def audit(root: Path, output_dir: Path, documents: tuple[Document, ...]) -> None
         if not re.search(r"c\s*m\s*\(L\)\s*=\s*N\s*m\s*\(L\)", main_text):
             failures.append("main PDF does not show the scaled cubic quotient")
 
+    journal_text = extracted.get("submission/journal/manuscript.pdf", "")
+    if journal_text:
+        for phrase, label in (
+            ("Keywords:", "visible keywords"),
+            ("2020 Mathematics Subject Classification:", "visible MSC codes"),
+        ):
+            if phrase.lower() not in journal_text.lower():
+                failures.append(f"journal PDF lacks {label}")
+        # pypdf appends right-margin line numbers to the preceding line,
+        # whereas pdftotext may place them first.  Require the first two
+        # distinct title-line numbers in either extractor ordering.
+        if not (
+            re.search(r"Turing\s*1\s+Patterns\s*2", journal_text)
+            or re.search(r"(?:^|\s)1\s+Exact Diffusion Design", journal_text)
+        ):
+            failures.append("journal PDF does not visibly begin continuous line numbering")
+
+    cover_text = extracted.get("submission/journal/cover_letter_SIADS.pdf", "")
+    if cover_text:
+        for phrase in (
+            "Dear Editors",
+            "Exact Diffusion Design for Maximally Collective Stable Turing Patterns",
+            "Alec Kriebel",
+        ):
+            if phrase.lower() not in cover_text.lower():
+                failures.append(f"journal cover letter lacks {phrase!r}")
+
     if supplement:
         if not re.search(
             r"\bu\s*=\s*1\s*\+\s*\(2\s*[−-]\s*ω\)\s*ε",
@@ -326,7 +363,7 @@ def main() -> None:
     project_root = Path(__file__).resolve().parents[1]
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=project_root)
-    parser.add_argument("--profile", choices=("full", "public"), default="full")
+    parser.add_argument("--profile", choices=("full", "public", "journal"), default="full")
     parser.add_argument("--output-dir", type=Path)
     args = parser.parse_args()
 
@@ -338,7 +375,11 @@ def main() -> None:
             if args.profile == "full"
             else root / "verification_outputs" / "pdf_preflight"
         )
-    documents = FULL_DOCUMENTS if args.profile == "full" else PUBLIC_DOCUMENTS
+    documents = {
+        "full": FULL_DOCUMENTS,
+        "public": PUBLIC_DOCUMENTS,
+        "journal": JOURNAL_DOCUMENTS,
+    }[args.profile]
     audit(root, output_dir.resolve(), documents)
 
 

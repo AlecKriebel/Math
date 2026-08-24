@@ -1,38 +1,32 @@
-# Provisional SIADS submission bundle
+# SIADS review submission bundle
 
-This directory is a planning snapshot for a possible submission to the SIAM
-Journal on Applied Dynamical Systems (SIADS). It is **provisional and not ready
-for upload**. No submission has been made from this bundle. The manuscript,
-supplement, cover letter, PDFs, and copied source package must be regenerated
-and checked after the remaining author decisions and journal-format work.
+This directory is the maintained review package for a possible submission to
+the SIAM Journal on Applied Dynamical Systems (SIADS). No submission has been
+made from this bundle. The technical formatting and source packaging are
+complete; the cover letter and declarations remain subject to the explicitly
+listed author confirmations.
 
-## Current-format requirements before submission
+## Implemented review-format requirements
 
-- Reformat the manuscript with SIAM's multimedia LaTeX macros and the `review`
-  option, as currently encouraged by SIADS. If SIAM macros are not used, the
-  current alternative requires type of at least 10 points and a text area no
-  larger than 6 by 8 inches. The present generic `article` layout is not a
-  journal-formatted submission.
-- Add continuous line numbering if the selected SIAM template or review mode
-  does not supply it.
-- Keep the abstract to one paragraph and no more than 250 words. The present
-  bioRxiv abstract is 200 words, but the final journal abstract must be checked
-  after editing.
+- The journal source bundle selects an 11-point alternative review layout with
+  a 6 by 8 inch text area and continuous line numbering.
+- The abstract is one paragraph and no more than 250 words.
+- Keywords and 2020 Mathematics Subject Classification codes are visible.
+- `supplementary_materials_index.txt` describes and justifies each item.
+- `cover_letter_SIADS.pdf` is generated from its maintained TeX source.
+- The manuscript, supplement, cover letter, source archive, and data archive
+  are regenerated and checked together.
+
+## Checks immediately before upload
+
 - Keep the complete manuscript within the general 40-page and 10-megabyte
   limits, or justify an exception in the cover letter. Embed all ordinary
   figures inline in the manuscript.
-- Add visible keywords and current Mathematics Subject Classification codes.
-  The author must select and approve the final terms and codes.
-- Prepare the required index of Supplementary Materials, including a concise
-  description and justification for each supplementary item, and decide which
-  code/data files will be uploaded at first submission versus linked to an
-  archival repository. Confirm the right to publish every uploaded item.
-- Convert both the approved manuscript and cover letter to PDF for portal
-  upload.
-- Rebuild the manuscript, supplement, theorem summary, proof skeleton, and
-  source archive after all approved edits. Reinspect both the local PDFs and
-  the submission portal's generated PDFs for pagination, line breaks, links,
-  fonts, figures, and supplementary-material references.
+- Confirm the author declarations, cover letter, and portal-entered metadata.
+- Decide which supplementary archives the portal should receive directly and
+  which should be linked through the immutable repository release.
+- Reinspect the submission portal's generated PDFs for pagination, line
+  breaks, links, fonts, figures, and supplementary-material references.
 
 Consult the current official instructions at
 <https://epubs.siam.org/journal/siads/instructions-for-authors> and the SIAM AI
@@ -43,20 +37,19 @@ submission, because portal and policy requirements can change.
 
 The author must review or provide the following before upload:
 
-- final title, abstract, significance text if used, keywords, and Mathematics
-  Subject Classification codes;
+- final title, abstract, keywords, and Mathematics Subject Classification codes;
 - author name, affiliation, postal address, email, and supplied ORCID
   `0009-0001-9320-500X`;
 - exclusivity, prior-dissemination/preprint, authorship, competing-interest,
   funding, and permissions confirmations;
 - final author-contribution and AI-assistance disclosures in the wording
   required by the journal;
-- immutable versioned-release URL, Zenodo concept DOI, data-and-code availability statement, licenses,
-  and the exact supplementary files to accompany the article;
+- immutable version 1.0.9 release URL, Zenodo concept DOI, data-and-code
+  availability statement, licenses, and the exact supplementary files to
+  accompany the article;
 - any editor or reviewer suggestions requested by the portal; and
 - final approval of the cover letter and every portal-entered field.
 
-The PDFs and copied source bundle currently in this directory are synchronized
-snapshots of the corrected release. They remain provisional rather than
-upload-ready and must be regenerated after any future journal-format or
-author-approved metadata edits.
+The PDFs and copied source bundle in this directory are synchronized snapshots
+of the corrected release. They become upload-ready only after the author-only
+confirmations have been incorporated and the portal preview has been checked.

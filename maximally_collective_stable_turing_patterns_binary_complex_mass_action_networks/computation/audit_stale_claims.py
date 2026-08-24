@@ -49,6 +49,8 @@ STALE = {
     "fixed_mass_covector_called_vector": "physical fixed-mass vector becomes",
     "ambiguous_within_family_minimax": r"reduces $\max(\chi_D,\chi_H)$",
     "ambiguous_discussion_minimax": "reduces the larger of the two contrasts",
+    "stale_v108_pending_doi": "The exact v1.0.8 DOI is not asserted",
+    "stale_v108_pending_release_record": "the v1.0.8 release record carries its version DOI once minted",
     # r_m and ell_m are scalar X_m components.  These tokens used them as
     # whole critical vectors before the notation repair.
     "component_left_used_as_vector": r"\ell_m^T",

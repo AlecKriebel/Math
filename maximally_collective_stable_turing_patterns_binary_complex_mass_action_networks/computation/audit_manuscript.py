@@ -28,20 +28,31 @@ missing_cites=sorted(set(cites)-bibkeys)
 if missing_cites: raise AssertionError(f'missing bib keys {missing_cites}')
 
 for marker in (
-    'version: "1.0.8"',
-    'maximally-collective-stable-turing-v1.0.8',
+    'version: "1.0.9"',
+    'maximally-collective-stable-turing-v1.0.9',
     '10.5281/zenodo.21753404',
-    '10.5281/zenodo.22062080',
+    '10.5281/zenodo.22074358',
     'authors:',
 ):
     if marker not in cff:
         raise AssertionError(f'CITATION.cff lacks release marker {marker}')
 if not all(marker in main for marker in (
-    'version 1.0.8 tagged release source tree',
+    'version 1.0.9 tagged release source tree',
     '10.5281/zenodo.21753404',
-    '10.5281/zenodo.22062080',
+    '10.5281/zenodo.22074358',
 )):
     raise AssertionError('data statement does not distinguish the current tag, concept DOI, and preceding version DOI')
+
+for marker in (
+    r'\textbf{Keywords:}',
+    r'\textbf{2020 Mathematics Subject Classification:}',
+    r'\IfFileExists{journal_review_mode.tex}',
+    r'\usepackage[mathlines]{lineno}',
+):
+    if marker not in main:
+        raise AssertionError(f'main source lacks submission marker {marker}')
+if 'The author assumes responsibility for all content.' not in ' '.join(main.split()):
+    raise AssertionError('main source lacks the required author-responsibility sentence')
 
 # Semantic environment-type audit for explicit numbered references.
 envs={}

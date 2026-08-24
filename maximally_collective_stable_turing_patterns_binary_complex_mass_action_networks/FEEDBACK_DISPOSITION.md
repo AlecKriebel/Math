@@ -1,5 +1,19 @@
 # Feedback disposition
 
+## Independent submission rereview of v1.0.8 — 23 August 2026
+
+| Rereview item | Disposition | Action |
+|---|---|---|
+| R1: top-level manifest contains 570 absent ignored scratch paths | ACCEPT | Replaced unrestricted `find` with sorted NUL-safe `git ls-files`, excluded only the manifest itself, and added a fresh-archive file-count and hash check. |
+| R2: `FORMAT` and `LATEX` lock rows are not enforced | ACCEPT | The checker now skips only the separately banner-checked engine and Biber rows. All four special fields have impossible-value negative controls. |
+| R3: two detached supplement passes accept stale TOC pages | ACCEPT | Detached builds now iterate until `.aux` and `.toc` stabilize and compare extracted main and supplement text with the canonical PDFs. |
+| M1: one supplementary `\Delta` should read `\Delta_m` | REJECT AS CONTEXT-INCOMPLETE; CLARIFY | The supplement consistently defined and used a local `\Delta`; changing only the cited occurrence would create inconsistency. The definition now explicitly reads `\Delta:=\Delta_m`, making the intended improved profile unambiguous. |
+| S1: SIADS bundle lacks review presentation items | ACCEPT | Added a separate 11-point main/10-point supplement review mode with a 6-by-8-inch text area and line numbers, visible keywords/MSC codes, a supplementary index, and a generated PDF cover letter. |
+| S2: v1.0.8 DOI and declarations are stale or pending | ACCEPT WITH VERSION QUALIFICATION | Active files target distinct v1.0.9, cite concept DOI `10.5281/zenodo.21753404` and exact predecessor DOI `10.5281/zenodo.22074358`, and include the SIAM responsibility sentence. No v1.0.9 version DOI is asserted before minting; author-only funding, competing-interest, and exclusivity statements remain explicit pre-upload confirmations. |
+
+The rereview independently classified the central mathematical result as
+valid. These edits affect reproducibility, presentation, and metadata only.
+
 ## Independent journal-style referee audit — 23 August 2026
 
 | Referee item | Disposition | Action |

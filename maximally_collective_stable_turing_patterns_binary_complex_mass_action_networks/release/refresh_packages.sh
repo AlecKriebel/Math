@@ -28,11 +28,10 @@ cat > "$PUB/README.md" <<'EOF'
 
 Portable exact source, proof certificates, independent verifiers, current-profile numerical illustrations, and manuscript sources for the corrected final release.
 
-This package targets the immutable version 1.0.8 snapshot at
-<https://github.com/AlecKriebel/Math/releases/tag/maximally-collective-stable-turing-v1.0.8>.
+This package targets the immutable version 1.0.9 snapshot at
+<https://github.com/AlecKriebel/Math/releases/tag/maximally-collective-stable-turing-v1.0.9>.
 Archived versions share <https://doi.org/10.5281/zenodo.21753404>. The exact
-preceding version 1.0.7 snapshot has DOI <https://doi.org/10.5281/zenodo.22062080>.
-The exact v1.0.8 DOI is not asserted until Zenodo mints it.
+preceding version 1.0.8 snapshot has DOI <https://doi.org/10.5281/zenodo.22074358>.
 
 ## Replay
 
@@ -281,20 +280,22 @@ find . -type d -name '__pycache__' -prune -exec rm -rf {} +
 find . -type f \( -name '*.aux' -o -name '*.log' -o -name '*.bcf' -o -name '*.blg' -o -name '*.fls' -o -name '*.fdb_latexmk' -o -name '*.run.xml' -o -name '*.out' -o -name '*.toc' -o -name '*.xdv' \) -delete
 cat > "$OUT"/PROVENANCE.tsv <<'PROVENANCE'
 artifact	command	evidence_class	scope	release_version	status
-current_profile_generation.txt	python computation/generate_current_profile_data.py	exact-generation	portable-public	1.0.8	current
-generated_tables.txt	python computation/generate_tables.py	exact-generation	portable-public	1.0.8	current
-generated_sign_tables.txt	python computation/generate_sign_certificate_tables.py	exact-generation	portable-public	1.0.8	current
-all_verifier_entrypoints.txt	39 direct verifier commands listed in the file	exact-and-spectral-entrypoint-coverage	full-source	1.0.8	current-release-qualification
-manifest_mutation_test.txt	detached baseline and self-manifest mutation controls	manifest-negative-control	portable-public-copy	1.0.8	current-release-qualification
-detached_numerical_provenance.txt	python independent_verifier/verify_current_numerical_provenance.py	exact-finite-provenance	portable-public	1.0.8	current
-integrated_designs.txt	integrated verifier commands in replay.sh	mixed-exact-and-spectral-regression	m=3,4,5,6,8,10,149,200 as applicable	1.0.8	current
-manuscript_audit.txt	python computation/audit_manuscript.py	source-semantic-audit	portable-public	1.0.8	current
-numerical_provenance.txt	python computation/audit_numerical_provenance.py	numerical-tolerance-audit	portable-public	1.0.8	current-full-only
-pdf_semantic_audit.txt	python computation/audit_pdfs.py --profile public	PDF-semantic-font-layout-audit	portable-public	1.0.8	current
-pytest.txt	python -m pytest -q computation/tests	mutation-and-regression-tests	portable-public	1.0.8	current
-simulations.txt	python computation/simulations.py --outdir data/simulations --jobs 3	numerical-illustration	portable-public	1.0.8	current-full-only
-stale_claim_audit.txt	python computation/audit_stale_claims.py	stale-string-audit	portable-public	1.0.8	current
-symbolic_certificates.txt	python independent_verifier/verify_symbolic_certificates.py	exact-aggregate	portable-public	1.0.8	current
+current_profile_generation.txt	python computation/generate_current_profile_data.py	exact-generation	portable-public	1.0.9	current
+generated_tables.txt	python computation/generate_tables.py	exact-generation	portable-public	1.0.9	current
+generated_sign_tables.txt	python computation/generate_sign_certificate_tables.py	exact-generation	portable-public	1.0.9	current
+all_verifier_entrypoints.txt	39 direct verifier commands listed in the file	exact-and-spectral-entrypoint-coverage	full-source	1.0.9	current-release-qualification
+all_verifier_optimized_rejections.txt	39 direct verifier commands under python -O	assertion-mode-negative-control	full-source	1.0.9	current-release-qualification
+manifest_mutation_test.txt	detached baseline and self-manifest mutation controls	manifest-negative-control	portable-public-copy	1.0.9	current-release-qualification
+detached_numerical_provenance.txt	python independent_verifier/verify_current_numerical_provenance.py	exact-finite-provenance	portable-public	1.0.9	current
+integrated_designs.txt	integrated verifier commands in replay.sh	mixed-exact-and-spectral-regression	m=3,4,5,6,8,10,149,200 as applicable	1.0.9	current
+manuscript_audit.txt	python computation/audit_manuscript.py	source-semantic-audit	portable-public	1.0.9	current
+numerical_provenance.txt	python computation/audit_numerical_provenance.py	numerical-tolerance-audit	portable-public	1.0.9	current-full-only
+pdf_semantic_audit.txt	python computation/audit_pdfs.py --profile public	PDF-semantic-font-layout-audit	portable-public	1.0.9	current
+journal_pdf_semantic_audit.txt	python computation/audit_pdfs.py --profile journal	PDF-semantic-font-layout-audit	journal-submission	1.0.9	current-release-qualification
+pytest.txt	python -m pytest -q computation/tests	mutation-and-regression-tests	portable-public	1.0.9	current
+simulations.txt	python computation/simulations.py --outdir data/simulations --jobs 3	numerical-illustration	portable-public	1.0.9	current-full-only
+stale_claim_audit.txt	python computation/audit_stale_claims.py	stale-string-audit	portable-public	1.0.9	current
+symbolic_certificates.txt	python independent_verifier/verify_symbolic_certificates.py	exact-aggregate	portable-public	1.0.9	current
 PROVENANCE
 cmp -s "$BASELINE_MANIFEST" "$REPLAY_STATE/downloaded_manifest.txt"
 sha256sum -c "$EXACT_BASELINE" >/dev/null
@@ -312,11 +313,13 @@ chmod +x "$PUB/replay.sh"
 # copied from the larger source checkout.
 VERIFICATION_FILES=(
   all_verifier_entrypoints.txt
+  all_verifier_optimized_rejections.txt
   current_profile_generation.txt
   detached_numerical_provenance.txt
   generated_sign_tables.txt
   generated_tables.txt
   integrated_designs.txt
+  journal_pdf_semantic_audit.txt
   manifest_mutation_test.txt
   manuscript_audit.txt
   numerical_provenance.txt
@@ -353,7 +356,7 @@ lines = [
 ]
 lines.append(
     "stale_claim_audit.txt\tpython computation/audit_stale_claims.py\t"
-    "stale-string-audit\tportable-public\t1.0.8\tcurrent-packaging"
+    "stale-string-audit\tportable-public\t1.0.9\tcurrent-packaging"
 )
 path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 PY
@@ -390,16 +393,60 @@ for fn in ('main.tex','supplement.tex'):
 PY
 }
 for base in "$ROOT/submission/biorxiv/source" "$ROOT/submission/arxiv/source" "$ROOT/submission/journal/source"; do prepare_source "$base"; done
+# The empty marker selects the SIADS review layout without changing the
+# canonical bioRxiv/arXiv manuscript source.
+: > "$ROOT/submission/journal/source/journal_review_mode.tex"
 # Let arXiv's selected TeX Live toolchain run Biber against its own biblatex
 # version rather than shipping a potentially format-incompatible .bbl file.
 rm -f "$ROOT/submission/arxiv/source/main.bbl"
 cp "$ROOT/manuscript/main.pdf" "$ROOT/submission/biorxiv/manuscript.pdf"
 cp "$ROOT/manuscript/supplement.pdf" "$ROOT/submission/biorxiv/supplement.pdf"
-cp "$ROOT/manuscript/main.pdf" "$ROOT/submission/journal/manuscript.pdf"
-cp "$ROOT/manuscript/supplement.pdf" "$ROOT/submission/journal/supplement.pdf"
+
+# Compile the journal PDFs from a detached copy of the actual SIADS source
+# bundle.  Stabilize the supplement's table of contents before accepting it.
+JOURNAL_BUILD="$(mktemp -d "${TMPDIR:-/tmp}/exact-diffusion-journal.XXXXXX")"
+trap 'rm -rf "$JOURNAL_BUILD"' EXIT
+cp -a "$ROOT/submission/journal/source/." "$JOURNAL_BUILD/"
+(
+  cd "$JOURNAL_BUILD"
+  pdflatex -interaction=nonstopmode -halt-on-error main.tex >/dev/null
+  biber main >/dev/null
+  pdflatex -interaction=nonstopmode -halt-on-error main.tex >/dev/null
+  pdflatex -interaction=nonstopmode -halt-on-error main.tex >/dev/null
+  pdflatex -interaction=nonstopmode -halt-on-error supplement.tex >/dev/null
+  cp supplement.aux supplement.aux.previous
+  cp supplement.toc supplement.toc.previous
+  journal_supplement_stable=0
+  for journal_pass in 2 3 4 5; do
+    pdflatex -interaction=nonstopmode -halt-on-error supplement.tex >/dev/null
+    if cmp -s supplement.aux supplement.aux.previous && cmp -s supplement.toc supplement.toc.previous; then
+      journal_supplement_stable=1
+      break
+    fi
+    cp supplement.aux supplement.aux.previous
+    cp supplement.toc supplement.toc.previous
+  done
+  test "$journal_supplement_stable" -eq 1
+)
+cp "$JOURNAL_BUILD/main.pdf" "$ROOT/submission/journal/manuscript.pdf"
+cp "$JOURNAL_BUILD/supplement.pdf" "$ROOT/submission/journal/supplement.pdf"
+
+# SIADS asks for a PDF cover letter.  Build the maintained source separately
+# so it is not accidentally included in the manuscript source archive.
+COVER_BUILD="$(mktemp -d "${TMPDIR:-/tmp}/exact-diffusion-cover.XXXXXX")"
+cp "$ROOT/submission/journal/cover_letter_SIADS.tex" "$COVER_BUILD/"
+(
+  cd "$COVER_BUILD"
+  pdflatex -interaction=nonstopmode -halt-on-error cover_letter_SIADS.tex >/dev/null
+  pdflatex -interaction=nonstopmode -halt-on-error cover_letter_SIADS.tex >/dev/null
+)
+cp "$COVER_BUILD/cover_letter_SIADS.pdf" "$ROOT/submission/journal/cover_letter_SIADS.pdf"
+rm -rf "$COVER_BUILD"
 python "$ROOT/release/deterministic_zip.py" "$ROOT/submission/biorxiv/source" "$ROOT/submission/biorxiv/source_package.zip"
 python "$ROOT/release/deterministic_zip.py" "$ROOT/submission/arxiv/source" "$ROOT/submission/arxiv/arxiv_source.zip"
 python "$ROOT/release/deterministic_zip.py" "$ROOT/submission/journal/source" "$ROOT/submission/journal/source_package.zip"
+rm -rf "$JOURNAL_BUILD"
+trap - EXIT
 
 # ---------- external specialist packets ----------
 MIN="$ROOT/external_audit/minimal_verifier"

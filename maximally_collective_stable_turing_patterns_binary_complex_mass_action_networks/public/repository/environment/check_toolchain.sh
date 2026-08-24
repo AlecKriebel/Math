@@ -2,6 +2,7 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+LOCK_FILE="${TOOLCHAIN_LOCK_FILE:-$ROOT/environment/texlive-2022.04.lock.txt}"
 QUIET=0
 if [[ "${1:-}" == "--quiet" ]]; then QUIET=1; fi
 
@@ -39,15 +40,30 @@ for name, version in expected.items():
         )
 PY
 
+lock_value() {
+  local name="$1"
+  awk -F'|' -v target="$name" '$1 == target {print substr($0, index($0, "|") + 1)}' "$LOCK_FILE"
+}
+for required_lock in ENGINE FORMAT LATEX BIBER; do
+  [[ -n "$(lock_value "$required_lock")" ]] || {
+    printf 'TOOLCHAIN_FAIL missing special lock field: %s\n' "$required_lock" >&2
+    exit 2
+  }
+done
+
 pdflatex_banner="$(pdflatex --version | head -n 1)"
+engine_expected="$(lock_value ENGINE)"
 case "$pdflatex_banner" in
-  *"pdfTeX 3.141592653-2.6-1.40.24 (TeX Live 2022)"*) ;;
-  *) printf 'TOOLCHAIN_FAIL unexpected pdfLaTeX: %s\n' "$pdflatex_banner" >&2; exit 2 ;;
+  *"$engine_expected"*) ;;
+  *) printf 'TOOLCHAIN_FAIL unexpected pdfLaTeX: expected %s; found %s\n' \
+       "$engine_expected" "$pdflatex_banner" >&2; exit 2 ;;
 esac
 biber_banner="$(biber --version | head -n 1)"
+biber_expected="$(lock_value BIBER)"
 case "$biber_banner" in
-  *"biber version: 2.17"*) ;;
-  *) printf 'TOOLCHAIN_FAIL Biber 2.17 required: %s\n' "$biber_banner" >&2; exit 2 ;;
+  *"$biber_expected"*) ;;
+  *) printf 'TOOLCHAIN_FAIL unexpected Biber: expected %s; found %s\n' \
+       "$biber_expected" "$biber_banner" >&2; exit 2 ;;
 esac
 
 probe_root="$(mktemp -d "${TMPDIR:-/tmp}/exact-diffusion-toolchain.XXXXXX")"
@@ -60,6 +76,7 @@ cat > "$probe_root/packages.tex" <<'EOF'
 \usepackage{lmodern}
 \usepackage{amsmath,amssymb,amsthm,mathtools}
 \usepackage{booktabs,longtable,array,enumitem,microtype,graphicx,float}
+\usepackage[mathlines]{lineno}
 \usepackage{tikz}
 \usepackage[hidelinks]{hyperref}
 \usepackage[nameinlink,capitalise]{cleveref}
@@ -76,13 +93,13 @@ EOF
 (cd "$probe_root" && pdflatex -interaction=nonstopmode -halt-on-error standalone_probe.tex >/dev/null)
 
 while IFS='|' read -r lock_name expected; do
-  case "$lock_name" in ''|'#'*) continue ;; ENGINE|FORMAT|LATEX|BIBER) continue ;; esac
+  case "$lock_name" in ''|'#'*) continue ;; ENGINE|BIBER) continue ;; esac
   if ! grep -Fq "$expected" "$probe_root/packages.log" \
       && ! grep -Fq "$expected" "$probe_root/standalone_probe.log"; then
     printf 'TOOLCHAIN_FAIL package lock mismatch: %s | %s\n' "$lock_name" "$expected" >&2
     exit 2
   fi
-done < "$ROOT/environment/texlive-2022.04.lock.txt"
+done < "$LOCK_FILE"
 
 if ((QUIET == 0)); then
   printf '%s\n' 'TOOLCHAIN_LOCK_PASS'
