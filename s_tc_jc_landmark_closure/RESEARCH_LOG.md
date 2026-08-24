@@ -1192,3 +1192,24 @@
   tree is ready for the final package commit and tag
   `stc-jc-sharp-boundary-v1.1.7`.  No upload, Zenodo publication, bioRxiv
   submission, license selection, or DOI creation was performed.
+
+- 2026-08-23T18:29:27-07:00 — Audited the published Zenodo record
+  `10.5281/zenodo.22064121` before bioRxiv submission (estimated 90% complete
+  toward the public preprint handoff, pending one Zenodo metadata correction).
+  The DOI resolves publicly to record 22064121, whose status is `published`.
+  All ten public files were downloaded from Zenodo and compared byte for byte
+  with the sealed local release.  The complete 94,158,772-byte certificate
+  archive matches SHA-256
+  `ffcce5398c8be387d6d808620fc939490f31ac41fb48592e22608cf0e7b05db4`;
+  the public archive passes `verify_certificate_zenodo_release.py`.  The
+  uploaded article, supplement, envelope, sidecar, README, verification
+  summary, and all three verifier logs also match exactly.  The title, record
+  type, ORCID, license, keywords, and publication date are coherent.
+
+  One public-metadata typo remains: Zenodo records version `1.1.17`, whereas
+  every immutable file and the tagged release correctly use `1.1.7`.  Creator
+  affiliation is also blank; adding `Independent Researcher` is recommended
+  but not mathematically material.  No file replacement or new DOI is needed:
+  Zenodo permits editing published metadata without changing the DOI.  Hold
+  bioRxiv submission until the version field is corrected and the public API
+  is rechecked.
