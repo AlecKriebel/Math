@@ -370,3 +370,29 @@
 - Paper I R2 re-review correction and R3 handoff: 100% complete.  Both
   referee findings were real and are closed on the sole certified route; no
   theorem or proof changed.  Only human-controlled submission actions remain.
+
+## 2026-08-23 18:36 PDT — Figure 1 and month-only date refresh
+
+- Reproduced the reported Figure 1 collision in the rendered manuscript: the
+  open-problem sentence crossed the blue fitness-two axis.  Moved that label
+  wholly to the right of the axis and split it at a natural phrase boundary;
+  its mathematical meaning is unchanged.
+- Replaced the day-specific title-page date by `August 2026` so the same PDF
+  can be submitted throughout the month.  No cover-letter date, theorem,
+  proof, citation, formula, or scientific verifier changed.
+- The first visual pass confirmed that correction but missed a second, subtler
+  collision: the black vertical axis crossed the blue local-optimality label.
+  A separate hostile layout audit caught it.  Moved the entire blue label to
+  the left of the vertical axis, then rebuilt and inspected the full-resolution
+  page-3 render; all blue, black, and red elements now have clear separation
+  with no clipping.  The hostile auditor independently confirmed the final
+  layout, and page 1 displays the month-only date exactly.
+- Replayed all six unit tests and all seventeen verifier/cross-check programs
+  before regenerating the deterministic source archive.  The current PDF
+  SHA-256 is
+  `ec8c09fbc4ef5f382272351f69721b6544c69f5d48bee961447e1907de2c0180`,
+  and the 73-member source archive SHA-256 is
+  `7220a09d7eb31fdd81c42b35cbeb680f8c1b257df3b3002d37146b00d81e588e`.
+  A second PDF build and second archive generation were byte-identical.
+- Best-guess completion: 85% of the submission-layout refresh.  A refreshed
+  source commit, R4 referee-package replay, Drive sync, and final push remain.

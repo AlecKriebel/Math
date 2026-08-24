@@ -310,7 +310,7 @@ def main() -> None:
         "--output-dir",
         type=Path,
         default=REPO
-        / "referee_packages/paper_i_complete_graph_extremality_referee_package_2026-08-22_r3",
+        / "referee_packages/paper_i_complete_graph_extremality_referee_package_2026-08-23_r4",
     )
     args = parser.parse_args()
 
@@ -351,8 +351,8 @@ def main() -> None:
 - Manuscript PDF SHA-256: `{pdf_digest}`
 - Internal source-archive members: {source_members}
 - Archive members byte-checked against the source commit: {commit_member_count}
-- Package format date: 2026-08-22
-- Package remediation level: R3 exact-tree and interpreter-path hardening
+- Package format date: 2026-08-23
+- Package remediation level: R4 layout/date refresh on the R3 exact-tree hardening
 
 The scientific source commit predates the wrapping commit that may add this
 copied referee folder. It is the commit from which the archive and PDF were
