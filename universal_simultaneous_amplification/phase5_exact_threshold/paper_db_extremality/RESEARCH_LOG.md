@@ -396,3 +396,31 @@
   A second PDF build and second archive generation were byte-identical.
 - Best-guess completion: 85% of the submission-layout refresh.  A refreshed
   source commit, R4 referee-package replay, Drive sync, and final push remain.
+
+## 2026-08-23 18:56 PDT — R4 layout-refresh handoff closed
+
+- Froze the final scientific source at commit
+  `25e281a7a77c7020941d0c163c9b18e99165b09d`.  The month-only title-page date
+  and both Figure 1 label relocations are the only manuscript-source changes
+  relative to R3; all 27 Python files and all theorem-bearing mathematics are
+  unchanged.
+- Built the R4 referee folder with 83 manifest payloads and 84 regular files.
+  The deterministic transport archive has SHA-256
+  `d8fc0193da78cd4907ca7a36950111c00c761966538d71a937320b1db23909fb`.
+- Ran the sole certified launcher under hostile inherited Python-path,
+  bytecode-cache, and Make settings.  It rejected the false interpreter and
+  all bytecode, extra-file, extra-directory, symlink, and FIFO controls before
+  import; all six tests and all seventeen verifier/cross-check programs then
+  passed, and the rebuilt PDF matched byte-for-byte.  The 173-line transcript
+  has SHA-256
+  `2da516f0d8d61230e8deb911c170ae6dbdcd59b13e6fed0574d7f6968dcec11e`.
+- A final independent hostile audit verified the scientific commit binding,
+  all 83 package payloads, all 73 source members, the exact 84-file transport,
+  the replay transcript, and the final page-1/page-3 renders.  It found no
+  blocker or minor defect.
+- Refreshed the existing Google Drive R4 folder, transport archive and
+  checksum, plus the mobile-access `main.tex` and `references.tex` copies.
+  The Drive package passed its own exact verifier and byte comparisons against
+  the repository artifacts.
+- Paper I Figure 1/date refresh and R4 handoff: 100% complete.  Only
+  human-controlled upload or submission actions remain.
