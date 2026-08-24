@@ -1,5 +1,20 @@
 # Changelog
 
+## Canonical bioRxiv and archival preparation -- 23 August 2026
+
+- Designated `k2p_k3p_theta_clarified/` as the sole current manuscript,
+  verification, submission, and release subtree.
+- Marked the similarly named parent files and parent ZIP as historical inputs
+  that must not be submitted or redeposited.
+- Added bioRxiv official-requirements notes, an upload-metadata worksheet, and a
+  permanence-aware final approval checklist.
+- Added citation metadata, explicit mixed-material licensing boundaries, and an
+  MIT license for executable verifier/build code only.
+- Added a Zenodo metadata template with unresolved author-license, release,
+  commit, and DOI placeholders.
+- Added a deterministic Git-subtree release builder that excludes untracked
+  caches and the legacy parent package and performs a two-build byte comparison.
+
 ## Displayed-tree clarification revision
 
 The additive `k2p_k3p_theta_clarified/` release makes the existing construction unambiguous without changing any mathematical parameter or conclusion.

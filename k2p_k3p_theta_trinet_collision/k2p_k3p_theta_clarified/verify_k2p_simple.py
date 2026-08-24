@@ -4,13 +4,25 @@
 Only Python's standard library is used. Algebra is in Q(s), s^2=71.
 """
 from __future__ import annotations
-import itertools,json
+import itertools,json,math,sys
 from dataclasses import dataclass
 from fractions import Fraction as F
 from pathlib import Path
 C=json.loads((Path(__file__).parent/'certificate_k2p_simple.json').read_text())
 def need(x,msg):
     if not x:raise AssertionError(msg)
+def require_python():
+    if sys.version_info < (3,10):
+        raise SystemExit('Python 3.10 or newer is required')
+def field():
+    data=C['field']
+    need(data['minimal_polynomial']=='s^2-71','minimal polynomial')
+    need(data['basis']==['1','sqrt(71)'],'field basis')
+    lo,hi=map(F,data['positive_root_interval'])
+    need(F(0)<lo<hi,'positive ordered sqrt(71) interval')
+    need(lo*lo<F(71)<hi*hi,'interval must isolate positive sqrt(71)')
+    need(math.isqrt(71)**2!=71,'71 must be nonsquare')
+    print('[field] PASS  sqrt(71) is irrational and rigorously isolated')
 @dataclass(frozen=True)
 class Q:
     a:F;b:F=F(0)
@@ -63,23 +75,36 @@ def topology():
     need(core==want,'theta core');need(len(C['semi_directed']['incident_leaf_edges'])==3,'three leaf sides')
     print('[topology] PASS  rooted binary DAG suppresses to a strict level-two theta 3-blob')
 def edges():
+    transition_entries=[]
     for name,e in V.items():
         need(e[0]==ONE and e[1]==e[3],name+' K2P form')
         for x in e[1:]:x.positive(name+' eigenvalue');(ONE-x).positive(name+' eigenvalue <1')
         ps=probs(e)
         for p in ps:p.positive(name+' transition')
+        transition_entries.extend(ps)
         need(sum(ps,ZERO)==ONE,name+' transition sum')
     for name,e in TREE.items():
         need(e[1]==e[3],name+' K2P form')
         for x in e[1:]:x.positive(name+' eigenvalue');(ONE-x).positive(name+' eigenvalue <1')
-        for p in probs(e):p.positive(name+' transition')
+        ps=probs(e)
+        for p in ps:p.positive(name+' transition')
+        transition_entries.extend(ps)
     need(V['K_odot_K']==tuple(V['K'][i]*V['K'][i] for i in range(4)),'root suppression edge')
+    claimed=Q(F(1,120))
+    need(any(p==claimed for p in transition_entries),'claimed minimum transition entry')
+    for p in transition_entries:
+        d=p-claimed
+        need(d==ZERO or d.interval()[0]>0,'global minimum transition entry')
     print('[parameters] PASS  all network, effective, and tree edges lie strictly in Theta_0')
+    print('[parameters] PASS  exact global minimum transition entry is 1/120')
 def collision():
     K,U,W,S,T0=V['K'],V['U'],V['V'],V['S'],V['T'];M={}
+    mixing={name:F(value) for name,value in C['mixing_parameters'].items()}
+    need(mixing=={'r2':F(1,2),'r3':F(1,2)},'inheritance parameters must both equal 1/2')
+    d2,d3=mixing['r2'],mixing['r3']
     for y,z in itertools.product(range(4),repeat=2):
-        x=y^z;terms=(S[y]*S[z]*U[x],S[y]*T0[z]*U[y]*W[z],T0[y]*S[z]*U[z]*W[y],T0[y]*T0[z]*W[x])
-        M[y,z]=sum(terms,ZERO).scale(F(1,4));need(M[y,z]==P[x]*R[y]*R[z],f'factor {y,z}')
+        x=y^z;terms=((S[y]*S[z]*U[x]).scale(d2*d3),(S[y]*T0[z]*U[y]*W[z]).scale(d2*(1-d3)),(T0[y]*S[z]*U[z]*W[y]).scale((1-d2)*d3),(T0[y]*T0[z]*W[x]).scale((1-d2)*(1-d3)))
+        M[y,z]=sum(terms,ZERO);need(M[y,z]==P[x]*R[y]*R[z],f'factor {y,z}')
     qn={};qt={}
     for x,y,z in itertools.product(range(4),repeat=3):
         if x^y^z:qn[x,y,z]=qt[x,y,z]=ZERO
@@ -93,7 +118,15 @@ def collision():
     need(sum(pp.values(),ZERO)==ONE,'pattern normalization')
     q=lambda s:qn[tuple(SYM.index(c) for c in s)]
     inv=q('AGG')*q('GAG')*(q('CCA')**2)-q('AAA')*q('GGA')*(q('TCG')**2);need(inv==ZERO,'Q')
-    m=min(pp,key=lambda x:pp[x].interval()[0]);need(pp[m].raw()==C['minimum_pattern']['value'],'minimum')
+    label=C['minimum_pattern']['label'];m=tuple(SYM.index(c) for c in label)
+    claimed=parse(C['minimum_pattern']['value'])
+    need(pp[m]==claimed,'labelled minimum')
+    need(claimed.b==0 and str(claimed.a)==C['minimum_pattern']['rational_value_if_applicable'],'rational minimum value')
+    minimizers=[]
+    for pat,value in pp.items():
+        difference=value-claimed
+        if difference==ZERO:minimizers.append(pat)
+        else:difference.positive(f'global minimum comparison at {pat}')
     print('[collision] PASS  all 16 factors, 64 Fourier coordinates, and 64 positive patterns; Q=0')
-    print('[collision] INFO  minimum pattern =',pp[m].raw())
-if __name__=='__main__':topology();edges();collision();print('\nALL SIMPLE K2P CHECKS PASSED')
+    print(f'[collision] PASS  exact global minimum = {claimed.a}, attained by {len(minimizers)} patterns')
+if __name__=='__main__':require_python();field();topology();edges();collision();print('\nALL SIMPLE K2P CHECKS PASSED')

@@ -51,9 +51,10 @@
   \node[retic]  (rr2) at (0,0) {$r_2$};
   \node[retic]  (rr3) at (0,-1.30) {$r_3$};
   \node[leaf] (ll1) at (0,2.80) {$1$};
-  % Leaf 2 sits inside one face of the planar theta embedding; its
-  % incident edge is nevertheless a cut edge and is not part of the blob.
-  \node[leaf] (ll2) at (1.05,0.72) {$2$};
+  % Leaf 2 sits inside one face of the planar theta embedding.  Placing it
+  % on the vertical through r2 keeps its pendant cut edge visually separate
+  % from every edge of the theta core.
+  \node[leaf] (ll2) at (0,0.72) {$2$};
   \node[leaf] (ll3) at (0,-2.55) {$3$};
 
   \draw[blobedge] (pp) -- node[edge label,above left] {$U$} (uu);
@@ -63,7 +64,7 @@
   \draw[blobretic] (pp) -- node[edge label,below left] {$S$} (rr3);
   \draw[blobretic] (qq) -- node[edge label,below right] {$T$} (rr3);
   \draw[undirected] (uu) -- node[edge label,right] {$K\odot K$} (ll1);
-  \draw[undirected] (rr2) -- node[edge label,above left] {$K$} (ll2);
+  \draw[undirected] (rr2) -- node[edge label,right] {$K$} (ll2);
   \draw[undirected] (rr3) -- node[edge label,right] {$K$} (ll3);
 
   \node[font=\scriptsize,align=center] at (-2.55,-2.35)

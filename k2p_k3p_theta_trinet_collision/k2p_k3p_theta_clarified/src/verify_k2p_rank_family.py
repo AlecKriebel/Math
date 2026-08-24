@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Exact K2P rank and collision-family audit (standard library only)."""
 from __future__ import annotations
-import importlib.util,json,sys
+import importlib.util,json,math,sys
 from dataclasses import dataclass
 from fractions import Fraction as F
 from pathlib import Path
@@ -10,6 +10,10 @@ spec=importlib.util.spec_from_file_location('k2pext',ROOT/'src/verify_k2p_extend
 SIMPLE=json.loads((ROOT/'certificate_k2p_simple.json').read_text())
 def need(c,msg):
     if not c:raise AssertionError(msg)
+def verify_q71_field():
+    field=SIMPLE['field'];need(field['minimal_polynomial']=='s^2-71','Q(sqrt(71)) minimal polynomial');need(field['basis']==['1','sqrt(71)'],'Q(sqrt(71)) basis')
+    lo,hi=map(F,field['positive_root_interval']);need(F(0)<lo<hi,'positive ordered sqrt(71) interval');need(lo*lo<F(71)<hi*hi,'interval isolates positive sqrt(71)');need(math.isqrt(71)**2!=71,'71 is nonsquare')
+    print('[field] PASS  Q(sqrt(71)) and its positive embedding are certified')
 ROWS=[(0,1,1),(0,2,2),(1,0,1),(1,1,0),(1,2,3),(1,3,2),(2,0,2),(2,1,3),(2,2,0)]
 COLS=['rho_1.C','rho_1.G','u_p.C','u_p.G','u_q.C','u_q.G','p_r2.C','p_r2.G','q_r2.C']
 @dataclass(frozen=True)
@@ -20,7 +24,7 @@ class Dual:
     def __sub__(self,o):return self+(-o)
     def __mul__(self,o):return Dual(self.v*o.v,tuple(self.v*b+a*o.v for a,b in zip(self.d,o.d)))
     def scale(self,q):return Dual(self.v.scale(q) if hasattr(self.v,'scale') else self.v*F(q),tuple(x.scale(q) if hasattr(x,'scale') else x*F(q) for x in self.d))
-def dual_matrix(values,zero,one):
+def dual_matrix(values,zero,one,d2,d3):
     n=9
     def constvec(e):return [Dual(x,(zero,)*n) for x in e]
     def lift(e,prefix):
@@ -33,7 +37,7 @@ def dual_matrix(values,zero,one):
     Kr1=lift(K,'rho_1');Kru=constvec(K);K2=constvec(K);K3=constvec(K);UU=lift(U,'u_p');VV=lift(V,'u_q');A2=lift(A,'p_r2');A3=constvec(A);B2=lift(B,'q_r2');B3=constvec(B)
     out=[]
     for x,y,z in ROWS:
-        core=(A2[y]*A3[z]*UU[y^z]+A2[y]*B3[z]*UU[y]*VV[z]+B2[y]*A3[z]*VV[y]*UU[z]+B2[y]*B3[z]*VV[y^z]).scale(F(1,4));q=Kr1[x]*Kru[x]*K2[y]*K3[z]*core;out.append(list(q.d))
+        core=(A2[y]*A3[z]*UU[y^z]).scale(d2*d3)+(A2[y]*B3[z]*UU[y]*VV[z]).scale(d2*(1-d3))+(B2[y]*A3[z]*VV[y]*UU[z]).scale((1-d2)*d3)+(B2[y]*B3[z]*VV[y^z]).scale((1-d2)*(1-d3));q=Kr1[x]*Kru[x]*K2[y]*K3[z]*core;out.append(list(q.d))
     return out
 
 TREE_ROWS=[(0,1,1),(0,2,2),(1,0,1),(1,1,0),(1,2,3),(2,0,2)]
@@ -116,11 +120,12 @@ def determinant_formula(values,scale):
     f=-b*v+b+d*x-d;g=a*a*d*v*x-a*b*c*u*v*w+a*c*d*u*w*x-b*c*c*v*x
     return a*a*b*c*c*d*(kc**15)*(kg**11)*u*u*v*w*w*f*f*g*scale(F(1,1024)),f,g
 def simple_rank():
+    mixing={name:F(value) for name,value in SIMPLE['mixing_parameters'].items()};need(mixing=={'r2':F(1,2),'r3':F(1,2)},'simple rank inheritance weights')
     raw=SIMPLE['network_vectors']
     def q(name):return tuple(m.Alg.rat(F(z[0])) for z in raw[name])
-    values={'K':q('K'),'U':q('U'),'V':q('V'),'A':q('S'),'B':q('T')};A=dual_matrix(values,m.Alg.zero(),m.Alg.one());det=det_alg(A);formula,f,g=determinant_formula(values,lambda q:m.Alg.rat(q));need(det==formula,'simple determinant factorization');need(det.c[1:]==(F(0),)*5 and str(det.c[0])==SIMPLE['network_rank']['determinant'],'simple determinant');f.require_positive('first rank factor');(-g).require_positive('negative final factor');print('[K2P rank] PASS  simple witness rank 9 with det =',det.c[0])
+    values={'K':q('K'),'U':q('U'),'V':q('V'),'A':q('S'),'B':q('T')};A=dual_matrix(values,m.Alg.zero(),m.Alg.one(),mixing['r2'],mixing['r3']);det=det_alg(A);formula,f,g=determinant_formula(values,lambda q:m.Alg.rat(q));need(det==formula,'simple determinant factorization');need(det.c[1:]==(F(0),)*5 and str(det.c[0])==SIMPLE['network_rank']['determinant'],'simple determinant');f.require_positive('first rank factor');(-g).require_positive('negative final factor');print('[K2P rank] PASS  simple witness rank 9 with det =',det.c[0])
 def continuous_rank():
-    values={k:m.network_vectors[k] for k in ('K','U','V','A','B')};A=dual_matrix(values,m.Alg.zero(),m.Alg.one());det=det_alg(A);formula,f,g=determinant_formula(values,lambda q:m.Alg.rat(q));need(det==formula,'continuous determinant factorization');f.require_positive('continuous squared factor');(-g).require_positive('continuous final factor');lo,hi=det.interval();need(hi<0,'continuous determinant negative');print(f'[K2P rank] PASS  strict-continuous-time witness rank 9; det in [{float(lo):.6e},{float(hi):.6e}]')
+    need(m.MIXING=={'r2':F(1,2),'r3':F(1,2)},'continuous rank inheritance weights');values={k:m.network_vectors[k] for k in ('K','U','V','A','B')};A=dual_matrix(values,m.Alg.zero(),m.Alg.one(),m.MIXING['r2'],m.MIXING['r3']);det=det_alg(A);formula,f,g=determinant_formula(values,lambda q:m.Alg.rat(q));need(det==formula,'continuous determinant factorization');f.require_positive('continuous squared factor');(-g).require_positive('continuous final factor');lo,hi=det.interval();need(hi<0,'continuous determinant negative');print(f'[K2P rank] PASS  strict-continuous-time witness rank 9; det in [{float(lo):.6e},{float(hi):.6e}]')
 def family():
     @dataclass(frozen=True)
     class D2:
@@ -136,4 +141,4 @@ def family():
             return z
     u=D2(F(4,5),(0,0));v=D2(F(19,30),(1,0));w=D2(F(7,240),(0,0));x=D2(F(239,360),(0,1));a=D2(F(1,4),(0,0));b=D2(F(1,2),(0,0));c=D2(F(1,3),(0,0));d=D2(F(1,27),(0,0))
     MAC=(a*u+c*w).scale(F(1,2));MAG=(b*v+d*x).scale(F(1,2));MCC=(a*a+(a*c*u*w).scale(2)+c*c).scale(F(1,4));MGG=(b*b+(b*d*v*x).scale(2)+d*d).scale(F(1,4));MCG=(a*b*u+a*d*u*x+b*c*v*w+c*d*w).scale(F(1,4));MCT=(a*a*v+(a*c*u*w).scale(2)+c*c*x).scale(F(1,4));F1=MCG*MCG-MAC*MAC*MGG;F2=MCT*MCT*MGG-MAG*MAG*MCC*MCC;need(F1.v==0 and F2.v==0,'family equations');jac=F1.d[0]*F2.d[1]-F1.d[1]*F2.d[0];want=F(SIMPLE['symmetric_collision_family']['jacobian_determinant_at_witness']);need(jac==want and jac>0,'family Jacobian');print('[K2P family] PASS  exact two-equation core has rank 2; local positive family dimension 6');print('[K2P geometry] PASS  ambient/tree dimensions 9/6; semi-directed theta collision locus dimension 17 (codimension 3)')
-if __name__=='__main__':simple_rank();tree_rank();continuous_rank();family();print('\nALL K2P RANK/FAMILY CHECKS PASSED')
+if __name__=='__main__':m.require_python();verify_q71_field();m.verify_field();simple_rank();tree_rank();continuous_rank();family();print('\nALL K2P RANK/FAMILY CHECKS PASSED')

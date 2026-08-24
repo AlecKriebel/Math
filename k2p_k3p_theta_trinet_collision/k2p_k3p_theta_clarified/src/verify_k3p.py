@@ -338,17 +338,33 @@ class Verification:
     def verify_field(self) -> None:
         field = self.cert["field"]
         require(isinstance(field, Mapping), "field data")
+        require_equal(field["generator"], "h", "field generator")
         require_equal(field["minimal_polynomial"], "5*h^4-1", "minimal polynomial text")
         require_equal(field["relation"], "h^4=1/5", "field relation text")
+        require_equal(field["basis"], ["1", "h", "h^2", "h^3"], "field basis labels")
+        require_equal(
+            field["encoding"],
+            "[c0,c1,c2,c3] means c0+c1*h+c2*h^2+c3*h^3",
+            "field tuple encoding",
+        )
+        require_equal(field["number_field"], "Q(h)", "number-field label")
         require(Fraction(0) < self.lo < self.hi < Fraction(1), "invalid positive isolating interval")
         f_lo = 5 * self.lo ** 4 - 1
         f_hi = 5 * self.hi ** 4 - 1
         require(f_lo < 0 < f_hi, "interval does not isolate a root of 5*h^4-1")
         # The polynomial is strictly increasing on the positive axis, so this
         # sign change isolates the unique positive root.
+        # If y=1/h then y^4-5=0.  That reciprocal polynomial is Eisenstein at
+        # 5, so it is irreducible over Q and the four displayed powers are a
+        # genuine field basis rather than merely a quotient-ring convention.
+        reciprocal = [-5, 0, 0, 0, 1]
+        require(reciprocal[-1] % 5 != 0, "Eisenstein leading coefficient")
+        require(all(coefficient % 5 == 0 for coefficient in reciprocal[:-1]),
+                "Eisenstein nonleading coefficients")
+        require(reciprocal[0] % 25 != 0, "Eisenstein constant coefficient")
         h = Alg.h()
         require_zero((h * h * h * h).scale(5) - Alg.one(), "quartic relation")
-        print("[field] PASS  Q(h), h^4=1/5, basis 1,h,h^2,h^3, with 2/3 < h < 7/10")
+        print("[field] PASS  irreducible Q(h), h^4=1/5, basis 1,h,h^2,h^3, with 2/3 < h < 7/10")
 
     # ---- Topology and root suppression --------------------------------------
 
@@ -1175,9 +1191,24 @@ class Verification:
         print("[continuous time] PASS  algebraic hypotheses for the analytic IFT corollary verified")
 
 
+def verify_sidecars(certificate_path: Path, data: Mapping[str, object]) -> None:
+    """Bind the two human-sized K3P sidecars to the embedded certificate data."""
+    for section, filename in (
+        ("jacobian", "jacobian_certificate_k3p.json"),
+        ("continuous_time", "continuous_time_certificate_k3p.json"),
+    ):
+        sidecar_path = certificate_path.parent / filename
+        require(sidecar_path.is_file(), f"missing K3P sidecar {filename}")
+        sidecar = json.loads(sidecar_path.read_text(encoding="utf-8"))
+        require(sidecar == data[section],
+                f"{filename} must equal embedded {section} section")
+    print("[sidecars] PASS  Jacobian and continuous-time sidecars equal their embedded sections")
+
+
 def verify(certificate_path: Path) -> None:
     data = json.loads(certificate_path.read_text(encoding="utf-8"))
     require_equal(data["schema_version"], "3.0", "certificate schema version")
+    verify_sidecars(certificate_path, data)
     verification = Verification(data)
     verification.verify_field()
     verification.verify_topology()
@@ -1191,6 +1222,8 @@ def verify(certificate_path: Path) -> None:
 
 
 def main() -> None:
+    if sys.version_info < (3, 10):
+        raise SystemExit("Python 3.10 or newer is required")
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "certificate",

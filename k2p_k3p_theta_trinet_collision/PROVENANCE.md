@@ -1,10 +1,21 @@
 # Provenance and reproducibility
 
-## Status
+## Canonical status -- 23 August 2026
 
-August 2026. This repository is public. The pre-clarification combined package first appears in repository history at commit `ca21a733`, dated 4 August 2026, and was linked from the public project page by commit `85cdead2`. The source authors have been contacted and are auditing the construction. No journal or arXiv submission has occurred.
+`k2p_k3p_theta_clarified/` is the sole current manuscript,
+verification, submission, and archival subtree. The paper, summaries,
+certificates, verifiers, and ZIP in this parent directory are retained only as
+pre-clarification history. They must not be treated as a parallel current
+package or included in a new deposit.
 
-The clarification revision is additive and lives in `k2p_k3p_theta_clarified/`. No Git history was rewritten. The pre-clarification paper, summary, certificates, and original verifier modules remain in place; the parent navigation and provenance files were updated to identify the clarification.
+This repository is public. The pre-clarification combined package first appears
+in repository history at commit `ca21a733`, dated 4 August 2026, and was linked
+from the public project page by commit `85cdead2`. The clarification revision is
+additive and no Git history was rewritten. A bioRxiv submission candidate and
+its author-facing metadata are prepared in the canonical subtree. The frozen
+source/replay snapshot is version `1.0.0`, identified by the Git tag
+`k2p-k3p-theta-biorxiv-v1.0.0`. No external communication was initiated during
+this preparation checkpoint.
 
 ## Discovery sequence
 

@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
-"""One-command exact replay of the historical K2P/K3P verification package."""
+"""Delegate to the sole current K2P/K3P verification package."""
 from pathlib import Path
 import subprocess,sys
 ROOT=Path(__file__).resolve().parent
-STEPS=[('source conventions',ROOT/'src/verify_source_conventions.py'),('simple K2P collision',ROOT/'verify_k2p_simple.py'),('strict continuous-time K2P and proof audit',ROOT/'src/verify_k2p_extended.py'),('K2P rank and collision families',ROOT/'src/verify_k2p_rank_family.py'),('K3P collision, rank, and analytic-IFT data',ROOT/'src/verify_k3p.py')]
-for title,path in STEPS:
-    print('\n'+'='*78,flush=True);print(title.upper(),flush=True);print('='*78,flush=True);subprocess.run([sys.executable,str(path)],cwd=ROOT,check=True)
-print('\nALL EXACT CHECKS PASSED')
+CANONICAL=ROOT/'k2p_k3p_theta_clarified'
+subprocess.run([sys.executable,str(CANONICAL/'verify.py')],cwd=CANONICAL,check=True)

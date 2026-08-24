@@ -11,7 +11,7 @@
 \begin{center}
 {\Large\bfseries K2P Displayed-Tree Clarification}\par
 {\large Exact edge placement and four-switching derivation}\par
-Alec Kriebel \hfill August 2026
+Alec Kriebel \quad \href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}\hfill August 2026
 \end{center}
 
 This note removes a compressed wording ambiguity in the exact $\mathbb Q(\sqrt{71})$ tree--theta-trinet witness. It changes no vector, matrix entry, factorization, or conclusion. The rooted network has arcs
@@ -117,6 +117,8 @@ All $64$ Fourier coordinates and all $64$ pattern probabilities agree exactly, t
 
 \textbf{Independent checks.} The new verifier literally deletes the unselected incoming reticulation edges, reconstructs each retained graph, computes every edge label from its labelled descendants, and recovers the four monomials above. Independently of that Fourier factorization, it performs ordinary-state Markov pruning with the exact $4\times4$ K2P transition matrices on each of the four displayed rooted trees, averages their distributions, and compares with both the comparison tree and Fourier inversion. All $64$ probabilities agree exactly. As a source-convention check, the same descendant-label rule reproduces all five explicit 3-sunlet Fourier coordinates displayed in Lemma~4.1 of arXiv:2607.12919v2.
 
-The calculation is replayed with the Python standard library by
+The calculation is replayed with Python 3.10 or newer and the standard library:
+\begin{center}
 \texttt{python3 verify\_k2p\_displayed\_trees.py}.
+\end{center}
 \end{document}

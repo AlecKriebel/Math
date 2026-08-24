@@ -10,6 +10,8 @@ from __future__ import annotations
 
 import itertools
 import json
+import math
+import sys
 from dataclasses import dataclass
 from fractions import Fraction
 from pathlib import Path
@@ -28,6 +30,11 @@ def F(x: str | int | Fraction, den: int | None = None) -> Fraction:
 def require(ok: bool, msg: str) -> None:
     if not ok:
         raise AssertionError(msg)
+
+
+def require_python() -> None:
+    if sys.version_info < (3, 10):
+        raise SystemExit("Python 3.10 or newer is required")
 
 
 # f(ell)=F3 ell^3 + F2 ell^2 + F1 ell + F0
@@ -167,6 +174,21 @@ def parse_alg(raw: Sequence[str]) -> Alg:
     return Alg(tuple(F(x) for x in raw))  # type: ignore[arg-type]
 
 
+def require_global_minimum(
+    named_values: Iterable[Tuple[str, Alg]], claimed: Alg, message: str
+) -> List[str]:
+    """Prove from exact equality or disjoint rational intervals that claimed is minimal."""
+    minimizers: List[str] = []
+    for name, value in named_values:
+        difference = value - claimed
+        if difference.is_zero():
+            minimizers.append(name)
+        else:
+            difference.require_positive(f"{message}: value at {name} minus claimed minimum")
+    require(minimizers, f"{message}: claimed minimum is not attained")
+    return minimizers
+
+
 # ---- polynomial/Sturm utilities for isolating ell --------------------------
 
 def trim(p: List[Fraction]) -> List[Fraction]:
@@ -224,7 +246,34 @@ def variations(seq: Sequence[Sequence[Fraction]], x: Fraction) -> int:
 
 
 def verify_field() -> None:
+    require(CERT.get("schema_version") == "1.0", "continuous-time certificate schema version")
+    field = CERT.get("field")
+    require(isinstance(field, Mapping), "continuous-time field metadata")
+    require(
+        field.get("basis")
+        == ["1", "ell", "ell^2", "sqrt(1423)", "sqrt(1423)*ell", "sqrt(1423)*ell^2"],
+        "continuous-time field basis labels",
+    )
     p = [F0, F1, F2, F3]
+    require(F3 != 0, "ell polynomial must be cubic")
+    require(F(0) < ELL_LO < ELL_HI, "ell interval must be positive and ordered")
+    require(F(0) < SQ_LO < SQ_HI, "sqrt interval must be positive and ordered")
+    integer_coefficients = [x.numerator for x in p]
+    require(all(x.denominator == 1 for x in p), "ell polynomial must have integer coefficients")
+    content = 0
+    for coefficient in integer_coefficients:
+        content = math.gcd(content, abs(coefficient))
+    require(content == 1, "ell polynomial must be primitive")
+    # A cubic over a field is irreducible iff it has no root.  Reduction
+    # modulo 37 is [10,35,3,28] and has no root, proving irreducibility over Q.
+    prime = 37
+    require(integer_coefficients[3] % prime != 0, "cubic degree drops modulo 37")
+    require(all(
+        sum(integer_coefficients[i] * pow(x, i, prime) for i in range(4)) % prime
+        for x in range(prime)
+    ), "ell polynomial has a root modulo 37")
+    require(RAD > 0 and math.isqrt(RAD) ** 2 != RAD,
+            "sqrt radicand must be positive and nonsquare")
     require(eval_poly(p, ELL_LO) * eval_poly(p, ELL_HI) < 0,
             "ell polynomial must change sign across isolating interval")
     seq = sturm_sequence(p)
@@ -237,7 +286,10 @@ def verify_field() -> None:
     require((ell ** 3).scale(F3) + (ell ** 2).scale(F2) + ell.scale(F1) + Alg.rat(F0) == Alg.zero(),
             "ell minimal-polynomial relation")
     require(sq * sq == Alg.rat(RAD), "sqrt relation")
-    print("[field] PASS  cubic root and sqrt(1423) isolated rigorously")
+    # The irreducible cubic field cannot contain a quadratic subfield, so
+    # adjoining the nonsquare square root really gives the represented degree 6.
+    print("[field] PASS  irreducible cubic root and sqrt(1423) isolated rigorously")
+    print("[field] PASS  the six displayed monomials form a valid number-field basis")
 
 
 # ---- group/K2P utilities ---------------------------------------------------
@@ -289,6 +341,7 @@ tree_vectors = {name: tuple(parse_alg(x) for x in row)
                 for name, row in CERT["tree_vectors"].items()}
 core_vectors = {name: tuple(parse_alg(x) for x in row)
                 for name, row in CERT["core_tree_factors"].items()}
+MIXING = {name: F(value) for name, value in CERT["mixing_parameters"].items()}
 
 ARCS = {row["id"]: (row["parent"], row["child"], row["vector"])
         for row in CERT["rooted_network"]["arcs"]}
@@ -298,6 +351,54 @@ LEAF_POS = {"1": 0, "2": 1, "3": 2}
 
 
 def verify_topology() -> None:
+    rooted = CERT["rooted_network"]
+    require(
+        len(rooted["vertices"]) == len(NODES) == 9,
+        "rooted vertices must have nine unique IDs",
+    )
+    require(
+        len(rooted["arcs"]) == len(ARCS) == 10,
+        "rooted arcs must have ten unique IDs",
+    )
+    require(
+        NODES
+        == {
+            "rho": "root",
+            "u": "tree",
+            "p": "tree",
+            "q": "tree",
+            "r2": "reticulation",
+            "r3": "reticulation",
+            "1": "leaf",
+            "2": "leaf",
+            "3": "leaf",
+        },
+        "exact rooted vertex/type map",
+    )
+    require(
+        ARCS
+        == {
+            "rho_1": ("rho", "1", "K"),
+            "rho_u": ("rho", "u", "K"),
+            "u_p": ("u", "p", "U"),
+            "u_q": ("u", "q", "V"),
+            "p_r2": ("p", "r2", "A"),
+            "q_r2": ("q", "r2", "B"),
+            "p_r3": ("p", "r3", "A"),
+            "q_r3": ("q", "r3", "B"),
+            "r2_2": ("r2", "2", "K"),
+            "r3_3": ("r3", "3", "K"),
+        },
+        "exact rooted arc/vector map",
+    )
+    require(
+        RETICS
+        == {
+            "r2": [{"edge_id": "p_r2"}, {"edge_id": "q_r2"}],
+            "r3": [{"edge_id": "p_r3"}, {"edge_id": "q_r3"}],
+        },
+        "exact reticulation incoming-edge map",
+    )
     indeg = {v: 0 for v in NODES}
     outdeg = {v: 0 for v in NODES}
     children = {v: [] for v in NODES}
@@ -354,20 +455,33 @@ def verify_topology() -> None:
 
 
 def verify_parameters() -> None:
+    eigenvalues: List[Tuple[str, Alg]] = []
+    rate_margins: List[Tuple[str, Alg]] = []
     for name, e in network_vectors.items():
         check_edge("network " + name, e)
+        eigenvalues.extend((f"network {name}.{sym}", val)
+                           for sym, val in zip(SYMBOLS[1:], e[1:]))
+        rate_margins.append((f"network {name}", e[2] - e[1] * e[1]))
     # Effective root-suppressed leaf-1 edge K odot K.
     K = network_vectors["K"]
     effective = tuple(x * x for x in K)
     expected = k2p_vector(Alg.rat(F(1, 4)), Alg.rat(F(1, 4)))
     require(effective == expected, "effective K odot K edge")
     check_edge("effective KxK", effective)
+    eigenvalues.extend((f"effective KxK.{sym}", val)
+                       for sym, val in zip(SYMBOLS[1:], effective[1:]))
+    rate_margins.append(("effective KxK", effective[2] - effective[1] * effective[1]))
     for name, e in tree_vectors.items():
         check_edge("tree " + name, e)
-    for d in CERT["mixing_parameters"].values():
-        q = F(d)
-        require(0 < q < 1, "mixing parameter lies in (0,1)")
+        eigenvalues.extend((f"tree {name}.{sym}", val)
+                           for sym, val in zip(SYMBOLS[1:], e[1:]))
+        rate_margins.append((f"tree {name}", e[2] - e[1] * e[1]))
+    require(MIXING == {"r2": F(1, 2), "r3": F(1, 2)},
+            "both certified inheritance parameters must equal 1/2")
+    require_global_minimum(eigenvalues, Alg.rat(F(1, 16)), "global eigenvalue minimum")
+    require_global_minimum(rate_margins, Alg.rat(F(11, 900)), "global rate-margin minimum")
     print("[parameters] PASS  all rooted/effective/tree edges are strict Theta_0 and strict continuous-time K2P")
+    print("[parameters] PASS  exact global minimum eigenvalue 1/16 and rate margin 11/900")
 
 
 # ---- exact construction identities ----------------------------------------
@@ -439,13 +553,16 @@ def displayed_term(labels: Tuple[int, int, int], choice2: int, choice3: int) -> 
 def network_q(labels: Tuple[int, int, int], fixed_r3: int | None = None) -> Alg:
     if labels[0] ^ labels[1] ^ labels[2]:
         return Alg.zero()
+    require(fixed_r3 in (None, 0, 1), "fixed r3 choice must be 0 or 1")
     choices3 = (fixed_r3,) if fixed_r3 is not None else (0, 1)
-    denom = 2 * len(choices3)
+    weights2 = (MIXING["r2"], 1 - MIXING["r2"])
+    weights3 = (MIXING["r3"], 1 - MIXING["r3"])
     total = Alg.zero()
     for c2 in (0, 1):
         for c3 in choices3:
-            total += displayed_term(labels, c2, c3)
-    return total.scale(F(1, denom))
+            weight = weights2[c2] * (weights3[c3] if fixed_r3 is None else 1)
+            total += displayed_term(labels, c2, c3).scale(weight)
+    return total
 
 
 def tree_q(labels: Tuple[int, int, int]) -> Alg:
@@ -461,13 +578,14 @@ def verify_factorization_and_distribution() -> Tuple[Dict[Tuple[int, int, int], 
     M: Dict[Tuple[int, int], Alg] = {}
     for y, z in itertools.product(range(4), repeat=2):
         x = y ^ z
+        d2, d3 = MIXING["r2"], MIXING["r3"]
         terms = (
-            A[y] * A[z] * U[x],
-            A[y] * B[z] * U[y] * V[z],
-            B[y] * A[z] * U[z] * V[y],
-            B[y] * B[z] * V[x],
+            (A[y] * A[z] * U[x]).scale(d2 * d3),
+            (A[y] * B[z] * U[y] * V[z]).scale(d2 * (1 - d3)),
+            (B[y] * A[z] * U[z] * V[y]).scale((1 - d2) * d3),
+            (B[y] * B[z] * V[x]).scale((1 - d2) * (1 - d3)),
         )
-        M[y, z] = sum(terms, Alg.zero()).scale(F(1, 4))
+        M[y, z] = sum(terms, Alg.zero())
         require(M[y, z] == P[x] * R[y] * R[z], f"core factorization at {SYMBOLS[y]},{SYMBOLS[z]}")
     print("[factorization] PASS  all 16 core identities M_yz=P_(y+z)R_yR_z")
 
@@ -489,10 +607,20 @@ def verify_factorization_and_distribution() -> Tuple[Dict[Tuple[int, int, int], 
         val.require_positive(f"pattern probability {pat}")
         probs[pat] = val
     require(sum(probs.values(), Alg.zero()) == Alg.one(), "pattern probabilities sum exactly to one")
-    min_pat = min(probs, key=lambda k: probs[k].approx())
-    lo, hi = probs[min_pat].interval()
+    min_pat = min(probs, key=lambda k: probs[k].interval()[0])
+    minimum = probs[min_pat]
+    minimizers = require_global_minimum(
+        ((str(pat), value) for pat, value in probs.items()), minimum,
+        "continuous-time pattern probability",
+    )
+    claimed_lo = Alg.rat(F("0.0149867914232177"))
+    claimed_hi = Alg.rat(F("0.0149867914232311"))
+    (minimum - claimed_lo).require_positive("claimed lower bound for p_min")
+    (claimed_hi - minimum).require_positive("claimed upper bound for p_min")
+    lo, hi = minimum.interval()
     print(f"[patterns] PASS  all 64 probabilities agree, are positive, and sum to 1")
-    print(f"[patterns] INFO  smallest interval at {min_pat}: [{float(lo):.15g}, {float(hi):.15g}]")
+    print(f"[patterns] PASS  rigorous global minimum at {len(minimizers)} patterns lies in "
+          f"[{float(lo):.15g}, {float(hi):.15g}]")
     return qn, probs
 
 
@@ -557,7 +685,11 @@ def verify_direct_state_space(fourier_probs: Mapping[Tuple[int, int, int], Alg])
     for pat in itertools.product(range(4), repeat=3):
         net = Alg.zero()
         for c2, c3 in itertools.product((0, 1), repeat=2):
-            net += direct_display_probability(pat, c2, c3).scale(F(1, 4))
+            weight = (
+                (MIXING["r2"] if c2 == 0 else 1 - MIXING["r2"])
+                * (MIXING["r3"] if c3 == 0 else 1 - MIXING["r3"])
+            )
+            net += direct_display_probability(pat, c2, c3).scale(weight)
         tree = direct_tree_probability(pat)
         require(net == tree, f"direct state-space network/tree equality at {pat}")
         require(net == fourier_probs[pat], f"direct/Fourier equality at {pat}")
@@ -596,6 +728,8 @@ def verify_claim_a() -> None:
     E = {name: k2p_vector(Alg.rat(F(row[0])), Alg.rat(F(row[1])))
          for name, row in raw["edge_s_g"].items()}
     d2, d3 = F(raw["delta2"]), F(raw["delta3"])
+    require(F(0) < d2 < F(1) and F(0) < d3 < F(1),
+            "independent-point inheritance parameters must lie in (0,1)")
     for name, e in E.items():
         check_edge("negative-Q witness " + name, e, strict_ct=False)
 
@@ -616,16 +750,28 @@ def verify_claim_a() -> None:
         val = Q(permute_q(q, perm))
         lo, hi = val.interval()
         require(hi < 0, f"Q negative for leaf permutation {perm}")
-    # Site-pattern positivity.
+    # Site-pattern positivity, normalization, and the exact claimed minimum.
+    pattern_probabilities: Dict[Tuple[int, int, int], Alg] = {}
     for pat in itertools.product(range(4), repeat=3):
         val = Alg.zero()
         for x, y, z in itertools.product(range(4), repeat=3):
             val += q[x, y, z].scale(F(CHAR[x][pat[0]] * CHAR[y][pat[1]] * CHAR[z][pat[2]], 64))
         val.require_positive(f"negative-Q witness pattern {pat}")
+        pattern_probabilities[pat] = val
+    require(sum(pattern_probabilities.values(), Alg.zero()) == Alg.one(),
+            "negative-Q witness pattern probabilities sum to one")
+    claimed = Alg.rat(F(2920987217429243, 200000000000000000))
+    minimizers = require_global_minimum(
+        ((str(pat), value) for pat, value in pattern_probabilities.items()),
+        claimed, "negative-Q point pattern probability",
+    )
     print("[sign test] PASS  an independent exact rational theta point has Q<0 in all six leaf orders")
+    print(f"[sign test] PASS  exact global minimum pattern probability is "
+          f"2920987217429243/200000000000000000 at {len(minimizers)} patterns")
 
 
 def main() -> None:
+    require_python()
     verify_field()
     verify_topology()
     verify_parameters()

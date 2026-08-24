@@ -20,7 +20,9 @@ from dataclasses import dataclass
 from fractions import Fraction
 from itertools import product
 import json
+import math
 from pathlib import Path
+import sys
 from typing import Dict, Iterable, Mapping, Sequence, Tuple
 
 
@@ -52,6 +54,23 @@ def F(value: str | int | Fraction, denominator: int | None = None) -> Fraction:
 def require(condition: bool, message: str) -> None:
     if not condition:
         raise AssertionError(message)
+
+
+def require_python() -> None:
+    if sys.version_info < (3, 10):
+        raise SystemExit("Python 3.10 or newer is required")
+
+
+def verify_field() -> None:
+    field = CERT["field"]
+    require(field["minimal_polynomial"] == "s^2-71", "minimal polynomial")
+    require(field["basis"] == ["1", "sqrt(71)"], "field basis")
+    lo, hi = map(F, field["positive_root_interval"])
+    require(F(0) < lo < hi, "positive ordered sqrt(71) interval")
+    require(lo * lo < F(71) < hi * hi,
+            "interval must isolate the positive square root of 71")
+    require(math.isqrt(71) ** 2 != 71, "71 must be nonsquare")
+    print("[field] PASS  sqrt(71) is irrational and rigorously isolated")
 
 
 def k2p_test_vector(s: Fraction, g: Fraction) -> Tuple[Fraction, Fraction, Fraction, Fraction]:
@@ -210,6 +229,12 @@ class Quad:
     def raw(self) -> list[str]:
         return [str(self.a), str(self.b)]
 
+    def interval(self) -> Tuple[Fraction, Fraction]:
+        lo, hi = map(F, CERT["field"]["positive_root_interval"])
+        if self.b >= 0:
+            return self.a + self.b * lo, self.a + self.b * hi
+        return self.a + self.b * hi, self.a + self.b * lo
+
 
 ZERO = Quad.zero()
 ONE = Quad.one()
@@ -283,6 +308,14 @@ NODES = set(NODE_TYPES)
 MIXING = {name: F(value) for name, value in CERT["mixing_parameters"].items()}
 require(MIXING == {"r2": F(1, 2), "r3": F(1, 2)},
         "the simple displayed-tree audit requires inheritance weights 1/2,1/2")
+
+
+def switch_weight(parent_r2: str, parent_r3: str) -> Fraction:
+    """Certificate-derived probability of a retained-parent combination."""
+    return (
+        (MIXING["r2"] if parent_r2 == "p" else 1 - MIXING["r2"])
+        * (MIXING["r3"] if parent_r3 == "p" else 1 - MIXING["r3"])
+    )
 
 
 def retained_edges(parent_r2: str, parent_r3: str) -> Tuple[str, ...]:
@@ -422,8 +455,10 @@ def network_fourier(leaf_labels: Tuple[int, int, int]) -> Quad:
         return ZERO
     total = ZERO
     for parent_r2, parent_r3 in product(("p", "q"), repeat=2):
-        total += edge_product(retained_edges(parent_r2, parent_r3), leaf_labels)
-    return total.scale(F(1, 4))
+        total += edge_product(
+            retained_edges(parent_r2, parent_r3), leaf_labels
+        ).scale(switch_weight(parent_r2, parent_r3))
+    return total
 
 
 def tree_fourier(leaf_labels: Tuple[int, int, int]) -> Quad:
@@ -444,13 +479,12 @@ def verify_core_and_fourier() -> Dict[Tuple[int, int, int], Quad]:
                 retained_edges(parent_r2, parent_r3), labels, core_only=True
             )
             graph_terms.append(term)
-            graph_mixture += term
+            graph_mixture += term.scale(switch_weight(parent_r2, parent_r3))
         stored_terms = [
             parse_quad(entry)
             for entry in CERT["displayed_core_terms"][SYMBOLS[y] + SYMBOLS[z]]
         ]
         require(graph_terms == stored_terms, f"displayed contribution mismatch at {(y, z)}")
-        graph_mixture = graph_mixture.scale(F(1, 4))
         expected_matrix = parse_quad(CERT["core_matrix"][SYMBOLS[y] + SYMBOLS[z]])
         require(graph_mixture == expected_matrix, f"core matrix mismatch at {(y, z)}")
         require(graph_mixture == P[x] * R[y] * R[z], f"factorization mismatch at {(y, z)}")
@@ -604,7 +638,9 @@ def verify_direct_pruning(q_network: Mapping[Tuple[int, int, int], Quad]) -> Non
     for pattern in product(range(4), repeat=3):
         network = ZERO
         for parent_r2, parent_r3 in product(("p", "q"), repeat=2):
-            network += displayed_pattern_probability(pattern, parent_r2, parent_r3).scale(F(1, 4))
+            network += displayed_pattern_probability(
+                pattern, parent_r2, parent_r3
+            ).scale(switch_weight(parent_r2, parent_r3))
         tree = tree_pattern_probability(pattern)
         label = "".join(SYMBOLS[value] for value in pattern)
         require(network == tree, f"ordinary-state network/tree mismatch at {pattern}")
@@ -617,11 +653,25 @@ def verify_direct_pruning(q_network: Mapping[Tuple[int, int, int], Quad]) -> Non
 
     require(sum(direct_probabilities.values(), ZERO) == ONE, "pattern probabilities do not sum to one")
     certificate_minimum = parse_quad(CERT["minimum_pattern"]["value"])
-    require(certificate_minimum in direct_probabilities.values(), "certificate minimum not reproduced")
+    minimizers = []
+    for pattern, value in direct_probabilities.items():
+        difference = value - certificate_minimum
+        if difference == ZERO:
+            minimizers.append(pattern)
+        else:
+            lower, upper = difference.interval()
+            require(lower > 0,
+                    f"certificate value is not a proved global minimum at {pattern}: "
+                    f"difference enclosure [{lower}, {upper}]")
+    require(minimizers, "certificate minimum not reproduced")
     print("[direct pruning] PASS  all 64 network/tree probabilities agree exactly")
+    print(f"[direct pruning] PASS  certificate value is the exact global minimum "
+          f"at {len(minimizers)} patterns")
 
 
 def main() -> None:
+    require_python()
+    verify_field()
     verify_source_convention()
     verify_displayed_tree_monomials()
     verify_transition_data()

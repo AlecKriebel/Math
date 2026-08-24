@@ -1,5 +1,36 @@
 # Changelog
 
+## bioRxiv submission and archival support -- 23 August 2026
+
+- Preserved the title and both principal collision theorems; narrowed the final
+  abstract verifier sentence so it names the checks actually performed.
+- Made the stationary-root, Fourier normalization, unrestricted theta map,
+  effective-edge conventions, exact rank minors, tree-model embeddings, and
+  implicit-function arguments explicit in the manuscript.
+- Corrected the theta figure so the leaf-2 edge no longer visually overlaps the
+  core edge; added biological scope, ORCID, keywords/MSC, contribution, funding,
+  competing-interest, code/data, and AI-assistance statements.
+- Hardened every verifier against certificate-label, topology, algebraic-field,
+  interval, minima, sidecar, and optimized-mode failure paths. The simple
+  certificate generator now checks its own exact square-root isolating interval.
+- Regenerated all verifier transcripts and all three PDFs after the final edits.
+- Made this directory the unambiguous sole current package; the parent draft,
+  verifier, certificates, and ZIP are now described as historical only.
+- Added a dated audit of official bioRxiv scope and upload guidance, reusable
+  metadata worksheet, and final approval checklist.
+- Added `CITATION.cff` with author ORCID and preferred manuscript citation.
+- Added an MIT license for executable verifier/build code and a separate file
+  documenting manuscript, certificate, transcript, and bioRxiv-license
+  boundaries.
+- Added a placeholder-driven Zenodo metadata template without selecting an
+  author-controlled manuscript or mixed-package license.
+- Added a deterministic, commit-pinned release builder with dirty-tree,
+  cache/bytecode, required-file, archive-integrity, and double-build checks.
+  Archives carry an internal full-commit/version provenance record and per-file
+  SHA-256 manifest; combined and per-archive checksum sidecars are emitted.
+- Assigned release version `1.0.0` and the immutable tag
+  `k2p-k3p-theta-biorxiv-v1.0.0`; no bioRxiv or Zenodo DOI was minted.
+
 ## Focused verifier convention check -- 13 August 2026
 
 - Added the exact rational five-coordinate 3-sunlet convention check directly to `verify_k2p_displayed_trees.py`, so the focused verifier now visibly substantiates the Lemma 4.1 convention claim in the clarification note.

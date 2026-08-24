@@ -1,10 +1,22 @@
 # Provenance and reproducibility
 
-## Public status
+## Canonical and public status -- 23 August 2026
 
-This repository is public. The pre-clarification combined K2P/K3P directory first appears in the public repository history at commit `ca21a733` dated 4 August 2026; commit `85cdead2` repointed the existing public K3P project page to that combined source directory. The full draft was therefore already present in public repository history before this clarification. This record is additive: no history was rewritten. The pre-clarification paper, summary, certificates, and original verifier modules remain in the parent directory; its navigation and provenance files were updated to identify this clarification.
+This directory is the sole current K2P/K3P manuscript, verification,
+submission, and archival subtree. The pre-clarification paper, summary,
+certificates, verifiers, and ZIP in the parent directory remain available only
+as historical records and are excluded from new submission/release instructions.
 
-The source authors have been contacted and are auditing the construction. No journal or arXiv submission of this work has occurred.
+This repository is public. The pre-clarification combined K2P/K3P directory
+first appears in public repository history at commit `ca21a733`, dated 4 August
+2026; commit `85cdead2` repointed the existing public K3P project page to that
+combined source directory. The full early draft was therefore already public
+before the clarification. This record is additive and no history was rewritten.
+
+The frozen submission/replay snapshot is version `1.0.0`, identified by the Git
+tag `k2p-k3p-theta-biorxiv-v1.0.0`. Exact upload-time status and unresolved
+author choices are recorded in `submission/biorxiv/`. No bioRxiv or Zenodo
+deposit and no external communication was initiated during preparation.
 
 ## Revision lineage
 
@@ -33,3 +45,24 @@ The focused verifier uses exact arithmetic in `Q(sqrt(71))` and only the Python 
 ## AI assistance
 
 AI-assisted mathematical research, symbolic exploration, code generation, auditing, and editorial tools contributed to discovery and preparation. Claims are exposed through proofs, exact certificates, source code, and replayable computations. No external communication was initiated by the automated revision process.
+
+## Submission and archival metadata
+
+Official bioRxiv scope, screening, formatting, funding, licensing, DOI, and
+permanence guidance was rechecked on 23 August 2026 using only official
+bioRxiv/openRxiv pages. The resulting audit and author worksheet are in
+`submission/biorxiv/`. The repository intentionally leaves the bioRxiv
+distribution option and the mixed-material Zenodo package license unresolved
+for the author.
+
+`CITATION.cff` records Alec Kriebel's ORCID and a preferred manuscript citation.
+`LICENSE-CODE` applies MIT only to executable Python and shell source;
+`LICENSES.md` defines the remaining boundaries. `submission/build_release.sh`
+archives only the committed canonical subtree and embeds the selected Git
+commit through Git's archive metadata.
+
+`manifest.sha256` and the release builder use the same public-package boundary:
+the author-only `submission/biorxiv/` worksheets are omitted, while the release
+builder and all scientific source, certificates, transcripts, and PDFs are
+included. Each built archive adds its own full-commit provenance record and an
+exact manifest of the files actually archived.

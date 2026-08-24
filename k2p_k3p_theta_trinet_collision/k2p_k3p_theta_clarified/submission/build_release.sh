@@ -1,0 +1,242 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+  printf '%s\n' \
+    'Usage: bash submission/build_release.sh --output-dir DIR [--commit REF] [--version VERSION]' \
+    '' \
+    'Build deterministic ZIP and tar.gz archives of the committed canonical' \
+    'package. REF defaults to HEAD and VERSION defaults to git-<short-commit>.' \
+    'DIR must not already contain target filenames. The canonical subtree must' \
+    'have no tracked or untracked changes. Author-only submission/biorxiv files' \
+    'are excluded from the release archives.'
+}
+
+output_dir=''
+commit_ref='HEAD'
+release_version=''
+while (($#)); do
+  case "$1" in
+    --output-dir)
+      (($# >= 2)) || { usage >&2; exit 2; }
+      output_dir=$2
+      shift 2
+      ;;
+    --commit)
+      (($# >= 2)) || { usage >&2; exit 2; }
+      commit_ref=$2
+      shift 2
+      ;;
+    --version)
+      (($# >= 2)) || { usage >&2; exit 2; }
+      release_version=$2
+      shift 2
+      ;;
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    *)
+      printf 'Unknown argument: %s\n' "$1" >&2
+      usage >&2
+      exit 2
+      ;;
+  esac
+done
+
+[[ -n "$output_dir" ]] || { usage >&2; exit 2; }
+
+script_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd -P)
+package_dir=$(cd -- "$script_dir/.." && pwd -P)
+repo_root=$(git -C "$package_dir" rev-parse --show-toplevel)
+case "$package_dir" in
+  "$repo_root"/*) package_rel=${package_dir#"$repo_root"/} ;;
+  *) printf 'Canonical package is not inside the Git worktree.\n' >&2; exit 1 ;;
+esac
+
+dirty=$(git -C "$repo_root" status --porcelain=v1 --untracked-files=all -- "$package_rel")
+if [[ -n "$dirty" ]]; then
+  printf 'Refusing to archive a modified canonical subtree:\n%s\n' "$dirty" >&2
+  exit 1
+fi
+
+full_commit=$(git -C "$repo_root" rev-parse --verify "${commit_ref}^{commit}")
+short_commit=${full_commit:0:12}
+if [[ -z "$release_version" ]]; then
+  release_version="git-${short_commit}"
+fi
+
+required=(
+  combined-paper-clarified.tex
+  combined-paper-clarified.pdf
+  verify.py
+  CITATION.cff
+  LICENSE-CODE
+  LICENSES.md
+  submission/build_release.sh
+)
+for rel in "${required[@]}"; do
+  if ! git -C "$repo_root" cat-file -e "${full_commit}:${package_rel}/${rel}"; then
+    printf 'Required release file is absent at %s: %s\n' "$short_commit" "$rel" >&2
+    exit 1
+  fi
+done
+
+excluded_prefix="${package_rel}/submission/biorxiv/"
+archive_repo_paths=()
+archive_paths=()
+while IFS= read -r repo_path; do
+  [[ "$repo_path" == "$excluded_prefix"* ]] && continue
+  archive_repo_paths+=("$repo_path")
+  archive_paths+=("${repo_path#"$package_rel"/}")
+done < <(git -C "$repo_root" ls-tree -r --name-only "$full_commit" -- "$package_rel")
+if ((${#archive_paths[@]} == 0)); then
+  printf 'No committed release files remain after applying exclusions.\n' >&2
+  exit 1
+fi
+if printf '%s\n' "${archive_paths[@]}" | grep -Eq '(^|/)(__pycache__/|[^/]*\.py[co]$)'; then
+  printf 'Refusing to archive tracked Python cache/bytecode files.\n' >&2
+  exit 1
+fi
+
+mkdir -p -- "$output_dir"
+output_dir=$(cd -- "$output_dir" && pwd -P)
+stem="k2p-k3p-theta-collision-${short_commit}"
+zip_name="${stem}.zip"
+tgz_name="${stem}.tar.gz"
+sums_name="SHA256SUMS-${short_commit}"
+zip_sidecar="${zip_name}.sha256"
+tgz_sidecar="${tgz_name}.sha256"
+for name in "$zip_name" "$tgz_name" "$sums_name" "$zip_sidecar" "$tgz_sidecar"; do
+  [[ ! -e "$output_dir/$name" ]] || {
+    printf 'Refusing to overwrite existing release output: %s\n' "$output_dir/$name" >&2
+    exit 1
+  }
+done
+
+tmp_dir=$(mktemp -d "${TMPDIR:-/tmp}/k2p-release.XXXXXX")
+trap 'rm -rf -- "$tmp_dir"' EXIT
+
+sha256_value() {
+  if command -v sha256sum >/dev/null 2>&1; then
+    sha256sum "$1" | awk '{print $1}'
+  else
+    shasum -a 256 "$1" | awk '{print $1}'
+  fi
+}
+
+# Hash exactly the committed files selected for the release archive. The two
+# generated metadata files are intentionally not self-listed; the provenance
+# record binds this manifest, and the external sidecars bind complete archives.
+for repo_path in "${archive_repo_paths[@]}"; do
+  archive_path=${repo_path#"$package_rel"/}
+  blob_file="$tmp_dir/blob"
+  git -C "$repo_root" cat-file blob "${full_commit}:${repo_path}" >"$blob_file"
+  printf '%s  %s\n' "$(sha256_value "$blob_file")" "$archive_path"
+done >"$tmp_dir/FILE_SHA256SUMS"
+file_manifest_sha256=$(sha256_value "$tmp_dir/FILE_SHA256SUMS")
+file_manifest=$(<"$tmp_dir/FILE_SHA256SUMS")
+file_manifest+=$'\n'
+provenance=$(printf '%s\n' \
+  'format-version: 1' \
+  "release-version: ${release_version}" \
+  "git-commit: ${full_commit}" \
+  'repository-url: https://github.com/AlecKriebel/Math' \
+  "canonical-subtree: ${package_rel}" \
+  "excluded-path: ${excluded_prefix}" \
+  'file-sha256-manifest: FILE_SHA256SUMS' \
+  "file-sha256-manifest-sha256: ${file_manifest_sha256}" \
+  'builder: submission/build_release.sh')
+provenance+=$'\n'
+printf '%s' "$provenance" >"$tmp_dir/RELEASE_PROVENANCE.txt"
+
+archive_common=(
+  --prefix="${stem}/"
+  --add-virtual-file="${stem}/RELEASE_PROVENANCE.txt:${provenance}"
+  --add-virtual-file="${stem}/FILE_SHA256SUMS:${file_manifest}"
+)
+
+git -C "$repo_root" archive \
+  --format=zip \
+  "${archive_common[@]}" \
+  "${full_commit}:${package_rel}" "${archive_paths[@]}" >"$tmp_dir/$zip_name"
+git -C "$repo_root" archive \
+  --format=tar \
+  "${archive_common[@]}" \
+  "${full_commit}:${package_rel}" "${archive_paths[@]}" | gzip -n -9 >"$tmp_dir/$tgz_name"
+
+# Rebuild both forms once and compare them before publishing any output.
+git -C "$repo_root" archive \
+  --format=zip \
+  "${archive_common[@]}" \
+  "${full_commit}:${package_rel}" "${archive_paths[@]}" >"$tmp_dir/recheck.zip"
+git -C "$repo_root" archive \
+  --format=tar \
+  "${archive_common[@]}" \
+  "${full_commit}:${package_rel}" "${archive_paths[@]}" | gzip -n -9 >"$tmp_dir/recheck.tar.gz"
+cmp -s "$tmp_dir/$zip_name" "$tmp_dir/recheck.zip" || {
+  printf 'ZIP determinism self-check failed.\n' >&2
+  exit 1
+}
+cmp -s "$tmp_dir/$tgz_name" "$tmp_dir/recheck.tar.gz" || {
+  printf 'tar.gz determinism self-check failed.\n' >&2
+  exit 1
+}
+
+unzip -tq "$tmp_dir/$zip_name" >/dev/null
+gzip -t "$tmp_dir/$tgz_name"
+unzip -p "$tmp_dir/$zip_name" "${stem}/RELEASE_PROVENANCE.txt" >"$tmp_dir/zip-provenance"
+cmp -s "$tmp_dir/RELEASE_PROVENANCE.txt" "$tmp_dir/zip-provenance" || {
+  printf 'ZIP internal provenance check failed.\n' >&2
+  exit 1
+}
+tar -xOzf "$tmp_dir/$tgz_name" "${stem}/RELEASE_PROVENANCE.txt" >"$tmp_dir/tar-provenance"
+cmp -s "$tmp_dir/RELEASE_PROVENANCE.txt" "$tmp_dir/tar-provenance" || {
+  printf 'tar.gz internal provenance check failed.\n' >&2
+  exit 1
+}
+unzip -p "$tmp_dir/$zip_name" "${stem}/FILE_SHA256SUMS" >"$tmp_dir/zip-file-manifest"
+cmp -s "$tmp_dir/FILE_SHA256SUMS" "$tmp_dir/zip-file-manifest" || {
+  printf 'ZIP internal file-manifest check failed.\n' >&2
+  exit 1
+}
+tar -xOzf "$tmp_dir/$tgz_name" "${stem}/FILE_SHA256SUMS" >"$tmp_dir/tar-file-manifest"
+cmp -s "$tmp_dir/FILE_SHA256SUMS" "$tmp_dir/tar-file-manifest" || {
+  printf 'tar.gz internal file-manifest check failed.\n' >&2
+  exit 1
+}
+
+extract_dir="$tmp_dir/extracted"
+mkdir -p "$extract_dir"
+unzip -q "$tmp_dir/$zip_name" -d "$extract_dir"
+if command -v sha256sum >/dev/null 2>&1; then
+  (cd "$extract_dir/$stem" && sha256sum -c FILE_SHA256SUMS >/dev/null)
+else
+  (cd "$extract_dir/$stem" && shasum -a 256 -c FILE_SHA256SUMS >/dev/null)
+fi
+
+{
+  printf '%s  %s\n' "$(sha256_value "$tmp_dir/$zip_name")" "$zip_name"
+  printf '%s  %s\n' "$(sha256_value "$tmp_dir/$tgz_name")" "$tgz_name"
+} >"$tmp_dir/$sums_name"
+printf '%s  %s\n' "$(sha256_value "$tmp_dir/$zip_name")" "$zip_name" \
+  >"$tmp_dir/$zip_sidecar"
+printf '%s  %s\n' "$(sha256_value "$tmp_dir/$tgz_name")" "$tgz_name" \
+  >"$tmp_dir/$tgz_sidecar"
+
+mv -- "$tmp_dir/$zip_name" "$output_dir/$zip_name"
+mv -- "$tmp_dir/$tgz_name" "$output_dir/$tgz_name"
+mv -- "$tmp_dir/$sums_name" "$output_dir/$sums_name"
+mv -- "$tmp_dir/$zip_sidecar" "$output_dir/$zip_sidecar"
+mv -- "$tmp_dir/$tgz_sidecar" "$output_dir/$tgz_sidecar"
+
+printf 'Release commit: %s\n' "$full_commit"
+printf 'Release version: %s\n' "$release_version"
+printf 'Canonical subtree: %s\n' "$package_rel"
+printf 'Excluded author-only path: %s\n' "$excluded_prefix"
+printf 'Created:\n  %s\n  %s\n  %s\n  %s\n  %s\n' \
+  "$output_dir/$zip_name" \
+  "$output_dir/$tgz_name" \
+  "$output_dir/$sums_name" \
+  "$output_dir/$zip_sidecar" \
+  "$output_dir/$tgz_sidecar"

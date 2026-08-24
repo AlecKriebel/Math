@@ -3,7 +3,17 @@ from dataclasses import dataclass
 from fractions import Fraction as F
 from itertools import product
 from pathlib import Path
-import json
+import json,sys
+
+if sys.version_info < (3,10):
+    raise SystemExit('Python 3.10 or newer is required')
+
+SQRT71_LO=F(8426149773176,1000000000000)
+SQRT71_HI=F(8426149773177,1000000000000)
+if not (0 < SQRT71_LO < SQRT71_HI):
+    raise RuntimeError('invalid ordered positive interval for sqrt(71)')
+if not (SQRT71_LO * SQRT71_LO < 71 < SQRT71_HI * SQRT71_HI):
+    raise RuntimeError('configured interval does not isolate sqrt(71)')
 
 @dataclass(frozen=True)
 class Q:
@@ -21,6 +31,7 @@ class Q:
             x=x*x;n//=2
         return z
     def raw(self):return [str(self.a),str(self.b)]
+    def interval(self):return ((self.a+self.b*SQRT71_LO,self.a+self.b*SQRT71_HI) if self.b>=0 else (self.a+self.b*SQRT71_HI,self.a+self.b*SQRT71_LO))
 Z=Q(F(0));O=Q(F(1));SQ=Q(F(0),F(1))
 def R(x):return Q(F(x))
 def vec(s,g):return (O,s,g,s)
@@ -47,7 +58,11 @@ for a,b,c in product(range(4),repeat=3):
     v=Z
     for x,y,z in product(range(4),repeat=3):v+=q[SYM[x]+SYM[y]+SYM[z]].scale(F(H[x][a]*H[y][b]*H[z][c],64))
     pp[SYM[a]+SYM[b]+SYM[c]]=v
-mn=min(pp,key=lambda k: float(pp[k].a)+float(pp[k].b)*(71**.5))
+mn=min(pp,key=lambda k:pp[k].interval()[0])
+for label,value in pp.items():
+    difference=value-pp[mn]
+    if difference!=Z and difference.interval()[0]<=0:
+        raise AssertionError(f'failed to prove exact minimum against {label}')
 rows=['ACC','AGG','CAC','CCA','CGT','CTG','GAG','GCT','GGA']
 cols=['rho_1.aC','rho_1.aG','u_p.aC','u_p.aG','u_q.aC','u_q.aG','p_r2.aC','p_r2.aG','q_r2.aC']
 D={
