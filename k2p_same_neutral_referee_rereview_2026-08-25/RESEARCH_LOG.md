@@ -53,3 +53,56 @@ formulas are consistent with the stated `(0,C,G,T)` / `(1,s,g,s)` convention
 on direct inspection.  Exact remaining gap: independent pullback replay, all
 finite graph semantics, actual mutation behavior, complete builds, compact and
 full execution, and final adversarial synthesis.
+
+## 2026-08-25T17:04:23Z — checkpoint 3 (estimated completion: 90%)
+
+- Completed the fresh current-package quick replay: 23/23 layers PASS in
+  382.72 seconds, maximum RSS 1,342,914,560 bytes.
+- Completed the fresh current-package full replay after one uninterrupted
+  invocation: 40/40 layers PASS in 5,466.17 seconds, maximum RSS
+  2,547,630,080 bytes.  Full report SHA-256:
+  `7b5c7d2409db3ebf53784b7581ee4723c6aed05cd977a01f01124fa2006e7a6b`.
+- Independently enumerated and graph-checked 10,084 primitive archetypes,
+  derived all raw-universe totals and completion counts, and streamed every
+  submitted raw4, theta2, cycle, restoration, probe, transport, and restriction
+  row.  Every required census and bound ledger hash agreed.
+- Independently rebuilt the corrected quartet and whole-map formulas, the
+  rank-nine triangle germ, representative direct polynomial R4Q-03, the weak
+  common tensors/Jacobians/cherry inverse, and exact rational points near the
+  strict physical boundaries.
+- Ran 12 real complete raw4-ledger corruptions through the actual submitted
+  verifier.  Every omission, duplication, direction/port, rank, direct-degree,
+  restoration-parent, and transport mutation failed at its intended semantic
+  marker rather than a checksum.
+- Found two release-evidence blockers: the submitted composite mutation runner
+  never makes mutant ledgers, and the documented ordinary release-mutation
+  gate rewrites a locked path-dependent certificate then exits 1.  Also found
+  one stale current-Authority restoration census in crosswalk C02.
+
+Strongest verified result: no counterexample or central finite-classification
+failure was found, and every current full replay layer passed from a clean
+extraction.  Exact remaining gap: synthesize and adversarially check the report,
+ledger, reseal boundary, and scientific recommendation.
+
+## 2026-08-25T17:28:40Z — checkpoint 4 (estimated completion: 100%)
+
+- Completed the fresh referee report, 40-layer execution ledger, and C01–C13
+  theorem/evidence registry with exact hashes, proof locations, code paths,
+  fresh commands, independent attacks, and evidence-type qualifications.
+- Generated a sorted SHA-256 index for every delivered review artifact, with
+  the index excluded from its own contents.
+- Scientific recommendation: **HOLD**.  Mathematics PASS; computational
+  evidence HOLD; reproducibility FAIL; human metadata PASS; release HOLD.
+- The HOLD is localized.  No theorem-fatal implication or counterexample was
+  established.  Required work is to make the quartet mutation report
+  path-independent and output-only, replace the in-memory composite mutation
+  claims with real raw4/theta2 verifier attacks, repair or narrow C02, rerun,
+  and reseal.
+- All review work remains inside the dedicated folder.  No person was
+  contacted and no authoritative submitted file was repaired.
+
+Strongest final verified result: the revised mathematical theorem and the
+operative finite classification survived the complete fresh review.  Exact
+remaining external gap: the authors must repair and reseal the three documented
+release-evidence inconsistencies before the package meets the stated ACCEPT
+standard.
