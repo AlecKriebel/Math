@@ -39,3 +39,19 @@ finite-universe completeness, direct-template table, and first equivalence
 verifier.  Best-guess completion toward a fully compressed referee-facing
 proof program: **42%**.  Higher restoration/probe archetype compression and
 manuscript integration remain deliberately unopened.
+
+## 2026-08-24 — atlas-scope rebinding
+
+- Rebound the weak-sharpness column crosswalk to the hardened current atlas
+  and independently recomputed both descriptors, named columns, and exact
+  nine-by-nine determinants.  All 15 targeted mutations remain rejected.
+- Replaced the primitive-count analyzer's redundant whole-atlas input binding
+  with the exact `CORES`-literal semantic fingerprint
+  `d5e7608f70a2243df605dee6e35d0ea6af74e4e47b42142e91ddfa4cbcbad09b`.
+  The immutable theorem release still binds every compiler byte separately;
+  this narrower binding states the dependency actually used by the count.
+- No weak-sharpness coordinate, determinant, completion count, classification,
+  or finite census changed.
+- The baseline/equivalence artifacts will be regenerated once the parent
+  final-release lock is sealed, because their purpose is to inventory that
+  complete transitive lock rather than an intermediate working tree.

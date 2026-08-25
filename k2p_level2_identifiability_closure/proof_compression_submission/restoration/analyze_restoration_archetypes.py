@@ -30,7 +30,23 @@ OUTPUT = HERE / "RESTORATION_ARCHETYPES.json"
 
 EXPECTED_FOREST_SHA256 = "43bd2be5e7626a954fc4fa4cf45e8d0e6483c947ddc9cba80f2b1a13351bc3a8"
 EXPECTED_FOREST_PAYLOAD = "0a3df52751ba38d7e6d4d118ee7068a98b7be7897d0aa732e96a74d7523a88bf"
-EXPECTED_ATLAS_SHA256 = "5b9e03653cc6960bf341fcbe7e63ffd10226d0f6a56441012212c6e3b2a26483"
+EXPECTED_COMPLETION_GRAMMAR_SHA256 = (
+    "b4ff0f51f5e1a92c65e16c2c5c348e1a31cefec93b6f3e85a5c977c4ba2f3240"
+)
+EXPECTED_RESTORATION_PARENT_SEMANTIC_SHA256 = {
+    "results/four_port_release_v4/source_0/residual_manifest.json":
+        "52a563dd803c9cdec7ebc69a328680a3eaa80b3e8db6f342aed9e812a8422afb",
+    "results/four_port_release_v4/source_1/residual_manifest.json":
+        "88335ed42bad32fdd55fca2d5027910272a8bb1fd387242779353a24f252677e",
+    "results/four_port_release_v4/source_2/residual_manifest.json":
+        "47392ec93e6822ac0fe5c0ff47897d6995f5dd3eb4cadab190c31346502e2219",
+    "results/four_port_release_v4/source_3/residual_manifest.json":
+        "13311c563b04fc1bb56bee3ee0a01aa018b16aa99e62d535a06b42df198597ab",
+    "results/four_port_release_v4/source_4/residual_manifest.json":
+        "683e5637c3704e8fbb0811ae83f095f931fe9036361fa094993606c9b79e4270",
+    "results/four_port_release_v4/source_5/residual_manifest.json":
+        "9c3a749124fb074df54e8d81d9fb6fb6c908e88e5f5bcb1e16dbff40df4e556c",
+}
 
 ROOT_RE = re.compile(r"s(\d+):c(\d+):t(\d+):p(\d{4})")
 ALGEBRA_PROOFS = {
@@ -80,6 +96,57 @@ def import_atlas():
     return module
 
 
+def record_grammar_payload(record) -> dict:
+    """The ordered completion fields consumed by this descriptive analyzer."""
+    return {
+        "core_id": record.core_id,
+        "incoming_selected": record.incoming_selected,
+        "repair_index": record.repair_index,
+        "selected_sink_mask": record.selected_sink_mask,
+        "words": record.words,
+        "selected_labels": record.selected_labels,
+        "dummy_labels": record.dummy_labels,
+        "source_support": record.source_support,
+        "extra_count": record.extra_count,
+    }
+
+
+def completion_grammar_sha256(atlas) -> str:
+    """Bind only the primitive/completion grammar used here.
+
+    The atlas also contains algebra and mixed-relation kernels.  Changes to
+    those unrelated kernels must not force a descriptive restoration
+    reclassification.  The graph records below are deterministic functions of
+    ``CORES`` and the stored completion fields.
+    """
+    payload = {
+        "CORES": atlas.CORES,
+        "source_supports": [record_grammar_payload(row) for row in atlas.source_supports()],
+        "target_completions": {
+            "4:1": [record_grammar_payload(row) for row in atlas.target_completions(4, True)],
+            "4:0": [record_grammar_payload(row) for row in atlas.target_completions(4, False)],
+        },
+    }
+    return object_sha256(payload)
+
+
+def restoration_manifest_projection(manifest: dict) -> dict:
+    """Drop runtime/compiler provenance while retaining every used request."""
+    restoration_ids = set(manifest["restoration_candidates"])
+    return {
+        "restoration_candidates": manifest["restoration_candidates"],
+        "records": [
+            {
+                "canonical_class_id": row["canonical_class_id"],
+                "status": row["status"],
+                "child_requests": row["child_requests"],
+            }
+            for row in manifest["records"]
+            if row["canonical_class_id"] in restoration_ids
+        ],
+    }
+
+
 def selected_pattern(words) -> list[list[str]]:
     return [
         ["selected" if isinstance(value, int) else str(value) for value in word]
@@ -98,9 +165,12 @@ def target_profile(record) -> dict:
     }
 
 
-def load_inputs():
+def load_inputs(atlas):
     require(file_sha256(FOREST) == EXPECTED_FOREST_SHA256, "corrected forest file drift")
-    require(file_sha256(ATLAS) == EXPECTED_ATLAS_SHA256, "atlas file drift")
+    require(
+        completion_grammar_sha256(atlas) == EXPECTED_COMPLETION_GRAMMAR_SHA256,
+        "completion grammar semantic drift",
+    )
     forest = json.loads(FOREST.read_text())
     unhashed = dict(forest)
     payload = unhashed.pop("payload_sha256")
@@ -109,12 +179,15 @@ def load_inputs():
     require(forest["status"] == "PASS", "corrected forest status")
 
     manifests = {}
-    expected_manifest_hashes = forest["inputs"]["manifest_sha256"]
     for source_index in range(6):
         relative = f"results/four_port_release_v4/source_{source_index}/residual_manifest.json"
         path = RESULTS / f"source_{source_index}/residual_manifest.json"
-        require(file_sha256(path) == expected_manifest_hashes[relative], f"manifest drift:{source_index}")
         manifest = json.loads(path.read_text())
+        require(
+            object_sha256(restoration_manifest_projection(manifest))
+            == EXPECTED_RESTORATION_PARENT_SEMANTIC_SHA256[relative],
+            f"restoration-parent manifest semantics drift:{source_index}",
+        )
         # ``unresolved`` in these source manifests is the pre-restoration raw
         # stratum, not a failure of the corrected forest consumed here.
         require(manifest["complete"], f"manifest incomplete:{source_index}")
@@ -147,8 +220,8 @@ def request_locator(record: dict, target_index: int, port_match: tuple[int, ...]
 
 
 def build_summary() -> dict:
-    forest, manifests = load_inputs()
     atlas = import_atlas()
+    forest, manifests = load_inputs(atlas)
     sources = atlas.source_supports()
     targets = atlas.target_completions(4, True) + atlas.target_completions(4, False)
     require(len(sources) == 6, "source support census")
@@ -342,8 +415,10 @@ def build_summary() -> dict:
         "source": {
             "corrected_forest_sha256": EXPECTED_FOREST_SHA256,
             "corrected_forest_payload_sha256": EXPECTED_FOREST_PAYLOAD,
-            "atlas_sha256": EXPECTED_ATLAS_SHA256,
-            "manifest_sha256": forest["inputs"]["manifest_sha256"],
+            "atlas_completion_grammar_sha256": EXPECTED_COMPLETION_GRAMMAR_SHA256,
+            "frozen_manifest_sha256": forest["inputs"]["manifest_sha256"],
+            "current_restoration_parent_semantic_sha256":
+                EXPECTED_RESTORATION_PARENT_SEMANTIC_SHA256,
         },
         "definition": {
             "kind": "descriptive structural/outcome fingerprint",
@@ -427,11 +502,20 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     group = parser.add_mutually_exclusive_group()
     group.add_argument("--emit", action="store_true", help="print the deterministic JSON artifact")
+    group.add_argument("--write", action="store_true", help="write the deterministic JSON artifact")
     group.add_argument("--check", type=Path, nargs="?", const=OUTPUT, help="compare with an existing artifact")
     args = parser.parse_args()
     generated = build_summary()
     if args.emit:
         print(json.dumps(generated, indent=2, sort_keys=True))
+        return
+    if args.write:
+        OUTPUT.write_text(json.dumps(generated, indent=2, sort_keys=True) + "\n")
+        print(json.dumps({
+            "status": "PASS",
+            "artifact_sha256": file_sha256(OUTPUT),
+            "payload_sha256": generated["payload_sha256"],
+        }, sort_keys=True))
         return
     target = args.check or OUTPUT
     require(target.exists(), f"missing archetype artifact:{target}")

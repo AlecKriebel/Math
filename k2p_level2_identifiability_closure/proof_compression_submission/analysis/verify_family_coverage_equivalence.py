@@ -31,9 +31,12 @@ TABLE_MD = TEMPLATES / "DIRECT_CERTIFICATE_TEMPLATE_TABLE.md"
 OUTPUT = HERE / "FAMILY_COVERAGE_EQUIVALENCE_CERTIFICATE.json"
 
 LOCK_REL = "work/final_theorem_release/RELEASE_LOCK.json"
-LOCK_SHA = "58e32bd29f7a039e3da4e47398e32ee8277ad46cf62271a7ed80bf41688b18fb"
-LOCK_PAYLOAD = "3b7de4c60315a5820a2623de860f493d6b76a645b5c674ffda89f12fc31a5c90"
+LOCK_SHA = "bc690c3e68a3a9d66960239ebf60a63f96da63ee5312cd2f0e8bf16d707d3ac9"
+LOCK_PAYLOAD = "541d5da2e8f7711505b21aef5a022f25a5820290e358366c121948664a9fc38c"
 ATLAS_REL = "package/referee/k2p_offline_sweep_portable/atlas/k2p_atlas_core.py"
+EXPECTED_PRIMITIVE_GRAMMAR_SHA256 = (
+    "d5e7608f70a2243df605dee6e35d0ea6af74e4e47b42142e91ddfa4cbcbad09b"
+)
 RAW4_LEDGER = "work/corrected_composite_ledgers/artifacts/raw4_corrected_composite_ledger.jsonl.gz"
 THETA2_LEDGER = "work/corrected_composite_ledgers/artifacts/theta2_corrected_composite_ledger.jsonl.gz"
 CYCLE_BASE = "work/cycle_three_port_closure/promotion/cycle_base_authoritative.jsonl.gz"
@@ -183,7 +186,7 @@ def verify_release_and_transitive_hashes() -> dict[str, str]:
             item = str(path.relative_to(PROJECT))
             need(item not in locked or locked[item] == digest, "MANIFEST_HASH_CONFLICT")
             locked[item] = digest
-    need(len(locked) == 373, "TRANSITIVE_FILE_COUNT", len(locked))
+    need(len(locked) == 398, "TRANSITIVE_FILE_COUNT", len(locked))
     return locked
 
 
@@ -196,6 +199,10 @@ def parse_cores() -> dict[str, Any]:
         ):
             found.append(ast.literal_eval(node.value))
     need(found == [EXPECTED_CORES], "PRIMITIVE_CORE_ENCODING")
+    need(
+        object_sha({"CORES": found[0]}) == EXPECTED_PRIMITIVE_GRAMMAR_SHA256,
+        "PRIMITIVE_GRAMMAR_SEMANTIC_HASH",
+    )
     return found[0]
 
 
@@ -536,6 +543,15 @@ def verify_restoration_direction() -> dict[str, Any]:
 
 def verify_input_bindings(value: dict[str, Any], code: str) -> None:
     for binding in value["input_bindings"]:
+        if binding.get("binding_kind") == "CORES literal semantic fingerprint":
+            need(binding["path"] == ATLAS_REL, f"{code}_GRAMMAR_PATH")
+            need(
+                binding["sha256"]
+                == object_sha({"CORES": parse_cores()})
+                == EXPECTED_PRIMITIVE_GRAMMAR_SHA256,
+                f"{code}_GRAMMAR_HASH",
+            )
+            continue
         path = safe(binding["path"])
         need(path.stat().st_size == binding["bytes"], f"{code}_INPUT_BYTES", binding["path"])
         need(file_sha(path) == binding["sha256"], f"{code}_INPUT_HASH", binding["path"])

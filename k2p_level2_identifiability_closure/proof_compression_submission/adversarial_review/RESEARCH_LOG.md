@@ -121,3 +121,23 @@
   authority was inferred from the reviewer's suggested declarations.
 - Adversarial-audit completion remains **100%**. The theorem is unchanged;
   only final human metadata and immutable-release choices remain open.
+
+## 2026-08-24 — submission-ready fail-closed audit revision
+
+- The author supplied the formerly open metadata and license decisions. The
+  active audit now requires their exact printed forms and rejects any pending
+  human placeholder, false DOI/release claim, or drift from the approved tag.
+- Replaced byte-hardcoded prior release/replay expectations with exact payload
+  validation and current lock/replay/telemetry coherence, including the
+  dynamically derived layer count and measured resources.
+- Added direct checks of corrected quartet coordinates and spectra, complete
+  terminal bindings, canonicalizer completeness, graph-derived inheritance
+  and paired-edge transports, the sampled-rank-upper mutation, and their
+  cross-certificate hashes.
+- The audit now fails closed on every open finding and can deterministically
+  write or check `STATIC_AUDIT_RESULT.json`. The 22 August prose/JSON reports
+  are explicitly marked historical until the final lock-bound result is
+  regenerated.
+
+Best-guess audit-machinery completion: **98%** pending only the mechanical
+final `--write`/`--check` pass after the immutable commit replay is available.

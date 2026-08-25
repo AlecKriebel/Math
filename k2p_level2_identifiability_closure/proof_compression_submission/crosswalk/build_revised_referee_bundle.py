@@ -16,13 +16,8 @@ PROJECT = Path(__file__).resolve().parents[2]
 LOCK_RELATIVE = "work/final_theorem_release/RELEASE_LOCK.json"
 MANIFEST_RELATIVE = "proof_compression_submission/crosswalk/REVISED_REFEREE_BUNDLE_MANIFEST.json"
 MANIFEST_PATH = PROJECT / MANIFEST_RELATIVE
-LOCK_SHA256 = "58e32bd29f7a039e3da4e47398e32ee8277ad46cf62271a7ed80bf41688b18fb"
-LOCK_PAYLOAD_SHA256 = "3b7de4c60315a5820a2623de860f493d6b76a645b5c674ffda89f12fc31a5c90"
-FROZEN_FILE_COUNT = 374
-FROZEN_TOTAL_BYTES = 434_698_345
-FROZEN_CONTENT_ROOT = "7004e3e26bf359d0a11c07fd51cb1636859b30b07a97ca6c9cfd0dcd082dfc92"
 ARCHIVE_PREFIX = "k2p_principal_d_plus_submission_referee"
-ARCHIVE_TIMESTAMP = (2026, 8, 22, 0, 0, 0)
+ARCHIVE_TIMESTAMP = (2026, 8, 24, 0, 0, 0)
 OPERATIONAL_EVIDENCE = {
     "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY.json",
     "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY_TELEMETRY.json",
@@ -31,17 +26,21 @@ OPERATIONAL_EVIDENCE = {
     "proof_compression_submission/output/logs/article.log",
     "proof_compression_submission/output/logs/supplement.log",
 }
-PENDING_METADATA = [
-    "corresponding email address",
-    "author-contribution statement",
-    "funding declaration",
-    "competing-interests declaration",
-    "article license",
-    "code license",
-    "data license",
-    "immutable submission tag",
-    "whether and when to mint a GitHub/Zenodo DOI release",
-]
+SUBMISSION_METADATA = {
+    "author_contributions": "approved sole-author contribution statement",
+    "code_license": "MIT",
+    "competing_interests": "The author declares no competing interests.",
+    "corresponding_email": "me@aleckriebel.com",
+    "data_license": "CC BY 4.0",
+    "doi": None,
+    "funding": "No specific funding supported this work.",
+    "immutable_submission_tag": "k2p-same-biorxiv-v1.0.0",
+    "paper_license": "CC BY 4.0",
+    "release_boundary": (
+        "No GitHub Release, Zenodo deposit, or DOI is created or claimed by "
+        "this package; the author will perform any such release actions."
+    ),
+}
 
 
 def fail(message: str) -> None:
@@ -83,7 +82,28 @@ def read_json(relative: str) -> dict[str, Any]:
     return value
 
 
-def clean_full_replay_boundary() -> dict[str, Any]:
+def release_context() -> tuple[dict[str, Any], str, str]:
+    lock_path = project_path(LOCK_RELATIVE)
+    if not lock_path.is_file() or lock_path.is_symlink():
+        fail("missing or symbolic RELEASE_LOCK")
+    lock_bytes = lock_path.read_bytes()
+    lock_sha256 = sha256_bytes(lock_bytes)
+    lock = json.loads(lock_bytes)
+    if not isinstance(lock, dict):
+        fail("RELEASE_LOCK is not an object")
+    if lock.get("schema") != "k2p-principal-d-plus-final-theorem-release-lock-v1":
+        fail("RELEASE_LOCK schema mismatch")
+    payload_sha256 = lock.get("payload_sha256")
+    unsigned = dict(lock)
+    unsigned.pop("payload_sha256", None)
+    if not isinstance(payload_sha256, str) or payload_sha256 != canonical_hash(unsigned):
+        fail("RELEASE_LOCK payload mismatch")
+    if lock.get("promotion_ready") is not True or lock.get("blockers") or lock.get("missing_required_files"):
+        fail("RELEASE_LOCK is not promotion-ready")
+    return lock, lock_sha256, payload_sha256
+
+
+def clean_full_replay_boundary(lock_payload_sha256: str) -> dict[str, Any]:
     report_relative = "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY.json"
     telemetry_relative = "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY_TELEMETRY.json"
     report_path = project_path(report_relative)
@@ -96,29 +116,46 @@ def clean_full_replay_boundary() -> dict[str, Any]:
         fail("clean full replay report schema mismatch")
     if report.get("status") != "PASS" or report.get("promotion_ready") is not True or report.get("blockers"):
         fail("clean full replay report is not promotion-ready PASS")
-    if report.get("mode") != "full" or len(report.get("layer_replays", [])) != 35:
+    layers = report.get("layer_replays")
+    if report.get("mode") != "full" or not isinstance(layers, list) or not layers:
         fail("clean full replay mode/layer census mismatch")
-    if report.get("lock_payload_sha256") != LOCK_PAYLOAD_SHA256:
+    if report.get("lock_payload_sha256") != lock_payload_sha256:
         fail("clean full replay lock payload mismatch")
     if telemetry.get("schema") != "k2p-final-clean-full-replay-telemetry-v1" or telemetry.get("status") != "PASS":
         fail("clean full replay telemetry schema/status mismatch")
     if telemetry.get("report", {}).get("sha256") != report_sha:
         fail("clean full replay telemetry report hash mismatch")
+    if telemetry.get("report", {}).get("lock_payload_sha256") != lock_payload_sha256:
+        fail("clean full replay telemetry lock payload mismatch")
+    if telemetry.get("clean_detached_checkout") is not True:
+        fail("clean full replay was not run from a detached clean checkout")
     timing = telemetry.get("time_l", {})
-    expected_timing = {
-        "real_seconds": 5172.89,
-        "maximum_resident_set_size_bytes": 1960001536,
-        "peak_memory_footprint_bytes": 491504408,
-    }
-    if any(timing.get(key) != value for key, value in expected_timing.items()):
-        fail("clean full replay timing/memory drift")
+    for key in ("real_seconds", "maximum_resident_set_size_bytes", "peak_memory_footprint_bytes"):
+        value = timing.get(key)
+        if not isinstance(value, (int, float)) or isinstance(value, bool) or value <= 0:
+            fail(f"clean full replay telemetry missing positive field: {key}")
+    internal_elapsed = report.get("elapsed_seconds")
+    if not isinstance(internal_elapsed, (int, float)) or isinstance(internal_elapsed, bool) or internal_elapsed <= 0:
+        fail("clean full replay internal elapsed time missing")
+    if timing["real_seconds"] < internal_elapsed:
+        fail("clean full replay wall time is below internal elapsed time")
+    if (
+        telemetry.get("report", {}).get("layer_count") != len(layers)
+        or telemetry.get("report", {}).get("internal_elapsed_seconds") != internal_elapsed
+        or telemetry.get("report", {}).get("promotion_ready") is not True
+        or telemetry.get("report", {}).get("blocker_count") != 0
+    ):
+        fail("clean full replay telemetry summary mismatch")
+    git_commit = telemetry.get("git_commit")
+    if not isinstance(git_commit, str) or not git_commit:
+        fail("clean full replay git commit missing")
     return {
         "status": "clean_detached_full_replay_pass",
-        "git_commit": telemetry.get("git_commit"),
-        "clean_detached_checkout": telemetry.get("clean_detached_checkout"),
+        "git_commit": git_commit,
+        "clean_detached_checkout": True,
         "end_to_end_full_runtime_seconds": timing["real_seconds"],
-        "internal_elapsed_seconds": report.get("elapsed_seconds"),
-        "layer_count": len(report["layer_replays"]),
+        "internal_elapsed_seconds": internal_elapsed,
+        "layer_count": len(layers),
         "maximum_resident_set_size_bytes": timing["maximum_resident_set_size_bytes"],
         "peak_memory_footprint_bytes": timing["peak_memory_footprint_bytes"],
         "end_to_end_quick_runtime_seconds": None,
@@ -146,23 +183,12 @@ def add_manifest_paths(paths: set[str], manifest_relative: str, base_relative: s
         paths.add(relative)
 
 
-def collect_frozen_ledger() -> dict[str, dict[str, int | str]]:
-    lock_path = project_path(LOCK_RELATIVE)
-    lock_bytes = lock_path.read_bytes()
-    if sha256_bytes(lock_bytes) != LOCK_SHA256:
-        fail("frozen RELEASE_LOCK byte hash mismatch")
-    lock = json.loads(lock_bytes)
-    if not isinstance(lock, dict):
-        fail("frozen RELEASE_LOCK is not an object")
-    if lock.get("schema") != "k2p-principal-d-plus-final-theorem-release-lock-v1":
-        fail("frozen RELEASE_LOCK schema mismatch")
-    if lock.get("payload_sha256") != LOCK_PAYLOAD_SHA256:
-        fail("frozen RELEASE_LOCK payload mismatch")
-    if lock.get("promotion_ready") is not True or lock.get("blockers") or lock.get("missing_required_files"):
-        fail("frozen theorem release is not promotion-ready")
+def collect_frozen_ledger(
+    lock: dict[str, Any], lock_sha256: str
+) -> dict[str, dict[str, int | str]]:
     outer_files = lock.get("files")
-    if not isinstance(outer_files, dict) or len(outer_files) != 198:
-        fail("unexpected frozen outer file map")
+    if not isinstance(outer_files, dict) or not outer_files:
+        fail("missing frozen outer file map")
     paths = set(outer_files)
     add_manifest_paths(paths, "work/rank_upper_certificates/MANIFEST.sha256", "work/rank_upper_certificates")
     add_manifest_paths(paths, "work/cycle_three_port_closure/MANIFEST.sha256", "work/cycle_three_port_closure")
@@ -193,12 +219,8 @@ def collect_frozen_ledger() -> dict[str, dict[str, int | str]]:
             if metadata["bytes"] != outer.get("bytes") or metadata["sha256"] != outer.get("sha256"):
                 fail(f"outer frozen lock mismatch: {relative}")
         ledger[relative] = metadata
-    if len(ledger) != FROZEN_FILE_COUNT:
-        fail(f"frozen file count mismatch: {len(ledger)}")
-    if sum(int(row["bytes"]) for row in ledger.values()) != FROZEN_TOTAL_BYTES:
-        fail("frozen total byte count mismatch")
-    if canonical_hash(ledger) != FROZEN_CONTENT_ROOT:
-        fail("frozen content root mismatch")
+    if ledger[LOCK_RELATIVE]["sha256"] != lock_sha256:
+        fail("frozen RELEASE_LOCK binding mismatch")
     return ledger
 
 
@@ -257,6 +279,8 @@ def collect_submission_ledger() -> dict[str, dict[str, int | str]]:
         "proof_compression_submission/supplement/certificate_appendix.tex",
         "proof_compression_submission/PDF_BUILD_REPORT.json",
         "proof_compression_submission/PDF_BUILD_REPORT.md",
+        "proof_compression_submission/adversarial_review/STATIC_AUDIT_RESULT.json",
+        "proof_compression_submission/adversarial_review/audit_article_sources.py",
         *OPERATIONAL_EVIDENCE,
     }
     missing = sorted(required - set(ledger))
@@ -267,29 +291,31 @@ def collect_submission_ledger() -> dict[str, dict[str, int | str]]:
 
 def build_manifest() -> dict[str, Any]:
     reject_optimized_mode()
-    frozen = collect_frozen_ledger()
+    lock, lock_sha256, lock_payload_sha256 = release_context()
+    frozen = collect_frozen_ledger(lock, lock_sha256)
+    frozen_content_root = canonical_hash(frozen)
     submission = collect_submission_ledger()
     overlap = sorted(set(frozen).intersection(submission))
     if overlap:
         fail(f"frozen/submission ledger overlap: {overlap[:3]}")
     combined_binding = {"frozen_evidence": frozen, "submission_sources": submission}
     value: dict[str, Any] = {
-        "schema": "k2p-revised-referee-bundle-manifest-v1",
-        "status": "DRAFT_PC_PARTIAL_PENDING_HUMAN_METADATA",
+        "schema": "k2p-revised-referee-bundle-manifest-v2",
+        "status": "SUBMISSION_READY_PC_PARTIAL",
         "archive_policy": {
             "archive_prefix": ARCHIVE_PREFIX,
             "compression": "ZIP_DEFLATED level 9",
-            "fixed_member_timestamp": "2026-08-22T00:00:00",
+            "fixed_member_timestamp": "2026-08-24T00:00:00",
             "member_mode": "100644",
             "member_order": "project-relative path lexicographic",
             "manifest_included": True,
         },
         "frozen_evidence": {
-            "content_ledger_root_sha256": FROZEN_CONTENT_ROOT,
+            "content_ledger_root_sha256": frozen_content_root,
             "file_count": len(frozen),
             "files": frozen,
-            "release_lock_payload_sha256": LOCK_PAYLOAD_SHA256,
-            "release_lock_sha256": LOCK_SHA256,
+            "release_lock_payload_sha256": lock_payload_sha256,
+            "release_lock_sha256": lock_sha256,
             "total_bytes": sum(int(row["bytes"]) for row in frozen.values()),
         },
         "submission_sources": {
@@ -307,8 +333,8 @@ def build_manifest() -> dict[str, Any]:
         },
         "combined_content_root_sha256": canonical_hash(combined_binding),
         "combined_file_count_excluding_manifest": len(frozen) + len(submission),
-        "pending_human_metadata": PENDING_METADATA,
-        "runtime_boundary": clean_full_replay_boundary(),
+        "submission_metadata": SUBMISSION_METADATA,
+        "runtime_boundary": clean_full_replay_boundary(lock_payload_sha256),
     }
     value["payload_sha256"] = canonical_hash(value)
     return value

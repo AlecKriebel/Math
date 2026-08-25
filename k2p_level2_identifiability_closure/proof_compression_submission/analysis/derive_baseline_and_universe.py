@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import ast
 import json
 import math
@@ -33,12 +34,15 @@ BASELINE_MD = HERE / "PROOF_COMPRESSION_BASELINE.md"
 UNIVERSE_MD = HERE / "FINITE_UNIVERSE_COMPLETENESS.md"
 
 RELEASE_LOCK = "work/final_theorem_release/RELEASE_LOCK.json"
-RELEASE_LOCK_SHA256 = "58e32bd29f7a039e3da4e47398e32ee8277ad46cf62271a7ed80bf41688b18fb"
+RELEASE_LOCK_SHA256 = "bc690c3e68a3a9d66960239ebf60a63f96da63ee5312cd2f0e8bf16d707d3ac9"
 RELEASE_LOCK_PAYLOAD_SHA256 = (
-    "3b7de4c60315a5820a2623de860f493d6b76a645b5c674ffda89f12fc31a5c90"
+    "541d5da2e8f7711505b21aef5a022f25a5820290e358366c121948664a9fc38c"
 )
 RELEASE_LOCK_SCHEMA = "k2p-principal-d-plus-final-theorem-release-lock-v1"
 ATLAS = "package/referee/k2p_offline_sweep_portable/atlas/k2p_atlas_core.py"
+EXPECTED_PRIMITIVE_GRAMMAR_SHA256 = (
+    "d5e7608f70a2243df605dee6e35d0ea6af74e4e47b42142e91ddfa4cbcbad09b"
+)
 
 
 INFRASTRUCTURE_MODULES = {
@@ -154,7 +158,19 @@ def locked_cores() -> dict[str, dict[str, tuple[Any, ...]]]:
             values.append(ast.literal_eval(node.value))
     require(len(values) == 1, "ATLAS_CORES_ASSIGNMENT_COUNT", len(values))
     require(values[0] == EXPECTED_CORES, "ATLAS_PRIMITIVE_CORE_DRIFT")
+    require(
+        sha_object({"CORES": values[0]}) == EXPECTED_PRIMITIVE_GRAMMAR_SHA256,
+        "ATLAS_PRIMITIVE_GRAMMAR_HASH_DRIFT",
+    )
     return values[0]
+
+
+def primitive_grammar_binding() -> dict[str, Any]:
+    return {
+        "path": ATLAS,
+        "binding_kind": "CORES literal semantic fingerprint",
+        "sha256": EXPECTED_PRIMITIVE_GRAMMAR_SHA256,
+    }
 
 
 def weak_compositions(total: int, bins: int):
@@ -250,11 +266,11 @@ def mutation_module(relative: str) -> bool:
 
 def proof_surface(files: dict[str, str]) -> dict[str, Any]:
     python = sorted(relative for relative in files if relative.endswith(".py"))
-    require(len(python) == 97, "LOCKED_PYTHON_MODULE_CENSUS_DRIFT", len(python))
+    require(len(python) == 106, "LOCKED_PYTHON_MODULE_CENSUS_DRIFT", len(python))
     require(INFRASTRUCTURE_MODULES <= set(python), "INFRASTRUCTURE_MODULE_MISSING")
     require(EXPLICIT_INDEPENDENT_MODULES <= set(python), "INDEPENDENT_MODULE_MISSING")
     mutations = {relative for relative in python if mutation_module(relative)}
-    require(len(mutations) == 17, "MUTATION_MODULE_CENSUS_DRIFT", len(mutations))
+    require(len(mutations) == 21, "MUTATION_MODULE_CENSUS_DRIFT", len(mutations))
     require(not (mutations & INFRASTRUCTURE_MODULES), "ROLE_PARTITION_OVERLAP_MUTATION_INFRA")
     require(
         not (mutations & EXPLICIT_INDEPENDENT_MODULES),
@@ -283,9 +299,9 @@ def proof_surface(files: dict[str, str]) -> dict[str, Any]:
         "mutation": census(mutations),
         "release_hash_orchestration": census(INFRASTRUCTURE_MODULES),
     }
-    require(sum(row["modules"] for row in categories.values()) == 97, "ROLE_MODULE_SUM")
-    require(sum(row["physical_lines"] for row in categories.values()) == 42824, "ROLE_LOC_SUM")
-    require(sum(row["sloc"] for row in categories.values()) == 38564, "ROLE_SLOC_SUM")
+    require(sum(row["modules"] for row in categories.values()) == 106, "ROLE_MODULE_SUM")
+    require(sum(row["physical_lines"] for row in categories.values()) == 47689, "ROLE_LOC_SUM")
+    require(sum(row["sloc"] for row in categories.values()) == 42970, "ROLE_SLOC_SUM")
     return {
         "classification_boundary": (
             "Conservative file-level audit: primary is an upper bound and explicit "
@@ -293,7 +309,7 @@ def proof_surface(files: dict[str, str]) -> dict[str, Any]:
             "split by line."
         ),
         "categories": categories,
-        "total": {"modules": 97, "physical_lines": 42824, "sloc": 38564},
+        "total": {"modules": 106, "physical_lines": 47689, "sloc": 42970},
     }
 
 
@@ -351,7 +367,7 @@ def baseline_payload() -> dict[str, Any]:
     release = release_anchor()
     cores = locked_cores()
     files = recursively_locked_files()
-    require(len(files) == 373, "TRANSITIVE_FILE_CENSUS_DRIFT", len(files))
+    require(len(files) == 398, "TRANSITIVE_FILE_CENSUS_DRIFT", len(files))
     extension_counts: Counter[str] = Counter()
     extension_bytes: Counter[str] = Counter()
     for relative in files:
@@ -371,7 +387,7 @@ def baseline_payload() -> dict[str, Any]:
     machine_extensions = {".json", ".json.gz", ".jsonl.gz", ".pkl"}
     machine_files = sum(extension_counts[extension] for extension in machine_extensions)
     machine_bytes = sum(extension_bytes[extension] for extension in machine_extensions)
-    require((machine_files, machine_bytes) == (228, 432464380), "MACHINE_DATA_CENSUS_DRIFT")
+    require((machine_files, machine_bytes) == (239, 476289919), "MACHINE_DATA_CENSUS_DRIFT")
 
     manuscript = project_path(
         "work/global_theorem_closure/promotion_manuscript/K2P_SAME_PROMOTION_MANUSCRIPT.md"
@@ -564,7 +580,7 @@ def baseline_payload() -> dict[str, Any]:
         },
         "input_bindings": [
             input_binding(RELEASE_LOCK),
-            input_binding(ATLAS),
+            primitive_grammar_binding(),
             input_binding(
                 "work/corrected_composite_ledgers/artifacts/raw4_corrected_composite_summary.json"
             ),
@@ -738,20 +754,42 @@ ledgers bound by baseline payload `{value['payload_sha256']}`.
 
 def main() -> None:
     reject_optimized_python()
+    parser = argparse.ArgumentParser()
+    mode = parser.add_mutually_exclusive_group(required=True)
+    mode.add_argument("--write", action="store_true")
+    mode.add_argument("--check", action="store_true")
+    arguments = parser.parse_args()
+
     value = sealed(baseline_payload())
     require(value["frozen_release"]["promotion_ready"] is True, "RELEASE_NOT_READY")
-    write_json(BASELINE_JSON, value)
-    write_text(BASELINE_MD, baseline_markdown(value))
-    write_text(UNIVERSE_MD, universe_markdown(value))
+    rendered_baseline = baseline_markdown(value)
+    rendered_universe = universe_markdown(value)
+    outputs = (
+        (
+            BASELINE_JSON,
+            (
+                json.dumps(value, sort_keys=True, indent=2, ensure_ascii=False)
+                + "\n"
+            ).encode("utf-8"),
+        ),
+        (BASELINE_MD, (rendered_baseline.rstrip() + "\n").encode("utf-8")),
+        (UNIVERSE_MD, (rendered_universe.rstrip() + "\n").encode("utf-8")),
+    )
+    if arguments.write:
+        write_json(BASELINE_JSON, value)
+        write_text(BASELINE_MD, rendered_baseline)
+        write_text(UNIVERSE_MD, rendered_universe)
+    else:
+        for path, expected in outputs:
+            require(path.is_file(), "DERIVED_OUTPUT_MISSING", path)
+            require(path.read_bytes() == expected, "DERIVED_OUTPUT_DRIFT", path)
     print(
         json.dumps(
             {
                 "status": "PASS",
                 "payload_sha256": value["payload_sha256"],
                 "outputs": [
-                    str(BASELINE_JSON.relative_to(PROJECT)),
-                    str(BASELINE_MD.relative_to(PROJECT)),
-                    str(UNIVERSE_MD.relative_to(PROJECT)),
+                    str(path.relative_to(PROJECT)) for path, _expected in outputs
                 ],
             },
             sort_keys=True,

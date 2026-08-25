@@ -296,9 +296,16 @@ proof identifier, reconstructs the complete Cartesian products, validates all
 parent/reverse restrictions, checks the exact transport registry and every
 ordinary-triangle arrowhead witness, and rejects optimized mode.
 
+Its live atlas dependency is scope-limited to the ordered six-source primitive
+grammar, fingerprinted as
+`cadbb4187f501ab53620b3f15deaccb60bed582dfe8fdbefd7c1ba10f5329047`.
+The relation and transport claims come from the exact frozen ledgers themselves
+and their independent current-atlas replays, so an unrelated atlas-kernel edit
+does not silently relabel this reader-level proof.
+
 Current coverage artifact:
 
 - file SHA-256:
-  `a18410c360554426f0290ed9b85ce90f72fbdc76b8a4af67187971dd7ef067e6`;
+  `4a38372635ba617268cfc921baf3a7b397c9beb639dde31bf26b3d2dc7673414`;
 - logical payload:
-  `d361256c6531c93bdb71e29dc90614a40a25a6f3866526f2a158385bcd36b0e4`.
+  `10fbb422c113bec30e7370ca2f2000531b09344a257c3531601c9cb802a8453c`.

@@ -123,10 +123,10 @@ COMPOSITE_SERIALIZATION = {
     "row_order": "raw_id_ascending",
 }
 PROMOTION_MANUSCRIPT_FILES = {
-    "work/global_theorem_closure/promotion_manuscript/K2P_SAME_PROMOTION_MANUSCRIPT.md": "d5e33c0ded1a8ae3ec3b7738e3166cb6d6afb7faff76c6bad0b759a0671a38cd",
+    "work/global_theorem_closure/promotion_manuscript/K2P_SAME_PROMOTION_MANUSCRIPT.md": "01c8c0f0660037f0e8e455e7bc80553ecb5e774cc2015709842f832d7227b0ba",
     "work/global_theorem_closure/promotion_manuscript/QUANTIFIER_AUDIT.md": "425a041bc3e4cc7bd4f74c952455623ff26f430d9c4ceb006edcac9e8c3765d8",
-    "work/global_theorem_closure/promotion_manuscript/PROBE_PROMOTION_PLACEHOLDER.json": "5e316301a53c6f437a3f6ad5f971e67846aaa13de67fd01978bbbc6f9efb9285",
-    "work/global_theorem_closure/promotion_manuscript/verify_promotion_gate.py": "48f5522a70c4c0c5896c2d38382d0abb5ef2a93370bb217fac487fdbf6138136",
+    "work/global_theorem_closure/promotion_manuscript/PROBE_PROMOTION_PLACEHOLDER.json": "79a9949f5a5598a83c7e2bfc60d669dfe4b8b7d3417d8d8673e2fc4c634efaaa",
+    "work/global_theorem_closure/promotion_manuscript/verify_promotion_gate.py": "489a0b4d779356abe2802370f9e87ad5ebc52cbcf64f1766d05adfc043c2454b",
 }
 PROMOTION_GUARD_CENSUS = {
     "frozen_inputs_verified": 23,
@@ -141,7 +141,7 @@ PROMOTION_GUARD_STDOUT_SHA256 = (
 )
 RUNTIME_EVIDENCE_SHA256 = {
     "package/referee/k2p_offline_sweep_portable/atlas/k2p_atlas_core.py":
-        "5b9e03653cc6960bf341fcbe7e63ffd10226d0f6a56441012212c6e3b2a26483",
+        "37e9b7910f7723c146a87ae2f60dfb62529b1a3e4866ccd72d65dc4efda923ad",
     "package/referee/k2p_offline_sweep_portable/verify_package.py":
         "bc2dc5714b0928beda31e96eb15954715133ee4a8ab7ba106b7c5a1b62ba83cc",
 }
@@ -189,7 +189,7 @@ HISTORICAL_PROOF_ARTIFACTS = {
         ],
     },
     "work/adversarial_proof_review/TOPOLOGY_DIRECTIONAL_THEOREM.md": {
-        "sha256": "35487ec1ccc6779b1008336c7ee4e3674cbd4cef63cc1a7b43a24e5563d09062",
+        "sha256": "abe1a9e089d7324d9509ebbe32f6b7217045ccb7c0d3044afc7db1d02604e7d7",
         "classification": "REVOKED_ROOTED_TOPOLOGY_ORACLE_NARRATIVE",
         "authoritative_replacements": [
             "work/final_theorem_release/corrected_universe_certificate.json",
@@ -360,6 +360,8 @@ def fixed_evidence_files() -> dict[str, str]:
     """
 
     return {
+        # Submission-wide licensing and release boundary.
+        "LICENSES.md": "submission_metadata",
         # Harness and independent three-port replacement.
         "work/final_theorem_release/no_assert_triangle_sunlet.py": "harness",
         "work/final_theorem_release/triangle_sunlet_certificate.json": "three_port",
@@ -402,11 +404,38 @@ def fixed_evidence_files() -> dict[str, str]:
         "package/original/checkpoint_2/continuation_2/K2P_TRIANGLE_GERM_EXACT.md": "three_port",
         "package/original/checkpoint_2/continuation_2/K2P_TREE_SUNLET_SIGN_CERTIFICATE.md": "three_port",
         # Pointwise decorated tree of blobs.
+        "work/quartet_separation_closure/QUARTET_SEMANTICS_SPEC.json": "quartet_tree_of_blobs",
         "work/quartet_separation_closure/verify_quartet_logic.py": "quartet_tree_of_blobs",
         "work/quartet_separation_closure/quartet_logic_certificate.json": "quartet_tree_of_blobs",
+        "work/quartet_separation_closure/test_quartet_semantics_mutations.py": "quartet_tree_of_blobs",
+        "work/quartet_separation_closure/quartet_semantics_mutation_certificate.json": "quartet_tree_of_blobs",
+        "work/quartet_separation_closure/verify_quartet_terminal_bindings.py": "quartet_terminal_bindings",
+        "work/quartet_separation_closure/quartet_terminal_binding_certificate.json": "quartet_terminal_bindings",
+        "work/quartet_separation_closure/test_quartet_terminal_binding_mutations.py": "quartet_terminal_bindings",
+        "work/quartet_separation_closure/quartet_terminal_binding_mutation_certificate.json": "quartet_terminal_bindings",
         "work/quartet_separation_closure/PROOF.md": "quartet_tree_of_blobs",
         "work/adversarial_proof_review/topology_direction_certificate.json": "quartet_tree_of_blobs",
         "work/adversarial_proof_review/verify_topology_direction.py": "quartet_tree_of_blobs",
+        # Exhaustive orbit/canonicalizer comparison and graph-derived paired
+        # edge/inheritance transports.  These close the strict ordinary-
+        # triangle and parent-order semantics used by the finite ledgers.
+        "work/canonicalizer_completeness/canonicalizer_audit.py": "canonicalizer_completeness",
+        "work/canonicalizer_completeness/verify_canonicalizer_completeness.py": "canonicalizer_completeness",
+        "work/canonicalizer_completeness/test_canonicalizer_mutations.py": "canonicalizer_completeness",
+        "work/canonicalizer_completeness/canonicalizer_completeness_certificate.json": "canonicalizer_completeness",
+        "work/canonicalizer_completeness/canonicalizer_completeness_mutation_certificate.json": "canonicalizer_completeness",
+        "work/canonicalizer_completeness/PROOF.md": "canonicalizer_completeness",
+        "work/canonicalizer_completeness/README.md": "canonicalizer_completeness",
+        "work/canonicalizer_completeness/inheritance_transport/build_parameter_transport_certificate.py": "parameter_transport",
+        "work/canonicalizer_completeness/inheritance_transport/verify_parameter_transport_certificate.py": "parameter_transport",
+        "work/canonicalizer_completeness/inheritance_transport/run_parameter_transport_mutations.py": "parameter_transport",
+        "work/canonicalizer_completeness/inheritance_transport/parameter_transport_certificate.json": "parameter_transport",
+        "work/canonicalizer_completeness/inheritance_transport/parameter_transport_mutation_report.json": "parameter_transport",
+        "work/canonicalizer_completeness/inheritance_transport/probe_relation_parameter_transports.jsonl.gz": "parameter_transport",
+        "work/canonicalizer_completeness/inheritance_transport/probe_restriction_parameter_transports.jsonl.gz": "parameter_transport",
+        "work/canonicalizer_completeness/inheritance_transport/restoration_restriction_parameter_transports.jsonl.gz": "parameter_transport",
+        "work/canonicalizer_completeness/inheritance_transport/README.md": "parameter_transport",
+        "work/canonicalizer_completeness/inheritance_transport/RESEARCH_LOG.md": "parameter_transport",
         # Bridge, marginal, gluing, and analytic adversarial audit.
         "work/bridge_marginal_closure/verify_bridge_marginal.py": "bridge_marginal_gluing",
         "work/bridge_marginal_closure/certificate.json": "bridge_marginal_gluing",
@@ -4218,6 +4247,516 @@ def legacy_partition_blockers(project: Path = PROJECT) -> list[str]:
     return blockers
 
 
+def validate_quartet_evidence(project: Path = PROJECT) -> dict[str, object]:
+    """Bind the literal K2P quartet algebra to every terminal registry use."""
+
+    root = project / "work/quartet_separation_closure"
+    spec_path = root / "QUARTET_SEMANTICS_SPEC.json"
+    spec = load_json(spec_path)
+    require(
+        spec.get("schema") == "k2p-quartet-semantics-spec-v2",
+        "QUARTET_SPEC_SCHEMA_FAIL",
+    )
+    require(
+        spec.get("character_order") == ["0", "C", "G", "T"]
+        and spec.get("group_codes") == {"0": 0, "C": 1, "G": 2, "T": 3}
+        and spec.get("edge_spectrum")
+        == {"0": "1", "C": "s", "G": "g", "T": "s"}
+        and spec.get("equal_nonzero_sector") == ["C", "T"]
+        and spec.get("singleton_nonzero_sector") == ["G"],
+        "QUARTET_SPEC_CHARACTER_CONVENTION_FAIL",
+    )
+    require(
+        spec.get("domain")
+        == {
+            "principal": "0<s<1, 0<g<1, g>2s-1",
+            "strict_continuous_time": "0<s<1, s^2<g<1",
+        },
+        "QUARTET_SPEC_DOMAIN_FAIL",
+    )
+    require(
+        spec.get("canonical_coordinates")
+        == {"Q0": "CCCC", "QA": "CCTT", "QB": "CTCT", "QC": "CTTC"},
+        "QUARTET_SPEC_COORDINATE_FAIL",
+    )
+    require(
+        spec.get("canonical_formulas")
+        == {
+            "F_A": [[1, "CCCC"], [-1, "CCTT"]],
+            "F_B": [[1, "CCCC"], [-1, "CTCT"]],
+            "F_C": [[1, "CCCC"], [-1, "CTTC"]],
+            "J_A": [[1, "CCCC"], [1, "CCTT"], [-1, "CTCT"], [-1, "CTTC"]],
+            "J_B": [[1, "CCCC"], [-1, "CCTT"], [1, "CTCT"], [-1, "CTTC"]],
+            "J_C": [[1, "CCCC"], [-1, "CCTT"], [-1, "CTCT"], [1, "CTTC"]],
+        },
+        "QUARTET_SPEC_FORMULA_FAIL",
+    )
+
+    quartet_path = root / "quartet_logic_certificate.json"
+    quartet = load_json(quartet_path)
+    verify_payload_hash(quartet)
+    require(
+        quartet.get("schema") == "k2p-displayed-quartet-semantics-v2"
+        and quartet.get("status") == "PASS",
+        "QUARTET_SCHEMA_FAIL",
+    )
+    require(
+        quartet.get("spec_path")
+        == "work/quartet_separation_closure/QUARTET_SEMANTICS_SPEC.json"
+        and quartet.get("spec_sha256") == sha_file(spec_path),
+        "QUARTET_SPEC_BINDING_FAIL",
+    )
+    require(
+        quartet.get("character_order") == ["0", "C", "G", "T"]
+        and quartet.get("edge_spectrum") == ["1", "s", "g", "s"]
+        and quartet.get("equal_nonzero_sector") == ["C", "T"]
+        and quartet.get("singleton_nonzero_sector") == ["G"]
+        and quartet.get("domain") == spec["domain"],
+        "QUARTET_CERTIFICATE_CONVENTION_FAIL",
+    )
+    require(
+        quartet.get("canonical_formula_count") == 6
+        and len(quartet.get("canonical_formulas", {})) == 6
+        and quartet.get("formula_transport_count") == 288
+        and len(quartet.get("formula_transports", [])) == 288
+        and quartet.get("displayed_set_count") == 7
+        and quartet.get("unequal_pair_count") == 21
+        and len(quartet.get("displayed_set_witnesses", [])) == 21,
+        "QUARTET_CERTIFICATE_CENSUS_FAIL",
+    )
+    documents = quartet.get("document_sha256")
+    expected_document_paths = {
+        "proof_compression_submission/article/main.tex",
+        "work/adversarial_proof_review/TOPOLOGY_DIRECTIONAL_THEOREM.md",
+        "work/global_theorem_closure/GLOBAL_PROOF.md",
+        "work/global_theorem_closure/promotion_manuscript/K2P_SAME_PROMOTION_MANUSCRIPT.md",
+        "work/quartet_separation_closure/PROOF.md",
+    }
+    require(
+        isinstance(documents, dict)
+        and set(documents) == expected_document_paths
+        == {
+            row["path"] for row in spec.get("document_contracts", [])
+        },
+        "QUARTET_DOCUMENT_BINDING_SET_FAIL",
+    )
+    for relative, digest in documents.items():
+        require(
+            sha_file(project_file(relative, project)) == digest,
+            "QUARTET_DOCUMENT_BINDING_HASH_FAIL",
+            relative,
+        )
+
+    semantic_mutations = load_json(
+        root / "quartet_semantics_mutation_certificate.json"
+    )
+    verify_payload_hash(semantic_mutations)
+    require(
+        semantic_mutations.get("schema") == "k2p-quartet-semantics-mutations-v2"
+        and semantic_mutations.get("status") == "PASS"
+        and semantic_mutations.get("verifier_sha256")
+        == sha_file(root / "verify_quartet_logic.py")
+        and semantic_mutations.get("spec_sha256") == sha_file(spec_path)
+        and semantic_mutations.get("case_count") == 8,
+        "QUARTET_SEMANTIC_MUTATION_BINDING_FAIL",
+    )
+    semantic_case_names = [
+        "spectrum_G_T_swap",
+        "wrong_F_coordinate",
+        "wrong_J_coefficient",
+        "wrong_character_order",
+        "wrong_coordinate_dictionary",
+        "wrong_D_plus_declaration",
+        "printed_formula_reverted_to_wrong_sector",
+        "optimized_python",
+    ]
+    require(
+        [row.get("case") for row in semantic_mutations.get("cases", [])]
+        == semantic_case_names
+        and all(
+            row.get("status") == "PASS"
+            and isinstance(row.get("expected_marker"), str)
+            and row.get("observed_returncode") != 0
+            for row in semantic_mutations.get("cases", [])
+        ),
+        "QUARTET_SEMANTIC_MUTATION_CENSUS_FAIL",
+    )
+
+    terminal_path = root / "quartet_terminal_binding_certificate.json"
+    terminal = load_json(terminal_path)
+    verify_payload_hash(terminal)
+    require(
+        terminal.get("schema") == "k2p-quartet-terminal-binding-v1"
+        and terminal.get("status") == "PASS"
+        and terminal.get("imports_graph_or_classifier_code") is False,
+        "QUARTET_TERMINAL_SCHEMA_FAIL",
+    )
+    semantics_binding = terminal.get("semantics_certificate")
+    require(
+        isinstance(semantics_binding, dict)
+        and semantics_binding.get("path")
+        == "work/quartet_separation_closure/quartet_logic_certificate.json"
+        and semantics_binding.get("sha256") == sha_file(quartet_path)
+        and semantics_binding.get("payload_sha256") == quartet["payload_sha256"]
+        and semantics_binding.get("spec_sha256") == sha_file(spec_path)
+        and semantics_binding.get("canonical_formula_count") == 6
+        and semantics_binding.get("formula_transport_count") == 288,
+        "QUARTET_TERMINAL_SEMANTICS_BINDING_FAIL",
+    )
+    require(
+        terminal.get("coordinate_convention")
+        == {
+            "character_order": ["0", "C", "G", "T"],
+            "edge_spectrum": ["1", "s", "g", "s"],
+            "equal_nonzero_sector": ["C", "T"],
+            "singleton_nonzero_sector": ["G"],
+            "unlisted_marginal_leaf_characters": "0",
+        },
+        "QUARTET_TERMINAL_CONVENTION_FAIL",
+    )
+    aggregate = terminal.get("aggregate")
+    require(
+        isinstance(aggregate, dict)
+        and aggregate.get("layer_count") == 6
+        and aggregate.get("quartet_terminal_rows") == 4_414_710
+        and aggregate.get("per_layer_certificate_ids") == 888
+        and aggregate.get("all_registry_certificates_used") is True
+        and aggregate.get("missing_references") == 0
+        and aggregate.get("dangling_certificates") == 0,
+        "QUARTET_TERMINAL_AGGREGATE_FAIL",
+    )
+    layer_census = {
+        "raw4": (360_408, 18),
+        "theta2": (2_942_592, 19),
+        "theta2_restoration": (760, 24),
+        "cycle": (535_920, 97),
+        "restoration": (36_006, 92),
+        "probe": (539_024, 638),
+    }
+    terminal_layers = terminal.get("layers")
+    require(
+        isinstance(terminal_layers, dict) and set(terminal_layers) == set(layer_census),
+        "QUARTET_TERMINAL_LAYER_SET_FAIL",
+    )
+    for name, (rows, certificates) in layer_census.items():
+        layer = terminal_layers[name]
+        require(
+            layer.get("quartet_terminal_rows") == rows
+            and layer.get("certificate_count") == certificates,
+            "QUARTET_TERMINAL_LAYER_CENSUS_FAIL",
+            name,
+        )
+
+    terminal_mutations = load_json(
+        root / "quartet_terminal_binding_mutation_certificate.json"
+    )
+    verify_payload_hash(terminal_mutations)
+    terminal_case_names = [
+        "resealed_spectrum_convention_mutation",
+        "resealed_coordinate_word_mutation",
+        "resealed_distinguished_split_mutation",
+        "resealed_zero_positive_side_mutation",
+        "resealed_quartet_label_transport_mutation",
+        "rekeyed_relinked_restoration_set_mutation",
+        "compact_split_hash_mutation",
+        "unknown_terminal_reference",
+        "omitted_terminal_reference",
+        "valid_proof_substitution_composed_graph_gate",
+        "complete_source_target_reversal_composed_graph_gate",
+        "optimized_python",
+    ]
+    require(
+        terminal_mutations.get("schema")
+        == "k2p-quartet-terminal-binding-mutations-v1"
+        and terminal_mutations.get("status") == "PASS"
+        and terminal_mutations.get("case_count") == 12
+        and terminal_mutations.get("binder_sha256")
+        == sha_file(root / "verify_quartet_terminal_bindings.py")
+        and terminal_mutations.get("semantics_certificate_sha256")
+        == sha_file(quartet_path)
+        and terminal_mutations.get("authoritative_ledgers_modified") is False
+        and terminal_mutations.get("temporary_in_memory_or_temp_directory_mutations_only")
+        is True
+        and [row.get("case") for row in terminal_mutations.get("cases", [])]
+        == terminal_case_names
+        and all(row.get("status") == "PASS" for row in terminal_mutations.get("cases", [])),
+        "QUARTET_TERMINAL_MUTATION_FAIL",
+    )
+    composed_cases = {
+        row["case"]: row
+        for row in terminal_mutations["cases"]
+        if row["case"]
+        in {
+            "valid_proof_substitution_composed_graph_gate",
+            "complete_source_target_reversal_composed_graph_gate",
+        }
+    }
+    require(
+        set(composed_cases)
+        == {
+            "valid_proof_substitution_composed_graph_gate",
+            "complete_source_target_reversal_composed_graph_gate",
+        }
+        and all(
+            [(guard.get("family"), guard.get("rejected")) for guard in row.get("graph_guards", [])]
+            == [("raw4", True), ("theta2", True)]
+            for row in composed_cases.values()
+        ),
+        "QUARTET_TERMINAL_COMPOSED_GRAPH_GUARD_FAIL",
+    )
+    return {
+        "semantics_payload_sha256": quartet["payload_sha256"],
+        "terminal_binding_payload_sha256": terminal["payload_sha256"],
+        "formula_transports": 288,
+        "displayed_set_pairs": 21,
+        "quartet_terminal_rows": 4_414_710,
+        "terminal_certificate_ids": 888,
+        "semantic_mutations": 8,
+        "terminal_binding_mutations": 12,
+        "unresolved": 0,
+    }
+
+
+def validate_canonicalizer_evidence(project: Path = PROJECT) -> dict[str, object]:
+    """Validate the complete licensed orbit and strict-relation comparison."""
+
+    root = project / "work/canonicalizer_completeness"
+    certificate = load_json(root / "canonicalizer_completeness_certificate.json")
+    verify_payload_hash(certificate)
+    require(
+        certificate.get("schema") == "k2p-canonicalizer-completeness-v1"
+        and certificate.get("status") == "PASS",
+        "CANONICALIZER_COMPLETENESS_SCHEMA_FAIL",
+    )
+    inputs = certificate.get("inputs")
+    require(
+        isinstance(inputs, dict)
+        and inputs.get("atlas_sha256")
+        == sha_file(project / "package/referee/k2p_offline_sweep_portable/atlas/k2p_atlas_core.py")
+        and inputs.get("auditor_sha256") == sha_file(root / "canonicalizer_audit.py")
+        and inputs.get("raw_ledger_sha256")
+        == sha_file(project / "work/raw_ledger_audit/artifacts/raw_directional_ledger.jsonl.gz"),
+        "CANONICALIZER_COMPLETENESS_INPUT_BINDING_FAIL",
+    )
+    descriptor = certificate.get("descriptor_audit")
+    relation = certificate.get("relation_audit")
+    require(
+        isinstance(descriptor, dict)
+        and descriptor.get("primitive_archetypes_compared") == 10_084
+        and descriptor.get("slow_fast_disagreements") == 0
+        and descriptor.get("primitive_archetype_families")
+        == {
+            "raw4_sources": 6,
+            "raw4_targets": 2_814,
+            "theta2_sources": 4,
+            "theta2_targets": 6_138,
+            "cycle_sources": 2,
+            "cycle_targets": 1_120,
+        },
+        "CANONICALIZER_DESCRIPTOR_CENSUS_FAIL",
+    )
+    require(
+        isinstance(relation, dict)
+        and relation.get("rank_and_topology_eligible_presentations") == 4_012
+        and relation.get("disagreements") == 0
+        and relation.get("strict_triangle_presentations") == 54
+        and relation.get("strict_relation_status_triples")
+        == {
+            "isomorphic/isomorphic/isomorphic": 26,
+            "none/none/none": 3_932,
+            "triangle/triangle/triangle": 54,
+        },
+        "CANONICALIZER_RELATION_CENSUS_FAIL",
+    )
+    semantic_contract = certificate.get("semantic_mutation_contract")
+    require(
+        isinstance(semantic_contract, dict)
+        and semantic_contract.get("nonordinary_triangle", {}).get("conclusion")
+        == "rejected"
+        and semantic_contract.get("selected_triangle_mismatch", {}).get("conclusion")
+        == "rejected",
+        "CANONICALIZER_SEMANTIC_CONTRACT_FAIL",
+    )
+    mutations = load_json(
+        root / "canonicalizer_completeness_mutation_certificate.json"
+    )
+    verify_payload_hash(mutations)
+    require(
+        mutations.get("schema") == "k2p-canonicalizer-completeness-mutations-v1"
+        and mutations.get("status") == "PASS"
+        and mutations.get("atlas_sha256") == inputs["atlas_sha256"]
+        and mutations.get("auditor_sha256") == inputs["auditor_sha256"]
+        and mutations.get("rejected") == 2
+        and mutations.get("survived") == 0
+        and [row.get("name") for row in mutations.get("mutations", [])]
+        == ["accept_nonordinary_split_heads", "erase_without_marking_selected_triangle"]
+        and all(
+            row.get("rejected") is True and row.get("exit_code") != 0
+            for row in mutations.get("mutations", [])
+        ),
+        "CANONICALIZER_MUTATION_FAIL",
+    )
+    return {
+        "payload_sha256": certificate["payload_sha256"],
+        "primitive_archetypes_compared": 10_084,
+        "strict_relations_compared": 4_012,
+        "strict_relation_disagreements": 0,
+        "mutations_rejected": 2,
+    }
+
+
+def validate_parameter_transport_evidence(project: Path = PROJECT) -> dict[str, object]:
+    """Bind paired edge products and every graph-derived inheritance action."""
+
+    root = project / "work/canonicalizer_completeness/inheritance_transport"
+    certificate = load_json(root / "parameter_transport_certificate.json")
+    verify_payload_hash(certificate)
+    require(
+        certificate.get("schema")
+        == "k2p_graph_derived_parameter_transport_certificate_v1"
+        and certificate.get("status") == "PASS",
+        "PARAMETER_TRANSPORT_SCHEMA_FAIL",
+    )
+    inputs = certificate.get("inputs")
+    expected_inputs = {
+        "package/referee/k2p_offline_sweep_portable/atlas/k2p_atlas_core.py",
+        "work/adversarial_proof_review/probe_input_contract.json",
+        "work/adversarial_proof_review/verify_probe_input_contract.py",
+        "work/canonicalizer_completeness/inheritance_transport/build_parameter_transport_certificate.py",
+        "work/canonicalizer_completeness/inheritance_transport/run_parameter_transport_mutations.py",
+        "work/canonicalizer_completeness/inheritance_transport/verify_parameter_transport_certificate.py",
+        "work/cycle_three_port_closure/cycle_common.py",
+        "work/cycle_three_port_closure/generate_cycle_closure.py",
+        "work/global_proof_adversary/probe_full_audit/independent_probe_graph_audit.py",
+        "work/probe_coherence_corrected/exact_transport_ledger.jsonl.gz",
+        "work/probe_coherence_corrected/one_port_ledger.jsonl.gz",
+        "work/probe_coherence_corrected/parent_restriction_ledger.jsonl.gz",
+        "work/probe_coherence_corrected/two_port_ledger.jsonl.gz",
+        "work/probe_coherence_corrected/two_port_parent_inventory.jsonl.gz",
+        "work/restoration_forest/enumerate_five_port.py",
+        "work/restoration_sign_reclassification/corrected_restoration_forest.json",
+    }
+    require(
+        isinstance(inputs, dict) and set(inputs) == expected_inputs,
+        "PARAMETER_TRANSPORT_INPUT_SET_FAIL",
+    )
+    for relative, record in inputs.items():
+        path = project_file(relative, project)
+        require(
+            isinstance(record, dict)
+            and record.get("bytes") == path.stat().st_size
+            and record.get("sha256") == sha_file(path),
+            "PARAMETER_TRANSPORT_INPUT_BINDING_FAIL",
+            relative,
+        )
+    ledgers = certificate.get("ledgers")
+    expected_ledgers = {
+        "probe_relations": (
+            "probe_relation_parameter_transports.jsonl.gz",
+            67_741,
+            {
+                "inheritance:complement": 36_743,
+                "inheritance:identity": 91_530,
+                "inheritance:triangle_local_section": 3_745,
+                "occurrence:probe_anchor": 176,
+                "occurrence:probe_one_port_equality": 2_107,
+                "occurrence:probe_reverse_one_port_marginal": 32_729,
+                "occurrence:probe_two_port_equality": 32_729,
+            },
+        ),
+        "probe_restrictions": (
+            "probe_restriction_parameter_transports.jsonl.gz",
+            71_022,
+            {
+                "inheritance:complement": 8_660,
+                "inheritance:identity": 129_376,
+                "occurrence:probe_one_port_restriction": 4_412,
+                "occurrence:probe_two_port_restriction": 66_610,
+            },
+        ),
+        "restoration_restrictions": (
+            "restoration_restriction_parameter_transports.jsonl.gz",
+            5_540,
+            {
+                "inheritance:complement": 1_754,
+                "inheritance:identity": 9_326,
+                "inheritance:root_suppressed_incoming": 548,
+                "occurrence:restoration_first_source_restriction": 42,
+                "occurrence:restoration_first_target_restriction": 4_986,
+                "occurrence:restoration_second_source_restriction": 256,
+                "occurrence:restoration_second_target_restriction": 256,
+            },
+        ),
+    }
+    require(
+        isinstance(ledgers, dict) and set(ledgers) == set(expected_ledgers),
+        "PARAMETER_TRANSPORT_LEDGER_SET_FAIL",
+    )
+    for key, (filename, rows, counts) in expected_ledgers.items():
+        record = ledgers[key]
+        path = root / filename
+        require(
+            record.get("path") == filename
+            and record.get("rows") == rows
+            and record.get("counts") == counts
+            and record.get("bytes") == path.stat().st_size
+            and record.get("sha256") == sha_file(path),
+            "PARAMETER_TRANSPORT_LEDGER_BINDING_FAIL",
+            key,
+        )
+    closure = certificate.get("closure")
+    require(
+        closure
+        == {
+            "all_exact_transport_records_used": 67_741,
+            "all_frozen_parent_restriction_records_used": 4_379,
+            "restoration_canonical_parents": 997,
+            "restoration_first_source_classes": 42,
+            "restoration_first_target_classes": 4_986,
+            "restoration_member_roots": 2_540,
+            "restoration_second_edges": 256,
+            "unresolved_parameter_transports": 0,
+        },
+        "PARAMETER_TRANSPORT_CLOSURE_FAIL",
+    )
+    mutations = load_json(root / "parameter_transport_mutation_report.json")
+    verify_payload_hash(mutations)
+    mutation_names = [
+        "required_complement_removed",
+        "illicit_complement_injected",
+        "parent_order_reversal_unpaired",
+        "triangle_reticulation_false_affine_map",
+        "triangle_edge_false_product_map",
+        "restriction_complement_removed",
+        "serial_product_factor_omitted",
+        "paired_s_g_action_broken",
+        "root_suppressed_incoming_incidence_hidden",
+        "source_target_reversal_without_inverse_transport",
+    ]
+    require(
+        mutations.get("schema") == "k2p_parameter_transport_mutations_v1"
+        and mutations.get("status") == "PASS"
+        and mutations.get("certificate_payload_sha256") == certificate["payload_sha256"]
+        and mutations.get("rejected") == 10
+        and mutations.get("survived") == 0
+        and [row.get("name") for row in mutations.get("cases", [])] == mutation_names
+        and all(
+            row.get("status") == "REJECTED"
+            and row.get("rederived_exact_row_mismatch") is True
+            for row in mutations.get("cases", [])
+        ),
+        "PARAMETER_TRANSPORT_MUTATION_FAIL",
+    )
+    return {
+        "payload_sha256": certificate["payload_sha256"],
+        "probe_relation_records": 67_741,
+        "probe_restriction_occurrences": 71_022,
+        "restoration_restriction_occurrences": 5_540,
+        "unresolved": 0,
+        "mutations_rejected": 10,
+    }
+
+
 def validate_semantics(project: Path = PROJECT) -> tuple[dict[str, object], list[str]]:
     """Validate all current certificate ledgers and return promotion blockers."""
 
@@ -4258,13 +4797,9 @@ def validate_semantics(project: Path = PROJECT) -> tuple[dict[str, object], list
     )
     layers["three_port"] = {"payload_sha256": triangle["payload_sha256"]}
 
-    quartet = load_json(project / "work/quartet_separation_closure/quartet_logic_certificate.json")
-    verify_payload_hash(quartet)
-    require(
-        quartet.get("schema") == "k2p-displayed-quartet-sign-logic-v1",
-        "QUARTET_SCHEMA_FAIL",
-    )
-    layers["quartet_tree_of_blobs"] = {"payload_sha256": quartet["payload_sha256"]}
+    layers["quartet_tree_of_blobs"] = validate_quartet_evidence(project)
+    layers["canonicalizer_completeness"] = validate_canonicalizer_evidence(project)
+    layers["parameter_transport"] = validate_parameter_transport_evidence(project)
 
     bridge = load_json(project / "work/bridge_marginal_closure/certificate.json")
     verify_payload_hash(bridge)
@@ -4506,14 +5041,20 @@ def lock_payload(project: Path = PROJECT) -> dict[str, Any]:
         "layers": layers,
         "execution_policy": {
             "python_optimized_mode": "forbidden and explicitly rejected",
-            "quick": "hashes, nested manifests, full structural certificate scans, independent three-port arithmetic, and non-generative package replays",
-            "full": "quick plus primitive regeneration, exact rank recomputation, direct overlay full qualification, restoration regeneration, theta2 regeneration, and probe regeneration",
+            "quick": "hashes, nested manifests, full structural certificate scans, literal quartet terminal rebinding, canonicalizer semantic replay, graph-derived parameter-transport scan, independent three-port arithmetic, and non-generative package replays",
+            "full": "quick plus complete canonicalizer comparison, graph-derived parameter-transport regeneration, primitive regeneration, exact rank recomputation, direct overlay full qualification, restoration regeneration, theta2 regeneration, and probe regeneration",
             "mutations": [
                 "omitted raw row",
                 "false rank exclusion",
                 "missing child",
                 "wrong parent",
                 "broken transport",
+                "wrong K2P quartet spectrum or coordinate",
+                "omitted or reassigned quartet terminal binding",
+                "nonordinary or wrongly selected triangle acceptance",
+                "missing or illicit inheritance complement",
+                "broken paired s/g serial product",
+                "source-target reversal without inverse parameter transport",
                 "reassigned cubic certificate",
                 "reassigned quartic certificate",
                 "reassigned quintic certificate",

@@ -1,6 +1,12 @@
-# Final adversarial audit of the K2P article and reader supplement
+# Historical pre-final adversarial audit of the K2P article and reader supplement
 
 Date: 22 August 2026
+
+> Historical scope. This report records the 22 August pre-final audit and its
+> then-open human-metadata/release decisions. Those decisions were subsequently
+> supplied by the author. The active, fail-closed result is regenerated as
+> `STATIC_AUDIT_RESULT.json` by `audit_article_sources.py --write` after the
+> final release lock, clean full replay, and submission sources are sealed.
 
 Verdict: **mathematical and reproducibility pass; human metadata and immutable
 release decisions remain**

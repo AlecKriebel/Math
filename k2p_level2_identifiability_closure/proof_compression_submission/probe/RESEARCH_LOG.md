@@ -39,3 +39,15 @@
   proved, while its finite ledgers remain load-bearing.
 - Final status: word theorem **PASS**; compression **`PC-PARTIAL`**.
 - Best-guess completion toward this bounded subgoal: **100%**.
+
+## 2026-08-24 — hardened-atlas consumer rebinding
+
+- Replaced the over-broad atlas byte dependency with the exact ordered
+  primitive source-support grammar used by the reader-level theorem checker.
+- Bound the checker to the corrected probe certificate resealed against the
+  hardened ordinary-triangle canonicalizer.
+- Replayed all 176 anchors, 29,964 one-port rows, 544,571 two-port rows,
+  67,741 transports, and 4,379 restrictions.  Outside the provenance block,
+  the regenerated coverage artifact is semantically identical to the prior
+  artifact, with no census or classification change.
+- Best-guess completion toward this rebinding subgoal: **100%**.

@@ -864,38 +864,38 @@ def mixed_isomorphic(A,B,ignore_heads_edges=None):
 
 
 def mixed_relation(source_G,target_G):
-    try:A=sd0_mixed(source_G);B=sd0_mixed(target_G)
-    except ValueError:return 'none'
-    def nm(x,y):return x.get('label')==y.get('label')
-    def em(x,y):return x.get('heads',frozenset())==y.get('heads',frozenset())
-    GM=nx.algorithms.isomorphism.GraphMatcher(A,B,node_match=nm,edge_match=em)
-    if GM.is_isomorphic():return 'isomorphic'
-    # Underlying labelled graph maps, then test all arrowhead discrepancies lie inside one triangle
-    GM=nx.algorithms.isomorphism.GraphMatcher(A,B,node_match=nm)
-    for mp in GM.isomorphisms_iter():
-        # mp A->B
-        dif=[]
-        for u,v,d in A.edges(data=True):
-            x,y=mp[u],mp[v]
-            hb=B.edges[x,y].get('heads',frozenset())
-            mapped=frozenset(mp[z] for z in d.get('heads',frozenset()))
-            if mapped!=hb:dif.append((frozenset((x,y)),mapped,hb))
-        if not dif:continue
-        # Find a B triangle containing every discrepant edge; outside identical already.
-        triangles=[]
-        for cyc in nx.cycle_basis(B):
-            if len(cyc)==3:
-                es={frozenset((cyc[i],cyc[(i+1)%3])) for i in range(3)};triangles.append(es)
-        for es in triangles:
-            if all(e in es for e,_,_ in dif):
-                # each orientation has exactly two headed triangle edges into one retic vertex
-                def ret_vertex(edge_data):
-                    hs=[]
-                    for e,ma,hb in edge_data:
-                        hs.extend(hb)
-                    return Counter(hs).most_common(1)[0][0] if hs else None
-                return 'triangle'
-    return 'none'
+    """Compatibility alias for the strict exact mixed-graph relation."""
+    return mixed_relation_exact(source_G,target_G)
+
+
+def _mixed_triangle_edges(M):
+    """Enumerate precisely the ordinary triangles licensed by the theorem.
+
+    An ordinary triangle has exactly two directed edges, both arrowheads point
+    to their common reticulation vertex, and the third edge is undirected.
+    Merely being a three-cycle in the underlying graph is insufficient.
+    """
+    U=nx.Graph();U.add_nodes_from(M.nodes());U.add_edges_from(M.edges())
+    ans=[]
+    for a in U.nodes():
+        for b in U.neighbors(a):
+            if repr(a)>=repr(b):continue
+            for c in set(U.neighbors(a))&set(U.neighbors(b)):
+                if repr(b)>=repr(c):continue
+                edges={frozenset((a,b)),frozenset((a,c)),frozenset((b,c))}
+                headed=[];valid=True
+                for edge in edges:
+                    u,v=tuple(edge)
+                    heads=M.edges[u,v].get('heads',frozenset())
+                    if len(heads)>1 or any(head not in edge for head in heads):
+                        valid=False;break
+                    if heads:headed.append(next(iter(heads)))
+                if not valid or len(headed)!=2 or headed[0]!=headed[1]:continue
+                retic=headed[0]
+                if M.nodes[retic].get('role')!='retic':continue
+                if sum(retic in edge for edge in edges if M.edges[tuple(edge)].get('heads',frozenset()))!=2:continue
+                ans.append(edges)
+    return ans
 
 # ---------- exact mixed-graph isomorphism via incidence expansion ----------
 def mixed_incidence_graph(M, forget_triangle_edges=None):
@@ -905,69 +905,48 @@ def mixed_incidence_graph(M, forget_triangle_edges=None):
         lab=d.get('label')
         H.add_node(('v',v),kind='vertex',label=lab)
     for idx,(u,v,d) in enumerate(M.edges(data=True)):
-        en=('e',idx);H.add_node(en,kind='edge',label=None)
+        en=('e',idx)
         heads=d.get('heads',frozenset())
         forget=frozenset((u,v)) in forget_triangle_edges
+        H.add_node(
+            en,
+            kind='forgotten_triangle_edge' if forget else 'edge',
+            label=None,
+        )
         H.add_edge(en,('v',u),head=False if forget else (u in heads))
         H.add_edge(en,('v',v),head=False if forget else (v in heads))
     return H
 
 def mixed_exact_isomorphic(A,B,forget_all_triangle_heads=False):
     if forget_all_triangle_heads:
-        def tris(M):
-            U=nx.Graph();U.add_nodes_from(M.nodes());U.add_edges_from(M.edges())
-            es=set()
-            for cyc in nx.enumerate_all_cliques(U):
-                if len(cyc)==3:
-                    if all(U.has_edge(cyc[i],cyc[(i+1)%3]) for i in range(3)):
-                        es|={frozenset((cyc[i],cyc[(i+1)%3])) for i in range(3)}
-                elif len(cyc)>3:break
-            return es
-        IA=mixed_incidence_graph(A,tris(A));IB=mixed_incidence_graph(B,tris(B))
+        source_incidence=[mixed_incidence_graph(A,edges) for edges in _mixed_triangle_edges(A)]
+        target_incidence=[mixed_incidence_graph(B,edges) for edges in _mixed_triangle_edges(B)]
     else:
-        IA=mixed_incidence_graph(A);IB=mixed_incidence_graph(B)
+        source_incidence=[mixed_incidence_graph(A)]
+        target_incidence=[mixed_incidence_graph(B)]
     nm=lambda x,y:x.get('kind')==y.get('kind') and x.get('label')==y.get('label')
     em=lambda x,y:x.get('head')==y.get('head')
-    return nx.algorithms.isomorphism.GraphMatcher(IA,IB,node_match=nm,edge_match=em).is_isomorphic()
+    return any(
+        nx.algorithms.isomorphism.GraphMatcher(IA,IB,node_match=nm,edge_match=em).is_isomorphic()
+        for IA in source_incidence for IB in target_incidence
+    )
 
 def mixed_relation_exact(source_G,target_G):
     try:A=sd0_mixed(source_G);B=sd0_mixed(target_G)
     except ValueError:return 'none'
     if mixed_exact_isomorphic(A,B):return 'isomorphic'
-    # T quotient: exact underlying labelled graph with all heads on one ordinary triangle forgotten.
-    # Enumerate one triangle on each side and compare after forgetting precisely its three edge heads.
-    def tri_edges(M):
-        U=nx.Graph();U.add_nodes_from(M.nodes());U.add_edges_from(M.edges())
-        ans=[]
-        for a in U.nodes():
-            for b in U.neighbors(a):
-                if repr(a)>=repr(b):continue
-                for c in set(U.neighbors(a))&set(U.neighbors(b)):
-                    if repr(b)>=repr(c):continue
-                    ans.append({frozenset((a,b)),frozenset((a,c)),frozenset((b,c))})
-        return ans
-    for ea in tri_edges(A):
+    # T quotient: compare after forgetting the heads on exactly one marked
+    # ordinary triangle on each side.  Marking prevents the selected source
+    # triangle from mapping to a different, unselected target triangle.
+    for ea in _mixed_triangle_edges(A):
         IA=mixed_incidence_graph(A,ea)
-        for eb in tri_edges(B):
+        for eb in _mixed_triangle_edges(B):
             IB=mixed_incidence_graph(B,eb)
             nm=lambda x,y:x.get('kind')==y.get('kind') and x.get('label')==y.get('label')
             em=lambda x,y:x.get('head')==y.get('head')
             if nx.algorithms.isomorphism.GraphMatcher(IA,IB,node_match=nm,edge_match=em).is_isomorphic():
                 return 'triangle'
     return 'none'
-
-
-def _mixed_triangle_edges(M):
-    U=nx.Graph();U.add_nodes_from(M.nodes());U.add_edges_from(M.edges())
-    ans=[]
-    for a in U.nodes():
-        for b in U.neighbors(a):
-            if repr(a)>=repr(b):continue
-            for c in set(U.neighbors(a))&set(U.neighbors(b)):
-                if repr(b)>=repr(c):continue
-                ans.append({frozenset((a,b)),frozenset((a,c)),frozenset((b,c))})
-    return ans
-
 
 def prepare_mixed_source(source_G):
     """Cache the source side of the exact mixed-graph relation test."""

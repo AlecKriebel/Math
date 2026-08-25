@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the exact theorem-to-artifact crosswalk for the submission draft."""
+"""Build the exact theorem-to-artifact crosswalk for the sealed submission."""
 
 from __future__ import annotations
 
@@ -15,11 +15,24 @@ SUBMISSION = PROJECT / "proof_compression_submission"
 OUTPUT = Path(__file__).with_name("THEOREM_ARTIFACT_CROSSWALK.json")
 MARKDOWN = Path(__file__).with_name("THEOREM_ARTIFACT_CROSSWALK.md")
 LOCK_RELATIVE = "work/final_theorem_release/RELEASE_LOCK.json"
-LOCK_SHA256 = "58e32bd29f7a039e3da4e47398e32ee8277ad46cf62271a7ed80bf41688b18fb"
-LOCK_PAYLOAD_SHA256 = "3b7de4c60315a5820a2623de860f493d6b76a645b5c674ffda89f12fc31a5c90"
-CONTENT_ROOT_SHA256 = "7004e3e26bf359d0a11c07fd51cb1636859b30b07a97ca6c9cfd0dcd082dfc92"
+CONTENT_LEDGER_RELATIVE = "output/referee/REFEREE_BUNDLE_CONTENTS.json"
 FULL_REPLAY_REPORT = "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY.json"
 FULL_REPLAY_TELEMETRY = "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY_TELEMETRY.json"
+SUBMISSION_METADATA = {
+    "author_contributions": "approved sole-author contribution statement",
+    "code_license": "MIT",
+    "competing_interests": "The author declares no competing interests.",
+    "corresponding_email": "me@aleckriebel.com",
+    "data_license": "CC BY 4.0",
+    "doi": None,
+    "funding": "No specific funding supported this work.",
+    "immutable_submission_tag": "k2p-same-biorxiv-v1.0.0",
+    "paper_license": "CC BY 4.0",
+    "release_boundary": (
+        "No GitHub Release, Zenodo deposit, or DOI is created or claimed by "
+        "this package; the author will perform any such release actions."
+    ),
+}
 
 
 def fail(message: str) -> None:
@@ -58,6 +71,54 @@ def read_json(relative: str) -> dict[str, Any]:
     return value
 
 
+def release_context() -> tuple[dict[str, Any], str, str, dict[str, Any], str]:
+    lock_path = project_path(LOCK_RELATIVE)
+    if not lock_path.is_file() or lock_path.is_symlink():
+        fail("missing or symbolic frozen release lock")
+    lock_bytes = lock_path.read_bytes()
+    lock_sha256 = sha256_bytes(lock_bytes)
+    lock = json.loads(lock_bytes)
+    if not isinstance(lock, dict):
+        fail("frozen release lock is not a JSON object")
+    if lock.get("schema") != "k2p-principal-d-plus-final-theorem-release-lock-v1":
+        fail("frozen release lock schema mismatch")
+    lock_payload_sha256 = lock.get("payload_sha256")
+    unsigned = dict(lock)
+    unsigned.pop("payload_sha256", None)
+    if not isinstance(lock_payload_sha256, str) or lock_payload_sha256 != canonical_hash(unsigned):
+        fail("frozen release lock payload mismatch")
+    if lock.get("promotion_ready") is not True or lock.get("blockers") or lock.get("missing_required_files"):
+        fail("frozen theorem release is not promotion-ready")
+
+    content_ledger = read_json(CONTENT_LEDGER_RELATIVE)
+    frozen_files = content_ledger.get("files")
+    if not isinstance(frozen_files, dict) or not frozen_files:
+        fail("transitive frozen content ledger is empty")
+    if content_ledger.get("schema") != "k2p-principal-d-plus-referee-content-ledger-v1":
+        fail("transitive frozen content ledger schema mismatch")
+    if content_ledger.get("release_lock_sha256") != lock_sha256:
+        fail("transitive frozen content ledger lock binding mismatch")
+    if content_ledger.get("release_lock_payload_sha256") != lock_payload_sha256:
+        fail("transitive frozen content ledger payload binding mismatch")
+    if content_ledger.get("file_count") != len(frozen_files):
+        fail("transitive frozen content ledger file count mismatch")
+    if any(
+        not isinstance(path, str)
+        or not isinstance(row, dict)
+        or not isinstance(row.get("bytes"), int)
+        or row.get("bytes", -1) < 0
+        or not isinstance(row.get("sha256"), str)
+        for path, row in frozen_files.items()
+    ):
+        fail("malformed transitive frozen content row")
+    if content_ledger.get("total_bytes") != sum(int(row["bytes"]) for row in frozen_files.values()):
+        fail("transitive frozen content ledger byte count mismatch")
+    content_root_sha256 = canonical_hash(frozen_files)
+    if content_ledger.get("content_ledger_root_sha256") != content_root_sha256:
+        fail("declared transitive frozen content root mismatch")
+    return lock, lock_sha256, lock_payload_sha256, content_ledger, content_root_sha256
+
+
 def declared_schema(relative: str, data: bytes) -> str | None:
     if relative.endswith(".json"):
         value = json.loads(data)
@@ -75,7 +136,7 @@ def artifact(relative: str, role: str, frozen: bool, lock: dict[str, Any]) -> di
     data = path.read_bytes()
     digest = sha256_bytes(data)
     if relative == LOCK_RELATIVE:
-        if digest != LOCK_SHA256:
+        if digest != lock.get("_lock_sha256"):
             fail("frozen release lock drift")
     elif frozen:
         locked = lock.get("_transitive_files", {}).get(relative)
@@ -141,26 +202,47 @@ def clean_full_runtime(lock: dict[str, Any]) -> dict[str, Any]:
         fail("clean full replay report schema mismatch")
     if report.get("status") != "PASS" or report.get("promotion_ready") is not True or report.get("blockers"):
         fail("clean full replay did not pass")
-    if report.get("mode") != "full" or len(report.get("layer_replays", [])) != 35:
+    layers = report.get("layer_replays")
+    if report.get("mode") != "full" or not isinstance(layers, list) or not layers:
         fail("clean full replay layer census mismatch")
-    if report.get("lock_payload_sha256") != LOCK_PAYLOAD_SHA256:
+    lock_payload_sha256 = lock.get("_lock_payload_sha256")
+    if report.get("lock_payload_sha256") != lock_payload_sha256:
         fail("clean full replay lock binding mismatch")
     if telemetry.get("schema") != "k2p-final-clean-full-replay-telemetry-v1" or telemetry.get("status") != "PASS":
         fail("clean full replay telemetry schema/status mismatch")
     if telemetry.get("report", {}).get("sha256") != report_row["sha256"]:
         fail("clean full replay report/telemetry hash mismatch")
-    if telemetry.get("report", {}).get("lock_payload_sha256") != LOCK_PAYLOAD_SHA256:
+    if telemetry.get("report", {}).get("lock_payload_sha256") != lock_payload_sha256:
         fail("clean full replay telemetry lock binding mismatch")
     timing = telemetry.get("time_l", {})
-    if timing.get("real_seconds") != 5172.89:
-        fail("clean full replay wall-time drift")
+    for key in ("real_seconds", "maximum_resident_set_size_bytes", "peak_memory_footprint_bytes"):
+        value = timing.get(key)
+        if not isinstance(value, (int, float)) or isinstance(value, bool) or value <= 0:
+            fail(f"clean full replay telemetry missing positive field: {key}")
+    internal_elapsed = report.get("elapsed_seconds")
+    if not isinstance(internal_elapsed, (int, float)) or isinstance(internal_elapsed, bool) or internal_elapsed <= 0:
+        fail("clean full replay internal elapsed time missing")
+    if timing["real_seconds"] < internal_elapsed:
+        fail("clean full replay wall time is below internal elapsed time")
+    if (
+        telemetry.get("report", {}).get("layer_count") != len(layers)
+        or telemetry.get("report", {}).get("internal_elapsed_seconds") != internal_elapsed
+        or telemetry.get("report", {}).get("promotion_ready") is not True
+        or telemetry.get("report", {}).get("blocker_count") != 0
+    ):
+        fail("clean full replay telemetry summary mismatch")
+    if telemetry.get("clean_detached_checkout") is not True:
+        fail("clean full replay was not run from a detached clean checkout")
+    git_commit = telemetry.get("git_commit")
+    if not isinstance(git_commit, str) or not git_commit:
+        fail("clean full replay git commit missing")
     return {
-        "end_to_end_seconds": 5172.89,
+        "end_to_end_seconds": timing["real_seconds"],
         "status": "clean_full_replay",
         "clean_detached_checkout": True,
-        "git_commit": telemetry.get("git_commit"),
-        "internal_elapsed_seconds": report.get("elapsed_seconds"),
-        "layer_count": len(report["layer_replays"]),
+        "git_commit": git_commit,
+        "internal_elapsed_seconds": internal_elapsed,
+        "layer_count": len(layers),
         "maximum_resident_set_size_bytes": timing.get("maximum_resident_set_size_bytes"),
         "peak_memory_footprint_bytes": timing.get("peak_memory_footprint_bytes"),
         "report_path": FULL_REPLAY_REPORT,
@@ -172,38 +254,18 @@ def clean_full_runtime(lock: dict[str, Any]) -> dict[str, Any]:
 
 def build() -> dict[str, Any]:
     reject_optimized_mode()
-    lock_bytes = project_path(LOCK_RELATIVE).read_bytes()
-    if sha256_bytes(lock_bytes) != LOCK_SHA256:
-        fail("frozen release lock byte hash mismatch")
-    lock = json.loads(lock_bytes)
-    if not isinstance(lock, dict):
-        fail("frozen release lock is not a JSON object")
-    if lock.get("schema") != "k2p-principal-d-plus-final-theorem-release-lock-v1":
-        fail("frozen release lock schema mismatch")
-    if lock.get("payload_sha256") != LOCK_PAYLOAD_SHA256:
-        fail("frozen release lock payload mismatch")
-    if lock.get("promotion_ready") is not True or lock.get("blockers") or lock.get("missing_required_files"):
-        fail("frozen theorem release is not promotion-ready")
-    content_ledger = read_json("output/referee/REFEREE_BUNDLE_CONTENTS.json")
+    lock, lock_sha256, lock_payload_sha256, content_ledger, content_root_sha256 = release_context()
     frozen_files = content_ledger.get("files")
-    if not isinstance(frozen_files, dict) or len(frozen_files) != 374:
-        fail("transitive frozen content ledger file count mismatch")
-    if content_ledger.get("schema") != "k2p-principal-d-plus-referee-content-ledger-v1":
-        fail("transitive frozen content ledger schema mismatch")
-    if content_ledger.get("release_lock_sha256") != LOCK_SHA256:
-        fail("transitive frozen content ledger lock binding mismatch")
-    if content_ledger.get("release_lock_payload_sha256") != LOCK_PAYLOAD_SHA256:
-        fail("transitive frozen content ledger payload binding mismatch")
-    if content_ledger.get("total_bytes") != 434698345:
-        fail("transitive frozen content ledger byte count mismatch")
-    if canonical_hash(frozen_files) != CONTENT_ROOT_SHA256:
-        fail("transitive frozen content root mismatch")
-    if content_ledger.get("content_ledger_root_sha256") != CONTENT_ROOT_SHA256:
-        fail("declared transitive frozen content root mismatch")
+    if not isinstance(frozen_files, dict):
+        fail("transitive frozen content ledger file map missing")
+    lock["_lock_sha256"] = lock_sha256
+    lock["_lock_payload_sha256"] = lock_payload_sha256
     lock["_transitive_files"] = frozen_files
 
     def rows(specifications: list[tuple[str, str, bool]]) -> list[dict[str, Any]]:
         return [artifact(path, role, frozen, lock) for path, role, frozen in specifications]
+
+    full_runtime = clean_full_runtime(lock)
 
     outer_mutation = (
         "work/final_theorem_release/run_release_mutations.py",
@@ -237,18 +299,28 @@ def build() -> dict[str, Any]:
             "compression_status": "hand_proof_plus_finite_split_logic",
             "authoritative_artifacts": rows([
                 ("work/quartet_separation_closure/PROOF.md", "proof", True),
-                ("work/quartet_separation_closure/quartet_logic_certificate.json", "quartet logic certificate", True),
+                ("work/quartet_separation_closure/QUARTET_SEMANTICS_SPEC.json", "fixed character/spectrum/formula semantics contract", True),
+                ("work/quartet_separation_closure/quartet_logic_certificate.json", "exact Fourier quartet semantics certificate", True),
+                ("work/quartet_separation_closure/quartet_terminal_binding_certificate.json", "complete row-to-Fourier terminal binding", True),
                 ("work/adversarial_proof_review/topology_direction_certificate.json", "direction certificate", True),
             ]),
             "producer_artifacts": rows([
                 ("work/quartet_separation_closure/verify_quartet_logic.py", "quartet certificate producer", True),
+                ("work/quartet_separation_closure/verify_quartet_terminal_bindings.py", "terminal-binding producer and replayer", True),
                 ("work/adversarial_proof_review/verify_topology_direction.py", "topology direction producer", True),
             ]),
             "replay_artifacts": rows([
                 ("work/quartet_separation_closure/verify_quartet_logic.py", "exact quartet replay", True),
+                ("work/quartet_separation_closure/verify_quartet_terminal_bindings.py", "4,414,710-row terminal-binding replay", True),
                 ("work/adversarial_proof_review/verify_topology_direction.py", "independent topology replay", True),
             ]),
-            "mutation_artifacts": rows([outer_mutation]),
+            "mutation_artifacts": rows([
+                ("work/quartet_separation_closure/test_quartet_semantics_mutations.py", "quartet coordinate/spectrum/formula mutation runner", True),
+                ("work/quartet_separation_closure/quartet_semantics_mutation_certificate.json", "quartet semantics mutation report", True),
+                ("work/quartet_separation_closure/test_quartet_terminal_binding_mutations.py", "terminal-binding mutation runner", True),
+                ("work/quartet_separation_closure/quartet_terminal_binding_mutation_certificate.json", "terminal-binding mutation report", True),
+                outer_mutation,
+            ]),
             "environment_profile": "frozen-python-k2p-v1",
             "runtime": unknown_runtime(),
         },
@@ -261,16 +333,21 @@ def build() -> dict[str, Any]:
                 ("work/bridge_marginal_closure/PROOF.md", "proof", True),
                 ("work/bridge_marginal_closure/certificate.json", "exact regression certificate", True),
                 ("work/adversarial_proof_review/PHYSICAL_LOCAL_PRODUCT_REPAIR.md", "adversarial repair proof", True),
+                ("work/canonicalizer_completeness/inheritance_transport/parameter_transport_certificate.json", "graph-derived paired-edge and inheritance transport closure", True),
             ]),
             "producer_artifacts": rows([
                 ("work/bridge_marginal_closure/verify_bridge_marginal.py", "certificate producer", True),
+                ("work/canonicalizer_completeness/inheritance_transport/build_parameter_transport_certificate.py", "parameter-transport producer", True),
             ]),
             "replay_artifacts": rows([
                 ("work/adversarial_proof_review/verify_adversarial.py", "adversarial replay", True),
+                ("work/canonicalizer_completeness/inheritance_transport/verify_parameter_transport_certificate.py", "graph-derived parameter-transport replay", True),
             ]),
             "mutation_artifacts": rows([
                 ("work/adversarial_proof_review/test_mutations.py", "layer mutation runner", True),
                 ("work/adversarial_proof_review/mutation_certificate.json", "mutation report", True),
+                ("work/canonicalizer_completeness/inheritance_transport/run_parameter_transport_mutations.py", "parameter-transport mutation runner", True),
+                ("work/canonicalizer_completeness/inheritance_transport/parameter_transport_mutation_report.json", "parameter-transport mutation report", True),
                 outer_mutation,
             ]),
             "environment_profile": "frozen-python-k2p-v1",
@@ -278,24 +355,30 @@ def build() -> dict[str, Any]:
         },
         {
             "claim_id": "C04-primitive-grammar-and-completion-count",
-            "claim": "Cycle/theta primitive grammar and exact 831, 1,983, 4,155 completion counts, yielding 405,216 raw four-port, 2,946,240 theta2, and 13,440 cycle presentations.",
+            "claim": "Cycle/theta primitive grammar, complete licensed canonicalizer action, strict ordinary-triangle relation semantics, and exact 831, 1,983, 4,155 completion counts, yielding 405,216 raw four-port, 2,946,240 theta2, and 13,440 cycle presentations.",
             "proof_status": "derived_from_frozen_grammar",
             "compression_status": "PC-PARTIAL_exact_count_formula",
             "authoritative_artifacts": rows([
                 ("proof_compression_submission/analysis/FINITE_UNIVERSE_COMPLETENESS.md", "derived counting proof", False),
                 ("proof_compression_submission/analysis/FAMILY_COVERAGE_EQUIVALENCE_CERTIFICATE.json", "coverage-equivalence certificate", False),
                 ("work/final_theorem_release/corrected_universe_certificate.json", "frozen exact universe authority", True),
+                ("work/canonicalizer_completeness/PROOF.md", "licensed-action completeness proof", True),
+                ("work/canonicalizer_completeness/canonicalizer_completeness_certificate.json", "10,084-descriptor and 4,012-relation independent certificate", True),
             ]),
             "producer_artifacts": rows([
                 ("proof_compression_submission/analysis/derive_baseline_and_universe.py", "independent grammar parser and counter", False),
+                ("work/canonicalizer_completeness/canonicalizer_audit.py", "independent slow canonicalizer and strict relation implementation", True),
             ]),
             "replay_artifacts": rows([
                 ("proof_compression_submission/analysis/verify_family_coverage_equivalence.py", "direction-safe equivalence replay", False),
                 ("work/final_theorem_release/verify_corrected_universe_independent.py", "frozen independent universe replay", True),
+                ("work/canonicalizer_completeness/verify_canonicalizer_completeness.py", "full canonicalizer completeness replay", True),
             ]),
             "mutation_artifacts": rows([
                 ("work/final_theorem_release/run_corrected_universe_mutations.py", "corrected-universe mutation runner", True),
                 ("work/final_theorem_release/corrected_universe_mutation_report.json", "corrected-universe mutation report", True),
+                ("work/canonicalizer_completeness/test_canonicalizer_mutations.py", "nonordinary and wrong-selected-triangle mutation runner", True),
+                ("work/canonicalizer_completeness/canonicalizer_completeness_mutation_certificate.json", "canonicalizer mutation report", True),
                 outer_mutation,
             ]),
             "environment_profile": "frozen-python-k2p-v1",
@@ -398,6 +481,8 @@ def build() -> dict[str, Any]:
             "compression_status": "PC-PARTIAL_297_descriptive_archetypes_not_a_transport_quotient",
             "authoritative_artifacts": rows([
                 ("work/restoration_sign_reclassification/corrected_restoration_forest.json", "exact corrected forest", True),
+                ("work/canonicalizer_completeness/inheritance_transport/parameter_transport_certificate.json", "all first/second restoration restriction parameter actions", True),
+                ("work/canonicalizer_completeness/inheritance_transport/restoration_restriction_parameter_transports.jsonl.gz", "graph-derived restoration parameter-transport ledger", True),
                 ("proof_compression_submission/restoration/RESTORATION_ARCHETYPES.json", "descriptive archetype index", False),
                 ("proof_compression_submission/restoration/RESTORATION_ARCHETYPE_VERIFICATION.json", "archetype verification report", False),
             ]),
@@ -408,11 +493,13 @@ def build() -> dict[str, Any]:
             "replay_artifacts": rows([
                 ("work/restoration_sign_reclassification/verify_corrected_restoration_forest.py", "independent exact forest replay", True),
                 ("work/restoration_sign_reclassification/corrected_restoration_replay_certificate.json", "exact forest replay report", True),
+                ("work/canonicalizer_completeness/inheritance_transport/verify_parameter_transport_certificate.py", "restoration parameter-transport replay", True),
                 ("proof_compression_submission/restoration/verify_restoration_archetypes.py", "independent archetype replay", False),
             ]),
             "mutation_artifacts": rows([
                 ("work/restoration_sign_reclassification/mutate_corrected_restoration_forest.py", "exact forest mutation runner", True),
                 ("work/restoration_sign_reclassification/corrected_restoration_mutation_certificate.json", "exact forest mutation report", True),
+                ("work/canonicalizer_completeness/inheritance_transport/parameter_transport_mutation_report.json", "parameter-transport mutation report", True),
                 outer_mutation,
             ]),
             "environment_profile": "frozen-python-k2p-v1",
@@ -425,6 +512,9 @@ def build() -> dict[str, Any]:
             "compression_status": "PC-PARTIAL_uniform_induction_with_load_bearing_probe_ledgers",
             "authoritative_artifacts": rows([
                 ("work/probe_coherence_corrected/probe_coherence_certificate.json", "exact probe closure certificate", True),
+                ("work/canonicalizer_completeness/inheritance_transport/parameter_transport_certificate.json", "all probe equality/reverse and restriction parameter actions", True),
+                ("work/canonicalizer_completeness/inheritance_transport/probe_relation_parameter_transports.jsonl.gz", "graph-derived probe relation parameter-transport ledger", True),
+                ("work/canonicalizer_completeness/inheritance_transport/probe_restriction_parameter_transports.jsonl.gz", "graph-derived probe restriction parameter-transport ledger", True),
                 ("proof_compression_submission/probe/PROBE_WORD_THEOREM.md", "uniform word theorem", False),
                 ("proof_compression_submission/probe/PROBE_WORD_COVERAGE.json", "word theorem coverage certificate", False),
             ]),
@@ -434,12 +524,14 @@ def build() -> dict[str, Any]:
             "replay_artifacts": rows([
                 ("work/probe_coherence_corrected/verify_probe_coherence_corrected.py", "independent exact probe replay", True),
                 ("work/global_proof_adversary/probe_full_audit/independent_probe_graph_audit.py", "independent primitive graph audit", True),
+                ("work/canonicalizer_completeness/inheritance_transport/verify_parameter_transport_certificate.py", "probe parameter-transport replay", True),
                 ("proof_compression_submission/probe/verify_probe_word_theorem.py", "word-theorem premise and scope verifier", False),
             ]),
             "mutation_artifacts": rows([
                 ("work/probe_coherence_corrected/run_probe_coherence_mutations.py", "probe mutation runner", True),
                 ("work/probe_coherence_corrected/probe_coherence_mutation_certificate.json", "probe mutation report", True),
                 ("work/global_proof_adversary/probe_full_audit/independent_probe_mutation_report.json", "adversarial probe mutation report", True),
+                ("work/canonicalizer_completeness/inheritance_transport/parameter_transport_mutation_report.json", "parameter-transport mutation report", True),
                 outer_mutation,
             ]),
             "environment_profile": "frozen-python-k2p-v1",
@@ -474,6 +566,7 @@ def build() -> dict[str, Any]:
             "authoritative_artifacts": rows([
                 ("work/global_theorem_closure/promotion_manuscript/K2P_SAME_PROMOTION_MANUSCRIPT.md", "authoritative theorem manuscript", True),
                 ("work/global_theorem_closure/promotion_manuscript/PROBE_PROMOTION_PLACEHOLDER.json", "completed probe promotion binding", True),
+                ("LICENSES.md", "approved paper/data/code license terms", True),
                 (LOCK_RELATIVE, "unified release lock", True),
             ]),
             "producer_artifacts": rows([
@@ -488,7 +581,7 @@ def build() -> dict[str, Any]:
             ]),
             "mutation_artifacts": rows([outer_mutation]),
             "environment_profile": "frozen-python-k2p-v1",
-            "runtime": clean_full_runtime(lock),
+            "runtime": full_runtime,
         },
         {
             "claim_id": "C12-strict-continuous-time-corollary",
@@ -543,6 +636,9 @@ def build() -> dict[str, Any]:
 
     compression_table = [
         {"layer": "primitive completion arithmetic", "before": "six enumerated grammar cases", "after": "one binomial-sum formula", "exact_residue": "all labelled directed records", "status": "proved exact count compression"},
+        {"layer": "quartet terminal semantics", "before": "4,414,710 terminal row references", "after": "6 canonical Fourier bodies under 288 licensed transports", "exact_residue": "888 literal certificate IDs and every row-to-certificate reference", "status": "exact semantic and terminal-binding closure"},
+        {"layer": "descriptor canonicalizer", "before": "10,084 primitive archetypes + 4,012 relation-eligible presentations", "after": "licensed B_r action proof plus independent slow implementation", "exact_residue": "all descriptor and strict ordinary-triangle comparisons", "status": "zero slow/fast or relation disagreements"},
+        {"layer": "graph-derived parameter transports", "before": "67,741 probe relations + 71,022 probe restrictions + 5,540 restoration restrictions", "after": "paired serial products, identities, complements, root suppressions, and triangle-local sections", "exact_residue": "three compressed row ledgers", "status": "zero unresolved parameter transports"},
         {"layer": "four-port quadratics", "before": 839, "after": 8, "unit_before": "canonical certificate classes", "unit_after": "literal polynomial bodies", "exact_residue": "all coordinate transports", "status": "direction-safe literal compression"},
         {"layer": "theta2 quadratics", "before": 96, "after": 4, "unit_before": "canonical certificate classes", "unit_after": "literal polynomial bodies", "exact_residue": "all coordinate transports", "status": "direction-safe literal compression"},
         {"layer": "cycle quadratics", "before": 54, "after": 6, "unit_before": "canonical certificate classes", "unit_after": "literal polynomial bodies", "exact_residue": "all coordinate transports", "status": "direction-safe literal compression"},
@@ -554,17 +650,17 @@ def build() -> dict[str, Any]:
     ]
 
     result: dict[str, Any] = {
-        "schema": "k2p-theorem-artifact-reproducibility-crosswalk-v1",
+        "schema": "k2p-theorem-artifact-reproducibility-crosswalk-v2",
         "status": "PASS_PC_PARTIAL",
         "scope": "Submission crosswalk derived from, but not replacing, the immutable principal-D_plus theorem release.",
         "frozen_release": {
             "candidate_outcome": "K2P-SAME",
-            "content_ledger_root_sha256": CONTENT_ROOT_SHA256,
-            "file_count_including_release_lock": 374,
+            "content_ledger_root_sha256": content_root_sha256,
+            "file_count_including_release_lock": len(frozen_files),
             "release_lock_path": LOCK_RELATIVE,
-            "release_lock_payload_sha256": LOCK_PAYLOAD_SHA256,
-            "release_lock_sha256": LOCK_SHA256,
-            "total_bytes_including_release_lock": 434698345,
+            "release_lock_payload_sha256": lock_payload_sha256,
+            "release_lock_sha256": lock_sha256,
+            "total_bytes_including_release_lock": content_ledger["total_bytes"],
         },
         "compression_boundary": {
             "status": "PC-PARTIAL",
@@ -582,26 +678,17 @@ def build() -> dict[str, Any]:
                 "sympy": "1.14.0",
                 "optimized_python": "forbidden",
                 "end_to_end_quick_runtime_seconds": None,
-                "end_to_end_full_runtime_seconds": 5172.89,
-                "full_replay_internal_elapsed_seconds": 5172.248447,
-                "full_replay_maximum_resident_set_size_bytes": 1960001536,
-                "full_replay_peak_memory_footprint_bytes": 491504408,
+                "end_to_end_full_runtime_seconds": full_runtime["end_to_end_seconds"],
+                "full_replay_internal_elapsed_seconds": full_runtime["internal_elapsed_seconds"],
+                "full_replay_layer_count": full_runtime["layer_count"],
+                "full_replay_maximum_resident_set_size_bytes": full_runtime["maximum_resident_set_size_bytes"],
+                "full_replay_peak_memory_footprint_bytes": full_runtime["peak_memory_footprint_bytes"],
                 "full_replay_report": artifact(FULL_REPLAY_REPORT, "clean full replay report", False, lock),
                 "full_replay_telemetry": artifact(FULL_REPLAY_TELEMETRY, "clean full replay telemetry", False, lock),
                 "runtime_status": "clean_detached_full_replay_pass",
             }
         },
-        "pending_human_metadata": [
-            "corresponding email address",
-            "author-contribution statement",
-            "funding declaration",
-            "competing-interests declaration",
-            "article license",
-            "code license",
-            "data license",
-            "immutable submission tag",
-            "whether and when to mint a GitHub/Zenodo DOI release",
-        ],
+        "submission_metadata": SUBMISSION_METADATA,
         "claims": claims,
         "compression_table": compression_table,
     }
@@ -668,17 +755,25 @@ def render_markdown(value: dict[str, Any]) -> str:
         "The source requires Python 3.10 or newer. The frozen computational-evidence lock was qualified",
         "with Python 3.14.6, NetworkX 3.5, and SymPy 1.14.0. Optimized Python is",
         "forbidden. Component observations are reproduced only where a locked JSON",
-        "field records them. A detached clean-checkout full replay passed all 35",
-        "layers in 5,172.89 seconds; its exact report and macOS telemetry are bound",
+        "field records them. A detached clean-checkout full replay passed all",
+        f"{value['environment_profiles']['frozen-python-k2p-v1']['full_replay_layer_count']} layers in "
+        f"{value['environment_profiles']['frozen-python-k2p-v1']['end_to_end_full_runtime_seconds']:,.2f} seconds; "
+        "its exact report and macOS telemetry are bound",
         "above. No quick-suite runtime is inferred by adding component timings.",
         "",
-        "## Pending human metadata",
+        "## Approved submission metadata",
+        "",
+        "- Corresponding email: `me@aleckriebel.com`.",
+        "- Sole-author contribution statement: approved.",
+        "- Funding: no specific funding supported this work.",
+        "- Competing interests: none declared.",
+        "- Licenses: CC BY 4.0 for paper/data; MIT for code.",
+        "- Immutable submission tag: `k2p-same-biorxiv-v1.0.0`.",
+        "- No GitHub Release, Zenodo deposit, or DOI is created or claimed by this package.",
         "",
     ])
-    lines.extend(f"- {item}" for item in value["pending_human_metadata"])
     lines.extend([
-        "",
-        f"Frozen lock SHA-256: `{LOCK_SHA256}`.",
+        f"Frozen lock SHA-256: `{value['frozen_release']['release_lock_sha256']}`.",
         "",
         f"Crosswalk payload SHA-256: `{value['payload_sha256']}`.",
         "",

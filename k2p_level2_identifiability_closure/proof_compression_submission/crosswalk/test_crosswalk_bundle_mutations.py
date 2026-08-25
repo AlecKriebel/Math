@@ -81,6 +81,31 @@ def run() -> dict[str, Any]:
 
     mutations.append(reject_mutation(base, "omitted_frozen_evidence_file", omit_frozen))
 
+    for mutation_id, relative in (
+        (
+            "omitted_quartet_terminal_binding",
+            "work/quartet_separation_closure/quartet_terminal_binding_certificate.json",
+        ),
+        (
+            "omitted_canonicalizer_completeness_certificate",
+            "work/canonicalizer_completeness/canonicalizer_completeness_certificate.json",
+        ),
+        (
+            "omitted_graph_parameter_transport_ledger",
+            "work/canonicalizer_completeness/inheritance_transport/probe_relation_parameter_transports.jsonl.gz",
+        ),
+        ("omitted_approved_license_terms", "LICENSES.md"),
+    ):
+        def omit_named_frozen(
+            value: dict[str, Any], *, target: str = relative
+        ) -> None:
+            files = value["frozen_evidence"]["files"]
+            if target not in files:
+                fail(f"mutation fixture omits required frozen evidence: {target}")
+            files.pop(target)
+
+        mutations.append(reject_mutation(base, mutation_id, omit_named_frozen))
+
     def false_frozen_hash(value: dict[str, Any]) -> None:
         files = value["frozen_evidence"]["files"]
         files[first_key(files)]["sha256"] = "0" * 64
@@ -132,14 +157,29 @@ def run() -> dict[str, Any]:
     mutations.append(reject_mutation(base, "unsafe_source_path", unsafe_source))
 
     def wrong_status(value: dict[str, Any]) -> None:
-        value["status"] = "SUBMISSION_READY"
+        value["status"] = "DRAFT_PC_PARTIAL_PENDING_HUMAN_METADATA"
 
-    mutations.append(reject_mutation(base, "premature_submission_ready_status", wrong_status))
+    mutations.append(reject_mutation(base, "stale_pending_human_status", wrong_status))
 
-    def missing_pending_metadata(value: dict[str, Any]) -> None:
-        value["pending_human_metadata"] = value["pending_human_metadata"][:-1]
+    def wrong_email(value: dict[str, Any]) -> None:
+        value["submission_metadata"]["corresponding_email"] = "unapproved@example.invalid"
 
-    mutations.append(reject_mutation(base, "omitted_pending_metadata", missing_pending_metadata))
+    mutations.append(reject_mutation(base, "unapproved_corresponding_email", wrong_email))
+
+    def false_doi_claim(value: dict[str, Any]) -> None:
+        value["submission_metadata"]["doi"] = "10.0000/not-created"
+
+    mutations.append(reject_mutation(base, "false_doi_claim", false_doi_claim))
+
+    def wrong_release_tag(value: dict[str, Any]) -> None:
+        value["submission_metadata"]["immutable_submission_tag"] = "mutable-main"
+
+    mutations.append(reject_mutation(base, "wrong_immutable_submission_tag", wrong_release_tag))
+
+    def false_release_action(value: dict[str, Any]) -> None:
+        value["submission_metadata"]["release_boundary"] = "Zenodo release created."
+
+    mutations.append(reject_mutation(base, "false_external_release_claim", false_release_action))
 
     def false_combined_root(value: dict[str, Any]) -> None:
         value["combined_content_root_sha256"] = "f" * 64
@@ -157,6 +197,11 @@ def run() -> dict[str, Any]:
 
     mutations.append(reject_mutation(base, "false_clean_full_runtime", false_clean_full_runtime))
 
+    def false_clean_full_layer_count(value: dict[str, Any]) -> None:
+        value["runtime_boundary"]["layer_count"] += 1
+
+    mutations.append(reject_mutation(base, "false_clean_full_layer_count", false_clean_full_layer_count))
+
     def omit_article_pdf(value: dict[str, Any]) -> None:
         value["submission_sources"]["files"].pop(
             "proof_compression_submission/output/K2P_SAME_Principal_Domain_Article.pdf",
@@ -164,6 +209,16 @@ def run() -> dict[str, Any]:
         )
 
     mutations.append(reject_mutation(base, "omitted_article_pdf", omit_article_pdf))
+
+    def omit_static_article_audit(value: dict[str, Any]) -> None:
+        value["submission_sources"]["files"].pop(
+            "proof_compression_submission/adversarial_review/STATIC_AUDIT_RESULT.json",
+            None,
+        )
+
+    mutations.append(
+        reject_mutation(base, "omitted_static_article_audit", omit_static_article_audit)
+    )
 
     def false_supplement_pdf_hash(value: dict[str, Any]) -> None:
         path = "proof_compression_submission/output/K2P_SAME_Reader_Supplement.pdf"
@@ -176,6 +231,7 @@ def run() -> dict[str, Any]:
         HERE / "build_revised_referee_bundle.py",
         HERE / "check_revised_referee_bundle.py",
         HERE / "test_crosswalk_bundle_mutations.py",
+        HERE.parent / "adversarial_review" / "audit_article_sources.py",
     ]
     assert_count = sum(count_assert_statements(path) for path in crosswalk_scripts)
     if assert_count != 0:
@@ -192,11 +248,28 @@ def run() -> dict[str, Any]:
     if optimized.returncode == 0 or "optimized Python is forbidden" not in optimized_text:
         fail("optimized-mode checker mutation was not rejected")
 
+    optimized_audit = subprocess.run(
+        [
+            sys.executable,
+            "-O",
+            str(HERE.parent / "adversarial_review" / "audit_article_sources.py"),
+            "--check",
+        ],
+        cwd=builder.PROJECT,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    optimized_audit_text = optimized_audit.stdout + optimized_audit.stderr
+    if optimized_audit.returncode == 0 or "OPTIMIZED_PYTHON_FORBIDDEN" not in optimized_audit_text:
+        fail("optimized-mode article audit mutation was not rejected")
+
     value: dict[str, Any] = {
-        "schema": "k2p-crosswalk-bundle-mutation-report-v1",
+        "schema": "k2p-crosswalk-bundle-mutation-report-v2",
         "status": "PASS",
         "assert_statement_count": assert_count,
         "optimized_mode_rejected": True,
+        "optimized_article_audit_rejected": True,
         "mutation_count": len(mutations),
         "mutations": mutations,
     }

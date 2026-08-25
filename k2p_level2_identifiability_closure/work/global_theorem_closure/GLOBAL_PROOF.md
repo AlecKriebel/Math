@@ -39,8 +39,8 @@ whose restrictions display different quartet sets have disjoint strict K2P
 images.  The proof is by the zero-versus-positive invariants
 
 \[
-q_{GGGG}-q_{GGTT},\qquad
-q_{GGGG}-q_{GGTT}-q_{GTTG}+q_{GTGT}.
+q_{CCCC}-q_{CCTT},\qquad
+q_{CCCC}-q_{CCTT}-q_{CTTC}+q_{CTCT}.
 \]
 
 Positive inheritance mixtures preserve their strict signs.  Hence the

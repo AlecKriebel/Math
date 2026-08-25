@@ -159,11 +159,20 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     group = parser.add_mutually_exclusive_group()
     group.add_argument("--emit", action="store_true")
+    group.add_argument("--write", action="store_true")
     group.add_argument("--check", type=Path, nargs="?", const=REPORT)
     args = parser.parse_args()
     generated = build_report()
     if args.emit:
         print(json.dumps(generated, indent=2, sort_keys=True))
+        return
+    if args.write:
+        REPORT.write_text(json.dumps(generated, indent=2, sort_keys=True) + "\n")
+        print(json.dumps({
+            "status": "PASS",
+            "report_sha256": file_sha256(REPORT),
+            "payload_sha256": generated["payload_sha256"],
+        }, sort_keys=True))
         return
     target = args.check or REPORT
     require(target.exists(), f"missing verification report:{target}")

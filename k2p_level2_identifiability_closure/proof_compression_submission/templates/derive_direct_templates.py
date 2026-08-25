@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import json
 import sys
 from collections import Counter, defaultdict
@@ -856,9 +857,31 @@ Payload SHA-256: `{value['payload_sha256']}`.
 
 def main() -> None:
     reject_optimized_python()
+    parser = argparse.ArgumentParser()
+    mode = parser.add_mutually_exclusive_group(required=True)
+    mode.add_argument("--write", action="store_true")
+    mode.add_argument("--check", action="store_true")
+    arguments = parser.parse_args()
+
     value = sealed(template_payload())
-    write_json(OUTPUT_JSON, value)
-    write_text(OUTPUT_MD, markdown(value))
+    rendered_markdown = markdown(value)
+    outputs = (
+        (
+            OUTPUT_JSON,
+            (
+                json.dumps(value, sort_keys=True, indent=2, ensure_ascii=False)
+                + "\n"
+            ).encode("utf-8"),
+        ),
+        (OUTPUT_MD, (rendered_markdown.rstrip() + "\n").encode("utf-8")),
+    )
+    if arguments.write:
+        write_json(OUTPUT_JSON, value)
+        write_text(OUTPUT_MD, rendered_markdown)
+    else:
+        for path, expected in outputs:
+            require(path.is_file(), "DERIVED_OUTPUT_MISSING", path)
+            require(path.read_bytes() == expected, "DERIVED_OUTPUT_DRIFT", path)
     print(
         json.dumps(
             {

@@ -16,18 +16,22 @@ pointwise disjointness, not merely generic distinction, and therefore rules
 out containment in both directions.
 
 The character names in Englander et al. use the equal K2P pair `G,T`; this
-project uses the equal pair `C,T`.  A Klein-four-group automorphism carries
-one convention to the other.  The proof below is invariant under that
-renaming.  The cited paper assumes every nontrivial Fourier edge parameter is
-in `(0,1)`; `D_plus` is a subset of that domain.
+project uses the equal pair `C,T`.  A one-time Klein-four-group automorphism,
+together with the corresponding relabelling of the edge spectrum, carries one
+convention to the other.  Once the project convention
+`(0,C,G,T)/(1,s,g,s)` is fixed, the only licensed character transports are
+the identity and the global `C`--`T` swap; an arbitrary Klein-four
+automorphism would move the singleton `G` sector and is not a model symmetry.
+The cited paper assumes every nontrivial Fourier edge parameter is in `(0,1)`;
+`D_plus` is a subset of that domain.
 
 ## 2. Quartet inequalities
 
-Write the three quartet splits as `12|34`, `13|24`, and `14|23`.  After a
-permutation of characters and leaves, the linear Fourier expression
+Write the three quartet splits as `12|34`, `13|24`, and `14|23`.  In the
+project's declared character convention, the linear Fourier expression
 
 \[
-I_{12}=q_{GGGG}-q_{GGTT}
+I_{12}=q_{CCCC}-q_{CCTT}
 \]
 
 is zero on the K2P tree with split `12|34` and strictly positive on either
@@ -44,7 +48,7 @@ where the relevant effective internal eigenvalue satisfies `0<a<1`.
 Likewise
 
 \[
-J_{13}=q_{GGGG}-q_{GGTT}-q_{GTTG}+q_{GTGT}
+J_{13}=q_{CCCC}-q_{CCTT}-q_{CTTC}+q_{CTCT}
 \]
 
 is zero on the `12|34` and `14|23` trees and strictly positive on the
@@ -155,4 +159,3 @@ After the tree of blobs is recovered, the strict tree--sunlet sign separates
 an ordinary trivalent component from a three-sunlet.  Strong level-2 theta
 components have at least four boundary incidences, so this supplies the
 ordinary/nontrivial decoration used before projective bridge localization.
-

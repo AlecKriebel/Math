@@ -71,8 +71,9 @@ Kimura Two-Parameter Model\\
 \small Independent Researcher\\
 \small ORCID: \href{https://orcid.org/0009-0001-9320-500X}
 {0009-0001-9320-500X}\\
-\small Corresponding email: \emph{pending human confirmation}}
-\date{Draft, August 2026}
+\small Corresponding email: \href{mailto:me@aleckriebel.com}
+{me@aleckriebel.com}}
+\date{August 2026}
 
 \begin{document}
 \maketitle
@@ -416,8 +417,8 @@ the algebraic invariance is reversibility, subdivision, and switching.
 Let the three quartet splits be
 \(A=12\mid34\), \(B=13\mid24\), and \(C=14\mid23\).  Define
 \begin{align}
- F_A&=q_{GGGG}-q_{GGTT},\label{eq:quartet-F}\\
- G_B&=q_{GGGG}-q_{GGTT}-q_{GTTG}+q_{GTGT}.
+ F_A&=q_{CCCC}-q_{CCTT},\label{eq:quartet-F}\\
+ G_B&=q_{CCCC}-q_{CCTT}-q_{CTTC}+q_{CTCT}.
  \label{eq:quartet-G}
 \end{align}
 
@@ -430,13 +431,23 @@ physical images.
 \end{lemma}
 
 \begin{proof}
-Substitution in the tree monomial formula \eqref{eq:k2p-fourier} cancels the
-two terms of \(F_A\) on split \(A\).  On either crossing split, their
-difference is a positive pendant monomial times \(1-a\), where \(a\in(0,1)\)
-is the effective paired-sector internal multiplier.  This proves the first
-claim.  The same direct substitution shows that \(G_B\) cancels on \(A,C\)
-and is a positive pendant monomial times \(1-a\) on \(B\).  Leaf
-permutations give \(F_t,G_t\) for every split \(t\).
+The equal K2P character sector in the convention of
+\eqref{eq:inverse-fourier} is \(\{C,T\}\).  Let
+\(P=s_1s_2s_3s_4>0\), and let \(g_I\in(0,1)\) be the singleton-sector
+eigenvalue on the internal quartet edge.  Direct substitution in
+\eqref{eq:k2p-fourier} gives the complete pullback table
+\[
+\begin{array}{c|ccc}
+ &A&B&C\\ \hline
+F_A&0&P(1-g_I)&P(1-g_I)\\
+G_B&0&2P(1-g_I)&0.
+\end{array}
+\]
+Thus the asserted zeros and strict signs hold on all of \(\Dplus\).  Leaf
+permutations give \(F_t,G_t\) for every split \(t\); the global
+\(C\leftrightarrow T\) symmetry gives the equivalent character transport.
+These are the current-paper coordinates corresponding to the equal-sector
+formulas in Englander et al.
 
 A network tensor is a positive mixture of all displayed-tree tensors.  If one
 displayed set is the singleton \(\{t\}\) and the other contains a different
@@ -1812,9 +1823,10 @@ implemented program, not an independent human review.
 
 The exact certificate and replay files are contained in the public repository
 \url{https://github.com/AlecKriebel/Math} under
-\path{k2p_level2_identifiability_closure}.  An immutable submission tag or
-DOI and paper/data/code license statements are \textbf{pending human
-confirmation}.  This draft does not infer or assert a license.  The reader
+\path{k2p_level2_identifiability_closure}.  The immutable source tag for this
+submission is \texttt{k2p-same-biorxiv-v1.0.0}; no DOI is claimed.  The
+article, supplement, and certificate data are licensed under CC BY 4.0, and
+the verifier code is licensed under the MIT License.  The reader
 supplement provides a relative-path crosswalk that remains valid in the local
 reproducibility tree; the deterministic archive hash is emitted as external
 release metadata to avoid a self-referential archive.
@@ -1824,18 +1836,15 @@ release metadata to avoid a self-referential archive.
 Alec Kriebel conceived and directed the study, fixed the mathematical scope
 and conventions, adjudicated proof and audit results, curated the exact
 reproducibility package, and accepts responsibility for the final claims and
-submission.  This draft contribution statement is pending explicit human
-confirmation.
+submission.
 
 \section*{Funding}
 
-Funding statement: \textbf{pending human confirmation}.  This draft makes no
-funding assertion.
+No specific funding supported this work.
 
 \section*{Competing interests}
 
-Competing-interests declaration: \textbf{pending human confirmation}.  This
-draft makes no competing-interests assertion.
+The author declares no competing interests.
 
 \section*{Use of generative AI}
 
@@ -1848,13 +1857,6 @@ exact graph-derived certificates, direct derivations, separately implemented
 replays, and fail-closed mutation tests.  No independent human specialist
 review is claimed.  The author accepts responsibility for the mathematical
 statement, code, and final submission.
-
-\section*{Acknowledgment of pending submission metadata}
-
-The corresponding email address, author-contribution statement, funding
-statement, competing-interests declaration, immutable release tag/DOI, and all
-license choices remain pending explicit human confirmation and must be
-supplied before submission.
 
 {\small
 \bibliographystyle{plain}

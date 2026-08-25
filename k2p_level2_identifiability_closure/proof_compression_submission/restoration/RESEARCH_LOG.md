@@ -36,3 +36,16 @@
 - Final result: `PC-PARTIAL`, with 297 descriptive archetypes and the exact
   forest retained as irreducible assignment/transport residue.
 - Best-guess completion toward this bounded subgoal: **100%**.
+
+## 2026-08-24 — hardened-atlas consumer rebinding
+
+- Replaced the over-broad whole-atlas byte binding with the exact ordered
+  primitive/four-port completion-grammar fingerprint used by this analyzer.
+- Compared every restoration candidate, status, and child request in the six
+  current source manifests after removing compiler/runtime provenance; all six
+  projections are identical to the frozen forest inputs.
+- Regenerated and independently replayed all 297 archetypes.  The complete
+  mathematical payload outside the provenance block is byte-semantically
+  identical to the prior artifact: 997 parents, 2,540 member roots, 36,824
+  edges, and zero unresolved records.
+- Best-guess completion toward this rebinding subgoal: **100%**.

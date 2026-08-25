@@ -328,7 +328,10 @@ def check_physical_hypotheses() -> dict[str, object]:
     return {
         "status": "PASS",
         "D_plus_points": tested,
-        "character_convention": "equal-pair relabel by Aut(Z2 x Z2)",
+        "character_convention": (
+            "fixed spectrum (1,s,g,s): identity or global C<->T only; "
+            "literature conventions require a one-time accompanying spectrum relabel"
+        ),
         "inheritance_weights": "strictly positive switching weights",
         "tree_sunlet_sign": str(sign_factor),
     }

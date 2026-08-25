@@ -59,14 +59,18 @@ From the project root, the compact qualification is:
 .venv/bin/python -B proof_compression_submission/crosswalk/check_revised_referee_bundle.py
 ```
 
-The detached clean-checkout full primitive replay passed all 35 layers in
-5,172.89 seconds. Its byte-exact report and macOS timing/memory telemetry are
-in `output/FINAL_CLEAN_FULL_REPLAY.json` and
-`output/FINAL_CLEAN_FULL_REPLAY_TELEMETRY.json`.
+The submission bundle requires a detached clean-checkout full primitive replay
+of the exact source candidate. Its exact commit, layer count, runtime, memory,
+report hash, and telemetry hash are recorded externally in
+`output/FINAL_CLEAN_FULL_REPLAY.json`,
+`output/FINAL_CLEAN_FULL_REPLAY_TELEMETRY.json`, and the generated crosswalk;
+they are not compiled into the five-file source set.
 
-Corresponding email, author-contribution approval, funding,
-competing-interests, license, immutable-tag, and DOI decisions remain explicitly
-pending human confirmation.
+Submission metadata are finalized: corresponding email
+`me@aleckriebel.com`; sole-author contribution statement approved; no specific
+funding; no competing interests; CC BY 4.0 for the paper and data; MIT for
+code; immutable source tag `k2p-same-biorxiv-v1.0.0`. No GitHub Release,
+Zenodo deposit, or DOI is claimed in this version.
 
 ## Compile-complete bioRxiv source set
 

@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
 import re
@@ -24,6 +25,12 @@ def sha256(path: Path) -> str:
         for chunk in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def canonical_hash(value: object) -> str:
+    return hashlib.sha256(
+        json.dumps(value, sort_keys=True, separators=(",", ":")).encode()
+    ).hexdigest()
 
 
 def read_json(path: Path) -> object:
@@ -50,7 +57,7 @@ def tex_keys(text: str, command: str) -> list[str]:
     return values
 
 
-def main() -> None:
+def main() -> dict[str, object]:
     require(__debug__, "OPTIMIZED_PYTHON_FORBIDDEN")
 
     submission = Path(__file__).resolve().parents[1]
@@ -73,6 +80,17 @@ def main() -> None:
         / "final_theorem_release"
         / "corrected_universe_certificate.json"
     )
+    quartet_spec_path = project / "work" / "quartet_separation_closure" / "QUARTET_SEMANTICS_SPEC.json"
+    quartet_path = project / "work" / "quartet_separation_closure" / "quartet_logic_certificate.json"
+    quartet_mutation_path = project / "work" / "quartet_separation_closure" / "quartet_semantics_mutation_certificate.json"
+    terminal_path = project / "work" / "quartet_separation_closure" / "quartet_terminal_binding_certificate.json"
+    terminal_mutation_path = project / "work" / "quartet_separation_closure" / "quartet_terminal_binding_mutation_certificate.json"
+    canonicalizer_path = project / "work" / "canonicalizer_completeness" / "canonicalizer_completeness_certificate.json"
+    canonicalizer_mutation_path = project / "work" / "canonicalizer_completeness" / "canonicalizer_completeness_mutation_certificate.json"
+    parameter_transport_path = project / "work" / "canonicalizer_completeness" / "inheritance_transport" / "parameter_transport_certificate.json"
+    parameter_transport_mutation_path = project / "work" / "canonicalizer_completeness" / "inheritance_transport" / "parameter_transport_mutation_report.json"
+    rank_mutation_path = project / "work" / "rank_upper_certificates" / "mutation_report.json"
+    license_path = project / "LICENSES.md"
 
     for path in (
         article_path,
@@ -86,6 +104,17 @@ def main() -> None:
         universe_path,
         full_replay_path,
         full_replay_telemetry_path,
+        quartet_spec_path,
+        quartet_path,
+        quartet_mutation_path,
+        terminal_path,
+        terminal_mutation_path,
+        canonicalizer_path,
+        canonicalizer_mutation_path,
+        parameter_transport_path,
+        parameter_transport_mutation_path,
+        rank_mutation_path,
+        license_path,
     ):
         require(path.is_file(), f"MISSING_REQUIRED_FILE:{path}")
 
@@ -95,6 +124,15 @@ def main() -> None:
     certificate_tex = certificate_tex_path.read_text(encoding="utf-8")
     certificate_json = read_json(certificate_json_path)
     sharpness_columns = read_json(sharpness_columns_path)
+    quartet = read_json(quartet_path)
+    quartet_mutation = read_json(quartet_mutation_path)
+    terminal = read_json(terminal_path)
+    terminal_mutation = read_json(terminal_mutation_path)
+    canonicalizer = read_json(canonicalizer_path)
+    canonicalizer_mutation = read_json(canonicalizer_mutation_path)
+    parameter_transport = read_json(parameter_transport_path)
+    parameter_transport_mutation = read_json(parameter_transport_mutation_path)
+    rank_mutation = read_json(rank_mutation_path)
     bib = bib_path.read_text(encoding="utf-8")
     supplement_source = supplement + "\n" + compression + "\n" + certificate_tex
     all_tex = article + "\n" + supplement_source
@@ -120,43 +158,206 @@ def main() -> None:
     )
 
     require(
-        sha256(release_path)
-        == "58e32bd29f7a039e3da4e47398e32ee8277ad46cf62271a7ed80bf41688b18fb",
-        "FROZEN_RELEASE_LOCK_DRIFT",
+        isinstance(quartet, dict)
+        and quartet.get("schema") == "k2p-displayed-quartet-semantics-v2"
+        and quartet.get("status") == "PASS"
+        and quartet.get("character_order") == ["0", "C", "G", "T"]
+        and quartet.get("edge_spectrum") == ["1", "s", "g", "s"]
+        and quartet.get("equal_nonzero_sector") == ["C", "T"]
+        and quartet.get("canonical_formula_count") == 6
+        and quartet.get("formula_transport_count") == 288
+        and quartet.get("unequal_pair_count") == 21,
+        "QUARTET_SEMANTICS_CERTIFICATE_DRIFT",
     )
+    require(
+        quartet.get("document_sha256", {}).get(
+            "proof_compression_submission/article/main.tex"
+        )
+        == sha256(article_path),
+        "QUARTET_ARTICLE_LITERAL_BINDING_STALE",
+    )
+    require(
+        isinstance(quartet_mutation, dict)
+        and quartet_mutation.get("schema") == "k2p-quartet-semantics-mutations-v2"
+        and quartet_mutation.get("status") == "PASS"
+        and quartet_mutation.get("case_count") == 8,
+        "QUARTET_SEMANTICS_MUTATION_DRIFT",
+    )
+    require(
+        quartet.get("spec_sha256") == sha256(quartet_spec_path)
+        and quartet_mutation.get("spec_sha256") == sha256(quartet_spec_path),
+        "QUARTET_SEMANTICS_SPEC_BINDING_STALE",
+    )
+    require(
+        isinstance(terminal, dict)
+        and terminal.get("schema") == "k2p-quartet-terminal-binding-v1"
+        and terminal.get("status") == "PASS"
+        and terminal.get("aggregate", {}).get("quartet_terminal_rows") == 4_414_710
+        and terminal.get("aggregate", {}).get("per_layer_certificate_ids") == 888
+        and terminal.get("aggregate", {}).get("missing_references") == 0
+        and terminal.get("aggregate", {}).get("dangling_certificates") == 0,
+        "QUARTET_TERMINAL_BINDING_DRIFT",
+    )
+    require(
+        isinstance(terminal_mutation, dict)
+        and terminal_mutation.get("schema") == "k2p-quartet-terminal-binding-mutations-v1"
+        and terminal_mutation.get("status") == "PASS"
+        and terminal_mutation.get("case_count") == 12,
+        "QUARTET_TERMINAL_MUTATION_DRIFT",
+    )
+    require(
+        terminal.get("semantics_certificate", {}).get("sha256") == sha256(quartet_path)
+        and terminal_mutation.get("semantics_certificate_sha256") == sha256(quartet_path),
+        "QUARTET_TERMINAL_SEMANTICS_BINDING_STALE",
+    )
+    require(
+        isinstance(canonicalizer, dict)
+        and canonicalizer.get("schema") == "k2p-canonicalizer-completeness-v1"
+        and canonicalizer.get("status") == "PASS"
+        and canonicalizer.get("descriptor_audit", {}).get("primitive_archetypes_compared") == 10_084
+        and canonicalizer.get("descriptor_audit", {}).get("slow_fast_disagreements") == 0
+        and canonicalizer.get("relation_audit", {}).get("rank_and_topology_eligible_presentations") == 4_012
+        and canonicalizer.get("relation_audit", {}).get("disagreements") == 0,
+        "CANONICALIZER_COMPLETENESS_DRIFT",
+    )
+    require(
+        isinstance(canonicalizer_mutation, dict)
+        and canonicalizer_mutation.get("schema") == "k2p-canonicalizer-completeness-mutations-v1"
+        and canonicalizer_mutation.get("status") == "PASS"
+        and canonicalizer_mutation.get("rejected") == 2
+        and canonicalizer_mutation.get("survived") == 0,
+        "CANONICALIZER_MUTATION_DRIFT",
+    )
+    require(
+        canonicalizer_mutation.get("atlas_sha256")
+        == canonicalizer.get("inputs", {}).get("atlas_sha256"),
+        "CANONICALIZER_MUTATION_ATLAS_BINDING_STALE",
+    )
+    require(
+        isinstance(parameter_transport, dict)
+        and parameter_transport.get("schema") == "k2p_graph_derived_parameter_transport_certificate_v1"
+        and parameter_transport.get("status") == "PASS"
+        and parameter_transport.get("closure", {}).get("all_exact_transport_records_used") == 67_741
+        and parameter_transport.get("closure", {}).get("all_frozen_parent_restriction_records_used") == 4_379
+        and parameter_transport.get("closure", {}).get("restoration_canonical_parents") == 997
+        and parameter_transport.get("closure", {}).get("unresolved_parameter_transports") == 0
+        and parameter_transport.get("ledgers", {}).get("probe_relations", {}).get("rows") == 67_741
+        and parameter_transport.get("ledgers", {}).get("probe_restrictions", {}).get("rows") == 71_022
+        and parameter_transport.get("ledgers", {}).get("restoration_restrictions", {}).get("rows") == 5_540,
+        "PARAMETER_TRANSPORT_CERTIFICATE_DRIFT",
+    )
+    require(
+        isinstance(parameter_transport_mutation, dict)
+        and parameter_transport_mutation.get("schema") == "k2p_parameter_transport_mutations_v1"
+        and parameter_transport_mutation.get("status") == "PASS"
+        and parameter_transport_mutation.get("rejected") == 10
+        and parameter_transport_mutation.get("survived") == 0,
+        "PARAMETER_TRANSPORT_MUTATION_DRIFT",
+    )
+    require(
+        parameter_transport_mutation.get("certificate_payload_sha256")
+        == parameter_transport.get("payload_sha256"),
+        "PARAMETER_TRANSPORT_MUTATION_BINDING_STALE",
+    )
+    for ledger_name, ledger in parameter_transport.get("ledgers", {}).items():
+        require(isinstance(ledger, dict), f"PARAMETER_LEDGER_ROW_MALFORMED:{ledger_name}")
+        ledger_path = parameter_transport_path.parent / str(ledger.get("path"))
+        require(
+            ledger_path.is_file()
+            and not ledger_path.is_symlink()
+            and ledger.get("sha256") == sha256(ledger_path)
+            and ledger.get("bytes") == ledger_path.stat().st_size,
+            f"PARAMETER_LEDGER_BINDING_STALE:{ledger_name}",
+        )
+    require(
+        isinstance(rank_mutation, dict)
+        and rank_mutation.get("schema") == "k2p-rank-upper-adversarial-mutations-v1"
+        and rank_mutation.get("status") == "pass"
+        and rank_mutation.get("mutation_count") == 7
+        and rank_mutation.get("survivors") == 0
+        and any(
+            row.get("mutation") == "sampled_rank_substituted_for_symbolic_upper"
+            and row.get("status") == "rejected"
+            for row in rank_mutation.get("results", [])
+            if isinstance(row, dict)
+        ),
+        "SAMPLED_RANK_UPPER_MUTATION_NOT_REJECTED",
+    )
+
     release = read_json(release_path)
     require(isinstance(release, dict), "RELEASE_LOCK_NOT_OBJECT")
-    require(release.get("promotion_ready") is True, "RELEASE_NOT_PROMOTION_READY")
+    release_unsigned = dict(release)
+    release_payload = release_unsigned.pop("payload_sha256", None)
+    require(
+        release.get("schema") == "k2p-principal-d-plus-final-theorem-release-lock-v1"
+        and release.get("promotion_ready") is True
+        and not release.get("blockers")
+        and not release.get("missing_required_files")
+        and isinstance(release_payload, str)
+        and release_payload == canonical_hash(release_unsigned),
+        "RELEASE_NOT_PROMOTION_READY_OR_PAYLOAD_INVALID",
+    )
+    required_new_release_paths = {
+        "LICENSES.md",
+        "work/quartet_separation_closure/QUARTET_SEMANTICS_SPEC.json",
+        "work/quartet_separation_closure/quartet_logic_certificate.json",
+        "work/quartet_separation_closure/quartet_semantics_mutation_certificate.json",
+        "work/quartet_separation_closure/quartet_terminal_binding_certificate.json",
+        "work/quartet_separation_closure/quartet_terminal_binding_mutation_certificate.json",
+        "work/quartet_separation_closure/verify_quartet_logic.py",
+        "work/quartet_separation_closure/verify_quartet_terminal_bindings.py",
+        "work/canonicalizer_completeness/canonicalizer_completeness_certificate.json",
+        "work/canonicalizer_completeness/canonicalizer_completeness_mutation_certificate.json",
+        "work/canonicalizer_completeness/verify_canonicalizer_completeness.py",
+        "work/canonicalizer_completeness/inheritance_transport/parameter_transport_certificate.json",
+        "work/canonicalizer_completeness/inheritance_transport/parameter_transport_mutation_report.json",
+        "work/canonicalizer_completeness/inheritance_transport/probe_relation_parameter_transports.jsonl.gz",
+        "work/canonicalizer_completeness/inheritance_transport/probe_restriction_parameter_transports.jsonl.gz",
+        "work/canonicalizer_completeness/inheritance_transport/restoration_restriction_parameter_transports.jsonl.gz",
+        "work/canonicalizer_completeness/inheritance_transport/verify_parameter_transport_certificate.py",
+    }
+    release_files = release.get("files")
+    require(
+        isinstance(release_files, dict)
+        and required_new_release_paths <= set(release_files),
+        "NEW_EXACT_EVIDENCE_NOT_BOUND_IN_RELEASE_LOCK",
+    )
 
     full_replay = read_json(full_replay_path)
     full_replay_telemetry = read_json(full_replay_telemetry_path)
     require(isinstance(full_replay, dict), "FULL_REPLAY_NOT_OBJECT")
     require(isinstance(full_replay_telemetry, dict), "FULL_REPLAY_TELEMETRY_NOT_OBJECT")
-    require(
-        sha256(full_replay_path)
-        == "7939b389880de80b7d8abd69022e0b69d2dc4188815854b294d3384fa24c9e18",
-        "FULL_REPLAY_REPORT_DRIFT",
-    )
-    require(
-        sha256(full_replay_telemetry_path)
-        == "8779854633d9a52ba3d7bc9278ccbcc3918e51987bb4c30204c0adcd9771ce16",
-        "FULL_REPLAY_TELEMETRY_DRIFT",
-    )
+    full_layers = full_replay.get("layer_replays")
     require(
         full_replay.get("status") == "PASS"
         and full_replay.get("mode") == "full"
         and full_replay.get("promotion_ready") is True
         and full_replay.get("blockers") == []
-        and len(full_replay.get("layer_replays", [])) == 35
+        and isinstance(full_layers, list)
+        and len(full_layers) > 0
         and full_replay.get("lock_payload_sha256") == release.get("payload_sha256"),
         "FULL_REPLAY_NOT_PROMOTION_READY_PASS",
     )
+    wall_seconds = full_replay_telemetry.get("time_l", {}).get("real_seconds")
+    internal_seconds = full_replay.get("elapsed_seconds")
     require(
         full_replay_telemetry.get("status") == "PASS"
         and full_replay_telemetry.get("clean_detached_checkout") is True
         and full_replay_telemetry.get("report", {}).get("sha256")
         == sha256(full_replay_path)
-        and full_replay_telemetry.get("time_l", {}).get("real_seconds") == 5172.89,
+        and full_replay_telemetry.get("report", {}).get("lock_payload_sha256")
+        == release.get("payload_sha256")
+        and full_replay_telemetry.get("report", {}).get("layer_count")
+        == len(full_layers)
+        and full_replay_telemetry.get("report", {}).get("internal_elapsed_seconds")
+        == internal_seconds
+        and full_replay_telemetry.get("report", {}).get("promotion_ready") is True
+        and full_replay_telemetry.get("report", {}).get("blocker_count") == 0
+        and isinstance(wall_seconds, (int, float))
+        and not isinstance(wall_seconds, bool)
+        and isinstance(internal_seconds, (int, float))
+        and not isinstance(internal_seconds, bool)
+        and wall_seconds >= internal_seconds > 0,
         "FULL_REPLAY_TELEMETRY_INCOHERENT",
     )
 
@@ -312,13 +513,20 @@ def main() -> None:
         and "deleting \\(\\Phi_N(R_N)\\) cannot lower\nits dimension" in article,
         "TOTAL_RANK_DROP_IMAGE_ARGUMENT_MISSING",
     )
+    normalized_compression = " ".join(compression.split())
+    normalized_supplement = " ".join(supplement.split())
+    replay_layer_count = len(full_layers)
     require(
-        "original frozen\nprincipal-domain computational-evidence lock" in compression
-        and "For C01--C10 and C12--C13" in compression
-        and "global C11 entry" in compression
-        and "all 35 layers passed" in compression
-        and "No byte-bound end-to-end\nquick-suite runtime is claimed" in compression
-        and "No byte-bound\nend-to-end quick or full runtime is present" not in compression,
+        "original frozen principal-domain computational-evidence lock" in normalized_compression
+        and "For C01--C10 and C12--C13" in normalized_compression
+        and "global C11 entry" in normalized_compression
+        and "exact candidate commit, layer count, wall and internal times" in normalized_compression
+        and "externally bound replay artifacts and generated theorem-to-artifact crosswalk" in normalized_compression
+        and "No byte-bound end-to-end quick-suite runtime is claimed" in normalized_compression
+        and "No byte-bound end-to-end quick or full runtime is present" not in normalized_compression
+        and "exact candidate commit, layer count, internal and wall times" in normalized_supplement
+        and "without a self-referential source edit after the run" in normalized_supplement
+        and "1e9ff6c6" not in normalized_supplement,
         "RUNTIME_BOUNDARY_WORDING_STALE",
     )
     require(
@@ -328,12 +536,38 @@ def main() -> None:
         "COMPUTATIONAL_LOCK_SOURCE_VERSION_DISTINCTION_MISSING",
     )
 
-    for pending in (
-        "Corresponding email: \\emph{pending human confirmation}",
-        "Funding statement: \\textbf{pending human confirmation}",
-        "Competing-interests declaration: \\textbf{pending human confirmation}",
+    require(
+        "F_A&=q_{CCCC}-q_{CCTT}" in article
+        and "G_B&=q_{CCCC}-q_{CCTT}-q_{CTTC}+q_{CTCT}" in article
+        and "q_{GGGG}-q_{GGTT}" not in article,
+        "CORRECTED_QUARTET_FORMULAS_NOT_PRINTED",
+    )
+    active_metadata_source = article + "\n" + supplement
+    require(
+        "pending human" not in active_metadata_source.lower()
+        and "pending explicit human confirmation" not in active_metadata_source.lower(),
+        "STALE_PENDING_HUMAN_METADATA",
+    )
+    for approved in (
+        "me@aleckriebel.com",
+        "No specific funding supported this work.",
+        "The author declares no competing interests.",
+        "k2p-same-biorxiv-v1.0.0",
+        "CC BY 4.0",
+        "MIT License",
+        "no DOI is claimed",
     ):
-        require(pending in article, f"PENDING_METADATA_GUARD_MISSING:{pending}")
+        require(approved in active_metadata_source, f"APPROVED_METADATA_MISSING:{approved}")
+    require(
+        "No GitHub\nRelease, Zenodo deposit, or DOI is claimed" in supplement,
+        "EXTERNAL_RELEASE_BOUNDARY_MISSING",
+    )
+    licenses = license_path.read_text(encoding="utf-8")
+    require(
+        "Creative Commons Attribution 4.0 International License" in licenses
+        and "MIT License" in licenses,
+        "LICENSE_FILE_INCOMPLETE",
+    )
 
     findings: list[dict[str, object]] = []
     local_relation_is_defined = (
@@ -486,19 +720,14 @@ def main() -> None:
             }
         )
 
-    findings.append(
-        {
-            "severity": "human_confirmation",
-            "code": "AUTHOR_CONTRIBUTION_AND_SUBMISSION_METADATA_REQUIRE_HUMAN_SIGNOFF",
-            "lines": [
-                line_number(article, "Alec Kriebel conceived and directed"),
-                line_number(article, "pending explicit human confirmation"),
-            ],
-        }
+    require(
+        not findings,
+        "OPEN_ARTICLE_FINDINGS:"
+        + ",".join(str(row.get("code")) for row in findings),
     )
-
     result = {
-        "status": "PASS_WITH_REVIEW_FINDINGS",
+        "schema": "k2p-submission-article-static-audit-v2",
+        "status": "PASS",
         "source_sha256": {
             "article/main.tex": sha256(article_path),
             "article/references.bib": sha256(bib_path),
@@ -511,22 +740,62 @@ def main() -> None:
         "frozen_release_sha256": sha256(release_path),
         "clean_full_replay": {
             "status": full_replay["status"],
-            "layers": len(full_replay["layer_replays"]),
-            "wall_seconds": full_replay_telemetry["time_l"]["real_seconds"],
+            "layers": replay_layer_count,
+            "wall_seconds": wall_seconds,
             "maximum_resident_set_size_bytes": full_replay_telemetry["time_l"]["maximum_resident_set_size_bytes"],
             "peak_memory_footprint_bytes": full_replay_telemetry["time_l"]["peak_memory_footprint_bytes"],
             "report_sha256": sha256(full_replay_path),
             "telemetry_sha256": sha256(full_replay_telemetry_path),
         },
         "frozen_counts": expected_inputs,
+        "new_exact_evidence": {
+            "quartet_formula_transports": quartet["formula_transport_count"],
+            "quartet_terminal_rows": terminal["aggregate"]["quartet_terminal_rows"],
+            "quartet_terminal_certificate_ids": terminal["aggregate"]["per_layer_certificate_ids"],
+            "canonicalizer_primitive_archetypes": canonicalizer["descriptor_audit"]["primitive_archetypes_compared"],
+            "canonicalizer_strict_relation_presentations": canonicalizer["relation_audit"]["rank_and_topology_eligible_presentations"],
+            "probe_parameter_transports": parameter_transport["ledgers"]["probe_relations"]["rows"],
+            "probe_restriction_occurrences": parameter_transport["ledgers"]["probe_restrictions"]["rows"],
+            "restoration_restriction_occurrences": parameter_transport["ledgers"]["restoration_restrictions"]["rows"],
+        },
+        "submission_metadata": {
+            "corresponding_email": "me@aleckriebel.com",
+            "author_contributions": "approved sole-author contribution statement",
+            "funding": "No specific funding supported this work.",
+            "competing_interests": "The author declares no competing interests.",
+            "paper_and_data_license": "CC BY 4.0",
+            "code_license": "MIT",
+            "immutable_submission_tag": "k2p-same-biorxiv-v1.0.0",
+            "doi": None,
+            "external_release_actions_performed": False,
+        },
         "findings": findings,
     }
-    print(json.dumps(result, indent=2, sort_keys=True))
+    result["payload_sha256"] = canonical_hash(result)
+    return result
 
 
 if __name__ == "__main__":
     try:
-        main()
+        require(__debug__, "OPTIMIZED_PYTHON_FORBIDDEN")
+        parser = argparse.ArgumentParser()
+        group = parser.add_mutually_exclusive_group()
+        group.add_argument("--write", action="store_true")
+        group.add_argument("--check", action="store_true")
+        args = parser.parse_args()
+        audit = main()
+        encoded = json.dumps(audit, indent=2, sort_keys=True) + "\n"
+        output = Path(__file__).with_name("STATIC_AUDIT_RESULT.json")
+        if args.write:
+            output.write_text(encoded, encoding="utf-8")
+        elif args.check:
+            require(
+                output.is_file()
+                and not output.is_symlink()
+                and output.read_text(encoding="utf-8") == encoded,
+                "STATIC_AUDIT_RESULT_STALE",
+            )
+        print(encoded, end="")
     except AuditFailure as exc:
         print(json.dumps({"status": "FAIL", "error": str(exc)}, sort_keys=True))
         raise SystemExit(1) from exc

@@ -28,7 +28,14 @@ The only mathematical source is the corrected full-map restoration package:
 |---|---|
 | corrected forest | `43bd2be5e7626a954fc4fa4cf45e8d0e6483c947ddc9cba80f2b1a13351bc3a8` |
 | corrected logical payload | `0a3df52751ba38d7e6d4d118ee7068a98b7be7897d0aa732e96a74d7523a88bf` |
-| frozen atlas | `5b9e03653cc6960bf341fcbe7e63ffd10226d0f6a56441012212c6e3b2a26483` |
+| primitive/four-port completion grammar | `b4ff0f51f5e1a92c65e16c2c5c348e1a31cefec93b6f3e85a5c977c4ba2f3240` |
+
+The atlas binding is deliberately semantic and scope-limited: this analyzer
+uses only the ordered primitive source supports and four-port completion
+grammar, not the mixed-relation or algebra kernels.  It also compares the
+restoration-candidate requests in the six current manifests after deleting
+runtime/compiler provenance.  Those six semantic hashes agree exactly with
+the frozen manifests consumed by the corrected forest.
 
 No structural three-leaf classifier is used.  Every sign row retains its
 original full Fourier-map identity and exact Bernstein strict-sign
@@ -127,6 +134,5 @@ Current identities:
 
 | Artifact | SHA-256 / payload |
 |---|---|
-| `RESTORATION_ARCHETYPES.json` | `fa112b6bc051b3853f85f4156807252cac44f980f19bf2ed77d36f74a455eecd` / `b1e1065db32c5930a6d584eec754acd0a1f8714a1c5f0032c991a33c561d616b` |
-| verification report payload | `b7dd84a8213602d3053ca61a95225d611daf33b655bc35d33076371b2fa7f94b` |
-
+| `RESTORATION_ARCHETYPES.json` | `127f3920c1a882e07c7d424eeb43d696067ffe0c068a820a34ee5394b49d0ba4` / `7afeb89d3d349204cf969d6d27cc9dbfe9bff34084e5c9c3e20ba6e85000a343` |
+| verification report payload | `8a95857a9961c36c673b4eb5daafbf66dcf6fea198a7672aade6276a7b7bd2cc` |

@@ -27,14 +27,14 @@ SOURCE_PATHS = {
 }
 
 EXPECTED_PAYLOADS = {
-    "baseline": "55e32e23c6e34943a58d82f7d123a5f8e6e40bd4733b34863a80e12d88bb349a",
-    "equivalence": "7477f886c731244f432d939769121947359d0b7e8ca83751a6bb7d417ab27cb7",
-    "templates": "9d256ca00cfe14e34dbd6bae492ce5c2cdbb00ababfaabbf4f3c2dd5e71b0aa2",
-    "restoration": "b1e1065db32c5930a6d584eec754acd0a1f8714a1c5f0032c991a33c561d616b",
-    "restoration_verification": "b7dd84a8213602d3053ca61a95225d611daf33b655bc35d33076371b2fa7f94b",
-    "probe": "d361256c6531c93bdb71e29dc90614a40a25a6f3866526f2a158385bcd36b0e4",
+    "baseline": "19e1b3e455334ff43a557a09145c34432c662c7438e1bd6ef3bef462ebf4c7c9",
+    "equivalence": "be9cae4a62ca048f955d2f23c93fba32226f95ae4dc8dabcd1614d2c4cbe2133",
+    "templates": "202c53806954e0fcd5e49cb3ff2c678fed0dcd64a5904e88abca07b6332f3fd9",
+    "restoration": "7afeb89d3d349204cf969d6d27cc9dbfe9bff34084e5c9c3e20ba6e85000a343",
+    "restoration_verification": "8a95857a9961c36c673b4eb5daafbf66dcf6fea198a7672aade6276a7b7bd2cc",
+    "probe": "10fbb422c113bec30e7370ca2f2000531b09344a257c3531601c9cb802a8453c",
     "crosswalk": "d2591c67eb5168b6601efa81b762e905239accd26acf69fe284f1b690de1d480",
-    "result": "884c604b21a7d2f48b821fde2d8307f67f1daf5940b97ba4f70d645c840102e2",
+    "result": "73f4285f9bc918979ac5e4fbdfbe84f1cf5bee6d6c0933a61deba48b14915ab6",
 }
 
 EXPECTED_SCHEMAS = {
@@ -218,7 +218,7 @@ def verify_frozen_lock() -> None:
     path = PROJECT / "work/final_theorem_release/RELEASE_LOCK.json"
     need(path.is_file() and not path.is_symlink(), "FROZEN_LOCK_MISSING")
     need(
-        file_sha(path) == "58e32bd29f7a039e3da4e47398e32ee8277ad46cf62271a7ed80bf41688b18fb",
+        file_sha(path) == "bc690c3e68a3a9d66960239ebf60a63f96da63ee5312cd2f0e8bf16d707d3ac9",
         "FROZEN_LOCK_SHA",
     )
     value = json.loads(path.read_text(encoding="utf-8"))
@@ -226,7 +226,7 @@ def verify_frozen_lock() -> None:
     verify_seal(value, "FROZEN_LOCK")
     need(
         value.get("payload_sha256")
-        == "3b7de4c60315a5820a2623de860f493d6b76a645b5c674ffda89f12fc31a5c90",
+        == "541d5da2e8f7711505b21aef5a022f25a5820290e358366c121948664a9fc38c",
         "FROZEN_LOCK_PAYLOAD",
     )
     need(value.get("candidate_outcome") == "K2P-SAME", "FROZEN_OUTCOME")

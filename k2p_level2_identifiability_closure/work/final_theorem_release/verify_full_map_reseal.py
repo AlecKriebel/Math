@@ -38,6 +38,16 @@ FAMILIES = {
         "legacy_file_sha256": (
             "0928eb4061d74d39250360036c024a8c1c63b4e2474f7d17975fcfd326c29dd7"
         ),
+        # The strict-triangle canonicalizer hardening changed the atlas bytes,
+        # but an independent regeneration left all 2,528 truth rows and all 85
+        # sign polynomials unchanged.  Record that provenance-only rebind
+        # explicitly so the historical byte reconstruction remains exact.
+        "current_atlas_sha256": (
+            "37e9b7910f7723c146a87ae2f60dfb62529b1a3e4866ccd72d65dc4efda923ad"
+        ),
+        "legacy_atlas_sha256": (
+            "5b9e03653cc6960bf341fcbe7e63ffd10226d0f6a56441012212c6e3b2a26483"
+        ),
     },
 }
 
@@ -82,12 +92,22 @@ def sign_payloads(document: dict[str, Any]) -> list[dict[str, Any]]:
 
 
 def validate_document(
-    document: dict[str, Any], *, schema: str, sign_count: int
+    document: dict[str, Any],
+    *,
+    schema: str,
+    sign_count: int,
+    current_atlas_sha256: str | None = None,
 ) -> None:
     claimed = document.get("payload_sha256")
     body = {key: value for key, value in document.items() if key != "payload_sha256"}
     require(claimed == sha_object(body), "TOP_SEAL_FAIL")
     require(document.get("schema") == schema, "SCHEMA_FAIL")
+    if current_atlas_sha256 is not None:
+        require(
+            document.get("inputs", {}).get("atlas_sha256")
+            == current_atlas_sha256,
+            "CURRENT_ATLAS_BINDING_FAIL",
+        )
     signs = sign_payloads(document)
     require(len(signs) == sign_count, "SIGN_CENSUS_FAIL", len(signs))
     for ordinal, sign in enumerate(signs):
@@ -102,8 +122,12 @@ def reseal_document(document: dict[str, Any]) -> None:
     document["payload_sha256"] = sha_object(document)
 
 
-def reconstruct_legacy(document: dict[str, Any]) -> dict[str, Any]:
+def reconstruct_legacy(
+    document: dict[str, Any], *, legacy_atlas_sha256: str | None = None
+) -> dict[str, Any]:
     legacy = copy.deepcopy(document)
+    if legacy_atlas_sha256 is not None:
+        legacy["inputs"]["atlas_sha256"] = legacy_atlas_sha256
     for sign in sign_payloads(legacy):
         sign["domain"] = LEGACY_DOMAIN
         sign.pop("certificate_sha256", None)
@@ -173,8 +197,12 @@ def main() -> int:
             document,
             schema=specification["schema"],
             sign_count=specification["sign_count"],
+            current_atlas_sha256=specification.get("current_atlas_sha256"),
         )
-        legacy = reconstruct_legacy(document)
+        legacy = reconstruct_legacy(
+            document,
+            legacy_atlas_sha256=specification.get("legacy_atlas_sha256"),
+        )
         legacy_bytes = pretty_bytes(legacy)
         require(
             sha_bytes(legacy_bytes) == specification["legacy_file_sha256"],
@@ -190,8 +218,13 @@ def main() -> int:
             "exact_changed_leaf_census": {
                 "domain": specification["sign_count"],
                 "certificate_sha256": specification["sign_count"],
+                "inputs.atlas_sha256": int(
+                    "legacy_atlas_sha256" in specification
+                ),
                 "payload_sha256": 1,
-                "total": 2 * specification["sign_count"] + 1,
+                "total": 2 * specification["sign_count"]
+                + 1
+                + int("legacy_atlas_sha256" in specification),
             },
             "all_other_leaves_identical": True,
             "legacy_bytes_reconstructed_exactly": True,

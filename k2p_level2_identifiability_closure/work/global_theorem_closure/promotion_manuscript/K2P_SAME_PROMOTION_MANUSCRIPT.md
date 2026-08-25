@@ -140,8 +140,8 @@ their Fourier tensors are unequal.  More precisely, after a physical port
 permutation, one of
 
 \[
- q_{GGGG}-q_{GGTT},\qquad
- q_{GGGG}-q_{GGTT}-q_{GTTG}+q_{GTGT}
+ q_{CCCC}-q_{CCTT},\qquad
+ q_{CCCC}-q_{CCTT}-q_{CTTC}+q_{CTCT}
 \tag{3.1}
 \]
 
@@ -462,13 +462,13 @@ The final corrected probe package is frozen with the following values:
 \[
 \begin{array}{ll}
 \text{primary certificate file SHA-256}
- &\texttt{93de7b0dd3aa581bdf12288eae8cb9ac42f20a9d9bb3eab35eee8ef9a759d390}\\
+ &\texttt{2f4d64b32a905ce2cc06bae7d03215f9239427d421825c2525437ee6ba2ccaf6}\\
 \text{primary payload SHA-256}
- &\texttt{674853fa730c4f54b9ba264d539a51591c8b926ad444195e68df086c26f83825}\\
+ &\texttt{964e9f3c241e63a1b0b12b3ceb516c58525d410c3c550e8335b619a6817400e5}\\
 \text{independent replay file SHA-256}
- &\texttt{47f527dd56ce355d911c44ebc55e24a1e9c7f14f379810902b49ae068261e74f}\\
+ &\texttt{b30e2e32e5eec86875031a8bba82d58689f18859896adeb6a6931888df75209f}\\
 \text{independent replay payload SHA-256}
- &\texttt{4492860febc84f4530f67fa50f684ca34fde7c6fc2c6b3ccf906d88d275ac540}\\
+ &\texttt{9e50d3681cf2c572c1575e770c67f95723d8c3e8a3943b5963dec7d07c3bec63}\\
 \text{mutation report file SHA-256}
  &\texttt{b0df0584163150c9a823b4e364b8ee46c196ae8abb28fdca4d3d5893a97bfea7}\\
 \text{mutation report payload SHA-256}
@@ -888,22 +888,22 @@ of the corresponding package.
 |---|---|---|
 | Domain, subdivision, rooting | `4e38beb68062deae8f83cd265daacbef8c5d3f6d73ce25ef47a54828b658d450` | `01d03c01482ba1f4f0e43d03c3defbff35bc10a97f8b19412ce96e4ce8025328` |
 | Two-sector bridge and marginal | `9231a7b78c13e54b745eba68926276a6551c6c3512d6a85746baba6613c1aacf` | `5abc19f857a02c712d1386b53bf1ecea18ec31db852cb31b24ea7dde688630ee` |
-| Independent component-scale audit | `d9b19cde1e9d0544d8c1674ace662b050301313858c1b9bdc857af29c64804d6` | `ce8f4e6860675e36238b8351458875bd46de0507df34f6729e34b20170e02acd` |
-| Raw four-port composite ledger | `431dac8898ad2a724d12c200687de1b377723e302214a79a11a03524a4084b96` | `8154acc38ad58b49e4f0f5b34f6fdb9999c0392dd947f91bc6017d8e2ab8d5cf` (summary) |
-| Raw four-port independent replay | `d44705d2266aa1360acec19cdb8bf0fea648fc9c029ae96adb437a04ad5cce10` | `0e167e742907394a77a0eab1614366e2460b86b13241577ad25e902822241ea8` |
+| Independent component-scale audit | `77d3881e7f7d5f90d71339968e3268c5780a0cd51e893e476aac040200e49064` | `02013c3a0d9456c97d64ae06fd20b241057bfdb437f07acea4f15437860b8416` |
+| Raw four-port composite ledger | `431dac8898ad2a724d12c200687de1b377723e302214a79a11a03524a4084b96` | `ad658166deec3c1258e574e9649facb63f4916511f5bfcacf4121d5419e21f32` (summary) |
+| Raw four-port independent replay | `495beeeae41a98c59670480716f5dd4251961b925059367171183f414274271d` | `9c6fd885a00fb3315ba6a120ce6c68820eb55082e967f8e00d4f246ccaaee924` |
 | Raw four-port terminal registry | `0a1818655429d60660c1ed87f3fbe412701f386b081562b3a4caa54079069f1d` | `30053d096e140becdf32d3f26cb3634e82fcd5461f89be24f5b83cee344b5b81` |
-| Raw four-port mutation report | `449228fa4013234280434495e5c79468750de2785d5a2a2a8ad7d91bbdcae3a7` | `88bd552f75c87d0b084ab6a9fa09421ef16867b274a2be25b513ff9fdf9f010d` |
-| Five-port \(\theta_2\) composite ledger | `805fc7f5a3de9dad2c63a210208075cf19910cf811ffd08878f32782ce71b659` | `480c27d82924bbf12adf1357f9e3bc216d1818dce68d061bb134f387e9737194` (summary) |
-| Five-port \(\theta_2\) independent replay | `ed57b46c5e05a73f08a26afc99ae1bd5f0076e941b2da7ac411ecc52f3b63e58` | `2fa46fd0ca70dbe00e8231686bfd790f57d76d9a33ddc4b07cffaa72e3b07e8b` |
-| Five-port \(\theta_2\) mutation report | `c1c8012941ac58ae3f01a890caaa9e9ad05e8342d11a41d8a911de18dc3e6775` | `5fce45398dc5f3ad948078ec5b66583d28e3af2cf3991f4f0931c0bfaf332e77` |
+| Raw four-port mutation report | `c6045d3cfdf61026374014688c3278f1645ab1efd0708fd71f92f65595d1a189` | `baac525a8283b708633e2b1914eec47125bb0311736b5d2462191f78de0c2685` |
+| Five-port \(\theta_2\) composite ledger | `805fc7f5a3de9dad2c63a210208075cf19910cf811ffd08878f32782ce71b659` | `c89dd764f7c66831db7f6a092fedf666a20f3594ef03647de3e85b5fbf04d0e8` (summary) |
+| Five-port \(\theta_2\) independent replay | `dd02a752b2ce41628039d2f6da6fdab77f2a8ffd73b8cd80e2968790dbbf3150` | `7e4283fe726083927b14d483d55644e2892a311b0179aa70d4766576c66ab545` |
+| Five-port \(\theta_2\) mutation report | `bd3c50d48da744897b073afa2416b6a91b4d264f65ca7d23942b336352b0b3c5` | `22563ba0f01dda229d5185fee06b52d450dbac5e143ad6397128f5ee0b20e260` |
 | Corrected 997-parent restoration forest | `43bd2be5e7626a954fc4fa4cf45e8d0e6483c947ddc9cba80f2b1a13351bc3a8` | `0a3df52751ba38d7e6d4d118ee7068a98b7be7897d0aa732e96a74d7523a88bf` |
 | Restoration independent replay | `24fa2e61f60610a8b24c4107ec7f866278f0cc671ca203d7aaa40a37bea291dd` | `36c89ff9729e049a374a9fead8488f7a90e62c617d17e242aca5d340faeb164a` |
 | Authoritative cycle promotion | `b560fdf0545c36d576a4cdaf24af9984f6f7231180f20f6927121a57bf816a7a` | `df5e3966822af65e2341660bf3f607ff3635d69d3e5a89854afaef308727f2f1` |
 | Ordinary-triangle common germ | `b81a6cf8da1380f6a682ba6042f6f429ce5d6a47ba0cf62e9c9d8de1b4158885` | `6fd43ae6d38629277c047d3888e970cdab51f4805dce36d71b2430095c1e1aa6` |
 | Frozen probe-input contract | `7f686ae99dd5e6dafc1c04396b711d294a0bddd6a25574f9ea809b831ad7b377` | `579919ca13204ddf959b3a159e4849b69c05ac87861eba2221659ec45bd73f38` |
 | Independent probe-input replay | `54de1bef73e76fc82132ef3f0250a0579ea401274a302ed4d8fbd015c9e8a053` | `96d14bae9b20646abfe64b85a7ac0f61377182f75479031f621ea0dbe2096fce` |
-| Corrected full probe primary | `93de7b0dd3aa581bdf12288eae8cb9ac42f20a9d9bb3eab35eee8ef9a759d390` | `674853fa730c4f54b9ba264d539a51591c8b926ad444195e68df086c26f83825` |
-| Independent primitive/graph/full-map probe audit | `47f527dd56ce355d911c44ebc55e24a1e9c7f14f379810902b49ae068261e74f` | `4492860febc84f4530f67fa50f684ca34fde7c6fc2c6b3ccf906d88d275ac540` |
+| Corrected full probe primary | `2f4d64b32a905ce2cc06bae7d03215f9239427d421825c2525437ee6ba2ccaf6` | `964e9f3c241e63a1b0b12b3ceb516c58525d410c3c550e8335b619a6817400e5` |
+| Independent primitive/graph/full-map probe audit | `b30e2e32e5eec86875031a8bba82d58689f18859896adeb6a6931888df75209f` | `9e50d3681cf2c572c1575e770c67f95723d8c3e8a3943b5963dec7d07c3bec63` |
 | Independent probe mutation report | `b0df0584163150c9a823b4e364b8ee46c196ae8abb28fdca4d3d5893a97bfea7` | `58006ed7b6677c055b5cdd7249857dc2f752fb3db9cfbcc5bbe5e0a26e31875f` |
 | Independent structural/algebra probe replay | `bdeba4730b6a9b39d8a542119f0630f52600f8a3512835b30d19e30b4446604e` | `971d0fdc3b84cfd4001574ba80d272841eb809213b24984009dda4556ebc6261` |
 | Independent site-transport partition replay | `017068d960e0bfc3d5e44b79b5acc4a8e93195c37d205e8c43321c23a0b77e61` | `a1f80d5ed090a1c6e31067123f0739392384d5124e75296cc76035430710497c` |

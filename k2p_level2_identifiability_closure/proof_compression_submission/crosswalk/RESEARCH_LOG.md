@@ -34,3 +34,30 @@ edits stop; the checker is intended to fail until that reseal is performed.
 
 Crosswalk/bundle subtask completion: **100%**. Remaining submission decisions
 are human metadata, licenses, immutable tag, and DOI timing.
+
+## 2026-08-24 — final-metadata and semantic-evidence reseal machinery
+
+- Replaced every hardcoded prior lock hash, content root, frozen file/byte
+  census, 35-layer count, runtime, memory value, and commit with independent
+  derivation from the current promotion-ready lock and detached clean-replay
+  report/telemetry.
+- Bound the approved corresponding address, sole-author contribution,
+  funding, competing interests, CC BY 4.0 paper/data license, MIT code
+  license, and tag `k2p-same-biorxiv-v1.0.0`. The manifest explicitly records
+  that this package creates or claims no GitHub Release, Zenodo deposit, or
+  DOI.
+- Added exact crosswalk/checker coverage for corrected quartet semantics (six
+  bodies, 288 transports), all 4,414,710 quartet terminals over 888 IDs,
+  10,084 canonicalizer archetypes, 4,012 strict relations, and the 67,741 /
+  71,022 / 5,540 graph-derived parameter-transport ledgers.
+- Hardened the PDF checker for report schema v3 and the 24 August reproducible
+  epoch. Expanded mutations to target omitted new evidence, false release
+  claims, wrong tag/email, false layer count, and omission of the final static
+  article audit.
+- Deliberately did not regenerate the crosswalk or referee manifest before the
+  final release lock and replay are rebuilt. The previously generated files
+  are stale by design and must be replaced in the final sealing sequence.
+
+Best-guess completion of the machinery subtask: **98%**. The remaining 2% is
+the mechanical final generation/check/mutation pass after the parent workflow
+produces the final lock, telemetry, PDFs, and source hash anchors.

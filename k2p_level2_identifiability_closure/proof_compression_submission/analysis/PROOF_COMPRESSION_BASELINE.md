@@ -1,27 +1,27 @@
 # Proof-compression baseline
 
 Status: **PASS**.  This is a read-only measurement of frozen release lock
-`58e32bd29f7a039e3da4e47398e32ee8277ad46cf62271a7ed80bf41688b18fb`.  It does not replace or
+`bc690c3e68a3a9d66960239ebf60a63f96da63ee5312cd2f0e8bf16d707d3ac9`.  It does not replace or
 modify the promoted theorem.
 
 ## Proof surface
 
 | Role | Modules | Physical lines | Nonblank/noncomment lines |
 |---|---:|---:|---:|
-| Primary generation, algebra, and coverage (upper bound) | 54 | 23,901 | 21,549 |
-| Explicit independent/adversarial consumers (lower bound) | 13 | 6,742 | 6,036 |
-| Mutation code | 17 | 4,506 | 3,819 |
-| Release, hash, and orchestration | 13 | 7,675 | 7,160 |
-| **Total** | 97 | 42,824 | 38,564 |
+| Primary generation, algebra, and coverage (upper bound) | 59 | 27,071 | 24,408 |
+| Explicit independent/adversarial consumers (lower bound) | 13 | 6,775 | 6,065 |
+| Mutation code | 21 | 5,521 | 4,711 |
+| Release, hash, and orchestration | 13 | 8,322 | 7,786 |
+| **Total** | 106 | 47,689 | 42,970 |
 
 The classification is deliberately conservative and file-level.  In
 particular, cross-layer release validation is not counted as an independent
 mathematical hypothesis, and the primary figure is an upper bound.
 
 The recursively locked evidence set contains
-373 files and
-228 machine-readable evidence files
-(432,464,380 bytes).  The promotion
+398 files and
+239 machine-readable evidence files
+(476,289,919 bytes).  The promotion
 manuscript has 937 lines,
 4,801 words, and
 18 named lemmas or
@@ -51,4 +51,4 @@ runtime.  This baseline therefore does not invent one from noncomparable
 component timings.  Runtime benchmarking belongs in a separate operational
 record.
 
-Payload SHA-256: `55e32e23c6e34943a58d82f7d123a5f8e6e40bd4733b34863a80e12d88bb349a`.
+Payload SHA-256: `19e1b3e455334ff43a557a09145c34432c662c7438e1bd6ef3bef462ebf4c7c9`.

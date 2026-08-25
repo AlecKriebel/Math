@@ -92,6 +92,10 @@ def validate_coverage_shape(coverage, unique):
     if coverage["descriptor_count"] != len(unique) or len(rows) != len(unique):
         raise AssertionError("coverage count mismatch")
     seen = set()
+    allowed_mechanisms = {
+        "multilinear_lambda_polynomial_vector_fields",
+        "base_fields_plus_primitive_log_field_port_transport",
+    }
     for index, (row, desc) in enumerate(zip(rows, unique)):
         if row["descriptor_index"] != index:
             raise AssertionError("descriptor index mismatch")
@@ -101,6 +105,27 @@ def validate_coverage_shape(coverage, unique):
         if digest in seen:
             raise AssertionError("duplicate descriptor coverage")
         seen.add(digest)
+        mechanism = row.get("upper_mechanism")
+        if mechanism not in allowed_mechanisms:
+            raise AssertionError(f"non-symbolic upper mechanism: {mechanism}")
+        if mechanism == "multilinear_lambda_polynomial_vector_fields":
+            if any(
+                field in row
+                for field in (
+                    "representative_certificate",
+                    "representative_orbit_index",
+                    "representative_to_member_port_permutation",
+                )
+            ):
+                raise AssertionError("base symbolic row contains transport fields")
+        else:
+            required = {
+                "representative_certificate",
+                "representative_orbit_index",
+                "representative_to_member_port_permutation",
+            }
+            if not required <= set(row):
+                raise AssertionError("transported symbolic row lacks proof fields")
     return rows
 
 

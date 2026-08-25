@@ -41,7 +41,7 @@ targets raw omissions, false rank exclusions, wrong parents, missing children,
 broken transports, reassigned quadratic/cubic/quartic/quintic and `T_i`
 certificates, the historical `raw4424` oracle regression, promotion document
 drift, historical-artifact promotion or omission, and optimized-Python
-execution. The outer suite has 23 conceptual gates, all operating in isolated
+execution. The outer suite has 27 conceptual gates, all operating in isolated
 temporary copies.
 
 The release additionally binds the correction of an original certificate

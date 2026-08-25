@@ -124,7 +124,21 @@ def main():
         results,
     )
 
-    if len(results) != 6 or any(row["status"] != "rejected" for row in results):
+    sampled = copy.deepcopy(coverage)
+    sampled_row = next(
+        row
+        for row in sampled["descriptors"]
+        if row["upper_mechanism"] == "multilinear_lambda_polynomial_vector_fields"
+    )
+    sampled_row["upper_mechanism"] = "sampled_jacobian_rank_lower_bound"
+    sampled_row["sample_point"] = ["1/2"]
+    must_reject(
+        "sampled_rank_substituted_for_symbolic_upper",
+        lambda: validate_coverage_shape(sampled, unique),
+        results,
+    )
+
+    if len(results) != 7 or any(row["status"] != "rejected" for row in results):
         raise AssertionError(results)
     report = {
         "schema": "k2p-rank-upper-adversarial-mutations-v1",

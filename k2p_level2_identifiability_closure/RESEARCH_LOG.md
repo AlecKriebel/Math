@@ -405,3 +405,33 @@
   reproducibility completion remains **100%**; journal administration remains
   **96%** pending those human decisions and any selected final-tag replay
   provenance claim.
+## 2026-08-24 — Neutral-referee repair and source-candidate checkpoint
+
+- Corrected the printed quartet invariant and replaced the former semantic
+  spot check by an exact Klein-four evaluator covering every promoted quartet
+  terminal.  The terminal gate binds 4,414,710 row references and 888
+  certificate identifiers; all targeted semantic and binding mutations fail.
+- Hardened the ordinary-triangle canonicalizer, exhaustively compared it with
+  an independent labelled-graph implementation, and certified graph-derived
+  inheritance and restriction transports.  The four-port classification and
+  all raw ledgers retain their exact prior censuses.
+- Regenerated the 2,946,240-row theta2 composite and 405,216-row raw-four
+  composite after provenance rebinding.  Both large ledgers are byte-identical
+  to their frozen mathematical predecessors.  The unified five-family
+  certificate and all 22 mutations pass with zero unresolved records.
+- Replayed all 4,379 exact symbolic rank-upper certificates against the
+  primitive raw ledger.  The rank partition is unchanged and the sampled-rank
+  substitution mutation is now explicitly rejected.
+- Qualified the final 223-file release lock: the 23-layer quick suite and all
+  27 release mutations pass with zero blockers and
+  `promotion_ready=true`.  Rebound the PC-PARTIAL reader package, printed
+  formula appendix, restoration/probe summaries, and weak-sharpness column
+  dictionary to that lock.
+- Finalized author metadata and licenses.  Per the author, no GitHub Release,
+  Zenodo deposit, or DOI will be created by this workflow; only the source tag
+  is planned after final qualification.
+- Best-guess completion toward a fully submission-ready, immutable referee
+  package: **93%**.  Remaining gates are source-candidate commit integration,
+  detached clean full replay with telemetry, deterministic PDF build and
+  visual inspection, final crosswalk/bundle regeneration, push, and source
+  tag.

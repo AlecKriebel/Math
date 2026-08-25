@@ -21,7 +21,7 @@ ATLAS = PROJECT / "package/referee/k2p_offline_sweep_portable/atlas/k2p_atlas_co
 OUTPUT = HERE / "PROBE_WORD_COVERAGE.json"
 
 FILES = {
-    "certificate": (PROBE / "probe_coherence_certificate.json", "93de7b0dd3aa581bdf12288eae8cb9ac42f20a9d9bb3eab35eee8ef9a759d390"),
+    "certificate": (PROBE / "probe_coherence_certificate.json", "2f4d64b32a905ce2cc06bae7d03215f9239427d421825c2525437ee6ba2ccaf6"),
     "one": (PROBE / "one_port_ledger.jsonl.gz", "d5fa13d38731bff2403eeb4e4d9e139566c4983b09d30553c6260eaac64c5c90"),
     "two": (PROBE / "two_port_ledger.jsonl.gz", "10f0afcab77f2d61cecfc36d723c6f32065c304ac088b0b8ecf12dfc867fbf9d"),
     "parents": (PROBE / "two_port_parent_inventory.jsonl.gz", "673112e949e08dce0bdbd690be647dd97d0899c2bb12121b4a16ed7a62dba3f8"),
@@ -29,11 +29,13 @@ FILES = {
     "restrictions": (PROBE / "parent_restriction_ledger.jsonl.gz", "5d1e6c2fe38d31f6304a76886ec37829215b88c8b179f5b23596d49d37ceeb38"),
     "separation": (PROBE / "separation_proof_registry.json.gz", "057783503b1ad7b3c55c14a1cc643db4851c9e42e00595b789b7d6b6d069acfe"),
     "input_contract": (INPUT_CONTRACT, "7f686ae99dd5e6dafc1c04396b711d294a0bddd6a25574f9ea809b831ad7b377"),
-    "atlas": (ATLAS, "5b9e03653cc6960bf341fcbe7e63ffd10226d0f6a56441012212c6e3b2a26483"),
 }
 
-EXPECTED_CERT_PAYLOAD = "674853fa730c4f54b9ba264d539a51591c8b926ad444195e68df086c26f83825"
+EXPECTED_CERT_PAYLOAD = "964e9f3c241e63a1b0b12b3ceb516c58525d410c3c550e8335b619a6817400e5"
 EXPECTED_INPUT_PAYLOAD = "579919ca13204ddf959b3a159e4849b69c05ac87861eba2221659ec45bd73f38"
+EXPECTED_SOURCE_SUPPORT_GRAMMAR_SHA256 = (
+    "cadbb4187f501ab53620b3f15deaccb60bed582dfe8fdbefd7c1ba10f5329047"
+)
 SITE_TYPES = {"core_unheaded", "pendant_arm", "reticulation_incoming", "root_suppressed_segment"}
 EQUALITY = {"isomorphic", "triangle"}
 SEPARATED = {"displayed_quartet_mismatch", "full_map_Ti_strict_sign"}
@@ -92,6 +94,31 @@ def import_atlas():
     return module
 
 
+def source_support_grammar_sha256(atlas) -> str:
+    """Fingerprint precisely the ordered primitive source grammar used here.
+
+    The exact relation/transport evidence is already stored in the frozen
+    probe ledgers and replayed below.  This reader-level word-theorem checker
+    imports the atlas only to verify the six ordered theta source supports and
+    the theta1 parallel segments, so a whole-file compiler hash would be an
+    over-broad dependency.
+    """
+    records = []
+    for row in atlas.source_supports():
+        records.append({
+            "core_id": row.core_id,
+            "incoming_selected": row.incoming_selected,
+            "repair_index": row.repair_index,
+            "selected_sink_mask": row.selected_sink_mask,
+            "words": row.words,
+            "selected_labels": row.selected_labels,
+            "dummy_labels": row.dummy_labels,
+            "source_support": row.source_support,
+            "extra_count": row.extra_count,
+        })
+    return object_sha256({"CORES": atlas.CORES, "source_supports": records})
+
+
 def check_candidate_profile(profile: dict) -> collections.Counter:
     require(profile["all_mixed_edge_sites_included"] is True, "candidate profile omits mixed edge")
     port_count = profile["port_count"]
@@ -134,6 +161,10 @@ def build_coverage() -> dict:
     require(contract["unresolved_anchor_inputs"] == contract["incoherent_site_transports"] == 0, "input contract terminal gates")
 
     atlas = import_atlas()
+    require(
+        source_support_grammar_sha256(atlas) == EXPECTED_SOURCE_SUPPORT_GRAMMAR_SHA256,
+        "primitive source-support grammar drift",
+    )
     supports = atlas.source_supports()
     require(
         [(record.core_id, record.repair_index) for record in supports]
@@ -403,7 +434,17 @@ def build_coverage() -> dict:
         "schema": "k2p-probe-word-theorem-coverage-v1",
         "status": "PASS",
         "compression_status": "PC-PARTIAL",
-        "source": {label: {"path": str(path.relative_to(PROJECT)), "sha256": expected} for label, (path, expected) in FILES.items()},
+        "source": {
+            **{
+                label: {"path": str(path.relative_to(PROJECT)), "sha256": expected}
+                for label, (path, expected) in FILES.items()
+            },
+            "atlas_source_support_grammar": {
+                "path": str(ATLAS.relative_to(PROJECT)),
+                "binding_kind": "ordered primitive source-support semantic fingerprint",
+                "sha256": EXPECTED_SOURCE_SUPPORT_GRAMMAR_SHA256,
+            },
+        },
         "source_payloads": {
             "probe_certificate": EXPECTED_CERT_PAYLOAD,
             "probe_input_contract": EXPECTED_INPUT_PAYLOAD,

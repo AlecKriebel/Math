@@ -31,7 +31,7 @@ import k2p_atlas_core as atlas  # noqa: E402
 
 
 FROZEN_SHA256 = "e66c78a0aeab990b4dc448f4f064b37e1e15ecbff75a5f472bf116d4464378bd"
-ATLAS_SHA256 = "5b9e03653cc6960bf341fcbe7e63ffd10226d0f6a56441012212c6e3b2a26483"
+ATLAS_SHA256 = "37e9b7910f7723c146a87ae2f60dfb62529b1a3e4866ccd72d65dc4efda923ad"
 EXPECTED_ORDERS = {
     "W": ["ZX", "SV", "rS", "SU", "UV", "VZ", "UX"],
     "W_prime": ["VX1", "VX0", "UV", "rS", "SX0", "SU", "UX1"],

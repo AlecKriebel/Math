@@ -718,6 +718,179 @@ def optimized_mode_mutation(rows: list[dict[str, object]], timeout: float) -> No
     )
 
 
+def fail_closed_evidence_mutation_suites(
+    rows: list[dict[str, object]], temporary: Path, timeout: float
+) -> None:
+    """Replay the quartet, canonicalizer, and parameter-transport attacks."""
+
+    quartet = PROJECT / "work/quartet_separation_closure"
+    semantic_certificate = quartet / "quartet_semantics_mutation_certificate.json"
+    semantic_expected = semantic_certificate.read_bytes()
+    semantic_result = run(
+        "quartet_semantics_mutations",
+        [python(), "-B", str(quartet / "test_quartet_semantics_mutations.py")],
+        timeout=timeout,
+    )
+    semantic_output = semantic_result.stdout + semantic_result.stderr
+    require(
+        semantic_result.returncode == 0
+        and b"K2P_QUARTET_SEMANTICS_MUTATIONS_PASS" in semantic_output,
+        "QUARTET_SEMANTICS_MUTATION_SUITE_FAIL",
+        semantic_output[-4000:],
+    )
+    require(
+        semantic_certificate.read_bytes() == semantic_expected,
+        "QUARTET_SEMANTICS_MUTATION_REPORT_BYTE_DRIFT",
+    )
+    semantic = load_json(semantic_certificate)
+    require(
+        semantic.get("status") == "PASS"
+        and semantic.get("case_count") == 8
+        and all(row.get("status") == "PASS" for row in semantic.get("cases", [])),
+        "QUARTET_SEMANTICS_MUTATION_REPORT_FAIL",
+    )
+    rows.append(
+        {
+            "name": "quartet_semantics_mutations",
+            "status": "REJECTED",
+            "source": "8/8 literal spectrum, coordinate, domain, document, and optimized-mode attacks",
+            "mutation_payload_sha256": semantic["payload_sha256"],
+            "producer_mutation_count": 8,
+        }
+    )
+    print(
+        "K2P_FINAL_MUTATION_REJECTED name=quartet_semantics_mutations",
+        flush=True,
+    )
+
+    terminal_output_path = temporary / "quartet_terminal_binding_mutations.json"
+    terminal_result = run(
+        "quartet_terminal_binding_mutations",
+        [
+            python(),
+            "-B",
+            str(quartet / "test_quartet_terminal_binding_mutations.py"),
+            "--output",
+            str(terminal_output_path),
+        ],
+        timeout=max(timeout, 600.0),
+    )
+    terminal_output = terminal_result.stdout + terminal_result.stderr
+    require(
+        terminal_result.returncode == 0
+        and b"K2P_QUARTET_TERMINAL_BINDING_MUTATIONS_PASS" in terminal_output,
+        "QUARTET_TERMINAL_MUTATION_SUITE_FAIL",
+        terminal_output[-4000:],
+    )
+    terminal_expected = quartet / "quartet_terminal_binding_mutation_certificate.json"
+    require(
+        terminal_output_path.read_bytes() == terminal_expected.read_bytes(),
+        "QUARTET_TERMINAL_MUTATION_REPORT_BYTE_DRIFT",
+    )
+    terminal = load_json(terminal_output_path)
+    require(
+        terminal.get("status") == "PASS"
+        and terminal.get("case_count") == 12
+        and all(row.get("status") == "PASS" for row in terminal.get("cases", [])),
+        "QUARTET_TERMINAL_MUTATION_REPORT_FAIL",
+    )
+    rows.append(
+        {
+            "name": "quartet_terminal_binding_mutations",
+            "status": "REJECTED",
+            "source": "12/12 resealed algebra, split, reference, reassignment, reversal, and optimized-mode attacks",
+            "mutation_payload_sha256": terminal["payload_sha256"],
+            "producer_mutation_count": 12,
+        }
+    )
+    print(
+        "K2P_FINAL_MUTATION_REJECTED name=quartet_terminal_binding_mutations",
+        flush=True,
+    )
+
+    canonicalizer = PROJECT / "work/canonicalizer_completeness"
+    canonicalizer_certificate = (
+        canonicalizer / "canonicalizer_completeness_mutation_certificate.json"
+    )
+    canonicalizer_expected = canonicalizer_certificate.read_bytes()
+    canonicalizer_result = run(
+        "canonicalizer_completeness_mutations",
+        [python(), "-B", str(canonicalizer / "test_canonicalizer_mutations.py")],
+        timeout=timeout,
+    )
+    canonicalizer_output = canonicalizer_result.stdout + canonicalizer_result.stderr
+    require(
+        canonicalizer_result.returncode == 0
+        and b"K2P_CANONICALIZER_MUTATIONS_PASS" in canonicalizer_output,
+        "CANONICALIZER_MUTATION_SUITE_FAIL",
+        canonicalizer_output[-4000:],
+    )
+    require(
+        canonicalizer_certificate.read_bytes() == canonicalizer_expected,
+        "CANONICALIZER_MUTATION_REPORT_BYTE_DRIFT",
+    )
+    canonicalizer_report = load_json(canonicalizer_certificate)
+    require(
+        canonicalizer_report.get("status") == "PASS"
+        and canonicalizer_report.get("rejected") == 2
+        and canonicalizer_report.get("survived") == 0,
+        "CANONICALIZER_MUTATION_REPORT_FAIL",
+    )
+    rows.append(
+        {
+            "name": "canonicalizer_completeness_mutations",
+            "status": "REJECTED",
+            "source": "2/2 nonordinary-triangle and selected-triangle marker attacks",
+            "mutation_payload_sha256": canonicalizer_report["payload_sha256"],
+            "producer_mutation_count": 2,
+        }
+    )
+    print(
+        "K2P_FINAL_MUTATION_REJECTED name=canonicalizer_completeness_mutations",
+        flush=True,
+    )
+
+    transport = canonicalizer / "inheritance_transport"
+    transport_certificate = transport / "parameter_transport_mutation_report.json"
+    transport_expected = transport_certificate.read_bytes()
+    transport_result = run(
+        "parameter_transport_mutations",
+        [python(), "-B", str(transport / "run_parameter_transport_mutations.py")],
+        timeout=max(timeout, 600.0),
+    )
+    transport_output = transport_result.stdout + transport_result.stderr
+    require(
+        transport_result.returncode == 0
+        and b"PARAMETER_TRANSPORT_MUTATIONS_PASS" in transport_output,
+        "PARAMETER_TRANSPORT_MUTATION_SUITE_FAIL",
+        transport_output[-4000:],
+    )
+    require(
+        transport_certificate.read_bytes() == transport_expected,
+        "PARAMETER_TRANSPORT_MUTATION_REPORT_BYTE_DRIFT",
+    )
+    transport_report = load_json(transport_certificate)
+    require(
+        transport_report.get("status") == "PASS"
+        and transport_report.get("rejected") == 10
+        and transport_report.get("survived") == 0,
+        "PARAMETER_TRANSPORT_MUTATION_REPORT_FAIL",
+    )
+    rows.append(
+        {
+            "name": "parameter_transport_mutations",
+            "status": "REJECTED",
+            "source": "10/10 paired-edge, parent-flip, triangle-local, restriction, root-suppression, and reversal attacks",
+            "mutation_payload_sha256": transport_report["payload_sha256"],
+            "producer_mutation_count": 10,
+        }
+    )
+    print(
+        "K2P_FINAL_MUTATION_REJECTED name=parameter_transport_mutations",
+        flush=True,
+    )
+
+
 def truth_oracle_mutation_gate(rows: list[dict[str, object]]) -> list[str]:
     paths = locator_artifacts(corrected_locator())
     report = load_json(paths["corrected_universe_mutation_report"])
@@ -765,6 +938,9 @@ def main() -> int:
         with tempfile.TemporaryDirectory(prefix="k2p-final-mutations-") as directory:
             temporary = Path(directory)
             optimized_mode_mutation(rows, args.timeout_seconds)
+            fail_closed_evidence_mutation_suites(
+                rows, temporary, args.timeout_seconds
+            )
             raw_mutations(rows, temporary, args.timeout_seconds)
             corrected_raw4_mutations(rows, temporary, args.timeout_seconds)
             theta2_full_map_mutations(rows, temporary, args.timeout_seconds)
@@ -805,7 +981,7 @@ def main() -> int:
         "status": "PASS" if not blockers else "BLOCKED",
         "blockers": blockers,
         "survivors": 0,
-        "required_mutation_count": 23,
+        "required_mutation_count": 27,
         "observed_mutation_count": len(rows),
         "mutations": rows,
         "elapsed_seconds": round(time.perf_counter() - started, 6),
@@ -817,7 +993,7 @@ def main() -> int:
         print("K2P_FINAL_RELEASE_MUTATIONS_BLOCKED")
         print(json.dumps(report, sort_keys=True))
         return 2 if args.audit_blocked else 1
-    require(len(rows) == 23, "FINAL_MUTATION_CENSUS_FAIL", len(rows))
+    require(len(rows) == 27, "FINAL_MUTATION_CENSUS_FAIL", len(rows))
     print("K2P_FINAL_RELEASE_MUTATIONS_PASS")
     print(json.dumps(report, sort_keys=True))
     return 0

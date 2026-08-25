@@ -178,6 +178,22 @@ def main():
     require(proof_claim == sha(proof_unhashed), "proof payload")
     certificate = json.loads(CERTIFICATE.read_text())
     certificate["status"] = "PASS"
+    # Rebind the summary to the exact current inputs.  This utility does not
+    # regenerate the large ledgers; it reconstructs their graph-derived anchor
+    # inventory under the current atlas and then reseals the immutable ledgers.
+    # A clean full release replay remains the independent regeneration gate.
+    certificate["inputs"] = {
+        "atlas_sha256": sha_file(builder.ATLAS_PATH),
+        "probe_input_contract_sha256": sha_file(builder.INPUT_CONTRACT),
+        "probe_input_contract_payload_sha256": contract["payload_sha256"],
+        "probe_input_independent_replay_sha256": sha_file(builder.INPUT_REPLAY),
+        "probe_input_mutations_sha256": sha_file(builder.INPUT_MUTATIONS),
+        "corrected_restoration_sha256": sha_file(builder.RESTORATION),
+        "raw4_ledger_sha256": sha_file(builder.RAW4),
+        "theta2_fixed_full_closure_sha256": sha_file(builder.THETA2),
+        "cycle_physical_anchors_sha256": sha_file(builder.CYCLE_ANCHORS),
+        "cycle_promotion_sha256": sha_file(builder.CYCLE_PROMOTION),
+    }
     certificate["classifier_order"] = [
         "exact_labelled_isomorphism_or_ordinary_triangle",
         "displayed_quartet_mismatch",

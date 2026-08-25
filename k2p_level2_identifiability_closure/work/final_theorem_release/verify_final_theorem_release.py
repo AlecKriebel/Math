@@ -536,13 +536,41 @@ def quick_replays(rows: list[dict[str, Any]], timeout: float) -> None:
         expected=PROJECT / "work/domain_rooting_closure/domain_rooting_certificate.json",
         marker=b"K2P_DOMAIN_ROOTING_PASS",
     )
-    replay_isolated_writer(
+    replay_output_program(
         rows,
         name="quartet_sign_logic",
         script=PROJECT / "work/quartet_separation_closure/verify_quartet_logic.py",
-        generated_name="quartet_logic_certificate.json",
         expected=PROJECT / "work/quartet_separation_closure/quartet_logic_certificate.json",
-        marker=b"K2P_QUARTET_SIGN_LOGIC_PASS",
+        extra=(
+            "--project",
+            str(PROJECT),
+            "--spec",
+            str(
+                PROJECT
+                / "work/quartet_separation_closure/QUARTET_SEMANTICS_SPEC.json"
+            ),
+        ),
+        markers=(b"K2P_QUARTET_SIGN_LOGIC_PASS",),
+        timeout=timeout,
+    )
+    replay_output_program(
+        rows,
+        name="quartet_terminal_bindings",
+        script=PROJECT
+        / "work/quartet_separation_closure/verify_quartet_terminal_bindings.py",
+        expected=PROJECT
+        / "work/quartet_separation_closure/quartet_terminal_binding_certificate.json",
+        extra=(
+            "--project",
+            str(PROJECT),
+            "--semantics-certificate",
+            str(
+                PROJECT
+                / "work/quartet_separation_closure/quartet_logic_certificate.json"
+            ),
+        ),
+        markers=(b"K2P_QUARTET_TERMINAL_BINDING_PASS",),
+        timeout=timeout,
     )
     replay_output_program(
         rows,
@@ -550,6 +578,37 @@ def quick_replays(rows: list[dict[str, Any]], timeout: float) -> None:
         script=PROJECT / "work/adversarial_proof_review/verify_topology_direction.py",
         expected=PROJECT / "work/adversarial_proof_review/topology_direction_certificate.json",
         timeout=timeout,
+    )
+    rows.append(
+        run_child(
+            "canonicalizer_completeness_structural",
+            [
+                python,
+                "-B",
+                str(
+                    PROJECT
+                    / "work/canonicalizer_completeness/verify_canonicalizer_completeness.py"
+                ),
+            ],
+            timeout=timeout,
+            terminal_markers=(b"K2P_CANONICALIZER_COMPLETENESS_PASS",),
+        )
+    )
+    rows.append(
+        run_child(
+            "graph_derived_parameter_transports_structural",
+            [
+                python,
+                "-B",
+                str(
+                    PROJECT
+                    / "work/canonicalizer_completeness/inheritance_transport/verify_parameter_transport_certificate.py"
+                ),
+                "--structural-only",
+            ],
+            timeout=max(timeout, 600.0),
+            terminal_markers=(b"PARAMETER_TRANSPORT_REPLAY_PASS",),
+        )
     )
     replay_output_program(
         rows,
@@ -955,6 +1014,37 @@ def replay_probe_adversarial_full(
 
 def full_replays(rows: list[dict[str, Any]], timeout: float) -> None:
     python = str(qualified_python())
+    rows.append(
+        run_child(
+            "canonicalizer_completeness_full",
+            [
+                python,
+                "-B",
+                str(
+                    PROJECT
+                    / "work/canonicalizer_completeness/verify_canonicalizer_completeness.py"
+                ),
+                "--full",
+            ],
+            timeout=max(timeout, 1_800.0),
+            terminal_markers=(b"K2P_CANONICALIZER_COMPLETENESS_PASS",),
+        )
+    )
+    rows.append(
+        run_child(
+            "graph_derived_parameter_transports_full",
+            [
+                python,
+                "-B",
+                str(
+                    PROJECT
+                    / "work/canonicalizer_completeness/inheritance_transport/verify_parameter_transport_certificate.py"
+                ),
+            ],
+            timeout=max(timeout, 7_200.0),
+            terminal_markers=(b"PARAMETER_TRANSPORT_REPLAY_PASS",),
+        )
+    )
     replay_output_program(
         rows,
         name="corrected_universe_cross_layer_mutations",

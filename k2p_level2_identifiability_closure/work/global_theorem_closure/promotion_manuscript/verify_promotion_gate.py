@@ -55,14 +55,14 @@ EXPECTED_ZERO_GATES = {
 EXPECTED_PROBE_ARTIFACT_VALUES = {
     "primary": {
         "path": "work/probe_coherence_corrected/probe_coherence_certificate.json",
-        "file_sha256": "93de7b0dd3aa581bdf12288eae8cb9ac42f20a9d9bb3eab35eee8ef9a759d390",
-        "payload_sha256": "674853fa730c4f54b9ba264d539a51591c8b926ad444195e68df086c26f83825",
+        "file_sha256": "2f4d64b32a905ce2cc06bae7d03215f9239427d421825c2525437ee6ba2ccaf6",
+        "payload_sha256": "964e9f3c241e63a1b0b12b3ceb516c58525d410c3c550e8335b619a6817400e5",
         "status": "PASS",
     },
     "independent_replay": {
         "path": "work/global_proof_adversary/probe_full_audit/independent_probe_graph_audit_certificate.json",
-        "file_sha256": "47f527dd56ce355d911c44ebc55e24a1e9c7f14f379810902b49ae068261e74f",
-        "payload_sha256": "4492860febc84f4530f67fa50f684ca34fde7c6fc2c6b3ccf906d88d275ac540",
+        "file_sha256": "b30e2e32e5eec86875031a8bba82d58689f18859896adeb6a6931888df75209f",
+        "payload_sha256": "9e50d3681cf2c572c1575e770c67f95723d8c3e8a3943b5963dec7d07c3bec63",
         "status": "PASS",
     },
     "mutation_report": {
@@ -116,44 +116,44 @@ FROZEN = {
         "5abc19f857a02c712d1386b53bf1ecea18ec31db852cb31b24ea7dde688630ee",
     ),
     "work/global_proof_adversary/component_scale_certificate.json": (
-        "d9b19cde1e9d0544d8c1674ace662b050301313858c1b9bdc857af29c64804d6",
-        "ce8f4e6860675e36238b8351458875bd46de0507df34f6729e34b20170e02acd",
+        "77d3881e7f7d5f90d71339968e3268c5780a0cd51e893e476aac040200e49064",
+        "02013c3a0d9456c97d64ae06fd20b241057bfdb437f07acea4f15437860b8416",
     ),
     "work/corrected_composite_ledgers/artifacts/raw4_corrected_composite_ledger.jsonl.gz": (
         "431dac8898ad2a724d12c200687de1b377723e302214a79a11a03524a4084b96",
         None,
     ),
     "work/corrected_composite_ledgers/artifacts/raw4_corrected_composite_summary.json": (
-        "515d6fea22d8388ab13c68066d0a57164b96baa684bf24b8f6da7da21bf6726c",
-        "8154acc38ad58b49e4f0f5b34f6fdb9999c0392dd947f91bc6017d8e2ab8d5cf",
+        "c320f92a8b8677b51c5b5f8465175c9b05a821c98a06d75fcf2ab37e9557c097",
+        "ad658166deec3c1258e574e9649facb63f4916511f5bfcacf4121d5419e21f32",
     ),
     "work/corrected_composite_ledgers/artifacts/raw4_corrected_composite_independent_replay.json": (
-        "d44705d2266aa1360acec19cdb8bf0fea648fc9c029ae96adb437a04ad5cce10",
-        "0e167e742907394a77a0eab1614366e2460b86b13241577ad25e902822241ea8",
+        "495beeeae41a98c59670480716f5dd4251961b925059367171183f414274271d",
+        "9c6fd885a00fb3315ba6a120ce6c68820eb55082e967f8e00d4f246ccaaee924",
     ),
     "work/corrected_composite_ledgers/artifacts/raw4_terminal_certificate_registry.json.gz": (
         "0a1818655429d60660c1ed87f3fbe412701f386b081562b3a4caa54079069f1d",
         None,
     ),
     "work/corrected_composite_ledgers/artifacts/raw4_corrected_composite_mutations.json": (
-        "449228fa4013234280434495e5c79468750de2785d5a2a2a8ad7d91bbdcae3a7",
-        "88bd552f75c87d0b084ab6a9fa09421ef16867b274a2be25b513ff9fdf9f010d",
+        "c6045d3cfdf61026374014688c3278f1645ab1efd0708fd71f92f65595d1a189",
+        "baac525a8283b708633e2b1914eec47125bb0311736b5d2462191f78de0c2685",
     ),
     "work/corrected_composite_ledgers/artifacts/theta2_corrected_composite_ledger.jsonl.gz": (
         "805fc7f5a3de9dad2c63a210208075cf19910cf811ffd08878f32782ce71b659",
         None,
     ),
     "work/corrected_composite_ledgers/artifacts/theta2_corrected_composite_summary.json": (
-        "5c0c7c091982b3ce235f0380eeb6e4531419bf7d3dcbfe44b9535f1b0e122086",
-        "480c27d82924bbf12adf1357f9e3bc216d1818dce68d061bb134f387e9737194",
+        "cf4ee4c23068cbc644474ad0161510a99106d3235f28e722fd3340b5bbbb3fdb",
+        "c89dd764f7c66831db7f6a092fedf666a20f3594ef03647de3e85b5fbf04d0e8",
     ),
     "work/corrected_composite_ledgers/artifacts/theta2_corrected_composite_independent_replay.json": (
-        "ed57b46c5e05a73f08a26afc99ae1bd5f0076e941b2da7ac411ecc52f3b63e58",
-        "2fa46fd0ca70dbe00e8231686bfd790f57d76d9a33ddc4b07cffaa72e3b07e8b",
+        "dd02a752b2ce41628039d2f6da6fdab77f2a8ffd73b8cd80e2968790dbbf3150",
+        "7e4283fe726083927b14d483d55644e2892a311b0179aa70d4766576c66ab545",
     ),
     "work/corrected_composite_ledgers/artifacts/theta2_corrected_composite_mutations.json": (
-        "c1c8012941ac58ae3f01a890caaa9e9ad05e8342d11a41d8a911de18dc3e6775",
-        "5fce45398dc5f3ad948078ec5b66583d28e3af2cf3991f4f0931c0bfaf332e77",
+        "bd3c50d48da744897b073afa2416b6a91b4d264f65ca7d23942b336352b0b3c5",
+        "22563ba0f01dda229d5185fee06b52d450dbac5e143ad6397128f5ee0b20e260",
     ),
     "work/restoration_sign_reclassification/corrected_restoration_forest.json": (
         "43bd2be5e7626a954fc4fa4cf45e8d0e6483c947ddc9cba80f2b1a13351bc3a8",
