@@ -25,7 +25,7 @@ The frozen theorem release is rooted at
 `work/final_theorem_release/RELEASE_LOCK.json`, whose SHA-256 is
 
 ```text
-58e32bd29f7a039e3da4e47398e32ee8277ad46cf62271a7ed80bf41688b18fb
+7113b1c52d577858ec20ef83cd87c870242c8ddc96018036b5c073229821eec9
 ```
 
 The theorem is deliberately limited to the principal positive component; no
@@ -70,5 +70,5 @@ Create the pinned environment described in
   --check
 ```
 
-See `STATUS.md` for the exact completion state and the remaining human-only
-submission metadata.
+See `STATUS.md` for the exact final qualification state and the external
+publication actions deliberately left to the author.

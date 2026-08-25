@@ -563,9 +563,10 @@ def main() -> dict[str, object]:
         "EXTERNAL_RELEASE_BOUNDARY_MISSING",
     )
     licenses = license_path.read_text(encoding="utf-8")
+    normalized_licenses = " ".join(licenses.split())
     require(
-        "Creative Commons Attribution 4.0 International License" in licenses
-        and "MIT License" in licenses,
+        "Creative Commons Attribution 4.0 International License" in normalized_licenses
+        and "MIT License" in normalized_licenses,
         "LICENSE_FILE_INCOMPLETE",
     )
 

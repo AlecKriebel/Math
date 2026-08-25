@@ -18,8 +18,12 @@ python3 proof_compression_submission/crosswalk/test_crosswalk_bundle_mutations.p
 The revised manifest reconstructs the complete transitive frozen-evidence
 ledger from the current promotion-ready release lock and records its exact
 file count, byte count, and content root. It also includes the named
-clean-replay reports, final PDFs, build logs, and all submission sources. No
-release hash, layer count, runtime, or memory value is hardcoded: the builder
+clean-replay reports, final PDFs, build logs, and all submission sources. The
+archive also copies the portable content ledger, its fail-closed checker,
+and its reader README as explicit execution dependencies outside the
+`proof_compression_submission/` tree.
+
+No release hash, layer count, runtime, or memory value is hardcoded: the builder
 and independent checker derive and cross-check those fields from the final
 lock and detached clean-replay telemetry. Any included source edit makes both
 checks fail. Reseal only after the release lock, clean replay, PDFs, and

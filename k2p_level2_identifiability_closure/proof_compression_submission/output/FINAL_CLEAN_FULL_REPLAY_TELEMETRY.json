@@ -1,42 +1,66 @@
 {
-  "schema": "k2p-final-clean-full-replay-telemetry-v1",
-  "status": "PASS",
-  "completed_utc": "2026-08-22T21:19:49Z",
-  "git_commit": "1e9ff6c6",
   "clean_detached_checkout": true,
-  "command": "/usr/bin/time -l .venv/bin/python -B work/final_theorem_release/verify_final_theorem_release.py --full --timeout-seconds 7200 --output FINAL_CLEAN_FULL_REPLAY.json",
-  "report": {
-    "path": "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY.json",
-    "sha256": "7939b389880de80b7d8abd69022e0b69d2dc4188815854b294d3384fa24c9e18",
-    "internal_elapsed_seconds": 5172.248447,
-    "layer_count": 35,
-    "lock_payload_sha256": "3b7de4c60315a5820a2623de860f493d6b76a645b5c674ffda89f12fc31a5c90",
-    "promotion_ready": true,
-    "blocker_count": 0
+  "command": "/usr/bin/time -l .venv/bin/python -B work/final_theorem_release/verify_final_theorem_release.py --full --timeout-seconds 7200 --output <external-report-path>",
+  "git_commit": "1877985d20132fb186d21a5985e8c5f760a656af",
+  "notes": [
+    "The source checkout was at the exact full commit, detached, and clean when this telemetry was produced.",
+    "The maximum-resident-set-size and memory-footprint fields are distinct metrics parsed from macOS /usr/bin/time -l.",
+    "The replay report and telemetry output are outside the detached checkout, so observation does not modify the checked source tree or enter the release lock."
+  ],
+  "project_in_repo": "k2p_level2_identifiability_closure",
+  "release_lock": {
+    "bytes": 77565,
+    "path": "work/final_theorem_release/RELEASE_LOCK.json",
+    "payload_sha256": "f0342dd538b6b72eb5e31eb674df2ce6984b9e4fae6e502583e4bb195aedbb0f",
+    "sha256": "7113b1c52d577858ec20ef83cd87c870242c8ddc96018036b5c073229821eec9"
   },
-  "time_l": {
-    "real_seconds": 5172.89,
-    "user_seconds": 5094.06,
-    "system_seconds": 39.85,
-    "maximum_resident_set_size_bytes": 1960001536,
-    "peak_memory_footprint_bytes": 491504408,
-    "page_reclaims": 6132301,
-    "page_faults": 6438,
-    "swaps": 0
+  "report": {
+    "blocker_count": 0,
+    "internal_elapsed_seconds": 5577.570125,
+    "layer_count": 40,
+    "lock_payload_sha256": "f0342dd538b6b72eb5e31eb674df2ce6984b9e4fae6e502583e4bb195aedbb0f",
+    "path": "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY.json",
+    "promotion_ready": true,
+    "sha256": "ec5fefc3c1ab2210e9c53792240ebe008603da6abd004d093e2b95e15ff5c10b"
   },
   "runtime": {
-    "python": "3.14.6",
     "networkx": "3.5",
+    "python": "3.14.6",
     "sympy": "1.14.0"
   },
-  "host": {
-    "machine": "Apple M1 Pro",
-    "architecture": "arm64",
-    "physical_memory_bytes": 17179869184,
-    "operating_system": "macOS 26.5.2 (25F84)"
+  "schema": "k2p-final-clean-full-replay-telemetry-v1",
+  "status": "PASS",
+  "submission_sources": {
+    "proof_compression_submission/article/main.tex": {
+      "bytes": 85814,
+      "sha256": "ca6dd8d750768b0c47121c8bd60c5c9c3223af194139f5f578cb8bbf5fd5c3f1"
+    },
+    "proof_compression_submission/article/references.bib": {
+      "bytes": 6977,
+      "sha256": "14dbb4901d924b068c8cc2d050e73bae3cf996a72863a22ade90d6f8e6b4057c"
+    },
+    "proof_compression_submission/supplement/certificate_appendix.tex": {
+      "bytes": 22405,
+      "sha256": "f2444f0308ab2dcccc45dec0704e98b147fffe4bb11fef9ef19cb7f34e688af5"
+    },
+    "proof_compression_submission/supplement/compression_tables.tex": {
+      "bytes": 3269,
+      "sha256": "1ce2ef60784c1a240cdd639cd845710934c9587e4c341ad293394c8e1f758e9b"
+    },
+    "proof_compression_submission/supplement/supplement.tex": {
+      "bytes": 44051,
+      "sha256": "57275e1e5e1058306607a98583ac31e98383952ef2284515fea01f1c47ce95bd"
+    }
   },
-  "notes": [
-    "The maximum-resident-set-size and peak-memory-footprint fields are recorded verbatim from macOS /usr/bin/time -l; they are distinct OS metrics.",
-    "The output report is outside the locked theorem tree, so recording operational telemetry does not create a self-referential release-lock update."
-  ]
+  "time_l": {
+    "maximum_resident_set_size_bytes": 2600484864,
+    "page_faults": 5791,
+    "page_reclaims": 6572496,
+    "peak_memory_footprint_bytes": 503350016,
+    "real_seconds": 5578.1,
+    "source_sha256": "58923c0f0852597075d5b371a9d70f4ae9efd66c3bc94f76d8baf8a67cb59bcf",
+    "swaps": 0,
+    "system_seconds": 42.48,
+    "user_seconds": 6037.33
+  }
 }

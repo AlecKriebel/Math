@@ -138,7 +138,7 @@ def canonical_hash(value: object) -> str:
     ).hexdigest()
 
 
-def build_report(visual_pass: bool) -> dict[str, Any]:
+def build_report(visual_pass: bool, *, publish: bool) -> dict[str, Any]:
     require(__debug__, "OPTIMIZED_PYTHON_FORBIDDEN")
     environment = dict(os.environ)
     environment["SOURCE_DATE_EPOCH"] = str(SOURCE_DATE_EPOCH)
@@ -157,60 +157,116 @@ def build_report(visual_pass: bool) -> dict[str, Any]:
         omission_gate(Path(omit_a), "supplement/compression_tables.tex", environment)
         omission_gate(Path(omit_b), "supplement/certificate_appendix.tex", environment)
 
-    OUTPUT.mkdir(parents=True, exist_ok=True)
-    LOGS.mkdir(parents=True, exist_ok=True)
-    destinations = {
+    authoritative_destinations = {
         "article": OUTPUT / "K2P_SAME_Principal_Domain_Article.pdf",
         "supplement": OUTPUT / "K2P_SAME_Reader_Supplement.pdf",
     }
-    log_destinations = {
+    authoritative_log_destinations = {
         "article": LOGS / "article.log",
         "supplement": LOGS / "supplement.log",
     }
-    for kind in built:
-        destinations[kind].write_bytes(built[kind][0])
-        log_destinations[kind].write_bytes(built[kind][1])
-
-    checks = {
-        "all_fonts_embedded": all(fonts_embedded(path) for path in destinations.values()),
-        "all_pages_visually_inspected": visual_pass,
-        "article_pages_inspected": pdf_pages(destinations["article"]) if visual_pass else 0,
-        "supplement_pages_inspected": pdf_pages(destinations["supplement"]) if visual_pass else 0,
-        "five_source_clean_build_passed": True,
-        "missing_bibliography_manifest_mutation_rejected": True,
-        "missing_certificate_appendix_build_rejected": True,
-        "missing_compression_table_build_rejected": True,
-    }
-    counts = [log_counts(built[kind][1]) for kind in built]
-    for field in counts[0]:
-        checks[field] = sum(row[field] for row in counts)
-    require(checks["all_fonts_embedded"], "UNEMBEDDED_FONT")
-    for field in (
-        "fatal_latex_errors",
-        "hyperref_pdf_string_warnings",
-        "overfull_boxes",
-        "undefined_citations",
-        "undefined_references",
-    ):
-        require(checks[field] == 0, "PDF_LOG_DEFECT", f"{field}:{checks[field]}")
-
-    rows: dict[str, Any] = {}
-    source_paths = {
-        "article": "proof_compression_submission/article/main.tex",
-        "supplement": "proof_compression_submission/supplement/supplement.tex",
-    }
-    for kind in ("article", "supplement"):
-        path = destinations[kind]
-        source = PROJECT / source_paths[kind]
-        rows[kind] = {
-            "bytes": path.stat().st_size,
-            "pages": pdf_pages(path),
-            "pdf_path": path.relative_to(PROJECT).as_posix(),
-            "pdf_sha256": sha(path),
-            "source_path": source_paths[kind],
-            "source_sha256": sha(source),
-            "log_sha256": sha(log_destinations[kind]),
+    with tempfile.TemporaryDirectory(
+        prefix="k2p-submission-inspect-", dir=scratch_parent
+    ) as inspection_dir:
+        inspection = Path(inspection_dir)
+        destinations = {
+            "article": inspection / "K2P_SAME_Principal_Domain_Article.pdf",
+            "supplement": inspection / "K2P_SAME_Reader_Supplement.pdf",
         }
+        log_destinations = {
+            "article": inspection / "article.log",
+            "supplement": inspection / "supplement.log",
+        }
+        for kind in built:
+            destinations[kind].write_bytes(built[kind][0])
+            log_destinations[kind].write_bytes(built[kind][1])
+
+        checks = {
+            "all_fonts_embedded": all(
+                fonts_embedded(path) for path in destinations.values()
+            ),
+            "all_pages_visually_inspected": visual_pass,
+            "article_pages_inspected": (
+                pdf_pages(destinations["article"]) if visual_pass else 0
+            ),
+            "supplement_pages_inspected": (
+                pdf_pages(destinations["supplement"]) if visual_pass else 0
+            ),
+            "five_source_clean_build_passed": True,
+            "missing_bibliography_manifest_mutation_rejected": True,
+            "missing_certificate_appendix_build_rejected": True,
+            "missing_compression_table_build_rejected": True,
+        }
+        counts = [log_counts(built[kind][1]) for kind in built]
+        for field in counts[0]:
+            checks[field] = sum(row[field] for row in counts)
+        require(checks["all_fonts_embedded"], "UNEMBEDDED_FONT")
+        for field in (
+            "fatal_latex_errors",
+            "hyperref_pdf_string_warnings",
+            "overfull_boxes",
+            "undefined_citations",
+            "undefined_references",
+        ):
+            require(
+                checks[field] == 0,
+                "PDF_LOG_DEFECT",
+                f"{field}:{checks[field]}",
+            )
+
+        rows: dict[str, Any] = {}
+        source_paths = {
+            "article": "proof_compression_submission/article/main.tex",
+            "supplement": "proof_compression_submission/supplement/supplement.tex",
+        }
+        for kind in ("article", "supplement"):
+            path = destinations[kind]
+            source = PROJECT / source_paths[kind]
+            rows[kind] = {
+                "bytes": path.stat().st_size,
+                "pages": pdf_pages(path),
+                "pdf_path": authoritative_destinations[kind]
+                .relative_to(PROJECT)
+                .as_posix(),
+                "pdf_sha256": sha(path),
+                "source_path": source_paths[kind],
+                "source_sha256": sha(source),
+                "log_sha256": sha(log_destinations[kind]),
+            }
+
+    if publish:
+        OUTPUT.mkdir(parents=True, exist_ok=True)
+        LOGS.mkdir(parents=True, exist_ok=True)
+        for kind in built:
+            require(
+                not authoritative_destinations[kind].is_symlink(),
+                "PDF_OUTPUT_SYMLINK_FORBIDDEN",
+                kind,
+            )
+            require(
+                not authoritative_log_destinations[kind].is_symlink(),
+                "PDF_LOG_SYMLINK_FORBIDDEN",
+                kind,
+            )
+            authoritative_destinations[kind].write_bytes(built[kind][0])
+            authoritative_log_destinations[kind].write_bytes(built[kind][1])
+    else:
+        for kind in built:
+            require(
+                authoritative_destinations[kind].is_file()
+                and not authoritative_destinations[kind].is_symlink()
+                and authoritative_destinations[kind].read_bytes() == built[kind][0],
+                "PDF_OUTPUT_DRIFT",
+                kind,
+            )
+            require(
+                authoritative_log_destinations[kind].is_file()
+                and not authoritative_log_destinations[kind].is_symlink()
+                and authoritative_log_destinations[kind].read_bytes()
+                == built[kind][1],
+                "PDF_LOG_DRIFT",
+                kind,
+            )
     payload: dict[str, Any] = {
         "schema": "k2p-submission-pdf-build-report-v3",
         "status": "PASS" if visual_pass else "AWAITING_VISUAL_INSPECTION",
@@ -253,7 +309,7 @@ def main() -> None:
     parser.add_argument("--visual-pass", action="store_true")
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
-    report = build_report(args.visual_pass)
+    report = build_report(args.visual_pass, publish=not args.check)
     encoded = json.dumps(report, indent=2, sort_keys=True) + "\n"
     rendered = markdown(report)
     if args.check:

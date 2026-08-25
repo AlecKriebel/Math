@@ -23,6 +23,11 @@ OPERATIONAL_EVIDENCE = {
     "proof_compression_submission/output/logs/article.log",
     "proof_compression_submission/output/logs/supplement.log",
 }
+SUPPLEMENTAL_EXECUTION_DEPENDENCIES = {
+    "output/referee/README.md",
+    "output/referee/REFEREE_BUNDLE_CONTENTS.json",
+    "output/referee/build_referee_bundle.py",
+}
 SUBMISSION_METADATA = {
     "author_contributions": "approved sole-author contribution statement",
     "code_license": "MIT",
@@ -184,6 +189,12 @@ def reconstruct_submission_bindings() -> dict[str, dict[str, int | str]]:
             fail(f"submission source is not a regular file: {relative.as_posix()}")
         data = path.read_bytes()
         actual[relative.as_posix()] = {"bytes": len(data), "sha256": sha256_bytes(data)}
+    for relative in sorted(SUPPLEMENTAL_EXECUTION_DEPENDENCIES):
+        path = project_path(relative)
+        if not path.is_file() or path.is_symlink():
+            fail(f"missing or symbolic supplemental execution dependency: {relative}")
+        data = path.read_bytes()
+        actual[relative] = {"bytes": len(data), "sha256": sha256_bytes(data)}
     return actual
 
 
@@ -767,6 +778,9 @@ def validate(manifest_path: Path) -> dict[str, Any]:
         "excluded_components": ["output except named replay/PDF/log artifacts", "__pycache__", "dot-prefixed directories"],
         "excluded_names": [".DS_Store", MANIFEST_RELATIVE],
         "excluded_suffixes": [".pyc", ".pyo"],
+        "supplemental_execution_dependencies": sorted(
+            SUPPLEMENTAL_EXECUTION_DEPENDENCIES
+        ),
         "symlinks_allowed": False,
     }
     if policy != expected_policy:
@@ -775,6 +789,7 @@ def validate(manifest_path: Path) -> dict[str, Any]:
     if not isinstance(archive_policy, dict) or archive_policy.get("fixed_member_timestamp") != "2026-08-24T00:00:00":
         fail("archive timestamp policy mismatch")
     required_sources = {
+        "proof_compression_submission/AI_REFEREE_PROMPT.md",
         "proof_compression_submission/article/main.tex",
         "proof_compression_submission/article/references.bib",
         "proof_compression_submission/supplement/supplement.tex",
@@ -791,6 +806,7 @@ def validate(manifest_path: Path) -> dict[str, Any]:
         "proof_compression_submission/adversarial_review/STATIC_AUDIT_RESULT.json",
         "proof_compression_submission/adversarial_review/audit_article_sources.py",
         *OPERATIONAL_EVIDENCE,
+        *SUPPLEMENTAL_EXECUTION_DEPENDENCIES,
     }
     missing = sorted(required_sources - set(submission))
     if missing:

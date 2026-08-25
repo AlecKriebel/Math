@@ -220,6 +220,36 @@ def run() -> dict[str, Any]:
         reject_mutation(base, "omitted_static_article_audit", omit_static_article_audit)
     )
 
+    for mutation_id, relative in (
+        (
+            "omitted_neutral_referee_prompt",
+            "proof_compression_submission/AI_REFEREE_PROMPT.md",
+        ),
+        (
+            "omitted_portable_content_ledger",
+            "output/referee/REFEREE_BUNDLE_CONTENTS.json",
+        ),
+        (
+            "omitted_portable_bundle_checker",
+            "output/referee/build_referee_bundle.py",
+        ),
+        (
+            "omitted_portable_bundle_readme",
+            "output/referee/README.md",
+        ),
+    ):
+        def omit_execution_dependency(
+            value: dict[str, Any], *, target: str = relative
+        ) -> None:
+            files = value["submission_sources"]["files"]
+            if target not in files:
+                fail(f"mutation fixture omits execution dependency: {target}")
+            files.pop(target)
+
+        mutations.append(
+            reject_mutation(base, mutation_id, omit_execution_dependency)
+        )
+
     def false_supplement_pdf_hash(value: dict[str, Any]) -> None:
         path = "proof_compression_submission/output/K2P_SAME_Reader_Supplement.pdf"
         value["submission_sources"]["files"][path]["sha256"] = "2" * 64

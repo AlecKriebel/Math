@@ -33,6 +33,7 @@ The completed outcome is `PC-PARTIAL`, with zero unresolved mathematical
 records. The exact restoration and probe ledgers remain load-bearing and are
 not represented as a fictitious hand quotient. Primary reader artifacts are:
 
+- `AI_REFEREE_PROMPT.md`, the neutral post-submission review protocol;
 - `article/main.tex`, `article/references.bib`, and the compiled article in
   `output/`;
 - `supplement/supplement.tex`, its required `compression_tables.tex` and

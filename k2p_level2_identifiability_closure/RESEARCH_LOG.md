@@ -461,3 +461,48 @@
   Remaining work is the clean detached full replay at the new exact candidate,
   telemetry, PDF/build audit, deterministic bundle, final push, and Git source
   tag.  No GitHub Release or Zenodo action is authorized.
+
+## 2026-08-25 — Final clean replay and submission qualification
+
+- Completed the detached clean-checkout full primitive replay at source
+  candidate `1877985d20132fb186d21a5985e8c5f760a656af`. All 40 layers passed,
+  with zero blockers and `promotion_ready=true`. Internal time was
+  5,577.570125 seconds; wall time was 5,578.10 seconds; maximum resident set
+  size was 2,600,484,864 bytes; and the recorded peak memory footprint was
+  503,350,016 bytes. The replay report SHA-256 is
+  `ec5fefc3c1ab2210e9c53792240ebe008603da6abd004d093e2b95e15ff5c10b`
+  and the independently constructed telemetry SHA-256 is
+  `415bf36a59e6006603e4382085c784ffc4e1a1744f1e4c920cd5f0d313fb9df5`.
+- Rebuilt the article and reader supplement deterministically. The 26-page
+  article has SHA-256
+  `2c4433d53c33c337d4ed028c2843cf0b5631263d7bf4a0a42106727985daa3a8`;
+  the 24-page supplement has SHA-256
+  `9b10797d7503e6940d80a95bc90302b3b32a9ea34cb9f63a54bee3f12f3c06e1`.
+  All 50 pages were rendered and visually inspected, all fonts are embedded,
+  and the fail-closed build report passes with no undefined references,
+  citations, overfull boxes, fatal errors, or clipping.
+- The final quick replay passed all 23 layers in 383.261 seconds. All 27 outer
+  release mutations were rejected with zero survivors. PC-PARTIAL verification,
+  seven-command old/new equivalence, 11 compression mutations, nine telemetry
+  tests, the static source audit, and all 27 bundle mutations pass.
+- Sealed the portable frozen evidence closure at 399 files and 478,755,815
+  bytes with content root
+  `072baaa4066569acd31c552149f6afb727323e54b241bdefc98452598309dd61`.
+  The revised referee manifest binds those files plus 80 source/reader and
+  execution-dependency files, including both PDFs, a neutral archive-native
+  referee prompt, and every checker named by that prompt. Its combined
+  content root is
+  `9cbf9264172b55ebe6fbc3a513e62a43c08de040f78c9c82d128c19c8190a86c`.
+- Built the 480-member deterministic referee ZIP twice independently; the two
+  archives are byte-identical and ZIP integrity passes. A fresh extraction
+  passes every compact prompt command without changing any packaged file. The
+  214,790,278-byte
+  archive has SHA-256
+  `8a86436f7ff1cdaafb18a163469569f6cf8f697db866423d30969bcca35e7535`.
+- The qualified immutable source-tag name is
+  `k2p-same-biorxiv-v1.0.0`. No GitHub Release, Zenodo deposit, or DOI has been
+  created or claimed; those actions remain with the author.
+- Best-guess completion is **100%** for the principal-domain theorem,
+  reproducibility package, bioRxiv sources, and neutral referee package. No
+  mathematical, computational, metadata, source-build, or packaging gate
+  remains.

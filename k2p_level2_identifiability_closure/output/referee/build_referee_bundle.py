@@ -13,11 +13,11 @@ from pathlib import Path, PurePosixPath
 
 PROJECT = Path(__file__).resolve().parents[2]
 LOCK_RELATIVE = "work/final_theorem_release/RELEASE_LOCK.json"
-EXPECTED_LOCK_SHA256 = "58e32bd29f7a039e3da4e47398e32ee8277ad46cf62271a7ed80bf41688b18fb"
-EXPECTED_LOCK_PAYLOAD = "3b7de4c60315a5820a2623de860f493d6b76a645b5c674ffda89f12fc31a5c90"
-EXPECTED_FILE_COUNT = 374
-EXPECTED_TOTAL_BYTES = 434_698_345
-EXPECTED_CONTENT_ROOT = "7004e3e26bf359d0a11c07fd51cb1636859b30b07a97ca6c9cfd0dcd082dfc92"
+EXPECTED_LOCK_SHA256 = "7113b1c52d577858ec20ef83cd87c870242c8ddc96018036b5c073229821eec9"
+EXPECTED_LOCK_PAYLOAD = "f0342dd538b6b72eb5e31eb674df2ce6984b9e4fae6e502583e4bb195aedbb0f"
+EXPECTED_FILE_COUNT = 399
+EXPECTED_TOTAL_BYTES = 478_755_815
+EXPECTED_CONTENT_ROOT = "072baaa4066569acd31c552149f6afb727323e54b241bdefc98452598309dd61"
 ARCHIVE_PREFIX = "k2p_principal_d_plus_referee_release"
 
 
@@ -69,7 +69,7 @@ def collect_ledger() -> dict[str, dict[str, int | str]]:
         fail("release is not promotion-ready")
 
     paths = set(lock.get("files", {}))
-    if len(paths) != 198:
+    if len(paths) != 223:
         fail("unexpected outer file count")
 
     add_manifest_paths(

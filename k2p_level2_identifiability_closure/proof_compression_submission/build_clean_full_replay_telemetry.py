@@ -42,6 +42,29 @@ LOCK_SCHEMA = "k2p-principal-d-plus-final-theorem-release-lock-v1"
 HEX64 = re.compile(r"^[0-9a-f]{64}$")
 HEX40 = re.compile(r"^[0-9a-f]{40}$")
 DECIMAL = r"(?:0|[1-9][0-9]*)(?:\.[0-9]+)?"
+ORDINARY_LAYER_FIELDS = frozenset(
+    {
+        "elapsed_seconds",
+        "name",
+        "returncode",
+        "status",
+        "stderr_sha256",
+        "stdout_sha256",
+    }
+)
+INTENTIONAL_MUTATION_LAYER_FIELDS = frozenset(
+    {
+        "elapsed_seconds",
+        "name",
+        "observed_nonzero_returncode",
+        "status",
+        "stderr_sha256",
+        "stdout_sha256",
+    }
+)
+INTENTIONAL_MUTATION_LAYERS = {
+    "four_port_exact_rank_staged_atlas_omission_mutation": 1,
+}
 
 
 class TelemetryFailure(RuntimeError):
@@ -253,7 +276,33 @@ def validate_report(
         require(name not in names, "FULL_REPLAY_LAYER_NAME_DUPLICATE", name)
         names.add(name)
         require(row.get("status") == "PASS", "FULL_REPLAY_LAYER_NOT_PASS", name)
-        require(row.get("returncode") == 0, "FULL_REPLAY_LAYER_RETURNCODE", name)
+        if name in INTENTIONAL_MUTATION_LAYERS:
+            require(
+                frozenset(row) == INTENTIONAL_MUTATION_LAYER_FIELDS,
+                "FULL_REPLAY_INTENTIONAL_MUTATION_SCHEMA_INVALID",
+                name,
+            )
+            require(
+                isinstance(row.get("observed_nonzero_returncode"), int)
+                and not isinstance(row["observed_nonzero_returncode"], bool)
+                and row["observed_nonzero_returncode"]
+                == INTENTIONAL_MUTATION_LAYERS[name],
+                "FULL_REPLAY_INTENTIONAL_MUTATION_RETURNCODE_INVALID",
+                name,
+            )
+        else:
+            require(
+                frozenset(row) == ORDINARY_LAYER_FIELDS,
+                "FULL_REPLAY_ORDINARY_LAYER_SCHEMA_INVALID",
+                name,
+            )
+            require(
+                isinstance(row.get("returncode"), int)
+                and not isinstance(row["returncode"], bool)
+                and row["returncode"] == 0,
+                "FULL_REPLAY_LAYER_RETURNCODE",
+                name,
+            )
         elapsed = row.get("elapsed_seconds")
         require(
             isinstance(elapsed, (int, float))

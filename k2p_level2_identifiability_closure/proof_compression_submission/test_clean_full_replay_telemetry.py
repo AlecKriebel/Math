@@ -22,6 +22,7 @@ SOURCE_FILES = (
     "proof_compression_submission/supplement/certificate_appendix.tex",
 )
 EMPTY_SHA256 = hashlib.sha256(b"").hexdigest()
+INTENTIONAL_MUTATION_NAME = "four_port_exact_rank_staged_atlas_omission_mutation"
 
 
 def canonical_hash(value: object) -> str:
@@ -230,6 +231,132 @@ class TelemetryProducerTests(unittest.TestCase):
             require_ok(run(fixture.command("--write")))
             value = json.loads(fixture.output.read_text())
             self.assertEqual(value["time_l"]["peak_memory_footprint_bytes"], 500000)
+
+    def test_exact_intentional_mutation_layer_is_accepted(self) -> None:
+        temporary, fixture = self.fixture()
+        with temporary:
+            mutation_row = {
+                "elapsed_seconds": 0.4,
+                "name": INTENTIONAL_MUTATION_NAME,
+                "observed_nonzero_returncode": 1,
+                "status": "PASS",
+                "stderr_sha256": EMPTY_SHA256,
+                "stdout_sha256": EMPTY_SHA256,
+            }
+            ordinary_row = {
+                "elapsed_seconds": 2.5,
+                "name": "ordinary_full_layer",
+                "returncode": 0,
+                "status": "PASS",
+                "stderr_sha256": EMPTY_SHA256,
+                "stdout_sha256": EMPTY_SHA256,
+            }
+            fixture.write_report(layer_replays=[ordinary_row, mutation_row])
+            require_ok(run(fixture.command("--write")))
+            value = json.loads(fixture.output.read_text())
+            self.assertEqual(value["report"]["layer_count"], 2)
+
+    def test_malformed_intentional_mutation_layers_are_rejected(self) -> None:
+        temporary, fixture = self.fixture()
+        with temporary:
+            valid = {
+                "elapsed_seconds": 0.4,
+                "name": INTENTIONAL_MUTATION_NAME,
+                "observed_nonzero_returncode": 1,
+                "status": "PASS",
+                "stderr_sha256": EMPTY_SHA256,
+                "stdout_sha256": EMPTY_SHA256,
+            }
+            cases: list[tuple[str, dict[str, object], str]] = []
+
+            missing_observed = dict(valid)
+            missing_observed.pop("observed_nonzero_returncode")
+            cases.append(
+                (
+                    "missing observed return code",
+                    missing_observed,
+                    "FULL_REPLAY_INTENTIONAL_MUTATION_SCHEMA_INVALID",
+                )
+            )
+
+            ordinary_returncode_added = dict(valid)
+            ordinary_returncode_added["returncode"] = 0
+            cases.append(
+                (
+                    "ordinary return code added",
+                    ordinary_returncode_added,
+                    "FULL_REPLAY_INTENTIONAL_MUTATION_SCHEMA_INVALID",
+                )
+            )
+
+            wrong_observed = dict(valid)
+            wrong_observed["observed_nonzero_returncode"] = 2
+            cases.append(
+                (
+                    "wrong observed return code",
+                    wrong_observed,
+                    "FULL_REPLAY_INTENTIONAL_MUTATION_RETURNCODE_INVALID",
+                )
+            )
+
+            boolean_observed = dict(valid)
+            boolean_observed["observed_nonzero_returncode"] = True
+            cases.append(
+                (
+                    "boolean observed return code",
+                    boolean_observed,
+                    "FULL_REPLAY_INTENTIONAL_MUTATION_RETURNCODE_INVALID",
+                )
+            )
+
+            unknown_mutation = dict(valid)
+            unknown_mutation["name"] = "unlicensed_expected_failure_mutation"
+            cases.append(
+                (
+                    "unlicensed mutation name",
+                    unknown_mutation,
+                    "FULL_REPLAY_ORDINARY_LAYER_SCHEMA_INVALID",
+                )
+            )
+
+            ordinary_boolean_returncode = {
+                "elapsed_seconds": 0.4,
+                "name": "ordinary_full_layer",
+                "returncode": False,
+                "status": "PASS",
+                "stderr_sha256": EMPTY_SHA256,
+                "stdout_sha256": EMPTY_SHA256,
+            }
+            cases.append(
+                (
+                    "ordinary boolean return code",
+                    ordinary_boolean_returncode,
+                    "FULL_REPLAY_LAYER_RETURNCODE",
+                )
+            )
+
+            ordinary_with_mutation_field = {
+                "elapsed_seconds": 0.4,
+                "name": "ordinary_full_layer",
+                "observed_nonzero_returncode": 1,
+                "status": "PASS",
+                "stderr_sha256": EMPTY_SHA256,
+                "stdout_sha256": EMPTY_SHA256,
+            }
+            cases.append(
+                (
+                    "ordinary layer uses mutation schema",
+                    ordinary_with_mutation_field,
+                    "FULL_REPLAY_ORDINARY_LAYER_SCHEMA_INVALID",
+                )
+            )
+
+            for label, row, expected in cases:
+                with self.subTest(label=label):
+                    fixture.write_report(layer_replays=[row])
+                    result = run(fixture.command("--write"))
+                    self.assertNotEqual(result.returncode, 0)
+                    self.assertIn(expected, result.stderr)
 
     def test_project_in_repo_prefix_fails_closed(self) -> None:
         temporary, fixture = self.fixture()

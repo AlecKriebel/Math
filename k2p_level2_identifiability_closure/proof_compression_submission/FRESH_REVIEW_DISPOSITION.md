@@ -7,8 +7,9 @@ Date: 22 August 2026
 The reviewer found no counterexample or theorem-level failure. Independent
 source, certificate, and literature audits agree with that verdict. The
 principal-domain `K2P-SAME` theorem is unchanged. The targeted proof-writing
-and reproducibility revision is complete; only human metadata, licensing, and
-immutable-release decisions remain before submission.
+and reproducibility revision, human metadata, licensing, final detached replay,
+and immutable source-tag qualification are complete. No GitHub Release, Zenodo
+deposit, or DOI has been created or claimed.
 
 ## Item-by-item disposition
 
@@ -64,24 +65,25 @@ immutable-release decisions remain before submission.
    and cites the standard semialgebraic-dimension/Zariski-closure fact.  This is
    a hardening of the existing argument, not a changed theorem premise.
 
-9. **Reproducibility and metadata — accepted; human-only residue retained.**  The
+9. **Reproducibility and metadata — accepted and closed.**  The
    package already had field-rich machine crosswalks and source/PDF hash
    bindings, so the claim that they were absent was overstated.  The revision
    nevertheless prints the requested schema, producer, replay, mutation, and
    hash metadata; runs the final clean full replay; records wall time and peak
    memory; and builds a deterministic archive with an external SHA-256 record.
-   The clean detached full replay passed all 35 layers in 5,172.89 seconds,
+   The final clean detached replay passed all 40 layers in 5,578.10 seconds,
    with zero blockers; its exact report and macOS memory telemetry are included
-   in the bundle. The public repository URL is supplied. Corresponding email, contribution
-   approval, funding, competing interests, license choices, immutable release
-   tag, and DOI remain explicit human decisions and are not inferred.
+   in the bundle. The public repository URL, corresponding email, contribution
+   approval, funding and competing-interests declarations, CC BY 4.0 paper/data
+   license, MIT code license, and immutable source-tag name are supplied. The
+   author explicitly reserved any GitHub Release, Zenodo deposit, or DOI action.
 
 ## Final validation outcome
 
-- Full primitive regeneration: **PASS**, 35/35 layers, zero blockers.
-- Frozen release: **promotion-ready**, 198 outer files and 374 transitive
+- Full primitive regeneration: **PASS**, 40/40 layers, zero blockers.
+- Frozen release: **promotion-ready**, 223 outer files and 399 transitive
   files, content root
-  `7004e3e26bf359d0a11c07fd51cb1636859b30b07a97ca6c9cfd0dcd082dfc92`.
+  `072baaa4066569acd31c552149f6afb727323e54b241bdefc98452598309dd61`.
 - Old/new proof-compression equivalence: **PASS**, seven commands.
 - Compression mutations: **PASS**, 11/11 rejected.
 - Printed certificate appendix: **PASS**, 18/18 mutations rejected.
@@ -133,11 +135,10 @@ the primitive graph encodings and frozen certificates before editing.
    operations plus real-closed-field quantifier elimination; no bit-complexity
    claim is made.
 6. **ORCID placement — no change.**  This was presentation-only.
-7. **Another full replay — deferred to the immutable submission commit.**  The
-   existing detached 35-layer replay remains bound to the unchanged frozen
-   theorem ledger.  Repeating the 86-minute run before the human metadata,
-   licenses, and tag are fixed would not provide final-commit provenance; the
-   quick, mutation, equivalence, build, and package gates are rerun here.
+7. **Another full replay — deferred at this checkpoint and now completed.**
+   The checkpoint correctly deferred the expensive replay until the metadata,
+   licenses, and source-tag contents were fixed. The final qualification replay
+   is recorded below and in the sealed machine reports.
 
 The final PDFs now contain 26 article pages and 24 supplement pages. All 50
 pages were rendered and inspected, with no visual or build defect.
@@ -150,7 +151,7 @@ frozen lock, clean-replay telemetry, and isolated five-file TeX builds.
 1. **Runtime wording — accepted.**  The old sentence conflated two different
    provenance layers. The original computational-evidence lock contains no
    end-to-end timing record, while the submission bundle separately byte-binds
-   a detached 35-layer replay with 5,172.89 seconds wall time. The supplement
+   the final detached 40-layer replay with 5,578.10 seconds wall time. The supplement
    now states both facts and continues to reject inferred quick-suite timing.
 2. **Evidence lock versus manuscript sources — accepted.**  Reader prose now
    calls `RELEASE_LOCK.json` the frozen principal-domain computational-evidence
@@ -169,16 +170,15 @@ frozen lock, clean-replay telemetry, and isolated five-file TeX builds.
    or custom class/style assets. The independent package checker now names the
    certificate appendix explicitly, and mutations additionally target omission
    of the bibliography and certificate appendix.
-5. **Human metadata — correctly deferred.**  The suggested email, contribution
-   approval, funding statement, competing-interests statement, licenses, tag,
-   release, and DOI are human, legal, or externally irreversible decisions.
-   None is inferred from the companion JC project or the review text.
-6. **Final full replay — accepted as a final-tag provenance option, not a
-   present mathematical gate.**  These edits do not change a byte of the
-   frozen computational-evidence lock already replayed in full. Compact
-   document, equivalence, mutation, and package gates are rerun now. If the
-   author chooses to claim a replay from the immutable tag candidate, the
-   86-minute run should occur only after metadata and tag contents are final.
+5. **Human metadata — correctly deferred, then supplied by the author.**  The
+   email, contribution approval, funding and competing-interests statements,
+   licenses, and source-tag name were not inferred from a companion project or
+   review text. They are now recorded from the author's explicit approval.
+6. **Final full replay — completed at the tag candidate.**  A detached clean
+   checkout of the exact candidate sources passed all 40 layers with zero
+   blockers. The report and independently constructed telemetry are byte-bound
+   in the submission package. The external GitHub Release/Zenodo/DOI actions
+   remain reserved to the author.
 
 No theorem statement, parameter domain, finite census, certificate, or
 proof-compression boundary changes in this revision.

@@ -5,11 +5,11 @@
 The unconditional `K2P-SAME` classification, generic-identifiability
 corollary, exact reconstruction theorem, strict continuous-time corollary, and
 weak-class `4n-3` sharpness theorem are complete. The promotion manuscript
-and 374-file transitive evidence bundle have independent replay and mutation
+and 399-file transitive evidence bundle have independent replay and mutation
 coverage. The frozen outer release lock is
 
 ```text
-58e32bd29f7a039e3da4e47398e32ee8277ad46cf62271a7ed80bf41688b18fb
+7113b1c52d577858ec20ef83cd87c870242c8ddc96018036b5c073229821eec9
 ```
 
 Every finite gate has zero unresolved mathematical records. The corrected
@@ -50,21 +50,18 @@ Old/new equivalence and targeted semantic mutations pass. The article and
 reader supplement have an independent mathematical and static-source audit
 with no open load-bearing findings.
 
-## Remaining before journal submission
+## Final qualification state
 
-No theorem gate remains. The following require the human author:
+No theorem, metadata, source-build, replay, mutation, or packaging gate
+remains. The approved metadata are printed, the paper and data use CC BY 4.0,
+and the verifier code uses the MIT License. A detached clean checkout at commit
+`1877985d20132fb186d21a5985e8c5f760a656af` passed all 40 layers with zero
+blockers in 5,578.10 seconds wall time. The maximum resident set size was
+2,600,484,864 bytes and the recorded peak memory footprint was 503,350,016
+bytes.
 
-1. corresponding email;
-2. author-contribution statement approval;
-3. funding and competing-interests declarations;
-4. paper, data, and code license choices;
-5. immutable submission tag;
-6. whether to mint a GitHub/Zenodo DOI release; and
-7. after those choices are fixed, one final clean replay from the immutable
-   submission commit before sealing the tag.
-
-The current detached full replay has already passed all 35 layers in 5,172.89
-seconds with recorded wall-time and peak-memory telemetry. The remaining replay
-is a final-commit provenance step, not an open mathematical gate.
+The qualified source tag is `k2p-same-biorxiv-v1.0.0`. No GitHub Release,
+Zenodo deposit, or DOI has been created or claimed; those external publication
+actions are deliberately left to the author.
 
 No mixed-sign K2P claim is pending or implied.
