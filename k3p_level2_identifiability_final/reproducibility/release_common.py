@@ -246,14 +246,21 @@ def tracked_worktree_fingerprint(project: Path) -> str:
     """Hash names, modes, symlink targets, and bytes of project-tracked files."""
     prefix = git_project_prefix(project)
     root = git_root(project)
-    raw = run_git(root, ["ls-files", "-z", "--", prefix], binary=True)
+    raw = run_git(root, ["ls-files", "-s", "-z", "--", prefix], binary=True)
     require(isinstance(raw, bytes), "binary Git index output required")
     digest = hashlib.sha256()
-    for encoded in raw.split(b"\x00"):
-        if not encoded:
+    for record in raw.split(b"\x00"):
+        if not record:
             continue
+        metadata, encoded = record.split(b"\t", 1)
+        mode, object_id, stage = metadata.decode("ascii").split(" ")
+        require(mode in {"100644", "100755", "120000"} and stage == "0" and
+                re.fullmatch(r"[0-9a-f]{40,64}", object_id) is not None,
+                ("unsupported Git index entry", metadata))
         full_relative = encoded.decode("utf-8", errors="strict")
         path = root / full_relative
+        digest.update(mode.encode("ascii"))
+        digest.update(b"\x00")
         digest.update(encoded)
         digest.update(b"\x00")
         require(path.exists() or path.is_symlink(), ("tracked file missing", full_relative))

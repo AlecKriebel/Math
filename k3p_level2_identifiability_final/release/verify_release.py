@@ -85,10 +85,80 @@ def verify_record(project: Path, record: dict) -> Path:
     return path
 
 
+def verify_archive_sidecar(archive_path: Path, sidecar_path: Path, *, label: str) -> None:
+    expected = f"{sha256_file(archive_path)}  {archive_path.name}\n"
+    require(sidecar_path.read_text(encoding="utf-8") == expected,
+            ("archive sidecar content", label))
+
+
+def verify_generated_bytes(observed: bytes, expected: bytes, *, label: str) -> None:
+    require(observed == expected, ("generated README binding", label))
+
+
+def validate_envelope_field_set(envelope: dict) -> None:
+    require(set(envelope) == {
+        "schema", "status", "source_commit", "tag", "assets",
+        "submission_package_contracts", "release_asset_checksums",
+        "self_reference_policy", "doi", "license", "github_release",
+        "zenodo_record", "external_submission_performed", "human_only_remaining",
+        "tag_scope", "payload_sha256",
+    }, "release envelope field set")
+
+
+def require_final_clean_state(project: Path) -> tuple[list[str], str]:
+    status = scoped_status(project)
+    require(status == [], ("final verification requires a clean project", status))
+    return status, tracked_worktree_fingerprint(project)
+
+
+def validate_source_reproduction_evidence(
+        report: dict, *, kind: str, commit: str, pdf_record: dict,
+        policy: dict, transcript_records: dict[str, dict]) -> None:
+    require(set(report) == {
+        "schema", "status", "kind", "source_commit", "source_archive",
+        "expected_pdf", "committed_source_binding", "builds",
+        "byte_identical_across_two_builds", "byte_identical_to_delivered_pdf",
+        "tool_versions", "environment", "logical_payload_sha256",
+    }, ("source-reproduction report field set", kind))
+    require(report.get("schema") == "k3p-pdf-source-reproduction-v1" and
+            report.get("status") == "PASS_BYTE_FOR_BYTE" and
+            report.get("kind") == kind and report.get("source_commit") == commit and
+            report.get("byte_identical_across_two_builds") is True and
+            report.get("byte_identical_to_delivered_pdf") is True,
+            ("source-reproduction report", kind))
+    require(report.get("environment") == {
+        "SOURCE_DATE_EPOCH": str(policy["pdf_source_date_epoch"]),
+        "TZ": "UTC", "LC_ALL": "C",
+    }, ("source-reproduction environment", kind))
+    tool_versions = report.get("tool_versions")
+    require(isinstance(tool_versions, dict) and set(tool_versions) == {"tectonic"} and
+            isinstance(tool_versions["tectonic"], dict) and
+            set(tool_versions["tectonic"]) == {"path", "sha256", "version"} and
+            tool_versions["tectonic"]["sha256"] == policy["tectonic_sha256"] and
+            tool_versions["tectonic"]["version"] == policy["tectonic_version"],
+            ("source-reproduction toolchain", kind))
+    builds = report.get("builds")
+    require(isinstance(builds, list) and len(builds) == 2,
+            ("source-reproduction build count", kind))
+    for expected_run, build in enumerate(builds, 1):
+        require(isinstance(build, dict) and set(build) == {
+            "run", "sha256", "bytes", "elapsed_seconds", "transcript",
+            "transcript_sha256",
+        }, ("source-reproduction build row", kind, expected_run))
+        transcript_relative = build.get("transcript")
+        require(build.get("run") == expected_run and
+                build.get("sha256") == pdf_record["sha256"] and
+                build.get("bytes") == pdf_record["bytes"] and
+                isinstance(build.get("elapsed_seconds"), (int, float)) and
+                build["elapsed_seconds"] >= 0 and
+                transcript_relative in transcript_records and
+                build.get("transcript_sha256") ==
+                transcript_records[transcript_relative]["sha256"],
+                ("source-reproduction build/transcript binding", kind, expected_run))
+
+
 def verify_envelope(project: Path, envelope_path: Path) -> dict:
-    initial_status = scoped_status(project)
-    require(initial_status == [], ("final verification requires a clean project", initial_status))
-    initial_fingerprint = tracked_worktree_fingerprint(project)
+    initial_status, initial_fingerprint = require_final_clean_state(project)
     for relative in (
         "release/verify_release.py", "release/build_release.py", "release/archive_tools.py",
         "release/verify_source_reproduction.py", "release/RELEASE_FILESET.json",
@@ -98,13 +168,7 @@ def verify_envelope(project: Path, envelope_path: Path) -> dict:
         require(resolve_inside(project, relative).read_bytes() == read_head_blob(project, relative),
                 ("live final-verification code differs from HEAD", relative))
     envelope = load_json(envelope_path)
-    require(set(envelope) == {
-        "schema", "status", "source_commit", "tag", "assets",
-        "submission_package_contracts", "release_asset_checksums",
-        "self_reference_policy", "doi", "license", "github_release",
-        "zenodo_record", "external_submission_performed", "human_only_remaining",
-        "tag_scope", "payload_sha256",
-    }, "release envelope field set")
+    validate_envelope_field_set(envelope)
     require(envelope.get("schema") == "k3p-final-release-envelope-v1" and
             envelope.get("status") == "ASSETS_BOUND_EXTERNAL_HUMAN_ACTIONS_PENDING",
             "release envelope schema/status")
@@ -195,12 +259,8 @@ def verify_envelope(project: Path, envelope_path: Path) -> dict:
     compact_path = paths[assets["compact_verifier_archive"]["path"]]
     full_sidecar_path = paths[assets["full_reproducibility_archive_sidecar"]["path"]]
     compact_sidecar_path = paths[assets["compact_verifier_archive_sidecar"]["path"]]
-    require(full_sidecar_path.read_text(encoding="utf-8") ==
-            f"{sha256_file(full_path)}  {full_path.name}\n",
-            "full release archive sidecar content")
-    require(compact_sidecar_path.read_text(encoding="utf-8") ==
-            f"{sha256_file(compact_path)}  {compact_path.name}\n",
-            "compact release archive sidecar content")
+    verify_archive_sidecar(full_path, full_sidecar_path, label="full")
+    verify_archive_sidecar(compact_path, compact_sidecar_path, label="compact")
     full = verify_tar_gz(full_path)
     compact = verify_zip(compact_path)
     policy = load_release_policy(project)
@@ -252,8 +312,8 @@ def verify_envelope(project: Path, envelope_path: Path) -> dict:
             require(handle is not None and handle.read() == read_head_blob(project, relative),
                     ("full archive member differs from HEAD", relative))
         readme_handle = archive.extractfile(relative_infos["REPRODUCIBILITY_README.txt"])
-        require(readme_handle is not None and readme_handle.read() == generated_readme(commit),
-                "full archive generated README binding")
+        require(readme_handle is not None, "full archive generated README unreadable")
+        verify_generated_bytes(readme_handle.read(), generated_readme(commit), label="full")
         embedded = {}
         for label, record in assets.get("latex_source_archives", {}).items():
             wanted = f"{full['archive_root']}/source_archives/{Path(record['path']).name}"
@@ -274,8 +334,10 @@ def verify_envelope(project: Path, envelope_path: Path) -> dict:
         for relative in expected_compact:
             require(archive.read(relative_infos[relative]) == read_head_blob(project, relative),
                     ("compact archive member differs from HEAD", relative))
-        require(archive.read(relative_infos["README_VERIFY.txt"]) == generated_compact_readme(),
-                "compact archive generated README binding")
+        verify_generated_bytes(
+            archive.read(relative_infos["README_VERIFY.txt"]),
+            generated_compact_readme(), label="compact",
+        )
     require(set(assets.get("latex_source_archives", {})) == {"article", "supplement"},
             "article/supplement source archive coverage")
     committed_source_bindings = {}
@@ -300,6 +362,14 @@ def verify_envelope(project: Path, envelope_path: Path) -> dict:
     used_source_transcripts: set[str] = set()
     for record in assets.get("source_reproduction_reports", []):
         report = load_json(paths[record["path"]])
+        tentative_kind = report.get("kind")
+        tentative_pdf_key = ("article_pdf" if tentative_kind == "article" else
+                             "supplement_pdf")
+        validate_source_reproduction_evidence(
+            report, kind=tentative_kind, commit=commit,
+            pdf_record=assets[tentative_pdf_key], policy=policy,
+            transcript_records=source_transcript_records,
+        )
         require(set(report) == {
             "schema", "status", "kind", "source_commit", "source_archive",
             "expected_pdf", "committed_source_binding", "builds",

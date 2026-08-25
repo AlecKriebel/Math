@@ -332,6 +332,18 @@ def verify_suite_report(project: Path, report_path: Path,
             report.get("initial_status") == report.get("final_status") == [] and
             report.get("tracked_worktree_unchanged") is True,
             "release suite clean-worktree claim")
+    require(isinstance(report.get("elapsed_seconds"), (int, float)) and
+            report["elapsed_seconds"] >= 0 and
+            isinstance(report.get("python_version"), str) and report["python_version"],
+            "release suite runtime metadata")
+    memory = report.get("peak_memory")
+    require(isinstance(memory, dict) and set(memory) == {
+        "ru_maxrss_raw", "ru_maxrss_unit", "peak_bytes"
+    } and isinstance(memory["ru_maxrss_raw"], int) and memory["ru_maxrss_raw"] >= 0 and
+            memory["ru_maxrss_unit"] in {"bytes", "KiB"} and
+            memory["peak_bytes"] == memory["ru_maxrss_raw"] * (
+                1 if memory["ru_maxrss_unit"] == "bytes" else 1024
+            ), "release suite peak-memory metadata")
     fingerprint = tracked_worktree_fingerprint(project)
     require(report.get("tracked_fingerprint_before") ==
             report.get("tracked_fingerprint_after") == fingerprint,
@@ -369,7 +381,9 @@ def verify_suite_report(project: Path, report_path: Path,
                 isinstance(record.get("elapsed_seconds"), (int, float)) and
                 record["elapsed_seconds"] >= 0 and
                 isinstance(record.get("transcript_sha256"), str) and
-                len(record["transcript_sha256"]) == 64,
+                len(record["transcript_sha256"]) == 64 and
+                all(character in "0123456789abcdef"
+                    for character in record["transcript_sha256"]),
                 ("release suite command record", plan["name"]))
     transcript = report.get("transcript")
     require(isinstance(transcript, dict) and set(transcript) == {"path", "sha256", "bytes"},

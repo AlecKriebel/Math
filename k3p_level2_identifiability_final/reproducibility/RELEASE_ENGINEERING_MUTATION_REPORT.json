@@ -52,11 +52,16 @@
         "sharpness_topology_alln_producer"
       ],
       "status": "PASS"
+    },
+    {
+      "name": "proof_only_pdf_exclusion",
+      "selected_head_files": 532,
+      "status": "PASS"
     }
   ],
   "cut_single_minor_producer_sha256": "850fd782f2edc868086cb3bb277d261fe03d619105f3c69a82bf29f418fd9cd0",
   "fileset_policy_sha256": "2ef8f0553c85bef77b4279662d6dfebc12884e185292f38b7c9ace24d04c3844",
-  "mutation_count": 24,
+  "mutation_count": 31,
   "mutations": [
     {
       "diagnostic": "('stale file SHA-256', 'a.txt', '0000000000000000000000000000000000000000000000000000000000000000', '48aa6cae8c70abdb28631d22b316e6d9f9d0768ec2911de7090e248b2afe6ca1')",
@@ -167,13 +172,19 @@
       "status": "REJECTED"
     },
     {
+      "diagnostic": "('full release selection lock', 534, '8e1564bf0be358642ebfdd644621b16cb6317238fcc3c0e9fb67c2aa86d26c5d')",
+      "expected_failure_class": "full release selection lock",
+      "name": "wrong_fileset_selection_lock",
+      "status": "REJECTED"
+    },
+    {
       "diagnostic": "('submission packages are not READY', 'NOT_READY', 0, 1)",
       "expected_failure_class": "submission packages are not READY",
       "name": "not_ready_submission_report",
       "status": "REJECTED"
     },
     {
-      "diagnostic": "('not a ZIP submission package', 'systematic_biology', '/var/folders/cp/bbqcpp814bjd_6mfhk6lxf7r0000gn/T/k3p-release-fake-submissions-duvpfsiv/first.bin')",
+      "diagnostic": "('not a ZIP submission package', 'systematic_biology', '/var/folders/cp/bbqcpp814bjd_6mfhk6lxf7r0000gn/T/k3p-release-fake-submissions-36_ene53/first.bin')",
       "expected_failure_class": "not a ZIP submission package",
       "name": "arbitrary_submission_files",
       "status": "REJECTED"
@@ -201,20 +212,56 @@
       "expected_failure_class": "command timeout",
       "name": "enforced_descendant_timeout",
       "status": "REJECTED"
+    },
+    {
+      "diagnostic": "release suite exact command plan",
+      "expected_failure_class": "release suite exact command plan",
+      "name": "forged_suite_command_plan",
+      "status": "REJECTED"
+    },
+    {
+      "diagnostic": "release envelope field set",
+      "expected_failure_class": "release envelope field set",
+      "name": "unknown_release_envelope_field",
+      "status": "REJECTED"
+    },
+    {
+      "diagnostic": "('generated README binding', 'fixture')",
+      "expected_failure_class": "generated README binding",
+      "name": "tampered_generated_readme",
+      "status": "REJECTED"
+    },
+    {
+      "diagnostic": "('archive sidecar content', 'fixture')",
+      "expected_failure_class": "archive sidecar content",
+      "name": "tampered_archive_sidecar",
+      "status": "REJECTED"
+    },
+    {
+      "diagnostic": "('final verification requires a clean project', [' M program/tracked.txt'])",
+      "expected_failure_class": "final verification requires a clean project",
+      "name": "dirty_final_verification",
+      "status": "REJECTED"
+    },
+    {
+      "diagnostic": "('source-reproduction build count', 'article')",
+      "expected_failure_class": "source-reproduction build count",
+      "name": "forged_source_reproduction_builds",
+      "status": "REJECTED"
     }
   ],
-  "payload_sha256": "32c1cead12dc49f6b211b958d86813499f6468d95df72cd90f4f364058062141",
+  "payload_sha256": "fc5245fd67f543b2793524c97dc11bbbe13dea42673e38d0704bef814d197d6f",
   "probe_mutation_driver_sha256": "cd76de5d1f489f76336882553666c1555b71157aaf3b80fd3fde9fb2a508139e",
-  "rejected": 24,
-  "release_common_sha256": "698542d014ee78c958a77396f7a8066ba48a27af0862694b3c109fa2e59cbaa6",
-  "release_input_verifier_sha256": "7afe62f938bc80d9f7fcf57344351473978b425850bc65632794003364aabba6",
-  "release_suite_sha256": "f3fb0b0a8f69a5995a29a908d7a1dea112a44418d920a5c511abb3aa8c3cd96a",
-  "release_verifier_sha256": "55eb5344ba5319eeec198efb1d41b8f0ee2b244e4afdc7a50e36f458a2ddca74",
+  "rejected": 31,
+  "release_common_sha256": "497340362bb93c46b6c9c00b2a6a85b52428a4f2c0f9ebf900f3df57360bf278",
+  "release_input_verifier_sha256": "832bdc6d5fc08c762b0d1e6bd0588e6a06e6a4b2a1cf66423be2b3a555f6fe8f",
+  "release_suite_sha256": "95090b4c99b07d8bef1258a0f994f49d69e362f202320be59c5c590303785bf4",
+  "release_verifier_sha256": "d7cf9d81700abb190e0e09268e496d72d2ad427424aa1a92626b2f0217892a80",
   "schema": "k3p-release-engineering-mutations-v1",
   "source_reproduction_verifier_sha256": "b61c4b5b3bbfd904e2da5b89e50ec24ba6b5434b3fbd14191cf5623a5968e691",
   "status": "PASS",
   "submission_validator_mutations_sha256": "a39accf6c5fc61d9afe51d29318b537c6fa8b7e79ebd1a9503a8501bb4913f02",
   "submission_validator_sha256": "712e9831305584d3755e6e06bdc317a3be2cc7d77df9f82646137e5d12922af8",
   "survived": 0,
-  "verifier_sha256": "391653e5fd0186c0767e44aeb7ca983b6671b9f0e290e68b2d483a3a2e06057b"
+  "verifier_sha256": "5736f8430e71e2d19845e1350467859ef0b7b007ca44950f278473e1276fda65"
 }

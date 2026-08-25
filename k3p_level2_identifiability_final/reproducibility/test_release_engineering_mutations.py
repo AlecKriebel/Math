@@ -5,8 +5,8 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
 from pathlib import Path
+import platform
 import subprocess
 import sys
 import tempfile
@@ -34,6 +34,7 @@ from release_common import (  # noqa: E402
     sha256_bytes,
     sha256_file,
     tracked_head_entries,
+    tracked_worktree_fingerprint,
     verify_sha256sums,
 )
 from archive_tools import (  # noqa: E402
@@ -49,8 +50,12 @@ from verify_release_inputs import active_paths  # noqa: E402
 from run_release_suite import (  # noqa: E402
     Command,
     deterministic_environment,
+    normalized_command_plan,
+    quick_commands,
     regeneration_commands,
     run_one,
+    suite_code_bindings,
+    verify_suite_report,
 )
 from verify_source_reproduction import (  # noqa: E402
     DEFAULTS as SOURCE_DEFAULTS,
@@ -61,11 +66,15 @@ from verify_source_reproduction import (  # noqa: E402
 )
 from build_release import (  # noqa: E402
     SUBMISSION_ROOTS,
+    ARTICLE_PDF,
+    SUPPLEMENT_PDF,
+    full_selection,
     require_submission_readiness_report,
     submission_argument_map,
     validate_release_policy,
     verify_submission_package,
 )
+import verify_release as final_release_verifier  # noqa: E402
 
 
 DEFAULT_REPORT = HERE / "RELEASE_ENGINEERING_MUTATION_REPORT.json"
@@ -297,6 +306,12 @@ def malformed_fileset_policy() -> None:
     validate_release_policy(policy)
 
 
+def wrong_fileset_selection_lock() -> None:
+    policy = load_head_json(PROJECT, "release/RELEASE_FILESET.json")
+    policy["expected_full_selection_count"] += 1
+    full_selection(PROJECT, validate_release_policy(policy), require_pdfs=True)
+
+
 def not_ready_submission_report() -> None:
     report = {
         "schema_version": 1,
@@ -423,6 +438,142 @@ def enforced_descendant_timeout() -> None:
             raise ReleaseFailure("command timeout descendant process group killed") from error
 
 
+def forged_suite_command_plan() -> None:
+    work = RELEASE / "work"
+    work.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix="suite-forgery-", dir=work) as directory:
+        root = Path(directory)
+        commands = quick_commands(sys.executable, False)
+        plan = normalized_command_plan(commands)
+        bindings = suite_code_bindings(PROJECT)
+        plan_hash = sha256_bytes(canonical_json_bytes(plan))
+        records = [{
+            "name": command.name,
+            "argv": command.argv,
+            "exit_code": 0,
+            "sentinel": command.sentinel,
+            "sentinel_seen": True,
+            "timeout_seconds": command.timeout_seconds,
+            "elapsed_seconds": 0.0,
+            "transcript_sha256": "0" * 64,
+            "status": "PASS",
+        } for command in commands]
+        header = {
+            "schema": "k3p-release-suite-transcript-v1",
+            "mode": "quick",
+            "source_commit": head_commit(PROJECT),
+            "command_count": len(plan),
+            "command_plan_sha256": plan_hash,
+            **bindings,
+            "environment": {
+                "PYTHONDONTWRITEBYTECODE": "1", "PYTHONHASHSEED": "0",
+                "LC_ALL": "C", "LANG": "C", "TZ": "UTC",
+                "SOURCE_DATE_EPOCH": str(head_commit_epoch(PROJECT)),
+            },
+        }
+        transcript_path = root / "quick.log"
+        transcript_path.write_text(
+            json.dumps(header, sort_keys=True) + "\n" +
+            "\n".join("RESULT " + json.dumps(row, sort_keys=True) for row in records) +
+            "\n", encoding="utf-8",
+        )
+        transcript_relative = transcript_path.relative_to(PROJECT).as_posix()
+        report = {
+            "schema": "k3p-release-suite-report-v1", "status": "PASS",
+            "mode": "quick", "source_commit": head_commit(PROJECT),
+            "command_count": len(records), "command_plan": plan,
+            "command_plan_sha256": plan_hash, "commands": records,
+            "elapsed_seconds": 0.0,
+            "peak_memory": {"ru_maxrss_raw": 0, "ru_maxrss_unit": "bytes",
+                            "peak_bytes": 0},
+            "tracked_fingerprint_before": tracked_worktree_fingerprint(PROJECT),
+            "tracked_fingerprint_after": tracked_worktree_fingerprint(PROJECT),
+            "tracked_worktree_unchanged": True, "clean_checkout_required": True,
+            "initial_status": [], "final_status": [],
+            "transcript": {"path": transcript_relative,
+                           "sha256": sha256_file(transcript_path),
+                           "bytes": transcript_path.stat().st_size},
+            **bindings, "python_version": platform.python_version(),
+        }
+        report["command_plan"][0]["name"] = "forged_release_inputs"
+        report["command_plan_sha256"] = sha256_bytes(canonical_json_bytes(
+            report["command_plan"]
+        ))
+        report["payload_sha256"] = sha256_bytes(canonical_json_bytes(report))
+        report_path = root / "quick.json"
+        report_path.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n",
+                               encoding="utf-8")
+        verify_suite_report(PROJECT, report_path, {transcript_relative})
+
+
+def unknown_release_envelope_field() -> None:
+    final_release_verifier.validate_envelope_field_set({
+        "journal_submissions_completed": True
+    })
+
+
+def tampered_generated_readme() -> None:
+    final_release_verifier.verify_generated_bytes(
+        b"tampered instructions\n", b"canonical instructions\n", label="fixture"
+    )
+
+
+def tampered_archive_sidecar() -> None:
+    with tempfile.TemporaryDirectory(prefix="sidecar-tamper-") as directory:
+        root = Path(directory)
+        archive = root / "release.zip"
+        sidecar = root / "release.zip.sha256"
+        archive.write_bytes(b"canonical archive bytes")
+        sidecar.write_text(f"{'0' * 64}  {archive.name}\n", encoding="utf-8")
+        final_release_verifier.verify_archive_sidecar(
+            archive, sidecar, label="fixture"
+        )
+
+
+def dirty_final_verification() -> None:
+    with tempfile.TemporaryDirectory(prefix="dirty-final-verifier-") as directory:
+        root = Path(directory)
+        project = root / "program"
+        project.mkdir()
+        tracked = project / "tracked.txt"
+        tracked.write_text("clean\n", encoding="utf-8")
+        subprocess.run(["git", "init", "-q"], cwd=root, check=True)
+        subprocess.run(["git", "config", "user.name", "Release Test"], cwd=root, check=True)
+        subprocess.run(["git", "config", "user.email", "release@example.invalid"],
+                       cwd=root, check=True)
+        subprocess.run(["git", "add", "program/tracked.txt"], cwd=root, check=True)
+        subprocess.run(["git", "-c", "commit.gpgsign=false", "commit", "-qm", "fixture"],
+                       cwd=root, check=True)
+        tracked.write_text("dirty\n", encoding="utf-8")
+        final_release_verifier.require_final_clean_state(project)
+
+
+def forged_source_reproduction_builds() -> None:
+    policy = load_head_json(PROJECT, "release/RELEASE_FILESET.json")
+    report = {
+        "schema": "k3p-pdf-source-reproduction-v1", "status": "PASS_BYTE_FOR_BYTE",
+        "kind": "article", "source_commit": head_commit(PROJECT),
+        "source_archive": {}, "expected_pdf": {}, "committed_source_binding": {},
+        "builds": [{"run": 1, "sha256": "1" * 64, "bytes": 1,
+                    "elapsed_seconds": 0.0, "transcript": "forged.log",
+                    "transcript_sha256": "2" * 64}],
+        "byte_identical_across_two_builds": True,
+        "byte_identical_to_delivered_pdf": True,
+        "tool_versions": {"tectonic": {
+            "path": "/fake/tectonic", "sha256": policy["tectonic_sha256"],
+            "version": policy["tectonic_version"],
+        }},
+        "environment": {"SOURCE_DATE_EPOCH": str(policy["pdf_source_date_epoch"]),
+                        "TZ": "UTC", "LC_ALL": "C"},
+        "logical_payload_sha256": "3" * 64,
+    }
+    final_release_verifier.validate_source_reproduction_evidence(
+        report, kind="article", commit=head_commit(PROJECT),
+        pdf_record={"sha256": "1" * 64, "bytes": 1}, policy=policy,
+        transcript_records={},
+    )
+
+
 def deterministic_controls() -> list[dict]:
     with tempfile.TemporaryDirectory(prefix="k3p-release-determinism-") as directory:
         root = Path(directory)
@@ -546,6 +697,15 @@ def regeneration_plan_control() -> dict:
             "command_count": len(commands), "required_commands": sorted(required)}
 
 
+def proof_only_exclusion_control() -> dict:
+    policy = load_head_json(PROJECT, "release/RELEASE_FILESET.json")
+    selected = full_selection(PROJECT, validate_release_policy(policy), require_pdfs=False)
+    require(ARTICLE_PDF not in selected and SUPPLEMENT_PDF not in selected,
+            "proof-only selection retained release PDFs")
+    return {"name": "proof_only_pdf_exclusion", "status": "PASS",
+            "selected_head_files": len(selected)}
+
+
 def main(argv: list[str] | None = None) -> int:
     try:
         refuse_optimized_python()
@@ -590,6 +750,8 @@ def main(argv: list[str] | None = None) -> int:
                      pdf_equivalent_source_archive_tamper),
             rejected("malformed_fileset_policy", "release fileset schema",
                      malformed_fileset_policy),
+            rejected("wrong_fileset_selection_lock", "full release selection lock",
+                     wrong_fileset_selection_lock),
             rejected("not_ready_submission_report", "submission packages are not READY",
                      not_ready_submission_report),
             rejected("arbitrary_submission_files", "not a ZIP submission package",
@@ -603,12 +765,26 @@ def main(argv: list[str] | None = None) -> int:
                      enforced_command_timeout),
             rejected("enforced_descendant_timeout", "command timeout",
                      enforced_descendant_timeout),
+            rejected("forged_suite_command_plan", "release suite exact command plan",
+                     forged_suite_command_plan),
+            rejected("unknown_release_envelope_field", "release envelope field set",
+                     unknown_release_envelope_field),
+            rejected("tampered_generated_readme", "generated README binding",
+                     tampered_generated_readme),
+            rejected("tampered_archive_sidecar", "archive sidecar content",
+                     tampered_archive_sidecar),
+            rejected("dirty_final_verification", "final verification requires a clean project",
+                     dirty_final_verification),
+            rejected("forged_source_reproduction_builds",
+                     "source-reproduction build count",
+                     forged_source_reproduction_builds),
         ]
         controls = deterministic_controls()
         controls.append(untracked_exclusion_control())
         controls.append(duplicate_active_path_control())
         controls.append(dirty_worktree_policy_control())
         controls.append(regeneration_plan_control())
+        controls.append(proof_only_exclusion_control())
         report = {
             "schema": "k3p-release-engineering-mutations-v1",
             "status": "PASS",

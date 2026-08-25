@@ -65,10 +65,10 @@ journal uploads remain human-only.
   was removed: editable bytes are instead expanded exactly from the committed
   source map.  Journal packages must equal that expansion plus the six bound
   PDFs, with no unbound extra members.
-- Current hostile result: 24/24 rejected, payload
-  `32c1cead12dc49f6b211b958d86813499f6468d95df72cd90f4f364058062141`.
+- Current hostile result: 31/31 rejected, payload
+  `fc5245fd67f543b2793524c97dc11bbbe13dea42673e38d0704bef814d197d6f`.
   Current release-input payload:
-  `60140806939c6e11912ba41d240cc863108c0bcfe9ff97bd99c2cfe9a7bda25e`.
+  `d865f3f4a024790a8886183e67c31175072acb7ca5786164e8b43138790c9ced`.
   Submission validation remains honestly NOT_READY with zero structural
   errors and 26 blockers; 12 submission mutations pass.
 

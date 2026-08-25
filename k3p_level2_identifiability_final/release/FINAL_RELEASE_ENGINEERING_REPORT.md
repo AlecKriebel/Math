@@ -18,15 +18,17 @@ The final pre-commit code-level check on 2026-08-25 used repository base
 `a68321f3` (the K3P mathematical/submission corpus remains the one sealed at
 `7e43d90c`) before these release files were committed.
 
-- Release-engineering hostile mutations: **24/24 rejected**, payload
-  `32c1cead12dc49f6b211b958d86813499f6468d95df72cd90f4f364058062141`.
+- Release-engineering hostile mutations: **31/31 rejected**, payload
+  `fc5245fd67f543b2793524c97dc11bbbe13dea42673e38d0704bef814d197d6f`.
   They cover a fake same-version PDF compiler, timestamp/environment drift,
   PDF-equivalent non-HEAD TeX tampering, noncanonical TAR modes, malformed
   fileset policy, direct-child and descendant timeouts, NOT_READY submission
   state, arbitrary/mislabeled journal files, and a well-formed package carrying
-  an unbound DRAFT extra, in addition to archive/hash/path controls.
+  an unbound DRAFT extra, forged suite/source-build reports, selection-lock
+  drift, dirty final verification, unknown envelope claims, and tampered
+  generated readmes/sidecars, in addition to archive/hash/path controls.
 - Normal committed-source release-input gate: **PASS**, payload
-  `60140806939c6e11912ba41d240cc863108c0bcfe9ff97bd99c2cfe9a7bda25e`.
+  `d865f3f4a024790a8886183e67c31175072acb7ca5786164e8b43138790c9ced`.
 - Development quick gate (dirty-tree override explicitly recorded): **PASS**;
   elapsed 0.234 seconds and peak child memory 31,096,832 bytes.  This is not a
   clean-clone Gate J result.

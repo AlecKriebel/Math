@@ -141,7 +141,7 @@ def verify_mutation_summaries(project: Path) -> dict:
         ("reproducibility/K3P_SAME_CLASSIFICATION_MUTATION_REPORT.json",
          "mutation_count", 16, "rejected", "survived"),
         ("reproducibility/RELEASE_ENGINEERING_MUTATION_REPORT.json",
-         "mutation_count", 24, "rejected", "survived"),
+         "mutation_count", 31, "rejected", "survived"),
     ]
     result: dict[str, int] = {}
     for relative, count_key, expected, rejected_key, survived_key in specs:
