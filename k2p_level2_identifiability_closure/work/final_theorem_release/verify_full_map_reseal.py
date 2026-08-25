@@ -29,6 +29,12 @@ FAMILIES = {
         "legacy_file_sha256": (
             "2195c2c469decc9377c85b5432cdbf5e89d07e7a26a7c547e7760fcef20aa21c"
         ),
+        "current_atlas_sha256": (
+            "37e9b7910f7723c146a87ae2f60dfb62529b1a3e4866ccd72d65dc4efda923ad"
+        ),
+        "legacy_atlas_sha256": (
+            "5b9e03653cc6960bf341fcbe7e63ffd10226d0f6a56441012212c6e3b2a26483"
+        ),
     },
     "theta2": {
         "path": PROJECT

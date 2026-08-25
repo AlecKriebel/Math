@@ -22,19 +22,19 @@ COMMANDS = (
         "id": "baseline_and_finite_universe_producer",
         "script": "proof_compression_submission/analysis/derive_baseline_and_universe.py",
         "payload_key": "payload_sha256",
-        "payload": "5cf2d3ea03d6379608eda6fe71213c2fd17bb8aafdf0c558d9c5e4f508c97246",
+        "payload": "c0a5260af743285ac8b57173dae3766fe7b1359c001426efe9094ae4a5b25425",
     },
     {
         "id": "direct_template_producer",
         "script": "proof_compression_submission/templates/derive_direct_templates.py",
         "payload_key": "payload_sha256",
-        "payload": "202c53806954e0fcd5e49cb3ff2c678fed0dcd64a5904e88abca07b6332f3fd9",
+        "payload": "bab5c5e2aa792e6ea07145aa88171e1a1305084bc4e568a42839db1a5c4bf378",
     },
     {
         "id": "independent_family_coverage_equivalence",
         "script": "proof_compression_submission/analysis/verify_family_coverage_equivalence.py",
         "payload_key": "payload_sha256",
-        "payload": "d9772068ad9047e5878a864e616cca3bd8583afeca705a77ba63020c0a217465",
+        "payload": "6aa8995f35821fd2a4beeace0e3dec97736eb8230eed15f17356dd8a8b355068",
     },
     {
         "id": "restoration_archetype_producer",
@@ -58,7 +58,7 @@ COMMANDS = (
         "id": "minimal_compressed_release_verifier",
         "script": "proof_compression_submission/verify_compressed_release.py",
         "payload_key": "result_payload_sha256",
-        "payload": "0f4ded810124c771dc1c57a6fdc921233b955c9df0dcf5efccc8a8691250a99c",
+        "payload": "424cd6334eb572676862f3a95b13006dace7f1fb510a44ce319b767122f4a135",
     },
 )
 

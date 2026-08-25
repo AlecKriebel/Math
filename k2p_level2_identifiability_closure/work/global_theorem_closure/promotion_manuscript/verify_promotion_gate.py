@@ -124,20 +124,20 @@ FROZEN = {
         None,
     ),
     "work/corrected_composite_ledgers/artifacts/raw4_corrected_composite_summary.json": (
-        "c320f92a8b8677b51c5b5f8465175c9b05a821c98a06d75fcf2ab37e9557c097",
-        "ad658166deec3c1258e574e9649facb63f4916511f5bfcacf4121d5419e21f32",
+        "9a2b340eb10e73abf0ea7c7aba5ae7c69942eea0f75402408f52277d960d648e",
+        "b4c4cb8a89afcc82edb266ee9fab1e9abc59c4ab977dd00dadc43304b3e4048c",
     ),
     "work/corrected_composite_ledgers/artifacts/raw4_corrected_composite_independent_replay.json": (
-        "495beeeae41a98c59670480716f5dd4251961b925059367171183f414274271d",
-        "9c6fd885a00fb3315ba6a120ce6c68820eb55082e967f8e00d4f246ccaaee924",
+        "c5cd73b13265b7acc36f156889b86e2c04715181c6a1d70224cd725b0221a859",
+        "40770d3068e936a9c5d0e93225fa15feaed90a212d9515e1cb3f2d46c35979e0",
     ),
     "work/corrected_composite_ledgers/artifacts/raw4_terminal_certificate_registry.json.gz": (
         "0a1818655429d60660c1ed87f3fbe412701f386b081562b3a4caa54079069f1d",
         None,
     ),
     "work/corrected_composite_ledgers/artifacts/raw4_corrected_composite_mutations.json": (
-        "c6045d3cfdf61026374014688c3278f1645ab1efd0708fd71f92f65595d1a189",
-        "baac525a8283b708633e2b1914eec47125bb0311736b5d2462191f78de0c2685",
+        "13492986e8bb366a26fa3ba2278905696165c4deeeb5c2e808fa051fd6a34568",
+        "9f9145d91324ec25ccf19ec08fb4d3ccef6f98e37616a272d152b8dccfbf6ce1",
     ),
     "work/corrected_composite_ledgers/artifacts/theta2_corrected_composite_ledger.jsonl.gz": (
         "805fc7f5a3de9dad2c63a210208075cf19910cf811ffd08878f32782ce71b659",
