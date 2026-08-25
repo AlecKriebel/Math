@@ -3,6 +3,8 @@
 
 from __future__ import annotations
 
+import argparse
+import hashlib
 import json
 import re
 import sys
@@ -15,6 +17,7 @@ SUBMISSION = PROJECT / "submission"
 TOKEN_RE = re.compile(r"@@([A-Z][A-Z0-9_]*)@@")
 DOCUMENTATION_TOKENS = {"TOKEN", "UPPER_CASE_TOKEN"}
 TEXT_SUFFIXES = {".tex", ".md", ".json", ".txt"}
+SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 
 
 def add_error(errors: list[str], condition: bool, message: str) -> None:
@@ -60,10 +63,150 @@ def load_json(path: Path, errors: list[str]) -> dict:
     return value
 
 
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for block in iter(lambda: handle.read(1 << 20), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def safe_project_file(relative: object, errors: list[str], label: str) -> Path | None:
+    if not isinstance(relative, str) or not relative:
+        errors.append(f"{label} path is missing")
+        return None
+    value = Path(relative)
+    if value.is_absolute() or ".." in value.parts or "." in value.parts:
+        errors.append(f"unsafe {label} path: {relative!r}")
+        return None
+    path = PROJECT / value
+    try:
+        resolved = path.resolve(strict=True)
+        resolved.relative_to(PROJECT.resolve())
+    except (OSError, ValueError):
+        errors.append(f"unsafe or missing {label} path: {relative!r}")
+        return None
+    current = PROJECT.resolve()
+    for part in value.parts:
+        current = current / part
+        if current.is_symlink():
+            errors.append(f"symlink forbidden for {label}: {relative!r}")
+            return None
+    if not resolved.is_file():
+        errors.append(f"{label} file missing: {relative}")
+        return None
+    return resolved
+
+
+def safe_project_source(relative: object, mode: object, errors: list[str],
+                        label: str) -> Path | None:
+    if not isinstance(relative, str) or not relative:
+        errors.append(f"{label} path is missing")
+        return None
+    value = Path(relative)
+    if value.is_absolute() or ".." in value.parts or "." in value.parts:
+        errors.append(f"unsafe {label} path: {relative!r}")
+        return None
+    path = PROJECT / value
+    try:
+        resolved = path.resolve(strict=True)
+        resolved.relative_to(PROJECT.resolve())
+    except (OSError, ValueError):
+        errors.append(f"unsafe or missing {label} path: {relative!r}")
+        return None
+    current = PROJECT.resolve()
+    for part in value.parts:
+        current = current / part
+        if current.is_symlink():
+            errors.append(f"symlink forbidden for {label}: {relative!r}")
+            return None
+    if mode == "copy_file" and not resolved.is_file():
+        errors.append(f"copy_file source is not a regular file for {label}: {relative!r}")
+        return None
+    if mode == "copy_tree" and not resolved.is_dir():
+        errors.append(f"copy_tree source is not a directory for {label}: {relative!r}")
+        return None
+    return resolved
+
+
+def validate_upload(upload: object, package: str, errors: list[str],
+                    blockers: list[str]) -> None:
+    if not isinstance(upload, dict):
+        errors.append(f"non-object portal upload for {package}")
+        return
+    filename = upload.get("filename")
+    present = upload.get("present")
+    if not isinstance(filename, str) or not filename:
+        errors.append(f"portal upload filename missing for {package}")
+    if not isinstance(present, bool):
+        errors.append(f"portal upload present flag is not Boolean for {package}: {filename}")
+        return
+    if not present:
+        blockers.append(f"release PDF/upload not yet produced for {package}: {filename}")
+        return
+    path = safe_project_file(upload.get("path"), errors,
+                             f"portal upload {package}/{filename}")
+    expected_hash = upload.get("sha256")
+    expected_bytes = upload.get("bytes")
+    if SHA256_RE.fullmatch(str(expected_hash)) is None:
+        errors.append(f"portal upload SHA-256 missing or malformed for {package}: {filename}")
+    if not isinstance(expected_bytes, int) or expected_bytes < 0:
+        errors.append(f"portal upload byte count missing or malformed for {package}: {filename}")
+    if path is not None:
+        if isinstance(expected_bytes, int) and path.stat().st_size != expected_bytes:
+            errors.append(f"portal upload byte count mismatch for {package}: {filename}")
+        if SHA256_RE.fullmatch(str(expected_hash)) is not None and sha256_file(path) != expected_hash:
+            errors.append(f"portal upload SHA-256 mismatch for {package}: {filename}")
+        if path.suffix.lower() == ".pdf":
+            qa = safe_project_file(upload.get("visual_qa_report"), errors,
+                                   f"visual-QA report {package}/{filename}")
+            qa_hash = upload.get("visual_qa_sha256")
+            if SHA256_RE.fullmatch(str(qa_hash)) is None:
+                errors.append(f"visual-QA SHA-256 missing or malformed for {package}: {filename}")
+            elif qa is not None and sha256_file(qa) != qa_hash:
+                errors.append(f"visual-QA SHA-256 mismatch for {package}: {filename}")
+            if qa is not None:
+                qa_data = load_json(qa, errors)
+                required_qa_fields = {
+                    "schema", "status", "pdf_path", "pdf_sha256", "pdf_bytes",
+                    "page_count", "inspected_pages", "issues",
+                }
+                if set(qa_data) != required_qa_fields:
+                    errors.append(f"visual-QA schema mismatch for {package}: {filename}")
+                add_error(errors, qa_data.get("schema") == "k3p-pdf-visual-qa-v1" and
+                          qa_data.get("status") == "PASS" and
+                          qa_data.get("pdf_path") == upload.get("path") and
+                          qa_data.get("pdf_sha256") == expected_hash and
+                          qa_data.get("pdf_bytes") == expected_bytes and
+                          isinstance(qa_data.get("page_count"), int) and
+                          qa_data.get("page_count", 0) > 0 and
+                          qa_data.get("inspected_pages") ==
+                          list(range(1, qa_data.get("page_count", 0) + 1)) and
+                          qa_data.get("issues") == [],
+                          f"visual-QA report is not a complete PASS for {package}: {filename}")
+
+
+def collect_token_locations(paths: set[Path]) -> dict[str, set[str]]:
+    token_locations: dict[str, set[str]] = defaultdict(set)
+    for path in sorted(paths):
+        text = path.read_text(encoding="utf-8")
+        for token in TOKEN_RE.findall(text):
+            if token not in DOCUMENTATION_TOKENS:
+                token_locations[token].add(str(path.relative_to(PROJECT)))
+    return token_locations
+
+
 def validate_manifest(path: Path, errors: list[str], blockers: list[str]) -> dict:
     data = load_json(path, errors)
     add_error(errors, data.get("schema_version") == 1,
               f"unsupported manifest schema: {path.relative_to(PROJECT)}")
+    status = data.get("status")
+    add_error(errors, status in {"DRAFT_NOT_READY", "READY"},
+              f"unsupported manifest status: {path.relative_to(PROJECT)}")
+    if status != "READY":
+        blockers.append(f"manifest remains {status!r}: {path.relative_to(PROJECT)}")
+    elif data.get("release_blockers") not in ([], None):
+        errors.append(f"READY manifest retains release_blockers: {path.relative_to(PROJECT)}")
     source_map = data.get("source_map")
     add_error(errors, isinstance(source_map, list) and bool(source_map),
               f"manifest has no source_map: {path.relative_to(PROJECT)}")
@@ -75,8 +218,14 @@ def validate_manifest(path: Path, errors: list[str], blockers: list[str]) -> dic
                 continue
             source = entry.get("source", "")
             destination = entry.get("destination", "")
-            add_error(errors, bool(source) and (PROJECT / source).exists(),
-                      f"missing manifest source {source!r} in {path.relative_to(PROJECT)}")
+            mode = entry.get("mode", "copy_file")
+            add_error(errors, mode in {"copy_file", "copy_tree"},
+                      f"unknown source-map mode in {path.relative_to(PROJECT)}: {mode}")
+            if mode in {"copy_file", "copy_tree"}:
+                safe_project_source(
+                    source, mode, errors,
+                    f"manifest source in {path.relative_to(PROJECT)}",
+                )
             dest_path = Path(destination)
             add_error(errors, bool(destination) and not dest_path.is_absolute()
                       and ".." not in dest_path.parts,
@@ -84,14 +233,13 @@ def validate_manifest(path: Path, errors: list[str], blockers: list[str]) -> dic
             add_error(errors, destination not in destinations,
                       f"duplicate manifest destination {destination!r} in {path.relative_to(PROJECT)}")
             destinations.add(destination)
-            add_error(errors, entry.get("mode", "copy_file") in {"copy_file", "copy_tree"},
-                      f"unknown source-map mode in {path.relative_to(PROJECT)}: {entry.get('mode')}")
-    for upload in data.get("initial_portal_uploads", []):
-        if isinstance(upload, dict) and upload.get("present") is False:
-            blockers.append(
-                f"release PDF/upload not yet produced for {data.get('package')}: "
-                f"{upload.get('filename')}"
-            )
+    uploads = data.get("initial_portal_uploads")
+    if data.get("package") != "arxiv_source_staging":
+        add_error(errors, isinstance(uploads, list) and bool(uploads),
+                  f"manifest has no initial_portal_uploads: {path.relative_to(PROJECT)}")
+    if isinstance(uploads, list):
+        for upload in uploads:
+            validate_upload(upload, str(data.get("package")), errors, blockers)
     return data
 
 
@@ -126,24 +274,29 @@ def validate() -> tuple[dict, int]:
     # Every unresolved release token is a blocker, wherever it occurs in an
     # actual package or shared author metadata. Generic grammar examples are
     # documentation rather than release fields.
-    token_locations: dict[str, set[str]] = defaultdict(set)
     scan_roots = [
         SUBMISSION / "AUTHOR_METADATA.json",
         SUBMISSION / "systematic_biology",
         SUBMISSION / "journal_of_mathematical_biology",
         SUBMISSION / "arxiv",
     ]
+    for manifest in manifests.values():
+        for entry in manifest.get("source_map", []) if isinstance(manifest, dict) else []:
+            if isinstance(entry, dict) and isinstance(entry.get("source"), str):
+                source_errors: list[str] = []
+                source = safe_project_source(
+                    entry["source"], entry.get("mode", "copy_file"), source_errors,
+                    "manifest token-scan source",
+                )
+                if source is not None:
+                    scan_roots.append(source)
     scan_files: set[Path] = set()
     for root in scan_roots:
         if root.is_file():
             scan_files.add(root)
         elif root.is_dir():
             scan_files.update(p for p in root.rglob("*") if p.is_file() and p.suffix in TEXT_SUFFIXES)
-    for path in sorted(scan_files):
-        text = path.read_text(encoding="utf-8")
-        for token in TOKEN_RE.findall(text):
-            if token not in DOCUMENTATION_TOKENS:
-                token_locations[token].add(str(path.relative_to(PROJECT)))
+    token_locations = collect_token_locations(scan_files)
     for token, locations in sorted(token_locations.items()):
         blockers.append(f"unresolved @@{token}@@ in {', '.join(sorted(locations))}")
 
@@ -302,13 +455,38 @@ def validate() -> tuple[dict, int]:
             "jmb_cover_letter_words": latex_word_count(jmb_cover),
         },
         "policy": "Every unresolved release token and every absent required release PDF produces NOT_READY; structural defects produce INVALID.",
+        "validator_sha256": sha256_file(Path(__file__).resolve()),
+        "manifest_sha256": {
+            str(path.relative_to(PROJECT)): sha256_file(path)
+            for path in sorted([
+                SUBMISSION / "systematic_biology/MANIFEST.json",
+                SUBMISSION / "journal_of_mathematical_biology/MANIFEST.json",
+                SUBMISSION / "arxiv/MANIFEST.json",
+            ])
+        },
     }
+    report["payload_sha256"] = hashlib.sha256(json.dumps(
+        report, sort_keys=True, separators=(",", ":"), ensure_ascii=True
+    ).encode("ascii")).hexdigest()
     return report, exit_code
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--output", type=Path)
+    args = parser.parse_args(argv)
     report, exit_code = validate()
-    print(json.dumps(report, indent=2, sort_keys=True))
+    rendered = json.dumps(report, indent=2, sort_keys=True) + "\n"
+    if args.output is not None:
+        output = args.output.resolve()
+        try:
+            output.relative_to(PROJECT)
+        except ValueError as error:
+            raise SystemExit(f"submission validation output outside project: {output}") from error
+        temporary = output.with_suffix(output.suffix + ".tmp")
+        temporary.write_text(rendered, encoding="utf-8")
+        temporary.replace(output)
+    print(rendered, end="")
     return exit_code
 
 

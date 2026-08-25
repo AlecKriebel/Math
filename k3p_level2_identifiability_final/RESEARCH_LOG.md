@@ -409,3 +409,87 @@ identify every remaining author/release decision exactly.
 
 Best-guess completion toward the mathematical classification goal: **100%**.
 Best-guess completion toward the full paper/certification/release goal: **85%**.
+
+## 2026-08-25T10:54:11-07:00 — Fail-closed deterministic proof-release layer
+
+- Added Git-`HEAD`-only deterministic full TAR.GZ and compact ZIP builders,
+  safe extractors/verifiers, fixed-epoch Tectonic article/supplement source
+  archives, byte-for-byte two-build PDF reproduction, clean quick/full/true
+  all-producer orchestration, and pre-DOI asset-envelope tooling.
+- A hostile audit found that the first source-archive draft mixed the release
+  commit epoch with the fixed PDF epoch, read the fileset policy from the dirty
+  worktree, and did not compare archived TeX bytes with committed source.
+  These defects were repaired.  The verifier now rejects the wrong engine,
+  wrong epoch or environment, malformed policy, and a demonstrated
+  PDF-equivalent comment-only source tamper.
+- Hardened submission readiness from Boolean declarations to actual file byte
+  counts, SHA-256 values, PDF visual-QA bindings, recursive source-map token
+  scans, and manifest-state consistency.  The current sources remain honestly
+  `NOT_READY` with zero structural errors and 27 blockers: 17 unresolved
+  human/repository token classes, seven absent upload artifacts, and three
+  draft manifest states.  Ten targeted submission mutations pass.
+- Closed the final-envelope type hole: the builder now requires exactly the
+  Systematic Biology and Journal of Mathematical Biology package kinds,
+  independently validates a READY package-internal hash manifest, binds a
+  fresh submission-readiness report, and refuses arbitrary or mislabeled ZIPs.
+  No envelope, tag, DOI, license, upload, or external communication was made.
+- Audited and repaired the long regeneration plan before launch.  The final
+  42-command sequence includes all active cut and sharpness producers,
+  ordinary/optimized mutation replays in dependency order, a genuinely fresh
+  204-direction search, ignored paths for timing-bearing probe reports, and an
+  enforced per-command timeout.  Static existence and order checks pass; the
+  one-shot 90--120 minute execution remains the next clean-checkout gate.
+- The release-engineering suite rejects 20/20 hostile mutations with payload
+  `97668b0e790fafed7ea28c8bb2d05841c66645f206beca8694838810a03ea11c`.
+  The normal committed-source release-input gate passes with payload
+  `8f9f88639316cfe753a8d927302f0c37d7fa5909acfe64c0071e9fbecf4783f3`.
+
+Strongest verified result at this checkpoint: the mathematical theorem and
+canonical PDFs remain certified, and the proof-release implementation is
+fail-closed against the specific archive, source, timeout, policy, and
+submission-readiness attacks found by independent audits.  Clean full replay,
+the one-shot all-producer run, post-commit source reproduction, and final
+archive double-build remain execution gates.
+
+Best-guess completion toward the mathematical classification goal: **100%**.
+Best-guess completion toward the paper/certification/proof-archive goal: **90%**.
+Best-guess completion toward the external journal/DOI release goal: **70%**.
+
+## 2026-08-25T11:18:57-07:00 — Adversarial release-boundary closure
+
+- Integrated the latest remote `main` (`a68321f3`) after proving all 144 local
+  K2P overlap files were byte-identical to that remote checkpoint; no unrelated
+  work was overwritten or recommitted.
+- Independent archive, regeneration, and final-boundary audits identified and
+  then closed false proof-only PDF inclusion, unlocked broad member selection,
+  forgeable clean-suite claims, fake-compiler acceptance, parent-only timeout
+  killing, unbound source-reproduction claims, unsafe submission source maps,
+  arbitrary journal extras, stale DRAFT wording, unbound roots/epochs/modes,
+  and missing NumPy dependency provenance.
+- Canonical selection is now exact-path-list hash locked.  The exact Tectonic
+  binary, fixed PDF epoch, commit epoch, generated readmes, archive metadata,
+  modes, sidecars, suite plans/logs/code, source build rows/transcripts, and
+  clean worktree fingerprints are all explicit verification inputs.  Final
+  verification independently reruns both PDF source reproductions and the
+  quick/full suites; the long regeneration transcript remains bound rather
+  than spuriously rerun.
+- Submission validation rejects out-of-project, traversing, symlinked, and
+  wrong-type source-map inputs.  Journal ZIPs must equal the exact committed
+  source-map expansion plus manifest-bound PDFs; self-consistent malicious
+  extras are rejected.  Current state is NOT_READY with zero structural errors
+  and 26 blockers (17 token classes, six absent PDFs, three draft states), and
+  12 submission mutations pass.
+- Release engineering currently rejects 24/24 hostile mutations, payload
+  `32c1cead12dc49f6b211b958d86813499f6468d95df72cd90f4f364058062141`;
+  the development release-input gate passes with payload
+  `60140806939c6e11912ba41d240cc863108c0bcfe9ff97bd99c2cfe9a7bda25e`.
+
+Strongest verified result: K3P-SAME and both canonical PDFs remain unchanged;
+the release layer is statically fail-closed against every exploit found in the
+three independent final audits.  Exact remaining gap: commit this layer, run
+the clean quick/full and one-shot 42-command producer replay, reproduce both
+PDFs from packaged source, and double-build the two canonical archives.
+
+Best-guess completion toward the mathematical classification goal: **100%**.
+Best-guess completion toward the paper/certification/proof-archive goal: **96%**.
+Best-guess completion toward the external journal/DOI release goal: **70%**.

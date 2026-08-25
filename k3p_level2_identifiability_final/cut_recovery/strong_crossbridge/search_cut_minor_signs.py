@@ -11,6 +11,7 @@ requires independent graph, polynomial, and domain replay.
 
 from __future__ import annotations
 
+import argparse
 import collections
 import fractions
 import hashlib
@@ -208,12 +209,26 @@ def factor_positive_monomial(polynomial):
     return common, {exponent: coefficient for exponent, coefficient in reduced.items() if coefficient}
 
 
-def main() -> None:
+def main(argv=None) -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--fresh", action="store_true",
+        help="regenerate this producer's 204 indexed records instead of resuming them",
+    )
+    args = parser.parse_args(argv)
     _, _, _, targets = cross.build_universes()
     assignments = atlas.k3p_assignments(4)
     index = {assignment: position for position, assignment in enumerate(assignments)}
     pairs = tuple((left, right) for left in range(4) for right in range(left + 1, 4))
     RECORD_DIRECTORY.mkdir(exist_ok=True)
+    if args.fresh:
+        for target_index in range(len(targets)):
+            record_path = RECORD_DIRECTORY / f"{target_index:03d}.json"
+            if record_path.exists():
+                record_path.unlink()
+        summary_path = HERE / "CUT_MINOR_SIGN_SEARCH.json"
+        if summary_path.exists():
+            summary_path.unlink()
     records = []
     unsolved = []
     for target_index, row in enumerate(targets):

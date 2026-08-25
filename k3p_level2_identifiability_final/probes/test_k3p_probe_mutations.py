@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import collections
 import gzip
 import hashlib
@@ -361,7 +362,11 @@ def mutate_separator_reference(root):
     update_proof_registry(root, transform)
 
 
-def main():
+def main(argv=None):
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--output", type=Path, default=OUTPUT)
+    parser.add_argument("--no-write-report", action="store_true")
+    args = parser.parse_args(argv)
     require((HERE / "K3P_PROBE_COHERENCE_CERTIFICATE.json").exists(), "missing source certificate")
     cases = [
         ("omitted_anchor", mutate_omitted_anchor),
@@ -418,7 +423,11 @@ def main():
     logical = dict(report)
     logical.pop("operational")
     report["payload_sha256"] = sha(logical)
-    OUTPUT.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
+    require(not (args.no_write_report and args.output != OUTPUT),
+            "choose either --output or --no-write-report")
+    if not args.no_write_report:
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        args.output.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
     print(json.dumps({
         "status": "PASS", "mutations": len(results),
         "payload_sha256": report["payload_sha256"],

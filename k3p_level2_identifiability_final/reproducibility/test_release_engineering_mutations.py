@@ -1,0 +1,658 @@
+#!/usr/bin/env python3
+"""Hostile mutation suite for deterministic K3P release engineering."""
+
+from __future__ import annotations
+
+import argparse
+import json
+import os
+from pathlib import Path
+import subprocess
+import sys
+import tempfile
+import time
+import zipfile
+
+
+HERE = Path(__file__).resolve().parent
+PROJECT = HERE.parent
+RELEASE = PROJECT / "release"
+if str(RELEASE) not in sys.path:
+    sys.path.insert(0, str(RELEASE))
+
+from release_common import (  # noqa: E402
+    ReleaseFailure,
+    atomic_write,
+    canonical_json_bytes,
+    head_commit,
+    head_commit_epoch,
+    load_head_json,
+    parse_sha256sums,
+    refuse_optimized_python,
+    require,
+    safe_relative_path,
+    sha256_bytes,
+    sha256_file,
+    tracked_head_entries,
+    verify_sha256sums,
+)
+from archive_tools import (  # noqa: E402
+    canonical_mode,
+    deterministic_tar_gz,
+    deterministic_zip,
+    manifest_for,
+    validate_manifest,
+    verify_tar_gz,
+    verify_zip,
+)
+from verify_release_inputs import active_paths  # noqa: E402
+from run_release_suite import (  # noqa: E402
+    Command,
+    deterministic_environment,
+    regeneration_commands,
+    run_one,
+)
+from verify_source_reproduction import (  # noqa: E402
+    DEFAULTS as SOURCE_DEFAULTS,
+    committed_source_members,
+    validate_source_build,
+    verify_source_archive_contract,
+    verify_tectonic_identity,
+)
+from build_release import (  # noqa: E402
+    SUBMISSION_ROOTS,
+    require_submission_readiness_report,
+    submission_argument_map,
+    validate_release_policy,
+    verify_submission_package,
+)
+
+
+DEFAULT_REPORT = HERE / "RELEASE_ENGINEERING_MUTATION_REPORT.json"
+
+
+def rejected(name: str, expected: str, action) -> dict:
+    try:
+        action()
+    except (ReleaseFailure, OSError, ValueError, json.JSONDecodeError,
+            zipfile.BadZipFile) as error:
+        diagnostic = str(error)
+        require(expected in diagnostic,
+                ("wrong mutation diagnostic", name, expected, diagnostic))
+        return {"name": name, "status": "REJECTED",
+                "expected_failure_class": expected, "diagnostic": diagnostic[:500]}
+    raise ReleaseFailure(("mutation survived", name))
+
+
+def stale_checksum() -> None:
+    with tempfile.TemporaryDirectory(prefix="k3p-release-stale-") as directory:
+        root = Path(directory)
+        (root / "a.txt").write_text("current\n")
+        (root / "SUMS").write_text(f"{'0' * 64}  a.txt\n")
+        verify_sha256sums(root, "SUMS")
+
+
+def stale_manifest_hash() -> None:
+    members = {"a.txt": b"content\n"}
+    manifest = manifest_for("test", "root", "a" * 40, 1_700_000_000, members)
+    manifest["members"][0]["sha256"] = "0" * 64
+    manifest.pop("payload_sha256")
+    manifest["payload_sha256"] = sha256_bytes(canonical_json_bytes(manifest))
+    validate_manifest(manifest, archive_root="root",
+                      observed={"a.txt": (members["a.txt"], 0o644)})
+
+
+def self_referential_archive_hash() -> None:
+    members = {"a.txt": b"content\n"}
+    manifest = manifest_for("test", "root", "b" * 40, 1_700_000_000, members)
+    manifest.pop("payload_sha256")
+    manifest["archive_sha256"] = "1" * 64
+    manifest["payload_sha256"] = sha256_bytes(canonical_json_bytes(manifest))
+    validate_manifest(manifest, archive_root="root",
+                      observed={"a.txt": (members["a.txt"], 0o644)})
+
+
+def checksum_self_reference() -> None:
+    parse_sha256sums(f"{'0' * 64}  RELEASE_ASSET_SHA256SUMS\n",
+                     checksum_path="RELEASE_ASSET_SHA256SUMS")
+
+
+def traversal_primitive() -> None:
+    safe_relative_path("../escape")
+
+
+def traversal_zip() -> None:
+    with tempfile.TemporaryDirectory(prefix="k3p-release-traversal-") as directory:
+        path = Path(directory) / "bad.zip"
+        with zipfile.ZipFile(path, "w") as archive:
+            archive.writestr("../escape", b"bad")
+        verify_zip(path)
+
+
+def noncanonical_zip_timestamp() -> None:
+    with tempfile.TemporaryDirectory(prefix="k3p-release-time-") as directory:
+        root = Path(directory)
+        canonical = root / "canonical.zip"
+        bad = root / "bad.zip"
+        deterministic_zip(canonical, kind="test", archive_root="root",
+                          source_commit="c" * 40, source_date_epoch=1_700_000_000,
+                          members={"a.txt": b"a\n"})
+        with zipfile.ZipFile(canonical, "r") as source, zipfile.ZipFile(
+                bad, "w", compression=zipfile.ZIP_DEFLATED) as target:
+            for old in source.infolist():
+                info = zipfile.ZipInfo(old.filename, date_time=(2025, 1, 2, 3, 4, 6))
+                relative = "/".join(old.filename.split("/")[1:])
+                info.create_system = 3
+                info.external_attr = canonical_mode(relative) << 16
+                info.compress_type = zipfile.ZIP_DEFLATED
+                target.writestr(info, source.read(old))
+        verify_zip(bad)
+
+
+def noncanonical_tar_mode() -> None:
+    members = {"a.txt": b"a\n"}
+    manifest = manifest_for("test", "root", "c" * 40, 1_700_000_000, members)
+    manifest["members"][0]["mode"] = "0600"
+    manifest.pop("payload_sha256")
+    manifest["payload_sha256"] = sha256_bytes(canonical_json_bytes(manifest))
+    validate_manifest(manifest, archive_root="root",
+                      observed={"a.txt": (members["a.txt"], 0o600)})
+
+
+def optimized_input_gate() -> None:
+    result = subprocess.run(
+        [sys.executable, "-O", "reproducibility/verify_release_inputs.py", "--self-test"],
+        cwd=PROJECT, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+        text=True, check=False, timeout=60,
+    )
+    require(result.returncode != 0 and "OPTIMIZED_PYTHON_FORBIDDEN" in result.stdout,
+            ("optimized input gate survived", result.returncode, result.stdout))
+    raise ReleaseFailure("OPTIMIZED_PYTHON_FORBIDDEN")
+
+
+def optimized_archive_builder() -> None:
+    result = subprocess.run(
+        [sys.executable, "-O", "release/build_release.py", "plan", "--kind", "compact"],
+        cwd=PROJECT, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+        text=True, check=False, timeout=60,
+    )
+    require(result.returncode != 0 and "OPTIMIZED_PYTHON_FORBIDDEN" in result.stdout,
+            ("optimized archive builder survived", result.returncode, result.stdout))
+    raise ReleaseFailure("OPTIMIZED_PYTHON_FORBIDDEN")
+
+
+def forbidden_active_path() -> None:
+    manifest = {
+        "active_gate_reports": [{
+            "path": "cut_recovery/upstream_frozen/pointwise_cut_certificate.json",
+            "sha256": "0" * 64,
+        }],
+        "active_theorem_artifacts": [], "active_verifiers": [], "claim_locks": [],
+    }
+    active_paths(manifest, {"bindings": {}}, {"certification": {}})
+
+
+def missing_active_path() -> None:
+    manifest = {
+        "active_gate_reports": [{"path": None, "sha256": "0" * 64}],
+        "active_theorem_artifacts": [], "active_verifiers": [], "claim_locks": [],
+    }
+    active_paths(manifest, {"bindings": {}}, {"certification": {}})
+
+
+def valid_source_build(commit: str = "a" * 40) -> tuple[dict, dict, int]:
+    config = dict(SOURCE_DEFAULTS["article"])
+    policy = json.loads((RELEASE / "RELEASE_FILESET.json").read_text(encoding="utf-8"))
+    epoch = policy["pdf_source_date_epoch"]
+    build = {
+        "schema": "k3p-tectonic-source-build-v1",
+        "kind": "article",
+        "source_commit": commit,
+        "source_date_epoch": epoch,
+        "main": config["main"],
+        "command": ["tectonic", config["main"], "--outdir", "."],
+        "toolchain": {
+            "name": "tectonic", "version": policy["tectonic_version"],
+            "executable_sha256": policy["tectonic_sha256"],
+        },
+        "environment": {
+            "SOURCE_DATE_EPOCH": str(epoch), "TZ": "UTC", "LC_ALL": "C",
+        },
+        "expected_output": config["output"],
+    }
+    return build, config, epoch
+
+
+def wrong_source_build_engine() -> None:
+    build, config, epoch = valid_source_build()
+    build["command"] = ["latexmk", "-pdf", config["main"]]
+    policy = json.loads((RELEASE / "RELEASE_FILESET.json").read_text())
+    validate_source_build(
+        build, kind="article", config=config, commit="a" * 40,
+        pdf_source_date_epoch=epoch, tectonic_version=policy["tectonic_version"],
+        tectonic_sha256=policy["tectonic_sha256"],
+    )
+
+
+def wrong_pdf_source_date_epoch() -> None:
+    build, config, epoch = valid_source_build()
+    build["source_date_epoch"] = epoch + 1
+    build["environment"]["SOURCE_DATE_EPOCH"] = str(epoch + 1)
+    policy = json.loads((RELEASE / "RELEASE_FILESET.json").read_text())
+    validate_source_build(
+        build, kind="article", config=config, commit="a" * 40,
+        pdf_source_date_epoch=epoch, tectonic_version=policy["tectonic_version"],
+        tectonic_sha256=policy["tectonic_sha256"],
+    )
+
+
+def inconsistent_source_build_environment() -> None:
+    build, config, epoch = valid_source_build()
+    build["environment"]["SOURCE_DATE_EPOCH"] = str(epoch + 1)
+    policy = json.loads((RELEASE / "RELEASE_FILESET.json").read_text())
+    validate_source_build(
+        build, kind="article", config=config, commit="a" * 40,
+        pdf_source_date_epoch=epoch, tectonic_version=policy["tectonic_version"],
+        tectonic_sha256=policy["tectonic_sha256"],
+    )
+
+
+def fake_tectonic_executable() -> None:
+    policy = json.loads((RELEASE / "RELEASE_FILESET.json").read_text())
+    with tempfile.TemporaryDirectory(prefix="k3p-fake-tectonic-") as directory:
+        executable = Path(directory) / "tectonic"
+        executable.write_text("#!/bin/sh\necho 'Tectonic 0.16.9'\n", encoding="utf-8")
+        executable.chmod(0o755)
+        verify_tectonic_identity(str(executable), policy)
+
+
+def pdf_equivalent_source_archive_tamper() -> None:
+    with tempfile.TemporaryDirectory(prefix="k3p-release-source-tamper-") as directory:
+        output = Path(directory) / "tampered.zip"
+        commit = head_commit(PROJECT)
+        policy = json.loads((RELEASE / "RELEASE_FILESET.json").read_text(
+            encoding="utf-8"
+        ))
+        build, config, _epoch = valid_source_build(commit)
+        members = committed_source_members(PROJECT, "article")
+        members["main.tex"] = b"% PDF-equivalent source tamper\n" + members["main.tex"]
+        members["SOURCE_BUILD.json"] = (
+            json.dumps(build, indent=2, sort_keys=True) + "\n"
+        ).encode()
+        deterministic_zip(
+            output, kind="article_latex_source", archive_root=config["root"],
+            source_commit=commit, source_date_epoch=head_commit_epoch(PROJECT),
+            members=members, extra={"source_build": "SOURCE_BUILD.json"},
+        )
+        verify_source_archive_contract(
+            output, kind="article", project=PROJECT, policy=policy
+        )
+
+
+def malformed_fileset_policy() -> None:
+    policy = json.loads((RELEASE / "RELEASE_FILESET.json").read_text(
+        encoding="utf-8"
+    ))
+    policy["schema"] = "unrecognized-policy"
+    validate_release_policy(policy)
+
+
+def not_ready_submission_report() -> None:
+    report = {
+        "schema_version": 1,
+        "status": "NOT_READY",
+        "structural_error_count": 0,
+        "structural_errors": [],
+        "release_blocker_count": 1,
+        "release_blockers": ["human metadata pending"],
+    }
+    report["payload_sha256"] = sha256_bytes(canonical_json_bytes(report))
+    require_submission_readiness_report(report, 2)
+
+
+def arbitrary_submission_files() -> None:
+    with tempfile.TemporaryDirectory(prefix="k3p-release-fake-submissions-") as directory:
+        root = Path(directory)
+        first, second = root / "first.bin", root / "second.bin"
+        first.write_bytes(b"not a journal package\n")
+        second.write_bytes(b"also not a journal package\n")
+        packages = submission_argument_map([
+            f"systematic_biology={first}",
+            f"journal_of_mathematical_biology={second}",
+        ])
+        for kind, path in packages.items():
+            verify_submission_package(
+                path, kind=kind, commit="a" * 40, expected_uploads={},
+                expected_members={},
+            )
+
+
+def mislabeled_submission_archive() -> None:
+    with tempfile.TemporaryDirectory(prefix="k3p-release-mislabeled-submission-") as directory:
+        path = Path(directory) / "mislabeled.zip"
+        manifest = {
+            "schema": "k3p-journal-submission-package-v1",
+            "status": "READY",
+            "kind": "journal_of_mathematical_biology",
+            "source_commit": "a" * 40,
+            "members": [],
+        }
+        manifest["payload_sha256"] = sha256_bytes(canonical_json_bytes(manifest))
+        with zipfile.ZipFile(path, mode="w") as archive:
+            archive.writestr(
+                f"{SUBMISSION_ROOTS['systematic_biology']}/SUBMISSION_PACKAGE_MANIFEST.json",
+                json.dumps(manifest, sort_keys=True).encode(),
+            )
+        verify_submission_package(
+            path, kind="systematic_biology", commit="a" * 40,
+            expected_uploads={}, expected_members={},
+        )
+
+
+def malicious_submission_extra() -> None:
+    kind = "systematic_biology"
+    uploads = {
+        "K3P_level2_main_SB.pdf": {"sha256": sha256_bytes(b"main"), "bytes": 4,
+                                    "path": "fixture/main.pdf"},
+        "K3P_level2_supplement_SB.pdf": {
+            "sha256": sha256_bytes(b"supp"), "bytes": 4, "path": "fixture/supp.pdf"
+        },
+        "cover_letter.pdf": {"sha256": sha256_bytes(b"cover"), "bytes": 5,
+                             "path": "fixture/cover.pdf"},
+    }
+    expected_members = {
+        "main.tex": b"source\n", "K3P_level2_main_SB.pdf": b"main",
+        "K3P_level2_supplement_SB.pdf": b"supp", "cover_letter.pdf": b"cover",
+    }
+    observed = dict(expected_members)
+    observed["MANIFEST.json"] = b'{"status":"DRAFT_NOT_READY"}\n'
+    rows = [{"path": relative, "sha256": sha256_bytes(data), "bytes": len(data)}
+            for relative, data in sorted(observed.items())]
+    manifest = {
+        "schema": "k3p-journal-submission-package-v1", "status": "READY",
+        "kind": kind, "source_commit": "a" * 40, "members": rows,
+    }
+    manifest["payload_sha256"] = sha256_bytes(canonical_json_bytes(manifest))
+    with tempfile.TemporaryDirectory(prefix="k3p-release-extra-submission-") as directory:
+        path = Path(directory) / "extra.zip"
+        with zipfile.ZipFile(path, mode="w") as archive:
+            root = SUBMISSION_ROOTS[kind]
+            for relative, data in observed.items():
+                archive.writestr(f"{root}/{relative}", data)
+            archive.writestr(f"{root}/SUBMISSION_PACKAGE_MANIFEST.json",
+                             json.dumps(manifest, sort_keys=True).encode())
+        verify_submission_package(
+            path, kind=kind, commit="a" * 40, expected_uploads=uploads,
+            expected_members=expected_members,
+        )
+
+
+def enforced_command_timeout() -> None:
+    with tempfile.TemporaryDirectory(prefix="k3p-release-timeout-") as directory:
+        transcript_path = Path(directory) / "timeout.log"
+        with transcript_path.open("w+", encoding="utf-8") as transcript:
+            run_one(
+                Command(
+                    "timeout_fixture",
+                    [sys.executable, "-c", "import time; time.sleep(2)"],
+                    timeout_seconds=1,
+                ),
+                deterministic_environment(PROJECT), transcript,
+            )
+
+
+def enforced_descendant_timeout() -> None:
+    with tempfile.TemporaryDirectory(prefix="k3p-release-descendant-timeout-") as directory:
+        root = Path(directory)
+        marker = root / "descendant-survived"
+        child = f"import time; time.sleep(2); open({str(marker)!r}, 'w').write('survived')"
+        parent = (
+            "import subprocess,sys,time; "
+            f"subprocess.Popen([sys.executable,'-c',{child!r}]); time.sleep(10)"
+        )
+        transcript_path = root / "timeout.log"
+        try:
+            with transcript_path.open("w+", encoding="utf-8") as transcript:
+                run_one(Command("descendant_timeout_fixture",
+                                [sys.executable, "-c", parent], timeout_seconds=1),
+                        deterministic_environment(PROJECT), transcript)
+        except ReleaseFailure as error:
+            require("command timeout" in str(error), "descendant timeout diagnostic")
+            time.sleep(2.25)
+            require(not marker.exists(), "timed-out descendant survived process-group kill")
+            raise ReleaseFailure("command timeout descendant process group killed") from error
+
+
+def deterministic_controls() -> list[dict]:
+    with tempfile.TemporaryDirectory(prefix="k3p-release-determinism-") as directory:
+        root = Path(directory)
+        members = {"z.txt": b"z\n", "a/data.json": b"{}\n"}
+        tar1, tar2 = root / "one.tar.gz", root / "two.tar.gz"
+        zip1, zip2 = root / "one.zip", root / "two.zip"
+        common = dict(kind="test", archive_root="root", source_commit="d" * 40,
+                      source_date_epoch=1_700_000_000, members=members)
+        deterministic_tar_gz(tar1, **common)
+        deterministic_tar_gz(tar2, **common)
+        deterministic_zip(zip1, **common)
+        deterministic_zip(zip2, **common)
+        require(tar1.read_bytes() == tar2.read_bytes(), "nondeterministic TAR.GZ builder")
+        require(zip1.read_bytes() == zip2.read_bytes(), "nondeterministic ZIP builder")
+        tar_report, zip_report = verify_tar_gz(tar1), verify_zip(zip1)
+        return [
+            {"name": "tar_gz_double_build", "status": "PASS_IDENTICAL",
+             "sha256": tar_report["sha256"]},
+            {"name": "zip_double_build", "status": "PASS_IDENTICAL",
+             "sha256": zip_report["sha256"]},
+        ]
+
+
+def duplicate_active_path_control() -> dict:
+    digest = "1" * 64
+    manifest = {
+        "active_gate_reports": [{"path": "safe/evidence.json", "sha256": digest}],
+        "active_theorem_artifacts": [],
+        "active_verifiers": [{"path": "safe/evidence.json"}],
+        "claim_locks": [],
+    }
+    certification = {
+        "classification_gate": "safe/gate.py",
+        "classification_gate_sha256": "2" * 64,
+        "classification_mutation_gate": "safe/mutations.py",
+        "classification_mutation_gate_sha256": "3" * 64,
+        "classification_mutation_report": "safe/mutations.json",
+        "classification_mutation_report_sha256": "4" * 64,
+    }
+    records = active_paths(manifest, {"bindings": {}}, {"certification": certification})
+    evidence_rows = [row for row in records if row[0] == "safe/evidence.json"]
+    require(evidence_rows == [("safe/evidence.json", digest)],
+            ("duplicate active path normalization", records))
+    return {"name": "duplicate_active_path_hash_normalization", "status": "PASS",
+            "records": evidence_rows}
+
+
+def untracked_exclusion_control() -> dict:
+    with tempfile.TemporaryDirectory(prefix="k3p-release-git-") as directory:
+        root = Path(directory)
+        project = root / "program"
+        project.mkdir()
+        (project / "tracked.txt").write_text("tracked\n")
+        subprocess.run(["git", "init", "-q"], cwd=root, check=True)
+        subprocess.run(["git", "config", "user.name", "Release Test"], cwd=root, check=True)
+        subprocess.run(["git", "config", "user.email", "release@example.invalid"],
+                       cwd=root, check=True)
+        subprocess.run(["git", "add", "program/tracked.txt"], cwd=root, check=True)
+        subprocess.run(["git", "-c", "commit.gpgsign=false", "commit", "-qm", "fixture"],
+                       cwd=root, check=True)
+        (project / "untracked.txt").write_text("must not ship\n")
+        entries = tracked_head_entries(project)
+        require(set(entries) == {"tracked.txt"} and "untracked.txt" not in entries,
+                ("untracked file entered release selection", entries))
+        return {"name": "git_head_only_selection", "status": "PASS",
+                "tracked": sorted(entries), "untracked_excluded": True}
+
+
+def dirty_worktree_policy_control() -> dict:
+    with tempfile.TemporaryDirectory(prefix="k3p-release-head-policy-") as directory:
+        root = Path(directory)
+        project = root / "program"
+        policy = project / "release/RELEASE_FILESET.json"
+        policy.parent.mkdir(parents=True)
+        policy.write_text('{"policy": "committed"}\n')
+        subprocess.run(["git", "init", "-q"], cwd=root, check=True)
+        subprocess.run(["git", "config", "user.name", "Release Test"],
+                       cwd=root, check=True)
+        subprocess.run(["git", "config", "user.email", "release@example.invalid"],
+                       cwd=root, check=True)
+        subprocess.run(["git", "add", "program/release/RELEASE_FILESET.json"],
+                       cwd=root, check=True)
+        subprocess.run(["git", "-c", "commit.gpgsign=false", "commit", "-qm", "fixture"],
+                       cwd=root, check=True)
+        policy.write_text('{"policy": "dirty-worktree"}\n')
+        observed = load_head_json(project, "release/RELEASE_FILESET.json")
+        require(observed == {"policy": "committed"},
+                ("dirty worktree policy affected HEAD policy", observed))
+        return {"name": "dirty_worktree_policy_ignored", "status": "PASS",
+                "observed": observed}
+
+
+def regeneration_plan_control() -> dict:
+    commands = regeneration_commands(sys.executable, False)
+    names = [command.name for command in commands]
+    required = {
+        "cut_signed_pair_mutations", "cut_record39_audit", "cut_record43_audit",
+        "cut_record60_audit", "cut_cyclic_verify_optimized",
+        "cut_global_transfer_release_optimized", "sharpness_krawczyk_producer",
+        "sharpness_topology_alln_producer", "probe_hour_scale_producer",
+    }
+    require(len(names) == len(set(names)) and required.issubset(names),
+            ("regeneration plan coverage", sorted(required - set(names))))
+    command_map = {command.name: command.argv for command in commands}
+    require("--fresh" in command_map["cut_single_minor_search"],
+            "single-minor regeneration is not fresh")
+    require("--mutations" in command_map["cut_cyclic_verify"] and
+            "--mutations" in command_map["cut_cyclic_verify_optimized"] and
+            "--mutations" in command_map["cut_global_transfer_verify"] and
+            "--mutations" in command_map["cut_global_transfer_verify_optimized"],
+            "cut regeneration omits hostile mutations")
+    require(names.index("cut_cyclic_verify_optimized") <
+            names.index("cut_cyclic_manifest") and
+            names.index("cut_global_transfer_release_optimized") <
+            names.index("cut_global_transfer_manifest"),
+            "regeneration manifest ordering")
+    require("--no-write-report" in command_map["probe_mutations"] and
+            "--output" in command_map["probe_independent_replay"],
+            "probe regeneration would overwrite runtime-bearing reports")
+    return {"name": "complete_regeneration_plan", "status": "PASS",
+            "command_count": len(commands), "required_commands": sorted(required)}
+
+
+def main(argv: list[str] | None = None) -> int:
+    try:
+        refuse_optimized_python()
+        parser = argparse.ArgumentParser()
+        parser.add_argument("--output", type=Path, default=DEFAULT_REPORT)
+        parser.add_argument("--no-write-report", action="store_true")
+        args = parser.parse_args(argv)
+        cases = [
+            rejected("stale_checksum", "stale file SHA-256", stale_checksum),
+            rejected("stale_archive_member_hash", "archive member hash or size",
+                     stale_manifest_hash),
+            rejected("self_referential_archive_hash", "SELF_REFERENTIAL_ARCHIVE_HASH",
+                     self_referential_archive_hash),
+            rejected("self_referential_checksum_list", "self-referential checksum list",
+                     checksum_self_reference),
+            rejected("path_traversal_primitive", "path traversal forbidden",
+                     traversal_primitive),
+            rejected("path_traversal_zip", "path traversal forbidden", traversal_zip),
+            rejected("noncanonical_zip_timestamp", "noncanonical ZIP member mtime",
+                     noncanonical_zip_timestamp),
+            rejected("noncanonical_tar_mode", "noncanonical manifest mode",
+                     noncanonical_tar_mode),
+            rejected("optimized_input_gate", "OPTIMIZED_PYTHON_FORBIDDEN",
+                     optimized_input_gate),
+            rejected("optimized_archive_builder", "OPTIMIZED_PYTHON_FORBIDDEN",
+                     optimized_archive_builder),
+            rejected("forbidden_active_evidence", "FORBIDDEN_ACTIVE_EVIDENCE",
+                     forbidden_active_path),
+            rejected("missing_active_evidence_path", "active evidence path required",
+                     missing_active_path),
+            rejected("wrong_source_build_engine", "source build command policy",
+                     wrong_source_build_engine),
+            rejected("fake_tectonic_executable", "Tectonic executable SHA-256 policy",
+                     fake_tectonic_executable),
+            rejected("wrong_pdf_source_date_epoch", "PDF source-date epoch policy",
+                     wrong_pdf_source_date_epoch),
+            rejected("inconsistent_source_build_environment",
+                     "source build environment policy",
+                     inconsistent_source_build_environment),
+            rejected("pdf_equivalent_source_archive_tamper",
+                     "source archive member differs from HEAD",
+                     pdf_equivalent_source_archive_tamper),
+            rejected("malformed_fileset_policy", "release fileset schema",
+                     malformed_fileset_policy),
+            rejected("not_ready_submission_report", "submission packages are not READY",
+                     not_ready_submission_report),
+            rejected("arbitrary_submission_files", "not a ZIP submission package",
+                     arbitrary_submission_files),
+            rejected("mislabeled_submission_archive", "submission package kind",
+                     mislabeled_submission_archive),
+            rejected("malicious_submission_extra",
+                     "journal package exact HEAD/source-map member set",
+                     malicious_submission_extra),
+            rejected("enforced_command_timeout", "command timeout",
+                     enforced_command_timeout),
+            rejected("enforced_descendant_timeout", "command timeout",
+                     enforced_descendant_timeout),
+        ]
+        controls = deterministic_controls()
+        controls.append(untracked_exclusion_control())
+        controls.append(duplicate_active_path_control())
+        controls.append(dirty_worktree_policy_control())
+        controls.append(regeneration_plan_control())
+        report = {
+            "schema": "k3p-release-engineering-mutations-v1",
+            "status": "PASS",
+            "mutation_count": len(cases),
+            "rejected": sum(row["status"] == "REJECTED" for row in cases),
+            "survived": 0,
+            "mutations": cases,
+            "controls": controls,
+            "verifier_sha256": sha256_file(Path(__file__).resolve()),
+            "release_common_sha256": sha256_file(HERE / "release_common.py"),
+            "release_suite_sha256": sha256_file(HERE / "run_release_suite.py"),
+            "release_input_verifier_sha256": sha256_file(HERE / "verify_release_inputs.py"),
+            "archive_builder_sha256": sha256_file(RELEASE / "build_release.py"),
+            "archive_tools_sha256": sha256_file(RELEASE / "archive_tools.py"),
+            "release_verifier_sha256": sha256_file(RELEASE / "verify_release.py"),
+            "source_reproduction_verifier_sha256": sha256_file(
+                RELEASE / "verify_source_reproduction.py"
+            ),
+            "submission_validator_sha256": sha256_file(
+                PROJECT / "submission/validate_submission_packages.py"
+            ),
+            "submission_validator_mutations_sha256": sha256_file(
+                PROJECT / "submission/test_submission_validators.py"
+            ),
+            "probe_mutation_driver_sha256": sha256_file(
+                PROJECT / "probes/test_k3p_probe_mutations.py"
+            ),
+            "cut_single_minor_producer_sha256": sha256_file(
+                PROJECT / "cut_recovery/strong_crossbridge/search_cut_minor_signs.py"
+            ),
+            "fileset_policy_sha256": sha256_file(RELEASE / "RELEASE_FILESET.json"),
+        }
+        report["payload_sha256"] = sha256_bytes(canonical_json_bytes(report))
+        if not args.no_write_report:
+            atomic_write(args.output.resolve(),
+                         (json.dumps(report, indent=2, sort_keys=True) + "\n").encode())
+        print(json.dumps(report, indent=2, sort_keys=True))
+        print("K3P_RELEASE_ENGINEERING_MUTATIONS_PASS")
+        return 0
+    except (ReleaseFailure, OSError, UnicodeError, ValueError, json.JSONDecodeError,
+            subprocess.SubprocessError) as error:
+        print(f"K3P_RELEASE_ENGINEERING_MUTATIONS_FAIL: {error}", file=sys.stderr)
+        return 1
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

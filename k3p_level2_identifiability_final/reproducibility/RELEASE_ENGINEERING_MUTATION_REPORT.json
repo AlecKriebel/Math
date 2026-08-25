@@ -1,0 +1,220 @@
+{
+  "archive_builder_sha256": "d8ed3c1cfdb322b9c9e0170bbc3f3d4cc099eb47e9f52682f8d7bcd3e1c61213",
+  "archive_tools_sha256": "e0bec1c7e8250bf0a0c45905e03c1d8cf8f3c95621dc3fb5d3e65b3715088c43",
+  "controls": [
+    {
+      "name": "tar_gz_double_build",
+      "sha256": "c921e8cf96f754e6ff76998264b1a0511e84cc29b6d5b7b05f294dd47246997f",
+      "status": "PASS_IDENTICAL"
+    },
+    {
+      "name": "zip_double_build",
+      "sha256": "897981393e637d3529223636664aacdec5549812cfbbacfa4693fc3bc84e7f9e",
+      "status": "PASS_IDENTICAL"
+    },
+    {
+      "name": "git_head_only_selection",
+      "status": "PASS",
+      "tracked": [
+        "tracked.txt"
+      ],
+      "untracked_excluded": true
+    },
+    {
+      "name": "duplicate_active_path_hash_normalization",
+      "records": [
+        [
+          "safe/evidence.json",
+          "1111111111111111111111111111111111111111111111111111111111111111"
+        ]
+      ],
+      "status": "PASS"
+    },
+    {
+      "name": "dirty_worktree_policy_ignored",
+      "observed": {
+        "policy": "committed"
+      },
+      "status": "PASS"
+    },
+    {
+      "command_count": 42,
+      "name": "complete_regeneration_plan",
+      "required_commands": [
+        "cut_cyclic_verify_optimized",
+        "cut_global_transfer_release_optimized",
+        "cut_record39_audit",
+        "cut_record43_audit",
+        "cut_record60_audit",
+        "cut_signed_pair_mutations",
+        "probe_hour_scale_producer",
+        "sharpness_krawczyk_producer",
+        "sharpness_topology_alln_producer"
+      ],
+      "status": "PASS"
+    }
+  ],
+  "cut_single_minor_producer_sha256": "850fd782f2edc868086cb3bb277d261fe03d619105f3c69a82bf29f418fd9cd0",
+  "fileset_policy_sha256": "2ef8f0553c85bef77b4279662d6dfebc12884e185292f38b7c9ace24d04c3844",
+  "mutation_count": 24,
+  "mutations": [
+    {
+      "diagnostic": "('stale file SHA-256', 'a.txt', '0000000000000000000000000000000000000000000000000000000000000000', '48aa6cae8c70abdb28631d22b316e6d9f9d0768ec2911de7090e248b2afe6ca1')",
+      "expected_failure_class": "stale file SHA-256",
+      "name": "stale_checksum",
+      "status": "REJECTED"
+    },
+    {
+      "diagnostic": "('archive member hash or size', 'a.txt')",
+      "expected_failure_class": "archive member hash or size",
+      "name": "stale_archive_member_hash",
+      "status": "REJECTED"
+    },
+    {
+      "diagnostic": "SELF_REFERENTIAL_ARCHIVE_HASH",
+      "expected_failure_class": "SELF_REFERENTIAL_ARCHIVE_HASH",
+      "name": "self_referential_archive_hash",
+      "status": "REJECTED"
+    },
+    {
+      "diagnostic": "('self-referential checksum list', 'RELEASE_ASSET_SHA256SUMS')",
+      "expected_failure_class": "self-referential checksum list",
+      "name": "self_referential_checksum_list",
+      "status": "REJECTED"
+    },
+    {
+      "diagnostic": "('path traversal forbidden', '../escape')",
+      "expected_failure_class": "path traversal forbidden",
+      "name": "path_traversal_primitive",
+      "status": "REJECTED"
+    },
+    {
+      "diagnostic": "('path traversal forbidden', '../escape')",
+      "expected_failure_class": "path traversal forbidden",
+      "name": "path_traversal_zip",
+      "status": "REJECTED"
+    },
+    {
+      "diagnostic": "noncanonical ZIP member mtime",
+      "expected_failure_class": "noncanonical ZIP member mtime",
+      "name": "noncanonical_zip_timestamp",
+      "status": "REJECTED"
+    },
+    {
+      "diagnostic": "('noncanonical manifest mode', 'a.txt', 384)",
+      "expected_failure_class": "noncanonical manifest mode",
+      "name": "noncanonical_tar_mode",
+      "status": "REJECTED"
+    },
+    {
+      "diagnostic": "OPTIMIZED_PYTHON_FORBIDDEN",
+      "expected_failure_class": "OPTIMIZED_PYTHON_FORBIDDEN",
+      "name": "optimized_input_gate",
+      "status": "REJECTED"
+    },
+    {
+      "diagnostic": "OPTIMIZED_PYTHON_FORBIDDEN",
+      "expected_failure_class": "OPTIMIZED_PYTHON_FORBIDDEN",
+      "name": "optimized_archive_builder",
+      "status": "REJECTED"
+    },
+    {
+      "diagnostic": "('FORBIDDEN_ACTIVE_EVIDENCE', 'cut_recovery/upstream_frozen/pointwise_cut_certificate.json')",
+      "expected_failure_class": "FORBIDDEN_ACTIVE_EVIDENCE",
+      "name": "forbidden_active_evidence",
+      "status": "REJECTED"
+    },
+    {
+      "diagnostic": "('active evidence path required', None)",
+      "expected_failure_class": "active evidence path required",
+      "name": "missing_active_evidence_path",
+      "status": "REJECTED"
+    },
+    {
+      "diagnostic": "('source build command policy', ['latexmk', '-pdf', 'main.tex'])",
+      "expected_failure_class": "source build command policy",
+      "name": "wrong_source_build_engine",
+      "status": "REJECTED"
+    },
+    {
+      "diagnostic": "('Tectonic executable SHA-256 policy', 'cc2b6e93982678c89cfebb386ba9f95d25be2abd757fe6ffcb0053cca787948c', '38eff9059ed622672c9a2590415a8f01c043df4232baa459628a2cd86e512d95')",
+      "expected_failure_class": "Tectonic executable SHA-256 policy",
+      "name": "fake_tectonic_executable",
+      "status": "REJECTED"
+    },
+    {
+      "diagnostic": "('PDF source-date epoch policy', 1787677102, 1787677101)",
+      "expected_failure_class": "PDF source-date epoch policy",
+      "name": "wrong_pdf_source_date_epoch",
+      "status": "REJECTED"
+    },
+    {
+      "diagnostic": "('source build environment policy', {'SOURCE_DATE_EPOCH': '1787677102', 'TZ': 'UTC', 'LC_ALL': 'C'})",
+      "expected_failure_class": "source build environment policy",
+      "name": "inconsistent_source_build_environment",
+      "status": "REJECTED"
+    },
+    {
+      "diagnostic": "('source archive member differs from HEAD', 'article', 'main.tex')",
+      "expected_failure_class": "source archive member differs from HEAD",
+      "name": "pdf_equivalent_source_archive_tamper",
+      "status": "REJECTED"
+    },
+    {
+      "diagnostic": "release fileset schema",
+      "expected_failure_class": "release fileset schema",
+      "name": "malformed_fileset_policy",
+      "status": "REJECTED"
+    },
+    {
+      "diagnostic": "('submission packages are not READY', 'NOT_READY', 0, 1)",
+      "expected_failure_class": "submission packages are not READY",
+      "name": "not_ready_submission_report",
+      "status": "REJECTED"
+    },
+    {
+      "diagnostic": "('not a ZIP submission package', 'systematic_biology', '/var/folders/cp/bbqcpp814bjd_6mfhk6lxf7r0000gn/T/k3p-release-fake-submissions-duvpfsiv/first.bin')",
+      "expected_failure_class": "not a ZIP submission package",
+      "name": "arbitrary_submission_files",
+      "status": "REJECTED"
+    },
+    {
+      "diagnostic": "('submission package kind', 'systematic_biology', 'journal_of_mathematical_biology')",
+      "expected_failure_class": "submission package kind",
+      "name": "mislabeled_submission_archive",
+      "status": "REJECTED"
+    },
+    {
+      "diagnostic": "('journal package exact HEAD/source-map member set', 'systematic_biology', [], ['MANIFEST.json'])",
+      "expected_failure_class": "journal package exact HEAD/source-map member set",
+      "name": "malicious_submission_extra",
+      "status": "REJECTED"
+    },
+    {
+      "diagnostic": "('command timeout', 'timeout_fixture', 1)",
+      "expected_failure_class": "command timeout",
+      "name": "enforced_command_timeout",
+      "status": "REJECTED"
+    },
+    {
+      "diagnostic": "command timeout descendant process group killed",
+      "expected_failure_class": "command timeout",
+      "name": "enforced_descendant_timeout",
+      "status": "REJECTED"
+    }
+  ],
+  "payload_sha256": "32c1cead12dc49f6b211b958d86813499f6468d95df72cd90f4f364058062141",
+  "probe_mutation_driver_sha256": "cd76de5d1f489f76336882553666c1555b71157aaf3b80fd3fde9fb2a508139e",
+  "rejected": 24,
+  "release_common_sha256": "698542d014ee78c958a77396f7a8066ba48a27af0862694b3c109fa2e59cbaa6",
+  "release_input_verifier_sha256": "7afe62f938bc80d9f7fcf57344351473978b425850bc65632794003364aabba6",
+  "release_suite_sha256": "f3fb0b0a8f69a5995a29a908d7a1dea112a44418d920a5c511abb3aa8c3cd96a",
+  "release_verifier_sha256": "55eb5344ba5319eeec198efb1d41b8f0ee2b244e4afdc7a50e36f458a2ddca74",
+  "schema": "k3p-release-engineering-mutations-v1",
+  "source_reproduction_verifier_sha256": "b61c4b5b3bbfd904e2da5b89e50ec24ba6b5434b3fbd14191cf5623a5968e691",
+  "status": "PASS",
+  "submission_validator_mutations_sha256": "a39accf6c5fc61d9afe51d29318b537c6fa8b7e79ebd1a9503a8501bb4913f02",
+  "submission_validator_sha256": "712e9831305584d3755e6e06bdc317a3be2cc7d77df9f82646137e5d12922af8",
+  "survived": 0,
+  "verifier_sha256": "391653e5fd0186c0767e44aeb7ca983b6671b9f0e290e68b2d483a3a2e06057b"
+}

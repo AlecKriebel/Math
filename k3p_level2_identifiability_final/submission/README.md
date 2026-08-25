@@ -17,7 +17,12 @@ wrapper uses a separate 150--250 word journal abstract.
 
 Every release-time value that has not been supplied is written as an explicit
 `@@TOKEN@@`. The validator treats every such token as a blocker and reports
-`NOT_READY`. It also reports the intentionally absent PDFs as release blockers.
+`NOT_READY`. It recursively scans all materialized source-map inputs, including
+the shared and canonical manuscript trees.  It also reports the intentionally
+absent PDFs/source set and each `DRAFT_NOT_READY` manifest as release blockers.
+Changing a `present` Boolean is insufficient: every present upload must name an
+actual project file with exact byte count and SHA-256, and every PDF must bind a
+visual-QA report.  A `READY` manifest may retain no declared release blockers.
 Nothing here asserts a DOI, license, funding statement, competing-interest
 statement, corresponding-author contact detail, submission exclusivity, or
 repository deposit that has not been confirmed by the author.
