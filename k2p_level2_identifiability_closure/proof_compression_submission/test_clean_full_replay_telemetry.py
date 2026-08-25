@@ -46,6 +46,8 @@ class Fixture:
         self.base = base
         self.checkout = base / "checkout"
         self.checkout.mkdir()
+        self.project_in_repo = "research/programs/k2p_fixture"
+        self.project = self.checkout / self.project_in_repo
         self.report = base / "report.json"
         self.time_l = base / "time-l.txt"
         self.output = base / "telemetry.json"
@@ -53,7 +55,7 @@ class Fixture:
         require_ok(run(["git", "config", "user.name", "Telemetry Test"], self.checkout))
         require_ok(run(["git", "config", "user.email", "test@example.invalid"], self.checkout))
         for index, relative in enumerate(SOURCE_FILES):
-            path = self.checkout / relative
+            path = self.project / relative
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(f"source {index}\n", encoding="utf-8")
         self.write_lock()
@@ -75,7 +77,7 @@ class Fixture:
         )
 
     def write_lock(self, *, valid_payload: bool = True) -> None:
-        path = self.checkout / "work/final_theorem_release/RELEASE_LOCK.json"
+        path = self.project / "work/final_theorem_release/RELEASE_LOCK.json"
         path.parent.mkdir(parents=True, exist_ok=True)
         value = {
             "blockers": [],
@@ -95,7 +97,7 @@ class Fixture:
 
     def lock_payload(self) -> str:
         return json.loads(
-            (self.checkout / "work/final_theorem_release/RELEASE_LOCK.json").read_text()
+            (self.project / "work/final_theorem_release/RELEASE_LOCK.json").read_text()
         )["payload_sha256"]
 
     def write_report(self, **changes: object) -> None:
@@ -131,6 +133,8 @@ class Fixture:
             mode,
             "--checkout-root",
             str(self.checkout),
+            "--project-in-repo",
+            self.project_in_repo,
             "--source-commit",
             self.commit,
             "--report",
@@ -160,9 +164,10 @@ class TelemetryProducerTests(unittest.TestCase):
             value = json.loads(fixture.output.read_text())
             self.assertEqual(value["schema"], "k2p-final-clean-full-replay-telemetry-v1")
             self.assertEqual(value["git_commit"], fixture.commit)
+            self.assertEqual(value["project_in_repo"], fixture.project_in_repo)
             self.assertNotIn("completed_utc", value)
             self.assertEqual(len(value["submission_sources"]), 5)
-            first_source = fixture.checkout / SOURCE_FILES[0]
+            first_source = fixture.project / SOURCE_FILES[0]
             self.assertEqual(
                 value["submission_sources"][SOURCE_FILES[0]]["sha256"],
                 hashlib.sha256(first_source.read_bytes()).hexdigest(),
@@ -179,7 +184,7 @@ class TelemetryProducerTests(unittest.TestCase):
             self.assertNotEqual(attached.returncode, 0)
             self.assertIn("DETACHED_HEAD_REQUIRED", attached.stderr)
             require_ok(run(["git", "checkout", "--detach", "-q", fixture.commit], fixture.checkout))
-            (fixture.checkout / SOURCE_FILES[0]).write_text("dirty\n")
+            (fixture.project / SOURCE_FILES[0]).write_text("dirty\n")
             dirty = run(fixture.command("--write"))
             self.assertNotEqual(dirty.returncode, 0)
             self.assertIn("DIRTY_CHECKOUT", dirty.stderr)
@@ -225,6 +230,22 @@ class TelemetryProducerTests(unittest.TestCase):
             require_ok(run(fixture.command("--write")))
             value = json.loads(fixture.output.read_text())
             self.assertEqual(value["time_l"]["peak_memory_footprint_bytes"], 500000)
+
+    def test_project_in_repo_prefix_fails_closed(self) -> None:
+        temporary, fixture = self.fixture()
+        with temporary:
+            wrong = run(
+                fixture.command(
+                    "--write", "--project-in-repo", "research/programs/not-k2p"
+                )
+            )
+            self.assertNotEqual(wrong.returncode, 0)
+            self.assertIn("CHECKOUT_FILE_MISSING", wrong.stderr)
+            unsafe = run(
+                fixture.command("--write", "--project-in-repo", "../k2p_fixture")
+            )
+            self.assertNotEqual(unsafe.returncode, 0)
+            self.assertIn("UNSAFE_PROJECT_IN_REPO", unsafe.stderr)
 
     def test_output_replacement_is_explicit_and_drift_fails_check(self) -> None:
         temporary, fixture = self.fixture()

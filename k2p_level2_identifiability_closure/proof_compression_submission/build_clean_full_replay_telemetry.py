@@ -96,7 +96,34 @@ def run_git(root: Path, *arguments: str, allow_failure: bool = False) -> subproc
     return result
 
 
-def safe_checkout_file(root: Path, relative: str) -> Path:
+def parse_project_in_repo(value: str) -> PurePosixPath:
+    if value == ".":
+        return PurePosixPath()
+    require(
+        bool(value)
+        and not value.startswith("/")
+        and all(part not in {"", ".", ".."} for part in value.split("/")),
+        "UNSAFE_PROJECT_IN_REPO",
+        value,
+    )
+    pure = PurePosixPath(value)
+    require(not pure.is_absolute() and bool(pure.parts), "UNSAFE_PROJECT_IN_REPO", value)
+    return pure
+
+
+def current_project_in_repo() -> PurePosixPath:
+    result = run_git(PROJECT, "rev-parse", "--show-toplevel")
+    repository = Path(result.stdout.decode().strip()).resolve()
+    try:
+        relative = PROJECT.resolve().relative_to(repository)
+    except ValueError as error:
+        raise TelemetryFailure("CURRENT_PROJECT_OUTSIDE_GIT_TOPLEVEL") from error
+    value = relative.as_posix()
+    require(value != ".", "CURRENT_PROJECT_IN_REPO_PREFIX_EMPTY")
+    return parse_project_in_repo(value)
+
+
+def repo_lookup(project_in_repo: PurePosixPath, relative: str) -> PurePosixPath:
     pure = PurePosixPath(relative)
     require(
         not pure.is_absolute()
@@ -105,15 +132,22 @@ def safe_checkout_file(root: Path, relative: str) -> Path:
         "UNSAFE_CHECKOUT_PATH",
         relative,
     )
+    return project_in_repo / pure
+
+
+def safe_checkout_file(
+    root: Path, project_in_repo: PurePosixPath, relative: str
+) -> Path:
+    lookup = repo_lookup(project_in_repo, relative)
     cursor = root
-    for part in pure.parts:
+    for part in lookup.parts:
         cursor = cursor / part
         try:
             mode = cursor.lstat().st_mode
         except FileNotFoundError as error:
-            raise TelemetryFailure(f"CHECKOUT_FILE_MISSING:{relative}") from error
-        require(not stat.S_ISLNK(mode), "CHECKOUT_PATH_SYMBOLIC", relative)
-    require(cursor.is_file(), "CHECKOUT_PATH_NOT_REGULAR", relative)
+            raise TelemetryFailure(f"CHECKOUT_FILE_MISSING:{lookup.as_posix()}") from error
+        require(not stat.S_ISLNK(mode), "CHECKOUT_PATH_SYMBOLIC", lookup.as_posix())
+    require(cursor.is_file(), "CHECKOUT_PATH_NOT_REGULAR", lookup.as_posix())
     return cursor
 
 
@@ -140,18 +174,23 @@ def validate_checkout(raw_root: Path, source_commit: str) -> Path:
     return root
 
 
-def tracked_file_row(root: Path, relative: str) -> dict[str, Any]:
-    path = safe_checkout_file(root, relative)
-    tracked = run_git(root, "ls-files", "--error-unmatch", "--", relative, allow_failure=True)
-    require(tracked.returncode == 0, "CHECKOUT_FILE_NOT_TRACKED", relative)
-    committed = run_git(root, "cat-file", "-e", f"HEAD:{relative}", allow_failure=True)
-    require(committed.returncode == 0, "CHECKOUT_FILE_NOT_IN_COMMIT", relative)
+def tracked_file_row(
+    root: Path, project_in_repo: PurePosixPath, relative: str
+) -> dict[str, Any]:
+    lookup = repo_lookup(project_in_repo, relative).as_posix()
+    path = safe_checkout_file(root, project_in_repo, relative)
+    tracked = run_git(root, "ls-files", "--error-unmatch", "--", lookup, allow_failure=True)
+    require(tracked.returncode == 0, "CHECKOUT_FILE_NOT_TRACKED", lookup)
+    committed = run_git(root, "cat-file", "-e", f"HEAD:{lookup}", allow_failure=True)
+    require(committed.returncode == 0, "CHECKOUT_FILE_NOT_IN_COMMIT", lookup)
     data = path.read_bytes()
     return {"bytes": len(data), "sha256": sha256_bytes(data)}
 
 
-def validate_release_lock(root: Path) -> tuple[dict[str, Any], dict[str, Any]]:
-    path = safe_checkout_file(root, LOCK_RELATIVE)
+def validate_release_lock(
+    root: Path, project_in_repo: PurePosixPath
+) -> tuple[dict[str, Any], dict[str, Any]]:
+    path = safe_checkout_file(root, project_in_repo, LOCK_RELATIVE)
     lock, data = read_json_object(path, "RELEASE_LOCK")
     require(lock.get("schema") == LOCK_SCHEMA, "RELEASE_LOCK_SCHEMA_MISMATCH")
     claimed = lock.get("payload_sha256")
@@ -166,7 +205,7 @@ def validate_release_lock(root: Path) -> tuple[dict[str, Any], dict[str, Any]]:
     require(lock.get("promotion_ready") is True, "RELEASE_LOCK_NOT_PROMOTION_READY")
     require(lock.get("blockers") == [], "RELEASE_LOCK_HAS_BLOCKERS")
     require(lock.get("missing_required_files") == [], "RELEASE_LOCK_MISSING_FILES")
-    tracked_file_row(root, LOCK_RELATIVE)
+    tracked_file_row(root, project_in_repo, LOCK_RELATIVE)
     row = {
         "bytes": len(data),
         "path": LOCK_RELATIVE,
@@ -315,8 +354,12 @@ def parse_time_l(path: Path, internal_elapsed: float) -> dict[str, Any]:
 
 def build_payload(args: argparse.Namespace) -> dict[str, Any]:
     root = validate_checkout(args.checkout_root, args.source_commit)
-    sources = {relative: tracked_file_row(root, relative) for relative in SOURCE_FILES}
-    _, lock_row = validate_release_lock(root)
+    project_in_repo = parse_project_in_repo(args.project_in_repo)
+    sources = {
+        relative: tracked_file_row(root, project_in_repo, relative)
+        for relative in SOURCE_FILES
+    }
+    _, lock_row = validate_release_lock(root, project_in_repo)
     report, _, report_row = validate_report(args.report, lock_row["payload_sha256"])
     time_l = parse_time_l(args.time_l, report_row["internal_elapsed_seconds"])
     # Close the observation window: a concurrent or accidental edit while the
@@ -332,6 +375,7 @@ def build_payload(args: argparse.Namespace) -> dict[str, Any]:
         "status": "PASS",
         "git_commit": args.source_commit,
         "clean_detached_checkout": True,
+        "project_in_repo": args.project_in_repo,
         "command": command,
         "submission_sources": sources,
         "release_lock": lock_row,
@@ -384,6 +428,7 @@ def main() -> int:
     mode.add_argument("--write", action="store_true")
     mode.add_argument("--check", action="store_true")
     parser.add_argument("--checkout-root", type=Path, required=True)
+    parser.add_argument("--project-in-repo")
     parser.add_argument("--source-commit", required=True)
     parser.add_argument("--report", type=Path, required=True)
     parser.add_argument("--time-l", type=Path, required=True)
@@ -391,6 +436,12 @@ def main() -> int:
     parser.add_argument("--timeout-seconds", type=float, default=7200.0)
     parser.add_argument("--replace-existing", action="store_true")
     args = parser.parse_args()
+    if args.project_in_repo is None:
+        prefix = current_project_in_repo()
+        args.project_in_repo = prefix.as_posix()
+    else:
+        prefix = parse_project_in_repo(args.project_in_repo)
+        args.project_in_repo = prefix.as_posix() if prefix.parts else "."
     require(
         math.isfinite(args.timeout_seconds) and args.timeout_seconds > 0,
         "TIMEOUT_SECONDS_INVALID",
