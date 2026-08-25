@@ -161,7 +161,14 @@ def archive_type(path: Path) -> str:
 
 def build_records() -> list[dict[str, Any]]:
     records: list[dict[str, Any]] = []
-    for path in sorted(p for p in FROZEN.rglob("*") if p.is_file()):
+    attachment_roots = (
+        FROZEN / "k3p_cloud_artifacts",
+        FROZEN / "referenced_chat_manuscripts",
+        FROZEN / "specification",
+    )
+    for path in sorted(
+        p for base in attachment_roots for p in base.rglob("*") if p.is_file()
+    ):
         rel = path.relative_to(FROZEN).as_posix()
         original_name = ORIGINAL_NAMES.get(rel, path.name)
         detected, encoded_provenance = detect(path)
@@ -245,7 +252,10 @@ def write_locks(records: list[dict[str, Any]]) -> None:
         json.dumps(lock, indent=2, sort_keys=True) + "\n", encoding="utf-8"
     )
 
-    hash_paths = [ROOT / rec["frozen_local_path"] for rec in records]
+    # The root checksum list covers every frozen file, including separately
+    # locked companion dependencies.  The attachment inventory itself remains
+    # the exact 36-file initial corpus.
+    hash_paths = sorted(path for path in FROZEN.rglob("*") if path.is_file())
     hash_paths.extend([ROOT / "FINAL_CLAIM_LOCK.json", ROOT / "FINAL_CLAIM_LOCK.md"])
     checksum_lines = [
         f"{sha256(path)}  {path.relative_to(ROOT).as_posix()}" for path in sorted(hash_paths)
@@ -282,4 +292,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
