@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "lock_version": "1.0.0",
+  "status": "hypothesis_under_independent_local_replay",
+  "model": "K3P",
+  "network_class": "binary standard semi-directed strongly tree-child level-2",
+  "domains": {
+    "principal_positive": {
+      "variables": ["c", "g", "t"],
+      "bounds": ["0<c<1", "0<g<1", "0<t<1"],
+      "transition_inequalities": [
+        "1+c-g-t>0",
+        "1-c+g-t>0",
+        "1-c-g+t>0"
+      ],
+      "inheritance": "0<lambda<1"
+    },
+    "strict_continuous_time": {
+      "variables": ["c", "g", "t"],
+      "bounds": ["0<c<1", "0<g<1", "0<t<1"],
+      "rate_inequalities": ["c>g*t", "g>c*t", "t>c*g"],
+      "inheritance": "0<lambda<1"
+    }
+  },
+  "claimed_outcome": "K3P-SAME",
+  "classification": {
+    "principal_positive": "N <=_(3,+) N' iff N ==_triangle N' iff N bowtie_(3,+) N'",
+    "strict_continuous_time": "N <=_(3,CT) N' iff N ==_triangle N' iff N bowtie_(3,CT) N'",
+    "proper_one_sided_containment_in_strong_class": false
+  },
+  "triangle": {
+    "generic_normalized_rank": 14,
+    "ambient_normalized_dimension": 15,
+    "closure": "H14=Z(F_H14)",
+    "common_strict_ct_smooth_germ_dimension": 14
+  },
+  "four_port": {
+    "canonical_nontrivial_orbits": 14,
+    "raw_records_in_orbits": 38,
+    "separate_sink_swap_records": 2,
+    "post_quadratic_records": 40,
+    "polynomially_separated": [
+      "H21-01", "H21-03", "H21-04", "H21-05", "H21-06",
+      "L20-01", "L21a-01", "L21b-01", "L23-02"
+    ],
+    "directed_rank_separated": [
+      "H21-02", "L20-02", "L21a-02", "L21b-02", "L23-01"
+    ],
+    "new_symmetric_moves": 0,
+    "proper_directed_containments": 0,
+    "unresolved": 0
+  },
+  "sharpness": {
+    "base_leaf_count": 3,
+    "class": "W_TC\\S_TC",
+    "rooting_censuses": {"W3": [5, 2, 3], "W3_prime": [7, 2, 5]},
+    "base_common_germ_dimension": 15,
+    "all_n_minimum": 3,
+    "all_n_common_germ_dimension": "6*n-3",
+    "strict_continuous_time": true
+  },
+  "outer_collision": {
+    "source_rank": 9,
+    "target_rank": 15,
+    "collision_locus_dimension": 23,
+    "strict_continuous_time_deformation": true,
+    "inside_weak_tree_child": false
+  },
+  "permitted_final_statuses": [
+    "K3P-SAME", "K3P-MODIFIED", "K3P-STRONG-FAILURE"
+  ]
+}
+
