@@ -168,3 +168,30 @@ aggregate 204-direction verifier and the noncircular global localization
 argument are still being completed.
 
 Best-guess completion toward the full paper/certification/release goal: **43%**.
+
+## 2026-08-25T08:22:33-07:00 — Aggregate 204-direction certificate sealed
+
+- Rebuilt all 216 raw labelled split entries directly from the frozen
+  switching signatures, removed exactly 12 splits displayed by every
+  switching, and obtained 204 unique normalized wrong-split directions.
+- Sealed the exact disjoint proof partition
+  `180 + 12 + 10 + 1 + 1 = 204`: single-minor, signed-pair, cyclic-six-minor,
+  record-43 transport, and record-60 cyclic certificates.
+- Replayed the 180 single-minor reduced polynomials and their strict
+  tensor-Bernstein signs with an independent compiler.  The aggregate proof
+  imports neither the exploratory atlas nor its producer.
+- Eliminated the known record-60 dummy-label automorphism risk by direct
+  labelled enumeration; no automorphism transport is used anywhere in this
+  final coverage argument.
+- A fresh local run of the fail-closed builder and standalone verifier passed,
+  and all 34 subprocess-isolated adversarial mutations were rejected.
+- This checkpoint certifies the complete finite pointwise obstruction.  The
+  final cut-equality theorem still awaits promotion of the separate
+  noncircular global localization certificate.
+
+Strongest verified result at this checkpoint: every one-active wrong-split
+direction in the complete 204-direction universe is pointwise incompatible
+with a swallowed source bridge throughout strict `D_{3,+}`, with exact
+aggregate coverage and adversarial replay.
+
+Best-guess completion toward the full paper/certification/release goal: **47%**.

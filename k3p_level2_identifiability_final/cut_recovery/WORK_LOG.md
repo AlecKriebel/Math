@@ -64,3 +64,19 @@
   gates.  No universal arbitrary-network pointwise cut theorem is asserted.
 
 Completion estimate for the strong-class cross-bridge subprogram: **92%**.
+
+## 2026-08-25T08:22:33-07:00 — aggregate finite certificate checkpoint
+
+- Recompiled the 216 raw labelled split entries, removed exactly 12
+  universally displayed splits, and independently normalized all 204
+  remaining directions without automorphism transport.
+- Verified the disjoint coverage partition `180 + 12 + 10 + 1 + 1 = 204`
+  and replayed all 180 single-minor tensor-Bernstein certificates from the
+  frozen switching data.
+- Bound every residual certificate family by exact byte hash and fail-closed
+  PASS status.  The standalone aggregate verifier passed and 34/34 mutations
+  were rejected in a fresh local run.
+- Claim boundary: the finite pointwise obstruction is now sealed.  Cut-set
+  equality still depends on the separate crossing-quartet localization proof.
+
+Completion estimate for the strong-class cross-bridge subprogram: **96%**.
