@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "lock_version": "1.1.0",
-  "status": "classification_unpromoted_cut_transfer_certified_restoration_and_release_pending",
+  "lock_version": "1.2.0",
+  "status": "CERTIFIED_K3P_SAME_MATHEMATICAL_CLASSIFICATION",
   "model": "K3P",
   "network_class": "binary standard semi-directed strongly tree-child level-2",
   "domains": {
@@ -22,7 +22,39 @@
       "inheritance": "0<lambda<1"
     }
   },
+  "continuous_time_specialization": {
+    "status": "CERTIFIED",
+    "strict_CT_is_open_full_dimensional_subset_of_D3_plus": true,
+    "spectral_parameterization": "c=y*z, g=x*z, t=x*y with 0<x,y,z<1",
+    "inverse_parameterization": [
+      "x=sqrt(g*t/c)",
+      "y=sqrt(c*t/g)",
+      "z=sqrt(c*g/t)"
+    ],
+    "principal_margin_bounds": [
+      "1+y*z-x*z-x*y > (1-y)*(1-z) > 0",
+      "1+x*z-y*z-x*y > (1-x)*(1-z) > 0",
+      "1+x*y-y*z-x*z > (1-x)*(1-y) > 0"
+    ],
+    "necessity_transfer": "Every source-relative regular full-dimensional CT containment witness is an open D3+ containment witness, so the certified principal-domain necessity theorem applies.",
+    "sufficiency_transfer": "The common H14 triangle germ and simultaneous physical bridge gluing are independently certified inside the strict continuous-time domain."
+  },
   "claimed_outcome": "K3P-SAME",
+  "certification": {
+    "classification_gate": "reproducibility/verify_k3p_same_classification.py",
+    "classification_gate_sha256": "015a6dac8b61a5b6ee5b6ef3e2d0cdc70ede7e2b337b20928be4d6d578c20d73",
+    "classification_gate_report": "reproducibility/K3P_SAME_CLASSIFICATION_GATE_REPORT.json",
+    "classification_gate_report_schema": "k3p-same-integrated-classification-gate-v2",
+    "classification_gate_report_status": "CERTIFIED_K3P_SAME",
+    "classification_mutation_gate": "reproducibility/test_k3p_same_classification_mutations.py",
+    "classification_mutation_gate_sha256": "9f300d648c1a7d5b39dd5031825637b730937495f07eae8239a525df5f9aa063",
+    "classification_mutation_report": "reproducibility/K3P_SAME_CLASSIFICATION_MUTATION_REPORT.json",
+    "classification_mutation_report_sha256": "8457a1541ac2b41f5bb4f91cfec0111deec5d282b753c3233c581e31fb057f8d",
+    "classification_mutation_report_status": "PASS_16_OF_16_REJECTED",
+    "mathematical_status": "CERTIFIED",
+    "restoration_status": "PASS_COMPLETE_K3P_ALGEBRA",
+    "unresolved_mathematical_gates": 0
+  },
   "cut_transfer": {
     "status": "CERTIFIED",
     "scope": "source-relative regular full-dimensional containment between binary standard semi-directed strongly tree-child level-2 networks",
@@ -92,10 +124,18 @@
     "K3P-SAME", "K3P-MODIFIED", "K3P-STRONG-FAILURE"
   ],
   "final_promotion": {
-    "status": "PENDING",
-    "remaining_load_bearing_gates": [
-      "complete K3P restoration algebra and independent replay",
-      "final integrated global/release replay"
-    ]
+    "status": "CERTIFIED_K3P_SAME",
+    "remaining_load_bearing_mathematical_gates": [],
+    "remaining_nonmathematical_gates": [
+      "manuscript theorem-proof integration and author review",
+      "reader-supplement integration and cross-reference audit",
+      "PDF build, render, and visual quality assurance",
+      "clean-room release archive and checksum engineering",
+      "journal submission-format and metadata package engineering"
+    ],
+    "submission_ready": false,
+    "human_review_complete": false,
+    "doi_assigned": false,
+    "license_selected": false
   }
 }

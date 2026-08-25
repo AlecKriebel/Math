@@ -266,3 +266,83 @@ fail-closed mutations.  No active theorem component relies on the withdrawn
 universal pointwise cut-rank equivalence.
 
 Best-guess completion toward the full paper/certification/release goal: **58%**.
+
+## 2026-08-25T09:40:52-07:00 — Mathematical classification certified K3P-SAME
+
+- Integrated the complete K3P restoration release into the probe restoration
+  manifest without changing the frozen graph-contract census.  The active
+  minimal proof has 36,568 K3P terminal rows and zero active continuations;
+  36,792 legacy/full-forest leaves, 32 legacy structural continuations, and
+  256 depth-two edges are recorded separately as a redundant replay.
+- Bound the restoration producer manifest, independent non-producer replay,
+  and 20/20 rejected mutations.  Historical K2P algebra, K2P sector equality,
+  target-open marginal assumptions, and optimized execution remain forbidden.
+- Closed the strict-continuous-time scope explicitly.  The exact
+  parameterization `c=yz`, `g=xz`, `t=xy` proves that strict CT is an open
+  full-dimensional subset of `D_{3,+}`; thus CT containment necessity reduces
+  to the certified principal-domain theorem.  The existing strict-CT `H14`
+  contextual germ and simultaneous physical gluing prove sufficiency.
+- Added a fail-closed integrated theorem verifier that freshly checks the
+  primary 28/28 chain, 14 orbits and `38+2` census, sharpness, ordinary and
+  optimized cut-transfer releases plus adversarial evidence, global
+  infrastructure, the full probe replay, restoration, and relative-rank-14
+  triangle sufficiency.
+- The uninterrupted integrated replay passed in 187.13 seconds.  Its ten
+  sub-replay runtimes include 37.42 seconds for the primary chain, 16.65 seconds
+  for all probe ledgers, 75.63 seconds for independent restoration, and 35.33
+  seconds for the restoration mutation suite.  The report payload is
+  `a6b7e9e3f3da759346886e58543dd8d8b9528062d6b1f53dc59dbe56b42fb691`;
+  the report file SHA-256 is
+  `9a9e256bf63fc7928a8de57db68371143d35fb42a770300f763e532bf119064f`.
+- A separate subprocess-isolated integration suite rejected 16/16 mutations,
+  including the withdrawn universal pointwise cut-rank substitution, triangle
+  rank 15, proper strong-class containment, restoration census conflation,
+  producer/K2P reactivation, CT implication reversal, publication overclaim,
+  and optimized-mode bypass.  Its payload is
+  `2af1e77cc7a356db47f350b9014741da4f53c0baadba08c901e7869a85857df3`.
+- The forced mathematical outcome is now **K3P-SAME**, with no unresolved
+  mathematical gate.  This promotion does not claim submission readiness,
+  completed manuscript/supplement integration, PDF QA, release packaging, a
+  DOI, a license, peer review, or human author review.
+
+Strongest verified result at this checkpoint: for binary standard
+semi-directed strongly tree-child level-2 networks, regular full-dimensional
+K3P containment on both the strict principal and strict continuous-time
+domains is exactly labelled topology equivalence modulo ordinary triangle
+redirection, and there is no proper directed containment inside the strong
+class.  The weak-not-strong family gives the sharp full-dimensional failure.
+
+Best-guess completion toward the mathematical classification goal: **100%**.
+Best-guess completion toward the full paper/certification/release goal: **70%**.
+
+## 2026-08-25T09:57:42-07:00 — Root replay and stable theorem-payload seal
+
+- Replayed the integrated classification from the root workstream without
+  optimization.  All ten proof-family replays passed again, including the
+  complete probe and restoration ledgers, and the separate integration suite
+  rejected 16/16 theorem-boundary mutations.
+- Hardened the top-level report so its mathematical payload excludes expected
+  machine-dependent provenance: wall-clock timings, temporary paths, commands,
+  transcript tails, and transcript byte hashes.  Those fields remain present
+  in the report for inspection.  A direct perturbation test confirmed that the
+  promoted logical payload is invariant under such operational drift.
+- Promoted the report schema to
+  `k3p-same-integrated-classification-gate-v2` and added payload
+  self-verification.  The final replay-stable mathematical payload is
+  `4df663fb70f2adf84cf40af970d5958549ae6d5ad3310585045f6248ecf99fe9`;
+  the checkpoint report file SHA-256 is
+  `2dc2371a185597571e998fe6a271c9f9769e2561f372f14e13328bffea794954`.
+- Rebound the 16/16 mutation certificate to the hardened verifier.  Its logical
+  payload is
+  `a3322a1700380841333d4e609d75b6d3ce3f4eafee9d7b506b59ecb94be9772d`
+  and its file SHA-256 is
+  `8457a1541ac2b41f5bb4f91cfec0111deec5d282b753c3233c581e31fb057f8d`.
+- Updated the active manifest and repaired the top-level claim-lock checksum
+  entries.  This checkpoint still makes no manuscript, PDF, archive, DOI,
+  license, human-review, peer-review, or submission-readiness claim.
+
+Strongest verified result at this checkpoint: **K3P-SAME** is certified with a
+replay-stable logical seal and no stale internal theorem/mutation binding.
+
+Best-guess completion toward the mathematical classification goal: **100%**.
+Best-guess completion toward the full paper/certification/release goal: **72%**.
