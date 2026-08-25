@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "package": "arxiv_source_staging",
+  "status": "DRAFT_NOT_READY",
+  "source_map": [
+    {"source": "submission/arxiv/main_arxiv.tex", "destination": "main.tex"},
+    {"source": "submission/arxiv/00README.json", "destination": "00README.json"},
+    {"source": "submission/shared", "destination": "submission/shared", "mode": "copy_tree"},
+    {"source": "manuscript/sections", "destination": "manuscript/sections", "mode": "copy_tree"},
+    {"source": "manuscript/references.bib", "destination": "manuscript/references.bib"}
+  ],
+  "excluded_patterns": [
+    ".*",
+    "*.aux",
+    "*.bbl",
+    "*.blg",
+    "*.fdb_latexmk",
+    "*.fls",
+    "*.log",
+    "*.out",
+    "*.pdf",
+    "*.synctex.gz",
+    "*.toc",
+    "cover_letter*",
+    "CHECKLIST.md",
+    "metadata.json",
+    "MANIFEST.json",
+    "journal templates"
+  ],
+  "release_blockers": [
+    "resolve all @@TOKEN@@ values",
+    "choose the arXiv category and license in the author-controlled submission flow",
+    "deposit and verify the Zenodo archive and DOI",
+    "materialize a clean source directory from this allowlist",
+    "compile with the current arXiv TeX Live environment and inspect the PDF",
+    "confirm no extraneous, hidden, generated, journal, or referee files are present",
+    "confirm author approval for public posting"
+  ]
+}

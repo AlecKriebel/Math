@@ -1,0 +1,157 @@
+% Named, single-blind journal wrapper. Compile from the project root. The
+% Springer Nature template is recommended but not mandatory; this portable
+% article-class draft is converted only after final source/PDF QA.
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array,enumitem,longtable,tabularx}
+\usepackage{xcolor,url}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,
+  citecolor=green!35!black,urlcolor=blue!55!black]{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+
+\providecommand{\KThreePCanonicalRoot}{manuscript}
+\providecommand{\KThreePSubmissionRoot}{submission}
+\input{\KThreePSubmissionRoot/shared/k3p_common}
+
+\setlist{nosep}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{3em}
+
+\hypersetup{
+  pdftitle={Triangle Hypersurfaces and a Sharp Identifiability Boundary for Level-2 K3P Networks},
+  pdfauthor={Alec Kriebel},
+  pdfsubject={Submission to the Journal of Mathematical Biology},
+  pdfkeywords={phylogenetic networks, Kimura three-parameter model,
+    structural identifiability, stochastic containment, algebraic statistics,
+    computer-assisted proof}
+}
+
+\title{\KThreePTitle}
+\author{Alec Kriebel\\
+\small Independent Researcher, \texttt{\detokenize{@@CITY_COUNTRY@@}}\\
+\small Corresponding author:
+\href{mailto:me@aleckriebel.com}{me@aleckriebel.com}\\
+\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}
+{0009-0001-9320-500X}}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We classify robust stochastic ambiguity for binary standard semi-directed
+strongly tree-child level-2 phylogenetic networks under the Kimura
+three-parameter model. On the principal positive Fourier domain, one network
+has a regular full-dimensional analytic containment germ in another if and
+only if their labelled topologies agree after independent redirection of
+ordinary three-cycle factors. The same criterion characterizes a shared
+full-dimensional germ and remains exact under strict continuous-time edge
+parameters. Consequently, topology is generically identifiable and exactly
+reconstructible modulo this explicit triangle ambiguity.
+
+The proof combines positive bridge factorization, physical marginal
+submersions, a noncircular bridge-split transfer theorem, and finite exact
+classification. Unlike the corresponding reduced-symmetry models, the three
+ordinary triangle orientations have normalized rank 14 and share an
+irreducible quartic hypersurface in the 15-dimensional three-leaf Fourier
+chart. The bridge argument does not assume a universal pointwise noncut rank
+criterion; it uses generic noncut detection and 204 exact one-active
+obstructions under containment. The remaining local census has fourteen
+four-port relation orbits, all separated by polynomial or directed-rank
+certificates. Exact restoration and coherent probes globalize the result.
+
+The strong tree-child hypothesis is sharp: for every number of leaves at
+least three, a weakly but not strongly tree-child pair shares a strict
+continuous-time full-dimensional germ of dimension \(6n-3\). Exact arithmetic,
+independent replay implementations, rigorous interval bounds, and fail-closed
+mutation tests accompany the computer-assisted steps.
+\end{abstract}
+
+\noindent\textbf{Keywords.} phylogenetic networks; Kimura three-parameter
+model; structural identifiability; stochastic containment; algebraic
+statistics; computer-assisted proof.
+
+\medskip
+\noindent\textbf{Mathematics Subject Classification (2020).}
+92B10, 62R01, 14P10, 05C05.
+
+\input{\KThreePSubmissionRoot/shared/canonical_article_body}
+
+\section{Biological interpretation and accessibility}
+
+Phylogenetic networks model histories in which lineages can reticulate as
+well as split. In biological terms, the theorem asks an infinite-data
+question: if every site-pattern probability were known exactly under K3P,
+could a different level-2 reticulation topology explain an open family of the
+same observations? Within the strongly tree-child class, the answer is no
+except for redirecting an ordinary three-cycle, an ambiguity that preserves
+the relevant local observational family.
+
+This identifies a sharp structural boundary, not a claim about practical
+sample size. Strong tree-childness prevents the local compensations that
+otherwise hide topology; immediately outside that class, the certified weak
+examples share a robust full-dimensional family. K3P matters because its
+three substitution sectors vary independently, providing greater biological
+flexibility than JC or K2P while changing the local triangle from an open
+ambient family to a quartic hypersurface.
+
+The result is an information theorem rather than an inference pipeline. It
+does not estimate parameters, quantify finite-sequence error, cover model
+misspecification, or guarantee numerical conditioning. Those questions are
+necessary before applying the exact reconstruction statement to empirical
+sequence data.
+
+\section*{Supplementary Information}
+
+The theorem-to-certificate crosswalk, exact formulas, finite censuses, witness
+selections, and replay boundaries are supplied as Online Resource 1
+(``ESM\_1.pdf'').
+
+\section*{Statements and Declarations}
+
+\subsection*{Funding}
+\texttt{\detokenize{@@FUNDING_STATEMENT@@}}
+
+\subsection*{Competing Interests}
+\texttt{\detokenize{@@COMPETING_INTERESTS_STATEMENT@@}}
+
+\subsection*{Author Contributions}
+Alec Kriebel conceived and directed the study, fixed its mathematical scope
+and conventions, curated the exact reproducibility package, adjudicated the
+proof and audit results, and accepts responsibility for the claims, software,
+and submission.
+
+\subsection*{Data Availability}
+No empirical biological dataset was used. The availability statement for the
+exact certificate records is
+\texttt{\detokenize{@@DATA_AVAILABILITY_STATEMENT@@}}.
+
+\subsection*{Code Availability}
+The exact verifier and replay archive will be deposited at
+\texttt{\detokenize{@@ZENODO_CODE_REVIEW_URL_OR_DOI@@}} under
+\texttt{\detokenize{@@CODE_ARCHIVE_LICENSE@@}}.
+
+\subsection*{Ethics Approval and Consent to Participate}
+Not applicable. This work is mathematical and uses no human participants,
+animals, or empirical biological samples.
+
+\subsection*{Use of Large Language Models and Generative AI}
+Generative AI systems assisted with mathematical exploration, code
+generation, implementation, drafting, and adversarial review. Automated
+claims were not accepted as evidence: active claims are bound to exact
+graph-derived certificates, direct derivations, separately implemented
+replays, rigorous interval arithmetic where used, and fail-closed mutation
+tests. No independent human specialist review is claimed. The author accepts
+responsibility for the mathematical statement, code, and final submission.
+
+{\small
+\bibliographystyle{plain}
+\bibliography{\KThreePCanonicalRoot/references}
+}
+
+\end{document}

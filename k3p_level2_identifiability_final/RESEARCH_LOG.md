@@ -382,3 +382,30 @@ supplement whose current builds are byte reproducible.
 
 Best-guess completion toward the mathematical classification goal: **100%**.
 Best-guess completion toward the full paper/certification/release goal: **82%**.
+
+## 2026-08-25T10:24:06-07:00 — Fail-closed journal and preprint source packages
+
+- Rechecked current official requirements for Systematic Biology, Journal of
+  Mathematical Biology, and arXiv, and created separate named-author source,
+  supplement, metadata, cover-letter, upload-map, and checklist packages.
+- Added shared canonical-body bindings, a clean arXiv allowlist/`00README`, an
+  explicit release-token policy, aggregate validation, and six hostile
+  validator mutations.  All five TeX entry points passed clean no-PDF
+  compilation; the validator mutations pass 6/6.
+- Bound the established correspondence email `me@aleckriebel.com`.  The
+  package remains intentionally `NOT_READY`, with zero structural errors and
+  23 exact release blockers: six absent journal/cover-letter PDFs and 17
+  unresolved human/release tokens covering address/contact details, funding
+  and competing-interest declarations, authorship/submission approvals,
+  arXiv category/license choices, submission date, and the unminted Zenodo
+  record/license.
+- No journal PDF with placeholder metadata was promoted, no license or DOI was
+  inferred, no external communication occurred, and no portal action was
+  attempted.
+
+Strongest verified result at this checkpoint: both journal routes and the
+arXiv route have structurally valid, current, fail-closed source packages that
+identify every remaining author/release decision exactly.
+
+Best-guess completion toward the mathematical classification goal: **100%**.
+Best-guess completion toward the full paper/certification/release goal: **85%**.

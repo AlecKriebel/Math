@@ -1,6 +1,6 @@
 # Current journal requirements snapshot
 
-Checked against the official publisher pages on 2026-08-24.  This is a
+Checked against the official publisher pages on 2026-08-25.  This is a
 preparation checklist, not a submission record.  No journal, editor,
 repository, or other person was contacted.
 
@@ -34,10 +34,13 @@ Official instructions:
 
 Project consequences:
 
-1. Prepare the proof ledgers/certificates as a Dryad-ready data bundle.
-2. Prepare the verifier/source archive as a Zenodo-ready code bundle.
-3. Do not invent either identifier.  Rebuild the Data Availability section
-   after the human obtains the real reviewer URL and DOI.
+1. The article uses no empirical biological dataset.  Confirm at release time
+   whether the portal classifies any generated proof ledger as a dataset
+   requiring Dryad rather than as part of the Zenodo code/certificate record.
+2. Prepare the verifier, exact certificates, and source archive as a
+   Zenodo-ready bundle with repository README files.
+3. Do not invent an identifier.  Rebuild the Data Availability section after
+   the human obtains the real reviewer URL or DOI.
 4. Prepare one line-numbered, review-spaced PDF and one separate supplement
    PDF.  Keep an editable accepted-version LaTeX package ready.
 
@@ -77,7 +80,8 @@ Project consequences:
 
 - Confirm the author affiliation and corresponding email shown in the source.
 - Choose repository and publication licenses; no license is inferred here.
-- Create the Dryad review deposit and Zenodo record and supply their real
-  identifiers.
+- Create any required Dryad review deposit and the Zenodo record, then supply
+  their real identifiers.  No empirical dataset or Dryad identifier is
+  claimed in the draft.
 - Choose a journal and perform the actual portal submission.  The same article
   must not be submitted to both journals simultaneously.
