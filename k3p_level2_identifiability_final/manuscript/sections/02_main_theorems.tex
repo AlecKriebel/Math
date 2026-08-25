@@ -1,0 +1,86 @@
+\section{Main theorems}\label{sec:main-theorems}
+
+We first state the results; definitions appear in \cref{sec:conventions}.
+Every edge is strict and every inheritance probability belongs to \((0,1)\).
+
+\begin{theorem}[K3P-SAME on the principal domain]\label{thm:main}
+Let \(N,N'\) be binary standard semi-directed strongly tree-child level-2
+networks on the same finite labelled leaf set.  Put every edge spectrum in
+
+\[
+ \Dplus=\{(c,g,t)\in(0,1)^3:
+ 1+c-g-t>0,\ 1-c+g-t>0,\ 1-c-g+t>0\}.
+\]
+
+Then
+
+\begin{equation}\label{eq:main-classification}
+ \boxed{
+ N\preceqplus N'
+ \quad\Longleftrightarrow\quad
+ N\trianglerel N'
+ \quad\Longleftrightarrow\quad
+ N\bowtieplus N'.}
+\end{equation}
+
+In particular, no proper one-sided regular full-dimensional containment
+occurs in this class.  The conclusion is not equality of the complete
+stochastic images.
+\end{theorem}
+
+\begin{theorem}[Generic structural identifiability]\label{thm:generic}
+For each fixed \(N\) in the class of \cref{thm:main}, there is a proper
+Zariski-closed set \(E_N\subsetneq\V_N\) such that every exact physical tensor
+\(q\in\M_{3,+}(N)\setminus E_N\) determines the labelled standard
+semi-directed topology of \(N\) uniquely modulo \(\trianglerel\).
+\end{theorem}
+
+\begin{theorem}[Exact reconstruction]\label{thm:reconstruction}
+There is a terminating exact procedure which, given
+\(q\in\M_{3,+}(N)\setminus E_N\) for an unknown network \(N\) in the class,
+returns the unique structural class \([N]_\triangle\).  Here exact input means
+an exact-real representation supporting field operations, polynomial-sign
+decisions, and real-closed-field quantifier elimination.  No bit-complexity,
+conditioning, or finite-sample guarantee is asserted.
+\end{theorem}
+
+\begin{corollary}[Strict continuous-time classification]\label{cor:ct-main}
+The equivalence \eqref{eq:main-classification},
+\cref{thm:generic,thm:reconstruction}, hold after replacing \(\Dplus\) by
+
+\[
+ \Dct=\{(c,g,t)\in(0,1)^3:c>gt,\ g>ct,\ t>cg\}
+\]
+
+and replacing \((3,+)\) by \((3,\mathrm{CT})\) in the observational relations.
+\end{corollary}
+
+\begin{theorem}[Sharpness at weak tree-childness]\label{thm:sharpness}
+For every \(n\ge3\), there are binary level-2 standard semi-directed networks
+\(W_n,W'_n\in W_{\mathrm{TC}}\setminus S_{\mathrm{TC}}\) on the same labelled
+leaf set which are neither labelled-isomorphic nor ordinary-triangle
+equivalent, and whose strict continuous-time K3P images share a common
+full-dimensional regular analytic germ of dimension
+
+\[
+ 15+6(n-3)=6n-3.
+\]
+
+For \(n=3\), both normalized maps have rank \(15\) throughout a certified
+rational box containing a unique common equality-slice point.
+\end{theorem}
+
+\begin{proposition}[Separate outer-class obstruction]\label{prop:outer}
+There is a three-leaf tree and a binary semi-directed level-2 double-theta
+network, the latter outside \(W_{\mathrm{TC}}\), for which the K3P tree germ
+is properly contained in the theta image near a strict continuous-time common
+point.  The normalized ranks are \(9\) and \(15\), respectively, and the
+local theta-parameter collision locus with the tree model has dimension
+\(23\).  This proposition is not the sharp class-boundary example of
+\cref{thm:sharpness}.
+\end{proposition}
+
+Theorems \ref{thm:main}--\ref{thm:sharpness} concern topology and image
+germs.  They neither identify all numerical parameters nor claim that every
+representative of a triangle class realizes every tensor realized by another
+representative.

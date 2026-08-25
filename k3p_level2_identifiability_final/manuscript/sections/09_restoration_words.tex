@@ -1,0 +1,125 @@
+\section{Restoration and arbitrary words}\label{sec:restoration}
+
+The four-port theorem classifies rigid supports, not arbitrary strings of
+labelled subdivisions along core segments.  Two exact extensions close that
+gap: fixed-full restoration recovers roles omitted by a selected support, and
+overlapping probes recover every remaining port and its order.
+
+\subsection{Fixed-full restoration}
+
+The restoration forest is imported only as model-independent graph data:
+parentage, layer order, source and target identities, dummy roles, insertion
+sites, and boundary transports.  Every K2P polynomial and sector equality is
+discarded.  The K3P proof regenerates the selected maps and certificates from
+the literal graphs, using \cref{lem:fixed-restoration} to connect each child
+to the original full relation.
+
+\begin{proposition}[K3P restoration closure]\label{prop:restoration}
+Every one of the 36,568 first-layer fixed-full restoration children is
+excluded by an exact K3P observable.  Their minimal K3P census is
+
+\begin{center}
+\begin{tabular}{lrr}
+\toprule
+certificate & minimal first layer & all-edge replay\\
+\midrule
+displayed-quartet mismatch & 35,758 & 36,006\\
+three-sector tree--sunlet sum of squares & 606 & 614\\
+K3P multihomogeneous quadratic & 148 & 148\\
+active K3P marginal quartic & 56 & 56\\
+\midrule
+total & 36,568 & 36,824\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The 32 nodes that were continuations in the inherited graph forest are
+already terminated by K3P quartics.  The full forest is nevertheless replayed
+as a redundant check: it has 36,824 edges, 256 depth-two edges,
+36,792 legacy leaves, maximum depth two, and zero missing children,
+duplicates, cycles, broken transports, or unresolved rows.
+\end{proposition}
+
+\begin{proof}
+The 614 rows formerly assigned a two-sector \(\mathcal T_i\) identity are
+replaced by the literal K3P three-leaf maps and the six-circuit theorem of
+\cref{prop:tree-sunlet}; 606 occur at depth one and 8 in the redundant
+depth-two replay.  The 148 quadratic bodies are regenerated with
+independent \(C,G,T\) variables.  The 24 formerly transported K2P
+quartics and the 32 former continuations use active L20-01/H21-01 K3P
+quartics, giving the all-edge quartic count \(56=24+32\).  Every row is bound
+to its exact parent transport and direct
+marginal.  Thus no equality such as \(C=T\) enters the proof.  A
+producer-independent replay verifies every row, and the fail-closed mutation
+suite rejects all 20 prescribed corruptions.
+\end{proof}
+
+\subsection{Coherent probes}
+
+The probe input contains 176 physical equality anchors: 143 labelled
+isomorphisms and 33 ordinary-triangle relations, grouped into 39
+canonical anchor classes.  Every physical mixed edge is an attachment site,
+including pendant arms, reticulation-incoming edges, and the
+root-suppressed segment.
+
+\begin{proposition}[One- and two-port coherence]\label{prop:probes}
+The complete K3P probe ledgers have the exact censuses
+
+\begin{align*}
+29{,}964={}&27{,}758\text{ quartet}+99\text{ tree--sunlet}
+ +1{,}915\text{ isomorphism}+192\text{ triangle},\\
+544{,}571={}&511{,}266\text{ quartet}+576\text{ tree--sunlet}
+ +30{,}969\text{ isomorphism}+1{,}760\text{ triangle}.
+\end{align*}
+
+There are 2,107 one-port equality survivors and 32,729 two-port
+equality survivors, zero unresolved relations, 67,741 exact transports,
+4,379 parent restrictions, and zero incoherent triangle choices.
+One-port restrictions determine the segment of every omitted label; two-port
+restrictions determine the order of every pair on a common segment.  They
+assemble to one labelled word on every segment, modulo one coherent ordinary
+triangle redirection.  At most nine physical tensor ports are selected.
+\end{proposition}
+
+\begin{proof}
+Fix one anchor transport.  Every non-equality one-port comparison has a
+direct quartet or K3P tree--sunlet separator, so an equality child locates the
+new port relative to the rigid support.  Every equality two-port comparison
+restricts to its exact one-port parent and has its reversed marginal in the
+ledger; this fixes pairwise order.  Because the comparisons arise from actual
+finite words, their orders are transitive and reconstruct a unique total word
+on each segment.
+
+If a probe subdivides a triangle edge, its appropriate restriction loses the
+triangle and forces literal orientation agreement.  Otherwise it inherits
+the same stored triangle from the anchor.  No isomorphic parent creates a new
+triangle, and all 1,760 two-port triangle equalities transport the same
+parent triangle.  Independent streaming replay checks every row and parent.
+\end{proof}
+
+Combining the bounded theorem, restoration, and probes gives the exact local
+statement needed globally.
+
+\begin{theorem}[Complete local factor classification]\label{thm:local}
+Let \(H,H'\) be complete ported cycle/theta factors induced by networks in the
+strong level-2 class, with arbitrary admissible labelled subdivision words
+and independently chosen incoming presentations.  Then
+
+\[
+ H\preceqplus H'
+ \quad\Longleftrightarrow\quad
+ H\cong H'\text{ as labelled mixed graphs}
+ \quad\text{or}\quad H\trianglerel H'.
+\]
+
+No proper one-sided projective local containment occurs.
+\end{theorem}
+
+\begin{proof}
+Marginal localization fixes one target completion type.  The rigid support is
+handled by \cref{thm:fourteen} and the earlier exact terminal filters.
+\Cref{prop:restoration} discharges every fixed-full parent, and
+\cref{prop:probes} reconstructs arbitrary words and the global triangle
+transport.  The converse is immediate for labelled isomorphism and follows
+from the relative common \(H_{14}\) germ for an ordinary triangle.
+\end{proof}

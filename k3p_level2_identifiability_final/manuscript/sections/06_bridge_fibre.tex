@@ -1,0 +1,102 @@
+\section{The three-sector bridge fibre}\label{sec:bridge-fibre}
+
+Cut every bridge of the labelled reduced tree.  Its component-incidence graph
+is a tree \(T\).  For a component \(v\), let \(P_v\) be its normalized Fourier
+boundary tensor, including one character \(h_e\) for every incident bridge,
+with \(P_v(0)=1\).  For \(e=uv\), write
+
+\[
+ k_e(0)=1,\qquad k_e(C)=c_e,\quad k_e(G)=g_e,\quad k_e(T)=t_e.
+\]
+
+Character conservation gives the global contraction
+
+\begin{equation}\label{eq:bridge-contraction}
+ Q(\mathbf h)=
+ \prod_{v\in V(T)}P_v(\mathbf h|_v)
+ \prod_{e\in E(T)}k_e(h_e).
+\end{equation}
+
+\begin{theorem}[Complete positive three-sector bridge fibre]
+\label{thm:bridge-fibre}
+On the positive normalized K3P component-tensor locus, the complete fibre of
+\eqref{eq:bridge-contraction} is exactly
+
+\begin{align}
+ P_v(\mathbf h)&\longmapsto P_v(\mathbf h)
+ \prod_{e\ni v}\prod_{s\in\{C,G,T\}}
+ (a^s_{v,e})^{\1[h_e=s]},\label{eq:bridge-action-component}\\
+ k_e(s)&\longmapsto
+ \frac{k_e(s)}{a^s_{u,e}a^s_{v,e}}
+ \qquad(s=C,G,T),\label{eq:bridge-action-edge}
+\end{align}
+
+with positive incidence scales and \(a^0_{v,e}=1\).  There is no additional
+positive continuous or discrete gauge, the action is free on every retained
+component, and the bridge tree has no holonomy.  On physical networks the
+fibre is the intersection of this orbit with all local and edge inequalities.
+\end{theorem}
+
+\begin{proof}
+Cut one bridge and fix \(s\in\{C,G,T\}\).  Its Fourier block is a positive
+rank-one matrix, whose factorization is unique up to one positive scalar.
+All-zero normalization fixes the zero-sector scalar.  Unlike K2P, the three
+nonzero characters are observably labelled and independent; no equality or
+permutation is imposed.  Peeling leaves of \(T\) sector by sector assigns one
+scale to every incidence and gives
+\eqref{eq:bridge-action-component}--\eqref{eq:bridge-action-edge}.  Direct
+cancellation proves the converse, while the tree structure leaves no cycle
+on which a holonomy could circulate.
+
+For freeness, a marked component has one-character anchors with identity
+exponent matrix.  For an unmarked degree-\(d\) component, \(d\ge3\), use pair
+anchors
+
+\[
+ (1,2),(1,3),(2,3),(1,4),\ldots,(1,d).
+\]
+
+In one sector the leading \(3\)-by-\(3\) exponent block has determinant
+\(-2\), and every later row introduces one new coordinate.  Its positive
+inverse is
+
+\begin{equation}\label{eq:bridge-normalizer}
+ a_1=\sqrt{\frac{r_{12}r_{13}}{r_{23}}},\quad
+ a_2=\sqrt{\frac{r_{12}r_{23}}{r_{13}}},\quad
+ a_3=\sqrt{\frac{r_{13}r_{23}}{r_{12}}},\quad
+ a_k=\frac{r_{1k}}{a_1}.
+\end{equation}
+
+Three block-diagonal copies have rank \(3d\) and leading determinant
+\((-2)^3=-8\).  Positivity makes the slice analytic.  The excluded unmarked
+degree-two stabilizer cannot occur in a retained strong-class factor: the
+two-boundary \(K_4-e\) theta has no tree-child rooting.  Finally, a
+distinct-spectrum anchor such as
+\((q_{CC},q_{GG},q_{TT})=(1/4,1/9,1/16)\) excludes a hidden permutation of
+the fixed state labels.
+\end{proof}
+
+\begin{lemma}[Physical local product chart]\label{lem:physical-product}
+Near every regular physical point, the quotient by the action in
+\cref{thm:bridge-fibre} is a physical local product chart, simultaneously on
+all bridges, in both \(\Dplus\) and \(\Dct\).
+\end{lemma}
+
+\begin{proof}
+For one bridge spectrum \(y\), choose two isotropic endpoint factors near the
+identity and a compensating residual factor, using
+\cref{lem:subdivision}.  All six endpoint sector coordinates may vary
+independently in a sufficiently small neighborhood while the residual stays
+strict.  Do this for finitely many bridges and intersect the neighborhoods.
+The analytic normalizers extract local projective component tensors and
+effective bridge coordinates from the global tensor, while contraction is
+their local inverse.  The same argument uses \(B_{\mathrm{CT}}\) on the
+continuous-time cone.
+\end{proof}
+
+For a complete ported factor \(H\), quotient its normalized tensor by one
+positive \(C,G,T\) scale per port and write \(\overline\Phi_H\) for a local
+analytic slice map.  Local directed containment is defined exactly as in
+\cref{def:relations}, using a source-open regular germ and a physical target
+section.  Different positive anchor charts give equivalent definitions by
+\cref{thm:bridge-fibre}.

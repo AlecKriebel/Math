@@ -1,0 +1,187 @@
+\section{Primitive factors and bounded classification}\label{sec:bounded}
+
+\subsection{Cycle and theta cores}
+
+Move a root-containing factor along an all-tree path to a real labelled
+incoming boundary, using \cref{lem:root-movement}.  Delete port arms and
+suppress ordinary bivalent vertices that are neither the local source nor a
+reticulation sink, recording the removed port-bearing subdivisions as
+ordered words.
+
+\begin{proposition}[Cycle--theta primitive theorem]\label{prop:cores}
+Every nontrivial complete blob factor in the strong level-2 class has a cycle
+core or one of four directed theta cores
+\(\theta_0,\theta_1,\theta_2,\theta_3\).  It is recovered uniquely from the
+core, one labelled ordered port word on each directed segment, and one child
+port below every path-sink reticulation.
+\end{proposition}
+
+\begin{proof}
+Let \(r,v,e\) be the numbers of reticulations, internal vertices, and blob
+edges after port arms are removed.  Summing indegrees gives
+\(e=v+r-1\), hence
+
+\[
+ \sum_w(\deg_B(w)-2)=2e-2v=2(r-1).
+\]
+
+For \(r=1\), every blob vertex has degree two and the core is a cycle.  For
+\(r=2\), exactly two vertices have degree three; biconnectedness makes the
+blob three internally disjoint paths between them, hence a theta.  The
+incoming boundary is ordinary and determines a unique local tree source.
+Acyclicity allows at most one reticulate pole.  Separating the cases of one
+reticulate pole versus two tree poles, and whether the source shares a path
+with an internal sink, gives exactly \(\theta_0,\ldots,\theta_3\).  This is
+the directed ported refinement of the two underlying level-2 generators in
+\cite{HuberEtAl2025}.  The full event-placement proof is model-independent
+and is replayed from the frozen topology package.
+\end{proof}
+
+The directed segments and minimum occupied sets required by
+\cref{lem:no-omnian} are:
+
+\begin{center}
+\small
+\begin{tabular}{lll}
+\toprule
+core & directed segments in index order & minimum occupied sets\\
+\midrule
+cycle & \(S\to X,S\to X\) & \(\{0\},\{1\}\)\\
+\(\theta_0\) & \(S\to U,S\to V,U\to X,V\to X,U\to V\)
+ & \(\{2,3\},\{3,4\}\)\\
+\(\theta_1\) & \(S\to U,S\to X,V\to X,U\to V,U\to V\)
+ & \(\{2,3\},\{2,4\}\)\\
+\(\theta_2\) & \(S\to U,S\to V,U\to X_0,V\to X_0,\)
+ \(U\to X_1,V\to X_1\)
+ & \(\{2,3\},\{2,5\},\{3,4\},\{4,5\}\)\\
+\(\theta_3\) & \(S\to U,S\to X_0,V\to X_0,U\to X_1,\)
+ \(V\to X_1,U\to V\)
+ & \(\{2\},\{4\}\)\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The corresponding obstruction clauses are
+\(\{0,1\}\) for a cycle; \(\{3\},\{2,4\}\) for \(\theta_0\);
+\(\{2\},\{3,4\}\) for \(\theta_1\);
+\(\{2,4\},\{3,5\}\) for \(\theta_2\); and \(\{2,4\}\) for
+\(\theta_3\).  The displayed sets are precisely their minimum transversals.
+
+For a target core with \(m_H\) directed segments, \(q_H\) path-sink roles,
+and \(r_H\) repair tags, the exact number of target completions using \(k\)
+selected boundaries and selected-incoming flag \(\varepsilon\) is
+
+\begin{equation}\label{eq:completion-count}
+ C(k,\varepsilon)=\sum_H r_H\sum_{j=0}^{q_H}
+ \binom{q_H}{j}
+ \binom{k-\varepsilon-j+m_H-1}{m_H-1}.
+\end{equation}
+
+The tuples \((m_H,q_H,r_H)\) are
+\((2,1,1),(5,1,2),(5,1,2),(6,2,4),(6,2,2)\).  Thus the four-port target
+grammar has 831 selected-incoming and 1,983 marginalized-incoming
+completions.
+
+\subsection{The exact four-port residue}
+
+Six rigid K3P source supports have normalized ranks
+
+\[
+ 20,\ 21,\ 21,\ 21,\ 23,\ 24.
+\]
+
+After pointwise, quadratic, graph-isomorphism, and ordinary-triangle filters,
+the only nonterminal four-port residue consists of the following 14
+canonical directed orbits.  Here the arrow in the rank column is source to
+target, and ``H14'' means a transported marginal of \eqref{eq:H14}.
+
+{\small
+\begin{longtable}{llllrl}
+\toprule
+orbit & source & target & rank & raw & exact certificate\\
+\midrule
+\endhead
+H21-01 & \(\theta_0,r_1\) & \(\theta_0,r_1;\texttt{0132}\) & \(21\to21\) & 4 & H14 quartic\\
+H21-02 & \(\theta_0,r_1\) & \(\theta_0,r_1;\texttt{0213}\) & \(21\to21\) & 4 & \(11>10\) rank\\
+H21-03 & \(\theta_0,r_1\) & \(\theta_0,r_1;\texttt{0231}\) & \(21\to21\) & 4 & H14 quartic\\
+H21-04 & \(\theta_0,r_1\) & \(\theta_0,r_1;\texttt{0312}\) & \(21\to21\) & 4 & H14 quartic\\
+H21-05 & \(\theta_0,r_1\) & \(\theta_0,r_1;\texttt{0321}\) & \(21\to21\) & 2 & H14 quartic\\
+H21-06 & \(\theta_0,r_1\) & \(\theta_0,r_1;\texttt{1032}\) & \(21\to21\) & 4 & H14 quartic\\
+L20-01 & \(\theta_0,r_0\) & \(\theta_3,r_1;\texttt{1203}\) & \(20\to24\) & 2 & quartic\\
+L20-02 & \(\theta_0,r_0\) & \(\theta_3,r_1;\texttt{1230}\) & \(20\to24\) & 2 & \(14>12\) rank\\
+L21a-01 & \(\theta_1,r_0\) & \(\theta_3,r_1;\texttt{0123}\) & \(21\to24\) & 2 & quartic\\
+L21a-02 & \(\theta_1,r_0\) & \(\theta_3,r_1;\texttt{0132}\) & \(21\to24\) & 2 & \(11>10\) rank\\
+L21b-01 & \(\theta_1,r_1\) & \(\theta_3,r_1;\texttt{0123}\) & \(21\to24\) & 2 & quartic\\
+L21b-02 & \(\theta_1,r_1\) & \(\theta_3,r_1;\texttt{0132}\) & \(21\to24\) & 2 & \(11>10\) rank\\
+L23-01 & \(\theta_3,r_0\) & \(\theta_3,r_1;\texttt{0123}\) & \(23\to24\) & 2 & \(14>12\) rank\\
+L23-02 & \(\theta_3,r_0\) & \(\theta_3,r_1;\texttt{0132}\) & \(23\to24\) & 2 & quartic\\
+SINK-0132 & source 5 & target 822; \texttt{0132} & \(24\to24\) & 1 & quartic\\
+SINK-1023 & source 5 & target 822; \texttt{1023} & \(24\to24\) & 1 & quartic\\
+\bottomrule
+\end{longtable}
+}
+
+The six H21 rows are the nonisomorphic double cosets of the repaired
+\(\theta_0\) source; the seventh double coset is isomorphic.  The complete
+post-quadratic accounting is
+
+\begin{equation}\label{eq:38plus2}
+ \boxed{40=38+2.}
+\end{equation}
+
+The 38 raw records belong to the fourteen named orbits; the final two table
+rows are rank-\(24\) \(\theta_3\) sink-swap presentations.  Neither is a
+labelled graph isomorphism, and the same exact eight-term quartic has zero
+target pullback and nonzero strict
+source value on each.
+
+\begin{theorem}[Fourteen-orbit classification]\label{thm:fourteen}
+The polynomially separated orbits are
+
+\[
+\begin{gathered}
+\text{H21-01, H21-03, H21-04, H21-05, H21-06,}\\
+\text{L20-01, L21a-01, L21b-01, L23-02},
+\end{gathered}
+\]
+
+and the directed-rank-separated orbits are
+
+\[
+ \text{H21-02, L20-02, L21a-02, L21b-02, L23-01}.
+\]
+
+The two sink swaps are polynomially separated.  Thus the bounded residue has
+zero unresolved directions, no new symmetric K3P move, and no proper
+directed K3P containment.
+\end{theorem}
+
+\begin{proof}[Exact finite proof]
+For each of the nine polynomial orbits, an exact characteristic-zero quartic
+vanishes on the complete target map and has a nonzero value at a strict
+rational source point.  The first five are transported \(H_{14}\) marginal
+quartics; the remaining four are multigraded eight-term quartics.  Exact graph
+and Fourier transports cover every raw member.
+
+For each of the five rank orbits, a selected source projection has a nonzero
+exact Jacobian minor of rank \(11\) or \(14\).  The target projection factors
+rationally through 10 or 12 generators, respectively, giving the
+strict upper bound.  The H21 target formulas are checked after saturation by
+the declared nonzero physical factors; the other four targets are compressed
+ordinary-sunlet projections.  A source-relative open containment cannot lie
+inside the lower-dimensional target projection.
+
+The clean-room implementation reconstructs all six sources, all 2,814
+target completions, seven H21 double cosets, all 38 coordinate transports,
+and both sink swaps.  The original H21-01 failure is diagnosed as the use of
+rooted-DAG automorphisms in place of root-suppressed semi-directed mixed-graph
+automorphisms, compounded by failure to conjugate a base target automorphism
+into the displayed frame.  The corrected mixed-graph transport passes and
+the historical verifier remains preserved.  Exact rows, columns, bodies,
+source evaluations, and hashes appear in the supplement.
+\end{proof}
+
+The bounded result is intentionally direction-sensitive.  A target of larger
+generic dimension is not automatically a containing model, and a polynomial
+identity is transported through the literal labelled graph rather than
+attached only to a topology name.

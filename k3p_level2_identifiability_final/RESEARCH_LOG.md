@@ -346,3 +346,39 @@ replay-stable logical seal and no stale internal theorem/mutation binding.
 
 Best-guess completion toward the mathematical classification goal: **100%**.
 Best-guess completion toward the full paper/certification/release goal: **72%**.
+
+## 2026-08-25T10:21:09-07:00 — Canonical article and supplement pass hostile PDF audit
+
+- Completed the definitive 17-section article and 20-component reader
+  supplement.  A fresh hostile audit found and the revision repaired one
+  load-bearing proof compression in the noncircular cut-transfer argument,
+  along with stale mutation/crosswalk wording and supplement replay defects.
+- The cut-transfer proof now explicitly passes through monochromatic branches,
+  the degree-at-least-four central blob, a switching that fails the color
+  split, actual quartet witnesses, the 204 labelled one-active directions, and
+  strict physical closure of two-boundary side blobs as positive mixtures of
+  displayed-path K3P matrices.
+- Compiled the canonical article and supplement with Tectonic under fixed
+  `SOURCE_DATE_EPOCH=1787677101`.  The article has 29 pages and the supplement
+  has 10 pages.  Both logs have zero overfull/underfull boxes and no unresolved
+  references or citations; all fonts are embedded.
+- Rendered and inspected every page.  Dense supplement tables and full
+  certificate hashes were retypeset to remove all clipping and margin
+  overflow.  A separate post-correction audit found no malformed table,
+  missing page, broken glyph, unsupported theorem statement, or publication
+  overclaim.
+- Independent rebuilds reproduced both PDFs byte for byte.  The canonical
+  article SHA-256 is
+  `a50cfeedaeb0c38b484f4ac01e8cca861a87a746ad20d1e43766db3bc752efae`;
+  the reader supplement SHA-256 is
+  `4e20fe62ad4261b2ece54b87a4770a3edf30fe8807851ad48973eaec6db1110c`.
+- Journal-specific PDFs and cover letters are not promoted: the submission
+  packages correctly remain fail-closed until author-confirmed declarations,
+  address/contact fields, repository DOI, and license choices are supplied.
+
+Strongest verified result at this checkpoint: the exact `K3P-SAME` theorem is
+presented in a warning-free, adversarially audited canonical article and reader
+supplement whose current builds are byte reproducible.
+
+Best-guess completion toward the mathematical classification goal: **100%**.
+Best-guess completion toward the full paper/certification/release goal: **82%**.

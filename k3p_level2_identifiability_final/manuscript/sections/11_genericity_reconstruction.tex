@@ -1,0 +1,90 @@
+\section{Genericity and reconstruction}\label{sec:genericity}
+
+Let
+
+\[
+ \V_N=\overline{\Phi_N(\C^{m_N})}^{\,Z}
+\]
+
+be the complex Zariski closure of the polynomial K3P map.  It is irreducible
+as the closure of the image of an irreducible affine space.  Its dimension is
+the generic complex Jacobian rank and also \(d_N\), because a nonzero real
+Jacobian minor cannot vanish throughout the Euclidean-open physical domain.
+
+\begin{proof}[Proof of \cref{thm:generic}]
+For fixed leaf count \(n\), only finitely many labelled networks occur in the
+class.  Indeed, choosing tree or leaf children from the root and from each
+reticulation produces \(r+1\) disjoint terminal tree paths, so \(r\le n-1\).
+If \(t\) is the number of nonroot tree vertices, degree counting gives
+\(t=n+r-2\), and the rooted presentation has
+
+\[
+ 1+t+r+n=2n+2r-1\le4n-3
+\]
+
+vertices.
+
+For a competitor \(N'\not\trianglerel N\), the physical intersection
+\(\M_{3,+}(N)\cap\M_{3,+}(N')\) is semialgebraic by Tarski--Seidenberg
+\cite{BochnakCosteRoy1998}.  If it had dimension \(d_N\), a finite Nash
+stratification compatible with the source and target rank loci would contain
+a \(d_N\)-dimensional regular source-image stratum and an incidence stratum
+projecting with rank \(d_N\).  The analytic constant-rank theorem would give
+a physical target section over a source-relative open regular germ, hence
+\(N\preceqplus N'\), contradicting \cref{thm:main}.  Every inequivalent
+intersection therefore has dimension at most \(d_N-1\).
+
+Take the finite union of the complex Zariski closures of these intersections,
+the singular locus of \(\V_N\), the closure of the source rank-drop image,
+and the certified reconstruction-test zero loci that are nonidentically zero
+on the intended source stratum.  Semialgebraic dimension agrees with the
+dimension of its real Zariski closure, and extension from \(\R\) to \(\C\)
+preserves dimension.  Every member is proper; a finite union of proper closed
+sets cannot fill irreducible \(\V_N\).  Call the union \(E_N\).  Outside it,
+every realizing topology is triangle-equivalent to \(N\).
+\end{proof}
+
+The generic cut step in this proof uses \cref{prop:generic-noncut}, not a
+universal pointwise converse.  Since there are finitely many candidate splits
+for fixed \(N\), all noncut minors are simultaneously nonzero outside a
+proper algebraic subset.
+
+\begin{proof}[Proof of \cref{thm:reconstruction}]
+Given an exact Fourier tensor outside \(E_N\), apply the following finite
+procedure.
+
+\begin{enumerate}[label=\textbf{R\arabic*.}]
+  \item Fourier-transform the exact pattern tensor.
+  \item Test the finitely many split flattenings.  By
+        \cref{prop:true-cut,prop:generic-noncut}, recover the compatible
+        bridge-split system and build the labelled reduced tree.
+  \item Use the six-circuit sum of squares to distinguish ordinary
+        degree-three components from ordinary sunlets.
+  \item Factor positive bridge blocks in the \(C,G,T\) sectors and impose
+        \eqref{eq:bridge-normalizer}; recover each projective local tensor
+        orbit and normalized effective bridge spectrum.
+  \item Enumerate the finitely many rigid-support candidates compatible with
+        the recovered tree and apply the exact pointwise, quartic, and rank
+        tests.
+  \item Follow only the exact fixed-full restoration records and their stored
+        transports.
+  \item Use the one-port segment deck and two-port order deck to recover every
+        labelled subdivision word.  No selected tensor uses more than nine
+        physical ports.
+  \item Assemble coherent mixed-graph candidates and group them into ordinary
+        triangle classes.  For each finite class \(\mathcal C\), decide the
+        existential semialgebraic statement
+
+        \[
+          q\in\bigcup_{H\in\mathcal C}\M_{3,+}(H).
+        \]
+
+        Exactly one class is feasible outside \(E_N\); return its canonical
+        representative.
+\end{enumerate}
+
+Every loop is finite, and real-closed-field quantifier elimination terminates
+under the exact-input convention.  The output is a topology class, not a
+numerically stable estimator and not a recovery of individual edge parameters
+inside the bridge fibre.
+\end{proof}

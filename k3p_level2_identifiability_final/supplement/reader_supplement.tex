@@ -1,0 +1,784 @@
+\documentclass[10pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage[margin=.78in]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{booktabs,array,longtable,tabularx,enumitem}
+\usepackage{xcolor,xurl}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,
+ citecolor=green!35!black,urlcolor=blue!55!black]{hyperref}
+\setlength{\parskip}{.3em}
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{3em}
+\setlist{nosep}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcommand{\Dplus}{\mathcal D_{3,+}}
+\newcommand{\Dct}{\mathcal D_{3,\mathrm{CT}}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\sha}[1]{\nolinkurl{#1}}
+
+\title{Reader Supplement to\\
+\emph{Triangle Hypersurfaces and a Sharp Identifiability Boundary\\
+for Level-2 K3P Networks}}
+\author{Alec Kriebel\\
+\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}
+{0009-0001-9320-500X}}
+\date{August 2026}
+
+\begin{document}
+\maketitle
+
+This supplement is a reader-facing map of the exact proof package.  It gives
+the formulas, finite censuses, witness selections, and hash bindings needed
+to audit the article without reproducing raw JSON ledgers.  All paths are
+relative to the project root
+\path{k3p_level2_identifiability_final/}.  The machine-readable files, not
+line-broken values in this document, are canonical for exact replay.
+
+\section{Dependency graph}
+
+The necessity and sufficiency chains are:
+
+\begin{verbatim}
+K3P domain + root invariance
+  -> true-cut rank <= 4 + generic noncut recovery
+  -> Cut(target) subset Cut(source)
+  -> crossing-split dichotomy + 204 pointwise one-active directions
+  -> Cut(source) subset Cut(target)
+  -> common labelled reduced bridge tree
+  -> three-sector bridge fibre + physical local product
+  -> marginal submersion + finite target-type localization
+  -> 14-orbit theorem + restoration + coherent probes
+  -> necessity: topology equivalence modulo ordinary triangles
+
+H14 quartic + three rank-14 orientation sections
+  -> common relative triangle germ
+  -> one labelled contextual contraction
+  -> simultaneous principal/CT bridge gluing
+  -> sufficiency and symmetric common full-dimensional germ
+
+main classification + finite topology set + semialgebraic stratification
+  -> proper exceptional set
+  -> generic identifiability + terminating exact reconstruction
+
+weak-not-strong topology census + Krawczyk equality box + two rank-15 maps
+  -> base ambient-open common germ
+  -> six-dimensional identical-cherry inverse
+  -> all-n dimension 6n-3
+
+all active theorem branches + final claim lock
+  -> integrated K3P-SAME classification gate
+  -> 16/16 fail-closed integrated mutations
+  -> CERTIFIED_K3P_SAME mathematics; publication engineering remains separate
+\end{verbatim}
+
+The cut-transfer chain uses neither a common bridge tree nor the fourteen-orbit
+classification.  The local classification is invoked only after cut equality
+has been proved.
+
+\section{Theorem-to-certificate crosswalk}
+
+\begin{longtable}{L{.27\linewidth}L{.66\linewidth}}
+\toprule
+claim & minimal active evidence and replay boundary\\
+\midrule
+\endhead
+K3P inverse Fourier formulas, \(\Dplus,\Dct\), subdivision, root movement
+& \path{model_domain/primary_exact_evidence.json}; primary exact replay.\\
+Cycle--theta primitive topology, no-omnian grammar, and strong repairs
+& \path{input_frozen/referenced_chat_manuscripts/jc_level2_source.tex} and
+\path{input_frozen/referenced_chat_manuscripts/k2p_level2_source.tex}, with
+the graph-only import boundary fixed by \path{COMPANION_DEPENDENCY_LOCK.json}
+and independently rebuilt in the clean-room, restoration, and probe replays.\\
+True-cut rank and generic noncut recovery
+& article derivation; frozen JC cut theorem only on the relatively open
+strict JC locus in the isotropic slice, not on an open subset of full K3P;
+\path{cut_recovery/adversarial/} preserves the failed universal shortcut.\\
+204 pointwise one-active directions
+& \path{cut_recovery/strong_crossbridge/final_certificate/STRONG_CROSSBRIDGE_FINAL_CERTIFICATE.json}
+and its producer-independent verifier.\\
+Strong-class cut-set equality under containment
+& \path{cut_recovery/strong_crossbridge/global_transfer/THEOREM_MANIFEST.json}
+and \path{cut_recovery/strong_crossbridge/global_transfer/GLOBAL_TRANSFER_AUDIT.md};
+independent adversarial replay.\\
+Tree--sunlet separation and triangle rank
+& \path{three_port/primary_exact_evidence.json},
+\path{input_frozen/k3p_cloud_artifacts/k3p_tree_sunlet_separator.json}.\\
+\(H_{14}\), irreducibility, smooth common germ, contextualization
+& \path{triangle_h14/K3P_H14_CONTEXT_CERTIFICATE.json}.\\
+Three-sector bridge fibre and physical product
+& \path{bridge_fibre/K3P_BRIDGE_FIBRE_CERTIFICATE.json}.\\
+Marginal descriptors and physical submersions
+& \path{marginals/K3P_MARGINAL_SUBMERSION_CERTIFICATE.json}.\\
+Fourteen orbits and two sink swaps
+& \path{four_port_atlas/primary_exact_evidence.json};
+\path{clean_room/H21_01_TRANSPORT_AUDIT.json}.\\
+Fixed-full restoration
+& \path{restoration/RESTORATION_MANIFEST.json},
+\path{restoration/K3P_RESTORATION_THEOREM_REPORT.md}, ledger, proof registry,
+\path{restoration/K3P_RESTORATION_INDEPENDENT_VERIFICATION.json}, and
+\path{restoration/K3P_RESTORATION_MUTATION_CERTIFICATE.json}; the independent
+replay passes and all 20 fail-closed restoration mutations are rejected.\\
+One-/two-port coherence
+& \path{probes/K3P_PROBE_COHERENCE_CERTIFICATE.json}, independent streaming
+replay, mutation certificate, and the v2 K3P restoration binding
+\path{probes/RESTORATION_MANIFEST.json}.\\
+Global gluing, genericity, reconstruction
+& \path{global_infrastructure/K3P_GLOBAL_GLUE_AND_RECONSTRUCTION_CERTIFICATE.json},
+\path{global_infrastructure/GLOBAL_INFRASTRUCTURE_MANIFEST.json}, and its
+independent replay, read together with the active cut-transfer and restoration
+bindings.  The integrated primary gate passes all 28 entries.\\
+Final K3P-SAME classification promotion
+& \path{reproducibility/K3P_SAME_CLASSIFICATION_GATE_REPORT.json} has schema
+\texttt{k3p-same-integrated-classification-gate-v2}, status
+\texttt{CERTIFIED\_K3P\_SAME}, and no remaining mathematical gates;
+\path{reproducibility/K3P_SAME_CLASSIFICATION_MUTATION_REPORT.json} rejects
+all 16 integrated fail-closed mutations.\\
+Weak-class sharpness and all \(n\)
+& \path{sharpness/K3P_SHARPNESS_KRAWCZYK_CERTIFICATE.json} and
+\path{sharpness/K3P_SHARPNESS_TOPOLOGY_ALL_N_CERTIFICATE.json}.\\
+Outer tree--double-theta obstruction, including strict-CT deformation
+& \path{input_frozen/referenced_chat_manuscripts/tree_theta_collision_source.tex}
+contains the exact tangent and analytic implicit-function argument;
+\path{topology/primary_double_theta_evidence.json} and
+\path{topology/primary_rooting_census_evidence.json} bind the collision rank,
+dimension, and exclusion from weak tree-childness in the active primary replay.\\
+\bottomrule
+\end{longtable}
+
+\section{Exact model domains}
+
+For an edge spectrum \((1,c,g,t)\), inverse Fourier transformation gives
+
+\[
+\frac14(1+c+g+t),\quad
+\frac14(1+c-g-t),\quad
+\frac14(1-c+g-t),\quad
+\frac14(1-c-g+t).
+\]
+
+Thus
+
+\[
+\Dplus=\{(c,g,t)\in(0,1)^3:
+1+c-g-t>0,\ 1-c+g-t>0,\ 1-c-g+t>0\}.
+\]
+
+Strict continuous time is
+
+\[
+\Dct=\{(c,g,t)\in(0,1)^3:c>gt,\ g>ct,\ t>cg\}.
+\]
+
+For strict subdivision, choose
+
+\[
+r>\max\{c,g,t,g+t-c,c+t-g,c+g-t\}
+\]
+
+in the principal domain, or additionally
+\(r>\max\{gt/c,ct/g,cg/t\}\) in continuous time, and use
+
+\[
+(c,g,t)=(r,r,r)\odot(c/r,g/r,t/r).
+\]
+
+For a serial class the selected descriptor is
+
+\[
+((c_i,g_i,t_i))_{i=1}^m\mapsto
+(\prod_i c_i,\prod_i g_i,\prod_i t_i).
+\]
+
+Its Jacobian has three disjoint positive rows and rank three.
+
+\section{The \texorpdfstring{\(H_{14}\)}{H14} coordinate chart and quartic}
+
+The conservation-supported coordinate order is
+
+\begin{align*}
+(&000,0CC,0GG,0TT,C0C,CC0,CGT,CTG,\\
+ &G0G,GCT,GG0,GTC,T0T,TCG,TGC,TT0).
+\end{align*}
+
+With \(q_{000}=1\), the ambient chart is \(\mathbb A^{15}\).  The exact
+quartic is
+
+\begin{align*}
+F_{H_{14}}={}&q_{000}q_{CGT}q_{GTC}q_{TCG}
+-q_{000}q_{CTG}q_{GCT}q_{TGC}\\
+&-q_{0CC}q_{CGT}q_{G0G}q_{TT0}
++q_{0CC}q_{CTG}q_{GG0}q_{T0T}\\
+&+q_{0GG}q_{C0C}q_{GCT}q_{TT0}
+-q_{0GG}q_{CC0}q_{GTC}q_{T0T}\\
+&-q_{0TT}q_{C0C}q_{GG0}q_{TCG}
++q_{0TT}q_{CC0}q_{G0G}q_{TGC}.
+\end{align*}
+
+The common tensor in this order is
+
+\[
+\left(1,\tfrac1{12},\tfrac1{12},\tfrac1{12},\tfrac1{12},\tfrac1{12},
+\tfrac1{48},\tfrac1{48},\tfrac1{12},\tfrac1{48},\tfrac1{12},
+\tfrac1{48},\tfrac1{12},\tfrac1{48},\tfrac1{48},\tfrac1{12}\right).
+\]
+
+At this point \(F=0\) and six normalized gradient coordinates are nonzero,
+each with absolute value \(1/6912\).  The irreducibility certificate treats
+the quartic as linear in \(q_{0CC}\), with coefficient
+\(-q_{CGT}q_{G0G}q_{TT0}+q_{CTG}q_{GG0}q_{T0T}\); a specialization kills
+that coefficient but leaves remainder \(-1\).
+
+\section{Triangle rank witnesses}
+
+All three common preimages have edge order \((a,b,c,d,e,f)\), spectra
+\((1/2,1/2,1/2)\) on the first five edges,
+\((1/3,1/3,1/3)\) on \(f\), and inheritance \(1/2\).
+
+\begin{center}
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{cL{.35\linewidth}L{.35\linewidth}r}
+\toprule
+orientation & normalized output rows & parameter columns & determinant\\
+\midrule
+1 & \((1,2,3,4,6,8,7,10,12,9,13,5,11,15)\)
+& \((0,1,2,3,4,5,6,7,8,9,10,15,16,17)\)
+& \(-1/760840571584512\)\\
+2 & \((4,8,12,5,7,3,6,1,10,9,11,2,13,15)\)
+& same & \(-1/760840571584512\)\\
+3 & \((4,8,12,5,6,3,7,1,10,11,9,2,13,15)\)
+& same & \(1/760840571584512\)\\
+\bottomrule
+\end{tabular}
+\endgroup
+\end{center}
+
+The tree rank-\(9\) witness uses output rows
+\((4,8,12,5,6,3,7,1,10)\), parameter columns \(0,\ldots,8\), and determinant
+\(8192/28940625\).
+
+\section{Tree--sunlet six-circuit certificate}
+
+Write \(I(L;R)=\prod_{u\in L}q_u-\prod_{v\in R}q_v\).  The six circuits and
+their non-arm factors after substitution into the third-leaf sunlet map are:
+
+\begin{longtable}{cL{.30\linewidth}L{.53\linewidth}}
+\toprule
+ & \(L;R\) & non-arm factor (up to the displayed nonzero sign and
+inheritance/arm monomial)\\
+\midrule
+\endhead
+\(I_1\) & \(000,CGT,GTC;0TT,C0C,GG0\)
+& \((d_Cd_T-d_G)(d_Ge_Tf_C-e_Cf_T)\)\\
+\(I_2\) & \(000,CTG,TGC;0GG,C0C,TT0\)
+& \((d_Cd_G-d_T)(d_Te_Gf_C-e_Cf_G)\)\\
+\(I_3\) & \(000,GCT,TGC;0CC,GG0,T0T\)
+& \((d_Cd_T-d_G)(d_Ge_Cf_T-e_Tf_C)\)\\
+\(I_4\) & \(000,GTC,TCG;0CC,G0G,TT0\)
+& \((d_Cd_G-d_T)(d_Te_Cf_G-e_Gf_C)\)\\
+\(I_5\) & \(000,CTG,GCT;0TT,CC0,G0G\)
+& \((d_C-d_Gd_T)(d_Ce_Tf_G-e_Gf_T)\)\\
+\(I_6\) & \(000,CGT,TCG;0GG,CC0,T0T\)
+& \((d_C-d_Gd_T)(d_Ce_Gf_T-e_Tf_G)\)\\
+\bottomrule
+\end{longtable}
+
+All six vanish on a tree.  If all vanished on a strict sunlet, then,
+sectorwise, every nonzero composition margin has a pair of circuits whose
+two reciprocal cross equations force \(d_h^2=1\).  This contradicts
+\(0<d_h<1\).  If all three composition margins vanish instead, then
+\(p=d_Cd_Gd_T\) satisfies \(p=p^2\), again impossible for \(p\in(0,1)\).
+Hence
+\(\sum_{j=1}^6 I_j^2>0\).
+
+\section{Three-sector incidence normalizers}
+
+For an unmarked component of degree \(d\ge3\), the one-sector exponent matrix
+has rows \(e_1+e_2,e_1+e_3,e_2+e_3,e_1+e_4,\ldots,e_1+e_d\).  Its leading
+block is
+
+\[
+B_3=\begin{pmatrix}1&1&0\\1&0&1\\0&1&1\end{pmatrix},
+\qquad\det B_3=-2,
+\]
+
+and every later row introduces one new column, so \(\rank B_d=d\).  The full
+K3P normalizer matrix is
+
+\[
+\operatorname{diag}(B_d,B_d,B_d),
+\]
+
+with rank \(3d\) and leading determinant \(-8\).  In each sector,
+
+\[
+a_1=\sqrt{r_{12}r_{13}/r_{23}},\quad
+a_2=\sqrt{r_{12}r_{23}/r_{13}},\quad
+a_3=\sqrt{r_{13}r_{23}/r_{12}},\quad
+a_k=r_{1k}/a_1.
+\]
+
+\section{Fourteen-orbit and 38+2 census}
+
+\begin{longtable}{llllrl}
+\toprule
+orbit & source & target; port permutation & rank & raw & result\\
+\midrule
+\endhead
+H21-01 & S1 \((\theta_0,r_1)\) & T80 \((\theta_0,r_1;\texttt{0132})\) & \(21\to21\)&4&quartic\\
+H21-02 & S1 & T80 \(\texttt{0213}\) & \(21\to21\)&4&rank\\
+H21-03 & S1 & T80 \(\texttt{0231}\) & \(21\to21\)&4&quartic\\
+H21-04 & S1 & T80 \(\texttt{0312}\) & \(21\to21\)&4&quartic\\
+H21-05 & S1 & T80 \(\texttt{0321}\) & \(21\to21\)&2&quartic\\
+H21-06 & S1 & T80 \(\texttt{1032}\) & \(21\to21\)&4&quartic\\
+L20-01 & S0 \((\theta_0,r_0)\) & T822 \((\theta_3,r_1;\texttt{1203})\)&\(20\to24\)&2&quartic\\
+L20-02 & S0 & T822 \(\texttt{1230}\)&\(20\to24\)&2&rank\\
+L21a-01 & S2 \((\theta_1,r_0)\)&T822 \(\texttt{0123}\)&\(21\to24\)&2&quartic\\
+L21a-02 & S2&T822 \(\texttt{0132}\)&\(21\to24\)&2&rank\\
+L21b-01 & S3 \((\theta_1,r_1)\)&T822 \(\texttt{0123}\)&\(21\to24\)&2&quartic\\
+L21b-02 & S3&T822 \(\texttt{0132}\)&\(21\to24\)&2&rank\\
+L23-01 & S4 \((\theta_3,r_0)\)&T822 \(\texttt{0123}\)&\(23\to24\)&2&rank\\
+L23-02 & S4&T822 \(\texttt{0132}\)&\(23\to24\)&2&quartic\\
+\bottomrule
+\end{longtable}
+
+Raw membership sums to 38.  Two rank-\(24\) source-5/target-822 sink
+swaps, with port permutations \texttt{0132} and \texttt{1023}, are separately
+quartic-separated.  Thus \(40=38+2\), with zero unresolved rows.
+
+\section{Two sink-swap records}
+
+The two post-quadratic records not absorbed into the fourteen canonical
+orbits both compare source support 5 with target completion 822.  Their port
+permutations are \texttt{0132} and \texttt{1023}.  Neither transport is a
+labelled mixed-graph isomorphism.  For each record the target pullback of
+\(Q_{23}\) is zero, while the source pullback has 160 terms and is nonzero at
+a strict rational point of minimum physical margin \(7/31\).  The common
+source-pullback SHA-256 is abbreviated as
+\sha{c1f4289be568...0c6f4a}.  Consequently neither
+record yields a new symmetric move or a directed containment.
+
+\section{Polynomial separator data}
+
+For four-port coordinates, indices \(0,\ldots,63\) use the lexicographic
+conservation-supported order
+
+\begin{multline*}
+0000,00CC,00GG,00TT,0C0C,0CC0,0CGT,0CTG,0G0G,0GCT,0GG0,0GTC,\\
+0T0T,0TCG,0TGC,0TT0,C00C,C0C0,C0GT,C0TG,CC00,CCCC,CCGG,CCTT,\\
+CG0T,CGCG,CGGC,CGT0,CT0G,CTCT,CTG0,CTTC,G00G,G0CT,G0G0,G0TC,\\
+GC0T,GCCG,GCGC,GCT0,GG00,GGCC,GGGG,GGTT,GT0C,GTC0,GTGT,GTTG,\\
+T00T,T0CG,T0GC,T0T0,TC0G,TCCT,TCG0,TCTC,TG0C,TGC0,TGGT,TGTG,\\
+TT00,TTCC,TTGG,TTTT.
+\end{multline*}
+
+Each body below is a signed sum of eight degree-four monomials.  A tuple
+\((i,j,k,l)\) denotes \(q_iq_jq_kq_l\).
+
+\begin{longtable}{cL{.79\linewidth}}
+\toprule
+body & signed index monomials\\
+\midrule
+\endhead
+\(Q_{H,a}\) &
+\(+(0,24,44,52)-(0,28,36,56)-(4,24,32,60)+(4,28,40,48)\)
+\(+(8,16,36,60)-(8,20,44,48)-(12,16,40,52)+(12,20,32,56)\)\\
+\(Q_{H,b}\) &
+\(+(0,18,35,49)-(0,19,33,50)-(1,18,32,51)+(1,19,34,48)\)
+\(+(2,16,33,51)-(2,17,35,48)-(3,16,34,49)+(3,17,32,50)\)\\
+\(Q_{20}\) &
+\(+(0,10,35,61)-(0,11,34,61)+(0,14,41,51)-(0,15,41,50)\)
+\(-(1,10,35,60)+(1,11,34,60)-(1,14,40,51)+(1,15,40,50)\)\\
+\(Q_{21}\) &
+\(+(0,10,44,55)+(0,11,38,60)-(0,14,40,55)-(0,15,38,56)\)
+\(-(4,10,44,51)-(4,11,34,60)+(4,14,40,51)+(4,15,34,56)\)\\
+\(Q_{23}\) &
+\(+(0,8,45,53)+(0,9,37,60)-(0,12,37,57)-(0,13,40,53)\)
+\(-(5,8,45,48)-(5,9,32,60)+(5,12,32,57)+(5,13,40,48)\)\\
+\bottomrule
+\end{longtable}
+
+The per-orbit transport and nonvanishing summary is:
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{longtable}{lcL{.25\linewidth}rcL{.19\linewidth}}
+\toprule
+orbit & body & marginal/representative transport & source terms & strict margin & source pullback SHA-256\\
+\midrule
+\endhead
+H21-01 & \(Q_{H,a}\)& omit 2; retain \((0,1,3)\)&1080&\(2/9\)&\sha{ef5ed407624b...f451f81f}\\
+H21-03 & \(Q_{H,b}\)& omit 1; retain \((0,2,3)\)&192&\(2/9\)&\sha{14f7d8b5683d...a8b9da28}\\
+H21-04 & \(Q_{H,a}\)& omit 2; retain \((0,1,3)\)&1080&\(2/9\)&\sha{ef5ed407624b...f451f81f}\\
+H21-05 & \(Q_{H,b}\)& omit 1; retain \((0,2,3)\)&192&\(2/9\)&\sha{14f7d8b5683d...a8b9da28}\\
+H21-06 & \(Q_{H,a}\)& omit 2; retain \((0,1,3)\)&1080&\(2/9\)&\sha{ef5ed407624b...f451f81f}\\
+L20-01 & \(Q_{20}\)& representative \texttt{1203}&270&\(5/23\)&\sha{34aee883f27a...502a371}\\
+L21a-01 & \(Q_{21}\)& representative \texttt{0123}&270&\(7/31\)&\sha{ff97c8b01748...c97521d0}\\
+L21b-01 & \(Q_{21}\)& representative \texttt{0123}&270&\(5/23\)&\sha{ff97c8b01748...c97521d0}\\
+L23-02 & \(Q_{23}\)& representative \texttt{0132}&96&\(2/9\)&\sha{fd18a85829e2...67bbe338}\\
+\bottomrule
+\end{longtable}
+\endgroup
+
+All H21 character transports are the identity on the ordered labels
+\(C,G,T\); only physical ports move.  Every target pullback is exactly zero.
+The two sink swaps use \(Q_{23}\), have 160-term source pullbacks,
+strict margin \(7/31\), and common pullback hash
+\sha{c1f4289be568...0c6f4a}.  Full hashes and exact rational source values are
+in the bound JSON files; abbreviations above are for page fit only.
+
+\section{Directed-rank witnesses}
+
+The table gives the selected output-row set, source minor columns, strict
+source rank, target generator upper bound, and target compression.  Exact
+rational determinants and labels are in
+\path{input_frozen/k3p_cloud_artifacts/k3p_directed_rank_obstructions.json}
+(SHA-256 \sha{fa0ac74cde903edc422a90b5e490bd639b2e2b4c758d9d3ec10a794f1a044f42}).
+
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{longtable}{lL{.23\linewidth}L{.21\linewidth}cL{.28\linewidth}}
+\toprule
+orbit & selected output rows & source columns & gap & target factorization\\
+\midrule
+\endhead
+H21-02 & \(\begin{gathered}(3,12,15,20,27,39,\\40,48,51,60,63)\end{gathered}\)
+& \(\begin{gathered}(2,3,4,5,6,7,\\8,11,14,20,23)\end{gathered}\)
+& \(11>10\) & ten generators \(U,V,Z,D,I,A_0,B_0,A,B,\rho\), saturated at \(e_{2C}e_{2G}DI\ne0\)\\
+L20-02 & \(\begin{gathered}(5,10,15,17,20,27,30,34,\\39,40,45,51,54,57,60)\end{gathered}\)
+& \(\begin{gathered}(3,4,5,6,7,8,9,\\10,11,12,13,14,18,19)\end{gathered}\)
+& \(14>12\) & ordinary-sunlet compression; omit port 3\\
+L21a-02 & \(\begin{gathered}(5,15,17,20,27,39,\\40,45,51,57,60)\end{gathered}\)
+& \(\begin{gathered}(3,4,5,6,7,8,\\9,10,11,15,16)\end{gathered}\)
+& \(11>10\) & sunlet generators with \(A_G,B_G\) absent; omit port 3\\
+L21b-02 & same as L21a-02
+& same & \(11>10\) & same ten-generator support; omit port 3\\
+L23-01 & \(\begin{gathered}(4,8,12,16,20,24,28,32,\\36,40,44,48,52,56,60)\end{gathered}\)
+& \(\begin{gathered}(3,4,5,6,7,8,9,\\10,11,12,13,14,21,22)\end{gathered}\)
+& \(14>12\) & ordinary-sunlet compression; omit port 2\\
+\bottomrule
+\end{longtable}
+\endgroup
+
+The exact target minors have ranks \(10,12,10,10,12\), respectively, and
+the function-field formulas prove these are upper bounds, not merely sampled
+ranks.
+
+For H21-02, L21a-02, and L21b-02, the source minor uses the complete displayed
+row set.  For L20-02 and L23-01, it uses the displayed set with row 60
+deleted.  The bound JSON records the determinant-sensitive row order and the
+exact nonzero rational determinant for every source minor.
+
+\section{Restoration census}
+
+\begin{center}
+\begin{tabular}{lrr}
+\toprule
+certificate & minimal first layer & complete redundant forest\\
+\midrule
+displayed quartet & 35,758 & 36,006\\
+K3P tree--sunlet SOS & 606 & 614\\
+K3P multihomogeneous quadratic & 148 & 148\\
+active K3P marginal quartic & 56 & 56\\
+\midrule
+edges/terminal rows & 36,568 & 36,824\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The imported graph forest has 997 parents, 36,568 first edges,
+32 legacy structural continuation nodes, 256 depth-two edges, and 36,792 legacy
+leaves, with maximum depth two.  K3P quartics terminate all 32 continuations
+at depth one, so the active minimal proof has 36,568 terminal rows.  The
+depth-two replay remains as a redundant graph-and-algebra audit.  There are
+zero missing/duplicate children, cycles, broken transports, or unresolved
+rows.
+
+The 56 all-edge K3P quartics split as 24 formerly transported quartic rows
+plus the 32 legacy continuation nodes, all regenerated and checked in the
+active K3P coordinate system.
+
+The producer-independent replay passed with canonical payload
+\sha{91a29973bcd333c05270ffd379427a8c949285f791fd5db299a83c46934e82b1}.
+The mutation suite rejected all 20 mutations, with payload
+\sha{f770cecb54b459b3ff11d85b0df780e10c07b8fff92dee553ce0feb91120a9c1}.
+The sealed manifest payload is
+\sha{b35346386300bb3f0816a2bbe671280f92f28ee1c5fa2eb9829e6f9fe0863c39}.
+
+\section{Probe census}
+
+The 176 anchors comprise 143 isomorphisms and 33 triangle
+relations in 39 canonical classes.
+
+\begin{center}
+\begin{tabular}{lrr}
+\toprule
+category & one port & two ports\\
+\midrule
+displayed quartet & 27,758 & 511,266\\
+K3P tree--sunlet SOS & 99 & 576\\
+isomorphism & 1,915 & 30,969\\
+triangle & 192 & 1,760\\
+\midrule
+raw rows & 29,964 & 544,571\\
+equality survivors & 2,107 & 32,729\\
+unresolved & 0 & 0\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The transport package has 67,741 exact transport rows and 4,379
+parent restrictions, with zero incoherent choices.  Ordered ledger roots and
+compressed-ledger SHA-256 values are in
+\path{probes/ONE_PORT_PROBE_MANIFEST.json},
+\path{probes/TWO_PORT_PROBE_MANIFEST.json}, and
+\path{probes/GLOBAL_TRANSPORT_MANIFEST.json}.
+
+The coherence layer is sealed against the complete replacement K3P
+restoration theorem by \path{probes/RESTORATION_MANIFEST.json}, schema
+\texttt{k3p-restoration-manifest-v2}, status \texttt{PASS}, with canonical
+payload
+\sha{8c7eeeb77c09a64925fd604358b5660decca4699bd7a2fe04a0a52469a740fa7}.
+This binding distinguishes the 36,568 active K3P terminal rows from the
+36,792 legacy/full-forest leaves and excludes historical K2P algebra.
+
+\section{Krawczyk certificate summary}
+
+The equality slice has 15 scaled pivot variables, 49 frozen direct
+parameters, and rational box radius \(10^{-50}\).  The fifteen exact sparse
+equations have term counts
+
+\[
+(5,5,4,4,3,3,7,5,4,2,5,3,7,4,3).
+\]
+
+The maximum scaled residual at the rational center is approximately
+\(3.02838161\times10^{-89}\).  The exact center Jacobian determinant is
+approximately \(-3.05693250\times10^{-2}\).  With exact
+\(Y=J_F(y_0)^{-1}\),
+
+\[
+\max_j\frac{|K_j-y_{0,j}|}{10^{-50}}
+=9.74099938\times10^{-41},\qquad
+\lVert I-YJ_F(X)\rVert_\infty\le8.07702308\times10^{-47}.
+\]
+
+Both inequalities are rigorous rational interval bounds.  The first is a
+strict Krawczyk inclusion; the second gives uniqueness inside the selected
+slice.
+
+\section{Sharpness rank witnesses}
+
+\begin{center}
+\begingroup
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lL{.42\linewidth}rr}
+\toprule
+map & selected local columns & point determinant (decimal summary) & uniform Neumann bound\\
+\midrule
+\(W\) & \((0,1,2,6,7,8,9,10,11,12,13,14,15,16,18)\)
+& \(1.30773104\times10^{-336}\) & \(1.54315210\times10^{-45}\)\\
+\(W'\) & \((0,1,2,6,7,8,9,10,11,12,13,14,15,16,17)\)
+& \(-6.74132416\times10^{-325}\) & \(4.58271952\times10^{-45}\)\\
+\bottomrule
+\end{tabular}
+\endgroup
+\end{center}
+
+The smallest certified edge-eigenvalue lower bounds are approximately
+\(4.96448\times10^{-10}\) and \(1.39520\times10^{-9}\); the smallest
+continuous-time lower bounds are approximately
+\(4.96448\times10^{-10}\) and \(1.39520\times10^{-9}\).  Exact rational
+intervals for every edge, transition entry, inheritance probability, and
+minor are stored in the 9.9 MB Krawczyk certificate.
+
+The exhaustive topology censuses are
+\(W:(5,2,3)\), \(W':(7,2,5)\), and outer collision reference \((7,0,7)\).
+
+\section{Cherry determinant and all-\texorpdfstring{\(n\)}{n} extension}
+
+For \(h=C,G,T\), use \(R_h=u_h/v_h\) and \(P_h=u_hv_h\).  Direct formal
+Laurent differentiation gives
+
+\[
+\det\frac{\partial(R_C,P_C,R_G,P_G,R_T,P_T)}
+{\partial(u_C,v_C,u_G,v_G,u_T,v_T)}
+=\frac{8u_Cu_Gu_T}{v_Cv_Gv_T}.
+\]
+
+At \(u=(2/5,4/9,3/7)\), \(v=(3/7,5/11,4/9)\), this is \(176/25\).
+The smallest exact strict physical margins at these two spectra are
+\(83/630\) and \(367/2772\).  The positive inverse is
+\(u_h=\sqrt{R_hP_h}\), \(v_h=\sqrt{P_h/R_h}\).  Each cherry adds exactly six
+dimensions, yielding \(15+6(n-3)=6n-3\).
+
+\section{Clean-room architecture and H21-01 repair}
+
+The historical clean-room verifier is preserved at SHA-256
+\sha{ee5e29a2cd795d9389e8e1257ebdb9eeaa4256fb5d03e07f230bf82ba555ef91}.
+
+It reproduces the H21-01 failure.  The defect was mathematical, not a change
+in the expected orbit: it used rooted-DAG automorphisms instead of
+root-suppressed semi-directed mixed-graph automorphisms and did not conjugate
+the base target automorphism into the displayed frame.  The corrected replay:
+
+\begin{itemize}
+\item binds five frozen inputs by hard-coded SHA-256 before parsing;
+\item reconstructs source and target incoming roles, repairs, physical ports,
+and port permutations from literal graphs;
+\item computes all seven H21 double cosets and the six nonisomorphic ones;
+\item replays all 38 raw Fourier-coordinate transports;
+\item binds each rank label to a square minor, selected rows and columns; and
+\item independently derives every target function-field rank upper bound.
+\end{itemize}
+
+The corrected verifier has zero Python assertion nodes and refuses optimized
+mode before reading inputs.
+
+\section{Mutation summary}
+
+The integrated primary verifier passes 28 of 28 active evidence entries.  The
+final classification gate then reports \texttt{CERTIFIED\_K3P\_SAME} with no
+remaining mathematical gates.  Its own fail-closed suite rejects 16 of 16
+integrated mutations.  The active component suites also include:
+
+\begin{longtable}{L{.27\linewidth}rL{.58\linewidth}}
+\toprule
+component & rejected & representative mutations\\
+\midrule
+\endhead
+H21/fourteen-orbit gate & 10 & port/incoming changes, weakened rank bounds,
+nonsquare minor, selected-row change, optimized mode, input byte change\\
+H21 adversarial re-audit & 25 & raw coverage, target conjugation,
+coordinate transport, graph-role and exact-identity corruptions\\
+cross-bridge local theorem & 34 & missing target, partition overlap,
+changed single/pair/cyclic identities, record-43/60 bindings\\
+global cut transfer & 30+32 & circular dependency, crossing compatibility,
+side-blob physicality, target openness, tree-coloring counterexamples\\
+integrated cut claim boundary & 12 & universal-pointwise substitution,
+claim-scope drift, circular dependencies, and ordinary/optimized modes\\
+global analytic infrastructure & 16 & \(C=T\), state permutation, missing
+domain inequality, rank-\(15\) triangle, orientation-specific context\\
+probe coherence & 17 & missing anchor/probe/parent, reversed order,
+broken transport, new/inconsistent triangle, \(C=T\), optimized mode\\
+sharpness & 18 & rooting census, graph status, Krawczyk data, interval rank,
+physical margins, cherry determinant and persistence\\
+restoration & 20 & missing/duplicated child, wrong parent,
+K2P algebra, altered SOS/quadratic/quartic, broken marginal transport\\
+final integrated K3P-SAME gate & 16 & universal-pointwise substitution,
+rank-15 triangle, proper directed containment, stale restoration binding,
+K2P leakage, reversed CT transfer, submission-ready and optimized-mode bypasses\\
+\bottomrule
+\end{longtable}
+
+Each campaign records the expected and observed diagnostic; a stale hash alone
+is not accepted as the intended mathematical rejection when the suite is
+designed to rebind mutated inputs.
+
+\section{Reproduction commands}
+
+From the project root, the component-level commands used by this draft are:
+
+\begin{verbatim}
+.venv/bin/python reproducibility/verify_k3p_same_classification.py
+.venv/bin/python reproducibility/test_k3p_same_classification_mutations.py
+
+bash reproducibility/verify_primary.sh
+bash clean_room/verify_clean_room.sh
+
+.venv/bin/python \
+  cut_recovery/strong_crossbridge/final_certificate/build_final_certificate.py
+.venv/bin/python \
+  cut_recovery/strong_crossbridge/final_certificate/verify_final_certificate.py
+.venv/bin/python \
+  cut_recovery/strong_crossbridge/global_transfer/verify_release.py
+
+.venv/bin/python restoration/regenerate_k3p_restoration.py --resume
+.venv/bin/python restoration/verify_k3p_restoration.py
+.venv/bin/python restoration/test_k3p_restoration_mutations.py
+
+.venv/bin/python probes/regenerate_k3p_probes.py
+.venv/bin/python probes/verify_k3p_probes.py
+.venv/bin/python probes/test_k3p_probe_mutations.py
+
+.venv/bin/python global_infrastructure/generate_global_infrastructure.py
+.venv/bin/python global_infrastructure/verify_global_infrastructure.py
+.venv/bin/python global_infrastructure/test_global_infrastructure_mutations.py
+
+.venv/bin/python sharpness/independent_krawczyk_replay.py
+.venv/bin/python sharpness/independent_topology_alln_replay.py
+\end{verbatim}
+
+The first two commands are the sealed final mathematical classification gate
+and its 16-mutation fail-closed suite.  The longer producer commands are
+listed only for complete regeneration; no release-archive or submission gate
+is claimed here.
+
+\section{Artifact hashes}
+
+\begingroup
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{.9}
+\begin{longtable}{L{.55\linewidth}L{.39\linewidth}}
+\toprule
+artifact & SHA-256\\
+\midrule
+\endhead
+\path{model_domain/primary_exact_evidence.json}
+& \sha{ac21e4f795537f251377411841d670c1bad4ce06a69ed24f596252c11cb7afb6}\\
+\path{three_port/primary_exact_evidence.json}
+& \sha{79cd462c3afb88f7cf1f898febbb2ad1a7a701c7bb05a58a833ed96736fdc5de}\\
+\path{bridge_fibre/K3P_BRIDGE_FIBRE_CERTIFICATE.json}
+& \sha{bdd8e8f74a896b5031a50cad9ac97a82a03f4f821f2dc793cfb386415b1df532}\\
+\path{marginals/K3P_MARGINAL_SUBMERSION_CERTIFICATE.json}
+& \sha{f85f918a770af7482abfe914bc93a304ce23c2489062643036b7a742ab09ef7f}\\
+\path{four_port_atlas/primary_exact_evidence.json}
+& \sha{f4e02c74e4b4f9fbb063b13da65033a46ef45f2eecaad2b9efc1895b63afadab}\\
+\path{clean_room/H21_01_TRANSPORT_AUDIT.json}
+& \sha{b8a1c52a01ce0bb1b50a8ffaf78f5a300be52fde976671b2b1cc91e8fe2d7229}\\
+\path{triangle_h14/K3P_H14_CONTEXT_CERTIFICATE.json}
+& \sha{082f24cd26be08f248ddc6d0cf804059a27ad96477b06df0c56f8a89818bb9b9}\\
+\path{cut_recovery/strong_crossbridge/final_certificate/STRONG_CROSSBRIDGE_FINAL_CERTIFICATE.json}
+& \sha{643c29780219a538a5a127341ea91363aa5899d6f0f6fa1dac034889a7fdf06b}\\
+\path{cut_recovery/strong_crossbridge/global_transfer/THEOREM_MANIFEST.json}
+& \sha{00021da5e23726fa6a34e0c024b0703bb79e2dbcdecb58affe559e01746c7895}\\
+\path{global_infrastructure/GLOBAL_INFRASTRUCTURE_MANIFEST.json}
+& \sha{5c9450b51eaa8bc256523932c2cd7d9025c38230e2e2ce894b9f947086ae06b0}\\
+\path{reproducibility/primary_gate_report.json}
+& \sha{19990e65f17834520c676206bc70f2f80fa37b191b13821536fe366e78de1c45}\\
+\path{reproducibility/K3P_SAME_CLASSIFICATION_GATE_REPORT.json}
+& \sha{2dc2371a185597571e998fe6a271c9f9769e2561f372f14e13328bffea794954}\\
+\path{reproducibility/K3P_SAME_CLASSIFICATION_MUTATION_REPORT.json}
+& \sha{8457a1541ac2b41f5bb4f91cfec0111deec5d282b753c3233c581e31fb057f8d}\\
+\path{restoration/RESTORATION_MANIFEST.json}
+& \sha{a95976496e3f0a5ad289db5dabac688dd1630082eeaaff2f484c113882a5bf8e}\\
+\path{restoration/K3P_RESTORATION_THEOREM_REPORT.md}
+& \sha{9c3ea74acdc5dc4eff24d50c9f2db845215bde6b8276c72faf0a6d150f4bf7f0}\\
+\path{restoration/K3P_RESTORATION_INDEPENDENT_VERIFICATION.json}
+& \sha{925fc8855c92b3b625287347a0e6ee0f8e441a58ac09e150f7521b92b8d3e1fa}\\
+\path{restoration/K3P_RESTORATION_MUTATION_CERTIFICATE.json}
+& \sha{5fac1f616e8bd8bb1c2290debad5d624cb54d14caeecaa601550e8fb19dcac2a}\\
+\path{probes/K3P_PROBE_COHERENCE_CERTIFICATE.json}
+& \sha{45411c6f4924292b975f2620ec9f32c272628378b0f2b3c3b746abbc8ba4e2d8}\\
+\path{probes/RESTORATION_MANIFEST.json}
+& \sha{b6f28a6cd44711cffd939f9e8f72c4ef61ac2a89c265f85535687a370fbe12ea}\\
+\path{sharpness/K3P_SHARPNESS_KRAWCZYK_CERTIFICATE.json}
+& \sha{8187174b3e0c0b3a0a55fa32595c211811c357dc223ada7a74b3033f7cae3941}\\
+\path{sharpness/K3P_SHARPNESS_TOPOLOGY_ALL_N_CERTIFICATE.json}
+& \sha{aa08837777445541398bed943881405530c9b5bb4f0451794a4b56b289beabc7}\\
+\bottomrule
+\end{longtable}
+\endgroup
+
+These are the frozen active hashes at this revision, including the final
+mathematical classification gate.  A later release manifest must supersede
+this typeset table if packaging changes any byte; no release archive or
+submission package is asserted here.
+
+\end{document}
