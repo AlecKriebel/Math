@@ -13,12 +13,40 @@ restrictions selected by the atlas, restoration, and probes.  None of its
 two-sector polynomial identities, ranks, or physical-domain arguments is used
 as K3P evidence.
 
-At the time of this certificate, the global theorem is deliberately
-fail-closed on the separate pointwise-cut interface.  The internal analytic
-results below pass.  The final global classification and reconstruction gate
-may be promoted only after a local exact certificate proves the full K3P
-cut criterion stated in
-`K3P_GLOBAL_GLUE_AND_RECONSTRUCTION_CERTIFICATE.json`.
+The earlier version of this package was deliberately fail-closed on a proposed
+universal pointwise cut-rank interface.  That interface is now superseded and
+is not used.  The active package instead binds the independently sealed
+strong-class containment theorem: under source-relative regular
+full-dimensional containment, the source and target cut sets agree.  Generic
+bridge-tree reconstruction uses only pointwise vanishing at true cuts and
+generic nonvanishing at noncuts via the strict isotropic JC slice.  No claim is
+made that every arbitrary multi-active strict K3P noncut has rank greater than
+four at every parameter point.
+
+## Corrected strong-class containment cut transfer
+
+The load-bearing theorem is directional and class-specific.  Generic cut
+recovery first gives
+
+\[
+\operatorname{Cut}(N')\subseteq\operatorname{Cut}(N)
+\]
+
+for a source-relative containment `N preceq N'`.  If a source bridge were
+lost, the colored target bridge-tree dichotomy has two cases.  A two-active
+case supplies a target bridge crossing the lost source split; the displayed
+inclusion would make it a source bridge, contradicting compatibility of
+source bridge splits.  The remaining one-active case is one of the complete
+204 wrong-split directions, each of which has an exact pointwise rank-greater-
+than-four certificate throughout strict `D3+`.  Hence the reverse inclusion
+holds without assuming a common bridge tree, target regularity, a target-open
+marginal, or the fourteen-orbit classification.
+
+`verify_global_infrastructure.py` invokes the non-importing release verifier
+in both ordinary and optimized Python and checks the theorem-manifest hash,
+all load-bearing input hashes, both stored release reports, exact claim scope,
+and every noncircularity flag.  The bound theorem manifest is
+`../cut_recovery/strong_crossbridge/global_transfer/THEOREM_MANIFEST.json`.
 
 ## Complete three-sector bridge fibre
 
@@ -249,8 +277,8 @@ dimension at most `d_N-1`.  The finite union of their Zariski closures,
 together with singular, source-rank-drop, and certified reconstruction-test
 zero loci, is a proper exceptional set `E_N`.
 
-Outside `E_N`, the stored algorithm terminates: exact Fourier transform, cut
-and bridge-tree recovery, three-sector incidence normalization, finite local
+Outside `E_N`, the stored algorithm terminates: exact Fourier transform,
+generic cut and bridge-tree recovery, three-sector incidence normalization, finite local
 atlas tests, fixed-full restoration, coherent one-/two-port recovery,
 triangle-class assembly, and exact semialgebraic feasibility by real-closed-
 field quantifier elimination.  This is an exact-oracle termination theorem,
@@ -271,7 +299,9 @@ PYTHONDONTWRITEBYTECODE=1 .venv/bin/python global_infrastructure/test_global_inf
 ```
 
 The mutation suite rebinds hashes after each mutation so rejection cannot be
-attributed merely to stale manifests.  It rejects a `C=T` collapse, an
-untransported sector permutation, missing principal and CT inequalities,
-two distinct ambient-rank-15 errors, an orientation-specific context map,
-and optimized-mode bypass.
+attributed merely to stale manifests.  In addition to the algebraic controls,
+it rejects restoration of the obsolete pointwise interface, substitution of
+the universal pointwise claim, use of a common bridge tree, a corrupted theorem
+hash, promotion of generic noncut recovery to a universal pointwise theorem,
+and restoration of the old dependency-DAG node.  The optimized verifier bypass
+is also rejected.

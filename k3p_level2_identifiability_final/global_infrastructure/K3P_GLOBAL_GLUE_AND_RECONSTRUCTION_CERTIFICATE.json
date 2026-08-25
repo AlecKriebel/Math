@@ -2,17 +2,57 @@
   "dependencies": {
     "H14_context_payload_sha256": "0603df404ab1d2fe8e63dd8abe771946ad45b01f58721dd8bfc2cab5be3070fe",
     "bridge_fibre_payload_sha256": "35bc01d877813db6ea9b0493d01a1da252a0a21d2eb200c3db4376602d916db4",
+    "generic_cut_rank_recovery": {
+      "noncut_direction": "some 5x5 minor is a nonzero model polynomial, certified by the strict isotropic JC slice",
+      "scope": "generic bridge-tree reconstruction only; not a universal arbitrary-network pointwise iff claim",
+      "true_cut_direction": "every 5x5 flattening minor vanishes pointwise at a graph bridge split",
+      "universal_pointwise_K3P_cut_recovery_claimed": false
+    },
     "marginal_payload_sha256": "5b870a09d2755d3c12488054db88b3307ba38f3a44d2510bafd893692802b277",
-    "pointwise_cut_interface": {
-      "current_binding": {
-        "accepted_as_pass": false,
-        "path": "cut_recovery/verification_report.json",
-        "reported_status": "BLOCKED",
-        "sha256": "48838420852cd43d54eaab6055a8fba5140086dd0dba8839dc3028c59319c3f8"
+    "strong_class_containment_cut_equality_interface": {
+      "accepted_as_pass": true,
+      "claim_boundary": {
+        "conclusion": "Cut(N)=Cut(Nprime)_under_source_relative_containment_in_the_strong_class",
+        "strong_class_cut_transfer": "PROVED",
+        "universal_pointwise_K3P_cut_recovery": "WITHDRAWN_NOT_USED"
       },
-      "rebind_rule": "bind a local exact certificate whose primitive graph coverage, strict D3+ inequalities, true-cut rank<=4, and every noncut rank>=5 are all PASS",
-      "required_claim": "For every strict D3+ K3P tensor of a standard strong level-2 network, rank Flat_{A|Ac}<=4 iff A|Ac is a bridge split.",
-      "required_status": "PASS"
+      "noncircularity": {
+        "bridge_tree_equality_assumed": false,
+        "common_bridge_tree_assumed": false,
+        "fourteen_orbit_classification_imported": false,
+        "only_preexisting_cut_direction_used": "Cut(Nprime) subset Cut(N)",
+        "reverse_direction_proved_here": "Cut(N) subset Cut(Nprime)",
+        "target_open_marginal_assumed": false,
+        "target_regular_point_assumed": false
+      },
+      "release_reports": {
+        "optimized": {
+          "path": "cut_recovery/strong_crossbridge/global_transfer/RELEASE_OPTIMIZED_VERIFICATION_REPORT.json",
+          "python_optimized": true,
+          "reported_status": "PASS",
+          "sha256": "68ecc443fa89874898ef95da8670c67ade4092f3ce2256fbfbf4fc5e822d54d6"
+        },
+        "ordinary": {
+          "path": "cut_recovery/strong_crossbridge/global_transfer/RELEASE_VERIFICATION_REPORT.json",
+          "python_optimized": false,
+          "reported_status": "PASS",
+          "sha256": "d147cb672032994c20f259719f3fa95a4c592cf7b4c9cbc6e1934ab0f9f67b9b"
+        }
+      },
+      "release_verifier": {
+        "path": "cut_recovery/strong_crossbridge/global_transfer/verify_release.py",
+        "sha256": "50a46467a435f2e611a546f0a63297e072f4a878d5739aa59770428d2e46ff8d"
+      },
+      "required_claim": "For binary standard semi-directed strongly tree-child level-2 networks under source-relative regular full-dimensional containment on strict D3,+, Cut(N)=Cut(Nprime).",
+      "required_status": "PASS",
+      "theorem_manifest": {
+        "path": "cut_recovery/strong_crossbridge/global_transfer/THEOREM_MANIFEST.json",
+        "reported_status": "PASS",
+        "schema": "k3p-lost-bridge-global-transfer-theorem-manifest-v1",
+        "sha256": "00021da5e23726fa6a34e0c024b0703bb79e2dbcdecb58affe559e01746c7895"
+      },
+      "universal_pointwise_K3P_cut_recovery_used": false,
+      "validation_errors": []
     }
   },
   "exact_reconstruction": {
@@ -21,7 +61,7 @@
     "practical_finite_sequence_claimed": false,
     "steps": [
       "Fourier transform the exact tensor",
-      "recover the labelled bridge tree using the pointwise cut criterion",
+      "recover the labelled bridge tree at a generic regular tensor using true-cut vanishing and generic noncut minors",
       "extract normalized three-sector component factors with bridge incidence slices",
       "enumerate the finite rigid-support atlas candidates and apply exact local separators",
       "follow exact fixed-full restoration records",
@@ -46,11 +86,12 @@
     "rank_drop_image_dimension": "at most d_N-1 by finite constant-rank semialgebraic stratification",
     "scope": "for each fixed topology N; not pointwise parameter identifiability"
   },
-  "global_theorem_dependency_status": "BLOCKED_EXTERNAL_CUT_DEPENDENCY",
+  "global_theorem_dependency_status": "PASS",
   "internal_infrastructure_status": "PASS",
   "logical_dependency_dag": {
     "bridge_tree_recovery": [
-      "pointwise_cut_interface"
+      "strong_class_containment_cut_equality_interface",
+      "generic_cut_rank_recovery"
     ],
     "genericity": [
       "finite_topologies",
@@ -78,7 +119,7 @@
       "simultaneous_physical_bridge_gluing"
     ]
   },
-  "payload_sha256": "9c06674300062f36f1381ac05f8f3eaa2ec2f763cca8337e3514d15c35ff1586",
+  "payload_sha256": "e3f3ae09ea708704043fbeabb760b43a9114cd91287ff018dcf80a5e544ea177",
   "schema": "k3p-global-gluing-genericity-reconstruction-certificate-v1",
   "simultaneous_physical_bridge_gluing": {
     "actual_bridge_formula": "x_h=epsilon/A_h for A_h=a[u,e,h]*a[v,e,h]",

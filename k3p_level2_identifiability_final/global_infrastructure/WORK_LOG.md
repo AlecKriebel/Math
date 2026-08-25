@@ -92,3 +92,42 @@ cut certificate proves primitive graph coverage, true-cut rank at most four,
 noncut rank at least five, and strict D3+ physicality, rerun generation and
 independent verification to rebind this interface.  No analytic proof or
 certificate format in this package needs to be weakened or changed.
+
+## 2026-08-25T09:03:32-0700 — corrected cut-transfer interface promoted
+
+Completion estimate for the global-infrastructure subprogram remains **100%**.
+The obsolete pointwise-cut dependency above is preserved as history but is no
+longer an active interface.  The active global certificate binds the sealed
+strong-class containment cut-equality theorem and explicitly records that the
+universal arbitrary-network pointwise K3P cut-rank equivalence is withdrawn
+and not used.
+
+- Primary item 6 now invokes the non-importing cut-transfer release verifier
+  in ordinary and optimized Python, binds the producer and adversarial layers,
+  and passes.  Its 12 targeted claim-boundary/circularity mutations all fail
+  closed, and both clean modes pass.
+- The global generator checks the exact theorem file set, load-bearing input
+  hashes, ordinary/optimized release reports, claim boundary, and
+  noncircularity contract before setting the dependency status to `PASS`.
+- The independent global verifier repeats all hash/status checks and freshly
+  invokes both release modes.  Its result is `PASS`, not the former
+  `PASS_INTERNAL_BLOCKED_EXTERNAL`.
+- The expanded global mutation suite rejects 16/16 mutations, including seven
+  directed-cut-interface attacks and the optimized-mode bypass.
+- No final classification is promoted by this checkpoint; the separate K3P
+  restoration algebra and final release integration remain open.
+
+Active file SHA-256 values after replay:
+
+- strong-class primary cut gate report:
+  `477165841dcf2024b1569c78a85312c2319a79d3a25983752968fc75665498b7`;
+- strong-class cut gate mutations:
+  `ba1f3288e4c822e8074f9619de7688a513f4f5ce855a4110e15f512f87ea6018`;
+- global gluing/genericity/reconstruction certificate:
+  `e359e1c72fb4faf7ec60a0d3314c109093932dacd49a97e1108a30c35ca9b599`;
+- global infrastructure manifest:
+  `5c9450b51eaa8bc256523932c2cd7d9025c38230e2e2ce894b9f947086ae06b0`;
+- independent global verification:
+  `c50f1a1bc0740276aa75d3de5db1f3c3612f39aee418f73261535f00ed6b4d00`;
+- 16-mutation global certificate:
+  `0a6630f23685efd4ef27936cf4b067cc753b7949173cb8a2d291d6eedb82531c`.

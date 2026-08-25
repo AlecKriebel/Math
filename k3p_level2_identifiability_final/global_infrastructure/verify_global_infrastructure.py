@@ -17,12 +17,62 @@ import gzip
 import json
 import math
 from pathlib import Path
+import subprocess
 import sys
 
 
 Q = Fraction
 NAMES = "0CGT"
 SECTORS = ["C", "G", "T"]
+CUT_TRANSFER_THEOREM_SHA256 = "00021da5e23726fa6a34e0c024b0703bb79e2dbcdecb58affe559e01746c7895"
+CUT_TRANSFER_CLAIM = (
+    "For binary standard semi-directed strongly tree-child level-2 networks "
+    "under source-relative regular full-dimensional containment on strict D3,+, "
+    "Cut(N)=Cut(Nprime)."
+)
+CUT_TRANSFER_BOUNDARY = {
+    "conclusion": "Cut(N)=Cut(Nprime)_under_source_relative_containment_in_the_strong_class",
+    "strong_class_cut_transfer": "PROVED",
+    "universal_pointwise_K3P_cut_recovery": "WITHDRAWN_NOT_USED",
+}
+CUT_TRANSFER_NONCIRCULARITY = {
+    "bridge_tree_equality_assumed": False,
+    "common_bridge_tree_assumed": False,
+    "fourteen_orbit_classification_imported": False,
+    "only_preexisting_cut_direction_used": "Cut(Nprime) subset Cut(N)",
+    "reverse_direction_proved_here": "Cut(N) subset Cut(Nprime)",
+    "target_open_marginal_assumed": False,
+    "target_regular_point_assumed": False,
+}
+CUT_TRANSFER_FILE_SET = {
+    "GLOBAL_TRANSFER_AUDIT.md", "GLOBAL_TRANSFER_CERTIFICATE.json",
+    "GLOBAL_TRANSFER_DIRECTION_UNIVERSE.json", "OPTIMIZED_VERIFICATION_REPORT.json",
+    "README.md", "RELEASE_OPTIMIZED_VERIFICATION_REPORT.json",
+    "RELEASE_VERIFICATION_REPORT.json", "VERIFICATION_REPORT.json", "WORK_LOG.md",
+    "adversarial/ADVERSARIAL_GLOBAL_TRANSFER_AUDIT.json",
+    "adversarial/ADVERSARIAL_GLOBAL_TRANSFER_AUDIT.md", "adversarial/MANIFEST.sha256",
+    "adversarial/MUTATION_RESULTS.json", "adversarial/VERIFICATION_REPORT.json",
+    "adversarial/WORK_LOG.md", "adversarial/test_global_transfer_adversarial_mutations.py",
+    "adversarial/verify_global_transfer_adversarial.py", "build_global_transfer.py",
+    "build_manifest.py", "verify_global_transfer.py", "verify_release.py",
+}
+CUT_TRANSFER_LOAD_BEARING_PATHS = {
+    "directed_cut_inclusion_audit": "cut_recovery/global_logic/CUT_GLOBAL_LOGIC_REPORT.json",
+    "frozen_strong_topology": "cut_recovery/upstream_frozen/corrected_jc_cut_certificate.json",
+    "pointwise_204_adversarial_mutations": "cut_recovery/strong_crossbridge/final_certificate/ADVERSARIAL_MUTATION_REPORT.json",
+    "pointwise_204_certificate": "cut_recovery/strong_crossbridge/final_certificate/STRONG_CROSSBRIDGE_FINAL_CERTIFICATE.json",
+    "pointwise_204_independent_verification": "cut_recovery/strong_crossbridge/final_certificate/VERIFICATION_REPORT.json",
+    "pointwise_204_universe": "cut_recovery/strong_crossbridge/final_certificate/UNIVERSE_CERTIFICATE.json",
+    "recompiled_direction_universe": "cut_recovery/strong_crossbridge/global_transfer/GLOBAL_TRANSFER_DIRECTION_UNIVERSE.json",
+    "selected_marginal": "marginals/K3P_MARGINAL_SUBMERSION_CERTIFICATE.json",
+}
+GLOBAL_INFRASTRUCTURE_CLAIM_BOUNDARY = (
+    "Internal bridge/marginal/H14/gluing/genericity logic and the exact "
+    "strong-class containment cut-equality interface are PASS. The universal "
+    "arbitrary-network pointwise cut-rank iff claim is withdrawn and not used. "
+    "This infrastructure manifest does not by itself promote the final classification; "
+    "restoration and the remaining release gates stay separate."
+)
 
 
 class VerificationError(Exception):
@@ -536,7 +586,134 @@ def acyclic(graph: dict[str, list[str]]) -> bool:
     return all(visit(node) for node in graph)
 
 
-def verify_global(project: Path, certificate: dict, bridge: dict, marginal: dict, h14: dict) -> None:
+def verify_cut_transfer_interface(project: Path, interface: dict) -> dict:
+    require(interface["required_claim"] == CUT_TRANSFER_CLAIM,
+            "directional strong-class cut claim")
+    require(interface["required_status"] == "PASS", "cut-transfer interface weakened")
+    require(interface["claim_boundary"] == CUT_TRANSFER_BOUNDARY,
+            "universal pointwise theorem substituted")
+    require(interface["noncircularity"] == CUT_TRANSFER_NONCIRCULARITY,
+            "cut-transfer interface circularity")
+    require(interface["universal_pointwise_K3P_cut_recovery_used"] is False,
+            "universal pointwise theorem used")
+    require(interface["accepted_as_pass"] is True and interface["validation_errors"] == [],
+            "cut-transfer generator validation")
+
+    theorem_record = interface["theorem_manifest"]
+    theorem_path = project / theorem_record["path"]
+    require(theorem_path.is_file() and digest_file(theorem_path) == theorem_record["sha256"],
+            "cut-transfer theorem manifest hash")
+    theorem = load(theorem_path)
+    require(theorem_record["schema"] == theorem["schema"] ==
+            "k3p-lost-bridge-global-transfer-theorem-manifest-v1",
+            "cut-transfer theorem schema")
+    require(theorem_record["reported_status"] == theorem["status"] == "PASS",
+            "cut-transfer theorem status")
+    require(theorem["certified_claim"] == CUT_TRANSFER_CLAIM,
+            "theorem manifest directional scope")
+    require(theorem["independent_adversarial_audit"]["claim_boundary"] ==
+            CUT_TRANSFER_BOUNDARY, "theorem claim boundary")
+    require(theorem["noncircularity"] == CUT_TRANSFER_NONCIRCULARITY,
+            "theorem noncircularity")
+    require(set(theorem["files"]) == CUT_TRANSFER_FILE_SET,
+            "cut-transfer theorem file set")
+    transfer = theorem_path.parent
+    for relative, expected in theorem["files"].items():
+        path = transfer / relative
+        require(path.is_file() and digest_file(path) == expected,
+                f"cut-transfer theorem file hash {relative}")
+    require(set(theorem["load_bearing_inputs"]) == set(CUT_TRANSFER_LOAD_BEARING_PATHS),
+            "cut-transfer load-bearing input set")
+    for name, record in theorem["load_bearing_inputs"].items():
+        require(record["path"] == CUT_TRANSFER_LOAD_BEARING_PATHS[name],
+                f"cut-transfer load-bearing path {name}")
+        path = project / record["path"]
+        require(path.is_file() and digest_file(path) == record["sha256"],
+                f"cut-transfer load-bearing hash {name}")
+    require(theorem_record["sha256"] == CUT_TRANSFER_THEOREM_SHA256,
+            "sealed cut-transfer theorem manifest hash")
+
+    release_record = interface["release_verifier"]
+    release_path = project / release_record["path"]
+    require(release_path.is_file() and digest_file(release_path) == release_record["sha256"],
+            "cut-transfer release verifier hash")
+    audit = theorem["independent_adversarial_audit"]
+    require(audit["status"] == "PASS" and audit["remaining_gaps"] == [],
+            "cut-transfer independent audit status")
+    require(audit["release_verifier"] == release_record,
+            "theorem/interface release verifier agreement")
+
+    def verify_release_report(mode: str, optimized: bool) -> dict:
+        record = interface["release_reports"][mode]
+        path = project / record["path"]
+        require(path.is_file() and digest_file(path) == record["sha256"],
+                f"cut-transfer {mode} release hash")
+        report = load(path)
+        require(report["schema"] ==
+                "k3p-lost-bridge-global-transfer-release-verification-v1",
+                f"cut-transfer {mode} release schema")
+        require(report["status"] == record["reported_status"] == "PASS" and
+                report["remaining_gaps"] == [], f"cut-transfer {mode} release status")
+        require(report["python_optimized"] is record["python_optimized"] is optimized,
+                f"cut-transfer {mode} release mode")
+        require(report["release_verifier_sha256"] == release_record["sha256"],
+                f"cut-transfer {mode} verifier binding")
+        require(report["circular_hash_dependency"] is False,
+                f"cut-transfer {mode} circular hash dependency")
+        require(report["producer_imported"] is False and
+                report["adversarial_verifier_imported"] is False,
+                f"cut-transfer {mode} implementation independence")
+        require(report["producer"]["direction_count"] == 204 and
+                report["adversarial"]["direction_count"] == 204,
+                f"cut-transfer {mode} direction coverage")
+        require(report["adversarial"]["tree_colorings_checked"] == 19270 and
+                report["adversarial"]["tree_counterexamples"] == 0,
+                f"cut-transfer {mode} topology audit")
+        expected_audit_key = "release_optimized_report" if optimized else "release_report"
+        require(audit[expected_audit_key] == {
+            "path": record["path"], "sha256": record["sha256"]
+        }, f"theorem {mode} release binding")
+        return report
+
+    ordinary = verify_release_report("ordinary", False)
+    optimized = verify_release_report("optimized", True)
+
+    fresh = {}
+    for mode, optimized_flag in (("ordinary", False), ("optimized", True)):
+        command = [sys.executable]
+        if optimized_flag:
+            command.append("-O")
+        command.extend([str(release_path), "--no-write-report"])
+        result = subprocess.run(
+            command, cwd=transfer, text=True, stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT, check=False,
+        )
+        require(result.returncode == 0, f"fresh cut-transfer {mode} release replay")
+        summaries = []
+        for line in result.stdout.splitlines():
+            try:
+                value = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+            if isinstance(value, dict):
+                summaries.append(value)
+        require(summaries and summaries[-1] == {
+            "status": "PASS", "directions": 204, "tree_colorings": 19270,
+            "adversarial_mutations": 32, "python_optimized": optimized_flag,
+        }, f"fresh cut-transfer {mode} release summary")
+        fresh[mode] = summaries[-1]
+
+    require(ordinary["bindings"] == optimized["bindings"],
+            "ordinary/optimized cut-transfer binding disagreement")
+    return {
+        "theorem_manifest_sha256": theorem_record["sha256"],
+        "release_verifier_sha256": release_record["sha256"],
+        "fresh_replays": fresh,
+        "universal_pointwise_K3P_cut_recovery_used": False,
+    }
+
+
+def verify_global(project: Path, certificate: dict, bridge: dict, marginal: dict, h14: dict) -> dict:
     require(certificate["schema"] == "k3p-global-gluing-genericity-reconstruction-certificate-v1", "global schema")
     require(certificate["internal_infrastructure_status"] == "PASS", "internal global status")
     require(certificate["payload_sha256"] == digest_payload(certificate), "global payload")
@@ -544,19 +721,23 @@ def verify_global(project: Path, certificate: dict, bridge: dict, marginal: dict
     require(deps["bridge_fibre_payload_sha256"] == bridge["payload_sha256"], "bridge dependency")
     require(deps["marginal_payload_sha256"] == marginal["payload_sha256"], "marginal dependency")
     require(deps["H14_context_payload_sha256"] == h14["payload_sha256"], "H14 dependency")
-    interface = deps["pointwise_cut_interface"]
-    require(interface["required_status"] == "PASS", "cut interface weakened")
-    current = interface.get("current_binding")
-    accepted = False
-    if current:
-        path = project / current["path"]
-        require(path.is_file() and digest_file(path) == current["sha256"], "cut binding hash")
-        report = load(path)
-        actual = report.get("K3P_pointwise_cut_theorem", {}).get("status")
-        require(actual == current["reported_status"], "cut binding status")
-        accepted = actual == "PASS" and current["accepted_as_pass"] is True
-    expected_global = "PASS" if accepted else "BLOCKED_EXTERNAL_CUT_DEPENDENCY"
-    require(certificate["global_theorem_dependency_status"] == expected_global, "global cut gate not fail-closed")
+    require(set(deps) == {
+        "bridge_fibre_payload_sha256", "marginal_payload_sha256",
+        "H14_context_payload_sha256", "strong_class_containment_cut_equality_interface",
+        "generic_cut_rank_recovery",
+    }, "global dependency interface set")
+    cut_replay = verify_cut_transfer_interface(
+        project, deps["strong_class_containment_cut_equality_interface"]
+    )
+    generic_cut = deps["generic_cut_rank_recovery"]
+    require(generic_cut == {
+        "true_cut_direction": "every 5x5 flattening minor vanishes pointwise at a graph bridge split",
+        "noncut_direction": "some 5x5 minor is a nonzero model polynomial, certified by the strict isotropic JC slice",
+        "scope": "generic bridge-tree reconstruction only; not a universal arbitrary-network pointwise iff claim",
+        "universal_pointwise_K3P_cut_recovery_claimed": False,
+    }, "generic cut-rank claim boundary")
+    require(certificate["global_theorem_dependency_status"] == "PASS",
+            "global cut gate not fail-closed")
 
     gluing = certificate["simultaneous_physical_bridge_gluing"]
     require(gluing["principal_domain_inequalities"] == ["c>0", "g>0", "t>0", "1-c>0", "1-g>0", "1-t>0", "1+c-g-t>0", "1-c+g-t>0", "1-c-g+t>0"], "global missing D3+ inequality")
@@ -604,8 +785,11 @@ def verify_global(project: Path, certificate: dict, bridge: dict, marginal: dict
     require("quantifier elimination" in reconstruction["termination"], "reconstruction termination")
     graph = certificate["logical_dependency_dag"]
     require(acyclic(graph), "cyclic global proof dependencies")
-    require("pointwise_cut_interface" in graph["bridge_tree_recovery"], "cut missing from reconstruction DAG")
+    require(graph["bridge_tree_recovery"] == [
+        "strong_class_containment_cut_equality_interface", "generic_cut_rank_recovery"
+    ], "corrected cut transfer missing from reconstruction DAG")
     require("H14_context" in graph["sufficiency"], "H14 missing from sufficiency")
+    return cut_replay
 
 
 def verify_manifest(project: Path, certificates: Path, manifest: dict, records: dict[str, dict]) -> None:
@@ -613,6 +797,8 @@ def verify_manifest(project: Path, certificates: Path, manifest: dict, records: 
     require(manifest["payload_sha256"] == digest_payload(manifest), "manifest payload")
     expected_status = "PASS" if records["global"]["global_theorem_dependency_status"] == "PASS" else "PASS_INTERNAL_BLOCKED_EXTERNAL"
     require(manifest["status"] == expected_status, "manifest status")
+    require(manifest["claim_boundary"] == GLOBAL_INFRASTRUCTURE_CLAIM_BOUNDARY,
+            "global infrastructure claim boundary")
     mapping = {
         "bridge_fibre/K3P_BRIDGE_FIBRE_CERTIFICATE.json": records["bridge"],
         "marginals/K3P_MARGINAL_SUBMERSION_CERTIFICATE.json": records["marginal"],
@@ -664,8 +850,12 @@ def main(argv: list[str] | None = None) -> int:
         report["checks"]["marginal_submersion"] = "PASS"
         verify_h14(project, records["h14"])
         report["checks"]["H14_context"] = "PASS"
-        verify_global(project, records["global"], records["bridge"], records["marginal"], records["h14"])
-        report["checks"]["gluing_genericity_reconstruction"] = "PASS_INTERNAL"
+        cut_replay = verify_global(
+            project, records["global"], records["bridge"], records["marginal"], records["h14"]
+        )
+        report["checks"]["strong_class_containment_cut_transfer"] = "PASS"
+        report["checks"]["gluing_genericity_reconstruction"] = "PASS"
+        report["cut_transfer_release_replay"] = cut_replay
         manifest = load(certificates / "global_infrastructure" / "GLOBAL_INFRASTRUCTURE_MANIFEST.json")
         verify_manifest(project, certificates, manifest, records)
         report["checks"]["manifest"] = "PASS"

@@ -25,6 +25,56 @@ K3P = FROZEN / "k3p_cloud_artifacts"
 TOPOLOGY = FROZEN / "model_independent_topology_package"
 SECTORS = ("C", "G", "T")
 CHAR_NAMES = "0CGT"
+CUT_TRANSFER = ROOT / "cut_recovery" / "strong_crossbridge" / "global_transfer"
+CUT_TRANSFER_THEOREM_SHA256 = "00021da5e23726fa6a34e0c024b0703bb79e2dbcdecb58affe559e01746c7895"
+CUT_TRANSFER_CLAIM = (
+    "For binary standard semi-directed strongly tree-child level-2 networks "
+    "under source-relative regular full-dimensional containment on strict D3,+, "
+    "Cut(N)=Cut(Nprime)."
+)
+CUT_TRANSFER_BOUNDARY = {
+    "conclusion": "Cut(N)=Cut(Nprime)_under_source_relative_containment_in_the_strong_class",
+    "strong_class_cut_transfer": "PROVED",
+    "universal_pointwise_K3P_cut_recovery": "WITHDRAWN_NOT_USED",
+}
+CUT_TRANSFER_NONCIRCULARITY = {
+    "bridge_tree_equality_assumed": False,
+    "common_bridge_tree_assumed": False,
+    "fourteen_orbit_classification_imported": False,
+    "only_preexisting_cut_direction_used": "Cut(Nprime) subset Cut(N)",
+    "reverse_direction_proved_here": "Cut(N) subset Cut(Nprime)",
+    "target_open_marginal_assumed": False,
+    "target_regular_point_assumed": False,
+}
+CUT_TRANSFER_FILE_SET = {
+    "GLOBAL_TRANSFER_AUDIT.md", "GLOBAL_TRANSFER_CERTIFICATE.json",
+    "GLOBAL_TRANSFER_DIRECTION_UNIVERSE.json", "OPTIMIZED_VERIFICATION_REPORT.json",
+    "README.md", "RELEASE_OPTIMIZED_VERIFICATION_REPORT.json",
+    "RELEASE_VERIFICATION_REPORT.json", "VERIFICATION_REPORT.json", "WORK_LOG.md",
+    "adversarial/ADVERSARIAL_GLOBAL_TRANSFER_AUDIT.json",
+    "adversarial/ADVERSARIAL_GLOBAL_TRANSFER_AUDIT.md", "adversarial/MANIFEST.sha256",
+    "adversarial/MUTATION_RESULTS.json", "adversarial/VERIFICATION_REPORT.json",
+    "adversarial/WORK_LOG.md", "adversarial/test_global_transfer_adversarial_mutations.py",
+    "adversarial/verify_global_transfer_adversarial.py", "build_global_transfer.py",
+    "build_manifest.py", "verify_global_transfer.py", "verify_release.py",
+}
+CUT_TRANSFER_LOAD_BEARING_PATHS = {
+    "directed_cut_inclusion_audit": "cut_recovery/global_logic/CUT_GLOBAL_LOGIC_REPORT.json",
+    "frozen_strong_topology": "cut_recovery/upstream_frozen/corrected_jc_cut_certificate.json",
+    "pointwise_204_adversarial_mutations": "cut_recovery/strong_crossbridge/final_certificate/ADVERSARIAL_MUTATION_REPORT.json",
+    "pointwise_204_certificate": "cut_recovery/strong_crossbridge/final_certificate/STRONG_CROSSBRIDGE_FINAL_CERTIFICATE.json",
+    "pointwise_204_independent_verification": "cut_recovery/strong_crossbridge/final_certificate/VERIFICATION_REPORT.json",
+    "pointwise_204_universe": "cut_recovery/strong_crossbridge/final_certificate/UNIVERSE_CERTIFICATE.json",
+    "recompiled_direction_universe": "cut_recovery/strong_crossbridge/global_transfer/GLOBAL_TRANSFER_DIRECTION_UNIVERSE.json",
+    "selected_marginal": "marginals/K3P_MARGINAL_SUBMERSION_CERTIFICATE.json",
+}
+GLOBAL_INFRASTRUCTURE_CLAIM_BOUNDARY = (
+    "Internal bridge/marginal/H14/gluing/genericity logic and the exact "
+    "strong-class containment cut-equality interface are PASS. The universal "
+    "arbitrary-network pointwise cut-rank iff claim is withdrawn and not used. "
+    "This infrastructure manifest does not by itself promote the final classification; "
+    "restoration and the remaining release gates stay separate."
+)
 
 
 def fail(message: str) -> None:
@@ -748,6 +798,120 @@ def build_h14_certificate() -> dict:
     })
 
 
+def build_cut_transfer_binding() -> dict:
+    """Bind the sealed directional theorem without accepting self-reported PASS."""
+    theorem_path = CUT_TRANSFER / "THEOREM_MANIFEST.json"
+    release_verifier = CUT_TRANSFER / "verify_release.py"
+    ordinary_path = CUT_TRANSFER / "RELEASE_VERIFICATION_REPORT.json"
+    optimized_path = CUT_TRANSFER / "RELEASE_OPTIMIZED_VERIFICATION_REPORT.json"
+    errors: list[str] = []
+    required = (theorem_path, release_verifier, ordinary_path, optimized_path)
+    for path in required:
+        if not path.is_file():
+            errors.append(f"missing {rel(path)}")
+    if errors:
+        return {
+            "accepted_as_pass": False,
+            "validation_errors": errors,
+            "universal_pointwise_K3P_cut_recovery_used": False,
+        }
+
+    theorem = read_json(theorem_path)
+    ordinary = read_json(ordinary_path)
+    optimized = read_json(optimized_path)
+    release_sha = file_sha(release_verifier)
+
+    if theorem.get("schema") != "k3p-lost-bridge-global-transfer-theorem-manifest-v1":
+        errors.append("theorem schema")
+    if theorem.get("status") != "PASS":
+        errors.append("theorem status")
+    if theorem.get("certified_claim") != CUT_TRANSFER_CLAIM:
+        errors.append("directional strong-class claim")
+    audit = theorem.get("independent_adversarial_audit", {})
+    if audit.get("claim_boundary") != CUT_TRANSFER_BOUNDARY:
+        errors.append("withdrawn universal pointwise claim boundary")
+    if theorem.get("noncircularity") != CUT_TRANSFER_NONCIRCULARITY:
+        errors.append("noncircularity contract")
+    if audit.get("status") != "PASS" or audit.get("remaining_gaps") != []:
+        errors.append("independent adversarial status")
+
+    if set(theorem.get("files", {})) != CUT_TRANSFER_FILE_SET:
+        errors.append("theorem file set")
+    for relative, expected in sorted(theorem.get("files", {}).items()):
+        path = CUT_TRANSFER / relative
+        if not path.is_file() or file_sha(path) != expected:
+            errors.append(f"theorem file hash {relative}")
+    if set(theorem.get("load_bearing_inputs", {})) != set(CUT_TRANSFER_LOAD_BEARING_PATHS):
+        errors.append("load-bearing input set")
+    for name, record in sorted(theorem.get("load_bearing_inputs", {}).items()):
+        if record.get("path") != CUT_TRANSFER_LOAD_BEARING_PATHS.get(name):
+            errors.append(f"load-bearing path {name}")
+        path = ROOT / record.get("path", "")
+        if not path.is_file() or file_sha(path) != record.get("sha256"):
+            errors.append(f"load-bearing input {name}")
+
+    def release_ok(report: dict, optimized_flag: bool) -> bool:
+        return (
+            report.get("schema") == "k3p-lost-bridge-global-transfer-release-verification-v1"
+            and report.get("status") == "PASS"
+            and report.get("remaining_gaps") == []
+            and report.get("python_optimized") is optimized_flag
+            and report.get("release_verifier_sha256") == release_sha
+            and report.get("circular_hash_dependency") is False
+            and report.get("producer_imported") is False
+            and report.get("adversarial_verifier_imported") is False
+            and report.get("producer", {}).get("direction_count") == 204
+            and report.get("adversarial", {}).get("direction_count") == 204
+            and report.get("adversarial", {}).get("tree_counterexamples") == 0
+        )
+
+    if not release_ok(ordinary, False):
+        errors.append("ordinary release report")
+    if not release_ok(optimized, True):
+        errors.append("optimized release report")
+    for key, path in (
+        ("release_verifier", release_verifier),
+        ("release_report", ordinary_path),
+        ("release_optimized_report", optimized_path),
+    ):
+        record = audit.get(key, {})
+        if record.get("path") != rel(path) or record.get("sha256") != file_sha(path):
+            errors.append(f"theorem {key} binding")
+    if file_sha(theorem_path) != CUT_TRANSFER_THEOREM_SHA256:
+        errors.append("sealed theorem manifest hash")
+
+    return {
+        "required_claim": CUT_TRANSFER_CLAIM,
+        "required_status": "PASS",
+        "theorem_manifest": {
+            "path": rel(theorem_path),
+            "sha256": file_sha(theorem_path),
+            "schema": theorem.get("schema"),
+            "reported_status": theorem.get("status"),
+        },
+        "release_verifier": {"path": rel(release_verifier), "sha256": release_sha},
+        "release_reports": {
+            "ordinary": {
+                "path": rel(ordinary_path),
+                "sha256": file_sha(ordinary_path),
+                "reported_status": ordinary.get("status"),
+                "python_optimized": ordinary.get("python_optimized"),
+            },
+            "optimized": {
+                "path": rel(optimized_path),
+                "sha256": file_sha(optimized_path),
+                "reported_status": optimized.get("status"),
+                "python_optimized": optimized.get("python_optimized"),
+            },
+        },
+        "claim_boundary": audit.get("claim_boundary"),
+        "noncircularity": theorem.get("noncircularity"),
+        "universal_pointwise_K3P_cut_recovery_used": False,
+        "accepted_as_pass": not errors,
+        "validation_errors": errors,
+    }
+
+
 def build_global_certificate(bridge: dict, marginal: dict, h14: dict) -> dict:
     # After shrinking analytic incidence products around the normalized base,
     # every product is in [L,U].  The common effective bridge spectrum is the
@@ -765,18 +929,8 @@ def build_global_certificate(bridge: dict, marginal: dict, h14: dict) -> dict:
     if min(coordinate_lower, 1 - coordinate_upper, principal_margin_lower, ct_margin_lower) <= 0:
         fail("simultaneous physical-gluing envelope is not strict")
 
-    cut_report = ROOT / "cut_recovery" / "verification_report.json"
-    cut_binding = None
-    if cut_report.exists():
-        cut = read_json(cut_report)
-        cut_binding = {
-            "path": rel(cut_report),
-            "sha256": file_sha(cut_report),
-            "reported_status": cut.get("K3P_pointwise_cut_theorem", {}).get("status"),
-            "accepted_as_pass": cut.get("K3P_pointwise_cut_theorem", {}).get("status") == "PASS",
-        }
-
-    dependency_pass = bool(cut_binding and cut_binding["accepted_as_pass"])
+    cut_binding = build_cut_transfer_binding()
+    dependency_pass = cut_binding["accepted_as_pass"] is True
     return bind({
         "schema": "k3p-global-gluing-genericity-reconstruction-certificate-v1",
         "internal_infrastructure_status": "PASS",
@@ -785,11 +939,12 @@ def build_global_certificate(bridge: dict, marginal: dict, h14: dict) -> dict:
             "bridge_fibre_payload_sha256": bridge["payload_sha256"],
             "marginal_payload_sha256": marginal["payload_sha256"],
             "H14_context_payload_sha256": h14["payload_sha256"],
-            "pointwise_cut_interface": {
-                "required_claim": "For every strict D3+ K3P tensor of a standard strong level-2 network, rank Flat_{A|Ac}<=4 iff A|Ac is a bridge split.",
-                "required_status": "PASS",
-                "current_binding": cut_binding,
-                "rebind_rule": "bind a local exact certificate whose primitive graph coverage, strict D3+ inequalities, true-cut rank<=4, and every noncut rank>=5 are all PASS",
+            "strong_class_containment_cut_equality_interface": cut_binding,
+            "generic_cut_rank_recovery": {
+                "true_cut_direction": "every 5x5 flattening minor vanishes pointwise at a graph bridge split",
+                "noncut_direction": "some 5x5 minor is a nonzero model polynomial, certified by the strict isotropic JC slice",
+                "scope": "generic bridge-tree reconstruction only; not a universal arbitrary-network pointwise iff claim",
+                "universal_pointwise_K3P_cut_recovery_claimed": False,
             },
         },
         "simultaneous_physical_bridge_gluing": {
@@ -834,7 +989,7 @@ def build_global_certificate(bridge: dict, marginal: dict, h14: dict) -> dict:
             "input_model": "exact-real oracle supporting field operations, polynomial signs, and real-closed-field quantifier elimination",
             "steps": [
                 "Fourier transform the exact tensor",
-                "recover the labelled bridge tree using the pointwise cut criterion",
+                "recover the labelled bridge tree at a generic regular tensor using true-cut vanishing and generic noncut minors",
                 "extract normalized three-sector component factors with bridge incidence slices",
                 "enumerate the finite rigid-support atlas candidates and apply exact local separators",
                 "follow exact fixed-full restoration records",
@@ -847,7 +1002,7 @@ def build_global_certificate(bridge: dict, marginal: dict, h14: dict) -> dict:
             "individual_edge_parameters_identified": False,
         },
         "logical_dependency_dag": {
-            "bridge_tree_recovery": ["pointwise_cut_interface"],
+            "bridge_tree_recovery": ["strong_class_containment_cut_equality_interface", "generic_cut_rank_recovery"],
             "localization": ["bridge_tree_recovery", "bridge_fibre", "marginal_submersion"],
             "local_classification": ["localization", "four_port_atlas", "restoration", "probes"],
             "sufficiency": ["H14_context", "simultaneous_physical_bridge_gluing"],
@@ -895,7 +1050,7 @@ def main() -> None:
             )
             if path.exists()
         },
-        "claim_boundary": "Internal bridge/marginal/H14/gluing/genericity logic is exact. Global classification/reconstruction remains fail-closed unless the pointwise K3P cut interface is independently PASS.",
+        "claim_boundary": GLOBAL_INFRASTRUCTURE_CLAIM_BOUNDARY,
     })
     write_json(ROOT / "global_infrastructure" / "GLOBAL_INFRASTRUCTURE_MANIFEST.json", manifest)
     print(json.dumps({

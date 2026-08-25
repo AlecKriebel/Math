@@ -1,6 +1,7 @@
 # Final claim lock
 
-Status: **cloud-stage claim frozen for independent local replay**.
+Status: **classification not yet promoted; corrected cut-transfer theorem
+certified, restoration and final release gates pending**.
 
 The statements below are the exact hypotheses this project must either certify
 or falsify.  They are not assumed true merely because they were reported by the
@@ -24,6 +25,35 @@ c>gt,\;g>ct,\;t>cg\right\}.
 \]
 
 All inheritance probabilities are strictly between zero and one.
+
+## Corrected cut-transfer theorem
+
+For a source-relative regular full-dimensional containment between binary
+standard semi-directed strongly tree-child level-2 networks,
+
+\[
+N\preceq_{3,+}N'\quad\Longrightarrow\quad
+\operatorname{Cut}(N)=\operatorname{Cut}(N').
+\]
+
+The same conclusion holds on the strict continuous-time subdomain.  The proof
+uses generic cut recovery for the direction
+`Cut(N') subset Cut(N)`, target/source bridge-split compatibility, and the
+complete 204-direction pointwise one-active cross-bridge obstruction for the
+reverse direction.  It assumes neither a common bridge tree nor the
+fourteen-orbit classification and therefore is available before localization.
+
+The earlier auxiliary assertion
+
+\[
+\operatorname{rank}\operatorname{Flat}_{A\mid A^c}(q)\le 4
+\quad\Longleftrightarrow\quad
+A\mid A^c\text{ is a bridge split}
+\]
+
+at every strict point of every arbitrary multi-active standard strong network
+is **withdrawn and not used**.  What remains valid is pointwise true-cut
+vanishing and generic noncut recovery through the strict isotropic JC slice.
 
 ## Main classification hypothesis
 
@@ -87,4 +117,6 @@ tree-childness and therefore is not the asserted sharp boundary example.
 The only permitted final theorem status is the one forced by the complete
 local evidence: `K3P-SAME`, `K3P-MODIFIED`, or `K3P-STRONG-FAILURE`.  Until all
 applicable acceptance gates pass, the project status remains **uncertified**.
-
+In particular, certification of the auxiliary cut-transfer theorem and global
+analytic infrastructure does not by itself promote `K3P-SAME`; K3P restoration
+algebra and final integrated release replay remain required.

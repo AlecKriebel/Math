@@ -819,6 +819,13 @@ def bridge_and_marginal_evidence(model_evidence):
 
 
 def cut_recovery_evidence(frozen_dir: Path):
+    """Historical cloud-transfer audit; deliberately not an active proof gate.
+
+    The aggregate record below depended on the withdrawn CFN shortcut and is
+    retained only to reproduce why the old universal pointwise claim was
+    blocked.  Active primary item 6 uses the independently sealed directional
+    strong-class containment cut-transfer package instead.
+    """
     transfer = json.loads((frozen_dir / "k3p_pointwise_cut_transfer.json").read_text())
     missing_hash = transfer["frozen_certificate_sha256"]
     available_hashes = {}

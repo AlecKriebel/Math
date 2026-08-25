@@ -230,3 +230,39 @@ semantics and strict principal K3P domain, source and target networks in the
 strong class have identical labelled cut sets and reduced bridge trees.
 
 Best-guess completion toward the full paper/certification/release goal: **54%**.
+
+## 2026-08-25T09:03:32-07:00 — Corrected cut theorem integrated into active global gates
+
+- Replaced primary item 6, `Pointwise cut recovery`, by the fail-closed
+  `Strong-class containment cut transfer` gate.  It freshly invokes the sealed
+  release verifier in ordinary and optimized Python, binds the complete
+  producer/adversarial evidence, and checks the exact theorem scope and
+  noncircularity contract.
+- Preserved the historical cut-recovery falsification artifacts unchanged and
+  removed them from the active primary proof path.  The universal
+  arbitrary-network pointwise K3P cut-rank equivalence is now explicitly
+  `WITHDRAWN_NOT_USED` in the active claim lock, gate report, global
+  certificate, and reconstruction dependency DAG.
+- Added a separate mutation driver targeting precisely that scope confusion:
+  12/12 mutations were rejected in subprocess-isolated copies, while clean
+  ordinary and optimized gate runs both passed.
+- Rebound the global analytic infrastructure to the exact strong-class
+  containment cut-equality theorem manifest.  The generator and independent
+  verifier check every theorem file and load-bearing input hash, both stored
+  release reports, fresh ordinary/optimized release execution, and the facts
+  that no common bridge tree, target regularity, target-open marginal, or
+  fourteen-orbit classification was assumed.
+- The global infrastructure now has status `PASS`.  Its expanded semantic
+  mutation suite rejected 16/16 cases, including restoration of the obsolete
+  pointwise interface and circular bridge-tree assumptions.
+- The full primary chain passed 28/28.  This checkpoint does not promote the
+  final classification: K3P restoration algebra and final integrated release
+  replay remain load-bearing.
+
+Strongest verified result at this checkpoint: the corrected directional
+strong-class cut-equality theorem is fully active in both the primary and
+global proof DAGs, with ordinary/optimized independent replay and targeted
+fail-closed mutations.  No active theorem component relies on the withdrawn
+universal pointwise cut-rank equivalence.
+
+Best-guess completion toward the full paper/certification/release goal: **58%**.

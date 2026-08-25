@@ -146,6 +146,63 @@ def main() -> int:
         lambda x: x["common_relative_germ"].__setitem__("rank_in_ambient_A15", 15),
         "relative contextual rank",
     ))
+    cases.append(mutation_case(
+        "restore_obsolete_universal_pointwise_cut_interface",
+        "global_infrastructure/K3P_GLOBAL_GLUE_AND_RECONSTRUCTION_CERTIFICATE.json",
+        lambda x: x["dependencies"].__setitem__(
+            "pointwise_cut_interface",
+            x["dependencies"].pop("strong_class_containment_cut_equality_interface"),
+        ),
+        "global dependency interface set",
+    ))
+    cases.append(mutation_case(
+        "substitute_universal_pointwise_claim_for_directional_theorem",
+        "global_infrastructure/K3P_GLOBAL_GLUE_AND_RECONSTRUCTION_CERTIFICATE.json",
+        lambda x: x["dependencies"]["strong_class_containment_cut_equality_interface"].__setitem__(
+            "required_claim", "rank Flat<=4 iff bridge split at every strict K3P point"
+        ),
+        "directional strong-class cut claim",
+    ))
+    cases.append(mutation_case(
+        "mark_withdrawn_universal_pointwise_theorem_used",
+        "global_infrastructure/K3P_GLOBAL_GLUE_AND_RECONSTRUCTION_CERTIFICATE.json",
+        lambda x: x["dependencies"]["strong_class_containment_cut_equality_interface"].__setitem__(
+            "universal_pointwise_K3P_cut_recovery_used", True
+        ),
+        "universal pointwise theorem used",
+    ))
+    cases.append(mutation_case(
+        "assume_common_bridge_tree_inside_cut_transfer",
+        "global_infrastructure/K3P_GLOBAL_GLUE_AND_RECONSTRUCTION_CERTIFICATE.json",
+        lambda x: x["dependencies"]["strong_class_containment_cut_equality_interface"]["noncircularity"].__setitem__(
+            "common_bridge_tree_assumed", True
+        ),
+        "cut-transfer interface circularity",
+    ))
+    cases.append(mutation_case(
+        "corrupt_cut_transfer_theorem_manifest_hash",
+        "global_infrastructure/K3P_GLOBAL_GLUE_AND_RECONSTRUCTION_CERTIFICATE.json",
+        lambda x: x["dependencies"]["strong_class_containment_cut_equality_interface"]["theorem_manifest"].__setitem__(
+            "sha256", "0" * 64
+        ),
+        "cut-transfer theorem manifest hash",
+    ))
+    cases.append(mutation_case(
+        "promote_generic_noncut_recovery_to_universal_pointwise",
+        "global_infrastructure/K3P_GLOBAL_GLUE_AND_RECONSTRUCTION_CERTIFICATE.json",
+        lambda x: x["dependencies"]["generic_cut_rank_recovery"].__setitem__(
+            "universal_pointwise_K3P_cut_recovery_claimed", True
+        ),
+        "generic cut-rank claim boundary",
+    ))
+    cases.append(mutation_case(
+        "restore_pointwise_cut_node_in_dependency_DAG",
+        "global_infrastructure/K3P_GLOBAL_GLUE_AND_RECONSTRUCTION_CERTIFICATE.json",
+        lambda x: x["logical_dependency_dag"].__setitem__(
+            "bridge_tree_recovery", ["pointwise_cut_interface"]
+        ),
+        "corrected cut transfer missing from reconstruction DAG",
+    ))
 
     temporary, bundle = clone()
     try:

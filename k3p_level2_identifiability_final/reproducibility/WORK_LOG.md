@@ -99,3 +99,36 @@ Removed run-dependent timestamps, elapsed times, and live memory readings from t
 - Stable report SHA-256: `8bdc4b6cea2eb895331295dd5cdc7f13a19f8d53f0ee89eb60e9394481525a04`.
 
 No theorem promotion was made for item 6. The exact missing primitive certificate remains the sole gate to a fully passing primary replay.
+
+## 2026-08-25T09:03:32-07:00 — item 6 corrected and primary chain closed
+
+The former item 6 and the preceding "sole gate" statement are now historical.
+The missing cloud object belonged to the withdrawn universal pointwise
+cut-rank route and is not accepted as active evidence.  Item 6 is now
+`Strong-class containment cut transfer`, exactly scoped to source-relative
+regular full-dimensional containment inside the binary standard semi-directed
+strongly tree-child level-2 class.
+
+The active gate:
+
+- invokes `cut_recovery/strong_crossbridge/global_transfer/verify_release.py`
+  without importing it;
+- replays the sealed producer and independent adversarial layers in ordinary
+  and optimized Python;
+- checks all theorem and load-bearing input hashes, exact status fields, and
+  noncircularity flags;
+- requires the explicit boundary `universal pointwise K3P cut recovery =
+  WITHDRAWN_NOT_USED`; and
+- runs 12 targeted mutations plus clean ordinary/optimized gate controls.
+
+Final result: **28 PASS, 0 BLOCKED, 0 FAIL**.  The byte-stable primary report
+SHA-256 is
+`19990e65f17834520c676206bc70f2f80fa37b191b13821536fe366e78de1c45`;
+the cut gate report is
+`477165841dcf2024b1569c78a85312c2319a79d3a25983752968fc75665498b7`;
+and its mutation report is
+`ba1f3288e4c822e8074f9619de7688a513f4f5ce855a4110e15f512f87ea6018`.
+
+Completion toward the primary-replay goal: **100%**.  This closes the primary
+chain only; it does not promote the final classification while restoration and
+integrated release replay remain pending.
