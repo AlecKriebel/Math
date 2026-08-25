@@ -127,3 +127,44 @@ logical gap in the reported global theorem is isolated.  `K3P-SAME` is not
 yet certified.
 
 Best-guess completion toward the full paper/certification/release goal: **34%**.
+
+## 2026-08-25T08:12:29-07:00 — Strong-class cross-bridge algebra closed
+
+- Rebuilt the complete graph-derived one-active wrong-split universe: 204
+  normalized target directions coming from 77 primitive endpoint types.  The
+  source-cut universe has 3,003 joined endpoint pairs.  No four-port orbit
+  classification was imported into this calculation.
+- The original exact single-minor search certifies 180 directions.  An
+  adversarial five-vertex-simplex audit then proved that a universally signed
+  *single* minor is impossible for each of the remaining 24 directions, so
+  the residue was not closed by silently strengthening that failed route.
+- Twelve directions are now excluded by exact signed two-minor combinations
+  whose tensor-Bernstein coefficients are nonnegative on the full open unit
+  cube.  A separately structured verifier rebuilt all 204 descriptors and
+  passed; 33/33 mutations were rejected.
+- Ten directions are now excluded by 30 exact cyclic six-minor identities.
+  Their vanishing would make each negative log of three strict spectra the
+  absolute difference of the other two, which is impossible.  The independent
+  verifier passed in ordinary and optimized Python and rejected 40/40
+  mutations.
+- The two exceptional directions, target 174/record 60 and target 127/record
+  43, are closed by exact nine-minor eliminants.  Record 43 requires exact
+  division by the strict factor `1-lambda_0` and a transposed ordered-minor
+  transport.  Fresh local replay passed 3 diagonal, 6 ordered-cross, 3
+  eliminant, and 3 factor identities for each record, rejecting 8 and 9
+  targeted mutations respectively.
+- These calculations establish pointwise rank greater than four for every
+  one-active wrong-split primitive direction throughout strict
+  `D_{3,+}`.  They do not assert the previously advertised universal
+  pointwise cut theorem for arbitrary multi-active networks.  Promotion of
+  the global containment theorem remains conditional on an independent proof
+  that a swallowed source bridge in the strong class localizes to this exact
+  204-direction universe.
+
+Strongest verified result at this checkpoint: the finite algebraic residue
+needed by the strong-class cross-bridge route has zero unresolved directions,
+with independent exact replay for every non-single-minor certificate.  The
+aggregate 204-direction verifier and the noncircular global localization
+argument are still being completed.
+
+Best-guess completion toward the full paper/certification/release goal: **43%**.

@@ -43,3 +43,24 @@
 - Estimated completion of an actual proof or disproof of the full K3P
   pointwise cut theorem: **70%**; the exact remaining task is control of the
   $G,T$ blocks at two-active crossings.
+
+## 2026-08-25T08:12:29-07:00 — strong-class cross-bridge finite closure
+
+- Replaced the invalid projection shortcut by a direct three-sector
+  calculation on the graph-derived one-active target universe.
+- Certified 180/204 directions by exact single-minor signs, 12 by signed
+  two-minor Bernstein combinations, 10 by cyclic six-minor identities, and
+  the last two by cyclic nine-minor eliminants.  No direction remains
+  algebraically unresolved.
+- Independently replayed the signed-pair package (33 mutations), cyclic
+  package in ordinary and optimized modes (40 mutations), and both exceptional
+  eliminants (17 targeted mutations total).
+- Preserved the exact single-minor sign-change witnesses: they demonstrate
+  why the joint certificates are load-bearing and prevent promotion of a
+  false stronger lemma.
+- Claim boundary: this closes the finite algebra required to exclude a target
+  blob swallowing a source bridge in the strong class.  The noncircular
+  graph-localization proof and aggregate 204-direction replay remain separate
+  gates.  No universal arbitrary-network pointwise cut theorem is asserted.
+
+Completion estimate for the strong-class cross-bridge subprogram: **92%**.
