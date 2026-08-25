@@ -809,6 +809,7 @@ class K3PTreeSunletOracle:
         self.pair_cache = {}
         self.certificates = {}
         self.queries = 0
+        self.rejected_triple_finders = collections.Counter()
 
     @staticmethod
     def normalized_restriction(atlas, graph, triple):
@@ -855,6 +856,24 @@ class K3PTreeSunletOracle:
             )
         return rows
 
+    def is_exact_ordinary_sunlet(self, graph):
+        """Check the literal semi-directed three-sunlet, not reticulation count."""
+        try:
+            mixed = self.atlas.sd0_mixed(graph)
+        except (ValueError, KeyError):
+            return False
+        triangles = ordinary_triangles(mixed)
+        labels = [data.get("label") for _, data in mixed.nodes(data=True)]
+        degree_census = sorted(dict(mixed.degree()).values())
+        return (
+            len(triangles) == 1
+            and len(mixed.nodes()) == 6
+            and len(mixed.edges()) == 6
+            and len([label for label in labels if isinstance(label, int)]) == 3
+            and degree_census == [1, 1, 1, 3, 3, 3]
+            and all(mixed.degree(vertex) == 3 for edge in triangles[0]["edges"] for vertex in edge)
+        )
+
     def certify(self, source, target):
         source_hash = sha(graph_payload(source))
         target_hash = sha(graph_payload(target))
@@ -884,14 +903,32 @@ class K3PTreeSunletOracle:
                 tree_on, sunlet_on = "source", "target"
                 tree_circuits, sunlet_circuits = source_circuits, target_circuits
                 tree_descriptor, sunlet_descriptor = source_descriptor, target_descriptor
+                sunlet_graph = target_normalized
             else:
                 tree_on, sunlet_on = "target", "source"
                 tree_circuits, sunlet_circuits = target_circuits, source_circuits
                 tree_descriptor, sunlet_descriptor = target_descriptor, source_descriptor
-            require(all(not row for row in tree_circuits), "K3P tree circuit nonzero")
-            require(any(row for row in sunlet_circuits), "K3P sunlet circuit deck zero")
-            require(tree_descriptor.retic_count == 0, "K3P tree descriptor reticulation")
-            require(sunlet_descriptor.retic_count == 1, "K3P sunlet descriptor reticulation")
+                sunlet_graph = source_normalized
+            # Reticulation count is deliberately only a finder.  A suppressed
+            # nonordinary restriction can have one retained reticulation while
+            # inducing a tree map.  Reject that finder hit and continue until
+            # the exact mixed graph and literal circuit deck certify an
+            # ordinary sunlet.
+            if tree_descriptor.retic_count != 0:
+                self.rejected_triple_finders["tree_descriptor_has_reticulation"] += 1
+                continue
+            if sunlet_descriptor.retic_count != 1:
+                self.rejected_triple_finders["sunlet_descriptor_reticulation_count"] += 1
+                continue
+            if not self.is_exact_ordinary_sunlet(sunlet_graph):
+                self.rejected_triple_finders["not_exact_ordinary_sunlet"] += 1
+                continue
+            if not all(not row for row in tree_circuits):
+                self.rejected_triple_finders["tree_circuit_nonzero"] += 1
+                continue
+            if not any(row for row in sunlet_circuits):
+                self.rejected_triple_finders["sunlet_circuit_deck_zero"] += 1
+                continue
             certificate = {
                 "method": "literal restricted K3P maps plus six-circuit sum-of-squares positivity",
                 "triple": list(triple),
@@ -933,6 +970,9 @@ class K3PTreeSunletOracle:
             "separator_certificate_sha256": sha_file(self.certificate_path),
             "uses_k2p_sector_equality": False,
             "strict_positivity_domain": "D_{3,+}",
+            "rejected_reticulation_count_finder_hits": dict(
+                sorted(self.rejected_triple_finders.items())
+            ),
         }
 
 

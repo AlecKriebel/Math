@@ -42,16 +42,74 @@
     "lock": "COMPANION_DEPENDENCY_LOCK.json",
     "record_count": 28
   },
-  "active_theorem_artifacts": [],
+  "active_theorem_artifacts": [
+    {
+      "path": "clean_room/H21_01_TRANSPORT_AUDIT.json",
+      "scope": "fourteen four-port orbits, 38 raw members, and two sink swaps",
+      "sha256": "b8a1c52a01ce0bb1b50a8ffaf78f5a300be52fde976671b2b1cc91e8fe2d7229",
+      "status": "clean_room_passed_adversarial_reaudit_pending"
+    },
+    {
+      "path": "sharpness/K3P_SHARPNESS_KRAWCZYK_CERTIFICATE.json",
+      "scope": "strict-CT weak-not-strong common rank-15 germ",
+      "sha256": "8187174b3e0c0b3a0a55fa32595c211811c357dc223ada7a74b3033f7cae3941",
+      "status": "independently_replayed"
+    },
+    {
+      "path": "sharpness/K3P_SHARPNESS_TOPOLOGY_ALL_N_CERTIFICATE.json",
+      "scope": "weak-not-strong topology and all-n cherry extension",
+      "sha256": "aa08837777445541398bed943881405530c9b5bb4f0451794a4b56b289beabc7",
+      "status": "independently_replayed"
+    },
+    {
+      "path": "probes/K3P_PROBE_COHERENCE_CERTIFICATE.json",
+      "scope": "complete K3P one-/two-port coherence",
+      "sha256": "45411c6f4924292b975f2620ec9f32c272628378b0f2b3c3b746abbc8ba4e2d8",
+      "status": "independently_replayed_and_mutated"
+    }
+  ],
   "active_verifiers": [
+    {
+      "path": "reproducibility/verify_primary.sh",
+      "scope": "28-item primary exact chain",
+      "status": "27_pass_1_cut_item_blocked"
+    },
+    {
+      "path": "clean_room/verify_clean_room.sh",
+      "scope": "independent H21/fourteen-orbit/sink-swap replay and mutations",
+      "status": "passed_adversarial_reaudit_pending"
+    },
+    {
+      "path": "sharpness/adversarial/adversarial_audit.py",
+      "scope": "independent exact Krawczyk, topology, and all-n sharpness replay",
+      "status": "passed_18_mutations"
+    },
     {
       "path": "probes/regenerate_k3p_probes.py",
       "scope": "K3P literal-graph one-/two-port regeneration",
-      "status": "one_port_checkpoint_passed_full_two_port_pending"
+      "status": "full_pass"
+    },
+    {
+      "path": "probes/verify_k3p_probes.py",
+      "scope": "independent streaming probe replay",
+      "status": "full_pass"
+    },
+    {
+      "path": "probes/test_k3p_probe_mutations.py",
+      "scope": "17 fail-closed probe mutations",
+      "status": "full_pass"
+    },
+    {
+      "path": "cut_recovery/adversarial/verify_cut_transfer_adversarial.py",
+      "scope": "cut-transfer falsification and full-K3P finite audit",
+      "status": "projection_shortcut_refuted_generic_repair_passed_pointwise_unproved"
     }
   ],
   "base_commit": "ac6b38a9f8f44dd777f671768f012dfc00e02d1b",
-  "certification_gates_passed": [],
+  "certification_gates_passed": [
+    "Gate E — sharpness replay",
+    "one-/two-port subgate of Gate F"
+  ],
   "claim_locks": [
     "FINAL_CLAIM_LOCK.json",
     "FINAL_CLAIM_LOCK.md"
@@ -59,14 +117,24 @@
   "excluded_evidence_root": "history/",
   "input_inventory": "LOCAL_INPUT_INVENTORY.json",
   "input_lock": "INPUT_LOCK.json",
-  "manifest_version": "0.2.0-replay-in-progress",
+  "manifest_version": "0.3.0-exact-replay-in-progress",
   "provisional_evidence": [
     {
-      "path": "probes/K3P_PROBE_COHERENCE_CERTIFICATE.json",
-      "status": "CHECKPOINT_ONE_PORT",
-      "payload_sha256": "94844ba0ae4592d3ba9b5ad75bdff07fb56384f58fc120c47f794ed9a900bfa5"
+      "path": "reproducibility/primary_gate_report.json",
+      "status": "27_PASS_1_BLOCKED",
+      "sha256": "8bdc4b6cea2eb895331295dd5cdc7f13a19f8d53f0ee89eb60e9394481525a04"
+    },
+    {
+      "path": "cut_recovery/adversarial/CUT_TRANSFER_ADVERSARIAL_AUDIT.json",
+      "status": "SHORTCUT_INVALID_ONLY_GENERIC_REPAIR_GLOBAL_LOGIC_PENDING",
+      "sha256": "c88907d8597756694478676f425a0b23a97c6e44d69387f61a0fd1006db137ac"
+    },
+    {
+      "path": "probes/RESTORATION_MANIFEST.json",
+      "status": "GRAPH_CONTRACT_PASS_K3P_ALGEBRA_PENDING",
+      "sha256": "62a696529fa73242d472e154fae59fefdcd94819d58f95e751f7a9fabf335c60"
     }
   ],
   "schema_version": 1,
-  "status": "exact_replay_in_progress_no_theorem_promoted"
+  "status": "exact_replay_in_progress_no_final_theorem_promoted"
 }

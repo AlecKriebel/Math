@@ -46,3 +46,46 @@ one-port closure over every physical primitive anchor.  The two-port order
 ledger is still pending, so Gate F is not yet passed.
 
 Best-guess completion toward the full paper/certification/release goal: **11%**.
+
+## 2026-08-24T22:43:00-07:00 — Exact replay checkpoint and adversarial correction
+
+- The primary 28-item chain passed 27 items.  The pointwise cut item correctly
+  remained blocked instead of accepting a missing historical certificate.
+- The exact missing 3,077,509-byte JC certificate was recovered with SHA-256
+  `b627df5b2dc8cf1eb21c2e08c974f9e54f5a0399043e4dd96ea95dc73c2c3350`,
+  but provenance inspection found it in an explicitly withdrawn release.
+- Independent reconstruction found a genuine flaw in the advertised shortcut:
+  a noncut split may have rank two in the `{0,C}` projection, and even all
+  three order-two projections may drop while the complete K3P flattening has
+  rank sixteen.  The CFN projection therefore cannot certify the claimed
+  pointwise K3P cut theorem.
+- The same literal type-48 graph has a strict-continuous-time full-K3P witness
+  with character-block ranks `[4,3,4,4]` and exact nonzero `5 x 5` minor
+  `11139160404356123 / 205680396636584911254472605806100480000000`.
+  A deterministic exact scan found full rank sixteen for all 31,329 ordered
+  endpoint pairs and all 421 noncut single-blob records, and rank four for all
+  32 bridge records.  Thus no full-K3P counterexample was found.
+- Generic noncut recovery is rigorously repaired by the isotropic JC slice.
+  Whether that generic lemma alone closes both bridge-tree implications in
+  source-relative full-dimensional containment is under a dedicated proof
+  audit; pointwise recovery throughout `D_{3,+}` is not promoted.
+- The weak-not-strong sharpness construction passed a separately implemented
+  exact interval/topology audit, including all 18 adversarial mutations.
+- The H21-01 defect was diagnosed as a clean-room rooted-DAG automorphism and
+  unconjugated-coordinate error.  The hardened semi-directed verifier now has
+  no assertion-dependent gates, refuses optimized mode, hard-binds active
+  inputs, reconstructs the five target rank upper bounds, replays all 38 raw
+  transports, and passes its full 14-orbit plus two-sink-swap gate.  A fresh
+  adversarial re-audit is in progress.
+- The complete K3P one-/two-port regeneration passed over 574,535 total rows,
+  with zero unresolved rows, and its independent streaming replay and all 17
+  mutations passed.  The combined producer payload is
+  `b6d836f1a85a11749d49fb714acef955ae0393c80d32186d957c7149a3695565`.
+
+Strongest verified result at this checkpoint: the finite four-port,
+sharpness, and coherent-probe computations have exact independent evidence;
+the historical cut proof has been corrected rather than silently accepted.
+The final `K3P-SAME` theorem remains a hypothesis until the generic-cut global
+logic and K3P restoration algebra gates close.
+
+Best-guess completion toward the full paper/certification/release goal: **31%**.
