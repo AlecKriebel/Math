@@ -1,0 +1,222 @@
+{
+  "blocked_reason": null,
+  "load_bearing_inputs": {
+    "directed_cut_inclusion_audit": {
+      "path": "cut_recovery/global_logic/CUT_GLOBAL_LOGIC_REPORT.json",
+      "sha256": "f323625e9a629c62594df6a9ae90ca31582e0cb4fe878ddad66ddbf02be42d93"
+    },
+    "frozen_strong_topology": {
+      "path": "cut_recovery/upstream_frozen/corrected_jc_cut_certificate.json",
+      "sha256": "edbd4afe566ed0ed5d1c518ffe5b21f8f224d547b9c351cb4e1a8c1c613ac086"
+    },
+    "pointwise_204_adversarial_mutations": {
+      "path": "cut_recovery/strong_crossbridge/final_certificate/ADVERSARIAL_MUTATION_REPORT.json",
+      "sha256": "6f8cffb02cd2fe976840c9edf62644d4ce4f7197813510f9ba7ef0c514ce27fe"
+    },
+    "pointwise_204_certificate": {
+      "path": "cut_recovery/strong_crossbridge/final_certificate/STRONG_CROSSBRIDGE_FINAL_CERTIFICATE.json",
+      "sha256": "643c29780219a538a5a127341ea91363aa5899d6f0f6fa1dac034889a7fdf06b"
+    },
+    "pointwise_204_independent_verification": {
+      "path": "cut_recovery/strong_crossbridge/final_certificate/VERIFICATION_REPORT.json",
+      "sha256": "c07d0c87cb5a93a556268d7bee4fb6f9d0fa475a30e2da5930e7c5369d5a0ab0"
+    },
+    "pointwise_204_universe": {
+      "path": "cut_recovery/strong_crossbridge/final_certificate/UNIVERSE_CERTIFICATE.json",
+      "sha256": "674647dc91513ba85a2a72ed5f98d017c61f54ebb9e157975c14f5a94e4ddb9b"
+    },
+    "recompiled_direction_universe": {
+      "path": "cut_recovery/strong_crossbridge/global_transfer/GLOBAL_TRANSFER_DIRECTION_UNIVERSE.json",
+      "sha256": "c9f00df0c52bbdec1eb8601f7f9ba1652eb500ae5cf5c299fad3bb086411690f"
+    },
+    "selected_marginal": {
+      "path": "marginals/K3P_MARGINAL_SUBMERSION_CERTIFICATE.json",
+      "sha256": "f85f918a770af7482abfe914bc93a304ce23c2489062643036b7a742ab09ef7f"
+    }
+  },
+  "local_204_dependency_pass": true,
+  "noncircularity": {
+    "bridge_tree_equality_assumed": false,
+    "common_bridge_tree_assumed": false,
+    "fourteen_orbit_classification_imported": false,
+    "only_preexisting_cut_direction_used": "Cut(Nprime) subset Cut(N)",
+    "reverse_direction_proved_here": "Cut(N) subset Cut(Nprime)",
+    "target_open_marginal_assumed": false,
+    "target_regular_point_assumed": false
+  },
+  "one_active_handoff": {
+    "direction_universe_sha256": "c9f00df0c52bbdec1eb8601f7f9ba1652eb500ae5cf5c299fad3bb086411690f",
+    "displayed_by_all_removed": 12,
+    "one_active_records": 72,
+    "primitive_core_count": 5,
+    "primitive_cores": [
+      "cycle",
+      "theta_TR_nested",
+      "theta_TR_separated",
+      "theta_TT_nested",
+      "theta_TT_separated"
+    ],
+    "raw_split_entries": 216,
+    "switching_compression_survivors": 0,
+    "wrong_split_directions": 204
+  },
+  "proof_step_ids_sha256": "bca6536170ad28a6501c1ad6ebcf5b93bd66acd29af6f7b89dc9bb48fca2b898",
+  "proof_steps": [
+    {
+      "claim": "Phi_N=Phi_Nprime\u2218sigma on a nonempty source-open regular set U; N,Nprime are binary standard semi-directed strongly tree-child level-2 networks on the same labels.",
+      "depends_on": [],
+      "id": "H0"
+    },
+    {
+      "claim": "Every target bridge split is a source bridge split: Cut(Nprime) subset Cut(N).",
+      "depends_on": [
+        "H0"
+      ],
+      "id": "D1",
+      "reason": "A target-cut 5x5 flattening minor vanishes after composition with sigma on U. If the split were a source noncut, isotropic-JC generic recovery gives a nonzero source polynomial, which cannot vanish on U."
+    },
+    {
+      "claim": "Assume for contradiction that S=A|B is a bridge split of N and is not a bridge split of Nprime.",
+      "depends_on": [
+        "H0"
+      ],
+      "id": "L0"
+    },
+    {
+      "claim": "Both A and B contain at least two labels.",
+      "depends_on": [
+        "L0"
+      ],
+      "id": "L1",
+      "reason": "A singleton side is the pendant leaf bridge in every standard network, so it cannot be lost."
+    },
+    {
+      "claim": "Color the target reduced bridge tree by A/B. The crossing-quartet tree dichotomy gives either a target bridge R with both colors on both sides, or a unique central component v with at least two monochromatic incident branches of each color.",
+      "depends_on": [
+        "L0",
+        "L1"
+      ],
+      "id": "T1"
+    },
+    {
+      "claim": "The target-bridge/two-active alternative is impossible.",
+      "depends_on": [
+        "D1",
+        "L0",
+        "T1"
+      ],
+      "id": "T2",
+      "reason": "Its split R has all four intersections with S nonempty, so R crosses S. D1 makes R a source bridge split, while bridge splits of one reduced tree are compatible; this contradicts that S is a source bridge split."
+    },
+    {
+      "claim": "The target witness is one central active component v; every selected-leaf-free serial path or two-boundary side blob on its four arms compresses to an effective K3P edge.",
+      "depends_on": [
+        "T1",
+        "T2"
+      ],
+      "id": "T3"
+    },
+    {
+      "claim": "Strong-tree-child primitive-core support and noncut word compression select two actual A labels and two actual B labels whose one-active restriction is a wrong-split direction in the complete 204-direction universe.",
+      "depends_on": [
+        "T3"
+      ],
+      "id": "T4",
+      "reason": "Minimum repair and path-sink roles are retained as zero-character completion ports. Switching compression has zero survivors; hence some switching fails the color split and a four-leaf tree witness exists."
+    },
+    {
+      "claim": "Marginalizing the containment identity to the four selected labels gives identical source and target quartet tensors pointwise on U.",
+      "depends_on": [
+        "H0",
+        "T4"
+      ],
+      "id": "M1",
+      "reason": "Fourier marginalization sets omitted characters to zero; it is a direct linear marginal of the original identity and needs no target-open parameter image."
+    },
+    {
+      "claim": "The compressed target quartet is evaluated at a strict physical D3,+ point.",
+      "depends_on": [
+        "H0",
+        "T4"
+      ],
+      "id": "S1",
+      "reason": "Nonempty serial edge classes compose by strictly positive Z2xZ2 convolution; a two-boundary side blob is a positive convex mixture of its strict displayed-path K3P matrices; inheritances are retained, complemented, or summed out."
+    },
+    {
+      "claim": "The source quartet flattening on the selected 2|2 split has rank at most four at every point of U.",
+      "depends_on": [
+        "M1",
+        "L0"
+      ],
+      "id": "P1",
+      "reason": "The source bridge S survives the two-label-per-side restriction and the four K3P character blocks factor as rank-one outer products."
+    },
+    {
+      "claim": "The target quartet flattening on that split has rank greater than four at every strict physical target point.",
+      "depends_on": [
+        "T4",
+        "S1"
+      ],
+      "id": "P2",
+      "reason": "All 204 normalized one-active wrong-split directions have pointwise exact certificates. Effective edge products remain strict D3+; inherited probabilities are retained, complemented, or disappear."
+    },
+    {
+      "claim": "Contradiction: the same quartet tensor cannot have flattening rank both at most four and greater than four.",
+      "depends_on": [
+        "M1",
+        "P1",
+        "P2"
+      ],
+      "id": "X"
+    },
+    {
+      "claim": "Cut(N)=Cut(Nprime) under source-relative regular full-dimensional containment in the stated strong class.",
+      "depends_on": [
+        "D1",
+        "X"
+      ],
+      "id": "C"
+    }
+  ],
+  "rank_transfer": {
+    "identity": "Marginal_4(Phi_N(theta))=Marginal_4(Phi_Nprime(sigma(theta))) for every theta in U",
+    "source_bridge_rank_bound": 4,
+    "target_local_rank_lower_bound": 5,
+    "target_openness_needed": false,
+    "target_pointwise_not_generic": true
+  },
+  "schema": "k3p-lost-bridge-global-transfer-certificate-v1",
+  "scope": {
+    "conclusion": "Cut(N)=Cut(Nprime)",
+    "domain": "strict principal K3P domain D3,+ with inheritance probabilities in (0,1)",
+    "network_class": "binary standard semi-directed strongly tree-child level-2",
+    "relation": "source-relative regular full-dimensional analytic containment N preceq Nprime"
+  },
+  "status": "PASS",
+  "strict_physical_marginal": {
+    "Fourier_marginal_statement": "Omitted leaf characters are set to zero, so the quartet flattening is the corresponding Fourier submatrix.",
+    "inheritance_statement": "Each inheritance is retained as lambda, complemented to 1-lambda, or summed out; retained values remain in (0,1).",
+    "serial_convolution_statement": "A serial product of strict D3,+ K3P matrices is strict D3,+: in probability coordinates it is convolution of two strictly positive Z2xZ2 distributions, and its spectra are coordinatewise products in (0,1).",
+    "two_terminal_blob_mixture_identities": {
+      "probability_coordinate": "p_eff(h)=sum_s w_s*p_s(h)>0",
+      "spectrum_lower_margin": "x_eff=sum_s w_s*x_s>0",
+      "spectrum_scope": "x in {c,g,t}",
+      "spectrum_upper_margin": "1-x_eff=sum_s w_s*(1-x_s)>0",
+      "switching_weights": "w_s>0 and sum_s w_s=1"
+    },
+    "two_terminal_blob_mixture_statement": "A selected-leaf-free two-boundary side blob is a convex mixture, with positive switching weights summing to one, of strict K3P path matrices. Convex mixture preserves strict positivity of all inverse-Fourier probabilities and keeps each nontrivial spectrum in (0,1)."
+  },
+  "trivial_split_handling": "A singleton side is the pendant leaf bridge in every standard network; therefore a source split absent from the target is automatically nontrivial with at least two labels on each side.",
+  "two_active_exclusion": {
+    "contradiction": "S and R would be incompatible bridge splits of the same source reduced bridge tree",
+    "directional_step": "R in Cut(Nprime) implies R in Cut(N)",
+    "four_nonempty_intersections": [
+      "A\u2229C",
+      "A\u2229D",
+      "B\u2229C",
+      "B\u2229D"
+    ],
+    "incompatibility_criterion": "two splits are compatible iff at least one of the four intersections is empty",
+    "target_bridge_split": "R=C|D"
+  }
+}

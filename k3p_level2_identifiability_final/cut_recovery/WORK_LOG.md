@@ -80,3 +80,24 @@ Completion estimate for the strong-class cross-bridge subprogram: **92%**.
   equality still depends on the separate crossing-quartet localization proof.
 
 Completion estimate for the strong-class cross-bridge subprogram: **96%**.
+
+## 2026-08-25T08:49:02-07:00 — global localization and adversarial closure
+
+- Proved `Cut(N)=Cut(N')` under source-relative regular full-dimensional
+  containment in the stated strong class.  The proof is directional and
+  noncircular: it uses only the previously established target-to-source cut
+  inclusion before deriving the reverse inclusion.
+- Excluded the two-active target alternative by incompatibility of crossing
+  bridge splits in the source reduced tree; localized the remaining central
+  case to the exact 204-direction universe.
+- Repaired the initial serial-only physical argument by proving strict
+  `D_{3,+}` closure for positive inheritance mixtures of two-terminal side
+  blobs.  Ordinary and optimized producer verification pass with 30/30
+  mutations rejected.
+- Independent hostile replay checked 19,270 colored-tree instances with zero
+  counterexamples, rebuilt every direction row, and rejected 32/32 mutations.
+  The release verifier binds both stable layers and all 22 manifest rows.
+- The universal arbitrary-network pointwise cut theorem remains withdrawn and
+  is neither needed nor asserted.
+
+Completion estimate for the strong-class cross-bridge subprogram: **100%**.

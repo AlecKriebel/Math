@@ -195,3 +195,38 @@ with a swallowed source bridge throughout strict `D_{3,+}`, with exact
 aggregate coverage and adversarial replay.
 
 Best-guess completion toward the full paper/certification/release goal: **47%**.
+
+## 2026-08-25T08:49:02-07:00 — Noncircular containment cut theorem sealed
+
+- Proved the previously missing reverse cut inclusion under source-relative
+  regular full-dimensional containment in the binary standard semi-directed
+  strongly tree-child level-2 class.  The argument uses the already valid
+  direction `Cut(N') subset Cut(N)`, target bridge-tree split compatibility,
+  and the exact 204-direction pointwise obstruction; it assumes no common
+  bridge tree or factor correspondence.
+- A lost source split gives a colored target bridge-tree dichotomy.  A target
+  bridge crossing that split is impossible because it would also be an
+  incompatible source bridge.  The remaining central-component case
+  localizes to one of the 204 one-active wrong-split directions.
+- Strengthened the physical handoff after adversarial review: every
+  noncentral two-boundary side blob is a positive inheritance-weighted convex
+  mixture of strict displayed-path K3P matrices, hence a strict effective
+  `D_{3,+}` arm.  This closes a real omission in the first draft.
+- The producer replay passes in ordinary and optimized Python with 30/30
+  mutations rejected.  A separately structured hostile audit rebuilt all 204
+  rows, exhausted 19,270 noncut colored-tree cases through seven vertices
+  with zero counterexamples, checked exact serial/mixture closure, and
+  rejected 32/32 mutations.
+- A final non-importing release verifier binds the stable producer and
+  adversarial layers without a circular hash dependency; all 22 manifest rows
+  verify.  The final theorem manifest SHA-256 is
+  `00021da5e23726fa6a34e0c024b0703bb79e2dbcdecb58affe559e01746c7895`.
+- Claim correction: the project proves strong-class cut-set equality under
+  containment.  It does not claim or use a universal pointwise K3P
+  cut-versus-rank equivalence for arbitrary multi-active restrictions.
+
+Strongest verified result at this checkpoint: under the exact containment
+semantics and strict principal K3P domain, source and target networks in the
+strong class have identical labelled cut sets and reduced bridge trees.
+
+Best-guess completion toward the full paper/certification/release goal: **54%**.
