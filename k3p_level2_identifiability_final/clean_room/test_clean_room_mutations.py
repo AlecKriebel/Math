@@ -164,6 +164,12 @@ def run():
         "rank minor row lies outside selected observable set",
     )
 
+    expect_rejected(
+        "skip_all_algebraic_certificates",
+        lambda: verifier.verify_all(run_certificates=False),
+        "full verifier cannot skip algebraic certificates",
+    )
+
     environment = os.environ.copy()
     environment["PYTHONDONTWRITEBYTECODE"] = "1"
     subprocess_rejection(

@@ -1678,6 +1678,8 @@ def h21_diagnostics(reconstruction):
 
 
 def verify_all(run_certificates=True):
+    require(run_certificates is True,
+            "full verifier cannot skip algebraic certificates")
     require(len(SOURCES) == 6, "source support census mismatch", len(SOURCES))
     require(len(target_completions(4, True)) == 831,
             "selected-incoming target completion census mismatch")

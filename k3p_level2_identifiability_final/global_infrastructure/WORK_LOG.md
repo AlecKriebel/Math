@@ -1,0 +1,94 @@
+# Global infrastructure work log
+
+## 2026-08-24T22:53:07-0700 — exact independent closure
+
+Completion estimate for the assigned global-infrastructure audit: **100%**.
+The bridge, marginal, H14 contextual, physical-gluing, genericity, and exact
+reconstruction deductions are packaged and independently replayed.  The
+overall K3P theorem remains fail-closed on the separately owned pointwise-cut
+dependency; this is an external interface, not an unrecorded gap in the
+analytic infrastructure proved here.
+
+### Decisions and proof boundaries
+
+- Rebuilt every K3P algebraic step from the three independent `C,G,T`
+  Fourier sectors.  No K2P sector equality or K2P polynomial certificate was
+  imported.
+- Used the separately locked K2P package only for graph-selection metadata:
+  the finite atlas/restoration/probe restriction families and their counts.
+- Proved the bridge incidence action sector by sector, with endpoint-specific
+  cancellation, full-rank analytic anchors, fixed-label nonpermutation, and
+  a uniform arbitrary-degree argument.
+- Replaced a provisional normalized bridge-scale bound by the scale-free
+  simultaneous construction `epsilon=L^2/(4U)`.  This avoids assuming that
+  unrelated physical sections have incidence products near one.
+- Rebuilt all three ordinary-sunlet polynomial maps and exact Jacobians,
+  proved their quartic pullbacks vanish, certified the common smooth point,
+  and recorded rank 14 relative to `H14`, never ambient rank 15.
+- Added an exact normalized irreducibility certificate for the H14 quartic.
+- Bound genericity and reconstruction through an explicit acyclic dependency
+  interface.  The pointwise K3P cut criterion was `BLOCKED` in the active cut
+  report at generation time, so the global status is
+  `PASS_INTERNAL_BLOCKED_EXTERNAL`.
+
+### Exact replay
+
+Command:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python global_infrastructure/generate_global_infrastructure.py
+```
+
+- Result: PASS for all four internal certificates; manifest status
+  `PASS_INTERNAL_BLOCKED_EXTERNAL`.
+- Wall/user/system: 0.11 s / 0.08 s / 0.01 s.
+- Maximum resident set size: 46,596,096 bytes.
+
+Command:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python global_infrastructure/verify_global_infrastructure.py --report global_infrastructure/INDEPENDENT_VERIFICATION.json
+```
+
+- Result: bridge PASS; marginal PASS; H14 context PASS; gluing, genericity,
+  and reconstruction logic PASS internally; manifest PASS.
+- Wall/user/system: 0.15 s / 0.12 s / 0.01 s.
+- Maximum resident set size: 49,692,672 bytes.
+- Verification report SHA-256:
+  `0cb44501cf57a2ff6170298e8d52a8e76cd2d9978f46aefd71edc646733b0bff`.
+
+Command:
+
+```bash
+PYTHONDONTWRITEBYTECODE=1 .venv/bin/python global_infrastructure/test_global_infrastructure_mutations.py
+```
+
+- Result: 9/9 adversarial mutations rejected; zero survived.
+- Wall/user/system: 0.99 s / 0.81 s / 0.15 s.
+- Maximum resident set size: 49,692,672 bytes.
+- Mutation certificate SHA-256:
+  `857952729138176d6b4d261625d02aa2ea6c4d52493fa3a957a36ab98201d1d1`.
+
+### Active exact payloads
+
+- Bridge fibre:
+  `35bc01d877813db6ea9b0493d01a1da252a0a21d2eb200c3db4376602d916db4`.
+- Marginal submersion:
+  `5b870a09d2755d3c12488054db88b3307ba38f3a44d2510bafd893692802b277`.
+- H14 contextual germ:
+  `0603df404ab1d2fe8e63dd8abe771946ad45b01f58721dd8bfc2cab5be3070fe`.
+- Gluing/genericity/reconstruction:
+  `9c06674300062f36f1381ac05f8f3eaa2ec2f763cca8337e3514d15c35ff1586`.
+- Global infrastructure manifest:
+  `e4e044a53571ba1234989a727364738f568ba87543a0cd3ad9a403bc58934845`.
+
+### External dependency interface
+
+The active `cut_recovery/verification_report.json` reported the full K3P
+pointwise-cut theorem as `BLOCKED`; only the proposed CFN transfer was known
+to fail at that point.  The infrastructure manifest therefore refuses to
+promote global classification or exact reconstruction.  Once a fresh local
+cut certificate proves primitive graph coverage, true-cut rank at most four,
+noncut rank at least five, and strict D3+ physicality, rerun generation and
+independent verification to rebind this interface.  No analytic proof or
+certificate format in this package needs to be weakened or changed.

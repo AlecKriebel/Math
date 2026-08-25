@@ -89,3 +89,41 @@ The final `K3P-SAME` theorem remains a hypothesis until the generic-cut global
 logic and K3P restoration algebra gates close.
 
 Best-guess completion toward the full paper/certification/release goal: **31%**.
+
+## 2026-08-24T23:05:00-07:00 — Global-logic falsification checkpoint
+
+- The hardened H21/fourteen-orbit gate survived a fresh independent hostile
+  audit.  A final automation ambiguity was found and repaired: a topology-only
+  control path may no longer print the full algebraic PASS sentinel.  The
+  release now rejects 10/10 gate mutations and 25/25 independent adversarial
+  mutations, including optimized execution and every active-input byte edit.
+- The three-sector bridge fibre, selected marginal submersions, relative
+  rank-14 `H14` triangle contextualization, simultaneous physical gluing, and
+  conditional genericity/reconstruction chain passed an independent internal
+  verifier and 9/9 semantic mutations.  This package is intentionally marked
+  `PASS_INTERNAL_BLOCKED_EXTERNAL` on the cut theorem.
+- A dedicated global-logic audit proved that isotropic-slice generic cut
+  recovery yields only `Cut(N') subset Cut(N)` under source-relative
+  containment `N preceq N'`.  It cannot prove the reverse inclusion because a
+  regular target section may lie entirely in its proper cut-rank locus, and
+  target dimension is allowed to be larger.  The existing 14-orbit atlas is a
+  single-factor classification and cannot be invoked before a common bridge
+  tree without circularity.
+- The known exact positive K3P tree-to-theta containment outside the strong
+  class was replayed as a falsifier for the invalid generic-nonvanishing
+  inference.  It does not refute `K3P-SAME` inside the strong class, but proves
+  that positivity, analyticity, and target-generic rank alone are insufficient.
+- Two independent pointwise-cut proof programs and a third strong-class
+  cross-bridge alternative have been launched.  The final theorem remains
+  blocked until one produces exact evidence.
+- Current official Systematic Biology and Journal of Mathematical Biology
+  submission requirements were recorded from publisher pages.  No external
+  contact or submission occurred, and no repository or publication license
+  was selected.
+
+Strongest verified result at this checkpoint: all completed local algebraic
+components other than cut recovery are internally consistent, and the exact
+logical gap in the reported global theorem is isolated.  `K3P-SAME` is not
+yet certified.
+
+Best-guess completion toward the full paper/certification/release goal: **34%**.

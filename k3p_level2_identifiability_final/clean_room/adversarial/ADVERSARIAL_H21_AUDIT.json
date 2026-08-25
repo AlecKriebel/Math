@@ -1,0 +1,204 @@
+{
+  "schema": "k3p-adversarial-h21-audit-v1",
+  "generated_at": "2026-08-24T22:04:00-07:00",
+  "status": "QUALIFIED_PASS_CERTIFICATION_REPAIRS_REQUIRED",
+  "scope_status": {
+    "historical_failure_replay": "PASS",
+    "H21_mathematical_transport_repair": "PASS",
+    "corrected_verifier_fail_closed_status": "FAIL_UNDER_OPTIMIZED_PYTHON",
+    "fourteen_orbit_topology_and_coverage": "PASS",
+    "nine_polynomial_separations": "PASS",
+    "five_rank_minor_replays": "PASS",
+    "five_rank_upper_bound_replays_inside_corrected_clean_room": "MISSING",
+    "two_prelock_sink_swaps": "PASS"
+  },
+  "conclusion": {
+    "mathematical_counterexample_to_H21_repair_found": false,
+    "historical_clean_room_category_error_confirmed": true,
+    "historical_target_coordinate_frame_error_confirmed": true,
+    "representative_or_primary_coordinate_transport_defect_found": false,
+    "corrected_verifier_complete_fail_closed_PASS_claim_supported": false,
+    "reason": "The H21 mixed-graph and Fourier transport are correct, but optimized Python strips every assertion, the rank replay does not reconstruct target upper bounds or bind rank labels to minor sizes, and two redundant transport metadata fields are not checked."
+  },
+  "artifact_hashes": {
+    "historical_verifier": "ee5e29a2cd795d9389e8e1257ebdb9eeaa4256fb5d03e07f230bf82ba555ef91",
+    "frozen_historical_verifier": "ee5e29a2cd795d9389e8e1257ebdb9eeaa4256fb5d03e07f230bf82ba555ef91",
+    "corrected_verifier": "472377b87cfbfd21ac33a770b506630a12ad1ee0afc8c72be203b8f6a9770003",
+    "corrected_regression": "e78e87be8fa0b2d697efb36364ff55f057f024500aca635ca5a6e504e3a6dafe",
+    "orbit_lock": "61d88a67b487ebbee1cae881def23fdce770d4fa0cac0d6b86be02e7368438a3",
+    "adversarial_driver": "3d58e5361a6cc266bbf3411a3e12c39a6fe235968b3ef0b59e7ea5dbcae61af2",
+    "optimized_bypass_probe": "85ddf76993d6e53d5eafcbfe89c4131374f76c33fe5c3a70d2c8603790fbf279",
+    "auxiliary_exact_four_port_replay": "f85c1a77ee88ab265b5a6d0adab80c45ff5642c3c1258aa991d7b94a1c3c5816"
+  },
+  "independent_method": {
+    "topology_engine": "NetworkX 3.5 graph isomorphism on a colored incidence expansion; endpoint arrowheads are represented by headed/plain incidence vertices and vertex roles/labels are explicit",
+    "dependency_relation_to_corrected_verifier": "The topology engine does not call the corrected backtracker. Corrected reconstructions are compared only after the independent groups and cosets are obtained.",
+    "Fourier_engine": "Independent exact Fraction-valued switching evaluator on physical rooted arcs at a strict rational K3P point, followed by comparison with the corrected symbolic physical-edge transport",
+    "Fourier_audit_point_minimum_physical_margin": "23/211",
+    "permutations_checked": 24,
+    "coordinates_per_permutation": 64,
+    "standard_graphs_role_incidence_validation": "Every audited mixed graph satisfies leaf=(degree 1, zero heads), tree=(degree 3, zero heads), reticulation=(degree 3, two heads), so roles omitted by the corrected MixedGraph object are derivable from exact incidence in this corpus."
+  },
+  "H21_01": {
+    "rooted_port_automorphism_group": [
+      [0, 1, 2, 3]
+    ],
+    "root_suppressed_mixed_port_automorphism_group": [
+      [0, 1, 2, 3],
+      [2, 1, 0, 3]
+    ],
+    "role_preserving_group_after_forgetting_arrowheads": [
+      [0, 1, 2, 3],
+      [2, 1, 0, 3]
+    ],
+    "group_after_forgetting_both_arrowheads_and_internal_roles": [
+      [0, 1, 2, 3],
+      [0, 3, 2, 1],
+      [2, 1, 0, 3],
+      [2, 3, 0, 1]
+    ],
+    "nontrivial_vertex_automorphism": {
+      "swaps": [
+        ["('core', 'S')", "('sub', 4, 0)"],
+        ["('leaf', 'INCOMING')", "('leaf', 'seg', 4, 0)"]
+      ],
+      "fixes_all_other_vertices": true,
+      "induced_port_permutation": [2, 1, 0, 3],
+      "preserves_vertex_roles": true,
+      "preserves_all_four_reticulation_arrowheads": true,
+      "is_rooted_DAG_automorphism": false
+    },
+    "arrowhead_incidence": {
+      "V": ["S--V", "sub4--V"],
+      "X": ["U--X", "sub3--X"],
+      "root_suppressed_incoming_edge": "incoming--S, no arrowhead"
+    },
+    "representative": [0, 1, 3, 2],
+    "base_target_group": [
+      [0, 1, 2, 3],
+      [2, 1, 0, 3]
+    ],
+    "displayed_target_group": [
+      [0, 1, 2, 3],
+      [3, 1, 2, 0]
+    ],
+    "double_coset": [
+      [0, 1, 3, 2],
+      [2, 1, 3, 0],
+      [3, 1, 0, 2],
+      [3, 1, 2, 0]
+    ],
+    "wrong_displayed_target_group_double_coset_size": 2,
+    "all_H21_double_cosets": 7,
+    "nonisomorphic_H21_double_cosets": 6,
+    "omitted_isomorphic_coset": [
+      [0, 1, 2, 3],
+      [2, 1, 0, 3]
+    ],
+    "all_four_raw_members_witnessed": true,
+    "all_24_port_permutation_Fourier_transports_exact": true
+  },
+  "target_conjugation_discriminators": [
+    {
+      "orbit_id": "H21-03",
+      "representative": [0, 2, 3, 1],
+      "directly_computed_nonidentity_displayed_automorphism": [3, 1, 2, 0],
+      "correct_p_a_p_inverse": [3, 1, 2, 0],
+      "wrong_p_inverse_a_p": [1, 0, 2, 3],
+      "wrong_formula_rejected": true
+    },
+    {
+      "orbit_id": "H21-04",
+      "representative": [0, 3, 1, 2],
+      "directly_computed_nonidentity_displayed_automorphism": [1, 0, 2, 3],
+      "correct_p_a_p_inverse": [1, 0, 2, 3],
+      "wrong_p_inverse_a_p": [3, 1, 2, 0],
+      "wrong_formula_rejected": true
+    }
+  ],
+  "normal_mode_mutation_results": [
+    {"mutation": "omit one H21-01 raw member and witness", "result": "REJECTED"},
+    {"mutation": "use untyped/no-arrowhead false source symmetry (0 3)", "result": "REJECTED"},
+    {"mutation": "use displayed-target automorphism in base-target witness frame", "result": "REJECTED"},
+    {"mutation": "replace representative by identity", "result": "REJECTED"},
+    {"mutation": "corrupt one raw witness equation", "result": "REJECTED"},
+    {"mutation": "replace nonidentity Fourier coordinate map by identity", "result": "REJECTED"},
+    {"mutation": "change redundant port_permutation while preserving representative_permutation", "result": "ACCEPTED"},
+    {"mutation": "change target_incoming_role metadata while preserving literal graph", "result": "ACCEPTED"},
+    {
+      "mutation": "claim source rank 101 and target rank/upper-bound 100 while retaining only the certified 11x11 and 10x10 minors",
+      "result": "ACCEPTED",
+      "implication": "verify_certificate_replay does not bind rank labels to minor sizes and does not reconstruct the target factorization upper bound"
+    }
+  ],
+  "optimized_mode_mutation": {
+    "command": "PYTHONDONTWRITEBYTECODE=1 .venv/bin/python -O clean_room/adversarial/optimized_bypass_probe.py",
+    "mutation": "truncate H21-01 from four raw members/witnesses to three",
+    "result": "ACCEPTED_INVALID_RECORD",
+    "sentinel": "OPTIMIZED_ASSERT_BYPASS_CONFIRMED claimed=3 reconstructed=4",
+    "cause": "Python -O removes every assert statement used as a certification gate"
+  },
+  "fourteen_orbit_and_sink_swap_audit": {
+    "independently_checked_literal_source_target_nonisomorphisms": 14,
+    "independently_checked_source_target_displayed_groups": 42,
+    "raw_members_reconstructed": 38,
+    "raw_witness_equations_checked": 38,
+    "certificate_partition": {
+      "transported_H14_quartics": 5,
+      "remaining_quartics": 4,
+      "directed_rank_records": 5,
+      "union_is_exactly_all_fourteen": true,
+      "categories_are_disjoint": true
+    },
+    "corrected_exact_polynomial_pullback_replay": "PASS",
+    "corrected_exact_rank_minor_replay": "PASS",
+    "corrected_target_rank_upper_bound_factorization_replay": "NOT_IMPLEMENTED",
+    "auxiliary_standard_library_replay": {
+      "file": "reproducibility/exact_four_port.py",
+      "sha256": "f85c1a77ee88ab265b5a6d0adab80c45ff5642c3c1258aa991d7b94a1c3c5816",
+      "result": "PASS",
+      "rank_bounds": ["H21-02: 11>10", "L20-02: 14>12", "L21a-02: 11>10", "L21b-02: 11>10", "L23-01: 14>12"],
+      "note": "This supplies current external exact evidence for the omitted upper bounds but does not change what the corrected clean-room verifier itself checks."
+    },
+    "prelock_sink_swaps": {
+      "records": 2,
+      "permutations": [[0, 1, 3, 2], [1, 0, 2, 3]],
+      "distinct": true,
+      "independent_graph_nonisomorphism": true,
+      "corrected_target_pullback_identically_zero": true,
+      "corrected_source_pullback_hash_and_strict_nonzero_evaluation": true
+    }
+  },
+  "objections": [
+    {
+      "severity": "HIGH_CERTIFICATION",
+      "id": "ASSERT_OPTIMIZATION_BYPASS",
+      "objection": "The verifier is not fail-closed under optimized Python and can print PASS with all assertions removed.",
+      "required_repair": "Abort explicitly when __debug__ is false, and keep the documented runner free of PYTHONOPTIMIZE. Prefer non-assert require checks for terminal gates."
+    },
+    {
+      "severity": "HIGH_CERTIFICATION",
+      "id": "RANK_UPPER_BOUND_NOT_REPLAYED",
+      "objection": "The five target dimension upper bounds are accepted from JSON; only nonzero source/target minors are recomputed. A target minor is a lower bound, not an upper bound.",
+      "required_repair": "Independently replay the H21 ten-generator factorization and the 12-/10-generator sunlet compressions in the corrected clean-room gate; bind claimed ranks to minor dimensions and generator counts."
+    },
+    {
+      "severity": "LOW_BINDING",
+      "id": "REDUNDANT_TRANSPORT_METADATA_UNBOUND",
+      "objection": "port_permutation and target_incoming_role can disagree with the graph/representative while reconstruct_record still accepts the record.",
+      "required_repair": "Assert redundant field consistency or remove those fields from the claimed checked surface."
+    },
+    {
+      "severity": "LOW_BINDING",
+      "id": "INPUT_HASH_CHECK_TAUTOLOGICAL",
+      "objection": "The corrected verifier compares the in-memory lock with a second read of the same path but has no embedded expected lock/certificate digests.",
+      "required_repair": "Bind the immutable input digests in the runner or verifier before replay."
+    }
+  ],
+  "residual_gaps": [
+    "No residual mathematical gap was found in H21 root suppression, arrowhead incidence, port labels, automorphism groups, target conjugation, double cosets, raw H21-01 coverage, or Fourier transport.",
+    "The corrected clean-room verifier requires the two high-certification repairs above before its unconditional PASS/no-gaps language is justified.",
+    "The current underlying rank upper bounds have separate exact replay evidence, but that evidence is outside the corrected clean-room file audited here."
+  ],
+  "completion_estimate_percent": 100
+}

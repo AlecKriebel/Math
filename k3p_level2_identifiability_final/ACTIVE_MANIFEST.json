@@ -47,7 +47,7 @@
       "path": "clean_room/H21_01_TRANSPORT_AUDIT.json",
       "scope": "fourteen four-port orbits, 38 raw members, and two sink swaps",
       "sha256": "b8a1c52a01ce0bb1b50a8ffaf78f5a300be52fde976671b2b1cc91e8fe2d7229",
-      "status": "clean_room_passed_adversarial_reaudit_pending"
+      "status": "clean_room_and_adversarial_reaudit_passed"
     },
     {
       "path": "sharpness/K3P_SHARPNESS_KRAWCZYK_CERTIFICATE.json",
@@ -77,7 +77,7 @@
     {
       "path": "clean_room/verify_clean_room.sh",
       "scope": "independent H21/fourteen-orbit/sink-swap replay and mutations",
-      "status": "passed_adversarial_reaudit_pending"
+      "status": "passed_10_gate_mutations_and_25_adversarial_mutations"
     },
     {
       "path": "sharpness/adversarial/adversarial_audit.py",
@@ -107,6 +107,8 @@
   ],
   "base_commit": "ac6b38a9f8f44dd777f671768f012dfc00e02d1b",
   "certification_gates_passed": [
+    "Gate C — H21-01 repair",
+    "Gate D — independent orbit replay",
     "Gate E — sharpness replay",
     "one-/two-port subgate of Gate F"
   ],
@@ -126,8 +128,18 @@
     },
     {
       "path": "cut_recovery/adversarial/CUT_TRANSFER_ADVERSARIAL_AUDIT.json",
-      "status": "SHORTCUT_INVALID_ONLY_GENERIC_REPAIR_GLOBAL_LOGIC_PENDING",
+      "status": "SHORTCUT_INVALID_ONLY_GENERIC_REPAIR_INSUFFICIENT_FOR_REVERSE_CUT_INCLUSION",
       "sha256": "c88907d8597756694478676f425a0b23a97c6e44d69387f61a0fd1006db137ac"
+    },
+    {
+      "path": "cut_recovery/global_logic/CUT_GLOBAL_LOGIC_REPORT.json",
+      "status": "GENERIC_CUT_RECOVERY_INSUFFICIENT_POINTWISE_OR_CROSSBRIDGE_PROOF_REQUIRED",
+      "sha256": "f323625e9a629c62594df6a9ae90ca31582e0cb4fe878ddad66ddbf02be42d93"
+    },
+    {
+      "path": "global_infrastructure/GLOBAL_INFRASTRUCTURE_MANIFEST.json",
+      "status": "PASS_INTERNAL_BLOCKED_EXTERNAL_CUT_THEOREM",
+      "sha256": "fda353bc887e6239ac56a54f1cfd83ce3bb7217ceb2d2b9a6f37a9ab3bd4a6e1"
     },
     {
       "path": "probes/RESTORATION_MANIFEST.json",

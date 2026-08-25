@@ -27,32 +27,16 @@ import time
 
 HERE = Path(__file__).resolve().parent
 CUT_ROOT = HERE.parent
-MATH_ROOT = HERE.parents[2]
 
 FROZEN = CUT_ROOT / "upstream_frozen" / "pointwise_cut_certificate.json"
-HISTORICAL = (
-    MATH_ROOT
-    / "s_tc_jc_landmark_closure"
-    / "s_tc_jc_sharp_boundary"
-    / "quarantine"
-    / "withdrawn_positive_v1.1.1"
-    / "reproducibility"
-    / "exact_release"
-    / "certificates"
-    / "pointwise_cut_certificate.json"
-)
-WITHDRAWN = HISTORICAL.parents[3] / "WITHDRAWN.md"
-CORRECTED = (
-    MATH_ROOT
-    / "s_tc_jc_landmark_closure"
-    / "independent"
-    / "bridge_cut"
-    / "cut_certificate.json"
-)
+WITHDRAWN = CUT_ROOT / "upstream_frozen" / "WITHDRAWN.md"
+CORRECTED = CUT_ROOT / "upstream_frozen" / "corrected_jc_cut_certificate.json"
+PROVENANCE = CUT_ROOT / "UPSTREAM_PROVENANCE.json"
 
 FROZEN_SHA256 = "b627df5b2dc8cf1eb21c2e08c974f9e54f5a0399043e4dd96ea95dc73c2c3350"
 FROZEN_BYTES = 3_077_509
 CORRECTED_SHA256 = "edbd4afe566ed0ed5d1c518ffe5b21f8f224d547b9c351cb4e1a8c1c613ac086"
+WITHDRAWN_SHA256 = "92cbc225aa3a65962a149fc833cbd118be83ad54dd0052c84e88a2ac1d8b8111"
 
 ZERO = 0
 C = 1
@@ -486,12 +470,15 @@ def verify_rooted_graph_and_masks(record: dict) -> dict:
 
 def bind_provenance() -> tuple[dict, dict, dict]:
     frozen_bytes = FROZEN.read_bytes()
-    historical_bytes = HISTORICAL.read_bytes()
     corrected_bytes = CORRECTED.read_bytes()
+    provenance = json.loads(PROVENANCE.read_text())
     assert len(frozen_bytes) == FROZEN_BYTES
     assert sha256_bytes(frozen_bytes) == FROZEN_SHA256
-    assert frozen_bytes == historical_bytes
     assert sha256_bytes(corrected_bytes) == CORRECTED_SHA256
+    assert sha256_path(WITHDRAWN) == WITHDRAWN_SHA256
+    assert provenance["dependency"]["destination_sha256"] == FROZEN_SHA256
+    assert provenance["dependency"]["source_sha256"] == FROZEN_SHA256
+    assert provenance["dependency"]["status"] == "BYTE_IDENTICAL_COPY"
     withdrawn_text = WITHDRAWN.read_text()
     assert "WITHDRAWN" in withdrawn_text and "DO NOT SUBMIT OR CITE AS ESTABLISHED" in withdrawn_text
     frozen = json.loads(frozen_bytes)
@@ -504,8 +491,8 @@ def bind_provenance() -> tuple[dict, dict, dict]:
     return frozen, corrected, {
         "recovered_sha256": FROZEN_SHA256,
         "recovered_bytes": FROZEN_BYTES,
-        "historical_byte_identity": True,
-        "historical_location": str(HISTORICAL.relative_to(MATH_ROOT)),
+        "historical_byte_identity": provenance["dependency"]["status"] == "BYTE_IDENTICAL_COPY",
+        "historical_location": provenance["dependency"]["source"],
         "historical_release_marked_withdrawn": True,
         "historical_git_commit": "a9a377d5e5d1af773ae161baf836cce37c5578b0",
         "historical_git_blob": "cbfe1d486e3cc59e1839098149735714a0819797",
