@@ -160,11 +160,18 @@ paired marginal proof and replayer by SHA-256.
 
 ## Replay and falsification
 
-The default verifier regenerates the complete primitive universe and demands
-byte-identical artifacts.  The quick verifier checks the contiguous raw-ID
+The default verifier regenerates the complete primitive universe.  The frozen
+rank and restoration artifacts retain their exact legacy compiler/canonicalizer
+provenance.  Replay first requires those legacy values, then reconstructs the
+current rank and restoration gzip bytes by replacing only the provenance
+fields.  It correspondingly updates only the summary provenance, the two
+derived artifact metadata records, and the summary payload seal.  Those three
+reconstructed outputs and every other unchanged artifact are compared
+byte-for-byte with the fresh run.  The quick verifier checks the contiguous raw-ID
 census, hashes, rank/class bindings, topology witness semantics, anchor and
 restoration grammar, all continuation parents, and every certificate
-reference.  The mutation suite must reject omissions, duplications, false
+reference.  The mutation suite also rejects wrong legacy compiler or
+canonicalizer bindings, as well as omissions, duplications, false
 rank exclusions, class reassignments, topology or polynomial corruption,
 isomorphism-map corruption, restoration-role drift, missing roots/children,
 and optimized Python mode.

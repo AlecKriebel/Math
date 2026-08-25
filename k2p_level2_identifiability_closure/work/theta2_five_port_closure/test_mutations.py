@@ -93,6 +93,28 @@ def main() -> None:
         restoration_payload, class_payload, classes
     )
 
+    def wrong_legacy_compiler_binding():
+        mutated = copy.deepcopy(rank_payload)
+        mutated["compiler_sha256"] = "0" * 64
+        verifier.validate_rank_payload(mutated)
+
+    expect_rejected(
+        "wrong_legacy_compiler_binding",
+        wrong_legacy_compiler_binding,
+        "THETA2_RANK_LEGACY_COMPILER_BINDING_FAIL",
+    )
+
+    def wrong_legacy_canonicalizer_binding():
+        mutated = copy.deepcopy(restoration_payload)
+        mutated["bindings"]["canonicalizer_sha256"] = "0" * 64
+        verifier.validate_restoration_payload(mutated, class_payload, classes)
+
+    expect_rejected(
+        "wrong_legacy_canonicalizer_binding",
+        wrong_legacy_canonicalizer_binding,
+        "THETA2_RESTORATION_LEGACY_CANONICALIZER_BINDING_FAIL",
+    )
+
     def corrupt_topology_witness():
         mutated = copy.deepcopy(proof_payload)
         identifier = next(iter(mutated["topology_witnesses"]))
@@ -281,9 +303,11 @@ def main() -> None:
     report = {
         "schema": "k2p-theta2-five-port-mutation-report-v1",
         "status": "PASS",
-        "mutations_rejected": 16,
+        "mutations_rejected": 18,
         "survivors": 0,
         "tests": [
+            "wrong_legacy_compiler_binding",
+            "wrong_legacy_canonicalizer_binding",
             "topology_witness_corruption",
             "false_rank_exclusion",
             "retained_class_reassignment",
@@ -302,7 +326,7 @@ def main() -> None:
             "optimized_mode:verify_theta2_ledger.py",
         ],
     }
-    print("THETA2_MUTATION_SUITE_PASS rejected=16 survivors=0")
+    print("THETA2_MUTATION_SUITE_PASS rejected=18 survivors=0")
     atomic_json(args.report.resolve(), report)
     print(json.dumps(report, indent=2, sort_keys=True))
 

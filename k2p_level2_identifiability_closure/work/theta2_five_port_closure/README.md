@@ -28,8 +28,14 @@ From the repository root, using the referee environment:
 .venv/bin/python -B work/theta2_five_port_closure/test_mutations.py
 ```
 
-The default verifier performs a fresh-path, byte-identical regeneration.  The
-quick mode checks hashes, schemas, every raw ID, every class membership,
+The default verifier performs a fresh-path regeneration.  The frozen evidence
+is bound to the legacy compiler and canonicalizer hashes printed in its rank,
+restoration, and summary records.  The verifier requires those legacy bindings
+exactly, changes only those provenance fields to the locked current compiler
+and canonicalizer, deterministically reconstructs the two affected gzip files
+and their summary metadata, and then compares the fresh run byte-for-byte.
+Every other generated artifact must remain byte-identical to the frozen file.
+The quick mode checks hashes, schemas, every raw ID, every class membership,
 certificate references, the symbolic tree--sunlet identity, and the complete
 restoration path grammar.  Both generator and verifier reject optimized
 Python mode because assertions are load-bearing in the imported compiler.

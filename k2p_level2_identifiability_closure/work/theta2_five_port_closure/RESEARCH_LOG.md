@@ -73,3 +73,18 @@
   maximum resident size 606,601,216 bytes.
 - Best-guess completion: **100%** for the primitive theta2 five-port gate and
   its fixed-full six/seven-port restoration closure.
+
+## 2026-08-24 21:20 PDT — fail-closed compiler provenance rebind
+
+- Preserved the frozen theta2 artifacts and required their exact legacy
+  compiler, canonicalizer, and input-lock bindings.
+- The full replay now reconstructs the current rank and restoration gzip bytes
+  by replacing only the enumerated provenance fields, then derives the two
+  summary metadata rows and summary seal.  All other artifacts remain subject
+  to literal byte identity.
+- Structural replay passed all 2,946,240 rows.  The producer mutation suite
+  rejected 18/18 cases, including wrong legacy compiler and canonicalizer
+  bindings, with zero survivors.  The full 2.9-million-record generation was
+  intentionally not rerun at this checkpoint.
+- Best-guess completion remains **100%** for the primitive theta2 gate; final
+  end-to-end release replay remains an outer package qualification step.

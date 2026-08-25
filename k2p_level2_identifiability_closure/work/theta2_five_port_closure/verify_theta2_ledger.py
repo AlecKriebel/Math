@@ -5,8 +5,10 @@ from __future__ import annotations
 
 import argparse
 import collections
+import copy
 import gzip
 import hashlib
+import io
 import itertools
 import json
 import os
@@ -24,8 +26,11 @@ from theta2_common import (
     SOURCE_COUNT,
     TARGET_COUNT,
     canonical_json_bytes,
+    canonicalizer_sha256,
     fail,
+    load_atlas,
     load_json,
+    pretty_json_bytes,
     sha_file,
     sha_object,
     witness_id,
@@ -58,6 +63,90 @@ ARTIFACT_NAMES = (
     "fixed_full_restoration_closure.json.gz",
     "raw_directional_ledger.jsonl.gz",
 )
+
+LEGACY_COMPILER_SHA256 = (
+    "5b9e03653cc6960bf341fcbe7e63ffd10226d0f6a56441012212c6e3b2a26483"
+)
+LEGACY_CANONICALIZER_SHA256 = (
+    "16ed7c6e125b7171268ae5187b0710702d5024f9ff4615b21d9d6b4ee53a4ca4"
+)
+LEGACY_INPUT_LOCK_SHA256 = (
+    "03b938261c77fe9760241628c0b7cd90ffc1985787503f4a27663707f5c3b2ea"
+)
+CURRENT_COMPILER_SHA256 = (
+    "37e9b7910f7723c146a87ae2f60dfb62529b1a3e4866ccd72d65dc4efda923ad"
+)
+CURRENT_CANONICALIZER_SHA256 = (
+    "517a056cca7a2973d9b64646630671dfcfaf9fd2c8e2335e4f24d7efec9630f5"
+)
+CURRENT_INPUT_LOCK_SHA256 = (
+    "e94c6b55947e02fb7154b41b36030560df0eeb8e115dda5c8be3e7c6c5f17a94"
+)
+
+
+def deterministic_gzip_bytes(plain: bytes) -> bytes:
+    """Encode bytes exactly as the theta2 producer does (empty name, mtime zero)."""
+    target = io.BytesIO()
+    with gzip.GzipFile(filename="", mode="wb", fileobj=target, mtime=0) as handle:
+        handle.write(plain)
+    return target.getvalue()
+
+
+def gzip_metadata(encoded: bytes, plain: bytes) -> dict[str, object]:
+    return {
+        "sha256": hashlib.sha256(encoded).hexdigest(),
+        "uncompressed_sha256": hashlib.sha256(plain).hexdigest(),
+        "uncompressed_bytes": len(plain),
+    }
+
+
+def rebound_payload(
+    payload: dict,
+    replacements: tuple[tuple[tuple[str, ...], str, str], ...],
+) -> dict:
+    """Change only explicitly enumerated provenance fields, fail-closed."""
+    result = copy.deepcopy(payload)
+    for path, legacy, current in replacements:
+        cursor = result
+        for key in path[:-1]:
+            cursor = cursor[key]
+        if cursor.get(path[-1]) != legacy:
+            fail("THETA2_LEGACY_REBIND_SOURCE_FAIL", ".".join(path))
+        cursor[path[-1]] = current
+
+    restored = copy.deepcopy(result)
+    for path, legacy, _current in replacements:
+        cursor = restored
+        for key in path[:-1]:
+            cursor = cursor[key]
+        cursor[path[-1]] = legacy
+    if restored != payload:
+        fail("THETA2_PROVENANCE_ONLY_REBIND_FAIL")
+    return result
+
+
+def current_generator_bindings(package_root: Path) -> dict[str, str]:
+    compiler = sha_file(package_root / "atlas/k2p_atlas_core.py")
+    if compiler != CURRENT_COMPILER_SHA256:
+        fail("THETA2_CURRENT_COMPILER_BINDING_FAIL", compiler)
+    atlas = load_atlas(package_root)
+    canonicalizer = canonicalizer_sha256(atlas)
+    if canonicalizer != CURRENT_CANONICALIZER_SHA256:
+        fail("THETA2_CURRENT_CANONICALIZER_BINDING_FAIL", canonicalizer)
+    lock_path = package_root / "INPUT_LOCK.json"
+    lock = load_json(lock_path)
+    input_lock_sha256 = sha_file(lock_path)
+    if input_lock_sha256 != CURRENT_INPUT_LOCK_SHA256:
+        fail("THETA2_CURRENT_INPUT_LOCK_BINDING_FAIL", input_lock_sha256)
+    if lock.get("compiler_sha256") != compiler:
+        fail("THETA2_CURRENT_COMPILER_LOCK_BINDING_FAIL")
+    if lock.get("canonicalizer_sha256") != canonicalizer:
+        fail("THETA2_CURRENT_CANONICALIZER_LOCK_BINDING_FAIL")
+    return {
+        "compiler_sha256": compiler,
+        "canonicalizer_sha256": canonicalizer,
+        "input_lock_sha256": input_lock_sha256,
+    }
 
 
 def read_gzip(path: Path) -> tuple[bytes, str]:
@@ -102,6 +191,13 @@ def validate_summary(artifact_root: Path) -> dict:
     summary = load_json(artifact_root / "theta2_five_port_summary.json")
     if summary.get("schema") != "k2p-theta2-five-port-closure-summary-v1":
         fail("THETA2_SUMMARY_SCHEMA_FAIL")
+    bindings = summary.get("bindings", {})
+    if bindings.get("compiler_sha256") != LEGACY_COMPILER_SHA256:
+        fail("THETA2_SUMMARY_LEGACY_COMPILER_BINDING_FAIL")
+    if bindings.get("canonicalizer_sha256") != LEGACY_CANONICALIZER_SHA256:
+        fail("THETA2_SUMMARY_LEGACY_CANONICALIZER_BINDING_FAIL")
+    if bindings.get("input_lock_sha256") != LEGACY_INPUT_LOCK_SHA256:
+        fail("THETA2_SUMMARY_LEGACY_INPUT_LOCK_BINDING_FAIL")
     expected_payload = summary.get("payload_sha256_without_hash")
     payload = {
         key: value
@@ -145,6 +241,8 @@ def validate_summary(artifact_root: Path) -> dict:
 def validate_rank_payload(payload: dict):
     if payload.get("schema") != "k2p-theta2-five-port-exact-rank-certificates-v1":
         fail("THETA2_RANK_SCHEMA_FAIL")
+    if payload.get("compiler_sha256") != LEGACY_COMPILER_SHA256:
+        fail("THETA2_RANK_LEGACY_COMPILER_BINDING_FAIL")
     rows = payload.get("descriptors")
     if not isinstance(rows, list) or len(rows) != 120 or payload.get("descriptor_count") != 120:
         fail("THETA2_RANK_CENSUS_FAIL")
@@ -444,6 +542,11 @@ def validate_classes(payload: dict, rank_catalog, quadratics, isomorphisms, anch
 def validate_restoration_payload(payload: dict, class_payload: dict, classes):
     if payload.get("schema") != "k2p-theta2-fixed-full-restoration-closure-v1":
         fail("THETA2_RESTORATION_SCHEMA_FAIL")
+    bindings = payload.get("bindings", {})
+    if bindings.get("compiler_sha256") != LEGACY_COMPILER_SHA256:
+        fail("THETA2_RESTORATION_LEGACY_COMPILER_BINDING_FAIL")
+    if bindings.get("canonicalizer_sha256") != LEGACY_CANONICALIZER_SHA256:
+        fail("THETA2_RESTORATION_LEGACY_CANONICALIZER_BINDING_FAIL")
     if payload.get("bindings", {}).get("base_class_rows_sha256") != sha_object(
         class_payload.get("classes")
     ):
@@ -820,7 +923,120 @@ def validate_ledger(path: Path, classes, topology_witnesses):
     return category_counts
 
 
+def expected_rebound_replay_bytes(
+    package_root: Path, artifact_root: Path
+) -> dict[str, bytes]:
+    """Rebind only legacy provenance to the locked current compiler."""
+    current = current_generator_bindings(package_root)
+    rank_name = "exact_rank_certificates.json.gz"
+    restoration_name = "fixed_full_restoration_closure.json.gz"
+
+    rank_path = artifact_root / rank_name
+    frozen_rank = read_gzip_json(rank_path)
+    if frozen_rank.get("compiler_sha256") != LEGACY_COMPILER_SHA256:
+        fail("THETA2_RANK_LEGACY_COMPILER_BINDING_FAIL")
+    frozen_rank_plain = canonical_json_bytes(frozen_rank) + b"\n"
+    if deterministic_gzip_bytes(frozen_rank_plain) != rank_path.read_bytes():
+        fail("THETA2_RANK_LEGACY_CANONICAL_BYTES_FAIL")
+    current_rank = rebound_payload(
+        frozen_rank,
+        (
+            (
+                ("compiler_sha256",),
+                LEGACY_COMPILER_SHA256,
+                current["compiler_sha256"],
+            ),
+        ),
+    )
+    current_rank_plain = canonical_json_bytes(current_rank) + b"\n"
+    current_rank_gzip = deterministic_gzip_bytes(current_rank_plain)
+
+    restoration_path = artifact_root / restoration_name
+    frozen_restoration = read_gzip_json(restoration_path)
+    restoration_bindings = frozen_restoration.get("bindings", {})
+    if restoration_bindings.get("compiler_sha256") != LEGACY_COMPILER_SHA256:
+        fail("THETA2_RESTORATION_LEGACY_COMPILER_BINDING_FAIL")
+    if (
+        restoration_bindings.get("canonicalizer_sha256")
+        != LEGACY_CANONICALIZER_SHA256
+    ):
+        fail("THETA2_RESTORATION_LEGACY_CANONICALIZER_BINDING_FAIL")
+    frozen_restoration_plain = canonical_json_bytes(frozen_restoration) + b"\n"
+    if (
+        deterministic_gzip_bytes(frozen_restoration_plain)
+        != restoration_path.read_bytes()
+    ):
+        fail("THETA2_RESTORATION_LEGACY_CANONICAL_BYTES_FAIL")
+    current_restoration = rebound_payload(
+        frozen_restoration,
+        (
+            (
+                ("bindings", "compiler_sha256"),
+                LEGACY_COMPILER_SHA256,
+                current["compiler_sha256"],
+            ),
+            (
+                ("bindings", "canonicalizer_sha256"),
+                LEGACY_CANONICALIZER_SHA256,
+                current["canonicalizer_sha256"],
+            ),
+        ),
+    )
+    current_restoration_plain = canonical_json_bytes(current_restoration) + b"\n"
+    current_restoration_gzip = deterministic_gzip_bytes(current_restoration_plain)
+
+    summary_path = artifact_root / "theta2_five_port_summary.json"
+    frozen_summary = load_json(summary_path)
+    if pretty_json_bytes(frozen_summary) != summary_path.read_bytes():
+        fail("THETA2_SUMMARY_LEGACY_CANONICAL_BYTES_FAIL")
+    summary_bindings = frozen_summary.get("bindings", {})
+    if summary_bindings.get("compiler_sha256") != LEGACY_COMPILER_SHA256:
+        fail("THETA2_SUMMARY_LEGACY_COMPILER_BINDING_FAIL")
+    if (
+        summary_bindings.get("canonicalizer_sha256")
+        != LEGACY_CANONICALIZER_SHA256
+    ):
+        fail("THETA2_SUMMARY_LEGACY_CANONICALIZER_BINDING_FAIL")
+    if summary_bindings.get("input_lock_sha256") != LEGACY_INPUT_LOCK_SHA256:
+        fail("THETA2_SUMMARY_LEGACY_INPUT_LOCK_BINDING_FAIL")
+    current_summary = rebound_payload(
+        frozen_summary,
+        (
+            (
+                ("bindings", "compiler_sha256"),
+                LEGACY_COMPILER_SHA256,
+                current["compiler_sha256"],
+            ),
+            (
+                ("bindings", "canonicalizer_sha256"),
+                LEGACY_CANONICALIZER_SHA256,
+                current["canonicalizer_sha256"],
+            ),
+            (
+                ("bindings", "input_lock_sha256"),
+                LEGACY_INPUT_LOCK_SHA256,
+                current["input_lock_sha256"],
+            ),
+        ),
+    )
+    current_summary["artifacts"][rank_name] = gzip_metadata(
+        current_rank_gzip, current_rank_plain
+    )
+    current_summary["artifacts"][restoration_name] = gzip_metadata(
+        current_restoration_gzip, current_restoration_plain
+    )
+    current_summary.pop("payload_sha256_without_hash", None)
+    current_summary["payload_sha256_without_hash"] = sha_object(current_summary)
+
+    return {
+        rank_name: current_rank_gzip,
+        restoration_name: current_restoration_gzip,
+        "theta2_five_port_summary.json": pretty_json_bytes(current_summary),
+    }
+
+
 def full_regeneration(package_root: Path, artifact_root: Path, timeout_seconds: float):
+    rebound_expected = expected_rebound_replay_bytes(package_root, artifact_root)
     with tempfile.TemporaryDirectory(prefix="k2p_theta2_five_port_replay_") as temporary:
         replay_root = Path(temporary) / "artifacts"
         command = [
@@ -857,18 +1073,22 @@ def full_regeneration(package_root: Path, artifact_root: Path, timeout_seconds: 
         for name in ARTIFACT_NAMES + ("theta2_five_port_summary.json",):
             expected = artifact_root / name
             observed = replay_root / name
-            if observed.read_bytes() != expected.read_bytes():
+            expected_bytes = rebound_expected.get(name)
+            if expected_bytes is None:
+                expected_bytes = expected.read_bytes()
+            if observed.read_bytes() != expected_bytes:
                 fail(
                     "THETA2_FULL_REPLAY_BYTE_MISMATCH",
                     {
                         "name": name,
-                        "expected": sha_file(expected),
+                        "expected": hashlib.sha256(expected_bytes).hexdigest(),
                         "observed": sha_file(observed),
                     },
                 )
     print(
         "THETA2_FULL_PRIMITIVE_REPLAY_PASS "
-        "raw=2946240 descriptors=120 classes=480 byte_identical=true"
+        "raw=2946240 descriptors=120 classes=480 "
+        "legacy_provenance_rebound=true other_artifacts_byte_identical=true"
     )
 
 

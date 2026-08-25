@@ -746,7 +746,7 @@ artifact & file SHA-256\\
 \midrule
 \endhead
 unified release lock
-& \hashvalue{c76f8ec4f3cdc450681c56e4fdf9fe124d4bf4dcd73d8a3f63457bb4a07d05f4}\\
+& \hashvalue{7113b1c52d577858ec20ef83cd87c870242c8ddc96018036b5c073229821eec9}\\
 raw-four composite ledger
 & \hashvalue{431dac8898ad2a724d12c200687de1b377723e302214a79a11a03524a4084b96}\\
 raw-four independent replay
@@ -827,6 +827,17 @@ source.  They are recorded in
 and the generated theorem-to-artifact crosswalk.  This separation lets the
 replay byte-bind these exact submission sources without a self-referential
 source edit after the run.
+
+The frozen five-port \(\theta_2\) artifacts retain the compiler,
+canonicalizer, and input-lock hashes of their original generation.  The full
+replay requires those legacy bindings exactly and reconstructs the current
+expected bytes by changing only those provenance fields, the two consequent
+artifact-metadata rows, and the summary seal.  It then compares the freshly
+generated rank and restoration payloads with those reconstructed bytes and
+requires the direct-proof, class-partition, and all 2,946,240 raw-ledger rows
+to remain literally byte-identical.  Dedicated mutations reject a wrong
+legacy binding; the outer release lock independently fixes the current
+compiler, canonicalizer, and input lock.
 
 \section{Mutation coverage}\label{sec:mutations}
 

@@ -435,3 +435,29 @@
   detached clean full replay with telemetry, deterministic PDF build and
   visual inspection, final crosswalk/bundle regeneration, push, and source
   tag.
+
+## 2026-08-24 — Theta2 provenance diagnosis and fail-closed replay repair
+
+- The first detached full replay stopped at the historical five-port theta2
+  byte comparison.  Structural regeneration had already reproduced all
+  2,946,240 directions, 480 classes, 864 restoration children, and zero
+  unresolved records; the first differing gzip was then shown exactly to be
+  the frozen rank payload with only its compiler provenance hash rebound to
+  the hardened atlas.
+- An independent full theta2 regeneration completed in 486.6 seconds.  The
+  direct proofs, class partition, and entire raw ledger were byte-identical.
+  All 120 rank certificates and all restoration mathematics were identical;
+  the only differences were the compiler/canonicalizer/input-lock provenance
+  fields and their mechanically dependent summary metadata and seal.
+- The theta2 full verifier now requires both the exact legacy bindings and the
+  exact current compiler, canonicalizer, and input lock.  It reconstructs only
+  the enumerated provenance delta and compares every regenerated output byte
+  against that result.  The expanded local suite rejects 18/18 mutations.
+- Rebuilt the 223-file outer lock and rebound the PC-PARTIAL reader package.
+  The 23-layer quick replay and all 27 outer release mutations pass with zero
+  blockers and no theorem, rank, formula, census, transport, or classification
+  change.
+- Best-guess completion toward the final submission/referee package: **96%**.
+  Remaining work is the clean detached full replay at the new exact candidate,
+  telemetry, PDF/build audit, deterministic bundle, final push, and Git source
+  tag.  No GitHub Release or Zenodo action is authorized.
