@@ -1,5 +1,14 @@
 # Global K2P closure proof
 
+> **Historical assembled proof -- superseded as promotion authority.**  The
+> status language below records the stage at which corrected restoration,
+> cycle, probe, and unified release gates were still pending.  The current
+> theorem authority is
+> `promotion_manuscript/K2P_SAME_PROMOTION_MANUSCRIPT.md`, with exact current
+> evidence selected by `../final_theorem_release/RELEASE_LOCK.json`.
+> Nothing in this file may override that lock, the corrected finite universe,
+> or the restoration-v3 and corrected-probe certificates.
+
 > Promotion status: this proof is assembled fail-closed.  The analytic and
 > local-to-global layers pass an independent audit after the repairs written
 > below.  Promotion still requires the clean corrected restoration and cycle

@@ -1,5 +1,14 @@
 # Independent four-port raw topology/rank ledger audit
 
+> **Current-scope note.**  This package remains authoritative for primitive
+> generation, the complete 405,216-row universe, and the 23,822 exact rank
+> exclusions.  Its historical 377,382-row `topology excluded` bucket is not
+> current classifier authority: it combines 360,408 valid displayed-quartet
+> rows with 16,974 formerly rooted-classified rows that are now certified by
+> whole-map \(\mathcal T_i\) identities.  The corrected row-by-row partition is
+> `work/corrected_composite_ledgers/artifacts/raw4_corrected_composite_ledger.jsonl.gz`,
+> as selected by `work/final_theorem_release/RELEASE_LOCK.json`.
+
 This folder rebuilds the complete directional presentation universe from the
 primitive graph encodings in the current locked compiler.  Neither
 `descriptors_4.pkl` nor `rank_certs_4.pkl` is opened by the generator.
@@ -12,7 +21,7 @@ The exact primitive universe is
 = 405,216 directional presentations.
 ```
 
-The current regenerated partition is:
+The historical primitive-audit partition is:
 
 ```text
 topology excluded             377,382

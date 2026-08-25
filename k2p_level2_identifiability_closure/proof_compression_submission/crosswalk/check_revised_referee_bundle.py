@@ -15,6 +15,13 @@ PROJECT = Path(__file__).resolve().parents[2]
 DEFAULT_MANIFEST = Path(__file__).with_name("REVISED_REFEREE_BUNDLE_MANIFEST.json")
 LOCK_RELATIVE = "work/final_theorem_release/RELEASE_LOCK.json"
 MANIFEST_RELATIVE = "proof_compression_submission/crosswalk/REVISED_REFEREE_BUNDLE_MANIFEST.json"
+TELEMETRY_SUBMISSION_SOURCES = (
+    "proof_compression_submission/article/main.tex",
+    "proof_compression_submission/article/references.bib",
+    "proof_compression_submission/supplement/supplement.tex",
+    "proof_compression_submission/supplement/compression_tables.tex",
+    "proof_compression_submission/supplement/certificate_appendix.tex",
+)
 OPERATIONAL_EVIDENCE = {
     "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY.json",
     "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY_TELEMETRY.json",
@@ -36,7 +43,7 @@ SUBMISSION_METADATA = {
     "data_license": "CC BY 4.0",
     "doi": None,
     "funding": "No specific funding supported this work.",
-    "immutable_submission_tag": "k2p-same-biorxiv-v1.0.0",
+    "immutable_submission_tag": "k2p-same-biorxiv-v1.0.1",
     "paper_license": "CC BY 4.0",
     "release_boundary": (
         "No GitHub Release, Zenodo deposit, or DOI is created or claimed by "
@@ -97,6 +104,46 @@ def release_context() -> tuple[dict[str, Any], str, str]:
     if lock.get("promotion_ready") is not True or lock.get("blockers") or lock.get("missing_required_files"):
         fail("RELEASE_LOCK is not promotion-ready")
     return lock, lock_sha256, lock_payload_sha256
+
+
+def current_file_row(relative: str) -> dict[str, int | str]:
+    path = project_path(relative)
+    if not path.is_file() or path.is_symlink():
+        fail(f"missing or symbolic telemetry-bound file: {relative}")
+    data = path.read_bytes()
+    return {"bytes": len(data), "sha256": sha256_bytes(data)}
+
+
+def expected_telemetry_submission_sources() -> dict[str, dict[str, int | str]]:
+    return {
+        relative: current_file_row(relative)
+        for relative in TELEMETRY_SUBMISSION_SOURCES
+    }
+
+
+def expected_telemetry_release_lock(
+    lock_sha256: str, lock_payload_sha256: str
+) -> dict[str, int | str]:
+    lock_row = current_file_row(LOCK_RELATIVE)
+    if lock_row["sha256"] != lock_sha256:
+        fail("telemetry release-lock current hash mismatch")
+    return {
+        "bytes": lock_row["bytes"],
+        "path": LOCK_RELATIVE,
+        "payload_sha256": lock_payload_sha256,
+        "sha256": lock_sha256,
+    }
+
+
+def validate_telemetry_checkout_bindings(
+    telemetry: dict[str, Any], lock_sha256: str, lock_payload_sha256: str
+) -> None:
+    if telemetry.get("submission_sources") != expected_telemetry_submission_sources():
+        fail("clean full replay telemetry submission-source binding mismatch")
+    if telemetry.get("release_lock") != expected_telemetry_release_lock(
+        lock_sha256, lock_payload_sha256
+    ):
+        fail("clean full replay telemetry release-lock binding mismatch")
 
 
 def add_sha_manifest(expected: dict[str, str], relative: str, base: str) -> None:
@@ -230,6 +277,103 @@ def declared_json_schema(relative: str) -> str | None:
     return schema if isinstance(schema, str) else None
 
 
+def verify_c02_scope(claim: dict[str, Any]) -> None:
+    """Fail closed on the corrected, deliberately narrow C02 authority."""
+
+    expected_claim = (
+        "Pointwise displayed-quartet signs, labelled tree-of-blobs recovery, "
+        "and raw four-port displayed-quartet direction."
+    )
+    if claim.get("claim_id") != "C02-quartet-tree-of-blobs":
+        fail("C02 claim record missing")
+    if claim.get("claim") != expected_claim:
+        fail("C02 claim scope drift")
+
+    topology_path = (
+        "work/adversarial_proof_review/topology_direction_certificate.json"
+    )
+    verifier_path = "work/adversarial_proof_review/verify_topology_direction.py"
+    expected_bindings = {
+        "authoritative_artifacts": {
+            topology_path: (
+                "raw displayed-quartet graph-direction certificate; no "
+                "restoration or whole-map T_i authority"
+            )
+        },
+        "producer_artifacts": {
+            verifier_path: "raw displayed-quartet graph-direction producer"
+        },
+        "replay_artifacts": {
+            verifier_path: "independent raw displayed-quartet replay"
+        },
+    }
+    for field, expected in expected_bindings.items():
+        rows = claim.get(field)
+        if not isinstance(rows, list):
+            fail(f"C02 artifact field missing: {field}")
+        for path, role in expected.items():
+            matches = [
+                row
+                for row in rows
+                if isinstance(row, dict) and row.get("path") == path
+            ]
+            if len(matches) != 1 or matches[0].get("role") != role:
+                fail(f"C02 narrowed artifact role drift: {field}:{path}")
+
+    certificate = object_from_path(
+        project_path(topology_path), "raw displayed-quartet direction certificate"
+    )
+    certificate_payload = certificate.get("payload_sha256")
+    unsigned_certificate = dict(certificate)
+    unsigned_certificate.pop("payload_sha256", None)
+    if (
+        not isinstance(certificate_payload, str)
+        or certificate_payload != canonical_hash(unsigned_certificate)
+    ):
+        fail("C02 direction certificate payload mismatch")
+    expected_scope = (
+        "principal D_plus; raw four-port displayed-quartet direction and "
+        "tree-of-blobs predicate only; no restoration or whole-map T_i classifier"
+    )
+    if (
+        certificate.get("schema") != "k2p-displayed-quartet-direction-audit-v2"
+        or certificate.get("status") != "PASS"
+        or certificate.get("scope") != expected_scope
+        or certificate.get("excluded_claims")
+        != [
+            "rooted tree/sunlet classification",
+            "restoration-child classification",
+            "whole-map T_i classification",
+        ]
+    ):
+        fail("C02 direction certificate scope drift")
+    raw = certificate.get("raw_four_port_quartets")
+    current = certificate.get("current_raw4_summary")
+    summary_relative = (
+        "work/corrected_composite_ledgers/artifacts/"
+        "raw4_corrected_composite_summary.json"
+    )
+    if (
+        not isinstance(raw, dict)
+        or raw.get("raw_directions") != 405_216
+        or raw.get("quartet_exclusions") != 360_408
+        or not isinstance(current, dict)
+        or current.get("summary_path") != summary_relative
+        or current.get("total_rows") != 405_216
+        or current.get("displayed_quartet_exclusions") != 360_408
+        or current.get("forbidden_rooted_fields") != 0
+        or current.get("forbidden_rooted_reasons") != 0
+    ):
+        fail("C02 direction certificate census or authority drift")
+    summary_path = project_path(summary_relative)
+    summary = object_from_path(summary_path, "current raw-four composite summary")
+    if (
+        current.get("summary_sha256") != sha256_bytes(summary_path.read_bytes())
+        or current.get("summary_payload_sha256") != summary.get("payload_sha256")
+    ):
+        fail("C02 current raw-four summary binding drift")
+
+
 def verify_crosswalk(
     frozen: dict[str, dict[str, int | str]],
     submission: dict[str, dict[str, int | str]],
@@ -283,6 +427,7 @@ def verify_crosswalk(
         "runtime",
     }
     seen: set[str] = set()
+    claims_by_id: dict[str, dict[str, Any]] = {}
     claim_paths: dict[str, set[str]] = {}
     for claim in claims:
         if not isinstance(claim, dict) or not required_fields.issubset(claim):
@@ -291,6 +436,7 @@ def verify_crosswalk(
         if not isinstance(claim_id, str) or claim_id in seen:
             fail("duplicate or malformed crosswalk claim ID")
         seen.add(claim_id)
+        claims_by_id[claim_id] = claim
         claim_paths[claim_id] = set()
         for field in ("authoritative_artifacts", "producer_artifacts", "replay_artifacts", "mutation_artifacts"):
             rows = claim.get(field)
@@ -340,6 +486,8 @@ def verify_crosswalk(
 
     required_claim_paths = {
         "C02-quartet-tree-of-blobs": {
+            "work/adversarial_proof_review/topology_direction_certificate.json",
+            "work/adversarial_proof_review/verify_topology_direction.py",
             "work/quartet_separation_closure/QUARTET_SEMANTICS_SPEC.json",
             "work/quartet_separation_closure/quartet_logic_certificate.json",
             "work/quartet_separation_closure/quartet_semantics_mutation_certificate.json",
@@ -373,6 +521,8 @@ def verify_crosswalk(
         missing = sorted(required - claim_paths.get(claim_id, set()))
         if missing:
             fail(f"crosswalk omits new exact evidence {claim_id}:{missing}")
+
+    verify_c02_scope(claims_by_id["C02-quartet-tree-of-blobs"])
 
     profile = crosswalk.get("environment_profiles", {}).get("frozen-python-k2p-v1")
     if (
@@ -423,10 +573,20 @@ def verify_crosswalk(
         "quartet semantics mutation certificate",
     )
     if (
-        quartet_mutation.get("schema") != "k2p-quartet-semantics-mutations-v2"
+        quartet_mutation.get("schema") != "k2p-quartet-semantics-mutations-v3"
         or quartet_mutation.get("status") != "PASS"
         or quartet_mutation.get("case_count") != 8
         or quartet_mutation.get("spec_sha256") != sha256_bytes(spec_path.read_bytes())
+        or not isinstance(quartet_mutation.get("cases"), list)
+        or len(quartet_mutation["cases"]) != 8
+        or any(
+            not isinstance(row, dict)
+            or row.get("observed_marker") != row.get("expected_marker")
+            or row.get("observed_returncode") != 1
+            or row.get("failed_mutation_certificate_written") is not False
+            or "stdout_sha256" in row
+            for row in quartet_mutation["cases"]
+        )
     ):
         fail("quartet semantics mutation binding mismatch")
     terminal = object_from_path(
@@ -630,7 +790,7 @@ def verify_static_article_audit(
         "competing_interests": "The author declares no competing interests.",
         "paper_and_data_license": "CC BY 4.0",
         "code_license": "MIT",
-        "immutable_submission_tag": "k2p-same-biorxiv-v1.0.0",
+        "immutable_submission_tag": "k2p-same-biorxiv-v1.0.1",
         "doi": None,
         "external_release_actions_performed": False,
     }
@@ -669,7 +829,9 @@ def verify_static_article_audit(
             fail(f"static article audit source binding mismatch: {child}")
 
 
-def expected_runtime_boundary(lock_payload_sha256: str) -> dict[str, Any]:
+def expected_runtime_boundary(
+    lock_sha256: str, lock_payload_sha256: str
+) -> dict[str, Any]:
     report_relative = "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY.json"
     telemetry_relative = "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY_TELEMETRY.json"
     report_path = project_path(report_relative)
@@ -698,6 +860,9 @@ def expected_runtime_boundary(lock_payload_sha256: str) -> dict[str, Any]:
         or telemetry.get("report", {}).get("lock_payload_sha256") != lock_payload_sha256
     ):
         fail("clean full replay telemetry is incoherent")
+    validate_telemetry_checkout_bindings(
+        telemetry, lock_sha256, lock_payload_sha256
+    )
     timing = telemetry.get("time_l")
     if not isinstance(timing, dict):
         fail("clean full replay timing object missing")
@@ -754,7 +919,9 @@ def validate(manifest_path: Path) -> dict[str, Any]:
     if "pending_human_metadata" in manifest:
         fail("manifest retains a stale pending-human field")
     lock, lock_sha256, lock_payload_sha256 = release_context()
-    expected_runtime = expected_runtime_boundary(lock_payload_sha256)
+    expected_runtime = expected_runtime_boundary(
+        lock_sha256, lock_payload_sha256
+    )
     runtime = manifest.get("runtime_boundary")
     if runtime != expected_runtime:
         fail("manifest runtime boundary mismatch")
@@ -786,7 +953,7 @@ def validate(manifest_path: Path) -> dict[str, Any]:
     if policy != expected_policy:
         fail("submission source policy mismatch")
     archive_policy = manifest.get("archive_policy")
-    if not isinstance(archive_policy, dict) or archive_policy.get("fixed_member_timestamp") != "2026-08-24T00:00:00":
+    if not isinstance(archive_policy, dict) or archive_policy.get("fixed_member_timestamp") != "2026-08-25T00:00:00":
         fail("archive timestamp policy mismatch")
     required_sources = {
         "proof_compression_submission/AI_REFEREE_PROMPT.md",

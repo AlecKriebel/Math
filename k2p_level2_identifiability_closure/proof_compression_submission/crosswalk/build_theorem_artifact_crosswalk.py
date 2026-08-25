@@ -18,6 +18,13 @@ LOCK_RELATIVE = "work/final_theorem_release/RELEASE_LOCK.json"
 CONTENT_LEDGER_RELATIVE = "output/referee/REFEREE_BUNDLE_CONTENTS.json"
 FULL_REPLAY_REPORT = "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY.json"
 FULL_REPLAY_TELEMETRY = "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY_TELEMETRY.json"
+TELEMETRY_SUBMISSION_SOURCES = (
+    "proof_compression_submission/article/main.tex",
+    "proof_compression_submission/article/references.bib",
+    "proof_compression_submission/supplement/supplement.tex",
+    "proof_compression_submission/supplement/compression_tables.tex",
+    "proof_compression_submission/supplement/certificate_appendix.tex",
+)
 SUBMISSION_METADATA = {
     "author_contributions": "approved sole-author contribution statement",
     "code_license": "MIT",
@@ -26,7 +33,7 @@ SUBMISSION_METADATA = {
     "data_license": "CC BY 4.0",
     "doi": None,
     "funding": "No specific funding supported this work.",
-    "immutable_submission_tag": "k2p-same-biorxiv-v1.0.0",
+    "immutable_submission_tag": "k2p-same-biorxiv-v1.0.1",
     "paper_license": "CC BY 4.0",
     "release_boundary": (
         "No GitHub Release, Zenodo deposit, or DOI is created or claimed by "
@@ -69,6 +76,34 @@ def read_json(relative: str) -> dict[str, Any]:
     if not isinstance(value, dict):
         fail(f"expected JSON object: {relative}")
     return value
+
+
+def current_file_row(relative: str) -> dict[str, int | str]:
+    path = project_path(relative)
+    if not path.is_file() or path.is_symlink():
+        fail(f"missing or symbolic telemetry-bound file: {relative}")
+    data = path.read_bytes()
+    return {"bytes": len(data), "sha256": sha256_bytes(data)}
+
+
+def validate_telemetry_checkout_bindings(
+    telemetry: dict[str, Any], lock_sha256: str, lock_payload_sha256: str
+) -> None:
+    expected_sources = {
+        relative: current_file_row(relative)
+        for relative in TELEMETRY_SUBMISSION_SOURCES
+    }
+    if telemetry.get("submission_sources") != expected_sources:
+        fail("clean full replay telemetry submission-source binding mismatch")
+    lock_row = current_file_row(LOCK_RELATIVE)
+    expected_lock = {
+        "bytes": lock_row["bytes"],
+        "path": LOCK_RELATIVE,
+        "payload_sha256": lock_payload_sha256,
+        "sha256": lock_sha256,
+    }
+    if telemetry.get("release_lock") != expected_lock:
+        fail("clean full replay telemetry release-lock binding mismatch")
 
 
 def release_context() -> tuple[dict[str, Any], str, str, dict[str, Any], str]:
@@ -214,6 +249,12 @@ def clean_full_runtime(lock: dict[str, Any]) -> dict[str, Any]:
         fail("clean full replay report/telemetry hash mismatch")
     if telemetry.get("report", {}).get("lock_payload_sha256") != lock_payload_sha256:
         fail("clean full replay telemetry lock binding mismatch")
+    lock_sha256 = lock.get("_lock_sha256")
+    if not isinstance(lock_sha256, str):
+        fail("clean full replay current lock hash missing")
+    validate_telemetry_checkout_bindings(
+        telemetry, lock_sha256, lock_payload_sha256
+    )
     timing = telemetry.get("time_l", {})
     for key in ("real_seconds", "maximum_resident_set_size_bytes", "peak_memory_footprint_bytes"):
         value = timing.get(key)
@@ -294,7 +335,10 @@ def build() -> dict[str, Any]:
         },
         {
             "claim_id": "C02-quartet-tree-of-blobs",
-            "claim": "Pointwise quartet signs, labelled tree-of-blobs recovery, and source-to-target topology direction.",
+            "claim": (
+                "Pointwise displayed-quartet signs, labelled tree-of-blobs "
+                "recovery, and raw four-port displayed-quartet direction."
+            ),
             "proof_status": "frozen_authoritative",
             "compression_status": "hand_proof_plus_finite_split_logic",
             "authoritative_artifacts": rows([
@@ -302,17 +346,29 @@ def build() -> dict[str, Any]:
                 ("work/quartet_separation_closure/QUARTET_SEMANTICS_SPEC.json", "fixed character/spectrum/formula semantics contract", True),
                 ("work/quartet_separation_closure/quartet_logic_certificate.json", "exact Fourier quartet semantics certificate", True),
                 ("work/quartet_separation_closure/quartet_terminal_binding_certificate.json", "complete row-to-Fourier terminal binding", True),
-                ("work/adversarial_proof_review/topology_direction_certificate.json", "direction certificate", True),
+                (
+                    "work/adversarial_proof_review/topology_direction_certificate.json",
+                    "raw displayed-quartet graph-direction certificate; no restoration or whole-map T_i authority",
+                    True,
+                ),
             ]),
             "producer_artifacts": rows([
                 ("work/quartet_separation_closure/verify_quartet_logic.py", "quartet certificate producer", True),
                 ("work/quartet_separation_closure/verify_quartet_terminal_bindings.py", "terminal-binding producer and replayer", True),
-                ("work/adversarial_proof_review/verify_topology_direction.py", "topology direction producer", True),
+                (
+                    "work/adversarial_proof_review/verify_topology_direction.py",
+                    "raw displayed-quartet graph-direction producer",
+                    True,
+                ),
             ]),
             "replay_artifacts": rows([
                 ("work/quartet_separation_closure/verify_quartet_logic.py", "exact quartet replay", True),
                 ("work/quartet_separation_closure/verify_quartet_terminal_bindings.py", "4,414,710-row terminal-binding replay", True),
-                ("work/adversarial_proof_review/verify_topology_direction.py", "independent topology replay", True),
+                (
+                    "work/adversarial_proof_review/verify_topology_direction.py",
+                    "independent raw displayed-quartet replay",
+                    True,
+                ),
             ]),
             "mutation_artifacts": rows([
                 ("work/quartet_separation_closure/test_quartet_semantics_mutations.py", "quartet coordinate/spectrum/formula mutation runner", True),
@@ -768,7 +824,7 @@ def render_markdown(value: dict[str, Any]) -> str:
         "- Funding: no specific funding supported this work.",
         "- Competing interests: none declared.",
         "- Licenses: CC BY 4.0 for paper/data; MIT for code.",
-        "- Immutable submission tag: `k2p-same-biorxiv-v1.0.0`.",
+        "- Immutable submission tag: `k2p-same-biorxiv-v1.0.1`.",
         "- No GitHub Release, Zenodo deposit, or DOI is created or claimed by this package.",
         "",
     ])

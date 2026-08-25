@@ -13,11 +13,11 @@ from pathlib import Path, PurePosixPath
 
 PROJECT = Path(__file__).resolve().parents[2]
 LOCK_RELATIVE = "work/final_theorem_release/RELEASE_LOCK.json"
-EXPECTED_LOCK_SHA256 = "7113b1c52d577858ec20ef83cd87c870242c8ddc96018036b5c073229821eec9"
-EXPECTED_LOCK_PAYLOAD = "f0342dd538b6b72eb5e31eb674df2ce6984b9e4fae6e502583e4bb195aedbb0f"
-EXPECTED_FILE_COUNT = 399
-EXPECTED_TOTAL_BYTES = 478_755_815
-EXPECTED_CONTENT_ROOT = "072baaa4066569acd31c552149f6afb727323e54b241bdefc98452598309dd61"
+EXPECTED_LOCK_SHA256 = "8456344d649641eb1622f474e8144ef4193bbfa87e2c5fea14e6dafb15e6f0a6"
+EXPECTED_LOCK_PAYLOAD = "d446c995b6e691b77fbee8c8be15acac360e22b16277122e622a680698b98cc0"
+EXPECTED_FILE_COUNT = 403
+EXPECTED_TOTAL_BYTES = 478_864_942
+EXPECTED_CONTENT_ROOT = "e524c14d2026adf542c9ed0e767f909ff0e89bf292e1447c449704e9546220d8"
 ARCHIVE_PREFIX = "k2p_principal_d_plus_referee_release"
 
 
@@ -69,7 +69,7 @@ def collect_ledger() -> dict[str, dict[str, int | str]]:
         fail("release is not promotion-ready")
 
     paths = set(lock.get("files", {}))
-    if len(paths) != 223:
+    if len(paths) != 227:
         fail("unexpected outer file count")
 
     add_manifest_paths(
@@ -142,7 +142,7 @@ def write_zip(path: Path, ledger: dict[str, dict[str, int | str]]) -> str:
     with zipfile.ZipFile(path, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as archive:
         for relative in ledger:
             data = PROJECT.joinpath(*safe_relative(relative).parts).read_bytes()
-            info = zipfile.ZipInfo(f"{ARCHIVE_PREFIX}/{relative}", date_time=(2026, 8, 21, 0, 0, 0))
+            info = zipfile.ZipInfo(f"{ARCHIVE_PREFIX}/{relative}", date_time=(2026, 8, 25, 0, 0, 0))
             info.compress_type = zipfile.ZIP_DEFLATED
             info.external_attr = 0o100644 << 16
             info.create_system = 3

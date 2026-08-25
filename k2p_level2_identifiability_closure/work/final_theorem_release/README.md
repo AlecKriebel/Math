@@ -13,6 +13,15 @@ provenance only. The oddly named `PROBE_PROMOTION_PLACEHOLDER.json` in the
 promotion-manuscript directory is not pending: it is the completed frozen
 `PASS` binding checked by the promotion guard.
 
+Legacy handoff names are not additional gates.  The canonical mapping is in
+`../../output/referee/README.md`: in particular, `verify_handoff.py` maps to
+the bundle/lock checks plus this harness's quick replay,
+`test_handoff_mutations.py` maps to `run_release_mutations.py`,
+`run_all_verifiers.py` maps to this harness with `--full`, and
+`SUBMISSION_BINDING.json` maps to `RELEASE_LOCK.json` together with the
+portable bundle ledger.  Reviewers should run the current commands printed
+below rather than search for legacy-named wrapper files.
+
 The outer lock has three disjoint semantic partitions: authoritative proof
 inputs, bound runtime evidence, and bound historical provenance. The eight
 proof-like historical files found by the final adversarial scanner are listed
@@ -41,8 +50,12 @@ targets raw omissions, false rank exclusions, wrong parents, missing children,
 broken transports, reassigned quadratic/cubic/quartic/quintic and `T_i`
 certificates, the historical `raw4424` oracle regression, promotion document
 drift, historical-artifact promotion or omission, and optimized-Python
-execution. The outer suite has 27 conceptual gates, all operating in isolated
-temporary copies.
+execution. The outer suite has 27 conceptual gates.  Attacks rerun by the
+outer command use disposable ledgers, reports, or isolated project copies.
+Rows explicitly labelled `frozen` instead bind already sealed nested mutation
+suites and validate their exact producer, verifier, source, census, and
+semantic-diagnostic contracts; they are not described as freshly rerun by the
+outer process.
 
 The release additionally binds the correction of an original certificate
 serialization defect. `verify_full_map_reseal.py` proves that the raw-four and
@@ -88,6 +101,24 @@ Run the ordinary qualification path:
 .venv/bin/python -B work/final_theorem_release/verify_final_theorem_release.py --quick
 .venv/bin/python -B work/final_theorem_release/run_release_mutations.py
 ```
+
+When a machine-readable outer mutation report is wanted, `--output` must name
+a caller-owned path outside the project tree.  The v2 report deliberately
+excludes elapsed time, temporary paths, and hashes of raw child output; it
+records stable semantic rejection markers and return codes and is therefore
+byte-comparable across differently named clean extractions.  The focused
+output-contract regression is:
+
+```sh
+.venv/bin/python -B work/final_theorem_release/test_release_mutation_output_contract.py
+.venv/bin/python -B work/final_theorem_release/test_nested_mutation_output_contract.py
+```
+
+The documented outer mutation command runs this regression as a mandatory
+preflight before any conceptual mutation gate; it does not add a mutation row
+or alter the 27-gate census. Reports are fsynced to a new same-directory file
+and atomically replaced, and the regression attacks both external hardlinks
+and late output-symlink swaps without allowing either to modify source bytes.
 
 Run the clean-room exhaustive path when full primitive regeneration is
 desired:

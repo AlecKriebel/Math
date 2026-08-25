@@ -130,3 +130,40 @@ All times are 2026-08-21 PDT.
   `5fd774fb9335a7ce1900dd80226c79fab8459f8fa3738c5274237c131113cde7`.
 - Completion estimate for the bounded composite layer: **100%**; completion
   estimate for the final clean submission/release package: **94%**.
+
+## 2026-08-25 — verifier-facing mutation qualification repaired
+
+- Replaced every synthetic sampled-dictionary composite check with a complete
+  deterministic disposable gzip-ledger attack against the production
+  independent verifier.
+- Raw-four now has 12 semantic ledger attacks plus optimized-mode and aggregate
+  source-immutability guards; all 14/14 reject at their intended diagnostics.
+  Report payload: `dc265e02da504666197320fcab90226fa44cfc5c5906bb4ef5b6f1ab35d44f02`.
+- Theta2 now has 10 semantic ledger attacks plus the two separate guards; all
+  12/12 reject at their intended diagnostics. Report payload:
+  `5663b87d3f09eaac5e89db69ac5a1cf6069b308abf9bc4242650d0897ded1ff7`.
+- Independent A/B executions to differently named outputs were byte-identical:
+  raw-four report SHA-256 `83196bc33504fd1e17c8784d2c7530f358e85cff8161c8e5f14ba04a60c42d76`;
+  theta2 report SHA-256 `ec2c6ec092539048b4e7ab9d9cfea01caa985d0f35cae74ca56732dc4cfe4c84`.
+- Output safety now uses atomic same-directory replacement and rejects project
+  symlink aliases and source hardlinks. Focused hardlink, late-symlink,
+  authoritative-alias, and optimized-mode regressions pass without changing a
+  locked source.
+- The rich v2 report validator independently accepted both reports. No
+  authoritative composite ledger, classification, census, rank, separator,
+  restoration forest, or transport changed.
+- Completion estimate for the corrected-composite mutation qualification:
+  **100%**. Completion estimate for the final resealed submission package:
+  **96%** pending global locator/lock/crosswalk/PDF/archive replay.
+
+## 2026-08-25 — corrected-composite contract rebound
+
+- Replayed the strengthened live release contract against both v2 mutation
+  reports and their exact producer/verifier bindings.  The contract passed
+  with zero unresolved records and payload
+  `e4b7e754bab7d9dbb7f39b5749725ca3585c4bdd79764f69dd6851a12cd2185b`.
+- Added the focused output-safety regression to the package manifest and
+  corrected two stale reader-table fields so that the printed summary and
+  independent-replay payloads equal the current artifacts.
+- Completion estimate for this bounded package remains **100%**; the outer
+  submission bundle remains pending its ordered reseal.

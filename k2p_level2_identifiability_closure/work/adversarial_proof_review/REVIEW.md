@@ -1,5 +1,13 @@
 # Independent adversarial review
 
+> **Historical checkpoint -- not current theorem authority.**  This review
+> predates completion of the corrected one-/two-port probe and unified release
+> gates, so its pending global verdict and its former broad topology-certificate
+> description are superseded.  Current theorem authority is
+> `work/global_theorem_closure/promotion_manuscript/K2P_SAME_PROMOTION_MANUSCRIPT.md`;
+> current finite evidence is selected by
+> `work/final_theorem_release/RELEASE_LOCK.json`.
+
 ## Current verdict
 
 **Analytic bridge/marginal/gluing layer: PASS.**

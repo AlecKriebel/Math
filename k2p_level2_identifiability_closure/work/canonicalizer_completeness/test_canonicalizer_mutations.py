@@ -3,8 +3,10 @@
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import json
+import os
 import subprocess
 import sys
 import tempfile
@@ -14,11 +16,56 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
 ATLAS = PROJECT / "package/referee/k2p_offline_sweep_portable/atlas/k2p_atlas_core.py"
-OUTPUT = HERE / "canonicalizer_completeness_mutation_certificate.json"
+AUTHORITATIVE_OUTPUT = HERE / "canonicalizer_completeness_mutation_certificate.json"
 
 
 def sha_file(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def validate_output_path(output: Path, allow_authoritative_output: bool) -> Path:
+    lexical = Path(os.path.abspath(os.fspath(output)))
+    normalized = lexical.parent.resolve() / lexical.name
+    resolved = lexical.resolve()
+    authoritative = AUTHORITATIVE_OUTPUT.parent.resolve() / AUTHORITATIVE_OUTPUT.name
+    if allow_authoritative_output:
+        if normalized != authoritative or lexical.is_symlink():
+            raise SystemExit(
+                "CANONICALIZER_MUTATION_OUTPUT_POLICY_FAIL: authoritative override "
+                "licenses only the nonsymbolic canonical mutation certificate"
+            )
+        return normalized
+    try:
+        resolved.relative_to(PROJECT.resolve())
+    except ValueError:
+        return normalized
+    raise SystemExit(
+        "CANONICALIZER_MUTATION_OUTPUT_POLICY_FAIL: routine output must be "
+        "outside the project source tree"
+    )
+
+
+def atomic_write_text(path: Path, text: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    descriptor, temporary_name = tempfile.mkstemp(
+        prefix=f".{path.name}.", suffix=".tmp", dir=path.parent
+    )
+    temporary = Path(temporary_name)
+    try:
+        os.fchmod(descriptor, 0o644)
+        with os.fdopen(descriptor, "w", encoding="utf-8") as handle:
+            handle.write(text)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+        directory_descriptor = os.open(path.parent, os.O_RDONLY)
+        try:
+            os.fsync(directory_descriptor)
+        finally:
+            os.close(directory_descriptor)
+    finally:
+        if temporary.exists():
+            temporary.unlink()
 
 
 def run_mutation(name, old, new):
@@ -56,6 +103,11 @@ def run_mutation(name, old, new):
 def main():
     if not __debug__:
         raise SystemExit("CANONICALIZER_MUTATIONS_OPTIMIZED_MODE_FORBIDDEN")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--allow-authoritative-output", action="store_true")
+    args = parser.parse_args()
+    output = validate_output_path(args.output, args.allow_authoritative_output)
     results = [
         run_mutation(
             "accept_nonordinary_split_heads",
@@ -79,7 +131,7 @@ def main():
     }
     payload = json.dumps(report, sort_keys=True, separators=(",", ":")).encode()
     report["payload_sha256"] = hashlib.sha256(payload).hexdigest()
-    OUTPUT.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
+    atomic_write_text(output, json.dumps(report, indent=2, sort_keys=True) + "\n")
     print("K2P_CANONICALIZER_MUTATIONS_PASS rejected=2 survived=0")
 
 

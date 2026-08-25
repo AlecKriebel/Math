@@ -506,3 +506,79 @@
   reproducibility package, bioRxiv sources, and neutral referee package. No
   mathematical, computational, metadata, source-build, or packaging gate
   remains.
+
+## 2026-08-25 — C02 authority correction after fresh referee review
+
+- Confirmed the referee's C02 finding.  The former
+  `topology_direction_certificate.json` treated the revoked depth-one
+  restoration split (35,758 quartet plus 646 rooted tree/sunlet rows) as
+  current authority, although the corrected forest replaces those 646 rows
+  by 606 whole-map `T_i` leaves, eight quartics, and 32 continuations whose
+  256 second children are 248 quartets and eight whole-map `T_i` leaves.
+- Replaced that certificate and producer in place with a deliberately narrow
+  raw displayed-quartet audit.  It independently reconstructs all 405,216 raw
+  directions, recovers exactly 360,408 quartet exclusions, binds the current
+  corrected raw4 summary, and explicitly disclaims rooted tree/sunlet,
+  restoration, and whole-map `T_i` authority.  The regenerated certificate is
+  byte-reproducible and rejects optimized Python.
+- Rebound the analytic adversarial audit to the corrected 36,824-edge,
+  36,792-leaf restoration-v3 forest and to the narrow raw-quartet certificate.
+  Its focused replay passes with no blocker, and all 12 analytic mutations
+  remain rejected.
+- Narrowed machine crosswalk claim C02 accordingly.  Added unmistakable
+  historical banners to the former probe-input and global-proof checkpoints,
+  and mapped every absent legacy referee entry-point name to the current
+  supported command or authority in the referee/release README chain.
+- Global locks, generated crosswalks/manifests, PDFs, and the referee archive
+  were intentionally not regenerated in this checkpoint.  After all fresh
+  referee fixes are integrated, the exact required order is: regenerate the
+  quartet semantics certificate and its relocation/mutation evidence (the
+  historical `GLOBAL_PROOF.md` byte changed); regenerate the quartet terminal
+  binding and mutation report; rebuild/check `RELEASE_LOCK.json`; run quick
+  replay and release mutations; run one detached full replay; rebuild/check
+  the theorem-artifact crosswalk; rebuild/check the revised bundle manifest
+  and bundle-mutation report; regenerate the portable file ledger and
+  deterministic referee ZIP; then publish a new source tag.  Article and
+  supplement PDFs need rebuilding only if a submission-source byte changes.
+- Best-guess completion: **100% for the C02 authority repair itself**; final
+  package qualification remains pending the other referee fixes and the
+  ordered global reseal above.
+
+## 2026-08-25 — Relocatable mutation evidence and provenance hardening
+
+- Adversarial output-collision testing found that a caller-supplied quartet
+  mutation report could still overwrite its specification or another locked
+  source. Repaired the quartet semantics and terminal-binding mutation writers
+  to require external caller-owned output, with an explicit override licensing
+  only the exact nonsymbolic canonical certificate.
+- Removed traceback hashes and runtime/path fields from the quartet and outer
+  mutation reports. The outer report is now schema v2 and retains only stable
+  semantic rejection markers, return codes, fixed bindings, and a payload
+  seal.
+- All four actively rerun small mutation producers (quartet semantics,
+  quartet terminal binding, canonicalizer completeness, and parameter
+  transport) now publish through an fsynced same-directory temporary file and
+  atomic replacement. Direct source collisions and source-resolving symlinks
+  reject; external hardlinks and deterministic late symlink swaps cannot
+  truncate source inodes.
+- Added bound, mandatory output-contract preflights. The quartet relocation
+  test passes across differently named extractions with report SHA-256
+  `a1bf423637775b295fb1d6554401352834c59eab326798f7db4753a3855a4a9e`.
+  The outer focused report has SHA-256
+  `a1f01d2ad623d09ca393e0b4e7bfc6b7c80600d4d4d973b948b00e6d7e695cff`.
+  The canonicalizer external report remains byte-identical at
+  `10b8eebaa739f3853434527bd6b55d90cdb28028345cb6285d687a8c3961dfdc`.
+- Semantically pinned C02 to raw displayed-quartet direction and tree-of-blobs
+  recovery only. Added crosswalk mutations against the former overbroad claim
+  and erased exclusion boundary. Added explicit historical or revoked banners
+  to the misleading pre-closure topology, probe, and restoration narratives
+  found in the audit, and updated the historical registry hashes and seal.
+- The focused fixes are complete. The parameter-transport certificate and
+  dependent mutation report now require ordinary deterministic regeneration
+  because they bind the changed runner/producer bytes; all outer locks,
+  crosswalks, PDFs, replay telemetry, and archives remain intentionally stale
+  pending the ordered final reseal.
+- Best-guess completion: **100% for referee Findings 1, 3, 4, and 5 and their
+  adjacent output-safety surface; approximately 85% for the full release
+  qualification**, with deterministic regeneration and long clean replays
+  still outstanding.

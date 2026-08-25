@@ -892,10 +892,10 @@ of the corresponding package.
 | Raw four-port composite ledger | `431dac8898ad2a724d12c200687de1b377723e302214a79a11a03524a4084b96` | `b4c4cb8a89afcc82edb266ee9fab1e9abc59c4ab977dd00dadc43304b3e4048c` (summary) |
 | Raw four-port independent replay | `c5cd73b13265b7acc36f156889b86e2c04715181c6a1d70224cd725b0221a859` | `40770d3068e936a9c5d0e93225fa15feaed90a212d9515e1cb3f2d46c35979e0` |
 | Raw four-port terminal registry | `0a1818655429d60660c1ed87f3fbe412701f386b081562b3a4caa54079069f1d` | `30053d096e140becdf32d3f26cb3634e82fcd5461f89be24f5b83cee344b5b81` |
-| Raw four-port mutation report | `13492986e8bb366a26fa3ba2278905696165c4deeeb5c2e808fa051fd6a34568` | `9f9145d91324ec25ccf19ec08fb4d3ccef6f98e37616a272d152b8dccfbf6ce1` |
+| Raw four-port mutation report | `83196bc33504fd1e17c8784d2c7530f358e85cff8161c8e5f14ba04a60c42d76` | `dc265e02da504666197320fcab90226fa44cfc5c5906bb4ef5b6f1ab35d44f02` |
 | Five-port \(\theta_2\) composite ledger | `805fc7f5a3de9dad2c63a210208075cf19910cf811ffd08878f32782ce71b659` | `c89dd764f7c66831db7f6a092fedf666a20f3594ef03647de3e85b5fbf04d0e8` (summary) |
 | Five-port \(\theta_2\) independent replay | `dd02a752b2ce41628039d2f6da6fdab77f2a8ffd73b8cd80e2968790dbbf3150` | `7e4283fe726083927b14d483d55644e2892a311b0179aa70d4766576c66ab545` |
-| Five-port \(\theta_2\) mutation report | `bd3c50d48da744897b073afa2416b6a91b4d264f65ca7d23942b336352b0b3c5` | `22563ba0f01dda229d5185fee06b52d450dbac5e143ad6397128f5ee0b20e260` |
+| Five-port \(\theta_2\) mutation report | `ec2c6ec092539048b4e7ab9d9cfea01caa985d0f35cae74ca56732dc4cfe4c84` | `5663b87d3f09eaac5e89db69ac5a1cf6069b308abf9bc4242650d0897ded1ff7` |
 | Corrected 997-parent restoration forest | `43bd2be5e7626a954fc4fa4cf45e8d0e6483c947ddc9cba80f2b1a13351bc3a8` | `0a3df52751ba38d7e6d4d118ee7068a98b7be7897d0aa732e96a74d7523a88bf` |
 | Restoration independent replay | `24fa2e61f60610a8b24c4107ec7f866278f0cc671ca203d7aaa40a37bea291dd` | `36c89ff9729e049a374a9fead8488f7a90e62c617d17e242aca5d340faeb164a` |
 | Authoritative cycle promotion | `b560fdf0545c36d576a4cdaf24af9984f6f7231180f20f6927121a57bf816a7a` | `df5e3966822af65e2341660bf3f607ff3635d69d3e5a89854afaef308727f2f1` |

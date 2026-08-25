@@ -1,5 +1,15 @@
 # Exact first-child closure for the 997 K2P restoration parents
 
+> **Revoked depth-one restoration result; not current theorem authority.**  The
+> 646 rooted tree--sunlet rows below were not valid full-map
+> terminal certificates, and the assertion that no six- or seven-port layer is
+> reached is superseded.  Current authority is the terminating 36,824-edge
+> depth-two forest in
+> `work/restoration_sign_reclassification/corrected_restoration_forest.json`
+> and its independent replay, as bound by
+> `work/final_theorem_release/RELEASE_LOCK.json`.  This file is retained only
+> as provenance for the historical first-child input.
+
 ## Finite statement
 
 Fix the corrected v4 four-port release and its primitive completion grammar.

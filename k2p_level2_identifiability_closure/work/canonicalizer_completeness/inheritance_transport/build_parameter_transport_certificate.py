@@ -799,7 +799,7 @@ def build(output_dir: Path) -> dict[str, Any]:
             "producer": ".venv/bin/python -B work/canonicalizer_completeness/inheritance_transport/build_parameter_transport_certificate.py",
             "structural_replay": ".venv/bin/python -B work/canonicalizer_completeness/inheritance_transport/verify_parameter_transport_certificate.py --structural-only",
             "full_replay": ".venv/bin/python -B work/canonicalizer_completeness/inheritance_transport/verify_parameter_transport_certificate.py",
-            "mutations": ".venv/bin/python -B work/canonicalizer_completeness/inheritance_transport/run_parameter_transport_mutations.py",
+            "mutations": ".venv/bin/python -B work/canonicalizer_completeness/inheritance_transport/run_parameter_transport_mutations.py --output /tmp/k2p-parameter-transport-mutations.json",
         },
         "parameter_convention": {
             "reticulation_order": "increasing repr(node)",

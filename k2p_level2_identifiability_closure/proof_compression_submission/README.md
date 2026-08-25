@@ -7,6 +7,13 @@ the principal-domain computational-evidence lock rooted at
 inputs.  Nothing in this directory changes the theorem statement or the
 lock's byte-level authority.
 
+That description records the boundary of the bounded compression phase.  A
+later release-qualification revision left the theorem and finite
+classification universe unchanged while resealing the outer lock to bind
+genuine verifier-facing mutation attacks and their repaired provenance.  The
+current `RELEASE_LOCK.json`, not an earlier lock hash printed in a historical
+log, is the submission authority.
+
 The accepted target is `PC-PARTIAL`: replace ledger-first exposition by safe
 finite-universe formulas, explicit polynomial/rank templates, restoration
 outcome lemmas, and a general word-reconstruction theorem, while retaining
@@ -70,7 +77,7 @@ they are not compiled into the five-file source set.
 Submission metadata are finalized: corresponding email
 `me@aleckriebel.com`; sole-author contribution statement approved; no specific
 funding; no competing interests; CC BY 4.0 for the paper and data; MIT for
-code; immutable source tag `k2p-same-biorxiv-v1.0.0`. No GitHub Release,
+code; immutable source tag `k2p-same-biorxiv-v1.0.1`. No GitHub Release,
 Zenodo deposit, or DOI is claimed in this version.
 
 ## Compile-complete bioRxiv source set

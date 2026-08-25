@@ -14,6 +14,7 @@ from pathlib import Path
 from typing import Any, Callable
 
 import build_revised_referee_bundle as builder
+import build_theorem_artifact_crosswalk as crosswalk_builder
 import check_revised_referee_bundle as checker
 
 
@@ -58,6 +59,80 @@ def reject_mutation(
     fail(f"mutation survived: {mutation_id}")
 
 
+def reject_telemetry_binding_mutation(
+    mutation_id: str,
+    mutate: Callable[[dict[str, Any]], None],
+) -> dict[str, str]:
+    _, builder_lock_sha, builder_lock_payload = builder.release_context()
+    _, checker_lock_sha, checker_lock_payload = checker.release_context()
+    if (
+        builder_lock_sha != checker_lock_sha
+        or builder_lock_payload != checker_lock_payload
+    ):
+        fail("builder/checker release contexts disagree")
+    telemetry = builder.read_json(
+        "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY_TELEMETRY.json"
+    )
+    telemetry["submission_sources"] = (
+        builder.expected_telemetry_submission_sources()
+    )
+    telemetry["release_lock"] = builder.expected_telemetry_release_lock(
+        builder_lock_sha, builder_lock_payload
+    )
+    mutate(telemetry)
+    rejections: list[str] = []
+    for label, validator in (
+        ("builder", builder.validate_telemetry_checkout_bindings),
+        ("checker", checker.validate_telemetry_checkout_bindings),
+        ("crosswalk", crosswalk_builder.validate_telemetry_checkout_bindings),
+    ):
+        try:
+            validator(telemetry, builder_lock_sha, builder_lock_payload)
+        except SystemExit as error:
+            rejections.append(f"{label}:{error}")
+            continue
+        fail(f"telemetry mutation survived {label}: {mutation_id}")
+    return {
+        "mutation_id": mutation_id,
+        "rejection": ";".join(rejections),
+        "status": "REJECTED",
+    }
+
+
+def reject_c02_scope_mutation(
+    mutation_id: str,
+    mutate: Callable[[dict[str, Any]], None],
+) -> dict[str, str]:
+    crosswalk_path = HERE / "THEOREM_ARTIFACT_CROSSWALK.json"
+    candidate = json.loads(crosswalk_path.read_text(encoding="utf-8"))
+    claims = candidate.get("claims")
+    if not isinstance(claims, list):
+        fail("crosswalk mutation fixture has no claim list")
+    matches = [
+        claim
+        for claim in claims
+        if isinstance(claim, dict)
+        and claim.get("claim_id") == "C02-quartet-tree-of-blobs"
+    ]
+    if len(matches) != 1:
+        fail("crosswalk mutation fixture has no unique C02 claim")
+    try:
+        checker.verify_c02_scope(matches[0])
+    except SystemExit as error:
+        fail(f"crosswalk mutation fixture fails C02 scope before mutation: {error}")
+    mutate(matches[0])
+    reseal(candidate)
+    try:
+        checker.verify_c02_scope(matches[0])
+    except SystemExit as error:
+        return {
+            "mutation_id": mutation_id,
+            "rejection": str(error),
+            "status": "REJECTED",
+        }
+    fail(f"mutation survived: {mutation_id}")
+
+
 def first_key(value: dict[str, Any]) -> str:
     keys = sorted(value)
     if not keys:
@@ -74,6 +149,34 @@ def run() -> dict[str, Any]:
     reject_optimized_mode()
     base = builder.build_manifest()
     mutations: list[dict[str, str]] = []
+
+    def restore_overbroad_c02_claim(value: dict[str, Any]) -> None:
+        value["claim"] = (
+            "Pointwise quartet signs, labelled tree-of-blobs recovery, and "
+            "source-to-target topology direction."
+        )
+
+    mutations.append(
+        reject_c02_scope_mutation(
+            "overbroad_c02_topology_authority", restore_overbroad_c02_claim
+        )
+    )
+
+    def erase_c02_exclusion_boundary(value: dict[str, Any]) -> None:
+        for row in value.get("authoritative_artifacts", []):
+            if row.get("path") == (
+                "work/adversarial_proof_review/"
+                "topology_direction_certificate.json"
+            ):
+                row["role"] = "direction certificate"
+                return
+        fail("C02 mutation fixture omits topology direction certificate")
+
+    mutations.append(
+        reject_c02_scope_mutation(
+            "erased_c02_exclusion_boundary", erase_c02_exclusion_boundary
+        )
+    )
 
     def omit_frozen(value: dict[str, Any]) -> None:
         files = value["frozen_evidence"]["files"]
@@ -201,6 +304,28 @@ def run() -> dict[str, Any]:
         value["runtime_boundary"]["layer_count"] += 1
 
     mutations.append(reject_mutation(base, "false_clean_full_layer_count", false_clean_full_layer_count))
+
+    def false_telemetry_source_binding(value: dict[str, Any]) -> None:
+        value["submission_sources"][
+            "proof_compression_submission/article/main.tex"
+        ]["sha256"] = "0" * 64
+
+    mutations.append(
+        reject_telemetry_binding_mutation(
+            "false_telemetry_submission_source_binding",
+            false_telemetry_source_binding,
+        )
+    )
+
+    def false_telemetry_lock_binding(value: dict[str, Any]) -> None:
+        value["release_lock"]["sha256"] = "f" * 64
+
+    mutations.append(
+        reject_telemetry_binding_mutation(
+            "false_telemetry_release_lock_binding",
+            false_telemetry_lock_binding,
+        )
+    )
 
     def omit_article_pdf(value: dict[str, Any]) -> None:
         value["submission_sources"]["files"].pop(

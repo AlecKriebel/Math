@@ -1,5 +1,14 @@
 # Adversarial audit of coherent-probe closure
 
+> **Historical checkpoint -- not current theorem authority.**  The blocked
+> status and input-only authority below record the interval after the first
+> probe oracle was revoked but before the corrected one-/two-port package was
+> completed.  Current authority is
+> `work/probe_coherence_corrected/probe_coherence_certificate.json`, the
+> independent replay under `work/global_proof_adversary/probe_full_audit`, and
+> `work/global_theorem_closure/promotion_manuscript/K2P_SAME_PROMOTION_MANUSCRIPT.md`,
+> as bound by `work/final_theorem_release/RELEASE_LOCK.json`.
+
 ## Current verdict
 
 **Probe input universe: PASS.**

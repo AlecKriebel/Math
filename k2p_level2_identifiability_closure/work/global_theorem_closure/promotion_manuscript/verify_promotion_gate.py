@@ -136,8 +136,8 @@ FROZEN = {
         None,
     ),
     "work/corrected_composite_ledgers/artifacts/raw4_corrected_composite_mutations.json": (
-        "13492986e8bb366a26fa3ba2278905696165c4deeeb5c2e808fa051fd6a34568",
-        "9f9145d91324ec25ccf19ec08fb4d3ccef6f98e37616a272d152b8dccfbf6ce1",
+        "83196bc33504fd1e17c8784d2c7530f358e85cff8161c8e5f14ba04a60c42d76",
+        "dc265e02da504666197320fcab90226fa44cfc5c5906bb4ef5b6f1ab35d44f02",
     ),
     "work/corrected_composite_ledgers/artifacts/theta2_corrected_composite_ledger.jsonl.gz": (
         "805fc7f5a3de9dad2c63a210208075cf19910cf811ffd08878f32782ce71b659",
@@ -152,8 +152,8 @@ FROZEN = {
         "7e4283fe726083927b14d483d55644e2892a311b0179aa70d4766576c66ab545",
     ),
     "work/corrected_composite_ledgers/artifacts/theta2_corrected_composite_mutations.json": (
-        "bd3c50d48da744897b073afa2416b6a91b4d264f65ca7d23942b336352b0b3c5",
-        "22563ba0f01dda229d5185fee06b52d450dbac5e143ad6397128f5ee0b20e260",
+        "ec2c6ec092539048b4e7ab9d9cfea01caa985d0f35cae74ca56732dc4cfe4c84",
+        "5663b87d3f09eaac5e89db69ac5a1cf6069b308abf9bc4242650d0897ded1ff7",
     ),
     "work/restoration_sign_reclassification/corrected_restoration_forest.json": (
         "43bd2be5e7626a954fc4fa4cf45e8d0e6483c947ddc9cba80f2b1a13351bc3a8",

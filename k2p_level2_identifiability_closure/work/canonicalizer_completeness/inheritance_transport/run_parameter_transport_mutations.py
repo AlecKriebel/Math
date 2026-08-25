@@ -3,19 +3,23 @@
 
 from __future__ import annotations
 
+import argparse
 import copy
 import gzip
 import hashlib
 import importlib.util
 import json
+import os
 import sys
+import tempfile
 from pathlib import Path
 from typing import Any, Callable
 
 
 HERE = Path(__file__).resolve().parent
+PROJECT = HERE.parents[2]
 VERIFY_PATH = HERE / "verify_parameter_transport_certificate.py"
-OUTPUT = HERE / "parameter_transport_mutation_report.json"
+AUTHORITATIVE_OUTPUT = HERE / "parameter_transport_mutation_report.json"
 
 
 class Failure(RuntimeError):
@@ -33,6 +37,51 @@ def canonical_bytes(value: Any) -> bytes:
 
 def sha(value: Any) -> str:
     return hashlib.sha256(canonical_bytes(value)).hexdigest()
+
+
+def validate_output_path(output: Path, allow_authoritative_output: bool) -> Path:
+    lexical = Path(os.path.abspath(os.fspath(output)))
+    normalized = lexical.parent.resolve() / lexical.name
+    resolved = lexical.resolve()
+    authoritative = AUTHORITATIVE_OUTPUT.parent.resolve() / AUTHORITATIVE_OUTPUT.name
+    if allow_authoritative_output:
+        if normalized != authoritative or lexical.is_symlink():
+            raise SystemExit(
+                "PARAMETER_TRANSPORT_MUTATION_OUTPUT_POLICY_FAIL: authoritative "
+                "override licenses only the nonsymbolic canonical mutation report"
+            )
+        return normalized
+    try:
+        resolved.relative_to(PROJECT.resolve())
+    except ValueError:
+        return normalized
+    raise SystemExit(
+        "PARAMETER_TRANSPORT_MUTATION_OUTPUT_POLICY_FAIL: routine output must be "
+        "outside the project source tree"
+    )
+
+
+def atomic_write_bytes(path: Path, data: bytes) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    descriptor, temporary_name = tempfile.mkstemp(
+        prefix=f".{path.name}.", suffix=".tmp", dir=path.parent
+    )
+    temporary = Path(temporary_name)
+    try:
+        os.fchmod(descriptor, 0o644)
+        with os.fdopen(descriptor, "wb") as handle:
+            handle.write(data)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+        directory_descriptor = os.open(path.parent, os.O_RDONLY)
+        try:
+            os.fsync(directory_descriptor)
+        finally:
+            os.close(directory_descriptor)
+    finally:
+        if temporary.exists():
+            temporary.unlink()
 
 
 def import_path(name: str, path: Path):
@@ -59,6 +108,11 @@ def find(path: Path, predicate: Callable[[dict[str, Any]], bool]) -> dict[str, A
 
 def main() -> None:
     require(__debug__, "optimized Python is forbidden")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--allow-authoritative-output", action="store_true")
+    args = parser.parse_args()
+    output = validate_output_path(args.output, args.allow_authoritative_output)
     verifier = import_path("parameter_transport_mutation_verifier", VERIFY_PATH)
     certificate = verifier.validate_directory(HERE)
     relation_path = HERE / "probe_relation_parameter_transports.jsonl.gz"
@@ -209,7 +263,7 @@ def main() -> None:
         "survived": 0,
     }
     report["payload_sha256"] = sha(report)
-    OUTPUT.write_bytes(canonical_bytes(report) + b"\n")
+    atomic_write_bytes(output, canonical_bytes(report) + b"\n")
     print(
         "PARAMETER_TRANSPORT_MUTATIONS_PASS "
         + json.dumps({"rejected": len(cases), "survived": 0, "payload_sha256": report["payload_sha256"]}, sort_keys=True)

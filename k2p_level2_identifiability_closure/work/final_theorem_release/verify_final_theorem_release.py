@@ -574,7 +574,7 @@ def quick_replays(rows: list[dict[str, Any]], timeout: float) -> None:
     )
     replay_output_program(
         rows,
-        name="topology_direction_structural_provenance",
+        name="raw_displayed_quartet_direction",
         script=PROJECT / "work/adversarial_proof_review/verify_topology_direction.py",
         expected=PROJECT / "work/adversarial_proof_review/topology_direction_certificate.json",
         timeout=timeout,

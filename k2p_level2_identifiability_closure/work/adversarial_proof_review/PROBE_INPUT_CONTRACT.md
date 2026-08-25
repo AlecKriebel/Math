@@ -1,5 +1,14 @@
 # Corrected physical probe input contract
 
+> **Historical checkpoint -- not current theorem authority.**  This document
+> records the input-universe milestone before the one-/two-port probe closure
+> was completed.  Its statements that probe closure or the global theorem was
+> still blocked describe that earlier checkpoint only.  Current authority is
+> `work/probe_coherence_corrected/probe_coherence_certificate.json`, its
+> independent replays, and
+> `work/global_theorem_closure/promotion_manuscript/K2P_SAME_PROMOTION_MANUSCRIPT.md`,
+> as bound by `work/final_theorem_release/RELEASE_LOCK.json`.
+
 ## Verdict and claim boundary
 
 **PASS for the input universe; not yet a PASS for probe closure.**  The

@@ -1,6 +1,18 @@
 {
-  "payload_sha256": "22563ba0f01dda229d5185fee06b52d450dbac5e143ad6397128f5ee0b20e260",
-  "schema": "k2p-theta2-corrected-composite-mutations-v1",
+  "execution_contract": {
+    "absolute_paths_recorded": false,
+    "runtime_fields_recorded": false,
+    "scratch_ledgers_deleted_after_each_case": true,
+    "semantic_cases_invoke_production_verifier": true,
+    "semantic_cases_require_intended_diagnostic": true,
+    "semantic_cases_require_nonzero_exit": true,
+    "semantic_cases_use_complete_disposable_ledgers": true
+  },
+  "mutation_runner_sha256": "0d5f43ffe827015fe43404d627ef962b930f059752491fe77fdef5a1f4c7ec34",
+  "payload_sha256": "5663b87d3f09eaac5e89db69ac5a1cf6069b308abf9bc4242650d0897ded1ff7",
+  "production_verifier_sha256": "67ddf315b400a0a96f4a5901e6a340a158d9d4fd1111e8ee17193de5d78b5690",
+  "schema": "k2p-theta2-corrected-composite-mutations-v2",
+  "semantic_ledger_attack_count": 10,
   "source_ledger_sha256": "805fc7f5a3de9dad2c63a210208075cf19910cf811ffd08878f32782ce71b659",
   "source_tree_drift": 0,
   "status": "PASS",
@@ -10,64 +22,296 @@
   "test_count": 12,
   "tests": [
     {
+      "complete_mutant_ledger_created": true,
+      "expected_semantic_diagnostic": "RAW_ID_ORDER:0",
       "gate": "dense_raw_id_count",
+      "mutated_ledger_bytes": 61060466,
+      "mutated_ledger_sha256": "deb4016728c79c09370fe961250313506b37fac8394968f3577ec783a16170e0",
+      "mutated_raw_ids": [
+        0
+      ],
+      "mutation_diff": {
+        "changed_rows": 0,
+        "deleted_rows": 1,
+        "input_rows": 2946240,
+        "inserted_rows": 0,
+        "output_rows": 2946239
+      },
+      "mutation_mode": "omit",
       "name": "omitted_raw_row",
-      "rejected": true
+      "observed_semantic_diagnostic": "CORRECTED_COMPOSITE_REPLAY_FAIL:RAW_ID_ORDER:0",
+      "production_verifier_invoked": true,
+      "production_verifier_sha256": "67ddf315b400a0a96f4a5901e6a340a158d9d4fd1111e8ee17193de5d78b5690",
+      "rejected": true,
+      "semantic_diagnostic_matched": true,
+      "test_type": "complete_disposable_ledger_attack",
+      "verifier_exit_code": 1,
+      "verifier_report_created": false
     },
     {
+      "complete_mutant_ledger_created": true,
+      "expected_semantic_diagnostic": "RAW_ID_ORDER:1",
       "gate": "raw_id_uniqueness",
+      "mutated_ledger_bytes": 61060458,
+      "mutated_ledger_sha256": "e7faa3fe59cbc479f6902a9188bd5b4b4a9c01f292b911433624534919804164",
+      "mutated_raw_ids": [
+        0
+      ],
+      "mutation_diff": {
+        "changed_rows": 0,
+        "deleted_rows": 0,
+        "input_rows": 2946240,
+        "inserted_rows": 1,
+        "output_rows": 2946241
+      },
+      "mutation_mode": "duplicate",
       "name": "duplicate_raw_id",
-      "rejected": true
+      "observed_semantic_diagnostic": "CORRECTED_COMPOSITE_REPLAY_FAIL:RAW_ID_ORDER:1",
+      "production_verifier_invoked": true,
+      "production_verifier_sha256": "67ddf315b400a0a96f4a5901e6a340a158d9d4fd1111e8ee17193de5d78b5690",
+      "rejected": true,
+      "semantic_diagnostic_matched": true,
+      "test_type": "complete_disposable_ledger_attack",
+      "verifier_exit_code": 1,
+      "verifier_report_created": false
     },
     {
+      "complete_mutant_ledger_created": true,
+      "expected_semantic_diagnostic": "PORT_PERMUTATION:0",
       "gate": "physical_port_permutation",
+      "mutated_ledger_bytes": 61060466,
+      "mutated_ledger_sha256": "82a455a70faf95e3a2acb0cb545384c13857baa9e17688fe8b1d2716b13e904e",
+      "mutated_raw_ids": [
+        0
+      ],
+      "mutation_diff": {
+        "changed_rows": 1,
+        "deleted_rows": 0,
+        "input_rows": 2946240,
+        "inserted_rows": 0,
+        "output_rows": 2946240
+      },
+      "mutation_mode": "change",
       "name": "wrong_port_permutation",
-      "rejected": true
+      "observed_semantic_diagnostic": "CORRECTED_COMPOSITE_REPLAY_FAIL:PORT_PERMUTATION:0",
+      "production_verifier_invoked": true,
+      "production_verifier_sha256": "67ddf315b400a0a96f4a5901e6a340a158d9d4fd1111e8ee17193de5d78b5690",
+      "rejected": true,
+      "semantic_diagnostic_matched": true,
+      "test_type": "complete_disposable_ledger_attack",
+      "verifier_exit_code": 1,
+      "verifier_report_created": false
     },
     {
+      "complete_mutant_ledger_created": true,
+      "expected_semantic_diagnostic": "QUARTET_CATEGORY:0",
       "gate": "category_partition",
+      "mutated_ledger_bytes": 61060467,
+      "mutated_ledger_sha256": "fcb2c126aa016ed9b06d7936a2bb68198bd809fcbfaa7ab177e2f5cb3bc8e575",
+      "mutated_raw_ids": [
+        0
+      ],
+      "mutation_diff": {
+        "changed_rows": 1,
+        "deleted_rows": 0,
+        "input_rows": 2946240,
+        "inserted_rows": 0,
+        "output_rows": 2946240
+      },
+      "mutation_mode": "change",
       "name": "reassigned_category",
-      "rejected": true
+      "observed_semantic_diagnostic": "CORRECTED_COMPOSITE_REPLAY_FAIL:QUARTET_CATEGORY:0",
+      "production_verifier_invoked": true,
+      "production_verifier_sha256": "67ddf315b400a0a96f4a5901e6a340a158d9d4fd1111e8ee17193de5d78b5690",
+      "rejected": true,
+      "semantic_diagnostic_matched": true,
+      "test_type": "complete_disposable_ledger_attack",
+      "verifier_exit_code": 1,
+      "verifier_report_created": false
     },
     {
+      "complete_mutant_ledger_created": true,
+      "expected_semantic_diagnostic": "QUARTET_WITNESS:0",
       "gate": "exact_evidence_binding",
+      "mutated_ledger_bytes": 61060461,
+      "mutated_ledger_sha256": "e5b9b1d5d7c666718ee18ba710919dbb5177ca3e7c603e84c1049d23bf60cfbe",
+      "mutated_raw_ids": [
+        0
+      ],
+      "mutation_diff": {
+        "changed_rows": 1,
+        "deleted_rows": 0,
+        "input_rows": 2946240,
+        "inserted_rows": 0,
+        "output_rows": 2946240
+      },
+      "mutation_mode": "change",
       "name": "reassigned_evidence_binding",
-      "rejected": true
+      "observed_semantic_diagnostic": "CORRECTED_COMPOSITE_REPLAY_FAIL:QUARTET_WITNESS:0",
+      "production_verifier_invoked": true,
+      "production_verifier_sha256": "67ddf315b400a0a96f4a5901e6a340a158d9d4fd1111e8ee17193de5d78b5690",
+      "rejected": true,
+      "semantic_diagnostic_matched": true,
+      "test_type": "complete_disposable_ledger_attack",
+      "verifier_exit_code": 1,
+      "verifier_report_created": false
     },
     {
+      "complete_mutant_ledger_created": true,
+      "expected_semantic_diagnostic": "THETA2_RANK_EVIDENCE:19161",
       "gate": "directed_source_lower_target_upper_rank",
+      "mutated_ledger_bytes": 61060464,
+      "mutated_ledger_sha256": "a7c44b3a5e68027fcc46fe68a8e5f971a5a66d22303dc818fb2d8f2234489b61",
+      "mutated_raw_ids": [
+        19161
+      ],
+      "mutation_diff": {
+        "changed_rows": 1,
+        "deleted_rows": 0,
+        "input_rows": 2946240,
+        "inserted_rows": 0,
+        "output_rows": 2946240
+      },
+      "mutation_mode": "change",
       "name": "false_rank_exclusion",
-      "rejected": true
+      "observed_semantic_diagnostic": "CORRECTED_COMPOSITE_REPLAY_FAIL:THETA2_RANK_EVIDENCE:19161",
+      "production_verifier_invoked": true,
+      "production_verifier_sha256": "67ddf315b400a0a96f4a5901e6a340a158d9d4fd1111e8ee17193de5d78b5690",
+      "rejected": true,
+      "semantic_diagnostic_matched": true,
+      "test_type": "complete_disposable_ledger_attack",
+      "verifier_exit_code": 1,
+      "verifier_report_created": false
     },
     {
+      "complete_mutant_ledger_created": true,
+      "expected_semantic_diagnostic": "FORBIDDEN_ROOTED_TOKEN:0",
       "gate": "forbidden_rooted_token",
+      "mutated_ledger_bytes": 61060476,
+      "mutated_ledger_sha256": "38473122a6a87c7f95ae95308e494a709b5886e1f52431ac5763d48e75ea24f2",
+      "mutated_raw_ids": [
+        0
+      ],
+      "mutation_diff": {
+        "changed_rows": 1,
+        "deleted_rows": 0,
+        "input_rows": 2946240,
+        "inserted_rows": 0,
+        "output_rows": 2946240
+      },
+      "mutation_mode": "change",
       "name": "rooted_restriction_reintroduction",
-      "rejected": true
+      "observed_semantic_diagnostic": "CORRECTED_COMPOSITE_REPLAY_FAIL:FORBIDDEN_ROOTED_TOKEN:0",
+      "production_verifier_invoked": true,
+      "production_verifier_sha256": "67ddf315b400a0a96f4a5901e6a340a158d9d4fd1111e8ee17193de5d78b5690",
+      "rejected": true,
+      "semantic_diagnostic_matched": true,
+      "test_type": "complete_disposable_ledger_attack",
+      "verifier_exit_code": 1,
+      "verifier_report_created": false
     },
     {
+      "complete_mutant_ledger_created": true,
+      "expected_semantic_diagnostic": "THETA2_ISOMORPHISM_EVIDENCE:166201",
+      "gate": "restoration_child_edge_census",
+      "mutated_ledger_bytes": 61060465,
+      "mutated_ledger_sha256": "37701995f32077958f7033f582e1750d07cea33bd3bbdd60daa9cedcfe5a7faf",
+      "mutated_raw_ids": [
+        166201
+      ],
+      "mutation_diff": {
+        "changed_rows": 1,
+        "deleted_rows": 0,
+        "input_rows": 2946240,
+        "inserted_rows": 0,
+        "output_rows": 2946240
+      },
+      "mutation_mode": "change",
+      "name": "missing_restoration_child",
+      "observed_semantic_diagnostic": "CORRECTED_COMPOSITE_REPLAY_FAIL:THETA2_ISOMORPHISM_EVIDENCE:166201",
+      "production_verifier_invoked": true,
+      "production_verifier_sha256": "67ddf315b400a0a96f4a5901e6a340a158d9d4fd1111e8ee17193de5d78b5690",
+      "rejected": true,
+      "semantic_diagnostic_matched": true,
+      "test_type": "complete_disposable_ledger_attack",
+      "verifier_exit_code": 1,
+      "verifier_report_created": false
+    },
+    {
+      "complete_mutant_ledger_created": true,
+      "expected_semantic_diagnostic": "THETA2_QUADRATIC_EVIDENCE:166200",
+      "gate": "quadratic_certificate_identity",
+      "mutated_ledger_bytes": 61060455,
+      "mutated_ledger_sha256": "ca3cbeaf830a489b9f6c894b35ae3b263c9858d4508fc4011fd79e8ba3f4d7bd",
+      "mutated_raw_ids": [
+        166200
+      ],
+      "mutation_diff": {
+        "changed_rows": 1,
+        "deleted_rows": 0,
+        "input_rows": 2946240,
+        "inserted_rows": 0,
+        "output_rows": 2946240
+      },
+      "mutation_mode": "change",
+      "name": "reassigned_quadratic_certificate",
+      "observed_semantic_diagnostic": "CORRECTED_COMPOSITE_REPLAY_FAIL:THETA2_QUADRATIC_EVIDENCE:166200",
+      "production_verifier_invoked": true,
+      "production_verifier_sha256": "67ddf315b400a0a96f4a5901e6a340a158d9d4fd1111e8ee17193de5d78b5690",
+      "rejected": true,
+      "semantic_diagnostic_matched": true,
+      "test_type": "complete_disposable_ledger_attack",
+      "verifier_exit_code": 1,
+      "verifier_report_created": false
+    },
+    {
+      "complete_mutant_ledger_created": true,
+      "expected_semantic_diagnostic": "THETA2_ISOMORPHISM_EVIDENCE:166201",
+      "gate": "labelled_transport_identity",
+      "mutated_ledger_bytes": 61060438,
+      "mutated_ledger_sha256": "f61f8e939e5a44d195460e6353598bf1ef9333d82742defa87d69279ac00c143",
+      "mutated_raw_ids": [
+        166201
+      ],
+      "mutation_diff": {
+        "changed_rows": 1,
+        "deleted_rows": 0,
+        "input_rows": 2946240,
+        "inserted_rows": 0,
+        "output_rows": 2946240
+      },
+      "mutation_mode": "change",
+      "name": "broken_transport",
+      "observed_semantic_diagnostic": "CORRECTED_COMPOSITE_REPLAY_FAIL:THETA2_ISOMORPHISM_EVIDENCE:166201",
+      "production_verifier_invoked": true,
+      "production_verifier_sha256": "67ddf315b400a0a96f4a5901e6a340a158d9d4fd1111e8ee17193de5d78b5690",
+      "rejected": true,
+      "semantic_diagnostic_matched": true,
+      "test_type": "complete_disposable_ledger_attack",
+      "verifier_exit_code": 1,
+      "verifier_report_created": false
+    },
+    {
+      "complete_mutant_ledger_created": false,
+      "expected_semantic_diagnostic": "OPTIMIZED_MODE_FORBIDDEN",
       "gate": "optimized_mode_guard",
       "name": "python_optimized_mode",
-      "rejected": true
+      "observed_semantic_diagnostic": "CORRECTED_COMPOSITE_REPLAY_FAIL:OPTIMIZED_MODE_FORBIDDEN",
+      "production_verifier_invoked": true,
+      "production_verifier_sha256": "67ddf315b400a0a96f4a5901e6a340a158d9d4fd1111e8ee17193de5d78b5690",
+      "rejected": true,
+      "semantic_diagnostic_matched": true,
+      "test_type": "optimized_mode_guard",
+      "verifier_exit_code": 1
     },
     {
-      "gate": "source_fingerprint_drift_detector",
-      "name": "source_tree_write",
-      "rejected": true
-    },
-    {
-      "gate": "restoration_child_edge_census",
-      "name": "missing_restoration_child",
-      "rejected": true
-    },
-    {
-      "gate": "quadratic_certificate_identity",
-      "name": "reassigned_quadratic_certificate",
-      "rejected": true
-    },
-    {
-      "gate": "labelled_transport_identity",
-      "name": "broken_transport",
-      "rejected": true
+      "complete_mutant_ledger_created": false,
+      "gate": "source_fingerprint_immutability",
+      "name": "source_tree_immutability",
+      "production_verifier_invoked": false,
+      "rejected": true,
+      "source_fingerprints_unchanged": true,
+      "test_type": "aggregate_source_immutability_guard"
     }
   ]
 }

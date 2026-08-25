@@ -11,7 +11,7 @@ Run from the project root with the pinned environment:
 ```sh
 .venv/bin/python -B work/canonicalizer_completeness/canonicalizer_audit.py
 .venv/bin/python -B work/canonicalizer_completeness/verify_canonicalizer_completeness.py
-.venv/bin/python -B work/canonicalizer_completeness/test_canonicalizer_mutations.py
+.venv/bin/python -B work/canonicalizer_completeness/test_canonicalizer_mutations.py --output /tmp/k2p-canonicalizer-mutations.json
 ```
 
 The first command uses up to eight local workers.  A clean full regeneration
@@ -20,6 +20,12 @@ and byte comparison is available as:
 ```sh
 .venv/bin/python -B work/canonicalizer_completeness/verify_canonicalizer_completeness.py --full
 ```
+
+The mutation runner requires a caller-owned output outside the project tree.
+Only an explicit `--allow-authoritative-output` naming its exact nonsymbolic
+canonical certificate may reseal that certificate. Report publication is an
+fsynced atomic replacement and cannot truncate a hardlinked or late-symlinked
+source file.
 
 The authoritative mathematical argument is in [PROOF.md](PROOF.md).  The
 generated certificate binds the exact atlas and raw-ledger bytes.  No frozen

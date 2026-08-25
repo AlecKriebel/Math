@@ -9,6 +9,7 @@ import copy
 import gzip
 import hashlib
 import json
+import os
 import subprocess
 import sys
 import tempfile
@@ -22,11 +23,64 @@ HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
 SEMANTICS = HERE / "quartet_logic_certificate.json"
 VERIFIER = HERE / "verify_quartet_terminal_bindings.py"
+AUTHORITATIVE_OUTPUT = HERE / "quartet_terminal_binding_mutation_certificate.json"
 
 
 def require(condition: bool, message: str) -> None:
     if not condition:
         raise RuntimeError(message)
+
+
+def validate_output_path(output: Path, allow_authoritative_output: bool) -> Path:
+    """Require disposable output unless the canonical reseal is explicit."""
+
+    lexical = Path(os.path.abspath(os.fspath(output)))
+    normalized = lexical.parent.resolve() / lexical.name
+    resolved = lexical.resolve()
+    project = PROJECT.resolve()
+    authoritative = AUTHORITATIVE_OUTPUT.parent.resolve() / AUTHORITATIVE_OUTPUT.name
+    if allow_authoritative_output:
+        if normalized != authoritative or lexical.is_symlink():
+            raise SystemExit(
+                "QUARTET_TERMINAL_MUTATION_OUTPUT_POLICY_FAIL: authoritative "
+                "override licenses only the nonsymbolic canonical mutation certificate:"
+                f"output={normalized}:canonical={authoritative}:"
+                f"is_symlink={lexical.is_symlink()}"
+            )
+        return normalized
+    try:
+        resolved.relative_to(project)
+    except ValueError:
+        return normalized
+    raise SystemExit(
+        "QUARTET_TERMINAL_MUTATION_OUTPUT_POLICY_FAIL: routine output must be "
+        "outside the project source tree"
+    )
+
+
+def atomic_write_text(path: Path, text: str) -> None:
+    """Fsync a new same-directory file and replace without following links."""
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    descriptor, temporary_name = tempfile.mkstemp(
+        prefix=f".{path.name}.", suffix=".tmp", dir=path.parent
+    )
+    temporary = Path(temporary_name)
+    try:
+        os.fchmod(descriptor, 0o644)
+        with os.fdopen(descriptor, "w", encoding="utf-8") as handle:
+            handle.write(text)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+        directory_descriptor = os.open(path.parent, os.O_RDONLY)
+        try:
+            os.fsync(directory_descriptor)
+        finally:
+            os.close(directory_descriptor)
+    finally:
+        if temporary.exists():
+            temporary.unlink()
 
 
 def expect_failure(name: str, marker: str, action: Callable[[], Any]) -> dict[str, Any]:
@@ -60,9 +114,10 @@ def main() -> None:
     if not __debug__:
         raise SystemExit("QUARTET_TERMINAL_MUTATIONS_OPTIMIZED_MODE_FORBIDDEN")
     parser = argparse.ArgumentParser()
-    parser.add_argument("--output", type=Path)
+    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--allow-authoritative-output", action="store_true")
     args = parser.parse_args()
-    output = args.output.resolve() if args.output else HERE / "quartet_terminal_binding_mutation_certificate.json"
+    output = validate_output_path(args.output, args.allow_authoritative_output)
 
     formulas, _semantics_summary = binder.semantics_contract(SEMANTICS)
     cycle_payload = binder.load_json(PROJECT / binder.CYCLE_REGISTRY)
@@ -301,8 +356,7 @@ def main() -> None:
     }
     result = dict(payload)
     result["payload_sha256"] = binder.sha_object(payload)
-    output.parent.mkdir(parents=True, exist_ok=True)
-    output.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    atomic_write_text(output, json.dumps(result, indent=2, sort_keys=True) + "\n")
     print("K2P_QUARTET_TERMINAL_BINDING_MUTATIONS_PASS")
     print(json.dumps({"cases": len(rows), "payload_sha256": result["payload_sha256"]}, sort_keys=True))
 

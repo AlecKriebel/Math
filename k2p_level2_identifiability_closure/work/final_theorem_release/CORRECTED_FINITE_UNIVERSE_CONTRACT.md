@@ -147,22 +147,26 @@ The authoritative producer package is now frozen.  The raw-four ledger has
 file SHA-256
 `431dac8898ad2a724d12c200687de1b377723e302214a79a11a03524a4084b96`
 and summary payload
-`8154acc38ad58b49e4f0f5b34f6fdb9999c0392dd947f91bc6017d8e2ab8d5cf`.
+`b4c4cb8a89afcc82edb266ee9fab1e9abc59c4ab977dd00dadc43304b3e4048c`.
 Its independent primitive replay checks all 405,216 rows, including exact
 whole-map replay of the 16,974 corrected sign rows, and has payload
-`0e167e742907394a77a0eab1614366e2460b86b13241577ad25e902822241ea8`.
-Its 14/14 temporary-copy mutation report has payload
-`88bd552f75c87d0b084ab6a9fa09421ef16867b274a2be25b513ff9fdf9f010d`.
+`40770d3068e936a9c5d0e93225fa15feaed90a212d9515e1cb3f2d46c35979e0`.
+Its 14/14 verifier-facing mutation report contains 12 complete-ledger attacks,
+an optimized-mode guard, and an aggregate source-immutability guard; it has
+payload
+`dc265e02da504666197320fcab90226fa44cfc5c5906bb4ef5b6f1ab35d44f02`.
 
 The theta2 ledger has file SHA-256
 `805fc7f5a3de9dad2c63a210208075cf19910cf811ffd08878f32782ce71b659`
 and summary payload
-`480c27d82924bbf12adf1357f9e3bc216d1818dce68d061bb134f387e9737194`.
+`c89dd764f7c66831db7f6a092fedf666a20f3594ef03647de3e85b5fbf04d0e8`.
 Its independent primitive replay checks all 2,946,240 rows, including exact
 whole-map replay of the 2,528 corrected sign rows, and has payload
-`2fa46fd0ca70dbe00e8231686bfd790f57d76d9a33ddc4b07cffaa72e3b07e8b`.
-Its 12/12 temporary-copy mutation report has payload
-`5fce45398dc5f3ad948078ec5b66583d28e3af2cf3991f4f0931c0bfaf332e77`.
+`7e4283fe726083927b14d483d55644e2892a311b0179aa70d4766576c66ab545`.
+Its 12/12 verifier-facing mutation report contains 10 complete-ledger attacks,
+an optimized-mode guard, and an aggregate source-immutability guard; it has
+payload
+`5663b87d3f09eaac5e89db69ac5a1cf6069b308abf9bc4242650d0897ded1ff7`.
 The descendant ledger derives 56 restored roots, 864 children, and 832 leaves;
 these values are checked but are not enumeration controls.
 
@@ -174,7 +178,7 @@ isomorphisms, and four hard `F2`/`F3`/`F4` terminals.  The package uses one
 shared generator, support module, independent verifier, and mutation runner,
 with no family-specific aliases for those executables.  Its frozen release-
 contract replay has payload
-`df840ff7962386c224edb9320d8f86dc184feaaa67256f8e56f0f65e83ab194f`.
+`b746fb7a17e8ca9252c53dff0ba5722c1a00c56dc930d0c8456022ea34f60b6f`.
 That report binds the producer's release-interface snapshot; the outer
 verifier independently validates the live located bytes and their current
 contract rather than assuming that snapshot and the outer verifier are the

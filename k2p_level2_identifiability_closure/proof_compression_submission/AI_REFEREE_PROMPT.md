@@ -174,28 +174,84 @@ reversal, and reassigned polynomial certificates.
 
 ### 5. Run the complete verifier stack
 
-After reading the code, run the compact and mutation gates:
+After reading the code, run the compact gates in a clean extraction:
 
 ```sh
-.venv/bin/python -B work/final_theorem_release/verify_final_theorem_release.py --quick
-.venv/bin/python -B work/final_theorem_release/run_release_mutations.py
-.venv/bin/python -B proof_compression_submission/verify_compressed_release.py --check
-.venv/bin/python -B proof_compression_submission/verify_old_new_equivalence.py --check
-.venv/bin/python -B proof_compression_submission/run_compression_mutations.py --check
-.venv/bin/python -B proof_compression_submission/test_clean_full_replay_telemetry.py
+<external-venv-python> -B work/final_theorem_release/verify_final_theorem_release.py --quick
+<external-venv-python> -B proof_compression_submission/verify_compressed_release.py --check
+<external-venv-python> -B proof_compression_submission/verify_old_new_equivalence.py --check
+<external-venv-python> -B proof_compression_submission/run_compression_mutations.py --check
+<external-venv-python> -B proof_compression_submission/test_clean_full_replay_telemetry.py
 ```
 
-Then run the full primitive regeneration:
+Independently extract the submitted archive into two clean project directories
+whose parent and project-directory names differ. Use a virtual environment
+outside both project trees. Before running a mutation command, record a sorted
+SHA-256 inventory of every regular file in each extraction. In both
+extractions run the outer mutation producer with a different caller-owned
+report path outside either project tree; for example, after substituting
+absolute paths:
 
 ```sh
-.venv/bin/python -B work/final_theorem_release/verify_final_theorem_release.py --full
+(cd <clean-extraction-A> && \
+  <external-venv-python> -B \
+  work/final_theorem_release/run_release_mutations.py \
+  --output <external-report-A.json>)
+
+(cd <differently-named-clean-extraction-B> && \
+  <external-venv-python> -B \
+  work/final_theorem_release/run_release_mutations.py \
+  --output <external-report-B.json>)
+
+cmp <external-report-A.json> <external-report-B.json>
 ```
 
-The reference Mac run took about 5,578 seconds and used about 2.6 GB maximum
-resident memory. Record the environment, commands, exit codes, runtimes,
-memory, and output hashes. If a load-bearing command cannot be run, mark that
-layer UNVERIFIED and state the precise obstruction; do not infer PASS from a
-stored report.
+Require both commands to exit zero and both reports to be byte-identical.
+Recompute the complete regular-file inventories afterward and require each
+extraction to be byte-identical to its own pre-run inventory. If Git metadata
+is present, also require an unchanged tracked worktree. Do not place a report,
+virtual environment, cache, or other execution output inside either project
+tree.
+
+Inspect, rather than merely hash, the genuine verifier-facing composite
+mutation evidence in:
+
+- `work/corrected_composite_ledgers/run_composite_mutations.py`;
+- `work/corrected_composite_ledgers/verify_corrected_composites_independent.py`;
+- `work/corrected_composite_ledgers/artifacts/raw4_corrected_composite_mutations.json`;
+  and
+- `work/corrected_composite_ledgers/artifacts/theta2_corrected_composite_mutations.json`.
+
+Confirm that the two reports use their declared v2 schemas; that every
+advertised raw-four and theta2 semantic attack creates a complete disposable
+mutant ledger and invokes the production independent verifier; that rejection
+occurs at the intended semantic diagnostic rather than at an unrelated
+checksum; and that the reports record zero survivors and zero source-tree
+drift. Trace the raw-four attacks for omission, duplication, port/category or
+evidence changes, false rank, wrong parent, broken transport, and reassigned
+cubic/quartic/quintic certificates. Trace the theta2 attacks for omission,
+duplication, port/category or evidence changes, false rank, missing restoration
+children, broken isomorphism transport, and reassigned quadratic certificates.
+Check that the outer producer freshly runs these suites in disposable paths
+and compares their bytes with the sealed v2 reports.
+
+Only after the integrity, compact, relocation, mutation, and source-immutability
+checks pass, run the full primitive regeneration from a clean extraction:
+
+```sh
+<external-venv-python> -B \
+  work/final_theorem_release/verify_final_theorem_release.py --full
+```
+
+Treat
+`proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY_TELEMETRY.json`
+and the generated theorem-to-artifact crosswalk as the sole package authority
+for the qualified reference run's commit, environment, layer count, runtime,
+memory, and report hashes. Independently verify their bindings, and record the
+environment, commands, exit codes, runtimes, memory, and output hashes from
+your own run. If a load-bearing command cannot be run, mark that layer
+UNVERIFIED and state the precise obstruction; do not infer PASS from a stored
+report.
 
 ### 6. Perform independent falsification
 

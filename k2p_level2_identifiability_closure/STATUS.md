@@ -5,11 +5,11 @@
 The unconditional `K2P-SAME` classification, generic-identifiability
 corollary, exact reconstruction theorem, strict continuous-time corollary, and
 weak-class `4n-3` sharpness theorem are complete. The promotion manuscript
-and 399-file transitive evidence bundle have independent replay and mutation
+and 403-file transitive evidence bundle have independent replay and mutation
 coverage. The frozen outer release lock is
 
 ```text
-7113b1c52d577858ec20ef83cd87c870242c8ddc96018036b5c073229821eec9
+8456344d649641eb1622f474e8144ef4193bbfa87e2c5fea14e6dafb15e6f0a6
 ```
 
 Every finite gate has zero unresolved mathematical records. The corrected
@@ -52,16 +52,17 @@ with no open load-bearing findings.
 
 ## Final qualification state
 
-No theorem, metadata, source-build, replay, mutation, or packaging gate
-remains. The approved metadata are printed, the paper and data use CC BY 4.0,
-and the verifier code uses the MIT License. A detached clean checkout at commit
-`1877985d20132fb186d21a5985e8c5f760a656af` passed all 40 layers with zero
-blockers in 5,578.10 seconds wall time. The maximum resident set size was
-2,600,484,864 bytes and the recorded peak memory footprint was 503,350,016
-bytes.
+The repaired 227-file outer lock and 403-file recursive evidence closure pass
+the lock check and the 23-layer quick replay with zero blockers.  The
+mathematical classification, metadata, and licenses are complete.  Final
+release qualification is still in progress: the two-clean-extraction outer
+mutation comparison, one detached full replay, source-bound telemetry, PDF
+rebuild, manifests, and deterministic referee archive must be regenerated
+before this status is promoted back to submission-ready.
 
-The qualified source tag is `k2p-same-biorxiv-v1.0.0`. No GitHub Release,
-Zenodo deposit, or DOI has been created or claimed; those external publication
-actions are deliberately left to the author.
+The intended source tag is `k2p-same-biorxiv-v1.0.1`; it has not yet been
+created for this candidate. No GitHub Release, Zenodo deposit, or DOI has been
+created or claimed; those external publication actions are deliberately left
+to the author.
 
 No mixed-sign K2P claim is pending or implied.

@@ -22,7 +22,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
 PRIMARY = PROJECT / "work/bridge_marginal_closure"
-RESTORATION = PROJECT / "work/restoration_forest"
+RESTORATION = PROJECT / "work/restoration_sign_reclassification"
 GLOBAL = PROJECT / "work/global_theorem_closure"
 TOPOLOGY_CERTIFICATE = HERE / "topology_direction_certificate.json"
 
@@ -430,16 +430,26 @@ def check_unconditional_lift_counterexample() -> dict[str, object]:
 
 
 def check_forest_binding() -> dict[str, object]:
-    report_path = RESTORATION / "replay_report.json"
+    report_path = RESTORATION / "corrected_restoration_forest.json"
     report = json.loads(report_path.read_text())
-    require(report.get("status") == "PASS", "restoration replay not PASS")
-    require(report.get("raw_children") == 36568, "raw child count")
-    require(report.get("canonical_relation_classes") == 2240, "relation class count")
-    require(report.get("unresolved") == 0, "unresolved restoration child")
+    require(report.get("status") == "PASS", "corrected restoration forest not PASS")
+    require(
+        report.get("schema") == "k2p-corrected-restoration-forest-v3",
+        "corrected restoration schema",
+    )
+    census = report.get("census", {})
+    require(census.get("first_children") == 36568, "first-child count")
+    require(census.get("second_children") == 256, "second-child count")
+    require(census.get("forest_edges") == 36824, "forest-edge count")
+    require(census.get("final_leaves") == 36792, "final-leaf count")
+    require(census.get("unresolved") == 0, "unresolved restoration child")
     return {
         "status": "FINITE_PREMISE_PASS",
         "report_sha256": sha256_file(report_path),
-        "raw_children": 36568,
+        "first_children": 36568,
+        "second_children": 256,
+        "forest_edges": 36824,
+        "final_leaves": 36792,
         "unresolved": 0,
         "logical_use": "valid only along a fixed full relation and its actual restored label",
     }
@@ -448,36 +458,56 @@ def check_forest_binding() -> dict[str, object]:
 def check_topology_direction_binding() -> dict[str, object]:
     report = json.loads(TOPOLOGY_CERTIFICATE.read_text())
     require(report.get("status") == "PASS", "directional topology audit not PASS")
-    published = report.get("published_ledgers", {})
-    four_port = report.get("four_port_binding", {})
-    restoration = report.get("restoration_topology_binding", {})
     require(
-        published.get("raw_topology_excluded") == 377382,
-        "raw directional topology count",
+        report.get("schema") == "k2p-displayed-quartet-direction-audit-v2",
+        "displayed-quartet direction schema",
+    )
+    four_port = report.get("raw_four_port_quartets", {})
+    current = report.get("current_raw4_summary", {})
+    summary_relative = current.get("summary_path")
+    require(isinstance(summary_relative, str), "current raw4 summary path")
+    raw4_summary_path = PROJECT / summary_relative
+    require(
+        four_port.get("raw_directions") == 405216
+        and four_port.get("quartet_exclusions") == 360408,
+        "raw displayed-quartet partition",
     )
     require(
-        four_port.get("quartet_exclusions") == 360408
-        and four_port.get("tree_sunlet_exclusions") == 16974,
-        "raw topology partition",
+        current.get("total_rows") == 405216
+        and current.get("displayed_quartet_exclusions") == 360408
+        and current.get("forbidden_rooted_fields") == 0
+        and current.get("forbidden_rooted_reasons") == 0
+        and raw4_summary_path.is_file()
+        and current.get("summary_sha256") == sha256_file(raw4_summary_path)
+        and current.get("summary_payload_sha256")
+        == json.loads(raw4_summary_path.read_text()).get("payload_sha256"),
+        "current raw4 displayed-quartet binding",
     )
     require(
-        restoration.get("raw_children") == 36568
-        and restoration.get("displayed_quartet_mismatch") == 35758
-        and restoration.get("strict_tree_sunlet") == 646
-        and restoration.get("equal_topology_deck") == 164,
-        "restoration topology partition",
+        report.get("excluded_claims")
+        == [
+            "rooted tree/sunlet classification",
+            "restoration-child classification",
+            "whole-map T_i classification",
+        ],
+        "displayed-quartet claim boundary",
     )
     require(
         report.get("scope")
-        == "principal D_plus; exact physical disjointness, not generic distinction",
+        == (
+            "principal D_plus; raw four-port displayed-quartet direction and "
+            "tree-of-blobs predicate only; no restoration or whole-map T_i classifier"
+        ),
         "directional topology scope drift",
     )
     return {
         "status": "PASS",
         "certificate_sha256": sha256_file(TOPOLOGY_CERTIFICATE),
-        "raw_directional_exclusions": 377382,
-        "restoration_children": 36568,
-        "logical_strength": "pointwise disjoint strict K2P images",
+        "raw_displayed_quartet_exclusions": 360408,
+        "logical_strength": (
+            "pointwise disjoint strict K2P images for different displayed-quartet sets"
+        ),
+        "restoration_authority": False,
     }
 
 
@@ -634,7 +664,7 @@ def build_report() -> dict[str, object]:
         "simultaneous_gluing": check_gluing(),
         "unconditional_lift": check_unconditional_lift_counterexample(),
         "restoration_finite_premise": check_forest_binding(),
-        "directional_topology_binding": check_topology_direction_binding(),
+        "raw_displayed_quartet_direction_binding": check_topology_direction_binding(),
     }
     blockers = proof_text_blockers()
     report: dict[str, object] = {
@@ -644,9 +674,11 @@ def build_report() -> dict[str, object]:
         "upstream_hashes": {
             "bridge_proof": sha256_file(PRIMARY / "PROOF.md"),
             "bridge_verifier": sha256_file(PRIMARY / "verify_bridge_marginal.py"),
-            "restoration_closure": sha256_file(RESTORATION / "RESTORATION_CLOSURE.md"),
+            "corrected_restoration_forest": sha256_file(
+                RESTORATION / "corrected_restoration_forest.json"
+            ),
             "global_proof": sha256_file(GLOBAL / "GLOBAL_PROOF.md"),
-            "directional_topology_certificate": sha256_file(TOPOLOGY_CERTIFICATE),
+            "raw_displayed_quartet_certificate": sha256_file(TOPOLOGY_CERTIFICATE),
         },
         "checks": checks,
         "blockers": blockers,
@@ -659,8 +691,8 @@ def build_report() -> dict[str, object]:
             "paired source serial marginal section",
             "simultaneous D_plus gluing",
             "simultaneous strict continuous-time gluing",
-            "finite 36,568-child restoration premise",
-            "pointwise directional topology exclusions",
+            "finite 36,824-edge corrected restoration premise",
+            "pointwise raw displayed-quartet directional exclusions",
         ],
     }
     body = dict(report)

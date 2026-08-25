@@ -1,5 +1,13 @@
 # K2P restoration-forest workspace
 
+> **Historical depth-one workspace -- not current theorem authority.**  The
+> 646 rooted tree--sunlet classifications and the no-second-layer conclusion
+> described below were revoked.  The current restoration result is the
+> 36,824-edge, 36,792-leaf depth-two forest in
+> `work/restoration_sign_reclassification/corrected_restoration_forest.json`,
+> with its independent replay and mutations bound by
+> `work/final_theorem_release/RELEASE_LOCK.json`.
+
 This directory is an isolated, read-only derivative of the frozen v4
 four-port release.  Nothing here mutates or replaces the locked referee
 package.

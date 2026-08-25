@@ -25,7 +25,7 @@ The frozen theorem release is rooted at
 `work/final_theorem_release/RELEASE_LOCK.json`, whose SHA-256 is
 
 ```text
-7113b1c52d577858ec20ef83cd87c870242c8ddc96018036b5c073229821eec9
+8456344d649641eb1622f474e8144ef4193bbfa87e2c5fea14e6dafb15e6f0a6
 ```
 
 The theorem is deliberately limited to the principal positive component; no
@@ -38,8 +38,9 @@ reader supplement, theorem-to-artifact crosswalk, and one bounded
 proof-compression pass. The compression verdict is `PC-PARTIAL`: completion
 arithmetic, polynomial catalogues, and arbitrary-word reconstruction now have
 compact mathematical formulations, while exact direction-sensitive rank,
-restoration, and probe ledgers remain load-bearing. The frozen theorem is
-unchanged and every old/new comparison passes.
+restoration, and probe ledgers remain load-bearing. The finite theorem and
+classification universe are unchanged; the outer qualification lock has been
+resealed to bind the repaired verifier-facing mutation evidence.
 
 ## Layout
 

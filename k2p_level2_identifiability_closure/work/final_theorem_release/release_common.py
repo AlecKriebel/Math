@@ -123,10 +123,10 @@ COMPOSITE_SERIALIZATION = {
     "row_order": "raw_id_ascending",
 }
 PROMOTION_MANUSCRIPT_FILES = {
-    "work/global_theorem_closure/promotion_manuscript/K2P_SAME_PROMOTION_MANUSCRIPT.md": "bff0a4e6ddfa123aff0f560795d3f90dc6d60a6da768690f1f8e39db0fddcc9f",
+    "work/global_theorem_closure/promotion_manuscript/K2P_SAME_PROMOTION_MANUSCRIPT.md": "add7bc4a34563d0175f4e19ebe7ca2536b77772ff50d7f017628505d7e6c1899",
     "work/global_theorem_closure/promotion_manuscript/QUANTIFIER_AUDIT.md": "425a041bc3e4cc7bd4f74c952455623ff26f430d9c4ceb006edcac9e8c3765d8",
     "work/global_theorem_closure/promotion_manuscript/PROBE_PROMOTION_PLACEHOLDER.json": "79a9949f5a5598a83c7e2bfc60d669dfe4b8b7d3417d8d8673e2fc4c634efaaa",
-    "work/global_theorem_closure/promotion_manuscript/verify_promotion_gate.py": "464bf0823283e93175e350fefcb5fce3fd2bce2cd137dfe833b4722e24943ccd",
+    "work/global_theorem_closure/promotion_manuscript/verify_promotion_gate.py": "a8db5f1eea9652a34f06ea2e986a39428187257232c0683672ef2e0bbc6a4ed4",
 }
 PROMOTION_GUARD_CENSUS = {
     "frozen_inputs_verified": 23,
@@ -151,7 +151,7 @@ REVOKED_RESTORATION_RUNTIME_SHA256 = {
     "work/restoration_forest/replay_report.json":
         "6e0f82449cea5b783e5c0df6a589f2be46f611d7679d547effde1c43f466487b",
     "work/restoration_forest/RESTORATION_CLOSURE.md":
-        "efd9d1d78d54289e511ce07113a1abbdf77dd8589734c0800ee0ff401b5f7a25",
+        "90c7205b62db579e9b121c2373f29ffd33a2ceb6572fb3839692f83e475f4e4e",
 }
 REVOKED_RESTORATION_RUNTIME_ARTIFACTS = {
     "work/restoration_forest/RESTORATION_CLOSURE.md": {
@@ -180,7 +180,7 @@ HISTORICAL_ARTIFACT_REGISTRY = (
 )
 HISTORICAL_PROOF_ARTIFACTS = {
     "work/adversarial_proof_review/PROBE_AUDIT.md": {
-        "sha256": "8c8c19f1c17e85e709994f4ec2582046c49ea1b496691699677f7a0becbd5d25",
+        "sha256": "6c681819e8dbd97ab7606b0a3a572d7932a987f27f4cc3aeae9b701a6d95092a",
         "classification": "REVOKED_INTERMEDIATE_PROBE_AUDIT",
         "authoritative_replacements": [
             "work/probe_coherence_corrected/probe_coherence_certificate.json",
@@ -189,7 +189,7 @@ HISTORICAL_PROOF_ARTIFACTS = {
         ],
     },
     "work/adversarial_proof_review/TOPOLOGY_DIRECTIONAL_THEOREM.md": {
-        "sha256": "abe1a9e089d7324d9509ebbe32f6b7217045ccb7c0d3044afc7db1d02604e7d7",
+        "sha256": "0c10de904bc233e95c3ff776f9d2ab8e887f2e93fc05362a47039164d8833f1b",
         "classification": "REVOKED_ROOTED_TOPOLOGY_ORACLE_NARRATIVE",
         "authoritative_replacements": [
             "work/final_theorem_release/corrected_universe_certificate.json",
@@ -369,6 +369,8 @@ def fixed_evidence_files() -> dict[str, str]:
         "work/final_theorem_release/build_release_lock.py": "harness",
         "work/final_theorem_release/verify_final_theorem_release.py": "harness",
         "work/final_theorem_release/run_release_mutations.py": "harness",
+        "work/final_theorem_release/test_release_mutation_output_contract.py": "harness",
+        "work/final_theorem_release/test_nested_mutation_output_contract.py": "harness",
         "work/final_theorem_release/verify_full_map_reseal.py": "corrected_finite_universe:full_map_reseal",
         "work/final_theorem_release/full_map_reseal_audit.json": "corrected_finite_universe:full_map_reseal",
         "work/final_theorem_release/verify_composite_reseal_diff.py": "corrected_finite_universe:composite_reseal",
@@ -408,6 +410,7 @@ def fixed_evidence_files() -> dict[str, str]:
         "work/quartet_separation_closure/verify_quartet_logic.py": "quartet_tree_of_blobs",
         "work/quartet_separation_closure/quartet_logic_certificate.json": "quartet_tree_of_blobs",
         "work/quartet_separation_closure/test_quartet_semantics_mutations.py": "quartet_tree_of_blobs",
+        "work/quartet_separation_closure/test_quartet_semantics_relocation.py": "quartet_tree_of_blobs",
         "work/quartet_separation_closure/quartet_semantics_mutation_certificate.json": "quartet_tree_of_blobs",
         "work/quartet_separation_closure/verify_quartet_terminal_bindings.py": "quartet_terminal_bindings",
         "work/quartet_separation_closure/quartet_terminal_binding_certificate.json": "quartet_terminal_bindings",
@@ -1578,16 +1581,43 @@ def validate_composite_primitive_summary(
     mutations = load_json(located["mutation"])
     verify_payload_hash(mutations)
     require(
-        mutations.get("schema") == f"k2p-{family}-corrected-composite-mutations-v1",
+        mutations.get("schema") == f"k2p-{family}-corrected-composite-mutations-v2",
         "COMPOSITE_MUTATION_SCHEMA_FAIL",
         family,
     )
     require(mutations.get("status") == "PASS", "COMPOSITE_MUTATIONS_NOT_PASS", family)
     require(mutations.get("summary_sha256") == sha_file(located["summary"]), "COMPOSITE_MUTATION_SUMMARY_BINDING_FAIL", family)
     require(mutations.get("source_ledger_sha256") == sha_file(located["ledger"]), "COMPOSITE_MUTATION_LEDGER_BINDING_FAIL", family)
+    require(
+        mutations.get("mutation_runner_sha256")
+        == sha_file(paths["corrected_composite_mutation_runner"]),
+        "COMPOSITE_MUTATION_RUNNER_BINDING_FAIL",
+        family,
+    )
+    require(
+        mutations.get("production_verifier_sha256")
+        == sha_file(paths["corrected_composite_independent_verifier"]),
+        "COMPOSITE_MUTATION_VERIFIER_BINDING_FAIL",
+        family,
+    )
     require(mutations.get("source_tree_drift") == 0, "COMPOSITE_MUTATION_SOURCE_DRIFT", family)
     require(mutations.get("temporary_copies_only") is True, "COMPOSITE_MUTATION_TEMP_COPY_FAIL", family)
     require(mutations.get("survivors") == 0, "COMPOSITE_MUTATION_SURVIVOR", family)
+    execution_contract = mutations.get("execution_contract")
+    require(
+        execution_contract
+        == {
+            "semantic_cases_use_complete_disposable_ledgers": True,
+            "semantic_cases_invoke_production_verifier": True,
+            "semantic_cases_require_nonzero_exit": True,
+            "semantic_cases_require_intended_diagnostic": True,
+            "scratch_ledgers_deleted_after_each_case": True,
+            "absolute_paths_recorded": False,
+            "runtime_fields_recorded": False,
+        },
+        "COMPOSITE_MUTATION_EXECUTION_CONTRACT_FAIL",
+        family,
+    )
     mutation_rows = mutations.get("tests")
     require(
         isinstance(mutation_rows, list)
@@ -1609,7 +1639,7 @@ def validate_composite_primitive_summary(
         "false_rank_exclusion",
         "rooted_restriction_reintroduction",
         "python_optimized_mode",
-        "source_tree_write",
+        "source_tree_immutability",
     }
     if family == "raw4":
         required_tests.update({
@@ -1625,7 +1655,107 @@ def validate_composite_primitive_summary(
             "broken_transport",
             "reassigned_quadratic_certificate",
         })
-    require(required_tests <= tests, "COMPOSITE_MUTATION_COVERAGE_FAIL", f"{family}:{sorted(required_tests - tests)}")
+    require(
+        tests == required_tests
+        and len(mutation_rows) == len(required_tests),
+        "COMPOSITE_MUTATION_COVERAGE_FAIL",
+        f"{family}:{sorted(required_tests - tests)}:{sorted(tests - required_tests)}",
+    )
+    semantic_rows = [
+        row
+        for row in mutation_rows
+        if row.get("test_type") == "complete_disposable_ledger_attack"
+    ]
+    expected_semantic_count = 12 if family == "raw4" else 10
+    require(
+        len(semantic_rows) == mutations.get("semantic_ledger_attack_count")
+        == expected_semantic_count,
+        "COMPOSITE_MUTATION_SEMANTIC_CENSUS_FAIL",
+        family,
+    )
+    for row in semantic_rows:
+        diff = row.get("mutation_diff")
+        require(
+            isinstance(diff, dict)
+            and diff.get("input_rows") == total
+            and isinstance(diff.get("output_rows"), int)
+            and isinstance(diff.get("changed_rows"), int)
+            and isinstance(diff.get("deleted_rows"), int)
+            and isinstance(diff.get("inserted_rows"), int),
+            "COMPOSITE_MUTATION_DIFF_FAIL",
+            f"{family}:{row.get('name')}",
+        )
+        mode = row.get("mutation_mode")
+        expected_diff = {
+            "change": (total, 1, 0, 0),
+            "omit": (total - 1, 0, 1, 0),
+            "duplicate": (total + 1, 0, 0, 1),
+        }.get(mode)
+        require(
+            expected_diff is not None
+            and (
+                diff["output_rows"],
+                diff["changed_rows"],
+                diff["deleted_rows"],
+                diff["inserted_rows"],
+            )
+            == expected_diff,
+            "COMPOSITE_MUTATION_DIFF_MECHANISM_FAIL",
+            f"{family}:{row.get('name')}",
+        )
+        require(
+            row.get("complete_mutant_ledger_created") is True
+            and isinstance(row.get("mutated_ledger_bytes"), int)
+            and row["mutated_ledger_bytes"] > 0
+            and is_sha256(row.get("mutated_ledger_sha256"))
+            and row["mutated_ledger_sha256"] != mutations["source_ledger_sha256"]
+            and row.get("production_verifier_invoked") is True
+            and row.get("production_verifier_sha256")
+            == mutations["production_verifier_sha256"]
+            and row.get("verifier_exit_code") == 1
+            and isinstance(row.get("expected_semantic_diagnostic"), str)
+            and row.get("observed_semantic_diagnostic")
+            == f"CORRECTED_COMPOSITE_REPLAY_FAIL:{row['expected_semantic_diagnostic']}"
+            and row.get("semantic_diagnostic_matched") is True
+            and row.get("verifier_report_created") is False
+            and isinstance(row.get("mutated_raw_ids"), list)
+            and len(row["mutated_raw_ids"]) == 1
+            and isinstance(row["mutated_raw_ids"][0], int),
+            "COMPOSITE_MUTATION_VERIFIER_EVIDENCE_FAIL",
+            f"{family}:{row.get('name')}",
+        )
+    optimized = next(
+        (row for row in mutation_rows if row.get("name") == "python_optimized_mode"),
+        None,
+    )
+    require(
+        isinstance(optimized, dict)
+        and optimized.get("test_type") == "optimized_mode_guard"
+        and optimized.get("complete_mutant_ledger_created") is False
+        and optimized.get("production_verifier_invoked") is True
+        and optimized.get("production_verifier_sha256")
+        == mutations["production_verifier_sha256"]
+        and optimized.get("verifier_exit_code") == 1
+        and optimized.get("expected_semantic_diagnostic")
+        == "OPTIMIZED_MODE_FORBIDDEN"
+        and optimized.get("semantic_diagnostic_matched") is True,
+        "COMPOSITE_MUTATION_OPTIMIZED_GATE_FAIL",
+        family,
+    )
+    immutability = next(
+        (row for row in mutation_rows if row.get("name") == "source_tree_immutability"),
+        None,
+    )
+    require(
+        isinstance(immutability, dict)
+        and immutability.get("test_type")
+        == "aggregate_source_immutability_guard"
+        and immutability.get("complete_mutant_ledger_created") is False
+        and immutability.get("production_verifier_invoked") is False
+        and immutability.get("source_fingerprints_unchanged") is True,
+        "COMPOSITE_MUTATION_IMMUTABILITY_GATE_FAIL",
+        family,
+    )
     require(mutations.get("survivors") == 0, "COMPOSITE_MUTATION_SURVIVOR", family)
     require(mutations.get("source_tree_drift") == 0, "COMPOSITE_MUTATION_SOURCE_DRIFT", family)
     result["independent_replay_payload_sha256"] = replay["payload_sha256"]
@@ -1645,6 +1775,7 @@ def validate_corrected_composite_release_package(
         "corrected_composite_support",
         "corrected_composite_independent_verifier",
         "corrected_composite_mutation_runner",
+        "corrected_composite_mutation_output_safety",
         "raw4_terminal_registry_builder",
         "raw4_terminal_certificate_registry",
         "raw4_corrected_composite_ledger",
@@ -4352,7 +4483,7 @@ def validate_quartet_evidence(project: Path = PROJECT) -> dict[str, object]:
     )
     verify_payload_hash(semantic_mutations)
     require(
-        semantic_mutations.get("schema") == "k2p-quartet-semantics-mutations-v2"
+        semantic_mutations.get("schema") == "k2p-quartet-semantics-mutations-v3"
         and semantic_mutations.get("status") == "PASS"
         and semantic_mutations.get("verifier_sha256")
         == sha_file(root / "verify_quartet_logic.py")
@@ -4370,14 +4501,38 @@ def validate_quartet_evidence(project: Path = PROJECT) -> dict[str, object]:
         "printed_formula_reverted_to_wrong_sector",
         "optimized_python",
     ]
+    semantic_markers = [
+        "EQUAL_SECTOR_SPECTRUM_FAIL",
+        "CANONICAL_PULLBACK_FAIL",
+        "CANONICAL_PULLBACK_FAIL",
+        "CHARACTER_ORDER_CONTRACT_FAIL",
+        "CANONICAL_COORDINATE_CONTRACT_FAIL",
+        "DOMAIN_DECLARATION_CONTRACT_FAIL",
+        "DOCUMENT_LITERAL_BINDING_FAIL",
+        "QUARTET_LOGIC_OPTIMIZED_MODE_FORBIDDEN",
+    ]
+    semantic_rows = semantic_mutations.get("cases")
     require(
-        [row.get("case") for row in semantic_mutations.get("cases", [])]
-        == semantic_case_names
+        isinstance(semantic_rows, list)
+        and all(isinstance(row, dict) for row in semantic_rows)
+        and [row.get("case") for row in semantic_rows] == semantic_case_names
+        and [row.get("expected_marker") for row in semantic_rows]
+        == semantic_markers
         and all(
             row.get("status") == "PASS"
-            and isinstance(row.get("expected_marker"), str)
-            and row.get("observed_returncode") != 0
-            for row in semantic_mutations.get("cases", [])
+            and row.get("observed_marker") == row.get("expected_marker")
+            and row.get("observed_returncode") == 1
+            and row.get("failed_mutation_certificate_written") is False
+            and set(row)
+            == {
+                "case",
+                "status",
+                "expected_marker",
+                "observed_marker",
+                "observed_returncode",
+                "failed_mutation_certificate_written",
+            }
+            for row in semantic_rows
         ),
         "QUARTET_SEMANTIC_MUTATION_CENSUS_FAIL",
     )

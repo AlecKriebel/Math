@@ -374,3 +374,39 @@
   teaching the release verifier to ignore a changing provenance hash.
 - Completion remains 98% pending the fresh clean full replay and final reader
   package/archive binding.
+
+## 2026-08-25 — referee-evidence repair frozen before final lock (98%)
+
+- Scrutinized the fresh referee HOLD and confirmed that it concerned release
+  evidence, not the theorem or finite classification.  Replaced the raw4 and
+  theta2 composite proxy tests by 22 genuine complete-ledger attacks that
+  invoke the production verifier.  Raw4 rejects 12/12 such attacks (14/14
+  total gates); theta2 rejects 10/10 (12/12 total gates).  Independent runs to
+  differently named outputs are byte-identical, with zero source drift.
+- Made quartet, composite, canonicalizer, parameter-transport, and outer
+  mutation reports caller-owned, path-independent, and atomically published.
+  Focused regressions reject direct and symlink-resolved source collisions and
+  prove hardlink and late-symlink safety.  The outer suite now reruns every
+  nested producer in scratch and byte-compares the frozen report.
+- Narrowed C02 to its actual graph-derived authority: all 405,216 raw
+  directions and exactly 360,408 displayed-quartet exclusions.  Restoration,
+  whole-map `T_i`, and rooted tree/sunlet claims are explicitly outside C02;
+  the current restoration-v3 and corrected whole-map layers remain their sole
+  authorities.  Historical narratives are visibly quarantined.
+- Rebuilt the graph-derived parameter-transport certificate after its two
+  source bindings changed.  All three transport ledgers were byte-identical;
+  all 10 semantic mutations remained rejected.  Rebuilt the quartet semantic
+  and terminal bindings with unchanged formulas and all 4,414,710 terminal
+  rows covered.
+- The rebound unified five-family certificate has payload
+  `38c7deae6103c6a4a459dbe0b496a4047ae69cda93fb6d8b64beb5af8f95c012`;
+  its independent replay payload is
+  `45799b99d0cfdaaffba43fd52bfafd0272cfaa73f3f3863e275acf06a234a633`;
+  all 22 cross-layer mutations reject with payload
+  `8e17735577ae56c16482229fbba99af0d6272bffdb9f61b84e605e621c316feb`.
+  The signed locator payload is
+  `eb22ab9b2192eabccca6587d9e25115dc53a3c5db761e6f8fe7b0b09b6ffe1c7`.
+- No topology, rank, polynomial, census, separator, parent assignment,
+  restoration edge, probe row, or theorem statement changed.  Completion is
+  98% pending the new outer lock, two-path outer mutations, detached full
+  replay, source-bound telemetry, PDFs, manifests, and deterministic archive.

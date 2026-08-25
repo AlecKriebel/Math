@@ -18,8 +18,13 @@ Run from the project root:
 ```sh
 .venv/bin/python -B work/canonicalizer_completeness/inheritance_transport/build_parameter_transport_certificate.py
 .venv/bin/python -B work/canonicalizer_completeness/inheritance_transport/verify_parameter_transport_certificate.py
-.venv/bin/python -B work/canonicalizer_completeness/inheritance_transport/run_parameter_transport_mutations.py
+.venv/bin/python -B work/canonicalizer_completeness/inheritance_transport/run_parameter_transport_mutations.py --output /tmp/k2p-parameter-transport-mutations.json
 ```
+
+The mutation output must be caller-owned and outside the project tree.  An
+authoritative reseal requires `--allow-authoritative-output` with the exact
+nonsymbolic canonical report path. Publication uses an fsynced atomic replace,
+so external hardlinks and late output-symlink swaps cannot modify source bytes.
 
 The full verifier regenerates all three ledgers in a disposable directory and
 requires byte-for-byte equality.  `--structural-only` checks hashes, schemas,

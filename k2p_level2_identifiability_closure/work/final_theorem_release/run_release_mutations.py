@@ -5,13 +5,12 @@ from __future__ import annotations
 
 import argparse
 import copy
-import hashlib
 import json
+import os
 import shutil
 import subprocess
 import sys
 import tempfile
-import time
 from contextlib import contextmanager
 from pathlib import Path
 from typing import Any
@@ -69,8 +68,9 @@ def accepted_rejection(
 ) -> dict[str, object]:
     output = result.stdout + result.stderr
     require(result.returncode != 0, "MUTATION_SURVIVED", name)
+    matched = [marker.decode("utf-8") for marker in markers if marker in output]
     require(
-        any(marker in output for marker in markers),
+        bool(matched),
         "MUTATION_WRONG_REJECTION",
         {"name": name, "tail": output[-4000:]},
     )
@@ -79,8 +79,104 @@ def accepted_rejection(
         "name": name,
         "status": "REJECTED",
         "returncode": result.returncode,
-        "output_sha256": hashlib.sha256(output).hexdigest(),
+        "expected_markers": [marker.decode("utf-8") for marker in markers],
+        "observed_markers": matched,
     }
+
+
+def validate_report_output_path(output: Path | None) -> Path | None:
+    """Resolve optional report output and forbid every source-tree collision."""
+
+    if output is None:
+        return None
+    lexical = Path(os.path.abspath(os.fspath(output)))
+    normalized = lexical.parent.resolve() / lexical.name
+    resolved = lexical.resolve()
+    try:
+        resolved.relative_to(PROJECT.resolve())
+    except ValueError:
+        return normalized
+    raise ReleaseFailure(
+        "FINAL_RELEASE_MUTATION_OUTPUT_POLICY_FAIL:report output must be outside "
+        "the project source tree"
+    )
+
+
+def atomic_write_text(path: Path, text: str) -> None:
+    """Fsync and atomically replace without following a late output symlink."""
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    descriptor, temporary_name = tempfile.mkstemp(
+        prefix=f".{path.name}.", suffix=".tmp", dir=path.parent
+    )
+    temporary = Path(temporary_name)
+    try:
+        os.fchmod(descriptor, 0o644)
+        with os.fdopen(descriptor, "w", encoding="utf-8") as handle:
+            handle.write(text)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+        directory_descriptor = os.open(path.parent, os.O_RDONLY)
+        try:
+            os.fsync(directory_descriptor)
+        finally:
+            os.close(directory_descriptor)
+    finally:
+        if temporary.exists():
+            temporary.unlink()
+
+
+def build_report(
+    rows: list[dict[str, object]], blockers: list[str]
+) -> dict[str, object]:
+    """Build the path- and timing-independent outer mutation report."""
+
+    payload: dict[str, object] = {
+        "schema": "k2p-principal-d-plus-final-release-mutations-v2",
+        "status": "PASS" if not blockers else "BLOCKED",
+        "blockers": blockers,
+        "survivors": 0,
+        "required_mutation_count": 27,
+        "observed_mutation_count": len(rows),
+        "mutations": rows,
+        "output_contract_preflight": "PASS",
+        "portability_contract": (
+            "The report excludes elapsed times, temporary paths, raw child output, "
+            "and raw-output hashes; rejection evidence is limited to stable semantic "
+            "markers and return codes."
+        ),
+    }
+    report = dict(payload)
+    report["payload_sha256"] = sha_object(payload)
+    return report
+
+
+def output_contract_preflight(timeout: float) -> None:
+    for name, script, marker in (
+        (
+            "final_mutation_output_contract",
+            HERE / "test_release_mutation_output_contract.py",
+            b"K2P_FINAL_RELEASE_MUTATION_OUTPUT_CONTRACT_PASS",
+        ),
+        (
+            "nested_mutation_output_contract",
+            HERE / "test_nested_mutation_output_contract.py",
+            b"K2P_NESTED_MUTATION_OUTPUT_CONTRACT_PASS",
+        ),
+    ):
+        result = run(
+            name,
+            [python(), "-B", str(script)],
+            timeout=timeout,
+        )
+        output = result.stdout + result.stderr
+        require(
+            result.returncode == 0 and marker in output,
+            "FINAL_RELEASE_MUTATION_OUTPUT_CONTRACT_FAIL",
+            f"{name}:{output[-4000:]}",
+        )
+    print("K2P_FINAL_MUTATION_OUTPUT_CONTRACT_PASS", flush=True)
 
 
 def resign(payload: dict[str, Any], field: str = "payload_sha256") -> None:
@@ -335,31 +431,82 @@ def restoration_v3_mutation_gate(rows: list[dict[str, object]]) -> None:
 
 def corrected_composite_mutation_gate(
     rows: list[dict[str, object]],
+    temporary: Path,
+    timeout: float,
 ) -> dict[str, Any]:
-    """Bind both frozen primitive-composite mutation reports.
+    """Rerun both verifier-facing primitive-composite mutation suites.
 
-    The producer already executes all cases in independent temporary copies.
-    The outer suite revalidates the complete located package, including report
-    bytes and source bindings, so a report cannot be substituted independently
-    of its ledger or summary.  Full-probe blockers do not weaken this primitive
-    gate.
+    Each producer streams complete mutant ledgers one at a time, invokes the
+    production independent verifier, and records the intended semantic failure.
+    This outer gate writes reports only under its own temporary directory and
+    requires them to equal the frozen path-independent reports byte for byte.
     """
 
     summary, _blockers = validate_corrected_finite_universe()
     raw4 = summary["raw4_composite"]
     theta2 = summary["theta2_composite"]
+    runner = PROJECT / "work/corrected_composite_ledgers/run_composite_mutations.py"
+    artifacts = PROJECT / "work/corrected_composite_ledgers/artifacts"
+    fresh_reports: dict[str, dict[str, Any]] = {}
+    for family, expected_count in (("raw4", 14), ("theta2", 12)):
+        report = temporary / f"{family}_corrected_composite_mutations.json"
+        result = run(
+            f"{family}_corrected_composite_mutations",
+            [
+                python(),
+                "-B",
+                str(runner),
+                "--family",
+                family,
+                "--output",
+                str(report),
+                "--timeout-seconds",
+                str(timeout),
+            ],
+            timeout=timeout * expected_count,
+        )
+        output = result.stdout + result.stderr
+        require(
+            result.returncode == 0 and report.is_file(),
+            "CORRECTED_COMPOSITE_MUTATION_RERUN_FAIL",
+            f"{family}:{output[-4000:]}",
+        )
+        frozen = artifacts / f"{family}_corrected_composite_mutations.json"
+        require(
+            report.read_bytes() == frozen.read_bytes(),
+            "CORRECTED_COMPOSITE_MUTATION_REPORT_BYTE_DRIFT",
+            family,
+        )
+        payload = load_json(report)
+        require(
+            payload.get("status") == "PASS"
+            and payload.get("test_count") == expected_count
+            and payload.get("semantic_ledger_attack_count")
+            == (12 if family == "raw4" else 10),
+            "CORRECTED_COMPOSITE_MUTATION_RERUN_REPORT_FAIL",
+            family,
+        )
+        fresh_reports[family] = payload
+    require(
+        fresh_reports["raw4"]["payload_sha256"]
+        == raw4["mutation_payload_sha256"]
+        and fresh_reports["theta2"]["payload_sha256"]
+        == theta2["mutation_payload_sha256"],
+        "CORRECTED_COMPOSITE_MUTATION_PAYLOAD_BINDING_FAIL",
+    )
     rows.append(
         {
             "name": "corrected_primitive_composite_mutations",
             "status": "REJECTED",
             "source": (
-                "frozen raw4 14/14 and theta2 12/12 suites: omitted raw row, "
-                "false rank, missing child, wrong parent, broken transport, "
-                "and reassigned quadratic/cubic/quartic/quintic certificates"
+                "fresh verifier-facing raw4 14/14 and theta2 12/12 suites: "
+                "22 complete disposable-ledger attacks plus optimized-mode "
+                "and aggregate source-immutability guards"
             ),
-            "raw4_mutation_payload_sha256": raw4["mutation_payload_sha256"],
-            "theta2_mutation_payload_sha256": theta2["mutation_payload_sha256"],
+            "raw4_mutation_payload_sha256": fresh_reports["raw4"]["payload_sha256"],
+            "theta2_mutation_payload_sha256": fresh_reports["theta2"]["payload_sha256"],
             "producer_mutation_count": 26,
+            "verifier_facing_ledger_attack_count": 22,
         }
     )
     print(
@@ -724,11 +871,34 @@ def fail_closed_evidence_mutation_suites(
     """Replay the quartet, canonicalizer, and parameter-transport attacks."""
 
     quartet = PROJECT / "work/quartet_separation_closure"
+    relocation_result = run(
+        "quartet_semantics_relocation",
+        [
+            python(),
+            "-B",
+            str(quartet / "test_quartet_semantics_relocation.py"),
+        ],
+        timeout=timeout,
+    )
+    relocation_output = relocation_result.stdout + relocation_result.stderr
+    require(
+        relocation_result.returncode == 0
+        and b"K2P_QUARTET_SEMANTICS_RELOCATION_PASS" in relocation_output,
+        "QUARTET_SEMANTICS_RELOCATION_FAIL",
+        relocation_output[-4000:],
+    )
     semantic_certificate = quartet / "quartet_semantics_mutation_certificate.json"
     semantic_expected = semantic_certificate.read_bytes()
+    semantic_output_path = temporary / "quartet_semantics_mutations.json"
     semantic_result = run(
         "quartet_semantics_mutations",
-        [python(), "-B", str(quartet / "test_quartet_semantics_mutations.py")],
+        [
+            python(),
+            "-B",
+            str(quartet / "test_quartet_semantics_mutations.py"),
+            "--output",
+            str(semantic_output_path),
+        ],
         timeout=timeout,
     )
     semantic_output = semantic_result.stdout + semantic_result.stderr
@@ -739,10 +909,11 @@ def fail_closed_evidence_mutation_suites(
         semantic_output[-4000:],
     )
     require(
-        semantic_certificate.read_bytes() == semantic_expected,
+        semantic_output_path.is_file()
+        and semantic_output_path.read_bytes() == semantic_expected,
         "QUARTET_SEMANTICS_MUTATION_REPORT_BYTE_DRIFT",
     )
-    semantic = load_json(semantic_certificate)
+    semantic = load_json(semantic_output_path)
     require(
         semantic.get("status") == "PASS"
         and semantic.get("case_count") == 8
@@ -813,9 +984,16 @@ def fail_closed_evidence_mutation_suites(
         canonicalizer / "canonicalizer_completeness_mutation_certificate.json"
     )
     canonicalizer_expected = canonicalizer_certificate.read_bytes()
+    canonicalizer_report_path = temporary / "canonicalizer_mutations.json"
     canonicalizer_result = run(
         "canonicalizer_completeness_mutations",
-        [python(), "-B", str(canonicalizer / "test_canonicalizer_mutations.py")],
+        [
+            python(),
+            "-B",
+            str(canonicalizer / "test_canonicalizer_mutations.py"),
+            "--output",
+            str(canonicalizer_report_path),
+        ],
         timeout=timeout,
     )
     canonicalizer_output = canonicalizer_result.stdout + canonicalizer_result.stderr
@@ -826,10 +1004,12 @@ def fail_closed_evidence_mutation_suites(
         canonicalizer_output[-4000:],
     )
     require(
-        canonicalizer_certificate.read_bytes() == canonicalizer_expected,
+        canonicalizer_report_path.is_file()
+        and canonicalizer_report_path.read_bytes() == canonicalizer_expected
+        and canonicalizer_certificate.read_bytes() == canonicalizer_expected,
         "CANONICALIZER_MUTATION_REPORT_BYTE_DRIFT",
     )
-    canonicalizer_report = load_json(canonicalizer_certificate)
+    canonicalizer_report = load_json(canonicalizer_report_path)
     require(
         canonicalizer_report.get("status") == "PASS"
         and canonicalizer_report.get("rejected") == 2
@@ -853,9 +1033,16 @@ def fail_closed_evidence_mutation_suites(
     transport = canonicalizer / "inheritance_transport"
     transport_certificate = transport / "parameter_transport_mutation_report.json"
     transport_expected = transport_certificate.read_bytes()
+    transport_report_path = temporary / "parameter_transport_mutations.json"
     transport_result = run(
         "parameter_transport_mutations",
-        [python(), "-B", str(transport / "run_parameter_transport_mutations.py")],
+        [
+            python(),
+            "-B",
+            str(transport / "run_parameter_transport_mutations.py"),
+            "--output",
+            str(transport_report_path),
+        ],
         timeout=max(timeout, 600.0),
     )
     transport_output = transport_result.stdout + transport_result.stderr
@@ -866,10 +1053,12 @@ def fail_closed_evidence_mutation_suites(
         transport_output[-4000:],
     )
     require(
-        transport_certificate.read_bytes() == transport_expected,
+        transport_report_path.is_file()
+        and transport_report_path.read_bytes() == transport_expected
+        and transport_certificate.read_bytes() == transport_expected,
         "PARAMETER_TRANSPORT_MUTATION_REPORT_BYTE_DRIFT",
     )
-    transport_report = load_json(transport_certificate)
+    transport_report = load_json(transport_report_path)
     require(
         transport_report.get("status") == "PASS"
         and transport_report.get("rejected") == 10
@@ -928,9 +1117,10 @@ def main() -> int:
     parser.add_argument("--output", type=Path)
     parser.add_argument("--audit-blocked", action="store_true")
     args = parser.parse_args()
+    report_output = validate_report_output_path(args.output)
     require(args.timeout_seconds > 0, "INVALID_MUTATION_TIMEOUT")
     validate_runtime_environment()
-    started = time.perf_counter()
+    output_contract_preflight(args.timeout_seconds)
     direct_before = direct_source_fingerprint()
     rows: list[dict[str, object]] = []
     blockers: list[str] = []
@@ -945,7 +1135,9 @@ def main() -> int:
             corrected_raw4_mutations(rows, temporary, args.timeout_seconds)
             theta2_full_map_mutations(rows, temporary, args.timeout_seconds)
             theta2_quadratic_mutation(rows, temporary, args.timeout_seconds)
-            corrected_summary = corrected_composite_mutation_gate(rows)
+            corrected_summary = corrected_composite_mutation_gate(
+                rows, temporary, args.timeout_seconds
+            )
             restoration_v3_mutation_gate(rows)
             corrected_probe_mutation_gate(rows, corrected_summary)
             promotion_package_mutations(rows, temporary, corrected_summary)
@@ -976,19 +1168,11 @@ def main() -> int:
         direct_source_fingerprint() == direct_before,
         "DIRECT_SOURCE_CHANGED_BY_MUTATION_SUITE",
     )
-    report = {
-        "schema": "k2p-principal-d-plus-final-release-mutations-v1",
-        "status": "PASS" if not blockers else "BLOCKED",
-        "blockers": blockers,
-        "survivors": 0,
-        "required_mutation_count": 27,
-        "observed_mutation_count": len(rows),
-        "mutations": rows,
-        "elapsed_seconds": round(time.perf_counter() - started, 6),
-    }
-    if args.output:
-        args.output.parent.mkdir(parents=True, exist_ok=True)
-        args.output.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
+    report = build_report(rows, blockers)
+    if report_output:
+        atomic_write_text(
+            report_output, json.dumps(report, indent=2, sort_keys=True) + "\n"
+        )
     if blockers:
         print("K2P_FINAL_RELEASE_MUTATIONS_BLOCKED")
         print(json.dumps(report, sort_keys=True))

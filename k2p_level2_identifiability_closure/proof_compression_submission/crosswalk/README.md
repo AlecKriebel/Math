@@ -5,6 +5,11 @@ replay, mutation, environment, and runtime fields.  The crosswalk is a
 submission aid.  It does not modify or supersede the frozen principal-domain
 release lock.
 
+The builder always reads the current qualified lock.  Earlier lock hashes in
+dated research logs remain historical provenance; the theorem and finite
+classification universe were unchanged by the later evidence-qualification
+reseal.
+
 From the project root, replay the package with:
 
 ```sh
@@ -43,7 +48,7 @@ level:
 ```sh
 python3 proof_compression_submission/crosswalk/build_revised_referee_bundle.py \
   --check --archive \
-  proof_compression_submission/output/K2P_Principal_D_Plus_Referee_Package_20260824.zip
+  proof_compression_submission/output/K2P_Principal_D_Plus_Referee_Package_20260825.zip
 ```
 
 Run `unzip -t` and compare the external `.sha256` sidecar after construction.
@@ -52,7 +57,7 @@ The sidecar is deliberately outside the ZIP, avoiding a self-referential hash.
 The final manifest is labelled `SUBMISSION_READY_PC_PARTIAL`. It binds the
 approved email, sole-author contribution statement, funding and
 competing-interests declarations, CC BY 4.0 paper/data license, MIT code
-license, and immutable source tag `k2p-same-biorxiv-v1.0.0`. It also records
+license, and immutable source tag `k2p-same-biorxiv-v1.0.1`. It also records
 the explicit release boundary: this package neither creates nor claims a
 GitHub Release, Zenodo deposit, or DOI; the author will perform any such
 release actions separately.

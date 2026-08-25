@@ -182,3 +182,8 @@ frozen lock, clean-replay telemetry, and isolated five-file TeX builds.
 
 No theorem statement, parameter domain, finite census, certificate, or
 proof-compression boundary changes in this revision.
+> **Historical qualification record.** This file records the disposition and
+> validation state of the earlier submission candidate.  Its runtime, lock,
+> file-count, content-root, and archive values are superseded by the current
+> `STATUS.md`, release lock, clean-replay telemetry, and referee manifest.  It
+> is retained as dated provenance and is not current release evidence.

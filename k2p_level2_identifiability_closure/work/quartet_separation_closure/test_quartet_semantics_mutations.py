@@ -3,9 +3,11 @@
 
 from __future__ import annotations
 
+import argparse
 import copy
 import hashlib
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -18,6 +20,7 @@ HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
 SPEC = HERE / "QUARTET_SEMANTICS_SPEC.json"
 VERIFIER = HERE / "verify_quartet_logic.py"
+AUTHORITATIVE_OUTPUT = HERE / "quartet_semantics_mutation_certificate.json"
 
 
 def require(condition: bool, message: str) -> None:
@@ -31,6 +34,89 @@ def sha_file(path: Path) -> str:
 
 def canonical(value: object) -> bytes:
     return json.dumps(value, sort_keys=True, separators=(",", ":")).encode()
+
+
+def observed_semantic_marker(output: str, expected: str) -> str:
+    """Extract the final exception code without retaining traceback bytes."""
+
+    matches: list[str] = []
+    for line in output.splitlines():
+        stripped = line.strip()
+        diagnostic = (
+            stripped.partition(": ")[2]
+            if stripped.startswith("QuartetFailure: ")
+            else stripped
+        )
+        code = diagnostic.split(":", 1)[0]
+        if code == expected:
+            matches.append(code)
+    require(
+        matches == [expected],
+        f"wrong diagnostic marker:{expected}:{matches}",
+    )
+    return matches[0]
+
+
+def validate_output_path(output: Path, allow_authoritative_output: bool) -> Path:
+    """Keep routine mutation output disposable and outside the source tree.
+
+    ``resolve`` is intentional: an output symlink, or a non-existing output
+    below a symlinked directory, must not provide a route back into the source
+    checkout.  Resealing the one canonical certificate is a separate explicit
+    operation; the override never licenses any other in-tree or external path.
+    """
+
+    lexical = Path(os.path.abspath(os.fspath(output)))
+    normalized = lexical.parent.resolve() / lexical.name
+    resolved = lexical.resolve()
+    project = PROJECT.resolve()
+    authoritative = AUTHORITATIVE_OUTPUT.parent.resolve() / AUTHORITATIVE_OUTPUT.name
+    if allow_authoritative_output:
+        if normalized != authoritative or lexical.is_symlink():
+            raise SystemExit(
+                "QUARTET_MUTATION_OUTPUT_POLICY_FAIL: authoritative override "
+                "licenses only the nonsymbolic canonical mutation certificate:"
+                f"output={normalized}:canonical={authoritative}:"
+                f"is_symlink={lexical.is_symlink()}"
+            )
+        return normalized
+    try:
+        resolved.relative_to(project)
+    except ValueError:
+        return normalized
+    raise SystemExit(
+        "QUARTET_MUTATION_OUTPUT_POLICY_FAIL: routine output must be outside "
+        "the project source tree"
+    )
+
+
+def atomic_write_text(path: Path, text: str) -> None:
+    """Fsync a new same-directory file, then replace the output entry.
+
+    Replacement never follows an output-file symlink and breaks any external
+    hardlink instead of truncating the shared source inode.
+    """
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    descriptor, temporary_name = tempfile.mkstemp(
+        prefix=f".{path.name}.", suffix=".tmp", dir=path.parent
+    )
+    temporary = Path(temporary_name)
+    try:
+        os.fchmod(descriptor, 0o644)
+        with os.fdopen(descriptor, "w", encoding="utf-8") as handle:
+            handle.write(text)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+        directory_descriptor = os.open(path.parent, os.O_RDONLY)
+        try:
+            os.fsync(directory_descriptor)
+        finally:
+            os.close(directory_descriptor)
+    finally:
+        if temporary.exists():
+            temporary.unlink()
 
 
 def run_spec_mutation(
@@ -63,14 +149,15 @@ def run_spec_mutation(
         check=False,
     )
     require(result.returncode != 0, f"mutation accepted:{name}")
-    require(expected_marker in result.stdout, f"wrong diagnostic:{name}:{result.stdout}")
+    observed_marker = observed_semantic_marker(result.stdout, expected_marker)
     require(not output.exists(), f"failed mutation wrote certificate:{name}")
     return {
         "case": name,
         "status": "PASS",
         "expected_marker": expected_marker,
+        "observed_marker": observed_marker,
         "observed_returncode": result.returncode,
-        "stdout_sha256": hashlib.sha256(result.stdout.encode()).hexdigest(),
+        "failed_mutation_certificate_written": False,
     }
 
 
@@ -106,20 +193,27 @@ def run_document_mutation(root: Path) -> dict[str, Any]:
         check=False,
     )
     marker = "DOCUMENT_LITERAL_BINDING_FAIL"
-    require(result.returncode != 0 and marker in result.stdout, "document mutation accepted")
+    require(result.returncode != 0, "document mutation accepted")
+    observed_marker = observed_semantic_marker(result.stdout, marker)
     require(not output.exists(), "document mutation wrote certificate")
     return {
         "case": "printed_formula_reverted_to_wrong_sector",
         "status": "PASS",
         "expected_marker": marker,
+        "observed_marker": observed_marker,
         "observed_returncode": result.returncode,
-        "stdout_sha256": hashlib.sha256(result.stdout.encode()).hexdigest(),
+        "failed_mutation_certificate_written": False,
     }
 
 
 def main() -> None:
     if not __debug__:
         raise SystemExit("QUARTET_MUTATIONS_OPTIMIZED_MODE_FORBIDDEN")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--allow-authoritative-output", action="store_true")
+    args = parser.parse_args()
+    output = validate_output_path(args.output, args.allow_authoritative_output)
     with tempfile.TemporaryDirectory(prefix="k2p-quartet-mutations-") as directory:
         root = Path(directory)
         rows = [
@@ -161,40 +255,53 @@ def main() -> None:
             ),
             run_document_mutation(root),
         ]
+        optimized_output = root / "optimized-certificate.json"
         optimized = subprocess.run(
-            [sys.executable, "-O", str(VERIFIER)],
+            [
+                sys.executable,
+                "-O",
+                str(VERIFIER),
+                "--output",
+                str(optimized_output),
+            ],
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
             text=True,
             check=False,
         )
-        require(
-            optimized.returncode != 0
-            and "QUARTET_LOGIC_OPTIMIZED_MODE_FORBIDDEN" in optimized.stdout,
-            "optimized verifier accepted",
+        optimized_marker = "QUARTET_LOGIC_OPTIMIZED_MODE_FORBIDDEN"
+        require(optimized.returncode != 0, "optimized verifier accepted")
+        observed_optimized_marker = observed_semantic_marker(
+            optimized.stdout, optimized_marker
         )
+        require(not optimized_output.exists(), "optimized verifier wrote certificate")
         rows.append(
             {
                 "case": "optimized_python",
                 "status": "PASS",
-                "expected_marker": "QUARTET_LOGIC_OPTIMIZED_MODE_FORBIDDEN",
+                "expected_marker": optimized_marker,
+                "observed_marker": observed_optimized_marker,
                 "observed_returncode": optimized.returncode,
-                "stdout_sha256": hashlib.sha256(optimized.stdout.encode()).hexdigest(),
+                "failed_mutation_certificate_written": False,
             }
         )
 
     payload = {
-        "schema": "k2p-quartet-semantics-mutations-v2",
+        "schema": "k2p-quartet-semantics-mutations-v3",
         "status": "PASS",
         "verifier_sha256": sha_file(VERIFIER),
         "spec_sha256": sha_file(SPEC),
+        "diagnostic_contract": (
+            "Each child must return nonzero, emit the exact stored semantic marker, "
+            "and leave its requested verifier-certificate path absent. Raw tracebacks "
+            "are deliberately excluded because paths and formatting are nonportable."
+        ),
         "case_count": len(rows),
         "cases": rows,
     }
     result = dict(payload)
     result["payload_sha256"] = hashlib.sha256(canonical(payload)).hexdigest()
-    output = HERE / "quartet_semantics_mutation_certificate.json"
-    output.write_text(json.dumps(result, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    atomic_write_text(output, json.dumps(result, indent=2, sort_keys=True) + "\n")
     print("K2P_QUARTET_SEMANTICS_MUTATIONS_PASS")
     print(json.dumps({"cases": len(rows), "payload_sha256": result["payload_sha256"]}, sort_keys=True))
 

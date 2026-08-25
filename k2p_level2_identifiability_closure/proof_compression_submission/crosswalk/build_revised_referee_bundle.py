@@ -16,8 +16,15 @@ PROJECT = Path(__file__).resolve().parents[2]
 LOCK_RELATIVE = "work/final_theorem_release/RELEASE_LOCK.json"
 MANIFEST_RELATIVE = "proof_compression_submission/crosswalk/REVISED_REFEREE_BUNDLE_MANIFEST.json"
 MANIFEST_PATH = PROJECT / MANIFEST_RELATIVE
+TELEMETRY_SUBMISSION_SOURCES = (
+    "proof_compression_submission/article/main.tex",
+    "proof_compression_submission/article/references.bib",
+    "proof_compression_submission/supplement/supplement.tex",
+    "proof_compression_submission/supplement/compression_tables.tex",
+    "proof_compression_submission/supplement/certificate_appendix.tex",
+)
 ARCHIVE_PREFIX = "k2p_principal_d_plus_submission_referee"
-ARCHIVE_TIMESTAMP = (2026, 8, 24, 0, 0, 0)
+ARCHIVE_TIMESTAMP = (2026, 8, 25, 0, 0, 0)
 OPERATIONAL_EVIDENCE = {
     "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY.json",
     "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY_TELEMETRY.json",
@@ -39,7 +46,7 @@ SUBMISSION_METADATA = {
     "data_license": "CC BY 4.0",
     "doi": None,
     "funding": "No specific funding supported this work.",
-    "immutable_submission_tag": "k2p-same-biorxiv-v1.0.0",
+    "immutable_submission_tag": "k2p-same-biorxiv-v1.0.1",
     "paper_license": "CC BY 4.0",
     "release_boundary": (
         "No GitHub Release, Zenodo deposit, or DOI is created or claimed by "
@@ -108,7 +115,49 @@ def release_context() -> tuple[dict[str, Any], str, str]:
     return lock, lock_sha256, payload_sha256
 
 
-def clean_full_replay_boundary(lock_payload_sha256: str) -> dict[str, Any]:
+def current_file_row(relative: str) -> dict[str, int | str]:
+    path = project_path(relative)
+    if not path.is_file() or path.is_symlink():
+        fail(f"missing or symbolic telemetry-bound file: {relative}")
+    data = path.read_bytes()
+    return {"bytes": len(data), "sha256": sha256_bytes(data)}
+
+
+def expected_telemetry_submission_sources() -> dict[str, dict[str, int | str]]:
+    return {
+        relative: current_file_row(relative)
+        for relative in TELEMETRY_SUBMISSION_SOURCES
+    }
+
+
+def expected_telemetry_release_lock(
+    lock_sha256: str, lock_payload_sha256: str
+) -> dict[str, int | str]:
+    lock_row = current_file_row(LOCK_RELATIVE)
+    if lock_row["sha256"] != lock_sha256:
+        fail("telemetry release-lock current hash mismatch")
+    return {
+        "bytes": lock_row["bytes"],
+        "path": LOCK_RELATIVE,
+        "payload_sha256": lock_payload_sha256,
+        "sha256": lock_sha256,
+    }
+
+
+def validate_telemetry_checkout_bindings(
+    telemetry: dict[str, Any], lock_sha256: str, lock_payload_sha256: str
+) -> None:
+    if telemetry.get("submission_sources") != expected_telemetry_submission_sources():
+        fail("clean full replay telemetry submission-source binding mismatch")
+    if telemetry.get("release_lock") != expected_telemetry_release_lock(
+        lock_sha256, lock_payload_sha256
+    ):
+        fail("clean full replay telemetry release-lock binding mismatch")
+
+
+def clean_full_replay_boundary(
+    lock_sha256: str, lock_payload_sha256: str
+) -> dict[str, Any]:
     report_relative = "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY.json"
     telemetry_relative = "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY_TELEMETRY.json"
     report_path = project_path(report_relative)
@@ -132,6 +181,9 @@ def clean_full_replay_boundary(lock_payload_sha256: str) -> dict[str, Any]:
         fail("clean full replay telemetry report hash mismatch")
     if telemetry.get("report", {}).get("lock_payload_sha256") != lock_payload_sha256:
         fail("clean full replay telemetry lock payload mismatch")
+    validate_telemetry_checkout_bindings(
+        telemetry, lock_sha256, lock_payload_sha256
+    )
     if telemetry.get("clean_detached_checkout") is not True:
         fail("clean full replay was not run from a detached clean checkout")
     timing = telemetry.get("time_l", {})
@@ -318,7 +370,7 @@ def build_manifest() -> dict[str, Any]:
         "archive_policy": {
             "archive_prefix": ARCHIVE_PREFIX,
             "compression": "ZIP_DEFLATED level 9",
-            "fixed_member_timestamp": "2026-08-24T00:00:00",
+            "fixed_member_timestamp": "2026-08-25T00:00:00",
             "member_mode": "100644",
             "member_order": "project-relative path lexicographic",
             "manifest_included": True,
@@ -350,7 +402,9 @@ def build_manifest() -> dict[str, Any]:
         "combined_content_root_sha256": canonical_hash(combined_binding),
         "combined_file_count_excluding_manifest": len(frozen) + len(submission),
         "submission_metadata": SUBMISSION_METADATA,
-        "runtime_boundary": clean_full_replay_boundary(lock_payload_sha256),
+        "runtime_boundary": clean_full_replay_boundary(
+            lock_sha256, lock_payload_sha256
+        ),
     }
     value["payload_sha256"] = canonical_hash(value)
     return value

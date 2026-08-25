@@ -15,11 +15,11 @@ theorem or make a mixed-sign claim.
 
 | Family | Rows | Compressed SHA-256 | Summary payload | Independent replay payload | Mutations |
 |---|---:|---|---|---|---:|
-| raw-four | 405,216 | `431dac8898ad2a724d12c200687de1b377723e302214a79a11a03524a4084b96` | `8154acc38ad58b49e4f0f5b34f6fdb9999c0392dd947f91bc6017d8e2ab8d5cf` | `0e167e742907394a77a0eab1614366e2460b86b13241577ad25e902822241ea8` | 14/14 rejected |
-| theta2 | 2,946,240 | `805fc7f5a3de9dad2c63a210208075cf19910cf811ffd08878f32782ce71b659` | `480c27d82924bbf12adf1357f9e3bc216d1818dce68d061bb134f387e9737194` | `2fa46fd0ca70dbe00e8231686bfd790f57d76d9a33ddc4b07cffaa72e3b07e8b` | 12/12 rejected |
+| raw-four | 405,216 | `431dac8898ad2a724d12c200687de1b377723e302214a79a11a03524a4084b96` | `b4c4cb8a89afcc82edb266ee9fab1e9abc59c4ab977dd00dadc43304b3e4048c` | `40770d3068e936a9c5d0e93225fa15feaed90a212d9515e1cb3f2d46c35979e0` | 14/14 verifier-facing; payload `dc265e02da504666197320fcab90226fa44cfc5c5906bb4ef5b6f1ab35d44f02` |
+| theta2 | 2,946,240 | `805fc7f5a3de9dad2c63a210208075cf19910cf811ffd08878f32782ce71b659` | `c89dd764f7c66831db7f6a092fedf666a20f3594ef03647de3e85b5fbf04d0e8` | `7e4283fe726083927b14d483d55644e2892a311b0179aa70d4766576c66ab545` | 12/12 verifier-facing; payload `5663b87d3f09eaac5e89db69ac5a1cf6069b308abf9bc4242650d0897ded1ff7` |
 
 The current outer release-contract replay has payload
-`5fd774fb9335a7ce1900dd80226c79fab8459f8fa3738c5274237c131113cde7`.
+`b746fb7a17e8ca9252c53dff0ba5722c1a00c56dc930d0c8456022ea34f60b6f`.
 
 ## Authoritative partition
 
@@ -108,15 +108,24 @@ SymPy:
 PYTHONHASHSEED=0 /usr/bin/python3 work/corrected_composite_ledgers/generate_corrected_composites.py --family all
 PYTHONHASHSEED=0 /usr/bin/python3 work/corrected_composite_ledgers/verify_corrected_composites_independent.py --family raw4
 PYTHONHASHSEED=0 /usr/bin/python3 work/corrected_composite_ledgers/verify_corrected_composites_independent.py --family theta2
-/usr/bin/python3 work/corrected_composite_ledgers/run_composite_mutations.py --family raw4
-/usr/bin/python3 work/corrected_composite_ledgers/run_composite_mutations.py --family theta2
+/usr/bin/python3 work/corrected_composite_ledgers/run_composite_mutations.py --family raw4 --output /tmp/k2p_raw4_composite_mutations.json
+/usr/bin/python3 work/corrected_composite_ledgers/run_composite_mutations.py --family theta2 --output /tmp/k2p_theta2_composite_mutations.json
+/usr/bin/python3 work/corrected_composite_ledgers/test_composite_mutation_output_safety.py
 PYTHONHASHSEED=0 /usr/bin/python3 work/corrected_composite_ledgers/validate_release_contract.py
 ```
 
 Generation and replay are streaming.  The observed peak working set stayed
 below 300 MB per process.  The theta2 ledger is about 58 MB compressed; no
-multi-gigabyte uncompressed temporary ledger is written.  Mutation runners use
-independent temporary copies and verify that source fingerprints are unchanged.
+multi-gigabyte uncompressed temporary ledger is written.  For every advertised
+semantic attack, the mutation runner streams one complete deterministic gzip
+ledger into scratch, invokes the production independent verifier, requires both
+a nonzero exit and the intended semantic diagnostic, and deletes the scratch
+ledger before starting the next case.  Optimized-mode refusal and aggregate
+source immutability are separate gates.  Reports contain no absolute paths or
+runtime fields and are therefore byte-identical across extraction directories.
+The output is required to be caller-owned and outside the project tree.  The
+explicit `--allow-authoritative-output` override accepts only the one canonical
+family report path and is reserved for resealing a release.
 
 ## Files
 
@@ -124,6 +133,8 @@ independent temporary copies and verify that source fingerprints are unchanged.
 - `verify_corrected_composites_independent.py`: separately implemented replay
   and canonical-byte verifier.
 - `run_composite_mutations.py`: fail-closed mutation suite.
+- `test_composite_mutation_output_safety.py`: atomic-output, symlink/hardlink,
+  and optimized-mode regressions.
 - `validate_release_contract.py`: direct invocation of the current outer
   release validator.
 - `composite_support.py`: serialization and streaming hashes only; it contains

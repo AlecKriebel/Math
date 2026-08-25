@@ -1,5 +1,17 @@
 # Exact directional topology theorem on the principal K2P domain
 
+> **Revoked historical classifier; not current theorem authority.**  The
+> displayed-quartet argument in Sections 1--3 remains valid,
+> but the rooted tree--sunlet use and the resulting 377,382/36,404 censuses in
+> Section 4 were revoked: rooted restrictions are not full-map classifiers.
+> Current displayed-quartet authority is
+> `work/adversarial_proof_review/topology_direction_certificate.json` together
+> with `work/quartet_separation_closure/quartet_terminal_binding_certificate.json`.
+> All other raw and restoration directions are classified only by the
+> corrected finite universe and
+> `work/restoration_sign_reclassification/corrected_restoration_forest.json`,
+> as bound by `work/final_theorem_release/RELEASE_LOCK.json`.
+
 ## 1. Claim and parameter convention
 
 Let `N1,N2` be binary semi-directed networks on the same labelled leaves.

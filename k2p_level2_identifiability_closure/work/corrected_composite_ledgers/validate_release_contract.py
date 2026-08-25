@@ -22,6 +22,7 @@ def main() -> None:
     paths = {
         "corrected_composite_generator": HERE / "generate_corrected_composites.py",
         "corrected_composite_independent_verifier": HERE / "verify_corrected_composites_independent.py",
+        "corrected_composite_mutation_runner": HERE / "run_composite_mutations.py",
         "restoration_v3_forest_certificate": PROJECT / "work/restoration_sign_reclassification/corrected_restoration_forest.json",
         "raw4_terminal_certificate_registry": ARTIFACTS / "raw4_terminal_certificate_registry.json.gz",
         "raw4_full_map_truth_certificate": PROJECT / "work/adversarial_proof_review/raw4_tree_sunlet_full_map_certificate.json",

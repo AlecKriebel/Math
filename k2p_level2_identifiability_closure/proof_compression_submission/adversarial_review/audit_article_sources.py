@@ -178,9 +178,19 @@ def main() -> dict[str, object]:
     )
     require(
         isinstance(quartet_mutation, dict)
-        and quartet_mutation.get("schema") == "k2p-quartet-semantics-mutations-v2"
+        and quartet_mutation.get("schema") == "k2p-quartet-semantics-mutations-v3"
         and quartet_mutation.get("status") == "PASS"
-        and quartet_mutation.get("case_count") == 8,
+        and quartet_mutation.get("case_count") == 8
+        and isinstance(quartet_mutation.get("cases"), list)
+        and len(quartet_mutation["cases"]) == 8
+        and all(
+            isinstance(row, dict)
+            and row.get("observed_marker") == row.get("expected_marker")
+            and row.get("observed_returncode") == 1
+            and row.get("failed_mutation_certificate_written") is False
+            and "stdout_sha256" not in row
+            for row in quartet_mutation["cases"]
+        ),
         "QUARTET_SEMANTICS_MUTATION_DRIFT",
     )
     require(
@@ -327,6 +337,37 @@ def main() -> dict[str, object]:
     full_replay_telemetry = read_json(full_replay_telemetry_path)
     require(isinstance(full_replay, dict), "FULL_REPLAY_NOT_OBJECT")
     require(isinstance(full_replay_telemetry, dict), "FULL_REPLAY_TELEMETRY_NOT_OBJECT")
+    telemetry_source_paths = {
+        "proof_compression_submission/article/main.tex": article_path,
+        "proof_compression_submission/article/references.bib": bib_path,
+        "proof_compression_submission/supplement/supplement.tex": supplement_path,
+        "proof_compression_submission/supplement/compression_tables.tex": compression_path,
+        "proof_compression_submission/supplement/certificate_appendix.tex": certificate_tex_path,
+    }
+    require(
+        all(path.is_file() and not path.is_symlink() for path in telemetry_source_paths.values()),
+        "FULL_REPLAY_TELEMETRY_SOURCE_MISSING_OR_SYMBOLIC",
+    )
+    expected_telemetry_sources = {
+        relative: {"bytes": len(path.read_bytes()), "sha256": sha256(path)}
+        for relative, path in telemetry_source_paths.items()
+    }
+    require(
+        full_replay_telemetry.get("submission_sources")
+        == expected_telemetry_sources,
+        "FULL_REPLAY_TELEMETRY_SUBMISSION_SOURCE_DRIFT",
+    )
+    expected_telemetry_lock = {
+        "bytes": len(release_path.read_bytes()),
+        "path": "work/final_theorem_release/RELEASE_LOCK.json",
+        "payload_sha256": release_payload,
+        "sha256": sha256(release_path),
+    }
+    require(
+        not release_path.is_symlink()
+        and full_replay_telemetry.get("release_lock") == expected_telemetry_lock,
+        "FULL_REPLAY_TELEMETRY_RELEASE_LOCK_DRIFT",
+    )
     full_layers = full_replay.get("layer_replays")
     require(
         full_replay.get("status") == "PASS"
@@ -530,7 +571,7 @@ def main() -> dict[str, object]:
         "RUNTIME_BOUNDARY_WORDING_STALE",
     )
     require(
-        "frozen principal-domain computational-evidence lock remains unchanged"
+        "finite principal-domain theorem and classification universe remain unchanged"
         in supplement
         and "separately versioned submission sources" in supplement,
         "COMPUTATIONAL_LOCK_SOURCE_VERSION_DISTINCTION_MISSING",
@@ -552,7 +593,7 @@ def main() -> dict[str, object]:
         "me@aleckriebel.com",
         "No specific funding supported this work.",
         "The author declares no competing interests.",
-        "k2p-same-biorxiv-v1.0.0",
+        "k2p-same-biorxiv-v1.0.1",
         "CC BY 4.0",
         "MIT License",
         "no DOI is claimed",
@@ -766,7 +807,7 @@ def main() -> dict[str, object]:
             "competing_interests": "The author declares no competing interests.",
             "paper_and_data_license": "CC BY 4.0",
             "code_license": "MIT",
-            "immutable_submission_tag": "k2p-same-biorxiv-v1.0.0",
+            "immutable_submission_tag": "k2p-same-biorxiv-v1.0.1",
             "doi": None,
             "external_release_actions_performed": False,
         },
