@@ -43,8 +43,10 @@ Reproduce the mathematical promotion with:
 .venv/bin/python reproducibility/test_k3p_same_classification_mutations.py
 ```
 
-This certification is not a submission-readiness claim.  Manuscript and
-reader-supplement integration, PDF rendering/visual QA, release-archive and
-checksum engineering, journal-format packaging, and human author review remain
-pending.  No DOI, license, submission, peer review, or completed human review
+This certification is not a submission-readiness claim.  The manuscript,
+reader supplement, canonical PDFs, visual QA, deterministic archive tooling,
+and fail-closed release checks are complete.  Exact-HEAD execution records live
+under the ignored release work/transcript paths; journal packages remain
+deliberately `NOT_READY` until their human metadata and upload artifacts are
+supplied.  No DOI, license, submission, peer review, or completed human review
 is claimed.

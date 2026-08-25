@@ -493,3 +493,44 @@ PDFs from packaged source, and double-build the two canonical archives.
 Best-guess completion toward the mathematical classification goal: **100%**.
 Best-guess completion toward the paper/certification/proof-archive goal: **96%**.
 Best-guess completion toward the external journal/DOI release goal: **70%**.
+
+## 2026-08-25T19:44:39Z — first all-producer execution and localized repair
+
+- At exact commit `6dc41043a977aeb9ea97f33576bc40aa4b63cb4c`, the clean
+  quick and full suites passed, both fixed-epoch PDF source reproductions
+  passed, and the compact and full archives each rebuilt byte-identically.
+- The first 42-command one-shot must not be called a suite pass.  Commands
+  1--27 completed successfully, including the fresh 204-direction cut search,
+  the restoration producer/replay/mutations, and the 2,789.020802-second
+  hour-scale probe producer.  The probe producer reproduced payload
+  `b6d836f1a85a11749d49fb714acef955ae0393c80d32186d957c7149a3695565`.
+  Command 28 then failed only when its ignored output parent,
+  `release/work/regeneration_ephemeral/`, had not been materialized.  The
+  partial transcript is
+  `release/clean_clone_transcripts/regenerate_6dc41043a977_20260825T183351Z.log`
+  (SHA-256
+  `ee4b6df20d1c99f7b6cac6f44e37583ea75d56b5525db1c1db19e2c2c4550798`).
+  No regeneration JSON report exists for that attempt, and tracked project
+  bytes remained unchanged.
+- The suite environment now creates the canonical ephemeral parent before any
+  command begins, and the release mutation suite asserts that invariant.  A
+  lightweight suffix diagnostic then passed commands 28--37 under the
+  uncommitted repair.  This diagnostic is not a substitute for one unified
+  clean 42-command run at an exact commit.
+- A second release-certificate defect was found during rebinding: one rejected
+  mutation stored a random temporary-directory nonce.  Diagnostics now
+  canonicalize that nonce, a regression control checks the normalization, and
+  two complete 31-mutation reports were byte-identical.  The repaired
+  pre-commit logical payload is
+  `631ce4b3a4152621466504950e7bf73d44142c2622b064af8cbcc38b049c24f4`.
+
+Strongest verified result: the K3P-SAME mathematics, canonical PDFs, long cut,
+restoration, and probe producers all remain independently reproduced.  The
+only failed step was release orchestration after the long producers, now
+localized and regression-tested.  The exact remaining machine gate is one
+clean unified rerun at the repaired commit, followed by commit-bound source and
+archive reconstruction.
+
+Best-guess completion toward the mathematical classification goal: **100%**.
+Best-guess completion toward the paper/certification/proof-archive goal: **98%**.
+Best-guess completion toward the external journal/DOI release goal: **70%**.

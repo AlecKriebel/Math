@@ -242,9 +242,14 @@ def deterministic_environment(project: Path) -> dict[str, str]:
         "TZ": "UTC",
         "SOURCE_DATE_EPOCH": str(head_commit_epoch(project)),
     })
-    temporary = WORK / "tmp"
+    work = project / "release/work"
+    temporary = work / "tmp"
     temporary.mkdir(parents=True, exist_ok=True)
     environment["TMPDIR"] = str(temporary)
+    # Several independent verifiers accept an explicit ignored output path but
+    # deliberately do not own release-workspace creation.  Materialize the
+    # canonical ephemeral parent before any suite command starts.
+    (work / "regeneration_ephemeral").mkdir(parents=True, exist_ok=True)
     return environment
 
 

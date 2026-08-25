@@ -1,84 +1,86 @@
 # Final release engineering report
 
-Status: **proof-release tooling complete; final submission envelope blocked by human metadata**
+Status: **release tooling repaired and adversarially certified; unified corrected all-producer run pending**
 
-The deterministic quick/full/regeneration orchestration, canonical TAR.GZ
-and ZIP construction, compact verifier packaging, source-reproduction check,
-pre-DOI envelope binding, safe archive inspection, and hostile release
-mutations are implemented.  Ordinary full replay does not rerun the
+The deterministic quick/full/regeneration orchestration, canonical TAR.GZ and
+ZIP construction, compact verifier packaging, fixed-toolchain PDF source
+reproduction, pre-DOI envelope binding, safe archive inspection, and hostile
+release mutations are implemented.  Ordinary full replay does not rerun the
 hour-scale probe producer; full regeneration does, behind a deliberate
 one-shot confirmation.
 
-No DOI, license, Git tag, GitHub release, Zenodo record, or portal upload has
-been created or claimed.
+No DOI, license, Git tag, GitHub release, Zenodo record, journal upload, or
+external communication has been created or claimed.
 
-## Development validation checkpoint
+## Exact-commit execution record
 
-The final pre-commit code-level check on 2026-08-25 used repository base
-`a68321f3` (the K3P mathematical/submission corpus remains the one sealed at
-`7e43d90c`) before these release files were committed.
+At exact commit `6dc41043a977aeb9ea97f33576bc40aa4b63cb4c`:
 
-- Release-engineering hostile mutations: **31/31 rejected**, payload
-  `fc5245fd67f543b2793524c97dc11bbbe13dea42673e38d0704bef814d197d6f`.
-  They cover a fake same-version PDF compiler, timestamp/environment drift,
-  PDF-equivalent non-HEAD TeX tampering, noncanonical TAR modes, malformed
-  fileset policy, direct-child and descendant timeouts, NOT_READY submission
-  state, arbitrary/mislabeled journal files, and a well-formed package carrying
-  an unbound DRAFT extra, forged suite/source-build reports, selection-lock
-  drift, dirty final verification, unknown envelope claims, and tampered
-  generated readmes/sidecars, in addition to archive/hash/path controls.
-- Normal committed-source release-input gate: **PASS**, payload
-  `d865f3f4a024790a8886183e67c31175072acb7ca5786164e8b43138790c9ced`.
-- Development quick gate (dirty-tree override explicitly recorded): **PASS**;
-  elapsed 0.234 seconds and peak child memory 31,096,832 bytes.  This is not a
-  clean-clone Gate J result.
-- Compact verifier: built twice byte-identically, extracted artifact replay
-  **PASS**, development SHA-256
-  `28609574f8eaf1f6ef912efbbf8cec37532f28a7704b1399e7e2979d178307e7`.
-  It must be rebuilt after the release-layer commit because the canonical
-  source-commit field will change.
-- Full independent replay was not repeated: it would duplicate the freshly
-  completed approximately three-minute integrated theorem replay.  The fast
-  artifact/checksum/crosswalk gate was used instead.
-- Full regeneration was deliberately not invoked.  It alone contains the
-  hour-scale probe producer and requires the explicit one-shot confirmation.
-- The canonical 29-page article and 10-page supplement PDFs are committed at
-  the paths required by the fileset policy, with SHA-256 values
+- The clean quick suite passed in 0.235 seconds with payload
+  `fb13f30337558a9914bedf5174e2928c0c68d6270f66ed8bd50f2dc4454226b3`.
+- The clean full suite passed in 194.83 seconds with payload
+  `4f8cdd082e91f841416f8b356b6fc4043bf79730c085e0ce0aa7ace64a768182`.
+- Article and supplement source archives reproduced the committed PDFs twice
+  under the pinned arm64 Tectonic 0.16.9 executable.  Their archive SHA-256
+  values were
+  `095c956b12557fdc445e6b7c9b34ae1c67d7881b26338baec92955630bc2bb13`
+  and
+  `e9a1a20cc130e8c79d5a6c1720c666e318b4adad2834eecc90b4b01af7b93cfb`;
+  their logical reproduction payloads were
+  `b13c86e8a403d2b85a8c37cd09cefe50bc80b89f1ca9ec24aa3b5c5da177b417`
+  and
+  `01e0c17ea7e26ce7ddad1ad691a4a1d1ff4df85be8ea82ace64982da24084725`.
+- Compact and full archives each rebuilt byte-identically.  Their SHA-256
+  values were
+  `2b91c56823772dc45b3633a034cd349e1aa39687c734a0e1528910d1a4e5e588`
+  and
+  `97e8b3b3c299991a08905858c2ab80c0ee8a06540c7c24befe5bda68446f6cff`.
+- The canonical 29-page article and 10-page supplement PDFs remained unchanged
+  at SHA-256
   `a50cfeedaeb0c38b484f4ac01e8cca861a87a746ad20d1e43766db3bc752efae`
   and
   `4e20fe62ad4261b2ece54b87a4770a3edf30fe8807851ad48973eaec6db1110c`.
-- Source reproduction is bound to Tectonic 0.16.9 and the fixed PDF epoch
-  `1787677101`.  It remains unexecuted in this pre-commit checkpoint because
-  the source archives deliberately can be built only from a committed release
-  layer.
-- The 42-command all-producer plan passed static existence/order coverage.
-  Its cut verifiers now retain ordinary/optimized mutation reports in the
-  required order, all active cut and sharpness producers are included, the
-  204-direction search is genuinely fresh, probe timing reports are written
-  only to ignored work paths, and per-command timeouts are enforced.
-- Submission validation is intentionally **NOT_READY** with zero structural
-  errors and 26 explicit blockers (17 unresolved human/repository token
-  classes, six absent upload artifacts, and three draft manifest states).
-  Twelve targeted submission mutations pass.  The validator rejects external,
-  traversing, symlinked, or wrong-type source-map inputs.  The final envelope
-  expands an exact HEAD source-map member allowlist, binds every upload byte,
-  and refuses arbitrary extras or mislabeled packages; it cannot be generated
-  from the current draft sources.
 
-Remaining release gates:
+## First all-producer attempt and repair
 
-1. Commit the release layer and rebuild all derived assets from that exact
-   commit.
-2. Run byte-for-byte Tectonic source reproduction for both PDFs.
-3. Run quick, full, and the one-shot full-regeneration suite from clean
-   checkouts and retain their transcripts.
-4. Build and verify the compact and full archives twice, confirming identical
-   SHA-256 values.
-5. Complete fresh adversarial release review.
-6. After the unresolved author declarations, repository facts, and journal
-   metadata are supplied,
-   generate the journal-ready PDFs and packages.
-7. Create a human-approved local exact-HEAD tag, generate the pre-DOI envelope,
-   then separately confirm the pushed remote tag.
-8. Choose licenses, mint a real DOI, rebuild DOI-bearing packages, and perform
-   actual external uploads only through Alec's direct action.
+The first 42-command attempt at that commit did **not** pass as a suite.
+Commands 1--27 completed, including the fresh 204-direction cut producer, the
+restoration producer/replay/mutations, and the 2,789.020802-second hour-scale
+probe producer.  The probe payload was
+`b6d836f1a85a11749d49fb714acef955ae0393c80d32186d957c7149a3695565`.
+Command 28 then failed because the ignored parent for its independent report,
+`release/work/regeneration_ephemeral/`, had not been created.  No regeneration
+JSON report was emitted, and tracked project bytes were unchanged.
+
+The suite environment now creates that parent before command execution, and a
+regression control binds the invariant.  A separate diagnostic passed suffix
+commands 28--37, while a static 42-command audit found no other missing output
+parent.  The suffix diagnostic is not represented as a substitute for a single
+unified clean run.
+
+During report rebinding, one mutation diagnostic was also found to contain a
+random temporary-directory nonce.  The stored diagnostic is now canonical,
+its normalization has a regression control, and two complete 31-mutation
+reports were byte-identical.  All 31 hostile cases were rejected; the repaired
+pre-commit logical payload is
+`631ce4b3a4152621466504950e7bf73d44142c2622b064af8cbcc38b049c24f4`.
+
+Submission validation remains intentionally **NOT_READY** with zero structural
+errors and 26 explicit blockers: 17 unresolved human/repository token classes,
+six absent upload artifacts, and three draft manifest states.  Twelve targeted
+submission mutations pass.  The validator rejects external, traversing,
+symlinked, and wrong-type source-map inputs; journal archives must equal their
+exact committed source expansion plus every manifest-bound upload byte.
+
+## Remaining gates
+
+1. Commit and push this repair as the exact evidence candidate.
+2. Run quick, full, and one unified 42-command regeneration suite at that clean
+   exact commit, retaining the complete reports and transcripts.
+3. Rebuild both source archives and canonical compact/full archives twice at
+   the same commit, then rerun their independent verifiers.
+4. Keep the submission state fail-closed until the human author declarations,
+   repository facts, journal metadata, and upload artifacts are supplied.
+5. Create a human-approved exact-HEAD tag and pre-DOI envelope only after those
+   blockers close.  License selection, DOI minting, and external uploads remain
+   Alec's actions.

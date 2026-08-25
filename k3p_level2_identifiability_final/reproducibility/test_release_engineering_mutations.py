@@ -7,6 +7,7 @@ import argparse
 import json
 from pathlib import Path
 import platform
+import re
 import subprocess
 import sys
 import tempfile
@@ -80,6 +81,16 @@ import verify_release as final_release_verifier  # noqa: E402
 DEFAULT_REPORT = HERE / "RELEASE_ENGINEERING_MUTATION_REPORT.json"
 
 
+def canonical_diagnostic(value: str) -> str:
+    """Remove TemporaryDirectory nonce components from stored diagnostics."""
+    temporary_root = re.escape(tempfile.gettempdir().rstrip("/"))
+    return re.sub(
+        rf"{temporary_root}/k3p-[^/'\"\s]+",
+        "<TEMP_DIR>",
+        value,
+    )
+
+
 def rejected(name: str, expected: str, action) -> dict:
     try:
         action()
@@ -89,7 +100,8 @@ def rejected(name: str, expected: str, action) -> dict:
         require(expected in diagnostic,
                 ("wrong mutation diagnostic", name, expected, diagnostic))
         return {"name": name, "status": "REJECTED",
-                "expected_failure_class": expected, "diagnostic": diagnostic[:500]}
+                "expected_failure_class": expected,
+                "diagnostic": canonical_diagnostic(diagnostic)[:500]}
     raise ReleaseFailure(("mutation survived", name))
 
 
@@ -693,8 +705,26 @@ def regeneration_plan_control() -> dict:
     require("--no-write-report" in command_map["probe_mutations"] and
             "--output" in command_map["probe_independent_replay"],
             "probe regeneration would overwrite runtime-bearing reports")
+    deterministic_environment(PROJECT)
+    ephemeral_parent = PROJECT / "release/work/regeneration_ephemeral"
+    require(ephemeral_parent.is_dir(),
+            "regeneration ephemeral output parent was not materialized")
     return {"name": "complete_regeneration_plan", "status": "PASS",
-            "command_count": len(commands), "required_commands": sorted(required)}
+            "command_count": len(commands), "required_commands": sorted(required),
+            "ephemeral_output_parent": ephemeral_parent.relative_to(PROJECT).as_posix()}
+
+
+def deterministic_diagnostic_control() -> dict:
+    first = canonical_diagnostic(
+        f"failure at {tempfile.gettempdir()}/k3p-release-case-first/input.bin"
+    )
+    second = canonical_diagnostic(
+        f"failure at {tempfile.gettempdir()}/k3p-release-case-second/input.bin"
+    )
+    require(first == second == "failure at <TEMP_DIR>/input.bin",
+            "temporary diagnostic canonicalization")
+    return {"name": "deterministic_diagnostics", "status": "PASS",
+            "canonical_example": first}
 
 
 def proof_only_exclusion_control() -> dict:
@@ -784,6 +814,7 @@ def main(argv: list[str] | None = None) -> int:
         controls.append(duplicate_active_path_control())
         controls.append(dirty_worktree_policy_control())
         controls.append(regeneration_plan_control())
+        controls.append(deterministic_diagnostic_control())
         controls.append(proof_only_exclusion_control())
         report = {
             "schema": "k3p-release-engineering-mutations-v1",

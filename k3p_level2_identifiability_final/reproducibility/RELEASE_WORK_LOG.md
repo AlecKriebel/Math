@@ -78,3 +78,30 @@ The exact remaining machine gate is the clean post-commit quick/full and
 one-shot 42-command regeneration, followed by deterministic archive/source
 replays.  Human metadata, license, DOI, tag/release approval, and portal actions
 remain outside the machine gate.
+
+## 2026-08-25T19:44:39Z — one-shot execution diagnosis and deterministic repair
+
+- Clean quick/full, two source reproductions, and compact/full archive
+  double-builds passed at `6dc41043a977aeb9ea97f33576bc40aa4b63cb4c`.
+- The first all-producer attempt completed commands 1--27, including every
+  long mathematical producer through the 2,789.020802-second probe replay.
+  Command 28 then failed because its ignored report parent
+  `release/work/regeneration_ephemeral/` did not exist.  This is an
+  orchestration failure, not a 42-command PASS; no suite JSON was emitted.
+  Tracked project bytes remained unchanged.
+- `deterministic_environment()` now materializes that parent before the plan
+  starts.  The 42-command-plan control checks it explicitly, and a separate
+  suffix diagnostic passed commands 28--37 under the repair.  A static audit
+  found no other ignored output parent at risk.
+- Rejected-case diagnostics now replace random `TemporaryDirectory` nonces by
+  a canonical token.  Two independent complete mutation-report writes were
+  byte-identical (file SHA-256
+  `54ff0c68e1fefae3b4cf1edd33248cff27c8c5dc7e67576099312532d3e03da7`);
+  31/31 mutations were rejected with logical payload
+  `631ce4b3a4152621466504950e7bf73d44142c2622b064af8cbcc38b049c24f4`.
+
+Best-guess completion: **98% of the paper/certification/proof-archive goal and
+70% of the external-submission release goal**.  The remaining machine action
+is one unified exact-HEAD run plus commit-bound source/archive reconstruction.
+Human metadata, license, DOI, tag/release approval, and portal actions remain
+outside this machine checkpoint.
