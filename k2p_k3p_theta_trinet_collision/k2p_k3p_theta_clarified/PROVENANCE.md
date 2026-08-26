@@ -16,9 +16,10 @@ first appears in public repository history at commit `ca21a733`, dated 4 August
 combined source directory. The full early draft was therefore already public
 before the clarification. This record is additive and no history was rewritten.
 
-The current frozen submission/replay snapshot is version `1.2.0`, identified by
-the Git tag `k2p-k3p-theta-v1.2.0`. The earlier tags
-`k2p-k3p-theta-v1.1.0` and `k2p-k3p-theta-biorxiv-v1.0.0` remain immutable.
+The current frozen submission/replay snapshot is version `1.2.1`, identified by
+the Git tag `k2p-k3p-theta-v1.2.1`. The earlier tags
+`k2p-k3p-theta-v1.2.0`, `k2p-k3p-theta-v1.1.0`, and
+`k2p-k3p-theta-biorxiv-v1.0.0` remain immutable.
 Version 1.1.0 archives are retained under the parent `releases/` directory;
 version 1.0.0 remains under `legacy/releases/`. Exact upload-time status and
 unresolved author choices are recorded in `submission/biorxiv/`. No GitHub
@@ -30,16 +31,23 @@ removed arbitrary-level K2P statements are cited at arXiv:2607.12919v2. The
 corrected arXiv:2607.12919v3 removes those statements, records the leaf-order
 obstruction, and leaves high-level K2P and K3P questions open. Since K2P is
 nested in K3P, the compact K2P collision answers both questions negatively.
-The separate quartic theta parameter breaks every relabeled K2P edge symmetry,
-although its exact shared distribution is openly identified as relabeled K2P;
-the rank-15 submersion supplies nearby shared distributions outside all three
-relabeled K2P strata. None of these statements affects the source paper's JC
+The separate quartic theta parameter breaks every globally character-relabeled
+K2P edge symmetry, although its exact shared distribution is openly identified
+as globally character-relabeled K2P; the rank-15 submersion supplies nearby
+shared distributions outside all three globally character-relabeled K2P
+strata. None of these statements affects the source paper's JC
 or level-one results.
 
 Version 1.2.0 additionally records the 11- and 14-dimensional fixed-output
 fibers, Zariski-dense effective theta images, and the common-subtree theorem
 that inserts one theta blob at any selected internal vertex of any labelled
 unrooted binary tree. It does not claim simultaneous multi-blob composition.
+
+Version 1.2.1 makes no mathematical change. It removes overloaded topology and
+manifold notation, defines globally character-relabeled K2P consistently,
+states the comparison-tree and compatible theta rootings separately, qualifies
+the nonreversible supermodel remark, and binds the three comparison-tree
+half-time root checks into the exact replay suite.
 
 ## Revision lineage
 

@@ -22,7 +22,8 @@ preprint is permanent and citable even if a later version corrects it.
       common generator, common rate ratio, molecular clock, or global timing.
 - [ ] The non-tree-child scope and separation from strongly tree-child level-2
       JC results are explicit.
-- [ ] The exact quartic theta **parameter** is distinguished from its relabeled
+- [ ] The exact quartic theta **parameter** is distinguished from its globally
+      character-relabeled
       K2P shared **distribution**; only the nearby submersion result is called
       observably genuine K3P.
 - [ ] Zariski density is stated only in the effective Fourier ambient spaces
@@ -40,7 +41,7 @@ preprint is permanent and citable even if a later version corrects it.
 - [ ] All manuscript claims delegated to computation are explicitly bound to
       named certificate fields, row/column orderings, and verifier checks.
 - [ ] The canonical manifest passes and covers every intended release file.
-- [ ] `bash submission/build_release.sh --output-dir /absolute/empty/output-directory --commit k2p-k3p-theta-v1.2.0 --version 1.2.0`
+- [ ] `bash submission/build_release.sh --output-dir /absolute/empty/output-directory --commit k2p-k3p-theta-v1.2.1 --version 1.2.1`
       produces byte-stable archives and valid SHA-256 checksums.
 - [ ] Both archives contain `RELEASE_PROVENANCE.txt` with the full release
       commit/version and `FILE_SHA256SUMS` with a passing hash for every
@@ -50,7 +51,7 @@ preprint is permanent and citable even if a later version corrects it.
 - [ ] A clean extraction of the archive builds the PDFs and passes the complete
       verifier suite.
 - [ ] The exact 40-character release commit is recorded in the replay archive
-      and the tag `k2p-k3p-theta-v1.2.0` resolves to that commit.
+      and the tag `k2p-k3p-theta-v1.2.1` resolves to that commit.
 
 ## Portal metadata
 

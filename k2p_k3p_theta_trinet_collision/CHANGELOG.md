@@ -5,7 +5,7 @@
 - Reordered the logical narrative: the compact K2P collision already refutes
   K3P tree--theta disjointness by model inclusion.
 - Distinguished the quartic point's genuinely K3P network parameters from its
-  relabeled-K2P shared output, then used the rank-15 restricted submersion to
+  globally character-relabeled K2P shared output, then used the rank-15 restricted submersion to
   prove nearby genuinely K3P collision distributions.
 - Added local product geometry and 11-/14-dimensional fixed-output network
   fibers, while retaining the 17-/23-dimensional collision loci.

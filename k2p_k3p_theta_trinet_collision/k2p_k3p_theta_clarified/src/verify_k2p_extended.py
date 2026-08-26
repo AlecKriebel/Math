@@ -482,6 +482,8 @@ def verify_parameters() -> None:
     require_global_minimum(rate_margins, Alg.rat(F(11, 900)), "global rate-margin minimum")
     print("[parameters] PASS  all rooted/effective/tree edges lie in Theta_0^circ and are edgewise strictly continuous-time K2P")
     print("[parameters] PASS  exact global minimum eigenvalue 1/16 and rate margin 11/900")
+    print("[root splitting] PASS  all three comparison-tree edges admit strict stochastic half-time roots")
+    print("[root splitting] PASS  the compatible theta root uses the certified K odot K factorization")
 
 
 # ---- exact construction identities ----------------------------------------

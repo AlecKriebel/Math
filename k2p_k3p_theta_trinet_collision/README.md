@@ -6,7 +6,7 @@ Kimura two-parameter (K2P) model. Because K2P is a submodel of the Kimura
 three-parameter (K3P) model, this one collision already refutes universal
 tree--theta disjointness for both models. A second exact construction breaks
 K2P symmetry at the network-parameter level, and full K3P rank yields nearby
-shared distributions outside every character-relabeled K2P submodel.
+shared distributions outside every globally character-relabeled K2P submodel.
 
 ## Canonical version
 
@@ -34,7 +34,7 @@ Corollary 5.8 in arXiv:2607.12919v2. Version 3 removes those K2P statements,
 records the leaf-order obstruction, and leaves high-level K2P and K3P trinet
 questions open. The exact K2P collision answers both questions negatively by
 model inclusion. The quartic construction additionally gives an exact
-genuinely K3P network parameter for a relabeled-K2P shared distribution; the
+genuinely K3P network parameter for a globally character-relabeled K2P shared distribution; the
 rank-15 local theorem supplies genuinely K3P shared distributions. Neither
 result affects the corrected paper's JC or level-one results.
 

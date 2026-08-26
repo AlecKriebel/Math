@@ -704,6 +704,18 @@ class Verification:
                           parse_vector(vector["transition_probabilities"]),
                           f"named probabilities on rooted edge {edge_id}")
 
+        # The only certified compatible theta rooting is the u-side split of
+        # the effective terminal-1 edge, and both root-adjacent arcs are the
+        # literal vector K (not merely two unspecified factors with product
+        # K odot K).
+        root_k = parse_vector(vector_rows["K"]["eigen"])
+        for edge_id in ("e_rho_1", "e_rho_u"):
+            row = self.edge_row_by_id[edge_id]
+            require_equal(str(row["vector_name"]), "K",
+                          f"literal K assignment on rooted edge {edge_id}")
+            require_equal(parse_vector(row["eigen"]), root_k,
+                          f"literal K eigenvector on rooted edge {edge_id}")
+
         # Effective semi-directed edges, including K odot K.
         suppression = self.cert["root_suppression"]
         require(isinstance(suppression, Mapping), "root suppression")
@@ -727,6 +739,9 @@ class Verification:
             stored_margins = {k: parse_alg(v) for k, v in row["continuous_time_margins"].items()}
             require_equal(stored_margins, expected_margins,
                           f"comparison-tree continuous-time margins at leaf {leaf}")
+            for margin_name, value in expected_margins.items():
+                require_positive(value, self.lo, self.hi,
+                                 f"comparison-tree strict margin at leaf {leaf}.{margin_name}")
 
         # Inheritance probabilities.
         require_equal({str(r["vertex"]) for r in self.retic_rows}, {"r2", "r3"},
@@ -748,6 +763,8 @@ class Verification:
         print("[parameters] PASS  every network/effective/tree edge lies in Theta_0^circ")
         print("[parameters] PASS  every transition probability is strictly positive")
         print("[parameters] PASS  both inheritance parameters equal 1/2")
+        print("[root splitting] PASS  all three comparison-tree edges admit strict stochastic half-time roots")
+        print("[root splitting] PASS  only the compatible u-side theta rooting is certified by K odot K")
 
     # ---- Displayed trees and Fourier coordinates ----------------------------
 
@@ -944,10 +961,10 @@ class Verification:
     ) -> None:
         """Separate genuine-K3P parameters from the symmetry of their output.
 
-        A globally relabelled K2P edge submodel is obtained by requiring one
+        A globally character-relabelled K2P edge submodel is obtained by requiring one
         of the three pairs of nonidentity Fourier eigenvalues to be equal on
         every edge.  The U edge alone excludes all three possibilities here.
-        The common output nevertheless lies in the C=G relabelled K2P tree
+        The common output nevertheless lies in the C=G globally character-relabelled K2P tree
         submodel.  These are deliberately checked as two different facts.
         """
         vector_rows = self.cert["parameter_vectors"]
@@ -986,8 +1003,8 @@ class Verification:
                     f"{self.symbols[pair[1]]}",
                 )
 
-        print("[K3P/K2P scope] PASS  U_C,U_G,U_T are pairwise distinct, excluding every relabelled K2P edge-parameter submodel")
-        print("[K3P/K2P scope] PASS  the common output/tree lies in exactly the C=G relabelled K2P specialization")
+        print("[K3P/K2P scope] PASS  U_C,U_G,U_T are pairwise distinct, excluding every globally character-relabelled K2P edge-parameter submodel")
+        print("[K3P/K2P scope] PASS  the common output/tree lies in exactly the C=G globally character-relabelled K2P specialization")
 
     # ---- Jacobian ------------------------------------------------------------
 

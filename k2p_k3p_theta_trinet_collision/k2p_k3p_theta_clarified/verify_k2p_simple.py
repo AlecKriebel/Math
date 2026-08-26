@@ -89,6 +89,8 @@ def edges():
         ps=probs(e)
         for p in ps:p.positive(name+' transition')
         transition_entries.extend(ps)
+        margin=e[2]-e[1]*e[1]
+        margin.positive(name+' strict K2P continuous-time margin')
     need(V['K_odot_K']==tuple(V['K'][i]*V['K'][i] for i in range(4)),'root suppression edge')
     claimed=Q(F(1,120))
     need(any(p==claimed for p in transition_entries),'claimed minimum transition entry')
@@ -97,6 +99,8 @@ def edges():
         need(d==ZERO or d.interval()[0]>0,'global minimum transition entry')
     print('[parameters] PASS  all network, effective, and tree edges lie in Theta_0^circ')
     print('[parameters] PASS  exact global minimum transition entry is 1/120')
+    print('[root splitting] PASS  all three comparison-tree edges admit strict stochastic half-time roots')
+    print('[root splitting] PASS  the compatible theta root uses the certified K odot K factorization')
 def collision():
     K,U,W,S,T0=V['K'],V['U'],V['V'],V['S'],V['T'];M={}
     mixing={name:F(value) for name,value in C['mixing_parameters'].items()}

@@ -1,5 +1,49 @@
 # Research log
 
+## 2026-08-26 -- Version 1.2.1 adversarial source-freeze checkpoint
+
+- Completed independent post-edit proof, exact-verifier, and release-metadata
+  audits. No mathematical, computational, editorial, or packaging defect
+  remains in the candidate source.
+- Replayed the complete exact suite in normal and optimized Python modes. Both
+  runs are byte-identical to the stored transcript and end with `ALL EXACT
+  CHECKS PASSED`; the focused four-leaf check again verifies all 256 Fourier
+  and all 256 ordinary-state probabilities exactly.
+- Rebuilt the 19-page manuscript and both two-page supporting PDFs. The TeX
+  logs contain no warnings, unresolved references, or bad boxes; fonts are
+  embedded, and every rendered page passed visual review for clipping,
+  overlap, table layout, figures, URLs, and page breaks.
+- Confirmed that the model-inclusion notation, local-fiber notation, global
+  character-relabeling definition, comparison-tree half-time splits,
+  terminal-1 theta rooting, and rooted supermodel caveat are mutually
+  consistent. No title, abstract conclusion, or theorem scope changed.
+- Best-guess completion: **99% of version 1.2.1 technical readiness**. The
+  remaining technical gate is the commit/tag-bound archive build and clean
+  extraction replay, followed by a logged-out public-URL check and push.
+  Portal category, distribution license, and final submission approval remain
+  author-controlled choices.
+
+## 2026-08-26 -- Version 1.2.1 targeted-rereview checkpoint
+
+- Replayed and independently adjudicated the post-`1.2.0` review. The core
+  collisions, local geometry, genuine-K3P neighborhood, Zariski-density result,
+  and one-blob all-leaf theorem remain unchanged.
+- Confirmed one formal notation defect: `G`, already the Klein state group, was
+  reused once as a topology. Reserved calligraphic notation for topologies and
+  local manifolds throughout.
+- Made global character relabeling explicit, separated comparison-tree and
+  compatible terminal-1 theta rootings, and narrowed the nonreversible
+  supermodel remark to chosen rooted histories and complete parameter tuples.
+- Extended the exact checks to certify strict half-time subdivision of all
+  three explicit comparison-tree edges. Focused K2P and K3P replays pass.
+- Verified that immutable public `1.2.0` already satisfied its URL, archive,
+  clean-replay, and visual-PDF gates. It will not be moved; accepted changes are
+  being prepared as `1.2.1`.
+- Best-guess completion: **70% of version 1.2.1 technical readiness**. Remaining
+  work is the complete normal/optimized replay, regenerated transcripts,
+  warning-free PDF build and full visual audit, independent post-edit review,
+  manifest/tag/archive replay, logged-out URL check, and push.
+
 ## 2026-08-26 -- Version 1.2.0 adversarial source-freeze checkpoint
 
 - Completed independent post-edit proof, verifier, and release-metadata audits.

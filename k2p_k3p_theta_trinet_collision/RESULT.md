@@ -22,11 +22,11 @@ effective affine K2P three-leaf Fourier space.
 ## K3P
 
 The exact quartic theta parameter lies over `Q(5^(-1/4))`, has strictly
-positive transition probabilities, and lies outside every character-relabeled
+positive transition probabilities, and lies outside every globally character-relabeled
 K2P parameter specialization. Its shared comparison-tree distribution is
-openly identified as relabeled K2P. The fixed theta map has rank 15, its local
+openly identified as globally character-relabeled K2P. The fixed theta map has rank 15, its local
 collision locus has dimension 23 and codimension 6, and its fixed-output fibers
-have dimension 14. Removing the three relabeled-K2P tree strata gives a
+have dimension 14. Removing the three globally character-relabeled K2P tree strata gives a
 relatively open dense set of nearby genuinely K3P shared distributions. The
 same conclusion holds in the edgewise strictly continuous-time rate cone.
 The complexified theta image is Zariski dense in the effective affine K3P

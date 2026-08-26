@@ -24,7 +24,7 @@ leaf-order diagnosis, and the open high-level K2P/K3P questions. The compact
 K2P collision alone answers both questions negatively by model inclusion. The
 quartic construction gives exact K3P parameter-level symmetry breaking, and
 the rank-15 restricted submersion gives nearby shared distributions outside all
-relabeled-K2P strata.
+globally character-relabeled K2P strata.
 
 The current version `1.2.0` archives were built from full commit
 `7570a4a0f7051a607ee6eb4ef7ed43e54e805322`. The release builder verified

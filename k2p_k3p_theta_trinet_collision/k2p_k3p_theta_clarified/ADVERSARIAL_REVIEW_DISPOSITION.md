@@ -5,6 +5,25 @@ rejected. Reviews used the manuscript, exact verifiers and certificates, the
 official arXiv sources for Versions 2 and 3 of Brits et al., and the cited
 primary literature.
 
+## Version 1.2.1 targeted rereview -- 26 August 2026
+
+| Feedback item | Verdict | Disposition |
+|---|---|---|
+| `G` reused for both the Klein group and a topology | Valid formal notation defect | Reindexed the model inclusion by a fixed calligraphic topology `N` and defined the comparison tree and theta topology separately. |
+| `T`, `P`, `A`, and `C` overloaded | Valid editorial ambiguity | Reserved `T` for the explicit edge vector; arbitrary/tree and local-manifold objects now use calligraphic notation. |
+| Tree-side rooting absent | Not a gap in the stated unrooted theorem, but worth making explicit | Added root-independence at the comparison vertex and an optional binary rooted representative. Exact checks cover strict half-time subdivisions of all three comparison edges. |
+| Root the theta through all three terminals | Rejected as false and unnecessary | Only the terminal-1 (`u`-side) attachment is compatible with the fixed reticulation orientation; the paper and verifier now say so explicitly. |
+| General-Markov supermodel scope | Valid qualification | Restricted the transfer to chosen rooted histories containing the complete witness tuple and matching mixture semantics; no root-independent nonreversible or common-`Q` GTR claim remains. |
+| Define globally character-relabeled K2P | Valid | Defined one common permutation across every edge and leaf, excluded edge-dependent relabelings/gauge changes, and standardized usage. |
+| Public versioned URL and clean external replay | Already satisfied for immutable `1.2.0`; required again for `1.2.1` | The new tag, logged-out URL, archives, and fresh extraction are release gates. |
+| Actual final-PDF inspection | Valid release gate | All pages will be rerendered after the final edit; the earlier `1.2.0` inspection is not reused as evidence for changed PDFs. |
+| Stronger title | Optional and not adopted | The current title remains accurate and avoids implying multi-blob or generic conclusions; changing it would exceed this patch release. |
+| Corresponding email | Valid publication metadata | Added the author's established public correspondence address to the paper, summaries, CFF, and bioRxiv worksheet. |
+| Move exact tables to an appendix | Optional and not adopted | The 19-page preprint remains readable and self-contained; the switching and tangent tables are exact proof witnesses. |
+
+No recommendation requires a new mathematical theorem or changes the title,
+abstract conclusion, or main theorem scope.
+
 ## Version 1.2.0 expansion -- 26 August 2026
 
 | Feedback item | Verdict | Disposition |

@@ -4,8 +4,8 @@ This directory is the sole current manuscript and reproducibility package for
 the exact K2P/K3P tree--theta-trinet collision results. Use it for reading,
 verification, citation, bioRxiv submission, and any archival deposit.
 
-The current submission snapshot is version `1.2.0`, published under the Git tag
-`k2p-k3p-theta-v1.2.0`. The tag, rather than the mutable `main` branch,
+The current submission snapshot is version `1.2.1`, published under the Git tag
+`k2p-k3p-theta-v1.2.1`. The tag, rather than the mutable `main` branch,
 is the stable source cited by the manuscript.
 
 Historical pre-clarification files have been moved into the parent
@@ -36,9 +36,11 @@ statements in arXiv:2607.12919v2. Version 3 removes those statements, records
 the leaf-order obstruction, and leaves high-level K2P and K3P questions open.
 Because K2P is nested in K3P, the compact K2P collision answers both questions
 negatively. The separate quartic construction gives an exact theta-network
-parameter outside every character-relabeled K2P specialization, although its
-shared distribution lies in a relabeled K2P tree model. Full K3P rank yields
-nearby shared distributions outside all relabeled K2P models.
+parameter outside every globally character-relabeled K2P specialization,
+although its shared distribution lies in a globally character-relabeled K2P
+tree model. Here the same character permutation is imposed on every edge and
+leaf; edge-dependent relabelings are excluded. Full K3P rank yields nearby
+shared distributions outside all globally character-relabeled K2P models.
 
 The full-rank results also give Zariski-dense fixed-theta images, local
 collision loci of dimensions 17 and 23, and fixed-output network fibers of
@@ -114,7 +116,7 @@ make the portal metadata match the final PDF exactly.
 To build clean deterministic archives from an exact committed snapshot:
 
 ```bash
-bash submission/build_release.sh --output-dir /absolute/path/to/release-output --commit k2p-k3p-theta-v1.2.0 --version 1.2.0
+bash submission/build_release.sh --output-dir /absolute/path/to/release-output --commit k2p-k3p-theta-v1.2.1 --version 1.2.1
 ```
 
 The builder refuses tracked or nonignored untracked changes in this canonical subtree,

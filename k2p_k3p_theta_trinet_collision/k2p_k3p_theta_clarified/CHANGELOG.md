@@ -1,5 +1,26 @@
 # Changelog
 
+## Version 1.2.1 notation and rooting clarification -- 26 August 2026
+
+- Replaced the ill-typed reuse of the Klein-group symbol `G` as a topology and
+  reserved calligraphic symbols for the comparison tree, theta network,
+  arbitrary grafting tree, parameter manifold, ambient space, tree germ, and
+  collision locus.
+- Defined globally character-relabeled K2P to require one character
+  permutation across every edge and leaf, and standardized the terminology in
+  the manuscript, technical summary, metadata, and verifier descriptions.
+- Separated comparison-tree root placement from the unique compatible
+  terminal-1 theta rooting. Added exact checks that all three explicit
+  comparison-tree edges admit strict stochastic half-time subdivisions.
+- Restricted the substitution-supermodel remark to chosen rooted histories and
+  complete edge/root tuples; nonreversible models receive no root-independent
+  semi-directed conclusion, and common-`Q` GTR remains excluded.
+- Added the established public correspondence address. Preserved the title,
+  abstract conclusions, theorem scope, tangent table, and exact certificate
+  material.
+- Preserved immutable version `1.2.0`; these post-tag corrections are released
+  separately as version `1.2.1`.
+
 ## Version 1.2.0 theorem expansion -- 26 August 2026
 
 - Reframed the logical hierarchy around `K2P` being a submodel of `K3P`: the
@@ -7,15 +28,16 @@
   tree--trinet disjointness questions negatively.
 - Retained the quartic K3P construction as an exact parameter-level
   symmetry-breaking result. Its theta parameter is outside every
-  character-relabeled K2P specialization, while its shared comparison-tree
-  distribution is explicitly identified as the `C=G` relabeled K2P case and
-  not JC.
+  globally character-relabeled K2P specialization, while its shared
+  comparison-tree distribution is explicitly identified as the `C=G` globally
+  character-relabeled K2P case and not JC.
 - Promoted the submersion consequences: the local collision loci have
   dimensions 17 and 23, project onto nearby tree-model germs, and have
   11- and 14-dimensional fixed-output theta fibers.
 - Proved that a relatively open dense set of nearby K3P tree distributions
-  outside all three relabeled K2P strata has theta realizations, including
-  inside the edgewise strictly continuous-time chamber.
+  outside all three globally character-relabeled K2P strata has theta
+  realizations, including inside the edgewise strictly continuous-time
+  chamber.
 - Added the Zariski-density corollary for the effective 9- and 15-dimensional
   fixed-theta Fourier images, with explicit caveats for ambient relations,
   stochastic inequalities, continuous-time inequalities, and tree invariants.
