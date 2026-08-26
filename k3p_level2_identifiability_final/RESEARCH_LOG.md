@@ -629,6 +629,31 @@ Best-guess completion toward the mathematical classification goal: **100%**.
 Best-guess completion toward the paper/certification/proof-archive goal: **100%**.
 Best-guess completion toward the external journal/DOI release goal: **70%**.
 
+## 2026-08-26T15:27:43Z — Google Drive TeX-source handoff
+
+- Created the dedicated local Google Drive folder
+  `Papers/K3P Level-2 Identifiability`.
+- Copied all 34 tracked TeX sources from the workstream, preserving their
+  relative paths across the canonical manuscript, reader supplement,
+  submission wrappers, shared sources, figures, and frozen TeX inputs.
+- Copied `manuscript/references.bib` alongside the TeX sources so the canonical
+  article source retains its bibliography dependency.
+- Compared every copied TeX file and the bibliography against its source;
+  every file is byte-identical.
+- Ignored staging-directory duplicates encountered during the initial local
+  copy were moved out of the Google Drive folder into a recoverable local
+  backup.  The delivered folder contains exactly 34 `.tex` files, one `.bib`
+  file, and no unrelated files.
+
+Strongest verified result: the requested Google Drive research-workstream
+folder contains a complete, path-preserving, byte-exact copy of the tracked
+TeX corpus and bibliography.  No manuscript, proof, certificate, or release
+artifact changed.
+
+Best-guess completion toward this TeX-source organization task: **100%**.
+Best-guess completion toward the mathematical classification goal: **100%**.
+Best-guess completion toward the external journal/DOI release goal: **70%**.
+
 ## 2026-08-26T13:45:23Z — conditional-PASS minor revision checkpoint
 
 - Audited every item in the fresh conditional-PASS review against the current
