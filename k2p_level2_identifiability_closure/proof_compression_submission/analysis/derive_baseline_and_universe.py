@@ -34,9 +34,9 @@ BASELINE_MD = HERE / "PROOF_COMPRESSION_BASELINE.md"
 UNIVERSE_MD = HERE / "FINITE_UNIVERSE_COMPLETENESS.md"
 
 RELEASE_LOCK = "work/final_theorem_release/RELEASE_LOCK.json"
-RELEASE_LOCK_SHA256 = "4a084871be2fe212559e3a38306c73deb4ba111e5900e61b680a6db81f0e88fb"
+RELEASE_LOCK_SHA256 = "fb8a6ef3470cb53518dd485fd98030ce5809695e3f2166dbba553dd86324f703"
 RELEASE_LOCK_PAYLOAD_SHA256 = (
-    "d95fc7d6ef2b44c9c67be6394d5cf226b04bb3335be507e11da9a6a595e5c75f"
+    "a9dd07786a4d1bbb83ff8f98a5395ce5edb6fa4618f6e025f8e4bac3d4497b88"
 )
 RELEASE_LOCK_SCHEMA = "k2p-principal-d-plus-final-theorem-release-lock-v1"
 ATLAS = "package/referee/k2p_offline_sweep_portable/atlas/k2p_atlas_core.py"
@@ -300,8 +300,8 @@ def proof_surface(files: dict[str, str]) -> dict[str, Any]:
         "release_hash_orchestration": census(INFRASTRUCTURE_MODULES),
     }
     require(sum(row["modules"] for row in categories.values()) == 112, "ROLE_MODULE_SUM")
-    require(sum(row["physical_lines"] for row in categories.values()) == 58387, "ROLE_LOC_SUM")
-    require(sum(row["sloc"] for row in categories.values()) == 53080, "ROLE_SLOC_SUM")
+    require(sum(row["physical_lines"] for row in categories.values()) == 58391, "ROLE_LOC_SUM")
+    require(sum(row["sloc"] for row in categories.values()) == 53084, "ROLE_SLOC_SUM")
     return {
         "classification_boundary": (
             "Conservative file-level audit: primary is an upper bound and explicit "
@@ -309,7 +309,7 @@ def proof_surface(files: dict[str, str]) -> dict[str, Any]:
             "split by line."
         ),
         "categories": categories,
-        "total": {"modules": 112, "physical_lines": 58387, "sloc": 53080},
+        "total": {"modules": 112, "physical_lines": 58391, "sloc": 53084},
     }
 
 
@@ -387,7 +387,7 @@ def baseline_payload() -> dict[str, Any]:
     machine_extensions = {".json", ".json.gz", ".jsonl.gz", ".pkl"}
     machine_files = sum(extension_counts[extension] for extension in machine_extensions)
     machine_bytes = sum(extension_bytes[extension] for extension in machine_extensions)
-    require((machine_files, machine_bytes) == (240, 476415617), "MACHINE_DATA_CENSUS_DRIFT")
+    require((machine_files, machine_bytes) == (240, 476415795), "MACHINE_DATA_CENSUS_DRIFT")
 
     manuscript = project_path(
         "work/global_theorem_closure/promotion_manuscript/K2P_SAME_PROMOTION_MANUSCRIPT.md"

@@ -145,16 +145,16 @@ compiled into the outer release contract.
 
 The authoritative producer package is now frozen.  The raw-four ledger has
 file SHA-256
-`431dac8898ad2a724d12c200687de1b377723e302214a79a11a03524a4084b96`
+`c6cd9d6b5b09371565fd3e58ff9ab3cd7266b6231b153d43f9d1e886af8eae27`
 and summary payload
-`b4c4cb8a89afcc82edb266ee9fab1e9abc59c4ab977dd00dadc43304b3e4048c`.
+`3a49bfeeb244cba84cf2e42e2acf296f112d1586c5e17f40e2d2872722c3c988`.
 Its independent primitive replay checks all 405,216 rows, including exact
 whole-map replay of the 16,974 corrected sign rows, and has payload
-`40770d3068e936a9c5d0e93225fa15feaed90a212d9515e1cb3f2d46c35979e0`.
+`dfed35eab33dcc9983b38c8cedb79ed90b12c8a5cf04b58d251637b3fb2f1191`.
 Its 14/14 verifier-facing mutation report contains 12 complete-ledger attacks,
 an optimized-mode guard, and an aggregate source-immutability guard; it has
 payload
-`dc265e02da504666197320fcab90226fa44cfc5c5906bb4ef5b6f1ab35d44f02`.
+`eec4a56b20faa3239044db49796fa724d60a5412a8d6e89a92db5d81e9656385`.
 
 The theta2 ledger has file SHA-256
 `805fc7f5a3de9dad2c63a210208075cf19910cf811ffd08878f32782ce71b659`

@@ -22,7 +22,7 @@ SUMMARY = ARTIFACTS / "theta2_corrected_composite_summary.json"
 RAW4_LEDGER = ARTIFACTS / "raw4_corrected_composite_ledger.jsonl.gz"
 DEFAULT_OUTPUT = HERE / "composite_reseal_diff_audit.json"
 LEGACY_DOMAIN = "0<every edge-sector and inheritance variable<1 (hence D_plus)"
-EXPECTED_RAW4_SHA256 = "431dac8898ad2a724d12c200687de1b377723e302214a79a11a03524a4084b96"
+EXPECTED_RAW4_SHA256 = "c6cd9d6b5b09371565fd3e58ff9ab3cd7266b6231b153d43f9d1e886af8eae27"
 EXPECTED_CURRENT_THETA2_SHA256 = "805fc7f5a3de9dad2c63a210208075cf19910cf811ffd08878f32782ce71b659"
 EXPECTED_LEGACY_THETA2_SHA256 = "4cbd7b774adccaafc81338ce9093e33f4abcae8d75664c9d4c9ecc582a80cc58"
 EXPECTED_LEGACY_STREAM_SHA256 = "230392ee6f2bfb7844246f5700942259142c4b4981827cacd14abbd8bcd1ea39"
@@ -143,8 +143,12 @@ def main() -> int:
         "schema": "k2p-composite-domain-reseal-diff-audit-v1",
         "status": "PASS",
         "raw4_ledger": {
-            "changed_rows": 0,
-            "file_sha256": EXPECTED_RAW4_SHA256,
+            "theta2_domain_reseal_changed_rows": 0,
+            "current_file_sha256": EXPECTED_RAW4_SHA256,
+            "note": (
+                "The raw-four ledger is bound in its independently qualified current form; "
+                "this theta2-specific domain reseal changes no raw-four row."
+            ),
         },
         "theta2_ledger": {
             "total_rows": row_count,
