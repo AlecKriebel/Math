@@ -207,8 +207,8 @@ arm isolates a complete color class, so the restriction remains noncut.
 
 If a segment has three color runs \(c,d,c\), the middle attachment lies on
 the path between the outer two in every switching, giving a direct
-all-switching obstruction.  Otherwise reduce each segment to one actual
-label per run, with palette
+all-switching obstruction.  Otherwise, in the already bounded restriction,
+retain one actual label from each selected run, with palette
 \[
 (),\quad(0),\quad(1),\quad(0,1),\quad(1,0),
 \]
@@ -259,7 +259,9 @@ At this point \(F=0\) and six normalized gradient coordinates are nonzero,
 each with absolute value \(1/6912\).  The irreducibility certificate treats
 the quartic as linear in \(q_{0CC}\), with coefficient
 \(-q_{CGT}q_{G0G}q_{TT0}+q_{CTG}q_{GG0}q_{T0T}\); a specialization kills
-that coefficient but leaves remainder \(-1\).
+that coefficient but leaves remainder \(-1\).  One hand-checkable choice is
+\(q_{000}=q_{CTG}=q_{GCT}=q_{TGC}=1\), with every other coefficient-ring
+variable in the quartic set to zero.
 
 \section{Triangle rank witnesses}
 
@@ -341,6 +343,13 @@ unannounced cyclic renaming of \(d,e,f\).
 
 \section{Three-sector incidence normalizers}
 
+Call a retained component marked if it carries a retained physical leaf
+boundary block, and unmarked otherwise.  In each nonzero sector the physical
+block supplies the compensating character for a one-character anchor at each
+incident bridge.  Every unmarked retained strong-class component has bridge
+degree at least three; the only possible degree-two theta stabilizer is the
+two-boundary \(K_4-e\) factor, which has no tree-child rooting.
+
 For an unmarked component of degree \(d\ge3\), the one-sector exponent matrix
 has rows \(e_1+e_2,e_1+e_3,e_2+e_3,e_1+e_4,\ldots,e_1+e_d\).  Its leading
 block is
@@ -416,10 +425,12 @@ containment.
 Semialgebraic dimension agrees with real-Zariski-closure dimension.  If
 \(A=\mathbb R[x]/I_{\mathbb R}(C)\), the finite faithfully flat integral
 extension \(A\to A\otimes_{\mathbb R}\mathbb C\) preserves Krull dimension,
-so the corresponding complex closure is also proper.  This proves that the
-rank-drop image, inequivalent intersections, and certified reconstruction
-zero loci form a proper exceptional set rather than merely a measure-zero
-set.
+so the corresponding complex closure is also proper.  Explicitly, \(E_N\) is
+the union inside \(\mathcal V_N\) of the complex closure of the rank-drop
+image, the complex closures of all inequivalent physical intersections, the
+singular locus of \(\mathcal V_N\), and every certified reconstruction-test
+hypersurface.  These proper closed sets form a proper exceptional set rather
+than merely a measure-zero set.
 
 \section{Fourteen-orbit and 38+2 census}
 

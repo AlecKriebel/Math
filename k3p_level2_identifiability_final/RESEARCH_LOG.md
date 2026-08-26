@@ -628,3 +628,50 @@ remaining work is the explicitly human-controlled submission/release layer.
 Best-guess completion toward the mathematical classification goal: **100%**.
 Best-guess completion toward the paper/certification/proof-archive goal: **100%**.
 Best-guess completion toward the external journal/DOI release goal: **70%**.
+
+## 2026-08-26T13:45:23Z — conditional-PASS minor revision checkpoint
+
+- Audited every item in the fresh conditional-PASS review against the current
+  manuscript, supplement, exact reports, and primary literature.  No new
+  theorem defect was found.  The capped bridge proof, literal sunlet
+  certificate, expanded genericity proof, balanced compression lemma,
+  \(H_{14}\) theorem, and \(6n-3\) sharpness theorem remain unchanged.
+- Corrected the sole active 16-versus-18 mutation-count contradiction.  The
+  article now agrees with the integrated report, supplement, claim lock, and
+  active manifest: all 18 integrated mutations are rejected.
+- Replaced the inaccurate description of Brits et al.'s parameter domain by
+  its formal stochastic, nonidentity, positive-definite space \(\Theta_0\),
+  updated the immutable arXiv reference to v3 dated 25 August 2026, and added
+  the directly relevant Cummings--Hollering multigraded implicitization
+  citation.
+- Made the bridge-fibre proof self-contained by defining marked and unmarked
+  retained components in both article and supplement.  Made \(E_N\) explicit
+  as the union of the source rank-drop closure, inequivalent-intersection
+  closures, \(\operatorname{Sing}(\mathcal V_N)\), and the certified
+  reconstruction-test hypersurfaces.
+- Accepted the low-risk presentation polish: printed an independently
+  hand-checkable \(H_{14}\) irreducibility specialization, clarified that run
+  representatives are selected only inside the already bounded restriction,
+  and named the cherry stem and two pendant bridges precisely.
+- Rebuilt the exact 33-page article and 12-page supplement with the pinned
+  Tectonic 0.16.9 executable and fixed source epoch.  Both builds have embedded
+  fonts, no unresolved references, and no layout warnings.  Rendered and
+  visually inspected every page; the new PDF SHA-256 values are
+  `768a35bed573f10f0e989d4d6c39e27ed280871370c06da50e1ace68afb08041`
+  and
+  `1cd22bc542201cf60ce8eacfd3dfc8cde3e722c57046f2903a9863d2747501c2`.
+- The development release-input gate and artifact-only theorem gate pass on
+  the revised bytes.  Submission validation remains honestly `NOT_READY` with
+  zero structural errors and 26 human/release blockers; all 12 validator
+  mutations are rejected.  The next exact step is to commit and push this
+  checkpoint, then block once on the clean quick/full replay and perform the
+  two-build source/archive reseal.  The unchanged mathematical producer graph
+  does not require another hour-scale 45-command regeneration.
+
+Strongest verified result: every requested minor revision is incorporated in
+the manuscript and supplement without changing the certified K3P-SAME
+mathematics.  Clean exact-commit replay and source/archive rebinding remain.
+
+Best-guess completion toward the mathematical classification goal: **100%**.
+Best-guess completion toward the paper/certification/proof-archive goal: **99%**.
+Best-guess completion toward the external journal/DOI release goal: **70%**.
