@@ -228,7 +228,7 @@ def verify_manuscript_crosswalk(project: Path) -> dict:
         "204",
         "6n-3",
         "0009-0001-9320-500X",
-        "CERTIFIED\\_K3P\\_SAME",
+        "complete K3P containment classification",
     )
     for fragment in required_fragments:
         require(fragment.lower() in normalized_corpus.lower(),
