@@ -31,7 +31,7 @@ c319977f350923ab900a883235e32ec945d55a864338c14a08ce266ed3a1c78a
 The theorem is deliberately limited to the principal positive component; no
 mixed-sign extension is claimed.
 
-## Proof-compressed submission draft
+## Submission package
 
 `proof_compression_submission/` contains the adversarially reviewed article,
 reader supplement, theorem-to-artifact crosswalk, and one bounded
@@ -41,6 +41,11 @@ compact mathematical formulations, while exact direction-sensitive rank,
 restoration, and probe ledgers remain load-bearing. The finite theorem and
 classification universe are unchanged; the outer qualification lock has been
 resealed to bind the repaired verifier-facing mutation evidence.
+
+The final neutral-referee package is
+`proof_compression_submission/output/K2P_Principal_D_Plus_Referee_Package_20260825.zip`
+(SHA-256
+`ca08a3f50154610c7297ca83f92f0c9517fa5422ac7acf53b89582e1e14edbde`).
 
 ## Layout
 

@@ -572,8 +572,9 @@ def main() -> dict[str, object]:
     )
     require(
         "finite principal-domain theorem and classification universe remain unchanged"
-        in supplement
-        and "separately versioned submission sources" in supplement,
+        in normalized_supplement.lower()
+        and "separately versioned submission sources"
+        in normalized_supplement.lower(),
         "COMPUTATIONAL_LOCK_SOURCE_VERSION_DISTINCTION_MISSING",
     )
 

@@ -65,6 +65,10 @@ python3 -m venv .venv
 .venv/bin/python -m pip install --upgrade pip
 .venv/bin/python -m pip install -r work/final_theorem_release/requirements.txt
 
+# Keep the clean extraction byte-invariant across every nested Python process.
+# The outer interpreter's -B flag alone is not inherited by subprocesses.
+export PYTHONDONTWRITEBYTECODE=1
+
 .venv/bin/python -B output/referee/build_referee_bundle.py --check-only
 .venv/bin/python -B work/final_theorem_release/build_release_lock.py --check --require-ready
 .venv/bin/python -B proof_compression_submission/adversarial_review/audit_article_sources.py --check
@@ -177,6 +181,7 @@ reversal, and reassigned polynomial certificates.
 After reading the code, run the compact gates in a clean extraction:
 
 ```sh
+export PYTHONDONTWRITEBYTECODE=1
 <external-venv-python> -B work/final_theorem_release/verify_final_theorem_release.py --quick
 <external-venv-python> -B proof_compression_submission/verify_compressed_release.py --check
 <external-venv-python> -B proof_compression_submission/verify_old_new_equivalence.py --check
@@ -194,12 +199,12 @@ absolute paths:
 
 ```sh
 (cd <clean-extraction-A> && \
-  <external-venv-python> -B \
+  env PYTHONDONTWRITEBYTECODE=1 <external-venv-python> -B \
   work/final_theorem_release/run_release_mutations.py \
   --output <external-report-A.json>)
 
 (cd <differently-named-clean-extraction-B> && \
-  <external-venv-python> -B \
+  env PYTHONDONTWRITEBYTECODE=1 <external-venv-python> -B \
   work/final_theorem_release/run_release_mutations.py \
   --output <external-report-B.json>)
 
@@ -211,7 +216,8 @@ Recompute the complete regular-file inventories afterward and require each
 extraction to be byte-identical to its own pre-run inventory. If Git metadata
 is present, also require an unchanged tracked worktree. Do not place a report,
 virtual environment, cache, or other execution output inside either project
-tree.
+tree. Treat a newly created `__pycache__` file as inventory drift; retain the
+`PYTHONDONTWRITEBYTECODE=1` environment setting for all nested verifier calls.
 
 Inspect, rather than merely hash, the genuine verifier-facing composite
 mutation evidence in:

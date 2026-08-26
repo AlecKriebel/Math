@@ -582,3 +582,76 @@
   adjacent output-safety surface; approximately 85% for the full release
   qualification**, with deterministic regeneration and long clean replays
   still outstanding.
+
+## 2026-08-25 — Final referee-defect closure and submission qualification
+
+- Replaced the former raw4 and theta2 composite pseudo-mutation summaries by
+  22 genuine complete-ledger, production-verifier-facing attacks. Together
+  with optimized-mode and source-immutability guards, the two component suites
+  pass 14/14 and 12/12. The outer stable report now contains 27 conceptual
+  gates, all rejected, with zero survivors and payload
+  `b7e1776e44ff5b50f92ed58f8b62d3c15ea49a358819bd8bc9dfac76ebd9df37`.
+- Made every nested mutation writer caller-owned, atomic, path-independent,
+  and fail-closed against direct collisions, symlink resolution, hardlink
+  truncation, and late symlink swaps. A clean-extraction regression exposed
+  one overstrict assertion that required a canonical reseal to change already
+  current bytes; the corrected idempotence rule permits no change exactly when
+  the canonical report is already byte-current and otherwise permits only the
+  canonical certificate to change. Independent adversarial review passed.
+- Corrected C02 so its current authority is exactly the 405,216 raw
+  four-port directions and 360,408 displayed-quartet exclusions. Restoration,
+  whole-map `T_i`, and rooted tree/sunlet claims are explicitly excluded and
+  remain assigned to their current certificates.
+- Resealed the 227-file promotion-ready outer lock at SHA-256
+  `c319977f350923ab900a883235e32ec945d55a864338c14a08ce266ed3a1c78a`
+  and payload
+  `dcc15b8ae2bb46674344595809690657119e5271611bab8c3c47fccade0fa509`.
+  The recursive closure contains 403 files and 478,865,262 bytes with root
+  `de6c2f7162164bb460bc608bffefb96b0494965c734c1063f304530a0cc36b82`.
+  A semantic delta audit found only the intended relocation-test binding
+  change; every classification census remained unchanged.
+- Ran the complete outer mutation program in two differently named clean
+  archive extractions. Both passed, produced byte-identical report SHA-256
+  `c60fdc2e5f70c702abbbc426f8e9595a1f64464b80a6bdccac13614ee5b2a28a`,
+  and left all 646 extracted project files unchanged.
+- Ran the final full primitive replay from a detached clean checkout of
+  candidate `83821850e02bc6b6a0383dbc9d3d42ab24a261f5`. All 40/40 layers passed
+  with zero blockers in 5,428.031056 seconds internal and 5,428.67 seconds
+  wall time; maximum RSS was 2,548,498,432 bytes. The report SHA-256 is
+  `d26ce0841a50ebdc50a5e5d75a25ac2e12d9b647759051c8ceea29d803bd799e`
+  and the exact source/lock/time telemetry SHA-256 is
+  `dc4bd8faafef195a1fd7879b2c8ac7197ebb56cf8fee46c799ab0415b1e3ec08`.
+- Rebuilt and visually inspected the 26-page article and 24-page supplement;
+  the PDF build payload is
+  `556ba6792d8dd1e27a3e35d52e306d74d835c1f8d35a49f698039127964dc94d`.
+  The static audit, 13-claim crosswalk, 31 crosswalk/bundle mutations, and
+  revised manifest pass. The manifest binds 403 frozen files plus 80
+  submission/execution files with payload
+  `1a4b0999d6c7c2cc6f4ff9cb322ab3189f90aa9b4cdf020464d666aa78148c81`
+  and combined root
+  `ab13d87f2b784d1c12f4fa2a398e33aeb8ba4d2eb8d6c5071611c71c90b2a5ff`.
+- A final fail-closed audit caught one historical adversarial-review addendum
+  that still presented superseded lock and replay values as active. Corrected
+  that provenance-only record to the current lock, recursive closure, replay,
+  runtime, memory, and telemetry values; the mathematical sources, executable
+  evidence, frozen censuses, PDFs, and full replay were unchanged. Resealed the
+  manifest and archive after the correction.
+- The final exact-archive quick and mutation run passed all 23 quick layers,
+  seven old/new comparisons, 11 compression mutations, nine telemetry tests,
+  and 27/27 outer mutations with zero survivors. Its strict inventory guard
+  then detected two newly generated `__pycache__` files: all 484 packaged files
+  were unchanged, but the literal complete-file invariant was not. Repaired
+  the neutral referee instructions to export `PYTHONDONTWRITEBYTECODE=1`
+  across nested subprocesses and to treat any new cache as drift. No verifier,
+  theorem source, lock, PDF, replay, or finite certificate changed.
+- Built the 484-member referee ZIP twice independently; both 214,823,405-byte
+  archives have SHA-256
+  `ca08a3f50154610c7297ca83f92f0c9517fa5422ac7acf53b89582e1e14edbde`.
+  ZIP integrity passed. A fresh archive extraction passed every compact prompt
+  command with zero packaged-byte drift. The executable evidence is byte-for-
+  byte unchanged from the immediately preceding qualified extraction, which
+  also passed the 23-layer quick replay and 27/27 outer mutation suite.
+- Best-guess completion: **100% for the principal-domain theorem, verifier
+  qualification, bioRxiv sources, deterministic referee package, and
+  submission readiness**. The only remaining actions are the author-controlled
+  GitHub Release/Zenodo/DOI steps, which were explicitly left undone.

@@ -71,7 +71,7 @@ deposit, or DOI has been created or claimed.
    nevertheless prints the requested schema, producer, replay, mutation, and
    hash metadata; runs the final clean full replay; records wall time and peak
    memory; and builds a deterministic archive with an external SHA-256 record.
-   The final clean detached replay passed all 40 layers in 5,578.10 seconds,
+   The final clean detached replay passed all 40 layers in 5,428.67 seconds,
    with zero blockers; its exact report and macOS memory telemetry are included
    in the bundle. The public repository URL, corresponding email, contribution
    approval, funding and competing-interests declarations, CC BY 4.0 paper/data
@@ -81,9 +81,9 @@ deposit, or DOI has been created or claimed.
 ## Final validation outcome
 
 - Full primitive regeneration: **PASS**, 40/40 layers, zero blockers.
-- Frozen release: **promotion-ready**, 223 outer files and 399 transitive
+- Frozen release: **promotion-ready**, 227 outer files and 403 transitive
   files, content root
-  `072baaa4066569acd31c552149f6afb727323e54b241bdefc98452598309dd61`.
+  `de6c2f7162164bb460bc608bffefb96b0494965c734c1063f304530a0cc36b82`.
 - Old/new proof-compression equivalence: **PASS**, seven commands.
 - Compression mutations: **PASS**, 11/11 rejected.
 - Printed certificate appendix: **PASS**, 18/18 mutations rejected.
@@ -151,7 +151,7 @@ frozen lock, clean-replay telemetry, and isolated five-file TeX builds.
 1. **Runtime wording — accepted.**  The old sentence conflated two different
    provenance layers. The original computational-evidence lock contains no
    end-to-end timing record, while the submission bundle separately byte-binds
-   the final detached 40-layer replay with 5,578.10 seconds wall time. The supplement
+   the final detached 40-layer replay with 5,428.67 seconds wall time. The supplement
    now states both facts and continues to reject inferred quick-suite timing.
 2. **Evidence lock versus manuscript sources — accepted.**  Reader prose now
    calls `RELEASE_LOCK.json` the frozen principal-domain computational-evidence

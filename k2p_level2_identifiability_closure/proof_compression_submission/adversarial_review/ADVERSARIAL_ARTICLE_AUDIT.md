@@ -14,18 +14,19 @@ immutable release decisions then remained and are now closed**
 ## Final qualification addendum (25 August 2026)
 
 The active frozen lock has SHA-256
-`7113b1c52d577858ec20ef83cd87c870242c8ddc96018036b5c073229821eec9`
+`c319977f350923ab900a883235e32ec945d55a864338c14a08ce266ed3a1c78a`
 and payload
-`f0342dd538b6b72eb5e31eb674df2ce6984b9e4fae6e502583e4bb195aedbb0f`.
-Its portable transitive closure contains 399 files and 478,755,815 bytes with
+`dcc15b8ae2bb46674344595809690657119e5271611bab8c3c47fccade0fa509`.
+Its portable transitive closure contains 403 files and 478,865,262 bytes with
 content root
-`072baaa4066569acd31c552149f6afb727323e54b241bdefc98452598309dd61`.
+`de6c2f7162164bb460bc608bffefb96b0494965c734c1063f304530a0cc36b82`.
 A detached clean checkout at commit
-`1877985d20132fb186d21a5985e8c5f760a656af` passed 40/40 layers with zero
-blockers in 5,578.10 seconds wall time; the exact replay-report SHA-256 is
-`ec5fefc3c1ab2210e9c53792240ebe008603da6abd004d093e2b95e15ff5c10b`
+`83821850e02bc6b6a0383dbc9d3d42ab24a261f5` passed 40/40 layers with zero
+blockers in 5,428.67 seconds wall time and 2,548,498,432 bytes maximum resident
+set size; the exact replay-report SHA-256 is
+`d26ce0841a50ebdc50a5e5d75a25ac2e12d9b647759051c8ceea29d803bd799e`
 and the telemetry SHA-256 is
-`415bf36a59e6006603e4382085c784ffc4e1a1744f1e4c920cd5f0d313fb9df5`.
+`dc4bd8faafef195a1fd7879b2c8ac7197ebb56cf8fee46c799ab0415b1e3ec08`.
 The approved metadata and licenses are printed in the final sources. No GitHub
 Release, Zenodo deposit, or DOI has been created or claimed.
 
