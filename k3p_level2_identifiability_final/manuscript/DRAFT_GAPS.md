@@ -4,18 +4,19 @@ This file is deliberately separate from the theorem statements.  It records
 integration work that must close before the sources are promoted to a final
 submission build.
 
-1. **Post-revision release replay.**  The repaired integrated mathematical gate
-   is recorded, including its 18/18 mutation suite and current hashes.
-   Deterministic release archives, quick/full entry points, aggregate
-   checksums, and clean-checkout tests exist.  The targeted revision must still
-   pass one unified clean 45-command all-producer replay, after which the
-   commit-bound source reproductions and archive bindings must be regenerated.
+1. **Post-revision release replay.**  Complete at exact pushed candidate
+   commit `7b4cdd3197e6d650abafc263cbc8a568d09ddf9f`: the clean quick/full suites,
+   one unified 45-command all-producer replay, two-build source reproduction
+   for both PDFs, and deterministic compact/full archive double-builds all
+   passed.  The sealed theorem artifacts retain their pre-execution gate list
+   to preserve the exact candidate binding; the post-run ledger records the
+   completed machine gates.
 
 2. **Author and post-typesetting review.**  Independent mathematical and
    evidence audits of the targeted bridge, sunlet, genericity, and noncut-
-   compression revisions pass.  Final author review and the commit-bound
-   article--supplement--archive cross-check remain required before submission
-   promotion.
+   compression revisions pass, as does the commit-bound
+   article--supplement--archive cross-check.  Final human author review remains
+   required before submission promotion.
 
 3. **Bibliographic/release metadata.**  No DOI or license is asserted.  If a
    real DOI is minted or the user chooses licenses, rebuild the sources from

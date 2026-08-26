@@ -1,6 +1,6 @@
 # Final release engineering report
 
-Status: **targeted mathematical revision certified; commit-bound 45-command all-producer run pending**
+Status: **targeted mathematical revision and commit-bound proof-release replay certified; submission metadata pending**
 
 The deterministic quick/full/regeneration orchestration, canonical TAR.GZ and
 ZIP construction, compact verifier packaging, fixed-toolchain PDF source
@@ -9,10 +9,10 @@ release mutations are implemented.  Ordinary full replay does not rerun the
 hour-scale probe producer; full regeneration does, behind a deliberate
 one-shot confirmation.
 
-No DOI, license, Git tag, GitHub release, Zenodo record, journal upload, or
-external communication has been created or claimed.
+No K3P DOI, license selection, Git tag, GitHub release, Zenodo record, journal
+upload, or external communication has been created or claimed.
 
-## Targeted-revision candidate
+## Targeted-revision exact-commit execution record
 
 The bridge-gluing and literal sunlet interfaces have been repaired and rebound
 through the integrated theorem gate.  The balanced noncut-compression and
@@ -28,10 +28,44 @@ every page:
 - reader supplement: 12 pages, SHA-256
   `9193b7ed726f41434f313d02d02cb106ab486bb8b2182d922b01c3a78624de20`.
 
-These candidate bytes are not yet described as a release.  They must first be
-committed, followed by clean quick/full and one unified 45-command regeneration
-run, source reproduction, and deterministic archive double-build at that exact
-commit.
+At exact pushed commit
+`7b4cdd3197e6d650abafc263cbc8a568d09ddf9f`, the clean quick suite passed
+with payload
+`63195e8437a90d7dc2a3a5c6b8d1b73d421609d97565a1f9184e0907c304a978`,
+and the clean full suite passed in 200.011 seconds with payload
+`508843309677738fa04f05701f7e64d53db21b63518976bb49d44bb58c5a6277`.
+The single unified 45-command regeneration suite passed in 4,301.285 seconds
+with payload
+`a73fe870142f8c56589ce1a2efd5fdd748d1b51a178b8043244a8c991fe009d7`.
+Its hour-scale probe producer was invoked once, ran for 2,937.148 seconds, and
+passed; the suite reports that tracked project bytes were unchanged.
+
+The article and supplement source archives reproduced the committed PDFs in
+two independent fixed-toolchain builds each.  Their logical reproduction
+payloads are
+`b6344bc345d7507663b84cd571702cecdaf1a279da185a9c8196e7469049d6c6`
+and
+`68a657ae62d3f60fa5b6fb68e0428846d00a193ced328d2be9ed24db42683b0e`.
+The source ZIP SHA-256 values are
+`2d601b46cd9ef98f0b4a02d9e380dfec016624db0b904d873e8a8caf8109c69c`
+and
+`67c4241a2688bef99c2ed151fb6c2d3aa4100d2017a0812cf9b74e27787dbf36`.
+
+Canonical compact and full proof archives each rebuilt byte-identically and
+passed structural inspection plus an extracted artifact replay.  Their
+SHA-256 values are
+`1e2be0e6d1657b763ba91ad3d20dedc7a3e8df58702df33896fb225ec6f08315`
+and
+`28916b14083d305fece3c71cdef1be4af3f6f68708fde3fa363ed03fc834635f`.
+These are exact local proof-release assets, not a GitHub/Zenodo release or a
+journal submission.
+
+`FINAL_CLAIM_LOCK.*`, `ACTIVE_MANIFEST.json`, and the sealed integrated theorem
+report describe the exact pre-execution candidate snapshot and therefore still
+list the machine replay/archive steps as nonmathematical gates.  They are not
+rewritten after execution because doing so would change the source commit they
+bind.  This report and the research/release work logs are the post-run ledger
+showing that those machine gates passed at the cited candidate commit.
 
 ## Superseded pre-revision exact-commit execution record
 
@@ -95,13 +129,8 @@ exact committed source expansion plus every manifest-bound upload byte.
 
 ## Remaining gates
 
-1. Commit and push this repair as the exact evidence candidate.
-2. Run quick, full, and one unified 45-command regeneration suite at that clean
-   exact commit, retaining the complete reports and transcripts.
-3. Rebuild both source archives and canonical compact/full archives twice at
-   the same commit, then rerun their independent verifiers.
-4. Keep the submission state fail-closed until the human author declarations,
+1. Keep the submission state fail-closed until the human author declarations,
    repository facts, journal metadata, and upload artifacts are supplied.
-5. Create a human-approved exact-HEAD tag and pre-DOI envelope only after those
+2. Create a human-approved exact-HEAD tag and pre-DOI envelope only after those
    blockers close.  License selection, DOI minting, and external uploads remain
    Alec's actions.

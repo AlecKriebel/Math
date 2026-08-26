@@ -584,3 +584,47 @@ producer, followed by commit-bound source and archive reconstruction.
 Best-guess completion toward the mathematical classification goal: **100%**.
 Best-guess completion toward the paper/certification/proof-archive goal: **98%**.
 Best-guess completion toward the external journal/DOI release goal: **70%**.
+
+## 2026-08-26T03:42:13Z — exact-commit clean replay and proof-archive closure
+
+- Pushed exact revision commit
+  `7b4cdd3197e6d650abafc263cbc8a568d09ddf9f` to `origin/main` before running
+  the final clean evidence sequence.
+- The clean quick suite passed with payload
+  `63195e8437a90d7dc2a3a5c6b8d1b73d421609d97565a1f9184e0907c304a978`;
+  the clean full suite passed in 200.011 seconds with payload
+  `508843309677738fa04f05701f7e64d53db21b63518976bb49d44bb58c5a6277`.
+- Invoked the 45-command full-regeneration wrapper exactly once and blocked on
+  that process until completion.  Every command passed.  The probe producer
+  ran once for 2,937.148 seconds, total suite time was 4,301.285 seconds, the
+  payload was
+  `a73fe870142f8c56589ce1a2efd5fdd748d1b51a178b8043244a8c991fe009d7`,
+  and the suite certified that tracked project bytes were unchanged.
+- Rebuilt each packaged LaTeX source twice with the pinned arm64 Tectonic
+  0.16.9 executable.  Both article builds matched committed PDF SHA-256
+  `2c7dc0081edf61ec29b38cd48bb9634aa73ceac25efbef38ae62616cd1d0c14b`
+  byte-for-byte; both supplement builds matched
+  `9193b7ed726f41434f313d02d02cb106ab486bb8b2182d922b01c3a78624de20`.
+- Built the compact and full archives twice.  Both pairs were byte-identical,
+  structurally verified, and passed extracted artifact replay.  Their SHA-256
+  values are
+  `1e2be0e6d1657b763ba91ad3d20dedc7a3e8df58702df33896fb225ec6f08315`
+  and
+  `28916b14083d305fece3c71cdef1be4af3f6f68708fde3fa363ed03fc834635f`.
+- Submission staging remains deliberately `NOT_READY`, with zero structural
+  errors and 26 explicit human/release blockers.  No tag, license, DOI,
+  GitHub/Zenodo release, journal upload, or external communication was made.
+- The sealed claim lock, active manifest, and integrated report were left
+  byte-exact to their pre-execution candidate snapshot; their pending machine-
+  gate list is historical at that snapshot.  The post-run release report and
+  these logs are the execution ledger, avoiding a self-invalidating source-
+  commit rewrite after the clean replay.
+
+Strongest verified result: the adversarially revised K3P-SAME theorem, both
+fixed-epoch PDFs, every active exact producer/replay/mutation gate, and both
+deterministic proof archives now pass at one pushed exact commit.  The only
+remaining work is the explicitly human-controlled submission/release layer.
+
+Best-guess completion toward the mathematical classification goal: **100%**.
+Best-guess completion toward the paper/certification/proof-archive goal: **100%**.
+Best-guess completion toward the external journal/DOI release goal: **70%**.

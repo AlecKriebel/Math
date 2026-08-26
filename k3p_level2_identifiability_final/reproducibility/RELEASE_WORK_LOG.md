@@ -105,3 +105,30 @@ Best-guess completion: **98% of the paper/certification/proof-archive goal and
 is one unified exact-HEAD run plus commit-bound source/archive reconstruction.
 Human metadata, license, DOI, tag/release approval, and portal actions remain
 outside this machine checkpoint.
+
+## 2026-08-26T03:42:13Z — clean 45-command fixed point and deterministic assets
+
+- Exact pushed source commit:
+  `7b4cdd3197e6d650abafc263cbc8a568d09ddf9f`.
+- Clean quick/full/regeneration payloads:
+  `63195e8437a90d7dc2a3a5c6b8d1b73d421609d97565a1f9184e0907c304a978`,
+  `508843309677738fa04f05701f7e64d53db21b63518976bb49d44bb58c5a6277`,
+  and
+  `a73fe870142f8c56589ce1a2efd5fdd748d1b51a178b8043244a8c991fe009d7`.
+  The unified regeneration completed all 45 commands in 4,301.285 seconds;
+  the one-shot probe producer accounted for 2,937.148 seconds.
+- Article/supplement source-reproduction logical payloads:
+  `b6344bc345d7507663b84cd571702cecdaf1a279da185a9c8196e7469049d6c6`
+  and
+  `68a657ae62d3f60fa5b6fb68e0428846d00a193ced328d2be9ed24db42683b0e`.
+  Each packaged source rebuilt twice and matched the committed PDF byte-for-byte.
+- Compact/full archive SHA-256 values:
+  `1e2be0e6d1657b763ba91ad3d20dedc7a3e8df58702df33896fb225ec6f08315`
+  and
+  `28916b14083d305fece3c71cdef1be4af3f6f68708fde3fa363ed03fc834635f`.
+  Independent second builds were byte-identical; structural and extracted-gate
+  checks passed.
+
+Best-guess completion: **100% of the mathematical and proof-archive machine
+goal; 70% of the external-submission goal**.  Submission metadata, license,
+tag/release approval, DOI, and portal actions remain human-controlled.

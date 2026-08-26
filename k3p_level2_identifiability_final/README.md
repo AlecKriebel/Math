@@ -61,8 +61,13 @@ Reproduce the mathematical promotion with:
 This certification is not a submission-readiness claim.  The revised
 manuscript, reader supplement, canonical PDFs, and page-by-page visual QA are
 complete, and the deterministic fail-closed release tooling is implemented.
-Its targeted-revision exact-HEAD quick/full/all-producer execution and archive
-rebinding remain pending.  Execution records live under ignored release
-work/transcript paths; journal packages remain deliberately `NOT_READY` until
-their human metadata and upload artifacts are supplied.  No DOI, license,
-submission, peer review, or completed human review is claimed.
+At exact pushed candidate commit
+`7b4cdd3197e6d650abafc263cbc8a568d09ddf9f`, the clean quick/full suites,
+single 45-command all-producer execution, two-build PDF source reproductions,
+and deterministic archive double-builds all passed.  The sealed claim lock,
+active manifest, and integrated report intentionally retain the candidate's
+pre-execution nonmathematical-gate list; the post-run execution ledger is
+`release/FINAL_RELEASE_ENGINEERING_REPORT.md`.  Runtime records live under
+ignored release work/transcript paths.  Journal packages remain deliberately
+`NOT_READY` until their human metadata and upload artifacts are supplied.  No
+DOI, license, submission, peer review, or completed human review is claimed.
