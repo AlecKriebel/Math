@@ -1,12 +1,13 @@
 # Provenance and reproducibility
 
-## Canonical and public status -- 25 August 2026
+## Canonical and public status -- 26 August 2026
 
 This directory is the sole current K2P/K3P manuscript, verification,
 submission, and archival subtree. The pre-clarification paper, summary,
 certificates, and verifiers are isolated under the parent
-`legacy/DO_NOT_SUBMIT-pre-clarification/` directory. Historical release archives
-are under the parent `legacy/releases/` directory. All are excluded from new
+`legacy/DO_NOT_SUBMIT-pre-clarification/` directory. The immutable version 1.1.0
+release is under the parent `releases/` directory, while version 1.0.0 remains
+under `legacy/releases/`. All earlier materials are excluded from new
 submission/release instructions.
 
 This repository is public. The pre-clarification combined K2P/K3P directory
@@ -15,19 +16,30 @@ first appears in public repository history at commit `ca21a733`, dated 4 August
 combined source directory. The full early draft was therefore already public
 before the clarification. This record is additive and no history was rewritten.
 
-The current frozen submission/replay snapshot is version `1.1.0`, identified by
-the Git tag `k2p-k3p-theta-v1.1.0`. The earlier tag
-`k2p-k3p-theta-biorxiv-v1.0.0` remains immutable. Exact upload-time status and unresolved
-author choices are recorded in `submission/biorxiv/`. No bioRxiv or Zenodo
-deposit and no external communication was initiated by the automated revision
-process.
+The current frozen submission/replay snapshot is version `1.2.0`, identified by
+the Git tag `k2p-k3p-theta-v1.2.0`. The earlier tags
+`k2p-k3p-theta-v1.1.0` and `k2p-k3p-theta-biorxiv-v1.0.0` remain immutable.
+Version 1.1.0 archives are retained under the parent `releases/` directory;
+version 1.0.0 remains under `legacy/releases/`. Exact upload-time status and
+unresolved author choices are recorded in `submission/biorxiv/`. No GitHub
+release, bioRxiv submission, Zenodo deposit, DOI, or external communication was
+initiated by the automated revision process.
 
-Version `1.1.0` distinguishes the source paper's history explicitly. The
+Version `1.2.0` distinguishes the source paper's history explicitly. The
 removed arbitrary-level K2P statements are cited at arXiv:2607.12919v2. The
 corrected arXiv:2607.12919v3 removes those statements, records the leaf-order
-obstruction, and leaves high-level K2P and K3P questions open. The exact
-collisions here answer both questions negatively without affecting the source
-paper's JC or level-one results.
+obstruction, and leaves high-level K2P and K3P questions open. Since K2P is
+nested in K3P, the compact K2P collision answers both questions negatively.
+The separate quartic theta parameter breaks every relabeled K2P edge symmetry,
+although its exact shared distribution is openly identified as relabeled K2P;
+the rank-15 submersion supplies nearby shared distributions outside all three
+relabeled K2P strata. None of these statements affects the source paper's JC
+or level-one results.
+
+Version 1.2.0 additionally records the 11- and 14-dimensional fixed-output
+fibers, Zariski-dense effective theta images, and the common-subtree theorem
+that inserts one theta blob at any selected internal vertex of any labelled
+unrooted binary tree. It does not claim simultaneous multi-blob composition.
 
 ## Revision lineage
 
@@ -47,11 +59,26 @@ For the simple witness it independently checks:
 - all 64 ordinary-state network/tree probability equalities;
 - equality with Fourier inversion and every corresponding stored certificate entry.
 
-The complete suite additionally replays the edgewise strictly continuous-time K2P witness, induction-order audit, all-six-order negative-sign point, K2P ranks and collision family, and all K3P collision, Jacobian, and edgewise continuous-time analytic implicit-function data. Edgewise embeddability does not assert a common generator, rate ratio, molecular clock, or globally compatible node times.
+The complete suite additionally replays the edgewise strictly continuous-time
+K2P witness, induction-order audit, all-six-order negative-sign point, K2P
+ranks and collision family, the exact K3P parameter/output symmetry distinction,
+the K3P Jacobian and edgewise continuous-time analytic implicit-function data,
+and the 11/14 fixed-output fiber counts. A focused four-leaf verifier checks one
+single-theta graft using all 256 Fourier coordinates and all 256 ordinary-state
+probabilities. The universal all-tree result rests on the manuscript's
+common-kernel proof, not finite enumeration. Edgewise embeddability does not
+assert a common generator, rate ratio, molecular clock, or globally compatible
+node times.
 
 ## Exact arithmetic and source conventions
 
-The focused verifier uses exact arithmetic in `Q(sqrt(71))` and only the Python standard library. The source-convention checker uses exact rational test vectors to confirm order `(A,C,G,T)`, Klein addition `C+G=T`, the K2P identification `a_C=a_T`, the five explicit Lemma 4.1 coordinates, and the favorable-order factorization of `Q`.
+The compact simple-witness verifier uses exact arithmetic in `Q(sqrt(71))`.
+The continuous-time K2P and four-leaf graft verifiers use the isolated field
+`Q(ell,sqrt(1423))`, and the K3P verifier uses `Q(h)` with `5 h^4=1`.
+All require only the Python standard library. The source-convention checker uses
+exact rational test vectors to confirm order `(A,C,G,T)`, Klein addition
+`C+G=T`, the K2P identification `a_C=a_T`, the five explicit Lemma 4.1
+coordinates, and the favorable-order factorization of `Q`.
 
 ## AI assistance
 

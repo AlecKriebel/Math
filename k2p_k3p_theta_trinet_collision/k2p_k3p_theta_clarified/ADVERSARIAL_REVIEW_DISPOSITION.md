@@ -1,9 +1,38 @@
 # Adversarial review disposition
 
-Checked independently on 25 August 2026 against the manuscript, exact
-verifiers and certificates, the official arXiv sources for Versions 2 and 3 of
-Brits et al., and the cited primary literature. This file records why each
-received recommendation was accepted, qualified, or rejected.
+This file records why each received recommendation was accepted, qualified, or
+rejected. Reviews used the manuscript, exact verifiers and certificates, the
+official arXiv sources for Versions 2 and 3 of Brits et al., and the cited
+primary literature.
+
+## Version 1.2.0 expansion -- 26 August 2026
+
+| Feedback item | Verdict | Disposition |
+|---|---|---|
+| K2P is already a K3P submodel | Valid and logically central | The abstract, introduction, theorem order, summary, and metadata now state that the compact K2P collision answers both Version 3 Kimura disjointness questions. |
+| Call the exact quartic output genuinely K3P | Rejected as false | Its comparison tree has `C=G` on every edge, so the output is relabeled K2P. The paper states this explicitly. |
+| Quartic theta parameter breaks K2P symmetry | Valid | The `U` edge has three distinct nontrivial eigenvalues, excluding every character-relabeled K2P parameter specialization. |
+| Nearby genuinely K3P outputs follow from rank 15 | Valid with a submersion proof | The collision locus is written as a transverse preimage, its restriction to the tree germ is proved submersive, and the finite union of three six-dimensional K2P strata is removed from the covered nine-dimensional tree neighborhood. |
+| Direct binary tree-child argument | Valid | Both `p` and `q` already use their two outgoing arcs toward the reticulations, forcing `u -> p` and `u -> q`; both have only reticulation children. |
+| Decimal approximations described as exact values | Valid editorial correction | Replaced decimal equalities by rigorous isolating bounds for the exact algebraic quantities. |
+| Degree-two suppression sentence | Valid under the stated group-based model | Added coordinatewise Fourier multiplication after suppression to the manuscript and focused clarification note. |
+| Determinant of a rectangular map | Valid editorial correction | The technical summary now identifies a selected `9 x 9` Jacobian minor. |
+| “Generic parameters are distinguishable” | Overbroad | Replaced by “generic theta parameters are not tree-equivalent”; no claim against every competing topology is made. |
+| Local fixed-output dimensions 11 and 14 | Valid | Added the submersion/constant-rank proof, local product interpretation, and explicit verifier assertions. The distinct collision-locus dimensions remain 17 and 23. |
+| Algebraic saturation | Valid with ambient qualifications | Stated as Zariski density in the effective normalized Fourier spaces. Ambient normalization/symmetry relations, stochastic inequalities, continuous-time inequalities, and tree invariants remain. |
+| Grafting to every binary tree topology | Valid for one chosen degree-three internal vertex | Added a common-kernel proof for every labelled unrooted binary tree and an exact four-leaf regression. The result inserts one theta blob only. |
+| Observable genuine-K3P grafting | Valid with restricted common kernels | Injective, character-equivariant JC subtree kernels reflect rather than erase the absence of all relabeled-K2P symmetries. Arbitrary common kernels are used only to preserve equality. |
+| Broad substitution-supermodel corollary | Valid only conditionally | Retained as a remark requiring containment of the complete parameter tuples and identical uniform-root/independent-switching semantics. Common-generator, clock, shared-rate, and other coupled-edge models are excluded. |
+| Multi-blob composability | Not pursued | It remained a separately scoped follow-up under the author's explicit boundary. No two-blob or simultaneous-replacement claim was added. |
+| Common-generator/clock, genuine four-attachment K3P blob, JC collision, or full classification | Not pursued | Preserved as future work rather than delaying this release. |
+| Title change | Unnecessary | The title remains focused on the base exact theta-trinet mechanism; the all-leaf theorem is a consequence of that local collision. |
+
+Independent post-edit proof, exact-verifier, and release-metadata audits found
+no remaining publication blocker. The complete verifier suite passes in normal
+and optimized modes, and all three final PDFs passed extracted-text, embedded-
+font, and full-page visual checks.
+
+## Version 1.1.0 submission review -- 25 August 2026
 
 | Feedback item | Verdict | Disposition |
 |---|---|---|

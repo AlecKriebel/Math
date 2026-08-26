@@ -10,7 +10,7 @@ usage() {
     'in CITATION.cff. The version, citation metadata, and annotated release tag' \
     'k2p-k3p-theta-v<VERSION> must all identify the same commit.' \
     'DIR must not already contain target filenames. The canonical subtree must' \
-    'have no tracked or untracked changes. Author-only submission/biorxiv files' \
+    'have no tracked or nonignored untracked changes. Author-only submission/biorxiv files' \
     'are excluded from the release archives.'
 }
 
@@ -94,6 +94,14 @@ elif [[ "$release_version" != "$citation_version" ]]; then
 fi
 
 release_tag="k2p-k3p-theta-v${release_version}"
+tag_type=$(git -C "$repo_root" cat-file -t "refs/tags/${release_tag}" 2>/dev/null) || {
+  printf 'Required release tag is absent: %s\n' "$release_tag" >&2
+  exit 1
+}
+if [[ "$tag_type" != tag ]]; then
+  printf 'Required release tag is not annotated: %s\n' "$release_tag" >&2
+  exit 1
+fi
 tag_commit=$(git -C "$repo_root" rev-parse --verify "${release_tag}^{commit}" 2>/dev/null) || {
   printf 'Required release tag is absent: %s\n' "$release_tag" >&2
   exit 1
@@ -108,6 +116,7 @@ required=(
   README.md
   PROVENANCE.md
   CHANGELOG.md
+  RESEARCH_LOG.md
   ADVERSARIAL_REVIEW_DISPOSITION.md
   combined-paper-clarified.tex
   combined-paper-clarified.pdf
@@ -119,11 +128,13 @@ required=(
   verification_report_complete.txt
   verification_report_simple.txt
   verification_report_displayed_trees.txt
+  verification_report_four_leaf_graft.txt
   verification_report_source_conventions.txt
   CITATION.cff
   manifest.sha256
   LICENSE-CODE
   LICENSES.md
+  src/verify_k2p_four_leaf_graft.py
   submission/build_release.sh
 )
 for rel in "${required[@]}"; do
@@ -320,6 +331,16 @@ cmp -s "$release_tree/verification_report_displayed_trees.txt" "$tmp_dir/verific
 (cd "$release_tree" && python3 src/verify_source_conventions.py) >"$tmp_dir/verification-conventions.txt"
 cmp -s "$release_tree/verification_report_source_conventions.txt" "$tmp_dir/verification-conventions.txt" || {
   printf 'Stored source-convention verification report is stale.\n' >&2
+  exit 1
+}
+(cd "$release_tree" && python3 src/verify_k2p_four_leaf_graft.py) >"$tmp_dir/verification-four-leaf.txt"
+cmp -s "$release_tree/verification_report_four_leaf_graft.txt" "$tmp_dir/verification-four-leaf.txt" || {
+  printf 'Stored four-leaf graft verification report is stale.\n' >&2
+  exit 1
+}
+(cd "$release_tree" && PYTHONOPTIMIZE=1 python3 src/verify_k2p_four_leaf_graft.py) >"$tmp_dir/verification-four-leaf-optimized.txt"
+cmp -s "$release_tree/verification_report_four_leaf_graft.txt" "$tmp_dir/verification-four-leaf-optimized.txt" || {
+  printf 'Optimized four-leaf graft output differs from the stored focused report.\n' >&2
   exit 1
 }
 

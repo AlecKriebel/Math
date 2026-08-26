@@ -937,6 +937,58 @@ class Verification:
         print("[collision] PASS  all 64 positive leaf-pattern probabilities agree and sum to 1")
         return q_network, q_tree
 
+    def verify_k2p_specialization_scope(
+        self,
+        q_network: Mapping[Tuple[int, int, int], Alg],
+        q_tree: Mapping[Tuple[int, int, int], Alg],
+    ) -> None:
+        """Separate genuine-K3P parameters from the symmetry of their output.
+
+        A globally relabelled K2P edge submodel is obtained by requiring one
+        of the three pairs of nonidentity Fourier eigenvalues to be equal on
+        every edge.  The U edge alone excludes all three possibilities here.
+        The common output nevertheless lies in the C=G relabelled K2P tree
+        submodel.  These are deliberately checked as two different facts.
+        """
+        vector_rows = self.cert["parameter_vectors"]
+        require(isinstance(vector_rows, Mapping), "parameter vectors for K2P-scope audit")
+        u = parse_vector(vector_rows["U"]["eigen"])
+        u_c, u_g, u_t = u[1], u[2], u[3]
+        require_positive(u_g - u_c, self.lo, self.hi, "U_G-U_C")
+        require_positive(u_t - u_c, self.lo, self.hi, "U_T-U_C")
+        require_positive(u_g - u_t, self.lo, self.hi, "U_G-U_T")
+
+        tree = self.tree_vectors()
+        alpha, beta, gamma = tree["1"], tree["2"], tree["3"]
+        require_equal(alpha[1], alpha[2], "comparison-tree alpha_C=alpha_G")
+        require(alpha[1] != alpha[3], "comparison-tree alpha must not be JC")
+        for name, edge in (("beta", beta), ("gamma", gamma)):
+            require(edge[1] == edge[2] == edge[3],
+                    f"comparison-tree {name} must be JC")
+
+        def swapped(labels: Tuple[int, int, int], left: int, right: int) -> Tuple[int, int, int]:
+            permutation = list(range(4))
+            permutation[left], permutation[right] = permutation[right], permutation[left]
+            return tuple(permutation[value] for value in labels)  # type: ignore[return-value]
+
+        expected_differences = {(1, 2): 0, (1, 3): 8, (2, 3): 8}
+        for name, coordinates in (("network", q_network), ("tree", q_tree)):
+            require_equal(len(coordinates), 64, f"{name} Fourier coordinate count")
+            for pair, expected in expected_differences.items():
+                difference_count = sum(
+                    coordinates[labels] != coordinates[swapped(labels, *pair)]
+                    for labels in coordinates
+                )
+                require_equal(
+                    difference_count,
+                    expected,
+                    f"{name} output differences under {self.symbols[pair[0]]}<->"
+                    f"{self.symbols[pair[1]]}",
+                )
+
+        print("[K3P/K2P scope] PASS  U_C,U_G,U_T are pairwise distinct, excluding every relabelled K2P edge-parameter submodel")
+        print("[K3P/K2P scope] PASS  the common output/tree lies in exactly the C=G relabelled K2P specialization")
+
     # ---- Jacobian ------------------------------------------------------------
 
     def derivative_edge(self, labels: Tuple[int, int, int], edge_id: str,
@@ -1075,6 +1127,7 @@ class Verification:
         semi_edge_count = len(self.cert["root_suppression"]["effective_semi_directed_edges"])
         reticulation_count = len(self.retic_rows)
         semi_parameter_dimension = 3 * semi_edge_count + reticulation_count
+        local_fixed_output_fiber_dimension = semi_parameter_dimension - 15
         tree_dimension = 9
         tree_codimension = 15 - tree_dimension
         local_collision_dimension = semi_parameter_dimension - tree_codimension
@@ -1082,6 +1135,8 @@ class Verification:
         require_equal(reticulation_count, 2, "reticulation count")
         require_equal(jac["semi_directed_parameter_dimension"], semi_parameter_dimension,
                       "semi-directed parameter dimension")
+        require_equal(local_fixed_output_fiber_dimension, 14,
+                      "local fixed-output K3P fiber dimension")
         require_equal(jac["tree_model_dimension"], tree_dimension,
                       "tree model dimension")
         require_equal(jac["tree_codimension_in_ambient"], tree_codimension,
@@ -1095,6 +1150,7 @@ class Verification:
         print("[Jacobian] PASS  specified 15 x 15 minor reconstructed by exact differentiation")
         print("[Jacobian] PASS  det J = h(10 h^2+1)/(2^61 3^4 5^14) > 0")
         print("[Jacobian] PASS  fixed semi-directed theta map has rank 15; the nonzero-minor locus is Zariski open")
+        print("[Jacobian] PASS  local fixed-output theta fiber has dimension 14 (29-15)")
         print("[Jacobian] PASS  tree model has rank 9; local network preimage of the tree model has dimension 23 (codimension 6)")
         return expected_rows, columns, matrix
 
@@ -1214,7 +1270,8 @@ def verify(certificate_path: Path) -> None:
     verification.verify_topology()
     verification.verify_construction_ansatz()
     verification.verify_parameters()
-    verification.verify_collision()
+    q_network, q_tree = verification.verify_collision()
+    verification.verify_k2p_specialization_scope(q_network, q_tree)
     rows, columns, jacobian = verification.verify_jacobian()
     verification.verify_continuous_time(rows, columns, jacobian)
     print()

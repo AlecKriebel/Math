@@ -1,5 +1,58 @@
 # Research log
 
+## 2026-08-26 -- Version 1.2.0 adversarial source-freeze checkpoint
+
+- Completed independent post-edit proof, verifier, and release-metadata audits.
+  No mathematical, computational, editorial, or packaging blocker remains.
+  The audits independently rechecked the K3P symmetry distinction, restricted
+  submersion argument, local fiber dimensions, Zariski-density scope, and
+  one-blob grafting theorem.
+- Replayed the complete exact suite in normal and optimized Python modes. Both
+  runs matched the stored transcript and ended with `ALL EXACT CHECKS PASSED`;
+  the focused four-leaf transcript is also byte-identical across tested Python
+  3.11 and 3.14 environments.
+- Rebuilt the 19-page manuscript and both two-page supporting PDFs. All fonts
+  are embedded; extracted-text checks found no unresolved references,
+  placeholders, local paths, or stale version labels; full-page visual review
+  found no clipping, overlap, or broken layout.
+- Reconciled citation, provenance, changelog, bioRxiv worksheet, and archival
+  metadata at version `1.2.0`. The remaining build is commit/tag-bound and will
+  replay the exact suite and clean PDF build from both archive formats.
+- Best-guess completion: **99% of version 1.2.0 technical readiness**. The
+  remaining technical step is the immutable tag/archive replay. Portal email,
+  affiliation, category, distribution license, and final submission approval
+  remain author-controlled choices; no GitHub release, Zenodo deposit, DOI, or
+  external communication has been initiated.
+
+## 2026-08-26 -- Version 1.2.0 theorem-expansion checkpoint
+
+- Independently adjudicated the new adversarial review. The compact K2P
+  collision already resolves the K3P disjointness question by model inclusion.
+  The quartic network parameter breaks every relabeled K2P edge symmetry, but
+  its exact shared output is the `C=G` relabeled K2P tree distribution; the
+  manuscript now separates these facts.
+- Proved the stronger distribution-level K3P result by restricting the
+  rank-15 submersion to the collision locus and deleting the three
+  six-dimensional relabeled-K2P strata from the covered nine-dimensional tree
+  neighborhood. The argument also applies at a strict edgewise continuous-time
+  point on the analytic branch.
+- Formalized the local product theorem. Fixed-output theta fibers have
+  dimensions 11 under K2P and 14 under K3P, while the full collision loci retain
+  dimensions 17 and 23.
+- Promoted full ambient rank to Zariski density in the effective normalized
+  Fourier spaces, with explicit limits concerning ambient equalities,
+  inequalities, and the proper tree varieties.
+- Proved the common-subtree kernel lemma and the one-blob replacement theorem
+  for every labelled unrooted binary tree and every chosen internal vertex.
+  Injective equivariant JC component kernels preserve observable genuine-K3P
+  status. Multi-blob composability was excluded under the agreed scope.
+- Added a hardened exact four-leaf regression and new symmetry/fiber verifier
+  checks; normal and optimized focused replays pass under Python 3.11 and 3.14.
+- Best-guess completion: **72% of version 1.2.0 technical readiness**. Remaining
+  work is global metadata reconciliation, complete replay, PDF build and visual
+  QA, independent post-edit audits, manifest/tag/archive gates, and the
+  author-controlled bioRxiv and Zenodo choices.
+
 ## 2026-08-25 21:47 PDT -- Version 1.1.0 source-freeze checkpoint
 
 - Completed independent post-revision proof and verifier audits. No remaining

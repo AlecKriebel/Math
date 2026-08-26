@@ -1,5 +1,42 @@
 # Changelog
 
+## Version 1.2.0 theorem expansion -- 26 August 2026
+
+- Reframed the logical hierarchy around `K2P` being a submodel of `K3P`: the
+  compact K2P collision alone answers both Version 3 high-level Kimura
+  tree--trinet disjointness questions negatively.
+- Retained the quartic K3P construction as an exact parameter-level
+  symmetry-breaking result. Its theta parameter is outside every
+  character-relabeled K2P specialization, while its shared comparison-tree
+  distribution is explicitly identified as the `C=G` relabeled K2P case and
+  not JC.
+- Promoted the submersion consequences: the local collision loci have
+  dimensions 17 and 23, project onto nearby tree-model germs, and have
+  11- and 14-dimensional fixed-output theta fibers.
+- Proved that a relatively open dense set of nearby K3P tree distributions
+  outside all three relabeled K2P strata has theta realizations, including
+  inside the edgewise strictly continuous-time chamber.
+- Added the Zariski-density corollary for the effective 9- and 15-dimensional
+  fixed-theta Fourier images, with explicit caveats for ambient relations,
+  stochastic inequalities, continuous-time inequalities, and tree invariants.
+- Added the common-subtree kernel lemma and a single-theta replacement theorem
+  for every labelled unrooted binary tree, every selected internal vertex, and
+  every number of leaves `n >= 3`, including strict-interior, edgewise
+  continuous-time, and observably genuine K3P variants.
+- Kept simultaneous multi-blob composition, common-generator and clock models,
+  genuine four-attachment K3P blobs, JC collisions, and complete intersection
+  classification outside this release.
+- Replaced the indirect tree-child orientation argument, distinguished exact
+  algebraic values from certified decimal bounds, documented degree-two edge
+  suppression, and corrected rectangular-Jacobian and genericity wording.
+- Added a hardened exact four-leaf regression that checks all 256 Fourier
+  coordinates and all 256 direct-pruning probabilities in normal and optimized
+  Python modes. Added exact K3P symmetry-stratum checks and explicit 11/14 fiber
+  assertions to the existing rank verifiers.
+- Updated all manuscript, summary, replay, bioRxiv, citation, provenance, and
+  release metadata for immutable tag `k2p-k3p-theta-v1.2.0`, while preserving
+  every earlier tag and archive unchanged.
+
 ## Version 1.1.0 submission revision -- 25 August 2026
 
 - Updated the manuscript to cite arXiv:2607.12919v2 for the removed K2P
