@@ -14,10 +14,9 @@ import argparse
 import hashlib
 import itertools
 import json
+import sys
 from pathlib import Path
 from typing import Any
-
-import sympy as sp
 
 
 HERE = Path(__file__).resolve().parent
@@ -35,10 +34,20 @@ CHARACTER_TRANSPORTS = {
     "identity": {"0": "0", "C": "C", "G": "G", "T": "T"},
     "C_T_swap": {"0": "0", "C": "T", "G": "G", "T": "C"},
 }
+sp: Any = None
 
 
 class QuartetFailure(RuntimeError):
     pass
+
+
+def load_runtime_dependencies() -> None:
+    """Load the only non-stdlib dependency after stale output is removed."""
+
+    global sp
+    import sympy as sympy_module
+
+    sp = sympy_module
 
 
 def require(condition: bool, code: str, detail: Any = None) -> None:
@@ -446,8 +455,6 @@ def derive_displayed_set_layer(
 
 
 def main() -> None:
-    if not __debug__:
-        raise SystemExit("QUARTET_LOGIC_OPTIMIZED_MODE_FORBIDDEN")
     parser = argparse.ArgumentParser()
     parser.add_argument("--project", type=Path, default=DEFAULT_PROJECT)
     parser.add_argument("--spec", type=Path, default=DEFAULT_SPEC)
@@ -462,6 +469,13 @@ def main() -> None:
         if args.output
         else HERE / "quartet_logic_certificate.json"
     )
+    # A caller-owned explicit output is fail-closed.  The implicit canonical
+    # destination is not removed by a diagnostic-only ``-O`` invocation.
+    if args.output is not None:
+        output.unlink(missing_ok=True)
+    if not __debug__:
+        raise SystemExit("QUARTET_LOGIC_OPTIMIZED_MODE_FORBIDDEN")
+    load_runtime_dependencies()
     spec = load_spec(spec_path)
     documents = (
         {} if args.skip_document_binding else validate_documents(project, spec)
@@ -522,4 +536,8 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except (QuartetFailure, KeyError, OSError, ValueError, json.JSONDecodeError) as exc:
+        print(f"QUARTET_LOGIC_VERIFY_FAIL:{exc}", file=sys.stderr)
+        raise SystemExit(1)

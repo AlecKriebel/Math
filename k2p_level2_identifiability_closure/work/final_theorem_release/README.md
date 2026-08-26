@@ -6,12 +6,18 @@ It locks every load-bearing proof and computation, checks exact cross-layer
 censuses and hash roots, and orchestrates independent quick and full replays
 without writing into producer directories.
 
-The authoritative theorem text is
-`../global_theorem_closure/promotion_manuscript/K2P_SAME_PROMOTION_MANUSCRIPT.md`.
-The earlier `../global_theorem_closure/GLOBAL_PROOF.md` is historical
-provenance only. The oddly named `PROBE_PROMOTION_PLACEHOLDER.json` in the
-promotion-manuscript directory is not pending: it is the completed frozen
-`PASS` binding checked by the promotion guard.
+The current submission theorem authority is
+`../../proof_compression_submission/article/main.tex`, with the rendered
+article bound by the submission manifest.  The release also retains and
+checks the frozen theorem narrative
+`../global_theorem_closure/promotion_manuscript/K2P_SAME_PROMOTION_MANUSCRIPT.md`;
+it is the machine-bound computational theorem-promotion companion, not the
+current submission proof authority.  Its reconstruction procedure mirrors the
+article's retain-all-candidates and final exact-membership steps.  The earlier
+`../global_theorem_closure/GLOBAL_PROOF.md` is historical provenance only.
+The oddly named `PROBE_PROMOTION_PLACEHOLDER.json` in the promotion-manuscript
+directory is not pending: it is the completed frozen `PASS` binding checked by
+the promotion guard.
 
 Legacy handoff names are not additional gates.  The canonical mapping is in
 `../../output/referee/README.md`: in particular, `verify_handoff.py` maps to
@@ -50,11 +56,22 @@ targets raw omissions, false rank exclusions, wrong parents, missing children,
 broken transports, reassigned quadratic/cubic/quartic/quintic and `T_i`
 certificates, the historical `raw4424` oracle regression, promotion document
 drift, historical-artifact promotion or omission, and optimized-Python
-execution. The outer suite has 27 conceptual gates.  Attacks rerun by the
+execution. The outer suite has 25 conceptual gates, including fresh
+production-verifier-facing exact-rank and weak-sharpness mutation gates.
+The revoked raw-ledger mutation suite and the historical rooted-theta2
+quadratic suite remain byte-bound as nonauthoritative provenance regressions;
+neither is invoked by, or counted in, the promotion suite. The current
+corrected raw-four full-map, theta2 full-map, and exact-rank suites cover those
+promotion semantics. Attacks rerun by the
 outer command use disposable ledgers, reports, or isolated project copies.
-Rows explicitly labelled `frozen` instead bind already sealed nested mutation
-suites and validate their exact producer, verifier, source, census, and
-semantic-diagnostic contracts; they are not described as freshly rerun by the
+The raw-four and theta2 full-map, canonicalizer, parameter-transport, rank,
+restoration, and probe mutation rows are freshly rerun with caller-owned
+disposable reports and checked against their sealed logical payloads.  The two
+full-map suites require clean production-verifier baselines, exact per-case
+diagnostics, exit status one, no unrelated crash, and no success artifact. The
+unified corrected-universe suite uses the same
+caller-owned output contract and is rerun by full mode. Rows explicitly labelled `frozen` instead bind
+already sealed nested suites and are not described as freshly rerun by the
 outer process.
 
 The release additionally binds the correction of an original certificate
@@ -100,7 +117,22 @@ Run the ordinary qualification path:
 ```sh
 .venv/bin/python -B work/final_theorem_release/verify_final_theorem_release.py --quick
 .venv/bin/python -B work/final_theorem_release/run_release_mutations.py
+.venv/bin/python -B work/final_theorem_release/run_corrected_universe_mutations.py --output /tmp/k2p-corrected-universe-mutations.json
 ```
+
+The corrected-universe mutation report follows the same caller-owned output
+rule.  A maintainer may reseal exactly
+`work/final_theorem_release/corrected_universe_mutation_report.json` by adding
+`--allow-authoritative-output`; that flag licenses no alias or other path.
+
+When `verify_final_theorem_release.py` is given `--output`, routine replay
+reports must use a caller-owned path outside the project tree.  The entry point
+removes stale bytes before any replay or optimized-Python guard and atomically
+replaces the report only after completed report construction.  A maintainer may reseal exactly
+`proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY.json` by adding
+`--allow-authoritative-output`; that flag licenses no alias or other path.  The
+focused collision, stale-output, hardlink, and symlink regression is
+`test_final_replay_output_contract.py`.
 
 When a machine-readable outer mutation report is wanted, `--output` must name
 a caller-owned path outside the project tree.  The v2 report deliberately
@@ -116,23 +148,36 @@ output-contract regression is:
 
 The documented outer mutation command runs this regression as a mandatory
 preflight before any conceptual mutation gate; it does not add a mutation row
-or alter the 27-gate census. Reports are fsynced to a new same-directory file
+or alter the 25-gate census. Reports are fsynced to a new same-directory file
 and atomically replaced, and the regression attacks both external hardlinks
 and late output-symlink swaps without allowing either to modify source bytes.
 
 Run the clean-room exhaustive path when full primitive regeneration is
-desired:
+desired. Full mode has 41 named layers: in addition to the prior primitive
+gates, it freshly replays all 36,824 restoration edges into an external report
+and binds that layer's semantic command and exact verifier/forest/crosswalk
+source hashes:
 
 ```sh
 .venv/bin/python -B work/final_theorem_release/verify_final_theorem_release.py --full
 ```
 
-Quick mode executes the final promotion guard, the fail-closed full-map reseal
-audit, and the unified independent replay as well as every standard theorem
-layer. Full mode additionally reconstructs the composite reseal differential
+Quick mode executes exactly 23 named layers. Its cycle row is the current
+authoritative promotion replay over all 13,440 base rows and 536,364 children;
+the superseded rooted cycle replay remains historical provenance and is not
+executed. Quick mode also executes the final promotion guard, the fail-closed
+full-map reseal audit, and the unified independent replay as well as every
+standard theorem layer. Full mode additionally reconstructs the composite reseal differential
 and regenerates the raw/rank, direct, theta2, corrected probe, independent
 primitive-graph probe audit, and unified mutation packages in isolated
 temporary trees.
+
+The full replay row named
+`four_port_exact_rank_staged_atlas_omission_mutation` is only a staged
+dependency-omission/import preflight: it proves that a missing atlas cannot be
+silently accepted. It is not counted as a semantic rank-certificate attack.
+The exact rank-v2 mutation report supplies the separate production-verifier
+semantic attack.
 
 Every entry point explicitly rejects `python -O`. The ordinary-triangle
 replayer contains no Python `assert` statements and uses explicit exact

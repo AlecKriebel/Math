@@ -3,12 +3,14 @@
 
 from __future__ import annotations
 
+import argparse
 import copy
 import gc
 import hashlib
 import json
 import os
 import resource
+import secrets
 import subprocess
 import sys
 import tempfile
@@ -17,10 +19,36 @@ from pathlib import Path
 
 
 HERE = Path(__file__).resolve().parent
+PROJECT = HERE.parents[1]
 CERTIFICATE = HERE / "corrected_restoration_forest.json"
 CROSSWALK = HERE / "corrected_restoration_historical_crosswalk.json"
 VERIFIER = HERE / "verify_corrected_restoration_forest.py"
 OUTPUT = HERE / "corrected_restoration_mutation_certificate.json"
+AUTHORITATIVE_OUTPUT = OUTPUT
+MUTATION_DIAGNOSTICS = {
+    "omitted_clean_first_edge": "CORRECTED_RESTORATION_REPLAY_FAIL:first coverage length",
+    "omitted_provenance_raw_record": "CORRECTED_RESTORATION_REPLAY_FAIL:crosswalk first coverage length",
+    "wrong_first_parent_transport": "CORRECTED_RESTORATION_REPLAY_FAIL:source parent transport row binding:0",
+    "broken_target_transport_payload": "CORRECTED_RESTORATION_REPLAY_FAIL:target parent transport registry replay:(91, (0, 1, 3, 2), 'D_REPAIR_0_2')",
+    "reassigned_quartet_certificate": "CORRECTED_RESTORATION_REPLAY_FAIL:quartet replay:0",
+    "reassigned_Ti_presentation": "CORRECTED_RESTORATION_REPLAY_FAIL:T target hash",
+    "altered_Bernstein_coefficient": "CORRECTED_RESTORATION_REPLAY_FAIL:Bernstein record at first use:52d67c40fb7867cb1fe9fe10fefb54043be08ef072f1ffbeb3159fd3ec312d75",
+    "invalid_D_plus_parameter_witness": "CORRECTED_RESTORATION_REPLAY_FAIL:witness s outside D_plus",
+    "reassigned_F_2_112_quartic": "CORRECTED_RESTORATION_REPLAY_FAIL:algebra target pullback nonzero",
+    "omitted_second_child": "CORRECTED_RESTORATION_REPLAY_FAIL:second coverage length",
+    "wrong_second_parent": "CORRECTED_RESTORATION_REPLAY_FAIL:abstract complete acyclic parent forest",
+    "nonforest_depth_cycle_attempt": "CORRECTED_RESTORATION_REPLAY_FAIL:abstract second parent",
+    "optimized_mode": "CORRECTED_RESTORATION_REPLAY_FAIL:CORRECTED_RESTORATION_REPLAY_OPTIMIZED_MODE_FORBIDDEN",
+}
+FORBIDDEN_FAILURE_MARKERS = (
+    "Traceback (most recent call last)",
+    "ModuleNotFoundError",
+    "ImportError",
+    "No module named",
+)
+LEGACY_WORKER_ENV = "K2P_RESTORATION_MUTATION_WORKER"
+INTERNAL_NONCE_ENV = "K2P_RESTORATION_INTERNAL_NONCE"
+CLEAN_BASELINE_TIMEOUT_SECONDS = 900
 
 
 class Failure(RuntimeError):
@@ -50,6 +78,169 @@ def sha_file(path):
         for block in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(block)
     return digest.hexdigest()
+
+
+def atomic_write_bytes(path, payload):
+    descriptor, temporary_name = tempfile.mkstemp(
+        prefix=f".{path.name}.", suffix=".tmp", dir=path.parent
+    )
+    temporary = Path(temporary_name)
+    try:
+        os.fchmod(descriptor, 0o644)
+        with os.fdopen(descriptor, "wb") as handle:
+            handle.write(payload)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+    finally:
+        if temporary.exists():
+            temporary.unlink()
+
+
+def validate_output_path(output: Path, allow_authoritative_output: bool) -> Path:
+    lexical = Path(os.path.abspath(os.fspath(output)))
+    normalized = lexical.parent.resolve() / lexical.name
+    resolved = lexical.resolve()
+    authoritative = AUTHORITATIVE_OUTPUT.parent.resolve() / AUTHORITATIVE_OUTPUT.name
+    if allow_authoritative_output:
+        if normalized != authoritative or lexical.is_symlink():
+            raise Failure(
+                "RESTORATION_MUTATION_OUTPUT_POLICY_FAIL: authoritative override "
+                "licenses only the corrected restoration mutation certificate"
+            )
+        return normalized
+    try:
+        resolved.relative_to(PROJECT.resolve())
+    except ValueError:
+        return normalized
+    raise Failure(
+        "RESTORATION_MUTATION_OUTPUT_POLICY_FAIL: routine mutation output must "
+        "be outside project source tree"
+    )
+
+
+def prepare_public_run(output):
+    # Remove any previous success report before validating the public process
+    # environment.  A rejected invocation therefore cannot leave stale PASS
+    # bytes that a caller could mistake for evidence from the failed run.
+    output.unlink(missing_ok=True)
+    require(os.environ.get(LEGACY_WORKER_ENV) is None, "legacy ambient worker selector forbidden")
+    require(os.environ.get(INTERNAL_NONCE_ENV) is None, "ambient internal nonce forbidden")
+
+
+def invoke_verifier(command, report_path, timeout):
+    started = time.monotonic()
+    try:
+        run = subprocess.run(
+            command,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            text=True,
+            timeout=timeout,
+            check=False,
+        )
+    except subprocess.TimeoutExpired as error:
+        def decoded(value):
+            if value is None:
+                return ""
+            if isinstance(value, bytes):
+                return value.decode("utf-8", errors="replace")
+            return value
+
+        output = decoded(error.stdout) + decoded(error.stderr)
+        return {
+            "returncode": None,
+            "runtime_seconds": time.monotonic() - started,
+            "diagnostic": str(output).strip(),
+            "success_artifact_present": report_path.exists(),
+            "timeout": True,
+            "signal": False,
+        }
+    return {
+        "returncode": run.returncode,
+        "runtime_seconds": time.monotonic() - started,
+        "diagnostic": run.stdout.strip(),
+        "success_artifact_present": report_path.exists(),
+        "timeout": False,
+        "signal": run.returncode < 0,
+    }
+
+
+def qualify_mutation_failure(name, result):
+    expected = MUTATION_DIAGNOSTICS[name]
+    require(result.get("timeout") is False, f"mutation timeout:{name}")
+    require(result.get("signal") is False, f"mutation signal:{name}:{result}")
+    require(result.get("returncode") == 1, f"mutation exit:{name}:{result}")
+    require(
+        not any(marker in result.get("diagnostic", "") for marker in FORBIDDEN_FAILURE_MARKERS),
+        f"mutation unrelated crash:{name}:{result}",
+    )
+    require(
+        result.get("success_artifact_present") is False,
+        f"mutation success artifact:{name}",
+    )
+    require(result.get("diagnostic") == expected, f"mutation diagnostic:{name}:{result}")
+    return {
+        "mutation": name,
+        "rejected": True,
+        "returncode": 1,
+        "expected_diagnostic": expected,
+        "observed_diagnostic": expected,
+        "success_artifact_absent": True,
+        "timeout": False,
+        "signal": False,
+    }
+
+
+def run_clean_baseline():
+    with tempfile.TemporaryDirectory(prefix="k2p-restoration-baseline-") as temporary:
+        report_path = Path(temporary) / "report.json"
+        result = invoke_verifier(
+            [
+                sys.executable,
+                str(VERIFIER),
+                "--certificate",
+                str(CERTIFICATE),
+                "--crosswalk",
+                str(CROSSWALK),
+                "--report",
+                str(report_path),
+            ],
+            report_path,
+            CLEAN_BASELINE_TIMEOUT_SECONDS,
+        )
+        require(result["timeout"] is False, "clean baseline timeout")
+        require(result["signal"] is False, "clean baseline signal")
+        require(result["returncode"] == 0, f"clean baseline exit:{result}")
+        require(
+            not any(marker in result["diagnostic"] for marker in FORBIDDEN_FAILURE_MARKERS),
+            f"clean baseline crash:{result}",
+        )
+        require(result["success_artifact_present"] is True, "clean baseline report absent")
+        replay = json.loads(report_path.read_text())
+        unhashed = dict(replay)
+        payload = unhashed.pop("payload_sha256")
+        require(payload == sha(unhashed), "clean baseline payload")
+        require(
+            replay.get("schema") == "k2p-corrected-restoration-independent-replay-v3"
+            and replay.get("status") == "PASS"
+            and replay.get("unresolved") == 0
+            and replay.get("missing_children") == 0
+            and replay.get("cycles") == 0,
+            f"clean baseline semantics:{replay}",
+        )
+        return {
+            "returncode": 0,
+            "status": "PASS",
+            "report_schema": replay["schema"],
+            "report_status": replay["status"],
+            "success_artifact_present": True,
+            "unresolved": 0,
+            "missing_children": 0,
+            "cycles": 0,
+            "timeout": False,
+            "signal": False,
+        }, result["runtime_seconds"]
 
 
 def rehash_clean(certificate):
@@ -163,32 +354,7 @@ def finalize_case(certificate, crosswalk, directory, *, sync=True, optimized=Fal
         "--report",
         str(report_path),
     ])
-    started = time.monotonic()
-    try:
-        run = subprocess.run(
-            command,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            text=True,
-            timeout=180,
-            check=False,
-        )
-        output = run.stdout.strip()
-        return {
-            "returncode": run.returncode,
-            "runtime_seconds": time.monotonic() - started,
-            "output_tail": output[-800:],
-            "rejected": run.returncode != 0,
-        }
-    except subprocess.TimeoutExpired as error:
-        output = (error.stdout or "") + (error.stderr or "")
-        return {
-            "returncode": None,
-            "runtime_seconds": time.monotonic() - started,
-            "output_tail": str(output)[-800:],
-            "rejected": False,
-            "timeout": True,
-        }
+    return invoke_verifier(command, report_path, 180)
 
 
 def first_index(certificate, proof):
@@ -207,15 +373,19 @@ def run_case(name, mutate, *, sync=True, optimized=False):
             sync=sync,
             optimized=optimized,
         )
-    result["mutation"] = name
-    require(result["rejected"], f"mutation survived:{name}:{result}")
-    print(json.dumps(result, sort_keys=True), flush=True)
-    return result
+    runtime_seconds = result.pop("runtime_seconds")
+    qualified = qualify_mutation_failure(name, result)
+    print(json.dumps(qualified, sort_keys=True), flush=True)
+    return {"case": qualified, "runtime_seconds": runtime_seconds}
 
 
 def main():
-    if not __debug__:
-        raise Failure("MUTATION_DRIVER_OPTIMIZED_MODE_FORBIDDEN")
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--internal-worker", choices=tuple(MUTATION_DIAGNOSTICS), help=argparse.SUPPRESS)
+    parser.add_argument("--parent-nonce", help=argparse.SUPPRESS)
+    parser.add_argument("--output", type=Path)
+    parser.add_argument("--allow-authoritative-output", action="store_true")
+    args = parser.parse_args()
     started = time.monotonic()
 
     def omitted_clean_first(certificate, crosswalk):
@@ -316,24 +486,51 @@ def main():
         ("optimized_mode", lambda certificate, crosswalk: None, True, True),
     ]
 
-    worker_name = os.environ.get("K2P_RESTORATION_MUTATION_WORKER")
-    if worker_name is not None:
-        matching = [case for case in cases if case[0] == worker_name]
-        require(len(matching) == 1, f"unknown mutation worker:{worker_name}")
+    if args.internal_worker is not None:
+        if not __debug__:
+            raise Failure("MUTATION_DRIVER_OPTIMIZED_MODE_FORBIDDEN")
+        require(os.environ.get(LEGACY_WORKER_ENV) is None, "legacy ambient worker selector forbidden")
+        inherited_nonce = os.environ.get(INTERNAL_NONCE_ENV)
+        require(
+            isinstance(args.parent_nonce, str)
+            and len(args.parent_nonce) == 64
+            and inherited_nonce == args.parent_nonce,
+            "internal worker parent nonce",
+        )
+        matching = [case for case in cases if case[0] == args.internal_worker]
+        require(len(matching) == 1, f"unknown mutation worker:{args.internal_worker}")
         name, mutate, sync, optimized = matching[0]
         result = run_case(name, mutate, sync=sync, optimized=optimized)
+        result["parent_nonce_sha256"] = hashlib.sha256(args.parent_nonce.encode()).hexdigest()
         print("MUTATION_WORKER_JSON=" + json.dumps(result, sort_keys=True))
         return
+    require(args.parent_nonce is None, "parent nonce without internal worker")
+    require(args.output is not None, "public --output required")
+    output_path = validate_output_path(args.output, args.allow_authoritative_output)
+    prepare_public_run(output_path)
+    if not __debug__:
+        raise Failure("MUTATION_DRIVER_OPTIMIZED_MODE_FORBIDDEN")
 
     # Run each case in a fresh process.  This prevents Python's allocator from
     # retaining the two large JSON trees across mutations and keeps peak RSS
     # well below the one-GiB referee limit.
+    baseline, baseline_runtime = run_clean_baseline()
     results = []
+    case_runtimes = {}
     for name, _, _, _ in cases:
         environment = dict(os.environ)
-        environment["K2P_RESTORATION_MUTATION_WORKER"] = name
+        environment.pop(LEGACY_WORKER_ENV, None)
+        nonce = secrets.token_hex(32)
+        environment[INTERNAL_NONCE_ENV] = nonce
         run = subprocess.run(
-            [sys.executable, str(Path(__file__).resolve())],
+            [
+                sys.executable,
+                str(Path(__file__).resolve()),
+                "--internal-worker",
+                name,
+                "--parent-nonce",
+                nonce,
+            ],
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
             text=True,
@@ -349,29 +546,54 @@ def main():
         ]
         require(len(marker) == 1, f"mutation worker result:{name}:{run.stdout[-800:]}")
         result = json.loads(marker[0])
-        results.append(result)
-        print(json.dumps(result, sort_keys=True), flush=True)
+        require(
+            result.pop("parent_nonce_sha256", None)
+            == hashlib.sha256(nonce.encode()).hexdigest(),
+            f"mutation worker nonce:{name}",
+        )
+        results.append(result["case"])
+        case_runtimes[name] = result["runtime_seconds"]
+        print(json.dumps(result["case"], sort_keys=True), flush=True)
 
     report = {
-        "schema": "k2p-corrected-restoration-mutations-v1",
+        "schema": "k2p-corrected-restoration-mutations-v2",
         "status": "PASS",
+        "clean_baseline": baseline,
+        "diagnostic_contract": MUTATION_DIAGNOSTICS,
         "source_certificate_sha256": sha_file(CERTIFICATE),
         "source_crosswalk_sha256": sha_file(CROSSWALK),
         "verifier_sha256": sha_file(VERIFIER),
+        "mutation_runner_sha256": sha_file(Path(__file__).resolve()),
         "mutations_attempted": len(results),
         "mutations_rejected": sum(result["rejected"] for result in results),
         "cases": results,
-        "runtime_seconds": time.monotonic() - started,
-        "peak_child_rss_bytes": resource.getrusage(resource.RUSAGE_CHILDREN).ru_maxrss,
+        "operational": {
+            "runtime_seconds": time.monotonic() - started,
+            "baseline_runtime_seconds": baseline_runtime,
+            "case_runtime_seconds": case_runtimes,
+            "peak_child_rss_bytes": resource.getrusage(resource.RUSAGE_CHILDREN).ru_maxrss,
+        },
     }
     require(report["mutations_attempted"] == report["mutations_rejected"] == 13, "mutation census")
-    report["payload_sha256"] = sha(report)
-    OUTPUT.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
+    logical = dict(report)
+    logical.pop("operational")
+    report["payload_sha256"] = sha(logical)
+    atomic_write_bytes(output_path, encoded(report))
     print(json.dumps(report, sort_keys=True))
+    print("K2P_CORRECTED_RESTORATION_MUTATIONS_PASS rejected=13 survived=0")
 
 
 if __name__ == "__main__":
     try:
         main()
-    except (Failure, AssertionError, KeyError, IndexError, OSError, ValueError, json.JSONDecodeError) as error:
+    except (
+        Failure,
+        AssertionError,
+        KeyError,
+        IndexError,
+        OSError,
+        ValueError,
+        json.JSONDecodeError,
+        subprocess.TimeoutExpired,
+    ) as error:
         raise SystemExit(f"CORRECTED_RESTORATION_MUTATION_FAIL:{error}") from error

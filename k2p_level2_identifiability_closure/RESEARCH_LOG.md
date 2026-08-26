@@ -588,9 +588,13 @@
 - Replaced the former raw4 and theta2 composite pseudo-mutation summaries by
   22 genuine complete-ledger, production-verifier-facing attacks. Together
   with optimized-mode and source-immutability guards, the two component suites
-  pass 14/14 and 12/12. The outer stable report now contains 27 conceptual
+  pass 14/14 and 12/12. The then-current outer report contained 27 conceptual
   gates, all rejected, with zero survivors and payload
   `b7e1776e44ff5b50f92ed58f8b62d3c15ea49a358819bd8bc9dfac76ebd9df37`.
+  The 26 August round-2 qualification initially added a separate rank
+  production-mutant gate.  Its later evidence-role audit removed three
+  revoked or historical rows from promotion accounting, so the current
+  required outer census is 25 stronger, active gates.
 - Made every nested mutation writer caller-owned, atomic, path-independent,
   and fail-closed against direct collisions, symlink resolution, hardlink
   truncation, and late symlink swaps. A clean-extraction regression exposed
@@ -655,3 +659,92 @@
   qualification, bioRxiv sources, deterministic referee package, and
   submission readiness**. The only remaining actions are the author-controlled
   GitHub Release/Zenodo/DOI steps, which were explicitly left undone.
+
+## 2026-08-26 — Fresh adversarial round-2 HOLD triage
+
+- Reviewed the fresh referee report as evidence rather than instructions and
+  independently inspected the named mutation runners, release binders,
+  crosswalk authorities, portable checker, and current literature record.
+- Accepted Findings 1--3 as real release-evidence defects: four transport
+  cases used tautological byte inequality, while the canonicalizer,
+  restoration, and probe wrappers accepted generic nonzero child exits.  The
+  production theorem replay itself remains 40/40 PASS and the report found no
+  mathematical counterexample.
+- Accepted the narrower provenance and presentation repairs: demote stale
+  reconstruction prose in C11/C12, expose the executable symbolic-rank replay
+  in C05, add an optimized-Python guard to the portable checker, and update
+  Brits et al. from arXiv v2 to v3 after confirming that the cited level-1
+  Theorem 4.9 is unchanged in the respect used here.
+- Recorded the absence of an atlas-free all-family orbit partition as a
+  declared nonblocking independence boundary, not as a missing theorem gate.
+  No new partition research, mixed-sign extension, compression cycle, or
+  verifier rewrite is being opened.
+- Best-guess completion remains **100% for the mathematical theorem** and is
+  reduced to **approximately 82% for final release qualification** pending the
+  verifier-facing mutation repairs, complete reseal, long detached replay,
+  deterministic archive rebuild, and independent final audit.
+
+## 2026-08-26 09:43 PDT — Fail-closed wrapper and corrected-universe reseal
+
+- Reproduced the referee's canonicalizer false-PASS mechanism under a missing
+  NetworkX dependency and the diagnostic blindness in the restoration and
+  probe mutation wrappers.  Replaced generic nonzero-exit qualification by
+  clean baselines, exact case diagnostics, explicit rejection of traceback,
+  import, timeout, signal, and non-1 failures, and required absence of success
+  artifacts.  Added caller-owned atomic outputs and stale-output deletion,
+  including optimized-Python negative controls.
+- Hardened the corrected restoration, primary probe, probe-input, independent
+  probe-graph audit, and unified corrected-universe mutation suites without
+  changing any mutation target or mathematical census.  The resulting
+  authoritative suites pass 13/13 restoration attacks, 15/15 primary probe
+  attacks, 20/20 probe-input attacks plus optimized rejection, 12/12
+  independent graph-audit attacks, and 22/22 unified attacks, all with zero
+  survivors.
+- Independently replayed all 36,824 corrected restoration edges and rebuilt
+  the corrected probe and finite-universe provenance chain.  The final unified
+  certificate, independent replay, and mutation payloads are respectively
+  `f91d8dfcee8af7868d5b821ad2321c0cd2d474b3f3377dfa3f2c22979d364ad8`,
+  `636a1c78af804e0bec5405cd0984c0c5f15bc4d2dc4d022c64430e5421b7ef6f`,
+  and `fe2636a0bc411b8e1e672eea80c0c8e02e59b43317a3e8c114343b7919f1df75`.
+- The authoritative unified run exposed a downstream self-reference: deleting
+  its old mutation report made the builder reject the missing output before it
+  could regenerate it.  The builder, independent replay, and mutation runner
+  now exclude exactly their certificate/replay/mutation outputs from their
+  immutable-input fingerprints while still hash-checking every upstream
+  locator artifact.  The full corrected-universe validator now passes all five
+  families with no blockers; the 405,216 raw-four rows, 2,946,240 theta2 rows,
+  36,824 restoration edges, cycle classes, and 34,836 probe equalities are
+  unchanged.
+- Rebound the theorem-promotion guard to the same byte-verified inputs.  It
+  passes its unchanged 23 frozen-input, three probe-artifact, six ledger, ten
+  positive-gate, and eight zero-gate census.  No theorem statement,
+  classification, or finite census changed.
+- Best-guess completion remains **100% for the mathematical theorem** and is
+  now **approximately 94% for final release qualification**, pending the
+  already-running final parameter-transport reseal, aggregate quick/mutation
+  replays, release-lock rebuild, PDFs, and deterministic referee archive.
+
+## 2026-08-26 12:30 PDT — round-2 release-evidence defects closed in source
+
+- Scrutinized all eight fresh referee findings. Findings 1--3 were genuine
+  mutation-qualification defects and are repaired with complete
+  production-verifier attacks, exact diagnostics, clean baselines, and
+  crash/timeout/import/stale-output negative controls. Findings 5--8 were
+  valid authority, rank-crosswalk, optimized-mode, and literature metadata
+  repairs and are also closed. The atlas-free all-family partition and a
+  second symbolic engine remain explicitly disclosed independence boundaries,
+  not claimed evidence.
+- Replayed the complete raw-rank/raw4 provenance cascade. All 405,216 raw
+  directions, 4,379 rank decisions, 16,974 full-map rows, 997 restoration
+  parents, 36,824 restoration edges, and every composite classification are
+  unchanged. Corrected raw4 overlay, composite, unified-universe, and quartet
+  terminal suites pass 9/9, 14/14, 22/22, and 12/12 mutations respectively.
+- The release harness now uses the authoritative cycle-promotion replay and a
+  fixed ordered contract of 23 quick and 41 full layers. The outer mutation
+  suite has 25 active gates; revoked historical suites remain byte-bound but
+  cannot qualify the theorem.
+- No mathematical, formula, rank, census, transport, reconstruction, or
+  theorem statement changed. Best-guess completion is **100% for the
+  mathematics** and **approximately 98% for final release qualification**,
+  pending the final lock, detached full replay, source-bound PDFs/telemetry,
+  deterministic archive, commit, and independent package audit.

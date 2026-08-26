@@ -503,6 +503,8 @@ def verify_profile(atlas, graph, profile, side, anchor_id):
 
 
 def main():
+    if not __debug__:
+        raise SystemExit("PROBE_INPUT_VERIFY_OPTIMIZED_MODE_FORBIDDEN")
     parser = argparse.ArgumentParser()
     parser.add_argument("--contract", type=Path, default=CONTRACT)
     parser.add_argument("--report", type=Path, default=REPORT)

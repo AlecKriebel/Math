@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import collections
 import gzip
 import hashlib
@@ -17,8 +18,10 @@ from pathlib import Path
 
 
 HERE = Path(__file__).resolve().parent
+PROJECT = HERE.parents[1]
 VERIFIER = HERE / "verify_probe_coherence_corrected.py"
 OUTPUT = HERE / "probe_coherence_mutation_certificate.json"
+AUTHORITATIVE_OUTPUT = OUTPUT
 FILES = (
     "probe_coherence_certificate.json",
     "one_port_ledger.jsonl.gz",
@@ -27,6 +30,29 @@ FILES = (
     "exact_transport_ledger.jsonl.gz",
     "parent_restriction_ledger.jsonl.gz",
     "separation_proof_registry.json.gz",
+)
+MUTATION_DIAGNOSTICS = {
+    "omitted_anchor": "CORRECTED_PROBE_REPLAY_FAIL:anchor rows",
+    "swapped_classifier_precedence": "CORRECTED_PROBE_REPLAY_FAIL:classifier order",
+    "omitted_one_port_probe": "CORRECTED_PROBE_REPLAY_FAIL:one Cartesian/order coverage:0:('four:raw2040', 0, 1)",
+    "wrong_one_port_parent": "CORRECTED_PROBE_REPLAY_FAIL:one Cartesian/order coverage:0:('four:raw2042', 0, 0)",
+    "reassigned_Ti_certificate": "CORRECTED_PROBE_REPLAY_FAIL:one T_i proof:122",
+    "omitted_two_port_parent": "CORRECTED_PROBE_REPLAY_FAIL:two parent ordered equality coverage:0",
+    "missing_root_suppressed_site": "CORRECTED_PROBE_REPLAY_FAIL:profile formula:source:P1:four:raw2040:0:0",
+    "omitted_two_port_probe": "CORRECTED_PROBE_REPLAY_FAIL:two raw total from parents",
+    "wrong_two_port_parent": "CORRECTED_PROBE_REPLAY_FAIL:two Cartesian/order coverage:0:('P1:four:raw2040:1:1', 0, 0)",
+    "reversed_order_class": "CORRECTED_PROBE_REPLAY_FAIL:reverse class:0",
+    "inconsistent_global_triangle": "CORRECTED_PROBE_REPLAY_FAIL:global triangle hash:two:1887",
+    "broken_exact_transport": "CORRECTED_PROBE_REPLAY_FAIL:transport self hash:d36206c63e2262bc13495519b217d2e600b576e64ddcb603c34529dcd4025f8c",
+    "omitted_parent_restriction": "CORRECTED_PROBE_REPLAY_FAIL:one source restriction:0",
+    "altered_Bernstein_certificate": "CORRECTED_PROBE_REPLAY_FAIL:Bernstein replay:05c1967f1addbbf8854ce12ec25861b3b2793fb2961d77ad892e633e93c3c71f",
+    "optimized_mode": "CORRECTED_PROBE_REPLAY_FAIL:CORRECTED_PROBE_REPLAY_OPTIMIZED_MODE_FORBIDDEN",
+}
+FORBIDDEN_FAILURE_MARKERS = (
+    "Traceback (most recent call last)",
+    "ModuleNotFoundError",
+    "ImportError",
+    "No module named",
 )
 
 
@@ -53,6 +79,45 @@ def sha_file(path):
         for block in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(block)
     return digest.hexdigest()
+
+
+def validate_output_path(output: Path, allow_authoritative_output: bool) -> Path:
+    lexical = Path(os.path.abspath(os.fspath(output)))
+    normalized = lexical.parent.resolve() / lexical.name
+    resolved = lexical.resolve()
+    authoritative = AUTHORITATIVE_OUTPUT.parent.resolve() / AUTHORITATIVE_OUTPUT.name
+    if allow_authoritative_output:
+        if normalized != authoritative or lexical.is_symlink():
+            raise MutationFailure(
+                "PROBE_MUTATION_OUTPUT_POLICY_FAIL: authoritative override "
+                "licenses only the corrected probe mutation certificate"
+            )
+        return normalized
+    try:
+        resolved.relative_to(PROJECT.resolve())
+    except ValueError:
+        return normalized
+    raise MutationFailure(
+        "PROBE_MUTATION_OUTPUT_POLICY_FAIL: routine mutation output must be "
+        "outside project source tree"
+    )
+
+
+def atomic_write_bytes(path, payload):
+    descriptor, temporary_name = tempfile.mkstemp(
+        prefix=f".{path.name}.", suffix=".tmp", dir=path.parent
+    )
+    temporary = Path(temporary_name)
+    try:
+        os.fchmod(descriptor, 0o644)
+        with os.fdopen(descriptor, "wb") as handle:
+            handle.write(payload)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+    finally:
+        if temporary.exists():
+            temporary.unlink()
 
 
 class Ordered:
@@ -205,11 +270,100 @@ def run_verifier(root, optimized=False, hash_seed="37"):
     environment = dict(os.environ)
     environment["PYTHONHASHSEED"] = hash_seed
     started = time.monotonic()
-    result = subprocess.run(command, text=True, capture_output=True, env=environment)
+    try:
+        result = subprocess.run(
+            command,
+            text=True,
+            capture_output=True,
+            env=environment,
+            timeout=180,
+            check=False,
+        )
+    except subprocess.TimeoutExpired as error:
+        def decoded(value):
+            if value is None:
+                return ""
+            if isinstance(value, bytes):
+                return value.decode("utf-8", errors="replace")
+            return value
+
+        output = decoded(error.stdout) + decoded(error.stderr)
+        return {
+            "returncode": None,
+            "runtime_seconds": time.monotonic() - started,
+            "diagnostic": str(output).strip(),
+            "success_artifact_present": (root / "verification.json").exists(),
+            "timeout": True,
+            "signal": False,
+        }
     return {
         "returncode": result.returncode,
         "runtime_seconds": time.monotonic() - started,
-        "output_tail": (result.stdout + result.stderr)[-600:],
+        "diagnostic": (result.stdout + result.stderr).strip(),
+        "success_artifact_present": (root / "verification.json").exists(),
+        "timeout": False,
+        "signal": result.returncode < 0,
+    }
+
+
+def qualify_mutation_failure(name, result):
+    expected = MUTATION_DIAGNOSTICS[name]
+    require(result.get("timeout") is False, f"mutation timeout:{name}")
+    require(result.get("signal") is False, f"mutation signal:{name}:{result}")
+    require(result.get("returncode") == 1, f"mutation exit:{name}:{result}")
+    require(
+        not any(marker in result.get("diagnostic", "") for marker in FORBIDDEN_FAILURE_MARKERS),
+        f"mutation unrelated crash:{name}:{result}",
+    )
+    require(
+        result.get("success_artifact_present") is False,
+        f"mutation success artifact:{name}",
+    )
+    require(result.get("diagnostic") == expected, f"mutation diagnostic:{name}:{result}")
+    return {
+        "mutation": name,
+        "rejected": True,
+        "returncode": 1,
+        "expected_diagnostic": expected,
+        "observed_diagnostic": expected,
+        "success_artifact_absent": True,
+        "timeout": False,
+        "signal": False,
+    }
+
+
+def qualify_clean_baseline(root, result, hash_seed):
+    require(result.get("timeout") is False, "clean baseline timeout")
+    require(result.get("signal") is False, "clean baseline signal")
+    require(result.get("returncode") == 0, f"clean baseline exit:{result}")
+    require(
+        not any(marker in result.get("diagnostic", "") for marker in FORBIDDEN_FAILURE_MARKERS),
+        f"clean baseline crash:{result}",
+    )
+    require(result.get("success_artifact_present") is True, "clean baseline report absent")
+    report = json.loads((root / "verification.json").read_text())
+    payload = report.pop("payload_sha256")
+    operational = report.pop("operational")
+    del operational
+    require(payload == sha(report), "clean baseline payload")
+    require(
+        report.get("schema") == "k2p-corrected-probe-independent-verification-v1"
+        and report.get("status") == "PASS"
+        and report.get("unresolved") == 0
+        and report.get("incoherent") == 0,
+        f"clean baseline semantics:{report}",
+    )
+    return {
+        "PYTHONHASHSEED": int(hash_seed),
+        "returncode": 0,
+        "status": "PASS",
+        "report_schema": report["schema"],
+        "report_status": report["status"],
+        "success_artifact_present": True,
+        "unresolved": 0,
+        "incoherent": 0,
+        "timeout": False,
+        "signal": False,
     }
 
 
@@ -349,6 +503,14 @@ def mutate_Bernstein(root):
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--allow-authoritative-output", action="store_true")
+    args = parser.parse_args()
+    output_path = validate_output_path(args.output, args.allow_authoritative_output)
+    output_path.unlink(missing_ok=True)
+    if not __debug__:
+        raise MutationFailure("PROBE_MUTATION_DRIVER_OPTIMIZED_MODE_FORBIDDEN")
     require((HERE / "probe_coherence_certificate.json").exists(), "missing source certificate")
     cases = [
         ("omitted_anchor", mutate_omitted_anchor),
@@ -367,6 +529,7 @@ def main():
         ("altered_Bernstein_certificate", mutate_Bernstein),
     ]
     results = []
+    case_runtimes = {}
     started = time.monotonic()
     for name, mutation in cases:
         with tempfile.TemporaryDirectory(prefix=f"k2p_probe_mutation_{name}_") as directory:
@@ -374,40 +537,55 @@ def main():
             link_case(root)
             mutation(root)
             replay = run_verifier(root)
-            require(replay["returncode"] != 0, f"mutation survived:{name}:{replay}")
-            results.append({"mutation": name, "rejected": True, **replay})
+            runtime_seconds = replay.pop("runtime_seconds")
+            results.append(qualify_mutation_failure(name, replay))
+            case_runtimes[name] = runtime_seconds
             print(json.dumps(results[-1], sort_keys=True), flush=True)
     with tempfile.TemporaryDirectory(prefix="k2p_probe_optimized_") as directory:
         root = Path(directory)
         link_case(root)
         replay = run_verifier(root, optimized=True)
-        require(replay["returncode"] != 0, f"optimized mode survived:{replay}")
-        results.append({"mutation": "optimized_mode", "rejected": True, **replay})
+        runtime_seconds = replay.pop("runtime_seconds")
+        results.append(qualify_mutation_failure("optimized_mode", replay))
+        case_runtimes["optimized_mode"] = runtime_seconds
     with tempfile.TemporaryDirectory(prefix="k2p_probe_hashseed_") as directory:
         root = Path(directory)
         link_case(root)
         replay = run_verifier(root, hash_seed="12345")
-        require(replay["returncode"] == 0, f"nondefault hash seed failed:{replay}")
-        hash_seed_check = {"PYTHONHASHSEED": 12345, "status": "PASS", **replay}
+        baseline_runtime = replay.pop("runtime_seconds")
+        baseline = qualify_clean_baseline(root, replay, "12345")
+    require(
+        len(results) == 15 and all(row["rejected"] is True for row in results),
+        "mutation census",
+    )
     report = {
-        "schema": "k2p-corrected-probe-mutations-v1",
+        "schema": "k2p-corrected-probe-mutations-v2",
         "status": "PASS",
+        "clean_baseline": baseline,
+        "diagnostic_contract": MUTATION_DIAGNOSTICS,
         "source_certificate_sha256": sha_file(HERE / "probe_coherence_certificate.json"),
         "source_verifier_sha256": sha_file(VERIFIER),
+        "mutation_runner_sha256": sha_file(Path(__file__).resolve()),
         "mutations_attempted": len(results),
         "mutations_rejected": sum(row["rejected"] for row in results),
         "cases": results,
-        "nondefault_hash_seed_replay": hash_seed_check,
-        "operational": {"runtime_seconds": time.monotonic() - started},
+        "operational": {
+            "runtime_seconds": time.monotonic() - started,
+            "baseline_runtime_seconds": baseline_runtime,
+            "case_runtime_seconds": case_runtimes,
+        },
     }
     logical = dict(report)
     logical.pop("operational")
     report["payload_sha256"] = sha(logical)
-    OUTPUT.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
+    atomic_write_bytes(
+        output_path, (json.dumps(report, indent=2, sort_keys=True) + "\n").encode()
+    )
     print(json.dumps({
         "status": "PASS", "mutations": len(results),
         "payload_sha256": report["payload_sha256"],
     }, sort_keys=True))
+    print("K2P_CORRECTED_PROBE_MUTATIONS_PASS rejected=15 survived=0")
 
 
 if __name__ == "__main__":

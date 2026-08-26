@@ -1,57 +1,128 @@
 {
+  "clean_baseline": {
+    "all_unmutated_samples_accepted": true,
+    "checks": 12,
+    "status": "PASS"
+  },
+  "diagnostic_contract": {
+    "broken_exact_transport": "transport self hash:307dad14dc8b23e367c646cbf6637d74a9cd2104b7e415229a9d9384f61cc857",
+    "broken_global_triangle": "global triangle",
+    "child_graph_hash_mutation": "child hash",
+    "classifier_status_reassignment": "classifier status",
+    "old_rooted_cache_field": "forbidden rooted-oracle field:$.rooted_triple_cache",
+    "omitted_raw_record": "coverage row count",
+    "reassigned_Ti_certificate": "T_i certificate",
+    "reassigned_quartet_certificate": "quartet certificate",
+    "wrong_parent": "parent identity",
+    "wrong_parent_restriction": "restriction self hash",
+    "wrong_reverse_transport": "reverse exact payload",
+    "wrong_site": "site identity"
+  },
+  "mutation_runner_sha256": "9d1cdf0a219aeffb82b2f8e0d09d7cbfdbbfe28f11da1d46ff37a34d5fa4d4e8",
   "mutations": [
     {
+      "exception_type": "AuditFailure",
+      "expected_diagnostic": "coverage row count",
       "mutation": "omitted_raw_record",
-      "result": "REJECTED"
+      "observed_diagnostic": "coverage row count",
+      "rejected": true
     },
     {
+      "exception_type": "AuditFailure",
+      "expected_diagnostic": "parent identity",
       "mutation": "wrong_parent",
-      "result": "REJECTED"
+      "observed_diagnostic": "parent identity",
+      "rejected": true
     },
     {
+      "exception_type": "AuditFailure",
+      "expected_diagnostic": "site identity",
       "mutation": "wrong_site",
-      "result": "REJECTED"
+      "observed_diagnostic": "site identity",
+      "rejected": true
     },
     {
+      "exception_type": "AuditFailure",
+      "expected_diagnostic": "reverse exact payload",
       "mutation": "wrong_reverse_transport",
-      "result": "REJECTED"
+      "observed_diagnostic": "reverse exact payload",
+      "rejected": true
     },
     {
+      "exception_type": "AuditFailure",
+      "expected_diagnostic": "global triangle",
       "mutation": "broken_global_triangle",
-      "result": "REJECTED"
+      "observed_diagnostic": "global triangle",
+      "rejected": true
     },
     {
+      "exception_type": "AuditFailure",
+      "expected_diagnostic": "quartet certificate",
       "mutation": "reassigned_quartet_certificate",
-      "result": "REJECTED"
+      "observed_diagnostic": "quartet certificate",
+      "rejected": true
     },
     {
+      "exception_type": "AuditFailure",
+      "expected_diagnostic": "T_i certificate",
       "mutation": "reassigned_Ti_certificate",
-      "result": "REJECTED"
+      "observed_diagnostic": "T_i certificate",
+      "rejected": true
     },
     {
+      "exception_type": "AuditFailure",
+      "expected_diagnostic": "restriction self hash",
       "mutation": "wrong_parent_restriction",
-      "result": "REJECTED"
+      "observed_diagnostic": "restriction self hash",
+      "rejected": true
     },
     {
+      "exception_type": "AuditFailure",
+      "expected_diagnostic": "transport self hash:307dad14dc8b23e367c646cbf6637d74a9cd2104b7e415229a9d9384f61cc857",
       "mutation": "broken_exact_transport",
-      "result": "REJECTED"
+      "observed_diagnostic": "transport self hash:307dad14dc8b23e367c646cbf6637d74a9cd2104b7e415229a9d9384f61cc857",
+      "rejected": true
     },
     {
+      "exception_type": "AuditFailure",
+      "expected_diagnostic": "forbidden rooted-oracle field:$.rooted_triple_cache",
       "mutation": "old_rooted_cache_field",
-      "result": "REJECTED"
+      "observed_diagnostic": "forbidden rooted-oracle field:$.rooted_triple_cache",
+      "rejected": true
     },
     {
+      "exception_type": "AuditFailure",
+      "expected_diagnostic": "classifier status",
       "mutation": "classifier_status_reassignment",
-      "result": "REJECTED"
+      "observed_diagnostic": "classifier status",
+      "rejected": true
     },
     {
+      "exception_type": "AuditFailure",
+      "expected_diagnostic": "child hash",
       "mutation": "child_graph_hash_mutation",
-      "result": "REJECTED"
+      "observed_diagnostic": "child hash",
+      "rejected": true
     }
   ],
   "mutations_rejected": 12,
   "mutations_survived": 0,
-  "payload_sha256": "58006ed7b6677c055b5cdd7249857dc2f752fb3db9cfbcc5bbe5e0a26e31875f",
-  "schema": "k2p-corrected-probe-independent-mutations-v1",
+  "payload_sha256": "1b2126eda8036dbb75ed861b3536ed9db0f651c8399cbb85cb8c43d2cf39a110",
+  "qualification_contract": {
+    "caller_owned_outputs_required": true,
+    "clean_baseline_required_per_case": true,
+    "exact_diagnostic_required": true,
+    "only_AuditFailure_qualifies": true,
+    "unrelated_exceptions_rejected": true
+  },
+  "qualification_negative_controls": {
+    "failed_clean_baseline_not_qualified": true,
+    "surviving_mutation_not_qualified": true,
+    "unrelated_exception_not_qualified": true,
+    "wrong_diagnostic_not_qualified": true
+  },
+  "schema": "k2p-corrected-probe-independent-mutations-v2",
+  "source_certificate_payload_sha256": "5d71b11dfef66fa3ef33cb52078baa10becb6f08f56edb94902bf82be6e4548b",
+  "source_certificate_sha256": "53d1ac1e6a14637f547c031a6e8031d3d3cc49630518f31339813031089e0bfc",
   "status": "PASS"
 }

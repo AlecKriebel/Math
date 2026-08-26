@@ -123,10 +123,10 @@ COMPOSITE_SERIALIZATION = {
     "row_order": "raw_id_ascending",
 }
 PROMOTION_MANUSCRIPT_FILES = {
-    "work/global_theorem_closure/promotion_manuscript/K2P_SAME_PROMOTION_MANUSCRIPT.md": "add7bc4a34563d0175f4e19ebe7ca2536b77772ff50d7f017628505d7e6c1899",
+    "work/global_theorem_closure/promotion_manuscript/K2P_SAME_PROMOTION_MANUSCRIPT.md": "4acacb925f6aab2ee11baf1c08573b65636b7d867fb816142138ae9fe666a3d2",
     "work/global_theorem_closure/promotion_manuscript/QUANTIFIER_AUDIT.md": "425a041bc3e4cc7bd4f74c952455623ff26f430d9c4ceb006edcac9e8c3765d8",
-    "work/global_theorem_closure/promotion_manuscript/PROBE_PROMOTION_PLACEHOLDER.json": "79a9949f5a5598a83c7e2bfc60d669dfe4b8b7d3417d8d8673e2fc4c634efaaa",
-    "work/global_theorem_closure/promotion_manuscript/verify_promotion_gate.py": "a8db5f1eea9652a34f06ea2e986a39428187257232c0683672ef2e0bbc6a4ed4",
+    "work/global_theorem_closure/promotion_manuscript/PROBE_PROMOTION_PLACEHOLDER.json": "9414423fc3e2d811a060cd5bd1c7ae511f17c20e8d301573afd08381d89fe9f0",
+    "work/global_theorem_closure/promotion_manuscript/verify_promotion_gate.py": "40aed29c86fc8e6019fc9202cdd2e27225b2084a2332d7ecb99c14b33830fca1",
 }
 PROMOTION_GUARD_CENSUS = {
     "frozen_inputs_verified": 23,
@@ -180,7 +180,7 @@ HISTORICAL_ARTIFACT_REGISTRY = (
 )
 HISTORICAL_PROOF_ARTIFACTS = {
     "work/adversarial_proof_review/PROBE_AUDIT.md": {
-        "sha256": "6c681819e8dbd97ab7606b0a3a572d7932a987f27f4cc3aeae9b701a6d95092a",
+        "sha256": "9d3a8a9bd0dcbc3d742ccbee40bf1c59bfe59b3448e81ad7f0c3f9502f3e63dd",
         "classification": "REVOKED_INTERMEDIATE_PROBE_AUDIT",
         "authoritative_replacements": [
             "work/probe_coherence_corrected/probe_coherence_certificate.json",
@@ -371,6 +371,8 @@ def fixed_evidence_files() -> dict[str, str]:
         "work/final_theorem_release/run_release_mutations.py": "harness",
         "work/final_theorem_release/test_release_mutation_output_contract.py": "harness",
         "work/final_theorem_release/test_nested_mutation_output_contract.py": "harness",
+        "work/final_theorem_release/test_semantic_mutation_diagnostic_contracts.py": "harness",
+        "work/final_theorem_release/test_final_replay_output_contract.py": "harness",
         "work/final_theorem_release/verify_full_map_reseal.py": "corrected_finite_universe:full_map_reseal",
         "work/final_theorem_release/full_map_reseal_audit.json": "corrected_finite_universe:full_map_reseal",
         "work/final_theorem_release/verify_composite_reseal_diff.py": "corrected_finite_universe:composite_reseal",
@@ -457,22 +459,27 @@ def fixed_evidence_files() -> dict[str, str]:
         "work/raw_ledger_audit/generate_raw_ledger.py": "four_port_raw_rank",
         "work/raw_ledger_audit/ledger_common.py": "four_port_raw_rank",
         "work/raw_ledger_audit/rank_upper_binding.py": "four_port_raw_rank",
-        "work/raw_ledger_audit/test_mutations.py": "four_port_raw_rank",
         "work/raw_ledger_audit/artifacts/raw_ledger_summary.json": "four_port_raw_rank",
         "work/raw_ledger_audit/artifacts/raw_directional_ledger.jsonl.gz": "four_port_raw_rank",
         "work/raw_ledger_audit/artifacts/rank_lower_certificates.json.gz": "four_port_raw_rank",
         "work/raw_ledger_audit/artifacts/rank_upper_binding.json.gz": "four_port_raw_rank",
         "work/raw_ledger_audit/artifacts/retained_class_partition.json.gz": "four_port_raw_rank",
-        "work/raw_ledger_audit/artifacts/raw_ledger_mutation_report.json": "four_port_raw_rank",
         "work/rank_upper_certificates/MANIFEST.sha256": "four_port_raw_rank",
         "work/rank_upper_certificates/manifest.json": "four_port_raw_rank",
         "work/rank_upper_certificates/rank_upper_coverage.json": "four_port_raw_rank",
         "work/rank_upper_certificates/rank_upper_replay.json": "four_port_raw_rank",
         "work/rank_upper_certificates/mutation_report.json": "four_port_raw_rank",
+        # This older mutation runner/report is retained byte-exactly as
+        # provenance, but its generic-nonzero rejection policy is revoked and
+        # contributes no promotion evidence.  The corrected raw-four full-map
+        # and exact-rank v2 suites are the active semantic attacks.
+        "work/raw_ledger_audit/test_mutations.py": "raw_ledger_mutation_legacy_provenance",
+        "work/raw_ledger_audit/artifacts/raw_ledger_mutation_report.json": "raw_ledger_mutation_legacy_provenance",
         # Current direct-36 referee release.
         "package/referee/k2p_offline_sweep_portable/DIRECT_CLOSURE_LOCK.json": "four_port_direct36",
         "package/referee/k2p_offline_sweep_portable/verify_direct_closure_release.py": "four_port_direct36",
         "package/referee/k2p_offline_sweep_portable/test_direct_closure_release_mutations.py": "four_port_direct36",
+        "package/referee/k2p_offline_sweep_portable/direct_closure_mutation_report.json": "four_port_direct36",
         "package/referee/k2p_offline_sweep_portable/proofs/four_port_direct_residual_closure_certificate.json": "four_port_direct36",
         # The legacy 997-parent forest is revoked.  Its corrected replacement
         # is discovered through the signed locator rather than assumed here.
@@ -660,7 +667,10 @@ def validate_nested_manifests(project: Path = PROJECT) -> dict[str, object]:
         row["path"]: row["sha256"] for row in rank_manifest.get("files", [])
     }
     require(manifest_rows == rank_rows, "RANK_MANIFEST_CROSS_FORMAT_FAIL")
-    require(rank_manifest.get("file_count") == len(rank_rows) == 95, "RANK_MANIFEST_COUNT_FAIL")
+    # mutation_report.json qualifies this manifest and is bound by the outer
+    # release lock; excluding it here avoids a circular/self-invalidating
+    # nested commitment.
+    require(rank_manifest.get("file_count") == len(rank_rows) == 94, "RANK_MANIFEST_COUNT_FAIL")
     aggregate = hashlib.sha256(
         b"".join(
             f"{digest}  {relative}\n".encode()
@@ -836,10 +846,15 @@ def is_sha256(value: object) -> bool:
 
 
 def locator_artifacts(
-    locator: dict[str, Any], project: Path = PROJECT
+    locator: dict[str, Any],
+    project: Path = PROJECT,
+    *,
+    excluded_roles: frozenset[str] = frozenset(),
 ) -> dict[str, Path]:
     result: dict[str, Path] = {}
     for role, row in locator["artifacts"].items():
+        if role in excluded_roles:
+            continue
         path = project_file(row["path"], project)
         require(sha_file(path) == row["sha256"], "CORRECTED_LOCATOR_ARTIFACT_DRIFT", role)
         result[role] = path
@@ -1138,24 +1153,121 @@ def validate_raw4_corrected_overlay(
 
     mutations = load_json(paths["corrected_overlay_mutation_report"])
     verify_payload_hash(mutations)
-    require(mutations.get("schema") == "k2p-raw4-corrected-mutations-v1", "RAW4_CORRECTED_MUTATION_SCHEMA_FAIL")
+    require(mutations.get("schema") == "k2p-raw4-corrected-mutations-v2", "RAW4_CORRECTED_MUTATION_SCHEMA_FAIL")
     require(mutations.get("status") == "PASS", "RAW4_CORRECTED_MUTATIONS_NOT_PASS")
     require(mutations.get("source_certificate_sha256") == sha_file(overlay_path), "RAW4_CORRECTED_MUTATION_BINDING_FAIL")
-    results = mutations.get("results")
-    require(isinstance(results, list) and mutations.get("mutation_count") == len(results), "RAW4_CORRECTED_MUTATION_CENSUS_FAIL")
-    require(mutations.get("survived") == 0 and all(row.get("rejected") is True for row in results), "RAW4_CORRECTED_MUTATION_SURVIVOR")
-    required_mutations = {
-        "omitted_raw_record",
-        "reassigned_raw_record",
-        "wrong_port_transport",
-        "reassigned_polynomial_certificate",
-        "mutated_Bernstein_coefficient",
-        "reversed_sign_conclusion",
-        "reassigned_descriptor_class",
-        "python_optimized_mode",
+    require(mutations.get("source_certificate_payload_sha256") == overlay["payload_sha256"], "RAW4_CORRECTED_MUTATION_PAYLOAD_BINDING_FAIL")
+    require(mutations.get("production_verifier_sha256") == sha_file(paths["corrected_overlay_verifier"]), "RAW4_CORRECTED_MUTATION_VERIFIER_BINDING_FAIL")
+    require(mutations.get("mutation_runner_sha256") == sha_file(paths["corrected_overlay_mutation_runner"]), "RAW4_CORRECTED_MUTATION_RUNNER_BINDING_FAIL")
+    baseline = mutations.get("clean_baseline")
+    require(
+        isinstance(baseline, dict)
+        and baseline.get("return_code") == 0
+        and baseline.get("status") == baseline.get("report_status") == "PASS"
+        and baseline.get("report_schema") == "k2p-raw4-corrected-independent-replay-v1"
+        and baseline.get("raw_rows_replayed") == REVOKED_RAW_FOUR_ROWS
+        and baseline.get("strict_source_negative_rows") == REVOKED_RAW_FOUR_ROWS
+        and baseline.get("target_zero_rows") == REVOKED_RAW_FOUR_ROWS
+        and baseline.get("sign_classes_replayed") == 8
+        and baseline.get("unresolved") == 0
+        and baseline.get("false_graph_terminal_conflicts") == 0
+        and baseline.get("success_artifact_present") is True
+        and baseline.get("timeout") is False
+        and baseline.get("signal") is False,
+        "RAW4_CORRECTED_MUTATION_BASELINE_FAIL",
+    )
+    expected_diagnostics = {
+        "omitted_raw_record": "RAW4_CORRECTED_REPLAY_FAIL:coverage census",
+        "reassigned_raw_record": "RAW4_CORRECTED_REPLAY_FAIL:coverage raw-id uniqueness",
+        "wrong_port_transport": "RAW4_CORRECTED_REPLAY_FAIL:raw permutation:0",
+        "reassigned_polynomial_certificate": "RAW4_CORRECTED_REPLAY_FAIL:source pullback:0",
+        "mutated_Bernstein_coefficient": "RAW4_CORRECTED_REPLAY_FAIL:Bernstein certificate mismatch:34a10e594f28cf98f8badff8b10241ab09fb5dfc203c7a6c0b5f940cfc419aa6",
+        "mutated_Bernstein_tensor_entry_count": "RAW4_CORRECTED_REPLAY_FAIL:Bernstein certificate mismatch:34a10e594f28cf98f8badff8b10241ab09fb5dfc203c7a6c0b5f940cfc419aa6",
+        "reversed_sign_conclusion": "RAW4_CORRECTED_REPLAY_FAIL:Bernstein certificate mismatch:34a10e594f28cf98f8badff8b10241ab09fb5dfc203c7a6c0b5f940cfc419aa6",
+        "reassigned_descriptor_class": "RAW4_CORRECTED_REPLAY_FAIL:descriptor class:0",
+        "python_optimized_mode": "RAW4_CORRECTED_REPLAY_FAIL:RAW4_CORRECTED_REPLAY_OPTIMIZED_MODE_FORBIDDEN",
     }
-    observed_mutations = {row.get("mutation") for row in results}
-    require(required_mutations <= observed_mutations, "RAW4_CORRECTED_MUTATION_COVERAGE_FAIL", sorted(required_mutations - observed_mutations))
+    require(mutations.get("diagnostic_contract") == expected_diagnostics, "RAW4_CORRECTED_MUTATION_DIAGNOSTIC_CONTRACT_FAIL")
+    results = mutations.get("results")
+    require(
+        isinstance(results, list)
+        and mutations.get("mutation_count") == len(results) == 9
+        and mutations.get("semantic_certificate_attack_count") == 8
+        and mutations.get("mutations_rejected") == 9,
+        "RAW4_CORRECTED_MUTATION_CENSUS_FAIL",
+    )
+    require([row.get("mutation") for row in results] == list(expected_diagnostics), "RAW4_CORRECTED_MUTATION_ORDER_FAIL")
+    for row in results:
+        name = row.get("mutation")
+        require(
+            row.get("rejected") is True
+            and row.get("return_code") == 1
+            and row.get("expected_diagnostic") == expected_diagnostics[name]
+            and row.get("observed_diagnostic") == expected_diagnostics[name]
+            and row.get("success_artifact_absent") is True
+            and row.get("timeout") is False
+            and row.get("signal") is False
+            and row.get("unrelated_crash") is False
+            and row.get("production_verifier_invoked") is True,
+            "RAW4_CORRECTED_MUTATION_CASE_CONTRACT_FAIL",
+            name,
+        )
+        if name == "python_optimized_mode":
+            require(
+                row.get("test_type") == "production_verifier_optimized_mode_attack"
+                and row.get("preexisting_success_artifact_removed") is True,
+                "RAW4_CORRECTED_MUTATION_OPTIMIZED_CASE_FAIL",
+            )
+        else:
+            require(
+                row.get("test_type") == "complete_resealed_certificate_attack"
+                and row.get("certificate_resealed") is True,
+                "RAW4_CORRECTED_MUTATION_SEMANTIC_CASE_FAIL",
+                name,
+            )
+    require(mutations.get("survived") == 0 and mutations.get("source_tree_drift") == 0, "RAW4_CORRECTED_MUTATION_SURVIVOR")
+    require(
+        mutations.get("qualification_negative_controls")
+        == {
+            "wrong_diagnostic_not_qualified": True,
+            "traceback_not_qualified": True,
+            "import_error_not_qualified": True,
+            "timeout_not_qualified": True,
+            "signal_not_qualified": True,
+            "non_one_exit_not_qualified": True,
+            "success_artifact_not_qualified": True,
+            "missing_diagnostic_not_qualified": True,
+        },
+        "RAW4_CORRECTED_MUTATION_NEGATIVE_CONTROL_FAIL",
+    )
+    require(
+        mutations.get("optimized_driver_stale_output_control")
+        == {
+            "return_code": 1,
+            "expected_diagnostic": "RAW4_MUTATION_DRIVER_FAIL:RAW4_MUTATION_DRIVER_OPTIMIZED_MODE_FORBIDDEN",
+            "observed_diagnostic_exact": True,
+            "preexisting_success_artifact_removed": True,
+            "success_artifact_absent": True,
+        },
+        "RAW4_CORRECTED_MUTATION_DRIVER_OPTIMIZED_CONTROL_FAIL",
+    )
+    require(
+        mutations.get("execution_contract")
+        == {
+            "clean_baseline_required": True,
+            "exact_per_case_diagnostics_required": True,
+            "return_code_one_required": True,
+            "traceback_and_import_failures_rejected": True,
+            "timeouts_signals_and_non_one_exits_rejected": True,
+            "success_artifacts_on_failure_rejected": True,
+            "routine_output_caller_owned_external": True,
+            "authoritative_output_requires_explicit_exact_override": True,
+            "optimized_mode_removes_preexisting_output": True,
+            "absolute_paths_recorded": False,
+            "runtime_fields_recorded": False,
+        },
+        "RAW4_CORRECTED_MUTATION_EXECUTION_CONTRACT_FAIL",
+    )
     return {
         "overlay_payload_sha256": overlay["payload_sha256"],
         "overlay_file_sha256": sha_file(overlay_path),
@@ -1972,28 +2084,155 @@ def validate_cycle_promotion_package(paths: dict[str, Path]) -> dict[str, Any]:
 
     mutations = load_json(paths["cycle_mutation_report"])
     verify_payload_hash(mutations)
-    require(mutations.get("schema") == "k2p-cycle-authoritative-promotion-mutations-v1", "CYCLE_MUTATION_SCHEMA_FAIL")
-    require(mutations.get("status") == "PASS", "CYCLE_MUTATIONS_NOT_PASS")
-    require(mutations.get("source_promotion_certificate_sha256") == sha_file(summary_path), "CYCLE_MUTATION_PROMOTION_BINDING_FAIL")
-    require(mutations.get("source_truth_certificate_sha256") == sha_file(truth_path), "CYCLE_MUTATION_TRUTH_BINDING_FAIL")
-    results = mutations.get("results")
-    require(isinstance(results, list) and len(results) == mutations.get("mutation_count") == 12, "CYCLE_MUTATION_CENSUS_FAIL")
-    require(mutations.get("survived") == 0 and all(row.get("rejected") is True for row in results), "CYCLE_MUTATION_SURVIVOR")
-    required_mutations = {
-        "omitted_base_raw_record",
-        "omitted_dummy_role",
-        "wrong_source_placement",
-        "quadratic_certificate_reassigned",
-        "broken_fixed_full_transport",
-        "reassigned_full_map_truth_row",
-        "legacy_rooted_reason_reintroduction",
-        "legacy_single_triple_reintroduction",
-        "omitted_truth_row_hash",
-        "sign_polynomial_reassigned",
-        "broken_bridge_multihomogeneity",
-        "python_optimized_mode",
+    expected_cycle_diagnostics = {
+        "omitted_base_raw_record": "CYCLE_PROMOTION_VERIFY_FAIL:base order:0",
+        "omitted_dummy_role": (
+            "CYCLE_PROMOTION_VERIFY_FAIL:full field:0:dummy_roles_in_label_order"
+        ),
+        "wrong_source_placement": (
+            "CYCLE_PROMOTION_VERIFY_FAIL:full field:0:source_placement_path"
+        ),
+        "quadratic_certificate_reassigned": (
+            "CYCLE_PROMOTION_VERIFY_FAIL:quadratic proof:92"
+        ),
+        "broken_fixed_full_transport": (
+            "CYCLE_PROMOTION_VERIFY_FAIL:full transport:0"
+        ),
+        "reassigned_full_map_truth_row": (
+            "CYCLE_PROMOTION_VERIFY_FAIL:full truth:558"
+        ),
+        "legacy_rooted_reason_reintroduction": (
+            "CYCLE_PROMOTION_VERIFY_FAIL:forbidden fields:base:0:"
+            "['topology_exclusion_reason']"
+        ),
+        "legacy_single_triple_reintroduction": (
+            "CYCLE_WHOLE_MAP_REPLAY_FAIL:repair triple:23652"
+        ),
+        "omitted_truth_row_hash": (
+            "CYCLE_WHOLE_MAP_REPLAY_FAIL:truth coverage:cycle_full_equal_topology"
+        ),
+        "sign_polynomial_reassigned": (
+            "CYCLE_WHOLE_MAP_REPLAY_FAIL:sign digest key:"
+            "00f81925ab1902e06d3e1bc4125a21b14bac557b25b49314a5742430141b6a0a"
+        ),
+        "broken_bridge_multihomogeneity": (
+            "CYCLE_WHOLE_MAP_REPLAY_FAIL:invariant multidegree:k3:t012:i2"
+        ),
+        "python_optimized_mode": (
+            "CYCLE_PROMOTION_VERIFY_FAIL:CYCLE_PROMOTION_OPTIMIZED_MODE_FORBIDDEN"
+        ),
     }
-    require({row.get("mutation") for row in results} == required_mutations, "CYCLE_MUTATION_COVERAGE_FAIL")
+    truth_structure_unsigned = {
+        "schema": "k2p-cycle-whole-map-structure-preflight-v1",
+        "status": "PASS",
+        "source_certificate_sha256": sha_file(truth_path),
+        "source_certificate_payload_sha256": truth["payload_sha256"],
+        "base_rows": 7_452,
+        "full_rows": 300,
+        "repairs": 24,
+        "unresolved": 0,
+    }
+    truth_structure_payload = sha_object(truth_structure_unsigned)
+    baseline = mutations.get("clean_baseline")
+    results = mutations.get("results")
+    require(
+        mutations.get("schema")
+        == "k2p-cycle-authoritative-promotion-mutations-v2"
+        and mutations.get("status") == "PASS"
+        and mutations.get("source_promotion_certificate_sha256")
+        == sha_file(summary_path)
+        and mutations.get("source_truth_certificate_sha256")
+        == sha_file(truth_path)
+        and mutations.get("mutation_runner_sha256")
+        == sha_file(paths["cycle_mutation_runner"])
+        and mutations.get("promotion_verifier_sha256")
+        == sha_file(paths["cycle_promotion_verifier"])
+        and mutations.get("truth_verifier_sha256")
+        == sha_file(paths["cycle_whole_map_independent_verifier"])
+        and mutations.get("expected_diagnostics") == expected_cycle_diagnostics
+        and mutations.get("qualification_negative_controls")
+        == {
+            "failure_output_with_pass_token_not_qualified": True,
+            "optimized_mode_stale_pass_removed_before_rejection": True,
+            "positive_non_one_exit_not_qualified": True,
+            "preexisting_pass_artifact_not_qualified": True,
+            "signal_exit_not_qualified": True,
+            "timeout_not_qualified": True,
+            "unrelated_traceback_not_qualified": True,
+            "wrong_diagnostic_not_qualified": True,
+        }
+        and mutations.get("output_policy_negative_controls")
+        == {
+            "hardlink_source_output_rejected": True,
+            "symlink_output_rejected": True,
+        }
+        and mutations.get("source_fingerprints_unchanged") is True
+        and isinstance(baseline, dict)
+        and baseline
+        == {
+            "authoritative_promotion_verified_in_place": True,
+            "promotion_base_rows": CYCLE_BASE_TOTAL,
+            "promotion_full_children": CYCLE_FULL_TOTAL,
+            "promotion_incoherent": 0,
+            "promotion_production_verifier_invoked": True,
+            "promotion_success_artifact_byte_identical_to_stored": True,
+            "promotion_success_artifact_created": True,
+            "promotion_success_artifact_sha256": sha_file(
+                paths["cycle_promotion_replay"]
+            ),
+            "promotion_unresolved": 0,
+            "promotion_verifier_exit_code": 0,
+            "status": "PASS",
+            "truth_structure_base_rows": 7_452,
+            "truth_structure_full_rows": 300,
+            "truth_structure_payload_sha256": truth_structure_payload,
+            "truth_structure_production_verifier_invoked": True,
+            "truth_structure_repairs": 24,
+            "truth_structure_success_artifact_created": True,
+            "truth_structure_unresolved": 0,
+            "truth_structure_verifier_exit_code": 0,
+        }
+        and isinstance(results, list)
+        and len(results) == mutations.get("mutation_count") == 12
+        and [row.get("mutation") for row in results]
+        == list(expected_cycle_diagnostics)
+        and mutations.get("survived") == 0,
+        "CYCLE_MUTATION_V2_CONTRACT_FAIL",
+    )
+    promotion_mutation_names = set(list(expected_cycle_diagnostics)[:7])
+    truth_mutation_names = set(list(expected_cycle_diagnostics)[7:11])
+    for row in results:
+        name = row["mutation"]
+        expected_type = (
+            "complete_disposable_cycle_promotion_attack"
+            if name in promotion_mutation_names
+            else "complete_disposable_cycle_truth_certificate_attack"
+            if name in truth_mutation_names
+            else "optimized_production_verifier_attack"
+        )
+        expected_verifier = (
+            mutations["truth_verifier_sha256"]
+            if name in truth_mutation_names
+            else mutations["promotion_verifier_sha256"]
+        )
+        require(
+            row.get("test_type") == expected_type
+            and row.get("production_verifier_invoked") is True
+            and row.get("production_verifier_sha256") == expected_verifier
+            and row.get("verifier_exit_code") == 1
+            and row.get("expected_semantic_diagnostic")
+            == expected_cycle_diagnostics[name]
+            and row.get("observed_semantic_diagnostic")
+            == expected_cycle_diagnostics[name]
+            and row.get("semantic_diagnostic_matched") is True
+            and row.get("success_artifact_created") is False
+            and row.get("success_token_observed") is False
+            and row.get("traceback_observed") is False
+            and row.get("rejected") is True
+            and row.get("status") == "REJECTED",
+            "CYCLE_MUTATION_CASE_CONTRACT_FAIL",
+            name,
+        )
     return {
         "status": "PASS",
         "promotion_payload_sha256": summary["payload_sha256"],
@@ -2137,45 +2376,174 @@ def validate_probe_input_package(paths: dict[str, Path]) -> dict[str, Any]:
     for field in ("missing_anchors", "extra_anchors", "unresolved"):
         require(replay.get(field) == 0, "PROBE_INPUT_REPLAY_ZERO_GATE_FAIL", field)
 
+    expected_mutation_diagnostics = {
+        "omitted_anchor_record": "PROBE_INPUT_STRUCTURE_FAIL:anchor count",
+        "old_172_anchor_count_reintroduction": (
+            "PROBE_INPUT_STRUCTURE_FAIL:anchor count"
+        ),
+        "duplicate_replacing_new_triangle_anchor": (
+            "PROBE_INPUT_STRUCTURE_FAIL:anchor ids"
+        ),
+        "raw67161_locator_reassignment": (
+            "PROBE_INPUT_STRUCTURE_FAIL:regression rows:{67167: "
+            "('four_port_restored_physical_k5', 'triangle'), 67401: "
+            "('four_port_restored_physical_k5', 'triangle'), 67407: "
+            "('four_port_restored_physical_k5', 'triangle')}"
+        ),
+        "collapse_two_k7_path_ids_sharing_topology_id": (
+            "PROBE_INPUT_STRUCTURE_FAIL:anchor ids"
+        ),
+        "omitted_pendant_arm": (
+            "PROBE_INPUT_STRUCTURE_FAIL:site formula:four:raw2040:source"
+        ),
+        "omitted_reticulation_incoming": (
+            "PROBE_INPUT_STRUCTURE_FAIL:site formula:four:raw2040:source"
+        ),
+        "dropped_root_suppressed_segment": (
+            "PROBE_INPUT_STRUCTURE_FAIL:site formula:four:raw2040:source"
+        ),
+        "split_artificial_root_halves": (
+            "PROBE_INPUT_STRUCTURE_FAIL:site formula:four:raw2040:source"
+        ),
+        "wrong_root_half_equivalence": (
+            "PROBE_INPUT_STRUCTURE_FAIL:half relation:four:raw2040:source"
+        ),
+        "wrong_site_transport": (
+            "PROBE_INPUT_STRUCTURE_FAIL:site transport mapping:four:raw2040"
+        ),
+        "corrupt_anchor_parent_transport": (
+            "PROBE_INPUT_STRUCTURE_FAIL:site transport mapping:four:raw2040"
+        ),
+        "wrong_site_formula": "PROBE_INPUT_STRUCTURE_FAIL:reported formula",
+        "topology_first_classifier_reintroduction": (
+            "PROBE_INPUT_STRUCTURE_FAIL:classifier order"
+        ),
+        "triple_type_gate_reintroduction": (
+            "PROBE_INPUT_STRUCTURE_FAIL:classifier order"
+        ),
+        "forbidden_rooted_restriction_removed": (
+            "PROBE_INPUT_STRUCTURE_FAIL:forbidden shortcuts"
+        ),
+        "raw4424_false_tree_sunlet_reintroduction": (
+            "PROBE_INPUT_STRUCTURE_FAIL:top-level fields"
+        ),
+        "generic_rooted_restriction_reintroduction": (
+            "PROBE_INPUT_STRUCTURE_FAIL:top-level fields"
+        ),
+        "ordered_row_hash_omission": (
+            "PROBE_INPUT_STRUCTURE_FAIL:row hash order"
+        ),
+        "upstream_input_binding_corruption": (
+            "PROBE_INPUT_VERIFY_FAIL:input bindings"
+        ),
+        "optimized_mode": "PROBE_INPUT_STRUCTURE_OPTIMIZED_MODE_FORBIDDEN",
+    }
+    expected_execution_contract = {
+        "clean_structure_and_full_baselines_required": True,
+        "mutations_require_exit_code_one": True,
+        "mutations_require_exact_diagnostics": True,
+        "traceback_import_timeout_signal_rejected": True,
+        "success_artifact_must_be_absent": True,
+        "caller_owned_output_required": True,
+    }
     mutations = load_json(paths["probe_input_mutation_report"])
     verify_payload_hash(mutations)
-    require(mutations.get("schema") == "k2p-probe-input-mutation-certificate-v1", "PROBE_INPUT_MUTATION_SCHEMA_FAIL")
+    require(
+        mutations.get("schema") == "k2p-probe-input-mutation-certificate-v2",
+        "PROBE_INPUT_MUTATION_SCHEMA_FAIL",
+    )
     require(mutations.get("status") == "PASS", "PROBE_INPUT_MUTATIONS_NOT_PASS")
-    require(mutations.get("contract_sha256") == sha_file(contract_path), "PROBE_INPUT_MUTATION_FILE_BINDING_FAIL")
-    require(mutations.get("contract_payload_sha256") == contract["payload_sha256"], "PROBE_INPUT_MUTATION_PAYLOAD_BINDING_FAIL")
-    require(mutations.get("adversarial_mutations") == mutations.get("mutations_rejected") == 20, "PROBE_INPUT_MUTATION_CENSUS_FAIL")
+    require(
+        mutations.get("contract_sha256") == sha_file(contract_path),
+        "PROBE_INPUT_MUTATION_FILE_BINDING_FAIL",
+    )
+    require(
+        mutations.get("contract_payload_sha256") == contract["payload_sha256"],
+        "PROBE_INPUT_MUTATION_PAYLOAD_BINDING_FAIL",
+    )
+    require(
+        mutations.get("structure_verifier_sha256")
+        == sha_file(paths["probe_input_structural_verifier"]),
+        "PROBE_INPUT_MUTATION_STRUCTURE_VERIFIER_BINDING_FAIL",
+    )
+    require(
+        mutations.get("full_verifier_sha256")
+        == sha_file(paths["probe_input_primary_verifier"]),
+        "PROBE_INPUT_MUTATION_FULL_VERIFIER_BINDING_FAIL",
+    )
+    require(
+        mutations.get("mutation_runner_sha256")
+        == sha_file(paths["probe_input_mutation_runner"]),
+        "PROBE_INPUT_MUTATION_RUNNER_BINDING_FAIL",
+    )
+    require(
+        mutations.get("diagnostic_contract") == expected_mutation_diagnostics,
+        "PROBE_INPUT_MUTATION_DIAGNOSTIC_CONTRACT_FAIL",
+    )
+    require(
+        mutations.get("execution_contract") == expected_execution_contract,
+        "PROBE_INPUT_MUTATION_EXECUTION_CONTRACT_FAIL",
+    )
+    require(
+        mutations.get("adversarial_mutations")
+        == mutations.get("mutations_rejected")
+        == 20,
+        "PROBE_INPUT_MUTATION_CENSUS_FAIL",
+    )
     require(mutations.get("mutation_survivors") == 0, "PROBE_INPUT_MUTATION_SURVIVOR")
-    require(mutations.get("optimized_mode_pass") is True, "PROBE_INPUT_OPTIMIZED_POSITIVE_GATE_FAIL")
+    require(mutations.get("case_count") == 21, "PROBE_INPUT_MUTATION_CASE_COUNT_FAIL")
+    require(
+        mutations.get("optimized_mode_rejected") is True,
+        "PROBE_INPUT_OPTIMIZED_REJECTION_GATE_FAIL",
+    )
+    baseline = mutations.get("clean_baseline")
+    require(isinstance(baseline, dict), "PROBE_INPUT_MUTATION_BASELINE_RECORD_FAIL")
+    require(
+        baseline
+        == {
+            "structure_returncode": 0,
+            "structure_status": "PASS",
+            "structure_success_artifact_absent": True,
+            "full_returncode": 0,
+            "full_status": "PASS",
+            "full_report_schema": replay["schema"],
+            "full_report_payload_sha256": replay["payload_sha256"],
+            "full_success_artifact_present": True,
+            "anchors": PROBE_INPUT_ANCHORS,
+            "source_sites": PROBE_INPUT_SITES_PER_SIDE,
+            "target_sites": PROBE_INPUT_SITES_PER_SIDE,
+            "first_probe_pairs": PROBE_INPUT_FIRST_PAIRS,
+            "timeout": False,
+            "signal": False,
+        },
+        "PROBE_INPUT_MUTATION_BASELINE_CONTRACT_FAIL",
+    )
     results = mutations.get("results")
-    require(isinstance(results, list) and len(results) == 21, "PROBE_INPUT_MUTATION_ROWS_FAIL")
-    negative = [row for row in results if row.get("mutation") != "optimized_mode_original_contract"]
-    positive = [row for row in results if row.get("mutation") == "optimized_mode_original_contract"]
-    require(len(negative) == 20 and all(row.get("rejected") is True for row in negative), "PROBE_INPUT_MUTATION_NEGATIVE_GATE_FAIL")
-    require(len(positive) == 1 and positive[0].get("passed") is True and positive[0].get("returncode") == 0, "PROBE_INPUT_MUTATION_OPTIMIZED_GATE_FAIL")
-    required_mutations = {
-        "omitted_anchor_record",
-        "old_172_anchor_count_reintroduction",
-        "duplicate_replacing_new_triangle_anchor",
-        "raw67161_locator_reassignment",
-        "collapse_two_k7_path_ids_sharing_topology_id",
-        "omitted_pendant_arm",
-        "omitted_reticulation_incoming",
-        "dropped_root_suppressed_segment",
-        "split_artificial_root_halves",
-        "wrong_root_half_equivalence",
-        "wrong_site_transport",
-        "corrupt_anchor_parent_transport",
-        "wrong_site_formula",
-        "topology_first_classifier_reintroduction",
-        "triple_type_gate_reintroduction",
-        "forbidden_rooted_restriction_removed",
-        "raw4424_false_tree_sunlet_reintroduction",
-        "generic_rooted_restriction_reintroduction",
-        "ordered_row_hash_omission",
-        "upstream_input_binding_corruption",
-        "optimized_mode_original_contract",
-    }
-    require({row.get("mutation") for row in results} == required_mutations, "PROBE_INPUT_MUTATION_COVERAGE_FAIL")
+    require(
+        isinstance(results, list)
+        and len(results) == 21
+        and [row.get("mutation") for row in results]
+        == list(expected_mutation_diagnostics),
+        "PROBE_INPUT_MUTATION_ROWS_FAIL",
+    )
+    for row in results:
+        name = row["mutation"]
+        expected = expected_mutation_diagnostics[name]
+        require(
+            row
+            == {
+                "mutation": name,
+                "rejected": True,
+                "returncode": 1,
+                "expected_diagnostic": expected,
+                "observed_diagnostic": expected,
+                "success_artifact_absent": True,
+                "timeout": False,
+                "signal": False,
+            },
+            "PROBE_INPUT_MUTATION_CASE_CONTRACT_FAIL",
+            name,
+        )
     return {
         "status": "PASS_INPUT_ONLY",
         "claim_boundary": "FULL_PROBE_CLASSIFICATION_NOT_CLAIMED",
@@ -2543,33 +2911,64 @@ def validate_corrected_probe_package(
 
     mutations = load_json(paths["probe_mutation_report"])
     verify_logical_payload(mutations, "CORRECTED_PROBE_MUTATIONS")
-    require(mutations.get("schema") == "k2p-corrected-probe-mutations-v1", "CORRECTED_PROBE_MUTATION_SCHEMA_FAIL")
+    require(mutations.get("schema") == "k2p-corrected-probe-mutations-v2", "CORRECTED_PROBE_MUTATION_SCHEMA_FAIL")
     require(mutations.get("status") == "PASS", "CORRECTED_PROBE_MUTATIONS_NOT_PASS")
     require(mutations.get("source_certificate_sha256") == sha_file(certificate_path), "CORRECTED_PROBE_MUTATION_CERTIFICATE_BINDING_FAIL")
     require(mutations.get("source_verifier_sha256") == sha_file(paths["probe_independent_verifier"]), "CORRECTED_PROBE_MUTATION_VERIFIER_BINDING_FAIL")
+    require(
+        mutations.get("mutation_runner_sha256")
+        == sha_file(paths["probe_mutation_runner"]),
+        "CORRECTED_PROBE_MUTATION_RUNNER_BINDING_FAIL",
+    )
     cases = mutations.get("cases")
     require(isinstance(cases, list) and len(cases) == mutations.get("mutations_attempted") == mutations.get("mutations_rejected") == 15, "CORRECTED_PROBE_MUTATION_CENSUS_FAIL")
-    require(all(row.get("rejected") is True and row.get("returncode") != 0 for row in cases), "CORRECTED_PROBE_MUTATION_SURVIVOR")
     required_mutations = {
-        "omitted_anchor",
-        "swapped_classifier_precedence",
-        "omitted_one_port_probe",
-        "wrong_one_port_parent",
-        "reassigned_Ti_certificate",
-        "omitted_two_port_parent",
-        "missing_root_suppressed_site",
-        "omitted_two_port_probe",
-        "wrong_two_port_parent",
-        "reversed_order_class",
-        "inconsistent_global_triangle",
-        "broken_exact_transport",
-        "omitted_parent_restriction",
-        "altered_Bernstein_certificate",
-        "optimized_mode",
+        "omitted_anchor": "CORRECTED_PROBE_REPLAY_FAIL:anchor rows",
+        "swapped_classifier_precedence": "CORRECTED_PROBE_REPLAY_FAIL:classifier order",
+        "omitted_one_port_probe": "CORRECTED_PROBE_REPLAY_FAIL:one Cartesian/order coverage:0:('four:raw2040', 0, 1)",
+        "wrong_one_port_parent": "CORRECTED_PROBE_REPLAY_FAIL:one Cartesian/order coverage:0:('four:raw2042', 0, 0)",
+        "reassigned_Ti_certificate": "CORRECTED_PROBE_REPLAY_FAIL:one T_i proof:122",
+        "omitted_two_port_parent": "CORRECTED_PROBE_REPLAY_FAIL:two parent ordered equality coverage:0",
+        "missing_root_suppressed_site": "CORRECTED_PROBE_REPLAY_FAIL:profile formula:source:P1:four:raw2040:0:0",
+        "omitted_two_port_probe": "CORRECTED_PROBE_REPLAY_FAIL:two raw total from parents",
+        "wrong_two_port_parent": "CORRECTED_PROBE_REPLAY_FAIL:two Cartesian/order coverage:0:('P1:four:raw2040:1:1', 0, 0)",
+        "reversed_order_class": "CORRECTED_PROBE_REPLAY_FAIL:reverse class:0",
+        "inconsistent_global_triangle": "CORRECTED_PROBE_REPLAY_FAIL:global triangle hash:two:1887",
+        "broken_exact_transport": "CORRECTED_PROBE_REPLAY_FAIL:transport self hash:d36206c63e2262bc13495519b217d2e600b576e64ddcb603c34529dcd4025f8c",
+        "omitted_parent_restriction": "CORRECTED_PROBE_REPLAY_FAIL:one source restriction:0",
+        "altered_Bernstein_certificate": "CORRECTED_PROBE_REPLAY_FAIL:Bernstein replay:05c1967f1addbbf8854ce12ec25861b3b2793fb2961d77ad892e633e93c3c71f",
+        "optimized_mode": "CORRECTED_PROBE_REPLAY_FAIL:CORRECTED_PROBE_REPLAY_OPTIMIZED_MODE_FORBIDDEN",
     }
-    require({row.get("mutation") for row in cases} == required_mutations, "CORRECTED_PROBE_MUTATION_COVERAGE_FAIL")
-    hash_seed = mutations.get("nondefault_hash_seed_replay")
-    require(isinstance(hash_seed, dict) and hash_seed.get("PYTHONHASHSEED") == 12_345 and hash_seed.get("status") == "PASS" and hash_seed.get("returncode") == 0, "CORRECTED_PROBE_HASH_SEED_REPLAY_FAIL")
+    require(mutations.get("diagnostic_contract") == required_mutations, "CORRECTED_PROBE_MUTATION_DIAGNOSTIC_CONTRACT_FAIL")
+    require([row.get("mutation") for row in cases] == list(required_mutations), "CORRECTED_PROBE_MUTATION_COVERAGE_FAIL")
+    for row in cases:
+        expected = required_mutations[row["mutation"]]
+        require(
+            row.get("rejected") is True
+            and row.get("returncode") == 1
+            and row.get("expected_diagnostic") == expected
+            and row.get("observed_diagnostic") == expected
+            and row.get("success_artifact_absent") is True
+            and row.get("timeout") is False
+            and row.get("signal") is False,
+            "CORRECTED_PROBE_MUTATION_DIAGNOSTIC_FAIL",
+            row.get("mutation"),
+        )
+    baseline = mutations.get("clean_baseline")
+    require(
+        isinstance(baseline, dict)
+        and baseline.get("PYTHONHASHSEED") == 12_345
+        and baseline.get("returncode") == 0
+        and baseline.get("status") == "PASS"
+        and baseline.get("report_schema") == replay.get("schema")
+        and baseline.get("report_status") == "PASS"
+        and baseline.get("success_artifact_present") is True
+        and baseline.get("unresolved") == 0
+        and baseline.get("incoherent") == 0
+        and baseline.get("timeout") is False
+        and baseline.get("signal") is False,
+        "CORRECTED_PROBE_BASELINE_REPLAY_FAIL",
+    )
 
     anchor_replay = load_json(paths["probe_adversarial_anchor_replay"])
     verify_payload_hash(anchor_replay)
@@ -2585,25 +2984,96 @@ def validate_corrected_probe_package(
 
     adversarial_mutations = load_json(paths["probe_adversarial_mutation_report"])
     verify_payload_hash(adversarial_mutations)
-    require(adversarial_mutations.get("schema") == "k2p-corrected-probe-independent-mutations-v1" and adversarial_mutations.get("status") == "PASS", "CORRECTED_PROBE_ADVERSARIAL_MUTATION_SCHEMA_FAIL")
+    require(adversarial_mutations.get("schema") == "k2p-corrected-probe-independent-mutations-v2" and adversarial_mutations.get("status") == "PASS", "CORRECTED_PROBE_ADVERSARIAL_MUTATION_SCHEMA_FAIL")
+    require(
+        adversarial_mutations.get("source_certificate_sha256")
+        == sha_file(certificate_path)
+        and adversarial_mutations.get("source_certificate_payload_sha256")
+        == certificate["payload_sha256"],
+        "CORRECTED_PROBE_ADVERSARIAL_MUTATION_SOURCE_BINDING_FAIL",
+    )
+    require(
+        adversarial_mutations.get("mutation_runner_sha256")
+        == sha_file(paths["probe_adversarial_auditor"]),
+        "CORRECTED_PROBE_ADVERSARIAL_MUTATION_RUNNER_BINDING_FAIL",
+    )
     require(adversarial_mutations.get("mutations_rejected") == 12 and adversarial_mutations.get("mutations_survived") == 0, "CORRECTED_PROBE_ADVERSARIAL_MUTATION_CENSUS_FAIL")
     adversarial_cases = adversarial_mutations.get("mutations")
-    require(isinstance(adversarial_cases, list) and len(adversarial_cases) == 12 and all(row.get("result") == "REJECTED" for row in adversarial_cases), "CORRECTED_PROBE_ADVERSARIAL_MUTATION_ROWS_FAIL")
     required_adversarial_mutations = {
-        "omitted_raw_record",
-        "wrong_parent",
-        "wrong_site",
-        "wrong_reverse_transport",
-        "broken_global_triangle",
-        "reassigned_quartet_certificate",
-        "reassigned_Ti_certificate",
-        "wrong_parent_restriction",
-        "broken_exact_transport",
-        "old_rooted_cache_field",
-        "classifier_status_reassignment",
-        "child_graph_hash_mutation",
+        "omitted_raw_record": "coverage row count",
+        "wrong_parent": "parent identity",
+        "wrong_site": "site identity",
+        "wrong_reverse_transport": "reverse exact payload",
+        "broken_global_triangle": "global triangle",
+        "reassigned_quartet_certificate": "quartet certificate",
+        "reassigned_Ti_certificate": "T_i certificate",
+        "wrong_parent_restriction": "restriction self hash",
+        "broken_exact_transport": (
+            "transport self hash:"
+            "307dad14dc8b23e367c646cbf6637d74a9cd2104b7e415229a9d9384f61cc857"
+        ),
+        "old_rooted_cache_field": (
+            "forbidden rooted-oracle field:$.rooted_triple_cache"
+        ),
+        "classifier_status_reassignment": "classifier status",
+        "child_graph_hash_mutation": "child hash",
     }
-    require({row.get("mutation") for row in adversarial_cases} == required_adversarial_mutations, "CORRECTED_PROBE_ADVERSARIAL_MUTATION_COVERAGE_FAIL")
+    require(
+        adversarial_mutations.get("clean_baseline")
+        == {
+            "status": "PASS",
+            "checks": 12,
+            "all_unmutated_samples_accepted": True,
+        },
+        "CORRECTED_PROBE_ADVERSARIAL_MUTATION_BASELINE_FAIL",
+    )
+    require(
+        adversarial_mutations.get("diagnostic_contract")
+        == required_adversarial_mutations,
+        "CORRECTED_PROBE_ADVERSARIAL_MUTATION_DIAGNOSTIC_CONTRACT_FAIL",
+    )
+    require(
+        adversarial_mutations.get("qualification_contract")
+        == {
+            "clean_baseline_required_per_case": True,
+            "only_AuditFailure_qualifies": True,
+            "exact_diagnostic_required": True,
+            "unrelated_exceptions_rejected": True,
+            "caller_owned_outputs_required": True,
+        },
+        "CORRECTED_PROBE_ADVERSARIAL_MUTATION_QUALIFICATION_CONTRACT_FAIL",
+    )
+    require(
+        adversarial_mutations.get("qualification_negative_controls")
+        == {
+            "wrong_diagnostic_not_qualified": True,
+            "unrelated_exception_not_qualified": True,
+            "surviving_mutation_not_qualified": True,
+            "failed_clean_baseline_not_qualified": True,
+        },
+        "CORRECTED_PROBE_ADVERSARIAL_MUTATION_NEGATIVE_CONTROLS_FAIL",
+    )
+    require(
+        isinstance(adversarial_cases, list)
+        and len(adversarial_cases) == 12
+        and [row.get("mutation") for row in adversarial_cases]
+        == list(required_adversarial_mutations),
+        "CORRECTED_PROBE_ADVERSARIAL_MUTATION_ROWS_FAIL",
+    )
+    for row in adversarial_cases:
+        expected = required_adversarial_mutations[row["mutation"]]
+        require(
+            row
+            == {
+                "mutation": row["mutation"],
+                "rejected": True,
+                "exception_type": "AuditFailure",
+                "expected_diagnostic": expected,
+                "observed_diagnostic": expected,
+            },
+            "CORRECTED_PROBE_ADVERSARIAL_MUTATION_CASE_FAIL",
+            row["mutation"],
+        )
 
     adversarial = load_json(paths["probe_adversarial_certificate"])
     verify_logical_payload(adversarial, "CORRECTED_PROBE_ADVERSARIAL")
@@ -2622,7 +3092,7 @@ def validate_corrected_probe_package(
         )
     }
     require(adversarial.get("primary_file_sha256") == expected_primary_files, "CORRECTED_PROBE_ADVERSARIAL_PRIMARY_FILE_BINDING_FAIL")
-    require(adversarial.get("primitive_anchor_replay") == {"anchors": 176, "canonical_graph_pair_transport_classes": 39, "source_sites": 2_206, "target_sites": 2_206, "independent_replay_payload_sha256": anchor_replay["payload_sha256"]}, "CORRECTED_PROBE_ADVERSARIAL_ANCHOR_SUMMARY_FAIL")
+    require(adversarial.get("primitive_anchor_replay") == {"anchors": 176, "canonical_graph_pair_transport_classes": 39, "source_sites": 2_206, "target_sites": 2_206, "independent_replay_payload_sha256": probe_input["replay_payload_sha256"]}, "CORRECTED_PROBE_ADVERSARIAL_ANCHOR_SUMMARY_FAIL")
     require(adversarial.get("one_port") == {"raw_pairs": 29_964, "compatible_site_pairs": 2_206, "incompatible_site_pairs": 27_758, "counts": PROBE_ONE_PORT_COUNTS, "equality_relation_classes": 469}, "CORRECTED_PROBE_ADVERSARIAL_ONE_FAIL")
     require(adversarial.get("two_port") == {"parents": 2_107, "raw_pairs": 544_571, "compatible_site_pairs": 33_305, "incompatible_site_pairs": 511_266, "counts": PROBE_TWO_PORT_COUNTS, "reverse_marginals": 32_729, "reverse_relation_counts": {"isomorphic": 30_969, "triangle": 1_760}}, "CORRECTED_PROBE_ADVERSARIAL_TWO_FAIL")
     witnesses = adversarial.get("exact_witnesses")
@@ -3012,31 +3482,76 @@ def validate_restoration_v3_package(paths: dict[str, Path]) -> dict[str, Any]:
         require(replay.get(field) == expected, "RESTORATION_V3_REPLAY_CENSUS_FAIL", field)
 
     mutations = load_json(paths["restoration_v3_mutation_report"])
-    verify_payload_hash(mutations)
-    require(mutations.get("schema") == "k2p-corrected-restoration-mutations-v1", "RESTORATION_V3_MUTATION_SCHEMA_FAIL")
+    restoration_mutation_payload = mutations.get("payload_sha256")
+    require(is_sha256(restoration_mutation_payload), "RESTORATION_V3_MUTATION_PAYLOAD_FORMAT_FAIL")
+    require(
+        sha_object(
+            {
+                key: value
+                for key, value in mutations.items()
+                if key not in {"payload_sha256", "operational"}
+            }
+        )
+        == restoration_mutation_payload,
+        "RESTORATION_V3_MUTATION_PAYLOAD_HASH_FAIL",
+    )
+    require(mutations.get("schema") == "k2p-corrected-restoration-mutations-v2", "RESTORATION_V3_MUTATION_SCHEMA_FAIL")
     require(mutations.get("status") == "PASS", "RESTORATION_V3_MUTATIONS_NOT_PASS")
     require(mutations.get("source_certificate_sha256") == sha_file(certificate_path), "RESTORATION_V3_MUTATION_CERTIFICATE_BINDING_FAIL")
     require(mutations.get("source_crosswalk_sha256") == sha_file(crosswalk_path), "RESTORATION_V3_MUTATION_CROSSWALK_BINDING_FAIL")
     require(mutations.get("verifier_sha256") == sha_file(paths["restoration_v3_independent_verifier"]), "RESTORATION_V3_MUTATION_VERIFIER_BINDING_FAIL")
+    require(
+        mutations.get("mutation_runner_sha256")
+        == sha_file(paths["restoration_v3_mutation_runner"]),
+        "RESTORATION_V3_MUTATION_RUNNER_BINDING_FAIL",
+    )
     cases = mutations.get("cases")
     require(isinstance(cases, list) and len(cases) == mutations.get("mutations_attempted") == mutations.get("mutations_rejected") == 13, "RESTORATION_V3_MUTATION_CENSUS_FAIL")
-    require(all(row.get("rejected") is True and row.get("returncode") != 0 for row in cases), "RESTORATION_V3_MUTATION_SURVIVOR")
     required_mutations = {
-        "omitted_clean_first_edge",
-        "omitted_provenance_raw_record",
-        "wrong_first_parent_transport",
-        "broken_target_transport_payload",
-        "reassigned_quartet_certificate",
-        "reassigned_Ti_presentation",
-        "altered_Bernstein_coefficient",
-        "invalid_D_plus_parameter_witness",
-        "reassigned_F_2_112_quartic",
-        "omitted_second_child",
-        "wrong_second_parent",
-        "nonforest_depth_cycle_attempt",
-        "optimized_mode",
+        "omitted_clean_first_edge": "CORRECTED_RESTORATION_REPLAY_FAIL:first coverage length",
+        "omitted_provenance_raw_record": "CORRECTED_RESTORATION_REPLAY_FAIL:crosswalk first coverage length",
+        "wrong_first_parent_transport": "CORRECTED_RESTORATION_REPLAY_FAIL:source parent transport row binding:0",
+        "broken_target_transport_payload": "CORRECTED_RESTORATION_REPLAY_FAIL:target parent transport registry replay:(91, (0, 1, 3, 2), 'D_REPAIR_0_2')",
+        "reassigned_quartet_certificate": "CORRECTED_RESTORATION_REPLAY_FAIL:quartet replay:0",
+        "reassigned_Ti_presentation": "CORRECTED_RESTORATION_REPLAY_FAIL:T target hash",
+        "altered_Bernstein_coefficient": "CORRECTED_RESTORATION_REPLAY_FAIL:Bernstein record at first use:52d67c40fb7867cb1fe9fe10fefb54043be08ef072f1ffbeb3159fd3ec312d75",
+        "invalid_D_plus_parameter_witness": "CORRECTED_RESTORATION_REPLAY_FAIL:witness s outside D_plus",
+        "reassigned_F_2_112_quartic": "CORRECTED_RESTORATION_REPLAY_FAIL:algebra target pullback nonzero",
+        "omitted_second_child": "CORRECTED_RESTORATION_REPLAY_FAIL:second coverage length",
+        "wrong_second_parent": "CORRECTED_RESTORATION_REPLAY_FAIL:abstract complete acyclic parent forest",
+        "nonforest_depth_cycle_attempt": "CORRECTED_RESTORATION_REPLAY_FAIL:abstract second parent",
+        "optimized_mode": "CORRECTED_RESTORATION_REPLAY_FAIL:CORRECTED_RESTORATION_REPLAY_OPTIMIZED_MODE_FORBIDDEN",
     }
-    require({row.get("mutation") for row in cases} == required_mutations, "RESTORATION_V3_MUTATION_COVERAGE_FAIL")
+    require(mutations.get("diagnostic_contract") == required_mutations, "RESTORATION_V3_MUTATION_DIAGNOSTIC_CONTRACT_FAIL")
+    require([row.get("mutation") for row in cases] == list(required_mutations), "RESTORATION_V3_MUTATION_COVERAGE_FAIL")
+    for row in cases:
+        expected = required_mutations[row["mutation"]]
+        require(
+            row.get("rejected") is True
+            and row.get("returncode") == 1
+            and row.get("expected_diagnostic") == expected
+            and row.get("observed_diagnostic") == expected
+            and row.get("success_artifact_absent") is True
+            and row.get("timeout") is False
+            and row.get("signal") is False,
+            "RESTORATION_V3_MUTATION_DIAGNOSTIC_FAIL",
+            row.get("mutation"),
+        )
+    baseline = mutations.get("clean_baseline")
+    require(
+        isinstance(baseline, dict)
+        and baseline.get("returncode") == 0
+        and baseline.get("status") == "PASS"
+        and baseline.get("report_schema") == replay.get("schema")
+        and baseline.get("report_status") == "PASS"
+        and baseline.get("success_artifact_present") is True
+        and baseline.get("unresolved") == 0
+        and baseline.get("missing_children") == 0
+        and baseline.get("cycles") == 0
+        and baseline.get("timeout") is False
+        and baseline.get("signal") is False,
+        "RESTORATION_V3_MUTATION_BASELINE_FAIL",
+    )
 
     canonical_parent_ids: list[str] = []
     seen_parent_ids: set[str] = set()
@@ -3557,41 +4072,116 @@ def validate_frozen_corrected_universe(
 
     mutations = load_json(paths["corrected_universe_mutation_report"])
     verify_payload_hash(mutations)
+    unified_certificate_mismatch = (
+        "CORRECTED_UNIVERSE_REPLAY_FAIL:UNIFIED_REPLAY_CERTIFICATE_MISMATCH"
+    )
+    required_mutations = {
+        "omitted_raw_row": unified_certificate_mismatch,
+        "false_rank_exclusion": unified_certificate_mismatch,
+        "missing_child": unified_certificate_mismatch,
+        "wrong_parent": unified_certificate_mismatch,
+        "broken_transport": unified_certificate_mismatch,
+        "reassigned_quadratic_certificate": unified_certificate_mismatch,
+        "reassigned_cubic_certificate": unified_certificate_mismatch,
+        "reassigned_quartic_certificate": unified_certificate_mismatch,
+        "reassigned_quintic_certificate": unified_certificate_mismatch,
+        "raw4424_false_tree_sunlet_reintroduction": unified_certificate_mismatch,
+        "rooted_restriction_reintroduction": (
+            "CORRECTED_UNIVERSE_REPLAY_FAIL:UNIFIED_REPLAY_ROOTED_REASON_FAIL"
+        ),
+        "source_tree_write": unified_certificate_mismatch,
+        "omitted_probe_one_port_row": unified_certificate_mismatch,
+        "omitted_probe_two_port_parent": unified_certificate_mismatch,
+        "omitted_probe_two_port_row": unified_certificate_mismatch,
+        "wrong_probe_parent": unified_certificate_mismatch,
+        "broken_probe_transport": unified_certificate_mismatch,
+        "broken_probe_restriction": unified_certificate_mismatch,
+        "reassigned_probe_Ti_certificate": unified_certificate_mismatch,
+        "reversed_probe_order_class": unified_certificate_mismatch,
+        "inconsistent_probe_global_triangle": unified_certificate_mismatch,
+        "optimized_mode": "CORRECTED_UNIVERSE_REPLAY_OPTIMIZED_MODE_FORBIDDEN",
+    }
     require(
-        mutations.get("schema") == "k2p-corrected-finite-universe-mutations-v2",
+        mutations.get("schema") == "k2p-corrected-finite-universe-mutations-v3",
         "CORRECTED_RELEASE_MUTATION_SCHEMA_FAIL",
     )
     require(mutations.get("status") == "PASS", "CORRECTED_RELEASE_MUTATIONS_NOT_PASS")
-    require(mutations.get("survivors") == 0, "CORRECTED_RELEASE_MUTATION_SURVIVOR")
-    tests = {
-        row.get("name") if isinstance(row, dict) else row
-        for row in mutations.get("tests", [])
-    }
-    required_tests = {
-        "omitted_raw_row",
-        "false_rank_exclusion",
-        "missing_child",
-        "wrong_parent",
-        "broken_transport",
-        "reassigned_quadratic_certificate",
-        "reassigned_cubic_certificate",
-        "reassigned_quartic_certificate",
-        "reassigned_quintic_certificate",
-        "raw4424_false_tree_sunlet_reintroduction",
-        "rooted_restriction_reintroduction",
-        "omitted_probe_one_port_row",
-        "omitted_probe_two_port_parent",
-        "omitted_probe_two_port_row",
-        "wrong_probe_parent",
-        "broken_probe_transport",
-        "broken_probe_restriction",
-        "reassigned_probe_Ti_certificate",
-        "reversed_probe_order_class",
-        "inconsistent_probe_global_triangle",
-        "source_tree_write",
-        "optimized_mode",
-    }
-    require(required_tests <= tests, "CORRECTED_RELEASE_MUTATION_COVERAGE_FAIL", sorted(required_tests - tests))
+    require(
+        mutations.get("source_certificate_sha256")
+        == sha_file(paths["corrected_universe_certificate"]),
+        "CORRECTED_RELEASE_MUTATION_CERTIFICATE_BINDING_FAIL",
+    )
+    require(
+        mutations.get("source_verifier_sha256")
+        == sha_file(paths["corrected_universe_verifier"]),
+        "CORRECTED_RELEASE_MUTATION_VERIFIER_BINDING_FAIL",
+    )
+    require(
+        mutations.get("mutation_runner_sha256")
+        == sha_file(paths["corrected_universe_mutation_runner"]),
+        "CORRECTED_RELEASE_MUTATION_RUNNER_BINDING_FAIL",
+    )
+    require(
+        mutations.get("diagnostic_contract") == required_mutations,
+        "CORRECTED_RELEASE_MUTATION_DIAGNOSTIC_CONTRACT_FAIL",
+    )
+    require(
+        mutations.get("execution_contract")
+        == {
+            "clean_baseline_requires_exact_authoritative_replay": True,
+            "mutations_require_exit_code_one": True,
+            "mutations_require_exact_diagnostics": True,
+            "traceback_import_timeout_signal_rejected": True,
+            "success_artifact_must_be_absent": True,
+            "caller_owned_output_required": True,
+        },
+        "CORRECTED_RELEASE_MUTATION_EXECUTION_CONTRACT_FAIL",
+    )
+    require(
+        mutations.get("temporary_copies_only") is True
+        and mutations.get("survivors") == 0
+        and mutations.get("source_tree_drift") == 0,
+        "CORRECTED_RELEASE_MUTATION_ZERO_GATE_FAIL",
+    )
+    baseline = mutations.get("clean_baseline")
+    require(
+        isinstance(baseline, dict)
+        and baseline.get("returncode") == 0
+        and baseline.get("status") == "PASS"
+        and baseline.get("report_schema") == replay.get("schema")
+        and baseline.get("report_status") == "PASS"
+        and baseline.get("report_payload_sha256") == replay.get("payload_sha256")
+        and baseline.get("success_artifact_present") is True
+        and baseline.get("family_count") == 5
+        and baseline.get("unresolved") == 0
+        and baseline.get("rooted_reason_count") == 0
+        and baseline.get("source_tree_drift") == 0
+        and baseline.get("timeout") is False
+        and baseline.get("signal") is False,
+        "CORRECTED_RELEASE_MUTATION_BASELINE_FAIL",
+    )
+    tests = mutations.get("tests")
+    require(
+        isinstance(tests, list)
+        and len(tests)
+        == mutations.get("test_count")
+        == len(required_mutations)
+        and [row.get("name") for row in tests] == list(required_mutations),
+        "CORRECTED_RELEASE_MUTATION_COVERAGE_FAIL",
+    )
+    for row in tests:
+        expected_diagnostic = required_mutations[row["name"]]
+        require(
+            row.get("rejected") is True
+            and row.get("returncode") == 1
+            and row.get("expected_diagnostic") == expected_diagnostic
+            and row.get("observed_diagnostic") == expected_diagnostic
+            and row.get("success_artifact_absent") is True
+            and row.get("timeout") is False
+            and row.get("signal") is False,
+            "CORRECTED_RELEASE_MUTATION_DIAGNOSTIC_FAIL",
+            row.get("name"),
+        )
     return (
         {
             "status": "PASS",
@@ -3627,7 +4217,18 @@ def validate_corrected_finite_universe(
     """Validate the dynamic replacement for every revoked four-port census."""
 
     locator = corrected_locator(project)
-    paths = locator_artifacts(locator, project)
+    downstream_roles = frozenset(
+        {
+            "corrected_universe_certificate",
+            "corrected_universe_replay_report",
+            "corrected_universe_mutation_report",
+        }
+    )
+    paths = locator_artifacts(
+        locator,
+        project,
+        excluded_roles=downstream_roles if family_inputs_only else frozenset(),
+    )
     cycle_summary = validate_cycle_promotion_package(paths)
     probe_input_summary = validate_probe_input_package(paths)
     probe_producer_summary = validate_corrected_probe_package(paths, probe_input_summary)
@@ -3739,91 +4340,6 @@ def validate_corrected_finite_universe(
     )
 
 
-def validate_tree_sunlet_truth(project: Path = PROJECT) -> dict[str, Any]:
-    path = project / "work/adversarial_proof_review/tree_sunlet_truth_certificate.json"
-    require(path.is_file(), "TREE_SUNLET_TRUTH_CERTIFICATE_MISSING")
-    certificate = load_json(path)
-    verify_payload_hash(certificate)
-    require(certificate.get("status") == "PASS", "TREE_SUNLET_TRUTH_NOT_PASS")
-    require(
-        certificate.get("false_topology_oracle_count") == 0,
-        "TREE_SUNLET_FALSE_ORACLE_ROWS_REMAIN",
-    )
-    require(certificate.get("exact_iso_conflicts") == 0, "TREE_SUNLET_ISO_CONFLICTS_REMAIN")
-    require(
-        certificate.get("exact_triangle_conflicts") == 0,
-        "TREE_SUNLET_TRIANGLE_CONFLICTS_REMAIN",
-    )
-    require(certificate.get("unresolved") == 0, "TREE_SUNLET_UNRESOLVED_REMAIN")
-    families = certificate.get("families")
-    require(isinstance(families, dict), "TREE_SUNLET_FAMILY_LEDGER_MISSING")
-    required = {
-        "raw4",
-        "theta2",
-        "restoration",
-        "cycle",
-        "probe",
-    }
-    require(required <= set(families), "TREE_SUNLET_FAMILY_SET_FAIL", sorted(required - set(families)))
-    for family in sorted(required):
-        row = families.get(family)
-        require(isinstance(row, dict), "TREE_SUNLET_FAMILY_MISSING", family)
-        expected_presentations = row.get("input_presentations")
-        require(
-            isinstance(expected_presentations, int) and expected_presentations >= 0,
-            "TREE_SUNLET_INPUT_CENSUS_FAIL",
-            family,
-        )
-        if family == "raw4":
-            require(
-                expected_presentations == REVOKED_RAW_FOUR_ROWS,
-                "TREE_SUNLET_RAW4_INPUT_CENSUS_FAIL",
-            )
-        require(row.get("fully_replayed") is True, "TREE_SUNLET_FAMILY_NOT_REPLAYED", family)
-        require(
-            row.get("full_map_pullback_replayed") is True,
-            "TREE_SUNLET_FULL_MAP_NOT_REPLAYED",
-            family,
-        )
-        require(
-            row.get("reclassified_presentations") == expected_presentations,
-            "TREE_SUNLET_RECLASSIFICATION_COVERAGE_FAIL",
-            family,
-        )
-        require(
-            isinstance(row.get("output_category_counts"), dict)
-            and all(
-                isinstance(value, int) and value >= 0
-                for value in row["output_category_counts"].values()
-            )
-            and sum(row["output_category_counts"].values()) == expected_presentations,
-            "TREE_SUNLET_OUTPUT_PARTITION_FAIL",
-            family,
-        )
-        require(
-            row.get("rooted_reason_count") == 0,
-            "TREE_SUNLET_ROOTED_REASON_REINTRODUCED",
-            family,
-        )
-        require(row.get("exact_iso_conflicts") == 0, "TREE_SUNLET_FAMILY_ISO_CONFLICT", family)
-        require(
-            row.get("exact_triangle_conflicts") == 0,
-            "TREE_SUNLET_FAMILY_TRIANGLE_CONFLICT",
-            family,
-        )
-    mutation_path = project / "work/adversarial_proof_review/tree_sunlet_truth_mutation_certificate.json"
-    require(mutation_path.is_file(), "TREE_SUNLET_TRUTH_MUTATIONS_MISSING")
-    mutations = load_json(mutation_path)
-    verify_payload_hash(mutations)
-    require(mutations.get("status") == "PASS", "TREE_SUNLET_TRUTH_MUTATIONS_NOT_PASS")
-    require(mutations.get("survivors") == 0, "TREE_SUNLET_TRUTH_MUTATION_SURVIVOR")
-    return {
-        "payload_sha256": certificate["payload_sha256"],
-        "family_count": len(families),
-        "false_topology_oracle_count": 0,
-    }
-
-
 def validate_theta2_full_map_truth(project: Path = PROJECT) -> dict[str, Any]:
     path = (
         project
@@ -3895,27 +4411,132 @@ def validate_theta2_full_map_truth(project: Path = PROJECT) -> dict[str, Any]:
     mutations = load_json(mutation_path)
     verify_payload_hash(mutations)
     require(
-        mutations.get("schema") == "k2p-theta2-full-map-mutations-v1",
+        mutations.get("schema") == "k2p-theta2-full-map-mutations-v2",
         "THETA2_FULL_MAP_MUTATION_SCHEMA_FAIL",
     )
     require(mutations.get("status") == "PASS", "THETA2_FULL_MAP_MUTATIONS_NOT_PASS")
     require(mutations.get("source_certificate_sha256") == sha_file(path), "THETA2_FULL_MAP_MUTATION_BINDING_FAIL")
-    results = mutations.get("results")
-    require(isinstance(results, list) and mutations.get("mutation_count") == len(results), "THETA2_FULL_MAP_MUTATION_CENSUS_FAIL")
-    require(mutations.get("survived") == 0 and all(row.get("rejected") is True for row in results), "THETA2_FULL_MAP_MUTATION_SURVIVOR")
-    required_mutations = {
-        "omitted_truth_row",
-        "reassigned_truth_row",
-        "missing_target_presentation",
-        "wrong_target_orientation",
-        "mutated_Bernstein_coefficient",
-        "reassigned_relation_multiplicity",
-        "wrong_source_zero_count",
-        "wrong_graph_relation_count",
-        "python_optimized_mode",
+    require(mutations.get("source_certificate_payload_sha256") == certificate["payload_sha256"], "THETA2_FULL_MAP_MUTATION_PAYLOAD_BINDING_FAIL")
+    require(
+        mutations.get("production_verifier_sha256")
+        == sha_file(project / "work/theta2_sign_reclassification/verify_theta2_full_map_independent.py"),
+        "THETA2_FULL_MAP_MUTATION_VERIFIER_BINDING_FAIL",
+    )
+    require(
+        mutations.get("mutation_runner_sha256")
+        == sha_file(project / "work/theta2_sign_reclassification/mutation_tests.py"),
+        "THETA2_FULL_MAP_MUTATION_RUNNER_BINDING_FAIL",
+    )
+    baseline = mutations.get("clean_baseline")
+    require(
+        isinstance(baseline, dict)
+        and baseline.get("return_code") == 0
+        and baseline.get("status") == baseline.get("report_status") == "PASS"
+        and baseline.get("report_schema") == "k2p-theta2-full-map-independent-replay-v1"
+        and baseline.get("raw_rows_replayed") == 2528
+        and baseline.get("source_zero_rows") == 2528
+        and baseline.get("strict_target_negative_rows") == 2528
+        and baseline.get("exact_graph_relation_none_rows") == 2528
+        and baseline.get("sign_classes_replayed") == 85
+        and baseline.get("unresolved") == 0
+        and baseline.get("success_artifact_present") is True
+        and baseline.get("timeout") is False
+        and baseline.get("signal") is False,
+        "THETA2_FULL_MAP_MUTATION_BASELINE_FAIL",
+    )
+    expected_diagnostics = {
+        "omitted_truth_row": "THETA2_FULL_MAP_REPLAY_FAIL:claimed row count",
+        "reassigned_truth_row": "THETA2_FULL_MAP_REPLAY_FAIL:truth row hash:0",
+        "missing_target_presentation": "THETA2_FULL_MAP_REPLAY_FAIL:missing target sign presentation:587840:(4898, (1, 2, 3))",
+        "wrong_target_orientation": "THETA2_FULL_MAP_REPLAY_FAIL:target polynomial hash:(4898, (1, 2, 3), 1)",
+        "mutated_Bernstein_coefficient": "THETA2_FULL_MAP_REPLAY_FAIL:target Bernstein replay:04f8d1c7ac725665341a9b238ef9c326127051fa3db5db40533a7e45368712d2",
+        "mutated_Bernstein_tensor_entry_count": "THETA2_FULL_MAP_REPLAY_FAIL:target Bernstein replay:04f8d1c7ac725665341a9b238ef9c326127051fa3db5db40533a7e45368712d2",
+        "reassigned_relation_multiplicity": "THETA2_FULL_MAP_REPLAY_FAIL:relation class multiplicities",
+        "wrong_source_zero_count": "THETA2_FULL_MAP_REPLAY_FAIL:source-zero count",
+        "wrong_graph_relation_count": "THETA2_FULL_MAP_REPLAY_FAIL:relation count",
+        "python_optimized_mode": "THETA2_FULL_MAP_REPLAY_FAIL:THETA2_FULL_MAP_REPLAY_OPTIMIZED_MODE_FORBIDDEN",
     }
-    observed_mutations = {row.get("mutation") for row in results}
-    require(required_mutations <= observed_mutations, "THETA2_FULL_MAP_MUTATION_COVERAGE_FAIL", sorted(required_mutations - observed_mutations))
+    require(mutations.get("diagnostic_contract") == expected_diagnostics, "THETA2_FULL_MAP_MUTATION_DIAGNOSTIC_CONTRACT_FAIL")
+    results = mutations.get("results")
+    require(
+        isinstance(results, list)
+        and mutations.get("mutation_count") == len(results) == 10
+        and mutations.get("semantic_certificate_attack_count") == 9
+        and mutations.get("mutations_rejected") == 10,
+        "THETA2_FULL_MAP_MUTATION_CENSUS_FAIL",
+    )
+    require([row.get("mutation") for row in results] == list(expected_diagnostics), "THETA2_FULL_MAP_MUTATION_ORDER_FAIL")
+    for row in results:
+        name = row.get("mutation")
+        require(
+            row.get("rejected") is True
+            and row.get("return_code") == 1
+            and row.get("expected_diagnostic") == expected_diagnostics[name]
+            and row.get("observed_diagnostic") == expected_diagnostics[name]
+            and row.get("success_artifact_absent") is True
+            and row.get("timeout") is False
+            and row.get("signal") is False
+            and row.get("unrelated_crash") is False
+            and row.get("production_verifier_invoked") is True,
+            "THETA2_FULL_MAP_MUTATION_CASE_CONTRACT_FAIL",
+            name,
+        )
+        if name == "python_optimized_mode":
+            require(
+                row.get("test_type") == "production_verifier_optimized_mode_attack"
+                and row.get("preexisting_success_artifact_removed") is True,
+                "THETA2_FULL_MAP_MUTATION_OPTIMIZED_CASE_FAIL",
+            )
+        else:
+            require(
+                row.get("test_type") == "complete_resealed_certificate_attack"
+                and row.get("certificate_resealed") is True,
+                "THETA2_FULL_MAP_MUTATION_SEMANTIC_CASE_FAIL",
+                name,
+            )
+    require(mutations.get("survived") == 0 and mutations.get("source_tree_drift") == 0, "THETA2_FULL_MAP_MUTATION_SURVIVOR")
+    require(
+        mutations.get("qualification_negative_controls")
+        == {
+            "wrong_diagnostic_not_qualified": True,
+            "traceback_not_qualified": True,
+            "import_error_not_qualified": True,
+            "timeout_not_qualified": True,
+            "signal_not_qualified": True,
+            "non_one_exit_not_qualified": True,
+            "success_artifact_not_qualified": True,
+            "missing_diagnostic_not_qualified": True,
+        },
+        "THETA2_FULL_MAP_MUTATION_NEGATIVE_CONTROL_FAIL",
+    )
+    require(
+        mutations.get("optimized_driver_stale_output_control")
+        == {
+            "return_code": 1,
+            "expected_diagnostic": "THETA2_MUTATION_DRIVER_FAIL:THETA2_MUTATION_DRIVER_OPTIMIZED_MODE_FORBIDDEN",
+            "observed_diagnostic_exact": True,
+            "preexisting_success_artifact_removed": True,
+            "success_artifact_absent": True,
+        },
+        "THETA2_FULL_MAP_MUTATION_DRIVER_OPTIMIZED_CONTROL_FAIL",
+    )
+    require(
+        mutations.get("execution_contract")
+        == {
+            "clean_baseline_required": True,
+            "exact_per_case_diagnostics_required": True,
+            "return_code_one_required": True,
+            "traceback_and_import_failures_rejected": True,
+            "timeouts_signals_and_non_one_exits_rejected": True,
+            "success_artifacts_on_failure_rejected": True,
+            "routine_output_caller_owned_external": True,
+            "authoritative_output_requires_explicit_exact_override": True,
+            "optimized_mode_removes_preexisting_output": True,
+            "absolute_paths_recorded": False,
+            "runtime_fields_recorded": False,
+        },
+        "THETA2_FULL_MAP_MUTATION_EXECUTION_CONTRACT_FAIL",
+    )
     return {
         "payload_sha256": certificate["payload_sha256"],
         "rows": 2528,
@@ -3952,7 +4573,7 @@ def validate_runtime_evidence(project: Path = PROJECT) -> dict[str, Any]:
         corrected_forest
         == {
             "path": "work/restoration_sign_reclassification/corrected_restoration_forest.json",
-            "sha256": "43bd2be5e7626a954fc4fa4cf45e8d0e6483c947ddc9cba80f2b1a13351bc3a8",
+            "sha256": "bcf91bf433c71056d1e27871dd15fe532f9ae1cc4ad79eb2373eae57071ee427",
         },
         "REVOKED_RUNTIME_CORRECTED_FOREST_REPLACEMENT_FAIL",
     )
@@ -3960,7 +4581,7 @@ def validate_runtime_evidence(project: Path = PROJECT) -> dict[str, Any]:
         corrected_replay
         == {
             "path": "work/restoration_sign_reclassification/corrected_restoration_replay_certificate.json",
-            "sha256": "24fa2e61f60610a8b24c4107ec7f866278f0cc671ca203d7aaa40a37bea291dd",
+            "sha256": "42be6b0c4d85aa58b336caebbdefd10a0af0ce4234a0482e65c7b5a68d1e6430",
         },
         "REVOKED_RUNTIME_CORRECTED_REPLAY_REPLACEMENT_FAIL",
     )
@@ -4482,60 +5103,146 @@ def validate_quartet_evidence(project: Path = PROJECT) -> dict[str, object]:
         root / "quartet_semantics_mutation_certificate.json"
     )
     verify_payload_hash(semantic_mutations)
-    require(
-        semantic_mutations.get("schema") == "k2p-quartet-semantics-mutations-v3"
-        and semantic_mutations.get("status") == "PASS"
-        and semantic_mutations.get("verifier_sha256")
-        == sha_file(root / "verify_quartet_logic.py")
-        and semantic_mutations.get("spec_sha256") == sha_file(spec_path)
-        and semantic_mutations.get("case_count") == 8,
-        "QUARTET_SEMANTIC_MUTATION_BINDING_FAIL",
-    )
-    semantic_case_names = [
-        "spectrum_G_T_swap",
-        "wrong_F_coordinate",
-        "wrong_J_coefficient",
-        "wrong_character_order",
-        "wrong_coordinate_dictionary",
-        "wrong_D_plus_declaration",
-        "printed_formula_reverted_to_wrong_sector",
-        "optimized_python",
-    ]
-    semantic_markers = [
-        "EQUAL_SECTOR_SPECTRUM_FAIL",
-        "CANONICAL_PULLBACK_FAIL",
-        "CANONICAL_PULLBACK_FAIL",
-        "CHARACTER_ORDER_CONTRACT_FAIL",
-        "CANONICAL_COORDINATE_CONTRACT_FAIL",
-        "DOMAIN_DECLARATION_CONTRACT_FAIL",
-        "DOCUMENT_LITERAL_BINDING_FAIL",
-        "QUARTET_LOGIC_OPTIMIZED_MODE_FORBIDDEN",
-    ]
+    semantic_expected_diagnostics = {
+        "spectrum_G_T_swap": (
+            "QUARTET_LOGIC_VERIFY_FAIL:EQUAL_SECTOR_SPECTRUM_FAIL:"
+            "{'0': '1', 'C': 's', 'G': 's', 'T': 'g'}"
+        ),
+        "wrong_F_coordinate": (
+            "QUARTET_LOGIC_VERIFY_FAIL:CANONICAL_PULLBACK_FAIL:"
+            "{'formula': 'F_A', 'topology': '12|34', "
+            "'observed': 'g1*g2*g3*g4 - s1*s2*s3*s4', 'expected': '0'}"
+        ),
+        "wrong_J_coefficient": (
+            "QUARTET_LOGIC_VERIFY_FAIL:CANONICAL_PULLBACK_FAIL:"
+            "{'formula': 'J_B', 'topology': '12|34', "
+            "'observed': '-2*gI*s1*s2*s3*s4', 'expected': '0'}"
+        ),
+        "wrong_character_order": (
+            "QUARTET_LOGIC_VERIFY_FAIL:CHARACTER_ORDER_CONTRACT_FAIL"
+        ),
+        "wrong_coordinate_dictionary": (
+            "QUARTET_LOGIC_VERIFY_FAIL:CANONICAL_COORDINATE_CONTRACT_FAIL"
+        ),
+        "wrong_D_plus_declaration": (
+            "QUARTET_LOGIC_VERIFY_FAIL:DOMAIN_DECLARATION_CONTRACT_FAIL"
+        ),
+        "printed_formula_reverted_to_wrong_sector": (
+            "QUARTET_LOGIC_VERIFY_FAIL:DOCUMENT_LITERAL_BINDING_FAIL:"
+            "{'path': 'proof_compression_submission/article/main.tex', "
+            "'literal': 'F_A&=q_{CCCC}-q_{CCTT}', 'count': 0}"
+        ),
+        "optimized_python": "QUARTET_LOGIC_OPTIMIZED_MODE_FORBIDDEN",
+    }
+    semantic_baseline = semantic_mutations.get("clean_baseline")
     semantic_rows = semantic_mutations.get("cases")
     require(
+        semantic_mutations.get("schema") == "k2p-quartet-semantics-mutations-v4"
+        and semantic_mutations.get("status") == "PASS"
+        and semantic_mutations.get("mutation_runner_sha256")
+        == sha_file(root / "test_quartet_semantics_mutations.py")
+        and semantic_mutations.get("production_verifier_sha256")
+        == sha_file(root / "verify_quartet_logic.py")
+        and semantic_mutations.get("spec_sha256") == sha_file(spec_path)
+        and semantic_mutations.get("source_certificate_sha256")
+        == sha_file(quartet_path)
+        and semantic_mutations.get("source_certificate_payload_sha256")
+        == quartet["payload_sha256"]
+        and semantic_mutations.get("expected_diagnostics")
+        == semantic_expected_diagnostics
+        and semantic_mutations.get("qualification_negative_controls")
+        == {
+            "import_error_not_qualified": True,
+            "import_failure_stale_pass_removed_before_failure": True,
+            "non_one_exit_not_qualified": True,
+            "optimized_mode_stale_pass_removed_before_rejection": True,
+            "pass_token_not_qualified": True,
+            "preexisting_pass_artifact_not_qualified": True,
+            "signal_not_qualified": True,
+            "timeout_not_qualified": True,
+            "traceback_not_qualified": True,
+            "wrong_diagnostic_not_qualified": True,
+        }
+        and semantic_mutations.get("output_policy_negative_controls")
+        == {
+            "hardlink_source_output_rejected": True,
+            "symlink_output_rejected": True,
+        }
+        and semantic_mutations.get("execution_contract")
+        == {
+            "absolute_paths_recorded": False,
+            "atomic_output_publication": True,
+            "authoritative_output_requires_exact_override": True,
+            "clean_baseline_required": True,
+            "exact_full_diagnostic_and_exception_type_required": True,
+            "return_code_one_required": True,
+            "routine_output_caller_owned_external": True,
+            "runtime_fields_recorded": False,
+            "stale_output_removed_before_optimized_and_import_work": True,
+            "success_tokens_and_artifacts_rejected": True,
+            "traceback_import_timeout_signal_non_one_rejected": True,
+        }
+        and semantic_mutations.get("source_fingerprints_unchanged") is True
+        and semantic_mutations.get("case_count") == 8
+        and semantic_mutations.get("survived") == 0
+        and semantic_baseline
+        == {
+            "canonical_formula_count": 6,
+            "displayed_set_count": 7,
+            "document_count": 5,
+            "formula_transport_count": 288,
+            "production_verifier_invoked": True,
+            "status": "PASS",
+            "success_artifact_byte_identical_to_stored": True,
+            "success_artifact_created": True,
+            "success_artifact_sha256": sha_file(quartet_path),
+            "unequal_pair_count": 21,
+            "verifier_exit_code": 0,
+        },
+        "QUARTET_SEMANTIC_MUTATION_BINDING_FAIL",
+    )
+    require(
         isinstance(semantic_rows, list)
-        and all(isinstance(row, dict) for row in semantic_rows)
-        and [row.get("case") for row in semantic_rows] == semantic_case_names
-        and [row.get("expected_marker") for row in semantic_rows]
-        == semantic_markers
-        and all(
-            row.get("status") == "PASS"
-            and row.get("observed_marker") == row.get("expected_marker")
-            and row.get("observed_returncode") == 1
-            and row.get("failed_mutation_certificate_written") is False
-            and set(row)
-            == {
-                "case",
-                "status",
-                "expected_marker",
-                "observed_marker",
-                "observed_returncode",
-                "failed_mutation_certificate_written",
-            }
-            for row in semantic_rows
-        ),
+        and [row.get("case") for row in semantic_rows]
+        == list(semantic_expected_diagnostics),
         "QUARTET_SEMANTIC_MUTATION_CENSUS_FAIL",
     )
+    for row in semantic_rows:
+        name = row["case"]
+        expected_type = (
+            "optimized_production_verifier_attack"
+            if name == "optimized_python"
+            else "complete_disposable_document_binding_attack"
+            if name == "printed_formula_reverted_to_wrong_sector"
+            else "complete_disposable_semantics_spec_attack"
+        )
+        require(
+            row.get("test_type") == expected_type
+            and row.get("production_verifier_invoked") is True
+            and row.get("production_verifier_sha256")
+            == semantic_mutations["production_verifier_sha256"]
+            and row.get("expected_exception_type")
+            == ("SystemExit" if name == "optimized_python" else "QuartetFailure")
+            and row.get("expected_semantic_diagnostic")
+            == semantic_expected_diagnostics[name]
+            and row.get("observed_semantic_diagnostic")
+            == semantic_expected_diagnostics[name]
+            and row.get("semantic_diagnostic_matched") is True
+            and row.get("verifier_exit_code") == 1
+            and row.get("success_artifact_created") is False
+            and row.get("traceback_observed") is False
+            and row.get("import_failure_observed") is False
+            and row.get("success_token_observed") is False
+            and row.get("rejected") is True
+            and row.get("status") == "REJECTED"
+            and (
+                row.get("preexisting_success_artifact_removed") is True
+                if name == "optimized_python"
+                else "preexisting_success_artifact_removed" not in row
+            ),
+            "QUARTET_SEMANTIC_MUTATION_CASE_FAIL",
+            name,
+        )
 
     terminal_path = root / "quartet_terminal_binding_certificate.json"
     terminal = load_json(terminal_path)
@@ -4606,40 +5313,207 @@ def validate_quartet_evidence(project: Path = PROJECT) -> dict[str, object]:
         root / "quartet_terminal_binding_mutation_certificate.json"
     )
     verify_payload_hash(terminal_mutations)
+    terminal_helper_diagnostics = {
+        "resealed_spectrum_convention_mutation": "SEMANTICS_SPECTRUM_FAIL",
+        "resealed_coordinate_word_mutation": "LITERAL_FORMULA_SPEC_MISMATCH:F_A",
+        "resealed_distinguished_split_mutation": "STORED_DISTINGUISHED_SPLIT_FAIL",
+        "resealed_zero_positive_side_mutation": "STORED_ZERO_SIDE_FAIL",
+        "resealed_quartet_label_transport_mutation": (
+            "DISPLAYED_SPLIT_OUTSIDE_QUARTET_FAIL:(0, 1, 2, 25)"
+        ),
+        "rekeyed_relinked_restoration_set_mutation": (
+            "EQUAL_DISPLAYED_SET_FAIL:(0, 1, 3, 4)"
+        ),
+        "compact_split_hash_mutation": (
+            "COMPACT_EVIDENCE_BINDING_FAIL:"
+            "Q:06593f1cd0d27ac160de777f88f74fc66e7df75cdee8523c992482c83318e87b"
+        ),
+        "unknown_terminal_reference": (
+            "REGISTRY_REFERENCE_SET_FAIL:"
+            "{'unused': ['proof'], 'missing': ['unknown']}"
+        ),
+        "omitted_terminal_reference": (
+            "REGISTRY_REFERENCE_SET_FAIL:{'unused': ['proof'], 'missing': []}"
+        ),
+    }
     terminal_case_names = [
-        "resealed_spectrum_convention_mutation",
-        "resealed_coordinate_word_mutation",
-        "resealed_distinguished_split_mutation",
-        "resealed_zero_positive_side_mutation",
-        "resealed_quartet_label_transport_mutation",
-        "rekeyed_relinked_restoration_set_mutation",
-        "compact_split_hash_mutation",
-        "unknown_terminal_reference",
-        "omitted_terminal_reference",
+        *terminal_helper_diagnostics,
         "valid_proof_substitution_composed_graph_gate",
         "complete_source_target_reversal_composed_graph_gate",
         "optimized_python",
     ]
+    terminal_baseline = terminal_mutations.get("clean_baseline")
+    terminal_rows = terminal_mutations.get("cases")
     require(
         terminal_mutations.get("schema")
-        == "k2p-quartet-terminal-binding-mutations-v1"
+        == "k2p-quartet-terminal-binding-mutations-v2"
         and terminal_mutations.get("status") == "PASS"
+        and terminal_mutations.get("mutation_runner_sha256")
+        == sha_file(root / "test_quartet_terminal_binding_mutations.py")
         and terminal_mutations.get("case_count") == 12
         and terminal_mutations.get("binder_sha256")
         == sha_file(root / "verify_quartet_terminal_bindings.py")
         and terminal_mutations.get("semantics_certificate_sha256")
         == sha_file(quartet_path)
+        and terminal_mutations.get("source_certificate_sha256")
+        == sha_file(terminal_path)
+        and terminal_mutations.get("source_certificate_payload_sha256")
+        == terminal["payload_sha256"]
+        and terminal_mutations.get("expected_helper_diagnostics")
+        == terminal_helper_diagnostics
+        and terminal_mutations.get("optimized_diagnostic")
+        == "QUARTET_TERMINAL_BINDING_OPTIMIZED_MODE_FORBIDDEN"
+        and terminal_mutations.get("qualification_negative_controls")
+        == {
+            "helper_stale_pass_removed_before_import": True,
+            "import_error_not_qualified": True,
+            "missing_binder_stale_pass_removed_before_failure": True,
+            "non_one_exit_not_qualified": True,
+            "optimized_mode_stale_pass_removed_before_rejection": True,
+            "pass_token_not_qualified": True,
+            "preexisting_pass_artifact_not_qualified": True,
+            "signal_not_qualified": True,
+            "timeout_not_qualified": True,
+            "traceback_not_qualified": True,
+            "wrong_diagnostic_not_qualified": True,
+        }
+        and terminal_mutations.get("output_policy_negative_controls")
+        == {
+            "hardlink_source_output_rejected": True,
+            "symlink_output_rejected": True,
+        }
+        and terminal_mutations.get("execution_contract")
+        == {
+            "absolute_paths_recorded": False,
+            "atomic_output_publication": True,
+            "authoritative_output_requires_exact_override": True,
+            "clean_baseline_required": True,
+            "exact_full_diagnostic_and_exception_type_required": True,
+            "return_code_one_required": True,
+            "routine_output_caller_owned_external": True,
+            "runtime_fields_recorded": False,
+            "stale_output_removed_before_optimized_and_import_work": True,
+            "success_tokens_and_artifacts_rejected": True,
+            "traceback_import_timeout_signal_non_one_rejected": True,
+        }
         and terminal_mutations.get("authoritative_ledgers_modified") is False
-        and terminal_mutations.get("temporary_in_memory_or_temp_directory_mutations_only")
-        is True
-        and [row.get("case") for row in terminal_mutations.get("cases", [])]
+        and terminal_mutations.get(
+            "temporary_in_memory_or_temp_directory_mutations_only"
+        ) is True
+        and terminal_mutations.get("source_fingerprints_unchanged") is True
+        and terminal_mutations.get("survived") == 0
+        and terminal_baseline
+        == {
+            "dangling_certificates": 0,
+            "layer_census": {
+                name: {
+                    "quartet_terminal_rows": rows,
+                    "certificate_count": certificates,
+                }
+                for name, (rows, certificates) in layer_census.items()
+            },
+            "layer_count": 6,
+            "missing_references": 0,
+            "per_layer_certificate_ids": 888,
+            "production_verifier_invoked": True,
+            "quartet_terminal_rows": 4_414_710,
+            "status": "PASS",
+            "success_artifact_byte_identical_to_stored": True,
+            "success_artifact_created": True,
+            "success_artifact_sha256": sha_file(terminal_path),
+            "verifier_exit_code": 0,
+        }
+        and isinstance(terminal_rows, list)
+        and [row.get("case") for row in terminal_rows]
         == terminal_case_names
-        and all(row.get("status") == "PASS" for row in terminal_mutations.get("cases", [])),
+        and all(row.get("status") == "REJECTED" for row in terminal_rows),
         "QUARTET_TERMINAL_MUTATION_FAIL",
     )
+    for index, row in enumerate(terminal_rows[:9]):
+        name = row["case"]
+        expected = (
+            f"QUARTET_TERMINAL_HELPER_REJECT:{name}:"
+            f"{terminal_helper_diagnostics[name]}"
+        )
+        require(
+            row.get("test_type") == "isolated_binder_helper_attack"
+            and row.get("binder_invoked") is True
+            and row.get("binder_sha256") == terminal_mutations["binder_sha256"]
+            and row.get("expected_exception_type") == "QuartetTerminalFailure"
+            and row.get("expected_semantic_diagnostic") == expected
+            and row.get("observed_semantic_diagnostic") == expected
+            and row.get("semantic_diagnostic_matched") is True
+            and row.get("verifier_exit_code") == 1
+            and row.get("success_artifact_created") is False
+            and row.get("traceback_observed") is False
+            and row.get("import_failure_observed") is False
+            and row.get("success_token_observed") is False
+            and row.get("rejected") is True
+            and (
+                row.get("preexisting_success_artifact_removed_before_import")
+                is True
+                if index == 0
+                else "preexisting_success_artifact_removed_before_import" not in row
+            )
+            and (
+                row.get("mutated_rekeyed_proof_id_sha256")
+                == "b1a44058cb97035150dba0dd86c01eac396ae0120744ffc1f25a5a00e8239dc5"
+                if name == "rekeyed_relinked_restoration_set_mutation"
+                else "mutated_rekeyed_proof_id_sha256" not in row
+            ),
+            "QUARTET_TERMINAL_HELPER_CASE_FAIL",
+            name,
+        )
+
+    graph_report_paths = {
+        "raw4": project
+        / "work/corrected_composite_ledgers/artifacts/raw4_corrected_composite_mutations.json",
+        "theta2": project
+        / "work/corrected_composite_ledgers/artifacts/theta2_corrected_composite_mutations.json",
+    }
+    expected_graph_guards = []
+    for family, path in graph_report_paths.items():
+        report = load_json(path)
+        verify_payload_hash(report)
+        matches = [
+            row
+            for row in report.get("tests", [])
+            if row.get("name") == "reassigned_evidence_binding"
+        ]
+        require(len(matches) == 1, "QUARTET_GRAPH_GUARD_CENSUS_FAIL", family)
+        guard = matches[0]
+        diagnostic = "CORRECTED_COMPOSITE_REPLAY_FAIL:QUARTET_WITNESS:0"
+        require(
+            guard.get("test_type") == "complete_disposable_ledger_attack"
+            and guard.get("production_verifier_invoked") is True
+            and guard.get("verifier_exit_code") == 1
+            and guard.get("expected_semantic_diagnostic") == "QUARTET_WITNESS:0"
+            and guard.get("observed_semantic_diagnostic") == diagnostic
+            and guard.get("semantic_diagnostic_matched") is True
+            and guard.get("verifier_report_created") is False
+            and guard.get("rejected") is True,
+            "QUARTET_GRAPH_GUARD_REPORT_FAIL",
+            family,
+        )
+        expected_graph_guards.append(
+            {
+                "expected_semantic_diagnostic": diagnostic,
+                "family": family,
+                "observed_semantic_diagnostic": diagnostic,
+                "path": path.relative_to(project).as_posix(),
+                "production_verifier_sha256": guard["production_verifier_sha256"],
+                "rejected": True,
+                "report_payload_sha256": report["payload_sha256"],
+                "report_sha256": sha_file(path),
+                "semantic_diagnostic_matched": True,
+                "success_artifact_created": False,
+                "test_type": "complete_disposable_ledger_attack",
+                "verifier_exit_code": 1,
+            }
+        )
     composed_cases = {
         row["case"]: row
-        for row in terminal_mutations["cases"]
+        for row in terminal_rows
         if row["case"]
         in {
             "valid_proof_substitution_composed_graph_gate",
@@ -4653,11 +5527,55 @@ def validate_quartet_evidence(project: Path = PROJECT) -> dict[str, object]:
             "complete_source_target_reversal_composed_graph_gate",
         }
         and all(
-            [(guard.get("family"), guard.get("rejected")) for guard in row.get("graph_guards", [])]
-            == [("raw4", True), ("theta2", True)]
+            row.get("test_type") == "composed_production_graph_guard"
+            and row.get("production_verifiers_invoked_via_bound_reports") == 2
+            and row.get("verifier_exit_codes") == [1, 1]
+            and row.get("expected_exception_type") == "CompositeReplayFailure"
+            and row.get("semantic_diagnostics_matched") is True
+            and row.get("success_artifacts_created") == 0
+            and row.get("graph_guards") == expected_graph_guards
+            and row.get("rejected") is True
             for row in composed_cases.values()
         ),
         "QUARTET_TERMINAL_COMPOSED_GRAPH_GUARD_FAIL",
+    )
+    reversal = composed_cases[
+        "complete_source_target_reversal_composed_graph_gate"
+    ]
+    require(
+        is_sha256(reversal.get("original_binding_sha256"))
+        and is_sha256(reversal.get("reversed_binding_sha256"))
+        and reversal["original_binding_sha256"]
+        != reversal["reversed_binding_sha256"]
+        and "original_binding_sha256"
+        not in composed_cases["valid_proof_substitution_composed_graph_gate"]
+        and "reversed_binding_sha256"
+        not in composed_cases["valid_proof_substitution_composed_graph_gate"],
+        "QUARTET_TERMINAL_REVERSAL_BINDING_FAIL",
+    )
+    optimized_terminal = terminal_rows[-1]
+    require(
+        optimized_terminal.get("test_type")
+        == "optimized_production_verifier_attack"
+        and optimized_terminal.get("production_verifier_invoked") is True
+        and optimized_terminal.get("production_verifier_sha256")
+        == terminal_mutations["binder_sha256"]
+        and optimized_terminal.get("expected_exception_type") == "SystemExit"
+        and optimized_terminal.get("expected_semantic_diagnostic")
+        == "QUARTET_TERMINAL_BINDING_OPTIMIZED_MODE_FORBIDDEN"
+        and optimized_terminal.get("observed_semantic_diagnostic")
+        == "QUARTET_TERMINAL_BINDING_OPTIMIZED_MODE_FORBIDDEN"
+        and optimized_terminal.get("semantic_diagnostic_matched") is True
+        and optimized_terminal.get("verifier_exit_code") == 1
+        and optimized_terminal.get(
+            "preexisting_success_artifact_removed_before_semantic_work"
+        ) is True
+        and optimized_terminal.get("success_artifact_created") is False
+        and optimized_terminal.get("traceback_observed") is False
+        and optimized_terminal.get("import_failure_observed") is False
+        and optimized_terminal.get("success_token_observed") is False
+        and optimized_terminal.get("rejected") is True,
+        "QUARTET_TERMINAL_OPTIMIZED_CASE_FAIL",
     )
     return {
         "semantics_payload_sha256": quartet["payload_sha256"],
@@ -4736,21 +5654,63 @@ def validate_canonicalizer_evidence(project: Path = PROJECT) -> dict[str, object
         root / "canonicalizer_completeness_mutation_certificate.json"
     )
     verify_payload_hash(mutations)
+    expected_mutation_diagnostics = {
+        "accept_nonordinary_split_heads": (
+            "CANONICALIZER_COMPLETENESS_FAIL:NONORDINARY_ATLAS_ACCEPTED"
+        ),
+        "erase_without_marking_selected_triangle": (
+            "CANONICALIZER_COMPLETENESS_FAIL:SELECTED_TRIANGLE_ATLAS_ACCEPTED: triangle"
+        ),
+    }
+    baseline = mutations.get("clean_baseline")
+    mutation_rows = mutations.get("mutations")
     require(
-        mutations.get("schema") == "k2p-canonicalizer-completeness-mutations-v1"
+        mutations.get("schema") == "k2p-canonicalizer-completeness-mutations-v2"
         and mutations.get("status") == "PASS"
         and mutations.get("atlas_sha256") == inputs["atlas_sha256"]
         and mutations.get("auditor_sha256") == inputs["auditor_sha256"]
+        and mutations.get("mutation_runner_sha256")
+        == sha_file(root / "test_canonicalizer_mutations.py")
         and mutations.get("rejected") == 2
         and mutations.get("survived") == 0
-        and [row.get("name") for row in mutations.get("mutations", [])]
-        == ["accept_nonordinary_split_heads", "erase_without_marking_selected_triangle"]
-        and all(
-            row.get("rejected") is True and row.get("exit_code") != 0
-            for row in mutations.get("mutations", [])
-        ),
+        and mutations.get("diagnostic_contract") == expected_mutation_diagnostics
+        and isinstance(baseline, dict)
+        and baseline.get("returncode") == 0
+        and baseline.get("status") == "PASS"
+        and baseline.get("mode") == "semantic-only"
+        and baseline.get("artifact_contract")
+        == (
+            "The semantic-only auditor reports PASS on stdout and intentionally "
+            "must not create the supplied --output success artifact."
+        )
+        and baseline.get("semantic_mutation_contract") == semantic_contract
+        and baseline.get("success_artifact_absent") is True
+        and baseline.get("timeout") is False
+        and baseline.get("signal") is False
+        and isinstance(mutation_rows, list)
+        and [row.get("name") for row in mutation_rows]
+        == list(expected_mutation_diagnostics),
         "CANONICALIZER_MUTATION_FAIL",
     )
+    mutated_atlas_hashes = [row.get("mutated_atlas_sha256") for row in mutation_rows]
+    require(
+        all(is_sha256(digest) and digest != inputs["atlas_sha256"] for digest in mutated_atlas_hashes)
+        and len(set(mutated_atlas_hashes)) == len(mutated_atlas_hashes),
+        "CANONICALIZER_MUTATED_ATLAS_BINDING_FAIL",
+    )
+    for row in mutation_rows:
+        expected = expected_mutation_diagnostics[row["name"]]
+        require(
+            row.get("rejected") is True
+            and row.get("exit_code") == 1
+            and row.get("expected_diagnostic") == expected
+            and row.get("observed_diagnostic") == expected
+            and row.get("success_artifact_absent") is True
+            and row.get("timeout") is False
+            and row.get("signal") is False,
+            "CANONICALIZER_MUTATION_DIAGNOSTIC_FAIL",
+            row.get("name"),
+        )
     return {
         "payload_sha256": certificate["payload_sha256"],
         "primitive_archetypes_compared": 10_084,
@@ -4888,20 +5848,117 @@ def validate_parameter_transport_evidence(project: Path = PROJECT) -> dict[str, 
         "root_suppressed_incoming_incidence_hidden",
         "source_target_reversal_without_inverse_transport",
     ]
+    full_names = {
+        "triangle_edge_false_product_map",
+        "serial_product_factor_omitted",
+        "root_suppressed_incoming_incidence_hidden",
+        "source_target_reversal_without_inverse_transport",
+    }
+    full_diagnostic = (
+        "PARAMETER_TRANSPORT_REPLAY_FAIL:rederived bytes:"
+        "parameter_transport_certificate.json"
+    )
+    local_diagnostics = {
+        "required_complement_removed": "required_complement_removed:flip flag",
+        "illicit_complement_injected": "illicit_complement_injected:flip flag",
+        "parent_order_reversal_unpaired": "parent_order_reversal_unpaired:flip flag",
+        "triangle_reticulation_false_affine_map": (
+            "triangle_reticulation_false_affine_map:triangle-local census"
+        ),
+        "restriction_complement_removed": "restriction_complement_removed:flip flag",
+        "paired_s_g_action_broken": "paired_s_g_action_broken:paired products",
+    }
+    baseline = mutations.get("clean_baseline")
+    cases = mutations.get("cases")
     require(
-        mutations.get("schema") == "k2p_parameter_transport_mutations_v1"
+        mutations.get("schema") == "k2p_parameter_transport_mutations_v2"
         and mutations.get("status") == "PASS"
         and mutations.get("certificate_payload_sha256") == certificate["payload_sha256"]
+        and mutations.get("mutation_runner_sha256")
+        == sha_file(root / "run_parameter_transport_mutations.py")
+        and mutations.get("production_verifier_sha256")
+        == sha_file(root / "verify_parameter_transport_certificate.py")
         and mutations.get("rejected") == 10
         and mutations.get("survived") == 0
-        and [row.get("name") for row in mutations.get("cases", [])] == mutation_names
-        and all(
-            row.get("status") == "REJECTED"
-            and row.get("rederived_exact_row_mismatch") is True
-            for row in mutations.get("cases", [])
-        ),
+        and mutations.get("complete_production_verifier_attacks") == 4
+        and mutations.get("exact_local_semantic_attacks") == 6
+        and mutations.get("source_fingerprints_unchanged") is True
+        and mutations.get("qualification_negative_controls")
+        == {
+            "failure_output_with_pass_token_not_qualified": True,
+            "optimized_mode_stale_pass_removed_before_rejection": True,
+            "signal_or_non_one_exit_not_qualified": True,
+            "stale_pass_output_removed_before_work": True,
+            "timeout_not_qualified": True,
+            "unrelated_traceback_not_qualified": True,
+            "wrong_diagnostic_not_qualified": True,
+        }
+        and baseline
+        == {
+            "authoritative_certificate_file_sha256": sha_file(
+                root / "parameter_transport_certificate.json"
+            ),
+            "authoritative_certificate_payload_sha256": certificate[
+                "payload_sha256"
+            ],
+            "authoritative_certificate_unmodified": True,
+            "authoritative_certificate_verified_in_place": True,
+            "authoritative_input_binding_count": 16,
+            "authoritative_input_bindings_current": True,
+            "authoritative_ledger_count": 3,
+            "full_primitive_regeneration": True,
+            "pass_token_count": 1,
+            "production_verifier_invoked": True,
+            "status": "PASS",
+            "verifier_exit_code": 0,
+        }
+        and isinstance(cases, list)
+        and [row.get("name") for row in cases] == mutation_names,
         "PARAMETER_TRANSPORT_MUTATION_FAIL",
     )
+    for row in cases:
+        name = row["name"]
+        if name in full_names:
+            require(
+                row.get("test_type")
+                == "complete_disposable_ledger_and_certificate_attack"
+                and row.get("complete_mutant_ledger_created") is True
+                and row.get("complete_mutant_certificate_created") is True
+                and row.get("complete_mutant_ledger_coherently_resealed") is True
+                and row.get("mutant_structural_validation_passed") is True
+                and row.get("full_primitive_regeneration_invoked") is True
+                and row.get("production_verifier_invoked") is True
+                and row.get("production_verifier_sha256")
+                == mutations["production_verifier_sha256"]
+                and row.get("verifier_exit_code") == 1
+                and row.get("expected_semantic_diagnostic") == full_diagnostic
+                and row.get("observed_semantic_diagnostic") == full_diagnostic
+                and row.get("semantic_diagnostic_matched") is True
+                and row.get("success_token_observed") is False
+                and row.get("traceback_observed") is False
+                and row.get("rejected") is True
+                and row.get("status") == "REJECTED"
+                and isinstance(row.get("mutated_ledger_bytes"), int)
+                and row["mutated_ledger_bytes"] > 0
+                and is_sha256(row.get("mutated_ledger_sha256"))
+                and is_sha256(row.get("mutated_certificate_payload_sha256")),
+                "PARAMETER_TRANSPORT_COMPLETE_MUTATION_FAIL",
+                name,
+            )
+        else:
+            require(
+                name in local_diagnostics
+                and row.get("test_type") == "exact_local_semantic_validator_attack"
+                and row.get("complete_mutant_ledger_created") is False
+                and row.get("production_verifier_invoked") is False
+                and row.get("expected_semantic_diagnostic") == local_diagnostics[name]
+                and row.get("observed_semantic_diagnostic") == local_diagnostics[name]
+                and row.get("semantic_diagnostic_matched") is True
+                and row.get("rejected") is True
+                and row.get("status") == "REJECTED",
+                "PARAMETER_TRANSPORT_LOCAL_MUTATION_FAIL",
+                name,
+            )
     return {
         "payload_sha256": certificate["payload_sha256"],
         "probe_relation_records": 67_741,
@@ -4909,6 +5966,440 @@ def validate_parameter_transport_evidence(project: Path = PROJECT) -> dict[str, 
         "restoration_restriction_occurrences": 5_540,
         "unresolved": 0,
         "mutations_rejected": 10,
+    }
+
+
+def validate_rank_upper_mutation_evidence(project: Path = PROJECT) -> dict[str, object]:
+    """Bind a full production-verifier attack on sampled upper-rank evidence."""
+
+    root = project / "work/rank_upper_certificates"
+    mutations = load_json(root / "mutation_report.json")
+    verify_payload_hash(mutations)
+    names = [
+        "omitted_descriptor_coverage",
+        "duplicated_descriptor_coverage",
+        "altered_syzygy_coefficient",
+        "reassigned_representative_certificate",
+        "broken_port_transport",
+        "false_rank_upper_claim",
+        "sampled_rank_substituted_for_symbolic_upper",
+    ]
+    helper_expected = {
+        "omitted_descriptor_coverage": {
+            "error_type": "AssertionError",
+            "diagnostic": "coverage count mismatch",
+        },
+        "duplicated_descriptor_coverage": {
+            "error_type": "AssertionError",
+            "diagnostic": "descriptor index mismatch",
+        },
+        "altered_syzygy_coefficient": {
+            "error_type": "AssertionError",
+            "diagnostic": "(1, 2, ((0, 0, 1, 0, 1, 0, 1, 0, 2, 0, 2, 0, 0, 1), 1))",
+        },
+        "reassigned_representative_certificate": {
+            "error_type": "AssertionError",
+            "diagnostic": "representative digest mismatch",
+        },
+        "broken_port_transport": {
+            "error_type": "AssertionError",
+            "diagnostic": "broken port transport",
+        },
+        "false_rank_upper_claim": {
+            "error_type": "AssertionError",
+            "diagnostic": "claimed 7, exact certificate 8",
+        },
+    }
+    results = mutations.get("results")
+    baseline = mutations.get("clean_baseline")
+    require(
+        mutations.get("schema") == "k2p-rank-upper-adversarial-mutations-v2"
+        and mutations.get("status") == "pass"
+        and mutations.get("mutation_count") == 7
+        and mutations.get("complete_production_verifier_attacks") == 1
+        and mutations.get("survivors") == 0
+        and mutations.get("helper_expected_diagnostics") == helper_expected
+        and mutations.get("mutation_runner_sha256")
+        == sha_file(root / "mutation_tests.py")
+        and mutations.get("production_verifier_sha256")
+        == sha_file(root / "verify_rank_upper_certificates.py")
+        and mutations.get("source_fingerprints_unchanged") is True
+        and mutations.get("qualification_negative_controls")
+        == {
+            "failure_output_with_pass_token_not_qualified": True,
+            "optimized_mode_stale_pass_removed_before_rejection": True,
+            "runner_missing_dependency_stale_pass_removed_before_import_failure": True,
+            "signal_or_non_one_exit_not_qualified": True,
+            "stale_pass_output_removed_before_work": True,
+            "timeout_not_qualified": True,
+            "unrelated_traceback_not_qualified": True,
+            "wrong_diagnostic_not_qualified": True,
+            "wrong_helper_diagnostic_not_qualified": True,
+            "wrong_helper_exception_type_not_qualified": True,
+        }
+        and mutations.get("production_output_policy_negative_controls")
+        == {
+            "certificate_input_collision_rejected": True,
+            "hardlink_output_rejected": True,
+            "symlink_output_rejected": True,
+            "verifier_optimized_mode_stale_pass_removed_before_rejection": True,
+            "verifier_missing_dependency_stale_pass_removed_before_import_failure": True,
+        }
+        and isinstance(baseline, dict)
+        and baseline.get("authoritative_package_verified_in_place") is True
+        and baseline.get("authoritative_package_unmodified") is True
+        and baseline.get("authoritative_manifest_verified") is True
+        and baseline.get("authoritative_manifest_file_count") == 94
+        and baseline.get("authoritative_manifest_aggregate_sha256")
+        == sha_file(root / "MANIFEST.sha256")
+        and baseline.get("authoritative_sha256_manifest_sha256")
+        == sha_file(root / "MANIFEST.sha256")
+        and baseline.get("authoritative_json_manifest_sha256")
+        == sha_file(root / "manifest.json")
+        and baseline.get("production_verifier_invoked") is True
+        and baseline.get("full_symbolic_base_recompute") is True
+        and baseline.get("descriptor_count") == 4_379
+        and baseline.get("zero_unresolved") is True
+        and baseline.get("base_recomputed") is True
+        and baseline.get("stored_authoritative_replay_byte_identical") is True
+        and baseline.get("stored_authoritative_replay_sha256")
+        == sha_file(root / "rank_upper_replay.json")
+        and baseline.get("verifier_exit_code") == 0
+        and baseline.get("success_artifact_created") is True
+        and baseline.get("pass_token_count") == 1
+        and baseline.get("status") == "pass"
+        and isinstance(results, list)
+        and all(isinstance(row, dict) for row in results)
+        and [row.get("mutation") for row in results] == names,
+        "RANK_UPPER_MUTATION_V2_FAIL",
+    )
+    for row in results[:-1]:
+        require(
+            row.get("test_type") == "focused_exact_helper_attack"
+            and row.get("production_verifier_invoked") is False
+            and row.get("status") == "rejected"
+            and row.get("rejected") is True
+            and row.get("error") == helper_expected[row["mutation"]]["diagnostic"]
+            and row.get("expected_error_type")
+            == helper_expected[row["mutation"]]["error_type"]
+            and row.get("observed_error_type")
+            == helper_expected[row["mutation"]]["error_type"]
+            and row.get("expected_diagnostic")
+            == helper_expected[row["mutation"]]["diagnostic"]
+            and row.get("observed_diagnostic")
+            == helper_expected[row["mutation"]]["diagnostic"]
+            and row.get("diagnostic_matched") is True,
+            "RANK_UPPER_HELPER_MUTATION_FAIL",
+            row.get("mutation"),
+        )
+    sampled = results[-1]
+    expected = (
+        "K2P_RANK_UPPER_REPLAY_FAIL:"
+        "RANK_UPPER_SYMBOLIC_FIELD_DIMENSION_FAIL:orbit=0:observed=4:required=6"
+    )
+    require(
+        sampled.get("test_type")
+        == "complete_disposable_rank_certificate_package_attack"
+        and sampled.get("complete_mutant_package_created") is True
+        and sampled.get("mutated_certificate") == "exception_syzygies/orbit_000.json"
+        and sampled.get("mutant_manifest_file_count") == 94
+        and is_sha256(sampled.get("mutant_manifest_aggregate_sha256"))
+        and sampled.get("sampled_evidence_cannot_prove_global_upper_bound") is True
+        and sampled.get("production_verifier_invoked") is True
+        and sampled.get("production_verifier_sha256")
+        == mutations["production_verifier_sha256"]
+        and sampled.get("verifier_exit_code") == 1
+        and sampled.get("expected_semantic_diagnostic") == expected
+        and sampled.get("observed_semantic_diagnostic") == expected
+        and sampled.get("semantic_diagnostic_matched") is True
+        and sampled.get("preexisting_canonical_success_artifact_present") is True
+        and sampled.get("preexisting_canonical_success_artifact_sha256")
+        == sha_file(root / "rank_upper_replay.json")
+        and sampled.get("canonical_success_artifact_removed_before_mutant_work")
+        is True
+        and sampled.get("success_artifact_created") is False
+        and sampled.get("traceback_observed") is False
+        and sampled.get("status") == "rejected"
+        and sampled.get("rejected") is True
+        and is_sha256(sampled.get("original_certificate_sha256"))
+        and is_sha256(sampled.get("mutated_certificate_sha256"))
+        and sampled["original_certificate_sha256"]
+        != sampled["mutated_certificate_sha256"],
+        "RANK_UPPER_SAMPLED_SUBSTITUTION_MUTATION_FAIL",
+    )
+    return {
+        "payload_sha256": mutations["payload_sha256"],
+        "mutations_rejected": 7,
+        "complete_production_verifier_attacks": 1,
+    }
+
+
+def validate_direct_closure_mutation_evidence(
+    project: Path = PROJECT,
+) -> dict[str, object]:
+    """Bind exact production-verifier rejections for the direct-36 package."""
+
+    root = project / "package/referee/k2p_offline_sweep_portable"
+    report = load_json(root / "direct_closure_mutation_report.json")
+    verify_payload_hash(report)
+    expected_diagnostics = {
+        "optimized_mode": ["DIRECT_CLOSURE_OPTIMIZED_MODE_FORBIDDEN"],
+        "merged_root": ["RELEASE_MERGED_MISMATCH"],
+        "manifest_status": ["RELEASE_MANIFEST_STATUS_CENSUS_MISMATCH"],
+        "manifest_unresolved": ["RELEASE_MANIFEST_UNRESOLVED_MISMATCH"],
+        "missing_candidate": ["RELEASE_RECORD_SET_MISMATCH"],
+        "swapped_candidate_records": ["RELEASE_RECORD_IDENTITY_MISMATCH"],
+        "port_record": ["RELEASE_RECORD_SEMANTIC_HASH_MISMATCH"],
+        "semantic_record": ["RELEASE_RECORD_SEMANTIC_HASH_MISMATCH"],
+        "quintic_coefficient": [
+            "DIRECT_OVERLAY_REPLAY_FAIL",
+            "DIRECT_QUINTIC_ARTIFACT_HASH_FAIL",
+        ],
+        "quartic_coefficient": [
+            "DIRECT_OVERLAY_REPLAY_FAIL",
+            "DIRECT_QUARTIC_EXPECTED_HASH_FAIL",
+        ],
+        "cubic_coefficient": [
+            "DIRECT_CUBIC_ARTIFACT_TERMS_FAIL",
+            "DIRECT_OVERLAY_REPLAY_FAIL",
+        ],
+    }
+    expected_primary = {
+        "optimized_mode": (
+            "DIRECT_CLOSURE_OPTIMIZED_MODE_FORBIDDEN: invoke Python without -O"
+        ),
+        "merged_root": (
+            "RELEASE_MERGED_MISMATCH:<FOUR_PORT_SWEEP_MERGED_STATUS.json>"
+        ),
+        "manifest_status": (
+            "RELEASE_MANIFEST_STATUS_CENSUS_MISMATCH:"
+            "<source_1/residual_manifest.json>"
+        ),
+        "manifest_unresolved": (
+            "RELEASE_MANIFEST_UNRESOLVED_MISMATCH:"
+            "<source_1/residual_manifest.json>"
+        ),
+        "missing_candidate": (
+            "RELEASE_RECORD_SET_MISMATCH: {'missing': "
+            "['source_1/records/class_000025.json'], 'extra': []}"
+        ),
+        "swapped_candidate_records": (
+            "RELEASE_RECORD_IDENTITY_MISMATCH:"
+            "<source_1/records/class_000025.json>"
+        ),
+        "port_record": (
+            "RELEASE_RECORD_SEMANTIC_HASH_MISMATCH:"
+            "<source_1/records/class_000025.json>"
+        ),
+        "semantic_record": (
+            "RELEASE_RECORD_SEMANTIC_HASH_MISMATCH:"
+            "<source_1/records/class_000025.json>"
+        ),
+        "quintic_coefficient": (
+            "DIRECT_OVERLAY_REPLAY_FAIL:DIRECT_QUINTIC_ARTIFACT_HASH_FAIL"
+        ),
+        "quartic_coefficient": (
+            "DIRECT_OVERLAY_REPLAY_FAIL:DIRECT_QUARTIC_EXPECTED_HASH_FAIL:F112"
+        ),
+        "cubic_coefficient": (
+            "DIRECT_OVERLAY_REPLAY_FAIL:DIRECT_CUBIC_ARTIFACT_TERMS_FAIL"
+        ),
+    }
+    cases = report.get("cases")
+    baseline = report.get("clean_baseline")
+    execution = report.get("execution_contract")
+    controls = report.get("qualification_negative_controls")
+    require(
+        report.get("schema") == "k2p-four-port-direct-closure-mutations-v2"
+        and report.get("status") == "PASS"
+        and report.get("direct_closure_lock_sha256")
+        == sha_file(root / "DIRECT_CLOSURE_LOCK.json")
+        and report.get("production_verifier_sha256")
+        == sha_file(root / "verify_direct_closure_release.py")
+        and report.get("overlay_verifier_sha256")
+        == sha_file(root / "proofs/verify_four_port_direct_residual_closure.py")
+        and report.get("mutation_runner_sha256")
+        == sha_file(root / "test_direct_closure_release_mutations.py")
+        and report.get("direct_overlay_certificate_sha256")
+        == sha_file(root / "proofs/four_port_direct_residual_closure_certificate.json")
+        and report.get("diagnostic_contract") == expected_diagnostics
+        and report.get("case_count") == 11
+        and report.get("mutations_rejected") == 11
+        and report.get("mutations_survived") == 0
+        and isinstance(baseline, dict)
+        and baseline.get("returncode") == 0
+        and baseline.get("terminal") == "K2P_FOUR_PORT_DIRECT_CLOSURE_RELEASE_PASS"
+        and baseline.get("stderr_empty") is True
+        and baseline.get("source_lock_checked_in_place") is True
+        and baseline.get("production_verifier_sha256")
+        == report.get("production_verifier_sha256")
+        and execution
+        == {
+            "temporary_copies_only": True,
+            "production_verifier_reached_by_every_content_mutation": True,
+            "required_returncode": 1,
+            "exact_named_diagnostics": True,
+            "traceback_import_timeout_signal_non_one_forbidden": True,
+            "success_terminal_forbidden": True,
+            "source_tree_unchanged": True,
+        }
+        and controls
+        == {
+            "wrong_diagnostic_rejected": True,
+            "traceback_rejected": True,
+            "import_error_rejected": True,
+            "timeout_rejected": True,
+            "signal_rejected": True,
+            "non_one_exit_rejected": True,
+            "success_artifact_rejected": True,
+        }
+        and isinstance(cases, list)
+        and [row.get("case") for row in cases] == list(expected_diagnostics),
+        "DIRECT_CLOSURE_MUTATION_REPORT_CONTRACT_FAIL",
+    )
+    for row in cases:
+        name = row["case"]
+        require(
+            row.get("returncode") == 1
+            and row.get("expected_diagnostic") == expected_primary[name]
+            and row.get("observed_diagnostic") == expected_primary[name]
+            and row.get("observed_diagnostic_codes") == expected_diagnostics[name]
+            and row.get("timeout") is False
+            and row.get("signal") is False
+            and row.get("success_artifact_present") is False
+            and row.get("forbidden_crash_text_present") is False,
+            "DIRECT_CLOSURE_MUTATION_CASE_CONTRACT_FAIL",
+            name,
+        )
+    return {
+        "payload_sha256": report["payload_sha256"],
+        "mutations_rejected": 11,
+        "production_verifier_content_attacks": 10,
+    }
+
+
+def validate_weak_sharpness_mutation_evidence(
+    project: Path = PROJECT,
+) -> dict[str, object]:
+    """Bind exact typed attacks against the independent sharpness audit."""
+
+    root = project / "work/weak_sharpness_audit"
+    report = load_json(root / "mutation_report.json")
+    verify_payload_hash(report)
+    expected_diagnostics = {
+        "omitted_graph_arc": "X: retic has degree (2, 0), expected (2, 1)",
+        "reversed_reticulation_arc": "Z: tree has degree (2, 1), expected (1, 2)",
+        "reticulation_role_changed": "V: tree has degree (2, 1), expected (1, 2)",
+        "reticulation_arrowhead_removed": "mutated arrowhead census",
+        "first_rooting_count": "primary first census drift",
+        "second_tree_child_count": "primary second census drift",
+        "stored_inheritance": "primary inheritance drift",
+        "stored_internal_pair": "primary internal parameter drift",
+        "stored_arm_pair": "primary pendant parameter drift",
+        "actual_inheritance_reevaluation": (
+            "independent normalized tensor differs from stated tensor"
+        ),
+        "common_tensor_entry": "primary common tensor reassigned",
+        "normalized_tensor_entry": "primary normalized tensor drift",
+        "minor_determinant": "primary minor determinant is reassigned",
+        "minor_column_repeated": (
+            "primary stored minor vanishes under independent expansion"
+        ),
+        "rank_claim_lowered": "primary rank claim drift",
+        "actual_cherry_CT_pair": "mutant: outside D_plus",
+        "cherry_jacobian_entry": "mutated determinant",
+        "stored_cherry_determinant": "primary cherry determinant drift",
+        "broken_cherry_pruning": "new leaf is not in a cherry",
+        "cherry_edge_ceases_to_be_bridge": "mutated edge not bridge",
+        "optimized_mode": "WEAK_SHARPNESS_AUDIT_OPTIMIZED_MODE_FORBIDDEN",
+    }
+    baseline = report.get("clean_baseline")
+    cases = report.get("cases")
+    require(
+        report.get("schema") == "k2p-weak-sharpness-audit-mutations-v2"
+        and report.get("status") == "PASS"
+        and report.get("primary_certificate_sha256")
+        == sha_file(project / "work/weak_sharpness_closure/weak_sharpness_certificate.json")
+        and report.get("independent_audit_certificate_sha256")
+        == sha_file(root / "audit_certificate.json")
+        and report.get("independent_audit_verifier_sha256")
+        == sha_file(root / "audit_weak_sharpness.py")
+        and report.get("mutation_runner_sha256")
+        == sha_file(root / "test_mutations.py")
+        and report.get("diagnostic_contract") == expected_diagnostics
+        and report.get("execution_contract")
+        == {
+            "exact_exception_type_and_diagnostic_required": True,
+            "optimized_mode_requires_exit_code_one": True,
+            "traceback_import_timeout_signal_non_one_forbidden": True,
+            "success_terminal_forbidden": True,
+            "source_tree_unchanged": True,
+        }
+        and report.get("qualification_negative_controls")
+        == {
+            "wrong_exception_type_rejected": True,
+            "wrong_diagnostic_rejected": True,
+            "optimized_wrong_diagnostic_rejected": True,
+            "optimized_traceback_rejected": True,
+            "optimized_import_error_rejected": True,
+            "optimized_timeout_rejected": True,
+            "optimized_signal_rejected": True,
+            "optimized_non_one_exit_rejected": True,
+            "optimized_success_artifact_rejected": True,
+        }
+        and isinstance(baseline, dict)
+        and baseline.get("status") == "PASS"
+        and baseline.get("payload_sha256")
+        == load_json(root / "audit_certificate.json").get("payload_sha256")
+        and baseline.get("certificate_sha256")
+        == report.get("independent_audit_certificate_sha256")
+        and baseline.get("exact_object_equal") is True
+        and baseline.get("rooting_censuses") == [[5, 2, 3], [7, 2, 5]]
+        and baseline.get("ranks") == [9, 9]
+        and baseline.get("relation") == "none"
+        and report.get("mutation_count") == 21
+        and report.get("mutations_rejected") == 21
+        and report.get("mutations_survived") == 0
+        and report.get("conclusion") == "PASS"
+        and isinstance(cases, list)
+        and [row.get("mutation") for row in cases] == list(expected_diagnostics),
+        "WEAK_SHARPNESS_MUTATION_REPORT_CONTRACT_FAIL",
+    )
+    for row in cases[:-1]:
+        expected = expected_diagnostics[row["mutation"]]
+        require(
+            row
+            == {
+                "mutation": row["mutation"],
+                "status": "rejected",
+                "expected_exception_type": "RuntimeError",
+                "observed_exception_type": "RuntimeError",
+                "expected_diagnostic": expected,
+                "observed_diagnostic": expected,
+            },
+            "WEAK_SHARPNESS_MUTATION_CASE_CONTRACT_FAIL",
+            row["mutation"],
+        )
+    optimized = cases[-1]
+    expected = expected_diagnostics["optimized_mode"]
+    require(
+        optimized
+        == {
+            "mutation": "optimized_mode",
+            "status": "rejected",
+            "returncode": 1,
+            "expected_diagnostic": expected,
+            "observed_diagnostic": expected,
+            "timeout": False,
+            "signal": False,
+            "success_artifact_present": False,
+            "forbidden_crash_text_present": False,
+        },
+        "WEAK_SHARPNESS_OPTIMIZED_MUTATION_CONTRACT_FAIL",
+    )
+    return {
+        "payload_sha256": report["payload_sha256"],
+        "mutations_rejected": 21,
     }
 
 
@@ -5046,19 +6537,25 @@ def validate_semantics(project: Path = PROJECT) -> tuple[dict[str, object], list
     require(rank.get("descriptor_count") == 4379, "RANK_DESCRIPTOR_COUNT_FAIL")
     require(rank.get("zero_unresolved") is True, "RANK_UNRESOLVED_FAIL")
     require(rank.get("base_recomputed") is True, "RANK_BASE_NOT_RECOMPUTED")
-    rank_mutations = load_json(project / "work/rank_upper_certificates/mutation_report.json")
-    require(rank_mutations.get("status") == "pass", "RANK_MUTATIONS_NOT_PASS")
-    require(rank_mutations.get("survivors") == 0, "RANK_MUTATION_SURVIVOR")
-    raw_mutations = load_json(
+    rank_mutations = validate_rank_upper_mutation_evidence(project)
+    legacy_raw_mutation_report = (
         project / "work/raw_ledger_audit/artifacts/raw_ledger_mutation_report.json"
     )
-    require(raw_mutations.get("status") == "PASS", "RAW4_MUTATIONS_NOT_PASS")
-    require(raw_mutations.get("survivors") == 0, "RAW4_MUTATION_SURVIVOR")
-    layers["four_port_legacy_provenance"] = {
+    layers["four_port_raw_rank"] = {
         "raw_total": RAW_FOUR_TOTAL,
+        "raw_generation_status": "CURRENT_EXACTLY_ONCE_CENSUS",
         "rank_descriptors": 4379,
         "rank_unresolved": 0,
-        "coverage_status": "REVOKED_PARTITION_NOT_USED_FOR_PROMOTION",
+        "rank_mutation_payload_sha256": rank_mutations["payload_sha256"],
+        "rank_complete_production_mutations": 1,
+        "rank_status": "CURRENT_PRODUCTION_VERIFIER_EVIDENCE",
+        "legacy_partition_status": "REVOKED_PARTITION_NOT_USED_FOR_PROMOTION",
+        "legacy_raw_mutation_report_sha256": sha_file(
+            legacy_raw_mutation_report
+        ),
+        "legacy_raw_mutation_qualification": (
+            "HISTORICAL_GENERIC_NONZERO_REGRESSION_NOT_PROMOTION_EVIDENCE"
+        ),
     }
 
     corrected_layer, corrected_blockers = validate_corrected_finite_universe(project)
@@ -5091,10 +6588,13 @@ def validate_semantics(project: Path = PROJECT) -> tuple[dict[str, object], list
         all(row.get("target_pullback_zero") is True for row in coverage),
         "DIRECT36_TARGET_PULLBACK_FAIL",
     )
+    direct_mutations = validate_direct_closure_mutation_evidence(project)
     layers["four_port_direct36_standalone"] = {
         "candidate_count": 36,
         "family_counts": direct["proof_family_counts"],
         "remaining_unproved": 0,
+        "mutation_payload_sha256": direct_mutations["payload_sha256"],
+        "mutations_rejected": direct_mutations["mutations_rejected"],
         "coverage_status": "STANDALONE_CERTIFICATES_NOT_A_COMPLETENESS_PARTITION",
     }
 
@@ -5157,9 +6657,12 @@ def validate_semantics(project: Path = PROJECT) -> tuple[dict[str, object], list
         == "9+4*(n-3)=4*n-3",
         "SHARPNESS_AUDIT_DIMENSION_FAIL",
     )
+    sharpness_mutations = validate_weak_sharpness_mutation_evidence(project)
     layers["weak_sharpness"] = {
         "primary_payload_sha256": primary_sharpness["payload_sha256"],
         "independent_payload_sha256": independent_sharpness["payload_sha256"],
+        "mutation_payload_sha256": sharpness_mutations["payload_sha256"],
+        "mutations_rejected": sharpness_mutations["mutations_rejected"],
         "dimension": "4*n-3",
     }
 

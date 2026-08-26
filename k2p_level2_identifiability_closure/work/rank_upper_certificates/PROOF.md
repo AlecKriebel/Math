@@ -121,7 +121,24 @@ for all 3,515 base descriptors, checks all 75 representative polynomial
 identities, checks exact independence, and checks all 864 transports.  It
 passes with zero unresolved descriptors.
 
-Six adversarial mutations are required to fail closed: omitted coverage,
+Seven adversarial mutations are required to fail closed: omitted coverage,
 duplicated coverage, an altered syzygy coefficient, a reassigned
-representative certificate, a broken port transport, and a false rank claim.
-All six are rejected.
+representative certificate, a broken port transport, a false rank claim, and
+replacement of a representative's symbolic polynomial fields by sampled-point
+Jacobian evidence.  The seventh mutation is installed in a complete,
+coherently resealed disposable certificate package and is rejected by the
+production verifier at the exact symbolic-field-dimension gate.  All seven
+are rejected; an unrelated traceback, wrong diagnostic, signal exit, or stale
+success artifact cannot qualify as rejection evidence.
+
+Before any disposable copy is made, the suite verifies `MANIFEST.sha256` and
+`manifest.json` against every one of the 94 authoritative proof/code inputs
+and runs the complete 4,379-descriptor production replay on that package in
+place, requiring byte identity with the stored replay and explicitly checking
+`descriptor_count=4379`, `zero_unresolved=true`, and `base_recomputed=true`.
+The complete mutant starts with the package's canonical PASS replay; the
+production verifier must remove it before reaching the exact semantic failure,
+and the report binds its absence.  The mutation report is excluded from this
+nested manifest because it
+qualifies the manifest; the outer theorem-release lock binds both files
+without a circular commitment.

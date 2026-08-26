@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -29,6 +30,73 @@ from release_common import (
 
 
 DEFAULT_LOCK = HERE / "RELEASE_LOCK.json"
+AUTHORITATIVE_REPORT = (
+    PROJECT / "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY.json"
+)
+
+
+def validate_report_output_path(
+    output: Path | None, allow_authoritative: bool = False
+) -> Path | None:
+    """Resolve a caller-owned report and forbid aliases into release sources."""
+
+    if output is None:
+        require(
+            not allow_authoritative,
+            "FINAL_REPLAY_OUTPUT_POLICY_FAIL",
+            "authoritative override requires --output",
+        )
+        return None
+    lexical = Path(os.path.abspath(os.fspath(output)))
+    normalized = lexical.parent.resolve() / lexical.name
+    resolved = lexical.resolve()
+    canonical = AUTHORITATIVE_REPORT.parent.resolve() / AUTHORITATIVE_REPORT.name
+    if allow_authoritative:
+        require(
+            normalized == canonical and resolved == canonical,
+            "FINAL_REPLAY_OUTPUT_POLICY_FAIL",
+            "authoritative override requires the exact nonsymbolic canonical report",
+        )
+        return canonical
+    try:
+        resolved.relative_to(PROJECT.resolve())
+    except ValueError:
+        return normalized
+    raise ReleaseFailure(
+        "FINAL_REPLAY_OUTPUT_POLICY_FAIL:routine report output must be outside "
+        "the project source tree"
+    )
+
+
+def prepare_report_output(output: Path | None) -> None:
+    """Remove stale caller-owned PASS bytes before every fallible preflight."""
+
+    if output is not None:
+        output.unlink(missing_ok=True)
+
+
+def atomic_write_text(path: Path, text: str) -> None:
+    """Fsync and replace without following hard links or late symlink swaps."""
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    descriptor, temporary_name = tempfile.mkstemp(
+        prefix=f".{path.name}.", suffix=".tmp", dir=path.parent
+    )
+    temporary = Path(temporary_name)
+    try:
+        os.fchmod(descriptor, 0o644)
+        with os.fdopen(descriptor, "w", encoding="utf-8") as handle:
+            handle.write(text)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+        directory_descriptor = os.open(path.parent, os.O_RDONLY)
+        try:
+            os.fsync(directory_descriptor)
+        finally:
+            os.close(directory_descriptor)
+    finally:
+        temporary.unlink(missing_ok=True)
 
 
 def qualified_python() -> Path:
@@ -57,6 +125,8 @@ def run_child(
     terminal_markers: tuple[bytes, ...] = (),
     cwd: Path = PROJECT,
     environment_overrides: dict[str, str] | None = None,
+    semantic_command: tuple[str, ...] | None = None,
+    source_paths: tuple[Path, ...] = (),
 ) -> dict[str, Any]:
     started = time.perf_counter()
     environment = child_environment()
@@ -87,6 +157,17 @@ def run_child(
         "stderr_sha256": hashlib.sha256(result.stderr).hexdigest(),
         "returncode": result.returncode,
     }
+    if semantic_command is not None:
+        require(bool(source_paths), "REPLAY_BOUND_SOURCE_PATHS_EMPTY", name)
+        row["command_sha256"] = hashlib.sha256(
+            json.dumps(
+                semantic_command, sort_keys=True, separators=(",", ":")
+            ).encode()
+        ).hexdigest()
+        row["source_sha256"] = {
+            path.resolve().relative_to(PROJECT.resolve()).as_posix(): sha_file(path)
+            for path in source_paths
+        }
     print(
         f"K2P_FINAL_LAYER_PASS name={name} elapsed_seconds={elapsed:.3f}",
         flush=True,
@@ -267,6 +348,85 @@ def replay_corrected_probe_independent(
             observed,
             package / "probe_coherence_independent_verification.json",
             "corrected_probe_independent_streaming_replay",
+        )
+
+
+def replay_corrected_restoration_independent(
+    rows: list[dict[str, Any]], timeout: float
+) -> None:
+    package = PROJECT / "work/restoration_sign_reclassification"
+    verifier = package / "verify_corrected_restoration_forest.py"
+    certificate = package / "corrected_restoration_forest.json"
+    crosswalk = package / "corrected_restoration_historical_crosswalk.json"
+    expected = package / "corrected_restoration_replay_certificate.json"
+    semantic_command = (
+        "<qualified-python>",
+        "-B",
+        "work/restoration_sign_reclassification/verify_corrected_restoration_forest.py",
+        "--certificate",
+        "work/restoration_sign_reclassification/corrected_restoration_forest.json",
+        "--crosswalk",
+        "work/restoration_sign_reclassification/corrected_restoration_historical_crosswalk.json",
+        "--report",
+        "<external-report-path>",
+    )
+    with tempfile.TemporaryDirectory(
+        prefix="k2p-final-restoration-independent-"
+    ) as directory:
+        observed = Path(directory) / "corrected_restoration_replay_certificate.json"
+        rows.append(
+            run_child(
+                "corrected_restoration_independent_full_replay",
+                [
+                    str(qualified_python()),
+                    "-B",
+                    str(verifier),
+                    "--certificate",
+                    str(certificate),
+                    "--crosswalk",
+                    str(crosswalk),
+                    "--report",
+                    str(observed),
+                ],
+                timeout=max(timeout, 900.0),
+                terminal_markers=(b'"status": "PASS"',),
+                semantic_command=semantic_command,
+                source_paths=(verifier, certificate, crosswalk),
+            )
+        )
+        replay = load_json(observed)
+        unsigned = dict(replay)
+        claimed_payload = unsigned.pop("payload_sha256", None)
+        observed_payload = hashlib.sha256(
+            json.dumps(unsigned, sort_keys=True, separators=(",", ":")).encode()
+        ).hexdigest()
+        require(
+            claimed_payload == observed_payload,
+            "RESTORATION_INDEPENDENT_REPLAY_PAYLOAD_FAIL",
+        )
+        require(
+            replay.get("schema")
+            == "k2p-corrected-restoration-independent-replay-v3"
+            and replay.get("status") == "PASS"
+            and replay.get("source_certificate_sha256") == sha_file(certificate)
+            and replay.get("source_crosswalk_sha256") == sha_file(crosswalk),
+            "RESTORATION_INDEPENDENT_REPLAY_SOURCE_FAIL",
+        )
+        require(
+            replay.get("canonical_parents") == 997
+            and replay.get("member_roots") == 2_540
+            and replay.get("first_parent_transport_edges_replayed") == 36_568
+            and replay.get("second_parent_transport_edges_replayed") == 256
+            and replay.get("final_leaves") == 36_792
+            and replay.get("unresolved") == 0
+            and replay.get("missing_children") == 0
+            and replay.get("cycles") == 0,
+            "RESTORATION_INDEPENDENT_REPLAY_CENSUS_FAIL",
+        )
+        compare_logical_json(
+            observed,
+            expected,
+            "corrected_restoration_independent_full_replay",
         )
 
 
@@ -713,31 +873,19 @@ def quick_replays(rows: list[dict[str, Any]], timeout: float) -> None:
             terminal_markers=(b"THETA2_STRUCTURAL_REPLAY_PASS",),
         )
     )
-    rows.append(
-        run_child(
-            "cycle_three_port_structural_provenance",
-            [
-                python,
-                "-B",
-                str(PROJECT / "work/cycle_three_port_closure/verify_cycle_closure.py"),
-            ],
-            timeout=timeout + 30,
-            terminal_markers=(b'"status": "PASS"',),
-        )
+    replay_output_program(
+        rows,
+        name="cycle_three_port_authoritative_promotion",
+        script=PROJECT
+        / "work/adversarial_proof_review/verify_corrected_cycle_promotion.py",
+        expected=PROJECT
+        / "work/adversarial_proof_review/cycle_promotion_independent_verification.json",
+        output_flag="--report",
+        markers=(b'"status": "PASS"',),
+        timeout=timeout,
     )
     replay_corrected_probe_independent(rows, timeout)
     replay_corrected_probe_site_partition(rows, timeout)
-    truth_verifier = PROJECT / "work/adversarial_proof_review/verify_tree_sunlet_truth.py"
-    truth_certificate = PROJECT / "work/adversarial_proof_review/tree_sunlet_truth_certificate.json"
-    if truth_verifier.is_file() and truth_certificate.is_file():
-        rows.append(
-            run_child(
-                "tree_sunlet_full_map_truth",
-                [python, "-B", str(truth_verifier), "--certificate", str(truth_certificate)],
-                timeout=timeout,
-                terminal_markers=(b"TREE_SUNLET_TRUTH_REPLAY_PASS",),
-            )
-        )
     replay_weak_sharpness(rows)
 
 
@@ -1045,6 +1193,7 @@ def full_replays(rows: list[dict[str, Any]], timeout: float) -> None:
             terminal_markers=(b"PARAMETER_TRANSPORT_REPLAY_PASS",),
         )
     )
+    replay_corrected_restoration_independent(rows, timeout)
     replay_output_program(
         rows,
         name="corrected_universe_cross_layer_mutations",
@@ -1117,8 +1266,6 @@ def full_replays(rows: list[dict[str, Any]], timeout: float) -> None:
 
 
 def main() -> int:
-    if not __debug__:
-        raise SystemExit("FINAL_THEOREM_RELEASE_OPTIMIZED_MODE_FORBIDDEN")
     parser = argparse.ArgumentParser()
     mode = parser.add_mutually_exclusive_group(required=True)
     mode.add_argument("--quick", action="store_true")
@@ -1126,12 +1273,19 @@ def main() -> int:
     parser.add_argument("--lock", type=Path, default=DEFAULT_LOCK)
     parser.add_argument("--timeout-seconds", type=float, default=1200.0)
     parser.add_argument("--output", type=Path)
+    parser.add_argument("--allow-authoritative-output", action="store_true")
     parser.add_argument(
         "--audit-blocked",
         action="store_true",
         help="run diagnostic replays for a blocked candidate, but still exit blocked",
     )
     args = parser.parse_args()
+    report_output = validate_report_output_path(
+        args.output, args.allow_authoritative_output
+    )
+    prepare_report_output(report_output)
+    if not __debug__:
+        raise SystemExit("FINAL_THEOREM_RELEASE_OPTIMIZED_MODE_FORBIDDEN")
     require(args.timeout_seconds > 0, "INVALID_TIMEOUT")
     runtime = validate_runtime_environment()
     lock = load_json(args.lock.resolve())
@@ -1164,9 +1318,10 @@ def main() -> int:
         "optimized_mode": False,
         "runtime": runtime,
     }
-    if args.output is not None:
-        args.output.parent.mkdir(parents=True, exist_ok=True)
-        args.output.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
+    if report_output is not None:
+        atomic_write_text(
+            report_output, json.dumps(report, indent=2, sort_keys=True) + "\n"
+        )
     if blockers:
         print("K2P_FINAL_THEOREM_RELEASE_BLOCKED")
         print(json.dumps(report, sort_keys=True))

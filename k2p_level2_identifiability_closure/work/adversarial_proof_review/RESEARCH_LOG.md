@@ -110,3 +110,30 @@
 - Probe-input local goal: **100%**.  Overall global adversarial review:
   **96%**, with the corrected full A+p/A+p+q computation and its independent
   audit still load-bearing before theorem promotion.
+## 2026-08-26 — corrected cycle-promotion mutation qualification
+
+- Reproduced that the active 12-case corrected cycle mutation suite accepted
+  any nonzero verifier exit whose final line merely contained a broad failure
+  prefix.  No semantic mutant survived, but the release evidence could have
+  misclassified an unrelated failure.
+- Required an in-place clean authoritative promotion replay and an exact
+  truth-structure baseline before mutation work.  All 12 existing attacks now
+  invoke their production verifier and must produce one case-specific exact
+  diagnostic with exit code one, no traceback/import/timeout marker, no PASS
+  token, and no success artifact.
+- Added caller-owned external output, atomic publication, stale-output removal
+  before optimized-mode rejection, symlink/hardlink guards, and negative
+  controls for wrong diagnostics, unrelated crashes, signals, positive
+  non-one exits, timeouts, PASS tokens, and pre-existing PASS artifacts.
+- The authoritative 13,440-row base universe, 5,964 restoration roots,
+  536,364 physical children, terminal censuses, truth rows, and cycle
+  classifications are unchanged.  The current atlas hash was rebound in the
+  truth certificate; consequently 7,452 base and 300 full promotion rows
+  changed only their truth-payload binding and derived authoritative row hash.
+- The canonical and external reports are byte-identical.  All 12 cases were
+  rejected in 82.53 seconds (582,942,720-byte maximum RSS for the canonical
+  run), with report payload
+  `8e60565e65381ce78f97b8ecd6cc7c1e4f96a4e4441ed747df8ebf0c2bbe6bf2`.
+  The independent full 7,752-row truth replay also passed in 428.65 seconds
+  with 168,902,656-byte maximum RSS.  Completion estimate: **100% for this
+  bounded mutation-evidence repair**, pending release-wide resealing.

@@ -15,11 +15,11 @@ theorem or make a mixed-sign claim.
 
 | Family | Rows | Compressed SHA-256 | Summary payload | Independent replay payload | Mutations |
 |---|---:|---|---|---|---:|
-| raw-four | 405,216 | `431dac8898ad2a724d12c200687de1b377723e302214a79a11a03524a4084b96` | `b4c4cb8a89afcc82edb266ee9fab1e9abc59c4ab977dd00dadc43304b3e4048c` | `40770d3068e936a9c5d0e93225fa15feaed90a212d9515e1cb3f2d46c35979e0` | 14/14 verifier-facing; payload `dc265e02da504666197320fcab90226fa44cfc5c5906bb4ef5b6f1ab35d44f02` |
+| raw-four | 405,216 | `c6cd9d6b5b09371565fd3e58ff9ab3cd7266b6231b153d43f9d1e886af8eae27` | `3a49bfeeb244cba84cf2e42e2acf296f112d1586c5e17f40e2d2872722c3c988` | `dfed35eab33dcc9983b38c8cedb79ed90b12c8a5cf04b58d251637b3fb2f1191` | 14/14 verifier-facing; payload `eec4a56b20faa3239044db49796fa724d60a5412a8d6e89a92db5d81e9656385` |
 | theta2 | 2,946,240 | `805fc7f5a3de9dad2c63a210208075cf19910cf811ffd08878f32782ce71b659` | `c89dd764f7c66831db7f6a092fedf666a20f3594ef03647de3e85b5fbf04d0e8` | `7e4283fe726083927b14d483d55644e2892a311b0179aa70d4766576c66ab545` | 12/12 verifier-facing; payload `5663b87d3f09eaac5e89db69ac5a1cf6069b308abf9bc4242650d0897ded1ff7` |
 
 The current outer release-contract replay has payload
-`b746fb7a17e8ca9252c53dff0ba5722c1a00c56dc930d0c8456022ea34f60b6f`.
+`607063c6151379818a65f183d5b8b5e528621d39de5b9945550457feed8e3836`.
 
 ## Authoritative partition
 
@@ -36,7 +36,7 @@ The terminal class multiplicity histogram is
 `{1:424,2:112,4:449,8:12}`.  Every restoration presentation binds one
 canonical parent, one physical member-root transport, and the finalized clean
 restoration forest with file SHA-256
-`43bd2be5e7626a954fc4fa4cf45e8d0e6483c947ddc9cba80f2b1a13351bc3a8`.
+`bcf91bf433c71056d1e27871dd15fe532f9ae1cc4ad79eb2373eae57071ee427`.
 
 Theta2 has the exact partition
 
@@ -95,7 +95,7 @@ compressed bytes to match exactly.
 Uncompressed stream sizes and SHA-256 values are:
 
 - raw-four: 391,559,514 bytes,
-  `f3fa7f6568551e1f5daa5aa0fbeb7cfd5773c8fd1277588efed3f98a7c8f4033`;
+  `cc421e813a2c92da5ebd080003889f93e8dcb3598ba70e92e8655faf8f742f30`;
 - theta2: 2,766,984,898 bytes,
   `550e8c2d9d7f683d79e8955b91629f1fc527fc8b72a1f592e85d6ecc74642bb7`.
 

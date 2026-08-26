@@ -24,7 +24,7 @@ TELEMETRY_SUBMISSION_SOURCES = (
     "proof_compression_submission/supplement/certificate_appendix.tex",
 )
 ARCHIVE_PREFIX = "k2p_principal_d_plus_submission_referee"
-ARCHIVE_TIMESTAMP = (2026, 8, 25, 0, 0, 0)
+ARCHIVE_TIMESTAMP = (2026, 8, 26, 0, 0, 0)
 OPERATIONAL_EVIDENCE = {
     "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY.json",
     "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY_TELEMETRY.json",
@@ -46,7 +46,7 @@ SUBMISSION_METADATA = {
     "data_license": "CC BY 4.0",
     "doi": None,
     "funding": "No specific funding supported this work.",
-    "immutable_submission_tag": "k2p-same-biorxiv-v1.0.1",
+    "immutable_submission_tag": "k2p-same-biorxiv-v1.0.2",
     "paper_license": "CC BY 4.0",
     "release_boundary": (
         "No GitHub Release, Zenodo deposit, or DOI is created or claimed by "
@@ -370,7 +370,7 @@ def build_manifest() -> dict[str, Any]:
         "archive_policy": {
             "archive_prefix": ARCHIVE_PREFIX,
             "compression": "ZIP_DEFLATED level 9",
-            "fixed_member_timestamp": "2026-08-25T00:00:00",
+            "fixed_member_timestamp": "2026-08-26T00:00:00",
             "member_mode": "100644",
             "member_order": "project-relative path lexicographic",
             "manifest_included": True,

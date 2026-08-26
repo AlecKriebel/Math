@@ -215,6 +215,13 @@ def digest(value: Any) -> str:
     return hashlib.sha256(raw).hexdigest()
 
 
+def explicit_check(condition: bool, code: str, detail: object | None = None) -> None:
+    """Fail without a traceback for mutation-qualified certificate bindings."""
+
+    if not condition:
+        raise SystemExit(code if detail is None else f"{code}: {detail}")
+
+
 def graph_payload(graph: nx.DiGraph) -> dict:
     nodes = []
     for node, data in sorted(graph.nodes(data=True), key=lambda pair: repr(pair[0])):
@@ -1026,8 +1033,14 @@ def main() -> None:
         (tuple(monomial), coefficient)
         for monomial, coefficient in quintic_artifact["invariant"]
     )
-    assert digest(quintic) == quintic_artifact["invariant_sha256"]
-    assert digest(quintic) == EXPECTED_QUINTIC_SHA256
+    explicit_check(
+        digest(quintic) == quintic_artifact["invariant_sha256"],
+        "DIRECT_QUINTIC_ARTIFACT_HASH_FAIL",
+    )
+    explicit_check(
+        digest(quintic) == EXPECTED_QUINTIC_SHA256,
+        "DIRECT_QUINTIC_EXPECTED_HASH_FAIL",
+    )
     quintic_rows = {
         row["class_id"]: row for row in quintic_artifact["rows"]
     }
@@ -1101,7 +1114,11 @@ def main() -> None:
         ),
     }
     for name, polynomial in quartics.items():
-        assert digest(polynomial) == EXPECTED_QUARTIC_SHA256[name]
+        explicit_check(
+            digest(polynomial) == EXPECTED_QUARTIC_SHA256[name],
+            "DIRECT_QUARTIC_EXPECTED_HASH_FAIL",
+            name,
+        )
     F48_A = transform(quartics["F48"], A)
 
     quartic_cases = []
@@ -1171,7 +1188,10 @@ def main() -> None:
         (tuple(monomial), coefficient)
         for coefficient, monomial in cubic_artifact["normalized_terms"]
     )
-    assert normalized_artifact_cubic == CUBIC
+    explicit_check(
+        normalized_artifact_cubic == CUBIC,
+        "DIRECT_CUBIC_ARTIFACT_TERMS_FAIL",
+    )
     assert digest(CUBIC) == cubic_artifact["normalized_polynomial_sha256"]
     assert math.gcd(*(abs(coefficient) for _monomial, coefficient in CUBIC)) == 1
     assert multidegree(CUBIC) == (1,) * 8

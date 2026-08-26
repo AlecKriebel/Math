@@ -17,7 +17,7 @@ From the repository root, run:
 .venv/bin/python work/probe_coherence_corrected/build_probe_coherence_corrected.py
 .venv/bin/python work/probe_coherence_corrected/verify_probe_coherence_corrected.py
 .venv/bin/python work/probe_coherence_corrected/verify_site_transport_partition.py
-.venv/bin/python work/probe_coherence_corrected/run_probe_coherence_mutations.py
+.venv/bin/python work/probe_coherence_corrected/run_probe_coherence_mutations.py --output /tmp/k2p-probe-mutations.json
 ```
 
 The first command is the full primitive-graph regeneration (about 46 minutes
@@ -30,6 +30,11 @@ partition directly from the frozen input contract and exact transport ledger;
 it proves that every incompatible site pair is quartet-separated and that
 every compatible pair is either an exact relation or a direct full-map
 `T_i` separation.
+
+The mutation runner requires a caller-owned output outside the project tree.
+Maintainers may reseal only its exact canonical report by naming that path
+with `--output` and adding `--allow-authoritative-output`; routine referee
+replays should always use a disposable external path such as the one above.
 
 Primary artifacts are the summary certificate, one-port ledger, two-port
 parent inventory and ledger, exact-transport ledger, parent-restriction

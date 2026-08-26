@@ -7,6 +7,7 @@ import argparse
 import copy
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -27,11 +28,14 @@ from release_common import (
     sha_file,
     sha_object,
     validate_corrected_finite_universe,
+    validate_direct_closure_mutation_evidence,
     validate_historical_artifact_registry,
     validate_promotion_manuscript,
+    validate_quartet_evidence,
     validate_restoration_v3_package,
     validate_probe_transport_restrictions,
     validate_runtime_environment,
+    validate_weak_sharpness_mutation_evidence,
 )
 
 
@@ -46,12 +50,16 @@ def run(
     *,
     cwd: Path = PROJECT,
     timeout: float = 600,
+    environment_overrides: dict[str, str] | None = None,
 ) -> subprocess.CompletedProcess[bytes]:
+    environment = child_environment()
+    if environment_overrides is not None:
+        environment.update(environment_overrides)
     try:
         return subprocess.run(
             command,
             cwd=cwd,
-            env=child_environment(),
+            env=environment,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             timeout=timeout,
@@ -61,26 +69,63 @@ def run(
         raise ReleaseFailure(f"MUTATION_TIMEOUT:{name}") from error
 
 
+OUTER_FAILURE_CODE = re.compile(
+    r"(?<![A-Z0-9_])[A-Z][A-Z0-9_]*(?:FAIL|MISMATCH|FORBIDDEN)(?![A-Z0-9_])"
+)
+OUTER_FORBIDDEN_CRASH_TEXT = (
+    b"Traceback (most recent call last)",
+    b"AssertionError",
+    b"ModuleNotFoundError",
+    b"ImportError",
+)
+REQUIRED_MUTATION_COUNT = 25
+
+
 def accepted_rejection(
     name: str,
     result: subprocess.CompletedProcess[bytes],
-    markers: tuple[bytes, ...],
+    expected_diagnostic: str,
 ) -> dict[str, object]:
     output = result.stdout + result.stderr
-    require(result.returncode != 0, "MUTATION_SURVIVED", name)
-    matched = [marker.decode("utf-8") for marker in markers if marker in output]
+    require(result.returncode == 1, "MUTATION_EXIT_CODE_FAIL", {
+        "name": name,
+        "returncode": result.returncode,
+    })
+    forbidden = [
+        marker.decode("utf-8") for marker in OUTER_FORBIDDEN_CRASH_TEXT if marker in output
+    ]
     require(
-        bool(matched),
+        not forbidden,
+        "MUTATION_UNRELATED_CRASH",
+        {"name": name, "forbidden": forbidden},
+    )
+    require(
+        b"K2P_FOUR_PORT_DIRECT_CLOSURE_RELEASE_PASS" not in output.splitlines(),
+        "MUTATION_SUCCESS_ARTIFACT_PRESENT",
+        name,
+    )
+    observed = set(OUTER_FAILURE_CODE.findall(output.decode("utf-8", "replace")))
+    require(
+        observed == {expected_diagnostic},
         "MUTATION_WRONG_REJECTION",
-        {"name": name, "tail": output[-4000:]},
+        {
+            "name": name,
+            "expected": expected_diagnostic,
+            "observed": sorted(observed),
+            "tail": output[-4000:],
+        },
     )
     print(f"K2P_FINAL_MUTATION_REJECTED name={name}", flush=True)
     return {
         "name": name,
         "status": "REJECTED",
-        "returncode": result.returncode,
-        "expected_markers": [marker.decode("utf-8") for marker in markers],
-        "observed_markers": matched,
+        "returncode": 1,
+        "expected_diagnostic": expected_diagnostic,
+        "observed_diagnostic": expected_diagnostic,
+        "timeout": False,
+        "signal": False,
+        "success_artifact_present": False,
+        "forbidden_crash_text_present": False,
     }
 
 
@@ -100,6 +145,13 @@ def validate_report_output_path(output: Path | None) -> Path | None:
         "FINAL_RELEASE_MUTATION_OUTPUT_POLICY_FAIL:report output must be outside "
         "the project source tree"
     )
+
+
+def prepare_report_output(output: Path | None) -> None:
+    """Remove stale caller-owned PASS bytes before any fallible preflight."""
+
+    if output is not None:
+        output.unlink(missing_ok=True)
 
 
 def atomic_write_text(path: Path, text: str) -> None:
@@ -132,19 +184,25 @@ def build_report(
 ) -> dict[str, object]:
     """Build the path- and timing-independent outer mutation report."""
 
+    require(
+        len(rows) == REQUIRED_MUTATION_COUNT,
+        "FINAL_MUTATION_CENSUS_FAIL",
+        len(rows),
+    )
+
     payload: dict[str, object] = {
         "schema": "k2p-principal-d-plus-final-release-mutations-v2",
         "status": "PASS" if not blockers else "BLOCKED",
         "blockers": blockers,
         "survivors": 0,
-        "required_mutation_count": 27,
+        "required_mutation_count": REQUIRED_MUTATION_COUNT,
         "observed_mutation_count": len(rows),
         "mutations": rows,
         "output_contract_preflight": "PASS",
         "portability_contract": (
             "The report excludes elapsed times, temporary paths, raw child output, "
-            "and raw-output hashes; rejection evidence is limited to stable semantic "
-            "markers and return codes."
+            "and raw-output hashes; rejection evidence is limited to exact stable "
+            "semantic diagnostics and return codes."
         ),
     }
     report = dict(payload)
@@ -163,6 +221,16 @@ def output_contract_preflight(timeout: float) -> None:
             "nested_mutation_output_contract",
             HERE / "test_nested_mutation_output_contract.py",
             b"K2P_NESTED_MUTATION_OUTPUT_CONTRACT_PASS",
+        ),
+        (
+            "final_replay_output_contract",
+            HERE / "test_final_replay_output_contract.py",
+            b"K2P_FINAL_REPLAY_OUTPUT_CONTRACT_PASS",
+        ),
+        (
+            "semantic_mutation_diagnostic_contract",
+            HERE / "test_semantic_mutation_diagnostic_contracts.py",
+            b"K2P_SEMANTIC_MUTATION_DIAGNOSTIC_CONTRACTS_PASS qualified=9 negative_controls=49",
         ),
     ):
         result = run(
@@ -186,31 +254,6 @@ def resign(payload: dict[str, Any], field: str = "payload_sha256") -> None:
 
 def write_json(path: Path, value: object) -> None:
     path.write_text(json.dumps(value, indent=2, sort_keys=True) + "\n")
-
-
-def raw_mutations(rows: list[dict[str, object]], temporary: Path, timeout: float) -> None:
-    report = temporary / "raw_mutations.json"
-    result = run(
-        "raw_ledger_mutations",
-        [
-            python(),
-            "-B",
-            str(PROJECT / "work/raw_ledger_audit/test_mutations.py"),
-            "--report",
-            str(report),
-        ],
-        timeout=timeout,
-    )
-    require(result.returncode == 0, "RAW_MUTATION_SUITE_FAIL", (result.stdout + result.stderr)[-4000:])
-    payload = load_json(report)
-    require(payload.get("status") == "PASS", "RAW_MUTATION_REPORT_NOT_PASS")
-    require(payload.get("survivors") == 0, "RAW_MUTATION_SURVIVOR")
-    names = set(payload.get("tests", []))
-    require("omitted_raw_row" in names, "OMITTED_RAW_MUTATION_MISSING")
-    require("false_rank_exclusion" in names, "FALSE_RANK_MUTATION_MISSING")
-    for name in ("omitted_raw_row", "false_rank_exclusion"):
-        rows.append({"name": name, "status": "REJECTED", "source": "raw-ledger suite"})
-        print(f"K2P_FINAL_MUTATION_REJECTED name={name}", flush=True)
 
 
 def corrected_raw4_mutations(
@@ -239,11 +282,20 @@ def corrected_raw4_mutations(
         PROJECT / "package/referee/k2p_offline_sweep_portable/atlas",
         target_is_directory=True,
     )
+    observed = temporary / "corrected_raw4_full_map_mutations.json"
     result = run(
         "corrected_raw4_mutations",
-        [python(), "-B", str(overlay / "mutation_tests.py")],
+        [
+            python(),
+            "-B",
+            str(overlay / "mutation_tests.py"),
+            "--output",
+            str(observed),
+            "--timeout-seconds",
+            str(timeout),
+        ],
         cwd=root,
-        timeout=timeout,
+        timeout=max(10 * timeout + 300.0, 3_600.0),
     )
     output = result.stdout + result.stderr
     require(
@@ -251,7 +303,6 @@ def corrected_raw4_mutations(
         "CORRECTED_RAW4_MUTATION_SUITE_FAIL",
         output[-4000:],
     )
-    observed = overlay / "raw4_mutation_certificate.json"
     expected = (
         PROJECT
         / "work/raw4_sign_reclassification/raw4_mutation_certificate.json"
@@ -306,11 +357,20 @@ def theta2_full_map_mutations(
         PROJECT / "package/referee/k2p_offline_sweep_portable/atlas",
         target_is_directory=True,
     )
+    observed = temporary / "theta2_full_map_mutations.json"
     result = run(
         "theta2_full_map_mutations",
-        [python(), "-B", str(package / "mutation_tests.py")],
+        [
+            python(),
+            "-B",
+            str(package / "mutation_tests.py"),
+            "--output",
+            str(observed),
+            "--timeout-seconds",
+            str(timeout),
+        ],
         cwd=root,
-        timeout=timeout,
+        timeout=max(11 * timeout + 300.0, 3_600.0),
     )
     output = result.stdout + result.stderr
     require(
@@ -318,7 +378,6 @@ def theta2_full_map_mutations(
         "THETA2_FULL_MAP_MUTATION_SUITE_FAIL",
         output[-4000:],
     )
-    observed = package / "theta2_mutation_certificate.json"
     expected = PROJECT / "work/theta2_sign_reclassification/theta2_mutation_certificate.json"
     require(
         observed.read_bytes() == expected.read_bytes(),
@@ -340,62 +399,92 @@ def theta2_full_map_mutations(
     )
 
 
-def theta2_quadratic_mutation(
+def weak_sharpness_mutation_gate(
     rows: list[dict[str, object]], temporary: Path, timeout: float
 ) -> None:
-    report = temporary / "theta2_mutations.json"
+    """Freshly rerun and byte-bind the exact typed weak-sharpness attacks."""
+
+    root = PROJECT / "work/weak_sharpness_audit"
+    frozen = root / "mutation_report.json"
+    summary = validate_weak_sharpness_mutation_evidence(PROJECT)
+    observed = temporary / "weak_sharpness_mutations.json"
     result = run(
-        "theta2_mutations",
+        "weak_sharpness_mutations",
         [
             python(),
             "-B",
-            str(PROJECT / "work/theta2_five_port_closure/test_mutations.py"),
-            "--report",
-            str(report),
+            str(root / "test_mutations.py"),
+            "--output",
+            str(observed),
+            "--timeout-seconds",
+            str(max(timeout, 60.0)),
         ],
-        timeout=timeout,
+        timeout=max(timeout, 120.0),
     )
-    require(result.returncode == 0, "THETA2_MUTATION_SUITE_FAIL", (result.stdout + result.stderr)[-4000:])
-    payload = load_json(report)
-    require(payload.get("status") == "PASS", "THETA2_MUTATION_REPORT_NOT_PASS")
-    require(payload.get("survivors") == 0, "THETA2_MUTATION_SURVIVOR")
+    output = result.stdout + result.stderr
     require(
-        "retained_class_reassignment" in payload.get("tests", []),
-        "QUADRATIC_REASSIGNMENT_MUTATION_MISSING",
+        result.returncode == 0
+        and b"K2P_WEAK_SHARPNESS_AUDIT_MUTATIONS_PASS" in output.splitlines()
+        and observed.is_file(),
+        "WEAK_SHARPNESS_FRESH_MUTATION_SUITE_FAIL",
+        output[-4000:],
     )
     require(
-        "seven_port_row_omission" in payload.get("tests", []),
-        "THETA2_CHILD_OMISSION_MUTATION_MISSING",
+        observed.read_bytes() == frozen.read_bytes(),
+        "WEAK_SHARPNESS_MUTATION_REPORT_BYTE_DRIFT",
     )
-    rows.extend(
-        (
-            {
-                "name": "reassigned_quadratic_certificate",
-                "status": "REJECTED",
-                "source": "theta2 retained-class reassignment",
-            },
-            {
-                "name": "missing_theta2_seven_port_child",
-                "status": "REJECTED",
-                "source": "theta2 restoration suite",
-            },
-        )
+    fresh = load_json(observed)
+    require(
+        fresh.get("payload_sha256") == summary["payload_sha256"]
+        and fresh.get("mutation_count") == 21
+        and fresh.get("mutations_survived") == 0,
+        "WEAK_SHARPNESS_MUTATION_REPORT_FAIL",
     )
-    print("K2P_FINAL_MUTATION_REJECTED name=reassigned_quadratic_certificate", flush=True)
-    print("K2P_FINAL_MUTATION_REJECTED name=missing_theta2_seven_port_child", flush=True)
+    rows.append(
+        {
+            "name": "weak_sharpness_mutations",
+            "status": "REJECTED",
+            "source": "21/21 exact typed graph, tensor, rank, cherry, and optimized-mode attacks",
+            "mutation_payload_sha256": summary["payload_sha256"],
+            "producer_mutation_count": 21,
+        }
+    )
+    print("K2P_FINAL_MUTATION_REJECTED name=weak_sharpness_mutations", flush=True)
 
 
-def restoration_v3_mutation_gate(rows: list[dict[str, object]]) -> None:
-    """Bind the frozen 13-case clean-forest mutation suite.
-
-    The producer runs every mutation in an independent temporary copy.  The
-    outer suite revalidates the report, its source/verifier bindings, and its
-    exact coverage instead of mutating the revoked historical forest.
-    """
+def restoration_v3_mutation_gate(
+    rows: list[dict[str, object]], temporary: Path, timeout: float
+) -> None:
+    """Freshly rerun and bind the 13-case clean-forest mutation suite."""
 
     paths = locator_artifacts(corrected_locator())
     summary = validate_restoration_v3_package(paths)
-    report = load_json(paths["restoration_v3_mutation_report"])
+    frozen_report = load_json(paths["restoration_v3_mutation_report"])
+    fresh_path = temporary / "corrected_restoration_mutations.json"
+    result = run(
+        "corrected_restoration_v3_mutations",
+        [
+            python(),
+            "-B",
+            str(paths["restoration_v3_mutation_runner"]),
+            "--output",
+            str(fresh_path),
+        ],
+        timeout=max(timeout, 1_200.0),
+    )
+    output = result.stdout + result.stderr
+    require(
+        result.returncode == 0
+        and b"K2P_CORRECTED_RESTORATION_MUTATIONS_PASS" in output
+        and fresh_path.is_file(),
+        "RESTORATION_V3_FRESH_MUTATION_SUITE_FAIL",
+        output[-4000:],
+    )
+    report = load_json(fresh_path)
+    require(
+        report.get("payload_sha256") == frozen_report.get("payload_sha256"),
+        "RESTORATION_V3_FRESH_MUTATION_PAYLOAD_DRIFT",
+    )
     names = {row.get("mutation") for row in report.get("cases", [])}
     require(
         {
@@ -417,7 +506,7 @@ def restoration_v3_mutation_gate(rows: list[dict[str, object]]) -> None:
             "name": "corrected_restoration_v3_mutations",
             "status": "REJECTED",
             "source": (
-                "frozen clean-forest suite, 13/13: omitted child, wrong "
+                "fresh clean-forest suite, 13/13: omitted child, wrong "
                 "parent, broken transport, reassigned quartet/T_i/quartic"
             ),
             "mutation_payload_sha256": summary["mutation_payload_sha256"],
@@ -518,21 +607,52 @@ def corrected_composite_mutation_gate(
 
 
 def corrected_probe_mutation_gate(
-    rows: list[dict[str, object]], summary: dict[str, Any]
+    rows: list[dict[str, object]],
+    summary: dict[str, Any],
+    temporary: Path,
+    timeout: float,
 ) -> None:
-    """Bind the frozen two-stage probe mutations to both Cartesian ledgers."""
+    """Freshly rerun the two-stage probe mutations against both ledgers."""
 
     probe = summary["probe_producer"]
     require(
         probe["status"] == "PASS",
         "CORRECTED_PROBE_MUTATION_GATE_STATUS_FAIL",
     )
+    paths = locator_artifacts(corrected_locator())
+    frozen_report = load_json(paths["probe_mutation_report"])
+    fresh_path = temporary / "corrected_probe_mutations.json"
+    result = run(
+        "corrected_two_stage_probe_mutations",
+        [
+            python(),
+            "-B",
+            str(paths["probe_mutation_runner"]),
+            "--output",
+            str(fresh_path),
+        ],
+        timeout=max(timeout, 1_200.0),
+    )
+    output = result.stdout + result.stderr
+    require(
+        result.returncode == 0
+        and b"K2P_CORRECTED_PROBE_MUTATIONS_PASS" in output
+        and fresh_path.is_file(),
+        "CORRECTED_PROBE_FRESH_MUTATION_SUITE_FAIL",
+        output[-4000:],
+    )
+    fresh_report = load_json(fresh_path)
+    require(
+        fresh_report.get("payload_sha256") == frozen_report.get("payload_sha256")
+        == probe["mutation_payload_sha256"],
+        "CORRECTED_PROBE_FRESH_MUTATION_PAYLOAD_DRIFT",
+    )
     rows.append(
         {
             "name": "corrected_two_stage_probe_mutations",
             "status": "REJECTED",
             "source": (
-                "frozen 15/15 suite plus nondefault hash-seed replay: omitted "
+                "fresh 15/15 suite plus nondefault hash-seed replay: omitted "
                 "one-/two-port rows and parent, wrong parents, reversed order, "
                 "global triangle, exact transport/restriction, T_i/Bernstein, "
                 "classifier precedence, and optimized mode"
@@ -595,14 +715,34 @@ def promotion_package_mutations(
         write_json(path, payload)
 
     cases = (
-        ("promotion_theorem_status", mutate_manuscript),
-        ("promotion_quantifier_checklist", mutate_quantifier),
-        ("promotion_pass_gate", lambda root: mutate_binding(root, "pass")),
-        ("promotion_zero_gate", lambda root: mutate_binding(root, "zero")),
-        ("promotion_ledger_path", lambda root: mutate_binding(root, "ledger")),
-        ("promotion_combined_root", lambda root: mutate_binding(root, "root")),
+        (
+            "promotion_theorem_status",
+            mutate_manuscript,
+            "PROMOTION_MANUSCRIPT_FILE_DRIFT:work/global_theorem_closure/"
+            "promotion_manuscript/K2P_SAME_PROMOTION_MANUSCRIPT.md",
+        ),
+        (
+            "promotion_quantifier_checklist",
+            mutate_quantifier,
+            "PROMOTION_MANUSCRIPT_FILE_DRIFT:work/global_theorem_closure/"
+            "promotion_manuscript/QUANTIFIER_AUDIT.md",
+        ),
+        *(
+            (
+                name,
+                action,
+                "PROMOTION_MANUSCRIPT_FILE_DRIFT:work/global_theorem_closure/"
+                "promotion_manuscript/PROBE_PROMOTION_PLACEHOLDER.json",
+            )
+            for name, action in (
+                ("promotion_pass_gate", lambda root: mutate_binding(root, "pass")),
+                ("promotion_zero_gate", lambda root: mutate_binding(root, "zero")),
+                ("promotion_ledger_path", lambda root: mutate_binding(root, "ledger")),
+                ("promotion_combined_root", lambda root: mutate_binding(root, "root")),
+            )
+        ),
     )
-    for ordinal, (name, mutate) in enumerate(cases):
+    for ordinal, (name, mutate, expected_diagnostic) in enumerate(cases):
         project = temporary / f"promotion-{ordinal}"
         package = project / "work/global_theorem_closure/promotion_manuscript"
         package.parent.mkdir(parents=True)
@@ -612,13 +752,24 @@ def promotion_package_mutations(
             validate_promotion_manuscript(corrected_summary, project)
         except ReleaseFailure as error:
             require(
-                str(error).startswith("PROMOTION_"),
+                str(error) == expected_diagnostic,
                 "PROMOTION_MUTATION_WRONG_REJECTION",
-                {"name": name, "error": str(error)},
+                {
+                    "name": name,
+                    "expected": expected_diagnostic,
+                    "observed": str(error),
+                },
             )
         else:
             raise ReleaseFailure(f"MUTATION_SURVIVED:{name}")
-        rows.append({"name": name, "status": "REJECTED", "source": "promotion package byte and semantic gate"})
+        rows.append(
+            {
+                "name": name,
+                "status": "REJECTED",
+                "source": "promotion package exact byte-binding gate",
+                "expected_diagnostic": expected_diagnostic,
+            }
+        )
         print(f"K2P_FINAL_MUTATION_REJECTED name={name}", flush=True)
 
 
@@ -637,6 +788,19 @@ def historical_registry_mutations(rows: list[dict[str, object]]) -> None:
         payload["scanner"]["scope_paths"].pop()
         payload["scanner"]["classified_count"] -= 1
 
+    expected_diagnostics = {
+        "historical_artifact_promoted": (
+            "HISTORICAL_REGISTRY_PROMOTION_AUTHORITY_FAIL:"
+            "work/adversarial_proof_review/PROBE_AUDIT.md"
+        ),
+        "historical_authoritative_replacement_removed": (
+            "HISTORICAL_REGISTRY_REPLACEMENT_FAIL:"
+            "work/adversarial_proof_review/PROBE_AUDIT.md"
+        ),
+        "historical_scanner_record_omitted": (
+            "HISTORICAL_REGISTRY_SCANNER_COVERAGE_FAIL"
+        ),
+    }
     for name, mutate in (
         ("historical_artifact_promoted", promote_legacy),
         ("historical_authoritative_replacement_removed", remove_replacement),
@@ -645,13 +809,18 @@ def historical_registry_mutations(rows: list[dict[str, object]]) -> None:
         payload = copy.deepcopy(source)
         mutate(payload)
         resign(payload)
+        expected_diagnostic = expected_diagnostics[name]
         try:
             validate_historical_artifact_registry(PROJECT, payload)
         except ReleaseFailure as error:
             require(
-                str(error).startswith("HISTORICAL_"),
+                str(error) == expected_diagnostic,
                 "HISTORICAL_REGISTRY_MUTATION_WRONG_REJECTION",
-                {"name": name, "error": str(error)},
+                {
+                    "name": name,
+                    "expected": expected_diagnostic,
+                    "observed": str(error),
+                },
             )
         else:
             raise ReleaseFailure(f"MUTATION_SURVIVED:{name}")
@@ -659,7 +828,8 @@ def historical_registry_mutations(rows: list[dict[str, object]]) -> None:
             {
                 "name": name,
                 "status": "REJECTED",
-                "source": "historical artifact quarantine registry",
+                "source": "historical artifact quarantine registry exact binding",
+                "expected_diagnostic": expected_diagnostic,
             }
         )
         print(f"K2P_FINAL_MUTATION_REJECTED name={name}", flush=True)
@@ -701,7 +871,7 @@ def probe_wrong_parent(
         accepted_rejection(
             "wrong_probe_parent",
             result,
-            (b"PROBE_STRUCTURAL_REPLAY_FAIL",),
+            "PROBE_STRUCTURAL_REPLAY_FAIL",
         )
     )
 
@@ -755,9 +925,60 @@ def direct_source_fingerprint() -> dict[str, str]:
         "DIRECT_CLOSURE_LOCK.json",
         "build_direct_closure_lock.py",
         "verify_direct_closure_release.py",
+        "test_direct_closure_release_mutations.py",
+        "direct_closure_mutation_report.json",
         "proofs/four_port_direct_residual_closure_certificate.json",
     )
     return {relative: sha_file(root / relative) for relative in relatives}
+
+
+def direct_closure_mutation_gate(
+    temporary: Path, timeout: float
+) -> dict[str, object]:
+    """Freshly replay and byte-bind the exact 11-case direct mutation suite."""
+
+    root = PROJECT / "package/referee/k2p_offline_sweep_portable"
+    frozen = root / "direct_closure_mutation_report.json"
+    summary = validate_direct_closure_mutation_evidence(PROJECT)
+    observed = temporary / "direct_closure_mutations.json"
+    child_timeout = max(timeout, 240.0)
+    result = run(
+        "direct_closure_mutation_suite",
+        [
+            python(),
+            "-B",
+            str(root / "test_direct_closure_release_mutations.py"),
+            "--package-root",
+            str(root),
+            "--timeout-seconds",
+            str(child_timeout),
+            "--output",
+            str(observed),
+        ],
+        cwd=root,
+        timeout=max(12.0 * child_timeout + 60.0, 600.0),
+    )
+    output = result.stdout + result.stderr
+    require(
+        result.returncode == 0
+        and b"DIRECT_CLOSURE_RELEASE_MUTATIONS_PASS" in output.splitlines()
+        and observed.is_file(),
+        "DIRECT_CLOSURE_FRESH_MUTATION_SUITE_FAIL",
+        output[-4000:],
+    )
+    require(
+        observed.read_bytes() == frozen.read_bytes(),
+        "DIRECT_CLOSURE_MUTATION_REPORT_BYTE_DRIFT",
+    )
+    fresh = load_json(observed)
+    require(
+        fresh.get("payload_sha256") == summary["payload_sha256"]
+        and fresh.get("case_count") == 11
+        and fresh.get("mutations_survived") == 0,
+        "DIRECT_CLOSURE_MUTATION_REPORT_FAIL",
+    )
+    print("K2P_FINAL_DIRECT_MUTATION_PREFLIGHT_PASS cases=11", flush=True)
+    return summary
 
 
 def release_source_fingerprint() -> dict[str, str]:
@@ -790,6 +1011,7 @@ def reassign_direct_family(
     timeout: float,
     family: str,
     replacement_family: str,
+    nested_mutation_payload_sha256: str,
 ) -> None:
     source = PROJECT / "package/referee/k2p_offline_sweep_portable"
     source_before = direct_source_fingerprint()
@@ -829,13 +1051,13 @@ def reassign_direct_family(
             "lower_theta_quartic": "reassigned_quartic_certificate",
             "theta0_quintic_port_orbit": "reassigned_quintic_certificate",
         }[family]
-        rows.append(
-            accepted_rejection(
-                label,
-                result,
-                (b"DIRECT_OVERLAY", b"RELEASE_PROOF", b"RELEASE_LOCK"),
-            )
+        row = accepted_rejection(
+            label,
+            result,
+            "DIRECT_OVERLAY_CERTIFICATE_BYTE_MISMATCH",
         )
+        row["direct_mutation_payload_sha256"] = nested_mutation_payload_sha256
+        rows.append(row)
     finally:
         require(
             direct_source_fingerprint() == source_before,
@@ -860,7 +1082,7 @@ def optimized_mode_mutation(rows: list[dict[str, object]], timeout: float) -> No
         accepted_rejection(
             "optimized_mode",
             result,
-            (b"FINAL_THEOREM_RELEASE_OPTIMIZED_MODE_FORBIDDEN",),
+            "FINAL_THEOREM_RELEASE_OPTIMIZED_MODE_FORBIDDEN",
         )
     )
 
@@ -868,7 +1090,7 @@ def optimized_mode_mutation(rows: list[dict[str, object]], timeout: float) -> No
 def fail_closed_evidence_mutation_suites(
     rows: list[dict[str, object]], temporary: Path, timeout: float
 ) -> None:
-    """Replay the quartet, canonicalizer, and parameter-transport attacks."""
+    """Replay the quartet, canonicalizer, transport, and rank attacks."""
 
     quartet = PROJECT / "work/quartet_separation_closure"
     relocation_result = run(
@@ -915,9 +1137,31 @@ def fail_closed_evidence_mutation_suites(
     )
     semantic = load_json(semantic_output_path)
     require(
-        semantic.get("status") == "PASS"
+        semantic.get("schema") == "k2p-quartet-semantics-mutations-v4"
+        and semantic.get("status") == "PASS"
         and semantic.get("case_count") == 8
-        and all(row.get("status") == "PASS" for row in semantic.get("cases", [])),
+        and semantic.get("survived") == 0
+        and semantic.get("mutation_runner_sha256")
+        == sha_file(quartet / "test_quartet_semantics_mutations.py")
+        and semantic.get("production_verifier_sha256")
+        == sha_file(quartet / "verify_quartet_logic.py")
+        and semantic.get("clean_baseline", {}).get("verifier_exit_code") == 0
+        and semantic.get("clean_baseline", {}).get(
+            "success_artifact_byte_identical_to_stored"
+        ) is True
+        and semantic.get("source_fingerprints_unchanged") is True
+        and all(
+            row.get("status") == "REJECTED"
+            and row.get("rejected") is True
+            and row.get("verifier_exit_code") == 1
+            and row.get("observed_semantic_diagnostic")
+            == row.get("expected_semantic_diagnostic")
+            and row.get("semantic_diagnostic_matched") is True
+            and row.get("success_artifact_created") is False
+            and row.get("traceback_observed") is False
+            and row.get("import_failure_observed") is False
+            for row in semantic.get("cases", [])
+        ),
         "QUARTET_SEMANTICS_MUTATION_REPORT_FAIL",
     )
     rows.append(
@@ -960,11 +1204,33 @@ def fail_closed_evidence_mutation_suites(
     )
     terminal = load_json(terminal_output_path)
     require(
-        terminal.get("status") == "PASS"
+        terminal.get("schema")
+        == "k2p-quartet-terminal-binding-mutations-v2"
+        and terminal.get("status") == "PASS"
         and terminal.get("case_count") == 12
-        and all(row.get("status") == "PASS" for row in terminal.get("cases", [])),
+        and terminal.get("survived") == 0
+        and terminal.get("mutation_runner_sha256")
+        == sha_file(quartet / "test_quartet_terminal_binding_mutations.py")
+        and terminal.get("binder_sha256")
+        == sha_file(quartet / "verify_quartet_terminal_bindings.py")
+        and terminal.get("clean_baseline", {}).get("verifier_exit_code") == 0
+        and terminal.get("clean_baseline", {}).get("quartet_terminal_rows")
+        == 4_414_710
+        and terminal.get("clean_baseline", {}).get(
+            "success_artifact_byte_identical_to_stored"
+        ) is True
+        and terminal.get("source_fingerprints_unchanged") is True
+        and all(
+            row.get("status") == "REJECTED" and row.get("rejected") is True
+            for row in terminal.get("cases", [])
+        ),
         "QUARTET_TERMINAL_MUTATION_REPORT_FAIL",
     )
+    # The freshly generated disposable reports are byte-identical to their
+    # authoritative reports above.  Apply the independent strict binder to
+    # those authoritative bytes so every case diagnostic/type, clean baseline,
+    # graph guard, output policy, and negative control is checked here too.
+    validate_quartet_evidence()
     rows.append(
         {
             "name": "quartet_terminal_binding_mutations",
@@ -1042,8 +1308,10 @@ def fail_closed_evidence_mutation_suites(
             str(transport / "run_parameter_transport_mutations.py"),
             "--output",
             str(transport_report_path),
+            "--timeout-seconds",
+            str(max(timeout, 1_200.0)),
         ],
-        timeout=max(timeout, 600.0),
+        timeout=max(5 * max(timeout, 1_200.0) + 300.0, 2_400.0),
     )
     transport_output = transport_result.stdout + transport_result.stderr
     require(
@@ -1079,6 +1347,75 @@ def fail_closed_evidence_mutation_suites(
         flush=True,
     )
 
+    rank = PROJECT / "work/rank_upper_certificates"
+    rank_certificate = rank / "mutation_report.json"
+    rank_expected = rank_certificate.read_bytes()
+    rank_report_path = temporary / "rank_upper_mutations.json"
+    rank_result = run(
+        "rank_upper_mutations",
+        [
+            python(),
+            "-B",
+            str(rank / "mutation_tests.py"),
+            "--output",
+            str(rank_report_path),
+            "--timeout-seconds",
+            str(max(timeout, 1_200.0)),
+        ],
+        timeout=max(2 * max(timeout, 1_200.0) + 300.0, 1_800.0),
+        environment_overrides={
+            "PYTHONPATH": os.pathsep.join(
+                (
+                    str(PROJECT / "package/referee/k2p_offline_sweep_portable/atlas"),
+                    str(rank),
+                )
+            )
+        },
+    )
+    rank_output = rank_result.stdout + rank_result.stderr
+    require(
+        rank_result.returncode == 0
+        and b"K2P_RANK_UPPER_MUTATIONS_PASS" in rank_output,
+        "RANK_UPPER_MUTATION_SUITE_FAIL",
+        rank_output[-4000:],
+    )
+    require(
+        rank_report_path.is_file()
+        and rank_report_path.read_bytes() == rank_expected
+        and rank_certificate.read_bytes() == rank_expected,
+        "RANK_UPPER_MUTATION_REPORT_BYTE_DRIFT",
+    )
+    rank_report = load_json(rank_report_path)
+    require(
+        rank_report.get("schema") == "k2p-rank-upper-adversarial-mutations-v2"
+        and rank_report.get("status") == "pass"
+        and rank_report.get("mutation_count") == 7
+        and rank_report.get("complete_production_verifier_attacks") == 1
+        and rank_report.get("survivors") == 0
+        and rank_report.get("clean_baseline", {}).get(
+            "stored_authoritative_replay_byte_identical"
+        )
+        is True,
+        "RANK_UPPER_MUTATION_REPORT_FAIL",
+    )
+    rows.append(
+        {
+            "name": "rank_upper_mutations",
+            "status": "REJECTED",
+            "source": (
+                "7/7 rank coverage, syzygy, orbit, port-transport, false-rank, "
+                "and complete production-verifier attacks"
+            ),
+            "mutation_payload_sha256": rank_report["payload_sha256"],
+            "producer_mutation_count": 7,
+            "complete_production_verifier_attacks": 1,
+        }
+    )
+    print(
+        "K2P_FINAL_MUTATION_REJECTED name=rank_upper_mutations",
+        flush=True,
+    )
+
 
 def truth_oracle_mutation_gate(rows: list[dict[str, object]]) -> list[str]:
     paths = locator_artifacts(corrected_locator())
@@ -1110,14 +1447,15 @@ def truth_oracle_mutation_gate(rows: list[dict[str, object]]) -> list[str]:
 
 
 def main() -> int:
-    if not __debug__:
-        raise SystemExit("FINAL_RELEASE_MUTATIONS_OPTIMIZED_MODE_FORBIDDEN")
     parser = argparse.ArgumentParser()
     parser.add_argument("--timeout-seconds", type=float, default=1200.0)
     parser.add_argument("--output", type=Path)
     parser.add_argument("--audit-blocked", action="store_true")
     args = parser.parse_args()
     report_output = validate_report_output_path(args.output)
+    prepare_report_output(report_output)
+    if not __debug__:
+        raise SystemExit("FINAL_RELEASE_MUTATIONS_OPTIMIZED_MODE_FORBIDDEN")
     require(args.timeout_seconds > 0, "INVALID_MUTATION_TIMEOUT")
     validate_runtime_environment()
     output_contract_preflight(args.timeout_seconds)
@@ -1131,23 +1469,30 @@ def main() -> int:
             fail_closed_evidence_mutation_suites(
                 rows, temporary, args.timeout_seconds
             )
-            raw_mutations(rows, temporary, args.timeout_seconds)
             corrected_raw4_mutations(rows, temporary, args.timeout_seconds)
             theta2_full_map_mutations(rows, temporary, args.timeout_seconds)
-            theta2_quadratic_mutation(rows, temporary, args.timeout_seconds)
             corrected_summary = corrected_composite_mutation_gate(
                 rows, temporary, args.timeout_seconds
             )
-            restoration_v3_mutation_gate(rows)
-            corrected_probe_mutation_gate(rows, corrected_summary)
+            restoration_v3_mutation_gate(
+                rows, temporary, args.timeout_seconds
+            )
+            corrected_probe_mutation_gate(
+                rows, corrected_summary, temporary, args.timeout_seconds
+            )
             promotion_package_mutations(rows, temporary, corrected_summary)
             historical_registry_mutations(rows)
+            weak_sharpness_mutation_gate(rows, temporary, args.timeout_seconds)
+            direct_mutation_summary = direct_closure_mutation_gate(
+                temporary, args.timeout_seconds
+            )
             reassign_direct_family(
                 rows,
                 temporary,
                 args.timeout_seconds,
                 "theta3_cubic",
                 "lower_theta_quartic",
+                str(direct_mutation_summary["payload_sha256"]),
             )
             reassign_direct_family(
                 rows,
@@ -1155,6 +1500,7 @@ def main() -> int:
                 args.timeout_seconds,
                 "lower_theta_quartic",
                 "theta0_quintic_port_orbit",
+                str(direct_mutation_summary["payload_sha256"]),
             )
             reassign_direct_family(
                 rows,
@@ -1162,11 +1508,17 @@ def main() -> int:
                 args.timeout_seconds,
                 "theta0_quintic_port_orbit",
                 "theta3_cubic",
+                str(direct_mutation_summary["payload_sha256"]),
             )
             blockers.extend(truth_oracle_mutation_gate(rows))
     require(
         direct_source_fingerprint() == direct_before,
         "DIRECT_SOURCE_CHANGED_BY_MUTATION_SUITE",
+    )
+    require(
+        len(rows) == REQUIRED_MUTATION_COUNT,
+        "FINAL_MUTATION_CENSUS_FAIL",
+        len(rows),
     )
     report = build_report(rows, blockers)
     if report_output:
@@ -1177,7 +1529,6 @@ def main() -> int:
         print("K2P_FINAL_RELEASE_MUTATIONS_BLOCKED")
         print(json.dumps(report, sort_keys=True))
         return 2 if args.audit_blocked else 1
-    require(len(rows) == 27, "FINAL_MUTATION_CENSUS_FAIL", len(rows))
     print("K2P_FINAL_RELEASE_MUTATIONS_PASS")
     print(json.dumps(report, sort_keys=True))
     return 0

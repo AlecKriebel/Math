@@ -191,6 +191,8 @@ def validate(contract):
 
 
 def main():
+    if not __debug__:
+        raise SystemExit("PROBE_INPUT_STRUCTURE_OPTIMIZED_MODE_FORBIDDEN")
     parser = argparse.ArgumentParser()
     parser.add_argument("--contract", type=Path, default=DEFAULT_CONTRACT)
     parser.add_argument("--quiet", action="store_true")

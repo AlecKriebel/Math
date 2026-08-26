@@ -39,6 +39,50 @@ SOURCE_FILES = (
 TELEMETRY_SCHEMA = "k2p-final-clean-full-replay-telemetry-v1"
 REPORT_SCHEMA = "k2p-principal-d-plus-final-theorem-replay-report-v1"
 LOCK_SCHEMA = "k2p-principal-d-plus-final-theorem-release-lock-v1"
+EXPECTED_FULL_REPLAY_LAYER_NAMES = (
+    "promotion_manuscript_guard",
+    "full_map_domain_reseal",
+    "corrected_universe_independent_replay",
+    "three_port_no_assert",
+    "domain_rooting",
+    "quartet_sign_logic",
+    "quartet_terminal_bindings",
+    "raw_displayed_quartet_direction",
+    "canonicalizer_completeness_structural",
+    "graph_derived_parameter_transports_structural",
+    "bridge_marginal_gluing",
+    "analytic_adversarial_audit",
+    "global_component_scale_audit",
+    "raw4_corrected_overlay_independent",
+    "theta2_full_map_independent",
+    "four_port_raw_structural_provenance",
+    "four_port_direct36",
+    "theta2_structural_provenance",
+    "cycle_three_port_authoritative_promotion",
+    "corrected_probe_independent_streaming_replay",
+    "corrected_probe_site_transport_partition",
+    "weak_sharpness_primary",
+    "weak_sharpness_independent",
+    "canonicalizer_completeness_full",
+    "graph_derived_parameter_transports_full",
+    "corrected_restoration_independent_full_replay",
+    "corrected_universe_cross_layer_mutations",
+    "raw4_full_map_Ti_truth",
+    "theta2_full_map_Ti_truth",
+    "composite_domain_reseal_diff",
+    "four_port_exact_rank_staged_atlas_omission_mutation",
+    "four_port_exact_rank_import_preflight",
+    "four_port_exact_rank_full",
+    "raw4_corrected_overlay_full_regeneration",
+    "four_port_raw_full_regeneration_provenance",
+    "four_port_direct36_full",
+    "theta2_full_regeneration_provenance",
+    "corrected_probe_full_primitive_regeneration",
+    "corrected_probe_full_independent_replay",
+    "corrected_probe_full_site_transport_partition",
+    "corrected_probe_independent_primitive_graph_full",
+)
+EXPECTED_FULL_REPLAY_LAYER_COUNT = len(EXPECTED_FULL_REPLAY_LAYER_NAMES)
 HEX64 = re.compile(r"^[0-9a-f]{64}$")
 HEX40 = re.compile(r"^[0-9a-f]{40}$")
 DECIMAL = r"(?:0|[1-9][0-9]*)(?:\.[0-9]+)?"
@@ -65,6 +109,26 @@ INTENTIONAL_MUTATION_LAYER_FIELDS = frozenset(
 INTENTIONAL_MUTATION_LAYERS = {
     "four_port_exact_rank_staged_atlas_omission_mutation": 1,
 }
+RESTORATION_REPLAY_LAYER = "corrected_restoration_independent_full_replay"
+RESTORATION_REPLAY_LAYER_FIELDS = ORDINARY_LAYER_FIELDS | frozenset(
+    {"command_sha256", "source_sha256"}
+)
+RESTORATION_REPLAY_SEMANTIC_COMMAND = (
+    "<qualified-python>",
+    "-B",
+    "work/restoration_sign_reclassification/verify_corrected_restoration_forest.py",
+    "--certificate",
+    "work/restoration_sign_reclassification/corrected_restoration_forest.json",
+    "--crosswalk",
+    "work/restoration_sign_reclassification/corrected_restoration_historical_crosswalk.json",
+    "--report",
+    "<external-report-path>",
+)
+RESTORATION_REPLAY_SOURCE_FILES = (
+    "work/restoration_sign_reclassification/verify_corrected_restoration_forest.py",
+    "work/restoration_sign_reclassification/corrected_restoration_forest.json",
+    "work/restoration_sign_reclassification/corrected_restoration_historical_crosswalk.json",
+)
 
 
 class TelemetryFailure(RuntimeError):
@@ -250,7 +314,10 @@ def positive_finite_number(value: object, code: str) -> float:
 
 
 def validate_report(
-    report_path: Path, lock_payload_sha256: str
+    report_path: Path,
+    lock_payload_sha256: str,
+    root: Path,
+    project_in_repo: PurePosixPath,
 ) -> tuple[dict[str, Any], bytes, dict[str, Any]]:
     report, data = read_json_object(report_path, "FULL_REPLAY_REPORT")
     require(report.get("schema") == REPORT_SCHEMA, "FULL_REPLAY_REPORT_SCHEMA_MISMATCH")
@@ -290,6 +357,30 @@ def validate_report(
                 "FULL_REPLAY_INTENTIONAL_MUTATION_RETURNCODE_INVALID",
                 name,
             )
+        elif name == RESTORATION_REPLAY_LAYER:
+            require(
+                frozenset(row) == RESTORATION_REPLAY_LAYER_FIELDS,
+                "FULL_REPLAY_RESTORATION_LAYER_SCHEMA_INVALID",
+                name,
+            )
+            require(
+                row.get("returncode") == 0,
+                "FULL_REPLAY_LAYER_RETURNCODE",
+                name,
+            )
+            require(
+                row.get("command_sha256")
+                == canonical_hash(RESTORATION_REPLAY_SEMANTIC_COMMAND),
+                "FULL_REPLAY_RESTORATION_COMMAND_HASH_INVALID",
+            )
+            expected_sources = {
+                relative: tracked_file_row(root, project_in_repo, relative)["sha256"]
+                for relative in RESTORATION_REPLAY_SOURCE_FILES
+            }
+            require(
+                row.get("source_sha256") == expected_sources,
+                "FULL_REPLAY_RESTORATION_SOURCE_HASH_INVALID",
+            )
         else:
             require(
                 frozenset(row) == ORDINARY_LAYER_FIELDS,
@@ -319,6 +410,19 @@ def validate_report(
                 "FULL_REPLAY_LAYER_HASH_INVALID",
                 f"{name}:{field}",
             )
+    require(
+        len(layers) == EXPECTED_FULL_REPLAY_LAYER_COUNT,
+        "FULL_REPLAY_LAYER_COUNT_INVALID",
+        f"expected={EXPECTED_FULL_REPLAY_LAYER_COUNT}:observed={len(layers)}",
+    )
+    require(
+        RESTORATION_REPLAY_LAYER in names,
+        "FULL_REPLAY_RESTORATION_LAYER_MISSING",
+    )
+    require(
+        tuple(row["name"] for row in layers) == EXPECTED_FULL_REPLAY_LAYER_NAMES,
+        "FULL_REPLAY_LAYER_SEQUENCE_INVALID",
+    )
     runtime = report.get("runtime")
     require(isinstance(runtime, dict), "FULL_REPLAY_RUNTIME_INVALID")
     for field in ("python", "networkx", "sympy"):
@@ -409,7 +513,12 @@ def build_payload(args: argparse.Namespace) -> dict[str, Any]:
         for relative in SOURCE_FILES
     }
     _, lock_row = validate_release_lock(root, project_in_repo)
-    report, _, report_row = validate_report(args.report, lock_row["payload_sha256"])
+    report, _, report_row = validate_report(
+        args.report,
+        lock_row["payload_sha256"],
+        root,
+        project_in_repo,
+    )
     time_l = parse_time_l(args.time_l, report_row["internal_elapsed_seconds"])
     # Close the observation window: a concurrent or accidental edit while the
     # external report was being checked must not leave the source tree dirty.

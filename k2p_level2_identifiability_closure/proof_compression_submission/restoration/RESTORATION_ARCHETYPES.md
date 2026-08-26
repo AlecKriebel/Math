@@ -26,8 +26,8 @@ The only mathematical source is the corrected full-map restoration package:
 
 | Item | Identity |
 |---|---|
-| corrected forest | `43bd2be5e7626a954fc4fa4cf45e8d0e6483c947ddc9cba80f2b1a13351bc3a8` |
-| corrected logical payload | `0a3df52751ba38d7e6d4d118ee7068a98b7be7897d0aa732e96a74d7523a88bf` |
+| corrected forest | `bcf91bf433c71056d1e27871dd15fe532f9ae1cc4ad79eb2373eae57071ee427` |
+| corrected logical payload | `be81d13f8f51dc49030e569bf31939a7c3bb915c3dff1f91455416761eeeb772` |
 | primitive/four-port completion grammar | `b4ff0f51f5e1a92c65e16c2c5c348e1a31cefec93b6f3e85a5c977c4ba2f3240` |
 
 The atlas binding is deliberately semantic and scope-limited: this analyzer
@@ -134,5 +134,5 @@ Current identities:
 
 | Artifact | SHA-256 / payload |
 |---|---|
-| `RESTORATION_ARCHETYPES.json` | `127f3920c1a882e07c7d424eeb43d696067ffe0c068a820a34ee5394b49d0ba4` / `7afeb89d3d349204cf969d6d27cc9dbfe9bff34084e5c9c3e20ba6e85000a343` |
-| verification report payload | `8a95857a9961c36c673b4eb5daafbf66dcf6fea198a7672aade6276a7b7bd2cc` |
+| `RESTORATION_ARCHETYPES.json` | `0008203224cf4bd10be9e34ca4d4d1510ca32fc31d58d32e746f96a5616eeef0` / `9ae885812123fb975055a5f388e6d55c4599ee2350b58bd40e5797fe1fffe6e5` |
+| verification report payload | `2ad921d8dd1928750261a843717520d9e8cae1aa0afd79477afa15a7efa22d60` |

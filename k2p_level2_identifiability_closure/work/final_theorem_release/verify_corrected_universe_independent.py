@@ -27,13 +27,12 @@ DEFAULT_OUTPUT = HERE / "corrected_universe_independent_replay.json"
 
 def fingerprint() -> dict[str, str]:
     locator = corrected_locator()
-    paths = locator_artifacts(locator)
     # Downstream files are locator-bound but cannot participate in the replay's
     # own source fingerprint without introducing a self-referential hash cycle.
+    paths = locator_artifacts(locator, excluded_roles=frozenset(DOWNSTREAM_ROLES))
     return {
         role: sha_file(path)
         for role, path in sorted(paths.items())
-        if role not in DOWNSTREAM_ROLES
     }
 
 

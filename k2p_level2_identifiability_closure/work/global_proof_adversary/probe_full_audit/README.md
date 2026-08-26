@@ -51,9 +51,17 @@ and keeps the run safely below the 4 GB audit guard.
 ## Run
 
 ```text
-python3 work/global_proof_adversary/probe_full_audit/independent_probe_graph_audit.py
+python3 work/global_proof_adversary/probe_full_audit/independent_probe_graph_audit.py \
+  --output /tmp/k2p-independent-probe-audit.json \
+  --mutations-output /tmp/k2p-independent-probe-mutations.json
 ```
 
 The output JSON must have `"status":"PASS"`; any missing row, hash drift,
 wrong relation precedence, broken witness, orphan record, nonzero unresolved
-gate, or surviving mutation fails closed.
+gate, or surviving mutation fails closed.  The nested mutation report first
+accepts every unmutated sample, then requires the exact `AuditFailure` type and
+case-specific diagnostic for each of its 12 corruptions.  Wrong diagnostics,
+unrelated exceptions, failed clean baselines, and surviving mutations are
+explicit negative controls.  Routine reports must be caller-owned paths
+outside the source tree; the canonical report pair is a maintainer-only
+override.

@@ -18,6 +18,14 @@ CERTIFICATE = HERE / "canonicalizer_completeness_certificate.json"
 MUTATIONS = HERE / "canonicalizer_completeness_mutation_certificate.json"
 ATLAS = PROJECT / "package/referee/k2p_offline_sweep_portable/atlas/k2p_atlas_core.py"
 RAW = PROJECT / "work/raw_ledger_audit/artifacts/raw_directional_ledger.jsonl.gz"
+MUTATION_DIAGNOSTICS = {
+    "accept_nonordinary_split_heads": (
+        "CANONICALIZER_COMPLETENESS_FAIL:NONORDINARY_ATLAS_ACCEPTED"
+    ),
+    "erase_without_marking_selected_triangle": (
+        "CANONICALIZER_COMPLETENESS_FAIL:SELECTED_TRIANGLE_ATLAS_ACCEPTED: triangle"
+    ),
+}
 
 
 def canonical(value):
@@ -66,20 +74,67 @@ def check_mutations(report):
     payload = dict(report)
     expected = payload.pop("payload_sha256")
     require(hashlib.sha256(canonical(payload)).hexdigest() == expected, "MUTATION_PAYLOAD_HASH")
-    require(report["schema"] == "k2p-canonicalizer-completeness-mutations-v1", "MUTATION_SCHEMA")
+    require(report["schema"] == "k2p-canonicalizer-completeness-mutations-v2", "MUTATION_SCHEMA")
     require(report["status"] == "PASS", "MUTATION_STATUS")
     require(report["atlas_sha256"] == sha_file(ATLAS), "MUTATION_ATLAS_HASH")
     require(
         report["auditor_sha256"] == sha_file(HERE / "canonicalizer_audit.py"),
         "MUTATION_AUDITOR_HASH",
     )
-    require(report["rejected"] == 2 and report["survived"] == 0, "MUTATION_CENSUS")
     require(
-        [row["name"] for row in report["mutations"]]
-        == ["accept_nonordinary_split_heads", "erase_without_marking_selected_triangle"],
+        report.get("mutation_runner_sha256")
+        == sha_file(HERE / "test_canonicalizer_mutations.py"),
+        "MUTATION_RUNNER_HASH",
+    )
+    require(report["rejected"] == 2 and report["survived"] == 0, "MUTATION_CENSUS")
+    require(report.get("diagnostic_contract") == MUTATION_DIAGNOSTICS, "MUTATION_DIAGNOSTIC_CONTRACT")
+    baseline = report.get("clean_baseline")
+    require(
+        isinstance(baseline, dict)
+        and baseline.get("returncode") == 0
+        and baseline.get("status") == "PASS"
+        and baseline.get("mode") == "semantic-only"
+        and baseline.get("artifact_contract")
+        == (
+            "The semantic-only auditor reports PASS on stdout and intentionally "
+            "must not create the supplied --output success artifact."
+        )
+        and baseline.get("success_artifact_absent") is True
+        and baseline.get("timeout") is False
+        and baseline.get("signal") is False
+        and baseline.get("semantic_mutation_contract")
+        == json.loads(CERTIFICATE.read_text())["semantic_mutation_contract"],
+        "MUTATION_BASELINE",
+    )
+    rows = report.get("mutations")
+    require(
+        isinstance(rows, list) and [row.get("name") for row in rows] == list(MUTATION_DIAGNOSTICS),
         "MUTATION_NAMES",
     )
-    require(all(row["rejected"] and row["exit_code"] != 0 for row in report["mutations"]), "MUTATION_REJECTION")
+    mutated_hashes = [row.get("mutated_atlas_sha256") for row in rows]
+    require(
+        all(
+            isinstance(digest, str)
+            and len(digest) == 64
+            and all(character in "0123456789abcdef" for character in digest)
+            and digest != report["atlas_sha256"]
+            for digest in mutated_hashes
+        )
+        and len(set(mutated_hashes)) == len(mutated_hashes),
+        "MUTATION_ATLAS_HASHES",
+    )
+    for row in rows:
+        expected = MUTATION_DIAGNOSTICS[row["name"]]
+        require(
+            row.get("rejected") is True
+            and row.get("exit_code") == 1
+            and row.get("expected_diagnostic") == expected
+            and row.get("observed_diagnostic") == expected
+            and row.get("success_artifact_absent") is True
+            and row.get("timeout") is False
+            and row.get("signal") is False,
+            f"MUTATION_REJECTION:{row['name']}",
+        )
 
 
 def main():

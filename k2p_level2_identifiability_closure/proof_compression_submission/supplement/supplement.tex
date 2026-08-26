@@ -109,6 +109,15 @@ certificates are generic noncontainment statements.  Restoration applies only
 inside one assumed fixed full relation.  Keeping these quantifiers separate
 is essential.
 
+The independent replay boundary is also explicit.  The package regenerates
+the primitive universes, checks exact graph relations and symbolic
+certificates, and subjects complete ledgers to verifier-facing mutations.  It
+does not claim an additional all-family orbit partition built without either
+the submitted primitive atlas or canonicalizer, nor a second symbolic engine
+that independently re-expands every higher-degree polynomial body.  Those
+would be stronger independent research audits, not premises of the theorem or
+of the finite replay reported here.
+
 \section{Convention crosswalk}\label{sec:conventions}
 
 All graphs use the following fixed convention.
@@ -602,7 +611,8 @@ Bridge fibre, marginal, gluing
   \path{work/adversarial_proof_review/PHYSICAL_LOCAL_PRODUCT_REPAIR.md};
   \path{work/adversarial_proof_review/verify_adversarial.py}\\
 Global classification, genericity, reconstruction, and continuous time
-& \path{work/global_theorem_closure/promotion_manuscript/K2P_SAME_PROMOTION_MANUSCRIPT.md}
+& \path{proof_compression_submission/article/main.tex};
+  \path{work/global_theorem_closure/promotion_manuscript/K2P_SAME_PROMOTION_MANUSCRIPT.md}
 & \path{work/global_theorem_closure/promotion_manuscript/QUANTIFIER_AUDIT.md};
   \path{work/global_proof_adversary/AUDIT.md}\\
 Four-port raw universe and terminals
@@ -615,11 +625,19 @@ Five-port \(\theta_2\)
 & \path{work/corrected_composite_ledgers/verify_corrected_composites_independent.py};
   \path{work/corrected_composite_ledgers/run_composite_mutations.py}, family
   \texttt{theta2}\\
+Production direct residual closure
+& \path{package/referee/k2p_offline_sweep_portable/proofs/four_port_direct_residual_closure_certificate.json};
+  \path{package/referee/k2p_offline_sweep_portable/DIRECT_CLOSURE_LOCK.json}
+& \path{package/referee/k2p_offline_sweep_portable/verify_direct_closure_release.py};
+  \path{package/referee/k2p_offline_sweep_portable/test_direct_closure_release_mutations.py};
+  \path{package/referee/k2p_offline_sweep_portable/direct_closure_mutation_report.json}\\
 Printed direct templates and worked paths
 & \path{proof_compression_submission/templates/PRINTED_CERTIFICATE_APPENDIX.json};
   \path{proof_compression_submission/supplement/certificate_appendix.tex}
 & \path{proof_compression_submission/templates/verify_printed_certificate_appendix.py};
-  \path{proof_compression_submission/templates/test_printed_certificate_appendix_mutations.py}\\
+  \path{proof_compression_submission/templates/test_printed_certificate_appendix_mutations.py}
+  (reader-facing presentation regression only; theorem authority remains the
+  production direct-closure replay and mutation suite)\\
 997-parent forest
 & \path{work/restoration_sign_reclassification/corrected_restoration_forest.json}
 & \path{work/restoration_sign_reclassification/corrected_restoration_replay_certificate.json};
@@ -652,6 +670,7 @@ Weak sharpness
 & \path{work/weak_sharpness_audit/PROOF_AUDIT.md};
   \path{work/weak_sharpness_audit/audit_certificate.json};
   \path{work/weak_sharpness_audit/test_mutations.py};
+  \path{work/weak_sharpness_audit/mutation_report.json};
   \path{proof_compression_submission/analysis/verify_weak_sharpness_column_crosswalk.py};
   \path{proof_compression_submission/analysis/test_weak_sharpness_column_crosswalk_mutations.py}\\
 Unified theorem lock
@@ -675,10 +694,13 @@ none may be invoked with optimized Python.
 raw four-port topology ledger
 & schema/version: \texttt{\seqsplit{k2p-four-port-raw-ledger-summary-v1}};
   authority: \path{work/raw_ledger_audit/artifacts/raw_ledger_summary.json};
-  SHA-256: \hashvalue{b14591da6604aa77712a5121bb88f7d2a4731ebdc0b68bd2634771e3bc7ed56f};
+  SHA-256: \hashvalue{82cab09acb54ac0caac7721acebc84285fef8a2ae166e1808c31e9bdad1f7a79};
   producer command: \texttt{\detokenize{.venv/bin/python -B work/raw_ledger_audit/generate_raw_ledger.py}};
   replay command: \texttt{\detokenize{.venv/bin/python -B work/raw_ledger_audit/verify_raw_ledger.py}};
-  mutation command: \texttt{\detokenize{.venv/bin/python -B work/raw_ledger_audit/test_mutations.py}}.\\
+  historical mutation-regression command (retained for provenance, not current
+  theorem qualification): \texttt{\detokenize{.venv/bin/python -B work/raw_ledger_audit/test_mutations.py}}.
+  The current semantic rank attack is the exact-rank production-verifier suite
+  in the next row.\\
 four-port exact-rank filter
 & schema/version: \texttt{\seqsplit{k2p-four-port-exact-generic-rank-upper-coverage-v1}};
   authority: \path{work/rank_upper_certificates/rank_upper_coverage.json};
@@ -691,28 +713,30 @@ four-port exact-rank filter
   \path{work/rank_upper_certificates/verify_rank_upper_certificates.py};
   mutation command: \texttt{PYTHONPATH=}\path{package/referee/k2p_offline_sweep_portable/atlas}\texttt{:}\path{work/rank_upper_certificates}
   \path{.venv/bin/python} \texttt{-B}
-  \path{work/rank_upper_certificates/mutation_tests.py}.\\
+  \path{work/rank_upper_certificates/mutation_tests.py}
+  \texttt{--output /tmp/k2p-rank-upper-mutations.json}.\\
 direct terminal templates
 & schema/version: \texttt{\seqsplit{k2p-printed-certificate-appendix-v1}};
-  authority: \path{proof_compression_submission/templates/PRINTED_CERTIFICATE_APPENDIX.json};
-  SHA-256: \hashvalue{4a4b58f486769fe03fc199d5914d854d8f03e89538284b51b9a375a96fa5920e};
+  reader derivative: \path{proof_compression_submission/templates/PRINTED_CERTIFICATE_APPENDIX.json};
+  SHA-256: \hashvalue{facfeb75b1a15958f0e665479b3aa2bf4c8b011c5a79622910ef8bf9f52a9900};
   producer command: \texttt{\detokenize{.venv/bin/python -B proof_compression_submission/templates/build_printed_certificate_appendix.py --write}};
   replay command: \texttt{\detokenize{.venv/bin/python -B proof_compression_submission/templates/verify_printed_certificate_appendix.py}};
-  mutation command: \texttt{\detokenize{.venv/bin/python -B proof_compression_submission/templates/test_printed_certificate_appendix_mutations.py}}.\\
+  presentation-regression command (not theorem qualification):
+  \texttt{\detokenize{.venv/bin/python -B proof_compression_submission/templates/test_printed_certificate_appendix_mutations.py}}.\\
 997-parent restoration forest
 & schema/version: \texttt{\seqsplit{k2p-corrected-restoration-forest-v3}};
   authority: \path{work/restoration_sign_reclassification/corrected_restoration_forest.json};
-  SHA-256: \hashvalue{43bd2be5e7626a954fc4fa4cf45e8d0e6483c947ddc9cba80f2b1a13351bc3a8};
+  SHA-256: \hashvalue{bcf91bf433c71056d1e27871dd15fe532f9ae1cc4ad79eb2373eae57071ee427};
   producer command: \texttt{\detokenize{.venv/bin/python -B work/restoration_sign_reclassification/build_corrected_restoration_forest.py}};
   replay command: \texttt{\detokenize{.venv/bin/python -B work/restoration_sign_reclassification/verify_corrected_restoration_forest.py}};
-  mutation command: \texttt{\detokenize{.venv/bin/python -B work/restoration_sign_reclassification/mutate_corrected_restoration_forest.py}}.\\
+  mutation command: \texttt{\detokenize{.venv/bin/python -B work/restoration_sign_reclassification/mutate_corrected_restoration_forest.py --output /tmp/k2p-restoration-mutations.json}}.\\
 one-/two-port probe closure
 & schema/version: \texttt{\seqsplit{k2p-corrected-coherent-probe-closure-v1}};
   authority: \path{work/probe_coherence_corrected/probe_coherence_certificate.json};
-  SHA-256: \hashvalue{2f4d64b32a905ce2cc06bae7d03215f9239427d421825c2525437ee6ba2ccaf6};
+  SHA-256: \hashvalue{53d1ac1e6a14637f547c031a6e8031d3d3cc49630518f31339813031089e0bfc};
   producer command: \texttt{\detokenize{.venv/bin/python -B work/probe_coherence_corrected/build_probe_coherence_corrected.py}};
   replay command: \texttt{\detokenize{.venv/bin/python -B work/probe_coherence_corrected/verify_probe_coherence_corrected.py}};
-  mutation command: \texttt{\detokenize{.venv/bin/python -B work/probe_coherence_corrected/run_probe_coherence_mutations.py}}.\\
+  mutation command: \texttt{\detokenize{.venv/bin/python -B work/probe_coherence_corrected/run_probe_coherence_mutations.py --output /tmp/k2p-probe-mutations.json}}.\\
 weak-sharpness named columns
 & schema/version: \texttt{\seqsplit{k2p-weak-sharpness-column-crosswalk-v1}};
   authority: \path{proof_compression_submission/analysis/WEAK_SHARPNESS_COLUMN_CROSSWALK.json};
@@ -724,7 +748,7 @@ full-map certificate reseal
 & schema/version: \texttt{\seqsplit{k2p-full-map-domain-reseal-audit-v1}};
   authority: \path{work/final_theorem_release/full_map_reseal_audit.json};
   SHA-256: \hashvalue{945c957f0b73ab01d9c5bd6942ccb881f86e22fc47d8e4cc1fff5da8f4a64f40};
-  producer/replay/mutation command: \texttt{\detokenize{.venv/bin/python -B work/final_theorem_release/verify_full_map_reseal.py}}.\\
+  producer/replay/mutation command: \texttt{\detokenize{.venv/bin/python -B work/final_theorem_release/verify_full_map_reseal.py --output /tmp/k2p-full-map-reseal-audit.json}}.\\
 composite reseal differential
 & schema/version: \texttt{\seqsplit{k2p-composite-domain-reseal-diff-audit-v1}};
   authority: \path{work/final_theorem_release/composite_reseal_diff_audit.json};
@@ -748,15 +772,15 @@ artifact & file SHA-256\\
 \midrule
 \endhead
 unified release lock
-& \hashvalue{c319977f350923ab900a883235e32ec945d55a864338c14a08ce266ed3a1c78a}\\
+& \hashvalue{4a084871be2fe212559e3a38306c73deb4ba111e5900e61b680a6db81f0e88fb}\\
 raw-four composite ledger
-& \hashvalue{431dac8898ad2a724d12c200687de1b377723e302214a79a11a03524a4084b96}\\
+& \hashvalue{c6cd9d6b5b09371565fd3e58ff9ab3cd7266b6231b153d43f9d1e886af8eae27}\\
 raw-four independent replay
-& \hashvalue{c5cd73b13265b7acc36f156889b86e2c04715181c6a1d70224cd725b0221a859}\\
+& \hashvalue{1a4ac5c5ab5f86228f9e59c62a9021547907a9d6238e1171a7074f49506a8c66}\\
 raw-four terminal registry
-& \hashvalue{0a1818655429d60660c1ed87f3fbe412701f386b081562b3a4caa54079069f1d}\\
+& \hashvalue{d7b52d28f3d85db8f63bafa984f6341d8e11487298e7d3c9216edffe586306fa}\\
 raw-four mutation report
-& \hashvalue{83196bc33504fd1e17c8784d2c7530f358e85cff8161c8e5f14ba04a60c42d76}\\
+& \hashvalue{db6d4e6c8986db20ca623724981d2d4f39f6ff0ccf5d70e708190c1e09a86d4a}\\
 five-port \(\theta_2\) composite ledger
 & \hashvalue{805fc7f5a3de9dad2c63a210208075cf19910cf811ffd08878f32782ce71b659}\\
 five-port independent replay
@@ -768,17 +792,17 @@ full-map certificate reseal audit
 composite reseal differential audit
 & \hashvalue{bc91fee3b7541fcae72c4db2e66776fbfc69c43890718239f0eea41bb2cc0654}\\
 corrected 997-parent forest
-& \hashvalue{43bd2be5e7626a954fc4fa4cf45e8d0e6483c947ddc9cba80f2b1a13351bc3a8}\\
+& \hashvalue{bcf91bf433c71056d1e27871dd15fe532f9ae1cc4ad79eb2373eae57071ee427}\\
 restoration independent replay
-& \hashvalue{24fa2e61f60610a8b24c4107ec7f866278f0cc671ca203d7aaa40a37bea291dd}\\
+& \hashvalue{42be6b0c4d85aa58b336caebbdefd10a0af0ce4234a0482e65c7b5a68d1e6430}\\
 probe input contract
-& \hashvalue{7f686ae99dd5e6dafc1c04396b711d294a0bddd6a25574f9ea809b831ad7b377}\\
+& \hashvalue{71d8596c5e0fa5804f5a1d938423ba9802f4d11783ef0e9d0f45a0453f0aff22}\\
 full probe primary
-& \hashvalue{2f4d64b32a905ce2cc06bae7d03215f9239427d421825c2525437ee6ba2ccaf6}\\
+& \hashvalue{53d1ac1e6a14637f547c031a6e8031d3d3cc49630518f31339813031089e0bfc}\\
 full probe independent graph audit
-& \hashvalue{b30e2e32e5eec86875031a8bba82d58689f18859896adeb6a6931888df75209f}\\
+& \hashvalue{74cd1dfb4d6c38dfe73b8bb3c76d29b22eb5f8ab8ca80a9d56bc376ec5d0fa0d}\\
 full probe adversarial mutation report
-& \hashvalue{b0df0584163150c9a823b4e364b8ee46c196ae8abb28fdca4d3d5893a97bfea7}\\
+& \hashvalue{70fd78df07220d7ab27ba477ed584f3ba1c5cc45a96cd4d4ffdb5d1a34b1325a}\\
 weak-sharpness primary
 & \hashvalue{e66c78a0aeab990b4dc448f4f064b37e1e15ecbff75a5f472bf116d4464378bd}\\
 weak-sharpness independent audit
@@ -914,8 +938,10 @@ Englander et al. (2025) \cite{EnglanderEtAl2026}
 numbering and the 4 July 2026 version-4 content were checked against the
 locally archived source XML/PDF.\\
 Brits et al. (2026) \cite{BritsEtAl2026}
-& arXiv primary record \url{https://arxiv.org/abs/2607.12919v2}; version 2
-dated 29 July 2026.\\
+& arXiv primary record \url{https://arxiv.org/abs/2607.12919v3}; version 3
+dated 25 August 2026.  The level-1 JC/K2P/K3P result used here remains
+Theorem~4.9; the version-3 narrowing of the separate arbitrary-level
+tree--network statement to JC is not used.\\
 Kriebel (2026) \cite{KriebelJC2026}
 & versioned public companion JC repository release
 \url{https://github.com/AlecKriebel/Math/releases/tag/stc-jc-sharp-boundary-v1.1.4},
@@ -937,7 +963,7 @@ data are licensed under CC BY 4.0; verifier code is licensed under the MIT
 License.  The public repository is
 \url{https://github.com/AlecKriebel/Math}, the project path is
 \path{k2p_level2_identifiability_closure}, and the immutable source tag for
-this submission is \texttt{k2p-same-biorxiv-v1.0.1}.  The final deterministic
+this submission is \texttt{k2p-same-biorxiv-v1.0.2}.  The final deterministic
 archive SHA-256 is recorded alongside the submission package.  No GitHub
 Release, Zenodo deposit, or DOI is claimed in this version.
 

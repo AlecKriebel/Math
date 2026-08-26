@@ -74,17 +74,20 @@ root-half quotient and site transport.
 Its report `probe_input_independent_verification.json` is PASS with payload
 
 ```
-96d14bae9b20646abfe64b85a7ac0f61377182f75479031f621ea0dbe2096fce
+4a29f3e7c5e925820b2df39a7a53d29b1a7f672776af9604c2489dbb908a8e36
 ```
 
 and zero missing, extra, unresolved, or incoherent records.
 
-`test_probe_input_mutations.py` rejects 20/20 adversarial corruptions with
-zero survivors and passes the original contract under optimized Python. Its
-payload is
+`test_probe_input_mutations.py` requires clean structural and full production
+replays, then rejects 20/20 adversarial corruptions with exact case-specific
+diagnostics, zero survivors, and no success artifacts.  Optimized Python is
+an explicit fail-closed rejection rather than a positive gate.  Routine runs
+write to a caller-owned external report (`--output
+/tmp/k2p-probe-input-mutations.json`). Its payload is
 
 ```
-bc49b296948537cf172c9e4c6b7f5f676cd2ddd4a9c1b455304d6b0cdccf835d
+b7fadec75f56503f0047a27efab96fabfbb12c2b88c1a0d5f3e170fc306bac1f
 ```
 
 The mutations include omission of the four repaired triangle paths,

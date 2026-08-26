@@ -43,3 +43,28 @@ were rejected, with zero survivors.
 Completion estimate for the exact generic-rank upper-certificate subgoal:
 **100%**.  Integration into the independently regenerated raw ledger remains a
 separate global-closure task owned by the raw-ledger audit.
+
+## 2026-08-26 — sampled-upper mutation promoted to production evidence
+
+- Reproduced the referee's concern: the stored sampled-rank substitution was
+  only a helper/schema check and never invoked the production rank verifier.
+- Added a complete disposable-package attack that removes the representative
+  symbolic fields, inserts sampled lower-rank evidence falsely labelled as an
+  upper proof, coherently reseals all 94 package inputs, and requires the full
+  production verifier's exact symbolic-field-dimension diagnostic with no
+  success artifact, traceback, or PASS token.
+- The clean baseline first verifies both stored manifest encodings against
+  all 94 authoritative proof/code inputs and then runs the complete original
+  4,379-descriptor symbolic replay directly on that package.  Disposable
+  resealing occurs only after the authoritative baseline passes.
+- The mutation report is deliberately excluded from the nested manifest it
+  qualifies and is instead bound alongside that manifest by the outer theorem
+  release lock, eliminating a circular/self-invalidating commitment.
+- Added caller-owned atomic output policy and negative controls for collisions,
+  symlinks, hardlinks, stale PASS artifacts, optimized mode, wrong diagnostics,
+  unrelated crashes, signal and positive non-one exits, timeout, and embedded
+  PASS tokens.
+- The rank construction, 4,379-descriptor census, 3,515/864 mechanism split,
+  75 exceptional representatives, and exact ranks are unchanged.  Completion
+  estimate: **100% for the repaired rank mutation evidence**, pending only
+  final release-wide resealing and replay.

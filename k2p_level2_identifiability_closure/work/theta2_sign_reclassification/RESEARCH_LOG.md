@@ -22,3 +22,18 @@ relation counts, and Python optimized mode.  Mutation payload:
 Completion estimate for this family: 100%.  Restoration-child sign rows remain
 a separate, currently active correction task.
 
+## 2026-08-26 — mutation evidence qualification hardened
+
+Requalified the same nine resealed certificate attacks and optimized-verifier
+attack against a required clean production-verifier baseline.  All 10/10 cases
+exited exactly one at their named semantic diagnostics and produced no success
+artifact.  Eight negative controls reject wrong diagnostics, tracebacks,
+missing imports, timeouts, signals, non-one exits, and false success artifacts.
+The producer now requires caller-owned external output, writes atomically, and
+removes stale PASS output before optimized-mode refusal.
+
+The authoritative suite passed in 296.06 seconds with 326,434,816 bytes maximum
+RSS.  Report payload:
+`9d4a1753c7b51b868e20fb828fc418c8ba75ad5b956f04664b239ab7fd73c688`.
+All 2,528 truth rows, 85 Bernstein classes, graph relations, transports, and
+censuses are unchanged.  Completion estimate for this family remains **100%**.

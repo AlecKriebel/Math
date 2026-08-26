@@ -700,6 +700,12 @@ structural class \([N]_{\triangle}\).
 
 **Procedure and proof.**
 
+Here “exact” means that every input coordinate is supplied in a
+representation supporting exact field operations, polynomial-sign decisions,
+and real-closed-field quantifier elimination (equivalently, through an
+exact-real oracle with those operations).  This is a termination model, not a
+bit-complexity or numerical-stability claim.
+
 1. Fourier-transform the exact pattern tensor.
 2. Evaluate the pointwise quartet sign deck and reconstruct the labelled
    tree of blobs.
@@ -707,14 +713,28 @@ structural class \([N]_{\triangle}\).
    degree-three node.
 4. Factor the positive bridge blocks in the paired and singleton sectors and
    apply the analytic incidence normalizers.
-5. Evaluate the bounded local certificate deck and select a rigid support.
-6. Follow only exact fixed-full restoration records and their stored
-   transports.
-7. Apply the frozen one-/two-port probe ledger to recover every boundary
-   segment and the complete label order on each segment.
-8. Assemble the coherent labelled mixed graph, quotient the ordinary
-   triangle choices, and return a canonical representative of
-   \([N]_{\triangle}\).
+5. Enumerate the finitely many bounded rigid-support candidates compatible
+   with steps 2--4.  Apply the pointwise and polynomial separator tests to the
+   recovered local tensors, retaining every candidate not excluded.
+6. For each retained candidate, follow only exact fixed-full restoration
+   records and their stored transports; the depth is at most two.
+7. For each resulting support, apply the frozen one-/two-port probe ledger to
+   recover every boundary segment and the complete label order on each
+   segment.
+8. Assemble every coherent labelled mixed-graph candidate and group the
+   finite list into ordinary-triangle classes.  For each such class
+   \(\mathcal C\), decide the exact semialgebraic feasibility statement
+   \[
+      q\in\bigcup_{H\in\mathcal C}\mathcal M_+(H).
+   \]
+   Since \(q\notin E_N\), exactly one class is feasible; return its canonical
+   representative.
+
+Each feasibility query is a finite existential semialgebraic sentence and
+terminates by quantifier elimination under the exact-input convention.  The
+true class is feasible.  If an inequivalent class were also feasible, then
+\(q\) would belong to a competing physical intersection whose Zariski closure
+is contained in \(E_N\), a contradiction.
 
 All decks and forests are finite; the restoration depth is at most two and
 the word reconstruction terminates.  The largest bounded restriction in the
@@ -723,10 +743,10 @@ uses at most \(O(|X|^9)\) bounded restrictions beyond reading and transforming
 the explicit \(4^{|X|}\)-entry tensor.  No numerical stability or
 bit-complexity bound is asserted.
 
-The output is a structural triangle class.  Other redirected representatives
-may be listed as structural alternatives, but deciding whether the particular
-input tensor belongs to any chosen representative requires its own exact
-semialgebraic membership test.  The theorem does not claim otherwise.  ∎
+The output is a structural triangle class.  Deciding whether the particular
+input tensor belongs to the complete stochastic image of another redirected
+representative is a separate exact semialgebraic membership problem and is
+not claimed here.  ∎
 
 ## 11. Strict continuous-time corollary
 

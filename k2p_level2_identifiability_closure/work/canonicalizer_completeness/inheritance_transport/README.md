@@ -25,7 +25,18 @@ The mutation output must be caller-owned and outside the project tree.  An
 authoritative reseal requires `--allow-authoritative-output` with the exact
 nonsymbolic canonical report path. Publication uses an fsynced atomic replace,
 so external hardlinks and late output-symlink swaps cannot modify source bytes.
+Any validated pre-existing output is removed before fallible work, preventing
+a failed rerun from leaving a stale PASS report.
 
-The full verifier regenerates all three ledgers in a disposable directory and
-requires byte-for-byte equality.  `--structural-only` checks hashes, schemas,
+Before creating any mutant, the mutation suite runs the full production
+verifier directly against the stored authoritative certificate and ledgers;
+it never repairs or reseals that baseline.  The full verifier regenerates all
+three ledgers in a disposable directory and requires byte-for-byte equality.
+`--structural-only` checks hashes, schemas,
 counts, affine actions, paired products, and closure without regeneration.
+Four locally schema-preserving mutations are installed into complete ledgers,
+with row hashes, ordered roots, counts, file hashes, and certificate payloads
+coherently resealed.  Each then reaches the untouched full verifier and is
+rejected at the exact regenerated-byte diagnostic.  The other six attacks are
+bound to exact local semantic diagnostics; wrong diagnostics, tracebacks,
+signals, PASS-token output, and stale success artifacts cannot qualify.

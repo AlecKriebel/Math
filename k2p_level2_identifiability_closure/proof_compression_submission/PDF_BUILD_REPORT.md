@@ -1,14 +1,14 @@
 # PDF build and visual-inspection report
 
 Both submission documents were rebuilt twice from the exact five-file source
-set with Tectonic 0.16.9 and `SOURCE_DATE_EPOCH=1787529600`
-(`2026-08-24T00:00:00Z`). The paired builds were byte-identical.
+set with Tectonic 0.16.9 and `SOURCE_DATE_EPOCH=1787702400`
+(`2026-08-26T00:00:00Z`). The paired builds were byte-identical.
 
 | document | source SHA-256 | PDF SHA-256 | pages | bytes |
 |---|---|---|---:|---:|
-| main article | `983ddc75e568ff9278481c5e43159a9dc566c3dfc9aa1db9c6e31ae6c13c5c3c` | `9934a92091d069c8764cf8c3aba6b496d482e4e0d5d0a526586f5a0d133f0411` | 26 | 194,316 |
-| reader supplement | `4166832734f84cd0752f283be6a094249f969e863d084bd11957031f256b8140` | `66161998ec9b30355ac3f6f6467462e8be32230ee52ebf4fbfcaff77fe663866` | 24 | 158,988 |
+| main article | `d64574e30ef3dac38c91613938a6ce29f7b07688ea791013c56a45e9af0e75c3` | `2bca627d072cf96c850a7196be9101a7e061499bbcc61ebbb8ff256d4bf864b9` | 26 | 194,327 |
+| reader supplement | `947380b08543c285cf4866c4864855cea2d020e072853b53ae67e53e4b6e9f25` | `0ef0bc101af3c2edaa19c03dac1a78fcade37509f157cd65e548c70b279aa405` | 24 | 160,132 |
 
 All 50 rendered pages were inspected. No clipping or layout defect was found. The logs contain no overfull boxes, undefined references, undefined citations, fatal errors, or hyperref PDF-string warnings, and every font is embedded. Omission of either generated supplement input fails at the corresponding unconditional `\input`. Bibliography presence is enforced independently by the source manifest and mutation gate.
 
-Machine-readable payload SHA-256: `556ba6792d8dd1e27a3e35d52e306d74d835c1f8d35a49f698039127964dc94d`.
+Machine-readable payload SHA-256: `06045710af643a1c2615d8a11a10a889ce9c518a7b626c7558bd1980e0b4109e`.

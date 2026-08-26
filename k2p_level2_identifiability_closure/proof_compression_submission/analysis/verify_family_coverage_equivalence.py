@@ -31,8 +31,8 @@ TABLE_MD = TEMPLATES / "DIRECT_CERTIFICATE_TEMPLATE_TABLE.md"
 OUTPUT = HERE / "FAMILY_COVERAGE_EQUIVALENCE_CERTIFICATE.json"
 
 LOCK_REL = "work/final_theorem_release/RELEASE_LOCK.json"
-LOCK_SHA = "c319977f350923ab900a883235e32ec945d55a864338c14a08ce266ed3a1c78a"
-LOCK_PAYLOAD = "dcc15b8ae2bb46674344595809690657119e5271611bab8c3c47fccade0fa509"
+LOCK_SHA = "4a084871be2fe212559e3a38306c73deb4ba111e5900e61b680a6db81f0e88fb"
+LOCK_PAYLOAD = "d95fc7d6ef2b44c9c67be6394d5cf226b04bb3335be507e11da9a6a595e5c75f"
 ATLAS_REL = "package/referee/k2p_offline_sweep_portable/atlas/k2p_atlas_core.py"
 EXPECTED_PRIMITIVE_GRAMMAR_SHA256 = (
     "d5e7608f70a2243df605dee6e35d0ea6af74e4e47b42142e91ddfa4cbcbad09b"
@@ -186,7 +186,7 @@ def verify_release_and_transitive_hashes() -> dict[str, str]:
             item = str(path.relative_to(PROJECT))
             need(item not in locked or locked[item] == digest, "MANIFEST_HASH_CONFLICT")
             locked[item] = digest
-    need(len(locked) == 402, "TRANSITIVE_FILE_COUNT", len(locked))
+    need(len(locked) == 405, "TRANSITIVE_FILE_COUNT", len(locked))
     return locked
 
 

@@ -20,12 +20,23 @@ Create an isolated Python environment, install `requirements.txt`, and run:
 
 ```sh
 python audit_weak_sharpness.py
-python test_mutations.py
+python test_mutations.py --output /tmp/k2p-weak-sharpness-mutations.json
 ```
 
 Expected markers are
 `K2P_WEAK_SHARPNESS_INDEPENDENT_AUDIT_PASS` and
 `K2P_WEAK_SHARPNESS_AUDIT_MUTATIONS_PASS`.
+
+The mutation suite first rebuilds the complete independent audit and requires
+exact equality with its sealed certificate.  It then rejects 20 graph,
+parameter, tensor, rank, cherry, and pruning attacks by exact exception type
+and diagnostic, and rejects optimized execution by exact exit status and
+diagnostic.  Unrelated tracebacks, import failures, timeouts, signals, other
+exit codes, and success terminals do not qualify.  Its ordinary report path is
+caller-owned and must be outside the project tree; stale bytes are removed
+before any fallible work and a completed report is installed atomically.  The
+exact canonical `mutation_report.json` can be resealed only with
+`--allow-authoritative-output`.
 
 The audit's maximum resident set size in the recorded M1 Pro replay was below
 50 MB.

@@ -3,10 +3,12 @@
 
 from __future__ import annotations
 
+import argparse
 import collections
 import copy
 import hashlib
 import json
+import os
 import subprocess
 import sys
 import tempfile
@@ -18,12 +20,122 @@ CONTRACT = HERE / "probe_input_contract.json"
 STRUCTURE = HERE / "verify_probe_input_structure.py"
 FULL = HERE / "verify_probe_input_contract.py"
 OUTPUT = HERE / "probe_input_mutation_certificate.json"
+AUTHORITATIVE_OUTPUT = OUTPUT
+REPLAY = HERE / "probe_input_independent_verification.json"
+PROJECT = HERE.parents[1]
+FORBIDDEN_FAILURE_MARKERS = (
+    "Traceback (most recent call last)",
+    "ModuleNotFoundError",
+    "ImportError",
+    "No module named",
+)
+MUTATION_DIAGNOSTICS = {
+    "omitted_anchor_record": "PROBE_INPUT_STRUCTURE_FAIL:anchor count",
+    "old_172_anchor_count_reintroduction": "PROBE_INPUT_STRUCTURE_FAIL:anchor count",
+    "duplicate_replacing_new_triangle_anchor": "PROBE_INPUT_STRUCTURE_FAIL:anchor ids",
+    "raw67161_locator_reassignment": (
+        "PROBE_INPUT_STRUCTURE_FAIL:regression rows:{67167: "
+        "('four_port_restored_physical_k5', 'triangle'), 67401: "
+        "('four_port_restored_physical_k5', 'triangle'), 67407: "
+        "('four_port_restored_physical_k5', 'triangle')}"
+    ),
+    "collapse_two_k7_path_ids_sharing_topology_id": "PROBE_INPUT_STRUCTURE_FAIL:anchor ids",
+    "omitted_pendant_arm": "PROBE_INPUT_STRUCTURE_FAIL:site formula:four:raw2040:source",
+    "omitted_reticulation_incoming": "PROBE_INPUT_STRUCTURE_FAIL:site formula:four:raw2040:source",
+    "dropped_root_suppressed_segment": "PROBE_INPUT_STRUCTURE_FAIL:site formula:four:raw2040:source",
+    "split_artificial_root_halves": "PROBE_INPUT_STRUCTURE_FAIL:site formula:four:raw2040:source",
+    "wrong_root_half_equivalence": "PROBE_INPUT_STRUCTURE_FAIL:half relation:four:raw2040:source",
+    "wrong_site_transport": "PROBE_INPUT_STRUCTURE_FAIL:site transport mapping:four:raw2040",
+    "corrupt_anchor_parent_transport": "PROBE_INPUT_STRUCTURE_FAIL:site transport mapping:four:raw2040",
+    "wrong_site_formula": "PROBE_INPUT_STRUCTURE_FAIL:reported formula",
+    "topology_first_classifier_reintroduction": "PROBE_INPUT_STRUCTURE_FAIL:classifier order",
+    "triple_type_gate_reintroduction": "PROBE_INPUT_STRUCTURE_FAIL:classifier order",
+    "forbidden_rooted_restriction_removed": "PROBE_INPUT_STRUCTURE_FAIL:forbidden shortcuts",
+    "raw4424_false_tree_sunlet_reintroduction": "PROBE_INPUT_STRUCTURE_FAIL:top-level fields",
+    "generic_rooted_restriction_reintroduction": "PROBE_INPUT_STRUCTURE_FAIL:top-level fields",
+    "ordered_row_hash_omission": "PROBE_INPUT_STRUCTURE_FAIL:row hash order",
+    "upstream_input_binding_corruption": "PROBE_INPUT_VERIFY_FAIL:input bindings",
+    "optimized_mode": "PROBE_INPUT_STRUCTURE_OPTIMIZED_MODE_FORBIDDEN",
+}
+
+
+class MutationFailure(RuntimeError):
+    pass
+
+
+def require(condition, message):
+    if not condition:
+        raise MutationFailure(message)
 
 
 def sha(value):
     return hashlib.sha256(json.dumps(
         value, sort_keys=True, separators=(",", ":")
     ).encode()).hexdigest()
+
+
+def sha_file(path):
+    digest = hashlib.sha256()
+    with path.open("rb") as handle:
+        for block in iter(lambda: handle.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def validate_output_path(output: Path, allow_authoritative_output: bool) -> Path:
+    lexical = Path(os.path.abspath(os.fspath(output)))
+    normalized = lexical.parent.resolve() / lexical.name
+    resolved = lexical.resolve()
+    authoritative = AUTHORITATIVE_OUTPUT.parent.resolve() / AUTHORITATIVE_OUTPUT.name
+    if allow_authoritative_output:
+        if normalized != authoritative or lexical.is_symlink():
+            raise SystemExit(
+                "PROBE_INPUT_MUTATION_OUTPUT_POLICY_FAIL: authoritative override "
+                "licenses only the canonical probe-input mutation certificate"
+            )
+        return normalized
+    try:
+        resolved.relative_to(PROJECT.resolve())
+    except ValueError:
+        return normalized
+    raise SystemExit(
+        "PROBE_INPUT_MUTATION_OUTPUT_POLICY_FAIL: routine output must be outside "
+        "the project source tree"
+    )
+
+
+def atomic_write_bytes(path: Path, payload: bytes) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    descriptor, temporary_name = tempfile.mkstemp(
+        prefix=f".{path.name}.", suffix=".tmp", dir=path.parent
+    )
+    temporary = Path(temporary_name)
+    try:
+        os.fchmod(descriptor, 0o644)
+        with os.fdopen(descriptor, "wb") as handle:
+            handle.write(payload)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+        directory_descriptor = os.open(path.parent, os.O_RDONLY)
+        try:
+            os.fsync(directory_descriptor)
+        finally:
+            os.close(directory_descriptor)
+    finally:
+        temporary.unlink(missing_ok=True)
+
+
+def encoded_json(value):
+    return (json.dumps(value, indent=2, sort_keys=True) + "\n").encode()
+
+
+def decoded_timeout_output(value):
+    if value is None:
+        return ""
+    if isinstance(value, bytes):
+        return value.decode("utf-8", errors="replace")
+    return value
 
 
 def reseal_profile(profile):
@@ -215,22 +327,157 @@ MUTATIONS = [
 ]
 
 
-def run_verifier(path, kind, optimized=False):
+def run_verifier(path, kind, *, report=None, optimized=False, timeout=900.0):
     script = FULL if kind == "full" else STRUCTURE
     command = [sys.executable]
     if optimized:
         command.append("-O")
     command.extend([str(script), "--contract", str(path)])
-    if kind != "full":
+    if kind == "full":
+        require(report is not None, "full verifier report path required")
+        report.unlink(missing_ok=True)
+        command.extend(["--report", str(report)])
+    else:
         command.append("--quiet")
-    return subprocess.run(command, capture_output=True, text=True)
+    try:
+        result = subprocess.run(
+            command,
+            capture_output=True,
+            text=True,
+            timeout=timeout,
+            check=False,
+        )
+    except subprocess.TimeoutExpired as error:
+        return {
+            "returncode": None,
+            "diagnostic": (
+                decoded_timeout_output(error.stdout)
+                + decoded_timeout_output(error.stderr)
+            ).strip(),
+            "success_artifact_present": report is not None and report.exists(),
+            "timeout": True,
+            "signal": False,
+        }
+    return {
+        "returncode": result.returncode,
+        "diagnostic": (result.stdout + result.stderr).strip(),
+        "success_artifact_present": report is not None and report.exists(),
+        "timeout": False,
+        "signal": result.returncode < 0,
+    }
+
+
+def qualify_mutation_failure(name, result):
+    expected = MUTATION_DIAGNOSTICS[name]
+    require(result.get("timeout") is False, f"mutation timeout:{name}")
+    require(result.get("signal") is False, f"mutation signal:{name}")
+    require(result.get("returncode") == 1, f"mutation exit:{name}:{result}")
+    diagnostic = result.get("diagnostic")
+    require(isinstance(diagnostic, str), f"mutation diagnostic type:{name}")
+    require(
+        not any(marker in diagnostic for marker in FORBIDDEN_FAILURE_MARKERS),
+        f"mutation unrelated crash:{name}:{diagnostic[-1000:]}",
+    )
+    require(
+        result.get("success_artifact_present") is False,
+        f"mutation success artifact:{name}",
+    )
+    require(diagnostic == expected, f"mutation diagnostic:{name}:{diagnostic[-1000:]}")
+    return {
+        "mutation": name,
+        "rejected": True,
+        "returncode": 1,
+        "expected_diagnostic": expected,
+        "observed_diagnostic": expected,
+        "success_artifact_absent": True,
+        "timeout": False,
+        "signal": False,
+    }
+
+
+def verify_payload(value):
+    claimed = value.get("payload_sha256")
+    unsigned = {key: item for key, item in value.items() if key != "payload_sha256"}
+    require(claimed == sha(unsigned), "report payload")
+
+
+def qualify_clean_baseline(root, timeout):
+    structure = run_verifier(CONTRACT, "structure", timeout=timeout)
+    require(
+        structure
+        == {
+            "returncode": 0,
+            "diagnostic": "",
+            "success_artifact_present": False,
+            "timeout": False,
+            "signal": False,
+        },
+        f"structure baseline:{structure}",
+    )
+    report_path = root / "clean-full-replay.json"
+    full = run_verifier(CONTRACT, "full", report=report_path, timeout=timeout)
+    require(full.get("timeout") is False, "full baseline timeout")
+    require(full.get("signal") is False, "full baseline signal")
+    require(full.get("returncode") == 0, f"full baseline exit:{full}")
+    require(
+        not any(
+            marker in str(full.get("diagnostic", ""))
+            for marker in FORBIDDEN_FAILURE_MARKERS
+        ),
+        f"full baseline crash:{full}",
+    )
+    require(full.get("success_artifact_present") is True, "full baseline report absent")
+    observed = json.loads(report_path.read_text())
+    expected = json.loads(REPLAY.read_text())
+    verify_payload(observed)
+    verify_payload(expected)
+    require(observed == expected, "full baseline report drift")
+    require(
+        observed.get("schema") == "k2p-probe-input-independent-replay-v1"
+        and observed.get("status") == "PASS"
+        and observed.get("anchors_reconstructed") == 176
+        and observed.get("source_sites_reenumerated") == 2_206
+        and observed.get("target_sites_reenumerated") == 2_206
+        and observed.get("first_probe_source_target_pairs") == 29_964
+        and observed.get("missing_anchors") == 0
+        and observed.get("extra_anchors") == 0
+        and observed.get("unresolved") == 0,
+        "full baseline semantics",
+    )
+    return {
+        "structure_returncode": 0,
+        "structure_status": "PASS",
+        "structure_success_artifact_absent": True,
+        "full_returncode": 0,
+        "full_status": "PASS",
+        "full_report_schema": observed["schema"],
+        "full_report_payload_sha256": observed["payload_sha256"],
+        "full_success_artifact_present": True,
+        "anchors": 176,
+        "source_sites": 2_206,
+        "target_sites": 2_206,
+        "first_probe_pairs": 29_964,
+        "timeout": False,
+        "signal": False,
+    }
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--allow-authoritative-output", action="store_true")
+    parser.add_argument("--timeout-seconds", type=float, default=900.0)
+    args = parser.parse_args()
+    output_path = validate_output_path(args.output, args.allow_authoritative_output)
+    output_path.unlink(missing_ok=True)
+    if not __debug__:
+        raise SystemExit("PROBE_INPUT_MUTATIONS_OPTIMIZED_MODE_FORBIDDEN")
+    require(args.timeout_seconds > 0, "positive timeout required")
     original = json.loads(CONTRACT.read_text())
     rows = []
     with tempfile.TemporaryDirectory(prefix="k2p_probe_mutations_") as temporary:
         temporary = Path(temporary)
+        baseline = qualify_clean_baseline(temporary, args.timeout_seconds)
         for index, (name, function, kind) in enumerate(MUTATIONS):
             value = copy.deepcopy(original)
             function(value)
@@ -242,40 +489,67 @@ def main():
                 })
             path = temporary / f"mutation_{index}.json"
             path.write_text(json.dumps(value, sort_keys=True))
-            result = run_verifier(path, "full" if kind == "full" else "structure")
-            rows.append({
-                "mutation": name, "rejected": result.returncode != 0,
-                "verifier": "independent_full" if kind == "full" else "fast_fail_closed_structure",
-                "returncode": result.returncode,
-                "diagnostic_sha256": hashlib.sha256((result.stdout + result.stderr).encode()).hexdigest(),
-            })
-        optimized = run_verifier(CONTRACT, "structure", optimized=True)
-        rows.append({
-            "mutation": "optimized_mode_original_contract",
-            "rejected": False, "passed": optimized.returncode == 0,
-            "verifier": "python_-O_fast_fail_closed_structure",
-            "returncode": optimized.returncode,
-            "diagnostic_sha256": hashlib.sha256((optimized.stdout + optimized.stderr).encode()).hexdigest(),
-        })
-    rejected = sum(row.get("rejected") is True for row in rows[:-1])
-    passed = rejected == len(MUTATIONS) and rows[-1]["passed"]
+            report_path = (
+                temporary / f"mutation_{index}-success.json"
+                if kind == "full"
+                else None
+            )
+            rows.append(
+                qualify_mutation_failure(
+                    name,
+                    run_verifier(
+                        path,
+                        "full" if kind == "full" else "structure",
+                        report=report_path,
+                        timeout=args.timeout_seconds,
+                    ),
+                )
+            )
+        rows.append(
+            qualify_mutation_failure(
+                "optimized_mode",
+                run_verifier(
+                    CONTRACT,
+                    "structure",
+                    optimized=True,
+                    timeout=args.timeout_seconds,
+                ),
+            )
+        )
+    semantic_rejected = sum(row.get("rejected") is True for row in rows[:-1])
+    optimized_rejected = rows[-1].get("rejected") is True
+    passed = semantic_rejected == len(MUTATIONS) and optimized_rejected
     report = {
-        "schema": "k2p-probe-input-mutation-certificate-v1",
+        "schema": "k2p-probe-input-mutation-certificate-v2",
         "status": "PASS" if passed else "FAIL",
+        "clean_baseline": baseline,
+        "diagnostic_contract": MUTATION_DIAGNOSTICS,
         "contract_sha256": hashlib.sha256(CONTRACT.read_bytes()).hexdigest(),
         "contract_payload_sha256": original["payload_sha256"],
+        "structure_verifier_sha256": sha_file(STRUCTURE),
+        "full_verifier_sha256": sha_file(FULL),
+        "mutation_runner_sha256": sha_file(Path(__file__).resolve()),
         "adversarial_mutations": len(MUTATIONS),
-        "mutations_rejected": rejected,
-        "mutation_survivors": len(MUTATIONS) - rejected,
-        "optimized_mode_pass": rows[-1]["passed"],
+        "mutations_rejected": semantic_rejected,
+        "mutation_survivors": len(MUTATIONS) - semantic_rejected,
+        "case_count": len(rows),
+        "optimized_mode_rejected": optimized_rejected,
+        "execution_contract": {
+            "clean_structure_and_full_baselines_required": True,
+            "mutations_require_exit_code_one": True,
+            "mutations_require_exact_diagnostics": True,
+            "traceback_import_timeout_signal_rejected": True,
+            "success_artifact_must_be_absent": True,
+            "caller_owned_output_required": True,
+        },
         "results": rows,
     }
     report["payload_sha256"] = sha(report)
-    OUTPUT.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
+    atomic_write_bytes(output_path, encoded_json(report))
     print(json.dumps({
-        "status": report["status"], "rejected": rejected,
+        "status": report["status"], "rejected": semantic_rejected,
         "survivors": report["mutation_survivors"],
-        "optimized": report["optimized_mode_pass"],
+        "optimized_rejected": report["optimized_mode_rejected"],
         "payload_sha256": report["payload_sha256"],
     }, sort_keys=True))
     if not passed:

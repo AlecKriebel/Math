@@ -21,17 +21,20 @@ this verifier supplies the split-set-to-literal-algebra conclusion.
 Run:
 
 Both mutation runners require a caller-owned output path outside the project
-source tree. The semantics report stores exact expected/observed rejection
-markers and return codes, not raw tracebacks, so the sealed bytes are
-independent of checkout paths and supported Python traceback formatting.
+source tree. Each suite first reproduces its stored production certificate
+byte for byte. Its report stores the exact full expected/observed diagnostic,
+exception type, and exit code for every rejection; tracebacks, import errors,
+timeouts, signals, other non-one exits, PASS tokens, and success artifacts
+cannot qualify a case. The sealed bytes are independent of checkout paths and
+supported Python traceback formatting.
 Resealing either canonical mutation certificate requires the explicit
 `--allow-authoritative-output` flag, which licenses only that runner's exact
 canonical path. The relocation test also proves that two named extractions
 produce identical semantics reports without changing source bytes and rejects
 direct, ordinary, and symlink-resolved source collisions for both runners.
 Final report publication uses an fsynced same-directory temporary file and
-atomic replacement, so a late output symlink or an external hardlink cannot
-truncate a locked source inode.
+atomic replacement. Pre-existing output is removed before optimized or helper
+imports, and source hardlinks and output symlinks are rejected.
 
 ```sh
 .venv/bin/python -B work/quartet_separation_closure/verify_quartet_logic.py

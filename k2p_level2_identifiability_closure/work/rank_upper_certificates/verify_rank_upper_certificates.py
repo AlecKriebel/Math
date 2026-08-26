@@ -5,26 +5,55 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import pickle
+import sys
+import tempfile
 import time
 from pathlib import Path
-
-import sympy as sp
-
-from descriptor_actions import port_transform_canonical_retic
-from generate_exception_syzygies import (
-    descriptor_digest,
-    evaluate_sparse,
-    verify_log_syzygy,
-)
-from k2p_atlas_core import default_exact_point, output_sparse_polynomials
-from select_missing_supports import base_evaluated_vectors, q
-from syzygy_upper import upper_certificate
-
 
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_ATLAS = ROOT / "package/referee/k2p_offline_sweep_portable/atlas"
 WORK = Path(__file__).resolve().parent
+
+
+def load_semantic_dependencies() -> None:
+    """Import fallible mathematical dependencies only after output cleanup."""
+
+    global sp
+    global port_transform_canonical_retic
+    global descriptor_digest, evaluate_sparse, verify_log_syzygy
+    global default_exact_point, output_sparse_polynomials
+    global base_evaluated_vectors, q
+    global upper_certificate
+
+    import sympy as sympy_module
+    from descriptor_actions import port_transform_canonical_retic as port_transform
+    from generate_exception_syzygies import (
+        descriptor_digest as descriptor_digest_function,
+        evaluate_sparse as evaluate_sparse_function,
+        verify_log_syzygy as verify_log_syzygy_function,
+    )
+    from k2p_atlas_core import (
+        default_exact_point as default_point,
+        output_sparse_polynomials as sparse_polynomials,
+    )
+    from select_missing_supports import (
+        base_evaluated_vectors as base_vectors,
+        q as rational,
+    )
+    from syzygy_upper import upper_certificate as upper_certificate_function
+
+    sp = sympy_module
+    port_transform_canonical_retic = port_transform
+    descriptor_digest = descriptor_digest_function
+    evaluate_sparse = evaluate_sparse_function
+    verify_log_syzygy = verify_log_syzygy_function
+    default_exact_point = default_point
+    output_sparse_polynomials = sparse_polynomials
+    base_evaluated_vectors = base_vectors
+    q = rational
+    upper_certificate = upper_certificate_function
 
 
 def descriptor_key(d):
@@ -77,7 +106,10 @@ def verify_exception_representative(desc, orbit_row, certificate):
     p = 2 * desc.edge_class_count + desc.retic_count
     exact_rank = orbit_row["lower_rank"]
     if field_rank != p - exact_rank:
-        raise AssertionError(("insufficient independent fields", field_rank, p - exact_rank))
+        raise AssertionError(
+            "RANK_UPPER_SYMBOLIC_FIELD_DIMENSION_FAIL:"
+            f"orbit={orbit_row['orbit_index']}:observed={field_rank}:required={p - exact_rank}"
+        )
     if certificate["combined_evaluated_field_rank"] != field_rank:
         raise AssertionError("stored field rank mismatch")
     if certificate["certified_rank_upper"] != exact_rank:
@@ -129,32 +161,94 @@ def validate_coverage_shape(coverage, unique):
     return rows
 
 
+def atomic_write(path: Path, payload: bytes) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    descriptor, temporary_name = tempfile.mkstemp(
+        prefix=f".{path.name}.", suffix=".tmp", dir=path.parent
+    )
+    temporary = Path(temporary_name)
+    try:
+        os.fchmod(descriptor, 0o644)
+        with os.fdopen(descriptor, "wb") as handle:
+            handle.write(payload)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+    finally:
+        temporary.unlink(missing_ok=True)
+
+
+def validate_output_path(
+    certificate_dir: Path, requested: Path | None, atlas: Path
+) -> Path:
+    canonical = certificate_dir / "rank_upper_replay.json"
+    lexical = Path(os.path.abspath(os.fspath(requested or canonical)))
+    normalized = lexical.parent.resolve() / lexical.name
+    canonical_normalized = canonical.parent.resolve() / canonical.name
+    if lexical.is_symlink():
+        raise SystemExit("K2P_RANK_UPPER_OUTPUT_POLICY_FAIL:output symlink")
+    source_inputs = {
+        Path(__file__).resolve(),
+        (WORK / "descriptor_actions.py").resolve(),
+        (WORK / "generate_exception_syzygies.py").resolve(),
+        (WORK / "select_missing_supports.py").resolve(),
+        (WORK / "syzygy_upper.py").resolve(),
+        (atlas / "descriptors_4.pkl").resolve(),
+        (atlas / "rank_certs_4.pkl").resolve(),
+    }
+    source_inputs.update(
+        path.resolve()
+        for path in certificate_dir.rglob("*")
+        if path.is_file() and path.resolve() != canonical_normalized
+    )
+    if lexical.exists() and any(
+        source.exists() and os.path.samefile(lexical, source)
+        for source in source_inputs
+    ):
+        raise SystemExit("K2P_RANK_UPPER_OUTPUT_POLICY_FAIL:output hardlinks or collides with input")
+    if requested is not None and normalized != canonical_normalized:
+        try:
+            normalized.relative_to(ROOT.resolve())
+        except ValueError:
+            return normalized
+        raise SystemExit(
+            "K2P_RANK_UPPER_OUTPUT_POLICY_FAIL:explicit output must be external or canonical"
+        )
+    return canonical_normalized
+
+
 def main():
-    if not __debug__:
-        raise SystemExit("K2P_RANK_UPPER_OPTIMIZED_MODE_FORBIDDEN")
     parser = argparse.ArgumentParser()
     parser.add_argument("--atlas", type=Path, default=DEFAULT_ATLAS)
+    parser.add_argument("--certificate-dir", type=Path, default=WORK)
+    parser.add_argument("--output", type=Path)
     parser.add_argument(
         "--skip-base-recompute",
         action="store_true",
         help="Only for development; a release replay must not use this flag.",
     )
     args = parser.parse_args()
+    certificate_dir = args.certificate_dir.resolve()
+    output = validate_output_path(certificate_dir, args.output, args.atlas.resolve())
+    output.unlink(missing_ok=True)
+    if not __debug__:
+        raise SystemExit("K2P_RANK_UPPER_OPTIMIZED_MODE_FORBIDDEN")
+    load_semantic_dependencies()
     with (args.atlas / "descriptors_4.pkl").open("rb") as handle:
         _, _, _, source_descriptors, descriptor_map = pickle.load(handle)
     with (args.atlas / "rank_certs_4.pkl").open("rb") as handle:
         lower_certificates = pickle.load(handle)
-    with (WORK / "exception_orbit_representatives.pkl").open("rb") as handle:
+    with (certificate_dir / "exception_orbit_representatives.pkl").open("rb") as handle:
         representatives = pickle.load(handle)
-    orbit_ledger = json.loads((WORK / "exception_orbits.json").read_text())
-    coverage = json.loads((WORK / "rank_upper_coverage.json").read_text())
+    orbit_ledger = json.loads((certificate_dir / "exception_orbits.json").read_text())
+    coverage = json.loads((certificate_dir / "rank_upper_coverage.json").read_text())
     unique = sorted(set(source_descriptors) | set(descriptor_map.values()), key=descriptor_key)
     rows = validate_coverage_shape(coverage, unique)
 
     representative_ranks = {}
     for desc, orbit_row in zip(representatives, orbit_ledger["orbits"]):
         orbit_index = orbit_row["orbit_index"]
-        path = WORK / "exception_syzygies" / f"orbit_{orbit_index:03d}.json"
+        path = certificate_dir / "exception_syzygies" / f"orbit_{orbit_index:03d}.json"
         if not path.exists():
             raise AssertionError(("missing representative certificate", orbit_index))
         certificate = json.loads(path.read_text())
@@ -218,12 +312,22 @@ def main():
         "zero_unresolved": True,
         "base_recomputed": not args.skip_base_recompute,
     }
-    (WORK / "rank_upper_replay.json").write_text(
-        json.dumps(result, indent=2, sort_keys=True) + "\n"
-    )
+    atomic_write(output, (json.dumps(result, indent=2, sort_keys=True) + "\n").encode())
     print(json.dumps(result, indent=2, sort_keys=True))
+    print(
+        "K2P_RANK_UPPER_REPLAY_PASS "
+        + json.dumps({
+            "base_recomputed": result["base_recomputed"],
+            "descriptor_count": result["descriptor_count"],
+            "zero_unresolved": result["zero_unresolved"],
+        }, sort_keys=True)
+    )
     print(f"K2P_RANK_UPPER_ELAPSED_SECONDS={elapsed_seconds:.6f}")
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except AssertionError as error:
+        print(f"K2P_RANK_UPPER_REPLAY_FAIL:{error}", file=sys.stderr)
+        raise SystemExit(1)

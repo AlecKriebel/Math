@@ -23,6 +23,66 @@ SOURCE_FILES = (
 )
 EMPTY_SHA256 = hashlib.sha256(b"").hexdigest()
 INTENTIONAL_MUTATION_NAME = "four_port_exact_rank_staged_atlas_omission_mutation"
+RESTORATION_LAYER_NAME = "corrected_restoration_independent_full_replay"
+RESTORATION_SEMANTIC_COMMAND = (
+    "<qualified-python>",
+    "-B",
+    "work/restoration_sign_reclassification/verify_corrected_restoration_forest.py",
+    "--certificate",
+    "work/restoration_sign_reclassification/corrected_restoration_forest.json",
+    "--crosswalk",
+    "work/restoration_sign_reclassification/corrected_restoration_historical_crosswalk.json",
+    "--report",
+    "<external-report-path>",
+)
+RESTORATION_SOURCE_FILES = (
+    "work/restoration_sign_reclassification/verify_corrected_restoration_forest.py",
+    "work/restoration_sign_reclassification/corrected_restoration_forest.json",
+    "work/restoration_sign_reclassification/corrected_restoration_historical_crosswalk.json",
+)
+EXPECTED_LAYER_NAMES = (
+    "promotion_manuscript_guard",
+    "full_map_domain_reseal",
+    "corrected_universe_independent_replay",
+    "three_port_no_assert",
+    "domain_rooting",
+    "quartet_sign_logic",
+    "quartet_terminal_bindings",
+    "raw_displayed_quartet_direction",
+    "canonicalizer_completeness_structural",
+    "graph_derived_parameter_transports_structural",
+    "bridge_marginal_gluing",
+    "analytic_adversarial_audit",
+    "global_component_scale_audit",
+    "raw4_corrected_overlay_independent",
+    "theta2_full_map_independent",
+    "four_port_raw_structural_provenance",
+    "four_port_direct36",
+    "theta2_structural_provenance",
+    "cycle_three_port_authoritative_promotion",
+    "corrected_probe_independent_streaming_replay",
+    "corrected_probe_site_transport_partition",
+    "weak_sharpness_primary",
+    "weak_sharpness_independent",
+    "canonicalizer_completeness_full",
+    "graph_derived_parameter_transports_full",
+    RESTORATION_LAYER_NAME,
+    "corrected_universe_cross_layer_mutations",
+    "raw4_full_map_Ti_truth",
+    "theta2_full_map_Ti_truth",
+    "composite_domain_reseal_diff",
+    INTENTIONAL_MUTATION_NAME,
+    "four_port_exact_rank_import_preflight",
+    "four_port_exact_rank_full",
+    "raw4_corrected_overlay_full_regeneration",
+    "four_port_raw_full_regeneration_provenance",
+    "four_port_direct36_full",
+    "theta2_full_regeneration_provenance",
+    "corrected_probe_full_primitive_regeneration",
+    "corrected_probe_full_independent_replay",
+    "corrected_probe_full_site_transport_partition",
+    "corrected_probe_independent_primitive_graph_full",
+)
 
 
 def canonical_hash(value: object) -> str:
@@ -59,6 +119,10 @@ class Fixture:
             path = self.project / relative
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(f"source {index}\n", encoding="utf-8")
+        for index, relative in enumerate(RESTORATION_SOURCE_FILES):
+            path = self.project / relative
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(f"restoration source {index}\n", encoding="utf-8")
         self.write_lock()
         self.commit = self.commit_all("fixture")
         branch_result = run(["git", "branch", "--show-current"], self.checkout)
@@ -105,16 +169,7 @@ class Fixture:
         report = {
             "blockers": [],
             "elapsed_seconds": 3.25,
-            "layer_replays": [
-                {
-                    "elapsed_seconds": 3.0,
-                    "name": "fake_full_layer",
-                    "returncode": 0,
-                    "status": "PASS",
-                    "stderr_sha256": EMPTY_SHA256,
-                    "stdout_sha256": EMPTY_SHA256,
-                }
-            ],
+            "layer_replays": self.valid_layers(),
             "lock_payload_sha256": self.lock_payload(),
             "mode": "full",
             "optimized_mode": False,
@@ -125,6 +180,54 @@ class Fixture:
         }
         report.update(changes)
         self.report.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
+
+    def valid_layers(
+        self, extra: list[dict[str, object]] | None = None
+    ) -> list[dict[str, object]]:
+        replacement = None if not extra else extra[0]
+        restoration = {
+            "command_sha256": canonical_hash(RESTORATION_SEMANTIC_COMMAND),
+            "elapsed_seconds": 1.0,
+            "name": RESTORATION_LAYER_NAME,
+            "returncode": 0,
+            "source_sha256": {
+                relative: hashlib.sha256(
+                    (self.project / relative).read_bytes()
+                ).hexdigest()
+                for relative in RESTORATION_SOURCE_FILES
+            },
+            "status": "PASS",
+            "stderr_sha256": EMPTY_SHA256,
+            "stdout_sha256": EMPTY_SHA256,
+        }
+        layers = []
+        for name in EXPECTED_LAYER_NAMES:
+            if name == RESTORATION_LAYER_NAME:
+                layers.append(restoration)
+            elif name == INTENTIONAL_MUTATION_NAME:
+                layers.append(
+                    replacement
+                    or {
+                        "elapsed_seconds": 0.4,
+                        "name": INTENTIONAL_MUTATION_NAME,
+                        "observed_nonzero_returncode": 1,
+                        "status": "PASS",
+                        "stderr_sha256": EMPTY_SHA256,
+                        "stdout_sha256": EMPTY_SHA256,
+                    }
+                )
+            else:
+                layers.append(
+                    {
+                        "elapsed_seconds": 0.05,
+                        "name": name,
+                        "returncode": 0,
+                        "status": "PASS",
+                        "stderr_sha256": EMPTY_SHA256,
+                        "stdout_sha256": EMPTY_SHA256,
+                    }
+                )
+        return layers
 
     def command(self, mode: str, *extra: str) -> list[str]:
         return [
@@ -173,7 +276,7 @@ class TelemetryProducerTests(unittest.TestCase):
                 value["submission_sources"][SOURCE_FILES[0]]["sha256"],
                 hashlib.sha256(first_source.read_bytes()).hexdigest(),
             )
-            self.assertEqual(value["report"]["layer_count"], 1)
+            self.assertEqual(value["report"]["layer_count"], 41)
             self.assertEqual(value["release_lock"]["payload_sha256"], fixture.lock_payload())
             require_ok(run(fixture.command("--check")))
 
@@ -243,18 +346,10 @@ class TelemetryProducerTests(unittest.TestCase):
                 "stderr_sha256": EMPTY_SHA256,
                 "stdout_sha256": EMPTY_SHA256,
             }
-            ordinary_row = {
-                "elapsed_seconds": 2.5,
-                "name": "ordinary_full_layer",
-                "returncode": 0,
-                "status": "PASS",
-                "stderr_sha256": EMPTY_SHA256,
-                "stdout_sha256": EMPTY_SHA256,
-            }
-            fixture.write_report(layer_replays=[ordinary_row, mutation_row])
+            fixture.write_report(layer_replays=fixture.valid_layers([mutation_row]))
             require_ok(run(fixture.command("--write")))
             value = json.loads(fixture.output.read_text())
-            self.assertEqual(value["report"]["layer_count"], 2)
+            self.assertEqual(value["report"]["layer_count"], 41)
 
     def test_malformed_intentional_mutation_layers_are_rejected(self) -> None:
         temporary, fixture = self.fixture()
@@ -353,10 +448,75 @@ class TelemetryProducerTests(unittest.TestCase):
 
             for label, row, expected in cases:
                 with self.subTest(label=label):
-                    fixture.write_report(layer_replays=[row])
+                    fixture.write_report(layer_replays=fixture.valid_layers([row]))
                     result = run(fixture.command("--write"))
                     self.assertNotEqual(result.returncode, 0)
                     self.assertIn(expected, result.stderr)
+
+    def test_restoration_command_and_source_bindings_fail_closed(self) -> None:
+        temporary, fixture = self.fixture()
+        with temporary:
+            base = fixture.valid_layers()
+            restoration_index = EXPECTED_LAYER_NAMES.index(RESTORATION_LAYER_NAME)
+            attacks: list[tuple[str, list[dict[str, object]], str]] = []
+
+            wrong_command = json.loads(json.dumps(base))
+            wrong_command[restoration_index]["command_sha256"] = "0" * 64
+            attacks.append(
+                (
+                    "wrong semantic command",
+                    wrong_command,
+                    "FULL_REPLAY_RESTORATION_COMMAND_HASH_INVALID",
+                )
+            )
+
+            wrong_source = json.loads(json.dumps(base))
+            first_source = RESTORATION_SOURCE_FILES[0]
+            wrong_source[restoration_index]["source_sha256"][first_source] = "0" * 64
+            attacks.append(
+                (
+                    "wrong source hash",
+                    wrong_source,
+                    "FULL_REPLAY_RESTORATION_SOURCE_HASH_INVALID",
+                )
+            )
+
+            missing = json.loads(json.dumps(base))
+            missing[restoration_index] = {
+                "elapsed_seconds": 0.05,
+                "name": "replacement_ordinary_layer",
+                "returncode": 0,
+                "status": "PASS",
+                "stderr_sha256": EMPTY_SHA256,
+                "stdout_sha256": EMPTY_SHA256,
+            }
+            attacks.append(
+                (
+                    "missing restoration layer",
+                    missing,
+                    "FULL_REPLAY_RESTORATION_LAYER_MISSING",
+                )
+            )
+
+            for label, layers, expected in attacks:
+                with self.subTest(label=label):
+                    fixture.write_report(layer_replays=layers)
+                    result = run(fixture.command("--write"))
+                    self.assertNotEqual(result.returncode, 0)
+                    self.assertIn(expected, result.stderr)
+
+    def test_count_preserving_layer_substitution_is_rejected(self) -> None:
+        temporary, fixture = self.fixture()
+        with temporary:
+            layers = fixture.valid_layers()
+            cycle_index = EXPECTED_LAYER_NAMES.index(
+                "cycle_three_port_authoritative_promotion"
+            )
+            layers[cycle_index]["name"] = "cycle_three_port_structural_provenance"
+            fixture.write_report(layer_replays=layers)
+            result = run(fixture.command("--write"))
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("FULL_REPLAY_LAYER_SEQUENCE_INVALID", result.stderr)
 
     def test_project_in_repo_prefix_fails_closed(self) -> None:
         temporary, fixture = self.fixture()

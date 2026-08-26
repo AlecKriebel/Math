@@ -40,3 +40,45 @@
   attacks for both this producer and the canonicalizer mutation producer.
 - Completion estimate: **100% for the transport evidence repair**; global
   release qualification remains pending the ordered outer reseal.
+
+## 2026-08-26 — production-verifier mutation qualification
+
+- Reproduced the referee's concern: four of ten stored cases had no semantic
+  diagnostic and were qualified only by inequality of clean and mutated row
+  hashes.  This was an evidence defect, not a surviving transport mutation.
+- Replaced those four cases by complete deterministic-ledger attacks.  Each
+  attack rewrites exactly one graph-derived occurrence, recomputes every row
+  hash, ordered root, action census, compressed-file binding, input binding,
+  and certificate payload, passes the structural directory validator, and is
+  then rejected by independent primitive regeneration in the untouched full
+  verifier at one exact diagnostic.
+- The other six cases now require exact local semantic diagnostics.  Wrong
+  diagnostics, unrelated tracebacks, signal and positive non-one exits,
+  timeouts, embedded PASS tokens, stale outputs, and optimized-mode reruns are
+  explicit negative controls and cannot qualify a rejection.
+- The full baseline now replays the stored authoritative certificate in place
+  before any disposable copy or reseal is permitted.  Routine outputs are
+  caller-owned, atomic, path-independent, and unable to leave stale PASS
+  evidence after failure.
+- No theorem statement, graph census, ledger row count, or transport closure
+  changed.  Completion estimate: **100% for the repaired transport mutation
+  evidence**, pending only final release-wide resealing and replay.
+
+## 2026-08-26 — final frozen-input qualification
+
+- Regenerated the authoritative certificate after all sixteen bound inputs
+  were frozen.  The three generated ledgers remained byte-identical to the
+  prior qualified ledgers: 67,741 relation rows, 71,022 probe-restriction
+  rows, and 5,540 restoration-restriction rows, with identical ordered roots,
+  action censuses, and zero unresolved transports.  Only input provenance and
+  derived certificate/report seals changed.
+- The producer completed in 232.73 seconds with 2,552,758,272-byte maximum
+  RSS.  The final full mutation suite completed in 1,593.15 seconds with
+  2,592,063,488-byte maximum RSS.  All four complete coherently resealed
+  production-verifier attacks and all six exact local semantic attacks were
+  rejected; zero cases survived.
+- The final certificate payload is
+  `a52f9c2ac63f650c7aee1e32790090dc40903a1c562e208a9c4c87d4b0d58a0a`;
+  the final mutation-report payload is
+  `93741cbeb50b2e2fde5d2c144de5d9943d1879fb61faf64115cf44ec5608b044`.
+  The strict release binder independently accepted the complete v2 contract.

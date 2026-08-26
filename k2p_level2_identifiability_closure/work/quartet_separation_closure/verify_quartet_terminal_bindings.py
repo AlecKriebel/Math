@@ -17,6 +17,7 @@ import gzip
 import hashlib
 import itertools
 import json
+import sys
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -730,8 +731,6 @@ def audit_probe(project: Path, semantics_formulas: dict[str, list[list[Any]]]) -
 
 
 def main() -> None:
-    if not __debug__:
-        raise SystemExit("QUARTET_TERMINAL_BINDING_OPTIMIZED_MODE_FORBIDDEN")
     parser = argparse.ArgumentParser()
     parser.add_argument("--project", type=Path, default=DEFAULT_PROJECT)
     parser.add_argument("--semantics-certificate", type=Path, default=DEFAULT_SEMANTICS)
@@ -741,6 +740,12 @@ def main() -> None:
     project = args.project.resolve()
     semantics_path = args.semantics_certificate.resolve()
     output = args.output.resolve() if args.output else HERE / "quartet_terminal_binding_certificate.json"
+    # A caller-owned explicit output is fail-closed.  The implicit canonical
+    # destination is not removed by a diagnostic-only ``-O`` invocation.
+    if args.output is not None:
+        output.unlink(missing_ok=True)
+    if not __debug__:
+        raise SystemExit("QUARTET_TERMINAL_BINDING_OPTIMIZED_MODE_FORBIDDEN")
     formulas, semantics = semantics_contract(semantics_path, project)
 
     layers = {
@@ -810,4 +815,14 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except (
+        QuartetTerminalFailure,
+        KeyError,
+        OSError,
+        ValueError,
+        json.JSONDecodeError,
+    ) as exc:
+        print(f"QUARTET_TERMINAL_BINDING_FAIL:{exc}", file=sys.stderr)
+        raise SystemExit(1)

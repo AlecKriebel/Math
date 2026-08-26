@@ -46,11 +46,22 @@ def expect_policy_failure(output: Path) -> None:
     raise RuntimeError(f"unsafe outer report output accepted:{output}")
 
 
+def expect_qualification_failure(
+    result: subprocess.CompletedProcess[bytes], diagnostic: str
+) -> None:
+    try:
+        suite.accepted_rejection("negative_control", result, diagnostic)
+    except ReleaseFailure:
+        return
+    raise RuntimeError(f"outer qualifier accepted invalid rejection:{result}")
+
+
 def main() -> None:
     if not __debug__:
         raise SystemExit("FINAL_RELEASE_MUTATION_OUTPUT_TEST_OPTIMIZED_MODE_FORBIDDEN")
 
-    marker = b"FINAL_THEOREM_RELEASE_OPTIMIZED_MODE_FORBIDDEN"
+    diagnostic = "FINAL_THEOREM_RELEASE_OPTIMIZED_MODE_FORBIDDEN"
+    marker = diagnostic.encode()
     alpha = subprocess.CompletedProcess(
         ["child"],
         1,
@@ -67,11 +78,28 @@ def main() -> None:
         ),
         stderr=b"",
     )
-    alpha_row = suite.accepted_rejection("portable_rejection", alpha, (marker,))
-    beta_row = suite.accepted_rejection("portable_rejection", beta, (marker,))
+    alpha_row = suite.accepted_rejection("portable_rejection", alpha, diagnostic)
+    beta_row = suite.accepted_rejection("portable_rejection", beta, diagnostic)
     require(alpha_row == beta_row, "raw child paths changed the semantic row")
-    report_alpha = suite.build_report([alpha_row], [])
-    report_beta = suite.build_report([beta_row], [])
+    try:
+        suite.build_report([alpha_row], [])
+    except ReleaseFailure as error:
+        require(
+            "FINAL_MUTATION_CENSUS_FAIL" in str(error),
+            f"wrong report-census diagnostic:{error}",
+        )
+    else:
+        raise RuntimeError("outer report builder accepted an incomplete census")
+    rows_alpha = [
+        {**alpha_row, "name": f"portable_rejection_{index}"}
+        for index in range(suite.REQUIRED_MUTATION_COUNT)
+    ]
+    rows_beta = [
+        {**beta_row, "name": f"portable_rejection_{index}"}
+        for index in range(suite.REQUIRED_MUTATION_COUNT)
+    ]
+    report_alpha = suite.build_report(rows_alpha, [])
+    report_beta = suite.build_report(rows_beta, [])
     bytes_alpha = (
         json.dumps(report_alpha, indent=2, sort_keys=True) + "\n"
     ).encode()
@@ -85,6 +113,26 @@ def main() -> None:
         and b"extraction_alpha" not in bytes_alpha,
         "outer report retained unstable runtime or raw-output evidence",
     )
+    for attack in (
+        subprocess.CompletedProcess(["child"], 2, stdout=marker, stderr=b""),
+        subprocess.CompletedProcess(["child"], -9, stdout=marker, stderr=b""),
+        subprocess.CompletedProcess(
+            ["child"],
+            1,
+            stdout=b"Traceback (most recent call last):\nRuntimeError: " + marker,
+            stderr=b"",
+        ),
+        subprocess.CompletedProcess(
+            ["child"], 1, stdout=b"UNRELATED_FAILURE_CODE\n", stderr=b""
+        ),
+        subprocess.CompletedProcess(
+            ["child"],
+            1,
+            stdout=marker + b"\nK2P_FOUR_PORT_DIRECT_CLOSURE_RELEASE_PASS\n",
+            stderr=b"",
+        ),
+    ):
+        expect_qualification_failure(attack, diagnostic)
 
     require(suite.validate_report_output_path(None) is None, "optional output drift")
     for relative in LOCKED_COLLISION_TARGETS:
@@ -104,6 +152,40 @@ def main() -> None:
             and suite.validate_report_output_path(external_beta)
             == external_beta.resolve(),
             "external caller-owned reports rejected",
+        )
+        external_alpha.parent.mkdir(parents=True, exist_ok=True)
+        external_alpha.write_text('{"status":"PASS","stale":true}\n')
+        suite.prepare_report_output(
+            suite.validate_report_output_path(external_alpha)
+        )
+        require(
+            not external_alpha.exists(),
+            "failed outer preflight could retain stale PASS bytes",
+        )
+
+        optimized_output = root / "optimized-stale-pass.json"
+        optimized_output.write_text('{"status":"PASS","stale":true}\n')
+        optimized = subprocess.run(
+            [
+                sys.executable,
+                "-O",
+                "-B",
+                str(PROJECT / RUNNER),
+                "--output",
+                str(optimized_output),
+            ],
+            cwd=PROJECT,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            text=True,
+            check=False,
+        )
+        require(
+            optimized.returncode != 0
+            and "FINAL_RELEASE_MUTATIONS_OPTIMIZED_MODE_FORBIDDEN"
+            in optimized.stdout
+            and not optimized_output.exists(),
+            f"optimized outer run retained stale PASS:{optimized.stdout}",
         )
 
         symlink = root / "outside-name-resolving-to-locked-source.json"
@@ -173,6 +255,8 @@ def main() -> None:
                 "direct_and_symlink_collisions_rejected": True,
                 "source_bytes_unchanged": True,
                 "hardlink_and_late_symlink_safe": True,
+                "stale_report_removed_before_preflight": True,
+                "optimized_rejection_removes_stale_report": True,
             },
             sort_keys=True,
         )

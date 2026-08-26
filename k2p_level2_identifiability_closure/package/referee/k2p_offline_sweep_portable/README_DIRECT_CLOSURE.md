@@ -44,6 +44,22 @@ separate direct-closure lock, recomputes all six 1,931-row manifest roots, and
 replays the 36 exact obstructions into a temporary certificate.  The replay
 must be byte-identical to the committed golden certificate.
 
+The verifier-facing mutation qualification is run separately so that it cannot
+recurse through the production verifier:
+
+```bash
+python test_direct_closure_release_mutations.py \
+  --output /tmp/k2p-direct-closure-mutations.json
+```
+
+It first checks the clean locked package, then runs ten coherently relocked
+content attacks plus the optimized-Python attack.  A case qualifies only with
+exit status one and its exact case-specific diagnostic; tracebacks, import
+failures, timeouts, signals, other non-one exits, and success terminals are
+rejected.  Routine reports must be caller-owned paths outside this source tree.
+The committed `direct_closure_mutation_report.json` is resealed only by naming
+that exact path together with `--allow-authoritative-output`.
+
 The published result payload under `results/four_port_release_v4/` contains:
 
 - the complete merged status;

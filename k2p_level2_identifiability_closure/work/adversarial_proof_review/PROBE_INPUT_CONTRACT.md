@@ -22,7 +22,11 @@ coherent parent restriction on every surviving equality edge.
 The authoritative artifact is `probe_input_contract.json`.  Its independent
 replay is `verify_probe_input_contract.py`; the fast fail-closed structural
 replay and mutations are `verify_probe_input_structure.py` and
-`test_probe_input_mutations.py`.
+`test_probe_input_mutations.py`.  Routine mutation runs require a disposable
+caller-owned report, for example
+`.venv/bin/python -B work/adversarial_proof_review/test_probe_input_mutations.py
+--output /tmp/k2p-probe-input-mutations.json`; the canonical report may be
+replaced only with the explicit maintainer override.
 
 ## Equality-anchor census
 
@@ -154,5 +158,7 @@ reticulation-incoming, or root-suppressed site, splitting the artificial-root
 halves, a false root-half relation, a wrong site transport, a wrong edge-count
 formula, rooted/topology-first or `triple_type` classifier reintroduction,
 ordered-row omission, upstream binding corruption, and the named `raw4424`
-regression.  The original contract also passes under optimized Python, so the
-fail-closed checks do not depend on assertions.
+regression.  It first requires clean structural and full production replays,
+then requires return code one, the exact case-specific semantic diagnostic,
+and no success artifact for each attack.  Optimized Python is itself rejected
+explicitly; it is not treated as a positive qualification mode.

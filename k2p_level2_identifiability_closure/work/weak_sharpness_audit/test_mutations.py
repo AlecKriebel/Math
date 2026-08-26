@@ -3,25 +3,140 @@
 
 from __future__ import annotations
 
+import argparse
 import copy
 import json
+import os
 import subprocess
 import sys
+import tempfile
 from fractions import Fraction as F
+from pathlib import Path
 
 import audit_weak_sharpness as audit
 
 
-REJECTED: list[str] = []
+HERE = Path(__file__).resolve().parent
+PROJECT = HERE.parents[1]
+AUTHORITATIVE_OUTPUT = HERE / "mutation_report.json"
+SCHEMA = "k2p-weak-sharpness-audit-mutations-v2"
+SUCCESS_TERMINAL = "K2P_WEAK_SHARPNESS_INDEPENDENT_AUDIT_PASS"
+EXPECTED_DIAGNOSTICS = {
+    "omitted_graph_arc": "X: retic has degree (2, 0), expected (2, 1)",
+    "reversed_reticulation_arc": "Z: tree has degree (2, 1), expected (1, 2)",
+    "reticulation_role_changed": "V: tree has degree (2, 1), expected (1, 2)",
+    "reticulation_arrowhead_removed": "mutated arrowhead census",
+    "first_rooting_count": "primary first census drift",
+    "second_tree_child_count": "primary second census drift",
+    "stored_inheritance": "primary inheritance drift",
+    "stored_internal_pair": "primary internal parameter drift",
+    "stored_arm_pair": "primary pendant parameter drift",
+    "actual_inheritance_reevaluation": (
+        "independent normalized tensor differs from stated tensor"
+    ),
+    "common_tensor_entry": "primary common tensor reassigned",
+    "normalized_tensor_entry": "primary normalized tensor drift",
+    "minor_determinant": "primary minor determinant is reassigned",
+    "minor_column_repeated": (
+        "primary stored minor vanishes under independent expansion"
+    ),
+    "rank_claim_lowered": "primary rank claim drift",
+    "actual_cherry_CT_pair": "mutant: outside D_plus",
+    "cherry_jacobian_entry": "mutated determinant",
+    "stored_cherry_determinant": "primary cherry determinant drift",
+    "broken_cherry_pruning": "new leaf is not in a cherry",
+    "cherry_edge_ceases_to_be_bridge": "mutated edge not bridge",
+    "optimized_mode": "WEAK_SHARPNESS_AUDIT_OPTIMIZED_MODE_FORBIDDEN",
+}
+RESULTS: list[dict[str, object]] = []
+
+
+def fail(code: str, detail: object | None = None) -> "None":
+    raise RuntimeError(code if detail is None else f"{code}:{detail}")
+
+
+def sha_file(path: Path) -> str:
+    return audit.hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def validate_output_path(output: Path, allow_authoritative: bool = False) -> Path:
+    lexical = Path(os.path.abspath(os.fspath(output)))
+    normalized = lexical.parent.resolve() / lexical.name
+    resolved = lexical.resolve()
+    canonical = AUTHORITATIVE_OUTPUT.parent.resolve() / AUTHORITATIVE_OUTPUT.name
+    if allow_authoritative:
+        if normalized != canonical or resolved != canonical:
+            fail(
+                "WEAK_SHARPNESS_MUTATION_OUTPUT_POLICY_FAIL",
+                "authoritative override requires the exact nonsymbolic canonical report",
+            )
+        return canonical
+    try:
+        resolved.relative_to(PROJECT.resolve())
+    except ValueError:
+        return normalized
+    fail(
+        "WEAK_SHARPNESS_MUTATION_OUTPUT_POLICY_FAIL",
+        "routine report output must be outside the project source tree",
+    )
+
+
+def prepare_output(output: Path) -> None:
+    output.unlink(missing_ok=True)
+
+
+def atomic_write_bytes(path: Path, content: bytes) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    descriptor, temporary_name = tempfile.mkstemp(
+        prefix=f".{path.name}.", suffix=".tmp", dir=path.parent
+    )
+    temporary = Path(temporary_name)
+    try:
+        os.fchmod(descriptor, 0o644)
+        with os.fdopen(descriptor, "wb") as handle:
+            handle.write(content)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+        directory_descriptor = os.open(path.parent, os.O_RDONLY)
+        try:
+            os.fsync(directory_descriptor)
+        finally:
+            os.close(directory_descriptor)
+    finally:
+        temporary.unlink(missing_ok=True)
+
+
+def qualify_exception(name: str, error: Exception) -> dict[str, object]:
+    expected = EXPECTED_DIAGNOSTICS[name]
+    if type(error) is not RuntimeError or str(error) != expected:
+        fail(
+            "WEAK_SHARPNESS_MUTATION_DIAGNOSTIC_FAIL",
+            {
+                "mutation": name,
+                "expected_type": "RuntimeError",
+                "observed_type": type(error).__name__,
+                "expected": expected,
+                "observed": str(error),
+            },
+        )
+    return {
+        "mutation": name,
+        "status": "rejected",
+        "expected_exception_type": "RuntimeError",
+        "observed_exception_type": "RuntimeError",
+        "expected_diagnostic": expected,
+        "observed_diagnostic": expected,
+    }
 
 
 def must_reject(label: str, action) -> None:
     try:
         action()
-    except (RuntimeError, StopIteration):
-        REJECTED.append(label)
+    except Exception as error:
+        RESULTS.append(qualify_exception(label, error))
         return
-    raise RuntimeError(f"MUTATION_SURVIVED:{label}")
+    fail("WEAK_SHARPNESS_MUTATION_SURVIVED", label)
 
 
 def mutated(primary: dict[str, object], action) -> dict[str, object]:
@@ -40,10 +155,146 @@ def demand_first_census(mixed) -> None:
     audit.require(census["reticulation_edges_explicitly_tried"] == 4, "mutated arrowhead census")
 
 
+def qualify_optimized_failure(observation: dict[str, object]) -> dict[str, object]:
+    expected = EXPECTED_DIAGNOSTICS["optimized_mode"]
+    output = str(observation.get("output", ""))
+    returncode = observation.get("returncode")
+    if observation.get("timeout") is not False:
+        fail("WEAK_SHARPNESS_MUTATION_TIMEOUT", "optimized_mode")
+    if observation.get("signal") is not False or (
+        isinstance(returncode, int) and returncode < 0
+    ):
+        fail("WEAK_SHARPNESS_MUTATION_SIGNAL_EXIT", "optimized_mode")
+    if returncode != 1:
+        fail(
+            "WEAK_SHARPNESS_MUTATION_EXIT_CODE_FAIL",
+            {"mutation": "optimized_mode", "returncode": returncode},
+        )
+    forbidden = [
+        token
+        for token in (
+            "Traceback (most recent call last)",
+            "AssertionError",
+            "ModuleNotFoundError",
+            "ImportError",
+        )
+        if token in output
+    ]
+    if forbidden:
+        fail("WEAK_SHARPNESS_MUTATION_UNRELATED_CRASH", forbidden)
+    if observation.get("success_artifact_present") is not False:
+        fail("WEAK_SHARPNESS_MUTATION_SUCCESS_ARTIFACT", "optimized_mode")
+    lines = [line.strip() for line in output.splitlines() if line.strip()]
+    if lines != [expected]:
+        fail(
+            "WEAK_SHARPNESS_MUTATION_DIAGNOSTIC_FAIL",
+            {"mutation": "optimized_mode", "expected": expected, "observed": lines},
+        )
+    return {
+        "mutation": "optimized_mode",
+        "status": "rejected",
+        "returncode": 1,
+        "expected_diagnostic": expected,
+        "observed_diagnostic": expected,
+        "timeout": False,
+        "signal": False,
+        "success_artifact_present": False,
+        "forbidden_crash_text_present": False,
+    }
+
+
+def qualification_negative_controls() -> dict[str, bool]:
+    exception_name = "omitted_graph_arc"
+    controls: dict[str, bool] = {}
+    for label, error in (
+        ("wrong_exception_type_rejected", ValueError(EXPECTED_DIAGNOSTICS[exception_name])),
+        ("wrong_diagnostic_rejected", RuntimeError("unrelated diagnostic")),
+    ):
+        try:
+            qualify_exception(exception_name, error)
+        except RuntimeError:
+            controls[label] = True
+        else:
+            fail("WEAK_SHARPNESS_MUTATION_NEGATIVE_CONTROL_SURVIVED", label)
+    expected = EXPECTED_DIAGNOSTICS["optimized_mode"]
+    valid = {
+        "returncode": 1,
+        "output": expected,
+        "timeout": False,
+        "signal": False,
+        "success_artifact_present": False,
+    }
+    optimized_controls = {
+        "optimized_wrong_diagnostic_rejected": {**valid, "output": expected + ":wrong"},
+        "optimized_traceback_rejected": {
+            **valid,
+            "output": f"Traceback (most recent call last):\nRuntimeError: {expected}",
+        },
+        "optimized_import_error_rejected": {
+            **valid,
+            "output": f"ModuleNotFoundError: dependency\n{expected}",
+        },
+        "optimized_timeout_rejected": {**valid, "returncode": None, "timeout": True},
+        "optimized_signal_rejected": {**valid, "returncode": -9, "signal": True},
+        "optimized_non_one_exit_rejected": {**valid, "returncode": 2},
+        "optimized_success_artifact_rejected": {
+            **valid,
+            "output": f"{expected}\n{SUCCESS_TERMINAL}",
+            "success_artifact_present": True,
+        },
+    }
+    for label, observation in optimized_controls.items():
+        try:
+            qualify_optimized_failure(observation)
+        except RuntimeError:
+            controls[label] = True
+        else:
+            fail("WEAK_SHARPNESS_MUTATION_NEGATIVE_CONTROL_SURVIVED", label)
+    return controls
+
+
 def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--allow-authoritative-output", action="store_true")
+    parser.add_argument("--timeout-seconds", type=float, default=60.0)
+    args = parser.parse_args()
+    output_path = validate_output_path(args.output, args.allow_authoritative_output)
+    prepare_output(output_path)
     if not __debug__:
         raise SystemExit("WEAK_SHARPNESS_MUTATIONS_OPTIMIZED_MODE_FORBIDDEN")
+    if args.timeout_seconds <= 0:
+        fail("WEAK_SHARPNESS_MUTATION_TIMEOUT_INVALID")
+    RESULTS.clear()
+    source_fingerprints = {
+        "primary_certificate_sha256": sha_file(audit.PRIMARY),
+        "independent_audit_certificate_sha256": sha_file(
+            audit.HERE / "audit_certificate.json"
+        ),
+        "independent_audit_verifier_sha256": sha_file(
+            audit.HERE / "audit_weak_sharpness.py"
+        ),
+        "mutation_runner_sha256": sha_file(Path(__file__).resolve()),
+    }
     primary = json.loads(audit.PRIMARY.read_text())
+    baseline_payload = audit.build_audit(primary)
+    baseline = dict(baseline_payload)
+    baseline["payload_sha256"] = audit.digest(baseline_payload)
+    frozen_baseline = json.loads((audit.HERE / "audit_certificate.json").read_text())
+    if baseline != frozen_baseline:
+        fail("WEAK_SHARPNESS_MUTATION_BASELINE_BYTE_LOGIC_FAIL")
+    clean_baseline = {
+        "status": "PASS",
+        "payload_sha256": baseline["payload_sha256"],
+        "certificate_sha256": source_fingerprints[
+            "independent_audit_certificate_sha256"
+        ],
+        "exact_object_equal": True,
+        "rooting_censuses": [[5, 2, 3], [7, 2, 5]],
+        "ranks": [9, 9],
+        "relation": "none",
+    }
+    negative_controls = qualification_negative_controls()
     first_spec, second_spec = audit.independent_specs()
     first = audit.rooted_graph(first_spec)
     second = audit.rooted_graph(second_spec)
@@ -188,29 +439,88 @@ def main() -> None:
     must_reject("cherry_edge_ceases_to_be_bridge", nonbridge_attachment)
 
     # Python optimized mode must never erase the verifier's guards.
-    process = subprocess.run(
-        [sys.executable, "-O", str(audit.HERE / "audit_weak_sharpness.py")],
-        text=True,
-        capture_output=True,
-        check=False,
-    )
-    audit.require(process.returncode != 0, "optimized audit unexpectedly succeeded")
-    audit.require(
-        "WEAK_SHARPNESS_AUDIT_OPTIMIZED_MODE_FORBIDDEN" in process.stdout + process.stderr,
-        "optimized-mode refusal marker missing",
-    )
+    try:
+        process = subprocess.run(
+            [sys.executable, "-O", "-B", str(audit.HERE / "audit_weak_sharpness.py")],
+            text=True,
+            capture_output=True,
+            check=False,
+            timeout=args.timeout_seconds,
+        )
+        optimized_observation = {
+            "returncode": process.returncode,
+            "output": process.stdout + process.stderr,
+            "timeout": False,
+            "signal": process.returncode < 0,
+            "success_artifact_present": SUCCESS_TERMINAL
+            in (process.stdout + process.stderr).splitlines(),
+        }
+    except subprocess.TimeoutExpired as error:
+        optimized_observation = {
+            "returncode": None,
+            "output": "".join(
+                value.decode("utf-8", "replace")
+                if isinstance(value, bytes)
+                else (value or "")
+                for value in (error.stdout, error.stderr)
+            ),
+            "timeout": True,
+            "signal": False,
+            "success_artifact_present": False,
+        }
+    RESULTS.append(qualify_optimized_failure(optimized_observation))
 
-    report = {
-        "schema": "k2p-weak-sharpness-audit-mutations-v1",
-        "mutations_rejected": REJECTED,
-        "mutation_count": len(REJECTED),
-        "optimized_mode_rejected": True,
+    expected_order = list(EXPECTED_DIAGNOSTICS)
+    if [row["mutation"] for row in RESULTS] != expected_order:
+        fail("WEAK_SHARPNESS_MUTATION_ORDER_FAIL")
+    after_fingerprints = {
+        "primary_certificate_sha256": sha_file(audit.PRIMARY),
+        "independent_audit_certificate_sha256": sha_file(
+            audit.HERE / "audit_certificate.json"
+        ),
+        "independent_audit_verifier_sha256": sha_file(
+            audit.HERE / "audit_weak_sharpness.py"
+        ),
+        "mutation_runner_sha256": sha_file(Path(__file__).resolve()),
+    }
+    if after_fingerprints != source_fingerprints:
+        fail("WEAK_SHARPNESS_MUTATION_SOURCE_TREE_DRIFT")
+    payload = {
+        "schema": SCHEMA,
+        "status": "PASS",
+        **source_fingerprints,
+        "clean_baseline": clean_baseline,
+        "diagnostic_contract": EXPECTED_DIAGNOSTICS,
+        "execution_contract": {
+            "exact_exception_type_and_diagnostic_required": True,
+            "optimized_mode_requires_exit_code_one": True,
+            "traceback_import_timeout_signal_non_one_forbidden": True,
+            "success_terminal_forbidden": True,
+            "source_tree_unchanged": True,
+        },
+        "qualification_negative_controls": negative_controls,
+        "mutation_count": len(RESULTS),
+        "mutations_rejected": len(RESULTS),
+        "mutations_survived": 0,
+        "cases": RESULTS,
         "conclusion": "PASS",
     }
-    report["payload_sha256"] = audit.digest(report)
-    (audit.HERE / "mutation_report.json").write_text(json.dumps(report, indent=2, sort_keys=True) + "\n")
+    report = dict(payload)
+    report["payload_sha256"] = audit.digest(payload)
+    atomic_write_bytes(
+        output_path, (json.dumps(report, indent=2, sort_keys=True) + "\n").encode()
+    )
     print("K2P_WEAK_SHARPNESS_AUDIT_MUTATIONS_PASS")
-    print(json.dumps({"mutations_rejected": len(REJECTED), "optimized_mode_rejected": True}, sort_keys=True))
+    print(
+        json.dumps(
+            {
+                "mutations_rejected": len(RESULTS),
+                "optimized_mode_rejected": True,
+                "payload_sha256": report["payload_sha256"],
+            },
+            sort_keys=True,
+        )
+    )
 
 
 if __name__ == "__main__":

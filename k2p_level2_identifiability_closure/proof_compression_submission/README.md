@@ -52,11 +52,18 @@ not represented as a fictitious hand quotient. Primary reader artifacts are:
 - `PROOF_COMPRESSION_RESULT.md` and `.json`;
 - `THEOREM_TO_TEMPLATE_CROSSWALK.md` and `.json`;
 - `templates/PRINTED_CERTIFICATE_APPENDIX.json` and the generated
-  `supplement/certificate_appendix.tex`, with independent replay and mutations;
+  `supplement/certificate_appendix.tex`, with reader-facing presentation
+  replay and regression mutations (not a substitute for the production
+  direct-closure theorem verifier and mutation suite);
 - `analysis/WEAK_SHARPNESS_COLUMN_CROSSWALK.json`, with independent graph and
   determinant replay;
 - `crosswalk/THEOREM_ARTIFACT_CROSSWALK.md` and `.json`; and
-- `adversarial_review/ADVERSARIAL_ARTICLE_AUDIT.md`.
+- `FRESH_ADVERSARIAL_R2_DISPOSITION.md`, the current referee-finding
+  disposition and final qualification record;
+- `adversarial_review/STATIC_AUDIT_RESULT.json`, the generated current source
+  audit; and
+- `adversarial_review/ADVERSARIAL_ARTICLE_AUDIT.md`, a historical audit whose
+  final-qualification addendum is superseded by the round-2 disposition.
 
 From the project root, the compact qualification is:
 
@@ -77,7 +84,7 @@ they are not compiled into the five-file source set.
 Submission metadata are finalized: corresponding email
 `me@aleckriebel.com`; sole-author contribution statement approved; no specific
 funding; no competing interests; CC BY 4.0 for the paper and data; MIT for
-code; immutable source tag `k2p-same-biorxiv-v1.0.1`. No GitHub Release,
+code; immutable source tag `k2p-same-biorxiv-v1.0.2`. No GitHub Release,
 Zenodo deposit, or DOI is claimed in this version.
 
 ## Compile-complete bioRxiv source set

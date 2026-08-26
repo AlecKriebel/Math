@@ -13,16 +13,21 @@ from pathlib import Path, PurePosixPath
 
 PROJECT = Path(__file__).resolve().parents[2]
 LOCK_RELATIVE = "work/final_theorem_release/RELEASE_LOCK.json"
-EXPECTED_LOCK_SHA256 = "c319977f350923ab900a883235e32ec945d55a864338c14a08ce266ed3a1c78a"
-EXPECTED_LOCK_PAYLOAD = "dcc15b8ae2bb46674344595809690657119e5271611bab8c3c47fccade0fa509"
-EXPECTED_FILE_COUNT = 403
-EXPECTED_TOTAL_BYTES = 478_865_262
-EXPECTED_CONTENT_ROOT = "de6c2f7162164bb460bc608bffefb96b0494965c734c1063f304530a0cc36b82"
+EXPECTED_LOCK_SHA256 = "4a084871be2fe212559e3a38306c73deb4ba111e5900e61b680a6db81f0e88fb"
+EXPECTED_LOCK_PAYLOAD = "d95fc7d6ef2b44c9c67be6394d5cf226b04bb3335be507e11da9a6a595e5c75f"
+EXPECTED_FILE_COUNT = 406
+EXPECTED_TOTAL_BYTES = 479_323_919
+EXPECTED_CONTENT_ROOT = "722334d61c0f4ef8bb5d18bdf1bd4ff4649410df15967bf51400c9f42ce9e1c2"
 ARCHIVE_PREFIX = "k2p_principal_d_plus_referee_release"
 
 
 def fail(message: str) -> None:
     raise SystemExit(message)
+
+
+def reject_optimized_mode() -> None:
+    if not __debug__:
+        fail("optimized Python is forbidden")
 
 
 def safe_relative(value: str) -> PurePosixPath:
@@ -69,7 +74,7 @@ def collect_ledger() -> dict[str, dict[str, int | str]]:
         fail("release is not promotion-ready")
 
     paths = set(lock.get("files", {}))
-    if len(paths) != 227:
+    if len(paths) != 230:
         fail("unexpected outer file count")
 
     add_manifest_paths(
@@ -142,7 +147,7 @@ def write_zip(path: Path, ledger: dict[str, dict[str, int | str]]) -> str:
     with zipfile.ZipFile(path, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as archive:
         for relative in ledger:
             data = PROJECT.joinpath(*safe_relative(relative).parts).read_bytes()
-            info = zipfile.ZipInfo(f"{ARCHIVE_PREFIX}/{relative}", date_time=(2026, 8, 25, 0, 0, 0))
+            info = zipfile.ZipInfo(f"{ARCHIVE_PREFIX}/{relative}", date_time=(2026, 8, 26, 0, 0, 0))
             info.compress_type = zipfile.ZIP_DEFLATED
             info.external_attr = 0o100644 << 16
             info.create_system = 3
@@ -151,6 +156,7 @@ def write_zip(path: Path, ledger: dict[str, dict[str, int | str]]) -> str:
 
 
 def main() -> None:
+    reject_optimized_mode()
     parser = argparse.ArgumentParser()
     parser.add_argument("--check-only", action="store_true")
     parser.add_argument("--ledger", type=Path)

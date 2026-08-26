@@ -257,6 +257,9 @@ def main():
         "one_port_parents_inheriting_triangle": inherited_parent_count,
         "two_port_equalities_inheriting_triangle": equality_global_count,
     })
+    certificate["assembly_theorem"]["root_movement_and_site_completeness"][
+        "input_contract_payload_sha256"
+    ] = contract["payload_sha256"]
     certificate.pop("operational", None)
     certificate.pop("payload_sha256", None)
     logical = dict(certificate)

@@ -167,3 +167,68 @@ All times are 2026-08-21 PDT.
   independent-replay payloads equal the current artifacts.
 - Completion estimate for this bounded package remains **100%**; the outer
   submission bundle remains pending its ordered reseal.
+
+## 2026-08-26 — raw-four restoration-provenance rebind
+
+- Regenerated raw-four first into an external scratch directory after the
+  corrected restoration forest was independently replayed and resealed.
+  Comparing all 405,216 old and new rows found the same category, class,
+  parent, transport, and certificate data.  Exactly the 2,540 restoration
+  presentations changed, and each changed only at
+  `evidence_binding.forest_payload_sha256`, from the superseded forest payload
+  `0a3df52751ba38d7e6d4d118ee7068a98b7be7897d0aa732e96a74d7523a88bf`
+  to `be81d13f8f51dc49030e569bf31939a7c3bb915c3dff1f91455416761eeeb772`.
+- Repeated the official producer into the authoritative artifact directory;
+  its ledger and summary were byte-identical to the prior scratch generation.
+  The producer completed in 235.82 seconds with 348,536,832 bytes maximum RSS.
+  The resulting ledger SHA-256 is
+  `c6cd9d6b5b09371565fd3e58ff9ab3cd7266b6231b153d43f9d1e886af8eae27`
+  and the summary payload is
+  `3fdfdfb46d8c23e89979ce5794f8b5b11176946278ae70ebc75d54d6e2ad1d44`.
+- The independent primitive, byte, classification, and whole-map algebra
+  replay passed all 405,216 rows in 368.29 seconds with 337,379,328 bytes
+  maximum RSS.  Replay payload:
+  `1cb227b8430d86fc74dfce7f94bc3ec9c01adad1be8c9156c118d15812e85c7c`.
+- The production-verifier-facing suite rejected all 12 complete semantic
+  ledger attacks and passed its optimized-mode and source-immutability guards,
+  for 14/14 total tests and zero survivors.  It completed in 522.27 seconds
+  with 343,932,928 bytes maximum RSS.  Mutation payload:
+  `c1d55c7624a2cfd508681a5b18529e0760384d66c3ed1b534c17b9eb4e747d46`.
+  The separate atomic-output, hardlink, symlink, authoritative-alias, and
+  optimized-mode safety test also passed.
+- Completion estimate for the corrected raw-four composite layer remains
+  **100%**.  No mathematical census, classification, relation, parent, child,
+  or transport changed; only provenance seals were rebound.  The outer finite
+  universe locator and release lock remain to be resealed by the global release
+  workflow.
+
+## 2026-08-26 — final raw-rank and full-map provenance rebind
+
+- Regenerated the authoritative raw-four composite after the final raw-rank
+  and full-map-overlay provenance reseals.  The 405,216-row gzip ledger was
+  byte-identical to its predecessor, with unchanged SHA-256
+  `c6cd9d6b5b09371565fd3e58ff9ab3cd7266b6231b153d43f9d1e886af8eae27`.
+  A recursive summary comparison found exactly three changed leaves: the
+  `rank_upper` input SHA-256, the `whole_map_overlay` input SHA-256, and the
+  derived payload seal.  Every classification, exact rank, terminal,
+  restoration member and parent, polynomial witness, ordered root, stream
+  hash, and census was unchanged.  The producer completed in 228.60 seconds
+  with 346,963,968 bytes maximum RSS.  The final summary has file SHA-256
+  `31bb6cf9e363fa4435e1d5a5e4d6d589440b926afd049844eb010b59f04c1436`
+  and payload
+  `3a49bfeeb244cba84cf2e42e2acf296f112d1586c5e17f40e2d2872722c3c988`.
+- The independent primitive, exact-algebra, and canonical-byte replay passed
+  all 405,216 rows in 353.19 seconds with 342,441,984 bytes maximum RSS.  Its
+  file SHA-256 is
+  `1a4ac5c5ab5f86228f9e59c62a9021547907a9d6238e1171a7074f49506a8c66`
+  and payload is
+  `dfed35eab33dcc9983b38c8cedb79ed90b12c8a5cf04b58d251637b3fb2f1191`.
+- The verifier-facing v2 mutation suite rejected all 12 complete semantic
+  ledger attacks and passed its optimized-mode and source-immutability guards,
+  for 14/14 total tests and zero survivors.  It completed in 509.48 seconds
+  with 344,195,072 bytes maximum RSS.  Its file SHA-256 is
+  `db6d4e6c8986db20ca623724981d2d4f39f6ff0ccf5d70e708190c1e09a86d4a`
+  and payload is
+  `eec4a56b20faa3239044db49796fa724d60a5412a8d6e89a92db5d81e9656385`.
+- Completion remains **100%**.  No theorem, classification, relation, rank,
+  parent, child, transport, or finite census changed.

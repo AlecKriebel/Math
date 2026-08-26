@@ -24,10 +24,15 @@ tensor Bernstein coefficients.
 
 ```sh
 .venv/bin/python work/theta2_sign_reclassification/verify_theta2_full_map_independent.py
-.venv/bin/python work/theta2_sign_reclassification/mutation_tests.py
+.venv/bin/python -B work/theta2_sign_reclassification/mutation_tests.py \
+  --output /tmp/k2p-theta2-full-map-mutations.json
 ```
 
 The verifier binds the independently produced truth certificate under
 `work/adversarial_proof_review/`, but recomputes every load-bearing graph,
 transport, polynomial, and Bernstein claim from the primitive inputs.
-
+The mutation producer first runs that verifier on the unmodified certificate,
+then requires each resealed attack to exit exactly one at its named semantic
+diagnostic with no success artifact.  Routine output must be caller-owned and
+outside the source tree; optimized Python removes any pre-existing output
+before failing closed.

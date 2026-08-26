@@ -23,7 +23,9 @@ import importlib.util
 import itertools
 import json
 import math
+import os
 import sys
+import tempfile
 from pathlib import Path
 from typing import Any
 
@@ -34,10 +36,12 @@ HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[2]
 DEFAULT_PACKAGE = PROJECT / "work/probe_coherence_corrected"
 INPUT_CONTRACT = PROJECT / "work/adversarial_proof_review/probe_input_contract.json"
+INPUT_REPLAY = PROJECT / "work/adversarial_proof_review/probe_input_independent_verification.json"
 INPUT_RECONSTRUCTOR = PROJECT / "work/adversarial_proof_review/verify_probe_input_contract.py"
 ATLAS_PATH = PROJECT / "package/referee/k2p_offline_sweep_portable/atlas/k2p_atlas_core.py"
 DEFAULT_OUTPUT = HERE / "independent_probe_graph_audit_certificate.json"
 DEFAULT_MUTATIONS = HERE / "independent_probe_mutation_report.json"
+AUTHORITATIVE_OUTPUTS = (DEFAULT_OUTPUT, DEFAULT_MUTATIONS)
 
 
 class AuditFailure(RuntimeError):
@@ -63,6 +67,48 @@ def sha_file(path: Path) -> str:
         for block in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(block)
     return digest.hexdigest()
+
+
+def validate_output_paths(
+    output: Path, mutations_output: Path, allow_authoritative_output: bool
+) -> tuple[Path, Path]:
+    validated = []
+    for candidate in (output, mutations_output):
+        lexical = Path(os.path.abspath(os.fspath(candidate)))
+        normalized = lexical.parent.resolve() / lexical.name
+        resolved = lexical.resolve()
+        require(
+            not lexical.is_symlink(),
+            "PROBE_AUDIT_OUTPUT_POLICY_FAIL: output path may not be a symlink",
+        )
+        if lexical.exists():
+            require(
+                lexical.stat().st_nlink == 1,
+                "PROBE_AUDIT_OUTPUT_POLICY_FAIL: output path may not be a hardlink",
+            )
+        if not allow_authoritative_output:
+            try:
+                resolved.relative_to(PROJECT.resolve())
+            except ValueError:
+                pass
+            else:
+                raise AuditFailure(
+                    "PROBE_AUDIT_OUTPUT_POLICY_FAIL: routine output must be "
+                    "outside the project source tree"
+                )
+        validated.append(normalized)
+    require(
+        validated[0] != validated[1],
+        "PROBE_AUDIT_OUTPUT_POLICY_FAIL: audit outputs must be distinct",
+    )
+    if allow_authoritative_output:
+        expected = tuple(path.parent.resolve() / path.name for path in AUTHORITATIVE_OUTPUTS)
+        require(
+            tuple(validated) == expected,
+            "PROBE_AUDIT_OUTPUT_POLICY_FAIL: authoritative override licenses "
+            "only the two canonical audit reports",
+        )
+    return validated[0], validated[1]
 
 
 def import_path(name: str, path: Path):
@@ -1146,69 +1192,259 @@ def public_anchor_expected(contract_anchor, class_id: int, global_triangle):
 
 
 def write_json(path: Path, value: dict[str, Any]) -> None:
-    path.write_text(json.dumps(value, indent=2, sort_keys=True) + "\n")
-
-
-def run_mutations(samples: dict[str, Any], output: Path) -> dict[str, Any]:
-    results = []
-
-    def rejected(name: str, mutation, check) -> None:
-        value = copy.deepcopy(mutation)
+    payload = (json.dumps(value, indent=2, sort_keys=True) + "\n").encode()
+    path.parent.mkdir(parents=True, exist_ok=True)
+    descriptor, temporary_name = tempfile.mkstemp(
+        prefix=f".{path.name}.", suffix=".tmp", dir=path.parent
+    )
+    temporary = Path(temporary_name)
+    try:
+        os.fchmod(descriptor, 0o644)
+        with os.fdopen(descriptor, "wb") as handle:
+            handle.write(payload)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+        directory_descriptor = os.open(path.parent, os.O_RDONLY)
         try:
-            check(value)
-        except (AuditFailure, KeyError, IndexError, TypeError, ValueError):
-            results.append({"mutation": name, "result": "REJECTED"})
-            return
-        raise AuditFailure(f"mutation survived:{name}")
+            os.fsync(directory_descriptor)
+        finally:
+            os.close(directory_descriptor)
+    finally:
+        temporary.unlink(missing_ok=True)
 
-    rejected("omitted_raw_record", samples["coverage_rows"] - 1,
-             lambda count: require(count == samples["coverage_rows"], "coverage row count"))
+
+def qualify_in_process_mutation_failure(
+    name: str, expected_diagnostic: str, check, value: Any
+) -> dict[str, Any]:
+    try:
+        check(copy.deepcopy(value))
+    except AuditFailure as error:
+        observed = str(error)
+        require(
+            observed == expected_diagnostic,
+            f"mutation diagnostic mismatch:{name}",
+        )
+        return {
+            "mutation": name,
+            "rejected": True,
+            "exception_type": "AuditFailure",
+            "expected_diagnostic": expected_diagnostic,
+            "observed_diagnostic": observed,
+        }
+    except Exception as error:
+        raise AuditFailure(
+            f"mutation unrelated exception:{name}:{type(error).__name__}"
+        ) from error
+    raise AuditFailure(f"mutation survived:{name}")
+
+
+def qualify_in_process_case(
+    name: str, expected_diagnostic: str, check, clean: Any, mutated: Any
+) -> dict[str, Any]:
+    try:
+        check(copy.deepcopy(clean))
+    except Exception as error:
+        raise AuditFailure(
+            f"clean baseline failed:{name}:{type(error).__name__}:{error}"
+        ) from error
+    return qualify_in_process_mutation_failure(
+        name, expected_diagnostic, check, mutated
+    )
+
+
+def run_mutation_qualification_negative_controls() -> dict[str, bool]:
+    def expect_failure(action, marker: str) -> None:
+        try:
+            action()
+        except AuditFailure as error:
+            require(marker in str(error), f"negative control wrong failure:{marker}")
+            return
+        raise AuditFailure(f"negative control accepted:{marker}")
+
+    def raise_audit(message: str) -> None:
+        raise AuditFailure(message)
+
+    def raise_key_error(_value: Any) -> None:
+        raise KeyError("synthetic unrelated failure")
+
+    expect_failure(
+        lambda: qualify_in_process_mutation_failure(
+            "control", "expected", lambda _value: raise_audit("wrong"), None
+        ),
+        "mutation diagnostic mismatch:control",
+    )
+    expect_failure(
+        lambda: qualify_in_process_mutation_failure(
+            "control", "expected", raise_key_error, None
+        ),
+        "mutation unrelated exception:control:KeyError",
+    )
+    expect_failure(
+        lambda: qualify_in_process_mutation_failure(
+            "control", "expected", lambda _value: None, None
+        ),
+        "mutation survived:control",
+    )
+    expect_failure(
+        lambda: qualify_in_process_case(
+            "control",
+            "expected",
+            lambda _value: raise_audit("baseline error"),
+            None,
+            None,
+        ),
+        "clean baseline failed:control:AuditFailure:baseline error",
+    )
+    return {
+        "wrong_diagnostic_not_qualified": True,
+        "unrelated_exception_not_qualified": True,
+        "surviving_mutation_not_qualified": True,
+        "failed_clean_baseline_not_qualified": True,
+    }
+
+
+def run_mutations(
+    samples: dict[str, Any], output: Path, certificate_path: Path,
+    certificate_payload_sha256: str,
+) -> dict[str, Any]:
     wrong_parent = copy.deepcopy(samples["two_row"])
     wrong_parent["one_port_parent_id"] = samples["other_parent_id"]
-    rejected("wrong_parent", wrong_parent,
-             lambda row: require(row["one_port_parent_id"] == samples["two_row"]["one_port_parent_id"], "parent identity"))
     wrong_site = copy.deepcopy(samples["one_row"])
     wrong_site["source_site_id"] = "E:" + "0" * 64
-    rejected("wrong_site", wrong_site,
-             lambda row: require(row["source_site_id"] == samples["one_row"]["source_site_id"], "site identity"))
     wrong_reverse = copy.deepcopy(samples["reverse"])
     wrong_reverse["reverse_parent_transport_id"] = samples["other_transport_id"]
-    rejected("wrong_reverse_transport", wrong_reverse,
-             lambda row: require(row == samples["reverse"], "reverse exact payload"))
     broken_triangle = copy.deepcopy(samples["triangle_row"])
     broken_triangle["global_triangle_sha256"] = "0" * 64
-    rejected("broken_global_triangle", broken_triangle,
-             lambda row: require(row == samples["triangle_row"], "global triangle"))
     wrong_q = copy.deepcopy(samples["quartet_row"])
     wrong_q["proof_id"] = samples["other_quartet_id"]
-    rejected("reassigned_quartet_certificate", wrong_q,
-             lambda row: require(row["proof_id"] == samples["quartet_row"]["proof_id"], "quartet certificate"))
     wrong_ti = copy.deepcopy(samples["ti_row"])
     wrong_ti["proof_id"] = samples["other_ti_id"]
-    rejected("reassigned_Ti_certificate", wrong_ti,
-             lambda row: require(row["proof_id"] == samples["ti_row"]["proof_id"], "T_i certificate"))
     wrong_restriction = copy.deepcopy(samples["restriction"])
     wrong_restriction["removed_label"] += 1
-    rejected("wrong_parent_restriction", wrong_restriction,
-             lambda row: require(f"R:{sha(row)}" == samples["restriction_id"], "restriction self hash"))
     wrong_transport = copy.deepcopy(samples["transport"])
     wrong_transport["vertex_map"][0][1] = wrong_transport["vertex_map"][1][1]
-    rejected("broken_exact_transport", wrong_transport,
-             lambda row: validate_transport_record(samples["transport_id"], row))
     rooted = copy.deepcopy(samples["one_row"])
     rooted["rooted_triple_cache"] = "revoked"
-    rejected("old_rooted_cache_field", rooted, reject_rooted_oracle_fields)
     swapped_status = copy.deepcopy(samples["quartet_row"])
     swapped_status["status"] = "isomorphic"
-    rejected("classifier_status_reassignment", swapped_status,
-             lambda row: require(row["status"] == samples["quartet_row"]["status"], "classifier status"))
     wrong_hash = copy.deepcopy(samples["one_row"])
     wrong_hash["source_child_graph_sha256"] = "f" * 64
-    rejected("child_graph_hash_mutation", wrong_hash,
-             lambda row: require(row["source_child_graph_sha256"] == samples["one_row"]["source_child_graph_sha256"], "child hash"))
+
+    cases = [
+        (
+            "omitted_raw_record", "coverage row count",
+            lambda count: require(count == samples["coverage_rows"], "coverage row count"),
+            samples["coverage_rows"], samples["coverage_rows"] - 1,
+        ),
+        (
+            "wrong_parent", "parent identity",
+            lambda row: require(
+                row["one_port_parent_id"]
+                == samples["two_row"]["one_port_parent_id"],
+                "parent identity",
+            ),
+            samples["two_row"], wrong_parent,
+        ),
+        (
+            "wrong_site", "site identity",
+            lambda row: require(
+                row["source_site_id"] == samples["one_row"]["source_site_id"],
+                "site identity",
+            ),
+            samples["one_row"], wrong_site,
+        ),
+        (
+            "wrong_reverse_transport", "reverse exact payload",
+            lambda row: require(row == samples["reverse"], "reverse exact payload"),
+            samples["reverse"], wrong_reverse,
+        ),
+        (
+            "broken_global_triangle", "global triangle",
+            lambda row: require(row == samples["triangle_row"], "global triangle"),
+            samples["triangle_row"], broken_triangle,
+        ),
+        (
+            "reassigned_quartet_certificate", "quartet certificate",
+            lambda row: require(
+                row["proof_id"] == samples["quartet_row"]["proof_id"],
+                "quartet certificate",
+            ),
+            samples["quartet_row"], wrong_q,
+        ),
+        (
+            "reassigned_Ti_certificate", "T_i certificate",
+            lambda row: require(
+                row["proof_id"] == samples["ti_row"]["proof_id"],
+                "T_i certificate",
+            ),
+            samples["ti_row"], wrong_ti,
+        ),
+        (
+            "wrong_parent_restriction", "restriction self hash",
+            lambda row: require(
+                f"R:{sha(row)}" == samples["restriction_id"],
+                "restriction self hash",
+            ),
+            samples["restriction"], wrong_restriction,
+        ),
+        (
+            "broken_exact_transport",
+            f"transport self hash:{samples['transport_id']}",
+            lambda row: validate_transport_record(samples["transport_id"], row),
+            samples["transport"], wrong_transport,
+        ),
+        (
+            "old_rooted_cache_field",
+            "forbidden rooted-oracle field:$.rooted_triple_cache",
+            reject_rooted_oracle_fields,
+            samples["one_row"], rooted,
+        ),
+        (
+            "classifier_status_reassignment", "classifier status",
+            lambda row: require(
+                row["status"] == samples["quartet_row"]["status"],
+                "classifier status",
+            ),
+            samples["quartet_row"], swapped_status,
+        ),
+        (
+            "child_graph_hash_mutation", "child hash",
+            lambda row: require(
+                row["source_child_graph_sha256"]
+                == samples["one_row"]["source_child_graph_sha256"],
+                "child hash",
+            ),
+            samples["one_row"], wrong_hash,
+        ),
+    ]
+    results = [
+        qualify_in_process_case(name, expected, check, clean, mutated)
+        for name, expected, check, clean, mutated in cases
+    ]
+    diagnostics = {name: expected for name, expected, *_rest in cases}
     report = {
-        "schema": "k2p-corrected-probe-independent-mutations-v1",
+        "schema": "k2p-corrected-probe-independent-mutations-v2",
         "status": "PASS",
+        "source_certificate_sha256": sha_file(certificate_path),
+        "source_certificate_payload_sha256": certificate_payload_sha256,
+        "mutation_runner_sha256": sha_file(Path(__file__).resolve()),
+        "clean_baseline": {
+            "status": "PASS",
+            "checks": len(cases),
+            "all_unmutated_samples_accepted": True,
+        },
+        "diagnostic_contract": diagnostics,
+        "qualification_contract": {
+            "clean_baseline_required_per_case": True,
+            "only_AuditFailure_qualifies": True,
+            "exact_diagnostic_required": True,
+            "unrelated_exceptions_rejected": True,
+            "caller_owned_outputs_required": True,
+        },
+        "qualification_negative_controls": (
+            run_mutation_qualification_negative_controls()
+        ),
         "mutations": results,
         "mutations_rejected": len(results),
         "mutations_survived": 0,
@@ -1219,13 +1455,19 @@ def run_mutations(samples: dict[str, Any], output: Path) -> dict[str, Any]:
 
 
 def main() -> None:
-    if not __debug__:
-        raise AuditFailure("independent graph audit may not run with assertions optimized away")
     parser = argparse.ArgumentParser()
     parser.add_argument("--package-dir", type=Path, default=DEFAULT_PACKAGE)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument("--mutations-output", type=Path, default=DEFAULT_MUTATIONS)
+    parser.add_argument("--allow-authoritative-output", action="store_true")
     args = parser.parse_args()
+    args.output, args.mutations_output = validate_output_paths(
+        args.output, args.mutations_output, args.allow_authoritative_output
+    )
+    args.output.unlink(missing_ok=True)
+    args.mutations_output.unlink(missing_ok=True)
+    if not __debug__:
+        raise AuditFailure("independent graph audit may not run with assertions optimized away")
     package = args.package_dir.resolve()
     certificate_path = package / "probe_coherence_certificate.json"
     certificate = json.loads(certificate_path.read_text())
@@ -1244,7 +1486,7 @@ def main() -> None:
     input_paths = {
         "atlas_sha256": ATLAS_PATH,
         "probe_input_contract_sha256": INPUT_CONTRACT,
-        "probe_input_independent_replay_sha256": PROJECT / "work/adversarial_proof_review/probe_input_independent_verification.json",
+        "probe_input_independent_replay_sha256": INPUT_REPLAY,
         "probe_input_mutations_sha256": PROJECT / "work/adversarial_proof_review/probe_input_mutation_certificate.json",
         "corrected_restoration_sha256": PROJECT / "work/restoration_sign_reclassification/corrected_restoration_forest.json",
         "raw4_ledger_sha256": PROJECT / "work/raw_ledger_audit/artifacts/raw_directional_ledger.jsonl.gz",
@@ -1263,6 +1505,15 @@ def main() -> None:
     require(claimed_contract_payload == sha(contract_payload), "input contract payload")
     require(certificate["inputs"]["probe_input_contract_payload_sha256"] == claimed_contract_payload,
             "input contract payload binding")
+    input_replay = json.loads(INPUT_REPLAY.read_text())
+    replay_payload = dict(input_replay)
+    claimed_replay_payload = replay_payload.pop("payload_sha256")
+    require(claimed_replay_payload == sha(replay_payload), "input replay payload")
+    require(input_replay.get("status") == "PASS", "input replay status")
+    require(input_replay.get("contract_sha256") == sha_file(INPUT_CONTRACT),
+            "input replay contract binding")
+    require(input_replay.get("contract_payload_sha256") == claimed_contract_payload,
+            "input replay contract payload binding")
 
     proof_path = package / certificate["registries"]["separation"]["path"]
     require(sha_file(proof_path) == certificate["registries"]["separation"]["sha256"], "proof file hash")
@@ -1815,7 +2066,12 @@ def main() -> None:
     samples["restriction"] = restriction_records[samples["restriction_id"]]
     samples["transport_id"] = samples["one_row"]["transport_id"]
     samples["transport"] = transport_records[samples["transport_id"]]
-    mutation_report = run_mutations(samples, args.mutations_output)
+    mutation_report = run_mutations(
+        samples,
+        args.mutations_output,
+        certificate_path,
+        certificate["payload_sha256"],
+    )
 
     primary_files = {
         "probe_coherence_certificate.json": certificate_path,
@@ -1837,7 +2093,7 @@ def main() -> None:
             "canonical_graph_pair_transport_classes": 39,
             "source_sites": 2_206,
             "target_sites": 2_206,
-            "independent_replay_payload_sha256": "96d14bae9b20646abfe64b85a7ac0f61377182f75479031f621ea0dbe2096fce",
+            "independent_replay_payload_sha256": claimed_replay_payload,
         },
         "one_port": {
             "raw_pairs": sum(one_counts.values()),

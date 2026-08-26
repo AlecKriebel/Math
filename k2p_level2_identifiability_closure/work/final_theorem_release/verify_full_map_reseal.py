@@ -7,7 +7,9 @@ import argparse
 import copy
 import hashlib
 import json
+import os
 import sys
+import tempfile
 from pathlib import Path
 from typing import Any
 
@@ -15,6 +17,7 @@ from typing import Any
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
 DEFAULT_OUTPUT = HERE / "full_map_reseal_audit.json"
+AUTHORITATIVE_OUTPUT = DEFAULT_OUTPUT
 CURRENT_DOMAIN = (
     "the full open unit cube in edge-sector and inheritance variables; "
     "therefore also its physical D_plus subset"
@@ -56,6 +59,11 @@ FAMILIES = {
         ),
     },
 }
+MUTATION_DIAGNOSTICS = {
+    "fully_resealed_arbitrary_domain": "DOMAIN_TEXT_FAIL:0",
+    "stale_nested_seal": "NESTED_SEAL_FAIL:0",
+    "stale_top_seal": "TOP_SEAL_FAIL",
+}
 
 
 class ResealFailure(RuntimeError):
@@ -82,6 +90,94 @@ def sha_object(value: object) -> str:
 
 def sha_bytes(value: bytes) -> str:
     return hashlib.sha256(value).hexdigest()
+
+
+def source_inputs() -> set[Path]:
+    return {
+        Path(__file__).resolve(),
+        AUTHORITATIVE_OUTPUT.resolve(),
+        *(specification["path"].resolve() for specification in FAMILIES.values()),
+    }
+
+
+def validate_output_path(output: Path, allow_authoritative_output: bool) -> Path:
+    lexical = Path(os.path.abspath(os.fspath(output)))
+    normalized = lexical.parent.resolve() / lexical.name
+    authoritative = (
+        AUTHORITATIVE_OUTPUT.parent.resolve() / AUTHORITATIVE_OUTPUT.name
+    )
+    if lexical.is_symlink():
+        raise SystemExit("FULL_MAP_RESEAL_OUTPUT_POLICY_FAIL:output symlink")
+    if allow_authoritative_output:
+        if normalized != authoritative:
+            raise SystemExit(
+                "FULL_MAP_RESEAL_OUTPUT_POLICY_FAIL:authoritative override "
+                "licenses only the nonsymbolic canonical report"
+            )
+        return normalized
+    if lexical.exists() and any(
+        source.exists() and os.path.samefile(lexical, source)
+        for source in source_inputs()
+    ):
+        raise SystemExit(
+            "FULL_MAP_RESEAL_OUTPUT_POLICY_FAIL:output hardlinks a source input"
+        )
+    try:
+        lexical.resolve().relative_to(PROJECT.resolve())
+    except ValueError:
+        return normalized
+    raise SystemExit(
+        "FULL_MAP_RESEAL_OUTPUT_POLICY_FAIL:routine output must be external"
+    )
+
+
+def clear_stale_output(path: Path) -> None:
+    path.unlink(missing_ok=True)
+    require(not path.exists(), "STALE_OUTPUT_REMAINS", path.name)
+
+
+def atomic_write_bytes(path: Path, payload: bytes) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    descriptor, temporary_name = tempfile.mkstemp(
+        prefix=f".{path.name}.", suffix=".tmp", dir=path.parent
+    )
+    temporary = Path(temporary_name)
+    try:
+        os.fchmod(descriptor, 0o644)
+        with os.fdopen(descriptor, "wb") as handle:
+            handle.write(payload)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, path)
+        directory_descriptor = os.open(path.parent, os.O_RDONLY)
+        try:
+            os.fsync(directory_descriptor)
+        finally:
+            os.close(directory_descriptor)
+    finally:
+        temporary.unlink(missing_ok=True)
+
+
+def qualifies_mutation_failure(error: BaseException, expected: str) -> bool:
+    return type(error) is ResealFailure and str(error) == expected
+
+
+def run_qualification_negative_controls() -> None:
+    expected = MUTATION_DIAGNOSTICS["fully_resealed_arbitrary_domain"]
+    require(
+        qualifies_mutation_failure(ResealFailure(expected), expected),
+        "QUALIFIED_CONTROL_REJECTED",
+    )
+    require(
+        not qualifies_mutation_failure(
+            ResealFailure(expected + ":unrelated"), expected
+        ),
+        "WRONG_DIAGNOSTIC_QUALIFIED",
+    )
+    require(
+        not qualifies_mutation_failure(RuntimeError(expected), expected),
+        "UNRELATED_EXCEPTION_QUALIFIED",
+    )
 
 
 def sign_payloads(document: dict[str, Any]) -> list[dict[str, Any]]:
@@ -164,16 +260,21 @@ def mutation_rows(
     stale_top_sign.pop("certificate_sha256", None)
     stale_top_sign["certificate_sha256"] = sha_object(stale_top_sign)
 
-    for name, candidate, expected in (
-        ("fully_resealed_arbitrary_domain", arbitrary, "DOMAIN_TEXT_FAIL"),
-        ("stale_nested_seal", stale_nested, "NESTED_SEAL_FAIL"),
-        ("stale_top_seal", stale_top, "TOP_SEAL_FAIL"),
+    for name, candidate in (
+        ("fully_resealed_arbitrary_domain", arbitrary),
+        ("stale_nested_seal", stale_nested),
+        ("stale_top_seal", stale_top),
     ):
+        expected = MUTATION_DIAGNOSTICS[name]
         try:
             validate_document(candidate, schema=schema, sign_count=sign_count)
-        except ResealFailure as error:
+        except Exception as error:
             diagnostic = str(error)
-            require(expected in diagnostic, "MUTATION_WRONG_REJECTION", diagnostic)
+            require(
+                qualifies_mutation_failure(error, expected),
+                "MUTATION_WRONG_REJECTION",
+                f"{type(error).__name__}:{diagnostic}",
+            )
             rows.append(
                 {
                     "family": family,
@@ -188,11 +289,15 @@ def mutation_rows(
 
 
 def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--allow-authoritative-output", action="store_true")
+    args = parser.parse_args()
+    output = validate_output_path(args.output, args.allow_authoritative_output)
+    clear_stale_output(output)
     if not __debug__:
         raise ResealFailure("FULL_MAP_RESEAL_OPTIMIZED_MODE_FORBIDDEN")
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
-    args = parser.parse_args()
+    run_qualification_negative_controls()
 
     family_rows: dict[str, dict[str, Any]] = {}
     mutations: list[dict[str, str]] = []
@@ -255,8 +360,7 @@ def main() -> int:
         "mutations": mutations,
     }
     report["payload_sha256"] = sha_object(report)
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    args.output.write_bytes(pretty_bytes(report))
+    atomic_write_bytes(output, pretty_bytes(report))
     print(
         json.dumps(
             {

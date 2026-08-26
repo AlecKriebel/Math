@@ -410,3 +410,40 @@
   restoration edge, probe row, or theorem statement changed.  Completion is
   98% pending the new outer lock, two-path outer mutations, detached full
   replay, source-bound telemetry, PDFs, manifests, and deterministic archive.
+
+## 2026-08-26 — round-2 referee HOLD repaired before final lock (98%)
+
+- Accepted every release-evidence finding while preserving the theorem and all
+  finite classifications. Four parameter-transport attacks now construct
+  complete coherently resealed ledgers/certificates and reach the untouched
+  production verifier. The exact-rank suite now substitutes sampled-point
+  evidence into a complete copied package and requires rejection at the
+  symbolic-certificate gate.
+- Canonicalizer, restoration, primary probe, probe-input, independent
+  probe-graph, rank, raw4/theta2 full-map, direct, and weak-sharpness mutation
+  suites now require clean baselines, exact semantic diagnostics, exit status
+  one, no crash/import/timeout/signal, no stale PASS artifact, and caller-owned
+  atomic output. The semantic-diagnostic meta-regression qualifies nine
+  suites and 49 negative controls.
+- Rebound the raw4 rank package and every dependent full-map/composite layer.
+  All 405,216 raw rows, 4,379 rank decisions, 1,931 classes, 16,974 full-map
+  rows, and the complete composite ledger are unchanged. Raw4 full-map,
+  composite, and unified-universe mutations reject 9/9, 14/14, and 22/22.
+  The final unified certificate/replay/mutation payloads are
+  `ff019028a98abced5ebb727af45573e16c0a53b401134ba702199f031c69b5f1`,
+  `b444cea40a44fc1ffb5cc707d1f7335beb8d7c68b544cdbb08ff99b34d4fa74f`,
+  and `a67ce800ef355bd32d4e20aeadd6c1f8c2c285e70616a95c6999ca8d670cf0cb`.
+- Replaced the revoked cycle quick row by the authoritative independent cycle
+  promotion replay (13,440 base rows, 536,364 children, zero unresolved or
+  incoherent records), removed the unbound optional tree/sunlet hook, and
+  added a 41-name ordered telemetry contract with a count-preserving
+  substitution negative test. Quick and full mode therefore have exactly 23
+  and 41 fixed layers.
+- The active outer suite contains 25 stronger gates. A complete run passed
+  25/25 in 3,532.78 seconds with zero survivors before the final
+  provenance-only raw-rank cascade; it will be rerun from the final clean
+  package. No topology, polynomial, rank decision, separator, transport,
+  parent, probe row, census, theorem statement, or domain changed.
+- Completion is 100% for the mathematical theorem and approximately 98% for
+  release qualification, pending final source binding, lock, quick/mutation
+  replay, detached 41-layer replay, PDFs, manifests, and deterministic archive.

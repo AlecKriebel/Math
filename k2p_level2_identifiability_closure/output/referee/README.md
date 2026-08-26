@@ -1,9 +1,9 @@
 # Portable referee bundle
 
 The authoritative portable set is the recursive closure of
-`work/final_theorem_release/RELEASE_LOCK.json`. It contains 403 files and
-478,865,262 bytes. Its canonical content-ledger root is
-`de6c2f7162164bb460bc608bffefb96b0494965c734c1063f304530a0cc36b82`.
+`work/final_theorem_release/RELEASE_LOCK.json`. It contains 406 files and
+479,323,919 bytes. Its canonical content-ledger root is
+`722334d61c0f4ef8bb5d18bdf1bd4ff4649410df15967bf51400c9f42ce9e1c2`.
 
 ## Entry-point names
 
@@ -23,6 +23,16 @@ reviewer encountering one of those names should use this exact mapping:
 These are name mappings, not claims that the absent legacy filenames were
 executed.  The current commands are the only supported referee protocol.
 
+## Independence boundary
+
+The package supplies independent primitive regeneration, exact graph-relation
+checks, symbolic certificate replay, and complete verifier-facing ledger
+mutations.  It does not claim a second all-family orbit partition that avoids
+both the submitted primitive atlas and canonicalizer, or a second symbolic
+engine that independently re-expands every higher-degree polynomial body.
+Those are possible stronger audits, not hidden premises of the submitted
+theorem.
+
 From the project root, verify the exact set and regenerate its ledger with:
 
 ```sh
@@ -35,7 +45,7 @@ To make a deterministic ZIP outside the Git history, add:
 
 ```sh
 .venv/bin/python -B output/referee/build_referee_bundle.py \
-  --output archives/k2p_principal_d_plus_referee_release_20260825.zip
+  --output archives/k2p_principal_d_plus_referee_release_20260826.zip
 ```
 
 The ZIP is deliberately derived rather than committed: its uncompressed

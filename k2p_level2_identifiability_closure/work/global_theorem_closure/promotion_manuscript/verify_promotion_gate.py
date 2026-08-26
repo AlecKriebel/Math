@@ -55,20 +55,20 @@ EXPECTED_ZERO_GATES = {
 EXPECTED_PROBE_ARTIFACT_VALUES = {
     "primary": {
         "path": "work/probe_coherence_corrected/probe_coherence_certificate.json",
-        "file_sha256": "2f4d64b32a905ce2cc06bae7d03215f9239427d421825c2525437ee6ba2ccaf6",
-        "payload_sha256": "964e9f3c241e63a1b0b12b3ceb516c58525d410c3c550e8335b619a6817400e5",
+        "file_sha256": "53d1ac1e6a14637f547c031a6e8031d3d3cc49630518f31339813031089e0bfc",
+        "payload_sha256": "5d71b11dfef66fa3ef33cb52078baa10becb6f08f56edb94902bf82be6e4548b",
         "status": "PASS",
     },
     "independent_replay": {
         "path": "work/global_proof_adversary/probe_full_audit/independent_probe_graph_audit_certificate.json",
-        "file_sha256": "b30e2e32e5eec86875031a8bba82d58689f18859896adeb6a6931888df75209f",
-        "payload_sha256": "9e50d3681cf2c572c1575e770c67f95723d8c3e8a3943b5963dec7d07c3bec63",
+        "file_sha256": "74cd1dfb4d6c38dfe73b8bb3c76d29b22eb5f8ab8ca80a9d56bc376ec5d0fa0d",
+        "payload_sha256": "095d7cfa4a2f8bc54e56f8fbc2e44f184ba8af75e4135f31f9db5b0c3ff444e2",
         "status": "PASS",
     },
     "mutation_report": {
         "path": "work/global_proof_adversary/probe_full_audit/independent_probe_mutation_report.json",
-        "file_sha256": "b0df0584163150c9a823b4e364b8ee46c196ae8abb28fdca4d3d5893a97bfea7",
-        "payload_sha256": "58006ed7b6677c055b5cdd7249857dc2f752fb3db9cfbcc5bbe5e0a26e31875f",
+        "file_sha256": "70fd78df07220d7ab27ba477ed584f3ba1c5cc45a96cd4d4ffdb5d1a34b1325a",
+        "payload_sha256": "1b2126eda8036dbb75ed861b3536ed9db0f651c8399cbb85cb8c43d2cf39a110",
         "status": "PASS",
     },
 }
@@ -120,24 +120,24 @@ FROZEN = {
         "02013c3a0d9456c97d64ae06fd20b241057bfdb437f07acea4f15437860b8416",
     ),
     "work/corrected_composite_ledgers/artifacts/raw4_corrected_composite_ledger.jsonl.gz": (
-        "431dac8898ad2a724d12c200687de1b377723e302214a79a11a03524a4084b96",
+        "c6cd9d6b5b09371565fd3e58ff9ab3cd7266b6231b153d43f9d1e886af8eae27",
         None,
     ),
     "work/corrected_composite_ledgers/artifacts/raw4_corrected_composite_summary.json": (
-        "9a2b340eb10e73abf0ea7c7aba5ae7c69942eea0f75402408f52277d960d648e",
-        "b4c4cb8a89afcc82edb266ee9fab1e9abc59c4ab977dd00dadc43304b3e4048c",
+        "31bb6cf9e363fa4435e1d5a5e4d6d589440b926afd049844eb010b59f04c1436",
+        "3a49bfeeb244cba84cf2e42e2acf296f112d1586c5e17f40e2d2872722c3c988",
     ),
     "work/corrected_composite_ledgers/artifacts/raw4_corrected_composite_independent_replay.json": (
-        "c5cd73b13265b7acc36f156889b86e2c04715181c6a1d70224cd725b0221a859",
-        "40770d3068e936a9c5d0e93225fa15feaed90a212d9515e1cb3f2d46c35979e0",
+        "1a4ac5c5ab5f86228f9e59c62a9021547907a9d6238e1171a7074f49506a8c66",
+        "dfed35eab33dcc9983b38c8cedb79ed90b12c8a5cf04b58d251637b3fb2f1191",
     ),
     "work/corrected_composite_ledgers/artifacts/raw4_terminal_certificate_registry.json.gz": (
         "0a1818655429d60660c1ed87f3fbe412701f386b081562b3a4caa54079069f1d",
         None,
     ),
     "work/corrected_composite_ledgers/artifacts/raw4_corrected_composite_mutations.json": (
-        "83196bc33504fd1e17c8784d2c7530f358e85cff8161c8e5f14ba04a60c42d76",
-        "dc265e02da504666197320fcab90226fa44cfc5c5906bb4ef5b6f1ab35d44f02",
+        "db6d4e6c8986db20ca623724981d2d4f39f6ff0ccf5d70e708190c1e09a86d4a",
+        "eec4a56b20faa3239044db49796fa724d60a5412a8d6e89a92db5d81e9656385",
     ),
     "work/corrected_composite_ledgers/artifacts/theta2_corrected_composite_ledger.jsonl.gz": (
         "805fc7f5a3de9dad2c63a210208075cf19910cf811ffd08878f32782ce71b659",
@@ -156,40 +156,40 @@ FROZEN = {
         "5663b87d3f09eaac5e89db69ac5a1cf6069b308abf9bc4242650d0897ded1ff7",
     ),
     "work/restoration_sign_reclassification/corrected_restoration_forest.json": (
-        "43bd2be5e7626a954fc4fa4cf45e8d0e6483c947ddc9cba80f2b1a13351bc3a8",
-        "0a3df52751ba38d7e6d4d118ee7068a98b7be7897d0aa732e96a74d7523a88bf",
+        "bcf91bf433c71056d1e27871dd15fe532f9ae1cc4ad79eb2373eae57071ee427",
+        "be81d13f8f51dc49030e569bf31939a7c3bb915c3dff1f91455416761eeeb772",
     ),
     "work/restoration_sign_reclassification/corrected_restoration_replay_certificate.json": (
-        "24fa2e61f60610a8b24c4107ec7f866278f0cc671ca203d7aaa40a37bea291dd",
-        "36c89ff9729e049a374a9fead8488f7a90e62c617d17e242aca5d340faeb164a",
+        "42be6b0c4d85aa58b336caebbdefd10a0af0ce4234a0482e65c7b5a68d1e6430",
+        "e32668fd0b1bc6d59fc7fde6a3bb25e934e8e4c77aa65ee4f024978d07ddda4f",
     ),
     "work/restoration_sign_reclassification/corrected_restoration_mutation_certificate.json": (
-        "7513e55df67bc9d3adbbe3fe9e20b2557beb733abb29b73cbdaabc5103d890ca",
-        "5d2733443767fbd1fecbe6cd2723f3f463e0afdb0404f970994dcf9b968d6348",
+        "9379094aa0bd6a90c906d82ca441bccee00fa0b10b13d34645c5ca9c3bff9161",
+        "9f31f9688a587d79d35c24114d4a0693463486f254f0ee4892b99494d707c909",
     ),
     "work/cycle_three_port_closure/promotion/cycle_base_authoritative.jsonl.gz": (
-        "d6209dc605c9f3a3459c129d741c6b788f26dcf989afe828d8a720833bfd49da",
+        "abb209def72a61971b7f2fd8b1f3b7fb1a1a7d2e79b8dc2985feb04736a44437",
         None,
     ),
     "work/cycle_three_port_closure/promotion/cycle_full_authoritative.jsonl.gz": (
-        "cc73d0eaf3f39939c255c8f86915093e58159eca37c147ae2854d430f1fcb2f7",
+        "76860c09fe8fc26887e6db275ca4d200bc7c3168cfe66a505789926f1c0d273b",
         None,
     ),
     "work/cycle_three_port_closure/promotion/cycle_promotion_certificate.json": (
-        "b560fdf0545c36d576a4cdaf24af9984f6f7231180f20f6927121a57bf816a7a",
-        "df5e3966822af65e2341660bf3f607ff3635d69d3e5a89854afaef308727f2f1",
+        "9fa7dbb121108f778395405cbc866cccc78d9766c4ca12c86aaa24caa899bd50",
+        "26482f277889f3667841614b34dad8cfa68bb3ea2041d4847c9f06d8b82e6590",
     ),
     "work/final_theorem_release/triangle_sunlet_certificate.json": (
         "b81a6cf8da1380f6a682ba6042f6f429ce5d6a47ba0cf62e9c9d8de1b4158885",
         "6fd43ae6d38629277c047d3888e970cdab51f4805dce36d71b2430095c1e1aa6",
     ),
     "work/adversarial_proof_review/probe_input_contract.json": (
-        "7f686ae99dd5e6dafc1c04396b711d294a0bddd6a25574f9ea809b831ad7b377",
-        "579919ca13204ddf959b3a159e4849b69c05ac87861eba2221659ec45bd73f38",
+        "71d8596c5e0fa5804f5a1d938423ba9802f4d11783ef0e9d0f45a0453f0aff22",
+        "39eb12e3dccf102d0550017cc7374ac1ab22c7065e52c900bea2205d07e4e14f",
     ),
     "work/adversarial_proof_review/probe_input_independent_verification.json": (
-        "54de1bef73e76fc82132ef3f0250a0579ea401274a302ed4d8fbd015c9e8a053",
-        "96d14bae9b20646abfe64b85a7ac0f61377182f75479031f621ea0dbe2096fce",
+        "7aab53c560117a4e0260b0c63905fa5d6e60c384d0f01d7f986ddb75911c0107",
+        "4a29f3e7c5e925820b2df39a7a53d29b1a7f672776af9604c2489dbb908a8e36",
     ),
     "work/weak_sharpness_closure/weak_sharpness_certificate.json": (
         "e66c78a0aeab990b4dc448f4f064b37e1e15ecbff75a5f472bf116d4464378bd",
@@ -292,9 +292,9 @@ def main() -> None:
 
     input_contract = placeholder.get("frozen_input_contract", {})
     if input_contract != {
-        "file_sha256": "7f686ae99dd5e6dafc1c04396b711d294a0bddd6a25574f9ea809b831ad7b377",
+        "file_sha256": "71d8596c5e0fa5804f5a1d938423ba9802f4d11783ef0e9d0f45a0453f0aff22",
         "path_records": 176,
-        "payload_sha256": "579919ca13204ddf959b3a159e4849b69c05ac87861eba2221659ec45bd73f38",
+        "payload_sha256": "39eb12e3dccf102d0550017cc7374ac1ab22c7065e52c900bea2205d07e4e14f",
     }:
         fail("frozen probe-input contract fields drifted")
 

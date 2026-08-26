@@ -306,6 +306,6 @@ does not silently relabel this reader-level proof.
 Current coverage artifact:
 
 - file SHA-256:
-  `4a38372635ba617268cfc921baf3a7b397c9beb639dde31bf26b3d2dc7673414`;
+  `1640f0fbf657d81b014d1cfc0857d4cf3d3f0e580c796d86d0d37c4d58cca85a`;
 - logical payload:
-  `10fbb422c113bec30e7370ca2f2000531b09344a257c3531601c9cb802a8453c`.
+  `54928da10e5fe56c68c8e07edf706e1a20deff8ad8f9fbc82d0948e67aa849cb`.

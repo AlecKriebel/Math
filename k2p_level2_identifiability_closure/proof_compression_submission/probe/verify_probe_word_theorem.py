@@ -21,18 +21,18 @@ ATLAS = PROJECT / "package/referee/k2p_offline_sweep_portable/atlas/k2p_atlas_co
 OUTPUT = HERE / "PROBE_WORD_COVERAGE.json"
 
 FILES = {
-    "certificate": (PROBE / "probe_coherence_certificate.json", "2f4d64b32a905ce2cc06bae7d03215f9239427d421825c2525437ee6ba2ccaf6"),
+    "certificate": (PROBE / "probe_coherence_certificate.json", "53d1ac1e6a14637f547c031a6e8031d3d3cc49630518f31339813031089e0bfc"),
     "one": (PROBE / "one_port_ledger.jsonl.gz", "d5fa13d38731bff2403eeb4e4d9e139566c4983b09d30553c6260eaac64c5c90"),
     "two": (PROBE / "two_port_ledger.jsonl.gz", "10f0afcab77f2d61cecfc36d723c6f32065c304ac088b0b8ecf12dfc867fbf9d"),
     "parents": (PROBE / "two_port_parent_inventory.jsonl.gz", "673112e949e08dce0bdbd690be647dd97d0899c2bb12121b4a16ed7a62dba3f8"),
     "transports": (PROBE / "exact_transport_ledger.jsonl.gz", "6bc8e88feac2bee68491287775f078e8e5474bf930961a7390967c9fd350044d"),
     "restrictions": (PROBE / "parent_restriction_ledger.jsonl.gz", "5d1e6c2fe38d31f6304a76886ec37829215b88c8b179f5b23596d49d37ceeb38"),
     "separation": (PROBE / "separation_proof_registry.json.gz", "057783503b1ad7b3c55c14a1cc643db4851c9e42e00595b789b7d6b6d069acfe"),
-    "input_contract": (INPUT_CONTRACT, "7f686ae99dd5e6dafc1c04396b711d294a0bddd6a25574f9ea809b831ad7b377"),
+    "input_contract": (INPUT_CONTRACT, "71d8596c5e0fa5804f5a1d938423ba9802f4d11783ef0e9d0f45a0453f0aff22"),
 }
 
-EXPECTED_CERT_PAYLOAD = "964e9f3c241e63a1b0b12b3ceb516c58525d410c3c550e8335b619a6817400e5"
-EXPECTED_INPUT_PAYLOAD = "579919ca13204ddf959b3a159e4849b69c05ac87861eba2221659ec45bd73f38"
+EXPECTED_CERT_PAYLOAD = "5d71b11dfef66fa3ef33cb52078baa10becb6f08f56edb94902bf82be6e4548b"
+EXPECTED_INPUT_PAYLOAD = "39eb12e3dccf102d0550017cc7374ac1ab22c7065e52c900bea2205d07e4e14f"
 EXPECTED_SOURCE_SUPPORT_GRAMMAR_SHA256 = (
     "cadbb4187f501ab53620b3f15deaccb60bed582dfe8fdbefd7c1ba10f5329047"
 )

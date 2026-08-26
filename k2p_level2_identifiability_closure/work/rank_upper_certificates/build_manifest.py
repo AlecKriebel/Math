@@ -20,7 +20,10 @@ def sha256(path):
 
 
 def main():
-    excluded = {"MANIFEST.sha256", "manifest.json"}
+    # The mutation report binds this manifest from the outer release lock.  It
+    # must not be a member of the manifest it qualifies, or rerunning the
+    # mutation suite would create a circular/self-invalidating commitment.
+    excluded = {"MANIFEST.sha256", "manifest.json", "mutation_report.json"}
     paths = sorted(
         path
         for path in ROOT.rglob("*")

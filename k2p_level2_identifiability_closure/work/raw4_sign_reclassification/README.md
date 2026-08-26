@@ -38,7 +38,8 @@ From the repository root, using the supplied Python environment:
 ```sh
 .venv/bin/python work/raw4_sign_reclassification/build_raw4_corrected_terminal_ledger.py
 .venv/bin/python work/raw4_sign_reclassification/verify_raw4_corrected_terminal_ledger.py
-.venv/bin/python work/raw4_sign_reclassification/mutation_tests.py
+.venv/bin/python -B work/raw4_sign_reclassification/mutation_tests.py \
+  --output /tmp/k2p-raw4-full-map-mutations.json
 ```
 
 The builder searches all triples and orientations and does not import the
@@ -56,5 +57,8 @@ the builder's successive axis transforms.
 - `build_raw4_corrected_terminal_ledger.py`: graph-derived builder;
 - `verify_raw4_corrected_terminal_ledger.py`: independent verifier; and
 - `mutation_tests.py`: omission, reassignment, transport, polynomial,
-  Bernstein, descriptor, and optimized-mode mutations.
-
+  Bernstein, descriptor, and optimized-mode mutations.  The suite requires a
+  clean production-verifier baseline, exact per-case diagnostics and exit
+  status, no failure report, and caller-owned output outside the source tree.
+  It also contains negative controls for unrelated crashes, imports, timeouts,
+  signals, wrong exits, wrong diagnostics, and stale success artifacts.

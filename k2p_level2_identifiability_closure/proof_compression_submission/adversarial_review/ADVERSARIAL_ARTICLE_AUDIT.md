@@ -11,7 +11,12 @@ Date: 22 August 2026
 Historical verdict: **mathematical and reproducibility pass; human metadata and
 immutable release decisions then remained and are now closed**
 
-## Final qualification addendum (25 August 2026)
+## Historical qualification addendum (25 August 2026; superseded)
+
+This addendum records the 25 August package and is not current release
+authority. The round-2 referee disposition and regenerated
+`STATIC_AUDIT_RESULT.json` supersede its lock, layer-count, runtime, and
+archive statements.
 
 The active frozen lock has SHA-256
 `c319977f350923ab900a883235e32ec945d55a864338c14a08ce266ed3a1c78a`

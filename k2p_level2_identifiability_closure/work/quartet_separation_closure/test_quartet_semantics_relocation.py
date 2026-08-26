@@ -29,6 +29,7 @@ SOURCE_FILES = (
     MUTATION_RUNNER,
     Path("work/quartet_separation_closure/verify_quartet_logic.py"),
     Path("work/quartet_separation_closure/QUARTET_SEMANTICS_SPEC.json"),
+    Path("work/quartet_separation_closure/quartet_logic_certificate.json"),
     Path("work/quartet_separation_closure/quartet_semantics_mutation_certificate.json"),
     Path("work/quartet_separation_closure/PROOF.md"),
     Path("proof_compression_submission/article/main.tex"),
@@ -255,21 +256,22 @@ def main() -> None:
         copied_spec_inode = copied_spec.stat().st_ino
         hardlink_output = root / "outside-hardlink-to-project-spec.json"
         os.link(copied_spec, hardlink_output)
-        hardlink_report = run_suite(projects[0], hardlink_output)[0]
+        require_output_policy_rejection(projects[0], hardlink_output)
         require(
             sha(copied_spec.read_bytes()) == copied_spec_hash
             and copied_spec.stat().st_ino == copied_spec_inode
-            and hardlink_output.stat().st_ino != copied_spec_inode,
-            "atomic report write truncated a hardlinked project source",
+            and hardlink_output.stat().st_ino == copied_spec_inode,
+            "rejected hardlinked output changed its project source",
         )
+        hardlink_output.unlink()
 
         late_swap_output = root / "late-symlink-swap.json"
         validated_late_output = semantics_mutations.validate_output_path(
             late_swap_output, False
         )
         late_swap_output.symlink_to(copied_spec)
-        semantics_mutations.atomic_write_text(
-            validated_late_output, "atomic-symlink-replacement\n"
+        semantics_mutations.atomic_write(
+            validated_late_output, b"atomic-symlink-replacement\n"
         )
         require(
             not late_swap_output.is_symlink()
@@ -284,8 +286,8 @@ def main() -> None:
             terminal_late_swap, False
         )
         terminal_late_swap.symlink_to(copied_spec)
-        terminal_mutations.atomic_write_text(
-            terminal_validated_late_output, "terminal-atomic-replacement\n"
+        terminal_mutations.atomic_write(
+            terminal_validated_late_output, b"terminal-atomic-replacement\n"
         )
         require(
             not terminal_late_swap.is_symlink()
@@ -303,24 +305,24 @@ def main() -> None:
         after = [snapshot(project) for project in projects]
         require(before == after, "relocated suite changed source-project bytes")
         require(reports[0] == reports[1], "relocated reports differ by extraction path")
-        require(
-            hardlink_report == reports[0],
-            "hardlink-safe report differs from ordinary disposable report",
-        )
-
         report = json.loads(reports[0])
         require(
-            report.get("schema") == "k2p-quartet-semantics-mutations-v3",
+            report.get("schema") == "k2p-quartet-semantics-mutations-v4",
             "relocated report schema drift",
         )
         require(report.get("status") == "PASS", "relocated report is not PASS")
         require(report.get("case_count") == 8, "relocated report case-count drift")
         require(
             all(
-                row.get("observed_marker") == row.get("expected_marker")
-                and row.get("observed_returncode") == 1
-                and row.get("failed_mutation_certificate_written") is False
-                and "stdout_sha256" not in row
+                row.get("observed_semantic_diagnostic")
+                == row.get("expected_semantic_diagnostic")
+                and row.get("semantic_diagnostic_matched") is True
+                and row.get("verifier_exit_code") == 1
+                and row.get("success_artifact_created") is False
+                and row.get("traceback_observed") is False
+                and row.get("import_failure_observed") is False
+                and row.get("success_token_observed") is False
+                and row.get("rejected") is True
                 for row in report.get("cases", [])
             ),
             "relocated report diagnostic contract drift",
