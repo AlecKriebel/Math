@@ -356,9 +356,15 @@ def main() -> None:
             for path in set(override_before) | set(override_after)
             if override_before.get(path) != override_after.get(path)
         )
+        authoritative_relative = str(AUTHORITATIVE_OUTPUT)
+        authoritative_was_current = (
+            override_before.get(authoritative_relative) == sha(reports[0])
+        )
+        expected_changes = [] if authoritative_was_current else [authoritative_relative]
         require(
-            changed == [str(AUTHORITATIVE_OUTPUT)],
-            f"authoritative override changed non-certificate sources:{changed}",
+            changed == expected_changes,
+            "authoritative override changed unexpected sources or failed "
+            f"idempotence:{changed}:expected={expected_changes}",
         )
         require(
             authoritative.read_bytes() == reports[0],

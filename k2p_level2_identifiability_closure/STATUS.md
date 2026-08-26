@@ -9,7 +9,7 @@ and 403-file transitive evidence bundle have independent replay and mutation
 coverage. The frozen outer release lock is
 
 ```text
-8456344d649641eb1622f474e8144ef4193bbfa87e2c5fea14e6dafb15e6f0a6
+c319977f350923ab900a883235e32ec945d55a864338c14a08ce266ed3a1c78a
 ```
 
 Every finite gate has zero unresolved mathematical records. The corrected
