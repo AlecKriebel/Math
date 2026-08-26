@@ -1,6 +1,7 @@
 # Final claim lock
 
-Status: **mathematical classification certified — K3P-SAME**.
+Status: **complete K3P containment and structural-identifiability
+classification certified**.
 
 The statements below are the exact certified mathematical claim boundary.  The
 classification is promoted only through the fail-closed integrated gate under
@@ -163,13 +164,13 @@ tree-childness and therefore is not the asserted sharp boundary example.
 
 ## Certification and publication boundary
 
-The complete local evidence forces `K3P-SAME`: the primary, finite-orbit,
-sharpness, corrected cut-transfer, global infrastructure, probe, restoration,
-and contextual-triangle gates all pass, and the integrated theorem gate has no
-unresolved mathematical item.  The gate explicitly rejects substitution of
-the withdrawn universal pointwise cut-rank equivalence, an ambient-rank-15
-triangle argument, restoration census conflation, or a proper directed
-containment inside the strong class.
+The complete local evidence proves the classification stated above: the
+primary, finite-orbit, sharpness, corrected cut-transfer, global
+infrastructure, probe, restoration, and contextual-triangle checks all pass,
+and the integrated theorem verifier has no unresolved mathematical item.  It
+explicitly rejects substitution of the withdrawn universal pointwise cut-rank
+equivalence, an ambient-rank-15 triangle argument, restoration census
+conflation, or a proper directed containment inside the strong class.
 
 This is a mathematical certification, not a publication-status claim.  The
 targeted-revision manuscript, reader supplement, PDFs, and visual QA are
@@ -177,6 +178,7 @@ complete; clean quick/full/all-producer replay, release-archive rebinding,
 journal-format packaging, and human author review remain pending.  The project
 does not claim submission readiness, a DOI, a selected license, completed peer
 review, or completed human review.
-The machine-readable promotion is
-`reproducibility/K3P_SAME_CLASSIFICATION_GATE_REPORT.json`; its separate
-integration mutation suite rejects 18/18 theorem-boundary corruptions.
+The machine-readable report retains its legacy internal filename,
+`reproducibility/K3P_SAME_CLASSIFICATION_GATE_REPORT.json`, for compatibility;
+its separate integration mutation suite rejects 18/18 theorem-boundary
+corruptions.

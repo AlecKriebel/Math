@@ -5,7 +5,8 @@ certifying, writing, and releasing the K3P level-2 identifiability result.
 
 The cloud-stage conclusion was treated as a hypothesis, not an assumption.
 The local exact and rigorous-interval program has now independently certified
-the mathematical outcome **K3P-SAME**.
+the complete K3P containment and structural-identifiability classification
+stated below.
 
 Precisely, the structural equivalence requires equality of the labelled reduced
 trees of blobs; corresponding complete factors must be labelled mixed-graph
@@ -51,11 +52,11 @@ withdrawn and unused.  The active theorem is the directional strong-class
 cut-set equality under containment, and no proper one-sided containment occurs
 inside the strong class.
 
-Reproduce the mathematical promotion with:
+Reproduce the integrated mathematical verification with:
 
 ```text
-.venv/bin/python reproducibility/verify_k3p_same_classification.py
-.venv/bin/python reproducibility/test_k3p_same_classification_mutations.py
+.venv/bin/python reproducibility/run_release_suite.py quick
+.venv/bin/python reproducibility/run_release_suite.py full
 ```
 
 This certification is not a submission-readiness claim.  The revised
