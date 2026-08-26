@@ -12,6 +12,9 @@
   archive under `legacy/releases/`.
 - Prepared venue-neutral release version `1.1.0` and tag
   `k2p-k3p-theta-v1.1.0` without moving the prior tag.
+- Froze tag `k2p-k3p-theta-v1.1.0` at commit
+  `d71493d1c188cc78ede27fed1744373272ffb220` and retained validated ZIP and
+  tar.gz replay archives plus checksum sidecars under `releases/`.
 
 ## Canonical bioRxiv and archival preparation -- 23 August 2026
 

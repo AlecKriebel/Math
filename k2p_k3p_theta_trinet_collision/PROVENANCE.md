@@ -22,6 +22,15 @@ K2P statements and arXiv:2607.12919v3 for their correction, the public
 leaf-order diagnosis, and the open high-level K2P/K3P questions. The two exact
 collisions answer those questions negatively.
 
+The current version `1.1.0` archives were built from full commit
+`d71493d1c188cc78ede27fed1744373272ffb220`. The release builder verified
+version/CFF/tag identity, deterministic ZIP and tar.gz construction, both
+internal manifests, identical archive contents, normal and optimized exact
+replay with byte-matching transcripts, and clean PDF rebuilding with matching
+text and rendered pixels. The archives and checksum sidecars are retained under
+`releases/k2p-k3p-theta-v1.1.0/`. No GitHub release, Zenodo deposit, or DOI was
+created.
+
 The historical version `1.0.0` ZIP was built from full commit
 `4100ec6524054cef1e78441587abc9487d689d0b`. The builder produced byte-stable
 ZIP and tar.gz forms, verified their generated metadata byte-for-byte, and

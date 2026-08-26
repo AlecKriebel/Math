@@ -14,7 +14,9 @@ or its [`combined-paper-clarified.tex`](k2p_k3p_theta_clarified/combined-paper-c
 source directly.
 
 The current frozen submission/replay snapshot is version `1.1.0`, identified by
-the venue-neutral Git tag `k2p-k3p-theta-v1.1.0`.
+the venue-neutral Git tag `k2p-k3p-theta-v1.1.0` at full commit
+`d71493d1c188cc78ede27fed1744373272ffb220`. Its validated ZIP, tar.gz, and
+checksum files are under [`releases/k2p-k3p-theta-v1.1.0/`](releases/k2p-k3p-theta-v1.1.0/).
 
 All superseded parent-level files have been moved together under
 [`legacy/DO_NOT_SUBMIT-pre-clarification/`](legacy/DO_NOT_SUBMIT-pre-clarification/).
@@ -60,6 +62,8 @@ Successful complete output ends with `ALL EXACT CHECKS PASSED`.
 - `k2p_k3p_theta_clarified/submission/biorxiv/`: bioRxiv metadata and upload checklist.
 - `k2p_k3p_theta_clarified/CITATION.cff`: citation metadata.
 - `k2p_k3p_theta_clarified/LICENSES.md`: package licensing boundaries.
+- `releases/k2p-k3p-theta-v1.1.0/`: commit-pinned current replay archives and
+  checksums.
 - `legacy/`: superseded drafts and immutable historical release archives, kept
   outside the current submission path.
 
@@ -76,8 +80,9 @@ exact Git commit. It explicitly excludes the author-facing
 `submission/biorxiv/` worksheet/checklists, as well as the legacy parent
 package, untracked caches, and local build debris.
 
-The new archive must be built from the frozen version `1.1.0` tag. The earlier
-version `1.0.0` archive and tag remain immutable historical records.
+The current archives were built from the frozen version `1.1.0` tag and passed
+the clean replay gates documented in their release README. The earlier version
+`1.0.0` archive and tag remain immutable historical records.
 
 Submission-specific status, unresolved author choices, and official bioRxiv guidance are maintained
 in [`submission/biorxiv/`](k2p_k3p_theta_clarified/submission/biorxiv/).
