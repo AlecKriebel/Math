@@ -909,14 +909,21 @@ def replay_rank_full(rows: list[dict[str, Any]], timeout: float) -> None:
             "PYTHONPATH": "",
             "PYTHONNOUSERSITE": "1",
         }
+        dependency_preflight = (
+            "import sys; "
+            f"sys.path.insert(0, {str(destination)!r}); "
+            "import verify_rank_upper_certificates as verifier; "
+            "verifier.load_semantic_dependencies(); "
+            "print('K2P_RANK_UPPER_DEPENDENCY_PREFLIGHT_PASS')"
+        )
         rows.append(
             run_expected_failure(
                 "four_port_exact_rank_staged_atlas_omission_mutation",
                 [
                     str(qualified_python()),
                     "-B",
-                    str(destination / "verify_rank_upper_certificates.py"),
-                    "--help",
+                    "-c",
+                    dependency_preflight,
                 ],
                 cwd=root,
                 timeout=min(timeout, 60.0),
@@ -937,12 +944,12 @@ def replay_rank_full(rows: list[dict[str, Any]], timeout: float) -> None:
                 [
                     str(qualified_python()),
                     "-B",
-                    str(destination / "verify_rank_upper_certificates.py"),
-                    "--help",
+                    "-c",
+                    dependency_preflight,
                 ],
                 cwd=root,
                 timeout=min(timeout, 60.0),
-                terminal_markers=(b"usage:",),
+                terminal_markers=(b"K2P_RANK_UPPER_DEPENDENCY_PREFLIGHT_PASS",),
                 environment_overrides=rank_environment,
             )
         )
