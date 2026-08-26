@@ -1,12 +1,30 @@
 # Changelog
 
+## Version 1.2.1 notation and rooting clarification -- 26 August 2026
+
+- Removed the collision between the Klein-group symbol and topology notation,
+  reserved calligraphic symbols for trees and local manifolds, and defined
+  globally character-relabeled K2P consistently.
+- Separated root-independent comparison-tree evaluation, optional strict
+  half-time tree-edge splits, and the compatible terminal-1 theta rooting.
+- Restricted the substitution-supermodel remark to chosen rooted histories,
+  complete parameter tuples, and matching reticulation semantics.
+- Added exact root-splitting checks, refreshed all affected transcripts and
+  manifests, and completed independent proof, verifier, metadata, and
+  full-page PDF audits.
+- Froze annotated tag `k2p-k3p-theta-v1.2.1` at commit
+  `45bedb7e76e2e314b2a8b986f822ed283fd96651` and retained the validated ZIP,
+  tar.gz, checksums, and replay record under `releases/`.
+- Preserved the title, abstract conclusions, theorem scope, and immutable
+  version `1.2.0` snapshot.
+
 ## Version 1.2.0 theorem expansion -- 26 August 2026
 
 - Reordered the logical narrative: the compact K2P collision already refutes
   K3P tree--theta disjointness by model inclusion.
 - Distinguished the quartic point's genuinely K3P network parameters from its
-  globally character-relabeled K2P shared output, then used the rank-15 restricted submersion to
-  prove nearby genuinely K3P collision distributions.
+  globally character-relabeled K2P shared output, then used the rank-15
+  restricted submersion to prove nearby genuinely K3P collision distributions.
 - Added local product geometry and 11-/14-dimensional fixed-output network
   fibers, while retaining the 17-/23-dimensional collision loci.
 - Promoted the full-rank calculations to Zariski-density corollaries in the

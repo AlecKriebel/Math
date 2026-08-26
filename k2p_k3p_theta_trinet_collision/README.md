@@ -16,12 +16,13 @@ verification, citation, submission, or archival deposit.** Open the current
 or its [`combined-paper-clarified.tex`](k2p_k3p_theta_clarified/combined-paper-clarified.tex)
 source directly.
 
-The current frozen submission/replay snapshot is version `1.2.0`, identified by
-the venue-neutral annotated Git tag `k2p-k3p-theta-v1.2.0` at full commit
-`7570a4a0f7051a607ee6eb4ef7ed43e54e805322`. Its validated ZIP, tar.gz, and
+The current frozen submission/replay snapshot is version `1.2.1`, identified by
+the venue-neutral annotated Git tag `k2p-k3p-theta-v1.2.1` at full commit
+`45bedb7e76e2e314b2a8b986f822ed283fd96651`. Its validated ZIP, tar.gz, and
 checksum files are under
-[`releases/k2p-k3p-theta-v1.2.0/`](releases/k2p-k3p-theta-v1.2.0/). Version
-`1.1.0` remains an immutable historical snapshot in its own release directory.
+[`releases/k2p-k3p-theta-v1.2.1/`](releases/k2p-k3p-theta-v1.2.1/). Versions
+`1.2.0` and `1.1.0` remain immutable historical snapshots in their own release
+directories.
 
 All superseded parent-level files are isolated under
 [`legacy/DO_NOT_SUBMIT-pre-clarification/`](legacy/DO_NOT_SUBMIT-pre-clarification/).
@@ -34,9 +35,10 @@ Corollary 5.8 in arXiv:2607.12919v2. Version 3 removes those K2P statements,
 records the leaf-order obstruction, and leaves high-level K2P and K3P trinet
 questions open. The exact K2P collision answers both questions negatively by
 model inclusion. The quartic construction additionally gives an exact
-genuinely K3P network parameter for a globally character-relabeled K2P shared distribution; the
-rank-15 local theorem supplies genuinely K3P shared distributions. Neither
-result affects the corrected paper's JC or level-one results.
+genuinely K3P network parameter for a globally character-relabeled K2P shared
+distribution; the rank-15 local theorem supplies genuinely K3P shared
+distributions. Neither result affects the corrected paper's JC or level-one
+results.
 
 The fixed theta maps are Zariski dense in the effective three-leaf K2P and K3P
 Fourier spaces. Their local collision loci fiber over the tree models with
@@ -80,7 +82,7 @@ ends with `ALL EXACT CHECKS PASSED`.
 - `k2p_k3p_theta_clarified/submission/biorxiv/`: bioRxiv metadata and upload checklist.
 - `k2p_k3p_theta_clarified/CITATION.cff`: citation metadata.
 - `k2p_k3p_theta_clarified/LICENSES.md`: package licensing boundaries.
-- `releases/k2p-k3p-theta-v1.2.0/`: commit-pinned current replay archives and checksums.
+- `releases/k2p-k3p-theta-v1.2.1/`: commit-pinned current replay archives and checksums.
 - `legacy/`: superseded drafts and immutable historical release archives, kept outside the current submission path.
 
 ## Build and release
@@ -88,7 +90,7 @@ ends with `ALL EXACT CHECKS PASSED`.
 ```bash
 cd k2p_k3p_theta_clarified
 bash src/build_pdfs.sh
-bash submission/build_release.sh --output-dir /absolute/path/to/release-output --commit k2p-k3p-theta-v1.2.0 --version 1.2.0
+bash submission/build_release.sh --output-dir /absolute/path/to/release-output --commit k2p-k3p-theta-v1.2.1 --version 1.2.1
 ```
 
 The release builder archives only the tracked canonical release files at an
@@ -96,9 +98,9 @@ exact Git commit. It explicitly excludes the author-facing
 `submission/biorxiv/` worksheet/checklists, the legacy parent package,
 untracked caches, and local build debris.
 
-The current archives were built from the frozen version `1.2.0` tag and passed
-the clean replay gates documented in their release README. Versions `1.1.0`
-and `1.0.0` remain immutable historical records.
+The current archives were built from the frozen version `1.2.1` tag and passed
+the clean replay gates documented in their release README. Versions `1.2.0`,
+`1.1.0`, and `1.0.0` remain immutable historical records.
 
 Submission-specific status, unresolved author choices, and official bioRxiv
 guidance are maintained in

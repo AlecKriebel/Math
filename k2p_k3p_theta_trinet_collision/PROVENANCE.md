@@ -6,17 +6,18 @@
 verification, submission, and archival subtree. The full superseded package is
 isolated under `legacy/DO_NOT_SUBMIT-pre-clarification/`; the immutable version
 `1.0.0` historical release archive is isolated under `legacy/releases/`, while
-the version `1.1.0` archive remains under `releases/`. Neither historical
-location is a current release input.
+the versions `1.2.0` and `1.1.0` remain under `releases/`. None of those
+historical locations is a current release input.
 
 This repository is public. The pre-clarification combined package first appears
 in repository history at commit `ca21a733`, dated 4 August 2026, and was linked
 from the public project page by commit `85cdead2`. The clarification revision is
 additive and no Git history was rewritten. A bioRxiv submission candidate and
 its author-facing metadata are prepared in the canonical subtree. The frozen
-source/replay snapshot is version `1.2.0`, identified by the annotated Git tag
-`k2p-k3p-theta-v1.2.0`. Versions `1.1.0` and `1.0.0` remain immutable. No
-external communication was initiated by the automated preparation process.
+source/replay snapshot is version `1.2.1`, identified by the annotated Git tag
+`k2p-k3p-theta-v1.2.1`. Versions `1.2.0`, `1.1.0`, and `1.0.0` remain
+immutable. No external communication was initiated by the automated
+preparation process.
 
 The current manuscript cites arXiv:2607.12919v2 for the removed arbitrary-level
 K2P statements and arXiv:2607.12919v3 for their correction, the public
@@ -26,14 +27,18 @@ quartic construction gives exact K3P parameter-level symmetry breaking, and
 the rank-15 restricted submersion gives nearby shared distributions outside all
 globally character-relabeled K2P strata.
 
-The current version `1.2.0` archives were built from full commit
-`7570a4a0f7051a607ee6eb4ef7ed43e54e805322`. The release builder verified
+The current version `1.2.1` archives were built from full commit
+`45bedb7e76e2e314b2a8b986f822ed283fd96651`. The release builder verified
 version/CFF/tag identity, deterministic ZIP and tar.gz construction, both
 internal manifests, identical archive contents, normal and optimized exact
 replay with byte-matching transcripts, and clean PDF rebuilding with matching
 text and rendered pixels. The archives and checksum sidecars are retained under
-`releases/k2p-k3p-theta-v1.2.0/`. No GitHub release, Zenodo deposit, or DOI was
+`releases/k2p-k3p-theta-v1.2.1/`. No GitHub release, Zenodo deposit, or DOI was
 created.
+
+The version `1.2.0` archives remain under
+`releases/k2p-k3p-theta-v1.2.0/` at commit
+`7570a4a0f7051a607ee6eb4ef7ed43e54e805322`.
 
 The version `1.1.0` archives remain under
 `releases/k2p-k3p-theta-v1.1.0/` at commit
