@@ -274,6 +274,17 @@ def normalize_primary_report(value: object, project_root: str) -> object:
     return value
 
 
+def normalized_primary_report(value: dict, project_root: str) -> dict:
+    normalized = normalize_primary_report(value, project_root)
+    require(isinstance(normalized, dict), "normalized primary report object")
+    python_record = normalized.get("python")
+    require(isinstance(python_record, dict) and
+            isinstance(python_record.get("executable"), str),
+            "primary report Python record")
+    python_record["executable"] = "{PYTHON_EXECUTABLE}"
+    return normalized
+
+
 def preserve_and_restore_primary_report(*, workspace: Path, phase_root: Path,
                                         package_root: Path,
                                         canonical_bytes: bytes,
@@ -288,9 +299,9 @@ def preserve_and_restore_primary_report(*, workspace: Path, phase_root: Path,
     current_root = current.get("project_root")
     require(isinstance(canonical_root, str) and canonical_root and
             isinstance(current_root, str) and current_root and
-            normalize_primary_report(canonical, canonical_root) ==
-            normalize_primary_report(current, current_root),
-            "regenerated primary report differs beyond workspace paths")
+            normalized_primary_report(canonical, canonical_root) ==
+            normalized_primary_report(current, current_root),
+            "regenerated primary report differs beyond declared runtime paths")
     evidence = phase_root / f"{label}.json"
     evidence.write_bytes(current_bytes)
     path.write_bytes(canonical_bytes)
@@ -298,7 +309,9 @@ def preserve_and_restore_primary_report(*, workspace: Path, phase_root: Path,
         "path": evidence.relative_to(package_root).as_posix(),
         "bytes": evidence.stat().st_size,
         "sha256": sha256_file(evidence),
-        "semantic_relation": "canonical report modulo project-root paths",
+        "semantic_relation": (
+            "canonical report modulo project-root and interpreter paths"
+        ),
     }
 
 
