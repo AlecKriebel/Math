@@ -1,0 +1,1272 @@
+                       Reader Supplement to
+  Generic Identiﬁability and Directed Containment for Strongly
+ Tree-Child Level-2 Networks under the Kimura Two-Parameter
+                              Model:
+  The Principal Positive Domain and Strict Continuous Time
+
+                                               Alec Kriebel
+                                         Independent Researcher
+                                      ORCID: 0009-0001-9320-500X
+                                 Corresponding email: me@aleckriebel.com
+
+                                               August 2026
+
+
+                                                 Abstract
+        This supplement is a reader-oriented map from the mathematical proof to the exact ﬁnite cer-
+    tiﬁcate package. It separates hand proofs from the bounded computer-assisted residue, deﬁnes the
+    primitive completion grammar and raw relation object, records all censuses and restoration/probe
+    invariants, gives representative certiﬁcate schemas and the complete weak-class witness, and lists the
+    minimal artifacts and commands needed to replay each theorem layer. The ﬁnite principal-domain
+    theorem and classiﬁcation universe remain unchanged; the qualiﬁcation-evidence lock is resealed
+    when veriﬁer-facing tests or their provenance bindings are repaired. The article and this supplement
+    are separately versioned submission sources.
+
+
+Contents
+
+1 How to read the proof                                                                                      2
+
+2 Convention crosswalk                                                                                       3
+
+3 Primitive graph grammar                                                                                    4
+  3.1   Core segments and minimum repairs . . . . . . . . . . . . . . . . . . . . . . . . . . . . .          4
+  3.2   Completion grammar and the numbers 831, 1983, and 4155 . . . . . . . . . . . . . . . .               4
+  3.3   Raw relation schema . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      4
+
+4 Certiﬁcate decision tree                                                                                   5
+
+5 Finite census and current compression boundary                                                             6
+  5.1 Authoritative raw partitions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .       6
+  5.2 Audited proof-compression table . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .          6
+
+
+                                                      1
+    5.3   Restoration forests . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      7
+
+6 Coherent probes and arbitrary subdivision words                                                                7
+
+7 Representative exact calculations                                                                              8
+    7.1 Tree–sunlet factorization . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .        8
+    7.2   Bridge normalizer . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .      9
+    7.3   Certiﬁcate schema for a direct polynomial . . . . . . . . . . . . . . . . . . . . . . . . . .          9
+
+8 Printed exact-certiﬁcate appendix                                                                              9
+    8.1   Coordinate dictionaries     . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .    9
+    8.2 The 23 literal quadratic bodies . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .         10
+    8.3   Five high-degree bases and their licensed transports . . . . . . . . . . . . . . . . . . . .          11
+    8.4 Three worked paths        . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .   13
+    8.5   Provenance and replay . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .       14
+
+9 Full weak-class certiﬁcate                                                                                    15
+
+10 Theorem-to-artifact crosswalk                                                                                16
+    10.1 Printed ﬁnite-layer replay metadata . . . . . . . . . . . . . . . . . . . . . . . . . . . . .          19
+
+11 Frozen hash anchors                                                                                          20
+
+12 Replay protocol                                                                                              21
+
+13 Mutation coverage                                                                                            22
+
+14 Recent-source veriﬁcation note                                                                               22
+
+15 Submission metadata and licenses                                                                             23
+
+
+1    How to read the proof
+
+The main article proves a global theorem from three qualitatively diﬀerent types of input.
+P1. Analytic and algebraic proofs. These include the physical K2P domain, subdivision and
+    rerooting, pointwise quartet and whole-map Ti signs, the two-sector bridge ﬁbre, physical local
+    products, marginal submersions, localization, genericity, continuous-time gluing, and the weak-
+    class construction.
+P2. Topology-only ﬁnite reduction. The cycle/theta primitive theorem and minimum-repair gram-
+    mar are graph-theoretic. They reduce an arbitrary strong level-2 factor to a ﬁnite rigid support
+    plus ordered labelled words on ﬁnitely many directed segments.
+P3. Exact bounded computation. Raw four- and ﬁve-port directions, rank exclusions, direct
+    polynomial separators, restoration children, and coherent probes are exhausted by exact graph
+
+
+
+                                                        2
+      and rational/symbolic arithmetic. This layer has independent regeneration and mutations, but is
+      not presented as a complete short hand classiﬁcation.
+The logical dependency is
+
+                                    pointwise decorated tree of blobs
+                                                    ↓
+                     complete two-sector bridge quotient and physical product chart
+                                                    ↓
+                            ﬁnite localization to one complete ported factor
+                                                    ↓
+                           bounded raw classiﬁcation + ﬁxed-full restoration
+                                                    ↓
+                            one-/two-port reconstruction of arbitrary words
+                                                    ↓
+                        global necessity + ordinary-triangle common germ
+
+The quartet and Ti inequalities are pointwise. The polynomial and rank certiﬁcates are generic non-
+containment statements. Restoration applies only inside one assumed ﬁxed full relation. Keeping these
+quantiﬁers separate is essential.
+
+
+2     Convention crosswalk
+
+All graphs use the following ﬁxed convention.
+    • Rooted presentations are binary directed acyclic graphs; the root is the lowest stable ancestor.
+    • Only arcs entering reticulations retain arrowheads.
+    • The root is deleted once and its two incident arcs merge into one mixed edge. No later parallel-edge
+      or degree-two cleanup is part of formation of the full standard semi-directed graph.
+    • Restriction/display operations may subsequently prune dead ends and suppress unlabelled bivalent
+      vertices; they do not change the admissible-rooting universe of the original graph.
+    • “Strongly tree-child” quantiﬁes over every admissible rooting; “weakly tree-child” requires at least
+      one tree-child rooting.
+    • Isomorphisms preserve labels, ordinary edges, arrowheads, and vertex roles. Ordinary triangle
+      equivalence forgets only the reticulation choice on one three-cycle and keeps its three external
+      arms ﬁxed.
+The K2P character order is (0, C, G, T ), with equal sector {C, T } and singleton sector {G}. Every edge
+has Fourier vector (1, s, g, s) in
+
+                                D+ = {0 < s < 1, 0 < g < 1, g > 2s − 1}.
+
+The strict continuous-time subdomain is
+
+                                     DCT = {0 < s < 1, s2 < g < 1}.
+
+No mixed-sign stochastic component is part of the theorem.
+
+
+
+
+                                                    3
+3     Primitive graph grammar
+
+3.1    Core segments and minimum repairs
+
+After removing external port arms and suppressing ordinary non-event degree-two vertices, a nontrivial
+strong level-2 blob is a cycle or one of four directed theta event placements. Segment indices in the last
+column below refer to the left-to-right segment order.
+
+    core        directed segments                                                   minimum repair sets
+    cycle       S → X, S → X                                                        {0}, {1}
+    θ0          S → U, S → V, U → X, V → X, U → V                                   {2, 3}, {3, 4}
+    θ1          S → U, S → X, V → X, U → V, U → V                                   {2, 3}, {2, 4}
+    θ2          S → U, S → V, U → X0 , V → X0 , U → X1 , V → X1                     {2, 3}, {2, 5}, {3, 4}, {4, 5}
+    θ3          S → U, S → X0 , V → X0 , U → X1 , V → X1 , U → V                    {2}, {4}
+
+
+An occupied segment contains at least one port-bearing subdivision. The minimum repairs are the
+minimal occupancy sets satisfying the no-omnian and simple-graph requirements. A complete factor
+additionally retains one child role below every path-sink reticulation. Here “occupied” includes a named
+zero-character completion role inserted by the compiler; it need not be a selected physical port. Arbitrary
+physical factors arise by replacing each selected segment word by an ordered word of distinct labelled
+ports.
+
+
+3.2    Completion grammar and the numbers 831, 1983, and 4155
+
+For each core the compiler enumerates:
+   (i) every allowed subset of path-sink child roles;
+  (ii) every weak composition of the remaining labelled port roles among the directed segments;
+ (iii) for a theta target, every minimum-repair tag; for a cycle target, the single untagged target con-
+       vention (the two repaired cycle supports occur on the source side);
+ (iv) the selected-incoming mode, in which a real incoming boundary remains a port, and the
+       marginalized-incoming mode, in which that role has been omitted; and
+  (v) every physical port permutation.
+The directed completion grammar yields 831 four-port target descriptors in selected-incoming mode and
+1,983 in marginalized-incoming mode. Five-port targets number 1,983 and 4,155 in the corresponding
+modes. These are repair-tagged descriptors, not necessarily distinct untagged mixed graphs. The
+compiler ﬁrst weakly distributes the selected physical labels. For a chosen theta repair it then inserts
+one deterministically named zero-character leaf on each required segment whose physical word is empty,
+and inserts nothing extra on an already occupied required segment. The repair tag stays in the raw
+identity even when another repair witness yields the same ﬁnal mixed graph. Unselected sink roles
+and a marginalized incoming role receive their own deterministic dummies. Consequently these roles
+consume no selected labels and the stars-and-bars count in the article is unchanged. The numbers are
+taken before source multiplication and port permutations. Thus
+
+                     6(831 + 1983)4! = 405,216,             4(1983 + 4155)5! = 2,946,240.
+
+
+3.3    Raw relation schema
+
+A raw directional relation is not an unlabelled topology hash. Its immutable identity includes:
+
+
+                                                        4
+    • source primitive and exact repaired support;
+    • target primitive, completion descriptor, and selected graph;
+    • source and target incoming roles;
+    • physical port permutation and port match;
+    • omitted source and target roles;
+    • source-to-target direction;
+    • boundary incidence transport; and
+    • exact graph ﬁngerprints.
+Only after every raw ID is generated exactly once are presentations grouped into canonical terminal or
+restoration classes.
+
+
+4     Certiﬁcate decision tree
+
+The classiﬁer uses proof types in a ﬁxed precedence order.
+
+    type                 mathematical implication            exact stored evidence
+    Displayed quartet    physical images are disjoint        distinct complete switching-split sets,
+                         pointwise                           selected witness split, and the
+                                                             appropriate leaf-permuted F or G
+                                                             polynomial.
+    Whole-map Ti         physical images are disjoint        coordinate triple and orientation, exact
+                         pointwise                           whole-map pullbacks, and a strict
+                                                             Bernstein/sign certiﬁcate for the
+                                                             factorized pullback.
+    Directed rank        no full-dimensional source germ     nonzero exact source minor, target
+                         enters the target                   lower minor, symbolic target rank
+                                                             upper certiﬁcate, and strict source-rank
+                                                             > target-rank comparison.
+    Polynomial           generic source-to-target            sparse integer polynomial P (q),
+    separator            containment is impossible           coeﬃcientwise proof P ◦ ΦT = 0,
+                                                             nonzero source pullback, and strict
+                                                             rational source witness.
+    Restoration parent   deferred ﬁxed-full obligation       parent relation, each actual physical
+                                                             child attachment, exact parent–child
+                                                             transport restriction, and a terminal
+                                                             certiﬁcate at every leaf.
+    Isomorphism          physical parameter transport        exact labelled mixed-incidence
+                         exists                              isomorphism and parameter/port
+                                                             transport.
+    Ordinary triangle    one common full-dimensional         stored triangle edge set and coherent
+                         regular germ exists                 transport, combined with the exact
+                                                             rank-nine analytic construction in the
+                                                             article.
+
+
+The target rank upper certiﬁcate is symbolic; a one-point Jacobian rank is never used as an upper
+bound. Polynomial witnesses are checked on the graph- generated K2P maps rather than accepted by
+a topology identiﬁer.
+
+                                                     5
+5     Finite census and current compression boundary
+
+5.1      Authoritative raw partitions
+
+                   category                              four-port theta      ﬁve-port θ2
+                   displayed quartet                               360,408       2,942,592
+                   whole-map Ti                                     16,974           2,528
+                   directed exact rank                              23,822             800
+                   direct terminal / quadratic                       1,472             240
+                   restoration member / isomorphism                  2,540              80
+                   total                                           405,216       2,946,240
+
+The 1,472 four-port terminal presentations form 934 classes:
+
+      839 quadratics + 36 direct polynomials + 4 hard bindings + 20 isomorphisms + 35 triangles.
+
+The 36 direct polynomials have three certiﬁed source-family tags: 22 θ0 quintic port-orbit obstructions,
+12 lower-theta quartics, and two θ3 cubics. The 839 quadratic classes have eight literal certiﬁcate bod-
+ies. These repetitions make further theorem-template compression plausible, but equality of certiﬁcate
+bodies is not by itself a proof that all graph transports belong to one legal orbit.
+
+
+5.2      Audited proof-compression table
+
+The bounded compression pass has status PC-PARTIAL. It changes no theorem statement and discards
+no exact ledger. In particular, literal equality of polynomial bodies is not treated as a graph orbit, and
+the 297 restoration ﬁngerprints are descriptive archetypes rather than a proved transport quotient.
+
+ layer                            frozen units   compact units     exact residue retained
+ four-port quadratics                     839                  8   every coordinate transport
+ ﬁve-port θ2 quadratics                    96                  4   every coordinate transport
+ three-port cycle quadratics               54                  6   every coordinate transport
+ restoration quadratics                     6                  5   every coordinate transport
+ direct-36 high degree                     36                 27   all directional bindings; 3 certiﬁed
+                                                                   proposition families, 5 stored base
+                                                                   formulas
+ rank upper certiﬁcates                 4,379      3,515+75        universal mechanism plus 75 exceptional
+                                                                   representatives covering 864 descriptors
+ restoration parents                      997             297      997 assignments, 2,540 roots, 36,824 edges,
+                                                                   and 16 algebra-transport classes
+
+
+The direct-36 row must not be read as three literal polynomials. The quintic, quartic, and cubic
+proposition families have 27 direction-speciﬁc bodies across the 36 records. The quadratic rows group
+only literal coordinate bodies inside their original coordinate convention or transports already certiﬁed
+by a frozen orbit package.
+
+
+
+
+                                                    6
+    layer                        uniform statement              load-bearing ﬁnite premise
+    primitive completions        one binomial-sum formula for   all labelled directed completion records;
+                                 all selected/marginalized      totals 405,216, 2,946,240, and 13,440
+                                 cases
+    restoration                  four terminal mechanisms and   the exact 997-parent assignment and
+                                 one depth-two continuation     every physical parent–child transport
+                                 mechanism
+    probe reconstruction         one-/two-port coherence        176 anchors, 29,964 one-port rows,
+                                 implies arbitrary              544,571 two-port rows, 67,741
+                                 attachment-word recovery       transports, and 4,379 restrictions
+
+
+The machine-readable theorem-to-artifact crosswalk is proof_compression_submission/crosswalk/
+THEOREM_ARTIFACT_CROSSWALK.json. It records, for each theorem layer, exact ﬁle hashes and declared
+schemas, producer, replay, mutation, and environment bindings. The original frozen principal-domain
+computational-evidence lock does not itself contain an end-to-end timing record. For C01–C10 and
+C12–C13, the theorem-layer crosswalk leaves end-to-end runtimes null, preserving locked component
+observations without summing them. Separately, its global C11 entry and the submission bundle bind
+a detached clean-checkout replay of the qualiﬁed lock. The exact candidate commit, layer count, wall
+and internal times, memory measurements, report hash, and telemetry hash are recorded only in the
+externally bound replay artifacts and generated theorem-to-artifact crosswalk; they are deliberately not
+compiled into this source. No byte-bound end-to-end quick-suite runtime is claimed.
+
+
+5.3     Restoration forests
+
+The corrected four-port restoration forest has 997 canonical parents and 2,540 physical member roots.
+Its ﬁrst layer is
+                       quartet separator     35, 758
+                       whole-map Ti              606
+                       quadratic                 148     (36,568 ﬁrst children).
+                       transported quartic        24
+                       continuation               32
+The 32 continuations have 256 second children: 248 quartet and eight Ti . Hence there are 36,824 edges,
+36,792 exact separator leaves, maximum depth two, no cycle, no missing child, and no unresolved record.
+Every child transport restricts to its parent’s boundary transport.
+The ﬁve-port θ2 dummy forest has 56 roots and 864 one-parent descendants. Its 832 leaves are 760
+quartet exclusions and 72 labelled isomorphisms. The cycle layer has 5,964 restoration roots and
+536,364 physical completions, of which 535,920 are quartet-separated, 300 are Ti -separated, 132 have
+exact quadratics, and 12 are isomorphic.
+The logical implication is always ﬁxed-full. An assumed full relation ﬁxes the omitted physical label,
+source edge, target edge, role, and transport. That actual completion is one child in the forest. Source
+marginal openness then turns its separator into a contradiction. No abstract parent relation is lifted,
+and no target deletion map is inverted.
+
+
+6     Coherent probes and arbitrary subdivision words
+
+The equality-anchor input contains 176 physical relations:
+
+
+
+                                                     7
+                              origin                                ports      records
+                              four-port direct terminals                 4          26
+                              restored four-port terminals               5          17
+                              θ2 direct anchors                          5          24
+                              θ2 one-role restorations                   6          40
+                              θ2 two-role paths                          7          32
+                              cycle direct anchors                       3          24
+                              cycle restored anchors                     4          12
+                              ordinary tree identity                     3           1
+                              total                                                176
+
+There are 143 isomorphism and 33 triangle anchors.
+If a rooted binary factor has k boundary leaves and r reticulations, degree counting gives t = k + r − 2
+nonroot tree vertices and 2k + 3r − 2 rooted arcs. Root suppression merges two arcs, leaving exactly
+                                                   2k + 3r − 3
+physical attachment sites. The probe input contains every site: the root-suppressed incoming segment,
+every other pendant arm, both incoming edges at every reticulation, and every remaining unheaded
+core edge. The two artiﬁcial root halves are identiﬁed only after exact semi-directed isomorphism.
+Across all anchors there are 2,206 source sites and 2,206 target sites. The ﬁrst-probe universe is the
+per-anchor Cartesian product and contains 29,964 directions. Its census is
+                      27, 758 quartet + 99 Ti + 1, 915 isomorphism + 192 triangle.
+The 2,107 equality survivors generate every two-port parent exactly once. The second-probe universe
+has 544,571 directions:
+                   511, 266 quartet + 576 Ti + 30, 969 isomorphism + 1, 760 triangle.
+
+One-port restrictions identify the directed core segment containing each omitted boundary. Two-port
+restrictions determine the order of every pair on one segment. Since the comparisons come from a
+genuine word, they are transitive and recover a unique total order. The exact child transports agree
+on overlaps and restrict to their parents. All 33 triangle anchors transport the same inherited ordinary
+triangle; probes create no new triangle. This is the ﬁnite mechanism that extends the bounded theorem
+from rigid supports to arbitrary complete labelled subdivision words.
+
+
+7     Representative exact calculations
+
+7.1   Tree–sunlet factorization
+
+For the three-sunlet orientation at leaf three,
+                         qxyz = ax by cz {δfy dz + (1 − δ)fx ez },           x + y + z = 0.
+With Xh = qhh0 , Yh = qh0h , Zh = q0hh , and V = qCT G , exact substitution gives
+                        V 2 Xg − Xs2 Yg Zg = −a2s b2s ag bg c2g fs2 δ(1 − δ)dg eg (1 − fg )2 .
+This identity is used on whole semi-directed maps. A rooted restriction type is not used as a topology
+oracle.
+
+                                                          8
+7.2   Bridge normalizer
+
+For an unmarked degree-d component, the pair-anchor rows (12), (13), (23), (14), . . . , (1d) have rank d
+and leading determinant −2. If rij are positive anchor ratios, the incidence scales are
+                      √                           √                               √
+               a1 =       r12 r13 /r23 ,   a2 =       r12 r23 /r13 ,      a3 =         r13 r23 /r12 ,   ak = r1k /a1 .
+
+The formula is applied independently to the {C, T } and G sectors.
+
+
+7.3   Certiﬁcate schema for a direct polynomial
+
+A sparse direct certiﬁcate stores                               ∑         ∏
+                                                  P (q) =            cm         qj ,
+                                                                m         j∈m
+
+with integer coeﬃcients and explicit Fourier-coordinate tuples. Its replay regenerates source and target
+polynomial maps from the two graph encodings, forms P ◦ ΦS and P ◦ ΦT over Z, checks P ◦ ΦT = 0
+coeﬃcientwise, checks a nonzero source polynomial hash, and evaluates it at a rational point satisfying
+every strict K2P and inheritance inequality. Degrees two, three, four, and ﬁve are stored and mutated
+separately so that certiﬁcate reassignment is rejected.
+
+
+8     Printed exact-certiﬁcate appendix
+
+This appendix exposes the formulas already derived by the ﬁrst compression cycle; it is not a second
+compression claim. The 23 quadratic templates identify literal coeﬃcient, coordinate-pair, and multide-
+gree bodies only. Equality of displayed formulas across layers does not license any graph, port, direction,
+or coordinate transport. In particular, the repeated literal bodies in diﬀerent layers remain diﬀerent
+graph-derived certiﬁcates.
+
+
+8.1   Coordinate dictionaries
+
+Write the character group in the integer order 0, C, G, T . A coordinate index is obtained by listing
+the zero-sum tuples, replacing each tuple by the lexicographically smaller of it and its global C/T
+swap, deleting duplicates, and sorting. Thus qi = qh1 ···hk for the tuple printed below. All 36 four-port
+coordinates occur in the printed quadratic or higher-degree formulas:
+
+                      index        tuple    index       tuple        index      tuple         index     tuple
+                             q0    0000        q1       00CC            q2      00GG             q3     0C0C
+                             q4    0CC0        q5       0CGT            q6      0CT G            q7     0G0G
+                             q8    0GCT        q9       0GG0           q10      C00C            q11     C0C0
+                            q12    C0GT       q13       C0T G          q14      CC00            q15     CCCC
+                            q16    CCGG       q17       CCT T          q18      CG0T            q19     CGCG
+                            q20    CGGC       q21       CGT 0          q22      CT 0G           q23     CT CT
+                            q24    CT G0      q25       CT T C         q26      G00G            q27     G0CT
+                            q28    G0G0       q29       GC0T           q30      GCCG            q31     GCGC
+                            q32    GCT 0      q33       GG00           q34      GGCC            q35     GGGG
+
+
+The following are exactly the 52 ﬁve-port indices occurring in the stored literal coordinate-pair blocks
+behind the printed theta2 and restoration quadratics. Of these, 46 have a nonzero displayed coeﬃcient;
+six occur only in zero slots retained by the exact certiﬁcate-body normalization:
+
+                                                                 9
+                       index      tuple         index       tuple           index   tuple         index       tuple
+                          q1      000CC             q2      000GG              q3   00C0C             q4      00CC0
+                          q5      00CGT             q6      00CT G             q7   00G0G             q8      00GCT
+                          q9      00GG0            q10      0C00C             q18   0CG0T            q26      0G00G
+                         q27      0G0CT            q28      0G0G0             q29   0GC0T            q30      0GCCG
+                         q31      0GCGC            q32      0GCT 0            q34   0GGCC            q35      0GGGG
+                         q36      C000C            q37      C00C0             q40   C0C00            q41      C0CCC
+                         q43      C0CT T           q49      C0T CT            q51   C0T T C          q52      CC000
+                         q53      CC0CC            q55      CC0T T            q56   CCC0C            q57      CCCC0
+                         q64      CCT 0T           q67      CCT T 0           q85   CT 0CT           q87      CT 0T C
+                         q88      CT C0T           q91      CT CT 0           q96   CT T 0C          q97      CT T C0
+                        q100      G000G           q102      G00G0            q103   G0C0T           q105      G0CGC
+                        q109      G0GGG           q110      GC00T            q118   GCG0C           q128      GG0GG
+                        q129      GGC0C           q131      GGCGT            q133   GGG0G           q135      GGGG0
+
+
+8.2    The 23 literal quadratic bodies
+
+The multidegree is ordered as (s0 , g0 , s1 , g1 , . . .). “Canonical” counts exact certiﬁcate classes; “raw”
+counts their raw directional presentations.
+
+  ID       layer                     polynomial                                               multidegree                      canonical   raw
+                                          q4 q20 + q5 q21 − q8 q24
+  R4Q-01   four-port                                                                          (1, 0, 1, 1, 1, 1, 1, 0)               12     12
+                                          − q9 q15 − q9 q17 + q9 q23
+                                          q10 q30 + q13 q29 − q15 q26
+  R4Q-02   four-port                                                                          (1, 1, 1, 0, 1, 0, 1, 1)               52     84
+                                          − q17 q26 − q22 q27 + q23 q26
+  R4Q-03   four-port                      q10 q20 − q12 q18                                   (2, 0, 0, 1, 0, 1, 2, 0)              252    424
+                                          q3 q19 − q6 q18 − q7 q23
+  R4Q-04   four-port                                                                          (1, 0, 1, 1, 1, 0, 1, 1)               24     40
+                                          + q8 q22
+                                          q3 q19 + q6 q18 − q7 q23
+  R4Q-05   four-port                                                                          (1, 0, 1, 1, 1, 0, 1, 1)               68    108
+                                          − q8 q22
+  R4Q-06   four-port                      q1 q34 − q8 q27                                     (0, 1, 0, 1, 2, 0, 2, 0)              292    456
+                                          q11 q31 + q12 q32 − q23 q28
+  R4Q-07   four-port                                                                          (1, 1, 1, 0, 1, 1, 1, 0)                8      8
+                                          − q24 q27
+                                          q1 q16 − q2 q17 + q5 q13
+  R4Q-08   four-port                                                                          (1, 0, 1, 0, 1, 1, 1, 1)              131    220
+                                          − q6 q12
+                                          q2 q133 − q7 q128 − q26 q109
+  T2Q-01   ﬁve-port theta2                                                                    (0, 1, 0, 1, 0, 1, 0, 1, 0, 2)         24     60
+                                          + q35 q100
+                                          q2 q135 − q9 q128 − q28 q109
+  T2Q-02   ﬁve-port theta2                                                                    (0, 1, 0, 1, 0, 1, 0, 2, 0, 1)         24     60
+                                          + q35 q102
+                                          q36 q91 + q37 q64 − q40 q87
+  T2Q-03   ﬁve-port theta2                                                                    (2, 0, 1, 0, 1, 0, 1, 0, 1, 0)         16     40
+                                          − q49 q52
+                                          q36 q57 − q36 q67 − q37 q56
+  T2Q-04   ﬁve-port theta2                + q37 q88 + q40 q55 − q40 q87                       (2, 0, 1, 0, 1, 0, 1, 0, 1, 0)         32     80
+                                          − q43 q52 + q49 q52
+                                          q4 q20 + q5 q21 − q8 q24
+  C3Q-01   three-port cycle in                                                                (1, 0, 1, 1, 1, 1, 1, 0)                2      4
+           four-port coordinates          − q9 q15 − q9 q17 + q9 q23
+  C3Q-02   three-port cycle in            q4 q30 − q6 q32                                     (0, 1, 2, 0, 2, 0, 0, 1)               16     40
+           four-port coordinates
+  C3Q-03   three-port cycle in            q1 q34 − q8 q27                                     (0, 1, 0, 1, 2, 0, 2, 0)               16     40
+           four-port coordinates
+                                          q1 q16 − q2 q17 − q5 q13
+  C3Q-04   three-port cycle in                                                                (1, 0, 1, 0, 1, 1, 1, 1)                2      4
+           four-port coordinates          + q6 q12
+                                          q1 q16 − q2 q17 + q5 q13
+  C3Q-05   three-port cycle in                                                                (1, 0, 1, 0, 1, 1, 1, 1)                2      4
+           four-port coordinates          − q6 q12
+  C3Q-06   three-port cycle in            q11 q19 − q13 q21                                   (2, 0, 0, 1, 2, 0, 0, 1)               16     40
+           four-port coordinates
+                                          q3 q131 − q5 q129 − q29 q105
+  RSQ-01   ﬁve-port restoration                                                               (0, 1, 0, 1, 2, 0, 0, 1, 2, 0)          1      1
+                                          + q31 q103
+
+
+                                                                       10
+  ID       layer                   polynomial                                     multidegree                      canonical   raw
+  RSQ-02   ﬁve-port restoration      q1 q34 − q8 q27                              (0, 0, 0, 1, 0, 1, 2, 0, 2, 0)          2      6
+  RSQ-03   ﬁve-port restoration      q4 q30 − q6 q32                              (0, 0, 0, 1, 2, 0, 2, 0, 0, 1)          1     10
+  RSQ-04   ﬁve-port restoration      q10 q118 − q18 q110                          (0, 1, 2, 0, 0, 1, 0, 0, 2, 0)          1    130
+                                     q3 q131 − q5 q129 + q29 q105
+  RSQ-05   ﬁve-port restoration                                                   (0, 1, 0, 1, 2, 0, 0, 1, 2, 0)          1      1
+                                     − q31 q103
+
+
+
+8.3    Five high-degree bases and their licensed transports
+
+Only the 22 port permutations, 12 quartic coordinate transports, and two cubic record bindings printed
+here are licensed. No other port, source-target, inheritance, pole/sink, or C/T transport is inferred.
+
+HDQ-01: theta0 quintic. Degree 5, multidegree (2, 1, 1, 1, 2, 1, 1, 1).
+             FHDQ−01 = q0 q0 q11 q17 q35 − q0 q0 q11 q25 q35 − 2q0 q0 q17 q19 q28 + 2q0 q0 q19 q25 q28
+                            − 2q0 q1 q11 q14 q35 + 2q0 q1 q13 q24 q33 + 4q0 q1 q14 q19 q28 − 2q0 q1 q21 q24 q26
+                            + 2q0 q2 q10 q21 q32 + q0 q2 q11 q17 q33 − 2q0 q2 q11 q21 q29 − 2q0 q2 q11 q23 q33
+                            + q0 q2 q11 q25 q33 − 2q0 q2 q14 q21 q27 + 2q0 q4 q10 q11 q35 − 4q0 q4 q10 q19 q28
+                            − 2q0 q4 q12 q13 q33 + 2q0 q4 q12 q21 q26 − 2q0 q5 q11 q13 q33 + 2q0 q5 q11 q21 q26
+                            + q0 q7 q11 q17 q28 − q0 q7 q11 q25 q28 − 2q0 q9 q10 q13 q32 + 2q0 q9 q11 q13 q29
+                            − q0 q9 q11 q17 q26 + 2q0 q9 q11 q23 q26 − q0 q9 q11 q25 q26 + 2q0 q9 q13 q14 q27
+                            − 2q1 q7 q11 q14 q28 + 2q2 q3 q11 q11 q33 − 2q3 q9 q11 q11 q26 + 2q4 q7 q10 q11 q28
+
+HDQ-02: lower-theta quartic.                Degree 4, multidegree (3, 0, 2, 1, 1, 1, 2, 1).
+                    FHDQ−02 = q0 q15 q16 q18 + q0 q16 q18 q23 − q0 q20 q22 q23 + q1 q14 q16 q18
+                                   − 2q3 q11 q16 q18 + q3 q11 q20 q22 − q4 q12 q18 q22 − q8 q10 q14 q16
+                                   + q8 q12 q14 q22
+
+HDQ-03: lower-theta quartic.                Degree 4, multidegree (2, 1, 3, 0, 1, 1, 2, 1).
+                    FHDQ−03 = q0 q16 q17 q29 − q0 q16 q23 q29 − q0 q17 q22 q31 + q0 q22 q23 q31
+                                   − q1 q14 q16 q29 + q1 q14 q22 q31 + 2q3 q11 q16 q29 − q3 q11 q22 q31
+                                   − q3 q14 q16 q27 − q5 q11 q22 q29 + q5 q14 q22 q27
+
+HDQ-04: lower-theta quartic.                Degree 4, multidegree (2, 1, 3, 0, 2, 1, 1, 1).
+                    FHDQ−04 = q0 q15 q16 q32 + q0 q16 q23 q32 − q0 q23 q24 q30 + q1 q14 q16 q32
+                                   − 2q3 q11 q16 q32 + q3 q11 q24 q30 − q4 q14 q16 q27 − q6 q10 q24 q32
+                                   + q6 q14 q24 q27
+
+HDQ-05: theta3 cubic.             Degree 3, multidegree (1, 1, 1, 1, 1, 1, 1, 1).
+                            FHDQ−05 = q0 q15 q35 + q0 q20 q30 + q1 q14 q35 + q2 q15 q33
+                                            + q2 q18 q32 − q2 q23 q33 − q3 q11 q35 − q4 q20 q26
+                                            + q6 q12 q33 − q6 q18 q28 − q7 q12 q32 − q7 q15 q28
+                                            + q7 q23 q28 − q9 q10 q30
+
+                                                               11
+Quintic port transports.
+
+                             class   port permutation          source terms
+                               25    (0, 1, 3, 2)                       1599
+                               26    (0, 2, 1, 3)                        953
+                               27    (0, 2, 3, 1)                       1524
+                               28    (0, 3, 1, 2)                        985
+                               29    (0, 3, 2, 1)                         96
+                               30    (1, 0, 2, 3)                        730
+                               31    (1, 0, 3, 2)                       1988
+                               32    (1, 2, 0, 3)                        953
+                               33    (1, 2, 3, 0)                       2004
+                               34    (1, 3, 0, 2)                        985
+                               35    (1, 3, 2, 0)                        868
+                               36    (2, 0, 1, 3)                        730
+                               37    (2, 0, 3, 1)                       1722
+                               39    (2, 1, 3, 0)                       1807
+                               40    (2, 3, 0, 1)                         96
+                               41    (2, 3, 1, 0)                        868
+                               42    (3, 0, 1, 2)                       1988
+                               43    (3, 0, 2, 1)                       1722
+                               44    (3, 1, 0, 2)                       1599
+                               45    (3, 1, 2, 0)                       1807
+                               46    (3, 2, 0, 1)                       1524
+                               47    (3, 2, 1, 0)                       2004
+
+
+Quartic coordinate transports.
+
+                   source    class   base           coordinate action         port match
+                         2    112    HDQ-02         identity                  (0, 1, 2, 3)
+                         2    113    HDQ-03         identity                  (0, 1, 3, 2)
+                         2    114    HDQ-03         identity                  (1, 0, 2, 3)
+                         2    115    HDQ-02         identity                  (1, 0, 3, 2)
+                         3    112    HDQ-02         identity                  (0, 1, 2, 3)
+                         3    113    HDQ-03         identity                  (0, 1, 3, 2)
+                         3    114    HDQ-03         identity                  (1, 0, 2, 3)
+                         3    115    HDQ-02         identity                  (1, 0, 3, 2)
+                         4      8    HDQ-04         identity                  (0, 1, 2, 3)
+                         4      9    HDQ-04         swap_01                   (0, 1, 3, 2)
+                         4     10    HDQ-04         swap_01                   (1, 0, 2, 3)
+                         4     11    HDQ-04         identity                  (1, 0, 3, 2)
+
+
+Cubic record bindings.
+
+                              source     class      base       port match
+                                     5       9      HDQ-05     (0, 1, 3, 2)
+                                     5      10      HDQ-05     (1, 0, 2, 3)
+
+                                                     12
+8.4     Three worked paths
+
+A direct quadratic separator.                   Template R4Q-03 is
+
+                                      q10 q20 − q12 q18 ,    mdeg = (2, 0, 0, 1, 0, 1, 2, 0).
+
+It covers 252 canonical classes and 424 raw directions. For the representative source_0:class_000000,
+its source pullback has 44 nonzero terms and its target pullback is identically zero. The exact certiﬁcate
+is d39c8b1f09360f48e9ae6e6ed552222d35cdc675fdd22c038781a7ff5e0328f5, bound to the graph record by 10d7d0efe1d95
+0f6f74585e2e385a5a07dfd33a2a51b56954a54b01c6b1aa44b. This proves the stated source-to-target noncontainment;
+reversing the direction is not licensed.
+
+
+A complete restoration root. For s1:c658:t2792:p1032, the following table prints every actual
+ﬁrst- and second-child archetype. The row hash binds the role, insertion site, proof mechanism, transport
+ﬁelds, and evidence certiﬁcate.
+
+      layer    row    restored role          site   proof                 status         row SHA-256
+         1    31976   D_REPAIR_0_2             0    displayed_quartet_    separated      d2a1d79aaa37de82495c0db5478793
+                                                    mismatch                             b02dc15b7500f2783506614a3afc46
+                                                                                         531d
+         1    31977   D_REPAIR_0_2             1    displayed_quartet_    separated      18a009d352b311939bb21650fba5d6
+                                                    mismatch                             6ce0a1a8dbe29ebaa7bd6393e0c0d2
+                                                                                         5748
+         1    31978   D_REPAIR_0_2             2    full_map_Ti_zero_     separated      a762631aa3a30f73764549778fcd2f
+                                                    strict_sign                          ceb9bcaac256430648a4f4ab1bdabb
+                                                                                         4869
+         1    31979   D_REPAIR_0_2             3    displayed_quartet_    separated      181aad684be16b6b531b5c2a8a8cbb
+                                                    mismatch                             d5ab4492018427e921140695868c4b
+                                                                                         c29e
+         1    31980   D_REPAIR_0_2             4    displayed_quartet_    separated      a37508b280187028982572253c3a59
+                                                    mismatch                             826137feb537228fb443fb79b68454
+                                                                                         3626
+         1    31981   D_REPAIR_0_2             5    displayed_quartet_    separated      d7a4960b94bf787bdc5ddeafad0295
+                                                    mismatch                             06a4693b5aa5876f5ecb947500abcf
+                                                                                         1a6c
+         1    31982   D_REPAIR_0_2             6    displayed_quartet_    separated      d5ad83a75f35c4b1bd795d89363c7b
+                                                    mismatch                             147d10ff6629930c327b3916883cd7
+                                                                                         5ba2
+         1    31983   INCOMING                 0    displayed_quartet_    separated      8246f706cb8e56b848238ca6e8715c
+                                                    mismatch                             c7ec257691cc03f567b97cac4843ec
+                                                                                         400a
+         1    31984   INCOMING                 1    displayed_quartet_    separated      12bba2049bad09e6403af99ae1cd8f
+                                                    mismatch                             54003aafd14654396f2328220ac954
+                                                                                         b079
+         1    31985   INCOMING                 2    displayed_quartet_    separated      8893a4e1763de61a221d08388243e5
+                                                    mismatch                             3f69e501f2e89cee01d493e6ae6eb7
+                                                                                         5f95
+         1    31986   INCOMING                 3    displayed_quartet_    separated      07b72f4608262f6fc6958a0f24c966
+                                                    mismatch                             984c5d8d70c08f490abfa216cadb2c
+                                                                                         801e
+         1    31987   INCOMING                 4    restore_remaining_    continuation   60636f150c4eb58cd64c0126bdb1d4
+                                                    physical_role                        aafe8e48927fc798974dfba76a5c51
+                                                                                         d272
+         1    31988   INCOMING                 5    displayed_quartet_    separated      718c7d8d3fd230a2bd1b25ecbb0faf
+                                                    mismatch                             f759a6bb6a8b0cd261f530806b3aac
+                                                                                         25b7
+         1    31989   INCOMING                 6    displayed_quartet_    separated      b86c1e7ab3211f299a5b9eb5910e3e
+                                                    mismatch                             f3b3ae35f69065cf189be6e31d04d2
+                                                                                         88b8
+         2       1    D_REPAIR_0_2             0    displayed_quartet_    separated      daddc54b748d86b7f3698b771e1ea0
+                                                    mismatch                             90b3fee641becc9b68fb76b0775d2b
+                                                                                         48e1
+
+
+
+
+                                                                13
+      layer   row   restored role       site   proof                status        row SHA-256
+          2     2   D_REPAIR_0_2          1    displayed_quartet_   separated     3d678ac9082f6b02ffebb340854884
+                                               mismatch                           55455345b13f1e037681b75051c81a
+                                                                                  603e
+          2     3   D_REPAIR_0_2          2    full_map_Ti_zero_    separated     dbe28657406837bfe91de37dc42fb1
+                                               strict_sign                        24c9a71d2c475bf1655811deeeac55
+                                                                                  ed00
+          2     4   D_REPAIR_0_2          3    displayed_quartet_   separated     e655cf2cf0aa1572b4a83ad7b24bbe
+                                               mismatch                           fde08e7fd968b0906c31cc3beb6977
+                                                                                  d72a
+          2     5   D_REPAIR_0_2          4    displayed_quartet_   separated     f61fd9ab276190e4e08a3e91288d01
+                                               mismatch                           2d46fad0e92ef586e74c9c20da5662
+                                                                                  80d2
+          2     6   D_REPAIR_0_2          5    displayed_quartet_   separated     5145c0082ec9fc0bfc40d4315a851c
+                                               mismatch                           f39f634e4ea3b14504f3f455a8139b
+                                                                                  0233
+          2     7   D_REPAIR_0_2          6    displayed_quartet_   separated     61bd0a2485ca2ba94809531aae4245
+                                               mismatch                           dd53821a10a041f95ff1e33b1f20f1
+                                                                                  18a1
+          2     8   D_REPAIR_0_2          7    displayed_quartet_   separated     1b825df66c3c7d4f9c9cf2156fa16c
+                                               mismatch                           c7dd1fe9dc0849deb83d0203bfcea3
+                                                                                  a64d
+
+
+
+There are 14 ﬁrst children: 12 displayed-quartet terminals, one full-map Ti terminal, and one continua-
+tion (row 31987). That continuation has exactly eight children: seven displayed-quartet terminals and
+one full-map Ti terminal. Every second child has an empty remaining-role list. Hence this exact subtree
+has 21 leaves, depth 2, zero unresolved records, and no cycle.
+
+
+A one-/two-port word transport. The anchor tree:k3:identity is the labelled identity tree
+transport 4342a65ef53537888b371724949a9ec3260731896777270ececd8fea0b475a7f. At source and target site zero,
+inserting label 3 gives the exact one-port transport c2ed6cbed9d725664268416f315268cfdab6e2c2844790c7596aab7010e
+0a4e0; both parent restrictions are R:57a56588cb2934a8ad6d9500e0d28a8f7a3e8f797ba05e6a213af02a676eb539. Inserting
+label 4 at the new site zero gives the exact two-port transport 8e3c37f3b5c32225fbf97286be01da6754a33e4fd267e4
+741a918740d5a4c8ba, whose parent transport is precisely the one-port transport. Its two restriction records
+are R:b286c2133804e765ea7889cbdc790218c360023201fbd93991e608af071e4bd3 and R:0bf3e2b848168b2d5c1d689601f1c1700bd3f
+98502524f32763d20ddac093639. The reversed marginal is the exact one-port transport c144b9418ca2bc530028a613a
+74290e7ded74d9b38589f323cd7e01b7bdf33b6 on the same base anchor. The selected ledger rows have hashes 6769
+1e6e518436f8911fe0dc82402de996b0deef87e3f7ad6396fb0b81bd0ef0 and 44c2b033d79916a3226985efc6211b4b54844953f90a7c00b
+2788a0cfe206193. Thus both deletion orders are bound, not inferred from an unrecorded symmetry.
+
+
+
+8.5       Provenance and replay
+
+   ﬁeld                             exact value
+   schema/version                   k2p-printed-certificate-appendix-v1
+   producer                         .venv/bin/python -B proof_compression_submission/templates/build_
+                                    printed_certificate_appendix.py –write
+   deterministic check              .venv/bin/python -B proof_compression_submission/templates/build_
+                                    printed_certificate_appendix.py –check
+   independent replay               .venv/bin/python -B proof_compression_submission/templates/verify_
+                                    printed_certificate_appendix.py
+   mutation suite                   .venv/bin/python -B proof_compression_submission/templates/test_
+                                    printed_certificate_appendix_mutations.py
+   sealed payload                   217612fd5779a467dc4db309449d3cf821c08d87a4e22e97447a162c67fe8c0f
+
+
+The authoritative input bindings are:
+
+
+                                                           14
+    path                                                      SHA-256
+    proof_compression_submission/templates/DIRECT_            f2f99e77e91fa97a747156ef032aeec5fd9406babea6b7887bb5
+    CERTIFICATE_TEMPLATE_TABLE.json                           8506da14caf4
+    work/corrected_composite_ledgers/artifacts/raw4_          0a1818655429d60660c1ed87f3fbe412701f386b081562b3a4ca
+    terminal_certificate_registry.json.gz                     a54079069f1d
+    package/referee/k2p_offline_sweep_portable/proofs/        f863afd5875a74be818141990863344fae09fd4269a803d3a1bf
+    theta0_quintic_orbit_certificate.json                     eb67a8a595e0
+    package/referee/k2p_offline_sweep_portable/proofs/        1127004383145ae1fa053a86e43199e3f627fefe8cd978feefc8
+    theta_quartic_obstruction_certificates.json               0b9b89e7b696
+    package/referee/k2p_offline_sweep_portable/proofs/        d1501a7e86b6b2b614590454ba4a44afc04785cb19711b70d2cd
+    theta3_cubic_obstruction_certificate.json                 8069bd35e0bf
+    package/referee/k2p_offline_sweep_portable/proofs/        e333b0420c22c8a80aa2b0bbe8553500a5c0734b78e90b35c08d
+    four_port_direct_residual_closure_certificate.json        857a302c963c
+    work/restoration_sign_reclassification/corrected_         43bd2be5e7626a954fc4fa4cf45e8d0e6483c947ddc9cba80f2b
+    restoration_forest.json                                   1a13351bc3a8
+    work/probe_coherence_corrected/probe_coherence_           2f4d64b32a905ce2cc06bae7d03215f9239427d421825c252543
+    certificate.json                                          7ee6ba2ccaf6
+    work/probe_coherence_corrected/one_port_ledger.jsonl.     d5fa13d38731bff2403eeb4e4d9e139566c4983b09d30553c626
+    gz                                                        0eaac64c5c90
+    work/probe_coherence_corrected/two_port_ledger.jsonl.     10f0afcab77f2d61cecfc36d723c6f32065c304ac088b0b8ecf1
+    gz                                                        2dfc867fbf9d
+    work/probe_coherence_corrected/parent_restriction_        5d1e6c2fe38d31f6304a76886ec37829215b88c8b179f5b23596
+    ledger.jsonl.gz                                           d49d37ceeb38
+    work/probe_coherence_corrected/exact_transport_ledger.    6bc8e88feac2bee68491287775f078e8e5474bf930961a739096
+    jsonl.gz                                                  7c9fd350044d
+
+
+
+
+9     Full weak-class certiﬁcate
+
+The base graphs are encoded by
+
+               W : rS, rL0 , SU, SV, U X, V Z, ZX, U V, ZL1 , XL2 ,                     Ret = {V, X},
+                    ′
+           W : rS, rL0 , SU, SX0 , V X0 , U X1 , V X1 , U V, X0 L1 , X1 L2 ,            Ret = {X0 , X1 }.
+
+Complete rooting censuses are (5, 2, 3) and (7, 2, 5) for admissible, tree-child, and non-tree-child rootings.
+Exact mixed-incidence comparison returns relation none, including after forgetting head ﬂags on the
+unique triangle of each graph.
+Put δ = 2−30 . The complete parameter mapping is:
+
+    datum                     W                                         W′
+    seven internal pairs      (1/7, 1/7)                                (1/4, 1/4)
+    inheritance 1             Z → X : 15996/16339; U → X :              V → X1 : 1/2; U → X1 : 1/2
+                              343/16339
+    inheritance 2             S → V : 1/8; U → V : 7/8                  V → X0 : 1/6; S → X0 : 5/6
+    leaf 0 pair               (86779δ/80, 86779δ/80)                    (16δ/3, 16δ/3)
+    leaf 1 pair               (320δ/253, 320δ/253)                      (32δ/9, 32δ/9)
+    leaf 2 pair               (114373δ/20240, 114373δ/20240)            (96δ/5, 96δ/5)
+
+In character code order 0, C, G, T = 0, 1, 2, 3, the common coordinate order is
+
+                            (000, 0CC, 0GG, C0C, CC0, CGT, CT G, G0G, GCT, GG0).
+
+The value is 1 at 000, δ 2 at the six two-nonzero coordinates, and 4δ 3 /5 at the three all-nonzero coordi-
+nates.
+The normalized tensors before pendant scaling are, respectively,
+           (                                                                                              )
+                    64009 64009     6400    1     4048     4048     6400     4048    1
+               1,         ,      ,        ,    ,        ,        ,        ,        ,
+                    457492 457492 39229939 1372 39229939 39229939 39229939 39229939 1372
+
+                                                         15
+and                           (                                                                    )
+                                        15   15   5 27    9    9    5   9    27
+                                  1,       ,    ,   ,   ,    ,    ,   ,    ,    .
+                                       1024 1024 512 512 4096 4096 512 4096 512
+The graph-derived canonical orders of the visible edge classes are
+
+            W : (ZX, SV, rS, SU, U V, V Z, U X),                 W ′ : (V X1 , V X0 , U V, rS, SX0 , SU, U X1 ).
+
+Accordingly, columns 0, . . . , 8 mean
+
+                               W :;(sZX , gZX , sSV , gSV , srS , grS , sSU , gSU , sU V ),
+                              W ′ :;(sV X1 , gV X1 , sV X0 , gV X0 , sU V , gU V , srS , grS , sSX0 ).
+
+These names are a derived crosswalk, not an unstated ﬁeld of the frozen certiﬁcate: the crosswalk
+veriﬁer reconstructs the descendant signatures from the two primitive graphs, binds the frozen graph
+and descriptor hashes, and rejects a reordered column. The sealed artifact and independent checker are,
+respectively,
+
+      proof_compression_submission/analysis/WEAK_SHARPNESS_COLUMN_CROSSWALK.json
+      proof_compression_submission/analysis/verify_weak_sharpness_column_crosswalk.py.
+
+All output-row indices in the following table are zero-based in the displayed Fourier-coordinate order;
+row 0 is the all-zero coordinate. The minors’ rows and determinants are
+
+      map   output rows                    determinant
+      W     (1, 2, 3, 5, 4, 7, 6, 8, 9)    10368019213741323/563981315074464023964442388464888915634290688
+      W′    (1, 2, 3, 5, 4, 6, 7, 8, 9)    1435825/85002596691653613846528
+
+For cherry induction use actual physical pairs (us , ug ) = (2/5, 4/9) and (vs , vg ) = (3/7, 5/11). The
+observable block (us /vs , us vs , ug /vg , ug vg ) has determinant 2464/675. More explicitly, for an outside
+leaf j and new cherry leaves a, b,
+                                          Qj=C,a=C,b=0  us
+                                                       = ,            Qa=C,b=C = us vs ,
+                                          Qj=C,a=0,b=C  vs
+
+with all omitted characters zero; replacing C by G gives the other two observables. Square-root recovery
+gives the four edge factors, and division by the corresponding nonzero factor recovers every old tensor
+coordinate. This is the analytic local inverse; graph pruning separately preserves weak-not-strong status
+and inequivalence.
+
+
+10     Theorem-to-artifact crosswalk
+
+All paths below are relative to the k2p_level2_identifiability_closure project root. “Primary” is
+the producer/certiﬁcate path; “replay” is a separately implemented checker or audit. Historical ﬁles not
+named here are not promotion evidence. This printed table is a reader map, not the complete machine
+schema. The ﬁeld-rich authority is proof_compression_submission/crosswalk/THEOREM_ARTIFACT_
+CROSSWALK.json, which records each claim’s declared artifact schemas, exact byte hashes, producer,
+replay and mutation artifacts, environment proﬁle, and whether a runtime is known or deliberately null.
+Executable entry points are invoked from the project root with the pinned Python environment shown
+in Section 12.
+
+
+                                                                16
+claim                    primary proof/certiﬁcate          independent replay or mutation
+K2P domain,              work/domain_rooting_closure/      work/domain_rooting_closure/
+subdivision, rooting     PROOF.md; work/domain_rooting_    verify_domain_rooting.py
+                         closure/domain_rooting_
+                         certificate.json
+Quartet signs and tree   work/quartet_separation_          work/quartet_separation_
+of blobs                 closure/PROOF.md; work/quartet_   closure/verify_quartet_logic.
+                         separation_closure/quartet_       py; work/adversarial_proof_
+                         logic_certificate.json            review/verify_topology_
+                                                           direction.py
+Whole-map Ti and         package/original/checkpoint_2/    package/original/checkpoint_
+triangle germ            continuation_2/K2P_TREE_          2/continuation_2/verify_
+                         SUNLET_SIGN_CERTIFICATE.md;       triangle_and_sunlet.py;
+                         package/original/checkpoint_2/    work/final_theorem_release/
+                         continuation_2/K2P_TRIANGLE_      no_assert_triangle_sunlet.py
+                         GERM_EXACT.md
+Bridge ﬁbre, marginal,   work/bridge_marginal_closure/     work/bridge_marginal_closure/
+gluing                   PROOF.md; work/bridge_marginal_   verify_bridge_marginal.py;
+                         closure/certificate.json          work/adversarial_proof_
+                                                           review/PHYSICAL_LOCAL_
+                                                           PRODUCT_REPAIR.md;
+                                                           work/adversarial_proof_
+                                                           review/verify_adversarial.py
+Global classiﬁcation,    work/global_theorem_closure/      work/global_theorem_closure/
+genericity,              promotion_manuscript/K2P_SAME_    promotion_manuscript/
+reconstruction, and      PROMOTION_MANUSCRIPT.md           QUANTIFIER_AUDIT.md;
+continuous time                                            work/global_proof_adversary/
+                                                           AUDIT.md
+Four-port raw            work/corrected_composite_         work/corrected_composite_
+universe and terminals   ledgers/artifacts/raw4_           ledgers/verify_corrected_
+                         corrected_composite_ledger.       composites_independent.py;
+                         jsonl.gz; work/corrected_         work/corrected_composite_
+                         composite_ledgers/artifacts/      ledgers/run_composite_
+                         raw4_terminal_certificate_        mutations.py
+                         registry.json.gz
+Five-port θ2             work/corrected_composite_         work/corrected_composite_
+                         ledgers/artifacts/theta2_         ledgers/verify_corrected_
+                         corrected_composite_ledger.       composites_independent.py;
+                         jsonl.gz                          work/corrected_composite_
+                                                           ledgers/run_composite_
+                                                           mutations.py, family theta2
+Printed direct           proof_compression_submission/     proof_compression_submission/
+templates and worked     templates/PRINTED_CERTIFICATE_    templates/verify_printed_
+paths                    APPENDIX.json;                    certificate_appendix.py;
+                         proof_compression_submission/     proof_compression_submission/
+                         supplement/certificate_           templates/test_printed_
+                         appendix.tex                      certificate_appendix_
+                                                           mutations.py
+
+
+
+                                               17
+claim                   primary proof/certiﬁcate          independent replay or mutation
+997-parent forest       work/restoration_sign_            work/restoration_sign_
+                        reclassification/corrected_       reclassification/corrected_
+                        restoration_forest.json           restoration_replay_
+                                                          certificate.json;
+                                                          work/restoration_sign_
+                                                          reclassification/verify_
+                                                          corrected_restoration_forest.
+                                                          py; work/restoration_sign_
+                                                          reclassification/mutate_
+                                                          corrected_restoration_forest.
+                                                          py
+Three-port cycle        work/cycle_three_port_closure/    work/adversarial_proof_
+closure                 PROOF.md; work/cycle_three_       review/verify_corrected_
+                        port_closure/promotion/cycle_     cycle_promotion.py;
+                        promotion_certificate.json        work/adversarial_proof_
+                                                          review/test_cycle_promotion_
+                                                          mutations.py
+Probe input             work/adversarial_proof_review/    work/adversarial_proof_
+completeness            PROBE_INPUT_CONTRACT.md;          review/verify_probe_input_
+                        work/adversarial_proof_review/    contract.py; work/adversarial_
+                        probe_input_contract.json         proof_review/test_probe_
+                                                          input_mutations.py
+One-/two-port probe     work/probe_coherence_             work/probe_coherence_
+closure                 corrected/PROOF.md; work/probe_   corrected/probe_coherence_
+                        coherence_corrected/probe_        independent_verification.
+                        coherence_certificate.json        json; work/probe_coherence_
+                                                          corrected/verify_probe_
+                                                          coherence_corrected.py;
+                                                          work/probe_coherence_
+                                                          corrected/run_probe_
+                                                          coherence_mutations.py
+Primitive probe audit   work/global_proof_adversary/      work/global_proof_adversary/
+                        probe_full_audit/independent_     probe_full_audit/independent_
+                        probe_graph_audit_certificate.    probe_graph_audit.py;
+                        json                              work/global_proof_adversary/
+                                                          probe_full_audit/independent_
+                                                          probe_mutation_report.json
+
+
+
+
+                                              18
+ claim                        primary proof/certiﬁcate                     independent replay or mutation
+ Weak sharpness               work/weak_sharpness_closure/                 work/weak_sharpness_audit/
+                              PROOF.md; work/weak_sharpness_               PROOF_AUDIT.md;
+                              closure/weak_sharpness_                      work/weak_sharpness_audit/
+                              certificate.json;                            audit_certificate.json;
+                              proof_compression_submission/                work/weak_sharpness_audit/
+                              analysis/WEAK_SHARPNESS_                     test_mutations.py;
+                              COLUMN_CROSSWALK.json                        proof_compression_submission/
+                                                                           analysis/verify_weak_
+                                                                           sharpness_column_crosswalk.
+                                                                           py;
+                                                                           proof_compression_submission/
+                                                                           analysis/test_weak_sharpness_
+                                                                           column_crosswalk_mutations.py
+ Uniﬁed theorem lock          work/final_theorem_release/                  work/final_theorem_release/
+                              RELEASE_LOCK.json; work/final_               corrected_universe_
+                              theorem_release/verify_final_                independent_replay.json;
+                              theorem_release.py                           work/final_theorem_release/
+                                                                           run_release_mutations.py
+
+
+10.1     Printed ﬁnite-layer replay metadata
+
+For the principal computed layers, each row below supplies the requested schema/version, authoritative
+ﬁle SHA-256, producer command, independent replay command, and mutation command. Commands
+run from the project root; none may be invoked with optimized Python.
+
+ layer                    exact machine metadata
+ raw four-port topology   schema/version: k2p-four-port-raw-ledger-summary-v1; authority:
+ ledger                   work/raw_ledger_audit/artifacts/raw_ledger_summary.json; SHA-256: b14591da6604aa77712a51
+                          21bb88f7d2a4731ebdc0b68bd2634771e3bc7ed56f; producer command: .venv/bin/python -B
+                          work/raw_ledger_audit/generate_raw_ledger.py; replay command: .venv/bin/python -B
+                          work/raw_ledger_audit/verify_raw_ledger.py; mutation command: .venv/bin/python -B
+                          work/raw_ledger_audit/test_mutations.py.
+ four-port exact-rank     schema/version: k2p-four-port-exact-generic-rank-upper-coverage-v1; authority:
+ ﬁlter                    work/rank_upper_certificates/rank_upper_coverage.json; SHA-256: c52c5730494eb894360c17b6
+                          e54ae5c260fca3cddb8702d5c796750c7df874bc; producer command: PYTHONPATH=package/referee/
+                          k2p_offline_sweep_portable/atlas:work/rank_upper_certificates .venv/bin/python -B
+                          work/rank_upper_certificates/build_rank_upper_coverage.py; replay command:
+                          PYTHONPATH=package/referee/k2p_offline_sweep_portable/atlas:work/rank_upper_
+                          certificates .venv/bin/python -B
+                          work/rank_upper_certificates/verify_rank_upper_certificates.py; mutation command:
+                          PYTHONPATH=package/referee/k2p_offline_sweep_portable/atlas:work/rank_upper_
+                          certificates .venv/bin/python -B work/rank_upper_certificates/mutation_tests.py.
+ direct terminal          schema/version: k2p-printed-certificate-appendix-v1; authority:
+ templates                proof_compression_submission/templates/PRINTED_CERTIFICATE_APPENDIX.json; SHA-256: 4a4b5
+                          8f486769fe03fc199d5914d854d8f03e89538284b51b9a375a96fa5920e; producer command:
+                          .venv/bin/python -B
+                          proof_compression_submission/templates/build_printed_certificate_appendix.py –write;
+                          replay command: .venv/bin/python -B
+                          proof_compression_submission/templates/verify_printed_certificate_appendix.py; mutation
+                          command: .venv/bin/python -B
+                          proof_compression_submission/templates/test_printed_certificate_appendix_mutations.py.
+
+
+
+
+                                                         19
+ layer                    exact machine metadata
+ 997-parent restoration   schema/version: k2p-corrected-restoration-forest-v3; authority:
+ forest                   work/restoration_sign_reclassification/corrected_restoration_forest.json; SHA-256: 43bd2
+                          be5e7626a954fc4fa4cf45e8d0e6483c947ddc9cba80f2b1a13351bc3a8; producer command:
+                          .venv/bin/python -B
+                          work/restoration_sign_reclassification/build_corrected_restoration_forest.py; replay
+                          command: .venv/bin/python -B
+                          work/restoration_sign_reclassification/verify_corrected_restoration_forest.py; mutation
+                          command: .venv/bin/python -B
+                          work/restoration_sign_reclassification/mutate_corrected_restoration_forest.py.
+ one-/two-port probe      schema/version: k2p-corrected-coherent-probe-closure-v1; authority:
+ closure                  work/probe_coherence_corrected/probe_coherence_certificate.json; SHA-256: 2f4d64b32a905c
+                          e2cc06bae7d03215f9239427d421825c2525437ee6ba2ccaf6; producer command: .venv/bin/python
+                          -B work/probe_coherence_corrected/build_probe_coherence_corrected.py; replay command:
+                          .venv/bin/python -B work/probe_coherence_corrected/verify_probe_coherence_corrected.py;
+                          mutation command: .venv/bin/python -B
+                          work/probe_coherence_corrected/run_probe_coherence_mutations.py.
+ weak-sharpness named     schema/version: k2p-weak-sharpness-column-crosswalk-v1; authority:
+ columns                  proof_compression_submission/analysis/WEAK_SHARPNESS_COLUMN_CROSSWALK.json; SHA-256: c3b
+                          302c37744fa33834c75ca5b22da9d374d5def4f1e6f4650e3b2b3b4166437; producer command:
+                          .venv/bin/python -B
+                          proof_compression_submission/analysis/build_weak_sharpness_column_crosswalk.py; replay
+                          command: .venv/bin/python -B
+                          proof_compression_submission/analysis/verify_weak_sharpness_column_crosswalk.py;
+                          mutation command: .venv/bin/python -B
+                          proof_compression_submission/analysis/test_weak_sharpness_column_crosswalk_mutations.py.
+ full-map certiﬁcate      schema/version: k2p-full-map-domain-reseal-audit-v1; authority:
+ reseal                   work/final_theorem_release/full_map_reseal_audit.json; SHA-256: 945c957f0b73ab01d9c5bd69
+                          42ccb881f86e22fc47d8e4cc1fff5da8f4a64f40; producer/replay/mutation command:
+                          .venv/bin/python -B work/final_theorem_release/verify_full_map_reseal.py.
+ composite reseal         schema/version: k2p-composite-domain-reseal-diff-audit-v1; authority:
+ diﬀerential              work/final_theorem_release/composite_reseal_diff_audit.json; SHA-256: bc91fee3b7541fcae7
+                          2c4db2e66776fbfc69c43890718239f0eea41bb2cc0654; producer/replay command: .venv/bin/python
+                          -B work/final_theorem_release/verify_composite_reseal_diff.py; mutation authority: the six
+                          fail-closed seal/domain mutations in the preceding reseal audit.
+
+
+
+
+11       Frozen hash anchors
+
+The following SHA-256 values are the compact anchors most useful for checking that the intended ﬁnite
+universe has been unpacked. The outer release lock authenticates all nested ﬁles and should remain the
+authority if any table is updated.
+
+  artifact                                         ﬁle SHA-256
+  uniﬁed release lock                              c319977f350923ab900a883235e32ec945d55a864338c14a08ce266ed3a1c78a
+  raw-four composite ledger                        431dac8898ad2a724d12c200687de1b377723e302214a79a11a03524a4084b96
+  raw-four independent replay                      c5cd73b13265b7acc36f156889b86e2c04715181c6a1d70224cd725b0221a859
+  raw-four terminal registry                       0a1818655429d60660c1ed87f3fbe412701f386b081562b3a4caa54079069f1d
+  raw-four mutation report                         83196bc33504fd1e17c8784d2c7530f358e85cff8161c8e5f14ba04a60c42d76
+  ﬁve-port θ2 composite ledger                     805fc7f5a3de9dad2c63a210208075cf19910cf811ffd08878f32782ce71b659
+  ﬁve-port independent replay                      dd02a752b2ce41628039d2f6da6fdab77f2a8ffd73b8cd80e2968790dbbf3150
+  ﬁve-port mutation report                         ec2c6ec092539048b4e7ab9d9cfea01caa985d0f35cae74ca56732dc4cfe4c84
+  full-map certiﬁcate reseal audit                 945c957f0b73ab01d9c5bd6942ccb881f86e22fc47d8e4cc1fff5da8f4a64f40
+  composite reseal diﬀerential audit               bc91fee3b7541fcae72c4db2e66776fbfc69c43890718239f0eea41bb2cc0654
+  corrected 997-parent forest                      43bd2be5e7626a954fc4fa4cf45e8d0e6483c947ddc9cba80f2b1a13351bc3a8
+  restoration independent replay                   24fa2e61f60610a8b24c4107ec7f866278f0cc671ca203d7aaa40a37bea291dd
+  probe input contract                             7f686ae99dd5e6dafc1c04396b711d294a0bddd6a25574f9ea809b831ad7b377
+  full probe primary                               2f4d64b32a905ce2cc06bae7d03215f9239427d421825c2525437ee6ba2ccaf6
+
+
+
+                                                           20
+   artifact                                ﬁle SHA-256
+   full probe independent graph audit      b30e2e32e5eec86875031a8bba82d58689f18859896adeb6a6931888df75209f
+   full probe adversarial mutation         b0df0584163150c9a823b4e364b8ee46c196ae8abb28fdca4d3d5893a97bfea7
+   report
+   weak-sharpness primary                  e66c78a0aeab990b4dc448f4f064b37e1e15ecbff75a5f472bf116d4464378bd
+   weak-sharpness independent audit        cfd8d3a2ebc7431d141cac6ebe943e25730eb086fbc84b52833a40bee40a5d52
+
+
+
+The combined one-/two-port ordered-ledger root is
+              7868fed6f8e0c10fcb9740da8ffdcb7f64ea68939c99cba6f364da4cfd90bf50.
+
+
+12     Replay protocol
+
+Run from the project root. The locked environment uses Python 3.10 or newer; the qualiﬁed release
+used Python 3.14.6, NetworkX 3.5, and SymPy 1.14.0.
+
+python3 -m venv .venv
+.venv/bin/python -m pip install --upgrade pip
+.venv/bin/python -m pip install \
+  -r work/final_theorem_release/requirements.txt
+
+.venv/bin/python -B \
+  work/final_theorem_release/build_release_lock.py --check --require-ready
+.venv/bin/python -B \
+  work/final_theorem_release/verify_final_theorem_release.py --quick
+.venv/bin/python -B \
+  work/final_theorem_release/run_release_mutations.py
+
+For full primitive regeneration:
+
+.venv/bin/python -B \
+  work/final_theorem_release/verify_final_theorem_release.py --full
+
+The entry points reject optimized Python (python -O). Full mode regenerates large ledgers by streaming;
+it does not require an uncompressed multi-gigabyte temporary JSONL ﬁle. The submission bundle re-
+quires a detached clean-checkout full replay of the exact candidate sources with every layer passing, zero
+blockers, and promotion_ready=true. Its exact candidate commit, layer count, internal and wall times,
+memory measurements, report SHA-256, and telemetry SHA-256 are deliberately not compiled into this
+source. They are recorded in proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY.
+json, proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY_TELEMETRY.json, and
+the generated theorem-to-artifact crosswalk. This separation lets the replay byte-bind these exact
+submission sources without a self-referential source edit after the run.
+The frozen ﬁve-port θ2 artifacts retain the compiler, canonicalizer, and input-lock hashes of their orig-
+inal generation. The full replay requires those legacy bindings exactly and reconstructs the current
+expected bytes by changing only those provenance ﬁelds, the two consequent artifact-metadata rows,
+and the summary seal. It then compares the freshly generated rank and restoration payloads with those
+reconstructed bytes and requires the direct-proof, class-partition, and all 2,946,240 raw-ledger rows to
+remain literally byte-identical. Dedicated mutations reject a wrong legacy binding; the outer release
+lock independently ﬁxes the current compiler, canonicalizer, and input lock.
+
+                                                   21
+13    Mutation coverage
+
+The independent suites reject at least the following semantic faults:
+  • omitted or duplicated raw relation;
+  • swapped or false topology reason;
+  • false target rank upper bound or rank exclusion;
+  • reassignment of a terminal class;
+  • omitted restoration role or child;
+  • wrong source insertion, target attachment, or parent;
+  • restoration cycle or missing continuation layer;
+  • broken boundary transport or parent restriction;
+  • omitted probe anchor, pendant site, reticulation-incoming site, or root-suppressed site;
+  • splitting the two artiﬁcial root halves into distinct physical sites;
+  • source–target reversal omission;
+  • reassignment of quadratic, cubic, quartic, quintic, or Ti certiﬁcate;
+  • reintroduction of a rooted triple_type topology oracle;
+  • changed sharpness arrows, parents, inheritance complements, Fourier coordinates, rank minors,
+    or incomplete rooting list; and
+  • optimized-Python execution that would disable fail-closed checks.
+Mutation rejection demonstrates that the veriﬁer watches these data. It is not a substitute for the direct
+mathematical implication associated with each certiﬁcate type.
+
+
+14    Recent-source veriﬁcation note
+
+Citation metadata were checked on 21 August 2026 against primary publisher or authoritative preprint
+records where available:
+
+
+
+
+                                                   22
+     source                        veriﬁed locator and status
+     Kimura (1980) [10]            Springer version of record, https://doi.org/10.1007/BF01731581,
+                                   vol. 16, pp. 111–120.
+     Evans–Speed (1993) [5]        Project Euclid/Annals record,
+                                   https://doi.org/10.1214/aos/1176349030, vol. 21, pp. 355–377.
+     Sturmfels–Sullivant (2005)    author/arXiv and journal metadata agree on J. Comput. Biol. 12(2),
+     [12]                          pp. 204–228, https://doi.org/10.1089/cmb.2005.12.204.
+     Gross et al. (2021) [6]       Springer version of record,
+                                   https://doi.org/10.1007/s00285-021-01653-8, J. Math. Biol.
+                                   83:32.
+     Cox–Gross–Martin (2025) [3]   Springer version of record,
+                                   https://doi.org/10.1007/s11538-025-01506-1, Bull. Math. Biol.
+                                   87:132.
+     Ardiyansyah (2021) [1]        arXiv primary record https://arxiv.org/abs/2104.12479v1; the
+                                   abstract states the simple/semisimple level-2 invariant scope used in
+                                   the related-work summary.
+     Holtgrefe et al. (2025) [7]   Springer version of record,
+                                   https://doi.org/10.1007/s11538-025-01549-4, Bull. Math. Biol.
+                                   87:168; the publisher records a 14 January 2026 correction.
+     Holtgrefe et al. (2026) [8]   Springer version of record,
+                                   https://doi.org/10.1007/s12064-025-00453-8, Theory Biosci.
+                                   145:4.
+     Huber et al. (2025) [9]       Springer version of record,
+                                   https://doi.org/10.1007/s11538-025-01510-5, Bull. Math. Biol.
+                                   87:136; Lemma 4.2 is the two-generator result used here.
+     Englander et al. (2025) [4]   bioRxiv DOI https://doi.org/10.1101/2025.04.18.649493;
+                                   theorem numbering and the 4 July 2026 version-4 content were
+                                   checked against the locally archived source XML/PDF.
+     Brits et al. (2026) [2]       arXiv primary record https://arxiv.org/abs/2607.12919v2;
+                                   version 2 dated 29 July 2026.
+     Kriebel (2026) [11]           versioned public companion JC repository release
+                                   https://github.com/AlecKriebel/Math/releases/tag/
+                                   stc-jc-sharp-boundary-v1.1.4, source commit
+                                   b5b855f5e6552e1d87f32d90851ea2def5330364; no DOI is claimed.
+
+The local K2P/K3P theta-collision manuscript is provisional and has no veriﬁed public bibliographic
+status in this draft. It is therefore not cited as a published result or used as theorem evidence.
+
+
+15      Submission metadata and licenses
+
+The corresponding address is me@aleckriebel.com. No speciﬁc funding supported this work, and the
+author declares no competing interests. The article, supplement, and certiﬁcate data are licensed
+under CC BY 4.0; veriﬁer code is licensed under the MIT License. The public repository is https:
+//github.com/AlecKriebel/Math, the project path is k2p_level2_identifiability_closure, and
+the immutable source tag for this submission is k2p-same-biorxiv-v1.0.1. The ﬁnal deterministic
+archive SHA-256 is recorded alongside the submission package. No GitHub Release, Zenodo deposit, or
+DOI is claimed in this version.
+
+
+
+
+                                                    23
+Disclosure
+
+Generative AI assisted with discovery, code, drafting, and adversarial review. The cited independent
+replays are separately implemented programs, not independent human review. The author accepts
+responsibility for the ﬁnal mathematics, software, and submission.
+
+
+References
+ [1] Muhammad Ardiyansyah. Distinguishing level-2 phylogenetic networks using phylogenetic invariants, 2021.
+ [2] Jari Brits, Niels Holtgrefe, Leo van Iersel, and Samuel Martin. On tree–network distinguishability and full
+     identiﬁability of phylogenetic networks, 2026. Version 2, 29 July 2026.
+ [3] Shelby Cox, Elizabeth Gross, and Samuel Martin. Group-based phylogenetic models on 3-sunlet networks.
+     Bulletin of Mathematical Biology, 87:132, 2025.
+ [4] Aviva K. Englander, Martin Frohn, Elizabeth Gross, Niels Holtgrefe, Leo van Iersel, Mark Jones, and Seth
+     Sullivant. Identiﬁability of phylogenetic level-2 networks under the jukes–cantor model. bioRxiv, 2025.
+     bioRxiv preprint, ﬁrst posted 24 April 2025; version 4 revised 4 July 2026.
+ [5] Steven N. Evans and Terry P. Speed. Invariants of some probability models used in phylogenetic inference.
+     The Annals of Statistics, 21(1):355–377, 1993.
+ [6] Elizabeth Gross, Leo van Iersel, Remie Janssen, Mark Jones, Colby Long, and Yukihiro Murakami. Dis-
+     tinguishing level-1 phylogenetic networks on the basis of data generated by markov processes. Journal of
+     Mathematical Biology, 83(3):32, 2021.
+ [7] Niels Holtgrefe, Elizabeth S. Allman, Hector Baños, Leo van Iersel, Vincent Moulton, John A. Rhodes, and
+     Kristina Wicke. Distinguishing phylogenetic level-2 networks with quartets and inter-taxon quartet distances.
+     Bulletin of Mathematical Biology, 87(12):168, 2025.
+ [8] Niels Holtgrefe, Katharina T. Huber, Leo van Iersel, Mark Jones, and Vincent Moulton. Characterizing
+     semi-directed phylogenetic networks and their multi-rootable variants. Theory in Biosciences, 145:4, 2026.
+ [9] Katharina T. Huber, Leo van Iersel, Mark Jones, Vincent Moulton, and Leonie Veenema-Nipius. When are
+     quarnets suﬃcient to reconstruct semi-directed phylogenetic networks? Bulletin of Mathematical Biology,
+     87(10):136, 2025.
+[10] Motoo Kimura. A simple method for estimating evolutionary rates of base substitutions through comparative
+     studies of nucleotide sequences. Journal of Molecular Evolution, 16(2):111–120, 1980.
+[11] Alec Kriebel. Strong tree-childness is a sharp generic-identiﬁability boundary for level-2 jukes–cantor
+     networks. GitHub release, 2026. Companion manuscript and reproducibility package; source commit
+     b5b855f5e6552e1d87f32d90851ea2def5330364.
+[12] Bernd Sturmfels and Seth Sullivant. Toric ideals of phylogenetic invariants. Journal of Computational
+     Biology, 12(2):204–228, 2005.
+
+
+
+
+                                                       24
+

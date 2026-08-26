@@ -1,0 +1,217 @@
+{
+  "archive": {
+    "bytes": 214823405,
+    "compressed_member_bytes": 214683757,
+    "file_count": 484,
+    "fixed_timestamp": "2026-08-25T00:00:00",
+    "prefix": "k2p_principal_d_plus_submission_referee",
+    "sha256": "ca08a3f50154610c7297ca83f92f0c9517fa5422ac7acf53b89582e1e14edbde",
+    "source_path": "source_archive/K2P_Principal_D_Plus_Referee_Package_20260825.zip",
+    "uncompressed_member_bytes": 483053523
+  },
+  "archive_rebuild": {
+    "command": "python3 -B independent_checks/provenance/audit_archive_v2.py --project isolated/k2p_principal_d_plus_submission_referee --archive source_archive/K2P_Principal_D_Plus_Referee_Package_20260825.zip --output reports/provenance_archive_registry_timed.json --rebuild tmp/provenance/rebuilds/rebuild_c.zip --rebuild tmp/provenance/rebuilds/rebuild_d.zip",
+    "exit": 0,
+    "maximum_resident_set_size_bytes": 632242176,
+    "real_seconds": 42.59,
+    "rebuild_a_sha256": "ca08a3f50154610c7297ca83f92f0c9517fa5422ac7acf53b89582e1e14edbde",
+    "rebuild_b_sha256": "ca08a3f50154610c7297ca83f92f0c9517fa5422ac7acf53b89582e1e14edbde",
+    "status": "PASS"
+  },
+  "c02_authority": {
+    "certificate_path": "work/adversarial_proof_review/topology_direction_certificate.json",
+    "certificate_schema": "k2p-displayed-quartet-direction-audit-v2",
+    "certificate_sha256": "249fdf29ce371e60d7cd8593b98ab0d96759e1ee1e0034af6e1a14e33fb1f7d4",
+    "current_forest_counts": {
+      "final_leaves": 36792,
+      "first_children": 36568,
+      "first_partition": {
+        "continuation": 32,
+        "displayed_quartet": 35758,
+        "quadratic": 148,
+        "transported_quartic": 24,
+        "whole_map_Ti": 606
+      },
+      "forest_edges": 36824,
+      "second_children": 256,
+      "second_partition": {
+        "displayed_quartet": 248,
+        "whole_map_Ti": 8
+      }
+    },
+    "historical_narrative_classification": "REVOKED_ROOTED_TOPOLOGY_ORACLE_NARRATIVE",
+    "historical_narrative_promotion_authority": false,
+    "historical_narrative_sha256": "0c10de904bc233e95c3ff776f9d2ab8e887f2e93fc05362a47039164d8833f1b",
+    "independent_registry_sha256": "d132ebe102ec66719efb100e39724b864d0ca1b910de6aa59fc815555c835205",
+    "status": "PASS"
+  },
+  "classification": "Provenance/integrity and reproducibility evidence; not mathematical validation",
+  "dependencies": {
+    "count": 3,
+    "legacy_submission_binding_absent_and_mapped": true,
+    "rows": [
+      {
+        "bytes": 2304,
+        "path": "output/referee/README.md",
+        "sha256": "15571630e9bee72f10ccf5b58caba2fc183533415c4c033a81d4924b29b5a672"
+      },
+      {
+        "bytes": 76398,
+        "path": "output/referee/REFEREE_BUNDLE_CONTENTS.json",
+        "sha256": "56d190d412f916c7c88992f8609ebc8686b6dab5d2409fcd1b36feaad67e4286"
+      },
+      {
+        "bytes": 7266,
+        "path": "output/referee/build_referee_bundle.py",
+        "sha256": "2989db5f646d8931c64e964be1f17dc2344efd93c57bde517caec60eb1628301"
+      }
+    ],
+    "status": "PASS"
+  },
+  "environment": {
+    "cpu": "Apple M1 Pro",
+    "logical_cores": 10,
+    "memory_bytes": 17179869184,
+    "networkx": "3.5",
+    "os": "macOS 26.5.2 build 25F84 arm64",
+    "python": "CPython 3.14.6",
+    "sympy": "1.14.0",
+    "tectonic": "0.16.9"
+  },
+  "executions": [
+    {
+      "command": "python -B output/referee/build_referee_bundle.py --check-only",
+      "exit": 0,
+      "maximum_resident_set_size_bytes": 225329152,
+      "real_seconds": 0.87,
+      "status": "PASS"
+    },
+    {
+      "command": "python -B work/final_theorem_release/build_release_lock.py --check --require-ready",
+      "exit": 0,
+      "maximum_resident_set_size_bytes": 502988800,
+      "real_seconds": 10.56,
+      "status": "PASS"
+    },
+    {
+      "command": "python -B proof_compression_submission/crosswalk/check_revised_referee_bundle.py",
+      "exit": 0,
+      "maximum_resident_set_size_bytes": 286425088,
+      "real_seconds": 0.97,
+      "status": "PASS"
+    },
+    {
+      "command": "python -B work/final_theorem_release/verify_final_theorem_release.py --quick",
+      "exit": 0,
+      "maximum_resident_set_size_bytes": 1441939456,
+      "real_seconds": 386.76,
+      "status": "PASS",
+      "stdout_sha256": "ee1ea2d6560df3a74fda6d8373b3be1b022b16999a23bf0ea20f08866d392f71"
+    },
+    {
+      "command": "python -B work/final_theorem_release/run_release_mutations.py",
+      "exit": 0,
+      "maximum_resident_set_size_bytes": 1423196160,
+      "mutation_count": 27,
+      "payload_sha256": "b7e1776e44ff5b50f92ed58f8b62d3c15ea49a358819bd8bc9dfac76ebd9df37",
+      "real_seconds": 971.54,
+      "source_ledger_unchanged": true,
+      "status": "PASS",
+      "stdout_sha256": "2aae993baa3c626c0cb1aea54b6b246dc3a910339a3476acf0ff4249d8469037"
+    },
+    {
+      "command": "python -B proof_compression_submission/build_submission_pdfs.py --visual-pass --check",
+      "exit": 0,
+      "maximum_resident_set_size_bytes": 255983616,
+      "payload_sha256": "556ba6792d8dd1e27a3e35d52e306d74d835c1f8d35a49f698039127964dc94d",
+      "real_seconds": 19.77,
+      "status": "PASS"
+    },
+    {
+      "command": "python -B proof_compression_submission/crosswalk/test_crosswalk_bundle_mutations.py --check",
+      "exit": 0,
+      "maximum_resident_set_size_bytes": 597491712,
+      "mutation_count": 31,
+      "payload_sha256": "0492a14d8efc310b4bed1e0d0217f4408ea5e3c827372be366582e7bc047efae",
+      "real_seconds": 7.26,
+      "status": "PASS"
+    },
+    {
+      "command": "python -B proof_compression_submission/test_clean_full_replay_telemetry.py",
+      "exit": 0,
+      "maximum_resident_set_size_bytes": 27230208,
+      "real_seconds": 4.67,
+      "status": "PASS",
+      "test_count": 9
+    }
+  ],
+  "findings": [
+    {
+      "effect": "No fail-open effect found; normal and optimized modes reject a changed locked file identically",
+      "id": "P1",
+      "path": "output/referee/build_referee_bundle.py",
+      "severity": "presentation/nonblocking",
+      "summary": "Portable bundle checker accepts -O although the release README says every entry point explicitly rejects it"
+    }
+  ],
+  "git": {
+    "final_tag": "k2p-same-biorxiv-v1.0.1",
+    "final_tag_commit": "57f50ab46cde634b9450c5a01be4b3a12ba5a864",
+    "final_tag_object": "40980e2be87e3d5fcba8ce414f18f821492b099b",
+    "package_files_exact_at_final_tag": 484,
+    "replay_commit": "83821850e02bc6b6a0383dbc9d3d42ab24a261f5",
+    "replay_commit_matching_package_files": 473,
+    "status": "PASS"
+  },
+  "ledgers": {
+    "combined_content_root_sha256": "ab13d87f2b784d1c12f4fa2a398e33aeb8ba4d2eb8d6c5071611c71c90b2a5ff",
+    "frozen": {
+      "bytes": 478865262,
+      "content_root_sha256": "de6c2f7162164bb460bc608bffefb96b0494965c734c1063f304530a0cc36b82",
+      "files": 403
+    },
+    "manifest": {
+      "bytes": 97909,
+      "file_sha256": "bebf82e4d0a406c129d38ceb2433583720bb24f5fea1f6f6ba5a1f05478ef0ce",
+      "payload_sha256": "1a4b0999d6c7c2cc6f4ff9cb322ab3189f90aa9b4cdf020464d666aa78148c81"
+    },
+    "release_lock": {
+      "file_sha256": "c319977f350923ab900a883235e32ec945d55a864338c14a08ce266ed3a1c78a",
+      "payload_sha256": "dcc15b8ae2bb46674344595809690657119e5271611bab8c3c47fccade0fa509"
+    },
+    "submission": {
+      "bytes": 4090352,
+      "content_root_sha256": "923e8e0741557a013af2b480e4735894833ea4ff792c1e62aefe4f24dd2e0953",
+      "files": 80
+    }
+  },
+  "path_dependent_mutation_fix": {
+    "alpha_report_sha256": "a1bf423637775b295fb1d6554401352834c59eab326798f7db4753a3855a4a9e",
+    "beta_report_sha256": "a1bf423637775b295fb1d6554401352834c59eab326798f7db4753a3855a4a9e",
+    "inside_project_output_rejected": true,
+    "no_output_argument_rejected": true,
+    "post_test_source_trees_exact": true,
+    "relocation_regression_pass": true,
+    "status": "PASS"
+  },
+  "pdfs": {
+    "article": {
+      "bytes": 194316,
+      "pages": 26,
+      "sha256": "9934a92091d069c8764cf8c3aba6b496d482e4e0d5d0a526586f5a0d133f0411"
+    },
+    "byte_identical_independent_double_build": true,
+    "fonts_embedded": true,
+    "pages_visually_inspected": 50,
+    "status": "PASS",
+    "supplement": {
+      "bytes": 158988,
+      "pages": 24,
+      "sha256": "66161998ec9b30355ac3f6f6467462e8be32230ee52ebf4fbfcaff77fe663866"
+    }
+  },
+  "provenance_status": "PASS",
+  "reproducibility_status": "PASS",
+  "schema": "independent-k2p-provenance-reproducibility-registry-v1",
+  "status": "PASS"
+}
