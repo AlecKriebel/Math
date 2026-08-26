@@ -2,6 +2,16 @@
   "schema": "k3p-independent-referee-plan-v1",
   "verify_commands": [
     {
+      "name": "release_input_semantic_bindings",
+      "argv": [
+        "{python}",
+        "reproducibility/verify_release_inputs.py",
+        "--allow-uncommitted-sources"
+      ],
+      "sentinel": "K3P_RELEASE_INPUT_GATE_PASS",
+      "timeout_seconds": 600
+    },
+    {
       "name": "integrated_artifact_binding",
       "argv": [
         "{python}",
@@ -17,7 +27,8 @@
       "argv": [
         "{python}",
         "reproducibility/verify_k3p_same_classification.py",
-        "--no-write-report"
+        "--report",
+        "release/work/referee_integrated_fresh_report.json"
       ],
       "sentinel": "K3P_SAME_CLASSIFICATION_GATE_PASS",
       "timeout_seconds": 14400
@@ -35,17 +46,13 @@
   "regeneration": {
     "source": "proof_package/reproducibility/run_release_suite.py::regeneration_commands",
     "original_command_count": 45,
-    "excluded_commands": [
-      {
-        "name": "release_inputs",
-        "reason": "Git-bound release engineering, replaced by outer package integrity verification"
-      },
-      {
-        "name": "release_engineering_mutations",
-        "reason": "nonmathematical release-engineering mutation suite"
-      }
-    ],
-    "mathematical_command_count": 43,
+      "excluded_commands": [
+        {
+          "name": "release_engineering_mutations",
+          "reason": "nonmathematical packaging mutation suite requiring the exact live Git checkout"
+        }
+      ],
+      "mathematical_command_count": 44,
     "ordered_names": [
       "cut_single_minor_search",
       "cut_signed_pair_build",
@@ -86,9 +93,10 @@
       "sharpness_adversarial",
       "global_infrastructure_build",
       "global_infrastructure_verify",
-      "global_infrastructure_mutations",
-      "primary_rebind",
-      "integrated_fresh_independent_replay",
+        "global_infrastructure_mutations",
+        "primary_rebind",
+        "release_inputs",
+        "integrated_fresh_independent_replay",
       "integrated_classification_mutations"
     ],
     "reference_m1_runtime_seconds": 4301.285,

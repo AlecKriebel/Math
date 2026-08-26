@@ -46,13 +46,17 @@ Proceed as follows.
    Identify shared code that could create circular agreement.
 
 5. Verify package integrity, create the documented isolated environment, and
-   run the fresh integrated mathematical replay and all mutation suites.  Then
-   run the complete mathematical producer/verifier regeneration exactly once
-   in an isolated working copy.  Allow the hour-scale probe producer to finish
+   run the fresh integrated mathematical replay and all active mathematical
+   mutation suites.  Then run the complete portable mathematical
+   producer/verifier regeneration exactly once in an isolated working copy.
+   Allow the hour-scale probe producer to finish
    without launching a duplicate.  Preserve full transcripts, environment
    versions, timings, output hashes, and every before/after byte difference.
    Do not claim to have run a command you did not run.  Explain every skipped,
-   failed, timed-out, or non-reproducing step.
+   failed, timed-out, or non-reproducing step.  Treat the excluded Git-bound
+   release-engineering mutation suite as a packaging audit, not theorem
+   evidence, and say explicitly whether you inspected it or reproduced it in
+   an exact clean checkout.
 
 6. Perform independent spot derivations or tests that are not copied from the
    certificates.  At minimum, check representative instances of:

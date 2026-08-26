@@ -47,8 +47,8 @@ offline wheel cache.
 First read the article, supplement, neutral prompt, active manifest, and
 relevant source code.  Inspect code before executing it.
 
-Confirm that the portable runner reconstructs the expected 43-command
-mathematical regeneration plan without starting it:
+Confirm that the portable runner reconstructs the expected 44-command active
+mathematical producer/verifier plan without starting it:
 
 ```sh
 ./RUN_REVIEW.sh plan
@@ -80,18 +80,22 @@ For a combined run in two independent working copies:
 K3P_REFEREE_CONFIRM_REGENERATION=YES ./RUN_REVIEW.sh all
 ```
 
-Complete transcripts, timings, output hashes, and before/after file-drift
-records are written under `review_runs/`.  Never report a command as executed
-unless its transcript is present.
+Complete top-level command transcripts, timings, output hashes, and
+before/after file-drift records are written under `review_runs/`.  Verify mode
+also preserves and hashes the integrated gate's detailed report for its ten
+nested fresh replays.  Never report a command as executed unless its evidence
+is present.
 
 ## Important boundary
 
 The original release wrappers require a live clean Git checkout and therefore
 are not the portable entrypoints for this extracted package.  The supplied
-runner invokes the mathematical verifiers and the established producer graph
-directly, omitting only the Git-bound release-input check and the
-nonmathematical release-engineering mutation suite.  Package integrity is
-checked independently before every run.
+runner invokes the active mathematical verifiers and the established producer
+graph directly, including the portable release-input semantic-binding check.
+It omits only the nonmathematical release-engineering mutation suite, which
+tests Git-index and packaging behavior and requires the exact live checkout;
+its source remains available for inspection.  Package integrity is checked
+independently before every run.
 
 The exact Tectonic 0.16.9 arm64 binary is not bundled.  It is needed only to
 reproduce the PDFs byte-for-byte, not to run the mathematical proof checks.

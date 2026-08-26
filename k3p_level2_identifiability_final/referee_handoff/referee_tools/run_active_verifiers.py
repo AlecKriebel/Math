@@ -212,6 +212,26 @@ def regeneration_commands(plan: dict, python: Path,
     ]
 
 
+def bind_fresh_replay_report(workspace: Path) -> dict[str, object]:
+    relative = "release/work/referee_integrated_fresh_report.json"
+    path = workspace / relative
+    require(path.is_file(), ("missing detailed fresh-replay report", relative))
+    value = json.loads(path.read_text(encoding="utf-8"))
+    rows = value.get("fresh_replays")
+    require(value.get("mathematical_classification_status") == "CERTIFIED" and
+            isinstance(rows, list) and len(rows) == 10 and
+            all(isinstance(row, dict) and row.get("status") == "PASS" and
+                row.get("exit_code") == 0 and row.get("sentinel_seen") is True
+                for row in rows),
+            "detailed fresh-replay report does not certify ten passing child checks")
+    return {
+        "path": relative,
+        "bytes": path.stat().st_size,
+        "sha256": sha256_file(path),
+        "fresh_replay_count": len(rows),
+    }
+
+
 def run_phase(*, phase: str, package_root: Path, python: Path,
               session_root: Path, plan: dict) -> dict[str, object]:
     proof = package_root / "proof_package"
@@ -241,20 +261,23 @@ def run_phase(*, phase: str, package_root: Path, python: Path,
         if phase == "verify":
             commands = verify_commands(plan, python)
         else:
-            preflight = verify_commands(plan, python)[0]
-            commands = [preflight, *regeneration_commands(plan, python, workspace)]
+            commands = regeneration_commands(plan, python, workspace)
         for command in commands:
             records.append(run_command(
                 command, workspace=workspace, environment=environment,
                 transcript=transcript,
             ))
     after = snapshot(workspace)
+    supplemental_outputs = (
+        [bind_fresh_replay_report(workspace)] if phase == "verify" else []
+    )
     report = {
         "schema": "k3p-independent-referee-run-v1",
         "status": "PASS",
         "phase": phase,
         "command_count": len(records),
         "commands": records,
+        "supplemental_outputs": supplemental_outputs,
         "elapsed_seconds": time.monotonic() - started,
         "workspace_drift": drift(before, after),
         "transcript": {
