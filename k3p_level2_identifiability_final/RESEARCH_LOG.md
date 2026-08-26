@@ -629,6 +629,67 @@ Best-guess completion toward the mathematical classification goal: **100%**.
 Best-guess completion toward the paper/certification/proof-archive goal: **100%**.
 Best-guess completion toward the external journal/DOI release goal: **70%**.
 
+## 2026-08-26T18:23:21Z — readable theorem language and independent-referee handoff complete
+
+- Removed the internal outcome-code wording from every paper-facing TeX source,
+  submission wrapper, and rendered PDF.  The article and supplement now state
+  the field-readable, explicitly scoped conclusion: within binary standard
+  semi-directed strongly tree-child level-2 networks, regular
+  full-dimensional K3P containment is exactly labelled topology equivalence
+  modulo ordinary triangle redirection.  A final independent language audit
+  found zero retired-code variants and the last crosswalk grammar issue was
+  corrected.
+- Rebuilt and visually checked the 33-page article and 12-page supplement.
+  Their final SHA-256 values are
+  `0be4fdf9be67c19cf08a73aae397a85bd0e2c110d8baaaf3910cfabace78ea1c`
+  and
+  `2c0b88dae8d998c1961815be51d81ee7fb7aa4f6615c65993e07c094e4faeceb`.
+  Both packaged source archives reproduced those PDFs twice byte-for-byte.
+- Built the neutral, copy-only referee handoff at
+  `release/dist/K3P_Level2_Independent_Referee_Package`, bound to pushed
+  snapshot `983086779dab08f6a0d76d0a10c614b7cee4affe`.  It contains 574 sealed
+  payload files (153,326,366 bytes), convenient paper copies, the complete
+  inspectable proof core, a neutral adversarial prompt, strict outer and inner
+  manifests, and a Git-independent runner.  The canonical full proof archive
+  SHA-256 is
+  `1f41163aa91ddc3dcbf442748f8c54c7c5ef81754dafe6aaff5813d4092e4083`.
+- Hardened the handoff against unmanifested files, nested runtime-path abuse,
+  symlinks, nonregular objects, premature virtual-environment execution,
+  unexpected regenerated-byte drift, and prompt injection.  The runner records
+  interpreter/platform/dependency hashes, preserves and hashes the ten-child
+  fresh-replay report, and restores the canonical primary report only after
+  verifying equality modulo the declared workspace and interpreter paths.
+- A standalone copy outside every Git repository passed the portable semantic
+  binding, artifact binding, all ten nested fresh replays, and all 18 integrated
+  mutations in 192.77 seconds with zero workspace drift.  Independent audits
+  recomputed every top-level stdout hash, nested logical payload, runtime hash,
+  evidence hash, and the exact 44-command portable regeneration plan.  The
+  final grammar-only supplement change did not alter that runner or any active
+  mathematical evidence; at exact snapshot `98308677`, quick passed with
+  payload
+  `8984bb6ea229e0f7e2a0d2b66ac7307edb46f6f7faa8b774545047fb8f1d36e0`
+  and full passed in 208.84 seconds with payload
+  `5a79046a7fc2fb9f38748fc8daa37e5a77e937c83cbfcf1c4abc1bd2fbf2907f`.
+- Did not relaunch the 72-minute producer graph.  The active mathematical graph
+  is unchanged, its earlier one-shot run remains bound, and the portable
+  44-command plan was reconstructed exactly.  The only omitted command is the
+  disclosed nonmathematical, Git-dependent release-engineering mutation suite;
+  that suite passed in the exact-checkout full gate above.
+- Copied and byte-verified all 35 tracked TeX/BibTeX files into the local Google
+  Drive folder `Papers/K3P Level-2 Identifiability`.  No source file was moved.
+- No tag, DOI, GitHub release, journal submission, license selection, or
+  external communication was made.
+
+Strongest verified result: the mathematical theorem is unchanged, every paper
+uses field-readable terminology, and a neutral specialist referee now has a
+single self-contained, integrity-bound folder from which to inspect the proof,
+audit the code, run every active mathematical verifier, perform the complete
+portable regeneration, and reach an independent positive or negative verdict.
+
+Best-guess completion toward the mathematical classification goal: **100%**.
+Best-guess completion toward the paper/certification/referee-handoff goal: **100%**.
+Best-guess completion toward the external journal/DOI release goal: **70%**.
+
 ## 2026-08-26T15:27:43Z — Google Drive TeX-source handoff
 
 - Created the dedicated local Google Drive folder
