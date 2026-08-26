@@ -4,12 +4,14 @@ This file is deliberately separate from the theorem statements.  It records
 integration work that must close before the sources are promoted to a final
 submission build.
 
-1. **Post-revision release replay.**  Complete at exact pushed minor-revision
-   commit `e5b0a9fc6cca79d6ab1d6cd96ceb5c4e8be5a2d5`: the clean quick/full
-   suites, two-build source reproduction for both PDFs, and deterministic
-   source/compact/full archive double-builds all passed.  The unchanged
-   45-command mathematical producer graph remains bound to its successful
-   one-shot execution at
+1. **Post-revision release replay.**  Complete at exact pushed source commit
+   `0ddf4a76f1c4cc37ac05dcb0915edcfdce65e057`: the clean quick/full suites,
+   two-build source reproduction for both PDFs, and deterministic
+   source/compact/full archive double-builds all passed.  The article now
+   cites immutable source snapshot
+   `e5b0a9fc6cca79d6ab1d6cd96ceb5c4e8be5a2d5`.  The unchanged 45-command
+   mathematical producer graph remains bound to its successful one-shot
+   execution at
    `7b4cdd3197e6d650abafc263cbc8a568d09ddf9f`; no active producer, verifier, or
    theorem certificate changed in the minor revision.  The post-run ledger
    records both exact-commit boundaries.

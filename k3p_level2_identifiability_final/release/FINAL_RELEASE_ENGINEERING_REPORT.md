@@ -12,7 +12,59 @@ one-shot confirmation.
 No K3P DOI, license selection, Git tag, GitHub release, Zenodo record, journal
 upload, or external communication has been created or claimed.
 
-## Conditional-PASS minor-revision exact-commit record
+## Immutable-link final source reseal
+
+The article's Data and code availability statement now resolves the exact
+certificate/replay snapshot through the immutable Git tree at
+`e5b0a9fc6cca79d6ab1d6cd96ceb5c4e8be5a2d5`, rather than only through the
+moving repository root.  No tag or external release was required.  The final
+source bytes containing that link are at exact pushed commit
+`0ddf4a76f1c4cc37ac05dcb0915edcfdce65e057`.
+
+At that commit:
+
+- the 33-page article has SHA-256
+  `e0df9b22a7db548308736a4728fd32776d5380a5b687d2620d71e3b817a199b1`;
+- the unchanged 12-page reader supplement has SHA-256
+  `1cd22bc542201cf60ce8eacfd3dfc8cde3e722c57046f2903a9863d2747501c2`;
+- the revised availability page was rendered and visually inspected, all
+  fonts remain embedded, and the TeX log has no unresolved reference or layout
+  warning;
+- the clean quick suite passed with payload
+  `7c5f960aee698b9d027b64ae72ebe266e5a79890bf75f63af3a183091fe82a34`;
+- the clean full suite passed in 205.782 seconds with payload
+  `d65da00e795c4515cc390f337d83fe775c17c9a47cef68921c7b50780de827e3`,
+  including fresh independent theorem replay, 18/18 integrated mutations, and
+  32/32 release-engineering mutations; and
+- submission validation remained `NOT_READY`, with zero structural errors,
+  26 declared human/release blockers, and 12/12 validator mutations rejected.
+
+Both packaged sources rebuilt twice and matched the committed PDFs
+byte-for-byte.  Their logical reproduction payloads are
+`65256d4466cd527090b1a970550aac69c0a0957a3e007b62647805f55054a541`
+and
+`cf9110926d5219275960418d7e9b29093a9708dbc6b784e91481e90745a28523`;
+their source ZIP SHA-256 values are
+`84a2c4d447782c19bd59d99962f16ba7b71dfde15ef7d3ca2386c97a6fbd1b1d`
+and
+`aa364e0bda4edf4a8b6ad5d662c6076ab38792b02f93bd5314bbc8c7fd8797ef`.
+
+Canonical and independent second builds of the compact and full proof archives
+were byte-identical, structurally valid, and passed extracted artifact replay.
+Their SHA-256 values are
+`0b6a60c8e2f7ad065f019e10a4d255b3a6cf6af4a42b1e63cdb2533233990033`
+and
+`101ac4f72748013542cfa66587d3edfe3a6f49fb0e9f684f3ca7f68d13f8c8d4`.
+
+The unchanged hour-scale producer graph remains bound to its successful
+one-shot execution at
+`7b4cdd3197e6d650abafc263cbc8a568d09ddf9f`; it was not rerun for the
+availability-link typesetting change.  As with the preceding fixed point, the
+canonical archives bind the exact pre-ledger source commit above, while this
+post-run report records the completed execution without recursively changing
+that binding.
+
+## Pre-link conditional-PASS minor-revision exact-commit record
 
 The four required minor corrections were checked against the active sources
 and applied: the integrated mutation count is 18; the Brits et al. comparison

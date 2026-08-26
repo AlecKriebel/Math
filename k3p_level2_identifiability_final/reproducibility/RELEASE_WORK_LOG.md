@@ -166,3 +166,38 @@ tag/release approval, DOI, and portal actions remain human-controlled.
 Best-guess completion: **100% of the mathematical and proof-archive machine
 goal; 70% of the external-submission goal**.  Submission metadata, license,
 tag/release approval, DOI, and portal actions remain human-controlled.
+
+## 2026-08-26T14:07:04Z — immutable-link source reseal
+
+- Exact pushed source commit:
+  `0ddf4a76f1c4cc37ac05dcb0915edcfdce65e057`.
+- The article now links the exact certificate/replay snapshot at immutable
+  commit `e5b0a9fc6cca79d6ab1d6cd96ceb5c4e8be5a2d5`; no tag was created.
+- Clean quick/full payloads:
+  `7c5f960aee698b9d027b64ae72ebe266e5a79890bf75f63af3a183091fe82a34`
+  and
+  `d65da00e795c4515cc390f337d83fe775c17c9a47cef68921c7b50780de827e3`.
+  Full completed in 205.782 seconds and passed fresh theorem replay, 18/18
+  integrated mutations, and 32/32 release mutations.
+- Article/supplement source-reproduction logical payloads:
+  `65256d4466cd527090b1a970550aac69c0a0957a3e007b62647805f55054a541`
+  and
+  `cf9110926d5219275960418d7e9b29093a9708dbc6b784e91481e90745a28523`.
+  Both source packages rebuilt twice and matched the committed PDFs.
+- Article/supplement source ZIP SHA-256 values:
+  `84a2c4d447782c19bd59d99962f16ba7b71dfde15ef7d3ca2386c97a6fbd1b1d`
+  and
+  `aa364e0bda4edf4a8b6ad5d662c6076ab38792b02f93bd5314bbc8c7fd8797ef`.
+- Compact/full archive SHA-256 values:
+  `0b6a60c8e2f7ad065f019e10a4d255b3a6cf6af4a42b1e63cdb2533233990033`
+  and
+  `101ac4f72748013542cfa66587d3edfe3a6f49fb0e9f684f3ca7f68d13f8c8d4`.
+  Independent second builds were byte-identical; structural and extracted-gate
+  checks passed.
+- No mathematical producer, verifier, theorem certificate, or release runner
+  changed.  The successful one-shot 45-command execution remains the producer
+  evidence and was not repeated for the link-only article rebuild.
+
+Best-guess completion: **100% of the mathematical and proof-archive machine
+goal; 70% of the external-submission goal**.  Submission metadata, license,
+tag/release approval, DOI, and portal actions remain human-controlled.

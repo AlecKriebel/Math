@@ -629,28 +629,6 @@ Best-guess completion toward the mathematical classification goal: **100%**.
 Best-guess completion toward the paper/certification/proof-archive goal: **100%**.
 Best-guess completion toward the external journal/DOI release goal: **70%**.
 
-## 2026-08-26T14:00:00Z — immutable availability-link correction
-
-- The final source audit agreed with the review that the article's Data and
-  code availability statement still named only the moving repository root.
-  Added an immutable tree link to pushed minor-revision snapshot
-  `e5b0a9fc6cca79d6ab1d6cd96ceb5c4e8be5a2d5`, which contains the corrected
-  manuscript, supplement, PDFs, code, and exact certificates.
-- No tag, GitHub release, DOI, license, submission, or external communication
-  was created.  The immutable commit option closes the citation issue while
-  preserving the explicitly human-controlled tag/release boundary.
-- This one article-source change requires a fresh deterministic article PDF,
-  visual QA, exact source commit, quick/full replay, and source/archive
-  rebinding.  It does not change a mathematical producer and does not justify
-  rerunning the hour-scale 45-command producer graph.
-
-Strongest verified result: the last moving-reference issue is corrected in
-source; its exact-commit PDF/release reseal is in progress.
-
-Best-guess completion toward the mathematical classification goal: **100%**.
-Best-guess completion toward the paper/certification/proof-archive goal: **99%**.
-Best-guess completion toward the external journal/DOI release goal: **70%**.
-
 ## 2026-08-26T13:45:23Z — conditional-PASS minor revision checkpoint
 
 - Audited every item in the fresh conditional-PASS review against the current
@@ -733,6 +711,71 @@ Strongest verified result: the fresh conditional-PASS corrections are applied
 and the exact revised source, PDFs, theorem replay, mutation gates, source
 archives, and proof archives are deterministically resealed at one pushed
 commit.  Only human-controlled submission/release metadata remains.
+
+Best-guess completion toward the mathematical classification goal: **100%**.
+Best-guess completion toward the paper/certification/proof-archive goal: **100%**.
+Best-guess completion toward the external journal/DOI release goal: **70%**.
+
+## 2026-08-26T14:00:00Z — immutable availability-link correction
+
+- The final source audit agreed with the review that the article's Data and
+  code availability statement still named only the moving repository root.
+  Added an immutable tree link to pushed minor-revision snapshot
+  `e5b0a9fc6cca79d6ab1d6cd96ceb5c4e8be5a2d5`, which contains the corrected
+  manuscript, supplement, PDFs, code, and exact certificates.
+- No tag, GitHub release, DOI, license, submission, or external communication
+  was created.  The immutable commit option closes the citation issue while
+  preserving the explicitly human-controlled tag/release boundary.
+- This one article-source change requires a fresh deterministic article PDF,
+  visual QA, exact source commit, quick/full replay, and source/archive
+  rebinding.  It does not change a mathematical producer and does not justify
+  rerunning the hour-scale 45-command producer graph.
+
+Strongest verified result: the last moving-reference issue is corrected in
+source; its exact-commit PDF/release reseal is in progress.
+
+Best-guess completion toward the mathematical classification goal: **100%**.
+Best-guess completion toward the paper/certification/proof-archive goal: **99%**.
+Best-guess completion toward the external journal/DOI release goal: **70%**.
+
+## 2026-08-26T14:07:04Z — immutable-link exact-commit reseal complete
+
+- Committed and pushed the link-bearing source and canonical article PDF at
+  exact commit `0ddf4a76f1c4cc37ac05dcb0915edcfdce65e057` on `main`.
+- Invoked the clean quick and full suites once and blocked through completion.
+  Quick passed with payload
+  `7c5f960aee698b9d027b64ae72ebe266e5a79890bf75f63af3a183091fe82a34`;
+  full passed in 205.782 seconds with payload
+  `d65da00e795c4515cc390f337d83fe775c17c9a47cef68921c7b50780de827e3`.
+  Fresh theorem replay and all 18 integrated and 32 release-engineering
+  mutations passed.
+- Both packaged LaTeX sources rebuilt twice and matched the committed PDFs
+  byte-for-byte.  Their logical payloads are
+  `65256d4466cd527090b1a970550aac69c0a0957a3e007b62647805f55054a541`
+  and
+  `cf9110926d5219275960418d7e9b29093a9708dbc6b784e91481e90745a28523`;
+  their source ZIP hashes are
+  `84a2c4d447782c19bd59d99962f16ba7b71dfde15ef7d3ca2386c97a6fbd1b1d`
+  and
+  `aa364e0bda4edf4a8b6ad5d662c6076ab38792b02f93bd5314bbc8c7fd8797ef`.
+- The compact and full proof archives each rebuilt byte-identically, passed
+  structural verification, and passed extracted artifact replay.  Their
+  hashes are
+  `0b6a60c8e2f7ad065f019e10a4d255b3a6cf6af4a42b1e63cdb2533233990033`
+  and
+  `101ac4f72748013542cfa66587d3edfe3a6f49fb0e9f684f3ca7f68d13f8c8d4`.
+- The final article hash is
+  `e0df9b22a7db548308736a4728fd32776d5380a5b687d2620d71e3b817a199b1`;
+  the supplement remains
+  `1cd22bc542201cf60ce8eacfd3dfc8cde3e722c57046f2903a9863d2747501c2`.
+- No long producer was relaunched, because its active code and certificate
+  graph did not change.  No tag, DOI, license, release, submission, or external
+  communication was created.
+
+Strongest verified result: every accepted adversarial-review correction,
+including the immutable availability reference, is present in the final source
+and PDFs and is bound to clean exact-commit theorem, mutation, source, and
+archive replays.  Only human-controlled submission metadata remains.
 
 Best-guess completion toward the mathematical classification goal: **100%**.
 Best-guess completion toward the paper/certification/proof-archive goal: **100%**.

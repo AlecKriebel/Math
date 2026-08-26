@@ -62,10 +62,12 @@ This certification is not a submission-readiness claim.  The revised
 manuscript, reader supplement, canonical PDFs, and page-by-page visual QA are
 complete, and the deterministic fail-closed release tooling is implemented.
 At exact pushed candidate commit
-`e5b0a9fc6cca79d6ab1d6cd96ceb5c4e8be5a2d5`, the conditional-PASS minor
-revision, clean quick/full suites, two-build PDF source reproductions, and
-deterministic source/proof-archive double-builds all passed.  The unchanged
-45-command mathematical producer graph previously passed once at
+`0ddf4a76f1c4cc37ac05dcb0915edcfdce65e057`, the conditional-PASS minor
+revision plus immutable availability link, clean quick/full suites, two-build
+PDF source reproductions, and deterministic source/proof-archive double-builds
+all passed.  The article's availability statement points to immutable source
+snapshot `e5b0a9fc6cca79d6ab1d6cd96ceb5c4e8be5a2d5`.  The unchanged 45-command
+mathematical producer graph previously passed once at
 `7b4cdd3197e6d650abafc263cbc8a568d09ddf9f`; it was not needlessly rerun for
 prose, bibliography, and PDF-only changes.  The sealed claim lock, active
 manifest, and integrated report intentionally retain the mathematical
