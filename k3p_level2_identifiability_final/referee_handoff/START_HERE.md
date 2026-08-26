@@ -12,7 +12,10 @@ prior audits are evidence to inspect, not conclusions to adopt.
   reproducibility payload, supplemented by the 18 work logs needed by fresh
   dependency checks.
 - `REFEREE_PROMPT.md` is a neutral review brief.
-- `PACKAGE_MANIFEST.json` and `SHA256SUMS` bind every shipped file.
+- `PACKAGE_MANIFEST.json` and `SHA256SUMS` bind every sealed payload file and
+  the manifest itself.  `SHA256SUMS` cannot hash itself; reviewer-created
+  top-level `.venv/` and `review_runs/` runtime areas are deliberately outside
+  the seal.
 - `referee_tools/` contains a Git-independent integrity checker and isolated
   verifier runner.
 - `review_runs/` is created locally when a reviewer runs the checks; it is not
@@ -37,6 +40,12 @@ python3 referee_tools/verify_package_integrity.py
 python3 -m venv .venv
 .venv/bin/python -m pip install -r proof_package/reproducibility/requirements.txt
 ```
+
+Perform the first integrity check before creating or activating the virtual
+environment.  `RUN_REVIEW.sh` repeats that check with `/usr/bin/python3` when
+available; set `K3P_REFEREE_TRUSTED_PYTHON` to another trusted standard-library
+interpreter if needed.  A clean delivered package contains neither `.venv/`
+nor `review_runs/`.
 
 No active mathematical verifier makes a network request.  Dependency
 installation may require package-index access unless the reviewer supplies an
@@ -80,7 +89,8 @@ For a combined run in two independent working copies:
 K3P_REFEREE_CONFIRM_REGENERATION=YES ./RUN_REVIEW.sh all
 ```
 
-Complete top-level command transcripts, timings, output hashes, and
+Complete top-level command transcripts, timings, output hashes, interpreter
+and platform metadata, dependency versions and module-file hashes, and
 before/after file-drift records are written under `review_runs/`.  Verify mode
 also preserves and hashes the integrated gate's detailed report for its ten
 nested fresh replays.  Never report a command as executed unless its evidence
@@ -96,6 +106,11 @@ It omits only the nonmathematical release-engineering mutation suite, which
 tests Git-index and packaging behavior and requires the exact live checkout;
 its source remains available for inspection.  Package integrity is checked
 independently before every run.
+
+The runner treats any byte drift outside declared runtime evidence as a
+failure.  The primary gate's otherwise identical location-bearing report is
+preserved separately for audit and the canonical byte copy is restored before
+downstream binding checks.
 
 The exact Tectonic 0.16.9 arm64 binary is not bundled.  It is needed only to
 reproduce the PDFs byte-for-byte, not to run the mathematical proof checks.

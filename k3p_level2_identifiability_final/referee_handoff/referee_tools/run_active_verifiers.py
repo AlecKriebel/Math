@@ -42,20 +42,22 @@ def ignored_snapshot_path(relative: str) -> bool:
     parts = Path(relative).parts
     return (
         relative.startswith("release/work/")
-        or ".venv" in parts
-        or "__pycache__" in parts
-        or relative.endswith(".pyc")
-        or relative.endswith(".DS_Store")
+        or (parts and parts[0] == ".venv")
     )
 
 
 def snapshot(root: Path) -> dict[str, str]:
     result: dict[str, str] = {}
     for path in sorted(root.rglob("*")):
-        if path.is_file():
-            relative = path.relative_to(root).as_posix()
-            if not ignored_snapshot_path(relative):
-                result[relative] = sha256_file(path)
+        relative = path.relative_to(root).as_posix()
+        if ignored_snapshot_path(relative):
+            continue
+        require(not path.is_symlink(),
+                ("unexpected workspace symlink", relative))
+        if path.is_dir():
+            continue
+        require(path.is_file(), ("unexpected workspace object", relative))
+        result[relative] = sha256_file(path)
     return result
 
 
@@ -113,6 +115,44 @@ def check_python(python: Path) -> None:
     )
     require(result.returncode == 0 and "DEPENDENCIES_OK" in result.stdout,
             ("required Python dependencies unavailable", result.stdout[-2000:]))
+
+
+def runtime_metadata(python: Path, package_root: Path) -> dict[str, object]:
+    script = """
+import importlib, json, platform, sys
+packages = {}
+for name in ('mpmath', 'networkx', 'numpy', 'sympy'):
+    module = importlib.import_module(name)
+    packages[name] = {
+        'version': str(getattr(module, '__version__', 'UNKNOWN')),
+        'module_file': str(getattr(module, '__file__', '')),
+    }
+print(json.dumps({
+    'python_version': sys.version,
+    'python_executable': sys.executable,
+    'platform': platform.platform(),
+    'machine': platform.machine(),
+    'processor': platform.processor(),
+    'packages': packages,
+}, sort_keys=True))
+"""
+    result = subprocess.run(
+        [str(python), "-c", script], stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT, text=True, check=False, timeout=60,
+    )
+    require(result.returncode == 0, ("runtime metadata failed", result.stdout))
+    value = json.loads(result.stdout)
+    for record in value["packages"].values():
+        module_file = Path(record["module_file"])
+        require(module_file.is_file(), ("package module file missing", module_file))
+        record["module_file_sha256"] = sha256_file(module_file)
+    executable = Path(os.path.realpath(python))
+    require(executable.is_file(), ("interpreter file missing", executable))
+    value["python_executable_sha256"] = sha256_file(executable)
+    requirements = package_root / "proof_package/reproducibility/requirements.txt"
+    require(requirements.is_file(), "requirements file missing")
+    value["requirements_sha256"] = sha256_file(requirements)
+    return value
 
 
 def run_command(command: dict, *, workspace: Path, environment: dict[str, str],
@@ -201,18 +241,84 @@ def regeneration_commands(plan: dict, python: Path,
             len(commands) == plan["regeneration"]["mathematical_command_count"] and
             names == plan["regeneration"]["ordered_names"],
             ("regeneration plan drift", len(original), len(commands), names))
-    return [
-        {
+    result = []
+    for command in commands:
+        argv = list(command.argv)
+        if command.name == "integrated_fresh_independent_replay":
+            require("--no-write-report" in argv,
+                    "integrated regeneration report override drift")
+            argv.remove("--no-write-report")
+            argv.extend([
+                "--report", "release/work/referee_integrated_fresh_report.json"
+            ])
+        result.append({
             "name": command.name,
-            "argv": command.argv,
+            "argv": argv,
             "sentinel": command.sentinel,
             "timeout_seconds": command.timeout_seconds,
+        })
+    return result
+
+
+def normalize_primary_report(value: object, project_root: str) -> object:
+    if isinstance(value, dict):
+        return {key: normalize_primary_report(item, project_root)
+                for key, item in value.items()}
+    if isinstance(value, list):
+        return [normalize_primary_report(item, project_root) for item in value]
+    if isinstance(value, str):
+        return value.replace(project_root, "{PROJECT_ROOT}")
+    return value
+
+
+def preserve_and_restore_primary_report(*, workspace: Path, phase_root: Path,
+                                        package_root: Path,
+                                        canonical_bytes: bytes,
+                                        label: str) -> dict[str, object]:
+    relative = "reproducibility/primary_gate_report.json"
+    path = workspace / relative
+    require(path.is_file(), ("missing regenerated primary report", relative))
+    current_bytes = path.read_bytes()
+    canonical = json.loads(canonical_bytes)
+    current = json.loads(current_bytes)
+    canonical_root = canonical.get("project_root")
+    current_root = current.get("project_root")
+    require(isinstance(canonical_root, str) and canonical_root and
+            isinstance(current_root, str) and current_root and
+            normalize_primary_report(canonical, canonical_root) ==
+            normalize_primary_report(current, current_root),
+            "regenerated primary report differs beyond workspace paths")
+    evidence = phase_root / f"{label}.json"
+    evidence.write_bytes(current_bytes)
+    path.write_bytes(canonical_bytes)
+    return {
+        "path": evidence.relative_to(package_root).as_posix(),
+        "bytes": evidence.stat().st_size,
+        "sha256": sha256_file(evidence),
+        "semantic_relation": "canonical report modulo project-root paths",
+    }
+
+
+def integrated_logical_payload(report: dict) -> dict:
+    logical = dict(report)
+    logical.pop("operational", None)
+    logical.pop("payload_sha256", None)
+    logical["fresh_replays"] = [
+        {
+            key: row[key]
+            for key in (
+                "name", "exit_code", "sentinel", "sentinel_seen", "status",
+                "fresh_output_payload_sha256",
+            )
+            if key in row
         }
-        for command in commands
+        for row in report.get("fresh_replays", [])
     ]
+    return logical
 
 
-def bind_fresh_replay_report(workspace: Path) -> dict[str, object]:
+def bind_fresh_replay_report(*, workspace: Path, phase_root: Path,
+                             package_root: Path) -> dict[str, object]:
     relative = "release/work/referee_integrated_fresh_report.json"
     path = workspace / relative
     require(path.is_file(), ("missing detailed fresh-replay report", relative))
@@ -224,16 +330,26 @@ def bind_fresh_replay_report(workspace: Path) -> dict[str, object]:
                 row.get("exit_code") == 0 and row.get("sentinel_seen") is True
                 for row in rows),
             "detailed fresh-replay report does not certify ten passing child checks")
+    observed_payload = sha256_bytes(json.dumps(
+        integrated_logical_payload(value), sort_keys=True, separators=(",", ":"),
+        ensure_ascii=True,
+    ).encode("utf-8"))
+    require(value.get("payload_sha256") == observed_payload,
+            "detailed fresh-replay report payload mismatch")
+    evidence = phase_root / "integrated_fresh_report.json"
+    shutil.copy2(path, evidence)
     return {
-        "path": relative,
-        "bytes": path.stat().st_size,
-        "sha256": sha256_file(path),
+        "path": evidence.relative_to(package_root).as_posix(),
+        "bytes": evidence.stat().st_size,
+        "sha256": sha256_file(evidence),
         "fresh_replay_count": len(rows),
+        "payload_sha256": observed_payload,
     }
 
 
 def run_phase(*, phase: str, package_root: Path, python: Path,
-              session_root: Path, plan: dict) -> dict[str, object]:
+              session_root: Path, plan: dict,
+              runtime: dict[str, object]) -> dict[str, object]:
     proof = package_root / "proof_package"
     phase_root = session_root / phase
     workspace = phase_root / "workspace"
@@ -242,8 +358,12 @@ def run_phase(*, phase: str, package_root: Path, python: Path,
     (workspace / ".venv").symlink_to(python.parent.parent, target_is_directory=True)
     environment = deterministic_environment(workspace)
     before = snapshot(workspace)
+    primary_path = workspace / "reproducibility/primary_gate_report.json"
+    require(primary_path.is_file(), "canonical primary report missing")
+    canonical_primary_bytes = primary_path.read_bytes()
     transcript_path = phase_root / "transcript.log"
     records: list[dict[str, object]] = []
+    supplemental_outputs: list[dict[str, object]] = []
     started = time.monotonic()
     with transcript_path.open("w+", encoding="utf-8", newline="\n") as transcript:
         transcript.write(json.dumps({
@@ -257,6 +377,7 @@ def run_phase(*, phase: str, package_root: Path, python: Path,
                 "PYTHONDONTWRITEBYTECODE", "PYTHONHASHSEED", "LC_ALL", "LANG",
                 "TZ", "SOURCE_DATE_EPOCH",
             )},
+            "runtime": runtime,
         }, sort_keys=True) + "\n")
         if phase == "verify":
             commands = verify_commands(plan, python)
@@ -267,10 +388,22 @@ def run_phase(*, phase: str, package_root: Path, python: Path,
                 command, workspace=workspace, environment=environment,
                 transcript=transcript,
             ))
+            if command["name"] in {
+                "primary_rebind", "integrated_fresh_independent_replay"
+            }:
+                supplemental_outputs.append(preserve_and_restore_primary_report(
+                    workspace=workspace, phase_root=phase_root,
+                    package_root=package_root,
+                    canonical_bytes=canonical_primary_bytes,
+                    label=f"{command['name']}_location_dependent_primary_report",
+                ))
+    supplemental_outputs.append(bind_fresh_replay_report(
+        workspace=workspace, phase_root=phase_root, package_root=package_root,
+    ))
     after = snapshot(workspace)
-    supplemental_outputs = (
-        [bind_fresh_replay_report(workspace)] if phase == "verify" else []
-    )
+    workspace_drift = drift(before, after)
+    require(workspace_drift == {"added": [], "removed": [], "changed": []},
+            ("unexpected workspace drift", workspace_drift))
     report = {
         "schema": "k3p-independent-referee-run-v1",
         "status": "PASS",
@@ -278,8 +411,9 @@ def run_phase(*, phase: str, package_root: Path, python: Path,
         "command_count": len(records),
         "commands": records,
         "supplemental_outputs": supplemental_outputs,
+        "runtime": runtime,
         "elapsed_seconds": time.monotonic() - started,
-        "workspace_drift": drift(before, after),
+        "workspace_drift": workspace_drift,
         "transcript": {
             "path": transcript_path.relative_to(package_root).as_posix(),
             "bytes": transcript_path.stat().st_size,
@@ -321,8 +455,9 @@ def main(argv: list[str] | None = None) -> int:
     python = (Path(os.path.abspath(args.python)) if args.python else
               package_root / ".venv/bin/python")
     try:
+        run_integrity(package_root, Path(sys.executable))
         check_python(python)
-        run_integrity(package_root, python)
+        runtime = runtime_metadata(python, package_root)
         plan = load_plan(package_root)
         if args.mode == "plan":
             commands = regeneration_commands(
@@ -344,7 +479,7 @@ def main(argv: list[str] | None = None) -> int:
         phases = ["verify", "regenerate"] if args.mode == "all" else [args.mode]
         reports = [run_phase(
             phase=phase, package_root=package_root, python=python,
-            session_root=session_root, plan=plan,
+            session_root=session_root, plan=plan, runtime=runtime,
         ) for phase in phases]
         summary = {
             "status": "PASS",

@@ -8,6 +8,7 @@ import hashlib
 import json
 from pathlib import Path
 import shutil
+import stat
 import subprocess
 import sys
 import tempfile
@@ -47,6 +48,47 @@ def head_commit() -> str:
     )
     require(result.returncode == 0, ("cannot resolve Git HEAD", result.stderr))
     return result.stdout.strip()
+
+
+def repository_root() -> Path:
+    result = subprocess.run(
+        ["git", "-C", str(PROJECT), "rev-parse", "--show-toplevel"],
+        stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
+        check=False, timeout=30,
+    )
+    require(result.returncode == 0, ("cannot resolve repository root", result.stderr))
+    return Path(result.stdout.strip()).resolve()
+
+
+def require_head_blobs(paths: list[Path]) -> None:
+    root = repository_root()
+    for path in sorted(set(paths)):
+        require(path.is_file() and not path.is_symlink(),
+                ("builder input must be a regular file", str(path)))
+        try:
+            relative = path.relative_to(root).as_posix()
+        except ValueError as error:
+            raise PackageFailure(("builder input outside repository", str(path))) from error
+        result = subprocess.run(
+            ["git", "-C", str(root), "show", f"HEAD:{relative}"],
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+            check=False, timeout=60,
+        )
+        require(result.returncode == 0 and result.stdout == path.read_bytes(),
+                ("builder input is untracked or differs from HEAD", relative))
+
+
+def handoff_inputs() -> list[Path]:
+    paths = []
+    for path in HANDOFF.rglob("*"):
+        if path.is_file() and "__pycache__" not in path.parts and path.suffix != ".pyc":
+            paths.append(path)
+    paths.extend([
+        PROJECT / "output/pdf/K3P_Level2_Identifiability_Article.pdf",
+        PROJECT / "output/pdf/K3P_Level2_Identifiability_Reader_Supplement.pdf",
+    ])
+    paths.extend(tracked_work_logs())
+    return paths
 
 
 def tracked_work_logs() -> list[Path]:
@@ -107,6 +149,10 @@ def copy_payload(candidate: Path, archive: Path, archive_record: dict) -> dict:
     for name in pdf_names:
         source = PROJECT / "output/pdf" / name
         require(source.is_file(), ("missing PDF", name))
+        proof_copy = proof / "output/pdf" / name
+        require(proof_copy.is_file() and
+                sha256_file(proof_copy) == sha256_file(source),
+                ("paper/proof-core PDF mismatch", name))
         shutil.copy2(source, paper / name)
 
     for name in ("START_HERE.md", "REFEREE_PROMPT.md", "RUN_REVIEW.sh"):
@@ -128,9 +174,14 @@ def copy_payload(candidate: Path, archive: Path, archive_record: dict) -> dict:
 def payload_rows(candidate: Path) -> list[dict[str, object]]:
     rows = []
     for path in sorted(candidate.rglob("*")):
-        if not path.is_file():
-            continue
         relative = path.relative_to(candidate).as_posix()
+        metadata = path.lstat()
+        require(not stat.S_ISLNK(metadata.st_mode),
+                ("symlink forbidden in candidate", relative))
+        if stat.S_ISDIR(metadata.st_mode):
+            continue
+        require(stat.S_ISREG(metadata.st_mode),
+                ("nonregular object forbidden in candidate", relative))
         if (relative in {"PACKAGE_MANIFEST.json", "SHA256SUMS"}
                 or "__pycache__" in path.parts or relative.endswith(".pyc")):
             continue
@@ -193,6 +244,7 @@ def main(argv: list[str] | None = None) -> int:
     try:
         require(archive.is_file(), ("missing canonical archive", str(archive)))
         require(not output.exists(), ("referee package output already exists", str(output)))
+        require_head_blobs(handoff_inputs())
         output.parent.mkdir(parents=True, exist_ok=True)
         archive_record = verify_tar_gz(archive)
         commit = head_commit()
@@ -210,6 +262,9 @@ def main(argv: list[str] | None = None) -> int:
                 archive_record=archive_record,
             )
             verification = verify_candidate(candidate)
+            require(not (candidate / ".venv").exists() and
+                    not (candidate / "review_runs").exists(),
+                    "runtime state forbidden in delivered package")
             shutil.copytree(candidate, output)
         print(json.dumps({
             "status": "PASS",

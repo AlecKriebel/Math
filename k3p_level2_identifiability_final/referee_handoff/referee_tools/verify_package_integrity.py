@@ -7,6 +7,8 @@ import argparse
 import hashlib
 import json
 from pathlib import Path, PurePosixPath
+import re
+import stat
 import sys
 
 
@@ -28,6 +30,8 @@ def sha256_file(path: Path) -> str:
 
 
 def safe_relative(value: str) -> str:
+    require(isinstance(value, str) and "\\" not in value and "\x00" not in value,
+            ("unsafe package path characters", value))
     path = PurePosixPath(value)
     require(value and not path.is_absolute() and ".." not in path.parts,
             ("unsafe package path", value))
@@ -37,29 +41,34 @@ def safe_relative(value: str) -> str:
     return value
 
 
-def is_runtime_file(relative: str) -> bool:
+def is_runtime_path(relative: str) -> bool:
     parts = PurePosixPath(relative).parts
     return (
         relative in {"PACKAGE_MANIFEST.json", "SHA256SUMS"}
-        or ".venv" in parts
-        or "review_runs" in parts
-        or "__pycache__" in parts
-        or relative.endswith(".pyc")
-        or relative.endswith("/.DS_Store")
-        or relative == ".DS_Store"
+        or (parts and parts[0] in {".venv", "review_runs"})
     )
 
 
 def observed_payload(root: Path) -> dict[str, dict[str, object]]:
     result: dict[str, dict[str, object]] = {}
     for path in sorted(root.rglob("*")):
-        if not path.is_file():
-            continue
         relative = path.relative_to(root).as_posix()
-        if is_runtime_file(relative):
+        safe_relative(relative)
+        metadata = path.lstat()
+        if is_runtime_path(relative):
+            if relative in {".venv", "review_runs"}:
+                require(not stat.S_ISLNK(metadata.st_mode) and
+                        stat.S_ISDIR(metadata.st_mode),
+                        ("runtime root must be a real directory", relative))
             continue
+        require(not stat.S_ISLNK(metadata.st_mode),
+                ("symlink forbidden in sealed payload", relative))
+        if stat.S_ISDIR(metadata.st_mode):
+            continue
+        require(stat.S_ISREG(metadata.st_mode),
+                ("nonregular object forbidden in sealed payload", relative))
         result[relative] = {
-            "bytes": path.stat().st_size,
+            "bytes": metadata.st_size,
             "sha256": sha256_file(path),
         }
     return result
@@ -68,7 +77,8 @@ def observed_payload(root: Path) -> dict[str, dict[str, object]]:
 def verify_outer(root: Path) -> dict[str, object]:
     manifest_path = root / "PACKAGE_MANIFEST.json"
     sums_path = root / "SHA256SUMS"
-    require(manifest_path.is_file() and sums_path.is_file(),
+    require(manifest_path.is_file() and not manifest_path.is_symlink() and
+            sums_path.is_file() and not sums_path.is_symlink(),
             "missing outer package manifest")
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     required = {
@@ -79,6 +89,13 @@ def verify_outer(root: Path) -> dict[str, object]:
     require(set(manifest) == required and
             manifest.get("schema") == "k3p-independent-referee-package-v1",
             "outer package manifest schema")
+    require(re.fullmatch(r"[0-9a-f]{40}", str(
+                manifest.get("package_builder_commit"))) is not None and
+            re.fullmatch(r"[0-9a-f]{40}", str(
+                manifest.get("proof_source_commit"))) is not None and
+            re.fullmatch(r"[0-9a-f]{64}", str(
+                manifest.get("canonical_archive_sha256"))) is not None,
+            "outer package identity fields")
     rows = manifest.get("payload")
     require(isinstance(rows, list), "outer package payload rows")
     expected: dict[str, dict[str, object]] = {}
@@ -88,7 +105,7 @@ def verify_outer(root: Path) -> dict[str, object]:
         relative = safe_relative(row["path"])
         require(relative not in expected and isinstance(row["bytes"], int) and
                 row["bytes"] >= 0 and isinstance(row["sha256"], str) and
-                len(row["sha256"]) == 64,
+                re.fullmatch(r"[0-9a-f]{64}", row["sha256"]) is not None,
                 ("outer payload row fields", relative))
         expected[relative] = {"bytes": row["bytes"], "sha256": row["sha256"]}
     observed = observed_payload(root)
@@ -103,7 +120,8 @@ def verify_outer(root: Path) -> dict[str, object]:
     sums: dict[str, str] = {}
     for line in sums_path.read_text(encoding="utf-8").splitlines():
         digest, separator, relative = line.partition("  ")
-        require(separator == "  " and len(digest) == 64,
+        require(separator == "  " and
+                re.fullmatch(r"[0-9a-f]{64}", digest) is not None,
                 ("malformed SHA256SUMS line", line))
         safe_relative(relative)
         require(relative not in sums, ("duplicate SHA256SUMS path", relative))
@@ -140,10 +158,16 @@ def verify_inner(root: Path, proof_source_commit: str) -> dict[str, object]:
                 set(row) == {"path", "bytes", "mode", "sha256"},
                 ("proof-core member row", row))
         relative = safe_relative(row["path"])
-        require(relative not in seen, ("duplicate proof-core member", relative))
+        require(relative not in seen and isinstance(row["bytes"], int) and
+                row["bytes"] >= 0 and
+                re.fullmatch(r"[0-9a-f]{64}", str(row["sha256"])) is not None and
+                re.fullmatch(r"0[67][0-7]{2}", str(row["mode"])) is not None,
+                ("invalid proof-core member", relative))
         seen.add(relative)
         path = proof / relative
-        require(path.is_file() and path.stat().st_size == row["bytes"] and
+        require(path.is_file() and not path.is_symlink() and
+                stat.S_ISREG(path.lstat().st_mode) and
+                path.stat().st_size == row["bytes"] and
                 sha256_file(path) == row["sha256"],
                 ("proof-core member mismatch", relative))
         total += row["bytes"]
