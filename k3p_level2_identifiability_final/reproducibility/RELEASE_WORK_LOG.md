@@ -132,3 +132,37 @@ outside this machine checkpoint.
 Best-guess completion: **100% of the mathematical and proof-archive machine
 goal; 70% of the external-submission goal**.  Submission metadata, license,
 tag/release approval, DOI, and portal actions remain human-controlled.
+
+## 2026-08-26T13:52:55Z — conditional-PASS minor-revision reseal
+
+- Exact pushed source commit:
+  `e5b0a9fc6cca79d6ab1d6cd96ceb5c4e8be5a2d5`.
+- Clean quick/full payloads:
+  `b684ca1a018e965271cfecd485cf3679b4d1e17bc93028b1e2328135a838d639`
+  and
+  `166912a36fb672f3f5ce93aef86f2f0f63fb90a9b7dd77f0fdf061a67cdfa217`.
+  The full suite completed in 212.370 seconds and passed fresh theorem replay,
+  18/18 integrated mutations, and 32/32 release mutations.
+- Article/supplement source-reproduction logical payloads:
+  `01a9d8d732c5b8ce16684acbd554fc860fb1604332a46507115926fdcb3e4af5`
+  and
+  `c224972b4885d47a6899878845283e85f6f3a639604fc0d41b2afc46f444571a`.
+  Both packaged sources rebuilt twice and matched the committed PDFs
+  byte-for-byte.
+- Article/supplement source ZIP SHA-256 values:
+  `26e5269503055d65cfb86c5517d52cd863be5878eef8f1fe3dacb2b02f0b0394`
+  and
+  `f98be392f84a40abe37f2526cf2f6a8901a4b9fcee2c01a689ad0a9ed1e66911`.
+- Compact/full archive SHA-256 values:
+  `42fc5e9e9d4d2797c6b196683a3e7b517ee8f7c8352b7182a07d143b0f8596cf`
+  and
+  `e9a6f9f44260df8001364325ac711fceac68a2ef35c9ee141d84cc5688a9f8f9`.
+  Independent second builds were byte-identical; structural and extracted-gate
+  checks passed.
+- No active producer, verifier, or theorem certificate changed.  The prior
+  successful 45-command one-shot regeneration remains the exact producer
+  evidence; it was not rerun for source prose and PDF resealing.
+
+Best-guess completion: **100% of the mathematical and proof-archive machine
+goal; 70% of the external-submission goal**.  Submission metadata, license,
+tag/release approval, DOI, and portal actions remain human-controlled.

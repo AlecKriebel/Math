@@ -629,6 +629,28 @@ Best-guess completion toward the mathematical classification goal: **100%**.
 Best-guess completion toward the paper/certification/proof-archive goal: **100%**.
 Best-guess completion toward the external journal/DOI release goal: **70%**.
 
+## 2026-08-26T14:00:00Z — immutable availability-link correction
+
+- The final source audit agreed with the review that the article's Data and
+  code availability statement still named only the moving repository root.
+  Added an immutable tree link to pushed minor-revision snapshot
+  `e5b0a9fc6cca79d6ab1d6cd96ceb5c4e8be5a2d5`, which contains the corrected
+  manuscript, supplement, PDFs, code, and exact certificates.
+- No tag, GitHub release, DOI, license, submission, or external communication
+  was created.  The immutable commit option closes the citation issue while
+  preserving the explicitly human-controlled tag/release boundary.
+- This one article-source change requires a fresh deterministic article PDF,
+  visual QA, exact source commit, quick/full replay, and source/archive
+  rebinding.  It does not change a mathematical producer and does not justify
+  rerunning the hour-scale 45-command producer graph.
+
+Strongest verified result: the last moving-reference issue is corrected in
+source; its exact-commit PDF/release reseal is in progress.
+
+Best-guess completion toward the mathematical classification goal: **100%**.
+Best-guess completion toward the paper/certification/proof-archive goal: **99%**.
+Best-guess completion toward the external journal/DOI release goal: **70%**.
+
 ## 2026-08-26T13:45:23Z — conditional-PASS minor revision checkpoint
 
 - Audited every item in the fresh conditional-PASS review against the current
@@ -674,4 +696,44 @@ mathematics.  Clean exact-commit replay and source/archive rebinding remain.
 
 Best-guess completion toward the mathematical classification goal: **100%**.
 Best-guess completion toward the paper/certification/proof-archive goal: **99%**.
+Best-guess completion toward the external journal/DOI release goal: **70%**.
+
+## 2026-08-26T13:52:55Z — minor-revision exact-commit reseal complete
+
+- Committed and pushed the conditional-PASS revision at exact commit
+  `e5b0a9fc6cca79d6ab1d6cd96ceb5c4e8be5a2d5` on `main`.
+- Invoked the clean quick and full suites once and blocked through completion.
+  Quick passed with payload
+  `b684ca1a018e965271cfecd485cf3679b4d1e17bc93028b1e2328135a838d639`;
+  full passed in 212.370 seconds with payload
+  `166912a36fb672f3f5ce93aef86f2f0f63fb90a9b7dd77f0fdf061a67cdfa217`.
+  The full run freshly replayed the theorem and rejected all 18 integrated and
+  32 release-engineering mutations.
+- Rebuilt the article and supplement from their packaged LaTeX sources twice
+  each.  All four builds matched the committed PDFs byte-for-byte.  The source
+  ZIP hashes are
+  `26e5269503055d65cfb86c5517d52cd863be5878eef8f1fe3dacb2b02f0b0394`
+  and
+  `f98be392f84a40abe37f2526cf2f6a8901a4b9fcee2c01a689ad0a9ed1e66911`.
+- Built the compact and full proof archives twice.  Both pairs were
+  byte-identical, structurally valid, and passed extracted artifact replay.
+  Their hashes are
+  `42fc5e9e9d4d2797c6b196683a3e7b517ee8f7c8352b7182a07d143b0f8596cf`
+  and
+  `e9a6f9f44260df8001364325ac711fceac68a2ef35c9ee141d84cc5688a9f8f9`.
+- The long 45-command producer graph was not relaunched because the minor
+  revision changed no active producer, verifier, theorem certificate, or
+  orchestration file.  Its successful one-shot exact execution remains bound
+  at `7b4cdd3197e6d650abafc263cbc8a568d09ddf9f`.
+- No tag, DOI, license, release, submission, or external communication was
+  created.  Submission remains `NOT_READY` with zero structural errors and 26
+  explicit human/repository blockers.
+
+Strongest verified result: the fresh conditional-PASS corrections are applied
+and the exact revised source, PDFs, theorem replay, mutation gates, source
+archives, and proof archives are deterministically resealed at one pushed
+commit.  Only human-controlled submission/release metadata remains.
+
+Best-guess completion toward the mathematical classification goal: **100%**.
+Best-guess completion toward the paper/certification/proof-archive goal: **100%**.
 Best-guess completion toward the external journal/DOI release goal: **70%**.

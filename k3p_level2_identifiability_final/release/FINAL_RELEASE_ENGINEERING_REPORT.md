@@ -1,6 +1,6 @@
 # Final release engineering report
 
-Status: **targeted mathematical revision and commit-bound proof-release replay certified; submission metadata pending**
+Status: **conditional-PASS minor revision and commit-bound proof-release reseal certified; submission metadata pending**
 
 The deterministic quick/full/regeneration orchestration, canonical TAR.GZ and
 ZIP construction, compact verifier packaging, fixed-toolchain PDF source
@@ -12,7 +12,62 @@ one-shot confirmation.
 No K3P DOI, license selection, Git tag, GitHub release, Zenodo record, journal
 upload, or external communication has been created or claimed.
 
-## Targeted-revision exact-commit execution record
+## Conditional-PASS minor-revision exact-commit record
+
+The four required minor corrections were checked against the active sources
+and applied: the integrated mutation count is 18; the Brits et al. comparison
+now names the formal positive-definite stochastic parameter space and cites
+arXiv v3; marked/unmarked bridge components are defined; and the exceptional
+set \(E_N\) explicitly includes the source rank-drop closure.  The
+Cummings--Hollering multigraded implicitization citation and the accepted
+hand-checkability/wording polish are also present.  No mathematical producer,
+verifier, active certificate, claim lock, manifest, or fileset policy changed.
+
+At exact pushed commit
+`e5b0a9fc6cca79d6ab1d6cd96ceb5c4e8be5a2d5`:
+
+- the 33-page article has SHA-256
+  `768a35bed573f10f0e989d4d6c39e27ed280871370c06da50e1ace68afb08041`;
+- the 12-page reader supplement has SHA-256
+  `1cd22bc542201cf60ce8eacfd3dfc8cde3e722c57046f2903a9863d2747501c2`;
+- every page was rendered and visually inspected, all fonts are embedded,
+  and the TeX logs have no unresolved references or layout warnings;
+- the clean quick suite passed with payload
+  `b684ca1a018e965271cfecd485cf3679b4d1e17bc93028b1e2328135a838d639`;
+- the clean full suite passed in 212.370 seconds with payload
+  `166912a36fb672f3f5ce93aef86f2f0f63fb90a9b7dd77f0fdf061a67cdfa217`,
+  including fresh independent theorem replay, all 18 integrated mutations,
+  and all 32 release-engineering mutations; and
+- submission validation remained fail-closed at `NOT_READY`, with zero
+  structural errors, 26 declared human/release blockers, and all 12 validator
+  mutations rejected.
+
+Each packaged source rebuilt the committed PDF twice and matched it
+byte-for-byte.  The article and supplement logical reproduction payloads are
+`01a9d8d732c5b8ce16684acbd554fc860fb1604332a46507115926fdcb3e4af5`
+and
+`c224972b4885d47a6899878845283e85f6f3a639604fc0d41b2afc46f444571a`;
+the source ZIP SHA-256 values are
+`26e5269503055d65cfb86c5517d52cd863be5878eef8f1fe3dacb2b02f0b0394`
+and
+`f98be392f84a40abe37f2526cf2f6a8901a4b9fcee2c01a689ad0a9ed1e66911`.
+
+Canonical and independent second builds of the compact and full proof archives
+were byte-identical, passed structural inspection, and passed extracted
+artifact replay.  Their SHA-256 values are
+`42fc5e9e9d4d2797c6b196683a3e7b517ee8f7c8352b7182a07d143b0f8596cf`
+and
+`e9a6f9f44260df8001364325ac711fceac68a2ef35c9ee141d84cc5688a9f8f9`.
+
+The hour-scale 45-command regeneration was deliberately not rerun: its
+producer/verifier/certificate graph is byte-identical to the successful
+one-shot execution at
+`7b4cdd3197e6d650abafc263cbc8a568d09ddf9f`.  Rerunning it for prose,
+bibliography, and PDF bytes would provide no new theorem evidence.  No tag or
+formal release envelope was created because submission metadata and the
+human-controlled release decision remain open.
+
+## Prior targeted mathematical-revision exact-commit execution record
 
 The bridge-gluing and literal sunlet interfaces have been repaired and rebound
 through the integrated theorem gate.  The balanced noncut-compression and

@@ -4,19 +4,22 @@ This file is deliberately separate from the theorem statements.  It records
 integration work that must close before the sources are promoted to a final
 submission build.
 
-1. **Post-revision release replay.**  Complete at exact pushed candidate
-   commit `7b4cdd3197e6d650abafc263cbc8a568d09ddf9f`: the clean quick/full suites,
-   one unified 45-command all-producer replay, two-build source reproduction
-   for both PDFs, and deterministic compact/full archive double-builds all
-   passed.  The sealed theorem artifacts retain their pre-execution gate list
-   to preserve the exact candidate binding; the post-run ledger records the
-   completed machine gates.
+1. **Post-revision release replay.**  Complete at exact pushed minor-revision
+   commit `e5b0a9fc6cca79d6ab1d6cd96ceb5c4e8be5a2d5`: the clean quick/full
+   suites, two-build source reproduction for both PDFs, and deterministic
+   source/compact/full archive double-builds all passed.  The unchanged
+   45-command mathematical producer graph remains bound to its successful
+   one-shot execution at
+   `7b4cdd3197e6d650abafc263cbc8a568d09ddf9f`; no active producer, verifier, or
+   theorem certificate changed in the minor revision.  The post-run ledger
+   records both exact-commit boundaries.
 
 2. **Author and post-typesetting review.**  Independent mathematical and
    evidence audits of the targeted bridge, sunlet, genericity, and noncut-
-   compression revisions pass, as does the commit-bound
-   article--supplement--archive cross-check.  Final human author review remains
-   required before submission promotion.
+   compression revisions pass.  The fresh conditional-PASS review's minor
+   source corrections are applied, and the commit-bound
+   article--supplement--archive cross-check passes.  Final human author review
+   remains required before submission promotion.
 
 3. **Bibliographic/release metadata.**  No DOI or license is asserted.  If a
    real DOI is minted or the user chooses licenses, rebuild the sources from
