@@ -1,0 +1,103 @@
+{
+  "schema": "k3p-independent-referee-plan-v1",
+  "verify_commands": [
+    {
+      "name": "integrated_artifact_binding",
+      "argv": [
+        "{python}",
+        "reproducibility/verify_k3p_same_classification.py",
+        "--artifact-only",
+        "--no-write-report"
+      ],
+      "sentinel": "K3P_SAME_CLASSIFICATION_GATE_PASS",
+      "timeout_seconds": 1800
+    },
+    {
+      "name": "integrated_fresh_independent_replay",
+      "argv": [
+        "{python}",
+        "reproducibility/verify_k3p_same_classification.py",
+        "--no-write-report"
+      ],
+      "sentinel": "K3P_SAME_CLASSIFICATION_GATE_PASS",
+      "timeout_seconds": 14400
+    },
+    {
+      "name": "integrated_classification_mutations",
+      "argv": [
+        "{python}",
+        "reproducibility/test_k3p_same_classification_mutations.py"
+      ],
+      "sentinel": "K3P_SAME_CLASSIFICATION_MUTATIONS_PASS",
+      "timeout_seconds": 3600
+    }
+  ],
+  "regeneration": {
+    "source": "proof_package/reproducibility/run_release_suite.py::regeneration_commands",
+    "original_command_count": 45,
+    "excluded_commands": [
+      {
+        "name": "release_inputs",
+        "reason": "Git-bound release engineering, replaced by outer package integrity verification"
+      },
+      {
+        "name": "release_engineering_mutations",
+        "reason": "nonmathematical release-engineering mutation suite"
+      }
+    ],
+    "mathematical_command_count": 43,
+    "ordered_names": [
+      "cut_single_minor_search",
+      "cut_signed_pair_build",
+      "cut_signed_pair_verify",
+      "cut_signed_pair_mutations",
+      "cut_record39_audit",
+      "cut_cyclic_build",
+      "cut_cyclic_verify",
+      "cut_cyclic_verify_optimized",
+      "cut_cyclic_manifest",
+      "cut_record43_audit",
+      "cut_record60_audit",
+      "cut_final_build",
+      "cut_final_verify",
+      "cut_final_mutations",
+      "cut_global_transfer_build",
+      "cut_global_transfer_verify",
+      "cut_global_transfer_verify_optimized",
+      "cut_global_transfer_adversarial",
+      "cut_global_transfer_adversarial_mutations",
+      "cut_global_transfer_adversarial_manifest_check",
+      "cut_global_transfer_release",
+      "cut_global_transfer_release_optimized",
+      "cut_global_transfer_manifest",
+      "tree_sunlet_literal_v2_build",
+      "tree_sunlet_literal_v2_verify",
+      "tree_sunlet_literal_v2_mutations",
+      "restoration_full_producer",
+      "restoration_independent_replay",
+      "restoration_mutations",
+      "probe_hour_scale_producer",
+      "probe_independent_replay",
+      "probe_mutations",
+      "probe_manifest_seal",
+      "sharpness_krawczyk_producer",
+      "sharpness_topology_alln_producer",
+      "sharpness_build",
+      "sharpness_adversarial",
+      "global_infrastructure_build",
+      "global_infrastructure_verify",
+      "global_infrastructure_mutations",
+      "primary_rebind",
+      "integrated_fresh_independent_replay",
+      "integrated_classification_mutations"
+    ],
+    "reference_m1_runtime_seconds": 4301.285,
+    "reference_probe_runtime_seconds": 2937.148,
+    "recommended_wall_time_minutes": 120
+  },
+  "notes": [
+    "Legacy machine filenames and sentinels are retained for compatibility and are not theorem terminology.",
+    "The runner executes in copied workspaces and stores transcripts outside the sealed proof payload.",
+    "A passing command is computational evidence, not a substitute for independent review of handwritten proof transitions."
+  ]
+}
