@@ -5,41 +5,43 @@
 \usepackage{booktabs,tabularx,longtable,array,enumitem,graphicx,tikz}
 \usetikzlibrary{arrows.meta,positioning,calc,fit}
 \usepackage{xcolor,hyperref}
-\hypersetup{colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,urlcolor=blue!55!black,pdftitle={Exact Tree--Theta-Trinet Collisions under the Kimura 2- and 3-Parameter Models},pdfauthor={Alec Kriebel},pdfsubject={Phylogenetic-network identifiability under group-based DNA substitution models},pdfkeywords={phylogenetic networks, identifiability, Kimura models, group-based models, algebraic statistics}}
+\hypersetup{colorlinks=true,linkcolor=blue!55!black,citecolor=blue!55!black,urlcolor=blue!55!black,pdftitle={Exact Tree--Theta-Trinet Collisions under the Kimura 2- and 3-Parameter Models},pdfauthor={Alec Kriebel},pdfsubject={Phylogenetic-network identifiability under group-based DNA substitution models},pdfkeywords={phylogenetic networks, identifiability, Kimura models, group-based models, algebraic statistics, edgewise continuous-time embeddability}}
 \newtheorem{theorem}{Theorem}\newtheorem{proposition}[theorem]{Proposition}\newtheorem{lemma}[theorem]{Lemma}\newtheorem{corollary}[theorem]{Corollary}
 \theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
-\newcommand{\cM}{\mathcal M}\newcommand{\ThetaZero}{\Theta_0}\newcommand{\KtwoP}{\mathrm{K2P}}\newcommand{\KthreeP}{\mathrm{K3P}}\newcommand{\odotv}{\mathbin{\odot}}\newcommand{\e}{\mathrm e}
+\newcommand{\cM}{\mathcal M}\newcommand{\ThetaZero}{\Theta_0}\newcommand{\ThetaInterior}{\Theta_0^\circ}\newcommand{\KtwoP}{\mathrm{K2P}}\newcommand{\KthreeP}{\mathrm{K3P}}\newcommand{\odotv}{\mathbin{\odot}}\newcommand{\e}{\mathrm e}
 \setlist[itemize]{leftmargin=1.35em}
 \title{Exact Tree--Theta-Trinet Collisions\\under the Kimura 2- and 3-Parameter Models}
 \author{Alec Kriebel\\[-1mm]\small Independent researcher\\[-1mm]\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
 \date{August 2026}
 \begin{document}\maketitle
 \begin{abstract}
-We construct exact three-leaf distributions shared by a tree and a binary semi-directed strict level-two theta trinet under both the Kimura two-parameter (K2P) and three-parameter (K3P) substitution models. The K2P example is a compact factorization over $\mathbb Q(\sqrt{71})$ with every transition probability strictly positive. Under the conventions stated in Brits, Holtgrefe, van Iersel, and Martin, it conflicts with the conclusion of their Lemma~5.6 and with the K2P case of Corollary~5.8. A fixed-order audit identifies an incompatible relabelling step in the proposed K2P induction. A second exact K2P witness lies in the strict continuous-time rate cone and is independently verified by ordinary-state Markov pruning. The fixed K2P theta map has full ambient rank $9$ at both collisions; near the simple witness, its network-parameter collision locus with the $6$-dimensional tree model has dimension $17$ and codimension $3$. An eight-parameter symmetric ansatz contains an exact six-dimensional local collision family. The K3P construction answers the source paper's high-level K3P trinet question negatively. Its fixed theta map has full rank $15$, its local collision locus has dimension $23$, and a real-analytic implicit-function argument moves the collision into the strict continuous-time K3P cone. The present examples do not test the source paper's JC or level-one results. Standard-library verifiers reconstruct the collision identities, admissibility and rate inequalities, selected rank determinants, tangent data, and direct-pruning comparisons.
+We construct exact three-leaf distributions shared by a tree and a binary semi-directed strict level-two theta trinet under both the Kimura two-parameter (K2P) and three-parameter (K3P) substitution models. The compact K2P construction lies in the strict stochastic interior and is an exact counterexample to Lemma~5.6 and the K2P part of Corollary~5.8 as stated in Version~2 of Brits, Holtgrefe, van Iersel, and Martin. Their Version~3 withdraws those K2P claims, identifies the leaf-order obstruction in the proposed induction, and leaves high-level K2P distinguishability open; our collision answers that question negatively. A second exact K2P witness is edgewise strictly continuous-time and is independently verified by ordinary-state Markov pruning. The fixed K2P theta map has full ambient rank $9$ at both collisions; near the compact witness, its collision locus with the $6$-dimensional tree model has dimension $17$ and codimension $3$, and a symmetric ansatz contains a smooth local six-dimensional family of positive collisions. The exact K3P construction likewise answers the Version~3 high-level K3P question negatively. Its fixed theta map has full rank $15$, its local collision locus has dimension $23$, and an implicit-function argument moves the collision into the edgewise strictly continuous-time K3P cone. Here ``edgewise'' permits edge-specific generators and rate ratios and imposes no common generator, molecular clock, or global temporal compatibility. The examples do not affect the corrected paper's JC or level-one results. Standard-library verifiers reconstruct the exact identities, inequalities, rank determinants, tangent data, and direct-pruning comparisons.
 \end{abstract}
-\noindent\textbf{Keywords:} phylogenetic networks; identifiability; Kimura substitution models; group-based models; algebraic statistics; continuous-time Markov models.
+\noindent\textbf{Keywords:} phylogenetic networks; identifiability; Kimura substitution models; group-based models; algebraic statistics; edgewise continuous-time embeddability.
 
 \medskip
-\noindent\textbf{2020 Mathematics Subject Classification:} Primary 62R01; Secondary 92B10, 05C90.
+\noindent\textbf{2020 Mathematics Subject Classification:} Primary 62R01; Secondary 92D15, 92B10, 05C90.
 
 \section{Introduction}
-Identifiability asks whether an exact leaf-pattern distribution determines the underlying phylogenetic topology. Brits, Holtgrefe, van Iersel, and Martin established full level-one identifiability results under JC, K2P, and K3P, presented a proof of arbitrary-level tree--trinet distinguishability under JC and K2P, and used the latter claim to state a global tree--network distinguishability corollary under those two models \cite{BritsHoltgrefeVanIerselMartin2026}. Their Discussion asks whether the high-level trinet inequality and quartet distinguishability extend to K3P, observing that a positive extension appears plausible after the level-one K3P calculation.
+Identifiability asks whether an exact leaf-pattern distribution determines the underlying phylogenetic topology. Brits, Holtgrefe, van Iersel, and Martin establish full level-one identifiability under JC, K2P, and K3P and arbitrary-level tree--network distinguishability under JC \cite{BritsEtAl2026v3}. Version~2 of their paper additionally claimed arbitrary-level K2P tree--trinet distinguishability and a corresponding global tree--network result \cite{BritsEtAl2026v2}. Version~3 removes those K2P statements, explains that the proposed induction cannot preserve the leaf ordering required by its K2P invariant, and poses high-level K2P and K3P trinet distinguishability as open questions \cite{BritsEtAl2026v3}.
+
+Algebraic work on group-based phylogenetic networks has established generic and, under additional hypotheses, full identifiability results for level-one models \cite{GrossLong2018,GrossEtAl2021}. Recent results determine dimensions for broad classes of level-one group-based networks and analyze the three-leaf 3-sunlet, the minimal level-one network \cite{GrossKroneMartin2024,CoxGrossMartin2025}. At level two, generic identifiability under JC is known for binary triangle-free strongly tree-child networks \cite{EnglanderEtAl2025}. The theta topology studied here is instead a strict level-two trinet and admits no tree-child rooting. Our question is full pointwise tree--network distinguishability on that topology, rather than generic identifiability within a tree-child class.
 
 These questions matter for inference from molecular sequence data because an exact model collision cannot be resolved by increasing sequence length alone: even the population site-pattern distribution is compatible with both topologies. Three-taxon marginals are also natural local summaries of larger networks. Consequently, determining which blob structures are detectable from trinets sets a limit on reconstruction procedures that rely only on those three-taxon distributions under the assumed substitution model \cite{GrossLong2018}.
 
-We report two exact collision phenomena that refine this picture. First, the arbitrary-level K2P statement does not hold on a strict level-two theta trinet. The compact witness in Section~\ref{sec:k2p-simple} lies in the source paper's stated stochastic space and is exactly a tree distribution. A separate sign point and a displayed-child audit explain why the order-sensitive level-one invariant cannot be used recursively in one fixed leaf order. Second, the same theta topology has an exact K3P tree collision, answering the high-level K3P question negatively.
+We report two exact collision phenomena that resolve both newly explicit high-level Kimura questions negatively. First, the Version~2 arbitrary-level K2P statement fails on a strict level-two theta trinet. The compact witness in Section~\ref{sec:k2p-simple} lies in the strict interior of the source paper's stochastic space and is exactly a tree distribution. A separate sign point and a displayed-child audit give exact witnesses to the leaf-order obstruction now noted in Version~3. Second, the same theta topology has an exact K3P tree collision.
 
 The collisions are not isolated numerical curiosities. Under K2P, the fixed theta map has full rank in the nine-dimensional affine K2P Fourier space, while the tree model has dimension six. Under K3P the corresponding dimensions are fifteen and nine, and the theta map again has full ambient rank. The resulting collision loci are positive-dimensional but proper in network parameter space. These calculations imply neither universal distinguishability nor generic indistinguishability: on this theta topology, tree equivalence is nongeneric but occurs along substantial exact families.
 
-The present examples concern the arbitrary-level K2P trinet/global statements and the open high-level K3P trinet question. They do not test the JC trinet inequality, the level-one K2P sunlet calculation, the level-one full-identifiability theorem, the combinatorial restriction lemma, K3P quartet distinguishability, or every possible restricted level-two theorem.
+The present examples concern the removed arbitrary-level K2P trinet/global statements and answer the open high-level K2P and K3P trinet questions. They do not test the JC trinet inequality, the level-one K2P sunlet calculation, the level-one full-identifiability theorem, the combinatorial restriction lemma, K3P quartet distinguishability, or every possible restricted level-two theorem.
 
 \paragraph{Main results.}
 \begin{itemize}
 \item An exact K2P tree--theta collision over $\mathbb Q(\sqrt{71})$, with all transition probabilities positive and exact minimum pattern probability $1188799/79626240$.
 \item A fixed-order diagnosis and an independent rational theta point for which the proposed K2P invariant is negative in all six leaf orders.
-\item An exact strict continuous-time K2P collision, verified by both Fourier inversion and direct Markov pruning.
+\item An exact edgewise strictly continuous-time K2P collision, verified by both Fourier inversion and direct Markov pruning.
 \item Full K2P rank $9$ at both exact collisions, a local $17$-dimensional collision locus, and an exact six-dimensional symmetric collision family.
-\item An exact K3P collision over $\mathbb Q(5^{-1/4})$, full rank $15$, a local $23$-dimensional collision locus, and a strict continuous-time analytic extension.
+\item An exact K3P collision over $\mathbb Q(5^{-1/4})$, full rank $15$, a local $23$-dimensional collision locus, and an edgewise strictly continuous-time analytic extension.
 \end{itemize}
 
 \section{Models and the theta topology}\label{sec:models}
@@ -61,7 +63,7 @@ A K3P edge has Fourier vector $a=(1,a_C,a_G,a_T)$. Its transition probabilities 
 p_A&=(1+a_C+a_G+a_T)/4,&p_C&=(1+a_C-a_G-a_T)/4,\\
 p_G&=(1-a_C+a_G-a_T)/4,&p_T&=(1-a_C-a_G+a_T)/4.
 \end{align*}
-The stochastic space $\ThetaZero$ used here requires $0<a_C,a_G,a_T<1$ and all four transition entries positive. K2P is the submodel $a_C=a_T$, written $(1,s,g,s)$.
+Following both source versions, let $\ThetaZero(N)$ denote the restricted parameter set in which every edge matrix is real and stochastic with entries in $[0,1]$, is nonidentity and positive definite, and has nontrivial Fourier eigenvalues in $(0,1)$; every inheritance parameter lies in $(0,1)$. We write $\ThetaInterior(N)\subseteq\ThetaZero(N)$ for the strict stochastic interior in which every transition-matrix entry is positive. All explicit collision witnesses below lie in the appropriate $\ThetaInterior$ spaces. K2P is the submodel $a_C=a_T$, written $(1,s,g,s)$.
 
 For a three-star tree with pendant vectors $\alpha,\beta,\gamma$,
 \[
@@ -102,12 +104,14 @@ It has three incident leaf edges and two reticulations, hence is a strict level-
 \caption{The rooted representation used for the symmetric collision witnesses and the suppressed semi-directed theta trinet. The repeated labels $K,S,T$ and equal inheritance weights specialize the witnesses only; the rank and implicit-function calculations use the unrestricted edge and weight parameters in \eqref{eq:theta-map}.}
 \label{fig:theta}
 \end{figure}
-\begin{remark}[Two-terminal terminology]
-The collision theorem needs only the unambiguous fact that the whole theta core is a maximal nontrivial $3$-blob. The source paper's printed boundary-vertex clauses for a $2$-sub-blob and its degree-two suppression instruction create a wording tension on individual theta edges: each literal edge candidate contracts to four external incidences. Under the edge-incidence condition compatible with degree-two suppression, no proper induced theta subgraph qualifies. The topology verifier records both enumerations; neither interpretation removes the original theta distribution from the model.
+\begin{remark}[Blob terminology]
+Under the conventions of Brits et al., the theta core is a strict level-two nontrivial $3$-blob. The collision theorem does not require an additional no-$2$-sub-blob assumption. The accompanying topology audit records the literal incidence enumeration.
 \end{remark}
 
-\subsection{Strict continuous-time cones}
-For K3P, symmetric continuous-time rates give
+\subsection{Edgewise continuous-time cones}
+Throughout, ``edgewise strictly continuous-time'' means that each edge matrix separately has the form $\exp(Q_e t_e)$, with $t_e>0$, for a symmetric K2P or K3P generator $Q_e$ whose relevant substitution-rate classes are all positive. The generators, rate ratios, and edge times may vary from edge to edge. We impose no common rate matrix, molecular clock, compatible node times, or other global temporal constraint.
+
+For K3P, symmetric continuous-time rates give the following expressions on each edge, where for readability $\lambda_C,\lambda_G,\lambda_T$ denote the edge-specific products $\lambda_{C,e}t_e,\lambda_{G,e}t_e,\lambda_{T,e}t_e$:
 \[
 a_C=\e^{-2(\lambda_G+\lambda_T)},\quad a_G=\e^{-2(\lambda_C+\lambda_T)},\quad a_T=\e^{-2(\lambda_C+\lambda_G)}.
 \]
@@ -126,7 +130,7 @@ S&=(1,\tfrac14,\tfrac12,\tfrac14),&T&=(1,\tfrac13,\tfrac1{27},\tfrac13).
 \end{equation}
 Use $K$ on $\rho\to1,\rho\to u,r_2\to2,r_3\to3$; $U$ on $u\to p$; $V$ on $u\to q$; $S$ on both $p\to r_2$ and $p\to r_3$; and $T$ on both $q\to r_2$ and $q\to r_3$.
 \begin{lemma}[K2P edge admissibility]\label{lem:k2p-adm}
-Every rooted and effective network edge lies in $\ThetaZero$, with strictly positive transition probabilities. The suppressed pendant edge is $K\odotv K=(1,1/4,1/4,1/4)$ with transition row $(7/16,3/16,3/16,3/16)$.
+The rooted network parameter lies in $\ThetaInterior(N_\theta)$, and every effective edge has strictly positive transition probabilities. The suppressed pendant edge is $K\odotv K=(1,1/4,1/4,1/4)$ with transition row $(7/16,3/16,3/16,3/16)$.
 \end{lemma}
 \begin{proof}
 The transition rows of $K,U,V,S,T$ are
@@ -171,8 +175,8 @@ $q$&$q$&$\varnothing$&$\{2,3\}$&$T_yT_zV_{y+z}$\\
 \end{center}
 If a retained edge has no labelled descendant, its Fourier label is $A$, so its factor is $U_A=1$ or $V_A=1$; equivalently, that dangling branch disappears after pruning to the labelled leaves. Both inheritance probabilities are $1/2$, so each switching has weight $1/4$. After extracting the four common $K$-edge factors, the core mixture is thus
 \begin{equation}\label{eq:k2p-M}M_{y,z}=\frac14\left(S_yS_zU_{y+z}+S_yT_zU_yV_z+T_yS_zU_zV_y+T_yT_zV_{y+z}\right).\end{equation}
-Let $s=\sqrt{71}$ and set
-\begin{equation}\label{eq:k2p-PR}P=(1,\tfrac{151}{36s},\tfrac{107}{162},\tfrac{151}{36s}),\qquad R=(1,\tfrac{s}{40},\tfrac{31}{120},\tfrac{s}{40}).\end{equation}
+Let $\eta=\sqrt{71}$ and set
+\begin{equation}\label{eq:k2p-PR}P=(1,\tfrac{151}{36\eta},\tfrac{107}{162},\tfrac{151}{36\eta}),\qquad R=(1,\tfrac{\eta}{40},\tfrac{31}{120},\tfrac{\eta}{40}).\end{equation}
 \begin{lemma}[Exact K2P core factorization]\label{lem:k2p-factor}
 For all $y,z\in G$, $M_{y,z}=P_{y+z}R_yR_z$.
 \end{lemma}
@@ -190,12 +194,12 @@ and multiplying \eqref{eq:k2p-PR} gives the same matrix. Two useful diagnostic e
 \end{proof}
 Define
 \begin{equation}\label{eq:k2p-tree}
-\alpha=K^{\odotv2}\odotv P=(1,\tfrac{151s}{10224},\tfrac{107}{648},\tfrac{151s}{10224}),\quad
-\beta=\gamma=K\odotv R=(1,\tfrac{s}{80},\tfrac{31}{240},\tfrac{s}{80}).
+\alpha=K^{\odotv2}\odotv P=(1,\tfrac{151\eta}{10224},\tfrac{107}{648},\tfrac{151\eta}{10224}),\quad
+\beta=\gamma=K\odotv R=(1,\tfrac{\eta}{80},\tfrac{31}{240},\tfrac{\eta}{80}).
 \end{equation}
-The bound $8<s<9$ verifies their eigenvalue and transition inequalities.
+The bound $8<\eta<9$ verifies their eigenvalue and transition inequalities.
 \begin{theorem}[Exact K2P tree--theta collision]\label{thm:k2p}
-The K2P theta distribution in \eqref{eq:k2p-vectors} equals the tree distribution in \eqref{eq:k2p-tree}. Every edge lies in $\ThetaZero$, every transition probability is strictly positive, and both inheritance probabilities are $1/2$. The exact minimum site-pattern probability is
+The K2P theta distribution in \eqref{eq:k2p-vectors} equals the tree distribution in \eqref{eq:k2p-tree}. The network and comparison-tree parameters lie in $\ThetaInterior(N_\theta)$ and $\ThetaInterior(T)$, respectively, and both inheritance probabilities are $1/2$. The exact minimum site-pattern probability is
 \[
 \frac{1188799}{79626240}>0.
 \]
@@ -207,8 +211,8 @@ q^{N_\theta}_{xyz}=K_x^2K_yK_zM_{y,z}=(K_x^2P_x)(K_yR_y)(K_zR_z)=\alpha_x\beta_y
 \]
 The forty-eight inconsistent coordinates vanish on both models. Fourier inversion gives all pattern equalities, positivity, normalization, and the minimum.
 \end{proof}
-\begin{remark}[Comparison with the source statements]\label{rem:source}
-Lemma~5.6 states that the displayed invariant is ``zero on $\mathcal M_1$ and strictly positive on $\mathcal M_2$,'' and then concludes model disjointness. Corollary~5.8 asserts the corresponding JC/K2P disjointness when one network has a nontrivial $m$-blob, $m\ge3$, and the other does not. Under the definitions and K2P convention stated in \cite{BritsHoltgrefeVanIerselMartin2026}, Theorem~\ref{thm:k2p} conflicts with the K2P conclusions of both statements already at three leaves.
+\begin{remark}[Versioned comparison with the source statements]\label{rem:source}
+Lemma~5.6 in Version~2 states that the displayed invariant is ``zero on $\mathcal M_1$ and strictly positive on $\mathcal M_2$,'' and then concludes model disjointness. Its Corollary~5.8 asserts the corresponding JC/K2P disjointness when one network has a nontrivial $m$-blob, $m\ge3$, and the other does not \cite{BritsEtAl2026v2}. Theorem~\ref{thm:k2p} is an exact counterexample to both K2P conclusions already at three leaves. Version~3 removes the K2P lemma and the K2P part of the global corollary, records the leaf-permutation obstruction, and leaves high-level K2P distinguishability open \cite{BritsEtAl2026v3}; Theorem~\ref{thm:k2p} answers that open question negatively.
 \end{remark}
 
 \section{A fixed-order issue in the K2P induction}\label{sec:induction}
@@ -218,9 +222,9 @@ The level-one 3-sunlet calculation remains valid when the reticulation-adjacent 
 \[
 Q=(\text{positive monomial})\,\delta(1-\delta)d_Ge_G(1-f_G)^2>0.
 \]
-The arbitrary-level proof fixes the exposed leaf in that position and needs both displayed-child invariants in the same order. A child can retain a reticulation adjacent to a different leaf, whose level-one positivity is available only after another relabelling.
+The Version~2 arbitrary-level proof fixes the exposed leaf in that position and needs both displayed-child invariants in the same order. A child can retain a reticulation adjacent to a different leaf, whose level-one positivity is available only after another relabelling. Version~3 now identifies this ordering obstruction and withdraws the proposed K2P induction \cite{BritsEtAl2026v3}.
 
-At the strict continuous-time collision of Section~\ref{sec:k2p-ct}, expose $r_3$. One child retains $r_2$. Its exact values satisfy
+At the edgewise strictly continuous-time collision of Section~\ref{sec:k2p-ct}, expose $r_3$. One child retains $r_2$. Its exact values satisfy
 \[
 Q_{(1,2,3)}=-1.919971072382827\ldots\times10^{-9}<0,\qquad Q_{(1,3,2)}=3.428488326525925\ldots\times10^{-9}>0.
 \]
@@ -243,7 +247,7 @@ g&21/100&39/50&19/100&27/100
 \[
 \delta_2=3/5,\qquad\delta_3=11/50.
 \]
-Here $e_1$ is the effective leaf-$1$ pendant edge, $A_i$ is the $p$-parent vector, $B_i$ is the $q$-parent vector, $D_i$ is the pendant vector below $r_i$, and $\delta_i$ is the inheritance probability of the $p$-parent, consistently with \eqref{eq:theta-map}. Every edge lies strictly in $\ThetaZero$. The six values occur in three equal pairs:
+Here $e_1$ is the effective leaf-$1$ pendant edge, $A_i$ is the $p$-parent vector, $B_i$ is the $q$-parent vector, $D_i$ is the pendant vector below $r_i$, and $\delta_i$ is the inheritance probability of the $p$-parent, consistently with \eqref{eq:theta-map}. The network parameter lies in $\ThetaInterior(N_\theta)$. The six values occur in three equal pairs:
 \begin{align*}
 -&\frac{1622035263547207769829908849883}{122070312500000000000000000000000000000},\\
 -&\frac{167331432602036163517296212056077}{19531250000000000000000000000000000000000},\\
@@ -251,7 +255,7 @@ Here $e_1$ is the effective leaf-$1$ pendant edge, $A_i$ is the $p$-parent vecto
 \end{align*}
 Its minimum pattern probability is $2920987217429243/200000000000000000>0$. This point is not needed for the tree collision; it independently shows that no global fixed sign for this single ordering of $Q$ can be used on the theta topology.
 
-\section{A strict continuous-time K2P collision}\label{sec:k2p-ct}
+\section{An edgewise strictly continuous-time K2P collision}\label{sec:k2p-ct}
 Let $\ell$ be the unique root in $1.073231219980<\ell<1.073231219981$ of
 \begin{equation}\label{eq:ell}634127002560\ell^3-2160769703472\ell^2+1746884136303\ell-169873318739=0.\end{equation}
 Define
@@ -271,8 +275,8 @@ P_C=P_T=\frac{79}{4t},\quad R_C=R_T=\frac{t}{240},\quad R_G=\frac\ell4,
 P_G=\frac{73394329}{4762633008}\ell^2+\frac{368713223407}{81645137280}\ell-\frac{4985775401}{1204882560}.
 \]
 With $P_A=R_A=1$, the four-switching matrix $M$ from \eqref{eq:k2p-M}, evaluated at these new vectors, has the same factorization, and the tree edges are $K^{\odotv2}\odotv P,K\odotv R,K\odotv R$.
-\begin{theorem}[Strict continuous-time K2P collision]\label{thm:k2p-ct}
-These parameters give an exact tree--theta collision. Every rooted, effective, and tree edge satisfies $g>s^2$, all transition entries are positive, the smallest continuous-time margin is $11/900$, and
+\begin{theorem}[Edgewise strictly continuous-time K2P collision]\label{thm:k2p-ct}
+These parameters give an exact tree--theta collision. Every rooted, effective, and tree edge satisfies $g>s^2$, all transition entries are positive, the smallest edgewise continuous-time margin is $11/900$, and
 \[
 0.0149867914232177<p_{\min}<0.0149867914232311.
 \]
@@ -292,7 +296,7 @@ Thus the positive parameterization is locally injective with a smooth inverse on
 \begin{proposition}[Full K2P rank at both collisions]\label{prop:k2p-rank}
 At the simple collision, a selected $9\times9$ theta minor has determinant
 \begin{equation}\label{eq:k2p-det}-\frac{7^2\,11^2\,19\,107\,151^2\,15013}{2^{60}3^{25}5^{10}}\ne0.\end{equation}
-The same minor at the strict continuous-time witness lies rigorously between $-4.129735\times10^{-22}$ and $-4.129729\times10^{-22}$.
+The same minor at the edgewise strictly continuous-time witness lies rigorously between $-4.129735\times10^{-22}$ and $-4.129729\times10^{-22}$.
 \end{proposition}
 \begin{proof}
 For a K2P edge $e$, write $e_C$ for its common $C/T$ eigenvalue and $e_G$ for its $G$ eigenvalue. Differentiate the polynomial map \eqref{eq:theta-map} at the witness, using the rooted factorization of $E_1$ and holding the $\rho\to u$ factor fixed. The certified minor has ordered output rows
@@ -304,7 +308,7 @@ and ordered columns
 \bigl(a_C^{\rho\to1},a_G^{\rho\to1},U_C,U_G,V_C,V_G,
 (A_2)_C,(A_2)_G,(B_2)_C\bigr).
 \]
-Exact differentiation followed by fraction-free elimination gives \eqref{eq:k2p-det}; substitution of the simple parameters also factors it as displayed there. Repeating the same symbolic differentiation over $\mathbb Q(\ell)$ at the strict continuous-time witness and reducing by \eqref{eq:ell} gives the stated isolating interval. The rooted-factor derivative columns and the effective-$E_1$ derivative columns differ only by nonzero diagonal factors from the fixed vector on $\rho\to u$. Hence the minor also proves rank nine for the unrestricted semi-directed map.
+Exact differentiation followed by fraction-free elimination gives \eqref{eq:k2p-det}; substitution of the simple parameters also factors it as displayed there. Repeating the same symbolic differentiation over $\mathbb Q(\ell)$ at the edgewise strictly continuous-time witness and reducing by \eqref{eq:ell} gives the stated isolating interval. The rooted-factor derivative columns and the effective-$E_1$ derivative columns differ only by nonzero diagonal factors from the fixed vector on $\rho\to u$. Hence the minor also proves rank nine for the unrestricted semi-directed map.
 \end{proof}
 The theta map is therefore dominant. The semi-directed theta has twenty parameters, while the tree germ has codimension three in the ambient space.
 \begin{corollary}[K2P local collision geometry]\label{cor:k2p-geometry}
@@ -337,9 +341,9 @@ At the simple witness the Jacobian with respect to $(v,x)$ is
 675554683609333/194995116803358720000000>0.
 \]
 \begin{corollary}[Exact symmetric collision family]\label{cor:k2p-family}
-The simple K2P witness lies on a smooth local six-dimensional algebraic family of positive core parameters satisfying \eqref{eq:family}.
+The simple K2P witness lies in a smooth local six-dimensional semialgebraic family of positive core collision parameters satisfying \eqref{eq:family}.
 \end{corollary}
-After shrinking the neighborhood if necessary, openness of all strict eigenvalue, transition-probability, and inheritance inequalities keeps both the network parameters and the uniquely recovered tree parameters inside $\ThetaZero$.
+After shrinking the neighborhood if necessary, openness of all strict eigenvalue, transition-probability, and inheritance inequalities keeps the network and uniquely recovered tree parameters inside their respective $\ThetaInterior$ spaces.
 
 \section{An exact K3P collision}\label{sec:k3p}
 Let $h=5^{-1/4}$. Use the same explicit edge placement fixed in Section~\ref{sec:models}. With $M$ defined by the four-switching formula in \eqref{eq:k2p-M}, substitute the following K3P vectors:
@@ -356,7 +360,7 @@ Exact reduction modulo $5h^4-1$ shows that this same four-switching mixture, now
 \alpha=(1,\tfrac{5h^3+h}{16},\tfrac{5h^3+h}{16},\tfrac{h^2}{4}),\qquad \beta=\gamma=(1,\tfrac{h^2}{4},\tfrac{h^2}{4},\tfrac{h^2}{4}).
 \end{equation}
 \begin{theorem}[Exact K3P tree--theta collision]\label{thm:k3p}
-The theta distribution defined by \eqref{eq:k3p-vectors} equals the tree distribution in \eqref{eq:k3p-tree}. Every network, effective, and tree edge lies in $\ThetaZero$ with strictly positive transition entries. This gives a negative answer to the high-level K3P trinet question raised in \cite{BritsHoltgrefeVanIerselMartin2026}.
+The theta distribution defined by \eqref{eq:k3p-vectors} equals the tree distribution in \eqref{eq:k3p-tree}. The network and comparison-tree parameters lie in $\ThetaInterior(N_\theta)$ and $\ThetaInterior(T)$, respectively. This gives a negative answer to the high-level K3P trinet question posed in \cite{BritsEtAl2026v3}.
 \end{theorem}
 \begin{proof}
 The factorization \eqref{eq:k3p-PB} gives $q^{N_\theta}_{xyz}=K_x^2K_yK_zM_{y,z}=\alpha_x\beta_y\gamma_z$ on the sixteen consistent labels; all others vanish. Exact inversion gives all pattern equalities.
@@ -398,7 +402,7 @@ For the positive K3P tree model, the three recovery formulas in \eqref{eq:tree-r
 \end{proof}
 This does not mean generic theta parameters map to trees: the collision locus has codimension six.
 
-\section{Strict continuous-time K3P extension}\label{sec:k3p-ct}
+\section{Edgewise strictly continuous-time K3P extension}\label{sec:k3p-ct}
 The closed-form witness satisfies two boundary equalities,
 \[
 U_C=U_GU_T,\qquad V_G=V_CV_T,
@@ -444,14 +448,16 @@ The two saturated margins have derivatives
 \qquad
 \frac{d}{d\varepsilon}(V_G-V_CV_T)\bigg|_0=1>0.
 \]
-All other network inequalities persist by continuity. The fixed comparison tree is already strictly continuous-time: for $\beta=\gamma$ its three margins equal $h^2/4-1/80>0$, while for $\alpha$, writing $a=(5h^3+h)/16$ and $t=h^2/4$, the margins are $a(1-t),a(1-t)$, and $t-a^2=h^2(58-10h^2)/256$, all positive.
-\begin{corollary}[Strict continuous-time K3P collision]\label{cor:k3p-ct}
-The same fixed, strictly continuous-time tree distribution has a nearby preimage on the theta topology for which every network edge has all three instantaneous K3P substitution rates strictly positive.
+All other network inequalities persist by continuity. The fixed comparison tree is already edgewise strictly continuous-time: for $\beta=\gamma$ its three margins equal $h^2/4-1/80>0$, while for $\alpha$, writing $a=(5h^3+h)/16$ and $t=h^2/4$, the margins are $a(1-t),a(1-t)$, and $t-a^2=h^2(58-10h^2)/256$, all positive.
+\begin{corollary}[Edgewise strictly continuous-time K3P collision]\label{cor:k3p-ct}
+The same fixed, edgewise strictly continuous-time tree distribution has a nearby preimage on the theta topology for which every network edge has all three instantaneous K3P substitution-rate classes strictly positive.
 \end{corollary}
 The exact certificate verifies the analytic theorem's algebraic hypotheses and tangent data; the existence of the branch is the conclusion of the implicit-function theorem.
 
 \section{Scope, implications, and open questions}\label{sec:landscape}
-The level-one K2P 3-sunlet calculation in Lemma~4.1 of \cite{BritsHoltgrefeVanIerselMartin2026} is not contradicted by these examples. The new conclusion is narrower: universal three-leaf tree--trinet distinguishability fails on the strict level-two theta topology. The full-rank calculation shows that the fixed theta map is dominant onto the nine-dimensional affine K2P space, while the tree variety has dimension six. Hence tree equivalence is nongeneric among theta parameters, yet the positive collision set is locally $17$-dimensional rather than isolated or confined to the stochastic boundary.
+The level-one K2P 3-sunlet calculation in Lemma~4.1 of \cite{BritsEtAl2026v3} is not contradicted by these examples. The new conclusion is narrower: universal three-leaf tree--trinet distinguishability fails on the strict level-two theta topology. The theta trinet admits no tree-child rooting. Indeed, the directions of the four reticulation edges are fixed. In a compatible rooting, the two core edges incident with $u$ cannot both be directed into $u$, so the path $p-u-q$ can point away from at most one of $p$ and $q$; at least one of those tree vertices therefore has only reticulation children. Consequently, the examples do not contradict results restricted to tree-child or strongly tree-child networks, including the generic level-two JC result of \cite{EnglanderEtAl2025}.
+
+For completeness, the nongenericity statement has a global algebraic justification. Let $F$ be the complexified fixed-theta polynomial parameterization and let $Y$ be the corresponding tree variety in the affine Fourier space. The certified full-rank minor makes $F$ dominant. Since $\dim Y$ is strictly smaller than the ambient dimension, $Y$ is a proper closed subvariety; hence $F^{-1}(Y)$ is a proper Zariski-closed subset of theta parameter space. The physical positive chamber is Euclidean open and Zariski dense, so generic physical theta parameters are not tree-equivalent. The dimensions $17$ and $23$ are the stronger local smooth-dimension statements in the physical positive chambers at the explicit witnesses. In particular, under K2P the positive collision set is locally $17$-dimensional rather than isolated or confined to the stochastic boundary.
 
 For K3P, the level-one result is likewise not addressed. At strict level two, the fixed theta map is locally surjective onto the fifteen-dimensional ambient Fourier space, and the tree-equivalent subset maps onto a neighborhood relative to the nine-dimensional tree model. Thus under both Kimura models a nontrivial three-way blob is not universally detectable from a three-leaf distribution. In biological terms, even an exact three-taxon site-pattern distribution---the infinite-data limit under the model---need not reveal whether the local ancestry contains this level-two reticulation structure. No JC collision or analogous proof failure is established here.
 
@@ -462,9 +468,9 @@ The work does not decide whether a useful replacement statement holds with four 
 \item Classify the complete K2P and K3P tree--theta intersections and positive chambers.
 \item Determine whether the two mechanisms belong to one symmetry-breaking family.
 \item Identify local observational-equivalence moves and whether they compose independently\linebreak across blobs.
-\item Decide K2P and K3P quartet distinguishability and corrected level-two identifiability.
+\item Decide K3P quartet distinguishability and corrected higher-level K2P/K3P identifiability under additional hypotheses.
 \item Determine whether JC genuinely excludes theta/tree collisions or requires another topology.
-\item Characterize continuous-time, clock, or edge-sharing restrictions that restore full distinguishability.
+\item Characterize common-generator, clock, global-time, or edge-sharing restrictions that restore full distinguishability.
 \end{enumerate}
 
 \section{Exact verification and provenance}
@@ -473,12 +479,15 @@ The short command \texttt{python3 verify\_k2p\_simple.py} checks the compact wit
 \paragraph{Code and data availability.}
 This manuscript has no empirical data set. Its exact certificates, standard-library verifiers, source files, and replay instructions are publicly available at
 \begin{center}
-\url{https://github.com/AlecKriebel/Math/tree/k2p-k3p-theta-biorxiv-v1.0.0/k2p_k3p_theta_trinet_collision/k2p_k3p_theta_clarified}.
+\url{https://github.com/AlecKriebel/Math/tree/k2p-k3p-theta-v1.1.0/k2p_k3p_theta_trinet_collision/k2p_k3p_theta_clarified}.
 \end{center}
-The verifier differentiates the explicitly defined map \eqref{eq:theta-map}, reconstructs the stated minors and tangent vector, checks exact field identities and isolating intervals, and independently compares ordinary-state pruning with Fourier inversion. The supplementary archive submitted with the preprint records the exact repository commit and SHA-256 hashes so the replay object is immutable.
+The verifier differentiates the explicitly defined map \eqref{eq:theta-map}, reconstructs the stated minors and tangent vector, checks exact field identities and isolating intervals, and independently compares ordinary-state pruning with Fourier inversion. The accompanying replay archive records the exact repository commit and SHA-256 hashes so the replay object is immutable.
 
 \paragraph{Provenance and AI-assisted methods.}
-AI-assisted analysis was used for exploratory symbolic and numerical search, code assistance, adversarial checking, and editorial review. It first identified a possible sign-definiteness and leaf-order issue in the K2P invariant and produced a high-precision collision candidate. The exact $\mathbb Q(\sqrt{71})$ witness, the strict continuous-time algebraic witness, the rank calculations, and the collision-family results were then constructed and checked by exact, replayable computations. The supplied certificates and independent pruning checks make every mathematical claim testable without relying on the discovery process or on floating-point output.
+AI-assisted analysis was used for exploratory symbolic and numerical search, code assistance, adversarial checking, and editorial review. It first identified a possible sign-definiteness and leaf-order issue in the K2P invariant and produced a high-precision collision candidate. The exact $\mathbb Q(\sqrt{71})$ witness, the edgewise strictly continuous-time algebraic witness, the rank calculations, and the collision-family results were then constructed and checked by exact, replayable computations. The certificates replay every computationally derived identity, sign, determinant, interval, and pruning comparison; the local analytic conclusions additionally use the stated preimage and implicit-function theorems.
+
+\paragraph{Acknowledgments.}
+I thank Leo van Iersel for checking the K2P counterexample and for helpful correspondence. I thank Jari Brits, Niels Holtgrefe, Leo van Iersel, and Samuel Martin for promptly correcting the Version~2 K2P statement in Version~3 of their manuscript.
 
 \paragraph{Author contributions.}
 A.K. conceived the study, derived the constructions and proofs, implemented and validated the exact computations, and wrote the manuscript.
@@ -490,8 +499,13 @@ This research received no external funding.
 The author declares no competing interests.
 
 \begin{thebibliography}{99}
-\bibitem{BritsHoltgrefeVanIerselMartin2026}J.~Brits, N.~Holtgrefe, L.~van Iersel, and S.~Martin, \emph{On Tree--Network Distinguishability and Full Identifiability of Phylogenetic Networks}, arXiv:2607.12919v2 [q-bio.PE], revised 29 July 2026. \href{https://doi.org/10.48550/arXiv.2607.12919}{doi:10.48550/arXiv.2607.12919}.
+\bibitem{BritsEtAl2026v2}J.~Brits, N.~Holtgrefe, L.~van Iersel, and S.~Martin, \emph{On Tree--Network Distinguishability and Full Identifiability of Phylogenetic Networks}, Version~2, arXiv:2607.12919v2 [q-bio.PE], 29 July 2026. \href{https://arxiv.org/abs/2607.12919v2}{arXiv:2607.12919v2}.
+\bibitem{BritsEtAl2026v3}J.~Brits, N.~Holtgrefe, L.~van Iersel, and S.~Martin, \emph{On Tree--Network Distinguishability and Full Identifiability of Phylogenetic Networks}, Version~3, arXiv:2607.12919v3 [q-bio.PE], 25 August 2026. \href{https://arxiv.org/abs/2607.12919v3}{arXiv:2607.12919v3}.
+\bibitem{CoxGrossMartin2025}S.~Cox, E.~Gross, and S.~Martin, \emph{Group-based phylogenetic models on 3-sunlet networks}, Bull. Math. Biol. \textbf{87} (2025), article 132. \href{https://doi.org/10.1007/s11538-025-01506-1}{doi:10.1007/s11538-025-01506-1}.
+\bibitem{EnglanderEtAl2025}A.~K. Englander, M.~Frohn, E.~Gross, N.~Holtgrefe, L.~van Iersel, M.~Jones, and S.~Sullivant, \emph{Identifiability of phylogenetic level-2 networks under the Jukes--Cantor model}, bioRxiv 2025.04.18.649493, Version~4, revised 4 July 2026. \href{https://doi.org/10.1101/2025.04.18.649493}{doi:10.1101/2025.04.18.649493}.
 \bibitem{EvansSpeed1993}S.~N. Evans and T.~P. Speed, \emph{Invariants of some probability models used in phylogenetic inference}, Ann. Statist. \textbf{21} (1993), 355--377. \href{https://doi.org/10.1214/aos/1176349030}{doi:10.1214/aos/1176349030}.
+\bibitem{GrossKroneMartin2024}E.~Gross, R.~Krone, and S.~Martin, \emph{Dimensions of level-1 group-based phylogenetic networks}, Bull. Math. Biol. \textbf{86} (2024), article 90. \href{https://doi.org/10.1007/s11538-024-01314-z}{doi:10.1007/s11538-024-01314-z}.
+\bibitem{GrossEtAl2021}E.~Gross, L.~van Iersel, R.~Janssen, M.~Jones, C.~Long, and Y.~Murakami, \emph{Distinguishing level-1 phylogenetic networks on the basis of data generated by Markov processes}, J. Math. Biol. \textbf{83} (2021), article 32. \href{https://doi.org/10.1007/s00285-021-01653-8}{doi:10.1007/s00285-021-01653-8}.
 \bibitem{GrossLong2018}E.~Gross and C.~Long, \emph{Distinguishing phylogenetic networks}, SIAM J. Appl. Algebra Geom. \textbf{2} (2018), 72--93. \href{https://doi.org/10.1137/17M1134238}{doi:10.1137/17M1134238}.
 \bibitem{SturmfelsSullivant2005}B.~Sturmfels and S.~Sullivant, \emph{Toric ideals of phylogenetic invariants}, J. Comput. Biol. \textbf{12} (2005), 457--481. \href{https://doi.org/10.1089/cmb.2005.12.457}{doi:10.1089/cmb.2005.12.457}.
 \end{thebibliography}

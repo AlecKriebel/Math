@@ -16,7 +16,8 @@ Use the files in this order:
    deposit until its double-underscore placeholders are replaced or the
    inapplicable fields are removed.
 
-The manuscript to upload is `../../combined-paper-clarified.pdf`. The current
+The manuscript to upload is `../../combined-paper-clarified.pdf`, release
+version `1.1.0` under tag `k2p-k3p-theta-v1.1.0`. The current
 paper title, abstract, author list, theorem statements, and PDF are authoritative;
 duplicated metadata must be checked against them immediately before approval.
 

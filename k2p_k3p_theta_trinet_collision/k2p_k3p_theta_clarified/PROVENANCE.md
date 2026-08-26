@@ -1,11 +1,13 @@
 # Provenance and reproducibility
 
-## Canonical and public status -- 23 August 2026
+## Canonical and public status -- 25 August 2026
 
 This directory is the sole current K2P/K3P manuscript, verification,
 submission, and archival subtree. The pre-clarification paper, summary,
-certificates, verifiers, and ZIP in the parent directory remain available only
-as historical records and are excluded from new submission/release instructions.
+certificates, and verifiers are isolated under the parent
+`legacy/DO_NOT_SUBMIT-pre-clarification/` directory. Historical release archives
+are under the parent `legacy/releases/` directory. All are excluded from new
+submission/release instructions.
 
 This repository is public. The pre-clarification combined K2P/K3P directory
 first appears in public repository history at commit `ca21a733`, dated 4 August
@@ -13,10 +15,19 @@ first appears in public repository history at commit `ca21a733`, dated 4 August
 combined source directory. The full early draft was therefore already public
 before the clarification. This record is additive and no history was rewritten.
 
-The frozen submission/replay snapshot is version `1.0.0`, identified by the Git
-tag `k2p-k3p-theta-biorxiv-v1.0.0`. Exact upload-time status and unresolved
+The current frozen submission/replay snapshot is version `1.1.0`, identified by
+the Git tag `k2p-k3p-theta-v1.1.0`. The earlier tag
+`k2p-k3p-theta-biorxiv-v1.0.0` remains immutable. Exact upload-time status and unresolved
 author choices are recorded in `submission/biorxiv/`. No bioRxiv or Zenodo
-deposit and no external communication was initiated during preparation.
+deposit and no external communication was initiated by the automated revision
+process.
+
+Version `1.1.0` distinguishes the source paper's history explicitly. The
+removed arbitrary-level K2P statements are cited at arXiv:2607.12919v2. The
+corrected arXiv:2607.12919v3 removes those statements, records the leaf-order
+obstruction, and leaves high-level K2P and K3P questions open. The exact
+collisions here answer both questions negatively without affecting the source
+paper's JC or level-one results.
 
 ## Revision lineage
 
@@ -36,7 +47,7 @@ For the simple witness it independently checks:
 - all 64 ordinary-state network/tree probability equalities;
 - equality with Fourier inversion and every corresponding stored certificate entry.
 
-The complete suite additionally replays the strict continuous-time K2P witness, induction-order audit, all-six-order negative-sign point, K2P ranks and collision family, and all K3P collision, Jacobian, and analytic implicit-function data.
+The complete suite additionally replays the edgewise strictly continuous-time K2P witness, induction-order audit, all-six-order negative-sign point, K2P ranks and collision family, and all K3P collision, Jacobian, and edgewise continuous-time analytic implicit-function data. Edgewise embeddability does not assert a common generator, rate ratio, molecular clock, or globally compatible node times.
 
 ## Exact arithmetic and source conventions
 

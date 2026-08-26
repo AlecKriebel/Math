@@ -11,7 +11,7 @@
 {\large Technical summary}\par
 Alec Kriebel \quad \href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}\hfill August 2026
 \end{center}
-\textbf{Exact finding.} A binary semi-directed strict level-two theta trinet with a genuine nontrivial $3$-blob shares an exact K2P distribution with a three-star tree. Under the conventions stated in arXiv:2607.12919v2, this appears to conflict with the conclusion of Lemma~5.6 and with the K2P case of Corollary~5.8. The present construction does not test the paper's JC or level-one results. A companion exact K3P collision answers its open high-level K3P trinet question negatively.
+\textbf{Exact finding.} A binary semi-directed strict level-two theta trinet with a genuine nontrivial $3$-blob shares exact K2P and K3P distributions with a three-star tree. The K2P construction is a counterexample to Lemma~5.6 and the K2P part of Corollary~5.8 in arXiv:2607.12919v2. Version~3 removes those K2P claims, identifies the leaf-order obstruction, and leaves high-level K2P and K3P distinguishability open; the two exact collisions answer both questions negatively. They do not affect the corrected paper's JC or level-one results.
 
 \textbf{Common topology.} Use
 \[
@@ -31,25 +31,25 @@ Use $K$ on the four common $K$-edges $\rho\to1,\rho\to u,r_2\to2,r_3\to3$, with 
 \[
 M_{y,z}=\tfrac14(S_yS_zU_x+S_yT_zU_yV_z+T_yS_zU_zV_y+T_yT_zV_x).
 \]
-With $s=\sqrt{71}$,
+With $\eta=\sqrt{71}$,
 \[
-P=(1,\tfrac{151}{36s},\tfrac{107}{162},\tfrac{151}{36s}),\quad R=(1,\tfrac{s}{40},\tfrac{31}{120},\tfrac{s}{40}),
+P=(1,\tfrac{151}{36\eta},\tfrac{107}{162},\tfrac{151}{36\eta}),\quad R=(1,\tfrac{\eta}{40},\tfrac{31}{120},\tfrac{\eta}{40}),
 \]
 and exact arithmetic gives $M_{y,z}=P_{y+z}R_yR_z$. The tree vectors are
 \[
-\alpha=(1,\tfrac{151s}{10224},\tfrac{107}{648},\tfrac{151s}{10224}),\quad
-\beta=\gamma=(1,\tfrac{s}{80},\tfrac{31}{240},\tfrac{s}{80}).
+\alpha=(1,\tfrac{151\eta}{10224},\tfrac{107}{648},\tfrac{151\eta}{10224}),\quad
+\beta=\gamma=(1,\tfrac{\eta}{80},\tfrac{31}{240},\tfrac{\eta}{80}).
 \]
 All $64$ Fourier and pattern probabilities agree exactly; the minimum is $1188799/79626240=0.01492973924\ldots$. The source invariant $Q$ is zero. A graph-based verifier literally deletes the two unselected reticulation arcs, reconstructs the four monomials, and independently confirms all $64$ probabilities by ordinary-state Markov pruning.
 
-\textbf{Proof diagnosis.} The level-one sign factorization is valid after placing the active reticulation leaf in a designated position. In the level-two induction a child can retain a reticulation adjacent to another leaf. Positivity after a child-specific relabelling does not imply positivity of the fixed-order child invariant in the parent expansion. On the exact continuous-time witness, one child has $Q=-1.919971072382827\ldots\times10^{-9}$ in the parent order and $Q=3.428488326525925\ldots\times10^{-9}$ after the favorable swap. A separate fully specified rational theta point has $Q<0$ in all six orders.
+\textbf{Proof diagnosis.} The level-one sign factorization is valid after placing the active reticulation leaf in a designated position. In the level-two induction a child can retain a reticulation adjacent to another leaf. Positivity after a child-specific relabelling does not imply positivity of the fixed-order child invariant in the parent expansion. Version~3 now records this obstruction. On the exact edgewise continuous-time witness, one child has $Q=-1.919971072382827\ldots\times10^{-9}$ in the parent order and $Q=3.428488326525925\ldots\times10^{-9}$ after the favorable swap. A separate fully specified rational theta point has $Q<0$ in all six orders.
 
 \newpage
-\textbf{K2P geometry and continuous time.} The affine K2P space has dimension $9$ and the tree model dimension $6$. At the simple collision, the fixed theta map has determinant
+\textbf{K2P geometry and edgewise continuous time.} Here ``edgewise'' means that every edge separately has a positive-rate symmetric generator; no common generator, rate ratio, molecular clock, or global temporal compatibility is imposed. The affine K2P space has dimension $9$ and the tree model dimension $6$. At the simple collision, the fixed theta map has determinant
 \[
 -\frac{7^2 11^2 19\,107\,151^2\,15013}{2^{60}3^{25}5^{10}}\ne0.
 \]
-It also has rank $9$ at the strict continuous-time collision. Hence the local semi-directed theta collision locus has dimension $17$ and codimension $3$: generic theta parameters are distinguishable, but full distinguishability fails. An exact symmetric ansatz contains a local six-dimensional collision family. The strict continuous-time witness satisfies $g>s^2$ on every edge, has minimum eigenvalue $1/16$ and minimum rate margin $11/900$, and is verified by direct Markov pruning.
+It also has rank $9$ at the edgewise strictly continuous-time collision. Hence the local semi-directed theta collision locus has dimension $17$ and codimension $3$: generic theta parameters are distinguishable, but full distinguishability fails. An exact symmetric ansatz contains a smooth local six-dimensional semialgebraic family of positive collisions. The edgewise continuous-time witness satisfies $g>s^2$ on every edge, has minimum eigenvalue $1/16$ and minimum rate margin $11/900$, and is verified by direct Markov pruning.
 
 \textbf{K3P companion.} Let $h=5^{-1/4}$. Use the same fixed edge placement and the same four-switching matrix $M$, now with
 \[
@@ -63,7 +63,7 @@ The fixed theta map has rank $15$ with
 \[
 \det J_*=\frac{h(10h^2+1)}{2^{61}3^4 5^{14}}>0.
 \]
-Its local collision locus has dimension $23$ and codimension $6$. A real-analytic implicit-function argument, with Jacobian and tangent data verified exactly, moves the collision into the cone where all three K3P rate classes are positive.
+Its local collision locus has dimension $23$ and codimension $6$. A real-analytic implicit-function argument, with Jacobian and tangent data verified exactly, moves the collision into the edgewise cone where all three K3P rate classes are positive. The theta admits no tree-child rooting, so these collisions do not contradict results restricted to tree-child or strongly tree-child level-two networks.
 
-\textbf{Status and replay.} The canonical manuscript, exact certificates, and verifier package are available in the \href{https://github.com/AlecKriebel/Math/tree/k2p-k3p-theta-biorxiv-v1.0.0/k2p_k3p_theta_trinet_collision/k2p_k3p_theta_clarified}{versioned GitHub snapshot (v1.0.0)}. With Python 3.10 or newer, run \texttt{python3 verify\_k2p\_displayed\_trees.py} for the graph reconstruction and direct-pruning audit, or \texttt{python3 verify.py} for every check; the latter ends with \texttt{ALL EXACT CHECKS PASSED}.
+\textbf{Status and replay.} The canonical manuscript, exact certificates, and verifier package are available in the \href{https://github.com/AlecKriebel/Math/tree/k2p-k3p-theta-v1.1.0/k2p_k3p_theta_trinet_collision/k2p_k3p_theta_clarified}{versioned GitHub snapshot (v1.1.0)}. With Python 3.10 or newer, run \texttt{python3 verify\_k2p\_displayed\_trees.py} for the graph reconstruction and direct-pruning audit, or \texttt{python3 verify.py} for every check; the latter ends with \texttt{ALL EXACT CHECKS PASSED}.
 \end{document}

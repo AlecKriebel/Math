@@ -328,7 +328,7 @@ def check_edge(name: str, e: Sequence[Alg], strict_ct: bool = True) -> None:
     require(sum(ps, Alg.zero()) == Alg.one(), f"{name}: transition probabilities sum to one")
     if strict_ct:
         # For K2P with a_C=a_T=s, strict positive-rate embeddability is g>s^2.
-        (e[2] - e[1] * e[1]).require_positive(f"{name}: strict continuous-time margin g-s^2")
+        (e[2] - e[1] * e[1]).require_positive(f"{name}: edgewise strict continuous-time margin g-s^2")
 
 
 # ---- certificate parsing ---------------------------------------------------
@@ -480,7 +480,7 @@ def verify_parameters() -> None:
             "both certified inheritance parameters must equal 1/2")
     require_global_minimum(eigenvalues, Alg.rat(F(1, 16)), "global eigenvalue minimum")
     require_global_minimum(rate_margins, Alg.rat(F(11, 900)), "global rate-margin minimum")
-    print("[parameters] PASS  all rooted/effective/tree edges are strict Theta_0 and strict continuous-time K2P")
+    print("[parameters] PASS  all rooted/effective/tree edges lie in Theta_0^circ and are edgewise strictly continuous-time K2P")
     print("[parameters] PASS  exact global minimum eigenvalue 1/16 and rate margin 11/900")
 
 

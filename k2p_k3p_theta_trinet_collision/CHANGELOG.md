@@ -1,5 +1,18 @@
 # Changelog
 
+## Version 1.1.0 response and release isolation -- 25 August 2026
+
+- Updated the canonical manuscript for arXiv:2607.12919v3, which removes the
+  Version 2 arbitrary-level K2P claim, records the leaf-order obstruction, and
+  leaves high-level K2P/K3P questions open.
+- Qualified continuous-time results as edgewise, corrected `Theta_0`, added
+  global nongenericity and non-tree-child scope, and expanded related work.
+- Moved the coherent superseded parent package under
+  `legacy/DO_NOT_SUBMIT-pre-clarification/` and the immutable version `1.0.0`
+  archive under `legacy/releases/`.
+- Prepared venue-neutral release version `1.1.0` and tag
+  `k2p-k3p-theta-v1.1.0` without moving the prior tag.
+
 ## Canonical bioRxiv and archival preparation -- 23 August 2026
 
 - Designated `k2p_k3p_theta_clarified/` as the sole current manuscript,
@@ -40,11 +53,11 @@ The additive `k2p_k3p_theta_clarified/` release makes the existing construction 
 This directory supersedes the earlier K3P-only `k3p_theta_trinet_collision` package. The construction, verifiers, and manuscript now cover both K2P and K3P.
 
 - Added the compact K2P collision over `Q(sqrt(71))`, its exact minimum site-pattern probability, and its status as a counterexample to the K2P conclusion of Lemma 5.6 and the K2P branch of Corollary 5.8 in arXiv:2607.12919v2.
-- Added a separate strict continuous-time K2P witness, checked independently by direct ordinary-state Markov pruning.
+- Added a separate edgewise strictly continuous-time K2P witness, checked independently by direct ordinary-state Markov pruning.
 - Added the fixed-order induction diagnosis: a relabeling step in the source paper's proposed K2P induction is not compatible with the fixed coordinate order used in the parent expansion.
 - Added an independent rational theta point with `Q<0` in all six leaf orders.
 - Added the exact K2P rank-9 minors at both witnesses, the local dimension-17/codimension-3 collision locus, and an exact six-dimensional symmetric collision family.
-- Retained and re-verified the K3P collision, rank-15 determinant, local dimension-23 collision locus, and the real-analytic implicit-function extension into the strict continuous-time K3P cone.
+- Retained and re-verified the K3P collision, rank-15 determinant, local dimension-23 collision locus, and the real-analytic implicit-function extension into the edgewise strictly continuous-time K3P cone.
 - Unified the K2P and K3P material into a single `combined-paper.tex`/`.pdf` and a single two-page `technical-summary.tex`/`.pdf`.
 - Tightened the algebraic isolating intervals used by the exact verifier so the displayed child-invariant decimals are rigorously certified:
   - `-1.919971072382827... x 10^-9`, and

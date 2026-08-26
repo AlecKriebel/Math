@@ -95,7 +95,7 @@ def edges():
     for p in transition_entries:
         d=p-claimed
         need(d==ZERO or d.interval()[0]>0,'global minimum transition entry')
-    print('[parameters] PASS  all network, effective, and tree edges lie strictly in Theta_0')
+    print('[parameters] PASS  all network, effective, and tree edges lie in Theta_0^circ')
     print('[parameters] PASS  exact global minimum transition entry is 1/120')
 def collision():
     K,U,W,S,T0=V['K'],V['U'],V['V'],V['S'],V['T'];M={}

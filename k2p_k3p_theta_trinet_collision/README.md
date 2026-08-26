@@ -8,26 +8,26 @@ models.
 ## Canonical version
 
 **Use only [`k2p_k3p_theta_clarified/`](k2p_k3p_theta_clarified/) for reading,
-verification, citation, submission, or archival deposit.** Its
-`combined-paper-clarified.tex` and `combined-paper-clarified.pdf` are the
-canonical manuscript.
+verification, citation, submission, or archival deposit.** Open the current
+[`combined-paper-clarified.pdf`](k2p_k3p_theta_clarified/combined-paper-clarified.pdf)
+or its [`combined-paper-clarified.tex`](k2p_k3p_theta_clarified/combined-paper-clarified.tex)
+source directly.
 
-The frozen bioRxiv/replay snapshot is version `1.0.0`, identified by the Git
-tag `k2p-k3p-theta-biorxiv-v1.0.0`.
+The current frozen submission/replay snapshot is version `1.1.0`, identified by
+the venue-neutral Git tag `k2p-k3p-theta-v1.1.0`.
 
-Files in this parent directory with names such as `combined-paper.tex`,
-`combined-paper.pdf`, `technical-summary.*`, `verify.py`, and the parent
-certificates are retained solely as pre-clarification history. They are not a
-second current version and must not be submitted. The former unversioned
-`k2p_k3p_theta_clarified.zip` was removed because its contents did not satisfy
-the current release manifest; it remains recoverable from Git history.
+All superseded parent-level files have been moved together under
+[`legacy/DO_NOT_SUBMIT-pre-clarification/`](legacy/DO_NOT_SUBMIT-pre-clarification/).
+The immutable version `1.0.0` replay archive is retained separately under
+[`legacy/releases/`](legacy/releases/). Nothing under `legacy/` is a current
+submission input.
 
-Under the conventions stated in Brits, Holtgrefe, van Iersel, and Martin,
-*On Tree--Network Distinguishability and Full Identifiability of Phylogenetic
-Networks* (arXiv:2607.12919v2), the K2P witness conflicts with the K2P
-conclusion of their Lemma 5.6 and with the K2P case of their Corollary 5.8. The
-K3P witness answers their Discussion's high-level K3P trinet question
-negatively. Neither result tests the source paper's JC or level-one results.
+The K2P witness is an exact counterexample to Lemma 5.6 and the K2P part of
+Corollary 5.8 in arXiv:2607.12919v2. Version 3 removes those K2P statements,
+records the leaf-order obstruction, and leaves high-level K2P and K3P trinet
+questions open. The exact K2P and K3P collisions here answer both questions
+negatively. Neither result affects the corrected paper's JC or level-one
+results.
 
 ## Replay the canonical package
 
@@ -38,13 +38,16 @@ cd k2p_k3p_theta_clarified
 python3 verify_k2p_simple.py
 python3 verify_k2p_displayed_trees.py
 python3 verify.py
+PYTHONOPTIMIZE=1 python3 verify.py
 ```
 
 The focused displayed-tree verifier reconstructs the four displayed trees from
 the rooted graph and checks all 64 ordinary-state probabilities by exact Markov
-pruning. The complete suite additionally checks the strict continuous-time K2P
+pruning. The complete suite additionally checks the edgewise strictly continuous-time K2P
 witness, fixed-order audit, all-six-order sign point, K2P ranks and collision
-families, and the K3P collision, rank, and analytic implicit-function data.
+families, and the K3P collision, rank, and edgewise continuous-time analytic
+implicit-function data. Edgewise embeddability allows a different generator
+and rate ratio on each edge and imposes no molecular clock or global timing.
 Successful complete output ends with `ALL EXACT CHECKS PASSED`.
 
 ## Canonical files
@@ -57,15 +60,15 @@ Successful complete output ends with `ALL EXACT CHECKS PASSED`.
 - `k2p_k3p_theta_clarified/submission/biorxiv/`: bioRxiv metadata and upload checklist.
 - `k2p_k3p_theta_clarified/CITATION.cff`: citation metadata.
 - `k2p_k3p_theta_clarified/LICENSES.md`: package licensing boundaries.
-- `k2p-k3p-theta-collision-4100ec652405.zip` and its `.sha256` sidecar:
-  commit-pinned version `1.0.0` replay supplement built from the frozen tag.
+- `legacy/`: superseded drafts and immutable historical release archives, kept
+  outside the current submission path.
 
 ## Build and release
 
 ```bash
 cd k2p_k3p_theta_clarified
 bash src/build_pdfs.sh
-bash submission/build_release.sh --output-dir /absolute/path/to/release-output --version 1.0.0
+bash submission/build_release.sh --output-dir /absolute/path/to/release-output --commit k2p-k3p-theta-v1.1.0 --version 1.1.0
 ```
 
 The release builder archives only the tracked canonical release files at an
@@ -73,11 +76,8 @@ exact Git commit. It explicitly excludes the author-facing
 `submission/biorxiv/` worksheet/checklists, as well as the legacy parent
 package, untracked caches, and local build debris.
 
-The checked version `1.0.0` ZIP in this directory is ready to upload as a
-supplement. Its internal `RELEASE_PROVENANCE.txt` records full commit
-`4100ec6524054cef1e78441587abc9487d689d0b`, and its internal
-`FILE_SHA256SUMS` passes from a clean extraction.
+The new archive must be built from the frozen version `1.1.0` tag. The earlier
+version `1.0.0` archive and tag remain immutable historical records.
 
-The package cites arXiv:2607.12919v2, posted 29 July 2026. Submission-specific
-status, unresolved author choices, and official bioRxiv guidance are maintained
+Submission-specific status, unresolved author choices, and official bioRxiv guidance are maintained
 in [`submission/biorxiv/`](k2p_k3p_theta_clarified/submission/biorxiv/).

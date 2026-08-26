@@ -1,6 +1,7 @@
 # Official bioRxiv requirements audit
 
-Checked 23 August 2026 against official bioRxiv/openRxiv pages only. The
+Checked 23 August 2026 against official bioRxiv/openRxiv pages only; manuscript
+and source-version metadata refreshed 25 August 2026. The
 authenticated upload form remains the final authority for field names, accepted
 file extensions, and file-size limits that are not stated on the public pages.
 

@@ -10,7 +10,7 @@ and compare all copied text character-for-character with
   3-Parameter Models
 - **Submitting/corresponding author:** Alec Kriebel
 - **ORCID:** https://orcid.org/0009-0001-9320-500X
-- **Affiliation:** `<AUTHOR TO SUPPLY>`
+- **Affiliation:** Independent researcher `<AUTHOR TO CONFIRM>`
 - **Corresponding email:** `<AUTHOR TO SUPPLY IN PORTAL; DO NOT COMMIT A PRIVATE ADDRESS UNLESS INTENDED>`
 - **Suggested subject area:** Evolutionary Biology `<AUTHOR TO CONFIRM>`
 - **Suggested result category:** New Results `<AUTHOR TO CONFIRM>`
@@ -29,6 +29,7 @@ Candidate keywords:
 - Kimura three-parameter model
 - reticulate evolution
 - computer-assisted proof
+- edgewise continuous-time embeddability
 
 Candidate one-sentence biological-relevance description, if requested:
 
@@ -55,16 +56,17 @@ General repository:
 
 Exact canonical source URL for the posted version:
 
-`https://github.com/AlecKriebel/Math/tree/<RELEASE_COMMIT>/k2p_k3p_theta_trinet_collision/k2p_k3p_theta_clarified`
+`https://github.com/AlecKriebel/Math/tree/k2p-k3p-theta-v1.1.0/k2p_k3p_theta_trinet_collision/k2p_k3p_theta_clarified`
 
-Replace `<RELEASE_COMMIT>` with the full 40-character commit containing the
-approved PDF, exact verifier reports, corrected manifest, and release metadata.
+The venue-neutral tag must resolve to the full 40-character release commit
+containing the approved PDF, exact verifier reports, corrected manifest, and
+release metadata.
 
 Candidate code/data availability statement:
 
 > Exact certificates, standard-library verification code, replay transcripts,
 > and manuscript source are archived at `<ZENODO_RECORD_URL>` and mirrored at
-> `https://github.com/AlecKriebel/Math/tree/<RELEASE_COMMIT>/k2p_k3p_theta_trinet_collision/k2p_k3p_theta_clarified`.
+> `https://github.com/AlecKriebel/Math/tree/k2p-k3p-theta-v1.1.0/k2p_k3p_theta_trinet_collision/k2p_k3p_theta_clarified`.
 
 Do not use the mutable `main` URL as the only reproducibility citation. Replace
 `<ZENODO_RECORD_URL>` only after a deliberate archival deposit; if no deposit is
@@ -75,7 +77,7 @@ placeholder.
 
 - **bioRxiv DOI:** `<ASSIGNED ONLY AFTER FINAL AUTHOR APPROVAL>`
 - **Zenodo package DOI:** `<ASSIGNED ONLY IF/WHEN A CURATED DEPOSIT IS CREATED>`
-- **Release version/tag:** `<RELEASE_VERSION>`
+- **Release version/tag:** `1.1.0` / `k2p-k3p-theta-v1.1.0`
 - **Full release commit:** `<RELEASE_COMMIT>`
 
 After bioRxiv posts the paper, add its DOI to `CITATION.cff`, the Zenodo record,

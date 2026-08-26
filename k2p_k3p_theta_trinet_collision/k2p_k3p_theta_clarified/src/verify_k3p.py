@@ -4,7 +4,7 @@
 The verifier reads certificate.json, independently reconstructs the rooted
 network, its semi-directed root suppression, every displayed tree, all Fourier
 and leaf-pattern coordinates, the 15 x 15 Jacobian minor, and the exact fixed-output tangent identity
-used in the strict continuous-time extension.
+used in the edgewise strictly continuous-time extension.
 
 Arithmetic is exact in the quartic number field Q(h), represented in the basis
 1,h,h^2,h^3 with the relation h^4=1/5.  Strict signs are certified with the rational isolating interval
@@ -745,7 +745,7 @@ class Verification:
             require_equal({str(row["edge_id"]) for row in incoming}, expected_edges,
                           f"incoming reticulation edges at {retic['vertex']}")
 
-        print("[parameters] PASS  every network/effective/tree edge is strictly inside Theta_0")
+        print("[parameters] PASS  every network/effective/tree edge lies in Theta_0^circ")
         print("[parameters] PASS  every transition probability is strictly positive")
         print("[parameters] PASS  both inheritance parameters equal 1/2")
 
@@ -1098,7 +1098,7 @@ class Verification:
         print("[Jacobian] PASS  tree model has rank 9; local network preimage of the tree model has dimension 23 (codimension 6)")
         return expected_rows, columns, matrix
 
-    # ---- Strict continuous-time extension -----------------------------------
+    # ---- Edgewise strictly continuous-time extension ------------------------
 
     def verify_continuous_time(self, rows: Sequence[Tuple[int, int, int]],
                                columns: Sequence[Mapping[str, object]],
@@ -1125,7 +1125,7 @@ class Verification:
             if key in {("U", "C_minus_G_T"), ("V", "G_minus_C_T")}:
                 continue
             require_positive(value, self.lo, self.hi,
-                             f"strict continuous-time margin {key[0]}.{key[1]}")
+                             f"edgewise strict continuous-time margin {key[0]}.{key[1]}")
 
         tree = self.cert["comparison_tree"]
         require(isinstance(tree, Mapping), "comparison tree")
@@ -1179,16 +1179,16 @@ class Verification:
 
         # Exact IFT certificate: the output map is polynomial, the pivot
         # Jacobian is invertible, and the two zero margins have positive
-        # right derivatives. All other rate inequalities, all Theta_0 and
+        # right derivatives. All other rate inequalities, all Theta_0^circ and
         # transition-probability inequalities, and both mixing inequalities
         # have strict slack at epsilon=0, so they persist for sufficiently
         # small positive epsilon by continuity.
         require_equal(ct["strict_continuous_time_extension"], True,
-                      "strict continuous-time extension flag")
-        print("[continuous time] PASS  U and V are the only saturated positive-rate margins")
-        print("[continuous time] PASS  exact tangent identity for the fixed-output IFT branch verified")
-        print("[continuous time] PASS  saturated-margin derivatives are positive")
-        print("[continuous time] PASS  algebraic hypotheses for the analytic IFT corollary verified")
+                      "edgewise strict continuous-time extension flag")
+        print("[edgewise continuous time] PASS  U and V are the only saturated positive-rate margins")
+        print("[edgewise continuous time] PASS  exact tangent identity for the fixed-output IFT branch verified")
+        print("[edgewise continuous time] PASS  saturated-margin derivatives are positive")
+        print("[edgewise continuous time] PASS  algebraic hypotheses for the analytic IFT corollary verified")
 
 
 def verify_sidecars(certificate_path: Path, data: Mapping[str, object]) -> None:

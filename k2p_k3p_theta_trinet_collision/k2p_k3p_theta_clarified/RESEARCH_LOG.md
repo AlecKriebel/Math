@@ -1,5 +1,46 @@
 # Research log
 
+## 2026-08-25 21:47 PDT -- Version 1.1.0 source-freeze checkpoint
+
+- Completed independent post-revision proof and verifier audits. No remaining
+  mathematical, computational, or manuscript defect was found; neither audit
+  recommends changing the title or principal theorems.
+- Rebuilt the 14-page manuscript and both two-page supporting PDFs after the
+  last source edit. The final logs contain no TeX warning, overfull/underfull
+  box, unresolved citation/reference, or error; all fonts are embedded, and
+  full-page visual inspection found no clipping, overlap, or broken layout.
+- Replayed all exact checks in normal and genuinely optimized modes under
+  Python 3.14 and Python 3.11. Every run exactly matches the stored transcript
+  and ends with `ALL EXACT CHECKS PASSED`.
+- Hardened the release builder so the requested version, committed
+  `CITATION.cff`, and exact tag must agree; the canonical manifest path set,
+  both archive forms, stored transcripts, clean replay, and rebuilt PDF text
+  and rendered pages are all fail-closed release gates.
+- Best-guess completion: **99% of technical bioRxiv readiness**. The remaining
+  technical step is the commit/tag-bound archive replay. Portal account email,
+  distribution license, subject/category confirmation, and submission approval
+  remain author-controlled choices.
+
+## 2026-08-25 -- Version 3 response and submission-repair checkpoint
+
+- Independently compared arXiv:2607.12919v2 and v3. Version 3 removes the
+  arbitrary-level K2P lemma and global K2P corollary, identifies the same
+  leaf-order obstruction, leaves high-level K2P and K3P trinet questions open,
+  and publicly acknowledges Alec Kriebel.
+- Replayed the untouched version `1.0.0` exact suite before revision; all
+  checks passed.
+- Adjudicated every item in an external adversarial review. The mathematical
+  collisions, ranks, local dimensions, and analytic K3P argument remain intact.
+  Valid repairs concern source-version framing, `Theta_0`, edgewise
+  continuous-time scope, global genericity, tree-child scope, terminology,
+  related work, and release isolation.
+- No external communication was initiated by the revision process. Suggested
+  outreach was excluded under the independent-research policy.
+- Best-guess completion: **85% of version 1.1.0 bioRxiv readiness**. Remaining
+  work is full text review, verifier/report regeneration, PDF build and visual
+  QA, clean release replay, independent adversarial freeze review, and the
+  author-controlled portal choices.
+
 ## 2026-08-23 22:35 PDT -- latest-main and release-builder checkpoint
 
 - Rebasing onto the latest remote `main` added an independent K2P-SAME quartet

@@ -1,5 +1,31 @@
 # Changelog
 
+## Version 1.1.0 submission revision -- 25 August 2026
+
+- Updated the manuscript to cite arXiv:2607.12919v2 for the removed K2P
+  statements and arXiv:2607.12919v3 for the public correction, leaf-order
+  diagnosis, and newly explicit high-level K2P/K3P questions.
+- Reframed the K2P construction as an exact counterexample to Version 2 and as
+  a negative answer to Version 3's open K2P question; the K3P construction
+  likewise answers the Version 3 K3P question negatively.
+- Restored the source paper's full definition of `Theta_0` and introduced
+  `Theta_0^circ` for the strictly positive stochastic interior containing all
+  explicit witnesses.
+- Qualified every continuous-time result as edgewise strict embeddability and
+  stated explicitly that no common generator, rate ratio, molecular clock, or
+  global temporal compatibility is imposed.
+- Added the global algebraic proof of nongenericity, the non-tree-child scope
+  argument, and direct context from recent level-1, 3-sunlet, dimension, and
+  level-2 JC literature.
+- Renamed `sqrt(71)` from `s` to `eta`, tightened the local K2P family wording
+  to a smooth local semialgebraic family,
+  shortened the blob-terminology remark, and narrowed the reproducibility claim
+  to the statements actually replayed by the certificates.
+- Added a public-correction acknowledgment, MSC 92D15, venue-neutral version
+  `1.1.0` metadata, and an immutable `k2p-k3p-theta-v1.1.0` release target.
+- Isolated the old parent-level draft package under a visibly marked legacy
+  directory and retained the immutable version `1.0.0` release separately.
+
 ## bioRxiv submission and archival support -- 23 August 2026
 
 - Preserved the title and both principal collision theorems; narrowed the final
@@ -54,4 +80,4 @@ This is a clarification and verification revision. No mathematical parameter or 
 - Corrected confidentiality and notification language to match the public repository and recorded the pre-clarification public history without rewriting it.
 - Added diagnostic fingerprints `M_(A,C)=151/1440` and `M_(C,C)=71/1600`.
 
-Unchanged results include the simple and strict continuous-time K2P witnesses, the matrix `M`, factors `P` and `R`, comparison-tree vectors, minimum pattern probability, induction-order diagnosis, K2P rank and collision-family results, the K3P witness, the K3P rank/Jacobian calculation, and the analytic continuous-time K3P extension.
+Unchanged results include the simple and edgewise strictly continuous-time K2P witnesses, the matrix `M`, factors `P` and `R`, comparison-tree vectors, minimum pattern probability, induction-order diagnosis, K2P rank and collision-family results, the K3P witness, the K3P rank/Jacobian calculation, and the analytic edgewise continuous-time K3P extension.
