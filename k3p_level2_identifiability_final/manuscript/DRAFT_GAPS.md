@@ -4,18 +4,18 @@ This file is deliberately separate from the theorem statements.  It records
 integration work that must close before the sources are promoted to a final
 submission build.
 
-1. **Release archive and clean-checkout engineering.**  The final integrated
-   mathematical gate is now recorded, including its 16/16 mutation suite and
-   frozen hashes.  Reproducible release archives, quick/full regeneration
-   entry points, aggregate checksums, and clean-checkout tests still need to be
-   built and verified.
+1. **Post-revision release replay.**  The repaired integrated mathematical gate
+   is recorded, including its 18/18 mutation suite and current hashes.
+   Deterministic release archives, quick/full entry points, aggregate
+   checksums, and clean-checkout tests exist.  The targeted revision must still
+   pass one unified clean 45-command all-producer replay, after which the
+   commit-bound source reproductions and archive bindings must be regenerated.
 
-2. **Author and post-typesetting review.**  A hostile audit against the final
-   integrated claim lock has been completed, and this revision applies its
-   valid findings on cut-transfer noncircularity, isotropic-slice scope,
-   certificate bindings, mutation counts, and replay commands.  Final author
-   review and an article--supplement--archive cross-check after typesetting are
-   still required before submission promotion.
+2. **Author and post-typesetting review.**  Independent mathematical and
+   evidence audits of the targeted bridge, sunlet, genericity, and noncut-
+   compression revisions pass.  Final author review and the commit-bound
+   article--supplement--archive cross-check remain required before submission
+   promotion.
 
 3. **Bibliographic/release metadata.**  No DOI or license is asserted.  If a
    real DOI is minted or the user chooses licenses, rebuild the sources from

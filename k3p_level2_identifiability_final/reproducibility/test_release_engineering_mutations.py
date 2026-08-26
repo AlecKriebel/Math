@@ -18,8 +18,11 @@ import zipfile
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parent
 RELEASE = PROJECT / "release"
+TOOLS = PROJECT / "tools"
 if str(RELEASE) not in sys.path:
     sys.path.insert(0, str(RELEASE))
+if str(TOOLS) not in sys.path:
+    sys.path.insert(0, str(TOOLS))
 
 from release_common import (  # noqa: E402
     ReleaseFailure,
@@ -76,6 +79,7 @@ from build_release import (  # noqa: E402
     verify_submission_package,
 )
 import verify_release as final_release_verifier  # noqa: E402
+from build_input_inventory import preserve_or_write_bootstrap_manifest  # noqa: E402
 
 
 DEFAULT_REPORT = HERE / "RELEASE_ENGINEERING_MUTATION_REPORT.json"
@@ -686,6 +690,8 @@ def regeneration_plan_control() -> dict:
         "cut_record60_audit", "cut_cyclic_verify_optimized",
         "cut_global_transfer_release_optimized", "sharpness_krawczyk_producer",
         "sharpness_topology_alln_producer", "probe_hour_scale_producer",
+        "tree_sunlet_literal_v2_build", "tree_sunlet_literal_v2_verify",
+        "tree_sunlet_literal_v2_mutations",
     }
     require(len(names) == len(set(names)) and required.issubset(names),
             ("regeneration plan coverage", sorted(required - set(names))))
@@ -702,6 +708,25 @@ def regeneration_plan_control() -> dict:
             names.index("cut_global_transfer_release_optimized") <
             names.index("cut_global_transfer_manifest"),
             "regeneration manifest ordering")
+    ordered_fixed_point = [
+        "tree_sunlet_literal_v2_build",
+        "tree_sunlet_literal_v2_verify",
+        "tree_sunlet_literal_v2_mutations",
+        "restoration_full_producer",
+        "restoration_independent_replay",
+        "restoration_mutations",
+        "probe_hour_scale_producer",
+        "probe_independent_replay",
+        "probe_mutations",
+        "probe_manifest_seal",
+        "global_infrastructure_build",
+        "global_infrastructure_verify",
+        "global_infrastructure_mutations",
+        "primary_rebind",
+    ]
+    require(all(names.index(left) < names.index(right) for left, right in
+                zip(ordered_fixed_point, ordered_fixed_point[1:])),
+            ("regeneration fixed-point ordering", ordered_fixed_point))
     require("--no-write-report" in command_map["probe_mutations"] and
             "--output" in command_map["probe_independent_replay"],
             "probe regeneration would overwrite runtime-bearing reports")
@@ -711,6 +736,7 @@ def regeneration_plan_control() -> dict:
             "regeneration ephemeral output parent was not materialized")
     return {"name": "complete_regeneration_plan", "status": "PASS",
             "command_count": len(commands), "required_commands": sorted(required),
+            "ordered_fixed_point": ordered_fixed_point,
             "ephemeral_output_parent": ephemeral_parent.relative_to(PROJECT).as_posix()}
 
 
@@ -734,6 +760,43 @@ def proof_only_exclusion_control() -> dict:
             "proof-only selection retained release PDFs")
     return {"name": "proof_only_pdf_exclusion", "status": "PASS",
             "selected_head_files": len(selected)}
+
+
+def inventory_fixture_records() -> list[dict[str, str]]:
+    return [{"record_id": f"input-{index:03d}"} for index in range(1, 37)]
+
+
+def certified_manifest_input_drift() -> None:
+    records = inventory_fixture_records()
+    active = [row["record_id"] for row in records
+              if row["record_id"] not in {"input-023", "input-032"}]
+    with tempfile.TemporaryDirectory(prefix="k3p-inventory-drift-") as directory:
+        manifest_path = Path(directory) / "ACTIVE_MANIFEST.json"
+        manifest_path.write_text(json.dumps({
+            "status": "CERTIFIED_K3P_SAME_MATHEMATICS_PUBLICATION_ENGINEERING_PENDING",
+            "active_inputs": active[1:],
+            "provenance_only_inputs": ["input-023", "input-032"],
+        }), encoding="utf-8")
+        preserve_or_write_bootstrap_manifest(records, manifest_path)
+
+
+def certified_manifest_preservation_control() -> dict:
+    records = inventory_fixture_records()
+    active = [row["record_id"] for row in records
+              if row["record_id"] not in {"input-023", "input-032"}]
+    with tempfile.TemporaryDirectory(prefix="k3p-inventory-preserve-") as directory:
+        manifest_path = Path(directory) / "ACTIVE_MANIFEST.json"
+        manifest_path.write_text(json.dumps({
+            "status": "CERTIFIED_K3P_SAME_MATHEMATICS_PUBLICATION_ENGINEERING_PENDING",
+            "active_inputs": active,
+            "provenance_only_inputs": ["input-023", "input-032"],
+            "certification_sentinel": "must-survive-inventory-refresh",
+        }, sort_keys=True), encoding="utf-8")
+        before = manifest_path.read_bytes()
+        preserve_or_write_bootstrap_manifest(records, manifest_path)
+        require(manifest_path.read_bytes() == before,
+                "certified active manifest was downgraded by inventory refresh")
+    return {"name": "certified_active_manifest_preservation", "status": "PASS"}
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -808,6 +871,9 @@ def main(argv: list[str] | None = None) -> int:
             rejected("forged_source_reproduction_builds",
                      "source-reproduction build count",
                      forged_source_reproduction_builds),
+            rejected("certified_manifest_input_drift",
+                     "certified ACTIVE_MANIFEST active-input set drift",
+                     certified_manifest_input_drift),
         ]
         controls = deterministic_controls()
         controls.append(untracked_exclusion_control())
@@ -816,6 +882,7 @@ def main(argv: list[str] | None = None) -> int:
         controls.append(regeneration_plan_control())
         controls.append(deterministic_diagnostic_control())
         controls.append(proof_only_exclusion_control())
+        controls.append(certified_manifest_preservation_control())
         report = {
             "schema": "k3p-release-engineering-mutations-v1",
             "status": "PASS",

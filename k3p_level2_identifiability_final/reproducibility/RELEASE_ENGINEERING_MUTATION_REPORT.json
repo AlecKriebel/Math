@@ -1,5 +1,5 @@
 {
-  "archive_builder_sha256": "d8ed3c1cfdb322b9c9e0170bbc3f3d4cc099eb47e9f52682f8d7bcd3e1c61213",
+  "archive_builder_sha256": "314d2704d746c7bf175268ae4fd8b5bc383f796498ddb035479d13847dbfa444",
   "archive_tools_sha256": "e0bec1c7e8250bf0a0c45905e03c1d8cf8f3c95621dc3fb5d3e65b3715088c43",
   "controls": [
     {
@@ -38,9 +38,25 @@
       "status": "PASS"
     },
     {
-      "command_count": 42,
+      "command_count": 45,
       "ephemeral_output_parent": "release/work/regeneration_ephemeral",
       "name": "complete_regeneration_plan",
+      "ordered_fixed_point": [
+        "tree_sunlet_literal_v2_build",
+        "tree_sunlet_literal_v2_verify",
+        "tree_sunlet_literal_v2_mutations",
+        "restoration_full_producer",
+        "restoration_independent_replay",
+        "restoration_mutations",
+        "probe_hour_scale_producer",
+        "probe_independent_replay",
+        "probe_mutations",
+        "probe_manifest_seal",
+        "global_infrastructure_build",
+        "global_infrastructure_verify",
+        "global_infrastructure_mutations",
+        "primary_rebind"
+      ],
       "required_commands": [
         "cut_cyclic_verify_optimized",
         "cut_global_transfer_release_optimized",
@@ -50,7 +66,10 @@
         "cut_signed_pair_mutations",
         "probe_hour_scale_producer",
         "sharpness_krawczyk_producer",
-        "sharpness_topology_alln_producer"
+        "sharpness_topology_alln_producer",
+        "tree_sunlet_literal_v2_build",
+        "tree_sunlet_literal_v2_mutations",
+        "tree_sunlet_literal_v2_verify"
       ],
       "status": "PASS"
     },
@@ -61,13 +80,17 @@
     },
     {
       "name": "proof_only_pdf_exclusion",
-      "selected_head_files": 532,
+      "selected_head_files": 543,
+      "status": "PASS"
+    },
+    {
+      "name": "certified_active_manifest_preservation",
       "status": "PASS"
     }
   ],
   "cut_single_minor_producer_sha256": "850fd782f2edc868086cb3bb277d261fe03d619105f3c69a82bf29f418fd9cd0",
-  "fileset_policy_sha256": "2ef8f0553c85bef77b4279662d6dfebc12884e185292f38b7c9ace24d04c3844",
-  "mutation_count": 31,
+  "fileset_policy_sha256": "ba78f3aabaaf7f31e919a32e3103898eafd13d39bde1f95eef0d24f021f99b6c",
+  "mutation_count": 32,
   "mutations": [
     {
       "diagnostic": "('stale file SHA-256', 'a.txt', '0000000000000000000000000000000000000000000000000000000000000000', '48aa6cae8c70abdb28631d22b316e6d9f9d0768ec2911de7090e248b2afe6ca1')",
@@ -178,7 +201,7 @@
       "status": "REJECTED"
     },
     {
-      "diagnostic": "('full release selection lock', 534, '8e1564bf0be358642ebfdd644621b16cb6317238fcc3c0e9fb67c2aa86d26c5d')",
+      "diagnostic": "('full release selection lock', 545, 'fe93c2470e9ede2b1c2fd0d9c5e42169838114ed5143dbe7d383cca2ab577eee')",
       "expected_failure_class": "full release selection lock",
       "name": "wrong_fileset_selection_lock",
       "status": "REJECTED"
@@ -254,20 +277,26 @@
       "expected_failure_class": "source-reproduction build count",
       "name": "forged_source_reproduction_builds",
       "status": "REJECTED"
+    },
+    {
+      "diagnostic": "certified ACTIVE_MANIFEST active-input set drift",
+      "expected_failure_class": "certified ACTIVE_MANIFEST active-input set drift",
+      "name": "certified_manifest_input_drift",
+      "status": "REJECTED"
     }
   ],
-  "payload_sha256": "631ce4b3a4152621466504950e7bf73d44142c2622b064af8cbcc38b049c24f4",
+  "payload_sha256": "469bd2de5c84b03b040b402494a65ab5a321e0448650b34e81414655e1a01094",
   "probe_mutation_driver_sha256": "cd76de5d1f489f76336882553666c1555b71157aaf3b80fd3fde9fb2a508139e",
-  "rejected": 31,
+  "rejected": 32,
   "release_common_sha256": "497340362bb93c46b6c9c00b2a6a85b52428a4f2c0f9ebf900f3df57360bf278",
-  "release_input_verifier_sha256": "832bdc6d5fc08c762b0d1e6bd0588e6a06e6a4b2a1cf66423be2b3a555f6fe8f",
-  "release_suite_sha256": "8092fe95fe6be78d7225976d2a0566406d489319373b52118bb40bbf38b5161f",
+  "release_input_verifier_sha256": "608ab190a08c3190b3188f58b9a0ad02e263c40789e49f0a24dfecdc37af15ac",
+  "release_suite_sha256": "aac52a8a740ed11b014a45d44c8f18b8c2f6ee5b19f29720201b4b795c47f378",
   "release_verifier_sha256": "d7cf9d81700abb190e0e09268e496d72d2ad427424aa1a92626b2f0217892a80",
   "schema": "k3p-release-engineering-mutations-v1",
-  "source_reproduction_verifier_sha256": "b61c4b5b3bbfd904e2da5b89e50ec24ba6b5434b3fbd14191cf5623a5968e691",
+  "source_reproduction_verifier_sha256": "a7980c81987ec697e49d699117f90bd2adaf9e844ac4e33a0ed9dea94b7bc2a9",
   "status": "PASS",
   "submission_validator_mutations_sha256": "a39accf6c5fc61d9afe51d29318b537c6fa8b7e79ebd1a9503a8501bb4913f02",
   "submission_validator_sha256": "712e9831305584d3755e6e06bdc317a3be2cc7d77df9f82646137e5d12922af8",
   "survived": 0,
-  "verifier_sha256": "ede93326d4f7892ab97f2e78bfbdaa0e85c4508ae573d1fe8ff6ce1447e1c534"
+  "verifier_sha256": "4e72c5cb003d598c9dee6b8e17b4644cbc77d6c7993c93eea4f81f3ba49896fe"
 }

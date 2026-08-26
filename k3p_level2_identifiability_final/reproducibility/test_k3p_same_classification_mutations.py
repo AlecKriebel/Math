@@ -206,6 +206,26 @@ def main() -> int:
             ),
         ),
         case(
+            "drop_coherent_boundary_transports",
+            "claim-lock triangle equivalence definition",
+            lambda root: mutate_json(
+                root, "FINAL_CLAIM_LOCK.json",
+                lambda x: x["classification"]["triangle_equivalence"].__setitem__(
+                    "coherent_boundary_transports_required", False
+                ),
+            ),
+        ),
+        case(
+            "weaken_all_n_sharpness_nontriangle_scope",
+            "claim-lock sharpness all-n scope",
+            lambda root: mutate_json(
+                root, "FINAL_CLAIM_LOCK.json",
+                lambda x: x["sharpness"].__setitem__(
+                    "all_n_nontriangle_equivalent", False
+                ),
+            ),
+        ),
+        case(
             "restore_pending_v1_probe_restoration_manifest",
             "RESTORATION_MANIFEST.json",
             lambda root: rebind_probe_restoration(

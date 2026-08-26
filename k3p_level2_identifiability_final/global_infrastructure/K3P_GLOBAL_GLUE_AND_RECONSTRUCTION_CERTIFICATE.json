@@ -8,7 +8,7 @@
       "true_cut_direction": "every 5x5 flattening minor vanishes pointwise at a graph bridge split",
       "universal_pointwise_K3P_cut_recovery_claimed": false
     },
-    "marginal_payload_sha256": "5b870a09d2755d3c12488054db88b3307ba38f3a44d2510bafd893692802b277",
+    "marginal_payload_sha256": "284f5b5a34456bda515c25d2cb9c8e700d968f73c8fb993d1907bc650b1bac75",
     "strong_class_containment_cut_equality_interface": {
       "accepted_as_pass": true,
       "claim_boundary": {
@@ -30,13 +30,13 @@
           "path": "cut_recovery/strong_crossbridge/global_transfer/RELEASE_OPTIMIZED_VERIFICATION_REPORT.json",
           "python_optimized": true,
           "reported_status": "PASS",
-          "sha256": "68ecc443fa89874898ef95da8670c67ade4092f3ce2256fbfbf4fc5e822d54d6"
+          "sha256": "d2c3ffe777ae3baee8610ef30fe05428898de618952621341cdf29169249612b"
         },
         "ordinary": {
           "path": "cut_recovery/strong_crossbridge/global_transfer/RELEASE_VERIFICATION_REPORT.json",
           "python_optimized": false,
           "reported_status": "PASS",
-          "sha256": "d147cb672032994c20f259719f3fa95a4c592cf7b4c9cbc6e1934ab0f9f67b9b"
+          "sha256": "cb099b91da27624104a8a586d7530d26b03a4114661717770e3aa0a35c7bc65d"
         }
       },
       "release_verifier": {
@@ -49,7 +49,7 @@
         "path": "cut_recovery/strong_crossbridge/global_transfer/THEOREM_MANIFEST.json",
         "reported_status": "PASS",
         "schema": "k3p-lost-bridge-global-transfer-theorem-manifest-v1",
-        "sha256": "00021da5e23726fa6a34e0c024b0703bb79e2dbcdecb58affe559e01746c7895"
+        "sha256": "dd0ffea14051b9f45764a87d1a96b78d8199883417ce9a4321bfef4d612e8e51"
       },
       "universal_pointwise_K3P_cut_recovery_used": false,
       "validation_errors": []
@@ -80,11 +80,18 @@
       "reticulations": "r<=n-1",
       "rooted_vertices": "1+t+r+n=2*n+2*r-1<=4*n-3"
     },
+    "full_projection_section": "a d_N-rank incidence projection has a local physical real-analytic right inverse s(q)",
     "generic_rank_equals_image_dimension": true,
     "inequivalent_intersection_dimension": "at most d_N-1, else a target analytic section gives forbidden regular full-dimensional containment",
     "model_closure_irreducible": "closure of a polynomial image of irreducible affine parameter space",
     "rank_drop_image_dimension": "at most d_N-1 by finite constant-rank semialgebraic stratification",
-    "scope": "for each fixed topology N; not pointwise parameter identifiability"
+    "rank_drop_stratification": "finite Nash strata S_alpha on which Phi_N|S_alpha has constant rank at most d_N-1",
+    "real_to_complex_dimension": "A to A tensor_R C is finite faithfully flat integral and preserves Krull dimension",
+    "scope": "for each fixed topology N; not pointwise parameter identifiability",
+    "semialgebraic_real_closure_dimension": "BCR Proposition 2.8.2; semialgebraic dimension equals real-Zariski-closure dimension",
+    "source_parameter_section": "sigma=s o Phi_N on a regular source-parameter neighborhood, so Phi_N=Phi_Nprime o sigma",
+    "target_incidence_correspondence": "Z_Nprime={(q,theta_prime):q=Phi_Nprime(theta_prime),q in M_3,+(N),theta_prime physical}",
+    "total_source_rank_drop_locus": "R_N={theta in Theta_3,+(N):rank D Phi_N(theta)<d_N}"
   },
   "global_theorem_dependency_status": "PASS",
   "internal_infrastructure_status": "PASS",
@@ -119,41 +126,137 @@
       "simultaneous_physical_bridge_gluing"
     ]
   },
-  "payload_sha256": "e3f3ae09ea708704043fbeabb760b43a9114cd91287ff018dcf80a5e544ea177",
+  "payload_sha256": "64cd569e4db689737d68d5898dd069c52e32ad8d08423ed92a6920b637ae7b1a",
   "schema": "k3p-global-gluing-genericity-reconstruction-certificate-v1",
   "simultaneous_physical_bridge_gluing": {
-    "actual_bridge_formula": "x_h=epsilon/A_h for A_h=a[u,e,h]*a[v,e,h]",
-    "actual_coordinate_interval": [
-      "L^2/(4*U^2)",
-      "L/(4*U)"
+    "actual_continuous_time_margin_lower_bound": "epsilon/U-epsilon^2/L^2>=7*epsilon/(8*U)>0",
+    "actual_coordinate_upper_bound": "epsilon/L<=1/8",
+    "actual_principal_composition_margin_lower_bound": "1-2*epsilon/L>=3/4",
+    "base_actual_bridge_formula": "x_h=epsilon/A_h for A_h=a[u,e,h]*a[v,e,h]",
+    "base_actual_coordinate_interval": [
+      "epsilon/U",
+      "epsilon/L"
     ],
-    "common_effective_isotropic_spectrum": [
-      "L^2/(4*U)",
-      "L^2/(4*U)",
-      "L^2/(4*U)"
+    "base_common_effective_isotropic_spectrum": [
+      "epsilon",
+      "epsilon",
+      "epsilon"
     ],
     "continuous_time_inequalities": [
       "c-g*t>0",
       "g-c*t>0",
       "t-c*g>0"
     ],
-    "continuous_time_margin_lower_bound": "3*L^2/(16*U^2)>0",
+    "effective_bridge_formula": "z_h=A_h*x_h",
+    "effective_continuous_time_margin_lower_bound": "epsilon-epsilon^2>=3*epsilon/4>0",
+    "effective_principal_margin_lower_bound": "1-epsilon>=3/4",
+    "epsilon_formula": "epsilon=min(1/4,L^2/(8*U))",
+    "exact_rational_branch_replays": [
+      {
+        "L": "1/2",
+        "U": "2",
+        "active_epsilon_branch": "quadratic_bound",
+        "actual_continuous_time_margin_lower_bound": "7/1024",
+        "actual_coordinate_interval": [
+          "1/128",
+          "1/32"
+        ],
+        "actual_principal_margin_lower_bound": "15/16",
+        "certified_actual_continuous_time_floor": "7/1024",
+        "effective_continuous_time_margin": "63/4096",
+        "effective_principal_margin": "63/64",
+        "epsilon": "1/64"
+      },
+      {
+        "L": "2",
+        "U": "2",
+        "active_epsilon_branch": "equal_branches",
+        "actual_continuous_time_margin_lower_bound": "7/64",
+        "actual_coordinate_interval": [
+          "1/8",
+          "1/8"
+        ],
+        "actual_principal_margin_lower_bound": "3/4",
+        "certified_actual_continuous_time_floor": "7/64",
+        "effective_continuous_time_margin": "3/16",
+        "effective_principal_margin": "3/4",
+        "epsilon": "1/4"
+      },
+      {
+        "L": "7",
+        "U": "7",
+        "active_epsilon_branch": "one_quarter_cap",
+        "actual_continuous_time_margin_lower_bound": "27/784",
+        "actual_coordinate_interval": [
+          "1/28",
+          "1/28"
+        ],
+        "actual_principal_margin_lower_bound": "13/14",
+        "certified_actual_continuous_time_floor": "1/32",
+        "effective_continuous_time_margin": "3/16",
+        "effective_principal_margin": "3/4",
+        "epsilon": "1/4"
+      },
+      {
+        "L": "100",
+        "U": "100",
+        "active_epsilon_branch": "one_quarter_cap",
+        "actual_continuous_time_margin_lower_bound": "399/160000",
+        "actual_coordinate_interval": [
+          "1/400",
+          "1/400"
+        ],
+        "actual_principal_margin_lower_bound": "199/200",
+        "certified_actual_continuous_time_floor": "7/3200",
+        "effective_continuous_time_margin": "3/16",
+        "effective_principal_margin": "3/4",
+        "epsilon": "1/4"
+      },
+      {
+        "L": "1/100",
+        "U": "100",
+        "active_epsilon_branch": "quadratic_bound",
+        "actual_continuous_time_margin_lower_bound": "7/6400000000",
+        "actual_coordinate_interval": [
+          "1/800000000",
+          "1/80000"
+        ],
+        "actual_principal_margin_lower_bound": "39999/40000",
+        "certified_actual_continuous_time_floor": "7/6400000000",
+        "effective_continuous_time_margin": "7999999/64000000000000",
+        "effective_principal_margin": "7999999/8000000",
+        "epsilon": "1/8000000"
+      }
+    ],
     "exact_rational_replay_instance": {
       "L": "1/2",
       "U": "2",
+      "active_epsilon_branch": "quadratic_bound",
+      "actual_continuous_time_margin_lower_bound": "7/1024",
       "actual_coordinate_interval": [
-        "1/64",
-        "1/16"
+        "1/128",
+        "1/32"
       ],
-      "continuous_time_margin_lower_bound": "3/256",
-      "epsilon": "1/32",
-      "principal_margin_lower_bound": "7/8"
+      "actual_principal_margin_lower_bound": "15/16",
+      "certified_actual_continuous_time_floor": "7/1024",
+      "effective_continuous_time_margin": "63/4096",
+      "effective_principal_margin": "63/64",
+      "epsilon": "1/64"
     },
     "finite_simultaneous_shrinking": true,
     "incidence_cancellation": true,
     "incidence_product_compact_bounds": "0<L<=A_h<=U on the finite common compactly-contained local germs",
     "no_holonomy": true,
-    "principal_composition_margin_lower_bound": "1-L/(2*U)>=1/2",
+    "open_neighborhood_full_rank_extension": {
+      "actual_bridge_section": "x_h=z_h/A_h",
+      "effective_variables": "each z_h varies independently in an open neighborhood of epsilon",
+      "full_rank_relative_global_germ_preserved": true,
+      "independent_effective_coordinates_per_bridge": 3,
+      "projection_to_pre_gluing_product_coordinates": "identity",
+      "rank_reason": "the physical product extraction is a local inverse and the analytic bridge section is a graph over the local-factor and independent effective-z coordinates",
+      "section_is_positive_real_analytic": true,
+      "strict_physicality_persists_after_finite_shrinking": true
+    },
     "principal_domain_inequalities": [
       "c>0",
       "g>0",

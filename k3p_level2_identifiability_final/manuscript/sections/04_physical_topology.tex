@@ -109,6 +109,65 @@ which cannot vanish on an open set.
 The reverse inclusion needs genuinely K3P pointwise information, but only for
 a finite one-active universe.
 
+\begin{lemma}[Balanced noncut compression]\label{lem:balanced-compression}
+Let a complete strongly tree-child cycle or theta factor carry a two-color
+boundary assignment with at least two actual labels of each color and no
+bridge realizing the color split.  There is a restriction which retains the
+primitive core, one complete minimum strong repair, every path-sink child,
+and at least two actual labels of each color.  All required unselected roles
+remain as zero-character completion ports.  The restricted coloring remains
+noncut, some displayed switching fails it, and two actual labels of each
+color give a wrong quartet in the finite one-active universe of
+\cref{lem:one-active}.
+\end{lemma}
+
+\begin{proof}
+First retain a rigid support \(Q\): every path-sink child and one occupied port
+on every segment of one complete minimum repair.  The core table in
+\cref{sec:bounded} gives \(|Q|\le4\), and suppressing unselected ordinary
+subdivisions leaves the primitive cycle or theta core.  On each directed
+segment, read the colors as a word and decompose it into maximal constant
+runs.  Select actual labels from at most two runs of each color, preferring
+labels already in \(Q\), until two labels of each color are retained.  If a
+color is then represented by only one selected label, retain a second actual
+label in the same run when possible, and otherwise from another run or
+segment.  This adds at most four actual labels, so the restriction has at
+most eight ports.  Its primitive blob and all compulsory child roles remain;
+no internal blob edge is a bridge, and a pendant arm cannot separate a color
+class containing two labels.  Thus the restricted split is still noncut.
+
+It remains to pass from this bounded restriction to the exact four-active
+palette.  If some segment contains three runs \(c,d,c\), then in every
+switching the path between the two outer \(c\)-attachments contains the middle
+\(d\)-attachment.  No tree edge can separate the complete color classes:
+a segment edge separates the outer \(c\)-ports or retains the middle \(d\) with
+them, a pendant edge isolates one port, and another \(d\)-port exists.
+This is a direct all-switching obstruction.
+
+Otherwise every segment has at most two runs.  Retain one actual label per
+run, preserving every occupied segment and fixed child role.  Each segment
+word is now one of
+\[
+ (),\quad(0),\quad(1),\quad(0,1),\quad(1,0).
+\]
+Double a singleton run when needed to keep two actual labels of its color.
+Any split displayed by every switching before this reduction would remain so
+after leaf restriction.  The independent finite switching replay has zero
+survivors in this direct-or-singleton-doubled palette, so in this second case
+some switching fails the color split.  In either case choose a failing
+switching.  The ordinary-tree quartet criterion then selects two retained
+actual labels of each color whose quartet fails that split.  Every
+other repair or path-sink role is retained at character zero, so the result
+is one of the graph-derived one-active directions rather than a pruned
+topology.
+
+The exact census is a reproducibility checksum, not a premise: five cores
+give 72 active-labelled records and 216 split entries; 12 are displayed by
+every switching, leaving the 204 wrong directions certified in
+\cref{lem:one-active}.  The compressed palette has zero all-switching
+survivors.
+\end{proof}
+
 \begin{lemma}[One-active K3P obstruction]\label{lem:one-active}
 For a balanced two-color split across one active strongly tree-child
 level-2 component, primitive-core and word compression produce exactly 216
@@ -181,18 +240,10 @@ is internal in each hull.
 Thus \(v\) has at least four relevant branches.  A binary ordinary tree
 vertex has degree three, so \(v\) represents a nontrivial central blob.
 
-Apply the frozen primitive and switching-compression theorem, in the form of
-\cref{prop:cores,lem:no-omnian}, to this central blob.  It retains its cycle
-or directed-theta core, one complete minimum strong repair, every path-sink
-child role, and any other required role as a zero-character completion port.
-Its balanced noncut coloring cannot be
-displayed by every switching: the exact model-independent replay has zero
-surviving colorings.  Choose a switching that fails the color split.  The
-ordinary tree quartet criterion then supplies actual labels
-\(a_1,a_2\in A\) and \(b_1,b_2\in B\), taken from four distinct
-monochromatic branches at \(v\), whose induced quartet fails to display
-\(a_1a_2\mid b_1b_2\).  With the completion ports set to zero character,
-this restriction is therefore one of the 204 graph-derived labelled
+Apply \cref{lem:balanced-compression} to this central blob.  It supplies
+actual labels \(a_1,a_2\in A\) and \(b_1,b_2\in B\) whose induced quartet
+fails to display \(a_1a_2\mid b_1b_2\), while the completion roles are
+retained at zero character.  This is one of the 204 graph-derived labelled
 wrong-split directions in \cref{lem:one-active}.
 
 It remains to check that suppressing the material between the four selected

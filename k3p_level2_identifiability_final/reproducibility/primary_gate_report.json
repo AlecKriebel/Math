@@ -1,11 +1,13 @@
 {
   "active_verifier_hashes": {
     "reproducibility/exact_four_port.py": "f85c1a77ee88ab265b5a6d0adab80c45ff5642c3c1258aa991d7b94a1c3c5816",
-    "reproducibility/exact_primary.py": "907fc1e0d720f765d06291b13b0973e4bfddc5af8e66cd1997e5ece07808a9d4",
-    "reproducibility/strong_cut_transfer_gate.py": "d6aeef7d303f05b5697b607d57385295815827323b50f590df8525fd3fad9b26",
+    "reproducibility/exact_primary.py": "f6e4574224c319135e9ffe05e250e4b8fc9ec9144e8063ba2c794aceb7cb925b",
+    "reproducibility/strong_cut_transfer_gate.py": "54dd87c044ea6221123a8480a413eaa078c8ae2c10e8ce26fe24951bc654b2a6",
     "reproducibility/test_cut_transfer_gate_mutations.py": "f9605860066bfced71a1c3217076babb49961bce89484dbd2eb0c8cfd47c3f97",
-    "reproducibility/verify_primary.py": "64d887cd56d02c79c1111f22edcd09acf8427b017d357e359687d0f0a7de1413",
-    "reproducibility/verify_primary.sh": "204e4f04bbd6347683852cce45a55919f83326c00db8aa12f5c99821557c4170"
+    "reproducibility/verify_primary.py": "17b600ee043701e15816850386676d2ea3957e70bf788060c638a34a98f8d7d4",
+    "reproducibility/verify_primary.sh": "204e4f04bbd6347683852cce45a55919f83326c00db8aa12f5c99821557c4170",
+    "three_port/literal_separator_v2/test_literal_separator_v2_mutations.py": "10b1a9e076352b0295d92b3899943d6675706be8bfdb8d5cbf3a9805383fc1fd",
+    "three_port/literal_separator_v2/verify_literal_separator_v2.py": "839cd9b8434f1ca200aa165db13254d45a56c812aba49637c46dc728a6d455b9"
   },
   "auxiliary_replays": {
     "corrected_four_port_transport": {
@@ -151,6 +153,38 @@
       "transcript": "INDEPENDENT_K3P_TOPOLOGY_ALL_N_PASS /Users/alec/Documents/Math/k3p_level2_identifiability_final/sharpness/K3P_SHARPNESS_TOPOLOGY_ALL_N_CERTIFICATE.json\ncertificate_sha256=aa08837777445541398bed943881405530c9b5bb4f0451794a4b56b289beabc7\n",
       "tree_unchanged": true
     },
+    "literal_tree_sunlet_separator": {
+      "certificate": "three_port/literal_separator_v2/K3P_TREE_SUNLET_LITERAL_SEPARATOR_V2.json",
+      "certificate_payload_sha256": "74a0b0daf2f8e141a7e20a7e4f1a09c5498df97a6cc694989ecbb92b481b4e18",
+      "certificate_sha256": "5746324b4281a1738267ce116b3122e9156d48a6b5df37d5988451604e5f3557",
+      "hidden_edge_permutation_used": false,
+      "literal_map_reexpanded": true,
+      "mutations": {
+        "changed_tree_paths": [],
+        "exit_code": 0,
+        "required_tree_unchanged": "three_port/literal_separator_v2",
+        "script": "three_port/literal_separator_v2/test_literal_separator_v2_mutations.py",
+        "script_sha256": "10b1a9e076352b0295d92b3899943d6675706be8bfdb8d5cbf3a9805383fc1fd",
+        "sentinel": "LITERAL_SEPARATOR_V2_MUTATIONS_PASS",
+        "sentinel_seen": true,
+        "status": "PASS",
+        "transcript": "LITERAL_SEPARATOR_V2_MUTATIONS_PASS\n{\"clean_replays\":1,\"mutation_count\":3,\"mutations\":[{\"diagnostic_observed\":true,\"expected_diagnostic\":\"literal pullback mismatch\",\"name\":\"cyclic_d_e_f_factor_rotation_after_resealing\",\"resealed\":true,\"status\":\"REJECTED\"},{\"diagnostic_observed\":true,\"expected_diagnostic\":\"literal pullback mismatch\",\"name\":\"factor_sign_flip_after_resealing\",\"resealed\":true,\"status\":\"REJECTED\"},{\"diagnostic_observed\":true,\"expected_diagnostic\":\"payload seal mismatch\",\"name\":\"unsealed_cross_factor_change\",\"resealed\":false,\"status\":\"REJECTED\"}],\"rejected_count\":3,\"schema\":\"k3p-tree-sunlet-literal-separator-v2-mutations-v1\",\"status\":\"PASS\",\"survived_count\":0}\n",
+        "tree_unchanged": true
+      },
+      "status": "PASS",
+      "verifier": {
+        "changed_tree_paths": [],
+        "exit_code": 0,
+        "required_tree_unchanged": "three_port/literal_separator_v2",
+        "script": "three_port/literal_separator_v2/verify_literal_separator_v2.py",
+        "script_sha256": "839cd9b8434f1ca200aa165db13254d45a56c812aba49637c46dc728a6d455b9",
+        "sentinel": "LITERAL_SEPARATOR_V2_VERIFY_PASS",
+        "sentinel_seen": true,
+        "status": "PASS",
+        "transcript": "LITERAL_SEPARATOR_V2_VERIFY_PASS\n{\"certificate\":\"/Users/alec/Documents/Math/k3p_level2_identifiability_final/three_port/literal_separator_v2/K3P_TREE_SUNLET_LITERAL_SEPARATOR_V2.json\",\"certificate_payload_sha256\":\"74a0b0daf2f8e141a7e20a7e4f1a09c5498df97a6cc694989ecbb92b481b4e18\",\"circuits\":[{\"expanded_pullback_sha256\":\"89ba9e3e69815a3fff10f0bf1d6f8cee46c9412bb53a16f7ce8b0448affa0ace\",\"expanded_term_count\":8,\"factorization\":\"PASS\",\"id\":\"I1\",\"tree_pullback\":\"identically_zero\"},{\"expanded_pullback_sha256\":\"e06c56882a307fc84283a78ed7a475e70cd81d63fe24ff0eab6f395ca620f617\",\"expanded_term_count\":8,\"factorization\":\"PASS\",\"id\":\"I2\",\"tree_pullback\":\"identically_zero\"},{\"expanded_pullback_sha256\":\"2605ba3d0908598b391b80435ec5393f42da3ffbd5d8ae49c88cd2eb8177e79d\",\"expanded_term_count\":8,\"factorization\":\"PASS\",\"id\":\"I3\",\"tree_pullback\":\"identically_zero\"},{\"expanded_pullback_sha256\":\"a7e21366bf94aefc209f2d4332123e1ee7e6ed557d7262e24b53eb0d21b19fa1\",\"expanded_term_count\":8,\"factorization\":\"PASS\",\"id\":\"I4\",\"tree_pullback\":\"identically_zero\"},{\"expanded_pullback_sha256\":\"697ccff5f5be7bbf002e7cf7e463dfd7a51d5acd6aa5c36e7b7759ddd2960d47\",\"expanded_term_count\":8,\"factorization\":\"PASS\",\"id\":\"I5\",\"tree_pullback\":\"identically_zero\"},{\"expanded_pullback_sha256\":\"6e86bf5d5d1ed8e8782111d2a04aab01cc386fdf1daae9df595be0771b4d44fa\",\"expanded_term_count\":8,\"factorization\":\"PASS\",\"id\":\"I6\",\"tree_pullback\":\"identically_zero\"}],\"literal_map_reexpanded\":true,\"producer_code_imported\":false,\"schema\":\"k3p-tree-sunlet-literal-separator-v2-independent-verification-v1\",\"status\":\"PASS\",\"strictness_argument\":\"PASS\"}\n",
+        "tree_unchanged": true
+      }
+    },
     "strong_class_cut_transfer": {
       "adversarial_summary": {
         "direction_count": 204,
@@ -171,16 +205,16 @@
         "exit_code": 0,
         "required_tree_unchanged": "cut_recovery/strong_crossbridge/global_transfer",
         "script": "reproducibility/strong_cut_transfer_gate.py",
-        "script_sha256": "d6aeef7d303f05b5697b607d57385295815827323b50f590df8525fd3fad9b26",
+        "script_sha256": "54dd87c044ea6221123a8480a413eaa078c8ae2c10e8ce26fe24951bc654b2a6",
         "sentinel": "STRONG_CLASS_CUT_TRANSFER_GATE_PASS",
         "sentinel_seen": true,
         "status": "PASS",
-        "transcript": "STRONG_CLASS_CUT_TRANSFER_GATE_PASS\n{\"optimized_release\": {\"adversarial_mutations\": 32, \"directions\": 204, \"python_optimized\": true, \"status\": \"PASS\", \"tree_colorings\": 19270}, \"ordinary_release\": {\"adversarial_mutations\": 32, \"directions\": 204, \"python_optimized\": false, \"status\": \"PASS\", \"tree_colorings\": 19270}, \"status\": \"PASS\", \"theorem_manifest_sha256\": \"00021da5e23726fa6a34e0c024b0703bb79e2dbcdecb58affe559e01746c7895\"}\n",
+        "transcript": "STRONG_CLASS_CUT_TRANSFER_GATE_PASS\n{\"optimized_release\": {\"adversarial_mutations\": 32, \"directions\": 204, \"python_optimized\": true, \"status\": \"PASS\", \"tree_colorings\": 19270}, \"ordinary_release\": {\"adversarial_mutations\": 32, \"directions\": 204, \"python_optimized\": false, \"status\": \"PASS\", \"tree_colorings\": 19270}, \"status\": \"PASS\", \"theorem_manifest_sha256\": \"dd0ffea14051b9f45764a87d1a96b78d8199883417ce9a4321bfef4d612e8e51\"}\n",
         "tree_unchanged": true
       },
       "gate_report": {
         "path": "reproducibility/strong_class_cut_transfer_gate_report.json",
-        "sha256": "477165841dcf2024b1569c78a85312c2319a79d3a25983752968fc75665498b7"
+        "sha256": "932be77b6a52eef1599a13632cad212262fe2fe79c978cf3c47e589a1947c50f"
       },
       "mutation_replay": {
         "changed_tree_paths": [],
@@ -213,16 +247,16 @@
       "stored_release_reports": {
         "optimized": {
           "path": "cut_recovery/strong_crossbridge/global_transfer/RELEASE_OPTIMIZED_VERIFICATION_REPORT.json",
-          "sha256": "68ecc443fa89874898ef95da8670c67ade4092f3ce2256fbfbf4fc5e822d54d6"
+          "sha256": "d2c3ffe777ae3baee8610ef30fe05428898de618952621341cdf29169249612b"
         },
         "ordinary": {
           "path": "cut_recovery/strong_crossbridge/global_transfer/RELEASE_VERIFICATION_REPORT.json",
-          "sha256": "d147cb672032994c20f259719f3fa95a4c592cf7b4c9cbc6e1934ab0f9f67b9b"
+          "sha256": "cb099b91da27624104a8a586d7530d26b03a4114661717770e3aa0a35c7bc65d"
         }
       },
       "theorem_manifest": {
         "path": "cut_recovery/strong_crossbridge/global_transfer/THEOREM_MANIFEST.json",
-        "sha256": "00021da5e23726fa6a34e0c024b0703bb79e2dbcdecb58affe559e01746c7895"
+        "sha256": "dd0ffea14051b9f45764a87d1a96b78d8199883417ce9a4321bfef4d612e8e51"
       },
       "universal_pointwise_K3P_cut_recovery_used": false
     }
@@ -303,7 +337,10 @@
     {
       "claim": "Tree-ordinary-sunlet separation",
       "evidence": [
-        "three_port/primary_exact_evidence.json"
+        "three_port/primary_exact_evidence.json",
+        "three_port/literal_separator_v2/K3P_TREE_SUNLET_LITERAL_SEPARATOR_V2.json",
+        "three_port/literal_separator_v2/verify_literal_separator_v2.py",
+        "three_port/literal_separator_v2/test_literal_separator_v2_mutations.py"
       ],
       "exact_gap": null,
       "item": 7,
@@ -313,7 +350,10 @@
     {
       "claim": "Rank-14 ordinary-triangle calculation",
       "evidence": [
-        "three_port/primary_exact_evidence.json"
+        "three_port/primary_exact_evidence.json",
+        "three_port/literal_separator_v2/K3P_TREE_SUNLET_LITERAL_SEPARATOR_V2.json",
+        "three_port/literal_separator_v2/verify_literal_separator_v2.py",
+        "three_port/literal_separator_v2/test_literal_separator_v2_mutations.py"
       ],
       "exact_gap": null,
       "item": 8,
@@ -323,7 +363,10 @@
     {
       "claim": "Exact H14 quartic",
       "evidence": [
-        "three_port/primary_exact_evidence.json"
+        "three_port/primary_exact_evidence.json",
+        "three_port/literal_separator_v2/K3P_TREE_SUNLET_LITERAL_SEPARATOR_V2.json",
+        "three_port/literal_separator_v2/verify_literal_separator_v2.py",
+        "three_port/literal_separator_v2/test_literal_separator_v2_mutations.py"
       ],
       "exact_gap": null,
       "item": 9,
@@ -333,7 +376,10 @@
     {
       "claim": "Smoothness of the common triangle point",
       "evidence": [
-        "three_port/primary_exact_evidence.json"
+        "three_port/primary_exact_evidence.json",
+        "three_port/literal_separator_v2/K3P_TREE_SUNLET_LITERAL_SEPARATOR_V2.json",
+        "three_port/literal_separator_v2/verify_literal_separator_v2.py",
+        "three_port/literal_separator_v2/test_literal_separator_v2_mutations.py"
       ],
       "exact_gap": null,
       "item": 10,
@@ -343,7 +389,10 @@
     {
       "claim": "Rank 14 of all three triangle orientations",
       "evidence": [
-        "three_port/primary_exact_evidence.json"
+        "three_port/primary_exact_evidence.json",
+        "three_port/literal_separator_v2/K3P_TREE_SUNLET_LITERAL_SEPARATOR_V2.json",
+        "three_port/literal_separator_v2/verify_literal_separator_v2.py",
+        "three_port/literal_separator_v2/test_literal_separator_v2_mutations.py"
       ],
       "exact_gap": null,
       "item": 11,
@@ -535,16 +584,17 @@
     "marginals/primary_exact_evidence.json": "48aa7e475be8b2d81e4c283d6446dbdef5533af2c190e92cb2dc0c7f743b0516",
     "model_domain/primary_exact_evidence.json": "ac21e4f795537f251377411841d670c1bad4ce06a69ed24f596252c11cb7afb6",
     "reproducibility/CUT_TRANSFER_GATE_MUTATION_REPORT.json": "ba1f3288e4c822e8074f9619de7688a513f4f5ce855a4110e15f512f87ea6018",
-    "reproducibility/strong_class_cut_transfer_gate_report.json": "477165841dcf2024b1569c78a85312c2319a79d3a25983752968fc75665498b7",
-    "three_port/primary_exact_evidence.json": "79cd462c3afb88f7cf1f898febbb2ad1a7a701c7bb05a58a833ed96736fdc5de",
+    "reproducibility/strong_class_cut_transfer_gate_report.json": "932be77b6a52eef1599a13632cad212262fe2fe79c978cf3c47e589a1947c50f",
+    "three_port/literal_separator_v2/K3P_TREE_SUNLET_LITERAL_SEPARATOR_V2.json": "5746324b4281a1738267ce116b3122e9156d48a6b5df37d5988451604e5f3557",
+    "three_port/primary_exact_evidence.json": "152e7fa25d3c81fc7c27e46e93dbb6ee11e1c96be570d5fe7a6b61eae2cc513d",
     "topology/primary_cherry_evidence.json": "66858f72cfc7d14e097c1e9dacfdbedaa57307d3e9abd63f26239e9e637a450d",
     "topology/primary_double_theta_evidence.json": "1b08b2ae0c8f8746b32e1dc6857e378aac5cd5a7f4f6489c6cc867c7770512a0",
     "topology/primary_rooting_census_evidence.json": "413c6777e8fcea2d3fec4fa94e0d64022419db23f13e797a00db209e25ba3d55"
   },
   "input_binding": {
-    "file_count": 33,
+    "file_count": 31,
     "lock_file": "reproducibility/primary_input_lock.json",
-    "lock_sha256": "81934b196883d933ce9a26066ec9f5cb3ed149902ab16c3115ce6b38ff260ef0",
+    "lock_sha256": "a68a682b9a09e8c61ed54649af2c3817a1e2069fe4d8cc986ff6345e9fce8469",
     "mismatches": [],
     "observed_sha256": {
       "input_frozen/k3p_cloud_artifacts/K3P_14_ORBIT_FINAL_MANIFEST.json": "a6d5f336ea803fa291d0f798e35d9099b55d9b1c0dd08a86caa6ca2276fbecc8",
@@ -567,7 +617,6 @@
       "input_frozen/k3p_cloud_artifacts/k3p_source_ranks_4.json": "e8f8f50be487be1950f2456438e5fa07ea9d793044d5a831190300906031a625",
       "input_frozen/k3p_cloud_artifacts/k3p_three_port_ranks.json": "92193e209460e4061ed2f9c34bfb5e334456dc42c70536d1bdc710346a02a278",
       "input_frozen/k3p_cloud_artifacts/k3p_three_sunlet_quartic.json": "23af2a4ce0d63fe61931fef8209b5523fd9d954b3f4b6e8f9a33a856695cc60c",
-      "input_frozen/k3p_cloud_artifacts/k3p_tree_sunlet_separator.json": "9d430ca51cb4dccb096332f5a7957df3ef8dc28a5676afd91c32492b2afe9cd9",
       "input_frozen/k3p_cloud_artifacts/sharpness_exact_maps.py": "7d35de7373d026ed634aa2ca50590afe321074932f87130e7eb6e500823df027",
       "input_frozen/k3p_cloud_artifacts/verify_compiler_specialization.py": "d7ca33c62c96054bb85fd68a791af94abeb5ccf1a6fd895532209dd282beab13",
       "input_frozen/k3p_cloud_artifacts/verify_fourteen_orbits.py": "b99ce14de94e65e895cb5e6e52abe21207b0bcf81b806069ca1b3b9341fff509",
@@ -576,7 +625,6 @@
       "input_frozen/k3p_cloud_artifacts/verify_rooting_censuses.py": "a54b34994c9d2c5ad13d44cc4d5e15c6dd271df089d285299ea58deebadacb1c",
       "input_frozen/k3p_cloud_artifacts/verify_sharpness_extension.py": "84c79f32047060673d08ceeaa01eecd0cee1eac593d67d81d85d08d4e6f25fe2",
       "input_frozen/k3p_cloud_artifacts/verify_three_port_geometry.py": "bd91877f9f458492248603c57d56972d32cee68cc65f3f3122d16ab7b3a37352",
-      "input_frozen/k3p_cloud_artifacts/verify_tree_sunlet_separator.py": "2376852e1db6c322610808b79ad318257537abd31b1fcb6c01aaacd7229c8ab9",
       "input_frozen/referenced_chat_manuscripts/k2p_level2_source.tex": "1107e5395a0e2ad4da0333cda066ae587d9a9854e61aeba3d2aadcf62e23e45b",
       "input_frozen/referenced_chat_manuscripts/tree_theta_collision_source.tex": "144d30e8d4139ddec04b938dc0cbd8ade3f1ae2bb55671692af450cb2deaa503",
       "input_frozen/specification/AUTONOMOUS_FINAL_PROGRAM.txt": "252286aa0de1310e52b701f3529194490f9ac083023c45ffed634d1b217bea41"

@@ -164,7 +164,7 @@
       ]
     }
   ],
-  "schema": "k3p-primary-three-port-exact-v1",
+  "schema": "k3p-primary-three-port-exact-v2",
   "sunlet_orientations": {
     "1": {
       "minor_columns": [
@@ -303,8 +303,11 @@
   "tree_rank": 9,
   "tree_sunlet_circuits": [
     {
-      "exact_factor": "L*aC*aG*bG*bT*cC*cT*(L - 1)*(dC*dT - dG)*(dG*eT*fC - eC*fT)",
+      "composition_margin": "fC*fT-fG",
+      "exact_factor": "L*(1-L)*aC*aG*bG*bT*cC*cT*(fC*fT-fG)*(dC*eT-dT*eC*fG)",
       "expanded_terms": 8,
+      "factor_sign": 1,
+      "id": "I1",
       "left": [
         "000",
         "CGT",
@@ -317,8 +320,11 @@
       ]
     },
     {
-      "exact_factor": "L*aC*aT*bG*bT*cC*cG*(L - 1)*(dC*dG - dT)*(dT*eG*fC - eC*fG)",
+      "composition_margin": "fC*fG-fT",
+      "exact_factor": "L*(1-L)*aC*aT*bG*bT*cC*cG*(fC*fG-fT)*(dC*eG-dG*eC*fT)",
       "expanded_terms": 8,
+      "factor_sign": 1,
+      "id": "I2",
       "left": [
         "000",
         "CTG",
@@ -331,8 +337,11 @@
       ]
     },
     {
-      "exact_factor": "L*aG*aT*bC*bG*cC*cT*(L - 1)*(dC*dT - dG)*(dG*eC*fT - eT*fC)",
+      "composition_margin": "fC*fT-fG",
+      "exact_factor": "-L*(1-L)*aG*aT*bC*bG*cC*cT*(fC*fT-fG)*(dC*eT*fG-dT*eC)",
       "expanded_terms": 8,
+      "factor_sign": -1,
+      "id": "I3",
       "left": [
         "000",
         "GCT",
@@ -345,8 +354,11 @@
       ]
     },
     {
-      "exact_factor": "L*aG*aT*bC*bT*cC*cG*(L - 1)*(dC*dG - dT)*(dT*eC*fG - eG*fC)",
+      "composition_margin": "fC*fG-fT",
+      "exact_factor": "-L*(1-L)*aG*aT*bC*bT*cC*cG*(fC*fG-fT)*(dC*eG*fT-dG*eC)",
       "expanded_terms": 8,
+      "factor_sign": -1,
+      "id": "I4",
       "left": [
         "000",
         "GTC",
@@ -359,8 +371,11 @@
       ]
     },
     {
-      "exact_factor": "-L*aC*aG*bC*bT*cG*cT*(L - 1)*(dC - dG*dT)*(dC*eT*fG - eG*fT)",
+      "composition_margin": "fC-fG*fT",
+      "exact_factor": "-L*(1-L)*aC*aG*bC*bT*cG*cT*(fC-fG*fT)*(dG*eT-dT*eG*fC)",
       "expanded_terms": 8,
+      "factor_sign": -1,
+      "id": "I5",
       "left": [
         "000",
         "CTG",
@@ -373,8 +388,11 @@
       ]
     },
     {
-      "exact_factor": "-L*aC*aT*bC*bG*cG*cT*(L - 1)*(dC - dG*dT)*(dC*eG*fT - eT*fG)",
+      "composition_margin": "fC-fG*fT",
+      "exact_factor": "L*(1-L)*aC*aT*bC*bG*cG*cT*(fC-fG*fT)*(dG*eT*fC-dT*eG)",
       "expanded_terms": 8,
+      "factor_sign": 1,
+      "id": "I6",
       "left": [
         "000",
         "CGT",
@@ -387,18 +405,46 @@
       ]
     }
   ],
+  "tree_sunlet_separator": {
+    "edge_order": [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e",
+      "f"
+    ],
+    "hidden_edge_permutation_used": false,
+    "map_formula": "q_xyz=a_x*b_y*c_z*(L*f_y*d_z+(1-L)*f_x*e_z)",
+    "payload_sha256": "74a0b0daf2f8e141a7e20a7e4f1a09c5498df97a6cc694989ecbb92b481b4e18",
+    "schema": "k3p-tree-sunlet-literal-separator-v2"
+  },
   "tree_sunlet_strictness_argument": {
-    "all_composition_margins_zero_force": "p=p^2 for p=dC*dG*dT",
+    "all_composition_margins_zero_force": "p=p^2 for p=fC*fG*fT",
     "domain_excludes": [
-      "dC=1",
-      "dG=1",
-      "dT=1",
+      "fC=1",
+      "fG=1",
+      "fT=1",
       "p=1"
     ],
+    "paired_circuits": [
+      [
+        "I1",
+        "I3"
+      ],
+      [
+        "I2",
+        "I4"
+      ],
+      [
+        "I5",
+        "I6"
+      ]
+    ],
     "paired_cross_equations_force": [
-      "dC^2=1",
-      "dG^2=1",
-      "dT^2=1"
+      "fG^2=1",
+      "fT^2=1",
+      "fC^2=1"
     ]
   },
   "tree_sunlet_sum_of_squares_strict": true

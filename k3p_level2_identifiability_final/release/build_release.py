@@ -632,7 +632,8 @@ def build_full(project: Path, output: Path, *, proof_only: bool,
     members = {relative: read_head_blob(project, relative) for relative in selected}
     article_sources = [path for path in selected if path == "manuscript/main.tex" or
                        path == "manuscript/references.bib" or
-                       path.startswith("manuscript/sections/")]
+                       path.startswith("manuscript/sections/") or
+                       path.startswith("manuscript/figures/")]
     supplement_sources = [path for path in selected if path == "supplement/reader_supplement.tex"]
     article_source = source_zip(
         project, kind="article", commit=commit, epoch=epoch,

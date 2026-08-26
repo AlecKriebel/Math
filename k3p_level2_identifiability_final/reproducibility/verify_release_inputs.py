@@ -132,16 +132,16 @@ def verify_mutation_summaries(project: Path) -> dict:
         ("sharpness/adversarial/SHARPNESS_ADVERSARIAL_AUDIT.json", None, 18, None, None),
         ("reproducibility/CUT_TRANSFER_GATE_MUTATION_REPORT.json", "mutation_count", 12,
          "rejected_count", "survived_count"),
-        ("global_infrastructure/MUTATION_CERTIFICATE.json", None, 16,
+        ("global_infrastructure/MUTATION_CERTIFICATE.json", None, 18,
          "rejected", "survived"),
         ("probes/K3P_PROBE_MUTATION_CERTIFICATE.json", "mutations_attempted", 17,
          "mutations_rejected", None),
         ("restoration/K3P_RESTORATION_MUTATION_CERTIFICATE.json", "mutation_count", 20,
          "rejected", "accepted"),
         ("reproducibility/K3P_SAME_CLASSIFICATION_MUTATION_REPORT.json",
-         "mutation_count", 16, "rejected", "survived"),
+         "mutation_count", 18, "rejected", "survived"),
         ("reproducibility/RELEASE_ENGINEERING_MUTATION_REPORT.json",
-         "mutation_count", 31, "rejected", "survived"),
+         "mutation_count", 32, "rejected", "survived"),
     ]
     result: dict[str, int] = {}
     for relative, count_key, expected, rejected_key, survived_key in specs:

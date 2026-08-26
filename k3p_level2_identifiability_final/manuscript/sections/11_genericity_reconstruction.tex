@@ -7,9 +7,12 @@ Let
 \]
 
 be the complex Zariski closure of the polynomial K3P map.  It is irreducible
-as the closure of the image of an irreducible affine space.  Its dimension is
-the generic complex Jacobian rank and also \(d_N\), because a nonzero real
-Jacobian minor cannot vanish throughout the Euclidean-open physical domain.
+as the closure of the image of an irreducible affine space.  Let \(r\) be the
+generic complex Jacobian rank.  Every Jacobian minor has real-polynomial
+coefficients and some \(r\)-minor is nonzero.  Such a polynomial cannot vanish
+throughout the Euclidean-open physical domain, so \(d_N\ge r\); the reverse
+inequality is immediate.  The generic-rank theorem therefore gives
+\(\dim\V_N=r=d_N\).
 
 \begin{proof}[Proof of \cref{thm:generic}]
 For fixed leaf count \(n\), only finitely many labelled networks occur in the
@@ -24,24 +27,78 @@ If \(t\) is the number of nonroot tree vertices, degree counting gives
 
 vertices.
 
-For a competitor \(N'\not\trianglerel N\), the physical intersection
-\(\M_{3,+}(N)\cap\M_{3,+}(N')\) is semialgebraic by Tarski--Seidenberg
-\cite{BochnakCosteRoy1998}.  If it had dimension \(d_N\), a finite Nash
-stratification compatible with the source and target rank loci would contain
-a \(d_N\)-dimensional regular source-image stratum and an incidence stratum
-projecting with rank \(d_N\).  The analytic constant-rank theorem would give
-a physical target section over a source-relative open regular germ, hence
-\(N\preceqplus N'\), contradicting \cref{thm:main}.  Every inequivalent
-intersection therefore has dimension at most \(d_N-1\).
+For a competitor \(N'\not\trianglerel N\), put
+\[
+ C_{N,N'}=\M_{3,+}(N)\cap\M_{3,+}(N')
+\]
+and form the physical target incidence correspondence
+\[
+ Z_{N'}=\{(q,\theta'):
+ q=\Phi_{N'}(\theta'),\ q\in\M_{3,+}(N),\
+ \theta'\in\Theta_{3,+}(N')\}.
+\]
+These sets and their projections are semialgebraic by Tarski--Seidenberg
+\cite[Theorem~2.2.1]{BochnakCosteRoy1998}.  Define the total source rank-drop
+locus
+\[
+ R_N=\{\theta\in\Theta_{3,+}(N):
+ \rank D\Phi_N(\theta)<d_N\}.
+\]
+Choose a finite Nash stratification
+\(R_N=\bigsqcup_\alpha S_\alpha\) on which every restricted map
+\(\Phi_N|_{S_\alpha}\) has constant rank.  Since
+\(T_\theta S_\alpha\subseteq T_\theta\Theta_{3,+}(N)\),
+\[
+ \rank D(\Phi_N|_{S_\alpha})(\theta)
+ \le \rank D\Phi_N(\theta)\le d_N-1.
+\]
+The constant-rank theorem and the fact that semialgebraic maps do not
+increase dimension give
+\(\dim\Phi_N(R_N)\le d_N-1\)
+\cite[Theorem~2.8.8]{BochnakCosteRoy1998}.  Thus a
+\(d_N\)-dimensional physical intersection cannot be confined to the image of
+rank-deficient source parameters.
 
-Take the finite union of the complex Zariski closures of these intersections,
-the singular locus of \(\V_N\), the closure of the source rank-drop image,
-and the certified reconstruction-test zero loci that are nonidentically zero
-on the intended source stratum.  Semialgebraic dimension agrees with the
-dimension of its real Zariski closure, and extension from \(\R\) to \(\C\)
-preserves dimension.  Every member is proper; a finite union of proper closed
-sets cannot fill irreducible \(\V_N\).  Call the union \(E_N\).  Outside it,
-every realizing topology is triangle-equivalent to \(N\).
+Stratify the regular source image, the target parameter space, and
+\(Z_{N'}\) compatibly with all relevant rank loci, refining so that every
+restricted projection has constant rank.  If \(C_{N,N'}\) had dimension
+\(d_N\), then \cref{lem:finite-cover} would place a nonempty relatively open
+germ of a regular \(d_N\)-dimensional source-image stratum in that
+intersection.  Some incidence stratum would project onto a smaller such germ
+with rank \(d_N\).  The analytic constant-rank theorem supplies a physical
+real-analytic right inverse
+\[
+ s:q\longmapsto\theta'(q),\qquad
+ \Phi_{N'}(s(q))=q,
+\]
+after shrinking the output germ.  Choose a regular source point above it and
+shrink a source-parameter neighborhood \(U\) so that \(\Phi_N(U)\) lies in
+the section domain.  Then
+\[
+ \sigma=s\circ\Phi_N:U\longrightarrow\Theta_{3,+}(N')
+\]
+is physical and real analytic and satisfies
+\(\Phi_N=\Phi_{N'}\circ\sigma\) on \(U\).  This is exactly
+\(N\preceqplus N'\), contradicting \cref{thm:main}.  Hence every competing
+physical intersection has semialgebraic dimension at most \(d_N-1\).
+
+By \cite[Proposition~2.8.2]{BochnakCosteRoy1998}, a semialgebraic set and its
+real Zariski closure have the same dimension; finite unions take the maximum
+of the member dimensions
+\cite[Proposition~2.8.5(i)]{BochnakCosteRoy1998}.  For completeness, if
+\(A=\R[x]/I_\R(C)\) is the coordinate ring of such a real closure, then
+complexification gives the finite faithfully flat integral extension
+\(A\to A\otimes_\R\C\), which preserves Krull dimension.  Therefore the
+complex Zariski closures of both \(C_{N,N'}\) and \(\Phi_N(R_N)\) inside
+\(\V_N\) have dimension at most \(d_N-1\) and are proper.
+
+Take the finite union of those closures over all inequivalent competitors,
+the singular locus of \(\V_N\), and every reconstruction-test hypersurface
+\(\V_N\cap Z(P)\) for which \(P\circ\Phi_N\) is certified nonidentically
+zero on the intended source stratum.  Each added set is proper.  A finite
+union of proper closed sets cannot fill the irreducible variety \(\V_N\);
+call the resulting proper set \(E_N\).  Outside it, every realizing topology
+is triangle-equivalent to \(N\).
 \end{proof}
 
 The generic cut step in this proof uses \cref{prop:generic-noncut}, not a

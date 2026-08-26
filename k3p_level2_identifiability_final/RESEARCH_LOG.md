@@ -534,3 +534,53 @@ archive reconstruction.
 Best-guess completion toward the mathematical classification goal: **100%**.
 Best-guess completion toward the paper/certification/proof-archive goal: **98%**.
 Best-guess completion toward the external journal/DOI release goal: **70%**.
+
+## 2026-08-26T01:54:28Z — targeted mathematical revision fixed point
+
+- Treated the fresh adversarial report as a falsification audit rather than an
+  editorial checklist.  The K3P-SAME theorem survived independent mathematical
+  review, but two active proof interfaces required correction before release.
+- Replaced simultaneous bridge gluing by
+  `epsilon=min(1/4,L^2/(8U))`.  The proof package now certifies the effective
+  bridge margins, the actual-edge bound `x_h<=1/8`, the principal margin
+  `>=3/4`, and every continuous-time margin `>=7 epsilon/(8U)`.  The independent
+  verifier exercises both minimum branches, including `L=U=100`, and all 18
+  hostile global-infrastructure mutations are rejected.
+- Kept the article's literal sunlet map and regenerated its six circuit
+  factorizations with composition margins on edge `f`.  A producer-independent
+  expansion checks all six pullbacks; 3/3 fail-closed mutations reject sign,
+  factor, and resealed cyclic `d,e,f` convention changes.  The historical
+  differently named separator is now provenance-only, not active evidence.
+- Promoted balanced noncut compression to a named proved lemma and expanded the
+  genericity proof through the total rank-drop image, Nash stratification,
+  incidence correspondence, physical analytic target section, source section,
+  and real-to-complex dimension passage.  Two independent adversarial audits
+  report PASS with no remaining mathematical gap.
+- Added four topology figures, explicit cherry Fourier observables, separate
+  fourteen-orbit and sink-swap tables, literature/novelty corrections, immutable
+  companion references, and the requested scope and grammar repairs.
+- Rebuilt and visually inspected every page of the 33-page article and 12-page
+  reader supplement.  The fixed-epoch PDFs are clean, fully embedded, and have
+  SHA-256 values `2c7dc0081edf61ec29b38cd48bb9634aa73ceac25efbef38ae62616cd1d0c14b`
+  and `9193b7ed726f41434f313d02d02cb106ab486bb8b2182d922b01c3a78624de20`.
+- The current integrated theorem gate passes 38 bindings and ten fresh replays
+  with status `CERTIFIED_K3P_SAME`; all 18 integrated mutations are rejected.
+  Active manifests and root claim-lock checksums were rebound to the repaired
+  evidence.  The release mutation suite now binds the exact ordered 45-command
+  regeneration plan and rejects 32/32 hostile cases, including a certified-
+  manifest downgrade mutation added after the inventory refresh tool was found
+  and repaired before the checkpoint.
+- The documented probe replay now writes timing-bearing output only to an
+  ignored scratch path, runs mutations without overwriting their report, and
+  reseals manifests after the producer.  This closes the final fixed-point
+  interface footgun found by the evidence audit.
+
+Strongest verified result: the targeted mathematical revision is complete and
+the active exact theorem gate again certifies K3P-SAME.  Exact remaining machine
+gate: commit this candidate, then run clean quick/full and one unified
+45-command regeneration at that commit, blocking on the hour-scale probe
+producer, followed by commit-bound source and archive reconstruction.
+
+Best-guess completion toward the mathematical classification goal: **100%**.
+Best-guess completion toward the paper/certification/proof-archive goal: **98%**.
+Best-guess completion toward the external journal/DOI release goal: **70%**.

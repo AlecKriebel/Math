@@ -307,13 +307,19 @@ def main():
     k3p = proof["k3p_tree_sunlet_registry"]
     require(k3p["uses_k2p_sector_equality"] is False, "tree-sunlet K2P equality forbidden")
     require(k3p["strict_positivity_domain"] == "D_{3,+}", "tree-sunlet domain")
-    separator_path = PROJECT / "input_frozen/k3p_cloud_artifacts/k3p_tree_sunlet_separator.json"
+    separator_path = PROJECT / "three_port/literal_separator_v2/K3P_TREE_SUNLET_LITERAL_SEPARATOR_V2.json"
     require(sha_file(separator_path) == k3p["separator_certificate_sha256"], "separator theorem binding")
     separator = json.loads(separator_path.read_text())
-    require(separator["schema"] == "k3p-tree-sunlet-six-circuit-separator-v1", "separator schema")
-    require(separator["observable_separator"] == "sum_{j=1}^6 I_j^2", "separator observable")
-    require(separator["tree_value"] == "identically_zero", "separator tree value")
-    require(separator["sunlet_value"] == "strictly_positive_on_0<c,g,t<1_and_0<lambda<1", "separator sunlet value")
+    require(separator["schema"] == "k3p-tree-sunlet-literal-separator-v2", "separator schema")
+    require(separator["map_formula"] ==
+            "q_xyz=a_x*b_y*c_z*(L*f_y*d_z+(1-L)*f_x*e_z)",
+            "separator literal map")
+    require(separator["edge_order"] == ["a", "b", "c", "d", "e", "f"],
+            "separator literal edge order")
+    require(separator["observable_separator"] ==
+            "S=I1^2+I2^2+I3^2+I4^2+I5^2+I6^2", "separator observable")
+    require(all(row["tree_pullback"] == "identically_zero"
+                for row in separator["circuits"]), "separator tree values")
     require(len(separator["circuits"]) == 6, "separator circuit count")
     expected_circuits = [
         (["000", "CGT", "GTC"], ["0TT", "C0C", "GG0"]),

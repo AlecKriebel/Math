@@ -797,13 +797,22 @@ class K3PTreeSunletOracle:
     def __init__(self, atlas):
         self.atlas = atlas
         self.certificate_path = (
-            FROZEN / "k3p_cloud_artifacts/k3p_tree_sunlet_separator.json"
+            PROJECT / "three_port/literal_separator_v2/K3P_TREE_SUNLET_LITERAL_SEPARATOR_V2.json"
         )
         self.theorem = json.loads(self.certificate_path.read_text())
         require(
             self.theorem["schema"]
-            == "k3p-tree-sunlet-six-circuit-separator-v1",
+            == "k3p-tree-sunlet-literal-separator-v2",
             "K3P tree-sunlet theorem schema",
+        )
+        require(
+            self.theorem["map_formula"]
+            == "q_xyz=a_x*b_y*c_z*(L*f_y*d_z+(1-L)*f_x*e_z)",
+            "K3P tree-sunlet literal map",
+        )
+        require(
+            self.theorem["edge_order"] == ["a", "b", "c", "d", "e", "f"],
+            "K3P tree-sunlet literal edge order",
         )
         require(len(self.theorem["circuits"]) == 6, "K3P six-circuit count")
         self.pair_cache = {}

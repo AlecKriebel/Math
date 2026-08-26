@@ -24,7 +24,7 @@ import sys
 Q = Fraction
 NAMES = "0CGT"
 SECTORS = ["C", "G", "T"]
-CUT_TRANSFER_THEOREM_SHA256 = "00021da5e23726fa6a34e0c024b0703bb79e2dbcdecb58affe559e01746c7895"
+CUT_TRANSFER_THEOREM_SHA256 = "dd0ffea14051b9f45764a87d1a96b78d8199883417ce9a4321bfef4d612e8e51"
 CUT_TRANSFER_CLAIM = (
     "For binary standard semi-directed strongly tree-child level-2 networks "
     "under source-relative regular full-dimensional containment on strict D3,+, "
@@ -743,27 +743,100 @@ def verify_global(project: Path, certificate: dict, bridge: dict, marginal: dict
     require(gluing["principal_domain_inequalities"] == ["c>0", "g>0", "t>0", "1-c>0", "1-g>0", "1-t>0", "1+c-g-t>0", "1-c+g-t>0", "1-c-g+t>0"], "global missing D3+ inequality")
     require(gluing["continuous_time_inequalities"] == ["c-g*t>0", "g-c*t>0", "t-c*g>0"], "global missing CT inequality")
     require(gluing["incidence_product_compact_bounds"] == "0<L<=A_h<=U on the finite common compactly-contained local germs", "gluing compact bounds")
-    require(gluing["common_effective_isotropic_spectrum"] == ["L^2/(4*U)"] * 3, "effective CT spectrum not isotropic")
-    require(gluing["actual_coordinate_interval"] == ["L^2/(4*U^2)", "L/(4*U)"], "gluing coordinate formula")
-    require(gluing["principal_composition_margin_lower_bound"] == "1-L/(2*U)>=1/2", "gluing D3+ symbolic lower bound")
-    require(gluing["continuous_time_margin_lower_bound"] == "3*L^2/(16*U^2)>0", "gluing CT symbolic lower bound")
-    for L, U in ((Q(1, 2), Q(2)), (Q(3, 5), Q(7, 3)), (Q(7), Q(7)), (Q(11), Q(13))):
-        eps = L * L / (4 * U)
+    require(gluing["epsilon_formula"] == "epsilon=min(1/4,L^2/(8*U))",
+            "gluing capped epsilon formula")
+    require(gluing["base_common_effective_isotropic_spectrum"] == ["epsilon"] * 3,
+            "effective bridge spectrum not isotropic")
+    require(gluing["effective_bridge_formula"] == "z_h=A_h*x_h",
+            "effective versus actual bridge formula")
+    require(gluing["base_actual_bridge_formula"] ==
+            "x_h=epsilon/A_h for A_h=a[u,e,h]*a[v,e,h]",
+            "actual bridge base formula")
+    require(gluing["base_actual_coordinate_interval"] == ["epsilon/U", "epsilon/L"],
+            "actual bridge coordinate interval")
+    require(gluing["effective_principal_margin_lower_bound"] == "1-epsilon>=3/4",
+            "effective bridge D3+ symbolic lower bound")
+    require(gluing["effective_continuous_time_margin_lower_bound"] ==
+            "epsilon-epsilon^2>=3*epsilon/4>0",
+            "effective bridge CT symbolic lower bound")
+    require(gluing["actual_coordinate_upper_bound"] == "epsilon/L<=1/8",
+            "actual bridge coordinate upper bound")
+    require(gluing["actual_principal_composition_margin_lower_bound"] ==
+            "1-2*epsilon/L>=3/4",
+            "actual bridge D3+ symbolic lower bound")
+    require(gluing["actual_continuous_time_margin_lower_bound"] ==
+            "epsilon/U-epsilon^2/L^2>=7*epsilon/(8*U)>0",
+            "actual bridge CT symbolic lower bound")
+
+    # These are uniform implications, not conclusions inferred from the
+    # finite replay table.  From epsilon<=L^2/(8U) and L<=U,
+    # epsilon/L<=L/(8U)<=1/8.  Moreover
+    #   (epsilon/U-epsilon^2/L^2)-7epsilon/(8U)
+    # = epsilon(L^2-8Uepsilon)/(8UL^2) >= 0.
+    # The cap epsilon<=1/4 separately gives both effective isotropic margins.
+    # The exact cases below exercise the quadratic branch, cap branch, their
+    # equality boundary, and the formerly fatal large-scale choice L=U=100.
+    expected_replays = []
+    branch_cases = (
+        (Q(1, 2), Q(2)),
+        (Q(2), Q(2)),
+        (Q(7), Q(7)),
+        (Q(100), Q(100)),
+        (Q(1, 100), Q(100)),
+    )
+    for L, U in branch_cases:
+        quadratic = L * L / (8 * U)
+        eps = min(Q(1, 4), quadratic)
         lo, hi = eps / U, eps / L
-        require(lo == L * L / (4 * U * U) and hi == L / (4 * U), "gluing coordinate algebra")
-        principal = 1 - 2 * hi
-        ct_lower = lo - hi * hi
-        require(principal >= Q(1, 2) and ct_lower == 3 * L * L / (16 * U * U) > 0, "gluing strict symbolic inequalities")
-    replay = gluing["exact_rational_replay_instance"]
-    L, U = frac(replay["L"]), frac(replay["U"])
-    eps = L * L / (4 * U)
-    lo, hi = eps / U, eps / L
-    require(replay == {
-        "L": str(L), "U": str(U), "epsilon": str(eps),
-        "actual_coordinate_interval": [str(lo), str(hi)],
-        "principal_margin_lower_bound": str(1 - 2 * hi),
-        "continuous_time_margin_lower_bound": str(lo - hi * hi),
-    }, "gluing rational replay")
+        effective_principal = 1 - eps
+        effective_ct = eps - eps * eps
+        actual_principal = 1 - 2 * hi
+        actual_ct = lo - hi * hi
+        certified_actual_ct = 7 * eps / (8 * U)
+        require(0 < eps <= Q(1, 4), "effective bridge coordinate range")
+        require(effective_principal >= Q(3, 4), "effective bridge D3+ replay")
+        require(effective_ct >= 3 * eps / 4 > 0, "effective bridge CT replay")
+        require(0 < lo <= hi <= Q(1, 8), "actual bridge coordinate replay")
+        require(actual_principal >= Q(3, 4), "actual bridge D3+ replay")
+        require(actual_ct >= certified_actual_ct > 0, "actual bridge CT replay")
+        if quadratic < Q(1, 4):
+            branch = "quadratic_bound"
+        elif quadratic > Q(1, 4):
+            branch = "one_quarter_cap"
+        else:
+            branch = "equal_branches"
+        expected_replays.append({
+            "L": str(L),
+            "U": str(U),
+            "active_epsilon_branch": branch,
+            "epsilon": str(eps),
+            "effective_principal_margin": str(effective_principal),
+            "effective_continuous_time_margin": str(effective_ct),
+            "actual_coordinate_interval": [str(lo), str(hi)],
+            "actual_principal_margin_lower_bound": str(actual_principal),
+            "actual_continuous_time_margin_lower_bound": str(actual_ct),
+            "certified_actual_continuous_time_floor": str(certified_actual_ct),
+        })
+    require(gluing["exact_rational_replay_instance"] == expected_replays[0],
+            "gluing base rational replay")
+    require(gluing["exact_rational_branch_replays"] == expected_replays,
+            "gluing capped branch replays")
+
+    extension = gluing["open_neighborhood_full_rank_extension"]
+    require(extension == {
+        "effective_variables": "each z_h varies independently in an open neighborhood of epsilon",
+        "actual_bridge_section": "x_h=z_h/A_h",
+        "section_is_positive_real_analytic": True,
+        "strict_physicality_persists_after_finite_shrinking": True,
+        "independent_effective_coordinates_per_bridge": 3,
+        "projection_to_pre_gluing_product_coordinates": "identity",
+        "full_rank_relative_global_germ_preserved": True,
+        "rank_reason": (
+            "the physical product extraction is a local inverse and the analytic "
+            "bridge section is a graph over the local-factor and independent "
+            "effective-z coordinates"
+        ),
+    }, "gluing open-neighborhood full-rank extension")
     require(gluing["same_epsilon_all_networks_and_bridges"] is True and gluing["finite_simultaneous_shrinking"] is True, "simultaneous gluing")
     require(gluing["incidence_cancellation"] is True and gluing["no_holonomy"] is True, "gluing gauge")
 
@@ -776,6 +849,29 @@ def verify_global(project: Path, certificate: dict, bridge: dict, marginal: dict
         r = n - 1
         t = n + r - 2
         require(1 + t + r + n == 4 * n - 3, "vertex count arithmetic")
+    require(genericity["total_source_rank_drop_locus"] ==
+            "R_N={theta in Theta_3,+(N):rank D Phi_N(theta)<d_N}",
+            "genericity total rank-drop locus")
+    require(genericity["rank_drop_stratification"] ==
+            "finite Nash strata S_alpha on which Phi_N|S_alpha has constant rank at most d_N-1",
+            "genericity rank-drop stratification")
+    require(genericity["rank_drop_image_dimension"] ==
+            "at most d_N-1 by finite constant-rank semialgebraic stratification",
+            "genericity rank-drop image dimension")
+    require(genericity["target_incidence_correspondence"] ==
+            "Z_Nprime={(q,theta_prime):q=Phi_Nprime(theta_prime),q in M_3,+(N),theta_prime physical}",
+            "genericity target incidence correspondence")
+    require(genericity["full_projection_section"] ==
+            "a d_N-rank incidence projection has a local physical real-analytic right inverse s(q)",
+            "genericity physical target section")
+    require(genericity["source_parameter_section"] ==
+            "sigma=s o Phi_N on a regular source-parameter neighborhood, so Phi_N=Phi_Nprime o sigma",
+            "genericity source-parameter section")
+    require(genericity["semialgebraic_real_closure_dimension"].startswith(
+            "BCR Proposition 2.8.2"), "genericity real-closure dimension")
+    require(genericity["real_to_complex_dimension"] ==
+            "A to A tensor_R C is finite faithfully flat integral and preserves Krull dimension",
+            "genericity real-to-complex dimension")
     require(genericity["exceptional_set_proper"] is True, "generic exceptional set")
     require(genericity["scope"] == "for each fixed topology N; not pointwise parameter identifiability", "genericity scope")
     reconstruction = certificate["exact_reconstruction"]

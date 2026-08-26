@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build deterministic frozen-input inventories and the bootstrap manifest."""
+"""Build deterministic frozen-input inventories without downgrading certification."""
 
 from __future__ import annotations
 
@@ -230,6 +230,49 @@ def write_inventory(records: list[dict[str, Any]]) -> None:
     (ROOT / "LOCAL_INPUT_INVENTORY.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
+def preserve_or_write_bootstrap_manifest(
+    records: list[dict[str, Any]], manifest_path: Path | None = None
+) -> None:
+    """Write the bootstrap manifest only before theorem certification exists.
+
+    Inventory refreshes are allowed throughout the project lifetime.  They must
+    never replace a promoted evidence manifest by an empty bootstrap stub.
+    """
+    superseded_provenance_ids = {"input-023", "input-032"}
+    expected_active_inputs = [
+        rec["record_id"] for rec in records
+        if rec["record_id"] not in superseded_provenance_ids
+    ]
+    manifest_path = manifest_path or (ROOT / "ACTIVE_MANIFEST.json")
+    if manifest_path.exists():
+        existing = json.loads(manifest_path.read_text(encoding="utf-8"))
+        if existing.get("status") != "bootstrap_pending_exact_replay":
+            if existing.get("active_inputs") != expected_active_inputs:
+                raise ValueError("certified ACTIVE_MANIFEST active-input set drift")
+            if existing.get("provenance_only_inputs") != sorted(superseded_provenance_ids):
+                raise ValueError("certified ACTIVE_MANIFEST provenance-only set drift")
+            return
+
+    manifest = {
+        "schema_version": 1,
+        "manifest_version": "0.1.0-bootstrap",
+        "status": "bootstrap_pending_exact_replay",
+        "base_commit": BASE_COMMIT,
+        "active_inputs": expected_active_inputs,
+        "provenance_only_inputs": sorted(superseded_provenance_ids),
+        "input_inventory": "LOCAL_INPUT_INVENTORY.json",
+        "input_lock": "INPUT_LOCK.json",
+        "claim_locks": ["FINAL_CLAIM_LOCK.json", "FINAL_CLAIM_LOCK.md"],
+        "active_theorem_artifacts": [],
+        "active_verifiers": [],
+        "excluded_evidence_root": "history/",
+        "certification_gates_passed": [],
+    }
+    manifest_path.write_text(
+        json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+
+
 def write_locks(records: list[dict[str, Any]]) -> None:
     lock = {
         "schema_version": 1,
@@ -262,23 +305,7 @@ def write_locks(records: list[dict[str, Any]]) -> None:
     ]
     (ROOT / "SHA256SUMS").write_text("\n".join(checksum_lines) + "\n", encoding="utf-8")
 
-    manifest = {
-        "schema_version": 1,
-        "manifest_version": "0.1.0-bootstrap",
-        "status": "bootstrap_pending_exact_replay",
-        "base_commit": BASE_COMMIT,
-        "active_inputs": [rec["record_id"] for rec in records],
-        "input_inventory": "LOCAL_INPUT_INVENTORY.json",
-        "input_lock": "INPUT_LOCK.json",
-        "claim_locks": ["FINAL_CLAIM_LOCK.json", "FINAL_CLAIM_LOCK.md"],
-        "active_theorem_artifacts": [],
-        "active_verifiers": [],
-        "excluded_evidence_root": "history/",
-        "certification_gates_passed": [],
-    }
-    (ROOT / "ACTIVE_MANIFEST.json").write_text(
-        json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8"
-    )
+    preserve_or_write_bootstrap_manifest(records)
 
 
 def main() -> None:

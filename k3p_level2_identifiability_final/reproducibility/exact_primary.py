@@ -326,10 +326,13 @@ def parse_sparse_expression(text: str, variables: dict[str, dict], n: int):
     return visit(tree.body)
 
 
-def three_port_evidence(frozen_dir: Path):
+def three_port_evidence(frozen_dir: Path, separator_path: Path):
     rank_input = json.loads((frozen_dir / "k3p_three_port_ranks.json").read_text())
     quartic_input = json.loads((frozen_dir / "k3p_three_sunlet_quartic.json").read_text())
-    separator_input = json.loads((frozen_dir / "k3p_tree_sunlet_separator.json").read_text())
+    separator_input = json.loads(separator_path.read_text())
+    assert separator_input["schema"] == "k3p-tree-sunlet-literal-separator-v2"
+    assert separator_input["map_formula"] == "q_xyz=a_x*b_y*c_z*(L*f_y*d_z+(1-L)*f_x*e_z)"
+    assert separator_input["edge_order"] == ["a", "b", "c", "d", "e", "f"]
     labels = ["".join(CHAR_NAMES[x] for x in chars) for chars in CH3]
     assert labels == rank_input["coordinate_labels"]
 
@@ -413,25 +416,26 @@ def three_port_evidence(frozen_dir: Path):
         for record in separator_input["circuits"]
     ]
     variables = {"L": p_var(19, 18)}
-    # The frozen separator's descriptor order is (a,b,c,f_formula,
-    # e_formula,d_formula): its printed d is the composition edge f in the
-    # displayed sunlet formula.
-    certificate_edge_to_formula_index = {"a": 0, "b": 1, "c": 2, "d": 5, "e": 3, "f": 4}
-    for edge_name, edge_index in certificate_edge_to_formula_index.items():
+    # The active v2 certificate uses the literal displayed edge order.  No
+    # hidden d/e/f permutation is accepted at this interface.
+    for edge_index, edge_name in enumerate(separator_input["edge_order"]):
         for h, h_name in enumerate("CGT", start=1):
             variables[edge_name + h_name] = edge_character_variable(19, edge_index, h)
     separator_evidence = []
     for record, terms in zip(separator_input["circuits"], circuit_terms):
         assert not compose_coordinate_polynomial(tree_outputs, terms)
         pullback = compose_coordinate_polynomial(sunlet_outputs[3], terms)
-        expected = parse_sparse_expression(record["sunlet_factor"], variables, 19)
+        expected = parse_sparse_expression(record["literal_sunlet_factor"], variables, 19)
         assert pullback == expected
         separator_evidence.append(
             {
+                "id": record["id"],
                 "left": record["left"],
                 "right": record["right"],
                 "expanded_terms": len(pullback),
-                "exact_factor": record["sunlet_factor"],
+                "exact_factor": record["literal_sunlet_factor"],
+                "composition_margin": record["composition_margin"],
+                "factor_sign": record["factor_sign"],
             }
         )
     assert len(separator_evidence) == 6
@@ -440,12 +444,20 @@ def three_port_evidence(frozen_dir: Path):
     # variables: each composition margin occurs with its two reciprocal cross
     # equations.  The three margin equations multiply to p=p^2.
     contradiction_checks = {
-        "paired_cross_equations_force": ["dC^2=1", "dG^2=1", "dT^2=1"],
-        "all_composition_margins_zero_force": "p=p^2 for p=dC*dG*dT",
-        "domain_excludes": ["dC=1", "dG=1", "dT=1", "p=1"],
+        "paired_cross_equations_force": ["fG^2=1", "fT^2=1", "fC^2=1"],
+        "paired_circuits": [["I1", "I3"], ["I2", "I4"], ["I5", "I6"]],
+        "all_composition_margins_zero_force": "p=p^2 for p=fC*fG*fT",
+        "domain_excludes": ["fC=1", "fG=1", "fT=1", "p=1"],
     }
     return {
-        "schema": "k3p-primary-three-port-exact-v1",
+        "schema": "k3p-primary-three-port-exact-v2",
+        "tree_sunlet_separator": {
+            "schema": separator_input["schema"],
+            "payload_sha256": separator_input["payload_sha256"],
+            "map_formula": separator_input["map_formula"],
+            "edge_order": separator_input["edge_order"],
+            "hidden_edge_permutation_used": False,
+        },
         "tree_rank": tree_rank,
         "tree_minor": {"rows": tree_rows, "columns": tree_columns, "determinant": str(tree_minor)},
         "sunlet_orientations": orientation_evidence,

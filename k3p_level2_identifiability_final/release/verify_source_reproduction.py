@@ -91,7 +91,8 @@ def committed_source_members(project: Path, kind: str) -> dict[str, bytes]:
         paths = sorted(
             path for path in entries
             if path in ("manuscript/main.tex", "manuscript/references.bib") or
-            path.startswith("manuscript/sections/")
+            path.startswith("manuscript/sections/") or
+            path.startswith("manuscript/figures/")
         )
         transform = lambda path: path.removeprefix("manuscript/")
     else:

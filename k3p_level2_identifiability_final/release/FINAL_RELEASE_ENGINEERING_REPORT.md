@@ -1,6 +1,6 @@
 # Final release engineering report
 
-Status: **release tooling repaired and adversarially certified; unified corrected all-producer run pending**
+Status: **targeted mathematical revision certified; commit-bound 45-command all-producer run pending**
 
 The deterministic quick/full/regeneration orchestration, canonical TAR.GZ and
 ZIP construction, compact verifier packaging, fixed-toolchain PDF source
@@ -12,7 +12,28 @@ one-shot confirmation.
 No DOI, license, Git tag, GitHub release, Zenodo record, journal upload, or
 external communication has been created or claimed.
 
-## Exact-commit execution record
+## Targeted-revision candidate
+
+The bridge-gluing and literal sunlet interfaces have been repaired and rebound
+through the integrated theorem gate.  The balanced noncut-compression and
+genericity arguments are now explicit.  Independent mathematical and evidence
+audits report PASS, and the 32-case release-engineering mutation suite binds an
+ordered 45-command regeneration fixed point.
+
+The fixed-epoch candidate PDFs have been rebuilt and visually inspected on
+every page:
+
+- article: 33 pages, SHA-256
+  `2c7dc0081edf61ec29b38cd48bb9634aa73ceac25efbef38ae62616cd1d0c14b`;
+- reader supplement: 12 pages, SHA-256
+  `9193b7ed726f41434f313d02d02cb106ab486bb8b2182d922b01c3a78624de20`.
+
+These candidate bytes are not yet described as a release.  They must first be
+committed, followed by clean quick/full and one unified 45-command regeneration
+run, source reproduction, and deterministic archive double-build at that exact
+commit.
+
+## Superseded pre-revision exact-commit execution record
 
 At exact commit `6dc41043a977aeb9ea97f33576bc40aa4b63cb4c`:
 
@@ -75,7 +96,7 @@ exact committed source expansion plus every manifest-bound upload byte.
 ## Remaining gates
 
 1. Commit and push this repair as the exact evidence candidate.
-2. Run quick, full, and one unified 42-command regeneration suite at that clean
+2. Run quick, full, and one unified 45-command regeneration suite at that clean
    exact commit, retaining the complete reports and transcripts.
 3. Rebuild both source archives and canonical compact/full archives twice at
    the same commit, then rerun their independent verifiers.

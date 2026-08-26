@@ -61,10 +61,8 @@ EXPECTED_RANK_ORBITS = {
     "H21-02", "L20-02", "L21a-02", "L21b-02", "L23-01",
 }
 NONMATHEMATICAL_GATES = [
-    "manuscript theorem-proof integration and author review",
-    "reader-supplement integration and cross-reference audit",
-    "PDF build, render, and visual quality assurance",
-    "clean-room release archive and checksum engineering",
+    "clean quick/full/full-regeneration replay and release-ledger rebinding",
+    "clean-room release archive and checksum engineering after the replay",
     "journal submission-format and metadata package engineering",
 ]
 
@@ -150,7 +148,7 @@ def validate_primary(project: Path, bindings: dict) -> None:
     require(report.get("counts") == {"PASS": 28, "BLOCKED": 0, "FAIL": 0}, "primary 28/28")
     input_binding = report.get("input_binding", {})
     require(input_binding.get("status") == "PASS" and
-            input_binding.get("file_count") == 33 and
+            input_binding.get("file_count") == 31 and
             input_binding.get("mismatches") == [], "primary immutable-input binding")
     gates = report.get("gates", [])
     require([row.get("item") for row in gates] == list(range(1, 29)), "primary gate ordering")
@@ -381,6 +379,11 @@ def validate_global_and_triangle(project: Path, bindings: dict) -> None:
     cut = verification.get("cut_transfer_release_replay", {})
     require(cut.get("universal_pointwise_K3P_cut_recovery_used") is False,
             "global replay universal pointwise substitution")
+    require(cut.get("theorem_manifest_sha256") == sha_file(
+                project / "cut_recovery/strong_crossbridge/global_transfer/THEOREM_MANIFEST.json"
+            ) and cut.get("release_verifier_sha256") == sha_file(
+                project / "cut_recovery/strong_crossbridge/global_transfer/verify_release.py"
+            ), "global replay cut-release hash binding")
     require(cut.get("fresh_replays", {}).get("ordinary", {}).get("python_optimized") is False and
             cut.get("fresh_replays", {}).get("optimized", {}).get("python_optimized") is True,
             "global ordinary/optimized cut replay")
@@ -388,8 +391,8 @@ def validate_global_and_triangle(project: Path, bindings: dict) -> None:
     mutation_path = "global_infrastructure/MUTATION_CERTIFICATE.json"
     mutation = load(project, mutation_path)
     verify_payload(mutation, "global infrastructure mutations")
-    require(mutation.get("status") == "PASS" and mutation.get("rejected") == 16 and
-            mutation.get("survived") == 0 and len(mutation.get("mutations", [])) == 16,
+    require(mutation.get("status") == "PASS" and mutation.get("rejected") == 18 and
+            mutation.get("survived") == 0 and len(mutation.get("mutations", [])) == 18,
             "global mutation census")
 
     global_path = "global_infrastructure/K3P_GLOBAL_GLUE_AND_RECONSTRUCTION_CERTIFICATE.json"
@@ -436,9 +439,46 @@ def validate_global_and_triangle(project: Path, bindings: dict) -> None:
             "one common contextual germ is full-dimensional relative to every oriented complete-network image" and
             context.get("tensor_product_independence_assumed") is False,
             "triangle contextualization")
-    require(global_certificate["simultaneous_physical_bridge_gluing"].get(
-        "finite_simultaneous_shrinking") is True,
-        "simultaneous physical triangle gluing")
+    physical = global_certificate["simultaneous_physical_bridge_gluing"]
+    require(physical.get("epsilon_formula") == "epsilon=min(1/4,L^2/(8*U))" and
+            physical.get("base_common_effective_isotropic_spectrum") == ["epsilon"] * 3 and
+            physical.get("effective_bridge_formula") == "z_h=A_h*x_h",
+            "capped effective bridge construction")
+    require(physical.get("effective_principal_margin_lower_bound") ==
+            "1-epsilon>=3/4" and
+            physical.get("effective_continuous_time_margin_lower_bound") ==
+            "epsilon-epsilon^2>=3*epsilon/4>0",
+            "physical effective bridge margins")
+    require(physical.get("actual_coordinate_upper_bound") == "epsilon/L<=1/8" and
+            physical.get("actual_principal_composition_margin_lower_bound") ==
+            "1-2*epsilon/L>=3/4" and
+            physical.get("actual_continuous_time_margin_lower_bound") ==
+            "epsilon/U-epsilon^2/L^2>=7*epsilon/(8*U)>0",
+            "physical actual bridge margins")
+    extension = physical.get("open_neighborhood_full_rank_extension", {})
+    require(physical.get("finite_simultaneous_shrinking") is True and
+            extension.get("section_is_positive_real_analytic") is True and
+            extension.get("strict_physicality_persists_after_finite_shrinking") is True and
+            extension.get("independent_effective_coordinates_per_bridge") == 3 and
+            extension.get("projection_to_pre_gluing_product_coordinates") == "identity" and
+            extension.get("full_rank_relative_global_germ_preserved") is True,
+            "simultaneous physical full-rank triangle gluing")
+    genericity = global_certificate.get("genericity", {})
+    require(genericity.get("total_source_rank_drop_locus") ==
+            "R_N={theta in Theta_3,+(N):rank D Phi_N(theta)<d_N}" and
+            genericity.get("rank_drop_image_dimension") ==
+            "at most d_N-1 by finite constant-rank semialgebraic stratification",
+            "total source rank-drop interface")
+    require(genericity.get("target_incidence_correspondence") ==
+            "Z_Nprime={(q,theta_prime):q=Phi_Nprime(theta_prime),q in M_3,+(N),theta_prime physical}" and
+            genericity.get("full_projection_section") ==
+            "a d_N-rank incidence projection has a local physical real-analytic right inverse s(q)" and
+            genericity.get("source_parameter_section") ==
+            "sigma=s o Phi_N on a regular source-parameter neighborhood, so Phi_N=Phi_Nprime o sigma",
+            "genericity incidence-section interface")
+    require(genericity.get("real_to_complex_dimension") ==
+            "A to A tensor_R C is finite faithfully flat integral and preserves Krull dimension",
+            "genericity real-to-complex dimension interface")
     for relative_path, value in ((manifest_path, manifest), (verification_path, verification),
                                  (mutation_path, mutation), (global_path, global_certificate),
                                  (h14_path, h14)):
@@ -472,7 +512,10 @@ def validate_continuous_time_specialization(project: Path, bindings: dict) -> di
             "strict-CT H14 common preimage")
     gluing = load(project, "global_infrastructure/K3P_GLOBAL_GLUE_AND_RECONSTRUCTION_CERTIFICATE.json")
     physical = gluing.get("simultaneous_physical_bridge_gluing", {})
-    require(physical.get("continuous_time_margin_lower_bound") == "3*L^2/(16*U^2)>0" and
+    require(physical.get("effective_continuous_time_margin_lower_bound") ==
+            "epsilon-epsilon^2>=3*epsilon/4>0" and
+            physical.get("actual_continuous_time_margin_lower_bound") ==
+            "epsilon/U-epsilon^2/L^2>=7*epsilon/(8*U)>0" and
             physical.get("finite_simultaneous_shrinking") is True,
             "strict-CT contextual gluing")
     bindings[relative] = bind(project, relative, model)
@@ -697,11 +740,11 @@ def validate_claim_lock(project: Path, bindings: dict) -> None:
             certification.get("classification_mutation_report_sha256") ==
             sha_file(project / mutation_report) and
             certification.get("classification_mutation_report_status") ==
-            "PASS_16_OF_16_REJECTED", "claim-lock classification mutation report binding")
+            "PASS_18_OF_18_REJECTED", "claim-lock classification mutation report binding")
     mutation_value = load(project, mutation_report)
     verify_payload(mutation_value, "integrated classification mutations")
     require(mutation_value.get("status") == "PASS" and
-            mutation_value.get("mutation_count") == mutation_value.get("rejected") == 16 and
+            mutation_value.get("mutation_count") == mutation_value.get("rejected") == 18 and
             mutation_value.get("survived") == 0 and
             mutation_value.get("verifier_sha256") == sha_file(Path(__file__).resolve()),
             "integrated classification mutation result")
@@ -726,6 +769,12 @@ def validate_claim_lock(project: Path, bindings: dict) -> None:
             four.get("unresolved") == 0,
             "claim-lock four-port conclusion")
     classification = lock.get("classification", {})
+    require(classification.get("triangle_equivalence") == {
+                "labelled_reduced_trees_of_blobs_agree": True,
+                "corresponding_complete_factor_relation":
+                    "labelled_mixed_graph_isomorphism_or_ordinary_triangle_redirection",
+                "coherent_boundary_transports_required": True,
+            }, "claim-lock triangle equivalence definition")
     require(classification.get("proper_one_sided_containment_in_strong_class") is False,
             "proper directed containment inside strong class rejected")
     require(classification.get("principal_positive") ==
@@ -733,6 +782,15 @@ def validate_claim_lock(project: Path, bindings: dict) -> None:
             classification.get("strict_continuous_time") ==
             "N <=_(3,CT) N' iff N ==_triangle N' iff N bowtie_(3,CT) N'",
             "claim-lock K3P-SAME equivalence")
+    sharpness = lock.get("sharpness", {})
+    require(sharpness.get("all_n_minimum") == 3 and
+            sharpness.get("all_n_common_germ_dimension") == "6*n-3" and
+            sharpness.get("all_n_both_in_weak_not_strong_class") is True and
+            sharpness.get("all_n_labelled_nonisomorphic") is True and
+            sharpness.get("all_n_nontriangle_equivalent") is True and
+            sharpness.get("all_n_common_germ_regular_full_dimensional") is True and
+            sharpness.get("strict_continuous_time") is True,
+            "claim-lock sharpness all-n scope")
     promotion = lock.get("final_promotion", {})
     require(promotion.get("status") == "CERTIFIED_K3P_SAME" and
             promotion.get("remaining_load_bearing_mathematical_gates") == [] and

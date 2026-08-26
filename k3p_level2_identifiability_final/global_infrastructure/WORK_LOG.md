@@ -131,3 +131,28 @@ Active file SHA-256 values after replay:
   `c50f1a1bc0740276aa75d3de5db1f3c3612f39aee418f73261535f00ed6b4d00`;
 - 16-mutation global certificate:
   `0a6630f23685efd4ef27936cf4b067cc753b7949173cb8a2d291d6eedb82531c`.
+
+## 2026-08-25T18:17:46-0700 — capped physical bridge and genericity hardening
+
+Completion estimate for the global-infrastructure subprogram remains **100%**.
+An external adversarial review correctly observed that the earlier presentation
+did not itself certify the common effective spectrum as a physical K3P edge.
+The active construction now uses
+`epsilon=min(1/4,L^2/(8U))`, distinguishes the common effective spectrum from
+the reconstructed actual bridge spectra, and checks both in the principal and
+strict continuous-time domains.  The actual continuous-time margin is bounded
+below by `7*epsilon/(8U)`, and an explicit identity Jacobian retains the common
+open three-dimensional bridge neighborhood.
+
+The genericity certificate now records the total source rank-drop locus, its
+finite Nash stratification and lower-dimensional image, the target incidence
+correspondence, a rank-`d_N` projection stratum, the local analytic target
+section, and the real-to-complex dimension passage.  A new adversarial mutation
+that replaces the total rank-drop locus by one selected minor is rejected.
+
+Exact replay passes with gluing/genericity payload
+`64cd569e4db689737d68d5898dd069c52e32ad8d08423ed92a6920b637ae7b1a`.
+The expanded global suite rejects **18/18** mutations with payload
+`d48195050ccce19a5cb41159217b5bb32a0ee82c635ef41e5c8cd687186f3967`.
+The historical uncapped formula and 16-mutation census above are superseded,
+not silently rewritten.

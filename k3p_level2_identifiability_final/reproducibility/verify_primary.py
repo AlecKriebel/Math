@@ -28,6 +28,8 @@ from exact_primary import (
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parent.resolve()
 FROZEN = (ROOT / "input_frozen" / "k3p_cloud_artifacts").resolve()
+LITERAL_SEPARATOR_DIR = (ROOT / "three_port" / "literal_separator_v2").resolve()
+LITERAL_SEPARATOR = LITERAL_SEPARATOR_DIR / "K3P_TREE_SUNLET_LITERAL_SEPARATOR_V2.json"
 
 
 PRIMARY_ITEMS = {
@@ -167,6 +169,46 @@ def run_checked_verifier(script: Path, sentinel: str, timeout=1800, preserve_tre
         "changed_tree_paths": sorted(set(before or {}) ^ set(after or {})) + sorted(
             path for path in set(before or {}) & set(after or {}) if before[path] != after[path]
         ),
+    }
+
+
+def literal_separator_v2_replay():
+    verifier = run_checked_verifier(
+        LITERAL_SEPARATOR_DIR / "verify_literal_separator_v2.py",
+        "LITERAL_SEPARATOR_V2_VERIFY_PASS",
+        preserve_tree=LITERAL_SEPARATOR_DIR,
+    )
+    mutations = run_checked_verifier(
+        LITERAL_SEPARATOR_DIR / "test_literal_separator_v2_mutations.py",
+        "LITERAL_SEPARATOR_V2_MUTATIONS_PASS",
+        preserve_tree=LITERAL_SEPARATOR_DIR,
+    )
+    if not LITERAL_SEPARATOR.is_file():
+        return {
+            "status": "BLOCKED",
+            "gap": "active literal-map tree-sunlet separator v2 is absent",
+            "verifier": verifier,
+            "mutations": mutations,
+        }
+    certificate = json.loads(LITERAL_SEPARATOR.read_text())
+    required = (
+        verifier["status"] == "PASS"
+        and mutations["status"] == "PASS"
+        and certificate.get("schema") == "k3p-tree-sunlet-literal-separator-v2"
+        and certificate.get("map_formula")
+        == "q_xyz=a_x*b_y*c_z*(L*f_y*d_z+(1-L)*f_x*e_z)"
+        and certificate.get("edge_order") == ["a", "b", "c", "d", "e", "f"]
+        and len(certificate.get("circuits", [])) == 6
+    )
+    return {
+        "status": "PASS" if required else "FAIL",
+        "certificate": str(LITERAL_SEPARATOR.relative_to(ROOT)),
+        "certificate_sha256": sha256_file(LITERAL_SEPARATOR),
+        "certificate_payload_sha256": certificate.get("payload_sha256"),
+        "literal_map_reexpanded": verifier["status"] == "PASS",
+        "hidden_edge_permutation_used": False,
+        "verifier": verifier,
+        "mutations": mutations,
     }
 
 
@@ -436,7 +478,19 @@ def main():
 
         model = exact_family("model_domain", model_domain_evidence, FROZEN)
         cut_transfer = exact_family("strong_class_cut_transfer", strong_class_cut_transfer_replay)
-        three = exact_family("three_port", three_port_evidence, FROZEN)
+        literal_separator = exact_family(
+            "literal_tree_sunlet_separator", literal_separator_v2_replay
+        )
+        three = None
+        if literal_separator and literal_separator["status"] == "PASS":
+            three = exact_family(
+                "three_port", three_port_evidence, FROZEN, LITERAL_SEPARATOR
+            )
+        else:
+            family_errors["three_port"] = {
+                "message": "literal-map tree-sunlet separator v2 replay failed",
+                "replay": literal_separator,
+            }
         collision = exact_family("double_theta", collision_evidence)
         rootings = exact_family("rooting_census", rooting_census_evidence, FROZEN)
         four = exact_family("four_port", verify_four_port, FROZEN)
@@ -468,6 +522,10 @@ def main():
                 path = ROOT / relative
                 atomic_json(path, payload)
                 evidence_paths[relative] = sha256_file(path)
+        if LITERAL_SEPARATOR.is_file():
+            evidence_paths[str(LITERAL_SEPARATOR.relative_to(ROOT))] = sha256_file(
+                LITERAL_SEPARATOR
+            )
         for relative in (
             "reproducibility/strong_class_cut_transfer_gate_report.json",
             "reproducibility/CUT_TRANSFER_GATE_MUTATION_REPORT.json",
@@ -505,8 +563,14 @@ def main():
                 cut_transfer.get("gap") if cut_transfer else family_errors.get("strong_class_cut_transfer"),
                 "No universal pointwise fallback is permitted.",
             ))
+        three_port_evidence_paths = [
+            "three_port/primary_exact_evidence.json",
+            "three_port/literal_separator_v2/K3P_TREE_SUNLET_LITERAL_SEPARATOR_V2.json",
+            "three_port/literal_separator_v2/verify_literal_separator_v2.py",
+            "three_port/literal_separator_v2/test_literal_separator_v2_mutations.py",
+        ]
         for number in range(7, 12):
-            gates.append(make_gate(number, "PASS" if three else "FAIL", ["three_port/primary_exact_evidence.json"], family_errors.get("three_port")))
+            gates.append(make_gate(number, "PASS" if three else "FAIL", three_port_evidence_paths, family_errors.get("three_port")))
         gates.append(make_gate(12, "PASS" if collision else "FAIL", ["topology/primary_double_theta_evidence.json"], family_errors.get("double_theta"), "The exact rank-15 collision and 23-dimensional local locus are replayed; no unstored tangent certificate for its separate strict-CT perturbation is asserted here."))
         gates.append(make_gate(13, "PASS" if rootings else "FAIL", ["topology/primary_rooting_census_evidence.json"], family_errors.get("rooting_census")))
         for number in range(14, 17):
@@ -592,10 +656,13 @@ def main():
             "reproducibility/verify_primary.py": sha256_file(Path(__file__).resolve()),
             "reproducibility/strong_cut_transfer_gate.py": sha256_file(HERE / "strong_cut_transfer_gate.py"),
             "reproducibility/test_cut_transfer_gate_mutations.py": sha256_file(HERE / "test_cut_transfer_gate_mutations.py"),
+            "three_port/literal_separator_v2/verify_literal_separator_v2.py": sha256_file(LITERAL_SEPARATOR_DIR / "verify_literal_separator_v2.py"),
+            "three_port/literal_separator_v2/test_literal_separator_v2_mutations.py": sha256_file(LITERAL_SEPARATOR_DIR / "test_literal_separator_v2_mutations.py"),
         },
         "generated_evidence_sha256": evidence_paths,
         "auxiliary_replays": {
             "strong_class_cut_transfer": stable_replay_record(locals().get("cut_transfer")),
+            "literal_tree_sunlet_separator": stable_replay_record(locals().get("literal_separator")),
             "corrected_four_port_transport": stable_replay_record(locals().get("transport")),
             "independent_sharpness": stable_replay_record(locals().get("sharpness")),
             "independent_topology_all_n": stable_replay_record(locals().get("topology_all_n")),

@@ -26,7 +26,7 @@ TOPOLOGY = FROZEN / "model_independent_topology_package"
 SECTORS = ("C", "G", "T")
 CHAR_NAMES = "0CGT"
 CUT_TRANSFER = ROOT / "cut_recovery" / "strong_crossbridge" / "global_transfer"
-CUT_TRANSFER_THEOREM_SHA256 = "00021da5e23726fa6a34e0c024b0703bb79e2dbcdecb58affe559e01746c7895"
+CUT_TRANSFER_THEOREM_SHA256 = "dd0ffea14051b9f45764a87d1a96b78d8199883417ce9a4321bfef4d612e8e51"
 CUT_TRANSFER_CLAIM = (
     "For binary standard semi-directed strongly tree-child level-2 networks "
     "under source-relative regular full-dimensional containment on strict D3,+, "
@@ -914,20 +914,62 @@ def build_cut_transfer_binding() -> dict:
 
 def build_global_certificate(bridge: dict, marginal: dict, h14: dict) -> dict:
     # After shrinking analytic incidence products around the normalized base,
-    # every product is in [L,U].  The common effective bridge spectrum is the
-    # isotropic epsilon triple.  These exact worst-case bounds prove both
-    # principal stochasticity and CT for every network and bridge at once.
+    # every product is in [L,U].  The base common effective bridge spectrum is
+    # the isotropic epsilon triple.  The cap on epsilon proves that this
+    # effective bridge is physical, while the L,U term proves that every
+    # reconstructed actual bridge is physical.  Strictness then supplies an
+    # open neighborhood in which the effective z coordinates vary freely.
     # The proof is uniform in any finite positive compact bounds 0<L<=A_h<=U.
-    # The exact rational instance below is a replay witness for the symbolic
-    # formulas epsilon=L^2/(4U), lo=L^2/(4U^2), hi=L/(4U).
-    L, U = F(1, 2), F(2)
-    epsilon = L * L / (4 * U)
-    coordinate_lower = L * L / (4 * U * U)
-    coordinate_upper = L / (4 * U)
-    principal_margin_lower = 1 - L / (2 * U)
-    ct_margin_lower = 3 * L * L / (16 * U * U)
-    if min(coordinate_lower, 1 - coordinate_upper, principal_margin_lower, ct_margin_lower) <= 0:
-        fail("simultaneous physical-gluing envelope is not strict")
+    def replay_row(L: F, U: F) -> dict:
+        if not 0 < L <= U:
+            fail("invalid simultaneous physical-gluing compact bounds")
+        quadratic = L * L / (8 * U)
+        epsilon = min(F(1, 4), quadratic)
+        coordinate_lower = epsilon / U
+        coordinate_upper = epsilon / L
+        effective_principal_margin = 1 - epsilon
+        effective_ct_margin = epsilon - epsilon * epsilon
+        actual_principal_margin = 1 - 2 * coordinate_upper
+        actual_ct_margin = coordinate_lower - coordinate_upper * coordinate_upper
+        certified_actual_ct_floor = 7 * epsilon / (8 * U)
+        if quadratic < F(1, 4):
+            branch = "quadratic_bound"
+        elif quadratic > F(1, 4):
+            branch = "one_quarter_cap"
+        else:
+            branch = "equal_branches"
+        if not (
+            0 < epsilon <= F(1, 4)
+            and 0 < coordinate_lower <= coordinate_upper <= F(1, 8)
+            and effective_principal_margin >= F(3, 4)
+            and effective_ct_margin >= 3 * epsilon / 4 > 0
+            and actual_principal_margin >= F(3, 4)
+            and actual_ct_margin >= certified_actual_ct_floor > 0
+        ):
+            fail("simultaneous physical-gluing envelope is not strict")
+        return {
+            "L": str(L),
+            "U": str(U),
+            "active_epsilon_branch": branch,
+            "epsilon": str(epsilon),
+            "effective_principal_margin": str(effective_principal_margin),
+            "effective_continuous_time_margin": str(effective_ct_margin),
+            "actual_coordinate_interval": [
+                str(coordinate_lower), str(coordinate_upper),
+            ],
+            "actual_principal_margin_lower_bound": str(actual_principal_margin),
+            "actual_continuous_time_margin_lower_bound": str(actual_ct_margin),
+            "certified_actual_continuous_time_floor": str(certified_actual_ct_floor),
+        }
+
+    replay_bounds = (
+        (F(1, 2), F(2)),
+        (F(2), F(2)),
+        (F(7), F(7)),
+        (F(100), F(100)),
+        (F(1, 100), F(100)),
+    )
+    replay_instances = [replay_row(L, U) for L, U in replay_bounds]
 
     cut_binding = build_cut_transfer_binding()
     dependency_pass = cut_binding["accepted_as_pass"] is True
@@ -949,21 +991,36 @@ def build_global_certificate(bridge: dict, marginal: dict, h14: dict) -> dict:
         },
         "simultaneous_physical_bridge_gluing": {
             "incidence_product_compact_bounds": "0<L<=A_h<=U on the finite common compactly-contained local germs",
-            "common_effective_isotropic_spectrum": ["L^2/(4*U)"] * 3,
-            "actual_bridge_formula": "x_h=epsilon/A_h for A_h=a[u,e,h]*a[v,e,h]",
-            "actual_coordinate_interval": ["L^2/(4*U^2)", "L/(4*U)"],
+            "epsilon_formula": "epsilon=min(1/4,L^2/(8*U))",
+            "base_common_effective_isotropic_spectrum": ["epsilon"] * 3,
+            "effective_bridge_formula": "z_h=A_h*x_h",
+            "base_actual_bridge_formula": "x_h=epsilon/A_h for A_h=a[u,e,h]*a[v,e,h]",
+            "base_actual_coordinate_interval": ["epsilon/U", "epsilon/L"],
             "principal_domain_inequalities": [
                 "c>0", "g>0", "t>0", "1-c>0", "1-g>0", "1-t>0",
                 "1+c-g-t>0", "1-c+g-t>0", "1-c-g+t>0",
             ],
             "continuous_time_inequalities": ["c-g*t>0", "g-c*t>0", "t-c*g>0"],
-            "principal_composition_margin_lower_bound": "1-L/(2*U)>=1/2",
-            "continuous_time_margin_lower_bound": "3*L^2/(16*U^2)>0",
-            "exact_rational_replay_instance": {
-                "L": str(L), "U": str(U), "epsilon": str(epsilon),
-                "actual_coordinate_interval": [str(coordinate_lower), str(coordinate_upper)],
-                "principal_margin_lower_bound": str(principal_margin_lower),
-                "continuous_time_margin_lower_bound": str(ct_margin_lower),
+            "effective_principal_margin_lower_bound": "1-epsilon>=3/4",
+            "effective_continuous_time_margin_lower_bound": "epsilon-epsilon^2>=3*epsilon/4>0",
+            "actual_coordinate_upper_bound": "epsilon/L<=1/8",
+            "actual_principal_composition_margin_lower_bound": "1-2*epsilon/L>=3/4",
+            "actual_continuous_time_margin_lower_bound": "epsilon/U-epsilon^2/L^2>=7*epsilon/(8*U)>0",
+            "exact_rational_replay_instance": replay_instances[0],
+            "exact_rational_branch_replays": replay_instances,
+            "open_neighborhood_full_rank_extension": {
+                "effective_variables": "each z_h varies independently in an open neighborhood of epsilon",
+                "actual_bridge_section": "x_h=z_h/A_h",
+                "section_is_positive_real_analytic": True,
+                "strict_physicality_persists_after_finite_shrinking": True,
+                "independent_effective_coordinates_per_bridge": 3,
+                "projection_to_pre_gluing_product_coordinates": "identity",
+                "full_rank_relative_global_germ_preserved": True,
+                "rank_reason": (
+                    "the physical product extraction is a local inverse and the "
+                    "analytic bridge section is a graph over the local-factor and "
+                    "independent effective-z coordinates"
+                ),
             },
             "same_epsilon_all_networks_and_bridges": True,
             "finite_simultaneous_shrinking": True,
@@ -979,8 +1036,15 @@ def build_global_certificate(bridge: dict, marginal: dict, h14: dict) -> dict:
             },
             "model_closure_irreducible": "closure of a polynomial image of irreducible affine parameter space",
             "generic_rank_equals_image_dimension": True,
+            "total_source_rank_drop_locus": "R_N={theta in Theta_3,+(N):rank D Phi_N(theta)<d_N}",
+            "rank_drop_stratification": "finite Nash strata S_alpha on which Phi_N|S_alpha has constant rank at most d_N-1",
             "rank_drop_image_dimension": "at most d_N-1 by finite constant-rank semialgebraic stratification",
+            "target_incidence_correspondence": "Z_Nprime={(q,theta_prime):q=Phi_Nprime(theta_prime),q in M_3,+(N),theta_prime physical}",
+            "full_projection_section": "a d_N-rank incidence projection has a local physical real-analytic right inverse s(q)",
+            "source_parameter_section": "sigma=s o Phi_N on a regular source-parameter neighborhood, so Phi_N=Phi_Nprime o sigma",
             "inequivalent_intersection_dimension": "at most d_N-1, else a target analytic section gives forbidden regular full-dimensional containment",
+            "semialgebraic_real_closure_dimension": "BCR Proposition 2.8.2; semialgebraic dimension equals real-Zariski-closure dimension",
+            "real_to_complex_dimension": "A to A tensor_R C is finite faithfully flat integral and preserves Krull dimension",
             "exceptional_set": "finite union of proper Zariski closures of inequivalent intersections, singular/rank-drop loci, and certified nonzero reconstruction-test zeros",
             "exceptional_set_proper": True,
             "scope": "for each fixed topology N; not pointwise parameter identifiability",

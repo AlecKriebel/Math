@@ -49,11 +49,11 @@ PATHS = {
 # These are deliberately hard-coded rather than copied from the audit JSON.
 # Any change to a load-bearing producer or frozen input invalidates this audit.
 EXPECTED_SHA256 = {
-    "global_certificate": "b9918e80a9a6eac8acffbce65d0869c294a13932a2b37bca991b26b12b8c0596",
+    "global_certificate": "c0548578fa5f45f4715d1e42d13f03a42e240d52a9b42d97b393ea7799586afb",
     "global_universe": "c9f00df0c52bbdec1eb8601f7f9ba1652eb500ae5cf5c299fad3bb086411690f",
     "global_builder": "d99ae6579fbacf18c713f0dac3045e49ccc93a42a8bed2f6861a3ad34f8a273b",
     "global_verifier": "3f0333c34c141f98232f76356961eae43ccff6d250cf2a90f68a29f607d15f50",
-    "global_verification": "d602e0ebd285f338a04de57e0b89bcf2a32b93aa6f470a0a5a3aa0256aa2685b",
+    "global_verification": "50739c8db0fe69c3cb05e32b865fa14117763cd343afd2a0e4564b0dacc89057",
     "local_certificate": "643c29780219a538a5a127341ea91363aa5899d6f0f6fa1dac034889a7fdf06b",
     "local_universe": "674647dc91513ba85a2a72ed5f98d017c61f54ebb9e157975c14f5a94e4ddb9b",
     "local_verification": "c07d0c87cb5a93a556268d7bee4fb6f9d0fa475a30e2da5930e7c5369d5a0ab0",
@@ -61,7 +61,7 @@ EXPECTED_SHA256 = {
     "frozen_topology": "edbd4afe566ed0ed5d1c518ffe5b21f8f224d547b9c351cb4e1a8c1c613ac086",
     "jc_manuscript": "36cf89a4f05a8c0339237f2cb83fe255893e013a6b78ff76e412d453b66f0dbd",
     "model_domain": "ac21e4f795537f251377411841d670c1bad4ce06a69ed24f596252c11cb7afb6",
-    "marginal": "f85f918a770af7482abfe914bc93a304ce23c2489062643036b7a742ab09ef7f",
+    "marginal": "9a90ba2e075fd20a4867e8a169aa933546b8fbca6feab23a2be7d25a24935d94",
     "directed_logic": "f323625e9a629c62594df6a9ae90ca31582e0cb4fe878ddad66ddbf02be42d93",
 }
 

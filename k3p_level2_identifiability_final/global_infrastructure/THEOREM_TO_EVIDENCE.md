@@ -238,28 +238,34 @@ endpoint incidence scales has bounds `0<L<=A_h<=U`.  Use the same effective
 isotropic spectrum on every network and bridge,
 
 \[
-z_C=z_G=z_T=\varepsilon={L^2\over4U},\qquad
+z_C=z_G=z_T=\varepsilon=
+\min\left\{{1\over4},{L^2\over8U}\right\},\qquad
 x_h={\varepsilon\over A_h}.
 \]
 
-Then
+The effective spectrum is itself a strict physical K3P edge: its principal
+margins are `1-epsilon>=3/4`, and its continuous-time margins satisfy
+`epsilon-epsilon^2>=3 epsilon/4>0`.  The reconstructed physical bridges obey
 
 \[
-{L^2\over4U^2}\le x_h\le {L\over4U}\le {1\over4}.
+{\varepsilon\over U}\le x_h\le {\varepsilon\over L}
+\le {L\over8U}\le {1\over8}.
 \]
 
-Every principal composition margin is at least
-`1-L/(2U)>=1/2`.  Every CT margin is at least
+Every principal composition margin is therefore at least `3/4`.  Every CT
+margin is at least
 
 \[
-{L^2\over4U^2}-{L^2\over16U^2}
-={3L^2\over16U^2}>0.
+{\varepsilon\over U}-{\varepsilon^2\over L^2}
+\ge {7\varepsilon\over8U}>0.
 \]
 
 The same epsilon therefore works simultaneously for the finite collection.
 Incidence factors cancel, and the bridge tree has no holonomy.  The local
-product extraction proves that the contracted common germ has the expected
-full relative dimension.
+product extraction, together with the identity Jacobian in the three common
+effective coordinates, proves that a common open three-dimensional bridge
+neighborhood survives and that the contracted germ has the expected full
+relative dimension.
 
 ## Genericity and exact reconstruction
 

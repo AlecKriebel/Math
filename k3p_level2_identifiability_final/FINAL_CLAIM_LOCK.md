@@ -80,9 +80,11 @@ N\preceq_{3,+}N'\iff N\equiv_{\triangle}N'
 \]
 
 The same equivalence holds on `\mathcal D_{3,\mathrm{CT}}`.  Here
-`\equiv_\triangle` is labelled topology equivalence modulo independent ordinary
-triangle redirection.  No proper one-sided regular full-dimensional
-containment occurs inside the strong class.
+`\equiv_\triangle` means that the labelled reduced trees of blobs agree and
+that each pair of corresponding complete factors is either isomorphic as a
+labelled mixed graph or differs by ordinary triangle redirection, with coherent
+boundary transports.  No proper one-sided regular full-dimensional containment
+occurs inside the strong class.
 
 ## Ordinary-triangle geometry
 
@@ -91,6 +93,37 @@ normalized rank 14, the same irreducible quartic closure
 `H_{14}=Z(F_{H_{14}})\subset\mathbb A^{15}`, and a common strict
 continuous-time smooth rank-14 analytic germ.  They are not claimed to fill an
 ambient-open 15-dimensional three-leaf germ.
+
+## Literal three-sunlet separator interface
+
+The active tree--sunlet separator is derived from the printed literal map
+
+\[
+q_{xyz}=a_xb_yc_z
+\left[\lambda f_y d_z+(1-\lambda)f_xe_z\right].
+\]
+
+Its six exact circuit pullbacks have their three composition margins on the
+edge (f), not (d).  The literal-map v2 certificate re-expands all six
+pullbacks independently, uses no hidden cyclic edge-letter permutation, and
+rejects a resealed (d,e,f) rotation.  The frozen cloud-stage separator and
+verifier are provenance only and are not active proof evidence.
+
+## Capped simultaneous bridge gluing
+
+For uniform incidence bounds (0<L\le A_h\le U), the active common choice is
+
+\[
+\varepsilon=\min\left\{\frac14,\frac{L^2}{8U}\right\},\qquad
+z=(\varepsilon,\varepsilon,\varepsilon),\qquad
+x_h=\frac{\varepsilon}{A_h}.
+\]
+
+Both the effective spectrum (z) and the reconstructed actual spectrum (x)
+are strict physical K3P edges.  In particular, (x_h\le1/8), its principal
+margins are at least (3/4), and its continuous-time margins are at least
+(7\varepsilon/(8U)>0).  Strict uniformity leaves the common open
+three-dimensional bridge neighborhood used in the full-rank gluing argument.
 
 ## Four-port finite classification
 
@@ -108,16 +141,18 @@ containment survives.
 
 ## Sharpness theorem
 
-There are nonisomorphic, non-triangle-equivalent networks
-`W_3,W'_3` in `W_{\mathrm{TC}}\setminus S_{\mathrm{TC}}`, with rooting censuses
-`(5,2,3)` and `(7,2,5)`, whose strict continuous-time K3P maps both have rank 15
-at a rigorously certified common tensor and therefore share an ambient-open
-regular 15-dimensional germ.  Identical K3P cherry substitution is claimed to
-extend this to every `n\ge 3`, with common full-dimensional germ dimension
+For every `n\ge 3` there are networks `W_n,W'_n` in
+`W_{\mathrm{TC}}\setminus S_{\mathrm{TC}}` that are neither labelled-isomorphic
+nor ordinary-triangle-equivalent and whose strict continuous-time K3P images
+share a full-dimensional regular germ of dimension
 
 \[
-15+6(n-3)=6n-3.
+6n-3.
 \]
+
+For `n=3`, the rooting censuses are `(5,2,3)` and `(7,2,5)`, both normalized
+maps have rank 15 throughout the certified Krawczyk box, and the common germ is
+ambient-open.  Identical K3P cherry substitution proves the all-`n` statement.
 
 ## Separate outer-class result
 
@@ -136,11 +171,12 @@ the withdrawn universal pointwise cut-rank equivalence, an ambient-rank-15
 triangle argument, restoration census conflation, or a proper directed
 containment inside the strong class.
 
-This is a mathematical certification, not a publication-status claim.
-Manuscript and reader-supplement integration, PDF rendering and visual QA,
-release-archive/checksum engineering, journal-format packaging, and human
-author review remain pending.  The project does not claim submission readiness,
-a DOI, a selected license, completed peer review, or completed human review.
+This is a mathematical certification, not a publication-status claim.  The
+targeted-revision manuscript, reader supplement, PDFs, and visual QA are
+complete; clean quick/full/all-producer replay, release-archive rebinding,
+journal-format packaging, and human author review remain pending.  The project
+does not claim submission readiness, a DOI, a selected license, completed peer
+review, or completed human review.
 The machine-readable promotion is
 `reproducibility/K3P_SAME_CLASSIFICATION_GATE_REPORT.json`; its separate
-integration mutation suite rejects 16/16 theorem-boundary corruptions.
+integration mutation suite rejects 18/18 theorem-boundary corruptions.

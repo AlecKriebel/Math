@@ -37,6 +37,11 @@ the directed ported refinement of the two underlying level-2 generators in
 and is replayed from the frozen topology package.
 \end{proof}
 
+\input{\KThreePCanonicalRoot/figures/primitive_cores}
+
+Figure~\ref{fig:primitive-cores} fixes the pole, segment, incoming-boundary,
+and minimum-repair notation used in the finite grammar.
+
 The directed segments and minimum occupied sets required by
 \cref{lem:no-omnian} are:
 
@@ -93,7 +98,13 @@ Six rigid K3P source supports have normalized ranks
 After pointwise, quadratic, graph-isomorphism, and ordinary-triangle filters,
 the only nonterminal four-port residue consists of the following 14
 canonical directed orbits.  Here the arrow in the rank column is source to
-target, and ``H14'' means a transported marginal of \eqref{eq:H14}.
+target, and ``H14'' means a transported marginal of \eqref{eq:H14}.  The
+symbol \(r_j\) is the zero-based index of the listed minimum occupied set for
+that core, and a word \texttt{p0p1p2p3} records the port relabeling
+\(i\mapsto p_i\).  The family labels H21 and L\(d\) record, respectively, a
+rank-21 nonautomorphic relabeling family and a lower-rank source mapping to a
+rank-24 target; the suffixes a and b distinguish the two
+\(\theta_1\)-repair families.
 
 {\small
 \begin{longtable}{llllrl}
@@ -115,11 +126,26 @@ L21b-01 & \(\theta_1,r_1\) & \(\theta_3,r_1;\texttt{0123}\) & \(21\to24\) & 2 & 
 L21b-02 & \(\theta_1,r_1\) & \(\theta_3,r_1;\texttt{0132}\) & \(21\to24\) & 2 & \(11>10\) rank\\
 L23-01 & \(\theta_3,r_0\) & \(\theta_3,r_1;\texttt{0123}\) & \(23\to24\) & 2 & \(14>12\) rank\\
 L23-02 & \(\theta_3,r_0\) & \(\theta_3,r_1;\texttt{0132}\) & \(23\to24\) & 2 & quartic\\
-SINK-0132 & source 5 & target 822; \texttt{0132} & \(24\to24\) & 1 & quartic\\
-SINK-1023 & source 5 & target 822; \texttt{1023} & \(24\to24\) & 1 & quartic\\
 \bottomrule
 \end{longtable}
 }
+
+The two pre-lock sink swaps are separate from those fourteen orbits.  Their
+common rigid support is \(\theta_3,r_1\) with selected incoming port, both
+sink-child ports, and the repair port on segment 4; the rows below are its
+two nonautomorphic labelled presentations.
+
+\begin{center}
+\small
+\begin{tabular}{llll}
+\toprule
+presentation & port relabeling & rank & exact certificate\\
+\midrule
+SINK-0132 & \texttt{0132} & \(24\to24\) & quartic\\
+SINK-1023 & \texttt{1023} & \(24\to24\) & quartic\\
+\bottomrule
+\end{tabular}
+\end{center}
 
 The six H21 rows are the nonisomorphic double cosets of the repaired
 \(\theta_0\) source; the seventh double coset is isomorphic.  The complete
@@ -129,8 +155,8 @@ post-quadratic accounting is
  \boxed{40=38+2.}
 \end{equation}
 
-The 38 raw records belong to the fourteen named orbits; the final two table
-rows are rank-\(24\) \(\theta_3\) sink-swap presentations.  Neither is a
+The 38 raw records belong to the fourteen named orbits; the two separately
+tabulated rows are rank-\(24\) \(\theta_3\) sink-swap presentations.  Neither is a
 labelled graph isomorphism, and the same exact eight-term quartic has zero
 target pullback and nonzero strict
 source value on each.
@@ -166,10 +192,14 @@ and Fourier transports cover every raw member.
 For each of the five rank orbits, a selected source projection has a nonzero
 exact Jacobian minor of rank \(11\) or \(14\).  The target projection factors
 rationally through 10 or 12 generators, respectively, giving the
-strict upper bound.  The H21 target formulas are checked after saturation by
-the declared nonzero physical factors; the other four targets are compressed
-ordinary-sunlet projections.  A source-relative open containment cannot lie
-inside the lower-dimensional target projection.
+strict upper bound.  These are directional selected-projection obstructions,
+not comparisons of total model dimension: the target may have equal or
+larger total normalized rank while its indicated observable projection has
+smaller function-field dimension.  The H21 upper bound holds after saturation
+by declared physical factors, all nonzero throughout the strict domain; the
+other four targets are compressed ordinary-sunlet projections.  A
+source-relative open containment cannot lie inside the lower-dimensional
+target projection.
 
 The clean-room implementation reconstructs all six sources, all 2,814
 target completions, seven H21 double cosets, all 38 coordinate transports,

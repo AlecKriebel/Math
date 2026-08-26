@@ -123,6 +123,24 @@ def main() -> int:
         "global missing CT inequality",
     ))
     cases.append(mutation_case(
+        "restore_old_uncapped_bridge_formula",
+        "global_infrastructure/K3P_GLOBAL_GLUE_AND_RECONSTRUCTION_CERTIFICATE.json",
+        lambda x: x["simultaneous_physical_bridge_gluing"].update({
+            "epsilon_formula": "epsilon=L^2/(4*U)",
+            "base_common_effective_isotropic_spectrum": ["L^2/(4*U)"] * 3,
+        }),
+        "gluing capped epsilon formula",
+    ))
+    cases.append(mutation_case(
+        "replace_total_rank_drop_by_one_selected_minor",
+        "global_infrastructure/K3P_GLOBAL_GLUE_AND_RECONSTRUCTION_CERTIFICATE.json",
+        lambda x: x["genericity"].__setitem__(
+            "total_source_rank_drop_locus",
+            "zero locus of one selected Jacobian minor",
+        ),
+        "genericity total rank-drop locus",
+    ))
+    cases.append(mutation_case(
         "promote_triangle_to_ambient_rank_15",
         "triangle_h14/K3P_H14_CONTEXT_CERTIFICATE.json",
         lambda x: x["orientations"]["1"].__setitem__("rank", 15),

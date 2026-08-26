@@ -29,7 +29,7 @@ HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parent
 ATLAS_PATH = PROJECT / "input_frozen/k3p_cloud_artifacts/k3p_atlas_core.py"
 FOREST_PATH = PROJECT / "input_frozen/model_independent_topology_package/anchor_inputs/corrected_restoration_forest.json"
-SEPARATOR_PATH = PROJECT / "input_frozen/k3p_cloud_artifacts/k3p_tree_sunlet_separator.json"
+SEPARATOR_PATH = PROJECT / "three_port/literal_separator_v2/K3P_TREE_SUNLET_LITERAL_SEPARATOR_V2.json"
 THREE_PORT_PATH = PROJECT / "three_port/primary_exact_evidence.json"
 MARGINAL_PATH = PROJECT / "marginals/K3P_MARGINAL_SUBMERSION_CERTIFICATE.json"
 H14_PATH = PROJECT / "input_frozen/k3p_cloud_artifacts/k3p_h14_marginal_orbit_certificates.json"
@@ -942,13 +942,18 @@ def transported_terms(terms, permutation):
 def verify_separator_theorem():
     separator = json.loads(SEPARATOR_PATH.read_text())
     primary = json.loads(THREE_PORT_PATH.read_text())
-    require(separator["schema"] == "k3p-tree-sunlet-six-circuit-separator-v1",
+    require(separator["schema"] == "k3p-tree-sunlet-literal-separator-v2",
             "tree-sunlet separator schema")
-    require(separator["observable_separator"] == "sum_{j=1}^6 I_j^2",
+    require(separator["map_formula"] ==
+            "q_xyz=a_x*b_y*c_z*(L*f_y*d_z+(1-L)*f_x*e_z)",
+            "tree-sunlet literal map")
+    require(separator["edge_order"] == ["a", "b", "c", "d", "e", "f"],
+            "tree-sunlet literal edge order")
+    require(separator["observable_separator"] ==
+            "S=I1^2+I2^2+I3^2+I4^2+I5^2+I6^2",
             "tree-sunlet separator observable")
-    require(separator["tree_value"] == "identically_zero", "tree separator value")
-    require(separator["sunlet_value"] == "strictly_positive_on_0<c,g,t<1_and_0<lambda<1",
-            "sunlet separator strict value")
+    require(all(row["tree_pullback"] == "identically_zero"
+                for row in separator["circuits"]), "tree separator values")
     require([(tuple(row["left"]), tuple(row["right"])) for row in separator["circuits"]]
             == list(CIRCUITS), "six-circuit coordinate deck")
     require(primary["tree_sunlet_sum_of_squares_strict"] is True,
@@ -956,10 +961,10 @@ def verify_separator_theorem():
     require(len(primary["tree_sunlet_circuits"]) == 6,
             "primary SOS circuit census")
     argument = primary["tree_sunlet_strictness_argument"]
-    require(argument["all_composition_margins_zero_force"] == "p=p^2 for p=dC*dG*dT",
+    require(argument["all_composition_margins_zero_force"] == "p=p^2 for p=fC*fG*fT",
             "SOS final contradiction")
     require(set(argument["paired_cross_equations_force"])
-            == {"dC^2=1", "dG^2=1", "dT^2=1"},
+            == {"fC^2=1", "fG^2=1", "fT^2=1"},
             "SOS paired contradictions")
 
 
