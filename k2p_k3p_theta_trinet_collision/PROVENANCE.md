@@ -1,35 +1,43 @@
 # Provenance and reproducibility
 
-## Canonical status -- 25 August 2026
+## Canonical status -- 26 August 2026
 
 `k2p_k3p_theta_clarified/` is the sole current manuscript,
 verification, submission, and archival subtree. The full superseded package is
-isolated under `legacy/DO_NOT_SUBMIT-pre-clarification/`; immutable historical
-release archives are isolated under `legacy/releases/`. Neither location is a
-current release input.
+isolated under `legacy/DO_NOT_SUBMIT-pre-clarification/`; the immutable version
+`1.0.0` historical release archive is isolated under `legacy/releases/`, while
+the version `1.1.0` archive remains under `releases/`. Neither historical
+location is a current release input.
 
 This repository is public. The pre-clarification combined package first appears
 in repository history at commit `ca21a733`, dated 4 August 2026, and was linked
 from the public project page by commit `85cdead2`. The clarification revision is
 additive and no Git history was rewritten. A bioRxiv submission candidate and
 its author-facing metadata are prepared in the canonical subtree. The frozen
-source/replay snapshot is version `1.1.0`, identified by the Git tag
-`k2p-k3p-theta-v1.1.0`. The version `1.0.0` tag remains immutable. No external
-communication was initiated by the automated preparation process.
+source/replay snapshot is version `1.2.0`, identified by the annotated Git tag
+`k2p-k3p-theta-v1.2.0`. Versions `1.1.0` and `1.0.0` remain immutable. No
+external communication was initiated by the automated preparation process.
 
 The current manuscript cites arXiv:2607.12919v2 for the removed arbitrary-level
 K2P statements and arXiv:2607.12919v3 for their correction, the public
-leaf-order diagnosis, and the open high-level K2P/K3P questions. The two exact
-collisions answer those questions negatively.
+leaf-order diagnosis, and the open high-level K2P/K3P questions. The compact
+K2P collision alone answers both questions negatively by model inclusion. The
+quartic construction gives exact K3P parameter-level symmetry breaking, and
+the rank-15 restricted submersion gives nearby shared distributions outside all
+relabeled-K2P strata.
 
-The current version `1.1.0` archives were built from full commit
-`d71493d1c188cc78ede27fed1744373272ffb220`. The release builder verified
+The current version `1.2.0` archives were built from full commit
+`7570a4a0f7051a607ee6eb4ef7ed43e54e805322`. The release builder verified
 version/CFF/tag identity, deterministic ZIP and tar.gz construction, both
 internal manifests, identical archive contents, normal and optimized exact
 replay with byte-matching transcripts, and clean PDF rebuilding with matching
 text and rendered pixels. The archives and checksum sidecars are retained under
-`releases/k2p-k3p-theta-v1.1.0/`. No GitHub release, Zenodo deposit, or DOI was
+`releases/k2p-k3p-theta-v1.2.0/`. No GitHub release, Zenodo deposit, or DOI was
 created.
+
+The version `1.1.0` archives remain under
+`releases/k2p-k3p-theta-v1.1.0/` at commit
+`d71493d1c188cc78ede27fed1744373272ffb220`.
 
 The historical version `1.0.0` ZIP was built from full commit
 `4100ec6524054cef1e78441587abc9487d689d0b`. The builder produced byte-stable
@@ -50,7 +58,12 @@ The exact results distributed here were then constructed and checked independent
 - the exact edgewise strictly continuous-time K2P collision over an isolated cubic field with `sqrt(1423)`;
 - the exact K2P rank-9 minors and local dimension calculation;
 - the exact six-dimensional symmetric collision family;
-- the integrated K3P collision, rank-15 determinant, and analytic edgewise continuous-time extension.
+- the integrated K3P collision, rank-15 determinant, and analytic edgewise
+  continuous-time extension;
+- the exact K3P parameter/output symmetry distinction and 14-dimensional
+  fixed-output fiber count;
+- the exact four-leaf one-blob graft regression in both Fourier and
+  ordinary-state coordinates.
 
 The package therefore does not describe the K2P direction as having arisen spontaneously during a generic final audit.
 
@@ -60,7 +73,17 @@ The package incorporates material from an earlier K2P reproduction audit and the
 
 ## Independent recomputations
 
-This package recomputes source conventions; topology and root suppression; all simple K2P edge, Fourier, pattern, minimum-probability, invariant, and rank checks; the edgewise continuous-time K2P field, rate, factorization, pruning, and order checks; both K2P rank calculations and the collision family; and the K3P collision, stochastic data, rank determinant, local dimension, and edgewise continuous-time tangent identities. The complete verifier suite in `src/` and `verify.py` reproduces every one of these checks from the certificates.
+This package recomputes source conventions; topology and root suppression; all
+simple K2P edge, Fourier, pattern, minimum-probability, invariant, and rank
+checks; the edgewise continuous-time K2P field, rate, factorization, pruning,
+and order checks; both K2P rank calculations and the collision family; the K3P
+collision, symmetry distinction, stochastic data, rank determinant, local
+dimension, fixed-output fiber count, and edgewise continuous-time tangent
+identities; and the exact four-leaf graft regression. The complete verifier
+suite in `src/` and `verify.py` reproduces every computational claim from the
+certificates. The general all-`n` one-blob statement is proved by the
+common-kernel lemma; the four-leaf replay is an independent finite regression,
+not a computational proof for all `n`.
 
 ## Exact arithmetic
 
@@ -70,7 +93,15 @@ The cubic root and square-root intervals were tightened in this revision so that
 
 ## Analytic versus machine-verified conclusions
 
-Every computationally derived factorization, stochastic inequality, pattern equality, determinant, and tangent identity is replayed exactly. The nearby edgewise strictly continuous-time K3P branch follows from the ordinary real-analytic implicit-function theorem after exact verification of an invertible Jacobian and the relevant tangent signs. No common generator, molecular clock, or globally compatible node-time model is claimed.
+Every computationally derived factorization, stochastic inequality, pattern
+equality, determinant, and tangent identity is replayed exactly. The nearby
+edgewise strictly continuous-time K3P branch follows from the ordinary
+real-analytic implicit-function theorem after exact verification of an
+invertible Jacobian and the relevant tangent signs. The local product,
+genuinely K3P neighborhood, Zariski-density, and all-`n` grafting conclusions
+are theorem-level deductions from the stated submersion, algebraic, and
+common-kernel arguments. No multi-blob composition, common generator,
+molecular clock, or globally compatible node-time model is claimed.
 
 ## AI assistance
 

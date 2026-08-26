@@ -1,5 +1,31 @@
 # Changelog
 
+## Version 1.2.0 theorem expansion -- 26 August 2026
+
+- Reordered the logical narrative: the compact K2P collision already refutes
+  K3P tree--theta disjointness by model inclusion.
+- Distinguished the quartic point's genuinely K3P network parameters from its
+  relabeled-K2P shared output, then used the rank-15 restricted submersion to
+  prove nearby genuinely K3P collision distributions.
+- Added local product geometry and 11-/14-dimensional fixed-output network
+  fibers, while retaining the 17-/23-dimensional collision loci.
+- Promoted the full-rank calculations to Zariski-density corollaries in the
+  effective affine K2P and K3P three-leaf Fourier spaces.
+- Proved one-blob common-subtree grafting on every labelled unrooted binary
+  tree topology for every `n >= 3`, with strict-interior, edgewise
+  continuous-time, and genuinely K3P variants.
+- Added an independent exact four-leaf graft verifier covering all 256 Fourier
+  coordinates and all 256 ordinary-state probabilities.
+- Completed independent post-edit proof, verifier, and release-metadata audits;
+  rebuilt and visually inspected all PDFs; and replayed all exact checks in
+  normal and optimized modes.
+- Froze annotated tag `k2p-k3p-theta-v1.2.0` at commit
+  `7570a4a0f7051a607ee6eb4ef7ed43e54e805322` and retained the validated ZIP,
+  tar.gz, checksums, and replay record under `releases/`.
+- Deliberately left multi-blob composability, common-generator/clock models,
+  genuine four-attachment blobs, JC collisions, and complete classification to
+  follow-up work.
+
 ## Version 1.1.0 response and release isolation -- 25 August 2026
 
 - Updated the canonical manuscript for arXiv:2607.12919v3, which removes the
