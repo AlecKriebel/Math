@@ -31,3 +31,11 @@
 - Clean session `review_runs/20260827T010421Z` passed all four requested verification commands: release-input bindings, artifact bindings, the ten-child integrated fresh replay, and active classification mutations. Total 193.749 seconds; declared workspace drift was empty. Report SHA-256 `da448cca65c7787d48a7e537ea707d6f032b019434a7c1688ba062833c5b4afa`; transcript SHA-256 `04404b9c5959c2fbb33db33b13d7757686a958125ff48e764418818125b83db2`.
 - Started the required 44-command portable producer/verifier regeneration exactly once. No duplicate probe process will be launched.
 - Completion estimate: 68%.
+
+## 2026-08-26T18:29:52-07:00 — Semantic probe and draft-report checkpoint
+
+- Reconstructed five probe rows independently of the producer/atlas: one-port isomorphism, triangle, quartet, tree--sunlet, and two-port restriction/inventory. Graph incidence, arrowheads, transports, restrictions, quartet splits, and literal tree--sunlet circuits matched for those samples. This sampling does not establish all 574,535 rows.
+- Tested the package's actual `validate_transport` with a coherently self-hashed record whose claimed target edge is not induced by its vertex map and contains an unmapped target vertex. The validator accepted it. This confirms a load-bearing certificate-verification weakness, not a mathematical counterexample.
+- Completed the handwritten-proof, code/certificate, independent-computation, and literature audits. Drafted the full referee report with verdict `not fully assessable` at confidence 0.91, pending only the exact once-only regeneration result and final validation.
+- The regeneration has passed its first 29 commands, including the full restoration producer/replay/mutations, and is progressing normally through the single hour-scale probe producer.
+- Completion estimate: 82%.
