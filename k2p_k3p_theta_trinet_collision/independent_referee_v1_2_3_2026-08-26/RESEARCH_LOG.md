@@ -56,3 +56,39 @@ Best-guess completion: **5%**.
   semantic descriptors; an adversarial mutation is being tested directly.
 
 Best-guess completion: **82%**.
+
+## 2026-08-26 21:43 PDT - Independent proof audit and adversarial semantic mutation
+
+- The independent paper-first mathematical audit completed without finding a
+  central error.  It separately recovered both factorizations, all required
+  signs/minima, the selected determinants, the K3P tangent, local dimensions,
+  dominance argument, and universal one-blob kernel proof.
+- Experimentally confirmed the most important code-audit concern.  An even
+  three-cycle of K3P Jacobian semantic characters, stored columns, and pivot
+  coefficients survived with exit status zero while the displayed parameter
+  names remained fixed and false.  This is a genuine certificate-label binding
+  gap, but it leaves the original descriptors and independently reconstructed
+  mathematical calculation unchanged.
+- Drafted the integrated referee report with a provisional recommendation of
+  localized revision.  A final adversarial synthesis is now testing whether
+  any proof/code interaction warrants a stronger disposition.
+
+Best-guess completion: **94%**.
+
+## 2026-08-26 21:48 PDT - Final adversarial reconciliation
+
+- A separate final falsification pass attacked the K3P IFT output count,
+  local-section argument, continuous-time openness, complex dominance, and
+  arbitrary-taxon injectivity/grafting mechanism.  No central theorem was
+  falsified and no hidden hypothesis was found.
+- Confirmed that the source paper's literal 2-sub-blob terminology has an
+  incidence tension, but this does not remove the theta from the formal v2 K2P
+  lemma: that result is stated for every trinet with a nontrivial 3-blob and has
+  no no-2-sub-blob hypothesis.
+- Reconciled all four audit families.  The central mathematics is established;
+  the exact surviving defect is confined to certificate semantic binding, with
+  additional localized citation and reproducibility wording corrections.
+- Final report completed at `output/REFEREE_REPORT.md` with a single disposition
+  label and reproducible execution/mutation record.
+
+Best-guess completion: **100%**.

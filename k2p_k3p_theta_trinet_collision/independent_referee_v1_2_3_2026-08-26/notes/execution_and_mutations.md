@@ -125,6 +125,28 @@ K3P-scope, and Jacobian/rank checks all passed.  The targeted fixed-output
 check failed with
 `AssertionError: linearized fixed-output identity in row 1: Alg(0, 0, 0, 1/128)`.
 
+### NC-5: K3P Jacobian semantic-label cycle (surviving mutation)
+
+In a fresh ignored copy, kept the first three displayed Jacobian names fixed as
+`e_rho_1.a_C`, `e_rho_1.a_G`, and `e_rho_1.a_T`, but cycled their executable
+`character` descriptors from `(C,G,T)` to `(G,T,C)`.  Applied the same even
+three-cycle to the first three stored matrix columns and the corresponding
+pivot values, and synchronized the embedded/sidecar sections.  No primitive
+witness, graph, Fourier value, probability, determinant formula, later column,
+or verifier source was changed.
+
+```text
+PYTHONDONTWRITEBYTECODE=1 PYTHONNOUSERSITE=1 python3 materials/src/verify_k3p.py
+```
+
+Exit status: 0.  The run printed the Jacobian, tangent, margin, and sidecar PASS
+lines and ended with `ALL K3P CHECKS PASSED`, even though the three displayed
+names no longer described the derivatives computed beneath them.  A three-cycle
+preserves determinant sign, and cycling the pivot coefficients with the columns
+preserves the assembled tangent vector.  This experimentally confirms the
+semantic-binding blind spot; it does not alter or disprove the unmutated
+determinant or tangent, both of which were separately reconstructed.
+
 ## PDF checks
 
 The rebuilt PDFs were not expected to be byte-identical because the TeX engine
