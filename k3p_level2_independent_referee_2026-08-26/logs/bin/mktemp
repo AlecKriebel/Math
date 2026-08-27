@@ -1,0 +1,11 @@
+#!/bin/sh
+set -eu
+
+# BSD mktemp ignores TMPDIR when invoked with `-t`.  The reviewed clean-room
+# wrapper uses exactly that form.  Rewrite it to an explicit template below
+# the phase-local TMPDIR so every runtime write remains in the copied package.
+if [ "$#" -eq 2 ] && [ "$1" = "-t" ]; then
+    exec /usr/bin/mktemp "${TMPDIR:?TMPDIR is required}/${2}"
+fi
+
+exec /usr/bin/mktemp "$@"

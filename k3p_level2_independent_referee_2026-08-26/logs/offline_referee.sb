@@ -1,0 +1,18 @@
+(version 1)
+
+; The reviewed code may read system libraries and execute local subprocesses.
+(deny default)
+(allow file-read*)
+(allow process*)
+(allow sysctl-read)
+(allow mach-lookup)
+(allow ipc-posix*)
+(allow signal)
+
+; Runtime writes are confined to the copied referee package.
+(allow file-write*
+  (subpath "/Users/alec/Documents/Math/k3p_level2_independent_referee_2026-08-26/package_copy"))
+(allow file-write-data (literal "/dev/null"))
+
+; No network access is permitted.
+(deny network*)
