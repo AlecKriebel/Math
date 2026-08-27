@@ -49,3 +49,64 @@
 - Expanded the report's exact hypotheses, issue metadata, path conventions, dependency map, failure disclosures, literature qualifications, and unresolved-check register.
 - The once-only regeneration remained healthy at two-port parent 1,700/2,107.
 - Completion estimate: 90%.
+
+## 2026-08-26T19:23:40-07:00 — Once-only regeneration checkpoint
+
+- The required portable regeneration was executed exactly once in session
+  `review_runs/20260827T010753Z`; the hour-scale probe producer was launched
+  once and allowed to finish. All 44 planned mathematical commands exited
+  zero and emitted their expected success sentinels. The summed command time
+  was 4,202.194 seconds (70 minutes 2.194 seconds), and the transcript wall
+  interval was 4,202.237 seconds.
+- The outer regeneration runner nevertheless exited nonzero at its final
+  zero-drift gate. The sole changed delivered regular file was
+  `restoration/K3P_RESTORATION_THEOREM_REPORT.md`: the producer embedded the
+  absolute current workspace in a displayed `cd` command. Its mathematical
+  content and all downstream restoration verification/mutations passed. This
+  location-dependent report is recorded as REPRO-1 and was not repaired or
+  rerun in order to preserve the prompt's exactly-once condition.
+- Preserved a synthetic summary for the interrupted outer report containing
+  all 44 command records, exit statuses, timings, stdout hashes, and sentinels,
+  plus a complete all-path before/after diff. Transcript SHA-256:
+  `fbf05586be101315a4e2434c83b3c8ae50c9fd3c487f0c73d16928d98e4403d8`.
+- Separately executed the active hardened H21 audit that the manifest credits
+  with 25 adversarial mutations but the portable wrapper omits. After one
+  disclosed shell setup failure that occurred before Python started, the
+  actual audit passed its baseline, three optimized controls, five hash
+  checks, all 25 mutations, five rank inequalities, and historical replay.
+  Its full workspace diff was empty.
+- Final evidentiary conclusion remains `not fully assessable` at confidence
+  0.91. The decisive unresolved dependencies are the absent active four-port
+  universe reclassification and the semantically shallow independent probe
+  replay; the handwritten necessity proof also needs an explicit ordinary
+  trivalent-versus-sunlet case, apparently repairable from the existing strict
+  tree--sunlet separator.
+- Git coordination note: checkpoint commit `cb7559e0` also captured unrelated
+  K2P paths that another concurrent workflow had already staged. Those paths
+  are user-owned work, so no reset, history rewrite, or other destructive
+  cleanup was attempted. The final referee commit will be restricted by path
+  to this audit folder.
+- Completion estimate: 97%.
+
+## 2026-08-26T19:26:29-07:00 — Final validation checkpoint
+
+- Revalidated every referee-authored independent-check artifact against its
+  SHA-256 manifest, parsed all six top-level JSON evidence files, parsed all
+  eight referee Python sources, and obtained a clean whitespace/error check
+  for the audit tree. The original supplied referee package remains unchanged
+  in Git.
+- Machine-checked the retained regeneration summary: exactly 44 command
+  records, no nonzero command exit, ordered names and sentinels present,
+  4,202.194286 seconds summed command time. The full regeneration diff is
+  three additions, one location-only report change, and no removal; the
+  separately run hardened audit diff is empty.
+- A final independent prompt-compliance red team found no internal
+  contradiction, execution overclaim, missing required report section, or
+  competing verdict. It confirmed the already-disclosed procedural
+  noncompliance that the once-only formal regeneration allowed broad host
+  reads and therefore cannot be certified as fully credential-inaccessible.
+  The run was not repeated because the prompt also requires exactly one full
+  regeneration.
+- Final report SHA-256 before publication:
+  `31e7c67463be1b2b56cab814d2833bde1259c88541357540a513103abab8bb14`.
+- Completion estimate: 100%.

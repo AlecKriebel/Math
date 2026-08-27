@@ -46,6 +46,12 @@ current active graph cannot repair those scope limitations, because that graph
 starts from the frozen four-port lock and uses the same semantically shallow
 probe replay.
 
+The required once-only 44-command regeneration did execute every mathematical
+command successfully, but the outer runner ultimately returned failure because
+the restoration producer embedded its absolute working directory in a Markdown
+report, causing a one-file drift. This is a separate, repairable reproducibility
+defect and does not change either major completeness limitation.
+
 I also find a genuine omitted case in the handwritten necessity proof. Equal
 bridge splits reconstruct the abstract component-incidence tree but do not
 distinguish an ordinary trivalent component from a three-boundary cycle/sunlet.
@@ -87,7 +93,8 @@ transition probabilities, together with positive nontrivial spectra
 (`03_conventions_model.tex:85-135`). States and characters are identified with
 the fixed Klein four group `{0,C,G,T}`, the root distribution is uniform, and
 the network tensor is the inheritance-weighted sum of displayed-tree Fourier
-monomials subject to total character zero (`:87-122`). Zero spectra,
+monomials subject to total character zero; each switching weight is the product
+of independent local `lambda_r` or `1-lambda_r` choices (`:87-122`). Zero spectra,
 identity/boundary edges,
 inheritance values `0` or `1`, nonbinary networks, higher level, nonreversible
 models, and other semi-directed cleanup conventions are outside the theorem
@@ -353,7 +360,7 @@ the topology reductions, not the image/germ conclusion actually needed.
 
 **Severity:** major, load-bearing.
 **Location:** `input_frozen/k3p_cloud_artifacts/descriptor_report_4(1).json:2-18`;
-`K3P_14_ORBIT_LOCK.json:69-71,928-929`;
+`input_frozen/k3p_cloud_artifacts/K3P_14_ORBIT_LOCK.json:69-71,928-929`;
 `manuscript/sections/08_primitive_bounded.tex:90-211`;
 `reproducibility/exact_four_port.py:560-626,830-843`;
 `clean_room/verify_h21_transport_and_fourteen_orbits.py:71-120,328-407,1683-1719`;
@@ -467,7 +474,11 @@ coherently resealed so that only the semantic error remains.
    suite and optimized rejection only (`clean_room/verify_clean_room.sh:12-29`).
    It never runs `clean_room/adversarial/hardened_cleanroom_reaudit.py`, and the
    44-command plan omits it. The integrated gate reads the stored hardened
-   report rather than freshly producing it.
+   report rather than freshly producing it. I separately ran that script in a
+   fresh copied workspace: its baseline, three optimized-mode controls, five
+   input hashes, all 25 coherently exercised mutations, five directional rank
+   inequalities, and historical-failure replay passed. This confirms the fixed
+   audit but does not make it part of the claimed active wrapper.
    This affects reproducibility of the claimed hardening, rather than the
    mathematical conclusion by itself. Repair by adding the hardened script and
    a sentinel to the active wrapper/44-command plan, or relabel the stored audit
@@ -528,6 +539,8 @@ that explicitly denied common SSH/cloud/keychain/browser credential locations.
 Every result was byte-identical to the preserved evidence. The overlay itself
 does not claim to enumerate every possible credential location; its SHA-256 is
 `39dbe755d63423558dc3416b8351927b6f26a8512754515e09cf7f874d8187d6`.
+Commands, control probes, and result hashes are recorded in
+`results/strict_independent_replay.md`.
 
 The documented dependencies were supplied offline by copying the source
 project's exact local `.venv` into the isolated package, avoiding package-index
@@ -605,9 +618,85 @@ Report SHA-256:
 Transcript SHA-256:
 `04404b9c5959c2fbb33db33b13d7757686a958125ff48e764418818125b83db2`.
 
-**Complete regeneration:** `REGENERATION_PENDING`.
+The separately manifest-claimed hardened H21 re-audit also passed once. An
+initial shell setup attempt failed before Python launch because the copy-target
+parent directory did not yet exist; after creating that parent, the single
+actual audit run rejected all 25 mutations and passed its controls. Transcript
+SHA-256:
+`c751a1b00de068175ef63b68fa99fa67beead11cf353fd0f63a6410d2b098b4a`.
+An all-path comparison of its fresh workspace found no file or symlink
+difference from the delivered proof source; diff-report SHA-256:
+`e87f1b2d261520832da3ed5f0178608f54e0982f5311289bfc153340c0d1f660`.
 
-### 5.3 Explicitly unexecuted packaging/toolchain checks
+**Complete regeneration:** the once-only session
+`review_runs/20260827T010753Z` returned
+`FAIL_OUTER_DRIFT_AFTER_ALL_COMMANDS_PASS`. All 44 declared mathematical
+commands ran in the prescribed order, exited zero, emitted their sentinels, and
+were recorded as `PASS`. Their elapsed-time sum was 4,202.194 seconds; the
+transcript's filesystem wall interval was 4,202.237 seconds (70m02s). The
+hour-scale probe producer took 2,863.367 seconds and was launched exactly once.
+The restoration producer/replay took 609.710/75.095 seconds, and the final
+integrated replay took 182.635 seconds.
+
+Selected regenerated outputs were:
+
+| Command | Seconds | stdout SHA-256 |
+|---|---:|---|
+| restoration full producer | 609.710 | `9c142efab431690578e0b0d8dceb0fb8644636282a54ad8ff6129ad9efd8f279` |
+| restoration independent replay | 75.095 | `3be91a42e8f8a2e63a4057f6ea472ea5f272e287d294c2be7a8d49eb903cb2a6` |
+| probe hour-scale producer | 2,863.367 | `1182fb269397621299e18b281344ccca5a3cf67853f6c4a89a12593a88300b37` |
+| probe advertised replay | 16.432 | `40bc14354f04991c885ab453fd7eea467acd0d92f5b2bf1e154a2376c7102cc0` |
+| probe mutations | 169.650 | `7ebeb51cf2fbd5f9be6b057337bef4725fbfccfc53c26733940031f737eac99e` |
+| integrated fresh replay | 182.635 | `2c7a45f0666cc16420556c2cd8abeed18ab9f036e693936eeddabec79b2f751f` |
+| integrated mutations | 5.158 | `37386eed3c13b4e6f1cb6897671ed9e8bc85001a81851d3ad2fe1c8a94af627a` |
+
+The complete transcript is 76,098 bytes, SHA-256
+`fbf05586be101315a4e2434c83b3c8ae50c9fd3c487f0c73d16928d98e4403d8`.
+All 44 records and stdout hashes are preserved in
+`results/regeneration_failure_summary.json`, SHA-256
+`e3956277d80a33dbaa0b42e790c607b664088b51c04f611416ec144ee5043535`.
+The preserved primary and integrated supplemental reports have SHA-256
+`5ce054ecddd6c4bf14c57b01c02c00efcd03edea1645c8e83491774413bb128c`
+and `8413bd460776ff8696a05b63b85a407b52a3c035b8457f1ebdf3cf899ae1760b`.
+Because the outer drift check failed, the runner created neither `report.json`
+nor `summary.json`; I do not describe the complete regeneration as a passing
+run and did not rerun it.
+
+### 5.3 REPRO-1 — location-dependent restoration report defeats drift gate
+
+**Severity:** moderate reproducibility defect; no mathematical certificate
+failed.
+
+**Location:** `restoration/regenerate_k3p_restoration.py:569-628,829`;
+`referee_tools/run_active_verifiers.py:366-422`.
+
+**Dependency:** the outer claim of deterministic, zero-drift portable
+regeneration; not the restoration theorem's algebra or the main theorem by
+itself.
+
+**Repairability:** high.
+
+The only changed sealed-payload file was
+`restoration/K3P_RESTORATION_THEOREM_REPORT.md`. Its reproduction block embeds
+`cd {HERE}`. The delivered report contains the source-project absolute path;
+the regenerated report contains the isolated-workspace absolute path. No other
+text differs. Its size/hash changed from 2,401 bytes /
+`9c3ea74acdc5dc4eff24d50c9f2db845215bde6b8276c72faf0a6d150f4bf7f0`
+to 2,473 bytes /
+`26392bbdfdeb363b4440f960d0814fb07c9d76c410de8d6f2f35bb126629dbfb`.
+
+The complete all-path comparison found no removal, that one change, and three
+authorized additions: `.venv`, the integrated fresh report (29,695 bytes,
+SHA-256 `8413bd460776ff8696a05b63b85a407b52a3c035b8457f1ebdf3cf899ae1760b`),
+and the ephemeral probe-verification report (1,132 bytes, SHA-256
+`1bd4a010a306ff887247cb1fd19516c504e766155f41f47ff117efaf137bffe6`).
+The full diff is `results/regeneration_full_workspace_diff.json`, SHA-256
+`f86b84a9e528cb40fddc1dbaf73d2ae09f971a4622708846c985ad639ff4919f`.
+Render a relative reproduction command, normalize this report as is already
+done for `primary_gate_report.json`, or restore the canonical bytes before the
+drift comparison; then add a relocated-workspace regression.
+
+### 5.4 Explicitly unexecuted packaging/toolchain checks
 
 I inspected all 932 lines of
 `reproducibility/test_release_engineering_mutations.py`. It tests Git-index
@@ -622,11 +711,13 @@ required exact Tectonic 0.16.9 arm64 executable. I did extract and render every
 page of both supplied PDFs and found no material visual defect. PDF identity is
 covered by package integrity, not a fresh typesetting build.
 
-### 5.4 What a passing run does and does not show
+### 5.5 What the executions do and do not show
 
-The fresh runs establish deterministic replay of the declared arithmetic,
-hash/schema bindings, listed mutations, and absence of undeclared drift in
-their copied workspaces. They do not establish completeness of untested
+The clean verification establishes replay of the declared arithmetic,
+hash/schema bindings, and listed mutations with zero sealed-payload drift. The
+complete regeneration establishes that all 44 command-level checks can pass,
+but REPRO-1 prevents a claim of end-to-end zero-drift determinism. Neither
+execution establishes completeness of untested
 mutations or correctness of prose analytic arguments. Specifically, they do
 not resolve CODE-1 or CODE-2 because those are omissions from the active
 verification graph itself.
@@ -794,8 +885,8 @@ would permit the stronger language.
 3. A revised proof inserting ordinary-tree versus three-boundary-cycle
    separation before the cycle/theta local theorem.
 4. An explicit analytic-section argument for the fixed target completion type.
-5. Fresh execution of the hardened 25-mutation clean-room audit if it remains
-   claimed as active, or corrected manifest language.
+5. Add the now-separately-replayed hardened 25-mutation audit to the active
+   wrapper with a sentinel, or correct the manifest language.
 6. Updated dependency disclosure and literature/convention comparison.
 
 After these repairs, rerun the integrated verification and the complete
@@ -811,9 +902,9 @@ evidence.
 | Full four-port reclassification (CODE-1) | `08_primitive_bounded.tex:90-211`; `input_frozen/k3p_cloud_artifacts/K3P_14_ORBIT_LOCK.json:69-71,928-929`; major; complete local classification and main necessity | Unexecuted and impossible with the active package as supplied. Bundle and independently verify a producer over all 405,216 relations that derives `40=38+2` and the fourteen orbits. |
 | Semantic replay of all probe rows (CODE-2) | `09_restoration_words.tex:65-124`; `probes/verify_k3p_probes.py:96-222,302-494`; major; arbitrary-word recovery and main necessity | The semantic producer ran, but a separate semantic replay of all 574,535 rows remains absent. Supply independent graph/restriction/transport/observable reconstruction and coherently resealed mutations. |
 | Primitive/cut topology and degree-two exclusion | `08_primitive_bounded.tex:3-88`; `cut_recovery/strong_crossbridge/global_transfer/build_global_transfer.py:72-132`; `06_bridge_fibre.tex:51-81`; moderate conditional dependencies | Five templates, 72 cut records/masks, and the full strong-class exclusion of unmarked degree two were not independently graph-enumerated. An independent graph generator or a complete handwritten enumeration would resolve them. |
-| Complete portable regeneration | `review_runs/20260827T010753Z`; required execution evidence | `REGENERATION_PENDING`. Replace with exact command count, runtime, hashes, supplemental outputs, and all-path drift after the once-only run closes. |
+| Complete portable regeneration / REPRO-1 | `review_runs/20260827T010753Z`; `restoration/regenerate_k3p_restoration.py:569-628`; moderate reproducibility dependency | Executed exactly once: all 44 mathematical commands passed, then the outer gate failed on one location-dependent Markdown path. It was not rerun. Use relative/normalized report text and test relocation. |
 | Filesystem-level credential isolation | `logs/offline_referee.sb:1-15`; major procedural/reproducibility limitation, not a mathematical dependency | Network denial, write confinement, and an empty environment were enforced, but host reads were unrestricted. The exact-once regeneration will not be relaunched. Future reassessment should use a reviewed allowlist or credential-free VM; the smaller referee checks did rerun identically under a common-credential deny overlay. |
-| Claimed hardened 25-mutation H21 audit | `ACTIVE_MANIFEST.json:123-125`; `clean_room/verify_clean_room.sh:12-29`; `reproducibility/run_release_suite.py:116-240`; moderate active-boundary issue | Not freshly executed and absent from the 44-command plan. Add it with a sentinel or relabel the report stored-only. |
+| Claimed hardened 25-mutation H21 audit | `ACTIVE_MANIFEST.json:123-125`; `clean_room/verify_clean_room.sh:12-29`; `reproducibility/run_release_suite.py:116-240`; moderate active-boundary issue | Separately executed once and passed all 25 mutations, but remains absent from the wrapper/44-command plan. Add it with a sentinel or relabel the report stored-only. |
 | Git-bound release-engineering suite | `reproducibility/test_release_engineering_mutations.py:1-932`; nonmathematical packaging scope | Source inspected; not executed in the exact clean checkout it requires. Reproduce only from the named clean Git tree if packaging assurance is desired. |
 | Exact PDF rebuild | `START_HERE.md:115-117`; `release/ENVIRONMENT.md:15-18`; editorial/toolchain only | Not executed because the exact Tectonic 0.16.9 arm64 binary is not bundled. Both supplied PDFs were fully read, rendered, and visually inspected. |
 | Literature repairs LIT-1--LIT-5 | Locations and minor dependencies are enumerated in section 7 | Unresolved editorial work; add the sources, status labels, durable archives, and convention qualification specified there. |
