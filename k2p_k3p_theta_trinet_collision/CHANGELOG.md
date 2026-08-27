@@ -1,5 +1,23 @@
 # Changelog
 
+## Version 1.2.2 literature and scope precision -- 26 August 2026
+
+- Qualified the cited source results by their biologically reasonable
+  parameter space, triangle-reticulation ambiguity, and permitted 2-blob
+  augmentations under the arbitrary-level JC theorem.
+- Made the smooth local section in the nearby genuinely K3P proof explicit,
+  including the strict edgewise continuous-time repetition.
+- Narrowed the arbitrary-taxon interpretation to the exact theorem-level
+  conclusion and stated that contracting the inserted theta blob recovers the
+  original labelled tree-of-blobs topology.
+- Tightened the technical summary's relative-open-dense wording and completed
+  independent proof, scope, release, and full-page PDF audits.
+- Froze annotated tag `k2p-k3p-theta-v1.2.2` at commit
+  `6d3f202f9018f13fca2494c5cbb411da4ab43a8a` and retained the validated ZIP,
+  tar.gz, checksums, and replay record under `releases/`.
+- Preserved the title, abstract, theorem conclusions, exact certificates,
+  verifier transcripts, and immutable version `1.2.1` snapshot.
+
 ## Version 1.2.1 notation and rooting clarification -- 26 August 2026
 
 - Removed the collision between the Klein-group symbol and topology notation,

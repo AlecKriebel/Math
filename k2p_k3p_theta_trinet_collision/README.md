@@ -16,13 +16,13 @@ verification, citation, submission, or archival deposit.** Open the current
 or its [`combined-paper-clarified.tex`](k2p_k3p_theta_clarified/combined-paper-clarified.tex)
 source directly.
 
-The current frozen submission/replay snapshot is version `1.2.1`, identified by
-the venue-neutral annotated Git tag `k2p-k3p-theta-v1.2.1` at full commit
-`45bedb7e76e2e314b2a8b986f822ed283fd96651`. Its validated ZIP, tar.gz, and
+The current frozen submission/replay snapshot is version `1.2.2`, identified by
+the venue-neutral annotated Git tag `k2p-k3p-theta-v1.2.2` at full commit
+`6d3f202f9018f13fca2494c5cbb411da4ab43a8a`. Its validated ZIP, tar.gz, and
 checksum files are under
-[`releases/k2p-k3p-theta-v1.2.1/`](releases/k2p-k3p-theta-v1.2.1/). Versions
-`1.2.0` and `1.1.0` remain immutable historical snapshots in their own release
-directories.
+[`releases/k2p-k3p-theta-v1.2.2/`](releases/k2p-k3p-theta-v1.2.2/). Versions
+`1.2.1`, `1.2.0`, and `1.1.0` remain immutable historical snapshots in their
+own release directories.
 
 All superseded parent-level files are isolated under
 [`legacy/DO_NOT_SUBMIT-pre-clarification/`](legacy/DO_NOT_SUBMIT-pre-clarification/).
@@ -82,7 +82,7 @@ ends with `ALL EXACT CHECKS PASSED`.
 - `k2p_k3p_theta_clarified/submission/biorxiv/`: bioRxiv metadata and upload checklist.
 - `k2p_k3p_theta_clarified/CITATION.cff`: citation metadata.
 - `k2p_k3p_theta_clarified/LICENSES.md`: package licensing boundaries.
-- `releases/k2p-k3p-theta-v1.2.1/`: commit-pinned current replay archives and checksums.
+- `releases/k2p-k3p-theta-v1.2.2/`: commit-pinned current replay archives and checksums.
 - `legacy/`: superseded drafts and immutable historical release archives, kept outside the current submission path.
 
 ## Build and release
@@ -90,7 +90,7 @@ ends with `ALL EXACT CHECKS PASSED`.
 ```bash
 cd k2p_k3p_theta_clarified
 bash src/build_pdfs.sh
-bash submission/build_release.sh --output-dir /absolute/path/to/release-output --commit k2p-k3p-theta-v1.2.1 --version 1.2.1
+bash submission/build_release.sh --output-dir /absolute/path/to/release-output --commit k2p-k3p-theta-v1.2.2 --version 1.2.2
 ```
 
 The release builder archives only the tracked canonical release files at an
@@ -98,9 +98,9 @@ exact Git commit. It explicitly excludes the author-facing
 `submission/biorxiv/` worksheet/checklists, the legacy parent package,
 untracked caches, and local build debris.
 
-The current archives were built from the frozen version `1.2.1` tag and passed
-the clean replay gates documented in their release README. Versions `1.2.0`,
-`1.1.0`, and `1.0.0` remain immutable historical records.
+The current archives were built from the frozen version `1.2.2` tag and passed
+the clean replay gates documented in their release README. Versions `1.2.1`,
+`1.2.0`, `1.1.0`, and `1.0.0` remain immutable historical records.
 
 Submission-specific status, unresolved author choices, and official bioRxiv
 guidance are maintained in
