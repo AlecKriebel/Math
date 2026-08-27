@@ -189,12 +189,12 @@ equivalence, an ambient-rank-15 triangle argument, restoration census
 conflation, or a proper directed containment inside the strong class.
 
 This is a mathematical certification, not a publication-status claim.  The
-targeted-referee-repair manuscript and reader supplement sources are complete;
-the PDFs and prior visual QA predate the present hardening changes.  Clean
-quick/full/all-producer replay, PDF and release-archive rebinding,
-journal-format packaging, and human author review remain pending.  The project
-does not claim submission readiness, a DOI, a selected license, completed peer
-review, or completed human review.
+targeted-referee-repair manuscript and reader supplement sources are complete,
+and the clean quick and complete 54-command regeneration suites pass at the
+immutable proof snapshot cited by the article.  PDF and release-archive
+rebinding, journal-format packaging, and human author review remain pending.
+The project does not claim submission readiness, a DOI, a selected license,
+completed peer review, or completed human review.
 The machine-readable report retains its legacy internal filename,
 `reproducibility/K3P_SAME_CLASSIFICATION_GATE_REPORT.json`, for compatibility;
 its separate integration mutation suite rejects 24/24 theorem-boundary

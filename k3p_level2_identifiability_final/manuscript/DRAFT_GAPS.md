@@ -4,19 +4,15 @@ This file is deliberately separate from the theorem statements.  It records
 integration work that must close before the sources are promoted to a final
 submission build.
 
-1. **Post-revision release replay.**  Complete at exact pushed source commit
-   `0ddf4a76f1c4cc37ac05dcb0915edcfdce65e057`: the clean quick/full suites,
-   two-build source reproduction for both PDFs, and deterministic
-   source/compact/full archive double-builds all passed.  The article now
-   cites immutable source snapshot
-   `e5b0a9fc6cca79d6ab1d6cd96ceb5c4e8be5a2d5`.  That candidate's 45-command
-   producer graph remains bound to its successful one-shot execution at
-   `7b4cdd3197e6d650abafc263cbc8a568d09ddf9f`.  The present referee-hardening
-   revision changes active producers and expands the plan to 54 commands.
-   Focused graph-derived cut-topology, H14, H21, restoration-portability,
-   semantic-probe, full-four-port, standalone-primary, and fail-closed checks
-   pass; a clean 54-command
-   regeneration and downstream ledger/archive reseal remain required.
+1. **Post-revision release replay.**  The clean quick suite and complete
+   54-command regeneration pass at exact pushed proof snapshot
+   `e4b13c571eb462d7ba02e39ffd0a7b368fa5fc9f`.  The run regenerated every
+   producer, including the full four-port and probe universes, and ended with
+   fresh integrated replay plus all classification and release-engineering
+   mutations rejected.  The article now cites that immutable snapshot.
+   Rebuilding the current PDFs, source archives, proof archives, execution
+   ledger, Google Drive source copy, and referee package remains downstream
+   release engineering rather than a mathematical gap.
 
 2. **Author and post-typesetting review.**  Independent mathematical and
    evidence audits of the targeted bridge, sunlet, genericity, and noncut-
@@ -31,11 +27,10 @@ submission build.
    any corresponding-email field remain outside this mathematical draft
    until supplied by the user.
 
-4. **Remaining typesetting gate.**  The canonical article and reader
-   supplement have been compiled with a fixed source timestamp, rendered
-   page by page, visually inspected, checked for embedded fonts and TeX
-   warnings, and reproduced byte for byte in independent build directories.
-   Journal-specific manuscripts and cover letters remain blocked on the
-   author-confirmed declaration, address, license, and persistent-archive
-   metadata recorded under `submission/`; exact reproduction from the final
-   sealed source archives must still be checked after those fields are fixed.
+4. **Remaining typesetting gate.**  The prior candidate passed deterministic
+   two-build compilation and page-by-page inspection.  Those checks must be
+   repeated for the current availability-linked paper bytes.  Journal-specific
+   manuscripts and cover letters remain blocked on the author-confirmed
+   declaration, address, license, and persistent-archive metadata recorded
+   under `submission/`; exact reproduction from the final sealed source
+   archives must still be checked after those fields are fixed.

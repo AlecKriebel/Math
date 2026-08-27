@@ -22,12 +22,12 @@ integrated and complete-regeneration runs.
 | DISCLOSURE | Reproducibility prose overstates active reconstruction boundaries | Confirmed for reviewed bytes | **PASS:** paper, supplement, manifest, provenance, and referee brief state the exact independent boundaries |
 | LIT-1--5 | Recent triangle, invariant, higher-level, companion-status, and convention comparisons | Verified against primary records | **PASS with disclosed metadata limit:** comparisons and bibliography corrected; K2P/tree--theta use immutable tags/commits because no persistent DOI was authorized |
 | ISOLATION | Referee run denied network/writes but did not credential-deny every host read | Procedural limitation, not theorem defect | **PASS as disclosure:** copied Git-free runner is explicitly not an OS sandbox; reviewers are told to supply an external credential-free boundary |
-| PDF/RELEASE | Rebuild, visual QA, archive/package reseal, immutable version binding | Downstream engineering | Clean quick/full replay passed; the first 54-command run fail-closed on a stale downstream cut hash, whose complete binding chain is now repaired; one clean repeat and final reseal remain |
+| PDF/RELEASE | Rebuild, visual QA, archive/package reseal, immutable version binding | Downstream engineering | **Replay PASS:** clean 54-command repeat passed in 7,686 seconds at immutable proof snapshot `e4b13c57`; current PDF/source/archive/referee-package reseal remains |
 
 Current theorem status: no counterexample was found, and every mathematical or
 code-boundary finding has a focused passing repair.  Publication certification
 remains open only for the clean integrated replay and final reseal.
 
 Best-guess completion toward the mathematical classification goal: **99%**.
-Best-guess completion toward the paper/certification/proof-archive goal: **97%**.
+Best-guess completion toward the paper/certification/proof-archive goal: **99%**.
 Best-guess completion toward the external journal/DOI release goal: **65%**.

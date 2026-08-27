@@ -1002,3 +1002,33 @@ or finite classifications.
 Best-guess completion toward the mathematical classification goal: **100%**.
 Best-guess completion toward the paper/certification/proof-archive goal: **97%**.
 Best-guess completion toward the external journal/DOI release goal: **60%**.
+
+## 2026-08-27T09:23:18Z — clean complete regeneration passed
+
+- Pushed the repaired fixed point at
+  `e4b13c571eb462d7ba02e39ffd0a7b368fa5fc9f`, then ran the quick suite and
+  one uninterrupted complete 54-command regeneration from a clean project
+  tree.  Both passed.
+- The complete run took 7,686.229 seconds and peaked at 2,030,157,824 bytes of
+  resident memory.  It regenerated the five-core cut topology, the full
+  405,216-relation four-port universe, all restoration records, all 574,535
+  probe rows, the Krawczyk and all-\(n\) sharpness certificates, global
+  infrastructure, primary 28/28 evidence, and the final integrated theorem
+  replay.
+- Every independent and adversarial boundary passed, including exact
+  four-port structure comparison, six coherent full-universe mutations,
+  semantic replay of every probe row, all probe/restoration mutations, 19
+  global-infrastructure mutations, 24 classification mutations, and 32
+  release-engineering mutations.  The project tree was byte-clean afterward.
+- Rebound the article's availability statement to that immutable proof
+  snapshot.  PDF/source/archive rebuilding, visual QA, Google Drive source
+  synchronization, and referee-package resealing remain.  No tag, release,
+  DOI, license, submission, or external communication has been made.
+
+Strongest verified result: the entire active computer-assisted proof graph now
+regenerates cleanly from the committed repaired sources and closes every
+mathematical and certification finding in the independent referee report.
+
+Best-guess completion toward the mathematical classification goal: **100%**.
+Best-guess completion toward the paper/certification/proof-archive goal: **99%**.
+Best-guess completion toward the external journal/DOI release goal: **60%**.

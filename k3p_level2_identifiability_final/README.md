@@ -61,27 +61,17 @@ Reproduce the integrated mathematical verification with:
 .venv/bin/python reproducibility/run_release_suite.py full
 ```
 
-This certification is not a submission-readiness claim.  For the prior
-minor-revision candidate, the revised manuscript, reader supplement, canonical
-PDFs, and page-by-page visual QA were complete, and the deterministic
-fail-closed release tooling was implemented.  At exact pushed candidate commit
-`0ddf4a76f1c4cc37ac05dcb0915edcfdce65e057`, the conditional-PASS minor
-revision plus immutable availability link, clean quick/full suites, two-build
-PDF source reproductions, and deterministic source/proof-archive double-builds
-all passed.  The article's availability statement points to immutable source
-snapshot `e5b0a9fc6cca79d6ab1d6cd96ceb5c4e8be5a2d5`.  The former 45-command
-mathematical producer graph passed once at
-`7b4cdd3197e6d650abafc263cbc8a568d09ddf9f` and remains historical execution
-evidence.  The present referee-hardening revision expands that plan to 54
-commands by adding active graph-derived cut-topology regeneration, its byte
-comparison and mutations, the hardened H21 audit, and restoration-report
-relocation, together with the semantic probe replay and the complete
-four-port-universe producer, independent verifier, and coherent mutation
-suite.  Those new focused gates pass, but the revised 54-command graph
-and downstream release ledgers must be resealed before submission.  The
+This certification is not a submission-readiness claim.  At exact pushed
+proof snapshot `e4b13c571eb462d7ba02e39ffd0a7b368fa5fc9f`, the clean quick
+suite and the complete 54-command regeneration both pass.  The latter ran for
+7,686 seconds, regenerated the full 405,216-relation four-port universe and
+all 574,535 semantic probe rows, and ended with fresh integrated replay plus
+24/24 classification and 32/32 release-engineering mutations rejected.  The
+article's availability statement points to that immutable snapshot.  The
 post-run execution ledger for the earlier candidate is
 `release/FINAL_RELEASE_ENGINEERING_REPORT.md`.  Runtime records live under
-ignored release work/transcript paths.  Journal packages remain deliberately
-`NOT_READY` until their human metadata and upload artifacts are supplied.  No
-DOI, license, tag, submission, peer review, or completed human review is
-claimed.
+ignored release work/transcript paths.  Current PDF/source archives and the
+referee package are being rebound after the paper-only availability update;
+journal packages remain deliberately `NOT_READY` until their human metadata
+and upload artifacts are supplied.  No DOI, license, tag, submission, peer
+review, or completed human review is claimed.
