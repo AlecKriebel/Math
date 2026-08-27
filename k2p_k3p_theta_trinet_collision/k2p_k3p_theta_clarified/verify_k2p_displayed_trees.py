@@ -19,15 +19,16 @@ from __future__ import annotations
 from dataclasses import dataclass
 from fractions import Fraction
 from itertools import product
-import json
 import math
 from pathlib import Path
 import sys
 from typing import Dict, Iterable, Mapping, Sequence, Tuple
 
+from strict_json import load_canonical_certificate
+
 
 ROOT = Path(__file__).resolve().parent
-CERT = json.loads((ROOT / "certificate_k2p_simple.json").read_text())
+CERT = load_canonical_certificate(ROOT / "certificate_k2p_simple.json")
 SYMBOLS = ("A", "C", "G", "T")
 KLEIN = (
     (0, 1, 2, 3),

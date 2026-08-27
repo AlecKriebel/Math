@@ -5,6 +5,22 @@ rejected. Reviews used the manuscript, exact verifiers and certificates, the
 official arXiv sources for Versions 2 and 3 of Brits et al., and the cited
 primary literature.
 
+## Version 1.2.6 independent-referee response -- 27 August 2026
+
+| Feedback item | Verdict | Disposition |
+|---|---|---|
+| Cite Ardiyansyah (2021), the closest earlier level-two JC/K2P/K3P algebraic study | Valid literature-completeness correction; no priority conflict | Added the primary citation and explained that its restricted variety-noncontainment results concern simple/semisimple nice networks with at least four leaves; its Lemma 5.1 excludes two- and three-leaf simple strict level-two networks from that class, so it does not address this non-nice pointwise tree--theta intersection. |
+| Qualify the two broad Version 2-to-3 history sentences | Valid editorial precision | The abstract and acknowledgment now name the formal K2P lemma and the K2P part of the corresponding global corollary. The already precise introduction, source-comparison remark, and technical summary are unchanged. A footnote highlighting Version 3's isolated stale roadmap sentence was rejected as distracting because the operative results and open-question discussion are unambiguous. |
+| Reject duplicate JSON keys and close operative schemas | Valid optional assurance hardening | Implemented globally: every verifier certificate load rejects duplicate names, `NaN`/infinite constants, and any structural departure from a hard-coded schema fingerprint. Added fourteen raw/schema hostile cases plus same-length and extra-row vertex regressions in normal and optimized modes. |
+| Add source-coupling assertions for two printed values | Optional consistency hardening, not a demonstrated defect | Deferred. Both quantities were independently reconstructed by the referee, are already certified by exact computations, and no source/value mismatch was found. |
+| Add semantic PDF tags and alternative text | Valuable accessibility enhancement but not a scientific or current preprint-layout blocker | Deferred. The build toolchain emits untagged PDFs; all 24 pages and the topology figure remain visually legible. A proper tagged-PDF workflow should be introduced deliberately rather than through a late unverified package switch. |
+
+The report found no false theorem, witness, arithmetic error, analytic gap,
+operative verifier false positive, or PDF regression. The version 1.2.6
+changes are literature context, historical precision, and fail-closed input
+parsing; no title, theorem, proof, witness, determinant, tangent, or scientific
+conclusion changes.
+
 ## Version 1.2.5 independent-referee response -- 27 August 2026
 
 | Feedback item | Verdict | Disposition |

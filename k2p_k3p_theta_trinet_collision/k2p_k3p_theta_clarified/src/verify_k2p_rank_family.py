@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 """Exact K2P rank and collision-family audit (standard library only)."""
 from __future__ import annotations
-import importlib.util,itertools,json,math,sys
+import importlib.util,itertools,math,sys
 from dataclasses import dataclass
 from fractions import Fraction as F
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
+sys.path.insert(0,str(ROOT))
+from strict_json import load_canonical_certificate
 spec=importlib.util.spec_from_file_location('k2pext',ROOT/'src/verify_k2p_extended.py');m=importlib.util.module_from_spec(spec);sys.modules['k2pext']=m;spec.loader.exec_module(m)
-SIMPLE=json.loads((ROOT/'certificate_k2p_simple.json').read_text())
+SIMPLE=load_canonical_certificate(ROOT/'certificate_k2p_simple.json')
 def need(c,msg):
     if not c:raise AssertionError(msg)
 def verify_q71_field():

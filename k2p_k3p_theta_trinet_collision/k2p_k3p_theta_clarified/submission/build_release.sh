@@ -127,6 +127,7 @@ required=(
   k2p_displayed_tree_clarification.pdf
   verify.py
   verification_report_complete.txt
+  verification_report_json_schema.txt
   verification_report_simple.txt
   verification_report_displayed_trees.txt
   verification_report_four_leaf_graft.txt
@@ -135,6 +136,8 @@ required=(
   manifest.sha256
   LICENSE-CODE
   LICENSES.md
+  strict_json.py
+  src/test_json_schema_mutations.py
   src/verify_k2p_four_leaf_graft.py
   submission/build_release.sh
 )
@@ -317,6 +320,16 @@ cmp -s "$release_tree/verification_report_complete.txt" "$tmp_dir/verification-n
 (cd "$release_tree" && PYTHONOPTIMIZE=1 python3 verify.py) >"$tmp_dir/verification-optimized.txt"
 cmp -s "$release_tree/verification_report_complete.txt" "$tmp_dir/verification-optimized.txt" || {
   printf 'Optimized verification output differs from the stored complete report.\n' >&2
+  exit 1
+}
+(cd "$release_tree" && python3 src/test_json_schema_mutations.py) >"$tmp_dir/verification-json-schema.txt"
+cmp -s "$release_tree/verification_report_json_schema.txt" "$tmp_dir/verification-json-schema.txt" || {
+  printf 'Stored strict-JSON/schema mutation report is stale.\n' >&2
+  exit 1
+}
+(cd "$release_tree" && PYTHONOPTIMIZE=1 python3 src/test_json_schema_mutations.py) >"$tmp_dir/verification-json-schema-optimized.txt"
+cmp -s "$release_tree/verification_report_json_schema.txt" "$tmp_dir/verification-json-schema-optimized.txt" || {
+  printf 'Optimized strict-JSON/schema output differs from the stored focused report.\n' >&2
   exit 1
 }
 (cd "$release_tree" && python3 verify_k2p_simple.py) >"$tmp_dir/verification-simple.txt"

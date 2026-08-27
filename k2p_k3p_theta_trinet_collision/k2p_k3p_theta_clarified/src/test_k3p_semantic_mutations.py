@@ -12,8 +12,11 @@ from typing import Callable, List, MutableMapping, Tuple
 
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+from strict_json import load_canonical_certificate
+
 VERIFIER = ROOT / "src" / "verify_k3p.py"
-BASE = json.loads((ROOT / "certificate_k3p.json").read_text(encoding="utf-8"))
+BASE = load_canonical_certificate(ROOT / "certificate_k3p.json")
 
 
 def synchronize_sidecars(directory: Path, certificate: MutableMapping[str, object]) -> None:
@@ -120,6 +123,10 @@ def insert_shadowed_duplicate_vertex(certificate: MutableMapping[str, object]) -
     )
 
 
+def duplicate_vertex_id_in_place(certificate: MutableMapping[str, object]) -> None:
+    certificate["rooted_network"]["vertices"][1]["id"] = "rho"
+
+
 def contradict_reticulation_parent(certificate: MutableMapping[str, object]) -> None:
     certificate["rooted_network"]["reticulations"][0]["incoming"][0]["parent"] = "q"
 
@@ -161,8 +168,13 @@ def main() -> None:
             "canonical rooted arc ID/endpoint/vector map",
         ),
         (
-            "shadowed duplicate vertex identifier",
+            "extra shadowed duplicate vertex row",
             insert_shadowed_duplicate_vertex,
+            "closed JSON schema mismatch",
+        ),
+        (
+            "same-length duplicate vertex identifier",
+            duplicate_vertex_id_in_place,
             "duplicate vertex identifier",
         ),
         (
@@ -173,7 +185,7 @@ def main() -> None:
         (
             "unknown top-level certificate field",
             add_unknown_top_level_field,
-            "closed top-level K3P certificate schema",
+            "closed JSON schema mismatch",
         ),
     ]
     for name, mutate, expected_diagnostic in tests:

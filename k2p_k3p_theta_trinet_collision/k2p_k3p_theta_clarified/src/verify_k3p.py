@@ -14,12 +14,16 @@ from __future__ import annotations
 
 import argparse
 import itertools
-import json
 import sys
 from dataclasses import dataclass
 from fractions import Fraction
 from pathlib import Path
 from typing import Dict, Iterable, List, Mapping, MutableMapping, Sequence, Set, Tuple
+
+
+PACKAGE_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(PACKAGE_ROOT))
+from strict_json import load_canonical_certificate
 
 
 # ---------------------------------------------------------------------------
@@ -1530,14 +1534,14 @@ def verify_sidecars(certificate_path: Path, data: Mapping[str, object]) -> None:
     ):
         sidecar_path = certificate_path.parent / filename
         require(sidecar_path.is_file(), f"missing K3P sidecar {filename}")
-        sidecar = json.loads(sidecar_path.read_text(encoding="utf-8"))
+        sidecar = load_canonical_certificate(sidecar_path)
         require(sidecar == data[section],
                 f"{filename} must equal embedded {section} section")
     print("[sidecars] PASS  transport copies equal their embedded certificate sections")
 
 
 def verify(certificate_path: Path) -> None:
-    data = json.loads(certificate_path.read_text(encoding="utf-8"))
+    data = load_canonical_certificate(certificate_path)
     require_equal(
         set(data),
         {

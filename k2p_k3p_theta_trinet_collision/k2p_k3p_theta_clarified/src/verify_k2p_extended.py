@@ -9,7 +9,6 @@ No floating-point equality is used.
 from __future__ import annotations
 
 import itertools
-import json
 import math
 import sys
 from dataclasses import dataclass
@@ -18,7 +17,10 @@ from pathlib import Path
 from typing import Dict, Iterable, List, Mapping, Sequence, Tuple
 
 BASE = Path(__file__).resolve().parents[1]
-CERT = json.loads((BASE / "certificate_k2p_continuous_time.json").read_text())
+sys.path.insert(0, str(BASE))
+from strict_json import load_canonical_certificate
+
+CERT = load_canonical_certificate(BASE / "certificate_k2p_continuous_time.json")
 
 
 def F(x: str | int | Fraction, den: int | None = None) -> Fraction:

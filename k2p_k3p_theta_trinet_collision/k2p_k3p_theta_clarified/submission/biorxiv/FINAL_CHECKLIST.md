@@ -15,6 +15,9 @@ preprint is permanent and citable even if a later version corrects it.
 - [ ] Biological relevance to evolutionary inference is explicit enough to
       satisfy bioRxiv's life-science scope.
 - [ ] The bibliography and every internal/external link resolve.
+- [ ] Ardiyansyah (2021), the earlier restricted algebraic study of nice
+      simple/semisimple level-two networks, is cited and distinguished from
+      the present non-nice trinet pointwise collision.
 - [ ] Version 2 is cited only for the removed K2P Lemma 5.6 and Corollary
       5.8; Version 3 is cited for the correction, ordering diagnosis, and open
       K2P/K3P questions.
@@ -41,7 +44,7 @@ preprint is permanent and citable even if a later version corrects it.
 - [ ] All manuscript claims delegated to computation are explicitly bound to
       named certificate fields, row/column orderings, and verifier checks.
 - [ ] The canonical manifest passes and covers every intended release file.
-- [ ] `bash submission/build_release.sh --output-dir /absolute/empty/output-directory --commit k2p-k3p-theta-v1.2.5 --version 1.2.5`
+- [ ] `bash submission/build_release.sh --output-dir /absolute/empty/output-directory --commit k2p-k3p-theta-v1.2.6 --version 1.2.6`
       produces byte-stable archives and valid SHA-256 checksums.
 - [ ] Both archives contain `RELEASE_PROVENANCE.txt` with the full release
       commit/version and `FILE_SHA256SUMS` with a passing hash for every
@@ -51,7 +54,7 @@ preprint is permanent and citable even if a later version corrects it.
 - [ ] A clean extraction of the archive builds the PDFs and passes the complete
       verifier suite.
 - [ ] The exact 40-character release commit is recorded in the replay archive
-      and the tag `k2p-k3p-theta-v1.2.5` resolves to that commit.
+      and the tag `k2p-k3p-theta-v1.2.6` resolves to that commit.
 
 ## Portal metadata
 

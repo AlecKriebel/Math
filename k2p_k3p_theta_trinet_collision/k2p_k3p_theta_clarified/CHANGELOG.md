@@ -1,5 +1,24 @@
 # Changelog
 
+## Version 1.2.6 literature and fail-closed parsing -- 27 August 2026
+
+- Added and contextualized Ardiyansyah's 2021 Fourier-invariant study of
+  restricted simple and semisimple nice strict level-two JC/K2P/K3P models,
+  distinguishing its variety-noncontainment results from the present non-nice
+  three-leaf pointwise collision.
+- Qualified the abstract and acknowledgment to identify precisely the formal
+  K2P lemma and K2P portion of the corresponding global corollary removed
+  between Versions 2 and 3 of Brits et al.; no stale-roadmap footnote was added.
+- Added a shared strict JSON loader for all five certificates. It rejects
+  duplicate object names at every depth, nonstandard `NaN`/infinite constants,
+  and departures from hard-coded closed structural schemas.
+- Added normal/optimized hostile regressions for raw duplicates, unknown
+  top-level and nested fields, coordinated embedded/sidecar additions, and
+  nonstandard constants.
+- Preserved the title, every theorem, witness, proof, determinant, tangent, and
+  scientific conclusion. PDF semantic tagging remains optional production
+  work rather than a scientific submission blocker.
+
 ## Version 1.2.5 verifier-assurance closure -- 27 August 2026
 
 - Bound the K3P certificate to the canonical ordered vertex/type/leaf-label

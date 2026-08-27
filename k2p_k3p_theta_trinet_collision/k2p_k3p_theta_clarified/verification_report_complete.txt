@@ -6,6 +6,27 @@ SOURCE CONVENTIONS
 [source conventions] PASS  five explicit Lemma 4.1 coordinates and favorable-order Q factorization
 
 ==============================================================================
+STRICT JSON PARSING AND CLOSED-SCHEMA MUTATION TESTS
+==============================================================================
+[strict JSON] PASS  all five canonical certificates have unique keys and closed schemas
+[JSON mutation rejection] PASS  compact K2P duplicate top-level key: duplicate JSON object key 'schema_version'
+[JSON mutation rejection] PASS  compact K2P unknown top-level field: closed JSON schema mismatch
+[JSON mutation rejection] PASS  compact K2P unknown nested vertex field: closed JSON schema mismatch
+[JSON mutation rejection] PASS  compact K2P non-standard NaN constant: non-standard JSON numeric constant 'NaN'
+[JSON mutation rejection] PASS  continuous-time K2P duplicate top-level key: duplicate JSON object key 'schema_version'
+[JSON mutation rejection] PASS  continuous-time K2P unknown top-level field: closed JSON schema mismatch
+[JSON mutation rejection] PASS  K3P duplicate top-level key: duplicate JSON object key 'schema_version'
+[JSON mutation rejection] PASS  K3P duplicate nested vertex key: duplicate JSON object key 'id'
+[JSON mutation rejection] PASS  K3P unknown rooted-network field: closed JSON schema mismatch
+[JSON mutation rejection] PASS  K3P unknown operative arc field: closed JSON schema mismatch
+[JSON mutation rejection] PASS  K3P same-length row-shape multiplicity shift: closed JSON schema mismatch
+[JSON mutation rejection] PASS  K3P coordinated embedded-and-sidecar extra fields: closed JSON schema mismatch
+[JSON mutation rejection] PASS  K3P Jacobian sidecar duplicate key: duplicate JSON object key 'ambient_space'
+[JSON mutation rejection] PASS  K3P continuous-time sidecar duplicate key: duplicate JSON object key 'method'
+
+ALL STRICT JSON AND CLOSED-SCHEMA MUTATION CHECKS PASSED
+
+==============================================================================
 SIMPLE K2P COLLISION
 ==============================================================================
 [field] PASS  sqrt(71) is irrational and rigorously isolated
@@ -175,9 +196,10 @@ K3P SEMANTIC MUTATION REJECTION TESTS
 [mutation rejection] PASS  root-suppression source reassignment: singleton root-suppression source binding for e_u_p
 [mutation rejection] PASS  coordinated actual p/q endpoint swap with stale descriptors: canonical rooted arc ID/endpoint/vector map
 [mutation rejection] PASS  root-adjacent arc-ID swap: canonical rooted arc ID/endpoint/vector map
-[mutation rejection] PASS  shadowed duplicate vertex identifier: duplicate vertex identifier
+[mutation rejection] PASS  extra shadowed duplicate vertex row: closed JSON schema mismatch
+[mutation rejection] PASS  same-length duplicate vertex identifier: duplicate vertex identifier
 [mutation rejection] PASS  reticulation parent contradicts referenced arc: reticulation descriptor parent for e_p_r2
-[mutation rejection] PASS  unknown top-level certificate field: closed top-level K3P certificate schema
+[mutation rejection] PASS  unknown top-level certificate field: closed JSON schema mismatch
 
 ALL K3P SEMANTIC MUTATION CHECKS PASSED
 

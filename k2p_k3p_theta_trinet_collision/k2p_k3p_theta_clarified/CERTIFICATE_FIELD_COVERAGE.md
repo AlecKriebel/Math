@@ -1,7 +1,7 @@
 # Certificate and replay coverage
 
 This inventory states what the executable replay establishes and, just as
-importantly, what it does not establish. It applies to version 1.2.5 of the
+importantly, what it does not establish. It applies to version 1.2.6 of the
 package.
 
 ## Meanings used here
@@ -23,6 +23,14 @@ unsigned manifest carried inside the same archive establishes internal path
 and byte consistency; it does not authenticate the archive's author or supply
 an external cryptographic trust anchor.
 
+Before any mathematical field is used, `strict_json.py` gives each raw
+certificate a unique interpretation: duplicate object keys at any depth and
+nonstandard `NaN`/infinite constants are rejected. It then compares a
+hard-coded SHA-256 fingerprint of the parsed key/container structure, array
+lengths, and primitive JSON types. Thus added, removed, or structurally altered
+fields fail closed, including informational fields; the fingerprint deliberately
+does not substitute for the semantic and mathematical checks catalogued below.
+
 ## Coverage by certificate
 
 | File | Recomputed or semantically bound | Informational or redundant display fields |
@@ -32,9 +40,10 @@ an external cryptographic trust anchor.
 | `certificate_k3p.json` | A closed top-level key set and schema version; Klein-group order, indices, addition convention, and character table; quartic field labels, basis/encoding, relation, and isolating interval; the canonical ordered vertex/type/leaf-label schema; the complete ten-arc ID-to-endpoint-to-vector map; exact ordered reticulation choices resolved relationally against their referenced arcs; source-to-suppressed-edge bindings; theta topology; parameter vectors and transition rows; comparison tree and all root-splitting claims; ansatz residuals; all four graph-derived switching terms and 16 factorization identities; all 64 Fourier coordinates and all 64 pattern probabilities; direct ordinary-state pruning of every retained graph and the comparison tree; parameter- and output-level K2P symmetry statements; the exact ordered 15-column Jacobian descriptor map, matrix, determinant, rank, tree rank, and dimension arithmetic; the exact free and pivot tangent descriptors, fixed-output identity, strict-rate margins, and automatically differentiated formerly saturated margin derivatives. | `title`; explanatory strings in `construction_ansatz.form`, `construction_ansatz.interpretation`, `core_factorization.identity`, `root_suppression.composition_rule`, `field.generator_value`, and `field.representation`; Jacobian display prose such as `number_field`, `output_space`, `ambient_space`, `determinant_formula`, and `zariski_closure`; and continuous-time display prose such as `method`, `certificate_scope`, `number_field`, `eigenvalue_formulas`, `closed_form_witness_boundary_equalities`, and `U_margin_derivative_formula`. The associated determinant, dominance, dimension, and margin claims are recomputed or proved separately. |
 | `jacobian_certificate_k3p.json` and `continuous_time_certificate_k3p.json` | No additional independent mathematics. Their mathematically operative fields are checked through the embedded sections of `certificate_k3p.json`, subject to the informational-field qualifications above and below. | These are human-sized transport mirrors. The verifier requires exact structural equality with the corresponding embedded sections. |
 
-The K3P informational column is intentionally inclusive rather than a closed
-allowlist: any descriptive or redundant field not explicitly named in the
-recomputed column is informational. In particular, this includes
+Within the now closed structural schema, the K3P informational column is
+intentionally inclusive: any currently allowed descriptive or redundant field
+not explicitly named in the recomputed column is informational. In particular,
+this includes
 `root_suppression.new_edge`; the descriptive portions of `theta_core`,
 `literal_two_sub_blob_audit`, and `degree_two_suppressible_audit` (their
 mathematical counts and incidence conclusions are recomputed); ansatz
@@ -50,9 +59,12 @@ permutations, free-direction relabellings, reticulation-order changes,
 source-edge reassignments, actual endpoint relabellings, root-arc ID swaps,
 duplicate vertex identifiers, descriptor/arc contradictions, and unknown
 top-level fields. The compact K2P test separately rejects corruption of the
-stored `K_odot_K` transition row. These negative tests are in
-`src/test_k3p_semantic_mutations.py` and `src/test_k2p_semantic_mutations.py`
-and run as part of `verify.py` in both normal and optimized replay modes.
+stored `K_odot_K` transition row. `src/test_json_schema_mutations.py` adds raw
+duplicate-key, nonstandard-constant, unknown-field, nested-record, and
+coordinated sidecar/schema regressions for all five JSON inputs. These tests,
+together with `src/test_k3p_semantic_mutations.py` and
+`src/test_k2p_semantic_mutations.py`, run as part of `verify.py` in both normal
+and optimized replay modes.
 
 ## Other replay artifacts
 

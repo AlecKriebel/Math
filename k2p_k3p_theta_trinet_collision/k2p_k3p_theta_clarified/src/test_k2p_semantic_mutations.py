@@ -12,7 +12,10 @@ import tempfile
 
 
 ROOT = Path(__file__).resolve().parents[1]
-BASE = json.loads((ROOT / "certificate_k2p_simple.json").read_text(encoding="utf-8"))
+sys.path.insert(0, str(ROOT))
+from strict_json import load_canonical_certificate
+
+BASE = load_canonical_certificate(ROOT / "certificate_k2p_simple.json")
 
 
 def main() -> None:
@@ -21,6 +24,7 @@ def main() -> None:
     with tempfile.TemporaryDirectory(prefix="k2p-semantic-mutation-") as temp_name:
         directory = Path(temp_name)
         shutil.copy2(ROOT / "verify_k2p_simple.py", directory / "verify_k2p_simple.py")
+        shutil.copy2(ROOT / "strict_json.py", directory / "strict_json.py")
         (directory / "certificate_k2p_simple.json").write_text(
             json.dumps(certificate, indent=2) + "\n", encoding="utf-8"
         )

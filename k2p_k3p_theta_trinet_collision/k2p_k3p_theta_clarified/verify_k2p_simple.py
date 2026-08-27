@@ -4,11 +4,12 @@
 Only Python's standard library is used. Algebra is in Q(s), s^2=71.
 """
 from __future__ import annotations
-import itertools,json,math,sys
+import itertools,math,sys
 from dataclasses import dataclass
 from fractions import Fraction as F
 from pathlib import Path
-C=json.loads((Path(__file__).parent/'certificate_k2p_simple.json').read_text())
+from strict_json import load_canonical_certificate
+C=load_canonical_certificate(Path(__file__).parent/'certificate_k2p_simple.json')
 def need(x,msg):
     if not x:raise AssertionError(msg)
 def require_python():
