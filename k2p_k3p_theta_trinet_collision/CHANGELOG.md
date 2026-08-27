@@ -1,5 +1,33 @@
 # Changelog
 
+## Version 1.2.4 referee hardening -- 27 August 2026
+
+- Closed a real K3P semantic-binding gap by tying Jacobian columns, pivot rows,
+  free directions, reticulation choices, and root-suppression sources to
+  canonical executable descriptors; added coordinated mutation tests that the
+  earlier self-consistency checks would not have rejected.
+- Added independent exact ordinary-state pruning for all four retained K3P
+  graphs and all 64 patterns, and derived the advertised K2P ambient, tree,
+  collision-locus, fixed-output-fiber, and local-family dimensions in code.
+- Added a certificate-field coverage inventory and corrected overly broad
+  certificate, transcript, manifest, and integrity wording. The unsigned
+  manifests are described as internal self-consistency checks, not external
+  authentication.
+- Corrected the Gross--Long/Gross et al. literature attribution, made the
+  Version 3 history literal, listed all ten rooted arcs in the technical
+  summary, and improved the theta-figure label spacing.
+- Rebuilt and inspected all three PDFs, replayed the exact suite normally and
+  with optimization, and passed the commit-pinned clean-extraction release
+  gate at annotated tag `k2p-k3p-theta-v1.2.4`, commit
+  `87d86cf348e888b29df94681426611ac601afe62`.
+- Refreshed the neutral copied AI-referee packet, including the new coverage
+  inventory and semantic negative controls. Its complete normal/optimized and
+  disposable-PDF replay passed, and its portable ZIP has SHA-256
+  `031a1fbb115995ab7edb382d0e52f7791fd512b0e53887fc4a1c8fe5bfb93f6b`.
+- Preserved the title, theorem statements, exact witnesses, and scientific
+  conclusions. No GitHub Release, Zenodo deposit, DOI, or external
+  communication was created.
+
 ## Version 1.2.3 rank-persistence precision and referee handoff -- 26 August 2026
 
 - Made the Corollary 15 neighborhood explicitly preserve both pairwise

@@ -1,12 +1,13 @@
 # Provenance and reproducibility
 
-## Canonical status -- 26 August 2026
+## Canonical status -- 27 August 2026
 
 `k2p_k3p_theta_clarified/` is the sole current manuscript,
 verification, submission, and archival subtree. The full superseded package is
 isolated under `legacy/DO_NOT_SUBMIT-pre-clarification/`; the immutable version
 `1.0.0` historical release archive is isolated under `legacy/releases/`, while
-the versions `1.2.2`, `1.2.1`, `1.2.0`, and `1.1.0` remain under `releases/`.
+the versions `1.2.3`, `1.2.2`, `1.2.1`, `1.2.0`, and `1.1.0` remain under
+`releases/`.
 None of those historical locations is a current release input.
 
 This repository is public. The pre-clarification combined package first appears
@@ -14,10 +15,10 @@ in repository history at commit `ca21a733`, dated 4 August 2026, and was linked
 from the public project page by commit `85cdead2`. The clarification revision is
 additive and no Git history was rewritten. A bioRxiv submission candidate and
 its author-facing metadata are prepared in the canonical subtree. The frozen
-source/replay snapshot is version `1.2.3`, identified by the annotated Git tag
-`k2p-k3p-theta-v1.2.3`. Versions `1.2.2`, `1.2.1`, `1.2.0`, `1.1.0`, and
-`1.0.0` remain immutable. No external communication was initiated by the
-automated preparation process.
+source/replay snapshot is version `1.2.4`, identified by the annotated Git tag
+`k2p-k3p-theta-v1.2.4`. Versions `1.2.3`, `1.2.2`, `1.2.1`, `1.2.0`, `1.1.0`,
+and `1.0.0` remain historical snapshots. No external communication was
+initiated by the automated preparation process.
 
 The current manuscript cites arXiv:2607.12919v2 for the removed arbitrary-level
 K2P statements and arXiv:2607.12919v3 for their correction, the public
@@ -27,32 +28,36 @@ quartic construction gives exact K3P parameter-level symmetry breaking, and
 the rank-15 restricted submersion gives nearby shared distributions outside all
 globally character-relabeled K2P strata.
 
-The current version `1.2.3` archives were built from full commit
-`3d3e4abee9f4dab9f5f1b3ec9f73740aa04c565c`. The release builder verified
+The current version `1.2.4` archives were built from full commit
+`87d86cf348e888b29df94681426611ac601afe62`. The release builder verified
 version/CFF/tag identity, deterministic ZIP and tar.gz construction, both
 internal manifests, identical archive contents, normal and optimized exact
 replay with byte-matching transcripts, and clean PDF rebuilding with matching
 text and rendered pixels. The archives and checksum sidecars are retained under
-`releases/k2p-k3p-theta-v1.2.3/`. No GitHub release, Zenodo deposit, or DOI was
+`releases/k2p-k3p-theta-v1.2.4/`. No GitHub release, Zenodo deposit, or DOI was
 created.
 
 The copied neutral referee handoff is retained under
-`referee_packages/k2p-k3p-theta-ai-referee-v1.2.3/`. Its 32 source materials
+`referee_packages/k2p-k3p-theta-ai-referee-v1.2.4/`. Its 34 source materials
 match the tagged canonical files byte-for-byte. The packet excludes prior
-reviews and research logs, authenticates its exact path set, runs all exact
-entry points normally and with optimization where applicable, regenerates the
-compact certificate in a disposable copy, and optionally rebuilds all PDFs.
+reviews and research logs, checks its exact path set and bytes against an
+unsigned internal manifest, runs all exact entry points normally and with
+optimization where applicable, regenerates the compact certificate in a
+disposable copy, and optionally rebuilds all PDFs.
 The handoff's best-guess completion is **100% for technical referee replay**;
 the independent referee's substantive verdict is intentionally not predicted.
-The deterministic referee ZIP has SHA-256
-`8ffc501a5d45d668deafb0c71570e5fb7c0723640e9c731b79d00b7578b5ef79`.
-A fresh ZIP extraction passed the complete normal and optimized suites,
+The portable referee ZIP has SHA-256
+`031a1fbb115995ab7edb382d0e52f7791fd512b0e53887fc4a1c8fe5bfb93f6b`.
+The final packet folder passed the complete normal and optimized suites,
 focused transcript comparisons, direct supporting entry points, exact compact
 certificate regeneration, forced fresh PDF builds, extracted-text comparison,
-and pre/post integrity checks. Disposable negative controls confirmed rejection
-of an extra directory, a symlink, a FIFO, and an authenticated-file mutation;
-an independent runner audit additionally reproduced fail-closed behavior for a
-permission-hidden directory.
+and pre/post integrity checks. A fresh ZIP extraction matched the folder
+byte-for-byte and passed the packet manifest. The manifest supplies internal
+self-consistency, not external authentication or proof of authorship.
+
+The version `1.2.3` archives remain under
+`releases/k2p-k3p-theta-v1.2.3/` at commit
+`3d3e4abee9f4dab9f5f1b3ec9f73740aa04c565c`.
 
 The version `1.2.2` archives remain under
 `releases/k2p-k3p-theta-v1.2.2/` at commit
@@ -108,13 +113,16 @@ This package recomputes source conventions; topology and root suppression; all
 simple K2P edge, Fourier, pattern, minimum-probability, invariant, and rank
 checks; the edgewise continuous-time K2P field, rate, factorization, pruning,
 and order checks; both K2P rank calculations and the collision family; the K3P
-collision, symmetry distinction, stochastic data, rank determinant, local
-dimension, fixed-output fiber count, and edgewise continuous-time tangent
-identities; and the exact four-leaf graft regression. The complete verifier
-suite in `src/` and `verify.py` reproduces every computational claim from the
-certificates. The general all-`n` one-blob statement is proved by the
-common-kernel lemma; the four-leaf replay is an independent finite regression,
-not a computational proof for all `n`.
+collision, symmetry distinction, stochastic data, direct ordinary-state
+pruning, rank determinant, local dimension, fixed-output fiber count, and
+edgewise continuous-time tangent identities; and the exact four-leaf graft
+regression. K3P semantic-mutation tests reject coordinated descriptor/column/
+pivot relabeling, free-direction relabeling, reticulation-order reversal,
+root-suppression source reassignment, and unknown top-level fields. The exact
+coverage and the remaining informational or transport-only certificate fields
+are itemized in `CERTIFICATE_FIELD_COVERAGE.md`. The general all-`n` one-blob
+statement is proved by the common-kernel lemma; the four-leaf replay is an
+independent finite regression, not a computational proof for all `n`.
 
 ## Exact arithmetic
 
@@ -124,10 +132,11 @@ The cubic root and square-root intervals were tightened in this revision so that
 
 ## Analytic versus machine-verified conclusions
 
-Every computationally derived factorization, stochastic inequality, pattern
-equality, determinant, and tangent identity is replayed exactly. The nearby
-edgewise strictly continuous-time K3P branch follows from the ordinary
-real-analytic implicit-function theorem after exact verification of an
+The verifier exactly replays the witness factorizations, stochastic
+inequalities, pattern equalities, selected determinants, and tangent identities
+used in the stated arguments, with field-level limits recorded in the coverage
+inventory. The nearby edgewise strictly continuous-time K3P branch follows
+from the ordinary real-analytic implicit-function theorem after exact verification of an
 invertible Jacobian and the relevant tangent signs. The local product,
 genuinely K3P neighborhood, Zariski-density, and all-`n` grafting conclusions
 are theorem-level deductions from the stated submersion, algebraic, and
