@@ -28,3 +28,31 @@
   adversarial cross-checking.
 
 Best-guess completion: **5%**.
+
+## 2026-08-26 21:38 PDT - Replay, independent reconstruction, and first reconciliation
+
+- Read the 19-page main manuscript in full before the two support documents;
+  checked the displayed-tree formula, K2P/K3P constructions, continuous-time
+  arguments, ranks/local geometry, algebraic conclusion, and grafting proof.
+- Inspected every program, certificate, manifest entry, and provenance claim.
+- Ran the complete normal/optimized/PDF replay successfully in the immutable
+  packet copy.  All expected text artifacts, compact-certificate regeneration,
+  and pre/post hashes matched.
+- Ran four substantive negative controls in disposable copies: collision
+  datum, graph assignment, stored rank determinant, and K3P fixed-output
+  tangent.  Each failed at the intended mathematical assertion rather than at
+  packet integrity.
+- Built and ran an audit-local clean-room SymPy checker, importing no packet
+  module or certificate.  It independently recovered both central collision
+  factorizations, direct ordinary-state pruning for K2P and K3P, all coordinates,
+  the selected ranks, and the K3P tangent identity.
+- Visually inspected all 23 supplied PDF pages and verified literature/scope
+  statements against primary sources.  The one substantive prose issue found
+  so far is an over-broad attribution of full level-one identifiability to two
+  papers that establish generic results.
+- Current strongest conclusion: no counterexample or arithmetic/proof defect
+  has emerged in a central theorem.  The most material implementation concern
+  is that K3P Jacobian/free-direction names are not mechanically bound to their
+  semantic descriptors; an adversarial mutation is being tested directly.
+
+Best-guess completion: **82%**.
