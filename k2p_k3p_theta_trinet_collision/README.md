@@ -16,13 +16,23 @@ verification, citation, submission, or archival deposit.** Open the current
 or its [`combined-paper-clarified.tex`](k2p_k3p_theta_clarified/combined-paper-clarified.tex)
 source directly.
 
-The current frozen submission/replay snapshot is version `1.2.2`, identified by
-the venue-neutral annotated Git tag `k2p-k3p-theta-v1.2.2` at full commit
-`6d3f202f9018f13fca2494c5cbb411da4ab43a8a`. Its validated ZIP, tar.gz, and
+The current frozen submission/replay snapshot is version `1.2.3`, identified by
+the venue-neutral annotated Git tag `k2p-k3p-theta-v1.2.3` at full commit
+`3d3e4abee9f4dab9f5f1b3ec9f73740aa04c565c`. Its validated ZIP, tar.gz, and
 checksum files are under
-[`releases/k2p-k3p-theta-v1.2.2/`](releases/k2p-k3p-theta-v1.2.2/). Versions
-`1.2.1`, `1.2.0`, and `1.1.0` remain immutable historical snapshots in their
-own release directories.
+[`releases/k2p-k3p-theta-v1.2.3/`](releases/k2p-k3p-theta-v1.2.3/). Versions
+`1.2.2`, `1.2.1`, `1.2.0`, and `1.1.0` remain immutable historical snapshots
+in their own release directories.
+
+A neutral, copied AI-referee handoff is under
+[`referee_packages/k2p-k3p-theta-ai-referee-v1.2.3/`](referee_packages/k2p-k3p-theta-ai-referee-v1.2.3/).
+It contains the exact tagged manuscript and replay materials, a fail-closed
+fresh-folder driver, a neutral review prompt, and a report template. Prior
+reviews and author dispositions are deliberately excluded from that packet.
+The portable [`referee ZIP`](referee_packages/k2p-k3p-theta-ai-referee-v1.2.3.zip)
+has SHA-256
+`8ffc501a5d45d668deafb0c71570e5fb7c0723640e9c731b79d00b7578b5ef79`;
+its sibling `.sha256` file is the transport checksum.
 
 All superseded parent-level files are isolated under
 [`legacy/DO_NOT_SUBMIT-pre-clarification/`](legacy/DO_NOT_SUBMIT-pre-clarification/).
@@ -82,7 +92,9 @@ ends with `ALL EXACT CHECKS PASSED`.
 - `k2p_k3p_theta_clarified/submission/biorxiv/`: bioRxiv metadata and upload checklist.
 - `k2p_k3p_theta_clarified/CITATION.cff`: citation metadata.
 - `k2p_k3p_theta_clarified/LICENSES.md`: package licensing boundaries.
-- `releases/k2p-k3p-theta-v1.2.2/`: commit-pinned current replay archives and checksums.
+- `releases/k2p-k3p-theta-v1.2.3/`: commit-pinned current replay archives and checksums.
+- `referee_packages/k2p-k3p-theta-ai-referee-v1.2.3/`: neutral copied referee handoff and replay driver.
+- `referee_packages/k2p-k3p-theta-ai-referee-v1.2.3.zip`: portable referee handoff with checksum sidecar.
 - `legacy/`: superseded drafts and immutable historical release archives, kept outside the current submission path.
 
 ## Build and release
@@ -90,7 +102,7 @@ ends with `ALL EXACT CHECKS PASSED`.
 ```bash
 cd k2p_k3p_theta_clarified
 bash src/build_pdfs.sh
-bash submission/build_release.sh --output-dir /absolute/path/to/release-output --commit k2p-k3p-theta-v1.2.2 --version 1.2.2
+bash submission/build_release.sh --output-dir /absolute/path/to/release-output --commit k2p-k3p-theta-v1.2.3 --version 1.2.3
 ```
 
 The release builder archives only the tracked canonical release files at an
@@ -98,9 +110,9 @@ exact Git commit. It explicitly excludes the author-facing
 `submission/biorxiv/` worksheet/checklists, the legacy parent package,
 untracked caches, and local build debris.
 
-The current archives were built from the frozen version `1.2.2` tag and passed
-the clean replay gates documented in their release README. Versions `1.2.1`,
-`1.2.0`, `1.1.0`, and `1.0.0` remain immutable historical records.
+The current archives were built from the frozen version `1.2.3` tag and passed
+the clean replay gates documented in their release README. Versions `1.2.2`,
+`1.2.1`, `1.2.0`, `1.1.0`, and `1.0.0` remain immutable historical records.
 
 Submission-specific status, unresolved author choices, and official bioRxiv
 guidance are maintained in

@@ -1,5 +1,23 @@
 # Changelog
 
+## Version 1.2.3 rank-persistence precision and referee handoff -- 26 August 2026
+
+- Made the Corollary 15 neighborhood explicitly preserve both pairwise
+  distinctness on the selected K3P network edge and nonvanishing of the
+  certified `15 x 15` Jacobian minor.
+- Rebuilt and visually inspected the unchanged 19-page manuscript and both
+  two-page supporting PDFs, and replayed all exact checks in normal and
+  optimized modes with byte-identical stored transcripts.
+- Froze annotated tag `k2p-k3p-theta-v1.2.3` at commit
+  `3d3e4abee9f4dab9f5f1b3ec9f73740aa04c565c` and retained the validated ZIP,
+  tar.gz, checksums, and clean replay record under `releases/`.
+- Added a copied, neutral AI-referee packet containing the tagged paper,
+  verifier code, certificates, build inputs, fail-closed replay driver, neutral
+  prompt, and report template. Prior reviews and author dispositions are
+  deliberately excluded to reduce anchoring.
+- Preserved the title, abstract, theorem statements, exact certificates,
+  verifier transcripts, and immutable version `1.2.2` snapshot.
+
 ## Version 1.2.2 literature and scope precision -- 26 August 2026
 
 - Qualified the cited source results by their biologically reasonable

@@ -6,18 +6,18 @@
 verification, submission, and archival subtree. The full superseded package is
 isolated under `legacy/DO_NOT_SUBMIT-pre-clarification/`; the immutable version
 `1.0.0` historical release archive is isolated under `legacy/releases/`, while
-the versions `1.2.1`, `1.2.0`, and `1.1.0` remain under `releases/`. None of
-those historical locations is a current release input.
+the versions `1.2.2`, `1.2.1`, `1.2.0`, and `1.1.0` remain under `releases/`.
+None of those historical locations is a current release input.
 
 This repository is public. The pre-clarification combined package first appears
 in repository history at commit `ca21a733`, dated 4 August 2026, and was linked
 from the public project page by commit `85cdead2`. The clarification revision is
 additive and no Git history was rewritten. A bioRxiv submission candidate and
 its author-facing metadata are prepared in the canonical subtree. The frozen
-source/replay snapshot is version `1.2.2`, identified by the annotated Git tag
-`k2p-k3p-theta-v1.2.2`. Versions `1.2.1`, `1.2.0`, `1.1.0`, and `1.0.0`
-remain immutable. No external communication was initiated by the automated
-preparation process.
+source/replay snapshot is version `1.2.3`, identified by the annotated Git tag
+`k2p-k3p-theta-v1.2.3`. Versions `1.2.2`, `1.2.1`, `1.2.0`, `1.1.0`, and
+`1.0.0` remain immutable. No external communication was initiated by the
+automated preparation process.
 
 The current manuscript cites arXiv:2607.12919v2 for the removed arbitrary-level
 K2P statements and arXiv:2607.12919v3 for their correction, the public
@@ -27,14 +27,36 @@ quartic construction gives exact K3P parameter-level symmetry breaking, and
 the rank-15 restricted submersion gives nearby shared distributions outside all
 globally character-relabeled K2P strata.
 
-The current version `1.2.2` archives were built from full commit
-`6d3f202f9018f13fca2494c5cbb411da4ab43a8a`. The release builder verified
+The current version `1.2.3` archives were built from full commit
+`3d3e4abee9f4dab9f5f1b3ec9f73740aa04c565c`. The release builder verified
 version/CFF/tag identity, deterministic ZIP and tar.gz construction, both
 internal manifests, identical archive contents, normal and optimized exact
 replay with byte-matching transcripts, and clean PDF rebuilding with matching
 text and rendered pixels. The archives and checksum sidecars are retained under
-`releases/k2p-k3p-theta-v1.2.2/`. No GitHub release, Zenodo deposit, or DOI was
+`releases/k2p-k3p-theta-v1.2.3/`. No GitHub release, Zenodo deposit, or DOI was
 created.
+
+The copied neutral referee handoff is retained under
+`referee_packages/k2p-k3p-theta-ai-referee-v1.2.3/`. Its 32 source materials
+match the tagged canonical files byte-for-byte. The packet excludes prior
+reviews and research logs, authenticates its exact path set, runs all exact
+entry points normally and with optimization where applicable, regenerates the
+compact certificate in a disposable copy, and optionally rebuilds all PDFs.
+The handoff's best-guess completion is **100% for technical referee replay**;
+the independent referee's substantive verdict is intentionally not predicted.
+The deterministic referee ZIP has SHA-256
+`8ffc501a5d45d668deafb0c71570e5fb7c0723640e9c731b79d00b7578b5ef79`.
+A fresh ZIP extraction passed the complete normal and optimized suites,
+focused transcript comparisons, direct supporting entry points, exact compact
+certificate regeneration, forced fresh PDF builds, extracted-text comparison,
+and pre/post integrity checks. Disposable negative controls confirmed rejection
+of an extra directory, a symlink, a FIFO, and an authenticated-file mutation;
+an independent runner audit additionally reproduced fail-closed behavior for a
+permission-hidden directory.
+
+The version `1.2.2` archives remain under
+`releases/k2p-k3p-theta-v1.2.2/` at commit
+`6d3f202f9018f13fca2494c5cbb411da4ab43a8a`.
 
 The version `1.2.1` archives remain under
 `releases/k2p-k3p-theta-v1.2.1/` at commit
