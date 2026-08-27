@@ -22,13 +22,13 @@ integrated and complete-regeneration runs.
 | DISCLOSURE | Reproducibility prose overstates active reconstruction boundaries | Confirmed for reviewed bytes | **PASS:** paper, supplement, manifest, provenance, and referee brief state the exact independent boundaries |
 | LIT-1--5 | Recent triangle, invariant, higher-level, companion-status, and convention comparisons | Verified against primary records | **PASS with disclosed metadata limit:** comparisons and bibliography corrected; K2P/tree--theta use immutable tags/commits because no persistent DOI was authorized |
 | ISOLATION | Referee run denied network/writes but did not credential-deny every host read | Procedural limitation, not theorem defect | **PASS as disclosure:** copied Git-free runner is explicitly not an OS sandbox; reviewers are told to supply an external credential-free boundary |
-| PDF/RELEASE | Rebuild, visual QA, archive/package reseal, immutable version binding | Downstream engineering | **PDF PASS; final export in progress:** clean 54-command repeat passed in 7,686 seconds at immutable proof snapshot `e4b13c57`; both current PDFs reproduce byte-for-byte and pass independent page-by-page inspection; compact dependency closure is repaired and regression-tested before final archive/referee export |
+| PDF/RELEASE | Rebuild, visual QA, archive/package reseal, immutable version binding | Downstream engineering | **PASS:** clean 54-command regeneration passed in 7,686 seconds at immutable proof snapshot `e4b13c57`; the final clean 14-check replay passed in 2,412 seconds; both PDFs, both source ZIPs, both proof archives, the 35-file Google Drive source copy, and the 600-file referee handoff independently verify |
 
 Current theorem status: no counterexample was found, every mathematical or
 code-boundary finding has a focused passing repair, and the clean integrated
-and complete-regeneration replays pass.  Only final distribution export and
-human-controlled submission work remain.
+and complete-regeneration replays pass.  The distribution export is sealed;
+only human-controlled submission work remains.
 
 Best-guess completion toward the mathematical classification goal: **100%**.
-Best-guess completion toward the paper/certification/proof-archive goal: **99.5%**.
+Best-guess completion toward the paper/certification/proof-archive goal: **100%**.
 Best-guess completion toward the external journal/DOI release goal: **65%**.

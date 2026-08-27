@@ -1063,3 +1063,49 @@ compact-package dependency omission is now fail-closed and regression-tested.
 Best-guess completion toward the mathematical classification goal: **100%**.
 Best-guess completion toward the paper/certification/proof-archive goal: **99.5%**.
 Best-guess completion toward the external journal/DOI release goal: **60%**.
+
+## 2026-08-27T10:24:00Z — independent-referee repair and handoff sealed
+
+- At exact pushed commit `9cea20a5636dfcb4a42081afd22efbf5a27e8d99`,
+  the final clean 14-check full suite passed in 2,411.838 seconds with peak
+  memory 1,918,763,008 bytes.  Its fresh integrated replay took 2,382.198
+  seconds; all 24 classification mutations and 32 release-engineering
+  mutations were rejected.
+- Built the 359-file compact and 570-file full selections twice.  The archive
+  pairs were byte-identical, structurally valid, and each passed extracted
+  theorem replay.  At this execution checkpoint their SHA-256 values were
+  `0015cd4cb3b18ffa1a1a3336548beefe087015e41a4cf62ed5cf56d23f6ef449`
+  and
+  `32abe91329b0f561b23279a46899c48d62e0d283f95b918d0f21f72fabb7a269`.
+- The article and supplement source ZIPs reproduced the delivered PDFs twice
+  byte-for-byte.  The final PDF SHA-256 values remain
+  `97c14b1eb234f6dd71110c1afd5bf39ac3f7313359684a71a914d94f4c0657d1`
+  and
+  `b0d6d1e2aea371e9cab6f416452e496e0c9dfd80921d04d199bcd06b93083fcb`.
+- Copied all 35 intended TeX/Bib files, without moving their originals, into
+  the Google Drive `Papers/K3P Level-2 Identifiability` folder and verified
+  every byte.  Accidental ignored build-source copies encountered during the
+  first broad sync were moved recoverably to the user's Trash; the delivered
+  folder contains exactly the intended 35 source files.
+- Built the neutral 600-payload-file independent-referee package at the same
+  exact archive commit.  Its manifest and checksum seal, absence of symlinks
+  and runtime/cache state, archive/PDF agreement, safe extraction, neutral
+  prompt, and 53-command portable plan passed two independent read-only audits.
+- Quarantined the stale, similarly named legacy full archive and sidecar under
+  ignored `release/work/legacy_dist_pre_referee_repair_20260827/`; the
+  canonical distribution directory now has only unambiguous current assets
+  plus the clearly named pre-repair referee-folder backup.
+- This ledger-only checkpoint changes no theorem, verifier, certificate, TeX,
+  bibliography, or PDF byte.  Canonical archives and the referee folder are
+  deterministically re-exported after it so their manifests identify the
+  exact final handoff commit.  No tag, GitHub/Zenodo release, DOI, license,
+  submission, or external communication was created.
+
+Strongest verified result: every finding in the independent referee report is
+repaired and independently checked; the complete mathematical producer graph,
+final clean replay, PDFs, source archives, proof archives, Google Drive source
+copy, and neutral referee handoff all pass their declared validation gates.
+
+Best-guess completion toward the mathematical classification goal: **100%**.
+Best-guess completion toward the paper/certification/proof-archive goal: **100%**.
+Best-guess completion toward the external journal/DOI release goal: **60%**.

@@ -11,9 +11,11 @@ submission build.
    fresh integrated replay plus all classification and release-engineering
    mutations rejected.  The article now cites that immutable snapshot.  The
    current PDFs have been rebuilt twice from source, reproduced byte for byte,
-   and independently inspected page by page.  Final proof-archive export,
-   Google Drive source synchronization, and referee-package resealing remain
-   downstream release engineering rather than mathematical gaps.
+   and independently inspected page by page.  The compact and full proof
+   archives rebuild byte-identically and pass extracted replay; all 35 TeX/Bib
+   sources are synchronized byte-for-byte to the requested Google Drive
+   folder; and the 600-file independent-referee package passes two independent
+   integrity audits.  No nonhuman mathematical or proof-package gate remains.
 
 2. **Author and post-typesetting review.**  Independent mathematical and
    evidence audits of the targeted bridge, sunlet, genericity, and noncut-

@@ -234,6 +234,45 @@ submission mutations pass.  The validator rejects external, traversing,
 symlinked, and wrong-type source-map inputs; journal archives must equal their
 exact committed source expansion plus every manifest-bound upload byte.
 
+## 2026-08-27 independent-referee repair closure
+
+The complete repaired producer graph passed once from clean pushed proof
+snapshot `e4b13c571eb462d7ba02e39ffd0a7b368fa5fc9f`.  Its 54 commands ran for
+7,686.229 seconds, including fresh derivation of all 405,216 four-port
+presentations and semantic replay of all 574,535 probe rows.  Every focused,
+independent, and mutation boundary passed.
+
+At exact pushed packaging checkpoint
+`9cea20a5636dfcb4a42081afd22efbf5a27e8d99`, the final clean 14-check full
+suite passed in 2,411.838 seconds with payload
+`b4a8351f5b456d800f7364bc3bbbc818e343b1b24214a8804ef85172f31a2f0e`.
+The integrated fresh replay, 24 classification mutations, and 32
+release-engineering mutations all passed.  Peak memory was 1,918,763,008
+bytes.
+
+At that checkpoint the independently doubled compact and full archives had
+SHA-256 values
+`0015cd4cb3b18ffa1a1a3336548beefe087015e41a4cf62ed5cf56d23f6ef449`
+and
+`32abe91329b0f561b23279a46899c48d62e0d283f95b918d0f21f72fabb7a269`.
+Both were byte-identical across builds, structurally valid, and passed an
+extracted artifact-only theorem replay.  The source ZIPs reproduced the
+committed PDFs twice byte-for-byte.  Both PDFs also passed independent
+page-by-page visual inspection with all fonts embedded.
+
+The neutral independent-referee handoff sealed 600 payload files and passed
+two independent integrity audits.  It contains no symlink, VCS state, virtual
+environment, review output, or Python cache.  Its portable plan reconstructs
+the documented 53-command mathematical replay.  All 35 intended TeX/Bib files
+were copied to the requested Google Drive paper folder and verified
+byte-for-byte.  A stale similarly named legacy archive was moved to an ignored
+quarantine so that the distribution directory presents one unambiguous
+canonical full archive.
+
+The final post-ledger export is deterministic and identifies its exact source
+commit in each archive/package manifest and sidecar.  No tag, DOI, license,
+GitHub/Zenodo release, external upload, or journal submission is asserted.
+
 ## Remaining gates
 
 1. Keep the submission state fail-closed until the human author declarations,
