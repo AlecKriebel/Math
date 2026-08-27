@@ -1,5 +1,46 @@
 # Research log
 
+## 2026-08-27 -- Version 1.2.4 pre-release validation checkpoint
+
+- Three independent post-edit audits rechecked the mathematical exposition,
+  executable certificate semantics, dimension derivations, coverage inventory,
+  and release metadata. They found no residual mathematical or computational
+  defect and no change to the title, theorem statements, witnesses, or
+  scientific conclusions.
+- Replayed the complete suite once under ordinary Python and once with
+  optimization enabled. The outputs are byte-identical; the refreshed stored
+  transcript ends with `ALL EXACT CHECKS PASSED`.
+- Rebuilt the manuscript and both supporting PDFs from the final sources with
+  no TeX warnings. All 24 rendered pages were inspected, including the revised
+  theta labels, switching and tangent tables, grafting theorem, and references.
+- Best-guess completion: **92% of version 1.2.4 submission freeze**. Remaining
+  work is the commit/tag-bound clean-extraction archive replay, copied referee
+  packet refresh, parent index, push, and public tag-URL verification.
+
+## 2026-08-27 -- Version 1.2.4 referee-response checkpoint
+
+- Independently adjudicated the complete v1.2.3 referee report. No title,
+  theorem, witness, or scientific conclusion requires revision; the report's
+  five required corrections are verifier-assurance, attribution, and
+  reproducibility-precision issues.
+- Reproduced the surviving coordinated K3P semantic/column/pivot mutation and
+  closed it by binding canonical Jacobian/free-direction descriptors, ordered
+  reticulation choices, and root-suppression source mappings. Both formerly
+  saturated rate-margin derivatives are now calculated from the executed total
+  tangent.
+- Added exact direct K3P Markov pruning for every retained graph and all 64
+  patterns, plus five normal/optimized mutation-rejection tests. Focused K3P,
+  mutation, and K2P-dimension replays pass.
+- Replaced the printed K2P geometry dimension by derived orbit, parameter,
+  tree, collision-locus, and fixed-output-fiber arithmetic. Added an explicit
+  certificate-field coverage inventory and corrected literature,
+  source-version, technical-summary arc, and integrity wording.
+- Best-guess completion: **72% of version 1.2.4 submission freeze**. Remaining
+  work is independent post-edit audit, full normal/optimized replay, transcript
+  regeneration, PDF build and page inspection, manifest/source freeze,
+  commit/tag/archive replay, copied referee-packet refresh, parent-index update,
+  and public tag-URL verification.
+
 ## 2026-08-26 -- Version 1.2.3 source-freeze checkpoint
 
 - Rebuilt all three PDFs after the rank-persistence micro-edit. The manuscript

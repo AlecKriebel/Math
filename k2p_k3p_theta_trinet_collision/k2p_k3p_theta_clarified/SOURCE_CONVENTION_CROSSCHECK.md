@@ -2,7 +2,7 @@
 
 ## Source and conventions
 
-The checker targets Lemma 4.1 of Brits, Holtgrefe, van Iersel, and Martin, *On Tree--Network Distinguishability and Full Identifiability of Phylogenetic Networks*, arXiv:2607.12919v2. That level-one lemma and its formulas are retained in arXiv:2607.12919v3. Version 3 removes the separate arbitrary-level K2P claim and records the leaf-order obstruction addressed by this package.
+The checker targets Lemma 4.1 of Brits, Holtgrefe, van Iersel, and Martin, *On Tree--Network Distinguishability and Full Identifiability of Phylogenetic Networks*, arXiv:2607.12919v2. That level-one lemma and its formulas are retained in arXiv:2607.12919v3. Version 3 removes the formal arbitrary-level K2P lemma and the K2P part of the corresponding global corollary, and records the leaf-order obstruction addressed by this package.
 
 It fixes:
 

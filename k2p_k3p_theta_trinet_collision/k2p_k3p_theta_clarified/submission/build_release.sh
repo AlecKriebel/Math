@@ -118,6 +118,7 @@ required=(
   CHANGELOG.md
   RESEARCH_LOG.md
   ADVERSARIAL_REVIEW_DISPOSITION.md
+  CERTIFICATE_FIELD_COVERAGE.md
   combined-paper-clarified.tex
   combined-paper-clarified.pdf
   technical-summary-clarified.tex

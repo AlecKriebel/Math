@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Exact K2P rank and collision-family audit (standard library only)."""
 from __future__ import annotations
-import importlib.util,json,math,sys
+import importlib.util,itertools,json,math,sys
 from dataclasses import dataclass
 from fractions import Fraction as F
 from pathlib import Path
@@ -42,6 +42,27 @@ def dual_matrix(values,zero,one,d2,d3):
 
 TREE_ROWS=[(0,1,1),(0,2,2),(1,0,1),(1,1,0),(1,2,3),(2,0,2)]
 TREE_COLS=['alpha.C','alpha.G','beta.C','beta.G','gamma.C','gamma.G']
+
+def model_dimensions():
+    # The 16 consistent K3P coordinates are indexed by x xor y xor z = 0.
+    # K2P additionally identifies the global C<->T character swap.  Count
+    # those orbits directly, then remove the normalized all-A coordinate.
+    swap={0:0,1:3,2:2,3:1}
+    consistent=[triple for triple in itertools.product(range(4),repeat=3)
+                if triple[0]^triple[1]^triple[2]==0]
+    orbits={frozenset((triple,tuple(swap[index] for index in triple)))
+            for triple in consistent}
+    ambient_dimension=len(orbits)-1
+    tree_dimension=len(TREE_COLS)
+    need((len(consistent),len(orbits),ambient_dimension)==(16,10,9),
+         'K2P consistent-coordinate orbit count')
+    need(SIMPLE['network_rank']['ambient_dimension']==ambient_dimension,
+         'stored K2P ambient dimension')
+    need(SIMPLE['tree_rank']['dimension']==tree_dimension,
+         'stored K2P tree dimension')
+    print('[K2P dimensions] PASS  16 consistent coordinates form 10 C<->T orbits; normalization gives ambient dimension 9; the certified tree minor gives dimension 6')
+    return ambient_dimension,tree_dimension
+
 @dataclass(frozen=True)
 class Q71:
     a:F; b:F=F(0)
@@ -126,7 +147,7 @@ def simple_rank():
     values={'K':q('K'),'U':q('U'),'V':q('V'),'A':q('S'),'B':q('T')};A=dual_matrix(values,m.Alg.zero(),m.Alg.one(),mixing['r2'],mixing['r3']);det=det_alg(A);formula,f,g=determinant_formula(values,lambda q:m.Alg.rat(q));need(det==formula,'simple determinant factorization');need(det.c[1:]==(F(0),)*5 and str(det.c[0])==SIMPLE['network_rank']['determinant'],'simple determinant');f.require_positive('first rank factor');(-g).require_positive('negative final factor');print('[K2P rank] PASS  simple witness rank 9 with det =',det.c[0])
 def continuous_rank():
     need(m.MIXING=={'r2':F(1,2),'r3':F(1,2)},'continuous rank inheritance weights');values={k:m.network_vectors[k] for k in ('K','U','V','A','B')};A=dual_matrix(values,m.Alg.zero(),m.Alg.one(),m.MIXING['r2'],m.MIXING['r3']);det=det_alg(A);formula,f,g=determinant_formula(values,lambda q:m.Alg.rat(q));need(det==formula,'continuous determinant factorization');f.require_positive('continuous squared factor');(-g).require_positive('continuous final factor');lo,hi=det.interval();need(hi<0,'continuous determinant negative');print(f'[K2P rank] PASS  edgewise-strict-continuous-time witness rank 9; det in [{float(lo):.6e},{float(hi):.6e}]')
-def fixed_output_fiber_dimension():
+def fixed_output_fiber_dimension(ambient_dimension,tree_dimension):
     semi=SIMPLE['semi_directed']
     core_edges={frozenset((a,b)) for path in semi['theta_paths'] for a,b in zip(path,path[1:])}
     incident_edges={frozenset(edge) for edge in semi['incident_leaf_edges']}
@@ -135,11 +156,15 @@ def fixed_output_fiber_dimension():
     effective_edge_count=len(core_edges|incident_edges)
     reticulation_count=len(semi['reticulations'])
     parameter_dimension=2*effective_edge_count+reticulation_count
-    rank=SIMPLE['network_rank']['ambient_dimension']
+    rank=ambient_dimension
     fiber_dimension=parameter_dimension-rank
     need((effective_edge_count,reticulation_count,parameter_dimension,rank)==(9,2,20,9),'K2P dimension inputs')
     need(fiber_dimension==11,'local fixed-output K2P fiber dimension')
+    collision_dimension=parameter_dimension-ambient_dimension+tree_dimension
+    collision_codimension=ambient_dimension-tree_dimension
+    need((collision_dimension,collision_codimension)==(17,3),'K2P collision-locus dimension and codimension')
     print('[K2P fiber] PASS  local fixed-output theta fiber has dimension 11 (20-9) at both rank-9 witnesses')
+    print('[K2P geometry] PASS  derived collision-locus dimension 17 = 20-9+6 (codimension 3)')
 def family():
     @dataclass(frozen=True)
     class D2:
@@ -153,6 +178,8 @@ def family():
             z=D2(F(1),(F(0),F(0)))
             for _ in range(n):z=z*self
             return z
+    family_data=SIMPLE['symmetric_collision_family'];variables=family_data['variables'];equations=family_data['equations']
+    need(variables==['u','v','w','x','a','b','c','d'],'symmetric-family variable order');need(len(equations)==2,'two symmetric-family equations');need(family_data['jacobian_variables']==['v','x'],'symmetric-family Jacobian variables');need(family_data['local_dimension']==len(variables)-len(equations)==6,'derived symmetric-family local dimension')
     u=D2(F(4,5),(0,0));v=D2(F(19,30),(1,0));w=D2(F(7,240),(0,0));x=D2(F(239,360),(0,1));a=D2(F(1,4),(0,0));b=D2(F(1,2),(0,0));c=D2(F(1,3),(0,0));d=D2(F(1,27),(0,0))
-    MAC=(a*u+c*w).scale(F(1,2));MAG=(b*v+d*x).scale(F(1,2));MCC=(a*a+(a*c*u*w).scale(2)+c*c).scale(F(1,4));MGG=(b*b+(b*d*v*x).scale(2)+d*d).scale(F(1,4));MCG=(a*b*u+a*d*u*x+b*c*v*w+c*d*w).scale(F(1,4));MCT=(a*a*v+(a*c*u*w).scale(2)+c*c*x).scale(F(1,4));F1=MCG*MCG-MAC*MAC*MGG;F2=MCT*MCT*MGG-MAG*MAG*MCC*MCC;need(F1.v==0 and F2.v==0,'family equations');jac=F1.d[0]*F2.d[1]-F1.d[1]*F2.d[0];want=F(SIMPLE['symmetric_collision_family']['jacobian_determinant_at_witness']);need(jac==want and jac>0,'family Jacobian');print('[K2P family] PASS  exact two-equation core has rank 2; local positive family dimension 6');print('[K2P geometry] PASS  ambient/tree dimensions 9/6; semi-directed theta collision locus dimension 17 (codimension 3)')
-if __name__=='__main__':m.require_python();verify_q71_field();m.verify_field();simple_rank();tree_rank();continuous_rank();fixed_output_fiber_dimension();family();print('\nALL K2P RANK/FAMILY CHECKS PASSED')
+    MAC=(a*u+c*w).scale(F(1,2));MAG=(b*v+d*x).scale(F(1,2));MCC=(a*a+(a*c*u*w).scale(2)+c*c).scale(F(1,4));MGG=(b*b+(b*d*v*x).scale(2)+d*d).scale(F(1,4));MCG=(a*b*u+a*d*u*x+b*c*v*w+c*d*w).scale(F(1,4));MCT=(a*a*v+(a*c*u*w).scale(2)+c*c*x).scale(F(1,4));F1=MCG*MCG-MAC*MAC*MGG;F2=MCT*MCT*MGG-MAG*MAG*MCC*MCC;need(F1.v==0 and F2.v==0,'family equations');jac=F1.d[0]*F2.d[1]-F1.d[1]*F2.d[0];want=F(family_data['jacobian_determinant_at_witness']);need(jac==want and jac>0,'family Jacobian');print('[K2P family] PASS  exact two-equation core has rank 2; derived local positive family dimension 6')
+if __name__=='__main__':m.require_python();verify_q71_field();m.verify_field();dimensions=model_dimensions();simple_rank();tree_rank();continuous_rank();fixed_output_fiber_dimension(*dimensions);family();print('\nALL K2P RANK/FAMILY CHECKS PASSED')

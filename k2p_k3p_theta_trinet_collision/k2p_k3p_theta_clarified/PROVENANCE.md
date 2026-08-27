@@ -1,6 +1,6 @@
 # Provenance and reproducibility
 
-## Canonical and public status -- 26 August 2026
+## Canonical and public status -- 27 August 2026
 
 This directory is the sole current K2P/K3P manuscript, verification,
 submission, and archival subtree. The pre-clarification paper, summary,
@@ -16,21 +16,23 @@ first appears in public repository history at commit `ca21a733`, dated 4 August
 combined source directory. The full early draft was therefore already public
 before the clarification. This record is additive and no history was rewritten.
 
-The current frozen submission/replay snapshot is version `1.2.3`, identified by
-the Git tag `k2p-k3p-theta-v1.2.3`. The earlier tags
+The current frozen submission/replay snapshot is version `1.2.4`, identified by
+the Git tag `k2p-k3p-theta-v1.2.4`. The earlier tags
+`k2p-k3p-theta-v1.2.3`,
 `k2p-k3p-theta-v1.2.2`, `k2p-k3p-theta-v1.2.1`, `k2p-k3p-theta-v1.2.0`,
 `k2p-k3p-theta-v1.1.0`, and
 `k2p-k3p-theta-biorxiv-v1.0.0` remain immutable.
-Versions 1.2.2, 1.2.1, 1.2.0, and 1.1.0 are retained under the parent
+Versions 1.2.3, 1.2.2, 1.2.1, 1.2.0, and 1.1.0 are retained under the parent
 `releases/` directory; version 1.0.0 remains under `legacy/releases/`. Exact upload-time
 status and unresolved author choices are recorded in `submission/biorxiv/`.
 No GitHub release, bioRxiv submission, Zenodo deposit, DOI, or external
 communication was initiated by the automated revision process.
 
 Version `1.2.0` distinguishes the source paper's history explicitly. The
-removed arbitrary-level K2P statements are cited at arXiv:2607.12919v2. The
-corrected arXiv:2607.12919v3 removes those statements, records the leaf-order
-obstruction, and leaves high-level K2P and K3P questions open. Since K2P is
+removed arbitrary-level K2P lemma and corresponding global conclusion are
+cited at arXiv:2607.12919v2. The corrected arXiv:2607.12919v3 removes that
+formal lemma and the K2P part of the corresponding global corollary, records
+the leaf-order obstruction, and leaves high-level K2P and K3P questions open. Since K2P is
 nested in K3P, the compact K2P collision answers both questions negatively.
 The separate quartic theta parameter breaks every globally character-relabeled
 K2P edge symmetry, although its exact shared distribution is openly identified
@@ -62,6 +64,16 @@ remains nonzero throughout the parameter neighborhood, so every selected
 realization visibly has a 14-dimensional local fixed-output fiber. It changes
 no theorem statement, parameter, certificate, or computational conclusion.
 
+Version 1.2.4 responds to an independent referee audit without changing any
+theorem, witness, or scientific conclusion. It binds K3P Jacobian, tangent,
+reticulation-choice, and root-suppression labels to canonical executable
+semantics; derives the formerly saturated K3P rate-margin derivatives from the
+complete tangent; adds rejection tests for coordinated semantic mutations;
+adds exact ordinary-state K3P pruning on all retained graphs; derives the K2P
+dimension arithmetic in the replay; and distinguishes recomputed checks from
+informational fields, regression transcripts, and unsigned integrity
+manifests. It also makes the literature and source-version wording literal.
+
 ## Revision lineage
 
 This package incorporates an earlier K2P reproduction audit and the prior K3P-only package. The K3P-only repository version is recoverable at commit `d60581d1`. The separate K2P audit directory and the earlier first-contact memo were not included in this repository, so the present two-page clarification note was reconstructed from the exact public certificate and unified paper.
@@ -84,6 +96,7 @@ The complete suite additionally replays the edgewise strictly continuous-time
 K2P witness, induction-order audit, all-six-order negative-sign point, K2P
 ranks and collision family, the exact K3P parameter/output symmetry distinction,
 the K3P Jacobian and edgewise continuous-time analytic implicit-function data,
+the direct ordinary-state K3P pruning comparison and semantic-mutation guards,
 and the 11/14 fixed-output fiber counts. A focused four-leaf verifier checks one
 single-theta graft using all 256 Fourier coordinates and all 256 ordinary-state
 probabilities. The universal all-tree result rests on the manuscript's
@@ -104,6 +117,12 @@ coordinates, and the favorable-order factorization of `Q`.
 ## AI assistance
 
 AI-assisted mathematical research, symbolic exploration, code generation, auditing, and editorial tools contributed to discovery and preparation. Claims are exposed through proofs, exact certificates, source code, and replayable computations. No external communication was initiated by the automated revision process.
+
+`CERTIFICATE_FIELD_COVERAGE.md` records which certificate groups are
+recomputed or semantically bound and which are descriptive or consistency-only.
+Stored transcripts and K3P sidecars are regression/transport copies, not
+independent mathematical oracles. Included unsigned SHA-256 manifests support
+internal path and byte consistency but do not authenticate themselves.
 
 ## Submission and archival metadata
 

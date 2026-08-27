@@ -4,14 +4,14 @@ This directory is the sole current manuscript and reproducibility package for
 the exact K2P/K3P tree--theta-trinet collision results. Use it for reading,
 verification, citation, bioRxiv submission, and any archival deposit.
 
-The current submission snapshot is version `1.2.3`, published under the Git tag
-`k2p-k3p-theta-v1.2.3`. The tag, rather than the mutable `main` branch,
+The current submission snapshot is version `1.2.4`, published under the Git tag
+`k2p-k3p-theta-v1.2.4`. The tag, rather than the mutable `main` branch,
 is the stable source cited by the manuscript.
 
 Historical pre-clarification files have been moved into the parent
 `legacy/DO_NOT_SUBMIT-pre-clarification/` directory. They are not current
-submission or release inputs. Immutable versions `1.2.2`, `1.2.1`, `1.2.0`,
-and `1.1.0` are retained under the parent `releases/` directory, and version
+submission or release inputs. Frozen versions `1.2.3`, `1.2.2`, `1.2.1`,
+`1.2.0`, and `1.1.0` are retained under the parent `releases/` directory, and version
 `1.0.0` remains under `legacy/releases/`.
 
 ## Manuscript
@@ -32,8 +32,10 @@ generator; no shared generator, rate ratio, molecular clock, or global
 temporal compatibility is asserted.
 
 The K2P construction is an exact counterexample to the arbitrary-level K2P
-statements in arXiv:2607.12919v2. Version 3 removes those statements, records
-the leaf-order obstruction, and leaves high-level K2P and K3P questions open.
+lemma and corresponding global K2P conclusion in arXiv:2607.12919v2. Version
+3 removes that formal lemma and the K2P part of the corresponding global
+corollary, records the leaf-order obstruction, and leaves high-level K2P and
+K3P questions open.
 Because K2P is nested in K3P, the compact K2P collision answers both questions
 negatively. The separate quartic construction gives an exact theta-network
 parameter outside every globally character-relabeled K2P specialization,
@@ -57,6 +59,8 @@ Python 3.10 or newer and the standard library are needed.
 ```bash
 python3 verify_k2p_simple.py
 python3 verify_k2p_displayed_trees.py
+python3 src/verify_k3p.py
+python3 src/test_k3p_semantic_mutations.py
 python3 src/verify_k2p_four_leaf_graft.py
 python3 verify.py
 PYTHONOPTIMIZE=1 python3 verify.py
@@ -65,6 +69,9 @@ PYTHONOPTIMIZE=1 python3 verify.py
 The graph-based verifier begins with the rooted arc list, deletes the two
 unselected reticulation arcs in each switching, derives descendant labels and
 Fourier monomials, and independently performs ordinary-state Markov pruning.
+The K3P verifier performs the same direct retained-graph pruning comparison in
+all 64 patterns, binds every advertised Jacobian and tangent label to its
+executable descriptor, and is guarded by coordinated semantic-mutation tests.
 The four-leaf verifier checks all 256 Fourier coordinates and all 256 pattern
 probabilities for one exact pendant-subtree lift; the universal all-tree result
 is proved by the manuscript's common-kernel argument rather than by finite
@@ -75,11 +82,15 @@ Successful complete output ends with:
 ALL EXACT CHECKS PASSED
 ```
 
-The stored `verification_report_*.txt` files are transcripts, not substitutes
-for replaying the current code and certificates.
+The stored `verification_report_*.txt` files are regression transcripts, not
+independent oracles or substitutes for replaying the current code and
+certificates. [`CERTIFICATE_FIELD_COVERAGE.md`](CERTIFICATE_FIELD_COVERAGE.md)
+classifies checked fields, informational metadata, and transport mirrors.
 
-`manifest.sha256` covers the committed files intended for the public replay
-archive, apart from itself. It deliberately omits the author-only
+`manifest.sha256` lists the committed files intended for the public replay
+archive, apart from itself, and supports internal path and byte-consistency
+checks. Because it is unsigned and travels with the files it lists, it is not
+an external authentication anchor. It deliberately omits the author-only
 `submission/biorxiv/` staging worksheets, which are not supplement content.
 From this directory, check it with `sha256sum -c manifest.sha256` (or
 `shasum -a 256 -c manifest.sha256` on systems without `sha256sum`).
@@ -116,7 +127,7 @@ make the portal metadata match the final PDF exactly.
 To build clean deterministic archives from an exact committed snapshot:
 
 ```bash
-bash submission/build_release.sh --output-dir /absolute/path/to/release-output --commit k2p-k3p-theta-v1.2.3 --version 1.2.3
+bash submission/build_release.sh --output-dir /absolute/path/to/release-output --commit k2p-k3p-theta-v1.2.4 --version 1.2.4
 ```
 
 The builder refuses tracked or nonignored untracked changes in this canonical subtree,

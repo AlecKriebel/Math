@@ -1,5 +1,31 @@
 # Changelog
 
+## Version 1.2.4 referee hardening -- 27 August 2026
+
+- Bound every advertised K3P Jacobian and free-direction label to a complete
+  canonical executable descriptor, together with ordered reticulation choices
+  and singleton root-suppression source mappings.
+- Replaced separately hard-coded continuous-time margin derivatives by exact
+  automatic differentiation of the assembled free-plus-pivot tangent.
+- Added negative tests that reject coordinated Jacobian/column/pivot cycles,
+  free-direction relabellings, reticulation-order changes, source-edge
+  reassignments, and unknown top-level K3P certificate fields.
+- Added exact ordinary-state Markov pruning on every retained K3P graph and the
+  comparison tree for all 64 patterns, independently cross-checked against the
+  Fourier calculation.
+- Derived the K2P ambient, tree, collision-locus, fixed-output-fiber, and local
+  symmetric-family dimensions inside the verifier rather than printing a
+  literal collision dimension.
+- Added `CERTIFICATE_FIELD_COVERAGE.md` to distinguish recomputed or
+  semantically bound fields from informational metadata, transport mirrors,
+  regression transcripts, and unsigned self-consistency manifests.
+- Corrected the Gross--Long/Gross et al. attribution to generic
+  identifiability, made the Version 3 removal description literal, expanded the
+  technical summary's ten arcs, and narrowed integrity language.
+- Preserved every theorem, witness, title, and scientific conclusion. The
+  abstract's final methods sentence now explicitly describes the new K3P
+  direct-pruning coverage.
+
 ## Version 1.2.3 rank-persistence clarification -- 26 August 2026
 
 - Added to Corollary 15's proof that the selected $15\times15$ Jacobian minor

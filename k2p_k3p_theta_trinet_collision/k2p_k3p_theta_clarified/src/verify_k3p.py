@@ -209,6 +209,18 @@ def ct_margins(eigen: Sequence[Alg]) -> Dict[str, Alg]:
     }
 
 
+def ct_margin_derivatives(eigen: Sequence[Alg], direction: Sequence[Alg]) -> Dict[str, Alg]:
+    """Directional derivatives of the three K3P rate margins."""
+    require(len(eigen) == len(direction) == 4, "K3P margin derivative vectors")
+    _, c, g, t = eigen
+    _, dc, dg, dt = direction
+    return {
+        "C_minus_G_T": dc - dg * t - g * dt,
+        "G_minus_C_T": dg - dc * t - c * dt,
+        "T_minus_C_G": dt - dc * g - c * dg,
+    }
+
+
 # ---------------------------------------------------------------------------
 # Graph utilities
 # ---------------------------------------------------------------------------
@@ -327,6 +339,10 @@ class Verification:
 
         group = certificate["group"]
         require(isinstance(group, Mapping), "missing group data")
+        require_equal(group["symbols"], self.symbols, "Klein-group symbol order")
+        require_equal(group["indices"], self.index, "Klein-group symbol indices")
+        require_equal(group["addition"], "bitwise XOR on indices A=0,C=1,G=2,T=3",
+                      "Klein-group addition description")
         self.char_table = group["character_table_rows_A_C_G_T"]
         require_equal(self.char_table,
                       [[1, 1, 1, 1], [1, 1, -1, -1],
@@ -394,6 +410,32 @@ class Verification:
         require_equal(roots, ["rho"], "unique root")
         require_equal(reachable("rho", children), set(self.nodes), "root reachability")
 
+        expected_reticulations = [
+            {
+                "vertex": "r2",
+                "incoming": [
+                    {"edge_id": "e_p_r2", "parent": "p", "weight": "1/2", "choice": "p"},
+                    {"edge_id": "e_q_r2", "parent": "q", "weight": "1/2", "choice": "q"},
+                ],
+            },
+            {
+                "vertex": "r3",
+                "incoming": [
+                    {"edge_id": "e_p_r3", "parent": "p", "weight": "1/2", "choice": "p"},
+                    {"edge_id": "e_q_r3", "parent": "q", "weight": "1/2", "choice": "q"},
+                ],
+            },
+        ]
+        require_equal(self.retic_rows, expected_reticulations,
+                      "canonical ordered reticulation descriptors")
+        rooted = self.cert["rooted_network"]
+        require(isinstance(rooted, Mapping), "rooted-network certificate")
+        require_equal(rooted["display_choice_order"], ["r2", "r3"],
+                      "reticulation display-choice order")
+        require_equal(rooted["choice_index_meaning"],
+                      {"0": "incoming edge from p", "1": "incoming edge from q"},
+                      "reticulation choice-index semantics")
+
         suppression = self.cert["root_suppression"]
         require(isinstance(suppression, Mapping), "missing root suppression data")
         require_equal(suppression["removed_vertex"], "rho", "suppressed root")
@@ -406,6 +448,10 @@ class Verification:
         require(isinstance(semi_rows, list), "effective semi-directed edges")
         semi_by_id = {str(row["id"]): row for row in semi_rows}
         require(len(semi_by_id) == len(semi_rows), "duplicate semi-directed edge identifier")
+        require_equal(set(semi_by_id),
+                      {"e_1_u", "e_u_p", "e_u_q", "e_p_r2", "e_q_r2",
+                       "e_p_r3", "e_q_r3", "e_r2_2", "e_r3_3"},
+                      "effective semi-directed edge identifiers")
         require("e_1_u" in semi_by_id, "suppressed edge e_1_u is missing")
         require_equal(set(semi_by_id["e_1_u"]["endpoints"]), {"1", "u"},
                       "suppressed edge endpoints")
@@ -428,6 +474,23 @@ class Verification:
                       [Alg.rational(Fraction(7, 16)), Alg.rational(Fraction(3, 16)),
                        Alg.rational(Fraction(3, 16)), Alg.rational(Fraction(3, 16))],
                       "explicit suppressed-edge probabilities")
+
+        for edge_id in self.edge_row_by_id:
+            if edge_id in {"e_rho_1", "e_rho_u"}:
+                continue
+            row = semi_by_id[edge_id]
+            source = self.edge_row_by_id[edge_id]
+            require_equal(row["source_edges"], [edge_id],
+                          f"singleton root-suppression source binding for {edge_id}")
+            require_equal(set(row["endpoints"]), set(self.edge_endpoints[edge_id]),
+                          f"root-suppression endpoints for {edge_id}")
+            require_equal(row["vector_name"], source["vector_name"],
+                          f"root-suppression vector name for {edge_id}")
+            require_equal(parse_vector(row["eigen"]), parse_vector(source["eigen"]),
+                          f"root-suppression eigenvector for {edge_id}")
+            require_equal(parse_vector(row["transition_probabilities"]),
+                          parse_vector(source["transition_probabilities"]),
+                          f"root-suppression probabilities for {edge_id}")
 
         # Verify every non-root arc appears exactly once in the suppressed graph.
         expected_source_sets = {
@@ -827,6 +890,12 @@ class Verification:
     def tree_vectors(self) -> Dict[str, List[Alg]]:
         tree = self.cert["comparison_tree"]
         require(isinstance(tree, Mapping), "comparison tree")
+        require_equal(tree["topology"], "semi-directed three-star on leaves 1,2,3",
+                      "comparison-tree topology")
+        expected_names = {"1": "alpha", "2": "beta", "3": "gamma"}
+        require_equal({str(leaf): str(row["name"])
+                       for leaf, row in tree["leaf_edge_vectors"].items()},
+                      expected_names, "comparison-tree edge names")
         return {
             str(leaf): parse_vector(row["eigen"])
             for leaf, row in tree["leaf_edge_vectors"].items()
@@ -848,6 +917,85 @@ class Verification:
             total = total + q[(x, y, z)].scale(Fraction(sign, 64))
         return total
 
+    def direct_display_probability(self, pattern: Tuple[int, int, int],
+                                   choices: Tuple[int, int]) -> Alg:
+        """Ordinary-state pruning on one literal retained rooted graph."""
+        retained, _ = self.retained_display(choices)
+        retained_edges = [self.edge_endpoints[edge_id] for edge_id in retained]
+        order = topological_order(self.nodes, retained_edges)
+        children: Dict[str, List[Tuple[str, str]]] = {node: [] for node in self.nodes}
+        for edge_id in retained:
+            parent, child = self.edge_endpoints[edge_id]
+            children[parent].append((edge_id, child))
+        transitions = {
+            edge_id: inverse_fourier_edge_probabilities(self.edge_eigen[edge_id])
+            for edge_id in retained
+        }
+        observed_state = {
+            leaf: pattern[position] for leaf, position in self.leaf_position.items()
+        }
+        likelihood: Dict[str, List[Alg]] = {}
+        for node in reversed(order):
+            if node in observed_state:
+                likelihood[node] = [
+                    Alg.one() if state == observed_state[node] else Alg.zero()
+                    for state in range(4)
+                ]
+                continue
+            values: List[Alg] = []
+            for parent_state in range(4):
+                product_value = Alg.one()
+                for edge_id, child in children[node]:
+                    subtotal = Alg.zero()
+                    for child_state in range(4):
+                        transition = transitions[edge_id][parent_state ^ child_state]
+                        subtotal = subtotal + transition * likelihood[child][child_state]
+                    product_value = product_value * subtotal
+                values.append(product_value)
+            likelihood[node] = values
+        return sum(
+            (value.scale(Fraction(1, 4)) for value in likelihood["rho"]), Alg.zero()
+        )
+
+    def direct_tree_probability(self, pattern: Tuple[int, int, int]) -> Alg:
+        """Ordinary-state calculation on the comparison three-star."""
+        transitions = {
+            leaf: inverse_fourier_edge_probabilities(vector)
+            for leaf, vector in self.tree_vectors().items()
+        }
+        total = Alg.zero()
+        for root_state in range(4):
+            term = Alg.rational(Fraction(1, 4))
+            for leaf, position in self.leaf_position.items():
+                term = term * transitions[leaf][root_state ^ pattern[position]]
+            total = total + term
+        return total
+
+    def verify_direct_state_space(
+        self,
+        q_network: Mapping[Tuple[int, int, int], Alg],
+        q_tree: Mapping[Tuple[int, int, int], Alg],
+    ) -> None:
+        """Cross-check the K3P collision without Fourier monomial evaluation."""
+        for pattern in itertools.product(range(4), repeat=3):
+            direct_network = Alg.zero()
+            for choices in itertools.product((0, 1), repeat=2):
+                _, weight = self.retained_display(choices)
+                direct_network = direct_network + self.direct_display_probability(
+                    pattern, choices
+                ).scale(weight)
+            direct_tree = self.direct_tree_probability(pattern)
+            fourier_network = self.pattern_probability(q_network, pattern)
+            fourier_tree = self.pattern_probability(q_tree, pattern)
+            label = "".join(self.symbols[index] for index in pattern)
+            require_equal(direct_network, direct_tree,
+                          f"direct K3P network/tree probability at {label}")
+            require_equal(direct_network, fourier_network,
+                          f"direct/Fourier K3P network probability at {label}")
+            require_equal(direct_tree, fourier_tree,
+                          f"direct/Fourier K3P tree probability at {label}")
+        print("[direct probabilities] PASS  exact K3P Markov pruning on all four retained graphs matches the comparison tree and Fourier inversion for all 64 patterns")
+
     def verify_collision(self) -> Tuple[Dict[Tuple[int, int, int], Alg], Dict[Tuple[int, int, int], Alg]]:
         vector_rows = self.cert["parameter_vectors"]
         require(isinstance(vector_rows, Mapping), "parameter vectors")
@@ -858,6 +1006,8 @@ class Verification:
         require(isinstance(core, Mapping), "core factorization")
         require_equal(core["row_order"], self.symbols, "core row order")
         require_equal(core["column_order"], self.symbols, "core column order")
+        require_equal(core["displayed_choice_order"], ["p,p", "p,q", "q,p", "q,q"],
+                      "displayed core choice order")
         stored_terms = core["displayed_core_terms"]
         stored_m = [parse_alg(x) for x in core["M_entries_row_major"]]
         stored_factor = [parse_alg(x) for x in core["factorized_entries_row_major"]]
@@ -1072,14 +1222,24 @@ class Verification:
         require_equal(jac["row_order"], expected_row_labels, "Jacobian row labels")
         columns = jac["column_order"]
         require(isinstance(columns, list) and len(columns) == 15, "fifteen Jacobian columns")
-        expected_column_names = [
-            "e_rho_1.a_C", "e_rho_1.a_G", "e_rho_1.a_T", "e_u_p.a_G",
-            "e_p_r2.a_C", "e_p_r2.a_G", "e_q_r2.a_C", "e_q_r2.a_G",
-            "e_p_r3.a_C", "e_p_r3.a_G", "e_q_r3.a_C", "e_q_r3.a_G",
-            "e_r2_2.a_T", "e_r3_3.a_T", "delta_3(p)",
+        expected_columns = [
+            {"name": "e_rho_1.a_C", "kind": "edge_eigen", "edge_id": "e_rho_1", "character": "C"},
+            {"name": "e_rho_1.a_G", "kind": "edge_eigen", "edge_id": "e_rho_1", "character": "G"},
+            {"name": "e_rho_1.a_T", "kind": "edge_eigen", "edge_id": "e_rho_1", "character": "T"},
+            {"name": "e_u_p.a_G", "kind": "edge_eigen", "edge_id": "e_u_p", "character": "G"},
+            {"name": "e_p_r2.a_C", "kind": "edge_eigen", "edge_id": "e_p_r2", "character": "C"},
+            {"name": "e_p_r2.a_G", "kind": "edge_eigen", "edge_id": "e_p_r2", "character": "G"},
+            {"name": "e_q_r2.a_C", "kind": "edge_eigen", "edge_id": "e_q_r2", "character": "C"},
+            {"name": "e_q_r2.a_G", "kind": "edge_eigen", "edge_id": "e_q_r2", "character": "G"},
+            {"name": "e_p_r3.a_C", "kind": "edge_eigen", "edge_id": "e_p_r3", "character": "C"},
+            {"name": "e_p_r3.a_G", "kind": "edge_eigen", "edge_id": "e_p_r3", "character": "G"},
+            {"name": "e_q_r3.a_C", "kind": "edge_eigen", "edge_id": "e_q_r3", "character": "C"},
+            {"name": "e_q_r3.a_G", "kind": "edge_eigen", "edge_id": "e_q_r3", "character": "G"},
+            {"name": "e_r2_2.a_T", "kind": "edge_eigen", "edge_id": "e_r2_2", "character": "T"},
+            {"name": "e_r3_3.a_T", "kind": "edge_eigen", "edge_id": "e_r3_3", "character": "T"},
+            {"name": "delta_3(p)", "kind": "inheritance", "reticulation": "r3", "parent_choice": "p"},
         ]
-        require_equal([str(c["name"]) for c in columns], expected_column_names,
-                      "Jacobian column order")
+        require_equal(columns, expected_columns, "canonical Jacobian descriptor order")
 
         matrix = [[self.jacobian_entry(row, col) for col in columns] for row in expected_rows]
         stored_matrix = [[parse_alg(x) for x in row] for row in jac["matrix"]]
@@ -1208,13 +1368,14 @@ class Verification:
                                  f"tree leaf {leaf} continuous-time margin {margin_name}")
 
         free_columns = ct["free_direction"]
-        require(isinstance(free_columns, list) and len(free_columns) == 2,
-                "two continuous-time free directions")
-        require_equal([str(c["name"]) for c in free_columns],
-                      ["e_u_p.a_C", "e_u_q.a_G"], "continuous-time free directions")
-        for c in free_columns:
-            require_equal(parse_alg(c["derivative"]), Alg.one(),
-                          f"unit derivative for {c['name']}")
+        expected_free_columns = [
+            {"name": "e_u_p.a_C", "kind": "edge_eigen", "edge_id": "e_u_p",
+             "character": "C", "derivative": ["1", "0", "0", "0"]},
+            {"name": "e_u_q.a_G", "kind": "edge_eigen", "edge_id": "e_u_q",
+             "character": "G", "derivative": ["1", "0", "0", "0"]},
+        ]
+        require_equal(free_columns, expected_free_columns,
+                      "canonical continuous-time free-direction descriptors")
 
         g_direction = [
             sum((self.jacobian_entry(row, col) for col in free_columns), Alg.zero())
@@ -1227,6 +1388,9 @@ class Verification:
         pivot_rows = ct["pivot_derivatives"]
         require(isinstance(pivot_rows, list) and len(pivot_rows) == 15,
                 "fifteen pivot derivatives")
+        for entry in pivot_rows:
+            require_equal(set(entry), {"parameter", "value"},
+                          f"pivot derivative schema for {entry.get('parameter')}")
         require_equal([str(x["parameter"]) for x in pivot_rows],
                       [str(c["name"]) for c in columns], "pivot-derivative parameter order")
         pivot = [parse_alg(x["value"]) for x in pivot_rows]
@@ -1236,9 +1400,30 @@ class Verification:
                 residual = residual + a * b
             require_zero(residual, f"linearized fixed-output identity in row {i}")
 
-        one = Alg.one()
-        u_margin_derivative = one - pivot[3].scale(Fraction(1, 3))
-        v_margin_derivative = one
+        edge_directions: Dict[Tuple[str, str], Alg] = {}
+        for column, value in zip(columns, pivot):
+            if column["kind"] != "edge_eigen":
+                continue
+            key = (str(column["edge_id"]), str(column["character"]))
+            require(key not in edge_directions, f"duplicate pivot direction {key}")
+            edge_directions[key] = value
+        for column in free_columns:
+            key = (str(column["edge_id"]), str(column["character"]))
+            require(key not in edge_directions, f"free direction duplicates pivot {key}")
+            edge_directions[key] = parse_alg(column["derivative"])
+
+        def edge_direction(edge_id: str) -> List[Alg]:
+            return [Alg.zero()] + [
+                edge_directions.get((edge_id, character), Alg.zero())
+                for character in self.symbols[1:]
+            ]
+
+        u_margin_derivative = ct_margin_derivatives(
+            self.edge_eigen["e_u_p"], edge_direction("e_u_p")
+        )["C_minus_G_T"]
+        v_margin_derivative = ct_margin_derivatives(
+            self.edge_eigen["e_u_q"], edge_direction("e_u_q")
+        )["G_minus_C_T"]
         stored_derivatives = ct["formerly_saturated_margin_derivatives"]
         require_equal(u_margin_derivative, parse_alg(stored_derivatives["U_C-U_G*U_T"]),
                       "U saturated-margin derivative")
@@ -1265,7 +1450,7 @@ class Verification:
 
 
 def verify_sidecars(certificate_path: Path, data: Mapping[str, object]) -> None:
-    """Bind the two human-sized K3P sidecars to the embedded certificate data."""
+    """Check that the two human-sized sidecars mirror embedded certificate data."""
     for section, filename in (
         ("jacobian", "jacobian_certificate_k3p.json"),
         ("continuous_time", "continuous_time_certificate_k3p.json"),
@@ -1275,11 +1460,21 @@ def verify_sidecars(certificate_path: Path, data: Mapping[str, object]) -> None:
         sidecar = json.loads(sidecar_path.read_text(encoding="utf-8"))
         require(sidecar == data[section],
                 f"{filename} must equal embedded {section} section")
-    print("[sidecars] PASS  Jacobian and continuous-time sidecars equal their embedded sections")
+    print("[sidecars] PASS  transport copies equal their embedded certificate sections")
 
 
 def verify(certificate_path: Path) -> None:
     data = json.loads(certificate_path.read_text(encoding="utf-8"))
+    require_equal(
+        set(data),
+        {
+            "schema_version", "title", "field", "group", "rooted_network",
+            "root_suppression", "parameter_vectors", "comparison_tree",
+            "construction_ansatz", "core_factorization", "fourier_coordinates",
+            "leaf_pattern_probabilities", "jacobian", "continuous_time",
+        },
+        "closed top-level K3P certificate schema",
+    )
     require_equal(data["schema_version"], "3.0", "certificate schema version")
     verify_sidecars(certificate_path, data)
     verification = Verification(data)
@@ -1288,6 +1483,7 @@ def verify(certificate_path: Path) -> None:
     verification.verify_construction_ansatz()
     verification.verify_parameters()
     q_network, q_tree = verification.verify_collision()
+    verification.verify_direct_state_space(q_network, q_tree)
     verification.verify_k2p_specialization_scope(q_network, q_tree)
     rows, columns, jacobian = verification.verify_jacobian()
     verification.verify_continuous_time(rows, columns, jacobian)

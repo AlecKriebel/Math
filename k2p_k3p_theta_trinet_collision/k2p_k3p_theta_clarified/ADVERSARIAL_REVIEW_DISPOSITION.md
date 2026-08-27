@@ -5,6 +5,24 @@ rejected. Reviews used the manuscript, exact verifiers and certificates, the
 official arXiv sources for Versions 2 and 3 of Brits et al., and the cited
 primary literature.
 
+## Version 1.2.4 independent-referee report -- 27 August 2026
+
+| Feedback item | Verdict | Disposition |
+|---|---|---|
+| K3P derivative names were not mechanically bound to executable semantics | Valid verifier-assurance defect; current mathematics independently correct | Added exact complete descriptor checks, derived both saturated-margin derivatives from the assembled tangent, bound reticulation/source semantics, and added five mutation-rejection tests. |
+| Gross--Long (2018) and Gross et al. (2021) were cited for generic and full results | Valid attribution defect | Replaced the sentence by the precise generic JC large-cycle and fixed-reticulation-count triangle-free level-one results; retained the full restricted result under the preceding Brits et al. v3 citation. |
+| Certificate, sidecar, transcript, and manifest language was too global | Valid | Added a coverage inventory; derived the previously printed K2P dimension arithmetic; described sidecars and transcripts as consistency/regression copies and unsigned manifests as internal integrity checks, not authentication. |
+| Shipped K3P verifier lacked a direct ordinary-state pruning path | Valid evidentiary asymmetry | Added exact state-space pruning on each literal retained graph and the comparison tree, compared with both Fourier paths in all 64 patterns. |
+| Version 3 removal description should name formal results literally | Valid source precision | Now names the removed arbitrary-level K2P lemma and K2P part of the corresponding global corollary. |
+| Technical summary compressed the ten arcs ambiguously | Valid presentation defect | Expanded all ten arcs literally. |
+| Figure spacing, PDF tagging, a hermetic container, broader property tests, signed manifest, or DOI | Optional and not needed to repair a result | Deferred. No external signing service, GitHub Release, Zenodo deposit, or DOI was created; such publication actions remain author-controlled. |
+
+The report found no defect in the theorem chain, witnesses, rank calculations,
+continuous-time deductions, or grafting proof. No title or theorem statement
+changed. The abstract's final verification sentence was sharpened to describe
+the added K3P pruning implementation; the scientific abstract conclusions are
+unchanged.
+
 ## Version 1.2.3 rank-persistence micro-review -- 26 August 2026
 
 | Feedback item | Verdict | Disposition |
