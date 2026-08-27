@@ -1032,3 +1032,34 @@ mathematical and certification finding in the independent referee report.
 Best-guess completion toward the mathematical classification goal: **100%**.
 Best-guess completion toward the paper/certification/proof-archive goal: **99%**.
 Best-guess completion toward the external journal/DOI release goal: **60%**.
+
+## 2026-08-27T09:36:38Z — PDF closure and compact-package omission repaired
+
+- Rebuilt the current article and reader supplement twice from their committed
+  TeX under the pinned Tectonic toolchain.  Both pairs were byte-identical to
+  the committed PDFs, all fonts are embedded, and independent page-by-page
+  inspection of all 37 article pages and 13 supplement pages found no visual
+  defect or occurrence of the retired internal paper wording.
+- A fail-closed compact-archive replay then exposed one additional packaging
+  omission: paths stored as keys under a nested `observed_sha256` map were not
+  entering the dependency closure.  The omitted file was active verifier code,
+  so the old compact bundle was rejected rather than distributed.
+- Generalized the recursive dependency collector to all declared path-keyed
+  hash maps, expanded the locked compact selection from 343 to 359 committed
+  files, and added a clean-room fixture proving that a nested verifier-code
+  path enters the archive.  The release-engineering suite again rejects all
+  32 hostile mutations, the new closure control passes, the release-input gate
+  passes, and an extracted 359-file compact replay succeeds.
+- The repair and regenerated mutation report are pushed on `main`.  Final
+  canonical archive double-builds, source-archive reproduction, Google Drive
+  source synchronization, and independent-referee handoff export remain.  No
+  tag, release, DOI, license, submission, or external communication was made.
+
+Strongest verified result: every referee mathematical and code-boundary
+finding is repaired, the complete producer graph passes at the immutable proof
+snapshot, the current PDFs are independently verified, and the last observed
+compact-package dependency omission is now fail-closed and regression-tested.
+
+Best-guess completion toward the mathematical classification goal: **100%**.
+Best-guess completion toward the paper/certification/proof-archive goal: **99.5%**.
+Best-guess completion toward the external journal/DOI release goal: **60%**.

@@ -9,10 +9,11 @@ submission build.
    `e4b13c571eb462d7ba02e39ffd0a7b368fa5fc9f`.  The run regenerated every
    producer, including the full four-port and probe universes, and ended with
    fresh integrated replay plus all classification and release-engineering
-   mutations rejected.  The article now cites that immutable snapshot.
-   Rebuilding the current PDFs, source archives, proof archives, execution
-   ledger, Google Drive source copy, and referee package remains downstream
-   release engineering rather than a mathematical gap.
+   mutations rejected.  The article now cites that immutable snapshot.  The
+   current PDFs have been rebuilt twice from source, reproduced byte for byte,
+   and independently inspected page by page.  Final proof-archive export,
+   Google Drive source synchronization, and referee-package resealing remain
+   downstream release engineering rather than mathematical gaps.
 
 2. **Author and post-typesetting review.**  Independent mathematical and
    evidence audits of the targeted bridge, sunlet, genericity, and noncut-
@@ -27,10 +28,11 @@ submission build.
    any corresponding-email field remain outside this mathematical draft
    until supplied by the user.
 
-4. **Remaining typesetting gate.**  The prior candidate passed deterministic
-   two-build compilation and page-by-page inspection.  Those checks must be
-   repeated for the current availability-linked paper bytes.  Journal-specific
-   manuscripts and cover letters remain blocked on the author-confirmed
+4. **Remaining submission gate.**  Deterministic two-build compilation,
+   byte-for-byte source reproduction, embedded-font checks, and independent
+   page-by-page inspection pass for the current availability-linked paper
+   bytes.  Journal-specific manuscripts and cover letters remain blocked on
+   the author-confirmed
    declaration, address, license, and persistent-archive metadata recorded
-   under `submission/`; exact reproduction from the final sealed source
-   archives must still be checked after those fields are fixed.
+   under `submission/`; they must be regenerated and checked after those
+   fields are fixed.

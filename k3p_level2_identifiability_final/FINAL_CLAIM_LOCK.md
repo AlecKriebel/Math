@@ -190,11 +190,14 @@ conflation, or a proper directed containment inside the strong class.
 
 This is a mathematical certification, not a publication-status claim.  The
 targeted-referee-repair manuscript and reader supplement sources are complete,
-and the clean quick and complete 54-command regeneration suites pass at the
-immutable proof snapshot cited by the article.  PDF and release-archive
-rebinding, journal-format packaging, and human author review remain pending.
-The project does not claim submission readiness, a DOI, a selected license,
-completed peer review, or completed human review.
+the clean quick and complete 54-command regeneration suites pass at the
+immutable proof snapshot cited by the article, and both canonical PDFs have
+passed deterministic two-build reproduction and independent page-by-page
+visual inspection.  Distribution archives and the independent-referee handoff
+must separately bind an exact pushed source commit and pass their extracted
+replay and integrity gates.  Journal-format packaging and human author review
+remain pending.  The project does not claim submission readiness, a DOI, a
+selected license, completed peer review, or completed human review.
 The machine-readable report retains its legacy internal filename,
 `reproducibility/K3P_SAME_CLASSIFICATION_GATE_REPORT.json`, for compatibility;
 its separate integration mutation suite rejects 24/24 theorem-boundary

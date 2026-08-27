@@ -70,8 +70,12 @@ all 574,535 semantic probe rows, and ended with fresh integrated replay plus
 article's availability statement points to that immutable snapshot.  The
 post-run execution ledger for the earlier candidate is
 `release/FINAL_RELEASE_ENGINEERING_REPORT.md`.  Runtime records live under
-ignored release work/transcript paths.  Current PDF/source archives and the
-referee package are being rebound after the paper-only availability update;
-journal packages remain deliberately `NOT_READY` until their human metadata
-and upload artifacts are supplied.  No DOI, license, tag, submission, peer
-review, or completed human review is claimed.
+ignored release work/transcript paths.  The canonical article and supplement
+PDFs have been rebuilt twice from the current TeX, reproduced byte for byte,
+and passed independent page-by-page visual inspection.  Distribution archives
+and the referee handoff are valid only when their manifests bind one exact
+pushed source commit and their extracted replay/integrity gates pass; the
+release ledger records that boundary.  Journal packages remain deliberately
+`NOT_READY` until their human metadata and upload artifacts are supplied.  No
+DOI, license, tag, submission, peer review, or completed human review is
+claimed.
