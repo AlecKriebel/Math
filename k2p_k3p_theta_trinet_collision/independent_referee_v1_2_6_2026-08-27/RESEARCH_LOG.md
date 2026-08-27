@@ -44,8 +44,8 @@
 - Read and rendered both two-page support PDFs after the paper-first pass; all
   four support pages are clean and consistent with the article. All three PDFs
   are untagged, an accessibility advisory rather than a scientific defect.
-- Ran `RUN_REFEREE_REPLAY.sh --with-pdf`. An initial run was deliberately
-  failed by the closing path-set check after a concurrent audit process created
+- Ran `RUN_REFEREE_REPLAY.sh --with-pdf`. An initial run correctly failed at
+  the closing path-set check after a concurrent audit process created
   `materials/__pycache__/strict_json.cpython-314.pyc` between the opening and
   closing integrity checks. Moved that generated cache to ignored temporary
   storage, disabled bytecode generation in all parallel probes, and reran from
@@ -101,3 +101,18 @@
   left behind.
 
 **Best-guess completion:** 90%.
+
+## 2026-08-27 09:05 PDT — Final referee disposition
+
+- Integrated the independent mathematical, computational, literature/layout,
+  and hostile-synthesis results into the final referee report.
+- Classified the remaining observations—PDF tagging/linearization, unsigned
+  provenance, broader maintained regression visibility, and a future
+  `parse_float` policy—as optional hardening rather than submission defects.
+- Found no fatal, major, minor, mathematical, computational, citation,
+  topology, reproducibility, or layout correction required before submission.
+- Published the complete independent evidence checkpoint to `main` at commit
+  `ae504234` without staging or modifying unrelated working-tree changes.
+- Final recommendation: **ACCEPT**.
+
+**Best-guess completion:** 100%.
