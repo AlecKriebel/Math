@@ -26,7 +26,7 @@ TOPOLOGY = FROZEN / "model_independent_topology_package"
 SECTORS = ("C", "G", "T")
 CHAR_NAMES = "0CGT"
 CUT_TRANSFER = ROOT / "cut_recovery" / "strong_crossbridge" / "global_transfer"
-CUT_TRANSFER_THEOREM_SHA256 = "dd0ffea14051b9f45764a87d1a96b78d8199883417ce9a4321bfef4d612e8e51"
+CUT_TRANSFER_THEOREM_SHA256 = "eccd37323ee7b4c23959fc7905ed6c90f378c51e6b24108fa05058ae3f67de66"
 CUT_TRANSFER_CLAIM = (
     "For binary standard semi-directed strongly tree-child level-2 networks "
     "under source-relative regular full-dimensional containment on strict D3,+, "
