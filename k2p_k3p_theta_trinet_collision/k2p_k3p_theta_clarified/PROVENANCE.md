@@ -16,15 +16,16 @@ first appears in public repository history at commit `ca21a733`, dated 4 August
 combined source directory. The full early draft was therefore already public
 before the clarification. This record is additive and no history was rewritten.
 
-The current frozen submission/replay snapshot is version `1.2.1`, identified by
-the Git tag `k2p-k3p-theta-v1.2.1`. The earlier tags
-`k2p-k3p-theta-v1.2.0`, `k2p-k3p-theta-v1.1.0`, and
+The current frozen submission/replay snapshot is version `1.2.2`, identified by
+the Git tag `k2p-k3p-theta-v1.2.2`. The earlier tags
+`k2p-k3p-theta-v1.2.1`, `k2p-k3p-theta-v1.2.0`,
+`k2p-k3p-theta-v1.1.0`, and
 `k2p-k3p-theta-biorxiv-v1.0.0` remain immutable.
-Version 1.1.0 archives are retained under the parent `releases/` directory;
-version 1.0.0 remains under `legacy/releases/`. Exact upload-time status and
-unresolved author choices are recorded in `submission/biorxiv/`. No GitHub
-release, bioRxiv submission, Zenodo deposit, DOI, or external communication was
-initiated by the automated revision process.
+Versions 1.2.1, 1.2.0, and 1.1.0 are retained under the parent `releases/`
+directory; version 1.0.0 remains under `legacy/releases/`. Exact upload-time
+status and unresolved author choices are recorded in `submission/biorxiv/`.
+No GitHub release, bioRxiv submission, Zenodo deposit, DOI, or external
+communication was initiated by the automated revision process.
 
 Version `1.2.0` distinguishes the source paper's history explicitly. The
 removed arbitrary-level K2P statements are cited at arXiv:2607.12919v2. The
@@ -48,6 +49,12 @@ manifold notation, defines globally character-relabeled K2P consistently,
 states the comparison-tree and compatible theta rootings separately, qualifies
 the nonreversible supermodel remark, and binds the three comparison-tree
 half-time root checks into the exact replay suite.
+
+Version 1.2.2 likewise makes no mathematical change. It records the source
+paper's triangle and 2-blob qualifications exactly, writes the K3P local
+section explicitly, narrows the arbitrary-taxon interpretation, and states
+that contracting the inserted theta blob recovers the original labelled tree
+topology.
 
 ## Revision lineage
 

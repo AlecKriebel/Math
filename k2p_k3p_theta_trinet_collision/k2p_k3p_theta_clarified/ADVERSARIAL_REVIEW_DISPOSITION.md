@@ -5,6 +5,21 @@ rejected. Reviews used the manuscript, exact verifiers and certificates, the
 official arXiv sources for Versions 2 and 3 of Brits et al., and the cited
 primary literature.
 
+## Version 1.2.2 precision rereview -- 26 August 2026
+
+| Feedback item | Verdict | Disposition |
+|---|---|---|
+| Qualify the source paper's level-one theorem | Valid literature correction | Added the source's qualification by reticulation placement within triangles; also recorded its permitted 2-blob exception to arbitrary-level JC tree--network distinguishability. |
+| Make the genuinely K3P preimage selection explicit | Valid proof-exposition improvement | Introduced the fixed map, quartic point, collision locus, parameter neighborhood, and a smooth local section supplied by the submersion theorem; repeated the construction in the strict continuous-time chamber. |
+| Treat image containment and a smooth section as equivalent | Rejected as a general logical equivalence | Both properties hold here by the local submersion theorem, but the proof states the stronger section conclusion directly rather than calling the two assertions equivalent. |
+| Narrow the arbitrary-taxon interpretation | Valid | Replaced the potentially overbroad sentence by existence of a constructed collision for each `n >= 3`, with indistinguishability at every sequence length for each pair. |
+| State the tree-of-blobs interpretation | Valid and immediate | Added that contraction of the sole inserted theta blob recovers the original labelled tree topology. |
+| Tighten the technical summary's open-dense phrase | Valid editorial precision | Specified a relatively open dense subset of the locally covered K3P tree neighborhood. |
+| New immutable snapshot | Required | Preserved the existing `1.2.1` tag and release; the accepted edits are prepared as version `1.2.2`. |
+
+No item changes a collision, parameter tuple, theorem conclusion, title,
+abstract, or computational claim.
+
 ## Version 1.2.1 targeted rereview -- 26 August 2026
 
 | Feedback item | Verdict | Disposition |

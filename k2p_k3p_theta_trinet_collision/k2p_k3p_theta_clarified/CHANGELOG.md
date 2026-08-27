@@ -1,5 +1,25 @@
 # Changelog
 
+## Version 1.2.2 literature and scope precision -- 26 August 2026
+
+- Qualified the cited level-one theorem by the placement of reticulation
+  vertices within triangles and the arbitrary-level JC statement by its
+  permitted 2-blob augmentations.
+- Made the smooth local section in the genuinely K3P neighborhood proof
+  explicit, including its parameter neighborhood and strict
+  continuous-time repetition.
+- Replaced the potentially overbroad arbitrary-taxon sentence by the exact
+  theorem-level conclusion: a constructed collision exists for every
+  `n >= 3`, and each pair remains observationally equivalent at every
+  sequence length.
+- Stated explicitly that contracting the inserted theta blob recovers the
+  original labelled tree topology, so the network's tree-of-blobs is the
+  selected tree.
+- Tightened the technical summary's relative-open-dense wording. Preserved
+  every construction, theorem conclusion, title, abstract, and verifier.
+- Preserved immutable version `1.2.1`; these post-tag textual clarifications
+  are released separately as version `1.2.2`.
+
 ## Version 1.2.1 notation and rooting clarification -- 26 August 2026
 
 - Replaced the ill-typed reuse of the Klein-group symbol `G` as a topology and

@@ -1,5 +1,47 @@
 # Research log
 
+## 2026-08-26 -- Version 1.2.2 source-freeze checkpoint
+
+- Rebuilt the manuscript, technical summary, and displayed-tree clarification
+  PDFs twice from the revised sources. The final artifacts have 19, 2, and 2
+  pages, respectively, with no LaTeX, reference, or layout warning.
+- Inspected every rendered page at high resolution. The theta figure, switching
+  table, K3P tangent table, local-section proof, grafting theorem, bibliography,
+  URLs, and page breaks are clean. Text extraction contains no replacement
+  characters, local paths, placeholders, or stale active version references;
+  all PDF fonts are embedded.
+- Replayed the complete exact suite in normal and optimized Python modes. Both
+  outputs byte-match `verification_report_complete.txt`, whose SHA-256 remains
+  `4e8c98dbb697db76149a337d7d22132a1ad739df12aa3664f22f4f343f17ec36`,
+  and both end with `ALL EXACT CHECKS PASSED`.
+- Independent literature, differential-topology, scope, PDF, and release audits
+  found no mathematical or presentation blocker. The local-section proof states
+  the section conclusion directly and does not identify it with mere image
+  containment.
+- Best-guess completion: **90% of version 1.2.2 technical readiness**.
+  Remaining work is manifest regeneration, immutable commit/tag creation,
+  commit-pinned archive replay, and public tag-URL verification. No GitHub
+  Release, Zenodo deposit, DOI creation, or external communication is authorized.
+
+## 2026-08-26 -- Version 1.2.2 precision-rereview checkpoint
+
+- Independently checked the three requested edits against arXiv:2607.12919v3,
+  the local-fiber proof, and the one-blob grafting construction. All three are
+  valid precision improvements and none changes the mathematics.
+- Confirmed from the source abstract and Corollary 4.10 that level-one full
+  identifiability is modulo reticulation placement within triangles. Also
+  recorded the source's 2-blob exception to arbitrary-level JC
+  tree--network distinguishability.
+- Made the K3P preimage selection explicit through a smooth local section of
+  the restricted collision map. Distinguished that theorem from mere image
+  containment, which is not equivalent to section existence in general.
+- Adopted the narrower every-`n` interpretation, the exact tree-of-blobs
+  consequence, and the relative-open-dense summary wording.
+- Best-guess completion: **65% of version 1.2.2 technical readiness**.
+  Remaining work is independent post-edit review, exact replay, PDF build and
+  visual inspection, manifest regeneration, and the commit/tag/archive/public
+  URL gates. Version `1.2.1` remains immutable.
+
 ## 2026-08-26 -- Version 1.2.1 adversarial source-freeze checkpoint
 
 - Completed independent post-edit proof, exact-verifier, and release-metadata
