@@ -1,0 +1,73 @@
+% Reproducible TikZ figure for the rooted calculation network and the
+% suppressed semi-directed theta trinet. Requires tikz and arrows.meta.
+\begin{tikzpicture}[
+  x=1cm,y=1cm,
+  every node/.style={font=\small},
+  vertex/.style={circle,draw,fill=white,inner sep=1.6pt,minimum size=6.5mm},
+  retic/.style={circle,draw,double,fill=white,inner sep=1.3pt,minimum size=6.5mm},
+  leaf/.style={circle,draw,fill=white,inner sep=1.3pt,minimum size=6mm},
+  arc/.style={-{Latex[length=2mm]},line width=.65pt},
+  undirected/.style={line width=.7pt},
+  reticulation/.style={-{Latex[length=2mm]},line width=.8pt},
+  blobedge/.style={line width=.8pt,preaction={draw=gray!25,line width=3.0pt}},
+  blobretic/.style={-{Latex[length=2mm]},line width=.8pt,preaction={draw=gray!25,line width=3.0pt}},
+  edge label/.style={font=\scriptsize,fill=white,inner sep=1pt}
+]
+% ---------------- Rooted representation ----------------
+\begin{scope}[shift={(0,0)}]
+  \node[font=\bfseries] at (0,3.55) {(a) Rooted calculation network};
+  \node[vertex] (rho) at (0,3.0) {$\rho$};
+  \node[leaf]   (l1)  at (-1.8,2.25) {$1$};
+  \node[vertex] (u)   at (0.75,2.1) {$u$};
+  \node[vertex] (p)   at (-0.95,1.15) {$p$};
+  \node[vertex] (q)   at (1.15,1.15) {$q$};
+  \node[retic]  (r2)  at (-0.95,-0.05) {$r_2$};
+  \node[retic]  (r3)  at (1.15,-0.05) {$r_3$};
+  \node[leaf]   (l2)  at (-0.95,-1.15) {$2$};
+  \node[leaf]   (l3)  at (1.15,-1.15) {$3$};
+
+  \draw[arc] (rho) -- node[edge label,above left] {$K$} (l1);
+  \draw[arc] (rho) -- node[edge label,above right] {$K$} (u);
+  \draw[arc] (u) -- node[edge label,above left] {$U$} (p);
+  \draw[arc] (u) -- node[edge label,above right] {$V$} (q);
+  \draw[arc] (p) -- node[edge label,left] {$S$} (r2);
+  \draw[arc] (q) -- node[edge label,right] {$T$} (r3);
+  \draw[arc,bend left=17] (p) to node[edge label,below,pos=.15] {$S$} (r3);
+  \draw[arc,bend right=17] (q) to node[edge label,below,pos=.15] {$T$} (r2);
+  \draw[arc] (r2) -- node[edge label,left] {$K$} (l2);
+  \draw[arc] (r3) -- node[edge label,right] {$K$} (l3);
+  \node[font=\scriptsize,align=center] at (0.1,-1.72)
+    {both reticulations have inheritance weights $1/2,1/2$};
+\end{scope}
+
+% ---------------- Semi-directed representation ----------------
+\begin{scope}[shift={(8.1,0.15)}]
+  \node[font=\bfseries] at (0,3.4) {(b) Suppressed semi-directed trinet};
+
+
+  \node[vertex] (pp) at (-2.6,0) {$p$};
+  \node[vertex] (qq) at (2.6,0) {$q$};
+  \node[vertex] (uu) at (0,1.60) {$u$};
+  \node[retic]  (rr2) at (0,0) {$r_2$};
+  \node[retic]  (rr3) at (0,-1.30) {$r_3$};
+  \node[leaf] (ll1) at (0,2.80) {$1$};
+  % Leaf 2 sits inside one face of the planar theta embedding.  Placing it
+  % on the vertical through r2 keeps its pendant cut edge visually separate
+  % from every edge of the theta core.
+  \node[leaf] (ll2) at (0,0.72) {$2$};
+  \node[leaf] (ll3) at (0,-2.55) {$3$};
+
+  \draw[blobedge] (pp) -- node[edge label,above left] {$U$} (uu);
+  \draw[blobedge] (uu) -- node[edge label,above right] {$V$} (qq);
+  \draw[blobretic] (pp) -- node[edge label,above] {$S$} (rr2);
+  \draw[blobretic] (qq) -- node[edge label,above] {$T$} (rr2);
+  \draw[blobretic] (pp) -- node[edge label,below left] {$S$} (rr3);
+  \draw[blobretic] (qq) -- node[edge label,below right] {$T$} (rr3);
+  \draw[undirected] (uu) -- node[edge label,right] {$K\odot K$} (ll1);
+  \draw[undirected] (rr2) -- node[edge label,right] {$K$} (ll2);
+  \draw[undirected] (rr3) -- node[edge label,right] {$K$} (ll3);
+
+  \node[font=\scriptsize,align=center] at (-2.55,-2.35)
+    {$p-u-q$\\$p-r_2-q$\\$p-r_3-q$};
+\end{scope}
+\end{tikzpicture}

@@ -6,7 +6,7 @@
 verification, submission, and archival subtree. The full superseded package is
 isolated under `legacy/DO_NOT_SUBMIT-pre-clarification/`; the immutable version
 `1.0.0` historical release archive is isolated under `legacy/releases/`, while
-the versions `1.2.3`, `1.2.2`, `1.2.1`, `1.2.0`, and `1.1.0` remain under
+the versions `1.2.4`, `1.2.3`, `1.2.2`, `1.2.1`, `1.2.0`, and `1.1.0` remain under
 `releases/`.
 None of those historical locations is a current release input.
 
@@ -15,8 +15,8 @@ in repository history at commit `ca21a733`, dated 4 August 2026, and was linked
 from the public project page by commit `85cdead2`. The clarification revision is
 additive and no Git history was rewritten. A bioRxiv submission candidate and
 its author-facing metadata are prepared in the canonical subtree. The frozen
-source/replay snapshot is version `1.2.4`, identified by the annotated Git tag
-`k2p-k3p-theta-v1.2.4`. Versions `1.2.3`, `1.2.2`, `1.2.1`, `1.2.0`, `1.1.0`,
+source/replay snapshot is version `1.2.5`, identified by the annotated Git tag
+`k2p-k3p-theta-v1.2.5`. Versions `1.2.4`, `1.2.3`, `1.2.2`, `1.2.1`, `1.2.0`, `1.1.0`,
 and `1.0.0` remain historical snapshots. No external communication was
 initiated by the automated preparation process.
 
@@ -28,17 +28,17 @@ quartic construction gives exact K3P parameter-level symmetry breaking, and
 the rank-15 restricted submersion gives nearby shared distributions outside all
 globally character-relabeled K2P strata.
 
-The current version `1.2.4` archives were built from full commit
-`87d86cf348e888b29df94681426611ac601afe62`. The release builder verified
+The current version `1.2.5` archives were built from full commit
+`9f8d2682ead74e23b7badd9d7f46869477b4e84f`. The release builder verified
 version/CFF/tag identity, deterministic ZIP and tar.gz construction, both
 internal manifests, identical archive contents, normal and optimized exact
 replay with byte-matching transcripts, and clean PDF rebuilding with matching
 text and rendered pixels. The archives and checksum sidecars are retained under
-`releases/k2p-k3p-theta-v1.2.4/`. No GitHub release, Zenodo deposit, or DOI was
+`releases/k2p-k3p-theta-v1.2.5/`. No GitHub release, Zenodo deposit, or DOI was
 created.
 
 The copied neutral referee handoff is retained under
-`referee_packages/k2p-k3p-theta-ai-referee-v1.2.4/`. Its 34 source materials
+`referee_packages/k2p-k3p-theta-ai-referee-v1.2.5/`. Its 35 source materials
 match the tagged canonical files byte-for-byte. The packet excludes prior
 reviews and research logs, checks its exact path set and bytes against an
 unsigned internal manifest, runs all exact entry points normally and with
@@ -47,13 +47,17 @@ disposable copy, and optionally rebuilds all PDFs.
 The handoff's best-guess completion is **100% for technical referee replay**;
 the independent referee's substantive verdict is intentionally not predicted.
 The portable referee ZIP has SHA-256
-`031a1fbb115995ab7edb382d0e52f7791fd512b0e53887fc4a1c8fe5bfb93f6b`.
+`e8302556f356ac04add887a59ab370d4a496f011d59ccfd8a3e87cc19876551e`.
 The final packet folder passed the complete normal and optimized suites,
 focused transcript comparisons, direct supporting entry points, exact compact
 certificate regeneration, forced fresh PDF builds, extracted-text comparison,
 and pre/post integrity checks. A fresh ZIP extraction matched the folder
 byte-for-byte and passed the packet manifest. The manifest supplies internal
 self-consistency, not external authentication or proof of authorship.
+
+The version `1.2.4` archives remain under
+`releases/k2p-k3p-theta-v1.2.4/` at commit
+`87d86cf348e888b29df94681426611ac601afe62`.
 
 The version `1.2.3` archives remain under
 `releases/k2p-k3p-theta-v1.2.3/` at commit
@@ -118,8 +122,14 @@ pruning, rank determinant, local dimension, fixed-output fiber count, and
 edgewise continuous-time tangent identities; and the exact four-leaf graft
 regression. K3P semantic-mutation tests reject coordinated descriptor/column/
 pivot relabeling, free-direction relabeling, reticulation-order reversal,
-root-suppression source reassignment, and unknown top-level fields. The exact
-coverage and the remaining informational or transport-only certificate fields
+root-suppression source reassignment, and unknown top-level fields.
+Version 1.2.5 additionally binds the canonical ordered vertex/type/leaf-label
+schema and complete ten-arc ID/endpoint/vector map, resolves every
+reticulation descriptor against the actual arc, rejects duplicate identifiers
+before dictionary construction, and checks every compact-K2P stored transition
+row including `K_odot_K`. Normal and optimized negative regressions cover all
+of these relations. The exact coverage and the remaining informational or
+transport-only certificate fields
 are itemized in `CERTIFICATE_FIELD_COVERAGE.md`. The general all-`n` one-blob
 statement is proved by the common-kernel lemma; the four-leaf replay is an
 independent finite regression, not a computational proof for all `n`.
