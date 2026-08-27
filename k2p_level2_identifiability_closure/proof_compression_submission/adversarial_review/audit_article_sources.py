@@ -752,8 +752,6 @@ def main() -> dict[str, object]:
         "work/canonicalizer_completeness/inheritance_transport/restoration_restriction_parameter_transports.jsonl.gz",
         "work/canonicalizer_completeness/inheritance_transport/verify_parameter_transport_certificate.py",
         "work/rank_upper_certificates/mutation_report.json",
-        "work/rank_upper_certificates/mutation_tests.py",
-        "work/rank_upper_certificates/verify_rank_upper_certificates.py",
     }
     release_files = release.get("files")
     require(
@@ -761,6 +759,21 @@ def main() -> dict[str, object]:
         and required_new_release_paths <= set(release_files),
         "NEW_EXACT_EVIDENCE_NOT_BOUND_IN_RELEASE_LOCK",
     )
+    rank_manifest_rows: dict[str, str] = {}
+    for ordinal, line in enumerate(
+        rank_sha_manifest_path.read_text(encoding="utf-8").splitlines(), 1
+    ):
+        match = re.fullmatch(r"([0-9a-f]{64})  ([^/][^\n]*)", line)
+        require(match is not None, f"RANK_MANIFEST_LINE_INVALID:{ordinal}")
+        digest, relative = match.groups()
+        require(relative not in rank_manifest_rows, "RANK_MANIFEST_DUPLICATE_PATH")
+        rank_manifest_rows[relative] = digest
+    for relative in ("mutation_tests.py", "verify_rank_upper_certificates.py"):
+        path = rank_sha_manifest_path.parent / relative
+        require(
+            rank_manifest_rows.get(relative) == sha256(path),
+            f"RANK_EXACT_EVIDENCE_NOT_TRANSITIVELY_BOUND:{relative}",
+        )
 
     full_replay = read_json(full_replay_path)
     full_replay_telemetry = read_json(full_replay_telemetry_path)

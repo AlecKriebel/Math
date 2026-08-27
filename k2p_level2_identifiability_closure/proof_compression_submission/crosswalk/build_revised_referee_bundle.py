@@ -28,6 +28,7 @@ ARCHIVE_TIMESTAMP = (2026, 8, 26, 0, 0, 0)
 OPERATIONAL_EVIDENCE = {
     "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY.json",
     "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY_TELEMETRY.json",
+    "proof_compression_submission/output/FINAL_RELEASE_MUTATIONS.json",
     "proof_compression_submission/output/K2P_SAME_Principal_Domain_Article.pdf",
     "proof_compression_submission/output/K2P_SAME_Reader_Supplement.pdf",
     "proof_compression_submission/output/logs/article.log",

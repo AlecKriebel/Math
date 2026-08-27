@@ -5,11 +5,11 @@
 The unconditional `K2P-SAME` classification, generic-identifiability
 corollary, exact reconstruction theorem, strict continuous-time corollary, and
 weak-class `4n-3` sharpness theorem are complete. The promotion manuscript
-and 403-file transitive evidence bundle have independent replay and mutation
+and 406-file transitive evidence bundle have independent replay and mutation
 coverage. The frozen outer release lock is
 
 ```text
-c319977f350923ab900a883235e32ec945d55a864338c14a08ce266ed3a1c78a
+130642e235c9beaa22061c578c3c645244cdbf45a9b416d45d94492b3d2848bd
 ```
 
 Every finite gate has zero unresolved mathematical records. The corrected
@@ -52,29 +52,29 @@ with no open load-bearing findings.
 
 ## Final qualification state
 
-The repaired 227-file outer lock and 403-file recursive evidence closure pass
+The repaired 230-file outer lock and 406-file recursive evidence closure pass
 the lock check and the 23-layer quick replay with zero blockers. Two
-differently named clean extractions produced byte-identical 27/27 mutation
+differently named clean extractions produced byte-identical 25/25 mutation
 reports with zero survivors and no source drift. A detached clean checkout at
-commit `83821850e02bc6b6a0383dbc9d3d42ab24a261f5` passed all 40 full-replay
-layers in 5,428.67 seconds wall time with 2,548,498,432 bytes maximum RSS.
+commit `f6befbce38cfb21e27b8dc4a9611d284fdcbc800` passed all 41 full-replay
+layers in 5,697.15 seconds wall time with 2,552,119,296 bytes maximum RSS.
 Its report and source-bound telemetry have SHA-256 values
-`d26ce0841a50ebdc50a5e5d75a25ac2e12d9b647759051c8ceea29d803bd799e`
+`2489643d65c50f662d027bf5002b9f398c8fa2999d7a17fcf43a5334cb04e86e`
 and
-`dc4bd8faafef195a1fd7879b2c8ac7197ebb56cf8fee46c799ab0415b1e3ec08`.
+`b0f379d5e9d7e3acfd4c9812711964c4f7894dfd15e28045eab8077a9e6bd18f`.
 
 The 26-page article and 24-page supplement build and render cleanly. The
-final deterministic 484-member neutral-referee archive is
-`proof_compression_submission/output/K2P_Principal_D_Plus_Referee_Package_20260825.zip`;
-it is 214,823,405 bytes with SHA-256
-`ca08a3f50154610c7297ca83f92f0c9517fa5422ac7acf53b89582e1e14edbde`.
+final deterministic 489-member neutral-referee archive is
+`proof_compression_submission/output/K2P_Principal_D_Plus_Referee_Package_20260826.zip`;
+it is 214,930,375 bytes with SHA-256
+`86a286be82ce3c211f556eaa24cf1120aa42e41f716b46cb8752c1d2546053ba`.
 Two independent builds were byte-identical, ZIP integrity passed, and a fresh
 extraction passed every compact referee check without changing a packaged
 byte. Its executable evidence is byte-for-byte unchanged from the immediately
 preceding qualified extraction, which also passed the 23-layer quick replay
-and 27/27 outer mutations.
+and 25/25 outer mutations.
 
-The source tag is `k2p-same-biorxiv-v1.0.1`. No GitHub Release, Zenodo
+The source tag is `k2p-same-biorxiv-v1.0.2`. No GitHub Release, Zenodo
 deposit, or DOI has been created or claimed; those external publication
 actions are deliberately left to the author.
 

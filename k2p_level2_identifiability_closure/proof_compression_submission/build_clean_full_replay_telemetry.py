@@ -456,10 +456,39 @@ def parse_time_l(path: Path, internal_elapsed: float) -> dict[str, Any]:
         text = data.decode("utf-8")
     except UnicodeDecodeError as error:
         raise TelemetryFailure(f"TIME_L_NOT_UTF8:{error}") from error
-    timing = unique_match(
-        text,
-        rf"^\s*({DECIMAL})\s+real\s+({DECIMAL})\s+user\s+({DECIMAL})\s+sys\s*$",
+    compact_matches = list(
+        re.finditer(
+            rf"^\s*({DECIMAL})\s+real\s+({DECIMAL})\s+user\s+({DECIMAL})\s+sys\s*$",
+            text,
+            re.MULTILINE,
+        )
+    )
+    posix_matches = {
+        label: list(
+            re.finditer(
+                rf"^\s*{label}\s+({DECIMAL})\s*$",
+                text,
+                re.MULTILINE,
+            )
+        )
+        for label in ("real", "user", "sys")
+    }
+    compact_valid = len(compact_matches) == 1 and all(
+        not matches for matches in posix_matches.values()
+    )
+    posix_valid = not compact_matches and all(
+        len(matches) == 1 for matches in posix_matches.values()
+    )
+    require(
+        compact_valid or posix_valid,
         "TIME_L_TIMING_LINE_INVALID",
+        (
+            f"compact={len(compact_matches)}:"
+            + ":".join(
+                f"{label}={len(posix_matches[label])}"
+                for label in ("real", "user", "sys")
+            )
+        ),
     )
 
     def integer_field(labels: tuple[str, ...], code: str) -> int:
@@ -471,9 +500,14 @@ def parse_time_l(path: Path, internal_elapsed: float) -> dict[str, Any]:
         )
         return int(match.group(1))
 
-    real_seconds, user_seconds, system_seconds = (
-        float(timing.group(index)) for index in (1, 2, 3)
-    )
+    if compact_valid:
+        real_seconds, user_seconds, system_seconds = (
+            float(compact_matches[0].group(index)) for index in (1, 2, 3)
+        )
+    else:
+        real_seconds = float(posix_matches["real"][0].group(1))
+        user_seconds = float(posix_matches["user"][0].group(1))
+        system_seconds = float(posix_matches["sys"][0].group(1))
     require(real_seconds > 0, "TIME_L_REAL_SECONDS_NOT_POSITIVE")
     require(user_seconds >= 0 and system_seconds >= 0, "TIME_L_CPU_SECONDS_NEGATIVE")
     require(

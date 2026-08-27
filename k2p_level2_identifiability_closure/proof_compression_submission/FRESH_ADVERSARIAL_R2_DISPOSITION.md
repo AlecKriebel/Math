@@ -86,4 +86,48 @@ No GitHub Release or Zenodo deposit is authorized in this repair cycle.
 
 ## Final validation
 
-Pending.
+PASS.  The eight referee findings were repaired without changing a theorem,
+formula, finite census, rank, separator, restoration parent, transport, probe
+classification, or sharpness witness.
+
+- The final outer release lock contains 230 files, is promotion-ready with
+  zero blockers, has SHA-256
+  `130642e235c9beaa22061c578c3c645244cdbf45a9b416d45d94492b3d2848bd`,
+  and has payload
+  `b5eb26e953fbb76de671a4caa0db3068932af1e23b4fffdb0d118b5939f81756`.
+- The 23-layer quick replay passed with zero blockers in 274.19 seconds.
+- A detached clean sparse checkout at candidate commit
+  `f6befbce38cfb21e27b8dc4a9611d284fdcbc800` passed all 41 full-replay
+  layers.  Internal replay time was 5,696.744942 seconds; measured wall time
+  was 5,697.15 seconds; maximum resident set size was 2,552,119,296 bytes.
+  The report SHA-256 is
+  `2489643d65c50f662d027bf5002b9f398c8fa2999d7a17fcf43a5334cb04e86e`
+  and its source-bound telemetry SHA-256 is
+  `b0f379d5e9d7e3acfd4c9812711964c4f7894dfd15e28045eab8077a9e6bd18f`.
+- The outer suite rejected 25/25 conceptual mutation gates with zero
+  survivors in 3,458.50 seconds.  Its deterministic report has SHA-256
+  `f2a362e9d2606b0315f9fe6e5a7659d328bd73bcf6552f0c1cc4c4f8ecdd0026`
+  and payload
+  `05475591f00c75f2f0c2ee2e92c23bc869a8ed5000d28b40455ab7481870d30b`.
+- Two clean archive extractions with deliberately different path lengths each
+  passed the manifest/lock/portable-ledger checks and all 23 quick layers.
+  Both then reran the complete 25-gate outer mutation suite; the two reports
+  were byte-identical to one another and to the sealed report above. A second
+  manifest check after execution proved that neither extraction changed a
+  packaged byte.
+- The static source audit reports zero findings; the PC-PARTIAL old/new
+  equivalence replay, 11 compression mutations, 18 printed-appendix
+  mutations, portable recursive-ledger check, crosswalk checker, optimized
+  mode guards, and output-path/hardlink/symlink contracts all pass.
+- The article remains 26 pages and the supplement 24 pages.  Both build
+  deterministically with embedded fonts, no undefined citations or
+  references, no overfull boxes, and all 50 pages visually inspected.
+
+Final qualification also caught and repaired four additional fail-closed
+workflow defects: one stale raw-four byte binding in the theta2 composite
+reseal audit, a dependency-omission preflight that had used `--help` before
+imports, a telemetry parser that accepted only one BSD `time` layout, and two
+latent revised-bundle checker errors.  Each repair is provenance or QA only.
+
+No GitHub Release, Zenodo deposit, or DOI was created.  Those publication
+actions remain reserved to the author.

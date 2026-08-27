@@ -27,6 +27,7 @@ TELEMETRY_SUBMISSION_SOURCES = (
 OPERATIONAL_EVIDENCE = {
     "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY.json",
     "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY_TELEMETRY.json",
+    "proof_compression_submission/output/FINAL_RELEASE_MUTATIONS.json",
     "proof_compression_submission/output/K2P_SAME_Principal_Domain_Article.pdf",
     "proof_compression_submission/output/K2P_SAME_Reader_Supplement.pdf",
     "proof_compression_submission/output/logs/article.log",
@@ -589,10 +590,10 @@ def verify_crosswalk(
     ):
         fail("crosswalk environment requirements binding mismatch")
 
-    quartet = object_from_path(
-        project_path("work/quartet_separation_closure/quartet_logic_certificate.json"),
-        "quartet semantics certificate",
+    quartet_path = project_path(
+        "work/quartet_separation_closure/quartet_logic_certificate.json"
     )
+    quartet = object_from_path(quartet_path, "quartet semantics certificate")
     if (
         quartet.get("schema") != "k2p-displayed-quartet-semantics-v2"
         or quartet.get("status") != "PASS"
@@ -1184,6 +1185,35 @@ def verify_crosswalk(
         fail("rank-upper complete sampled-substitution evidence mismatch")
 
 
+def verify_final_release_mutations() -> None:
+    report = object_from_path(
+        project_path(
+            "proof_compression_submission/output/FINAL_RELEASE_MUTATIONS.json"
+        ),
+        "final release mutation report",
+    )
+    payload = report.get("payload_sha256")
+    unsigned = dict(report)
+    unsigned.pop("payload_sha256", None)
+    rows = report.get("mutations")
+    if (
+        report.get("schema") != "k2p-principal-d-plus-final-release-mutations-v2"
+        or report.get("status") != "PASS"
+        or report.get("blockers") != []
+        or report.get("required_mutation_count") != 25
+        or report.get("observed_mutation_count") != 25
+        or report.get("survivors") != 0
+        or report.get("output_contract_preflight") != "PASS"
+        or not isinstance(rows, list)
+        or len(rows) != 25
+        or any(row.get("status") != "REJECTED" for row in rows)
+        or len({row.get("name") for row in rows}) != 25
+        or not isinstance(payload, str)
+        or payload != canonical_hash(unsigned)
+    ):
+        fail("final release mutation report mismatch")
+
+
 def verify_pdf_build_report(submission: dict[str, dict[str, int | str]]) -> None:
     report = object_from_path(
         project_path("proof_compression_submission/PDF_BUILD_REPORT.json"),
@@ -1198,7 +1228,7 @@ def verify_pdf_build_report(submission: dict[str, dict[str, int | str]]) -> None
         report.get("schema") != "k2p-submission-pdf-build-report-v3"
         or report.get("status") != "PASS"
         or report.get("visual_verdict") != "PASS"
-        or report.get("source_date_epoch") != 1787529600
+        or report.get("source_date_epoch") != 1787702400
         or report.get("source_date_epoch_utc") != "2026-08-26T00:00:00Z"
         or report.get("engine") != {"name": "Tectonic", "version": "0.16.9"}
         or report.get("byte_identical_double_build") is not True
@@ -1466,6 +1496,7 @@ def validate(manifest_path: Path) -> dict[str, Any]:
         lock_sha256,
         lock_payload_sha256,
     )
+    verify_final_release_mutations()
     verify_pdf_build_report(submission)
     verify_static_article_audit(submission, expected_runtime, lock_sha256)
     return {

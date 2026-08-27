@@ -26,7 +26,7 @@
 
 ## 2026-08-26T18:08:46-07:00 — Fresh replay checkpoint
 
-- Added an external macOS sandbox profile: reads and local subprocesses allowed, writes confined to `package_copy`, network denied. Used an empty caller environment with no credentials. A local `mktemp` shim rewrites BSD `mktemp -t` into the runner's phase-local `TMPDIR`; this was needed because macOS ignores `TMPDIR` for that invocation.
+- Added an external macOS sandbox profile: host reads and local subprocesses allowed, writes confined to `package_copy`, network denied. Used an empty caller environment with no credential-bearing variables. The broad read rule means this was not complete filesystem-level credential isolation; that limitation was recognized later and is disclosed in the final report. A local `mktemp` shim rewrites BSD `mktemp -t` into the runner's phase-local `TMPDIR`; this was needed because macOS ignores `TMPDIR` for that invocation.
 - Preserved two failed harness attempts. Session `20260827T005735Z` reached the clean-room checks and then failed because BSD `mktemp -t` attempted a denied write under `/var/folders`. Session `20260827T005931Z` completed the ten-child integrated replay in 190.80 seconds but the outer runner rejected sandbox-degraded `platform.platform()` metadata. Allowing writes to `/dev/null` restored the canonical platform probe without broadening filesystem or network access.
 - Clean session `review_runs/20260827T010421Z` passed all four requested verification commands: release-input bindings, artifact bindings, the ten-child integrated fresh replay, and active classification mutations. Total 193.749 seconds; declared workspace drift was empty. Report SHA-256 `da448cca65c7787d48a7e537ea707d6f032b019434a7c1688ba062833c5b4afa`; transcript SHA-256 `04404b9c5959c2fbb33db33b13d7757686a958125ff48e764418818125b83db2`.
 - Started the required 44-command portable producer/verifier regeneration exactly once. No duplicate probe process will be launched.
@@ -39,3 +39,13 @@
 - Completed the handwritten-proof, code/certificate, independent-computation, and literature audits. Drafted the full referee report with verdict `not fully assessable` at confidence 0.91, pending only the exact once-only regeneration result and final validation.
 - The regeneration has passed its first 29 commands, including the full restoration producer/replay/mutations, and is progressing normally through the single hour-scale probe producer.
 - Completion estimate: 82%.
+
+## 2026-08-26T19:05:01-07:00 — Adversarial report and isolation checkpoint
+
+- Three independent red teams challenged the main mathematical omission, both major code findings, and the report's compliance/wording. The mathematical gap was confirmed at 0.97 confidence with a valid short contextual separator repair; both code findings survived, with the probe finding narrowed to credit the genuinely semantic producer while identifying the absence of an independent semantic replay.
+- Corrected an overstatement about isolation. The formal profile enforced network denial, external-write denial, and an empty environment, but allowed unrestricted host reads; it therefore was not full filesystem-level credential isolation. Static inspection and a live-open-file snapshot found no credential access, but cannot prove none occurred.
+- Added a common-credential deny overlay and reran all six referee-authored independent scripts inside `package_copy`. All result files were byte-identical. The overlay is a hardening check, not a proof that every possible credential store has been enumerated.
+- Added all-path regular-file/symlink diffs for both failed verification workspaces and the clean verification workspace. Against the untouched delivered proof source, the successful workspace had zero changed files, zero removals, and only the `.venv` symlink plus its generated integrated report added.
+- Expanded the report's exact hypotheses, issue metadata, path conventions, dependency map, failure disclosures, literature qualifications, and unresolved-check register.
+- The once-only regeneration remained healthy at two-port parent 1,700/2,107.
+- Completion estimate: 90%.

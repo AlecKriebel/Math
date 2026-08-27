@@ -1,5 +1,9 @@
 # Disposition of the fresh PC-PARTIAL adversarial review
 
+> Historical scope. This 22 August disposition is retained for provenance.
+> `FRESH_ADVERSARIAL_R2_DISPOSITION.md`, the source-bound 41-layer replay, and
+> the regenerated static audit are the current qualification authorities.
+
 Date: 22 August 2026
 
 ## Result

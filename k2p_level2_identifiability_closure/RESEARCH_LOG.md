@@ -748,3 +748,30 @@
   mathematics** and **approximately 98% for final release qualification**,
   pending the final lock, detached full replay, source-bound PDFs/telemetry,
   deterministic archive, commit, and independent package audit.
+
+## 2026-08-26 17:49 PDT — round-2 qualification passes
+
+- A detached clean sparse checkout at commit `f6befbce38cfb21e27b8dc4a9611d284fdcbc800`
+  passed all 41 full-replay layers with zero blockers in 5,697.15 seconds wall
+  time and 2,552,119,296 bytes maximum RSS. The source-bound report and
+  telemetry hashes are `2489643d65c50f662d027bf5002b9f398c8fa2999d7a17fcf43a5334cb04e86e`
+  and `b0f379d5e9d7e3acfd4c9812711964c4f7894dfd15e28045eab8077a9e6bd18f`.
+- The final outer suite rejected 25/25 conceptual mutation gates with zero
+  survivors in 3,458.50 seconds. Its deterministic report hash is
+  `f2a362e9d2606b0315f9fe6e5a7659d328bd73bcf6552f0c1cc4c4f8ecdd0026`.
+- Final replay exposed and closed two additional harness defects: a stale
+  raw-four byte binding in the theta2 composite differential, and a staged
+  dependency-omission test that had invoked `--help` before imports. The
+  corrected differential and a real import preflight now pass. Telemetry now
+  accepts both BSD compact and POSIX `time` layouts under exact parsing.
+- The static audit has zero findings; crosswalk and referee-manifest checks
+  pass after removing revoked mutation regressions from current C05 authority
+  and explicitly retaining the executable symbolic rank verifier and syzygy
+  module.
+- No theorem statement, algebraic certificate, classification, rank, finite
+  census, restoration edge, transport, probe row, or sharpness witness
+  changed. The deterministic 489-member archive was built twice identically;
+  two differently named extractions passed the package check, 23-layer quick
+  replay, and 25/25 outer mutation suite with byte-identical reports. Best-guess
+  completion is **100% for the mathematics** and **100% for release
+  qualification**, subject only to the author's GitHub Release/Zenodo choices.

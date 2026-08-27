@@ -6,6 +6,16 @@
 
 **Review date:** 26 August 2026 (America/Los_Angeles)
 
+Unless stated otherwise, bare manuscript-section filenames are relative to
+`package_copy/proof_package/manuscript/sections/`, other supplied-code paths
+are relative to `package_copy/proof_package/`, run-evidence paths are relative
+to `package_copy/`, and referee-authored check paths are relative to this audit
+directory.
+
+I read both supplied PDFs in full before consulting generated reports, then
+inspected the active producers, verifiers, wrappers, and mutations before any
+formal package execution.
+
 ## Recommendation
 
 **Verdict: not fully assessable.** Confidence in this verdict: **0.91**.
@@ -23,7 +33,8 @@ remain conditional on producer/frozen data:
 
 1. no active bundled command re-enumerates and classifies the full 405,216
    four-port relations, or even the 27,834 post-topology cases, to derive the
-   asserted 40 raw survivors, fourteen orbits, and two sink swaps; and
+   asserted 40 post-filter records: 38 partitioned into fourteen orbits plus
+   two pre-lock sink swaps; and
 2. the purported independent probe verifier does not reconstruct the graph,
    marginal, quartet, or row-specific tree--sunlet semantics of the 574,535
    one-/two-port rows. It accepts a coherently self-hashed but semantically
@@ -46,9 +57,9 @@ omission rather than a counterexample.
 If the missing exhaustive four-port producer/verifier and a genuinely
 semantic probe replay are supplied, and the handwritten decoration step is
 inserted, I would expect the result to become assessable without changing its
-statement. In journal-process terms, the needed action is a major revision;
-the single verdict above is “not fully assessable” because correctness of a
-central finite branch cannot presently be checked from the package.
+statement. The repair burden is major, but because correctness of a central
+finite branch cannot presently be checked from the package, the sole verdict
+is **not fully assessable**.
 
 ## 1. Exact claims and scope
 
@@ -56,7 +67,9 @@ central finite branch cannot presently be checked from the package.
 
 The main theorem concerns two networks on the same finite labelled leaf set.
 Each must be binary, level at most two, standard semi-directed, and strongly
-tree-child. “Standard” means: mark the arcs entering reticulations, undirect
+tree-child. In every rooted presentation the binary root is the lowest stable
+ancestor of all leaves (`manuscript/sections/03_conventions_model.tex:5-13`).
+“Standard” means: mark the arcs entering reticulations, undirect
 all other arcs, delete the binary root, and merge its two incident arcs exactly
 once; the presentation is admitted only if that one suppression creates no
 loop or parallel edge and loses no arrowhead. There is no later exhaustive
@@ -71,10 +84,14 @@ nontrivial K3P Fourier coordinates `(c,g,t)` in
 
 These inequalities are exactly strict positivity of the four inverse-Fourier
 transition probabilities, together with positive nontrivial spectra
-(`03_conventions_model.tex:85-135`). Zero spectra, identity/boundary edges,
+(`03_conventions_model.tex:85-135`). States and characters are identified with
+the fixed Klein four group `{0,C,G,T}`, the root distribution is uniform, and
+the network tensor is the inheritance-weighted sum of displayed-tree Fourier
+monomials subject to total character zero (`:87-122`). Zero spectra,
+identity/boundary edges,
 inheritance values `0` or `1`, nonbinary networks, higher level, nonreversible
 models, and other semi-directed cleanup conventions are outside the theorem
-(`12_continuous_time.tex:43-44`; `16_scope.tex`).
+(`12_continuous_time.tex:43-44`; `manuscript/sections/16_scope.tex:9-40`).
 
 ### 1.2 Observational relations
 
@@ -252,13 +269,18 @@ case is therefore not discharged by the cited theorem.
 
 The existing six-circuit separator appears to repair the proof: it vanishes on
 the three-leaf tree and is pointwise positive on every strict sunlet, and its
-zero/nonzero distinction survives positive incidence scaling. The strong
+zero/nonzero distinction survives positive incidence scaling. Indeed, under
+`q_xyz -> A_x B_y C_z q_xyz`, the two cubic monomials in each circuit have the
+same character multiset at each port, so that circuit is multiplied by one
+strictly positive monomial. The strong
 repair table gives at least four boundaries for a theta, leaving the cycle as
 the only nontrivial degree-three blob alternative
 (`08_primitive_bounded.tex:45-73`). The revision should insert this decoration
 test after recovery of the abstract split tree and bridge-orbit extraction,
 before applying the cycle/theta local theorem, and should weaken the premature
-conclusion at `04_physical_topology.tex:212` accordingly.
+conclusion at `04_physical_topology.tex:212` accordingly. The reconstruction
+algorithm already performs this missing distinction as step R3
+(`11_genericity_reconstruction.tex:119-131`).
 
 ### 3.3 MATH-2 — analytic section in finite-type localization is not explicit
 
@@ -332,6 +354,7 @@ the topology reductions, not the image/germ conclusion actually needed.
 **Severity:** major, load-bearing.
 **Location:** `input_frozen/k3p_cloud_artifacts/descriptor_report_4(1).json:2-18`;
 `K3P_14_ORBIT_LOCK.json:69-71,928-929`;
+`manuscript/sections/08_primitive_bounded.tex:90-211`;
 `reproducibility/exact_four_port.py:560-626,830-843`;
 `clean_room/verify_h21_transport_and_fourteen_orbits.py:71-120,328-407,1683-1719`;
 `reproducibility/verify_k3p_same_classification.py:182-250`;
@@ -349,7 +372,9 @@ limits imported K2P algebra to reference-only use
 (`COMPANION_DEPENDENCY_LOCK.md:3-17`).
 
 The K3P descriptor report records a 142,589,253-byte corpus and hashes, but the
-corpus itself is absent. The active lock stores the final 40/14/2 answer.
+corpus itself is absent, and `LOCAL_INPUT_INVENTORY.json:34-46` classifies the
+lock as `frozen_input_unverified`. The active lock stores the final 40/14/2
+answer.
 `exact_four_port.py` and the clean-room code then loop only over records loaded
 from that lock. The clean-room target census proves that its handwritten
 grammar constructs 2,814 targets, but it never compares all sources, targets,
@@ -359,7 +384,11 @@ step is the 24-permutation double-coset partition of one H21 base relation.
 The 44-command “complete regeneration” contains no four-port universe or lock
 producer. The integrated gate verifies only the stored 14/38/2 census and 9+5
 separator partition. Exact certificates for the selected rows cannot rule out
-an omitted relation.
+an omitted relation. In particular, the primary module returns
+`accounting_classification_certified_by_this_module=True` after checking that
+same stored selection (`reproducibility/exact_four_port.py:1043-1059`), and the
+later gate consumes that Boolean (`reproducibility/verify_primary.py:579-599`);
+this is not independent evidence of exhaustive selection.
 
 Required evidence is an active independently implemented driver that derives
 the primitive universe, visits all 405,216 cases, recomputes topology and K3P
@@ -373,13 +402,20 @@ must include coherent omission/reclassification cases.
 **Severity:** major, load-bearing.
 **Location:** `probes/verify_k3p_probes.py:2-8,80-135,154-222,280-355,357-494`;
 `probes/test_k3p_probe_mutations.py:82-180,323-349`;
-`reproducibility/verify_k3p_same_classification.py:932-943`.
+`reproducibility/verify_k3p_same_classification.py:932-943`;
+`manuscript/sections/09_restoration_words.tex:65-124`;
+`independent_checks/check_probe_semantic_samples.py:707-739`.
 **Dependency:** arbitrary one-/two-port word recovery and coherent triangle
 assembly, hence complete local classification and main necessity.
 **Repairability:** yes, with a genuinely separate semantic verifier.
 
 The verifier claims to validate every exact map/marginal and recompute every
-stored Bernstein certificate. In fact:
+stored Bernstein certificate. The hour-scale producer itself does perform
+semantic graph construction, classifications, restrictions, and the full
+one-/two-port Cartesian enumeration
+(`probes/regenerate_k3p_probes.py:199-263,409-432,992-1003,1222-1315,1337-1429,1516-1646`).
+The defect is the lack of a separately implemented semantic replay. In the
+advertised verifier:
 
 - `validate_transport` checks a self-hash, enum values, injectivity, and shallow
   triangle-list properties. It never reconstructs source or target graphs or
@@ -417,8 +453,10 @@ coherently resealed so that only the semantic error remains.
 1. **Cut topology boundary (moderate).** The exact 204-direction algebra begins
    from frozen JC switching masks; the five primitive templates, 72 records,
    and masks are not graph-generated on the active path
-   (`global_transfer/build_global_transfer.py:72-132`;
-   `final_certificate/verify_final_certificate.py:28,174-214`). This is a
+   (`cut_recovery/strong_crossbridge/global_transfer/build_global_transfer.py:72-132`;
+   `cut_recovery/strong_crossbridge/final_certificate/verify_final_certificate.py:28,174-214`).
+   The article nevertheless says the verifier rebuilds the “entire labelled
+   universe” (`manuscript/sections/04_physical_topology.tex:196-201`). This is a
    conditional topology input, not algebraic circularity. It affects directed
    cut transfer and hence global necessity. An active graph generator deriving
    the five templates, 72 records, and switching masks would resolve it; absent
@@ -454,7 +492,7 @@ coherently resealed so that only the semantic error remains.
    integrated result for these fixed records.
 5. **Blocked cut certificate exits zero (minor).** The standalone final cut
    verifier can emit `PASS_BLOCKED` and return zero
-   (`final_certificate/verify_final_certificate.py:571-588,631-664`). Later
+   (`cut_recovery/strong_crossbridge/final_certificate/verify_final_certificate.py:571-588,631-664`). Later
    global transfer requires true `PASS`, so the complete chain eventually
    fails, but the standalone command should return nonzero or have a strict
    runner sentinel. This affects standalone fail-closed reporting, not the
@@ -464,11 +502,32 @@ coherently resealed so that only the semantic error remains.
 
 ### 5.1 Isolation and environment
 
-All executable review work was done in `package_copy`, not the delivered
-original. A macOS sandbox denied all network operations, allowed reads and
-local process execution, and confined writes to that copy (plus `/dev/null`).
-The caller environment was rebuilt empty with no credentials. A connection
-attempt to `127.0.0.1` failed with `EPERM`, confirming enforcement.
+The formal supplied-package runs were made in `package_copy`, not the delivered
+original. A macOS sandbox denied all network operations and confined writes to
+that copy (plus `/dev/null`). The caller environment was rebuilt from empty, so
+no credential-bearing environment variables were inherited. A connection
+attempt to `127.0.0.1` failed with `EPERM`.
+
+There is an important procedural limitation: `logs/offline_referee.sb` allowed
+unrestricted host file reads for runtime compatibility. It therefore was **not**
+a complete filesystem-level no-credentials sandbox; supplied code could in
+principle have read a host credential file even though it could neither use the
+network nor write outside the copy. Pre-execution static inspection found no
+explicit credential-store, keychain, browser-profile, or network-client access
+in the active command graph, and a live `lsof` snapshot during the probe stage
+showed only package-copy files open, but neither check proves the absence of an
+earlier transient read. This limitation applies to the formal regeneration and
+cannot be repaired by relaunching it under the prompt's exact-once rule.
+
+The first executions of the referee-authored spot scripts, one read-only
+integrity preflight, and the isolated fake-transport validator probe occurred
+before that final confinement protocol. All six spot scripts, including the
+actual validator call, were subsequently rerun inside `package_copy` with an
+empty environment, network denial, write confinement, and a follow-up overlay
+that explicitly denied common SSH/cloud/keychain/browser credential locations.
+Every result was byte-identical to the preserved evidence. The overlay itself
+does not claim to enumerate every possible credential location; its SHA-256 is
+`39dbe755d63423558dc3416b8351927b6f26a8512754515e09cf7f874d8187d6`.
 
 The documented dependencies were supplied offline by copying the source
 project's exact local `.venv` into the isolated package, avoiding package-index
@@ -476,30 +535,52 @@ access. The environment was Python 3.14.6, mpmath 1.3.0, networkx 3.5, numpy
 2.5.2, and sympy 1.14.0. The successful run report records module-file and
 interpreter hashes.
 
-Initial integrity passed independently: 574 outer payload files totaling
-153,326,366 bytes and 548 proof-core members totaling 152,714,245 bytes, bound
-to proof and package-builder commit
-`983086779dab08f6a0d76d0a10c614b7cee4affe`.
+Initial and formal-run integrity checks found 574 outer payload files totaling
+153,326,366 bytes and 548 proof-core members totaling 152,714,245 bytes
+hash/size consistent. The mutually consistent manifest fields name proof and
+package-builder commit
+`983086779dab08f6a0d76d0a10c614b7cee4affe`; no Git-tree or remote-authenticity
+binding was reproduced from this extracted package. The successful
+release-input command used its documented `--allow-uncommitted-sources` mode.
 
 ### 5.2 Executions
 
-The portable plan reconstructed the declared 44 mathematical regeneration
-commands. No second probe producer was launched.
+The later isolated `./RUN_REVIEW.sh plan` passed and reconstructed the declared
+44 mathematical regeneration commands. No second probe producer was launched.
 
-Two failed verification attempts are retained because they expose packaging
-behavior:
+Three failed harness/preflight attempts are retained and explained:
+
+- a subordinate static-audit invocation of `./RUN_REVIEW.sh plan` raced the
+  parent-owned verification workspace, so its integrity scan saw a temporary
+  path disappear. It launched no mathematical command. A later isolated plan
+  run passed. One earlier read-only JSON inspection also raised a corrected
+  `KeyError` after a guessed field name; no conclusion or execution depended on
+  it (`results/code_audit.md:131-142`).
 
 - `review_runs/20260827T005735Z`: substantive clean-room checks passed, then
   BSD `mktemp -t` ignored the phase `TMPDIR` and attempted a denied system-temp
-  write (`clean_room/verify_clean_room.sh:17`).
+  write (`clean_room/verify_clean_room.sh:17`). Transcript SHA-256:
+  `122664812e228d61e78bc5d6e36288ed72e6328d7cd1104c107c812cad187189`.
+  The all-path diff has one authorized addition (`.venv`), one changed
+  location-dependent `primary_gate_report.json`, and no removal; evidence hash
+  `1a9b66539760f341392b43fc62041dc4b6a8788182cb1462ae768ec897aea131`.
 - `review_runs/20260827T005931Z`: the ten-child integrated replay passed in
   190.80 seconds, but the outer runner rejected a primary-report platform
-  string changed by sandbox denial of writes to `/dev/null`.
+  string changed by sandbox denial of writes to `/dev/null`. Transcript
+  SHA-256:
+  `cc1c11b9758e6818a2365154c7651bc08281ad1c818f4cfdb3794cf13edb63c3`.
+  Its all-path diff has two additions (`.venv` and the generated fresh report),
+  the same location-dependent primary-report change, and no removal; evidence
+  hash
+  `05c3f07d247fe2ad270a8ced8f9d93077a848105186e4e9ea8b3ffdcec2452a7`.
 
 A local execution shim rewrote only `mktemp -t TEMPLATE` to the explicit
 phase-local `TMPDIR`; allowing `/dev/null` writes restored the standard
 read-only platform probe. These adjustments did not modify the sealed package
-or relax network/filesystem scope.
+or relax the enforced network/write scope. The original sandbox-profile and
+shim SHA-256 values are respectively
+`7e217ae3951973d49d0f37a7088d7b7542c6722a9490967b3e828d46ebb2e142`
+and `b2d5e9ac9b71f60e0d65bf53028b86cfb57319abdf8baf0d36a548c75f767403`.
 
 The clean verification session `review_runs/20260827T010421Z` passed:
 
@@ -510,7 +591,15 @@ The clean verification session `review_runs/20260827T010421Z` passed:
 | integrated ten-child fresh replay | PASS | 187.911 | `e9a2a4aa6f48d162492afcba14589ff22c70d95203cdede144e18e47e42c79ee` |
 | integrated classification mutations | PASS | 5.411 | `37386eed3c13b4e6f1cb6897671ed9e8bc85001a81851d3ad2fe1c8a94af627a` |
 
-Total phase time was 193.749 seconds; declared workspace drift was empty.
+Total phase time was 193.749 seconds; the runner's declared sealed-payload
+drift was empty. That field deliberately excludes the `.venv` symlink and
+`release/work/`. A separate all-path byte/symlink comparison against the
+delivered proof source found zero changed files, zero removals, and exactly two
+authorized additions: `.venv` and
+`release/work/referee_integrated_fresh_report.json` (29,679 bytes, SHA-256
+`a0672f420e273c5560ed00fda92b8c26dcd985521b6c731b3bd142e0db5bcf83`).
+The complete diff is `results/verify_full_workspace_diff.json`, SHA-256
+`22cd7b89ea1044a409ee55b41023116ee5ea2e867fdb7367d791a487c2a9e03a`.
 Report SHA-256:
 `da448cca65c7787d48a7e537ea707d6f032b019434a7c1688ba062833c5b4afa`.
 Transcript SHA-256:
@@ -604,30 +693,58 @@ three-sunlet dimension calculations, multigraded implicitization, and recent
 JC level-2 work are materially accurate. The literature discussion still
 needs minor revision:
 
-1. cite Currie et al., *Semialgebraic Conditions for Identifying Triangles in
-   Phylogenetic Networks* ([arXiv:2606.26673](https://arxiv.org/abs/2606.26673)),
-   the closest JC analogue to the distinction between a common triangle germ
-   and unequal full stochastic images;
-2. cite Martin et al., *Algebraic Invariants for Inferring 4-Leaf
-   Semi-Directed Phylogenetic Networks*,
-   [DOI 10.1093/sysbio/syaf071](https://doi.org/10.1093/sysbio/syaf071), for the
-   current practical invariant landscape;
-3. cite Allman et al., *Beyond Level-1: Identifiability of a Class of Galled
-   Tree-Child Networks*,
+1. **LIT-1 — omitted JC triangle geometry.** Location:
+   `manuscript/sections/01_introduction.tex:31-50`,
+   `15_kimura_perspective.tex:17-29`, and absent from
+   `manuscript/references.bib`. Severity: minor revision. Dependency: novelty
+   and presentation only. Currie et al., *Semialgebraic Conditions for
+   Identifying Triangles in Phylogenetic Networks*
+   ([arXiv:2606.26673](https://arxiv.org/abs/2606.26673)), is the closest JC
+   analogue to a common triangle germ without equality of full stochastic
+   images. Cite it and contrast its ambient JC geometry with the relative K3P
+   `H14` germ; that citation resolves the issue.
+2. **LIT-2 — practical invariant landscape.** Location:
+   `01_introduction.tex:39-43` and absent from `manuscript/references.bib`.
+   Severity: minor. Dependency: motivation/literature completeness only.
+   Martin et al., *Algebraic Invariants for Inferring 4-Leaf Semi-Directed
+   Phylogenetic Networks*,
+   [DOI 10.1093/sysbio/syaf071](https://doi.org/10.1093/sysbio/syaf071), should
+   be cited with one sentence distinguishing practical four-cycle inference
+   from this exact local-to-global classification.
+3. **LIT-3 — incomplete higher-level context.** Location:
+   `01_introduction.tex:52-59` and absent from `manuscript/references.bib`.
+   Severity: minor. Dependency: breadth of novelty comparison only. Allman et
+   al., *Beyond Level-1: Identifiability of a Class of Galled Tree-Child
+   Networks*,
    [DOI 10.1007/s11538-025-01545-8](https://doi.org/10.1007/s11538-025-01545-8),
-   as complementary higher-level identifiability under different data/models;
-4. label the JC, K2P, and tree--theta comparisons as same-author companion
-   manuscripts/reproducibility packages, and give the K2P/tree--theta items
-   durable archives rather than only Git commits; and
-5. qualify the claim that the triangle quotient agrees with Brits et al. Their
-   semi-directed convention performs later exhaustive cleanup, whereas this
-   article expressly uses one-step root suppression. State agreement only
-   after translating conventions and restricting to standard-admissible
-   presentations (`01_introduction.tex:48-50` versus
-   `03_conventions_model.tex:16-24`).
+   should be cited as complementary higher-level identifiability under
+   different data and models, explicitly noting that it does not subsume K3P
+   displayed-tree site-pattern containment.
+4. **LIT-4 — same-author companion status.** Location:
+   `01_introduction.tex:61-64`, `15_kimura_perspective.tex:3-21`, and
+   `manuscript/references.bib:199-237`. Severity: minor revision/confidence
+   limitation. Dependency: the JC/K2P comparison columns and proposed common
+   sharp boundary, not the internal K3P proof. Label the JC, K2P, and
+   tree--theta items as same-author companion manuscripts/reproducibility
+   packages, avoid implying independent consensus, and give the K2P/tree--theta
+   items durable archives rather than only Git commits.
+5. **LIT-5 — convention translation.** Location:
+   `01_introduction.tex:48-50` versus `03_conventions_model.tex:16-24`.
+   Severity: minor clarity issue. Dependency: only the claim that the two
+   topology quotients agree. Brits et al. perform later exhaustive cleanup,
+   whereas this article uses one-step root suppression. Qualify agreement as
+   holding after translation and restriction to standard-admissible
+   presentations, or supply a short equivalence lemma.
 
 These are literature/presentation issues, not discovered mathematical
 counterexamples.
+
+The weak-class `6n-3` construction is also plausibly new but only moderately
+externally corroborated; the closest precedents are same-author companions.
+The exact-real reconstruction theorem appears new in this network class, but
+its novelty is inseparable from the unassessed classification and it is not a
+practical inference algorithm (`02_main_theorems.tex:38-44`;
+`16_scope.tex:30-36`).
 
 ## 8. Presentation and editorial assessment
 
@@ -654,10 +771,18 @@ Required presentation repairs are:
 - make the root-movement reparameterization wording precise; and
 - add/qualify the recent literature described above.
 
-The claim at `manuscript/sections/17_reproducibility.tex:18-25` that
+**PRES-1 (moderate, repairable disclosure defect).** The claim at
+`manuscript/sections/17_reproducibility.tex:18-25` that
 load-bearing replays rebuild literal graphs, switching masks, Fourier tensors,
 coordinate transports, and exact witnesses is too broad for the four-port and
-probe boundaries as currently packaged.
+probe boundaries and for the frozen cut-topology masks. The more specific claim
+that a verifier rebuilds the “entire labelled universe” at
+`manuscript/sections/04_physical_topology.tex:196-201` is likewise not supported
+by the active cut path. This affects the publication-level interpretation of
+computer assistance, rather than adding a new mathematical dependency beyond
+CODE-1, CODE-2, and CODE-3. Repair by naming the frozen/producer-only boundaries
+at those theorem steps; an active independent regeneration of each boundary
+would permit the stronger language.
 
 ## 9. Required evidence for reassessment
 
@@ -679,20 +804,20 @@ evidence.
 
 ## 10. Unresolved and unexecuted checks
 
-- Exhaustive independent reclassification of the 405,216 four-port relations:
-  impossible with the active package as supplied.
-- Independent semantic replay of all 574,535 probe rows: absent from the
-  active verifier; only censuses, stored structure, and samples were checked.
-- Independent graph derivation of all five primitive templates, 72 cut records,
-  and the exclusion of every unmarked degree-two strong-class component: not
-  fully enumerated here.
-- Complete regeneration status: `REGENERATION_PENDING`.
-- Git-bound release-engineering mutation suite: source inspected, not executed
-  in an exact clean checkout; nonmathematical.
-- Exact Tectonic PDF rebuild: not executed because the required binary is not
-  bundled; supplied PDFs were fully read, rendered, and visually inspected.
-- No finite-sample, numerical-conditioning, bit-complexity, or practical
-  inference assessment was attempted, because the article does not claim one.
+| Check or concern | Location; severity and dependency | Status; repair or resolving evidence |
+|---|---|---|
+| Ordinary/tree versus three-boundary-cycle decoration (MATH-1) | `04_physical_topology.tex:204-212,274-280`; `10_global_classification.tex:5-16`; major in the necessity dependency | Unresolved in the text. Insert the strict tree--sunlet marginal test before the cycle/theta local theorem; the existing proposition appears sufficient. |
+| Fixed-type analytic section (MATH-2) | `07_marginal_localization.tex:68-91`; moderate; localization and local classification | Unresolved proof detail. Restrict the original analytic section/descriptor on a regular subgerm or supply the incidence-stratification argument. |
+| Full four-port reclassification (CODE-1) | `08_primitive_bounded.tex:90-211`; `input_frozen/k3p_cloud_artifacts/K3P_14_ORBIT_LOCK.json:69-71,928-929`; major; complete local classification and main necessity | Unexecuted and impossible with the active package as supplied. Bundle and independently verify a producer over all 405,216 relations that derives `40=38+2` and the fourteen orbits. |
+| Semantic replay of all probe rows (CODE-2) | `09_restoration_words.tex:65-124`; `probes/verify_k3p_probes.py:96-222,302-494`; major; arbitrary-word recovery and main necessity | The semantic producer ran, but a separate semantic replay of all 574,535 rows remains absent. Supply independent graph/restriction/transport/observable reconstruction and coherently resealed mutations. |
+| Primitive/cut topology and degree-two exclusion | `08_primitive_bounded.tex:3-88`; `cut_recovery/strong_crossbridge/global_transfer/build_global_transfer.py:72-132`; `06_bridge_fibre.tex:51-81`; moderate conditional dependencies | Five templates, 72 cut records/masks, and the full strong-class exclusion of unmarked degree two were not independently graph-enumerated. An independent graph generator or a complete handwritten enumeration would resolve them. |
+| Complete portable regeneration | `review_runs/20260827T010753Z`; required execution evidence | `REGENERATION_PENDING`. Replace with exact command count, runtime, hashes, supplemental outputs, and all-path drift after the once-only run closes. |
+| Filesystem-level credential isolation | `logs/offline_referee.sb:1-15`; major procedural/reproducibility limitation, not a mathematical dependency | Network denial, write confinement, and an empty environment were enforced, but host reads were unrestricted. The exact-once regeneration will not be relaunched. Future reassessment should use a reviewed allowlist or credential-free VM; the smaller referee checks did rerun identically under a common-credential deny overlay. |
+| Claimed hardened 25-mutation H21 audit | `ACTIVE_MANIFEST.json:123-125`; `clean_room/verify_clean_room.sh:12-29`; `reproducibility/run_release_suite.py:116-240`; moderate active-boundary issue | Not freshly executed and absent from the 44-command plan. Add it with a sentinel or relabel the report stored-only. |
+| Git-bound release-engineering suite | `reproducibility/test_release_engineering_mutations.py:1-932`; nonmathematical packaging scope | Source inspected; not executed in the exact clean checkout it requires. Reproduce only from the named clean Git tree if packaging assurance is desired. |
+| Exact PDF rebuild | `START_HERE.md:115-117`; `release/ENVIRONMENT.md:15-18`; editorial/toolchain only | Not executed because the exact Tectonic 0.16.9 arm64 binary is not bundled. Both supplied PDFs were fully read, rendered, and visually inspected. |
+| Literature repairs LIT-1--LIT-5 | Locations and minor dependencies are enumerated in section 7 | Unresolved editorial work; add the sources, status labels, durable archives, and convention qualification specified there. |
+| Finite-data practicality | `02_main_theorems.tex:38-45`; `16_scope.tex:30-36`; outside theorem scope, not a defect | No finite-sample, conditioning, bit-complexity, or practical-inference assessment was attempted because none is claimed. |
 
 Subject to those explicit limits, my single independent verdict remains:
 **not fully assessable**.

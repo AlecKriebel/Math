@@ -1,0 +1,47 @@
+(version 1)
+
+; Referee follow-up profile. It retains runtime-compatible host reads but adds
+; explicit denials for common credential stores and credential-bearing user
+; profiles. This is a hardening overlay, not a proof that every possible host
+; credential location has been enumerated.
+(deny default)
+
+(allow process*)
+(allow sysctl-read)
+(allow mach-lookup)
+(allow ipc-posix*)
+(allow signal)
+
+(allow file-read*)
+
+(deny file-read*
+  (subpath "/Users/alec/.ssh")
+  (subpath "/Users/alec/.aws")
+  (subpath "/Users/alec/.azure")
+  (subpath "/Users/alec/.config")
+  (subpath "/Users/alec/.codex")
+  (subpath "/Users/alec/.docker")
+  (subpath "/Users/alec/.gnupg")
+  (subpath "/Users/alec/.kube")
+  (subpath "/Users/alec/.openai")
+  (literal "/Users/alec/.git-credentials")
+  (literal "/Users/alec/.netrc")
+  (literal "/Users/alec/.npmrc")
+  (literal "/Users/alec/.pypirc")
+  (subpath "/Users/alec/Library/Accounts")
+  (subpath "/Users/alec/Library/Cookies")
+  (subpath "/Users/alec/Library/Keychains")
+  (subpath "/Users/alec/Library/Safari")
+  (subpath "/Users/alec/Library/Application Support/Google/Chrome")
+  (subpath "/Users/alec/Library/Application Support/Firefox"))
+
+(deny process-exec
+  (literal "/usr/bin/security")
+  (literal "/usr/bin/ssh")
+  (literal "/usr/bin/ssh-add"))
+
+(allow file-write*
+  (subpath "/Users/alec/Documents/Math/k3p_level2_independent_referee_2026-08-26/package_copy"))
+(allow file-write-data (literal "/dev/null"))
+
+(deny network*)

@@ -461,8 +461,6 @@ def build() -> dict[str, Any]:
                 ("work/rank_upper_certificates/rank_upper_replay.json", "rank independent replay report", True),
             ]),
             "mutation_artifacts": rows([
-                ("work/raw_ledger_audit/test_mutations.py", "revoked historical raw-ledger regression runner; retained for provenance but not promotion qualification", False),
-                ("work/raw_ledger_audit/artifacts/raw_ledger_mutation_report.json", "revoked historical raw-ledger regression report; retained for provenance but not promotion qualification", False),
                 ("work/rank_upper_certificates/mutation_tests.py", "current production-verifier exact-rank mutation runner with clean baseline and exact diagnostics", True),
                 ("work/rank_upper_certificates/mutation_report.json", "current production-verifier exact-rank mutation report", True),
                 outer_mutation,

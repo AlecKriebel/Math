@@ -335,6 +335,27 @@ class TelemetryProducerTests(unittest.TestCase):
             value = json.loads(fixture.output.read_text())
             self.assertEqual(value["time_l"]["peak_memory_footprint_bytes"], 500000)
 
+    def test_posix_time_prefix_is_supported(self) -> None:
+        temporary, fixture = self.fixture()
+        with temporary:
+            fixture.time_l.write_text(
+                """real 3.50
+user 3.10
+sys 0.20
+  1000000  maximum resident set size
+       10  page reclaims
+        2  page faults
+        0  swaps
+   500000  peak memory footprint
+""",
+                encoding="utf-8",
+            )
+            require_ok(run(fixture.command("--write")))
+            value = json.loads(fixture.output.read_text())
+            self.assertEqual(value["time_l"]["real_seconds"], 3.5)
+            self.assertEqual(value["time_l"]["user_seconds"], 3.1)
+            self.assertEqual(value["time_l"]["system_seconds"], 0.2)
+
     def test_exact_intentional_mutation_layer_is_accepted(self) -> None:
         temporary, fixture = self.fixture()
         with temporary:
