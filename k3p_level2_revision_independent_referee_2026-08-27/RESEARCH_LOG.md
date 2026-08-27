@@ -254,3 +254,45 @@
 - The full 53-command regeneration remains the only running mathematical
   execution.  It has not been duplicated or restarted.
 - Completion estimate: 82%.
+
+## 2026-08-27T09:41:00-07:00 — Full regeneration and final synthesis checkpoint
+
+- The single complete portable mathematical regeneration passed all 53 ordered
+  commands in 7,845.067 seconds.  The transcript SHA-256 is
+  `3313aa9e62faa325aecdfa7d8abb1999044a1346536f8b8531b6f228268de2d2`.
+  The hour-scale probe producer occurred exactly once and took 2,852.612
+  seconds; it was never duplicated or restarted.  The full four-port producer,
+  restoration producer, all-row semantic replay, final integrated replay, and
+  final classification-mutation gate all passed.
+- A reviewer-authored full byte inventory found all 592 baseline entries and
+  158,422,330 baseline regular-file bytes unchanged.  There were no removals
+  or changed entries; the seven additions were the declared `.venv` link and
+  six `release/work` runtime artifacts.  The diff SHA-256 is
+  `cefac833207d8905243de15621ee2bbdd49bd3363e64022e117a554e3672e62e`.
+- Before execution, an adversarial static review twice rejected the proposed
+  evidence-sealing helper for path, transcript-binding, diff-safety, and
+  publication-atomicity weaknesses.  It was rewritten and received a static
+  GO before its first run.  The final in-sandbox seal rebound all 53 transcript
+  records and output hashes, the session-specific console/report/summary,
+  sealed runner and plan, integrated fourteen-child payload, and full diff.
+  Its SHA-256 is
+  `34fc9f6439dabea24be9b04343560afaec17e2839049349b845c702e74a569c2`;
+  a separate read-only replay verified all fourteen ledger entries.
+- The sealed-payload integrity verifier passed again after every mathematical
+  and sealing action: 600 payload files / 158,848,430 bytes and 573 core files
+  / 158,206,960 bytes, still bound to
+  `76a097fbc4ddadf23ba0119a371c5ac29f4802b1`.
+- A final independent report red-team corrected several potential
+  overstatements: gauge semi-invariance rather than literal invariance,
+  point-rank lower witnesses versus generic exact ranks, certificate versus
+  row counts, the close conceptual lineage of the no-import four-port route,
+  and retained-input limits of the spot checks.  A separate anchor-universe
+  recheck confirmed condition C2 while noting the frozen cycle generator and
+  elementary direct tree construction.
+- Final verdict: **valid subject to explicitly named conditions or minor
+  corrections**.  No counterexample or surviving handwritten gap was found.
+  The two material conditions are referee-standard validation or formal
+  acceptance of the JC pointwise cut theorem and of the non-four starting-
+  universe completeness premise.  The Gross priority and Allman scope wording
+  also require local correction.
+- Completion estimate: 100%.

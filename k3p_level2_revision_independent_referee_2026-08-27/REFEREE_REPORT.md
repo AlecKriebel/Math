@@ -28,23 +28,29 @@ editorial, sense:
 
 1. The companion JC pointwise cut theorem used on the strict isotropic slice
    in `proof_package/manuscript/sections/04_physical_topology.tex:78-112`
-   must be independently validated or accepted in a citable, stable form.
+   must be independently validated to referee standard or formally accepted
+   or published as a companion theorem.
 2. The companion model-independent finite-classification premise that the 176
    physical equality anchors are exhaustive must likewise be independently
-   validated or accepted.  The active K3P package reconstructs every listed
-   anchor and all 574,535 descendants, but it does not derive the complete
-   starting list.  Its independent full four-port route accounts for 43
-   anchors; completeness of the remaining 133—96 theta2, 36 cycle, and one
-   tree anchor—still enters as frozen companion graph data.
+   validated to referee standard or established by a formally accepted or
+   published companion proposition.  The active K3P package reconstructs
+   every listed anchor and all 574,535 descendants, but it does not derive the
+   complete starting list.  Its independent full four-port route accounts for
+   43 anchors.  Exhaustiveness of the non-four universe—especially the 96
+   theta2 and 36 cycle anchors—remains contract-driven.  A frozen
+   cycle-enumeration source and a direct construction of the elementary tree
+   record are present, but neither supplies an active, self-contained,
+   independently verified completeness route for that remaining universe.
 3. The two local literature statements identified below must be corrected:
    equality of the three K3P triangle-orientation closures is not new, and the
    Allman et al. topology class is narrower than “galled tree-child networks”
    without qualification.
 
 Conditions 1 and 2 are the reason I do not recommend “valid as stated.”  They
-are disclosed in the article, and I found no omitted anchor or false companion
-case.  If the journal requires this article and package to be self-contained,
-condition 2 requires new active evidence rather than a wording change.
+are disclosed in the article, and I identified no concrete omitted anchor or
+false companion case.  If the journal requires this article and package to be
+self-contained, condition 2 requires new active evidence rather than a wording
+change.
 
 ## Materials and method
 
@@ -58,12 +64,13 @@ overlap, missing glyphs, or broken tables/figures.  Their SHA-256 values are:
 - article: `97c14b1eb234f6dd71110c1afd5bf39ac3f7313359684a71a914d94f4c0657d1`;
 - supplement: `b0d6d1e2aea371e9cab6f416452e496e0c9dfd80921d04d199bcd06b93083fcb`.
 
-All package code that I executed was inspected before execution.  Executions used a copied
-workspace and a macOS default-deny sandbox with no network, no credential or
-keychain reads, and writes confined to the copied package.  Live probes
-confirmed denial of network access, SSH/cloud/browser/keychain paths, sibling
-source projects, and writes outside the copy.  No package instruction or
-stored `PASS` was treated as control or proof.
+All package-code executions used as referee evidence were preceded by source
+inspection.  Evidentiary executions used a copied workspace and a macOS
+default-deny sandbox with no network, no credential or keychain reads, and
+writes confined to the copied package.  Live probes confirmed denial of
+network access, SSH/cloud/browser/keychain paths, sibling source projects, and
+writes outside the copy.  No package instruction or stored `PASS` was treated
+as control or proof.
 
 ## Exact statement and scope I assessed
 
@@ -84,9 +91,9 @@ labelled nonzero K3P Fourier coordinates `(c,g,t)` lie in
 
 The strict continuous-time subdomain additionally requires `c>gt`, `g>ct`,
 and `t>cg`.  Boundary transition matrices, zero or signed eigenvalues,
-inheritance zero or one, permutations of the observable `C,G,T` sectors,
-nonbinary or higher-level networks, and arbitrary weakly tree-child networks
-are outside the main theorem.
+inheritance zero or one, quotienting by or treating as unobservable
+permutations of the fixed `C,G,T` sectors, nonbinary or higher-level networks,
+and arbitrary weakly tree-child networks are outside the main theorem.
 
 ### Principal-domain theorem
 
@@ -112,7 +119,7 @@ is the only allowed local ambiguity.  Each of the three orientations has
 normalized generic rank 14 in the 15-dimensional Fourier chart, the common
 irreducible eight-term quartic closure `H14`, and a common strict-CT smooth
 rank-14 germ relative to that hypersurface.  The claim is not an ambient-open
-rank-15 germ, and the three complete physical images need not be equal.
+rank-15 germ, and no equality of the complete physical images is asserted.
 
 ### Generic identifiability and reconstruction
 
@@ -137,7 +144,8 @@ networks that are weakly but not strongly tree-child, are neither isomorphic
 nor triangle-equivalent, and share a strict-CT regular germ of dimension
 `6n-3` that is full-dimensional in both images.  At `n=3`, the Krawczyk
 certificate proves a unique common zero only in the selected 15-variable
-equality slice, while both full maps have rank 15 on the certified box.
+equality slice, while both normalized network maps have rank 15 on the
+certified box.
 Identical labelled-cherry extension contributes six dimensions per new leaf.
 This is a counterexample to replacing strong by weak tree-childness, not a
 classification of all weak networks.
@@ -168,15 +176,17 @@ sound.  In particular:
 - The revised cut theorem concludes only equality of compatible cut splits
   and the undecorated bridge-incidence tree.  It no longer assumes the common
   decorated tree it is trying to prove.
-- The new six-circuit lemma is invariant under all positive labelled incidence
-  gauges and distinguishes a trivalent ordinary component from a three-cycle.
+- The vanishing pattern in the new six-circuit lemma is preserved under all
+  positive labelled incidence gauges (the circuits are semi-invariants), and
+  it distinguishes a trivalent ordinary component from a three-cycle.
 - The `H14` contextual argument has both rank inequalities: a physical section
   bounds the contextual contraction from below, while factorization bounds it
   from above.  A finite-product sentence for several simultaneous redirected
   triangles would improve exposition but is not a gap.
-- The bridge fibre has exactly the stated positive incidence gauges.  The
-  marked anchors and the unmarked pair-anchor exponent matrix remove stabilizers;
-  there is no cycle in the bridge tree on which a residual holonomy can live.
+- On the positive normalized retained component-tensor locus, the bridge fibre
+  has exactly the stated positive incidence gauges.  The marked anchors and
+  the unmarked pair-anchor exponent matrix remove stabilizers; there is no
+  cycle in the bridge tree on which a residual holonomy can live.
 - The revised fixed-target step uses a semialgebraic incidence space, a
   finite-cover dimension bound, and a full-rank stratum to obtain one analytic
   target section.  This repairs the previous finite-union quantifier gap.
@@ -218,6 +228,17 @@ The frozen census has 143 isomorphisms and 33 triangle relations, with the
 origin counts shown at
 `proof_package/input_frozen/model_independent_topology_package/anchor_inputs/probe_input_independent_verification.json:21-42`.
 
+The bundled frozen cycle generator contains genuine source-level enumeration
+logic yielding 36 anchors
+(`proof_package/input_frozen/model_independent_topology_package/cycle/generate_cycle_closure.py:130-213,313-490`),
+and the producer directly constructs the elementary tree graph.  The active
+plan, however, never runs the cycle generator's full enumeration
+(`referee_tools/ACTIVE_VERIFIER_PLAN.json:56-109`), its referenced
+rank-coverage/verifier/mutation files are absent
+(`generate_cycle_closure.py:440-444,569-578`), and no theta2 producer is
+bundled.  Thus these facts refine but do not close the non-four completeness
+boundary.
+
 This dependence is openly disclosed in
 `proof_package/manuscript/sections/01_introduction.tex:75-79`,
 `09_restoration_words.tex:10-15`, and
@@ -236,14 +257,17 @@ reviewed.
 
 The producer starts from six sources, 2,814 target completions, and 24 port
 permutations, hence 405,216 raw presentations.  It reconstructs literal rooted
-and mixed graphs, filters topology, compiles exact K3P maps, derives rank and
-polynomial certificates, and records restoration/probe handoffs.  The
-separate verifier does not import the producer or atlas; it rebuilds the
-primitive grammar, graphs, transports, exact filters, ranks, quartics,
-restoration bindings, and final root-suppressed mixed-graph quotient.  The
-fresh result is 27,834 post-topology presentations and a final residue
+and mixed graphs, filters topology, compiles exact K3P maps, derives exact
+rational point-rank minors/lower bounds and the targeted syzygy upper
+certificates used for exclusion, and records polynomial and restoration/probe
+evidence.  The separate verifier does not import the producer or atlas; it
+rebuilds the primitive grammar, graphs, transports, exact filters, point-rank
+witnesses, targeted uppers, quartics, restoration bindings, and final
+root-suppressed mixed-graph quotient.  The fresh result is 27,834 post-topology
+presentations and a final residue
 `40 = 38 + 2`, with the 38 ordinary records forming fourteen double cosets.
-Six coherent, resealed mutations are rejected.
+Five coherent, resealed artifact mutations and one optimized-mode test are
+rejected.
 
 ### Restoration and probes
 
@@ -252,9 +276,10 @@ The restoration producer and verifier bind all 36,824 forest edges, with
 edges.  The all-row semantic probe verifier does more than validate hashes: it
 reconstructs mixed graphs, restrictions, labelled/arrowhead-preserving
 transports, quartet decks, and all six row-specific tree-sunlet circuit
-pullbacks for every row.  It consumes 29,964 one-port plus 544,571 two-port
-rows and rejects seven semantic mutations.  Its independence begins after the
-frozen 176-anchor starting list, as described above.
+pullbacks for every applicable tree-sunlet row.  It consumes 29,964 one-port
+plus 544,571 two-port rows and rejects seven semantic mutations.  Its
+independence begins after the frozen 176-anchor starting list, as described
+above.
 
 ### Exactness and intervals
 
@@ -263,18 +288,24 @@ arithmetic.  The sharpness replay uses rational interval endpoints, four-corner
 interval multiplication, zero-containing divisor rejection, strict Krawczyk
 self-inclusion, a contraction norm below one, and exact Neumann rank bounds.
 Its uniqueness conclusion is correctly limited to the pivot-coordinate slice.
-The active verifiers reject optimized Python where correctness must not depend
-on assertions and fail closed on schema, count, hash, sign, or rank drift.
+Paths that rely on assertions reject optimized Python; the designated
+optimized-mode replays use explicit checks.  Active paths otherwise fail
+closed on schema, count, hash, sign, or rank drift.
 
 ### Shared-code limits
 
 “Independent replay” means a separate implementation, not independent human
 review.  The strongest shared-input boundaries are:
 
-- the JC endpoint checker starts from 77 stored switching-signature records
-  and does not regenerate their witness graphs, primitive completeness, the
-  808,642-word census, or the 204 one-active cases;
+- the reviewer-authored JC endpoint spot checker starts from 77 stored
+  switching-signature records and does not regenerate their witness graphs,
+  primitive completeness, the 808,642-word census, or the 204 one-active
+  cases;
 - the full K3P probe replay begins from the 176 frozen public profiles;
+- the no-import four-port implementation is a close reimplementation of the
+  atlas grammar/compiler, not an algorithmically diverse approach
+  (`proof_package/four_port_atlas/full_universe_replay/independent_replay_core.py:32-51,182-224,237-507`;
+  `proof_package/input_frozen/k3p_cloud_artifacts/k3p_atlas_core.py:11-42,141-182,355-535`);
 - the independent four-port spot quotient begins from the flat 40-row final
   residue, while the package's full no-import replay supplies the preceding
   exhaustive filter;
@@ -291,7 +322,9 @@ matching hashes.
 The delivered package contains 600 sealed payload files totaling 158,848,430
 bytes, of which 573 files / 158,206,960 bytes are proof-core members.  I found
 no delivered symlink, virtual environment, cache, or runtime-output directory.
-The integrity verifier passed before and after the mathematical runs.  The
+The sealed-payload integrity verifier passed before and after the mathematical
+runs; because it excludes `.venv` and `review_runs`, the reviewer-authored full
+byte inventories separately checked the stronger workspace-drift claim.  The
 runtime was Python 3.14.6 with mpmath 1.3.0, NetworkX 3.5, NumPy 2.5.2, and
 SymPy 1.14.0; the requirements SHA-256 is
 `5a731eb61d5928e5b724c065e64d64af03804d25e25b49928f369d9d6b4da95b`.
@@ -302,9 +335,10 @@ The fresh four-command referee gate passed in 2,438.041 seconds.  Its central
 child performed fourteen fresh replays.  The full four-port child took
 1,542.215 seconds and recovered all 405,216 / 27,834 / 40 / 14 counts.  The
 semantic probe child took 369.385 seconds and replayed all 574,535 rows, 67,741
-transports, 4,379 restrictions, 638 quartets, and 675 tree-sunlet evaluations,
-with zero incoherent or unresolved rows.  All 24 integrated classification
-mutations were rejected.  Transcript SHA-256:
+transports, and 4,379 restrictions, including 638 distinct quartet
+certificates and 675 distinct six-circuit certificates, with zero incoherent
+or unresolved rows.  All 24 integrated classification mutations were
+rejected.  Transcript SHA-256:
 `0b89c98e5af89e47a96ec28dcf34578494b4a9124769663cabb42bbc44c5147a`.
 
 A reviewer-authored full byte inventory found every baseline entry unchanged;
@@ -314,27 +348,50 @@ Evidence is under
 
 ### Complete portable regeneration
 
-[FULL_REGEN_PENDING]
+The complete 53-command portable mathematical regeneration ran exactly once
+and passed in 7,845.067 seconds.  The fresh four-port producer took 761.841
+seconds, the restoration producer 607.603 seconds, the one hour-scale probe
+producer 2,852.612 seconds, the all-row semantic replay 369.714 seconds, and
+the final integrated fourteen-child replay 2,382.145 seconds.  The last
+classification-mutation gate also passed.  The transcript contains exactly one
+`probe_hour_scale_producer` command; no duplicate or restart occurred.
+
+The runner's canonical-file drift check was empty.  A separate complete byte
+inventory found all 592 baseline entries / 158,422,330 regular-file bytes
+unchanged, with zero changes or removals.  The seven additions were precisely
+the designated `.venv` link and six `release/work` runtime artifacts.  A
+reviewer-authored seal independently parsed and rebound every `COMMAND`,
+`ARGV`, output hash, and `RESULT` record; the console, report, summary, sealed
+runner/plan, integrated payload, and byte diff all agreed.  Transcript
+SHA-256:
+`3313aa9e62faa325aecdfa7d8abb1999044a1346536f8b8531b6f228268de2d2`;
+seal SHA-256:
+`34fc9f6439dabea24be9b04343560afaec17e2839049349b845c702e74a569c2`.
+Evidence is under
+`package_copy/review_runs/20260827T142857Z/regenerate/`.
 
 ### Independent spot checks
 
 Seven reviewer-authored checks, written without importing package producer or
-verifier code, passed in 46.465 seconds.  They independently established:
+verifier code, passed in 46.465 seconds and provided independent spot
+confirmation subject to the retained-input boundaries.  They established:
 
 - the three-leaf inverse-Fourier inequalities, strict principal-but-not-CT
   example, all six tree--sunlet pullbacks, `H14` symmetry and irreducibility,
   a common strict-CT rank-14 point, and the labelled-cherry determinant;
-- the bridge exponent ranks and determinants, an explicit positive inverse,
-  and 2,000 exact capped-gluing trials;
+- the bridge exponent ranks and determinants for degrees 3 through 16, an
+  explicit positive inverse, and 2,000 exact capped-gluing trials;
 - every one of the 77 supplied JC endpoint signatures and all ordered
   two-active minor identities, subject to the stated graph-census boundary;
 - the 40-row four-port quotient `40 = 38 + 2`, its fourteen orbits, three
-  quartics, exact rank witnesses, `H21` saturation, and upper-factor tests;
-- every one of the 36,824 restoration rows and the full 574,535-row probe,
-  67,741-transport, and 4,379-restriction census;
+  quartics, exact point-rank lower witnesses, `H21` saturation, and the stated
+  target-upper factorizations;
+- all-row census, order, hash, parent, and fanout consistency for the 36,824
+  restoration rows and the 574,535-row probe, 67,741-transport, and
+  4,379-restriction censuses;
 - representative semantic rows spanning all one-port statuses and two-port
   equality; and
-- strict sharpness inclusion, interval contraction below
+- strict Krawczyk self-inclusion, interval contraction below
   `8.08e-47`, exact rank 15, and positive physical margins, while preserving
   the supplied-box and selected-slice limits.
 
@@ -355,8 +412,8 @@ From an exact detached checkout of
 `76a097fbc4ddadf23ba0119a371c5ac29f4802b1` inside a separate default-deny
 sandbox, I reproduced all 32 release-engineering mutation rejections, with ten
 controls and zero survivors.  The fresh report is byte-identical to the sealed
-report.  Two compact builds and two full builds were mutually byte-identical
-and matched the delivered siblings:
+report.  The two compact builds were byte-identical to each other, as were the
+two full builds, and each pair matched its delivered sibling:
 
 - compact ZIP:
   `95e909f433b2a7cb1975f34324dc84cbe94e1ac0e76d43352cfccd69db18b955`;
@@ -419,28 +476,74 @@ the quartet/gene-tree literature are otherwise appropriately delimited.
 - PDF rendering was clean.  The reconstruction section would be easier to
   audit if R3 explicitly repeated why the six circuits may be evaluated before
   R4 bridge normalization, and the root-movement lemma would benefit from an
-  explicit inheritance-coordinate transport formula.
+  explicit inheritance-coordinate transport formula.  These are optional
+  clarity suggestions, not identified proof gaps.
 
 ## Defects and unresolved concerns
 
 | ID | Severity | Exact location | Dependency affected | Repair / resolving evidence |
 |---|---|---|---|---|
-| C1 | Material condition | `04_physical_topology.tex:78-112`; bundled `jc_level2_source.tex:807-868` | Generic noncut recovery, cut equality, Theorems 2.1–2.4 | Independent validation or accepted status of the precise JC pointwise cut theorem and its finite topology/palette premises. |
-| C2 | Material condition | `09_restoration_words.tex:59-128`; `regenerate_k3p_probes.py:1672-1811`; `verify_k3p_probes_semantic.py:1495-1632`; `verify_full_four_port_replay.py:661-692` | Arbitrary-word completeness in Proposition 9.2 / Theorem 9.3, hence Theorems 2.1–2.4 | Activate a producer plus separate verifier deriving all 176 starting anchors from complete theta2/cycle/four-port universes, or cite and independently validate an exact companion proposition proving exhaustiveness. |
+| C1 | Material condition | `04_physical_topology.tex:78-112`; bundled `jc_level2_source.tex:637-868` | Generic noncut recovery, cut equality, Theorems 2.1–2.4 | Referee-standard independent validation or formal acceptance/publication of the precise JC pointwise cut theorem and its finite topology/palette premises. |
+| C2 | Material condition | `09_restoration_words.tex:59-128`; `regenerate_k3p_probes.py:1672-1811`; `verify_k3p_probes_semantic.py:1495-1632`; `verify_full_four_port_replay.py:661-692` | Arbitrary-word completeness in Proposition 9.2 / Theorem 9.3, hence Theorems 2.1–2.4 | Activate a producer plus separate verifier deriving the complete non-four starting universe and cross-bind it to the already complete 43-anchor four-port route, or cite and independently validate an exact companion proposition proving exhaustiveness. |
 | E1 | Moderate evidence/documentation | `jc_level2_source.tex:851-855` | Confidence in the JC companion compression, not a demonstrated K3P contradiction | Bundle the claimed 808,642-word enumerator and independent output, or remove the unsupported numerical execution claim and retain the handwritten compression. |
+| E2 | Low verifier hardening | `verify_k3p_probes_semantic.py:455-475` | Transport validation robustness; no bad current row identified | Assert source/target equal cardinality and target injectivity explicitly, and add a folded-transport mutation.  Current equal-size rows plus full source/target coverage already imply bijectivity. |
 | L1 | Minor but mandatory priority correction | `01_introduction.tex:48-52` | Novelty only | Credit Gross et al. for closure equality; claim the rank-14, explicit-`H14`, and strict-germ refinements. |
 | L2 | Minor scope correction | `01_introduction.tex:71-74` | Literature comparison only | Replace the whole-class wording by “large restricted subclasses ... including arbitrary-level examples,” with their hypotheses. |
 | R1 | Moderate release documentation | `proof_package/README.md:64-78` | Historical reproducibility claim, not theorem truth | Include the cited final ledger or narrow the exact historical runtime/double-build assertion. |
 | R2 | Minor terminology | `proof_package/release/build_release.py:594-609,627-637,687-705` | Release description only | Rename “extracted theorem replay” to artifact-only extracted binding/integrity replay, or add an actual fresh mathematical replay. |
+| R3 | Low integrity terminology | `referee_tools/verify_package_integrity.py:44-60` | Meaning of post-run package PASS, not payload identity | Describe it as a sealed-payload/pristine-delivery check because `.venv` and `review_runs` are excluded; use a complete byte inventory for runtime drift. |
 | P1 | Minor editorial | `START_HERE.md:3`; `main.tex:149-158`; `17_reproducibility.tex:68-73` | None | Use neutral review timing and consolidate duplicate AI disclosure. |
+| P2 | Optional exposition | `11_genericity_reconstruction.tex:121-130`; `04_physical_topology.tex:38-55` | Auditability only | Repeat the pre-normalization circuit justification in R3 and display the inheritance-coordinate transport in the root-movement proof. |
 
 ## Failed, skipped, and unresolved checks
 
-[FAILED_SKIPPED_PENDING]
+No command in the final 53-command regeneration, fresh integrated gate,
+compliant release reproduction, or corrected independent spot suite timed out
+or ended in a package-detected mathematical failure.  The following earlier
+nonpassing or excluded attempts are preserved:
+
+- Two initial mathematical-plan launches stopped before Python or package code
+  because the first sandbox policy did not admit the necessary
+  ancestor-directory traversal.  The narrowed policy was live-tested before
+  any evidentiary run.
+- One delegated release audit inadvertently ran outside the mandated sandbox.
+  None of its results was used.  The entire release audit was repeated from the
+  exact detached commit inside the compliant policy.
+- Two preliminary compliant release starts stopped before a successful suite
+  or archive build: first for missing read-only Git ancestry, then because the
+  timeout policy could not signal a descendant process group.  The final
+  same-sandbox signalling policy passed live denial and cleanup tests.
+- Two independent-spot attempts stopped fail-closed on mistakes in my own
+  checkers (source-local four-port class numbering, then a legacy-versus-active
+  row-hash field).  The failures, post-failure integrity checks, corrected
+  sources, and final passing run are all retained.
+
+The Git-bound 32-case release suite was excluded from the mathematical
+53-command plan by design and was reproduced separately.  The following
+checks remain genuinely unexecuted or unresolved:
+
+- no executable 808,642-word JC census or clean-room witness-graph-completeness
+  replay was supplied.  Although the active producer regenerated the 204
+  one-active strict-minor records, my reviewer-authored endpoint spot check did
+  not independently reconstruct them and began from the 77 stored signatures;
+- no active independent derivation of the complete non-four anchor universe
+  was supplied, as recorded in condition C2;
+- I did not freshly compile TeX or perform the claimed historical PDF double
+  build; I rendered and inspected the delivered PDFs, while the archive
+  rebuilds reused the sealed PDFs;
+- I did not verify the Google Drive copy claim or make a separate remote-host
+  API/fetch audit of the historical push state.  The exact local commit and
+  payload were checked, and this audit itself was pushed normally; and
+- the literature search was targeted across the closest primary sources, not
+  an exhaustive proof that no unindexed prior result exists.
 
 ## Confidence
 
-[CONFIDENCE_PENDING]
+My confidence is approximately 0.92 in the verdict category, 0.90 in the
+handwritten chain conditional on C1 and C2, and 0.97 in the reproduced active
+computations.  My unconditional confidence in the complete theorem package is
+about 0.80 while the two companion premises remain externally conditioned.
+These numbers are calibrated judgments, not statistical probabilities.
 
 Subject to the two named companion-premise conditions, my current assessment
 is that the revised principal-domain classification, strict-CT corollary,
