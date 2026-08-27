@@ -101,23 +101,35 @@ dynamic evaluation, or non-standard dependency in the packet verifiers.
 
 - [arXiv Version 2](https://arxiv.org/pdf/2607.12919v2) literally states the
   arbitrary-level K2P Lemma 5.6 and the JC/K2P Corollary 5.8.
-- [arXiv Version 3](https://arxiv.org/pdf/2607.12919v3) removes those K2P
+- [arXiv Version 3](https://arxiv.org/pdf/2607.12919v3) removes those formal K2P
   results, explains at the end of the trinet proof why leaf permutations break
   the proposed K2P induction, and explicitly lists high-level K2P/K3P trinet
-  extension as open. The manuscript's history is accurate.
+  extension as open. It nevertheless retains one stale Section 4.1 roadmap
+  sentence announcing arbitrary-level K2P generalization. The manuscript's
+  detailed history is accurate, but its abstract and acknowledgment should say
+  **formal** K2P lemma/corollary to be perfectly literal.
 - The level-one/generic-identifiability attributions agree with the primary
   [2021 Journal of Mathematical Biology article](https://link.springer.com/article/10.1007/s00285-021-01653-8),
   the [2018 SIAM article](https://epubs.siam.org/doi/10.1137/17M1134238),
   the [2024 dimension article](https://link.springer.com/article/10.1007/s11538-024-01314-z),
   and the [2025 3-sunlet article](https://link.springer.com/article/10.1007/s11538-025-01506-1).
+- [Ardiyansyah (2021)](https://arxiv.org/abs/2104.12479) is a close omitted
+  source on Fourier/algebraic distinguishability for restricted simple and
+  semisimple level-two JC/K2P/K3P models. It does not anticipate the present
+  pointwise three-leaf collision, but should be cited for literature context.
 - The paper explicitly excludes JC collision claims, generic theta/tree
   equivalence, genuine four-attachment blobs, multi-blob composability,
   common-generator or clock conclusions, and unrestricted nonreversible
   semi-directed conclusions. Those exclusions match what the proofs establish.
 
-## Preliminary disposition
+## Final reconciled disposition
 
-No fatal, major, minor, or required editorial issue has emerged from the root
-track. Final disposition awaits reconciliation with the independent math,
-code, and literature/layout reports.
-
+No fatal, major, or mathematical issue emerged. The v1.2.5 verifier repairs
+are operative. Ordinary JSON duplicate-name shadowing and open inert schemas
+are optional fail-closed hardening because the shipped certificates are
+unique-key and manifest-protected. Qualifying the source-version history is
+also advisable rather than required: the current broad phrases fairly refer
+to the formal lemma/corollary removed in Version 3. The sole required change is
+to cite and contextualize the closest earlier level-two algebraic study,
+Ardiyansyah (2021). Final recommendation: `MINOR REVISION`; accept after that
+citation is added and the submission artifacts are rebuilt consistently.

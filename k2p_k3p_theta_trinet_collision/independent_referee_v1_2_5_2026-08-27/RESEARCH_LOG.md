@@ -71,3 +71,55 @@
   progress before the final disposition.
 
 **Best-guess completion:** 80%.
+
+## 2026-08-27 07:18 PDT — Independent-track reconciliation checkpoint
+
+- The independent mathematical audit reconstructed the compact and
+  continuous-time K2P constructions, the fixed-order sign point, the exact
+  family, the quartic K3P construction, both full-rank minors, the complete
+  K3P tangent, and the theorem-level local/grafting arguments. It found no
+  fatal, major, or minor mathematical issue. Its separate standard-library
+  clean-room checker passed when rerun by the primary reviewer.
+- The independent executable-evidence audit ran 57 hostile cases. All 42
+  operative/integrity corruptions were rejected; 10 disclosed inert-field
+  changes passed as intended. It found no operative evidence failure. It did
+  identify optional fail-closed hardening: ordinary `json.loads` permits raw
+  duplicate-name shadowing, and some schemas accept unknown inert fields. All
+  five shipped certificates have unique keys under a strict audit parser, so
+  this does not alter their verified meaning.
+- The independent literature/layout audit found two narrow scholarly issues:
+  qualify the broadest Version 2-to-3 wording because Version 3 retains one
+  stale K2P roadmap sentence, and cite Ardiyansyah's directly relevant 2021
+  level-two JC/K2P/K3P algebraic study. Neither presents a correctness or
+  priority conflict.
+- One audit agent removed only reproducible files under the audit-local
+  `tmp/pdfs/` tree while cleaning its render products. No packet, source,
+  evidence note, or report was touched; the removed renders/text can be
+  regenerated from the unchanged PDFs.
+- A draft report records a provisional `MINOR REVISION` disposition based
+  solely on the two scholarly edits. A final hostile synthesis is now testing
+  that severity judgment and the advisory/required boundary.
+
+**Best-guess completion:** 92%.
+
+## 2026-08-27 07:22 PDT — Final hostile synthesis and disposition
+
+- The hostile synthesizer read the complete mathematical, executable,
+  literature/layout, root-evidence, and draft-report artifacts and attempted
+  to overturn the provisional disposition.
+- It found no omitted substantive defect and confirmed that no theorem,
+  witness, proof, topology claim, rank, tangent, pruning result, or operative
+  certificate meaning was falsified.
+- Severity was refined: the Version 3 history qualifier is advisable but not
+  required, because “claims withdrawn” fairly refers to the two formal claims;
+  strict JSON/schema changes are also advisory for the unique-key reviewed
+  packet. The Ardiyansyah (2021) omission is the sole required correction
+  because it is the closest earlier level-two JC/K2P/K3P algebraic/Fourier
+  study, although it creates no priority conflict.
+- Final report completed with recommendation `MINOR REVISION`, narrowly for
+  adding and accurately contextualizing that citation. After the citation and
+  consistent PDF/packet rebuild, the recommendation becomes `ACCEPT`.
+- A final digest check confirmed that all 40 manifest-covered packet paths
+  remain unchanged after the audit.
+
+**Best-guess completion:** 100%.
