@@ -83,3 +83,32 @@
   long fourteen-child integrated replay is currently executing its full
   four-port reconstruction.
 - Completion estimate: 34%.
+
+## 2026-08-27T06:50:55-07:00 — Proof-chain and literature checkpoint
+
+- Completed a claim-to-proof dependency map from the manuscript through every
+  active producer, verifier, mutation family, and global consumer. The revised
+  handwritten chain no longer has either previously identified bridge-
+  decoration or fixed-target-section gap: the cut theorem now stops at the
+  undecorated bridge tree, Lemma 10.1 supplies a gauge-invariant literal
+  tree--sunlet separator, and Proposition 7.4 uses a semialgebraic incidence
+  correspondence and full-rank stratum to select a fixed target type.
+- No handwritten counterexample, circular use of the classification theorem,
+  or containment-direction reversal has been found. The generic noncut step
+  remains explicitly dependent on the same-author, unreviewed JC pointwise cut
+  theorem. Its graph-derived finite certificate is included in the active
+  regeneration, but its comparator imports the producer; the degree of
+  independent validation supplied for that premise remains under adversarial
+  review.
+- A primary-source literature audit found one substantive but local priority
+  error: Gross et al. (2021) already established equality of the three K3P
+  three-leaf triangle-orientation ideals/closures, so that equality cannot be
+  listed as a new contribution. The exact rank-14 result, explicit irreducible
+  quartic, and strict smooth physical germ remain plausible new refinements.
+  The introduction also describes Allman et al. too broadly: their theorem is
+  for restricted large subclasses that include arbitrary-level examples, not
+  all galled tree-child networks.
+- The isolated fresh verification remains healthy. Its fourteen-child gate is
+  executing the independent full four-port universe replay at sustained CPU;
+  no result is inferred from elapsed time or stored status.
+- Completion estimate: 43%.
