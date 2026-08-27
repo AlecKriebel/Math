@@ -1,5 +1,42 @@
 # Research log
 
+## 2026-08-26 -- Version 1.2.3 source-freeze checkpoint
+
+- Rebuilt all three PDFs after the rank-persistence micro-edit. The manuscript
+  remains 19 pages; the summary and clarification note remain two pages each.
+  Every rendered page passed high-resolution inspection, all fonts are
+  embedded, and extracted text contains no broken glyph, local path, stale
+  active version reference, or unresolved placeholder.
+- Replayed the complete exact suite once in normal and optimized Python modes.
+  Both outputs byte-match `verification_report_complete.txt`, whose SHA-256 is
+  unchanged at
+  `4e8c98dbb697db76149a337d7d22132a1ad739df12aa3664f22f4f343f17ec36`.
+- An independent differential-topology audit confirmed that nonvanishing of
+  the selected minor persists by continuity and makes rank 15, hence the
+  existing 14-dimensional local-fiber conclusion, visible throughout the
+  selected section neighborhood.
+- Best-guess completion: **90% of version 1.2.3 referee readiness**. Remaining
+  work is manifest regeneration, immutable commit/tag creation, commit-pinned
+  archive replay, copied referee-packet construction, and an independent
+  clean-folder packet replay.
+
+## 2026-08-26 -- Version 1.2.3 referee-freeze checkpoint
+
+- Independently checked the proposed Corollary 15 micro-edit. The selected
+  Jacobian-minor determinant is a polynomial in the theta parameters, so its
+  nonvanishing persists on an open neighborhood of the exact rank-15 point.
+- Named the corresponding varying minor by the existing row and column lists,
+  making the existing 14-dimensional regular-fiber conclusion visibly apply
+  at every selected local-section realization.
+- Chose a neutral referee-packet design that copies the paper, source, exact
+  certificates, verifier code, build inputs, and stored reference transcripts
+  while excluding prior reviews, research logs, and author-only submission
+  metadata from the referee's evidence set.
+- Best-guess completion: **55% of version 1.2.3 referee readiness**. Remaining
+  work is PDF rebuild and inspection, exact replay, immutable source freeze,
+  copied-packet construction, independent clean-folder replay, and public
+  version verification.
+
 ## 2026-08-26 -- Version 1.2.2 source-freeze checkpoint
 
 - Rebuilt the manuscript, technical summary, and displayed-tree clarification

@@ -5,6 +5,17 @@ rejected. Reviews used the manuscript, exact verifiers and certificates, the
 official arXiv sources for Versions 2 and 3 of Brits et al., and the cited
 primary literature.
 
+## Version 1.2.3 rank-persistence micro-review -- 26 August 2026
+
+| Feedback item | Verdict | Disposition |
+|---|---|---|
+| Preserve nonvanishing of the K3P rank minor throughout the local-section neighborhood | Valid proof-exposition improvement | Intersected the positive stochastic, pairwise-distinct, and selected-minor-nonvanishing open conditions when choosing the parameter neighborhood. |
+| Infer the 14-dimensional fiber at every selected nearby realization | Valid and already implicit | The preserved nonzero minor makes the existing Lemma 9 and Corollary 15 fiber conclusion visibly apply throughout the selected neighborhood. |
+| Create a new release solely for the sentence | Optional in isolation; useful for the referee freeze | Preserved immutable `1.2.2` and prepared `1.2.3` so the referee-facing PDF, source URL, and copied verification packet identify one exact snapshot. |
+
+No title, abstract, theorem statement, parameter, certificate, or verifier
+changes.
+
 ## Version 1.2.2 precision rereview -- 26 August 2026
 
 | Feedback item | Verdict | Disposition |

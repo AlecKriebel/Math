@@ -1,5 +1,18 @@
 # Changelog
 
+## Version 1.2.3 rank-persistence clarification -- 26 August 2026
+
+- Added to Corollary 15's proof that the selected $15\times15$ Jacobian minor
+  remains nonzero throughout the chosen parameter neighborhood.
+- Made the already proved 14-dimensional local-fiber conclusion visibly apply
+  throughout the selected nearby parameter neighborhood.
+- Preserved every theorem statement, construction, parameter tuple,
+  certificate, verifier, title, and abstract.
+- Prepared a neutral, copied AI-referee packet separately from the canonical
+  source, without including prior reviews or author-only submission metadata.
+- Preserved immutable version `1.2.2`; these post-tag clarifications are
+  released separately as version `1.2.3`.
+
 ## Version 1.2.2 literature and scope precision -- 26 August 2026
 
 - Qualified the cited level-one theorem by the placement of reticulation

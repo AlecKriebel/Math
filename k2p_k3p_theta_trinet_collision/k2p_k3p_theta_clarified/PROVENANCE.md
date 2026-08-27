@@ -16,13 +16,13 @@ first appears in public repository history at commit `ca21a733`, dated 4 August
 combined source directory. The full early draft was therefore already public
 before the clarification. This record is additive and no history was rewritten.
 
-The current frozen submission/replay snapshot is version `1.2.2`, identified by
-the Git tag `k2p-k3p-theta-v1.2.2`. The earlier tags
-`k2p-k3p-theta-v1.2.1`, `k2p-k3p-theta-v1.2.0`,
+The current frozen submission/replay snapshot is version `1.2.3`, identified by
+the Git tag `k2p-k3p-theta-v1.2.3`. The earlier tags
+`k2p-k3p-theta-v1.2.2`, `k2p-k3p-theta-v1.2.1`, `k2p-k3p-theta-v1.2.0`,
 `k2p-k3p-theta-v1.1.0`, and
 `k2p-k3p-theta-biorxiv-v1.0.0` remain immutable.
-Versions 1.2.1, 1.2.0, and 1.1.0 are retained under the parent `releases/`
-directory; version 1.0.0 remains under `legacy/releases/`. Exact upload-time
+Versions 1.2.2, 1.2.1, 1.2.0, and 1.1.0 are retained under the parent
+`releases/` directory; version 1.0.0 remains under `legacy/releases/`. Exact upload-time
 status and unresolved author choices are recorded in `submission/biorxiv/`.
 No GitHub release, bioRxiv submission, Zenodo deposit, DOI, or external
 communication was initiated by the automated revision process.
@@ -55,6 +55,12 @@ paper's triangle and 2-blob qualifications exactly, writes the K3P local
 section explicitly, narrows the arbitrary-taxon interpretation, and states
 that contracting the inserted theta blob recovers the original labelled tree
 topology.
+
+Version 1.2.3 makes the already implicit rank-persistence step in the K3P
+local-section proof explicit: the same selected $15\times15$ Jacobian minor
+remains nonzero throughout the parameter neighborhood, so every selected
+realization visibly has a 14-dimensional local fixed-output fiber. It changes
+no theorem statement, parameter, certificate, or computational conclusion.
 
 ## Revision lineage
 
