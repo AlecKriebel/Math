@@ -415,6 +415,19 @@ def add_paths(paths: set[str], values) -> None:
                     paths.add(value)
                 except ReleaseFailure:
                     pass
+            elif key in ("active_verifier_hashes", "generated_evidence_sha256",
+                          "observed_sha256", "artifacts",
+                          "independent_implementations", "bindings") and \
+                    isinstance(value, dict):
+                for candidate in value:
+                    if not isinstance(candidate, str):
+                        continue
+                    try:
+                        safe_relative_path(candidate)
+                        paths.add(candidate)
+                    except ReleaseFailure:
+                        pass
+                add_paths(paths, value)
             else:
                 add_paths(paths, value)
     elif isinstance(values, list):
@@ -462,7 +475,8 @@ def compact_selection(project: Path, policy: dict) -> list[str]:
         add_paths(discovered, value)
         # Some manifests store paths as mapping keys.
         for key in ("active_verifier_hashes", "generated_evidence_sha256",
-                    "artifacts", "independent_implementations", "bindings"):
+                    "observed_sha256", "artifacts", "independent_implementations",
+                    "bindings"):
             mapping = value.get(key, {}) if isinstance(value, dict) else {}
             if isinstance(mapping, dict):
                 discovered.update(path for path in mapping if isinstance(path, str))

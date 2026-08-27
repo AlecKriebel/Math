@@ -72,6 +72,7 @@ from build_release import (  # noqa: E402
     SUBMISSION_ROOTS,
     ARTICLE_PDF,
     SUPPLEMENT_PDF,
+    compact_selection,
     full_selection,
     require_submission_readiness_report,
     submission_argument_map,
@@ -658,6 +659,67 @@ def untracked_exclusion_control() -> dict:
                 "tracked": sorted(entries), "untracked_excluded": True}
 
 
+def nested_compact_dependency_control() -> dict:
+    """A path bound inside a nested hash map must enter the compact archive."""
+    with tempfile.TemporaryDirectory(prefix="k3p-compact-closure-") as directory:
+        root = Path(directory)
+        project = root / "program"
+        initial = {
+            "FINAL_CLAIM_LOCK.json": b"{}\n",
+            "clean_room/verify_h21_transport_and_fourteen_orbits.py": b"# fixture\n",
+            "reproducibility/verify_k3p_same_classification.py": b"# fixture\n",
+            "reproducibility/test_k3p_same_classification_mutations.py": b"# fixture\n",
+            "reproducibility/K3P_SAME_CLASSIFICATION_MUTATION_REPORT.json": b"{}\n",
+            "restoration/verify_k3p_restoration.py": b"# fixture\n",
+            "clean_room/adversarial/HARDENED_H21_REAUDIT.json":
+                b'{"active_input_hashes": []}\n',
+            "reports/primary_gate_report.json": (
+                b'{"input_binding": {"observed_sha256": {'
+                b'"input_frozen/k3p_cloud_artifacts/k3p_atlas_core.py": "'
+                + b"0" * 64 + b'"}}}\n'
+            ),
+            "input_frozen/k3p_cloud_artifacts/k3p_atlas_core.py": b"# required fixture\n",
+        }
+        gate = {
+            "bindings": {
+                "reports/primary_gate_report.json": "1" * 64,
+                "clean_room/adversarial/HARDENED_H21_REAUDIT.json": "2" * 64,
+            }
+        }
+        initial["reproducibility/K3P_SAME_CLASSIFICATION_GATE_REPORT.json"] = (
+            json.dumps(gate, sort_keys=True) + "\n"
+        ).encode()
+        for relative, data in initial.items():
+            path = project / relative
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_bytes(data)
+        subprocess.run(["git", "init", "-q"], cwd=root, check=True)
+        subprocess.run(["git", "config", "user.name", "Release Test"],
+                       cwd=root, check=True)
+        subprocess.run(["git", "config", "user.email", "release@example.invalid"],
+                       cwd=root, check=True)
+        subprocess.run(["git", "add", "program"], cwd=root, check=True)
+        subprocess.run(["git", "-c", "commit.gpgsign=false", "commit", "-qm", "fixture"],
+                       cwd=root, check=True)
+        expected = sorted(initial)
+        policy = {
+            "expected_compact_selection_count": len(expected),
+            "expected_compact_selection_sha256": sha256_bytes(
+                canonical_json_bytes(expected)
+            ),
+        }
+        selected = compact_selection(project, policy)
+        required = "input_frozen/k3p_cloud_artifacts/k3p_atlas_core.py"
+        require(required in selected,
+                ("nested observed_sha256 dependency omitted", selected))
+        return {
+            "name": "nested_compact_dependency_closure",
+            "status": "PASS",
+            "selected_head_files": len(selected),
+            "required_nested_path": required,
+        }
+
+
 def dirty_worktree_policy_control() -> dict:
     with tempfile.TemporaryDirectory(prefix="k3p-release-head-policy-") as directory:
         root = Path(directory)
@@ -899,6 +961,7 @@ def main(argv: list[str] | None = None) -> int:
         ]
         controls = deterministic_controls()
         controls.append(untracked_exclusion_control())
+        controls.append(nested_compact_dependency_control())
         controls.append(duplicate_active_path_control())
         controls.append(dirty_worktree_policy_control())
         controls.append(regeneration_plan_control())
