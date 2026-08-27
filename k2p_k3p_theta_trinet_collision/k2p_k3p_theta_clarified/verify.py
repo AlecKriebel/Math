@@ -5,7 +5,7 @@ import subprocess,sys
 ROOT=Path(__file__).resolve().parent
 if sys.version_info < (3,10):
     raise SystemExit('Python 3.10 or newer is required')
-STEPS=[('source conventions',ROOT/'src/verify_source_conventions.py'),('simple K2P collision',ROOT/'verify_k2p_simple.py'),('simple K2P displayed-tree reconstruction and direct pruning',ROOT/'verify_k2p_displayed_trees.py'),('edgewise strictly continuous-time K2P and proof audit',ROOT/'src/verify_k2p_extended.py'),('exact four-leaf K2P cherry-graft regression',ROOT/'src/verify_k2p_four_leaf_graft.py'),('K2P rank and collision families',ROOT/'src/verify_k2p_rank_family.py'),('K3P collision, rank, direct pruning, and edgewise continuous-time analytic-IFT data',ROOT/'src/verify_k3p.py'),('K3P semantic mutation rejection tests',ROOT/'src/test_k3p_semantic_mutations.py')]
+STEPS=[('source conventions',ROOT/'src/verify_source_conventions.py'),('simple K2P collision',ROOT/'verify_k2p_simple.py'),('simple K2P displayed-tree reconstruction and direct pruning',ROOT/'verify_k2p_displayed_trees.py'),('edgewise strictly continuous-time K2P and proof audit',ROOT/'src/verify_k2p_extended.py'),('exact four-leaf K2P cherry-graft regression',ROOT/'src/verify_k2p_four_leaf_graft.py'),('K2P rank and collision families',ROOT/'src/verify_k2p_rank_family.py'),('K2P certificate-field mutation rejection test',ROOT/'src/test_k2p_semantic_mutations.py'),('K3P collision, rank, direct pruning, and edgewise continuous-time analytic-IFT data',ROOT/'src/verify_k3p.py'),('K3P semantic mutation rejection tests',ROOT/'src/test_k3p_semantic_mutations.py')]
 PYTHON=[sys.executable]
 if sys.flags.optimize:
     PYTHON.append('-'+'O'*sys.flags.optimize)

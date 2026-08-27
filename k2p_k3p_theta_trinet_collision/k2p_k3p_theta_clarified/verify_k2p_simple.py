@@ -48,6 +48,8 @@ def parse(x):return Q(F(x[0]),F(x[1]))
 def vparse(row):return tuple(parse(x) for x in row)
 V={k:vparse(v) for k,v in C['network_vectors'].items()}
 TREE={k:vparse(v) for k,v in C['comparison_tree'].items() if k in ('alpha','beta','gamma')}
+NETWORK_PROBS={k:vparse(v) for k,v in C['network_transition_probabilities'].items()}
+TREE_PROBS={k:vparse(v) for k,v in C['comparison_tree']['transition_probabilities'].items()}
 P=vparse(C['core_factors']['P']);R=vparse(C['core_factors']['R'])
 H=((1,1,1,1),(1,1,-1,-1),(1,-1,1,-1),(1,-1,-1,1));SYM='ACGT'
 def probs(e):
@@ -76,10 +78,13 @@ def topology():
     print('[topology] PASS  rooted binary DAG suppresses to a strict level-two theta 3-blob')
 def edges():
     transition_entries=[]
+    need(set(NETWORK_PROBS)==set(V),'network transition-row key set')
+    need(set(TREE_PROBS)==set(TREE),'tree transition-row key set')
     for name,e in V.items():
         need(e[0]==ONE and e[1]==e[3],name+' K2P form')
         for x in e[1:]:x.positive(name+' eigenvalue');(ONE-x).positive(name+' eigenvalue <1')
         ps=probs(e)
+        need(ps==NETWORK_PROBS[name],name+' stored transition row')
         for p in ps:p.positive(name+' transition')
         transition_entries.extend(ps)
         need(sum(ps,ZERO)==ONE,name+' transition sum')
@@ -87,6 +92,7 @@ def edges():
         need(e[1]==e[3],name+' K2P form')
         for x in e[1:]:x.positive(name+' eigenvalue');(ONE-x).positive(name+' eigenvalue <1')
         ps=probs(e)
+        need(ps==TREE_PROBS[name],name+' stored tree transition row')
         for p in ps:p.positive(name+' transition')
         transition_entries.extend(ps)
         margin=e[2]-e[1]*e[1]

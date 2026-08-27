@@ -305,6 +305,49 @@ def bridge_edges(nodes: Set[str], edges: Set[frozenset[str]]) -> Set[frozenset[s
 # ---------------------------------------------------------------------------
 
 
+EXPECTED_VERTEX_ROWS = [
+    {"id": "rho", "type": "root"},
+    {"id": "u", "type": "tree"},
+    {"id": "p", "type": "tree"},
+    {"id": "q", "type": "tree"},
+    {"id": "r2", "type": "reticulation"},
+    {"id": "r3", "type": "reticulation"},
+    {"id": "1", "type": "leaf", "label": 1},
+    {"id": "2", "type": "leaf", "label": 2},
+    {"id": "3", "type": "leaf", "label": 3},
+]
+
+EXPECTED_ARC_DESCRIPTORS = [
+    {"id": "e_rho_1", "parent": "rho", "child": "1", "vector_name": "K"},
+    {"id": "e_rho_u", "parent": "rho", "child": "u", "vector_name": "K"},
+    {"id": "e_u_p", "parent": "u", "child": "p", "vector_name": "U"},
+    {"id": "e_u_q", "parent": "u", "child": "q", "vector_name": "V"},
+    {"id": "e_p_r2", "parent": "p", "child": "r2", "vector_name": "S"},
+    {"id": "e_q_r2", "parent": "q", "child": "r2", "vector_name": "T"},
+    {"id": "e_p_r3", "parent": "p", "child": "r3", "vector_name": "S"},
+    {"id": "e_q_r3", "parent": "q", "child": "r3", "vector_name": "T"},
+    {"id": "e_r2_2", "parent": "r2", "child": "2", "vector_name": "K"},
+    {"id": "e_r3_3", "parent": "r3", "child": "3", "vector_name": "K"},
+]
+
+EXPECTED_RETICULATION_ROWS = [
+    {
+        "vertex": "r2",
+        "incoming": [
+            {"edge_id": "e_p_r2", "parent": "p", "weight": "1/2", "choice": "p"},
+            {"edge_id": "e_q_r2", "parent": "q", "weight": "1/2", "choice": "q"},
+        ],
+    },
+    {
+        "vertex": "r3",
+        "incoming": [
+            {"edge_id": "e_p_r3", "parent": "p", "weight": "1/2", "choice": "p"},
+            {"edge_id": "e_q_r3", "parent": "q", "weight": "1/2", "choice": "q"},
+        ],
+    },
+]
+
+
 class Verification:
     def __init__(self, certificate: Mapping[str, object]):
         self.cert = certificate
@@ -323,6 +366,33 @@ class Verification:
         retics = rooted["reticulations"]
         require(isinstance(vertices, list) and isinstance(arcs, list) and isinstance(retics, list),
                 "invalid rooted network schema")
+        for index, row in enumerate(vertices):
+            require(isinstance(row, Mapping), f"vertex row {index} must be a mapping")
+            require("id" in row, f"vertex row {index} is missing its identifier")
+            require(isinstance(row["id"], str),
+                    f"vertex identifier at row {index} must be a string")
+        vertex_ids = [str(row["id"]) for row in vertices]
+        require(len(vertex_ids) == len(set(vertex_ids)), "duplicate vertex identifier")
+        require_equal(vertices, EXPECTED_VERTEX_ROWS, "canonical ordered vertex schema")
+
+        arc_keys = {
+            "id", "parent", "child", "vector_name", "eigen", "transition_probabilities"
+        }
+        for index, row in enumerate(arcs):
+            require(isinstance(row, Mapping), f"rooted arc row {index} must be a mapping")
+            require_equal(set(row), arc_keys, f"closed rooted arc row schema at index {index}")
+            for key in ("id", "parent", "child", "vector_name"):
+                require(isinstance(row[key], str),
+                        f"rooted arc {key} at row {index} must be a string")
+        arc_ids = [str(row["id"]) for row in arcs]
+        require(len(arc_ids) == len(set(arc_ids)), "duplicate arc identifier")
+        arc_descriptors = [
+            {key: str(row[key]) for key in ("id", "parent", "child", "vector_name")}
+            for row in arcs
+        ]
+        require_equal(arc_descriptors, EXPECTED_ARC_DESCRIPTORS,
+                      "canonical rooted arc ID/endpoint/vector map")
+
         self.vertex_rows = vertices
         self.arc_rows = arcs
         self.retic_rows = retics
@@ -385,7 +455,6 @@ class Verification:
     # ---- Topology and root suppression --------------------------------------
 
     def verify_topology(self) -> None:
-        require(len(self.nodes) == len(set(self.nodes)), "duplicate vertex identifier")
         require(len(self.edge_row_by_id) == len(self.arc_rows), "duplicate arc identifier")
         directed = list(self.edge_endpoints.values())
         topological_order(self.nodes, directed)
@@ -410,23 +479,25 @@ class Verification:
         require_equal(roots, ["rho"], "unique root")
         require_equal(reachable("rho", children), set(self.nodes), "root reachability")
 
-        expected_reticulations = [
-            {
-                "vertex": "r2",
-                "incoming": [
-                    {"edge_id": "e_p_r2", "parent": "p", "weight": "1/2", "choice": "p"},
-                    {"edge_id": "e_q_r2", "parent": "q", "weight": "1/2", "choice": "q"},
-                ],
-            },
-            {
-                "vertex": "r3",
-                "incoming": [
-                    {"edge_id": "e_p_r3", "parent": "p", "weight": "1/2", "choice": "p"},
-                    {"edge_id": "e_q_r3", "parent": "q", "weight": "1/2", "choice": "q"},
-                ],
-            },
-        ]
-        require_equal(self.retic_rows, expected_reticulations,
+        for retic in self.retic_rows:
+            require(isinstance(retic, Mapping), "reticulation row must be a mapping")
+            vertex = str(retic["vertex"])
+            incoming = retic["incoming"]
+            require(isinstance(incoming, list), f"incoming rows at {vertex}")
+            for descriptor in incoming:
+                require(isinstance(descriptor, Mapping),
+                        f"incoming reticulation descriptor at {vertex}")
+                edge_id = str(descriptor["edge_id"])
+                require(edge_id in self.edge_endpoints,
+                        f"reticulation descriptor references unknown edge {edge_id}")
+                actual_parent, actual_child = self.edge_endpoints[edge_id]
+                require_equal(str(descriptor["parent"]), actual_parent,
+                              f"reticulation descriptor parent for {edge_id}")
+                require_equal(actual_child, vertex,
+                              f"reticulation descriptor child for {edge_id}")
+                require_equal(str(descriptor["choice"]), actual_parent,
+                              f"reticulation descriptor choice for {edge_id}")
+        require_equal(self.retic_rows, EXPECTED_RETICULATION_ROWS,
                       "canonical ordered reticulation descriptors")
         rooted = self.cert["rooted_network"]
         require(isinstance(rooted, Mapping), "rooted-network certificate")
@@ -456,6 +527,8 @@ class Verification:
         require_equal(set(semi_by_id["e_1_u"]["endpoints"]), {"1", "u"},
                       "suppressed edge endpoints")
         require_equal(semi_by_id["e_1_u"]["kind"], "undirected", "suppressed edge kind")
+        require_equal(semi_by_id["e_1_u"]["vector_name"], "K_odot_K",
+                      "suppressed edge vector name")
         require_equal(semi_by_id["e_1_u"]["source_edges"], ["e_rho_1", "e_rho_u"],
                       "suppressed edge sources")
         expected_composite = [

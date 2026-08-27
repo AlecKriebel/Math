@@ -253,7 +253,7 @@ def parse_vector(raw: Sequence[Sequence[str]]) -> Tuple[Quad, Quad, Quad, Quad]:
 NETWORK_VECTORS = {
     name: parse_vector(raw)
     for name, raw in CERT["network_vectors"].items()
-    if name in {"K", "U", "V", "S", "T"}
+    if name in {"K", "K_odot_K", "U", "V", "S", "T"}
 }
 TREE_VECTORS = {
     name: parse_vector(CERT["comparison_tree"][name])

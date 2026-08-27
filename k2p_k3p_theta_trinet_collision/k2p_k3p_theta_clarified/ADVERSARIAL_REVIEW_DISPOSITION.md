@@ -5,6 +5,24 @@ rejected. Reviews used the manuscript, exact verifiers and certificates, the
 official arXiv sources for Versions 2 and 3 of Brits et al., and the cited
 primary literature.
 
+## Version 1.2.5 independent-referee response -- 27 August 2026
+
+| Feedback item | Verdict | Disposition |
+|---|---|---|
+| K3P rooted-arc IDs and reticulation descriptors were not fully related to the actual endpoints | Valid bounded verifier-assurance defect; shipped witness and mathematics remained correct | Added the complete canonical ten-arc ID/parent/child/vector map and resolved every reticulation parent, child, and choice against its referenced arc. |
+| A duplicate vertex could be shadowed by dictionary construction | Valid raw-schema defect | Rejects duplicate vertex IDs before dictionary construction and requires the exact ordered ID/type/leaf-label schema. |
+| Add endpoint-swap, root-ID-swap, duplicate-vertex, and descriptor-contradiction regressions | Valid | Added all four mutations to the normal and optimized K3P semantic suite; each must fail for its named diagnostic. |
+| Stored compact-K2P `K_odot_K` transition row was unconsumed | Valid field-coverage defect | Both compact K2P verifiers now compare it with the exact recomputation, and a dedicated negative test runs in the complete suite. |
+| Integrity-artifact wording mixed canonical, release, and packet contexts | Valid contextual polish | The coverage inventory now names `manifest.sha256`, generated `FILE_SHA256SUMS`/archive sidecars, and referee `PACKET_SHA256SUMS`/ZIP sidecar separately, while retaining the unsigned self-consistency caveat. |
+| Add PDF tags, enlarge the tangent table, deduplicate printed arXiv identifiers, or tighten the sparse final bibliography page | Optional production polish, not a correctness or readability defect | Deferred. The referee found every page readable and no layout regression; late toolchain or reflow changes would add risk without strengthening the result. |
+
+The report independently reproduced the collision identities, ordinary-state
+and Fourier distributions, rank minors, K3P tangent, continuous-time claims,
+local geometry, dominance, and grafting proof, and found no false theorem or
+mathematical correction. The version 1.2.5 changes are limited to executable
+semantic coverage, negative controls, documentation, and release metadata.
+No title, abstract, theorem statement, witness, determinant, or tangent changed.
+
 ## Version 1.2.4 independent-referee report -- 27 August 2026
 
 | Feedback item | Verdict | Disposition |

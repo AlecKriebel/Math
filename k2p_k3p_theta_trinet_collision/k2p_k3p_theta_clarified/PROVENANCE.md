@@ -16,13 +16,13 @@ first appears in public repository history at commit `ca21a733`, dated 4 August
 combined source directory. The full early draft was therefore already public
 before the clarification. This record is additive and no history was rewritten.
 
-The current frozen submission/replay snapshot is version `1.2.4`, identified by
-the Git tag `k2p-k3p-theta-v1.2.4`. The earlier tags
-`k2p-k3p-theta-v1.2.3`,
+The current frozen submission/replay snapshot is version `1.2.5`, identified by
+the Git tag `k2p-k3p-theta-v1.2.5`. The earlier tags
+`k2p-k3p-theta-v1.2.4`, `k2p-k3p-theta-v1.2.3`,
 `k2p-k3p-theta-v1.2.2`, `k2p-k3p-theta-v1.2.1`, `k2p-k3p-theta-v1.2.0`,
 `k2p-k3p-theta-v1.1.0`, and
 `k2p-k3p-theta-biorxiv-v1.0.0` remain immutable.
-Versions 1.2.3, 1.2.2, 1.2.1, 1.2.0, and 1.1.0 are retained under the parent
+Versions 1.2.4, 1.2.3, 1.2.2, 1.2.1, 1.2.0, and 1.1.0 are retained under the parent
 `releases/` directory; version 1.0.0 remains under `legacy/releases/`. Exact upload-time
 status and unresolved author choices are recorded in `submission/biorxiv/`.
 No GitHub release, bioRxiv submission, Zenodo deposit, DOI, or external
@@ -73,6 +73,16 @@ adds exact ordinary-state K3P pruning on all retained graphs; derives the K2P
 dimension arithmetic in the replay; and distinguishes recomputed checks from
 informational fields, regression transcripts, and unsigned integrity
 manifests. It also makes the literature and source-version wording literal.
+
+Version 1.2.5 closes the two bounded verifier-assurance gaps found by an
+independent replay of version 1.2.4. The K3P checker now binds the canonical
+vertex table, complete ten-arc endpoint/vector map, and every reticulation
+descriptor relationally before constructing graph dictionaries, with four new
+coordinated mutation regressions. The compact K2P checker now consumes the
+previously redundant stored `K_odot_K` transition row, with a dedicated
+negative test. The coverage inventory distinguishes canonical, release-archive,
+and referee-packet integrity artifacts. No mathematical claim, witness,
+certificate value, title, abstract, or theorem statement changes.
 
 ## Revision lineage
 

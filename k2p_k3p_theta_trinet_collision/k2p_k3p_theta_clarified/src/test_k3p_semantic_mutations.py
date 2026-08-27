@@ -94,6 +94,36 @@ def swap_suppression_sources(certificate: MutableMapping[str, object]) -> None:
     by_id["e_u_q"]["source_edges"] = ["e_u_p"]
 
 
+def swap_actual_p_q_endpoints(certificate: MutableMapping[str, object]) -> None:
+    def swap(vertex: str) -> str:
+        return {"p": "q", "q": "p"}.get(vertex, vertex)
+
+    for row in certificate["rooted_network"]["arcs"]:
+        row["parent"] = swap(row["parent"])
+        row["child"] = swap(row["child"])
+    for row in certificate["root_suppression"]["effective_semi_directed_edges"]:
+        row["endpoints"] = [swap(vertex) for vertex in row["endpoints"]]
+        if "direction" in row:
+            row["direction"] = [swap(vertex) for vertex in row["direction"]]
+
+
+def swap_root_arc_ids(certificate: MutableMapping[str, object]) -> None:
+    rows = certificate["rooted_network"]["arcs"]
+    by_id = {row["id"]: row for row in rows}
+    by_id["e_rho_1"]["id"] = "e_rho_u"
+    by_id["e_rho_u"]["id"] = "e_rho_1"
+
+
+def insert_shadowed_duplicate_vertex(certificate: MutableMapping[str, object]) -> None:
+    certificate["rooted_network"]["vertices"].insert(
+        0, {"id": "rho", "type": "tree"}
+    )
+
+
+def contradict_reticulation_parent(certificate: MutableMapping[str, object]) -> None:
+    certificate["rooted_network"]["reticulations"][0]["incoming"][0]["parent"] = "q"
+
+
 def add_unknown_top_level_field(certificate: MutableMapping[str, object]) -> None:
     certificate["unverified_claim"] = True
 
@@ -119,6 +149,26 @@ def main() -> None:
             "root-suppression source reassignment",
             swap_suppression_sources,
             "singleton root-suppression source binding for e_u_p",
+        ),
+        (
+            "coordinated actual p/q endpoint swap with stale descriptors",
+            swap_actual_p_q_endpoints,
+            "canonical rooted arc ID/endpoint/vector map",
+        ),
+        (
+            "root-adjacent arc-ID swap",
+            swap_root_arc_ids,
+            "canonical rooted arc ID/endpoint/vector map",
+        ),
+        (
+            "shadowed duplicate vertex identifier",
+            insert_shadowed_duplicate_vertex,
+            "duplicate vertex identifier",
+        ),
+        (
+            "reticulation parent contradicts referenced arc",
+            contradict_reticulation_parent,
+            "reticulation descriptor parent for e_p_r2",
         ),
         (
             "unknown top-level certificate field",
