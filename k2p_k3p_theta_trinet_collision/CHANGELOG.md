@@ -1,5 +1,30 @@
 # Changelog
 
+## Version 1.2.6 literature and input-schema closure -- 27 August 2026
+
+- Added and contextualized Ardiyansyah's 2021 algebraic study of restricted
+  nice simple/semisimple level-two JC/K2P/K3P networks, distinguishing its
+  variety-level results from this pointwise non-nice trinet collision.
+- Qualified the Version 2-to-3 history as removal of the formal K2P lemma and
+  the K2P part of its corresponding global corollary.
+- Replaced ordinary certificate parsing with a strict shared loader that
+  rejects duplicate keys at every depth, `NaN`/infinite constants,
+  unregistered filenames, and deviations from closed structural schema
+  fingerprints, including heterogeneous-row multiplicities.
+- Added fourteen focused hostile raw/schema mutations and replayed them in
+  normal and optimized modes. The complete 206-line outputs are byte-identical
+  and end with `ALL EXACT CHECKS PASSED`.
+- Rebuilt and inspected all 24 PDF pages and passed the commit-pinned
+  clean-extraction release at annotated tag `k2p-k3p-theta-v1.2.6`, commit
+  `672d96a08be174cd6b67762a6907dfbdcd926b9b`.
+- Refreshed the neutral referee packet with 38 direct tagged materials, an
+  expanded code/literature prompt, strict-schema focused replays, and a
+  43-entry unsigned manifest. Its portable ZIP has SHA-256
+  `f35d5b8ef06870444b20c6572c9676155aacc9d2df214889706f48c9bb07c150`.
+- Preserved the title, theorem statements, proof, witnesses, determinant,
+  tangent, abstract's mathematical claims, and scientific conclusions. No
+  GitHub Release, Zenodo deposit, DOI, or external communication was created.
+
 ## Version 1.2.5 verifier-assurance closure -- 27 August 2026
 
 - Bound the K3P certificate to the canonical ordered vertex schema, complete

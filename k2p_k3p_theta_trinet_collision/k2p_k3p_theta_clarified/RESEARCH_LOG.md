@@ -1,5 +1,57 @@
 # Research log
 
+## 2026-08-27 -- Version 1.2.6 source-freeze checkpoint
+
+- Two independent post-edit audits confirmed that the Ardiyansyah citation,
+  the Version 2-to-3 history, and every manuscript/PDF cross-reference are
+  accurate; no title, theorem, witness, determinant, tangent, or mathematical
+  conclusion changed.
+- Strengthened the closed-schema fingerprints to retain the exact multiset of
+  array-row shapes, then added a same-length row-shape-multiplicity mutation.
+  This closes the remaining structural edge case before the downstream
+  semantic checks are reached.
+- Replayed the complete suite under ordinary and optimized Python. The
+  206-line outputs are byte-identical, have SHA-256
+  `39ecb654c43887d61ff094478eb787187bb63c9eb0d832c14b977b198c358a96`,
+  and end with `ALL EXACT CHECKS PASSED`. The 17-line focused raw-JSON/schema
+  transcript is also byte-identical across modes, with SHA-256
+  `11651243e83da30f433be8b95448991752609f5a273405fcd743dbaccae2d41d`.
+- Rebuilt and inspected all 24 PDF pages. All fonts are embedded; there are no
+  TeX warnings, stale active-version links, unresolved references, clipping,
+  overlaps, or missing glyphs. Untagged-PDF accessibility remains an explicit
+  optional production advisory rather than a scientific blocker.
+- Best-guess completion: **92% of version 1.2.6 submission freeze**. Remaining
+  work is manifest regeneration, immutable commit/tag creation, commit-pinned
+  release replay, neutral copied referee-packet replay, parent-index update,
+  push, and public tag-URL verification.
+
+## 2026-08-27 -- Version 1.2.6 referee-response checkpoint
+
+- Independently checked the v1.2.5 report against Ardiyansyah's primary 2021
+  paper. Its restricted variety-noncontainment results concern nice simple and
+  semisimple level-two networks; Lemma 5.1 excludes all two- and three-leaf
+  simple strict level-two networks from that class. The citation is required
+  for completeness but creates no priority conflict with the present non-nice
+  pointwise collision.
+- Added the citation/context sentence and made the abstract and acknowledgment
+  literal about the formal K2P lemma and the K2P part of its global corollary.
+  No stale-roadmap footnote was added because Version 3's operative statements
+  and open questions are unambiguous.
+- Reproduced the advisory raw-JSON false accepts, then added duplicate-key and
+  nonstandard-constant rejection, closed structural schema fingerprints for
+  all five certificate inputs, and fourteen targeted raw/schema mutations.
+- The first post-edit normal/optimized replay exposed only two obsolete
+  expected diagnostics in the pre-existing mutation harness; the mutations
+  were still rejected by the new earlier schema gate. The harness was updated
+  to require the correct fail-closed layer and to retain a same-length
+  duplicate-vertex test for the semantic ID check. The next complete normal
+  and optimized outputs were byte-identical and ended with
+  `ALL EXACT CHECKS PASSED`.
+- Best-guess completion: **72% of version 1.2.6 submission freeze**. Remaining
+  work is PDF rebuild and all-page inspection, manifest/transcript refresh,
+  independent source/verifier audit, commit/tag, release and referee-packet
+  replay, parent index update, push, and public URL verification.
+
 ## 2026-08-27 -- Version 1.2.5 source-freeze checkpoint
 
 - Replayed the complete exact suite once under ordinary Python and once with
