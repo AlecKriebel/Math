@@ -806,3 +806,34 @@
   **approximately 99% for v1.0.3 release qualification**, pending the detached
   quick/full replays, final outer mutation run, deterministic archives,
   independent package audit, commit/push, and annotated source tag.
+
+## 2026-08-27 — round-3 v1.0.3 qualification complete
+
+- A detached clean sparse checkout at source commit
+  `1ef5dd2737a50fd33bc3b15d63e0ba70b050e03f` passed all 23 quick layers and
+  all 41 full primitive-regeneration layers with zero blockers.  The full run
+  took 5,880.83 seconds wall time and 2,617,720,832 bytes maximum RSS; its
+  report and telemetry hashes are
+  `5a5f62104bea1e88d725aa3cee0441c369d53905f71fe30bc20de82f4eadb35e`
+  and
+  `200b8f18dcd01c2f9fc4f3013b6963b3b8e8083b1acb6a591e28c6e42f7695e3`.
+- The final outer suite rejected all 25 conceptual mutation gates with zero
+  survivors in 3,538.22 seconds.  The separately implemented package readers
+  rejected all 33 package mutations, including both resealed duplicate-name
+  attacks, with payload
+  `62a056e21c8a514fe2e7e96ab952464fcb0a1489d785ccde8ff390e5f5006fe2`.
+- The static audit has zero findings and binds all 26 printed authority/hash
+  rows.  Both 26-page and 24-page PDFs build twice identically, have embedded
+  fonts and clean logs, and passed inspection of all 50 rendered pages.
+- The deterministic referee archive was built twice byte-identically, passed
+  ZIP integrity, passed the strict checker in two differently named fresh
+  extractions, and passed the 23-layer quick replay from an extracted copy.
+  It is 214,944,591 bytes with SHA-256
+  `51f502290434cd3415936ef69e3c5afe71438fa892d5b9e6998feecc47489278`.
+  The deterministic five-source bioRxiv ZIP has SHA-256
+  `e9eec990d85d349109a1379b6d322da4e6a073891ba94886db385201d0f8e2e5`.
+- No theorem statement, formula, finite census, rank decision, restoration
+  edge, transport, probe row, or sharpness witness changed.  Best-guess
+  completion is **100% for the mathematical theorem** and **100% for v1.0.3
+  release qualification**.  GitHub Release, Zenodo, DOI, and submission
+  actions remain reserved to the author.

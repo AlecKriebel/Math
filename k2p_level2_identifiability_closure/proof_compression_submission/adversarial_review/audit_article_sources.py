@@ -1257,7 +1257,6 @@ def main() -> dict[str, object]:
         "k2p-same-biorxiv-v1.0.3",
         "CC BY 4.0",
         "MIT License",
-        "no DOI is claimed",
     ):
         require(approved in active_metadata_source, f"APPROVED_METADATA_MISSING:{approved}")
     require(

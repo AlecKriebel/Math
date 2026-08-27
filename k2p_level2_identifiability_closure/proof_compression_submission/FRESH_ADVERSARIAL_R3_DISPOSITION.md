@@ -91,4 +91,35 @@ authorized by this repair cycle.
 
 ## Final validation
 
-Pending.
+All accepted findings are closed without a mathematical change.
+
+- The integrated printed-authority gate checks all 26 reader-facing rows and
+  rejects 9/9 focused stale, missing, duplicate, relabelled, and missing-file
+  attacks.  Its payload SHA-256 is
+  `eb129858ed58ff1a645f79a5a8a56ae8b0f177dc7fb8c38c83f1eb6a1dd0d347`.
+- The independent outer-package mutation suite rejects 33/33 attacks with
+  zero survivors, including legitimately resealed same-valued and
+  conflicting-valued duplicate JSON names in both the producer and the
+  separately implemented checker.  Its payload SHA-256 is
+  `62a056e21c8a514fe2e7e96ab952464fcb0a1489d785ccde8ff390e5f5006fe2`.
+- A detached clean sparse checkout at source commit
+  `1ef5dd2737a50fd33bc3b15d63e0ba70b050e03f` passed all 23 quick layers and
+  all 41 full layers with zero blockers.  The full replay took 5,880.83
+  seconds wall time and 2,617,720,832 bytes maximum RSS.  Its report and
+  telemetry SHA-256 values are
+  `5a5f62104bea1e88d725aa3cee0441c369d53905f71fe30bc20de82f4eadb35e`
+  and
+  `200b8f18dcd01c2f9fc4f3013b6963b3b8e8083b1acb6a591e28c6e42f7695e3`.
+- The final outer release suite rejected 25/25 conceptual mutation gates with
+  zero survivors in 3,538.22 seconds.  Its report SHA-256 is
+  `866cb66ffd5ad8fae159a487dc5f35a98d946fc2e5c363f9dfd5fea5a1591788`.
+- The static source audit has zero findings; the exact article and supplement
+  PDFs build twice identically and all 50 rendered pages passed visual
+  inspection.  The frozen 230-file release lock and 406-file recursive
+  evidence closure pass their independent checks.
+
+The deterministic referee archive and five-source bioRxiv archive are built
+from the final sealed manifest after this disposition is written.  Their
+external SHA-256 sidecars and the annotated tag object provide the
+non-self-referential package binding.  No GitHub Release, Zenodo deposit, DOI,
+or submission action is part of this qualification.

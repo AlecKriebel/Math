@@ -1,7 +1,7 @@
 # Disposition of the fresh PC-PARTIAL adversarial review
 
 > Historical scope. This 22 August disposition is retained for provenance.
-> `FRESH_ADVERSARIAL_R2_DISPOSITION.md`, the source-bound 41-layer replay, and
+> `FRESH_ADVERSARIAL_R3_DISPOSITION.md`, the source-bound 41-layer replay, and
 > the regenerated static audit are the current qualification authorities.
 
 Date: 22 August 2026
@@ -12,7 +12,7 @@ The reviewer found no counterexample or theorem-level failure. Independent
 source, certificate, and literature audits agree with that verdict. The
 principal-domain `K2P-SAME` theorem is unchanged. The targeted proof-writing
 and reproducibility revision, human metadata, licensing, final detached replay,
-and immutable source-tag qualification are complete. No GitHub Release, Zenodo
+and versioned source-tag qualification are complete. No GitHub Release, Zenodo
 deposit, or DOI has been created or claimed.
 
 ## Item-by-item disposition
@@ -79,7 +79,7 @@ deposit, or DOI has been created or claimed.
    with zero blockers; its exact report and macOS memory telemetry are included
    in the bundle. The public repository URL, corresponding email, contribution
    approval, funding and competing-interests declarations, CC BY 4.0 paper/data
-   license, MIT code license, and immutable source-tag name are supplied. The
+   license, MIT code license, and then-designated source-tag name are supplied. The
    author explicitly reserved any GitHub Release, Zenodo deposit, or DOI action.
 
 ## Final validation outcome

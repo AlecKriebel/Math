@@ -1257,8 +1257,8 @@ def verify_pdf_build_report(submission: dict[str, dict[str, int | str]]) -> None
         report.get("schema") != "k2p-submission-pdf-build-report-v3"
         or report.get("status") != "PASS"
         or report.get("visual_verdict") != "PASS"
-        or report.get("source_date_epoch") != 1787702400
-        or report.get("source_date_epoch_utc") != "2026-08-26T00:00:00Z"
+        or report.get("source_date_epoch") != 1787788800
+        or report.get("source_date_epoch_utc") != "2026-08-27T00:00:00Z"
         or report.get("engine") != {"name": "Tectonic", "version": "0.16.9"}
         or report.get("byte_identical_double_build") is not True
     ):
@@ -1493,7 +1493,7 @@ def validate(manifest_path: Path) -> dict[str, Any]:
     if policy != expected_policy:
         fail("submission source policy mismatch")
     archive_policy = manifest.get("archive_policy")
-    if not isinstance(archive_policy, dict) or archive_policy.get("fixed_member_timestamp") != "2026-08-26T00:00:00":
+    if not isinstance(archive_policy, dict) or archive_policy.get("fixed_member_timestamp") != "2026-08-27T00:00:00":
         fail("archive timestamp policy mismatch")
     required_sources = {
         "proof_compression_submission/AI_REFEREE_PROMPT.md",

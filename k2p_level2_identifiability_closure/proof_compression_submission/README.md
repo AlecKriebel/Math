@@ -58,12 +58,12 @@ not represented as a fictitious hand quotient. Primary reader artifacts are:
 - `analysis/WEAK_SHARPNESS_COLUMN_CROSSWALK.json`, with independent graph and
   determinant replay;
 - `crosswalk/THEOREM_ARTIFACT_CROSSWALK.md` and `.json`; and
-- `FRESH_ADVERSARIAL_R2_DISPOSITION.md`, the current referee-finding
+- `FRESH_ADVERSARIAL_R3_DISPOSITION.md`, the current referee-finding
   disposition and final qualification record;
 - `adversarial_review/STATIC_AUDIT_RESULT.json`, the generated current source
   audit; and
 - `adversarial_review/ADVERSARIAL_ARTICLE_AUDIT.md`, a historical audit whose
-  final-qualification addendum is superseded by the round-2 disposition.
+  final-qualification addendum is superseded by the round-3 disposition.
 
 From the project root, the compact qualification is:
 

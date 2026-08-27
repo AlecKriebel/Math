@@ -397,7 +397,7 @@ def build_manifest() -> dict[str, Any]:
         "archive_policy": {
             "archive_prefix": ARCHIVE_PREFIX,
             "compression": "ZIP_DEFLATED level 9",
-            "fixed_member_timestamp": "2026-08-26T00:00:00",
+            "fixed_member_timestamp": "2026-08-27T00:00:00",
             "member_mode": "100644",
             "member_order": "project-relative path lexicographic",
             "manifest_included": True,

@@ -1,6 +1,6 @@
 {
   "assert_statement_count": 0,
-  "mutation_count": 31,
+  "mutation_count": 33,
   "mutations": [
     {
       "mutation_id": "overbroad_c02_topology_authority",
@@ -83,7 +83,7 @@
       "status": "REJECTED"
     },
     {
-      "mutation_id": "wrong_immutable_submission_tag",
+      "mutation_id": "wrong_versioned_source_tag",
       "rejection": "manifest submission metadata mismatch",
       "status": "REJECTED"
     },
@@ -156,11 +156,23 @@
       "mutation_id": "false_supplement_pdf_hash",
       "rejection": "submission sources ledger mismatch; missing=[] extra=[]",
       "status": "REJECTED"
+    },
+    {
+      "mutation_id": "same_valued_duplicate_json_name_after_reseal",
+      "outer_reseal": "VALID",
+      "rejection": "producer:duplicate JSON object name: 'status';checker:proof_compression_submission/PDF_BUILD_REPORT.json contains duplicate JSON name: 'status'",
+      "status": "REJECTED"
+    },
+    {
+      "mutation_id": "conflicting_valued_duplicate_json_name_after_reseal",
+      "outer_reseal": "VALID",
+      "rejection": "producer:duplicate JSON object name: 'status';checker:proof_compression_submission/PDF_BUILD_REPORT.json contains duplicate JSON name: 'status'",
+      "status": "REJECTED"
     }
   ],
   "optimized_article_audit_rejected": true,
   "optimized_mode_rejected": true,
-  "payload_sha256": "0492a14d8efc310b4bed1e0d0217f4408ea5e3c827372be366582e7bc047efae",
+  "payload_sha256": "62a056e21c8a514fe2e7e96ab952464fcb0a1489d785ccde8ff390e5f5006fe2",
   "schema": "k2p-crosswalk-bundle-mutation-report-v2",
   "status": "PASS"
 }

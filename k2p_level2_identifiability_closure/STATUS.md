@@ -9,7 +9,7 @@ and 406-file transitive evidence bundle have independent replay and mutation
 coverage. The frozen outer release lock is
 
 ```text
-130642e235c9beaa22061c578c3c645244cdbf45a9b416d45d94492b3d2848bd
+30132af1b10f7aba6d49ababf14551f9f914a19dc6a0638517761b6b85cf4c8d
 ```
 
 Every finite gate has zero unresolved mathematical records. The corrected
@@ -53,28 +53,33 @@ with no open load-bearing findings.
 ## Final qualification state
 
 The repaired 230-file outer lock and 406-file recursive evidence closure pass
-the lock check and the 23-layer quick replay with zero blockers. Two
-differently named clean extractions produced byte-identical 25/25 mutation
-reports with zero survivors and no source drift. A detached clean checkout at
-commit `f6befbce38cfb21e27b8dc4a9611d284fdcbc800` passed all 41 full-replay
-layers in 5,697.15 seconds wall time with 2,552,119,296 bytes maximum RSS.
-Its report and source-bound telemetry have SHA-256 values
-`2489643d65c50f662d027bf5002b9f398c8fa2999d7a17fcf43a5334cb04e86e`
+the lock check and the 23-layer quick replay with zero blockers. A detached
+clean checkout at source commit
+`1ef5dd2737a50fd33bc3b15d63e0ba70b050e03f` passed all 41 full-replay layers
+in 5,880.83 seconds wall time with 2,617,720,832 bytes maximum RSS. Its report
+and source-bound telemetry have SHA-256 values
+`5a5f62104bea1e88d725aa3cee0441c369d53905f71fe30bc20de82f4eadb35e`
 and
-`b0f379d5e9d7e3acfd4c9812711964c4f7894dfd15e28045eab8077a9e6bd18f`.
+`200b8f18dcd01c2f9fc4f3013b6963b3b8e8083b1acb6a591e28c6e42f7695e3`.
+
+The final outer mutation suite rejected 25/25 gates with zero survivors in
+3,538.22 seconds. The separate package mutation audit rejected 33/33 attacks,
+including correctly resealed same-valued and conflicting duplicate-JSON-name
+attacks through both independent readers. The static audit checks every one of
+the 26 printed authority/hash rows and reports zero findings.
 
 The 26-page article and 24-page supplement build and render cleanly. The
-final deterministic 489-member neutral-referee archive is
-`proof_compression_submission/output/K2P_Principal_D_Plus_Referee_Package_20260826.zip`;
-it is 214,930,375 bytes with SHA-256
-`86a286be82ce3c211f556eaa24cf1120aa42e41f716b46cb8752c1d2546053ba`.
-Two independent builds were byte-identical, ZIP integrity passed, and a fresh
-extraction passed every compact referee check without changing a packaged
-byte. Its executable evidence is byte-for-byte unchanged from the immediately
-preceding qualified extraction, which also passed the 23-layer quick replay
-and 25/25 outer mutations.
+final deterministic 491-member neutral-referee archive is
+`proof_compression_submission/output/K2P_Principal_D_Plus_Referee_Package_20260827.zip`;
+it is 214,944,591 bytes with SHA-256
+`51f502290434cd3415936ef69e3c5afe71438fa892d5b9e6998feecc47489278`.
+Two independent builds were byte-identical, ZIP integrity passed, and two
+differently named fresh extractions passed the strict package checker. One
+fresh extraction also passed all 23 quick-replay layers. The deterministic
+five-source bioRxiv archive has SHA-256
+`e9eec990d85d349109a1379b6d322da4e6a073891ba94886db385201d0f8e2e5`.
 
-The source tag is `k2p-same-biorxiv-v1.0.2`. No GitHub Release, Zenodo
+The versioned annotated source tag is `k2p-same-biorxiv-v1.0.3`. No GitHub Release, Zenodo
 deposit, or DOI has been created or claimed; those external publication
 actions are deliberately left to the author.
 

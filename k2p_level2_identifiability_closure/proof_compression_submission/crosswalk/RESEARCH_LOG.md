@@ -94,3 +94,30 @@ Best-guess completion of the round-3 editorial/diagnostic repair subtask:
 **60%**.  The focused source and runner edits are complete; derived reports,
 PDFs, replay bindings, manifest/archive construction, and the v1.0.3 tag remain
 for the parent release workflow.
+
+## 2026-08-27 — v1.0.3 release-qualification closure
+
+- Bound a detached clean-checkout replay of the exact five-source set at
+  source commit `1ef5dd2737a50fd33bc3b15d63e0ba70b050e03f`.  All 41/41 full layers
+  passed with zero blockers in 5,880.83 seconds; report and telemetry hashes
+  are `5a5f62104bea1e88d725aa3cee0441c369d53905f71fe30bc20de82f4eadb35e`
+  and `200b8f18dcd01c2f9fc4f3013b6963b3b8e8083b1acb6a591e28c6e42f7695e3`.
+- Rejected all 25/25 outer release mutations and all 33/33 independent
+  package mutations with zero survivors.  The package suite includes
+  legitimately resealed same-valued and conflicting-valued duplicate JSON
+  name attacks through separately implemented producer and checker parsers.
+- Rebuilt the 26-page article and 24-page supplement twice identically,
+  inspected all 50 rendered pages, and closed the static source audit with
+  zero findings and all 26 printed authority/hash rows bound.
+- Built the deterministic referee archive twice byte-identically and checked
+  two differently named fresh extractions.  Its SHA-256 is recorded only in
+  the external sidecar and project-root status to avoid archive
+  self-reference.  The five-source bioRxiv ZIP SHA-256 is
+  `e9eec990d85d349109a1379b6d322da4e6a073891ba94886db385201d0f8e2e5`.
+- The designated versioned annotated source tag is
+  `k2p-same-biorxiv-v1.0.3`.  It is created and pushed only after the final
+  source commit; its tag-object and peeled-commit IDs are therefore external
+  non-self-referential release metadata.  No GitHub Release, Zenodo deposit,
+  DOI, or submission action is part of this qualification.
+
+Crosswalk/bundle v1.0.3 qualification completion: **100%**.
