@@ -57,7 +57,7 @@ General repository:
 
 Exact canonical source URL for the posted version:
 
-`https://github.com/AlecKriebel/Math/tree/k2p-k3p-theta-v1.2.4/k2p_k3p_theta_trinet_collision/k2p_k3p_theta_clarified`
+`https://github.com/AlecKriebel/Math/tree/k2p-k3p-theta-v1.2.5/k2p_k3p_theta_trinet_collision/k2p_k3p_theta_clarified`
 
 The venue-neutral tag must resolve to the full 40-character release commit
 containing the approved PDF, exact verifier reports, corrected manifest, and
@@ -67,14 +67,14 @@ Candidate code/data availability statement:
 
 > Exact certificates, standard-library verification code, replay transcripts,
 > and manuscript source are archived at `<ZENODO_RECORD_URL>` and mirrored at
-> `https://github.com/AlecKriebel/Math/tree/k2p-k3p-theta-v1.2.4/k2p_k3p_theta_trinet_collision/k2p_k3p_theta_clarified`.
+> `https://github.com/AlecKriebel/Math/tree/k2p-k3p-theta-v1.2.5/k2p_k3p_theta_trinet_collision/k2p_k3p_theta_clarified`.
 
 GitHub-only wording to use unless and until a Zenodo deposit is deliberately
 created:
 
 > Exact certificates, standard-library verification code, replay transcripts,
-> and manuscript source are available in the version 1.2.4 tagged snapshot
-> at `https://github.com/AlecKriebel/Math/tree/k2p-k3p-theta-v1.2.4/k2p_k3p_theta_trinet_collision/k2p_k3p_theta_clarified`.
+> and manuscript source are available in the version 1.2.5 tagged snapshot
+> at `https://github.com/AlecKriebel/Math/tree/k2p-k3p-theta-v1.2.5/k2p_k3p_theta_trinet_collision/k2p_k3p_theta_clarified`.
 
 Do not use the mutable `main` URL as the only reproducibility citation. Replace
 `<ZENODO_RECORD_URL>` only after a deliberate archival deposit; if no deposit is
@@ -85,7 +85,7 @@ placeholder.
 
 - **bioRxiv DOI:** `<ASSIGNED ONLY AFTER FINAL AUTHOR APPROVAL>`
 - **Zenodo package DOI:** `<ASSIGNED ONLY IF/WHEN A CURATED DEPOSIT IS CREATED>`
-- **Release version/tag:** `1.2.4` / `k2p-k3p-theta-v1.2.4`
+- **Release version/tag:** `1.2.5` / `k2p-k3p-theta-v1.2.5`
 - **Full release commit:** `<RELEASE_COMMIT>`
 
 After bioRxiv posts the paper, add its DOI to `CITATION.cff`, the Zenodo record,

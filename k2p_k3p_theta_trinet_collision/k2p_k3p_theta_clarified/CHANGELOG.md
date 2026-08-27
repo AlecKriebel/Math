@@ -1,5 +1,26 @@
 # Changelog
 
+## Version 1.2.5 verifier-assurance closure -- 27 August 2026
+
+- Bound the K3P certificate to the canonical ordered vertex/type/leaf-label
+  schema and complete ten-arc ID/parent/child/vector map before constructing
+  lookup dictionaries.
+- Resolved each reticulation descriptor against its referenced rooted arc and
+  required exact parent, child, and choice agreement; duplicate vertex and arc
+  identifiers now fail before dictionary collapse.
+- Added normal/optimized negative regressions for an actual `p/q` endpoint
+  swap, a root-adjacent arc-ID swap, a shadowed duplicate vertex, and a
+  descriptor/arc parent contradiction.
+- Made both focused compact-K2P replay paths compare every stored transition
+  row, including `K_odot_K`, and added a dedicated field-mutation regression.
+- Revised the certificate-coverage inventory to state these bindings and to
+  distinguish the canonical, generated-release, and referee-packet integrity
+  artifacts by context.
+- Preserved every theorem, witness, determinant, tangent, title, abstract, and
+  scientific conclusion. Optional PDF tagging and late layout/bibliography
+  polish were deferred because the referee found the existing rendering
+  readable and these changes would add release risk without changing meaning.
+
 ## Version 1.2.4 referee hardening -- 27 August 2026
 
 - Bound every advertised K3P Jacobian and free-direction label to a complete

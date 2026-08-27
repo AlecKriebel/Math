@@ -1,5 +1,48 @@
 # Research log
 
+## 2026-08-27 -- Version 1.2.5 source-freeze checkpoint
+
+- Replayed the complete exact suite once under ordinary Python and once with
+  optimization enabled. The 184-line outputs are byte-identical, end with
+  `ALL EXACT CHECKS PASSED`, and include all new K2P and K3P mutation guards.
+  Every focused stored transcript also matches a fresh run.
+- An independent hostile verifier audit corrupted each of the nine stored
+  compact-K2P transition rows in turn and tried additional coordinated K3P
+  vector, endpoint, leaf-label, duplicate-arc, reticulation-child, and
+  suppressed-edge mutations. Every mutation was rejected in normal and
+  optimized modes; no residual identifier or dictionary-shadowing route was
+  found.
+- Rebuilt the manuscript and both support PDFs with no TeX warning. All 24
+  rendered pages were inspected at high detail; there is no clipping, overlap,
+  stale active-version link, unresolved reference, or layout regression, and
+  all fonts are embedded. The optional untagged-PDF, small-table, and sparse
+  bibliography-page observations do not impair readability.
+- Best-guess completion: **92% of version 1.2.5 submission freeze**. Remaining
+  work is manifest regeneration, the immutable commit/tag, commit-pinned
+  release and referee-packet replay, parent index update, push, and public
+  tag-URL verification.
+
+## 2026-08-27 -- Version 1.2.5 referee-response checkpoint
+
+- Read and independently adjudicated the full version 1.2.4 referee report.
+  Its mathematical audit is accepting; the only required changes are two
+  bounded semantic-coverage repairs in the verifier package.
+- Reproduced all four reported false positives before editing: the coordinated
+  actual `p/q` endpoint swap, the root-adjacent arc-ID swap, the shadowed
+  duplicate `rho` row, and corruption of the stored K2P `K_odot_K` transition
+  row all passed the earlier verifier exactly as reported.
+- Bound the exact K3P vertex and ten-arc schemas, related each reticulation
+  descriptor to its actual arc, consumed every stored compact-K2P transition
+  row, and added focused normal/optimized negative regressions.
+- Three independent post-edit audits found the repairs complete, the revised
+  coverage inventory accurate, and no reason to alter the title, abstract,
+  theorem statements, proof, witness, determinant, or tangent. Optional PDF
+  tagging and layout polish were rejected as unnecessary late-release risk.
+- Best-guess completion: **72% of version 1.2.5 submission freeze**. Remaining
+  work is the full normal/optimized replay, PDF rebuild and all-page inspection,
+  manifest/source freeze, commit/tag/archive replay, copied referee-packet
+  refresh, parent index, push, and public tag-URL verification.
+
 ## 2026-08-27 -- Version 1.2.4 pre-release validation checkpoint
 
 - Three independent post-edit audits rechecked the mathematical exposition,

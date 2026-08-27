@@ -1,5 +1,28 @@
 # Changelog
 
+## Version 1.2.5 verifier-assurance closure -- 27 August 2026
+
+- Bound the K3P certificate to the canonical ordered vertex schema, complete
+  ten-arc endpoint/vector map, and actual reticulation parent/child/choice
+  relations before dictionary construction.
+- Added normal and optimized negative tests for coordinated endpoint and arc-ID
+  changes, duplicate vertices, descriptor contradictions, and corruption of
+  the compact-K2P `K_odot_K` transition row.
+- Updated the coverage inventory to distinguish canonical, generated-release,
+  and referee-packet integrity objects and to describe every consumed stored
+  transition row.
+- Replayed the complete exact suite in normal and optimized modes, rebuilt and
+  inspected all 24 PDF pages, and passed the commit-pinned clean-extraction
+  release at annotated tag `k2p-k3p-theta-v1.2.5`, commit
+  `9f8d2682ead74e23b7badd9d7f46869477b4e84f`.
+- Refreshed the neutral referee packet. Its 40-entry unsigned manifest, full
+  normal/optimized replay, supporting entry points, certificate regeneration,
+  and disposable PDF rebuild all pass; the portable ZIP has SHA-256
+  `e8302556f356ac04add887a59ab370d4a496f011d59ccfd8a3e87cc19876551e`.
+- Preserved every theorem, proof, witness, determinant, tangent, title,
+  abstract, and scientific conclusion. No GitHub Release, Zenodo deposit, DOI,
+  or external communication was created.
+
 ## Version 1.2.4 referee hardening -- 27 August 2026
 
 - Closed a real K3P semantic-binding gap by tying Jacobian columns, pivot rows,
