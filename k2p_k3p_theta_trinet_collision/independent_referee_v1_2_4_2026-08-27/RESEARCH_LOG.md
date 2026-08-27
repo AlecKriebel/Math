@@ -86,3 +86,33 @@ Best-guess completion: **22%**.
   merely expose optional nested-schema canonicalization.
 
 Best-guess completion: **72%**.
+
+## 2026-08-27 06:04 PDT - Final hostile reconciliation
+
+- All five supplied K3P semantic mutation tests passed as a harness in normal
+  and optimized modes: each underlying corrupted certificate was rejected for
+  its intended diagnostic.
+- Independent negative controls were also successful.  The verifiers rejected
+  a collision datum, literal graph assignment, stored rank determinant,
+  synchronized continuous-time tangent coefficient, and a source-only
+  corruption of the new K3P pruning algorithm at the expected mathematical
+  checks.
+- A final hostile pass established one bounded remaining assurance defect:
+  coordinated changes can globally exchange the actual `p` and `q` arc
+  endpoints while leaving the reticulation-parent descriptors stale, yet
+  `verify_k3p.py` exits zero.  Swapping the two equal root-arc IDs and
+  inserting a shadowed conflicting vertex row also pass.  The unmodified
+  certificate is manually canonical and these mutations preserve the
+  underlying distribution, so no theorem is falsified; the graph-semantic
+  binding claim is nonetheless incomplete.
+- The field inventory has one further narrow overstatement: mutating only the
+  stored compact-K2P `K_odot_K` transition row does not fail
+  `python3 verify.py`.  The effective transition row is recomputed correctly,
+  but that redundant stored copy is not compared.
+- Wrote `output/REFEREE_REPORT.md`.  The recommendation is minor revision:
+  add a canonical arc map, reticulation-to-arc relational checks, vertex
+  uniqueness before dictionary collapse, the corresponding mutations, and
+  either consume or reclassify the one K2P stored row.  No proof, witness,
+  determinant, tangent, literature statement, or PDF layout change is needed.
+
+Best-guess completion: **100%**.
