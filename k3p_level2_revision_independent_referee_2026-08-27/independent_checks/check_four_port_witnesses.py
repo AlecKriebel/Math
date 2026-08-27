@@ -155,7 +155,23 @@ def residue_quotient(proof_root, lock):
                 item["target_rank"] = record["target_rank"]
                 residue.append(item)
     assert len(residue) == 40
-    assert len({item["class_id"] for item in residue}) == 40
+    # ``class_id`` is enumerated afresh inside each source lane; the actual
+    # registry-class key is therefore (source_index, class_id).  Bare numeric
+    # IDs collide across lanes in this frozen residue without identifying the
+    # corresponding raw presentations.
+    bare_class_id_counts = Counter(item["class_id"] for item in residue)
+    assert len(bare_class_id_counts) == 34
+    assert sorted(bare_class_id_counts.values()) == [1] * 28 + [2] * 6
+    source_local_class_keys = {
+        (item["source_index"], item["class_id"])
+        for item in residue
+    }
+    assert len(source_local_class_keys) == 40
+    raw_member_keys = {
+        (item["source_index"], item["target_index"], tuple(item["port_permutation"]))
+        for item in residue
+    }
+    assert len(raw_member_keys) == 40
     lexicographic = list(permutations(range(4)))
     assert all(
         tuple(item["port_permutation"]) == lexicographic[item["permutation_index"]]
@@ -254,11 +270,11 @@ def residue_quotient(proof_root, lock):
         }
         orbit = remaining & double_coset
         assert orbit and double_coset.issubset(remaining | orbit)
-        quotient.append(tuple(sorted(item[2] for item in orbit)))
+        quotient.append((source_index, target_index, tuple(sorted(item[2] for item in orbit))))
         remaining -= orbit
     quotient = tuple(sorted(quotient))
     assert len(quotient) == 14
-    assert sorted(map(len, quotient)) == [2] * 9 + [4] * 5
+    assert sorted(len(item[2]) for item in quotient) == [2] * 9 + [4] * 5
 
     derived_path = (
         proof_root
@@ -266,7 +282,11 @@ def residue_quotient(proof_root, lock):
     )
     derived = json.loads(derived_path.read_text(encoding="utf-8"))
     stored_partition = tuple(sorted(
-        tuple(sorted(tuple(permutation) for permutation in orbit["raw_members"]))
+        (
+            orbit["source_index"],
+            orbit["target_index"],
+            tuple(sorted(tuple(permutation) for permutation in orbit["raw_members"])),
+        )
         for orbit in derived["orbits"]
     ))
     assert quotient == stored_partition
@@ -292,7 +312,7 @@ def residue_quotient(proof_root, lock):
         },
         "target_displayed_frame_conjugations_checked": displayed_frame_checks,
         "double_coset_orbits_recomputed": len(quotient),
-        "orbit_size_multiset": sorted(map(len, quotient)),
+        "orbit_size_multiset": sorted(len(item[2]) for item in quotient),
         "partition_matches_derived_quotient": True,
         "sink_swap_permutations": sorted(item["port_permutation"] for item in sink_swaps),
         "boundary": (

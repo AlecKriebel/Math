@@ -223,3 +223,34 @@
   currently inside the fresh 405,216-case four-port producer; no duplicate has
   been launched.
 - Completion estimate: 72%.
+
+## 2026-08-27T08:30:06-07:00 — Independent spot-suite checkpoint
+
+- Executed the seven frozen reviewer-authored mathematical checks inside the
+  inspected default-deny sandbox.  The final suite passed all seven checks in
+  46.465 seconds.  Its report SHA-256 is
+  `451eb412a6c68f68b077a13e7a985f9b3a5130231fbfdb745069a1cc7743ccb1`
+  and its transcript SHA-256 is
+  `a23ab3062ac6892ba21151b0bbc23a04ac14f08b947561cdffc9c5078e04ba90`.
+  The evidence is under
+  `package_copy/review_runs/20260827T152619Z/independent_spots/`.
+- The checks independently covered the three-leaf Fourier/CT algebra and
+  `H14`; bridge exponents and 2,000 exact capped trials; all 77 supplied JC
+  endpoint signatures and two-active identities; the 40-row four-port
+  quotient, fourteen orbits, quartics and rank witnesses; all 36,824
+  restoration rows and the 574,535-row probe census; representative semantic
+  rows; and the sharpness interval/rank/physicality certificate.  Their
+  retained-input boundaries remain explicit and are not promoted to proofs of
+  upstream graph-census completeness.
+- Two earlier suite attempts failed on defects in the reviewer-authored
+  checkers, not the package.  The first wrongly required 40 globally unique
+  bare class numbers although class numbers are source-local (there are 40
+  source-local keys but 34 bare integers).  The second compared a first-layer
+  legacy-row digest to the active K3P row digest.  Both attempts stopped
+  fail-closed, package integrity passed afterward, and their failure records
+  and checksum ledgers are preserved under the `20260827T150228Z` and
+  `20260827T151122Z` review runs.  The corrected outer ledger validates all
+  failure and passing records.
+- The full 53-command regeneration remains the only running mathematical
+  execution.  It has not been duplicated or restarted.
+- Completion estimate: 82%.
