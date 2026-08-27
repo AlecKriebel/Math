@@ -248,4 +248,3 @@ Confidence is **high** in the mathematical assessment and **high** in the identi
 MINOR REVISION
 
 The central mathematics is valid and independently reproduced, and the new K3P pruning and original semantic mutation repairs are substantive. Submission should wait only for the small canonical graph-binding, vertex-uniqueness, and field-coverage fixes above; after those pass the expanded negative suite, I would recommend acceptance.
-
