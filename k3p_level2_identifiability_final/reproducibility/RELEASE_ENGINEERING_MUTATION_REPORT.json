@@ -1,5 +1,5 @@
 {
-  "archive_builder_sha256": "314d2704d746c7bf175268ae4fd8b5bc383f796498ddb035479d13847dbfa444",
+  "archive_builder_sha256": "6430d8df9833ee6b4bf2d5a574cf11518d74a112c19c2897c1b0d455b9e86f56",
   "archive_tools_sha256": "e0bec1c7e8250bf0a0c45905e03c1d8cf8f3c95621dc3fb5d3e65b3715088c43",
   "controls": [
     {
@@ -38,33 +38,55 @@
       "status": "PASS"
     },
     {
-      "command_count": 45,
+      "command_count": 54,
       "ephemeral_output_parent": "release/work/regeneration_ephemeral",
       "name": "complete_regeneration_plan",
       "ordered_fixed_point": [
+        "cut_topology_graph_regeneration",
+        "cut_topology_graph_compare",
+        "cut_topology_graph_mutations",
         "tree_sunlet_literal_v2_build",
         "tree_sunlet_literal_v2_verify",
         "tree_sunlet_literal_v2_mutations",
+        "four_port_full_universe_producer",
         "restoration_full_producer",
         "restoration_independent_replay",
         "restoration_mutations",
+        "restoration_report_portability",
+        "four_port_full_universe_structure_compare",
+        "four_port_full_universe_mutations",
         "probe_hour_scale_producer",
         "probe_independent_replay",
+        "probe_full_semantic_replay",
         "probe_mutations",
         "probe_manifest_seal",
         "global_infrastructure_build",
         "global_infrastructure_verify",
         "global_infrastructure_mutations",
-        "primary_rebind"
+        "clean_room_hardened_adversarial",
+        "primary_rebind",
+        "release_inputs",
+        "integrated_fresh_independent_replay",
+        "integrated_classification_mutations",
+        "release_engineering_mutations"
       ],
       "required_commands": [
+        "clean_room_hardened_adversarial",
         "cut_cyclic_verify_optimized",
         "cut_global_transfer_release_optimized",
         "cut_record39_audit",
         "cut_record43_audit",
         "cut_record60_audit",
         "cut_signed_pair_mutations",
+        "cut_topology_graph_compare",
+        "cut_topology_graph_mutations",
+        "cut_topology_graph_regeneration",
+        "four_port_full_universe_mutations",
+        "four_port_full_universe_producer",
+        "four_port_full_universe_structure_compare",
+        "probe_full_semantic_replay",
         "probe_hour_scale_producer",
+        "restoration_report_portability",
         "sharpness_krawczyk_producer",
         "sharpness_topology_alln_producer",
         "tree_sunlet_literal_v2_build",
@@ -80,7 +102,7 @@
     },
     {
       "name": "proof_only_pdf_exclusion",
-      "selected_head_files": 543,
+      "selected_head_files": 568,
       "status": "PASS"
     },
     {
@@ -89,7 +111,7 @@
     }
   ],
   "cut_single_minor_producer_sha256": "850fd782f2edc868086cb3bb277d261fe03d619105f3c69a82bf29f418fd9cd0",
-  "fileset_policy_sha256": "ba78f3aabaaf7f31e919a32e3103898eafd13d39bde1f95eef0d24f021f99b6c",
+  "fileset_policy_sha256": "9238ef9fd25c3fe1342895a6da4444a93defa5d65d5620d9514d3905d357d173",
   "mutation_count": 32,
   "mutations": [
     {
@@ -201,7 +223,7 @@
       "status": "REJECTED"
     },
     {
-      "diagnostic": "('full release selection lock', 545, 'fe93c2470e9ede2b1c2fd0d9c5e42169838114ed5143dbe7d383cca2ab577eee')",
+      "diagnostic": "('full release selection lock', 570, '0b0400fff2a6a9df43d873b5249272ca3c0d988e86d8d488e43d4a7574de36f9')",
       "expected_failure_class": "full release selection lock",
       "name": "wrong_fileset_selection_lock",
       "status": "REJECTED"
@@ -285,12 +307,12 @@
       "status": "REJECTED"
     }
   ],
-  "payload_sha256": "9f7c18462514c9e1e72798f1b9f928c719b14ec3b13d402e5a30189ddef9b822",
+  "payload_sha256": "a4ed922e2cea7553f1a89b0f72942f67333404fe067fcdb6758aadf213eedd72",
   "probe_mutation_driver_sha256": "cd76de5d1f489f76336882553666c1555b71157aaf3b80fd3fde9fb2a508139e",
   "rejected": 32,
   "release_common_sha256": "497340362bb93c46b6c9c00b2a6a85b52428a4f2c0f9ebf900f3df57360bf278",
-  "release_input_verifier_sha256": "e9a4b702215321187e0544b0ec6a14404f064a926168e74e7749656f3126ba44",
-  "release_suite_sha256": "aac52a8a740ed11b014a45d44c8f18b8c2f6ee5b19f29720201b4b795c47f378",
+  "release_input_verifier_sha256": "366c3b473861c18ea7c5b4f205cf95bd081fc82e4647c07474afcaea5fe6733d",
+  "release_suite_sha256": "a67cabf8e82da1eb57d6b793d5496c9350a1bc89921e865b5fa28a1bef48d951",
   "release_verifier_sha256": "d7cf9d81700abb190e0e09268e496d72d2ad427424aa1a92626b2f0217892a80",
   "schema": "k3p-release-engineering-mutations-v1",
   "source_reproduction_verifier_sha256": "a7980c81987ec697e49d699117f90bd2adaf9e844ac4e33a0ed9dea94b7bc2a9",
@@ -298,5 +320,5 @@
   "submission_validator_mutations_sha256": "a39accf6c5fc61d9afe51d29318b537c6fa8b7e79ebd1a9503a8501bb4913f02",
   "submission_validator_sha256": "712e9831305584d3755e6e06bdc317a3be2cc7d77df9f82646137e5d12922af8",
   "survived": 0,
-  "verifier_sha256": "4e72c5cb003d598c9dee6b8e17b4644cbc77d6c7993c93eea4f81f3ba49896fe"
+  "verifier_sha256": "12b9670b7395dfdebe22b26b35893b135771ef52763ec6ae0b8dbf3259a024d0"
 }
