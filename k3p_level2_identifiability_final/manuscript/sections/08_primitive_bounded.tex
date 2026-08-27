@@ -28,13 +28,45 @@ edges after port arms are removed.  Summing indegrees gives
 For \(r=1\), every blob vertex has degree two and the core is a cycle.  For
 \(r=2\), exactly two vertices have degree three; biconnectedness makes the
 blob three internally disjoint paths between them, hence a theta.  The
-incoming boundary is ordinary and determines a unique local tree source.
-Acyclicity allows at most one reticulate pole.  Separating the cases of one
-reticulate pole versus two tree poles, and whether the source shares a path
-with an internal sink, gives exactly \(\theta_0,\ldots,\theta_3\).  This is
-the directed ported refinement of the two underlying level-2 generators in
-\cite{HuberEtAl2025}.  The full event-placement proof is model-independent
-and is replayed from the frozen topology package.
+incoming boundary is ordinary: deleting an arc entering a reticulation cannot
+disconnect its endpoints, because the other parent and their root paths give
+an alternate connection.  Its factor endpoint is therefore the unique local
+tree source \(S\).  A theta pole already uses all three binary incidences in
+the blob, so \(S\) lies inside one pole-to-pole path.  Any internal
+reticulation is a path sink whose unique child is its boundary arm.
+
+At most one pole is reticulate.  If both were, the path containing \(S\)
+points toward both poles and cannot contain either pole's unique outgoing
+side.  Those two outgoing sides must therefore lie on the other event-free
+paths, forcing one complete path from the first pole to the second and the
+other back from the second to the first.  That is a directed cycle.
+
+Suppose exactly one pole \(R\) is reticulate and the other \(T\) is a tree
+pole.  The second reticulation is an internal sink \(X\).  If \(S\) and \(X\)
+lie on different paths, the \(S\)-path points away from \(S\), the
+\(X\)-path points toward \(X\), and the third path is forced from \(T\) to
+\(R\); this is \(\theta_0\).  If they share a path, the only acyclic order
+from \(T\) to \(R\) is \(T\)--\(S\)--\(X\)--\(R\).  The reverse event order
+would force the two event-free paths in opposite directions and create a
+directed cycle.  Both event-free paths therefore point from \(T\) to \(R\),
+giving \(\theta_1\).
+
+If both poles are tree vertices, both reticulations are internal sinks.  They
+cannot share one path: the two arrows entering each sink would force \(S\)
+between the sinks, while each of the other two event-free pole-to-pole paths
+would then have to be directed from one tree pole to the other.  Those paths
+cannot have the same direction, because the receiving pole would have two
+parents; opposite directions form a directed cycle with the
+source-to-sink subpaths.  Thus the sinks lie on distinct paths.  If \(S\)
+lies on the third path, both poles feed both sinks, giving \(\theta_2\).
+Otherwise \(S\) shares a path with one sink; read from the pole whose other
+two sides point outward, acyclicity fixes the order
+pole--\(S\)--sink--pole and every remaining direction, giving
+\(\theta_3\).  Reversing unnamed poles or interchanging unnamed sinks yields
+only the displayed symmetries.  Hence no source or sink placement is omitted.
+This is the directed ported refinement of the two underlying
+level-2 generators in \cite{HuberEtAl2025}; the frozen topology replay is a
+finite regression of this case split, not its premise.
 \end{proof}
 
 \input{\KThreePCanonicalRoot/figures/primitive_cores}
@@ -149,7 +181,7 @@ SINK-1023 & \texttt{1023} & \(24\to24\) & quartic\\
 
 The six H21 rows are the nonisomorphic double cosets of the repaired
 \(\theta_0\) source; the seventh double coset is isomorphic.  The complete
-post-quadratic accounting is
+final post-filter accounting is
 
 \begin{equation}\label{eq:38plus2}
  \boxed{40=38+2.}
@@ -183,6 +215,43 @@ directed K3P containment.
 \end{theorem}
 
 \begin{proof}[Exact finite proof]
+The active exhaustive replay begins with the six source supports, the 2,814
+target completions obtained from \eqref{eq:completion-count}, and all 24 port
+permutations.  It visits all
+\(6\cdot2814\cdot24=405{,}216\) directed presentations.  Literal graph
+tests exclude 377,382, leaving 27,834 post-topology presentations.  Exact
+Jacobian minors together with coefficientwise polynomial-vector-field upper
+bounds exclude 23,054; the quadratic identities exclude 1,968; transported
+\(H_{14}\) marginals exclude 88; and 2,540 enter the independently replayed
+restoration forest.  The remaining presentations comprise 30 labelled
+isomorphisms, 114 ordinary-triangle presentations, and the 40 records in
+\eqref{eq:38plus2}.  Thus this accounting is derived from the primitive
+grammar rather than read from the fourteen-orbit lock.
+
+For a literal target map \(f\), let \(A\) be the exact coefficient matrix of
+the polynomial vector-field identities \(J_fV=0\), and let \(E\) evaluate the
+vector-field coefficients at the recorded strict rational point.  Exact linear
+algebra computes
+
+\[
+ \dim E(\ker A)=\rank\!\begin{bmatrix}A\\E\end{bmatrix}-\rank(A).
+\]
+
+A nonzero evaluation-image minor makes these kernel fields generically
+independent and hence gives the certified target-rank upper.  Sampled Jacobian
+ranks are used only to supply nonzero lower-rank minors, never as upper bounds.
+A presentation enters the 23,054-case rank-exclusion class only when its exact
+source lower rank is strictly greater than that certified target upper.
+
+The separately implemented verifier imports neither the producer nor its
+graph-atlas module.  It reconstructs the grammar, all 4,379 distinct literal
+maps used by the presentations, the topology tests, every exact nonzero rank
+minor, every target rank upper bound, and the polynomial pullbacks.  It also
+checks the 2,540 restoration obligations against the active forest by their
+source, target, and port-permutation data, and derives the double-coset
+quotient of the 40-record residue.  Coherently resealed omission and
+reclassification mutations are required to fail.
+
 For each of the nine polynomial orbits, an exact characteristic-zero quartic
 vanishes on the complete target map and has a nonzero value at a strict
 rational source point.  The first five are transported \(H_{14}\) marginal

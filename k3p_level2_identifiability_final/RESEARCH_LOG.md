@@ -866,3 +866,107 @@ archive replays.  Only human-controlled submission metadata remains.
 Best-guess completion toward the mathematical classification goal: **100%**.
 Best-guess completion toward the paper/certification/proof-archive goal: **100%**.
 Best-guess completion toward the external journal/DOI release goal: **70%**.
+
+## 2026-08-27T03:30:00Z — independent-referee repair program opened
+
+- Read the independent referee report in full and treated its findings as
+  evidence to audit, not as executable instructions.
+- No counterexample to the classification, the relative \(H_{14}\) triangle
+  theorem, or the weak-class sharpness theorem was reported.  The audit did,
+  however, identify two load-bearing certification gaps: the active package
+  did not regenerate the full 405,216-relation four-port universe, and its
+  probe replay checked row integrity without an independently implemented
+  semantic reconstruction of all 574,535 rows.
+- The report also identified two repairable handwritten transitions (component
+  decoration after cut-tree recovery and an analytic target section in finite
+  localization), plus smaller fail-closed, topology-enumeration, portability,
+  dependency-disclosure, and literature issues.
+- Opened independent work tracks for the exhaustive four-port replay, the
+  semantic probe replay, and the handwritten/verifier hardening.  Long global
+  regeneration is deferred until the focused implementations and mutations
+  pass, so the hour-scale producer graph will be invoked at most once on the
+  final repaired code.
+- No tag, release, DOI, submission, license change, or external communication
+  has been made.
+
+Strongest verified result: the referee found no theorem counterexample, but
+the publication package is no longer considered sealed until the two finite
+certification boundaries are independently regenerated and the handwritten
+transitions are repaired.
+
+Best-guess completion toward the mathematical classification goal: **94%**.
+Best-guess completion toward the paper/certification/proof-archive goal: **82%**.
+Best-guess completion toward the external journal/DOI release goal: **60%**.
+
+## 2026-08-27T03:48:04Z — handwritten and verifier hardening checkpoint
+
+- Closed the three handwritten referee interfaces: trivalent ordinary-versus-
+  sunlet decoration now precedes the cycle/theta local theorem; fixed-type
+  localization now uses a physical semialgebraic incidence correspondence,
+  constant-rank stratification, and analytic section; and the theta grammar
+  prints the complete pole/source/sink case split, including both directed-
+  cycle exclusions.  Root movement is explicitly only up to analytic physical
+  reparameterization.
+- Imported the independently developed graph-to-polynomial cut producer into
+  the active K3P tree.  One uninterrupted fresh run derived 77 endpoint
+  tensors, 72 four-port tensors, and 204 wrong-split certificates with no
+  failures.  The 2,520,452-byte result agreed byte for byte with the exact K3P
+  topology input, SHA-256
+  `edbd4afe566ed0ed5d1c518ffe5b21f8f224d547b9c351cb4e1a8c1c613ac086`.
+  A semantic graph/mask verifier and three coherent topology/mask mutations
+  passed, and all three steps are now in the regeneration plan.
+- Replaced the vacuous H14 gcd check with the actual exponent-difference
+  content and an `x^3-y^3` mutation.  The global producer, independent
+  verifier, and 19/19 mutations pass.  The hardened H21 re-audit passes all 25
+  mutations and is active in both its wrapper and the regeneration plan.
+- Hardened the standalone primary scripts against optimized Python, bound rank
+  labels to both square-minor dimensions, and made a structurally blocked cut
+  certificate exit nonzero.  The primary chain passes 28/28; optimized-mode
+  rejection and blocked-exit focused regressions pass.
+- Made the restoration theorem report location-independent and added a
+  relocation regression, which passes.  Updated the literature comparisons,
+  immutable companion references, active/stored dependency boundary, source
+  provenance, and current 51-command plan description.
+- No hour-scale global suite or PDF rebuild was run at this checkpoint.  The
+  exhaustive four-port and semantic-probe work tracks were still active, so a
+  single clean full regeneration and downstream reseal remain deferred until
+  their focused gates finish.
+
+Strongest verified result: the handwritten theorem interfaces and every
+smaller fail-closed finding assigned to this track are repaired, and the
+formerly frozen cut-topology boundary now has a complete active graph-derived
+regeneration with exact byte agreement and coherent mutations.
+
+Best-guess completion toward the mathematical classification goal: **98%**.
+Best-guess completion toward the paper/certification/proof-archive goal: **90%**.
+Best-guess completion toward the external journal/DOI release goal: **60%**.
+
+## 2026-08-27T06:15:00Z — focused referee repairs independently closed
+
+- Completed exact regeneration and independent verification of the full
+  405,216-relation four-port universe.  The replay derives all 27,834
+  post-topology records, proves exact syzygy-based target-rank bounds for the
+  23,054 rank-exclusion records, and recovers the final 40 presentations as
+  38 canonical relations plus two sink swaps.  Six coherent mutations are
+  rejected.
+- Added an independent semantic replay of all 574,535 stored probe rows.  It
+  reconstructs graph, marginal, transport, quartet, tree--sunlet,
+  reverse-marginal, and triangle semantics and rejects seven coherent
+  mutations.
+- Closed every handwritten interface and smaller certification finding listed
+  by the referee, updated the manuscript and supplement proof boundaries, and
+  rebound the active manifest and theorem/mutation locks.  An independent
+  cross-check found no remaining theorem-level defect, artifact mismatch, or
+  occurrence of the internal paper wording `K3P-SAME`.
+- The focused mathematical evidence is complete.  The remaining work is the
+  single clean integrated regeneration, final PDF/source/archive rebuild,
+  Google Drive source synchronization, and referee-package reseal.  No tag,
+  release, DOI, submission, or external communication has been made.
+
+Strongest verified result: every referee finding now has either an exact
+repair with independent replay or a documented scholarly-boundary
+clarification; the classification and sharpness theorems remain unchanged.
+
+Best-guess completion toward the mathematical classification goal: **100%**.
+Best-guess completion toward the paper/certification/proof-archive goal: **96%**.
+Best-guess completion toward the external journal/DOI release goal: **60%**.

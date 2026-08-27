@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 from hashlib import sha256
+import importlib.util
 import json
 from pathlib import Path
 import shutil
@@ -164,6 +165,36 @@ def main() -> int:
         lambda x: x["common_relative_germ"].__setitem__("rank_in_ambient_A15", 15),
         "relative contextual rank",
     ))
+
+    # A coherently formed x^3-y^3 coefficient is a binomial with disjoint
+    # supports, but its exponent-difference vector has content three.  Exercise
+    # the exact helper directly so this hardening cannot pass merely because a
+    # different H14 pullback check happens to fail first.
+    spec = importlib.util.spec_from_file_location(
+        "k3p_global_verifier_primitive_binomial_mutation", VERIFIER
+    )
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    try:
+        module.require_primitive_exponent_difference(("x", "x", "x"),
+                                                     ("y", "y", "y"))
+    except module.VerificationError as error:
+        diagnostic = str(error)
+        cases.append({
+            "name": "replace_primitive_coefficient_by_x3_minus_y3",
+            "status": "REJECTED" if "binomial exponent difference" in diagnostic else "SURVIVED",
+            "exit_code": 1,
+            "expected_diagnostic": "binomial exponent difference",
+            "diagnostic_observed": "binomial exponent difference" in diagnostic,
+        })
+    else:
+        cases.append({
+            "name": "replace_primitive_coefficient_by_x3_minus_y3",
+            "status": "SURVIVED",
+            "exit_code": 0,
+            "expected_diagnostic": "binomial exponent difference",
+            "diagnostic_observed": False,
+        })
     cases.append(mutation_case(
         "restore_obsolete_universal_pointwise_cut_interface",
         "global_infrastructure/K3P_GLOBAL_GLUE_AND_RECONSTRUCTION_CERTIFICATE.json",

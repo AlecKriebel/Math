@@ -13,8 +13,9 @@ cd "$PROJECT_DIR"
 /usr/bin/time -p "$PYTHON_BIN" clean_room/verify_h21_transport_and_fourteen_orbits.py
 /usr/bin/time -p "$PYTHON_BIN" clean_room/test_h21_transport_regression.py
 /usr/bin/time -p "$PYTHON_BIN" clean_room/test_clean_room_mutations.py
+/usr/bin/time -p "$PYTHON_BIN" clean_room/adversarial/hardened_cleanroom_reaudit.py
 
-OPTIMIZED_OUTPUT=$(mktemp -t k3p-cleanroom-optimized.XXXXXX)
+OPTIMIZED_OUTPUT=$(mktemp "${TMPDIR:-/tmp}/k3p-cleanroom-optimized.XXXXXX")
 trap 'rm -f "$OPTIMIZED_OUTPUT"' EXIT HUP INT TERM
 if "$PYTHON_BIN" -O clean_room/verify_h21_transport_and_fourteen_orbits.py \
         >"$OPTIMIZED_OUTPUT" 2>&1; then

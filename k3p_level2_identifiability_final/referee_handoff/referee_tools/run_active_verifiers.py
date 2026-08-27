@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run the active mathematical checks in isolated, Git-free workspaces."""
+"""Run the active mathematical checks in copied, Git-free workspaces."""
 
 from __future__ import annotations
 
@@ -324,7 +324,7 @@ def integrated_logical_payload(report: dict) -> dict:
             key: row[key]
             for key in (
                 "name", "exit_code", "sentinel", "sentinel_seen", "status",
-                "fresh_output_payload_sha256",
+                "fresh_output_payload_sha256", "fresh_mutation_payload_sha256",
             )
             if key in row
         }
@@ -341,11 +341,11 @@ def bind_fresh_replay_report(*, workspace: Path, phase_root: Path,
     value = json.loads(path.read_text(encoding="utf-8"))
     rows = value.get("fresh_replays")
     require(value.get("mathematical_classification_status") == "CERTIFIED" and
-            isinstance(rows, list) and len(rows) == 10 and
+            isinstance(rows, list) and len(rows) == 14 and
             all(isinstance(row, dict) and row.get("status") == "PASS" and
                 row.get("exit_code") == 0 and row.get("sentinel_seen") is True
                 for row in rows),
-            "detailed fresh-replay report does not certify ten passing child checks")
+            "detailed fresh-replay report does not certify fourteen passing child checks")
     observed_payload = sha256_bytes(json.dumps(
         integrated_logical_payload(value), sort_keys=True, separators=(",", ":"),
         ensure_ascii=True,

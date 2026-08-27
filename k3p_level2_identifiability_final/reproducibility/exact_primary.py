@@ -9,6 +9,11 @@ from fractions import Fraction as Q
 from itertools import product
 import json
 from pathlib import Path
+import sys
+
+
+if not __debug__ or sys.flags.optimize:
+    raise SystemExit("optimized Python forbidden for exact_primary")
 
 
 CH3 = tuple((a, b, a ^ b) for a in range(4) for b in range(4))

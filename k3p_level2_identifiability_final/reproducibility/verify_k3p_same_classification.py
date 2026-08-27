@@ -15,6 +15,7 @@ review, or human author review.
 from __future__ import annotations
 
 import argparse
+import gzip
 import hashlib
 import json
 import os
@@ -59,6 +60,62 @@ EXPECTED_POLYNOMIAL_ORBITS = {
 }
 EXPECTED_RANK_ORBITS = {
     "H21-02", "L20-02", "L21a-02", "L21b-02", "L23-01",
+}
+EXPECTED_CUT_TOPOLOGY_SHA256 = (
+    "edbd4afe566ed0ed5d1c518ffe5b21f8f224d547b9c351cb4e1a8c1c613ac086"
+)
+EXPECTED_SEMANTIC_PROBE_MUTATIONS = {
+    "coherently_resealed_nonincidence_transport",
+    "coherently_resealed_wrong_marginal_label",
+    "coherently_resealed_false_quartet",
+    "coherently_resealed_false_six_circuit_deck",
+    "coherently_resealed_incomplete_site_profile",
+    "altered_transport_restriction_claim",
+    "mixed_sign_Bernstein_polynomial",
+}
+EXPECTED_FULL_FOUR_PORT_MUTATIONS = {
+    "coherent_raw_omission",
+    "coherent_isomorphic_triangle_reclassification",
+    "coherent_restoration_quadratic_reclassification",
+    "coefficientwise_upper_rank_forgery",
+    "coherent_quotient_orbit_omission",
+    "optimized_mode",
+}
+EXPECTED_INTEGRATED_MUTATIONS = {
+    "substitute_universal_pointwise_cut_rank_iff",
+    "promote_ordinary_triangle_to_rank_15",
+    "claim_ambient_open_triangle_germ",
+    "allow_proper_directed_containment_inside_strong_class",
+    "drop_coherent_boundary_transports",
+    "weaken_all_n_sharpness_nontriangle_scope",
+    "restore_pending_v1_probe_restoration_manifest",
+    "conflate_minimal_terminals_with_legacy_leaves",
+    "activate_legacy_restoration_continuation",
+    "make_restoration_replay_import_producer",
+    "reactivate_historical_k2p_restoration_algebra",
+    "impose_k2p_sector_equality_in_restoration",
+    "drift_standalone_restoration_hash",
+    "accept_restoration_mutation_and_reduce_count",
+    "omit_one_semantic_probe_row",
+    "accept_one_coherent_semantic_probe_mutation",
+    "semantic_probe_case_survives_behind_pass_summary",
+    "omit_one_graph_derived_cut_topology_row",
+    "omit_one_full_four_port_row_with_resealed_reports",
+    "reclassify_full_four_port_row_with_resealed_reports",
+    "delete_continuous_time_specialization_bridge",
+    "reverse_ct_to_principal_necessity_transfer",
+    "claim_submission_ready_without_publication_engineering",
+    "optimized_python_bypass",
+}
+EXPECTED_FULL_FOUR_PORT_RAW_CATEGORIES = {
+    "topology_excluded": 377_382,
+    "rank_excluded": 23_054,
+    "quadratic_separated": 1_968,
+    "h14_marginal_separated": 88,
+    "restoration_obligation": 2_540,
+    "isomorphic": 30,
+    "ordinary_triangle": 114,
+    "post_quadratic_residue": 40,
 }
 NONMATHEMATICAL_GATES = [
     "clean quick/full/full-regeneration replay and release-ledger rebinding",
@@ -138,6 +195,16 @@ def bind(project: Path, relative: str, value: dict | None = None) -> dict:
         if "payload_sha256" in value:
             record["payload_sha256"] = value["payload_sha256"]
     return record
+
+
+def gzip_binding(path: Path) -> dict:
+    with gzip.open(path, "rb") as handle:
+        payload = handle.read()
+    return {
+        "sha256": sha_file(path),
+        "uncompressed_sha256": hashlib.sha256(payload).hexdigest(),
+        "uncompressed_bytes": len(payload),
+    }
 
 
 def validate_primary(project: Path, bindings: dict) -> None:
@@ -253,6 +320,160 @@ def validate_four_port(project: Path, bindings: dict) -> None:
         bindings[relative] = bind(project, relative, value)
 
 
+def validate_full_four_port_universe(project: Path, bindings: dict) -> None:
+    base = "four_port_atlas/full_universe_replay"
+    artifact_base = f"{base}/artifacts"
+    summary_path = f"{artifact_base}/FULL_FOUR_PORT_REPLAY.json"
+    summary = load(project, summary_path)
+    claimed = summary.get("payload_sha256_without_hash")
+    summary_body = dict(summary)
+    summary_body.pop("payload_sha256_without_hash", None)
+    require(claimed == sha_object(summary_body), "full four-port summary payload")
+    require(summary.get("schema") == "k3p-full-four-port-universe-replay-v2",
+            "full four-port summary schema")
+    require(summary.get("scope") == {
+        "starts_from_primitive_graph_grammar": True,
+        "reads_frozen_fourteen_orbit_lock": False,
+        "reads_frozen_companion_raw_ledger": False,
+        "reads_missing_cloud_descriptor_corpus": False,
+        "rank_note": (
+            "Exact nonzero Jacobian minors are regenerated for every literal map; "
+            "target upper-rank binding is verified independently by the verifier."
+        ),
+    }, "full four-port authority boundary")
+
+    producer_path = f"{base}/generate_full_four_port_replay.py"
+    core_path = f"{base}/independent_replay_core.py"
+    verifier_path = f"{base}/verify_full_four_port_replay.py"
+    mutation_runner_path = f"{base}/test_full_four_port_mutations.py"
+    atlas_path = "input_frozen/k3p_cloud_artifacts/k3p_atlas_core.py"
+    require(summary.get("bindings") == {
+        "atlas_path": atlas_path,
+        "atlas_sha256": sha_file(project / atlas_path),
+        "producer_sha256": sha_file(project / producer_path),
+    }, "full four-port producer bindings")
+    require(summary.get("primitive_counts") == {
+        "sources": 6,
+        "selected_incoming_targets": 831,
+        "marginalized_incoming_targets": 1_983,
+        "targets": 2_814,
+        "port_permutations": 24,
+        "raw_total": 405_216,
+        "post_topology": 27_834,
+        "compatible_target_permutation_keys": 13_686,
+        "unique_map_descriptors_including_sources": 4_379,
+    }, "full four-port primitive census")
+    require(summary.get("raw_category_counts") ==
+            EXPECTED_FULL_FOUR_PORT_RAW_CATEGORIES,
+            "full four-port exact raw partition")
+    require(sum(summary["raw_category_counts"].values()) == 405_216,
+            "full four-port raw partition sum")
+    require(summary.get("class_member_category_counts") == {
+        "h14_marginal_separated": 32,
+        "isomorphic": 24,
+        "ordinary_triangle": 69,
+        "post_quadratic_residue": 40,
+        "quadratic_separated": 1_193,
+        "restoration_obligation": 997,
+    } and summary.get("eligible_map_class_count") == 2_355,
+            "full four-port class partition")
+    require(summary.get("rank_upper_certificate_count") == 3_064 and
+            summary.get("rank_upper_mechanism") ==
+            "coefficientwise multilinear polynomial vector fields J_f V=0" and
+            summary.get("source_ranks") == [20, 21, 21, 21, 23, 24],
+            "full four-port exact rank evidence")
+    require(summary.get("residue_quotient") == {
+        "post_quadratic_raw_records": 40,
+        "raw_records_in_fourteen_orbits": 38,
+        "separate_sink_swap_records": 2,
+        "canonical_orbits": 14,
+    }, "full four-port derived quotient")
+
+    expected_artifacts = {
+        "DERIVED_RESIDUE_QUOTIENT.json",
+        "eligible_class_registry.json.gz",
+        "exact_rank_minor_registry.json.gz",
+        "exact_rank_upper_registry.json.gz",
+        "full_directional_ledger.jsonl.gz",
+    }
+    artifacts = summary.get("artifacts", {})
+    require(set(artifacts) == expected_artifacts, "full four-port artifact set")
+    for name in sorted(expected_artifacts):
+        relative = f"{artifact_base}/{name}"
+        path = project / relative
+        require(path.is_file(), ("missing full four-port artifact", relative))
+        expected = artifacts[name]
+        if name.endswith(".gz"):
+            require(gzip_binding(path) == expected,
+                    ("full four-port gzip binding", name))
+        else:
+            require(expected == {"sha256": sha_file(path), "bytes": path.stat().st_size},
+                    ("full four-port plain binding", name))
+        bindings[relative] = bind(project, relative)
+
+    report_path = f"{base}/INDEPENDENT_FULL_FOUR_PORT_VERIFICATION.json"
+    report = load(project, report_path)
+    verify_payload(report, "full four-port independent replay", ("operational",))
+    require(report.get("schema") == "k3p-full-four-port-independent-verification-v1" and
+            report.get("status") == "PASS", "full four-port independent replay status")
+    require(report.get("independence") == {
+        "producer_imported": False,
+        "historical_atlas_core_imported": False,
+        "frozen_fourteen_orbit_lock_read": False,
+        "primitive_graph_grammar_reconstructed": True,
+    }, "full four-port independent replay boundary")
+    require(report.get("counts") == {
+        "raw": 405_216,
+        "post_topology": 27_834,
+        "compatible_target_permutation_keys": 13_686,
+        "unique_map_descriptors": 4_379,
+        "residue": 40,
+        "orbit_members": 38,
+        "sink_swaps": 2,
+        "canonical_orbits": 14,
+        "restoration_presentations": 2_540,
+        "restoration_canonical_classes": 997,
+        "restoration_first_children": 36_568,
+        "probe_four_port_anchors": 43,
+    }, "full four-port independent replay census")
+    report_bindings = report.get("bindings", {})
+    require(report_bindings == {
+        "independent_verifier_sha256": sha_file(project / verifier_path),
+        "independent_core_sha256": sha_file(project / core_path),
+        "mutation_runner_sha256": sha_file(project / mutation_runner_path),
+        "producer_sha256": sha_file(project / producer_path),
+        "summary_sha256": sha_file(project / summary_path),
+        "artifacts": artifacts,
+    }, "full four-port independent replay file bindings")
+    require(report.get("verified_summary_payload_sha256") == claimed,
+            "full four-port summary/replay payload binding")
+    rank_proof = report.get("syzygy_rank_upper_proof", {})
+    require("coefficient by coefficient" in rank_proof.get("coefficientwise_identity", "") and
+            "rank([A;E])-rank(A)" in rank_proof.get("linear_algebra_identity", "") and
+            "never as an upper bound" in rank_proof.get("generic_open_argument", ""),
+            "full four-port rank-upper proof boundary")
+
+    mutation_path = f"{base}/FULL_FOUR_PORT_MUTATION_REPORT.json"
+    mutation = load(project, mutation_path)
+    verify_payload(mutation, "full four-port coherent mutations", ("operational",))
+    rows = mutation.get("mutations", [])
+    require(mutation.get("schema") == "k3p-full-four-port-coherent-mutations-v1" and
+            mutation.get("status") == "PASS" and mutation.get("rejected") == 6 and
+            mutation.get("survived") == 0 and len(rows) == 6 and
+            {row.get("name") for row in rows} == EXPECTED_FULL_FOUR_PORT_MUTATIONS and
+            all(row.get("rejected") is True and row.get("expected_failure")
+                for row in rows), "full four-port coherent mutation gate")
+    require(mutation.get("verifier_sha256") == sha_file(project / verifier_path) and
+            mutation.get("core_sha256") == sha_file(project / core_path),
+            "full four-port mutation code bindings")
+
+    for relative, value in ((summary_path, summary), (report_path, report),
+                            (mutation_path, mutation)):
+        bindings[relative] = bind(project, relative, value)
+    for relative in (producer_path, core_path, verifier_path, mutation_runner_path):
+        bindings[relative] = bind(project, relative)
+
+
 def validate_sharpness(project: Path, bindings: dict) -> None:
     manifest_path = "sharpness/K3P_SHARPNESS_REPLAY_MANIFEST.json"
     manifest = load(project, manifest_path)
@@ -289,6 +510,50 @@ def validate_sharpness(project: Path, bindings: dict) -> None:
             for row in mutations.values()), "sharpness 18 mutations")
     bindings[manifest_path] = bind(project, manifest_path, manifest)
     bindings[audit_path] = bind(project, audit_path, audit)
+
+
+def validate_cut_topology_regeneration(project: Path, bindings: dict) -> None:
+    report_path = (
+        "cut_recovery/strong_crossbridge/topology_regeneration/"
+        "CUT_TOPOLOGY_REGENERATION_REPORT.json"
+    )
+    report = load(project, report_path)
+    verify_payload(report, "cut topology graph regeneration report")
+    require(report.get("schema") == "k3p-cut-topology-graph-regeneration-report-v1" and
+            report.get("status") == "PASS", "cut topology graph regeneration status")
+    require(report.get("census") == {
+        "primitive_cores": 5,
+        "endpoint_tensors": 77,
+        "four_port_tensors": 72,
+        "strict_wrong_split_certificates": 204,
+        "endpoint_failures": 0,
+        "one_active_failures": 0,
+        "switching_compression_survivors": 0,
+    }, "cut topology graph regeneration census")
+    candidate = report.get("fresh_candidate", {})
+    downstream = report.get("bound_downstream_input", {})
+    require(candidate == {
+        "bytes": 2_520_452,
+        "sha256": EXPECTED_CUT_TOPOLOGY_SHA256,
+    }, "cut topology fresh-candidate binding")
+    require(downstream == {
+        "path": "cut_recovery/upstream_frozen/corrected_jc_cut_certificate.json",
+        "bytes": 2_520_452,
+        "sha256": EXPECTED_CUT_TOPOLOGY_SHA256,
+        "byte_identical_to_fresh_candidate": True,
+    }, "cut topology downstream-input binding")
+    verify_file_binding(project, downstream["path"], downstream["sha256"])
+    programs = report.get("active_programs", {})
+    require(set(programs) == {
+        "cut_recovery/strong_crossbridge/topology_regeneration/generate_cut_topology.py",
+        "cut_recovery/strong_crossbridge/topology_regeneration/verify_cut_topology_regeneration.py",
+        "cut_recovery/strong_crossbridge/topology_regeneration/test_cut_topology_regeneration_mutations.py",
+        "cut_recovery/strong_crossbridge/topology_regeneration/verify_all.sh",
+    }, "cut topology active-program set")
+    for relative, expected in programs.items():
+        bindings.setdefault(relative, verify_file_binding(project, relative, expected))
+    bindings[downstream["path"]] = bind(project, downstream["path"])
+    bindings[report_path] = bind(project, report_path, report)
 
 
 def validate_cut_transfer(project: Path, bindings: dict) -> None:
@@ -391,8 +656,8 @@ def validate_global_and_triangle(project: Path, bindings: dict) -> None:
     mutation_path = "global_infrastructure/MUTATION_CERTIFICATE.json"
     mutation = load(project, mutation_path)
     verify_payload(mutation, "global infrastructure mutations")
-    require(mutation.get("status") == "PASS" and mutation.get("rejected") == 18 and
-            mutation.get("survived") == 0 and len(mutation.get("mutations", [])) == 18,
+    require(mutation.get("status") == "PASS" and mutation.get("rejected") == 19 and
+            mutation.get("survived") == 0 and len(mutation.get("mutations", [])) == 19,
             "global mutation census")
 
     global_path = "global_infrastructure/K3P_GLOBAL_GLUE_AND_RECONSTRUCTION_CERTIFICATE.json"
@@ -584,6 +849,79 @@ def validate_probes(project: Path, bindings: dict) -> None:
             mutation.get("nondefault_hash_seed_replay", {}).get("returncode") == 0,
             "probe hash-seed replay")
 
+    semantic_path = "probes/K3P_PROBE_SEMANTIC_VERIFICATION.json"
+    semantic = load(project, semantic_path)
+    verify_payload(semantic, "probe full semantic replay", ("operational",))
+    require(semantic.get("schema") == "k3p-probe-independent-full-semantic-replay-v1" and
+            semantic.get("status") == "PASS", "probe semantic replay status")
+    require(semantic.get("source_certificate_sha256") ==
+            sha_file(project / certificate_path) and
+            semantic.get("source_payload_sha256") == certificate["payload_sha256"],
+            "probe semantic source binding")
+    independence = semantic.get("independence", {})
+    require(independence == {
+        "atlas_imported": False,
+        "graphs_reconstructed_from_public_candidate_profiles": True,
+        "producer_imported": False,
+        "stored_hashes_used_only_as_bindings": True,
+    }, "probe semantic independence boundary")
+    require(semantic.get("coverage") == {
+        "all_probe_rows": 574_535,
+        "anchors": 176,
+        "one_port_rows": 29_964,
+        "two_port_parent_rows": 2_107,
+        "two_port_rows": 544_571,
+    } and semantic.get("one_port_counts") == EXPECTED_ONE and
+            semantic.get("two_port_counts") == EXPECTED_TWO,
+            "probe semantic complete census")
+    witnesses = semantic.get("semantic_witnesses", {})
+    require(witnesses == {
+        "declared_Bernstein_certificates_replayed": 0,
+        "exact_transports": 67_741,
+        "incoherent": 0,
+        "marginal_restrictions": 4_379,
+        "new_global_triangles": 0,
+        "quartet_certificates": 638,
+        "reverse_order_marginals": 32_729,
+        "tree_sunlet_six_circuit_certificates": 675,
+        "unresolved": 0,
+    }, "probe semantic witness census")
+
+    semantic_mutation_path = "probes/K3P_PROBE_SEMANTIC_MUTATIONS.json"
+    semantic_mutation = load(project, semantic_mutation_path)
+    verify_payload(semantic_mutation, "probe coherent semantic mutations")
+    semantic_verifier_path = "probes/verify_k3p_probes_semantic.py"
+    require(semantic_mutation.get("schema") ==
+            "k3p-probe-semantic-coherent-mutations-v1" and
+            semantic_mutation.get("status") == "PASS" and
+            semantic_mutation.get("mutations_rejected") == 7 and
+            semantic_mutation.get("mutations_survived") == 0 and
+            semantic_mutation.get("clean_baselines_required") is True and
+            semantic_mutation.get("coherent_inner_hashes_recomputed") is True,
+            "probe coherent semantic mutation gate")
+    semantic_cases = semantic_mutation.get("mutations", [])
+    require(len(semantic_cases) == 7 and
+            {row.get("name") for row in semantic_cases} ==
+            EXPECTED_SEMANTIC_PROBE_MUTATIONS and
+            all(row.get("status") == "REJECTED" and
+                isinstance(row.get("diagnostic"), str) and row["diagnostic"]
+                for row in semantic_cases),
+            "probe coherent semantic mutation cases")
+    require(semantic_mutation.get("source_certificate_sha256") ==
+            sha_file(project / certificate_path) and
+            semantic_mutation.get("source_certificate_payload_sha256") ==
+            certificate["payload_sha256"] and
+            semantic_mutation.get("mutation_runner_sha256") ==
+            sha_file(project / semantic_verifier_path),
+            "probe semantic mutation bindings")
+    require(semantic.get("mutations", {}).get("report_sha256") ==
+            sha_file(project / semantic_mutation_path) and
+            semantic.get("mutations", {}).get("payload_sha256") ==
+            semantic_mutation["payload_sha256"] and
+            semantic.get("mutations", {}).get("rejected") == 7 and
+            semantic.get("mutations", {}).get("survived") == 0,
+            "probe semantic replay/mutation cross-binding")
+
     for manifest_name in (
         "ONE_PORT_PROBE_MANIFEST.json", "TWO_PORT_PROBE_MANIFEST.json",
         "GLOBAL_TRANSPORT_MANIFEST.json", "RESTORATION_MANIFEST.json",
@@ -599,8 +937,10 @@ def validate_probes(project: Path, bindings: dict) -> None:
         bindings[relative] = bind(project, relative, manifest)
 
     for relative, value in ((certificate_path, certificate), (replay_path, replay),
-                            (mutation_path, mutation)):
+                            (mutation_path, mutation), (semantic_path, semantic),
+                            (semantic_mutation_path, semantic_mutation)):
         bindings[relative] = bind(project, relative, value)
+    bindings[semantic_verifier_path] = bind(project, semantic_verifier_path)
 
 
 def validate_restoration(project: Path, bindings: dict) -> None:
@@ -740,14 +1080,22 @@ def validate_claim_lock(project: Path, bindings: dict) -> None:
             certification.get("classification_mutation_report_sha256") ==
             sha_file(project / mutation_report) and
             certification.get("classification_mutation_report_status") ==
-            "PASS_18_OF_18_REJECTED", "claim-lock classification mutation report binding")
+            "PASS_24_OF_24_REJECTED", "claim-lock classification mutation report binding")
     mutation_value = load(project, mutation_report)
     verify_payload(mutation_value, "integrated classification mutations")
+    mutation_rows = mutation_value.get("mutations", [])
     require(mutation_value.get("status") == "PASS" and
-            mutation_value.get("mutation_count") == mutation_value.get("rejected") == 18 and
+            mutation_value.get("mutation_count") == mutation_value.get("rejected") == 24 and
             mutation_value.get("survived") == 0 and
             mutation_value.get("verifier_sha256") == sha_file(Path(__file__).resolve()),
             "integrated classification mutation result")
+    require(isinstance(mutation_rows, list) and len(mutation_rows) == 24 and
+            {row.get("name") for row in mutation_rows if isinstance(row, dict)} ==
+            EXPECTED_INTEGRATED_MUTATIONS and
+            all(row.get("status") == "REJECTED" and
+                row.get("diagnostic_observed") is True
+                for row in mutation_rows if isinstance(row, dict)),
+            "integrated classification mutation cases")
     bindings[mutation_gate] = bind(project, mutation_gate)
     bindings[mutation_report] = bind(project, mutation_report, mutation_value)
     cut = lock.get("cut_transfer", {})
@@ -762,7 +1110,23 @@ def validate_claim_lock(project: Path, bindings: dict) -> None:
             triangle.get("common_strict_ct_smooth_germ_dimension") == 14,
             "claim-lock triangle rank")
     four = lock.get("four_port", {})
-    require(four.get("canonical_nontrivial_orbits") == 14 and
+    require(four.get("full_universe_raw_presentations") == 405_216 and
+            four.get("post_topology_presentations") == 27_834 and
+            four.get("rigorous_syzygy_rank_exclusions") == 23_054 and
+            four.get("full_universe_evidence") == {
+                "summary": (
+                    "four_port_atlas/full_universe_replay/artifacts/"
+                    "FULL_FOUR_PORT_REPLAY.json"
+                ),
+                "independent_report": (
+                    "four_port_atlas/full_universe_replay/"
+                    "INDEPENDENT_FULL_FOUR_PORT_VERIFICATION.json"
+                ),
+                "mutation_report": (
+                    "four_port_atlas/full_universe_replay/"
+                    "FULL_FOUR_PORT_MUTATION_REPORT.json"
+                ),
+            } and four.get("canonical_nontrivial_orbits") == 14 and
             four.get("raw_records_in_orbits") == 38 and
             four.get("separate_sink_swap_records") == 2 and
             four.get("new_symmetric_moves") == four.get("proper_directed_containments") ==
@@ -809,7 +1173,9 @@ def validate_artifacts(project: Path) -> dict:
     bindings: dict[str, dict] = {}
     validate_primary(project, bindings)
     validate_four_port(project, bindings)
+    validate_full_four_port_universe(project, bindings)
     validate_sharpness(project, bindings)
+    validate_cut_topology_regeneration(project, bindings)
     validate_cut_transfer(project, bindings)
     validate_global_and_triangle(project, bindings)
     ct_specialization = validate_continuous_time_specialization(project, bindings)
@@ -829,7 +1195,7 @@ def validate_artifacts(project: Path) -> dict:
     logical_chain = [
         "corrected directional cut-transfer gives equality of labelled cut sets under containment",
         "bridge fibre and marginal submersions localize containment to corresponding complete factors",
-        "four-port, restoration, and one-/two-port probes leave only labelled isomorphism or ordinary triangle redirection",
+        "the complete independently replayed 405,216-case four-port universe, restoration, and all-row semantic one-/two-port probes leave only labelled isomorphism or ordinary triangle redirection",
         "the common relative H14 germ and simultaneous physical bridge gluing prove contextual triangle sufficiency",
         "finite semialgebraic genericity and reconstruction promote the local result to the complete strong class",
         "the strict-CT weak-not-strong Krawczyk family proves sharpness beyond strong tree-childness",
@@ -911,6 +1277,11 @@ def run_fresh_replays(project: Path) -> list[dict]:
         [python, "reproducibility/test_cut_transfer_gate_mutations.py"],
         "STRONG_CLASS_CUT_TRANSFER_GATE_MUTATIONS_PASS", 3600,
     ))
+    records.append(run_command(
+        project, "cut_topology_graph_regeneration",
+        ["bash", "cut_recovery/strong_crossbridge/topology_regeneration/verify_all.sh"],
+        "CUT_TOPOLOGY_GRAPH_REGENERATION_SUITE_PASS", 3600,
+    ))
     with tempfile.TemporaryDirectory(prefix="k3p-same-fresh-") as directory:
         temporary = Path(directory)
         global_report = temporary / "global.json"
@@ -929,6 +1300,47 @@ def run_fresh_replays(project: Path) -> list[dict]:
             '"status": "PASS"', 3600,
         ))
 
+        four_port_report = temporary / "full_four_port.json"
+        records.append(run_command(
+            project, "full_four_port_independent_replay",
+            [python,
+             "four_port_atlas/full_universe_replay/verify_full_four_port_replay.py",
+             "--report", str(four_port_report)],
+            "K3P_FULL_FOUR_PORT_INDEPENDENT_VERIFICATION_PASS", 43_200,
+        ))
+        fresh_four_port = json.loads(four_port_report.read_text())
+        verify_payload(fresh_four_port, "fresh full four-port replay", ("operational",))
+        stored_four_port = load(
+            project,
+            "four_port_atlas/full_universe_replay/"
+            "INDEPENDENT_FULL_FOUR_PORT_VERIFICATION.json",
+        )
+        require(fresh_four_port["payload_sha256"] == stored_four_port["payload_sha256"],
+                "fresh/stored full four-port replay payload")
+        records[-1]["fresh_output_payload_sha256"] = fresh_four_port["payload_sha256"]
+
+        four_port_mutations = temporary / "full_four_port_mutations.json"
+        records.append(run_command(
+            project, "full_four_port_coherent_mutations",
+            [python,
+             "four_port_atlas/full_universe_replay/test_full_four_port_mutations.py",
+             "--report", str(four_port_mutations)],
+            "K3P_FULL_FOUR_PORT_COHERENT_MUTATIONS_PASS", 3_600,
+        ))
+        fresh_four_port_mutations = json.loads(four_port_mutations.read_text())
+        verify_payload(fresh_four_port_mutations,
+                       "fresh full four-port mutations", ("operational",))
+        stored_four_port_mutations = load(
+            project,
+            "four_port_atlas/full_universe_replay/FULL_FOUR_PORT_MUTATION_REPORT.json",
+        )
+        require(fresh_four_port_mutations["payload_sha256"] ==
+                stored_four_port_mutations["payload_sha256"],
+                "fresh/stored full four-port mutation payload")
+        records[-1]["fresh_output_payload_sha256"] = (
+            fresh_four_port_mutations["payload_sha256"]
+        )
+
         probe_report = temporary / "probes.json"
         records.append(run_command(
             project, "full_probe_independent_replay",
@@ -941,6 +1353,32 @@ def run_fresh_replays(project: Path) -> list[dict]:
         require(fresh_probe["payload_sha256"] == stored_probe["payload_sha256"],
                 "fresh/stored probe replay payload")
         records[-1]["fresh_output_payload_sha256"] = fresh_probe["payload_sha256"]
+
+        semantic_report = temporary / "probe_semantic.json"
+        semantic_mutations = temporary / "probe_semantic_mutations.json"
+        records.append(run_command(
+            project, "full_probe_semantic_replay",
+            [python, "probes/verify_k3p_probes_semantic.py", "--output",
+             str(semantic_report), "--mutations-output", str(semantic_mutations)],
+            "K3P_PROBE_SEMANTIC_REPLAY_PASS", 14_400,
+        ))
+        fresh_semantic = json.loads(semantic_report.read_text())
+        verify_payload(fresh_semantic, "fresh probe semantic replay", ("operational",))
+        stored_semantic = load(project, "probes/K3P_PROBE_SEMANTIC_VERIFICATION.json")
+        require(fresh_semantic["payload_sha256"] == stored_semantic["payload_sha256"],
+                "fresh/stored probe semantic payload")
+        fresh_semantic_mutations = json.loads(semantic_mutations.read_text())
+        verify_payload(fresh_semantic_mutations, "fresh probe semantic mutations")
+        stored_semantic_mutations = load(
+            project, "probes/K3P_PROBE_SEMANTIC_MUTATIONS.json"
+        )
+        require(fresh_semantic_mutations["payload_sha256"] ==
+                stored_semantic_mutations["payload_sha256"],
+                "fresh/stored probe semantic mutation payload")
+        records[-1]["fresh_output_payload_sha256"] = fresh_semantic["payload_sha256"]
+        records[-1]["fresh_mutation_payload_sha256"] = (
+            fresh_semantic_mutations["payload_sha256"]
+        )
 
         restoration_report = temporary / "restoration.json"
         records.append(run_command(
@@ -996,6 +1434,7 @@ def logical_promotion_payload(report: dict) -> dict:
                 "sentinel_seen",
                 "status",
                 "fresh_output_payload_sha256",
+                "fresh_mutation_payload_sha256",
             )
             if key in row
         }

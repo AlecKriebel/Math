@@ -14,6 +14,10 @@ import tempfile
 import time
 import traceback
 
+
+if not __debug__ or sys.flags.optimize:
+    raise SystemExit("optimized Python forbidden for verify_primary")
+
 from exact_four_port import verify_four_port
 from exact_primary import (
     bridge_and_marginal_evidence,

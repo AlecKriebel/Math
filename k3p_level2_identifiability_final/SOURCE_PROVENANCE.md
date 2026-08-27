@@ -32,6 +32,36 @@ Only graph construction, restoration parentage, exact labelled mixed-graph
 transport, and triangle coherence may be reused after independent replay; all
 nonrelation rows must be rebound to three independent K3P Fourier sectors.
 
+The directional cut-transfer topology input is no longer accepted solely as
+a frozen companion table.  The standalone producer at
+`cut_recovery/strong_crossbridge/topology_regeneration/generate_cut_topology.py`
+actively re-derives the five primitive cores, 77 endpoint tensors, 72
+four-port tensors, switching masks, and 204 wrong-split directions from
+literal graphs.  Its fresh output must agree byte for byte (SHA-256
+`edbd4afe566ed0ed5d1c518ffe5b21f8f224d547b9c351cb4e1a8c1c613ac086`)
+with the exact stored input consumed by the independent K3P algebraic replay.
+Thus the stored file remains a byte lock and interface, while its topology
+content has an active graph-derived regeneration path.
+
+The four-port completeness claim likewise no longer begins at the frozen
+fourteen-orbit lock.  The active producer under
+`four_port_atlas/full_universe_replay/` visits all 405,216 primitive
+presentations, and a separately implemented verifier reconstructs the graph
+grammar, literal maps, exact filters, restoration handoff, and final quotient
+without importing that producer or the historical atlas module.  The
+historical 23,822 sampled point-rank category is not used: only 23,054 cases
+with coefficientwise syzygy-rank upper certificates enter the active rank
+exclusion class; the remaining 768 are reassigned by exact polynomial or graph
+relations.
+
+The hour-scale probe producer remains the enumerator of the 574,535 one- and
+two-port rows.  Its result is now checked by the separately implemented
+`probes/verify_k3p_probes_semantic.py`, which reconstructs graph incidence,
+arrowheads, marginal restrictions, transports, quartet splits, row-specific
+six-circuit pullbacks, reverse marginals, and triangle coherence across the
+entire ledger.  The legacy streaming replay is retained as an additional
+structural check, not as the sole semantic witness.
+
 The original external paths are recorded for provenance only.  Verification,
 build, and release commands may read only files inside this project root.
 

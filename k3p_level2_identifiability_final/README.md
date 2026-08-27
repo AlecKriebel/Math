@@ -25,11 +25,13 @@ exploratory artifacts belong under `history/` and are not active proof
 evidence.
 
 The fail-closed integrated gate freshly replays the 28/28 primary chain, the
-38 raw records in 14 canonical four-port orbits plus two separately
-quartic-separated sink swaps (`40=38+2`), the base weak-not-strong Krawczyk
+full 405,216-presentation four-port universe and its independently derived 38
+raw records in 14 canonical orbits plus two separately quartic-separated sink
+swaps (`40=38+2`), the base weak-not-strong Krawczyk
 certificate and all-`n` cherry extension,
 ordinary/optimized/adversarial strong-class cut transfer, global analytic
-infrastructure, all 574,535 one-/two-port probe rows, and complete fixed-full
+infrastructure, an independent semantic reconstruction of all 574,535
+one-/two-port probe rows, and complete fixed-full
 K3P restoration.  Restoration has 36,568 minimal active K3P terminal rows;
 36,792 is the distinct retained legacy/full-forest leaf census, with 32 legacy
 continuations and 256 redundant depth-two edges.  The standalone restoration
@@ -59,20 +61,25 @@ Reproduce the integrated mathematical verification with:
 .venv/bin/python reproducibility/run_release_suite.py full
 ```
 
-This certification is not a submission-readiness claim.  The revised
-manuscript, reader supplement, canonical PDFs, and page-by-page visual QA are
-complete, and the deterministic fail-closed release tooling is implemented.
-At exact pushed candidate commit
+This certification is not a submission-readiness claim.  For the prior
+minor-revision candidate, the revised manuscript, reader supplement, canonical
+PDFs, and page-by-page visual QA were complete, and the deterministic
+fail-closed release tooling was implemented.  At exact pushed candidate commit
 `0ddf4a76f1c4cc37ac05dcb0915edcfdce65e057`, the conditional-PASS minor
 revision plus immutable availability link, clean quick/full suites, two-build
 PDF source reproductions, and deterministic source/proof-archive double-builds
 all passed.  The article's availability statement points to immutable source
-snapshot `e5b0a9fc6cca79d6ab1d6cd96ceb5c4e8be5a2d5`.  The unchanged 45-command
-mathematical producer graph previously passed once at
-`7b4cdd3197e6d650abafc263cbc8a568d09ddf9f`; it was not needlessly rerun for
-prose, bibliography, and PDF-only changes.  The sealed claim lock, active
-manifest, and integrated report intentionally retain the mathematical
-candidate binding; the post-run execution ledger is
+snapshot `e5b0a9fc6cca79d6ab1d6cd96ceb5c4e8be5a2d5`.  The former 45-command
+mathematical producer graph passed once at
+`7b4cdd3197e6d650abafc263cbc8a568d09ddf9f` and remains historical execution
+evidence.  The present referee-hardening revision expands that plan to 54
+commands by adding active graph-derived cut-topology regeneration, its byte
+comparison and mutations, the hardened H21 audit, and restoration-report
+relocation, together with the semantic probe replay and the complete
+four-port-universe producer, independent verifier, and coherent mutation
+suite.  Those new focused gates pass, but the revised 54-command graph
+and downstream release ledgers must be resealed before submission.  The
+post-run execution ledger for the earlier candidate is
 `release/FINAL_RELEASE_ENGINEERING_REPORT.md`.  Runtime records live under
 ignored release work/transcript paths.  Journal packages remain deliberately
 `NOT_READY` until their human metadata and upload artifacts are supplied.  No

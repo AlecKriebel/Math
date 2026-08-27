@@ -9,12 +9,14 @@ submission build.
    two-build source reproduction for both PDFs, and deterministic
    source/compact/full archive double-builds all passed.  The article now
    cites immutable source snapshot
-   `e5b0a9fc6cca79d6ab1d6cd96ceb5c4e8be5a2d5`.  The unchanged 45-command
-   mathematical producer graph remains bound to its successful one-shot
-   execution at
-   `7b4cdd3197e6d650abafc263cbc8a568d09ddf9f`; no active producer, verifier, or
-   theorem certificate changed in the minor revision.  The post-run ledger
-   records both exact-commit boundaries.
+   `e5b0a9fc6cca79d6ab1d6cd96ceb5c4e8be5a2d5`.  That candidate's 45-command
+   producer graph remains bound to its successful one-shot execution at
+   `7b4cdd3197e6d650abafc263cbc8a568d09ddf9f`.  The present referee-hardening
+   revision changes active producers and expands the plan to 54 commands.
+   Focused graph-derived cut-topology, H14, H21, restoration-portability,
+   semantic-probe, full-four-port, standalone-primary, and fail-closed checks
+   pass; a clean 54-command
+   regeneration and downstream ledger/archive reseal remain required.
 
 2. **Author and post-typesetting review.**  Independent mathematical and
    evidence audits of the targeted bridge, sunlet, genericity, and noncut-

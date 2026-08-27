@@ -164,6 +164,117 @@ def restoration_mutation_report(root: Path) -> None:
     reseal(probe_path, probe)
 
 
+def semantic_probe_mutation_report(root: Path) -> None:
+    mutation_relative = "probes/K3P_PROBE_SEMANTIC_MUTATIONS.json"
+    mutation = mutate_json(
+        root, mutation_relative,
+        lambda x: (x.__setitem__("mutations_rejected", 6),
+                   x.__setitem__("mutations_survived", 1)),
+        True,
+    )
+    semantic_path = root / "probes/K3P_PROBE_SEMANTIC_VERIFICATION.json"
+    semantic = json.loads(semantic_path.read_text())
+    semantic["mutations"].update({
+        "report_sha256": sha_file(root / mutation_relative),
+        "payload_sha256": mutation["payload_sha256"],
+        "rejected": 6,
+        "survived": 1,
+    })
+    reseal(semantic_path, semantic, ("operational",))
+
+
+def semantic_probe_case_survives_but_summary_lies(root: Path) -> None:
+    mutation_relative = "probes/K3P_PROBE_SEMANTIC_MUTATIONS.json"
+    mutation = mutate_json(
+        root, mutation_relative,
+        lambda x: x["mutations"][0].update({
+            "status": "SURVIVED",
+            "diagnostic": "",
+        }),
+        True,
+    )
+    semantic_path = root / "probes/K3P_PROBE_SEMANTIC_VERIFICATION.json"
+    semantic = json.loads(semantic_path.read_text())
+    semantic["mutations"].update({
+        "report_sha256": sha_file(root / mutation_relative),
+        "payload_sha256": mutation["payload_sha256"],
+    })
+    reseal(semantic_path, semantic, ("operational",))
+
+
+def omit_cut_topology_row_coherently(root: Path) -> None:
+    certificate_relative = "cut_recovery/upstream_frozen/corrected_jc_cut_certificate.json"
+    certificate_path = root / certificate_relative
+    certificate = json.loads(certificate_path.read_text())
+    active = certificate["one_active_wrong_split"]
+    removed = active["records"].pop()
+    active["tensor_count"] = len(active["records"])
+    removed_wrong = sum(not row["displayed_by_all"] for row in removed["splits"])
+    removed_common = sum(bool(row["displayed_by_all"]) for row in removed["splits"])
+    active["strict_wrong_split_certificates"] -= removed_wrong
+    active["common_displayed_splits_skipped"] -= removed_common
+    atomic_write(certificate_path, certificate)
+
+    report_relative = (
+        "cut_recovery/strong_crossbridge/topology_regeneration/"
+        "CUT_TOPOLOGY_REGENERATION_REPORT.json"
+    )
+    report_path = root / report_relative
+    report = json.loads(report_path.read_text())
+    report["census"]["four_port_tensors"] = active["tensor_count"]
+    report["census"]["strict_wrong_split_certificates"] = active[
+        "strict_wrong_split_certificates"
+    ]
+    changed_hash = sha_file(certificate_path)
+    changed_bytes = certificate_path.stat().st_size
+    report["fresh_candidate"] = {"bytes": changed_bytes, "sha256": changed_hash}
+    report["bound_downstream_input"].update({
+        "bytes": changed_bytes,
+        "sha256": changed_hash,
+        "byte_identical_to_fresh_candidate": True,
+    })
+    reseal(report_path, report)
+
+
+def rebind_full_four_port_summary(root: Path, mutate) -> None:
+    summary_relative = (
+        "four_port_atlas/full_universe_replay/artifacts/FULL_FOUR_PORT_REPLAY.json"
+    )
+    summary_path = root / summary_relative
+    summary = json.loads(summary_path.read_text())
+    mutate(summary)
+    summary.pop("payload_sha256_without_hash", None)
+    summary["payload_sha256_without_hash"] = sha_object(summary)
+    atomic_write(summary_path, summary)
+
+    report_path = root / (
+        "four_port_atlas/full_universe_replay/"
+        "INDEPENDENT_FULL_FOUR_PORT_VERIFICATION.json"
+    )
+    report = json.loads(report_path.read_text())
+    report["bindings"]["summary_sha256"] = sha_file(summary_path)
+    report["verified_summary_payload_sha256"] = summary[
+        "payload_sha256_without_hash"
+    ]
+    reseal(report_path, report, ("operational",))
+
+
+def omit_full_four_port_row_coherently(root: Path) -> None:
+    def mutate(summary: dict) -> None:
+        summary["primitive_counts"]["raw_total"] -= 1
+        summary["raw_category_counts"]["topology_excluded"] -= 1
+
+    rebind_full_four_port_summary(root, mutate)
+
+
+def reclassify_full_four_port_row_coherently(root: Path) -> None:
+    def mutate(summary: dict) -> None:
+        summary["raw_category_counts"]["rank_excluded"] -= 1
+        summary["raw_category_counts"]["quadratic_separated"] += 1
+
+    rebind_full_four_port_summary(root, mutate)
+
+
 def main() -> int:
     require(__debug__ and not sys.flags.optimize, "optimized Python forbidden")
     clean = run_gate(PROJECT)
@@ -291,6 +402,40 @@ def main() -> int:
             "accept_restoration_mutation_and_reduce_count",
             "restoration 20 mutations",
             restoration_mutation_report,
+        ),
+        case(
+            "omit_one_semantic_probe_row",
+            "probe semantic complete census",
+            lambda root: mutate_json(
+                root, "probes/K3P_PROBE_SEMANTIC_VERIFICATION.json",
+                lambda x: x["coverage"].__setitem__("all_probe_rows", 574_534),
+                True, ("operational",),
+            ),
+        ),
+        case(
+            "accept_one_coherent_semantic_probe_mutation",
+            "probe coherent semantic mutation gate",
+            semantic_probe_mutation_report,
+        ),
+        case(
+            "semantic_probe_case_survives_behind_pass_summary",
+            "probe coherent semantic mutation cases",
+            semantic_probe_case_survives_but_summary_lies,
+        ),
+        case(
+            "omit_one_graph_derived_cut_topology_row",
+            "cut topology graph regeneration census",
+            omit_cut_topology_row_coherently,
+        ),
+        case(
+            "omit_one_full_four_port_row_with_resealed_reports",
+            "full four-port primitive census",
+            omit_full_four_port_row_coherently,
+        ),
+        case(
+            "reclassify_full_four_port_row_with_resealed_reports",
+            "full four-port exact raw partition",
+            reclassify_full_four_port_row_coherently,
         ),
         case(
             "delete_continuous_time_specialization_bridge",

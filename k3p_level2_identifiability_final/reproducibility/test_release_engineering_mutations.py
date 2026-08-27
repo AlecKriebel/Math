@@ -686,14 +686,20 @@ def regeneration_plan_control() -> dict:
     commands = regeneration_commands(sys.executable, False)
     names = [command.name for command in commands]
     required = {
+        "cut_topology_graph_regeneration", "cut_topology_graph_compare",
+        "cut_topology_graph_mutations",
         "cut_signed_pair_mutations", "cut_record39_audit", "cut_record43_audit",
         "cut_record60_audit", "cut_cyclic_verify_optimized",
         "cut_global_transfer_release_optimized", "sharpness_krawczyk_producer",
         "sharpness_topology_alln_producer", "probe_hour_scale_producer",
+        "probe_full_semantic_replay", "four_port_full_universe_producer",
+        "four_port_full_universe_structure_compare",
+        "four_port_full_universe_mutations", "restoration_report_portability",
+        "clean_room_hardened_adversarial",
         "tree_sunlet_literal_v2_build", "tree_sunlet_literal_v2_verify",
         "tree_sunlet_literal_v2_mutations",
     }
-    require(len(names) == len(set(names)) and required.issubset(names),
+    require(len(names) == len(set(names)) == 54 and required.issubset(names),
             ("regeneration plan coverage", sorted(required - set(names))))
     command_map = {command.name: command.argv for command in commands}
     require("--fresh" in command_map["cut_single_minor_search"],
@@ -709,27 +715,43 @@ def regeneration_plan_control() -> dict:
             names.index("cut_global_transfer_manifest"),
             "regeneration manifest ordering")
     ordered_fixed_point = [
+        "cut_topology_graph_regeneration",
+        "cut_topology_graph_compare",
+        "cut_topology_graph_mutations",
         "tree_sunlet_literal_v2_build",
         "tree_sunlet_literal_v2_verify",
         "tree_sunlet_literal_v2_mutations",
+        "four_port_full_universe_producer",
         "restoration_full_producer",
         "restoration_independent_replay",
         "restoration_mutations",
+        "restoration_report_portability",
+        "four_port_full_universe_structure_compare",
+        "four_port_full_universe_mutations",
         "probe_hour_scale_producer",
         "probe_independent_replay",
+        "probe_full_semantic_replay",
         "probe_mutations",
         "probe_manifest_seal",
         "global_infrastructure_build",
         "global_infrastructure_verify",
         "global_infrastructure_mutations",
+        "clean_room_hardened_adversarial",
         "primary_rebind",
+        "release_inputs",
+        "integrated_fresh_independent_replay",
+        "integrated_classification_mutations",
+        "release_engineering_mutations",
     ]
     require(all(names.index(left) < names.index(right) for left, right in
                 zip(ordered_fixed_point, ordered_fixed_point[1:])),
             ("regeneration fixed-point ordering", ordered_fixed_point))
     require("--no-write-report" in command_map["probe_mutations"] and
-            "--output" in command_map["probe_independent_replay"],
-            "probe regeneration would overwrite runtime-bearing reports")
+            "--output" in command_map["probe_independent_replay"] and
+            "--output" in command_map["probe_full_semantic_replay"] and
+            "--mutations-output" in command_map["probe_full_semantic_replay"] and
+            "--report" in command_map["four_port_full_universe_mutations"],
+            "regeneration would overwrite runtime-bearing reports")
     deterministic_environment(PROJECT)
     ephemeral_parent = PROJECT / "release/work/regeneration_ephemeral"
     require(ephemeral_parent.is_dir(),

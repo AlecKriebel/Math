@@ -552,7 +552,7 @@ gate enforces that condition.
 
 def generated_compact_readme() -> bytes:
     return (
-        "Compact K3P-SAME verifier entrypoint\n\n"
+        "Compact K3P containment-classification verifier\n\n"
         "Run: python3 reproducibility/verify_k3p_same_classification.py "
         "--artifact-only --no-write-report\n\n"
         "This portal-size bundle checks the sealed mathematical promotion. "

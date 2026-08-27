@@ -620,7 +620,7 @@ transport is replayed exactly in the machine ledger.
 ## Reproduction
 
 ```bash
-cd {HERE}
+cd restoration
 ../.venv/bin/python regenerate_k3p_restoration.py --resume
 ../.venv/bin/python verify_k3p_restoration.py
 ../.venv/bin/python test_k3p_restoration_mutations.py

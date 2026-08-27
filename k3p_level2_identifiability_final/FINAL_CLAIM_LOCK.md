@@ -128,6 +128,19 @@ three-dimensional bridge neighborhood used in the full-rank gluing argument.
 
 ## Four-port finite classification
 
+The active producer visits all $405{,}216=6\cdot2{,}814\cdot24$
+presentations and derives 27,834 post-topology cases before the exact rank,
+polynomial, restoration, isomorphism, and triangle filters.  A separately
+implemented verifier reconstructs the primitive grammar and literal maps and
+derives the quotient below without reading the frozen fourteen-orbit lock or
+the historical raw ledger.  Six coherently resealed omission,
+reclassification, rank-upper, quotient, and optimized-mode mutations are all
+rejected.  The complete raw partition is 377,382 topology exclusions, 23,054
+rigorous syzygy-rank exclusions, 1,968 quadratic separations, 88 transported
+\(H_{14}\) marginal separations, 2,540 restoration obligations, 30 labelled
+isomorphisms, 114 ordinary-triangle presentations, and 40 final post-filter
+records.
+
 The locked fourteen nontrivial orbits split as follows.
 
 - Polynomially separated: `H21-01`, `H21-03`, `H21-04`, `H21-05`,
@@ -135,7 +148,7 @@ The locked fourteen nontrivial orbits split as follows.
 - Directed-rank separated: `H21-02`, `L20-02`, `L21a-02`, `L21b-02`,
   `L23-01`.
 
-The post-quadratic census is `40=38+2`: 38 raw records in the
+The final post-filter census is `40=38+2`: 38 raw records in the
 fourteen locked orbits and two separately quartic-separated rank-24 theta-3
 sink-swap presentations.  No new symmetric move and no proper directed
 containment survives.
@@ -165,20 +178,24 @@ tree-childness and therefore is not the asserted sharp boundary example.
 ## Certification and publication boundary
 
 The complete local evidence proves the classification stated above: the
-primary, finite-orbit, sharpness, corrected cut-transfer, global
-infrastructure, probe, restoration, and contextual-triangle checks all pass,
-and the integrated theorem verifier has no unresolved mathematical item.  It
+primary, exhaustive four-port, sharpness, corrected cut-transfer, global
+infrastructure, probe, restoration, and contextual-triangle checks all pass.
+The probe evidence includes a separately implemented semantic reconstruction
+of every one- and two-port graph, restriction, transport, and applicable
+quartet or six-circuit observable; all seven coherent mutations are rejected.
+The integrated theorem verifier has no unresolved mathematical item.  It
 explicitly rejects substitution of the withdrawn universal pointwise cut-rank
 equivalence, an ambient-rank-15 triangle argument, restoration census
 conflation, or a proper directed containment inside the strong class.
 
 This is a mathematical certification, not a publication-status claim.  The
-targeted-revision manuscript, reader supplement, PDFs, and visual QA are
-complete; clean quick/full/all-producer replay, release-archive rebinding,
+targeted-referee-repair manuscript and reader supplement sources are complete;
+the PDFs and prior visual QA predate the present hardening changes.  Clean
+quick/full/all-producer replay, PDF and release-archive rebinding,
 journal-format packaging, and human author review remain pending.  The project
 does not claim submission readiness, a DOI, a selected license, completed peer
 review, or completed human review.
 The machine-readable report retains its legacy internal filename,
 `reproducibility/K3P_SAME_CLASSIFICATION_GATE_REPORT.json`, for compatibility;
-its separate integration mutation suite rejects 18/18 theorem-boundary
+its separate integration mutation suite rejects 24/24 theorem-boundary
 corruptions.

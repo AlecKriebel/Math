@@ -19,6 +19,11 @@ from hashlib import sha256
 from itertools import permutations, product
 import json
 from pathlib import Path
+import sys
+
+
+if not __debug__ or sys.flags.optimize:
+    raise SystemExit("optimized Python forbidden for exact_four_port")
 
 
 CH4 = tuple(p + (p[0] ^ p[1] ^ p[2],) for p in product(range(4), repeat=3))
@@ -888,6 +893,7 @@ def verify_four_port(frozen_dir: Path) -> dict:
     source_rank_evidence = []
     for certificate in source_rank_input:
         index = certificate["source_index"]
+        assert len(certificate["rows"]) == len(certificate["columns"]) == certificate["rank"]
         descriptor = compile_map(source_graphs[index])
         edges = tuple(tuple(Q(x) for x in row) for row in certificate["edge_triples"])
         inheritance = tuple(Q(x) for x in certificate["lambdas"])
@@ -955,6 +961,11 @@ def verify_four_port(frozen_dir: Path) -> dict:
             ("source", source_descriptor, certificate["source_rank_certificate"]),
             ("target", target_descriptor, certificate["target_rank_certificate"]),
         ):
+            assert (
+                len(rank_certificate["output_rows"])
+                == len(rank_certificate["parameter_columns"])
+                == rank_certificate["rank"]
+            )
             point = certificate_point(records[orbit_id], side)
             matrix = jacobian(descriptor, *point)
             minor = [

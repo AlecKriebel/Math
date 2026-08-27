@@ -40,6 +40,7 @@ ARTICLE_SECTIONS = [
 ]
 
 FORBIDDEN_AFFIRMATIVE_PHRASES = (
+    "K3P-SAME",
     "ordinary triangle orientations have generic normalized rank 15",
     "ordinary triangles contain an ambient-open 15-dimensional germ",
     "universal pointwise K3P cut-recovery theorem",
@@ -132,14 +133,14 @@ def verify_mutation_summaries(project: Path) -> dict:
         ("sharpness/adversarial/SHARPNESS_ADVERSARIAL_AUDIT.json", None, 18, None, None),
         ("reproducibility/CUT_TRANSFER_GATE_MUTATION_REPORT.json", "mutation_count", 12,
          "rejected_count", "survived_count"),
-        ("global_infrastructure/MUTATION_CERTIFICATE.json", None, 18,
+        ("global_infrastructure/MUTATION_CERTIFICATE.json", None, 19,
          "rejected", "survived"),
         ("probes/K3P_PROBE_MUTATION_CERTIFICATE.json", "mutations_attempted", 17,
          "mutations_rejected", None),
         ("restoration/K3P_RESTORATION_MUTATION_CERTIFICATE.json", "mutation_count", 20,
          "rejected", "accepted"),
         ("reproducibility/K3P_SAME_CLASSIFICATION_MUTATION_REPORT.json",
-         "mutation_count", 18, "rejected", "survived"),
+         "mutation_count", 24, "rejected", "survived"),
         ("reproducibility/RELEASE_ENGINEERING_MUTATION_REPORT.json",
          "mutation_count", 32, "rejected", "survived"),
     ]
@@ -190,6 +191,48 @@ def verify_mutation_summaries(project: Path) -> dict:
                 require(value.get(survived_key) == 0,
                         ("mutation survived count", relative, survived_key))
         result[relative] = expected
+
+    semantic_relative = "probes/K3P_PROBE_SEMANTIC_MUTATIONS.json"
+    semantic = load_json(project / semantic_relative)
+    semantic_names = {
+        "coherently_resealed_nonincidence_transport",
+        "coherently_resealed_wrong_marginal_label",
+        "coherently_resealed_false_quartet",
+        "coherently_resealed_false_six_circuit_deck",
+        "coherently_resealed_incomplete_site_profile",
+        "altered_transport_restriction_claim",
+        "mixed_sign_Bernstein_polynomial",
+    }
+    semantic_rows = semantic.get("mutations", [])
+    require(semantic.get("status") == "PASS" and
+            semantic.get("mutations_rejected") == 7 and
+            semantic.get("mutations_survived") == 0 and
+            isinstance(semantic_rows, list) and len(semantic_rows) == 7 and
+            {row.get("name") for row in semantic_rows} == semantic_names and
+            all(row.get("status") == "REJECTED" for row in semantic_rows),
+            "semantic probe mutation summary")
+    result[semantic_relative] = 7
+
+    four_port_relative = (
+        "four_port_atlas/full_universe_replay/FULL_FOUR_PORT_MUTATION_REPORT.json"
+    )
+    four_port = load_json(project / four_port_relative)
+    four_port_names = {
+        "coherent_raw_omission",
+        "coherent_isomorphic_triangle_reclassification",
+        "coherent_restoration_quadratic_reclassification",
+        "coefficientwise_upper_rank_forgery",
+        "coherent_quotient_orbit_omission",
+        "optimized_mode",
+    }
+    four_port_rows = four_port.get("mutations", [])
+    require(four_port.get("status") == "PASS" and
+            four_port.get("rejected") == 6 and four_port.get("survived") == 0 and
+            isinstance(four_port_rows, list) and len(four_port_rows) == 6 and
+            {row.get("name") for row in four_port_rows} == four_port_names and
+            all(row.get("rejected") is True for row in four_port_rows),
+            "full four-port mutation summary")
+    result[four_port_relative] = 6
     return result
 
 

@@ -45,15 +45,18 @@
   ],
   "regeneration": {
     "source": "proof_package/reproducibility/run_release_suite.py::regeneration_commands",
-    "original_command_count": 45,
-      "excluded_commands": [
-        {
-          "name": "release_engineering_mutations",
-          "reason": "nonmathematical packaging mutation suite requiring the exact live Git checkout"
-        }
-      ],
-      "mathematical_command_count": 44,
+    "original_command_count": 54,
+    "excluded_commands": [
+      {
+        "name": "release_engineering_mutations",
+        "reason": "nonmathematical packaging mutation suite requiring the exact live Git checkout"
+      }
+    ],
+    "mathematical_command_count": 53,
     "ordered_names": [
+      "cut_topology_graph_regeneration",
+      "cut_topology_graph_compare",
+      "cut_topology_graph_mutations",
       "cut_single_minor_search",
       "cut_signed_pair_build",
       "cut_signed_pair_verify",
@@ -80,11 +83,16 @@
       "tree_sunlet_literal_v2_build",
       "tree_sunlet_literal_v2_verify",
       "tree_sunlet_literal_v2_mutations",
+      "four_port_full_universe_producer",
       "restoration_full_producer",
       "restoration_independent_replay",
       "restoration_mutations",
+      "restoration_report_portability",
+      "four_port_full_universe_structure_compare",
+      "four_port_full_universe_mutations",
       "probe_hour_scale_producer",
       "probe_independent_replay",
+      "probe_full_semantic_replay",
       "probe_mutations",
       "probe_manifest_seal",
       "sharpness_krawczyk_producer",
@@ -93,19 +101,22 @@
       "sharpness_adversarial",
       "global_infrastructure_build",
       "global_infrastructure_verify",
-        "global_infrastructure_mutations",
-        "primary_rebind",
-        "release_inputs",
-        "integrated_fresh_independent_replay",
+      "global_infrastructure_mutations",
+      "clean_room_hardened_adversarial",
+      "primary_rebind",
+      "release_inputs",
+      "integrated_fresh_independent_replay",
       "integrated_classification_mutations"
     ],
-    "reference_m1_runtime_seconds": 4301.285,
+    "reference_prior_44_command_runtime_seconds": 4301.285,
     "reference_probe_runtime_seconds": 2937.148,
-    "recommended_wall_time_minutes": 120
+    "reference_full_four_port_producer_runtime_seconds": 769.3515,
+    "reference_full_four_port_verifier_runtime_seconds": 1501.1952,
+    "recommended_wall_time_minutes": 210
   },
   "notes": [
     "Legacy machine filenames and sentinels are retained for compatibility and are not theorem terminology.",
-    "The portable runner changes only the integrated replay's no-write flag so its detailed ten-child report is retained and hashed.",
+    "The portable runner changes only the integrated replay's no-write flag so its detailed fourteen-child report is retained and hashed.",
     "The runner executes in copied workspaces and stores transcripts outside the sealed proof payload.",
     "A passing command is computational evidence, not a substitute for independent review of handwritten proof transitions."
   ]

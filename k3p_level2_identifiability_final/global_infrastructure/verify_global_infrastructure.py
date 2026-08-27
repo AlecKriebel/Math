@@ -8,7 +8,7 @@ physical inequalities, marginal sections, and manifest bindings directly.
 
 from __future__ import annotations
 
-from collections import defaultdict
+from collections import Counter, defaultdict
 from fractions import Fraction
 from hashlib import sha256
 from itertools import product
@@ -438,6 +438,46 @@ def triangle_formula(orientation: int, variables, poly_mode: bool):
     return outputs
 
 
+def normalized_linear_parts(terms, labels, linear_variable="0CC"):
+    """Dehomogenize q000=1 and split F=linear_variable*coeff+remainder."""
+    coeff: defaultdict[tuple[str, ...], int] = defaultdict(int)
+    remainder: defaultdict[tuple[str, ...], int] = defaultdict(int)
+    for term in terms:
+        monomial = [
+            labels[index]
+            for index in term["coordinate_indices"]
+            if labels[index] != "000"
+        ]
+        if linear_variable in monomial:
+            require(monomial.count(linear_variable) == 1,
+                    f"quartic not linear in q{linear_variable}")
+            monomial.remove(linear_variable)
+            coeff[tuple(sorted(monomial))] += term["coefficient"]
+        else:
+            remainder[tuple(sorted(monomial))] += term["coefficient"]
+    return (
+        defaultdict(int, {key: value for key, value in coeff.items() if value}),
+        defaultdict(int, {key: value for key, value in remainder.items() if value}),
+    )
+
+
+def exponent_difference_content(first, second):
+    """Content of the integer exponent-difference vector of two monomials."""
+    left, right = Counter(first), Counter(second)
+    differences = [
+        left[variable] - right[variable]
+        for variable in sorted(set(left) | set(right))
+        if left[variable] != right[variable]
+    ]
+    require(differences, "zero binomial exponent difference")
+    return math.gcd(*(abs(value) for value in differences))
+
+
+def require_primitive_exponent_difference(first, second):
+    require(exponent_difference_content(first, second) == 1,
+            "binomial exponent difference")
+
+
 def verify_h14(project: Path, certificate: dict) -> None:
     require(certificate["schema"] == "k3p-h14-contextual-germ-certificate-v1", "H14 schema")
     require(certificate["status"] == "PASS", "H14 status")
@@ -453,6 +493,14 @@ def verify_h14(project: Path, certificate: dict) -> None:
     require(labels == certificate["coordinate_labels"], "H14 coordinate order")
     for term in terms:
         require(term["coordinate_labels"] == [labels[i] for i in term["coordinate_indices"]], "quartic coordinate transport")
+
+    # Check the actual exponent-difference lattice before any model pullback,
+    # so a coherently rebound x^3-y^3 mutation is rejected at this claim.
+    coeff, remainder = normalized_linear_parts(terms, labels)
+    require(len(coeff) == 2 and sorted(coeff.values()) == [-1, 1], "irreducibility coefficient binomial")
+    supports = list(coeff)
+    require(set(supports[0]).isdisjoint(supports[1]), "coefficient monomials not disjoint")
+    require_primitive_exponent_difference(*supports)
 
     pvars = {f"{edge}{sector}": Poly.variable(f"{edge}{sector}") for edge in "abcdef" for sector in SECTORS}
     pvars["lambda"] = Poly.variable("lambda")
@@ -525,21 +573,6 @@ def verify_h14(project: Path, certificate: dict) -> None:
 
     # Independent normalized irreducibility check.  Dehomogenize q000=1 and
     # regard F as a degree-one polynomial in q0CC.
-    coeff: defaultdict[tuple[str, ...], int] = defaultdict(int)
-    remainder: defaultdict[tuple[str, ...], int] = defaultdict(int)
-    for term in terms:
-        mon = [labels[i] for i in term["coordinate_indices"] if labels[i] != "000"]
-        if "0CC" in mon:
-            require(mon.count("0CC") == 1, "quartic not linear in q0CC")
-            mon.remove("0CC")
-            coeff[tuple(sorted(mon))] += term["coefficient"]
-        else:
-            remainder[tuple(sorted(mon))] += term["coefficient"]
-    coeff = defaultdict(int, {k: v for k, v in coeff.items() if v})
-    require(len(coeff) == 2 and sorted(coeff.values()) == [-1, 1], "irreducibility coefficient binomial")
-    supports = list(coeff)
-    require(set(supports[0]).isdisjoint(supports[1]), "coefficient monomials not disjoint")
-    require(math.gcd(*[1 for _ in supports[0] + supports[1]]) == 1, "binomial exponent difference")
     assignment = defaultdict(lambda: Q(1))
     assignment["TGC"] = Q(2)
     assignment["0GG"] = assignment["0TT"] = Q(0)

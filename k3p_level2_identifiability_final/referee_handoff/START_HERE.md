@@ -9,15 +9,15 @@ prior audits are evidence to inspect, not conclusions to adopt.
 
 - `paper/` contains convenient copies of the article and reader supplement.
 - `proof_package/` is an inspectable copy of the canonical full
-  reproducibility payload, supplemented by the 18 work logs needed by fresh
-  dependency checks.
+  reproducibility payload, supplemented by the work logs needed by fresh
+  dependency checks; the package manifest gives the exact rebuilt count.
 - `REFEREE_PROMPT.md` is a neutral review brief.
 - `PACKAGE_MANIFEST.json` and `SHA256SUMS` bind every sealed payload file and
   the manifest itself.  `SHA256SUMS` cannot hash itself; reviewer-created
   top-level `.venv/` and `review_runs/` runtime areas are deliberately outside
   the seal.
-- `referee_tools/` contains a Git-independent integrity checker and isolated
-  verifier runner.
+- `referee_tools/` contains a Git-independent integrity checker and copied,
+  Git-free workspace runner.
 - `review_runs/` is created locally when a reviewer runs the checks; it is not
   part of the sealed package.
 
@@ -51,12 +51,19 @@ No active mathematical verifier makes a network request.  Dependency
 installation may require package-index access unless the reviewer supplies an
 offline wheel cache.
 
+`RUN_REVIEW.sh` creates Git-free copied workspaces and confines its intended
+outputs to this package, but it is not an operating-system security sandbox
+and does not prevent a process from reading other host files.  Supply the
+offline, credential-free VM, container, or account boundary externally before
+executing untrusted code; do not describe a plain runner invocation as
+credential-isolated.
+
 ## Recommended execution order
 
 First read the article, supplement, neutral prompt, active manifest, and
 relevant source code.  Inspect code before executing it.
 
-Confirm that the portable runner reconstructs the expected 44-command active
+Confirm that the portable runner reconstructs the expected 53-command active
 mathematical producer/verifier plan without starting it:
 
 ```sh
@@ -69,8 +76,10 @@ Then run the fresh mathematical verification:
 ./RUN_REVIEW.sh verify
 ```
 
-On the reference M1 MacBook Pro this takes about 3--4 minutes and has used
-roughly 0.6 GB peak memory.
+On the reference M1 MacBook Pro, allow roughly 35--50 minutes; the exact
+runtime and peak memory are recorded in the run report.  The full semantic
+probe replay and the independent 405,216-case four-port replay dominate this
+phase.
 
 After code inspection, run the complete active producer/verifier graph once:
 
@@ -78,8 +87,11 @@ After code inspection, run the complete active producer/verifier graph once:
 K3P_REFEREE_CONFIRM_REGENERATION=YES ./RUN_REVIEW.sh regenerate
 ```
 
-Allow 90--120 minutes.  The observed reference runtime was about 72 minutes,
-including a single probe producer taking about 49 minutes.  The runner blocks
+Allow roughly 150--210 minutes on the reference M1 machine.  The earlier
+44-command package took about 72 minutes, including a single probe producer
+taking about 49 minutes; the strengthened plan additionally regenerates and
+independently verifies the full four-port universe and semantically replays
+all probes.  The runner blocks
 on each command.  Do not poll by launching a second copy, and do not restart a
 healthy long-running producer.
 
@@ -92,7 +104,7 @@ K3P_REFEREE_CONFIRM_REGENERATION=YES ./RUN_REVIEW.sh all
 Complete top-level command transcripts, timings, output hashes, interpreter
 and platform metadata, dependency versions and module-file hashes, and
 before/after file-drift records are written under `review_runs/`.  Verify mode
-also preserves and hashes the integrated gate's detailed report for its ten
+also preserves and hashes the integrated gate's detailed report for its fourteen
 nested fresh replays.  Never report a command as executed unless its evidence
 is present.
 

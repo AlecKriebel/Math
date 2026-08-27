@@ -2,15 +2,49 @@
 
 We now prove the main equivalence.
 
+\begin{lemma}[Trivalent component decoration]\label{lem:trivalent-decoration}
+Assume \(N\preceqplus N'\) in the strong level-2 class.  After the abstract
+labelled bridge-incidence tree has been recovered, corresponding trivalent
+internal components are either both ordinary branching components or both
+ordinary three-cycle factors.
+\end{lemma}
+
+\begin{proof}
+By \cref{thm:cut-transfer,lem:physical-product}, corresponding component
+positions and their three labelled incidence orbits are intrinsic.  Fix every
+source product coordinate away from one trivalent component and compose this
+slice with the physical analytic target section.  The extracted three-port
+tensors agree up to positive labelled incidence scaling
+\[
+ q_{xyz}\longmapsto A_xB_yC_zq_{xyz},
+ \qquad A_x,B_y,C_z>0.
+\]
+In each cubic circuit \(I_j\) of \cref{prop:tree-sunlet}, the two monomials
+have the same character multiset at each port.  Incidence scaling therefore
+multiplies \(I_j\) by one positive monomial and preserves whether it vanishes.
+All six circuits vanish on an ordinary three-leaf tree, whereas at least one
+is nonzero at every strict ordinary sunlet point.  Hence an ordinary component
+cannot correspond in either direction to a three-cycle component.
+
+There is no other nontrivial trivalent component in this class.  Indeed, the
+minimum strong repairs in \cref{sec:bounded}, together with the incoming and
+path-sink child ports, give every theta factor at least four physical
+boundaries.  A nontrivial three-boundary blob is therefore precisely an
+ordinary cycle.  This proves the decoration claim.
+\end{proof}
+
 \begin{proof}[Proof of \cref{thm:main}: necessity]
 Assume \(N\preceqplus N'\).  The noncircular cut-transfer theorem
 \cref{thm:cut-transfer} gives equality of the labelled bridge splits and hence
-the same labelled reduced tree of blobs.  The complete bridge fibre and its
-physical product chart extract corresponding projective local factors with
-exactly three incidence gauges and no holonomy.  Physical localization
+the same labelled abstract bridge-incidence tree.  The complete bridge fibre
+and its physical product chart extract corresponding projective local factors
+with exactly three incidence gauges and no holonomy.  The trivalent decoration
+lemma now distinguishes every ordinary branching component from every
+three-boundary cycle.  All remaining nontrivial corresponding components are
+complete ported cycle or theta factors.  Physical localization
 \cref{prop:localization} fixes one target incoming/completion type for each
 source-open focal germ and excludes remote compensation.  The complete local
-classification \cref{thm:local} then makes every corresponding factor either
+classification \cref{thm:local} then makes each such pair either
 labelled-isomorphic or ordinary-triangle related.  The one-/two-port
 transports reconstruct every segment word and make all triangle choices
 coherent.  Thus \(N\trianglerel N'\).

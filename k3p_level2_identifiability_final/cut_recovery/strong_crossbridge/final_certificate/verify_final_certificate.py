@@ -661,7 +661,10 @@ def main():
                 sort_keys=True,
             )
         )
-    return 0
+    # A structurally valid aggregate with unresolved child dependencies is a
+    # useful diagnostic report, but it is not a passing theorem certificate.
+    # Fail closed for standalone callers as well as for the later global gate.
+    return 0 if report["status"] == "PASS" else 2
 
 
 if __name__ == "__main__":

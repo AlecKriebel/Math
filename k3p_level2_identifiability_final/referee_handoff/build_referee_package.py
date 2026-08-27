@@ -113,7 +113,7 @@ def tracked_work_logs() -> list[Path]:
                 ("invalid work-log path", relative))
         paths.append(path)
     paths = sorted(set(paths))
-    require(len(paths) == 18, ("tracked WORK_LOG count", len(paths)))
+    require(len(paths) == 19, ("tracked WORK_LOG count", len(paths)))
     return paths
 
 

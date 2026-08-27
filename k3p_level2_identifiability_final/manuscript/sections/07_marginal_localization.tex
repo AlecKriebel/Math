@@ -75,7 +75,8 @@ separator.
 \end{proposition}
 
 \begin{proof}
-By \cref{thm:cut-transfer}, the labelled reduced bridge trees agree.  Shrink
+By \cref{thm:cut-transfer}, the labelled abstract bridge-incidence trees
+agree.  Shrink
 the regular source neighborhood around a nonzero maximal minor.  The physical
 product chart of \cref{lem:physical-product} contains a product box of local
 factor germs and bridge intervals.  Fix all coordinates except one focal
@@ -83,11 +84,46 @@ factor.  Positive bridge factorization and the analytic normalizers extract
 its projective incidence orbit intrinsically from the global tensor.
 
 Only finitely many target incoming and completion types occur in the
-primitive grammar.  Their semialgebraic realization sets cover the focal
-source box because the target section realizes every point.  The finite-cover
-lemma puts a source-open subgerm into one fixed type.  Intrinsic extraction is
-independent of remote target coordinates, so a polynomial or rank obstruction
-on the focal orbit cannot be cancelled elsewhere.
+primitive grammar.  Let \(R_H\) be the rank-drop locus of the projective focal
+map.  Its complement is a nonempty semialgebraic open set: a maximal focal
+Jacobian minor is nonidentically zero, and the physical product chart
+identifies its rank with the focal summand of the global rank.  Work in a
+small maximal-rank source box \(U\) in that complement.
+
+For a fixed target type \(\tau\), let \(\Psi_\tau\) be its projective physical
+factor map, including the effective marginal coordinates supplied by
+\cref{prop:marginal-descriptor}, and form the physical incidence
+correspondence
+\[
+ Z_\tau=\{(u,\eta)\in U\times\Theta_\tau:
+             \overline\Phi_H(u)=\Psi_\tau(\eta)\}.
+\]
+This is semialgebraic.  The original global analytic target section, followed
+by intrinsic factor extraction, shows that the finitely many projections
+\(\operatorname{pr}_U Z_\tau\) cover \(U\); it is used here only to establish
+coverage, not as the desired fixed-type section.  By Tarski--Seidenberg each
+projection is semialgebraic, so \cref{lem:finite-cover} gives a type \(\tau\)
+whose projection contains a relatively open source subgerm \(U_H\).
+
+Take a finite semialgebraic real-analytic constant-rank stratification of
+\(Z_\tau\), compatible with the projection to \(U\).  The image of a stratum
+on which that projection has rank below \(\dim U\) has dimension below
+\(\dim U\).  Because finitely many such images cannot contain the relatively
+open set just obtained, some incidence stratum projects with rank \(\dim U\).
+Shrink about a physical point over that open image and call the resulting
+open source-parameter subbox \(U_H\).  The analytic constant-rank theorem
+supplies a physical analytic section
+\(u\mapsto (u,\sigma_{H,\tau}(u))\) of the incidence projection on \(U_H\).
+Hence
+\[
+ \overline\Phi_H=\Psi_\tau\circ\sigma_{H,\tau}
+\]
+on \(U_H\), exactly the fixed-type local directed relation.  If collapsed
+serial classes must be expanded into physical edge coordinates, compose with
+the local physical analytic section in
+\cref{prop:marginal-descriptor}.  Intrinsic extraction is independent of
+remote target coordinates, so a polynomial or rank obstruction on the focal
+orbit cannot be cancelled elsewhere.
 \end{proof}
 
 \begin{lemma}[Fixed-full restoration]\label{lem:fixed-restoration}
