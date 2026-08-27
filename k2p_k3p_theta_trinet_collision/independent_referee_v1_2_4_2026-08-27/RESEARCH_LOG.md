@@ -52,3 +52,37 @@ Best-guess completion: **3%**.
   internal self-consistency check rather than authentication.
 
 Best-guess completion: **22%**.
+
+## 2026-08-27 05:49 PDT - Proof, provenance, and independent replay checkpoint
+
+- A fresh adversarial mathematical pass found no defect in the collision,
+  rank, local-geometry, continuous-time, dominance, or one-blob graft
+  arguments.  The manuscript's K3P row and column meanings were independently
+  differentiated and agree with the stated rank-15 determinant and tangent.
+- A separate clean-room SymPy 1.14 checker, importing no packet code and
+  reading no certificate, reproduced both exact factorizations, all 64
+  Fourier and ordinary-state pattern values for each compact witness, the K2P
+  probability minimum, both selected rank determinants, and the K3P
+  fixed-output tangent identity.
+- The local and remote annotated tag `k2p-k3p-theta-v1.2.4` both resolve to
+  commit `87d86cf348e888b29df94681426611ac601afe62`.  The tag is unsigned,
+  as the packet's narrowed provenance text acknowledges.  Every one of the 34
+  packet `materials/` files is byte-identical to its counterpart in the
+  tagged canonical subtree; the remaining tagged files are deliberately
+  excluded logs, provenance, release, and submission material.
+- On macOS 26.5.2 / Darwin 25.5.0 arm64 with Python 3.14.6, Tectonic 0.16.9,
+  and Poppler 26.08.0, `bash ./RUN_REFEREE_REPLAY.sh --with-pdf` exited 0.
+  Normal and optimized complete transcripts, all focused transcripts,
+  individual entry points, compact-certificate regeneration, all three PDF
+  rebuild/text comparisons, and both integrity checks passed.
+- Primary-source literature and version-history checks support the revised
+  wording.  The source's literal 2-sub-blob terminology remains internally
+  awkward, but the manuscript describes that external issue accurately and
+  does not depend on suppressing those literal subsets.
+- The five newly supplied K3P semantic mutations fail in both normal and
+  optimized modes.  Two additional passing mutations (a redundant duplicate
+  vertex row and a swap of the two equal root-arc identifiers) are under
+  adversarial triage to determine whether they affect any operative claim or
+  merely expose optional nested-schema canonicalization.
+
+Best-guess completion: **72%**.
