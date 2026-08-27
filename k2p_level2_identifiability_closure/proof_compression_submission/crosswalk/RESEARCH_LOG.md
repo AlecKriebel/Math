@@ -61,3 +61,36 @@ are human metadata, licenses, immutable tag, and DOI timing.
 Best-guess completion of the machinery subtask: **98%**. The remaining 2% is
 the mechanical final generation/check/mutation pass after the parent workflow
 produces the final lock, telemetry, PDFs, and source hash anchors.
+
+## 2026-08-26 — v1.0.2 release-qualification closure
+
+- Bound the final 41-layer clean replay and 25-gate outer mutation result, each
+  with zero blockers or survivors, into the reader-facing crosswalk and
+  deterministic referee package.
+- Rebuilt the 489-member referee archive reproducibly at SHA-256
+  `86a286be82ce3c211f556eaa24cf1120aa42e41f716b46cb8752c1d2546053ba`.
+- Recorded annotated tag `k2p-same-biorxiv-v1.0.2`, tag object
+  `ae537c7e2dacdc1026b30b65fe04daca57b4fd84`, and peeled commit
+  `cb7559e0ba5fd72f94bce5941208be0838be878d` as the historical v1.0.2
+  source binding.  No GitHub Release, Zenodo deposit, or DOI was created.
+
+Crosswalk/bundle v1.0.2 qualification completion: **100%**.
+
+## 2026-08-27 — round-3 editorial and diagnostic repair opened
+
+- Accepted the referee's chronology correction and updated the companion JC
+  citation from repository release v1.1.4 to the DOI-bearing v1.1.7 Zenodo
+  preprint and its separate certificate-data DOI.
+- Replaced the overstated phrase "immutable source tag" with "versioned
+  annotated source tag" and designated `k2p-same-biorxiv-v1.0.3`.  The final
+  tag-object and peeled-commit identifiers remain external release metadata;
+  embedding the yet-to-be-created peeled commit in the tagged source would be
+  self-referential.
+- Added bounded, path-sanitized child-output diagnostics and explicit failure
+  classes to unexpected parameter-transport mutation rejections without
+  relaxing the strict rejection contract.
+
+Best-guess completion of the round-3 editorial/diagnostic repair subtask:
+**60%**.  The focused source and runner edits are complete; derived reports,
+PDFs, replay bindings, manifest/archive construction, and the v1.0.3 tag remain
+for the parent release workflow.

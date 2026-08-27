@@ -3,7 +3,7 @@
 The authoritative portable set is the recursive closure of
 `work/final_theorem_release/RELEASE_LOCK.json`. It contains 406 files and
 479,324,605 bytes. Its canonical content-ledger root is
-`d4385855fd9d8387080a8e789613114f047fd93aaad9a78e86924d1a29b25c3e`.
+`3e01609b924a4e884f58916e852fa4e63eaa8ab1a1af3c932de1ecc3498efcd0`.
 
 ## Entry-point names
 
@@ -45,7 +45,7 @@ To make a deterministic ZIP outside the Git history, add:
 
 ```sh
 .venv/bin/python -B output/referee/build_referee_bundle.py \
-  --output archives/k2p_principal_d_plus_referee_release_20260826.zip
+  --output archives/k2p_principal_d_plus_referee_release_20260827.zip
 ```
 
 The ZIP is deliberately derived rather than committed: its uncompressed

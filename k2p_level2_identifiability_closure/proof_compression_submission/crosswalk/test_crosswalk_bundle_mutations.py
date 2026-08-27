@@ -7,6 +7,7 @@ import ast
 import copy
 import hashlib
 import json
+import os
 import subprocess
 import sys
 import tempfile
@@ -57,6 +58,138 @@ def reject_mutation(
         except SystemExit as error:
             return {"mutation_id": mutation_id, "rejection": str(error), "status": "REJECTED"}
     fail(f"mutation survived: {mutation_id}")
+
+
+def duplicate_top_level_status(original: bytes, duplicate_value: str) -> bytes:
+    if not original.startswith(b"{") or original.count(b'"status": "PASS"') != 1:
+        fail("duplicate-name mutation fixture has no unique PASS status")
+    inserted = f'\n  "status": {json.dumps(duplicate_value)},'.encode("utf-8")
+    return original[:1] + inserted + original[1:]
+
+
+def reseal_submission_member(
+    base: dict[str, Any], relative: str, data: bytes
+) -> dict[str, Any]:
+    candidate = copy.deepcopy(base)
+    files = candidate["submission_sources"]["files"]
+    if relative not in files:
+        fail(f"duplicate-name fixture is absent from submission ledger: {relative}")
+    files[relative] = {
+        "bytes": len(data),
+        "sha256": hashlib.sha256(data).hexdigest(),
+    }
+    candidate["submission_sources"]["content_ledger_root_sha256"] = canonical_hash(files)
+    candidate["submission_sources"]["total_bytes"] = sum(
+        int(row["bytes"]) for row in files.values()
+    )
+    candidate["combined_content_root_sha256"] = canonical_hash(
+        {
+            "frozen_evidence": candidate["frozen_evidence"]["files"],
+            "submission_sources": files,
+        }
+    )
+    reseal(candidate)
+    unsigned = dict(candidate)
+    payload = unsigned.pop("payload_sha256", None)
+    if payload != canonical_hash(unsigned):
+        fail("duplicate-name outer reseal is invalid")
+    return candidate
+
+
+def hardlink_resealed_project(
+    root: Path,
+    base: dict[str, Any],
+    candidate: dict[str, Any],
+    mutant_relative: str,
+    mutant_data: bytes,
+) -> Path:
+    members = set(base["frozen_evidence"]["files"])
+    members.update(base["submission_sources"]["files"])
+    members.discard(builder.MANIFEST_RELATIVE)
+    for relative in sorted(members):
+        source = builder.project_path(relative)
+        destination = root.joinpath(*Path(relative).parts)
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        os.link(source, destination)
+    mutant = root.joinpath(*Path(mutant_relative).parts)
+    mutant.unlink()
+    mutant.write_bytes(mutant_data)
+    manifest = root.joinpath(*Path(builder.MANIFEST_RELATIVE).parts)
+    manifest.parent.mkdir(parents=True, exist_ok=True)
+    manifest.write_text(
+        json.dumps(candidate, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
+    return manifest
+
+
+def reject_resealed_duplicate_name(
+    base: dict[str, Any], mutation_id: str, duplicate_value: str
+) -> dict[str, str]:
+    relative = "proof_compression_submission/PDF_BUILD_REPORT.json"
+    original = builder.project_path(relative).read_bytes()
+    mutant = duplicate_top_level_status(original, duplicate_value)
+    candidate = reseal_submission_member(base, relative, mutant)
+    with tempfile.TemporaryDirectory(
+        prefix="k2p-crosswalk-duplicate-", dir=builder.PROJECT.parent
+    ) as temporary:
+        root = Path(temporary)
+        manifest = hardlink_resealed_project(
+            root, base, candidate, relative, mutant
+        )
+        commands = (
+            (
+                "producer",
+                [
+                    sys.executable,
+                    "-B",
+                    str(
+                        root
+                        / "proof_compression_submission/crosswalk/"
+                        "build_revised_referee_bundle.py"
+                    ),
+                    "--check",
+                ],
+            ),
+            (
+                "checker",
+                [
+                    sys.executable,
+                    "-B",
+                    str(
+                        root
+                        / "proof_compression_submission/crosswalk/"
+                        "check_revised_referee_bundle.py"
+                    ),
+                    "--manifest",
+                    str(manifest),
+                ],
+            ),
+        )
+        rejections: list[str] = []
+        for label, command in commands:
+            result = subprocess.run(
+                command,
+                cwd=root,
+                capture_output=True,
+                text=True,
+                timeout=90,
+                check=False,
+            )
+            diagnostic = (result.stdout + result.stderr).strip()
+            if result.returncode == 0:
+                fail(f"resealed duplicate-name mutation survived {label}: {mutation_id}")
+            if "duplicate JSON" not in diagnostic:
+                fail(
+                    f"resealed duplicate-name mutation had wrong {label} rejection: "
+                    f"{mutation_id}: {diagnostic}"
+                )
+            rejections.append(f"{label}:{diagnostic}")
+    return {
+        "mutation_id": mutation_id,
+        "outer_reseal": "VALID",
+        "rejection": ";".join(rejections),
+        "status": "REJECTED",
+    }
 
 
 def reject_telemetry_binding_mutation(
@@ -275,9 +408,9 @@ def run() -> dict[str, Any]:
     mutations.append(reject_mutation(base, "false_doi_claim", false_doi_claim))
 
     def wrong_release_tag(value: dict[str, Any]) -> None:
-        value["submission_metadata"]["immutable_submission_tag"] = "mutable-main"
+        value["submission_metadata"]["versioned_annotated_source_tag"] = "mutable-main"
 
-    mutations.append(reject_mutation(base, "wrong_immutable_submission_tag", wrong_release_tag))
+    mutations.append(reject_mutation(base, "wrong_versioned_source_tag", wrong_release_tag))
 
     def false_release_action(value: dict[str, Any]) -> None:
         value["submission_metadata"]["release_boundary"] = "Zenodo release created."
@@ -380,6 +513,21 @@ def run() -> dict[str, Any]:
         value["submission_sources"]["files"][path]["sha256"] = "2" * 64
 
     mutations.append(reject_mutation(base, "false_supplement_pdf_hash", false_supplement_pdf_hash))
+
+    mutations.append(
+        reject_resealed_duplicate_name(
+            base,
+            "same_valued_duplicate_json_name_after_reseal",
+            "PASS",
+        )
+    )
+    mutations.append(
+        reject_resealed_duplicate_name(
+            base,
+            "conflicting_valued_duplicate_json_name_after_reseal",
+            "FAIL",
+        )
+    )
 
     crosswalk_scripts = [
         HERE / "build_theorem_artifact_crosswalk.py",

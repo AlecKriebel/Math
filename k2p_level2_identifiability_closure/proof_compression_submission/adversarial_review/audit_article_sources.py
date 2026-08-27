@@ -7,11 +7,88 @@ import argparse
 import hashlib
 import json
 import re
+from collections.abc import Mapping
 from pathlib import Path
 
 
 class AuditFailure(RuntimeError):
     pass
+
+
+PRINTED_METADATA_PATHS = {
+    "work/raw_ledger_audit/artifacts/raw_ledger_summary.json": "authority",
+    "work/rank_upper_certificates/rank_upper_coverage.json": "authority",
+    "proof_compression_submission/templates/PRINTED_CERTIFICATE_APPENDIX.json":
+        "reader derivative",
+    "work/restoration_sign_reclassification/corrected_restoration_forest.json":
+        "authority",
+    "work/probe_coherence_corrected/probe_coherence_certificate.json":
+        "authority",
+    "proof_compression_submission/analysis/WEAK_SHARPNESS_COLUMN_CROSSWALK.json":
+        "authority",
+    "work/final_theorem_release/full_map_reseal_audit.json": "authority",
+    "work/final_theorem_release/composite_reseal_diff_audit.json": "authority",
+}
+
+PRINTED_FROZEN_ANCHORS = {
+    "unified release lock": "work/final_theorem_release/RELEASE_LOCK.json",
+    "raw-four composite ledger":
+        "work/corrected_composite_ledgers/artifacts/"
+        "raw4_corrected_composite_ledger.jsonl.gz",
+    "raw-four independent replay":
+        "work/corrected_composite_ledgers/artifacts/"
+        "raw4_corrected_composite_independent_replay.json",
+    "raw-four terminal registry":
+        "work/raw4_sign_reclassification/raw4_corrected_terminal_ledger.json",
+    "raw-four mutation report":
+        "work/corrected_composite_ledgers/artifacts/"
+        "raw4_corrected_composite_mutations.json",
+    r"five-port \(\theta_2\) composite ledger":
+        "work/corrected_composite_ledgers/artifacts/"
+        "theta2_corrected_composite_ledger.jsonl.gz",
+    "five-port independent replay":
+        "work/corrected_composite_ledgers/artifacts/"
+        "theta2_corrected_composite_independent_replay.json",
+    "five-port mutation report":
+        "work/corrected_composite_ledgers/artifacts/"
+        "theta2_corrected_composite_mutations.json",
+    "full-map certificate reseal audit":
+        "work/final_theorem_release/full_map_reseal_audit.json",
+    "composite reseal differential audit":
+        "work/final_theorem_release/composite_reseal_diff_audit.json",
+    "corrected 997-parent forest":
+        "work/restoration_sign_reclassification/corrected_restoration_forest.json",
+    "restoration independent replay":
+        "work/restoration_sign_reclassification/"
+        "corrected_restoration_replay_certificate.json",
+    "probe input contract":
+        "work/adversarial_proof_review/probe_input_contract.json",
+    "full probe primary":
+        "work/probe_coherence_corrected/probe_coherence_certificate.json",
+    "full probe independent graph audit":
+        "work/global_proof_adversary/probe_full_audit/"
+        "independent_probe_graph_audit_certificate.json",
+    "full probe adversarial mutation report":
+        "work/global_proof_adversary/probe_full_audit/"
+        "independent_probe_mutation_report.json",
+    "weak-sharpness primary":
+        "work/weak_sharpness_closure/weak_sharpness_certificate.json",
+    "weak-sharpness independent audit":
+        "work/weak_sharpness_audit/audit_certificate.json",
+}
+
+PRINTED_METADATA_RE = re.compile(
+    r"(?P<kind>authority|reader derivative):\s*"
+    r"\\path\{(?P<path>[^}]+)\};\s*"
+    r"SHA-256:\s*\\hashvalue\{(?P<sha256>[0-9a-f]{64})\}",
+    re.MULTILINE,
+)
+
+PRINTED_FROZEN_ROW_RE = re.compile(
+    r"^(?P<label>[^\n&][^\n]*)\n"
+    r"&\s*\\hashvalue\{(?P<sha256>[0-9a-f]{64})\}\\\\\s*$",
+    re.MULTILINE,
+)
 
 
 def require(condition: bool, message: str) -> None:
@@ -55,6 +132,146 @@ def tex_keys(text: str, command: str) -> list[str]:
     for group in re.findall(pattern, text):
         values.extend(item.strip() for item in group.split(","))
     return values
+
+
+def duplicate_values(values: list[str]) -> list[str]:
+    seen: set[str] = set()
+    duplicates: set[str] = set()
+    for value in values:
+        if value in seen:
+            duplicates.add(value)
+        seen.add(value)
+    return sorted(duplicates)
+
+
+def audit_printed_authority_hashes(
+    project: Path,
+    supplement: str,
+    *,
+    metadata_paths: Mapping[str, str] = PRINTED_METADATA_PATHS,
+    frozen_anchors: Mapping[str, str] = PRINTED_FROZEN_ANCHORS,
+) -> dict[str, object]:
+    """Bind every compact reader-facing artifact hash to the named file.
+
+    This is intentionally a semantic comparison.  Merely finding an actual
+    digest somewhere in the supplement is insufficient: each expected row,
+    field kind, path or label, and digest must agree, with no missing, extra,
+    or duplicate representations.
+    """
+
+    require(project.is_dir(), "PRINTED_HASH_PROJECT_ROOT_MISSING")
+    require(metadata_paths, "PRINTED_METADATA_CONTRACT_EMPTY")
+    require(frozen_anchors, "PRINTED_FROZEN_ANCHOR_CONTRACT_EMPTY")
+
+    metadata_matches = list(PRINTED_METADATA_RE.finditer(supplement))
+    metadata_seen = [match.group("path") for match in metadata_matches]
+    metadata_duplicates = duplicate_values(metadata_seen)
+    require(
+        not metadata_duplicates,
+        "PRINTED_METADATA_DUPLICATE_PATH:" + ",".join(metadata_duplicates),
+    )
+    metadata_missing = sorted(set(metadata_paths) - set(metadata_seen))
+    metadata_extra = sorted(set(metadata_seen) - set(metadata_paths))
+    require(
+        not metadata_missing and not metadata_extra,
+        "PRINTED_METADATA_INVENTORY_DRIFT:"
+        f"missing={metadata_missing}:extra={metadata_extra}",
+    )
+
+    rows: list[dict[str, object]] = []
+    for match in metadata_matches:
+        kind = match.group("kind")
+        relative = match.group("path")
+        printed = match.group("sha256")
+        require(
+            kind == metadata_paths[relative],
+            f"PRINTED_METADATA_KIND_DRIFT:{relative}:"
+            f"expected={metadata_paths[relative]}:actual={kind}",
+        )
+        path = project / relative
+        require(
+            path.is_file() and not path.is_symlink(),
+            f"PRINTED_HASH_TARGET_MISSING_OR_SYMBOLIC:{relative}",
+        )
+        actual = sha256(path)
+        require(
+            printed == actual,
+            f"PRINTED_HASH_STALE:metadata:{relative}:"
+            f"printed={printed}:actual={actual}",
+        )
+        rows.append(
+            {
+                "presentation": "metadata",
+                "kind": kind,
+                "path": relative,
+                "line": offset_line(supplement, match.start()),
+                "sha256": actual,
+            }
+        )
+
+    section_marker = r"\section{Frozen hash anchors}\label{sec:hashes}"
+    require(
+        supplement.count(section_marker) == 1,
+        "PRINTED_FROZEN_ANCHOR_SECTION_COUNT_DRIFT",
+    )
+    section_start = supplement.index(section_marker)
+    section_end_match = re.search(r"\\section\{", supplement[section_start + 1 :])
+    require(
+        section_end_match is not None,
+        "PRINTED_FROZEN_ANCHOR_SECTION_UNTERMINATED",
+    )
+    section_end = section_start + 1 + section_end_match.start()
+    frozen_section = supplement[section_start:section_end]
+    frozen_matches = list(PRINTED_FROZEN_ROW_RE.finditer(frozen_section))
+    frozen_seen = [match.group("label") for match in frozen_matches]
+    frozen_duplicates = duplicate_values(frozen_seen)
+    require(
+        not frozen_duplicates,
+        "PRINTED_FROZEN_ANCHOR_DUPLICATE_LABEL:"
+        + ",".join(frozen_duplicates),
+    )
+    frozen_missing = sorted(set(frozen_anchors) - set(frozen_seen))
+    frozen_extra = sorted(set(frozen_seen) - set(frozen_anchors))
+    require(
+        not frozen_missing and not frozen_extra,
+        "PRINTED_FROZEN_ANCHOR_INVENTORY_DRIFT:"
+        f"missing={frozen_missing}:extra={frozen_extra}",
+    )
+
+    for match in frozen_matches:
+        label = match.group("label")
+        relative = frozen_anchors[label]
+        printed = match.group("sha256")
+        path = project / relative
+        require(
+            path.is_file() and not path.is_symlink(),
+            f"PRINTED_HASH_TARGET_MISSING_OR_SYMBOLIC:{relative}",
+        )
+        actual = sha256(path)
+        require(
+            printed == actual,
+            f"PRINTED_HASH_STALE:frozen-anchor:{label}:path={relative}:"
+            f"printed={printed}:actual={actual}",
+        )
+        rows.append(
+            {
+                "presentation": "frozen-anchor",
+                "label": label,
+                "path": relative,
+                "line": offset_line(
+                    supplement, section_start + match.start()
+                ),
+                "sha256": actual,
+            }
+        )
+
+    return {
+        "status": "PASS",
+        "metadata_rows": len(metadata_matches),
+        "frozen_anchor_rows": len(frozen_matches),
+        "rows_checked": len(rows),
+        "rows": rows,
+    }
 
 
 def main() -> dict[str, object]:
@@ -148,6 +365,7 @@ def main() -> dict[str, object]:
     bib = bib_path.read_text(encoding="utf-8")
     supplement_source = supplement + "\n" + compression + "\n" + certificate_tex
     all_tex = article + "\n" + supplement_source
+    printed_hash_audit = audit_printed_authority_hashes(project, supplement)
 
     require(isinstance(certificate_json, dict), "PRINTED_APPENDIX_NOT_OBJECT")
     require(
@@ -1036,7 +1254,7 @@ def main() -> dict[str, object]:
         "me@aleckriebel.com",
         "No specific funding supported this work.",
         "The author declares no competing interests.",
-        "k2p-same-biorxiv-v1.0.2",
+        "k2p-same-biorxiv-v1.0.3",
         "CC BY 4.0",
         "MIT License",
         "no DOI is claimed",
@@ -1211,7 +1429,7 @@ def main() -> dict[str, object]:
         + ",".join(str(row.get("code")) for row in findings),
     )
     result = {
-        "schema": "k2p-submission-article-static-audit-v2",
+        "schema": "k2p-submission-article-static-audit-v3",
         "status": "PASS",
         "source_sha256": {
             "article/main.tex": sha256(article_path),
@@ -1223,6 +1441,7 @@ def main() -> dict[str, object]:
             "analysis/WEAK_SHARPNESS_COLUMN_CROSSWALK.json": sha256(sharpness_columns_path),
         },
         "frozen_release_sha256": sha256(release_path),
+        "printed_authority_hash_binding": printed_hash_audit,
         "clean_full_replay": {
             "status": full_replay["status"],
             "layers": replay_layer_count,
@@ -1250,7 +1469,7 @@ def main() -> dict[str, object]:
             "competing_interests": "The author declares no competing interests.",
             "paper_and_data_license": "CC BY 4.0",
             "code_license": "MIT",
-            "immutable_submission_tag": "k2p-same-biorxiv-v1.0.2",
+            "versioned_annotated_source_tag": "k2p-same-biorxiv-v1.0.3",
             "doi": None,
             "external_release_actions_performed": False,
         },

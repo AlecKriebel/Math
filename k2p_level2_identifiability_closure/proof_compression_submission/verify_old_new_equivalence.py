@@ -22,7 +22,7 @@ COMMANDS = (
         "id": "baseline_and_finite_universe_producer",
         "script": "proof_compression_submission/analysis/derive_baseline_and_universe.py",
         "payload_key": "payload_sha256",
-        "payload": "aea3e0251ccc4f6843329f2f33929db5949f6a7af7d96beba20363e26a10e4ec",
+        "payload": "6f1be0b46da897b49fc83cff5d3a909f85bd4b1eff4cb07e38a7f978edbdc92f",
     },
     {
         "id": "direct_template_producer",
@@ -34,7 +34,7 @@ COMMANDS = (
         "id": "independent_family_coverage_equivalence",
         "script": "proof_compression_submission/analysis/verify_family_coverage_equivalence.py",
         "payload_key": "payload_sha256",
-        "payload": "3d7c3d11490785d9f228ad69564870a501cd6d2f92c7f8383139bb4438b59260",
+        "payload": "20d05d88d0c2949878d85f00c3d9d3f772f58bf506ac22116b7228544347155a",
     },
     {
         "id": "restoration_archetype_producer",
@@ -58,7 +58,7 @@ COMMANDS = (
         "id": "minimal_compressed_release_verifier",
         "script": "proof_compression_submission/verify_compressed_release.py",
         "payload_key": "result_payload_sha256",
-        "payload": "76a97c81057b5e99dbad1c9ca8bb74a737c0ee317d5db6dbe7f36bddf77f0773",
+        "payload": "63a5808510a611b0bb6cf428e20a6b565d72393ec7fbbe65ed32a8b1b441f172",
     },
 )
 

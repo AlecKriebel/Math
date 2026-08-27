@@ -48,7 +48,7 @@ level:
 ```sh
 python3 proof_compression_submission/crosswalk/build_revised_referee_bundle.py \
   --check --archive \
-  proof_compression_submission/output/K2P_Principal_D_Plus_Referee_Package_20260826.zip
+  proof_compression_submission/output/K2P_Principal_D_Plus_Referee_Package_20260827.zip
 ```
 
 Run `unzip -t` and compare the external `.sha256` sidecar after construction.
@@ -57,7 +57,9 @@ The sidecar is deliberately outside the ZIP, avoiding a self-referential hash.
 The final manifest is labelled `SUBMISSION_READY_PC_PARTIAL`. It binds the
 approved email, sole-author contribution statement, funding and
 competing-interests declarations, CC BY 4.0 paper/data license, MIT code
-license, and immutable source tag `k2p-same-biorxiv-v1.0.2`. It also records
-the explicit release boundary: this package neither creates nor claims a
-GitHub Release, Zenodo deposit, or DOI; the author will perform any such
-release actions separately.
+license, and designated versioned annotated source tag
+`k2p-same-biorxiv-v1.0.3`. The tag-object and peeled-commit identifiers are
+external release metadata, avoiding a self-referential source binding. The
+manifest also records the explicit release boundary: this package neither
+creates nor claims a GitHub Release, Zenodo deposit, or DOI; the author will
+perform any such release actions separately.

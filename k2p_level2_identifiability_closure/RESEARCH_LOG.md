@@ -775,3 +775,34 @@
   replay, and 25/25 outer mutation suite with byte-identical reports. Best-guess
   completion is **100% for the mathematics** and **100% for release
   qualification**, subject only to the author's GitHub Release/Zenodo choices.
+
+## 2026-08-27 — round-3 referee HOLD repaired in source
+
+- Reproduced both release-evidence defects from the submitted archive: the two
+  stale printed composite-reseal hashes and permissive acceptance of a
+  same-valued duplicate JSON object name after a legitimate outer reseal.
+- Added an integrated 26-row printed-authority gate with nine focused
+  mutations, and independent strict duplicate-name parsers in the outer
+  producer and checker.  The outer mutation suite now includes both
+  same-valued and conflicting-valued duplicate-name attacks after reseal.
+- Corrected the citation-check chronology, updated the JC companion reference
+  to the public v1.1.7 preprint and data DOIs, replaced the overbroad
+  “immutable tag” wording with a designated versioned annotated v1.0.3 source
+  tag, completed the crosswalk history, and made unexpected parameter-test
+  child failures emit bounded sanitized diagnostics without weakening their
+  fail-closed status.
+- Resealed every affected downstream certificate.  The parameter transport
+  ledgers remain byte-identical and its authoritative mutation suite rejects
+  10/10 attacks.  The quartet logic, semantics, terminal, and terminal-mutation
+  certificates pass with unchanged mathematical contents.  The unified lock
+  is ready with zero blockers, and the regenerated proof-compression package
+  retains the same finite classifications and PC-PARTIAL conclusion.
+- Rebuilt the 26-page article and 24-page supplement reproducibly.  Both have
+  embedded fonts, no undefined references or citations, no overfull boxes or
+  PDF-string warnings, and passed a complete rendered-page visual inspection.
+- No theorem statement, formula, census, rank decision, separator,
+  restoration edge, transport, probe row, or weak-sharpness witness changed.
+  Best-guess completion remains **100% for the mathematical theorem** and is
+  **approximately 99% for v1.0.3 release qualification**, pending the detached
+  quick/full replays, final outer mutation run, deterministic archives,
+  independent package audit, commit/push, and annotated source tag.

@@ -141,7 +141,7 @@ omission of the bibliography or either generated input.
 
 At this historical checkpoint, the only open items required the human author: corresponding email,
 author-contribution approval, funding and competing-interests declarations,
-paper/code/data licenses, immutable submission tag, and the decision whether
+paper/code/data licenses, versioned annotated source tag, and the decision whether
 and when to create a GitHub/Zenodo DOI release. They are deliberately not
 inferred. Those choices have since been supplied and are bound in the active
 static audit and final package. The mutable repository URL is printed.

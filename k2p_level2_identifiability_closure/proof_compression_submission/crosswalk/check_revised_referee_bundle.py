@@ -46,7 +46,7 @@ SUBMISSION_METADATA = {
     "data_license": "CC BY 4.0",
     "doi": None,
     "funding": "No specific funding supported this work.",
-    "immutable_submission_tag": "k2p-same-biorxiv-v1.0.2",
+    "versioned_annotated_source_tag": "k2p-same-biorxiv-v1.0.3",
     "paper_license": "CC BY 4.0",
     "release_boundary": (
         "No GitHub Release, Zenodo deposit, or DOI is created or claimed by "
@@ -105,10 +105,34 @@ def project_path(relative: str) -> Path:
     return PROJECT.joinpath(*safe_relative(relative).parts)
 
 
+def decode_json_without_repeated_names(data: str | bytes, label: str) -> Any:
+    """Decode independently of the producer and reject ambiguous objects."""
+
+    def checked_pairs(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+        names = [name for name, _ in pairs]
+        if len(names) != len(set(names)):
+            seen: set[str] = set()
+            for name in names:
+                if name in seen:
+                    fail(f"{label} contains duplicate JSON name: {name!r}")
+                seen.add(name)
+        return dict(pairs)
+
+    try:
+        return json.loads(data, object_pairs_hook=checked_pairs)
+    except json.JSONDecodeError as error:
+        fail(f"invalid JSON in {label}: {error.msg}")
+
+
+def verify_json_member(relative: str, data: bytes) -> None:
+    if PurePosixPath(relative).suffix == ".json":
+        decode_json_without_repeated_names(data, relative)
+
+
 def object_from_path(path: Path, label: str) -> dict[str, Any]:
     if not path.is_file() or path.is_symlink():
         fail(f"missing or symbolic {label}: {path}")
-    value = json.loads(path.read_text(encoding="utf-8"))
+    value = decode_json_without_repeated_names(path.read_bytes(), label)
     if not isinstance(value, dict):
         fail(f"{label} is not a JSON object")
     return value
@@ -223,6 +247,7 @@ def reconstruct_frozen_bindings(
         digest = sha256_bytes(data)
         if digest != expected[relative]:
             fail(f"frozen digest mismatch: {relative}")
+        verify_json_member(relative, data)
         actual[relative] = {"bytes": len(data), "sha256": digest}
     return actual
 
@@ -259,12 +284,14 @@ def reconstruct_submission_bindings() -> dict[str, dict[str, int | str]]:
         if not path.is_file() or path.is_symlink():
             fail(f"submission source is not a regular file: {relative.as_posix()}")
         data = path.read_bytes()
+        verify_json_member(relative.as_posix(), data)
         actual[relative.as_posix()] = {"bytes": len(data), "sha256": sha256_bytes(data)}
     for relative in sorted(SUPPLEMENTAL_EXECUTION_DEPENDENCIES):
         path = project_path(relative)
         if not path.is_file() or path.is_symlink():
             fail(f"missing or symbolic supplemental execution dependency: {relative}")
         data = path.read_bytes()
+        verify_json_member(relative, data)
         actual[relative] = {"bytes": len(data), "sha256": sha256_bytes(data)}
     return actual
 
@@ -294,7 +321,9 @@ def check_ledger(label: str, declared: Any, actual: dict[str, dict[str, int | st
 def declared_json_schema(relative: str) -> str | None:
     if not relative.endswith(".json"):
         return None
-    value = json.loads(project_path(relative).read_text(encoding="utf-8"))
+    value = decode_json_without_repeated_names(
+        project_path(relative).read_bytes(), relative
+    )
     if not isinstance(value, dict):
         return None
     schema = value.get("schema")
@@ -1300,12 +1329,12 @@ def verify_static_article_audit(
         "competing_interests": "The author declares no competing interests.",
         "paper_and_data_license": "CC BY 4.0",
         "code_license": "MIT",
-        "immutable_submission_tag": "k2p-same-biorxiv-v1.0.2",
+        "versioned_annotated_source_tag": "k2p-same-biorxiv-v1.0.3",
         "doi": None,
         "external_release_actions_performed": False,
     }
     if (
-        audit.get("schema") != "k2p-submission-article-static-audit-v2"
+        audit.get("schema") != "k2p-submission-article-static-audit-v3"
         or audit.get("status") != "PASS"
         or audit.get("findings") != []
         or audit.get("submission_metadata") != expected_audit_metadata
@@ -1430,14 +1459,14 @@ def validate(manifest_path: Path) -> dict[str, Any]:
     if "pending_human_metadata" in manifest:
         fail("manifest retains a stale pending-human field")
     lock, lock_sha256, lock_payload_sha256 = release_context()
+    frozen = reconstruct_frozen_bindings(lock, lock_sha256)
+    submission = reconstruct_submission_bindings()
     expected_runtime = expected_runtime_boundary(
         lock_sha256, lock_payload_sha256
     )
     runtime = manifest.get("runtime_boundary")
     if runtime != expected_runtime:
         fail("manifest runtime boundary mismatch")
-    frozen = reconstruct_frozen_bindings(lock, lock_sha256)
-    submission = reconstruct_submission_bindings()
     check_ledger("frozen evidence", manifest.get("frozen_evidence"), frozen)
     check_ledger("submission sources", manifest.get("submission_sources"), submission)
     frozen_section = manifest["frozen_evidence"]

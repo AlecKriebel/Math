@@ -76,4 +76,4 @@ incoming mode, repair index and arc set, sink mask, ordered segment words,
 deterministic dummy roles, and then the exact physical port permutation.
 
 The derived totals agree exactly with the authoritative corrected composite
-ledgers bound by baseline payload `aea3e0251ccc4f6843329f2f33929db5949f6a7af7d96beba20363e26a10e4ec`.
+ledgers bound by baseline payload `6f1be0b46da897b49fc83cff5d3a909f85bd4b1eff4cb07e38a7f978edbdc92f`.

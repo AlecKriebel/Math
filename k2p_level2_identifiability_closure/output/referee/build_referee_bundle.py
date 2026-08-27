@@ -13,11 +13,11 @@ from pathlib import Path, PurePosixPath
 
 PROJECT = Path(__file__).resolve().parents[2]
 LOCK_RELATIVE = "work/final_theorem_release/RELEASE_LOCK.json"
-EXPECTED_LOCK_SHA256 = "130642e235c9beaa22061c578c3c645244cdbf45a9b416d45d94492b3d2848bd"
-EXPECTED_LOCK_PAYLOAD = "b5eb26e953fbb76de671a4caa0db3068932af1e23b4fffdb0d118b5939f81756"
+EXPECTED_LOCK_SHA256 = "30132af1b10f7aba6d49ababf14551f9f914a19dc6a0638517761b6b85cf4c8d"
+EXPECTED_LOCK_PAYLOAD = "a32e7f04d5c979fc1f9e268ca8a791ae24ad99b296f3e3c72682a3beadadd653"
 EXPECTED_FILE_COUNT = 406
-EXPECTED_TOTAL_BYTES = 479_324_605
-EXPECTED_CONTENT_ROOT = "d4385855fd9d8387080a8e789613114f047fd93aaad9a78e86924d1a29b25c3e"
+EXPECTED_TOTAL_BYTES = 479_327_565
+EXPECTED_CONTENT_ROOT = "3e01609b924a4e884f58916e852fa4e63eaa8ab1a1af3c932de1ecc3498efcd0"
 ARCHIVE_PREFIX = "k2p_principal_d_plus_referee_release"
 
 
@@ -147,7 +147,7 @@ def write_zip(path: Path, ledger: dict[str, dict[str, int | str]]) -> str:
     with zipfile.ZipFile(path, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as archive:
         for relative in ledger:
             data = PROJECT.joinpath(*safe_relative(relative).parts).read_bytes()
-            info = zipfile.ZipInfo(f"{ARCHIVE_PREFIX}/{relative}", date_time=(2026, 8, 26, 0, 0, 0))
+            info = zipfile.ZipInfo(f"{ARCHIVE_PREFIX}/{relative}", date_time=(2026, 8, 27, 0, 0, 0))
             info.compress_type = zipfile.ZIP_DEFLATED
             info.external_attr = 0o100644 << 16
             info.create_system = 3

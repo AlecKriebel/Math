@@ -84,8 +84,10 @@ they are not compiled into the five-file source set.
 Submission metadata are finalized: corresponding email
 `me@aleckriebel.com`; sole-author contribution statement approved; no specific
 funding; no competing interests; CC BY 4.0 for the paper and data; MIT for
-code; immutable source tag `k2p-same-biorxiv-v1.0.2`. No GitHub Release,
-Zenodo deposit, or DOI is claimed in this version.
+code; designated versioned annotated source tag
+`k2p-same-biorxiv-v1.0.3`. Its tag-object and peeled-commit identifiers belong
+in external release metadata after the final source commit is created. No
+GitHub Release, Zenodo deposit, or DOI is claimed in this version.
 
 ## Compile-complete bioRxiv source set
 

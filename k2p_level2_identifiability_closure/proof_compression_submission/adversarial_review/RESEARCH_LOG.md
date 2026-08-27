@@ -141,3 +141,23 @@
 
 Best-guess audit-machinery completion: **98%** pending only the mechanical
 final `--write`/`--check` pass after the immutable commit replay is available.
+
+## 2026-08-27 — round-3 printed authority/hash gate
+
+- Independently reproduced the round-3 referee's P01 defect: the two printed
+  composite-reseal rows retained the pre-repair digest
+  `bc91fee3...0654`, while direct hashing, the release lock, and the current
+  provenance records agree on `96e30bae...db4c`.
+- Integrated a semantic printed-hash gate into the normal static source audit.
+  It now binds all eight finite-layer metadata rows and all eighteen frozen
+  anchor rows to their named, regular, non-symbolic files. Missing, extra,
+  duplicated, relabelled, stale, or unresolved rows fail closed.
+- Added a focused nine-case adversarial suite. It rejects stale hashes in both
+  presentations, missing/duplicate/extra rows, metadata-kind reassignment, and
+  missing targets; optimized Python is also rejected.
+- The production gate intentionally remains FAIL on the current stale source
+  until both printed digests are corrected. Substituting the actual digest in
+  memory gives 26/26 PASS, so the repair is ready for the source/replay reseal.
+
+Best-guess printed-hash gate completion: **100%**. The theorem and frozen
+finite evidence are unchanged.

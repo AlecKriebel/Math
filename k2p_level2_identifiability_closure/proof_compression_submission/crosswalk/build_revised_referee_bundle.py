@@ -24,7 +24,7 @@ TELEMETRY_SUBMISSION_SOURCES = (
     "proof_compression_submission/supplement/certificate_appendix.tex",
 )
 ARCHIVE_PREFIX = "k2p_principal_d_plus_submission_referee"
-ARCHIVE_TIMESTAMP = (2026, 8, 26, 0, 0, 0)
+ARCHIVE_TIMESTAMP = (2026, 8, 27, 0, 0, 0)
 OPERATIONAL_EVIDENCE = {
     "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY.json",
     "proof_compression_submission/output/FINAL_CLEAN_FULL_REPLAY_TELEMETRY.json",
@@ -47,7 +47,7 @@ SUBMISSION_METADATA = {
     "data_license": "CC BY 4.0",
     "doi": None,
     "funding": "No specific funding supported this work.",
-    "immutable_submission_tag": "k2p-same-biorxiv-v1.0.2",
+    "versioned_annotated_source_tag": "k2p-same-biorxiv-v1.0.3",
     "paper_license": "CC BY 4.0",
     "release_boundary": (
         "No GitHub Release, Zenodo deposit, or DOI is created or claimed by "
@@ -88,8 +88,31 @@ def canonical_hash(value: Any) -> str:
     return sha256_bytes(canonical_bytes(value))
 
 
+def unique_json_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+    """Build one JSON object while rejecting every repeated member name."""
+
+    value: dict[str, Any] = {}
+    for name, child in pairs:
+        if name in value:
+            fail(f"duplicate JSON object name: {name!r}")
+        value[name] = child
+    return value
+
+
+def parse_json_document(data: str | bytes, label: str) -> Any:
+    try:
+        return json.loads(data, object_pairs_hook=unique_json_object)
+    except json.JSONDecodeError as error:
+        fail(f"invalid JSON in {label}: {error.msg}")
+
+
+def validate_json_member(relative: str, data: bytes) -> None:
+    if PurePosixPath(relative).suffix == ".json":
+        parse_json_document(data, relative)
+
+
 def read_json(relative: str) -> dict[str, Any]:
-    value = json.loads(project_path(relative).read_text(encoding="utf-8"))
+    value = parse_json_document(project_path(relative).read_bytes(), relative)
     if not isinstance(value, dict):
         fail(f"expected JSON object: {relative}")
     return value
@@ -101,7 +124,7 @@ def release_context() -> tuple[dict[str, Any], str, str]:
         fail("missing or symbolic RELEASE_LOCK")
     lock_bytes = lock_path.read_bytes()
     lock_sha256 = sha256_bytes(lock_bytes)
-    lock = json.loads(lock_bytes)
+    lock = parse_json_document(lock_bytes, LOCK_RELATIVE)
     if not isinstance(lock, dict):
         fail("RELEASE_LOCK is not an object")
     if lock.get("schema") != "k2p-principal-d-plus-final-theorem-release-lock-v1":
@@ -271,6 +294,7 @@ def collect_frozen_ledger(
         if not path.is_file() or path.is_symlink():
             fail(f"missing or symbolic frozen evidence file: {relative}")
         data = path.read_bytes()
+        validate_json_member(relative, data)
         metadata: dict[str, int | str] = {"bytes": len(data), "sha256": sha256_bytes(data)}
         outer = outer_files.get(relative)
         if isinstance(outer, dict):
@@ -314,12 +338,14 @@ def collect_submission_ledger() -> dict[str, dict[str, int | str]]:
         if not path.is_file() or path.is_symlink():
             fail(f"non-regular submission source: {relative.as_posix()}")
         data = path.read_bytes()
+        validate_json_member(relative.as_posix(), data)
         ledger[relative.as_posix()] = {"bytes": len(data), "sha256": sha256_bytes(data)}
     for relative in sorted(SUPPLEMENTAL_EXECUTION_DEPENDENCIES):
         path = project_path(relative)
         if not path.is_file() or path.is_symlink():
             fail(f"missing or symbolic supplemental execution dependency: {relative}")
         data = path.read_bytes()
+        validate_json_member(relative, data)
         ledger[relative] = {"bytes": len(data), "sha256": sha256_bytes(data)}
     required = {
         "proof_compression_submission/AI_REFEREE_PROMPT.md",

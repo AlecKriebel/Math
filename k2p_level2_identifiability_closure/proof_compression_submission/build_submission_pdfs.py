@@ -21,7 +21,7 @@ OUTPUT = SUBMISSION / "output"
 LOGS = OUTPUT / "logs"
 REPORT_JSON = SUBMISSION / "PDF_BUILD_REPORT.json"
 REPORT_MD = SUBMISSION / "PDF_BUILD_REPORT.md"
-SOURCE_DATE_EPOCH = 1_787_702_400  # 2026-08-26T00:00:00Z
+SOURCE_DATE_EPOCH = 1_787_788_800  # 2026-08-27T00:00:00Z
 SOURCE_FILES = (
     "article/main.tex",
     "article/references.bib",
@@ -270,9 +270,9 @@ def build_report(visual_pass: bool, *, publish: bool) -> dict[str, Any]:
     payload: dict[str, Any] = {
         "schema": "k2p-submission-pdf-build-report-v3",
         "status": "PASS" if visual_pass else "AWAITING_VISUAL_INSPECTION",
-        "build_date": "2026-08-26",
+        "build_date": "2026-08-27",
         "source_date_epoch": SOURCE_DATE_EPOCH,
-        "source_date_epoch_utc": "2026-08-26T00:00:00Z",
+        "source_date_epoch_utc": "2026-08-27T00:00:00Z",
         "engine": {"name": "Tectonic", "version": "0.16.9"},
         "source_set": list(SOURCE_FILES),
         "byte_identical_double_build": True,
@@ -289,7 +289,7 @@ def markdown(report: dict[str, Any]) -> str:
 
 Both submission documents were rebuilt twice from the exact five-file source
 set with Tectonic 0.16.9 and `SOURCE_DATE_EPOCH={SOURCE_DATE_EPOCH}`
-(`2026-08-26T00:00:00Z`). The paired builds were byte-identical.
+(`2026-08-27T00:00:00Z`). The paired builds were byte-identical.
 
 | document | source SHA-256 | PDF SHA-256 | pages | bytes |
 |---|---|---|---:|---:|

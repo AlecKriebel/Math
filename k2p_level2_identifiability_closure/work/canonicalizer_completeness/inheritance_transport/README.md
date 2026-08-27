@@ -40,3 +40,8 @@ coherently resealed.  Each then reaches the untouched full verifier and is
 rejected at the exact regenerated-byte diagnostic.  The other six attacks are
 bound to exact local semantic diagnostics; wrong diagnostics, tracebacks,
 signals, PASS-token output, and stale success artifacts cannot qualify.
+An unexpected child rejection remains fail-closed and reports an explicit
+failure class plus at most 2,048 characters from a sanitized output tail.
+Terminal-control bytes and local project, user, and macOS temporary paths are
+removed or redacted; the diagnostic never promotes an unexpected rejection to
+a passing mutation.

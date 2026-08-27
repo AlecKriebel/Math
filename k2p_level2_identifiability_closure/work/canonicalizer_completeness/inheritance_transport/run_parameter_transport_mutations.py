@@ -11,6 +11,7 @@ import hashlib
 import importlib.util
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -24,6 +25,10 @@ HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[2]
 VERIFY_PATH = HERE / "verify_parameter_transport_certificate.py"
 AUTHORITATIVE_OUTPUT = HERE / "parameter_transport_mutation_report.json"
+ANSI_ESCAPE = re.compile(r"\x1b\[[0-?]*[ -/]*[@-~]")
+USER_PATH = re.compile(r"/Users/[^/\s\"']+")
+DARWIN_TEMP_PATH = re.compile(r"/(?:private/)?var/folders/[^\s\"']+")
+CHILD_OUTPUT_TAIL_LIMIT = 2048
 
 
 class Failure(RuntimeError):
@@ -151,6 +156,54 @@ def diagnostic_line(output: str, expected: str) -> str | None:
     return matches[0] if matches else None
 
 
+def sanitized_child_output_tail(
+    output: str | bytes | None, limit: int = CHILD_OUTPUT_TAIL_LIMIT
+) -> str:
+    """Return bounded diagnostics without terminal controls or local user paths."""
+
+    require(limit > 0, "invalid child-output tail limit")
+    if isinstance(output, bytes):
+        text = output.decode("utf-8", errors="replace")
+    else:
+        text = output or ""
+    text = ANSI_ESCAPE.sub("", text)
+    text = text.replace(str(PROJECT), "<PROJECT>")
+    text = USER_PATH.sub("/Users/<USER>", text)
+    text = DARWIN_TEMP_PATH.sub("<TEMP_PATH>", text)
+    text = "".join(
+        character
+        if character in "\n\r\t" or 0x20 <= ord(character) <= 0x7E
+        else "?"
+        for character in text
+    )
+    if len(text) > limit:
+        text = "<truncated>" + text[-limit:]
+    return text or "<empty>"
+
+
+def classify_unqualified_failure(
+    completed: subprocess.CompletedProcess[str], expected: str, observed: str | None
+) -> str:
+    combined = completed.stdout or ""
+    if completed.returncode < 0:
+        return f"signal_exit_{-completed.returncode}"
+    if completed.returncode == 0:
+        return "unexpected_zero_exit"
+    if completed.returncode != 1:
+        return "unexpected_exit_code"
+    if "PARAMETER_TRANSPORT_REPLAY_PASS " in combined:
+        return "forbidden_pass_token"
+    if "ModuleNotFoundError" in combined or "ImportError:" in combined:
+        return "dependency_error"
+    if "Traceback (most recent call last):" in combined:
+        return "child_exception"
+    if "TimeoutExpired" in combined:
+        return "reported_timeout"
+    if observed != expected:
+        return "missing_or_wrong_semantic_diagnostic"
+    return "other_unqualified_failure"
+
+
 def qualifies_production_failure(
     completed: subprocess.CompletedProcess[str], expected: str
 ) -> tuple[bool, str | None]:
@@ -275,22 +328,29 @@ def invoke_production_verifier(certificate_dir: Path, timeout: float) -> tuple[s
     started = time.monotonic()
     environment = dict(os.environ)
     environment["PYTHONDONTWRITEBYTECODE"] = "1"
-    completed = subprocess.run(
-        [
-            sys.executable,
-            "-B",
-            str(VERIFY_PATH),
-            "--certificate-dir",
-            str(certificate_dir),
-        ],
-        cwd=PROJECT,
-        env=environment,
-        text=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
-        check=False,
-        timeout=timeout,
-    )
+    try:
+        completed = subprocess.run(
+            [
+                sys.executable,
+                "-B",
+                str(VERIFY_PATH),
+                "--certificate-dir",
+                str(certificate_dir),
+            ],
+            cwd=PROJECT,
+            env=environment,
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            check=False,
+            timeout=timeout,
+        )
+    except subprocess.TimeoutExpired as error:
+        tail = sanitized_child_output_tail(error.stdout)
+        raise Failure(
+            "production verifier child failure:failure_class=timeout:"
+            f"child_output_tail={json.dumps(tail)}"
+        ) from None
     return completed, time.monotonic() - started
 
 
@@ -454,7 +514,17 @@ def main() -> None:
                 mutant_root, args.timeout_seconds
             )
             qualified, observed = qualifies_production_failure(result, expected)
-            require(qualified, f"unqualified production rejection:{name}:{result.returncode}:{observed}")
+            failure_class = classify_unqualified_failure(
+                result, expected, observed
+            )
+            tail = sanitized_child_output_tail(result.stdout)
+            require(
+                qualified,
+                "unqualified production rejection:"
+                f"{name}:returncode={result.returncode}:observed={observed}:"
+                f"failure_class={failure_class}:"
+                f"child_output_tail={json.dumps(tail)}",
+            )
             cases.append({
                 "name": name,
                 "occurrence_id": clean["occurrence_id"],
