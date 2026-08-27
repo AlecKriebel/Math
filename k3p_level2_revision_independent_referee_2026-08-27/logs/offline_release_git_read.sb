@@ -1,9 +1,10 @@
 (version 1)
 
-;; Deny by default. Package code may execute local processes, read only the
-;; copied review workspace and operating-system/runtime files, and write only
-;; inside the copied review workspace. No user home, browser profile, SSH,
-;; cloud configuration, keychain database, or network endpoint is readable.
+;; Release-engineering variant of the mathematical-review sandbox.  It keeps
+;; the no-network/no-credentials boundary and the same copied-workspace-only
+;; write rule, but permits read-only access to the monorepo Git object store so
+;; an exact detached checkout can run the explicitly Git-bound packaging
+;; mutation suite.
 (deny default)
 
 (allow process*)
@@ -14,8 +15,6 @@
 (allow mach-lookup)
 (allow ipc-posix-shm)
 
-;; Keep credential/keychain brokers unavailable even though ordinary runtime
-;; services may be looked up.
 (deny mach-lookup
   (global-name "com.apple.securityd")
   (global-name "com.apple.securityd.xpc")
@@ -23,9 +22,6 @@
   (global-name "com.apple.trustd")
   (global-name "com.apple.trustd.agent"))
 
-;; Runtime libraries on macOS are scattered across system and developer
-;; roots, so permit ordinary reads and then carve out the complete user home
-;; except for this copied workspace, plus system credential stores.
 (allow file-read*)
 
 (deny file-read*
@@ -37,6 +33,16 @@
       (literal "/Users/alec/Documents"))
     (require-not
       (literal "/Users/alec/Documents/Math"))
+    (require-not
+      (literal "/Users/alec/Documents/Math/.git"))
+    (require-not
+      (literal "/Users/alec/Documents/Math/.git/objects"))
+    (require-not
+      (subpath "/Users/alec/Documents/Math/.git/objects"))
+    (require-not
+      (literal "/Users/alec/Documents/Math/k3p_level2_identifiability_final/release/dist/k3p_level2_compact_verifier.zip"))
+    (require-not
+      (literal "/Users/alec/Documents/Math/k3p_level2_identifiability_final/release/dist/k3p_level2_reproducibility.tar.gz"))
     (require-not
       (literal "/Users/alec/Documents/Math/k3p_level2_revision_independent_referee_2026-08-27"))
     (require-not
@@ -54,7 +60,6 @@
 
 (deny network*)
 
-;; Defense in depth if a future runtime rule becomes broader.
 (deny file-read*
   (subpath "/Users/alec/.ssh")
   (subpath "/Users/alec/.aws")
