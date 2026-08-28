@@ -963,3 +963,24 @@
   25-attack mutation run, 41-layer full primitive replay, final telemetry,
   two-extraction archive checks, commit/push, and annotated tag.  No GitHub
   Release or Zenodo action is authorized.
+
+## 2026-08-28 — full-replay staging regression repaired
+
+- The detached 25-attack production mutation run passed with zero survivors
+  in 4,142.76 seconds and 2.62 GB maximum resident memory.
+- The subsequent full replay passed every layer through the composite-domain
+  reseal-difference check, then fail-closed before rank replay because its
+  temporary workspace created the shared `work/` parent twice and the second
+  creation lacked idempotent directory semantics.  This was a harness staging
+  error caused by the newly copied strict reader, not a mathematical or finite-
+  evidence disagreement.
+- Factored the full-rank temporary layout into one idempotent helper and added
+  a focused regression exercising its overlapping parents.  The focused final-
+  replay contract now passes.  Rebuilt the 231-file outer lock, PC-PARTIAL
+  package, old/new equivalence record, referee content ledger, supplement, and
+  PDFs.  The compressed theorem still has zero unresolved mathematical rows.
+- Best-guess completion remains **100% for the mathematical theorem** and is
+  **approximately 98% for v1.0.4 release qualification**, pending a new clean
+  quick/mutation/full run from the repaired commit, final telemetry, archive
+  checks, push, and annotated tag.  No GitHub Release or Zenodo action is
+  authorized.

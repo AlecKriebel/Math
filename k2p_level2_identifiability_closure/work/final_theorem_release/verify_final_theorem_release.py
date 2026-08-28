@@ -904,21 +904,27 @@ def quick_replays(rows: list[dict[str, Any]], timeout: float) -> None:
     replay_weak_sharpness(rows)
 
 
+def prepare_rank_full_layout(root: Path) -> tuple[Path, Path, Path]:
+    """Create the overlapping temporary parents used by the full rank replay."""
+    strict_root = root / "work/final_theorem_release"
+    destination = root / "work/rank_upper_certificates"
+    atlas = root / "package/referee/k2p_offline_sweep_portable/atlas"
+    strict_root.mkdir(parents=True, exist_ok=True)
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    atlas.parent.mkdir(parents=True, exist_ok=True)
+    return strict_root, destination, atlas
+
+
 def replay_rank_full(rows: list[dict[str, Any]], timeout: float) -> None:
     with tempfile.TemporaryDirectory(prefix="k2p-final-rank-full-") as directory:
         root = Path(directory)
-        strict_root = root / "work/final_theorem_release"
-        strict_root.mkdir(parents=True)
+        strict_root, destination, atlas = prepare_rank_full_layout(root)
         (strict_root / "strict_json.py").symlink_to(HERE / "strict_json.py")
-        destination = root / "work/rank_upper_certificates"
-        destination.parent.mkdir(parents=True)
         shutil.copytree(
             PROJECT / "work/rank_upper_certificates",
             destination,
             ignore=shutil.ignore_patterns("__pycache__", "*.pyc", "*.pyo"),
         )
-        atlas = root / "package/referee/k2p_offline_sweep_portable/atlas"
-        atlas.parent.mkdir(parents=True)
         atlas.symlink_to(
             PROJECT / "package/referee/k2p_offline_sweep_portable/atlas",
             target_is_directory=True,

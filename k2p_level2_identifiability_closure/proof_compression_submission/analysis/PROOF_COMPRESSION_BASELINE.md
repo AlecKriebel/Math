@@ -1,18 +1,18 @@
 # Proof-compression baseline
 
 Status: **PASS**.  This is a read-only measurement of frozen release lock
-`0963636c3d4026a74ef926a0dc122c81a08b211b4d151ecc955c790e16cc5a9a`.  It does not replace or
+`305d38e1c3f045bc59141049e46679ccdd29d94c513d5d0e896daa7357ab0b34`.  It does not replace or
 modify the promoted theorem.
 
 ## Proof surface
 
 | Role | Modules | Physical lines | Nonblank/noncomment lines |
 |---|---:|---:|---:|
-| Primary generation, algebra, and coverage (upper bound) | 63 | 29,035 | 26,160 |
+| Primary generation, algebra, and coverage (upper bound) | 63 | 29,045 | 26,170 |
 | Explicit independent/adversarial consumers (lower bound) | 13 | 7,258 | 6,510 |
 | Mutation code | 25 | 13,536 | 12,207 |
-| Release, hash, and orchestration | 13 | 10,221 | 9,639 |
-| **Total** | 114 | 60,050 | 54,516 |
+| Release, hash, and orchestration | 13 | 10,227 | 9,643 |
+| **Total** | 114 | 60,066 | 54,530 |
 
 The classification is deliberately conservative and file-level.  In
 particular, cross-layer release validation is not counted as an independent
@@ -51,4 +51,4 @@ runtime.  This baseline therefore does not invent one from noncomparable
 component timings.  Runtime benchmarking belongs in a separate operational
 record.
 
-Payload SHA-256: `e21d3269904cdf3b4c1a3d18cdd2c8fa6ef2e88fcea1dc29669fee96beaa7dc1`.
+Payload SHA-256: `c5865412bdfe116165adcea65c24f297503e312f773fe47d64e47cbe02505e94`.

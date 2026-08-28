@@ -25,7 +25,7 @@ The frozen theorem release is rooted at
 `work/final_theorem_release/RELEASE_LOCK.json`, whose SHA-256 is
 
 ```text
-0963636c3d4026a74ef926a0dc122c81a08b211b4d151ecc955c790e16cc5a9a
+305d38e1c3f045bc59141049e46679ccdd29d94c513d5d0e896daa7357ab0b34
 ```
 
 The theorem is deliberately limited to the principal positive component; no

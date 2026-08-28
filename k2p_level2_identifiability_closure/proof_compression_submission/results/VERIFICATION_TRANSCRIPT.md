@@ -6,10 +6,10 @@ not part of any byte-stable certificate.
 
 | Command | Outcome | Stable payload | Observed wall time |
 |---|---|---|---:|
-| `build_compressed_release.py` | `PC-PARTIAL` | result `b2f7226b81f3279ba4f1079c5c2c9b582aa1f60283ad0e9f4b34a8967fcfb9f1`; crosswalk `d2591c67eb5168b6601efa81b762e905239accd26acf69fe284f1b690de1d480` | < 1 s |
-| `verify_compressed_release.py --check` | `PASS`; zero unresolved mathematical records | result `b2f7226b81f3279ba4f1079c5c2c9b582aa1f60283ad0e9f4b34a8967fcfb9f1` | < 1 s |
-| `verify_old_new_equivalence.py --write` | seven commands `PASS` | `d0c9e107bbdb1da0a6f3b747d641a1768636ebb252d78a228b2e7871bdf1d5a1` | 121.676 s |
-| `verify_old_new_equivalence.py --check` | byte-identical deterministic replay `PASS` | `d0c9e107bbdb1da0a6f3b747d641a1768636ebb252d78a228b2e7871bdf1d5a1` | 121.543 s |
+| `build_compressed_release.py` | `PC-PARTIAL` | result `f3d2afe89956bf4380a22c6e00c390618a27d79eaa835e4df4fc9b74f2ff10d9`; crosswalk `d2591c67eb5168b6601efa81b762e905239accd26acf69fe284f1b690de1d480` | < 1 s |
+| `verify_compressed_release.py --check` | `PASS`; zero unresolved mathematical records | result `f3d2afe89956bf4380a22c6e00c390618a27d79eaa835e4df4fc9b74f2ff10d9` | < 1 s |
+| `verify_old_new_equivalence.py --write` | seven commands `PASS` | `722438e0394387a7c21e076a3ebb3671677f018441e29ed4bba1a4618d9633d1` | 126.794 s |
+| `verify_old_new_equivalence.py --check` | byte-identical deterministic replay `PASS` | `722438e0394387a7c21e076a3ebb3671677f018441e29ed4bba1a4618d9633d1` | 127.114 s |
 | `run_compression_mutations.py --write` | eleven of eleven corruptions rejected | `eef0bba326d3e9dff0d26add67ec01717aa254a434f51f057333a39f21bbe075` | 0.315 s |
 | `run_compression_mutations.py --check` | byte-identical deterministic replay `PASS` | `eef0bba326d3e9dff0d26add67ec01717aa254a434f51f057333a39f21bbe075` | 0.315 s |
 

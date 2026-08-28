@@ -71,6 +71,16 @@ def main() -> None:
 
     with tempfile.TemporaryDirectory(prefix="k2p-final-replay-output-") as directory:
         root = Path(directory)
+        rank_root = root / "rank-layout"
+        strict_root, rank_destination, atlas = replay.prepare_rank_full_layout(
+            rank_root
+        )
+        require(
+            strict_root.is_dir()
+            and rank_destination.parent.is_dir()
+            and atlas.parent.is_dir(),
+            "overlapping full-rank replay parents were not staged idempotently",
+        )
         external = root / "external/report.json"
         require(
             replay.validate_report_output_path(external, False) == external.resolve(),

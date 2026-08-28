@@ -34,9 +34,9 @@ BASELINE_MD = HERE / "PROOF_COMPRESSION_BASELINE.md"
 UNIVERSE_MD = HERE / "FINITE_UNIVERSE_COMPLETENESS.md"
 
 RELEASE_LOCK = "work/final_theorem_release/RELEASE_LOCK.json"
-RELEASE_LOCK_SHA256 = "0963636c3d4026a74ef926a0dc122c81a08b211b4d151ecc955c790e16cc5a9a"
+RELEASE_LOCK_SHA256 = "305d38e1c3f045bc59141049e46679ccdd29d94c513d5d0e896daa7357ab0b34"
 RELEASE_LOCK_PAYLOAD_SHA256 = (
-    "38ae8195e1e6e53365fc9305362a755723a17f1e66284e07ca26fec501937889"
+    "2a8d58662a45c1cb08973b7755a93259e091c0dab4a064891652883cabbf9a0b"
 )
 RELEASE_LOCK_SCHEMA = "k2p-principal-d-plus-final-theorem-release-lock-v1"
 ATLAS = "package/referee/k2p_offline_sweep_portable/atlas/k2p_atlas_core.py"
@@ -300,8 +300,8 @@ def proof_surface(files: dict[str, str]) -> dict[str, Any]:
         "release_hash_orchestration": census(INFRASTRUCTURE_MODULES),
     }
     require(sum(row["modules"] for row in categories.values()) == 114, "ROLE_MODULE_SUM")
-    require(sum(row["physical_lines"] for row in categories.values()) == 60050, "ROLE_LOC_SUM")
-    require(sum(row["sloc"] for row in categories.values()) == 54516, "ROLE_SLOC_SUM")
+    require(sum(row["physical_lines"] for row in categories.values()) == 60066, "ROLE_LOC_SUM")
+    require(sum(row["sloc"] for row in categories.values()) == 54530, "ROLE_SLOC_SUM")
     return {
         "classification_boundary": (
             "Conservative file-level audit: primary is an upper bound and explicit "
@@ -309,7 +309,7 @@ def proof_surface(files: dict[str, str]) -> dict[str, Any]:
             "split by line."
         ),
         "categories": categories,
-        "total": {"modules": 114, "physical_lines": 60050, "sloc": 54516},
+        "total": {"modules": 114, "physical_lines": 60066, "sloc": 54530},
     }
 
 
