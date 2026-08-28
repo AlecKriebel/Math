@@ -1,5 +1,26 @@
 # Research log
 
+## 2026-08-27 -- Post-v1.2.6 submission-polish checkpoint
+
+- Removed the only remaining Figure~1 label collision by giving the leaf-2
+  pendant edge in panel (b) additional vertical clearance; the topology and
+  every edge label are unchanged.
+- Increased row spacing locally in the K3P pivot-tangent table so its stacked
+  fractions do not touch adjacent rows.
+- Revised the acknowledgments from the complete correspondence record: Samuel
+  Martin is credited for the initial examination and identification of the
+  Version~2 leaf-order flaw, and Leo van Iersel for subsequently confirming the
+  clarified counterexample.
+- Kept the versioned GitHub code-availability URL because no public
+  version-specific Zenodo DOI is yet discoverable; no placeholder or draft DOI
+  was inserted.
+- Rebuilt the 20-page manuscript, visually inspected the affected figure,
+  table, acknowledgments, and following bibliography page, and reran the
+  focused source-convention check. There are no TeX layout warnings or page
+  count changes.
+- Best-guess completion: **100% of this scoped submission-polish goal**. Adding
+  the Zenodo DOI remains contingent on the public version-specific record.
+
 ## 2026-08-27 -- Version 1.2.6 source-freeze checkpoint
 
 - Two independent post-edit audits confirmed that the Ardiyansyah citation,
