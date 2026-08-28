@@ -1,5 +1,19 @@
 # Changelog
 
+## Version 1.2.7 submission production -- 27 August 2026
+
+- Removed the remaining Figure 1 label collision and increased row spacing in
+  the K3P pivot-tangent table without changing graphical or mathematical
+  content.
+- Revised the acknowledgments to record Samuel Martin's initial examination
+  and identification of the Version 2 leaf-order flaw before Leo van Iersel's
+  later confirmation of the clarified counterexample.
+- Advanced the active release links and metadata so the final paper and its
+  matching source, certificates, verifiers, and replay materials can be
+  deposited together as one paper-first archival record.
+- Preserved every title, abstract, theorem, witness, proof, certificate,
+  verifier, determinant, tangent, and scientific conclusion.
+
 ## Version 1.2.6 literature and fail-closed parsing -- 27 August 2026
 
 - Added and contextualized Ardiyansyah's 2021 Fourier-invariant study of

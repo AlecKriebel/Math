@@ -16,13 +16,13 @@ first appears in public repository history at commit `ca21a733`, dated 4 August
 combined source directory. The full early draft was therefore already public
 before the clarification. This record is additive and no history was rewritten.
 
-The current frozen submission/replay snapshot is version `1.2.6`, identified by
-the Git tag `k2p-k3p-theta-v1.2.6`. The earlier tags
-`k2p-k3p-theta-v1.2.5`, `k2p-k3p-theta-v1.2.4`, `k2p-k3p-theta-v1.2.3`,
+The current frozen submission/replay snapshot is version `1.2.7`, identified by
+the Git tag `k2p-k3p-theta-v1.2.7`. The earlier tags
+`k2p-k3p-theta-v1.2.6`, `k2p-k3p-theta-v1.2.5`, `k2p-k3p-theta-v1.2.4`, `k2p-k3p-theta-v1.2.3`,
 `k2p-k3p-theta-v1.2.2`, `k2p-k3p-theta-v1.2.1`, `k2p-k3p-theta-v1.2.0`,
 `k2p-k3p-theta-v1.1.0`, and
 `k2p-k3p-theta-biorxiv-v1.0.0` remain immutable.
-Versions 1.2.5, 1.2.4, 1.2.3, 1.2.2, 1.2.1, 1.2.0, and 1.1.0 are retained under the parent
+Versions 1.2.6, 1.2.5, 1.2.4, 1.2.3, 1.2.2, 1.2.1, 1.2.0, and 1.1.0 are retained under the parent
 `releases/` directory; version 1.0.0 remains under `legacy/releases/`. Exact upload-time
 status and unresolved author choices are recorded in `submission/biorxiv/`.
 No GitHub release, bioRxiv submission, Zenodo deposit, DOI, or external
@@ -97,6 +97,13 @@ departures from hard-coded closed structural schemas, including exact
 array-row shape multiplicities, at any nesting level, with normal/optimized
 hostile regressions. No title, theorem, witness, determinant, tangent, proof,
 or scientific conclusion changes.
+
+Version 1.2.7 is a submission-production patch with no mathematical or
+verifier change. It removes the remaining label collision in Figure 1,
+increases the row spacing in the K3P pivot-tangent table, records the chronology
+of Samuel Martin's initial examination and Leo van Iersel's later confirmation
+of the clarified counterexample, and advances the active release links and
+metadata so the full paper and its replay archive can be deposited together.
 
 ## Revision lineage
 

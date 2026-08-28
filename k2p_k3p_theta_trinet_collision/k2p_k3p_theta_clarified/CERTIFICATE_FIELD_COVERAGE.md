@@ -1,7 +1,7 @@
 # Certificate and replay coverage
 
 This inventory states what the executable replay establishes and, just as
-importantly, what it does not establish. It applies to version 1.2.6 of the
+importantly, what it does not establish. It applies to version 1.2.7 of the
 package.
 
 ## Meanings used here

@@ -4,13 +4,13 @@ This directory is the sole current manuscript and reproducibility package for
 the exact K2P/K3P tree--theta-trinet collision results. Use it for reading,
 verification, citation, bioRxiv submission, and any archival deposit.
 
-The current submission snapshot is version `1.2.6`, published under the Git tag
-`k2p-k3p-theta-v1.2.6`. The tag, rather than the mutable `main` branch,
+The current submission snapshot is version `1.2.7`, published under the Git tag
+`k2p-k3p-theta-v1.2.7`. The tag, rather than the mutable `main` branch,
 is the stable source cited by the manuscript.
 
 Historical pre-clarification files have been moved into the parent
 `legacy/DO_NOT_SUBMIT-pre-clarification/` directory. They are not current
-submission or release inputs. Frozen versions `1.2.5`, `1.2.4`, `1.2.3`, `1.2.2`,
+submission or release inputs. Frozen versions `1.2.6`, `1.2.5`, `1.2.4`, `1.2.3`, `1.2.2`,
 `1.2.1`, `1.2.0`, and `1.1.0` are retained under the parent `releases/` directory, and version
 `1.0.0` remains under `legacy/releases/`.
 
@@ -136,7 +136,7 @@ make the portal metadata match the final PDF exactly.
 To build clean deterministic archives from an exact committed snapshot:
 
 ```bash
-bash submission/build_release.sh --output-dir /absolute/path/to/release-output --commit k2p-k3p-theta-v1.2.6 --version 1.2.6
+bash submission/build_release.sh --output-dir /absolute/path/to/release-output --commit k2p-k3p-theta-v1.2.7 --version 1.2.7
 ```
 
 The builder refuses tracked or nonignored untracked changes in this canonical subtree,

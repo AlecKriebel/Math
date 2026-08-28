@@ -1,5 +1,26 @@
 # Research log
 
+## 2026-08-27 -- Version 1.2.7 paper-first archival freeze
+
+- Promoted the planned Zenodo record from a software-only reproducibility
+  package to a paper-first preprint record. The standalone final manuscript is
+  the primary object; the matching source, certificates, verifiers, replay
+  transcripts, and integrity files form its supporting archive.
+- Advanced the active source and replay metadata to version 1.2.7 without
+  changing any theorem, witness, proof, certificate, verifier, determinant,
+  tangent, title, abstract, or scientific conclusion.
+- Rebuilt the main manuscript and both supporting PDFs. The main paper remains
+  20 pages, the two supporting PDFs remain two pages each, and the affected
+  figure, tangent table, code-availability link, acknowledgment, technical-
+  summary link, and terminal pages render without overlap or clipping.
+- Replayed the complete exact suite once under ordinary Python and once under
+  optimized Python. Both runs ended with `ALL EXACT CHECKS PASSED`; no code or
+  certificate change was required.
+- Best-guess completion: **90% of the v1.2.7 archival freeze**. Remaining work
+  is canonical-manifest regeneration, immutable commit/tag creation, clean
+  release-builder replay, final upload-file hashing, and the copy/paste Zenodo
+  worksheet.
+
 ## 2026-08-27 -- Post-v1.2.6 submission-polish checkpoint
 
 - Removed the only remaining Figure~1 label collision by giving the leaf-2
