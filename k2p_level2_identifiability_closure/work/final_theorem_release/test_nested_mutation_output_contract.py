@@ -263,6 +263,21 @@ def main() -> None:
             outside_symlink.symlink_to(runner)
             expect_policy_failure(module, outside_symlink, marker)
 
+            reverse_target = root / f"{name}-reverse-symlink-target.json"
+            reverse_target.write_text('{"outside":true}\n')
+            reverse_hash = sha(reverse_target)
+            with tempfile.TemporaryDirectory(
+                prefix=f".k2p-{name}-reverse-output-", dir=PROJECT
+            ) as source_directory:
+                reverse_symlink = Path(source_directory) / "inside-source.json"
+                reverse_symlink.symlink_to(reverse_target)
+                expect_policy_failure(module, reverse_symlink, marker)
+                require(
+                    reverse_symlink.is_symlink()
+                    and sha(reverse_target) == reverse_hash,
+                    f"reverse output symlink changed source or target:{name}",
+                )
+
             copied_source = root / f"{name}-copied-source.py"
             shutil.copy2(runner, copied_source)
             copied_hash = sha(copied_source)

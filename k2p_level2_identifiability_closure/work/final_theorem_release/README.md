@@ -162,8 +162,10 @@ output-contract regression is:
 The documented outer mutation command runs this regression as a mandatory
 preflight before any conceptual mutation gate; it does not add a mutation row
 or alter the 25-gate census. Reports are fsynced to a new same-directory file
-and atomically replaced, and the regression attacks both external hardlinks
-and late output-symlink swaps without allowing either to modify source bytes.
+and atomically replaced.  The regression attacks hardlinks, late output-symlink
+swaps, external names resolving into the source tree, and source-tree names
+resolving to external targets without allowing any source or target byte to
+change.
 
 Run the clean-room exhaustive path when full primitive regeneration is
 desired. Full mode has 41 named layers: in addition to the prior primitive

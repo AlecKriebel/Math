@@ -96,9 +96,14 @@ def validate_output_path(output: Path, allow_authoritative_output: bool) -> Path
                 "override licenses only the canonical unified mutation report"
             )
         return normalized
-    try:
-        resolved.relative_to(PROJECT.resolve())
-    except ValueError:
+    project_root = PROJECT.resolve()
+    for candidate in (normalized, resolved):
+        try:
+            candidate.relative_to(project_root)
+        except ValueError:
+            continue
+        break
+    else:
         return normalized
     raise SystemExit(
         "CORRECTED_UNIVERSE_MUTATION_OUTPUT_POLICY_FAIL: routine output must be "

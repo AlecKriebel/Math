@@ -137,9 +137,14 @@ def validate_report_output_path(output: Path | None) -> Path | None:
     lexical = Path(os.path.abspath(os.fspath(output)))
     normalized = lexical.parent.resolve() / lexical.name
     resolved = lexical.resolve()
-    try:
-        resolved.relative_to(PROJECT.resolve())
-    except ValueError:
+    project_root = PROJECT.resolve()
+    for candidate in (normalized, resolved):
+        try:
+            candidate.relative_to(project_root)
+        except ValueError:
+            continue
+        break
+    else:
         return normalized
     raise ReleaseFailure(
         "FINAL_RELEASE_MUTATION_OUTPUT_POLICY_FAIL:report output must be outside "

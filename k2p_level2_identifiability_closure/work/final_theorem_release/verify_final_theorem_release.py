@@ -58,9 +58,14 @@ def validate_report_output_path(
             "authoritative override requires the exact nonsymbolic canonical report",
         )
         return canonical
-    try:
-        resolved.relative_to(PROJECT.resolve())
-    except ValueError:
+    project_root = PROJECT.resolve()
+    for candidate in (normalized, resolved):
+        try:
+            candidate.relative_to(project_root)
+        except ValueError:
+            continue
+        break
+    else:
         return normalized
     raise ReleaseFailure(
         "FINAL_REPLAY_OUTPUT_POLICY_FAIL:routine report output must be outside "

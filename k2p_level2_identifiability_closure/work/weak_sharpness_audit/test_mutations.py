@@ -71,9 +71,14 @@ def validate_output_path(output: Path, allow_authoritative: bool = False) -> Pat
                 "authoritative override requires the exact nonsymbolic canonical report",
             )
         return canonical
-    try:
-        resolved.relative_to(PROJECT.resolve())
-    except ValueError:
+    project_root = PROJECT.resolve()
+    for candidate in (normalized, resolved):
+        try:
+            candidate.relative_to(project_root)
+        except ValueError:
+            continue
+        break
+    else:
         return normalized
     fail(
         "WEAK_SHARPNESS_MUTATION_OUTPUT_POLICY_FAIL",

@@ -103,6 +103,19 @@ direct mutation cases pass.
 
 ## Final qualification
 
+An initial detached qualification exposed two additional output-interface
+defects in the new evidence machinery: the direct mutation runner checked its
+optimized-mode guard before removing a stale caller-owned report, and its
+portable source-root policy assumed a fixed extraction depth.  Both were
+repaired before promotion.  A subsequent independent audit found the
+symmetric alias case in which a lexical source-tree output name was a symlink
+to an external target.  Every affected routine report validator now rejects
+an output when either its normalized lexical location or resolved target is
+inside the source tree.  The focused regressions exercise both symlink
+directions, hardlinks, late swaps, stale outputs, arbitrary-depth standalone
+portable extraction, and optimized execution.  These repairs concern only
+the qualification interface and changed no mathematical evidence.
+
 The release is promoted only after the recursive lock, theorem crosswalk,
 source documents, PDFs, deterministic source package, and referee archive are
 resealed; the quick and full primitive replays and all controlling mutation

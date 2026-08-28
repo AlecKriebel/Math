@@ -29,7 +29,7 @@ ATLAS = PROJECT / "package/referee/k2p_offline_sweep_portable/atlas/k2p_atlas_co
 OUTPUT = HERE / "PROBE_WORD_COVERAGE.json"
 
 FILES = {
-    "certificate": (PROBE / "probe_coherence_certificate.json", "aef621cdefb7a892b396ae993b35d4582faa6d617a90e975d067aed2f9a53554"),
+    "certificate": (PROBE / "probe_coherence_certificate.json", "6edd4097d0ce6cc0938e1a7eaee8d01c7e9daac814e72422250f1dbdea04bdd3"),
     "one": (PROBE / "one_port_ledger.jsonl.gz", "d5fa13d38731bff2403eeb4e4d9e139566c4983b09d30553c6260eaac64c5c90"),
     "two": (PROBE / "two_port_ledger.jsonl.gz", "10f0afcab77f2d61cecfc36d723c6f32065c304ac088b0b8ecf12dfc867fbf9d"),
     "parents": (PROBE / "two_port_parent_inventory.jsonl.gz", "673112e949e08dce0bdbd690be647dd97d0899c2bb12121b4a16ed7a62dba3f8"),
@@ -39,7 +39,7 @@ FILES = {
     "input_contract": (INPUT_CONTRACT, "5e6e955db206a0c2b5f520a67fd2fdedcedcdef88d466a7c8e436108a77fac24"),
 }
 
-EXPECTED_CERT_PAYLOAD = "29927d40fcb7b9f3436c9c93f3ec797d2c7b4539ad518c6de94e5ea9efd3ab50"
+EXPECTED_CERT_PAYLOAD = "7799adda95bbc89dff01257e76f811cf6a30061d97265a75f4e42e8d618da8b4"
 EXPECTED_INPUT_PAYLOAD = "e12f0fb912f74fe7b00412619e6a33b28bdeb641a2ddf524fd577d552a856470"
 EXPECTED_SOURCE_SUPPORT_GRAMMAR_SHA256 = (
     "cadbb4187f501ab53620b3f15deaccb60bed582dfe8fdbefd7c1ba10f5329047"

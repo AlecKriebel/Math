@@ -911,3 +911,31 @@
   recursive lock, proof-compression/PDF reseal, detached 23/25/41-gate run,
   two-extraction archive checks, commit/push, and annotated source tag.  No
   GitHub Release or Zenodo action is authorized.
+
+## 2026-08-28 05:04 PDT — round-4 output-isolation hardening checkpoint
+
+- Detached qualification exposed that the newly guarded direct-mutation
+  runner could leave a stale caller-owned PASS report when optimized mode was
+  rejected before output cleanup, and that its standalone source-root policy
+  depended on extraction depth.  Both were repaired and their focused direct
+  suite again rejected all 11 attacks.
+- A separate read-only audit then found the symmetric symlink-policy edge
+  case: a lexical path inside the source tree could point to an external
+  target and evade validators that checked only the resolved target.  All
+  affected nested and outer report validators now reject when either the
+  normalized lexical path or resolved target lies inside the source tree.
+  The regressions exercise both symlink directions, hardlinks, late swaps,
+  stale PASS bytes, optimized mode, and arbitrary-depth portable extraction.
+- Replayed and resealed the affected probe-input, canonicalizer, weak-
+  sharpness, restoration, probe, direct-closure, and unified finite-universe
+  mutation evidence.  The deep primitive probe audit again covered all 176
+  anchors, 29,964 one-port rows, 544,571 two-port rows, 67,741 transports,
+  and 4,379 restrictions; all 12 independent mutations rejected.  The probe,
+  restoration, and unified suites rejected 18/18, 13/13, and 22/22 attacks.
+- No theorem statement, graph classification, tensor formula, rank decision,
+  census, restoration edge, transport, probe relation, or sharpness witness
+  changed.  Best-guess completion is **100% for the mathematical theorem**
+  and **approximately 98% for v1.0.4 release qualification**, pending the
+  final recursive lock, detached 23/25/41-gate qualification, deterministic
+  two-extraction packages, commit/push, and annotated tag.  No GitHub Release
+  or Zenodo action is authorized.

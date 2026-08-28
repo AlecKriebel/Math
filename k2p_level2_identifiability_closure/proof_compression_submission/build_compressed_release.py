@@ -22,13 +22,13 @@ CROSSWALK = ROOT / "THEOREM_TO_TEMPLATE_CROSSWALK.json"
 EXPECTED_INPUTS = {
     "analysis/PROOF_COMPRESSION_BASELINE.json": (
         "k2p-proof-compression-baseline-v1",
-        "3ea5a391742ecb5cfe413f4578af8ebca5ce02ebddb3ab45f7f52b7a79556c70",
-        "343a8be0bf055c04ae1b2024200fa68ff309eae7eaa6812d2e7217ad2e30dbaf",
+        "4f2f001d169d999c79d508f11ac8d930dfd14b4afd2730acd15002ab06e0777d",
+        "2a3edc8c21d5b741dbe0e84295ffac9a68266e057eaa3da99fa1ac3c4872c95e",
     ),
     "analysis/FAMILY_COVERAGE_EQUIVALENCE_CERTIFICATE.json": (
         "k2p-pc-partial-family-coverage-equivalence-v1",
-        "8f100ed7c3e98b05d16956f80a50f0f2d61e6349c376e32acfdfb55c15a33987",
-        "72a18a09b6d9529708763ea4125cfafd7dd61782282ae97523c69fc797b23e6b",
+        "35e6d45ca7c81cbaaad6f0529ff6b27c93154063a40fdaa0ed74cd501a13a8cb",
+        "711ff452114cf6551d0d52ab892e3dd6f5c62ef8b8068127362bd392bc48ee18",
     ),
     "templates/DIRECT_CERTIFICATE_TEMPLATE_TABLE.json": (
         "k2p-direct-certificate-template-table-v1",
@@ -47,8 +47,8 @@ EXPECTED_INPUTS = {
     ),
     "probe/PROBE_WORD_COVERAGE.json": (
         "k2p-probe-word-theorem-coverage-v1",
-        "1d4248028b38f6b731f066960d9e584240de68a17323539fe5b47f119a8086f6",
-        "3791e4bb829976aa78289281b9998bfe0605ba4a20518f1e8dd660d7d1a91bb8",
+        "d66b28240092a04112fde67d54527e3df3964d7eea64f7b75ed75f877435ec49",
+        "c2e32b37d32eda11470afc7f747cb2bca5fa58c78fd92793f8fa94309f3d3660",
     ),
 }
 

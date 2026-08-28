@@ -112,6 +112,38 @@ def main() -> None:
         source_alias = root / "source-alias.json"
         source_alias.symlink_to(LOCKED_TARGETS[2])
         expect_policy_failure(source_alias)
+
+        reverse_target = root / "reverse-symlink-external-target.json"
+        reverse_target.write_text('{"outside":true}\n')
+        reverse_hash = sha(reverse_target)
+        with tempfile.TemporaryDirectory(
+            prefix=".k2p-replay-reverse-output-", dir=PROJECT
+        ) as source_directory:
+            reverse_alias = Path(source_directory) / "inside-source.json"
+            reverse_alias.symlink_to(reverse_target)
+            expect_policy_failure(reverse_alias)
+            reverse_cli = subprocess.run(
+                [
+                    sys.executable,
+                    "-B",
+                    str(RUNNER),
+                    "--quick",
+                    "--output",
+                    str(reverse_alias),
+                ],
+                cwd=PROJECT,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                text=True,
+                check=False,
+            )
+            require(
+                reverse_cli.returncode != 0
+                and "FINAL_REPLAY_OUTPUT_POLICY_FAIL" in reverse_cli.stdout
+                and reverse_alias.is_symlink()
+                and sha(reverse_target) == reverse_hash,
+                f"replay accepted reverse source symlink:{reverse_cli.stdout}",
+            )
         before = sha(LOCKED_TARGETS[2])
         rejected = subprocess.run(
             [

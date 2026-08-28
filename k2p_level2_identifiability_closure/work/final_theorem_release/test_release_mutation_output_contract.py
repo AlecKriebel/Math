@@ -192,6 +192,37 @@ def main() -> None:
         symlink.symlink_to(PROJECT / LOCKED_COLLISION_TARGETS[2])
         expect_policy_failure(symlink)
 
+        reverse_target = root / "reverse-symlink-external-target.json"
+        reverse_target.write_text('{"outside":true}\n')
+        reverse_hash = sha(reverse_target)
+        with tempfile.TemporaryDirectory(
+            prefix=".k2p-release-reverse-output-", dir=PROJECT
+        ) as source_directory:
+            reverse_symlink = Path(source_directory) / "inside-source.json"
+            reverse_symlink.symlink_to(reverse_target)
+            expect_policy_failure(reverse_symlink)
+            reverse_cli = subprocess.run(
+                [
+                    sys.executable,
+                    "-B",
+                    str(PROJECT / RUNNER),
+                    "--output",
+                    str(reverse_symlink),
+                ],
+                cwd=PROJECT,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                text=True,
+                check=False,
+            )
+            require(
+                reverse_cli.returncode != 0
+                and "FINAL_RELEASE_MUTATION_OUTPUT_POLICY_FAIL" in reverse_cli.stdout
+                and reverse_symlink.is_symlink()
+                and sha(reverse_target) == reverse_hash,
+                f"outer CLI accepted reverse source symlink:{reverse_cli.stdout}",
+            )
+
         for target in (PROJECT / LOCKED_COLLISION_TARGETS[0], symlink):
             locked = target.resolve()
             before = sha(locked)
@@ -253,6 +284,7 @@ def main() -> None:
                 "report_sha256": hashlib.sha256(bytes_alpha).hexdigest(),
                 "two_path_reports_identical": True,
                 "direct_and_symlink_collisions_rejected": True,
+                "both_symlink_directions_rejected": True,
                 "source_bytes_unchanged": True,
                 "hardlink_and_late_symlink_safe": True,
                 "stale_report_removed_before_preflight": True,

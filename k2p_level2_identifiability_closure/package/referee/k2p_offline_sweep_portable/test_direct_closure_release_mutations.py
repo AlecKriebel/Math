@@ -8,9 +8,6 @@ so no byte in the source release can be modified by this test.
 
 from __future__ import annotations
 
-if not __debug__:
-    raise SystemExit("DIRECT_CLOSURE_MUTATION_OPTIMIZED_MODE_FORBIDDEN")
-
 import argparse
 import hashlib
 import json
@@ -25,7 +22,28 @@ from typing import Callable
 
 
 ROOT = Path(__file__).resolve().parent
-PROJECT = ROOT.parents[2]
+
+
+def enclosing_source_tree() -> Path:
+    """Return the full project when present, otherwise this portable release.
+
+    A referee may extract the nested direct-closure package by itself at an
+    arbitrary depth.  Basing the policy root on a fixed parent count makes a
+    caller-owned temporary output appear to be inside the source tree in some
+    extraction names.  Detect the complete project by its two stable sibling
+    directories and fall back to the portable package root.
+    """
+
+    for candidate in (ROOT, *ROOT.parents):
+        if (
+            (candidate / "work/final_theorem_release").is_dir()
+            and (candidate / "proof_compression_submission").is_dir()
+        ):
+            return candidate
+    return ROOT
+
+
+SOURCE_TREE_ROOT = enclosing_source_tree()
 AUTHORITATIVE_OUTPUT = ROOT / "direct_closure_mutation_report.json"
 SCHEMA = "k2p-four-port-direct-closure-mutations-v2"
 SUCCESS_TERMINAL = "K2P_FOUR_PORT_DIRECT_CLOSURE_RELEASE_PASS"
@@ -70,9 +88,14 @@ def validate_output_path(output: Path, allow_authoritative: bool = False) -> Pat
                 "authoritative override requires the exact nonsymbolic canonical report",
             )
         return canonical
-    try:
-        resolved.relative_to(PROJECT.resolve())
-    except ValueError:
+    source_root = SOURCE_TREE_ROOT.resolve()
+    for candidate in (normalized, resolved):
+        try:
+            candidate.relative_to(source_root)
+        except ValueError:
+            continue
+        break
+    else:
         return normalized
     fail(
         "DIRECT_CLOSURE_MUTATION_OUTPUT_POLICY_FAIL",
@@ -552,6 +575,8 @@ def main() -> None:
     args = parser.parse_args()
     output_path = validate_output_path(args.output, args.allow_authoritative_output)
     prepare_output(output_path)
+    if not __debug__:
+        raise SystemExit("DIRECT_CLOSURE_MUTATION_OPTIMIZED_MODE_FORBIDDEN")
     if args.timeout_seconds <= 0:
         fail("MUTATION_TIMEOUT_INVALID")
     source = args.package_root.resolve()
