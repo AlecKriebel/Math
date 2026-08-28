@@ -1304,3 +1304,48 @@ bytes pass complete rendered-page inspection.
 Best-guess completion toward this referee-repair workstream: **92%**.  The
 remaining machine work is commit-bound source reproduction, archive and
 referee-package resealing, Google Drive synchronization, and final audits.
+
+## 2026-08-28T05:33:18Z — referee findings fully discharged and handoff sealed
+
+- Completed the two-build source reproduction for the corrected 38-page
+  article and 14-page supplement at pushed source commit
+  `5a6d64cb2a76e890d7baaef3ba5ac9861c1d029f`; both builds match the delivered
+  PDFs byte-for-byte.  PDF SHA-256 values are
+  `2a5c71feaadb0056cd738f6344eca2eb5ee09784ba542070238cc476b141b8db`
+  and
+  `a1b349bf2ffbdbd290ca2254159dc1304ef299bdbbf8792e7340526d60e985e8`.
+- Built the compact and full proof archives twice.  Both pairs are
+  byte-identical, structurally valid, and pass extracted artifact-only
+  binding/integrity replay.  Their SHA-256 values are
+  `3cdf9abb59dfdc86e1e95593e7d8aac02802c277b414c931229b57fc22957d0d`
+  and
+  `6fe6ed56e6c5252fdb269655ec508913c4bd5076448e598fd6141d1b913bc101`.
+- Rebuilt the neutral independent-referee package from that exact full archive.
+  It seals 622 payload files / 160,506,893 bytes, binds source commit
+  `5a6d64cb...`, passes its Git-independent integrity verifier, and reconstructs
+  the documented 54-command mathematical regeneration plan.  The canonical
+  package is under `release/dist/`; a copied referee-facing folder is at
+  `~/Documents/Math/k3p_level2_independent_referee_2026-08-27`.
+- Copied, without moving, all 35 tracked TeX/Bib sources to the local Google
+  Drive `Papers/K3P Level-2 Identifiability` folder.  The destination contains
+  exactly those files with zero hash mismatches; its logical source-set hash is
+  `cfb41635857a578bbea8c43c4726eccf4fe647f2db382364f5b843f5270e7e4e`.
+- The final post-typesetting quick suite passes with payload
+  `0f6f9537884e8265ba80ae816acb2fe33118b1d8a3c984dc1a0c9fab4df85bd8`.
+  Submission validation remains intentionally `NOT_READY`, with no structural
+  errors and 26 human/administrative or upload blockers.  No tag, DOI, license,
+  journal upload, or external communication was created.
+- Preserved two ignored source-reproduction reports from the superseded
+  `98308677...` snapshot under
+  `release/work/legacy_referee_source_reproduction_98308677/` so that their old
+  PDF hashes cannot be mistaken for the current delivered evidence.
+
+Strongest verified result: the referee's material C1/C2 conditions, verifier
+hardening, literature corrections, release-documentation findings, and
+editorial points are all repaired, active, regenerated, and packaged with a
+neutral review brief and exact integrity bindings.
+
+Best-guess completion toward the mathematical classification and referee-repair
+goals: **100%**.  Best-guess completion toward the local paper/certification
+package goal: **100%**.  Best-guess completion toward the external
+journal/DOI release goal: **70%**.

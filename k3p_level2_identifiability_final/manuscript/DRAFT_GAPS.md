@@ -14,11 +14,14 @@ submission build.
    supplement have been rebuilt and inspected page by page with embedded
    fonts.
 
-2. **Distribution reseal.**  The current TeX/PDF source checkpoint must be
-   committed and pushed before its two-build source reproduction, compact/full
-   archive construction, neutral referee-package rebuild, and Google Drive
-   TeX/Bib synchronization.  Those post-commit operations must be recorded in
-   the release ledger without rewriting the mathematical proof snapshot.
+2. **Distribution reseal.**  The corrected TeX/PDF source checkpoint is pushed
+   at `5a6d64cb2a76e890d7baaef3ba5ac9861c1d029f`.  Two-build source
+   reproduction, deterministic compact/full archive construction, neutral
+   referee-package rebuilding, and byte-for-byte synchronization of all 35
+   tracked TeX/Bib files to the requested Google Drive paper folder pass for
+   that snapshot.  The archive and package manifests are the authoritative
+   byte-level bindings; the post-run release ledger records their hashes
+   without rewriting the mathematical proof snapshot.
 
 3. **Author and post-typesetting review.**  Independent mathematical and
    evidence audits of the targeted bridge, sunlet, genericity, and noncut-
@@ -33,11 +36,11 @@ submission build.
    any corresponding-email field remain outside this mathematical draft
    until supplied by the user.
 
-5. **Remaining submission gate.**  Embedded-font checks and independent
-   page-by-page inspection pass for the current availability-linked paper
-   bytes.  Commit-bound two-build source reproduction and distribution
-   packaging remain part of item 2.  Journal-specific manuscripts and cover
-   letters remain blocked on the author-confirmed
+5. **Remaining submission gate.**  Embedded-font checks, independent
+   page-by-page inspection, commit-bound two-build source reproduction, and
+   local distribution packaging pass for the current availability-linked
+   paper bytes.  Journal-specific manuscripts and cover letters remain
+   blocked on the author-confirmed
    declaration, address, license, and persistent-archive metadata recorded
    under `submission/`; they must be regenerated and checked after those
    fields are fixed.

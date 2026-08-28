@@ -228,3 +228,47 @@ tag/release approval, DOI, and portal actions remain human-controlled.
 Best-guess completion: **92% of the referee-repair release workstream; 70% of
 the external-submission goal**.  Submission metadata, license, tag/release
 approval, DOI, and portal actions remain human-controlled.
+
+## 2026-08-28T05:33:18Z — final source, archive, and neutral-referee handoff
+
+- Exact pushed paper/source snapshot:
+  `5a6d64cb2a76e890d7baaef3ba5ac9861c1d029f`.
+- The 38-page article and 14-page supplement have SHA-256 values
+  `2a5c71feaadb0056cd738f6344eca2eb5ee09784ba542070238cc476b141b8db`
+  and
+  `a1b349bf2ffbdbd290ca2254159dc1304ef299bdbbf8792e7340526d60e985e8`.
+  Each source package rebuilt twice and matched its delivered PDF exactly.
+- Article/supplement source ZIP SHA-256 values:
+  `98a23fac8fee67510ad53f435ed17ecaae983a122bb0d8baa2b6b48c236d81f5`
+  and
+  `0e26f9b3ae11fad49643776509db9e254c8cbfb16f1714d5c575d48711badec5`.
+- Compact/full proof archive SHA-256 values:
+  `3cdf9abb59dfdc86e1e95593e7d8aac02802c277b414c931229b57fc22957d0d`
+  and
+  `6fe6ed56e6c5252fdb269655ec508913c4bd5076448e598fd6141d1b913bc101`.
+  Independent second builds are byte-identical, structurally valid, and pass
+  extracted artifact-only binding/integrity replay.
+- The neutral referee package binds the same source snapshot and full archive,
+  seals 622 payload files / 160,506,893 bytes, passes integrity verification,
+  and reconstructs the intended 54-command portable regeneration plan.  Its
+  manifest SHA-256 is
+  `090741f2cf6aa05ee5d9d65528e66980bb6eefd32c7cd25d49c8906fda83c1d0`.
+- All 35 tracked TeX/Bib paths were copied to the requested Google Drive paper
+  folder and verified with zero missing, extra, or mismatched files.  Their
+  logical source-set SHA-256 is
+  `cfb41635857a578bbea8c43c4726eccf4fe647f2db382364f5b843f5270e7e4e`.
+- The post-typesetting quick suite passed with payload
+  `0f6f9537884e8265ba80ae816acb2fe33118b1d8a3c984dc1a0c9fab4df85bd8`.
+  The successful full and 55-command one-shot runs at `203e114a...` were not
+  repeated for packaging-only work.
+- A final read-only audit found two ignored source-reproduction reports from
+  the superseded `98308677...` snapshot.  They and their transcripts were
+  moved intact to
+  `release/work/legacy_referee_source_reproduction_98308677/`; no delivered or
+  tracked evidence was removed.
+
+Best-guess completion: **100% of the referee-repair mathematical and local
+release workstream; 70% of the external-submission goal**.  Submission remains
+fail-closed at `NOT_READY` with zero structural errors and 26 human/release
+blockers.  License, tag/release approval, DOI, and portal actions remain
+human-controlled.

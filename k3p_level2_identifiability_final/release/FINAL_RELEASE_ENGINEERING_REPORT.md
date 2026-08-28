@@ -1,11 +1,13 @@
 # Final release engineering report
 
-Status: **strengthened proof fixed point complete; commit-bound distribution reseal and submission metadata pending**
+Status: **strengthened proof and local distribution reseal complete; submission metadata pending**
 
 This report certifies the immutable snapshots named below.  The self-contained
-C1/C2 strengthening has completed its one-shot proof regeneration; its current
-TeX/PDF checkpoint still requires commit-bound source/archive/referee-package
-resealing before the distribution ledger is final.
+C1/C2 strengthening, its one-shot proof regeneration, and the commit-bound
+TeX/PDF, source-archive, proof-archive, referee-package, and Google Drive
+handoff checks are complete.  The mathematical proof snapshot and the later
+typeset-source snapshot are named separately so that post-run bookkeeping does
+not recursively change the bytes it records.
 
 The deterministic quick/full/regeneration orchestration, canonical TAR.GZ and
 ZIP construction, compact verifier packaging, fixed-toolchain PDF source
@@ -16,6 +18,61 @@ one-shot confirmation.
 
 No K3P DOI, license selection, Git tag, GitHub release, Zenodo record, journal
 upload, or external communication has been created or claimed.
+
+## Final self-contained referee-repair distribution
+
+The corrected 38-page article and 14-page reader supplement are pushed at
+exact source snapshot `5a6d64cb2a76e890d7baaef3ba5ac9861c1d029f`.  Their SHA-256
+values are, respectively,
+`2a5c71feaadb0056cd738f6344eca2eb5ee09784ba542070238cc476b141b8db`
+and
+`a1b349bf2ffbdbd290ca2254159dc1304ef299bdbbf8792e7340526d60e985e8`.
+Every page was rendered and inspected, all fonts are embedded, and neither PDF
+contains the retired internal outcome wording.
+
+Both source packages rebuilt twice and matched those PDFs byte-for-byte.  The
+article and supplement logical reproduction payloads are
+`655417765a511a80024794e99ebdceaf682321f06c76c4cb0cbdf9d4435fb7bb`
+and
+`40ec5ba42ce2b5f01598fd79e936bfc39f47504a95892affa1cea8d9fa5c5614`;
+their source ZIP SHA-256 values are
+`98a23fac8fee67510ad53f435ed17ecaae983a122bb0d8baa2b6b48c236d81f5`
+and
+`0e26f9b3ae11fad49643776509db9e254c8cbfb16f1714d5c575d48711badec5`.
+
+Canonical and independent second builds of the compact and full proof archives
+are byte-identical, structurally valid, and pass extracted artifact-only
+binding/integrity replay.  Their SHA-256 values are
+`3cdf9abb59dfdc86e1e95593e7d8aac02802c277b414c931229b57fc22957d0d`
+and
+`6fe6ed56e6c5252fdb269655ec508913c4bd5076448e598fd6141d1b913bc101`.
+The latter contains 594 archive members and identifies the exact source
+snapshot above.
+
+The rebuilt neutral referee handoff contains 622 sealed payload files totaling
+160,506,893 bytes.  Its outer manifest has SHA-256
+`090741f2cf6aa05ee5d9d65528e66980bb6eefd32c7cd25d49c8906fda83c1d0`,
+binds the same source snapshot and full-archive hash, passes independent
+integrity checking, and reconstructs the intended 54-command portable
+mathematical regeneration plan without execution.  A convenient copied folder
+is at `~/Documents/Math/k3p_level2_independent_referee_2026-08-27`; the
+canonical build remains under `release/dist/`.
+
+All 35 tracked TeX/Bib source paths were copied, not moved, to the requested
+Google Drive `Papers/K3P Level-2 Identifiability` folder.  The destination has
+exactly those 35 files, zero missing/extra/mismatched paths, and logical source
+set SHA-256
+`cfb41635857a578bbea8c43c4726eccf4fe647f2db382364f5b843f5270e7e4e`.
+This operational copy is not theorem evidence.
+
+The post-typesetting quick suite at the same source snapshot passed with
+payload
+`0f6f9537884e8265ba80ae816acb2fe33118b1d8a3c984dc1a0c9fab4df85bd8`.
+The full proof and one-shot regeneration evidence remains the exact execution
+at proof snapshot `203e114ace0ead3852f109a3713acda37bf74e65` recorded immediately
+below; no long producer was rerun merely for typesetting or packaging.
+Submission validation remains deliberately `NOT_READY`, with zero structural
+errors and 26 human/administrative or upload blockers.
 
 ## Strengthened referee-repair proof fixed point
 
@@ -44,9 +101,8 @@ ended with fresh integrated replay plus both mutation gates.
 The corrected fixed-epoch article and reader supplement now have 38 and 14
 pages, respectively.  Every page has been rendered and inspected, all fonts
 are embedded, and the article availability statement points to the exact proof
-snapshot above.  Their commit-bound source reproduction and distribution
-hashes are intentionally deferred to the post-commit section that will follow
-this checkpoint.
+snapshot above.  Their later commit-bound source reproduction and distribution
+hashes are recorded in the final distribution section above.
 
 ## Immutable-link final source reseal
 
