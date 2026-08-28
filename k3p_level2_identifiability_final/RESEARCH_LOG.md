@@ -1237,3 +1237,39 @@ The clean quick/full checks and the single 55-command full regeneration remain
 before downstream PDF and archive resealing.
 
 Best-guess completion toward this referee-repair workstream: **82%**.
+
+## 2026-08-28T01:55:16Z — portable anchor-mutation reseal after fail-closed full replay
+
+- The first clean full-suite attempt stopped at the fresh/stored non-four
+  anchor mutation comparison.  This was a reproducibility-certificate defect,
+  not a mathematical failure: the v2 payload sealed a variable runtime in
+  clean stdout, interpreter- and path-dependent traceback bytes, and hashes of
+  temporary gzip files whose headers included creation metadata.
+- Replaced the mutation certificate with schema v3.  Subprocess output is
+  checked before sealing for explicit stable sentinels or failure codes but is
+  not stored in the logical payload.  Coherently rebound ledger attacks are
+  committed by row census, ordered logical row root, decompressed byte count,
+  and decompressed SHA-256; temporary compressed-byte hashes remain internal
+  to the attacked binding layers and are excluded from the report.
+- Made all temporary gzip rewrites canonical (`mtime=0`, empty embedded
+  filename, canonical JSONL) and verified byte identity with a two-build
+  microtest.  The strengthened standalone suite then rejected all 16 attacks
+  in 406.263 seconds with payload
+  `1ce5f3f9a5947ed4814c1d99b6b21ca85541931dcef36234e3889bb8730d43c5`.
+- Expanded the integrated gate to reject any reintroduction of raw stdout,
+  traceback tails, or ephemeral rebound byte hashes and to validate exact
+  stable failure codes and logical ledger commitments.  Its 27-case mutation
+  suite passes with payload
+  `9cca72c50115e89d0f287fb4f09dd695f0c4d3be59183965644f653fb71b755e`;
+  the 85-binding artifact snapshot passes with payload
+  `203bfab39d97a8b031b86f58a3d02d549fefed8196a1c34c9b41be2eef53623d`.
+- The release-input gate passes with 106 active bindings and zero structural
+  submission errors.  Submission remains deliberately `NOT_READY` for the 26
+  human/administrative fields.  The corrected clean full suite and the one-shot
+  55-command regeneration remain pending.
+
+Strongest verified result at this checkpoint: the referee repairs remain
+mathematically certified, and the only failure found by the first full replay
+has been converted into a portable, fail-closed evidence interface.
+
+Best-guess completion toward this referee-repair workstream: **84%**.

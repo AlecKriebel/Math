@@ -818,8 +818,14 @@ def validate_anchor_universe(project: Path, bindings: dict) -> None:
     mutation = load(project, mutation_path)
     verify_payload(mutation, "non-four anchor mutations", ("operational",))
     cases = mutation.get("cases", [])
-    require(mutation.get("schema") == "k3p-non-four-anchor-universe-mutations-v2" and
+    require(mutation.get("schema") == "k3p-non-four-anchor-universe-mutations-v3" and
             mutation.get("status") == "PASS" and
+            mutation.get("diagnostic_policy") == {
+                "stdout_bytes_excluded_from_payload": True,
+                "ephemeral_compressed_bytes_excluded_from_payload": True,
+                "rejection_signals_checked_before_sealing": True,
+                "mutated_ledgers_committed_logically": True,
+            } and
             mutation.get("counts") == {
                 "clean_controls": 1, "mutations": 16,
                 "rejected": 16, "accepted": 0,
@@ -829,12 +835,143 @@ def validate_anchor_universe(project: Path, bindings: dict) -> None:
             "anchor-universe mutation census")
     clean = [row for row in cases if row.get("name") == "clean_control"]
     rejected = [row for row in cases if row.get("name") != "clean_control"]
-    require(len(clean) == 1 and clean[0].get("observed") == "accept" and
+    require(len(clean) == 1 and clean[0].get("expected") == "accept" and
+            clean[0].get("observed") == "accept" and
+            clean[0].get("returncode") == 0 and
+            clean[0].get("validated_sentinel") ==
+            "K3P_INDEPENDENT_NON_FOUR_ANCHOR_UNIVERSE_PASS" and
+            clean[0].get("four_port_crosswalk_control", {}).get("expected") ==
+            "accept" and
+            clean[0].get("four_port_crosswalk_control", {}).get("observed") ==
+            "accept" and
+            clean[0].get("four_port_crosswalk_control", {}).get("returncode") == 0 and
+            clean[0].get("four_port_crosswalk_control", {}).get(
+                "validated_sentinel") ==
+            "K3P_COMPLETE_ANCHOR_UNIVERSE_CROSSWALK_PASS" and
             {row.get("name") for row in rejected} == EXPECTED_NON_FOUR_ANCHOR_MUTATIONS and
-            all(row.get("observed") == "reject" and row.get("returncode") != 0
+            all(row.get("expected") == "reject" and
+                row.get("observed") == "reject" and row.get("returncode") != 0
                 for row in rejected),
             "non-four anchor mutation cases")
+
+    prohibited_case_keys = {
+        "stdout_sha256", "stdout_tail", "manifest_ledger_sha256",
+        "manifest_payload_sha256", "four_summary_raw_ledger_sha256",
+        "four_verification_summary_sha256",
+    }
+    observed_case_keys: set[str] = set()
+    pending: list[object] = [cases]
+    while pending:
+        item = pending.pop()
+        if isinstance(item, dict):
+            observed_case_keys.update(item)
+            pending.extend(item.values())
+        elif isinstance(item, list):
+            pending.extend(item)
+    require(not (prohibited_case_keys & observed_case_keys),
+            "non-four mutation payload excludes ephemeral diagnostics")
+
+    semantic_codes = {
+        "four_raw_equality_parent_omitted_after_rebinding":
+            "FOUR_RAW_EQUALITY_COUNT",
+        "used_one_port_equality_status_corrupted_after_rebinding":
+            "FOUR_ONE_PORT_EQUALITY_STATUS",
+        "used_two_port_status_corrupted_after_rebinding":
+            "FOUR_TWO_PORT_NONE_STATUS",
+        "extra_terminal_descendant_identity_corrupted_after_rebinding":
+            "FOUR_EXTRA_TERMINAL_IDS",
+    }
+    by_name = {row["name"]: row for row in rejected}
+    ordinary_names = EXPECTED_NON_FOUR_ANCHOR_MUTATIONS - set(semantic_codes)
+    require(all(by_name[name].get("validated_failure_sentinel") ==
+                "K3P_INDEPENDENT_NON_FOUR_ANCHOR_UNIVERSE_FAIL"
+                for name in ordinary_names),
+            "non-four mutation stable rejection sentinels")
+    require(all(by_name[name].get("expected_failure_code") == code and
+                by_name[name].get("observed_failure_code") == code
+                for name, code in semantic_codes.items()) and
+            by_name["optimized_mode"].get("expected_failure_code") ==
+            "optimized mode forbidden" and
+            by_name["optimized_mode"].get("observed_failure_code") ==
+            "optimized mode forbidden",
+            "non-four mutation stable failure codes")
+
+    def portable_ledger(record: object, rows: int,
+                        status_counts: dict[str, int]) -> bool:
+        if not isinstance(record, dict):
+            return False
+        hashes = (record.get("ordered_hash_root"),
+                  record.get("uncompressed_sha256"))
+        return (
+            record.get("matched") == 1 and record.get("rows") == rows and
+            record.get("status_counts") == status_counts and
+            isinstance(record.get("uncompressed_bytes"), int) and
+            record["uncompressed_bytes"] > 0 and
+            all(isinstance(value, str) and len(value) == 64 and
+                all(char in "0123456789abcdef" for char in value)
+                for value in hashes)
+        )
+
+    folded = by_name["omit_tree_seed"].get(
+        "folded_four_port_raw_equality_omission", {})
+    omission = by_name[
+        "four_raw_equality_parent_omitted_after_rebinding"
+    ].get("coherent_rebinding", {})
+    require(folded.get("omitted_raw_id") == 137124 and
+            folded.get("expected_failure_code") == "FOUR_RAW_LEDGER_BINDING" and
+            folded.get("observed_failure_code") == "FOUR_RAW_LEDGER_BINDING" and
+            folded.get("expected") == folded.get("observed") == "reject" and
+            folded.get("returncode") != 0 and
+            portable_ledger(folded.get("mutated_ledger"), 405_215, {}) and
+            by_name["four_raw_equality_parent_omitted_after_rebinding"].get(
+                "omitted_raw_id") == 137124 and
+            omission.get("rebound_inputs") == [
+                "four_port_replay_summary",
+                "independent_four_port_verification",
+            ] and omission.get("mutated_ledger") == folded.get("mutated_ledger"),
+            "folded four-port omission mutation commitment")
+
+    one = by_name[
+        "used_one_port_equality_status_corrupted_after_rebinding"
+    ].get("coherent_rebinding", {})
+    two = by_name[
+        "used_two_port_status_corrupted_after_rebinding"
+    ].get("coherent_rebinding", {})
+    extra = by_name[
+        "extra_terminal_descendant_identity_corrupted_after_rebinding"
+    ].get("coherent_rebinding", {})
+    require(by_name[
+                "used_one_port_equality_status_corrupted_after_rebinding"
+            ].get("mutated_key") == ["four:raw154873", 0, 0] and
+            one.get("rebound_inputs") == ["one_port_probe_manifest"] and
+            portable_ledger(one.get("mutated_ledger"), 29_964, {
+                "displayed_quartet_mismatch": 27_758,
+                "isomorphic": 1_916,
+                "k3p_tree_sunlet_sos": 99,
+                "triangle": 191,
+            }) and
+            by_name[
+                "used_two_port_status_corrupted_after_rebinding"
+            ].get("mutated_key") == ["P1:four:raw154873:0:0", 0, 6] and
+            two.get("rebound_inputs") == ["two_port_probe_manifest"] and
+            portable_ledger(two.get("mutated_ledger"), 544_571, {
+                "displayed_quartet_mismatch": 511_265,
+                "isomorphic": 30_970,
+                "k3p_tree_sunlet_sos": 576,
+                "triangle": 1_760,
+            }) and
+            by_name[
+                "extra_terminal_descendant_identity_corrupted_after_rebinding"
+            ].get("mutated_raw_id") == [202225, 999999999] and
+            extra.get("rebound_inputs") == [
+                "four_port_replay_summary",
+                "independent_four_port_verification",
+            ] and portable_ledger(extra.get("mutated_ledger"), 405_216, {}),
+            "coherently rebound mutation logical commitments")
     require(mutation.get("bindings") == {
+        "mutation_driver_sha256": sha_file(
+            project / f"{base}/test_non_four_anchor_mutations.py"
+        ),
         "artifact_sha256": sha_file(project / artifact_path),
         "verifier_sha256": sha_file(
             project / f"{base}/verify_non_four_anchor_universe.py"

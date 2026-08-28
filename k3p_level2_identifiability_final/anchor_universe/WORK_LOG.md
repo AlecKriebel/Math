@@ -81,3 +81,22 @@ downstream fixed-full completeness boundary.
   status, used P2 separation status, and extra-terminal identity checks.
   The report payload is
   `90344a9dc622e129d8e03a04ac1334796b46663bfab2fdd154ca1fb458e879e3`.
+
+## 2026-08-28T01:55:16Z — portable mutation-certificate v3
+
+Completion estimate: **100%** toward the scoped anchor-universe gate; final
+release replay remains with the parent effort.
+
+- Removed runtime, traceback, absolute-path, and temporary compressed-byte
+  data from the logical mutation payload.  Every subprocess result is still
+  checked before sealing for its stable pass sentinel or exact failure code.
+- Temporary mutation ledgers are written as canonical JSONL inside gzip streams
+  with `mtime=0` and no embedded filename.  The report binds decompressed
+  bytes/content plus exact logical row censuses and ordered row roots, so its
+  theorem payload is independent of gzip implementation details.
+- The standalone suite rejects all 16 attacks.  Report SHA-256:
+  `3a6358848df8f677358b16a42bb96e913de35c57f78c5870a491e37dfcf24ae4`;
+  logical payload:
+  `1ce5f3f9a5947ed4814c1d99b6b21ca85541931dcef36234e3889bb8730d43c5`.
+- The integrated gate now checks the v3 portability policy, exact diagnostic
+  codes, logical commitments, and the absence of forbidden ephemeral fields.

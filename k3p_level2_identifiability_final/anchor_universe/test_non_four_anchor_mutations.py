@@ -284,17 +284,27 @@ def run_crosswalk_with_rebound_bindings(
     return command, result
 
 
-def omitted_four_port_raw_ledger(source: Path, target: Path) -> None:
-    """Delete one equality row while preserving a valid gzip/JSONL stream."""
-    omitted = 0
-    with gzip.open(source, "rt") as reader, gzip.open(target, "wt") as writer:
-        for line in reader:
-            row = json.loads(line)
-            if row.get("raw_id") == 137124:
-                omitted += 1
-                continue
-            writer.write(line)
-    require(omitted == 1, "FOUR_PORT_OMISSION_TARGET_COUNT")
+def portable_gzip_metadata(path: Path) -> dict[str, Any]:
+    """Commit to decompressed content, independent of gzip/zlib encoding."""
+    metadata = gzip_metadata(path)
+    return {
+        "uncompressed_bytes": metadata["uncompressed_bytes"],
+        "uncompressed_sha256": metadata["uncompressed_sha256"],
+    }
+
+
+def omitted_four_port_raw_ledger(source: Path, target: Path) -> dict[str, Any]:
+    """Delete one equality row and write a deterministic gzip/JSONL stream."""
+    census = transform_gzip_jsonl(
+        source,
+        target,
+        lambda row: None if row.get("raw_id") == 137124 else row,
+    )
+    require(census["matched"] == 1, "FOUR_PORT_OMISSION_TARGET_COUNT")
+    return {
+        **census,
+        **portable_gzip_metadata(target),
+    }
 
 
 def transform_gzip_jsonl(
@@ -307,7 +317,9 @@ def transform_gzip_jsonl(
     status_counts: collections.Counter[str] = collections.Counter()
     ordered_root = digest([])
     rows = 0
-    with gzip.open(source, "rt") as reader, target.open("wb") as raw_output:
+    with gzip.open(source, "rt", encoding="utf-8") as reader, target.open(
+        "wb"
+    ) as raw_output:
         compressed = gzip.GzipFile(
             filename="", mode="wb", fileobj=raw_output, mtime=0
         )
@@ -556,6 +568,7 @@ def main(argv: list[str] | None = None) -> int:
     artifact_path = args.artifact.resolve()
     pristine = json.loads(artifact_path.read_text())
     cases = []
+    omission_commitment: dict[str, Any] | None = None
     with tempfile.TemporaryDirectory(prefix="k3p_non_four_mutations_") as raw:
         temporary = Path(raw)
         clean_command, clean = run_verifier(
@@ -581,16 +594,20 @@ def main(argv: list[str] | None = None) -> int:
                 "expected": "accept",
                 "observed": "accept",
                 "returncode": clean.returncode,
-                "stdout_sha256": hashlib.sha256(clean.stdout.encode()).hexdigest(),
+                "validated_sentinel": (
+                    "K3P_INDEPENDENT_NON_FOUR_ANCHOR_UNIVERSE_PASS"
+                ),
                 "command": command_record(
                     optimized=False,
                     artifact="anchor_universe/artifacts/NON_FOUR_ANCHOR_UNIVERSE.json",
                 ),
                 "four_port_crosswalk_control": {
+                    "expected": "accept",
+                    "observed": "accept",
                     "returncode": clean_crosswalk.returncode,
-                    "stdout_sha256": hashlib.sha256(
-                        clean_crosswalk.stdout.encode()
-                    ).hexdigest(),
+                    "validated_sentinel": (
+                        "K3P_COMPLETE_ANCHOR_UNIVERSE_CROSSWALK_PASS"
+                    ),
                     "command": crosswalk_command_record(
                         "four_port_atlas/full_universe_replay/artifacts/"
                         "full_directional_ledger.jsonl.gz"
@@ -617,15 +634,18 @@ def main(argv: list[str] | None = None) -> int:
                 "expected": "reject",
                 "observed": "reject",
                 "returncode": result.returncode,
-                "stdout_sha256": hashlib.sha256(result.stdout.encode()).hexdigest(),
-                "stdout_tail": result.stdout[-800:],
+                "validated_failure_sentinel": (
+                    "K3P_INDEPENDENT_NON_FOUR_ANCHOR_UNIVERSE_FAIL"
+                ),
                 "command": command_record(
                     optimized=False, artifact=f"{{mutation_{number:02d}}}"
                 ),
             }
             if name == "omit_tree_seed":
                 omitted_ledger = temporary / "four_raw_equality_omitted.jsonl.gz"
-                omitted_four_port_raw_ledger(FOUR_RAW_LEDGER, omitted_ledger)
+                omission_commitment = omitted_four_port_raw_ledger(
+                    FOUR_RAW_LEDGER, omitted_ledger
+                )
                 omission_command, omission = run_crosswalk(
                     omitted_ledger,
                     temporary / "four_raw_omission_crosswalk_report.json",
@@ -643,10 +663,9 @@ def main(argv: list[str] | None = None) -> int:
                     "expected": "reject",
                     "observed": "reject",
                     "returncode": omission.returncode,
-                    "stdout_sha256": hashlib.sha256(
-                        omission.stdout.encode()
-                    ).hexdigest(),
-                    "stdout_tail": omission.stdout[-800:],
+                    "expected_failure_code": "FOUR_RAW_LEDGER_BINDING",
+                    "observed_failure_code": "FOUR_RAW_LEDGER_BINDING",
+                    "mutated_ledger": omission_commitment,
                     "command": crosswalk_command_record(
                         "{four_raw_equality_omitted}"
                     ),
@@ -657,6 +676,10 @@ def main(argv: list[str] | None = None) -> int:
 
         omitted_ledger = temporary / "four_raw_equality_omitted.jsonl.gz"
         require(omitted_ledger.exists(), "FOUR_PORT_OMISSION_FIXTURE_MISSING")
+        require(
+            omission_commitment is not None,
+            "FOUR_PORT_OMISSION_COMMITMENT_MISSING",
+        )
         omission_summary = temporary / "four_raw_omission_summary.json"
         omission_verification = temporary / "four_raw_omission_verification.json"
         rebound_four_port_bindings(
@@ -677,13 +700,16 @@ def main(argv: list[str] | None = None) -> int:
                 "name": "four_raw_equality_parent_omitted_after_rebinding",
                 "expected": "reject",
                 "expected_failure_code": "FOUR_RAW_EQUALITY_COUNT",
+                "observed_failure_code": "FOUR_RAW_EQUALITY_COUNT",
                 "observed": "reject",
                 "returncode": result.returncode,
-                "stdout_sha256": hashlib.sha256(result.stdout.encode()).hexdigest(),
-                "stdout_tail": result.stdout[-800:],
+                "omitted_raw_id": 137124,
                 "coherent_rebinding": {
-                    "four_summary_raw_ledger_sha256": sha_file(omitted_ledger),
-                    "four_verification_summary_sha256": sha_file(omission_summary),
+                    "rebound_inputs": [
+                        "four_port_replay_summary",
+                        "independent_four_port_verification",
+                    ],
+                    "mutated_ledger": omission_commitment,
                 },
                 "command": rebound_crosswalk_command_record(
                     raw_ledger="{four_raw_equality_omitted}",
@@ -721,17 +747,16 @@ def main(argv: list[str] | None = None) -> int:
                 "name": "used_one_port_equality_status_corrupted_after_rebinding",
                 "expected": "reject",
                 "expected_failure_code": "FOUR_ONE_PORT_EQUALITY_STATUS",
+                "observed_failure_code": "FOUR_ONE_PORT_EQUALITY_STATUS",
                 "observed": "reject",
                 "returncode": result.returncode,
-                "stdout_sha256": hashlib.sha256(result.stdout.encode()).hexdigest(),
-                "stdout_tail": result.stdout[-800:],
                 "mutated_key": ["four:raw154873", 0, 0],
                 "coherent_rebinding": {
-                    "manifest_ledger_sha256": sha_file(mutated_one_ledger),
-                    "manifest_payload_sha256": json.loads(
-                        mutated_one_manifest.read_text()
-                    )["payload_sha256"],
-                    "ordered_hash_root": one_census["ordered_hash_root"],
+                    "rebound_inputs": ["one_port_probe_manifest"],
+                    "mutated_ledger": {
+                        **one_census,
+                        **portable_gzip_metadata(mutated_one_ledger),
+                    },
                 },
                 "command": rebound_crosswalk_command_record(
                     raw_ledger="four_port_atlas/full_universe_replay/artifacts/"
@@ -769,17 +794,16 @@ def main(argv: list[str] | None = None) -> int:
                 "name": "used_two_port_status_corrupted_after_rebinding",
                 "expected": "reject",
                 "expected_failure_code": "FOUR_TWO_PORT_NONE_STATUS",
+                "observed_failure_code": "FOUR_TWO_PORT_NONE_STATUS",
                 "observed": "reject",
                 "returncode": result.returncode,
-                "stdout_sha256": hashlib.sha256(result.stdout.encode()).hexdigest(),
-                "stdout_tail": result.stdout[-800:],
                 "mutated_key": ["P1:four:raw154873:0:0", 0, 6],
                 "coherent_rebinding": {
-                    "manifest_ledger_sha256": sha_file(mutated_two_ledger),
-                    "manifest_payload_sha256": json.loads(
-                        mutated_two_manifest.read_text()
-                    )["payload_sha256"],
-                    "ordered_hash_root": two_census["ordered_hash_root"],
+                    "rebound_inputs": ["two_port_probe_manifest"],
+                    "mutated_ledger": {
+                        **two_census,
+                        **portable_gzip_metadata(mutated_two_ledger),
+                    },
                 },
                 "command": rebound_crosswalk_command_record(
                     raw_ledger="four_port_atlas/full_universe_replay/artifacts/"
@@ -815,14 +839,19 @@ def main(argv: list[str] | None = None) -> int:
                 "name": "extra_terminal_descendant_identity_corrupted_after_rebinding",
                 "expected": "reject",
                 "expected_failure_code": "FOUR_EXTRA_TERMINAL_IDS",
+                "observed_failure_code": "FOUR_EXTRA_TERMINAL_IDS",
                 "observed": "reject",
                 "returncode": result.returncode,
-                "stdout_sha256": hashlib.sha256(result.stdout.encode()).hexdigest(),
-                "stdout_tail": result.stdout[-800:],
                 "mutated_raw_id": [202225, 999999999],
                 "coherent_rebinding": {
-                    "four_summary_raw_ledger_sha256": sha_file(extra_terminal_ledger),
-                    "four_verification_summary_sha256": sha_file(extra_summary),
+                    "rebound_inputs": [
+                        "four_port_replay_summary",
+                        "independent_four_port_verification",
+                    ],
+                    "mutated_ledger": {
+                        **extra_census,
+                        **portable_gzip_metadata(extra_terminal_ledger),
+                    },
                 },
                 "command": rebound_crosswalk_command_record(
                     raw_ledger="{four_extra_terminal_id_mutated}",
@@ -841,14 +870,21 @@ def main(argv: list[str] | None = None) -> int:
             and "K3P_INDEPENDENT_NON_FOUR_ANCHOR_UNIVERSE_FAIL" in optimized.stdout
         )
         require(optimized_rejected, "OPTIMIZED_MODE_ACCEPTED")
+        require(
+            "optimized mode forbidden" in optimized.stdout,
+            "OPTIMIZED_MODE_DIAGNOSTIC",
+        )
         cases.append(
             {
                 "name": "optimized_mode",
                 "expected": "reject",
                 "observed": "reject",
                 "returncode": optimized.returncode,
-                "stdout_sha256": hashlib.sha256(optimized.stdout.encode()).hexdigest(),
-                "stdout_tail": optimized.stdout[-800:],
+                "validated_failure_sentinel": (
+                    "K3P_INDEPENDENT_NON_FOUR_ANCHOR_UNIVERSE_FAIL"
+                ),
+                "expected_failure_code": "optimized mode forbidden",
+                "observed_failure_code": "optimized mode forbidden",
                 "command": command_record(
                     optimized=True,
                     artifact="anchor_universe/artifacts/NON_FOUR_ANCHOR_UNIVERSE.json",
@@ -857,9 +893,16 @@ def main(argv: list[str] | None = None) -> int:
         )
     mutation_count = len(MUTATIONS) + 1 + len(semantic_cases)
     report = {
-        "schema": "k3p-non-four-anchor-universe-mutations-v2",
+        "schema": "k3p-non-four-anchor-universe-mutations-v3",
         "status": "PASS",
+        "diagnostic_policy": {
+            "stdout_bytes_excluded_from_payload": True,
+            "ephemeral_compressed_bytes_excluded_from_payload": True,
+            "rejection_signals_checked_before_sealing": True,
+            "mutated_ledgers_committed_logically": True,
+        },
         "bindings": {
+            "mutation_driver_sha256": sha_file(Path(__file__).resolve()),
             "artifact_sha256": sha_file(artifact_path),
             "verifier_sha256": sha_file(VERIFIER),
             "crosswalk_sha256": sha_file(CROSSWALK),
