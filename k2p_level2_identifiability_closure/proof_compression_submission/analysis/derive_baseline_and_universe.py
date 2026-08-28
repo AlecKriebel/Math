@@ -34,9 +34,9 @@ BASELINE_MD = HERE / "PROOF_COMPRESSION_BASELINE.md"
 UNIVERSE_MD = HERE / "FINITE_UNIVERSE_COMPLETENESS.md"
 
 RELEASE_LOCK = "work/final_theorem_release/RELEASE_LOCK.json"
-RELEASE_LOCK_SHA256 = "ae48ec2e052db0aec8fca25482d75847fc34333cc91e9eaa7fc6b49e35c55914"
+RELEASE_LOCK_SHA256 = "0963636c3d4026a74ef926a0dc122c81a08b211b4d151ecc955c790e16cc5a9a"
 RELEASE_LOCK_PAYLOAD_SHA256 = (
-    "da68cd2d5e259ac7c121c80b6f6c5b5c29285ccdb4ceb831a69b54252fa72e54"
+    "38ae8195e1e6e53365fc9305362a755723a17f1e66284e07ca26fec501937889"
 )
 RELEASE_LOCK_SCHEMA = "k2p-principal-d-plus-final-theorem-release-lock-v1"
 ATLAS = "package/referee/k2p_offline_sweep_portable/atlas/k2p_atlas_core.py"

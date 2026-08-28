@@ -1,7 +1,7 @@
 # Proof-compression baseline
 
 Status: **PASS**.  This is a read-only measurement of frozen release lock
-`ae48ec2e052db0aec8fca25482d75847fc34333cc91e9eaa7fc6b49e35c55914`.  It does not replace or
+`0963636c3d4026a74ef926a0dc122c81a08b211b4d151ecc955c790e16cc5a9a`.  It does not replace or
 modify the promoted theorem.
 
 ## Proof surface
@@ -51,4 +51,4 @@ runtime.  This baseline therefore does not invent one from noncomparable
 component timings.  Runtime benchmarking belongs in a separate operational
 record.
 
-Payload SHA-256: `4f2f001d169d999c79d508f11ac8d930dfd14b4afd2730acd15002ab06e0777d`.
+Payload SHA-256: `e21d3269904cdf3b4c1a3d18cdd2c8fa6ef2e88fcea1dc29669fee96beaa7dc1`.

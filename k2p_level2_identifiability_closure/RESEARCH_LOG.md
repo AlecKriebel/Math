@@ -939,3 +939,27 @@
   final recursive lock, detached 23/25/41-gate qualification, deterministic
   two-extraction packages, commit/push, and annotated tag.  No GitHub Release
   or Zenodo action is authorized.
+
+## 2026-08-28 05:45 PDT — detached-gate provenance correction
+
+- The first detached quick replay fail-closed on a stale embedded promotion
+  hash table.  The underlying regenerated probe, independent replay, and
+  mutation artifacts already agreed; the verifier's literal expected hashes
+  had not been rebound with them.  Rebound those three identities and the one
+  affected restoration-mutation identity, after which the promotion gate
+  passed all 23 frozen inputs, three probe artifacts, six ledgers, ten required
+  PASS gates, and eight required-zero gates.
+- Rebuilt the 231-file outer release lock, the proof-compression baseline and
+  family-equivalence certificate, the PC-PARTIAL result, old/new equivalence
+  record, printed appendix, referee content ledger, supplement, and both PDFs.
+  The old/new replay passed all seven commands twice in 121.676 and 121.543
+  seconds; the mathematical residue remains zero.
+- The local 23-layer quick replay passed in 399.011 seconds under the new lock.
+  All 50 PDF pages (26 article and 24 supplement) were rendered and visually
+  checked with no clipping, overlap, or broken table detected.
+- No mathematical assertion or finite classification record changed.  Best-
+  guess completion remains **100% for the mathematical theorem** and is
+  **approximately 98% for v1.0.4 release qualification**, pending the clean
+  25-attack mutation run, 41-layer full primitive replay, final telemetry,
+  two-extraction archive checks, commit/push, and annotated tag.  No GitHub
+  Release or Zenodo action is authorized.

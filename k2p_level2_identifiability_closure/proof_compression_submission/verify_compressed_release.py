@@ -27,14 +27,14 @@ SOURCE_PATHS = {
 }
 
 EXPECTED_PAYLOADS = {
-    "baseline": "4f2f001d169d999c79d508f11ac8d930dfd14b4afd2730acd15002ab06e0777d",
-    "equivalence": "35e6d45ca7c81cbaaad6f0529ff6b27c93154063a40fdaa0ed74cd501a13a8cb",
+    "baseline": "e21d3269904cdf3b4c1a3d18cdd2c8fa6ef2e88fcea1dc29669fee96beaa7dc1",
+    "equivalence": "977e7adf8e930d3335aaa590b69f8d371f71a3b4381e9f4c25170f8b570fee57",
     "templates": "c5ce4176e0020cfc01b8d8351f02c87df6e87663b37d372669216ad5bd08be47",
     "restoration": "f0215c897773be25ae756e61f8ed2942705ce8f400163f80c32f204b60cea454",
     "restoration_verification": "8f3134bd2cb2f01f6a91cfe90fe536cce5f209d4edaaa2e6d25b0c2c64de776c",
     "probe": "d66b28240092a04112fde67d54527e3df3964d7eea64f7b75ed75f877435ec49",
     "crosswalk": "d2591c67eb5168b6601efa81b762e905239accd26acf69fe284f1b690de1d480",
-    "result": "373cd8972ccf97bbf76d93976ace9a78b6f69639f6a16b93c8af39bfb04a9f97",
+    "result": "b2f7226b81f3279ba4f1079c5c2c9b582aa1f60283ad0e9f4b34a8967fcfb9f1",
 }
 
 EXPECTED_SCHEMAS = {
@@ -218,7 +218,7 @@ def verify_frozen_lock() -> None:
     path = PROJECT / "work/final_theorem_release/RELEASE_LOCK.json"
     need(path.is_file() and not path.is_symlink(), "FROZEN_LOCK_MISSING")
     need(
-        file_sha(path) == "ae48ec2e052db0aec8fca25482d75847fc34333cc91e9eaa7fc6b49e35c55914",
+        file_sha(path) == "0963636c3d4026a74ef926a0dc122c81a08b211b4d151ecc955c790e16cc5a9a",
         "FROZEN_LOCK_SHA",
     )
     value = json.loads(path.read_text(encoding="utf-8"))
@@ -226,7 +226,7 @@ def verify_frozen_lock() -> None:
     verify_seal(value, "FROZEN_LOCK")
     need(
         value.get("payload_sha256")
-        == "da68cd2d5e259ac7c121c80b6f6c5b5c29285ccdb4ceb831a69b54252fa72e54",
+        == "38ae8195e1e6e53365fc9305362a755723a17f1e66284e07ca26fec501937889",
         "FROZEN_LOCK_PAYLOAD",
     )
     need(value.get("candidate_outcome") == "K2P-SAME", "FROZEN_OUTCOME")

@@ -61,20 +61,20 @@ EXPECTED_ZERO_GATES = {
 EXPECTED_PROBE_ARTIFACT_VALUES = {
     "primary": {
         "path": "work/probe_coherence_corrected/probe_coherence_certificate.json",
-        "file_sha256": "aef621cdefb7a892b396ae993b35d4582faa6d617a90e975d067aed2f9a53554",
-        "payload_sha256": "29927d40fcb7b9f3436c9c93f3ec797d2c7b4539ad518c6de94e5ea9efd3ab50",
+        "file_sha256": "6edd4097d0ce6cc0938e1a7eaee8d01c7e9daac814e72422250f1dbdea04bdd3",
+        "payload_sha256": "7799adda95bbc89dff01257e76f811cf6a30061d97265a75f4e42e8d618da8b4",
         "status": "PASS",
     },
     "independent_replay": {
         "path": "work/global_proof_adversary/probe_full_audit/independent_probe_graph_audit_certificate.json",
-        "file_sha256": "68d323419270209ee795e0b98b52045cdaf120f21046c4a232207fd838443319",
-        "payload_sha256": "cdf6fbec365ebc7f2b9ea66f766c850caf0b88ea56a827a4623dac5d84c05b82",
+        "file_sha256": "025fb011c5bf736bbcdf4bbef9f045d389f9a3ccb87597f5068a9a0972aa76f6",
+        "payload_sha256": "de15d876ec9f8b5e0cb88cb12d3df481af985aded388e111bae029f0f03ade6a",
         "status": "PASS",
     },
     "mutation_report": {
         "path": "work/global_proof_adversary/probe_full_audit/independent_probe_mutation_report.json",
-        "file_sha256": "d75c348e905d4d4749e9b6835abb25cb42aac24d10a0c91b5ecb64443fe07a7a",
-        "payload_sha256": "0339224d8ea0204c6881dd17dd7fc1a78d931abf8961a89f6b36de4cbd46eab0",
+        "file_sha256": "7224b26a0eead1aa39ccb0092b14b24990cdf5c455e15d040bd8d9181fd6463b",
+        "payload_sha256": "cee41ecd404a1b854a2867a0b3e7b56fd810836ab8e5e6c990977adcba0e0c20",
         "status": "PASS",
     },
 }
@@ -170,8 +170,8 @@ FROZEN = {
         "2e190fa1ea877545ace1706c3ae3a423f44cfecc4bc2bba32033c46d109657b0",
     ),
     "work/restoration_sign_reclassification/corrected_restoration_mutation_certificate.json": (
-        "ee3a66c72e730b75baea5041bdd42e62de6b8bc561cc0ed6ac1665f3a06dd6ee",
-        "13f21d037e6d6fa127e80ed73d0b746c0d00fd67bc3d22de7a75b3959c0d5dbf",
+        "10e74ca5dd50da8b9597b0640181615012816f96eeb9c64153f3eadc1b395a3b",
+        "bc301a61ff21c06f154a51c7caf299136cbb7bd924cb5a324eab0a38522a17eb",
     ),
     "work/cycle_three_port_closure/promotion/cycle_base_authoritative.jsonl.gz": (
         "7bfb6c99ffff43993fe12c7f2625be83dbeb590faac5178961398331368d69a2",

@@ -132,7 +132,7 @@ PROMOTION_MANUSCRIPT_FILES = {
     "work/global_theorem_closure/promotion_manuscript/K2P_SAME_PROMOTION_MANUSCRIPT.md": "4acacb925f6aab2ee11baf1c08573b65636b7d867fb816142138ae9fe666a3d2",
     "work/global_theorem_closure/promotion_manuscript/QUANTIFIER_AUDIT.md": "425a041bc3e4cc7bd4f74c952455623ff26f430d9c4ceb006edcac9e8c3765d8",
     "work/global_theorem_closure/promotion_manuscript/PROBE_PROMOTION_PLACEHOLDER.json": "fabd1dd919bc443d818b07b27ea8d4c73c78d0ee557a18a9f01abd0cc50d6569",
-    "work/global_theorem_closure/promotion_manuscript/verify_promotion_gate.py": "0f283233e4b152f99fbf8ce5de703be865eb693b236f3de581b1d952445f98ac",
+    "work/global_theorem_closure/promotion_manuscript/verify_promotion_gate.py": "7c1bf4ecf5381af0b117029ce68dcaeb4cc1b8837e2ee36c19819b7a5533a847",
 }
 PROMOTION_GUARD_CENSUS = {
     "frozen_inputs_verified": 23,
