@@ -8,7 +8,6 @@ transporting the large primary ledgers or repairing a damaged summary file.
 from __future__ import annotations
 
 import collections
-import gzip
 import hashlib
 import importlib.util
 import json
@@ -18,12 +17,46 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import (  # noqa: E402
+    StrictJSONError,
+    decode_json_document,
+    iter_canonical_gzip_jsonl,
+    load_canonical_gzip_json,
+)
+
 BUILDER = HERE / "build_probe_coherence_corrected.py"
 CERTIFICATE = HERE / "probe_coherence_certificate.json"
 
 
 class SealFailure(RuntimeError):
     pass
+
+
+def load_plain_json(path):
+    try:
+        return decode_json_document(
+            path.read_bytes(), label=path.name, require_object=True
+        )
+    except (OSError, StrictJSONError) as error:
+        raise SealFailure(f"strict JSON:{path}:{error}") from error
+
+
+def iter_jsonl(path):
+    try:
+        yield from iter_canonical_gzip_jsonl(path, label=path.name)
+    except (OSError, StrictJSONError) as error:
+        raise SealFailure(f"strict JSON:{path}:{error}") from error
+
+
+def load_gzip_json(path):
+    try:
+        return load_canonical_gzip_json(path, label=path.name)
+    except (OSError, StrictJSONError) as error:
+        raise SealFailure(f"strict JSON:{path}:{error}") from error
 
 
 def require(condition, message):
@@ -80,32 +113,28 @@ def stream_summary(path, status=False, origin=False, reverse=False, keep_rows=Fa
     reverse_counts = collections.Counter()
     equality = 0
     rows = []
-    with gzip.open(path, "rt") as handle:
-        for line in handle:
-            row = json.loads(line)
-            ordered.add(row)
-            if status:
-                counts[row["status"]] += 1
-                if row["status"] in {"isomorphic", "triangle"}:
-                    equality += 1
-            if origin:
-                by_origin[(row["origin"], row["status"])] += 1
-            if reverse and "reverse_order_certificate" in row:
-                reverse_counts[row["reverse_order_certificate"]["reverse_parent_relation"]] += 1
-            if keep_rows:
-                rows.append(row)
+    for row in iter_jsonl(path):
+        ordered.add(row)
+        if status:
+            counts[row["status"]] += 1
+            if row["status"] in {"isomorphic", "triangle"}:
+                equality += 1
+        if origin:
+            by_origin[(row["origin"], row["status"])] += 1
+        if reverse and "reverse_order_certificate" in row:
+            reverse_counts[row["reverse_order_certificate"]["reverse_parent_relation"]] += 1
+        if keep_rows:
+            rows.append(row)
     return ordered, counts, by_origin, reverse_counts, equality, rows
 
 
 def store_summary(path):
     ordered = Ordered()
     ids = set()
-    with gzip.open(path, "rt") as handle:
-        for line in handle:
-            row = json.loads(line)
-            require(row["record_id"] not in ids, f"duplicate store ID:{path.name}")
-            ids.add(row["record_id"])
-            ordered.add(row)
+    for row in iter_jsonl(path):
+        require(row["record_id"] not in ids, f"duplicate store ID:{path.name}")
+        ids.add(row["record_id"])
+        ordered.add(row)
     return {
         "path": path.name,
         "sha256": sha_file(path),
@@ -119,7 +148,7 @@ def main():
     atlas = builder.import_path("probe_reseal_atlas", builder.ATLAS_PATH)
     common = builder.import_path("cycle_common", builder.CYCLE_COMMON)
     generator = builder.import_path("probe_reseal_cycle_generator", builder.CYCLE_GENERATOR)
-    contract = json.loads(builder.INPUT_CONTRACT.read_text())
+    contract = load_plain_json(builder.INPUT_CONTRACT)
     anchors = builder.reconstruct_anchors(atlas, common, generator, contract)
     anchor_registry = builder.CanonicalRelationRegistry(atlas)
     coverage = collections.defaultdict(list)
@@ -162,21 +191,18 @@ def main():
     }
     inherited_parent_count = sum(base_global[row["base_anchor_id"]] for row in parent_rows)
     equality_global_count = 0
-    with gzip.open(HERE / "two_port_ledger.jsonl.gz", "rt") as handle:
-        for line in handle:
-            row = json.loads(line)
-            equality_global_count += (
-                row["status"] in {"isomorphic", "triangle"}
-                and base_global[row["base_anchor_id"]]
-            )
+    for row in iter_jsonl(HERE / "two_port_ledger.jsonl.gz"):
+        equality_global_count += (
+            row["status"] in {"isomorphic", "triangle"}
+            and base_global[row["base_anchor_id"]]
+        )
 
-    with gzip.open(HERE / "separation_proof_registry.json.gz", "rt") as handle:
-        proof = json.load(handle)
+    proof = load_gzip_json(HERE / "separation_proof_registry.json.gz")
     proof_claim = proof["payload_sha256"]
     proof_unhashed = dict(proof)
     proof_unhashed.pop("payload_sha256")
     require(proof_claim == sha(proof_unhashed), "proof payload")
-    certificate = json.loads(CERTIFICATE.read_text())
+    certificate = load_plain_json(CERTIFICATE)
     certificate["status"] = "PASS"
     # Rebind the summary to the exact current inputs.  This utility does not
     # regenerate the large ledgers; it reconstructs their graph-derived anchor

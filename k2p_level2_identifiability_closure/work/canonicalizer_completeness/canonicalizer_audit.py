@@ -12,7 +12,6 @@ from __future__ import annotations
 import argparse
 import concurrent.futures
 import dataclasses
-import gzip
 import hashlib
 import importlib.util
 import inspect
@@ -30,6 +29,15 @@ import networkx as nx
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import (  # noqa: E402
+    StrictJSONError,
+    iter_canonical_gzip_jsonl,
+)
+
 DEFAULT_ATLAS = (
     PROJECT
     / "package/referee/k2p_offline_sweep_portable/atlas/k2p_atlas_core.py"
@@ -402,9 +410,9 @@ def relation_audit(atlas, raw_ledger: Path) -> dict[str, Any]:
     pair_counts: Counter[tuple[str, str, str]] = Counter()
     triangle_witnesses = []
     checked = 0
-    with gzip.open(raw_ledger, "rt", newline="") as handle:
-        for line_number, line in enumerate(handle):
-            row = json.loads(line)
+    try:
+        rows = iter_canonical_gzip_jsonl(raw_ledger, label=str(raw_ledger))
+        for line_number, row in enumerate(rows):
             if row["category"] not in {
                 "retained_terminal",
                 "restoration_obligation",
@@ -435,6 +443,10 @@ def relation_audit(atlas, raw_ledger: Path) -> dict[str, Any]:
                 require(witness is not None, "TRIANGLE_WITNESS_ABSENT", row["raw_id"])
                 triangle_witnesses.append([row["raw_id"], witness])
             checked += 1
+    except (OSError, StrictJSONError) as error:
+        raise AuditFailure(
+            f"RAW_LEDGER_STRICT_JSON_FAIL:{raw_ledger}:{error}"
+        ) from error
     require(checked == 4_012, "RELATION_CANDIDATE_CENSUS", checked)
     require(pair_counts == EXPECTED_RELATIONS, "RELATION_STATUS_CENSUS", pair_counts)
     require(len(triangle_witnesses) == 54, "RELATION_TRIANGLE_CENSUS")

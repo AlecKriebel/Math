@@ -23,13 +23,19 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import StrictJSONError, decode_json_document  # noqa: E402
+
 FOREST = PROJECT / "work/restoration_sign_reclassification/corrected_restoration_forest.json"
 ATLAS = PROJECT / "package/referee/k2p_offline_sweep_portable/atlas/k2p_atlas_core.py"
 RESULTS = PROJECT / "package/referee/k2p_offline_sweep_portable/results/four_port_release_v4"
 OUTPUT = HERE / "RESTORATION_ARCHETYPES.json"
 
-EXPECTED_FOREST_SHA256 = "bcf91bf433c71056d1e27871dd15fe532f9ae1cc4ad79eb2373eae57071ee427"
-EXPECTED_FOREST_PAYLOAD = "be81d13f8f51dc49030e569bf31939a7c3bb915c3dff1f91455416761eeeb772"
+EXPECTED_FOREST_SHA256 = "396d1970af17b5e90c3f1b00ceab1b810816e93ec68a566bd0479f05c722793f"
+EXPECTED_FOREST_PAYLOAD = "c4e5502d6bb774b426477ef3b289140e81dc16bf061261ccf3562d5de02cb2e3"
 EXPECTED_COMPLETION_GRAMMAR_SHA256 = (
     "b4ff0f51f5e1a92c65e16c2c5c348e1a31cefec93b6f3e85a5c977c4ba2f3240"
 )
@@ -78,6 +84,15 @@ def file_sha256(path: Path) -> str:
         for block in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(block)
     return digest.hexdigest()
+
+
+def load_plain_json(path: Path):
+    try:
+        return decode_json_document(
+            path.read_bytes(), label=path.name, require_object=True
+        )
+    except (OSError, StrictJSONError) as error:
+        raise Failure(f"strict JSON:{path}:{error}") from error
 
 
 def ordered_hash_root(rows) -> str:
@@ -171,7 +186,7 @@ def load_inputs(atlas):
         completion_grammar_sha256(atlas) == EXPECTED_COMPLETION_GRAMMAR_SHA256,
         "completion grammar semantic drift",
     )
-    forest = json.loads(FOREST.read_text())
+    forest = load_plain_json(FOREST)
     unhashed = dict(forest)
     payload = unhashed.pop("payload_sha256")
     require(payload == EXPECTED_FOREST_PAYLOAD, "corrected forest payload identity")
@@ -182,7 +197,7 @@ def load_inputs(atlas):
     for source_index in range(6):
         relative = f"results/four_port_release_v4/source_{source_index}/residual_manifest.json"
         path = RESULTS / f"source_{source_index}/residual_manifest.json"
-        manifest = json.loads(path.read_text())
+        manifest = load_plain_json(path)
         require(
             object_sha256(restoration_manifest_projection(manifest))
             == EXPECTED_RESTORATION_PARENT_SEMANTIC_SHA256[relative],
@@ -519,7 +534,7 @@ def main() -> None:
         return
     target = args.check or OUTPUT
     require(target.exists(), f"missing archetype artifact:{target}")
-    recorded = json.loads(target.read_text())
+    recorded = load_plain_json(target)
     require(recorded == generated, "restoration archetype artifact drift")
     print(json.dumps({
         "status": "PASS",

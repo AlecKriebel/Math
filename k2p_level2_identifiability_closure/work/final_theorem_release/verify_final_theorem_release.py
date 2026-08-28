@@ -442,6 +442,9 @@ def replay_corrected_probe_site_partition(
             source / "verify_site_transport_partition.py",
             package / "verify_site_transport_partition.py",
         )
+        strict_root = root / "work/final_theorem_release"
+        strict_root.mkdir(parents=True)
+        (strict_root / "strict_json.py").symlink_to(HERE / "strict_json.py")
         for name in (
             "one_port_ledger.jsonl.gz",
             "two_port_ledger.jsonl.gz",
@@ -565,6 +568,9 @@ def replay_weak_sharpness(rows: list[dict[str, Any]]) -> None:
 
     with tempfile.TemporaryDirectory(prefix="k2p-final-weak-independent-") as directory:
         root = Path(directory)
+        strict_root = root / "work/final_theorem_release"
+        strict_root.mkdir(parents=True)
+        (strict_root / "strict_json.py").symlink_to(HERE / "strict_json.py")
         primary_dir = root / "work/weak_sharpness_closure"
         audit_dir = root / "work/weak_sharpness_audit"
         primary_dir.mkdir(parents=True)
@@ -603,6 +609,10 @@ def replay_full_map_truth(rows: list[dict[str, Any]], timeout: float) -> None:
             "audit_theta2_tree_sunlet_full_map.py",
         ):
             shutil.copy2(PROJECT / "work/adversarial_proof_review" / name, audit / name)
+
+        strict_root = root / "work/final_theorem_release"
+        strict_root.mkdir(parents=True)
+        (strict_root / "strict_json.py").symlink_to(HERE / "strict_json.py")
 
         raw_root = root / "work/raw_ledger_audit"
         raw_root.mkdir(parents=True)
@@ -892,6 +902,9 @@ def quick_replays(rows: list[dict[str, Any]], timeout: float) -> None:
 def replay_rank_full(rows: list[dict[str, Any]], timeout: float) -> None:
     with tempfile.TemporaryDirectory(prefix="k2p-final-rank-full-") as directory:
         root = Path(directory)
+        strict_root = root / "work/final_theorem_release"
+        strict_root.mkdir(parents=True)
+        (strict_root / "strict_json.py").symlink_to(HERE / "strict_json.py")
         destination = root / "work/rank_upper_certificates"
         destination.parent.mkdir(parents=True)
         shutil.copytree(
@@ -981,6 +994,9 @@ def replay_raw4_corrected_overlay_full(
 ) -> None:
     with tempfile.TemporaryDirectory(prefix="k2p-final-raw4-overlay-full-") as directory:
         root = Path(directory)
+        strict_root = root / "work/final_theorem_release"
+        strict_root.mkdir(parents=True)
+        (strict_root / "strict_json.py").symlink_to(HERE / "strict_json.py")
         overlay_root = root / "work/raw4_sign_reclassification"
         overlay_root.mkdir(parents=True)
         for name in (
@@ -1046,6 +1062,9 @@ def replay_corrected_probe_full(
             "verify_site_transport_partition.py",
         ):
             shutil.copy2(source / name, package / name)
+        strict_root = root / "work/final_theorem_release"
+        strict_root.mkdir(parents=True)
+        (strict_root / "strict_json.py").symlink_to(HERE / "strict_json.py")
         for relative in (
             "package/referee/k2p_offline_sweep_portable/atlas",
             "work/adversarial_proof_review",

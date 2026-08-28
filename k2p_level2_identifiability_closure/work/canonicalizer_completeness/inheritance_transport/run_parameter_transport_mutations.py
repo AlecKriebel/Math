@@ -23,6 +23,16 @@ from typing import Any, Callable
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[2]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import (  # noqa: E402
+    StrictJSONError,
+    decode_json_document,
+    iter_canonical_gzip_jsonl,
+)
+
 VERIFY_PATH = HERE / "verify_parameter_transport_certificate.py"
 AUTHORITATIVE_OUTPUT = HERE / "parameter_transport_mutation_report.json"
 ANSI_ESCAPE = re.compile(r"\x1b\[[0-?]*[ -/]*[@-~]")
@@ -33,6 +43,22 @@ CHILD_OUTPUT_TAIL_LIMIT = 2048
 
 class Failure(RuntimeError):
     pass
+
+
+def load_plain_json(path: Path) -> dict[str, Any]:
+    try:
+        return decode_json_document(
+            path.read_bytes(), label=path.name, require_object=True
+        )
+    except (OSError, StrictJSONError) as error:
+        raise Failure(f"strict JSON:{path}:{error}") from error
+
+
+def iter_jsonl(path: Path):
+    try:
+        yield from iter_canonical_gzip_jsonl(path, label=path.name)
+    except (OSError, StrictJSONError) as error:
+        raise Failure(f"strict JSON:{path}:{error}") from error
 
 
 def require(condition: bool, message: str) -> None:
@@ -138,9 +164,8 @@ def import_path(name: str, path: Path):
 
 
 def rows(path: Path):
-    with gzip.open(path, "rt") as handle:
-        for line in handle:
-            yield json.loads(line)["row"]
+    for wrapped in iter_jsonl(path):
+        yield wrapped["row"]
 
 
 def find(path: Path, predicate: Callable[[dict[str, Any]], bool]) -> dict[str, Any]:
@@ -236,7 +261,7 @@ def source_fingerprints() -> dict[str, str]:
             "restoration_restriction_parameter_transports.jsonl.gz",
         )),
     }
-    certificate = json.loads((HERE / "parameter_transport_certificate.json").read_text())
+    certificate = load_plain_json(HERE / "parameter_transport_certificate.json")
     paths.update((PROJECT / relative).resolve() for relative in certificate["inputs"])
     return {
         path.relative_to(PROJECT).as_posix(): sha_file(path)
@@ -245,7 +270,7 @@ def source_fingerprints() -> dict[str, str]:
 
 
 def reseal_certificate(certificate_path: Path, ledger_key: str | None = None) -> dict[str, Any]:
-    certificate = json.loads(certificate_path.read_text())
+    certificate = load_plain_json(certificate_path)
     for relative in certificate["inputs"]:
         source = PROJECT / relative
         certificate["inputs"][relative] = {
@@ -278,9 +303,7 @@ def copy_clean_certificate_tree(destination: Path) -> dict[str, Any]:
             sha_file(destination / filename) == sha_file(HERE / filename),
             f"nonidentical authoritative copy:{filename}",
         )
-    certificate = json.loads(
-        (destination / "parameter_transport_certificate.json").read_text()
-    )
+    certificate = load_plain_json(destination / "parameter_transport_certificate.json")
     return certificate
 
 
@@ -298,19 +321,17 @@ def rewrite_complete_ledger(
     raw = destination.open("wb")
     stream = gzip.GzipFile(filename="", mode="wb", fileobj=raw, mtime=0)
     try:
-        with gzip.open(source, "rt", newline="") as handle:
-            for line in handle:
-                wrapped = json.loads(line)
-                row = wrapped["row"]
-                if row["occurrence_id"] == occurrence_id:
-                    require(changed == 0, f"duplicate mutation occurrence:{occurrence_id}")
-                    mutate(row)
-                    changed += 1
-                row_sha256 = sha(row)
-                stream.write(canonical_bytes({"row": row, "row_sha256": row_sha256}) + b"\n")
-                ordered_root = sha({"previous": ordered_root, "row_sha256": row_sha256})
-                counts.update(verifier.action_keys(row))
-                row_count += 1
+        for wrapped in iter_jsonl(source):
+            row = wrapped["row"]
+            if row["occurrence_id"] == occurrence_id:
+                require(changed == 0, f"duplicate mutation occurrence:{occurrence_id}")
+                mutate(row)
+                changed += 1
+            row_sha256 = sha(row)
+            stream.write(canonical_bytes({"row": row, "row_sha256": row_sha256}) + b"\n")
+            ordered_root = sha({"previous": ordered_root, "row_sha256": row_sha256})
+            counts.update(verifier.action_keys(row))
+            row_count += 1
     finally:
         stream.close()
         raw.close()
@@ -427,8 +448,8 @@ def main() -> None:
         # not a scratch copy whose input bindings have been silently resealed.
         # Only after this in-place full replay passes do we create disposable
         # mutant copies and coherently reseal those attacks.
-        clean_certificate = json.loads(
-            (HERE / "parameter_transport_certificate.json").read_text()
+        clean_certificate = load_plain_json(
+            HERE / "parameter_transport_certificate.json"
         )
         clean_result, clean_runtime = invoke_production_verifier(
             HERE, args.timeout_seconds
@@ -498,7 +519,7 @@ def main() -> None:
             )
             os.replace(rewritten, ledger_path)
             certificate_path = mutant_root / "parameter_transport_certificate.json"
-            certificate = json.loads(certificate_path.read_text())
+            certificate = load_plain_json(certificate_path)
             certificate["ledgers"][ledger_key].update(metadata)
             certificate_path.write_bytes(canonical_bytes(certificate) + b"\n")
             mutant_certificate = reseal_certificate(certificate_path, ledger_key)

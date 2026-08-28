@@ -11,7 +11,6 @@ from __future__ import annotations
 
 import collections
 import fractions
-import gzip
 import hashlib
 import importlib.util
 import itertools
@@ -23,6 +22,16 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import (  # noqa: E402
+    StrictJSONError,
+    decode_json_document,
+    iter_canonical_gzip_jsonl,
+)
+
 RESTORATION_PATH = PROJECT / "work/restoration_forest/enumerate_five_port.py"
 HISTORICAL_CERTIFICATE = PROJECT / "work/restoration_forest/five_port_certificate.json"
 RAW_LEDGER = PROJECT / "work/raw_ledger_audit/artifacts/raw_directional_ledger.jsonl.gz"
@@ -389,26 +398,24 @@ def main():
         for root in roots
     }
     omitted_terminal_rows = []
-    with gzip.open(RAW_LEDGER, "rt") as handle:
-        for line in handle:
-            raw = json.loads(line)
-            if (
-                raw.get("category") == "retained_terminal"
-                and raw.get("status") in {"isomorphic", "triangle"}
-                and targets[raw["target_index"]].dummy_labels
-            ):
-                require(
-                    (raw["source_index"], raw["class_id"]) not in obligation_keys,
-                    f"omitted terminal leaked into obligation forest:{raw['raw_id']}",
-                )
-                omitted_terminal_rows.append({
-                    "raw_id": raw["raw_id"],
-                    "source_index": raw["source_index"],
-                    "canonical_class_id": raw["class_id"],
-                    "target_index": raw["target_index"],
-                    "permutation_index": raw["permutation_index"],
-                    "relation": raw["status"],
-                })
+    for raw in iter_canonical_gzip_jsonl(RAW_LEDGER, label=RAW_LEDGER.name):
+        if (
+            raw.get("category") == "retained_terminal"
+            and raw.get("status") in {"isomorphic", "triangle"}
+            and targets[raw["target_index"]].dummy_labels
+        ):
+            require(
+                (raw["source_index"], raw["class_id"]) not in obligation_keys,
+                f"omitted terminal leaked into obligation forest:{raw['raw_id']}",
+            )
+            omitted_terminal_rows.append({
+                "raw_id": raw["raw_id"],
+                "source_index": raw["source_index"],
+                "canonical_class_id": raw["class_id"],
+                "target_index": raw["target_index"],
+                "permutation_index": raw["permutation_index"],
+                "relation": raw["status"],
+            })
     omitted_terminal_rows.sort(key=lambda row: row["raw_id"])
     require(len(omitted_terminal_rows) == 54, "omitted terminal member scope")
     require(
@@ -437,7 +444,11 @@ def main():
         "forest_intersection": 0,
         "downstream_contract": "restore physical equality anchors in the coherent probe package",
     }
-    historical = json.loads(HISTORICAL_CERTIFICATE.read_text())
+    historical = decode_json_document(
+        HISTORICAL_CERTIFICATE.read_bytes(),
+        label=HISTORICAL_CERTIFICATE.name,
+        require_object=True,
+    )
     historical_unhashed = dict(historical)
     historical_payload = historical_unhashed.pop("certificate_payload_sha256")
     require(sha(historical_unhashed) == historical_payload, "historical payload")
@@ -1009,5 +1020,13 @@ def main():
 if __name__ == "__main__":
     try:
         main()
-    except (Failure, AssertionError, KeyError, IndexError, OSError, json.JSONDecodeError) as error:
+    except (
+        Failure,
+        StrictJSONError,
+        AssertionError,
+        KeyError,
+        IndexError,
+        OSError,
+        json.JSONDecodeError,
+    ) as error:
         raise SystemExit(f"CORRECTED_RESTORATION_FAIL:{error}") from error

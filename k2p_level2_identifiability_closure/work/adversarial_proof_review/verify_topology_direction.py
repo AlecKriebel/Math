@@ -25,6 +25,12 @@ import networkx as nx
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import StrictJSONError, decode_json_document  # noqa: E402
+
 ATLAS_PATH = (
     PROJECT
     / "package/referee/k2p_offline_sweep_portable/atlas/k2p_atlas_core.py"
@@ -289,7 +295,14 @@ def check_physical_hypotheses() -> dict[str, object]:
 
 
 def check_current_raw4_summary() -> dict[str, object]:
-    summary = json.loads(RAW4_SUMMARY.read_text())
+    try:
+        summary = decode_json_document(
+            RAW4_SUMMARY.read_bytes(),
+            label=RAW4_SUMMARY.name,
+            require_object=True,
+        )
+    except (OSError, StrictJSONError) as error:
+        raise VerificationFailure(f"strict JSON:{error}") from error
     claimed_payload = summary.get("payload_sha256")
     payload = dict(summary)
     payload.pop("payload_sha256", None)

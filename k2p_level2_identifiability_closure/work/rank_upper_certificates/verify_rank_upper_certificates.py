@@ -15,6 +15,20 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_ATLAS = ROOT / "package/referee/k2p_offline_sweep_portable/atlas"
 WORK = Path(__file__).resolve().parent
+STRICT_JSON_DIR = ROOT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import StrictJSONError, decode_json_document  # noqa: E402
+
+
+def load_plain_json(path: Path):
+    try:
+        return decode_json_document(
+            path.read_bytes(), label=path.name, require_object=True
+        )
+    except (OSError, StrictJSONError) as error:
+        raise AssertionError(("strict JSON", str(path), str(error))) from error
 
 
 def load_semantic_dependencies() -> None:
@@ -240,8 +254,8 @@ def main():
         lower_certificates = pickle.load(handle)
     with (certificate_dir / "exception_orbit_representatives.pkl").open("rb") as handle:
         representatives = pickle.load(handle)
-    orbit_ledger = json.loads((certificate_dir / "exception_orbits.json").read_text())
-    coverage = json.loads((certificate_dir / "rank_upper_coverage.json").read_text())
+    orbit_ledger = load_plain_json(certificate_dir / "exception_orbits.json")
+    coverage = load_plain_json(certificate_dir / "rank_upper_coverage.json")
     unique = sorted(set(source_descriptors) | set(descriptor_map.values()), key=descriptor_key)
     rows = validate_coverage_shape(coverage, unique)
 
@@ -251,7 +265,7 @@ def main():
         path = certificate_dir / "exception_syzygies" / f"orbit_{orbit_index:03d}.json"
         if not path.exists():
             raise AssertionError(("missing representative certificate", orbit_index))
-        certificate = json.loads(path.read_text())
+        certificate = load_plain_json(path)
         representative_ranks[orbit_index] = verify_exception_representative(
             desc, orbit_row, certificate
         )

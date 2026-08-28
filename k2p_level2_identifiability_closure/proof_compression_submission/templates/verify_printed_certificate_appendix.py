@@ -4,10 +4,10 @@
 from __future__ import annotations
 
 import argparse
-import gzip
 import hashlib
 import itertools
 import json
+import sys
 from collections import Counter
 from pathlib import Path
 from typing import Any, Iterable
@@ -16,6 +16,16 @@ from typing import Any, Iterable
 HERE = Path(__file__).resolve().parent
 SUBMISSION = HERE.parent
 PROJECT = SUBMISSION.parent
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import (  # noqa: E402
+    StrictJSONError,
+    decode_json_document,
+    iter_canonical_gzip_jsonl,
+    load_canonical_gzip_json,
+)
 
 DEFAULT_APPENDIX = HERE / "PRINTED_CERTIFICATE_APPENDIX.json"
 DEFAULT_TEX = SUBMISSION / "supplement" / "certificate_appendix.tex"
@@ -68,26 +78,34 @@ def sha_file(path: Path) -> str:
 
 def load_json(path: Path) -> dict[str, Any]:
     require(path.is_file(), "JSON_MISSING", path)
-    value = json.loads(path.read_text(encoding="utf-8"))
-    require(isinstance(value, dict), "JSON_NOT_OBJECT", path)
-    return value
+    try:
+        return decode_json_document(
+            path.read_bytes(), label=str(path), require_object=True
+        )
+    except (OSError, StrictJSONError) as error:
+        raise ReplayFailure(f"JSON_STRICT_DECODE_FAIL:{path}:{error}") from error
 
 
 def load_gzip_json(path: Path) -> dict[str, Any]:
     require(path.is_file(), "GZIP_JSON_MISSING", path)
-    with gzip.open(path, "rt", encoding="utf-8") as handle:
-        value = json.load(handle)
+    try:
+        value = load_canonical_gzip_json(path, label=str(path))
+    except (OSError, StrictJSONError) as error:
+        raise ReplayFailure(f"GZIP_JSON_STRICT_DECODE_FAIL:{path}:{error}") from error
     require(isinstance(value, dict), "GZIP_JSON_NOT_OBJECT", path)
     return value
 
 
 def iter_gzip_jsonl(path: Path) -> Iterable[dict[str, Any]]:
     require(path.is_file(), "JSONL_MISSING", path)
-    with gzip.open(path, "rt", encoding="utf-8") as handle:
-        for line_number, line in enumerate(handle, 1):
-            row = json.loads(line)
+    try:
+        for line_number, row in enumerate(
+            iter_canonical_gzip_jsonl(path, label=str(path)), 1
+        ):
             require(isinstance(row, dict), "JSONL_ROW_NOT_OBJECT", line_number)
             yield row
+    except (OSError, StrictJSONError) as error:
+        raise ReplayFailure(f"JSONL_STRICT_DECODE_FAIL:{path}:{error}") from error
 
 
 def verify_seal(value: dict[str, Any], code: str) -> None:

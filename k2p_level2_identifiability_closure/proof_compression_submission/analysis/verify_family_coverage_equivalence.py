@@ -10,11 +10,11 @@ from __future__ import annotations
 
 import argparse
 import ast
-import gzip
 import hashlib
 import itertools
 import json
 import math
+import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any, Iterable
@@ -23,6 +23,17 @@ from typing import Any, Iterable
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
 TEMPLATES = HERE.parent / "templates"
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import (  # noqa: E402
+    StrictJSONError,
+    decode_json_document,
+    iter_canonical_gzip_jsonl,
+    load_canonical_gzip_json,
+)
+
 BASELINE = HERE / "PROOF_COMPRESSION_BASELINE.json"
 BASELINE_MD = HERE / "PROOF_COMPRESSION_BASELINE.md"
 UNIVERSE_MD = HERE / "FINITE_UNIVERSE_COMPLETENESS.md"
@@ -31,8 +42,8 @@ TABLE_MD = TEMPLATES / "DIRECT_CERTIFICATE_TEMPLATE_TABLE.md"
 OUTPUT = HERE / "FAMILY_COVERAGE_EQUIVALENCE_CERTIFICATE.json"
 
 LOCK_REL = "work/final_theorem_release/RELEASE_LOCK.json"
-LOCK_SHA = "30132af1b10f7aba6d49ababf14551f9f914a19dc6a0638517761b6b85cf4c8d"
-LOCK_PAYLOAD = "a32e7f04d5c979fc1f9e268ca8a791ae24ad99b296f3e3c72682a3beadadd653"
+LOCK_SHA = "528e999243f9c43bf7ac4102607f0024610fcffd71cce66eeb50ca054dbc2970"
+LOCK_PAYLOAD = "ea73c7af4129a8f43a0d78b894a940145f1ec2327be1ea11f53645c3a6c7f1ba"
 ATLAS_REL = "package/referee/k2p_offline_sweep_portable/atlas/k2p_atlas_core.py"
 EXPECTED_PRIMITIVE_GRAMMAR_SHA256 = (
     "d5e7608f70a2243df605dee6e35d0ea6af74e4e47b42142e91ddfa4cbcbad09b"
@@ -119,24 +130,40 @@ def safe(relative: str) -> Path:
 
 
 def read_json(path: Path) -> dict[str, Any]:
-    value = json.loads(path.read_text(encoding="utf-8"))
-    need(isinstance(value, dict), "JSON_NOT_OBJECT", path)
-    return value
+    try:
+        return decode_json_document(
+            path.read_bytes(), label=str(path), require_object=True
+        )
+    except (OSError, StrictJSONError) as error:
+        raise VerificationFailure(
+            f"JSON_STRICT_DECODE_FAIL:{path}:{error}"
+        ) from error
 
 
 def read_gzip_json(relative: str) -> dict[str, Any]:
-    with gzip.open(safe(relative), "rt", encoding="utf-8") as handle:
-        value = json.load(handle)
+    path = safe(relative)
+    try:
+        value = load_canonical_gzip_json(path, label=relative)
+    except (OSError, StrictJSONError) as error:
+        raise VerificationFailure(
+            f"GZIP_JSON_STRICT_DECODE_FAIL:{relative}:{error}"
+        ) from error
     need(isinstance(value, dict), "GZIP_JSON_NOT_OBJECT", relative)
     return value
 
 
 def iter_jsonl(relative: str) -> Iterable[dict[str, Any]]:
-    with gzip.open(safe(relative), "rt", encoding="utf-8") as handle:
-        for line_number, line in enumerate(handle, 1):
-            value = json.loads(line)
+    path = safe(relative)
+    try:
+        for line_number, value in enumerate(
+            iter_canonical_gzip_jsonl(path, label=relative), 1
+        ):
             need(isinstance(value, dict), "JSONL_NOT_OBJECT", f"{relative}:{line_number}")
             yield value
+    except (OSError, StrictJSONError) as error:
+        raise VerificationFailure(
+            f"JSONL_STRICT_DECODE_FAIL:{relative}:{error}"
+        ) from error
 
 
 def verify_seal(value: dict[str, Any], code: str) -> None:
@@ -186,7 +213,7 @@ def verify_release_and_transitive_hashes() -> dict[str, str]:
             item = str(path.relative_to(PROJECT))
             need(item not in locked or locked[item] == digest, "MANIFEST_HASH_CONFLICT")
             locked[item] = digest
-    need(len(locked) == 405, "TRANSITIVE_FILE_COUNT", len(locked))
+    need(len(locked) == 407, "TRANSITIVE_FILE_COUNT", len(locked))
     return locked
 
 

@@ -58,7 +58,7 @@ not represented as a fictitious hand quotient. Primary reader artifacts are:
 - `analysis/WEAK_SHARPNESS_COLUMN_CROSSWALK.json`, with independent graph and
   determinant replay;
 - `crosswalk/THEOREM_ARTIFACT_CROSSWALK.md` and `.json`; and
-- `FRESH_ADVERSARIAL_R3_DISPOSITION.md`, the current referee-finding
+- `FRESH_ADVERSARIAL_R4_DISPOSITION.md`, the current referee-finding
   disposition and final qualification record;
 - `adversarial_review/STATIC_AUDIT_RESULT.json`, the generated current source
   audit; and
@@ -85,7 +85,7 @@ Submission metadata are finalized: corresponding email
 `me@aleckriebel.com`; sole-author contribution statement approved; no specific
 funding; no competing interests; CC BY 4.0 for the paper and data; MIT for
 code; designated versioned annotated source tag
-`k2p-same-biorxiv-v1.0.3`. Its tag-object and peeled-commit identifiers belong
+`k2p-same-biorxiv-v1.0.4`. Its tag-object and peeled-commit identifiers belong
 in external release metadata after the final source commit is created. No
 GitHub Release, Zenodo deposit, or DOI is claimed in this version.
 

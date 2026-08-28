@@ -13,11 +13,22 @@ import gzip
 import hashlib
 import io
 import json
+import sys
 from pathlib import Path
 
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import (  # noqa: E402
+    StrictJSONError,
+    decode_json_document,
+    iter_canonical_gzip_jsonl,
+)
+
 CYCLE = PROJECT / "work/cycle_three_port_closure"
 ARTIFACTS = CYCLE / "artifacts"
 PROMOTION = CYCLE / "promotion"
@@ -56,9 +67,7 @@ def sha_file(path):
 
 
 def read_gzip_rows(path):
-    with gzip.open(path, "rt") as handle:
-        for line in handle:
-            yield json.loads(line)
+    yield from iter_canonical_gzip_jsonl(path, label=path.name)
 
 
 class CanonicalGzipWriter:
@@ -105,7 +114,9 @@ def construction_binding(row):
 
 def main():
     PROMOTION.mkdir(parents=True, exist_ok=True)
-    truth = json.loads(TRUTH_SOURCE.read_text())
+    truth = decode_json_document(
+        TRUTH_SOURCE.read_bytes(), label=TRUTH_SOURCE.name, require_object=True
+    )
     require(truth["status"] == "PASS", "whole-map truth is not PASS")
     require(truth["unresolved"] == truth["incoherent"] == 0, "whole-map truth incomplete")
     base_truth = truth["families"]["cycle_base"]["ordered_truth_row_hashes"]
@@ -311,5 +322,11 @@ def main():
 if __name__ == "__main__":
     try:
         main()
-    except (ProjectionFailure, KeyError, OSError, json.JSONDecodeError) as exc:
+    except (
+        ProjectionFailure,
+        StrictJSONError,
+        KeyError,
+        OSError,
+        json.JSONDecodeError,
+    ) as exc:
         raise SystemExit(f"CYCLE_PROMOTION_BUILD_FAIL:{exc}") from exc

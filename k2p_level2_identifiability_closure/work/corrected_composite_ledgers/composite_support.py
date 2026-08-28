@@ -13,6 +13,7 @@ import gzip
 import hashlib
 import json
 import os
+import sys
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -21,6 +22,14 @@ HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
 ARTIFACTS = HERE / "artifacts"
 PACKAGE = PROJECT / "package/referee/k2p_offline_sweep_portable"
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import (  # noqa: E402
+    decode_json_document,
+    load_canonical_gzip_json,
+)
 
 SERIALIZATION = {
     "format": "gzip-jsonl-canonical-v1",
@@ -146,15 +155,11 @@ def deterministic_jsonl_gzip(path: Path, rows: Iterable[dict[str, Any]]) -> Stre
 
 
 def load_json(path: Path) -> dict[str, Any]:
-    value = json.loads(path.read_text())
-    if not isinstance(value, dict):
-        raise ValueError(f"expected JSON object: {path}")
+    value = decode_json_document(
+        path.read_bytes(), label=path.name, require_object=True
+    )
     return value
 
 
 def load_gzip_json(path: Path) -> dict[str, Any]:
-    with gzip.open(path, "rt", encoding="utf-8") as handle:
-        value = json.load(handle)
-    if not isinstance(value, dict):
-        raise ValueError(f"expected gzip JSON object: {path}")
-    return value
+    return load_canonical_gzip_json(path, label=path.name)

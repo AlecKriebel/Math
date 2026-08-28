@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import ast
 import copy
+import gzip
 import hashlib
 import json
 import os
@@ -96,12 +97,174 @@ def reseal_submission_member(
     return candidate
 
 
+def reseal_frozen_member(
+    base: dict[str, Any], relative: str, data: bytes
+) -> tuple[dict[str, Any], bytes]:
+    candidate = copy.deepcopy(base)
+    files = candidate["frozen_evidence"]["files"]
+    if relative not in files:
+        fail(f"compressed mutation fixture is absent from frozen ledger: {relative}")
+    lock_path = builder.project_path(builder.LOCK_RELATIVE)
+    lock = json.loads(lock_path.read_bytes())
+    if relative not in lock.get("files", {}):
+        fail(f"compressed mutation fixture is absent from release lock: {relative}")
+    lock["files"][relative] = {
+        **lock["files"][relative],
+        "bytes": len(data),
+        "sha256": hashlib.sha256(data).hexdigest(),
+    }
+    reseal(lock)
+    lock_data = (
+        json.dumps(lock, indent=2, sort_keys=True) + "\n"
+    ).encode("utf-8")
+    files[relative] = {
+        "bytes": len(data),
+        "sha256": hashlib.sha256(data).hexdigest(),
+    }
+    files[builder.LOCK_RELATIVE] = {
+        "bytes": len(lock_data),
+        "sha256": hashlib.sha256(lock_data).hexdigest(),
+    }
+    candidate["frozen_evidence"]["release_lock_sha256"] = hashlib.sha256(
+        lock_data
+    ).hexdigest()
+    candidate["frozen_evidence"]["release_lock_payload_sha256"] = lock[
+        "payload_sha256"
+    ]
+    candidate["frozen_evidence"]["content_ledger_root_sha256"] = canonical_hash(files)
+    candidate["frozen_evidence"]["total_bytes"] = sum(
+        int(row["bytes"]) for row in files.values()
+    )
+    candidate["combined_content_root_sha256"] = canonical_hash(
+        {
+            "frozen_evidence": files,
+            "submission_sources": candidate["submission_sources"]["files"],
+        }
+    )
+    reseal(candidate)
+    unsigned = dict(candidate)
+    payload = unsigned.pop("payload_sha256", None)
+    if payload != canonical_hash(unsigned):
+        fail("compressed outer reseal is invalid")
+    return candidate, lock_data
+
+
+def mutate_first_compressed_jsonl(original: bytes, mode: str) -> bytes:
+    lines = gzip.decompress(original).splitlines(keepends=True)
+    if not lines or not lines[0].startswith(b"{") or not lines[0].endswith(b"\n"):
+        fail("compressed mutation fixture has no canonical first row")
+    row = json.loads(lines[0])
+    name = "parent_anchor_id"
+    if name not in row:
+        fail("compressed mutation fixture omits parent_anchor_id")
+    if mode == "same":
+        value = row[name]
+        mutant = (
+            b"{"
+            + json.dumps(name).encode()
+            + b":"
+            + json.dumps(value).encode()
+            + b","
+            + lines[0][1:]
+        )
+    elif mode == "conflicting":
+        mutant = (
+            b"{"
+            + json.dumps(name).encode()
+            + b':"K2P-CONFLICTING-EARLIER-VALUE",'
+            + lines[0][1:]
+        )
+    elif mode == "noncanonical":
+        mutant = b"{ " + lines[0][1:]
+    else:
+        fail(f"unknown compressed mutation mode: {mode}")
+    if json.loads(mutant) != row:
+        fail(f"compressed mutation changed effective semantics: {mode}")
+    lines[0] = mutant
+    return gzip.compress(b"".join(lines), compresslevel=6, mtime=0)
+
+
+def reject_resealed_compressed_jsonl(
+    base: dict[str, Any], mutation_id: str, mode: str, diagnostic: str
+) -> dict[str, str]:
+    relative = "work/probe_coherence_corrected/one_port_ledger.jsonl.gz"
+    mutant = mutate_first_compressed_jsonl(builder.project_path(relative).read_bytes(), mode)
+    candidate, lock_data = reseal_frozen_member(base, relative, mutant)
+    with tempfile.TemporaryDirectory(
+        prefix="k2p-crosswalk-compressed-", dir=builder.PROJECT.parent
+    ) as temporary:
+        root = Path(temporary)
+        manifest = hardlink_resealed_project(
+            root,
+            base,
+            candidate,
+            relative,
+            mutant,
+            additional_mutants={builder.LOCK_RELATIVE: lock_data},
+        )
+        commands = (
+            (
+                "producer",
+                [
+                    sys.executable,
+                    "-B",
+                    str(
+                        root
+                        / "proof_compression_submission/crosswalk/"
+                        "build_revised_referee_bundle.py"
+                    ),
+                    "--check",
+                ],
+            ),
+            (
+                "checker",
+                [
+                    sys.executable,
+                    "-B",
+                    str(
+                        root
+                        / "proof_compression_submission/crosswalk/"
+                        "check_revised_referee_bundle.py"
+                    ),
+                    "--manifest",
+                    str(manifest),
+                ],
+            ),
+        )
+        rejections: list[str] = []
+        for label, command in commands:
+            result = subprocess.run(
+                command,
+                cwd=root,
+                capture_output=True,
+                text=True,
+                timeout=90,
+                check=False,
+            )
+            observed = (result.stdout + result.stderr).strip()
+            if result.returncode == 0:
+                fail(f"compressed mutation survived {label}: {mutation_id}")
+            if diagnostic not in observed:
+                fail(
+                    f"compressed mutation had wrong {label} diagnostic:"
+                    f"{mutation_id}:{observed}"
+                )
+            rejections.append(f"{label}:{observed}")
+    return {
+        "mutation_id": mutation_id,
+        "outer_reseal": "VALID",
+        "rejection": ";".join(rejections),
+        "status": "REJECTED",
+    }
+
+
 def hardlink_resealed_project(
     root: Path,
     base: dict[str, Any],
     candidate: dict[str, Any],
     mutant_relative: str,
     mutant_data: bytes,
+    additional_mutants: dict[str, bytes] | None = None,
 ) -> Path:
     members = set(base["frozen_evidence"]["files"])
     members.update(base["submission_sources"]["files"])
@@ -111,9 +274,12 @@ def hardlink_resealed_project(
         destination = root.joinpath(*Path(relative).parts)
         destination.parent.mkdir(parents=True, exist_ok=True)
         os.link(source, destination)
-    mutant = root.joinpath(*Path(mutant_relative).parts)
-    mutant.unlink()
-    mutant.write_bytes(mutant_data)
+    mutants = {mutant_relative: mutant_data}
+    mutants.update(additional_mutants or {})
+    for relative, data in mutants.items():
+        mutant = root.joinpath(*Path(relative).parts)
+        mutant.unlink()
+        mutant.write_bytes(data)
     manifest = root.joinpath(*Path(builder.MANIFEST_RELATIVE).parts)
     manifest.parent.mkdir(parents=True, exist_ok=True)
     manifest.write_text(
@@ -178,7 +344,7 @@ def reject_resealed_duplicate_name(
             diagnostic = (result.stdout + result.stderr).strip()
             if result.returncode == 0:
                 fail(f"resealed duplicate-name mutation survived {label}: {mutation_id}")
-            if "duplicate JSON" not in diagnostic:
+            if "STRICT_JSON_DUPLICATE_NAME" not in diagnostic:
                 fail(
                     f"resealed duplicate-name mutation had wrong {label} rejection: "
                     f"{mutation_id}: {diagnostic}"
@@ -329,6 +495,10 @@ def run() -> dict[str, Any]:
         (
             "omitted_graph_parameter_transport_ledger",
             "work/canonicalizer_completeness/inheritance_transport/probe_relation_parameter_transports.jsonl.gz",
+        ),
+        (
+            "omitted_shared_strict_json_parser",
+            "work/final_theorem_release/strict_json.py",
         ),
         ("omitted_approved_license_terms", "LICENSES.md"),
     ):
@@ -519,6 +689,30 @@ def run() -> dict[str, Any]:
             base,
             "same_valued_duplicate_json_name_after_reseal",
             "PASS",
+        )
+    )
+    mutations.append(
+        reject_resealed_compressed_jsonl(
+            base,
+            "same_valued_duplicate_compressed_jsonl_after_reseal",
+            "same",
+            "STRICT_JSON_DUPLICATE_NAME",
+        )
+    )
+    mutations.append(
+        reject_resealed_compressed_jsonl(
+            base,
+            "conflicting_duplicate_compressed_jsonl_after_reseal",
+            "conflicting",
+            "STRICT_JSON_DUPLICATE_NAME",
+        )
+    )
+    mutations.append(
+        reject_resealed_compressed_jsonl(
+            base,
+            "noncanonical_compressed_jsonl_after_reseal",
+            "noncanonical",
+            "STRICT_JSON_NONCANONICAL_BYTES",
         )
     )
     mutations.append(

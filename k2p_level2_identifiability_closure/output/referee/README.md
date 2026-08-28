@@ -1,9 +1,9 @@
 # Portable referee bundle
 
 The authoritative portable set is the recursive closure of
-`work/final_theorem_release/RELEASE_LOCK.json`. It contains 406 files and
-479,327,565 bytes. Its canonical content-ledger root is
-`3e01609b924a4e884f58916e852fa4e63eaa8ab1a1af3c932de1ecc3498efcd0`.
+`work/final_theorem_release/RELEASE_LOCK.json`. It contains 408 files and
+479,376,170 bytes. Its canonical content-ledger root is
+`4a4b1316bf13d16df3ebb5e304b2aa8b0621568a26a6ac63c051c095f5e6fb33`.
 
 ## Entry-point names
 
@@ -45,7 +45,7 @@ To make a deterministic ZIP outside the Git history, add:
 
 ```sh
 .venv/bin/python -B output/referee/build_referee_bundle.py \
-  --output archives/k2p_principal_d_plus_referee_release_20260827.zip
+  --output archives/k2p_principal_d_plus_referee_release_20260828.zip
 ```
 
 The ZIP is deliberately derived rather than committed: its uncompressed

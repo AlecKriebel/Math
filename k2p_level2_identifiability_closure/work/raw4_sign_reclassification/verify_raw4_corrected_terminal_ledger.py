@@ -6,7 +6,6 @@ from __future__ import annotations
 import argparse
 import collections
 import fractions
-import gzip
 import hashlib
 import importlib.util
 import itertools
@@ -21,6 +20,16 @@ import networkx as nx
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import (  # noqa: E402
+    StrictJSONError,
+    decode_json_document,
+    iter_canonical_gzip_jsonl,
+)
+
 ATLAS_PATH = PROJECT / "package/referee/k2p_offline_sweep_portable/atlas/k2p_atlas_core.py"
 RAW_LEDGER = PROJECT / "work/raw_ledger_audit/artifacts/raw_directional_ledger.jsonl.gz"
 RAW_SUMMARY = PROJECT / "work/raw_ledger_audit/artifacts/raw_ledger_summary.json"
@@ -221,7 +230,11 @@ def main():
     parser.add_argument("--report", type=Path, default=DEFAULT_REPORT)
     args = parser.parse_args()
     started = time.monotonic()
-    certificate = json.loads(args.certificate.read_text())
+    certificate = decode_json_document(
+        args.certificate.read_bytes(),
+        label=args.certificate.name,
+        require_object=True,
+    )
     claimed_payload = certificate.get("payload_sha256")
     unhashed = dict(certificate)
     unhashed.pop("payload_sha256", None)
@@ -233,11 +246,9 @@ def main():
     require(certificate["inputs"]["historical_raw_summary_sha256"] == sha_file(RAW_SUMMARY), "summary input")
 
     raw_rows = []
-    with gzip.open(RAW_LEDGER, "rt") as handle:
-        for line in handle:
-            row = json.loads(line)
-            if row.get("topology_exclusion_reason") == "tree_sunlet":
-                raw_rows.append(row)
+    for row in iter_canonical_gzip_jsonl(RAW_LEDGER, label=RAW_LEDGER.name):
+        if row.get("topology_exclusion_reason") == "tree_sunlet":
+            raw_rows.append(row)
     coverage = certificate.get("coverage", [])
     require(len(raw_rows) == 16_974 and len(coverage) == len(raw_rows), "coverage census")
     require(len({row["raw_id"] for row in coverage}) == len(coverage), "coverage raw-id uniqueness")
@@ -398,5 +409,12 @@ def main():
 if __name__ == "__main__":
     try:
         main()
-    except (ReplayFailure, KeyError, IndexError, OSError, json.JSONDecodeError) as error:
+    except (
+        ReplayFailure,
+        StrictJSONError,
+        KeyError,
+        IndexError,
+        OSError,
+        json.JSONDecodeError,
+    ) as error:
         raise SystemExit(f"RAW4_CORRECTED_REPLAY_FAIL:{error}") from error

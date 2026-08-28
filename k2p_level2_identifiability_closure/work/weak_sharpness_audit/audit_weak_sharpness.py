@@ -25,6 +25,12 @@ import networkx as nx
 
 HERE = Path(__file__).resolve().parent
 PRIMARY = HERE.parent / "weak_sharpness_closure" / "weak_sharpness_certificate.json"
+PROJECT = HERE.parents[1]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import decode_json_document  # noqa: E402
 
 
 def require(condition: bool, message: str) -> None:
@@ -896,7 +902,9 @@ def main() -> None:
     if not __debug__:
         raise SystemExit("WEAK_SHARPNESS_AUDIT_OPTIMIZED_MODE_FORBIDDEN")
     require(PRIMARY.is_file(), f"missing primary certificate: {PRIMARY}")
-    primary = json.loads(PRIMARY.read_text())
+    primary = decode_json_document(
+        PRIMARY.read_bytes(), label=PRIMARY.name, require_object=True
+    )
     audit = build_audit(primary)
     payload = dict(audit)
     audit["payload_sha256"] = digest(payload)

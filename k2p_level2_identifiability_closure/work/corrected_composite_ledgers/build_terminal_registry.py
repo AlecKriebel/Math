@@ -13,7 +13,15 @@ import gzip
 import json
 from pathlib import Path
 
-from composite_support import ARTIFACTS, PACKAGE, PROJECT, canonical_bytes, sha_file, sha_object
+from composite_support import (
+    ARTIFACTS,
+    PACKAGE,
+    PROJECT,
+    canonical_bytes,
+    load_json,
+    sha_file,
+    sha_object,
+)
 
 
 def main() -> None:
@@ -27,7 +35,7 @@ def main() -> None:
     args = parser.parse_args()
 
     direct_path = PACKAGE / "proofs/four_port_direct_residual_closure_certificate.json"
-    direct = json.loads(direct_path.read_text())
+    direct = load_json(direct_path)
     overlays = {
         (int(row["source_index"]), int(row["canonical_class_id"])): row
         for row in direct["coverage"]
@@ -39,7 +47,7 @@ def main() -> None:
             PACKAGE
             / f"results/four_port_release_v4/source_{source_index}/residual_manifest.json"
         )
-        manifest = json.loads(manifest_path.read_text())
+        manifest = load_json(manifest_path)
         input_hashes[f"manifest_source_{source_index}"] = sha_file(manifest_path)
         for summary_row in manifest["records"]:
             status = summary_row["status"]
@@ -47,7 +55,7 @@ def main() -> None:
                 continue
             class_id = int(summary_row["canonical_class_id"])
             record_path = args.runs / f"source_{source_index}/records/class_{class_id:06d}.json"
-            record = json.loads(record_path.read_text())
+            record = load_json(record_path)
             if record["semantic_record_sha256"] != summary_row["semantic_record_sha256"]:
                 raise SystemExit(f"TERMINAL_SEMANTIC_BINDING_FAIL:{source_index}:{class_id}")
             if sha_file(record_path) != summary_row["record_sha256"]:

@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 import pickle
+import sys
 from itertools import permutations
 from pathlib import Path
 
@@ -16,6 +17,20 @@ from generate_exception_syzygies import descriptor_digest
 ROOT = Path(__file__).resolve().parents[2]
 ATLAS = ROOT / "package/referee/k2p_offline_sweep_portable/atlas"
 WORK = Path(__file__).resolve().parent
+STRICT_JSON_DIR = ROOT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import StrictJSONError, decode_json_document  # noqa: E402
+
+
+def load_plain_json(path: Path):
+    try:
+        return decode_json_document(
+            path.read_bytes(), label=path.name, require_object=True
+        )
+    except (OSError, StrictJSONError) as error:
+        raise SystemExit(f"RANK_UPPER_BUILD_STRICT_JSON_FAIL:{path}:{error}") from error
 
 
 def descriptor_key(d):
@@ -32,8 +47,8 @@ def main():
         lower_certificates = pickle.load(handle)
     with (WORK / "exception_orbit_representatives.pkl").open("rb") as handle:
         representatives = pickle.load(handle)
-    orbit_ledger = json.loads((WORK / "exception_orbits.json").read_text())
-    census = json.loads((WORK / "base_ansatz_census.json").read_text())
+    orbit_ledger = load_plain_json(WORK / "exception_orbits.json")
+    census = load_plain_json(WORK / "base_ansatz_census.json")
 
     unique = sorted(set(source_descriptors) | set(descriptor_map.values()), key=descriptor_key)
     index = {descriptor: i for i, descriptor in enumerate(unique)}

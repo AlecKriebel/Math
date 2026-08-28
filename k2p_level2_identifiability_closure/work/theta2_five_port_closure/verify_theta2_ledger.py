@@ -17,6 +17,19 @@ import sys
 import tempfile
 from pathlib import Path
 
+HERE = Path(__file__).resolve().parent
+PROJECT = HERE.parents[1]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import (  # noqa: E402
+    StrictJSONError,
+    decode_json_document,
+    iter_canonical_gzip_jsonl,
+    load_canonical_gzip_json,
+)
+
 from theta2_common import (
     ARTIFACT_ROOT,
     DEFAULT_PACKAGE_ROOT,
@@ -29,7 +42,6 @@ from theta2_common import (
     canonicalizer_sha256,
     fail,
     load_atlas,
-    load_json,
     pretty_json_bytes,
     sha_file,
     sha_object,
@@ -74,13 +86,13 @@ LEGACY_INPUT_LOCK_SHA256 = (
     "03b938261c77fe9760241628c0b7cd90ffc1985787503f4a27663707f5c3b2ea"
 )
 CURRENT_COMPILER_SHA256 = (
-    "37e9b7910f7723c146a87ae2f60dfb62529b1a3e4866ccd72d65dc4efda923ad"
+    "afafe6c4289870a02226516e2b7ff207c57b844f4c45fc6864cedf826e9ec742"
 )
 CURRENT_CANONICALIZER_SHA256 = (
     "517a056cca7a2973d9b64646630671dfcfaf9fd2c8e2335e4f24d7efec9630f5"
 )
 CURRENT_INPUT_LOCK_SHA256 = (
-    "e94c6b55947e02fb7154b41b36030560df0eeb8e115dda5c8be3e7c6c5f17a94"
+    "332af9756d079d31d6b8ee2fab100c2b82ad938f24373780cf24e32dcc4d6032"
 )
 
 
@@ -98,6 +110,16 @@ def gzip_metadata(encoded: bytes, plain: bytes) -> dict[str, object]:
         "uncompressed_sha256": hashlib.sha256(plain).hexdigest(),
         "uncompressed_bytes": len(plain),
     }
+
+
+def load_plain_json(path: Path) -> dict:
+    try:
+        value = decode_json_document(
+            path.read_bytes(), label=path.name, require_object=True
+        )
+    except (OSError, StrictJSONError) as exc:
+        fail("THETA2_PLAIN_JSON_FAIL", f"{path}: {exc}")
+    return value
 
 
 def rebound_payload(
@@ -134,7 +156,7 @@ def current_generator_bindings(package_root: Path) -> dict[str, str]:
     if canonicalizer != CURRENT_CANONICALIZER_SHA256:
         fail("THETA2_CURRENT_CANONICALIZER_BINDING_FAIL", canonicalizer)
     lock_path = package_root / "INPUT_LOCK.json"
-    lock = load_json(lock_path)
+    lock = load_plain_json(lock_path)
     input_lock_sha256 = sha_file(lock_path)
     if input_lock_sha256 != CURRENT_INPUT_LOCK_SHA256:
         fail("THETA2_CURRENT_INPUT_LOCK_BINDING_FAIL", input_lock_sha256)
@@ -147,19 +169,6 @@ def current_generator_bindings(package_root: Path) -> dict[str, str]:
         "canonicalizer_sha256": canonicalizer,
         "input_lock_sha256": input_lock_sha256,
     }
-
-
-def read_gzip(path: Path) -> tuple[bytes, str]:
-    digest = hashlib.sha256()
-    chunks = []
-    try:
-        with gzip.open(path, "rb") as handle:
-            for chunk in iter(lambda: handle.read(1024 * 1024), b""):
-                digest.update(chunk)
-                chunks.append(chunk)
-    except (OSError, EOFError) as exc:
-        fail("THETA2_GZIP_FAIL", f"{path}: {exc}")
-    return b"".join(chunks), digest.hexdigest()
 
 
 def digest_gzip(path: Path) -> tuple[str, int]:
@@ -177,18 +186,26 @@ def digest_gzip(path: Path) -> tuple[str, int]:
 
 
 def read_gzip_json(path: Path) -> dict:
-    plain, _ = read_gzip(path)
     try:
-        value = json.loads(plain)
-    except json.JSONDecodeError as exc:
+        value = load_canonical_gzip_json(path, label=path.name)
+    except (OSError, StrictJSONError) as exc:
         fail("THETA2_ARTIFACT_JSON_FAIL", f"{path}: {exc}")
     if not isinstance(value, dict):
         fail("THETA2_ARTIFACT_OBJECT_FAIL", path)
     return value
 
 
+def strict_ledger_rows(path: Path):
+    try:
+        yield from iter_canonical_gzip_jsonl(path, label=path.name)
+    except OSError as exc:
+        fail("THETA2_LEDGER_OPEN_FAIL", exc)
+    except StrictJSONError as exc:
+        fail("THETA2_LEDGER_ROW_JSON_FAIL", exc)
+
+
 def validate_summary(artifact_root: Path) -> dict:
-    summary = load_json(artifact_root / "theta2_five_port_summary.json")
+    summary = load_plain_json(artifact_root / "theta2_five_port_summary.json")
     if summary.get("schema") != "k2p-theta2-five-port-closure-summary-v1":
         fail("THETA2_SUMMARY_SCHEMA_FAIL")
     bindings = summary.get("bindings", {})
@@ -847,16 +864,7 @@ def validate_ledger(path: Path, classes, topology_witnesses):
     source_counts = [collections.Counter() for _ in range(SOURCE_COUNT)]
     class_member_counts = collections.Counter()
     row_count = 0
-    try:
-        handle = gzip.open(path, "rt", encoding="utf-8")
-    except OSError as exc:
-        fail("THETA2_LEDGER_OPEN_FAIL", exc)
-    with handle:
-        for expected_raw_id, line in enumerate(handle):
-            try:
-                row = json.loads(line)
-            except json.JSONDecodeError as exc:
-                fail("THETA2_LEDGER_ROW_JSON_FAIL", (expected_raw_id, exc))
+    for expected_raw_id, row in enumerate(strict_ledger_rows(path)):
             source_index = expected_raw_id // RAW_PER_SOURCE
             within_source = expected_raw_id % RAW_PER_SOURCE
             target_index = within_source // PERMUTATION_COUNT
@@ -986,7 +994,7 @@ def expected_rebound_replay_bytes(
     current_restoration_gzip = deterministic_gzip_bytes(current_restoration_plain)
 
     summary_path = artifact_root / "theta2_five_port_summary.json"
-    frozen_summary = load_json(summary_path)
+    frozen_summary = load_plain_json(summary_path)
     if pretty_json_bytes(frozen_summary) != summary_path.read_bytes():
         fail("THETA2_SUMMARY_LEGACY_CANONICAL_BYTES_FAIL")
     summary_bindings = frozen_summary.get("bindings", {})

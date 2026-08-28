@@ -4,7 +4,6 @@
 from __future__ import annotations
 
 import argparse
-import gzip
 import hashlib
 import json
 import os
@@ -20,6 +19,16 @@ HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[2]
 BUILDER = HERE / "build_parameter_transport_certificate.py"
 CERTIFICATE = HERE / "parameter_transport_certificate.json"
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import (  # noqa: E402
+    StrictJSONError,
+    decode_json_document,
+    iter_canonical_gzip_jsonl,
+)
+
 LEDGER_KEYS = {
     "probe_relations": "probe_relation_parameter_transports.jsonl.gz",
     "probe_restrictions": "probe_restriction_parameter_transports.jsonl.gz",
@@ -152,12 +161,10 @@ def validate_ledger(path: Path, expected: dict[str, Any], key: str) -> None:
     root = sha([])
     counts = Counter()
     occurrence_ids = set()
-    with gzip.open(path, "rt", newline="") as handle:
-        for number, line in enumerate(handle):
+    try:
+        strict_rows = iter_canonical_gzip_jsonl(path, label=str(path))
+        for number, wrapped in enumerate(strict_rows):
             context = f"{key}:{number}"
-            require(line.endswith("\n"), f"{context}:newline")
-            wrapped = json.loads(line)
-            require(line == canonical_bytes(wrapped).decode() + "\n", f"{context}:canonical JSON")
             require(set(wrapped) == {"row", "row_sha256"}, f"{context}:wrapper schema")
             row = wrapped["row"]
             require(wrapped["row_sha256"] == sha(row), f"{context}:row hash")
@@ -171,6 +178,8 @@ def validate_ledger(path: Path, expected: dict[str, Any], key: str) -> None:
             counts.update(action_keys(row))
             root = sha({"previous": root, "row_sha256": wrapped["row_sha256"]})
             rows += 1
+    except (OSError, StrictJSONError) as error:
+        raise Failure(f"{key}:strict JSON decode:{error}") from error
     require(rows == expected["rows"], f"{key}:row count")
     require(root == expected["ordered_hash_root"], f"{key}:ordered root")
     require(dict(sorted(counts.items())) == expected["counts"], f"{key}:counts")
@@ -178,7 +187,11 @@ def validate_ledger(path: Path, expected: dict[str, Any], key: str) -> None:
 
 def validate_directory(root: Path) -> dict[str, Any]:
     certificate_path = root / "parameter_transport_certificate.json"
-    certificate = json.loads(certificate_path.read_text())
+    certificate = decode_json_document(
+        certificate_path.read_bytes(),
+        label=certificate_path.name,
+        require_object=True,
+    )
     require(certificate["schema"] == "k2p_graph_derived_parameter_transport_certificate_v1", "certificate schema")
     require(certificate["status"] == "PASS", "certificate status")
     payload = dict(certificate)

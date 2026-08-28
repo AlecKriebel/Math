@@ -21,6 +21,11 @@ from pathlib import Path
 from typing import Any, Callable
 
 from composite_support import ARTIFACTS, HERE, PROJECT, canonical_bytes, sha_file, sha_object
+from strict_json import (  # noqa: E402
+    decode_json_document,
+    iter_canonical_gzip_jsonl,
+    load_canonical_gzip_json,
+)
 
 
 TOTALS = {"raw4": 405_216, "theta2": 2_946_240}
@@ -72,8 +77,7 @@ def atomic_write_bytes(path: Path, payload: bytes) -> None:
 
 
 def registry_degree_map(path: Path) -> dict[str, int]:
-    with gzip.open(path, "rt", encoding="utf-8") as handle:
-        registry = json.load(handle)
+    registry = load_canonical_gzip_json(path, label=path.name)
     result: dict[str, int] = {}
     for item in registry["rows"]:
         certificate = item["terminal_certificate"]
@@ -100,93 +104,93 @@ def load_exemplars(family: str, ledger: Path) -> dict[str, Any]:
         else {}
     )
 
-    with gzip.open(ledger, "rt", encoding="utf-8") as handle:
-        for ordinal, line in enumerate(handle):
-            row = json.loads(line)
-            require(row.get("raw_id") == ordinal, "SOURCE_RAW_ID_ORDER", ordinal)
-            category = row["corrected_category"]
-            first.setdefault(category, (ordinal, row))
-            if category == "displayed_quartet_exclusion":
-                if (
-                    len(quartet_rows) < 2
-                    and (
-                        not quartet_rows
-                        or row["evidence_binding"]
-                        != quartet_rows[0][1]["evidence_binding"]
-                    )
-                ):
-                    quartet_rows.append((ordinal, row))
-            elif category == "restoration_member_presentation":
-                if not restoration_rows:
-                    restoration_rows.append((ordinal, row))
-                else:
-                    base_evidence = restoration_rows[0][1]["evidence_binding"]
-                    if (
-                        restoration_parent_alternative is None
-                        and row["evidence_binding"]["restoration_parent_id"]
-                        != base_evidence["restoration_parent_id"]
-                    ):
-                        restoration_parent_alternative = (ordinal, row)
-                    if (
-                        restoration_transport_alternative is None
-                        and row["evidence_binding"]["presentation_transport_sha256"]
-                        != base_evidence["presentation_transport_sha256"]
-                    ):
-                        restoration_transport_alternative = (ordinal, row)
-            elif category == "direct_terminal_presentation":
-                binding = row["evidence_binding"][
-                    "terminal_certificate_binding_sha256"
-                ]
-                degree = degree_map.get(binding)
-                if degree is not None:
-                    direct_by_degree.setdefault(degree, (ordinal, row))
-            elif category == "direct_quadratic_separator":
-                if (
-                    len(quadratic_rows) < 2
-                    and (
-                        not quadratic_rows
-                        or row["evidence_binding"]["certificate_id"]
-                        != quadratic_rows[0][1]["evidence_binding"]["certificate_id"]
-                    )
-                ):
-                    quadratic_rows.append((ordinal, row))
-            elif category == "labelled_isomorphism":
-                evidence = row["evidence_binding"]
-                if (
-                    len(isomorphism_rows) < 2
-                    and (
-                        not isomorphism_rows
-                        or evidence["mixed_vertex_mapping_sha256"]
-                        != isomorphism_rows[0][1]["evidence_binding"][
-                            "mixed_vertex_mapping_sha256"
-                        ]
-                    )
-                ):
-                    isomorphism_rows.append((ordinal, row))
-
-            if family == "raw4":
-                complete = (
-                    len(first) == 5
-                    and len(quartet_rows) == 2
-                    and len(restoration_rows) == 1
-                    and restoration_parent_alternative is not None
-                    and restoration_transport_alternative is not None
-                    and {3, 4, 5} <= set(direct_by_degree)
+    for ordinal, row in enumerate(
+        iter_canonical_gzip_jsonl(ledger, label=ledger.name)
+    ):
+        require(row.get("raw_id") == ordinal, "SOURCE_RAW_ID_ORDER", ordinal)
+        category = row["corrected_category"]
+        first.setdefault(category, (ordinal, row))
+        if category == "displayed_quartet_exclusion":
+            if (
+                len(quartet_rows) < 2
+                and (
+                    not quartet_rows
+                    or row["evidence_binding"]
+                    != quartet_rows[0][1]["evidence_binding"]
                 )
+            ):
+                quartet_rows.append((ordinal, row))
+        elif category == "restoration_member_presentation":
+            if not restoration_rows:
+                restoration_rows.append((ordinal, row))
             else:
-                complete = (
-                    len(first) == 5
-                    and len(quartet_rows) == 2
-                    and len(quadratic_rows) == 2
-                    and len(isomorphism_rows) == 2
-                    and any(
-                        "physical_restoration_descendants"
-                        in item["evidence_binding"]
-                        for _, item in isomorphism_rows
-                    )
+                base_evidence = restoration_rows[0][1]["evidence_binding"]
+                if (
+                    restoration_parent_alternative is None
+                    and row["evidence_binding"]["restoration_parent_id"]
+                    != base_evidence["restoration_parent_id"]
+                ):
+                    restoration_parent_alternative = (ordinal, row)
+                if (
+                    restoration_transport_alternative is None
+                    and row["evidence_binding"]["presentation_transport_sha256"]
+                    != base_evidence["presentation_transport_sha256"]
+                ):
+                    restoration_transport_alternative = (ordinal, row)
+        elif category == "direct_terminal_presentation":
+            binding = row["evidence_binding"][
+                "terminal_certificate_binding_sha256"
+            ]
+            degree = degree_map.get(binding)
+            if degree is not None:
+                direct_by_degree.setdefault(degree, (ordinal, row))
+        elif category == "direct_quadratic_separator":
+            if (
+                len(quadratic_rows) < 2
+                and (
+                    not quadratic_rows
+                    or row["evidence_binding"]["certificate_id"]
+                    != quadratic_rows[0][1]["evidence_binding"]["certificate_id"]
                 )
-            if complete:
-                break
+            ):
+                quadratic_rows.append((ordinal, row))
+        elif category == "labelled_isomorphism":
+            evidence = row["evidence_binding"]
+            if (
+                len(isomorphism_rows) < 2
+                and (
+                    not isomorphism_rows
+                    or evidence["mixed_vertex_mapping_sha256"]
+                    != isomorphism_rows[0][1]["evidence_binding"][
+                        "mixed_vertex_mapping_sha256"
+                    ]
+                )
+            ):
+                isomorphism_rows.append((ordinal, row))
+
+        if family == "raw4":
+            complete = (
+                len(first) == 5
+                and len(quartet_rows) == 2
+                and len(restoration_rows) == 1
+                and restoration_parent_alternative is not None
+                and restoration_transport_alternative is not None
+                and {3, 4, 5} <= set(direct_by_degree)
+            )
+        else:
+            complete = (
+                len(first) == 5
+                and len(quartet_rows) == 2
+                and len(quadratic_rows) == 2
+                and len(isomorphism_rows) == 2
+                and any(
+                    "physical_restoration_descendants"
+                    in item["evidence_binding"]
+                    for _, item in isomorphism_rows
+                )
+            )
+        if complete:
+            break
 
     require(len(first) == 5, "SAMPLE_CATEGORY_CENSUS", len(first))
     require(len(quartet_rows) >= 2, "QUARTET_ALTERNATIVE_MISSING")
@@ -273,7 +277,13 @@ def rewrite_complete_mutant(
                         inserted_rows += 1
                         continue
                     require(action is not None, "CHANGE_ACTION_MISSING")
-                    row = json.loads(line)
+                    row = decode_json_document(
+                        line,
+                        label=f"{source.name}:line={ordinal + 1}",
+                        require_object=True,
+                        require_canonical_bytes=True,
+                        require_terminal_newline=True,
+                    )
                     candidate = action(copy.deepcopy(row))
                     require(candidate != row, "MUTATION_NO_OP", target_raw_id)
                     outgoing.write(canonical_bytes(candidate) + b"\n")

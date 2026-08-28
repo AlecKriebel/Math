@@ -74,6 +74,19 @@ caller-owned output contract and is rerun by full mode. Rows explicitly labelled
 already sealed nested suites and are not described as freshly rerun by the
 outer process.
 
+All bound local theorem replay readers that interpret compressed JSON
+evidence, together with the outer bundle producer, use the lock-bound
+`strict_json.py` syntax boundary. The independently implemented outer checker
+enforces the same policy without importing that module. At the package
+boundary, plain JSON rejects repeated object names recursively and non-finite
+numeric values. Every `.json.gz` document and every `.jsonl.gz` row must
+additionally equal its compact sorted-key UTF-8 serialization exactly,
+including one terminal LF.
+Compressed inputs are capped at 512 MiB, gzip JSON documents at 64 MiB,
+individual JSONL rows at 16 MiB, and each expanded JSONL stream at 4 GiB.
+These caps exceed every frozen artifact while making decompression behavior
+finite and explicit.
+
 The release additionally binds the correction of an original certificate
 serialization defect. `verify_full_map_reseal.py` proves that the raw-four and
 theta2 truth certificates changed only in 8 and 85 domain-description leaves,
@@ -179,9 +192,11 @@ silently accepted. It is not counted as a semantic rank-certificate attack.
 The exact rank-v2 mutation report supplies the separate production-verifier
 semantic attack.
 
-Every entry point explicitly rejects `python -O`. The ordinary-triangle
-replayer contains no Python `assert` statements and uses explicit exact
-checks.
+Every documented release entry point, and every portable sweep production
+entry point enumerated by `test_optimized_entrypoints.py`, rejects optimized
+mode before writing output. No load-bearing atlas certificate check depends
+on Python `assert`. The ordinary-triangle replayer likewise contains no
+Python `assert` statements and uses explicit exact checks.
 
 ## Scope
 

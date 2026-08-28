@@ -297,6 +297,14 @@ def main() -> None:
             copied_runner.parent.mkdir(parents=True, exist_ok=True)
             copied_authoritative.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(runner, copied_runner)
+            copied_strict = (
+                copied_project / "work/final_theorem_release/strict_json.py"
+            )
+            copied_strict.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(
+                PROJECT / "work/final_theorem_release/strict_json.py",
+                copied_strict,
+            )
             for support_name in specification.get("support_files", ()):
                 shutil.copy2(runner.parent / support_name, copied_runner.parent / support_name)
             copied_authoritative.symlink_to(root / f"{name}-noncanonical.json")

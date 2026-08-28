@@ -34,9 +34,9 @@ BASELINE_MD = HERE / "PROOF_COMPRESSION_BASELINE.md"
 UNIVERSE_MD = HERE / "FINITE_UNIVERSE_COMPLETENESS.md"
 
 RELEASE_LOCK = "work/final_theorem_release/RELEASE_LOCK.json"
-RELEASE_LOCK_SHA256 = "30132af1b10f7aba6d49ababf14551f9f914a19dc6a0638517761b6b85cf4c8d"
+RELEASE_LOCK_SHA256 = "528e999243f9c43bf7ac4102607f0024610fcffd71cce66eeb50ca054dbc2970"
 RELEASE_LOCK_PAYLOAD_SHA256 = (
-    "a32e7f04d5c979fc1f9e268ca8a791ae24ad99b296f3e3c72682a3beadadd653"
+    "ea73c7af4129a8f43a0d78b894a940145f1ec2327be1ea11f53645c3a6c7f1ba"
 )
 RELEASE_LOCK_SCHEMA = "k2p-principal-d-plus-final-theorem-release-lock-v1"
 ATLAS = "package/referee/k2p_offline_sweep_portable/atlas/k2p_atlas_core.py"
@@ -266,7 +266,7 @@ def mutation_module(relative: str) -> bool:
 
 def proof_surface(files: dict[str, str]) -> dict[str, Any]:
     python = sorted(relative for relative in files if relative.endswith(".py"))
-    require(len(python) == 112, "LOCKED_PYTHON_MODULE_CENSUS_DRIFT", len(python))
+    require(len(python) == 114, "LOCKED_PYTHON_MODULE_CENSUS_DRIFT", len(python))
     require(INFRASTRUCTURE_MODULES <= set(python), "INFRASTRUCTURE_MODULE_MISSING")
     require(EXPLICIT_INDEPENDENT_MODULES <= set(python), "INDEPENDENT_MODULE_MISSING")
     mutations = {relative for relative in python if mutation_module(relative)}
@@ -299,9 +299,9 @@ def proof_surface(files: dict[str, str]) -> dict[str, Any]:
         "mutation": census(mutations),
         "release_hash_orchestration": census(INFRASTRUCTURE_MODULES),
     }
-    require(sum(row["modules"] for row in categories.values()) == 112, "ROLE_MODULE_SUM")
-    require(sum(row["physical_lines"] for row in categories.values()) == 58468, "ROLE_LOC_SUM")
-    require(sum(row["sloc"] for row in categories.values()) == 53156, "ROLE_SLOC_SUM")
+    require(sum(row["modules"] for row in categories.values()) == 114, "ROLE_MODULE_SUM")
+    require(sum(row["physical_lines"] for row in categories.values()) == 59906, "ROLE_LOC_SUM")
+    require(sum(row["sloc"] for row in categories.values()) == 54380, "ROLE_SLOC_SUM")
     return {
         "classification_boundary": (
             "Conservative file-level audit: primary is an upper bound and explicit "
@@ -309,7 +309,7 @@ def proof_surface(files: dict[str, str]) -> dict[str, Any]:
             "split by line."
         ),
         "categories": categories,
-        "total": {"modules": 112, "physical_lines": 58468, "sloc": 53156},
+        "total": {"modules": 114, "physical_lines": 59906, "sloc": 54380},
     }
 
 
@@ -367,7 +367,7 @@ def baseline_payload() -> dict[str, Any]:
     release = release_anchor()
     cores = locked_cores()
     files = recursively_locked_files()
-    require(len(files) == 405, "TRANSITIVE_FILE_CENSUS_DRIFT", len(files))
+    require(len(files) == 407, "TRANSITIVE_FILE_CENSUS_DRIFT", len(files))
     extension_counts: Counter[str] = Counter()
     extension_bytes: Counter[str] = Counter()
     for relative in files:
@@ -387,7 +387,7 @@ def baseline_payload() -> dict[str, Any]:
     machine_extensions = {".json", ".json.gz", ".jsonl.gz", ".pkl"}
     machine_files = sum(extension_counts[extension] for extension in machine_extensions)
     machine_bytes = sum(extension_bytes[extension] for extension in machine_extensions)
-    require((machine_files, machine_bytes) == (240, 476415795), "MACHINE_DATA_CENSUS_DRIFT")
+    require((machine_files, machine_bytes) == (240, 476418041), "MACHINE_DATA_CENSUS_DRIFT")
 
     manuscript = project_path(
         "work/global_theorem_closure/promotion_manuscript/K2P_SAME_PROMOTION_MANUSCRIPT.md"

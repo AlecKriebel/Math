@@ -10,7 +10,6 @@ and the other has an exact strict tensor-Bernstein sign on the open unit cube.
 from __future__ import annotations
 
 import collections
-import gzip
 import importlib.util
 import itertools
 import json
@@ -20,6 +19,16 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import (  # noqa: E402
+    StrictJSONError,
+    decode_json_document,
+    iter_canonical_gzip_jsonl,
+)
+
 CORE_PATH = HERE / "audit_raw4_tree_sunlet_full_map.py"
 CYCLE_DIR = PROJECT / "work/cycle_three_port_closure"
 BASE_LEDGER = CYCLE_DIR / "artifacts/base_raw_ledger.jsonl.gz"
@@ -268,21 +277,19 @@ def main():
         (len(sources), len(targets), len(permutations)) == (2, 1120, 6),
         "cycle primitive census",
     )
-    witness_payload = json.loads(WITNESSES.read_text())
+    witness_payload = decode_json_document(
+        WITNESSES.read_bytes(), label=WITNESSES.name, require_object=True
+    )
     witnesses = witness_payload["witnesses"]
 
     base_rows = []
-    with gzip.open(BASE_LEDGER, "rt") as handle:
-        for line in handle:
-            row = json.loads(line)
-            if row["category"] == "tree_sunlet_pointwise_excluded":
-                base_rows.append(row)
+    for row in iter_canonical_gzip_jsonl(BASE_LEDGER, label=BASE_LEDGER.name):
+        if row["category"] == "tree_sunlet_pointwise_excluded":
+            base_rows.append(row)
     full_rows = []
-    with gzip.open(FULL_LEDGER, "rt") as handle:
-        for line in handle:
-            row = json.loads(line)
-            if row["category"] == "tree_sunlet_pointwise_excluded":
-                full_rows.append(row)
+    for row in iter_canonical_gzip_jsonl(FULL_LEDGER, label=FULL_LEDGER.name):
+        if row["category"] == "tree_sunlet_pointwise_excluded":
+            full_rows.append(row)
     core.require(len(base_rows) == 7452, f"cycle base sign census:{len(base_rows)}")
     core.require(len(full_rows) == 300, f"cycle full sign census:{len(full_rows)}")
 
@@ -669,5 +676,12 @@ def main():
 if __name__ == "__main__":
     try:
         main()
-    except (RuntimeError, AssertionError, KeyError, OSError, json.JSONDecodeError) as exc:
+    except (
+        RuntimeError,
+        StrictJSONError,
+        AssertionError,
+        KeyError,
+        OSError,
+        json.JSONDecodeError,
+    ) as exc:
         raise SystemExit(f"CYCLE_TREE_SUNLET_TRUTH_FAIL:{exc}") from exc

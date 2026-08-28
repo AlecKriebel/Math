@@ -14,7 +14,6 @@ from __future__ import annotations
 
 import collections
 import fractions
-import gzip
 import hashlib
 import importlib.util
 import itertools
@@ -26,6 +25,16 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import (  # noqa: E402
+    StrictJSONError,
+    decode_json_document,
+    iter_canonical_gzip_jsonl,
+)
+
 ATLAS_PATH = PROJECT / "package/referee/k2p_offline_sweep_portable/atlas/k2p_atlas_core.py"
 RAW_LEDGER = PROJECT / "work/raw_ledger_audit/artifacts/raw_directional_ledger.jsonl.gz"
 RAW_SUMMARY = PROJECT / "work/raw_ledger_audit/artifacts/raw_ledger_summary.json"
@@ -36,6 +45,12 @@ OUTPUT = HERE / "raw4_corrected_terminal_ledger.json"
 
 class Failure(RuntimeError):
     pass
+
+
+def load_plain_json(path: Path):
+    return decode_json_document(
+        path.read_bytes(), label=path.name, require_object=True
+    )
 
 
 def require(condition, message):
@@ -206,15 +221,13 @@ def main():
     atlas = load_atlas()
     sources = atlas.source_supports()
     targets = atlas.target_completions(4, True) + atlas.target_completions(4, False)
-    raw_summary = json.loads(RAW_SUMMARY.read_text())
-    provisional = json.loads(PROVISIONAL.read_text())
+    raw_summary = load_plain_json(RAW_SUMMARY)
+    provisional = load_plain_json(PROVISIONAL)
 
     historical_rows = []
-    with gzip.open(RAW_LEDGER, "rt") as handle:
-        for line in handle:
-            row = json.loads(line)
-            if row.get("topology_exclusion_reason") == "tree_sunlet":
-                historical_rows.append(row)
+    for row in iter_canonical_gzip_jsonl(RAW_LEDGER, label=RAW_LEDGER.name):
+        if row.get("topology_exclusion_reason") == "tree_sunlet":
+            historical_rows.append(row)
     require(len(historical_rows) == 16_974, f"historical row census:{len(historical_rows)}")
     require(len({row["raw_id"] for row in historical_rows}) == len(historical_rows), "duplicate raw id")
     require(provisional["raw_rows"] == len(historical_rows), "provisional row binding")
@@ -427,7 +440,7 @@ def main():
             "adversarial_full_map_certificate_sha256": sha_file(ADVERSARIAL),
         },
         "cross_replay": {
-            "adversarial_payload_sha256": json.loads(ADVERSARIAL.read_text())["payload_sha256"],
+            "adversarial_payload_sha256": load_plain_json(ADVERSARIAL)["payload_sha256"],
             "agreement_rows": len(coverage),
             "agreement_polynomial_relation_classes": len(relation_classes),
         },
@@ -448,5 +461,5 @@ def main():
 if __name__ == "__main__":
     try:
         main()
-    except (Failure, KeyError, OSError, json.JSONDecodeError) as error:
+    except (Failure, StrictJSONError, KeyError, OSError, json.JSONDecodeError) as error:
         raise SystemExit(f"RAW4_CORRECTED_LEDGER_FAIL:{error}") from error

@@ -11,7 +11,6 @@ quadratic, or an explicit unresolved restoration/direct obligation.
 from __future__ import annotations
 
 import collections
-import gzip
 import hashlib
 import importlib.util
 import itertools
@@ -24,6 +23,16 @@ import networkx as nx
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import (  # noqa: E402
+    StrictJSONError,
+    decode_json_document,
+    iter_canonical_gzip_jsonl,
+)
+
 ATLAS_PATH = PROJECT / "package/referee/k2p_offline_sweep_portable/atlas/k2p_atlas_core.py"
 RAW_LEDGER = PROJECT / "work/raw_ledger_audit/artifacts/raw_directional_ledger.jsonl.gz"
 DIRECT_CLOSURE = PROJECT / "work/four_port_direct_residual_closure_certificate.json"
@@ -32,6 +41,15 @@ OUTPUT = HERE / "raw4_sign_reclassification.json"
 
 class Failure(RuntimeError):
     pass
+
+
+def load_plain_json(path: Path):
+    try:
+        return decode_json_document(
+            path.read_bytes(), label=path.name, require_object=True
+        )
+    except (OSError, StrictJSONError) as error:
+        raise Failure(f"strict JSON:{path}:{error}") from error
 
 
 def require(condition, message):
@@ -241,17 +259,15 @@ def main():
     atlas = load_atlas()
     sources = atlas.source_supports()
     targets = atlas.target_completions(4, True) + atlas.target_completions(4, False)
-    direct = json.loads(DIRECT_CLOSURE.read_text())
+    direct = load_plain_json(DIRECT_CLOSURE)
     direct_keys = {
         (row["source_index"], row["target_index"], tuple(row["port_match"])): row
         for row in direct["coverage"]
     }
     rows = []
-    with gzip.open(RAW_LEDGER, "rt") as handle:
-        for line in handle:
-            row = json.loads(line)
-            if row.get("topology_exclusion_reason") == "tree_sunlet":
-                rows.append(row)
+    for row in iter_canonical_gzip_jsonl(RAW_LEDGER, label=RAW_LEDGER.name):
+        if row.get("topology_exclusion_reason") == "tree_sunlet":
+            rows.append(row)
     require(len(rows) == 16974, f"revoked row census {len(rows)}")
 
     source_descriptors = [atlas.model_descriptor_fast2(record.graph) for record in sources]
@@ -426,6 +442,6 @@ def main():
 if __name__ == "__main__":
     try:
         raise SystemExit(main())
-    except Failure as error:
+    except (Failure, StrictJSONError) as error:
         print(f"RAW4_SIGN_RECLASSIFICATION_FAIL:{error}", file=sys.stderr)
         raise SystemExit(1)

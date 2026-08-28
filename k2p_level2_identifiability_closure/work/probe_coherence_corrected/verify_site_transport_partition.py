@@ -4,15 +4,20 @@
 from __future__ import annotations
 
 import collections
-import gzip
 import hashlib
 import json
+import sys
 import time
 from pathlib import Path
 
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import decode_json_document, iter_canonical_gzip_jsonl  # noqa: E402
 CONTRACT = PROJECT / "work/adversarial_proof_review/probe_input_contract.json"
 OUTPUT = HERE / "site_transport_partition_verification.json"
 
@@ -50,7 +55,9 @@ def main():
     if not __debug__:
         raise PartitionFailure("SITE_PARTITION_OPTIMIZED_MODE_FORBIDDEN")
     started = time.monotonic()
-    contract = json.loads(CONTRACT.read_text())
+    contract = decode_json_document(
+        CONTRACT.read_bytes(), label=CONTRACT.name, require_object=True
+    )
     base_maps = {}
     for anchor in contract["anchors"]:
         mapping = {
@@ -64,23 +71,24 @@ def main():
     one_compatible_status = collections.Counter()
     one_incompatible_status = collections.Counter()
     parent_transport_ids = {}
-    with gzip.open(HERE / "one_port_ledger.jsonl.gz", "rt") as handle:
-        for number, line in enumerate(handle):
-            row = json.loads(line)
-            compatible = (
-                base_maps[row["parent_anchor_id"]].get(row["source_site_id"])
-                == row["target_site_id"]
-            )
-            one_counts["compatible" if compatible else "incompatible"] += 1
-            target = one_compatible_status if compatible else one_incompatible_status
-            target[row["status"]] += 1
-            if compatible:
-                require(row["status"] in {"isomorphic", "triangle", "full_map_Ti_strict_sign"}, f"compatible one status:{number}")
-            else:
-                require(row["status"] == "displayed_quartet_mismatch", f"incompatible one not quartet:{number}")
-            if row["status"] in {"isomorphic", "triangle"}:
-                parent_id = f"P1:{row['parent_anchor_id']}:{row['source_site_index']}:{row['target_site_index']}"
-                parent_transport_ids[parent_id] = row["transport_id"]
+    one_path = HERE / "one_port_ledger.jsonl.gz"
+    for number, row in enumerate(
+        iter_canonical_gzip_jsonl(one_path, label=one_path.name)
+    ):
+        compatible = (
+            base_maps[row["parent_anchor_id"]].get(row["source_site_id"])
+            == row["target_site_id"]
+        )
+        one_counts["compatible" if compatible else "incompatible"] += 1
+        target = one_compatible_status if compatible else one_incompatible_status
+        target[row["status"]] += 1
+        if compatible:
+            require(row["status"] in {"isomorphic", "triangle", "full_map_Ti_strict_sign"}, f"compatible one status:{number}")
+        else:
+            require(row["status"] == "displayed_quartet_mismatch", f"incompatible one not quartet:{number}")
+        if row["status"] in {"isomorphic", "triangle"}:
+            parent_id = f"P1:{row['parent_anchor_id']}:{row['source_site_index']}:{row['target_site_index']}"
+            parent_transport_ids[parent_id] = row["transport_id"]
     require(one_counts == {"compatible": 2206, "incompatible": 27758}, f"one partition:{one_counts}")
     require(one_compatible_status == {
         "isomorphic": 1915, "triangle": 192, "full_map_Ti_strict_sign": 99,
@@ -90,18 +98,17 @@ def main():
 
     needed = set(parent_transport_ids.values())
     transport_site_maps = {}
-    with gzip.open(HERE / "exact_transport_ledger.jsonl.gz", "rt") as handle:
-        for line in handle:
-            row = json.loads(line)
-            if row["record_id"] not in needed:
-                continue
-            public = row["record"]
-            mapping = {
-                site_id(edge_row[0]): site_id(edge_row[1])
-                for edge_row in public["mixed_edge_map"]
-            }
-            require(len(mapping) == len(public["mixed_edge_map"]), f"parent edge-map collision:{row['record_id']}")
-            transport_site_maps[row["record_id"]] = mapping
+    transport_path = HERE / "exact_transport_ledger.jsonl.gz"
+    for row in iter_canonical_gzip_jsonl(transport_path, label=transport_path.name):
+        if row["record_id"] not in needed:
+            continue
+        public = row["record"]
+        mapping = {
+            site_id(edge_row[0]): site_id(edge_row[1])
+            for edge_row in public["mixed_edge_map"]
+        }
+        require(len(mapping) == len(public["mixed_edge_map"]), f"parent edge-map collision:{row['record_id']}")
+        transport_site_maps[row["record_id"]] = mapping
     require(set(transport_site_maps) == needed, "one parent transport registry coverage")
 
     parent_maps = {
@@ -111,20 +118,21 @@ def main():
     two_counts = collections.Counter()
     two_compatible_status = collections.Counter()
     two_incompatible_status = collections.Counter()
-    with gzip.open(HERE / "two_port_ledger.jsonl.gz", "rt") as handle:
-        for number, line in enumerate(handle):
-            row = json.loads(line)
-            compatible = (
-                parent_maps[row["one_port_parent_id"]].get(row["second_source_site_id"])
-                == row["second_target_site_id"]
-            )
-            two_counts["compatible" if compatible else "incompatible"] += 1
-            target = two_compatible_status if compatible else two_incompatible_status
-            target[row["status"]] += 1
-            if compatible:
-                require(row["status"] in {"isomorphic", "triangle", "full_map_Ti_strict_sign"}, f"compatible two status:{number}")
-            else:
-                require(row["status"] == "displayed_quartet_mismatch", f"incompatible two not quartet:{number}")
+    two_path = HERE / "two_port_ledger.jsonl.gz"
+    for number, row in enumerate(
+        iter_canonical_gzip_jsonl(two_path, label=two_path.name)
+    ):
+        compatible = (
+            parent_maps[row["one_port_parent_id"]].get(row["second_source_site_id"])
+            == row["second_target_site_id"]
+        )
+        two_counts["compatible" if compatible else "incompatible"] += 1
+        target = two_compatible_status if compatible else two_incompatible_status
+        target[row["status"]] += 1
+        if compatible:
+            require(row["status"] in {"isomorphic", "triangle", "full_map_Ti_strict_sign"}, f"compatible two status:{number}")
+        else:
+            require(row["status"] == "displayed_quartet_mismatch", f"incompatible two not quartet:{number}")
     require(two_counts == {"compatible": 33305, "incompatible": 511266}, f"two partition:{two_counts}")
     require(two_compatible_status == {
         "isomorphic": 30969, "triangle": 1760, "full_map_Ti_strict_sign": 576,

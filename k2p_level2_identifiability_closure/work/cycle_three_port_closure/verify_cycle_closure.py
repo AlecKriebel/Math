@@ -6,12 +6,20 @@ from __future__ import annotations
 import argparse
 import ast
 import collections
-import gzip
 import hashlib
 import itertools
 import json
+import sys
 from fractions import Fraction
 from pathlib import Path
+
+HERE = Path(__file__).resolve().parent
+PROJECT = HERE.parents[1]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import iter_canonical_gzip_jsonl  # noqa: E402
 
 from cycle_common import (
     DEFAULT_ARTIFACT_ROOT,
@@ -217,21 +225,26 @@ class Ledger:
         self.digest = hashlib.sha256()
         self.byte_count = 0
         self.row_count = 0
-        self.handle = gzip.open(path, "rb")
+        self.rows = iter(iter_canonical_gzip_jsonl(path, label=path.name))
 
     def next(self):
-        line = self.handle.readline()
-        require(line, f"REPLAY_LEDGER_EARLY_EOF:{self.path.name}")
+        try:
+            row = next(self.rows)
+        except StopIteration:
+            raise ReplayFailure(f"REPLAY_LEDGER_EARLY_EOF:{self.path.name}") from None
+        line = canonical_json_bytes(row) + b"\n"
         self.digest.update(line)
         self.byte_count += len(line)
         self.row_count += 1
-        row = json.loads(line)
-        require(line == canonical_json_bytes(row) + b"\n", "REPLAY_NONCANONICAL_LEDGER_ROW")
         return row
 
     def finish(self):
-        require(not self.handle.readline(), f"REPLAY_LEDGER_TRAILING_ROW:{self.path.name}")
-        self.handle.close()
+        try:
+            next(self.rows)
+        except StopIteration:
+            pass
+        else:
+            raise ReplayFailure(f"REPLAY_LEDGER_TRAILING_ROW:{self.path.name}")
         require(self.row_count == self.metadata["rows"], "REPLAY_LEDGER_ROW_COUNT")
         require(self.byte_count == self.metadata["plain_bytes"], "REPLAY_LEDGER_BYTE_COUNT")
         require(self.digest.hexdigest() == self.metadata["plain_sha256"], "REPLAY_LEDGER_PLAIN_HASH")

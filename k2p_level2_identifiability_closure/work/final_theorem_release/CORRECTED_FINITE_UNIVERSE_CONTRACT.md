@@ -318,7 +318,8 @@ first-probe source--target pairs, and all 352 artificial-root-half
 equivalences. The completed corrected probe then classifies all 29,964
 one-port and 544,571 two-port rows, binds 2,107 second-stage parents and 32,729
 reverse marginals, and replays 67,741 exact transports and 4,379 parent
-restrictions. Its primary 15/15 mutation suite and independent primitive-graph
+restrictions. Its primary 18/18 mutation suite, including duplicate-name and
+noncanonical compressed-JSON attacks, and independent primitive-graph
 12/12 mutation suite both pass. Every restriction is certified as coming from
 one fixed full containment using only root movement or an internal core arc;
 all unresolved, incoherent, missing-parent, and new-triangle counts are zero.

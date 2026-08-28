@@ -5,14 +5,19 @@ from __future__ import annotations
 
 import argparse
 import collections
-import gzip
 import hashlib
 import json
+import sys
 from pathlib import Path
 
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import decode_json_document, iter_canonical_gzip_jsonl  # noqa: E402
 CYCLE = PROJECT / "work/cycle_three_port_closure"
 ARTIFACTS = CYCLE / "artifacts"
 DEFAULT_PROMOTION = CYCLE / "promotion"
@@ -51,9 +56,7 @@ def sha_file(path):
 
 
 def rows(path):
-    with gzip.open(path, "rt") as handle:
-        for line in handle:
-            yield json.loads(line)
+    yield from iter_canonical_gzip_jsonl(path, label=path.name)
 
 
 def no_revoked_provenance(value, context):
@@ -102,7 +105,9 @@ def main():
     summary_path = promotion / "cycle_promotion_certificate.json"
     base_path = promotion / "cycle_base_authoritative.jsonl.gz"
     full_path = promotion / "cycle_full_authoritative.jsonl.gz"
-    summary = json.loads(summary_path.read_text())
+    summary = decode_json_document(
+        summary_path.read_bytes(), label=summary_path.name, require_object=True
+    )
     unhashed = dict(summary)
     payload = unhashed.pop("payload_sha256", None)
     require(payload == sha(unhashed), "summary payload")
@@ -129,7 +134,11 @@ def main():
     require(summary["outputs"][base_path.name]["sha256"] == sha_file(base_path), "base output hash")
     require(summary["outputs"][full_path.name]["sha256"] == sha_file(full_path), "full output hash")
 
-    truth = json.loads(arguments.truth_certificate.read_text())
+    truth = decode_json_document(
+        arguments.truth_certificate.read_bytes(),
+        label=arguments.truth_certificate.name,
+        require_object=True,
+    )
     truth_unhashed = dict(truth)
     truth_payload = truth_unhashed.pop("payload_sha256", None)
     require(truth_payload == sha(truth_unhashed), "truth payload")
@@ -139,9 +148,18 @@ def main():
     full_truth = truth["families"]["cycle_full_equal_topology"]["ordered_truth_row_hashes"]
     require(len(base_truth) == 7452 and len(full_truth) == 300, "truth coverage")
 
-    topology = json.loads((ARTIFACTS / "topology_witnesses.json").read_text())["witnesses"]
-    transports = json.loads((ARTIFACTS / "transport_certificates.json").read_text())["certificates"]
-    quadratics = json.loads((ARTIFACTS / "quadratic_certificates.json").read_text())["certificates"]
+    topology_path = ARTIFACTS / "topology_witnesses.json"
+    transport_path = ARTIFACTS / "transport_certificates.json"
+    quadratic_path = ARTIFACTS / "quadratic_certificates.json"
+    topology = decode_json_document(
+        topology_path.read_bytes(), label=topology_path.name, require_object=True
+    )["witnesses"]
+    transports = decode_json_document(
+        transport_path.read_bytes(), label=transport_path.name, require_object=True
+    )["certificates"]
+    quadratics = decode_json_document(
+        quadratic_path.read_bytes(), label=quadratic_path.name, require_object=True
+    )["certificates"]
     roots_by_raw = {row["base_raw_id"]: row for row in rows(ARTIFACTS / "restoration_roots.jsonl.gz")}
     require(len(roots_by_raw) == 5964, "root census")
 

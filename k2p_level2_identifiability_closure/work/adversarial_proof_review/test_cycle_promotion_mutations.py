@@ -21,6 +21,16 @@ from typing import Any
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import (  # noqa: E402
+    StrictJSONError,
+    decode_json_document,
+    iter_canonical_gzip_jsonl,
+)
+
 OFFICIAL_PROMOTION = PROJECT / "work/cycle_three_port_closure/promotion"
 OFFICIAL_TRUTH = HERE / "cycle_tree_sunlet_full_map_certificate.json"
 PROMOTION_VERIFIER = HERE / "verify_corrected_cycle_promotion.py"
@@ -63,6 +73,22 @@ EXPECTED_DIAGNOSTICS = {
 
 class MutationFailure(RuntimeError):
     pass
+
+
+def load_plain_json(path: Path):
+    try:
+        return decode_json_document(
+            path.read_bytes(), label=path.name, require_object=True
+        )
+    except (OSError, StrictJSONError) as error:
+        raise MutationFailure(f"strict JSON:{path}:{error}") from error
+
+
+def iter_jsonl(path: Path):
+    try:
+        yield from iter_canonical_gzip_jsonl(path, label=path.name)
+    except (OSError, StrictJSONError) as error:
+        raise MutationFailure(f"strict JSON:{path}:{error}") from error
 
 
 def require(condition: bool, message: str) -> None:
@@ -152,8 +178,8 @@ def atomic_write(path: Path, payload: bytes) -> None:
 
 
 def source_fingerprints() -> dict[str, str]:
-    summary = json.loads(
-        (OFFICIAL_PROMOTION / "cycle_promotion_certificate.json").read_text()
+    summary = load_plain_json(
+        OFFICIAL_PROMOTION / "cycle_promotion_certificate.json"
     )
     fixed_inputs = {
         PROJECT / "package/referee/k2p_offline_sweep_portable/atlas/k2p_atlas_core.py",
@@ -214,8 +240,8 @@ class GzipWriter:
 
 def rewrite_ledger(source, target, mutator):
     changed = False
-    with gzip.open(source, "rt") as handle, GzipWriter(target) as output:
-        for row in map(json.loads, handle):
+    with GzipWriter(target) as output:
+        for row in iter_jsonl(source):
             if not changed:
                 candidate = mutator(copy.deepcopy(row))
                 if candidate is not False:
@@ -250,25 +276,27 @@ def prepare_root(temporary, mutate_base=None, mutate_full=None):
 
 def refresh_summary(root):
     summary_path = root / "cycle_promotion_certificate.json"
-    summary = json.loads(summary_path.read_text())
+    summary = load_plain_json(summary_path)
     base_hashes, base_counts = [], {}
-    with gzip.open(root / "cycle_base_authoritative.jsonl.gz", "rt") as handle:
-        for row in map(json.loads, handle):
-            base_hashes.append(row["authoritative_row_sha256"])
-            kind = row["terminal_kind"]
-            base_counts[kind] = base_counts.get(kind, 0) + 1
+    for row in iter_jsonl(root / "cycle_base_authoritative.jsonl.gz"):
+        base_hashes.append(row["authoritative_row_sha256"])
+        kind = row["terminal_kind"]
+        base_counts[kind] = base_counts.get(kind, 0) + 1
     full_hashes, full_counts, transports, child_counts = [], {}, [], {}
-    with gzip.open(root / "cycle_full_authoritative.jsonl.gz", "rt") as handle:
-        for row in map(json.loads, handle):
-            full_hashes.append(row["authoritative_row_sha256"])
-            kind = row["terminal_kind"]
-            full_counts[kind] = full_counts.get(kind, 0) + 1
-            transports.append(row["fixed_full_transport_sha256"])
-            root_id = row["root_id"]
-            child_counts[root_id] = child_counts.get(root_id, 0) + 1
-    roots = set()
-    with gzip.open(PROJECT / "work/cycle_three_port_closure/artifacts/restoration_roots.jsonl.gz", "rt") as handle:
-        roots = {json.loads(line)["root_id"] for line in handle}
+    for row in iter_jsonl(root / "cycle_full_authoritative.jsonl.gz"):
+        full_hashes.append(row["authoritative_row_sha256"])
+        kind = row["terminal_kind"]
+        full_counts[kind] = full_counts.get(kind, 0) + 1
+        transports.append(row["fixed_full_transport_sha256"])
+        root_id = row["root_id"]
+        child_counts[root_id] = child_counts.get(root_id, 0) + 1
+    roots = {
+        row["root_id"]
+        for row in iter_jsonl(
+            PROJECT
+            / "work/cycle_three_port_closure/artifacts/restoration_roots.jsonl.gz"
+        )
+    }
     summary["base"].update({
         "rows": len(base_hashes), "terminal_census": base_counts,
         "ordered_authoritative_row_hash_root": sha(base_hashes),
@@ -425,7 +453,7 @@ def main():
             ),
             "clean promotion baseline",
         )
-        clean_promotion_payload = json.loads(clean_promotion_report.read_text())
+        clean_promotion_payload = load_plain_json(clean_promotion_report)
         clean_promotion_report_sha256 = sha_file(clean_promotion_report)
         require(
             clean_promotion_payload
@@ -438,8 +466,8 @@ def main():
                 "promotion_certificate_sha256": sha_file(
                     OFFICIAL_PROMOTION / "cycle_promotion_certificate.json"
                 ),
-                "promotion_payload_sha256": json.loads(
-                    (OFFICIAL_PROMOTION / "cycle_promotion_certificate.json").read_text()
+                "promotion_payload_sha256": load_plain_json(
+                    OFFICIAL_PROMOTION / "cycle_promotion_certificate.json"
                 )["payload_sha256"],
                 "restoration_roots": 5_964,
                 "schema": "k2p-cycle-authoritative-promotion-independent-verification-v1",
@@ -468,7 +496,7 @@ def main():
             ),
             "clean truth-structure baseline",
         )
-        clean_truth_payload = json.loads(clean_truth_report.read_text())
+        clean_truth_payload = load_plain_json(clean_truth_report)
         truth_unsigned = dict(clean_truth_payload)
         truth_claimed = truth_unsigned.pop("payload_sha256", None)
         require(
@@ -480,8 +508,8 @@ def main():
                 "payload_sha256": truth_claimed,
                 "repairs": 24,
                 "schema": "k2p-cycle-whole-map-structure-preflight-v1",
-                "source_certificate_payload_sha256": json.loads(
-                    OFFICIAL_TRUTH.read_text()
+                "source_certificate_payload_sha256": load_plain_json(
+                    OFFICIAL_TRUTH
                 )["payload_sha256"],
                 "source_certificate_sha256": sha_file(OFFICIAL_TRUTH),
                 "status": "PASS",
@@ -527,11 +555,9 @@ def main():
             ),
         ]
         quadratic_ids = sorted(
-            json.loads(
-                (
-                    PROJECT
-                    / "work/cycle_three_port_closure/artifacts/quadratic_certificates.json"
-                ).read_text()
+            load_plain_json(
+                PROJECT
+                / "work/cycle_three_port_closure/artifacts/quadratic_certificates.json"
             )["certificates"]
         )
         promotion_mutations.extend([
@@ -591,7 +617,7 @@ def main():
                 "complete_disposable_cycle_promotion_attack",
             )
 
-        truth_original = json.loads(OFFICIAL_TRUTH.read_text())
+        truth_original = load_plain_json(OFFICIAL_TRUTH)
 
         def truth_case(mutation_name, mutate):
             document = copy.deepcopy(truth_original)

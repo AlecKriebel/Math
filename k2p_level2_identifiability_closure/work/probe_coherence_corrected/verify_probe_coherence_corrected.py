@@ -13,11 +13,11 @@ from __future__ import annotations
 import argparse
 import collections
 import fractions
-import gzip
 import hashlib
 import itertools
 import json
 import math
+import sys
 import time
 from pathlib import Path
 
@@ -25,6 +25,16 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
 DEFAULT_OUTPUT = HERE / "probe_coherence_independent_verification.json"
+STRICT_JSON_DIR = PROJECT / "work" / "final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import (  # noqa: E402
+    StrictJSONError,
+    decode_json_document,
+    iter_canonical_gzip_jsonl,
+    load_canonical_gzip_json,
+)
 
 
 class ReplayFailure(RuntimeError):
@@ -68,12 +78,13 @@ class OrderedReplay:
 
 
 def iter_jsonl(path):
-    with gzip.open(path, "rt") as handle:
-        for number, line in enumerate(handle):
-            try:
-                yield number, json.loads(line)
-            except json.JSONDecodeError as error:
-                raise ReplayFailure(f"malformed JSONL:{path.name}:{number}") from error
+    try:
+        for number, row in enumerate(
+            iter_canonical_gzip_jsonl(path, label=path.name)
+        ):
+            yield number, row
+    except StrictJSONError as error:
+        raise ReplayFailure(str(error)) from error
 
 
 def load_streaming_registry(path, expected, record_kind, validator, compact):
@@ -263,7 +274,11 @@ def main():
     root = args.package_dir.resolve()
     started = time.monotonic()
     certificate_path = root / "probe_coherence_certificate.json"
-    report = json.loads(certificate_path.read_text())
+    report = decode_json_document(
+        certificate_path.read_bytes(),
+        label=certificate_path.name,
+        require_object=True,
+    )
     require(report["schema"] == "k2p-corrected-coherent-probe-closure-v1", "schema")
     require(report["status"] == "PASS", "release status")
     require(report["payload_sha256"] == logical_payload(report), "logical payload")
@@ -291,8 +306,7 @@ def main():
 
     proof_path = root / report["registries"]["separation"]["path"]
     require(sha_file(proof_path) == report["registries"]["separation"]["sha256"], "proof registry file hash")
-    with gzip.open(proof_path, "rt") as handle:
-        proof = json.load(handle)
+    proof = load_canonical_gzip_json(proof_path, label=proof_path.name)
     claimed = proof.pop("payload_sha256")
     require(claimed == sha(proof), "proof registry payload")
     proof["payload_sha256"] = claimed

@@ -20,6 +20,11 @@ PROJECT_ROOT = AUDIT_ROOT.parents[1]
 DEFAULT_PACKAGE_ROOT = (
     PROJECT_ROOT / "package/referee/k2p_offline_sweep_portable"
 )
+STRICT_JSON_DIR = PROJECT_ROOT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import StrictJSONError, decode_json_document  # noqa: E402
 
 
 def fail(code: str, detail: object | None = None) -> "None":
@@ -127,10 +132,9 @@ def canonicalizer_sha256(atlas) -> str:
 
 def load_json(path: Path) -> dict[str, Any]:
     try:
-        value = json.loads(path.read_text())
-    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        value = decode_json_document(
+            path.read_bytes(), label=path.name, require_object=True
+        )
+    except (OSError, StrictJSONError) as exc:
         fail("RAW_LEDGER_JSON_FAIL", f"{path}: {exc}")
-    if not isinstance(value, dict):
-        fail("RAW_LEDGER_JSON_OBJECT_FAIL", path)
     return value
-

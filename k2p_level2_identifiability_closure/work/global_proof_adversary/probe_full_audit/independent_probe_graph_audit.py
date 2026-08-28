@@ -17,7 +17,6 @@ import collections
 import copy
 import fractions
 import gc
-import gzip
 import hashlib
 import importlib.util
 import itertools
@@ -34,6 +33,15 @@ import networkx as nx
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[2]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import (  # noqa: E402
+    decode_json_document,
+    iter_canonical_gzip_jsonl,
+    load_canonical_gzip_json,
+)
 DEFAULT_PACKAGE = PROJECT / "work/probe_coherence_corrected"
 INPUT_CONTRACT = PROJECT / "work/adversarial_proof_review/probe_input_contract.json"
 INPUT_REPLAY = PROJECT / "work/adversarial_proof_review/probe_input_independent_verification.json"
@@ -203,12 +211,10 @@ class OrderedRoot:
 
 
 def iter_jsonl(path: Path):
-    with gzip.open(path, "rt", newline="") as handle:
-        for number, line in enumerate(handle):
-            require(line.endswith("\n"), f"missing LF:{path.name}:{number}")
-            value = json.loads(line)
-            require(line == canonical_bytes(value).decode() + "\n", f"noncanonical row:{path.name}:{number}")
-            yield number, value
+    for number, value in enumerate(
+        iter_canonical_gzip_jsonl(path, label=path.name)
+    ):
+        yield number, value
 
 
 def ordinary_triangles(mixed: nx.Graph) -> list[tuple[frozenset[frozenset[Any]], Any]]:
@@ -1470,7 +1476,9 @@ def main() -> None:
         raise AuditFailure("independent graph audit may not run with assertions optimized away")
     package = args.package_dir.resolve()
     certificate_path = package / "probe_coherence_certificate.json"
-    certificate = json.loads(certificate_path.read_text())
+    certificate = decode_json_document(
+        certificate_path.read_bytes(), label=certificate_path.name, require_object=True
+    )
     require(certificate["schema"] == "k2p-corrected-coherent-probe-closure-v1", "certificate schema")
     require(certificate["status"] == "PASS", "certificate status")
     require(certificate["payload_sha256"] == logical_payload(certificate), "certificate logical payload")
@@ -1497,7 +1505,9 @@ def main() -> None:
     for field, path in input_paths.items():
         require(certificate["inputs"][field] == sha_file(path), f"input binding:{field}")
 
-    contract = json.loads(INPUT_CONTRACT.read_text())
+    contract = decode_json_document(
+        INPUT_CONTRACT.read_bytes(), label=INPUT_CONTRACT.name, require_object=True
+    )
     require(contract["schema"] == "k2p-root-invariant-probe-input-contract-v2", "input contract schema")
     require(contract["status"] == "PASS", "input contract status")
     contract_payload = dict(contract)
@@ -1505,7 +1515,9 @@ def main() -> None:
     require(claimed_contract_payload == sha(contract_payload), "input contract payload")
     require(certificate["inputs"]["probe_input_contract_payload_sha256"] == claimed_contract_payload,
             "input contract payload binding")
-    input_replay = json.loads(INPUT_REPLAY.read_text())
+    input_replay = decode_json_document(
+        INPUT_REPLAY.read_bytes(), label=INPUT_REPLAY.name, require_object=True
+    )
     replay_payload = dict(input_replay)
     claimed_replay_payload = replay_payload.pop("payload_sha256")
     require(claimed_replay_payload == sha(replay_payload), "input replay payload")
@@ -1517,8 +1529,7 @@ def main() -> None:
 
     proof_path = package / certificate["registries"]["separation"]["path"]
     require(sha_file(proof_path) == certificate["registries"]["separation"]["sha256"], "proof file hash")
-    with gzip.open(proof_path, "rt") as handle:
-        proof = json.load(handle)
+    proof = load_canonical_gzip_json(proof_path, label=proof_path.name)
     claimed_proof_payload = proof.pop("payload_sha256")
     require(claimed_proof_payload == sha(proof), "proof payload")
     proof["payload_sha256"] = claimed_proof_payload
@@ -2042,7 +2053,11 @@ def main() -> None:
             "assembly two triangle equalities")
 
     site_partition_path = package / "site_transport_partition_verification.json"
-    site_partition = json.loads(site_partition_path.read_text())
+    site_partition = decode_json_document(
+        site_partition_path.read_bytes(),
+        label=site_partition_path.name,
+        require_object=True,
+    )
     require(site_partition["status"] == "PASS", "site partition auxiliary status")
     require(site_partition["payload_sha256"] == logical_payload(site_partition), "site partition auxiliary payload")
     require(site_partition["one_port"]["site_transport_partition"]["compatible"] == 2_206,

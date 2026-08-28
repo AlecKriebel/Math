@@ -4,7 +4,6 @@
 from __future__ import annotations
 
 import ast
-import gzip
 import hashlib
 import importlib
 import importlib.metadata
@@ -16,6 +15,13 @@ import sys
 from collections import Counter
 from pathlib import Path, PurePosixPath
 from typing import Any, Iterable
+
+from strict_json import (
+    StrictJSONError,
+    decode_json_document,
+    iter_canonical_gzip_jsonl,
+    load_canonical_gzip_json,
+)
 
 
 HERE = Path(__file__).resolve().parent
@@ -125,8 +131,8 @@ COMPOSITE_SERIALIZATION = {
 PROMOTION_MANUSCRIPT_FILES = {
     "work/global_theorem_closure/promotion_manuscript/K2P_SAME_PROMOTION_MANUSCRIPT.md": "4acacb925f6aab2ee11baf1c08573b65636b7d867fb816142138ae9fe666a3d2",
     "work/global_theorem_closure/promotion_manuscript/QUANTIFIER_AUDIT.md": "425a041bc3e4cc7bd4f74c952455623ff26f430d9c4ceb006edcac9e8c3765d8",
-    "work/global_theorem_closure/promotion_manuscript/PROBE_PROMOTION_PLACEHOLDER.json": "9414423fc3e2d811a060cd5bd1c7ae511f17c20e8d301573afd08381d89fe9f0",
-    "work/global_theorem_closure/promotion_manuscript/verify_promotion_gate.py": "40aed29c86fc8e6019fc9202cdd2e27225b2084a2332d7ecb99c14b33830fca1",
+    "work/global_theorem_closure/promotion_manuscript/PROBE_PROMOTION_PLACEHOLDER.json": "536fb82aea493044f7616faebc1f770b4ee4f7d88b3b7cff0620508c71611fe1",
+    "work/global_theorem_closure/promotion_manuscript/verify_promotion_gate.py": "0f283233e4b152f99fbf8ce5de703be865eb693b236f3de581b1d952445f98ac",
 }
 PROMOTION_GUARD_CENSUS = {
     "frozen_inputs_verified": 23,
@@ -141,9 +147,9 @@ PROMOTION_GUARD_STDOUT_SHA256 = (
 )
 RUNTIME_EVIDENCE_SHA256 = {
     "package/referee/k2p_offline_sweep_portable/atlas/k2p_atlas_core.py":
-        "37e9b7910f7723c146a87ae2f60dfb62529b1a3e4866ccd72d65dc4efda923ad",
+        "afafe6c4289870a02226516e2b7ff207c57b844f4c45fc6864cedf826e9ec742",
     "package/referee/k2p_offline_sweep_portable/verify_package.py":
-        "bc2dc5714b0928beda31e96eb15954715133ee4a8ab7ba106b7c5a1b62ba83cc",
+        "28e7bc2db7afa55d5e5a77af6ba1b6f32c105fe419f3742ee591151a12b86d83",
 }
 REVOKED_RESTORATION_RUNTIME_SHA256 = {
     "work/restoration_forest/five_port_certificate.json":
@@ -277,21 +283,13 @@ def validate_runtime_environment() -> dict[str, str]:
     }
 
 
-def unique_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
-    result: dict[str, Any] = {}
-    for key, value in pairs:
-        require(key not in result, "DUPLICATE_JSON_KEY", key)
-        result[key] = value
-    return result
-
-
 def load_json(path: Path) -> dict[str, Any]:
     try:
-        with path.open("r", encoding="utf-8") as handle:
-            result = json.load(handle, object_pairs_hook=unique_object)
-    except (OSError, UnicodeError, json.JSONDecodeError) as error:
+        result = decode_json_document(
+            path.read_bytes(), label=str(path), require_object=True
+        )
+    except (OSError, StrictJSONError) as error:
         raise ReleaseFailure(f"JSON_READ_FAIL:{path}:{error}") from error
-    require(isinstance(result, dict), "JSON_TOP_LEVEL_NOT_OBJECT", path)
     return result
 
 
@@ -366,6 +364,7 @@ def fixed_evidence_files() -> dict[str, str]:
         "work/final_theorem_release/no_assert_triangle_sunlet.py": "harness",
         "work/final_theorem_release/triangle_sunlet_certificate.json": "three_port",
         "work/final_theorem_release/release_common.py": "harness",
+        "work/final_theorem_release/strict_json.py": "harness",
         "work/final_theorem_release/build_release_lock.py": "harness",
         "work/final_theorem_release/verify_final_theorem_release.py": "harness",
         "work/final_theorem_release/run_release_mutations.py": "harness",
@@ -723,8 +722,12 @@ def validate_nested_manifests(project: Path = PROJECT) -> dict[str, object]:
     )
     direct_input_files = direct_input.get("files")
     require(
-        isinstance(direct_input_files, dict) and len(direct_input_files) == 15,
+        isinstance(direct_input_files, dict) and len(direct_input_files) == 16,
         "DIRECT_INPUT_LOCK_FILES_FAIL",
+    )
+    require(
+        "test_optimized_entrypoints.py" in direct_input_files,
+        "DIRECT_INPUT_LOCK_OPTIMIZED_ENTRYPOINT_MATRIX_MISSING",
     )
     for relative, digest in direct_input_files.items():
         require(is_sha256(digest), "DIRECT_INPUT_LOCK_SHA256_FAIL", relative)
@@ -862,20 +865,10 @@ def locator_artifacts(
 
 
 def json_lines(path: Path) -> Iterable[dict[str, Any]]:
-    opener = gzip.open if path.suffix == ".gz" else open
+    require(path.suffix == ".gz", "CORRECTED_LEDGER_GZIP_SUFFIX_FAIL", path)
     try:
-        with opener(path, "rt", encoding="utf-8") as handle:
-            for ordinal, line in enumerate(handle, 1):
-                require(bool(line.strip()), "CORRECTED_LEDGER_BLANK_LINE", f"{path}:{ordinal}")
-                try:
-                    row = json.loads(line, object_pairs_hook=unique_object)
-                except (UnicodeError, json.JSONDecodeError) as error:
-                    raise ReleaseFailure(
-                        f"CORRECTED_LEDGER_JSON_FAIL:{path}:{ordinal}:{error}"
-                    ) from error
-                require(isinstance(row, dict), "CORRECTED_LEDGER_ROW_SHAPE_FAIL", ordinal)
-                yield row
-    except OSError as error:
+        yield from iter_canonical_gzip_jsonl(path, label=str(path))
+    except (OSError, StrictJSONError) as error:
         raise ReleaseFailure(f"CORRECTED_LEDGER_READ_FAIL:{path}:{error}") from error
 
 
@@ -952,11 +945,9 @@ def validate_raw4_full_map_truth(path: Path) -> dict[str, Any]:
 
 def load_gzip_json(path: Path) -> dict[str, Any]:
     try:
-        with gzip.open(path, "rt", encoding="utf-8") as handle:
-            value = json.load(handle, object_pairs_hook=unique_object)
-    except (OSError, UnicodeError, json.JSONDecodeError) as error:
+        value = load_canonical_gzip_json(path, label=str(path))
+    except (OSError, StrictJSONError) as error:
         raise ReleaseFailure(f"GZIP_JSON_READ_FAIL:{path}:{error}") from error
-    require(isinstance(value, dict), "GZIP_JSON_TOP_LEVEL_FAIL", path)
     return value
 
 
@@ -2921,7 +2912,7 @@ def validate_corrected_probe_package(
         "CORRECTED_PROBE_MUTATION_RUNNER_BINDING_FAIL",
     )
     cases = mutations.get("cases")
-    require(isinstance(cases, list) and len(cases) == mutations.get("mutations_attempted") == mutations.get("mutations_rejected") == 15, "CORRECTED_PROBE_MUTATION_CENSUS_FAIL")
+    require(isinstance(cases, list) and len(cases) == mutations.get("mutations_attempted") == mutations.get("mutations_rejected") == 18, "CORRECTED_PROBE_MUTATION_CENSUS_FAIL")
     required_mutations = {
         "omitted_anchor": "CORRECTED_PROBE_REPLAY_FAIL:anchor rows",
         "swapped_classifier_precedence": "CORRECTED_PROBE_REPLAY_FAIL:classifier order",
@@ -2937,6 +2928,9 @@ def validate_corrected_probe_package(
         "broken_exact_transport": "CORRECTED_PROBE_REPLAY_FAIL:transport self hash:d36206c63e2262bc13495519b217d2e600b576e64ddcb603c34529dcd4025f8c",
         "omitted_parent_restriction": "CORRECTED_PROBE_REPLAY_FAIL:one source restriction:0",
         "altered_Bernstein_certificate": "CORRECTED_PROBE_REPLAY_FAIL:Bernstein replay:05c1967f1addbbf8854ce12ec25861b3b2793fb2961d77ad892e633e93c3c71f",
+        "same_valued_duplicate_json_name": "CORRECTED_PROBE_REPLAY_FAIL:STRICT_JSON_DUPLICATE_NAME:one_port_ledger.jsonl.gz:line=1:name='parent_anchor_id'",
+        "conflicting_duplicate_json_name": "CORRECTED_PROBE_REPLAY_FAIL:STRICT_JSON_DUPLICATE_NAME:one_port_ledger.jsonl.gz:line=1:name='parent_anchor_id'",
+        "noncanonical_jsonl_row": "CORRECTED_PROBE_REPLAY_FAIL:STRICT_JSON_NONCANONICAL_BYTES:one_port_ledger.jsonl.gz:line=1",
         "optimized_mode": "CORRECTED_PROBE_REPLAY_FAIL:CORRECTED_PROBE_REPLAY_OPTIMIZED_MODE_FORBIDDEN",
     }
     require(mutations.get("diagnostic_contract") == required_mutations, "CORRECTED_PROBE_MUTATION_DIAGNOSTIC_CONTRACT_FAIL")
@@ -3140,69 +3134,68 @@ def derive_probe_composite_roots(paths: dict[str, Path]) -> dict[str, Any]:
 
     def consume(path: Path, stage: str) -> None:
         try:
-            with gzip.open(path, "rt", encoding="utf-8") as handle:
-                for ordinal, line in enumerate(handle):
-                    row = json.loads(line, object_pairs_hook=unique_object)
-                    require(isinstance(row, dict), "PROBE_COMPOSITE_ROW_FAIL", f"{stage}:{ordinal}")
-                    if row.get("status") not in {"isomorphic", "triangle"}:
-                        continue
-                    if stage == "one_port":
-                        parent_id = row.get("parent_anchor_id")
-                        child_id = (
-                            f"P1:{parent_id}:{row.get('source_site_index')}:"
-                            f"{row.get('target_site_index')}"
-                        )
-                        site_record = {
-                            "source_site_id": row.get("source_site_id"),
-                            "target_site_id": row.get("target_site_id"),
+            for ordinal, row in enumerate(
+                iter_canonical_gzip_jsonl(path, label=path.name)
+            ):
+                if row.get("status") not in {"isomorphic", "triangle"}:
+                    continue
+                if stage == "one_port":
+                    parent_id = row.get("parent_anchor_id")
+                    child_id = (
+                        f"P1:{parent_id}:{row.get('source_site_index')}:"
+                        f"{row.get('target_site_index')}"
+                    )
+                    site_record = {
+                        "source_site_id": row.get("source_site_id"),
+                        "target_site_id": row.get("target_site_id"),
+                    }
+                    reverse = None
+                else:
+                    parent_id = row.get("one_port_parent_id")
+                    child_id = (
+                        f"P2:{parent_id}:{row.get('second_source_site_index')}:"
+                        f"{row.get('second_target_site_index')}"
+                    )
+                    site_record = {
+                        "source_site_id": row.get("second_source_site_id"),
+                        "target_site_id": row.get("second_target_site_id"),
+                    }
+                    reverse = row.get("reverse_order_certificate")
+                require(
+                    isinstance(parent_id, str)
+                    and parent_id
+                    and isinstance(row.get("transport_id"), str),
+                    "PROBE_COMPOSITE_EQUALITY_RECORD_FAIL",
+                    f"{stage}:{ordinal}",
+                )
+                equality_ids.append(child_id)
+                edge_hashes.append(
+                    sha_object(
+                        {
+                            "child_id": child_id,
+                            "parent_id": parent_id,
+                            "stage": stage,
                         }
-                        reverse = None
-                    else:
-                        parent_id = row.get("one_port_parent_id")
-                        child_id = (
-                            f"P2:{parent_id}:{row.get('second_source_site_index')}:"
-                            f"{row.get('second_target_site_index')}"
-                        )
-                        site_record = {
-                            "source_site_id": row.get("second_source_site_id"),
-                            "target_site_id": row.get("second_target_site_id"),
+                    )
+                )
+                transport_hashes.append(
+                    sha_object(
+                        {
+                            "child_id": child_id,
+                            "child_transport_id": row.get("transport_id"),
+                            "global_triangle_sha256": row.get("global_triangle_sha256"),
+                            "parent_id": parent_id,
+                            "parent_transport_id": row.get("parent_transport_id"),
+                            "reverse_order_certificate": reverse,
+                            "source_parent_restriction_id": row.get("source_parent_restriction_id"),
+                            "stage": stage,
+                            "target_parent_restriction_id": row.get("target_parent_restriction_id"),
+                            **site_record,
                         }
-                        reverse = row.get("reverse_order_certificate")
-                    require(
-                        isinstance(parent_id, str)
-                        and parent_id
-                        and isinstance(row.get("transport_id"), str),
-                        "PROBE_COMPOSITE_EQUALITY_RECORD_FAIL",
-                        f"{stage}:{ordinal}",
                     )
-                    equality_ids.append(child_id)
-                    edge_hashes.append(
-                        sha_object(
-                            {
-                                "child_id": child_id,
-                                "parent_id": parent_id,
-                                "stage": stage,
-                            }
-                        )
-                    )
-                    transport_hashes.append(
-                        sha_object(
-                            {
-                                "child_id": child_id,
-                                "child_transport_id": row.get("transport_id"),
-                                "global_triangle_sha256": row.get("global_triangle_sha256"),
-                                "parent_id": parent_id,
-                                "parent_transport_id": row.get("parent_transport_id"),
-                                "reverse_order_certificate": reverse,
-                                "source_parent_restriction_id": row.get("source_parent_restriction_id"),
-                                "stage": stage,
-                                "target_parent_restriction_id": row.get("target_parent_restriction_id"),
-                                **site_record,
-                            }
-                        )
-                    )
-                    stage_equalities[stage] += 1
-        except (OSError, UnicodeError, json.JSONDecodeError) as error:
+                )
+                stage_equalities[stage] += 1
+        except (OSError, StrictJSONError) as error:
             raise ReleaseFailure(f"PROBE_COMPOSITE_STREAM_FAIL:{stage}:{error}") from error
 
     consume(paths["probe_one_port_ledger"], "one_port")
@@ -4573,7 +4566,7 @@ def validate_runtime_evidence(project: Path = PROJECT) -> dict[str, Any]:
         corrected_forest
         == {
             "path": "work/restoration_sign_reclassification/corrected_restoration_forest.json",
-            "sha256": "bcf91bf433c71056d1e27871dd15fe532f9ae1cc4ad79eb2373eae57071ee427",
+            "sha256": "396d1970af17b5e90c3f1b00ceab1b810816e93ec68a566bd0479f05c722793f",
         },
         "REVOKED_RUNTIME_CORRECTED_FOREST_REPLACEMENT_FAIL",
     )
@@ -4581,7 +4574,7 @@ def validate_runtime_evidence(project: Path = PROJECT) -> dict[str, Any]:
         corrected_replay
         == {
             "path": "work/restoration_sign_reclassification/corrected_restoration_replay_certificate.json",
-            "sha256": "42be6b0c4d85aa58b336caebbdefd10a0af0ce4234a0482e65c7b5a68d1e6430",
+            "sha256": "d74cc01341f405732c6ff62558ca3afff705c15cdf9a6f16dcc6ccd7636749c4",
         },
         "REVOKED_RUNTIME_CORRECTED_REPLAY_REPLACEMENT_FAIL",
     )

@@ -22,6 +22,12 @@ import networkx as nx
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import decode_json_document  # noqa: E402
+
 OUTPUT = HERE / "WEAK_SHARPNESS_COLUMN_CROSSWALK.json"
 FROZEN = PROJECT / "work/weak_sharpness_closure/weak_sharpness_certificate.json"
 ATLAS_PATH = PROJECT / "package/referee/k2p_offline_sweep_portable/atlas"
@@ -31,7 +37,7 @@ import k2p_atlas_core as atlas  # noqa: E402
 
 
 FROZEN_SHA256 = "e66c78a0aeab990b4dc448f4f064b37e1e15ecbff75a5f472bf116d4464378bd"
-ATLAS_SHA256 = "37e9b7910f7723c146a87ae2f60dfb62529b1a3e4866ccd72d65dc4efda923ad"
+ATLAS_SHA256 = "afafe6c4289870a02226516e2b7ff207c57b844f4c45fc6864cedf826e9ec742"
 EXPECTED_ORDERS = {
     "W": ["ZX", "SV", "rS", "SU", "UV", "VZ", "UX"],
     "W_prime": ["VX1", "VX0", "UV", "rS", "SX0", "SU", "UX1"],
@@ -279,7 +285,9 @@ def main() -> None:
     require(file_sha(FROZEN) == FROZEN_SHA256, "FROZEN_CERTIFICATE_FILE_HASH")
     atlas_file = ATLAS_PATH / "k2p_atlas_core.py"
     require(file_sha(atlas_file) == ATLAS_SHA256, "FROZEN_ATLAS_FILE_HASH")
-    frozen = json.loads(FROZEN.read_text(encoding="utf-8"))
+    frozen = decode_json_document(
+        FROZEN.read_bytes(), label=FROZEN.name, require_object=True
+    )
     payload = dict(frozen)
     stated_payload_sha = payload.pop("payload_sha256")
     require(object_sha(payload) == stated_payload_sha, "FROZEN_CERTIFICATE_SEAL")

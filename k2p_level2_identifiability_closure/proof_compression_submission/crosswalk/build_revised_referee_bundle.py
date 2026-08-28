@@ -7,13 +7,30 @@ import argparse
 import hashlib
 import json
 import re
+import sys
 import zipfile
 from pathlib import Path, PurePosixPath
 from typing import Any
 
+STRICT_JSON_DIR = (
+    Path(__file__).resolve().parents[2] / "work" / "final_theorem_release"
+)
+STRICT_JSON_PATH = STRICT_JSON_DIR / "strict_json.py"
+if not STRICT_JSON_PATH.is_file() or STRICT_JSON_PATH.is_symlink():
+    raise SystemExit("missing or symbolic shared strict JSON parser")
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import (
+    StrictJSONError,
+    decode_json_document,
+    validate_release_json_member,
+)
+
 
 PROJECT = Path(__file__).resolve().parents[2]
 LOCK_RELATIVE = "work/final_theorem_release/RELEASE_LOCK.json"
+STRICT_JSON_RELATIVE = "work/final_theorem_release/strict_json.py"
 MANIFEST_RELATIVE = "proof_compression_submission/crosswalk/REVISED_REFEREE_BUNDLE_MANIFEST.json"
 MANIFEST_PATH = PROJECT / MANIFEST_RELATIVE
 TELEMETRY_SUBMISSION_SOURCES = (
@@ -47,7 +64,7 @@ SUBMISSION_METADATA = {
     "data_license": "CC BY 4.0",
     "doi": None,
     "funding": "No specific funding supported this work.",
-    "versioned_annotated_source_tag": "k2p-same-biorxiv-v1.0.3",
+    "versioned_annotated_source_tag": "k2p-same-biorxiv-v1.0.4",
     "paper_license": "CC BY 4.0",
     "release_boundary": (
         "No GitHub Release, Zenodo deposit, or DOI is created or claimed by "
@@ -88,27 +105,18 @@ def canonical_hash(value: Any) -> str:
     return sha256_bytes(canonical_bytes(value))
 
 
-def unique_json_object(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
-    """Build one JSON object while rejecting every repeated member name."""
-
-    value: dict[str, Any] = {}
-    for name, child in pairs:
-        if name in value:
-            fail(f"duplicate JSON object name: {name!r}")
-        value[name] = child
-    return value
-
-
 def parse_json_document(data: str | bytes, label: str) -> Any:
     try:
-        return json.loads(data, object_pairs_hook=unique_json_object)
-    except json.JSONDecodeError as error:
-        fail(f"invalid JSON in {label}: {error.msg}")
+        return decode_json_document(data, label=label)
+    except StrictJSONError as error:
+        fail(str(error))
 
 
 def validate_json_member(relative: str, data: bytes) -> None:
-    if PurePosixPath(relative).suffix == ".json":
-        parse_json_document(data, relative)
+    try:
+        validate_release_json_member(relative, data)
+    except StrictJSONError as error:
+        fail(str(error))
 
 
 def read_json(relative: str) -> dict[str, Any]:
@@ -359,6 +367,7 @@ def collect_submission_ledger() -> dict[str, dict[str, int | str]]:
         "proof_compression_submission/crosswalk/build_revised_referee_bundle.py",
         "proof_compression_submission/crosswalk/check_revised_referee_bundle.py",
         "proof_compression_submission/crosswalk/test_crosswalk_bundle_mutations.py",
+        "proof_compression_submission/crosswalk/test_strict_json.py",
         "proof_compression_submission/analysis/WEAK_SHARPNESS_COLUMN_CROSSWALK.json",
         "proof_compression_submission/analysis/build_weak_sharpness_column_crosswalk.py",
         "proof_compression_submission/analysis/verify_weak_sharpness_column_crosswalk.py",
@@ -385,6 +394,8 @@ def build_manifest() -> dict[str, Any]:
     reject_optimized_mode()
     lock, lock_sha256, lock_payload_sha256 = release_context()
     frozen = collect_frozen_ledger(lock, lock_sha256)
+    if STRICT_JSON_RELATIVE not in frozen:
+        fail("frozen evidence omits the shared strict JSON parser")
     frozen_content_root = canonical_hash(frozen)
     submission = collect_submission_ledger()
     overlap = sorted(set(frozen).intersection(submission))

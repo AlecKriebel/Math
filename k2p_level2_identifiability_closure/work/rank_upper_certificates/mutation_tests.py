@@ -736,6 +736,11 @@ def main():
         shadow_verifier = shadow_scripts / "verify_rank_upper_certificates.py"
         shutil.copyfile(Path(__file__).resolve(), shadow_runner)
         shutil.copyfile(VERIFIER, shadow_verifier)
+        shadow_strict = shadow / "work/final_theorem_release/strict_json.py"
+        shadow_strict.parent.mkdir(parents=True)
+        shutil.copyfile(
+            ROOT / "work/final_theorem_release/strict_json.py", shadow_strict
+        )
         shadow_environment = dict(os.environ)
         shadow_environment["PYTHONPATH"] = ""
         shadow_environment["PYTHONDONTWRITEBYTECODE"] = "1"

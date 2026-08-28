@@ -13,7 +13,6 @@ from __future__ import annotations
 import argparse
 import ast
 import collections
-import gzip
 import hashlib
 import importlib.util
 import itertools
@@ -26,6 +25,17 @@ import networkx as nx
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import (  # noqa: E402
+    StrictJSONError,
+    decode_json_document,
+    iter_canonical_gzip_jsonl,
+    load_canonical_gzip_json,
+)
+
 CONTRACT = HERE / "probe_input_contract.json"
 REPORT = HERE / "probe_input_independent_verification.json"
 ATLAS_PATH = PROJECT / "package/referee/k2p_offline_sweep_portable/atlas/k2p_atlas_core.py"
@@ -34,6 +44,12 @@ RESULT4 = PROJECT / "package/referee/k2p_offline_sweep_portable/results/four_por
 THETA2 = PROJECT / "work/theta2_five_port_closure/artifacts/fixed_full_restoration_closure.json.gz"
 CYCLE = PROJECT / "work/cycle_three_port_closure"
 CYCLE_ANCHORS = CYCLE / "artifacts/physical_anchors.json"
+
+
+def load_plain_json(path: Path):
+    return decode_json_document(
+        path.read_bytes(), label=path.name, require_object=True
+    )
 CYCLE_FULL = CYCLE / "artifacts/full_completion_ledger.jsonl.gz"
 CYCLE_PROMOTION = CYCLE / "promotion/cycle_promotion_certificate.json"
 
@@ -284,19 +300,16 @@ def prepare_upstream(atlas, common, cycle_generator):
     four_sources = atlas.source_supports()
     four_targets = atlas.target_completions(4, True) + atlas.target_completions(4, False)
     raw_by_id = {}
-    with gzip.open(RAW4, "rt") as handle:
-        for line in handle:
-            row = json.loads(line)
-            raw_by_id[row["raw_id"]] = row
-    with gzip.open(THETA2, "rt") as handle:
-        theta = json.load(handle)
+    for row in iter_canonical_gzip_jsonl(RAW4, label=RAW4.name):
+        raw_by_id[row["raw_id"]] = row
+    theta = load_canonical_gzip_json(THETA2, label=THETA2.name)
     theta_sources = atlas.source_supports(("theta2",))
     theta_targets = atlas.target_completions(5, True) + atlas.target_completions(5, False)
     theta_no_dummy = {row["anchor_id"]: row for row in theta["no_dummy_anchors"]}
     theta_roots = {row["base_raw_id"]: row for row in theta["restoration_roots"]}
     theta_six = {row["path_id"]: row for row in theta["six_port_rows"]}
     theta_seven = {row["path_id"]: row for row in theta["seven_port_rows"]}
-    cycle_package = json.loads(CYCLE_ANCHORS.read_text())
+    cycle_package = load_plain_json(CYCLE_ANCHORS)
     cycle_rows = {row["anchor_id"]: row for row in cycle_package["anchors"]}
     cycle_sources = tuple(atlas.source_supports(("cycle",)))
     cycle_targets = tuple(atlas.target_completions(3, True) + atlas.target_completions(3, False))
@@ -398,7 +411,7 @@ def expected_four_anchor_ids(atlas, upstream):
     manifest_hashes = {}
     for path in sorted(RESULT4.glob("source_*/residual_manifest.json")):
         manifest_hashes[str(path.relative_to(PROJECT))] = file_digest(path)
-        manifest = json.loads(path.read_text())
+        manifest = load_plain_json(path)
         for row in manifest["records"]:
             if row["status"] in {"isomorphic", "triangle"}:
                 terminal_keys.add((manifest["source_index"], row["canonical_class_id"]))
@@ -509,7 +522,7 @@ def main():
     parser.add_argument("--contract", type=Path, default=CONTRACT)
     parser.add_argument("--report", type=Path, default=REPORT)
     args = parser.parse_args()
-    contract = json.loads(args.contract.read_text())
+    contract = load_plain_json(args.contract)
     require(contract["schema"] == "k2p-root-invariant-probe-input-contract-v2", "schema")
     require(contract["status"] == "PASS", "status")
     payload = {key: value for key, value in contract.items() if key != "payload_sha256"}
@@ -646,5 +659,12 @@ def main():
 if __name__ == "__main__":
     try:
         main()
-    except (VerificationFailure, KeyError, OSError, ValueError, json.JSONDecodeError) as exc:
+    except (
+        VerificationFailure,
+        StrictJSONError,
+        KeyError,
+        OSError,
+        ValueError,
+        json.JSONDecodeError,
+    ) as exc:
         raise SystemExit(f"PROBE_INPUT_VERIFY_FAIL:{exc}") from exc

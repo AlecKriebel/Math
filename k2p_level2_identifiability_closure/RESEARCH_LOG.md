@@ -860,3 +860,54 @@
   quick/full replay, deterministic archive rebuild, commit/push, and a new
   annotated source tag.  GitHub Release and Zenodo actions remain explicitly
   excluded.
+
+## 2026-08-27 — round-4 compressed-JSON boundary repaired
+
+- Reproduced the referee's coherently layer-resealed duplicate-name attack:
+  the former probe verifier accepted a conflicting earlier
+  `parent_anchor_id` because Python's default decoder retained the later name.
+- Added one frozen shared `strict_json.py` reader. It rejects repeated names at
+  every nesting depth, non-finite constants, noncanonical decompressed gzip
+  JSON/JSONL bytes, blank or unterminated rows, and explicit compressed,
+  expanded-stream, document, and row size limits.
+- Routed the outer referee-bundle producer, corrected probe replay, and
+  crosswalk-designated local compressed-evidence replay surfaces through that
+  reader. The independent outer checker implements the same bounded policy
+  separately. The isolated full-probe and site-partition harnesses now carry
+  the lock-bound reader into their temporary project trees.
+- Added exact same-valued duplicate, conflicting duplicate, and noncanonical
+  row attacks after a valid probe-layer reseal, plus outer-scanner and bounded
+  synthetic syntax attacks. All three probe attacks reject with their intended
+  `STRICT_JSON_*` diagnostics and leave no success artifact. A clean scan of
+  all 26 shipped compressed JSON families passed after reading approximately
+  7.1 GiB of decompressed canonical evidence.
+- No tensor, graph, formula, census, rank, separator, restoration parent/child,
+  transport, probe relation, or theorem statement changed. Best-guess
+  completion remains **100% for the mathematical theorem** and is
+  **approximately 92% for corrected release qualification**, pending the
+  coordinated certificate/lock reseal and detached quick/full replays.
+
+## 2026-08-28 — round-4 source and finite-evidence reseal checkpoint
+
+- Completed the optimized-mode repair across the enumerated portable
+  production surface, replaced all 22 atlas assertion checks by explicit
+  invariant failures, and passed the two-mode entry-point matrix with no
+  residual output.
+- Regenerated the complete raw/rank layer, the four-port direct overlay,
+  theta2, restoration, cycle, corrected composite, probe, parameter-transport,
+  and unified corrected-universe evidence.  The fresh six-source four-port run
+  contains all 1,931 classes and has the same mathematical projection roots as
+  v1.0.3.  The theta2 replay rebuilt all 2,946,240 directions with unchanged
+  mathematical rows and only the licensed provenance rebind.
+- The corrected probe suite now rejects 18/18 attacks, including coherently
+  layer-resealed same-valued and conflicting duplicate names and a
+  noncanonical compressed row.  The independent probe audit rejects 12/12,
+  and the parameter-transport suite rejects 10/10 with zero unresolved rows.
+- Fixed one newly exposed relocation control so its deliberately missing
+  quartet binder remains the tested dependency while the strict parser is
+  supplied explicitly.  This changed no mathematical artifact.
+- Best-guess completion remains **100% for the mathematical theorem** and is
+  **approximately 97% for v1.0.4 release qualification**, pending the final
+  recursive lock, proof-compression/PDF reseal, detached 23/25/41-gate run,
+  two-extraction archive checks, commit/push, and annotated source tag.  No
+  GitHub Release or Zenodo action is authorized.

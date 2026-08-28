@@ -22,33 +22,33 @@ CROSSWALK = ROOT / "THEOREM_TO_TEMPLATE_CROSSWALK.json"
 EXPECTED_INPUTS = {
     "analysis/PROOF_COMPRESSION_BASELINE.json": (
         "k2p-proof-compression-baseline-v1",
-        "6f1be0b46da897b49fc83cff5d3a909f85bd4b1eff4cb07e38a7f978edbdc92f",
-        "eb4e772192f845974d99fee1d212c1f4599f23d37da5113bdd66b5cbe2b54f86",
+        "3ea5a391742ecb5cfe413f4578af8ebca5ce02ebddb3ab45f7f52b7a79556c70",
+        "343a8be0bf055c04ae1b2024200fa68ff309eae7eaa6812d2e7217ad2e30dbaf",
     ),
     "analysis/FAMILY_COVERAGE_EQUIVALENCE_CERTIFICATE.json": (
         "k2p-pc-partial-family-coverage-equivalence-v1",
-        "20d05d88d0c2949878d85f00c3d9d3f772f58bf506ac22116b7228544347155a",
-        "bad9e2e1d2fa0d22727431bdee6a5a2981c62062e94a40c9ce80fa88f73a7b8f",
+        "8f100ed7c3e98b05d16956f80a50f0f2d61e6349c376e32acfdfb55c15a33987",
+        "72a18a09b6d9529708763ea4125cfafd7dd61782282ae97523c69fc797b23e6b",
     ),
     "templates/DIRECT_CERTIFICATE_TEMPLATE_TABLE.json": (
         "k2p-direct-certificate-template-table-v1",
-        "859bfc969beeb885a3c7dae13c05d3bb785ea1fb0796eede508bc3625374ab91",
-        "1617f1ea3287cd5a9030617e7a1bb9f47f29b4508197871c77fbbd22ba2f3e4f",
+        "c5ce4176e0020cfc01b8d8351f02c87df6e87663b37d372669216ad5bd08be47",
+        "b6c63c7818c54ac0bae1e4d3f64047cbcaa531f83ad0b16e6a4ec92f134f7698",
     ),
     "restoration/RESTORATION_ARCHETYPES.json": (
         "k2p-restoration-descriptive-archetypes-v1",
-        "9ae885812123fb975055a5f388e6d55c4599ee2350b58bd40e5797fe1fffe6e5",
-        "0008203224cf4bd10be9e34ca4d4d1510ca32fc31d58d32e746f96a5616eeef0",
+        "f0215c897773be25ae756e61f8ed2942705ce8f400163f80c32f204b60cea454",
+        "03b30ed654228833b159e533eb419ca2efc2f64b01a58a88027b212aca5152b7",
     ),
     "restoration/RESTORATION_ARCHETYPE_VERIFICATION.json": (
         "k2p-restoration-archetype-verification-v1",
-        "2ad921d8dd1928750261a843717520d9e8cae1aa0afd79477afa15a7efa22d60",
-        "c59632526b1d3a12f2c2eee46f762a80a194e804e33e5ea17e7e87d104851bb5",
+        "8f3134bd2cb2f01f6a91cfe90fe536cce5f209d4edaaa2e6d25b0c2c64de776c",
+        "a9e44df19cc0ec3207d4de95b64c59fa975d752f48e73da337c6ed37fb3c8074",
     ),
     "probe/PROBE_WORD_COVERAGE.json": (
         "k2p-probe-word-theorem-coverage-v1",
-        "54928da10e5fe56c68c8e07edf706e1a20deff8ad8f9fbc82d0948e67aa849cb",
-        "1640f0fbf657d81b014d1cfc0857d4cf3d3f0e580c796d86d0d37c4d58cca85a",
+        "1d4248028b38f6b731f066960d9e584240de68a17323539fe5b47f119a8086f6",
+        "3791e4bb829976aa78289281b9998bfe0605ba4a20518f1e8dd660d7d1a91bb8",
     ),
 }
 

@@ -26,6 +26,7 @@ TERMINAL_VERIFIER = Path(
     "work/quartet_separation_closure/verify_quartet_terminal_bindings.py"
 )
 SOURCE_FILES = (
+    Path("work/final_theorem_release/strict_json.py"),
     MUTATION_RUNNER,
     Path("work/quartet_separation_closure/verify_quartet_logic.py"),
     Path("work/quartet_separation_closure/QUARTET_SEMANTICS_SPEC.json"),

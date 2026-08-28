@@ -12,7 +12,6 @@ coefficients on the open unit cube.
 from __future__ import annotations
 
 import collections
-import gzip
 import importlib.util
 import itertools
 import json
@@ -22,6 +21,16 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import (  # noqa: E402
+    StrictJSONError,
+    iter_canonical_gzip_jsonl,
+    load_canonical_gzip_json,
+)
+
 CORE_PATH = HERE / "audit_raw4_tree_sunlet_full_map.py"
 LEDGER = PROJECT / "work/theta2_five_port_closure/artifacts/raw_directional_ledger.jsonl.gz"
 PROOFS = PROJECT / "work/theta2_five_port_closure/artifacts/direct_proof_certificates.json.gz"
@@ -43,15 +52,12 @@ def main():
     atlas = core.load_atlas()
     sources = atlas.source_supports(("theta2",))
     targets = atlas.target_completions(5, True) + atlas.target_completions(5, False)
-    with gzip.open(PROOFS, "rt") as handle:
-        proofs = json.load(handle)
+    proofs = load_canonical_gzip_json(PROOFS, label=PROOFS.name)
     witnesses = proofs["topology_witnesses"]
     rows = []
-    with gzip.open(LEDGER, "rt") as handle:
-        for line in handle:
-            row = json.loads(line)
-            if row.get("category") == "tree_sunlet_pointwise_excluded":
-                rows.append(row)
+    for row in iter_canonical_gzip_jsonl(LEDGER, label=LEDGER.name):
+        if row.get("category") == "tree_sunlet_pointwise_excluded":
+            rows.append(row)
     core.require(len(rows) == 2528, f"theta2 row census:{len(rows)}")
 
     prepared_sources = [atlas.prepare_mixed_source(source.graph) for source in sources]
@@ -215,5 +221,5 @@ def main():
 if __name__ == "__main__":
     try:
         main()
-    except (RuntimeError, KeyError, OSError, json.JSONDecodeError) as exc:
+    except (RuntimeError, StrictJSONError, KeyError, OSError, json.JSONDecodeError) as exc:
         raise SystemExit(f"THETA2_TREE_SUNLET_TRUTH_FAIL:{exc}") from exc

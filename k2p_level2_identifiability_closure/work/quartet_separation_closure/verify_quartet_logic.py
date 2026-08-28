@@ -22,6 +22,12 @@ from typing import Any
 HERE = Path(__file__).resolve().parent
 DEFAULT_PROJECT = HERE.parents[1]
 DEFAULT_SPEC = HERE / "QUARTET_SEMANTICS_SPEC.json"
+STRICT_JSON_DIR = DEFAULT_PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import decode_json_document  # noqa: E402
+
 TOPOLOGIES = ("12|34", "13|24", "14|23")
 SPLIT_PARTS = {
     "12|34": ((0, 1), (2, 3)),
@@ -70,7 +76,9 @@ def sha_file(path: Path) -> str:
 
 def load_spec(path: Path) -> dict[str, Any]:
     require(path.is_file(), "QUARTET_SPEC_MISSING", path)
-    spec = json.loads(path.read_text(encoding="utf-8"))
+    spec = decode_json_document(
+        path.read_bytes(), label=path.name, require_object=True
+    )
     require(spec.get("schema") == "k2p-quartet-semantics-spec-v2", "QUARTET_SPEC_SCHEMA")
     require(spec.get("character_order") == ["0", "C", "G", "T"], "CHARACTER_ORDER_CONTRACT_FAIL")
     require(spec.get("group_codes") == {"0": 0, "C": 1, "G": 2, "T": 3}, "KLEIN_CODE_CONTRACT_FAIL")

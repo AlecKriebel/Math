@@ -19,6 +19,16 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import (  # noqa: E402
+    decode_json_document,
+    iter_canonical_gzip_jsonl,
+    load_canonical_gzip_json,
+)
+
 VERIFIER = HERE / "verify_probe_coherence_corrected.py"
 OUTPUT = HERE / "probe_coherence_mutation_certificate.json"
 AUTHORITATIVE_OUTPUT = OUTPUT
@@ -46,6 +56,9 @@ MUTATION_DIAGNOSTICS = {
     "broken_exact_transport": "CORRECTED_PROBE_REPLAY_FAIL:transport self hash:d36206c63e2262bc13495519b217d2e600b576e64ddcb603c34529dcd4025f8c",
     "omitted_parent_restriction": "CORRECTED_PROBE_REPLAY_FAIL:one source restriction:0",
     "altered_Bernstein_certificate": "CORRECTED_PROBE_REPLAY_FAIL:Bernstein replay:05c1967f1addbbf8854ce12ec25861b3b2793fb2961d77ad892e633e93c3c71f",
+    "same_valued_duplicate_json_name": "CORRECTED_PROBE_REPLAY_FAIL:STRICT_JSON_DUPLICATE_NAME:one_port_ledger.jsonl.gz:line=1:name='parent_anchor_id'",
+    "conflicting_duplicate_json_name": "CORRECTED_PROBE_REPLAY_FAIL:STRICT_JSON_DUPLICATE_NAME:one_port_ledger.jsonl.gz:line=1:name='parent_anchor_id'",
+    "noncanonical_jsonl_row": "CORRECTED_PROBE_REPLAY_FAIL:STRICT_JSON_NONCANONICAL_BYTES:one_port_ledger.jsonl.gz:line=1",
     "optimized_mode": "CORRECTED_PROBE_REPLAY_FAIL:CORRECTED_PROBE_REPLAY_OPTIMIZED_MODE_FORBIDDEN",
 }
 FORBIDDEN_FAILURE_MARKERS = (
@@ -149,10 +162,12 @@ def rewrite_jsonl(path, transform):
     ordered = Ordered()
     counts = collections.Counter()
     rows = 0
-    with gzip.open(source, "rt") as incoming, path.open("wb") as raw:
+    with path.open("wb") as raw:
         with gzip.GzipFile(filename="", mode="wb", fileobj=raw, mtime=0) as compressed:
-            for number, line in enumerate(incoming):
-                row = transform(json.loads(line), number)
+            for number, source_row in enumerate(
+                iter_canonical_gzip_jsonl(source, label=path.name)
+            ):
+                row = transform(source_row, number)
                 if row is None:
                     continue
                 compressed.write(canonical_bytes(row) + b"\n")
@@ -165,7 +180,10 @@ def rewrite_jsonl(path, transform):
 
 
 def load_certificate(root):
-    return json.loads((root / "probe_coherence_certificate.json").read_text())
+    path = root / "probe_coherence_certificate.json"
+    return decode_json_document(
+        path.read_bytes(), label=path.name, require_object=True
+    )
 
 
 def seal_certificate(root, certificate):
@@ -194,11 +212,9 @@ def update_two(root, transform):
     path = root / "two_port_ledger.jsonl.gz"
     ordered, counts, rows = rewrite_jsonl(path, transform)
     reverse = collections.Counter()
-    with gzip.open(path, "rt") as handle:
-        for line in handle:
-            row = json.loads(line)
-            if "reverse_order_certificate" in row:
-                reverse[row["reverse_order_certificate"]["reverse_parent_relation"]] += 1
+    for row in iter_canonical_gzip_jsonl(path, label=path.name):
+        if "reverse_order_certificate" in row:
+            reverse[row["reverse_order_certificate"]["reverse_parent_relation"]] += 1
     certificate = load_certificate(root)
     certificate["two_port"]["ledger_sha256"] = sha_file(path)
     certificate["two_port"]["ordered_ledger"] = ordered
@@ -233,8 +249,7 @@ def update_streaming_store(root, filename, field, transform):
 
 def update_proof_registry(root, transform):
     path = root / "separation_proof_registry.json.gz"
-    with gzip.open(path, "rt") as handle:
-        proof = json.load(handle)
+    proof = load_canonical_gzip_json(path, label=path.name)
     proof.pop("payload_sha256")
     transform(proof)
     proof["payload_sha256"] = sha(proof)
@@ -341,7 +356,10 @@ def qualify_clean_baseline(root, result, hash_seed):
         f"clean baseline crash:{result}",
     )
     require(result.get("success_artifact_present") is True, "clean baseline report absent")
-    report = json.loads((root / "verification.json").read_text())
+    report_path = root / "verification.json"
+    report = decode_json_document(
+        report_path.read_bytes(), label=report_path.name, require_object=True
+    )
     payload = report.pop("payload_sha256")
     operational = report.pop("operational")
     del operational
@@ -438,8 +456,11 @@ def mutate_omitted_two(root):
 
 def mutate_wrong_two_parent(root):
     make_writable(root, "two_port_ledger.jsonl.gz")
-    with gzip.open(root / "two_port_parent_inventory.jsonl.gz", "rt") as handle:
-        parent_ids = [json.loads(next(handle))["one_port_parent_id"] for _ in range(2)]
+    parent_rows = iter_canonical_gzip_jsonl(
+        root / "two_port_parent_inventory.jsonl.gz",
+        label="two_port_parent_inventory.jsonl.gz",
+    )
+    parent_ids = [next(parent_rows)["one_port_parent_id"] for _ in range(2)]
     def transform(row, number):
         if number == 0:
             row["one_port_parent_id"] = parent_ids[1]
@@ -502,6 +523,54 @@ def mutate_Bernstein(root):
     update_proof_registry(root, transform)
 
 
+def rewrite_first_jsonl_bytes(root, transform):
+    path = root / "one_port_ledger.jsonl.gz"
+    source = path.resolve()
+    path.unlink()
+    with gzip.open(source, "rb") as incoming, path.open("wb") as raw:
+        with gzip.GzipFile(
+            filename="", mode="wb", fileobj=raw, mtime=0, compresslevel=6
+        ) as compressed:
+            first = incoming.readline()
+            require(first.startswith(b"{") and first.endswith(b"\n"), "JSONL mutation fixture")
+            compressed.write(transform(first))
+            shutil.copyfileobj(incoming, compressed)
+    certificate = load_certificate(root)
+    certificate["one_port"]["ledger_sha256"] = sha_file(path)
+    seal_certificate(root, certificate)
+
+
+def duplicate_first_parent_name(root, conflicting):
+    def transform(line):
+        row = json.loads(line)
+        name = "parent_anchor_id"
+        require(name in row, "duplicate-name mutation fixture")
+        value = "K2P-CONFLICTING-EARLIER-VALUE" if conflicting else row[name]
+        prefix = canonical_bytes(name) + b":" + canonical_bytes(value) + b","
+        mutant = b"{" + prefix + line[1:]
+        require(json.loads(mutant) == row, "duplicate-name mutation semantics")
+        return mutant
+
+    rewrite_first_jsonl_bytes(root, transform)
+
+
+def mutate_same_duplicate_name(root):
+    duplicate_first_parent_name(root, False)
+
+
+def mutate_conflicting_duplicate_name(root):
+    duplicate_first_parent_name(root, True)
+
+
+def mutate_noncanonical_jsonl(root):
+    def transform(line):
+        mutant = b"{ " + line[1:]
+        require(json.loads(mutant) == json.loads(line), "noncanonical mutation semantics")
+        return mutant
+
+    rewrite_first_jsonl_bytes(root, transform)
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", type=Path, required=True)
@@ -527,6 +596,9 @@ def main():
         ("broken_exact_transport", mutate_broken_transport),
         ("omitted_parent_restriction", mutate_omitted_restriction),
         ("altered_Bernstein_certificate", mutate_Bernstein),
+        ("same_valued_duplicate_json_name", mutate_same_duplicate_name),
+        ("conflicting_duplicate_json_name", mutate_conflicting_duplicate_name),
+        ("noncanonical_jsonl_row", mutate_noncanonical_jsonl),
     ]
     results = []
     case_runtimes = {}
@@ -555,7 +627,7 @@ def main():
         baseline_runtime = replay.pop("runtime_seconds")
         baseline = qualify_clean_baseline(root, replay, "12345")
     require(
-        len(results) == 15 and all(row["rejected"] is True for row in results),
+        len(results) == 18 and all(row["rejected"] is True for row in results),
         "mutation census",
     )
     report = {
@@ -585,7 +657,7 @@ def main():
         "status": "PASS", "mutations": len(results),
         "payload_sha256": report["payload_sha256"],
     }, sort_keys=True))
-    print("K2P_CORRECTED_PROBE_MUTATIONS_PASS rejected=15 survived=0")
+    print("K2P_CORRECTED_PROBE_MUTATIONS_PASS rejected=18 survived=0")
 
 
 if __name__ == "__main__":

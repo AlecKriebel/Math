@@ -15,6 +15,16 @@ import sys
 import tempfile
 from pathlib import Path
 
+STRICT_JSON_DIR = Path(__file__).resolve().parents[1] / "final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import (  # noqa: E402
+    StrictJSONError,
+    iter_canonical_gzip_jsonl,
+    load_canonical_gzip_json,
+)
+
 from ledger_common import (
     AUDIT_ROOT,
     DEFAULT_PACKAGE_ROOT,
@@ -90,11 +100,10 @@ def validate_artifact_binding(artifact_root: Path, summary: dict, name: str) -> 
 
 
 def validate_rank_catalog(path: Path):
-    plain, _digest = read_gzip_bytes(path)
     try:
-        payload = json.loads(plain)
-    except json.JSONDecodeError as exc:
-        fail("RAW_LEDGER_RANK_JSON_FAIL", exc)
+        payload = load_canonical_gzip_json(path, label=str(path))
+    except (OSError, StrictJSONError) as exc:
+        fail("RAW_LEDGER_RANK_STRICT_JSON_FAIL", exc)
     if payload.get("schema") != "k2p-four-port-regenerated-rank-lower-certificates-v1":
         fail("RAW_LEDGER_RANK_SCHEMA_FAIL")
     rows = payload.get("descriptors")
@@ -135,11 +144,10 @@ def validate_rank_catalog(path: Path):
 
 
 def validate_rank_upper_binding(path: Path, rank_catalog, bundle_root: Path):
-    plain, _digest = read_gzip_bytes(path)
     try:
-        payload = json.loads(plain)
-    except json.JSONDecodeError as exc:
-        fail("RAW_LEDGER_UPPER_JSON_FAIL", exc)
+        payload = load_canonical_gzip_json(path, label=str(path))
+    except (OSError, StrictJSONError) as exc:
+        fail("RAW_LEDGER_UPPER_STRICT_JSON_FAIL", exc)
     if (
         payload.get("schema")
         != "k2p-four-port-regenerated-rank-upper-binding-v1"
@@ -227,11 +235,10 @@ def validate_rank_upper_binding(path: Path, rank_catalog, bundle_root: Path):
 
 
 def validate_class_partition(path: Path, rank_catalog):
-    plain, _digest = read_gzip_bytes(path)
     try:
-        payload = json.loads(plain)
-    except json.JSONDecodeError as exc:
-        fail("RAW_LEDGER_CLASS_JSON_FAIL", exc)
+        payload = load_canonical_gzip_json(path, label=str(path))
+    except (OSError, StrictJSONError) as exc:
+        fail("RAW_LEDGER_CLASS_STRICT_JSON_FAIL", exc)
     rows = payload.get("classes")
     if not isinstance(rows, list) or len(rows) != 1931:
         fail("RAW_LEDGER_CLASS_CENSUS_FAIL")
@@ -280,15 +287,8 @@ def validate_ledger(path: Path, rank_catalog, rank_upper, classes, summary: dict
     class_member_counts = collections.Counter()
     row_count = 0
     try:
-        handle = gzip.open(path, "rt", encoding="utf-8")
-    except OSError as exc:
-        fail("RAW_LEDGER_OPEN_FAIL", exc)
-    with handle:
-        for expected_raw_id, line in enumerate(handle):
-            try:
-                row = json.loads(line)
-            except json.JSONDecodeError as exc:
-                fail("RAW_LEDGER_ROW_JSON_FAIL", (expected_raw_id, exc))
+        rows = iter_canonical_gzip_jsonl(path, label=str(path))
+        for expected_raw_id, row in enumerate(rows):
             if row.get("raw_id") != expected_raw_id:
                 fail(
                     "RAW_LEDGER_RAW_ID_CENSUS_FAIL",
@@ -344,6 +344,8 @@ def validate_ledger(path: Path, rank_catalog, rank_upper, classes, summary: dict
                     fail("RAW_LEDGER_CLASS_REFERENCE_BINDING_FAIL", expected_raw_id)
                 class_member_counts[key] += 1
             row_count += 1
+    except (OSError, StrictJSONError) as exc:
+        fail("RAW_LEDGER_ROW_STRICT_JSON_FAIL", exc)
     if row_count != RAW_TOTAL:
         fail("RAW_LEDGER_ROW_COUNT_FAIL", row_count)
     if dict(category_counts) != EXPECTED_PARTITION:

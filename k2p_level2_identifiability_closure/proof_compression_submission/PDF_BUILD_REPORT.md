@@ -6,9 +6,9 @@ set with Tectonic 0.16.9 and `SOURCE_DATE_EPOCH=1787788800`
 
 | document | source SHA-256 | PDF SHA-256 | pages | bytes |
 |---|---|---|---:|---:|
-| main article | `d1344711d3d85ce5936574ccf54bcfbea1bf4164a0d2b6f5d25d5ecb483991bb` | `a6b91bc5d8864d1ce1a6eb352d00ecdf83712449b41fa4ad041e43a4c06e4858` | 26 | 194,574 |
-| reader supplement | `e0fe9e08c923a2946c282a3b19aa66c4c6aaa52e762639977024f538295de455` | `654f9150a2a22be18c651d9bd38864be2a080828dbcdad847d2b344e407ebdb2` | 24 | 160,272 |
+| main article | `20387611077cf1bfb128456e523b34f46c5a98537c6bbf6ddb5436911f8c9dec` | `186522a14070fc872e67e75736804fa14621104803225f73615d7f76d09f9a11` | 26 | 194,515 |
+| reader supplement | `c1cbf3f3bc2e7ce2df3972eb5a0a6839eef4eae59aca6735be91db7a0fb7b0b5` | `f317a4a6f14cfebc0f58ff0e8ebeb5ecd9659c5bb3fa2af8e92f8235dace7d44` | 24 | 160,280 |
 
 All 50 rendered pages were inspected. No clipping or layout defect was found. The logs contain no overfull boxes, undefined references, undefined citations, fatal errors, or hyperref PDF-string warnings, and every font is embedded. Omission of either generated supplement input fails at the corresponding unconditional `\input`. Bibliography presence is enforced independently by the source manifest and mutation gate.
 
-Machine-readable payload SHA-256: `70394f0cb0a4b2947fb64c327431185c2fbd57df5f6c10fd1b5eecea221f0d89`.
+Machine-readable payload SHA-256: `fd1b49bba0eb3793e528c8b8b169f1953773a005c58d3058bd675ce3e3803438`.

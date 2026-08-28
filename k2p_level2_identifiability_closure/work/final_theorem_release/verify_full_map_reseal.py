@@ -13,6 +13,8 @@ import tempfile
 from pathlib import Path
 from typing import Any
 
+from strict_json import StrictJSONError, decode_json_document
+
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
@@ -33,7 +35,7 @@ FAMILIES = {
             "2195c2c469decc9377c85b5432cdbf5e89d07e7a26a7c547e7760fcef20aa21c"
         ),
         "current_atlas_sha256": (
-            "37e9b7910f7723c146a87ae2f60dfb62529b1a3e4866ccd72d65dc4efda923ad"
+            "afafe6c4289870a02226516e2b7ff207c57b844f4c45fc6864cedf826e9ec742"
         ),
         "legacy_atlas_sha256": (
             "5b9e03653cc6960bf341fcbe7e63ffd10226d0f6a56441012212c6e3b2a26483"
@@ -52,7 +54,7 @@ FAMILIES = {
         # sign polynomials unchanged.  Record that provenance-only rebind
         # explicitly so the historical byte reconstruction remains exact.
         "current_atlas_sha256": (
-            "37e9b7910f7723c146a87ae2f60dfb62529b1a3e4866ccd72d65dc4efda923ad"
+            "afafe6c4289870a02226516e2b7ff207c57b844f4c45fc6864cedf826e9ec742"
         ),
         "legacy_atlas_sha256": (
             "5b9e03653cc6960bf341fcbe7e63ffd10226d0f6a56441012212c6e3b2a26483"
@@ -303,7 +305,12 @@ def main() -> int:
     mutations: list[dict[str, str]] = []
     for family, specification in FAMILIES.items():
         path = specification["path"]
-        document = json.loads(path.read_text(encoding="utf-8"))
+        try:
+            document = decode_json_document(
+                path.read_bytes(), label=path.name, require_object=True
+            )
+        except (OSError, StrictJSONError) as error:
+            raise ResealFailure(f"STRICT_JSON_FAIL:{path.name}:{error}") from error
         validate_document(
             document,
             schema=specification["schema"],

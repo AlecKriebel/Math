@@ -34,6 +34,17 @@ import networkx as nx
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import (  # noqa: E402
+    StrictJSONError,
+    decode_json_document,
+    iter_canonical_gzip_jsonl,
+    load_canonical_gzip_json,
+)
+
 PACKAGE = PROJECT / "package/referee/k2p_offline_sweep_portable"
 ATLAS_PATH = PACKAGE / "atlas/k2p_atlas_core.py"
 INPUT_CONTRACT = PROJECT / "work/adversarial_proof_review/probe_input_contract.json"
@@ -1463,17 +1474,14 @@ def reconstruct_anchors(atlas, common, generator, contract):
         if row["origin"].startswith("four_port")
     }
     raw_rows = {}
-    with gzip.open(RAW4, "rt") as handle:
-        for line in handle:
-            row = json.loads(line)
-            if row["raw_id"] in raw_ids:
-                raw_rows[row["raw_id"]] = row
+    for row in iter_canonical_gzip_jsonl(RAW4, label=RAW4.name):
+        if row["raw_id"] in raw_ids:
+            raw_rows[row["raw_id"]] = row
     require(set(raw_rows) == raw_ids, "four-port raw locator coverage")
     four_sources = atlas.source_supports()
     four_targets = atlas.target_completions(4, True) + atlas.target_completions(4, False)
 
-    with gzip.open(THETA2, "rt") as handle:
-        theta = json.load(handle)
+    theta = load_canonical_gzip_json(THETA2, label=THETA2.name)
     theta_sources = atlas.source_supports(("theta2",))
     theta_targets = atlas.target_completions(5, True) + atlas.target_completions(5, False)
     theta_no_dummy = {row["anchor_id"]: row for row in theta["no_dummy_anchors"]}
@@ -1481,7 +1489,9 @@ def reconstruct_anchors(atlas, common, generator, contract):
     theta_six = {row["path_id"]: row for row in theta["six_port_rows"]}
     theta_seven = {row["path_id"]: row for row in theta["seven_port_rows"]}
 
-    cycle_package = json.loads(CYCLE_ANCHORS.read_text())
+    cycle_package = decode_json_document(
+        CYCLE_ANCHORS.read_bytes(), label=CYCLE_ANCHORS.name, require_object=True
+    )
     cycle_rows = {row["anchor_id"]: row for row in cycle_package["anchors"]}
     cycle_sources = atlas.source_supports(("cycle",))
     cycle_targets = atlas.target_completions(3, True) + atlas.target_completions(3, False)
@@ -1720,13 +1730,17 @@ def main():
     atlas = import_path("corrected_probe_atlas", ATLAS_PATH)
     common = import_path("cycle_common", CYCLE_COMMON)
     generator = import_path("corrected_probe_cycle_generator", CYCLE_GENERATOR)
-    contract = json.loads(INPUT_CONTRACT.read_text())
+    contract = decode_json_document(
+        INPUT_CONTRACT.read_bytes(), label=INPUT_CONTRACT.name, require_object=True
+    )
     payload = contract["payload_sha256"]
     unhashed = dict(contract)
     unhashed.pop("payload_sha256")
     require(payload == sha(unhashed), "probe input contract payload")
     require(contract["schema"] == "k2p-root-invariant-probe-input-contract-v2", "probe contract schema")
-    restoration = json.loads(RESTORATION.read_text())
+    restoration = decode_json_document(
+        RESTORATION.read_bytes(), label=RESTORATION.name, require_object=True
+    )
     require(restoration["status"] == "PASS", "clean restoration input")
     require(restoration["scope_contract"]["critical_triangle_raw_ids"] == [67161, 67167, 67401, 67407], "restoration/probe scope cross-binding")
     anchors = reconstruct_anchors(atlas, common, generator, contract)
@@ -1904,5 +1918,14 @@ def main():
 if __name__ == "__main__":
     try:
         main()
-    except (ProbeFailure, AssertionError, KeyError, IndexError, OSError, ValueError, json.JSONDecodeError) as error:
+    except (
+        ProbeFailure,
+        StrictJSONError,
+        AssertionError,
+        KeyError,
+        IndexError,
+        OSError,
+        ValueError,
+        json.JSONDecodeError,
+    ) as error:
         raise SystemExit(f"CORRECTED_PROBE_FAIL:{error}") from error

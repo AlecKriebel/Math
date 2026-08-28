@@ -9,7 +9,6 @@ read.
 from __future__ import annotations
 
 import argparse
-import gzip
 import itertools
 import json
 import sys
@@ -26,6 +25,8 @@ sys.path.insert(0, str(ANALYSIS))
 
 from compression_common import (  # noqa: E402
     canonical_bytes,
+    iter_gzip_json_lines,
+    load_gzip_json,
     load_json,
     reject_optimized_python,
     require,
@@ -58,20 +59,11 @@ CHARACTERS = ("0", "C", "G", "T")
 
 
 def read_gzip_json(path: Path) -> dict[str, Any]:
-    require(path.is_file(), "INPUT_MISSING", path)
-    with gzip.open(path, "rt", encoding="utf-8") as handle:
-        value = json.load(handle)
-    require(isinstance(value, dict), "INPUT_NOT_OBJECT", path)
-    return value
+    return load_gzip_json(path)
 
 
 def iter_gzip_jsonl(path: Path) -> Iterable[dict[str, Any]]:
-    require(path.is_file(), "INPUT_MISSING", path)
-    with gzip.open(path, "rt", encoding="utf-8") as handle:
-        for line_number, line in enumerate(handle, 1):
-            value = json.loads(line)
-            require(isinstance(value, dict), "ROW_NOT_OBJECT", f"{path}:{line_number}")
-            yield value
+    yield from iter_gzip_json_lines(path)
 
 
 def verify_seal(value: dict[str, Any]) -> None:

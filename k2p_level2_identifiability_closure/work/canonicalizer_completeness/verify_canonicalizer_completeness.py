@@ -14,6 +14,12 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import StrictJSONError, decode_json_document  # noqa: E402
+
 CERTIFICATE = HERE / "canonicalizer_completeness_certificate.json"
 MUTATIONS = HERE / "canonicalizer_completeness_mutation_certificate.json"
 ATLAS = PROJECT / "package/referee/k2p_offline_sweep_portable/atlas/k2p_atlas_core.py"
@@ -43,6 +49,17 @@ def sha_file(path):
 def require(condition, code):
     if not condition:
         raise SystemExit(f"CANONICALIZER_COMPLETENESS_REPLAY_FAIL:{code}")
+
+
+def load_plain_json(path: Path):
+    try:
+        return decode_json_document(
+            path.read_bytes(), label=path.name, require_object=True
+        )
+    except (OSError, StrictJSONError) as error:
+        raise SystemExit(
+            f"CANONICALIZER_COMPLETENESS_REPLAY_FAIL:STRICT_JSON:{error}"
+        ) from error
 
 
 def check_payload(certificate):
@@ -103,7 +120,7 @@ def check_mutations(report):
         and baseline.get("timeout") is False
         and baseline.get("signal") is False
         and baseline.get("semantic_mutation_contract")
-        == json.loads(CERTIFICATE.read_text())["semantic_mutation_contract"],
+        == load_plain_json(CERTIFICATE)["semantic_mutation_contract"],
         "MUTATION_BASELINE",
     )
     rows = report.get("mutations")
@@ -144,9 +161,9 @@ def main():
     args = parser.parse_args()
     if not __debug__:
         raise SystemExit("CANONICALIZER_COMPLETENESS_REPLAY_FAIL:OPTIMIZED_MODE")
-    certificate = json.loads(CERTIFICATE.read_text())
+    certificate = load_plain_json(CERTIFICATE)
     check_payload(certificate)
-    check_mutations(json.loads(MUTATIONS.read_text()))
+    check_mutations(load_plain_json(MUTATIONS))
     semantic = subprocess.run(
         [sys.executable, "-B", str(HERE / "canonicalizer_audit.py"), "--semantic-only"],
         cwd=PROJECT,

@@ -24,8 +24,9 @@ The first command is the full primitive-graph regeneration (about 46 minutes
 and 0.45 GiB RSS on the reference M1 run). The verifier streams every primary
 ledger and independently replays stored exact Bernstein algebra in about 17
 seconds and 0.07 GiB RSS. The mutation suite targets omissions, parents,
-transports, order, the global triangle, algebra, optimized mode, and hash-seed
-stability. The separate site-transport audit reconstructs the unique edge-map
+transports, order, the global triangle, algebra, optimized mode, hash-seed
+stability, same- and conflicting-valued duplicate JSON names, and
+noncanonical compressed rows. The separate site-transport audit reconstructs the unique edge-map
 partition directly from the frozen input contract and exact transport ledger;
 it proves that every incompatible site pair is quartet-separated and that
 every compatible pair is either an exact relation or a direct full-map

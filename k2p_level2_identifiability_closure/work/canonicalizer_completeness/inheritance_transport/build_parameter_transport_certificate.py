@@ -25,6 +25,12 @@ from typing import Any, Iterable
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[2]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import decode_json_document  # noqa: E402
+
 PROBE_AUDIT = PROJECT / "work/global_proof_adversary/probe_full_audit/independent_probe_graph_audit.py"
 PROBE_PACKAGE = PROJECT / "work/probe_coherence_corrected"
 PROBE_CONTRACT = PROJECT / "work/adversarial_proof_review/probe_input_contract.json"
@@ -486,7 +492,11 @@ def build(output_dir: Path) -> dict[str, Any]:
     common = primitive.load_module("cycle_common", CYCLE_COMMON)
     cycle_generator = primitive.load_module("parameter_transport_cycle_generator", CYCLE_GENERATOR)
     upstream = primitive.prepare_upstream(atlas, common, cycle_generator)
-    contract = json.loads(PROBE_CONTRACT.read_text())
+    contract = decode_json_document(
+        PROBE_CONTRACT.read_bytes(),
+        label=PROBE_CONTRACT.name,
+        require_object=True,
+    )
 
     transports: dict[str, dict[str, Any]] = {}
     for _, wrapped in probe.iter_jsonl(PROBE_PACKAGE / "exact_transport_ledger.jsonl.gz"):
@@ -718,7 +728,11 @@ def build(output_dir: Path) -> dict[str, Any]:
     require(len(first_source_seen) == 42, "restoration first source class census")
     require(len(first_target_seen) == 4_986, "restoration first target class census")
 
-    corrected = json.loads(RESTORATION_CERTIFICATE.read_text())
+    corrected = decode_json_document(
+        RESTORATION_CERTIFICATE.read_bytes(),
+        label=RESTORATION_CERTIFICATE.name,
+        require_object=True,
+    )
     continuations = [row for row in corrected["first_coverage"] if row["status"] == "continuation"]
     require(len(continuations) == 32, "restoration continuation census")
     second_rows = corrected["second_coverage"]

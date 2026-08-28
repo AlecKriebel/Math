@@ -15,12 +15,19 @@ import hashlib
 import itertools
 import json
 import re
+import sys
 from fractions import Fraction as F
 from pathlib import Path
 
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import StrictJSONError, decode_json_document  # noqa: E402
+
 PRIMARY = PROJECT / "work/bridge_marginal_closure"
 RESTORATION = PROJECT / "work/restoration_sign_reclassification"
 GLOBAL = PROJECT / "work/global_theorem_closure"
@@ -42,6 +49,15 @@ def canonical_bytes(value: object) -> bytes:
 
 def sha256_file(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def load_plain_json(path: Path) -> dict[str, object]:
+    try:
+        return decode_json_document(
+            path.read_bytes(), label=path.name, require_object=True
+        )
+    except (OSError, StrictJSONError) as error:
+        raise AuditFailure(f"strict JSON:{path}:{error}") from error
 
 
 def matrix_rank(matrix: list[list[int | F]]) -> int:
@@ -431,7 +447,7 @@ def check_unconditional_lift_counterexample() -> dict[str, object]:
 
 def check_forest_binding() -> dict[str, object]:
     report_path = RESTORATION / "corrected_restoration_forest.json"
-    report = json.loads(report_path.read_text())
+    report = load_plain_json(report_path)
     require(report.get("status") == "PASS", "corrected restoration forest not PASS")
     require(
         report.get("schema") == "k2p-corrected-restoration-forest-v3",
@@ -456,7 +472,7 @@ def check_forest_binding() -> dict[str, object]:
 
 
 def check_topology_direction_binding() -> dict[str, object]:
-    report = json.loads(TOPOLOGY_CERTIFICATE.read_text())
+    report = load_plain_json(TOPOLOGY_CERTIFICATE)
     require(report.get("status") == "PASS", "directional topology audit not PASS")
     require(
         report.get("schema") == "k2p-displayed-quartet-direction-audit-v2",
@@ -480,7 +496,7 @@ def check_topology_direction_binding() -> dict[str, object]:
         and raw4_summary_path.is_file()
         and current.get("summary_sha256") == sha256_file(raw4_summary_path)
         and current.get("summary_payload_sha256")
-        == json.loads(raw4_summary_path.read_text()).get("payload_sha256"),
+        == load_plain_json(raw4_summary_path).get("payload_sha256"),
         "current raw4 displayed-quartet binding",
     )
     require(

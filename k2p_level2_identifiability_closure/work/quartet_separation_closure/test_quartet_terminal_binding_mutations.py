@@ -6,7 +6,6 @@ from __future__ import annotations
 import argparse
 import collections
 import copy
-import gzip
 import hashlib
 import importlib
 import json
@@ -21,6 +20,16 @@ from typing import Any
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import (  # noqa: E402
+    StrictJSONError,
+    decode_json_document,
+    iter_canonical_gzip_jsonl,
+)
+
 SEMANTICS = HERE / "quartet_logic_certificate.json"
 VERIFIER = HERE / "verify_quartet_terminal_bindings.py"
 BASELINE_CERTIFICATE = HERE / "quartet_terminal_binding_certificate.json"
@@ -73,6 +82,15 @@ binder: Any = None
 
 class MutationFailure(RuntimeError):
     pass
+
+
+def load_plain_json(path: Path):
+    try:
+        return decode_json_document(
+            path.read_bytes(), label=path.name, require_object=True
+        )
+    except (OSError, StrictJSONError) as error:
+        raise MutationFailure(f"strict JSON:{path}:{error}") from error
 
 
 def require(condition: bool, message: str) -> None:
@@ -289,8 +307,12 @@ def helper_action(name: str) -> tuple[Any, str | None]:
         )
 
     if name == "compact_split_hash_mutation":
-        with gzip.open(PROJECT / binder.RAW4_LEDGER, "rt", encoding="utf-8") as handle:
-            raw4_row = json.loads(next(handle))
+        raw4_row = next(
+            iter_canonical_gzip_jsonl(
+                PROJECT / binder.RAW4_LEDGER,
+                label=Path(binder.RAW4_LEDGER).name,
+            )
+        )
         evidence = copy.deepcopy(raw4_row["evidence_binding"])
         evidence["source_displayed_splits_sha256"] = "0" * 64
         return lambda: binder.validate_compact_evidence(evidence, formulas, {}), None
@@ -420,7 +442,7 @@ def qualify_failure(
 def graph_guards() -> list[dict[str, Any]]:
     guards: list[dict[str, Any]] = []
     for family, path in (("raw4", RAW4_MUTATIONS), ("theta2", THETA2_MUTATIONS)):
-        report = json.loads(path.read_text())
+        report = load_plain_json(path)
         claimed = report["payload_sha256"]
         unsigned = dict(report)
         unsigned.pop("payload_sha256")
@@ -549,7 +571,7 @@ def main() -> None:
             and "Traceback (most recent call last):" not in clean.stderr + clean.stdout,
             "clean baseline",
         )
-        clean_payload = json.loads(clean_output.read_text())
+        clean_payload = load_plain_json(clean_output)
         clean_unsigned = dict(clean_payload)
         clean_claimed = clean_unsigned.pop("payload_sha256")
         require(clean_claimed == sha_object(clean_unsigned), "clean payload hash")
@@ -730,7 +752,13 @@ def main() -> None:
             capture_output=True,
             text=True,
             check=False,
-            env={**os.environ, "PYTHONDONTWRITEBYTECODE": "1"},
+            env={
+                **os.environ,
+                # Keep the newly required strict syntax boundary available so
+                # this control isolates the deliberately missing binder.
+                "PYTHONPATH": str(STRICT_JSON_DIR),
+                "PYTHONDONTWRITEBYTECODE": "1",
+            },
         )
         require(
             missing_import.returncode == 1

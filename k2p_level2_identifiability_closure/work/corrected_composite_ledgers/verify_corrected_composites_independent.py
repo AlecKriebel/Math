@@ -30,6 +30,15 @@ HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
 ARTIFACTS = HERE / "artifacts"
 PACKAGE = PROJECT / "package/referee/k2p_offline_sweep_portable"
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import (  # noqa: E402
+    decode_json_document,
+    iter_canonical_gzip_jsonl,
+    load_canonical_gzip_json,
+)
 TOTALS = {"raw4": 405_216, "theta2": 2_946_240}
 EXPECTED = {
     "raw4": {
@@ -97,14 +106,13 @@ def verify_payload(value: dict[str, Any]) -> None:
 
 
 def load_json(path: Path) -> dict[str, Any]:
-    value = json.loads(path.read_text())
+    value = decode_json_document(path.read_bytes(), label=path.name, require_object=True)
     require(isinstance(value, dict), "JSON_OBJECT_FAIL", path)
     return value
 
 
 def load_gzip_json(path: Path) -> dict[str, Any]:
-    with gzip.open(path, "rt") as handle:
-        value = json.load(handle)
+    value = load_canonical_gzip_json(path, label=path.name)
     require(isinstance(value, dict), "GZIP_JSON_OBJECT_FAIL", path)
     return value
 
@@ -240,10 +248,9 @@ def raw4_context(atlas) -> dict[str, Any]:
 def theta2_context(atlas) -> dict[str, Any]:
     historical = PROJECT / "work/theta2_five_port_closure/artifacts/raw_directional_ledger.jsonl.gz"
     remaining = {}
-    with gzip.open(historical, "rb") as handle:
-        for line in handle:
-            if b'"category":"quartet_pointwise_excluded"' not in line:
-                row = json.loads(line); remaining[row["raw_id"]] = row
+    for row in iter_canonical_gzip_jsonl(historical, label=historical.name):
+        if row["category"] != "quartet_pointwise_excluded":
+            remaining[row["raw_id"]] = row
     direct = load_gzip_json(PROJECT / "work/theta2_five_port_closure/artifacts/direct_proof_certificates.json.gz")
     ranks = {row["descriptor_sha256"]: row for row in load_gzip_json(PROJECT / "work/theta2_five_port_closure/artifacts/exact_rank_certificates.json.gz")["descriptors"]}
     truth = load_json(PROJECT / "work/adversarial_proof_review/theta2_tree_sunlet_full_map_certificate.json")
@@ -435,40 +442,39 @@ def replay(family: str, ledger: Path, summary_path: Path, report_path: Path, hea
         regenerated = Path(directory) / "ledger.jsonl.gz"
         with regenerated.open("wb") as raw_output:
             with gzip.GzipFile(filename="", mode="wb", fileobj=raw_output, mtime=0, compresslevel=6) as encoded:
-                with gzip.open(ledger, "rb") as source:
-                    for expected_id, line in enumerate(source):
-                        require(line.endswith(b"\n"), "LINE_ENDING", expected_id)
-                        payload = line[:-1]
-                        require(not any(token in payload for token in FORBIDDEN), "FORBIDDEN_ROOTED_TOKEN", expected_id)
-                        row = json.loads(payload)
-                        require(payload == canonical_bytes(row), "NONCANONICAL_ROW", expected_id)
-                        require(row.get("raw_id") == expected_id, "RAW_ID_ORDER", expected_id)
-                        source_index, remainder = divmod(expected_id, per_source)
-                        target_index, permutation_index = divmod(remainder, len(context["permutations"]))
-                        permutation = list(context["permutations"][permutation_index])
-                        require(row.get("source_index") == source_index and row.get("target_index") == target_index, "RAW_COORDINATE", expected_id)
-                        require(row.get("permutation_index") == permutation_index and row.get("port_permutation") == permutation, "PORT_PERMUTATION", expected_id)
-                        require(row.get("source_descriptor_sha256") == context["source_digests"][source_index], "SOURCE_DESCRIPTOR", expected_id)
-                        require(row.get("schema") == f"k2p-{family}-corrected-composite-row-v1", "ROW_SCHEMA", expected_id)
-                        require(isinstance(row.get("evidence_binding"), dict) and len(row["evidence_binding"]) > 2, "EVIDENCE_MISSING", expected_id)
-                        content = quartet_witness(
-                            context["source_signatures"][source_index],
-                            atlas.permute_signature(context["target_signatures"][target_index], tuple(permutation)),
-                        )
-                        if content is not None:
-                            require(row["corrected_category"] == "displayed_quartet_exclusion", "QUARTET_CATEGORY", expected_id)
-                            require(row["exact_reason"] == "source_target_displayed_quartet_sets_differ", "QUARTET_REASON", expected_id)
-                            require(row["evidence_binding"] == compact_witness(content), "QUARTET_WITNESS", expected_id)
-                        else:
-                            if family == "raw4": expected_nonquartet_raw4(row, context, atlas)
-                            else: expected_nonquartet_theta2(row, context, atlas)
-                        categories[row["corrected_category"]] += 1
-                        digest = hashlib.sha256(payload).digest(); row_root.update(digest)
-                        raw_root.update(hashlib.sha256(canonical_bytes(expected_id)).digest()); plain.update(line)
-                        encoded.write(line)
-                        seen += 1
-                        if seen % 500_000 == 0:
-                            print(json.dumps({"family": family, "independent_rows": seen}, sort_keys=True), flush=True)
+                for expected_id, row in enumerate(
+                    iter_canonical_gzip_jsonl(ledger, label=ledger.name)
+                ):
+                    payload = canonical_bytes(row)
+                    line = payload + b"\n"
+                    require(not any(token in payload for token in FORBIDDEN), "FORBIDDEN_ROOTED_TOKEN", expected_id)
+                    require(row.get("raw_id") == expected_id, "RAW_ID_ORDER", expected_id)
+                    source_index, remainder = divmod(expected_id, per_source)
+                    target_index, permutation_index = divmod(remainder, len(context["permutations"]))
+                    permutation = list(context["permutations"][permutation_index])
+                    require(row.get("source_index") == source_index and row.get("target_index") == target_index, "RAW_COORDINATE", expected_id)
+                    require(row.get("permutation_index") == permutation_index and row.get("port_permutation") == permutation, "PORT_PERMUTATION", expected_id)
+                    require(row.get("source_descriptor_sha256") == context["source_digests"][source_index], "SOURCE_DESCRIPTOR", expected_id)
+                    require(row.get("schema") == f"k2p-{family}-corrected-composite-row-v1", "ROW_SCHEMA", expected_id)
+                    require(isinstance(row.get("evidence_binding"), dict) and len(row["evidence_binding"]) > 2, "EVIDENCE_MISSING", expected_id)
+                    content = quartet_witness(
+                        context["source_signatures"][source_index],
+                        atlas.permute_signature(context["target_signatures"][target_index], tuple(permutation)),
+                    )
+                    if content is not None:
+                        require(row["corrected_category"] == "displayed_quartet_exclusion", "QUARTET_CATEGORY", expected_id)
+                        require(row["exact_reason"] == "source_target_displayed_quartet_sets_differ", "QUARTET_REASON", expected_id)
+                        require(row["evidence_binding"] == compact_witness(content), "QUARTET_WITNESS", expected_id)
+                    else:
+                        if family == "raw4": expected_nonquartet_raw4(row, context, atlas)
+                        else: expected_nonquartet_theta2(row, context, atlas)
+                    categories[row["corrected_category"]] += 1
+                    digest = hashlib.sha256(payload).digest(); row_root.update(digest)
+                    raw_root.update(hashlib.sha256(canonical_bytes(expected_id)).digest()); plain.update(line)
+                    encoded.write(line)
+                    seen += 1
+                    if seen % 500_000 == 0:
+                        print(json.dumps({"family": family, "independent_rows": seen}, sort_keys=True), flush=True)
         regenerated_hash = sha_file(regenerated)
     require(seen == total and categories == EXPECTED[family], "REPLAY_CENSUS", (seen, categories))
     require(regenerated_hash == sha_file(ledger) == summary["ledger_sha256"], "REGENERATED_GZIP_BYTE_MISMATCH")

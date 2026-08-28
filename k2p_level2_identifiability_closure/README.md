@@ -25,7 +25,7 @@ The frozen theorem release is rooted at
 `work/final_theorem_release/RELEASE_LOCK.json`, whose SHA-256 is
 
 ```text
-30132af1b10f7aba6d49ababf14551f9f914a19dc6a0638517761b6b85cf4c8d
+528e999243f9c43bf7ac4102607f0024610fcffd71cce66eeb50ca054dbc2970
 ```
 
 The theorem is deliberately limited to the principal positive component; no
@@ -43,9 +43,8 @@ classification universe are unchanged; the outer qualification lock has been
 resealed to bind the repaired verifier-facing mutation evidence.
 
 The final neutral-referee package is
-`proof_compression_submission/output/K2P_Principal_D_Plus_Referee_Package_20260827.zip`
-(SHA-256
-`51f502290434cd3415936ef69e3c5afe71438fa892d5b9e6998feecc47489278`).
+`proof_compression_submission/output/K2P_Principal_D_Plus_Referee_Package_20260828.zip`;
+its adjacent `.sha256` file is the archive authority.
 
 ## Layout
 

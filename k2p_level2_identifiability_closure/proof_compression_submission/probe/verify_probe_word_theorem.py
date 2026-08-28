@@ -5,7 +5,6 @@ from __future__ import annotations
 
 import argparse
 import collections
-import gzip
 import hashlib
 import importlib.util
 import json
@@ -15,24 +14,33 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import (  # noqa: E402
+    decode_json_document,
+    iter_canonical_gzip_jsonl,
+    load_canonical_gzip_json,
+)
 PROBE = PROJECT / "work/probe_coherence_corrected"
 INPUT_CONTRACT = PROJECT / "work/adversarial_proof_review/probe_input_contract.json"
 ATLAS = PROJECT / "package/referee/k2p_offline_sweep_portable/atlas/k2p_atlas_core.py"
 OUTPUT = HERE / "PROBE_WORD_COVERAGE.json"
 
 FILES = {
-    "certificate": (PROBE / "probe_coherence_certificate.json", "53d1ac1e6a14637f547c031a6e8031d3d3cc49630518f31339813031089e0bfc"),
+    "certificate": (PROBE / "probe_coherence_certificate.json", "aef621cdefb7a892b396ae993b35d4582faa6d617a90e975d067aed2f9a53554"),
     "one": (PROBE / "one_port_ledger.jsonl.gz", "d5fa13d38731bff2403eeb4e4d9e139566c4983b09d30553c6260eaac64c5c90"),
     "two": (PROBE / "two_port_ledger.jsonl.gz", "10f0afcab77f2d61cecfc36d723c6f32065c304ac088b0b8ecf12dfc867fbf9d"),
     "parents": (PROBE / "two_port_parent_inventory.jsonl.gz", "673112e949e08dce0bdbd690be647dd97d0899c2bb12121b4a16ed7a62dba3f8"),
     "transports": (PROBE / "exact_transport_ledger.jsonl.gz", "6bc8e88feac2bee68491287775f078e8e5474bf930961a7390967c9fd350044d"),
     "restrictions": (PROBE / "parent_restriction_ledger.jsonl.gz", "5d1e6c2fe38d31f6304a76886ec37829215b88c8b179f5b23596d49d37ceeb38"),
     "separation": (PROBE / "separation_proof_registry.json.gz", "057783503b1ad7b3c55c14a1cc643db4851c9e42e00595b789b7d6b6d069acfe"),
-    "input_contract": (INPUT_CONTRACT, "71d8596c5e0fa5804f5a1d938423ba9802f4d11783ef0e9d0f45a0453f0aff22"),
+    "input_contract": (INPUT_CONTRACT, "5e6e955db206a0c2b5f520a67fd2fdedcedcdef88d466a7c8e436108a77fac24"),
 }
 
-EXPECTED_CERT_PAYLOAD = "5d71b11dfef66fa3ef33cb52078baa10becb6f08f56edb94902bf82be6e4548b"
-EXPECTED_INPUT_PAYLOAD = "39eb12e3dccf102d0550017cc7374ac1ab22c7065e52c900bea2205d07e4e14f"
+EXPECTED_CERT_PAYLOAD = "29927d40fcb7b9f3436c9c93f3ec797d2c7b4539ad518c6de94e5ea9efd3ab50"
+EXPECTED_INPUT_PAYLOAD = "e12f0fb912f74fe7b00412619e6a33b28bdeb641a2ddf524fd577d552a856470"
 EXPECTED_SOURCE_SUPPORT_GRAMMAR_SHA256 = (
     "cadbb4187f501ab53620b3f15deaccb60bed582dfe8fdbefd7c1ba10f5329047"
 )
@@ -76,9 +84,7 @@ def replay_payload(document: dict, expected: str, label: str, *, exclude=()) -> 
 
 
 def stream_rows(path: Path):
-    with gzip.open(path, "rt") as handle:
-        for line in handle:
-            yield json.loads(line)
+    yield from iter_canonical_gzip_jsonl(path, label=path.name)
 
 
 def chain_step(root: str, row: dict) -> str:
@@ -147,7 +153,11 @@ def build_coverage() -> dict:
     for label, (path, expected) in FILES.items():
         require(file_sha256(path) == expected, f"frozen input drift:{label}")
 
-    certificate = json.loads(FILES["certificate"][0].read_text())
+    certificate = decode_json_document(
+        FILES["certificate"][0].read_bytes(),
+        label=FILES["certificate"][0].name,
+        require_object=True,
+    )
     replay_payload(certificate, EXPECTED_CERT_PAYLOAD, "probe certificate", exclude=("operational",))
     require(certificate["status"] == "PASS", "probe certificate status")
     require(certificate["assembly_theorem"]["unresolved"] == 0, "assembly unresolved")
@@ -155,7 +165,9 @@ def build_coverage() -> dict:
     legacy_flag = "forbidden_" + "rooted_" + "triple_oracle_used"
     require(certificate.get(legacy_flag) is False, "superseded oracle flag")
 
-    contract = json.loads(INPUT_CONTRACT.read_text())
+    contract = decode_json_document(
+        INPUT_CONTRACT.read_bytes(), label=INPUT_CONTRACT.name, require_object=True
+    )
     replay_payload(contract, EXPECTED_INPUT_PAYLOAD, "probe input contract")
     require(contract["status"] == "PASS", "input contract status")
     require(contract["unresolved_anchor_inputs"] == contract["incoherent_site_transports"] == 0, "input contract terminal gates")
@@ -242,7 +254,9 @@ def build_coverage() -> dict:
             require(public["global_triangle"] is None, "unexpected anchor triangle")
         anchor_transport_ids.add(public["transport_id"])
 
-    separation = json.load(gzip.open(FILES["separation"][0], "rt"))
+    separation = load_canonical_gzip_json(
+        FILES["separation"][0], label=FILES["separation"][0].name
+    )
     replay_payload(separation, certificate["registries"]["separation"]["payload_sha256"], "separation registry")
     topological_registry = separation["separation_proof_registry"]
     sign_registry = separation["full_map_Ti_registry"]
@@ -559,7 +573,13 @@ def main() -> None:
     else:
         target = args.check or OUTPUT
     require(target.exists(), f"missing probe word coverage:{target}")
-    require(json.loads(target.read_text()) == generated, "probe word coverage drift")
+    require(
+        decode_json_document(
+            target.read_bytes(), label=target.name, require_object=True
+        )
+        == generated,
+        "probe word coverage drift",
+    )
     print(json.dumps({
         "status": "PASS",
         "coverage_sha256": file_sha256(target),

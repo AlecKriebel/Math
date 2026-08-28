@@ -4,18 +4,21 @@
 from __future__ import annotations
 
 import argparse
+import gzip
 import hashlib
+import io
 import json
+import math
 import re
 import subprocess
 import sys
 from pathlib import Path, PurePosixPath
 from typing import Any
 
-
 PROJECT = Path(__file__).resolve().parents[2]
 DEFAULT_MANIFEST = Path(__file__).with_name("REVISED_REFEREE_BUNDLE_MANIFEST.json")
 LOCK_RELATIVE = "work/final_theorem_release/RELEASE_LOCK.json"
+STRICT_JSON_RELATIVE = "work/final_theorem_release/strict_json.py"
 MANIFEST_RELATIVE = "proof_compression_submission/crosswalk/REVISED_REFEREE_BUNDLE_MANIFEST.json"
 TELEMETRY_SUBMISSION_SOURCES = (
     "proof_compression_submission/article/main.tex",
@@ -46,7 +49,7 @@ SUBMISSION_METADATA = {
     "data_license": "CC BY 4.0",
     "doi": None,
     "funding": "No specific funding supported this work.",
-    "versioned_annotated_source_tag": "k2p-same-biorxiv-v1.0.3",
+    "versioned_annotated_source_tag": "k2p-same-biorxiv-v1.0.4",
     "paper_license": "CC BY 4.0",
     "release_boundary": (
         "No GitHub Release, Zenodo deposit, or DOI is created or claimed by "
@@ -107,25 +110,133 @@ def project_path(relative: str) -> Path:
 
 def decode_json_without_repeated_names(data: str | bytes, label: str) -> Any:
     """Decode independently of the producer and reject ambiguous objects."""
+    if isinstance(data, str):
+        encoded = data.encode("utf-8")
+    elif isinstance(data, bytes):
+        encoded = data
+    else:
+        fail(f"STRICT_JSON_INPUT_TYPE_FAIL:{label}")
+    if len(encoded) > 64 * 1024 * 1024:
+        fail(f"STRICT_JSON_BYTE_LIMIT:{label}")
 
     def checked_pairs(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
-        names = [name for name, _ in pairs]
-        if len(names) != len(set(names)):
-            seen: set[str] = set()
-            for name in names:
-                if name in seen:
-                    fail(f"{label} contains duplicate JSON name: {name!r}")
-                seen.add(name)
-        return dict(pairs)
+        result: dict[str, Any] = {}
+        for name, value in pairs:
+            if name in result:
+                display = repr(name)
+                if len(display) > 96:
+                    display = display[:93] + "..."
+                fail(f"STRICT_JSON_DUPLICATE_NAME:{label}:name={display}")
+            result[name] = value
+        return result
+
+    def reject_constant(token: str) -> None:
+        display = token if len(token) <= 96 else token[:93] + "..."
+        fail(f"STRICT_JSON_NONFINITE_NUMBER:{label}:token={display}")
+
+    def parse_finite_float(token: str) -> float:
+        value = float(token)
+        if not math.isfinite(value):
+            reject_constant(token)
+        return value
 
     try:
-        return json.loads(data, object_pairs_hook=checked_pairs)
+        text = encoded.decode("utf-8")
+        return json.loads(
+            text,
+            object_pairs_hook=checked_pairs,
+            parse_constant=reject_constant,
+            parse_float=parse_finite_float,
+        )
+    except UnicodeDecodeError as error:
+        fail(f"STRICT_JSON_UTF8_FAIL:{label}:offset={error.start}")
     except json.JSONDecodeError as error:
-        fail(f"invalid JSON in {label}: {error.msg}")
+        fail(
+            f"STRICT_JSON_SYNTAX_FAIL:{label}:line={error.lineno}:"
+            f"column={error.colno}"
+        )
+    except RecursionError:
+        fail(f"STRICT_JSON_DEPTH_FAIL:{label}")
+    except ValueError as error:
+        fail(f"STRICT_JSON_VALUE_FAIL:{label}:{error}")
+
+
+def checker_canonical_bytes(value: Any) -> bytes:
+    try:
+        return json.dumps(
+            value,
+            allow_nan=False,
+            ensure_ascii=False,
+            separators=(",", ":"),
+            sort_keys=True,
+        ).encode("utf-8")
+    except (RecursionError, TypeError, ValueError) as error:
+        fail(f"STRICT_JSON_CANONICAL_ENCODING_FAIL:{error}")
+
+
+def checker_gzip_reader(data: bytes, label: str):
+    if len(data) > 512 * 1024 * 1024:
+        fail(f"STRICT_JSON_COMPRESSED_BYTE_LIMIT:{label}")
+    try:
+        return gzip.GzipFile(fileobj=io.BytesIO(data), mode="rb")
+    except (EOFError, OSError) as error:
+        fail(f"STRICT_JSON_GZIP_READ_FAIL:{label}:{error}")
+
+
+def verify_canonical_gzip_document(relative: str, data: bytes) -> None:
+    try:
+        with checker_gzip_reader(data, relative) as expanded:
+            plain = expanded.read(64 * 1024 * 1024 + 1)
+    except (EOFError, OSError) as error:
+        fail(f"STRICT_JSON_GZIP_READ_FAIL:{relative}:{error}")
+    if len(plain) > 64 * 1024 * 1024:
+        fail(f"STRICT_JSON_DECOMPRESSED_BYTE_LIMIT:{relative}")
+    value = decode_json_without_repeated_names(plain, relative)
+    if not isinstance(value, dict):
+        fail(f"STRICT_JSON_TOP_LEVEL_OBJECT_FAIL:{relative}")
+    if plain != checker_canonical_bytes(value) + b"\n":
+        fail(f"STRICT_JSON_NONCANONICAL_BYTES:{relative}")
+
+
+def verify_canonical_gzip_lines(relative: str, data: bytes) -> None:
+    total = 0
+    line_number = 0
+    try:
+        with checker_gzip_reader(data, relative) as expanded:
+            while True:
+                line = expanded.readline(16 * 1024 * 1024 + 1)
+                if not line:
+                    break
+                line_number += 1
+                if len(line) > 16 * 1024 * 1024:
+                    fail(
+                        f"STRICT_JSON_LINE_BYTE_LIMIT:{relative}:"
+                        f"line={line_number}"
+                    )
+                total += len(line)
+                if total > 4 * 1024 * 1024 * 1024:
+                    fail(f"STRICT_JSON_DECOMPRESSED_BYTE_LIMIT:{relative}")
+                label = f"{relative}:line={line_number}"
+                if not line.endswith(b"\n"):
+                    fail(f"STRICT_JSON_TERMINAL_NEWLINE_FAIL:{label}")
+                if line == b"\n":
+                    fail(f"STRICT_JSON_BLANK_LINE:{label}")
+                value = decode_json_without_repeated_names(line, label)
+                if not isinstance(value, dict):
+                    fail(f"STRICT_JSON_TOP_LEVEL_OBJECT_FAIL:{label}")
+                if line != checker_canonical_bytes(value) + b"\n":
+                    fail(f"STRICT_JSON_NONCANONICAL_BYTES:{label}")
+    except (EOFError, OSError) as error:
+        fail(f"STRICT_JSON_GZIP_READ_FAIL:{relative}:{error}")
 
 
 def verify_json_member(relative: str, data: bytes) -> None:
-    if PurePosixPath(relative).suffix == ".json":
+    name = PurePosixPath(relative).name
+    if name.endswith(".jsonl.gz"):
+        verify_canonical_gzip_lines(relative, data)
+    elif name.endswith(".json.gz"):
+        verify_canonical_gzip_document(relative, data)
+    elif name.endswith(".json"):
         decode_json_without_repeated_names(data, relative)
 
 
@@ -1329,7 +1440,7 @@ def verify_static_article_audit(
         "competing_interests": "The author declares no competing interests.",
         "paper_and_data_license": "CC BY 4.0",
         "code_license": "MIT",
-        "versioned_annotated_source_tag": "k2p-same-biorxiv-v1.0.3",
+        "versioned_annotated_source_tag": "k2p-same-biorxiv-v1.0.4",
         "doi": None,
         "external_release_actions_performed": False,
     }
@@ -1460,6 +1571,8 @@ def validate(manifest_path: Path) -> dict[str, Any]:
         fail("manifest retains a stale pending-human field")
     lock, lock_sha256, lock_payload_sha256 = release_context()
     frozen = reconstruct_frozen_bindings(lock, lock_sha256)
+    if STRICT_JSON_RELATIVE not in frozen:
+        fail("frozen evidence omits the shared strict JSON parser")
     submission = reconstruct_submission_bindings()
     expected_runtime = expected_runtime_boundary(
         lock_sha256, lock_payload_sha256
@@ -1508,6 +1621,7 @@ def validate(manifest_path: Path) -> dict[str, Any]:
         "proof_compression_submission/crosswalk/build_revised_referee_bundle.py",
         "proof_compression_submission/crosswalk/check_revised_referee_bundle.py",
         "proof_compression_submission/crosswalk/test_crosswalk_bundle_mutations.py",
+        "proof_compression_submission/crosswalk/test_strict_json.py",
         "proof_compression_submission/PDF_BUILD_REPORT.json",
         "proof_compression_submission/PDF_BUILD_REPORT.md",
         "proof_compression_submission/adversarial_review/STATIC_AUDIT_RESULT.json",

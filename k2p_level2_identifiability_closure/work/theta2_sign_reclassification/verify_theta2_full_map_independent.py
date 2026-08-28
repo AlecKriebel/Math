@@ -12,7 +12,6 @@ from __future__ import annotations
 import argparse
 import collections
 import fractions
-import gzip
 import hashlib
 import importlib.util
 import itertools
@@ -25,6 +24,16 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import (  # noqa: E402
+    StrictJSONError,
+    decode_json_document,
+    iter_canonical_gzip_jsonl,
+)
+
 ATLAS_PATH = PROJECT / "package/referee/k2p_offline_sweep_portable/atlas/k2p_atlas_core.py"
 LEDGER = PROJECT / "work/theta2_five_port_closure/artifacts/raw_directional_ledger.jsonl.gz"
 PROOFS = PROJECT / "work/theta2_five_port_closure/artifacts/direct_proof_certificates.json.gz"
@@ -178,7 +187,11 @@ def main():
     parser.add_argument("--report", type=Path, default=DEFAULT_REPORT)
     args = parser.parse_args()
     started = time.monotonic()
-    certificate = json.loads(args.certificate.read_text())
+    certificate = decode_json_document(
+        args.certificate.read_bytes(),
+        label=args.certificate.name,
+        require_object=True,
+    )
     claimed_payload = certificate.get("payload_sha256")
     unhashed = dict(certificate)
     unhashed.pop("payload_sha256", None)
@@ -195,11 +208,9 @@ def main():
     require(certificate["unresolved"] == certificate["incoherent"] == 0, "terminal status")
 
     rows = []
-    with gzip.open(LEDGER, "rt") as handle:
-        for line in handle:
-            row = json.loads(line)
-            if row.get("category") == "tree_sunlet_pointwise_excluded":
-                rows.append(row)
+    for row in iter_canonical_gzip_jsonl(LEDGER, label=LEDGER.name):
+        if row.get("category") == "tree_sunlet_pointwise_excluded":
+            rows.append(row)
     require(len(rows) == 2_528, f"primitive row census:{len(rows)}")
     truth_hashes = certificate.get("ordered_truth_row_hashes", [])
     require(len(truth_hashes) == len(rows), "truth row coverage")
@@ -345,5 +356,12 @@ def main():
 if __name__ == "__main__":
     try:
         main()
-    except (Failure, KeyError, IndexError, OSError, json.JSONDecodeError) as error:
+    except (
+        Failure,
+        StrictJSONError,
+        KeyError,
+        IndexError,
+        OSError,
+        json.JSONDecodeError,
+    ) as error:
         raise SystemExit(f"THETA2_FULL_MAP_REPLAY_FAIL:{error}") from error

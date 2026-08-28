@@ -11,6 +11,12 @@ from typing import Any
 
 
 PROJECT = Path(__file__).resolve().parents[2]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import StrictJSONError, decode_json_document  # noqa: E402
+
 SUBMISSION = PROJECT / "proof_compression_submission"
 OUTPUT = Path(__file__).with_name("THEOREM_ARTIFACT_CROSSWALK.json")
 MARKDOWN = Path(__file__).with_name("THEOREM_ARTIFACT_CROSSWALK.md")
@@ -33,7 +39,7 @@ SUBMISSION_METADATA = {
     "data_license": "CC BY 4.0",
     "doi": None,
     "funding": "No specific funding supported this work.",
-    "versioned_annotated_source_tag": "k2p-same-biorxiv-v1.0.3",
+    "versioned_annotated_source_tag": "k2p-same-biorxiv-v1.0.4",
     "paper_license": "CC BY 4.0",
     "release_boundary": (
         "No GitHub Release, Zenodo deposit, or DOI is created or claimed by "
@@ -72,7 +78,14 @@ def canonical_hash(value: Any) -> str:
 
 
 def read_json(relative: str) -> dict[str, Any]:
-    value = json.loads(project_path(relative).read_text(encoding="utf-8"))
+    try:
+        value = decode_json_document(
+            project_path(relative).read_bytes(),
+            label=relative,
+            require_object=True,
+        )
+    except (OSError, StrictJSONError) as error:
+        fail(f"strict JSON: {relative}: {error}")
     if not isinstance(value, dict):
         fail(f"expected JSON object: {relative}")
     return value
@@ -112,7 +125,14 @@ def release_context() -> tuple[dict[str, Any], str, str, dict[str, Any], str]:
         fail("missing or symbolic frozen release lock")
     lock_bytes = lock_path.read_bytes()
     lock_sha256 = sha256_bytes(lock_bytes)
-    lock = json.loads(lock_bytes)
+    try:
+        lock = decode_json_document(
+            lock_bytes,
+            label=LOCK_RELATIVE,
+            require_object=True,
+        )
+    except StrictJSONError as error:
+        fail(f"strict JSON: {LOCK_RELATIVE}: {error}")
     if not isinstance(lock, dict):
         fail("frozen release lock is not a JSON object")
     if lock.get("schema") != "k2p-principal-d-plus-final-theorem-release-lock-v1":
@@ -838,7 +858,7 @@ def render_markdown(value: dict[str, Any]) -> str:
         "- Funding: no specific funding supported this work.",
         "- Competing interests: none declared.",
         "- Licenses: CC BY 4.0 for paper/data; MIT for code.",
-        "- Versioned annotated source tag: `k2p-same-biorxiv-v1.0.3`.",
+        "- Versioned annotated source tag: `k2p-same-biorxiv-v1.0.4`.",
         "- No GitHub Release, Zenodo deposit, or DOI is created or claimed by this package.",
         "",
     ])

@@ -3,10 +3,10 @@
 
 from __future__ import annotations
 
-import gzip
 import hashlib
 import json
 import math
+import sys
 from pathlib import Path
 from typing import Any, Iterable
 
@@ -15,6 +15,16 @@ HERE = Path(__file__).resolve().parent
 COMPRESSION_ROOT = HERE.parent
 PROJECT = COMPRESSION_ROOT.parent
 TEMPLATES = COMPRESSION_ROOT / "templates"
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import (  # noqa: E402
+    StrictJSONError,
+    decode_json_document,
+    iter_canonical_gzip_jsonl,
+    load_canonical_gzip_json,
+)
 
 
 class CompressionFailure(RuntimeError):
@@ -54,30 +64,42 @@ def sha_file(path: Path) -> str:
 
 def load_json(path: Path) -> dict[str, Any]:
     require(path.is_file(), "JSON_INPUT_MISSING", path)
-    value = json.loads(path.read_text(encoding="utf-8"))
-    require(isinstance(value, dict), "JSON_INPUT_NOT_OBJECT", path)
-    return value
+    try:
+        return decode_json_document(
+            path.read_bytes(), label=str(path), require_object=True
+        )
+    except (OSError, StrictJSONError) as error:
+        raise CompressionFailure(f"JSON_STRICT_DECODE_FAIL:{path}:{error}") from error
 
 
 def load_gzip_json(path: Path) -> dict[str, Any]:
     require(path.is_file(), "GZIP_JSON_INPUT_MISSING", path)
-    with gzip.open(path, "rt", encoding="utf-8") as handle:
-        value = json.load(handle)
+    try:
+        value = load_canonical_gzip_json(path, label=str(path))
+    except (OSError, StrictJSONError) as error:
+        raise CompressionFailure(
+            f"GZIP_JSON_STRICT_DECODE_FAIL:{path}:{error}"
+        ) from error
     require(isinstance(value, dict), "GZIP_JSON_INPUT_NOT_OBJECT", path)
     return value
 
 
 def iter_gzip_json_lines(path: Path) -> Iterable[dict[str, Any]]:
     require(path.is_file(), "JSONL_INPUT_MISSING", path)
-    with gzip.open(path, "rt", encoding="utf-8") as handle:
-        for line_number, line in enumerate(handle, 1):
-            value = json.loads(line)
+    try:
+        for line_number, value in enumerate(
+            iter_canonical_gzip_jsonl(path, label=str(path)), 1
+        ):
             require(
                 isinstance(value, dict),
                 "JSONL_ROW_NOT_OBJECT",
                 f"{path}:{line_number}",
             )
             yield value
+    except (OSError, StrictJSONError) as error:
+        raise CompressionFailure(
+            f"JSONL_STRICT_DECODE_FAIL:{path}:{error}"
+        ) from error
 
 
 def sealed(payload: dict[str, Any]) -> dict[str, Any]:

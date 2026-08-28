@@ -22,6 +22,12 @@ from typing import Any
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import decode_json_document  # noqa: E402
+
 DEFAULT_INPUT = HERE / "WEAK_SHARPNESS_COLUMN_CROSSWALK.json"
 FROZEN = PROJECT / "work/weak_sharpness_closure/weak_sharpness_certificate.json"
 AUDIT_DIR = PROJECT / "work/weak_sharpness_audit"
@@ -32,7 +38,7 @@ import audit_weak_sharpness as independent  # noqa: E402
 
 FROZEN_SHA256 = "e66c78a0aeab990b4dc448f4f064b37e1e15ecbff75a5f472bf116d4464378bd"
 FROZEN_PAYLOAD_SHA256 = "dfecd30ea217810a902add48350025e5f00dfa1255718783df790a9c7e1a5182"
-ATLAS_SHA256 = "37e9b7910f7723c146a87ae2f60dfb62529b1a3e4866ccd72d65dc4efda923ad"
+ATLAS_SHA256 = "afafe6c4289870a02226516e2b7ff207c57b844f4c45fc6864cedf826e9ec742"
 EXPECTED = {
     "W": {
         "order": ["ZX", "SV", "rS", "SU", "UV", "VZ", "UX"],
@@ -186,7 +192,9 @@ def expected_columns(order: list[str], reticulations: list[str]) -> list[dict[st
 
 def frozen_binding() -> dict[str, Any]:
     need(file_sha(FROZEN) == FROZEN_SHA256, "FROZEN_CERTIFICATE_FILE_HASH")
-    frozen = json.loads(FROZEN.read_text(encoding="utf-8"))
+    frozen = decode_json_document(
+        FROZEN.read_bytes(), label=FROZEN.name, require_object=True
+    )
     verify_seal(frozen, "FROZEN_CERTIFICATE")
     need(frozen["payload_sha256"] == FROZEN_PAYLOAD_SHA256, "FROZEN_CERTIFICATE_PAYLOAD_HASH")
     return frozen
@@ -269,8 +277,9 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--input", type=Path, default=DEFAULT_INPUT)
     args = parser.parse_args()
-    value = json.loads(args.input.read_text(encoding="utf-8"))
-    need(isinstance(value, dict), "ARTIFACT_NOT_OBJECT")
+    value = decode_json_document(
+        args.input.read_bytes(), label=args.input.name, require_object=True
+    )
     verify_artifact(value)
     print("K2P_WEAK_SHARPNESS_COLUMN_CROSSWALK_PASS")
     print(json.dumps({

@@ -13,7 +13,6 @@ from __future__ import annotations
 
 import argparse
 import collections
-import gzip
 import hashlib
 import itertools
 import json
@@ -25,6 +24,16 @@ from typing import Any, Iterable
 HERE = Path(__file__).resolve().parent
 DEFAULT_PROJECT = HERE.parents[1]
 DEFAULT_SEMANTICS = HERE / "quartet_logic_certificate.json"
+STRICT_JSON_DIR = DEFAULT_PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import (  # noqa: E402
+    StrictJSONError,
+    decode_json_document,
+    iter_canonical_gzip_jsonl,
+    load_canonical_gzip_json,
+)
 
 RAW4_LEDGER = "work/corrected_composite_ledgers/artifacts/raw4_corrected_composite_ledger.jsonl.gz"
 THETA2_LEDGER = "work/corrected_composite_ledgers/artifacts/theta2_corrected_composite_ledger.jsonl.gz"
@@ -95,17 +104,38 @@ def sha_file(path: Path) -> str:
 
 def load_json(path: Path) -> dict[str, Any]:
     require(path.is_file(), "JSON_INPUT_MISSING", path)
-    value = json.loads(path.read_text(encoding="utf-8"))
-    require(isinstance(value, dict), "JSON_INPUT_NOT_OBJECT", path)
-    return value
+    try:
+        return decode_json_document(
+            path.read_bytes(), label=str(path), require_object=True
+        )
+    except (OSError, StrictJSONError) as error:
+        raise QuartetTerminalFailure(
+            f"JSON_STRICT_DECODE_FAIL:{path}:{error}"
+        ) from error
 
 
 def load_gzip_json(path: Path) -> dict[str, Any]:
     require(path.is_file(), "GZIP_JSON_INPUT_MISSING", path)
-    with gzip.open(path, "rt", encoding="utf-8") as handle:
-        value = json.load(handle)
+    try:
+        value = load_canonical_gzip_json(path, label=str(path))
+    except (OSError, StrictJSONError) as error:
+        raise QuartetTerminalFailure(
+            f"GZIP_JSON_STRICT_DECODE_FAIL:{path}:{error}"
+        ) from error
     require(isinstance(value, dict), "GZIP_JSON_INPUT_NOT_OBJECT", path)
     return value
+
+
+def iter_gzip_jsonl(path: Path) -> Iterable[dict[str, Any]]:
+    require(path.is_file(), "GZIP_JSONL_INPUT_MISSING", path)
+    try:
+        for row in iter_canonical_gzip_jsonl(path, label=str(path)):
+            require(isinstance(row, dict), "GZIP_JSONL_ROW_NOT_OBJECT", path)
+            yield row
+    except (OSError, StrictJSONError) as error:
+        raise QuartetTerminalFailure(
+            f"GZIP_JSONL_STRICT_DECODE_FAIL:{path}:{error}"
+        ) from error
 
 
 def verify_payload(value: dict[str, Any], code: str) -> None:
@@ -535,29 +565,27 @@ def audit_compact_layer(
     evidence_rows: dict[str, dict[str, Any]] = {}
     cache: dict[tuple[int, int, int, int], dict[str, dict[str, Any]]] = {}
     root = hashlib.sha256()
-    with gzip.open(path, "rt", encoding="utf-8") as handle:
-        for line in handle:
-            row = json.loads(line)
-            require(isinstance(row, dict), "COMPACT_ROW_NOT_OBJECT", total)
-            require(row.get("raw_id") == total, "COMPACT_RAW_ID_ORDER_FAIL", total)
-            total += 1
-            if row.get("corrected_category") != category:
-                continue
-            quartet_count += 1
-            evidence = row.get("evidence_binding")
-            require(isinstance(evidence, dict), "COMPACT_ROW_EVIDENCE_FAIL", row["raw_id"])
-            proof_id = evidence.get("witness_id")
-            require(type(proof_id) is str, "COMPACT_PROOF_ID_FAIL", row["raw_id"])
-            previous = evidence_rows.get(proof_id)
-            if previous is None:
-                _content, binding = validate_compact_evidence(evidence, semantics_formulas, cache)
-                evidence_rows[proof_id] = evidence
-                bindings[proof_id] = binding
-            else:
-                require(evidence == previous, "COMPACT_PROOF_ID_DRIFT", proof_id)
-                binding = bindings[proof_id]
-            references[proof_id] += 1
-            row_root_update(root, row["raw_id"], proof_id, binding["binding_sha256"])
+    for row in iter_gzip_jsonl(path):
+        require(isinstance(row, dict), "COMPACT_ROW_NOT_OBJECT", total)
+        require(row.get("raw_id") == total, "COMPACT_RAW_ID_ORDER_FAIL", total)
+        total += 1
+        if row.get("corrected_category") != category:
+            continue
+        quartet_count += 1
+        evidence = row.get("evidence_binding")
+        require(isinstance(evidence, dict), "COMPACT_ROW_EVIDENCE_FAIL", row["raw_id"])
+        proof_id = evidence.get("witness_id")
+        require(type(proof_id) is str, "COMPACT_PROOF_ID_FAIL", row["raw_id"])
+        previous = evidence_rows.get(proof_id)
+        if previous is None:
+            _content, binding = validate_compact_evidence(evidence, semantics_formulas, cache)
+            evidence_rows[proof_id] = evidence
+            bindings[proof_id] = binding
+        else:
+            require(evidence == previous, "COMPACT_PROOF_ID_DRIFT", proof_id)
+            binding = bindings[proof_id]
+        references[proof_id] += 1
+        row_root_update(root, row["raw_id"], proof_id, binding["binding_sha256"])
     require(total == expected["rows"], "COMPACT_TOTAL_CENSUS_FAIL", total)
     require(quartet_count == expected["quartet"], "COMPACT_QUARTET_CENSUS_FAIL", quartet_count)
     require(len(bindings) == expected["certificates"], "COMPACT_CERTIFICATE_CENSUS_FAIL", len(bindings))
@@ -635,17 +663,15 @@ def audit_cycle(project: Path, semantics_formulas: dict[str, list[list[Any]]]) -
     references: collections.Counter[str] = collections.Counter()
     root = hashlib.sha256()
     total = 0
-    with gzip.open(ledger_path, "rt", encoding="utf-8") as handle:
-        for line in handle:
-            row = json.loads(line)
-            require(row.get("raw_id") == total, "CYCLE_RAW_ID_ORDER_FAIL", total)
-            total += 1
-            if row.get("terminal_kind") != "displayed_quartet_strict_separator":
-                continue
-            proof_id = row.get("proof_certificate_id")
-            require(proof_id in bindings, "CYCLE_REFERENCE_FAIL", proof_id)
-            references[proof_id] += 1
-            row_root_update(root, row["raw_id"], proof_id, bindings[proof_id]["binding_sha256"])
+    for row in iter_gzip_jsonl(ledger_path):
+        require(row.get("raw_id") == total, "CYCLE_RAW_ID_ORDER_FAIL", total)
+        total += 1
+        if row.get("terminal_kind") != "displayed_quartet_strict_separator":
+            continue
+        proof_id = row.get("proof_certificate_id")
+        require(proof_id in bindings, "CYCLE_REFERENCE_FAIL", proof_id)
+        references[proof_id] += 1
+        row_root_update(root, row["raw_id"], proof_id, bindings[proof_id]["binding_sha256"])
     require(total == EXPECTED["cycle"]["rows"], "CYCLE_TOTAL_CENSUS_FAIL", total)
     require(sum(references.values()) == EXPECTED["cycle"]["quartet"], "CYCLE_QUARTET_CENSUS_FAIL")
     require(len(bindings) == EXPECTED["cycle"]["certificates"], "CYCLE_CERTIFICATE_CENSUS_FAIL")
@@ -706,18 +732,16 @@ def audit_probe(project: Path, semantics_formulas: dict[str, list[list[Any]]]) -
     ):
         total = 0
         quartet_count = 0
-        with gzip.open(path, "rt", encoding="utf-8") as handle:
-            for line in handle:
-                row = json.loads(line)
-                total += 1
-                if row.get("status") != "displayed_quartet_mismatch":
-                    continue
-                quartet_count += 1
-                proof_id = row.get("proof_id")
-                require(proof_id in bindings, "PROBE_REFERENCE_FAIL", proof_id)
-                references[proof_id] += 1
-                identity = [stage, total - 1, row.get("parent_anchor_id", row.get("base_anchor_id"))]
-                row_root_update(root, identity, proof_id, bindings[proof_id]["binding_sha256"])
+        for row in iter_gzip_jsonl(path):
+            total += 1
+            if row.get("status") != "displayed_quartet_mismatch":
+                continue
+            quartet_count += 1
+            proof_id = row.get("proof_id")
+            require(proof_id in bindings, "PROBE_REFERENCE_FAIL", proof_id)
+            references[proof_id] += 1
+            identity = [stage, total - 1, row.get("parent_anchor_id", row.get("base_anchor_id"))]
+            row_root_update(root, identity, proof_id, bindings[proof_id]["binding_sha256"])
         require(total == expected_rows, "PROBE_ROW_CENSUS_FAIL", stage)
         require(quartet_count == expected_quartet, "PROBE_QUARTET_CENSUS_FAIL", stage)
         total_rows[stage] = total

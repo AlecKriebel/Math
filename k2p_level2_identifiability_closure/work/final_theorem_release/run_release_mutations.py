@@ -271,6 +271,9 @@ def corrected_raw4_mutations(
             PROJECT / "work/raw4_sign_reclassification" / name,
             overlay / name,
         )
+    strict_root = root / "work/final_theorem_release"
+    strict_root.mkdir(parents=True)
+    (strict_root / "strict_json.py").symlink_to(HERE / "strict_json.py")
     raw = root / "work/raw_ledger_audit"
     raw.mkdir(parents=True)
     (raw / "artifacts").symlink_to(
@@ -338,6 +341,9 @@ def theta2_full_map_mutations(
             PROJECT / "work/theta2_sign_reclassification" / name,
             package / name,
         )
+    strict_root = root / "work/final_theorem_release"
+    strict_root.mkdir(parents=True)
+    (strict_root / "strict_json.py").symlink_to(HERE / "strict_json.py")
     adversarial = root / "work/adversarial_proof_review"
     adversarial.mkdir(parents=True)
     shutil.copy2(
@@ -652,16 +658,17 @@ def corrected_probe_mutation_gate(
             "name": "corrected_two_stage_probe_mutations",
             "status": "REJECTED",
             "source": (
-                "fresh 15/15 suite plus nondefault hash-seed replay: omitted "
+                "fresh 18/18 suite plus nondefault hash-seed replay: omitted "
                 "one-/two-port rows and parent, wrong parents, reversed order, "
                 "global triangle, exact transport/restriction, T_i/Bernstein, "
-                "classifier precedence, and optimized mode"
+                "classifier precedence, duplicate/noncanonical JSON, and "
+                "optimized mode"
             ),
             "mutation_payload_sha256": probe["mutation_payload_sha256"],
             "site_partition_payload_sha256": probe[
                 "site_partition_payload_sha256"
             ],
-            "producer_mutation_count": 15,
+            "producer_mutation_count": 18,
         }
     )
     print(

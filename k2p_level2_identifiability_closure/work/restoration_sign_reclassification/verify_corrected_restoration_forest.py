@@ -7,7 +7,6 @@ import argparse
 import ast
 import collections
 import fractions
-import gzip
 import hashlib
 import importlib.util
 import itertools
@@ -20,6 +19,11 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import decode_json_document, iter_canonical_gzip_jsonl  # noqa: E402
 RESTORATION_PATH = PROJECT / "work/restoration_forest/enumerate_five_port.py"
 HISTORICAL_PATH = PROJECT / "work/restoration_forest/five_port_certificate.json"
 RAW_LEDGER = PROJECT / "work/raw_ledger_audit/artifacts/raw_directional_ledger.jsonl.gz"
@@ -359,7 +363,9 @@ def main():
     parser.add_argument("--report", type=Path, default=DEFAULT_REPORT)
     args = parser.parse_args()
     started = time.monotonic()
-    certificate = json.loads(args.certificate.read_text())
+    certificate = decode_json_document(
+        args.certificate.read_bytes(), label=args.certificate.name, require_object=True
+    )
     payload = certificate.get("payload_sha256")
     unhashed = dict(certificate)
     unhashed.pop("payload_sha256", None)
@@ -371,7 +377,9 @@ def main():
         certificate["inputs"]["provenance_crosswalk_sha256"] == sha_file(args.crosswalk),
         "provenance crosswalk input",
     )
-    crosswalk = json.loads(args.crosswalk.read_text())
+    crosswalk = decode_json_document(
+        args.crosswalk.read_bytes(), label=args.crosswalk.name, require_object=True
+    )
     crosswalk_payload = crosswalk.get("payload_sha256")
     unhashed_crosswalk = dict(crosswalk)
     unhashed_crosswalk.pop("payload_sha256", None)
@@ -537,26 +545,24 @@ def main():
         for root in roots
     }
     omitted_terminal_rows = []
-    with gzip.open(RAW_LEDGER, "rt") as handle:
-        for line in handle:
-            raw = json.loads(line)
-            if (
-                raw.get("category") == "retained_terminal"
-                and raw.get("status") in {"isomorphic", "triangle"}
-                and targets[raw["target_index"]].dummy_labels
-            ):
-                require(
-                    (raw["source_index"], raw["class_id"]) not in obligation_keys,
-                    f"omitted terminal in obligation scope:{raw['raw_id']}",
-                )
-                omitted_terminal_rows.append({
-                    "raw_id": raw["raw_id"],
-                    "source_index": raw["source_index"],
-                    "canonical_class_id": raw["class_id"],
-                    "target_index": raw["target_index"],
-                    "permutation_index": raw["permutation_index"],
-                    "relation": raw["status"],
-                })
+    for raw in iter_canonical_gzip_jsonl(RAW_LEDGER, label=RAW_LEDGER.name):
+        if (
+            raw.get("category") == "retained_terminal"
+            and raw.get("status") in {"isomorphic", "triangle"}
+            and targets[raw["target_index"]].dummy_labels
+        ):
+            require(
+                (raw["source_index"], raw["class_id"]) not in obligation_keys,
+                f"omitted terminal in obligation scope:{raw['raw_id']}",
+            )
+            omitted_terminal_rows.append({
+                "raw_id": raw["raw_id"],
+                "source_index": raw["source_index"],
+                "canonical_class_id": raw["class_id"],
+                "target_index": raw["target_index"],
+                "permutation_index": raw["permutation_index"],
+                "relation": raw["status"],
+            })
     omitted_terminal_rows.sort(key=lambda row: row["raw_id"])
     replayed_scope = {
         "member_presentations": len(omitted_terminal_rows),
@@ -573,7 +579,9 @@ def main():
         replayed_scope == certificate["scope_contract"] == crosswalk["scope_contract"],
         "omitted-terminal scope reconciliation",
     )
-    historical = json.loads(HISTORICAL_PATH.read_text())
+    historical = decode_json_document(
+        HISTORICAL_PATH.read_bytes(), label=HISTORICAL_PATH.name, require_object=True
+    )
     historical_unhashed = dict(historical)
     historical_payload = historical_unhashed.pop("certificate_payload_sha256")
     require(

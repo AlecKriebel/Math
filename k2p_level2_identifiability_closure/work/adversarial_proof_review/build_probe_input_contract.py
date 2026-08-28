@@ -12,7 +12,6 @@ from __future__ import annotations
 
 import ast
 import collections
-import gzip
 import hashlib
 import importlib.util
 import itertools
@@ -25,6 +24,17 @@ import networkx as nx
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import (  # noqa: E402
+    StrictJSONError,
+    decode_json_document,
+    iter_canonical_gzip_jsonl,
+    load_canonical_gzip_json,
+)
+
 ATLAS_PATH = PROJECT / "package/referee/k2p_offline_sweep_portable/atlas/k2p_atlas_core.py"
 RAW4 = PROJECT / "work/raw_ledger_audit/artifacts/raw_directional_ledger.jsonl.gz"
 RESULT4 = PROJECT / "package/referee/k2p_offline_sweep_portable/results/four_port_release_v4"
@@ -38,6 +48,29 @@ OUTPUT = HERE / "probe_input_contract.json"
 
 class ContractFailure(RuntimeError):
     pass
+
+
+def load_plain_json(path):
+    try:
+        return decode_json_document(
+            path.read_bytes(), label=path.name, require_object=True
+        )
+    except (OSError, StrictJSONError) as error:
+        raise ContractFailure(f"strict JSON:{path}:{error}") from error
+
+
+def iter_jsonl(path):
+    try:
+        yield from iter_canonical_gzip_jsonl(path, label=path.name)
+    except (OSError, StrictJSONError) as error:
+        raise ContractFailure(f"strict JSON:{path}:{error}") from error
+
+
+def load_gzip_json(path):
+    try:
+        return load_canonical_gzip_json(path, label=path.name)
+    except (OSError, StrictJSONError) as error:
+        raise ContractFailure(f"strict JSON:{path}:{error}") from error
 
 
 def require(condition, message):
@@ -368,18 +401,16 @@ def four_port_anchors(atlas):
     manifest_hashes = {}
     for path in sorted(RESULT4.glob("source_*/residual_manifest.json")):
         manifest_hashes[str(path.relative_to(PROJECT))] = sha_file(path)
-        manifest = json.loads(path.read_text())
+        manifest = load_plain_json(path)
         source_index = manifest["source_index"]
         for record in manifest["records"]:
             if record["status"] in {"isomorphic", "triangle"}:
                 terminal_keys.add((source_index, record["canonical_class_id"]))
     require(len(terminal_keys) == 55, "four terminal class census")
     members = []
-    with gzip.open(RAW4, "rt") as handle:
-        for line in handle:
-            row = json.loads(line)
-            if (row["source_index"], row.get("class_id")) in terminal_keys:
-                members.append(row)
+    for row in iter_jsonl(RAW4):
+        if (row["source_index"], row.get("class_id")) in terminal_keys:
+            members.append(row)
     require(len(members) == 80, "four terminal member census")
     anchors = []
     direct_count = 0
@@ -482,8 +513,7 @@ def four_port_anchors(atlas):
 
 
 def theta2_anchors(atlas):
-    with gzip.open(THETA2, "rt") as handle:
-        closure = json.load(handle)
+    closure = load_gzip_json(THETA2)
     sources = atlas.source_supports(("theta2",))
     targets = atlas.target_completions(5, True) + atlas.target_completions(5, False)
     roots = {row["base_raw_id"]: row for row in closure["restoration_roots"]}
@@ -555,7 +585,7 @@ def theta2_anchors(atlas):
 
 
 def cycle_anchors(atlas, common, generator):
-    package = json.loads(CYCLE_ANCHORS.read_text())
+    package = load_plain_json(CYCLE_ANCHORS)
     sources = tuple(atlas.source_supports(("cycle",)))
     targets = tuple(atlas.target_completions(3, True) + atlas.target_completions(3, False))
     permutations = tuple(itertools.permutations(range(3)))

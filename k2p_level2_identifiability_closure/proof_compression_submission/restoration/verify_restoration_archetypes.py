@@ -14,6 +14,12 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import StrictJSONError, decode_json_document  # noqa: E402
+
 ANALYZER = HERE / "analyze_restoration_archetypes.py"
 ARTIFACT = HERE / "RESTORATION_ARCHETYPES.json"
 REPORT = HERE / "RESTORATION_ARCHETYPE_VERIFICATION.json"
@@ -45,6 +51,15 @@ def file_sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def load_plain_json(path: Path):
+    try:
+        return decode_json_document(
+            path.read_bytes(), label=path.name, require_object=True
+        )
+    except (OSError, StrictJSONError) as error:
+        raise Failure(f"strict JSON:{path}:{error}") from error
+
+
 def ordered_hash_root(rows) -> str:
     root = object_sha256([])
     for row in rows:
@@ -53,8 +68,8 @@ def ordered_hash_root(rows) -> str:
 
 
 def build_report() -> dict:
-    artifact = json.loads(ARTIFACT.read_text())
-    forest = json.loads(FOREST.read_text())
+    artifact = load_plain_json(ARTIFACT)
+    forest = load_plain_json(FOREST)
     require(artifact["schema"] == "k2p-restoration-descriptive-archetypes-v1", "artifact schema")
     require(artifact["status"] == "PC-PARTIAL", "artifact status")
     unhashed = dict(artifact)
@@ -176,7 +191,7 @@ def main() -> None:
         return
     target = args.check or REPORT
     require(target.exists(), f"missing verification report:{target}")
-    require(json.loads(target.read_text()) == generated, "verification report drift")
+    require(load_plain_json(target) == generated, "verification report drift")
     print(json.dumps({
         "status": "PASS",
         "report_sha256": file_sha256(target),

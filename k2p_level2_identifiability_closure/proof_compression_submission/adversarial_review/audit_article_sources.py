@@ -1254,7 +1254,7 @@ def main() -> dict[str, object]:
         "me@aleckriebel.com",
         "No specific funding supported this work.",
         "The author declares no competing interests.",
-        "k2p-same-biorxiv-v1.0.3",
+        "k2p-same-biorxiv-v1.0.4",
         "CC BY 4.0",
         "MIT License",
     ):
@@ -1468,7 +1468,7 @@ def main() -> dict[str, object]:
             "competing_interests": "The author declares no competing interests.",
             "paper_and_data_license": "CC BY 4.0",
             "code_license": "MIT",
-            "versioned_annotated_source_tag": "k2p-same-biorxiv-v1.0.3",
+            "versioned_annotated_source_tag": "k2p-same-biorxiv-v1.0.4",
             "doi": None,
             "external_release_actions_performed": False,
         },

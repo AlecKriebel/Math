@@ -12,6 +12,8 @@ import tempfile
 from pathlib import Path
 from typing import Any
 
+from strict_json import decode_json_document, iter_canonical_gzip_jsonl
+
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
@@ -22,7 +24,7 @@ SUMMARY = ARTIFACTS / "theta2_corrected_composite_summary.json"
 RAW4_LEDGER = ARTIFACTS / "raw4_corrected_composite_ledger.jsonl.gz"
 DEFAULT_OUTPUT = HERE / "composite_reseal_diff_audit.json"
 LEGACY_DOMAIN = "0<every edge-sector and inheritance variable<1 (hence D_plus)"
-EXPECTED_RAW4_SHA256 = "c6cd9d6b5b09371565fd3e58ff9ab3cd7266b6231b153d43f9d1e886af8eae27"
+EXPECTED_RAW4_SHA256 = "7cf3f953fca695d612387143818843650498f84f55cf0a776f90c9afdd95eef6"
 EXPECTED_CURRENT_THETA2_SHA256 = "805fc7f5a3de9dad2c63a210208075cf19910cf811ffd08878f32782ce71b659"
 EXPECTED_LEGACY_THETA2_SHA256 = "4cbd7b774adccaafc81338ce9093e33f4abcae8d75664c9d4c9ecc582a80cc58"
 EXPECTED_LEGACY_STREAM_SHA256 = "230392ee6f2bfb7844246f5700942259142c4b4981827cacd14abbd8bcd1ea39"
@@ -89,9 +91,13 @@ def main() -> int:
         sha_file(LEDGER) == EXPECTED_CURRENT_THETA2_SHA256,
         "CURRENT_THETA2_LEDGER_BYTE_DRIFT",
     )
-    truth = json.loads(TRUTH.read_text(encoding="utf-8"))
+    truth = decode_json_document(
+        TRUTH.read_bytes(), label=TRUTH.name, require_object=True
+    )
     mapping = legacy_seal_map(truth)
-    summary = json.loads(SUMMARY.read_text(encoding="utf-8"))
+    summary = decode_json_document(
+        SUMMARY.read_bytes(), label=SUMMARY.name, require_object=True
+    )
     require(summary.get("ledger_sha256") == EXPECTED_CURRENT_THETA2_SHA256, "SUMMARY_LEDGER_BINDING_FAIL")
 
     current_stream = hashlib.sha256()
@@ -100,7 +106,7 @@ def main() -> int:
     row_count = 0
     with tempfile.TemporaryDirectory(prefix="k2p-composite-reseal-") as directory:
         reconstructed = Path(directory) / "legacy_theta2_composite.jsonl.gz"
-        with gzip.open(LEDGER, "rb") as source, reconstructed.open("wb") as raw_output:
+        with reconstructed.open("wb") as raw_output:
             with gzip.GzipFile(
                 filename="",
                 mode="wb",
@@ -108,11 +114,13 @@ def main() -> int:
                 mtime=0,
                 compresslevel=6,
             ) as encoded:
-                for row_count, line in enumerate(source, 1):
+                for row_count, row in enumerate(
+                    iter_canonical_gzip_jsonl(LEDGER, label=LEDGER.name), 1
+                ):
+                    line = canonical_bytes(row) + b"\n"
                     current_stream.update(line)
                     legacy_line = line
-                    if b'"corrected_category":"full_map_Ti_strict_sign"' in line:
-                        row = json.loads(line)
+                    if row.get("corrected_category") == "full_map_Ti_strict_sign":
                         evidence = row.get("evidence_binding")
                         require(isinstance(evidence, dict), "EVIDENCE_BINDING_FAIL", row_count)
                         current_seal = evidence.get("coefficient_certificate_sha256")

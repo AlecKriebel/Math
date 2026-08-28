@@ -12,7 +12,6 @@ from __future__ import annotations
 
 import collections
 import fractions
-import gzip
 import hashlib
 import importlib.util
 import itertools
@@ -24,6 +23,12 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import StrictJSONError, iter_canonical_gzip_jsonl  # noqa: E402
+
 ATLAS_PATH = PROJECT / "package/referee/k2p_offline_sweep_portable/atlas/k2p_atlas_core.py"
 LEDGER = PROJECT / "work/raw_ledger_audit/artifacts/raw_directional_ledger.jsonl.gz"
 OUTPUT = HERE / "raw4_tree_sunlet_full_map_certificate.json"
@@ -172,11 +177,9 @@ def main():
     sources = atlas.source_supports()
     targets = atlas.target_completions(4, True) + atlas.target_completions(4, False)
     rows = []
-    with gzip.open(LEDGER, "rt") as handle:
-        for line in handle:
-            row = json.loads(line)
-            if row.get("topology_exclusion_reason") == "tree_sunlet":
-                rows.append(row)
+    for row in iter_canonical_gzip_jsonl(LEDGER, label=LEDGER.name):
+        if row.get("topology_exclusion_reason") == "tree_sunlet":
+            rows.append(row)
     require(len(rows) == 16974, f"raw row census:{len(rows)}")
 
     # Reconstruct the old witness triple only to bind the row that was claimed.
@@ -352,5 +355,5 @@ def main():
 if __name__ == "__main__":
     try:
         main()
-    except (TruthFailure, KeyError, OSError, json.JSONDecodeError) as exc:
+    except (TruthFailure, StrictJSONError, KeyError, OSError, json.JSONDecodeError) as exc:
         raise SystemExit(f"RAW4_TREE_SUNLET_TRUTH_FAIL:{exc}") from exc

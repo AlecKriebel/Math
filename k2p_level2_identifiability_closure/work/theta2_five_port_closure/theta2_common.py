@@ -19,6 +19,11 @@ HERE = Path(__file__).resolve().parent
 PROJECT_ROOT = HERE.parents[1]
 DEFAULT_PACKAGE_ROOT = PROJECT_ROOT / "package/referee/k2p_offline_sweep_portable"
 ARTIFACT_ROOT = HERE / "artifacts"
+STRICT_JSON_DIR = PROJECT_ROOT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import StrictJSONError, decode_json_document  # noqa: E402
 
 SOURCE_COUNT = 4
 TARGET_COUNT = 6138
@@ -106,11 +111,11 @@ def deterministic_gzip(path: Path, chunks: Iterable[bytes]) -> tuple[str, int]:
 
 def load_json(path: Path) -> dict[str, Any]:
     try:
-        value = json.loads(path.read_text())
-    except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+        value = decode_json_document(
+            path.read_bytes(), label=path.name, require_object=True
+        )
+    except (OSError, StrictJSONError) as exc:
         fail("THETA2_JSON_FAIL", f"{path}: {exc}")
-    if not isinstance(value, dict):
-        fail("THETA2_JSON_OBJECT_FAIL", path)
     return value
 
 

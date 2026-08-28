@@ -12,7 +12,6 @@ from __future__ import annotations
 import argparse
 import collections
 import fractions
-import gzip
 import hashlib
 import importlib.util
 import itertools
@@ -25,6 +24,16 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import (  # noqa: E402
+    StrictJSONError,
+    decode_json_document,
+    iter_canonical_gzip_jsonl,
+)
+
 ATLAS_PATH = PROJECT / "package/referee/k2p_offline_sweep_portable/atlas/k2p_atlas_core.py"
 CYCLE = PROJECT / "work/cycle_three_port_closure"
 BASE_LEDGER = CYCLE / "artifacts/base_raw_ledger.jsonl.gz"
@@ -371,7 +380,11 @@ def main():
     parser.add_argument("--structure-only", action="store_true")
     arguments = parser.parse_args()
     started = time.monotonic()
-    claimed = json.loads(arguments.certificate.read_text())
+    claimed = decode_json_document(
+        arguments.certificate.read_bytes(),
+        label=arguments.certificate.name,
+        require_object=True,
+    )
     unhashed = dict(claimed)
     claimed_payload = unhashed.pop("payload_sha256", None)
     require(claimed_payload == sha(unhashed), "certificate payload")
@@ -401,11 +414,19 @@ def main():
     targets = tuple(atlas.target_completions(3, True) + atlas.target_completions(3, False))
     permutations = tuple(itertools.permutations(range(3)))
     require((len(sources), len(targets), len(permutations)) == (2, 1120, 6), "primitive census")
-    witness_table = json.loads(WITNESSES.read_text())["witnesses"]
-    with gzip.open(BASE_LEDGER, "rt") as handle:
-        base_rows = [json.loads(line) for line in handle if '"tree_sunlet_pointwise_excluded"' in line]
-    with gzip.open(FULL_LEDGER, "rt") as handle:
-        full_rows = [json.loads(line) for line in handle if '"tree_sunlet_pointwise_excluded"' in line]
+    witness_table = decode_json_document(
+        WITNESSES.read_bytes(), label=WITNESSES.name, require_object=True
+    )["witnesses"]
+    base_rows = [
+        row
+        for row in iter_canonical_gzip_jsonl(BASE_LEDGER, label=BASE_LEDGER.name)
+        if row.get("category") == "tree_sunlet_pointwise_excluded"
+    ]
+    full_rows = [
+        row
+        for row in iter_canonical_gzip_jsonl(FULL_LEDGER, label=FULL_LEDGER.name)
+        if row.get("category") == "tree_sunlet_pointwise_excluded"
+    ]
     require(len(base_rows) == 7452 and len(full_rows) == 300, "row census")
 
     sign_registry = {}
@@ -596,5 +617,12 @@ def main():
 if __name__ == "__main__":
     try:
         main()
-    except (ReplayFailure, KeyError, OSError, ValueError, json.JSONDecodeError) as exc:
+    except (
+        ReplayFailure,
+        StrictJSONError,
+        KeyError,
+        OSError,
+        ValueError,
+        json.JSONDecodeError,
+    ) as exc:
         raise SystemExit(f"CYCLE_WHOLE_MAP_REPLAY_FAIL:{exc}") from exc

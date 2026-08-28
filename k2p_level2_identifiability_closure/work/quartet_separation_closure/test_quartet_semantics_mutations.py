@@ -18,6 +18,12 @@ from typing import Any, Callable
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[1]
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import StrictJSONError, decode_json_document  # noqa: E402
+
 SPEC = HERE / "QUARTET_SEMANTICS_SPEC.json"
 VERIFIER = HERE / "verify_quartet_logic.py"
 BASELINE_CERTIFICATE = HERE / "quartet_logic_certificate.json"
@@ -57,6 +63,15 @@ class MutationFailure(RuntimeError):
     pass
 
 
+def load_plain_json(path: Path):
+    try:
+        return decode_json_document(
+            path.read_bytes(), label=path.name, require_object=True
+        )
+    except (OSError, StrictJSONError) as error:
+        raise MutationFailure(f"strict JSON:{path}:{error}") from error
+
+
 def require(condition: bool, message: str) -> None:
     if not condition:
         raise MutationFailure(message)
@@ -79,7 +94,7 @@ def sha_file(path: Path) -> str:
 
 
 def source_inputs() -> set[Path]:
-    spec = json.loads(SPEC.read_text(encoding="utf-8"))
+    spec = load_plain_json(SPEC)
     documents = {PROJECT / row["path"] for row in spec["document_contracts"]}
     return {
         Path(__file__).resolve(),
@@ -262,7 +277,7 @@ def write_mutated_spec(
     name: str,
     mutate: Callable[[dict[str, Any]], None],
 ) -> Path:
-    spec = json.loads(SPEC.read_text(encoding="utf-8"))
+    spec = load_plain_json(SPEC)
     mutate(spec)
     path = root / f"{name}.json"
     path.write_text(json.dumps(spec, indent=2, sort_keys=True) + "\n")
@@ -271,7 +286,7 @@ def write_mutated_spec(
 
 def document_project(root: Path) -> Path:
     project = root / "document-project"
-    spec = json.loads(SPEC.read_text(encoding="utf-8"))
+    spec = load_plain_json(SPEC)
     for contract in spec["document_contracts"]:
         relative = Path(contract["path"])
         destination = project / relative
@@ -315,7 +330,7 @@ def main() -> None:
             and "Traceback (most recent call last):" not in clean.stderr + clean.stdout,
             "clean baseline",
         )
-        clean_payload = json.loads(clean_output.read_text())
+        clean_payload = load_plain_json(clean_output)
         clean_unsigned = dict(clean_payload)
         clean_claimed = clean_unsigned.pop("payload_sha256")
         require(clean_claimed == sha_object(clean_unsigned), "clean payload hash")

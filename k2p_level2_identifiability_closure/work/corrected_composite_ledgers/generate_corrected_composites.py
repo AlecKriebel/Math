@@ -11,7 +11,6 @@ from __future__ import annotations
 
 import argparse
 import collections
-import gzip
 import hashlib
 import importlib.util
 import itertools
@@ -35,6 +34,15 @@ from composite_support import (
     sha_file,
     sha_object,
     with_payload_hash,
+)
+
+STRICT_JSON_DIR = PROJECT / "work/final_theorem_release"
+if str(STRICT_JSON_DIR) not in sys.path:
+    sys.path.insert(0, str(STRICT_JSON_DIR))
+
+from strict_json import (  # noqa: E402
+    StrictJSONError,
+    iter_canonical_gzip_jsonl,
 )
 
 
@@ -462,12 +470,10 @@ def generate_raw4(output: Path, verifier_path: Path) -> dict[str, Any]:
 
 def theta2_nonquartet_provenance(path: Path) -> dict[int, dict[str, Any]]:
     result = {}
-    with gzip.open(path, "rb") as handle:
-        for line in handle:
-            if b'"category":"quartet_pointwise_excluded"' in line:
-                continue
-            row = json.loads(line)
-            result[int(row["raw_id"])] = row
+    for row in iter_canonical_gzip_jsonl(path, label=path.name):
+        if row.get("category") == "quartet_pointwise_excluded":
+            continue
+        result[int(row["raw_id"])] = row
     require(len(result) == 3_648, "THETA2_NONQUARTET_PROVENANCE_CENSUS", len(result))
     return result
 
@@ -856,5 +862,12 @@ def main() -> None:
 if __name__ == "__main__":
     try:
         main()
-    except (KeyError, OSError, ValueError, RuntimeError, json.JSONDecodeError) as error:
+    except (
+        StrictJSONError,
+        KeyError,
+        OSError,
+        ValueError,
+        RuntimeError,
+        json.JSONDecodeError,
+    ) as error:
         raise SystemExit(f"CORRECTED_COMPOSITE_GENERATION_FAIL:{error}") from error
