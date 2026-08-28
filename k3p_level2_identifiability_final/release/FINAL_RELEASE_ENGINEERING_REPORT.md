@@ -1,12 +1,11 @@
 # Final release engineering report
 
-Status: **preceding commit-bound proof-release ledger; strengthened C1/C2 revision awaiting its 55-command reseal; submission metadata pending**
+Status: **strengthened proof fixed point complete; commit-bound distribution reseal and submission metadata pending**
 
-This report certifies the immutable snapshots named below.  It does not yet
-certify the later self-contained C1/C2 strengthening in the current worktree.
-That revision must complete one clean 55-command regeneration and a downstream
-PDF/source/archive/referee-package reseal before a new final ledger replaces
-this historical record.
+This report certifies the immutable snapshots named below.  The self-contained
+C1/C2 strengthening has completed its one-shot proof regeneration; its current
+TeX/PDF checkpoint still requires commit-bound source/archive/referee-package
+resealing before the distribution ledger is final.
 
 The deterministic quick/full/regeneration orchestration, canonical TAR.GZ and
 ZIP construction, compact verifier packaging, fixed-toolchain PDF source
@@ -17,6 +16,37 @@ one-shot confirmation.
 
 No K3P DOI, license selection, Git tag, GitHub release, Zenodo record, journal
 upload, or external communication has been created or claimed.
+
+## Strengthened referee-repair proof fixed point
+
+At exact pushed proof snapshot
+`203e114ace0ead3852f109a3713acda37bf74e65`, the graph-only non-four anchor
+derivation, the exhaustive raw four-port descendant crosswalk, and the
+self-contained balanced noncut/displayed-tree cut argument are active and
+fully bound.  The portable non-four mutation report excludes runtime,
+traceback, path, and temporary compressed-byte data from its logical payload;
+all 16 attacks pass their declared rejection checks.
+
+The clean quick suite passed with payload
+`0a2394d3cc9529c29c9e21a7b602f1793c9b13da0a437939639ece7ebb411cf0`.
+The clean full suite passed in 2,991.443 seconds with payload
+`afdceb98352ff9d7446e8787b8508c07b0bf10e9cd497d74f282120b4b49736d`,
+including the 20-child fresh integrated replay, 27/27 classification
+mutations, and 32/32 release-engineering mutations.
+
+The explicitly confirmed 55-command regeneration ran exactly once and passed
+in 8,920.970 seconds with payload
+`74ab3e8830f4e0a8e8e1805c9aca591a4ec09d78a160126c183d496db3d6f019`.
+The hour-scale probe producer was invoked once and passed in 2,971.512 seconds.
+The run regenerated all canonical artifacts, reported zero tracked drift, and
+ended with fresh integrated replay plus both mutation gates.
+
+The corrected fixed-epoch article and reader supplement now have 38 and 14
+pages, respectively.  Every page has been rendered and inspected, all fonts
+are embedded, and the article availability statement points to the exact proof
+snapshot above.  Their commit-bound source reproduction and distribution
+hashes are intentionally deferred to the post-commit section that will follow
+this checkpoint.
 
 ## Immutable-link final source reseal
 

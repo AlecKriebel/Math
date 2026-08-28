@@ -201,3 +201,30 @@ tag/release approval, DOI, and portal actions remain human-controlled.
 Best-guess completion: **100% of the mathematical and proof-archive machine
 goal; 70% of the external-submission goal**.  Submission metadata, license,
 tag/release approval, DOI, and portal actions remain human-controlled.
+
+## 2026-08-28T05:22:06Z — strengthened referee-repair proof execution
+
+- Exact pushed proof snapshot:
+  `203e114ace0ead3852f109a3713acda37bf74e65`.
+- Clean quick payload:
+  `0a2394d3cc9529c29c9e21a7b602f1793c9b13da0a437939639ece7ebb411cf0`.
+- Clean full payload:
+  `afdceb98352ff9d7446e8787b8508c07b0bf10e9cd497d74f282120b4b49736d`;
+  elapsed time 2,991.443 seconds; fresh integrated replay, 27/27 integrated
+  mutations, and 32/32 release mutations all passed.
+- The single confirmed 55-command regeneration passed in 8,920.970 seconds
+  with payload
+  `74ab3e8830f4e0a8e8e1805c9aca591a4ec09d78a160126c183d496db3d6f019`.
+  The hour-scale probe producer appeared exactly once and ran for 2,971.512
+  seconds.  The runner reported no tracked canonical drift.
+- The post-run fixed-epoch article and supplement builds now contain 38 and 14
+  pages.  Every page was rendered and inspected; all fonts are embedded.  A
+  TeX delimiter error and a one-word supplement orphan were found by the build
+  and visual gates and corrected before this checkpoint.
+- Source reproduction, proof archives, referee handoff, and Google Drive
+  synchronization remain deliberately pending until these source/PDF bytes are
+  committed and pushed.
+
+Best-guess completion: **92% of the referee-repair release workstream; 70% of
+the external-submission goal**.  Submission metadata, license, tag/release
+approval, DOI, and portal actions remain human-controlled.

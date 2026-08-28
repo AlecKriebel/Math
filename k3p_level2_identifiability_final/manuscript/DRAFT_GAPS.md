@@ -4,27 +4,21 @@ This file is deliberately separate from the theorem statements.  It records
 integration work that must close before the sources are promoted to a final
 submission build.
 
-1. **Preceding sealed release.**  The clean quick suite and complete
-   54-command regeneration passed at exact pushed proof snapshot
-   `e4b13c571eb462d7ba02e39ffd0a7b368fa5fc9f`.  The run regenerated every
-   producer, including the full four-port and probe universes, and ended with
-   fresh integrated replay plus all classification and release-engineering
-   mutations rejected.  The article now cites that immutable snapshot.  The
-   current PDFs have been rebuilt twice from source, reproduced byte for byte,
-   and independently inspected page by page.  The compact and full proof
-   archives rebuild byte-identically and pass extracted replay; all 35 TeX/Bib
-   sources were synchronized byte-for-byte to the requested Google Drive
-   folder; and the 600-file independent-referee package passed two independent
-   integrity audits.  These statements describe that preceding immutable
-   snapshot, not the strengthened C1/C2 revision now in the worktree.
+1. **Strengthened proof fixed point.**  The clean quick and full suites and the
+   single complete 55-command regeneration pass at exact pushed proof snapshot
+   `203e114ace0ead3852f109a3713acda37bf74e65`.  The run regenerated every
+   producer, including the full four-port, non-four-anchor, restoration, and
+   hour-scale probe universes, then completed fresh integrated replay and all
+   classification and release-engineering mutations.  The article cites that
+   immutable proof snapshot.  The corrected 38-page article and 14-page
+   supplement have been rebuilt and inspected page by page with embedded
+   fonts.
 
-2. **Strengthened-revision reseal.**  The new self-contained noncut witness and
-   balanced-word enumeration, the active 133-record non-four anchor derivation,
-   and the associated verifier/mutation hardening have focused passing
-   evidence.  They must still pass the single clean 55-command regeneration
-   and the downstream PDF, source, archive, and referee-package reseal at one
-   exact pushed commit before the strengthened bytes replace the preceding
-   release ledger.
+2. **Distribution reseal.**  The current TeX/PDF source checkpoint must be
+   committed and pushed before its two-build source reproduction, compact/full
+   archive construction, neutral referee-package rebuild, and Google Drive
+   TeX/Bib synchronization.  Those post-commit operations must be recorded in
+   the release ledger without rewriting the mathematical proof snapshot.
 
 3. **Author and post-typesetting review.**  Independent mathematical and
    evidence audits of the targeted bridge, sunlet, genericity, and noncut-
@@ -39,11 +33,11 @@ submission build.
    any corresponding-email field remain outside this mathematical draft
    until supplied by the user.
 
-5. **Remaining submission gate.**  Deterministic two-build compilation,
-   byte-for-byte source reproduction, embedded-font checks, and independent
+5. **Remaining submission gate.**  Embedded-font checks and independent
    page-by-page inspection pass for the current availability-linked paper
-   bytes.  Journal-specific manuscripts and cover letters remain blocked on
-   the author-confirmed
+   bytes.  Commit-bound two-build source reproduction and distribution
+   packaging remain part of item 2.  Journal-specific manuscripts and cover
+   letters remain blocked on the author-confirmed
    declaration, address, license, and persistent-archive metadata recorded
    under `submission/`; they must be regenerated and checked after those
    fields are fixed.

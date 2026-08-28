@@ -1273,3 +1273,34 @@ mathematically certified, and the only failure found by the first full replay
 has been converted into a portable, fail-closed evidence interface.
 
 Best-guess completion toward this referee-repair workstream: **84%**.
+
+## 2026-08-28T05:22:06Z — one-shot regeneration and rendered-paper checkpoint
+
+- At pushed proof snapshot
+  `203e114ace0ead3852f109a3713acda37bf74e65`, the clean quick suite passed
+  with payload
+  `0a2394d3cc9529c29c9e21a7b602f1793c9b13da0a437939639ece7ebb411cf0`.
+  The clean full suite passed in 2,991.443 seconds with payload
+  `afdceb98352ff9d7446e8787b8508c07b0bf10e9cd497d74f282120b4b49736d`.
+- The explicitly confirmed 55-command regeneration was launched exactly once
+  and passed in 8,920.970 seconds with payload
+  `74ab3e8830f4e0a8e8e1805c9aca591a4ec09d78a160126c183d496db3d6f019`.
+  The probe producer ran once for 2,971.512 seconds.  Every command passed,
+  canonical tracked bytes had zero drift, and the final fresh integrated
+  replay plus 27/27 and 32/32 mutation gates passed.
+- The first post-run article build exposed a malformed TeX delimiter in the new
+  reproducibility sentence (`(5\)-minor`).  It was corrected to
+  `\(5\times5\) minor`; no stale article PDF was accepted.  Visual inspection
+  then found and removed a one-word orphan page at the end of the supplement.
+- The current fixed-epoch outputs are a clean 38-page article and 14-page
+  supplement.  All pages were rendered and inspected, all fonts are embedded,
+  and neither PDF contains the retired internal outcome wording.  The article
+  now links the exact pushed proof snapshot above.
+
+Strongest verified result at this checkpoint: all mathematical regeneration
+and mutation gates pass at one pushed proof snapshot, and the corrected paper
+bytes pass complete rendered-page inspection.
+
+Best-guess completion toward this referee-repair workstream: **92%**.  The
+remaining machine work is commit-bound source reproduction, archive and
+referee-package resealing, Google Drive synchronization, and final audits.

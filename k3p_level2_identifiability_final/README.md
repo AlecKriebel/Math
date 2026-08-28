@@ -62,33 +62,35 @@ Reproduce the integrated mathematical verification with:
 ```
 
 This certification is not a submission-readiness claim.  At exact pushed
-proof snapshot `e4b13c571eb462d7ba02e39ffd0a7b368fa5fc9f`, the clean quick
-suite and the complete 54-command regeneration both pass.  The latter ran for
-7,686 seconds, regenerated the full 405,216-relation four-port universe and
-all 574,535 semantic probe rows, and ended with fresh integrated replay plus
-24/24 classification and 32/32 release-engineering mutations rejected.  The
-article's availability statement points to that immutable snapshot.  The
-post-run execution ledger for the earlier candidate is
-`release/FINAL_RELEASE_ENGINEERING_REPORT.md`.  Runtime records live under
-ignored release work/transcript paths.  At that snapshot, the canonical article
-and supplement PDFs were rebuilt twice from the then-current TeX, reproduced byte for byte,
-and passed independent page-by-page visual inspection.  Distribution archives
-and the referee handoff are valid only when their manifests bind one exact
-pushed source commit and their extracted artifact-only binding/integrity
-gates pass; those extracted checks perform no fresh theorem computation, and
-the release ledger records that boundary.  Journal packages remain deliberately
-`NOT_READY` until their human metadata and upload artifacts are supplied.  No
-DOI, license, tag, submission, peer review, or completed human review is
-claimed.
+proof snapshot `203e114ace0ead3852f109a3713acda37bf74e65`, the clean quick
+suite passed with payload
+`0a2394d3cc9529c29c9e21a7b602f1793c9b13da0a437939639ece7ebb411cf0`,
+and the clean full suite passed in 2,991 seconds with payload
+`afdceb98352ff9d7446e8787b8508c07b0bf10e9cd497d74f282120b4b49736d`.
+The single 55-command regeneration then passed in 8,921 seconds with payload
+`74ab3e8830f4e0a8e8e1805c9aca591a4ec09d78a160126c183d496db3d6f019`.
+It invoked the hour-scale probe producer exactly once, regenerated the full
+405,216-relation four-port universe and all 574,535 probe rows, and ended with
+the fresh integrated replay plus 27/27 classification and 32/32
+release-engineering mutations rejected.  The article's availability statement
+points to that immutable proof snapshot.
 
-The 2026-08-27 fresh-referee revision removes the two remaining companion
-premises: generic noncut recovery now has a self-contained displayed-tree
-witness and exact minor, and a graph-only producer plus separate no-import
-verifier derive all 133 non-four probe anchors.  For four-port factors, a
-graph-only route exhausts all 144 raw equality parents and all 1,356 fixed-full
-descendant requests, with zero unmatched requests; the 43 contract rows are
-only a designated serialization.  The focused component checks and the
-85-binding integrated artifact gate pass.  This strengthened revision does not
-supersede the preceding immutable release ledger until its single clean
-55-command regeneration and downstream PDF/archive/referee-package reseal have
-completed.
+This 2026-08-27 referee revision removes the two former companion premises:
+generic noncut recovery has a self-contained displayed-tree witness and exact
+minor, and a graph-only producer plus separate no-import verifier derive all
+133 non-four probe anchors.  For four-port factors, a graph-only route exhausts
+all 144 raw equality parents and all 1,356 fixed-full descendant requests, with
+zero unmatched requests; the 43 contract rows are only a designated
+serialization.  The 85-binding integrated artifact gate and every focused
+component check pass.  The fixed-epoch candidate article and supplement have
+also been rebuilt from the corrected TeX and inspected on every page.
+
+Distribution archives and the referee handoff are valid only when their
+manifests bind one exact pushed source commit and their extracted artifact-only
+binding/integrity gates pass; those extracted checks perform no fresh theorem
+computation.  Runtime records live under ignored release work/transcript paths,
+and the post-run boundary is recorded in
+`release/FINAL_RELEASE_ENGINEERING_REPORT.md`.  Journal packages remain
+deliberately `NOT_READY` until their human metadata and upload artifacts are
+supplied.  No DOI, license, tag, submission, peer review, or completed human
+review is claimed.
