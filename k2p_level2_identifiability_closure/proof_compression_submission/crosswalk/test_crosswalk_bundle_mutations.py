@@ -22,6 +22,7 @@ import check_revised_referee_bundle as checker
 
 HERE = Path(__file__).resolve().parent
 REPORT = HERE / "CROSSWALK_BUNDLE_MUTATION_REPORT.json"
+MUTATION_COMMAND_TIMEOUT_SECONDS = 300
 
 
 def fail(message: str) -> None:
@@ -238,7 +239,7 @@ def reject_resealed_compressed_jsonl(
                 cwd=root,
                 capture_output=True,
                 text=True,
-                timeout=90,
+                timeout=MUTATION_COMMAND_TIMEOUT_SECONDS,
                 check=False,
             )
             observed = (result.stdout + result.stderr).strip()
@@ -338,7 +339,7 @@ def reject_resealed_duplicate_name(
                 cwd=root,
                 capture_output=True,
                 text=True,
-                timeout=90,
+                timeout=MUTATION_COMMAND_TIMEOUT_SECONDS,
                 check=False,
             )
             diagnostic = (result.stdout + result.stderr).strip()

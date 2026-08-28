@@ -984,3 +984,31 @@
   quick/mutation/full run from the repaired commit, final telemetry, archive
   checks, push, and annotated tag.  No GitHub Release or Zenodo action is
   authorized.
+
+## 2026-08-28 — round-4 release qualification closed
+
+- Qualified the exact detached source candidate at commit
+  `0b9cbb6eb0de99ad07142609da47f4db657d3ed7`: quick replay passed 23/23,
+  the production mutation suite rejected 25/25 attacks with zero survivors,
+  and the full primitive replay passed 41/41 layers with zero blockers.
+  The full run took 6,259.77 seconds and reached 2,568,503,296 bytes maximum
+  resident memory.
+- The independent referee-package suite rejected all 37/37 attacks after its
+  output was regenerated and checked separately.  The final mutation harness
+  uses a 300-second per-command bound because strict canonical scanning of the
+  complete resealed package can legitimately exceed the former 90-second
+  harness allowance; the verifier result and diagnostic remain fail-closed.
+- Built the 495-member referee ZIP twice byte-identically at SHA-256
+  `43a620bad862ad14c1b7beb6d605d69354c7da8c534e2882cd7564f7ad4a69db`
+  and the five-source bioRxiv ZIP twice byte-identically at SHA-256
+  `8e8c4b173e57c310b179f33315da7668f9e5bc13984a97656afaa3dc02dccd84`.
+  Two differently named fresh referee-package extractions independently
+  passed their portable ledgers, strict bundle checkers, strict-JSON tests,
+  and all 23 quick layers.
+- Both round-4 referee findings were valid reproducibility defects and are
+  repaired.  No theorem statement, graph classification, finite census, rank
+  decision, polynomial body, restoration edge, transport, probe relation, or
+  sharpness witness changed.  Best-guess completion is **100% for the
+  mathematical theorem** and **100% for v1.0.4 release qualification**.
+  GitHub Release, Zenodo, DOI, and submission actions remain reserved to the
+  author.

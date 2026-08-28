@@ -1,6 +1,6 @@
 {
   "assert_statement_count": 0,
-  "mutation_count": 33,
+  "mutation_count": 37,
   "mutations": [
     {
       "mutation_id": "overbroad_c02_topology_authority",
@@ -30,6 +30,11 @@
     {
       "mutation_id": "omitted_graph_parameter_transport_ledger",
       "rejection": "frozen evidence ledger mismatch; missing=['work/canonicalizer_completeness/inheritance_transport/probe_relation_parameter_transports.jsonl.gz'] extra=[]",
+      "status": "REJECTED"
+    },
+    {
+      "mutation_id": "omitted_shared_strict_json_parser",
+      "rejection": "frozen evidence ledger mismatch; missing=['work/final_theorem_release/strict_json.py'] extra=[]",
       "status": "REJECTED"
     },
     {
@@ -160,19 +165,37 @@
     {
       "mutation_id": "same_valued_duplicate_json_name_after_reseal",
       "outer_reseal": "VALID",
-      "rejection": "producer:duplicate JSON object name: 'status';checker:proof_compression_submission/PDF_BUILD_REPORT.json contains duplicate JSON name: 'status'",
+      "rejection": "producer:STRICT_JSON_DUPLICATE_NAME:proof_compression_submission/PDF_BUILD_REPORT.json:name='status';checker:STRICT_JSON_DUPLICATE_NAME:proof_compression_submission/PDF_BUILD_REPORT.json:name='status'",
+      "status": "REJECTED"
+    },
+    {
+      "mutation_id": "same_valued_duplicate_compressed_jsonl_after_reseal",
+      "outer_reseal": "VALID",
+      "rejection": "producer:STRICT_JSON_DUPLICATE_NAME:work/probe_coherence_corrected/one_port_ledger.jsonl.gz:line=1:name='parent_anchor_id';checker:STRICT_JSON_DUPLICATE_NAME:work/probe_coherence_corrected/one_port_ledger.jsonl.gz:line=1:name='parent_anchor_id'",
+      "status": "REJECTED"
+    },
+    {
+      "mutation_id": "conflicting_duplicate_compressed_jsonl_after_reseal",
+      "outer_reseal": "VALID",
+      "rejection": "producer:STRICT_JSON_DUPLICATE_NAME:work/probe_coherence_corrected/one_port_ledger.jsonl.gz:line=1:name='parent_anchor_id';checker:STRICT_JSON_DUPLICATE_NAME:work/probe_coherence_corrected/one_port_ledger.jsonl.gz:line=1:name='parent_anchor_id'",
+      "status": "REJECTED"
+    },
+    {
+      "mutation_id": "noncanonical_compressed_jsonl_after_reseal",
+      "outer_reseal": "VALID",
+      "rejection": "producer:STRICT_JSON_NONCANONICAL_BYTES:work/probe_coherence_corrected/one_port_ledger.jsonl.gz:line=1;checker:STRICT_JSON_NONCANONICAL_BYTES:work/probe_coherence_corrected/one_port_ledger.jsonl.gz:line=1",
       "status": "REJECTED"
     },
     {
       "mutation_id": "conflicting_valued_duplicate_json_name_after_reseal",
       "outer_reseal": "VALID",
-      "rejection": "producer:duplicate JSON object name: 'status';checker:proof_compression_submission/PDF_BUILD_REPORT.json contains duplicate JSON name: 'status'",
+      "rejection": "producer:STRICT_JSON_DUPLICATE_NAME:proof_compression_submission/PDF_BUILD_REPORT.json:name='status';checker:STRICT_JSON_DUPLICATE_NAME:proof_compression_submission/PDF_BUILD_REPORT.json:name='status'",
       "status": "REJECTED"
     }
   ],
   "optimized_article_audit_rejected": true,
   "optimized_mode_rejected": true,
-  "payload_sha256": "62a056e21c8a514fe2e7e96ab952464fcb0a1489d785ccde8ff390e5f5006fe2",
+  "payload_sha256": "0217ccc3cfdcb9f3142257aadf1ea0725f532e2389085b1df211c99cc031dfeb",
   "schema": "k2p-crosswalk-bundle-mutation-report-v2",
   "status": "PASS"
 }
