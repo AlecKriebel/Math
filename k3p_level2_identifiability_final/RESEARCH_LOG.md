@@ -1212,3 +1212,28 @@ four-port descendant grammar is actively reconstructed with zero unmatched
 requests.
 
 Best-guess completion toward this referee-repair workstream: **78%**.
+
+## 2026-08-27T17:52:34-07:00 — source checkpoint and release gate resealed
+
+- Committed the complete C1/C2, verifier-hardening, literature, release, and
+  prose repairs on `main` at
+  `f845f188dc4193d0a6cfd7a748befe789521a9c7`.
+- The integrated artifact gate passes with 85 explicit active bindings and
+  payload
+  `eb22b2d10ece0bdefd3cf0932cb346f1b1610f52e6dec0b3d690272c20b9a829`;
+  its theorem-boundary suite rejects 27/27 mutations.
+- The post-commit release-engineering suite rejects all 32 attacks and passes
+  all ten controls, including the 55-command regeneration-plan lock and the
+  compact dependency-closure control.  Its payload is
+  `fd931f0df94ae456baff232dbc713c70233ee9f15fcf3debb35c8617b06a0d16`.
+- The release-input gate then passes with 106 active path bindings, all current
+  mutation censuses (including 16 anchor-universe and 18 probe mutations), and
+  zero structural submission errors.  Submission remains deliberately
+  `NOT_READY` because 26 human/administrative release fields are still absent.
+
+Strongest verified result at this checkpoint: every focused mathematical,
+binding, mutation, and release-input gate passes at one exact source commit.
+The clean quick/full checks and the single 55-command full regeneration remain
+before downstream PDF and archive resealing.
+
+Best-guess completion toward this referee-repair workstream: **82%**.
