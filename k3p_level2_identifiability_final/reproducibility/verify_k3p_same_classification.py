@@ -81,7 +81,28 @@ EXPECTED_FULL_FOUR_PORT_MUTATIONS = {
     "coherent_quotient_orbit_omission",
     "optimized_mode",
 }
+EXPECTED_NON_FOUR_ANCHOR_MUTATIONS = {
+    "omit_tree_seed",
+    "omit_cycle_restored_seed",
+    "omit_theta2_k5_seed",
+    "omit_theta2_k6_seed",
+    "cycle_triangle_relabelled_isomorphic",
+    "theta2_source_graph_hash_replaced",
+    "theta2_k7_restoration_path_folded",
+    "theta2_restored_role_forged",
+    "bogus_anchor_appended",
+    "incoming_boundary_partition_reclassified",
+    "theta2_base_stage_omitted",
+    "four_raw_equality_parent_omitted_after_rebinding",
+    "used_one_port_equality_status_corrupted_after_rebinding",
+    "used_two_port_status_corrupted_after_rebinding",
+    "extra_terminal_descendant_identity_corrupted_after_rebinding",
+    "optimized_mode",
+}
 EXPECTED_INTEGRATED_MUTATIONS = {
+    "omit_balanced_noncut_word",
+    "omit_non_four_anchor_in_complete_crosswalk",
+    "admit_unmatched_marginalized_incoming_path",
     "substitute_universal_pointwise_cut_rank_iff",
     "promote_ordinary_triangle_to_rank_15",
     "claim_ambient_open_triangle_germ",
@@ -474,6 +495,392 @@ def validate_full_four_port_universe(project: Path, bindings: dict) -> None:
         bindings[relative] = bind(project, relative)
 
 
+def validate_anchor_universe(project: Path, bindings: dict) -> None:
+    base = "anchor_universe"
+    artifact_path = f"{base}/artifacts/NON_FOUR_ANCHOR_UNIVERSE.json"
+    artifact = load(project, artifact_path)
+    verify_payload(artifact, "non-four anchor producer", ("operational",))
+    require(
+        artifact.get("schema") == "k3p-model-independent-non-four-anchor-universe-v1"
+        and artifact.get("status") == "PASS",
+        "non-four anchor producer status",
+    )
+    expected_census = {
+        "total": 133,
+        "by_origin": {
+            "cycle_physical_k3": 24,
+            "cycle_restored_physical_k4": 12,
+            "theta2_physical_k5": 24,
+            "theta2_physical_k6": 40,
+            "theta2_physical_k7": 32,
+            "tree_physical_k3": 1,
+        },
+        "by_relation": {"isomorphic": 117, "triangle": 16},
+        "by_port_count": {"3": 25, "4": 12, "5": 24, "6": 40, "7": 32},
+    }
+    require(artifact.get("census") == expected_census, "non-four anchor census")
+    require(artifact.get("stage_counts") == {
+        "cycle_base_presentations": 13_440,
+        "cycle_restoration_presentations": 536_364,
+        "theta2_base_presentations": 2_946_240,
+        "theta2_six_port_children": 576,
+        "theta2_seven_port_children": 288,
+    }, "non-four anchor raw enumeration census")
+    anchors = artifact.get("anchors")
+    require(isinstance(anchors, list) and len(anchors) == 133 and
+            len({row.get("anchor_key") for row in anchors}) == 133,
+            "non-four anchor rows and keys")
+    producer_path = f"{base}/generate_non_four_anchor_universe.py"
+    atlas_path = "input_frozen/k3p_cloud_artifacts/k3p_atlas_core.py"
+    require(artifact.get("bindings") == {
+        "producer_sha256": sha_file(project / producer_path),
+        "k3p_atlas_sha256": sha_file(project / atlas_path),
+    }, "non-four producer code bindings")
+    boundary = artifact.get("claim_boundary", {})
+    forbidden = boundary.get("forbidden_and_unused", [])
+    require(boundary.get("excluded_marginalized_incoming_parents") == 176 and
+            "frozen 176-anchor contract as an enumeration input" in forbidden and
+            "K2P polynomial compilation" in forbidden,
+            "non-four producer premise boundary")
+
+    independent_path = f"{base}/INDEPENDENT_NON_FOUR_VERIFICATION.json"
+    independent = load(project, independent_path)
+    verify_payload(independent, "independent non-four anchors", ("operational",))
+    require(independent.get("schema") ==
+            "k3p-independent-non-four-anchor-universe-verification-v1" and
+            independent.get("status") == "PASS",
+            "independent non-four verifier status")
+    require(independent.get("artifact") == {
+        "path": artifact_path,
+        "sha256": sha_file(project / artifact_path),
+        "schema": artifact["schema"],
+        "payload_sha256": artifact["payload_sha256"],
+    }, "independent non-four artifact binding")
+    independence = independent.get("independence_boundary", {})
+    require(independence.get("derivation_completed_before_artifact_read") is True and
+            independence.get("contract_reads") == 0 and
+            independence.get("frozen_theta_or_cycle_artifact_reads") == 0 and
+            independence.get("producer_or_atlas_imports") == 0 and
+            independence.get("producer_imports") == 0 and
+            independence.get("submitted_atlas_imports") == 0,
+            "independent non-four premise boundary")
+    comparisons = independent.get("comparisons", {})
+    require(comparisons.get("semantic_rows") == 133 and
+            all(comparisons.get(field) is True for field in (
+                "semantic_key_set_equal", "every_row_body_equal",
+                "every_source_graph_hash_equal", "every_target_graph_hash_equal",
+                "census_equal",
+            )) and comparisons.get("ordered_anchor_key_sha256") ==
+            artifact.get("ordered_anchor_key_sha256"),
+            "independent non-four rowwise comparison")
+    root_movement = independent.get(
+        "marginalized_incoming_root_movement_certificate", {}
+    )
+    mapping_rows = root_movement.get("mapping_rows")
+    require(root_movement.get("incoming_boundary_mismatch_parents") == 176 and
+            root_movement.get("dummy_multiplicity") == {"1": 56, "2": 88, "3": 32} and
+            root_movement.get("terminal_paths_by_restoration_depth") ==
+            {"1": 56, "2": 176, "3": 192} and
+            root_movement.get("mapped") == 424 and
+            root_movement.get("unmatched") == 0 and
+            root_movement.get("canonical_seed_class_count") == 15 and
+            root_movement.get("prefix_exact_equality_checks") == 984 and
+            isinstance(mapping_rows, list) and len(mapping_rows) == 424 and
+            root_movement.get("mapping_rows_sha256") == sha_object(mapping_rows),
+            "marginalized-incoming root-movement certificate")
+
+    reconciliation_path = f"{base}/MARGINALIZED_THETA_ONE_PORT_RECONCILIATION.json"
+    reconciliation = load(project, reconciliation_path)
+    verify_payload(reconciliation, "marginalized theta one-port reconciliation")
+    require(reconciliation.get("schema") ==
+            "k3p-marginalized-theta-one-port-reconciliation-v1" and
+            reconciliation.get("status") == "PASS",
+            "marginalized theta reconciliation status")
+    reconciliation_counts = reconciliation.get("reconciliation_census", {})
+    require(reconciliation_counts == {
+        "marginalized_incoming_abstract_parents": 176,
+        "fully_restored_exact_paths": 424,
+        "prefix_exact_equality_checks": 984,
+        "theta_seed_presentations": 96,
+        "canonical_theta_seed_pair_classes": 15,
+        "abstract_transported_site_pairs": 66,
+        "existing_isomorphic_one_port_rows": 66,
+        "canonical_one_port_relation_classes": 66,
+        "mapped": 424,
+        "unmatched": 0,
+    }, "marginalized theta reconciliation census")
+    path_rows = reconciliation.get("path_crosswalk")
+    site_rows = reconciliation.get("one_port_site_pairs")
+    reconciliation_bindings = reconciliation.get("bindings", {})
+    require(isinstance(path_rows, list) and len(path_rows) == 424 and
+            isinstance(site_rows, list) and len(site_rows) == 66 and
+            all(row.get("one_port_relation") == "isomorphic" for row in site_rows) and
+            reconciliation_bindings.get("clean_room_mapping_rows_sha256") ==
+            root_movement.get("mapping_rows_sha256") and
+            reconciliation_bindings.get("path_crosswalk_sha256") == sha_object(path_rows) and
+            reconciliation_bindings.get("one_port_site_pair_rows_sha256") ==
+            sha_object(site_rows),
+            "marginalized theta reconciliation rows")
+    for record in reconciliation.get("inputs", {}).values():
+        relative = record.get("path")
+        require(isinstance(relative, str), "reconciliation input path")
+        verify_file_binding(project, relative, record["sha256"])
+
+    crosswalk_path = f"{base}/COMPLETE_ANCHOR_UNIVERSE_CROSSWALK.json"
+    crosswalk = load(project, crosswalk_path)
+    verify_payload(crosswalk, "complete anchor crosswalk", ("operational",))
+    require(crosswalk.get("schema") == "k3p-complete-anchor-universe-crosswalk-v1" and
+            crosswalk.get("status") == "PASS",
+            "complete anchor crosswalk status")
+    require(crosswalk.get("counts") == {
+        "non_four_derived_and_crosswalked": 133,
+        "four_port_active_and_crosswalked": 43,
+        "complete": 176,
+        "excluded_marginalized_incoming_parents": 176,
+        "excluded_paths_root_movement_mapped": 424,
+        "excluded_paths_root_movement_unmatched": 0,
+        "excluded_paths_existing_one_port_rows": 66,
+        "excluded_paths_existing_one_port_relation_classes": 66,
+        "by_origin": {
+            "cycle_physical_k3": 24,
+            "cycle_restored_physical_k4": 12,
+            "four_port_direct_physical": 26,
+            "four_port_restored_physical_k5": 17,
+            "theta2_physical_k5": 24,
+            "theta2_physical_k6": 40,
+            "theta2_physical_k7": 32,
+            "tree_physical_k3": 1,
+        },
+        "by_relation": {"isomorphic": 143, "triangle": 33},
+        "by_port_count": {"3": 25, "4": 38, "5": 41, "6": 40, "7": 32},
+    }, "complete 176-anchor crosswalk census")
+    require(crosswalk.get("claim_boundary") == {
+        "non_four_enumeration_input":
+            "active graph-only producer plus separate no-import verifier",
+        "four_port_enumeration_input":
+            "literal graph-only replay of all 144 raw equality parents and all 1,356 fixed-full restoration requests, crosswalked through the 26 direct seeds into existing one-/two-port ledgers; the 43 contract rows remain designated serialization rows",
+        "contract_role":
+            "regression target for the derived 133 non-four rows; designated four-port serialization of 26 direct generators plus 17 physical descendants, not an exhaustive presentation quotient",
+        "legacy_theta_cycle_role":
+            "opaque locator expansion only after the derived 133-row set is fixed",
+        "marginalized_incoming_role":
+            "the independent verifier maps every one of 424 fully physical restoration paths from 176 excluded parents to a canonical theta seed plus one transported downstream port; zero unmatched",
+        "k2p_algebra_active": False,
+    }, "complete anchor crosswalk premise boundary")
+    cross_bindings = crosswalk.get("bindings", {})
+    expected_cross_bindings = {
+        "crosswalk_verifier_sha256": sha_file(
+            project / f"{base}/verify_complete_anchor_crosswalk.py"
+        ),
+        "producer_sha256": sha_file(project / artifact_path),
+        "producer_payload_sha256": artifact["payload_sha256"],
+        "independent_verifier_sha256": sha_file(project / independent_path),
+        "root_movement_reconciliation_sha256": sha_file(
+            project / reconciliation_path
+        ),
+        "root_movement_reconciliation_payload_sha256": reconciliation["payload_sha256"],
+        "contract_sha256": sha_file(project /
+            "input_frozen/model_independent_topology_package/anchor_inputs/probe_input_contract.json"),
+        "theta_locator_dictionary_sha256": sha_file(project /
+            "input_frozen/model_independent_topology_package/anchor_inputs/fixed_full_restoration_closure.json.gz"),
+        "cycle_locator_dictionary_sha256": sha_file(project /
+            "input_frozen/model_independent_topology_package/cycle/physical_anchors.json"),
+        "four_summary_sha256": sha_file(project /
+            "four_port_atlas/full_universe_replay/artifacts/FULL_FOUR_PORT_REPLAY.json"),
+        "four_independent_verification_sha256": sha_file(project /
+            "four_port_atlas/full_universe_replay/INDEPENDENT_FULL_FOUR_PORT_VERIFICATION.json"),
+        "four_graph_core_sha256": sha_file(project /
+            "four_port_atlas/full_universe_replay/independent_replay_core.py"),
+        "four_raw_ledger_sha256": sha_file(project /
+            "four_port_atlas/full_universe_replay/artifacts/full_directional_ledger.jsonl.gz"),
+        "one_port_manifest_sha256": sha_file(project /
+            "probes/ONE_PORT_PROBE_MANIFEST.json"),
+        "one_port_ledger_sha256": sha_file(project /
+            "probes/one_port_ledger.jsonl.gz"),
+        "two_port_manifest_sha256": sha_file(project /
+            "probes/TWO_PORT_PROBE_MANIFEST.json"),
+        "two_port_parent_inventory_sha256": sha_file(project /
+            "probes/two_port_parent_inventory.jsonl.gz"),
+        "two_port_ledger_sha256": sha_file(project /
+            "probes/two_port_ledger.jsonl.gz"),
+    }
+    require(cross_bindings == expected_cross_bindings,
+            "complete anchor crosswalk file bindings")
+    # Promote every file whose bytes are consumed by the crosswalk into the
+    # integrated report's explicit binding map.  The crosswalk's semantic hash
+    # names are sufficient for its own verifier, but package dependency closure
+    # must carry the actual paths as well.
+    for relative in (
+        "input_frozen/model_independent_topology_package/anchor_inputs/probe_input_contract.json",
+        "input_frozen/model_independent_topology_package/anchor_inputs/fixed_full_restoration_closure.json.gz",
+        "input_frozen/model_independent_topology_package/cycle/physical_anchors.json",
+        "four_port_atlas/full_universe_replay/artifacts/FULL_FOUR_PORT_REPLAY.json",
+        "four_port_atlas/full_universe_replay/INDEPENDENT_FULL_FOUR_PORT_VERIFICATION.json",
+        "four_port_atlas/full_universe_replay/independent_replay_core.py",
+        "four_port_atlas/full_universe_replay/artifacts/full_directional_ledger.jsonl.gz",
+        "probes/ONE_PORT_PROBE_MANIFEST.json",
+        "probes/one_port_ledger.jsonl.gz",
+        "probes/TWO_PORT_PROBE_MANIFEST.json",
+        "probes/two_port_parent_inventory.jsonl.gz",
+        "probes/two_port_ledger.jsonl.gz",
+    ):
+        bindings.setdefault(relative, bind(project, relative))
+
+    descendant = crosswalk.get("four_port_descendant_completeness", {})
+    require(descendant.get("method") == {
+        "parent_quotient": (
+            "exact labelled arrowhead-preserving isomorphism on each "
+            "member of the ordered source/target graph pair"
+        ),
+        "restoration_grammar": (
+            "promote each target dummy role and insert the same new label "
+            "on every nonroot source arc not ending at a leaf"
+        ),
+        "site_transport": (
+            "unique mixed-edge image compatible with the exact parent "
+            "vertex transport"
+        ),
+        "algebra_used": False,
+    }, "four-port descendant method boundary")
+    require(descendant.get("counts") == {
+        "raw_equality_parents": 144,
+        "raw_isomorphic_parents": 30,
+        "raw_triangle_parents": 114,
+        "active_map_classes": 93,
+        "active_isomorphic_map_classes": 24,
+        "active_triangle_map_classes": 69,
+        "raw_parent_pair_classes": 9,
+        "direct_contract_rows": 26,
+        "dummy_parent_roots": 114,
+        "dummy_multiplicity": {"0": 30, "1": 60, "2": 42, "3": 12},
+        "first_restoration_requests": 1_260,
+        "first_unique_one_port_rows": 161,
+        "first_isomorphic": 15,
+        "first_triangle": 24,
+        "first_none": 1_221,
+        "physical_k5_equality_terminals": 27,
+        "physical_k5_terminal_pair_classes": 15,
+        "terminal_isomorphic": 15,
+        "terminal_triangle": 12,
+        "restored_contract_rows": 17,
+        "restored_contract_pair_classes": 11,
+        "terminal_presentations_in_contract_pair_classes": 19,
+        "additional_terminal_presentations": 8,
+        "additional_terminal_pair_classes": 4,
+        "equality_continuations": 12,
+        "second_restoration_requests": 96,
+        "second_unique_two_port_rows": 64,
+        "second_none": 96,
+        "mapped": 1_356,
+        "unmatched": 0,
+    }, "four-port descendant completeness census")
+    require(descendant.get("ledger_status_counts") == {
+        "first": {
+            "displayed_quartet_mismatch": 1_080,
+            "isomorphic": 15,
+            "k3p_tree_sunlet_sos": 141,
+            "triangle": 24,
+        },
+        "second": {
+            "displayed_quartet_mismatch": 84,
+            "k3p_tree_sunlet_sos": 12,
+        },
+    }, "four-port descendant ledger census")
+    descendant_bindings = descendant.get("bindings", {})
+    require(descendant_bindings == {
+        "parent_mapping_rows_sha256":
+            "843b98d9eda327f35eeb0ba56a807162898515018a39a7e2636c179588eca57e",
+        "first_mapping_rows_sha256":
+            "f628143b748770596cb48b0732ee78aa6b64f3a2e2af3eda3742f57f5beac154",
+        "terminal_crosswalk_sha256":
+            "f70acd89dffb682ff768ebef88b9ed45a7e1b719c23136309834b69dcdebd478",
+        "second_mapping_rows_sha256":
+            "b58cb47e904d8e23947c57def47e4f12d5fd094d770dd5cea91f2e4762109628",
+        "omitted_terminal_descendants_sha256":
+            "470be793f42f874bd5dccf54717f4937d1c0112454a635292c79ba65d9465c2d",
+        "continuation_crosswalk_sha256":
+            "ed2803e27a06998a5e38387ab77fefeb3d4a5db2881e1ffc91b9b86b528f300e",
+    }, "four-port descendant row commitments")
+    additional = descendant.get("additional_terminal_descendants")
+    continuations = descendant.get("continuation_crosswalk")
+    require(isinstance(additional, list) and len(additional) == 8 and
+            sha_object(additional) ==
+            descendant_bindings["omitted_terminal_descendants_sha256"] and
+            all(row.get("relation") == "triangle" for row in additional),
+            "four-port omitted terminals are existing triangle descendants")
+    require(isinstance(continuations, list) and len(continuations) == 12 and
+            sha_object(continuations) ==
+            descendant_bindings["continuation_crosswalk_sha256"] and
+            len(descendant.get("continuation_parent_ids", [])) == 8,
+            "four-port equality continuation crosswalk")
+
+    mutation_path = f"{base}/NON_FOUR_ANCHOR_MUTATION_REPORT.json"
+    mutation = load(project, mutation_path)
+    verify_payload(mutation, "non-four anchor mutations", ("operational",))
+    cases = mutation.get("cases", [])
+    require(mutation.get("schema") == "k3p-non-four-anchor-universe-mutations-v2" and
+            mutation.get("status") == "PASS" and
+            mutation.get("counts") == {
+                "clean_controls": 1, "mutations": 16,
+                "rejected": 16, "accepted": 0,
+                "preserved_non_four_and_runtime_mutations": 12,
+                "coherently_rebound_four_port_semantic_mutations": 4,
+            } and len(cases) == 17,
+            "anchor-universe mutation census")
+    clean = [row for row in cases if row.get("name") == "clean_control"]
+    rejected = [row for row in cases if row.get("name") != "clean_control"]
+    require(len(clean) == 1 and clean[0].get("observed") == "accept" and
+            {row.get("name") for row in rejected} == EXPECTED_NON_FOUR_ANCHOR_MUTATIONS and
+            all(row.get("observed") == "reject" and row.get("returncode") != 0
+                for row in rejected),
+            "non-four anchor mutation cases")
+    require(mutation.get("bindings") == {
+        "artifact_sha256": sha_file(project / artifact_path),
+        "verifier_sha256": sha_file(
+            project / f"{base}/verify_non_four_anchor_universe.py"
+        ),
+        "crosswalk_sha256": sha_file(
+            project / f"{base}/verify_complete_anchor_crosswalk.py"
+        ),
+        "four_raw_ledger_sha256": sha_file(project /
+            "four_port_atlas/full_universe_replay/artifacts/full_directional_ledger.jsonl.gz"),
+        "four_summary_sha256": sha_file(project /
+            "four_port_atlas/full_universe_replay/artifacts/FULL_FOUR_PORT_REPLAY.json"),
+        "four_verification_sha256": sha_file(project /
+            "four_port_atlas/full_universe_replay/INDEPENDENT_FULL_FOUR_PORT_VERIFICATION.json"),
+        "one_port_manifest_sha256": sha_file(project /
+            "probes/ONE_PORT_PROBE_MANIFEST.json"),
+        "one_port_ledger_sha256": sha_file(project /
+            "probes/one_port_ledger.jsonl.gz"),
+        "two_port_manifest_sha256": sha_file(project /
+            "probes/TWO_PORT_PROBE_MANIFEST.json"),
+        "two_port_parent_inventory_sha256": sha_file(project /
+            "probes/two_port_parent_inventory.jsonl.gz"),
+        "two_port_ledger_sha256": sha_file(project /
+            "probes/two_port_ledger.jsonl.gz"),
+    }, "anchor-universe mutation bindings")
+
+    for relative, value in (
+        (artifact_path, artifact),
+        (independent_path, independent),
+        (reconciliation_path, reconciliation),
+        (crosswalk_path, crosswalk),
+        (mutation_path, mutation),
+    ):
+        bindings[relative] = bind(project, relative, value)
+    for relative in (
+        producer_path,
+        f"{base}/independent_non_four_core.py",
+        f"{base}/verify_non_four_anchor_universe.py",
+        f"{base}/verify_marginalized_theta_one_port_reconciliation.py",
+        f"{base}/verify_complete_anchor_crosswalk.py",
+        f"{base}/test_non_four_anchor_mutations.py",
+        f"{base}/README.md",
+        f"{base}/PROOF_BOUNDARY.md",
+    ):
+        bindings[relative] = bind(project, relative)
+
+
 def validate_sharpness(project: Path, bindings: dict) -> None:
     manifest_path = "sharpness/K3P_SHARPNESS_REPLAY_MANIFEST.json"
     manifest = load(project, manifest_path)
@@ -554,6 +961,47 @@ def validate_cut_topology_regeneration(project: Path, bindings: dict) -> None:
         bindings.setdefault(relative, verify_file_binding(project, relative, expected))
     bindings[downstream["path"]] = bind(project, downstream["path"])
     bindings[report_path] = bind(project, report_path, report)
+
+
+def validate_noncut_witness_evidence(project: Path, bindings: dict) -> None:
+    base = "cut_recovery/strong_crossbridge/palette_independent"
+    reduction_path = f"{base}/BALANCED_WORD_REDUCTION_CERTIFICATE.json"
+    reduction = load(project, reduction_path)
+    require(
+        reduction.get("schema") == "stc-jc-cut-palette-reduction-v1"
+        and reduction.get("status") == "EXACTLY COMPUTED"
+        and reduction.get("failure_count") == 0
+        and reduction.get("totals") == {
+            "balanced_total": 808_642,
+            "direct_palette": 544_350,
+            "singleton_doubled_palette": 34_304,
+            "three_run_path_obstruction": 229_988,
+        }
+        and len(reduction.get("mutation_results", [])) == 3
+        and all(row.get("rejected") is True
+                for row in reduction["mutation_results"]),
+        "balanced noncut-word reduction evidence",
+    )
+    palette_path = f"{base}/REDUCED_PALETTE_CLEANROOM_CERTIFICATE.json"
+    palette = load(project, palette_path)
+    require(
+        palette.get("schema") == "stc-jc-reduced-palette-cleanroom-v1"
+        and palette.get("status") == "EXACTLY COMPUTED"
+        and palette.get("total_valid_palette_presentations") == 379_742
+        and palette.get("survivor_count") == 0
+        and palette.get("failures") == [],
+        "clean-room reduced noncut palette evidence",
+    )
+    for relative in (
+        reduction_path,
+        palette_path,
+        f"{base}/enumerate_balanced_word_reduction.py",
+        f"{base}/verify_reduced_palette_cleanroom.py",
+        f"{base}/verify_cut_combinatorics.py",
+        f"{base}/verify_displayed_tree_minor.py",
+        f"{base}/README.md",
+    ):
+        bindings[relative] = bind(project, relative)
 
 
 def validate_cut_transfer(project: Path, bindings: dict) -> None:
@@ -843,7 +1291,7 @@ def validate_probes(project: Path, bindings: dict) -> None:
     verify_payload(mutation, "probe mutations", ("operational",))
     require(mutation.get("status") == "PASS" and
             mutation.get("source_certificate_sha256") == sha_file(project / certificate_path) and
-            mutation.get("mutations_attempted") == mutation.get("mutations_rejected") == 17,
+            mutation.get("mutations_attempted") == mutation.get("mutations_rejected") == 18,
             "probe mutation gate")
     require(mutation.get("nondefault_hash_seed_replay", {}).get("status") == "PASS" and
             mutation.get("nondefault_hash_seed_replay", {}).get("returncode") == 0,
@@ -1029,7 +1477,8 @@ def validate_restoration(project: Path, bindings: dict) -> None:
     bindings["probes/seal_probe_manifests.py"] = bind(project, "probes/seal_probe_manifests.py")
 
 
-def validate_claim_lock(project: Path, bindings: dict) -> None:
+def validate_claim_lock(project: Path, bindings: dict,
+                        *, validate_integrated_mutation_report: bool = True) -> None:
     relative = "FINAL_CLAIM_LOCK.json"
     lock = load(project, relative)
     require(lock.get("status") == "CERTIFIED_K3P_SAME_MATHEMATICAL_CLASSIFICATION" and
@@ -1076,28 +1525,32 @@ def validate_claim_lock(project: Path, bindings: dict) -> None:
     require(certification.get("classification_mutation_gate") == mutation_gate and
             certification.get("classification_mutation_gate_sha256") ==
             sha_file(project / mutation_gate), "claim-lock classification mutation gate binding")
-    require(certification.get("classification_mutation_report") == mutation_report and
-            certification.get("classification_mutation_report_sha256") ==
-            sha_file(project / mutation_report) and
-            certification.get("classification_mutation_report_status") ==
-            "PASS_24_OF_24_REJECTED", "claim-lock classification mutation report binding")
-    mutation_value = load(project, mutation_report)
-    verify_payload(mutation_value, "integrated classification mutations")
-    mutation_rows = mutation_value.get("mutations", [])
-    require(mutation_value.get("status") == "PASS" and
-            mutation_value.get("mutation_count") == mutation_value.get("rejected") == 24 and
-            mutation_value.get("survived") == 0 and
-            mutation_value.get("verifier_sha256") == sha_file(Path(__file__).resolve()),
-            "integrated classification mutation result")
-    require(isinstance(mutation_rows, list) and len(mutation_rows) == 24 and
-            {row.get("name") for row in mutation_rows if isinstance(row, dict)} ==
-            EXPECTED_INTEGRATED_MUTATIONS and
-            all(row.get("status") == "REJECTED" and
-                row.get("diagnostic_observed") is True
-                for row in mutation_rows if isinstance(row, dict)),
-            "integrated classification mutation cases")
     bindings[mutation_gate] = bind(project, mutation_gate)
-    bindings[mutation_report] = bind(project, mutation_report, mutation_value)
+    if validate_integrated_mutation_report:
+        require(certification.get("classification_mutation_report") == mutation_report and
+                certification.get("classification_mutation_report_sha256") ==
+                sha_file(project / mutation_report) and
+                certification.get("classification_mutation_report_status") ==
+                "PASS_27_OF_27_REJECTED",
+                "claim-lock classification mutation report binding")
+        mutation_value = load(project, mutation_report)
+        verify_payload(mutation_value, "integrated classification mutations")
+        mutation_rows = mutation_value.get("mutations", [])
+        require(mutation_value.get("status") == "PASS" and
+                mutation_value.get("mutation_count") ==
+                mutation_value.get("rejected") == 27 and
+                mutation_value.get("survived") == 0 and
+                mutation_value.get("verifier_sha256") ==
+                sha_file(Path(__file__).resolve()),
+                "integrated classification mutation result")
+        require(isinstance(mutation_rows, list) and len(mutation_rows) == 27 and
+                {row.get("name") for row in mutation_rows if isinstance(row, dict)} ==
+                EXPECTED_INTEGRATED_MUTATIONS and
+                all(row.get("status") == "REJECTED" and
+                    row.get("diagnostic_observed") is True
+                    for row in mutation_rows if isinstance(row, dict)),
+                "integrated classification mutation cases")
+        bindings[mutation_report] = bind(project, mutation_report, mutation_value)
     cut = lock.get("cut_transfer", {})
     require(cut.get("status") == "CERTIFIED" and
             cut.get("universal_arbitrary_network_pointwise_cut_rank_iff") ==
@@ -1132,6 +1585,34 @@ def validate_claim_lock(project: Path, bindings: dict) -> None:
             four.get("new_symmetric_moves") == four.get("proper_directed_containments") ==
             four.get("unresolved") == 0,
             "claim-lock four-port conclusion")
+    require(lock.get("anchor_universe") == {
+        "non_four_derived": 133,
+        "four_port_contract_rows_exhaustively_verified": 43,
+        "complete": 176,
+        "relations": {"isomorphic": 143, "ordinary_triangle": 33},
+        "frozen_contract_role": "regression target for 133 derived non-four rows; designated serialization input for 43 four-port rows, not a four-port completeness premise",
+        "four_port_raw_equality_parents_covered": 144,
+        "four_port_fixed_full_requests_covered": 1_356,
+        "four_port_descendant_requests_unmatched": 0,
+        "four_port_one_port_rows_reconciled": 161,
+        "four_port_two_port_rows_reconciled": 64,
+        "k2p_algebra_active": False,
+        "marginalized_incoming_parents": 176,
+        "marginalized_incoming_physical_paths": 424,
+        "marginalized_incoming_paths_unmatched": 0,
+        "existing_one_port_rows_reconciled": 66,
+        "evidence": {
+            "producer": "anchor_universe/artifacts/NON_FOUR_ANCHOR_UNIVERSE.json",
+            "independent_verification":
+                "anchor_universe/INDEPENDENT_NON_FOUR_VERIFICATION.json",
+            "one_port_reconciliation":
+                "anchor_universe/MARGINALIZED_THETA_ONE_PORT_RECONCILIATION.json",
+            "complete_crosswalk":
+                "anchor_universe/COMPLETE_ANCHOR_UNIVERSE_CROSSWALK.json",
+            "mutation_report":
+                "anchor_universe/NON_FOUR_ANCHOR_MUTATION_REPORT.json",
+        },
+    }, "claim-lock complete anchor-universe derivation")
     classification = lock.get("classification", {})
     require(classification.get("triangle_equivalence") == {
                 "labelled_reduced_trees_of_blobs_agree": True,
@@ -1168,20 +1649,26 @@ def validate_claim_lock(project: Path, bindings: dict) -> None:
     bindings[relative] = bind(project, relative, lock)
 
 
-def validate_artifacts(project: Path) -> dict:
+def validate_artifacts(project: Path,
+                       *, validate_integrated_mutation_report: bool = True) -> dict:
     project = project.resolve()
     bindings: dict[str, dict] = {}
     validate_primary(project, bindings)
     validate_four_port(project, bindings)
     validate_full_four_port_universe(project, bindings)
+    validate_anchor_universe(project, bindings)
     validate_sharpness(project, bindings)
     validate_cut_topology_regeneration(project, bindings)
+    validate_noncut_witness_evidence(project, bindings)
     validate_cut_transfer(project, bindings)
     validate_global_and_triangle(project, bindings)
     ct_specialization = validate_continuous_time_specialization(project, bindings)
     validate_probes(project, bindings)
     validate_restoration(project, bindings)
-    validate_claim_lock(project, bindings)
+    validate_claim_lock(
+        project, bindings,
+        validate_integrated_mutation_report=validate_integrated_mutation_report,
+    )
     conclusion = {
         "outcome": "K3P-SAME",
         "network_class": "binary standard semi-directed strongly tree-child level-2",
@@ -1193,9 +1680,9 @@ def validate_artifacts(project: Path) -> dict:
         "sharp_boundary": "weak_tree_child_minus_strong_tree_child",
     }
     logical_chain = [
-        "corrected directional cut-transfer gives equality of labelled cut sets under containment",
+        "self-contained displayed-tree noncut recovery and corrected directional cut-transfer give equality of labelled cut sets under containment",
         "bridge fibre and marginal submersions localize containment to corresponding complete factors",
-        "the complete independently replayed 405,216-case four-port universe, restoration, and all-row semantic one-/two-port probes leave only labelled isomorphism or ordinary triangle redirection",
+        "the graph-derived 133-anchor non-four universe, all 144 raw four-port equality parents and all 1,356 fixed-full descendant requests, restoration, and all-row semantic one-/two-port probes leave only labelled isomorphism or ordinary triangle redirection",
         "the common relative H14 germ and simultaneous physical bridge gluing prove contextual triangle sufficiency",
         "finite semialgebraic genericity and reconstruction promote the local result to the complete strong class",
         "the strict-CT weak-not-strong Krawczyk family proves sharpness beyond strong tree-childness",
@@ -1282,6 +1769,18 @@ def run_fresh_replays(project: Path) -> list[dict]:
         ["bash", "cut_recovery/strong_crossbridge/topology_regeneration/verify_all.sh"],
         "CUT_TOPOLOGY_GRAPH_REGENERATION_SUITE_PASS", 3600,
     ))
+    records.append(run_command(
+        project, "cut_noncut_word_combinatorics",
+        [python,
+         "cut_recovery/strong_crossbridge/palette_independent/verify_cut_combinatorics.py"],
+        "K3P_CUT_COMBINATORICS_PASS", 600,
+    ))
+    records.append(run_command(
+        project, "displayed_tree_noncut_minor",
+        [python,
+         "cut_recovery/strong_crossbridge/palette_independent/verify_displayed_tree_minor.py"],
+        "K3P_DISPLAYED_TREE_MINOR_PASS", 600,
+    ))
     with tempfile.TemporaryDirectory(prefix="k3p-same-fresh-") as directory:
         temporary = Path(directory)
         global_report = temporary / "global.json"
@@ -1339,6 +1838,83 @@ def run_fresh_replays(project: Path) -> list[dict]:
                 "fresh/stored full four-port mutation payload")
         records[-1]["fresh_output_payload_sha256"] = (
             fresh_four_port_mutations["payload_sha256"]
+        )
+
+        non_four_report = temporary / "non_four_anchors.json"
+        records.append(run_command(
+            project, "non_four_anchor_independent_replay",
+            [python, "anchor_universe/verify_non_four_anchor_universe.py",
+             "--report", str(non_four_report)],
+            "K3P_INDEPENDENT_NON_FOUR_ANCHOR_UNIVERSE_PASS", 3_600,
+        ))
+        fresh_non_four = json.loads(non_four_report.read_text())
+        verify_payload(fresh_non_four, "fresh independent non-four anchors",
+                       ("operational",))
+        stored_non_four = load(
+            project, "anchor_universe/INDEPENDENT_NON_FOUR_VERIFICATION.json"
+        )
+        require(fresh_non_four["payload_sha256"] == stored_non_four["payload_sha256"],
+                "fresh/stored independent non-four anchor payload")
+        records[-1]["fresh_output_payload_sha256"] = fresh_non_four["payload_sha256"]
+
+        reconciliation_report = temporary / "marginalized_theta_reconciliation.json"
+        records.append(run_command(
+            project, "marginalized_theta_one_port_reconciliation",
+            [python,
+             "anchor_universe/verify_marginalized_theta_one_port_reconciliation.py",
+             "--output", str(reconciliation_report)],
+            "MARGINALIZED_THETA_ONE_PORT_RECONCILIATION_PASS", 3_600,
+        ))
+        fresh_reconciliation = json.loads(reconciliation_report.read_text())
+        verify_payload(fresh_reconciliation,
+                       "fresh marginalized theta one-port reconciliation")
+        stored_reconciliation = load(
+            project, "anchor_universe/MARGINALIZED_THETA_ONE_PORT_RECONCILIATION.json"
+        )
+        require(fresh_reconciliation["payload_sha256"] ==
+                stored_reconciliation["payload_sha256"],
+                "fresh/stored marginalized theta reconciliation payload")
+        records[-1]["fresh_output_payload_sha256"] = (
+            fresh_reconciliation["payload_sha256"]
+        )
+
+        crosswalk_report = temporary / "complete_anchor_crosswalk.json"
+        records.append(run_command(
+            project, "complete_anchor_universe_crosswalk",
+            [python, "anchor_universe/verify_complete_anchor_crosswalk.py",
+             "--verifier", str(non_four_report),
+             "--root-movement-reconciliation", str(reconciliation_report),
+             "--output", str(crosswalk_report)],
+            "K3P_COMPLETE_ANCHOR_UNIVERSE_CROSSWALK_PASS", 3_600,
+        ))
+        fresh_crosswalk = json.loads(crosswalk_report.read_text())
+        verify_payload(fresh_crosswalk, "fresh complete anchor crosswalk",
+                       ("operational",))
+        stored_crosswalk = load(
+            project, "anchor_universe/COMPLETE_ANCHOR_UNIVERSE_CROSSWALK.json"
+        )
+        require(fresh_crosswalk["payload_sha256"] == stored_crosswalk["payload_sha256"],
+                "fresh/stored complete anchor crosswalk payload")
+        records[-1]["fresh_output_payload_sha256"] = fresh_crosswalk["payload_sha256"]
+
+        non_four_mutations = temporary / "non_four_anchor_mutations.json"
+        records.append(run_command(
+            project, "non_four_anchor_mutations",
+            [python, "anchor_universe/test_non_four_anchor_mutations.py",
+             "--output", str(non_four_mutations)],
+            "K3P_NON_FOUR_ANCHOR_MUTATIONS_PASS", 3_600,
+        ))
+        fresh_non_four_mutations = json.loads(non_four_mutations.read_text())
+        verify_payload(fresh_non_four_mutations,
+                       "fresh non-four anchor mutations", ("operational",))
+        stored_non_four_mutations = load(
+            project, "anchor_universe/NON_FOUR_ANCHOR_MUTATION_REPORT.json"
+        )
+        require(fresh_non_four_mutations["payload_sha256"] ==
+                stored_non_four_mutations["payload_sha256"],
+                "fresh/stored non-four anchor mutation payload")
+        records[-1]["fresh_output_payload_sha256"] = (
+            fresh_non_four_mutations["payload_sha256"]
         )
 
         probe_report = temporary / "probes.json"
@@ -1452,12 +2028,20 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--report", type=Path, default=DEFAULT_REPORT)
     parser.add_argument("--artifact-only", action="store_true")
     parser.add_argument("--no-write-report", action="store_true")
+    parser.add_argument("--mutation-driver-bootstrap", action="store_true",
+                        help=argparse.SUPPRESS)
     args = parser.parse_args(argv)
     project = args.project_root.resolve()
     started = time.monotonic()
     try:
+        require(not args.mutation_driver_bootstrap or
+                (args.artifact_only and args.no_write_report),
+                "mutation bootstrap is restricted to no-write artifact checks")
         fresh = [] if args.artifact_only else run_fresh_replays(project)
-        core = validate_artifacts(project)
+        core = validate_artifacts(
+            project,
+            validate_integrated_mutation_report=not args.mutation_driver_bootstrap,
+        )
         report = {
             "schema": "k3p-same-integrated-classification-gate-v2",
             "status": "CERTIFIED_K3P_SAME",

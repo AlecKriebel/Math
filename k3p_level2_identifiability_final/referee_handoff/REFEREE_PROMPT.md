@@ -60,6 +60,23 @@ Proceed as follows.
    transport, quartet, tree--sunlet deck, reverse marginal, and triangle
    choice across all 574,535 rows.
 
+   Give special attention to the two formerly external premises.  For cut
+   recovery, determine whether the balanced-word and reduced-palette programs
+   really establish the stated zero-survivor compression and whether the
+   displayed-tree boundary specialization proves a nonzero K3P flattening
+   minor without importing a JC pointwise cut theorem.  For the probe starting
+   universe, determine whether the graph-only producer and no-import verifier
+   exhaust the 133 non-four rows.  For the separate four-port route, require an
+   active reconstruction of all 144 raw equality parents, all 1,260 possible
+   first-restoration requests, and all 96 second-restoration requests, with
+   zero unmatched obligations; treat the 43 contract rows only as a designated
+   serialization of 26 direct seeds and 17 restored descendants.  Also check
+   whether the 424 physical descendants of the 176 marginalized-incoming theta
+   presentations are genuinely reconciled with existing one-port rows rather
+   than silently discarded.  Treat the frozen 176-row contract only as a
+   regression/serialization target and test whether any active derivation
+   improperly reads it as an enumeration premise.
+
 5. Verify package integrity, create the documented isolated environment, and
    run the fresh integrated mathematical replay and all active mathematical
    mutation suites.  Then run the complete portable mathematical
@@ -85,6 +102,13 @@ Proceed as follows.
      argument, polynomial separators, quotienting, and directional witnesses;
    - restoration/probe census consistency, representative transported rows,
      and coherent omission/reclassification mutations;
+   - the 808,642-word noncut reduction, the 379,742-presentation independent
+     palette replay, the displayed-tree 5-by-5 minor, the independently derived
+     133-row non-four anchor universe, the complete graph-only treatment of
+     all 144 raw four-port equality parents and all 1,356 fixed-full descendant
+     requests (26 direct generators, 1,260 first requests, 96 second requests,
+     and zero unmatched requests), and the resulting 176-row designated
+     serialization, including the 424-path root-movement reconciliation;
    - the Krawczyk self-inclusion, uniqueness scope, interval rank bounds,
      physical margins, and the six-dimensional cherry inverse.
 

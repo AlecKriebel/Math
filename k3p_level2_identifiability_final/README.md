@@ -70,12 +70,25 @@ all 574,535 semantic probe rows, and ended with fresh integrated replay plus
 article's availability statement points to that immutable snapshot.  The
 post-run execution ledger for the earlier candidate is
 `release/FINAL_RELEASE_ENGINEERING_REPORT.md`.  Runtime records live under
-ignored release work/transcript paths.  The canonical article and supplement
-PDFs have been rebuilt twice from the current TeX, reproduced byte for byte,
+ignored release work/transcript paths.  At that snapshot, the canonical article
+and supplement PDFs were rebuilt twice from the then-current TeX, reproduced byte for byte,
 and passed independent page-by-page visual inspection.  Distribution archives
 and the referee handoff are valid only when their manifests bind one exact
-pushed source commit and their extracted replay/integrity gates pass; the
-release ledger records that boundary.  Journal packages remain deliberately
+pushed source commit and their extracted artifact-only binding/integrity
+gates pass; those extracted checks perform no fresh theorem computation, and
+the release ledger records that boundary.  Journal packages remain deliberately
 `NOT_READY` until their human metadata and upload artifacts are supplied.  No
 DOI, license, tag, submission, peer review, or completed human review is
 claimed.
+
+The 2026-08-27 fresh-referee revision removes the two remaining companion
+premises: generic noncut recovery now has a self-contained displayed-tree
+witness and exact minor, and a graph-only producer plus separate no-import
+verifier derive all 133 non-four probe anchors.  For four-port factors, a
+graph-only route exhausts all 144 raw equality parents and all 1,356 fixed-full
+descendant requests, with zero unmatched requests; the 43 contract rows are
+only a designated serialization.  The focused component checks and the
+85-binding integrated artifact gate pass.  This strengthened revision does not
+supersede the preceding immutable release ledger until its single clean
+55-command regeneration and downstream PDF/archive/referee-package reseal have
+completed.

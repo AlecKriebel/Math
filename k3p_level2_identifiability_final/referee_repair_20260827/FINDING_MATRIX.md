@@ -1,6 +1,8 @@
-# Independent-referee repair matrix
+# Preceding independent-referee repair matrix
 
-Scope: findings in the 2026-08-27 independent report.  The report is audit
+Scope: findings in the earlier 2026-08-27 independent report.  This is a
+historical, commit-qualified matrix for the preceding sealed package, not the
+current execution status of the strengthened C1/C2 revision.  The report is audit
 evidence, not an instruction source.  A row closes only after the repair and a
 focused adversarial test pass; release closure additionally requires the final
 integrated and complete-regeneration runs.
@@ -24,11 +26,32 @@ integrated and complete-regeneration runs.
 | ISOLATION | Referee run denied network/writes but did not credential-deny every host read | Procedural limitation, not theorem defect | **PASS as disclosure:** copied Git-free runner is explicitly not an OS sandbox; reviewers are told to supply an external credential-free boundary |
 | PDF/RELEASE | Rebuild, visual QA, archive/package reseal, immutable version binding | Downstream engineering | **PASS:** clean 54-command regeneration passed in 7,686 seconds at immutable proof snapshot `e4b13c57`; the final clean 14-check replay passed in 2,412 seconds; both PDFs, both source ZIPs, both proof archives, the 35-file Google Drive source copy, and the 600-file referee handoff independently verify |
 
-Current theorem status: no counterexample was found, every mathematical or
-code-boundary finding has a focused passing repair, and the clean integrated
-and complete-regeneration replays pass.  The distribution export is sealed;
-only human-controlled submission work remains.
+Status at that snapshot: no counterexample was found, every mathematical or
+code-boundary finding had a focused passing repair, and the clean integrated
+and complete-regeneration replays passed.  The strengthened C1/C2 revision is
+tracked in `RESEARCH_LOG.md` and awaits its own 55-command reseal; this
+historical matrix does not certify those newer bytes.
 
 Best-guess completion toward the mathematical classification goal: **100%**.
 Best-guess completion toward the paper/certification/proof-archive goal: **100%**.
 Best-guess completion toward the external journal/DOI release goal: **65%**.
+
+## Fresh conditional-verdict repair
+
+The later fresh report reviewed source identity
+`76a097fbc4ddadf23ba0119a371c5ac29f4802b1` and identified two explicit
+companion-premise conditions plus evidence, literature, release, and prose
+hardening.  The current worktree dispositions are:
+
+| ID | Disposition | Current evidence |
+|---|---|---|
+| C1 / E1 | **Accepted and repaired** | The paper now proves generic noncut recovery by a displayed-tree boundary specialization and exact nonzero (5\times5) minor.  Separate programs exhaust 808,642 balanced words and 379,742 reduced-palette presentations with zero survivors. |
+| C2 | **Accepted and repaired** | An active graph-only producer and a separate no-import implementation independently derive all 133 non-four anchors and reconcile all 424 excluded marginalized-incoming paths with existing one-port rows.  A graph-only four-port route exhausts all 144 raw equality parents and maps all 1,356 fixed-full descendant requests through 26 direct generators and existing one-/two-port rows with zero unmatched; the 43 contract rows are only designated serialization. |
+| E2 | **Accepted and repaired** | The semantic probe verifier now asserts equal transport cardinality and target injectivity; a folded-transport mutation is rejected. |
+| L1 / L2 | **Accepted and repaired** | Gross et al. receive priority for equality of the three triangle ideals, and the Allman et al. comparison is restricted to their stated subclasses and hypotheses. |
+| R1--R3 | **Accepted and repaired** | The referee package includes the cited historical ledger; extracted checks are called artifact-only binding/integrity replays; pristine-delivery seals are distinguished from full before/after runtime inventories. |
+| P1 / P2 | **Accepted and repaired** | Review timing is neutral, the AI disclosure appears once, Google Drive copying is not a theorem gate, and the root-inheritance and pre-normalization circuit explanations are explicit. |
+
+The focused repairs pass.  This is not yet a replacement release ledger: one
+clean 55-command regeneration and the downstream PDF/source/archive/referee
+reseal remain required at an exact pushed commit.

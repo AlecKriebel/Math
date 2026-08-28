@@ -86,6 +86,7 @@ def handoff_inputs() -> list[Path]:
     paths.extend([
         PROJECT / "output/pdf/K3P_Level2_Identifiability_Article.pdf",
         PROJECT / "output/pdf/K3P_Level2_Identifiability_Reader_Supplement.pdf",
+        PROJECT / "release/FINAL_RELEASE_ENGINEERING_REPORT.md",
     ])
     paths.extend(tracked_work_logs())
     return paths
@@ -113,7 +114,7 @@ def tracked_work_logs() -> list[Path]:
                 ("invalid work-log path", relative))
         paths.append(path)
     paths = sorted(set(paths))
-    require(len(paths) == 19, ("tracked WORK_LOG count", len(paths)))
+    require(len(paths) == 20, ("tracked WORK_LOG count", len(paths)))
     return paths
 
 
@@ -139,6 +140,15 @@ def copy_payload(candidate: Path, archive: Path, archive_record: dict) -> dict:
         destination.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(source, destination)
         added_logs += 1
+
+    release_ledger = PROJECT / "release/FINAL_RELEASE_ENGINEERING_REPORT.md"
+    release_ledger_destination = proof / "release/FINAL_RELEASE_ENGINEERING_REPORT.md"
+    if release_ledger_destination.exists():
+        require(sha256_file(release_ledger_destination) == sha256_file(release_ledger),
+                "archive release-ledger mismatch")
+    else:
+        release_ledger_destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(release_ledger, release_ledger_destination)
 
     paper = candidate / "paper"
     paper.mkdir(parents=True)
@@ -167,6 +177,7 @@ def copy_payload(candidate: Path, archive: Path, archive_record: dict) -> dict:
     return {
         "work_logs_present": len(logs),
         "work_logs_added_to_archive_core": added_logs,
+        "final_release_ledger_present": True,
         "pdfs_copied": len(pdf_names),
     }
 

@@ -135,12 +135,14 @@ def verify_mutation_summaries(project: Path) -> dict:
          "rejected_count", "survived_count"),
         ("global_infrastructure/MUTATION_CERTIFICATE.json", None, 19,
          "rejected", "survived"),
-        ("probes/K3P_PROBE_MUTATION_CERTIFICATE.json", "mutations_attempted", 17,
+        ("anchor_universe/NON_FOUR_ANCHOR_MUTATION_REPORT.json", None, 16,
+         None, None),
+        ("probes/K3P_PROBE_MUTATION_CERTIFICATE.json", "mutations_attempted", 18,
          "mutations_rejected", None),
         ("restoration/K3P_RESTORATION_MUTATION_CERTIFICATE.json", "mutation_count", 20,
          "rejected", "accepted"),
         ("reproducibility/K3P_SAME_CLASSIFICATION_MUTATION_REPORT.json",
-         "mutation_count", 24, "rejected", "survived"),
+         "mutation_count", 27, "rejected", "survived"),
         ("reproducibility/RELEASE_ENGINEERING_MUTATION_REPORT.json",
          "mutation_count", 32, "rejected", "survived"),
     ]
@@ -180,6 +182,12 @@ def verify_mutation_summaries(project: Path) -> dict:
             require(actual == expected and value.get("rejected") == expected and
                     value.get("survived") == 0,
                     ("global mutation census", actual))
+        elif relative.endswith("NON_FOUR_ANCHOR_MUTATION_REPORT.json"):
+            counts = value.get("counts", {})
+            require(value.get("status") == "PASS" and
+                    counts.get("mutations") == counts.get("rejected") == expected and
+                    counts.get("accepted") == 0,
+                    ("anchor-universe mutation census", counts))
         else:
             require(value.get("status") == "PASS", ("mutation summary status", relative))
             actual = value.get(count_key)

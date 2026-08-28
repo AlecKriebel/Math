@@ -31,8 +31,8 @@ section. It does not supply target regularity or a target-open image.
 For any labelled split `R` that is a target bridge split, every target 5 by 5
 flattening minor for `R` vanishes identically. After composition with `σ`, all
 corresponding source pullbacks vanish on `U`. If `R` were a source noncut, the
-isotropic JC slice of the K3P source model and the replayed JC cut theorem
-would make at least one pullback a nonzero source polynomial. A nonzero real
+displayed-tree boundary specialization and explicit quartet minor in the
+article make at least one pullback a nonzero source polynomial. A nonzero real
 polynomial cannot vanish on `U`. Therefore
 
 ```text

@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Verify the outer referee package and the canonical proof-core manifest."""
+"""Verify the pristine delivered payload and canonical proof-core manifest.
+
+Reviewer-created ``.venv`` and ``review_runs`` directories are deliberately
+outside this seal.  After execution, use the runner's complete before/after
+inventory—not this check alone—to establish workspace drift.
+"""
 
 from __future__ import annotations
 

@@ -6,6 +6,19 @@ K2P algebra is reference-only.  Promotion is limited to independently
 replayed graph/restoration/parentage/transport facts and requires a K3P
 three-sector rebind.
 
+The active K3P anchor-universe gate now derives the 133 non-four seed rows
+without reading companions 002--005.  For four-port factors, the frozen
+contract merely serializes 43 designated rows.  The active graph-only route
+exhausts all 144 raw equality parents, identifies 26 direct generators, and
+maps all 1,260 first-restoration and 96 second-restoration requests into the
+existing one- and two-port ledgers, with zero unmatched requests.  The frozen
+theta and cycle files expand opaque
+legacy locators only after the active set is fixed.  The active root-movement
+certificate also reconciles all 424 physical descendants of the 176
+marginalized-incoming presentations with existing one-port rows.  Thus these
+files remain provenance and downstream serialization inputs, but their
+historical non-four exhaustiveness assertion is no longer a theorem premise.
+
 | ID | Project path | Bytes | SHA-256 | Role | Activation boundary | Status |
 |---|---|---:|---|---|---|---|
 | companion-001 | `input_frozen/model_independent_topology_package/anchor_inputs/corrected_restoration_forest.json` | 32306445 | `43bd2be5e7626a954fc4fa4cf45e8d0e6483c947ddc9cba80f2b1a13351bc3a8` | frozen restoration/probe anchor or parentage input | model-independent graph evidence; every algebraic edge must be rebound to K3P | frozen_companion_dependency_pending_k3p_rebind |

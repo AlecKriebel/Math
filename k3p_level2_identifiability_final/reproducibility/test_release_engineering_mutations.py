@@ -755,13 +755,14 @@ def regeneration_plan_control() -> dict:
         "cut_global_transfer_release_optimized", "sharpness_krawczyk_producer",
         "sharpness_topology_alln_producer", "probe_hour_scale_producer",
         "probe_full_semantic_replay", "four_port_full_universe_producer",
+        "non_four_anchor_universe_producer",
         "four_port_full_universe_structure_compare",
         "four_port_full_universe_mutations", "restoration_report_portability",
         "clean_room_hardened_adversarial",
         "tree_sunlet_literal_v2_build", "tree_sunlet_literal_v2_verify",
         "tree_sunlet_literal_v2_mutations",
     }
-    require(len(names) == len(set(names)) == 54 and required.issubset(names),
+    require(len(names) == len(set(names)) == 55 and required.issubset(names),
             ("regeneration plan coverage", sorted(required - set(names))))
     command_map = {command.name: command.argv for command in commands}
     require("--fresh" in command_map["cut_single_minor_search"],
@@ -784,6 +785,7 @@ def regeneration_plan_control() -> dict:
         "tree_sunlet_literal_v2_verify",
         "tree_sunlet_literal_v2_mutations",
         "four_port_full_universe_producer",
+        "non_four_anchor_universe_producer",
         "restoration_full_producer",
         "restoration_independent_replay",
         "restoration_mutations",

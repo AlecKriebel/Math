@@ -97,7 +97,7 @@ def run_gate(root: Path, optimized: bool = False) -> subprocess.CompletedProcess
         command.append("-O")
     command.extend([
         str(VERIFIER), "--project-root", str(root), "--artifact-only",
-        "--no-write-report",
+        "--no-write-report", "--mutation-driver-bootstrap",
     ])
     environment = dict(os.environ)
     environment["PYTHONDONTWRITEBYTECODE"] = "1"
@@ -282,6 +282,35 @@ def main() -> int:
             ("clean artifact gate", clean.stdout[-3000:]))
 
     cases = [
+        case(
+            "omit_balanced_noncut_word",
+            "balanced noncut-word reduction evidence",
+            lambda root: mutate_json(
+                root,
+                "cut_recovery/strong_crossbridge/palette_independent/"
+                "BALANCED_WORD_REDUCTION_CERTIFICATE.json",
+                lambda x: x["totals"].__setitem__("balanced_total", 808_641),
+            ),
+        ),
+        case(
+            "omit_non_four_anchor_in_complete_crosswalk",
+            "complete 176-anchor crosswalk census",
+            lambda root: mutate_json(
+                root, "anchor_universe/COMPLETE_ANCHOR_UNIVERSE_CROSSWALK.json",
+                lambda x: x["counts"].__setitem__("complete", 175),
+                True, ("operational",),
+            ),
+        ),
+        case(
+            "admit_unmatched_marginalized_incoming_path",
+            "marginalized theta reconciliation census",
+            lambda root: mutate_json(
+                root,
+                "anchor_universe/MARGINALIZED_THETA_ONE_PORT_RECONCILIATION.json",
+                lambda x: x["reconciliation_census"].__setitem__("unmatched", 1),
+                True,
+            ),
+        ),
         case(
             "substitute_universal_pointwise_cut_rank_iff",
             "claim-lock cut boundary",

@@ -1,0 +1,435 @@
+{
+  "bindings": {
+    "artifact_sha256": "050037e966c4de88305f86165262d4e5d454884a9f03f62926ef1793c171238c",
+    "crosswalk_sha256": "443067211fdba870e0ec4209fcfa9d0f48ef990ef4ecdafa65744bfea487ce12",
+    "four_raw_ledger_sha256": "8e5c3f4bbd03640a5a8da8c1be58ba0ecf525bdffd57efcc10e519871c732438",
+    "four_summary_sha256": "b07f57d1fc4e5ebd0b4bce2261931fa64399c791f539e02f46eff1146dcb76f4",
+    "four_verification_sha256": "543c38d9e74e4c9ee9f20e1ba2bd2de80e0476ddf0b544d7c7807025b9ed6fb8",
+    "one_port_ledger_sha256": "1091d7f1a0c78408d0c10dfab31b0d2a5ae2c5447543c5bdb99d2abcb883bf2b",
+    "one_port_manifest_sha256": "d332e3b89b84e066c6eab15c123ebc43c307798ce21bc7e43b2c3a3bb547c48b",
+    "two_port_ledger_sha256": "36c2b0572de34b91f03ec0c6c9f67d26bdd292ba3896d935c96492a46168bce8",
+    "two_port_manifest_sha256": "be8f8cb43eafee70d4ddc29b69dd26bc33e0e598b7a2255f3fd30a7873a470b3",
+    "two_port_parent_inventory_sha256": "673112e949e08dce0bdbd690be647dd97d0899c2bb12121b4a16ed7a62dba3f8",
+    "verifier_sha256": "3ad4d91673e8b3efe88a816de87d4cadaeb5b774c8f037cbd5daf1f81053639f"
+  },
+  "cases": [
+    {
+      "command": [
+        "{python}",
+        "-B",
+        "anchor_universe/verify_non_four_anchor_universe.py",
+        "--artifact",
+        "anchor_universe/artifacts/NON_FOUR_ANCHOR_UNIVERSE.json",
+        "--report",
+        "{temporary_report}"
+      ],
+      "expected": "accept",
+      "four_port_crosswalk_control": {
+        "command": [
+          "{python}",
+          "-B",
+          "anchor_universe/verify_complete_anchor_crosswalk.py",
+          "--four-raw-ledger",
+          "four_port_atlas/full_universe_replay/artifacts/full_directional_ledger.jsonl.gz",
+          "--output",
+          "{temporary_crosswalk_report}"
+        ],
+        "returncode": 0,
+        "stdout_sha256": "2bb4cbe2bea0ecf79c8b6bf9ac53a7217084925d5d45d05d4aa3cfe3481c3ffa"
+      },
+      "name": "clean_control",
+      "observed": "accept",
+      "returncode": 0,
+      "stdout_sha256": "99c5368fe4bb1e4db785fe911f1e3904aa9a14cf7cca7b7eff371185cff99eea"
+    },
+    {
+      "command": [
+        "{python}",
+        "-B",
+        "anchor_universe/verify_non_four_anchor_universe.py",
+        "--artifact",
+        "{mutation_00}",
+        "--report",
+        "{temporary_report}"
+      ],
+      "expected": "reject",
+      "folded_four_port_raw_equality_omission": {
+        "command": [
+          "{python}",
+          "-B",
+          "anchor_universe/verify_complete_anchor_crosswalk.py",
+          "--four-raw-ledger",
+          "{four_raw_equality_omitted}",
+          "--output",
+          "{temporary_crosswalk_report}"
+        ],
+        "expected": "reject",
+        "observed": "reject",
+        "omitted_raw_id": 137124,
+        "returncode": 1,
+        "stdout_sha256": "3730938e93b5fa36b9e1dc8f8b5e108d4130ad1c1e153357bf59b86ad6ba218a",
+        "stdout_tail": "\n    four_descendant_completeness = verify_four_port_descendant_completeness(\n        contract,\n    ...<4 lines>...\n        two_port_ledger_path,\n    )\n  File \"/Users/alec/Documents/Math/k3p_level2_identifiability_final/anchor_universe/verify_complete_anchor_crosswalk.py\", line 519, in verify_four_port_descendant_completeness\n    require(\n    ~~~~~~~^\n        four_summary.get(\"artifacts\", {})\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ...<3 lines>...\n        \"FOUR_RAW_LEDGER_BINDING\",\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/Users/alec/Documents/Math/k3p_level2_identifiability_final/anchor_universe/verify_complete_anchor_crosswalk.py\", line 80, in require\n    raise CrosswalkFailure(code if detail is None else f\"{code}: {detail}\")\nCrosswalkFailure: FOUR_RAW_LEDGER_BINDING\n"
+      },
+      "name": "omit_tree_seed",
+      "observed": "reject",
+      "returncode": 1,
+      "stdout_sha256": "683344b8228224820e817cda62586991730afbf80a905a48f3bb4d0c67cbec8c",
+      "stdout_tail": "K3P_INDEPENDENT_NON_FOUR_ANCHOR_UNIVERSE_FAIL 133-row semantic-key set\n"
+    },
+    {
+      "command": [
+        "{python}",
+        "-B",
+        "anchor_universe/verify_non_four_anchor_universe.py",
+        "--artifact",
+        "{mutation_01}",
+        "--report",
+        "{temporary_report}"
+      ],
+      "expected": "reject",
+      "name": "omit_cycle_restored_seed",
+      "observed": "reject",
+      "returncode": 1,
+      "stdout_sha256": "683344b8228224820e817cda62586991730afbf80a905a48f3bb4d0c67cbec8c",
+      "stdout_tail": "K3P_INDEPENDENT_NON_FOUR_ANCHOR_UNIVERSE_FAIL 133-row semantic-key set\n"
+    },
+    {
+      "command": [
+        "{python}",
+        "-B",
+        "anchor_universe/verify_non_four_anchor_universe.py",
+        "--artifact",
+        "{mutation_02}",
+        "--report",
+        "{temporary_report}"
+      ],
+      "expected": "reject",
+      "name": "omit_theta2_k5_seed",
+      "observed": "reject",
+      "returncode": 1,
+      "stdout_sha256": "683344b8228224820e817cda62586991730afbf80a905a48f3bb4d0c67cbec8c",
+      "stdout_tail": "K3P_INDEPENDENT_NON_FOUR_ANCHOR_UNIVERSE_FAIL 133-row semantic-key set\n"
+    },
+    {
+      "command": [
+        "{python}",
+        "-B",
+        "anchor_universe/verify_non_four_anchor_universe.py",
+        "--artifact",
+        "{mutation_03}",
+        "--report",
+        "{temporary_report}"
+      ],
+      "expected": "reject",
+      "name": "omit_theta2_k6_seed",
+      "observed": "reject",
+      "returncode": 1,
+      "stdout_sha256": "683344b8228224820e817cda62586991730afbf80a905a48f3bb4d0c67cbec8c",
+      "stdout_tail": "K3P_INDEPENDENT_NON_FOUR_ANCHOR_UNIVERSE_FAIL 133-row semantic-key set\n"
+    },
+    {
+      "command": [
+        "{python}",
+        "-B",
+        "anchor_universe/verify_non_four_anchor_universe.py",
+        "--artifact",
+        "{mutation_04}",
+        "--report",
+        "{temporary_report}"
+      ],
+      "expected": "reject",
+      "name": "cycle_triangle_relabelled_isomorphic",
+      "observed": "reject",
+      "returncode": 1,
+      "stdout_sha256": "683344b8228224820e817cda62586991730afbf80a905a48f3bb4d0c67cbec8c",
+      "stdout_tail": "K3P_INDEPENDENT_NON_FOUR_ANCHOR_UNIVERSE_FAIL 133-row semantic-key set\n"
+    },
+    {
+      "command": [
+        "{python}",
+        "-B",
+        "anchor_universe/verify_non_four_anchor_universe.py",
+        "--artifact",
+        "{mutation_05}",
+        "--report",
+        "{temporary_report}"
+      ],
+      "expected": "reject",
+      "name": "theta2_source_graph_hash_replaced",
+      "observed": "reject",
+      "returncode": 1,
+      "stdout_sha256": "683344b8228224820e817cda62586991730afbf80a905a48f3bb4d0c67cbec8c",
+      "stdout_tail": "K3P_INDEPENDENT_NON_FOUR_ANCHOR_UNIVERSE_FAIL 133-row semantic-key set\n"
+    },
+    {
+      "command": [
+        "{python}",
+        "-B",
+        "anchor_universe/verify_non_four_anchor_universe.py",
+        "--artifact",
+        "{mutation_06}",
+        "--report",
+        "{temporary_report}"
+      ],
+      "expected": "reject",
+      "name": "theta2_k7_restoration_path_folded",
+      "observed": "reject",
+      "returncode": 1,
+      "stdout_sha256": "683344b8228224820e817cda62586991730afbf80a905a48f3bb4d0c67cbec8c",
+      "stdout_tail": "K3P_INDEPENDENT_NON_FOUR_ANCHOR_UNIVERSE_FAIL 133-row semantic-key set\n"
+    },
+    {
+      "command": [
+        "{python}",
+        "-B",
+        "anchor_universe/verify_non_four_anchor_universe.py",
+        "--artifact",
+        "{mutation_07}",
+        "--report",
+        "{temporary_report}"
+      ],
+      "expected": "reject",
+      "name": "theta2_restored_role_forged",
+      "observed": "reject",
+      "returncode": 1,
+      "stdout_sha256": "683344b8228224820e817cda62586991730afbf80a905a48f3bb4d0c67cbec8c",
+      "stdout_tail": "K3P_INDEPENDENT_NON_FOUR_ANCHOR_UNIVERSE_FAIL 133-row semantic-key set\n"
+    },
+    {
+      "command": [
+        "{python}",
+        "-B",
+        "anchor_universe/verify_non_four_anchor_universe.py",
+        "--artifact",
+        "{mutation_08}",
+        "--report",
+        "{temporary_report}"
+      ],
+      "expected": "reject",
+      "name": "bogus_anchor_appended",
+      "observed": "reject",
+      "returncode": 1,
+      "stdout_sha256": "683344b8228224820e817cda62586991730afbf80a905a48f3bb4d0c67cbec8c",
+      "stdout_tail": "K3P_INDEPENDENT_NON_FOUR_ANCHOR_UNIVERSE_FAIL 133-row semantic-key set\n"
+    },
+    {
+      "command": [
+        "{python}",
+        "-B",
+        "anchor_universe/verify_non_four_anchor_universe.py",
+        "--artifact",
+        "{mutation_09}",
+        "--report",
+        "{temporary_report}"
+      ],
+      "expected": "reject",
+      "name": "incoming_boundary_partition_reclassified",
+      "observed": "reject",
+      "returncode": 1,
+      "stdout_sha256": "cdd1fa4b9b9926a2912402e15781546c682d82e0ac955c2840af03545092ffeb",
+      "stdout_tail": "K3P_INDEPENDENT_NON_FOUR_ANCHOR_UNIVERSE_FAIL theta2 incoming boundary mismatch\n"
+    },
+    {
+      "command": [
+        "{python}",
+        "-B",
+        "anchor_universe/verify_non_four_anchor_universe.py",
+        "--artifact",
+        "{mutation_10}",
+        "--report",
+        "{temporary_report}"
+      ],
+      "expected": "reject",
+      "name": "theta2_base_stage_omitted",
+      "observed": "reject",
+      "returncode": 1,
+      "stdout_sha256": "1211fa220ddf8f7d8ac2b7d0b96ddeadadcb995e2d95563555c01a2a5471ee48",
+      "stdout_tail": "K3P_INDEPENDENT_NON_FOUR_ANCHOR_UNIVERSE_FAIL stage count mismatch:{'cycle_base_presentations': 13440, 'cycle_restoration_presentations': 536364, 'theta2_base_presentations': 2946239, 'theta2_seven_port_children': 288, 'theta2_six_port_children': 576}\n"
+    },
+    {
+      "coherent_rebinding": {
+        "four_summary_raw_ledger_sha256": "f95825a46fbe3cd6f86ff861efca53e67676ff9240a3256a038ae8781b70b583",
+        "four_verification_summary_sha256": "f15cf21d93bba8d08a0a67f82e99627150fe51fc9e3c4e5e3f99d7c909188954"
+      },
+      "command": [
+        "{python}",
+        "-B",
+        "anchor_universe/test_non_four_anchor_mutations.py",
+        "--crosswalk-binding-runner",
+        "--four-summary",
+        "{coherently_rebound_four_summary}",
+        "--four-verification",
+        "{coherently_rebound_four_verification}",
+        "--one-port-manifest",
+        "{coherently_rebound_one_port_manifest}",
+        "--two-port-manifest",
+        "{coherently_rebound_two_port_manifest}",
+        "--four-raw-ledger",
+        "{four_raw_equality_omitted}",
+        "--one-port-ledger",
+        "probes/one_port_ledger.jsonl.gz",
+        "--two-port-ledger",
+        "probes/two_port_ledger.jsonl.gz",
+        "--output",
+        "{temporary_crosswalk_report}"
+      ],
+      "expected": "reject",
+      "expected_failure_code": "FOUR_RAW_EQUALITY_COUNT",
+      "name": "four_raw_equality_parent_omitted_after_rebinding",
+      "observed": "reject",
+      "returncode": 1,
+      "stdout_sha256": "5a0e17562cf8d3891d6cf97758339ec84cb1eb99b06c2532cffab50fe5577b01",
+      "stdout_tail": "erify_complete_anchor_crosswalk.py\", line 1483, in main\n    four_descendant_completeness = verify_four_port_descendant_completeness(\n        contract,\n    ...<4 lines>...\n        two_port_ledger_path,\n    )\n  File \"/Users/alec/Documents/Math/k3p_level2_identifiability_final/anchor_universe/verify_complete_anchor_crosswalk.py\", line 617, in verify_four_port_descendant_completeness\n    require(len(raw_equalities) == 144, \"FOUR_RAW_EQUALITY_COUNT\")\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/alec/Documents/Math/k3p_level2_identifiability_final/anchor_universe/verify_complete_anchor_crosswalk.py\", line 80, in require\n    raise CrosswalkFailure(code if detail is None else f\"{code}: {detail}\")\nk3p_mutation_crosswalk.CrosswalkFailure: FOUR_RAW_EQUALITY_COUNT\n"
+    },
+    {
+      "coherent_rebinding": {
+        "manifest_ledger_sha256": "8240d9652bae5ab81e0c6b98c34644cd0042bcaa5ed87ef05d34f9854e84a1ab",
+        "manifest_payload_sha256": "62fc74e4cd2054fb8c14fd3dd7948fbc6c19cb91b7c61e02f0b04cc05d4f64ed",
+        "ordered_hash_root": "923b9d409fd8172ba748ae19cf66371a5bb66cb79a0faea403b03c5a9f8d5952"
+      },
+      "command": [
+        "{python}",
+        "-B",
+        "anchor_universe/test_non_four_anchor_mutations.py",
+        "--crosswalk-binding-runner",
+        "--four-summary",
+        "{coherently_rebound_four_summary}",
+        "--four-verification",
+        "{coherently_rebound_four_verification}",
+        "--one-port-manifest",
+        "{coherently_rebound_one_port_manifest}",
+        "--two-port-manifest",
+        "{coherently_rebound_two_port_manifest}",
+        "--four-raw-ledger",
+        "four_port_atlas/full_universe_replay/artifacts/full_directional_ledger.jsonl.gz",
+        "--one-port-ledger",
+        "{one_port_equality_status_mutated}",
+        "--two-port-ledger",
+        "probes/two_port_ledger.jsonl.gz",
+        "--output",
+        "{temporary_crosswalk_report}"
+      ],
+      "expected": "reject",
+      "expected_failure_code": "FOUR_ONE_PORT_EQUALITY_STATUS",
+      "mutated_key": [
+        "four:raw154873",
+        0,
+        0
+      ],
+      "name": "used_one_port_equality_status_corrupted_after_rebinding",
+      "observed": "reject",
+      "returncode": 1,
+      "stdout_sha256": "c899681fc7b12941a188e4c697e271767514ec4cd6008a0c7a07f784e23e465d",
+      "stdout_tail": " contract,\n    ...<4 lines>...\n        two_port_ledger_path,\n    )\n  File \"/Users/alec/Documents/Math/k3p_level2_identifiability_final/anchor_universe/verify_complete_anchor_crosswalk.py\", line 781, in verify_four_port_descendant_completeness\n    require(\n    ~~~~~~~^\n        ledger_row[\"status\"] == child_relation,\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        \"FOUR_ONE_PORT_EQUALITY_STATUS\",\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n        key,\n        ^^^^\n    )\n    ^\n  File \"/Users/alec/Documents/Math/k3p_level2_identifiability_final/anchor_universe/verify_complete_anchor_crosswalk.py\", line 80, in require\n    raise CrosswalkFailure(code if detail is None else f\"{code}: {detail}\")\nk3p_mutation_crosswalk.CrosswalkFailure: FOUR_ONE_PORT_EQUALITY_STATUS: ('four:raw154873', 0, 0)\n"
+    },
+    {
+      "coherent_rebinding": {
+        "manifest_ledger_sha256": "44110d6155b2583790379704464e4e0c6d69cdf2569a0c48107b18ebce896343",
+        "manifest_payload_sha256": "88538a541ed3834572d4b6104791095ac35ceb05c292d4b480c27762ecbc2c42",
+        "ordered_hash_root": "8fe69225f8dcec418f44a0a21dd9bb9f694cffd542b7d4fcf3eeac6149dd6678"
+      },
+      "command": [
+        "{python}",
+        "-B",
+        "anchor_universe/test_non_four_anchor_mutations.py",
+        "--crosswalk-binding-runner",
+        "--four-summary",
+        "{coherently_rebound_four_summary}",
+        "--four-verification",
+        "{coherently_rebound_four_verification}",
+        "--one-port-manifest",
+        "{coherently_rebound_one_port_manifest}",
+        "--two-port-manifest",
+        "{coherently_rebound_two_port_manifest}",
+        "--four-raw-ledger",
+        "four_port_atlas/full_universe_replay/artifacts/full_directional_ledger.jsonl.gz",
+        "--one-port-ledger",
+        "probes/one_port_ledger.jsonl.gz",
+        "--two-port-ledger",
+        "{two_port_separator_status_mutated}",
+        "--output",
+        "{temporary_crosswalk_report}"
+      ],
+      "expected": "reject",
+      "expected_failure_code": "FOUR_TWO_PORT_NONE_STATUS",
+      "mutated_key": [
+        "P1:four:raw154873:0:0",
+        0,
+        6
+      ],
+      "name": "used_two_port_status_corrupted_after_rebinding",
+      "observed": "reject",
+      "returncode": 1,
+      "stdout_sha256": "46312ba0fd79d802a4135499092392f3e6b64481b8ac1d990cf602f5d1831e29",
+      "stdout_tail": "k.py\", line 1483, in main\n    four_descendant_completeness = verify_four_port_descendant_completeness(\n        contract,\n    ...<4 lines>...\n        two_port_ledger_path,\n    )\n  File \"/Users/alec/Documents/Math/k3p_level2_identifiability_final/anchor_universe/verify_complete_anchor_crosswalk.py\", line 1099, in verify_four_port_descendant_completeness\n    require(\n    ~~~~~~~^\n        ledger_status\n        ^^^^^^^^^^^^^\n    ...<2 lines>...\n        key,\n        ^^^^\n    )\n    ^\n  File \"/Users/alec/Documents/Math/k3p_level2_identifiability_final/anchor_universe/verify_complete_anchor_crosswalk.py\", line 80, in require\n    raise CrosswalkFailure(code if detail is None else f\"{code}: {detail}\")\nk3p_mutation_crosswalk.CrosswalkFailure: FOUR_TWO_PORT_NONE_STATUS: ('P1:four:raw154873:0:0', 0, 6)\n"
+    },
+    {
+      "coherent_rebinding": {
+        "four_summary_raw_ledger_sha256": "d01503054f67a45dd776b7d88ddf474b4ea84bc01795e329f8f9c8a8d57bb911",
+        "four_verification_summary_sha256": "648bb834fd1bd20e1c0bded088e80497c32f722a62853aa5303c5862d9572a8a"
+      },
+      "command": [
+        "{python}",
+        "-B",
+        "anchor_universe/test_non_four_anchor_mutations.py",
+        "--crosswalk-binding-runner",
+        "--four-summary",
+        "{coherently_rebound_four_summary}",
+        "--four-verification",
+        "{coherently_rebound_four_verification}",
+        "--one-port-manifest",
+        "{coherently_rebound_one_port_manifest}",
+        "--two-port-manifest",
+        "{coherently_rebound_two_port_manifest}",
+        "--four-raw-ledger",
+        "{four_extra_terminal_id_mutated}",
+        "--one-port-ledger",
+        "probes/one_port_ledger.jsonl.gz",
+        "--two-port-ledger",
+        "probes/two_port_ledger.jsonl.gz",
+        "--output",
+        "{temporary_crosswalk_report}"
+      ],
+      "expected": "reject",
+      "expected_failure_code": "FOUR_EXTRA_TERMINAL_IDS",
+      "mutated_raw_id": [
+        202225,
+        999999999
+      ],
+      "name": "extra_terminal_descendant_identity_corrupted_after_rebinding",
+      "observed": "reject",
+      "returncode": 1,
+      "stdout_sha256": "231270f0a17b3f4ef90db5c6e162a1d0b0fbeb1b2dcadd170c5b93a424cd5d7d",
+      "stdout_tail": "cendant_completeness(\n        contract,\n    ...<4 lines>...\n        two_port_ledger_path,\n    )\n  File \"/Users/alec/Documents/Math/k3p_level2_identifiability_final/anchor_universe/verify_complete_anchor_crosswalk.py\", line 935, in verify_four_port_descendant_completeness\n    require(\n    ~~~~~~~^\n        {row[\"raw_id\"] for row in extra_terminal_records}\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n    ...<10 lines>...\n        \"FOUR_EXTRA_TERMINAL_IDS\",\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/Users/alec/Documents/Math/k3p_level2_identifiability_final/anchor_universe/verify_complete_anchor_crosswalk.py\", line 80, in require\n    raise CrosswalkFailure(code if detail is None else f\"{code}: {detail}\")\nk3p_mutation_crosswalk.CrosswalkFailure: FOUR_EXTRA_TERMINAL_IDS\n"
+    },
+    {
+      "command": [
+        "{python}",
+        "-O",
+        "-B",
+        "anchor_universe/verify_non_four_anchor_universe.py",
+        "--artifact",
+        "anchor_universe/artifacts/NON_FOUR_ANCHOR_UNIVERSE.json",
+        "--report",
+        "{temporary_report}"
+      ],
+      "expected": "reject",
+      "name": "optimized_mode",
+      "observed": "reject",
+      "returncode": 1,
+      "stdout_sha256": "9d451fb1bb83c986ddd45380b6ea06f0fe015b8b396ec2d40dcb459008d29e9d",
+      "stdout_tail": "K3P_INDEPENDENT_NON_FOUR_ANCHOR_UNIVERSE_FAIL optimized mode forbidden\n"
+    }
+  ],
+  "counts": {
+    "accepted": 0,
+    "clean_controls": 1,
+    "coherently_rebound_four_port_semantic_mutations": 4,
+    "mutations": 16,
+    "preserved_non_four_and_runtime_mutations": 12,
+    "rejected": 16
+  },
+  "payload_sha256": "90344a9dc622e129d8e03a04ac1334796b46663bfab2fdd154ca1fb458e879e3",
+  "schema": "k3p-non-four-anchor-universe-mutations-v2",
+  "status": "PASS"
+}

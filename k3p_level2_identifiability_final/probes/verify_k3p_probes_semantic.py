@@ -455,8 +455,12 @@ def validate_transport_on_graphs(
     source_nodes = {repr(node): node for node in source_mixed}
     target_nodes = {repr(node): node for node in target_mixed}
     vertex_rows = record["vertex_map"]
+    require(len(source_nodes) == len(target_nodes) == len(vertex_rows),
+            f"{context}:vertex cardinality")
     require({row[0] for row in vertex_rows} == set(source_nodes), f"{context}:source vertex coverage")
     require({row[1] for row in vertex_rows} == set(target_nodes), f"{context}:target vertex coverage")
+    require(len({row[1] for row in vertex_rows}) == len(vertex_rows),
+            f"{context}:target vertex injectivity")
     vertex_map = dict(vertex_rows)
     require(len(vertex_map) == len(vertex_rows), f"{context}:vertex function")
     for source_name, target_name in vertex_map.items():
@@ -469,8 +473,12 @@ def validate_transport_on_graphs(
                 for left, right, data in mixed.edges(data=True)}
     source_edges, target_edges = edge_dictionary(source_mixed), edge_dictionary(target_mixed)
     edge_rows = record["mixed_edge_map"]
+    require(len(source_edges) == len(target_edges) == len(edge_rows),
+            f"{context}:edge cardinality")
     require({tuple(row[0]) for row in edge_rows} == set(source_edges), f"{context}:source edge coverage")
     require({tuple(row[1]) for row in edge_rows} == set(target_edges), f"{context}:target edge coverage")
+    require(len({tuple(row[1]) for row in edge_rows}) == len(edge_rows),
+            f"{context}:target edge injectivity")
     edge_map = {tuple(left): tuple(right) for left, right in edge_rows}
     require(len(edge_map) == len(edge_rows), f"{context}:edge function")
     source_triangle = set(map(tuple, record["source_triangle_edges"] or []))

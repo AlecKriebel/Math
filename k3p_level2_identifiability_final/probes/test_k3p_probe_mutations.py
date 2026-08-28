@@ -332,6 +332,21 @@ def mutate_broken_transport(root):
     update_streaming_store(root, "exact_transport_ledger.jsonl.gz", "exact_transports", transform)
 
 
+def mutate_folded_transport(root):
+    """Fold two source vertices onto one target while preserving row syntax."""
+    make_writable(root, "exact_transport_ledger.jsonl.gz")
+    changed = [False]
+    def transform(row, number):
+        del number
+        vertex_map = row["record"]["vertex_map"]
+        if not changed[0] and len(vertex_map) >= 2:
+            vertex_map[0][1] = vertex_map[1][1]
+            changed[0] = True
+        return row
+    update_streaming_store(root, "exact_transport_ledger.jsonl.gz", "exact_transports", transform)
+    require(changed[0], "no transport available to fold")
+
+
 def mutate_omitted_restriction(root):
     make_writable(root, "parent_restriction_ledger.jsonl.gz")
     update_streaming_store(
@@ -381,6 +396,7 @@ def main(argv=None):
         ("reversed_order_class", mutate_reverse_order),
         ("inconsistent_global_triangle", mutate_inconsistent_triangle),
         ("broken_exact_transport", mutate_broken_transport),
+        ("folded_exact_transport", mutate_folded_transport),
         ("omitted_parent_restriction", mutate_omitted_restriction),
         ("altered_tree_zero_circuit_deck", mutate_tree_circuit_deck),
         ("imposed_K2P_sector_equality", mutate_k2p_sector_equality),

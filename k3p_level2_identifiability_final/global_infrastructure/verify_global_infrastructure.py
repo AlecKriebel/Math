@@ -24,7 +24,7 @@ import sys
 Q = Fraction
 NAMES = "0CGT"
 SECTORS = ["C", "G", "T"]
-CUT_TRANSFER_THEOREM_SHA256 = "eccd37323ee7b4c23959fc7905ed6c90f378c51e6b24108fa05058ae3f67de66"
+CUT_TRANSFER_THEOREM_SHA256 = "b5163a9840e7ceaa0bdbe9a5730b6a65109fcedc28ac8e39e1af81083c25c77a"
 CUT_TRANSFER_CLAIM = (
     "For binary standard semi-directed strongly tree-child level-2 networks "
     "under source-relative regular full-dimensional containment on strict D3,+, "
@@ -765,7 +765,7 @@ def verify_global(project: Path, certificate: dict, bridge: dict, marginal: dict
     generic_cut = deps["generic_cut_rank_recovery"]
     require(generic_cut == {
         "true_cut_direction": "every 5x5 flattening minor vanishes pointwise at a graph bridge split",
-        "noncut_direction": "some 5x5 minor is a nonzero model polynomial, certified by the strict isotropic JC slice",
+        "noncut_direction": "some 5x5 minor is a nonzero model polynomial, certified by a displayed-tree boundary specialization and explicit quartet minor",
         "scope": "generic bridge-tree reconstruction only; not a universal arbitrary-network pointwise iff claim",
         "universal_pointwise_K3P_cut_recovery_claimed": False,
     }, "generic cut-rank claim boundary")

@@ -1,6 +1,6 @@
 # Independent referee package: start here
 
-This folder is designed for an independent post-submission review of the
+This folder is designed for an independent review of the
 article and its computer-assisted proof package.  It does not ask for, assume,
 or encode a favorable verdict.  Stored reports, status fields, checksums, and
 prior audits are evidence to inspect, not conclusions to adopt.
@@ -10,10 +10,13 @@ prior audits are evidence to inspect, not conclusions to adopt.
 - `paper/` contains convenient copies of the article and reader supplement.
 - `proof_package/` is an inspectable copy of the canonical full
   reproducibility payload, supplemented by the work logs needed by fresh
-  dependency checks; the package manifest gives the exact rebuilt count.
+  dependency checks and by `release/FINAL_RELEASE_ENGINEERING_REPORT.md`, the
+  historical execution ledger cited from the project README; the package
+  manifest gives the exact rebuilt count.
 - `REFEREE_PROMPT.md` is a neutral review brief.
-- `PACKAGE_MANIFEST.json` and `SHA256SUMS` bind every sealed payload file and
-  the manifest itself.  `SHA256SUMS` cannot hash itself; reviewer-created
+- `PACKAGE_MANIFEST.json` and `SHA256SUMS` provide a sealed-payload,
+  pristine-delivery check by binding every delivered payload file and the
+  manifest itself.  `SHA256SUMS` cannot hash itself; reviewer-created
   top-level `.venv/` and `review_runs/` runtime areas are deliberately outside
   the seal.
 - `referee_tools/` contains a Git-independent integrity checker and copied,
@@ -63,7 +66,7 @@ credential-isolated.
 First read the article, supplement, neutral prompt, active manifest, and
 relevant source code.  Inspect code before executing it.
 
-Confirm that the portable runner reconstructs the expected 53-command active
+Confirm that the portable runner reconstructs the expected 54-command active
 mathematical producer/verifier plan without starting it:
 
 ```sh
@@ -101,10 +104,15 @@ For a combined run in two independent working copies:
 K3P_REFEREE_CONFIRM_REGENERATION=YES ./RUN_REVIEW.sh all
 ```
 
+Because the seal deliberately excludes those runtime areas, a post-run seal
+PASS is not by itself a full workspace-drift check.  The runner therefore
+records a complete before/after byte inventory in addition to repeating the
+sealed-payload check.
+
 Complete top-level command transcripts, timings, output hashes, interpreter
 and platform metadata, dependency versions and module-file hashes, and
 before/after file-drift records are written under `review_runs/`.  Verify mode
-also preserves and hashes the integrated gate's detailed report for its fourteen
+also preserves and hashes the integrated gate's detailed report for its twenty
 nested fresh replays.  Never report a command as executed unless its evidence
 is present.
 

@@ -30,8 +30,8 @@ Cut(Nprime) subset Cut(N).
 
 If a target split is a bridge, every target `5 x 5` cut minor vanishes after
 composition with the physical target section.  A source noncut has a nonzero
-minor polynomial because the isotropic JC slice lies inside K3P and the
-authoritative JC theorem supplies generic noncut recovery.  A nonzero source
+minor polynomial by the displayed-tree boundary specialization and explicit
+quartet minor proved in the article.  A nonzero source
 polynomial cannot vanish on a relatively open regular source germ.  This
 uses no target regularity and proves no reverse inclusion by itself.
 

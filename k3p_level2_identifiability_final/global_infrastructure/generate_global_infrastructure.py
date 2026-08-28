@@ -26,7 +26,7 @@ TOPOLOGY = FROZEN / "model_independent_topology_package"
 SECTORS = ("C", "G", "T")
 CHAR_NAMES = "0CGT"
 CUT_TRANSFER = ROOT / "cut_recovery" / "strong_crossbridge" / "global_transfer"
-CUT_TRANSFER_THEOREM_SHA256 = "eccd37323ee7b4c23959fc7905ed6c90f378c51e6b24108fa05058ae3f67de66"
+CUT_TRANSFER_THEOREM_SHA256 = "b5163a9840e7ceaa0bdbe9a5730b6a65109fcedc28ac8e39e1af81083c25c77a"
 CUT_TRANSFER_CLAIM = (
     "For binary standard semi-directed strongly tree-child level-2 networks "
     "under source-relative regular full-dimensional containment on strict D3,+, "
@@ -984,7 +984,7 @@ def build_global_certificate(bridge: dict, marginal: dict, h14: dict) -> dict:
             "strong_class_containment_cut_equality_interface": cut_binding,
             "generic_cut_rank_recovery": {
                 "true_cut_direction": "every 5x5 flattening minor vanishes pointwise at a graph bridge split",
-                "noncut_direction": "some 5x5 minor is a nonzero model polynomial, certified by the strict isotropic JC slice",
+                "noncut_direction": "some 5x5 minor is a nonzero model polynomial, certified by a displayed-tree boundary specialization and explicit quartet minor",
                 "scope": "generic bridge-tree reconstruction only; not a universal arbitrary-network pointwise iff claim",
                 "universal_pointwise_K3P_cut_recovery_claimed": False,
             },

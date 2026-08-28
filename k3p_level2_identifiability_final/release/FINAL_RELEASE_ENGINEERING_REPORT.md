@@ -1,6 +1,12 @@
 # Final release engineering report
 
-Status: **conditional-PASS minor revision and commit-bound proof-release reseal certified; submission metadata pending**
+Status: **preceding commit-bound proof-release ledger; strengthened C1/C2 revision awaiting its 55-command reseal; submission metadata pending**
+
+This report certifies the immutable snapshots named below.  It does not yet
+certify the later self-contained C1/C2 strengthening in the current worktree.
+That revision must complete one clean 55-command regeneration and a downstream
+PDF/source/archive/referee-package reseal before a new final ledger replaces
+this historical record.
 
 The deterministic quick/full/regeneration orchestration, canonical TAR.GZ and
 ZIP construction, compact verifier packaging, fixed-toolchain PDF source
@@ -256,16 +262,18 @@ SHA-256 values
 and
 `32abe91329b0f561b23279a46899c48d62e0d283f95b918d0f21f72fabb7a269`.
 Both were byte-identical across builds, structurally valid, and passed an
-extracted artifact-only theorem replay.  The source ZIPs reproduced the
+extracted artifact-only binding and integrity replay; that check performs no
+fresh theorem computation.  The source ZIPs reproduced the
 committed PDFs twice byte-for-byte.  Both PDFs also passed independent
 page-by-page visual inspection with all fonts embedded.
 
 The neutral independent-referee handoff sealed 600 payload files and passed
 two independent integrity audits.  It contains no symlink, VCS state, virtual
 environment, review output, or Python cache.  Its portable plan reconstructs
-the documented 53-command mathematical replay.  All 35 intended TeX/Bib files
-were copied to the requested Google Drive paper folder and verified
-byte-for-byte.  A stale similarly named legacy archive was moved to an ignored
+the documented 53-command mathematical replay.  As a separate operational
+handoff, all 35 intended TeX/Bib files were copied to the requested Google
+Drive paper folder and verified byte-for-byte; this copy is not a theorem or
+release-validity gate.  A stale similarly named legacy archive was moved to an ignored
 quarantine so that the distribution directory presents one unambiguous
 canonical full archive.
 

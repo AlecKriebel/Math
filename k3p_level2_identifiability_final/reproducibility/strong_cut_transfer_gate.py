@@ -23,7 +23,7 @@ HERE = Path(__file__).resolve().parent
 DEFAULT_PROJECT = HERE.parent
 TRANSFER_RELATIVE = Path("cut_recovery/strong_crossbridge/global_transfer")
 DEFAULT_REPORT = HERE / "strong_class_cut_transfer_gate_report.json"
-EXPECTED_THEOREM_SHA256 = "eccd37323ee7b4c23959fc7905ed6c90f378c51e6b24108fa05058ae3f67de66"
+EXPECTED_THEOREM_SHA256 = "b5163a9840e7ceaa0bdbe9a5730b6a65109fcedc28ac8e39e1af81083c25c77a"
 
 EXPECTED_CLAIM = (
     "For binary standard semi-directed strongly tree-child level-2 networks "

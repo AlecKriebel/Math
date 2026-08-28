@@ -68,7 +68,8 @@ A\mid A^c\text{ is a bridge split}
 
 at every strict point of every arbitrary multi-active standard strong network
 is **withdrawn and not used**.  What remains valid is pointwise true-cut
-vanishing and generic noncut recovery through the strict isotropic JC slice.
+vanishing and generic noncut recovery through the self-contained
+displayed-tree boundary specialization and explicit quartet minor.
 
 ## Main classification theorem
 
@@ -153,6 +154,34 @@ fourteen locked orbits and two separately quartic-separated rank-24 theta-3
 sink-swap presentations.  No new symmetric move and no proper directed
 containment survives.
 
+## Complete anchor universe
+
+The 133 non-four probe seeds are derived independently of the frozen 176-row
+contract: a graph-only producer and a separate no-import implementation obtain
+one tree, 36 cycle, and 96 theta anchors.  The frozen contract designates 43
+four-port serialization rows, each of which is independently verified against the
+exhaustive 405,216-presentation four-port atlas.  A final crosswalk gives
+exactly 176 rows---143 labelled isomorphisms and 33 ordinary-triangle
+relations.  The contract is a row-for-row regression target for the non-four
+universe and a designated serialization input, not a four-port completeness
+premise.
+
+That serialization is also proved complete as a generating handoff.  Exact
+graph-pair transport maps all 144 raw four-port equality parents to the 26
+direct generators.  All 1,260 first restoration requests match 161 existing
+one-port rows, and all 96 second requests from the 12 equality continuations
+match 64 existing two-port rows.  The eight physical five-port presentations
+outside the 17 restored serialization rows are already four triangle
+one-port descendants, each represented twice.  No descendant request is
+unmatched.
+
+The 176 theta presentations excluded by the selected-incoming parent
+convention have 424 fully physical restoration paths.  Exact restriction and
+root movement maps every path to one of 15 canonical theta seed classes and
+then to one of 66 existing isomorphic one-port rows; all 984 nonempty prefixes
+are checked and no path is unmatched.  No K2P algebra is active in this
+derivation.
+
 ## Sharpness theorem
 
 For every `n\ge 3` there are networks `W_n,W'_n` in
@@ -190,15 +219,14 @@ conflation, or a proper directed containment inside the strong class.
 
 This is a mathematical certification, not a publication-status claim.  The
 targeted-referee-repair manuscript and reader supplement sources are complete,
-the clean quick and complete 54-command regeneration suites pass at the
-immutable proof snapshot cited by the article, and both canonical PDFs have
-passed deterministic two-build reproduction and independent page-by-page
-visual inspection.  Distribution archives and the independent-referee handoff
-must separately bind an exact pushed source commit and pass their extracted
-replay and integrity gates.  Journal-format packaging and human author review
-remain pending.  The project does not claim submission readiness, a DOI, a
-selected license, completed peer review, or completed human review.
+and their focused C1/C2 component and integrated artifact gates pass.  A clean
+quick/full/55-command regeneration, PDF reproduction, distribution-archive
+reseal, and independent-referee handoff rebuild remain required at one exact
+pushed proof snapshot before this revision supersedes the preceding release
+ledger.  Journal-format packaging and human author review remain pending.  The
+project does not claim submission readiness, a DOI, a selected license,
+completed peer review, or completed human review.
 The machine-readable report retains its legacy internal filename,
 `reproducibility/K3P_SAME_CLASSIFICATION_GATE_REPORT.json`, for compatibility;
-its separate integration mutation suite rejects 24/24 theorem-boundary
+its separate integration mutation suite rejects 27/27 theorem-boundary
 corruptions.

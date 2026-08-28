@@ -49,8 +49,12 @@ suppress the old one.  If the old root meets a reticulation-parent edge,
 inspect each switching: the selected parent uses only the serial product,
 whereas the unselected one-child stem subtends all observed leaves and has
 total character zero.  Every summand of \eqref{eq:k3p-fourier} is unchanged
-after transporting the reversible edge products and, where necessary, the
-inheritance coordinate.  Strict subdivision supplies analytic physical
+after transporting the reversible edge products.  More explicitly, write the
+two parent weights at a reticulation in the recorded parent order as
+\((\lambda,1-\lambda)\).  Root movement preserves \(\lambda\) when that order
+is preserved and transports it to \(\lambda'=1-\lambda\) when the order is
+reversed; thus the same switching keeps the same coefficient.  Strict
+subdivision supplies analytic physical
 sections in both directions on a neighborhood, which is the asserted
 reparameterization.
 \end{proof}
@@ -75,6 +79,29 @@ corresponding bridge multiplier in the nonzero blocks.  Summing their ranks
 gives at most four.
 \end{proof}
 
+\begin{lemma}[Displayed-tree witness for a noncut]
+\label{lem:displayed-tree-noncut}
+If \(S=A\mid A^c\) is not a bridge split of a strongly tree-child level-2
+network, some displayed switching gives a tree that does not display \(S\).
+\end{lemma}
+
+\begin{proof}
+Color the leaves by the two sides of \(S\), and take the two color hulls in
+the network's abstract bridge-incidence tree.  Disjoint hulls would be
+separated by a bridge realizing \(S\), contrary to hypothesis.  If their
+intersection contains an edge, that edge is a bridge split crossing \(S\).
+Every displayed tree retains this bridge split, and two splits of one tree
+are compatible, so no displayed tree can also display \(S\).
+
+Otherwise the hulls meet in one complete component.  Every incident branch
+there is monochromatic, and minimality of the two hulls supplies at least two
+branches of each color.  The balanced compression argument of
+\cref{lem:balanced-compression} applies inside this cycle or theta factor and
+produces a switching with a wrong two-by-two quartet.  Extending its local
+choices arbitrarily over all other reticulations gives the required global
+displayed tree.
+\end{proof}
+
 \begin{proposition}[Generic noncut recovery]\label{prop:generic-noncut}
 Fix a standard strongly tree-child level-2 network \(N\) and a split \(S\)
 that is not a bridge split.  Some \(5\)-by-\(5\) minor of
@@ -85,13 +112,33 @@ domain.
 \end{proposition}
 
 \begin{proof}
-Restrict all three K3P edge sectors to the isotropic slice \(c=g=t=x\).
-This is the relatively open strict JC locus inside the isotropic slice; it is
-not open in the full K3P parameter domain.  The exact JC cut theorem for the
-same fixed mixed graph gives a strict isotropic point at which a \(5\)-minor
-is nonzero \cite{KriebelJC2026}.  Hence the full K3P pullback of that minor is
-not the zero polynomial.  Its zero set has empty interior in the open K3P
-parameter domain.
+Choose the switching in \cref{lem:displayed-tree-noncut}.  The ordinary-tree
+quartet criterion supplies \(a_0,a_1\in A\) and
+\(a_2,a_3\in A^c\) whose restricted displayed tree has a quartet split
+different from \(a_0a_1\mid a_2a_3\).  Work first at the polynomial-map
+boundary by setting each inheritance probability to zero or one so that only
+this switching remains, and give every edge an isotropic multiplier strictly
+between zero and one.
+
+Relabel the displayed quartet split as \(01\mid23\) and its wrong flattening
+as \(02\mid13\).  After suppressing its serial paths, write
+\(p_0,p_1,p_2,p_3\in(0,1)\) for the four pendant multipliers and
+\(u\in(0,1)\) for the internal multiplier.  In the zero-character block, the
+rows and columns indexed by \(00\) and \(CC\) give determinant
+
+\[
+ p_0p_1p_2p_3(1-u^2)>0.
+\]
+
+One positive entry from each of the other three character blocks augments
+this to a nonzero \(5\)-by-\(5\) minor.  Assigning character zero to every
+unselected leaf identifies it with a minor of \(\Flat_S\circ\Phi_N\).
+Thus that network minor has a nonzero boundary evaluation and is not the zero
+polynomial.  By continuity it remains nonzero when every inheritance
+probability is moved sufficiently close to its selected endpoint but into
+\((0,1)\).  The isotropic edge points are strict in both \(\Dplus\) and
+\(\Dct\).  Hence a strict physical evaluation exists, and the zero set of the
+minor has empty interior in the open K3P parameter domain.
 \end{proof}
 
 \begin{corollary}[The easy directed cut inclusion]\label{cor:target-source-cut}
@@ -130,27 +177,33 @@ color give a wrong quartet in the finite one-active universe of
 First retain a rigid support \(Q\): every path-sink child and one occupied port
 on every segment of one complete minimum repair.  The core table in
 \cref{sec:bounded} gives \(|Q|\le4\), and suppressing unselected ordinary
-subdivisions leaves the primitive cycle or theta core.  On each directed
-segment, read the colors as a word and decompose it into maximal constant
-runs.  Select actual labels from at most two runs of each color, preferring
-labels already in \(Q\), until two labels of each color are retained.  If a
-color is then represented by only one selected label, retain a second actual
-label in the same run when possible, and otherwise from another run or
-segment.  This adds at most four actual labels, so the restriction has at
-most eight ports.  Its primitive blob and all compulsory child roles remain;
-no internal blob edge is a bridge, and a pendant arm cannot separate a color
-class containing two labels.  Thus the restricted split is still noncut.
+subdivisions leaves the primitive cycle or theta core.  A nonroot incoming
+boundary, when present, is retained in addition; because it is already an
+actual colored label, the number of further representatives needed to reach
+two of each color decreases by one.  Thus the compulsory support plus the
+four-active representatives still has at most eight ports.  On each directed
+segment, read the colors as a word and decompose it into maximal constant runs.
+
+If some segment contains three consecutive runs \(c,d,c\), retain one actual
+label from each of those runs and, if necessary, one further \(d\)-label from
+the same or another segment.  In every switching the path between the two
+outer \(c\)-attachments contains the middle \(d\)-attachment.  No tree edge
+can separate the complete color classes: a segment edge separates the outer
+\(c\)-ports or retains the middle \(d\) with them, a pendant edge isolates one
+port, and another \(d\)-port exists.  This is a direct all-switching
+obstruction.
+
+Otherwise every segment has at most two runs.  Select actual labels from at
+most two runs of each color, preferring labels already in \(Q\), until two
+labels of each color are retained.  If a color is represented by only one
+selected label, retain a second actual label in the same run when possible,
+and otherwise from another run or segment.  Its primitive blob and all
+compulsory child roles remain; no internal blob edge is a bridge, and a
+pendant arm cannot separate a color class containing two labels.  Thus the
+restricted split is still noncut.
 
 It remains to pass from this bounded restriction to the exact four-active
-palette.  If some segment contains three runs \(c,d,c\), then in every
-switching the path between the two outer \(c\)-attachments contains the middle
-\(d\)-attachment.  No tree edge can separate the complete color classes:
-a segment edge separates the outer \(c\)-ports or retains the middle \(d\) with
-them, a pendant edge isolates one port, and another \(d\)-port exists.
-This is a direct all-switching obstruction.
-
-Otherwise every segment has at most two runs.  In this already bounded
-restriction, retain one actual label from each selected run, preserving every
+palette.  Retain one actual label from each selected run, preserving every
 occupied segment and fixed child role.  Each segment word is now one of
 \[
  (),\quad(0),\quad(1),\quad(0,1),\quad(1,0).
@@ -166,11 +219,16 @@ other repair or path-sink role is retained at character zero, so the result
 is one of the graph-derived one-active directions rather than a pruned
 topology.
 
-The exact census is a reproducibility checksum, not a premise: five cores
-give 72 active-labelled records and 216 split entries; 12 are displayed by
-every switching, leaving the 204 wrong directions certified in
-\cref{lem:one-active}.  The compressed palette has zero all-switching
-survivors.
+The exact censuses are reproducibility checksums, not premises.  A standalone
+word program exhausts all (808{,}642) balanced distributions with four
+through eight active ports and partitions them into (229{,}988) three-run
+obstructions, (544{,}350) direct-palette reductions, and (34{,}304)
+singleton-doubled reductions.  A no-import implementation independently
+constructs the five primitive cores and tests (379{,}742) valid compressed
+presentations, with zero all-switching survivors.  Finally, five cores give
+72 active-labelled records and 216 split entries; 12 are displayed by every
+switching, leaving the 204 wrong directions certified in
+\cref{lem:one-active}.
 \end{proof}
 
 \begin{lemma}[One-active K3P obstruction]\label{lem:one-active}

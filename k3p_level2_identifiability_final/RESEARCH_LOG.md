@@ -898,6 +898,42 @@ Best-guess completion toward the mathematical classification goal: **94%**.
 Best-guess completion toward the paper/certification/proof-archive goal: **82%**.
 Best-guess completion toward the external journal/DOI release goal: **60%**.
 
+## 2026-08-27 15:27 PDT — fresh referee conditions reopened and C1 closed
+
+- Reviewed the new independent report against the active manuscript, source,
+  verifier, and package boundaries.  Accepted C1/C2, E1/E2, L1/L2, R1--R3,
+  P1, and the two optional proof-clarity suggestions as warranted; no
+  counterexample to the classification or sharpness theorem was reported.
+- Removed the generic noncut proof's dependence on the companion JC pointwise
+  theorem.  The replacement selects a displayed tree at an inheritance
+  boundary and exhibits the exact wrong-flattening determinant
+  `p0*p1*p2*p3*(1-u^2)`, then moves into the strict physical interior by
+  continuity.
+- Activated two genuinely separate model-independent programs for the
+  balanced-word reduction.  The focused replay passed all 808,642 balanced
+  words, all 379,742 valid compressed presentations, and zero survivors; the
+  symbolic displayed-tree minor replay also passed.
+- Confirmed from the primary literature that Gross et al. already observed
+  equality of the three K3P triangle ideals and that Allman et al. prove
+  identifiability only for explicitly restricted galled/tree-child
+  subclasses, although those subclasses include arbitrary-level examples.
+  Corrected both introduction claims.
+- Added explicit target-injectivity and equal-cardinality checks to the probe
+  transport replay and a folded-transport mutation.  Clarified pristine-seal
+  versus runtime-inventory semantics, neutral review timing, artifact-only
+  extracted replay terminology, the root-movement inheritance transport, and
+  pre-normalization circuit evaluation.
+- The remaining mathematical repair is C2: an active graph-only producer and
+  separate no-import implementation are being completed to derive the full
+  133-record non-four anchor universe and cross-bind it with the independent
+  43-record four-port route to all 176 probe anchors.
+
+Strongest verified result at this checkpoint: the C1 and E1 conditions are
+closed by a self-contained proof and fresh exact computation; C2 remains an
+active implementation task rather than an accepted frozen contract.
+
+Best-guess completion toward this referee-repair workstream: **45%**.
+
 ## 2026-08-27T03:48:04Z — handwritten and verifier hardening checkpoint
 
 - Closed the three handwritten referee interfaces: trivalent ordinary-versus-
@@ -1109,3 +1145,70 @@ copy, and neutral referee handoff all pass their declared validation gates.
 Best-guess completion toward the mathematical classification goal: **100%**.
 Best-guess completion toward the paper/certification/proof-archive goal: **100%**.
 Best-guess completion toward the external journal/DOI release goal: **60%**.
+
+## 2026-08-27T16:40:04-07:00 — non-four anchor derivation closed; full reseal pending
+
+- Replaced the frozen non-four-anchor premise with an active graph-only
+  derivation and a separate no-import implementation.  They independently
+  obtain the 133 non-four records (one tree, 36 cycle, 96 theta), then
+  cross-bind them with the 43 canonical four-port rows, each independently
+  verified against the exhaustive atlas, to exactly 176 records: 143 labelled
+  isomorphisms and 33 ordinary-triangle relations.  The claim deliberately
+  distinguishes derivation of the 133 non-four rows from verification of the
+  contract-serialized 43 four-port rows.
+- Closed the incoming-boundary edge case by checking all 424 fully physical
+  restoration paths and all 984 nonempty prefixes.  Every terminal restricts
+  to one of 15 canonical theta seed classes and reconciles with one of 66
+  existing isomorphic one-port relations; no path is unmatched.
+- The standalone anchor mutation suite rejects all 16 attacks.  The strengthened
+  probe replay checks equal transport cardinality and target injectivity and
+  rejects the new folded-transport attack, giving 18/18 probe mutations.
+- Integrated the C1 and C2 producers, independent verifiers, crosswalks, and
+  mutations into the active manifest and release plan.  The 85-binding
+  artifact gate passes, its fresh mode now has 20 child replays, and its
+  fail-closed suite rejects 27/27 theorem-boundary mutations.
+- The referee's C2 condition is closed in its stated form: independently derive
+  the complete non-four universe and cross-bind it to the already complete
+  four-port route.  A single clean 55-command
+  regeneration, then PDF/source/archive/referee-package resealing at its exact
+  pushed proof snapshot, remain before replacing the preceding release ledger.
+
+Strongest verified result at this checkpoint: both material referee conditions
+are discharged by self-contained proofs and active exact evidence, with the
+four-port claim boundary stated precisely; the revised theorem package passes
+every focused and artifact-binding gate run so far.
+
+Best-guess completion toward this referee-repair workstream: **72%**.
+
+## 2026-08-27T17:28:51-07:00 — raw four-port descendant premise eliminated
+
+- Strengthened the C2 repair beyond the referee's requested 133-plus-43
+  cross-bind.  A graph-only verifier now reconstructs all 144 raw four-port
+  equality parents (30 isomorphic and 114 triangle presentations), quotients
+  them to nine ordered graph-pair classes, and proves that the 26 direct
+  contract seeds represent every class.
+- Exhausted the complete fixed-full restoration grammar from those parents.
+  All 1,260 first-restoration requests reconcile with 161 existing one-port
+  rows; all 96 second-restoration requests from the 12 equality continuations
+  reconcile with 64 existing two-port rows.  The ledgers classify the first
+  layer as 15 isomorphisms, 24 triangles, 1,080 quartet mismatches, and 141
+  tree--sunlet separations; the second layer has 84 quartet mismatches and 12
+  tree--sunlet separations.  There are zero unmatched requests.
+- This establishes that the frozen 43-row contract is only a designated
+  serialization, not the premise that makes the four-port starting or
+  descendant universe complete.  The crosswalk binds the raw four-port
+  ledger, graph core, one-port manifest and ledger, and two-port manifest,
+  parent inventory, and ledger, with exact row commitments.
+- The focused crosswalk passes, and its strengthened 16-case suite rejects a
+  coherently omitted raw equality parent in addition to the non-four attacks.
+  An independent adversarial integration check passes all 13 newly required
+  claim and binding assertions.  The final integrated reseal and the single
+  clean 55-command regeneration remain pending.
+
+Strongest verified result at this checkpoint: both material referee
+conditions are now discharged without treating either the companion JC
+census or the frozen 176-row contract as a theorem premise; the complete
+four-port descendant grammar is actively reconstructed with zero unmatched
+requests.
+
+Best-guess completion toward this referee-repair workstream: **78%**.
