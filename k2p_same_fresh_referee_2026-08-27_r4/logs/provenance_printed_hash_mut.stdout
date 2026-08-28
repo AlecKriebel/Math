@@ -1,0 +1,55 @@
+{
+  "baseline_rows_checked": 4,
+  "case_count": 9,
+  "cases": [
+    {
+      "expected": "PRINTED_HASH_STALE:metadata:",
+      "name": "stale_metadata_hash",
+      "observed": "PRINTED_HASH_STALE:metadata:evidence/first.json:printed=0000000000000000000000000000000000000000000000000000000000000000:actual=dc3ac5dcc3f4c4752aaacc60dec858f56a7cf2864ed9dfa61b4d77a44dd5a877"
+    },
+    {
+      "expected": "PRINTED_HASH_STALE:frozen-anchor:",
+      "name": "stale_frozen_anchor_hash",
+      "observed": "PRINTED_HASH_STALE:frozen-anchor:first frozen row:path=evidence/first.json:printed=0000000000000000000000000000000000000000000000000000000000000000:actual=dc3ac5dcc3f4c4752aaacc60dec858f56a7cf2864ed9dfa61b4d77a44dd5a877"
+    },
+    {
+      "expected": "PRINTED_METADATA_INVENTORY_DRIFT:",
+      "name": "missing_metadata_row",
+      "observed": "PRINTED_METADATA_INVENTORY_DRIFT:missing=['evidence/first.json']:extra=[]"
+    },
+    {
+      "expected": "PRINTED_METADATA_DUPLICATE_PATH:",
+      "name": "duplicate_metadata_row",
+      "observed": "PRINTED_METADATA_DUPLICATE_PATH:evidence/first.json"
+    },
+    {
+      "expected": "PRINTED_METADATA_KIND_DRIFT:",
+      "name": "metadata_kind_reassigned",
+      "observed": "PRINTED_METADATA_KIND_DRIFT:evidence/first.json:expected=authority:actual=reader derivative"
+    },
+    {
+      "expected": "PRINTED_FROZEN_ANCHOR_INVENTORY_DRIFT:",
+      "name": "missing_frozen_anchor_row",
+      "observed": "PRINTED_FROZEN_ANCHOR_INVENTORY_DRIFT:missing=['first frozen row']:extra=[]"
+    },
+    {
+      "expected": "PRINTED_FROZEN_ANCHOR_DUPLICATE_LABEL:",
+      "name": "duplicate_frozen_anchor_row",
+      "observed": "PRINTED_FROZEN_ANCHOR_DUPLICATE_LABEL:first frozen row"
+    },
+    {
+      "expected": "PRINTED_FROZEN_ANCHOR_INVENTORY_DRIFT:",
+      "name": "unexpected_frozen_anchor_row",
+      "observed": "PRINTED_FROZEN_ANCHOR_INVENTORY_DRIFT:missing=[]:extra=['unexpected row']"
+    },
+    {
+      "expected": "PRINTED_HASH_TARGET_MISSING_OR_SYMBOLIC:",
+      "name": "missing_hash_target",
+      "observed": "PRINTED_HASH_TARGET_MISSING_OR_SYMBOLIC:submission/second.json"
+    }
+  ],
+  "payload_sha256": "eb129858ed58ff1a645f79a5a8a56ae8b0f177dc7fb8c38c83f1eb6a1dd0d347",
+  "schema": "k2p-printed-authority-hash-gate-mutations-v1",
+  "status": "PASS",
+  "survived": 0
+}

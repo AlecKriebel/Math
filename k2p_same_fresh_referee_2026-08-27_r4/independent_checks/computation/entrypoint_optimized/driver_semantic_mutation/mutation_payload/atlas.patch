@@ -1,0 +1,24 @@
+--- isolated/k2p_principal_d_plus_submission_referee/package/referee/k2p_offline_sweep_portable/atlas/k2p_atlas_core.py	2026-08-27 00:00:00
++++ independent_checks/computation/entrypoint_optimized/driver_semantic_mutation/mutation_payload/k2p_atlas_core.mutated.py	2026-08-27 18:20:57
+@@ -796,6 +796,7 @@
+ # override quadratic separator with cached/faster implementation
+ _OUTPUT_POLY_CACHE={}
+ _QUADRATIC_SOURCE_PRODUCT_CACHE={}
++ADVERSARIAL_RETURN_NONKERNEL_VECTOR=True
+ def output_sparse_polynomials_cached(desc):
+     val=_OUTPUT_POLY_CACHE.get(desc)
+     if val is None:
+@@ -817,6 +818,13 @@
+             if ij not in tmul:tmul[ij]=sparse_mul(tops[ij[0]],tops[ij[1]])
+             if ij not in smul:smul[ij]=sparse_mul(sops[ij[0]],sops[ij[1]])
+             tc.append(tmul[ij]);sc.append(smul[ij])
++        if ADVERSARIAL_RETURN_NONKERNEL_VECTOR:
++            for index in range(len(block)):
++                ivec=tuple(1 if position==index else 0 for position in range(len(block)))
++                spull=sparse_lincomb(sc,ivec)
++                if spull and sparse_lincomb(tc,ivec):
++                    assert not sparse_lincomb(tc,ivec)
++                    return {'degree':2,'weight':weight,'coordinate_pairs':block,'coefficients':ivec,'source_nonzero_terms':len(spull),'source_pullback':spull}
+         for ivec in kernel_sparse_columns_fast(tc):
+             spull=sparse_lincomb(sc,ivec)
+             if spull:
