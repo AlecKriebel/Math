@@ -8,6 +8,9 @@ so no byte in the source release can be modified by this test.
 
 from __future__ import annotations
 
+if not __debug__:
+    raise SystemExit("DIRECT_CLOSURE_MUTATION_OPTIMIZED_MODE_FORBIDDEN")
+
 import argparse
 import hashlib
 import json
@@ -549,8 +552,6 @@ def main() -> None:
     args = parser.parse_args()
     output_path = validate_output_path(args.output, args.allow_authoritative_output)
     prepare_output(output_path)
-    if not __debug__:
-        fail("DIRECT_CLOSURE_MUTATION_OPTIMIZED_MODE_FORBIDDEN")
     if args.timeout_seconds <= 0:
         fail("MUTATION_TIMEOUT_INVALID")
     source = args.package_root.resolve()

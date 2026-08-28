@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """Verify package hashes, imports, source census, and a resumable smoke run."""
 from __future__ import annotations
+
+if not __debug__:
+    raise SystemExit("K2P_PORTABLE_OPTIMIZED_MODE_FORBIDDEN")
+
 import argparse, hashlib, importlib.util, json, os, pathlib, shutil, subprocess, sys, tempfile
 
 
@@ -13,6 +17,7 @@ def main():
     for rel,want in lock['files'].items():
         path=root/rel
         if not path.exists() or sha(path)!=want:raise SystemExit(f'INPUT_LOCK_FAIL {rel}')
+    subprocess.run([sys.executable,str(root/'test_optimized_entrypoints.py')],check=True)
     subprocess.run([sys.executable,str(root/'test_exact_kernels.py')],check=True)
     lock_command=[sys.executable,str(root/'resumable_four_port_driver.py'),'--package-root',str(root)]
     if args.skip_prepared_audit:

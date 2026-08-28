@@ -2,6 +2,9 @@
 """Compare mathematical record content while excluding implementation/run diagnostics."""
 from __future__ import annotations
 
+if not __debug__:
+    raise SystemExit("K2P_PORTABLE_OPTIMIZED_MODE_FORBIDDEN")
+
 import argparse
 import hashlib
 import json

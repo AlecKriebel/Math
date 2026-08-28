@@ -8,6 +8,9 @@ parameter ring represented by sparse exponent dictionaries.
 
 from __future__ import annotations
 
+if not __debug__:
+    raise SystemExit("exact replay requires assertions; do not use python -O")
+
 import hashlib
 import json
 import sys
@@ -16,8 +19,6 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-if not __debug__:
-    raise SystemExit("exact replay requires assertions; do not use python -O")
 ATLAS = ROOT / "atlas"
 sys.path.insert(0, str(ATLAS))
 

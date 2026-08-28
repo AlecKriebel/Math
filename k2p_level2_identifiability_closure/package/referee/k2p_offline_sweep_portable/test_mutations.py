@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """Fail-closed mutation tests for the portable schema-v3 sweep driver."""
 from __future__ import annotations
+
+if not __debug__:
+    raise SystemExit("K2P_PORTABLE_OPTIMIZED_MODE_FORBIDDEN")
+
 import argparse, importlib.util, json, pathlib, subprocess, sys, tempfile
 
 

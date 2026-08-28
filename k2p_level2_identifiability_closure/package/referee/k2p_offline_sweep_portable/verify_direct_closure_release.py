@@ -9,6 +9,9 @@ then invokes the independently checkable engine and proof replays.
 
 from __future__ import annotations
 
+if not __debug__:
+    raise SystemExit("DIRECT_CLOSURE_OPTIMIZED_MODE_FORBIDDEN: invoke Python without -O")
+
 import argparse
 import hashlib
 import json
@@ -582,8 +585,6 @@ def run_qualification(root: Path, quick: bool, timeout_seconds: float) -> dict[s
 
 
 def main() -> None:
-    if not __debug__:
-        fail("DIRECT_CLOSURE_OPTIMIZED_MODE_FORBIDDEN", "invoke Python without -O")
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--package-root", type=Path, default=ROOT,

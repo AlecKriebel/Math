@@ -31,6 +31,15 @@ atomic resume, differentially checks exact sparse kernels through the cubic
 production width of 40, replays the two known cubic residual certificates, and
 runs adversarial record mutations.
 
+Every documented Python entry point and the shell runner reject both `-O` and
+an inherited `PYTHONOPTIMIZE` before argument parsing, output creation, or
+import-heavy work.  `test_optimized_entrypoints.py`, run by `verify_package.py`,
+checks that complete entry-point matrix in both modes and requires zero
+residual report, manifest, or record output.  The atlas itself contains no
+Python `assert` statement: graph, physical-domain, rank, and source/target
+pullback invariants raise explicit `AtlasInvariantError` diagnostics, which a
+normal/optimized semantic-bypass probe checks independently of `__debug__`.
+
 ## Resource-safe full sweep
 
 The two pickle files occupy about 110 MB on disk but measured approximately

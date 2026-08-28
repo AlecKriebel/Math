@@ -2,6 +2,9 @@
 """Differential tests for the optimized sparse-kernel routine."""
 from __future__ import annotations
 
+if not __debug__:
+    raise SystemExit("K2P_PORTABLE_OPTIMIZED_MODE_FORBIDDEN")
+
 import importlib.util
 import itertools
 import random

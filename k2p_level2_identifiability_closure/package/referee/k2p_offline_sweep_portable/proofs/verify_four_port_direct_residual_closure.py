@@ -18,6 +18,9 @@ global classification theorem.  The resulting certificate is deterministic.
 
 from __future__ import annotations
 
+if not __debug__:
+    raise SystemExit("K2P_PORTABLE_OPTIMIZED_MODE_FORBIDDEN")
+
 import argparse
 import dataclasses
 import hashlib
@@ -970,8 +973,6 @@ def verify_case(
 
 
 def main() -> None:
-    if not __debug__:
-        raise SystemExit("optimized Python (-O) is forbidden: proof assertions must execute")
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--package-root",

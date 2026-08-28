@@ -18,6 +18,9 @@ self-hash are verified. The implementation is POSIX-portable (Linux/macOS).
 """
 from __future__ import annotations
 
+if not __debug__:
+    raise SystemExit("K2P_PORTABLE_OPTIMIZED_MODE_FORBIDDEN")
+
 import argparse
 import dataclasses
 import datetime

@@ -2,6 +2,9 @@
 """Launch the sweep with disk/RSS gates and resumable fail-safe termination."""
 from __future__ import annotations
 
+if not __debug__:
+    raise SystemExit("K2P_PORTABLE_OPTIMIZED_MODE_FORBIDDEN")
+
 import argparse
 import os
 import shutil

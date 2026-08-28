@@ -2,6 +2,9 @@
 """Fail-closed merge and cross-check of the six source residual manifests."""
 from __future__ import annotations
 
+if not __debug__:
+    raise SystemExit("K2P_PORTABLE_OPTIMIZED_MODE_FORBIDDEN")
+
 import argparse
 import hashlib
 import importlib.util

@@ -1,10 +1,19 @@
 #!/usr/bin/env python3
 from __future__ import annotations
+
+if __name__ == '__main__' and not __debug__:
+    raise SystemExit("K2P_PORTABLE_OPTIMIZED_MODE_FORBIDDEN")
+
 from dataclasses import dataclass
 from itertools import product, permutations
 from collections import Counter, defaultdict
 from functools import lru_cache
 import networkx as nx
+
+
+class AtlasInvariantError(RuntimeError):
+    """Raised when an exact graph or certificate invariant is violated."""
+
 
 # Exact directed core templates in the order certified by the JC primitive theorem.
 CORES = {
@@ -94,20 +103,32 @@ def build_graph(core_id:str, words:tuple[tuple[object,...],...], sink_labels:dic
 
 
 def validate_graph(G):
-    assert nx.is_directed_acyclic_graph(G)
+    if not nx.is_directed_acyclic_graph(G):
+        raise AtlasInvariantError("ATLAS_GRAPH_DAG_FAIL")
     labels=[]
     for n,d in G.nodes(data=True):
         deg=(G.in_degree(n),G.out_degree(n)); role=d['role']
-        if role=='root': assert deg==(0,2),(n,deg)
-        elif role=='tree': assert deg==(1,2),(n,deg)
-        elif role=='retic': assert deg==(2,1),(n,deg)
-        elif role=='leaf': assert deg==(1,0),(n,deg)
+        expected_degree = {
+            'root': (0,2),
+            'tree': (1,2),
+            'retic': (2,1),
+            'leaf': (1,0),
+        }.get(role)
+        if expected_degree is None or deg != expected_degree:
+            raise AtlasInvariantError(
+                f"ATLAS_GRAPH_DEGREE_FAIL node={n!r} role={role!r} degree={deg!r}"
+            )
         if isinstance(d.get('label'),int): labels.append(d['label'])
-    assert len(labels)==len(set(labels))
+    if len(labels) != len(set(labels)):
+        raise AtlasInvariantError("ATLAS_GRAPH_DUPLICATE_LABEL_FAIL")
     # chosen rooted completion tree-child
     for n,d in G.nodes(data=True):
         if d['role']!='leaf':
-            assert any(G.nodes[c]['role'] in ('tree','leaf') for c in G.successors(n)),(n,list(G.successors(n)))
+            children = list(G.successors(n))
+            if not any(G.nodes[c]['role'] in ('tree','leaf') for c in children):
+                raise AtlasInvariantError(
+                    f"ATLAS_GRAPH_TREE_CHILD_FAIL node={n!r} children={children!r}"
+                )
 
 
 def source_supports(core_ids=('theta0','theta1','theta3'), extras=0):
@@ -534,19 +555,27 @@ def default_exact_point(desc:MapDescriptor, salt:int=0):
         # All s<1/2, so g>2s-1 automatically; strictly positive and distinct.
         s=F(2*i+3+salt, 8*i+16+4*salt)
         g=F(3*i+5+salt, 10*i+21+3*salt)
-        assert 0<s<1 and 0<g<1 and g>2*s-1
+        if not (0<s<1 and 0<g<1 and g>2*s-1):
+            raise AtlasInvariantError(
+                f"ATLAS_EXACT_POINT_DOMAIN_FAIL edge_class={i} s={s} g={g}"
+            )
         edges.append((s,g))
     lams=[]
     for j in range(desc.retic_count):
         l=F(j+2+salt, j+5+2*salt)
-        assert 0<l<1;lams.append(l)
+        if not 0<l<1:
+            raise AtlasInvariantError(
+                f"ATLAS_INHERITANCE_DOMAIN_FAIL reticulation={j} lambda={l}"
+            )
+        lams.append(l)
     return tuple(edges),tuple(lams)
 
 
 def descriptor_jacobian(desc:MapDescriptor, edge_pairs=None,lambdas=None):
     from fractions import Fraction as F
     if edge_pairs is None:edge_pairs,lambdas=default_exact_point(desc)
-    assert lambdas is not None
+    if lambdas is None:
+        raise AtlasInvariantError("ATLAS_JACOBIAN_LAMBDAS_MISSING")
     p=2*desc.edge_class_count+desc.retic_count
     rows=[]
     for expr in desc.outputs:
@@ -614,7 +643,10 @@ def rank_certificate(desc:MapDescriptor,salt=0):
     rank,rows,cols=exact_rank_pivots(J)
     minor=[[J[i][j] for j in cols] for i in rows]
     det=determinant_square(minor)
-    assert (rank==0)==(det==0)
+    if (rank==0) != (det==0):
+        raise AtlasInvariantError(
+            f"ATLAS_RANK_MINOR_CONSISTENCY_FAIL rank={rank} determinant={det}"
+        )
     return {'rank':rank,'rows':rows,'columns':cols,'determinant':str(det),'edge_pairs':tuple((str(a),str(b)) for a,b in edges),'lambdas':tuple(map(str,lams))}
 
 # ---------- multihomogeneous quadratic invariant engine --------------------
@@ -713,7 +745,10 @@ def primitive_integer_vector(vec):
 
 def quadratic_separator(source:MapDescriptor,target:MapDescriptor):
     """Return exact multihomogeneous target invariant nonzero on source, or None."""
-    assert source.k==target.k
+    if source.k != target.k:
+        raise AtlasInvariantError(
+            f"ATLAS_PORT_COUNT_MISMATCH source={source.k} target={target.k}"
+        )
     sops=output_sparse_polynomials(source);tops=output_sparse_polynomials(target)
     smul={};tmul={}
     for weight,block in quadratic_blocks(source.k):
@@ -728,7 +763,8 @@ def quadratic_separator(source:MapDescriptor,target:MapDescriptor):
             spull=sparse_lincomb(sc,ivec)
             if spull:
                 # exact recheck target zero
-                assert not sparse_lincomb(tc,ivec)
+                if sparse_lincomb(tc,ivec):
+                    raise AtlasInvariantError("ATLAS_TARGET_PULLBACK_NONZERO degree=2 engine=reference")
                 return {'degree':2,'weight':weight,'coordinate_pairs':block,'coefficients':ivec,'source_nonzero_terms':len(spull),'source_witness_term':(next(iter(spull))[0:] if spull else None),'source_pullback':spull}
     return None
 
@@ -803,7 +839,10 @@ def output_sparse_polynomials_cached(desc):
     return val
 
 def quadratic_separator_fast(source:MapDescriptor,target:MapDescriptor,max_block_size=16):
-    assert source.k==target.k
+    if source.k != target.k:
+        raise AtlasInvariantError(
+            f"ATLAS_PORT_COUNT_MISMATCH source={source.k} target={target.k}"
+        )
     # Source products recur for every target in a source lane; target products
     # are class-local.  Persist the former lazily and release the latter after
     # each class so the full target universe is not retained in memory.
@@ -820,7 +859,8 @@ def quadratic_separator_fast(source:MapDescriptor,target:MapDescriptor,max_block
         for ivec in kernel_sparse_columns_fast(tc):
             spull=sparse_lincomb(sc,ivec)
             if spull:
-                assert not sparse_lincomb(tc,ivec)
+                if sparse_lincomb(tc,ivec):
+                    raise AtlasInvariantError("ATLAS_TARGET_PULLBACK_NONZERO degree=2 engine=fast")
                 return {'degree':2,'weight':weight,'coordinate_pairs':block,'coefficients':ivec,'source_nonzero_terms':len(spull),'source_pullback':spull}
     return None
 
@@ -994,7 +1034,10 @@ def sparse_mul_many(polys):
     return out
 
 def cubic_separator_fast(source:MapDescriptor,target:MapDescriptor,max_block_size=40,min_block_size=2):
-    assert source.k==target.k
+    if source.k != target.k:
+        raise AtlasInvariantError(
+            f"ATLAS_PORT_COUNT_MISMATCH source={source.k} target={target.k}"
+        )
     sops=output_sparse_polynomials_cached(source);tops=output_sparse_polynomials_cached(target)
     scache={};tcache={}
     blocks=sorted(cubic_blocks(source.k),key=lambda wb:(len(wb[1]),wb[0]))
@@ -1008,7 +1051,8 @@ def cubic_separator_fast(source:MapDescriptor,target:MapDescriptor,max_block_siz
         for ivec in kernel_sparse_columns_fast(tc):
             spull=sparse_lincomb(sc,ivec)
             if spull:
-                assert not sparse_lincomb(tc,ivec)
+                if sparse_lincomb(tc,ivec):
+                    raise AtlasInvariantError("ATLAS_TARGET_PULLBACK_NONZERO degree=3 engine=fast")
                 return {'degree':3,'weight':weight,'coordinate_triples':block,'coefficients':ivec,
                         'source_nonzero_terms':len(spull),'source_pullback':spull}
     return None
@@ -1024,7 +1068,10 @@ def homogeneous_blocks(k:int,degree:int):
     return tuple((w,tuple(v)) for w,v in sorted(blocks.items()))
 
 def homogeneous_separator_fast(source:MapDescriptor,target:MapDescriptor,degree:int,max_block_size:int,min_block_size:int=2):
-    assert source.k==target.k
+    if source.k != target.k:
+        raise AtlasInvariantError(
+            f"ATLAS_PORT_COUNT_MISMATCH source={source.k} target={target.k}"
+        )
     sops=output_sparse_polynomials_cached(source);tops=output_sparse_polynomials_cached(target)
     scache={};tcache={}
     blocks=sorted(homogeneous_blocks(source.k,degree),key=lambda wb:(len(wb[1]),wb[0]))
@@ -1038,7 +1085,10 @@ def homogeneous_separator_fast(source:MapDescriptor,target:MapDescriptor,degree:
         for ivec in kernel_sparse_columns_fast(tc):
             spull=sparse_lincomb(sc,ivec)
             if spull:
-                assert not sparse_lincomb(tc,ivec)
+                if sparse_lincomb(tc,ivec):
+                    raise AtlasInvariantError(
+                        f"ATLAS_TARGET_PULLBACK_NONZERO degree={degree} engine=homogeneous"
+                    )
                 return {'degree':degree,'weight':weight,'coordinate_monomials':block,'coefficients':ivec,
                         'source_nonzero_terms':len(spull),'source_pullback':spull}
     return None
@@ -1052,6 +1102,10 @@ def homogeneous_blocks_subset(k:int,degree:int,subset:tuple[int,...]):
     return tuple((w,tuple(v)) for w,v in sorted(blocks.items()))
 
 def homogeneous_separator_subset(source:MapDescriptor,target:MapDescriptor,degree:int,subset:tuple[int,...],max_block_size:int=1000):
+    if source.k != target.k:
+        raise AtlasInvariantError(
+            f"ATLAS_PORT_COUNT_MISMATCH source={source.k} target={target.k}"
+        )
     sops=output_sparse_polynomials_cached(source);tops=output_sparse_polynomials_cached(target)
     scache={};tcache={}
     blocks=sorted(homogeneous_blocks_subset(source.k,degree,tuple(sorted(subset))),key=lambda wb:(len(wb[1]),wb[0]))
@@ -1065,7 +1119,10 @@ def homogeneous_separator_subset(source:MapDescriptor,target:MapDescriptor,degre
         for ivec in kernel_sparse_columns_fast(tc):
             spull=sparse_lincomb(sc,ivec)
             if spull:
-                assert not sparse_lincomb(tc,ivec)
+                if sparse_lincomb(tc,ivec):
+                    raise AtlasInvariantError(
+                        f"ATLAS_TARGET_PULLBACK_NONZERO degree={degree} engine=subset"
+                    )
                 return {'degree':degree,'weight':weight,'subset':tuple(sorted(subset)),
                         'coordinate_monomials':block,'coefficients':ivec,
                         'source_nonzero_terms':len(spull),'source_pullback':spull}
@@ -1079,7 +1136,10 @@ def coefficient_sign(poly):
     return 0
 
 def source_invariant_positive_target(source:MapDescriptor,target:MapDescriptor,degree:int=2,max_block_size:int=200):
-    assert source.k==target.k
+    if source.k != target.k:
+        raise AtlasInvariantError(
+            f"ATLAS_PORT_COUNT_MISMATCH source={source.k} target={target.k}"
+        )
     sops=output_sparse_polynomials_cached(source);tops=output_sparse_polynomials_cached(target)
     blocks=(quadratic_blocks(source.k) if degree==2 else homogeneous_blocks(source.k,degree))
     blocks=sorted(blocks,key=lambda wb:(len(wb[1]),wb[0]))
@@ -1097,7 +1157,10 @@ def source_invariant_positive_target(source:MapDescriptor,target:MapDescriptor,d
             tp=sparse_lincomb(tc,vec)
             sg=coefficient_sign(tp)
             if sg:
-                assert not sparse_lincomb(sc,vec)
+                if sparse_lincomb(sc,vec):
+                    raise AtlasInvariantError(
+                        f"ATLAS_SOURCE_PULLBACK_NONZERO degree={degree} engine=positive_target"
+                    )
                 return {'degree':degree,'weight':weight,'coordinate_monomials':block,
                         'coefficients':vec,'target_sign':sg,'target_pullback':tp}
     return None

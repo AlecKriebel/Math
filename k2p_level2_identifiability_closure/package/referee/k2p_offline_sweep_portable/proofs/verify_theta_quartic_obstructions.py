@@ -9,6 +9,9 @@ displayed-tree sums directly from the bound graph presentations.  With
 
 from __future__ import annotations
 
+if not __debug__:
+    raise SystemExit("exact replay requires assertions; do not use python -O")
+
 import argparse
 import importlib.util
 import hashlib
@@ -21,8 +24,6 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-if not __debug__:
-    raise SystemExit("exact replay requires assertions; do not use python -O")
 CORE = ROOT / "atlas/k2p_atlas_core.py"
 SPEC = importlib.util.spec_from_file_location("k2p_theta_replay_core", CORE)
 assert SPEC is not None and SPEC.loader is not None

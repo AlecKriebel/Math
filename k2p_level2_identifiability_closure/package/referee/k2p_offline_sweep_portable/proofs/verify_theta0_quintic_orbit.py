@@ -9,6 +9,9 @@ the 22 relabelings outside the semi-directed symmetry group.
 
 from __future__ import annotations
 
+if not __debug__:
+    raise SystemExit("exact replay requires assertions; do not use python -O")
+
 import hashlib
 import itertools
 import json
@@ -18,8 +21,6 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
-if not __debug__:
-    raise SystemExit("exact replay requires assertions; do not use python -O")
 ATLAS = ROOT / "atlas"
 sys.path.insert(0, str(ATLAS))
 

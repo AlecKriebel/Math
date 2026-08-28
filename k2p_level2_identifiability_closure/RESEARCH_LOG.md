@@ -837,3 +837,26 @@
   completion is **100% for the mathematical theorem** and **100% for v1.0.3
   release qualification**.  GitHub Release, Zenodo, DOI, and submission
   actions remain reserved to the author.
+
+## 2026-08-27 — fresh round-4 HOLD triage
+
+- Read the complete fresh adversarial report as evidence rather than as
+  instructions and independently reproduced both blocking interface failures
+  against the v1.0.3 sources.  A coherently layer-resealed conflicting JSON
+  object-name duplicate in the first compressed probe row was accepted by the
+  independent probe verifier, and the documented portable package verifier
+  completed successfully under `python -O`.
+- Accepted both findings as valid fail-closed and reproducibility defects.
+  They do not alter any clean ledger row or supply a mathematical
+  counterexample: the referee's clean quick/full replays, independent finite
+  scans, exact calculations, and the existing theorem proof all passed.
+- Opened bounded repairs for one duplicate-aware, bounded, canonical
+  compressed-JSON boundary; semantically resealed duplicate-name mutations;
+  optimized-mode preflights on every documented portable entry point; and
+  removal of assertion-dependent certificate semantics in the portable atlas.
+- Best-guess completion remains **100% for the mathematical theorem** and is
+  reduced to **approximately 88% for corrected release qualification**,
+  pending focused adversarial qualification, recursive resealing, detached
+  quick/full replay, deterministic archive rebuild, commit/push, and a new
+  annotated source tag.  GitHub Release and Zenodo actions remain explicitly
+  excluded.

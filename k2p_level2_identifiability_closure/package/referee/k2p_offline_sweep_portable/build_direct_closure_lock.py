@@ -3,6 +3,9 @@
 
 from __future__ import annotations
 
+if not __debug__:
+    raise SystemExit("K2P_PORTABLE_OPTIMIZED_MODE_FORBIDDEN")
+
 import argparse
 import hashlib
 import json
@@ -74,8 +77,6 @@ def canonical_bytes(value: dict) -> bytes:
 
 
 def main() -> None:
-    if not __debug__:
-        raise SystemExit("lock qualification requires assertions; do not use python -O")
     parser = argparse.ArgumentParser()
     parser.add_argument("--check", action="store_true")
     args = parser.parse_args()
