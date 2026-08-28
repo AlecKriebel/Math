@@ -6,7 +6,7 @@
 verification, submission, and archival subtree. The full superseded package is
 isolated under `legacy/DO_NOT_SUBMIT-pre-clarification/`; the immutable version
 `1.0.0` historical release archive is isolated under `legacy/releases/`, while
-the versions `1.2.5`, `1.2.4`, `1.2.3`, `1.2.2`, `1.2.1`, `1.2.0`, and `1.1.0` remain under
+the versions `1.2.6`, `1.2.5`, `1.2.4`, `1.2.3`, `1.2.2`, `1.2.1`, `1.2.0`, and `1.1.0` remain under
 `releases/`.
 None of those historical locations is a current release input.
 
@@ -15,8 +15,8 @@ in repository history at commit `ca21a733`, dated 4 August 2026, and was linked
 from the public project page by commit `85cdead2`. The clarification revision is
 additive and no Git history was rewritten. A bioRxiv submission candidate and
 its author-facing metadata are prepared in the canonical subtree. The frozen
-source/replay snapshot is version `1.2.6`, identified by the annotated Git tag
-`k2p-k3p-theta-v1.2.6`. Versions `1.2.5`, `1.2.4`, `1.2.3`, `1.2.2`, `1.2.1`, `1.2.0`, `1.1.0`,
+source/replay snapshot is version `1.2.7`, identified by the annotated Git tag
+`k2p-k3p-theta-v1.2.7`. Versions `1.2.6`, `1.2.5`, `1.2.4`, `1.2.3`, `1.2.2`, `1.2.1`, `1.2.0`, `1.1.0`,
 and `1.0.0` remain historical snapshots. No external communication was
 initiated by the automated preparation process.
 
@@ -36,14 +36,22 @@ non-nice pointwise stochastic-interior tree--theta intersection. The account
 of the source-paper revision names exactly the formal K2P lemma and K2P part of
 the global corollary removed between Versions 2 and 3.
 
-The current version `1.2.6` archives were built from full commit
-`672d96a08be174cd6b67762a6907dfbdcd926b9b`. The release builder verified
+The current version `1.2.7` archives were built from full commit
+`19cf11f65ed448cf031842b666e4bfc7e02a9ab7`. The release builder verified
 version/CFF/tag identity, deterministic ZIP and tar.gz construction, both
 internal manifests, identical archive contents, normal and optimized exact
 replay with byte-matching transcripts, and clean PDF rebuilding with matching
 text and rendered pixels. The archives and checksum sidecars are retained under
-`releases/k2p-k3p-theta-v1.2.6/`. No GitHub release, Zenodo deposit, or DOI was
+`releases/k2p-k3p-theta-v1.2.7/`. No GitHub release, Zenodo deposit, or DOI was
 created.
+
+Version 1.2.7 is a paper-first archival production patch. It changes only the
+Figure 1 label clearance, K3P tangent-table row spacing, acknowledgment
+chronology, and active version/deposit metadata. The title, abstract,
+mathematics, certificates, and verifier code are unchanged from the fully
+refereed version 1.2.6. The prepared Zenodo upload directory contains the final
+paper as the primary file and the matching replay archive as supporting
+material; public deposit remains an author-controlled next action.
 
 The copied neutral referee handoff is retained under
 `referee_packages/k2p-k3p-theta-ai-referee-v1.2.6/`. Its 38 source materials

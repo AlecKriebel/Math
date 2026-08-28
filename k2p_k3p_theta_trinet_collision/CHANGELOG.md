@@ -1,5 +1,21 @@
 # Changelog
 
+## Version 1.2.7 paper-first archival freeze -- 27 August 2026
+
+- Sealed the post-review figure-label, tangent-table-spacing, and
+  acknowledgment chronology edits without changing any mathematical content.
+- Advanced all active source/replay metadata to annotated tag
+  `k2p-k3p-theta-v1.2.7` at commit
+  `19cf11f65ed448cf031842b666e4bfc7e02a9ab7`.
+- Rebuilt all PDFs, replayed the exact suite under normal and optimized Python,
+  regenerated the canonical manifest, and passed the commit-pinned clean-
+  extraction release builder.
+- Prepared a paper-first Zenodo upload set containing the final manuscript PDF,
+  its matching source/verifier/replay ZIP, and a checksum manifest. The Zenodo
+  resource type is now Preprint rather than Software.
+- Preserved the title, abstract, theorem statements, witnesses, certificates,
+  verifier code, determinant, tangent, and every scientific conclusion.
+
 ## Version 1.2.6 literature and input-schema closure -- 27 August 2026
 
 - Added and contextualized Ardiyansyah's 2021 algebraic study of restricted

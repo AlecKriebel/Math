@@ -1,5 +1,9 @@
 # Zenodo upload guide — K2P/K3P theta collision v1.2.6
 
+> **Superseded:** do not use this software-first worksheet for the current
+> upload. The final manuscript changed after v1.2.6, and the paper-first
+> v1.2.7 upload is prepared in `../v1.2.7/`.
+
 This is a manual-upload worksheet for the curated reproducibility package.
 It does **not** authorize an upload, create a DOI, or replace the author's
 final review of the Zenodo preview.
