@@ -1,0 +1,24 @@
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[scale=.72,every node/.style={font=\small}]
+\foreach \shift/\leftlab/\rightlab/\title in {-4.1/1/4/$K_4$,4.1/4/1/$K'_4$}{
+  \begin{scope}[xshift=\shift cm]
+    \node[treev] (A) at (-2,0) {$A$}; \node[treev] (B) at (-1,1.25) {$B$};
+    \node[reticv] (C) at (0,0) {$C$}; \node[treev] (D) at (.9,-1.15) {$D$};
+    \node[treev] (E) at (2,-.55) {$E$}; \node[reticv] (F) at (.1,-2.25) {$F$};
+    \draw[reticedge] (A)--(C); \draw (A)--(B); \draw[reticedge] (B)--(C);
+    \draw (C)--(D)--(E); \draw[reticedge] (A)--(F); \draw[reticedge] (E)--(F);
+    \node[leaf] (lB) at (-1,2.25) {\leftlab}; \draw (B)--(lB);
+    \node[leaf] (lD) at (-.35,-1.05) {$2$}; \draw (D)--(lD);
+    \node[leaf] (lF) at (.1,-3.25) {$3$}; \draw (F)--(lF);
+    \node[leaf] (lE) at (3,-.1) {\rightlab}; \draw (E)--(lE);
+    \node at (0,-3.85) {\title};
+  \end{scope}
+}
+\end{tikzpicture}
+\caption{The triangle-containing Theta sharpness pair.  The labelled
+attachments at $B$ and $E$ are exchanged.  Leaf 1 is adjacent to a triangle
+vertex on the left and to a nontriangle vertex on the right, so this ambiguity
+is not ordinary triangle redirection.}
+\label{fig:theta-pair}
+\end{figure}

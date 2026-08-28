@@ -1,0 +1,363 @@
+\section{Physical domain and topology transfer under containment}
+\label{sec:physical-topology}
+
+This section separates three claims that must not be conflated: pointwise
+rank at a true cut, generic detection of a fixed noncut, and equality of cut
+sets under strong-class containment.
+
+\begin{lemma}[Strict isotropic subdivision]\label{lem:subdivision}
+For \(y=(c,g,t)\in\Dplus\), put
+
+\[
+ B_+(y)=\max\{c,g,t,g+t-c,c+t-g,c+g-t\}<1.
+\]
+
+For every \(r\in(B_+(y),1)\),
+
+\[
+ (c,g,t)=(r,r,r)\odot(c/r,g/r,t/r)
+\]
+
+and both factors lie in \(\Dplus\).  In strict continuous time the same holds
+whenever
+
+\[
+ r> B_{\mathrm{CT}}(y)
+ :=\max\{c,g,t,gt/c,ct/g,cg/t\}.
+\]
+\end{lemma}
+
+\begin{proof}
+The first six lower bounds are precisely the upper-coordinate and three
+inverse-Fourier inequalities for the residual triple.  The isotropic factor
+is strict for \(0<r<1\).  In continuous time, for example,
+\(c/r>(g/r)(t/r)\) is equivalent to \(r>gt/c\); the other inequalities are
+cyclic.  All bounds are strictly below one at an interior point.
+\end{proof}
+
+\begin{lemma}[Root movement]\label{lem:root-movement}
+Moving the root to any admissible rooting of the same standard semi-directed
+mixed graph leaves the K3P physical image and its regular germs unchanged up
+to analytic physical reparameterization.
+\end{lemma}
+
+\begin{proof}
+K3P transition matrices are symmetric and the root distribution is uniform,
+so reversing ordinary arcs on an old-to-new root path preserves every
+displayed-tree probability.  Use \cref{lem:subdivision} at the new root and
+suppress the old one.  If the old root meets a reticulation-parent edge,
+inspect each switching: the selected parent uses only the serial product,
+whereas the unselected one-child stem subtends all observed leaves and has
+total character zero.  Every summand of \eqref{eq:k3p-fourier} is unchanged
+after transporting the reversible edge products.  More explicitly, write the
+two parent weights at a reticulation in the recorded parent order as
+\((\lambda,1-\lambda)\).  Root movement preserves \(\lambda\) when that order
+is preserved and transports it to \(\lambda'=1-\lambda\) when the order is
+reversed; thus the same switching keeps the same coefficient.  Strict
+subdivision supplies analytic physical
+sections in both directions on a neighborhood, which is the asserted
+reparameterization.
+\end{proof}
+
+For a split \(S=A\mid A^c\), order the Fourier flattening by the bridge
+character \(h=\xor_{i\in A}h_i\).  It is block diagonal with four character
+blocks.
+
+\begin{proposition}[True-cut rank, pointwise]\label{prop:true-cut}
+At every strict K3P parameter point of every network, if \(S\) is a bridge
+split, then
+
+\[
+ \rank\Flat_S(q)\le4.
+\]
+\end{proposition}
+
+\begin{proof}
+Condition on the character crossing the bridge.  Each of the four character
+blocks is a positive rank-one outer product of the two side tensors, with the
+corresponding bridge multiplier in the nonzero blocks.  Summing their ranks
+gives at most four.
+\end{proof}
+
+\begin{lemma}[Displayed-tree witness for a noncut]
+\label{lem:displayed-tree-noncut}
+If \(S=A\mid A^c\) is not a bridge split of a strongly tree-child level-2
+network, some displayed switching gives a tree that does not display \(S\).
+\end{lemma}
+
+\begin{proof}
+Color the leaves by the two sides of \(S\), and take the two color hulls in
+the network's abstract bridge-incidence tree.  Disjoint hulls would be
+separated by a bridge realizing \(S\), contrary to hypothesis.  If their
+intersection contains an edge, that edge is a bridge split crossing \(S\).
+Every displayed tree retains this bridge split, and two splits of one tree
+are compatible, so no displayed tree can also display \(S\).
+
+Otherwise the hulls meet in one complete component.  Every incident branch
+there is monochromatic, and minimality of the two hulls supplies at least two
+branches of each color.  The balanced compression argument of
+\cref{lem:balanced-compression} applies inside this cycle or theta factor and
+produces a switching with a wrong two-by-two quartet.  Extending its local
+choices arbitrarily over all other reticulations gives the required global
+displayed tree.
+\end{proof}
+
+\begin{proposition}[Generic noncut recovery]\label{prop:generic-noncut}
+Fix a standard strongly tree-child level-2 network \(N\) and a split \(S\)
+that is not a bridge split.  Some \(5\)-by-\(5\) minor of
+\(\Flat_S\circ\Phi_N\)
+is a nonzero polynomial.  Consequently
+\(\rank\Flat_S(q)>4\) on a Zariski-open dense subset of the physical parameter
+domain.
+\end{proposition}
+
+\begin{proof}
+Choose the switching in \cref{lem:displayed-tree-noncut}.  The ordinary-tree
+quartet criterion supplies \(a_0,a_1\in A\) and
+\(a_2,a_3\in A^c\) whose restricted displayed tree has a quartet split
+different from \(a_0a_1\mid a_2a_3\).  Work first at the polynomial-map
+boundary by setting each inheritance probability to zero or one so that only
+this switching remains, and give every edge an isotropic multiplier strictly
+between zero and one.
+
+Relabel the displayed quartet split as \(01\mid23\) and its wrong flattening
+as \(02\mid13\).  After suppressing its serial paths, write
+\(p_0,p_1,p_2,p_3\in(0,1)\) for the four pendant multipliers and
+\(u\in(0,1)\) for the internal multiplier.  In the zero-character block, the
+rows and columns indexed by \(00\) and \(CC\) give determinant
+
+\[
+ p_0p_1p_2p_3(1-u^2)>0.
+\]
+
+One positive entry from each of the other three character blocks augments
+this to a nonzero \(5\)-by-\(5\) minor.  Assigning character zero to every
+unselected leaf identifies it with a minor of \(\Flat_S\circ\Phi_N\).
+Thus that network minor has a nonzero boundary evaluation and is not the zero
+polynomial.  By continuity it remains nonzero when every inheritance
+probability is moved sufficiently close to its selected endpoint but into
+\((0,1)\).  The isotropic edge points are strict in both \(\Dplus\) and
+\(\Dct\).  Hence a strict physical evaluation exists, and the zero set of the
+minor has empty interior in the open K3P parameter domain.
+\end{proof}
+
+\begin{corollary}[The easy directed cut inclusion]\label{cor:target-source-cut}
+If \(N\preceqplus N'\), then every target bridge split is a source bridge
+split:
+
+\[
+ \operatorname{Cut}(N')\subseteq\operatorname{Cut}(N).
+\]
+\end{corollary}
+
+\begin{proof}
+For a target bridge, all \(5\)-minors vanish identically after composition
+with the physical target section.  They therefore vanish on the source-open
+parameter neighborhood.  If the split were a source noncut,
+\cref{prop:generic-noncut} would make one pullback a nonzero polynomial,
+which cannot vanish on an open set.
+\end{proof}
+
+The reverse inclusion needs genuinely K3P pointwise information, but only for
+a finite one-active universe.
+
+\begin{lemma}[Balanced noncut compression]\label{lem:balanced-compression}
+Let a complete strongly tree-child cycle or theta factor carry a two-color
+boundary assignment with at least two actual labels of each color and no
+bridge realizing the color split.  There is a restriction which retains the
+primitive core, one complete minimum strong repair, every path-sink child,
+and at least two actual labels of each color.  All required unselected roles
+remain as zero-character completion ports.  The restricted coloring remains
+noncut, some displayed switching fails it, and two actual labels of each
+color give a wrong quartet in the finite one-active universe of
+\cref{lem:one-active}.
+\end{lemma}
+
+\begin{proof}
+First retain a rigid support \(Q\): every path-sink child and one occupied port
+on every segment of one complete minimum repair.  The core table in
+\cref{sec:bounded} gives \(|Q|\le4\), and suppressing unselected ordinary
+subdivisions leaves the primitive cycle or theta core.  A nonroot incoming
+boundary, when present, is retained in addition; because it is already an
+actual colored label, the number of further representatives needed to reach
+two of each color decreases by one.  Thus the compulsory support plus the
+four-active representatives still has at most eight ports.  On each directed
+segment, read the colors as a word and decompose it into maximal constant runs.
+
+If some segment contains three consecutive runs \(c,d,c\), retain one actual
+label from each of those runs and, if necessary, one further \(d\)-label from
+the same or another segment.  In every switching the path between the two
+outer \(c\)-attachments contains the middle \(d\)-attachment.  No tree edge
+can separate the complete color classes: a segment edge separates the outer
+\(c\)-ports or retains the middle \(d\) with them, a pendant edge isolates one
+port, and another \(d\)-port exists.  This is a direct all-switching
+obstruction.
+
+Otherwise every segment has at most two runs.  Select actual labels from at
+most two runs of each color, preferring labels already in \(Q\), until two
+labels of each color are retained.  If a color is represented by only one
+selected label, retain a second actual label in the same run when possible,
+and otherwise from another run or segment.  Its primitive blob and all
+compulsory child roles remain; no internal blob edge is a bridge, and a
+pendant arm cannot separate a color class containing two labels.  Thus the
+restricted split is still noncut.
+
+It remains to pass from this bounded restriction to the exact four-active
+palette.  Retain one actual label from each selected run, preserving every
+occupied segment and fixed child role.  Each segment word is now one of
+\[
+ (),\quad(0),\quad(1),\quad(0,1),\quad(1,0).
+\]
+Double a singleton run when needed to keep two actual labels of its color.
+Any split displayed by every switching before this reduction would remain so
+after leaf restriction.  The independent finite switching replay has zero
+survivors in this direct-or-singleton-doubled palette, so in this second case
+some switching fails the color split.  In either case choose a failing
+switching.  The ordinary-tree quartet criterion then selects two retained
+actual labels of each color whose quartet fails that split.  Every
+other repair or path-sink role is retained at character zero, so the result
+is one of the graph-derived one-active directions rather than a pruned
+topology.
+
+The exact censuses are reproducibility checksums, not premises.  A standalone
+word program exhausts all (808{,}642) balanced distributions with four
+through eight active ports and partitions them into (229{,}988) three-run
+obstructions, (544{,}350) direct-palette reductions, and (34{,}304)
+singleton-doubled reductions.  A no-import implementation independently
+constructs the five primitive cores and tests (379{,}742) valid compressed
+presentations, with zero all-switching survivors.  Finally, five cores give
+72 active-labelled records and 216 split entries; 12 are displayed by every
+switching, leaving the 204 wrong directions certified in
+\cref{lem:one-active}.
+\end{proof}
+
+\begin{lemma}[One-active K3P obstruction]\label{lem:one-active}
+For a balanced two-color split across one active strongly tree-child
+level-2 component, primitive-core and word compression produce exactly 216
+labelled split entries.  Exactly 12 are displayed by every switching.
+For each of the remaining 204 normalized wrong-split directions, every
+strict \(\Dplus\) tensor has flattening rank greater than four.
+\end{lemma}
+
+\begin{proof}[Exact finite proof]
+The active model-independent graph producer derives five primitive core
+templates, 72 active-labelled records, and three \(2\)-by-\(2\) splits per
+record from literal directed graphs, root suppression, switching choices, and
+descendant masks.  Its fresh certificate is required to agree byte for byte
+with the exact topology input consumed by the K3P replay.  Starting from those
+independently regenerated switching signatures, that replay recomputes the
+displayed-by-all flags: it removes 12 entries and gives 204 distinct labelled
+direction keys, without quotienting by an automorphism.  The five-core theorem
+and the compression proof are handwritten above; the 72-row labelled table is
+also graph-derived active evidence, not a K3P algebraic conclusion.
+
+For 180 directions one selected block minor has a strictly signed
+Bernstein expansion on the strict K3P simplex.  Twelve more are excluded by
+positive signed combinations of two minors.  Ten use cyclic six-minor
+identities.  The last two use two independently checked cyclic elimination
+certificates, one obtained by an exact labelled transport.  The disjoint
+partition is
+
+\[
+ 204=180+12+10+1+1.
+\]
+
+If the total flattening had rank at most four, its four positive character
+blocks would each have rank one, forcing all selected minor equations to
+vanish.  The corresponding signed or cyclic certificate contradicts that
+system throughout \(\Dplus\).  A separately implemented verifier rebuilds all
+204 normalized directions and all exact K3P arithmetic from that table.  The
+graph producer, byte comparison, and coherent topology/mask mutations are
+separate active gates.  The supplement records this implementation boundary.
+\end{proof}
+
+\begin{theorem}[Strong-class cut-set equality under containment]
+\label{thm:cut-transfer}
+If \(N\preceqplus N'\) for networks in the class of \cref{thm:main}, then
+
+\[
+ \operatorname{Cut}(N)=\operatorname{Cut}(N').
+\]
+
+Hence the labelled abstract bridge-incidence trees agree.  This conclusion
+does not yet decide whether a trivalent internal component is ordinary or is
+the contraction of a three-boundary cycle; that decoration is recovered in
+\cref{lem:trivalent-decoration}.
+\end{theorem}
+
+\begin{proof}
+By \cref{cor:target-source-cut}, only
+\(\operatorname{Cut}(N)\subseteq\operatorname{Cut}(N')\) remains.  Suppose a
+nontrivial source bridge split \(S=A\mid B\) is absent from the target; a
+singleton split is pendant in every standard network and cannot be lost, so
+\(|A|,|B|\ge2\).
+Color target leaves by \(A,B\), and in the target reduced tree let \(H_A,H_B\)
+be the two color hulls.  They intersect, because an edge separating disjoint
+hulls would realize \(S\) as a target bridge.
+
+If \(H_A\cap H_B\) contains an edge, its target bridge split \(R=C\mid D\)
+has a leaf in each of
+\(A\cap C,A\cap D,B\cap C,B\cap D\); thus \(R\) crosses \(S\).  But
+\cref{cor:target-source-cut} makes \(R\) a source bridge.  Two edge splits of
+one tree are compatible, so source bridge splits \(R,S\) cannot cross.  This
+excludes the two-active alternative without assuming a common bridge tree.
+
+Otherwise \(H_A\cap H_B=\{v\}\) is one target component.  Every branch of
+the target reduced tree at \(v\) is monochromatic.  Indeed, if one branch
+contained both colors, then, because \(v\) lies in each color hull, the edge
+entering that branch would belong to both \(H_A\) and \(H_B\), contrary to
+their intersection being only \(v\).  Moreover, membership of \(v\) in each
+minimal color hull forces at least two incident branches of each color: a
+labelled tree leaf has only one color and cannot lie in both hulls, so \(v\)
+is internal in each hull.
+Thus \(v\) has at least four relevant branches.  A binary ordinary tree
+vertex has degree three, so \(v\) represents a nontrivial central blob.
+
+Apply \cref{lem:balanced-compression} to this central blob.  It supplies
+actual labels \(a_1,a_2\in A\) and \(b_1,b_2\in B\) whose induced quartet
+fails to display \(a_1a_2\mid b_1b_2\), while the completion roles are
+retained at zero character.  This is one of the 204 graph-derived labelled
+wrong-split directions in \cref{lem:one-active}.
+
+It remains to check that suppressing the material between the four selected
+labels and the central blob stays inside the strict K3P domain.  A nonempty
+ordinary serial path is a convolution of strictly positive
+\(\mathbb Z_2^2\) transition distributions, hence is a strict K3P edge.
+Every component strictly between \(v\) and one selected label has only two
+retained boundaries.  Marginalizing such a noncentral blob gives
+
+\[
+ M_{\mathrm{eff}}=\sum_s w_sM_s,
+ \qquad w_s>0,\qquad \sum_s w_s=1,
+\]
+
+where \(M_s\) is the strict K3P path matrix of switching \(s\).  Each \(w_s\)
+is a product of local factors \(\lambda_r\) or \(1-\lambda_r\), so positivity
+and normalization follow from summing all local switches.  K3P matrices form
+a linear family, so \(M_{\mathrm{eff}}\) is K3P; its transition entries are
+positive convex combinations of positive entries and its three nontrivial
+Fourier eigenvalues are convex combinations of numbers in \((0,1)\).  It is
+therefore a strict \(\Dplus\) edge.  Chains of these two-boundary mixtures
+and ordinary paths remain strict by convolution.
+Retained inheritance probabilities are \(\lambda\) or \(1-\lambda\), still
+in \((0,1)\).  Thus the compressed target quartet lies at a strict physical
+point of the 204-direction theorem; no target regularity or target-open
+marginal is being assumed.
+
+Apply the same four-leaf marginal to the containment identity.  In Fourier
+coordinates this sets every omitted leaf character to zero.  On the source
+side the original bridge \(S\) survives because two selected labels lie on
+each side, so \cref{prop:true-cut} gives rank at most four.  On the identical
+target tensor, \cref{lem:one-active} gives rank greater than four at every
+strict target point.  This contradiction proves the reverse inclusion.  The
+compatible split system determines the labelled abstract bridge-incidence
+tree.  As usual for edge-split recovery, it does not by itself decorate a
+trivalent vertex as an ordinary branching component or a three-boundary blob.
+\end{proof}
+
+\begin{remark}[Exact claim boundary]\label{rem:no-universal-cut}
+Theorem \ref{thm:cut-transfer} is a directional theorem for two networks in
+the strong class.  It does not promote \cref{prop:generic-noncut} to a
+universal pointwise converse for arbitrary K3P networks.  No later proof uses
+such a converse.
+\end{remark}

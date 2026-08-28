@@ -1,0 +1,72 @@
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  x=1cm,y=1cm,
+  every node/.style={font=\scriptsize},
+  tree/.style={circle,draw,inner sep=1.1pt,minimum size=4.6mm},
+  retic/.style={circle,draw,double,inner sep=.9pt,minimum size=5.1mm},
+  leaf/.style={rectangle,draw,rounded corners=.6pt,inner sep=1.4pt},
+  ordinary/.style={line width=.62pt},
+  enter/.style={-{Stealth[length=1.95mm,width=1.2mm]},line width=.9pt},
+  panel/.style={font=\large}
+]
+  % W after one-step suppression of r.
+  \begin{scope}[shift={(-3.65,0)}]
+    \node[panel] at (0,2.55) {$W$};
+    \node[tree] (s) at (-1.55,.8) {$S$};
+    \node[tree] (u) at (-.15,-.45) {$U$};
+    \node[retic] (v) at (-.15,1.75) {$V$};
+    \node[tree] (z) at (1.45,1.75) {$Z$};
+    \node[retic] (x) at (1.45,-.45) {$X$};
+    \node[leaf] (l0) at (-2.65,.8) {$L_0$};
+    \node[leaf] (l1) at (2.55,1.75) {$L_1$};
+    \node[leaf] (l2) at (2.55,-.45) {$L_2$};
+    \draw[ordinary] (l0) -- (s);
+    \draw[ordinary] (s) -- (u);
+    \draw[enter] (s) -- (v);
+    \draw[enter] (u) -- (v);
+    \draw[ordinary] (v) -- (z);
+    \draw[enter] (u) -- (x);
+    \draw[enter] (z) -- (x);
+    \draw[ordinary] (z) -- (l1);
+    \draw[ordinary] (x) -- (l2);
+    \node[font=\tiny,align=center] at (0,-1.18)
+      {$\operatorname{Ret}(W)=\{V,X\}$\\root-suppressed edge: $L_0S$};
+  \end{scope}
+
+  % W' after one-step suppression of r.
+  \begin{scope}[shift={(3.65,0)}]
+    \node[panel] at (-2.15,2.55) {$W'$};
+    \node[tree] (s) at (-1.65,.8) {$S$};
+    \node[tree] (u) at (-.35,-.35) {$U$};
+    \node[tree] (v) at (1.05,.05) {$V$};
+    \node[retic] (x0) at (0,1.8) {$X_0$};
+    \node[retic] (x1) at (1.55,-1.05) {$X_1$};
+    \node[leaf] (l0) at (-2.75,.8) {$L_0$};
+    \node[leaf] (l1) at (0,2.65) {$L_1$};
+    \node[leaf] (l2) at (2.65,-1.05) {$L_2$};
+    \draw[ordinary] (l0) -- (s);
+    \draw[ordinary] (s) -- (u);
+    \draw[ordinary] (u) -- (v);
+    \draw[enter] (s) -- (x0);
+    \draw[enter] (v) -- (x0);
+    \draw[enter] (u) -- (x1);
+    \draw[enter] (v) -- (x1);
+    \draw[ordinary] (x0) -- (l1);
+    \draw[ordinary] (x1) -- (l2);
+    \node[font=\tiny,align=center] at (0,-1.62)
+      {$\operatorname{Ret}(W')=\{X_0,X_1\}$\\root-suppressed edge: $L_0S$};
+  \end{scope}
+
+  \node[draw,rounded corners=1.2pt,inner sep=3pt,font=\scriptsize,align=center]
+    at (0,-2.35)
+    {labelled nonisomorphic; both in
+      $W_{\mathrm{TC}}\setminus S_{\mathrm{TC}}$};
+\end{tikzpicture}
+\caption{The sharpness base pair after the prescribed one-step suppression
+of the root.  Plain lines are ordinary edges and arrowheads are precisely
+the retained reticulation entries.  The drawings make the distinct labelled
+mixed-graph structures visible; both graphs are weakly but not strongly
+tree-child.}
+\label{fig:sharpness-pair}
+\end{figure}

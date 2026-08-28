@@ -1,0 +1,212 @@
+\section{Three-leaf K3P geometry}\label{sec:three-leaf}
+
+Normalize \(q_{000}=1\) and order the sixteen conservation-supported
+three-leaf coordinates as
+
+\begin{equation}\label{eq:three-order}
+\begin{split}
+(&000,0CC,0GG,0TT,C0C,CC0,CGT,CTG,\\
+ &G0G,GCT,GG0,GTC,T0T,TCG,TGC,TT0).
+\end{split}
+\end{equation}
+
+The resulting affine chart has dimension \(15\).
+
+\subsection{Trees and ordinary sunlets}
+
+A three-leaf tree with pendant spectra \(a,b,c\) has
+
+\[
+ q_{xyz}=a_xb_yc_z\qquad(x+y+z=0).
+\]
+
+For the ordinary sunlet with reticulation adjacent to the third leaf, use
+the exact map
+
+\begin{equation}\label{eq:sunlet-map}
+ q_{xyz}=a_xb_yc_z
+ \bigl[\lambda f_y d_z+(1-\lambda)f_xe_z\bigr],
+ \qquad x+y+z=0.
+\end{equation}
+
+The other orientations are obtained by labelled port transport.
+
+For two triples \(L=(u,v,w)\) and \(R=(u',v',w')\), write
+\(I(L;R)=q_uq_vq_w-q_{u'}q_{v'}q_{w'}\).  Define the six cubic circuits
+
+\begin{align*}
+I_1&=I((000,CGT,GTC);(0TT,C0C,GG0)),\\
+I_2&=I((000,CTG,TGC);(0GG,C0C,TT0)),\\
+I_3&=I((000,GCT,TGC);(0CC,GG0,T0T)),\\
+I_4&=I((000,GTC,TCG);(0CC,G0G,TT0)),\\
+I_5&=I((000,CTG,GCT);(0TT,CC0,G0G)),\\
+I_6&=I((000,CGT,TCG);(0GG,CC0,T0T)).
+\end{align*}
+
+Brits et al.~\cite[Lemma~4.2]{BritsEtAl2026} prove tree--sunlet disjointness
+on their restricted stochastic, nonidentity, positive-definite parameter
+space \(\Theta_0\), with inheritance parameters in \((0,1)\), using four tree
+invariants.  The following symmetric six-circuit sum of squares supplies a
+single pointwise observable on the principal positive domain \(\Dplus\) and
+is the form used in our restoration and probe arguments.
+
+\begin{proposition}[Tree--ordinary-sunlet separation]\label{prop:tree-sunlet}
+The observable
+
+\[
+ \mathcal S=\sum_{j=1}^6 I_j^2
+\]
+
+vanishes identically on the three-leaf K3P tree model and is strictly
+positive on every ordinary three-sunlet with strict \(\Dplus\) edges and
+\(0<\lambda<1\).  Leaf permutations cover all three orientations.
+\end{proposition}
+
+\begin{proof}
+Tree monomials make every \(I_j\) vanish.  On \eqref{eq:sunlet-map}, each
+pullback has the following literal factorization.  Put
+\(\mu=\lambda(1-\lambda)\) and
+\[
+\begin{array}{lll}
+M_1=a_Ca_Gb_Gb_Tc_Cc_T,&M_2=a_Ca_Tb_Gb_Tc_Cc_G,&
+M_3=a_Ga_Tb_Cb_Gc_Cc_T,\\
+M_4=a_Ga_Tb_Cb_Tc_Cc_G,&M_5=a_Ca_Gb_Cb_Tc_Gc_T,&
+M_6=a_Ca_Tb_Cb_Gc_Gc_T.
+\end{array}
+\]
+Then exact expansion of the displayed map gives
+\begin{align*}
+I_1&=\mu M_1(f_Cf_T-f_G)(d_Ce_T-d_Te_Cf_G),\\
+I_2&=\mu M_2(f_Cf_G-f_T)(d_Ce_G-d_Ge_Cf_T),\\
+I_3&=-\mu M_3(f_Cf_T-f_G)(d_Ce_Tf_G-d_Te_C),\\
+I_4&=-\mu M_4(f_Cf_G-f_T)(d_Ce_Gf_T-d_Ge_C),\\
+I_5&=-\mu M_5(f_C-f_Gf_T)(d_Ge_T-d_Te_Gf_C),\\
+I_6&=\mu M_6(f_C-f_Gf_T)(d_Ge_Tf_C-d_Te_G).
+\end{align*}
+All arm and inheritance factors are positive.  If
+\(f_Cf_T-f_G\ne0\), simultaneous vanishing of \(I_1,I_3\) forces
+\(f_G^2=1\); similarly \(I_2,I_4\) force \(f_T^2=1\), and
+\(I_5,I_6\) force \(f_C^2=1\).  These conclusions are impossible for
+strict edges.  If instead all three composition margins vanish, then
+\[
+ f_G=f_Cf_T,\qquad f_T=f_Cf_G,\qquad f_C=f_Gf_T,
+\]
+so their product gives \(p=p^2\) for
+\(p=f_Cf_Gf_T\in(0,1)\), again impossible.  Therefore at least one circuit
+is nonzero.  A self-describing exact certificate independently expands these
+six eight-term identities from the literal map; no edge-letter permutation
+is used.
+\end{proof}
+
+This separator is pointwise on the complete three-leaf maps; it does not
+classify a pruned mixed graph by topology alone.
+
+\subsection{The triangle hypersurface}
+
+Define the eight-term quartic
+
+\begin{align}\label{eq:H14}
+F_{H_{14}}={}&
+ q_{000}q_{CGT}q_{GTC}q_{TCG}
+-q_{000}q_{CTG}q_{GCT}q_{TGC}\nonumber\\
+&-q_{0CC}q_{CGT}q_{G0G}q_{TT0}
++q_{0CC}q_{CTG}q_{GG0}q_{T0T}\nonumber\\
+&+q_{0GG}q_{C0C}q_{GCT}q_{TT0}
+-q_{0GG}q_{CC0}q_{GTC}q_{T0T}\nonumber\\
+&-q_{0TT}q_{C0C}q_{GG0}q_{TCG}
++q_{0TT}q_{CC0}q_{G0G}q_{TGC}.
+\end{align}
+
+Let \(H_{14}=Z(F_{H_{14}})\subset\mathbb A^{15}\).
+
+\begin{theorem}[Ordinary-triangle geometry]\label{thm:H14}
+The three labelled ordinary-triangle orientation maps have generic
+normalized rank \(14\), have the same irreducible image closure \(H_{14}\),
+and share a strict continuous-time smooth rank-\(14\) analytic germ.  They do
+not contain an ambient-open \(15\)-dimensional germ.
+\end{theorem}
+
+\input{\KThreePCanonicalRoot/figures/triangle_orientations}
+
+The three labelled redirections and their common relative hypersurface germ
+are summarized in \cref{fig:triangle-orientations}.
+
+\begin{proof}
+Exact substitution of all three transported versions of
+\eqref{eq:sunlet-map} annihilates \eqref{eq:H14}.  Give edges
+\(a,b,c,d,e\) the isotropic spectrum \((1/2,1/2,1/2)\), give \(f\) the
+spectrum \((1/3,1/3,1/3)\), and set \(\lambda=1/2\).  Every orientation then
+maps to the same tensor
+
+\[
+q_0=\left(1,\frac1{12},\frac1{12},\frac1{12},
+\frac1{12},\frac1{12},\frac1{48},\frac1{48},
+\frac1{12},\frac1{48},\frac1{12},\frac1{48},
+\frac1{12},\frac1{48},\frac1{48},\frac1{12}\right).
+\]
+
+All edges are strict continuous-time.  Exact \(14\)-minors at the three
+preimages have determinants
+
+\[
+ -\frac1{760840571584512},\qquad
+ -\frac1{760840571584512},\qquad
+  \frac1{760840571584512}.
+\]
+
+The quartic gradient at \(q_0\) is nonzero; its six nonzero normalized
+components have absolute value \(1/6912\).  Thus \(H_{14}\) is smooth and
+has dimension \(14\) at \(q_0\).  Every orientation differential has rank
+\(14\) and lies in the \(14\)-dimensional tangent kernel of \(dF_{H_{14}}\),
+so it submerses onto a relative neighborhood in \(H_{14}\).  Intersect the
+three neighborhoods and apply the constant-rank theorem to obtain physical
+analytic sections.
+
+For irreducibility, regard the normalized quartic as linear in \(q_{0CC}\).
+Its coefficient is the primitive disjoint-support binomial
+
+\[
+ -q_{CGT}q_{G0G}q_{TT0}+q_{CTG}q_{GG0}q_{T0T}.
+\]
+
+The exponent difference is primitive, so this coefficient is irreducible.
+A hand-checkable specialization is obtained by setting
+\(q_{000}=q_{CTG}=q_{GCT}=q_{TGC}=1\) and every other coefficient-ring
+variable occurring in \eqref{eq:H14} to zero.  The coefficient then vanishes
+while the remainder equals \(-1\); hence the coefficient does not divide the
+remainder.  Gauss's lemma proves that \(F_{H_{14}}\) is irreducible.  Since
+every orientation is contained in this hypersurface and contains a relative
+neighborhood of its smooth locus, each image closure is exactly \(H_{14}\).
+None is ambient-open in \(\mathbb A^{15}\).
+\end{proof}
+
+For comparison, the normalized three-leaf tree map has rank \(9\); one exact
+minor is \(8192/28940625\).  The outer-class double-theta map in
+\cref{sec:outer-obstruction} has rank \(15\).  The rank-\(14\) triangle
+ambiguity is therefore intermediate and must be contextualized relative to
+\(H_{14}\), not to the ambient tensor chart.
+
+\begin{lemma}[Contextual \(H_{14}\) germ]\label{lem:H14-context}
+Replace one ordinary triangle orientation by another inside an otherwise
+unchanged labelled context, possibly reconnecting two triangle terminals
+inside a theta factor.  The two complete network maps share a common germ
+that is full-dimensional relative to both images.
+\end{lemma}
+
+\begin{proof}
+Let \(U\subset H_{14}\) be the common relative germ from
+\cref{thm:H14}, \(C\) a physical chart of the unchanged context, and write
+the common labelled multilinear contraction as
+
+\[
+ \Psi(u,c)(g)=\sum_{\mathbf h\in\G^3}C(g;\mathbf h,c)u(\mathbf h).
+\]
+
+Choose one point of \(U\times C\) where \(D\Psi\) has its generic maximal
+rank and shrink to a constant-rank neighborhood.  Physical sections of each
+triangle orientation through \(U\) give the same lower rank for each
+contextual map; direct factorization of each map through \(\Psi\) gives the
+reverse inequality.  A constant-rank section of \(\Psi\), followed by the
+orientation sections, yields one common full-dimensional contextual germ.
+No tensor-product independence among the three terminals is assumed.
+\end{proof}

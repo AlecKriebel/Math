@@ -1,0 +1,113 @@
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  x=1cm,y=1cm,
+  every node/.style={font=\scriptsize},
+  source/.style={circle,draw,inner sep=1pt,minimum size=4.2mm},
+  tree/.style={circle,draw,inner sep=1pt,minimum size=4.2mm},
+  retic/.style={circle,draw,double,inner sep=.85pt,minimum size=4.7mm},
+  seg/.style={-{Stealth[length=1.55mm,width=1.05mm]},line width=.52pt},
+  port/.style={seg,dashed},
+  slabel/.style={fill=white,inner sep=.55pt,font=\tiny},
+  title/.style={font=\small},
+  repair/.style={font=\tiny,align=center}
+]
+  % Cycle.
+  \begin{scope}[shift={(0,4.0)}]
+    \node[title] at (-1.0,1.25) {cycle};
+    \node[source] (s) at (0,.75) {$S$};
+    \node[retic] (x) at (0,-.75) {$X$};
+    \draw[port] (0,1.35) -- node[right,slabel] {$\iota$} (s);
+    \draw[seg] (s) to[bend right=42] node[left,slabel] {$0$} (x);
+    \draw[seg] (s) to[bend left=42] node[right,slabel] {$1$} (x);
+    \draw[port] (x) -- (0,-1.35);
+    \node[repair] at (0,-1.72) {$\mathcal R_{\min}:\{0\},\{1\}$};
+  \end{scope}
+
+  % theta_0.
+  \begin{scope}[shift={(4.25,4.0)}]
+    \node[title] at (-1.45,1.25) {$\theta_0$};
+    \node[source] (s) at (0,.8) {$S$};
+    \node[tree] (u) at (-1,0) {$U$};
+    \node[retic] (v) at (1,0) {$V$};
+    \node[retic] (x) at (0,-1) {$X$};
+    \draw[port] (0,1.38) -- node[right,slabel] {$\iota$} (s);
+    \draw[seg] (s) -- node[left,slabel] {$0$} (u);
+    \draw[seg] (s) -- node[right,slabel] {$1$} (v);
+    \draw[seg] (u) -- node[left,slabel] {$2$} (x);
+    \draw[seg] (v) -- node[right,slabel] {$3$} (x);
+    \draw[seg] (u) -- node[above,slabel] {$4$} (v);
+    \draw[port] (x) -- (0,-1.48);
+    \node[repair] at (0,-1.78)
+      {$\mathcal R_{\min}:\{2,3\},\{3,4\}$};
+  \end{scope}
+
+  % theta_1.
+  \begin{scope}[shift={(9.0,4.0)}]
+    \node[title] at (-1.55,1.25) {$\theta_1$};
+    \node[source] (s) at (-1,.75) {$S$};
+    \node[retic] (x) at (1,.75) {$X$};
+    \node[tree] (u) at (-1,-.75) {$U$};
+    \node[retic] (v) at (1,-.75) {$V$};
+    \draw[port] (-1,1.35) -- node[right,slabel] {$\iota$} (s);
+    \draw[seg] (s) -- node[left,slabel] {$0$} (u);
+    \draw[seg] (s) -- node[above,slabel] {$1$} (x);
+    \draw[seg] (v) -- node[right,slabel] {$2$} (x);
+    \draw[seg] (u) to[bend left=24] node[above,slabel] {$3$} (v);
+    \draw[seg] (u) to[bend right=24] node[below,slabel] {$4$} (v);
+    \draw[port] (x) -- (1.65,.75);
+    \node[repair] at (0,-1.52)
+      {$\mathcal R_{\min}:\{2,3\},\{2,4\}$};
+  \end{scope}
+
+  % theta_2.
+  \begin{scope}[shift={(2.2,.25)}]
+    \node[title] at (-1.7,1.35) {$\theta_2$};
+    \node[source] (s) at (0,1.0) {$S$};
+    \node[tree] (u) at (-1.15,.15) {$U$};
+    \node[tree] (v) at (1.15,.15) {$V$};
+    \node[retic] (x0) at (-.52,-1.0) {$X_0$};
+    \node[retic] (x1) at (.52,-1.0) {$X_1$};
+    \draw[port] (0,1.58) -- node[right,slabel] {$\iota$} (s);
+    \draw[seg] (s) -- node[left,slabel] {$0$} (u);
+    \draw[seg] (s) -- node[right,slabel] {$1$} (v);
+    \draw[seg] (u) -- node[left,slabel] {$2$} (x0);
+    \draw[seg] (v) -- node[pos=.34,right,slabel] {$3$} (x0);
+    \draw[seg,preaction={draw=white,line width=2pt,-}]
+      (u) -- node[pos=.34,left,slabel] {$4$} (x1);
+    \draw[seg] (v) -- node[right,slabel] {$5$} (x1);
+    \draw[port] (x0) -- (-.52,-1.48);
+    \draw[port] (x1) -- (.52,-1.48);
+    \node[repair] at (0,-1.83)
+      {$\mathcal R_{\min}:\{2,3\},\{2,5\},\{3,4\},\{4,5\}$};
+  \end{scope}
+
+  % theta_3.
+  \begin{scope}[shift={(7.4,.25)}]
+    \node[title] at (-1.7,1.35) {$\theta_3$};
+    \node[source] (s) at (0,1.0) {$S$};
+    \node[tree] (u) at (-1.25,.15) {$U$};
+    \node[retic] (x0) at (1.25,.15) {$X_0$};
+    \node[tree] (v) at (0,-.65) {$V$};
+    \node[retic] (x1) at (-1.25,-1.35) {$X_1$};
+    \draw[port] (0,1.58) -- node[right,slabel] {$\iota$} (s);
+    \draw[seg] (s) -- node[left,slabel] {$0$} (u);
+    \draw[seg] (s) -- node[right,slabel] {$1$} (x0);
+    \draw[seg] (v) -- node[right,slabel] {$2$} (x0);
+    \draw[seg] (u) -- node[left,slabel] {$3$} (x1);
+    \draw[seg] (v) -- node[below,slabel] {$4$} (x1);
+    \draw[seg] (u) -- node[above,slabel] {$5$} (v);
+    \draw[port] (x0) -- (1.75,.15);
+    \draw[port] (x1) -- (-1.25,-1.72);
+    \node[repair] at (.25,-1.98)
+      {$\mathcal R_{\min}:\{2\},\{4\}$};
+  \end{scope}
+
+\end{tikzpicture}
+\caption{The five primitive complete-factor cores.  Segment indices agree
+with the port-word grammar; $\iota$ is the selected incoming boundary.
+The complete minimum strong repairs $\mathcal R_{\min}$ are shown below
+each core.  Single circles mark source or tree roles, double circles mark
+reticulations, and dashed stubs retain incoming or path-sink child ports.}
+\label{fig:primitive-cores}
+\end{figure}

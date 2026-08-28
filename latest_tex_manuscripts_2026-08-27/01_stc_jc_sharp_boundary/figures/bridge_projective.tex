@@ -1,0 +1,23 @@
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[every node/.style={font=\small}]
+  \node[ellipse,draw=treecol,thick,minimum width=2.1cm,minimum height=1.3cm] (B1) at (-3.6,0) {$[P_1]$};
+  \node[ellipse,draw=retic,thick,minimum width=2.1cm,minimum height=1.3cm] (B2) at (0,0) {$[P_2]$};
+  \node[ellipse,draw=treecol,thick,minimum width=2.1cm,minimum height=1.3cm] (B3) at (3.6,0) {$[P_3]$};
+  \draw[ordinary,very thick] (B1)--(B2) node[midway,above] {$z_{12}$};
+  \draw[ordinary,very thick] (B2)--(B3) node[midway,above] {$z_{23}$};
+  \foreach \x/\y/\lab in {-4.5/.95/1,-4.5/-.95/2,4.5/.95/3,4.5/-.95/4}{
+    \node[leaf] (l\lab) at (\x,\y) {$\lab$};
+  }
+  \draw (B1)--(l1); \draw (B1)--(l2); \draw (B3)--(l3); \draw (B3)--(l4);
+  \node[align=center,font=\footnotesize] at (0,-1.55)
+    {$P_v\mapsto P_v\prod_{e\ni v}a_{v,e}^{\mathbf1[h_e\ne0]}$,
+     \quad $x_e\mapsto x_e/(a_{u,e}a_{v,e})$};
+\end{tikzpicture}
+\caption{Bridge-tree peeling recovers a projective local tensor orbit
+$[P_v]$ at each retained component and normalized effective bridge scales
+$z_e$.  The original physical bridge multiplier is not an intrinsic
+coordinate; the exact fiber is the full incidence-scaling orbit intersected
+with the positive JC domain.}
+\label{fig:bridge-projective}
+\end{figure}

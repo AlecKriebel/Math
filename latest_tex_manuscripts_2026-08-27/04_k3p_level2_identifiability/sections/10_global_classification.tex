@@ -1,0 +1,122 @@
+\section{Global classification}\label{sec:global}
+
+We now prove the main equivalence.
+
+\begin{lemma}[Trivalent component decoration]\label{lem:trivalent-decoration}
+Assume \(N\preceqplus N'\) in the strong level-2 class.  After the abstract
+labelled bridge-incidence tree has been recovered, corresponding trivalent
+internal components are either both ordinary branching components or both
+ordinary three-cycle factors.
+\end{lemma}
+
+\begin{proof}
+By \cref{thm:cut-transfer,lem:physical-product}, corresponding component
+positions and their three labelled incidence orbits are intrinsic.  Fix every
+source product coordinate away from one trivalent component and compose this
+slice with the physical analytic target section.  The extracted three-port
+tensors agree up to positive labelled incidence scaling
+\[
+ q_{xyz}\longmapsto A_xB_yC_zq_{xyz},
+ \qquad A_x,B_y,C_z>0.
+\]
+In each cubic circuit \(I_j\) of \cref{prop:tree-sunlet}, the two monomials
+have the same character multiset at each port.  Incidence scaling therefore
+multiplies \(I_j\) by one positive monomial and preserves whether it vanishes.
+All six circuits vanish on an ordinary three-leaf tree, whereas at least one
+is nonzero at every strict ordinary sunlet point.  Hence an ordinary component
+cannot correspond in either direction to a three-cycle component.
+
+There is no other nontrivial trivalent component in this class.  Indeed, the
+minimum strong repairs in \cref{sec:bounded}, together with the incoming and
+path-sink child ports, give every theta factor at least four physical
+boundaries.  A nontrivial three-boundary blob is therefore precisely an
+ordinary cycle.  This proves the decoration claim.
+\end{proof}
+
+\begin{proof}[Proof of \cref{thm:main}: necessity]
+Assume \(N\preceqplus N'\).  The noncircular cut-transfer theorem
+\cref{thm:cut-transfer} gives equality of the labelled bridge splits and hence
+the same labelled abstract bridge-incidence tree.  The complete bridge fibre
+and its physical product chart extract corresponding projective local factors
+with exactly three incidence gauges and no holonomy.  The trivalent decoration
+lemma now distinguishes every ordinary branching component from every
+three-boundary cycle.  All remaining nontrivial corresponding components are
+complete ported cycle or theta factors.  Physical localization
+\cref{prop:localization} fixes one target incoming/completion type for each
+source-open focal germ and excludes remote compensation.  The complete local
+classification \cref{thm:local} then makes each such pair either
+labelled-isomorphic or ordinary-triangle related.  The one-/two-port
+transports reconstruct every segment word and make all triangle choices
+coherent.  Thus \(N\trianglerel N'\).
+\end{proof}
+
+It remains to realize the structural relation physically and at full local
+dimension.
+
+\begin{lemma}[Simultaneous physical bridge gluing]\label{lem:gluing}
+Suppose corresponding local factors have one common projective K3P germ,
+through isomorphism or \cref{lem:H14-context}.  After shrinking finitely many
+local germs, their contractions along the common bridge tree form a common
+full-dimensional regular global germ, both on \(\Dplus\) and on \(\Dct\).
+\end{lemma}
+
+\begin{proof}
+Relative to fixed analytic bridge slices, let
+\(A_h=a^h_{u,e}a^h_{v,e}\) be the endpoint incidence product on either network
+and any bridge, with \(h=C,G,T\).  On compactly contained local germs choose
+uniform bounds \(0<L\le A_h\le U\).  Put
+
+\[
+ \varepsilon=\min\left\{\frac14,\frac{L^2}{8U}\right\},\qquad
+ z_C=z_G=z_T=\varepsilon,\qquad
+ x_h=\frac{\varepsilon}{A_h}.
+\]
+
+Here \(z\) is the effective bridge coordinate and \(x\) is the actual
+physical bridge spectrum.  Since \(0<\varepsilon\le1/4\), the effective
+isotropic coordinate lies in \(\Dct\): its principal margins are at least
+\(1-\varepsilon\ge3/4\), and its continuous-time margins are at least
+\(\varepsilon-\varepsilon^2\ge3\varepsilon/4\).  Moreover
+
+\[
+ \frac{\varepsilon}{U}\le x_h\le\frac{\varepsilon}{L}\le\frac18.
+\]
+
+Indeed, \(\varepsilon\le L^2/(8U)\) and \(L\le U\), so
+ \(\varepsilon/L\le L/(8U)\le1/8\).
+Every principal-domain composition margin of \(x\) is therefore at least
+\(1-2\varepsilon/L\ge3/4\).  Every continuous-time margin is at least,
+cyclically,
+
+\[
+ x_C-x_Gx_T
+ \ge\frac{\varepsilon}{U}-\frac{\varepsilon^2}{L^2}
+ \ge\frac{7\varepsilon}{8U}>0.
+\]
+
+Thus the same effective isotropic bridge spectrum works simultaneously for
+both networks and all bridges.  Incidence factors cancel in
+\eqref{eq:bridge-contraction}.  These finitely many inequalities are
+uniform and strict, so a common three-dimensional neighborhood of every
+\(z\) keeps both effective and actual spectra in \(\Dct\) and supplies
+three independent bridge directions.  The physical product extraction in
+\cref{lem:physical-product} is a local inverse, so the contraction has the
+expected rank and the common image germ is full-dimensional.
+\end{proof}
+
+\begin{proof}[Proof of \cref{thm:main}: sufficiency]
+Assume \(N\trianglerel N'\).  Transport physical parameters across every
+labelled isomorphism.  For each redirected triangle use the same smooth
+relative \(H_{14}\) germ and its physical analytic sections; choose the
+generic rank once in the joint contextual contraction, as in
+\cref{lem:H14-context}.  Apply \cref{lem:gluing} to all bridges
+simultaneously.  The resulting common germ is regular and full-dimensional
+in both complete network images, so \(N\bowtieplus N'\).  A common germ with
+physical sections gives the directed relation in both directions by
+definition.  This proves \eqref{eq:main-classification}.  Since
+\(\trianglerel\) is symmetric, proper one-sided containment is impossible.
+\end{proof}
+
+The triangle part of this proof is full-dimensional \emph{relative to each
+network image}.  No step replaces \(H_{14}\) by an ambient-open
+\(15\)-dimensional triangle model.

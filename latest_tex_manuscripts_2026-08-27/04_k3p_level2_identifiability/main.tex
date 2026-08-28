@@ -1,0 +1,166 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array,enumitem,longtable,tabularx}
+\usepackage{xcolor,url}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage[colorlinks=true,linkcolor=blue!55!black,
+  citecolor=green!35!black,urlcolor=blue!55!black]{hyperref}
+\usepackage[nameinlink,noabbrev]{cleveref}
+
+\setlist{nosep}
+\setlength{\parskip}{0.35em}
+\setlength{\parindent}{0pt}
+\setlength{\emergencystretch}{3em}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\G}{\mathbb Z_2\times\mathbb Z_2}
+\newcommand{\X}{\mathcal X}
+\newcommand{\R}{\mathbb R}
+\newcommand{\C}{\mathbb C}
+\newcommand{\M}{\mathcal M}
+\newcommand{\V}{\mathcal V}
+\newcommand{\Dplus}{\mathcal D_{3,+}}
+\newcommand{\Dct}{\mathcal D_{3,\mathrm{CT}}}
+\newcommand{\PhiN}{\Phi_N}
+\newcommand{\preceqplus}{\preceq_{3,+}}
+\newcommand{\bowtieplus}{\mathbin{\bowtie}_{3,+}}
+\newcommand{\preceqct}{\preceq_{3,\mathrm{CT}}}
+\newcommand{\bowtiect}{\mathbin{\bowtie}_{3,\mathrm{CT}}}
+\newcommand{\trianglerel}{\equiv_\triangle}
+\newcommand{\1}{\mathbf 1}
+\newcommand{\xor}{\mathbin\oplus}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Flat}{\operatorname{Flat}}
+\providecommand{\KThreePCanonicalRoot}{.}
+
+\hypersetup{
+  pdftitle={Triangle Hypersurfaces and a Sharp Identifiability Boundary for Level-2 K3P Networks},
+  pdfauthor={Alec Kriebel},
+  pdfsubject={Generic identifiability and directed containment of level-2 phylogenetic networks under K3P},
+  pdfkeywords={phylogenetic networks, Kimura three-parameter model,
+    identifiability, directed containment, level-2 networks,
+    strongly tree-child networks, computer-assisted proof}
+}
+
+\title{Triangle Hypersurfaces and a Sharp Identifiability Boundary\\
+for Level-2 K3P Networks}
+\author{Alec Kriebel\\
+\small Independent Researcher\\
+\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}
+{0009-0001-9320-500X}}
+\date{August 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+We classify regular full-dimensional stochastic containment among binary
+standard semi-directed strongly tree-child level-2 phylogenetic networks
+under the Kimura three-parameter (K3P) model.  On the principal positive
+Fourier domain, a directed containment germ exists if and only if the labelled
+reduced trees of blobs agree and corresponding complete factors are either
+labelled-isomorphic or ordinarily triangle-redirected, with coherent boundary
+transports.  The same condition is equivalent to a common
+full-dimensional regular germ, and it remains exact in strict continuous
+time.  Thus no proper one-sided containment occurs in the strong class, and
+the semi-directed topology is generically identifiable and, outside the
+same proper exceptional set, exactly reconstructible modulo ordinary
+triangle redirection.
+
+K3P has a distinct local geometry.  The three ordinary triangle orientations
+have generic normalized rank \(14\), share the same irreducible eight-term
+quartic hypersurface \(H_{14}\subset\mathbb A^{15}\), and meet in a common
+strict continuous-time smooth rank-\(14\) germ; they do not fill an
+ambient-open three-leaf germ.  Necessity combines three-sector bridge fibres,
+physical marginal submersions, a noncircular bridge-split transfer theorem,
+and an exact finite classification.  The cut argument deliberately does not
+assert a universal pointwise K3P rank criterion: true cuts have rank at most
+four pointwise, noncuts are generically detected, and equality of cut sets is
+proved under source-relative containment in the strong class by 204
+pointwise one-active obstructions.  The remaining bounded residue consists
+of fourteen four-port orbits---nine polynomially separated and five
+directed-rank separated---plus two separately separated sink swaps.
+
+The strong hypothesis is sharp.  For every \(n\ge3\), two weakly but not
+strongly tree-child networks have strict continuous-time K3P images sharing
+a common full-dimensional regular germ of dimension \(6n-3\).  The base
+rank-\(15\) common point is certified by exact rational interval arithmetic
+and a Krawczyk inclusion.  Exact certificates, separately implemented
+replays, and fail-closed mutation tests accompany every finite and interval
+claim.
+\end{abstract}
+
+\noindent\textbf{Keywords.} phylogenetic networks; Kimura three-parameter
+model; generic identifiability; directed containment; level-2 networks;
+strongly tree-child networks; algebraic statistics; computer-assisted proof.
+
+\medskip
+\noindent\textbf{MSC 2020.} 92B10, 62R01, 14P10, 05C05.
+
+\input{sections/01_introduction}
+\input{sections/02_main_theorems}
+\input{sections/03_conventions_model}
+\input{sections/04_physical_topology}
+\input{sections/05_three_leaf_geometry}
+\input{sections/06_bridge_fibre}
+\input{sections/07_marginal_localization}
+\input{sections/08_primitive_bounded}
+\input{sections/09_restoration_words}
+\input{sections/10_global_classification}
+\input{sections/11_genericity_reconstruction}
+\input{sections/12_continuous_time}
+\input{sections/13_sharpness}
+\input{sections/14_outer_obstruction}
+\input{sections/15_kimura_perspective}
+\input{sections/16_scope}
+\input{sections/17_reproducibility}
+
+\section*{Data and code availability}
+
+The exact certificate and replay snapshot used for this revision is available
+in the public repository at immutable commit
+\href{https://github.com/AlecKriebel/Math/tree/e4b13c571eb462d7ba02e39ffd0a7b368fa5fc9f/k3p_level2_identifiability_final}
+{\texttt{e4b13c571eb462d7ba02e39ffd0a7b368fa5fc9f}}, under
+\path{k3p_level2_identifiability_final}.  The reader supplement gives a
+relative-path theorem-to-certificate crosswalk.  This manuscript does not
+assert a repository release DOI or a paper/data/code license; neither has
+been supplied for this workstream.
+
+\section*{Author contributions}
+
+Alec Kriebel conceived and directed the study, fixed its mathematical scope
+and conventions, curated the exact reproducibility package, adjudicated the
+proof and audit results, and accepts responsibility for the claims,
+software, and submission.
+
+\section*{Use of generative AI}
+
+Generative AI systems assisted with mathematical exploration, code
+generation, implementation, drafting, and adversarial review.  Automated
+claims were not accepted as evidence: active claims are bound to exact
+graph-derived certificates, direct derivations, separately implemented
+replays, rigorous interval arithmetic where used, and fail-closed mutation
+tests.  No independent human specialist review is claimed.  The author
+accepts responsibility for the mathematical statement, code, and final
+submission.
+
+{\small
+\raggedright
+\bibliographystyle{plain}
+\bibliography{references}
+}
+
+\end{document}
