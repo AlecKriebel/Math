@@ -1,5 +1,5 @@
 {
-  "archive_builder_sha256": "0ab46c8bf325ba43fa83a0ada940fadcebfc35ef9341a07e9bfd7f2296f9ff71",
+  "archive_builder_sha256": "29e4958f9b73db520a3669e9441397c1daf4e62e400369bd4d59fe0a69b1b124",
   "archive_tools_sha256": "3057074269c67450ea24edd896a8028769e49c1fcb629bc90f48a655e2e7cb24",
   "controls": [
     {
@@ -121,17 +121,21 @@
     },
     {
       "name": "proof_only_pdf_exclusion",
-      "selected_head_files": 590,
+      "selected_head_files": 592,
       "status": "PASS"
     },
     {
       "name": "certified_active_manifest_preservation",
       "status": "PASS"
+    },
+    {
+      "name": "minimal_offline_pdf_environment",
+      "status": "PASS"
     }
   ],
   "cut_single_minor_producer_sha256": "850fd782f2edc868086cb3bb277d261fe03d619105f3c69a82bf29f418fd9cd0",
-  "fileset_policy_sha256": "21e1d660b048487722b871e0041873feaba2065977c3f513b7f54b430045e939",
-  "mutation_count": 32,
+  "fileset_policy_sha256": "a1190190422050e668cc78556635e133c3fb3421375e479dacf7a34d5eb44484",
+  "mutation_count": 37,
   "mutations": [
     {
       "diagnostic": "('stale file SHA-256', 'a.txt', '0000000000000000000000000000000000000000000000000000000000000000', '48aa6cae8c70abdb28631d22b316e6d9f9d0768ec2911de7090e248b2afe6ca1')",
@@ -224,9 +228,39 @@
       "status": "REJECTED"
     },
     {
-      "diagnostic": "('source build environment policy', {'SOURCE_DATE_EPOCH': '1787677102', 'TZ': 'UTC', 'LC_ALL': 'C'})",
+      "diagnostic": "('source build environment policy', {'SOURCE_DATE_EPOCH': '1787677102', 'TZ': 'UTC', 'LC_ALL': 'C', 'LANG': 'C', 'PYTHONDONTWRITEBYTECODE': '1'})",
       "expected_failure_class": "source build environment policy",
       "name": "inconsistent_source_build_environment",
+      "status": "REJECTED"
+    },
+    {
+      "diagnostic": "('source build command policy', ['tectonic', '--bundle', 'https://relay.fullyjustified.net/default_bundle_v33.tar', 'main.tex', '--outdir', '.'])",
+      "expected_failure_class": "source build command policy",
+      "name": "source_build_network_fallback",
+      "status": "REJECTED"
+    },
+    {
+      "diagnostic": "('Tectonic cache member mismatch', 'bundles/data/resource.sty', (9, '92e78d0b032962f47792a9fa95fd981ef63e1e3ef074d536d6304c75eddbe29f'), (9, '43045e07e709b38e470076ff8235b68ca6e63400498c0aa847f6e743f230166e'))",
+      "expected_failure_class": "Tectonic cache member mismatch",
+      "name": "tampered_tectonic_cache_member",
+      "status": "REJECTED"
+    },
+    {
+      "diagnostic": "('Tectonic cache exact file set', [], ['unexpected.txt'])",
+      "expected_failure_class": "Tectonic cache exact file set",
+      "name": "extra_tectonic_cache_member",
+      "status": "REJECTED"
+    },
+    {
+      "diagnostic": "Tectonic cache manifest bundle binding",
+      "expected_failure_class": "Tectonic cache manifest bundle binding",
+      "name": "wrong_tectonic_bundle_manifest",
+      "status": "REJECTED"
+    },
+    {
+      "diagnostic": "Tectonic cache manifest bundle-pointer path",
+      "expected_failure_class": "Tectonic cache manifest bundle-pointer path",
+      "name": "wrong_tectonic_bundle_pointer",
       "status": "REJECTED"
     },
     {
@@ -242,7 +276,7 @@
       "status": "REJECTED"
     },
     {
-      "diagnostic": "('full release selection lock', 592, 'baf93abfed13b74ca195cec5b28a6ed2c3ae60fa0e444576e32bfb1823bf3e9c')",
+      "diagnostic": "('full release selection lock', 594, '4d0686fc43bc53bb76d61d056f78f72f9da585e743ae386016fc7d64ba12e67a')",
       "expected_failure_class": "full release selection lock",
       "name": "wrong_fileset_selection_lock",
       "status": "REJECTED"
@@ -326,18 +360,20 @@
       "status": "REJECTED"
     }
   ],
-  "payload_sha256": "9448e3a0904ef6103dee7de817336f1724523298cd6edb4499c6c57027d0f6c9",
+  "payload_sha256": "e8d8fa6769c57d27fb636a1e8fef6038b1c01a6167b935e9f6ebfdd1452cca35",
   "probe_mutation_driver_sha256": "36ac124f658d50c17eb6e39738ec38e46f8471fd24905fcc84e2045351f50660",
-  "rejected": 32,
+  "rejected": 37,
   "release_common_sha256": "497340362bb93c46b6c9c00b2a6a85b52428a4f2c0f9ebf900f3df57360bf278",
-  "release_input_verifier_sha256": "8b8eb48e6ca7ac64f1e67bf5f3b717ffbc3f43af2551a5a89d090c39911054a7",
+  "release_input_verifier_sha256": "d71ea7fd02157854208f4973fbbeb77b0c8f9b7465a3bbdcf754e6f8e01886a2",
   "release_suite_sha256": "39864d2e07531f92d0296b95063feae372bc6ee52985d701c25f15d0eef2c3d6",
-  "release_verifier_sha256": "d7cf9d81700abb190e0e09268e496d72d2ad427424aa1a92626b2f0217892a80",
+  "release_verifier_sha256": "1fa0351d3d83bcc00ee67c02c9f756cae50ec350732935a419dbd1e95988f194",
   "schema": "k3p-release-engineering-mutations-v1",
-  "source_reproduction_verifier_sha256": "a7980c81987ec697e49d699117f90bd2adaf9e844ac4e33a0ed9dea94b7bc2a9",
+  "source_reproduction_verifier_sha256": "af3f5a5d49f8bc2ebfe5edde02e76a80e3ce2c9c3bad1b43779995fc8335feeb",
   "status": "PASS",
   "submission_validator_mutations_sha256": "a39accf6c5fc61d9afe51d29318b537c6fa8b7e79ebd1a9503a8501bb4913f02",
   "submission_validator_sha256": "712e9831305584d3755e6e06bdc317a3be2cc7d77df9f82646137e5d12922af8",
   "survived": 0,
-  "verifier_sha256": "1910bfb73e32c25d0d1680bf850675033aa89b512d03567de9fae88d27de2fba"
+  "tectonic_cache_manifest_builder_sha256": "cbea01eb95589846b94eacef6512a0bddc3b36752b9ba1f736f48094e49bc469",
+  "tectonic_cache_manifest_sha256": "c6908223e76a095fec120af0c267567a057de56c3e497b61c20829fb2433297a",
+  "verifier_sha256": "bd9c53db89eef482c08348ff884cd6fe1b2f8b0c7ef619a8fe71fed7e7251044"
 }

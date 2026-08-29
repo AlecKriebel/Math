@@ -1463,6 +1463,19 @@ end-to-end replay.
 
 Best-guess completion toward this third-referee repair and handoff: **85%**.
 
+## 2026-08-29T15:58:51-07:00 — release-boundary fixed point
+
+- Pushed the third-referee source/certificate repair at
+  `4580f0adecec67e22377c72ff6bbe7f9d57ea776`.
+- At that exact committed source boundary, the release selector passes with
+  594 full files and 383 compact files at the locked selection hashes.
+- The expanded release-engineering suite rejects all 37 attacks and passes all
+  12 deterministic controls, including the minimal offline PDF environment;
+  the release-input gate passes with 108 active bindings and the 725-file
+  Tectonic cache contract.
+
+Best-guess completion toward this third-referee repair and handoff: **90%**.
+
 ## 2026-08-29T08:42:00-07:00 — referee-package mode regression closed
 
 - The strengthened package verifier exposed a narrow release-engineering bug:
