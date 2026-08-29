@@ -1,0 +1,80 @@
+CREDITED DEFAULT-DENY COHERENT PREMISE-SUBSTITUTION REPLAY
+Completed UTC: 2026-08-29T03:34:57Z
+Sandbox implementation: /usr/bin/sandbox-exec
+Sandbox policy: SANDBOX_PROFILE.sb, first operative rule (deny default)
+Disposable root: /Users/alec/Documents/Math/k3p_level2_second_revision_referee_2026-08-28/tmp/coherent-premise-substitution-sandboxed.QeuPXv
+Reviewed source: /Users/alec/Documents/Math/k3p_level2_second_revision_referee_2026-08-28/package_copy/proof_package
+Python: /Users/alec/Documents/Math/k3p_level2_identifiability_final/.venv/bin/python
+
+[frozen input hashes]
+f323625e9a629c62594df6a9ae90ca31582e0cb4fe878ddad66ddbf02be42d93  baseline CUT_GLOBAL_LOGIC_REPORT.json
+f82a8f610a73a878896d471dfc2f6928b4d03e1afd1b3b2cb5aa05e34e959ca0  substituted CUT_GLOBAL_LOGIC_REPORT.json
+20a84f5162d7379fa52083d3f7edca9369b42faf5574187fe196a9d70f27154c  SANDBOX_PROFILE.sb
+f37f376d088eb721787d84bc2ced17fb2baa98d5010bdbcbc17c82fe6379a93b  SANDBOX_BOUNDARY_PROBE.py
+
+[clean-environment probe]
+exit_code=0
+CLEAN_ENVIRONMENT names=HOME,LANG,LC_ALL,PATH,PYTHONDONTWRITEBYTECODE,PYTHONHASHSEED,PYTHONNOUSERSITE,TMPDIR,TZ,__CF_USER_TEXT_ENCODING
+
+[network-denial probe: TCP connect to 127.0.0.1:9]
+exit_code=0
+NETWORK_DENIED errno=1
+
+[credential-read denial probe: existing /Users/alec/.ssh]
+exit_code=0
+CREDENTIAL_READ_DENIED errno=1
+
+[sibling-read denial probe: existing /Users/alec/Documents/Math/AGENTS.md]
+exit_code=0
+SIBLING_READ_DENIED errno=1
+
+[concurrent-review read denial probe: existing package_copy/review_runs]
+exit_code=0
+ACTIVE_REVIEW_READ_DENIED errno=1
+
+[source-read probe]
+exit_code=0
+SOURCE_READ_ALLOWED sha256=d99ae6579fbacf18c713f0dac3045e49ccc93a42a8bed2f6861a3ad34f8a273b
+
+[source-write denial probe: package_copy/.coherent_substitution_write_probe]
+exit_code=0
+SOURCE_WRITE_DENIED errno=1
+Postcondition: marker absent.
+
+[disposable-write positive control]
+exit_code=0
+DISPOSABLE_WRITE_ALLOWED
+
+[baseline build]
+exit_code=0
+{"directions": 204, "local_204_dependency_pass": true, "status": "PASS", "two_active_excluded": true}
+
+[baseline independent verifier]
+exit_code=0
+{"direction_count": 204, "mutation_count": 0, "proof_step_count": 14, "status": "PASS"}
+
+[mutated build]
+exit_code=0
+{"directions": 204, "local_204_dependency_pass": true, "status": "PASS", "two_active_excluded": true}
+
+[mutated independent verifier]
+exit_code=0
+{"direction_count": 204, "mutation_count": 0, "proof_step_count": 14, "status": "PASS"}
+
+[mutated generated-certificate inspection]
+exit_code=0
+status=PASS
+blocked_reason=null
+bound fixture sha256=f82a8f610a73a878896d471dfc2f6928b4d03e1afd1b3b2cb5aa05e34e959ca0
+certificate sha256=891faa25e45f5aa7f0c5ed1d19b9951ebbeb4cd89c20d89f66950c196c9325
+D1 reason=A target-cut 5x5 flattening minor vanishes after composition with sigma on U. If the split were a source noncut, isotropic-JC generic recovery gives a nonzero source polynomial, which cannot vanish on U.
+
+[source postcondition]
+package_copy/proof_package/cut_recovery/strong_crossbridge/global_transfer/build_global_transfer.py mtime=1787895057 size=20667
+package_copy/proof_package/cut_recovery/strong_crossbridge/global_transfer/verify_global_transfer.py mtime=1787895057 size=25745
+package_copy/proof_package/cut_recovery/global_logic/CUT_GLOBAL_LOGIC_REPORT.json mtime=1787895057 size=4116
+The three values match the recorded pre-run values.
+
+[active-review separation]
+PID 78236 remained package_copy/referee_tools/run_active_verifiers.py --mode verify.
+PID 84547 remained its full-four-port child under package_copy/review_runs/20260829T030837Z/verify/workspace.

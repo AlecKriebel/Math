@@ -98,3 +98,80 @@
   A fresh isolated four-command verification is now running; the aborted run
   will not be reported as a pass.
 - Current best-guess completion: 42%.
+
+## 2026-08-29T03:33:29Z — release-mutation isolation design checkpoint
+
+- Static inspection confirms that the excluded packaging suite comprises 32
+  hostile cases plus ten deterministic/coverage controls.  It needs a live Git
+  checkout, temporary fixture repositories, and the ignored `release/work`
+  tree; it does not need network access or writes to tracked source bytes.
+- The intended replay commit is
+  `5a6d64cb2a76e890d7baaef3ba5ac9861c1d029f`.  A sparse shared clone reached
+  that exact detached clean state, but it was rejected as an execution
+  boundary because its Git alternate would expose unrelated monorepo objects
+  to reviewed code.
+- A referee-owned builder and supervisor now specify a self-contained exact
+  partial checkout containing only the target commit/root/project objects,
+  with no Git alternate and no usable remote.  A separate default-deny profile
+  allows writes only to its fixture temp area and ignored `release/work`;
+  source Git state, the active package replay, the pinned environment, and the
+  external transcript/summary remain unwritable.
+- No release-engineering package code has been executed at this checkpoint.
+  Checkout construction and the short mutation replay will wait until the
+  active full four-port verifier releases the CPU, avoiding interference with
+  theorem replay.
+- Current best-guess completion: 47%.
+
+## 2026-08-29 — Coherent premise-substitution checkpoint
+
+- In a separate disposable copy, replaced the legacy
+  `CUT_GLOBAL_LOGIC_REPORT.json` by a deliberately proof-free and internally
+  contradictory fixture that preserved only the three values inspected by the
+  downstream transfer scripts.  The fixture changed the schema and verdict,
+  removed the containment identity and genuine source/target metadata, set
+  `proof` to null, and emptied the provenance hash map.
+- `build_global_transfer.py` nevertheless regenerated a `PASS` certificate
+  coherently bound to the substituted fixture's SHA-256
+  `f82a8f610a73a878896d471dfc2f6928b4d03e1afd1b3b2cb5aa05e34e959ca0`;
+  `verify_global_transfer.py --no-write-report` then returned `PASS` on that
+  regenerated certificate.  The accepted certificate retained the stale
+  “isotropic-JC generic recovery” rationale.
+- This directly verifies that these two semantic consumers do not validate the
+  premise's schema, verdict, proof, blocked status, or provenance.  Fixed hashes
+  in outer adversarial/release/manifest layers still reject an unresealed byte
+  substitution; this bounded test did not attempt a full downstream reseal.
+- Frozen commands, fixture, transcript, accepted certificate, hashes, and the
+  precise logical boundary are in
+  `results/coherent_premise_substitution/`.  The run used `env -i`, no network,
+  disabled bytecode writes, and wrote neither to `package_copy` nor its active
+  `review_runs` session.
+- Current best-guess completion of this bounded substitution test: 100%.
+
+## 2026-08-29 — Corrected sandboxed substitution checkpoint
+
+- The preceding `env -i` execution is now explicitly uncredited because it did
+  not enforce a network or filesystem sandbox.  Its commands and transcript
+  remain only as superseded debugging history.
+- Repeated the complete baseline/substitution experiment in a new disposable
+  tree under a frozen macOS `sandbox-exec` profile whose first operative rule is
+  `deny default`.  Every probe and package-script execution received exactly
+  ten non-secret environment variables; network access, credential locations,
+  sibling projects, the concurrent `package_copy/review_runs` tree, and writes
+  outside the disposable tree were denied.
+- Mandatory pre-execution negative tests all passed: TCP connect, existing
+  `~/.ssh` listing, sibling `AGENTS.md` read, concurrent-review directory
+  listing, and package-source write each failed with `EPERM`; the
+  package-source read and disposable write positive controls succeeded.  The
+  source-write marker remained absent.
+- Under that enforced boundary, both baseline commands and both mutated
+  commands again returned `PASS`.  The regenerated mutated certificate bound
+  fixture SHA-256
+  `f82a8f610a73a878896d471dfc2f6928b4d03e1afd1b3b2cb5aa05e34e959ca0`
+  and had SHA-256
+  `891faa25e45f5aa7f0c5ed1d19b9951ebbeb4cd89c20d89f66950c196c9325`.
+- Credited commands, transcript, sandbox profile, boundary probe, and accepted
+  certificate are frozen under `results/coherent_premise_substitution/`.
+  Relevant package-source mtimes and sizes remained unchanged, and the active
+  verification session continued in its separate `package_copy/review_runs`
+  workspace.  The disposable replay tree was deleted after evidence freezing.
+- Current best-guess completion of the corrected bounded test: 100%.

@@ -1,0 +1,71 @@
+(version 1)
+
+;; Credited coherent premise-substitution replay.  Default deny; reviewed code
+;; can read only system runtime paths, the sealed package copy, the pinned
+;; virtual environment, and its disposable test tree.  It can write only in
+;; the disposable tree.  Network, credentials, browser/cloud state, and sibling
+;; projects are unavailable.
+(deny default)
+
+(allow process*)
+(allow signal (target self))
+(allow signal (target children))
+(allow signal (target same-sandbox))
+(allow sysctl-read)
+(allow mach-lookup)
+(allow ipc-posix-shm)
+
+(deny mach-lookup
+  (global-name "com.apple.securityd")
+  (global-name "com.apple.securityd.xpc")
+  (global-name "com.apple.security.agent")
+  (global-name "com.apple.trustd")
+  (global-name "com.apple.trustd.agent"))
+
+;; System and runtime libraries are distributed across macOS roots.  Permit
+;; ordinary reads, then carve the complete user home back to exact review inputs.
+(allow file-read*)
+
+(deny file-read*
+  (require-all
+    (subpath "/Users/alec")
+    (require-not (literal "/Users/alec"))
+    (require-not (literal "/Users/alec/Documents"))
+    (require-not (literal "/Users/alec/Documents/Math"))
+    (require-not
+      (literal "/Users/alec/Documents/Math/k3p_level2_second_revision_referee_2026-08-28"))
+    (require-not
+      (literal "/Users/alec/Documents/Math/k3p_level2_second_revision_referee_2026-08-28/package_copy"))
+    (require-not
+      (subpath "/Users/alec/Documents/Math/k3p_level2_second_revision_referee_2026-08-28/package_copy"))
+    (require-not
+      (literal "/Users/alec/Documents/Math/k3p_level2_second_revision_referee_2026-08-28/tmp"))
+    (require-not
+      (subpath "/Users/alec/Documents/Math/k3p_level2_second_revision_referee_2026-08-28/tmp/coherent-premise-substitution-sandboxed.QeuPXv"))
+    (require-not
+      (literal "/Users/alec/Documents/Math/k3p_level2_identifiability_final"))
+    (require-not
+      (subpath "/Users/alec/Documents/Math/k3p_level2_identifiability_final/.venv"))))
+
+;; Explicit defense in depth for credential and account-state locations.
+(deny file-read*
+  (subpath "/Library/Keychains")
+  (subpath "/private/var/root")
+  (subpath "/private/var/db/SystemKey")
+  (subpath "/private/var/db/dslocal")
+  (subpath "/Users/alec/.ssh")
+  (subpath "/Users/alec/.aws")
+  (subpath "/Users/alec/.config")
+  (subpath "/Users/alec/Library/Keychains")
+  (subpath "/Users/alec/Library/Application Support/Google/Chrome")
+  (subpath "/Users/alec/Library/CloudStorage"))
+
+;; The concurrent referee run is not an input to this bounded experiment.
+(deny file-read*
+  (subpath "/Users/alec/Documents/Math/k3p_level2_second_revision_referee_2026-08-28/package_copy/review_runs"))
+
+(allow file-write*
+  (subpath "/Users/alec/Documents/Math/k3p_level2_second_revision_referee_2026-08-28/tmp/coherent-premise-substitution-sandboxed.QeuPXv")
+  (literal "/dev/null"))
+
+(deny network*)

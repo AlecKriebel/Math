@@ -1,0 +1,68 @@
+(version 1)
+
+;; Isolated packaging-mutation replay.  The exact detached checkout and its
+;; borrowed Git objects are readable, but only the checkout's ignored
+;; release/work tree and the dedicated fixture runtime are writable.
+(deny default)
+
+(allow process*)
+(allow signal (target self))
+(allow signal (target children))
+(allow signal (target same-sandbox))
+(allow sysctl-read)
+(allow ipc-posix-shm)
+
+(deny mach-lookup
+  (global-name "com.apple.securityd")
+  (global-name "com.apple.securityd.xpc")
+  (global-name "com.apple.security.agent")
+  (global-name "com.apple.trustd")
+  (global-name "com.apple.trustd.agent"))
+
+;; System/runtime reads are needed by Python, Git, and their shared libraries.
+;; Carve the user home back to the self-contained exact partial checkout and
+;; the read-only pinned virtual environment.
+(allow file-read*)
+
+(deny file-read*
+  (require-all
+    (subpath "/Users/alec")
+    (require-not (literal "/Users/alec"))
+    (require-not (literal "/Users/alec/Documents"))
+    (require-not (literal "/Users/alec/Documents/Math"))
+    (require-not
+      (literal "/Users/alec/Documents/Math/k3p_level2_identifiability_final"))
+    (require-not
+      (subpath "/Users/alec/Documents/Math/k3p_level2_identifiability_final/.venv"))
+    (require-not
+      (literal "/Users/alec/Documents/Math/k3p_level2_second_revision_referee_2026-08-28"))
+    (require-not
+      (literal "/Users/alec/Documents/Math/k3p_level2_second_revision_referee_2026-08-28/execution"))
+    (require-not
+      (literal "/Users/alec/Documents/Math/k3p_level2_second_revision_referee_2026-08-28/execution/release_engineering_5a6d"))
+    (require-not
+      (subpath "/Users/alec/Documents/Math/k3p_level2_second_revision_referee_2026-08-28/execution/release_engineering_5a6d/repo"))
+    (require-not
+      (subpath "/Users/alec/Documents/Math/k3p_level2_second_revision_referee_2026-08-28/execution/release_engineering_5a6d/runtime_home"))
+    (require-not
+      (subpath "/Users/alec/Documents/Math/k3p_level2_second_revision_referee_2026-08-28/execution/release_engineering_5a6d/runtime_tmp"))))
+
+(deny file-read*
+  (subpath "/Library/Keychains")
+  (subpath "/private/var/root")
+  (subpath "/private/var/db/SystemKey")
+  (subpath "/private/var/db/dslocal")
+  (subpath "/Users/alec/.ssh")
+  (subpath "/Users/alec/.aws")
+  (subpath "/Users/alec/.config")
+  (subpath "/Users/alec/Library/Keychains")
+  (subpath "/Users/alec/Library/Application Support/Google/Chrome")
+  (subpath "/Users/alec/Library/CloudStorage"))
+
+(allow file-write*
+  (subpath "/Users/alec/Documents/Math/k3p_level2_second_revision_referee_2026-08-28/execution/release_engineering_5a6d/repo/k3p_level2_identifiability_final/release/work")
+  (subpath "/Users/alec/Documents/Math/k3p_level2_second_revision_referee_2026-08-28/execution/release_engineering_5a6d/runtime_home")
+  (subpath "/Users/alec/Documents/Math/k3p_level2_second_revision_referee_2026-08-28/execution/release_engineering_5a6d/runtime_tmp")
+  (literal "/dev/null"))
+
+(deny network*)

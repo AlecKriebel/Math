@@ -1,0 +1,55 @@
+(version 1)
+
+;; Referee-only spot-check boundary.  The selected scripts may read the copied
+;; package and the dependency-only Python environment, execute local processes,
+;; and write only their review outputs.  Network and credential locations are
+;; unavailable.  No reviewed-package Python module is executed.
+(deny default)
+
+(allow process*)
+(allow signal (target self))
+(allow signal (target children))
+(allow signal (target same-sandbox))
+(allow sysctl-read)
+(allow mach-lookup)
+(allow ipc-posix-shm)
+
+;; macOS runtime libraries are distributed across system and developer roots.
+;; Permit ordinary reads, then carve out the user home except for this review
+;; workspace and the dependency-only virtual environment.
+(allow file-read*)
+
+(deny file-read*
+  (require-all
+    (subpath "/Users/alec")
+    (require-not (literal "/Users/alec"))
+    (require-not (literal "/Users/alec/Documents"))
+    (require-not (literal "/Users/alec/Documents/Math"))
+    (require-not
+      (literal "/Users/alec/Documents/Math/k3p_level2_second_revision_referee_2026-08-28"))
+    (require-not
+      (subpath "/Users/alec/Documents/Math/k3p_level2_second_revision_referee_2026-08-28"))
+    (require-not
+      (literal "/Users/alec/Documents/Math/k3p_level2_identifiability_final"))
+    (require-not
+      (subpath "/Users/alec/Documents/Math/k3p_level2_identifiability_final/.venv"))))
+
+(deny file-read*
+  (subpath "/Library/Keychains")
+  (subpath "/private/var/root")
+  (subpath "/private/var/db/SystemKey")
+  (subpath "/private/var/db/dslocal"))
+
+(allow file-write*
+  (subpath "/Users/alec/Documents/Math/k3p_level2_second_revision_referee_2026-08-28/independent_checks/results")
+  (literal "/dev/null"))
+
+(deny network*)
+
+(deny file-read*
+  (subpath "/Users/alec/.ssh")
+  (subpath "/Users/alec/.aws")
+  (subpath "/Users/alec/.config")
+  (subpath "/Users/alec/Library/Keychains")
+  (subpath "/Users/alec/Library/Application Support/Google/Chrome")
+  (subpath "/Users/alec/Library/CloudStorage"))
