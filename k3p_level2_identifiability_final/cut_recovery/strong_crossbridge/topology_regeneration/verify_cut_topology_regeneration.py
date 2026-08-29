@@ -191,6 +191,7 @@ def atomic_json(path: Path, value: dict) -> None:
     ) as handle:
         handle.write(encoded)
         temporary = Path(handle.name)
+    os.chmod(temporary, 0o644)
     os.replace(temporary, path)
 
 

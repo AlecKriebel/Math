@@ -85,13 +85,15 @@ RELEASE_TOKEN_RE = re.compile(rb"@@[A-Z][A-Z0-9_]*@@")
 def validate_release_policy(policy: dict) -> dict:
     require(set(policy) == {
         "schema", "archive_root", "compact_root", "pdf_source_date_epoch",
-        "tectonic_version", "tectonic_sha256", "expected_full_selection_count",
+        "tectonic_version", "tectonic_sha256", "tectonic_bundle_url",
+        "tectonic_bundle_digest", "tectonic_cache_manifest_sha256",
+        "expected_full_selection_count",
         "expected_full_selection_sha256", "expected_compact_selection_count",
         "expected_compact_selection_sha256", "include_files", "include_prefixes",
         "exclude_globs", "required_full_files", "required_release_pdf_files",
         "forbidden_generated_members",
     }, "release fileset policy field set")
-    require(policy.get("schema") == "k3p-release-fileset-policy-v1",
+    require(policy.get("schema") == "k3p-release-fileset-policy-v2",
             "release fileset schema")
     require(policy.get("archive_root") == "k3p_level2_reproducibility" and
             policy.get("compact_root") == "k3p_level2_compact_verifier",
@@ -102,6 +104,15 @@ def validate_release_policy(policy: dict) -> dict:
     require(policy.get("tectonic_version") == "Tectonic 0.16.9" and
             re.fullmatch(r"[0-9a-f]{64}", str(policy.get("tectonic_sha256"))) is not None,
             "release fileset Tectonic toolchain")
+    require(policy.get("tectonic_bundle_url") ==
+            "https://relay.fullyjustified.net/default_bundle_v33.tar" and
+            re.fullmatch(r"[0-9a-f]{64}", str(
+                policy.get("tectonic_bundle_digest")
+            )) is not None and
+            re.fullmatch(r"[0-9a-f]{64}", str(
+                policy.get("tectonic_cache_manifest_sha256")
+            )) is not None,
+            "release fileset Tectonic resource bundle")
     for kind in ("full", "compact"):
         require(isinstance(policy.get(f"expected_{kind}_selection_count"), int) and
                 policy[f"expected_{kind}_selection_count"] > 0 and
@@ -497,7 +508,10 @@ def compact_selection(project: Path, policy: dict) -> list[str]:
 
 def source_zip(project: Path, *, kind: str, commit: str, epoch: int,
                pdf_source_date_epoch: int, tectonic_version: str,
-               tectonic_sha256: str, source_paths: list[str]) -> bytes:
+               tectonic_sha256: str, tectonic_bundle_url: str,
+               tectonic_bundle_digest: str,
+               tectonic_cache_manifest_sha256: str,
+               source_paths: list[str]) -> bytes:
     if kind == "article":
         root = "k3p_level2_article_source"
         transform = lambda path: path.removeprefix("manuscript/")
@@ -507,32 +521,68 @@ def source_zip(project: Path, *, kind: str, commit: str, epoch: int,
         transform = lambda path: Path(path).name
         main = "reader_supplement.tex"
     members = {transform(path): read_head_blob(project, path) for path in source_paths}
+    cache_manifest = read_head_blob(project, "release/TECTONIC_CACHE_MANIFEST.json")
+    require(sha256_bytes(cache_manifest) == tectonic_cache_manifest_sha256,
+            "committed Tectonic cache manifest policy binding")
     build = {
-        "schema": "k3p-tectonic-source-build-v1",
+        "schema": "k3p-tectonic-source-build-v2",
         "kind": kind,
         "source_commit": commit,
         "source_date_epoch": pdf_source_date_epoch,
         "main": main,
-        "command": ["tectonic", main, "--outdir", "."],
+        "command": [
+            "tectonic", "--bundle", tectonic_bundle_url, "--only-cached",
+            main, "--outdir", ".",
+        ],
         "toolchain": {
             "name": "tectonic",
             "version": tectonic_version,
             "executable_sha256": tectonic_sha256,
         },
+        "resource_contract": {
+            "bundle_url": tectonic_bundle_url,
+            "bundle_digest": tectonic_bundle_digest,
+            "cache_manifest": "TECTONIC_CACHE_MANIFEST.json",
+            "cache_manifest_sha256": tectonic_cache_manifest_sha256,
+            "cache_payload_vendored": False,
+        },
         "environment": {
             "SOURCE_DATE_EPOCH": str(pdf_source_date_epoch),
             "TZ": "UTC",
             "LC_ALL": "C",
+            "LANG": "C",
+            "PYTHONDONTWRITEBYTECODE": "1",
+        },
+        "execution_policy": {
+            "parent_environment_inherited": False,
+            "only_cached": True,
+            "private_home": True,
+            "private_tmp": True,
+            "cache_verified_before_and_after": True,
+            "fixed_path": "/usr/bin:/bin",
+            "private_directory_variables": [
+                "HOME", "TEXMFCONFIG", "TEXMFVAR", "TMPDIR",
+                "XDG_CACHE_HOME", "XDG_CONFIG_HOME",
+            ],
+            "runtime_environment_keys": [
+                "HOME", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE",
+                "SOURCE_DATE_EPOCH", "TEXMFCONFIG", "TEXMFVAR", "TMPDIR", "TZ",
+                "XDG_CACHE_HOME", "XDG_CONFIG_HOME",
+            ],
         },
         "expected_output": Path(main).with_suffix(".pdf").name,
     }
     members["SOURCE_BUILD.json"] = (json.dumps(build, indent=2, sort_keys=True) + "\n").encode()
+    members["TECTONIC_CACHE_MANIFEST.json"] = cache_manifest
     with tempfile.TemporaryDirectory(prefix="k3p-source-zip-") as directory:
         output = Path(directory) / f"{kind}.zip"
         deterministic_zip(
             output, kind=f"{kind}_latex_source", archive_root=root,
             source_commit=commit, source_date_epoch=epoch, members=members,
-            extra={"source_build": "SOURCE_BUILD.json"},
+            extra={
+                "source_build": "SOURCE_BUILD.json",
+                "tectonic_cache_manifest": "TECTONIC_CACHE_MANIFEST.json",
+            },
         )
         verify_zip(output)
         return output.read_bytes()
@@ -561,6 +611,12 @@ The bundled submission/ tree records its own readiness state.  It is not a
 journal-portal or arXiv-ready package unless the independent submission
 validator reports READY with zero errors and zero blockers; the final-envelope
 gate enforces that condition.
+
+The generated LaTeX source ZIPs embed the complete hash inventory for the
+external Tectonic resource cache and force cached-only execution.  Final-commit
+two-build reports and transcripts are generated after this archive and are
+sealed by the release envelope and independent-referee package, avoiding a
+self-referential commit report.
 """.encode()
 
 
@@ -654,6 +710,10 @@ def build_full(project: Path, output: Path, *, proof_only: bool,
         pdf_source_date_epoch=policy["pdf_source_date_epoch"],
         tectonic_version=policy["tectonic_version"],
         tectonic_sha256=policy["tectonic_sha256"],
+        tectonic_bundle_url=policy["tectonic_bundle_url"],
+        tectonic_bundle_digest=policy["tectonic_bundle_digest"],
+        tectonic_cache_manifest_sha256=
+        policy["tectonic_cache_manifest_sha256"],
         source_paths=article_sources,
     )
     supplement_source = source_zip(
@@ -661,6 +721,10 @@ def build_full(project: Path, output: Path, *, proof_only: bool,
         pdf_source_date_epoch=policy["pdf_source_date_epoch"],
         tectonic_version=policy["tectonic_version"],
         tectonic_sha256=policy["tectonic_sha256"],
+        tectonic_bundle_url=policy["tectonic_bundle_url"],
+        tectonic_bundle_digest=policy["tectonic_bundle_digest"],
+        tectonic_cache_manifest_sha256=
+        policy["tectonic_cache_manifest_sha256"],
         source_paths=supplement_sources,
     )
     members["source_archives/k3p_level2_article_source.zip"] = article_source

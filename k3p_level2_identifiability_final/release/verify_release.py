@@ -118,22 +118,70 @@ def validate_source_reproduction_evidence(
         "schema", "status", "kind", "source_commit", "source_archive",
         "expected_pdf", "committed_source_binding", "builds",
         "byte_identical_across_two_builds", "byte_identical_to_delivered_pdf",
-        "tool_versions", "environment", "logical_payload_sha256",
+        "tool_versions", "environment", "execution_policy", "resource_bundle",
+        "logical_payload_sha256",
     }, ("source-reproduction report field set", kind))
-    require(report.get("schema") == "k3p-pdf-source-reproduction-v1" and
+    require(report.get("schema") == "k3p-pdf-source-reproduction-v2" and
             report.get("status") == "PASS_BYTE_FOR_BYTE" and
             report.get("kind") == kind and report.get("source_commit") == commit and
             report.get("byte_identical_across_two_builds") is True and
             report.get("byte_identical_to_delivered_pdf") is True,
             ("source-reproduction report", kind))
+    pdf_relative = {
+        "article": "output/pdf/K3P_Level2_Identifiability_Article.pdf",
+        "supplement":
+            "output/pdf/K3P_Level2_Identifiability_Reader_Supplement.pdf",
+    }[kind]
+    require(report.get("expected_pdf") == {
+                "path": pdf_relative,
+                "sha256": pdf_record["sha256"],
+                "bytes": pdf_record["bytes"],
+            }, ("source-reproduction expected PDF", kind))
     require(report.get("environment") == {
         "SOURCE_DATE_EPOCH": str(policy["pdf_source_date_epoch"]),
-        "TZ": "UTC", "LC_ALL": "C",
+        "TZ": "UTC", "LC_ALL": "C", "LANG": "C",
+        "PYTHONDONTWRITEBYTECODE": "1",
     }, ("source-reproduction environment", kind))
+    require(report.get("execution_policy") == {
+        "parent_environment_inherited": False,
+        "only_cached": True,
+        "private_home": True,
+        "private_tmp": True,
+        "cache_verified_before_and_after": True,
+        "fixed_path": "/usr/bin:/bin",
+        "private_directory_variables": [
+            "HOME", "TEXMFCONFIG", "TEXMFVAR", "TMPDIR",
+            "XDG_CACHE_HOME", "XDG_CONFIG_HOME",
+        ],
+        "runtime_environment_keys": [
+            "HOME", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE",
+            "SOURCE_DATE_EPOCH", "TEXMFCONFIG", "TEXMFVAR", "TMPDIR", "TZ",
+            "XDG_CACHE_HOME", "XDG_CONFIG_HOME",
+        ],
+    }, ("source-reproduction execution policy", kind))
+    resource = report.get("resource_bundle")
+    cache_manifest_path = HERE / "TECTONIC_CACHE_MANIFEST.json"
+    require(sha256_file(cache_manifest_path) ==
+            policy["tectonic_cache_manifest_sha256"],
+            "source-reproduction cache-manifest policy binding")
+    cache_manifest = load_json(cache_manifest_path)
+    require(isinstance(resource, dict) and resource == {
+        "bundle_url": policy["tectonic_bundle_url"],
+        "bundle_digest": policy["tectonic_bundle_digest"],
+        "cache_manifest_path": "release/TECTONIC_CACHE_MANIFEST.json",
+        "cache_manifest_sha256": policy["tectonic_cache_manifest_sha256"],
+        "cache_manifest_payload_sha256": cache_manifest["payload_sha256"],
+        "cache_file_count": cache_manifest["file_count"],
+        "cache_total_bytes": cache_manifest["total_bytes"],
+        "cache_verified_before_and_after": True,
+        "cache_payload_vendored": False,
+    }, ("source-reproduction resource bundle", kind))
     tool_versions = report.get("tool_versions")
     require(isinstance(tool_versions, dict) and set(tool_versions) == {"tectonic"} and
             isinstance(tool_versions["tectonic"], dict) and
             set(tool_versions["tectonic"]) == {"path", "sha256", "version"} and
+            isinstance(tool_versions["tectonic"]["path"], str) and
+            Path(tool_versions["tectonic"]["path"]).is_absolute() and
             tool_versions["tectonic"]["sha256"] == policy["tectonic_sha256"] and
             tool_versions["tectonic"]["version"] == policy["tectonic_version"],
             ("source-reproduction toolchain", kind))
@@ -146,15 +194,29 @@ def validate_source_reproduction_evidence(
             "transcript_sha256",
         }, ("source-reproduction build row", kind, expected_run))
         transcript_relative = build.get("transcript")
+        expected_transcript = (
+            "release/source_reproduction_evidence/"
+            f"{kind}_transcripts/run{expected_run}.log"
+        )
         require(build.get("run") == expected_run and
                 build.get("sha256") == pdf_record["sha256"] and
                 build.get("bytes") == pdf_record["bytes"] and
                 isinstance(build.get("elapsed_seconds"), (int, float)) and
                 build["elapsed_seconds"] >= 0 and
+                transcript_relative == expected_transcript and
                 transcript_relative in transcript_records and
                 build.get("transcript_sha256") ==
                 transcript_records[transcript_relative]["sha256"],
                 ("source-reproduction build/transcript binding", kind, expected_run))
+    logical = dict(report)
+    claimed_logical = logical.pop("logical_payload_sha256", None)
+    logical["builds"] = [
+        {key: row[key] for key in ("run", "sha256", "bytes")}
+        for row in builds
+    ]
+    logical.pop("tool_versions", None)
+    require(claimed_logical == sha256_bytes(canonical_json_bytes(logical)),
+            ("source-reproduction logical payload", kind))
 
 
 def verify_envelope(project: Path, envelope_path: Path) -> dict:
@@ -162,6 +224,8 @@ def verify_envelope(project: Path, envelope_path: Path) -> dict:
     for relative in (
         "release/verify_release.py", "release/build_release.py", "release/archive_tools.py",
         "release/verify_source_reproduction.py", "release/RELEASE_FILESET.json",
+        "release/build_tectonic_cache_manifest.py",
+        "release/TECTONIC_CACHE_MANIFEST.json",
         "reproducibility/run_release_suite.py", "reproducibility/release_common.py",
         "submission/validate_submission_packages.py",
     ):
@@ -374,9 +438,10 @@ def verify_envelope(project: Path, envelope_path: Path) -> dict:
             "schema", "status", "kind", "source_commit", "source_archive",
             "expected_pdf", "committed_source_binding", "builds",
             "byte_identical_across_two_builds", "byte_identical_to_delivered_pdf",
-            "tool_versions", "environment", "logical_payload_sha256",
+            "tool_versions", "environment", "execution_policy", "resource_bundle",
+            "logical_payload_sha256",
         }, ("source-reproduction report field set", record["path"]))
-        require(report.get("schema") == "k3p-pdf-source-reproduction-v1" and
+        require(report.get("schema") == "k3p-pdf-source-reproduction-v2" and
                 report.get("status") == "PASS_BYTE_FOR_BYTE" and
                 report.get("byte_identical_across_two_builds") is True and
                 report.get("byte_identical_to_delivered_pdf") is True and
@@ -398,10 +463,6 @@ def verify_envelope(project: Path, envelope_path: Path) -> dict:
                 ("source-reproduction PDF binding", kind))
         require(report.get("committed_source_binding") == committed_source_bindings[kind],
                 ("source-reproduction committed source binding", kind))
-        require(report.get("environment") == {
-            "SOURCE_DATE_EPOCH": str(policy["pdf_source_date_epoch"]),
-            "TZ": "UTC", "LC_ALL": "C",
-        }, ("source-reproduction environment", kind))
         tool_versions = report.get("tool_versions")
         require(isinstance(tool_versions, dict) and set(tool_versions) == {"tectonic"} and
                 isinstance(tool_versions["tectonic"], dict) and

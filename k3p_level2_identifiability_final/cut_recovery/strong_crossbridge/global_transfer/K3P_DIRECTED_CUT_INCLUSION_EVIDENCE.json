@@ -1,43 +1,71 @@
 {
   "analytic_implication": [
     {
-      "claim": "Phi_N=Phi_Nprime_comp_sigma_on_a_nonempty_source_open_set_U",
+      "claim": {
+        "domain": "nonempty_source_open_set_U",
+        "identity": "Phi_N=Phi_Nprime_comp_sigma",
+        "type": "analytic_identity_on_source_open_set"
+      },
       "depends_on": [],
       "id": "containment_identity"
     },
     {
-      "claim": "the_candidate_split_is_not_a_source_bridge_split",
+      "claim": {
+        "candidate_split_is_source_bridge": false,
+        "type": "source_split_assumption"
+      },
       "depends_on": [],
       "id": "source_noncut"
     },
     {
-      "claim": "the_hull_or_balanced_compression_argument_supplies_a_displayed_tree_that_does_not_display_the_split",
+      "claim": {
+        "mechanism": "hull_or_balanced_compression",
+        "type": "displayed_tree_witness",
+        "witness": "displayed_tree_not_displaying_candidate_split"
+      },
       "depends_on": [
         "source_noncut"
       ],
       "id": "displayed_switching"
     },
     {
-      "claim": "four_actual_labels_give_a_wrong_quartet",
+      "claim": {
+        "actual_label_count": 4,
+        "candidate_split_displayed": false,
+        "type": "labelled_wrong_quartet_extraction"
+      },
       "depends_on": [
         "displayed_switching"
       ],
       "id": "wrong_quartet"
     },
     {
-      "claim": "a_source_noncut_has_a_nonzero_5x5_minor_polynomial_by_the_displayed_tree_specialization",
+      "claim": {
+        "nonzero_reason": "displayed_tree_specialization",
+        "polynomial": "wrong_split_5x5_flattening_minor",
+        "type": "nonzero_source_polynomial_witness"
+      },
       "depends_on": [
         "wrong_quartet"
       ],
       "id": "source_noncut_nonzero"
     },
     {
-      "claim": "every_target_5x5_flattening_minor_vanishes_identically",
+      "claim": {
+        "polynomial_family": "all_5x5_flattening_minors",
+        "type": "target_cut_polynomial_identity",
+        "value": "identically_zero"
+      },
       "depends_on": [],
       "id": "target_cut_vanishing"
     },
     {
-      "claim": "the_same_minor_vanishes_on_the_source_open_set_U",
+      "claim": {
+        "domain": "source_open_set_U",
+        "polynomial": "same_wrong_split_5x5_flattening_minor",
+        "type": "composition_pullback_identity",
+        "value": "zero"
+      },
       "depends_on": [
         "containment_identity",
         "target_cut_vanishing"
@@ -45,7 +73,11 @@
       "id": "composition_pullback"
     },
     {
-      "claim": "a_nonzero_real_polynomial_cannot_vanish_on_U",
+      "claim": {
+        "conclusion": "contradiction",
+        "premise": "nonzero_real_polynomial_vanishes_on_nonempty_open_set",
+        "type": "real_polynomial_open_set_principle"
+      },
       "depends_on": [
         "source_noncut_nonzero",
         "composition_pullback"
@@ -53,7 +85,10 @@
       "id": "open_set_contradiction"
     },
     {
-      "claim": "Cut(Nprime)_subseteq_Cut(N)",
+      "claim": {
+        "conclusion": "Cut(Nprime)_subseteq_Cut(N)",
+        "type": "directed_cut_inclusion"
+      },
       "depends_on": [
         "open_set_contradiction"
       ],
@@ -184,7 +219,7 @@
       "sha256": "406a7f63b4a04bd8f2ab78615bbb214fb107a8da42ad8e48f0eaa840ca8fc83f"
     }
   },
-  "payload_sha256": "0ad0a62aca278ccd5555203b1287e674c7f9b299ff796bd7c0b7e3b3d9232ac9",
+  "payload_sha256": "711d90cdedb4a828313f7e27fbcc647c039ef86a4a297ccce8caa7cf432abd70",
   "provenance_policy": {
     "jc_algebra_used": false,
     "jc_manuscript_is_load_bearing": false,
@@ -198,6 +233,6 @@
     "valid_presentations": 379742
   },
   "remaining_gaps": [],
-  "schema": "k3p-directed-cut-inclusion-evidence-v1",
+  "schema": "k3p-directed-cut-inclusion-evidence-v2",
   "status": "PASS"
 }

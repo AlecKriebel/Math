@@ -85,7 +85,8 @@ def atomic_json(path: Path, payload):
     ) as handle:
         handle.write(encoded)
         temporary = Path(handle.name)
-    temporary.replace(path)
+    os.chmod(temporary, 0o644)
+    os.replace(temporary, path)
 
 
 def sha256_file(path: Path):

@@ -1156,7 +1156,7 @@ def validate_cut_transfer(project: Path, bindings: dict) -> None:
         summary = fresh.get(mode, {}).get("summary", {})
         require(summary == {
             "status": "PASS", "directions": 204, "tree_colorings": 19_270,
-            "adversarial_mutations": 35, "python_optimized": optimized,
+            "adversarial_mutations": 44, "python_optimized": optimized,
         }, ("cut release mode", mode))
     require(gate.get("producer_summary") == {
         "cut_inclusion_evidence": {
@@ -1169,7 +1169,7 @@ def validate_cut_transfer(project: Path, bindings: dict) -> None:
             "palette_survivors": 0,
         },
         "direction_count": 204,
-        "mutation_count": 39,
+        "mutation_count": 48,
         "proof_step_count": 15,
         "two_terminal_mixture_components_checked": 7,
     }, "cut producer universe and active K3P premise")
@@ -1185,7 +1185,7 @@ def validate_cut_transfer(project: Path, bindings: dict) -> None:
         },
         "direction_count": 204,
         "manifest_rows_checked": 7,
-        "mutation_count": 35,
+        "mutation_count": 44,
         "side_blob_switching_components": 7,
         "tree_colorings_checked": 19_270,
         "tree_counterexamples": 0,
@@ -1230,7 +1230,7 @@ def validate_cut_transfer(project: Path, bindings: dict) -> None:
     ), "legacy JC premise in active D1 cone")
     evidence = load(project, evidence_path)
     verify_payload(evidence, "K3P directed-cut inclusion evidence")
-    require(evidence.get("schema") == "k3p-directed-cut-inclusion-evidence-v1" and
+    require(evidence.get("schema") == "k3p-directed-cut-inclusion-evidence-v2" and
             evidence.get("status") == "PASS" and
             evidence.get("remaining_gaps") == [] and
             evidence.get("claim", {}).get("conclusion") ==

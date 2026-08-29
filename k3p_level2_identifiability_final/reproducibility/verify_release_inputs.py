@@ -144,7 +144,7 @@ def verify_mutation_summaries(project: Path) -> dict:
         ("reproducibility/K3P_SAME_CLASSIFICATION_MUTATION_REPORT.json",
          "mutation_count", 27, "rejected", "survived"),
         ("reproducibility/RELEASE_ENGINEERING_MUTATION_REPORT.json",
-         "mutation_count", 32, "rejected", "survived"),
+         "mutation_count", 37, "rejected", "survived"),
     ]
     result: dict[str, int] = {}
     for relative, count_key, expected, rejected_key, survived_key in specs:
@@ -160,6 +160,8 @@ def verify_mutation_summaries(project: Path) -> dict:
                 "archive_tools_sha256": project / "release/archive_tools.py",
                 "release_verifier_sha256": project / "release/verify_release.py",
                 "source_reproduction_verifier_sha256": project / "release/verify_source_reproduction.py",
+                "tectonic_cache_manifest_builder_sha256": project / "release/build_tectonic_cache_manifest.py",
+                "tectonic_cache_manifest_sha256": project / "release/TECTONIC_CACHE_MANIFEST.json",
                 "submission_validator_sha256": project / "submission/validate_submission_packages.py",
                 "submission_validator_mutations_sha256": project / "submission/test_submission_validators.py",
                 "probe_mutation_driver_sha256": project / "probes/test_k3p_probe_mutations.py",
@@ -360,11 +362,31 @@ def verify_environment_lock(project: Path) -> dict:
             policy.get("tectonic_sha256") ==
             "38eff9059ed622672c9a2590415a8f01c043df4232baa459628a2cd86e512d95",
             "release PDF toolchain lock")
+    cache_manifest = project / "release/TECTONIC_CACHE_MANIFEST.json"
+    require(policy.get("tectonic_bundle_url") ==
+            "https://relay.fullyjustified.net/default_bundle_v33.tar" and
+            policy.get("tectonic_bundle_digest") ==
+            "6ffe055852f8faf66c0acbe1a7fb27f87b869a90bad1204f3bf4d9683f597c7c" and
+            policy.get("tectonic_cache_manifest_sha256") ==
+            sha256_file(cache_manifest),
+            "release PDF resource-bundle lock")
+    manifest = load_json(cache_manifest)
+    require(manifest.get("schema") == "k3p-tectonic-cache-manifest-v1" and
+            manifest.get("bundle_url") == policy["tectonic_bundle_url"] and
+            manifest.get("bundle_digest") == policy["tectonic_bundle_digest"] and
+            manifest.get("file_count") == len(manifest.get("files", [])) and
+            manifest.get("file_count") > 0,
+            "release PDF cache-manifest contract")
     return {
         "requirements_sha256": sha256_file(requirements),
         "dependency_count": len(expected),
         "tectonic_version": policy["tectonic_version"],
         "tectonic_sha256": policy["tectonic_sha256"],
+        "tectonic_bundle_url": policy["tectonic_bundle_url"],
+        "tectonic_bundle_digest": policy["tectonic_bundle_digest"],
+        "tectonic_cache_manifest_sha256":
+        policy["tectonic_cache_manifest_sha256"],
+        "tectonic_cache_file_count": manifest["file_count"],
     }
 
 

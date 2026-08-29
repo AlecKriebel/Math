@@ -140,6 +140,18 @@ def semantic_mutation_cases():
         "global_K0_dependency_deletion",
         lambda value=no_k0_edge: verify_global_proof_structure(value),
     ))
+    for row in evidence["analytic_implication"]:
+        step_id = row["id"]
+        false_claim = copy.deepcopy(evidence)
+        next(
+            item for item in false_claim["analytic_implication"]
+            if item["id"] == step_id
+        )["claim"]["type"] = "semantically_false_placeholder"
+        cases.append((
+            f"coherently_resealed_claim_body_{step_id}",
+            lambda value=reseal_evidence(false_claim):
+                verify_cut_inclusion_evidence(audit, value),
+        ))
     return cases
 
 

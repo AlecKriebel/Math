@@ -26,11 +26,24 @@ def clone_project() -> tuple[tempfile.TemporaryDirectory, Path]:
     source_transfer = ROOT / TRANSFER_RELATIVE
     shutil.copytree(source_transfer, project / TRANSFER_RELATIVE)
     theorem = json.loads((ROOT / THEOREM_RELATIVE).read_text())
-    for record in theorem["load_bearing_inputs"].values():
+    evidence = json.loads((
+        ROOT / TRANSFER_RELATIVE / "K3P_DIRECTED_CUT_INCLUSION_EVIDENCE.json"
+    ).read_text())
+    adversarial = json.loads((
+        ROOT / TRANSFER_RELATIVE / "adversarial" /
+        "ADVERSARIAL_GLOBAL_TRANSFER_AUDIT.json"
+    ).read_text())
+    records = [
+        *theorem["load_bearing_inputs"].values(),
+        *evidence["load_bearing_inputs"].values(),
+        *adversarial["input_sha256"].values(),
+    ]
+    for record in records:
         relative = Path(record["path"])
         target = project / relative
         target.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(ROOT / relative, target)
+        if not target.exists():
+            shutil.copy2(ROOT / relative, target)
     return temporary, project
 
 
@@ -106,7 +119,12 @@ def file_sha256(path: Path) -> str:
 
 
 def coherent_legacy_provenance_case() -> dict:
-    """Reseal every affected hash after admitting the retired legacy premise."""
+    """Reseal the local attack cone after admitting the retired premise.
+
+    This intentionally updates the mutated evidence, its two theorem-manifest
+    bindings, and the copied gate's theorem-root constant.  It does not claim
+    to regenerate unrelated downstream stored reports.
+    """
     temporary, project = clone_project()
     try:
         evidence_relative = TRANSFER_RELATIVE / "K3P_DIRECTED_CUT_INCLUSION_EVIDENCE.json"
@@ -149,7 +167,8 @@ def coherent_legacy_provenance_case() -> dict:
             "expected_diagnostic": expected,
             "diagnostic_seen": expected in result.stdout,
             "optimized_gate": False,
-            "all_affected_hashes_resealed": True,
+            "local_attack_cone_hashes_resealed": True,
+            "downstream_stored_reports_resealed": False,
         }
     finally:
         temporary.cleanup()

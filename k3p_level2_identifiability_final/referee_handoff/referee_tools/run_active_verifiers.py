@@ -436,11 +436,13 @@ def normalized_primary_report(value: dict, project_root: str) -> dict:
 def preserve_and_restore_primary_report(*, workspace: Path, phase_root: Path,
                                         package_root: Path,
                                         canonical_bytes: bytes,
+                                        canonical_mode: int,
                                         label: str) -> dict[str, object]:
     relative = "reproducibility/primary_gate_report.json"
     path = workspace / relative
     require(path.is_file(), ("missing regenerated primary report", relative))
     current_bytes = path.read_bytes()
+    current_mode = stat.S_IMODE(path.stat().st_mode)
     canonical = json.loads(canonical_bytes)
     current = json.loads(current_bytes)
     canonical_root = canonical.get("project_root")
@@ -452,11 +454,18 @@ def preserve_and_restore_primary_report(*, workspace: Path, phase_root: Path,
             "regenerated primary report differs beyond declared runtime paths")
     evidence = phase_root / f"{label}.json"
     evidence.write_bytes(current_bytes)
+    evidence.chmod(current_mode)
     path.write_bytes(canonical_bytes)
+    path.chmod(canonical_mode)
+    require(path.read_bytes() == canonical_bytes and
+            stat.S_IMODE(path.stat().st_mode) == canonical_mode,
+            "canonical primary report bytes and mode were not restored")
     return {
         "path": evidence.relative_to(package_root).as_posix(),
         "bytes": evidence.stat().st_size,
         "sha256": sha256_file(evidence),
+        "mode": mode_string(evidence.stat().st_mode),
+        "canonical_mode_restored": mode_string(path.stat().st_mode),
         "semantic_relation": (
             "canonical report modulo project-root and interpreter paths"
         ),
@@ -535,9 +544,13 @@ def run_phase(*, phase: str, package_root: Path, python: Path,
         phase_root / "virtual_environment_inventory_before.json",
         virtual_environment, virtual_environment_before,
     )
+    output_mode_control = run_output_mode_control(
+        package_root, workspace, python, environment,
+    )
     primary_path = workspace / "reproducibility/primary_gate_report.json"
     require(primary_path.is_file(), "canonical primary report missing")
     canonical_primary_bytes = primary_path.read_bytes()
+    canonical_primary_mode = stat.S_IMODE(primary_path.stat().st_mode)
     transcript_path = phase_root / "transcript.log"
     records: list[dict[str, object]] = []
     supplemental_outputs: list[dict[str, object]] = []
@@ -571,6 +584,7 @@ def run_phase(*, phase: str, package_root: Path, python: Path,
                     workspace=workspace, phase_root=phase_root,
                     package_root=package_root,
                     canonical_bytes=canonical_primary_bytes,
+                    canonical_mode=canonical_primary_mode,
                     label=f"{command['name']}_location_dependent_primary_report",
                 ))
     supplemental_outputs.append(bind_fresh_replay_report(
@@ -616,6 +630,7 @@ def run_phase(*, phase: str, package_root: Path, python: Path,
         "command_count": len(records),
         "commands": records,
         "supplemental_outputs": supplemental_outputs,
+        "output_mode_control": output_mode_control,
         "runtime": runtime,
         "elapsed_seconds": time.monotonic() - started,
         "execution_boundary": {
@@ -660,6 +675,28 @@ def run_integrity(package_root: Path, python: Path,
             "K3P_REFEREE_PACKAGE_INTEGRITY_PASS" in output,
             ("package integrity check failed", output[-4000:]))
     print(output, end="")
+
+
+def run_output_mode_control(package_root: Path, project_root: Path,
+                            python: Path,
+                            environment: dict[str, str]) -> dict[str, object]:
+    command = [
+        str(python),
+        str(package_root / "referee_tools/test_output_mode_preservation.py"),
+        "--project-root", str(project_root),
+    ]
+    returncode, output = run_captured(
+        command, cwd=package_root, environment=environment, timeout_seconds=120,
+    )
+    require(returncode == 0 and "K3P_OUTPUT_MODE_PRESERVATION_PASS" in output,
+            ("output-mode preservation control failed", output[-4000:]))
+    print(output, end="")
+    return {
+        "status": "PASS",
+        "sentinel": "K3P_OUTPUT_MODE_PRESERVATION_PASS",
+        "stdout_bytes": len(output.encode("utf-8")),
+        "stdout_sha256": sha256_bytes(output.encode("utf-8")),
+    }
 
 
 def acquire_lock(package_root: Path, mode: str) -> tuple[int, Path, tuple[int, int]]:

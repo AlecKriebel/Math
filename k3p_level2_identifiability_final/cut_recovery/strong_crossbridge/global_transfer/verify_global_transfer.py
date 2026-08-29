@@ -40,6 +40,92 @@ LOCAL_VERIFICATION = HERE.parent / "final_certificate/VERIFICATION_REPORT.json"
 LOCAL_MUTATIONS = HERE.parent / "final_certificate/ADVERSARIAL_MUTATION_REPORT.json"
 
 
+# Deliberately duplicated rather than imported from the producer.  Exact
+# equality with this typed object is part of the certificate contract.
+EXPECTED_ANALYTIC_IMPLICATION = [
+    {
+        "id": "containment_identity",
+        "depends_on": [],
+        "claim": {
+            "type": "analytic_identity_on_source_open_set",
+            "identity": "Phi_N=Phi_Nprime_comp_sigma",
+            "domain": "nonempty_source_open_set_U",
+        },
+    },
+    {
+        "id": "source_noncut",
+        "depends_on": [],
+        "claim": {
+            "type": "source_split_assumption",
+            "candidate_split_is_source_bridge": False,
+        },
+    },
+    {
+        "id": "displayed_switching",
+        "depends_on": ["source_noncut"],
+        "claim": {
+            "type": "displayed_tree_witness",
+            "mechanism": "hull_or_balanced_compression",
+            "witness": "displayed_tree_not_displaying_candidate_split",
+        },
+    },
+    {
+        "id": "wrong_quartet",
+        "depends_on": ["displayed_switching"],
+        "claim": {
+            "type": "labelled_wrong_quartet_extraction",
+            "actual_label_count": 4,
+            "candidate_split_displayed": False,
+        },
+    },
+    {
+        "id": "source_noncut_nonzero",
+        "depends_on": ["wrong_quartet"],
+        "claim": {
+            "type": "nonzero_source_polynomial_witness",
+            "polynomial": "wrong_split_5x5_flattening_minor",
+            "nonzero_reason": "displayed_tree_specialization",
+        },
+    },
+    {
+        "id": "target_cut_vanishing",
+        "depends_on": [],
+        "claim": {
+            "type": "target_cut_polynomial_identity",
+            "polynomial_family": "all_5x5_flattening_minors",
+            "value": "identically_zero",
+        },
+    },
+    {
+        "id": "composition_pullback",
+        "depends_on": ["containment_identity", "target_cut_vanishing"],
+        "claim": {
+            "type": "composition_pullback_identity",
+            "polynomial": "same_wrong_split_5x5_flattening_minor",
+            "domain": "source_open_set_U",
+            "value": "zero",
+        },
+    },
+    {
+        "id": "open_set_contradiction",
+        "depends_on": ["source_noncut_nonzero", "composition_pullback"],
+        "claim": {
+            "type": "real_polynomial_open_set_principle",
+            "premise": "nonzero_real_polynomial_vanishes_on_nonempty_open_set",
+            "conclusion": "contradiction",
+        },
+    },
+    {
+        "id": "directed_conclusion",
+        "depends_on": ["open_set_contradiction"],
+        "claim": {
+            "type": "directed_cut_inclusion",
+            "conclusion": "Cut(Nprime)_subseteq_Cut(N)",
+        },
+    },
+]
+
+
 class VerificationError(RuntimeError):
     pass
 
@@ -85,7 +171,7 @@ def verify_cut_inclusion_evidence(evidence: dict) -> dict:
         "provenance_policy", "reduced_palette_replay", "remaining_gaps",
         "schema", "status",
     }, "K3P cut evidence key set")
-    require(evidence["schema"] == "k3p-directed-cut-inclusion-evidence-v1",
+    require(evidence["schema"] == "k3p-directed-cut-inclusion-evidence-v2",
             "K3P cut evidence schema")
     require(evidence["status"] == "PASS" and evidence["remaining_gaps"] == [],
             "K3P cut evidence status")
@@ -220,34 +306,23 @@ def verify_cut_inclusion_evidence(evidence: dict) -> dict:
             minor["boundary_to_strict_physical_by_continuity"] is True,
             "strict minor implication")
 
-    expected_steps = {
-        "containment_identity": (),
-        "source_noncut": (),
-        "displayed_switching": ("source_noncut",),
-        "wrong_quartet": ("displayed_switching",),
-        "source_noncut_nonzero": ("wrong_quartet",),
-        "target_cut_vanishing": (),
-        "composition_pullback":
-            ("containment_identity", "target_cut_vanishing"),
-        "open_set_contradiction":
-            ("source_noncut_nonzero", "composition_pullback"),
-        "directed_conclusion": ("open_set_contradiction",),
-    }
     steps = evidence["analytic_implication"]
-    require([row["id"] for row in steps] == list(expected_steps),
-            "K3P cut implication order")
+    require(steps == EXPECTED_ANALYTIC_IMPLICATION,
+            "K3P cut exact typed analytic implication")
     seen = set()
     for row in steps:
         require(set(row) == {"id", "depends_on", "claim"},
                 ("K3P cut implication row", row.get("id")))
-        require(tuple(row["depends_on"]) == expected_steps[row["id"]],
-                ("K3P cut implication dependencies", row["id"]))
         require(set(row["depends_on"]) <= seen,
                 ("K3P cut implication topological order", row["id"]))
-        require(isinstance(row["claim"], str) and row["claim"],
-                ("K3P cut implication claim", row["id"]))
+        require(isinstance(row["claim"], dict) and
+                isinstance(row["claim"].get("type"), str),
+                ("K3P cut typed implication claim", row["id"]))
         seen.add(row["id"])
-    require(steps[-1]["claim"] == "Cut(Nprime)_subseteq_Cut(N)",
+    require(steps[-1]["claim"] == {
+        "type": "directed_cut_inclusion",
+        "conclusion": "Cut(Nprime)_subseteq_Cut(N)",
+    },
             "K3P cut implication conclusion")
     require(evidence["provenance_policy"] == {
         "jc_algebra_used": False,
@@ -546,7 +621,7 @@ def verify_local_pointwise(payload, independently_rebuilt_rows):
     return len(targets), mutations["mutation_count"]
 
 
-def verify_payload(payload, universe, cut_evidence):
+def verify_payload(payload, universe, cut_evidence, cut_evidence_path=CUT_EVIDENCE):
     require(payload["schema"] == "k3p-lost-bridge-global-transfer-certificate-v2", "schema")
     require(payload["status"] == "PASS", "status")
     require(payload["blocked_reason"] is None, "blocked reason")
@@ -557,7 +632,8 @@ def verify_payload(payload, universe, cut_evidence):
     bindings = payload["load_bearing_inputs"]
     require(bindings["frozen_strong_topology"] == expected_binding(FROZEN_TOPOLOGY), "topology binding")
     require(bindings["selected_marginal"] == expected_binding(MARGINAL), "marginal binding")
-    require(bindings["k3p_directed_cut_inclusion_evidence"] == expected_binding(CUT_EVIDENCE),
+    require(bindings["k3p_directed_cut_inclusion_evidence"] ==
+            expected_binding(cut_evidence_path),
             "K3P directed-cut evidence binding")
     require(bindings["recompiled_direction_universe"] == expected_binding(DEFAULT_UNIVERSE), "direction universe binding")
 
@@ -708,15 +784,23 @@ def evidence_mutation_cases(evidence):
             if row["id"] == "source_noncut_nonzero"
         ).__setitem__("depends_on", []),
     )
+    for step_id in (row["id"] for row in EXPECTED_ANALYTIC_IMPLICATION):
+        changed(
+            f"coherently_resealed_claim_body_{step_id}",
+            lambda x, step_id=step_id: next(
+                row for row in x["analytic_implication"]
+                if row["id"] == step_id
+            )["claim"].__setitem__("type", "semantically_false_placeholder"),
+        )
     return cases
 
 
-def run_mutations(payload, universe, cut_evidence):
+def run_mutations(payload, universe, cut_evidence, cut_evidence_path=CUT_EVIDENCE):
     results = []
     for name, changed in mutation_cases(payload):
         rejected = False
         try:
-            verify_payload(changed, universe, cut_evidence)
+            verify_payload(changed, universe, cut_evidence, cut_evidence_path)
         except (VerificationError, KeyError, IndexError, TypeError, ValueError):
             rejected = True
         require(rejected, ("mutation accepted", name))
@@ -744,8 +828,10 @@ def main():
     payload = json.loads(args.artifact.read_text())
     universe = json.loads(args.universe.read_text())
     cut_evidence = json.loads(args.cut_evidence.read_text())
-    result = verify_payload(payload, universe, cut_evidence)
-    mutations = run_mutations(payload, universe, cut_evidence) if args.mutations else []
+    result = verify_payload(payload, universe, cut_evidence, args.cut_evidence)
+    mutations = run_mutations(
+        payload, universe, cut_evidence, args.cut_evidence
+    ) if args.mutations else []
     report = {
         "schema": "k3p-lost-bridge-global-transfer-verification-v2",
         **result,

@@ -71,9 +71,12 @@ The single 55-command regeneration then passed in 8,921 seconds with payload
 `74ab3e8830f4e0a8e8e1805c9aca591a4ec09d78a160126c183d496db3d6f019`.
 It invoked the hour-scale probe producer exactly once, regenerated the full
 405,216-relation four-port universe and all 574,535 probe rows, and ended with
-the fresh integrated replay plus 27/27 classification and 32/32
-release-engineering mutations rejected.  The article's availability statement
-points to that immutable proof snapshot.
+the fresh integrated replay plus 27/27 classification mutations rejected; the
+then-current 32/32 release-engineering mutations also passed.  The article's
+availability statement points to that immutable proof snapshot.  The present
+third-referee repair expands the release-engineering suite to 37 attacks and
+12 deterministic controls; its regenerated report is required by the current
+release-input gate.
 
 This 2026-08-29 second-referee repair removes the remaining stale certificate
 dependency from the directed cut inclusion: a self-contained K3P evidence

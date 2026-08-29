@@ -11,7 +11,10 @@ prior audits are evidence to inspect, not conclusions to adopt.
 - `proof_package/` is an inspectable copy of the canonical full
   reproducibility payload, supplemented by the work logs needed by fresh
   dependency checks and by `release/FINAL_RELEASE_ENGINEERING_REPORT.md`, the
-  historical execution ledger cited from the project README; the package
+  historical execution ledger cited from the project README.  It also contains
+  `release/source_reproduction_evidence/`, with the two final-commit PDF
+  reproduction reports and their four bound build transcripts, plus the two
+  exact source ZIPs at the report-declared `release/dist/` paths; the package
   manifest gives the exact rebuilt count.
 - `REFEREE_PROMPT.md` is a neutral review brief.
 - `PACKAGE_MANIFEST.json` and `SHA256SUMS` provide a sealed-payload check by
@@ -151,10 +154,17 @@ identical location-bearing report is
 preserved separately for audit and the canonical byte copy is restored before
 downstream binding checks.
 
-The exact Tectonic 0.16.9 arm64 binary is not bundled.  It is needed only to
-reproduce the PDFs byte-for-byte, not to run the mathematical proof checks.
-The source archives record its expected executable SHA-256 and deterministic
-build environment.
+The exact Tectonic 0.16.9 arm64 binary and its 56 MB resource payload are not
+bundled.  They are needed only to reproduce the PDFs byte-for-byte, not to run
+the mathematical proof checks.  Each source archive embeds the complete
+725-file resource-cache inventory and binds the bundle URL, bundle digest,
+executable SHA-256, forced `--only-cached` command, fixed minimal child
+environment, and private HOME/TMP policy.  The verifier rejects missing,
+extra, or changed cache members and rechecks the cache after both builds.
+Supply the inventory-matching cache with `--tectonic-cache-root` when it is not
+in Tectonic's standard per-user location.  Tool-level cached-only execution
+prevents resource downloads; the external sandbox remains the enforcement
+boundary against arbitrary network access by untrusted executables.
 
 Passing scripts cannot replace scrutiny of the handwritten topology,
 analytic, semialgebraic, genericity, reconstruction, and gluing arguments.

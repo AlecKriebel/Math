@@ -123,7 +123,7 @@ def main():
             "verification schema")
     require(report["proof_step_count"] == optimized["proof_step_count"] == 15,
             "proof step count")
-    require(report["mutation_count"] == optimized["mutation_count"] == 39,
+    require(report["mutation_count"] == optimized["mutation_count"] == 48,
             "mutation count")
     require(report["cut_evidence_sha256"] ==
             optimized["cut_evidence_sha256"] == sha_file(CUT_EVIDENCE),
@@ -131,7 +131,7 @@ def main():
     require(certificate["load_bearing_inputs"][
         "k3p_directed_cut_inclusion_evidence"
     ] == binding(CUT_EVIDENCE), "certificate K3P cut-evidence binding")
-    require(cut_evidence["schema"] == "k3p-directed-cut-inclusion-evidence-v1" and
+    require(cut_evidence["schema"] == "k3p-directed-cut-inclusion-evidence-v2" and
             cut_evidence["status"] == "PASS" and
             cut_evidence["remaining_gaps"] == [], "K3P cut-evidence status")
     require(cut_evidence["provenance_policy"]["jc_algebra_used"] is False and
@@ -159,6 +159,21 @@ def main():
             "release adversarial mode agreement")
     require(release["remaining_gaps"] == release_optimized["remaining_gaps"] == [],
             "release remaining gaps")
+    require(
+        release["fresh_semantic_replays"]["direct"]["summary"]["status"] ==
+        release["fresh_semantic_replays"]["adversarial"]["summary"]["status"] ==
+        release_optimized["fresh_semantic_replays"]["direct"]["summary"]["status"] ==
+        release_optimized["fresh_semantic_replays"]["adversarial"]["summary"]["status"] ==
+        "PASS",
+        "fresh semantic release replays",
+    )
+    require(
+        release["fresh_semantic_replays"]["direct"]["python_optimized"] is False and
+        release["fresh_semantic_replays"]["adversarial"]["python_optimized"] is False and
+        release_optimized["fresh_semantic_replays"]["direct"]["python_optimized"] is True and
+        release_optimized["fresh_semantic_replays"]["adversarial"]["python_optimized"] is True,
+        "fresh semantic release modes",
+    )
     require(release["bindings"]["certificate"] == binding(CERTIFICATE),
             "release certificate binding")
     require(release["bindings"]["universe"] == binding(UNIVERSE),
@@ -198,7 +213,7 @@ def main():
     require(adversarial_mutations["status"] == "PASS" and
             adversarial_mutations["all_mutations_rejected"] is True and
             adversarial_mutations["mutation_count"] ==
-            adversarial_mutations["rejected_count"] == 35,
+            adversarial_mutations["rejected_count"] == 44,
             "adversarial mutation status")
 
     hashes = {name: sha_file(HERE / name) for name in FILES}
@@ -237,6 +252,8 @@ def main():
             "adversarial_tree_colorings_checked": release["adversarial"]["tree_colorings_checked"],
             "adversarial_tree_counterexamples": release["adversarial"]["tree_counterexamples"],
             "adversarial_mutations_rejected": release["adversarial"]["mutation_count"],
+            "fresh_direct_semantic_replay": "PASS",
+            "fresh_adversarial_semantic_replay": "PASS",
             "release_ordinary_replay": "PASS",
             "release_optimized_replay": "PASS",
             "ordinary_replay": "PASS",

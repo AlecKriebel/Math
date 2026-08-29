@@ -16,11 +16,21 @@ PDF reproduction uses the installed Tectonic 0.16.9 toolchain.  The verifier
 runs only the arm64 executable with SHA-256
 `38eff9059ed622672c9a2590415a8f01c043df4232baa459628a2cd86e512d95` and
 runs two isolated builds with the exact command recorded in each source
-archive, the fixed PDF `SOURCE_DATE_EPOCH=1787677101`, UTC, C locale, and
-private TeX working directories, then requires the two PDF byte strings and
-the delivered committed PDF to have the same SHA-256.  This publication epoch
-is intentionally distinct from the later release commit timestamp.  A PDF
-toolchain is not silently installed or inferred by this release layer.
+archive.  That command binds the default-v33 bundle digest and forces
+`--only-cached`.  The external cache is not vendored; instead,
+`TECTONIC_CACHE_MANIFEST.json` inventories all 725 cache files by relative
+path, byte count, and SHA-256.  The verifier rejects any missing, extra, or
+changed member and checks the cache before and after the builds.
+
+The Tectonic child inherits no caller environment.  It receives only the
+fixed PDF `SOURCE_DATE_EPOCH=1787677101`, UTC, C locale, bytecode setting, a
+fixed system `PATH`, and private HOME, TMP, XDG, and TeX directories.  Its
+platform-specific user-cache location is routed to the verified cache.  The
+two PDF byte strings must equal one another and the delivered committed PDF.
+This publication epoch is intentionally distinct from the later release
+commit timestamp.  A PDF toolchain or resource cache is not silently installed
+or downloaded by this release layer.  `--only-cached` is a tool-level network
+guard; an OS sandbox remains appropriate when executing untrusted binaries.
 
 Canonical compressed bytes are conditioned on the recorded Python/zlib and
 TeX toolchains.  Clean-clone release runs must use the same locked environment;

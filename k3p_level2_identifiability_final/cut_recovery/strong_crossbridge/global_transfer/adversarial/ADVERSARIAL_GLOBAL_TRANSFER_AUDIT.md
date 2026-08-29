@@ -57,7 +57,9 @@ balanced-word producer and certificate, reduced-palette clean-room replay and
 certificate, and an independent combinatorics replay.  The audit recomputes
 the two determinant terms, the five-minor augmentation, all ten family/role
 totals (`808,642` balanced words), and all `379,742` palette presentations
-with zero survivors.  It also checks the nine-step analytic implication DAG.
+with zero survivors.  It also checks the exact typed nine-row implication
+declaration and dependency DAG.  The mathematical truth of those implications
+is supplied by the handwritten proof, not inferred from the declaration text.
 
 ## 2. Colored reduced-tree dichotomy
 

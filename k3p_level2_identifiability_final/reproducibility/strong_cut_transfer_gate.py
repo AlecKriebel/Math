@@ -13,6 +13,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -23,7 +24,7 @@ HERE = Path(__file__).resolve().parent
 DEFAULT_PROJECT = HERE.parent
 TRANSFER_RELATIVE = Path("cut_recovery/strong_crossbridge/global_transfer")
 DEFAULT_REPORT = HERE / "strong_class_cut_transfer_gate_report.json"
-EXPECTED_THEOREM_SHA256 = "faa304207cde5f08321f44b9c885480cfcc5b4bfb1b6f96fad995b6e7778a22c"
+EXPECTED_THEOREM_SHA256 = "ce29187c17123651c547c34d86fcdcef1c671505bbb5c132c53dd2a2e6ab3445"
 
 EXPECTED_CLAIM = (
     "For binary standard semi-directed strongly tree-child level-2 networks "
@@ -168,7 +169,7 @@ def invoke_release(transfer: Path, optimized: bool) -> dict:
         "status": "PASS",
         "directions": 204,
         "tree_colorings": 19270,
-        "adversarial_mutations": 35,
+        "adversarial_mutations": 44,
         "python_optimized": optimized,
     }
     require(result.returncode == 0, ("release verifier exit", optimized, result.stdout))
@@ -209,7 +210,7 @@ def validate_release_report(path: Path, optimized: bool, release_sha: str) -> di
             "palette_survivors": 0,
         },
         "direction_count": 204,
-        "mutation_count": 39,
+        "mutation_count": 48,
         "proof_step_count": 15,
         "two_terminal_mixture_components_checked": 7,
     }, ("producer release summary", path.name))
@@ -225,11 +226,29 @@ def validate_release_report(path: Path, optimized: bool, release_sha: str) -> di
         },
         "direction_count": 204,
         "manifest_rows_checked": 7,
-        "mutation_count": 35,
+        "mutation_count": 44,
         "side_blob_switching_components": 7,
         "tree_colorings_checked": 19270,
         "tree_counterexamples": 0,
     }, ("adversarial release summary", path.name))
+    fresh = report.get("fresh_semantic_replays", {})
+    require(fresh.get("direct", {}).get("summary") == {
+        "status": "PASS",
+        "direction_count": 204,
+        "proof_step_count": 15,
+        "mutation_count": 0,
+    }, ("fresh direct semantic replay", path.name))
+    require(fresh.get("adversarial", {}).get("summary") == {
+        "status": "PASS",
+        "directions": 204,
+        "tree_counterexamples": 0,
+        "remaining_gaps": 0,
+    }, ("fresh adversarial semantic replay", path.name))
+    require(
+        fresh["direct"]["python_optimized"] is optimized and
+        fresh["adversarial"]["python_optimized"] is optimized,
+        ("fresh semantic replay mode", path.name),
+    )
     return report
 
 
@@ -281,7 +300,7 @@ def verify_gate(project: Path, transfer: Path) -> dict:
         "k3p_directed_cut_inclusion_evidence"
     ]
     cut_evidence = load(cut_evidence_path)
-    require(cut_evidence.get("schema") == "k3p-directed-cut-inclusion-evidence-v1" and
+    require(cut_evidence.get("schema") == "k3p-directed-cut-inclusion-evidence-v2" and
             cut_evidence.get("status") == "PASS" and
             cut_evidence.get("remaining_gaps") == [],
             "active K3P cut-inclusion evidence status")
@@ -328,13 +347,16 @@ def verify_gate(project: Path, transfer: Path) -> dict:
             "cut-transfer proof DAG")
     require(validation.get("ordinary_replay") == validation.get("optimized_replay") == "PASS",
             "producer ordinary/optimized replay")
+    require(validation.get("fresh_direct_semantic_replay") ==
+            validation.get("fresh_adversarial_semantic_replay") == "PASS",
+            "fresh cut-evidence semantic replays")
     require(validation.get("release_ordinary_replay") ==
             validation.get("release_optimized_replay") == "PASS",
             "release ordinary/optimized replay")
     require(validation.get("adversarial_tree_counterexamples") == 0,
             "crossing-quartet topology counterexample")
-    require(validation.get("global_transfer_mutations_rejected") == 39 and
-            validation.get("adversarial_mutations_rejected") == 35,
+    require(validation.get("global_transfer_mutations_rejected") == 48 and
+            validation.get("adversarial_mutations_rejected") == 44,
             "cut-transfer mutation coverage")
     require(sha256(theorem_path) == EXPECTED_THEOREM_SHA256,
             "sealed cut-transfer theorem manifest hash")
@@ -378,7 +400,8 @@ def atomic_json(path: Path, value: object) -> None:
     ) as handle:
         handle.write(encoded)
         temporary = Path(handle.name)
-    temporary.replace(path)
+    os.chmod(temporary, 0o644)
+    os.replace(temporary, path)
 
 
 def main() -> int:

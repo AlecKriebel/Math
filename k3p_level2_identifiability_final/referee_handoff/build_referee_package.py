@@ -6,7 +6,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 import shutil
 import stat
 import subprocess
@@ -21,6 +21,9 @@ DEFAULT_OUTPUT = PROJECT / "release/dist/K3P_Level2_Independent_Referee_Package"
 
 sys.path.insert(0, str(PROJECT / "release"))
 from archive_tools import safe_extract_tar_gz, verify_tar_gz  # noqa: E402
+from build_release import load_release_policy  # noqa: E402
+from verify_release import validate_source_reproduction_evidence  # noqa: E402
+from verify_source_reproduction import verify_source_archive_contract  # noqa: E402
 
 
 class PackageFailure(RuntimeError):
@@ -87,9 +90,36 @@ def handoff_inputs() -> list[Path]:
         PROJECT / "output/pdf/K3P_Level2_Identifiability_Article.pdf",
         PROJECT / "output/pdf/K3P_Level2_Identifiability_Reader_Supplement.pdf",
         PROJECT / "release/FINAL_RELEASE_ENGINEERING_REPORT.md",
+        # These live modules are imported by this builder.  Bind them to the
+        # claimed package-builder commit before accepting ignored evidence.
+        PROJECT / "release/archive_tools.py",
+        PROJECT / "release/build_release.py",
+        PROJECT / "release/TECTONIC_CACHE_MANIFEST.json",
+        PROJECT / "release/verify_release.py",
+        PROJECT / "release/verify_source_reproduction.py",
+        PROJECT / "reproducibility/release_common.py",
+        PROJECT / "reproducibility/run_release_suite.py",
+        PROJECT / "submission/validate_submission_packages.py",
     ])
     paths.extend(tracked_work_logs())
     return paths
+
+
+def exact_project_evidence_path(relative: object, *, expected: str,
+                                label: str) -> Path:
+    require(isinstance(relative, str) and relative == expected and
+            "\\" not in relative and "\x00" not in relative,
+            (f"noncanonical {label} path", relative, expected))
+    pure = PurePosixPath(relative)
+    require(not pure.is_absolute() and ".." not in pure.parts and
+            pure.as_posix() == relative,
+            (f"unsafe {label} path", relative))
+    path = (PROJECT / Path(*pure.parts)).resolve()
+    try:
+        path.relative_to(PROJECT.resolve())
+    except ValueError as error:
+        raise PackageFailure((f"{label} path outside project", relative)) from error
+    return path
 
 
 def tracked_work_logs() -> list[Path]:
@@ -118,7 +148,83 @@ def tracked_work_logs() -> list[Path]:
     return paths
 
 
-def copy_payload(candidate: Path, archive: Path, archive_record: dict) -> dict:
+def source_reproduction_evidence(commit: str) -> list[Path]:
+    evidence_root = PROJECT / "release/source_reproduction_evidence"
+    policy = load_release_policy(PROJECT)
+    paths = []
+    for kind, pdf_name in (
+        ("article", "K3P_Level2_Identifiability_Article.pdf"),
+        ("supplement", "K3P_Level2_Identifiability_Reader_Supplement.pdf"),
+    ):
+        report_path = evidence_root / f"{kind}.json"
+        require(report_path.is_file() and not report_path.is_symlink(),
+                ("missing final-commit source-reproduction report", kind,
+                 str(report_path)))
+        report = json.loads(report_path.read_text(encoding="utf-8"))
+        require(report.get("source_commit") == commit,
+                ("stale source-reproduction report commit", kind,
+                 report.get("source_commit"), commit))
+        transcript_records = {}
+        transcript_paths = []
+        source_record = report.get("source_archive", {})
+        source_relative = source_record.get("path")
+        expected_source_relative = (
+            f"release/dist/k3p_level2_{kind}_source.zip"
+        )
+        source_archive = exact_project_evidence_path(
+            source_relative, expected=expected_source_relative,
+            label=f"{kind} source archive",
+        )
+        require(source_archive.is_file() and not source_archive.is_symlink() and
+                source_record.get("sha256") == sha256_file(source_archive),
+                ("source-archive evidence binding", kind, source_relative))
+        archive_report, _build, committed_binding = verify_source_archive_contract(
+            source_archive, kind=kind, project=PROJECT, policy=policy
+        )
+        require(source_record == {
+                    "path": expected_source_relative,
+                    "sha256": sha256_file(source_archive),
+                    "structural_verification": archive_report,
+                } and
+                report.get("committed_source_binding") == committed_binding,
+                ("source archive/HEAD semantic binding", kind))
+        builds = report.get("builds", [])
+        require(isinstance(builds, list) and len(builds) == 2,
+                ("source-reproduction build count", kind))
+        for run_number, build in enumerate(builds, 1):
+            relative = build.get("transcript")
+            expected_transcript = (
+                "release/source_reproduction_evidence/"
+                f"{kind}_transcripts/run{run_number}.log"
+            )
+            transcript = exact_project_evidence_path(
+                relative, expected=expected_transcript,
+                label=f"{kind} run-{run_number} transcript",
+            )
+            require(transcript.is_file() and not transcript.is_symlink(),
+                    ("missing source-reproduction transcript", relative))
+            transcript_records[relative] = {"sha256": sha256_file(transcript)}
+            transcript_paths.append(transcript)
+        pdf = PROJECT / "output/pdf" / pdf_name
+        require(pdf.is_file() and not pdf.is_symlink(),
+                ("missing canonical PDF", kind, str(pdf)))
+        validate_source_reproduction_evidence(
+            report, kind=kind, commit=commit,
+            pdf_record={"sha256": sha256_file(pdf), "bytes": pdf.stat().st_size},
+            policy=policy, transcript_records=transcript_records,
+        )
+        require(len(transcript_paths) == len(set(transcript_paths)) == 2,
+                ("source-reproduction transcript count", kind,
+                 len(transcript_paths)))
+        paths.extend([report_path, source_archive, *transcript_paths])
+    require(len(paths) == len(set(paths)) == 8,
+            ("source-reproduction evidence count/uniqueness", len(paths),
+             len(set(paths))))
+    return sorted(paths)
+
+
+def copy_payload(candidate: Path, archive: Path, archive_record: dict,
+                 source_evidence: list[Path]) -> dict:
     extraction = candidate.parent / "archive_extraction"
     extraction.mkdir(parents=True, exist_ok=False)
     safe_extract_tar_gz(archive, extraction)
@@ -150,6 +256,15 @@ def copy_payload(candidate: Path, archive: Path, archive_record: dict) -> dict:
         release_ledger_destination.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(release_ledger, release_ledger_destination)
 
+    for source in source_evidence:
+        relative = source.relative_to(PROJECT)
+        destination = proof / relative
+        require(not destination.exists(),
+                ("source-reproduction evidence unexpectedly in canonical archive",
+                 relative.as_posix()))
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(source, destination)
+
     paper = candidate / "paper"
     paper.mkdir(parents=True)
     pdf_names = (
@@ -178,6 +293,7 @@ def copy_payload(candidate: Path, archive: Path, archive_record: dict) -> dict:
         "work_logs_present": len(logs),
         "work_logs_added_to_archive_core": added_logs,
         "final_release_ledger_present": True,
+        "source_reproduction_evidence_files": len(source_evidence),
         "pdfs_copied": len(pdf_names),
     }
 
@@ -260,6 +376,7 @@ def main(argv: list[str] | None = None) -> int:
         require(archive.is_file(), ("missing canonical archive", str(archive)))
         require(not output.exists(), ("referee package output already exists", str(output)))
         require_head_blobs(handoff_inputs())
+        source_evidence = source_reproduction_evidence(head_commit())
         output.parent.mkdir(parents=True, exist_ok=True)
         archive_record = verify_tar_gz(archive)
         commit = head_commit()
@@ -271,7 +388,9 @@ def main(argv: list[str] | None = None) -> int:
             temporary = Path(directory)
             candidate = temporary / "candidate"
             candidate.mkdir()
-            copied = copy_payload(candidate, archive, archive_record)
+            copied = copy_payload(
+                candidate, archive, archive_record, source_evidence
+            )
             manifest = write_outer_manifests(
                 candidate, commit=commit, archive=archive,
                 archive_record=archive_record,

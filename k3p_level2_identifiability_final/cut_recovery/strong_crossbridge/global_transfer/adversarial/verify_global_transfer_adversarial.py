@@ -57,11 +57,11 @@ PATHS = {
 # These are deliberately hard-coded rather than copied from the audit JSON.
 # Any change to a load-bearing producer or frozen input invalidates this audit.
 EXPECTED_SHA256 = {
-    "global_certificate": "c713afe83db59ad395961273ae7ace691ee3a2f323f65b4600245545e24321f1",
+    "global_certificate": "95106a7b06044265ee0de66733d017f3c91484f29ca0cfc0fcc9a5d0e8c0d285",
     "global_universe": "c9f00df0c52bbdec1eb8601f7f9ba1652eb500ae5cf5c299fad3bb086411690f",
     "global_builder": "34d2a80cfe5aed91ca9098c3e3fb00a7ddece8dbedd762f9da051ff60ce361e3",
-    "global_verifier": "56dc79c1005cca4b502af0b6c2d260cdf730ea34cdf8b08daf2f35b0347cca47",
-    "global_verification": "cd55e4303475206e4cdf916638d0a02138ea9d7ae72386be527db7f70580b57d",
+    "global_verifier": "737c512ebc47f6303bd477e1083d0641518da4a5974ef27907017fd102f83159",
+    "global_verification": "d3bb0d8884a984aec4813aa8287d2a5361ba7ef9bf01a15c6c813ceaa2a88085",
     "local_certificate": "643c29780219a538a5a127341ea91363aa5899d6f0f6fa1dac034889a7fdf06b",
     "local_universe": "674647dc91513ba85a2a72ed5f98d017c61f54ebb9e157975c14f5a94e4ddb9b",
     "local_verification": "210a29ae89b0cd579503a35d05bc06f6ea765f487d0e062020d2e3c7ec225046",
@@ -69,7 +69,7 @@ EXPECTED_SHA256 = {
     "frozen_topology": "edbd4afe566ed0ed5d1c518ffe5b21f8f224d547b9c351cb4e1a8c1c613ac086",
     "model_domain": "ac21e4f795537f251377411841d670c1bad4ce06a69ed24f596252c11cb7afb6",
     "marginal": "9a90ba2e075fd20a4867e8a169aa933546b8fbca6feab23a2be7d25a24935d94",
-    "cut_inclusion_evidence": "6f3e37bdde95b60f0f598e09040841063e74c416cfdf518f288a5ddcc4b68d29",
+    "cut_inclusion_evidence": "eea8d603b835d315c39b6a87f8ae691e897e8e982b65a92cfd1f2acd84449689",
     "k3p_manuscript": "de19b751e20ef091f759f86fb4764e9c3c7ee938b1cf3fbdbd1d6a5ba1881b27",
     "displayed_tree_minor_verifier": "56bf98a93b32248174f76161ad00ba5c7c81173edc0493b2bd79b90eeff90c27",
     "balanced_word_producer": "3f7747eac4aa66034d554d80c8b34017d3e3ce472dd49a01fe753bd93f82cb6a",
@@ -78,6 +78,93 @@ EXPECTED_SHA256 = {
     "reduced_palette_certificate": "79b6763bd10ed5876942cb43b4fb92a79ea6eb3252acf865f56a7c7eb565b758",
     "independent_combinatorics_replay": "30e58475817d4f7a4f91521a4dead5f13d570535d8646a10e658e950f01d34cf",
 }
+
+
+# Independent literal copy of the typed nine-row declaration.  This module
+# imports neither the producer nor the direct verifier, and exact object
+# equality is required below.
+EXPECTED_ANALYTIC_IMPLICATION = [
+    {
+        "id": "containment_identity",
+        "depends_on": [],
+        "claim": {
+            "type": "analytic_identity_on_source_open_set",
+            "identity": "Phi_N=Phi_Nprime_comp_sigma",
+            "domain": "nonempty_source_open_set_U",
+        },
+    },
+    {
+        "id": "source_noncut",
+        "depends_on": [],
+        "claim": {
+            "type": "source_split_assumption",
+            "candidate_split_is_source_bridge": False,
+        },
+    },
+    {
+        "id": "displayed_switching",
+        "depends_on": ["source_noncut"],
+        "claim": {
+            "type": "displayed_tree_witness",
+            "mechanism": "hull_or_balanced_compression",
+            "witness": "displayed_tree_not_displaying_candidate_split",
+        },
+    },
+    {
+        "id": "wrong_quartet",
+        "depends_on": ["displayed_switching"],
+        "claim": {
+            "type": "labelled_wrong_quartet_extraction",
+            "actual_label_count": 4,
+            "candidate_split_displayed": False,
+        },
+    },
+    {
+        "id": "source_noncut_nonzero",
+        "depends_on": ["wrong_quartet"],
+        "claim": {
+            "type": "nonzero_source_polynomial_witness",
+            "polynomial": "wrong_split_5x5_flattening_minor",
+            "nonzero_reason": "displayed_tree_specialization",
+        },
+    },
+    {
+        "id": "target_cut_vanishing",
+        "depends_on": [],
+        "claim": {
+            "type": "target_cut_polynomial_identity",
+            "polynomial_family": "all_5x5_flattening_minors",
+            "value": "identically_zero",
+        },
+    },
+    {
+        "id": "composition_pullback",
+        "depends_on": ["containment_identity", "target_cut_vanishing"],
+        "claim": {
+            "type": "composition_pullback_identity",
+            "polynomial": "same_wrong_split_5x5_flattening_minor",
+            "domain": "source_open_set_U",
+            "value": "zero",
+        },
+    },
+    {
+        "id": "open_set_contradiction",
+        "depends_on": ["source_noncut_nonzero", "composition_pullback"],
+        "claim": {
+            "type": "real_polynomial_open_set_principle",
+            "premise": "nonzero_real_polynomial_vanishes_on_nonempty_open_set",
+            "conclusion": "contradiction",
+        },
+    },
+    {
+        "id": "directed_conclusion",
+        "depends_on": ["open_set_contradiction"],
+        "claim": {
+            "type": "directed_cut_inclusion",
+            "conclusion": "Cut(Nprime)_subseteq_Cut(N)",
+        },
+    },
+]
 
 
 class VerificationError(RuntimeError):
@@ -123,7 +210,11 @@ def evidence_payload_digest(value: dict) -> str:
     return canonical_digest(body)
 
 
-def verify_cut_inclusion_evidence(audit: dict, evidence: dict | None = None) -> dict:
+def verify_cut_inclusion_evidence(
+    audit: dict,
+    evidence: dict | None = None,
+    evidence_path: Path | None = None,
+) -> dict:
     """Independently validate the active K3P premise for D1.
 
     This deliberately does not import either the evidence producer or the
@@ -131,14 +222,24 @@ def verify_cut_inclusion_evidence(audit: dict, evidence: dict | None = None) -> 
     substitution of the legacy report or JC manuscript remains invalid.
     """
     if evidence is None:
-        evidence = json.loads(PATHS["cut_inclusion_evidence"].read_text())
+        evidence_path = evidence_path or PATHS["cut_inclusion_evidence"]
+        evidence = json.loads(evidence_path.read_text())
+    if evidence_path is not None:
+        global_certificate = json.loads(PATHS["global_certificate"].read_text())
+        bound = global_certificate["load_bearing_inputs"][
+            "k3p_directed_cut_inclusion_evidence"
+        ]
+        require(bound == {
+            "path": relative(evidence_path),
+            "sha256": sha256(evidence_path),
+        }, "custom K3P evidence is not bound by global certificate")
     require(set(evidence) == {
         "analytic_implication", "balanced_word_reduction", "claim",
         "displayed_tree_minor", "load_bearing_inputs", "payload_sha256",
         "provenance_policy", "reduced_palette_replay", "remaining_gaps",
         "schema", "status",
     }, "K3P directed-cut evidence key set")
-    require(evidence["schema"] == "k3p-directed-cut-inclusion-evidence-v1",
+    require(evidence["schema"] == "k3p-directed-cut-inclusion-evidence-v2",
             "K3P directed-cut evidence schema")
     require(evidence["status"] == "PASS" and evidence["remaining_gaps"] == [],
             "K3P directed-cut evidence status")
@@ -320,34 +421,23 @@ def verify_cut_inclusion_evidence(audit: dict, evidence: dict | None = None) -> 
             minor["boundary_to_strict_physical_by_continuity"] is True,
             "displayed-tree strict physical implication")
 
-    expected_implication = {
-        "containment_identity": (),
-        "source_noncut": (),
-        "displayed_switching": ("source_noncut",),
-        "wrong_quartet": ("displayed_switching",),
-        "source_noncut_nonzero": ("wrong_quartet",),
-        "target_cut_vanishing": (),
-        "composition_pullback":
-            ("containment_identity", "target_cut_vanishing"),
-        "open_set_contradiction":
-            ("source_noncut_nonzero", "composition_pullback"),
-        "directed_conclusion": ("open_set_contradiction",),
-    }
     implication = evidence["analytic_implication"]
-    require([row["id"] for row in implication] == list(expected_implication),
-            "directed-cut implication order")
+    require(implication == EXPECTED_ANALYTIC_IMPLICATION,
+            "directed-cut exact typed analytic implication")
     seen = set()
     for row in implication:
         require(set(row) == {"id", "depends_on", "claim"},
                 ("directed-cut implication row", row.get("id")))
-        require(tuple(row["depends_on"]) == expected_implication[row["id"]],
-                ("directed-cut implication dependencies", row["id"]))
         require(set(row["depends_on"]) <= seen,
                 ("directed-cut implication topological order", row["id"]))
-        require(isinstance(row["claim"], str) and row["claim"],
-                ("directed-cut implication claim", row["id"]))
+        require(isinstance(row["claim"], dict) and
+                isinstance(row["claim"].get("type"), str),
+                ("directed-cut typed implication claim", row["id"]))
         seen.add(row["id"])
-    require(implication[-1]["claim"] == "Cut(Nprime)_subseteq_Cut(N)",
+    require(implication[-1]["claim"] == {
+        "type": "directed_cut_inclusion",
+        "conclusion": "Cut(Nprime)_subseteq_Cut(N)",
+    },
             "directed-cut implication conclusion")
     require(evidence["provenance_policy"] == {
         "jc_algebra_used": False,
@@ -930,7 +1020,7 @@ def verify_logic(audit: dict, cut_facts: dict) -> dict:
     require(global_verification["cut_evidence_sha256"] ==
             sha256(PATHS["cut_inclusion_evidence"]),
             "global verification K3P evidence binding")
-    require(global_verification["mutation_count"] == 39,
+    require(global_verification["mutation_count"] == 48,
             "producer mutation count")
     require(global_verification["two_terminal_mixture_components_checked"] == 7,
             "producer side-mixture component checks")
@@ -994,6 +1084,10 @@ def verify_logic(audit: dict, cut_facts: dict) -> dict:
             "coherently_resealed_legacy_provenance_substitution",
             "coherently_resealed_exact_minor_removal",
             "global_K0_dependency_deletion",
+            *[
+                f"coherently_resealed_claim_body_{row['id']}"
+                for row in EXPECTED_ANALYTIC_IMPLICATION
+            ],
         ],
     }, "certificate dependency repair")
 
@@ -1051,11 +1145,17 @@ def verify_manifest() -> int:
     return len(rows)
 
 
-def verify(audit_path: Path, check_manifest: bool = False) -> dict:
+def verify(
+    audit_path: Path,
+    check_manifest: bool = False,
+    cut_evidence_path: Path = PATHS["cut_inclusion_evidence"],
+) -> dict:
     audit = json.loads(audit_path.read_text())
     require(audit["schema"] == "k3p-global-transfer-adversarial-audit-v2", "audit schema")
     bindings = verify_bindings(audit)
-    cut_evidence = verify_cut_inclusion_evidence(audit)
+    cut_evidence = verify_cut_inclusion_evidence(
+        audit, evidence_path=cut_evidence_path
+    )
     finite = verify_direction_universe(audit)
     trees = verify_tree_dichotomy(audit)
     side = verify_k3p_side_blob_closure(audit)
@@ -1092,11 +1192,18 @@ def atomic_json(path: Path, value: object) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--audit", type=Path, default=AUDIT)
+    parser.add_argument(
+        "--cut-evidence", type=Path, default=PATHS["cut_inclusion_evidence"]
+    )
     parser.add_argument("--check-manifest", action="store_true")
     parser.add_argument("--no-write-report", action="store_true")
     parser.add_argument("--facts-only", action="store_true")
     args = parser.parse_args()
-    result = verify(args.audit, check_manifest=args.check_manifest)
+    result = verify(
+        args.audit,
+        check_manifest=args.check_manifest,
+        cut_evidence_path=args.cut_evidence,
+    )
     if not args.no_write_report and not args.facts_only:
         atomic_json(VERIFY_REPORT, result)
     if args.facts_only:

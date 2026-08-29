@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 from pathlib import Path
 import platform
 import re
@@ -66,8 +67,11 @@ from run_release_suite import (  # noqa: E402
 from verify_source_reproduction import (  # noqa: E402
     DEFAULTS as SOURCE_DEFAULTS,
     committed_source_members,
+    minimal_build_environment,
+    validate_cache_manifest,
     validate_source_build,
     verify_source_archive_contract,
+    verify_tectonic_cache,
     verify_tectonic_identity,
 )
 from build_release import (  # noqa: E402
@@ -233,22 +237,61 @@ def valid_source_build(commit: str = "a" * 40) -> tuple[dict, dict, int]:
     policy = json.loads((RELEASE / "RELEASE_FILESET.json").read_text(encoding="utf-8"))
     epoch = policy["pdf_source_date_epoch"]
     build = {
-        "schema": "k3p-tectonic-source-build-v1",
+        "schema": "k3p-tectonic-source-build-v2",
         "kind": "article",
         "source_commit": commit,
         "source_date_epoch": epoch,
         "main": config["main"],
-        "command": ["tectonic", config["main"], "--outdir", "."],
+        "command": [
+            "tectonic", "--bundle", policy["tectonic_bundle_url"],
+            "--only-cached", config["main"], "--outdir", ".",
+        ],
         "toolchain": {
             "name": "tectonic", "version": policy["tectonic_version"],
             "executable_sha256": policy["tectonic_sha256"],
         },
+        "resource_contract": {
+            "bundle_url": policy["tectonic_bundle_url"],
+            "bundle_digest": policy["tectonic_bundle_digest"],
+            "cache_manifest": "TECTONIC_CACHE_MANIFEST.json",
+            "cache_manifest_sha256": policy["tectonic_cache_manifest_sha256"],
+            "cache_payload_vendored": False,
+        },
         "environment": {
             "SOURCE_DATE_EPOCH": str(epoch), "TZ": "UTC", "LC_ALL": "C",
+            "LANG": "C", "PYTHONDONTWRITEBYTECODE": "1",
+        },
+        "execution_policy": {
+            "parent_environment_inherited": False,
+            "only_cached": True,
+            "private_home": True,
+            "private_tmp": True,
+            "cache_verified_before_and_after": True,
+            "fixed_path": "/usr/bin:/bin",
+            "private_directory_variables": [
+                "HOME", "TEXMFCONFIG", "TEXMFVAR", "TMPDIR",
+                "XDG_CACHE_HOME", "XDG_CONFIG_HOME",
+            ],
+            "runtime_environment_keys": [
+                "HOME", "LANG", "LC_ALL", "PATH", "PYTHONDONTWRITEBYTECODE",
+                "SOURCE_DATE_EPOCH", "TEXMFCONFIG", "TEXMFVAR", "TMPDIR", "TZ",
+                "XDG_CACHE_HOME", "XDG_CONFIG_HOME",
+            ],
         },
         "expected_output": config["output"],
     }
     return build, config, epoch
+
+
+def source_build_validation_policy(policy: dict) -> dict:
+    return {
+        "tectonic_version": policy["tectonic_version"],
+        "tectonic_sha256": policy["tectonic_sha256"],
+        "tectonic_bundle_url": policy["tectonic_bundle_url"],
+        "tectonic_bundle_digest": policy["tectonic_bundle_digest"],
+        "tectonic_cache_manifest_sha256":
+        policy["tectonic_cache_manifest_sha256"],
+    }
 
 
 def wrong_source_build_engine() -> None:
@@ -259,6 +302,10 @@ def wrong_source_build_engine() -> None:
         build, kind="article", config=config, commit="a" * 40,
         pdf_source_date_epoch=epoch, tectonic_version=policy["tectonic_version"],
         tectonic_sha256=policy["tectonic_sha256"],
+        tectonic_bundle_url=policy["tectonic_bundle_url"],
+        tectonic_bundle_digest=policy["tectonic_bundle_digest"],
+        tectonic_cache_manifest_sha256=
+        policy["tectonic_cache_manifest_sha256"],
     )
 
 
@@ -269,8 +316,7 @@ def wrong_pdf_source_date_epoch() -> None:
     policy = json.loads((RELEASE / "RELEASE_FILESET.json").read_text())
     validate_source_build(
         build, kind="article", config=config, commit="a" * 40,
-        pdf_source_date_epoch=epoch, tectonic_version=policy["tectonic_version"],
-        tectonic_sha256=policy["tectonic_sha256"],
+        pdf_source_date_epoch=epoch, **source_build_validation_policy(policy),
     )
 
 
@@ -280,9 +326,67 @@ def inconsistent_source_build_environment() -> None:
     policy = json.loads((RELEASE / "RELEASE_FILESET.json").read_text())
     validate_source_build(
         build, kind="article", config=config, commit="a" * 40,
-        pdf_source_date_epoch=epoch, tectonic_version=policy["tectonic_version"],
-        tectonic_sha256=policy["tectonic_sha256"],
+        pdf_source_date_epoch=epoch, **source_build_validation_policy(policy),
     )
+
+
+def source_build_network_fallback() -> None:
+    build, config, epoch = valid_source_build()
+    build["command"].remove("--only-cached")
+    policy = json.loads((RELEASE / "RELEASE_FILESET.json").read_text())
+    validate_source_build(
+        build, kind="article", config=config, commit="a" * 40,
+        pdf_source_date_epoch=epoch, **source_build_validation_policy(policy),
+    )
+
+
+def tampered_tectonic_cache_member() -> None:
+    with tempfile.TemporaryDirectory(prefix="k3p-cache-tamper-") as directory:
+        root = Path(directory)
+        member = root / "bundles/data/resource.sty"
+        member.parent.mkdir(parents=True)
+        member.write_bytes(b"tampered\n")
+        manifest = {
+            "files": [{"path": "bundles/data/resource.sty", "bytes": 9,
+                       "sha256": sha256_bytes(b"canonical\n")}],
+            "payload_sha256": "unused-by-content-check",
+        }
+        verify_tectonic_cache(root, manifest)
+
+
+def extra_tectonic_cache_member() -> None:
+    with tempfile.TemporaryDirectory(prefix="k3p-cache-extra-") as directory:
+        root = Path(directory)
+        member = root / "bundles/data/resource.sty"
+        member.parent.mkdir(parents=True)
+        member.write_bytes(b"canonical\n")
+        (root / "unexpected.txt").write_text("extra\n", encoding="utf-8")
+        manifest = {
+            "files": [{"path": "bundles/data/resource.sty", "bytes": 10,
+                       "sha256": sha256_bytes(b"canonical\n")}],
+            "payload_sha256": "unused-by-content-check",
+        }
+        verify_tectonic_cache(root, manifest)
+
+
+def wrong_tectonic_bundle_manifest() -> None:
+    policy = json.loads((RELEASE / "RELEASE_FILESET.json").read_text())
+    manifest = json.loads((RELEASE / "TECTONIC_CACHE_MANIFEST.json").read_text())
+    manifest["bundle_url"] = "https://example.invalid/wrong-bundle.tar"
+    logical = dict(manifest)
+    logical.pop("payload_sha256")
+    manifest["payload_sha256"] = sha256_bytes(canonical_json_bytes(logical))
+    validate_cache_manifest(manifest, policy=policy)
+
+
+def wrong_tectonic_bundle_pointer() -> None:
+    policy = json.loads((RELEASE / "RELEASE_FILESET.json").read_text())
+    manifest = json.loads((RELEASE / "TECTONIC_CACHE_MANIFEST.json").read_text())
+    manifest["bundle_hash_pointer"] = "bundles/hashes/forged"
+    logical = dict(manifest)
+    logical.pop("payload_sha256")
+    manifest["payload_sha256"] = sha256_bytes(canonical_json_bytes(logical))
+    validate_cache_manifest(manifest, policy=policy)
 
 
 def fake_tectonic_executable() -> None:
@@ -307,10 +411,16 @@ def pdf_equivalent_source_archive_tamper() -> None:
         members["SOURCE_BUILD.json"] = (
             json.dumps(build, indent=2, sort_keys=True) + "\n"
         ).encode()
+        members["TECTONIC_CACHE_MANIFEST.json"] = (
+            RELEASE / "TECTONIC_CACHE_MANIFEST.json"
+        ).read_bytes()
         deterministic_zip(
             output, kind="article_latex_source", archive_root=config["root"],
             source_commit=commit, source_date_epoch=head_commit_epoch(PROJECT),
-            members=members, extra={"source_build": "SOURCE_BUILD.json"},
+            members=members, extra={
+                "source_build": "SOURCE_BUILD.json",
+                "tectonic_cache_manifest": "TECTONIC_CACHE_MANIFEST.json",
+            },
         )
         verify_source_archive_contract(
             output, kind="article", project=PROJECT, policy=policy
@@ -569,10 +679,17 @@ def dirty_final_verification() -> None:
 
 def forged_source_reproduction_builds() -> None:
     policy = load_head_json(PROJECT, "release/RELEASE_FILESET.json")
+    cache_manifest = json.loads((RELEASE / "TECTONIC_CACHE_MANIFEST.json").read_text())
+    build, _config, _epoch = valid_source_build(head_commit(PROJECT))
     report = {
-        "schema": "k3p-pdf-source-reproduction-v1", "status": "PASS_BYTE_FOR_BYTE",
+        "schema": "k3p-pdf-source-reproduction-v2", "status": "PASS_BYTE_FOR_BYTE",
         "kind": "article", "source_commit": head_commit(PROJECT),
-        "source_archive": {}, "expected_pdf": {}, "committed_source_binding": {},
+        "source_archive": {},
+        "expected_pdf": {
+            "path": "output/pdf/K3P_Level2_Identifiability_Article.pdf",
+            "sha256": "1" * 64, "bytes": 1,
+        },
+        "committed_source_binding": {},
         "builds": [{"run": 1, "sha256": "1" * 64, "bytes": 1,
                     "elapsed_seconds": 0.0, "transcript": "forged.log",
                     "transcript_sha256": "2" * 64}],
@@ -582,8 +699,19 @@ def forged_source_reproduction_builds() -> None:
             "path": "/fake/tectonic", "sha256": policy["tectonic_sha256"],
             "version": policy["tectonic_version"],
         }},
-        "environment": {"SOURCE_DATE_EPOCH": str(policy["pdf_source_date_epoch"]),
-                        "TZ": "UTC", "LC_ALL": "C"},
+        "environment": build["environment"],
+        "execution_policy": build["execution_policy"],
+        "resource_bundle": {
+            "bundle_url": policy["tectonic_bundle_url"],
+            "bundle_digest": policy["tectonic_bundle_digest"],
+            "cache_manifest_path": "release/TECTONIC_CACHE_MANIFEST.json",
+            "cache_manifest_sha256": policy["tectonic_cache_manifest_sha256"],
+            "cache_manifest_payload_sha256": cache_manifest["payload_sha256"],
+            "cache_file_count": cache_manifest["file_count"],
+            "cache_total_bytes": cache_manifest["total_bytes"],
+            "cache_verified_before_and_after": True,
+            "cache_payload_vendored": False,
+        },
         "logical_payload_sha256": "3" * 64,
     }
     final_release_verifier.validate_source_reproduction_evidence(
@@ -591,6 +719,47 @@ def forged_source_reproduction_builds() -> None:
         pdf_record={"sha256": "1" * 64, "bytes": 1}, policy=policy,
         transcript_records={},
     )
+
+
+def minimal_source_build_environment_control() -> dict:
+    with tempfile.TemporaryDirectory(prefix="k3p-minimal-pdf-env-") as directory:
+        root = Path(directory)
+        cache = root / "verified-cache"
+        cache.mkdir()
+        temporary = root / "run"
+        temporary.mkdir()
+        build, _config, _epoch = valid_source_build()
+        sentinel = "K3P_TEST_PARENT_SECRET"
+        previous = os.environ.get(sentinel)
+        os.environ[sentinel] = "must-not-cross-child-boundary"
+        try:
+            environment = minimal_build_environment(
+                temporary, build=build, cache_root=cache
+            )
+        finally:
+            if previous is None:
+                os.environ.pop(sentinel, None)
+            else:
+                os.environ[sentinel] = previous
+        require(sentinel not in environment,
+                "parent variable leaked into PDF child environment")
+        require(set(environment) == set(build["execution_policy"][
+            "runtime_environment_keys"
+        ]), "PDF child environment key contract")
+        require(environment["PATH"] ==
+                build["execution_policy"]["fixed_path"],
+                "PDF child fixed PATH contract")
+        require(environment["HOME"].startswith(str(temporary)) and
+                environment["TMPDIR"].startswith(str(temporary)),
+                "PDF build private HOME/TMPDIR contract")
+        cache_links = [
+            Path(environment["HOME"]) / "Library/Caches/Tectonic",
+            Path(environment["XDG_CACHE_HOME"]) / "Tectonic",
+        ]
+        require(all(path.is_symlink() and path.resolve() == cache.resolve()
+                    for path in cache_links),
+                "PDF build verified-cache routing")
+    return {"name": "minimal_offline_pdf_environment", "status": "PASS"}
 
 
 def deterministic_controls() -> list[dict]:
@@ -946,6 +1115,21 @@ def main(argv: list[str] | None = None) -> int:
             rejected("inconsistent_source_build_environment",
                      "source build environment policy",
                      inconsistent_source_build_environment),
+            rejected("source_build_network_fallback",
+                     "source build command policy",
+                     source_build_network_fallback),
+            rejected("tampered_tectonic_cache_member",
+                     "Tectonic cache member mismatch",
+                     tampered_tectonic_cache_member),
+            rejected("extra_tectonic_cache_member",
+                     "Tectonic cache exact file set",
+                     extra_tectonic_cache_member),
+            rejected("wrong_tectonic_bundle_manifest",
+                     "Tectonic cache manifest bundle binding",
+                     wrong_tectonic_bundle_manifest),
+            rejected("wrong_tectonic_bundle_pointer",
+                     "Tectonic cache manifest bundle-pointer path",
+                     wrong_tectonic_bundle_pointer),
             rejected("pdf_equivalent_source_archive_tamper",
                      "source archive member differs from HEAD",
                      pdf_equivalent_source_archive_tamper),
@@ -992,6 +1176,7 @@ def main(argv: list[str] | None = None) -> int:
         controls.append(deterministic_diagnostic_control())
         controls.append(proof_only_exclusion_control())
         controls.append(certified_manifest_preservation_control())
+        controls.append(minimal_source_build_environment_control())
         report = {
             "schema": "k3p-release-engineering-mutations-v1",
             "status": "PASS",
@@ -1009,6 +1194,12 @@ def main(argv: list[str] | None = None) -> int:
             "release_verifier_sha256": sha256_file(RELEASE / "verify_release.py"),
             "source_reproduction_verifier_sha256": sha256_file(
                 RELEASE / "verify_source_reproduction.py"
+            ),
+            "tectonic_cache_manifest_builder_sha256": sha256_file(
+                RELEASE / "build_tectonic_cache_manifest.py"
+            ),
+            "tectonic_cache_manifest_sha256": sha256_file(
+                RELEASE / "TECTONIC_CACHE_MANIFEST.json"
             ),
             "submission_validator_sha256": sha256_file(
                 PROJECT / "submission/validate_submission_packages.py"

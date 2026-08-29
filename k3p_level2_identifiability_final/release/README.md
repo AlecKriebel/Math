@@ -25,9 +25,30 @@ bash reproducibility/verify_quick.sh
 bash reproducibility/verify_full.sh
 .venv/bin/python release/build_release.py compact
 .venv/bin/python release/build_release.py full
-.venv/bin/python release/verify_source_reproduction.py --kind article
-.venv/bin/python release/verify_source_reproduction.py --kind supplement
+.venv/bin/python release/verify_source_reproduction.py --kind article \
+  --tectonic-cache-root "$HOME/Library/Caches/Tectonic"
+.venv/bin/python release/verify_source_reproduction.py --kind supplement \
+  --tectonic-cache-root "$HOME/Library/Caches/Tectonic"
 ```
+
+These last two commands write the final-commit reports and four transcripts to
+the ignored `release/source_reproduction_evidence/` asset directory.  The
+referee-package builder requires, validates, copies, and outer-manifest-seals
+all six files.  They cannot be tracked in the source commit they attest to
+without creating a self-reference.  The release envelope likewise binds them
+as explicit external assets.
+
+The tracked cache inventory is refreshed only when the PDF resource bundle is
+intentionally changed:
+
+```bash
+.venv/bin/python release/build_tectonic_cache_manifest.py \
+  --cache-root "$HOME/Library/Caches/Tectonic"
+```
+
+After such a refresh, update the manifest SHA-256 in `RELEASE_FILESET.json` and
+repeat both source reproductions.  Ordinary verification never modifies or
+downloads the resource cache.
 
 Run the all-producer path once, unattended and without restarting it:
 

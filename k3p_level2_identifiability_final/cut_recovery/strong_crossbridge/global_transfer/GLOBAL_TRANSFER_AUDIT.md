@@ -43,10 +43,12 @@ The active machine handoff for this paragraph is
 `K3P_DIRECTED_CUT_INCLUSION_EVIDENCE.json`. It binds the displayed-tree
 boundary lemma, the literal two-term wrong-quartet minor, all 808,642 balanced
 words, and all 379,742 reduced-palette presentations (zero survivors). Its
-proof DAG has nine implication steps and explicitly records that neither the
+proof DAG has an exact typed nine-row implication declaration and explicitly records that neither the
 legacy `CUT_GLOBAL_LOGIC_REPORT.json` nor a JC cut theorem is load-bearing.
-The direct verifier checks the full 15-node transfer DAG and rejects 39/39
-targeted mutations, including coherent premise substitution and deletion.
+The handwritten proof establishes the implication semantics.  The direct
+verifier checks the typed declaration, finite premises, and full 15-node
+transfer DAG and rejects 48/48 targeted mutations, including coherent premise
+substitution, claim-body changes, and deletion.
 
 Only this direction is used below. The argument does not smuggle in the
 reverse inclusion being proved.
@@ -254,10 +256,9 @@ An independently written adversarial package in `adversarial/` byte-binds the
 stable producer and verifier, rebuilds the 204 directions, checks 19,270
 noncut two-colorings of labelled trees through seven vertices, and rederives
 the side-blob mixture closure from exact rational K3P arithmetic. It reports
-zero tree counterexamples and rejects 35/35 targeted proof mutations. A
-separate release verifier sits above both sealed layers, avoiding a circular
-hash dependency while making the theorem manifest fail closed against a
-change to either layer.
+zero tree counterexamples and rejects 44/44 targeted proof mutations. A
+separate release verifier sits above both sealed layers, avoids a circular
+hash dependency, and freshly executes both semantic verifiers before passing.
 
 ## 9. Replay
 

@@ -24,7 +24,7 @@ import sys
 Q = Fraction
 NAMES = "0CGT"
 SECTORS = ["C", "G", "T"]
-CUT_TRANSFER_THEOREM_SHA256 = "faa304207cde5f08321f44b9c885480cfcc5b4bfb1b6f96fad995b6e7778a22c"
+CUT_TRANSFER_THEOREM_SHA256 = "ce29187c17123651c547c34d86fcdcef1c671505bbb5c132c53dd2a2e6ab3445"
 CUT_TRANSFER_CLAIM = (
     "For binary standard semi-directed strongly tree-child level-2 networks "
     "under source-relative regular full-dimensional containment on strict D3,+, "
@@ -677,7 +677,7 @@ def verify_cut_transfer_interface(project: Path, interface: dict) -> dict:
     require(interface["active_k3p_cut_inclusion_evidence"] == cut_evidence_record,
             "global interface K3P cut-evidence binding")
     cut_evidence = load(project / cut_evidence_record["path"])
-    require(cut_evidence["schema"] == "k3p-directed-cut-inclusion-evidence-v1" and
+    require(cut_evidence["schema"] == "k3p-directed-cut-inclusion-evidence-v2" and
             cut_evidence["status"] == "PASS" and
             cut_evidence["remaining_gaps"] == [],
             "global interface K3P cut-evidence status")
@@ -722,7 +722,7 @@ def verify_cut_transfer_interface(project: Path, interface: dict) -> dict:
                 report["adversarial"]["direction_count"] == 204,
                 f"cut-transfer {mode} direction coverage")
         require(report["producer"]["proof_step_count"] == 15 and
-                report["producer"]["mutation_count"] == 39 and
+                report["producer"]["mutation_count"] == 48 and
                 report["producer"]["cut_inclusion_evidence"][
                     "legacy_global_logic_used"
                 ] is False and
@@ -733,7 +733,7 @@ def verify_cut_transfer_interface(project: Path, interface: dict) -> dict:
         require(report["bindings"]["k3p_cut_inclusion_evidence"] ==
                 cut_evidence_record,
                 f"cut-transfer {mode} K3P cut-evidence binding")
-        require(report["adversarial"]["mutation_count"] == 35,
+        require(report["adversarial"]["mutation_count"] == 44,
                 f"cut-transfer {mode} adversarial mutation coverage")
         require(report["adversarial"]["cut_inclusion_evidence"][
                     "legacy_global_logic_used"
@@ -775,7 +775,7 @@ def verify_cut_transfer_interface(project: Path, interface: dict) -> dict:
                 summaries.append(value)
         require(summaries and summaries[-1] == {
             "status": "PASS", "directions": 204, "tree_colorings": 19270,
-            "adversarial_mutations": 35, "python_optimized": optimized_flag,
+            "adversarial_mutations": 44, "python_optimized": optimized_flag,
         }, f"fresh cut-transfer {mode} release summary")
         fresh[mode] = summaries[-1]
 

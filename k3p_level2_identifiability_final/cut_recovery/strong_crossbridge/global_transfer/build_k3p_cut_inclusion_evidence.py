@@ -23,6 +23,94 @@ COMBINATORICS_REPLAY = PALETTE / "verify_cut_combinatorics.py"
 DEFAULT_OUTPUT = HERE / "K3P_DIRECTED_CUT_INCLUSION_EVIDENCE.json"
 
 
+# This is a typed declaration of the nine implications used by the
+# handwritten proof.  The independent verifiers carry their own literal copy
+# and require exact equality; arbitrary replacement prose is therefore not a
+# valid certificate row.
+ANALYTIC_IMPLICATION = [
+    {
+        "id": "containment_identity",
+        "depends_on": [],
+        "claim": {
+            "type": "analytic_identity_on_source_open_set",
+            "identity": "Phi_N=Phi_Nprime_comp_sigma",
+            "domain": "nonempty_source_open_set_U",
+        },
+    },
+    {
+        "id": "source_noncut",
+        "depends_on": [],
+        "claim": {
+            "type": "source_split_assumption",
+            "candidate_split_is_source_bridge": False,
+        },
+    },
+    {
+        "id": "displayed_switching",
+        "depends_on": ["source_noncut"],
+        "claim": {
+            "type": "displayed_tree_witness",
+            "mechanism": "hull_or_balanced_compression",
+            "witness": "displayed_tree_not_displaying_candidate_split",
+        },
+    },
+    {
+        "id": "wrong_quartet",
+        "depends_on": ["displayed_switching"],
+        "claim": {
+            "type": "labelled_wrong_quartet_extraction",
+            "actual_label_count": 4,
+            "candidate_split_displayed": False,
+        },
+    },
+    {
+        "id": "source_noncut_nonzero",
+        "depends_on": ["wrong_quartet"],
+        "claim": {
+            "type": "nonzero_source_polynomial_witness",
+            "polynomial": "wrong_split_5x5_flattening_minor",
+            "nonzero_reason": "displayed_tree_specialization",
+        },
+    },
+    {
+        "id": "target_cut_vanishing",
+        "depends_on": [],
+        "claim": {
+            "type": "target_cut_polynomial_identity",
+            "polynomial_family": "all_5x5_flattening_minors",
+            "value": "identically_zero",
+        },
+    },
+    {
+        "id": "composition_pullback",
+        "depends_on": ["containment_identity", "target_cut_vanishing"],
+        "claim": {
+            "type": "composition_pullback_identity",
+            "polynomial": "same_wrong_split_5x5_flattening_minor",
+            "domain": "source_open_set_U",
+            "value": "zero",
+        },
+    },
+    {
+        "id": "open_set_contradiction",
+        "depends_on": ["source_noncut_nonzero", "composition_pullback"],
+        "claim": {
+            "type": "real_polynomial_open_set_principle",
+            "premise": "nonzero_real_polynomial_vanishes_on_nonempty_open_set",
+            "conclusion": "contradiction",
+        },
+    },
+    {
+        "id": "directed_conclusion",
+        "depends_on": ["open_set_contradiction"],
+        "claim": {
+            "type": "directed_cut_inclusion",
+            "conclusion": "Cut(Nprime)_subseteq_Cut(N)",
+        },
+    },
+]
+
+
 class EvidenceFailure(RuntimeError):
     pass
 
@@ -156,7 +244,7 @@ def build_evidence() -> dict:
         {"coefficient": -1, "exponents": [4, 4, 1, 1, 2]},
     ]
     evidence = {
-        "schema": "k3p-directed-cut-inclusion-evidence-v1",
+        "schema": "k3p-directed-cut-inclusion-evidence-v2",
         "status": "PASS",
         "claim": {
             "containment_identity": (
@@ -207,59 +295,7 @@ def build_evidence() -> dict:
             "strict_nonzero": True,
             "boundary_to_strict_physical_by_continuity": True,
         },
-        "analytic_implication": [
-            {
-                "id": "containment_identity",
-                "depends_on": [],
-                "claim": "Phi_N=Phi_Nprime_comp_sigma_on_a_nonempty_source_open_set_U",
-            },
-            {
-                "id": "source_noncut",
-                "depends_on": [],
-                "claim": "the_candidate_split_is_not_a_source_bridge_split",
-            },
-            {
-                "id": "displayed_switching",
-                "depends_on": ["source_noncut"],
-                "claim": (
-                    "the_hull_or_balanced_compression_argument_supplies_a_"
-                    "displayed_tree_that_does_not_display_the_split"
-                ),
-            },
-            {
-                "id": "wrong_quartet",
-                "depends_on": ["displayed_switching"],
-                "claim": "four_actual_labels_give_a_wrong_quartet",
-            },
-            {
-                "id": "source_noncut_nonzero",
-                "depends_on": ["wrong_quartet"],
-                "claim": (
-                    "a_source_noncut_has_a_nonzero_5x5_minor_polynomial_by_the_"
-                    "displayed_tree_specialization"
-                ),
-            },
-            {
-                "id": "target_cut_vanishing",
-                "depends_on": [],
-                "claim": "every_target_5x5_flattening_minor_vanishes_identically",
-            },
-            {
-                "id": "composition_pullback",
-                "depends_on": ["containment_identity", "target_cut_vanishing"],
-                "claim": "the_same_minor_vanishes_on_the_source_open_set_U",
-            },
-            {
-                "id": "open_set_contradiction",
-                "depends_on": ["source_noncut_nonzero", "composition_pullback"],
-                "claim": "a_nonzero_real_polynomial_cannot_vanish_on_U",
-            },
-            {
-                "id": "directed_conclusion",
-                "depends_on": ["open_set_contradiction"],
-                "claim": "Cut(Nprime)_subseteq_Cut(N)",
-            },
-        ],
+        "analytic_implication": ANALYTIC_IMPLICATION,
         "provenance_policy": {
             "legacy_global_logic_report_is_load_bearing": False,
             "jc_manuscript_is_load_bearing": False,

@@ -2,10 +2,9 @@
 """Fail-closed release audit over the producer and independent adversary.
 
 This layer intentionally sits above, and does not import, either verifier.
-The independent adversarial audit byte-binds the stable producer verifier and
-report.  Keeping those files immutable avoids a circular hash dependency:
-this release verifier instead checks both sealed layers and records their
-hashes in one final report.
+It checks both sealed layers, then freshly executes both semantic verifiers in
+the current Python mode.  The fresh subprocesses use the cut-evidence path
+bound by the global certificate; stored PASS reports alone are insufficient.
 """
 
 from __future__ import annotations
@@ -14,6 +13,8 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import subprocess
+import sys
 
 
 HERE = Path(__file__).resolve().parent
@@ -96,7 +97,7 @@ def verify_producer_layer() -> dict:
             "producer universe schema")
     require(universe["status"] == "PASS" and len(universe["directions"]) == 204,
             "producer universe status")
-    require(cut_evidence["schema"] == "k3p-directed-cut-inclusion-evidence-v1",
+    require(cut_evidence["schema"] == "k3p-directed-cut-inclusion-evidence-v2",
             "K3P cut-inclusion evidence schema")
     require(cut_evidence["status"] == "PASS" and
             cut_evidence["remaining_gaps"] == [],
@@ -127,7 +128,7 @@ def verify_producer_layer() -> dict:
                 "producer verifier binding")
         require(report["direction_count"] == 204, "producer direction count")
         require(report["proof_step_count"] == 15, "producer proof step count")
-        require(report["mutation_count"] == 39, "producer mutation count")
+        require(report["mutation_count"] == 48, "producer mutation count")
         require(report["cut_inclusion_evidence"] == {
             "balanced_words": 808642,
             "implication_steps": 9,
@@ -240,7 +241,7 @@ def verify_adversarial_layer() -> dict:
     require(report["universal_pointwise_cut_claim_used"] is False,
             "adversarial universal pointwise claim")
     k3p_evidence = report["directed_cut_inclusion_evidence"]
-    require(k3p_evidence["schema"] == "k3p-directed-cut-inclusion-evidence-v1",
+    require(k3p_evidence["schema"] == "k3p-directed-cut-inclusion-evidence-v2",
             "adversarial K3P cut-evidence schema")
     require({key: k3p_evidence[key] for key in (
         "balanced_words", "palette_presentations", "palette_survivors",
@@ -259,7 +260,7 @@ def verify_adversarial_layer() -> dict:
             report["jc_cut_theorem_used"] is False,
             "adversarial retired-premise exclusion")
     require(report["logic"]["producer_proof_steps"] == 15 and
-            report["logic"]["producer_mutations_bound"] == 39 and
+            report["logic"]["producer_mutations_bound"] == 48 and
             report["logic"]["active_k3p_implication_steps"] == 9 and
             report["logic"]["active_legacy_premises"] == 0,
             "adversarial active K3P logic summary")
@@ -271,9 +272,9 @@ def verify_adversarial_layer() -> dict:
             "adversarial mutation audit binding")
     require(mutations["all_mutations_rejected"] is True,
             "adversarial mutation rejection flag")
-    require(mutations["mutation_count"] == mutations["rejected_count"] == 35,
+    require(mutations["mutation_count"] == mutations["rejected_count"] == 44,
             "adversarial mutation count")
-    require(len(mutations["mutations"]) == 35 and
+    require(len(mutations["mutations"]) == 44 and
             all(row["result"] == "REJECTED" for row in mutations["mutations"]),
             "adversarial mutation rows")
 
@@ -300,9 +301,78 @@ def verify_adversarial_layer() -> dict:
     }
 
 
+def parse_summary(stdout: str) -> dict:
+    for line in reversed(stdout.splitlines()):
+        try:
+            value = json.loads(line)
+        except json.JSONDecodeError:
+            continue
+        if isinstance(value, dict):
+            return value
+    raise VerificationError("fresh semantic verifier emitted no JSON summary")
+
+
+def run_fresh_semantic_verifiers() -> dict:
+    """Execute both independent semantic implementations, without writing."""
+    python = [sys.executable]
+    if not __debug__:
+        python.append("-O")
+    commands = {
+        "direct": python + [
+            str(PRODUCER_VERIFIER),
+            "--artifact", str(CERTIFICATE),
+            "--universe", str(UNIVERSE),
+            "--cut-evidence", str(CUT_EVIDENCE),
+            "--no-write-report",
+        ],
+        "adversarial": python + [
+            str(ADVERSARIAL_VERIFIER),
+            "--audit", str(ADVERSARIAL_AUDIT),
+            "--cut-evidence", str(CUT_EVIDENCE),
+            "--no-write-report",
+        ],
+    }
+    expected = {
+        "direct": {
+            "status": "PASS",
+            "direction_count": 204,
+            "proof_step_count": 15,
+            "mutation_count": 0,
+        },
+        "adversarial": {
+            "status": "PASS",
+            "directions": 204,
+            "tree_counterexamples": 0,
+            "remaining_gaps": 0,
+        },
+    }
+    result = {}
+    for name, command in commands.items():
+        completed = subprocess.run(
+            command,
+            cwd=HERE,
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            check=False,
+        )
+        summary = parse_summary(completed.stdout)
+        require(completed.returncode == 0,
+                ("fresh semantic verifier exit", name, completed.stdout))
+        require(summary == expected[name],
+                ("fresh semantic verifier summary", name, summary))
+        result[name] = {
+            "exit_code": completed.returncode,
+            "python_optimized": not __debug__,
+            "summary": summary,
+        }
+    return result
+
+
 def verify() -> dict:
     producer = verify_producer_layer()
     adversarial = verify_adversarial_layer()
+    fresh_semantic = run_fresh_semantic_verifiers()
     require(producer["direction_count"] == adversarial["direction_count"] == 204,
             "producer/adversary direction agreement")
     require(producer["two_terminal_mixture_components_checked"] ==
@@ -313,6 +383,7 @@ def verify() -> dict:
         "status": "PASS",
         "producer": producer,
         "adversarial": adversarial,
+        "fresh_semantic_replays": fresh_semantic,
         "bindings": {
             "certificate": binding(CERTIFICATE),
             "universe": binding(UNIVERSE),

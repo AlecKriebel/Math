@@ -1417,6 +1417,52 @@ refresh, and final clean repository/package audits.
 
 Best-guess completion toward this second-referee repair and handoff: **97%**.
 
+## 2026-08-29T15:57:29-07:00 — third-referee targeted repair checkpoint
+
+- Reviewed all four findings in the third-revision referee report.  No theorem
+  statement or mathematical classification changed.  The required work is
+  confined to portable output modes, cut-certificate fidelity, certificate
+  metadata, and the PDF-source reproduction contract.
+- Repaired all three public atomic JSON writers to preserve canonical `0644`
+  modes, restored both bytes and mode for the location-dependent primary
+  report, and added a focused portable control plus an unsafe-replacement
+  mutation.  All six existing/new writer cases and the restore control pass.
+- Replaced prose-only cut-implication checks by an exact typed nine-row object
+  in two independent implementations, bound custom evidence to the theorem
+  certificate, and made the outer gate freshly execute both semantic
+  verifiers.  The direct and adversarial suites reject 48/48 and 44/44
+  mutations, respectively; the cut gate rejects 16/16 and the global
+  infrastructure gate rejects 19/19.
+- Corrected the active count/version/mutation wording and regenerated only the
+  affected topology, primary, claim-lock, and integrated artifact reports.
+  The 28-item primary gate and the 86-binding integrated artifact gate pass;
+  all 108 normalized active bindings match.
+- Closed the source-build contract with a 725-file, 57,507,581-byte exact
+  Tectonic cache manifest, the pinned bundle digest, `--only-cached` builds,
+  a minimal non-inherited environment, before/after cache verification, and
+  final-commit report/transcript sealing.  Additional fail-closed checks now
+  bind the package builder's live validators, reject evidence-path traversal,
+  and independently verify source ZIP, cache, transcript, and PDF semantics.
+- Rebuilt and visually inspected all 38 article pages and all 14 supplement
+  pages.  The current PDF SHA-256 values are
+  `3d08a722ba1fa53f6e336ab285c1cd32d1307bac08e1d4dd2460da71df1816d6`
+  and
+  `96508f4b4eddb89de99881172abee307b3fe86d236f48e17508bdd1ca9c30efa`;
+  all fonts are embedded and no layout defect or build warning was found.
+- In accordance with the user's runtime constraint, no long producer has been
+  rerun during development.  One exact portable `all` invocation remains
+  required after the repaired package is sealed; it will run portable verify
+  and the complete regeneration exactly once and will be awaited without
+  relaunching.
+
+Strongest verified result: every reported defect has a targeted, fail-closed
+repair and the changed mathematical/certificate dependency cone passes.  The
+remaining acceptance work is commit-bound release regeneration, two closed
+PDF source reproductions, package sealing, and the single exact-once portable
+end-to-end replay.
+
+Best-guess completion toward this third-referee repair and handoff: **85%**.
+
 ## 2026-08-29T08:42:00-07:00 — referee-package mode regression closed
 
 - The strengthened package verifier exposed a narrow release-engineering bug:

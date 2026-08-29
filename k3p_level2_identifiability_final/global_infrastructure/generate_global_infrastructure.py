@@ -26,7 +26,7 @@ TOPOLOGY = FROZEN / "model_independent_topology_package"
 SECTORS = ("C", "G", "T")
 CHAR_NAMES = "0CGT"
 CUT_TRANSFER = ROOT / "cut_recovery" / "strong_crossbridge" / "global_transfer"
-CUT_TRANSFER_THEOREM_SHA256 = "faa304207cde5f08321f44b9c885480cfcc5b4bfb1b6f96fad995b6e7778a22c"
+CUT_TRANSFER_THEOREM_SHA256 = "ce29187c17123651c547c34d86fcdcef1c671505bbb5c132c53dd2a2e6ab3445"
 CUT_TRANSFER_CLAIM = (
     "For binary standard semi-directed strongly tree-child level-2 networks "
     "under source-relative regular full-dimensional containment on strict D3,+, "
@@ -858,7 +858,7 @@ def build_cut_transfer_binding() -> dict:
     )
     cut_evidence_path = ROOT / cut_evidence_record.get("path", "")
     cut_evidence = read_json(cut_evidence_path) if cut_evidence_path.is_file() else {}
-    if cut_evidence.get("schema") != "k3p-directed-cut-inclusion-evidence-v1":
+    if cut_evidence.get("schema") != "k3p-directed-cut-inclusion-evidence-v2":
         errors.append("K3P cut-inclusion evidence schema")
     if cut_evidence.get("status") != "PASS" or cut_evidence.get("remaining_gaps") != []:
         errors.append("K3P cut-inclusion evidence status")
@@ -880,7 +880,7 @@ def build_cut_transfer_binding() -> dict:
             and report.get("adversarial_verifier_imported") is False
             and report.get("producer", {}).get("direction_count") == 204
             and report.get("producer", {}).get("proof_step_count") == 15
-            and report.get("producer", {}).get("mutation_count") == 39
+            and report.get("producer", {}).get("mutation_count") == 48
             and report.get("producer", {}).get("cut_inclusion_evidence", {}).get(
                 "legacy_global_logic_used"
             ) is False
@@ -888,7 +888,7 @@ def build_cut_transfer_binding() -> dict:
                 "jc_cut_theorem_used"
             ) is False
             and report.get("adversarial", {}).get("direction_count") == 204
-            and report.get("adversarial", {}).get("mutation_count") == 35
+            and report.get("adversarial", {}).get("mutation_count") == 44
             and report.get("adversarial", {}).get("tree_counterexamples") == 0
             and report.get("adversarial", {}).get("cut_inclusion_evidence", {}).get(
                 "legacy_global_logic_used"
