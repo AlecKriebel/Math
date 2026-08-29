@@ -249,3 +249,52 @@
   paths under `logs/`.
 - Current best-guess completion of this bounded replay: 100%; overall fresh
   refereeing completion: 68%.
+
+## 2026-08-29T06:36:44Z — Exact-once full regeneration checkpoint
+
+- The single credited portable regeneration completed successfully under the
+  referee-owned default-deny supervisor.  All 54 mathematical commands passed
+  in 8,744.015130 seconds; no command failed or was skipped.
+- The hour-scale probe producer was invoked exactly once and passed in
+  2,934.073327 seconds.  The final integrated replay passed in 2,975.131171
+  seconds and bound exactly 20 passing fresh child checks.  Full four-port,
+  restoration, and all-row probe-semantic producers also passed.
+- The runner reported no workspace drift.  Independent post-run inventories
+  are byte-identical to the pre-run inventories for all 685 package-source
+  entries outside `review_runs` and all 6,634 virtual-environment entries,
+  including bytes, modes, and symlink targets.
+- Transcript SHA-256:
+  `224f5361c0896002ce93247177abfba34e109954a04fda185b1abae9311949e1`;
+  phase-report SHA-256:
+  `251fd511813f8c2a27221c97ef896e3490e86b8c38f626cb71acab758de1d981`;
+  integrated-report SHA-256:
+  `40261ec52ca734de6cd8a8604bfa1ddff115c39caf1d45de36e50a71eccbb7ed`.
+- Together with the separately passed Git-bound release command, this gives a
+  fresh execution of all 55 top-level plan entries in their appropriate
+  environments.  The PASS confirms the delivered computations but leaves C1
+  intact because the new K3P evidence and legacy D1 gate remain parallel
+  certificate children.
+- Current best-guess completion of the fresh rerefereeing: 96%; only final
+  evidence reconciliation, report validation, and publication remain.
+
+## 2026-08-29T06:47:44Z — Final referee decision checkpoint
+
+- Reconciled the complete claim map, handwritten proof audit, independent
+  anchor and cut checks, certificate dataflow red team, clean verification,
+  exact-once regeneration, release-engineering replay, literature review, and
+  failed/skipped-work ledger into `REFEREE_REPORT.md`.
+- Final independent verdict: **minor revision**.  No theorem counterexample or
+  remaining theorem-level gap was identified.  C1 is mandatory and high within
+  certificate fidelity but not theorem-critical: the active D1 machine
+  dependency remains JC-premised and does not consume the revised K3P proof.
+- Three independent final reconciliations checked theorem/certificate wording,
+  command order and exact-once scope, all timings and hashes, mutation counts,
+  environment boundaries, and pre/post inventories.  After correcting the
+  article title and environment-scope wording, the final reconciliation found
+  no remaining material inaccuracy, contradiction, placeholder, or disclosure
+  mismatch.
+- Final report SHA-256:
+  `f3207b67758afade3b2048aefa33f774edba977fb6986dd93200a7987c9d7410`.
+  Computational replay summary SHA-256:
+  `424b30bf9ef05af36c93fd7eb342b654c052a93ae115055594ffdb48156cb709`.
+- Current best-guess completion of the fresh rerefereeing: 100%.

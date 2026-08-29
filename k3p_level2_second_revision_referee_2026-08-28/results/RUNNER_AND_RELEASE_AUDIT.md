@@ -72,3 +72,18 @@ entries.
   `START_HERE.md`.
 - The exact Tectonic binary is not bundled. This affects independent
   byte-for-byte PDF rebuilding, not theorem replay.
+
+## Fresh execution outcome
+
+- The clean current-commit verification passed all four top-level commands in
+  3,004.194754 seconds.
+- The complete portable regeneration was launched once and passed all 54
+  mathematical commands in 8,744.015130 seconds. The hour-scale probe producer
+  appears exactly once and took 2,934.073327 seconds.
+- The separate Git-bound release command passed in 7.102442 seconds from a
+  self-contained exact detached checkout; all 32 mutations were rejected and
+  all ten controls passed.
+- Pre/post source and virtual-environment inventories are byte-identical, and
+  the regeneration runner reported empty workspace drift.
+- Full frozen timings, hashes, and scope are in
+  `results/COMPUTATIONAL_REPLAY.md`.
