@@ -272,3 +272,27 @@ release workstream; 70% of the external-submission goal**.  Submission remains
 fail-closed at `NOT_READY` with zero structural errors and 26 human/release
 blockers.  License, tag/release approval, DOI, and portal actions remain
 human-controlled.
+
+## 2026-08-29T08:36:00-07:00 — second-referee targeted reseal
+
+- The self-contained K3P directed-cut-inclusion repair was pushed at proof
+  snapshot `3710f2a24851bac2a4aee124fc2c5debb5b7c1c5`.  The article availability
+  statement now links that immutable snapshot.
+- The fixed-epoch linked article has 38 pages and SHA-256
+  `5fd4fb902ee72c619c75846e2e5f561b018b4096a659b895063c0758dfc5d9df`;
+  the unchanged 14-page revised supplement has SHA-256
+  `e82d1afb01f937872ec06ee1b1529fe736362c3496721b99813d8849ff7327e6`.
+- The release selection locks now cover 592 full and 383 compact paths.  At
+  pushed paper snapshot `2563f8a80e48118eb1216364bb7b8ad2e3b29d38`, the
+  release-engineering mutation suite rejects 32/32 cases with payload
+  `5c6255a37bfcc094a1769f17b421d6534982384143ce7a65d357a8c351711b05`,
+  and the development release-input gate passes.
+- No multi-hour mathematical producer was rerun.  The exact atlas, probe,
+  restoration, and Krawczyk inputs and implementations did not change; the
+  targeted C1 dependency cone and every changed downstream verifier were the
+  only mathematical checks replayed.
+
+Best-guess completion: **97% of the second-referee local handoff workstream;
+70% of the external-submission goal**.  The remaining local work is the final
+archive/referee-package copy, Google Drive source synchronization, and a clean
+post-package audit.

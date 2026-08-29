@@ -1398,3 +1398,21 @@ mutation-tested K3P dependency with downstream seals rebuilt.
 Best-guess completion toward this second-referee repair and handoff: **95%**.
 The remaining work is immutable-link commit/push, source-copy and referee-package
 refresh, and final clean repository/package audits.
+
+## 2026-08-29T08:36:00-07:00 — immutable proof-link checkpoint
+
+- Pushed the complete certificate-DAG repair at
+  `3710f2a24851bac2a4aee124fc2c5debb5b7c1c5` and updated the article's data and
+  code availability statement to that immutable proof snapshot.
+- Pushed the link/PDF/fileset checkpoint at
+  `2563f8a80e48118eb1216364bb7b8ad2e3b29d38`.  The final linked article is a
+  visually clean 38-page PDF with SHA-256
+  `5fd4fb902ee72c619c75846e2e5f561b018b4096a659b895063c0758dfc5d9df`;
+  the 14-page supplement remains
+  `e82d1afb01f937872ec06ee1b1529fe736362c3496721b99813d8849ff7327e6`.
+- After the fileset lock reached its new 592-full/383-compact fixed point, the
+  release-engineering suite again rejected 32/32 mutations and the release-input
+  gate passed.  This was a fast release-boundary replay, not a rerun of the
+  unchanged multi-hour mathematical producers.
+
+Best-guess completion toward this second-referee repair and handoff: **97%**.
