@@ -1416,3 +1416,16 @@ refresh, and final clean repository/package audits.
   unchanged multi-hour mathematical producers.
 
 Best-guess completion toward this second-referee repair and handoff: **97%**.
+
+## 2026-08-29T08:42:00-07:00 — referee-package mode regression closed
+
+- The strengthened package verifier exposed a narrow release-engineering bug:
+  validated executable modes were recorded in both canonical archive formats
+  but were not applied by the custom safe extractors.  The byte evidence and
+  mathematics were unaffected.
+- Repaired TAR.GZ and ZIP extraction to apply the verified member modes and
+  added a regression control covering `0755` scripts and `0644` data files.
+  The release-engineering suite again rejects 32/32 mutations and the
+  release-input gate passes.
+
+Best-guess completion toward this second-referee repair and handoff: **97%**.

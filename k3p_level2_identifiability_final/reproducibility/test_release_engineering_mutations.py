@@ -46,6 +46,8 @@ from archive_tools import (  # noqa: E402
     deterministic_tar_gz,
     deterministic_zip,
     manifest_for,
+    safe_extract_tar_gz,
+    safe_extract_zip,
     validate_manifest,
     verify_tar_gz,
     verify_zip,
@@ -594,7 +596,8 @@ def forged_source_reproduction_builds() -> None:
 def deterministic_controls() -> list[dict]:
     with tempfile.TemporaryDirectory(prefix="k3p-release-determinism-") as directory:
         root = Path(directory)
-        members = {"z.txt": b"z\n", "a/data.json": b"{}\n"}
+        members = {"z.txt": b"z\n", "a/data.json": b"{}\n",
+                   "bin/check.py": b"#!/usr/bin/env python3\n"}
         tar1, tar2 = root / "one.tar.gz", root / "two.tar.gz"
         zip1, zip2 = root / "one.zip", root / "two.zip"
         common = dict(kind="test", archive_root="root", source_commit="d" * 40,
@@ -606,11 +609,27 @@ def deterministic_controls() -> list[dict]:
         require(tar1.read_bytes() == tar2.read_bytes(), "nondeterministic TAR.GZ builder")
         require(zip1.read_bytes() == zip2.read_bytes(), "nondeterministic ZIP builder")
         tar_report, zip_report = verify_tar_gz(tar1), verify_zip(zip1)
+        tar_extract, zip_extract = root / "tar_extract", root / "zip_extract"
+        safe_extract_tar_gz(tar1, tar_extract)
+        safe_extract_zip(zip1, zip_extract)
+        extracted_modes = {
+            "tar_script": (tar_extract / "root/bin/check.py").stat().st_mode & 0o777,
+            "tar_data": (tar_extract / "root/a/data.json").stat().st_mode & 0o777,
+            "zip_script": (zip_extract / "root/bin/check.py").stat().st_mode & 0o777,
+            "zip_data": (zip_extract / "root/a/data.json").stat().st_mode & 0o777,
+        }
+        require(extracted_modes == {
+            "tar_script": 0o755, "tar_data": 0o644,
+            "zip_script": 0o755, "zip_data": 0o644,
+        }, ("safe extraction mode preservation", extracted_modes))
         return [
             {"name": "tar_gz_double_build", "status": "PASS_IDENTICAL",
              "sha256": tar_report["sha256"]},
             {"name": "zip_double_build", "status": "PASS_IDENTICAL",
              "sha256": zip_report["sha256"]},
+            {"name": "safe_extraction_mode_preservation", "status": "PASS",
+             "modes": {key: format(value, "04o")
+                       for key, value in extracted_modes.items()}},
         ]
 
 

@@ -325,6 +325,7 @@ def safe_extract_zip(path: Path, destination: Path) -> None:
                 raise ReleaseFailure(("ZIP extraction traversal", info.filename)) from error
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_bytes(archive.read(info))
+            target.chmod((info.external_attr >> 16) & 0o7777)
 
 
 def safe_extract_tar_gz(path: Path, destination: Path) -> None:
@@ -343,3 +344,4 @@ def safe_extract_tar_gz(path: Path, destination: Path) -> None:
             require(handle is not None, ("unreadable TAR member", info.name))
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_bytes(handle.read())
+            target.chmod(info.mode)

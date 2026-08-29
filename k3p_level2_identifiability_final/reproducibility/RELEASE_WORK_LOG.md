@@ -296,3 +296,18 @@ Best-guess completion: **97% of the second-referee local handoff workstream;
 70% of the external-submission goal**.  The remaining local work is the final
 archive/referee-package copy, Google Drive source synchronization, and a clean
 post-package audit.
+
+## 2026-08-29T08:42:00-07:00 — mode-aware extraction regression repair
+
+- The first rebuilt referee package correctly failed its new inner mode check:
+  canonical TAR/ZIP members declared scripts as `0755`, but the safe extraction
+  helpers wrote every file with the host default mode.  Payload bytes were
+  unaffected; the failure was confined to the new integrity interface.
+- Both safe extractors now apply the already verified canonical archive mode
+  after writing each regular file.  A focused release-engineering control
+  confirms `0755` for extracted scripts and `0644` for extracted data in both
+  TAR.GZ and ZIP paths.  The complete 32-mutation suite and the release-input
+  gate pass after the fix.
+
+Best-guess completion: **97% of the second-referee local handoff workstream;
+70% of the external-submission goal**.
