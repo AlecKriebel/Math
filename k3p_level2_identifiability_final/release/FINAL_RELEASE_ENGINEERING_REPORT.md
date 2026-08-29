@@ -1,6 +1,6 @@
 # Final release engineering report
 
-Status: **strengthened proof and local distribution reseal complete; submission metadata pending**
+Status: **targeted second-referee repair and local distribution reseal complete; submission metadata pending**
 
 This report certifies the immutable snapshots named below.  The self-contained
 C1/C2 strengthening, its one-shot proof regeneration, and the commit-bound
@@ -19,7 +19,57 @@ one-shot confirmation.
 No K3P DOI, license selection, Git tag, GitHub release, Zenodo record, journal
 upload, or external communication has been created or claimed.
 
-## Final self-contained referee-repair distribution
+## Current targeted second-referee repair (29 August 2026)
+
+The current mathematical repair is the direct K3P cut-transfer certificate at
+exact pushed proof snapshot
+`3710f2a24851bac2a4aee124fc2c5debb5b7c1c5`.  It replaces the stale
+load-bearing JC/global-logic premise with the displayed-tree minor argument,
+the 808,642-word balanced reduction, and the 379,742-presentation
+zero-survivor switching replay.  The active dependency graph now has 15 nodes;
+the direct and adversarial K3P cut-transfer suites reject all 39 and 35
+declared mutations, respectively, and the active claim-boundary suite rejects
+all 16 mutations.  The downstream artifact-only theorem gate passes with 86
+bindings, and its integrated mutation suite rejects all 27 attacks.
+
+The referee runner and distribution layer were then hardened through exact
+pushed implementation/source snapshot
+`825fd0bc4c6e9ba183c54e0800d76be2e93b892d`.  The runner now uses a fixed
+clean child environment, an atomic single-run lock, process-group cleanup,
+complete workspace and virtual-environment inventories, mode-aware sealing,
+and an explicit external-sandbox attestation.  It does not claim to enforce
+host or network isolation itself.  The release-engineering suite rejects all
+32 mutations.  Safe ZIP and TAR extraction applies the already verified file
+modes, closing the discrepancy discovered during the final package replay.
+
+At that pre-ledger snapshot, the current article and reader supplement have 38
+and 14 pages and SHA-256 values
+`5fd4fb902ee72c619c75846e2e5f561b018b4096a659b895063c0758dfc5d9df`
+and
+`e82d1afb01f937872ec06ee1b1529fe736362c3496721b99813d8849ff7327e6`.
+Both were rendered and inspected, have embedded fonts, and reproduce
+byte-for-byte from their packaged sources.  The current full and compact
+archive selections contain 592 and 383 tracked files, respectively.  The
+dated third-revision referee handoff contains 624 sealed payload files and
+passes independent byte, mode, inventory, and extracted-artifact checks.
+
+In accordance with the user's runtime constraint, the unchanged multi-hour
+producer graph was not rerun after the cut-transfer repair.  Only the changed
+cut-transfer dependency cone, its downstream theorem and mutation gates, and
+the affected source/distribution checks were rerun.  The last complete
+multi-hour execution remains the successful 55-command regeneration at
+`203e114ace0ead3852f109a3713acda37bf74e65`; the present package includes that
+historical transcript and separately discloses this execution boundary.  This
+is a limitation of the post-repair execution record, not a claim that the
+unchanged long producers were freshly executed.
+
+The canonical archive manifests and the outer referee-package manifest, rather
+than this self-referential ledger, bind the exact Git commit containing this
+report and the final archive hashes.  The older sections below are retained as
+dated historical execution records; their former package paths and hashes must
+not be used as identifiers for the current handoff.
+
+## Historical self-contained referee-repair distribution (27 August 2026)
 
 The corrected 38-page article and 14-page reader supplement are pushed at
 exact source snapshot `5a6d64cb2a76e890d7baaef3ba5ac9861c1d029f`.  Their SHA-256
