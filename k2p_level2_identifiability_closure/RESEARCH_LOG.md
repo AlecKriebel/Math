@@ -1037,3 +1037,27 @@
   detached 41-layer full replay, telemetry, final crosswalk/package reseal,
   deterministic double archives, push, and annotated tag.  No GitHub Release
   or Zenodo action is authorized.
+
+## 2026-08-29 — round-5 release qualification closed
+
+- Qualified candidate commit `5d541c46969e1508596e62a21bc5647dd1f1ba3c`
+  in a detached clean checkout.  The full primitive replay passed all 41/41
+  layers with zero blockers and `promotion_ready=true` in 6,361.55 seconds,
+  with 2,543,091,712 bytes maximum resident memory.  The final report SHA-256
+  is `0d2fd0206181fe4c08ebff1367592809d0b8126d58aee3d91980941bfa55a95e`;
+  its telemetry SHA-256 is
+  `eab3c1d6a096ef469b3db4844ea567a49e8e8ea6e62a6c8a2506814773cb6d50`.
+- The typed static audit passes with zero findings, the theorem crosswalk and
+  revised bundle manifest pass, the quick replay remains 23/23, and the
+  affected outer mutation qualification remains 25/25 rejected with zero
+  survivors.  No unchanged multi-hour suite was redundantly rerun.
+- Built the 495-member referee ZIP twice byte-identically at SHA-256
+  `fef886379d9682586920a9f1112465dccab75267dbdd87a5b87b38dc4dbea513`
+  and the five-source bioRxiv ZIP twice byte-identically at SHA-256
+  `66527a3e3018b054f9e6b618a6c9e81a4ddbc6e2d0cced81542a0a7fe3eb3cd3`;
+  both pass ZIP integrity checks.
+- Round 5 changed no theorem statement, finite census, graph classification,
+  rank certificate, restoration/probe relation, polynomial, or sharpness
+  witness.  Best-guess completion is **100% for the mathematical theorem**
+  and **100% for v1.0.5 release qualification**.  GitHub Release, Zenodo,
+  DOI, and submission actions remain reserved to the author.

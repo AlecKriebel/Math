@@ -1,8 +1,10 @@
 # Disposition of the fresh PC-PARTIAL adversarial review
 
 > Historical scope. This 22 August disposition is retained for provenance.
-> `FRESH_ADVERSARIAL_R3_DISPOSITION.md`, the source-bound 41-layer replay, and
-> the regenerated static audit are the current qualification authorities.
+> It is not a current qualification authority.  Current qualification is
+> bound by `work/final_theorem_release/RELEASE_LOCK.json`,
+> `output/FINAL_CLEAN_FULL_REPLAY.json` and its telemetry, the generated static
+> audit, and `crosswalk/REVISED_REFEREE_BUNDLE_MANIFEST.json`.
 
 Date: 22 August 2026
 

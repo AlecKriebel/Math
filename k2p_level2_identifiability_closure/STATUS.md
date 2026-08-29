@@ -5,11 +5,11 @@
 The unconditional `K2P-SAME` classification, generic-identifiability
 corollary, exact reconstruction theorem, strict continuous-time corollary, and
 weak-class `4n-3` sharpness theorem are complete. The promotion manuscript
-and 407-file transitive evidence bundle have independent replay and mutation
+and 408-file portable evidence bundle have independent replay and mutation
 coverage. The frozen outer release lock is
 
 ```text
-305d38e1c3f045bc59141049e46679ccdd29d94c513d5d0e896daa7357ab0b34
+bbb411dde4a13f001d9c2b5fac97722a54bb6ce604b6aff476de44f7ce4b8f53
 ```
 
 Every finite gate has zero unresolved mathematical records. The corrected
@@ -70,9 +70,11 @@ The deterministic neutral-referee archive is
 `proof_compression_submission/output/K2P_Principal_D_Plus_Referee_Package_20260829.zip`,
 and the deterministic five-file source archive is
 `proof_compression_submission/output/K2P_SAME_bioRxiv_Source_20260829.zip`.
-Their adjacent `.sha256` files are the release authorities.  Qualification
-also requires byte-identical double builds and successful checks in two
-differently named clean extractions.
+Their adjacent `.sha256` files are the release authorities.  Both archives
+were built twice byte-identically.  The complete 41-layer verifier passed in
+an independently named detached clean checkout of the exact bound source
+commit; the unchanged portable path checks also retain their prior
+two-extraction qualification.
 
 The versioned annotated source tag is `k2p-same-biorxiv-v1.0.5`. No GitHub Release, Zenodo
 deposit, or DOI has been created or claimed; those external publication

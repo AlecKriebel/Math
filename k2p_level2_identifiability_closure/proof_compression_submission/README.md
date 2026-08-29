@@ -58,8 +58,9 @@ not represented as a fictitious hand quotient. Primary reader artifacts are:
 - `analysis/WEAK_SHARPNESS_COLUMN_CROSSWALK.json`, with independent graph and
   determinant replay;
 - `crosswalk/THEOREM_ARTIFACT_CROSSWALK.md` and `.json`; and
-- `FRESH_ADVERSARIAL_R4_DISPOSITION.md`, the current referee-finding
-  disposition and final qualification record;
+- `FRESH_ADVERSARIAL_R4_DISPOSITION.md`, the prior round-4 referee-finding
+  disposition; the current round-5 typed-authority closure is recorded by the
+  generated static audit and clean full-replay artifacts below;
 - `adversarial_review/STATIC_AUDIT_RESULT.json`, the generated current source
   audit; and
 - `adversarial_review/ADVERSARIAL_ARTICLE_AUDIT.md`, a historical audit whose
