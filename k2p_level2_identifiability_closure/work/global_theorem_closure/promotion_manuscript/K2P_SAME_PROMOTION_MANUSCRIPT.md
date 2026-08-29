@@ -898,35 +898,38 @@ The theorem proves that the word “strongly” in Theorem 8.3 cannot be weakene
 to “weakly,” already within strict continuous time.  It does not claim that
 every weak network is ambiguous.
 
-## Appendix A. Frozen evidence manifest
+## Appendix A. Versioned evidence snapshot
 
-The following hashes are promotion inputs.  File hashes are SHA-256 hashes of
-the exact bytes; payload hashes use the canonical semantic-payload convention
-of the corresponding package.
+The following hashes identify the promotion inputs frozen for this manuscript
+version.  These displayed values are a reader snapshot only.  File hashes are
+SHA-256 hashes of the exact bytes; payload hashes use the canonical
+semantic-payload convention of the corresponding package.  The generated
+current byte authority is `work/final_theorem_release/RELEASE_LOCK.json`; this
+readable table is explanatory and does not supersede that lock.
 
 | Layer | File SHA-256 | Payload SHA-256 |
 |---|---|---|
 | Domain, subdivision, rooting | `4e38beb68062deae8f83cd265daacbef8c5d3f6d73ce25ef47a54828b658d450` | `01d03c01482ba1f4f0e43d03c3defbff35bc10a97f8b19412ce96e4ce8025328` |
 | Two-sector bridge and marginal | `9231a7b78c13e54b745eba68926276a6551c6c3512d6a85746baba6613c1aacf` | `5abc19f857a02c712d1386b53bf1ecea18ec31db852cb31b24ea7dde688630ee` |
-| Independent component-scale audit | `77d3881e7f7d5f90d71339968e3268c5780a0cd51e893e476aac040200e49064` | `02013c3a0d9456c97d64ae06fd20b241057bfdb437f07acea4f15437860b8416` |
-| Raw four-port composite ledger | `431dac8898ad2a724d12c200687de1b377723e302214a79a11a03524a4084b96` | `b4c4cb8a89afcc82edb266ee9fab1e9abc59c4ab977dd00dadc43304b3e4048c` (summary) |
-| Raw four-port independent replay | `c5cd73b13265b7acc36f156889b86e2c04715181c6a1d70224cd725b0221a859` | `40770d3068e936a9c5d0e93225fa15feaed90a212d9515e1cb3f2d46c35979e0` |
-| Raw four-port terminal registry | `0a1818655429d60660c1ed87f3fbe412701f386b081562b3a4caa54079069f1d` | `30053d096e140becdf32d3f26cb3634e82fcd5461f89be24f5b83cee344b5b81` |
-| Raw four-port mutation report | `83196bc33504fd1e17c8784d2c7530f358e85cff8161c8e5f14ba04a60c42d76` | `dc265e02da504666197320fcab90226fa44cfc5c5906bb4ef5b6f1ab35d44f02` |
-| Five-port \(\theta_2\) composite ledger | `805fc7f5a3de9dad2c63a210208075cf19910cf811ffd08878f32782ce71b659` | `c89dd764f7c66831db7f6a092fedf666a20f3594ef03647de3e85b5fbf04d0e8` (summary) |
-| Five-port \(\theta_2\) independent replay | `dd02a752b2ce41628039d2f6da6fdab77f2a8ffd73b8cd80e2968790dbbf3150` | `7e4283fe726083927b14d483d55644e2892a311b0179aa70d4766576c66ab545` |
-| Five-port \(\theta_2\) mutation report | `ec2c6ec092539048b4e7ab9d9cfea01caa985d0f35cae74ca56732dc4cfe4c84` | `5663b87d3f09eaac5e89db69ac5a1cf6069b308abf9bc4242650d0897ded1ff7` |
-| Corrected 997-parent restoration forest | `43bd2be5e7626a954fc4fa4cf45e8d0e6483c947ddc9cba80f2b1a13351bc3a8` | `0a3df52751ba38d7e6d4d118ee7068a98b7be7897d0aa732e96a74d7523a88bf` |
-| Restoration independent replay | `24fa2e61f60610a8b24c4107ec7f866278f0cc671ca203d7aaa40a37bea291dd` | `36c89ff9729e049a374a9fead8488f7a90e62c617d17e242aca5d340faeb164a` |
-| Authoritative cycle promotion | `b560fdf0545c36d576a4cdaf24af9984f6f7231180f20f6927121a57bf816a7a` | `df5e3966822af65e2341660bf3f607ff3635d69d3e5a89854afaef308727f2f1` |
+| Independent component-scale audit | `c763bcc32af83a7b7605d4f5821d7c27ebb27ad6938d584d28bbd1e96a97d4eb` | `a5df3fa09c48a372fb1f51acc4471e8c7cada13641deeca6cb6b09a75cb24465` |
+| Raw four-port composite ledger | `7cf3f953fca695d612387143818843650498f84f55cf0a776f90c9afdd95eef6` | `92880c7655e6e6d906c0d6dbe2089043289c7496d1d9883a3fdc69f4de2bd331` (summary) |
+| Raw four-port independent replay | `610748d793db9c9045d0eec416f4ea97c54bc4fa4467fe69029fb06fa7db1602` | `6364abb6c504b511700f2256ab044640ae89a1dbba62e6447e73c252e2d8d5bc` |
+| Raw four-port terminal registry | `8d821c2000da5cf2647913cbdb42f8a42dfeb6826b8b76be49d91d78ebaf9998` | `8f41e576ac8551ead8fd75d87c4b8d4aee85f5ba1007c0dcf8aaeb62fbfb1439` |
+| Raw four-port mutation report | `6475e37d2ec15eafc3650f387d8d4543268963c6794e3dfd90376d01741f23db` | `94b2f2f90ab77eee454bdbf1c5f81b3be8fd0f89d24b45a15bfed6e92f59a04c` |
+| Five-port \(\theta_2\) composite ledger | `805fc7f5a3de9dad2c63a210208075cf19910cf811ffd08878f32782ce71b659` | `bdf85d7d02d7a4540da2e9357c948a9e0b30aa799940240323c9d2821d4738d4` (summary) |
+| Five-port \(\theta_2\) independent replay | `cd503f97e4fc0aacb52e04fa02358c95cca099d1b0117e7b7133b0913814d2cd` | `6a3902aaee5f58a0dd45ed1a65d8e5f27cc8bdda6c3999422437f52482256de5` |
+| Five-port \(\theta_2\) mutation report | `07f51fe0d5a28cd673cf782478c4a024e38ff7c729cf7a1e5cdafa4b53a4fac5` | `6395c6a79540fb05fe10fc54b55bf446d09023e2c6107148926a9c8f6848ac80` |
+| Corrected 997-parent restoration forest | `396d1970af17b5e90c3f1b00ceab1b810816e93ec68a566bd0479f05c722793f` | `c4e5502d6bb774b426477ef3b289140e81dc16bf061261ccf3562d5de02cb2e3` |
+| Restoration independent replay | `d74cc01341f405732c6ff62558ca3afff705c15cdf9a6f16dcc6ccd7636749c4` | `2e190fa1ea877545ace1706c3ae3a423f44cfecc4bc2bba32033c46d109657b0` |
+| Authoritative cycle promotion | `126ad1dd1aa753b578779fe01c12d26df2f5939abc1e02b5c4b8ccc275867adc` | `7a7f6757ea4aae3be5e7e1e599d4807e050df999828dc810ae30b443957c8b09` |
 | Ordinary-triangle common germ | `b81a6cf8da1380f6a682ba6042f6f429ce5d6a47ba0cf62e9c9d8de1b4158885` | `6fd43ae6d38629277c047d3888e970cdab51f4805dce36d71b2430095c1e1aa6` |
-| Frozen probe-input contract | `7f686ae99dd5e6dafc1c04396b711d294a0bddd6a25574f9ea809b831ad7b377` | `579919ca13204ddf959b3a159e4849b69c05ac87861eba2221659ec45bd73f38` |
-| Independent probe-input replay | `54de1bef73e76fc82132ef3f0250a0579ea401274a302ed4d8fbd015c9e8a053` | `96d14bae9b20646abfe64b85a7ac0f61377182f75479031f621ea0dbe2096fce` |
-| Corrected full probe primary | `2f4d64b32a905ce2cc06bae7d03215f9239427d421825c2525437ee6ba2ccaf6` | `964e9f3c241e63a1b0b12b3ceb516c58525d410c3c550e8335b619a6817400e5` |
-| Independent primitive/graph/full-map probe audit | `b30e2e32e5eec86875031a8bba82d58689f18859896adeb6a6931888df75209f` | `9e50d3681cf2c572c1575e770c67f95723d8c3e8a3943b5963dec7d07c3bec63` |
-| Independent probe mutation report | `b0df0584163150c9a823b4e364b8ee46c196ae8abb28fdca4d3d5893a97bfea7` | `58006ed7b6677c055b5cdd7249857dc2f752fb3db9cfbcc5bbe5e0a26e31875f` |
-| Independent structural/algebra probe replay | `bdeba4730b6a9b39d8a542119f0630f52600f8a3512835b30d19e30b4446604e` | `971d0fdc3b84cfd4001574ba80d272841eb809213b24984009dda4556ebc6261` |
-| Independent site-transport partition replay | `017068d960e0bfc3d5e44b79b5acc4a8e93195c37d205e8c43321c23a0b77e61` | `a1f80d5ed090a1c6e31067123f0739392384d5124e75296cc76035430710497c` |
+| Frozen probe-input contract | `5e6e955db206a0c2b5f520a67fd2fdedcedcdef88d466a7c8e436108a77fac24` | `e12f0fb912f74fe7b00412619e6a33b28bdeb641a2ddf524fd577d552a856470` |
+| Independent probe-input replay | `842bc64b8fa5ddc2949a5420ea19d3360406a60032012865e4e4a2727f8677dd` | `d3494abd1ce609824d08816347af514ed8d8ffa280dfc5c8866a6db55578ea12` |
+| Corrected full probe primary | `6edd4097d0ce6cc0938e1a7eaee8d01c7e9daac814e72422250f1dbdea04bdd3` | `7799adda95bbc89dff01257e76f811cf6a30061d97265a75f4e42e8d618da8b4` |
+| Independent primitive/graph/full-map probe audit | `025fb011c5bf736bbcdf4bbef9f045d389f9a3ccb87597f5068a9a0972aa76f6` | `de15d876ec9f8b5e0cb88cb12d3df481af985aded388e111bae029f0f03ade6a` |
+| Independent probe mutation report | `7224b26a0eead1aa39ccb0092b14b24990cdf5c455e15d040bd8d9181fd6463b` | `cee41ecd404a1b854a2867a0b3e7b56fd810836ab8e5e6c990977adcba0e0c20` |
+| Independent structural/algebra probe replay | `94d7da8a499b8457c2f2df7dec797f6e00b691e89341f2a2e847a852c9165ca9` | `62fef98fb121772a9241c8183e6581d440c3e750eab2ab73a7082a09dacb2227` |
+| Independent site-transport partition replay | `fa640d70a653f8cde6e7baea049e748d169b0fd0537cc732012baaaf7cfb5372` | `96f86b177556601a3f81c814c1c16a97677818f269a8ada4482f755468cfffe0` |
 | Weak-sharpness primary | `e66c78a0aeab990b4dc448f4f064b37e1e15ecbff75a5f472bf116d4464378bd` | `dfecd30ea217810a902add48350025e5f00dfa1255718783df790a9c7e1a5182` |
 | Weak-sharpness independent audit | `cfd8d3a2ebc7431d141cac6ebe943e25730eb086fbc84b52833a40bee40a5d52` | `848cc69e28e3cbd8bc1ab7bbad82b0c3e240354079e95965b433c423edc2d8c5` |
 

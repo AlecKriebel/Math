@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import gzip
 import hashlib
 import json
 import re
@@ -38,8 +39,9 @@ PRINTED_FROZEN_ANCHORS = {
     "raw-four independent replay":
         "work/corrected_composite_ledgers/artifacts/"
         "raw4_corrected_composite_independent_replay.json",
-    "raw-four terminal registry":
-        "work/raw4_sign_reclassification/raw4_corrected_terminal_ledger.json",
+    "raw-four 934-class terminal certificate registry":
+        "work/corrected_composite_ledgers/artifacts/"
+        "raw4_terminal_certificate_registry.json.gz",
     "raw-four mutation report":
         "work/corrected_composite_ledgers/artifacts/"
         "raw4_corrected_composite_mutations.json",
@@ -75,6 +77,36 @@ PRINTED_FROZEN_ANCHORS = {
         "work/weak_sharpness_closure/weak_sharpness_certificate.json",
     "weak-sharpness independent audit":
         "work/weak_sharpness_audit/audit_certificate.json",
+}
+
+PRINTED_FROZEN_ANCHOR_TYPES = {
+    "raw-four 934-class terminal certificate registry": {
+        "schema": "k2p-raw4-terminal-certificate-registry-v1",
+        "count_field": "terminal_class_count",
+        "count": 934,
+    },
+}
+
+CURRENT_NARRATIVE_ROLE_MARKERS = {
+    "work/corrected_composite_ledgers/README.md": (
+        "reader snapshot only",
+        "work/final_theorem_release/RELEASE_LOCK.json",
+        "does not supersede that lock",
+    ),
+    "work/final_theorem_release/CORRECTED_FINITE_UNIVERSE_CONTRACT.md": (
+        "reader snapshot only",
+        "work/final_theorem_release/RELEASE_LOCK.json",
+        "does not supersede that lock",
+    ),
+    (
+        "work/global_theorem_closure/promotion_manuscript/"
+        "K2P_SAME_PROMOTION_MANUSCRIPT.md"
+    ): (
+        "Versioned evidence snapshot",
+        "reader snapshot only",
+        "work/final_theorem_release/RELEASE_LOCK.json",
+        "does not supersede that lock",
+    ),
 }
 
 PRINTED_METADATA_RE = re.compile(
@@ -114,6 +146,34 @@ def read_json(path: Path) -> object:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def read_typed_json(path: Path, label: str) -> object:
+    data = path.read_bytes()
+    if path.suffix == ".gz":
+        try:
+            data = gzip.decompress(data)
+        except (OSError, EOFError) as exc:
+            raise AuditFailure(
+                f"PRINTED_FROZEN_ANCHOR_GZIP_INVALID:{label}"
+            ) from exc
+
+    def unique_pairs(pairs: list[tuple[str, object]]) -> dict[str, object]:
+        result: dict[str, object] = {}
+        for key, value in pairs:
+            require(
+                key not in result,
+                f"PRINTED_FROZEN_ANCHOR_DUPLICATE_JSON_NAME:{label}:{key}",
+            )
+            result[key] = value
+        return result
+
+    try:
+        return json.loads(data.decode("utf-8"), object_pairs_hook=unique_pairs)
+    except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+        raise AuditFailure(
+            f"PRINTED_FROZEN_ANCHOR_JSON_INVALID:{label}"
+        ) from exc
+
+
 def line_number(text: str, needle: str) -> int | None:
     for number, line in enumerate(text.splitlines(), start=1):
         if needle in line:
@@ -150,6 +210,9 @@ def audit_printed_authority_hashes(
     *,
     metadata_paths: Mapping[str, str] = PRINTED_METADATA_PATHS,
     frozen_anchors: Mapping[str, str] = PRINTED_FROZEN_ANCHORS,
+    frozen_anchor_types: Mapping[str, Mapping[str, object]] = (
+        PRINTED_FROZEN_ANCHOR_TYPES
+    ),
 ) -> dict[str, object]:
     """Bind every compact reader-facing artifact hash to the named file.
 
@@ -162,6 +225,10 @@ def audit_printed_authority_hashes(
     require(project.is_dir(), "PRINTED_HASH_PROJECT_ROOT_MISSING")
     require(metadata_paths, "PRINTED_METADATA_CONTRACT_EMPTY")
     require(frozen_anchors, "PRINTED_FROZEN_ANCHOR_CONTRACT_EMPTY")
+    require(
+        set(frozen_anchor_types) <= set(frozen_anchors),
+        "PRINTED_FROZEN_ANCHOR_TYPE_CONTRACT_DRIFT",
+    )
 
     metadata_matches = list(PRINTED_METADATA_RE.finditer(supplement))
     metadata_seen = [match.group("path") for match in metadata_matches]
@@ -253,6 +320,31 @@ def audit_printed_authority_hashes(
             f"PRINTED_HASH_STALE:frozen-anchor:{label}:path={relative}:"
             f"printed={printed}:actual={actual}",
         )
+        typed = frozen_anchor_types.get(label)
+        declared_schema = None
+        semantic_count = None
+        if typed is not None:
+            document = read_typed_json(path, label)
+            require(
+                isinstance(document, dict),
+                f"PRINTED_FROZEN_ANCHOR_NOT_OBJECT:{label}",
+            )
+            declared_schema = typed.get("schema")
+            require(
+                document.get("schema") == declared_schema,
+                f"PRINTED_FROZEN_ANCHOR_SCHEMA_DRIFT:{label}:"
+                f"expected={declared_schema}:actual={document.get('schema')}",
+            )
+            count_field = typed.get("count_field")
+            semantic_count = typed.get("count")
+            require(
+                isinstance(count_field, str)
+                and type(semantic_count) is int
+                and document.get(count_field) == semantic_count,
+                f"PRINTED_FROZEN_ANCHOR_CARDINALITY_DRIFT:{label}:"
+                f"field={count_field}:expected={semantic_count}:"
+                f"actual={document.get(count_field) if isinstance(count_field, str) else None}",
+            )
         rows.append(
             {
                 "presentation": "frozen-anchor",
@@ -262,6 +354,14 @@ def audit_printed_authority_hashes(
                     supplement, section_start + match.start()
                 ),
                 "sha256": actual,
+                **(
+                    {
+                        "declared_schema": declared_schema,
+                        "semantic_count": semantic_count,
+                    }
+                    if typed is not None
+                    else {}
+                ),
             }
         )
 
@@ -272,6 +372,41 @@ def audit_printed_authority_hashes(
         "rows_checked": len(rows),
         "rows": rows,
     }
+
+
+def audit_current_narrative_roles(
+    project: Path,
+    *,
+    role_markers: Mapping[str, tuple[str, ...]] = (
+        CURRENT_NARRATIVE_ROLE_MARKERS
+    ),
+) -> dict[str, object]:
+    """Require current-looking reader tables to defer to the generated lock."""
+
+    require(role_markers, "CURRENT_NARRATIVE_ROLE_CONTRACT_EMPTY")
+    rows: list[dict[str, object]] = []
+    for relative, markers in role_markers.items():
+        path = project / relative
+        require(
+            path.is_file() and not path.is_symlink(),
+            f"CURRENT_NARRATIVE_MISSING_OR_SYMBOLIC:{relative}",
+        )
+        source = path.read_text(encoding="utf-8")
+        require(markers, f"CURRENT_NARRATIVE_MARKERS_EMPTY:{relative}")
+        for marker in markers:
+            require(
+                source.count(marker) == 1,
+                f"CURRENT_NARRATIVE_ROLE_DRIFT:{relative}:{marker}",
+            )
+        rows.append(
+            {
+                "path": relative,
+                "sha256": sha256(path),
+                "role": "reader-snapshot; generated release lock is byte authority",
+                "markers_checked": list(markers),
+            }
+        )
+    return {"status": "PASS", "rows_checked": len(rows), "rows": rows}
 
 
 def main() -> dict[str, object]:
@@ -366,6 +501,7 @@ def main() -> dict[str, object]:
     supplement_source = supplement + "\n" + compression + "\n" + certificate_tex
     all_tex = article + "\n" + supplement_source
     printed_hash_audit = audit_printed_authority_hashes(project, supplement)
+    current_narrative_role_audit = audit_current_narrative_roles(project)
 
     require(isinstance(certificate_json, dict), "PRINTED_APPENDIX_NOT_OBJECT")
     require(
@@ -1254,7 +1390,7 @@ def main() -> dict[str, object]:
         "me@aleckriebel.com",
         "No specific funding supported this work.",
         "The author declares no competing interests.",
-        "k2p-same-biorxiv-v1.0.4",
+        "k2p-same-biorxiv-v1.0.5",
         "CC BY 4.0",
         "MIT License",
     ):
@@ -1441,6 +1577,7 @@ def main() -> dict[str, object]:
         },
         "frozen_release_sha256": sha256(release_path),
         "printed_authority_hash_binding": printed_hash_audit,
+        "current_narrative_role_binding": current_narrative_role_audit,
         "clean_full_replay": {
             "status": full_replay["status"],
             "layers": replay_layer_count,
@@ -1468,7 +1605,7 @@ def main() -> dict[str, object]:
             "competing_interests": "The author declares no competing interests.",
             "paper_and_data_license": "CC BY 4.0",
             "code_license": "MIT",
-            "versioned_annotated_source_tag": "k2p-same-biorxiv-v1.0.4",
+            "versioned_annotated_source_tag": "k2p-same-biorxiv-v1.0.5",
             "doi": None,
             "external_release_actions_performed": False,
         },

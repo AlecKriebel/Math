@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import hashlib
+import gzip
 import json
 import tempfile
 from pathlib import Path
@@ -36,8 +37,28 @@ def main() -> dict[str, object]:
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_bytes(data)
 
+        registry_relative = "evidence/terminal_registry.json.gz"
+        registry_document = {
+            "schema": "test-terminal-registry-v1",
+            "status": "PASS",
+            "terminal_class_count": 934,
+        }
+        registry_bytes = gzip.compress(
+            (
+                json.dumps(
+                    registry_document, sort_keys=True, separators=(",", ":")
+                )
+                + "\n"
+            ).encode("utf-8"),
+            mtime=0,
+        )
+        registry_path = project / registry_relative
+        registry_path.parent.mkdir(parents=True, exist_ok=True)
+        registry_path.write_bytes(registry_bytes)
+
         first_hash = digest(first_bytes)
         second_hash = digest(second_bytes)
+        registry_hash = digest(registry_bytes)
         metadata_paths = {
             first_relative: "authority",
             second_relative: "reader derivative",
@@ -45,6 +66,14 @@ def main() -> dict[str, object]:
         frozen_anchors = {
             "first frozen row": first_relative,
             "second frozen row": second_relative,
+            "typed terminal registry": registry_relative,
+        }
+        frozen_anchor_types = {
+            "typed terminal registry": {
+                "schema": "test-terminal-registry-v1",
+                "count_field": "terminal_class_count",
+                "count": 934,
+            }
         }
         first_metadata = (
             f"authority: \\path{{{first_relative}}}; "
@@ -62,6 +91,10 @@ def main() -> dict[str, object]:
             "second frozen row\n"
             f"& \\hashvalue{{{second_hash}}}\\\\"
         )
+        registry_anchor = (
+            "typed terminal registry\n"
+            f"& \\hashvalue{{{registry_hash}}}\\\\"
+        )
         source = "\n".join(
             (
                 first_metadata,
@@ -70,6 +103,7 @@ def main() -> dict[str, object]:
                 r"\begin{longtable}{ll}",
                 first_anchor,
                 second_anchor,
+                registry_anchor,
                 r"\end{longtable}",
                 r"\section{Next section}",
             )
@@ -80,12 +114,13 @@ def main() -> dict[str, object]:
             source,
             metadata_paths=metadata_paths,
             frozen_anchors=frozen_anchors,
+            frozen_anchor_types=frozen_anchor_types,
         )
         require(
             baseline["status"] == "PASS"
             and baseline["metadata_rows"] == 2
-            and baseline["frozen_anchor_rows"] == 2
-            and baseline["rows_checked"] == 4,
+            and baseline["frozen_anchor_rows"] == 3
+            and baseline["rows_checked"] == 5,
             "PRINTED_HASH_GATE_BASELINE_FAILED",
         )
 
@@ -98,6 +133,7 @@ def main() -> dict[str, object]:
                     mutant,
                     metadata_paths=metadata_paths,
                     frozen_anchors=frozen_anchors,
+                    frozen_anchor_types=frozen_anchor_types,
                 )
             except AuditFailure as exc:
                 observed = str(exc)
@@ -162,6 +198,48 @@ def main() -> dict[str, object]:
             "PRINTED_FROZEN_ANCHOR_INVENTORY_DRIFT:",
         )
 
+        overlay_document = {
+            "schema": "test-strict-sign-overlay-v1",
+            "status": "PASS",
+            "terminal_class_count": 934,
+        }
+        overlay_bytes = gzip.compress(
+            (
+                json.dumps(
+                    overlay_document, sort_keys=True, separators=(",", ":")
+                )
+                + "\n"
+            ).encode("utf-8"),
+            mtime=0,
+        )
+        registry_path.write_bytes(overlay_bytes)
+        overlay_hash = digest(overlay_bytes)
+        reject(
+            "typed_registry_replaced_by_overlay",
+            source.replace(registry_hash, overlay_hash, 1),
+            "PRINTED_FROZEN_ANCHOR_SCHEMA_DRIFT:typed terminal registry:",
+        )
+
+        wrong_count_document = dict(registry_document)
+        wrong_count_document["terminal_class_count"] = 16_974
+        wrong_count_bytes = gzip.compress(
+            (
+                json.dumps(
+                    wrong_count_document, sort_keys=True, separators=(",", ":")
+                )
+                + "\n"
+            ).encode("utf-8"),
+            mtime=0,
+        )
+        registry_path.write_bytes(wrong_count_bytes)
+        wrong_count_hash = digest(wrong_count_bytes)
+        reject(
+            "typed_registry_wrong_cardinality",
+            source.replace(registry_hash, wrong_count_hash, 1),
+            "PRINTED_FROZEN_ANCHOR_CARDINALITY_DRIFT:typed terminal registry:",
+        )
+        registry_path.write_bytes(registry_bytes)
+
         (project / second_relative).unlink()
         reject(
             "missing_hash_target",
@@ -172,7 +250,7 @@ def main() -> dict[str, object]:
     result: dict[str, object] = {
         "schema": "k2p-printed-authority-hash-gate-mutations-v1",
         "status": "PASS",
-        "baseline_rows_checked": 4,
+        "baseline_rows_checked": 5,
         "case_count": len(cases),
         "survived": 0,
         "cases": cases,

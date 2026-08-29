@@ -145,44 +145,49 @@ compiled into the outer release contract.
 
 The authoritative producer package is now frozen.  The raw-four ledger has
 file SHA-256
-`c6cd9d6b5b09371565fd3e58ff9ab3cd7266b6231b153d43f9d1e886af8eae27`
+`7cf3f953fca695d612387143818843650498f84f55cf0a776f90c9afdd95eef6`
 and summary payload
-`3a49bfeeb244cba84cf2e42e2acf296f112d1586c5e17f40e2d2872722c3c988`.
+`92880c7655e6e6d906c0d6dbe2089043289c7496d1d9883a3fdc69f4de2bd331`.
 Its independent primitive replay checks all 405,216 rows, including exact
 whole-map replay of the 16,974 corrected sign rows, and has payload
-`dfed35eab33dcc9983b38c8cedb79ed90b12c8a5cf04b58d251637b3fb2f1191`.
+`6364abb6c504b511700f2256ab044640ae89a1dbba62e6447e73c252e2d8d5bc`.
 Its 14/14 verifier-facing mutation report contains 12 complete-ledger attacks,
 an optimized-mode guard, and an aggregate source-immutability guard; it has
 payload
-`eec4a56b20faa3239044db49796fa724d60a5412a8d6e89a92db5d81e9656385`.
+`94b2f2f90ab77eee454bdbf1c5f81b3be8fd0f89d24b45a15bfed6e92f59a04c`.
 
 The theta2 ledger has file SHA-256
 `805fc7f5a3de9dad2c63a210208075cf19910cf811ffd08878f32782ce71b659`
 and summary payload
-`c89dd764f7c66831db7f6a092fedf666a20f3594ef03647de3e85b5fbf04d0e8`.
+`bdf85d7d02d7a4540da2e9357c948a9e0b30aa799940240323c9d2821d4738d4`.
 Its independent primitive replay checks all 2,946,240 rows, including exact
 whole-map replay of the 2,528 corrected sign rows, and has payload
-`7e4283fe726083927b14d483d55644e2892a311b0179aa70d4766576c66ab545`.
+`6a3902aaee5f58a0dd45ed1a65d8e5f27cc8bdda6c3999422437f52482256de5`.
 Its 12/12 verifier-facing mutation report contains 10 complete-ledger attacks,
 an optimized-mode guard, and an aggregate source-immutability guard; it has
 payload
-`5663b87d3f09eaac5e89db69ac5a1cf6069b308abf9bc4242650d0897ded1ff7`.
+`6395c6a79540fb05fe10fc54b55bf446d09023e2c6107148926a9c8f6848ac80`.
 The descendant ledger derives 56 restored roots, 864 children, and 832 leaves;
 these values are checked but are not enumeration controls.
 
 The separately generated raw-four terminal registry has file SHA-256
-`0a1818655429d60660c1ed87f3fbe412701f386b081562b3a4caa54079069f1d`
+`8d821c2000da5cf2647913cbdb42f8a42dfeb6826b8b76be49d91d78ebaf9998`
 and derives all 934 terminal classes: 839 exact quadratics, 36
 direct polynomial terminals, 35 ordinary triangles, 20 labelled
 isomorphisms, and four hard `F2`/`F3`/`F4` terminals.  The package uses one
 shared generator, support module, independent verifier, and mutation runner,
 with no family-specific aliases for those executables.  Its frozen release-
 contract replay has payload
-`b746fb7a17e8ca9252c53dff0ba5722c1a00c56dc930d0c8456022ea34f60b6f`.
+`98c564205133bc383ba8814ef674c65ea09fe891f9898139f11d313afb107e64`.
 That report binds the producer's release-interface snapshot; the outer
 verifier independently validates the live located bytes and their current
 contract rather than assuming that snapshot and the outer verifier are the
 same file.
+
+These displayed values are a reader snapshot only.  The generated current byte
+authority for every path in this section is
+`work/final_theorem_release/RELEASE_LOCK.json`; this contract is explanatory
+and does not supersede that lock.
 
 ## Count-free downstream family contract
 

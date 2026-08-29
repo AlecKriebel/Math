@@ -22,13 +22,13 @@ CROSSWALK = ROOT / "THEOREM_TO_TEMPLATE_CROSSWALK.json"
 EXPECTED_INPUTS = {
     "analysis/PROOF_COMPRESSION_BASELINE.json": (
         "k2p-proof-compression-baseline-v1",
-        "c5865412bdfe116165adcea65c24f297503e312f773fe47d64e47cbe02505e94",
-        "f29164eafad5789ffd5023e14b7ad95f568f7e9dfe8a9ce18df7907510c9c7f5",
+        "a2f858d5b09ed15e098605a169bbd37aad83243a8d49cef07d681a03a8c6588b",
+        "6404df68ecbeb53076f9f758a86578acec909b6a0838194e00ac454d4056393e",
     ),
     "analysis/FAMILY_COVERAGE_EQUIVALENCE_CERTIFICATE.json": (
         "k2p-pc-partial-family-coverage-equivalence-v1",
-        "a3111377701186acd8cfc3dff2b90b92329faec66313244f5b5e934091fb0b3a",
-        "c6e3ee6f6a2d6a9efbbd840394c800aa30c52c8045f6289b6dfb11925432d36d",
+        "98fd2b99cb169cd3f28064edf6c086d70b9f1356020ffb4781036b05abbdc0a0",
+        "1c3defb14a1465cb83c1e8e87ccb3090c540d14c6c22a36136a4b8205a0b402d",
     ),
     "templates/DIRECT_CERTIFICATE_TEMPLATE_TABLE.json": (
         "k2p-direct-certificate-template-table-v1",

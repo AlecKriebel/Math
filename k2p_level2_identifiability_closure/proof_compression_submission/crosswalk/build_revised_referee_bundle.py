@@ -64,7 +64,7 @@ SUBMISSION_METADATA = {
     "data_license": "CC BY 4.0",
     "doi": None,
     "funding": "No specific funding supported this work.",
-    "versioned_annotated_source_tag": "k2p-same-biorxiv-v1.0.4",
+    "versioned_annotated_source_tag": "k2p-same-biorxiv-v1.0.5",
     "paper_license": "CC BY 4.0",
     "release_boundary": (
         "No GitHub Release, Zenodo deposit, or DOI is created or claimed by "

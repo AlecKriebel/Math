@@ -52,11 +52,11 @@ with no open load-bearing findings.
 
 ## Final qualification state
 
-Version 1.0.4 hardens the two interfaces identified in the round-4 referee
-report: bound compressed evidence is parsed through bounded, recursive,
-duplicate-aware canonical readers, and every documented release or enumerated
-portable production entry point rejects optimized Python before writing.
-The portable atlas contains no assertion-dependent certificate semantics.
+Version 1.0.5 corrects the round-5 terminal-registry role binding, checks its
+schema and 934-class cardinality, and classifies current-looking narrative
+tables as reader snapshots subordinate to the generated release lock.  It
+retains the round-4 strict-JSON, optimized-mode, and assertion-independent
+atlas hardening unchanged.
 
 Qualification is fail-closed and recorded in the generated release evidence:
 `FINAL_CLEAN_FULL_REPLAY.json` must pass all 41 layers,
@@ -67,14 +67,14 @@ memory, report hashes, recursive content roots, and final archive hashes are
 recorded in those generated files rather than duplicated here.
 
 The deterministic neutral-referee archive is
-`proof_compression_submission/output/K2P_Principal_D_Plus_Referee_Package_20260828.zip`,
+`proof_compression_submission/output/K2P_Principal_D_Plus_Referee_Package_20260829.zip`,
 and the deterministic five-file source archive is
-`proof_compression_submission/output/K2P_SAME_bioRxiv_Source_20260828.zip`.
+`proof_compression_submission/output/K2P_SAME_bioRxiv_Source_20260829.zip`.
 Their adjacent `.sha256` files are the release authorities.  Qualification
 also requires byte-identical double builds and successful checks in two
 differently named clean extractions.
 
-The versioned annotated source tag is `k2p-same-biorxiv-v1.0.4`. No GitHub Release, Zenodo
+The versioned annotated source tag is `k2p-same-biorxiv-v1.0.5`. No GitHub Release, Zenodo
 deposit, or DOI has been created or claimed; those external publication
 actions are deliberately left to the author.
 

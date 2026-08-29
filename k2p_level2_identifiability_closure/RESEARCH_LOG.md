@@ -1012,3 +1012,28 @@
   mathematical theorem** and **100% for v1.0.4 release qualification**.
   GitHub Release, Zenodo, DOI, and submission actions remain reserved to the
   author.
+
+## 2026-08-29 — round-5 typed-authority repair checkpoint
+
+- Confirmed the referee's release-only finding: the supplement and static
+  auditor had labelled the 16,974-row strict-sign overlay as the 934-class
+  raw-four terminal registry.  Rebound the reader anchor to the actual typed
+  registry and added duplicate-aware schema/cardinality checks plus coherent
+  overlay-substitution and wrong-cardinality attacks.  All 11 focused attacks
+  are rejected for their intended diagnostics.
+- Updated three stale narrative evidence tables and made their role explicit:
+  they are versioned reader snapshots, while the generated release lock is the
+  byte authority.  The static source auditor now checks that classification.
+- Resealed only the affected quartet document bindings, corrected-universe
+  locator/certificate/replay/mutations, 231-file release lock, PC-PARTIAL
+  summaries, and PDFs.  No raw-four, theta2, rank, restoration, cycle, probe,
+  polynomial, or sharpness ledger was regenerated or changed.
+- The new quick replay passed 23/23 layers in 406.35 seconds, and the affected
+  outer mutation qualification rejected all 25/25 gates with zero survivors.
+  The article and 24-page supplement rebuild cleanly; the changed supplement
+  pages were visually inspected with no clipping or overlap.
+- Best-guess completion remains **100% for the mathematical theorem** and is
+  **approximately 98% for v1.0.5 release qualification**, pending the single
+  detached 41-layer full replay, telemetry, final crosswalk/package reseal,
+  deterministic double archives, push, and annotated tag.  No GitHub Release
+  or Zenodo action is authorized.

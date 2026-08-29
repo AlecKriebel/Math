@@ -1,7 +1,7 @@
 # Proof-compression baseline
 
 Status: **PASS**.  This is a read-only measurement of frozen release lock
-`305d38e1c3f045bc59141049e46679ccdd29d94c513d5d0e896daa7357ab0b34`.  It does not replace or
+`bbb411dde4a13f001d9c2b5fac97722a54bb6ce604b6aff476de44f7ce4b8f53`.  It does not replace or
 modify the promoted theorem.
 
 ## Proof surface
@@ -22,8 +22,8 @@ The recursively locked evidence set contains
 407 files and
 240 machine-readable evidence files
 (476,418,048 bytes).  The promotion
-manuscript has 957 lines,
-4,940 words, and
+manuscript has 960 lines,
+4,972 words, and
 18 named lemmas or
 theorems.
 
@@ -51,4 +51,4 @@ runtime.  This baseline therefore does not invent one from noncomparable
 component timings.  Runtime benchmarking belongs in a separate operational
 record.
 
-Payload SHA-256: `c5865412bdfe116165adcea65c24f297503e312f773fe47d64e47cbe02505e94`.
+Payload SHA-256: `a2f858d5b09ed15e098605a169bbd37aad83243a8d49cef07d681a03a8c6588b`.

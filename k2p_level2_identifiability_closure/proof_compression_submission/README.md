@@ -85,7 +85,7 @@ Submission metadata are finalized: corresponding email
 `me@aleckriebel.com`; sole-author contribution statement approved; no specific
 funding; no competing interests; CC BY 4.0 for the paper and data; MIT for
 code; designated versioned annotated source tag
-`k2p-same-biorxiv-v1.0.4`. Its tag-object and peeled-commit identifiers belong
+`k2p-same-biorxiv-v1.0.5`. Its tag-object and peeled-commit identifiers belong
 in external release metadata after the final source commit is created. No
 GitHub Release, Zenodo deposit, or DOI is claimed in this version.
 

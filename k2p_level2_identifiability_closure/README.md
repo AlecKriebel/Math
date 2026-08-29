@@ -43,7 +43,7 @@ classification universe are unchanged; the outer qualification lock has been
 resealed to bind the repaired verifier-facing mutation evidence.
 
 The final neutral-referee package is
-`proof_compression_submission/output/K2P_Principal_D_Plus_Referee_Package_20260828.zip`;
+`proof_compression_submission/output/K2P_Principal_D_Plus_Referee_Package_20260829.zip`;
 its adjacent `.sha256` file is the archive authority.
 
 ## Layout
