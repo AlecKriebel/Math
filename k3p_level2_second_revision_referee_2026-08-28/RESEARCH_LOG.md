@@ -175,3 +175,77 @@
   verification session continued in its separate `package_copy/review_runs`
   workspace.  The disposable replay tree was deleted after evidence freezing.
 - Current best-guess completion of the corrected bounded test: 100%.
+
+## 2026-08-29T03:59:15Z — Fresh current-commit verification checkpoint
+
+- The clean, default-deny, single-run `verify` phase completed successfully on
+  the delivered source/package commit
+  `5a6d64cb2a76e890d7baaef3ba5ac9861c1d029f`.  The phase ran four top-level
+  gates in 3,004.194754 seconds; no duplicate process or hour-scale producer
+  was launched.
+- The central integrated fresh replay passed in 2,989.783202 seconds and bound
+  exactly 20 passing child checks.  It included the new balanced-word and
+  displayed-tree-minor checks, the complete 405,216-presentation four-port
+  replay, the independent 133-row non-four derivation, all four-port and
+  marginalized-theta crosswalks, 16 non-four/crosswalk mutations, semantic
+  replay of all 574,535 probe rows with seven coherent mutations, independent
+  restoration, and 20 restoration mutations.
+- The full-four child took 1,527.055868 seconds.  The all-row semantic probe
+  child took 377.721992 seconds and reported 574,535 rows and seven rejected
+  semantic mutations.  The integrated classification suite then rejected all
+  27 current attacks in 13.552218 seconds.
+- The runner's workspace drift was exactly empty.  Reviewer-side post-run
+  inventories were byte-identical to the pre-run inventories for all 685
+  package-source entries (excluding only `review_runs`) and all 6,634 virtual-
+  environment entries, including bytes, modes, and symlink targets.
+- Credited evidence is under
+  `package_copy/review_runs/20260829T030837Z/verify/`.  Transcript SHA-256:
+  `973e239359fda4816d34ac5662fa45448116f5898dd67c062c401997a77a58fb`;
+  phase-report SHA-256:
+  `cb00c6cee80b651f76b618b7c95ebbb23a86a1c9bac35e91a0cb79697ed6310c`;
+  integrated-report SHA-256:
+  `2263573978fb92e8a66b178fe33c96d257aeebaf2d42ca6768adbbef27efabe5`.
+- The successful replay confirms the delivered data and tested algorithms,
+  including both claimed former-premise repairs.  It does not cure the
+  independently demonstrated cut-certificate dependency defect: the new K3P
+  evidence and legacy D1 gate still pass as parallel children.
+- Current best-guess completion: 65%.
+
+## 2026-08-29T04:09:19Z — Isolated release-engineering mutation replay checkpoint
+
+- Reproduced the separately excluded release-engineering suite from exact
+  detached package commit
+  `5a6d64cb2a76e890d7baaef3ba5ac9861c1d029f`.  The checkout is self-contained:
+  one pack with SHA-256
+  `b712dbc486d7f3785b42760e6270da1edaf047580008706bc0e3d1d02960e1f8`
+  contains exactly 3,553 objects (616 unique target-project blobs, all 2,936
+  tree objects needed for a sparse clean index, and the selected commit), with
+  no alternate, promisor marker, remote, or unrelated blob payload.
+- A clean environment and default-deny sandbox allowed reads only from the
+  exact checkout, pinned read-only virtual environment, and system runtimes;
+  writes were confined to ignored `release/work` and dedicated fixture temp
+  directories; all network access was denied.  Five out-of-bound read probes,
+  a tracked-write probe, a network probe, and an unrelated-Git-blob probe were
+  rejected before launch, while the intended positive controls passed.
+- The suite returned `PASS` in exactly 7.102441875031218 seconds: all 32 named
+  mutations were rejected, none survived, and all 10 independent controls
+  passed.  Deterministic archive controls reproduced tar.gz SHA-256
+  `c921e8cf96f754e6ff76998264b1a0511e84cc29b6d5b7b05f294dd47246997f`
+  and ZIP SHA-256
+  `897981393e637d3529223636664aacdec5549812cfbbacfa4693fc3bc84e7f9e`.
+- The fresh logical payload SHA-256
+  `fd931f0df94ae456baff232dbc713c70233ee9f15fcf3debb35c8617b06a0d16`
+  and pretty-report SHA-256
+  `3e45c348d4fa276cdd0fb4f41d2d6ad087a8ea3f664ae88472a33995fa89e31e`
+  exactly matched the sealed report.  The external transcript is 12,733 bytes
+  with SHA-256
+  `d5eb13f4a3e89598289e51cd118eb326a20b007a6b426026e27b0e0aa53e4f13`;
+  the referee summary SHA-256 is
+  `5e3d1e80ff8d5a28437cacc919765de9731188d4da920dad391ea6ee9442ac78`.
+- Post-run checks found no surviving suite/supervisor process.  Exact-checkout
+  HEAD, detached state, clean status, object census, pack hash, and source
+  project's clean status were unchanged byte-for-byte from their pre-run
+  observations.  Transcript and summary are mode `0600` outside child-visible
+  paths under `logs/`.
+- Current best-guess completion of this bounded replay: 100%; overall fresh
+  refereeing completion: 68%.

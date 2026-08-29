@@ -64,15 +64,26 @@ def text(repository: Path, arguments: list[str]) -> str:
 def selected_object_ids() -> set[str]:
     commit_id = text(SOURCE, ["rev-parse", f"{COMMIT}^{{commit}}"]).strip()
     root_tree = text(SOURCE, ["show", "-s", "--format=%T", COMMIT]).strip()
-    listing = git(SOURCE, ["ls-tree", "-r", "-t", "-z", COMMIT, "--", PREFIX]).stdout
     objects = {COMMIT, commit_id, root_tree}
+    # A sparse index still needs every tree at the selected commit in order to
+    # mark unrelated entries skip-worktree without contacting a remote.  It
+    # does not need any unrelated blob.
+    all_listing = git(SOURCE, ["ls-tree", "-r", "-t", "-z", COMMIT]).stdout
+    for record in all_listing.split(b"\x00"):
+        if not record:
+            continue
+        metadata, _path = record.split(b"\t", 1)
+        _mode, kind, object_id = metadata.decode("ascii").split(" ")
+        if kind == "tree":
+            objects.add(object_id)
+    listing = git(SOURCE, ["ls-tree", "-r", "-t", "-z", COMMIT, "--", PREFIX]).stdout
     for record in listing.split(b"\x00"):
         if not record:
             continue
         metadata, _path = record.split(b"\t", 1)
         _mode, _kind, object_id = metadata.decode("ascii").split(" ")
         objects.add(object_id)
-    require(len(objects) == 679, ("unexpected selected object census", len(objects)))
+    require(len(objects) == 3553, ("unexpected selected object census", len(objects)))
     return objects
 
 
@@ -112,24 +123,22 @@ def main() -> int:
                 timeout=600,
             )
         require(indexed.returncode == 0, ("index-pack", indexed.stderr[-2000:]))
-        pack_hash = indexed.stdout.decode("ascii").strip()
-        require(len(pack_hash) == 40, ("pack hash", pack_hash))
-        promisor = DESTINATION / f".git/objects/pack/pack-{pack_hash}.promisor"
-        promisor.write_bytes(b"")
+        pack_output = indexed.stdout.decode("ascii").strip()
+        pack_hash = pack_output.split()[-1] if pack_output else ""
+        require(
+            len(pack_hash) == 40
+            and all(character in "0123456789abcdef" for character in pack_hash),
+            ("pack hash", pack_output),
+        )
     finally:
         raw_pack_path.unlink(missing_ok=True)
 
-    git(DESTINATION, ["config", "core.repositoryFormatVersion", "1"])
-    git(DESTINATION, ["config", "extensions.partialClone", "origin"])
-    git(DESTINATION, ["config", "remote.origin.url", "file:///nonexistent"])
-    git(DESTINATION, ["config", "remote.origin.promisor", "true"])
-    git(DESTINATION, ["config", "remote.origin.partialCloneFilter", "blob:none"])
     git(DESTINATION, ["config", "core.sparseCheckout", "true"])
     git(DESTINATION, ["config", "core.sparseCheckoutCone", "false"])
     (DESTINATION / ".git/shallow").write_text(COMMIT + "\n", encoding="ascii")
     sparse = DESTINATION / ".git/info/sparse-checkout"
     sparse.parent.mkdir(parents=True, exist_ok=True)
-    sparse.write_text(f"/{PREFIX}/\n", encoding="utf-8")
+    sparse.write_text(f"!/*\n/{PREFIX}/\n", encoding="utf-8")
     git(DESTINATION, ["update-ref", "--no-deref", "HEAD", COMMIT])
     git(DESTINATION, ["read-tree", "-mu", "HEAD"])
 
