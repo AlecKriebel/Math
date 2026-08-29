@@ -131,7 +131,7 @@ def verify_mutation_summaries(project: Path) -> dict:
         ("clean_room/CLEAN_ROOM_MUTATION_RESULTS.json", "mutation_count", 10,
          "rejected_mutations", "accepted_mutations"),
         ("sharpness/adversarial/SHARPNESS_ADVERSARIAL_AUDIT.json", None, 18, None, None),
-        ("reproducibility/CUT_TRANSFER_GATE_MUTATION_REPORT.json", "mutation_count", 12,
+        ("reproducibility/CUT_TRANSFER_GATE_MUTATION_REPORT.json", "mutation_count", 16,
          "rejected_count", "survived_count"),
         ("global_infrastructure/MUTATION_CERTIFICATE.json", None, 19,
          "rejected", "survived"),

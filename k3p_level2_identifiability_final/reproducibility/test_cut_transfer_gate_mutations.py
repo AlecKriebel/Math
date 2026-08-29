@@ -3,8 +3,10 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import sys
@@ -32,12 +34,16 @@ def clone_project() -> tuple[tempfile.TemporaryDirectory, Path]:
     return temporary, project
 
 
-def run(project: Path, optimized: bool = False) -> subprocess.CompletedProcess[str]:
+def run(
+    project: Path,
+    optimized: bool = False,
+    gate: Path = GATE,
+) -> subprocess.CompletedProcess[str]:
     command = [sys.executable]
     if optimized:
         command.append("-O")
     command.extend([
-        str(GATE),
+        str(gate),
         "--project-root", str(project),
         "--transfer-root", str(project / TRANSFER_RELATIVE),
         "--no-write-report",
@@ -88,8 +94,70 @@ def mutation_case(name: str, mutate, expected: str, optimized: bool = False) -> 
         temporary.cleanup()
 
 
+def canonical_payload_sha256(value: dict) -> str:
+    body = dict(value)
+    body.pop("payload_sha256", None)
+    encoded = json.dumps(body, sort_keys=True, separators=(",", ":")).encode()
+    return hashlib.sha256(encoded).hexdigest()
+
+
+def file_sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def coherent_legacy_provenance_case() -> dict:
+    """Reseal every affected hash after admitting the retired legacy premise."""
+    temporary, project = clone_project()
+    try:
+        evidence_relative = TRANSFER_RELATIVE / "K3P_DIRECTED_CUT_INCLUSION_EVIDENCE.json"
+        evidence_path = project / evidence_relative
+        evidence = json.loads(evidence_path.read_text())
+        evidence["provenance_policy"][
+            "legacy_global_logic_report_is_load_bearing"
+        ] = True
+        evidence["payload_sha256"] = canonical_payload_sha256(evidence)
+        evidence_path.write_text(json.dumps(evidence, indent=2, sort_keys=True) + "\n")
+
+        theorem_path = project / THEOREM_RELATIVE
+        theorem = json.loads(theorem_path.read_text())
+        evidence_sha = file_sha256(evidence_path)
+        theorem["load_bearing_inputs"]["k3p_directed_cut_inclusion_evidence"][
+            "sha256"
+        ] = evidence_sha
+        theorem["files"]["K3P_DIRECTED_CUT_INCLUSION_EVIDENCE.json"] = evidence_sha
+        theorem_path.write_text(json.dumps(theorem, indent=2, sort_keys=True) + "\n")
+
+        copied_gate = project / "reproducibility" / "strong_cut_transfer_gate.py"
+        copied_gate.parent.mkdir(parents=True, exist_ok=True)
+        source = GATE.read_text()
+        replacement = f'EXPECTED_THEOREM_SHA256 = "{file_sha256(theorem_path)}"'
+        source, substitutions = re.subn(
+            r'^EXPECTED_THEOREM_SHA256\s*=.*$', replacement, source,
+            count=1, flags=re.MULTILINE,
+        )
+        if substitutions != 1:
+            raise RuntimeError("could not reseal copied gate")
+        copied_gate.write_text(source)
+
+        result = run(project, gate=copied_gate)
+        expected = "active K3P cut-inclusion evidence provenance"
+        rejected = result.returncode != 0 and expected in result.stdout
+        return {
+            "name": "coherently_reseal_legacy_global_logic_provenance",
+            "result": "REJECTED" if rejected else "SURVIVED",
+            "exit_code": result.returncode,
+            "expected_diagnostic": expected,
+            "diagnostic_seen": expected in result.stdout,
+            "optimized_gate": False,
+            "all_affected_hashes_resealed": True,
+        }
+    finally:
+        temporary.cleanup()
+
+
 def main() -> int:
     cases = [
+        coherent_legacy_provenance_case(),
         mutation_case(
             "substitute_universal_pointwise_iff_for_directional_theorem",
             lambda x: x.__setitem__(
@@ -134,15 +202,36 @@ def main() -> int:
             "cut-transfer noncircularity contract",
         ),
         mutation_case(
-            "replace_one_way_input_by_cut_equality",
+            "replace_proved_directed_inclusion_by_cut_equality",
             lambda x: x["noncircularity"].__setitem__(
-                "only_preexisting_cut_direction_used", "Cut(Nprime)=Cut(N)"
+                "directed_cut_inclusion_proved_here", "Cut(Nprime)=Cut(N)"
+            ),
+            "cut-transfer noncircularity contract",
+        ),
+        mutation_case(
+            "claim_legacy_global_logic_is_active",
+            lambda x: x["noncircularity"].__setitem__(
+                "legacy_global_logic_report_used", True
+            ),
+            "cut-transfer noncircularity contract",
+        ),
+        mutation_case(
+            "claim_jc_cut_theorem_is_active",
+            lambda x: x["noncircularity"].__setitem__(
+                "jc_model_cut_theorem_used", True
             ),
             "cut-transfer noncircularity contract",
         ),
         mutation_case(
             "drop_load_bearing_204_universe",
             lambda x: x["load_bearing_inputs"].pop("pointwise_204_universe"),
+            "cut-transfer load-bearing input set",
+        ),
+        mutation_case(
+            "drop_load_bearing_k3p_cut_evidence",
+            lambda x: x["load_bearing_inputs"].pop(
+                "k3p_directed_cut_inclusion_evidence"
+            ),
             "cut-transfer load-bearing input set",
         ),
         mutation_case(
@@ -169,7 +258,7 @@ def main() -> int:
     ]
     rejected = sum(case["result"] == "REJECTED" for case in cases)
     report = {
-        "schema": "k3p-strong-class-cut-transfer-gate-mutations-v1",
+        "schema": "k3p-strong-class-cut-transfer-gate-mutations-v2",
         "status": "PASS" if rejected == len(cases) and all(
             case["result"] == "PASS" for case in clean
         ) else "FAIL",

@@ -14,11 +14,12 @@ prior audits are evidence to inspect, not conclusions to adopt.
   historical execution ledger cited from the project README; the package
   manifest gives the exact rebuilt count.
 - `REFEREE_PROMPT.md` is a neutral review brief.
-- `PACKAGE_MANIFEST.json` and `SHA256SUMS` provide a sealed-payload,
-  pristine-delivery check by binding every delivered payload file and the
-  manifest itself.  `SHA256SUMS` cannot hash itself; reviewer-created
+- `PACKAGE_MANIFEST.json` and `SHA256SUMS` provide a sealed-payload check by
+  binding the bytes and mode of every delivered payload file and the manifest
+  bytes.  `SHA256SUMS` cannot hash itself; reviewer-created
   top-level `.venv/` and `review_runs/` runtime areas are deliberately outside
-  the seal.
+  the seal.  The checker validates declared members of the expanded canonical
+  proof core; it does not validate a compressed archive container.
 - `referee_tools/` contains a Git-independent integrity checker and copied,
   Git-free workspace runner.
 - `review_runs/` is created locally when a reviewer runs the checks; it is not
@@ -54,29 +55,41 @@ No active mathematical verifier makes a network request.  Dependency
 installation may require package-index access unless the reviewer supplies an
 offline wheel cache.
 
-`RUN_REVIEW.sh` creates Git-free copied workspaces and confines its intended
-outputs to this package, but it is not an operating-system security sandbox
-and does not prevent a process from reading other host files.  Supply the
-offline, credential-free VM, container, or account boundary externally before
-executing untrusted code; do not describe a plain runner invocation as
-credential-isolated.
+`RUN_REVIEW.sh` creates Git-free copied workspaces, gives child processes a
+fixed ten-variable non-secret environment, holds an atomic no-replace lock,
+and terminates and reaps a command's process group after interruption, timeout,
+or an unexpected surviving descendant.  These controls do not constitute an
+operating-system security sandbox and cannot prevent a process from reading
+other host files or opening a network connection.  Supply the offline,
+credential-free VM, container, account, or operating-system sandbox boundary
+externally before executing untrusted code.  The runner requires
+`K3P_REFEREE_EXTERNAL_SANDBOX=YES` as an explicit acknowledgement, but cannot
+verify or enforce that claim.
+For hostile code, the external boundary should also supervise the full process
+tree, including descendants that deliberately escape their inherited process
+group.
+
+Only one runner may use a package at a time.  Its atomic lock is
+`review_runs/.active_runner.lock`.  A normal exit or handled interruption
+removes it.  After an uncatchable termination, remove a stale lock only after
+independently confirming that no runner or descendant remains.
 
 ## Recommended execution order
 
 First read the article, supplement, neutral prompt, active manifest, and
 relevant source code.  Inspect code before executing it.
 
-Confirm that the portable runner reconstructs the expected 54-command active
+Confirm that the portable runner reconstructs the expected 55-command active
 mathematical producer/verifier plan without starting it:
 
 ```sh
-./RUN_REVIEW.sh plan
+K3P_REFEREE_EXTERNAL_SANDBOX=YES ./RUN_REVIEW.sh plan
 ```
 
 Then run the fresh mathematical verification:
 
 ```sh
-./RUN_REVIEW.sh verify
+K3P_REFEREE_EXTERNAL_SANDBOX=YES ./RUN_REVIEW.sh verify
 ```
 
 On the reference M1 MacBook Pro, allow roughly 35--50 minutes; the exact
@@ -87,6 +100,7 @@ phase.
 After code inspection, run the complete active producer/verifier graph once:
 
 ```sh
+K3P_REFEREE_EXTERNAL_SANDBOX=YES \
 K3P_REFEREE_CONFIRM_REGENERATION=YES ./RUN_REVIEW.sh regenerate
 ```
 
@@ -101,13 +115,17 @@ healthy long-running producer.
 For a combined run in two independent working copies:
 
 ```sh
+K3P_REFEREE_EXTERNAL_SANDBOX=YES \
 K3P_REFEREE_CONFIRM_REGENERATION=YES ./RUN_REVIEW.sh all
 ```
 
 Because the seal deliberately excludes those runtime areas, a post-run seal
-PASS is not by itself a full workspace-drift check.  The runner therefore
-records a complete before/after byte inventory in addition to repeating the
-sealed-payload check.
+PASS is not by itself a full filesystem-drift check.  The runner therefore
+records full before/after inventories of the copied workspace and virtual
+environment, including bytes, modes, object types, and symlink targets.  It
+fails on virtual-environment drift and on copied-workspace drift outside the
+declared `release/work/` runtime area; all runtime-area differences remain
+printed in the report rather than being hidden.
 
 Complete top-level command transcripts, timings, output hashes, interpreter
 and platform metadata, dependency versions and module-file hashes, and
@@ -127,8 +145,9 @@ tests Git-index and packaging behavior and requires the exact live checkout;
 its source remains available for inspection.  Package integrity is checked
 independently before every run.
 
-The runner treats any byte drift outside declared runtime evidence as a
-failure.  The primary gate's otherwise identical location-bearing report is
+The runner treats any byte, mode, type, or symlink-target drift outside
+declared runtime evidence as a failure.  The primary gate's otherwise
+identical location-bearing report is
 preserved separately for audit and the canonical byte copy is restored before
 downstream binding checks.
 

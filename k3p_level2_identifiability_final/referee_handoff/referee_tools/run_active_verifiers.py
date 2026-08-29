@@ -12,6 +12,7 @@ import os
 from pathlib import Path
 import shutil
 import signal
+import stat
 import subprocess
 import sys
 import time
@@ -41,30 +42,49 @@ def sha256_bytes(value: bytes) -> str:
     return hashlib.sha256(value).hexdigest()
 
 
-def ignored_snapshot_path(relative: str) -> bool:
-    parts = Path(relative).parts
-    return (
-        relative.startswith("release/work/")
-        or (parts and parts[0] == ".venv")
-    )
+def mode_string(mode: int) -> str:
+    return format(stat.S_IMODE(mode), "04o")
 
 
-def snapshot(root: Path) -> dict[str, str]:
-    result: dict[str, str] = {}
-    for path in sorted(root.rglob("*")):
-        relative = path.relative_to(root).as_posix()
-        if ignored_snapshot_path(relative):
-            continue
-        require(not path.is_symlink(),
-                ("unexpected workspace symlink", relative))
-        if path.is_dir():
-            continue
-        require(path.is_file(), ("unexpected workspace object", relative))
-        result[relative] = sha256_file(path)
+def filesystem_inventory(root: Path) -> dict[str, dict[str, object]]:
+    """Inventory every entry below root without following symlinks."""
+    require(root.is_dir() and not root.is_symlink(),
+            ("inventory root must be a real directory", str(root)))
+    result: dict[str, dict[str, object]] = {
+        ".": {"mode": mode_string(root.lstat().st_mode), "type": "directory"}
+    }
+
+    def visit(directory: Path) -> None:
+        with os.scandir(directory) as entries:
+            ordered = sorted(entries, key=lambda entry: entry.name)
+        for entry in ordered:
+            path = Path(entry.path)
+            relative = path.relative_to(root).as_posix()
+            metadata = entry.stat(follow_symlinks=False)
+            common: dict[str, object] = {"mode": mode_string(metadata.st_mode)}
+            if stat.S_ISLNK(metadata.st_mode):
+                result[relative] = {
+                    **common, "type": "symlink", "target": os.readlink(path),
+                }
+            elif stat.S_ISDIR(metadata.st_mode):
+                result[relative] = {**common, "type": "directory"}
+                visit(path)
+            elif stat.S_ISREG(metadata.st_mode):
+                result[relative] = {
+                    **common,
+                    "type": "file",
+                    "bytes": metadata.st_size,
+                    "sha256": sha256_file(path),
+                }
+            else:
+                raise ReviewFailure(("unexpected filesystem object", relative))
+
+    visit(root)
     return result
 
 
-def drift(before: dict[str, str], after: dict[str, str]) -> dict[str, object]:
+def drift(before: dict[str, dict[str, object]],
+          after: dict[str, dict[str, object]]) -> dict[str, object]:
     before_keys, after_keys = set(before), set(after)
     changed = sorted(path for path in before_keys & after_keys
                      if before[path] != after[path])
@@ -72,10 +92,46 @@ def drift(before: dict[str, str], after: dict[str, str]) -> dict[str, object]:
         "added": sorted(after_keys - before_keys),
         "removed": sorted(before_keys - after_keys),
         "changed": [
-            {"path": path, "before_sha256": before[path],
-             "after_sha256": after[path]}
+            {"path": path, "before": before[path], "after": after[path]}
             for path in changed
         ],
+    }
+
+
+def drift_paths(value: dict[str, object]) -> set[str]:
+    return (
+        set(value["added"])
+        | set(value["removed"])
+        | {row["path"] for row in value["changed"]}
+    )
+
+
+def restrict_drift(value: dict[str, object], paths: set[str]) -> dict[str, object]:
+    return {
+        "added": [path for path in value["added"] if path in paths],
+        "removed": [path for path in value["removed"] if path in paths],
+        "changed": [row for row in value["changed"] if row["path"] in paths],
+    }
+
+
+def write_inventory(path: Path, root: Path,
+                    value: dict[str, dict[str, object]]) -> dict[str, object]:
+    payload = {
+        "schema": "k3p-referee-filesystem-inventory-v1",
+        "root": str(root),
+        "entry_count": len(value),
+        "entries": [
+            {"path": relative, **record}
+            for relative, record in sorted(value.items())
+        ],
+    }
+    path.write_text(json.dumps(payload, indent=2, sort_keys=True) + "\n",
+                    encoding="utf-8")
+    return {
+        "path": path.as_posix(),
+        "entry_count": len(value),
+        "bytes": path.stat().st_size,
+        "sha256": sha256_file(path),
     }
 
 
@@ -89,38 +145,61 @@ def load_plan(package_root: Path) -> dict:
 
 def deterministic_environment(workspace: Path) -> dict[str, str]:
     manifest = json.loads((workspace / "ARCHIVE_MANIFEST.json").read_text())
-    environment = dict(os.environ)
-    environment.update({
+    temporary = workspace / "release/work/referee_tmp"
+    home = workspace / "release/work/referee_home"
+    temporary.mkdir(parents=True, exist_ok=True)
+    home.mkdir(parents=True, exist_ok=True)
+    (workspace / "release/work/regeneration_ephemeral").mkdir(
+        parents=True, exist_ok=True
+    )
+    return {
+        "PATH": "/usr/bin:/bin:/usr/sbin:/sbin",
+        "HOME": str(home.resolve()),
+        "TMPDIR": str(temporary.resolve()),
         "PYTHONDONTWRITEBYTECODE": "1",
         "PYTHONHASHSEED": "0",
+        "PYTHONNOUSERSITE": "1",
         "LC_ALL": "C",
         "LANG": "C",
         "TZ": "UTC",
         "SOURCE_DATE_EPOCH": str(manifest["source_date_epoch"]),
-    })
-    temporary = workspace / "release/work/referee_tmp"
+    }
+
+
+def control_environment(package_root: Path, source_date_epoch: str) -> dict[str, str]:
+    runtime = package_root / "review_runs/runner_control"
+    home = runtime / "home"
+    temporary = runtime / "tmp"
+    home.mkdir(parents=True, exist_ok=True)
     temporary.mkdir(parents=True, exist_ok=True)
-    (workspace / "release/work/regeneration_ephemeral").mkdir(
-        parents=True, exist_ok=True
-    )
-    environment["TMPDIR"] = str(temporary.resolve())
-    return environment
+    return {
+        "PATH": "/usr/bin:/bin:/usr/sbin:/sbin",
+        "HOME": str(home.resolve()),
+        "TMPDIR": str(temporary.resolve()),
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONHASHSEED": "0",
+        "PYTHONNOUSERSITE": "1",
+        "LC_ALL": "C",
+        "LANG": "C",
+        "TZ": "UTC",
+        "SOURCE_DATE_EPOCH": source_date_epoch,
+    }
 
 
-def check_python(python: Path) -> None:
+def check_python(python: Path, environment: dict[str, str]) -> None:
     require(python.is_file() and os.access(python, os.X_OK),
             ("Python interpreter is not executable", str(python)))
-    result = subprocess.run(
+    returncode, output = run_captured(
         [str(python), "-c",
          "import mpmath, networkx, numpy, sympy; print('DEPENDENCIES_OK')"],
-        stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True,
-        check=False, timeout=60,
+        cwd=python.parent, environment=environment, timeout_seconds=60,
     )
-    require(result.returncode == 0 and "DEPENDENCIES_OK" in result.stdout,
-            ("required Python dependencies unavailable", result.stdout[-2000:]))
+    require(returncode == 0 and "DEPENDENCIES_OK" in output,
+            ("required Python dependencies unavailable", output[-2000:]))
 
 
-def runtime_metadata(python: Path, package_root: Path) -> dict[str, object]:
+def runtime_metadata(python: Path, package_root: Path,
+                     environment: dict[str, str]) -> dict[str, object]:
     script = """
 import importlib, json, platform, sys
 packages = {}
@@ -139,12 +218,12 @@ print(json.dumps({
     'packages': packages,
 }, sort_keys=True))
 """
-    result = subprocess.run(
-        [str(python), "-c", script], stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT, text=True, check=False, timeout=60,
+    returncode, output = run_captured(
+        [str(python), "-c", script],
+        cwd=package_root, environment=environment, timeout_seconds=60,
     )
-    require(result.returncode == 0, ("runtime metadata failed", result.stdout))
-    value = json.loads(result.stdout)
+    require(returncode == 0, ("runtime metadata failed", output))
+    value = json.loads(output)
     for record in value["packages"].values():
         module_file = Path(record["module_file"])
         require(module_file.is_file(), ("package module file missing", module_file))
@@ -156,6 +235,73 @@ print(json.dumps({
     require(requirements.is_file(), "requirements file missing")
     value["requirements_sha256"] = sha256_file(requirements)
     return value
+
+
+def process_group_exists(process_group: int) -> bool:
+    try:
+        os.killpg(process_group, 0)
+        return True
+    except ProcessLookupError:
+        return False
+    except PermissionError:
+        # Some Unix kernels transiently report EPERM while a just-signalled
+        # group contains only unreaped processes.  Treat it as present and
+        # keep the cleanup path fail-closed.
+        return True
+
+
+def terminate_process_group(process: subprocess.Popen, *, grace: float = 5.0) -> None:
+    process_group = process.pid
+    try:
+        os.killpg(process_group, signal.SIGTERM)
+    except (ProcessLookupError, PermissionError):
+        pass
+    if process.poll() is None:
+        try:
+            process.wait(timeout=grace)
+        except subprocess.TimeoutExpired:
+            try:
+                os.killpg(process_group, signal.SIGKILL)
+            except (ProcessLookupError, PermissionError):
+                pass
+            try:
+                process.wait(timeout=grace)
+            except subprocess.TimeoutExpired as error:
+                raise ReviewFailure(
+                    ("cannot reap interrupted command", process_group)
+                ) from error
+    # The direct child may have exited while descendants remain in its group.
+    try:
+        os.killpg(process_group, signal.SIGKILL)
+    except (ProcessLookupError, PermissionError):
+        pass
+    deadline = time.monotonic() + grace
+    while process_group_exists(process_group) and time.monotonic() < deadline:
+        time.sleep(0.05)
+    require(not process_group_exists(process_group),
+            ("descendant process group survived termination", process_group))
+
+
+def run_captured(argv: list[str], *, cwd: Path,
+                 environment: dict[str, str],
+                 timeout_seconds: float) -> tuple[int, str]:
+    process = subprocess.Popen(
+        argv, cwd=cwd, env=environment, text=True,
+        stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+        start_new_session=True,
+    )
+    try:
+        output, _ = process.communicate(timeout=timeout_seconds)
+    except subprocess.TimeoutExpired as error:
+        terminate_process_group(process)
+        raise ReviewFailure(("captured command timeout", argv[0])) from error
+    except BaseException:
+        terminate_process_group(process)
+        raise
+    if process_group_exists(process.pid):
+        terminate_process_group(process)
+        raise ReviewFailure(("captured command left descendants", argv[0]))
+    return process.returncode, output
 
 
 def run_command(command: dict, *, workspace: Path, environment: dict[str, str],
@@ -176,12 +322,14 @@ def run_command(command: dict, *, workspace: Path, environment: dict[str, str],
     try:
         returncode = process.wait(timeout=timeout_seconds)
     except subprocess.TimeoutExpired as error:
-        try:
-            os.killpg(process.pid, signal.SIGKILL)
-        except ProcessLookupError:
-            pass
-        process.wait()
+        terminate_process_group(process)
         raise ReviewFailure(("command timeout", name, timeout_seconds)) from error
+    except BaseException:
+        terminate_process_group(process)
+        raise
+    if process_group_exists(process.pid):
+        terminate_process_group(process)
+        raise ReviewFailure(("command left descendant processes", name))
     elapsed = time.monotonic() - started
     transcript.flush()
     output_end = transcript.tell()
@@ -371,9 +519,22 @@ def run_phase(*, phase: str, package_root: Path, python: Path,
     workspace = phase_root / "workspace"
     phase_root.mkdir(parents=True, exist_ok=False)
     shutil.copytree(proof, workspace)
-    (workspace / ".venv").symlink_to(python.parent.parent, target_is_directory=True)
+    virtual_environment = python.parent.parent.resolve()
+    require((virtual_environment / "pyvenv.cfg").is_file(),
+            ("runner Python is not in a virtual environment", str(python)))
+    (workspace / ".venv").symlink_to(
+        virtual_environment, target_is_directory=True
+    )
     environment = deterministic_environment(workspace)
-    before = snapshot(workspace)
+    before = filesystem_inventory(workspace)
+    virtual_environment_before = filesystem_inventory(virtual_environment)
+    before_record = write_inventory(
+        phase_root / "workspace_inventory_before.json", workspace, before
+    )
+    virtual_environment_before_record = write_inventory(
+        phase_root / "virtual_environment_inventory_before.json",
+        virtual_environment, virtual_environment_before,
+    )
     primary_path = workspace / "reproducibility/primary_gate_report.json"
     require(primary_path.is_file(), "canonical primary report missing")
     canonical_primary_bytes = primary_path.read_bytes()
@@ -389,10 +550,9 @@ def run_phase(*, phase: str, package_root: Path, python: Path,
                 (workspace / "ARCHIVE_MANIFEST.json").read_text()
             )["source_commit"],
             "python": str(python),
-            "environment": {key: environment[key] for key in (
-                "PYTHONDONTWRITEBYTECODE", "PYTHONHASHSEED", "LC_ALL", "LANG",
-                "TZ", "SOURCE_DATE_EPOCH",
-            )},
+            "environment": environment,
+            "umask": "0022",
+            "external_sandbox_attested": True,
             "runtime": runtime,
         }, sort_keys=True) + "\n")
         if phase == "verify":
@@ -416,12 +576,41 @@ def run_phase(*, phase: str, package_root: Path, python: Path,
     supplemental_outputs.append(bind_fresh_replay_report(
         workspace=workspace, phase_root=phase_root, package_root=package_root,
     ))
-    after = snapshot(workspace)
-    workspace_drift = drift(before, after)
+    after = filesystem_inventory(workspace)
+    virtual_environment_after = filesystem_inventory(virtual_environment)
+    after_record = write_inventory(
+        phase_root / "workspace_inventory_after.json", workspace, after
+    )
+    virtual_environment_after_record = write_inventory(
+        phase_root / "virtual_environment_inventory_after.json",
+        virtual_environment, virtual_environment_after,
+    )
+    for record in (
+        before_record, after_record,
+        virtual_environment_before_record, virtual_environment_after_record,
+    ):
+        record["path"] = Path(record["path"]).relative_to(package_root).as_posix()
+    complete_workspace_drift = drift(before, after)
+    all_changed_paths = drift_paths(complete_workspace_drift)
+    declared_runtime_paths = {
+        path for path in all_changed_paths
+        if path == "release/work" or path.startswith("release/work/")
+    }
+    undeclared_paths = all_changed_paths - declared_runtime_paths
+    workspace_drift = restrict_drift(complete_workspace_drift, undeclared_paths)
+    declared_runtime_drift = restrict_drift(
+        complete_workspace_drift, declared_runtime_paths
+    )
     require(workspace_drift == {"added": [], "removed": [], "changed": []},
             ("unexpected workspace drift", workspace_drift))
+    virtual_environment_drift = drift(
+        virtual_environment_before, virtual_environment_after
+    )
+    require(virtual_environment_drift == {
+        "added": [], "removed": [], "changed": [],
+    }, ("virtual-environment drift", virtual_environment_drift))
     report = {
-        "schema": "k3p-independent-referee-run-v1",
+        "schema": "k3p-independent-referee-run-v2",
         "status": "PASS",
         "phase": phase,
         "command_count": len(records),
@@ -429,7 +618,23 @@ def run_phase(*, phase: str, package_root: Path, python: Path,
         "supplemental_outputs": supplemental_outputs,
         "runtime": runtime,
         "elapsed_seconds": time.monotonic() - started,
+        "execution_boundary": {
+            "child_environment_allowlist": sorted(environment),
+            "external_sandbox_attested": True,
+            "external_sandbox_enforced_by_runner": False,
+            "umask": "0022",
+            "workspace_copy_is_git_free": True,
+        },
+        "filesystem_inventories": {
+            "workspace_before": before_record,
+            "workspace_after": after_record,
+            "virtual_environment_before": virtual_environment_before_record,
+            "virtual_environment_after": virtual_environment_after_record,
+        },
+        "complete_workspace_drift": complete_workspace_drift,
+        "declared_runtime_drift": declared_runtime_drift,
         "workspace_drift": workspace_drift,
+        "virtual_environment_drift": virtual_environment_drift,
         "transcript": {
             "path": transcript_path.relative_to(package_root).as_posix(),
             "bytes": transcript_path.stat().st_size,
@@ -442,19 +647,68 @@ def run_phase(*, phase: str, package_root: Path, python: Path,
     return report
 
 
-def run_integrity(package_root: Path, python: Path) -> None:
+def run_integrity(package_root: Path, python: Path,
+                  environment: dict[str, str]) -> None:
     command = [
         str(python), str(package_root / "referee_tools/verify_package_integrity.py"),
         "--package-root", str(package_root),
     ]
-    result = subprocess.run(
-        command, cwd=package_root, stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT, text=True, check=False, timeout=600,
+    returncode, output = run_captured(
+        command, cwd=package_root, environment=environment, timeout_seconds=600,
     )
-    require(result.returncode == 0 and
-            "K3P_REFEREE_PACKAGE_INTEGRITY_PASS" in result.stdout,
-            ("package integrity preflight failed", result.stdout[-4000:]))
-    print(result.stdout, end="")
+    require(returncode == 0 and
+            "K3P_REFEREE_PACKAGE_INTEGRITY_PASS" in output,
+            ("package integrity check failed", output[-4000:]))
+    print(output, end="")
+
+
+def acquire_lock(package_root: Path, mode: str) -> tuple[int, Path, tuple[int, int]]:
+    runtime = package_root / "review_runs"
+    runtime.mkdir(parents=True, exist_ok=True)
+    path = runtime / ".active_runner.lock"
+    try:
+        descriptor = os.open(path, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
+    except FileExistsError as error:
+        raise ReviewFailure((
+            "another runner owns the atomic lock; do not launch a duplicate; "
+            "after confirming that no runner remains, remove",
+            str(path),
+        )) from error
+    try:
+        record = json.dumps({
+            "schema": "k3p-referee-run-lock-v1",
+            "pid": os.getpid(),
+            "mode": mode,
+            "started_utc": dt.datetime.now(dt.timezone.utc).isoformat(),
+        }, sort_keys=True).encode("utf-8") + b"\n"
+        os.write(descriptor, record)
+        os.fsync(descriptor)
+        metadata = os.fstat(descriptor)
+        return descriptor, path, (metadata.st_dev, metadata.st_ino)
+    except BaseException:
+        os.close(descriptor)
+        try:
+            path.unlink()
+        except FileNotFoundError:
+            pass
+        raise
+
+
+def release_lock(lock: tuple[int, Path, tuple[int, int]]) -> None:
+    descriptor, path, identity = lock
+    try:
+        metadata = path.lstat()
+        require(not stat.S_ISLNK(metadata.st_mode) and
+                stat.S_ISREG(metadata.st_mode) and
+                (metadata.st_dev, metadata.st_ino) == identity,
+                ("runner lock was replaced", str(path)))
+        path.unlink()
+    finally:
+        os.close(descriptor)
+
+
+def interrupted(signum: int, _frame) -> None:
+    raise ReviewFailure(("runner interrupted by signal", signum))
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -470,26 +724,55 @@ def main(argv: list[str] | None = None) -> int:
     # symlink to the base interpreter, which would discard the venv context.
     python = (Path(os.path.abspath(args.python)) if args.python else
               package_root / ".venv/bin/python")
+    sandbox_attested = os.environ.get("K3P_REFEREE_EXTERNAL_SANDBOX") == "YES"
+    regeneration_confirmed = (
+        os.environ.get("K3P_REFEREE_CONFIRM_REGENERATION") == "YES"
+    )
+    os.umask(0o022)
+    lock = None
+    previous_handlers: dict[int, object] = {}
     try:
-        run_integrity(package_root, Path(sys.executable))
-        check_python(python)
-        runtime = runtime_metadata(python, package_root)
+        require(sandbox_attested,
+                "set K3P_REFEREE_EXTERNAL_SANDBOX=YES only after supplying "
+                "an external offline, credential-free sandbox")
+        lock = acquire_lock(package_root, args.mode)
+        for signum in (signal.SIGINT, signal.SIGTERM, signal.SIGHUP):
+            previous_handlers[signum] = signal.getsignal(signum)
+            signal.signal(signum, interrupted)
+        bootstrap_environment = control_environment(package_root, "0")
+        run_integrity(package_root, Path(sys.executable), bootstrap_environment)
+        manifest = json.loads(
+            (package_root / "proof_package/ARCHIVE_MANIFEST.json").read_text()
+        )
+        environment = control_environment(
+            package_root, str(manifest["source_date_epoch"])
+        )
+        os.environ.clear()
+        os.environ.update(environment)
+        check_python(python, environment)
+        runtime = runtime_metadata(python, package_root, environment)
         plan = load_plan(package_root)
         if args.mode == "plan":
             commands = regeneration_commands(
                 plan, python, package_root / "proof_package"
             )
+            run_integrity(package_root, Path(sys.executable), environment)
             print(json.dumps({
                 "status": "PASS",
+                "atomic_lock": "HELD_DURING_PLAN",
+                "child_environment_allowlist": sorted(environment),
+                "external_sandbox_attested": True,
+                "external_sandbox_enforced_by_runner": False,
+                "umask": "0022",
                 "mathematical_regeneration_commands": len(commands),
                 "ordered_names": [command["name"] for command in commands],
             }, sort_keys=True))
             print("K3P_REFEREE_REGENERATION_PLAN_PASS")
             return 0
         if args.mode in {"regenerate", "all"}:
-            require(os.environ.get("K3P_REFEREE_CONFIRM_REGENERATION") == "YES",
+            require(regeneration_confirmed,
                     "set K3P_REFEREE_CONFIRM_REGENERATION=YES for the long run")
-        stamp = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+        stamp = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%S.%fZ")
         session_root = package_root / "review_runs" / stamp
         session_root.mkdir(parents=True, exist_ok=False)
         phases = ["verify", "regenerate"] if args.mode == "all" else [args.mode]
@@ -497,9 +780,15 @@ def main(argv: list[str] | None = None) -> int:
             phase=phase, package_root=package_root, python=python,
             session_root=session_root, plan=plan, runtime=runtime,
         ) for phase in phases]
+        run_integrity(package_root, Path(sys.executable), environment)
         summary = {
             "status": "PASS",
             "mode": args.mode,
+            "atomic_lock": "HELD_DURING_RUN",
+            "external_sandbox_attested": True,
+            "external_sandbox_enforced_by_runner": False,
+            "umask": "0022",
+            "package_integrity_postflight": "PASS",
             "session_root": session_root.relative_to(package_root).as_posix(),
             "phases": [
                 {"phase": report["phase"],
@@ -514,10 +803,16 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps(summary, sort_keys=True))
         print("K3P_REFEREE_ACTIVE_VERIFIERS_PASS")
         return 0
-    except (ReviewFailure, OSError, UnicodeError, json.JSONDecodeError,
-            subprocess.SubprocessError, TypeError, ValueError) as error:
+    except (ReviewFailure, KeyboardInterrupt, OSError, UnicodeError,
+            json.JSONDecodeError, subprocess.SubprocessError,
+            TypeError, ValueError) as error:
         print(f"K3P_REFEREE_ACTIVE_VERIFIERS_FAIL: {error}", file=sys.stderr)
         return 1
+    finally:
+        for signum, handler in previous_handlers.items():
+            signal.signal(signum, handler)
+        if lock is not None:
+            release_lock(lock)
 
 
 if __name__ == "__main__":

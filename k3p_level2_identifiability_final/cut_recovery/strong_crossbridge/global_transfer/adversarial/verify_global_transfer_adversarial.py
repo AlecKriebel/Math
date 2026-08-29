@@ -7,9 +7,11 @@ the target-tree dichotomy on every labelled tree through seven vertices as an
 adversarial finite search, and rederives the K3P two-terminal side-blob
 closure from the character table and exact rational arithmetic.
 
-The finite tree search is falsification evidence.  The general tree lemma and
-the one-active word-compression proof are recorded in the accompanying audit
-and byte-bound to the authoritative JC manuscript and topology certificate.
+The finite tree search is falsification evidence.  The directed cut inclusion
+is checked from a self-contained K3P evidence object that binds the displayed-
+tree lemma, exact wrong-flattening minor, balanced-word reduction, and reduced-
+palette replay.  The legacy global-logic report and JC manuscript are not
+active inputs.
 """
 
 from __future__ import annotations
@@ -40,29 +42,41 @@ PATHS = {
     "local_verification": PROJECT / "cut_recovery/strong_crossbridge/final_certificate/VERIFICATION_REPORT.json",
     "local_mutations": PROJECT / "cut_recovery/strong_crossbridge/final_certificate/ADVERSARIAL_MUTATION_REPORT.json",
     "frozen_topology": PROJECT / "cut_recovery/upstream_frozen/corrected_jc_cut_certificate.json",
-    "jc_manuscript": PROJECT / "input_frozen/referenced_chat_manuscripts/jc_level2_source.tex",
     "model_domain": PROJECT / "model_domain/primary_exact_evidence.json",
     "marginal": PROJECT / "marginals/K3P_MARGINAL_SUBMERSION_CERTIFICATE.json",
-    "directed_logic": PROJECT / "cut_recovery/global_logic/CUT_GLOBAL_LOGIC_REPORT.json",
+    "cut_inclusion_evidence": PROJECT / "cut_recovery/strong_crossbridge/global_transfer/K3P_DIRECTED_CUT_INCLUSION_EVIDENCE.json",
+    "k3p_manuscript": PROJECT / "manuscript/sections/04_physical_topology.tex",
+    "displayed_tree_minor_verifier": PROJECT / "cut_recovery/strong_crossbridge/palette_independent/verify_displayed_tree_minor.py",
+    "balanced_word_producer": PROJECT / "cut_recovery/strong_crossbridge/palette_independent/enumerate_balanced_word_reduction.py",
+    "balanced_word_certificate": PROJECT / "cut_recovery/strong_crossbridge/palette_independent/BALANCED_WORD_REDUCTION_CERTIFICATE.json",
+    "reduced_palette_cleanroom": PROJECT / "cut_recovery/strong_crossbridge/palette_independent/verify_reduced_palette_cleanroom.py",
+    "reduced_palette_certificate": PROJECT / "cut_recovery/strong_crossbridge/palette_independent/REDUCED_PALETTE_CLEANROOM_CERTIFICATE.json",
+    "independent_combinatorics_replay": PROJECT / "cut_recovery/strong_crossbridge/palette_independent/verify_cut_combinatorics.py",
 }
 
 # These are deliberately hard-coded rather than copied from the audit JSON.
 # Any change to a load-bearing producer or frozen input invalidates this audit.
 EXPECTED_SHA256 = {
-    "global_certificate": "60516aad1d2e04b0b16dfa521af1da5502b2ed64b236be20bfa19a217b6fb0d4",
+    "global_certificate": "c713afe83db59ad395961273ae7ace691ee3a2f323f65b4600245545e24321f1",
     "global_universe": "c9f00df0c52bbdec1eb8601f7f9ba1652eb500ae5cf5c299fad3bb086411690f",
-    "global_builder": "d99ae6579fbacf18c713f0dac3045e49ccc93a42a8bed2f6861a3ad34f8a273b",
-    "global_verifier": "3f0333c34c141f98232f76356961eae43ccff6d250cf2a90f68a29f607d15f50",
-    "global_verification": "abfab5d0f06f11a15883cc66fa33ea4b878f21de05e06baef433ff64cb99178e",
+    "global_builder": "34d2a80cfe5aed91ca9098c3e3fb00a7ddece8dbedd762f9da051ff60ce361e3",
+    "global_verifier": "56dc79c1005cca4b502af0b6c2d260cdf730ea34cdf8b08daf2f35b0347cca47",
+    "global_verification": "cd55e4303475206e4cdf916638d0a02138ea9d7ae72386be527db7f70580b57d",
     "local_certificate": "643c29780219a538a5a127341ea91363aa5899d6f0f6fa1dac034889a7fdf06b",
     "local_universe": "674647dc91513ba85a2a72ed5f98d017c61f54ebb9e157975c14f5a94e4ddb9b",
     "local_verification": "210a29ae89b0cd579503a35d05bc06f6ea765f487d0e062020d2e3c7ec225046",
     "local_mutations": "caadd2a3cb9bea9bee272dfff40dacf9a10430577b379c54a1d009979da834bb",
     "frozen_topology": "edbd4afe566ed0ed5d1c518ffe5b21f8f224d547b9c351cb4e1a8c1c613ac086",
-    "jc_manuscript": "36cf89a4f05a8c0339237f2cb83fe255893e013a6b78ff76e412d453b66f0dbd",
     "model_domain": "ac21e4f795537f251377411841d670c1bad4ce06a69ed24f596252c11cb7afb6",
     "marginal": "9a90ba2e075fd20a4867e8a169aa933546b8fbca6feab23a2be7d25a24935d94",
-    "directed_logic": "f323625e9a629c62594df6a9ae90ca31582e0cb4fe878ddad66ddbf02be42d93",
+    "cut_inclusion_evidence": "6f3e37bdde95b60f0f598e09040841063e74c416cfdf518f288a5ddcc4b68d29",
+    "k3p_manuscript": "de19b751e20ef091f759f86fb4764e9c3c7ee938b1cf3fbdbd1d6a5ba1881b27",
+    "displayed_tree_minor_verifier": "56bf98a93b32248174f76161ad00ba5c7c81173edc0493b2bd79b90eeff90c27",
+    "balanced_word_producer": "3f7747eac4aa66034d554d80c8b34017d3e3ce472dd49a01fe753bd93f82cb6a",
+    "balanced_word_certificate": "23da98a065ca9e0feccfaf06831b8e788b63fb11003d19f07853d738a1031c01",
+    "reduced_palette_cleanroom": "406a7f63b4a04bd8f2ab78615bbb214fb107a8da42ad8e48f0eaa840ca8fc83f",
+    "reduced_palette_certificate": "79b6763bd10ed5876942cb43b4fb92a79ea6eb3252acf865f56a7c7eb565b758",
+    "independent_combinatorics_replay": "30e58475817d4f7a4f91521a4dead5f13d570535d8646a10e658e950f01d34cf",
 }
 
 
@@ -101,6 +115,261 @@ def verify_bindings(audit: dict) -> int:
         row = audit["input_sha256"][name]
         require(row == {"path": relative(path), "sha256": actual}, ("audit binding", name))
     return len(PATHS)
+
+
+def evidence_payload_digest(value: dict) -> str:
+    body = dict(value)
+    body.pop("payload_sha256", None)
+    return canonical_digest(body)
+
+
+def verify_cut_inclusion_evidence(audit: dict, evidence: dict | None = None) -> dict:
+    """Independently validate the active K3P premise for D1.
+
+    This deliberately does not import either the evidence producer or the
+    direct global-transfer verifier.  In particular, a coherently rehashed
+    substitution of the legacy report or JC manuscript remains invalid.
+    """
+    if evidence is None:
+        evidence = json.loads(PATHS["cut_inclusion_evidence"].read_text())
+    require(set(evidence) == {
+        "analytic_implication", "balanced_word_reduction", "claim",
+        "displayed_tree_minor", "load_bearing_inputs", "payload_sha256",
+        "provenance_policy", "reduced_palette_replay", "remaining_gaps",
+        "schema", "status",
+    }, "K3P directed-cut evidence key set")
+    require(evidence["schema"] == "k3p-directed-cut-inclusion-evidence-v1",
+            "K3P directed-cut evidence schema")
+    require(evidence["status"] == "PASS" and evidence["remaining_gaps"] == [],
+            "K3P directed-cut evidence status")
+    require(evidence["payload_sha256"] == evidence_payload_digest(evidence),
+            "K3P directed-cut evidence payload digest")
+    require(evidence["claim"] == {
+        "containment_identity":
+            "Phi_N=Phi_Nprime_comp_sigma_on_a_nonempty_source_open_set_U",
+        "conclusion": "Cut(Nprime)_subseteq_Cut(N)",
+        "source_regular_only": True,
+        "target_open_image_not_assumed": True,
+        "target_regular_not_assumed": True,
+    }, "K3P directed-cut evidence claim")
+
+    source_map = {
+        "displayed_tree_lemma": "k3p_manuscript",
+        "displayed_tree_minor_verifier": "displayed_tree_minor_verifier",
+        "balanced_word_producer": "balanced_word_producer",
+        "balanced_word_certificate": "balanced_word_certificate",
+        "reduced_palette_cleanroom": "reduced_palette_cleanroom",
+        "reduced_palette_certificate": "reduced_palette_certificate",
+        "independent_combinatorics_replay": "independent_combinatorics_replay",
+    }
+    bindings = evidence["load_bearing_inputs"]
+    require(set(bindings) == set(source_map), "K3P evidence input set")
+    for evidence_name, path_name in source_map.items():
+        path = PATHS[path_name]
+        expected = {"path": relative(path), "sha256": sha256(path)}
+        require(bindings[evidence_name] == expected,
+                ("K3P evidence active source binding", evidence_name))
+        lowered = expected["path"].lower()
+        require("global_logic" not in lowered and
+                "referenced_chat_manuscripts" not in lowered,
+                ("legacy premise path in active K3P evidence", evidence_name))
+
+    manuscript = " ".join(PATHS["k3p_manuscript"].read_text().split())
+    for snippet in (
+        r"\begin{lemma}[Displayed-tree witness for a noncut]",
+        r"\begin{proposition}[Generic noncut recovery]",
+        r"p_0p_1p_2p_3(1-u^2)>0",
+        r"\begin{corollary}[The easy directed cut inclusion]",
+        r"\operatorname{Cut}(N')\subseteq\operatorname{Cut}(N)",
+        r"\begin{lemma}[Balanced noncut compression]",
+        "808{,}642",
+        "379{,}742",
+        "zero all-switching survivors",
+    ):
+        require(" ".join(snippet.split()) in manuscript,
+                ("active K3P manuscript premise", snippet))
+
+    minor_source = PATHS["displayed_tree_minor_verifier"].read_text()
+    for snippet in (
+        "True quartet split 01|23, flattened across the wrong split 02|13",
+        "p0 * p1 * p2 * p3 * (1 - u**2)",
+        "nonzero_entries = (p0 * p1, p0 * p1, p0 * p1)",
+        "zero_minor.subs(u, 1)",
+    ):
+        require(snippet in minor_source, ("active exact-minor source", snippet))
+
+    primitive_families = [
+        "cycle", "theta_TR_nested", "theta_TR_separated",
+        "theta_TT_nested", "theta_TT_separated",
+    ]
+    family_roles = {(family, role) for family in primitive_families
+                    for role in ("root", "nonroot")}
+    balanced = json.loads(PATHS["balanced_word_certificate"].read_text())
+    require(set(balanced) == {
+        "enumeration_commitment_sha256", "failure_count", "failures",
+        "families", "mutation_results", "proof_partition", "schema",
+        "scope", "status", "totals",
+    }, "balanced-word certificate key set")
+    require(balanced["schema"] == "stc-jc-cut-palette-reduction-v1" and
+            balanced["status"] == "EXACTLY COMPUTED",
+            "balanced-word certificate schema/status")
+    require(balanced["failure_count"] == 0 and balanced["failures"] == [],
+            "balanced-word failures")
+    require(balanced["scope"] == {
+        "active_port_counts": [4, 5, 6, 7, 8],
+        "primitive_families": primitive_families,
+        "roles": ["root", "nonroot"],
+        "short_palette": [[], [0], [1], [0, 1], [1, 0]],
+    }, "balanced-word scope")
+    totals = {
+        "balanced_total": 808_642,
+        "direct_palette": 544_350,
+        "singleton_doubled_palette": 34_304,
+        "three_run_path_obstruction": 229_988,
+    }
+    require(balanced["totals"] == totals, "balanced-word totals")
+    require({(row["family"], row["role"]) for row in balanced["families"]}
+            == family_roles and len(balanced["families"]) == 10,
+            "balanced-word family/role coverage")
+    require({key: sum(row["counts"][key] for row in balanced["families"])
+             for key in totals} == totals, "balanced-word family sums")
+    require(len(balanced["mutation_results"]) == 3 and
+            all(row["rejected"] is True for row in balanced["mutation_results"]),
+            "balanced-word mutations")
+
+    palette = json.loads(PATHS["reduced_palette_certificate"].read_text())
+    require(set(palette) == {
+        "failures", "families", "palette", "record_commitment_sha256",
+        "schema", "status", "survivor_count",
+        "total_valid_palette_presentations",
+    }, "reduced-palette certificate key set")
+    require(palette["schema"] == "stc-jc-reduced-palette-cleanroom-v1" and
+            palette["status"] == "EXACTLY COMPUTED",
+            "reduced-palette certificate schema/status")
+    require(palette["palette"] == [[], [0], [1], [0, 1], [1, 0]],
+            "reduced palette")
+    require({(row["core"], row["role"]) for row in palette["families"]}
+            == family_roles and len(palette["families"]) == 10,
+            "reduced-palette family/role coverage")
+    valid_presentations = sum(
+        row["valid_balanced_compressed"] + row["valid_singleton_doubled"]
+        for row in palette["families"]
+    )
+    require(valid_presentations ==
+            palette["total_valid_palette_presentations"] == 379_742,
+            "reduced-palette presentation count")
+    require(palette["survivor_count"] == 0 and palette["failures"] == [] and
+            sum(row["survivor_count"] for row in palette["families"]) == 0,
+            "reduced-palette zero survivors")
+
+    require(evidence["balanced_word_reduction"] == {
+        "enumeration_commitment_sha256":
+            balanced["enumeration_commitment_sha256"],
+        "failure_count": 0,
+        "families": 10,
+        "mutation_count": 3,
+        "totals": totals,
+    }, "bound balanced-word summary")
+    require(evidence["reduced_palette_replay"] == {
+        "families": 10,
+        "record_commitment_sha256": palette["record_commitment_sha256"],
+        "survivors": 0,
+        "valid_presentations": 379_742,
+    }, "bound reduced-palette summary")
+
+    # Derive both determinant terms from the displayed block.  Exponents are
+    # ordered (p0,p1,p2,p3,u); the three one-character anchors add (3,3,0,0,0).
+    minor = evidence["displayed_tree_minor"]
+    require(isinstance(minor, dict), "displayed-tree minor evidence present")
+    require(set(minor) == {
+        "augmentation_entries", "boundary_to_strict_physical_by_continuity",
+        "displayed_quartet_split", "five_minor_factorization",
+        "five_minor_terms", "strict_domain", "strict_nonzero",
+        "variable_order", "wrong_flattening", "zero_character_block",
+        "zero_minor_factorization", "zero_minor_terms",
+    }, "displayed-tree minor key set")
+    require(minor["displayed_quartet_split"] == "01|23" and
+            minor["wrong_flattening"] == "02|13" and
+            minor["variable_order"] == ["p0", "p1", "p2", "p3", "u"],
+            "displayed-tree split convention")
+    require(minor["zero_character_block"] == [
+        ["1", "p1*p3*u"],
+        ["p0*p2*u", "p0*p1*p2*p3"],
+    ], "displayed-tree zero-character block")
+    zero_terms = [
+        {"coefficient": 1, "exponents": [1, 1, 1, 1, 0]},
+        {"coefficient": -1, "exponents": [1, 1, 1, 1, 2]},
+    ]
+    require(minor["zero_minor_terms"] == zero_terms and
+            minor["zero_minor_factorization"] ==
+                "p0*p1*p2*p3*(1-u^2)",
+            "displayed-tree zero-minor derivation")
+    five_terms = [
+        {"coefficient": row["coefficient"],
+         "exponents": [exponent + addition for exponent, addition in
+                       zip(row["exponents"], [3, 3, 0, 0, 0])]}
+        for row in zero_terms
+    ]
+    require(minor["augmentation_entries"] == ["p0*p1"] * 3 and
+            minor["five_minor_terms"] == five_terms and
+            minor["five_minor_factorization"] ==
+                "p0^4*p1^4*p2*p3*(1-u^2)",
+            "displayed-tree five-minor derivation")
+    require(minor["strict_domain"] == "0<p0,p1,p2,p3,u<1" and
+            minor["strict_nonzero"] is True and
+            minor["boundary_to_strict_physical_by_continuity"] is True,
+            "displayed-tree strict physical implication")
+
+    expected_implication = {
+        "containment_identity": (),
+        "source_noncut": (),
+        "displayed_switching": ("source_noncut",),
+        "wrong_quartet": ("displayed_switching",),
+        "source_noncut_nonzero": ("wrong_quartet",),
+        "target_cut_vanishing": (),
+        "composition_pullback":
+            ("containment_identity", "target_cut_vanishing"),
+        "open_set_contradiction":
+            ("source_noncut_nonzero", "composition_pullback"),
+        "directed_conclusion": ("open_set_contradiction",),
+    }
+    implication = evidence["analytic_implication"]
+    require([row["id"] for row in implication] == list(expected_implication),
+            "directed-cut implication order")
+    seen = set()
+    for row in implication:
+        require(set(row) == {"id", "depends_on", "claim"},
+                ("directed-cut implication row", row.get("id")))
+        require(tuple(row["depends_on"]) == expected_implication[row["id"]],
+                ("directed-cut implication dependencies", row["id"]))
+        require(set(row["depends_on"]) <= seen,
+                ("directed-cut implication topological order", row["id"]))
+        require(isinstance(row["claim"], str) and row["claim"],
+                ("directed-cut implication claim", row["id"]))
+        seen.add(row["id"])
+    require(implication[-1]["claim"] == "Cut(Nprime)_subseteq_Cut(N)",
+            "directed-cut implication conclusion")
+    require(evidence["provenance_policy"] == {
+        "jc_algebra_used": False,
+        "jc_manuscript_is_load_bearing": False,
+        "legacy_global_logic_report_is_load_bearing": False,
+        "model_independent_graph_certificate_names_retained": True,
+    }, "directed-cut provenance policy")
+
+    facts = {
+        "schema": evidence["schema"],
+        "conclusion": evidence["claim"]["conclusion"],
+        "balanced_words": totals["balanced_total"],
+        "palette_presentations": valid_presentations,
+        "palette_survivors": palette["survivor_count"],
+        "exact_minor_terms": len(five_terms),
+        "implication_steps": len(implication),
+        "legacy_global_logic_used": False,
+        "jc_cut_theorem_used": False,
+    }
+    require(audit["directed_cut_inclusion_evidence"] == facts,
+            "stored K3P directed-cut evidence facts")
+    return facts
 
 
 def permute_mask(mask: int, old_order: tuple[int, ...]) -> int:
@@ -590,31 +859,93 @@ EXPECTED_LOGICAL_STEPS = (
 )
 
 
-def verify_logic(audit: dict) -> dict:
+EXPECTED_GLOBAL_DEPENDENCIES = {
+    "H0": (),
+    "K0": (),
+    "D1": ("H0", "K0"),
+    "L0": ("H0",),
+    "L1": ("L0",),
+    "T1": ("L0", "L1"),
+    "T2": ("D1", "L0", "T1"),
+    "T3": ("T1", "T2"),
+    "T4": ("T3",),
+    "M1": ("H0", "T4"),
+    "S1": ("H0", "T4"),
+    "P1": ("M1", "L0"),
+    "P2": ("T4", "S1"),
+    "X": ("M1", "P1", "P2"),
+    "C": ("D1", "X"),
+}
+
+
+def verify_global_proof_structure(global_certificate: dict) -> int:
+    require(global_certificate["schema"] ==
+            "k3p-lost-bridge-global-transfer-certificate-v2",
+            "global producer schema")
+    proof = global_certificate["proof_steps"]
+    require([row["id"] for row in proof] == list(EXPECTED_GLOBAL_DEPENDENCIES),
+            "global proof DAG ids")
+    by_id = {row["id"]: row for row in proof}
+    require(len(by_id) == len(proof), "global proof DAG duplicate ids")
+    seen = set()
+    for step_id, dependencies in EXPECTED_GLOBAL_DEPENDENCIES.items():
+        require(tuple(by_id[step_id]["depends_on"]) == dependencies,
+                ("global proof dependency", step_id))
+        require(set(dependencies) <= seen,
+                ("global proof topological order", step_id))
+        seen.add(step_id)
+    require("K3P displayed-tree" in by_id["K0"]["claim"],
+            "K0 active K3P premise")
+    require("Cut(Nprime) subset Cut(N)" in by_id["D1"]["claim"],
+            "D1 inclusion orientation")
+    require("exact wrong-quartet minor" in by_id["D1"]["reason"],
+            "D1 exact K3P minor")
+    require(by_id["D1"]["depends_on"] == ["H0", "K0"],
+            "D1 consumes K0")
+    require("two-boundary side blob" in by_id["T3"]["claim"],
+            "T3 side blobs")
+    require("convex mixture" in by_id["S1"]["reason"],
+            "S1 convex mixture")
+    require(by_id["P2"]["depends_on"] == ["T4", "S1"],
+            "P2 physical dependency")
+    return len(proof)
+
+
+def verify_logic(audit: dict, cut_facts: dict) -> dict:
     global_certificate = json.loads(PATHS["global_certificate"].read_text())
     global_verification = json.loads(PATHS["global_verification"].read_text())
-    directed = json.loads(PATHS["directed_logic"].read_text())
     marginal = json.loads(PATHS["marginal"].read_text())
-    manuscript = PATHS["jc_manuscript"].read_text()
 
     require(global_certificate["status"] == "PASS" and global_certificate["blocked_reason"] is None,
             "global producer status")
+    proof_count = verify_global_proof_structure(global_certificate)
     require(global_verification["status"] == "PASS", "global verification status")
+    require(global_verification["schema"] ==
+            "k3p-lost-bridge-global-transfer-verification-v2",
+            "global verification schema")
     require(global_verification["artifact_sha256"] == sha256(PATHS["global_certificate"]),
             "global verification artifact binding")
     require(global_verification["universe_sha256"] == sha256(PATHS["global_universe"]),
             "global verification universe binding")
-    require(global_verification["mutation_count"] == 30, "producer mutation count")
+    require(global_verification["cut_evidence_sha256"] ==
+            sha256(PATHS["cut_inclusion_evidence"]),
+            "global verification K3P evidence binding")
+    require(global_verification["mutation_count"] == 39,
+            "producer mutation count")
     require(global_verification["two_terminal_mixture_components_checked"] == 7,
             "producer side-mixture component checks")
+    require(global_verification["proof_step_count"] == proof_count == 15,
+            "producer proof step count")
+    require(global_verification["cut_inclusion_evidence"] == {
+        "balanced_words": cut_facts["balanced_words"],
+        "implication_steps": cut_facts["implication_steps"],
+        "jc_cut_theorem_used": False,
+        "legacy_global_logic_used": False,
+        "minor_terms": cut_facts["exact_minor_terms"],
+        "palette_presentations": cut_facts["palette_presentations"],
+        "palette_survivors": cut_facts["palette_survivors"],
+    }, "producer K3P evidence summary")
 
-    proof_ids = [row["id"] for row in global_certificate["proof_steps"]]
-    require(proof_ids == ["H0", "D1", "L0", "L1", "T1", "T2", "T3", "T4",
-                          "M1", "S1", "P1", "P2", "X", "C"], "global proof DAG ids")
-    by_id = {row["id"]: row for row in global_certificate["proof_steps"]}
-    require("two-boundary side blob" in by_id["T3"]["claim"], "T3 side blobs")
-    require("convex mixture" in by_id["S1"]["reason"], "S1 convex mixture")
-    require(by_id["P2"]["depends_on"] == ["T4", "S1"], "P2 physical dependency")
     require(global_certificate["strict_physical_marginal"]["two_terminal_blob_mixture_identities"] == {
         "probability_coordinate": "p_eff(h)=sum_s w_s*p_s(h)>0",
         "spectrum_lower_margin": "x_eff=sum_s w_s*x_s>0",
@@ -623,32 +954,10 @@ def verify_logic(audit: dict) -> dict:
         "switching_weights": "w_s>0 and sum_s w_s=1",
     }, "producer mixture identities")
 
-    require(directed["generic_cut_consequences"]["proved_inclusion"] ==
-            "Cut(N_prime)_subseteq_Cut(N)", "directed inclusion orientation")
-    require(directed["generic_cut_consequences"]["reverse_inclusion_proved"] is False,
-            "historical reverse inclusion must remain unproved there")
     require(marginal["source_relative_open_image"]["direct_marginal_of_original_containment"] is True,
             "direct marginal")
     require(marginal["source_relative_open_image"]["target_marginal_openness_used"] is False,
             "target marginal openness")
-
-    # Bind the authoritative topology proof statements used in the handoff.
-    snippets = (
-        r"\begin{lemma}[Crossing-quartet reduction]",
-        "its central configuration is either one active component or one",
-        r"\begin{lemma}[Noncut-preserving word compression]",
-        "at least two actual labels of each color",
-        "every path-sink child",
-        "balanced four-through-eight-port binary word distributions",
-        "zero survivors",
-        "ordinary tree quartet criterion then gives two actual labels of each colour",
-        "The four-port compiler enumerates exactly these $72$ active-labelled tensors",
-        "gives one strict minor for each of the other $204$ directions",
-    )
-    normalized_manuscript = " ".join(manuscript.split())
-    for snippet in snippets:
-        require(" ".join(snippet.split()) in normalized_manuscript,
-                ("missing authoritative topology text", snippet))
 
     noncircularity = audit["noncircularity"]
     require(noncircularity == {
@@ -658,14 +967,35 @@ def verify_logic(audit: dict) -> dict:
         "target_open_parameter_section_used": False,
         "target_regular_point_used": False,
         "source_target_factor_correspondence_used": False,
-        "only_prior_cut_direction": "Cut(Nprime)_subseteq_Cut(N)",
+        "directed_cut_inclusion_proved_here": "Cut(Nprime)_subseteq_Cut(N)",
+        "legacy_global_logic_report_used": False,
+        "jc_model_cut_theorem_used": False,
     }, "audit noncircularity contract")
     require(global_certificate["noncircularity"]["common_bridge_tree_assumed"] is False,
             "producer common bridge tree")
     require(global_certificate["noncircularity"]["fourteen_orbit_classification_imported"] is False,
             "producer fourteen-orbit use")
+    require(global_certificate["noncircularity"]["legacy_global_logic_report_used"] is False,
+            "producer legacy global-logic use")
+    require(global_certificate["noncircularity"]["jc_model_cut_theorem_used"] is False,
+            "producer JC cut theorem use")
+    require(global_certificate["k3p_directed_cut_inclusion_evidence_pass"] is True,
+            "producer active K3P evidence pass")
     require(global_certificate["rank_transfer"]["target_openness_needed"] is False,
             "producer target openness")
+
+    require(audit["certificate_dependency_repair"] == {
+        "active_jc_manuscript_dependency": False,
+        "active_legacy_global_logic_dependency": False,
+        "disposition": "CLOSED_BY_SELF_CONTAINED_K3P_EVIDENCE",
+        "initial_gap": "D1_consumed_the_legacy_blocked_global_logic_report_and_JC_manuscript_while_the_K3P_word_minor_evidence_was_parallel_only",
+        "replacement": "K0_binds_the_K3P_displayed_tree_lemma_exact_minor_balanced_word_certificate_and_zero_survivor_palette_and_D1_depends_on_K0",
+        "semantic_mutations_required": [
+            "coherently_resealed_legacy_provenance_substitution",
+            "coherently_resealed_exact_minor_removal",
+            "global_K0_dependency_deletion",
+        ],
+    }, "certificate dependency repair")
 
     require(audit["finding_during_audit"] == {
         "disposition": "CLOSED_BY_PATCH_AND_INDEPENDENT_REPLAY",
@@ -688,10 +1018,11 @@ def verify_logic(audit: dict) -> dict:
     require(audit["remaining_gaps"] == [], "remaining gaps")
     require(audit["status"] == "PASS", "audit status")
     return {
-        "producer_proof_steps": len(proof_ids),
+        "producer_proof_steps": proof_count,
         "adversarial_logical_steps": len(steps),
         "producer_mutations_bound": global_verification["mutation_count"],
-        "authoritative_topology_snippets": len(snippets),
+        "active_k3p_implication_steps": cut_facts["implication_steps"],
+        "active_legacy_premises": 0,
     }
 
 
@@ -722,19 +1053,21 @@ def verify_manifest() -> int:
 
 def verify(audit_path: Path, check_manifest: bool = False) -> dict:
     audit = json.loads(audit_path.read_text())
-    require(audit["schema"] == "k3p-global-transfer-adversarial-audit-v1", "audit schema")
+    require(audit["schema"] == "k3p-global-transfer-adversarial-audit-v2", "audit schema")
     bindings = verify_bindings(audit)
+    cut_evidence = verify_cut_inclusion_evidence(audit)
     finite = verify_direction_universe(audit)
     trees = verify_tree_dichotomy(audit)
     side = verify_k3p_side_blob_closure(audit)
-    logic = verify_logic(audit)
+    logic = verify_logic(audit, cut_evidence)
     manifest_rows = verify_manifest() if check_manifest else 0
     return {
-        "schema": "k3p-global-transfer-adversarial-verification-v1",
+        "schema": "k3p-global-transfer-adversarial-verification-v2",
         "status": "PASS",
         "audit_sha256": sha256(audit_path),
         "verifier_sha256": sha256(Path(__file__).resolve()),
         "bound_inputs": bindings,
+        "directed_cut_inclusion_evidence": cut_evidence,
         "finite_handoff": finite,
         "tree_dichotomy": trees,
         "side_blob_closure": side,
@@ -744,6 +1077,8 @@ def verify(audit_path: Path, check_manifest: bool = False) -> dict:
         "universal_pointwise_cut_claim_used": False,
         "common_bridge_tree_used": False,
         "fourteen_orbit_used": False,
+        "legacy_global_logic_used": False,
+        "jc_cut_theorem_used": False,
         "remaining_gaps": [],
     }
 

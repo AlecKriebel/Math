@@ -24,7 +24,7 @@ import sys
 Q = Fraction
 NAMES = "0CGT"
 SECTORS = ["C", "G", "T"]
-CUT_TRANSFER_THEOREM_SHA256 = "b5163a9840e7ceaa0bdbe9a5730b6a65109fcedc28ac8e39e1af81083c25c77a"
+CUT_TRANSFER_THEOREM_SHA256 = "faa304207cde5f08321f44b9c885480cfcc5b4bfb1b6f96fad995b6e7778a22c"
 CUT_TRANSFER_CLAIM = (
     "For binary standard semi-directed strongly tree-child level-2 networks "
     "under source-relative regular full-dimensional containment on strict D3,+, "
@@ -38,8 +38,10 @@ CUT_TRANSFER_BOUNDARY = {
 CUT_TRANSFER_NONCIRCULARITY = {
     "bridge_tree_equality_assumed": False,
     "common_bridge_tree_assumed": False,
+    "directed_cut_inclusion_proved_here": "Cut(Nprime) subset Cut(N)",
     "fourteen_orbit_classification_imported": False,
-    "only_preexisting_cut_direction_used": "Cut(Nprime) subset Cut(N)",
+    "jc_model_cut_theorem_used": False,
+    "legacy_global_logic_report_used": False,
     "reverse_direction_proved_here": "Cut(N) subset Cut(Nprime)",
     "target_open_marginal_assumed": False,
     "target_regular_point_assumed": False,
@@ -47,6 +49,7 @@ CUT_TRANSFER_NONCIRCULARITY = {
 CUT_TRANSFER_FILE_SET = {
     "GLOBAL_TRANSFER_AUDIT.md", "GLOBAL_TRANSFER_CERTIFICATE.json",
     "GLOBAL_TRANSFER_DIRECTION_UNIVERSE.json", "OPTIMIZED_VERIFICATION_REPORT.json",
+    "K3P_DIRECTED_CUT_INCLUSION_EVIDENCE.json",
     "README.md", "RELEASE_OPTIMIZED_VERIFICATION_REPORT.json",
     "RELEASE_VERIFICATION_REPORT.json", "VERIFICATION_REPORT.json", "WORK_LOG.md",
     "adversarial/ADVERSARIAL_GLOBAL_TRANSFER_AUDIT.json",
@@ -54,11 +57,12 @@ CUT_TRANSFER_FILE_SET = {
     "adversarial/MUTATION_RESULTS.json", "adversarial/VERIFICATION_REPORT.json",
     "adversarial/WORK_LOG.md", "adversarial/test_global_transfer_adversarial_mutations.py",
     "adversarial/verify_global_transfer_adversarial.py", "build_global_transfer.py",
-    "build_manifest.py", "verify_global_transfer.py", "verify_release.py",
+    "build_k3p_cut_inclusion_evidence.py", "build_manifest.py",
+    "verify_global_transfer.py", "verify_release.py",
 }
 CUT_TRANSFER_LOAD_BEARING_PATHS = {
-    "directed_cut_inclusion_audit": "cut_recovery/global_logic/CUT_GLOBAL_LOGIC_REPORT.json",
     "frozen_strong_topology": "cut_recovery/upstream_frozen/corrected_jc_cut_certificate.json",
+    "k3p_directed_cut_inclusion_evidence": "cut_recovery/strong_crossbridge/global_transfer/K3P_DIRECTED_CUT_INCLUSION_EVIDENCE.json",
     "pointwise_204_adversarial_mutations": "cut_recovery/strong_crossbridge/final_certificate/ADVERSARIAL_MUTATION_REPORT.json",
     "pointwise_204_certificate": "cut_recovery/strong_crossbridge/final_certificate/STRONG_CROSSBRIDGE_FINAL_CERTIFICATE.json",
     "pointwise_204_independent_verification": "cut_recovery/strong_crossbridge/final_certificate/VERIFICATION_REPORT.json",
@@ -629,6 +633,10 @@ def verify_cut_transfer_interface(project: Path, interface: dict) -> dict:
             "cut-transfer interface circularity")
     require(interface["universal_pointwise_K3P_cut_recovery_used"] is False,
             "universal pointwise theorem used")
+    require(interface["legacy_global_logic_report_used"] is False,
+            "legacy global-logic report used")
+    require(interface["jc_model_cut_theorem_used"] is False,
+            "JC model cut theorem used")
     require(interface["accepted_as_pass"] is True and interface["validation_errors"] == [],
             "cut-transfer generator validation")
 
@@ -638,7 +646,7 @@ def verify_cut_transfer_interface(project: Path, interface: dict) -> dict:
             "cut-transfer theorem manifest hash")
     theorem = load(theorem_path)
     require(theorem_record["schema"] == theorem["schema"] ==
-            "k3p-lost-bridge-global-transfer-theorem-manifest-v1",
+            "k3p-lost-bridge-global-transfer-theorem-manifest-v2",
             "cut-transfer theorem schema")
     require(theorem_record["reported_status"] == theorem["status"] == "PASS",
             "cut-transfer theorem status")
@@ -663,6 +671,20 @@ def verify_cut_transfer_interface(project: Path, interface: dict) -> dict:
         path = project / record["path"]
         require(path.is_file() and digest_file(path) == record["sha256"],
                 f"cut-transfer load-bearing hash {name}")
+    cut_evidence_record = theorem["load_bearing_inputs"][
+        "k3p_directed_cut_inclusion_evidence"
+    ]
+    require(interface["active_k3p_cut_inclusion_evidence"] == cut_evidence_record,
+            "global interface K3P cut-evidence binding")
+    cut_evidence = load(project / cut_evidence_record["path"])
+    require(cut_evidence["schema"] == "k3p-directed-cut-inclusion-evidence-v1" and
+            cut_evidence["status"] == "PASS" and
+            cut_evidence["remaining_gaps"] == [],
+            "global interface K3P cut-evidence status")
+    require(cut_evidence["provenance_policy"][
+        "legacy_global_logic_report_is_load_bearing"
+    ] is False and cut_evidence["provenance_policy"]["jc_algebra_used"] is False,
+            "global interface K3P cut-evidence provenance")
     require(theorem_record["sha256"] == CUT_TRANSFER_THEOREM_SHA256,
             "sealed cut-transfer theorem manifest hash")
 
@@ -683,7 +705,7 @@ def verify_cut_transfer_interface(project: Path, interface: dict) -> dict:
                 f"cut-transfer {mode} release hash")
         report = load(path)
         require(report["schema"] ==
-                "k3p-lost-bridge-global-transfer-release-verification-v1",
+                "k3p-lost-bridge-global-transfer-release-verification-v2",
                 f"cut-transfer {mode} release schema")
         require(report["status"] == record["reported_status"] == "PASS" and
                 report["remaining_gaps"] == [], f"cut-transfer {mode} release status")
@@ -699,6 +721,27 @@ def verify_cut_transfer_interface(project: Path, interface: dict) -> dict:
         require(report["producer"]["direction_count"] == 204 and
                 report["adversarial"]["direction_count"] == 204,
                 f"cut-transfer {mode} direction coverage")
+        require(report["producer"]["proof_step_count"] == 15 and
+                report["producer"]["mutation_count"] == 39 and
+                report["producer"]["cut_inclusion_evidence"][
+                    "legacy_global_logic_used"
+                ] is False and
+                report["producer"]["cut_inclusion_evidence"][
+                    "jc_cut_theorem_used"
+                ] is False,
+                f"cut-transfer {mode} self-contained K3P cut evidence")
+        require(report["bindings"]["k3p_cut_inclusion_evidence"] ==
+                cut_evidence_record,
+                f"cut-transfer {mode} K3P cut-evidence binding")
+        require(report["adversarial"]["mutation_count"] == 35,
+                f"cut-transfer {mode} adversarial mutation coverage")
+        require(report["adversarial"]["cut_inclusion_evidence"][
+                    "legacy_global_logic_used"
+                ] is False and
+                report["adversarial"]["cut_inclusion_evidence"][
+                    "jc_cut_theorem_used"
+                ] is False,
+                f"cut-transfer {mode} adversarial K3P cut evidence")
         require(report["adversarial"]["tree_colorings_checked"] == 19270 and
                 report["adversarial"]["tree_counterexamples"] == 0,
                 f"cut-transfer {mode} topology audit")
@@ -732,7 +775,7 @@ def verify_cut_transfer_interface(project: Path, interface: dict) -> dict:
                 summaries.append(value)
         require(summaries and summaries[-1] == {
             "status": "PASS", "directions": 204, "tree_colorings": 19270,
-            "adversarial_mutations": 32, "python_optimized": optimized_flag,
+            "adversarial_mutations": 35, "python_optimized": optimized_flag,
         }, f"fresh cut-transfer {mode} release summary")
         fresh[mode] = summaries[-1]
 

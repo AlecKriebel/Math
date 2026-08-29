@@ -1144,7 +1144,7 @@ def validate_noncut_witness_evidence(project: Path, bindings: dict) -> None:
 def validate_cut_transfer(project: Path, bindings: dict) -> None:
     gate_path = "reproducibility/strong_class_cut_transfer_gate_report.json"
     gate = load(project, gate_path)
-    require(gate.get("schema") == "k3p-strong-class-cut-transfer-active-gate-v1" and
+    require(gate.get("schema") == "k3p-strong-class-cut-transfer-active-gate-v2" and
             gate.get("status") == "PASS" and gate.get("remaining_gaps") == [],
             "cut-transfer active gate")
     require(gate.get("claim_boundary") == EXPECTED_CUT_BOUNDARY,
@@ -1156,14 +1156,36 @@ def validate_cut_transfer(project: Path, bindings: dict) -> None:
         summary = fresh.get(mode, {}).get("summary", {})
         require(summary == {
             "status": "PASS", "directions": 204, "tree_colorings": 19_270,
-            "adversarial_mutations": 32, "python_optimized": optimized,
+            "adversarial_mutations": 35, "python_optimized": optimized,
         }, ("cut release mode", mode))
-    require(gate.get("producer_summary", {}).get("direction_count") == 204,
-            "cut producer universe")
+    require(gate.get("producer_summary") == {
+        "cut_inclusion_evidence": {
+            "balanced_words": 808_642,
+            "implication_steps": 9,
+            "jc_cut_theorem_used": False,
+            "legacy_global_logic_used": False,
+            "minor_terms": 2,
+            "palette_presentations": 379_742,
+            "palette_survivors": 0,
+        },
+        "direction_count": 204,
+        "mutation_count": 39,
+        "proof_step_count": 15,
+        "two_terminal_mixture_components_checked": 7,
+    }, "cut producer universe and active K3P premise")
     require(gate.get("adversarial_summary") == {
+        "cut_inclusion_evidence": {
+            "balanced_words": 808_642,
+            "exact_minor_terms": 2,
+            "implication_steps": 9,
+            "jc_cut_theorem_used": False,
+            "legacy_global_logic_used": False,
+            "palette_presentations": 379_742,
+            "palette_survivors": 0,
+        },
         "direction_count": 204,
         "manifest_rows_checked": 7,
-        "mutation_count": 32,
+        "mutation_count": 35,
         "side_blob_switching_components": 7,
         "tree_colorings_checked": 19_270,
         "tree_counterexamples": 0,
@@ -1171,7 +1193,9 @@ def validate_cut_transfer(project: Path, bindings: dict) -> None:
     theorem_binding = gate.get("theorem_manifest", {})
     verify_file_binding(project, theorem_binding["path"], theorem_binding["sha256"])
     theorem = load(project, theorem_binding["path"])
-    require(theorem.get("status") == "PASS", "cut theorem manifest")
+    require(theorem.get("schema") ==
+            "k3p-lost-bridge-global-transfer-theorem-manifest-v2" and
+            theorem.get("status") == "PASS", "cut theorem manifest")
     require(theorem.get("independent_adversarial_audit", {}).get("claim_boundary") ==
             EXPECTED_CUT_BOUNDARY, "cut theorem boundary")
     noncircularity = theorem.get("noncircularity", {})
@@ -1179,20 +1203,69 @@ def validate_cut_transfer(project: Path, bindings: dict) -> None:
             noncircularity.get("bridge_tree_equality_assumed") is False and
             noncircularity.get("fourteen_orbit_classification_imported") is False and
             noncircularity.get("target_open_marginal_assumed") is False and
-            noncircularity.get("target_regular_point_assumed") is False,
+            noncircularity.get("target_regular_point_assumed") is False and
+            noncircularity.get("legacy_global_logic_report_used") is False and
+            noncircularity.get("jc_model_cut_theorem_used") is False and
+            noncircularity.get("directed_cut_inclusion_proved_here") ==
+            "Cut(Nprime) subset Cut(N)",
             "cut-transfer circularity")
+
+    evidence_path = (
+        "cut_recovery/strong_crossbridge/global_transfer/"
+        "K3P_DIRECTED_CUT_INCLUSION_EVIDENCE.json"
+    )
+    evidence_binding = theorem.get("load_bearing_inputs", {}).get(
+        "k3p_directed_cut_inclusion_evidence", {}
+    )
+    require(evidence_binding.get("path") == evidence_path,
+            "active D1 evidence path")
+    verify_file_binding(project, evidence_path, evidence_binding.get("sha256"))
+    forbidden = {
+        "cut_recovery/global_logic/CUT_GLOBAL_LOGIC_REPORT.json",
+        "input_frozen/referenced_chat_manuscripts/jc_level2_source.tex",
+    }
+    require(not forbidden.intersection(
+        record.get("path") for record in theorem.get("load_bearing_inputs", {}).values()
+        if isinstance(record, dict)
+    ), "legacy JC premise in active D1 cone")
+    evidence = load(project, evidence_path)
+    verify_payload(evidence, "K3P directed-cut inclusion evidence")
+    require(evidence.get("schema") == "k3p-directed-cut-inclusion-evidence-v1" and
+            evidence.get("status") == "PASS" and
+            evidence.get("remaining_gaps") == [] and
+            evidence.get("claim", {}).get("conclusion") ==
+            "Cut(Nprime)_subseteq_Cut(N)" and
+            evidence.get("claim", {}).get("target_regular_not_assumed") is True and
+            evidence.get("claim", {}).get("target_open_image_not_assumed") is True and
+            evidence.get("provenance_policy") == {
+                "jc_algebra_used": False,
+                "jc_manuscript_is_load_bearing": False,
+                "legacy_global_logic_report_is_load_bearing": False,
+                "model_independent_graph_certificate_names_retained": True,
+            } and
+            evidence.get("balanced_word_reduction", {}).get("totals", {}).get(
+                "balanced_total") == 808_642 and
+            evidence.get("reduced_palette_replay", {}).get(
+                "valid_presentations") == 379_742 and
+            evidence.get("reduced_palette_replay", {}).get("survivors") == 0 and
+            evidence.get("displayed_tree_minor", {}).get(
+                "five_minor_factorization") ==
+            "p0^4*p1^4*p2*p3*(1-u^2)" and
+            len(evidence.get("analytic_implication", [])) == 9,
+            "active K3P D1 implication")
 
     mutation_path = "reproducibility/CUT_TRANSFER_GATE_MUTATION_REPORT.json"
     mutation = load(project, mutation_path)
-    require(mutation.get("schema") == "k3p-strong-class-cut-transfer-gate-mutations-v1" and
+    require(mutation.get("schema") == "k3p-strong-class-cut-transfer-gate-mutations-v2" and
             mutation.get("status") == "PASS", "cut mutation status")
-    require(mutation.get("mutation_count") == mutation.get("rejected_count") == 12 and
+    require(mutation.get("mutation_count") == mutation.get("rejected_count") == 16 and
             mutation.get("survived_count") == 0 and
             len(mutation.get("clean_replays", [])) == 2 and
             all(row.get("result") == "PASS" for row in mutation["clean_replays"]),
             "cut mutation census and ordinary/optimized safeguards")
     for relative, value in ((gate_path, gate), (mutation_path, mutation),
-                            (theorem_binding["path"], theorem)):
+                            (theorem_binding["path"], theorem),
+                            (evidence_path, evidence)):
         bindings[relative] = bind(project, relative, value)
 
 

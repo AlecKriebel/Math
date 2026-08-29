@@ -23,7 +23,7 @@ HERE = Path(__file__).resolve().parent
 DEFAULT_PROJECT = HERE.parent
 TRANSFER_RELATIVE = Path("cut_recovery/strong_crossbridge/global_transfer")
 DEFAULT_REPORT = HERE / "strong_class_cut_transfer_gate_report.json"
-EXPECTED_THEOREM_SHA256 = "b5163a9840e7ceaa0bdbe9a5730b6a65109fcedc28ac8e39e1af81083c25c77a"
+EXPECTED_THEOREM_SHA256 = "faa304207cde5f08321f44b9c885480cfcc5b4bfb1b6f96fad995b6e7778a22c"
 
 EXPECTED_CLAIM = (
     "For binary standard semi-directed strongly tree-child level-2 networks "
@@ -35,11 +35,20 @@ EXPECTED_CLAIM_BOUNDARY = {
     "strong_class_cut_transfer": "PROVED",
     "universal_pointwise_K3P_cut_recovery": "WITHDRAWN_NOT_USED",
 }
+EXPECTED_DIRECTED_CUT_MECHANISM = (
+    "A self-contained K3P displayed-tree specialization, the exact "
+    "wrong-quartet 5x5 minor, the 808642-word balanced reduction, and "
+    "the 379742-presentation reduced-palette replay prove "
+    "Cut(Nprime) subset Cut(N) without a JC cut theorem or the legacy "
+    "global-logic report."
+)
 EXPECTED_NONCIRCULARITY = {
     "bridge_tree_equality_assumed": False,
     "common_bridge_tree_assumed": False,
+    "directed_cut_inclusion_proved_here": "Cut(Nprime) subset Cut(N)",
     "fourteen_orbit_classification_imported": False,
-    "only_preexisting_cut_direction_used": "Cut(Nprime) subset Cut(N)",
+    "jc_model_cut_theorem_used": False,
+    "legacy_global_logic_report_used": False,
     "reverse_direction_proved_here": "Cut(N) subset Cut(Nprime)",
     "target_open_marginal_assumed": False,
     "target_regular_point_assumed": False,
@@ -48,6 +57,7 @@ EXPECTED_THEOREM_FILES = {
     "GLOBAL_TRANSFER_AUDIT.md",
     "GLOBAL_TRANSFER_CERTIFICATE.json",
     "GLOBAL_TRANSFER_DIRECTION_UNIVERSE.json",
+    "K3P_DIRECTED_CUT_INCLUSION_EVIDENCE.json",
     "OPTIMIZED_VERIFICATION_REPORT.json",
     "README.md",
     "RELEASE_OPTIMIZED_VERIFICATION_REPORT.json",
@@ -63,13 +73,14 @@ EXPECTED_THEOREM_FILES = {
     "adversarial/test_global_transfer_adversarial_mutations.py",
     "adversarial/verify_global_transfer_adversarial.py",
     "build_global_transfer.py",
+    "build_k3p_cut_inclusion_evidence.py",
     "build_manifest.py",
     "verify_global_transfer.py",
     "verify_release.py",
 }
 EXPECTED_LOAD_BEARING_PATHS = {
-    "directed_cut_inclusion_audit": "cut_recovery/global_logic/CUT_GLOBAL_LOGIC_REPORT.json",
     "frozen_strong_topology": "cut_recovery/upstream_frozen/corrected_jc_cut_certificate.json",
+    "k3p_directed_cut_inclusion_evidence": "cut_recovery/strong_crossbridge/global_transfer/K3P_DIRECTED_CUT_INCLUSION_EVIDENCE.json",
     "pointwise_204_adversarial_mutations": "cut_recovery/strong_crossbridge/final_certificate/ADVERSARIAL_MUTATION_REPORT.json",
     "pointwise_204_certificate": "cut_recovery/strong_crossbridge/final_certificate/STRONG_CROSSBRIDGE_FINAL_CERTIFICATE.json",
     "pointwise_204_independent_verification": "cut_recovery/strong_crossbridge/final_certificate/VERIFICATION_REPORT.json",
@@ -157,7 +168,7 @@ def invoke_release(transfer: Path, optimized: bool) -> dict:
         "status": "PASS",
         "directions": 204,
         "tree_colorings": 19270,
-        "adversarial_mutations": 32,
+        "adversarial_mutations": 35,
         "python_optimized": optimized,
     }
     require(result.returncode == 0, ("release verifier exit", optimized, result.stdout))
@@ -173,7 +184,7 @@ def invoke_release(transfer: Path, optimized: bool) -> dict:
 def validate_release_report(path: Path, optimized: bool, release_sha: str) -> dict:
     report = load(path)
     require(
-        report.get("schema") == "k3p-lost-bridge-global-transfer-release-verification-v1",
+        report.get("schema") == "k3p-lost-bridge-global-transfer-release-verification-v2",
         ("release report schema", path.name),
     )
     require(report.get("status") == "PASS" and report.get("remaining_gaps") == [],
@@ -188,15 +199,33 @@ def validate_release_report(path: Path, optimized: bool, release_sha: str) -> di
     require(report.get("adversarial_verifier_imported") is False,
             ("adversarial verifier imported into release gate", path.name))
     require(report.get("producer") == {
+        "cut_inclusion_evidence": {
+            "balanced_words": 808642,
+            "implication_steps": 9,
+            "jc_cut_theorem_used": False,
+            "legacy_global_logic_used": False,
+            "minor_terms": 2,
+            "palette_presentations": 379742,
+            "palette_survivors": 0,
+        },
         "direction_count": 204,
-        "mutation_count": 30,
-        "proof_step_count": 14,
+        "mutation_count": 39,
+        "proof_step_count": 15,
         "two_terminal_mixture_components_checked": 7,
     }, ("producer release summary", path.name))
     require(report.get("adversarial") == {
+        "cut_inclusion_evidence": {
+            "balanced_words": 808642,
+            "exact_minor_terms": 2,
+            "implication_steps": 9,
+            "jc_cut_theorem_used": False,
+            "legacy_global_logic_used": False,
+            "palette_presentations": 379742,
+            "palette_survivors": 0,
+        },
         "direction_count": 204,
         "manifest_rows_checked": 7,
-        "mutation_count": 32,
+        "mutation_count": 35,
         "side_blob_switching_components": 7,
         "tree_colorings_checked": 19270,
         "tree_counterexamples": 0,
@@ -218,11 +247,14 @@ def verify_gate(project: Path, transfer: Path) -> dict:
     release_path = transfer / "verify_release.py"
     release_sha = sha256(release_path)
 
-    require(theorem.get("schema") == "k3p-lost-bridge-global-transfer-theorem-manifest-v1",
+    require(theorem.get("schema") == "k3p-lost-bridge-global-transfer-theorem-manifest-v2",
             "cut-transfer theorem manifest schema")
     require(theorem.get("status") == "PASS", "cut-transfer theorem manifest status")
     require(theorem.get("certified_claim") == EXPECTED_CLAIM,
             "universal pointwise recovery substituted for directional strong-class theorem")
+    require(theorem.get("directed_cut_inclusion_mechanism") ==
+            EXPECTED_DIRECTED_CUT_MECHANISM,
+            "self-contained K3P directed cut-inclusion mechanism")
     require(theorem.get("independent_adversarial_audit", {}).get("claim_boundary") ==
             EXPECTED_CLAIM_BOUNDARY,
             "withdrawn universal pointwise claim boundary")
@@ -245,6 +277,20 @@ def verify_gate(project: Path, transfer: Path) -> dict:
             "cut-transfer load-bearing input set")
     for name, record in sorted(load_bearing.items()):
         project_binding(project, record, EXPECTED_LOAD_BEARING_PATHS[name])
+    cut_evidence_path = project / EXPECTED_LOAD_BEARING_PATHS[
+        "k3p_directed_cut_inclusion_evidence"
+    ]
+    cut_evidence = load(cut_evidence_path)
+    require(cut_evidence.get("schema") == "k3p-directed-cut-inclusion-evidence-v1" and
+            cut_evidence.get("status") == "PASS" and
+            cut_evidence.get("remaining_gaps") == [],
+            "active K3P cut-inclusion evidence status")
+    require(cut_evidence.get("provenance_policy") == {
+        "jc_algebra_used": False,
+        "jc_manuscript_is_load_bearing": False,
+        "legacy_global_logic_report_is_load_bearing": False,
+        "model_independent_graph_certificate_names_retained": True,
+    }, "active K3P cut-inclusion evidence provenance")
 
     audit = theorem["independent_adversarial_audit"]
     project_binding(project, audit["audit"], EXPECTED_AUDIT_PATHS["audit"])
@@ -260,6 +306,10 @@ def verify_gate(project: Path, transfer: Path) -> dict:
     optimized_path = transfer / "RELEASE_OPTIMIZED_VERIFICATION_REPORT.json"
     ordinary = validate_release_report(ordinary_path, False, release_sha)
     optimized = validate_release_report(optimized_path, True, release_sha)
+    require(ordinary["bindings"]["k3p_cut_inclusion_evidence"] ==
+            optimized["bindings"]["k3p_cut_inclusion_evidence"] ==
+            load_bearing["k3p_directed_cut_inclusion_evidence"],
+            "release/theorem K3P cut-evidence agreement")
     require(project_binding(
         project, audit["release_report"], EXPECTED_AUDIT_PATHS["release_report"]
     )["sha256"] == sha256(ordinary_path),
@@ -274,7 +324,7 @@ def verify_gate(project: Path, transfer: Path) -> dict:
             "cut-transfer direction coverage")
     require(validation.get("local_pointwise_targets_bound") == 204,
             "local pointwise handoff coverage")
-    require(validation.get("proof_DAG_steps") == 14,
+    require(validation.get("proof_DAG_steps") == 15,
             "cut-transfer proof DAG")
     require(validation.get("ordinary_replay") == validation.get("optimized_replay") == "PASS",
             "producer ordinary/optimized replay")
@@ -283,8 +333,8 @@ def verify_gate(project: Path, transfer: Path) -> dict:
             "release ordinary/optimized replay")
     require(validation.get("adversarial_tree_counterexamples") == 0,
             "crossing-quartet topology counterexample")
-    require(validation.get("global_transfer_mutations_rejected") == 30 and
-            validation.get("adversarial_mutations_rejected") == 32,
+    require(validation.get("global_transfer_mutations_rejected") == 39 and
+            validation.get("adversarial_mutations_rejected") == 35,
             "cut-transfer mutation coverage")
     require(sha256(theorem_path) == EXPECTED_THEOREM_SHA256,
             "sealed cut-transfer theorem manifest hash")
@@ -292,7 +342,7 @@ def verify_gate(project: Path, transfer: Path) -> dict:
     ordinary_replay = invoke_release(transfer, False)
     optimized_replay = invoke_release(transfer, True)
     return {
-        "schema": "k3p-strong-class-cut-transfer-active-gate-v1",
+        "schema": "k3p-strong-class-cut-transfer-active-gate-v2",
         "status": "PASS",
         "certified_claim": EXPECTED_CLAIM,
         "claim_boundary": EXPECTED_CLAIM_BOUNDARY,

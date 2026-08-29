@@ -177,6 +177,10 @@ def regeneration_commands(python: str, allow_uncommitted: bool) -> list[Command]
         Command("cut_final_mutations", [python,
             "cut_recovery/strong_crossbridge/final_certificate/run_adversarial_mutations.py"],
             timeout_seconds=14_400),
+        Command("cut_k3p_directed_inclusion_evidence_build", [python,
+            "cut_recovery/strong_crossbridge/global_transfer/"
+            "build_k3p_cut_inclusion_evidence.py"],
+            "K3P_DIRECTED_CUT_INCLUSION_EVIDENCE_PASS", 3_600),
         Command("cut_global_transfer_build", [python,
             "cut_recovery/strong_crossbridge/global_transfer/build_global_transfer.py"],
             timeout_seconds=14_400),

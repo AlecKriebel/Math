@@ -1,0 +1,203 @@
+{
+  "analytic_implication": [
+    {
+      "claim": "Phi_N=Phi_Nprime_comp_sigma_on_a_nonempty_source_open_set_U",
+      "depends_on": [],
+      "id": "containment_identity"
+    },
+    {
+      "claim": "the_candidate_split_is_not_a_source_bridge_split",
+      "depends_on": [],
+      "id": "source_noncut"
+    },
+    {
+      "claim": "the_hull_or_balanced_compression_argument_supplies_a_displayed_tree_that_does_not_display_the_split",
+      "depends_on": [
+        "source_noncut"
+      ],
+      "id": "displayed_switching"
+    },
+    {
+      "claim": "four_actual_labels_give_a_wrong_quartet",
+      "depends_on": [
+        "displayed_switching"
+      ],
+      "id": "wrong_quartet"
+    },
+    {
+      "claim": "a_source_noncut_has_a_nonzero_5x5_minor_polynomial_by_the_displayed_tree_specialization",
+      "depends_on": [
+        "wrong_quartet"
+      ],
+      "id": "source_noncut_nonzero"
+    },
+    {
+      "claim": "every_target_5x5_flattening_minor_vanishes_identically",
+      "depends_on": [],
+      "id": "target_cut_vanishing"
+    },
+    {
+      "claim": "the_same_minor_vanishes_on_the_source_open_set_U",
+      "depends_on": [
+        "containment_identity",
+        "target_cut_vanishing"
+      ],
+      "id": "composition_pullback"
+    },
+    {
+      "claim": "a_nonzero_real_polynomial_cannot_vanish_on_U",
+      "depends_on": [
+        "source_noncut_nonzero",
+        "composition_pullback"
+      ],
+      "id": "open_set_contradiction"
+    },
+    {
+      "claim": "Cut(Nprime)_subseteq_Cut(N)",
+      "depends_on": [
+        "open_set_contradiction"
+      ],
+      "id": "directed_conclusion"
+    }
+  ],
+  "balanced_word_reduction": {
+    "enumeration_commitment_sha256": "d1689148591bf30c0796796bc7df2fd091164210564432a023e03a2109cc1a86",
+    "failure_count": 0,
+    "families": 10,
+    "mutation_count": 3,
+    "totals": {
+      "balanced_total": 808642,
+      "direct_palette": 544350,
+      "singleton_doubled_palette": 34304,
+      "three_run_path_obstruction": 229988
+    }
+  },
+  "claim": {
+    "conclusion": "Cut(Nprime)_subseteq_Cut(N)",
+    "containment_identity": "Phi_N=Phi_Nprime_comp_sigma_on_a_nonempty_source_open_set_U",
+    "source_regular_only": true,
+    "target_open_image_not_assumed": true,
+    "target_regular_not_assumed": true
+  },
+  "displayed_tree_minor": {
+    "augmentation_entries": [
+      "p0*p1",
+      "p0*p1",
+      "p0*p1"
+    ],
+    "boundary_to_strict_physical_by_continuity": true,
+    "displayed_quartet_split": "01|23",
+    "five_minor_factorization": "p0^4*p1^4*p2*p3*(1-u^2)",
+    "five_minor_terms": [
+      {
+        "coefficient": 1,
+        "exponents": [
+          4,
+          4,
+          1,
+          1,
+          0
+        ]
+      },
+      {
+        "coefficient": -1,
+        "exponents": [
+          4,
+          4,
+          1,
+          1,
+          2
+        ]
+      }
+    ],
+    "strict_domain": "0<p0,p1,p2,p3,u<1",
+    "strict_nonzero": true,
+    "variable_order": [
+      "p0",
+      "p1",
+      "p2",
+      "p3",
+      "u"
+    ],
+    "wrong_flattening": "02|13",
+    "zero_character_block": [
+      [
+        "1",
+        "p1*p3*u"
+      ],
+      [
+        "p0*p2*u",
+        "p0*p1*p2*p3"
+      ]
+    ],
+    "zero_minor_factorization": "p0*p1*p2*p3*(1-u^2)",
+    "zero_minor_terms": [
+      {
+        "coefficient": 1,
+        "exponents": [
+          1,
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      {
+        "coefficient": -1,
+        "exponents": [
+          1,
+          1,
+          1,
+          1,
+          2
+        ]
+      }
+    ]
+  },
+  "load_bearing_inputs": {
+    "balanced_word_certificate": {
+      "path": "cut_recovery/strong_crossbridge/palette_independent/BALANCED_WORD_REDUCTION_CERTIFICATE.json",
+      "sha256": "23da98a065ca9e0feccfaf06831b8e788b63fb11003d19f07853d738a1031c01"
+    },
+    "balanced_word_producer": {
+      "path": "cut_recovery/strong_crossbridge/palette_independent/enumerate_balanced_word_reduction.py",
+      "sha256": "3f7747eac4aa66034d554d80c8b34017d3e3ce472dd49a01fe753bd93f82cb6a"
+    },
+    "displayed_tree_lemma": {
+      "path": "manuscript/sections/04_physical_topology.tex",
+      "sha256": "de19b751e20ef091f759f86fb4764e9c3c7ee938b1cf3fbdbd1d6a5ba1881b27"
+    },
+    "displayed_tree_minor_verifier": {
+      "path": "cut_recovery/strong_crossbridge/palette_independent/verify_displayed_tree_minor.py",
+      "sha256": "56bf98a93b32248174f76161ad00ba5c7c81173edc0493b2bd79b90eeff90c27"
+    },
+    "independent_combinatorics_replay": {
+      "path": "cut_recovery/strong_crossbridge/palette_independent/verify_cut_combinatorics.py",
+      "sha256": "30e58475817d4f7a4f91521a4dead5f13d570535d8646a10e658e950f01d34cf"
+    },
+    "reduced_palette_certificate": {
+      "path": "cut_recovery/strong_crossbridge/palette_independent/REDUCED_PALETTE_CLEANROOM_CERTIFICATE.json",
+      "sha256": "79b6763bd10ed5876942cb43b4fb92a79ea6eb3252acf865f56a7c7eb565b758"
+    },
+    "reduced_palette_cleanroom": {
+      "path": "cut_recovery/strong_crossbridge/palette_independent/verify_reduced_palette_cleanroom.py",
+      "sha256": "406a7f63b4a04bd8f2ab78615bbb214fb107a8da42ad8e48f0eaa840ca8fc83f"
+    }
+  },
+  "payload_sha256": "0ad0a62aca278ccd5555203b1287e674c7f9b299ff796bd7c0b7e3b3d9232ac9",
+  "provenance_policy": {
+    "jc_algebra_used": false,
+    "jc_manuscript_is_load_bearing": false,
+    "legacy_global_logic_report_is_load_bearing": false,
+    "model_independent_graph_certificate_names_retained": true
+  },
+  "reduced_palette_replay": {
+    "families": 10,
+    "record_commitment_sha256": "570d8eafe2b50405a7e28695dee35ef79a5d3926653248a5a3e7ad6d49d35482",
+    "survivors": 0,
+    "valid_presentations": 379742
+  },
+  "remaining_gaps": [],
+  "schema": "k3p-directed-cut-inclusion-evidence-v1",
+  "status": "PASS"
+}

@@ -156,3 +156,14 @@ The expanded global suite rejects **18/18** mutations with payload
 `d48195050ccce19a5cb41159217b5bb32a0ee82c635ef41e5c8cd687186f3967`.
 The historical uncapped formula and 16-mutation census above are superseded,
 not silently rewritten.
+
+## 2026-08-29 — directed cut-inclusion dependency replacement
+
+Completion estimate for the global-infrastructure subprogram remains **100%**.
+The strong-class cut-transfer interface now binds the self-contained K3P
+displayed-tree/minor/word/palette evidence object. Its proof DAG has 15 nodes;
+the direct layer rejects 39/39 mutations and the independent adversarial layer
+rejects 35/35. The retired global-logic report and the JC cut theorem are
+explicitly rejected as active premises. Only the fast dependency cone is
+replayed for this binding-only revision; unchanged multi-hour atlas and probe
+producers are not rerun.

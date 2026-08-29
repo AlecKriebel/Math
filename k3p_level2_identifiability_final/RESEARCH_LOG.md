@@ -1349,3 +1349,52 @@ Best-guess completion toward the mathematical classification and referee-repair
 goals: **100%**.  Best-guess completion toward the local paper/certification
 package goal: **100%**.  Best-guess completion toward the external
 journal/DOI release goal: **70%**.
+
+## 2026-08-29T08:30:00-07:00 — second-referee certificate-DAG repair
+
+- Reviewed the new referee report finding by finding.  I agreed with mandatory
+  certificate-fidelity finding C1, reproducibility findings R1/R2, and the two
+  optional literature phrases P1.  I found no new theorem-level defect.
+- Replaced the stale JC/global-logic premise at the directed cut-inclusion node
+  with a self-contained K3P evidence object.  It binds the displayed-tree
+  specialization and exact nonzero five-by-five minor, the 808,642-word
+  balanced reduction, the independent 379,742-presentation reduced-palette
+  replay with zero survivors, and a nine-step analytic implication.  The
+  global proof DAG now has 15 checked nodes and an explicit K3P-evidence edge.
+- The direct cut-transfer verifier passes and rejects 39/39 mutations.  The
+  separately implemented adversarial replay passes with zero counterexamples
+  and rejects 35/35 mutations.  The downstream cut-claim gate rejects 16/16
+  mutations, the unchanged global-infrastructure suite rejects 19/19, the
+  28-entry primary gate passes, and the 86-binding integrated artifact gate
+  passes with all 27 theorem-boundary mutations rejected.
+- Hardened the independent-referee runner with a clean child environment,
+  atomic single-run lock, process-group cleanup, complete workspace and virtual
+  environment inventories, mode-aware package integrity, and an explicit
+  external sandbox/no-credential execution boundary.  Its focused lock,
+  timeout-descendant, inventory, integrity-mutation, and plan tests pass.  The
+  release-engineering suite rejects 32/32 mutations, and the release-input gate
+  passes in development mode with 108 active path bindings.
+- Applied the two referee-suggested literature wording refinements.  Updated
+  the paper and supplement crosswalks, exact counts, and artifact hashes.  The
+  fixed-epoch article and supplement rebuild to 38 and 14 pages, respectively,
+  with SHA-256 values
+  `a890b0b7675586f5f9f3ecd208e845ff86e9eaafda4c972e8fa48d05a45f2e9a`
+  and
+  `e82d1afb01f937872ec06ee1b1529fe736362c3496721b99813d8849ff7327e6`.
+  All fonts are embedded, the changed pages and complete contact sheets are
+  visually clean, and neither PDF nor any active TeX/Bib source contains the
+  retired internal outcome wording.
+- In accordance with the user's runtime constraint, no full four-port atlas,
+  hour-scale probe, restoration, sharpness, clean full, or 56-command unified
+  regeneration was repeated.  Their inputs and code are outside the changed
+  dependency cone.  Only the displayed-tree/combinatorics witnesses directly
+  consumed by C1 and the fast downstream gates affected by the repair were
+  replayed.
+
+Strongest verified result: the mathematical classification is unchanged, and
+the formerly stale D1 certificate dependency is now a self-contained,
+mutation-tested K3P dependency with downstream seals rebuilt.
+
+Best-guess completion toward this second-referee repair and handoff: **95%**.
+The remaining work is immutable-link commit/push, source-copy and referee-package
+refresh, and final clean repository/package audits.

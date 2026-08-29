@@ -60,3 +60,17 @@
 - Bound the adversarial manifest, report, audit, mutations, and ordinary and
   optimized release reports into the final theorem manifest.
 - Best-guess completion for this bounded proof audit: 100%.
+
+## 2026-08-29 — self-contained K3P directed-inclusion repair
+
+- Replaced the active legacy global-logic/JC-algebra premise for
+  `Cut(Nprime) subset Cut(N)` with a K3P evidence object binding the displayed-
+  tree lemma, exact wrong-quartet minor, 808,642-word balanced reduction, and
+  379,742-presentation zero-survivor palette replay.
+- Added proof node `K0`; `D1` now depends on `H0` and `K0`. The active proof
+  DAG has 15 nodes, and the direct verifier rejects 39/39 mutations, including
+  coherently resealed legacy-premise and missing-minor substitutions.
+- The independent adversarial layer now rejects 35/35 mutations and explicitly
+  validates the same K3P implication without importing either producer.
+- Best-guess completion for this bounded proof audit: 100%; the fast downstream
+  release, theorem-manifest, and active-gate reseals pass.

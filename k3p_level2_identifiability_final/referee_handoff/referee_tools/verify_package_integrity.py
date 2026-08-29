@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
-"""Verify the pristine delivered payload and canonical proof-core manifest.
+"""Verify the sealed delivered payload and canonical proof-core manifest.
 
 Reviewer-created ``.venv`` and ``review_runs`` directories are deliberately
-outside this seal.  After execution, use the runner's complete before/after
-inventory—not this check alone—to establish workspace drift.
+outside this seal, including their contents, modes, and symlink targets.  This
+gate binds bytes and modes of every delivered payload file; it does not inspect
+the compressed archive container itself.  After execution, use the runner's
+complete before/after inventories—not this check alone—to establish drift.
 """
 
 from __future__ import annotations
@@ -32,6 +34,10 @@ def sha256_file(path: Path) -> str:
         for block in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(block)
     return digest.hexdigest()
+
+
+def mode_string(mode: int) -> str:
+    return format(stat.S_IMODE(mode), "04o")
 
 
 def safe_relative(value: str) -> str:
@@ -74,6 +80,7 @@ def observed_payload(root: Path) -> dict[str, dict[str, object]]:
                 ("nonregular object forbidden in sealed payload", relative))
         result[relative] = {
             "bytes": metadata.st_size,
+            "mode": mode_string(metadata.st_mode),
             "sha256": sha256_file(path),
         }
     return result
@@ -85,6 +92,9 @@ def verify_outer(root: Path) -> dict[str, object]:
     require(manifest_path.is_file() and not manifest_path.is_symlink() and
             sums_path.is_file() and not sums_path.is_symlink(),
             "missing outer package manifest")
+    require(mode_string(manifest_path.lstat().st_mode) == "0644" and
+            mode_string(sums_path.lstat().st_mode) == "0644",
+            "outer manifest files must have mode 0644")
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     required = {
         "schema", "package_name", "package_builder_commit",
@@ -92,7 +102,7 @@ def verify_outer(root: Path) -> dict[str, object]:
         "payload_file_count", "payload_bytes", "payload",
     }
     require(set(manifest) == required and
-            manifest.get("schema") == "k3p-independent-referee-package-v1",
+            manifest.get("schema") == "k3p-independent-referee-package-v2",
             "outer package manifest schema")
     require(re.fullmatch(r"[0-9a-f]{40}", str(
                 manifest.get("package_builder_commit"))) is not None and
@@ -105,19 +115,27 @@ def verify_outer(root: Path) -> dict[str, object]:
     require(isinstance(rows, list), "outer package payload rows")
     expected: dict[str, dict[str, object]] = {}
     for row in rows:
-        require(isinstance(row, dict) and set(row) == {"path", "bytes", "sha256"},
+        require(isinstance(row, dict) and
+                set(row) == {"path", "bytes", "mode", "sha256"},
                 ("outer payload row", row))
         relative = safe_relative(row["path"])
         require(relative not in expected and isinstance(row["bytes"], int) and
-                row["bytes"] >= 0 and isinstance(row["sha256"], str) and
+                row["bytes"] >= 0 and
+                re.fullmatch(r"0[0-7]{3}", str(row["mode"])) is not None and
+                isinstance(row["sha256"], str) and
                 re.fullmatch(r"[0-9a-f]{64}", row["sha256"]) is not None,
                 ("outer payload row fields", relative))
-        expected[relative] = {"bytes": row["bytes"], "sha256": row["sha256"]}
+        expected[relative] = {
+            "bytes": row["bytes"], "mode": row["mode"],
+            "sha256": row["sha256"],
+        }
     observed = observed_payload(root)
     require(observed == expected,
             ("outer package payload mismatch",
              sorted(set(expected) - set(observed)),
-             sorted(set(observed) - set(expected))))
+             sorted(set(observed) - set(expected)),
+             sorted(path for path in set(expected) & set(observed)
+                    if expected[path] != observed[path])))
     require(manifest["payload_file_count"] == len(expected) and
             manifest["payload_bytes"] == sum(row["bytes"] for row in expected.values()),
             "outer payload totals")
@@ -147,7 +165,8 @@ def verify_outer(root: Path) -> dict[str, object]:
 def verify_inner(root: Path, proof_source_commit: str) -> dict[str, object]:
     proof = root / "proof_package"
     manifest_path = proof / "ARCHIVE_MANIFEST.json"
-    require(manifest_path.is_file(), "missing proof-core archive manifest")
+    require(manifest_path.is_file() and not manifest_path.is_symlink(),
+            "missing proof-core archive manifest")
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     require(manifest.get("source_commit") == proof_source_commit and
             manifest.get("kind") == "full_reproducibility",
@@ -172,11 +191,16 @@ def verify_inner(root: Path, proof_source_commit: str) -> dict[str, object]:
         path = proof / relative
         require(path.is_file() and not path.is_symlink() and
                 stat.S_ISREG(path.lstat().st_mode) and
+                mode_string(path.lstat().st_mode) == row["mode"] and
                 path.stat().st_size == row["bytes"] and
                 sha256_file(path) == row["sha256"],
                 ("proof-core member mismatch", relative))
         total += row["bytes"]
-    return {"core_member_count": len(rows), "core_member_bytes": total}
+    return {
+        "core_member_count": len(rows),
+        "core_member_bytes": total,
+        "core_member_modes_checked": True,
+    }
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -188,7 +212,16 @@ def main(argv: list[str] | None = None) -> int:
     try:
         outer = verify_outer(root)
         inner = verify_inner(root, outer["proof_source_commit"])
-        print(json.dumps({"status": "PASS", **outer, **inner}, sort_keys=True))
+        print(json.dumps({
+            "status": "PASS",
+            "seal_scope": {
+                "delivered_payload_bytes_and_modes": True,
+                "excluded_runtime_roots": [".venv", "review_runs"],
+                "compressed_archive_container_checked": False,
+                "inner_manifest_checks_declared_members": True,
+            },
+            **outer, **inner,
+        }, sort_keys=True))
         print("K3P_REFEREE_PACKAGE_INTEGRITY_PASS")
         return 0
     except (IntegrityFailure, OSError, UnicodeError, json.JSONDecodeError,

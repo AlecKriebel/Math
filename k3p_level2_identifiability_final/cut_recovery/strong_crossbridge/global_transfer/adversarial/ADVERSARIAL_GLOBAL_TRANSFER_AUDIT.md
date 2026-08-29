@@ -20,20 +20,44 @@ with two selected boundaries.  The patched certificate now has an explicit
 step `S1` for a positive inheritance mixture of displayed-path K3P kernels.
 The independent replay below proves that closure exactly.
 
-## 1. The only previously available direction
+A later certificate audit found a separate dependency-graph defect: step
+`D1` still consumed a blocked legacy global-logic report and a JC manuscript,
+while the new K3P word/minor evidence was checked only in parallel.  The
+repaired proof has an explicit `K0` premise and makes `D1` depend on `K0`.
+The active premise is now one self-contained K3P evidence object; neither the
+legacy report nor the JC theorem is an active input.
 
-The historical directed-logic audit proves
+## 1. Self-contained K3P directed cut inclusion
+
+The active K3P evidence proves
 
 ```
 Cut(Nprime) subset Cut(N).
 ```
 
 If a target split is a bridge, every target `5 x 5` cut minor vanishes after
-composition with the physical target section.  A source noncut has a nonzero
-minor polynomial by the displayed-tree boundary specialization and explicit
-quartet minor proved in the article.  A nonzero source
-polynomial cannot vanish on a relatively open regular source germ.  This
-uses no target regularity and proves no reverse inclusion by itself.
+composition with the physical target section.  For a source noncut, the
+displayed-tree lemma, balanced four-through-eight-port reduction, and
+zero-survivor five-word palette supply a displayed wrong quartet on actual
+labels.  The wrong-flattening zero-character block
+
+```
+[[1, p1*p3*u], [p0*p2*u, p0*p1*p2*p3]]
+```
+
+has determinant `p0*p1*p2*p3*(1-u^2)`.  Three positive one-character anchors
+augment it to the exact nonzero `5 x 5` minor
+`p0^4*p1^4*p2*p3*(1-u^2)`.  Continuity moves the displayed-tree boundary
+specialization into the strict physical domain.  A nonzero source polynomial
+cannot vanish on a relatively open regular source germ.  This uses no target
+regularity and proves no reverse inclusion by itself.
+
+The evidence object binds the displayed-tree lemma, exact-minor verifier,
+balanced-word producer and certificate, reduced-palette clean-room replay and
+certificate, and an independent combinatorics replay.  The audit recomputes
+the two determinant terms, the five-minor augmentation, all ten family/role
+totals (`808,642` balanced words), and all `379,742` palette presentations
+with zero survivors.  It also checks the nine-step analytic implication DAG.
 
 ## 2. Colored reduced-tree dichotomy
 
@@ -76,7 +100,7 @@ counterexamples.
 Choose one actual taxon from two distinct `A` branches and one from two
 distinct `B` branches.  Each branch has only one active selected taxon.
 
-The authoritative noncut word-compression lemma is applied to the complete
+The bound K3P noncut word-compression lemma is applied to the complete
 central factor, not to a fictitious already-pruned graph.  One minimum strong
 repair and every path-sink child port are retained.  Ports whose taxa are not
 among the four active labels remain physical completion roles with Fourier
@@ -162,6 +186,11 @@ target parameter section need not be open or regular because the local
 wrong-split certificate is pointwise.
 
 No universal pointwise K3P cut theorem is used or claimed.
+
+The mutation suite coherently reseals and then rejects replacement of the
+K3P displayed-tree premise by the legacy report, deletion of the exact minor,
+and deletion of the `K0 -> D1` proof dependency.  These checks prevent a
+hash-consistent regression to the former parallel-only evidence graph.
 
 ## 7. Replay
 

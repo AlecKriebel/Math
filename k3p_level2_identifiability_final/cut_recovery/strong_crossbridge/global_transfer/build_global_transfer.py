@@ -8,12 +8,14 @@ import hashlib
 import json
 from pathlib import Path
 
+from build_k3p_cut_inclusion_evidence import build_evidence
+
 
 HERE = Path(__file__).resolve().parent
 PROJECT = HERE.parents[2]
 FROZEN_TOPOLOGY = PROJECT / "cut_recovery/upstream_frozen/corrected_jc_cut_certificate.json"
 MARGINAL = PROJECT / "marginals/K3P_MARGINAL_SUBMERSION_CERTIFICATE.json"
-DIRECTED_LOGIC = PROJECT / "cut_recovery/global_logic/CUT_GLOBAL_LOGIC_REPORT.json"
+CUT_EVIDENCE = HERE / "K3P_DIRECTED_CUT_INCLUSION_EVIDENCE.json"
 LOCAL_FINAL = HERE.parent / "final_certificate/STRONG_CROSSBRIDGE_FINAL_CERTIFICATE.json"
 LOCAL_UNIVERSE = HERE.parent / "final_certificate/UNIVERSE_CERTIFICATE.json"
 LOCAL_VERIFICATION = HERE.parent / "final_certificate/VERIFICATION_REPORT.json"
@@ -174,10 +176,15 @@ def proof_steps():
             "claim": "Phi_N=Phi_Nprime∘sigma on a nonempty source-open regular set U; N,Nprime are binary standard semi-directed strongly tree-child level-2 networks on the same labels.",
         },
         {
+            "id": "K0",
+            "depends_on": [],
+            "claim": "The bound K3P displayed-tree, balanced-word, reduced-palette, and exact-minor evidence proves that every source noncut has a nonzero 5x5 flattening-minor polynomial.",
+        },
+        {
             "id": "D1",
-            "depends_on": ["H0"],
+            "depends_on": ["H0", "K0"],
             "claim": "Every target bridge split is a source bridge split: Cut(Nprime) subset Cut(N).",
-            "reason": "A target-cut 5x5 flattening minor vanishes after composition with sigma on U. If the split were a source noncut, isotropic-JC generic recovery gives a nonzero source polynomial, which cannot vanish on U.",
+            "reason": "A target-cut 5x5 flattening minor vanishes after composition with sigma on U. If the split were a source noncut, the K3P displayed-tree specialization and exact wrong-quartet minor give a nonzero source polynomial, which cannot vanish on U.",
         },
         {
             "id": "L0",
@@ -252,7 +259,8 @@ def proof_steps():
 def main():
     topology = json.loads(FROZEN_TOPOLOGY.read_text())
     marginal = json.loads(MARGINAL.read_text())
-    directed = json.loads(DIRECTED_LOGIC.read_text())
+    cut_evidence = json.loads(CUT_EVIDENCE.read_text())
+    expected_cut_evidence = build_evidence()
     universe = build_direction_universe(topology)
     atomic_json(UNIVERSE_OUTPUT, universe)
 
@@ -267,8 +275,17 @@ def main():
     source_relative = marginal["source_relative_open_image"]
     require(source_relative["direct_marginal_of_original_containment"] is True, "direct marginal")
     require(source_relative["target_marginal_openness_used"] is False, "target openness")
-    require(directed["generic_cut_consequences"]["proved_inclusion"] == "Cut(N_prime)_subseteq_Cut(N)", "directional inclusion")
-    require(directed["directed_relation"]["target_regular_not_assumed"] is True, "target regularity")
+    require(cut_evidence == expected_cut_evidence, "K3P directed cut evidence")
+    require(cut_evidence["claim"]["conclusion"] == "Cut(Nprime)_subseteq_Cut(N)",
+            "directional inclusion")
+    require(cut_evidence["claim"]["target_regular_not_assumed"] is True,
+            "target regularity")
+    require(cut_evidence["provenance_policy"] == {
+        "legacy_global_logic_report_is_load_bearing": False,
+        "jc_manuscript_is_load_bearing": False,
+        "jc_algebra_used": False,
+        "model_independent_graph_certificate_names_retained": True,
+    }, "K3P cut provenance policy")
 
     local_final = json.loads(LOCAL_FINAL.read_text()) if LOCAL_FINAL.is_file() else None
     local_universe = json.loads(LOCAL_UNIVERSE.read_text()) if LOCAL_UNIVERSE.is_file() else None
@@ -300,7 +317,7 @@ def main():
     load_bearing = {
         "frozen_strong_topology": binding(FROZEN_TOPOLOGY),
         "selected_marginal": binding(MARGINAL),
-        "directed_cut_inclusion_audit": binding(DIRECTED_LOGIC),
+        "k3p_directed_cut_inclusion_evidence": binding(CUT_EVIDENCE),
         "recompiled_direction_universe": binding(UNIVERSE_OUTPUT),
         "pointwise_204_certificate": binding(LOCAL_FINAL) if LOCAL_FINAL.is_file() else None,
         "pointwise_204_universe": binding(LOCAL_UNIVERSE) if LOCAL_UNIVERSE.is_file() else None,
@@ -309,7 +326,7 @@ def main():
     }
     steps = proof_steps()
     payload = {
-        "schema": "k3p-lost-bridge-global-transfer-certificate-v1",
+        "schema": "k3p-lost-bridge-global-transfer-certificate-v2",
         "status": "PASS" if local_pass else "BLOCKED",
         "scope": {
             "network_class": "binary standard semi-directed strongly tree-child level-2",
@@ -324,7 +341,9 @@ def main():
             "fourteen_orbit_classification_imported": False,
             "target_regular_point_assumed": False,
             "target_open_marginal_assumed": False,
-            "only_preexisting_cut_direction_used": "Cut(Nprime) subset Cut(N)",
+            "legacy_global_logic_report_used": False,
+            "jc_model_cut_theorem_used": False,
+            "directed_cut_inclusion_proved_here": "Cut(Nprime) subset Cut(N)",
             "reverse_direction_proved_here": "Cut(N) subset Cut(Nprime)",
         },
         "trivial_split_handling": (
@@ -380,6 +399,7 @@ def main():
         },
         "proof_steps": steps,
         "proof_step_ids_sha256": digest([row["id"] for row in steps]),
+        "k3p_directed_cut_inclusion_evidence_pass": True,
         "local_204_dependency_pass": local_pass,
         "blocked_reason": None if local_pass else "The aggregate pointwise 204-direction certificate is missing, blocked, or does not match the independently rebuilt universe.",
     }

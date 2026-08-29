@@ -51,12 +51,14 @@ N\preceq_{3,+}N'\quad\Longrightarrow\quad
 \operatorname{Cut}(N)=\operatorname{Cut}(N').
 \]
 
-The same conclusion holds on the strict continuous-time subdomain.  The proof
-uses generic cut recovery for the direction
-`Cut(N') subset Cut(N)`, target/source bridge-split compatibility, and the
-complete 204-direction pointwise one-active cross-bridge obstruction for the
-reverse direction.  It assumes neither a common bridge tree nor the
-fourteen-orbit classification and therefore is available before localization.
+The same conclusion holds on the strict continuous-time subdomain.  A
+self-contained K3P displayed-tree specialization, the exact wrong-quartet
+five-by-five minor, and the exact balanced-word/reduced-palette replays prove
+`Cut(N') subset Cut(N)`.  Target/source bridge-split compatibility and the
+complete 204-direction pointwise one-active cross-bridge obstruction prove the
+reverse direction.  The argument uses neither the earlier JC cut theorem nor
+the legacy global-logic report, and it assumes neither a common bridge tree nor
+the fourteen-orbit classification.
 
 The earlier auxiliary assertion
 
@@ -220,7 +222,7 @@ conflation, or a proper directed containment inside the strong class.
 This is a mathematical certification, not a publication-status claim.  The
 targeted-referee-repair manuscript and reader supplement sources are complete,
 and their focused C1/C2 component and integrated artifact gates pass.  A clean
-quick/full/55-command regeneration, PDF reproduction, distribution-archive
+quick/full/56-command regeneration, PDF reproduction, distribution-archive
 reseal, and independent-referee handoff rebuild remain required at one exact
 pushed proof snapshot before this revision supersedes the preceding release
 ledger.  Journal-format packaging and human author review remain pending.  The

@@ -11,6 +11,7 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 CERTIFICATE = HERE / "GLOBAL_TRANSFER_CERTIFICATE.json"
 UNIVERSE = HERE / "GLOBAL_TRANSFER_DIRECTION_UNIVERSE.json"
+CUT_EVIDENCE = HERE / "K3P_DIRECTED_CUT_INCLUSION_EVIDENCE.json"
 REPORT = HERE / "VERIFICATION_REPORT.json"
 OPTIMIZED_REPORT = HERE / "OPTIMIZED_VERIFICATION_REPORT.json"
 RELEASE_REPORT = HERE / "RELEASE_VERIFICATION_REPORT.json"
@@ -26,11 +27,13 @@ SHA_OUTPUT = HERE / "MANIFEST.sha256"
 FILES = (
     "GLOBAL_TRANSFER_CERTIFICATE.json",
     "GLOBAL_TRANSFER_DIRECTION_UNIVERSE.json",
+    "K3P_DIRECTED_CUT_INCLUSION_EVIDENCE.json",
     "VERIFICATION_REPORT.json",
     "OPTIMIZED_VERIFICATION_REPORT.json",
     "RELEASE_VERIFICATION_REPORT.json",
     "RELEASE_OPTIMIZED_VERIFICATION_REPORT.json",
     "build_global_transfer.py",
+    "build_k3p_cut_inclusion_evidence.py",
     "verify_global_transfer.py",
     "verify_release.py",
     "build_manifest.py",
@@ -104,7 +107,10 @@ def main():
     adversarial_audit = json.loads(ADVERSARIAL_AUDIT.read_text())
     adversarial_report = json.loads(ADVERSARIAL_REPORT.read_text())
     adversarial_mutations = json.loads(ADVERSARIAL_MUTATIONS.read_text())
+    cut_evidence = json.loads(CUT_EVIDENCE.read_text())
     require(certificate["status"] == "PASS", "certificate status")
+    require(certificate["schema"] == "k3p-lost-bridge-global-transfer-certificate-v2",
+            "certificate schema")
     require(certificate["local_204_dependency_pass"] is True, "local dependency")
     require(report["status"] == optimized["status"] == "PASS", "verification status")
     require(report["python_optimized"] is False and optimized["python_optimized"] is True, "Python modes")
@@ -112,11 +118,30 @@ def main():
     require(report["universe_sha256"] == optimized["universe_sha256"] == sha_file(UNIVERSE), "universe binding")
     require(report["verifier_sha256"] == optimized["verifier_sha256"] == sha_file(HERE / "verify_global_transfer.py"), "verifier binding")
     require(report["direction_count"] == optimized["direction_count"] == 204, "direction count")
-    require(report["mutation_count"] == optimized["mutation_count"] == 30, "mutation count")
+    require(report["schema"] == optimized["schema"] ==
+            "k3p-lost-bridge-global-transfer-verification-v2",
+            "verification schema")
+    require(report["proof_step_count"] == optimized["proof_step_count"] == 15,
+            "proof step count")
+    require(report["mutation_count"] == optimized["mutation_count"] == 39,
+            "mutation count")
+    require(report["cut_evidence_sha256"] ==
+            optimized["cut_evidence_sha256"] == sha_file(CUT_EVIDENCE),
+            "K3P cut-evidence verification binding")
+    require(certificate["load_bearing_inputs"][
+        "k3p_directed_cut_inclusion_evidence"
+    ] == binding(CUT_EVIDENCE), "certificate K3P cut-evidence binding")
+    require(cut_evidence["schema"] == "k3p-directed-cut-inclusion-evidence-v1" and
+            cut_evidence["status"] == "PASS" and
+            cut_evidence["remaining_gaps"] == [], "K3P cut-evidence status")
+    require(cut_evidence["provenance_policy"]["jc_algebra_used"] is False and
+            cut_evidence["provenance_policy"][
+                "legacy_global_logic_report_is_load_bearing"
+            ] is False, "K3P cut-evidence provenance")
     require(report["common_bridge_tree_used"] is False, "common bridge tree")
     require(report["fourteen_orbit_used"] is False, "fourteen orbit")
     require(release["schema"] == release_optimized["schema"] ==
-            "k3p-lost-bridge-global-transfer-release-verification-v1",
+            "k3p-lost-bridge-global-transfer-release-verification-v2",
             "release verification schema")
     require(release["status"] == release_optimized["status"] == "PASS",
             "release verification status")
@@ -138,6 +163,8 @@ def main():
             "release certificate binding")
     require(release["bindings"]["universe"] == binding(UNIVERSE),
             "release universe binding")
+    require(release["bindings"]["k3p_cut_inclusion_evidence"] ==
+            binding(CUT_EVIDENCE), "release K3P cut-evidence binding")
     require(release["bindings"]["adversarial_audit"] == binding(ADVERSARIAL_AUDIT),
             "release adversarial audit binding")
     require(release["bindings"]["adversarial_report"] == binding(ADVERSARIAL_REPORT),
@@ -149,28 +176,34 @@ def main():
     manifest_rows = verify_adversarial_manifest()
     require(manifest_rows == release["adversarial"]["manifest_rows_checked"] == 7,
             "adversarial manifest row count")
-    require(adversarial_audit["schema"] == "k3p-global-transfer-adversarial-audit-v1",
+    require(adversarial_audit["schema"] == "k3p-global-transfer-adversarial-audit-v2",
             "adversarial audit schema")
     require(adversarial_audit["status"] == "PASS" and
             adversarial_audit["remaining_gaps"] == [], "adversarial audit status")
     require(adversarial_report["schema"] ==
-            "k3p-global-transfer-adversarial-verification-v1",
+            "k3p-global-transfer-adversarial-verification-v2",
             "adversarial verification schema")
     require(adversarial_report["status"] == "PASS" and
             adversarial_report["audit_sha256"] == sha_file(ADVERSARIAL_AUDIT),
             "adversarial verification binding")
+    require(adversarial_report["legacy_global_logic_used"] is False and
+            adversarial_report["jc_cut_theorem_used"] is False and
+            adversarial_report["directed_cut_inclusion_evidence"][
+                "implication_steps"
+            ] == 9,
+            "adversarial K3P cut-evidence replay")
     require(adversarial_mutations["schema"] ==
             "k3p-global-transfer-adversarial-mutations-v1",
             "adversarial mutation schema")
     require(adversarial_mutations["status"] == "PASS" and
             adversarial_mutations["all_mutations_rejected"] is True and
             adversarial_mutations["mutation_count"] ==
-            adversarial_mutations["rejected_count"] == 32,
+            adversarial_mutations["rejected_count"] == 35,
             "adversarial mutation status")
 
     hashes = {name: sha_file(HERE / name) for name in FILES}
     manifest = {
-        "schema": "k3p-lost-bridge-global-transfer-theorem-manifest-v1",
+        "schema": "k3p-lost-bridge-global-transfer-theorem-manifest-v2",
         "status": "PASS",
         "certified_claim": (
             "For binary standard semi-directed strongly tree-child level-2 "
@@ -182,6 +215,13 @@ def main():
             "crossing the lost source bridge. The already-proved target-to-source "
             "cut inclusion and source-tree split compatibility exclude it, leaving "
             "one of the 204 pointwise-certified one-active directions."
+        ),
+        "directed_cut_inclusion_mechanism": (
+            "A self-contained K3P displayed-tree specialization, the exact "
+            "wrong-quartet 5x5 minor, the 808642-word balanced reduction, and "
+            "the 379742-presentation reduced-palette replay prove "
+            "Cut(Nprime) subset Cut(N) without a JC cut theorem or the legacy "
+            "global-logic report."
         ),
         "validation": {
             "topology_directions_rebuilt": report["direction_count"],

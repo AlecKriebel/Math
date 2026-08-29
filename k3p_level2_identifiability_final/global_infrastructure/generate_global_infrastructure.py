@@ -26,7 +26,7 @@ TOPOLOGY = FROZEN / "model_independent_topology_package"
 SECTORS = ("C", "G", "T")
 CHAR_NAMES = "0CGT"
 CUT_TRANSFER = ROOT / "cut_recovery" / "strong_crossbridge" / "global_transfer"
-CUT_TRANSFER_THEOREM_SHA256 = "b5163a9840e7ceaa0bdbe9a5730b6a65109fcedc28ac8e39e1af81083c25c77a"
+CUT_TRANSFER_THEOREM_SHA256 = "faa304207cde5f08321f44b9c885480cfcc5b4bfb1b6f96fad995b6e7778a22c"
 CUT_TRANSFER_CLAIM = (
     "For binary standard semi-directed strongly tree-child level-2 networks "
     "under source-relative regular full-dimensional containment on strict D3,+, "
@@ -40,8 +40,10 @@ CUT_TRANSFER_BOUNDARY = {
 CUT_TRANSFER_NONCIRCULARITY = {
     "bridge_tree_equality_assumed": False,
     "common_bridge_tree_assumed": False,
+    "directed_cut_inclusion_proved_here": "Cut(Nprime) subset Cut(N)",
     "fourteen_orbit_classification_imported": False,
-    "only_preexisting_cut_direction_used": "Cut(Nprime) subset Cut(N)",
+    "jc_model_cut_theorem_used": False,
+    "legacy_global_logic_report_used": False,
     "reverse_direction_proved_here": "Cut(N) subset Cut(Nprime)",
     "target_open_marginal_assumed": False,
     "target_regular_point_assumed": False,
@@ -49,6 +51,7 @@ CUT_TRANSFER_NONCIRCULARITY = {
 CUT_TRANSFER_FILE_SET = {
     "GLOBAL_TRANSFER_AUDIT.md", "GLOBAL_TRANSFER_CERTIFICATE.json",
     "GLOBAL_TRANSFER_DIRECTION_UNIVERSE.json", "OPTIMIZED_VERIFICATION_REPORT.json",
+    "K3P_DIRECTED_CUT_INCLUSION_EVIDENCE.json",
     "README.md", "RELEASE_OPTIMIZED_VERIFICATION_REPORT.json",
     "RELEASE_VERIFICATION_REPORT.json", "VERIFICATION_REPORT.json", "WORK_LOG.md",
     "adversarial/ADVERSARIAL_GLOBAL_TRANSFER_AUDIT.json",
@@ -56,11 +59,12 @@ CUT_TRANSFER_FILE_SET = {
     "adversarial/MUTATION_RESULTS.json", "adversarial/VERIFICATION_REPORT.json",
     "adversarial/WORK_LOG.md", "adversarial/test_global_transfer_adversarial_mutations.py",
     "adversarial/verify_global_transfer_adversarial.py", "build_global_transfer.py",
-    "build_manifest.py", "verify_global_transfer.py", "verify_release.py",
+    "build_k3p_cut_inclusion_evidence.py", "build_manifest.py",
+    "verify_global_transfer.py", "verify_release.py",
 }
 CUT_TRANSFER_LOAD_BEARING_PATHS = {
-    "directed_cut_inclusion_audit": "cut_recovery/global_logic/CUT_GLOBAL_LOGIC_REPORT.json",
     "frozen_strong_topology": "cut_recovery/upstream_frozen/corrected_jc_cut_certificate.json",
+    "k3p_directed_cut_inclusion_evidence": "cut_recovery/strong_crossbridge/global_transfer/K3P_DIRECTED_CUT_INCLUSION_EVIDENCE.json",
     "pointwise_204_adversarial_mutations": "cut_recovery/strong_crossbridge/final_certificate/ADVERSARIAL_MUTATION_REPORT.json",
     "pointwise_204_certificate": "cut_recovery/strong_crossbridge/final_certificate/STRONG_CROSSBRIDGE_FINAL_CERTIFICATE.json",
     "pointwise_204_independent_verification": "cut_recovery/strong_crossbridge/final_certificate/VERIFICATION_REPORT.json",
@@ -821,7 +825,7 @@ def build_cut_transfer_binding() -> dict:
     optimized = read_json(optimized_path)
     release_sha = file_sha(release_verifier)
 
-    if theorem.get("schema") != "k3p-lost-bridge-global-transfer-theorem-manifest-v1":
+    if theorem.get("schema") != "k3p-lost-bridge-global-transfer-theorem-manifest-v2":
         errors.append("theorem schema")
     if theorem.get("status") != "PASS":
         errors.append("theorem status")
@@ -849,10 +853,24 @@ def build_cut_transfer_binding() -> dict:
         path = ROOT / record.get("path", "")
         if not path.is_file() or file_sha(path) != record.get("sha256"):
             errors.append(f"load-bearing input {name}")
+    cut_evidence_record = theorem.get("load_bearing_inputs", {}).get(
+        "k3p_directed_cut_inclusion_evidence", {}
+    )
+    cut_evidence_path = ROOT / cut_evidence_record.get("path", "")
+    cut_evidence = read_json(cut_evidence_path) if cut_evidence_path.is_file() else {}
+    if cut_evidence.get("schema") != "k3p-directed-cut-inclusion-evidence-v1":
+        errors.append("K3P cut-inclusion evidence schema")
+    if cut_evidence.get("status") != "PASS" or cut_evidence.get("remaining_gaps") != []:
+        errors.append("K3P cut-inclusion evidence status")
+    provenance = cut_evidence.get("provenance_policy", {})
+    if provenance.get("legacy_global_logic_report_is_load_bearing") is not False:
+        errors.append("legacy global-logic premise active")
+    if provenance.get("jc_algebra_used") is not False:
+        errors.append("JC cut algebra active")
 
     def release_ok(report: dict, optimized_flag: bool) -> bool:
         return (
-            report.get("schema") == "k3p-lost-bridge-global-transfer-release-verification-v1"
+            report.get("schema") == "k3p-lost-bridge-global-transfer-release-verification-v2"
             and report.get("status") == "PASS"
             and report.get("remaining_gaps") == []
             and report.get("python_optimized") is optimized_flag
@@ -861,8 +879,25 @@ def build_cut_transfer_binding() -> dict:
             and report.get("producer_imported") is False
             and report.get("adversarial_verifier_imported") is False
             and report.get("producer", {}).get("direction_count") == 204
+            and report.get("producer", {}).get("proof_step_count") == 15
+            and report.get("producer", {}).get("mutation_count") == 39
+            and report.get("producer", {}).get("cut_inclusion_evidence", {}).get(
+                "legacy_global_logic_used"
+            ) is False
+            and report.get("producer", {}).get("cut_inclusion_evidence", {}).get(
+                "jc_cut_theorem_used"
+            ) is False
             and report.get("adversarial", {}).get("direction_count") == 204
+            and report.get("adversarial", {}).get("mutation_count") == 35
             and report.get("adversarial", {}).get("tree_counterexamples") == 0
+            and report.get("adversarial", {}).get("cut_inclusion_evidence", {}).get(
+                "legacy_global_logic_used"
+            ) is False
+            and report.get("adversarial", {}).get("cut_inclusion_evidence", {}).get(
+                "jc_cut_theorem_used"
+            ) is False
+            and report.get("bindings", {}).get("k3p_cut_inclusion_evidence") ==
+            cut_evidence_record
         )
 
     if not release_ok(ordinary, False):
@@ -906,6 +941,9 @@ def build_cut_transfer_binding() -> dict:
         },
         "claim_boundary": audit.get("claim_boundary"),
         "noncircularity": theorem.get("noncircularity"),
+        "active_k3p_cut_inclusion_evidence": cut_evidence_record,
+        "legacy_global_logic_report_used": False,
+        "jc_model_cut_theorem_used": False,
         "universal_pointwise_K3P_cut_recovery_used": False,
         "accepted_as_pass": not errors,
         "validation_errors": errors,

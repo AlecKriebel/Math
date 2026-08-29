@@ -21,6 +21,7 @@ PROJECT = HERE.parents[2]
 
 CERTIFICATE = HERE / "GLOBAL_TRANSFER_CERTIFICATE.json"
 UNIVERSE = HERE / "GLOBAL_TRANSFER_DIRECTION_UNIVERSE.json"
+CUT_EVIDENCE = HERE / "K3P_DIRECTED_CUT_INCLUSION_EVIDENCE.json"
 PRODUCER_VERIFIER = HERE / "verify_global_transfer.py"
 PRODUCER_REPORT = HERE / "VERIFICATION_REPORT.json"
 PRODUCER_OPTIMIZED_REPORT = HERE / "OPTIMIZED_VERIFICATION_REPORT.json"
@@ -81,10 +82,11 @@ def load(path: Path) -> dict:
 def verify_producer_layer() -> dict:
     certificate = load(CERTIFICATE)
     universe = load(UNIVERSE)
+    cut_evidence = load(CUT_EVIDENCE)
     ordinary = load(PRODUCER_REPORT)
     optimized = load(PRODUCER_OPTIMIZED_REPORT)
 
-    require(certificate["schema"] == "k3p-lost-bridge-global-transfer-certificate-v1",
+    require(certificate["schema"] == "k3p-lost-bridge-global-transfer-certificate-v2",
             "producer certificate schema")
     require(certificate["status"] == "PASS" and certificate["blocked_reason"] is None,
             "producer certificate status")
@@ -94,9 +96,23 @@ def verify_producer_layer() -> dict:
             "producer universe schema")
     require(universe["status"] == "PASS" and len(universe["directions"]) == 204,
             "producer universe status")
+    require(cut_evidence["schema"] == "k3p-directed-cut-inclusion-evidence-v1",
+            "K3P cut-inclusion evidence schema")
+    require(cut_evidence["status"] == "PASS" and
+            cut_evidence["remaining_gaps"] == [],
+            "K3P cut-inclusion evidence status")
+    require(cut_evidence["provenance_policy"] == {
+        "jc_algebra_used": False,
+        "jc_manuscript_is_load_bearing": False,
+        "legacy_global_logic_report_is_load_bearing": False,
+        "model_independent_graph_certificate_names_retained": True,
+    }, "K3P cut-inclusion evidence provenance")
+    require(certificate["load_bearing_inputs"][
+        "k3p_directed_cut_inclusion_evidence"
+    ] == binding(CUT_EVIDENCE), "producer K3P cut-inclusion evidence binding")
 
     for report, optimized_flag in ((ordinary, False), (optimized, True)):
-        require(report["schema"] == "k3p-lost-bridge-global-transfer-verification-v1",
+        require(report["schema"] == "k3p-lost-bridge-global-transfer-verification-v2",
                 "producer report schema")
         require(report["status"] == "PASS", "producer verification status")
         require(report["python_optimized"] is optimized_flag,
@@ -105,11 +121,22 @@ def verify_producer_layer() -> dict:
                 "producer certificate binding")
         require(report["universe_sha256"] == sha256(UNIVERSE),
                 "producer universe binding")
+        require(report["cut_evidence_sha256"] == sha256(CUT_EVIDENCE),
+                "producer K3P cut-evidence binding")
         require(report["verifier_sha256"] == sha256(PRODUCER_VERIFIER),
                 "producer verifier binding")
         require(report["direction_count"] == 204, "producer direction count")
-        require(report["proof_step_count"] == 14, "producer proof step count")
-        require(report["mutation_count"] == 30, "producer mutation count")
+        require(report["proof_step_count"] == 15, "producer proof step count")
+        require(report["mutation_count"] == 39, "producer mutation count")
+        require(report["cut_inclusion_evidence"] == {
+            "balanced_words": 808642,
+            "implication_steps": 9,
+            "jc_cut_theorem_used": False,
+            "legacy_global_logic_used": False,
+            "minor_terms": 2,
+            "palette_presentations": 379742,
+            "palette_survivors": 0,
+        }, "producer K3P cut-evidence summary")
         require(report["two_terminal_mixture_components_checked"] == 7,
                 "producer side-blob mixture replay")
         require(report["common_bridge_tree_used"] is False,
@@ -128,6 +155,7 @@ def verify_producer_layer() -> dict:
         "two_terminal_mixture_components_checked": ordinary[
             "two_terminal_mixture_components_checked"
         ],
+        "cut_inclusion_evidence": ordinary["cut_inclusion_evidence"],
     }
 
 
@@ -158,7 +186,7 @@ def verify_adversarial_layer() -> dict:
     report = load(ADVERSARIAL_REPORT)
     mutations = load(ADVERSARIAL_MUTATIONS)
 
-    require(audit["schema"] == "k3p-global-transfer-adversarial-audit-v1",
+    require(audit["schema"] == "k3p-global-transfer-adversarial-audit-v2",
             "adversarial audit schema")
     require(audit["status"] == "PASS" and audit["remaining_gaps"] == [],
             "adversarial audit status")
@@ -181,7 +209,7 @@ def verify_adversarial_layer() -> dict:
     require(audit["input_sha256"]["global_verification"] == binding(PRODUCER_REPORT),
             "adversarial producer-report input binding")
 
-    require(report["schema"] == "k3p-global-transfer-adversarial-verification-v1",
+    require(report["schema"] == "k3p-global-transfer-adversarial-verification-v2",
             "adversarial report schema")
     require(report["status"] == "PASS" and report["remaining_gaps"] == [],
             "adversarial report status")
@@ -211,6 +239,30 @@ def verify_adversarial_layer() -> dict:
             "adversarial fourteen-orbit use")
     require(report["universal_pointwise_cut_claim_used"] is False,
             "adversarial universal pointwise claim")
+    k3p_evidence = report["directed_cut_inclusion_evidence"]
+    require(k3p_evidence["schema"] == "k3p-directed-cut-inclusion-evidence-v1",
+            "adversarial K3P cut-evidence schema")
+    require({key: k3p_evidence[key] for key in (
+        "balanced_words", "palette_presentations", "palette_survivors",
+        "exact_minor_terms", "implication_steps", "legacy_global_logic_used",
+        "jc_cut_theorem_used",
+    )} == {
+        "balanced_words": 808642,
+        "palette_presentations": 379742,
+        "palette_survivors": 0,
+        "exact_minor_terms": 2,
+        "implication_steps": 9,
+        "legacy_global_logic_used": False,
+        "jc_cut_theorem_used": False,
+    }, "adversarial K3P cut-evidence replay")
+    require(report["legacy_global_logic_used"] is False and
+            report["jc_cut_theorem_used"] is False,
+            "adversarial retired-premise exclusion")
+    require(report["logic"]["producer_proof_steps"] == 15 and
+            report["logic"]["producer_mutations_bound"] == 39 and
+            report["logic"]["active_k3p_implication_steps"] == 9 and
+            report["logic"]["active_legacy_premises"] == 0,
+            "adversarial active K3P logic summary")
 
     require(mutations["schema"] == "k3p-global-transfer-adversarial-mutations-v1",
             "adversarial mutation schema")
@@ -219,9 +271,9 @@ def verify_adversarial_layer() -> dict:
             "adversarial mutation audit binding")
     require(mutations["all_mutations_rejected"] is True,
             "adversarial mutation rejection flag")
-    require(mutations["mutation_count"] == mutations["rejected_count"] == 32,
+    require(mutations["mutation_count"] == mutations["rejected_count"] == 35,
             "adversarial mutation count")
-    require(len(mutations["mutations"]) == 32 and
+    require(len(mutations["mutations"]) == 35 and
             all(row["result"] == "REJECTED" for row in mutations["mutations"]),
             "adversarial mutation rows")
 
@@ -235,6 +287,15 @@ def verify_adversarial_layer() -> dict:
         "side_blob_switching_components": report["side_blob_closure"][
             "switching_components"
         ],
+        "cut_inclusion_evidence": {
+            "balanced_words": k3p_evidence["balanced_words"],
+            "exact_minor_terms": k3p_evidence["exact_minor_terms"],
+            "implication_steps": k3p_evidence["implication_steps"],
+            "jc_cut_theorem_used": k3p_evidence["jc_cut_theorem_used"],
+            "legacy_global_logic_used": k3p_evidence["legacy_global_logic_used"],
+            "palette_presentations": k3p_evidence["palette_presentations"],
+            "palette_survivors": k3p_evidence["palette_survivors"],
+        },
         "mutation_count": mutations["mutation_count"],
     }
 
@@ -248,13 +309,14 @@ def verify() -> dict:
             adversarial["side_blob_switching_components"] == 7,
             "producer/adversary side-blob agreement")
     return {
-        "schema": "k3p-lost-bridge-global-transfer-release-verification-v1",
+        "schema": "k3p-lost-bridge-global-transfer-release-verification-v2",
         "status": "PASS",
         "producer": producer,
         "adversarial": adversarial,
         "bindings": {
             "certificate": binding(CERTIFICATE),
             "universe": binding(UNIVERSE),
+            "k3p_cut_inclusion_evidence": binding(CUT_EVIDENCE),
             "producer_verifier": binding(PRODUCER_VERIFIER),
             "producer_report": binding(PRODUCER_REPORT),
             "producer_optimized_report": binding(PRODUCER_OPTIMIZED_REPORT),

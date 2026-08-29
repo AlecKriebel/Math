@@ -109,9 +109,12 @@ reading the stored table; its fresh output is compared byte for byte with the
 K3P-bound input.  The separate algebraic verifier then derives the 204
 normalized directions and exact obstructions.\\
 Strong-class cut-set equality under containment
-& \path{cut_recovery/strong_crossbridge/global_transfer/THEOREM_MANIFEST.json}
+& \path{cut_recovery/strong_crossbridge/global_transfer/K3P_DIRECTED_CUT_INCLUSION_EVIDENCE.json},
+\path{cut_recovery/strong_crossbridge/global_transfer/THEOREM_MANIFEST.json}
 and \path{cut_recovery/strong_crossbridge/global_transfer/GLOBAL_TRANSFER_AUDIT.md};
-independent adversarial replay.\\
+the direct and independent adversarial replays validate the displayed-tree
+minor, balanced-word reduction, reduced palette, and full analytic implication
+before using it at the directed-inclusion step.\\
 Trivalent ordinary-versus-cycle decoration
 & article proof after cut equality: each cubic tree--sunlet circuit is
 multiplied by a positive monomial under the three incidence gauges, so its
@@ -170,7 +173,7 @@ Global gluing, genericity, reconstruction
 \path{global_infrastructure/GLOBAL_INFRASTRUCTURE_MANIFEST.json}, and its
 independent replay, read together with the active cut-transfer and restoration
 bindings.  The primary verifier passes all 28 entries in its primary chain;
-separately, the integrated classification report binds 85 active artifacts.\\
+separately, the integrated classification report binds 86 active artifacts.\\
 K3P containment classification in the strongly tree-child level-2 class
 & The integrated classification-verifier report named in
 \path{ACTIVE_MANIFEST.json} verifies the principal-domain equivalence in the
@@ -850,7 +853,7 @@ mode before reading inputs.
 \section{Mutation summary}
 
 The primary verifier passes all 28 entries in its primary chain.  Separately,
-the 85-binding integrated verifier for the main classification theorem verifies the
+the 86-binding integrated verifier for the main classification theorem verifies the
 principal-domain and strict continuous-time equivalences in the article.  Its
 fail-closed suite rejects 27 of 27 integrated mutations.  The active component
 suites also include:
@@ -871,9 +874,10 @@ graph-derived cut-topology replay & 3 & primitive-core change, coherently
 rebound mask/hash change, serial-topology change\\
 cross-bridge local theorem & 34 & missing target, partition overlap,
 changed single/pair/cyclic identities, record-43/60 bindings\\
-global cut transfer & 30+32 & circular dependency, crossing compatibility,
-side-blob physicality, target openness, tree-coloring counterexamples\\
-integrated cut claim boundary & 12 & universal-pointwise substitution,
+global cut transfer & 39+35 & circular dependency, crossing compatibility,
+side-blob physicality, target openness, tree-coloring counterexamples,
+legacy-premise substitution\\
+integrated cut claim boundary & 16 & universal-pointwise substitution,
 claim-scope drift, circular dependencies, and ordinary/optimized modes\\
 global analytic infrastructure & 19 & old uncapped bridge formula,
 selected-minor-only genericity, \(C=T\), state permutation, missing domain
@@ -922,6 +926,8 @@ bash \
   cut_recovery/strong_crossbridge/final_certificate/build_final_certificate.py
 .venv/bin/python \
   cut_recovery/strong_crossbridge/final_certificate/verify_final_certificate.py
+.venv/bin/python \
+  cut_recovery/strong_crossbridge/global_transfer/build_k3p_cut_inclusion_evidence.py
 .venv/bin/python \
   cut_recovery/strong_crossbridge/global_transfer/verify_release.py
 
@@ -977,7 +983,7 @@ theorem and its 27-mutation fail-closed suite.  The longer producer commands
 are listed only for component replay.  The canonical clean-checkout wrappers are
 \path{reproducibility/verify_quick.sh},
 \path{reproducibility/verify_full.sh}, and the explicit-confirmation
-55-command \path{reproducibility/verify_regenerate_all.sh}; the last includes
+56-command \path{reproducibility/verify_regenerate_all.sh}; the last includes
 the hour-scale probe producer and must be allowed to finish without a second
 invocation.  No release-archive or submission gate is claimed here.
 
@@ -986,7 +992,7 @@ invocation.  No release-archive or submission gate is claimed here.
 \begingroup
 \footnotesize
 \setlength{\tabcolsep}{4pt}
-\renewcommand{\arraystretch}{.9}
+\renewcommand{\arraystretch}{.8}
 \begin{longtable}{L{.55\linewidth}L{.39\linewidth}}
 \toprule
 artifact & SHA-256\\
@@ -1032,18 +1038,20 @@ artifact & SHA-256\\
 & \sha{79b6763bd10ed5876942cb43b4fb92a79ea6eb3252acf865f56a7c7eb565b758}\\
 \path{cut_recovery/strong_crossbridge/final_certificate/STRONG_CROSSBRIDGE_FINAL_CERTIFICATE.json}
 & \sha{643c29780219a538a5a127341ea91363aa5899d6f0f6fa1dac034889a7fdf06b}\\
+\path{cut_recovery/strong_crossbridge/global_transfer/K3P_DIRECTED_CUT_INCLUSION_EVIDENCE.json}
+& \sha{6f3e37bdde95b60f0f598e09040841063e74c416cfdf518f288a5ddcc4b68d29}\\
 \path{cut_recovery/strong_crossbridge/global_transfer/THEOREM_MANIFEST.json}
-& \sha{b5163a9840e7ceaa0bdbe9a5730b6a65109fcedc28ac8e39e1af81083c25c77a}\\
+& \sha{faa304207cde5f08321f44b9c885480cfcc5b4bfb1b6f96fad995b6e7778a22c}\\
 \path{global_infrastructure/GLOBAL_INFRASTRUCTURE_MANIFEST.json}
-& \sha{58af4f4273c9076f81d3a7c09689c079957771ebc5bd58ea0ad50c00f692177d}\\
+& \sha{a134fbf0fe3635b0544c3512ea6e94d06e9606aa1cf8640d18b6c8d4bf4eb830}\\
 \path{global_infrastructure/MUTATION_CERTIFICATE.json}
 & \sha{f55d6dfac9a8928fed3df279710f3e278a32e8815f10c5a25104cd1bd6cc8233}\\
 \path{reproducibility/primary_gate_report.json}
-& \sha{ac2670726234ee24abd181e3ce3b67792cc1226c24d95405175dc45fca452ad4}\\
+& \sha{0e0155ef77a88cd846faaaf555e68f715c61f824048907b9df5568e4a43b7842}\\
 \texttt{integrated classification gate report}
-& \sha{afeb5b3ef4f7ef00ff834ae8643aac2bdcab9dced5554c58035ca4fb2c6421c4}\\
+& \sha{4b01141e4e827fc2426878be7726b7ee510984b3028380f04c6fd487073fdb17}\\
 \texttt{integrated classification mutation report}
-& \sha{31d82f3f01dae88bdc9c02d2a5d41b93d7e8cab3e1ed1c6f6970ae6f623cb99b}\\
+& \sha{a456a7ee4899e37e4232201b9f88e07a5faad95264591e0f08e0151c015a04b6}\\
 \path{restoration/RESTORATION_MANIFEST.json}
 & \sha{b7c53d68fc08f1bbde95802dd11ebcd12c52aef96edbb8f098b8f96caf8845c7}\\
 \path{restoration/K3P_RESTORATION_THEOREM_REPORT.md}
@@ -1068,9 +1076,7 @@ artifact & SHA-256\\
 \end{longtable}
 \endgroup
 
-These hashes bind this revision.  The stored integrated report is an artifact
-snapshot; the release runner records the separate twenty-child replay.  Later
-packaging must use a superseding release manifest.  No release archive or
-submission package is asserted.
+These hashes bind this revision; no superseding release or submission package
+is asserted.
 
 \end{document}

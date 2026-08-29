@@ -1,13 +1,14 @@
 {
   "blocked_reason": null,
+  "k3p_directed_cut_inclusion_evidence_pass": true,
   "load_bearing_inputs": {
-    "directed_cut_inclusion_audit": {
-      "path": "cut_recovery/global_logic/CUT_GLOBAL_LOGIC_REPORT.json",
-      "sha256": "f323625e9a629c62594df6a9ae90ca31582e0cb4fe878ddad66ddbf02be42d93"
-    },
     "frozen_strong_topology": {
       "path": "cut_recovery/upstream_frozen/corrected_jc_cut_certificate.json",
       "sha256": "edbd4afe566ed0ed5d1c518ffe5b21f8f224d547b9c351cb4e1a8c1c613ac086"
+    },
+    "k3p_directed_cut_inclusion_evidence": {
+      "path": "cut_recovery/strong_crossbridge/global_transfer/K3P_DIRECTED_CUT_INCLUSION_EVIDENCE.json",
+      "sha256": "6f3e37bdde95b60f0f598e09040841063e74c416cfdf518f288a5ddcc4b68d29"
     },
     "pointwise_204_adversarial_mutations": {
       "path": "cut_recovery/strong_crossbridge/final_certificate/ADVERSARIAL_MUTATION_REPORT.json",
@@ -38,8 +39,10 @@
   "noncircularity": {
     "bridge_tree_equality_assumed": false,
     "common_bridge_tree_assumed": false,
+    "directed_cut_inclusion_proved_here": "Cut(Nprime) subset Cut(N)",
     "fourteen_orbit_classification_imported": false,
-    "only_preexisting_cut_direction_used": "Cut(Nprime) subset Cut(N)",
+    "jc_model_cut_theorem_used": false,
+    "legacy_global_logic_report_used": false,
     "reverse_direction_proved_here": "Cut(N) subset Cut(Nprime)",
     "target_open_marginal_assumed": false,
     "target_regular_point_assumed": false
@@ -60,7 +63,7 @@
     "switching_compression_survivors": 0,
     "wrong_split_directions": 204
   },
-  "proof_step_ids_sha256": "bca6536170ad28a6501c1ad6ebcf5b93bd66acd29af6f7b89dc9bb48fca2b898",
+  "proof_step_ids_sha256": "9fe81fa4b80221fb41832c6dd4059abb093c7742f0c5807c67f93d01e897ab8c",
   "proof_steps": [
     {
       "claim": "Phi_N=Phi_Nprime\u2218sigma on a nonempty source-open regular set U; N,Nprime are binary standard semi-directed strongly tree-child level-2 networks on the same labels.",
@@ -68,12 +71,18 @@
       "id": "H0"
     },
     {
+      "claim": "The bound K3P displayed-tree, balanced-word, reduced-palette, and exact-minor evidence proves that every source noncut has a nonzero 5x5 flattening-minor polynomial.",
+      "depends_on": [],
+      "id": "K0"
+    },
+    {
       "claim": "Every target bridge split is a source bridge split: Cut(Nprime) subset Cut(N).",
       "depends_on": [
-        "H0"
+        "H0",
+        "K0"
       ],
       "id": "D1",
-      "reason": "A target-cut 5x5 flattening minor vanishes after composition with sigma on U. If the split were a source noncut, isotropic-JC generic recovery gives a nonzero source polynomial, which cannot vanish on U."
+      "reason": "A target-cut 5x5 flattening minor vanishes after composition with sigma on U. If the split were a source noncut, the K3P displayed-tree specialization and exact wrong-quartet minor give a nonzero source polynomial, which cannot vanish on U."
     },
     {
       "claim": "Assume for contradiction that S=A|B is a bridge split of N and is not a bridge split of Nprime.",
@@ -185,7 +194,7 @@
     "target_openness_needed": false,
     "target_pointwise_not_generic": true
   },
-  "schema": "k3p-lost-bridge-global-transfer-certificate-v1",
+  "schema": "k3p-lost-bridge-global-transfer-certificate-v2",
   "scope": {
     "conclusion": "Cut(N)=Cut(Nprime)",
     "domain": "strict principal K3P domain D3,+ with inheritance probabilities in (0,1)",

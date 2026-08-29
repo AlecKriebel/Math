@@ -198,7 +198,8 @@ def payload_rows(candidate: Path) -> list[dict[str, object]]:
             continue
         rows.append({
             "path": relative,
-            "bytes": path.stat().st_size,
+            "bytes": metadata.st_size,
+            "mode": format(stat.S_IMODE(metadata.st_mode), "04o"),
             "sha256": sha256_file(path),
         })
     return rows
@@ -208,7 +209,7 @@ def write_outer_manifests(candidate: Path, *, commit: str, archive: Path,
                           archive_record: dict) -> dict:
     rows = payload_rows(candidate)
     manifest = {
-        "schema": "k3p-independent-referee-package-v1",
+        "schema": "k3p-independent-referee-package-v2",
         "package_name": "K3P_Level2_Independent_Referee_Package",
         "package_builder_commit": commit,
         "proof_source_commit": archive_record["source_commit"],
@@ -220,12 +221,15 @@ def write_outer_manifests(candidate: Path, *, commit: str, archive: Path,
     manifest_path = candidate / "PACKAGE_MANIFEST.json"
     manifest_path.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n",
                              encoding="utf-8")
+    manifest_path.chmod(0o644)
     sum_paths = [row["path"] for row in rows] + ["PACKAGE_MANIFEST.json"]
     sums = "".join(
         f"{sha256_file(candidate / relative)}  {relative}\n"
         for relative in sorted(sum_paths)
     )
-    (candidate / "SHA256SUMS").write_text(sums, encoding="utf-8")
+    sums_path = candidate / "SHA256SUMS"
+    sums_path.write_text(sums, encoding="utf-8")
+    sums_path.chmod(0o644)
     return manifest
 
 

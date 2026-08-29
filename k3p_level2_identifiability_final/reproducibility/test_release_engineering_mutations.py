@@ -752,6 +752,7 @@ def regeneration_plan_control() -> dict:
         "cut_topology_graph_mutations",
         "cut_signed_pair_mutations", "cut_record39_audit", "cut_record43_audit",
         "cut_record60_audit", "cut_cyclic_verify_optimized",
+        "cut_k3p_directed_inclusion_evidence_build",
         "cut_global_transfer_release_optimized", "sharpness_krawczyk_producer",
         "sharpness_topology_alln_producer", "probe_hour_scale_producer",
         "probe_full_semantic_replay", "four_port_full_universe_producer",
@@ -762,7 +763,7 @@ def regeneration_plan_control() -> dict:
         "tree_sunlet_literal_v2_build", "tree_sunlet_literal_v2_verify",
         "tree_sunlet_literal_v2_mutations",
     }
-    require(len(names) == len(set(names)) == 55 and required.issubset(names),
+    require(len(names) == len(set(names)) == 56 and required.issubset(names),
             ("regeneration plan coverage", sorted(required - set(names))))
     command_map = {command.name: command.argv for command in commands}
     require("--fresh" in command_map["cut_single_minor_search"],
@@ -774,6 +775,8 @@ def regeneration_plan_control() -> dict:
             "cut regeneration omits hostile mutations")
     require(names.index("cut_cyclic_verify_optimized") <
             names.index("cut_cyclic_manifest") and
+            names.index("cut_k3p_directed_inclusion_evidence_build") <
+            names.index("cut_global_transfer_build") and
             names.index("cut_global_transfer_release_optimized") <
             names.index("cut_global_transfer_manifest"),
             "regeneration manifest ordering")

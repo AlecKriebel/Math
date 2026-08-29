@@ -306,16 +306,16 @@ def strong_class_cut_transfer_replay():
     required = (
         gate_replay["status"] == "PASS"
         and mutation_replay["status"] == "PASS"
-        and gate.get("schema") == "k3p-strong-class-cut-transfer-active-gate-v1"
+        and gate.get("schema") == "k3p-strong-class-cut-transfer-active-gate-v2"
         and gate.get("status") == "PASS"
         and gate.get("claim_boundary") == expected_boundary
         and gate.get("universal_pointwise_K3P_cut_recovery_used") is False
         and gate.get("remaining_gaps") == []
         and gate.get("fresh_release_replays", {}).get("ordinary", {}).get("summary", {}).get("python_optimized") is False
         and gate.get("fresh_release_replays", {}).get("optimized", {}).get("summary", {}).get("python_optimized") is True
-        and mutations.get("schema") == "k3p-strong-class-cut-transfer-gate-mutations-v1"
+        and mutations.get("schema") == "k3p-strong-class-cut-transfer-gate-mutations-v2"
         and mutations.get("status") == "PASS"
-        and mutations.get("mutation_count") == mutations.get("rejected_count") == 12
+        and mutations.get("mutation_count") == mutations.get("rejected_count") == 16
         and mutations.get("survived_count") == 0
         and len(mutations.get("clean_replays", [])) == 2
         and all(row.get("result") == "PASS" for row in mutations.get("clean_replays", []))

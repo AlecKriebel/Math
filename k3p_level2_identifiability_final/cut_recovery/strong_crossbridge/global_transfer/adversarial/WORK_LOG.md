@@ -24,3 +24,16 @@
   audit, its 32 mutations, and both release modes. This was an integration
   binding repair; no mathematical claim or accepted case changed. Best-guess
   completion: 100%.
+- `2026-08-29T08:20:00-07:00` — Repaired the active dependency graph after a
+  referee found that `D1` still consumed the blocked legacy global-logic report
+  and JC manuscript while the self-contained K3P word/minor package ran only
+  in parallel.  The independent audit now binds and rederives the K3P exact
+  minor, all `808,642` balanced-word cases, all `379,742` palette presentations
+  with zero survivors, and the nine-step analytic implication; it also requires
+  `K0 -> D1` and rejects three coherent semantic regressions.  No theorem claim
+  changed. Best-guess completion: 100%.
+- `2026-08-29T08:31:00-07:00` — Replayed the repaired independent verifier:
+  20 active inputs bound, 204 directions reconstructed, 19,270 colored-tree
+  cases checked with zero counterexamples, 15 producer proof steps including
+  `K0 -> D1`, and 35/35 adversarial mutations rejected.  The manifest-only
+  replay also passed. Best-guess completion: 100%.

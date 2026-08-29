@@ -11,9 +11,14 @@ from pathlib import Path
 from verify_global_transfer_adversarial import (
     AUDIT,
     HERE,
+    PATHS,
+    PROJECT,
     VerificationError,
+    evidence_payload_digest,
     sha256,
     verify,
+    verify_cut_inclusion_evidence,
+    verify_global_proof_structure,
 )
 
 
@@ -50,7 +55,7 @@ def mutation_cases(payload: dict):
     changed("factor_correspondence", lambda x: x["noncircularity"].__setitem__(
         "source_target_factor_correspondence_used", True))
     changed("cut_direction_reversed", lambda x: x["noncircularity"].__setitem__(
-        "only_prior_cut_direction", "Cut(N)_subseteq_Cut(Nprime)"))
+        "directed_cut_inclusion_proved_here", "Cut(N)_subseteq_Cut(Nprime)"))
     changed("ordinary_central_tree", lambda x: x["finite_handoff"]["tree_central_factor"].__setitem__(
         "ordinary_trivalent_component_can_be_central", True))
     changed("duplicate_active_label", lambda x: x["finite_handoff"]["actual_label_selection"].__setitem__(
@@ -97,6 +102,47 @@ def mutation_cases(payload: dict):
     return cases
 
 
+def reseal_evidence(value: dict) -> dict:
+    value["payload_sha256"] = evidence_payload_digest(value)
+    return value
+
+
+def semantic_mutation_cases():
+    audit = json.loads(AUDIT.read_text())
+    evidence = json.loads(PATHS["cut_inclusion_evidence"].read_text())
+    global_certificate = json.loads(PATHS["global_certificate"].read_text())
+    cases = []
+
+    legacy = PROJECT / "cut_recovery/global_logic/CUT_GLOBAL_LOGIC_REPORT.json"
+    substituted = copy.deepcopy(evidence)
+    substituted["load_bearing_inputs"]["displayed_tree_lemma"] = {
+        "path": str(legacy.resolve().relative_to(PROJECT)),
+        "sha256": sha256(legacy),
+    }
+    cases.append((
+        "coherently_resealed_legacy_provenance_substitution",
+        lambda value=reseal_evidence(substituted):
+            verify_cut_inclusion_evidence(audit, value),
+    ))
+
+    no_minor = copy.deepcopy(evidence)
+    no_minor["displayed_tree_minor"] = None
+    cases.append((
+        "coherently_resealed_exact_minor_removal",
+        lambda value=reseal_evidence(no_minor):
+            verify_cut_inclusion_evidence(audit, value),
+    ))
+
+    no_k0_edge = copy.deepcopy(global_certificate)
+    next(row for row in no_k0_edge["proof_steps"]
+         if row["id"] == "D1")["depends_on"] = ["H0"]
+    cases.append((
+        "global_K0_dependency_deletion",
+        lambda value=no_k0_edge: verify_global_proof_structure(value),
+    ))
+    return cases
+
+
 def atomic_json(path: Path, value: object) -> None:
     temporary = path.with_suffix(path.suffix + ".tmp")
     temporary.write_text(json.dumps(value, indent=2, sort_keys=True) + "\n")
@@ -119,6 +165,16 @@ def main() -> None:
                 rejected = True
                 message = str(error)
             require(rejected, ("mutation accepted", name))
+            results.append({"name": name, "result": "REJECTED", "reason": message})
+        for name, check in semantic_mutation_cases():
+            rejected = False
+            message = None
+            try:
+                check()
+            except (VerificationError, KeyError, IndexError, TypeError, ValueError) as error:
+                rejected = True
+                message = str(error)
+            require(rejected, ("semantic mutation accepted", name))
             results.append({"name": name, "result": "REJECTED", "reason": message})
     report = {
         "schema": "k3p-global-transfer-adversarial-mutations-v1",

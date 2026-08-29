@@ -75,13 +75,17 @@ the fresh integrated replay plus 27/27 classification and 32/32
 release-engineering mutations rejected.  The article's availability statement
 points to that immutable proof snapshot.
 
-This 2026-08-27 referee revision removes the two former companion premises:
+This 2026-08-29 second-referee repair removes the remaining stale certificate
+dependency from the directed cut inclusion: a self-contained K3P evidence
+object now binds the displayed-tree minor and both exact balanced-compression
+replays, while the legacy JC and global-logic premises are rejected.  The
+earlier 2026-08-27 revision removed the two former companion premises:
 generic noncut recovery has a self-contained displayed-tree witness and exact
 minor, and a graph-only producer plus separate no-import verifier derive all
 133 non-four probe anchors.  For four-port factors, a graph-only route exhausts
 all 144 raw equality parents and all 1,356 fixed-full descendant requests, with
 zero unmatched requests; the 43 contract rows are only a designated
-serialization.  The 85-binding integrated artifact gate and every focused
+serialization.  The 86-binding integrated artifact gate and every focused
 component check pass.  The fixed-epoch candidate article and supplement have
 also been rebuilt from the corrected TeX and inspected on every page.
 

@@ -19,7 +19,11 @@ is not used.  The active package instead binds the independently sealed
 strong-class containment theorem: under source-relative regular
 full-dimensional containment, the source and target cut sets agree.  Generic
 bridge-tree reconstruction uses only pointwise vanishing at true cuts and
-generic nonvanishing at noncuts via the strict isotropic JC slice.  No claim is
+generic nonvanishing at noncuts via a K3P displayed-tree boundary
+specialization and its explicit wrong-quartet minor. The active evidence binds
+the 808,642-word balanced reduction and the 379,742-presentation clean-room
+palette replay with zero survivors; neither a JC cut theorem nor the retired
+global-logic report is load-bearing. No claim is
 made that every arbitrary multi-active strict K3P noncut has rank greater than
 four at every parameter point.
 
