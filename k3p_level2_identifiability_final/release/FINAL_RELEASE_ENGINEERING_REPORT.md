@@ -1,12 +1,13 @@
 # Final release engineering report
 
-Status: **fourth-referee localized release repairs complete; replacement handoff manifest-bound; submission metadata pending**
+Status: **Zenodo version 1.0.0 release candidate prepared for exact-commit reseal; external deposit and journal metadata pending**
 
-This report certifies the immutable snapshots named below.  The latest changes
-repair only report-file mode preservation and referee-runtime delivery
-hygiene; the mathematical theorem, TeX, and PDF bytes are unchanged.  Exact
-archive and handoff identities are authoritative in their manifests so that
-this ledger does not recursively change the bytes it records.
+This report certifies the immutable snapshots named below.  The current
+version 1.0.0 release candidate changes bibliography, nonmathematical
+administrative/public-release prose, licenses, citation metadata, and release
+engineering only; the mathematical theorem and its active proof evidence are
+unchanged.  Exact archive and handoff identities are authoritative in their
+manifests so that this ledger does not recursively change the bytes it records.
 
 The deterministic quick/full/regeneration orchestration, canonical TAR.GZ and
 ZIP construction, compact verifier packaging, fixed-toolchain PDF source
@@ -15,10 +16,35 @@ release mutations are implemented.  Ordinary full replay does not rerun the
 hour-scale probe producer; full regeneration does, behind a deliberate
 one-shot confirmation.
 
-No K3P DOI, license selection, Git tag, GitHub release, Zenodo record, journal
-upload, or external communication has been created or claimed.
+No K3P DOI, GitHub release, Zenodo record, journal upload, or external
+communication is created or claimed by this source ledger.  The direct-deposit
+manifest, checksum set, and annotated tag are generated only after the final
+source commit and local release gates pass.
 
-## Current fourth-referee localized release repair (29 August 2026)
+## Direct Zenodo version 1.0.0 release policy (30 August 2026)
+
+The first Zenodo/DOI-bearing preprint release uses a dedicated direct-Zenodo layer rather
+than the journal-coupled pre-DOI envelope.  The public release changes only
+bibliography, declarations, article/supplement release prose, licenses,
+citation metadata, and release packaging.  It does not change a theorem,
+certificate, mathematical producer, or verifier.  Consequently the reseal
+reruns the quick dependency gate, both deterministic PDF source reproductions,
+canonical compact/full archive construction, referee-package integrity, and
+the independent Zenodo upload-set verifier, but not unchanged hour-scale
+mathematical producers.
+
+The annotated tag is `k3p-level2-identifiability-v1.0.0`.  Zenodo assigns the
+DOI when the record is published; that DOI is authoritative record metadata
+and is deliberately not predicted or embedded in the immutable version 1.0.0
+PDF bytes.  The generated manifest and `SHA256SUMS` are the authoritative
+file-level bindings.  On 30 August 2026 the author explicitly approved CC BY
+4.0 for the article/supplement/documentation/certificate data, MIT for original
+verifier/build code, the no-specific-funding statement, and the
+no-competing-interests declaration.  Older uses below of “current,” “no release,” or
+“remaining gates” are checkpoint-local historical statements about the named
+commits, not descriptions of this direct-deposit policy.
+
+## Fourth-referee localized release repair (29 August 2026)
 
 The fresh fourth-revision report found no theorem-level defect.  Its three
 release findings were accepted and repaired in their minimal dependency cone.
@@ -552,8 +578,10 @@ GitHub/Zenodo release, external upload, or journal submission is asserted.
 
 ## Remaining gates
 
-1. Keep the submission state fail-closed until the human author declarations,
-   repository facts, journal metadata, and upload artifacts are supplied.
-2. Create a human-approved exact-HEAD tag and pre-DOI envelope only after those
-   blockers close.  License selection, DOI minting, and external uploads remain
-   Alec's actions.
+1. Complete the exact-commit direct-Zenodo reseal, push the annotated tag, and
+   verify the generated public manifest and upload checksums.
+2. Alec must create and publish the external Zenodo record, then download and
+   compare every deposited asset before recording the issued DOI.
+3. Keep journal packages fail-closed until the separate journal-specific
+   metadata and upload artifacts are supplied.  A public preprint release does
+   not by itself claim journal submission or human peer review.

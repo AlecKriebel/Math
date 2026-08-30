@@ -607,10 +607,13 @@ universal arbitrary-network pointwise K3P cut-rank iff claim is withdrawn and
 unused.  The active theorem is the directional strong-class cut-transfer
 statement bound by FINAL_CLAIM_LOCK.json.
 
-The bundled submission/ tree records its own readiness state.  It is not a
-journal-portal or arXiv-ready package unless the independent submission
-validator reports READY with zero errors and zero blockers; the final-envelope
-gate enforces that condition.
+The bundled submission/ tree is a minimal sealed snapshot of the fail-closed
+NOT_READY boundary used by the release-input gate.  Journal drafts, cover
+letters, portal metadata, and unresolved placeholder-bearing wrappers are
+deliberately excluded from this public proof archive.  The snapshot is not a
+standalone journal-package regeneration tree, journal upload, or arXiv-ready
+package.  The separate live-checkout envelope gate continues to require a
+complete submission tree and READY validation before any journal release.
 
 The generated LaTeX source ZIPs embed the complete hash inventory for the
 external Tectonic resource cache and force cached-only execution.  Final-commit

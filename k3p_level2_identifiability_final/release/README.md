@@ -18,7 +18,7 @@ ignored by Git.  The full builder fails until the final article and supplement
 PDFs are committed at the paths named in `RELEASE_FILESET.json`.  It never
 creates a tag, GitHub release, DOI, license declaration, or journal upload.
 
-Typical final sequence:
+Typical local reseal sequence:
 
 ```bash
 bash reproducibility/verify_quick.sh
@@ -63,3 +63,9 @@ been supplied explicitly.  It refuses the current `DRAFT_NOT_READY` submission
 tree, arbitrary package files, and mislabeled journal archives.  The envelope
 records DOI and license as unassigned and does not prove that a tag was pushed;
 those are human-controlled external facts.
+
+The direct Zenodo version 1.0.0 deposit is governed instead by
+`release/zenodo/`, the deposited public manifest, and `SHA256SUMS`.  Those
+files---not the journal-coupled pre-DOI envelope---bind the public assets.
+Zenodo assigns the DOI at publication; the DOI remains authoritative record
+metadata rather than being embedded in the immutable version 1.0.0 files.

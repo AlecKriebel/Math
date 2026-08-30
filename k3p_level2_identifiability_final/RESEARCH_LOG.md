@@ -1613,3 +1613,33 @@ Best-guess completion: **100% of the fourth-referee local repair and clean
 handoff workstream; 70% of the external-submission goal**.  Human metadata,
 license selection, immutable public release/tag approval, DOI minting, and
 journal submission remain outside this workstream.
+
+## 2026-08-30T08:10:06-07:00 — authorized public-release preparation checkpoint
+
+- Recorded the author's approved public-release metadata: publication date
+  30 August 2026, CC BY 4.0 for the article/supplement/documentation and
+  certificate data, MIT for original verifier/build code, no specific funding,
+  and no competing interests.  Added `LICENSES.md` and `CITATION.cff` and made
+  the declarations explicit in the article.
+- Replaced moving companion-paper citations with their published Zenodo DOIs:
+  `10.5281/zenodo.22089373` (JC), `10.5281/zenodo.22168797` (K2P), and
+  `10.5281/zenodo.22136869` (tree--theta collision).
+- Rebuilt the article and reader supplement with the pinned Tectonic 0.16.9
+  cached-only toolchain.  The final pre-seal PDFs have 39 and 15 pages and
+  SHA-256 values `590eee94dd352c8d4211fd485572b3c316ce5419d89c4e9c561246f8d12aae32`
+  and `0a611f7a7d14490c681a2f79b44e5929c53888ba8462a4a7d69ebeee82c2130f`.
+  Every page was visually inspected, all fonts are embedded, and the build logs
+  contain no warning or error.
+- Synchronized and byte-compared all 35 project TeX/Bib files in the dedicated
+  local Google Drive Papers folder.  No source file was moved.
+- Kept validation dependency-scoped: no mathematical producer, hour-scale
+  probe generation, Krawczyk regeneration, or unchanged finite atlas was run.
+
+Strongest verified result: the accepted mathematical package is unchanged;
+the publication-facing metadata, licenses, DOI citations, declarations, and
+PDF bytes are internally consistent and visually clean.  Commit-bound archive
+construction, short release gates, annotated tagging, and final Zenodo bundle
+verification remain.
+
+Best-guess completion toward the first Zenodo/DOI-bearing archival release:
+**93%**.

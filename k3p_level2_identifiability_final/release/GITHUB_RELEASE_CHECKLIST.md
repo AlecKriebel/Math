@@ -1,5 +1,10 @@
 # GitHub release checklist
 
+This checklist is not used for the direct Zenodo version 1.0.0 deposit.  Do
+not create a GitHub release for that deposit: the project is a subdirectory of
+a monorepository, and an integrated GitHub--Zenodo release could create a
+duplicate or archive the wrong scope.
+
 - Do not create a release until every local acceptance gate passes.
 - Confirm `main` is clean, pushed, and identical to the source commit in the
   release envelope.
@@ -12,4 +17,5 @@
 - Do not select or state a code, data, or manuscript license without explicit
   authorization from Alec.
 - After upload, download every asset and compare its SHA-256 locally.
-- Confirm the automatic Zenodo deposition completed before using its DOI.
+- For a future deliberately GitHub-integrated release, confirm the automatic
+  Zenodo deposition completed before using its DOI.

@@ -14,14 +14,13 @@ submission build.
    supplement have been rebuilt and inspected page by page with embedded
    fonts.
 
-2. **Distribution reseal.**  The corrected TeX/PDF source checkpoint is pushed
-   at `5a6d64cb2a76e890d7baaef3ba5ac9861c1d029f`.  Two-build source
-   reproduction, deterministic compact/full archive construction, neutral
-   referee-package rebuilding, and byte-for-byte synchronization of all 35
-   tracked TeX/Bib files to the requested Google Drive paper folder pass for
-   that snapshot.  The archive and package manifests are the authoritative
-   byte-level bindings; the post-run release ledger records their hashes
-   without rewriting the mathematical proof snapshot.
+2. **Public-release reseal.**  Two-build source reproduction, deterministic
+   compact/full archive construction, neutral referee-package rebuilding, and
+   byte-for-byte synchronization of the intended TeX/Bib files pass for the
+   source snapshot named in the deposited Zenodo manifest.  The manifest and
+   checksum file are the authoritative byte-level bindings; the post-run
+   release ledger records their hashes without rewriting the mathematical
+   proof snapshot.
 
 3. **Author and post-typesetting review.**  Independent mathematical and
    evidence audits of the targeted bridge, sunlet, genericity, and noncut-
@@ -30,11 +29,14 @@ submission build.
    article--supplement--archive cross-check passes.  Final human author review
    remains required before submission promotion.
 
-4. **Bibliographic/release metadata.**  No DOI or license is asserted.  If a
-   real DOI is minted or the user chooses licenses, rebuild the sources from
-   that metadata.  Do not invent either.  Journal-specific declarations and
-   any corresponding-email field remain outside this mathematical draft
-   until supplied by the user.
+4. **Public-release metadata.**  Zenodo assigns the version 1.0.0 release DOI;
+   that DOI is authoritative record metadata and need not be embedded in the
+   deposited PDF bytes.  The deposited manifest and checksum file bind the
+   immutable release assets.  The author authorized the CC BY 4.0/MIT file-level
+   license mapping in `LICENSES.md` and the Zenodo metadata on 30 August 2026.
+   Journal-specific
+   declarations and any corresponding-email field remain outside this
+   mathematical draft until supplied by the author.
 
 5. **Remaining submission gate.**  Embedded-font checks, independent
    page-by-page inspection, commit-bound two-build source reproduction, and

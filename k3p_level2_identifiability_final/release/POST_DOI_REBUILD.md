@@ -1,18 +1,14 @@
-# Post-DOI rebuild
+# DOI handling after direct deposit
 
-The first canonical package intentionally contains no invented DOI.  After
-Zenodo issues the real DOI:
+Version 1.0.0 intentionally contains no predicted DOI.  Zenodo's issued DOI
+and landing page are the authoritative record metadata.
 
-1. Record the exact DOI and landing URL in the article, supplement, repository
-   citation metadata, data/code availability text, and submission packages.
-2. Rebuild both PDFs from the updated committed source under the deterministic
-   source-reproduction environment.
-3. Run quick, full, PDF visual QA, byte-for-byte source reproduction, archive
-   construction, archive verification, and clean-clone tests again.
-4. Create a new immutable tag; never move the pre-DOI tag.
-5. Add and audit an explicitly authorized post-DOI envelope schema; the current
-   `k3p-final-release-envelope-v1` builder intentionally accepts only the
-   pre-DOI state `NOT_MINTED` and must not be reused to claim a minted DOI.
-6. Generate the new post-DOI envelope and checksum set for the new commit/tag.
-7. Upload the DOI-bearing journal packages.  Preserve the prior package as a
-   superseded immutable snapshot rather than overwriting it.
+After publication:
+
+1. Record the issued DOI and landing URL in the release ledger and future
+   citation metadata.
+2. Download every deposited asset and verify it against `SHA256SUMS`.
+3. Do not rebuild, replace, move, or retag version 1.0.0 solely to embed its
+   DOI.
+4. A later manuscript revision may cite the DOI in its bytes, but it must use
+   a new version, immutable commit, tag, manifest, and checksum set.

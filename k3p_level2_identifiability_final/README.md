@@ -72,11 +72,13 @@ The single 55-command regeneration then passed in 8,921 seconds with payload
 It invoked the hour-scale probe producer exactly once, regenerated the full
 405,216-relation four-port universe and all 574,535 probe rows, and ended with
 the fresh integrated replay plus 27/27 classification mutations rejected; the
-then-current 32/32 release-engineering mutations also passed.  The article's
-availability statement points to that immutable proof snapshot.  The present
-third-referee repair expands the release-engineering suite to 37 attacks and
-12 deterministic controls; its regenerated report is required by the current
-release-input gate.
+then-current 32/32 release-engineering mutations also passed.  That immutable
+proof snapshot remains the historical execution evidence.  The version 1.0.0
+article availability statement instead points to the annotated final release
+tag, whose peeled commit binds that unchanged mathematical evidence together
+with the publication-facing files.  The subsequent third-referee repair
+expanded the release-engineering suite to 37 attacks and 12 deterministic
+controls; its regenerated report is required by the current release-input gate.
 
 This 2026-08-29 second-referee repair removes the remaining stale certificate
 dependency from the directed cut inclusion: a self-contained K3P evidence
@@ -97,7 +99,10 @@ manifests bind one exact pushed source commit and their extracted artifact-only
 binding/integrity gates pass; those extracted checks perform no fresh theorem
 computation.  Runtime records live under ignored release work/transcript paths,
 and the post-run boundary is recorded in
-`release/FINAL_RELEASE_ENGINEERING_REPORT.md`.  Journal packages remain
-deliberately `NOT_READY` until their human metadata and upload artifacts are
-supplied.  No DOI, license, tag, submission, peer review, or completed human
-review is claimed.
+`release/FINAL_RELEASE_ENGINEERING_REPORT.md`.  The direct public-preprint
+release path uses version 1.0.0, identified by annotated tag
+`k3p-level2-identifiability-v1.0.0`.  At publication, its Zenodo record supplies
+the authoritative DOI metadata; its deposited manifest and `SHA256SUMS` bind
+the release files.  Journal packages remain deliberately `NOT_READY` until their
+journal-specific human metadata and upload artifacts are supplied.  No journal
+submission or independent human specialist peer review is claimed.
