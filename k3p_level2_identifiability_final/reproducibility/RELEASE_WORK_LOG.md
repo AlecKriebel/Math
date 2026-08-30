@@ -311,3 +311,39 @@ post-package audit.
 
 Best-guess completion: **97% of the second-referee local handoff workstream;
 70% of the external-submission goal**.
+
+## 2026-08-29T19:24:00-07:00 — third-referee exact-once package replay
+
+- Exact sealed proof/package snapshot:
+  `10bd695cc7b7e0fd98a187026059b043589244f0`.
+- Canonical full and compact archive SHA-256 values:
+  `fecb2eda22bcb0558c02e14fdb7767b4229bde33471a4de2a764191f42d8d293`
+  and
+  `51e54e2d4eed0d7e980fccbd0319d79e83633a4fad9308c4ed79198112edc014`.
+- Referee-package manifest SHA-256:
+  `c67c1c524ef59217a2327e7dd4016cd82a9b8be1e8f188e6cc61a4fe1fd6c725`
+  (635 files / 161,122,700 bytes).
+- The portable `all` runner was launched exactly once under an external
+  credential-free macOS sandbox.  It passed 4/4 verify commands in 3,016.565
+  seconds and 55/55 regeneration commands in 8,584.394 seconds.  Total elapsed
+  time was 11,608.930 seconds; the probe producer ran once in 2,886.752
+  seconds.
+- Runner summary SHA-256:
+  `8aca186fe28786e61d7c25798fecf255b43dcaf9cfd0dc0035802757bc5f0db8`.
+  External supervisor summary SHA-256:
+  `afafe7d2504a0937028ec021030ad01dea059fcc932d5f6aa8db7941366c18be`.
+- Pre/post inventories show an unchanged sealed package and virtual
+  environment.  Both phases report zero undeclared workspace drift.  The
+  focused file-mode control passes in both phases, including rejection of an
+  unsafe `0644` to `0600` replacement.
+- The final selective referee folder is
+  `~/Documents/Math/k3p_level2_fourth_revision_referee_final_2026-08-29`.
+  Runtime evidence is added only under the explicitly unsealed `review_runs/`
+  root.  The remaining payload is byte-identical to the canonical package and
+  passes the Git-independent package integrity checker.
+- The monorepo's later `b49913a...` HEAD differs only in a sibling K2P
+  workstream.  The K3P release remains intentionally bound to `10bd695c...`;
+  no long command was repeated for unrelated repository movement.
+
+Best-guess completion: **100% of the third-referee local repair/replay
+workstream; 70% of the external-submission goal**.

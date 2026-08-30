@@ -1488,3 +1488,51 @@ Best-guess completion toward this third-referee repair and handoff: **90%**.
   release-input gate passes.
 
 Best-guess completion toward this second-referee repair and handoff: **97%**.
+
+## 2026-08-29T19:24:00-07:00 — third-referee repair acceptance closure
+
+- Sealed the repaired K3P proof and neutral referee package at exact
+  proof/package snapshot
+  `10bd695cc7b7e0fd98a187026059b043589244f0`.  The canonical package contains
+  635 payload files / 161,122,700 bytes and passes its independent byte-and-mode
+  integrity verifier; its manifest SHA-256 is
+  `c67c1c524ef59217a2327e7dd4016cd82a9b8be1e8f188e6cc61a4fe1fd6c725`.
+- Launched the portable `all` runner exactly once under an external macOS
+  sandbox and blocked until completion.  It passed 4/4 verification commands
+  and 55/55 regeneration commands in 11,608.930 seconds total.  The hour-scale
+  probe producer ran exactly once in 2,886.752 seconds.  The runner and external
+  supervisor summaries have SHA-256 values
+  `8aca186fe28786e61d7c25798fecf255b43dcaf9cfd0dc0035802757bc5f0db8`
+  and
+  `afafe7d2504a0937028ec021030ad01dea059fcc932d5f6aa8db7941366c18be`.
+- Package and virtual-environment inventories were unchanged, both phases had
+  zero undeclared workspace drift, and the output-mode regression control
+  passed in both phases.  A separate post-run audit found no discrepancy in
+  command counts, exact-once execution, hashes, drift, or sandbox evidence.
+- Created the final selective handoff folder at
+  `~/Documents/Math/k3p_level2_fourth_revision_referee_final_2026-08-29`.
+  It adds only the successful runtime reports, transcripts, inventories, and a
+  neutral acceptance record under the manifest-excluded `review_runs/` root.
+  Its sealed payload is byte-identical to the canonical package and its
+  integrity check passes.
+- The article and supplement remain the visually inspected 38-page and 14-page
+  PDFs with SHA-256 values
+  `3d08a722ba1fa53f6e336ab285c1cd32d1307bac08e1d4dd2460da71df1816d6`
+  and
+  `96508f4b4eddb89de99881172abee307b3fe86d236f48e17508bdd1ca9c30efa`.
+  All 35 tracked TeX/Bib sources were copied to the requested Google Drive
+  paper folder and a checksum-aware dry synchronization reports no mismatch.
+- While the exact-once run was active, the shared monorepository advanced to
+  `b49913ad5fc3404933fcedecbf36f1040f1c7f2d` through an unrelated K2P-only
+  commit.  The K3P package deliberately remains bound to `10bd695c...`; no K3P
+  input changed and no redundant package rebuild or long replay was performed.
+
+Strongest verified result: every third-referee finding is repaired, the sealed
+package passes independent integrity checks, and one complete exact-once
+portable verification/regeneration run passes under the recorded external
+sandbox boundary.
+
+Best-guess completion: **100% of the third-referee mathematical and local
+handoff workstream; 70% of the external-submission goal**.  Human declarations,
+license selection, immutable public release/tag approval, DOI minting, and
+journal-portal actions remain human-controlled.

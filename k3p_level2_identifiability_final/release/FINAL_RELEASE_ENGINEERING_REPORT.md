@@ -1,13 +1,13 @@
 # Final release engineering report
 
-Status: **targeted second-referee repair and local distribution reseal complete; submission metadata pending**
+Status: **third-referee repairs, sealed referee package, and exact-once full replay complete; submission metadata pending**
 
-This report certifies the immutable snapshots named below.  The self-contained
-C1/C2 strengthening, its one-shot proof regeneration, and the commit-bound
-TeX/PDF, source-archive, proof-archive, referee-package, and Google Drive
-handoff checks are complete.  The mathematical proof snapshot and the later
-typeset-source snapshot are named separately so that post-run bookkeeping does
-not recursively change the bytes it records.
+This report certifies the immutable snapshots named below.  The third-referee
+repairs, exact-once proof regeneration, and the commit-bound TeX/PDF,
+source-archive, proof-archive, referee-package, and Google Drive handoff checks
+are complete.  The sealed proof/package snapshot and this later post-run
+ledger are deliberately separate so that bookkeeping does not recursively
+change the bytes it records.
 
 The deterministic quick/full/regeneration orchestration, canonical TAR.GZ and
 ZIP construction, compact verifier packaging, fixed-toolchain PDF source
@@ -19,7 +19,74 @@ one-shot confirmation.
 No K3P DOI, license selection, Git tag, GitHub release, Zenodo record, journal
 upload, or external communication has been created or claimed.
 
-## Current targeted second-referee repair (29 August 2026)
+## Current third-referee repair and exact-once acceptance run (29 August 2026)
+
+All four third-referee findings were repaired without changing a theorem
+statement.  Atomic JSON replacement now preserves canonical file modes and is
+covered by a focused unsafe-mode rejection test.  The directed-cut evidence
+binds an exact typed nine-row implication object in independent direct and
+adversarial verifiers, binds custom evidence to the theorem certificate, and
+is freshly executed by the outer release gate.  Stale counts and version
+language were corrected.  PDF source reproduction now uses a pinned Tectonic
+0.16.9 executable, an exact 725-file cache manifest, `--only-cached`, a
+minimal non-inherited environment, and sealed final reports and transcripts.
+
+The repaired proof and referee-package snapshot is
+`10bd695cc7b7e0fd98a187026059b043589244f0`.  Its release selection contains
+594 full files and 383 compact files, with selection SHA-256 values
+`4d0686fc43bc53bb76d61d056f78f72f9da585e743ae386016fc7d64ba12e67a`
+and
+`835971a4858334085b4a1d352190038306909751075e518333e9acd0bade77a0`.
+The release-engineering suite rejects all 37 mutations and passes all 12
+controls; its payload is
+`e8d8fa6769c57d27fb636a1e8fef6038b1c01a6167b935e9f6ebfdd1452cca35`.
+
+The current 38-page article and 14-page supplement have SHA-256 values
+`3d08a722ba1fa53f6e336ab285c1cd32d1307bac08e1d4dd2460da71df1816d6`
+and
+`96508f4b4eddb89de99881172abee307b3fe86d236f48e17508bdd1ca9c30efa`.
+Every page was visually inspected, all fonts are embedded, and the source
+ZIPs reproduce the delivered PDFs twice under the closed build contract.  The
+article and supplement source ZIP SHA-256 values are
+`25a5730c31cdeffba4158203307a1be2d583e56e9cac5b0cc9922f8899ff3dba`
+and
+`34441c556277f152c96b88f2165afa450f905e1d7563aeeeb2115bd70148d5be`;
+their logical reproduction payloads are
+`d404ad7b99cd4b75386c97aa4fd6d700eba53f1eee8c4039b1b843afa539cd4f`
+and
+`9431b8d933ec9a236c30dd288f5bbbdbe21f6710e1746bd313192d1fe77c423e`.
+
+The canonical full TAR.GZ and compact ZIP have SHA-256 values
+`fecb2eda22bcb0558c02e14fdb7767b4229bde33471a4de2a764191f42d8d293`
+and
+`51e54e2d4eed0d7e980fccbd0319d79e83633a4fad9308c4ed79198112edc014`.
+The neutral referee package seals 635 payload files totaling 161,122,700
+bytes; its manifest SHA-256 is
+`c67c1c524ef59217a2327e7dd4016cd82a9b8be1e8f188e6cc61a4fe1fd6c725`.
+
+After sealing, the portable runner's `all` mode was launched exactly once
+inside an externally imposed, credential-free macOS sandbox.  It passed 4/4
+verification commands in 3,016.565 seconds and 55/55 regeneration commands in
+8,584.394 seconds, for 11,608.930 seconds total.  The hour-scale probe producer
+ran exactly once, in 2,886.752 seconds.  Package and virtual-environment
+inventories were unchanged; both phases reported zero undeclared workspace
+drift.  The runner summary SHA-256 is
+`8aca186fe28786e61d7c25798fecf255b43dcaf9cfd0dc0035802757bc5f0db8`,
+and the external supervisor summary SHA-256 is
+`afafe7d2504a0937028ec021030ad01dea059fcc932d5f6aa8db7941366c18be`.
+The successful run and its transcripts are copied outside the seal into
+`~/Documents/Math/k3p_level2_fourth_revision_referee_final_2026-08-29/review_runs/`.
+The final copied folder passes its Git-independent integrity checker, and its
+sealed payload is byte-for-byte identical to the canonical package.
+
+During the long run, the shared monorepository advanced to
+`b49913ad5fc3404933fcedecbf36f1040f1c7f2d` through an unrelated sibling K2P
+commit.  No K3P file changed.  The K3P artifacts intentionally remain bound to
+the exact `10bd695c...` snapshot; rebuilding them against an unrelated later
+monorepo commit would add no K3P evidence and would destroy that clean
+execution boundary.
+
+## Historical targeted second-referee repair (29 August 2026)
 
 The current mathematical repair is the direct K3P cut-transfer certificate at
 exact pushed proof snapshot
