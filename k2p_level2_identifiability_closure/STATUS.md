@@ -84,3 +84,19 @@ or claimed; those external publication actions are deliberately left to the
 author.
 
 No mixed-sign K2P claim is pending or implied.
+
+## Publication reproducibility package
+
+A separate public Zenodo packaging layer now derives a clean reproducibility
+archive from the accepted evidence without modifying it.  Its payload is the
+exact 408-file frozen closure, the exact 64-file accepted publication layer,
+and five deterministic packaging/checking tools.  The package excludes
+standalone AI-referee prompts and reports and submission-review dispositions.
+Its checker enforces the full allowlist, content roots, source and PDF hashes,
+the 41-layer PASS report, 13 theorem claims, 25 release mutations, 20
+proof-compression mutations, current probe binding, and fixed ZIP structure.
+
+The final upload directory and its external archive hash will be generated
+only after these packaging sources are committed, so its machine-readable
+manifest names a commit that actually contains the builder and checker.  No
+GitHub Release, Zenodo deposit, or DOI is created by this local preparation.

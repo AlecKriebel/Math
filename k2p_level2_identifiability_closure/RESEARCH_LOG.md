@@ -1094,3 +1094,29 @@
   auxiliary package is scoped to
   `k2p-same-referee-package-v1.0.5-r1`.  No GitHub Release, Zenodo deposit,
   DOI, or submission action was performed.
+
+## 2026-08-29 22:01 PDT — public Zenodo packaging layer qualified
+
+- Defined a publication-only reproducibility boundary containing the exact
+  408-file frozen evidence closure, the exact 64-file accepted publication
+  layer, and five new packaging tools.  Standalone AI-referee prompts and
+  reports and all submission-review dispositions are excluded; lock-bound
+  technical audit records remain unchanged where they are part of the theorem
+  evidence.
+- Added a deterministic archive builder, an independently implemented strict
+  archive/extraction checker, a public reproduction guide, and 20 focused
+  packaging mutations.  The mutations reject omitted or altered members,
+  private-prompt reinsertion, unsafe and extra paths, wrong evidence roots,
+  stale probe bindings, ambiguous JSON, optimized Python, and malformed ZIP
+  timestamps, modes, duplicates, and allowlists.
+- A trial 478-member archive passed its internal manifest, exact 477-file
+  payload allowlist, ZIP integrity, extracted-root verification, recursive
+  408-file ledger reconstruction, compressed theorem verification, 13-claim
+  theorem crosswalk, and source static audit.  The already-qualified 41-layer
+  mathematical replay was not rerun because no theorem source, evidence, or
+  verifier changed.
+- Best-guess completion remains **100% for the mathematical theorem** and is
+  **95% for the Zenodo upload artifact**, pending a commit that can be named as
+  the packaging-source commit, deterministic final rebuild, checksums, final
+  upload manifest, push, and annotated source tag.  No GitHub Release, Zenodo
+  deposit, DOI, or external submission action was performed.
