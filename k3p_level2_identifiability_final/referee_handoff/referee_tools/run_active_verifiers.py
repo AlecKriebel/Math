@@ -46,6 +46,85 @@ def mode_string(mode: int) -> str:
     return format(stat.S_IMODE(mode), "04o")
 
 
+def open_private_directory_chain(root: Path,
+                                 components: tuple[str, ...]) -> tuple[int, Path]:
+    """Create and hold a directory chain without following package symlinks."""
+    root_metadata = root.lstat()
+    require(stat.S_ISDIR(root_metadata.st_mode) and
+            not stat.S_ISLNK(root_metadata.st_mode),
+            ("runtime package root must be a real directory", str(root)))
+    require(hasattr(os, "O_DIRECTORY") and hasattr(os, "O_NOFOLLOW"),
+            "runtime no-follow directory opens are unavailable")
+    flags = os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW
+    descriptor = os.open(root, flags)
+    current = root
+    try:
+        opened_root = os.fstat(descriptor)
+        require((opened_root.st_dev, opened_root.st_ino) ==
+                (root_metadata.st_dev, root_metadata.st_ino),
+                ("runtime package root changed while opening", str(root)))
+        for component in components:
+            require(component not in {"", ".", ".."} and "/" not in component,
+                    ("unsafe runtime path component", component))
+            try:
+                metadata = os.stat(
+                    component, dir_fd=descriptor, follow_symlinks=False
+                )
+            except FileNotFoundError:
+                os.mkdir(component, mode=0o700, dir_fd=descriptor)
+                metadata = os.stat(
+                    component, dir_fd=descriptor, follow_symlinks=False
+                )
+            require(stat.S_ISDIR(metadata.st_mode) and
+                    not stat.S_ISLNK(metadata.st_mode),
+                    ("runtime path component must be a real directory",
+                     str(current / component)))
+            child = os.open(component, flags, dir_fd=descriptor)
+            try:
+                opened = os.fstat(child)
+                require((opened.st_dev, opened.st_ino) ==
+                        (metadata.st_dev, metadata.st_ino),
+                        ("runtime path component changed while opening",
+                         str(current / component)))
+                os.fchmod(child, 0o700)
+            except BaseException:
+                os.close(child)
+                raise
+            os.close(descriptor)
+            descriptor = child
+            current = current / component
+        return descriptor, current
+    except BaseException:
+        os.close(descriptor)
+        raise
+
+
+def ensure_private_directory_chain(root: Path, components: tuple[str, ...]) -> Path:
+    descriptor, path = open_private_directory_chain(root, components)
+    os.close(descriptor)
+    return path
+
+
+def prepare_runtime_control(package_root: Path) -> dict[str, Path]:
+    """Materialize the excluded runtime control paths with no-follow traversal."""
+    review_runs = ensure_private_directory_chain(package_root, ("review_runs",))
+    control = ensure_private_directory_chain(
+        package_root, ("review_runs", "runner_control")
+    )
+    home = ensure_private_directory_chain(
+        package_root, ("review_runs", "runner_control", "home")
+    )
+    temporary = ensure_private_directory_chain(
+        package_root, ("review_runs", "runner_control", "tmp")
+    )
+    return {
+        "review_runs": review_runs,
+        "runner_control": control,
+        "home": home,
+        "tmp": temporary,
+    }
+
+
 def filesystem_inventory(root: Path) -> dict[str, dict[str, object]]:
     """Inventory every entry below root without following symlinks."""
     require(root.is_dir() and not root.is_symlink(),
@@ -167,15 +246,11 @@ def deterministic_environment(workspace: Path) -> dict[str, str]:
 
 
 def control_environment(package_root: Path, source_date_epoch: str) -> dict[str, str]:
-    runtime = package_root / "review_runs/runner_control"
-    home = runtime / "home"
-    temporary = runtime / "tmp"
-    home.mkdir(parents=True, exist_ok=True)
-    temporary.mkdir(parents=True, exist_ok=True)
+    runtime = prepare_runtime_control(package_root)
     return {
         "PATH": "/usr/bin:/bin:/usr/sbin:/sbin",
-        "HOME": str(home.resolve()),
-        "TMPDIR": str(temporary.resolve()),
+        "HOME": str(runtime["home"]),
+        "TMPDIR": str(runtime["tmp"]),
         "PYTHONDONTWRITEBYTECODE": "1",
         "PYTHONHASHSEED": "0",
         "PYTHONNOUSERSITE": "1",
@@ -183,6 +258,22 @@ def control_environment(package_root: Path, source_date_epoch: str) -> dict[str,
         "LANG": "C",
         "TZ": "UTC",
         "SOURCE_DATE_EPOCH": source_date_epoch,
+    }
+
+
+def bootstrap_environment() -> dict[str, str]:
+    """Read-only environment used before any excluded runtime path exists."""
+    return {
+        "PATH": "/usr/bin:/bin:/usr/sbin:/sbin",
+        "HOME": "/",
+        "TMPDIR": "/tmp",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "PYTHONHASHSEED": "0",
+        "PYTHONNOUSERSITE": "1",
+        "LC_ALL": "C",
+        "LANG": "C",
+        "TZ": "UTC",
+        "SOURCE_DATE_EPOCH": "0",
     }
 
 
@@ -699,18 +790,27 @@ def run_output_mode_control(package_root: Path, project_root: Path,
     }
 
 
-def acquire_lock(package_root: Path, mode: str) -> tuple[int, Path, tuple[int, int]]:
-    runtime = package_root / "review_runs"
-    runtime.mkdir(parents=True, exist_ok=True)
+def acquire_lock(package_root: Path, mode: str) -> tuple[int, int, Path, tuple[int, int]]:
+    prepare_runtime_control(package_root)
+    runtime_descriptor, runtime = open_private_directory_chain(
+        package_root, ("review_runs",)
+    )
     path = runtime / ".active_runner.lock"
     try:
-        descriptor = os.open(path, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
+        descriptor = os.open(
+            path.name, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600,
+            dir_fd=runtime_descriptor,
+        )
     except FileExistsError as error:
+        os.close(runtime_descriptor)
         raise ReviewFailure((
             "another runner owns the atomic lock; do not launch a duplicate; "
             "after confirming that no runner remains, remove",
             str(path),
         )) from error
+    except BaseException:
+        os.close(runtime_descriptor)
+        raise
     try:
         record = json.dumps({
             "schema": "k3p-referee-run-lock-v1",
@@ -721,27 +821,32 @@ def acquire_lock(package_root: Path, mode: str) -> tuple[int, Path, tuple[int, i
         os.write(descriptor, record)
         os.fsync(descriptor)
         metadata = os.fstat(descriptor)
-        return descriptor, path, (metadata.st_dev, metadata.st_ino)
+        return (descriptor, runtime_descriptor, path,
+                (metadata.st_dev, metadata.st_ino))
     except BaseException:
-        os.close(descriptor)
         try:
-            path.unlink()
+            os.unlink(path.name, dir_fd=runtime_descriptor)
         except FileNotFoundError:
             pass
+        os.close(descriptor)
+        os.close(runtime_descriptor)
         raise
 
 
-def release_lock(lock: tuple[int, Path, tuple[int, int]]) -> None:
-    descriptor, path, identity = lock
+def release_lock(lock: tuple[int, int, Path, tuple[int, int]]) -> None:
+    descriptor, runtime_descriptor, path, identity = lock
     try:
-        metadata = path.lstat()
+        metadata = os.stat(
+            path.name, dir_fd=runtime_descriptor, follow_symlinks=False
+        )
         require(not stat.S_ISLNK(metadata.st_mode) and
                 stat.S_ISREG(metadata.st_mode) and
                 (metadata.st_dev, metadata.st_ino) == identity,
                 ("runner lock was replaced", str(path)))
-        path.unlink()
+        os.unlink(path.name, dir_fd=runtime_descriptor)
     finally:
         os.close(descriptor)
+        os.close(runtime_descriptor)
 
 
 def interrupted(signum: int, _frame) -> None:
@@ -755,6 +860,8 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--python", type=Path)
     parser.add_argument("--mode", choices=("plan", "verify", "regenerate", "all"),
                         default="verify")
+    parser.add_argument("--prepare-runtime-only", action="store_true",
+                        help=argparse.SUPPRESS)
     args = parser.parse_args(argv)
     package_root = args.package_root.resolve()
     # Preserve a virtual-environment interpreter path rather than resolving its
@@ -772,12 +879,29 @@ def main(argv: list[str] | None = None) -> int:
         require(sandbox_attested,
                 "set K3P_REFEREE_EXTERNAL_SANDBOX=YES only after supplying "
                 "an external offline, credential-free sandbox")
+        read_only_environment = bootstrap_environment()
+        run_integrity(
+            package_root, Path(sys.executable), read_only_environment
+        )
+        if args.prepare_runtime_only:
+            runtime_paths = prepare_runtime_control(package_root)
+            print(json.dumps({
+                "status": "PASS",
+                "runtime_paths": {
+                    name: path.relative_to(package_root).as_posix()
+                    for name, path in runtime_paths.items()
+                },
+                "modes": {
+                    name: mode_string(path.lstat().st_mode)
+                    for name, path in runtime_paths.items()
+                },
+            }, sort_keys=True))
+            print("K3P_REFEREE_RUNTIME_SETUP_PASS")
+            return 0
         lock = acquire_lock(package_root, args.mode)
         for signum in (signal.SIGINT, signal.SIGTERM, signal.SIGHUP):
             previous_handlers[signum] = signal.getsignal(signum)
             signal.signal(signum, interrupted)
-        bootstrap_environment = control_environment(package_root, "0")
-        run_integrity(package_root, Path(sys.executable), bootstrap_environment)
         manifest = json.loads(
             (package_root / "proof_package/ARCHIVE_MANIFEST.json").read_text()
         )

@@ -1,13 +1,12 @@
 # Final release engineering report
 
-Status: **third-referee repairs, sealed referee package, and exact-once full replay complete; submission metadata pending**
+Status: **fourth-referee localized release repairs complete; replacement handoff manifest-bound; submission metadata pending**
 
-This report certifies the immutable snapshots named below.  The third-referee
-repairs, exact-once proof regeneration, and the commit-bound TeX/PDF,
-source-archive, proof-archive, referee-package, and Google Drive handoff checks
-are complete.  The sealed proof/package snapshot and this later post-run
-ledger are deliberately separate so that bookkeeping does not recursively
-change the bytes it records.
+This report certifies the immutable snapshots named below.  The latest changes
+repair only report-file mode preservation and referee-runtime delivery
+hygiene; the mathematical theorem, TeX, and PDF bytes are unchanged.  Exact
+archive and handoff identities are authoritative in their manifests so that
+this ledger does not recursively change the bytes it records.
 
 The deterministic quick/full/regeneration orchestration, canonical TAR.GZ and
 ZIP construction, compact verifier packaging, fixed-toolchain PDF source
@@ -19,7 +18,45 @@ one-shot confirmation.
 No K3P DOI, license selection, Git tag, GitHub release, Zenodo record, journal
 upload, or external communication has been created or claimed.
 
-## Current third-referee repair and exact-once acceptance run (29 August 2026)
+## Current fourth-referee localized release repair (29 August 2026)
+
+The fresh fourth-revision report found no theorem-level defect.  Its three
+release findings were accepted and repaired in their minimal dependency cone.
+The integrated classification verifier's previously omitted fourth atomic
+JSON writer now applies canonical mode `0644` before replacement.  The focused
+control exercises all four writers on existing and new paths and rejects the
+unsafe `0644`-to-`0600` fixture.
+
+The reviewer launcher now runs package integrity before creating any excluded
+runtime path.  Both the integrity checker and runner reject symlink and
+wrong-type objects at `review_runs`, `runner_control`, `home`, and `tmp`.
+Runtime directories are opened and created relative to held directory
+descriptors with required `O_NOFOLLOW`, device/inode identity checks, and mode
+`0700`; the runner lock is likewise created and removed relative to the held
+real `review_runs` descriptor.  An end-to-end negative control proves that a
+failed integrity preflight cannot write through a pre-existing excluded-path
+symlink.  The package builder executes these focused controls on the copied
+candidate and rejects any candidate containing `.venv` or `review_runs`.
+
+The report's ledger complaint concerned the older package sealed at
+`10bd695c...`, not the live ledger: the latter had already been corrected at
+`14eda70d...`.  This addendum makes the replacement package self-describing.
+Only the integrated verifier's 27-case mutation report, claim lock,
+86-binding artifact report, active manifest, and root checksum were rebound.
+All 27 attacks are rejected and the artifact-only theorem and release-input
+gates pass.  No mathematical producer, twenty-child fresh replay, probe,
+four-port enumeration, restoration computation, sharpness computation, or
+full regeneration was rerun, because none consumes the changed report writer
+or referee-runtime code.
+
+The package builder constructs every replacement referee handoff from scratch
+and rejects a candidate containing either a virtual environment or
+pre-existing `review_runs`.  Historical runtime evidence is not copied back
+into the manifest-excluded runtime root.  The outer package manifest records
+the exact repair commit, payload bytes and modes, canonical proof-archive
+hash, and source-reproduction evidence.
+
+## Historical third-referee repair and exact-once acceptance run (29 August 2026)
 
 All four third-referee findings were repaired without changing a theorem
 statement.  Atomic JSON replacement now preserves canonical file modes and is

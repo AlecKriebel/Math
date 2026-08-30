@@ -15,10 +15,6 @@ if [ "${K3P_REFEREE_EXTERNAL_SANDBOX:-}" != YES ]; then
 fi
 
 CONFIRM_REGENERATION=${K3P_REFEREE_CONFIRM_REGENERATION:-}
-RUNTIME_ROOT="$SCRIPT_DIR/review_runs/runner_control"
-RUNTIME_HOME="$RUNTIME_ROOT/home"
-RUNTIME_TMP="$RUNTIME_ROOT/tmp"
-mkdir -p "$RUNTIME_HOME" "$RUNTIME_TMP"
 
 if [ -n "${K3P_REFEREE_TRUSTED_PYTHON:-}" ]; then
   TRUSTED_PYTHON=$K3P_REFEREE_TRUSTED_PYTHON
@@ -30,11 +26,24 @@ fi
 
 env -i \
   PATH=/usr/bin:/bin:/usr/sbin:/sbin \
-  HOME="$RUNTIME_HOME" TMPDIR="$RUNTIME_TMP" \
+  HOME=/ TMPDIR=/tmp \
   PYTHONDONTWRITEBYTECODE=1 PYTHONHASHSEED=0 PYTHONNOUSERSITE=1 \
   LC_ALL=C LANG=C TZ=UTC SOURCE_DATE_EPOCH=0 \
   "$TRUSTED_PYTHON" "$SCRIPT_DIR/referee_tools/verify_package_integrity.py" \
     --package-root "$SCRIPT_DIR"
+
+env -i \
+  PATH=/usr/bin:/bin:/usr/sbin:/sbin \
+  HOME=/ TMPDIR=/tmp \
+  PYTHONDONTWRITEBYTECODE=1 PYTHONHASHSEED=0 PYTHONNOUSERSITE=1 \
+  LC_ALL=C LANG=C TZ=UTC SOURCE_DATE_EPOCH=0 \
+  K3P_REFEREE_EXTERNAL_SANDBOX=YES \
+  "$TRUSTED_PYTHON" "$SCRIPT_DIR/referee_tools/run_active_verifiers.py" \
+    --package-root "$SCRIPT_DIR" --prepare-runtime-only
+
+RUNTIME_ROOT="$SCRIPT_DIR/review_runs/runner_control"
+RUNTIME_HOME="$RUNTIME_ROOT/home"
+RUNTIME_TMP="$RUNTIME_ROOT/tmp"
 
 if [ ! -x "$PYTHON_BIN" ]; then
   echo "Missing $PYTHON_BIN" >&2

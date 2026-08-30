@@ -8,7 +8,9 @@ import importlib.util
 import json
 import os
 from pathlib import Path
+import shutil
 import stat
+import subprocess
 import sys
 import tempfile
 
@@ -55,6 +57,9 @@ def atomic_writer_control(project: Path) -> dict[str, object]:
         ("strong_cut_transfer", project /
          "reproducibility/strong_cut_transfer_gate.py",
          project / "reproducibility"),
+        ("integrated_classification", project /
+         "reproducibility/verify_k3p_same_classification.py",
+         project / "reproducibility"),
     ]
     observed: dict[str, str] = {}
     with tempfile.TemporaryDirectory(
@@ -76,6 +81,127 @@ def atomic_writer_control(project: Path) -> dict[str, object]:
                 observed[f"{name}_{state}"] = format(mode, "04o")
     return {"name": "public_atomic_json_mode_preservation",
             "status": "PASS", "modes": observed}
+
+
+def runtime_path_hardening_control() -> dict[str, object]:
+    runner = load_module(
+        "k3p_runtime_path_control_runner",
+        HERE / "run_active_verifiers.py",
+    )
+    integrity = load_module(
+        "k3p_runtime_path_control_integrity",
+        HERE / "verify_package_integrity.py",
+    )
+    observed: dict[str, str] = {}
+    with tempfile.TemporaryDirectory(prefix="k3p-runtime-control-") as directory:
+        package = Path(directory) / "package"
+        package.mkdir()
+        paths = runner.prepare_runtime_control(package)
+        for name, path in paths.items():
+            mode = stat.S_IMODE(path.lstat().st_mode)
+            require(path.is_dir() and not path.is_symlink() and mode == 0o700,
+                    ("runtime control directory", name, mode))
+            observed[name] = format(mode, "04o")
+
+    runner_rejected = []
+    integrity_rejected = []
+    components = (
+        Path("review_runs"), Path("review_runs/runner_control"),
+        Path("review_runs/runner_control/home"),
+        Path("review_runs/runner_control/tmp"),
+    )
+    for kind in ("symlink", "file"):
+        for relative in components:
+            with tempfile.TemporaryDirectory(
+                prefix=f"k3p-runtime-{kind}-control-"
+            ) as directory:
+                package = Path(directory) / "package"
+                target = Path(directory) / "outside"
+                package.mkdir()
+                target.mkdir()
+                parent = package / relative.parent
+                parent.mkdir(parents=True, exist_ok=True)
+                if kind == "symlink":
+                    (package / relative).symlink_to(
+                        target, target_is_directory=True
+                    )
+                else:
+                    (package / relative).write_text(
+                        "not a directory\n", encoding="utf-8"
+                    )
+                label = f"{kind}:{relative.as_posix()}"
+                try:
+                    runner.prepare_runtime_control(package)
+                except runner.ReviewFailure:
+                    runner_rejected.append(label)
+                else:
+                    raise ModeFailure(("runtime path mutation survived", label))
+                try:
+                    integrity.verify_runtime_control_paths(package)
+                except integrity.IntegrityFailure:
+                    integrity_rejected.append(label)
+                else:
+                    raise ModeFailure(("integrity runtime mutation survived", label))
+                require(not any(target.iterdir()),
+                        ("runtime mutation wrote through excluded path", label))
+    require(runner_rejected == integrity_rejected and
+            len(runner_rejected) == 8,
+            ("runtime symlink rejection census", runner_rejected,
+             integrity_rejected))
+    return {
+        "name": "runtime_control_no_follow_setup",
+        "status": "PASS",
+        "modes": observed,
+        "runner_rejected_components": runner_rejected,
+        "integrity_rejected_components": integrity_rejected,
+    }
+
+
+def shell_preflight_order_control() -> dict[str, object]:
+    source = (HERE.parent / "RUN_REVIEW.sh").read_text(encoding="utf-8")
+    integrity = source.index("verify_package_integrity.py")
+    preparation = source.index("--prepare-runtime-only")
+    runtime_home = source.index('RUNTIME_HOME="$RUNTIME_ROOT/home"')
+    require(integrity < preparation < runtime_home and "mkdir -p" not in source,
+            "RUN_REVIEW runtime setup must follow integrity preflight")
+    with tempfile.TemporaryDirectory(prefix="k3p-shell-preflight-") as directory:
+        package = Path(directory) / "package"
+        tools = package / "referee_tools"
+        outside = Path(directory) / "outside"
+        tools.mkdir(parents=True)
+        outside.mkdir()
+        script = package / "RUN_REVIEW.sh"
+        shutil.copy2(HERE.parent / "RUN_REVIEW.sh", script)
+        script.chmod(0o755)
+        (tools / "verify_package_integrity.py").write_text(
+            "raise SystemExit(9)\n", encoding="utf-8"
+        )
+        (tools / "run_active_verifiers.py").write_text(
+            "from pathlib import Path\n"
+            f"Path({str(outside / 'escaped')!r}).write_text('bad')\n",
+            encoding="utf-8",
+        )
+        (package / "review_runs").mkdir()
+        (package / "review_runs/runner_control").symlink_to(
+            outside, target_is_directory=True
+        )
+        result = subprocess.run(
+            [str(script), "plan"], cwd=package,
+            env={
+                "PATH": "/usr/bin:/bin:/usr/sbin:/sbin",
+                "K3P_REFEREE_EXTERNAL_SANDBOX": "YES",
+                "K3P_REFEREE_TRUSTED_PYTHON": sys.executable,
+            },
+            stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+            text=True, check=False, timeout=30,
+        )
+        require(result.returncode != 0 and not any(outside.iterdir()),
+                ("RUN_REVIEW mutated runtime before failed integrity",
+                 result.returncode, result.stdout[-1000:]))
+    return {
+        "name": "runner_integrity_before_runtime_setup",
+        "status": "PASS",
+    }
 
 
 def primary_report_restore_control(project: Path) -> dict[str, object]:
@@ -151,10 +277,12 @@ def main(argv: list[str] | None = None) -> int:
         controls = [
             atomic_writer_control(project),
             primary_report_restore_control(project),
+            runtime_path_hardening_control(),
+            shell_preflight_order_control(),
         ]
         mutation = unsafe_replacement_mutation()
         report = {
-            "schema": "k3p-output-mode-preservation-control-v1",
+            "schema": "k3p-output-and-runtime-preservation-control-v2",
             "status": "PASS",
             "controls": controls,
             "mutation": mutation,

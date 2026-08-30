@@ -347,3 +347,25 @@ Best-guess completion: **97% of the second-referee local handoff workstream;
 
 Best-guess completion: **100% of the third-referee local repair/replay
 workstream; 70% of the external-submission goal**.
+
+## 2026-08-29T21:48:37-07:00 — fourth-referee localized interface repair
+
+- Added mode `0644` preservation to the integrated theorem report writer and
+  expanded the focused control to all four public writers, eight existing/new
+  cases, and the unsafe replacement mutation.
+- Hardened the referee runner so integrity precedes every excluded runtime
+  write.  Reserved runtime components reject symlinks and wrong-type objects;
+  no-follow directory-relative opens, device/inode checks, `0700` modes, and a
+  directory-relative lock close the reported path-redirection interface.
+- The focused writer/runtime suite passes, including eight hostile path
+  objects and an end-to-end failed-preflight fixture with no outside write.
+- Refreshed only the integrated certificate cone: 27/27 mutations rejected,
+  86 artifact bindings passed, and 108 active release-input bindings passed.
+  No mathematical producer or long regeneration was invoked.
+- A new handoff will be built only from a committed snapshot and will contain
+  neither `.venv` nor pre-existing `review_runs`; the earlier run-bearing
+  folder remains historical and is not mutated or presented as the clean
+  replacement.
+
+Best-guess completion: **82% of the fourth-referee local repair/handoff
+workstream; 70% of the external-submission goal**.

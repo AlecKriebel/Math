@@ -51,8 +51,11 @@ python3 -m venv .venv
 Perform the first integrity check before creating or activating the virtual
 environment.  `RUN_REVIEW.sh` repeats that check with `/usr/bin/python3` when
 available; set `K3P_REFEREE_TRUSTED_PYTHON` to another trusted standard-library
-interpreter if needed.  A clean delivered package contains neither `.venv/`
-nor `review_runs/`.
+interpreter if needed.  It performs integrity preflight before creating any
+runtime path, rejects every pre-existing symlink or non-directory component of
+`review_runs/runner_control/{home,tmp}`, and creates those private directories
+through no-follow directory descriptors.  A clean delivered package contains
+neither `.venv/` nor `review_runs/`.
 
 No active mathematical verifier makes a network request.  Dependency
 installation may require package-index access unless the reviewer supplies an

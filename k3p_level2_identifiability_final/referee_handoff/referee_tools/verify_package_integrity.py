@@ -2,10 +2,12 @@
 """Verify the sealed delivered payload and canonical proof-core manifest.
 
 Reviewer-created ``.venv`` and ``review_runs`` directories are deliberately
-outside this seal, including their contents, modes, and symlink targets.  This
-gate binds bytes and modes of every delivered payload file; it does not inspect
-the compressed archive container itself.  After execution, use the runner's
-complete before/after inventories—not this check alone—to establish drift.
+outside this seal.  The excluded runner-control path components are still
+required to be real directories when present; other runtime contents, modes,
+and symlink targets remain outside the seal.  This gate binds bytes and modes
+of every delivered payload file; it does not inspect the compressed archive
+container itself.  After execution, use the runner's complete before/after
+inventories—not this check alone—to establish drift.
 """
 
 from __future__ import annotations
@@ -78,7 +80,25 @@ def is_runtime_path(relative: str) -> bool:
     )
 
 
+def verify_runtime_control_paths(root: Path) -> None:
+    for relative in (
+        "review_runs",
+        "review_runs/runner_control",
+        "review_runs/runner_control/home",
+        "review_runs/runner_control/tmp",
+    ):
+        path = root / relative
+        try:
+            metadata = path.lstat()
+        except FileNotFoundError:
+            continue
+        require(stat.S_ISDIR(metadata.st_mode) and
+                not stat.S_ISLNK(metadata.st_mode),
+                ("runtime control path must be a real directory", relative))
+
+
 def observed_payload(root: Path) -> dict[str, dict[str, object]]:
+    verify_runtime_control_paths(root)
     result: dict[str, dict[str, object]] = {}
     for path in sorted(root.rglob("*")):
         relative = path.relative_to(root).as_posix()
@@ -683,6 +703,7 @@ def main(argv: list[str] | None = None) -> int:
             "seal_scope": {
                 "delivered_payload_bytes_and_modes": True,
                 "excluded_runtime_roots": [".venv", "review_runs"],
+                "excluded_runtime_control_paths_type_checked": True,
                 "compressed_archive_container_checked": False,
                 "inner_manifest_checks_declared_members": True,
             },

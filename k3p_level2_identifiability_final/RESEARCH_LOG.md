@@ -1536,3 +1536,40 @@ Best-guess completion: **100% of the third-referee mathematical and local
 handoff workstream; 70% of the external-submission goal**.  Human declarations,
 license selection, immutable public release/tag approval, DOI minting, and
 journal-portal actions remain human-controlled.
+
+## 2026-08-29T21:48:37-07:00 — fourth-referee localized repair checkpoint
+
+- Accepted R1: added canonical `0644` mode preservation to the integrated
+  classification verifier's fourth atomic JSON writer.  The focused control
+  now passes all eight existing/new writer cases and rejects the unsafe
+  replacement fixture.
+- Accepted R3: moved integrity ahead of every runtime-path mutation, added
+  `lstat` and required `O_NOFOLLOW` directory-relative creation with inode
+  identity checks, made the four control directories private `0700`, and made
+  lock creation/removal relative to a held real-directory descriptor.  Eight
+  symlink/wrong-type mutations across the four reserved path components are
+  rejected, the external target remains untouched, and an end-to-end failed
+  preflight test performs no runtime write.
+- Confirmed that R2 was already fixed in the live ledger at `14eda70d...`; the
+  reviewed package was bound to the older `10bd695c...` bytes.  Added a current
+  fourth-referee addendum so the replacement package will carry the corrected
+  status rather than the historical ledger.
+- Resealed only the verifier-dependent certificate cone.  The 27-case
+  integrated mutation suite rejects 27/27 with payload
+  `60c6b9902ee30449c065c101b6c78732a8444e4cc77f9dc6aa51e75ed768454f`;
+  the 86-binding artifact gate passes with payload
+  `097024599a7a7d4475503fe1bdcb95dd6e7cbc13a47a6bbbf3218105148fec18`;
+  and the development release-input gate passes with 108 active bindings.
+- No mathematical source, TeX source, PDF, finite enumeration, probe,
+  restoration, sharpness, or other long-producer input changed.  No long
+  script was run; the replacement work remaining is commit-bound archive,
+  cached source-metadata, and clean outer-package resealing only.
+
+Strongest verified result: the report's sole residual writer defect and
+runtime-delivery hazard are closed by focused negative controls, while the
+mathematical evidence remains byte-identical outside the necessary integrated
+hash cone.
+
+Best-guess completion toward this fourth-referee repair and clean handoff:
+**82%**.  Remaining work is the exact-commit packaging fixed point, clean
+handoff integrity audit, log closure, and push.

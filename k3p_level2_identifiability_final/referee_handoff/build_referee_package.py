@@ -362,7 +362,23 @@ def verify_candidate(candidate: Path) -> dict:
     require(result.returncode == 0 and
             "K3P_REFEREE_PACKAGE_INTEGRITY_PASS" in result.stdout,
             ("candidate integrity verification failed", result.stdout[-4000:]))
-    return {"status": "PASS", "transcript": result.stdout.strip()}
+    control = subprocess.run(
+        [
+            sys.executable,
+            str(candidate / "referee_tools/test_output_mode_preservation.py"),
+            "--project-root", str(candidate / "proof_package"),
+        ],
+        cwd=candidate, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+        text=True, check=False, timeout=180,
+    )
+    require(control.returncode == 0 and
+            "K3P_OUTPUT_MODE_PRESERVATION_PASS" in control.stdout,
+            ("candidate output/runtime control failed", control.stdout[-4000:]))
+    return {
+        "status": "PASS",
+        "transcript": result.stdout.strip(),
+        "output_runtime_control": "PASS",
+    }
 
 
 def main(argv: list[str] | None = None) -> int:
