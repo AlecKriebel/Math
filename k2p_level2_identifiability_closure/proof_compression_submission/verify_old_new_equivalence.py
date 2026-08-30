@@ -58,7 +58,7 @@ COMMANDS = (
         "id": "minimal_compressed_release_verifier",
         "script": "proof_compression_submission/verify_compressed_release.py",
         "payload_key": "result_payload_sha256",
-        "payload": "fe6c991251005c9c5d134a0f914ac0ae44c990d92597e494607d9693d67df49c",
+        "payload": "91583a64327f6137b0b55676861eb13ba12e7a0c269da25efb17d8880dea1cc3",
     },
 )
 

@@ -184,3 +184,20 @@
 - Mathematical and reproducibility readiness remains **100%**. Submission
   administration remains **98%** pending those human decisions and any chosen
   final-tag replay provenance claim.
+## 2026-08-29 — R6 current probe-word binding repair
+
+- Corrected the two obsolete digests in the C09 word-theorem narrative.  The
+  current coverage certificate itself remains byte-identical at SHA-256
+  `c2e32b37d32eda11470afc7f747cb2bca5fa58c78fd92793f8fa94309f3d3660`
+  with canonical payload
+  `d66b28240092a04112fde67d54527e3df3964d7eea64f7b75ed75f877435ec49`.
+- Added a fail-closed semantic gate to the independent compressed-release
+  verifier.  It requires one role-labelled current-artifact section, strict
+  duplicate-aware certificate JSON, a valid certificate payload seal, and
+  exact agreement of both printed digests.
+- Expanded the stored compression mutations from 11 to 20 cases.  The nine
+  new cases reject stale, malformed, omitted, duplicated, role-swapped, and
+  duplicate-JSON-name current bindings for their intended diagnostics; zero
+  mutations survive.
+- The frozen theorem lock, five TeX/Bib sources, PDFs, and clean 41-layer
+  telemetry are outside this repair's dependency graph and remain unchanged.

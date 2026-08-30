@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import sys
 from collections import Counter
 from pathlib import Path
@@ -34,7 +35,7 @@ EXPECTED_PAYLOADS = {
     "restoration_verification": "8f3134bd2cb2f01f6a91cfe90fe536cce5f209d4edaaa2e6d25b0c2c64de776c",
     "probe": "d66b28240092a04112fde67d54527e3df3964d7eea64f7b75ed75f877435ec49",
     "crosswalk": "d2591c67eb5168b6601efa81b762e905239accd26acf69fe284f1b690de1d480",
-    "result": "fe6c991251005c9c5d134a0f914ac0ae44c990d92597e494607d9693d67df49c",
+    "result": "91583a64327f6137b0b55676861eb13ba12e7a0c269da25efb17d8880dea1cc3",
 }
 
 EXPECTED_SCHEMAS = {
@@ -109,6 +110,12 @@ PROBE_TWO = {
     "triangle": 1760,
 }
 
+PROBE_WORD_THEOREM = "probe/PROBE_WORD_THEOREM.md"
+PROBE_WORD_COVERAGE = "probe/PROBE_WORD_COVERAGE.json"
+PROBE_CURRENT_SECTION = "Current coverage artifact:"
+PROBE_FILE_LABEL = "- file SHA-256:"
+PROBE_PAYLOAD_LABEL = "- logical payload:"
+
 
 class VerificationFailure(RuntimeError):
     pass
@@ -169,6 +176,111 @@ def exact_dict(observed: Any, expected: dict[str, int], code: str) -> None:
     need(observed == expected, code, observed)
 
 
+def strict_json_bytes(data: bytes, label: str) -> dict[str, Any]:
+    """Decode one JSON object while rejecting duplicate member names."""
+
+    def unique_pairs(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
+        result: dict[str, Any] = {}
+        for key, value in pairs:
+            need(
+                key not in result,
+                "PROBE_CURRENT_CERTIFICATE_DUPLICATE_JSON_NAME",
+                key,
+            )
+            result[key] = value
+        return result
+
+    try:
+        value = json.loads(data.decode("utf-8"), object_pairs_hook=unique_pairs)
+    except VerificationFailure:
+        raise
+    except (UnicodeDecodeError, json.JSONDecodeError) as error:
+        raise VerificationFailure(
+            f"PROBE_CURRENT_CERTIFICATE_JSON_INVALID:{label}"
+        ) from error
+    need(isinstance(value, dict), "PROBE_CURRENT_CERTIFICATE_NOT_OBJECT", label)
+    return value
+
+
+def verify_probe_current_binding(
+    theorem_text: str | None = None,
+    coverage_bytes: bytes | None = None,
+) -> dict[str, str]:
+    """Bind the word-theorem's printed current digests to its certificate."""
+
+    if theorem_text is None:
+        theorem_text = safe_path(PROBE_WORD_THEOREM).read_text(encoding="utf-8")
+    if coverage_bytes is None:
+        coverage_bytes = safe_path(PROBE_WORD_COVERAGE).read_bytes()
+
+    need(
+        theorem_text.count(PROBE_CURRENT_SECTION) == 1,
+        "PROBE_CURRENT_SECTION_COUNT",
+    )
+    section = theorem_text.split(PROBE_CURRENT_SECTION, 1)[1]
+    next_heading = re.search(r"(?m)^#{1,6}\s+", section)
+    if next_heading is not None:
+        section = section[: next_heading.start()]
+
+    need(
+        section.count(PROBE_FILE_LABEL) == 1,
+        "PROBE_CURRENT_FILE_FIELD_COUNT",
+    )
+    need(
+        section.count(PROBE_PAYLOAD_LABEL) == 1,
+        "PROBE_CURRENT_PAYLOAD_FIELD_COUNT",
+    )
+    file_match = re.search(
+        r"(?m)^\s*- file SHA-256:\s*\n\s*`([0-9a-f]{64})`;\s*$",
+        section,
+    )
+    payload_match = re.search(
+        r"(?m)^\s*- logical payload:\s*\n\s*`([0-9a-f]{64})`\.\s*$",
+        section,
+    )
+    need(file_match is not None, "PROBE_CURRENT_FILE_FIELD_MALFORMED")
+    need(payload_match is not None, "PROBE_CURRENT_PAYLOAD_FIELD_MALFORMED")
+
+    coverage = strict_json_bytes(coverage_bytes, PROBE_WORD_COVERAGE)
+    need(
+        coverage.get("schema") == "k2p-probe-word-theorem-coverage-v1",
+        "PROBE_CURRENT_CERTIFICATE_SCHEMA",
+    )
+    stored_payload = coverage.get("payload_sha256")
+    need(
+        isinstance(stored_payload, str)
+        and re.fullmatch(r"[0-9a-f]{64}", stored_payload) is not None,
+        "PROBE_CURRENT_CERTIFICATE_PAYLOAD_MALFORMED",
+    )
+    unsigned = dict(coverage)
+    unsigned.pop("payload_sha256", None)
+    actual_payload = object_sha(unsigned)
+    need(
+        stored_payload == actual_payload,
+        "PROBE_CURRENT_CERTIFICATE_PAYLOAD_SEAL",
+    )
+    actual_file_sha = hashlib.sha256(coverage_bytes).hexdigest()
+    printed_file_sha = file_match.group(1)
+    printed_payload = payload_match.group(1)
+    need(
+        printed_file_sha == actual_file_sha,
+        "PROBE_CURRENT_FILE_SHA_MISMATCH",
+        f"printed={printed_file_sha}:actual={actual_file_sha}",
+    )
+    need(
+        printed_payload == actual_payload,
+        "PROBE_CURRENT_PAYLOAD_MISMATCH",
+        f"printed={printed_payload}:actual={actual_payload}",
+    )
+    return {
+        "theorem_path": PROBE_WORD_THEOREM,
+        "coverage_path": PROBE_WORD_COVERAGE,
+        "coverage_schema": coverage["schema"],
+        "coverage_sha256": actual_file_sha,
+        "coverage_payload_sha256": actual_payload,
+    }
+
+
 def verify_file_bindings(bundle: dict[str, dict[str, Any]]) -> None:
     result = bundle["result"]
     bindings = result.get("artifact_bindings")
@@ -212,6 +324,7 @@ def verify_file_bindings(bundle: dict[str, dict[str, Any]]) -> None:
         path = safe_path(row["path"])
         need(row.get("bytes") == path.stat().st_size, "PROSE_BINDING_BYTES", row["path"])
         need(row.get("sha256") == file_sha(path), "PROSE_BINDING_SHA", row["path"])
+    verify_probe_current_binding()
 
 
 def verify_frozen_lock() -> None:

@@ -76,8 +76,11 @@ an independently named detached clean checkout of the exact bound source
 commit; the unchanged portable path checks also retain their prior
 two-extraction qualification.
 
-The versioned annotated source tag is `k2p-same-biorxiv-v1.0.5`. No GitHub Release, Zenodo
-deposit, or DOI has been created or claimed; those external publication
-actions are deliberately left to the author.
+The unchanged five-file manuscript source tag is
+`k2p-same-biorxiv-v1.0.5`.  The R6 auxiliary C09 evidence repair is scoped by
+`k2p-same-referee-package-v1.0.5-r1`; the current referee archive sidecar is
+its byte authority. No GitHub Release, Zenodo deposit, or DOI has been created
+or claimed; those external publication actions are deliberately left to the
+author.
 
 No mixed-sign K2P claim is pending or implied.

@@ -172,11 +172,114 @@ def optimized_mode_mutation() -> dict[str, Any]:
     }
 
 
+def probe_current_binding_mutations() -> tuple[dict[str, str], list[dict[str, Any]]]:
+    theorem_path = verifier.safe_path(verifier.PROBE_WORD_THEOREM)
+    coverage_path = verifier.safe_path(verifier.PROBE_WORD_COVERAGE)
+    theorem = theorem_path.read_text(encoding="utf-8")
+    coverage = coverage_path.read_bytes()
+    clean = verifier.verify_probe_current_binding(theorem, coverage)
+    file_sha = clean["coverage_sha256"]
+    payload_sha = clean["coverage_payload_sha256"]
+    need(theorem.count(file_sha) == 1, "PROBE_BINDING_FILE_DIGEST_INVENTORY")
+    need(theorem.count(payload_sha) == 1, "PROBE_BINDING_PAYLOAD_INVENTORY")
+
+    file_block = f"- file SHA-256:\n  `{file_sha}`;"
+    payload_block = f"- logical payload:\n  `{payload_sha}`."
+    need(theorem.count(file_block) == 1, "PROBE_BINDING_FILE_BLOCK_INVENTORY")
+    need(theorem.count(payload_block) == 1, "PROBE_BINDING_PAYLOAD_BLOCK_INVENTORY")
+
+    cases: list[dict[str, Any]] = []
+
+    def reject(
+        mutation_id: str,
+        expected: str,
+        mutant_theorem: str = theorem,
+        mutant_coverage: bytes = coverage,
+    ) -> None:
+        observed: str | None = None
+        try:
+            verifier.verify_probe_current_binding(mutant_theorem, mutant_coverage)
+        except verifier.VerificationFailure as error:
+            observed = str(error).split(":", 1)[0]
+        need(observed is not None, "PROBE_BINDING_MUTATION_ACCEPTED", mutation_id)
+        need(
+            observed == expected,
+            "PROBE_BINDING_MUTATION_WRONG_FAILURE",
+            f"{mutation_id}:{observed}",
+        )
+        cases.append(
+            {
+                "mutation_id": mutation_id,
+                "expected_failure_code": expected,
+                "observed_failure_code": observed,
+                "status": "REJECTED_AS_REQUIRED",
+            }
+        )
+
+    reject(
+        "probe_current_stale_file_digest",
+        "PROBE_CURRENT_FILE_SHA_MISMATCH",
+        theorem.replace(file_sha, "0" * 64, 1),
+    )
+    reject(
+        "probe_current_stale_payload_digest",
+        "PROBE_CURRENT_PAYLOAD_MISMATCH",
+        theorem.replace(payload_sha, "1" * 64, 1),
+    )
+    reject(
+        "probe_current_malformed_file_digest",
+        "PROBE_CURRENT_FILE_FIELD_MALFORMED",
+        theorem.replace(file_sha, "2" * 63, 1),
+    )
+    reject(
+        "probe_current_omitted_file_field",
+        "PROBE_CURRENT_FILE_FIELD_COUNT",
+        theorem.replace(file_block + "\n", "", 1),
+    )
+    reject(
+        "probe_current_omitted_payload_field",
+        "PROBE_CURRENT_PAYLOAD_FIELD_COUNT",
+        theorem.replace(payload_block, "", 1),
+    )
+    reject(
+        "probe_current_duplicated_file_field",
+        "PROBE_CURRENT_FILE_FIELD_COUNT",
+        theorem.replace(file_block, file_block + "\n" + file_block, 1),
+    )
+    reject(
+        "probe_current_duplicated_payload_field",
+        "PROBE_CURRENT_PAYLOAD_FIELD_COUNT",
+        theorem.replace(payload_block, payload_block + "\n" + payload_block, 1),
+    )
+    role_swapped = theorem.replace(file_sha, "__FILE_DIGEST__", 1)
+    role_swapped = role_swapped.replace(payload_sha, file_sha, 1)
+    role_swapped = role_swapped.replace("__FILE_DIGEST__", payload_sha, 1)
+    reject(
+        "probe_current_role_swapped_fields",
+        "PROBE_CURRENT_FILE_SHA_MISMATCH",
+        role_swapped,
+    )
+    duplicate_json_name = coverage.replace(
+        b"{\n",
+        b'{\n  "schema": "duplicate-shadow",\n',
+        1,
+    )
+    reject(
+        "probe_current_duplicate_certificate_json_name",
+        "PROBE_CURRENT_CERTIFICATE_DUPLICATE_JSON_NAME",
+        theorem,
+        duplicate_json_name,
+    )
+    return clean, cases
+
+
 def build_result() -> tuple[dict[str, Any], float]:
     started = time.perf_counter()
     pristine = verifier.load_bundle()
     verifier.verify_bundle(pristine)
     rows = [run_mutation(pristine, *mutation) for mutation in MUTATIONS]
+    probe_current_binding, probe_binding_rows = probe_current_binding_mutations()
+    rows.extend(probe_binding_rows)
     rows.append(optimized_mode_mutation())
     elapsed = time.perf_counter() - started
     result = seal(
@@ -184,6 +287,7 @@ def build_result() -> tuple[dict[str, Any], float]:
             "schema": "k2p-pc-partial-compression-mutation-result-v1",
             "status": "PASS",
             "base_verifier_status": "PASS",
+            "probe_current_binding": probe_current_binding,
             "mutations": rows,
             "accepted_mutations": 0,
             "rejected_mutations": len(rows),
@@ -195,6 +299,8 @@ def build_result() -> tuple[dict[str, Any], float]:
                 "broken probe transports",
                 "reassigned cubic/quartic/quintic certificates",
                 "improper PC-PARTIAL promotion",
+                "stale, malformed, omitted, duplicated, or role-swapped probe-current bindings",
+                "duplicate-name probe-current coverage certificates",
                 "optimized Python",
             ],
         }

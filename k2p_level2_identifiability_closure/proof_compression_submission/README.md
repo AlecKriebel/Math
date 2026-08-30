@@ -86,9 +86,12 @@ Submission metadata are finalized: corresponding email
 `me@aleckriebel.com`; sole-author contribution statement approved; no specific
 funding; no competing interests; CC BY 4.0 for the paper and data; MIT for
 code; designated versioned annotated source tag
-`k2p-same-biorxiv-v1.0.5`. Its tag-object and peeled-commit identifiers belong
-in external release metadata after the final source commit is created. No
-GitHub Release, Zenodo deposit, or DOI is claimed in this version.
+`k2p-same-biorxiv-v1.0.5`.  The five TeX/Bib source files remain byte-identical
+to that source tag.  The later R6 correction changes only the auxiliary C09
+narrative/verifier package and is identified separately by annotated package
+tag `k2p-same-referee-package-v1.0.5-r1`, the current commit, and the referee
+archive's external SHA-256 sidecar.  No GitHub Release, Zenodo deposit, or DOI
+is claimed in this version.
 
 ## Compile-complete bioRxiv source set
 

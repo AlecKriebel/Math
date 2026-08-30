@@ -58,8 +58,10 @@ The final manifest is labelled `SUBMISSION_READY_PC_PARTIAL`. It binds the
 approved email, sole-author contribution statement, funding and
 competing-interests declarations, CC BY 4.0 paper/data license, MIT code
 license, and designated versioned annotated source tag
-`k2p-same-biorxiv-v1.0.5`. The tag-object and peeled-commit identifiers are
-external release metadata, avoiding a self-referential source binding. The
+`k2p-same-biorxiv-v1.0.5`.  The R6 auxiliary C09 evidence repair is separately
+scoped by annotated package tag `k2p-same-referee-package-v1.0.5-r1`; its tag
+object and peeled commit remain external release metadata, avoiding a
+self-referential source binding. The
 manifest also records the explicit release boundary: this package neither
 creates nor claims a GitHub Release, Zenodo deposit, or DOI; the author will
 perform any such release actions separately.

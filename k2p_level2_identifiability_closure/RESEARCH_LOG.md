@@ -1061,3 +1061,36 @@
   witness.  Best-guess completion is **100% for the mathematical theorem**
   and **100% for v1.0.5 release qualification**.  GitHub Release, Zenodo,
   DOI, and submission actions remain reserved to the author.
+
+## 2026-08-29 — round-6 probe-current binding repair closed
+
+- Confirmed the referee's sole finding as a valid release-evidence defect:
+  `PROBE_WORD_THEOREM.md` named obsolete file and payload hashes for the
+  current probe-coverage certificate, although the certificate itself replayed
+  correctly.  Corrected the two printed digests without changing any theorem,
+  finite ledger, manuscript source, PDF, release-lock entry, or full-replay
+  input.
+- Added a fail-closed semantic binding gate that independently parses the
+  theorem's current-coverage section and the duplicate-aware coverage JSON,
+  replays the certificate payload seal, and requires exact role-labelled file
+  and payload hashes.  Expanded the focused compression mutations from 11 to
+  20 attacks; all 20/20 were rejected, including stale, malformed, omitted,
+  duplicated, role-swapped, and duplicate-JSON-key cases.
+- The compact verifier, old/new equivalence replay, typed static audit,
+  theorem-artifact crosswalk, portable ledger, and revised bundle manifest all
+  pass.  The prior referee run's 23/23 quick, 41/41 full, 37/37 crosswalk
+  mutation, and 25/25 release-mutation evidence remains applicable because
+  none of those producers, the frozen release lock, telemetry sources, TeX,
+  PDFs, or the five-file bioRxiv source set changed.  No unchanged multi-hour
+  suite was rerun.
+- Built the corrected 495-member referee ZIP twice byte-identically at
+  SHA-256
+  `4564cd1f8cd95f670a2e0d9619babaf3c343762cfd8ceeb190cd17df72802889`.
+  The five-source bioRxiv ZIP remains byte-identical at SHA-256
+  `66527a3e3018b054f9e6b618a6c9e81a4ddbc6e2d0cced81542a0a7fe3eb3cd3`.
+  Best-guess completion remains **100% for the mathematical theorem** and
+  **100% for the corrected referee-package qualification**.
+- The manuscript source tag remains `k2p-same-biorxiv-v1.0.5`; the corrected
+  auxiliary package is scoped to
+  `k2p-same-referee-package-v1.0.5-r1`.  No GitHub Release, Zenodo deposit,
+  DOI, or submission action was performed.

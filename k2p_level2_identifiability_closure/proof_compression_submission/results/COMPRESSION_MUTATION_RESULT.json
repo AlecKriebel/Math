@@ -63,14 +63,75 @@
       "status": "REJECTED_AS_REQUIRED"
     },
     {
+      "expected_failure_code": "PROBE_CURRENT_FILE_SHA_MISMATCH",
+      "mutation_id": "probe_current_stale_file_digest",
+      "observed_failure_code": "PROBE_CURRENT_FILE_SHA_MISMATCH",
+      "status": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "expected_failure_code": "PROBE_CURRENT_PAYLOAD_MISMATCH",
+      "mutation_id": "probe_current_stale_payload_digest",
+      "observed_failure_code": "PROBE_CURRENT_PAYLOAD_MISMATCH",
+      "status": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "expected_failure_code": "PROBE_CURRENT_FILE_FIELD_MALFORMED",
+      "mutation_id": "probe_current_malformed_file_digest",
+      "observed_failure_code": "PROBE_CURRENT_FILE_FIELD_MALFORMED",
+      "status": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "expected_failure_code": "PROBE_CURRENT_FILE_FIELD_COUNT",
+      "mutation_id": "probe_current_omitted_file_field",
+      "observed_failure_code": "PROBE_CURRENT_FILE_FIELD_COUNT",
+      "status": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "expected_failure_code": "PROBE_CURRENT_PAYLOAD_FIELD_COUNT",
+      "mutation_id": "probe_current_omitted_payload_field",
+      "observed_failure_code": "PROBE_CURRENT_PAYLOAD_FIELD_COUNT",
+      "status": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "expected_failure_code": "PROBE_CURRENT_FILE_FIELD_COUNT",
+      "mutation_id": "probe_current_duplicated_file_field",
+      "observed_failure_code": "PROBE_CURRENT_FILE_FIELD_COUNT",
+      "status": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "expected_failure_code": "PROBE_CURRENT_PAYLOAD_FIELD_COUNT",
+      "mutation_id": "probe_current_duplicated_payload_field",
+      "observed_failure_code": "PROBE_CURRENT_PAYLOAD_FIELD_COUNT",
+      "status": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "expected_failure_code": "PROBE_CURRENT_FILE_SHA_MISMATCH",
+      "mutation_id": "probe_current_role_swapped_fields",
+      "observed_failure_code": "PROBE_CURRENT_FILE_SHA_MISMATCH",
+      "status": "REJECTED_AS_REQUIRED"
+    },
+    {
+      "expected_failure_code": "PROBE_CURRENT_CERTIFICATE_DUPLICATE_JSON_NAME",
+      "mutation_id": "probe_current_duplicate_certificate_json_name",
+      "observed_failure_code": "PROBE_CURRENT_CERTIFICATE_DUPLICATE_JSON_NAME",
+      "status": "REJECTED_AS_REQUIRED"
+    },
+    {
       "expected_failure_code": "OPTIMIZED_PYTHON_FORBIDDEN",
       "mutation_id": "optimized_python",
       "observed_failure_code": "OPTIMIZED_PYTHON_FORBIDDEN",
       "status": "REJECTED_AS_REQUIRED"
     }
   ],
-  "payload_sha256": "eef0bba326d3e9dff0d26add67ec01717aa254a434f51f057333a39f21bbe075",
-  "rejected_mutations": 11,
+  "payload_sha256": "684e8be68dc19f63505ecf111a02a81015d33852f01301bd0dcf2cf5c750cbe5",
+  "probe_current_binding": {
+    "coverage_path": "probe/PROBE_WORD_COVERAGE.json",
+    "coverage_payload_sha256": "d66b28240092a04112fde67d54527e3df3964d7eea64f7b75ed75f877435ec49",
+    "coverage_schema": "k2p-probe-word-theorem-coverage-v1",
+    "coverage_sha256": "c2e32b37d32eda11470afc7f747cb2bca5fa58c78fd92793f8fa94309f3d3660",
+    "theorem_path": "probe/PROBE_WORD_THEOREM.md"
+  },
+  "rejected_mutations": 20,
   "schema": "k2p-pc-partial-compression-mutation-result-v1",
   "status": "PASS",
   "target_families": [
@@ -81,6 +142,8 @@
     "broken probe transports",
     "reassigned cubic/quartic/quintic certificates",
     "improper PC-PARTIAL promotion",
+    "stale, malformed, omitted, duplicated, or role-swapped probe-current bindings",
+    "duplicate-name probe-current coverage certificates",
     "optimized Python"
   ]
 }
