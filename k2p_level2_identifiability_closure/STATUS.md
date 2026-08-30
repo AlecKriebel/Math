@@ -96,7 +96,14 @@ Its checker enforces the full allowlist, content roots, source and PDF hashes,
 the 41-layer PASS report, 13 theorem claims, 25 release mutations, 20
 proof-compression mutations, current probe binding, and fixed ZIP structure.
 
-The final upload directory and its external archive hash will be generated
-only after these packaging sources are committed, so its machine-readable
-manifest names a commit that actually contains the builder and checker.  No
-GitHub Release, Zenodo deposit, or DOI is created by this local preparation.
+The final seven-file upload directory is
+`proof_compression_submission/output/zenodo_v1.0.5-r1`.  Its reproducibility
+archive was built twice byte-identically and has SHA-256
+`477c160057f7a729215dfd37960063d283ddbedcf95396a8239a9fd22e94ac62`.
+The upload manifest names packaging-source commit
+`9148bd0bd8a48c6faebdc8ed48233d0b6827c3a0`, which contains the exact
+builder and checker.  `SHA256SUMS` covers all six other upload files.  The
+designated annotated source tag is `k2p-same-zenodo-v1.0.5-r1`.
+
+No GitHub Release, Zenodo deposit, or DOI was created by this local
+preparation; those external actions remain reserved to the author.

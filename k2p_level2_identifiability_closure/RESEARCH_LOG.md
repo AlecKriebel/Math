@@ -1120,3 +1120,33 @@
   the packaging-source commit, deterministic final rebuild, checksums, final
   upload manifest, push, and annotated source tag.  No GitHub Release, Zenodo
   deposit, DOI, or external submission action was performed.
+
+## 2026-08-29 22:10 PDT — seven-file Zenodo upload set sealed
+
+- Committed and pushed the public packaging source at
+  `9148bd0bd8a48c6faebdc8ed48233d0b6827c3a0`, then built the final upload
+  set from that clean commit.  The machine-readable deposit manifest binds
+  this exact packaging-source commit without attempting to embed its own final
+  tag commit.
+- Built the 478-member reproducibility ZIP twice byte-for-byte identically.
+  It is 214,917,302 bytes with SHA-256
+  `477c160057f7a729215dfd37960063d283ddbedcf95396a8239a9fd22e94ac62`.
+  Its 477 declared payload files have content root
+  `8afab62805f8ebdb7db469ee7f42350455f8a279838bba40d33b508c95df6d7f`;
+  the internal manifest payload is
+  `d8bbf4dab3573b84d5bcdb52a26f16a20952eccae78fa4ef2e42448b19d45ee8`.
+- The final archive passed ZIP integrity, independent archive verification,
+  exact extraction in a differently named directory, recursive 408-file
+  frozen-ledger reconstruction, compressed-theorem verification, and the
+  13-claim theorem crosswalk.  All six checksum-covered upload artifacts pass
+  `SHA256SUMS`; the checksum file itself has SHA-256
+  `0fb5dcc5832eae0e7f6769fbea2fc017ec104a8ba261f87ecf15b14dbfec41a6`.
+- The final upload directory contains exactly seven files: article PDF,
+  supplement PDF, compile-complete bioRxiv source ZIP, public reproducibility
+  ZIP, licenses, deposit manifest, and `SHA256SUMS`.  It contains no referee
+  report or referee prompt.  Best-guess completion is **100% for the
+  mathematical theorem**, **100% for release qualification**, and **100% for
+  the local Zenodo upload artifact**.
+- The designated source tag is `k2p-same-zenodo-v1.0.5-r1`.  No GitHub
+  Release, Zenodo deposit, DOI, or external submission action was performed;
+  those remain reserved to the author.
