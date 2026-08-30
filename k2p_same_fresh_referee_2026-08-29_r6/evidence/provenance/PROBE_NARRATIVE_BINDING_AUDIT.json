@@ -1,0 +1,172 @@
+{
+  "actual_coverage": {
+    "bytes": 6854,
+    "declared_payload_sha256": "d66b28240092a04112fde67d54527e3df3964d7eea64f7b75ed75f877435ec49",
+    "path": "proof_compression_submission/probe/PROBE_WORD_COVERAGE.json",
+    "payload_replays": true,
+    "replayed_payload_sha256": "d66b28240092a04112fde67d54527e3df3964d7eea64f7b75ed75f877435ec49",
+    "schema": "k2p-probe-word-theorem-coverage-v1",
+    "sha256": "c2e32b37d32eda11470afc7f747cb2bca5fa58c78fd92793f8fa94309f3d3660",
+    "status": "PASS"
+  },
+  "authority_and_current_bindings": {
+    "C09_artifacts": {
+      "proof_compression_submission/probe/PROBE_WORD_COVERAGE.json": {
+        "bytes": 6854,
+        "declared_schema": "k2p-probe-word-theorem-coverage-v1",
+        "frozen": false,
+        "media_type": "application/json",
+        "path": "proof_compression_submission/probe/PROBE_WORD_COVERAGE.json",
+        "role": "word theorem coverage certificate",
+        "sha256": "c2e32b37d32eda11470afc7f747cb2bca5fa58c78fd92793f8fa94309f3d3660"
+      },
+      "proof_compression_submission/probe/PROBE_WORD_THEOREM.md": {
+        "bytes": 14418,
+        "declared_schema": null,
+        "frozen": false,
+        "media_type": "text/markdown",
+        "path": "proof_compression_submission/probe/PROBE_WORD_THEOREM.md",
+        "role": "uniform word theorem",
+        "sha256": "f45cd543b6cafbada2c9cd361b06f708f2bdebe112c596a774cd0ee7736a17e8"
+      }
+    },
+    "C09_compression_status": "PC-PARTIAL_uniform_induction_with_load_bearing_probe_ledgers",
+    "C09_proof_status": "uniform_word_theorem_from_frozen_finite_premises",
+    "CBT_5_row": {
+      "claim": "The one-/two-port premises imply coherent transport of arbitrary attachment words on every primitive support.",
+      "evidence": [
+        "probe/PROBE_WORD_COVERAGE.json",
+        "probe/PROBE_WORD_THEOREM.md"
+      ],
+      "exact_coverage": {
+        "anchors": 176,
+        "exact_transports": 67741,
+        "one_port_rows": 29964,
+        "parent_restrictions": 4379,
+        "two_port_rows": 544571,
+        "unresolved": 0
+      },
+      "residue": "The uniform induction does not replace the finite separation and transport ledgers.",
+      "status": "word theorem proved; finite premises PC-PARTIAL",
+      "templates": [
+        "one-port segment lemma",
+        "two-port order lemma",
+        "arbitrary-word induction",
+        "ordinary-triangle arrowhead transport"
+      ],
+      "theorem_id": "CBT-5"
+    },
+    "compression_result_rows": [
+      {
+        "bytes": 6854,
+        "path": "probe/PROBE_WORD_COVERAGE.json",
+        "payload_sha256": "d66b28240092a04112fde67d54527e3df3964d7eea64f7b75ed75f877435ec49",
+        "sha256": "c2e32b37d32eda11470afc7f747cb2bca5fa58c78fd92793f8fa94309f3d3660"
+      },
+      {
+        "bytes": 14418,
+        "path": "probe/PROBE_WORD_THEOREM.md",
+        "sha256": "f45cd543b6cafbada2c9cd361b06f708f2bdebe112c596a774cd0ee7736a17e8"
+      }
+    ],
+    "revised_submission_manifest": {
+      "proof_compression_submission/probe/PROBE_WORD_COVERAGE.json": {
+        "bytes": 6854,
+        "sha256": "c2e32b37d32eda11470afc7f747cb2bca5fa58c78fd92793f8fa94309f3d3660"
+      },
+      "proof_compression_submission/probe/PROBE_WORD_THEOREM.md": {
+        "bytes": 14418,
+        "sha256": "f45cd543b6cafbada2c9cd361b06f708f2bdebe112c596a774cd0ee7736a17e8"
+      }
+    }
+  },
+  "classification": "reproducibility-blocking current-proof narrative contradiction",
+  "effect": "The C09 authoritative uniform word theorem identifies a stale coverage file and stale logical payload as current. Byte manifests bind both the stale prose and the different current certificate but do not reconcile them.",
+  "finding_id": "R6-M1-PROBE-WORD-NARRATIVE-BINDING",
+  "minimal_reproducer": {
+    "comparison_1": "proof_compression_submission/probe/PROBE_WORD_THEOREM.md:309 != sha256(proof_compression_submission/probe/PROBE_WORD_COVERAGE.json)",
+    "comparison_2": "proof_compression_submission/probe/PROBE_WORD_THEOREM.md:311 != proof_compression_submission/probe/PROBE_WORD_COVERAGE.json.payload_sha256"
+  },
+  "mismatch_count": 2,
+  "mismatches": [
+    {
+      "actual": "c2e32b37d32eda11470afc7f747cb2bca5fa58c78fd92793f8fa94309f3d3660",
+      "field": "current coverage file SHA-256",
+      "line": 309,
+      "printed": "3791e4bb829976aa78289281b9998bfe0605ba4a20518f1e8dd660d7d1a91bb8"
+    },
+    {
+      "actual": "d66b28240092a04112fde67d54527e3df3964d7eea64f7b75ed75f877435ec49",
+      "field": "current coverage logical payload",
+      "line": 311,
+      "printed": "1d4248028b38f6b731f066960d9e584240de68a17323539fe5b47f119a8086f6"
+    }
+  ],
+  "payload_sha256": "b80a7c40cc84be9de814f020a5a38076c933e684e326ebc80e852423790c0543",
+  "schema": "k2p-r6-probe-narrative-binding-audit-v1",
+  "semantic_gate_coverage": {
+    "conclusion": "The word verifier regenerates the JSON certificate, while the static auditor and bundle checker do not parse the theorem's printed current coverage hashes. The normal checks can therefore PASS this mismatch.",
+    "inspected_code": {
+      "proof_compression_submission/adversarial_review/audit_article_sources.py": {
+        "current_section_occurrences": 0,
+        "printed_file_sha_occurrences": 0,
+        "printed_payload_sha_occurrences": 0,
+        "theorem_path_occurrences": 0
+      },
+      "proof_compression_submission/build_compressed_release.py": {
+        "current_section_occurrences": 0,
+        "printed_file_sha_occurrences": 0,
+        "printed_payload_sha_occurrences": 0,
+        "theorem_path_occurrences": 2
+      },
+      "proof_compression_submission/crosswalk/check_revised_referee_bundle.py": {
+        "current_section_occurrences": 0,
+        "printed_file_sha_occurrences": 0,
+        "printed_payload_sha_occurrences": 0,
+        "theorem_path_occurrences": 0
+      },
+      "proof_compression_submission/probe/verify_probe_word_theorem.py": {
+        "current_section_occurrences": 0,
+        "printed_file_sha_occurrences": 0,
+        "printed_payload_sha_occurrences": 0,
+        "theorem_path_occurrences": 0
+      },
+      "proof_compression_submission/verify_compressed_release.py": {
+        "current_section_occurrences": 0,
+        "printed_file_sha_occurrences": 0,
+        "printed_payload_sha_occurrences": 0,
+        "theorem_path_occurrences": 1
+      }
+    },
+    "stale_hash_text_occurrences_in_submission": {
+      "1d4248028b38f6b731f066960d9e584240de68a17323539fe5b47f119a8086f6": [
+        {
+          "line": 311,
+          "path": "proof_compression_submission/probe/PROBE_WORD_THEOREM.md"
+        }
+      ],
+      "3791e4bb829976aa78289281b9998bfe0605ba4a20518f1e8dd660d7d1a91bb8": [
+        {
+          "line": 309,
+          "path": "proof_compression_submission/probe/PROBE_WORD_THEOREM.md"
+        }
+      ]
+    }
+  },
+  "smallest_adequate_remedy": [
+    "Replace the two printed hashes in the Current coverage artifact section with the current certificate file and payload hashes.",
+    "Add a semantic gate and mutations that compare this named current section to the certificate bytes and canonical payload.",
+    "Regenerate the compressed result, theorem-artifact crosswalk, revised submission manifest, referee archive/digest, commit, and annotated tag whose byte graph includes the corrected theorem narrative; rerun unchanged package gates as well."
+  ],
+  "status": "FAIL",
+  "theorem": {
+    "bytes": 14418,
+    "current_section_line": 306,
+    "path": "proof_compression_submission/probe/PROBE_WORD_THEOREM.md",
+    "printed_file_sha256": "3791e4bb829976aa78289281b9998bfe0605ba4a20518f1e8dd660d7d1a91bb8",
+    "printed_file_sha256_line": 309,
+    "printed_payload_sha256": "1d4248028b38f6b731f066960d9e584240de68a17323539fe5b47f119a8086f6",
+    "printed_payload_sha256_line": 311,
+    "sha256": "f45cd543b6cafbada2c9cd361b06f708f2bdebe112c596a774cd0ee7736a17e8"
+  }
+}

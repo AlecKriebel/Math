@@ -1,0 +1,65 @@
+{
+  "baseline_rows_checked": 5,
+  "case_count": 11,
+  "cases": [
+    {
+      "expected": "PRINTED_HASH_STALE:metadata:",
+      "name": "stale_metadata_hash",
+      "observed": "PRINTED_HASH_STALE:metadata:evidence/first.json:printed=0000000000000000000000000000000000000000000000000000000000000000:actual=dc3ac5dcc3f4c4752aaacc60dec858f56a7cf2864ed9dfa61b4d77a44dd5a877"
+    },
+    {
+      "expected": "PRINTED_HASH_STALE:frozen-anchor:",
+      "name": "stale_frozen_anchor_hash",
+      "observed": "PRINTED_HASH_STALE:frozen-anchor:first frozen row:path=evidence/first.json:printed=0000000000000000000000000000000000000000000000000000000000000000:actual=dc3ac5dcc3f4c4752aaacc60dec858f56a7cf2864ed9dfa61b4d77a44dd5a877"
+    },
+    {
+      "expected": "PRINTED_METADATA_INVENTORY_DRIFT:",
+      "name": "missing_metadata_row",
+      "observed": "PRINTED_METADATA_INVENTORY_DRIFT:missing=['evidence/first.json']:extra=[]"
+    },
+    {
+      "expected": "PRINTED_METADATA_DUPLICATE_PATH:",
+      "name": "duplicate_metadata_row",
+      "observed": "PRINTED_METADATA_DUPLICATE_PATH:evidence/first.json"
+    },
+    {
+      "expected": "PRINTED_METADATA_KIND_DRIFT:",
+      "name": "metadata_kind_reassigned",
+      "observed": "PRINTED_METADATA_KIND_DRIFT:evidence/first.json:expected=authority:actual=reader derivative"
+    },
+    {
+      "expected": "PRINTED_FROZEN_ANCHOR_INVENTORY_DRIFT:",
+      "name": "missing_frozen_anchor_row",
+      "observed": "PRINTED_FROZEN_ANCHOR_INVENTORY_DRIFT:missing=['first frozen row']:extra=[]"
+    },
+    {
+      "expected": "PRINTED_FROZEN_ANCHOR_DUPLICATE_LABEL:",
+      "name": "duplicate_frozen_anchor_row",
+      "observed": "PRINTED_FROZEN_ANCHOR_DUPLICATE_LABEL:first frozen row"
+    },
+    {
+      "expected": "PRINTED_FROZEN_ANCHOR_INVENTORY_DRIFT:",
+      "name": "unexpected_frozen_anchor_row",
+      "observed": "PRINTED_FROZEN_ANCHOR_INVENTORY_DRIFT:missing=[]:extra=['unexpected row']"
+    },
+    {
+      "expected": "PRINTED_FROZEN_ANCHOR_SCHEMA_DRIFT:typed terminal registry:",
+      "name": "typed_registry_replaced_by_overlay",
+      "observed": "PRINTED_FROZEN_ANCHOR_SCHEMA_DRIFT:typed terminal registry:expected=test-terminal-registry-v1:actual=test-strict-sign-overlay-v1"
+    },
+    {
+      "expected": "PRINTED_FROZEN_ANCHOR_CARDINALITY_DRIFT:typed terminal registry:",
+      "name": "typed_registry_wrong_cardinality",
+      "observed": "PRINTED_FROZEN_ANCHOR_CARDINALITY_DRIFT:typed terminal registry:field=terminal_class_count:expected=934:actual=16974"
+    },
+    {
+      "expected": "PRINTED_HASH_TARGET_MISSING_OR_SYMBOLIC:",
+      "name": "missing_hash_target",
+      "observed": "PRINTED_HASH_TARGET_MISSING_OR_SYMBOLIC:submission/second.json"
+    }
+  ],
+  "payload_sha256": "806a6a1ff7fe52ff73144566c5db915b9da05407979af3102af456420e05e87b",
+  "schema": "k2p-printed-authority-hash-gate-mutations-v1",
+  "status": "PASS",
+  "survived": 0
+}
