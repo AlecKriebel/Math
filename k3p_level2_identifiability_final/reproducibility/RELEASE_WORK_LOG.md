@@ -369,3 +369,27 @@ workstream; 70% of the external-submission goal**.
 
 Best-guess completion: **82% of the fourth-referee local repair/handoff
 workstream; 70% of the external-submission goal**.
+
+## 2026-08-29T21:54:38-07:00 — fourth-referee package fixed point
+
+- Repair/package commit: `c0894b85a1a6faf08d13bc17f7586de0223081f6`.
+- Compact ZIP: 385 members, 383 selected files, SHA-256
+  `2b540975bbc9136a90ffb46c5f4c8cf442a87804e914fff6745084f928d21a9a`.
+- Full TAR.GZ: 598 members, 594 selected files, SHA-256
+  `7501c52166e7ddcddf5c1a5e60105ba308e84e31f23432c36b5c3328b419b2c5`.
+- Article/supplement cached-only source-reproduction reports pass
+  byte-for-byte with SHA-256 values
+  `9795b16a2ed562839ae160f11b3c4ce713233aa6f57c5443e9afff5805a948a6`
+  and `5cf36cbbef4d29b2dcc45be3161cec603045d5ab83c231cbebccdb3ca369bbed`.
+- Clean handoff:
+  `~/Documents/Math/k3p_level2_fifth_revision_referee_2026-08-29`, 635
+  payload files, 161,143,650 bytes, manifest SHA-256
+  `97cdf689b27d443179ab03dd4b18022cd8ded9f4a38c5514f69eab35e797d10b`.
+  Independent integrity replay passes; `.venv`, `review_runs`, and symlinks
+  are absent.
+- No long producer or full regeneration was run.  This post-build ledger entry
+  intentionally follows the package-bound commit and does not trigger a
+  recursive package rebuild.
+
+Best-guess completion: **100% of the fourth-referee local repair/handoff
+workstream; 70% of the external-submission goal**.

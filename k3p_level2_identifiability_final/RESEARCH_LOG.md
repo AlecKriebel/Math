@@ -1573,3 +1573,43 @@ hash cone.
 Best-guess completion toward this fourth-referee repair and clean handoff:
 **82%**.  Remaining work is the exact-commit packaging fixed point, clean
 handoff integrity audit, log closure, and push.
+
+## 2026-08-29T21:54:38-07:00 — fourth-referee clean handoff closure
+
+- Committed and pushed the minimal repair snapshot as
+  `c0894b85a1a6faf08d13bc17f7586de0223081f6` on `main`.  No TeX,
+  mathematical producer, theorem, or PDF byte changed.
+- Rebuilt the commit-bound compact ZIP and full TAR.GZ.  Their SHA-256 values
+  are `2b540975bbc9136a90ffb46c5f4c8cf442a87804e914fff6745084f928d21a9a`
+  (385 members; 383 selected payload files) and
+  `7501c52166e7ddcddf5c1a5e60105ba308e84e31f23432c36b5c3328b419b2c5`
+  (598 members; 594 selected payload files).
+- Reproduced both unchanged PDFs twice from their final source ZIPs under the
+  declared cached-only build contract.  The article and supplement report
+  SHA-256 values are
+  `9795b16a2ed562839ae160f11b3c4ce713233aa6f57c5443e9afff5805a948a6`
+  and `5cf36cbbef4d29b2dcc45be3161cec603045d5ab83c231cbebccdb3ca369bbed`;
+  both report `PASS_BYTE_FOR_BYTE` and bind the repair commit.
+- Built the clean referee handoff from scratch at
+  `~/Documents/Math/k3p_level2_fifth_revision_referee_2026-08-29`.  It seals
+  635 payload files totaling 161,143,650 bytes.  Its package-manifest SHA-256
+  is `97cdf689b27d443179ab03dd4b18022cd8ded9f4a38c5514f69eab35e797d10b`
+  and its outer-checksum SHA-256 is
+  `820380cf7ab9d476723240c6b86df3e27d5e2bcb30042833d7ee69ac802c1aae`.
+- Independent integrity replay passes all 597 core rows, source reports,
+  transcripts, source ZIPs, byte counts, and modes.  The delivered folder has
+  no symlinks, `.venv`, or pre-existing `review_runs` directory.
+- The fourth review's disk-full interruption was not retried: it affected no
+  changed dependency, and rerunning the unchanged hour-scale producers would
+  contradict the requested minimal replay boundary.  The earlier 55/55 run
+  remains historical evidence rather than a newly claimed execution.
+
+Strongest verified result: every accepted fourth-referee finding is repaired
+and adversarially covered in its exact dependency cone; the clean handoff is
+commit-bound and independently integrity-checked without rerunning unchanged
+long computations.
+
+Best-guess completion: **100% of the fourth-referee local repair and clean
+handoff workstream; 70% of the external-submission goal**.  Human metadata,
+license selection, immutable public release/tag approval, DOI minting, and
+journal submission remain outside this workstream.

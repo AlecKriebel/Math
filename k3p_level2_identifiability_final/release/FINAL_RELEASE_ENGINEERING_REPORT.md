@@ -56,6 +56,35 @@ into the manifest-excluded runtime root.  The outer package manifest records
 the exact repair commit, payload bytes and modes, canonical proof-archive
 hash, and source-reproduction evidence.
 
+### Manifest-bound clean handoff
+
+The exact repair/package snapshot is
+`c0894b85a1a6faf08d13bc17f7586de0223081f6`.  Its compact ZIP has SHA-256
+`2b540975bbc9136a90ffb46c5f4c8cf442a87804e914fff6745084f928d21a9a`
+(385 members; 383 selected files), and its full TAR.GZ has SHA-256
+`7501c52166e7ddcddf5c1a5e60105ba308e84e31f23432c36b5c3328b419b2c5`
+(598 members; 594 selected files).  Both unchanged PDFs reproduce
+byte-for-byte twice under the declared cached-only build contract; the article
+and supplement report SHA-256 values are
+`9795b16a2ed562839ae160f11b3c4ce713233aa6f57c5443e9afff5805a948a6`
+and `5cf36cbbef4d29b2dcc45be3161cec603045d5ab83c231cbebccdb3ca369bbed`.
+
+The clean referee handoff is
+`~/Documents/Math/k3p_level2_fifth_revision_referee_2026-08-29`.  It seals 635
+payload files totaling 161,143,650 bytes.  Its package-manifest SHA-256 is
+`97cdf689b27d443179ab03dd4b18022cd8ded9f4a38c5514f69eab35e797d10b`,
+and its outer-checksum SHA-256 is
+`820380cf7ab9d476723240c6b86df3e27d5e2bcb30042833d7ee69ac802c1aae`.
+Independent integrity replay passes 597 core rows plus the bound source
+reports, transcripts, source ZIPs, byte counts, and modes.  The delivered
+folder contains no symlinks, virtual environment, or pre-existing
+`review_runs` directory.
+
+This paragraph is a post-build record of the manifest-bound handoff.  It does
+not recursively alter that already sealed package; the outer manifest and
+checksum file inside the handoff are the authoritative package identities.
+No unchanged long producer was rerun.
+
 ## Historical third-referee repair and exact-once acceptance run (29 August 2026)
 
 All four third-referee findings were repaired without changing a theorem
