@@ -1,0 +1,347 @@
+                                                   Proof skeleton
+                  Exact Diffusion Design for Maximally Collective Stable Turing Patterns
+                                         in Binary-Complex Mass-Action Networks
+             Topology-Wide All-Spectrum Localization and Exponent-Optimal Stationary Heterogeneity Trade-Offs
+
+
+1. Reaction algebra and topology-wide localization
+Construct Ym and Γm directly from the indexed reactions. Reaction-by-reaction verification gives cT Γm = 0 for
+c = (0, 4, . . . , 4, 2, 1)T . Solving the balance equations gives exactly
+
+                                            ker Γm = span{(1m , 0, 0), (0m , 1, 1)}.
+
+Because Γm has m + 2 columns, rank–nullity gives rank Γm = m. Independently, the maximal minor on rows
+X1 , X3 , . . . , Xm , Z and columns R2 , . . . , Rm−2 , Ra , Rb , R+ has determinant 4(−1)m . Therefore every positive flux is
+(a1m , b, b). Differentiation at the unit equilibrium gives Am (a, b); at a general equilibrium x∗ = H −1 1, the Jacobian is
+Am (a, b)H. Conversely, the choice
+                                                                        vr
+                                                                kr = ∗ yr
+                                                                      (x )
+realizes every a, b, H > 0.
+    For a nonempty principal set with fewer than m vertices, Frobenius decomposition reduces every SCC to either a
+negative singleton or one of three non-singleton forms: the X1 , . . . , Xm−1 long cycle, the X2 , . . . , Xm long cycle, or a
+principal boundary-triad block. At b = 2a, the deleted edge X1 → Xm lies on neither long cycle and can only refine the
+boundary decomposition. The two cycle characteristic equations are excluded from ℜλ ≥ 0 by strict product inequalities.
+The full triad has positive cubic coefficients and c1 c2 − c3 is a sum of fourteen positive monomials. Every lower-order
+principal matrix is thus Hurwitz. For the core determinant, the interior lower-bidiagonal Schur block has determinant
+(−a)m−3 and bottom-left inverse entry −1/a; the remaining       3 × 3 matrix has determinant 2a2 b. Restoring the column
+                                                    m−1
+                                                          Q
+factors gives the negative signed determinant −2a        b hi , forcing a positive real eigenvalue.
+    For m = 3, the two long cycles are {X1 , X2 } and {X2 , X3 }, and every other non-singleton SCC is a principal subgraph
+of {X1 , X3 , Z}. Thus the chain argument is applied only for m ≥ 4.
+
+Audit object. Independently generate every induced SCC for m = 3, . . . , 8 at generic b and at b = 2a, while the proof
+uses the all-m graph classification rather than enumeration.
+
+
+
+
+                                                               1
+2. Principal-minor diffusion-ray theorem and exact network law
+Let n ≥ 2. For aI = (−1)|I| det JI,I and D ≻ 0, multilinearity gives
+                                             X Y
+                              det(sD − J) =      aI     sdj = s(β1 + β2 s + · · · + βn sn−1 ).
+                                                   I     ∈I
+                                                        j/
+                                                           P
+Assume directly that aI > 0 for |I| ≤ n − 2 and that |I|=n−1 aI > 0; a simple zero and otherwise stable spectrum
+supplies the latter coefficient condition in the application. Hence βk > 0 for k ≥ 2, and the bracket is strictly increasing
+on s > 0, proving the unique simple threshold iff β1 < 0.
+   For the stronger positive-real band, define
+                                                                   X Y
+                                      χs (λ) = det(λI + sD − J) =      aI    (λ + sdj ).
+                                                                       I      ∈I
+                                                                             j/
+                                                                                                            P
+Every derivative contribution from |I| ≤ n − 2 is nonnegative. The total order-(n − 1) derivative is |I|=n−1 aI > 0, the
+coefficient of λ in det(λI − J). Hence χ′s (λ) > 0 for λ ≥ 0. The sign of χs (0) therefore gives a positive real eigenvalue
+exactly for 0 < s < s∗ . At threshold, χs∗ (0) = 0 and χ′s∗ (0) > 0; this, rather than scalar simplicity of the generalized-pencil
+root alone, proves ordinary algebraic simplicity of zero for J − s∗ D.
+   For Am (a, b)H, compute every order-m omission minor. Omitting Z gives weight −2; omitting an interior Xj gives
++16; omitting X1 or Xm gives zero. Thus
+                                                                                    
+                                                        Ym            m−1
+                                                                       X dj
+                                          β1 = 2am−1 b       hi 8hZ            − dZ  .
+                                                        i=1            j=2
+                                                                            h j
+
+
+Homogeneous stability on c⊥ , together with cT J = 0, gives rank n − 1, an algebraically simple conservation zero, and a
+positive order-(n − 1) characteristic coefficient, so every hypothesis of the general theorem holds. This proves the exact
+criterion. The criterion is independent of a, b, but its unique root is s∗ (a, b, H, D). The same sign follows from first-order
+perturbation of the conservation eigenvalue. For fixed H, minimizing dmax /dmin under the strict inequality gives the
+                                    Pm−1
+nonattained infimum T (H) = 8hZ j=2 h−1      j . At H = I, T = 8(m − 2), and hZ /hj ≥ 1/χH gives χD χH > 8(m − 2).
+
+
+
+
+                                                                2
+3. Improved unit-equilibrium primary bifurcation
+Set a = b = 1, H = I, Ki = 91m − 181 − i, and use
+
+                                     d1 = 23/63,    di = Ki−1 ,       dm = 1/7,   dZ = 16/45.
+
+The full vectors r = (r1 , . . . , rm , rZ )T and ℓ = (ℓ1 , . . . , ℓm , ℓZ )T satisfy (Am − Dm )r = 0 and (Am − Dm )T ℓ = 0. Exact
+harmonic-sum formulas prove ℓT r < 0 and ℓT Dm r < 0, hence transversality ηm > 0.
+   Homogeneous stability follows from
+
+                                det(λI − Am ) = λqm (λ),          λqm = (1 + λ)m−3 P (λ) − R(λ),
+
+where P = λ4 + 12λ3 + 42λ2 + 47λ + 16 and R = 5λ2 + 33λ + 16. The exact difference |1 + λ|2 |P |2 − |R|2 expands into 35
+nonnegative monomials in x = ℜλ and y 2 = (ℑλ)2 , with equality only at the origin. For m = 3, q3 = (λ + 7)(λ2 + 5λ + 2)
+is Hurwitz. For m ≥ 4, |1 + λ| ≥ 1 makes the 35-term strict inequality incompatible with (1 + λ)m−3 P = R at any nonzero
+closed-right-half-plane root. Since qm (0) = 16m − 34 > 0, the conservation zero is simple.
+    For spatial damping tDm , set g1 = λ+2+(23/63)t, gm = λ+5+t/7, gZ = λ+4+(16/45)t, F = g1 gm gZ −4g1 −4gm +gZ ,
+and G = gZ (4g1 + gm ) − 36. Chain elimination gives det(λI − Am + tDm ) = Qm F − G. At (λ, t) = (0, 1), the interior
+product telescopes to 91/90. With z = y 2 and s = t − 1, the exact source
+                                                          √                      √
+                             E77 = (91/90)2 + z |F (x + i z, 1 + s)|2 − |G(x + i z, 1 + s)|2
+                                                
+
+
+has 77 strictly positive coefficients and no constant term. Thus equality occurs only at (x, z, s) = (0, 0, 0). Algebraic
+                                                                  Pm−2
+simplicity at that point is the separate exact identity, with hm = j=1 Kj−1 ,
+
+                     d                          7043400m − 13600927 − 7043400hm    163 T
+                       det(λI − Am + Dm )     =                                 =−    ℓ r > 0.
+                    dλ                    λ=0               255150                 45
+
+Hence the first mode has one algebraically simple zero with one-dimensional kernel and cokernel, all other first-mode
+eigenvalues are stable, and all t > 1 modes are Hurwitz.
+    The exact unit contrast is
+                                                       23(91m − 183)
+                                                 χD =                ,
+                                                            63
+which improves the superseded high-contrast profile and is within a dimension-independent factor of the sharp linear
+threshold.
+
+
+
+
+                                                                  3
+4. Conservation-compatible normal form and stable branch
+The mass-action field is quadratic:
+
+                                     f (1 + u) = Am u + 12 Bm (u, u),       cT Bm (u, v) = 0.
+
+On the fixed integrated-mass class, the critical mode is r cos ξ. Since cos2 ξ = (1 + cos 2ξ)/2, solve
+
+                            Am w0 = − 41 B(r, r),    cT w0 = 0,       (Am − 4Dm )w2 = − 14 B(r, r).
+
+The first is an augmented nonsingular solve; the second is invertible by mode isolation. The interior w2 recurrence
+telescopes through four consecutive Ki factors, leaving an explicit 4 × 4 system in the four retained boundary values. Its
+determinant is 64Qm /[6615(91m − 183)(91m − 181)(91m − 180)] > 0.
+    The fixed-mass sectorial semiflow has a one-dimensional center manifold. The spatial reflection ξ 7→ π − ξ commutes
+with the Neumann semiflow, preserves the mass class, and sends r cos ξ to its negative. An equivariant center manifold
+therefore has an odd reduced vector field, and reflection exchanges the two nonzero branches. Their perturbations tend to
+          2
+zero in HN  ,→ C 0 from 1, so both branches remain componentwise strictly positive for sufficiently small µ > 0 at each
+fixed m. Projection of its reduced vector field onto the adjoint critical mode yields
+
+                                      Ȧ = ηm µA + cm A3 + O(|A|5 + |A|3 |µ| + |A||µ|2 ),
+
+                                                     ℓT {B(r, w0 ) + 12 B(r, w2 )}
+                                              cm =                                 .
+                                                                 ℓT r
+                                                                                                             Pm−2
+Setting this reduced vector field to zero gives the stationary Lyapunov–Schmidt equation. Writing hm = j=1 Kj−1 ,
+the numerator telescopes to Rm + Cm hm . The supplement prints Rm , Cm , their positive denominators, and the exact
+Lm clearing identity. Shifted coefficientwise-positive polynomials prove the numerator positive, while ℓT r < 0; therefore
+cm < 0 for every m ≥ 3. For a direct audit, put
+
+                            Qm = 589180301m3 − 3500015940m2 + 6930529579m − 4574434500,
+
+              PR = 68605040480814208768m4 − 550882186169626030957m3 + 1658612632937449670852m2
+                     − 2219226476204103501323m + 1113379274975809565700,
+              PC = 652054120726848m4 − 5151971981328467m3 + 15265080924982572m2
+                     − 20102347725659113m + 9927281930180400.
+
+Then
+                                             PR                                       215PC
+                           Rm =                           ,           Cm = −                       ,
+                                  286118780220(8m − 17)Qm                      11645046(8m − 17)Qm
+and exact clearing gives
+                                          m−2                       Lm
+                             Rm + Cm              =                                    .
+                                        90m − 179   286118780220(8m − 17)(90m − 179)Qm
+The shifted coefficients of Qm , PR , PC , Lm are positive, so Cm < 0 and Rm + Cm hm ≥ Rm + Cm (m − 2)/(90m − 179) > 0.
+   On                                             Rπ                             Rπ
+                                              2
+                              Xc = {u ∈ HN      : 0 cT u = 0},     Yc = {g ∈ L2 : 0 cT g = 0},
+fixed-mass invariance follows from cT Am = 0 and the Neumann boundary conditions. The onset linearization L0 =
+Am + Dm ∂ξξ has cosine blocks Am − k 2 Dm : k = 0 is invertible on c⊥ , k = 1 has its certified simple zero, and every k ≥ 2
+block is invertible. For large k,
+
+                     Am − k 2 Dm = −k 2 Dm (I − k −2 Dm
+                                                      −1
+                                                         Am ),          ∥(Am − k 2 Dm )−1 ∥ ≤ 2∥Dm
+                                                                                                 −1
+                                                                                                    ∥k −2 .
+
+Thus compatible L2 data have an HN      2
+                                          preimage, the range is closed, and the stationary linearization is Fredholm of index
+zero, with kernel span{r cos ξ}, cokernel span{ℓ cos ξ}, and transversality pairing (π/2)ℓT Dm r ̸= 0. Crandall–Rabinowitz
+gives the stationary local curve; reflection equivariance and the odd normal form identify its two positive nonconstant halves
+for µ > 0. Their center eigenvalue is −2ηm µ + O(µ2 ) < 0. The bound α(Am − k 2 Dm ) ≤ ∥(Am + ATm )/2∥2 − k 2 dmin → −∞
+reduces the complementary onset gap to finitely many modes. Positive Neumann diffusion is sectorial with compact
+resolvent on fixed-mass L2 ; along the branch its positive diffusion lower bound controls high frequencies, while analytic
+perturbation preserves the finitely many low spectral gaps. Its fractional H 1 domain is a Banach algebra in one dimension,
+and the quadratic Nemytskii map is smooth. The principle of linearized stability gives local exponential convergence in
+H 1 for sufficiently close nonnegative initial data in the same conservation class.
+
+
+                                                                  4
+5. Equilibrium-scaled stable trade-off and audit boundaries
+Let ν = m − 2 and                     ( √
+                                       1/ 3, ν = 1,                  κν                   90ν
+                                  κν = √                        L0 = √ ,         L1 =           .
+                                         5/2, ν ≥ 2,                  ν                 90ν + 1
+
+The interval is nonempty: for ν = 1 the squared inequality is 8281 < 24300, while for ν ≥ 2 it follows from (90ν + 1)2 ≤
+(91ν)2 < 6480ν 3 . Set h1 = hm = hZ = 1, hi = Ki /(LKi−1 ), and choose physical diffusion Dphys = Hm (L)∆. Under
+x
+b = Hm (L)x,
+                                         ∂t x             x) + (1 − µ)∆∂xx x
+                                            b = Hm (L){f (b                b}.
+At µ = 0, the effective stationary bracket and right vector are unchanged; the dynamic left vector is ℓ(L)
+                                                                                                      e    = Hm (L)−1 ℓ.
+                                             −1 T
+The physical fixed-mass functional is (Hm (L) c) x b. Moreover,
+
+                                        e T Hm (L)∆r = ℓT ∆r < 0,
+                                        ℓ(L)                                  e T r < 0,
+                                                                              ℓ(L)
+
+so the scaled crossing coefficient ηm (L) is positive. Invertibility of Hm (L) preserves the kernel:
+
+                                       ker[Hm (L)(Am − ∆)] = ker(Am − ∆) = span{r}.
+
+A generalized vector would force 0 = ℓ(L)e T r, so the scaled zero is algebraically simple. For each fixed m and L, the
+normalized branch converges to 1 in HN ,→ C 0 and remains componentwise positive for small µ > 0; the positive diagonal
+                                        2
+
+physical rescaling preserves this positivity.
+   Chain elimination now gives interior factors
+                                                         Ki−1            t−1
+                                                  gi =        (1 + Lλ) +     .
+                                                          Ki              Ki
+
+For t ≥ 1, Bernoulli’s inequality and νL2 ≥ 1/3 reduce spatial half-plane exclusion to the exact source polynomial
+                                               √                      √
+         E84 = (91/90)2 (1 + Ax + z/3)|F (x + i z, 1 + s)|2 − |G(x + i z, 1 + s)|2 , A = 2νL, z = y 2 , s = t − 1.
+
+Its 84 coefficients are coefficientwise nonnegative in A > 0, and equality occurs only at the first-mode zero (x, z, s) = (0, 0, 0).
+    At t = 0, the exact homogeneous determinant, after dividing by det Hm (L), is
+                                                                m−1
+                                                                Y                
+                                                                            Ki−1
+                                           QF0 − R,        Q=           1+L      λ ,
+                                                                 i=2
+                                                                             Ki
+
+                                    F0 = λ3 + 11λ2 + 31λ + 16,           R = 5λ2 + 33λ + 16.
+Every factor of Q has modulus at least |1 + Lλ| for ℜλ = x ≥ 0. If ν ≥ 2, then
+                                                                     5
+                              |Q|2 ≥ 1 + 2νLx + νL2 y 2 ≥ 1 + Ax + y 2 ,      A = 2νL.
+                                                                     4
+                            √      √
+On the certified domain A ≥ 5ν ≥ 10 > 1/4. With z = y 2 and U = A − 1/4, the exact source
+                                                                     √               √
+                           E22 = [1 + (U + 1/4)x + (5/4)z] |F0 (x + i z)|2 − |R(x + i z)|2
+
+has 22 nonzero monomials. All coefficient polynomials are nonnegative and equality is possible only at λ = 0. The
+coefficient 5/4 is sharp for this certificate only: replacing it by B makes the z = y 2 coefficient at x = 0 equal to 256B − 320.
+This does not identify an intrinsic dynamical boundary. Also
+                                                                 m−1
+                                                                 X
+                                         (QF0 − R)′ (0) = 16L           Ki−1 /Ki − 2 > 0,
+                                                                  i=2
+
+so the conservation zero is simple. If ν = 1, putting γ = 91L/90 gives
+
+                                  QF0 − R
+                                          = γλ3 + (1 + 11γ)λ2 + (6 + 31γ)λ + (16γ − 2),
+                                     λ
+whose coefficients and Routh–Hurwitz difference 6 + 99γ + 325γ 2 are positive because γ > 1/8.
+
+
+                                                                 5
+    The second harmonic is unchanged, while the zero harmonic changes by w0 (L) = w0ref + τm (L)ρ. The cubic numerator
+              ref
+is Nm (L) = Nm    + τm (L)Sm . With 1/91 ≤ hm < 1/90,
+
+                                             4(1760850hm − 10253)                1
+                                   Sm = −                         ,         −      < Sm < 0.
+                                                    462105                      10
+Since Cm < 0, exact clearing gives
+                                                     ref      1    Pref (ν)
+                                                    Nm   −       ≥          ,
+                                                             100   Dref (ν)
+where
+
+               Pref = 3790502986637265684840ν 5 − 974216530468600286489ν 4 − 53103567440921218871ν 3
+                      − 576386186827093561ν 2 + 3649732858601219ν + 55281268032918,
+              Dref = 715296950550(8ν − 1)(90ν + 1)
+                      × (589180301ν 3 + 35065866ν 2 + 629431ν + 3306).
+                                                                                      ref
+Dref > 0, and the shift ν = v + 1 gives six positive coefficients for Pref , proving Nm   > 1/100.
+   For the gauge, set
+
+                                Aτ = 1494249120hm Lν 2 − 69786990hm Lν + 108738630Lν 2
+                                      + 1214388Lν − 8521L − 125249670ν 2 + 1031940ν,
+                                Bτ = 32760hm Lν + 32760Lν 2 + 4L − 4095ν.
+
+      m = −Aτ /[15876(8ν − 1)Bτ ] and Bτ = 4095ν[8L(ν
+Then τ√                                             √ + hm ) − 1] + 4L > 0. The exact derivatives are negative on
+L ≥ 1/ 3ν, so the maximum is at (hm , L) = (1/91, 1/ 3ν). For ν ≥ 2 its endpoint sign is bounded by
+                                             189709065 3
+                               Pup (ν) = −            ν − 507201030ν 2 − 935658ν + 58481,
+                                                 2
+with
+                    ′      569127195 2
+                   Pup =−             ν − 1014402060ν − 935658 < 0, Pup (2) = −2789453215 < 0.
+                                2
+                                                               √
+The case ν = 1 uses the exact unreduced endpoint expression and 3 < 7/4. Hence τm (L) < 1/20. These bounds hold on
+                               √
+                                                                  e T r = ℓT Hm (L)−1 r < 0, the exact quotient
+the broader cubic range L ≥ 1/ 3ν and give Nm (L) > 1/200. Since ℓ(L)
+
+                                                                Nm (L)
+                                                    cm (L) =           <0
+                                                                e Tr
+                                                                ℓ(L)
+
+holds throughout the certified interval.
+   The physical contrasts are
+                                               23                  91ν − 1
+                                             χD = 91νL,     χH =           .
+                                               63                   91νL
+Here χH measures equilibrium concentration-scale separation, not a universal measure of biological expense. Moreover
+
+                                                 23(91ν − 1)   23(91m − 183)
+                                χD (L)χH (L) =               =               = χunit
+                                                                                D (m).
+                                                     63             63
+Thus the family reallocates a fixed product without reducing it. Throughout the certified interval, χD (L) > χH (L), so
+max(χD , χH ) = χD (L) is uniquely minimized at L = L0 . At L0 ,
+                                                                      √
+                                               2093 √                    ν 91ν − 1
+                                        χD =        κν ν,      χH =                ,
+                                                63                    κν 91ν
+                                              √
+so both, and hence their maximum, are Θ( m), compared with Θ(m) for the unit-equilibrium stable profile.         √ The
+topology-specific necessary bound for stationary crossings implies any such realization must have max(χD , χH ) > 8ν, so
+exponent 1/2 is optimal among stationary-crossing realizations of N  bm . Constants remain open.
+
+Failure tests. Verify the SCC exhaustion at b = 2a; the principal-minor derivative argument; the 22/35/77/84-term
+equality cases and the direct ν = 1 cubic; the transformed physical diffusion; the fixed-mass gauge; and the comparison
+Nm (L) > 1/200. No finite regression substitutes for these all-m identities.
+
+
+                                                                6
+
