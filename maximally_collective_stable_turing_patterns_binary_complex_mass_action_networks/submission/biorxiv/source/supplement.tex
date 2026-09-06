@@ -179,15 +179,16 @@ Right multiplication by $H$ multiplies a principal determinant by the product
 of its retained $h_i$, so the combinatorial coefficients may be computed at
 $H=I$.
 
-Omitting $Z$ leaves the complete $X$-chain block.  Its sparse cycle-cover
-expansion gives
+Omitting $Z$ leaves the complete $X$-chain block.  The Schur-complement
+calculation above gives
 \[
  (-1)^m\det J_{\widehat Z,\widehat Z}
  =-2a^{m-1}b\prod_{i=1}^mh_i.
 \]
-For $2\le j\le m-1$, omit $X_j$ and order the remaining vertices by the two
-feed-forward chain fragments, followed by $\{X_1,X_m,Z\}$.  The resulting
-matrix is block triangular.  The $m-3$ chain singletons contribute signed
+For $2\le j\le m-1$, omit $X_j$.  A Frobenius permutation orders the right
+chain fragment $X_{j+1},\ldots,X_{m-1}$, then $\{X_1,X_m,Z\}$, then the left
+fragment $X_2,\ldots,X_{j-1}$; empty fragments are omitted.  The resulting
+matrix is block lower triangular.  The $m-3$ chain singletons contribute signed
 factors $a h_i$, and the boundary triad contributes
 \[
  (-1)^3\det J_{\{X_1,X_m,Z\},\{X_1,X_m,Z\}}
@@ -811,7 +812,9 @@ certificates.  Each row records an exponent vector and the exact coefficient
 of the corresponding polynomial.  The later shifted-polynomial tables are
 signed scalar certificates; for each such table we state the polynomial, any
 overall sign prefactor, the parameter domain, and the sign conclusion
-separately.
+separately.  Rational coefficients in the four modulus tables are printed in
+single-line $a/b$ notation so adjacent exact entries remain visually
+separated.
 
 By conjugation, take $y\ge0$ and use the variables
 \[
@@ -944,14 +947,54 @@ diffusion excess over the exact linear threshold is
  =4\left(M+6\omega+3\omega^2-\frac{\omega^2}{m-2}\right)\varepsilon^2
  +O(\varepsilon^3).
 \]
-For $(\omega,\theta,M)=(2/9,1/2,1)$ and $m=3$, exact elimination yields
+For $(\omega,\theta,M)=(2/9,1/2,1)$ and $m=3$, the selected path gives
+\[
+ d_1=\frac{\varepsilon(3\varepsilon+8)}6,\quad
+ d_2=\frac{\varepsilon(4-9\varepsilon)}
+ {9\varepsilon^2+32\varepsilon+18},\quad
+ d_3=\varepsilon,\quad d_Z=\frac{16\varepsilon}{9-13\varepsilon}.
+\]
+All four entries are positive for $0<\varepsilon\le10^{-3}$, and
+\[
+ d_Z-8d_2=
+ \frac{8\varepsilon^2(197-99\varepsilon)}
+ {(9-13\varepsilon)(9\varepsilon^2+32\varepsilon+18)}>0.
+\]
+Let $\ell_\varepsilon^T(A_3-D_\varepsilon)=0$, and obtain $w_0,w_2$
+from the reaction-derived Hessian tensor $B_3$ through the equations of
+Section~S6.  Substitution in
+\[
+ c_3(\varepsilon)=
+ \frac{\ell_\varepsilon^T\{B_3(r,w_0)+\tfrac12B_3(r,w_2)\}}
+ {\ell_\varepsilon^Tr}
+\]
+gives the exact rational expression reconstructed by the public verifier and
 \[
  c_3(\varepsilon)=\frac6{1379}
  +\frac{421985}{11409846}\varepsilon+O(\varepsilon^2),
 \]
-and rational remainder bounds prove $c_3(\varepsilon)>0$ on
-$0<\varepsilon\le10^{-3}$.  This is a rigorous subcritical control example,
-not a universal nonlinear lower bound.
+with $c_3(\varepsilon)>0$ throughout $0<\varepsilon\le10^{-3}$ by an exact
+coefficient certificate.  For the complete onset check, write
+\[
+ \det(\lambda I-A_3+tD_\varepsilon)
+ =\lambda^4+a_1\lambda^3+a_2\lambda^2+a_3\lambda+a_4,
+ \quad H_2=a_1a_2-a_3,\quad H_3=a_3H_2-a_1^2a_4.
+\]
+After cancelling common factors and substituting
+$t=1+s$ and $\varepsilon=[1000(1+w)]^{-1}$, the exact numerator and
+denominator polynomials for
+$a_1,a_2,a_3,a_4/(t-1),H_2,H_3$ have strictly positive coefficients for
+$s,w\ge0$.  At $t=1$, $a_4=0$ while $a_1,a_2,a_3,H_2>0$; hence zero is
+simple and the cubic complement is Hurwitz.  Moreover
+$\partial_ta_4|_{t=1}>0$, so
+$\partial_t\lambda|_{t=1}=-(\partial_ta_4)/a_3<0$, equivalently the
+$\mu=1-t$ crossing coefficient is positive.  For every $t>1$, the strict
+quartic Routh--Hurwitz inequalities prove stability, including every higher
+Neumann mode.  Finally, the fixed-mass homogeneous factor is
+$q_3(\lambda)=(\lambda+7)(\lambda^2+5\lambda+2)$.  Thus, for each fixed
+$\varepsilon$ in the stated interval, this is a primary transverse
+subcritical control example, not a universal nonlinear lower bound; no
+dimension- or $\varepsilon$-uniform bifurcation neighborhood is claimed.
 
 \section{Semilinear stability and robustness}
 

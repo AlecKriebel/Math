@@ -1,11 +1,11 @@
-# Replay status for the v1.0.9 pre-submission release candidate
+# Replay status for the v1.0.9 pre-submission release
 
-This file distinguishes the unqualified current release candidate from
-historical v1.0.8 evidence and from historical-lineage verification.
+This file distinguishes the current release from historical v1.0.8 evidence
+and from historical-lineage verification.
 
 ## v1.0.9 current source
 
-The current candidate fixes the tracked-file release manifest, enforces every
+The current release fixes the tracked-file release manifest, enforces every
 special TeX lock field with negative controls, stabilizes detached supplement
 builds before semantic comparison, and generates a line-numbered SIADS review
 package with visible keywords and MSC codes, a supplementary-materials index,
@@ -15,7 +15,7 @@ unchanged.
 
 The current qualification campaign passes:
 
-- all 29 mutation/regression tests;
+- all 32 mutation/regression tests;
 - all 39 direct verifier entrypoints normally and all 39 expected fail-closed
   executions under optimized Python;
 - the exact symbolic aggregate, current-profile source/provenance checks,
@@ -23,7 +23,7 @@ The current qualification campaign passes:
 - the 19-page canonical manuscript, 19-page canonical supplement, 3-page
   theorem summary, and 6-page proof skeleton under semantic, producer,
   embedded-font, clean-log, and page-by-page visual checks;
-- the separate 23-page SIADS manuscript, 23-page SIADS supplement, and one-page
+- the separate 24-page SIADS manuscript, 24-page SIADS supplement, and one-page
   PDF cover letter under the same semantic and visual checks;
 - all seven deterministic bundle hashes and detached builds of the bioRxiv,
   arXiv, and SIADS source ZIPs, including supplement auxiliary/TOC stabilization
@@ -32,9 +32,17 @@ The current qualification campaign passes:
   `PUBLIC_REPLAY_PASS`.
 
 The final tracked-tree manifest is separately checked against a fresh
-`git archive`.  Author-dependent funding, competing-interest, and exclusivity
-declarations remain explicitly pending and are not part of this technical
-qualification.
+`git archive`.  The author has confirmed no specific funding, no competing
+interests, and no submission to or consideration by another journal; the
+submission declarations and cover letter record those facts.
+
+The 5 September full-referee pass also requires exact certificate row counts,
+unique supports, and complete coefficient equality; its adversarial additions,
+omissions, and duplicate-order mutations reject. The rendered modulus tables
+contain 218 single-line exact rows with a measured minimum adjacent clearance
+of 3.108 points. The $m=3$ near-threshold verifier now reconstructs its cubic
+and complete onset spectrum from the reactions rather than trusting a stored
+rational expression.
 
 ## Historical v1.0.8 source: passed substantive qualification, manifest defect recorded
 
@@ -135,7 +143,7 @@ supplement. The detached public replay used the same compatible pair and ended
 in `PUBLIC_REPLAY_PASS`. Numerical outputs are certified to the recorded
 tolerances, not asserted to be byte-identical across BLAS/SciPy toolchains.
 
-## Historical-lineage stage: not rerun for v1.0.8
+## Historical-lineage stage: not rerun for v1.0.9
 
 The top-level command additionally requires five frozen source archives listed
 in `release/reproducibility.md`. They were unavailable in the final repair
@@ -143,7 +151,7 @@ environment. Its preflight was exercised against an empty `FROZEN_BASE`: it
 reported all five missing archives, exited with status 2, and did not create or
 truncate `release/replay.log`.
 
-Accordingly, v1.0.8 claims a current portable replay and direct verification of
+Accordingly, v1.0.9 claims a current portable replay and direct verification of
 the substantive stages above. It does **not** claim that this tree completed
 the optional historical-lineage replay. The lineage
 archives are not consumed by any current proof, data, document, or package

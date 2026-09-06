@@ -190,13 +190,21 @@ def verify(path: Path):
     assert homogeneous["B"] == "5/4"
     assert homogeneous["coefficient_parameter"] == "U=A-1/4"
     assert homogeneous["term_count"] == 22
+    homogeneous_rows = homogeneous["terms"]
+    homogeneous_powers = [tuple(term["powers"]) for term in homogeneous_rows]
+    expected_homogeneous = {
+        monomial: list(reversed(sp.Poly(coefficient, U).all_coeffs()))
+        for monomial, coefficient in sp.Poly(Eh, x, z).terms()
+    }
+    assert all(len(powers) == 2 for powers in homogeneous_powers)
+    assert len(homogeneous_rows) == homogeneous["term_count"] == len(expected_homogeneous)
+    assert len(set(homogeneous_powers)) == len(homogeneous_powers)
     table = {
         tuple(t["powers"]): [sp.Rational(v) for v in t["coefficient_in_U_ascending"]]
-        for t in homogeneous["terms"]
+        for t in homogeneous_rows
     }
-    assert homogeneous["term_count"] == len(sp.Poly(Eh, x, z).terms())
-    for mon, coefficient in sp.Poly(Eh, x, z).terms():
-        coeffs = list(reversed(sp.Poly(coefficient, U).all_coeffs()))
+    assert set(table) == set(expected_homogeneous)
+    for mon, coeffs in expected_homogeneous.items():
         assert table[mon] == coeffs
         assert all(v >= 0 for v in coeffs) and any(v > 0 for v in coeffs)
     # Strict positivity away from x=z=0 follows already at U=0 from the
@@ -207,13 +215,21 @@ def verify(path: Path):
     spatial = data["modulus"]["spatial"]
     assert spatial["B"] == "1/3"
     assert spatial["term_count"] == 84
+    spatial_rows = spatial["terms"]
+    spatial_powers = [tuple(term["powers"]) for term in spatial_rows]
+    expected_spatial = {
+        monomial: list(reversed(sp.Poly(coefficient, A).all_coeffs()))
+        for monomial, coefficient in sp.Poly(Em, x, z, s).terms()
+    }
+    assert all(len(powers) == 3 for powers in spatial_powers)
+    assert len(spatial_rows) == spatial["term_count"] == len(expected_spatial)
+    assert len(set(spatial_powers)) == len(spatial_powers)
     table = {
         tuple(t["powers"]): [sp.Rational(v) for v in t["coefficient_in_A_ascending"]]
-        for t in spatial["terms"]
+        for t in spatial_rows
     }
-    assert spatial["term_count"] == len(sp.Poly(Em, x, z, s).terms())
-    for mon, coefficient in sp.Poly(Em, x, z, s).terms():
-        coeffs = list(reversed(sp.Poly(coefficient, A).all_coeffs()))
+    assert set(table) == set(expected_spatial)
+    for mon, coeffs in expected_spatial.items():
         assert table[mon] == coeffs
         assert all(v >= 0 for v in coeffs) and any(v > 0 for v in coeffs)
 

@@ -134,6 +134,10 @@ versions are logged, and no numerical integration is used in a proof.
 `independent_verifier/certificate_schema.json` is descriptive metadata for
 certificate-field interpretation. No replay claim depends on runtime JSON
 Schema validation unless a future release explicitly adds such a validator.
+The executable modulus-certificate readers instead enforce exact raw,
+declared, and regenerated row counts, unique exponent vectors, complete
+monomial support, and exact coefficients. They deliberately ignore unknown
+descriptive metadata outside the certified polynomial blocks.
 
 Stored verification-output provenance is tabulated in
 `release/verification_outputs/PROVENANCE.tsv`. In particular, the full-tree and

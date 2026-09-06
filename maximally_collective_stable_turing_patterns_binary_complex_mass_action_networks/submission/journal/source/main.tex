@@ -102,6 +102,9 @@ diffusing species \cite{HaasGoldstein2021}.
 Reaction-network approaches instead constrain the Jacobian by stoichiometry,
 positive steady fluxes, and mass-action derivatives
 \cite{MinchevaCraciun2013,Diego2018,Scholes2019,VassenaStadler2024}.
+Here ``Turing bifurcation'' means a stationary diffusion-driven crossing of a
+nonconstant Neumann mode on a fixed interval.  We do not claim intrinsic
+finite-wavelength selection under enlargement of the spatial domain.
 
 A large unstable block in one numerical Jacobian does not settle the
 reaction-topology question.  Reparameterizing the same network can change its
@@ -482,11 +485,13 @@ Positive right multiplication by $H$ multiplies each principal determinant by
 the product of its selected $h_i$, so it suffices to identify the unit-$H$
 coefficients.
 
-Omitting $Z$ leaves the complete $X$-chain block.  Its two surviving cycle
-covers give the sparse determinant \eqref{eq:coreminor}, hence
+Omitting $Z$ leaves the complete $X$-chain block.  The Schur-complement
+calculation in Supplement~S2 gives \eqref{eq:coreminor}, hence
 \eqref{eq:omitZ}.  Now omit an interior species $X_j$, $2\le j\le m-1$.
-Permute the retained vertices into the feed-forward chain fragments followed
-by $\{X_1,X_m,Z\}$.  The matrix is block triangular.  The $m-3$ retained
+A Frobenius permutation orders the right chain fragment
+$X_{j+1},\ldots,X_{m-1}$, then $\{X_1,X_m,Z\}$, then the left fragment
+$X_2,\ldots,X_{j-1}$; empty fragments are omitted.  The resulting matrix is
+block lower triangular.  The $m-3$ retained
 interior chain vertices outside the boundary block contribute signed singleton
 factors $a h_i$.  The boundary triad contributes
 \[
@@ -1134,8 +1139,8 @@ nearby parameter points are not asserted to be critical.
 equilibrium.
 \item Determine whether supercritical stable pattern formation has a strict
 nonlinear contrast gap above the linear threshold.
-\item Determine the constant-optimal stable diffusion--equilibrium frontier,
-or equivalently the exact infimum of $\max(\chi_D,\chi_H)$.
+\item Determine the constant-optimal stable diffusion--equilibrium frontier
+and, in particular, the exact infimum of $\max(\chi_D,\chi_H)$.
 \item Determine the exact threshold for oscillatory diffusion-driven
 instability in this topology and whether wave instability can occur at lower
 diffusion or heterogeneity contrast than the sharp stationary threshold.
@@ -1209,9 +1214,12 @@ is positive diagonal self-diffusion, and the Jacobians arise from---and are
 quantified over---all positive-equilibrium realizations of one indexed
 classical mass-action topology.  Biochemical screens study interpretable reaction
 architectures rather than the synthetic extremal design here
-\cite{Paul2024}.  Monomial-steady-state results give sufficient spatial
-instability conditions for a restricted mass-action class
-\cite{ConradiMinchevaUecker2026}.
+\cite{Paul2024}.  Conradi, Mincheva, and Uecker give sufficient spatial
+instability conditions for a restricted mass-action class and numerically
+continue nonlinear patterned branches, including numerically stable segments
+in a finite example \cite{ConradiMinchevaUecker2026}.  Their work does not
+supply the present all-dimensional realization-wide localization theorem or
+exact contrast law.
 
 The construction has one semipositive conservation law and an inflow; $X_1$
 is not bounded by the conserved functional.  The local stability theorem does

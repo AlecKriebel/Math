@@ -311,8 +311,32 @@ def verify_modulus_source_polynomials(
     unit_certificate: Optional[Path] = None,
     pareto_certificate: Optional[Path] = None,
 ) -> None:
-    x, y, z, s, A = sp.symbols("x y z s A", real=True)
+    x, y, z, s, A, U = sp.symbols("x y z s A U", real=True)
     lam = x + sp.I * y
+    F0 = lam**3 + 11 * lam**2 + 31 * lam + 16
+    R = 5 * lam**2 + 33 * lam + 16
+    P = lam**4 + 12 * lam**3 + 42 * lam**2 + 47 * lam + 16
+    E35 = sp.Poly(
+        sp.expand(
+            _even_y_to_z(
+                (1 + lam) * (1 + sp.conjugate(lam)) * P * sp.conjugate(P)
+                - R * sp.conjugate(R),
+                y,
+                z,
+            )
+        ),
+        x,
+        z,
+    )
+    E22 = sp.Poly(
+        sp.expand(
+            (1 + (U + sp.Rational(1, 4)) * x + sp.Rational(5, 4) * z)
+            * _even_y_to_z(F0 * sp.conjugate(F0), y, z)
+            - _even_y_to_z(R * sp.conjugate(R), y, z)
+        ),
+        x,
+        z,
+    )
     t = 1 + s
     g1 = lam + 2 + sp.Rational(23, 63) * t
     gm = lam + 5 + sp.Rational(1, 7) * t
@@ -333,12 +357,36 @@ def verify_modulus_source_polynomials(
     if pareto_certificate is None:
         pareto_certificate = HERE / "pareto_all_m_certificate.json"
     unit_data = json.loads(unit_certificate.read_text())
+    homogeneous_unit = unit_data["homogeneous"]
+    homogeneous_unit_rows = homogeneous_unit["terms"]
+    homogeneous_unit_powers = [tuple(term["powers"]) for term in homogeneous_unit_rows]
+    assert all(len(powers) == 2 for powers in homogeneous_unit_powers)
+    assert (
+        len(homogeneous_unit_rows)
+        == homogeneous_unit["term_count"]
+        == 35
+        == len(E35.terms())
+    )
+    assert len(set(homogeneous_unit_powers)) == len(homogeneous_unit_powers)
+    homogeneous_unit_terms = {
+        tuple(term["powers"]): sp.Rational(term["coefficient"])
+        for term in homogeneous_unit_rows
+    }
+    assert homogeneous_unit_terms == {
+        monomial: coefficient for monomial, coefficient in E35.terms()
+    }
+    assert all(coefficient > 0 for coefficient in homogeneous_unit_terms.values())
+
     unit_section = unit_data["improved_mode"]
+    unit_rows = unit_section["terms"]
+    unit_powers = [tuple(term["powers"]) for term in unit_rows]
+    assert all(len(powers) == 3 for powers in unit_powers)
+    assert len(unit_rows) == unit_section["term_count"] == 77 == len(E77.terms())
+    assert len(set(unit_powers)) == len(unit_powers)
     unit_terms = {
         tuple(term["powers"]): sp.Rational(term["coefficient"])
-        for term in unit_section["terms"]
+        for term in unit_rows
     }
-    assert unit_section["term_count"] == 77 == len(E77.terms())
     assert unit_terms == {monomial: coefficient for monomial, coefficient in E77.terms()}
     assert all(coefficient > 0 for coefficient in unit_terms.values())
     assert E77.coeff_monomial(x) > 0
@@ -357,18 +405,55 @@ def verify_modulus_source_polynomials(
         s,
     )
     pareto_data = json.loads(pareto_certificate.read_text())
+    homogeneous_scaled = pareto_data["modulus"]["homogeneous"]
+    homogeneous_scaled_rows = homogeneous_scaled["terms"]
+    homogeneous_scaled_powers = [
+        tuple(term["powers"]) for term in homogeneous_scaled_rows
+    ]
+    assert all(len(powers) == 2 for powers in homogeneous_scaled_powers)
+    assert (
+        len(homogeneous_scaled_rows)
+        == homogeneous_scaled["term_count"]
+        == 22
+        == len(E22.terms())
+    )
+    assert len(set(homogeneous_scaled_powers)) == len(homogeneous_scaled_powers)
+    homogeneous_scaled_terms = {
+        tuple(term["powers"]): [
+            sp.Rational(value) for value in term["coefficient_in_U_ascending"]
+        ]
+        for term in homogeneous_scaled_rows
+    }
+    expected_homogeneous_scaled = {
+        monomial: list(reversed(sp.Poly(coefficient, U).all_coeffs()))
+        for monomial, coefficient in E22.terms()
+    }
+    assert homogeneous_scaled_terms == expected_homogeneous_scaled
+    assert all(
+        all(value >= 0 for value in coefficients) and any(value > 0 for value in coefficients)
+        for coefficients in homogeneous_scaled_terms.values()
+    )
+
     spatial_section = pareto_data["modulus"]["spatial"]
+    spatial_rows = spatial_section["terms"]
+    spatial_powers = [tuple(term["powers"]) for term in spatial_rows]
+    assert all(len(powers) == 3 for powers in spatial_powers)
+    assert len(spatial_rows) == spatial_section["term_count"] == 84 == len(E84.terms())
+    assert len(set(spatial_powers)) == len(spatial_powers)
     spatial_terms = {
         tuple(term["powers"]): [
             sp.Rational(value) for value in term["coefficient_in_A_ascending"]
         ]
-        for term in spatial_section["terms"]
+        for term in spatial_rows
     }
-    assert spatial_section["term_count"] == 84 == len(E84.terms())
-    for monomial, coefficient in E84.terms():
-        actual = list(reversed(sp.Poly(coefficient, A).all_coeffs()))
-        assert spatial_terms[monomial] == actual
-        assert all(value >= 0 for value in actual) and any(value > 0 for value in actual)
+    expected_spatial = {
+        monomial: list(reversed(sp.Poly(coefficient, A).all_coeffs()))
+        for monomial, coefficient in E84.terms()
+    }
+    assert set(spatial_terms) == set(expected_spatial)
+    for monomial, expected in expected_spatial.items():
+        assert spatial_terms[monomial] == expected
+        assert all(value >= 0 for value in expected) and any(value > 0 for value in expected)
     assert E84.coeff_monomial(x).subs(A, 1) > 0
     assert E84.coeff_monomial(z).subs(A, 1) > 0
     assert E84.coeff_monomial(s).subs(A, 1) > 0

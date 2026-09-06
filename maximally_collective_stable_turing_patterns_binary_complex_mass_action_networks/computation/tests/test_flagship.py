@@ -17,6 +17,8 @@ import frontier_verify_master_certificate as master_certificate
 import frontier_verify_mode_certificates as mode_certificates
 import frontier_verify_exposition_identities as exposition_identities
 import verify_family as family_verifier
+import verify_mode_isolation as unit_mode_isolation
+import dd_verify_mode_isolation as duplicate_unit_mode_isolation
 
 
 def assert_exact_minimum(values, candidate):
@@ -234,6 +236,37 @@ def test_near_threshold_affine_ansatz_and_printed_source():
         "q": "1/2-(1/2+omega)*epsilon+(theta-M/2)*epsilon^2",
         "delta_leading": "4*(M+6*omega+3*omega^2-omega^2/nu)*epsilon^2",
     }
+    prescribed = certificate["near_threshold"]["prescribed_path_m3"]
+    assert prescribed["linear_mode_domain"] == "t>=1"
+    assert prescribed["verification"] == (
+        "reaction-derived Hessian contraction plus exact quartic "
+        "Routh-Hurwitz coefficient certificates"
+    )
+    assert prescribed["status"].startswith("primary transverse subcritical control example")
+
+
+def test_near_threshold_verifier_reconstructs_reactions_and_all_modes():
+    verifier = ROOT / "independent_verifier" / "frontier_verify_near_threshold.py"
+    source = verifier.read_text()
+    for marker in (
+        "Hessian(3,r3,r3)",
+        "M3.T.nullspace()",
+        "bordered.inv()",
+        "a4/(t-1)",
+        "H3=sp.factor",
+        "positive_rational_certificate",
+        "homogeneous_quotient",
+    ):
+        assert marker in source
+    result = subprocess.run(
+        [sys.executable, str(verifier)],
+        cwd=ROOT,
+        check=True,
+        capture_output=True,
+        text=True,
+        timeout=30,
+    )
+    assert result.stdout.strip() == "VERIFY_NEAR_THRESHOLD_PASS"
 
 
 def test_repaired_pareto_endpoint_and_legacy_counterexample():
@@ -294,6 +327,109 @@ def test_77_and_84_term_source_mutations_are_rejected(tmp_path):
         exposition_identities.verify_modulus_source_polynomials(
             pareto_certificate=mutated_pareto,
         )
+
+
+def test_all_modulus_readers_reject_support_and_duplicate_mutations(tmp_path):
+    """Reject additions, omissions, and order-dependent duplicate attacks."""
+
+    unit_source = ROOT / "independent_verifier" / "improved_modulus_certificate.json"
+    pareto_source = ROOT / "independent_verifier" / "pareto_all_m_certificate.json"
+
+    def mutations(payload, section_path, coefficient_key):
+        section = payload
+        for key in section_path:
+            section = section[key]
+        original = section["terms"][0]
+        arity = len(original["powers"])
+
+        added = json.loads(json.dumps(payload))
+        added_section = added
+        for key in section_path:
+            added_section = added_section[key]
+        extra = json.loads(json.dumps(original))
+        extra["powers"] = [99] + [0] * (arity - 1)
+        if isinstance(extra[coefficient_key], list):
+            extra[coefficient_key] = ["-1"]
+        else:
+            extra[coefficient_key] = "-1"
+        added_section["terms"].append(extra)
+        added_section["term_count"] += 1
+        yield "extra", added
+
+        removed = json.loads(json.dumps(payload))
+        removed_section = removed
+        for key in section_path:
+            removed_section = removed_section[key]
+        removed_section["terms"].pop()
+        removed_section["term_count"] -= 1
+        yield "missing", removed
+
+        for placement in ("before", "after"):
+            for conflicting in (False, True):
+                duplicate = json.loads(json.dumps(payload))
+                duplicate_section = duplicate
+                for key in section_path:
+                    duplicate_section = duplicate_section[key]
+                row = json.loads(json.dumps(duplicate_section["terms"][0]))
+                if conflicting:
+                    if isinstance(row[coefficient_key], list):
+                        row[coefficient_key][0] = str(
+                            sp.Rational(row[coefficient_key][0]) + 1
+                        )
+                    else:
+                        row[coefficient_key] = str(sp.Rational(row[coefficient_key]) + 1)
+                index = 0 if placement == "before" else 1
+                duplicate_section["terms"].insert(index, row)
+                duplicate_section["term_count"] += 1
+                kind = "conflicting" if conflicting else "identical"
+                yield f"{kind}_{placement}", duplicate
+
+    unit_payload = json.loads(unit_source.read_text())
+    for section_name in ("homogeneous", "improved_mode"):
+        for mutation_name, payload in mutations(
+            unit_payload, (section_name,), "coefficient"
+        ):
+            candidate = tmp_path / f"unit_{section_name}_{mutation_name}.json"
+            candidate.write_text(json.dumps(payload))
+            for reader in (
+                unit_mode_isolation.verify_certificate,
+                duplicate_unit_mode_isolation.verify_certificate,
+            ):
+                with pytest.raises(AssertionError):
+                    reader(candidate)
+            with pytest.raises(AssertionError):
+                exposition_identities.verify_modulus_source_polynomials(
+                    unit_certificate=candidate,
+                )
+
+    pareto_payload = json.loads(pareto_source.read_text())
+    for section_name, coefficient_key in (
+        ("homogeneous", "coefficient_in_U_ascending"),
+        ("spatial", "coefficient_in_A_ascending"),
+    ):
+        for mutation_name, payload in mutations(
+            pareto_payload, ("modulus", section_name), coefficient_key
+        ):
+            candidate = tmp_path / f"pareto_{section_name}_{mutation_name}.json"
+            candidate.write_text(json.dumps(payload))
+            with pytest.raises(AssertionError):
+                mode_certificates.verify(candidate)
+            with pytest.raises(AssertionError):
+                exposition_identities.verify_modulus_source_polynomials(
+                    pareto_certificate=candidate,
+                )
+
+
+def test_table_generator_rejects_malformed_certificate_rows():
+    import computation.generate_tables as table_generator
+
+    terms = [{"powers": [1, 0], "coefficient": "1"}]
+    with pytest.raises(ValueError):
+        table_generator.cert_table("bad count", ["x", "z"], terms, 2)
+    with pytest.raises(ValueError):
+        table_generator.cert_table("bad arity", ["x", "z", "s"], terms, 1)
+    with pytest.raises(ValueError):
+        table_generator.cert_table("duplicate", ["x", "z"], terms * 2, 2)
 
 
 def test_printed_rational_identity_mutation_is_rejected(tmp_path):

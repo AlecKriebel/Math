@@ -459,3 +459,51 @@
   **100%**.  Immutable release publication and final SIADS upload remain
   author-controlled because funding, competing-interest, and exclusivity facts
   have deliberately not been inferred.
+
+## 2026-09-05 22:28:12 PDT — independent full-referee repair checkpoint
+
+- Read the full referee report and treated each finding as a hypothesis. Three
+  independent reviews reproduced the certificate-reader weakness, quantified
+  the coefficient-table overlap, falsified the two determinant-proof
+  descriptions, and reconstructed the near-threshold example directly from
+  the reactions. No headline theorem, endpoint, topology, or current-profile
+  datum required alteration.
+- Hardened all four modulus-certificate readers and the table generator against
+  extra/missing rows, duplicate supports, count changes, and coefficient
+  replacement. The referee's independent malformed-certificate witness now
+  rejects in both the direct reader and detached minimal aggregate; unknown
+  descriptive metadata remains accepted because it is outside the claim.
+- Replaced the overlapping stacked fractions with single-line exact rationals.
+  The new PDF geometry audit counts all 218 rows and currently measures a
+  minimum adjacent coefficient clearance of `3.108` points in both canonical
+  and SIADS supplements, above its `1.0`-point rejection threshold.
+- Replaced the false core cycle-cover count with the displayed Schur-complement
+  calculation and corrected the interior-omission Frobenius order to right
+  fragment, boundary triad, then left fragment. Existing exact omission-minor
+  checks continue to give the same formulas.
+- Rebuilt the $m=3$ near-threshold verifier from the reaction-derived Jacobian
+  and Hessian. Exact coefficient certificates now establish positive diffusion,
+  the stationary excess, the conservation-gauged cubic, simple transverse
+  onset, Hurwitz complement, and every higher mode for each fixed
+  $0<\varepsilon\le10^{-3}$.
+- Verified the Conradi--Mincheva--Uecker primary source and recorded its finite
+  nonlinear continuation and stable branch segments. Clarified the fixed-
+  interval Turing convention and removed the false equivalence between the
+  complete Pareto frontier and one scalar minimax value.
+- Incorporated the author's confirmations: no specific funding, no competing
+  interests, and no simultaneous journal submission.
+- Completed the pinned CPython 3.9.6/TinyTeX 2022.04 portable replay in a clean
+  detached copy through `PUBLIC_REPLAY_PASS`; all 32 tests, the exact symbolic
+  aggregate, simulations, figures, TeX builds, PDF checks, and preserved
+  manifest checks passed. All three submission source ZIPs also built in fresh
+  directories and matched the intended rendered text.
+- Rechecked all 39 direct verifier entrypoints and all 39 optimized-Python
+  fail-closed controls. Visually inspected all 96 final pages, including
+  enlarged views of the repaired canonical and SIADS coefficient tables; no
+  clipping, overlap, missing glyph, or figure defect remains. The five external
+  historical-lineage archives were unavailable, so that optional provenance
+  preflight is not claimed; no current proof, generator, build, or package uses
+  those archives.
+- Best-guess completion toward the full-referee repair and immutable v1.0.9
+  release goal: **100%**. The candidate is ready for tracked-manifest closure,
+  commit, push, and immutable release publication.

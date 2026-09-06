@@ -1,5 +1,29 @@
 # Changelog
 
+## Independent full-referee repair — 5 September 2026
+
+- Made all four modulus-certificate readers reject extra or missing monomials,
+  duplicate exponent vectors in either order, inconsistent row counts, and
+  any coefficient or support mismatch; added adversarial mutations and
+  hardened the table generator against malformed inputs.
+- Replaced stacked rational fractions in the 35/77/22/84-term tables with
+  single-line exact notation. A Poppler bounding-box gate now verifies all 218
+  rendered rows and requires at least one point of adjacent-row clearance.
+- Corrected two determinant-proof descriptions while preserving the exact
+  omission-minor formulas: the core determinant now cites its Schur complement,
+  and the interior-omission Frobenius order is stated explicitly.
+- Rebuilt the $m=3$ near-threshold verifier from the reaction-derived Hessian,
+  conservation-gauged harmonics, and exact quartic Routh--Hurwitz certificates,
+  proving the claimed fixed-$\varepsilon$ primary transverse subcritical
+  example and all higher-mode stability on the stated interval.
+- Recorded the author-confirmed declarations of no specific funding, no
+  competing interests, and no simultaneous journal submission; corrected the
+  Conradi--Mincheva--Uecker literature comparison and separated the open Pareto
+  frontier from its scalar minimax consequence.
+- Kept declaration checks active in the complete source tree while allowing
+  the deliberately smaller public repository to replay without submission-only
+  cover-letter files; the detached full portable replay now passes end to end.
+
 ## Independent rereview and SIADS packaging repair — 23 August 2026
 
 - Replaced the working-tree manifest scan with a sorted, NUL-safe tracked-file

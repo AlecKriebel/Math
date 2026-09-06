@@ -1,8 +1,11 @@
-# Statements and declarations — author review required
+# Statements and declarations
 
-**Funding:** No funding information supplied; author to confirm.
+**Funding:** The author received no specific funding for this work.
 
-**Competing interests:** Author to confirm before submission.
+**Competing interests:** The author declares no competing interests.
+
+**Exclusive consideration:** The manuscript is not under consideration by,
+and has not been submitted to, another journal.
 
 **Data and code:** Exact proof certificates, independent verifiers, numerical
 data, and replay instructions accompany the manuscript and target the frozen

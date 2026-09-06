@@ -58,6 +58,21 @@ and fixed contrast product. The family verifier also checks the explicit
 maximal stoichiometric minor `det=4(-1)^m` through the same two-step expansion
 used in the proof.
 
+Every modulus-certificate reader requires the raw row count to equal both the
+declared and regenerated term counts, rejects duplicate exponent vectors, and
+compares the complete listed monomial support and every exact coefficient.
+Unknown descriptive metadata is ignored because it is not part of the
+polynomial claim. Mutation tests cover additions, omissions, identical
+duplicates, and conflicting duplicates in both list orders.
+
+The `m=3` near-threshold control verifier reconstructs the Jacobian and Hessian
+from the reaction list, solves the conservation-gauged zero and second
+harmonics, and regenerates the cubic contraction. Exact quartic Routh--Hurwitz
+coefficient certificates prove the simple transverse first-mode crossing,
+stable complement, and stability for every higher damping `t>1` throughout
+`0<epsilon<=1/1000`; this remains a fixed-dimensional subcritical control
+example, not an all-dimensional lower bound.
+
 The exact verifiers require normal Python assertion mode. Every direct
 entrypoint fails immediately under `python -O` or a nonzero `PYTHONOPTIMIZE`
 setting; `common.py`, `core.py`, `pareto_core.py`, and `stable_core.py` are

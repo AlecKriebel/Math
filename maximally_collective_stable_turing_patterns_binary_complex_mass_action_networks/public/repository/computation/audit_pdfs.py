@@ -5,7 +5,10 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import html
 import re
+import subprocess
+import tempfile
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -38,8 +41,8 @@ PUBLIC_DOCUMENTS = tuple(
 )
 
 JOURNAL_DOCUMENTS = (
-    Document("submission/journal/manuscript.pdf", 23, True, "pdfTeX-1.40.24"),
-    Document("submission/journal/supplement.pdf", 23, True, "pdfTeX-1.40.24"),
+    Document("submission/journal/manuscript.pdf", 24, True, "pdfTeX-1.40.24"),
+    Document("submission/journal/supplement.pdf", 24, True, "pdfTeX-1.40.24"),
     Document("submission/journal/cover_letter_SIADS.pdf", 1, True, "pdfTeX-1.40.24"),
 )
 
@@ -65,6 +68,11 @@ FORBIDDEN_PHRASES = (
     "physical fixed-mass vector becomes",
     "reduces max(χD, χH)",
     "reduces the larger of the two contrasts",
+    "two surviving cycle covers",
+    "two feed-forward chain fragments, followed by",
+    "or equivalently the exact infimum of",
+    "Author confirmation required",
+    "No funding information supplied",
 )
 
 FORBIDDEN_PATTERNS = (
@@ -154,6 +162,179 @@ def embedded_fonts(reader: PdfReader) -> tuple[int, list[str]]:
     return len(fonts), missing
 
 
+def audit_modulus_table_spacing(root: Path, pdf_path: Path) -> tuple[int, float]:
+    """Check every generated modulus-table row using Poppler word boxes."""
+
+    generated = root / "data" / "certificate_tables.tex"
+    if not generated.is_file():
+        raise AssertionError("missing generated modulus-certificate table")
+    if r"\frac{" in generated.read_text(encoding="utf-8"):
+        raise AssertionError("modulus-certificate table uses stacked fractions")
+
+    with tempfile.TemporaryDirectory(prefix="modulus-table-bbox-") as directory:
+        bbox_path = Path(directory) / "supplement.xhtml"
+        result = subprocess.run(
+            ["pdftotext", "-bbox-layout", str(pdf_path), str(bbox_path)],
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        if result.returncode != 0:
+            raise AssertionError(result.stdout + result.stderr)
+        raw = bbox_path.read_text(encoding="utf-8", errors="replace")
+
+    page_pattern = re.compile(
+        r'<page\s+width="(?P<width>[^"]+)"\s+height="(?P<height>[^"]+)">(?P<body>.*?)</page>',
+        re.S,
+    )
+    word_pattern = re.compile(
+        r'<word\s+xMin="(?P<x0>[^"]+)"\s+yMin="(?P<y0>[^"]+)"\s+'
+        r'xMax="(?P<x1>[^"]+)"\s+yMax="(?P<y1>[^"]+)">(?P<text>.*?)</word>',
+        re.S,
+    )
+    line_pattern = re.compile(r'<line\s+[^>]*yMin="(?P<y0>[^"]+)"[^>]*>(?P<body>.*?)</line>', re.S)
+
+    pages: list[dict[str, object]] = []
+    for page_index, page_match in enumerate(page_pattern.finditer(raw)):
+        words = []
+        for word_match in word_pattern.finditer(page_match.group("body")):
+            words.append(
+                (
+                    float(word_match.group("x0")),
+                    float(word_match.group("y0")),
+                    float(word_match.group("x1")),
+                    float(word_match.group("y1")),
+                    html.unescape(re.sub(r"<[^>]+>", "", word_match.group("text"))).strip(),
+                )
+            )
+        lines = []
+        for line_match in line_pattern.finditer(page_match.group("body")):
+            texts = [
+                html.unescape(re.sub(r"<[^>]+>", "", match.group("text"))).strip()
+                for match in word_pattern.finditer(line_match.group("body"))
+            ]
+            lines.append((float(line_match.group("y0")), " ".join(filter(None, texts))))
+        pages.append(
+            {
+                "index": page_index,
+                "width": float(page_match.group("width")),
+                "height": float(page_match.group("height")),
+                "words": words,
+                "lines": lines,
+            }
+        )
+
+    positions = [
+        (page["index"], y0, text)
+        for page in pages
+        for y0, text in page["lines"]
+    ]
+    starts = [
+        (page_index, y0)
+        for page_index, y0, text in positions
+        if "35-term homogeneous certificate" in text
+    ]
+    ends = [
+        (page_index, y0)
+        for page_index, y0, text in positions
+        if "Signed scalar and rational-function certificates" in text
+    ]
+    if not starts:
+        raise AssertionError("could not isolate the four rendered modulus tables")
+    start = max(starts)
+    later_ends = [position for position in ends if position > start]
+    if not later_ends:
+        raise AssertionError("could not isolate the four rendered modulus tables")
+    end = min(later_ends)
+
+    headers = []
+    for page in pages:
+        page_index = page["index"]
+        for coefficient_word in page["words"]:
+            if coefficient_word[4] != "coefficient":
+                continue
+            y0 = coefficient_word[1]
+            position = (page_index, y0)
+            if not (start <= position < end):
+                continue
+            arity = sum(
+                word[4] == "deg" and abs(word[1] - y0) < 0.2
+                for word in page["words"]
+            )
+            if arity not in (2, 3):
+                continue
+            headers.append(
+                {
+                    "page": page_index,
+                    "y": y0,
+                    "arity": arity,
+                    "boundary": coefficient_word[0] - 2.0,
+                }
+            )
+    if not headers:
+        raise AssertionError("no modulus-table headers found in rendered supplement")
+
+    row_count = 0
+    minimum_gap = float("inf")
+    for header_index, header in enumerate(headers):
+        page = pages[header["page"]]
+        next_y = float(page["height"]) - 35.0
+        if header_index + 1 < len(headers) and headers[header_index + 1]["page"] == header["page"]:
+            next_y = headers[header_index + 1]["y"] - 4.0
+        numeric_by_y: dict[float, list[tuple[float, float, float, float, str]]] = {}
+        for word in page["words"]:
+            if not (header["y"] + 5.0 < word[1] < next_y):
+                continue
+            if word[0] >= header["boundary"] or not re.fullmatch(r"\d+", word[4]):
+                continue
+            numeric_by_y.setdefault(round(word[1], 1), []).append(word)
+        baselines = sorted(
+            y for y, words in numeric_by_y.items() if len(words) == header["arity"]
+        )
+        row_count += len(baselines)
+        if not baselines:
+            continue
+
+        coefficient_words = [
+            word
+            for word in page["words"]
+            if header["y"] + 5.0 < word[1] < next_y
+            and word[0] >= header["boundary"]
+            and word[4] != "coefficient"
+        ]
+        row_boxes: list[list[tuple[float, float, float, float, str]]] = [
+            [] for _ in baselines
+        ]
+        for word in coefficient_words:
+            nearest = min(range(len(baselines)), key=lambda index: abs(word[1] - baselines[index]))
+            if abs(word[1] - baselines[nearest]) <= 7.0:
+                row_boxes[nearest].append(word)
+        if any(not boxes for boxes in row_boxes):
+            raise AssertionError("a rendered modulus-table row has no coefficient ink")
+        for boxes in row_boxes:
+            if min(word[0] for word in boxes) < 40.0 or max(word[2] for word in boxes) > page["width"] - 40.0:
+                raise AssertionError("rendered modulus-table coefficient crosses the text bounds")
+        for current, following in zip(row_boxes, row_boxes[1:]):
+            current_x0 = min(word[0] for word in current)
+            current_x1 = max(word[2] for word in current)
+            following_x0 = min(word[0] for word in following)
+            following_x1 = max(word[2] for word in following)
+            if min(current_x1, following_x1) <= max(current_x0, following_x0):
+                continue
+            gap = min(word[1] for word in following) - max(word[3] for word in current)
+            minimum_gap = min(minimum_gap, gap)
+            if gap < 1.0:
+                raise AssertionError(
+                    f"modulus-table coefficient rows overlap or nearly touch: {gap:.3f} pt"
+                )
+
+    if row_count != 35 + 77 + 22 + 84:
+        raise AssertionError(f"expected 218 rendered modulus-table rows, found {row_count}")
+    if minimum_gap == float("inf"):
+        raise AssertionError("could not measure adjacent modulus-table row clearance")
+    return row_count, minimum_gap
+
+
 def audit(root: Path, output_dir: Path, documents: tuple[Document, ...]) -> None:
     failures: list[str] = []
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -238,6 +419,21 @@ def audit(root: Path, output_dir: Path, documents: tuple[Document, ...]) -> None
     supplement = extracted.get("manuscript/supplement.pdf", "") or extracted.get(
         "submission/journal/supplement.pdf", ""
     )
+    for supplement_path in (
+        "manuscript/supplement.pdf",
+        "submission/journal/supplement.pdf",
+    ):
+        if supplement_path in extracted:
+            try:
+                row_count, minimum_gap = audit_modulus_table_spacing(
+                    root, root / supplement_path
+                )
+                report_name = supplement_path.replace("/", "_").replace(".", "_") + ".txt"
+                with (output_dir / report_name).open("a", encoding="utf-8") as handle:
+                    handle.write(f"Modulus-certificate rows: {row_count}\n")
+                    handle.write(f"Minimum adjacent coefficient clearance: {minimum_gap:.3f} pt\n")
+            except (AssertionError, OSError) as error:
+                failures.append(f"modulus-table layout in {supplement_path}: {error}")
     if supplement:
         for section, title_prefix in enumerate(SUPPLEMENT_SECTION_PREFIXES, start=1):
             pattern = rf"(?:^|\s)S{section}\.?\s*{re.escape(title_prefix)}"
@@ -263,6 +459,10 @@ def audit(root: Path, output_dir: Path, documents: tuple[Document, ...]) -> None
             ("physical fixed-mass covector becomes", "fixed-mass covector terminology"),
             ("componentwise strictly positive", "patterned-branch positivity closure"),
             ("uniquely minimized", "within-family contrast-minimum statement"),
+            ("fixed interval", "fixed-interval stationary-bifurcation convention"),
+            ("finite-wavelength selection", "finite-wavelength scope qualification"),
+            ("numerically continue nonlinear patterned branches", "Conradi nonlinear numerical comparison"),
+            ("numerically stable segments", "Conradi stable-segment comparison"),
         ):
             if phrase.lower() not in main_text.lower():
                 failures.append(f"main PDF lacks {label}")
@@ -322,6 +522,9 @@ def audit(root: Path, output_dir: Path, documents: tuple[Document, ...]) -> None
             "Dear Editors",
             "Exact Diffusion Design for Maximally Collective Stable Turing Patterns",
             "Alec Kriebel",
+            "not under consideration by, and has not been submitted to, another journal",
+            "no specific funding",
+            "no competing interests",
         ):
             if phrase.lower() not in cover_text.lower():
                 failures.append(f"journal cover letter lacks {phrase!r}")
@@ -343,6 +546,10 @@ def audit(root: Path, output_dir: Path, documents: tuple[Document, ...]) -> None
             ("generalized eigenvector", "scaled-family algebraic-simplicity closure"),
             ("componentwise strictly positive", "patterned-branch positivity closure"),
             ("uniquely minimized", "within-family contrast-minimum statement"),
+            ("All four entries are positive", "exact near-threshold diffusion positivity"),
+            ("numerator and denominator polynomials", "near-threshold exact coefficient certificate"),
+            ("hence zero is simple", "near-threshold simple-crossing certificate"),
+            ("every higher Neumann mode", "near-threshold higher-mode certificate"),
         ):
             if phrase.lower() not in supplement.lower():
                 failures.append(f"supplement PDF lacks {label}")

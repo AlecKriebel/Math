@@ -49,6 +49,11 @@ STALE = {
     "fixed_mass_covector_called_vector": "physical fixed-mass vector becomes",
     "ambiguous_within_family_minimax": r"reduces $\max(\chi_D,\chi_H)$",
     "ambiguous_discussion_minimax": "reduces the larger of the two contrasts",
+    "false_cycle_cover_count": "two surviving cycle covers",
+    "false_interior_omission_order": "two feed-forward chain fragments, followed by",
+    "false_frontier_minimax_equivalence": "or equivalently the exact infimum of",
+    "stale_declaration_placeholder": "Author confirmation required",
+    "stale_funding_placeholder": "No funding information supplied",
     "stale_v108_pending_doi": "The exact v1.0.8 DOI is not asserted",
     "stale_v108_pending_release_record": "the v1.0.8 release record carries its version DOI once minted",
     # r_m and ell_m are scalar X_m components.  These tokens used them as
@@ -95,6 +100,7 @@ ALLOW_NAMES = {
 SKIP_DIRS = {
     ".git", ".pytest_cache", "__pycache__", "simulations", "simulations_quick",
     "source",  # submission source duplicates are covered by manuscript/source audit
+    "full_referee_validation_packet_v1.0.7",  # immutable historical release evidence
 }
 
 

@@ -1,5 +1,19 @@
 # Feedback disposition
 
+## Independent full referee report — 5 September 2026
+
+| Referee item | Disposition | Action |
+|---|---|---|
+| R1: modulus readers accept unlisted or duplicate monomials | ACCEPT | Reproduced the false acceptance, then enforced raw/declared/regenerated row counts, exponent arity and uniqueness, exact support, and exact coefficients in every reader and the generator. Added additions, omissions, identical duplicates, and conflicting duplicates in both orders as negative controls. Unknown descriptive metadata remains outside the polynomial claim. |
+| R2: stacked fractions overlap in the 77/84-term tables | ACCEPT, BROADEN | Found the same defect throughout all four modulus tables. Printed exact rationals in single-line notation and added an objective 218-row bounding-box audit with a one-point minimum-clearance threshold. |
+| R3: two determinant-proof sentences are inaccurate | ACCEPT | Replaced the false cycle-cover count with the existing Schur-complement calculation and stated the correct right-fragment/triad/left-fragment Frobenius order. Exact determinant formulas are unchanged. |
+| R4: near-threshold cubic is hard-coded and onset is not certified | ACCEPT | Independently reconstructed the example from the reaction list. The verifier now derives the Hessian, $w_0$, $w_2$, left vector, cubic, transversality, simple zero, stable complement, and all $t>1$ modes exactly. The supplement states the fixed-$\varepsilon$, $m=3$ scope. |
+| R5: v1.0.9 reference and declarations are unfinished | ACCEPT | The author confirmed no specific funding, no competing interests, and no other journal submission. Those facts replace every active placeholder; immutable release publication follows final qualification. |
+| R6: Conradi et al. nonlinear numerics are omitted | ACCEPT | Verified the primary arXiv source and now records its numerical continuation and stable patterned-branch segments while distinguishing the present all-dimensional exact results. |
+| Optional: clarify Turing convention | ACCEPT | Defined the paper's usage as a stationary nonconstant Neumann-mode crossing on a fixed interval and disclaimed intrinsic wavelength selection under domain enlargement. |
+| Optional: scalar minimax is “equivalent” to the full frontier | ACCEPT | Replaced the false logical equivalence with “and, in particular,” so the two open problems remain distinct. |
+| Optional: say “restricted well-mixed Jacobian” | ALREADY SATISFIED | The theorem already identifies the homogeneous mode as the well-mixed Jacobian restricted to $c^\perp$; no duplicate wording was added. |
+
 ## Independent submission rereview of v1.0.8 — 23 August 2026
 
 | Rereview item | Disposition | Action |

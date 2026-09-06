@@ -24,3 +24,6 @@ Printed coefficient tables are `data/certificate_tables.tex`, `data/sign_certifi
 
 `independent_verifier/certificate_schema.json` is descriptive metadata. The
 current replay does not claim to perform runtime JSON Schema validation.
+The executable readers do require exact raw, declared, and regenerated row
+counts, unique exponent vectors, complete monomial support, and exact
+coefficients; unknown descriptive metadata is outside the polynomial claim.

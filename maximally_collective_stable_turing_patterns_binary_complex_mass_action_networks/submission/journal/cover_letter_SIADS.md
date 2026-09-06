@@ -1,5 +1,7 @@
 # Cover letter — SIAM Journal on Applied Dynamical Systems
 
+September 5, 2026
+
 Dear Editors,
 
 Please consider for publication in the SIAM Journal on Applied Dynamical Systems my manuscript, “Exact Diffusion Design for Maximally Collective Stable Turing Patterns in Binary-Complex Mass-Action Networks: Topology-Wide All-Spectrum Localization and Exponent-Optimal Stationary Heterogeneity Trade-Offs.”
@@ -8,7 +10,7 @@ The paper addresses a structural question in multicomponent reaction–diffusion
 
 The manuscript is self-contained and distinguishes its principal-block theorem from projected-network injectivity, parameter-rich kinetic cores, and fixed-Jacobian criteria. The construction is synthetic, and the nonlinear conclusions are local for each fixed dimension. Exact symbolic certificates, independent verification code, and numerical illustration data accompany the submission. The target immutable release is version 1.0.9 at <https://github.com/AlecKriebel/Math/releases/tag/maximally-collective-stable-turing-v1.0.9>, with archived versions indexed by <https://doi.org/10.5281/zenodo.21753404>. The exact preceding version 1.0.8 snapshot is independently addressable at <https://doi.org/10.5281/zenodo.22074358>.
 
-**Author confirmation required before upload:** insert the approved exclusivity, competing-interest, and funding declarations. This draft does not assert facts that have not yet been confirmed by the author.
+The manuscript is not under consideration by, and has not been submitted to, another journal. I received no specific funding for this work and declare no competing interests.
 
 Sincerely,
 Alec Kriebel

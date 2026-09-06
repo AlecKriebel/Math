@@ -19,7 +19,7 @@ def texfrac(s: str) -> str:
     s = str(s)
     if "/" in s and not any(c in s for c in "+-*()A"):
         a, b = s.split("/", 1)
-        return rf"\frac{{{a}}}{{{b}}}"
+        return rf"{a}/{b}"
     return s.replace("*", r"\,")
 
 
@@ -34,7 +34,14 @@ def polynomial(coeffs, variable):
     return '+'.join(out) or '0'
 
 
-def cert_table(title, variables, terms, pareto=False):
+def cert_table(title, variables, terms, declared_count, pareto=False):
+    powers=[tuple(term['powers']) for term in terms]
+    if len(terms)!=declared_count:
+        raise ValueError(f'{title}: declared {declared_count} terms but found {len(terms)} rows')
+    if any(len(monomial)!=len(variables) for monomial in powers):
+        raise ValueError(f'{title}: a monomial has the wrong number of exponents')
+    if len(set(powers))!=len(powers):
+        raise ValueError(f'{title}: duplicate monomial row')
     cols=''.join('r' for _ in variables)+'l'
     lines=[rf'\subsubsection*{{{title}}}',rf'\begin{{longtable}}{{{cols}}}',
            ' & '.join([rf'$\deg_{{{v}}}$' for v in variables]+['coefficient'])+r'\\',r'\toprule',r'\endfirsthead',
@@ -72,10 +79,10 @@ def main():
     D=json.load(open(iv/'improved_modulus_certificate.json'))
     P=json.load(open(iv/'pareto_all_m_certificate.json'))
     parts=[
-      cert_table('35-term homogeneous certificate',D['homogeneous']['variables'],D['homogeneous']['terms']),
-      cert_table('77-term improved-profile spatial certificate',D['improved_mode']['variables'],D['improved_mode']['terms']),
-      cert_table(r'22-term equilibrium-scaled homogeneous certificate ($U=A-1/4$)',P['modulus']['homogeneous']['variables'],P['modulus']['homogeneous']['terms'],True),
-      cert_table('84-term equilibrium-scaled spatial certificate',P['modulus']['spatial']['variables'],P['modulus']['spatial']['terms'],True),
+      cert_table('35-term homogeneous certificate',D['homogeneous']['variables'],D['homogeneous']['terms'],D['homogeneous']['term_count']),
+      cert_table('77-term improved-profile spatial certificate',D['improved_mode']['variables'],D['improved_mode']['terms'],D['improved_mode']['term_count']),
+      cert_table(r'22-term equilibrium-scaled homogeneous certificate ($U=A-1/4$)',P['modulus']['homogeneous']['variables'],P['modulus']['homogeneous']['terms'],P['modulus']['homogeneous']['term_count'],True),
+      cert_table('84-term equilibrium-scaled spatial certificate',P['modulus']['spatial']['variables'],P['modulus']['spatial']['terms'],P['modulus']['spatial']['term_count'],True),
     ]
     certificate_text='\n\n'.join(parts)+'\n'
     if args.check_certificate_table is not None:

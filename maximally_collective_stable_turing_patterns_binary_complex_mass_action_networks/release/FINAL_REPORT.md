@@ -7,11 +7,12 @@ supplement-build, journal-presentation, and metadata findings without changing
 any theorem, reaction, endpoint, numerical profile, or nonlinear conclusion.
 The immutable v1.0.8 source remains unchanged at exact version DOI
 `10.5281/zenodo.22074358`. Current qualification evidence is recorded in
-`REPLAY_STATUS.md`.  The v1.0.9 technical candidate passes the current verifier,
+`REPLAY_STATUS.md`.  The v1.0.9 release passes the current verifier,
 package, clean-source-build, semantic-PDF, and page-by-page visual campaign.
-Its SIADS cover letter remains an explicit draft until the author confirms the
-funding, competing-interest, and exclusivity declarations; no such facts are
-inferred here.
+The author has confirmed that this work received no specific funding, that
+there are no competing interests, and that the manuscript is not submitted to
+or under consideration by another journal; the active SIADS cover letter and
+declarations now record those facts.
 
 The remainder of this report records the mathematical and numerical campaign
 through v1.0.7; v1.0.8 added the pinned toolchain, preserving manifest design,
@@ -486,6 +487,14 @@ The immutable release series is indexed by the stable Zenodo concept DOI
 `10.5281/zenodo.21753404`. The exact preceding v1.0.8 snapshot is archived at
 version DOI `10.5281/zenodo.22074358`. The corrected source targets the distinct
 v1.0.9 tag and does not misassign a not-yet-minted DOI to that new tree.
+
+The 5 September full-referee repair additionally closes malformed-certificate
+acceptance, coefficient-table overlap, two inaccurate determinant-proof
+descriptions, and the formerly hard-coded $m=3$ near-threshold control. The
+strengthened verifier reconstructs that control from the reactions and proves
+its simple transverse onset and complementary mode stability. These repairs do
+not alter a headline theorem, the reaction topology, the piecewise endpoint,
+or the current-profile numerical data.
 
 # EXTERNAL AUDIT
 

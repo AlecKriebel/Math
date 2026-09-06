@@ -29,6 +29,7 @@ if missing_cites: raise AssertionError(f'missing bib keys {missing_cites}')
 
 for marker in (
     'version: "1.0.9"',
+    'date-released: "2026-09-05"',
     'maximally-collective-stable-turing-v1.0.9',
     '10.5281/zenodo.21753404',
     '10.5281/zenodo.22074358',
@@ -98,7 +99,10 @@ forbidden=[r'\bT-ALG\b',r'\bPhase\s+[IVX]+\b',r'reaction-minimal',r'minimum reac
            r'topology-wide over-realizations theorem',
            r'physical fixed-mass vector becomes',
            r'reduces\s*\$?\\max\s*\(\\chi_D,\\chi_H\)',
-           r'reduces the larger of the two contrasts']
+           r'reduces the larger of the two contrasts',
+           r'two surviving cycle covers',
+           r'two\s+feed-forward chain fragments,\s*followed by',
+           r'or equivalently the exact infimum of']
 for pat in forbidden:
     if re.search(pat,clean,re.I): raise AssertionError(f'obsolete wording: {pat}')
 
@@ -362,6 +366,11 @@ for marker in (
     r'q=\frac12-\left(\frac12+\omega\right)\varepsilon+\left(\theta-\fracM2\right)\varepsilon^2',
     r'4\left(M+6\omega+3\omega^2-\frac{\omega^2}{m-2}\right)\varepsilon^2',
     r'(\omega,\theta,M)=(2/9,1/2,1)',
+    r'd_1=\frac{\varepsilon(3\varepsilon+8)}6',
+    r'd_Z-8d_2=\frac{8\varepsilon^2(197-99\varepsilon)}{(9-13\varepsilon)(9\varepsilon^2+32\varepsilon+18)}>0',
+    r'\det(\lambda I-A_3+tD_\varepsilon)=\lambda^4+a_1\lambda^3+a_2\lambda^2+a_3\lambda+a_4',
+    r'\varepsilon=[1000(1+w)]^{-1}',
+    r'q_3(\lambda)=(\lambda+7)(\lambda^2+5\lambda+2)',
 ):
     if ''.join(marker.split()) not in ''.join(supp.split()):
         raise AssertionError(f'missing omega-renamed near-threshold identity {marker}')
@@ -388,6 +397,36 @@ if not re.search(
     re.I,
 ):
     raise AssertionError('robustness perturbations are not restricted to the realization manifold')
+
+for marker,label in (
+    ('fixed interval', 'fixed-interval stationary-bifurcation convention'),
+    ('do not claim intrinsic finite-wavelength selection', 'finite-wavelength scope qualification'),
+    ('numerically continue nonlinear patterned branches', 'Conradi nonlinear numerical comparison'),
+    ('numerically stable segments', 'Conradi stable-segment comparison'),
+):
+    if marker not in main_flat:
+        raise AssertionError(f'main omits {label}')
+
+certificate_table=(ROOT/'data'/'certificate_tables.tex').read_text()
+if r'\frac{' in certificate_table:
+    raise AssertionError('modulus-certificate tables retain stacked rational fractions')
+
+submission_root=ROOT/'submission'
+if submission_root.is_dir():
+    cover=(submission_root/'journal'/'cover_letter_SIADS.tex').read_text()
+    declarations=(submission_root/'journal'/'statements_and_declarations.md').read_text()
+    biorxiv_metadata=(submission_root/'biorxiv'/'metadata.yaml').read_text()
+    declaration_corpus=' '.join((cover+'\n'+declarations+'\n'+biorxiv_metadata).split())
+    for marker,label in (
+        ('no specific funding', 'funding declaration'),
+        ('no competing interests', 'competing-interest declaration'),
+        ('not under consideration by, and has not been submitted to, another journal', 'journal-exclusivity declaration'),
+    ):
+        if marker not in declaration_corpus:
+            raise AssertionError(f'submission materials omit the author-confirmed {label}')
+    for stale in ('Author confirmation required', 'author to confirm', 'No funding information supplied'):
+        if stale.lower() in declaration_corpus.lower():
+            raise AssertionError(f'submission materials retain stale declaration placeholder: {stale}')
 
 print('MANUSCRIPT_AUDIT_PASS')
 print('labels',len(labels),'references',len(refs),'bibkeys',len(bibkeys),'citations',len(cites),'abstract_words',len(words))

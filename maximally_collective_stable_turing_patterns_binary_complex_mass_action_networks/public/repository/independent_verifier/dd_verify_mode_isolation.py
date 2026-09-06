@@ -4,39 +4,50 @@
 if not __debug__:
  raise SystemExit('Exact verifier requires assertions; unset PYTHONOPTIMIZE and do not use python -O')
 
-import json,sys
+import argparse,json,sys
 from pathlib import Path
 import sympy as sp
 HERE=Path(__file__).resolve().parent
-cert=json.loads((HERE/'improved_modulus_certificate.json').read_text())
-assert cert['homogeneous']['term_count']==35
-assert cert['improved_mode']['term_count']==77
-for sec in cert.values():
- for term in sec['terms']: assert sp.Rational(term['coefficient'])>0
-# Reconstruct the homogeneous polynomial as well.
-xh,yh,zh=sp.symbols('xh yh zh',real=True);lh=xh+sp.I*yh
-Ph=lh**4+12*lh**3+42*lh**2+47*lh+16
-Rh=5*lh**2+33*lh+16
-def yh2z(expr):
- out=0
- for (k,),c in sp.Poly(sp.expand(expr),yh).terms(): assert k%2==0;out+=c*zh**(k//2)
- return sp.expand(out)
-Eh=sp.Poly(yh2z((1+lh)*(1+sp.conjugate(lh))*Ph*sp.conjugate(Ph)-Rh*sp.conjugate(Rh)),xh,zh)
-hterms={(tuple(t['powers']),sp.Rational(t['coefficient'])) for t in cert['homogeneous']['terms']}
-assert hterms=={(mon,sp.factor(c)) for mon,c in Eh.terms()}
 
-# Reconstruct the improved polynomial rather than trusting the JSON.
-x,y,z,s=sp.symbols('x y z s',real=True);lam=x+sp.I*y;t=1+s
-q=sp.Rational(91,90);d1=sp.Rational(23,63);dm=sp.Rational(1,7);dz=sp.Rational(16,45)
-g1=lam+2+t*d1;gm=lam+5+t*dm;gz=lam+4+t*dz
-F=sp.expand(g1*gm*gz-4*g1-4*gm+gz);G=sp.expand(gz*(4*g1+gm)-36)
-def y2z(expr):
- out=0
- for (k,),c in sp.Poly(sp.expand(expr),y).terms(): assert k%2==0;out+=c*z**(k//2)
- return sp.expand(out)
-E=sp.Poly(sp.expand((q*q+z)*y2z(F*sp.conjugate(F))-y2z(G*sp.conjugate(G))),x,z,s)
-terms={(tuple(t['powers']),sp.Rational(t['coefficient'])) for t in cert['improved_mode']['terms']}
-assert terms=={(mon,sp.factor(c)) for mon,c in E.terms()}
+
+def verify_certificate(path: Path) -> None:
+ cert=json.loads(path.read_text())
+ # Reconstruct the homogeneous polynomial rather than trusting the JSON.
+ xh,yh,zh=sp.symbols('xh yh zh',real=True);lh=xh+sp.I*yh
+ Ph=lh**4+12*lh**3+42*lh**2+47*lh+16
+ Rh=5*lh**2+33*lh+16
+ def yh2z(expr):
+  out=0
+  for (k,),c in sp.Poly(sp.expand(expr),yh).terms(): assert k%2==0;out+=c*zh**(k//2)
+  return sp.expand(out)
+ Eh=sp.Poly(yh2z((1+lh)*(1+sp.conjugate(lh))*Ph*sp.conjugate(Ph)-Rh*sp.conjugate(Rh)),xh,zh)
+ homogeneous=cert['homogeneous']; hrows=homogeneous['terms']
+ hpowers=[tuple(term['powers']) for term in hrows]
+ assert all(len(powers)==2 for powers in hpowers)
+ assert len(hrows)==homogeneous['term_count']==35==len(Eh.terms())
+ assert len(set(hpowers))==len(hpowers)
+ hterms={tuple(term['powers']):sp.Rational(term['coefficient']) for term in hrows}
+ assert hterms=={mon:sp.factor(coefficient) for mon,coefficient in Eh.terms()}
+ assert all(coefficient>0 for coefficient in hterms.values())
+
+ # Reconstruct the improved polynomial rather than trusting the JSON.
+ x,y,z,s=sp.symbols('x y z s',real=True);lam=x+sp.I*y;t=1+s
+ q=sp.Rational(91,90);d1=sp.Rational(23,63);dm=sp.Rational(1,7);dz=sp.Rational(16,45)
+ g1=lam+2+t*d1;gm=lam+5+t*dm;gz=lam+4+t*dz
+ F=sp.expand(g1*gm*gz-4*g1-4*gm+gz);G=sp.expand(gz*(4*g1+gm)-36)
+ def y2z(expr):
+  out=0
+  for (k,),c in sp.Poly(sp.expand(expr),y).terms(): assert k%2==0;out+=c*z**(k//2)
+  return sp.expand(out)
+ E=sp.Poly(sp.expand((q*q+z)*y2z(F*sp.conjugate(F))-y2z(G*sp.conjugate(G))),x,z,s)
+ improved=cert['improved_mode']; rows=improved['terms']
+ powers=[tuple(term['powers']) for term in rows]
+ assert all(len(monomial)==3 for monomial in powers)
+ assert len(rows)==improved['term_count']==77==len(E.terms())
+ assert len(set(powers))==len(powers)
+ terms={tuple(term['powers']):sp.Rational(term['coefficient']) for term in rows}
+ assert terms=={mon:sp.factor(coefficient) for mon,coefficient in E.terms()}
+ assert all(coefficient>0 for coefficient in terms.values())
 
 def verify_selected_zero_derivative():
     """Prove the all-dimensional algebraic-simplicity identity at onset."""
@@ -96,4 +107,9 @@ for mm in [3,4,5]:
     G=gz*(4*g1+gm)-36
     assert sp.factor((lamv*sp.eye(mm+1)-A+tv*sp.diag(*ds)).det()-(Q*F-G))==0
 
-print('MODE_ISOLATION_PASS')
+if __name__ == '__main__':
+ parser=argparse.ArgumentParser()
+ parser.add_argument('certificate',nargs='?',default=str(HERE/'improved_modulus_certificate.json'))
+ args=parser.parse_args()
+ verify_certificate(Path(args.certificate))
+ print('MODE_ISOLATION_PASS')

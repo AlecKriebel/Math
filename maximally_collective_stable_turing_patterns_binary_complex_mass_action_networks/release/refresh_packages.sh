@@ -78,6 +78,9 @@ Printed coefficient tables are `data/certificate_tables.tex`, `data/sign_certifi
 
 `independent_verifier/certificate_schema.json` is descriptive metadata. The
 current replay does not claim to perform runtime JSON Schema validation.
+The executable readers do require exact raw, declared, and regenerated row
+counts, unique exponent vectors, complete monomial support, and exact
+coefficients; unknown descriptive metadata is outside the polynomial claim.
 EOF
 
 COMPUTATION=(
@@ -152,7 +155,7 @@ cd "$ROOT"
 export PYTHONOPTIMIZE=0
 export PYTHONHASHSEED=0 MPLBACKEND=Agg SOURCE_DATE_EPOCH=1787443200 FORCE_SOURCE_DATE=1 TZ=UTC LC_ALL=C
 export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1
-required_commands=(python bash pdflatex biber kpsewhich pdffonts sha256sum awk grep find sort xargs tail cmp mktemp)
+required_commands=(python bash pdflatex biber kpsewhich pdffonts pdftotext sha256sum awk grep find sort xargs tail cmp mktemp)
 for command_name in "${required_commands[@]}"; do
   if ! command -v "$command_name" >/dev/null 2>&1; then
     printf 'missing required command: %s\n' "$command_name" >&2
