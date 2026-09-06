@@ -358,6 +358,7 @@ def verify_modulus_source_polynomials(
         pareto_certificate = HERE / "pareto_all_m_certificate.json"
     unit_data = json.loads(unit_certificate.read_text())
     homogeneous_unit = unit_data["homogeneous"]
+    assert homogeneous_unit["variables"] == ["x", "z"]
     homogeneous_unit_rows = homogeneous_unit["terms"]
     homogeneous_unit_powers = [tuple(term["powers"]) for term in homogeneous_unit_rows]
     assert all(len(powers) == 2 for powers in homogeneous_unit_powers)
@@ -378,6 +379,7 @@ def verify_modulus_source_polynomials(
     assert all(coefficient > 0 for coefficient in homogeneous_unit_terms.values())
 
     unit_section = unit_data["improved_mode"]
+    assert unit_section["variables"] == ["x", "z", "s"]
     unit_rows = unit_section["terms"]
     unit_powers = [tuple(term["powers"]) for term in unit_rows]
     assert all(len(powers) == 3 for powers in unit_powers)
@@ -406,6 +408,7 @@ def verify_modulus_source_polynomials(
     )
     pareto_data = json.loads(pareto_certificate.read_text())
     homogeneous_scaled = pareto_data["modulus"]["homogeneous"]
+    assert homogeneous_scaled["variables"] == ["x", "z"]
     homogeneous_scaled_rows = homogeneous_scaled["terms"]
     homogeneous_scaled_powers = [
         tuple(term["powers"]) for term in homogeneous_scaled_rows
@@ -435,6 +438,7 @@ def verify_modulus_source_polynomials(
     )
 
     spatial_section = pareto_data["modulus"]["spatial"]
+    assert spatial_section["variables"] == ["x", "z", "s"]
     spatial_rows = spatial_section["terms"]
     spatial_powers = [tuple(term["powers"]) for term in spatial_rows]
     assert all(len(powers) == 3 for powers in spatial_powers)

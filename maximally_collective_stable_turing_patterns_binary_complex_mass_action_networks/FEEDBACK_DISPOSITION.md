@@ -1,5 +1,20 @@
 # Feedback disposition
 
+## Independent v1.0.9 preprint referee report — 6 September 2026
+
+| Referee item | Disposition | Action |
+|---|---|---|
+| N1: standalone theorem exports omit diagonality and, in the skeleton, singularity | ACCEPT | Reproduced both exact counterexamples. The theorem summary and proof skeleton now require $D=\operatorname{diag}(d_1,\ldots,d_n)$ with $d_j>0$, and the skeleton assumes $\det J=0$ before extracting the factor $s$. The main theorem was already correct and is unchanged. |
+| N2: ordered certificate variables are unchecked | ACCEPT | Reproduced the swapped-$(x,z)$ false acceptance and the unequal evaluations $E(1,2)=238914$, $E(2,1)=2004282$. Every reader and the generator now validates the trusted ordered tuple; four section-level swaps and the regeneration path are negative controls. |
+| N3: the Conradi--Mincheva--Uecker CSV values are shifted | ACCEPT | Parsed the header and corrected the row to `no`, `numerical continuation`, and `numerically stable segments` in the exact-law, nonlinear-branch, and stable-branch columns respectively. |
+| N4: slash fractions beside $A$ are visually ambiguous | ACCEPT | Replaced all 50 forms $a/bA$ by $aA/b$, added a generator regression and source/PDF audits, and retained the single-line geometry gate. |
+| BioRxiv scope note | NO SOURCE EDIT REQUIRED | The manuscript already identifies the construction as synthetic and makes no claim of experimental biological validation. Portal choice remains an author/editorial decision. |
+| arXiv `.bbl` note | NO SOURCE EDIT REQUIRED | The source package intentionally supplies `references.bib`; the clean pinned build confirms that omitting a locally generated `.bbl` is not a package defect. |
+
+All accepted items are bounded support-document, verifier, metadata, or
+notation repairs. They do not alter the central topology, theorem suite,
+piecewise endpoint, exact diffusion law, or current-profile data.
+
 ## Independent full referee report — 5 September 2026
 
 | Referee item | Disposition | Action |

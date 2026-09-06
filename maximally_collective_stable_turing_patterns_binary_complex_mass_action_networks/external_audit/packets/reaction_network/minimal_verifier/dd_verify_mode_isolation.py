@@ -22,6 +22,7 @@ def verify_certificate(path: Path) -> None:
   return sp.expand(out)
  Eh=sp.Poly(yh2z((1+lh)*(1+sp.conjugate(lh))*Ph*sp.conjugate(Ph)-Rh*sp.conjugate(Rh)),xh,zh)
  homogeneous=cert['homogeneous']; hrows=homogeneous['terms']
+ assert homogeneous['variables']==['x','z']
  hpowers=[tuple(term['powers']) for term in hrows]
  assert all(len(powers)==2 for powers in hpowers)
  assert len(hrows)==homogeneous['term_count']==35==len(Eh.terms())
@@ -41,6 +42,7 @@ def verify_certificate(path: Path) -> None:
   return sp.expand(out)
  E=sp.Poly(sp.expand((q*q+z)*y2z(F*sp.conjugate(F))-y2z(G*sp.conjugate(G))),x,z,s)
  improved=cert['improved_mode']; rows=improved['terms']
+ assert improved['variables']==['x','z','s']
  powers=[tuple(term['powers']) for term in rows]
  assert all(len(monomial)==3 for monomial in powers)
  assert len(rows)==improved['term_count']==77==len(E.terms())

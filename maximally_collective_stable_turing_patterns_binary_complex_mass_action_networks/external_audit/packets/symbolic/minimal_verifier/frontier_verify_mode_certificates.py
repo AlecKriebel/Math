@@ -187,6 +187,7 @@ def verify(path: Path):
     Eh, Em, (x, z, s, A, U) = generate()
 
     homogeneous = data["modulus"]["homogeneous"]
+    assert homogeneous["variables"] == ["x", "z"]
     assert homogeneous["B"] == "5/4"
     assert homogeneous["coefficient_parameter"] == "U=A-1/4"
     assert homogeneous["term_count"] == 22
@@ -213,6 +214,7 @@ def verify(path: Path):
     assert sp.Poly(Eh, x, z).coeff_monomial(z**2).subs(U, 0) > 0
 
     spatial = data["modulus"]["spatial"]
+    assert spatial["variables"] == ["x", "z", "s"]
     assert spatial["B"] == "1/3"
     assert spatial["term_count"] == 84
     spatial_rows = spatial["terms"]

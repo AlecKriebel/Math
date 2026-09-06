@@ -34,11 +34,9 @@ FULL_DOCUMENTS = (
     Document("figures/amplitude_scaling.pdf", 1),
 )
 
-PUBLIC_DOCUMENTS = tuple(
-    document
-    for document in FULL_DOCUMENTS
-    if not document.relative_path.startswith("external_audit/")
-)
+# The portable replay builds the two standalone audit exports before invoking
+# this profile, so their rendered hypotheses belong to the portable PDF gate.
+PUBLIC_DOCUMENTS = FULL_DOCUMENTS
 
 JOURNAL_DOCUMENTS = (
     Document("submission/journal/manuscript.pdf", 24, True, "pdfTeX-1.40.24"),
@@ -168,8 +166,13 @@ def audit_modulus_table_spacing(root: Path, pdf_path: Path) -> tuple[int, float]
     generated = root / "data" / "certificate_tables.tex"
     if not generated.is_file():
         raise AssertionError("missing generated modulus-certificate table")
-    if r"\frac{" in generated.read_text(encoding="utf-8"):
+    generated_text = generated.read_text(encoding="utf-8")
+    if r"\frac{" in generated_text:
         raise AssertionError("modulus-certificate table uses stacked fractions")
+    if re.search(r"\d+/\d+[AU](?:\^\{\d+\})?", generated_text):
+        raise AssertionError(
+            "modulus-certificate table has an ambiguous slash fraction adjacent to a parameter"
+        )
 
     with tempfile.TemporaryDirectory(prefix="modulus-table-bbox-") as directory:
         bbox_path = Path(directory) / "supplement.xhtml"
@@ -416,6 +419,42 @@ def audit(root: Path, output_dir: Path, documents: tuple[Document, ...]) -> None
         ):
             failures.append("rendered robustness statement leaves rate/equilibrium perturbations unqualified")
 
+    export_sections = (
+        (
+            "external_audit/theorem_summary.pdf",
+            r"Principal-minor\s+diffusion-ray\s+theorem",
+            r"Exact\s+network\s+diffusion\s+law",
+            False,
+        ),
+        (
+            "external_audit/proof_skeleton.pdf",
+            r"Principal-minor\s+diffusion-ray\s+theorem\s+and\s+exact\s+network\s+law",
+            r"For\s*A\s*m\s*\(\s*a\s*,\s*b\s*\)\s*H",
+            True,
+        ),
+    )
+    for export_path, start_pattern, end_pattern, require_singular_j in export_sections:
+        export_text = extracted.get(export_path, "")
+        if not export_text:
+            continue
+        section_match = re.search(
+            start_pattern + r"(.*?)" + end_pattern,
+            export_text,
+            re.I,
+        )
+        if section_match is None:
+            failures.append(f"{export_path} lacks an isolatable generic diffusion-ray statement")
+            continue
+        generic_section = section_match.group(1)
+        if not re.search(
+            r"D\s*=\s*diag\s*\(\s*d\s*1\s*,.*?d\s*n\s*\).*?d\s*j\s*>\s*0",
+            generic_section,
+            re.I,
+        ):
+            failures.append(f"{export_path} omits positive diagonal D in the generic theorem")
+        if require_singular_j and not re.search(r"det\s*J\s*=\s*0", generic_section):
+            failures.append("proof skeleton factors out s without a rendered det J=0 hypothesis")
+
     supplement = extracted.get("manuscript/supplement.pdf", "") or extracted.get(
         "submission/journal/supplement.pdf", ""
     )
@@ -424,6 +463,15 @@ def audit(root: Path, output_dir: Path, documents: tuple[Document, ...]) -> None
         "submission/journal/supplement.pdf",
     ):
         if supplement_path in extracted:
+            rendered_supplement = extracted[supplement_path]
+            if re.search(r"\d+\s*/\s*\d+\s*[AU](?:\s*\^\s*\d+)?", rendered_supplement):
+                failures.append(
+                    f"{supplement_path} renders an ambiguous slash fraction adjacent to a parameter"
+                )
+            if len(re.findall(r"\d+\s*A\s*/\s*\d+", rendered_supplement)) != 50:
+                failures.append(
+                    f"{supplement_path} does not render all 50 rational-A coefficients unambiguously"
+                )
             try:
                 row_count, minimum_gap = audit_modulus_table_spacing(
                     root, root / supplement_path

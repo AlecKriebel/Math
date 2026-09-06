@@ -1,14 +1,18 @@
 # OUTCOME
 
-## V1.0.9 RELEASE-CANDIDATE REPAIR
+## V1.0.10 RELEASE-CANDIDATE REPAIR
 
-Version 1.0.9 repairs the independent rereview's manifest, TeX-lock, detached
-supplement-build, journal-presentation, and metadata findings without changing
-any theorem, reaction, endpoint, numerical profile, or nonlinear conclusion.
-The immutable v1.0.8 source remains unchanged at exact version DOI
-`10.5281/zenodo.22074358`. Current qualification evidence is recorded in
-`REPLAY_STATUS.md`.  The v1.0.9 release passes the current verifier,
-package, clean-source-build, semantic-PDF, and page-by-page visual campaign.
+Version 1.0.10 repairs the independent v1.0.9 preprint referee's four bounded
+findings: missing hypotheses in standalone theorem exports, unchecked ordered
+certificate variables, a shifted structured literature-comparison row, and
+ambiguous rational-parameter notation. It also makes document refresh rebuild
+the canonical theorem exports and manuscript PDFs before packaging, preventing
+source/PDF drift. No theorem in the main manuscript, reaction, endpoint,
+numerical profile, or nonlinear conclusion changes. The immutable v1.0.9
+source remains unchanged at exact version DOI `10.5281/zenodo.22478273`.
+Current qualification evidence is recorded in `REPLAY_STATUS.md`. The v1.0.10
+release passes the 39-test, 39-entrypoint, optimized-Python rejection, package,
+clean-source-build, semantic-PDF, and 96-page visual campaign.
 The author has confirmed that this work received no specific funding, that
 there are no competing interests, and that the manuscript is not submitted to
 or under consideration by another journal; the active SIADS cover letter and
@@ -18,8 +22,10 @@ The remainder of this report records the mathematical and numerical campaign
 through v1.0.7; v1.0.8 added the pinned toolchain, preserving manifest design,
 39-entrypoint fail-closed audit, all-dimensional cubic bridge, explicit
 fixed-mass Fourier/Fredholm argument, and scoped output provenance described in
-the status and changelog. Version 1.0.9 closes the residual reproducibility
-implementation defects identified by the independent v1.0.8 rereview.
+the status and changelog. Version 1.0.9 closed the residual reproducibility
+implementation defects identified by the independent v1.0.8 rereview;
+v1.0.10 closes the four precision issues identified by its independent
+preprint rereview.
 
 The numerical-provenance, theorem-scope, proof-presentation,
 certificate-visibility, and release-rebuild program through v1.0.7 is
@@ -484,9 +490,9 @@ lineage replay is claimed. For an ordinary third-party downloader, the
 self-contained command is `cd public/repository && bash replay.sh`.
 
 The immutable release series is indexed by the stable Zenodo concept DOI
-`10.5281/zenodo.21753404`. The exact preceding v1.0.8 snapshot is archived at
-version DOI `10.5281/zenodo.22074358`. The corrected source targets the distinct
-v1.0.9 tag and does not misassign a not-yet-minted DOI to that new tree.
+`10.5281/zenodo.21753404`. The exact preceding v1.0.9 snapshot is archived at
+version DOI `10.5281/zenodo.22478273`. The corrected source targets the distinct
+v1.0.10 tag and does not misassign a not-yet-minted DOI to that new tree.
 
 The 5 September full-referee repair additionally closes malformed-certificate
 acceptance, coefficient-table overlap, two inaccurate determinant-proof
@@ -525,12 +531,13 @@ Fresh packages were rebuilt from the revised source tree for:
 - bioRxiv Systems Biology / New Results;
 - arXiv `q-bio.MN`, with `q-bio.QM` and `nlin.PS` metadata as an optional
   fallback;
-- a provisional planning bundle for the later SIAM Journal on Applied
-  Dynamical Systems submission.
+- a maintained review bundle for a later SIAM Journal on Applied Dynamical
+  Systems submission.
 
-Each source ZIP is detached-built and integrity-tested. The SIADS planning
-bundle is not portal-ready: current journal formatting, keywords/MSC,
-supplement indexing, line numbering, and human confirmations remain listed in
+Each source ZIP is detached-built and integrity-tested. The SIADS review
+format, keywords/MSC, supplement index, line numbering, declarations, and PDF
+cover letter are present. Portal-specific metadata, final author approval, and
+inspection of the publisher-generated preview remain listed in
 `submission/journal/README.md`. No preprint, submission, endorsement request,
 specialist inquiry, or email was sent automatically. The factual AI-assistance
 disclosure remains marked for author approval.
@@ -547,7 +554,7 @@ disclosure remains marked for author approval.
 - Bifurcation, robustness, and nonlinear stability are local for each fixed dimension.
 - No arbitrary-data global boundedness, global attraction, explicit basin, far-from-onset theorem, or dimension-uniform stability radius is proved.
 - No projected-injectivity, weak-reversibility, biochemical, cross-diffusion, immobile-species, reaction-minimality, species-minimality, or complexity theorem is claimed.
-- External specialist review and peer review remain outstanding.
+- External human specialist review and journal peer review remain outstanding.
 - Final submission metadata and the AI disclosure require human approval.
 
 # FILES

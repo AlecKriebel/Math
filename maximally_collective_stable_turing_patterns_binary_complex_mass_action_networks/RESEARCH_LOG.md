@@ -507,3 +507,74 @@
 - Best-guess completion toward the full-referee repair and immutable v1.0.9
   release goal: **100%**. The candidate is ready for tracked-manifest closure,
   commit, push, and immutable release publication.
+
+## 2026-09-06 15:59:20 PDT — v1.0.10 bounded referee-repair checkpoint
+
+- Read the independent v1.0.9 preprint referee report and independently
+  reproduced all four required findings. The two supplied matrix examples
+  confirm that diagonality and singularity are substantive assumptions in the
+  standalone theorem exports; the corresponding main theorem was already
+  correctly stated.
+- Restored those exported hypotheses, validated the exact ordered variable
+  tuple in every modulus reader and the generator, corrected the structured
+  literature comparison, and changed all 50 ambiguous $a/bA$ table entries to
+  $aA/b$.
+- Added exact counterexample/source checks, four swapped-variable attacks, a
+  regeneration-path negative control, a parsed CSV-field check, and compact
+  parameter-notation regressions. The eight focused tests, all affected direct
+  verifiers, the complete symbolic aggregate, generated-table freshness, and
+  the source audit pass.
+- Confirmed through Zenodo's public records API that v1.0.9 is the immutable
+  predecessor at DOI `10.5281/zenodo.22478273`; the repaired source targets a
+  distinct v1.0.10 snapshot.
+- Best-guess completion toward the v1.0.10 referee-repair and release goal:
+  **65%**. Remaining work is the pinned full test run, document/package rebuild,
+  detached replay and source builds, page-level visual audit, manifest closure,
+  commit/push, and immutable release publication.
+
+## 2026-09-06 16:19:44 PDT — v1.0.10 final qualification checkpoint
+
+- Completed all 39 mutation/regression tests, all 39 direct verifier
+  entrypoints, all 39 optimized-Python fail-closed controls, the exact symbolic
+  aggregate, integrated designs through the stated stress dimensions, and all
+  15 current-profile simulations with the numerical-provenance gate.
+- Regenerated every verification sidecar labeled current instead of assigning
+  v1.0.10 provenance to older successful logs. A detached full replay of the
+  refreshed portable repository reached `PUBLIC_REPLAY_PASS`; the minimal
+  specialist replay also passed.
+- Rebuilt the canonical manuscript, supplement, theorem summary, and proof
+  skeleton before packaging. Added a refresh invariant and rendered-PDF gates
+  so corrected TeX hypotheses and all 50 unambiguous $aA/b$ coefficients cannot
+  silently lag in shipped PDFs.
+- Built the bioRxiv, arXiv, and SIADS source ZIPs in three fresh directories,
+  stabilized the supplement auxiliaries, and matched their extracted text to
+  the intended PDFs. All seven ZIP integrity and hash checks pass.
+- Rendered and inspected all 96 pages across the seven canonical/audit/journal
+  PDFs. The corrected generic diffusion hypotheses, dense certificate tables,
+  Figure 1, line-numbered review layout, and cover letter are clean, with no
+  clipping, overlap, missing glyph, or anomalous page.
+- Best-guess completion toward the v1.0.10 referee-repair and technical release
+  goal: **100%**. The candidate is ready for final package refresh, tracked
+  manifest closure, commit, push, and immutable release publication.
+
+## 2026-09-06 16:50:12 PDT — v1.0.10 release-orchestration adversarial closure
+
+- Reproduced a fail-open shell pattern in the document-warning scans: a
+  negated `grep` command under `set -e` did not guarantee termination. Replaced
+  every such scan in the canonical and portable replay paths with an explicit
+  conditional error and exit.
+- Made standalone package refresh verify the pinned Python/TinyTeX toolchain,
+  rebuild the four canonical documents, and regenerate their PDF evidence
+  before copying any public or specialist artifact. Added both standalone
+  export reports to the portable preflight evidence and extended the existing
+  replay regression to protect these ordering and fail-closed properties.
+- Discarded an unpinned solver-roundoff rerun after proving that the final
+  pinned replay reproduces all 51 simulation-derived files byte for byte from
+  v1.0.9. The numerical-provenance bound remains
+  `1.4095038570570294e-08 < 2e-08`.
+- Reran all 39 tests under the pinned stack and completed a fresh detached full
+  portable replay through `PUBLIC_REPLAY_PASS`. The shipped-baseline and
+  regenerated-self-manifest mutation controls both rejected deliberate exact
+  data changes.
+- Best-guess completion toward the v1.0.10 referee-repair and immutable release
+  goal: **100%**. Only tracked-manifest closure and publication remain.

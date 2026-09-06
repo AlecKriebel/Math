@@ -1,21 +1,22 @@
-# Replay status for the v1.0.9 pre-submission release
+# Replay status for the v1.0.10 pre-submission release
 
-This file distinguishes the current release from historical v1.0.8 evidence
+This file distinguishes the current release from historical v1.0.9 evidence
 and from historical-lineage verification.
 
-## v1.0.9 current source
+## v1.0.10 current source
 
-The current release fixes the tracked-file release manifest, enforces every
-special TeX lock field with negative controls, stabilizes detached supplement
-builds before semantic comparison, and generates a line-numbered SIADS review
-package with visible keywords and MSC codes, a supplementary-materials index,
-and a PDF cover letter. It cites the exact v1.0.8 predecessor DOI
-`10.5281/zenodo.22074358`. The theorem suite and current-profile data are
-unchanged.
+The current release restores positive-diagonal diffusion and singularity
+hypotheses omitted from the standalone theorem exports, validates the ordered
+variables in every modulus-certificate reader and table-generation path,
+corrects the structured Conradi--Mincheva--Uecker comparison, and removes
+ambiguous slash-fraction notation beside the parameter $A$. It cites the exact
+v1.0.9 predecessor DOI `10.5281/zenodo.22478273`. The central theorem suite,
+network, repaired endpoint, and current-profile data are unchanged.
 
 The current qualification campaign passes:
 
-- all 32 mutation/regression tests;
+- all 39 mutation/regression tests, including swapped-variable regeneration
+  attacks and source/rendered-PDF checks for the four present repairs;
 - all 39 direct verifier entrypoints normally and all 39 expected fail-closed
   executions under optimized Python;
 - the exact symbolic aggregate, current-profile source/provenance checks,
@@ -40,9 +41,19 @@ The 5 September full-referee pass also requires exact certificate row counts,
 unique supports, and complete coefficient equality; its adversarial additions,
 omissions, and duplicate-order mutations reject. The rendered modulus tables
 contain 218 single-line exact rows with a measured minimum adjacent clearance
-of 3.108 points. The $m=3$ near-threshold verifier now reconstructs its cubic
-and complete onset spectrum from the reactions rather than trusting a stored
-rational expression.
+of 3.108 points. The current rendered-text gate additionally requires all 50
+rational-$A$ coefficients to use the unambiguous $aA/b$ form. The $m=3$
+near-threshold verifier reconstructs its cubic and complete onset spectrum from
+the reactions rather than trusting a stored rational expression.
+
+## Historical v1.0.9 source: passed independent preprint review with four bounded repairs identified
+
+The exact v1.0.9 snapshot is archived at `10.5281/zenodo.22478273`. Its fresh
+independent review found no counterexample to a headline theorem and completed
+the 39-entrypoint, optimized-Python, clean portable replay, detached source
+build, and 96-page visual campaigns. It identified the four support-document,
+verifier-integrity, comparison-table, and notation issues repaired in v1.0.10;
+the immutable v1.0.9 record remains unchanged.
 
 ## Historical v1.0.8 source: passed substantive qualification, manifest defect recorded
 
@@ -143,7 +154,7 @@ supplement. The detached public replay used the same compatible pair and ended
 in `PUBLIC_REPLAY_PASS`. Numerical outputs are certified to the recorded
 tolerances, not asserted to be byte-identical across BLAS/SciPy toolchains.
 
-## Historical-lineage stage: not rerun for v1.0.9
+## Historical-lineage stage: not rerun for v1.0.10
 
 The top-level command additionally requires five frozen source archives listed
 in `release/reproducibility.md`. They were unavailable in the final repair
@@ -151,7 +162,7 @@ environment. Its preflight was exercised against an empty `FROZEN_BASE`: it
 reported all five missing archives, exited with status 2, and did not create or
 truncate `release/replay.log`.
 
-Accordingly, v1.0.9 claims a current portable replay and direct verification of
+Accordingly, v1.0.10 claims a current portable replay and direct verification of
 the substantive stages above. It does **not** claim that this tree completed
 the optional historical-lineage replay. The lineage
 archives are not consumed by any current proof, data, document, or package

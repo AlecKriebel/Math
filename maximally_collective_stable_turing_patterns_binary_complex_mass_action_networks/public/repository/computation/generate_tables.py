@@ -28,13 +28,33 @@ def polynomial(coeffs, variable):
     for k,c in enumerate(coeffs):
         if c=='0': continue
         ct=texfrac(c)
-        if k==0: out.append(ct)
-        elif k==1: out.append(('' if c=='1' else ct)+variable)
-        else: out.append(('' if c=='1' else ct)+rf'{variable}^{{{k}}}')
+        if k==0:
+            out.append(ct)
+            continue
+        monomial=variable if k==1 else rf'{variable}^{{{k}}}'
+        if c=='1':
+            out.append(monomial)
+        elif '/' in c:
+            numerator,denominator=c.split('/',1)
+            out.append(rf'{numerator}{monomial}/{denominator}')
+        else:
+            out.append(ct+monomial)
     return '+'.join(out) or '0'
 
 
-def cert_table(title, variables, terms, declared_count, pareto=False):
+def cert_table(
+    title,
+    variables,
+    terms,
+    declared_count,
+    expected_variables,
+    pareto=False,
+):
+    if variables != list(expected_variables):
+        raise ValueError(
+            f'{title}: expected ordered variables {tuple(expected_variables)!r}, '
+            f'found {variables!r}'
+        )
     powers=[tuple(term['powers']) for term in terms]
     if len(terms)!=declared_count:
         raise ValueError(f'{title}: declared {declared_count} terms but found {len(terms)} rows')
@@ -63,6 +83,16 @@ def main():
         '--check-certificate-table',type=pathlib.Path,
         help='fail unless the specified modulus-certificate TeX matches exact generation',
     )
+    parser.add_argument(
+        '--unit-certificate',type=pathlib.Path,
+        default=ROOT/'independent_verifier'/'improved_modulus_certificate.json',
+        help='unit-profile modulus certificate JSON (default: canonical source)',
+    )
+    parser.add_argument(
+        '--pareto-certificate',type=pathlib.Path,
+        default=ROOT/'independent_verifier'/'pareto_all_m_certificate.json',
+        help='equilibrium-scaled modulus certificate JSON (default: canonical source)',
+    )
     args=parser.parse_args()
     payload=json.loads(DATA.read_text())
     rows=payload['rows']
@@ -75,14 +105,13 @@ def main():
         lines.append(f"{z['m']}&{z['n']}&"+'&'.join(fnum(x,6) for x in vals)+r'\\')
         csvrows.append([z['m'],z['n']]+[float(sp.N(sx(x),18)) for x in vals])
     lines += [r'\bottomrule',r'\end{tabular}']
-    iv=ROOT/'independent_verifier'
-    D=json.load(open(iv/'improved_modulus_certificate.json'))
-    P=json.load(open(iv/'pareto_all_m_certificate.json'))
+    D=json.loads(args.unit_certificate.read_text())
+    P=json.loads(args.pareto_certificate.read_text())
     parts=[
-      cert_table('35-term homogeneous certificate',D['homogeneous']['variables'],D['homogeneous']['terms'],D['homogeneous']['term_count']),
-      cert_table('77-term improved-profile spatial certificate',D['improved_mode']['variables'],D['improved_mode']['terms'],D['improved_mode']['term_count']),
-      cert_table(r'22-term equilibrium-scaled homogeneous certificate ($U=A-1/4$)',P['modulus']['homogeneous']['variables'],P['modulus']['homogeneous']['terms'],P['modulus']['homogeneous']['term_count'],True),
-      cert_table('84-term equilibrium-scaled spatial certificate',P['modulus']['spatial']['variables'],P['modulus']['spatial']['terms'],P['modulus']['spatial']['term_count'],True),
+      cert_table('35-term homogeneous certificate',D['homogeneous']['variables'],D['homogeneous']['terms'],D['homogeneous']['term_count'],('x','z')),
+      cert_table('77-term improved-profile spatial certificate',D['improved_mode']['variables'],D['improved_mode']['terms'],D['improved_mode']['term_count'],('x','z','s')),
+      cert_table(r'22-term equilibrium-scaled homogeneous certificate ($U=A-1/4$)',P['modulus']['homogeneous']['variables'],P['modulus']['homogeneous']['terms'],P['modulus']['homogeneous']['term_count'],('x','z'),True),
+      cert_table('84-term equilibrium-scaled spatial certificate',P['modulus']['spatial']['variables'],P['modulus']['spatial']['terms'],P['modulus']['spatial']['term_count'],('x','z','s'),True),
     ]
     certificate_text='\n\n'.join(parts)+'\n'
     if args.check_certificate_table is not None:

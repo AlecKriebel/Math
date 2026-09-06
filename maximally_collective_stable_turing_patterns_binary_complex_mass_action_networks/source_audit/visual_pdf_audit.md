@@ -1,15 +1,18 @@
 # Final rendered-PDF audit
 
-Date: 2026-08-23
+Date: 2026-09-06
 
-Rendered with Poppler and inspected page by page (51 pages total). Page counts, document
-properties, extractable text, and font resources were also checked with
-`pdfinfo`, pypdf, and pdfplumber.
+Rendered with Poppler and inspected page by page (96 pages across the seven
+canonical, audit, and journal-facing PDFs). Page counts, document properties,
+extractable text, and font resources were also checked with `pdfinfo`, pypdf,
+and pdfplumber.
 
 - Main manuscript: 19 pages; no clipped text, overlapping labels, black boxes, or broken glyphs.
 - Technical supplement: 19 pages; dense certificate displays remain within the text block.
 - Theorem summary: 3 pages.
 - Proof skeleton: 6 pages.
+- SIADS review manuscript and supplement: 24 pages each; PDF cover letter:
+  1 page.
 - Standalone figures: amplitude scaling, network family, stable profiles, and
   stable trade-off are each 1 page and render cleanly; the network diagram is
   vector and grayscale-compatible.
@@ -55,14 +58,14 @@ standalone one-page figures were separately rendered and inspected; Figure 1's
 chain labels are distinct and nonoverlapping.  No clipping, overlap, broken
 glyph, malformed equation, or anomalous blank page was found.
 
-The v1.0.9 rereview-repair documents received a final independent and primary
-page-by-page inspection.  The canonical manuscript and supplement remain 19
-pages each; the theorem summary and proof skeleton remain 3 and 6 pages.  The
-separate SIADS review presentation is 23 pages for the manuscript and 23 pages
-for the supplement, with a one-page cover letter.  All 94 rendered pages are
-clean.  In particular, continuous line numbers remain outside the 6-by-8-inch
-text block, Figure 1's labels remain separated, dense coefficient tables remain
-legible, and the stabilized supplementary contents correctly place S8/S8.1 on
-page 13, S8.2 on page 19, S9/S10 on page 22, and S11 on page 23.  The visible
-author-confirmation notice in the cover letter is intentional release-state
-text, not a rendering defect.
+The v1.0.10 referee-repair documents received a fresh primary page-by-page
+inspection. The canonical manuscript and supplement remain 19 pages each; the
+theorem summary and proof skeleton remain 3 and 6 pages. The separate SIADS
+review presentation is 24 pages for the manuscript and 24 pages for the
+supplement, with a one-page cover letter. All 96 rendered pages are clean. In
+particular, the standalone diffusion-ray statements visibly require positive
+diagonal $D$ and the proof skeleton visibly assumes $\det J=0$; all 50 affected
+certificate coefficients render unambiguously as $aA/b$ with no collision;
+continuous line numbers remain outside the 6-by-8-inch text block; and Figure
+1's labels remain separated. No clipping, overlap, missing glyph, malformed
+equation, or anomalous blank page was found.

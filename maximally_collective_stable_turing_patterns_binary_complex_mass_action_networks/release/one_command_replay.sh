@@ -100,7 +100,7 @@ mkdir -p release/verification_outputs release/build_logs data/network_instances 
 exec > >(tee "$ROOT/release/replay.log") 2>&1
 
 echo '=== FINAL RELEASE REPLAY ==='
-echo RELEASE_VERSION=1.0.9
+echo RELEASE_VERSION=1.0.10
 echo RELEASE_BASELINE_MANIFEST_PASS
 bash environment/check_toolchain.sh
 python - <<'PY'
@@ -178,7 +178,10 @@ python figures/amplitude_scaling.py > release/build_logs/amplitude_scaling.log
  pdflatex -interaction=nonstopmode -halt-on-error proof_skeleton.tex > "$ROOT/release/build_logs/skeleton2.log" 2>&1
 )
 for f in manuscript/main.log manuscript/supplement.log external_audit/theorem_summary.log external_audit/proof_skeleton.log; do
-  ! grep -Eiq 'undefined references|undefined citations|LaTeX Warning: Reference|Overfull \\hbox' "$f"
+  if grep -Eiq 'undefined references|undefined citations|LaTeX Warning: Reference|Overfull \\hbox' "$f"; then
+    printf 'document log audit failed: %s\n' "$f" >&2
+    exit 1
+  fi
 done
 python computation/audit_pdfs.py --profile full
 echo FIGURE_REGENERATION_PASS
@@ -186,22 +189,22 @@ echo DOCUMENT_BUILD_PASS
 
 cat > release/verification_outputs/PROVENANCE.tsv <<'EOF'
 artifact	command	evidence_class	scope	release_version	status
-current_profile_generation.txt	python computation/generate_current_profile_data.py	exact-generation	full-source	1.0.9	current
-generated_tables.txt	python computation/generate_tables.py	exact-generation	full-source	1.0.9	current
-generated_sign_tables.txt	python computation/generate_sign_certificate_tables.py	exact-generation	full-source	1.0.9	current
-all_verifier_entrypoints.txt	39 direct verifier commands listed in the file	exact-and-spectral-entrypoint-coverage	full-source	1.0.9	current-release-qualification
-all_verifier_optimized_rejections.txt	39 direct verifier commands under python -O	assertion-mode-negative-control	full-source	1.0.9	current-release-qualification
-manifest_mutation_test.txt	detached baseline and self-manifest mutation controls	manifest-negative-control	portable-public-copy	1.0.9	current-release-qualification
-detached_numerical_provenance.txt	python independent_verifier/verify_current_numerical_provenance.py	exact-finite-provenance	full-source	1.0.9	current
-numerical_provenance.txt	python computation/audit_numerical_provenance.py	numerical-tolerance-audit	full-source	1.0.9	current
-pytest.txt	python -m pytest -q computation/tests	mutation-and-regression-tests	full-source	1.0.9	current
-manuscript_audit.txt	python computation/audit_manuscript.py	source-semantic-audit	full-source	1.0.9	current
-principal_minor_diffusion_ray.txt	python independent_verifier/verify_principal_minor_diffusion_ray.py	exact-interface-regression	full-source	1.0.9	current
-symbolic_certificates.txt	python independent_verifier/verify_symbolic_certificates.py	exact-aggregate	full-source	1.0.9	current
-integrated_designs.txt	integrated verifier commands in release/one_command_replay.sh	mixed-exact-and-spectral-regression	m=3,4,5,6,8,10,149,200 as applicable	1.0.9	current
-simulations.txt	python computation/simulations.py --outdir data/simulations --jobs 3	numerical-illustration	full-source	1.0.9	current
-pdf_semantic_audit.txt	python computation/audit_pdfs.py --profile full	PDF-semantic-font-layout-audit	full-source	1.0.9	current-after-stage-8
-stale_claim_audit.txt	python computation/audit_stale_claims.py	stale-string-audit	full-source	1.0.9	current-after-stage-8
+current_profile_generation.txt	python computation/generate_current_profile_data.py	exact-generation	full-source	1.0.10	current
+generated_tables.txt	python computation/generate_tables.py	exact-generation	full-source	1.0.10	current
+generated_sign_tables.txt	python computation/generate_sign_certificate_tables.py	exact-generation	full-source	1.0.10	current
+all_verifier_entrypoints.txt	39 direct verifier commands listed in the file	exact-and-spectral-entrypoint-coverage	full-source	1.0.10	current-release-qualification
+all_verifier_optimized_rejections.txt	39 direct verifier commands under python -O	assertion-mode-negative-control	full-source	1.0.10	current-release-qualification
+manifest_mutation_test.txt	detached baseline and self-manifest mutation controls	manifest-negative-control	portable-public-copy	1.0.10	current-release-qualification
+detached_numerical_provenance.txt	python independent_verifier/verify_current_numerical_provenance.py	exact-finite-provenance	full-source	1.0.10	current
+numerical_provenance.txt	python computation/audit_numerical_provenance.py	numerical-tolerance-audit	full-source	1.0.10	current
+pytest.txt	python -m pytest -q computation/tests	mutation-and-regression-tests	full-source	1.0.10	current
+manuscript_audit.txt	python computation/audit_manuscript.py	source-semantic-audit	full-source	1.0.10	current
+principal_minor_diffusion_ray.txt	python independent_verifier/verify_principal_minor_diffusion_ray.py	exact-interface-regression	full-source	1.0.10	current
+symbolic_certificates.txt	python independent_verifier/verify_symbolic_certificates.py	exact-aggregate	full-source	1.0.10	current
+integrated_designs.txt	integrated verifier commands in release/one_command_replay.sh	mixed-exact-and-spectral-regression	m=3,4,5,6,8,10,149,200 as applicable	1.0.10	current
+simulations.txt	python computation/simulations.py --outdir data/simulations --jobs 3	numerical-illustration	full-source	1.0.10	current
+pdf_semantic_audit.txt	python computation/audit_pdfs.py --profile full	PDF-semantic-font-layout-audit	full-source	1.0.10	current-after-stage-8
+stale_claim_audit.txt	python computation/audit_stale_claims.py	stale-string-audit	full-source	1.0.10	current-after-stage-8
 EOF
 
 echo '[7/9] rebuild all portable, audit, and submission bundles'

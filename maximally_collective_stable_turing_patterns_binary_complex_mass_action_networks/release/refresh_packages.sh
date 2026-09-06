@@ -6,6 +6,47 @@ DATAZIP="$ROOT/public/data_archive/final_release_data.zip"
 export SOURCE_DATE_EPOCH=1787443200 TZ=UTC LC_ALL=C PYTHONOPTIMIZE=0
 export OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 VECLIB_MAXIMUM_THREADS=1 NUMEXPR_NUM_THREADS=1
 
+if ! bash "$ROOT/environment/check_toolchain.sh" --quiet; then
+  printf '%s\n' 'Package refresh requires the pinned release toolchain.' >&2
+  exit 2
+fi
+
+# Rebuild the canonical documents before any portable, submission, or audit
+# package copies them.  This keeps rendered exports synchronized with their
+# TeX sources even when refresh_packages.sh is run without a preceding replay.
+(
+  cd "$ROOT/manuscript"
+  pdflatex -interaction=nonstopmode -halt-on-error main.tex >/dev/null
+  biber main >/dev/null
+  pdflatex -interaction=nonstopmode -halt-on-error main.tex >/dev/null
+  pdflatex -interaction=nonstopmode -halt-on-error main.tex >/dev/null
+  pdflatex -interaction=nonstopmode -halt-on-error supplement.tex >/dev/null
+  pdflatex -interaction=nonstopmode -halt-on-error supplement.tex >/dev/null
+  pdflatex -interaction=nonstopmode -halt-on-error supplement.tex >/dev/null
+)
+(
+  cd "$ROOT/external_audit"
+  pdflatex -interaction=nonstopmode -halt-on-error theorem_summary.tex >/dev/null
+  pdflatex -interaction=nonstopmode -halt-on-error theorem_summary.tex >/dev/null
+  pdflatex -interaction=nonstopmode -halt-on-error proof_skeleton.tex >/dev/null
+  pdflatex -interaction=nonstopmode -halt-on-error proof_skeleton.tex >/dev/null
+)
+for f in "$ROOT/manuscript/main.log" "$ROOT/manuscript/supplement.log" \
+  "$ROOT/external_audit/theorem_summary.log" "$ROOT/external_audit/proof_skeleton.log"; do
+  if grep -Eiq 'undefined references|undefined citations|LaTeX Warning: Reference|Overfull \\hbox' "$f"; then
+    printf 'document log audit failed: %s\n' "$f" >&2
+    exit 1
+  fi
+done
+# Regenerate the canonical PDF reports immediately from the documents above;
+# these reports are copied into the portable package only after its other
+# release artifacts have been staged.
+python "$ROOT/computation/audit_pdfs.py" --profile full \
+  > "$ROOT/release/verification_outputs/pdf_semantic_audit.txt"
+find "$ROOT/manuscript" "$ROOT/external_audit" -maxdepth 1 -type f \
+  \( -name '*.aux' -o -name '*.log' -o -name '*.bcf' -o -name '*.blg' \
+     -o -name '*.run.xml' -o -name '*.out' -o -name '*.toc' \) -delete
+
 copy_files() {
   local srcroot="$1" dstroot="$2"; shift 2
   for rel in "$@"; do
@@ -28,10 +69,10 @@ cat > "$PUB/README.md" <<'EOF'
 
 Portable exact source, proof certificates, independent verifiers, current-profile numerical illustrations, and manuscript sources for the corrected final release.
 
-This package targets the immutable version 1.0.9 snapshot at
-<https://github.com/AlecKriebel/Math/releases/tag/maximally-collective-stable-turing-v1.0.9>.
+This package targets the immutable version 1.0.10 snapshot at
+<https://github.com/AlecKriebel/Math/releases/tag/maximally-collective-stable-turing-v1.0.10>.
 Archived versions share <https://doi.org/10.5281/zenodo.21753404>. The exact
-preceding version 1.0.8 snapshot has DOI <https://doi.org/10.5281/zenodo.22074358>.
+preceding version 1.0.9 snapshot has DOI <https://doi.org/10.5281/zenodo.22478273>.
 
 ## Replay
 
@@ -260,13 +301,23 @@ echo '[7/8] manuscript and supplement'
  pdflatex -interaction=nonstopmode -halt-on-error supplement.tex >/dev/null
  pdflatex -interaction=nonstopmode -halt-on-error supplement.tex >/dev/null
 )
-for f in manuscript/main.log manuscript/supplement.log; do
-  ! grep -Eiq 'undefined references|undefined citations|LaTeX Warning: Reference|Overfull \\hbox' "$f"
+(
+ cd external_audit
+ pdflatex -interaction=nonstopmode -halt-on-error theorem_summary.tex >/dev/null
+ pdflatex -interaction=nonstopmode -halt-on-error theorem_summary.tex >/dev/null
+ pdflatex -interaction=nonstopmode -halt-on-error proof_skeleton.tex >/dev/null
+ pdflatex -interaction=nonstopmode -halt-on-error proof_skeleton.tex >/dev/null
+)
+for f in manuscript/main.log manuscript/supplement.log external_audit/theorem_summary.log external_audit/proof_skeleton.log; do
+  if grep -Eiq 'undefined references|undefined citations|LaTeX Warning: Reference|Overfull \\hbox' "$f"; then
+    printf 'document log audit failed: %s\n' "$f" >&2
+    exit 1
+  fi
 done
 
 echo '[8/8] portability, PDF, and manifest'
-for f in manuscript/main.pdf manuscript/supplement.pdf figures/network_family.pdf figures/stable_tradeoff.pdf figures/stable_profiles.pdf figures/amplitude_scaling.pdf; do test -s "$f"; done
-for f in manuscript/main.pdf manuscript/supplement.pdf; do pdffonts "$f" | tail -n +3 | awk 'NF && $5!="yes" {bad=1} END{exit bad}'; done
+for f in manuscript/main.pdf manuscript/supplement.pdf external_audit/theorem_summary.pdf external_audit/proof_skeleton.pdf figures/network_family.pdf figures/stable_tradeoff.pdf figures/stable_profiles.pdf figures/amplitude_scaling.pdf; do test -s "$f"; done
+for f in manuscript/main.pdf manuscript/supplement.pdf external_audit/theorem_summary.pdf external_audit/proof_skeleton.pdf; do pdffonts "$f" | tail -n +3 | awk 'NF && $5!="yes" {bad=1} END{exit bad}'; done
 python computation/audit_pdfs.py --profile public > "$OUT"/pdf_semantic_audit.txt
 python computation/audit_stale_claims.py > "$OUT"/stale_claim_audit.txt
 grep -q STALE_CLAIM_AUDIT_PASS "$OUT"/stale_claim_audit.txt
@@ -283,22 +334,22 @@ find . -type d -name '__pycache__' -prune -exec rm -rf {} +
 find . -type f \( -name '*.aux' -o -name '*.log' -o -name '*.bcf' -o -name '*.blg' -o -name '*.fls' -o -name '*.fdb_latexmk' -o -name '*.run.xml' -o -name '*.out' -o -name '*.toc' -o -name '*.xdv' \) -delete
 cat > "$OUT"/PROVENANCE.tsv <<'PROVENANCE'
 artifact	command	evidence_class	scope	release_version	status
-current_profile_generation.txt	python computation/generate_current_profile_data.py	exact-generation	portable-public	1.0.9	current
-generated_tables.txt	python computation/generate_tables.py	exact-generation	portable-public	1.0.9	current
-generated_sign_tables.txt	python computation/generate_sign_certificate_tables.py	exact-generation	portable-public	1.0.9	current
-all_verifier_entrypoints.txt	39 direct verifier commands listed in the file	exact-and-spectral-entrypoint-coverage	full-source	1.0.9	current-release-qualification
-all_verifier_optimized_rejections.txt	39 direct verifier commands under python -O	assertion-mode-negative-control	full-source	1.0.9	current-release-qualification
-manifest_mutation_test.txt	detached baseline and self-manifest mutation controls	manifest-negative-control	portable-public-copy	1.0.9	current-release-qualification
-detached_numerical_provenance.txt	python independent_verifier/verify_current_numerical_provenance.py	exact-finite-provenance	portable-public	1.0.9	current
-integrated_designs.txt	integrated verifier commands in replay.sh	mixed-exact-and-spectral-regression	m=3,4,5,6,8,10,149,200 as applicable	1.0.9	current
-manuscript_audit.txt	python computation/audit_manuscript.py	source-semantic-audit	portable-public	1.0.9	current
-numerical_provenance.txt	python computation/audit_numerical_provenance.py	numerical-tolerance-audit	portable-public	1.0.9	current-full-only
-pdf_semantic_audit.txt	python computation/audit_pdfs.py --profile public	PDF-semantic-font-layout-audit	portable-public	1.0.9	current
-journal_pdf_semantic_audit.txt	python computation/audit_pdfs.py --profile journal	PDF-semantic-font-layout-audit	journal-submission	1.0.9	current-release-qualification
-pytest.txt	python -m pytest -q computation/tests	mutation-and-regression-tests	portable-public	1.0.9	current
-simulations.txt	python computation/simulations.py --outdir data/simulations --jobs 3	numerical-illustration	portable-public	1.0.9	current-full-only
-stale_claim_audit.txt	python computation/audit_stale_claims.py	stale-string-audit	portable-public	1.0.9	current
-symbolic_certificates.txt	python independent_verifier/verify_symbolic_certificates.py	exact-aggregate	portable-public	1.0.9	current
+current_profile_generation.txt	python computation/generate_current_profile_data.py	exact-generation	portable-public	1.0.10	current
+generated_tables.txt	python computation/generate_tables.py	exact-generation	portable-public	1.0.10	current
+generated_sign_tables.txt	python computation/generate_sign_certificate_tables.py	exact-generation	portable-public	1.0.10	current
+all_verifier_entrypoints.txt	39 direct verifier commands listed in the file	exact-and-spectral-entrypoint-coverage	full-source	1.0.10	current-release-qualification
+all_verifier_optimized_rejections.txt	39 direct verifier commands under python -O	assertion-mode-negative-control	full-source	1.0.10	current-release-qualification
+manifest_mutation_test.txt	detached baseline and self-manifest mutation controls	manifest-negative-control	portable-public-copy	1.0.10	current-release-qualification
+detached_numerical_provenance.txt	python independent_verifier/verify_current_numerical_provenance.py	exact-finite-provenance	portable-public	1.0.10	current
+integrated_designs.txt	integrated verifier commands in replay.sh	mixed-exact-and-spectral-regression	m=3,4,5,6,8,10,149,200 as applicable	1.0.10	current
+manuscript_audit.txt	python computation/audit_manuscript.py	source-semantic-audit	portable-public	1.0.10	current
+numerical_provenance.txt	python computation/audit_numerical_provenance.py	numerical-tolerance-audit	portable-public	1.0.10	current-full-only
+pdf_semantic_audit.txt	python computation/audit_pdfs.py --profile public	PDF-semantic-font-layout-audit	portable-public	1.0.10	current
+journal_pdf_semantic_audit.txt	python computation/audit_pdfs.py --profile journal	PDF-semantic-font-layout-audit	journal-submission	1.0.10	current-release-qualification
+pytest.txt	python -m pytest -q computation/tests	mutation-and-regression-tests	portable-public	1.0.10	current
+simulations.txt	python computation/simulations.py --outdir data/simulations --jobs 3	numerical-illustration	portable-public	1.0.10	current-full-only
+stale_claim_audit.txt	python computation/audit_stale_claims.py	stale-string-audit	portable-public	1.0.10	current
+symbolic_certificates.txt	python independent_verifier/verify_symbolic_certificates.py	exact-aggregate	portable-public	1.0.10	current
 PROVENANCE
 cmp -s "$BASELINE_MANIFEST" "$REPLAY_STATE/downloaded_manifest.txt"
 sha256sum -c "$EXACT_BASELINE" >/dev/null
@@ -322,11 +373,9 @@ VERIFICATION_FILES=(
   generated_sign_tables.txt
   generated_tables.txt
   integrated_designs.txt
-  journal_pdf_semantic_audit.txt
   manifest_mutation_test.txt
   manuscript_audit.txt
   numerical_provenance.txt
-  pdf_semantic_audit.txt
   principal_minor_diffusion_ray.txt
   pytest.txt
   simulations.txt
@@ -334,42 +383,6 @@ VERIFICATION_FILES=(
 )
 copy_files "$ROOT/release/verification_outputs" "$PUB/verification_outputs" "${VERIFICATION_FILES[@]}"
 copy_files "$ROOT/release/verification_outputs" "$PUB/verification_outputs" README.md PROVENANCE.tsv
-PUBLIC_PDF_PREFLIGHT_FILES=(
-  SUMMARY.txt
-  manuscript_main_pdf.txt
-  manuscript_supplement_pdf.txt
-  figures_network_family_pdf.txt
-  figures_stable_tradeoff_pdf.txt
-  figures_stable_profiles_pdf.txt
-  figures_amplitude_scaling_pdf.txt
-)
-copy_files "$ROOT/release/pdf_preflight" "$PUB/verification_outputs/pdf_preflight" \
-  "${PUBLIC_PDF_PREFLIGHT_FILES[@]}"
-(
-  cd "$PUB"
-  python computation/audit_stale_claims.py > verification_outputs/stale_claim_audit.txt
-  grep -q STALE_CLAIM_AUDIT_PASS verification_outputs/stale_claim_audit.txt
-  python - <<'PY'
-from pathlib import Path
-
-path = Path("verification_outputs/PROVENANCE.tsv")
-lines = [
-    line for line in path.read_text(encoding="utf-8").splitlines()
-    if not line.startswith("stale_claim_audit.txt\t")
-]
-lines.append(
-    "stale_claim_audit.txt\tpython computation/audit_stale_claims.py\t"
-    "stale-string-audit\tportable-public\t1.0.9\tcurrent-packaging"
-)
-path.write_text("\n".join(lines) + "\n", encoding="utf-8")
-PY
-)
-(
-  cd "$PUB"
-  find . -type f ! -path './.pytest_cache/*' ! -path '*/__pycache__/*' ! -name '*.pyc' ! -name '*.aux' ! -name '*.log' ! -name '*.bcf' ! -name '*.blg' ! -name '*.fls' ! -name '*.fdb_latexmk' ! -name '*.run.xml' ! -name '*.out' ! -name '*.toc' ! -name '*.xdv' ! -name 'sha256_manifest.txt' -print0 | sort -z | xargs -0 sha256sum > sha256_manifest.txt
-  grep -Fq '  ./RESEARCH_LOG.md' sha256_manifest.txt
-  sha256sum -c sha256_manifest.txt >/dev/null
-)
 
 # ---------- open data archive ----------
 python "$ROOT/release/deterministic_zip.py" "$ROOT/data" "$DATAZIP"
@@ -445,6 +458,51 @@ cp "$ROOT/submission/journal/cover_letter_SIADS.tex" "$COVER_BUILD/"
 )
 cp "$COVER_BUILD/cover_letter_SIADS.pdf" "$ROOT/submission/journal/cover_letter_SIADS.pdf"
 rm -rf "$COVER_BUILD"
+
+# Regenerate the journal PDF evidence from the detached journal build, then
+# stage both sets of fresh sidecars before sealing the portable manifest.
+JOURNAL_PREFLIGHT="$(mktemp -d "${TMPDIR:-/tmp}/exact-diffusion-journal-preflight.XXXXXX")"
+python "$ROOT/computation/audit_pdfs.py" --profile journal --output-dir "$JOURNAL_PREFLIGHT" \
+  > "$ROOT/release/verification_outputs/journal_pdf_semantic_audit.txt"
+rm -rf "$JOURNAL_PREFLIGHT"
+copy_files "$ROOT/release/verification_outputs" "$PUB/verification_outputs" \
+  pdf_semantic_audit.txt journal_pdf_semantic_audit.txt
+PUBLIC_PDF_PREFLIGHT_FILES=(
+  SUMMARY.txt
+  manuscript_main_pdf.txt
+  manuscript_supplement_pdf.txt
+  external_audit_theorem_summary_pdf.txt
+  external_audit_proof_skeleton_pdf.txt
+  figures_network_family_pdf.txt
+  figures_stable_tradeoff_pdf.txt
+  figures_stable_profiles_pdf.txt
+  figures_amplitude_scaling_pdf.txt
+)
+copy_files "$ROOT/release/pdf_preflight" "$PUB/verification_outputs/pdf_preflight" \
+  "${PUBLIC_PDF_PREFLIGHT_FILES[@]}"
+(
+  cd "$PUB"
+  python computation/audit_stale_claims.py > verification_outputs/stale_claim_audit.txt
+  grep -q STALE_CLAIM_AUDIT_PASS verification_outputs/stale_claim_audit.txt
+  python - <<'PY'
+from pathlib import Path
+
+path = Path("verification_outputs/PROVENANCE.tsv")
+lines = [
+    line for line in path.read_text(encoding="utf-8").splitlines()
+    if not line.startswith("stale_claim_audit.txt\t")
+]
+lines.append(
+    "stale_claim_audit.txt\tpython computation/audit_stale_claims.py\t"
+    "stale-string-audit\tportable-public\t1.0.10\tcurrent-packaging"
+)
+path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+PY
+  find . -type f ! -path './.pytest_cache/*' ! -path '*/__pycache__/*' ! -name '*.pyc' ! -name '*.aux' ! -name '*.log' ! -name '*.bcf' ! -name '*.blg' ! -name '*.fls' ! -name '*.fdb_latexmk' ! -name '*.run.xml' ! -name '*.out' ! -name '*.toc' ! -name '*.xdv' ! -name 'sha256_manifest.txt' -print0 | sort -z | xargs -0 sha256sum > sha256_manifest.txt
+  grep -Fq '  ./RESEARCH_LOG.md' sha256_manifest.txt
+  sha256sum -c sha256_manifest.txt >/dev/null
+)
+
 python "$ROOT/release/deterministic_zip.py" "$ROOT/submission/biorxiv/source" "$ROOT/submission/biorxiv/source_package.zip"
 python "$ROOT/release/deterministic_zip.py" "$ROOT/submission/arxiv/source" "$ROOT/submission/arxiv/arxiv_source.zip"
 python "$ROOT/release/deterministic_zip.py" "$ROOT/submission/journal/source" "$ROOT/submission/journal/source_package.zip"

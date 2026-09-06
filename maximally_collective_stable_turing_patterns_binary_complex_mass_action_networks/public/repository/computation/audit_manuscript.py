@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Literal source audit for labels, citations, theorem types, provenance, and scope."""
 from __future__ import annotations
+import csv
+import json
 import re
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
@@ -10,6 +12,8 @@ texts={str(p.relative_to(ROOT)):p.read_text() for p in files}
 alltext='\n'.join(texts.values())
 clean='\n'.join(line.split('%',1)[0] for line in alltext.splitlines())
 main=texts['manuscript/main.tex']; supp=texts['manuscript/supplement.tex']
+summary=texts['external_audit/theorem_summary.tex']
+skeleton=texts['external_audit/proof_skeleton.tex']
 
 labels=set(re.findall(r'\\label\{([^}]+)\}',clean))
 refs=[]
@@ -28,19 +32,19 @@ missing_cites=sorted(set(cites)-bibkeys)
 if missing_cites: raise AssertionError(f'missing bib keys {missing_cites}')
 
 for marker in (
-    'version: "1.0.9"',
-    'date-released: "2026-09-05"',
-    'maximally-collective-stable-turing-v1.0.9',
+    'version: "1.0.10"',
+    'date-released: "2026-09-06"',
+    'maximally-collective-stable-turing-v1.0.10',
     '10.5281/zenodo.21753404',
-    '10.5281/zenodo.22074358',
+    '10.5281/zenodo.22478273',
     'authors:',
 ):
     if marker not in cff:
         raise AssertionError(f'CITATION.cff lacks release marker {marker}')
 if not all(marker in main for marker in (
-    'version 1.0.9 tagged release source tree',
+    'version 1.0.10 tagged release source tree',
     '10.5281/zenodo.21753404',
-    '10.5281/zenodo.22074358',
+    '10.5281/zenodo.22478273',
 )):
     raise AssertionError('data statement does not distinguish the current tag, concept DOI, and preceding version DOI')
 
@@ -54,6 +58,67 @@ for marker in (
         raise AssertionError(f'main source lacks submission marker {marker}')
 if 'The author assumes responsibility for all content.' not in ' '.join(main.split()):
     raise AssertionError('main source lacks the required author-responsibility sentence')
+
+# The standalone theorem exports are independently distributed proof objects.
+# Their generic diffusion-ray statements must carry the diagonal-diffusion and
+# singular-Jacobian hypotheses used by the determinant expansion.
+summary_diffusion=summary.split(
+    r'\paragraph{Principal-minor diffusion-ray theorem.}',1
+)[1].split(r'\paragraph{Exact network diffusion law',1)[0]
+skeleton_diffusion=skeleton.split(
+    r'\section*{2. Principal-minor diffusion-ray theorem and exact network law}',1
+)[1].split(r'For $A_m(a,b)H$',1)[0]
+for name,section in (
+    ('theorem summary',summary_diffusion),
+    ('proof skeleton',skeleton_diffusion),
+):
+    if r'D=\diag(d_1,\ldots,d_n)' not in section or r'd_j>0' not in section:
+        raise AssertionError(f'{name} omits positive diagonal diffusion')
+    if r'D\succ0' in section:
+        raise AssertionError(f'{name} retains an overbroad generic D hypothesis')
+if r'\det J=0' not in skeleton_diffusion:
+    raise AssertionError('proof skeleton factors out s without assuming det J=0')
+
+# The ordered variable declarations are part of the exact polynomial identity,
+# not descriptive metadata.
+unit_certificate=json.loads(
+    (ROOT/'independent_verifier'/'improved_modulus_certificate.json').read_text()
+)
+pareto_certificate=json.loads(
+    (ROOT/'independent_verifier'/'pareto_all_m_certificate.json').read_text()
+)
+ordered_variables=(
+    ('unit homogeneous',unit_certificate['homogeneous']['variables'],['x','z']),
+    ('unit spatial',unit_certificate['improved_mode']['variables'],['x','z','s']),
+    ('scaled homogeneous',pareto_certificate['modulus']['homogeneous']['variables'],['x','z']),
+    ('scaled spatial',pareto_certificate['modulus']['spatial']['variables'],['x','z','s']),
+)
+for name,actual,expected in ordered_variables:
+    if actual != expected:
+        raise AssertionError(f'{name} certificate variable order {actual!r} != {expected!r}')
+
+# Keep the structured comparison table aligned with its named columns.
+with (ROOT/'literature'/'theorem_comparison.csv').open(newline='') as handle:
+    comparison_rows=list(csv.DictReader(handle))
+conradi=next(
+    (row for row in comparison_rows if row['Prior result']=='Conradi-Mincheva-Uecker 2026'),
+    None,
+)
+if conradi is None:
+    raise AssertionError('literature comparison lacks Conradi-Mincheva-Uecker 2026')
+for field,expected in (
+    ('Exact diffusion law','no'),
+    ('Nonlinear branch','numerical continuation'),
+    ('Stable branch','numerically stable segments'),
+):
+    if conradi[field] != expected:
+        raise AssertionError(f'Conradi comparison column {field!r} is {conradi[field]!r}')
+
+certificate_table=(ROOT/'data'/'certificate_tables.tex').read_text()
+if re.search(r'\d+/\d+[AU](?:\^\{\d+\})?',certificate_table):
+    raise AssertionError('ambiguous slash fraction adjacent to a certificate parameter')
+if len(re.findall(r'\d+A/\d+',certificate_table)) != 50:
+    raise AssertionError('unexpected count of unambiguous rational-A table entries')
 
 # Semantic environment-type audit for explicit numbered references.
 envs={}

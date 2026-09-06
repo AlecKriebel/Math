@@ -1,3 +1,4 @@
+import csv
 import json
 import os
 from pathlib import Path
@@ -420,16 +421,98 @@ def test_all_modulus_readers_reject_support_and_duplicate_mutations(tmp_path):
                 )
 
 
+@pytest.mark.parametrize(
+    ("certificate_name", "section_path", "generator_option"),
+    (
+        ("improved_modulus_certificate.json", ("homogeneous",), "--unit-certificate"),
+        ("improved_modulus_certificate.json", ("improved_mode",), "--unit-certificate"),
+        ("pareto_all_m_certificate.json", ("modulus", "homogeneous"), "--pareto-certificate"),
+        ("pareto_all_m_certificate.json", ("modulus", "spatial"), "--pareto-certificate"),
+    ),
+)
+def test_all_modulus_readers_and_generator_reject_variable_order_swaps(
+    tmp_path, certificate_name, section_path, generator_option
+):
+    """Exponent tuples must retain the source polynomial's variable order."""
+
+    source = ROOT / "independent_verifier" / certificate_name
+    payload = json.loads(source.read_text())
+    section = payload
+    for key in section_path:
+        section = section[key]
+    section["variables"][0], section["variables"][1] = (
+        section["variables"][1],
+        section["variables"][0],
+    )
+    candidate = tmp_path / f"swapped_{'_'.join(section_path)}.json"
+    candidate.write_text(json.dumps(payload))
+
+    if generator_option == "--unit-certificate":
+        for reader in (
+            unit_mode_isolation.verify_certificate,
+            duplicate_unit_mode_isolation.verify_certificate,
+        ):
+            with pytest.raises(AssertionError):
+                reader(candidate)
+        with pytest.raises(AssertionError):
+            exposition_identities.verify_modulus_source_polynomials(
+                unit_certificate=candidate,
+            )
+    else:
+        with pytest.raises(AssertionError):
+            mode_certificates.verify(candidate)
+        with pytest.raises(AssertionError):
+            exposition_identities.verify_modulus_source_polynomials(
+                pareto_certificate=candidate,
+            )
+
+    # Exercise the table-regeneration path as a negative control.  A swapped
+    # source must be rejected before it can relabel exponent columns in TeX.
+    result = subprocess.run(
+        [
+            sys.executable,
+            str(ROOT / "computation" / "generate_tables.py"),
+            generator_option,
+            str(candidate),
+            "--check-certificate-table",
+            str(ROOT / "data" / "certificate_tables.tex"),
+        ],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+    )
+    assert result.returncode != 0
+    assert "expected ordered variables" in result.stdout + result.stderr
+
+
 def test_table_generator_rejects_malformed_certificate_rows():
     import computation.generate_tables as table_generator
 
     terms = [{"powers": [1, 0], "coefficient": "1"}]
     with pytest.raises(ValueError):
-        table_generator.cert_table("bad count", ["x", "z"], terms, 2)
+        table_generator.cert_table("bad count", ["x", "z"], terms, 2, ("x", "z"))
     with pytest.raises(ValueError):
-        table_generator.cert_table("bad arity", ["x", "z", "s"], terms, 1)
+        table_generator.cert_table(
+            "bad arity", ["x", "z", "s"], terms, 1, ("x", "z", "s")
+        )
     with pytest.raises(ValueError):
-        table_generator.cert_table("duplicate", ["x", "z"], terms * 2, 2)
+        table_generator.cert_table(
+            "duplicate", ["x", "z"], terms * 2, 2, ("x", "z")
+        )
+    with pytest.raises(ValueError, match="expected ordered variables"):
+        table_generator.cert_table(
+            "swapped", ["z", "x"], terms, 1, ("x", "z")
+        )
+
+
+def test_table_generator_prints_rational_parameter_coefficients_unambiguously():
+    import computation.generate_tables as table_generator
+
+    assert table_generator.polynomial(["0", "8281/8100"], "A") == "8281A/8100"
+    assert (
+        table_generator.polynomial(["8281/8100", "4420871/182250"], "A")
+        == "8281/8100+4420871A/182250"
+    )
 
 
 def test_printed_rational_identity_mutation_is_rejected(tmp_path):
@@ -539,6 +622,48 @@ def test_general_matrix_theorem_uses_exact_coefficient_domain():
     assert 'sum_{|I|=n-1}a_I>0' in sec
     assert 'at most one' not in sec
     assert '\\label{thm:diffusionray}' in sec
+
+
+def test_standalone_diffusion_ray_exports_state_complete_hypotheses():
+    summary = (ROOT / "external_audit" / "theorem_summary.tex").read_text()
+    skeleton = (ROOT / "external_audit" / "proof_skeleton.tex").read_text()
+    summary_section = summary.split(
+        r"\paragraph{Principal-minor diffusion-ray theorem.}", 1
+    )[1].split(r"\paragraph{Exact network diffusion law", 1)[0]
+    skeleton_section = skeleton.split(
+        r"\section*{2. Principal-minor diffusion-ray theorem and exact network law}",
+        1,
+    )[1].split(r"For $A_m(a,b)H$", 1)[0]
+    for section in (summary_section, skeleton_section):
+        assert r"D=\diag(d_1,\ldots,d_n)" in section
+        assert r"d_j>0" in section
+        assert r"D\succ0" not in section
+    assert r"\det J=0" in skeleton_section
+
+    # Non-diagonal positive definiteness is insufficient for the coefficient
+    # conclusion, so the exported diagonality condition is mathematically
+    # substantive rather than a notational preference.
+    u = sp.Matrix([100, 1, 1])
+    v = sp.Matrix([sp.Rational(1, 300), sp.Rational(1, 3), sp.Rational(1, 3)])
+    J = -sp.eye(3) + u * v.T
+    D = sp.Matrix(
+        [
+            [sp.Rational(4, 3), sp.Rational(-2, 3), 0],
+            [sp.Rational(-2, 3), sp.Rational(4, 3), 0],
+            [0, 0, 1],
+        ]
+    )
+    s = sp.symbols("s")
+    assert sp.factor((s * D - J).det()) == s * (600 * s**2 - 8801 * s - 9451) / 450
+
+
+def test_literature_comparison_columns_are_semantically_aligned():
+    with (ROOT / "literature" / "theorem_comparison.csv").open(newline="") as handle:
+        rows = list(csv.DictReader(handle))
+    row = next(item for item in rows if item["Prior result"] == "Conradi-Mincheva-Uecker 2026")
+    assert row["Exact diffusion law"] == "no"
+    assert row["Nonlinear branch"] == "numerical continuation"
+    assert row["Stable branch"] == "numerically stable segments"
 
 
 def test_threshold_and_algebraic_simplicity_precision_closures():
@@ -731,6 +856,9 @@ def test_replay_preserves_release_manifest_and_separates_self_consistency():
         ):
             assert marker in script, f"{name} lacks {marker}"
 
+        assert "! grep -Eiq" not in script, f"{name} has a non-failing negated warning check"
+        assert "if grep -Eiq" in script, f"{name} lacks an explicit failing warning check"
+
         assert script.index(baseline_definition) < script.index(baseline_check)
         assert script.index(baseline_check) < script.index(preserve)
         assert script.index(preserve) < script.index(first_generator)
@@ -738,6 +866,19 @@ def test_replay_preserves_release_manifest_and_separates_self_consistency():
         assert script.index(exact_check) < script.index(self_definition)
         assert script.index(self_definition) < script.index(self_write)
         assert '> "$BASELINE_MANIFEST"' not in script
+
+    if release_dir.is_dir():
+        toolchain_check = 'bash "$ROOT/environment/check_toolchain.sh" --quiet'
+        first_document_build = "pdflatex -interaction=nonstopmode"
+        full_pdf_audit = 'python "$ROOT/computation/audit_pdfs.py" --profile full'
+        preflight_copy = (
+            'copy_files "$ROOT/release/pdf_preflight" '
+            '"$PUB/verification_outputs/pdf_preflight"'
+        )
+        assert refresh.index(toolchain_check) < refresh.index(first_document_build)
+        assert refresh.index(full_pdf_audit) < refresh.index(preflight_copy)
+        assert "external_audit_theorem_summary_pdf.txt" in refresh
+        assert "external_audit_proof_skeleton_pdf.txt" in refresh
 
 
 def test_release_manifest_generator_is_tracked_and_nul_safe():
