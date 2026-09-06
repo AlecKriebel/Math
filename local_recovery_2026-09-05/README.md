@@ -13,3 +13,5 @@ The Borsuk working files include weighted-contact-coloring counterexamples and H
 Author: Alec Kriebel, https://orcid.org/0009-0001-9320-500X
 
 The universal-amplification clone also contained 41 historical reflog tips outside current GitHub history. `universal-reflog-history.bundle` preserves these under `recovered-universal-*` refs (approximately 0.65 MiB). Fetch all existing GitHub branches and tags before importing this incremental bundle.
+
+Cleanup completed after remote checksum verification. `CLEANUP_RESULT.json` lists the exact oversized files retained. The Borsuk folder now contains Git metadata only, and still depends on the primary Math object store; recover working files from this PR or restore from Git when needed. Uploaded archive working copies and the temporary publishing repository were removed after the final metadata push.
