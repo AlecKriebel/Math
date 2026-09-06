@@ -11,3 +11,5 @@ The Borsuk clone has eight commits outside main at `83e6abf5e569164669689d703835
 The Borsuk working files include weighted-contact-coloring counterexamples and H4 mixed-deletion/negative-graph experiments. Universal-amplification files include threshold/catalyst searches, determinant checks, and potential-function experiments. STC-JC artifacts are historical v1.1.5 material, not replacements for v1.1.7. Remaining archives preserve Kissing-5 snapshots, K2P referee records, Ramsey certificates, and other historical outputs.
 
 Author: Alec Kriebel, https://orcid.org/0009-0001-9320-500X
+
+The universal-amplification clone also contained 41 historical reflog tips outside current GitHub history. `universal-reflog-history.bundle` preserves these under `recovered-universal-*` refs (approximately 0.65 MiB). Fetch all existing GitHub branches and tags before importing this incremental bundle.
