@@ -1,22 +1,23 @@
-# Replay status for the v1.0.10 pre-submission release
+# Replay status for the v1.0.11 pre-submission release
 
-This file distinguishes the current release from historical v1.0.9 evidence
+This file distinguishes the current release from historical v1.0.10 evidence
 and from historical-lineage verification.
 
-## v1.0.10 current source
+## v1.0.11 current source
 
-The current release restores positive-diagonal diffusion and singularity
-hypotheses omitted from the standalone theorem exports, validates the ordered
-variables in every modulus-certificate reader and table-generation path,
-corrects the structured Conradi--Mincheva--Uecker comparison, and removes
-ambiguous slash-fraction notation beside the parameter $A$. It cites the exact
-v1.0.9 predecessor DOI `10.5281/zenodo.22478273`. The central theorem suite,
-network, repaired endpoint, and current-profile data are unchanged.
+The current release makes the equilibrium-scaled certificate generator and
+both exact readers select $U$ for the 22-term homogeneous table and $A$ for the
+84-term spatial table, rejecting a row that carries the other recognized
+field.  It also removes all five overfull boxes from the detached SIADS builds
+and requires the same final-log gate before canonical, detached-journal,
+detached-source, and cover-letter PDFs are accepted.  It cites exact v1.0.10
+predecessor DOI `10.5281/zenodo.22559244`. The central theorem suite, network,
+repaired endpoint, exact coefficients, and current-profile data are unchanged.
 
 The current qualification campaign passes:
 
-- all 39 mutation/regression tests, including swapped-variable regeneration
-  attacks and source/rendered-PDF checks for the four present repairs;
+- all 39 mutation/regression tests, including dual-field and swapped-variable
+  attacks against exact readers, regeneration, and source validation;
 - all 39 direct verifier entrypoints normally and all 39 expected fail-closed
   executions under optimized Python;
 - the exact symbolic aggregate, current-profile source/provenance checks,
@@ -25,7 +26,9 @@ The current qualification campaign passes:
   theorem summary, and 6-page proof skeleton under semantic, producer,
   embedded-font, clean-log, and page-by-page visual checks;
 - the separate 24-page SIADS manuscript, 24-page SIADS supplement, and one-page
-  PDF cover letter under the same semantic and visual checks;
+  PDF cover letter under semantic, visual, and final-log checks with no overfull
+  box; the log-gate mutation rejects horizontal and vertical overflow and
+  prevents the simulated journal copy boundary;
 - all seven deterministic bundle hashes and detached builds of the bioRxiv,
   arXiv, and SIADS source ZIPs, including supplement auxiliary/TOC stabilization
   and extracted-layout-text equality; and
@@ -45,6 +48,15 @@ of 3.108 points. The current rendered-text gate additionally requires all 50
 rational-$A$ coefficients to use the unambiguous $aA/b$ form. The $m=3$
 near-threshold verifier reconstructs its cubic and complete onset spectrum from
 the reactions rather than trusting a stored rational expression.
+
+## Historical v1.0.10 source: passed independent review with two bounded repairs identified
+
+The exact v1.0.10 snapshot is archived at `10.5281/zenodo.22559244`. Its fresh
+independent review found no counterexample to a headline theorem and completed
+the 39-entrypoint, optimized-Python, clean portable replay, detached source
+build, and 96-page visual campaigns. It identified the certificate-field trust
+boundary and detached-journal layout/log-gate issues repaired in v1.0.11; the
+immutable v1.0.10 record remains unchanged.
 
 ## Historical v1.0.9 source: passed independent preprint review with four bounded repairs identified
 
@@ -154,7 +166,7 @@ supplement. The detached public replay used the same compatible pair and ended
 in `PUBLIC_REPLAY_PASS`. Numerical outputs are certified to the recorded
 tolerances, not asserted to be byte-identical across BLAS/SciPy toolchains.
 
-## Historical-lineage stage: not rerun for v1.0.10
+## Historical-lineage stage: not rerun for v1.0.11
 
 The top-level command additionally requires five frozen source archives listed
 in `release/reproducibility.md`. They were unavailable in the final repair
@@ -162,7 +174,7 @@ environment. Its preflight was exercised against an empty `FROZEN_BASE`: it
 reported all five missing archives, exited with status 2, and did not create or
 truncate `release/replay.log`.
 
-Accordingly, v1.0.10 claims a current portable replay and direct verification of
+Accordingly, v1.0.11 claims a current portable replay and direct verification of
 the substantive stages above. It does **not** claim that this tree completed
 the optional historical-lineage replay. The lineage
 archives are not consumed by any current proof, data, document, or package

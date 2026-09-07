@@ -484,6 +484,51 @@ def test_all_modulus_readers_and_generator_reject_variable_order_swaps(
     assert result.returncode != 0
     assert "expected ordered variables" in result.stdout + result.stderr
 
+    if certificate_name == "pareto_all_m_certificate.json":
+        # A second recognized coefficient field must not be allowed to change
+        # what regeneration prints while the mathematical reader consumes the
+        # section's intended field.  Exercise both U-for-homogeneous and
+        # A-for-spatial directions, including the referee's [6,1,0] witness.
+        dual_payload = json.loads(source.read_text())
+        dual_section = dual_payload
+        for key in section_path:
+            dual_section = dual_section[key]
+        if section_path[-1] == "homogeneous":
+            conflicting_key = "coefficient_in_A_ascending"
+            target = dual_section["terms"][0]
+        else:
+            conflicting_key = "coefficient_in_U_ascending"
+            target = next(
+                term for term in dual_section["terms"] if term["powers"] == [6, 1, 0]
+            )
+        target[conflicting_key] = ["1"]
+        dual_candidate = tmp_path / f"dual_{section_path[-1]}.json"
+        dual_candidate.write_text(json.dumps(dual_payload))
+
+        with pytest.raises(AssertionError, match="conflicting recognized"):
+            mode_certificates.verify(dual_candidate)
+        with pytest.raises(AssertionError, match="conflicting recognized"):
+            exposition_identities.verify_modulus_source_polynomials(
+                pareto_certificate=dual_candidate,
+            )
+        dual_generation = subprocess.run(
+            [
+                sys.executable,
+                str(ROOT / "computation" / "generate_tables.py"),
+                "--pareto-certificate",
+                str(dual_candidate),
+                "--check-certificate-table",
+                str(ROOT / "data" / "certificate_tables.tex"),
+            ],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+        )
+        assert dual_generation.returncode != 0
+        assert "conflicting recognized coefficient field" in (
+            dual_generation.stdout + dual_generation.stderr
+        )
+
 
 def test_table_generator_rejects_malformed_certificate_rows():
     import computation.generate_tables as table_generator
@@ -801,7 +846,7 @@ def test_every_direct_verifier_entrypoint_rejects_optimized_python():
 
 def test_replay_preserves_release_manifest_and_separates_self_consistency():
     release_dir = ROOT / "release"
-    if release_dir.is_dir():
+    if (release_dir / "one_command_replay.sh").is_file():
         full_replay = (release_dir / "one_command_replay.sh").read_text()
         refresh = (release_dir / "refresh_packages.sh").read_text()
         portable_replay = refresh.split(
@@ -857,7 +902,9 @@ def test_replay_preserves_release_manifest_and_separates_self_consistency():
             assert marker in script, f"{name} lacks {marker}"
 
         assert "! grep -Eiq" not in script, f"{name} has a non-failing negated warning check"
-        assert "if grep -Eiq" in script, f"{name} lacks an explicit failing warning check"
+        assert (
+            "release/audit_tex_logs.py" in script
+        ), f"{name} lacks the shared fail-closed final-log check"
 
         assert script.index(baseline_definition) < script.index(baseline_check)
         assert script.index(baseline_check) < script.index(preserve)
@@ -867,7 +914,7 @@ def test_replay_preserves_release_manifest_and_separates_self_consistency():
         assert script.index(self_definition) < script.index(self_write)
         assert '> "$BASELINE_MANIFEST"' not in script
 
-    if release_dir.is_dir():
+    if (release_dir / "refresh_packages.sh").is_file():
         toolchain_check = 'bash "$ROOT/environment/check_toolchain.sh" --quiet'
         first_document_build = "pdflatex -interaction=nonstopmode"
         full_pdf_audit = 'python "$ROOT/computation/audit_pdfs.py" --profile full'
@@ -904,6 +951,9 @@ def test_detached_source_validation_stabilizes_and_compares_documents():
         "pdftotext -layout",
         'expected_supplement=',
         'cmp -s supplement.semantic.txt supplement.expected.txt',
+        'pdfinfo main.pdf',
+        'pdfinfo supplement.pdf',
+        'cp "$submission_builds" release/submission_source_builds.txt',
     ):
         assert marker in replay
 

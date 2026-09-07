@@ -44,7 +44,7 @@ The author must review or provide the following before upload:
   confirmations not already recorded in this bundle;
 - final author-contribution and AI-assistance disclosures in the wording
   required by the journal;
-- immutable version 1.0.10 release URL, Zenodo concept DOI, data-and-code
+- immutable version 1.0.11 release URL, Zenodo concept DOI, data-and-code
   availability statement, licenses, and the exact supplementary files to
   accompany the article;
 - any editor or reviewer suggestions requested by the portal; and

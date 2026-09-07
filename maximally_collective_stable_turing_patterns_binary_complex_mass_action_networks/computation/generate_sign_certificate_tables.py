@@ -85,6 +85,20 @@ It enters the clearing identity with a positive denominator and no external
 negative prefactor.''',
  tex_list('Reference coefficient $R_m$',
           r'''Define
+\ifsiadsreview
+\[
+\begin{split}
+ P_R(m)={}&68605040480814208768m^4
+ -550882186169626030957m^3\\
+ &+1658612632937449670852m^2
+ -2219226476204103501323m\\
+ &+1113379274975809565700.
+\end{split}
+\]
+\[
+ R_m=\frac{P_R(m)}{286118780220(8m-17)\mathcal Q_m}.
+\]
+\else
 \[
 \begin{split}
  P_R(m)={}&68605040480814208768m^4
@@ -96,6 +110,7 @@ negative prefactor.''',
 \qquad
  R_m=\frac{P_R(m)}{286118780220(8m-17)\mathcal Q_m}.
 \]
+\fi
 After $m=u+3$, the following coefficients of $P_R$ are listed in descending
 powers of $u$:''',coeffs(Pr,m,u,3))+
  r'''\noindent Every coefficient is positive.  The denominator is positive

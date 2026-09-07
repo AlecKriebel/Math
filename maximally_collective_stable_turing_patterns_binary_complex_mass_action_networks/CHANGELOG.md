@@ -1,5 +1,24 @@
 # Changelog
 
+## v1.0.11 — certificate-regeneration and journal-log closure — 6 September 2026
+
+- Made the 22-term and 84-term table paths select their coefficient parameters
+  explicitly ($U$ and $A$, respectively) and reject a row carrying the other
+  recognized coefficient field.  Dual-field mutations now exercise the two
+  exact readers, regeneration, and the manuscript source audit.
+- Repaired the five overfull boxes identified in the detached SIADS builds
+  without changing any formula, coefficient, theorem, reaction, diffusion
+  profile, endpoint, or numerical datum.
+- Applied one final TeX-log gate to canonical documents, detached journal
+  documents, detached source-package builds, and the cover letter before any
+  resulting PDF is accepted or packaged.  The retained negative control proves
+  that journal-only horizontal and vertical overflow prevents the copy step.
+- Made the complete replay regenerate its detached source-build record from
+  the actual PDFs, preventing page-count evidence from drifting after a layout
+  change.
+- Targeted a distinct v1.0.11 release and recorded v1.0.10 as the immutable
+  predecessor at DOI `10.5281/zenodo.22559244`.
+
 ## v1.0.10 — independent v1.0.9 preprint-referee precision repair — 6 September 2026
 
 - Restored the essential positive-diagonal diffusion hypothesis in both

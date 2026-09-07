@@ -58,14 +58,18 @@ standalone one-page figures were separately rendered and inspected; Figure 1's
 chain labels are distinct and nonoverlapping.  No clipping, overlap, broken
 glyph, malformed equation, or anomalous blank page was found.
 
-The v1.0.10 referee-repair documents received a fresh primary page-by-page
-inspection. The canonical manuscript and supplement remain 19 pages each; the
+The v1.0.11 certificate-regeneration and journal-layout repair documents
+received a fresh primary page-by-page inspection. The canonical manuscript and
+supplement remain 19 pages each; the
 theorem summary and proof skeleton remain 3 and 6 pages. The separate SIADS
 review presentation is 24 pages for the manuscript and 24 pages for the
 supplement, with a one-page cover letter. All 96 rendered pages are clean. In
 particular, the standalone diffusion-ray statements visibly require positive
 diagonal $D$ and the proof skeleton visibly assumes $\det J=0$; all 50 affected
-certificate coefficients render unambiguously as $aA/b$ with no collision;
-continuous line numbers remain outside the 6-by-8-inch text block; and Figure
-1's labels remain separated. No clipping, overlap, missing glyph, malformed
+certificate coefficients render unambiguously as $aA/b$ with no collision.
+The two verifier commands, the contrast table, the $P_R$/$R_m$ display, and the
+operator-space definitions now remain inside the 6-by-8-inch SIADS text block;
+continuous line numbers remain outside that block, and Figure 1's labels remain
+separated.  The seven retained final logs contain no overfull box or unresolved
+reference/citation warning. No clipping, overlap, missing glyph, malformed
 equation, or anomalous blank page was found.

@@ -32,19 +32,19 @@ missing_cites=sorted(set(cites)-bibkeys)
 if missing_cites: raise AssertionError(f'missing bib keys {missing_cites}')
 
 for marker in (
-    'version: "1.0.10"',
+    'version: "1.0.11"',
     'date-released: "2026-09-06"',
-    'maximally-collective-stable-turing-v1.0.10',
+    'maximally-collective-stable-turing-v1.0.11',
     '10.5281/zenodo.21753404',
-    '10.5281/zenodo.22478273',
+    '10.5281/zenodo.22559244',
     'authors:',
 ):
     if marker not in cff:
         raise AssertionError(f'CITATION.cff lacks release marker {marker}')
 if not all(marker in main for marker in (
-    'version 1.0.10 tagged release source tree',
+    'version 1.0.11 tagged release source tree',
     '10.5281/zenodo.21753404',
-    '10.5281/zenodo.22478273',
+    '10.5281/zenodo.22559244',
 )):
     raise AssertionError('data statement does not distinguish the current tag, concept DOI, and preceding version DOI')
 
@@ -96,6 +96,18 @@ ordered_variables=(
 for name,actual,expected in ordered_variables:
     if actual != expected:
         raise AssertionError(f'{name} certificate variable order {actual!r} != {expected!r}')
+for section_name,parameter in (('homogeneous','U'),('spatial','A')):
+    required=f'coefficient_in_{parameter}_ascending'
+    for row in pareto_certificate['modulus'][section_name]['terms']:
+        recognized={
+            key for key in ('coefficient_in_U_ascending','coefficient_in_A_ascending')
+            if key in row
+        }
+        if recognized != {required}:
+            raise AssertionError(
+                f'scaled {section_name} row {row.get("powers")!r} has coefficient '
+                f'fields {sorted(recognized)!r}; expected only {required!r}'
+            )
 
 # Keep the structured comparison table aligned with its named columns.
 with (ROOT/'literature'/'theorem_comparison.csv').open(newline='') as handle:
@@ -492,6 +504,52 @@ if submission_root.is_dir():
     for stale in ('Author confirmation required', 'author to confirm', 'No funding information supplied'):
         if stale.lower() in declaration_corpus.lower():
             raise AssertionError(f'submission materials retain stale declaration placeholder: {stale}')
+
+# Release PDFs may be accepted only after their final TeX logs pass the same
+# warning gate.  Keep the detached journal and cover-letter checks before the
+# corresponding copy operations, where a failure can still prevent sealing.
+refresh_path=ROOT/'release'/'refresh_packages.sh'
+if refresh_path.is_file():
+    refresh=refresh_path.read_text()
+    gate='release/audit_tex_logs.py'
+    if gate not in refresh:
+        raise AssertionError('package refresh omits the shared final-TeX-log gate')
+    journal_gate=(
+        'python "$ROOT/release/audit_tex_logs.py" \\\n'
+        '  "$JOURNAL_BUILD/main.log" "$JOURNAL_BUILD/supplement.log" >/dev/null'
+    )
+    cover_gate=(
+        'python "$ROOT/release/audit_tex_logs.py" '
+        '"$COVER_BUILD/cover_letter_SIADS.log" >/dev/null'
+    )
+    ordered_release_boundaries=(
+        ('detached journal manuscript', journal_gate,
+         'cp "$JOURNAL_BUILD/main.pdf"'),
+        ('detached journal supplement', journal_gate,
+         'cp "$JOURNAL_BUILD/supplement.pdf"'),
+        ('journal cover letter', cover_gate,
+         'cp "$COVER_BUILD/cover_letter_SIADS.pdf"'),
+    )
+    for label,gate_marker,copy_marker in ordered_release_boundaries:
+        try:
+            gate_position=refresh.index(gate_marker)
+            copy_position=refresh.index(copy_marker)
+        except ValueError as error:
+            raise AssertionError(f'package refresh omits {label} log/copy boundary') from error
+        if gate_position >= copy_position:
+            raise AssertionError(f'{label} PDF is copied before its final log is audited')
+    if '--journal-negative-control' not in refresh:
+        raise AssertionError('package refresh omits the journal overfull-box negative control')
+
+replay_path=ROOT/'release'/'one_command_replay.sh'
+if replay_path.is_file():
+    replay=replay_path.read_text()
+    if 'release/audit_tex_logs.py" main.log supplement.log' not in replay:
+        raise AssertionError('detached submission source builds omit final-log auditing')
+    for marker in ('pdfinfo main.pdf', 'pdfinfo supplement.pdf',
+                   'cp "$submission_builds" release/submission_source_builds.txt'):
+        if marker not in replay:
+            raise AssertionError('detached submission source evidence is not regenerated')
 
 print('MANUSCRIPT_AUDIT_PASS')
 print('labels',len(labels),'references',len(refs),'bibkeys',len(bibkeys),'citations',len(cites),'abstract_words',len(words))

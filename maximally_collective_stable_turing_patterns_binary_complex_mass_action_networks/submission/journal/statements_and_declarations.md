@@ -9,13 +9,13 @@ and has not been submitted to, another journal.
 
 **Data and code:** Exact proof certificates, independent verifiers, numerical
 data, and replay instructions accompany the manuscript and target the frozen
-version 1.0.10 release at
-https://github.com/AlecKriebel/Math/releases/tag/maximally-collective-stable-turing-v1.0.10 .
+version 1.0.11 release at
+https://github.com/AlecKriebel/Math/releases/tag/maximally-collective-stable-turing-v1.0.11 .
 The exact tagged source tree is
-https://github.com/AlecKriebel/Math/tree/maximally-collective-stable-turing-v1.0.10/maximally_collective_stable_turing_patterns_binary_complex_mass_action_networks ;
+https://github.com/AlecKriebel/Math/tree/maximally-collective-stable-turing-v1.0.11/maximally_collective_stable_turing_patterns_binary_complex_mass_action_networks ;
 archived versions share the stable concept DOI
-https://doi.org/10.5281/zenodo.21753404 . The exact preceding version 1.0.9
-snapshot has DOI https://doi.org/10.5281/zenodo.22478273 . The `main` branch
+https://doi.org/10.5281/zenodo.21753404 . The exact preceding version 1.0.10
+snapshot has DOI https://doi.org/10.5281/zenodo.22559244 . The `main` branch
 remains the development location.
 
 **Author contributions:** Alec Kriebel: conception, mathematical analysis, software, validation, visualization, and writing.

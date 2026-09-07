@@ -22,6 +22,28 @@ import sys
 import sympy as sp
 
 
+def coefficient_values(term, parameter, section):
+    """Read the section's declared coefficient parameter unambiguously."""
+
+    required = f"coefficient_in_{parameter}_ascending"
+    recognized = {
+        key
+        for key in ("coefficient_in_U_ascending", "coefficient_in_A_ascending")
+        if key in term
+    }
+    if required not in recognized:
+        raise AssertionError(
+            f"{section}: row {term.get('powers')!r} lacks required field {required!r}"
+        )
+    conflicting = recognized - {required}
+    if conflicting:
+        raise AssertionError(
+            f"{section}: row {term.get('powers')!r} has conflicting recognized "
+            f"coefficient field(s) {sorted(conflicting)!r}"
+        )
+    return [sp.Rational(value) for value in term[required]]
+
+
 def even(expr, y, z):
     out = 0
     for (k,), coef in sp.Poly(sp.expand(expr), y).terms():
@@ -201,7 +223,7 @@ def verify(path: Path):
     assert len(homogeneous_rows) == homogeneous["term_count"] == len(expected_homogeneous)
     assert len(set(homogeneous_powers)) == len(homogeneous_powers)
     table = {
-        tuple(t["powers"]): [sp.Rational(v) for v in t["coefficient_in_U_ascending"]]
+        tuple(t["powers"]): coefficient_values(t, "U", "homogeneous modulus certificate")
         for t in homogeneous_rows
     }
     assert set(table) == set(expected_homogeneous)
@@ -227,7 +249,7 @@ def verify(path: Path):
     assert len(spatial_rows) == spatial["term_count"] == len(expected_spatial)
     assert len(set(spatial_powers)) == len(spatial_powers)
     table = {
-        tuple(t["powers"]): [sp.Rational(v) for v in t["coefficient_in_A_ascending"]]
+        tuple(t["powers"]): coefficient_values(t, "A", "spatial modulus certificate")
         for t in spatial_rows
     }
     assert set(table) == set(expected_spatial)

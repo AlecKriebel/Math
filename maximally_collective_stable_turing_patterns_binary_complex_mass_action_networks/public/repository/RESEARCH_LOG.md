@@ -578,3 +578,46 @@
   data changes.
 - Best-guess completion toward the v1.0.10 referee-repair and immutable release
   goal: **100%**. Only tracked-manifest closure and publication remain.
+
+## 2026-09-06 21:17:55 PDT — v1.0.11 referee-response checkpoint
+
+- Began the independent v1.0.10 referee-response pass from latest `main` and
+  reproduced both bounded findings against the exact reviewed tree.
+- Confirmed the certificate-field mismatch changes the regenerated $x^6z$
+  coefficient by $16019/24300$ while leaving the shipped v1.0.10 certificate
+  correct; implemented explicit $U$/$A$ selection and fail-closed dual-field
+  validation in all three consumers.
+- Rebuilt the detached journal source and reproduced exactly five overfull
+  boxes of 33.31522, 22.83739, 59.06581, 48.98580, and 1.66727 points; began
+  narrow layout repairs and a release-wide final-log acceptance gate.
+- Independent mathematical review found no change warranted to the reaction
+  topology, theorem statements, repaired endpoint, exact diffusion profile,
+  nonlinear coefficient, or numerical data.
+- Best-guess completion toward the v1.0.11 referee-response release: 70%.
+
+## 2026-09-06 21:39:53 PDT — v1.0.11 adversarial qualification closure
+
+- Passed all 39 regression tests, all 39 direct verifier entrypoints, all 39
+  optimized-Python rejection controls, the all-dimensional symbolic aggregate,
+  current-profile provenance, and integrated designs through the stored stress
+  dimensions 149 and 200.
+- Rebuilt every canonical, public, specialist, bioRxiv, arXiv, and SIADS
+  artifact with the pinned Python 3.9.6 and TinyTeX 2022.04 stack.  All seven
+  final TeX logs pass the shared fail-closed gate; all seven bundles pass their
+  recorded hashes and ZIP integrity checks.
+- Completed the full portable replay through `PUBLIC_REPLAY_PASS`; both the
+  immutable downloaded baseline and regenerated self-consistency manifest
+  reject deliberate changes to the exact current-profile source.
+- Rendered and inspected all 96 pages of the seven delivered PDFs, including
+  full-resolution checks of the five repaired SIADS pages.  No clipping,
+  overlap, missing glyph, margin incursion, malformed equation, or anomalous
+  blank page remains; every font is embedded.
+- The final adversarial audit found a stale 23/23-page detached-build sidecar,
+  not a stale PDF.  Rebuilt all three source ZIPs independently, confirmed
+  19/19, 19/19, and 24/24 pages with stable supplement state and exact
+  extracted-text agreement, corrected the record, and wired its regeneration
+  into the complete replay.  Regenerated the full-tree stale-claim audit as
+  well.
+- Best-guess completion toward the v1.0.11 referee-response and immutable
+  release goal: **100%**. Only tracked-manifest closure, push, and release
+  publication remain.

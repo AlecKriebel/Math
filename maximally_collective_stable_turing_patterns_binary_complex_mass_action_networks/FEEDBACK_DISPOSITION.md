@@ -1,5 +1,15 @@
 # Feedback disposition
 
+## Independent v1.0.10 referee report — 6 September 2026
+
+| Referee item | Disposition | Action |
+|---|---|---|
+| C1: the generator prefers a recognized $U$ field in an 84-term spatial row while the readers consume $A$ | ACCEPT | Reproduced the exact $x^6z$ witness and coefficient discrepancy $16019/24300$.  The generator and both mathematical readers now require the section-specific field and reject the other recognized field; dual-field mutation/regeneration checks and the source audit close both directions.  The shipped v1.0.10 JSON and table were already correct. |
+| J1: five detached SIADS boxes exceed the six-inch text width and their logs escape the release warning gate | ACCEPT | Reproduced all five warning widths.  Split the two long commands and displays, fit the contrast table to the journal text block, and added a shared final-log gate before canonical, journal, detached-source, and cover-letter PDF acceptance.  A journal-only copy-boundary mutation rejects horizontal and vertical overflows. |
+| Final evidence drift: the retained SIADS source-build record still listed the previous 23-page layout | ACCEPT, INDEPENDENTLY FOUND | Rebuilt all three source ZIPs in fresh directories, confirmed 19/19, 19/19, and 24/24 pages with stable supplement auxiliaries and exact extracted-text agreement, corrected the record, and made the complete replay regenerate it. |
+| Previous N1--N4 findings | CONFIRMED CLOSED | No source change beyond the C1/J1 repairs was warranted.  The topology, theorem suite, repaired endpoint, exact current profile, and numerical data remain unchanged. |
+| New literature or theorem changes | REJECT AS UNSUPPORTED | The report found no mathematical counterexample or supported reason to alter the scientific claims. |
+
 ## Independent v1.0.9 preprint referee report — 6 September 2026
 
 | Referee item | Disposition | Action |

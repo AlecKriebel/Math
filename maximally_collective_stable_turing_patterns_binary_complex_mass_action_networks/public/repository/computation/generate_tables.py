@@ -48,7 +48,7 @@ def cert_table(
     terms,
     declared_count,
     expected_variables,
-    pareto=False,
+    coefficient_parameter=None,
 ):
     if variables != list(expected_variables):
         raise ValueError(
@@ -67,9 +67,24 @@ def cert_table(
            ' & '.join([rf'$\deg_{{{v}}}$' for v in variables]+['coefficient'])+r'\\',r'\toprule',r'\endfirsthead',
            ' & '.join([rf'$\deg_{{{v}}}$' for v in variables]+['coefficient'])+r'\\',r'\toprule',r'\endhead']
     for t in terms:
-        if pareto:
-            key='coefficient_in_U_ascending' if 'coefficient_in_U_ascending' in t else 'coefficient_in_A_ascending'
-            coeff=polynomial(t[key], 'U' if key.endswith('_U_ascending') else 'A')
+        if coefficient_parameter is not None:
+            key=f'coefficient_in_{coefficient_parameter}_ascending'
+            recognized={
+                name for name in (
+                    'coefficient_in_U_ascending',
+                    'coefficient_in_A_ascending',
+                )
+                if name in t
+            }
+            if key not in recognized:
+                raise ValueError(f'{title}: row {t["powers"]!r} lacks required field {key!r}')
+            conflicting=recognized-{key}
+            if conflicting:
+                raise ValueError(
+                    f'{title}: row {t["powers"]!r} has conflicting recognized '
+                    f'coefficient field(s) {sorted(conflicting)!r}'
+                )
+            coeff=polynomial(t[key], coefficient_parameter)
         else:
             coeff=texfrac(t['coefficient'])
         lines.append(' & '.join([str(x) for x in t['powers']]+[rf'${coeff}$'])+r'\\')
@@ -110,8 +125,8 @@ def main():
     parts=[
       cert_table('35-term homogeneous certificate',D['homogeneous']['variables'],D['homogeneous']['terms'],D['homogeneous']['term_count'],('x','z')),
       cert_table('77-term improved-profile spatial certificate',D['improved_mode']['variables'],D['improved_mode']['terms'],D['improved_mode']['term_count'],('x','z','s')),
-      cert_table(r'22-term equilibrium-scaled homogeneous certificate ($U=A-1/4$)',P['modulus']['homogeneous']['variables'],P['modulus']['homogeneous']['terms'],P['modulus']['homogeneous']['term_count'],('x','z'),True),
-      cert_table('84-term equilibrium-scaled spatial certificate',P['modulus']['spatial']['variables'],P['modulus']['spatial']['terms'],P['modulus']['spatial']['term_count'],('x','z','s'),True),
+      cert_table(r'22-term equilibrium-scaled homogeneous certificate ($U=A-1/4$)',P['modulus']['homogeneous']['variables'],P['modulus']['homogeneous']['terms'],P['modulus']['homogeneous']['term_count'],('x','z'),'U'),
+      cert_table('84-term equilibrium-scaled spatial certificate',P['modulus']['spatial']['variables'],P['modulus']['spatial']['terms'],P['modulus']['spatial']['term_count'],('x','z','s'),'A'),
     ]
     certificate_text='\n\n'.join(parts)+'\n'
     if args.check_certificate_table is not None:

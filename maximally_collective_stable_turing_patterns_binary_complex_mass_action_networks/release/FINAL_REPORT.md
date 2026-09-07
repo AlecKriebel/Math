@@ -1,18 +1,22 @@
 # OUTCOME
 
-## V1.0.10 RELEASE-CANDIDATE REPAIR
+## V1.0.11 CERTIFICATE-REGENERATION AND JOURNAL-LAYOUT REPAIR
 
-Version 1.0.10 repairs the independent v1.0.9 preprint referee's four bounded
-findings: missing hypotheses in standalone theorem exports, unchecked ordered
-certificate variables, a shifted structured literature-comparison row, and
-ambiguous rational-parameter notation. It also makes document refresh rebuild
-the canonical theorem exports and manuscript PDFs before packaging, preventing
-source/PDF drift. No theorem in the main manuscript, reaction, endpoint,
-numerical profile, or nonlinear conclusion changes. The immutable v1.0.9
-source remains unchanged at exact version DOI `10.5281/zenodo.22478273`.
-Current qualification evidence is recorded in `REPLAY_STATUS.md`. The v1.0.10
+Version 1.0.11 closes the two bounded findings from the independent v1.0.10
+referee report.  The two equilibrium-scaled coefficient tables now select
+their intended parameters explicitly and reject a second recognized field;
+the referee's dual-field witness is a regression across both exact readers,
+regeneration, and validation.  The five detached SIADS overfull boxes are
+repaired, and a shared fail-closed TeX-log gate now covers canonical,
+detached-journal, detached-source, and cover-letter builds before their PDFs
+are copied or packaged.  No theorem, reaction, endpoint, exact coefficient,
+diffusion profile, numerical datum, or nonlinear conclusion changes.  The
+immutable v1.0.10 source remains unchanged at exact version DOI
+`10.5281/zenodo.22559244`.
+
+Current qualification evidence is recorded in `REPLAY_STATUS.md`. The v1.0.11
 release passes the 39-test, 39-entrypoint, optimized-Python rejection, package,
-clean-source-build, semantic-PDF, and 96-page visual campaign.
+clean-source-build, semantic-PDF, final-log, and 96-page visual campaign.
 The author has confirmed that this work received no specific funding, that
 there are no competing interests, and that the manuscript is not submitted to
 or under consideration by another journal; the active SIADS cover letter and
@@ -24,8 +28,9 @@ through v1.0.7; v1.0.8 added the pinned toolchain, preserving manifest design,
 fixed-mass Fourier/Fredholm argument, and scoped output provenance described in
 the status and changelog. Version 1.0.9 closed the residual reproducibility
 implementation defects identified by the independent v1.0.8 rereview;
-v1.0.10 closes the four precision issues identified by its independent
-preprint rereview.
+v1.0.10 closed the four precision issues identified by its independent
+preprint rereview; and v1.0.11 closes the two bounded regeneration and journal
+presentation issues identified by the independent v1.0.10 review.
 
 The numerical-provenance, theorem-scope, proof-presentation,
 certificate-visibility, and release-rebuild program through v1.0.7 is
@@ -490,9 +495,9 @@ lineage replay is claimed. For an ordinary third-party downloader, the
 self-contained command is `cd public/repository && bash replay.sh`.
 
 The immutable release series is indexed by the stable Zenodo concept DOI
-`10.5281/zenodo.21753404`. The exact preceding v1.0.9 snapshot is archived at
-version DOI `10.5281/zenodo.22478273`. The corrected source targets the distinct
-v1.0.10 tag and does not misassign a not-yet-minted DOI to that new tree.
+`10.5281/zenodo.21753404`. The exact preceding v1.0.10 snapshot is archived at
+version DOI `10.5281/zenodo.22559244`. The corrected source targets the distinct
+v1.0.11 tag and does not misassign a not-yet-minted DOI to that new tree.
 
 The 5 September full-referee repair additionally closes malformed-certificate
 acceptance, coefficient-table overlap, two inaccurate determinant-proof

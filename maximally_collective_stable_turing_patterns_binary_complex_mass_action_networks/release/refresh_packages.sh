@@ -10,6 +10,9 @@ if ! bash "$ROOT/environment/check_toolchain.sh" --quiet; then
   printf '%s\n' 'Package refresh requires the pinned release toolchain.' >&2
   exit 2
 fi
+mkdir -p "$ROOT/release/verification_outputs"
+python "$ROOT/release/audit_tex_logs.py" --journal-negative-control \
+  > "$ROOT/release/verification_outputs/journal_log_gate_negative_control.txt"
 
 # Rebuild the canonical documents before any portable, submission, or audit
 # package copies them.  This keeps rendered exports synchronized with their
@@ -31,13 +34,10 @@ fi
   pdflatex -interaction=nonstopmode -halt-on-error proof_skeleton.tex >/dev/null
   pdflatex -interaction=nonstopmode -halt-on-error proof_skeleton.tex >/dev/null
 )
-for f in "$ROOT/manuscript/main.log" "$ROOT/manuscript/supplement.log" \
-  "$ROOT/external_audit/theorem_summary.log" "$ROOT/external_audit/proof_skeleton.log"; do
-  if grep -Eiq 'undefined references|undefined citations|LaTeX Warning: Reference|Overfull \\hbox' "$f"; then
-    printf 'document log audit failed: %s\n' "$f" >&2
-    exit 1
-  fi
-done
+python "$ROOT/release/audit_tex_logs.py" \
+  "$ROOT/manuscript/main.log" "$ROOT/manuscript/supplement.log" \
+  "$ROOT/external_audit/theorem_summary.log" "$ROOT/external_audit/proof_skeleton.log" \
+  >/dev/null
 # Regenerate the canonical PDF reports immediately from the documents above;
 # these reports are copied into the portable package only after its other
 # release artifacts have been staged.
@@ -55,6 +55,21 @@ copy_files() {
   done
 }
 
+# Preserve final TeX diagnostics as text evidence without generator-added
+# trailing spaces or blank EOF lines, which otherwise make release diffs noisy.
+retain_final_log() {
+  python - "$1" "$2" <<'PY'
+from pathlib import Path
+import sys
+
+source, destination = map(Path, sys.argv[1:])
+lines = [line.rstrip() for line in source.read_text(errors="replace").splitlines()]
+while lines and not lines[-1]:
+    lines.pop()
+destination.write_text("\n".join(lines) + "\n", encoding="utf-8")
+PY
+}
+
 # ---------- portable public repository: strict allowlist ----------
 rm -rf "$PUB" "$ROOT/public/data_archive"
 mkdir -p "$PUB" "$ROOT/public/data_archive"
@@ -62,17 +77,18 @@ copy_files "$ROOT" "$PUB" LICENSE CITATION.cff RESEARCH_LOG.md \
   requirements.txt requirements-tested.txt \
   environment/TESTED_ENVIRONMENT.md \
   environment/texlive-2022.04.lock.txt \
-  environment/check_toolchain.sh
+  environment/check_toolchain.sh \
+  release/audit_tex_logs.py
 
 cat > "$PUB/README.md" <<'EOF'
 # Exact Diffusion Design for Maximally Collective Stable Turing Patterns
 
 Portable exact source, proof certificates, independent verifiers, current-profile numerical illustrations, and manuscript sources for the corrected final release.
 
-This package targets the immutable version 1.0.10 snapshot at
-<https://github.com/AlecKriebel/Math/releases/tag/maximally-collective-stable-turing-v1.0.10>.
+This package targets the immutable version 1.0.11 snapshot at
+<https://github.com/AlecKriebel/Math/releases/tag/maximally-collective-stable-turing-v1.0.11>.
 Archived versions share <https://doi.org/10.5281/zenodo.21753404>. The exact
-preceding version 1.0.9 snapshot has DOI <https://doi.org/10.5281/zenodo.22478273>.
+preceding version 1.0.10 snapshot has DOI <https://doi.org/10.5281/zenodo.22559244>.
 
 ## Replay
 
@@ -255,6 +271,8 @@ python computation/generate_sign_certificate_tables.py > "$OUT"/generated_sign_t
 echo '[2/8] exact tests and source audits'
 python -m pytest -q computation/tests > "$OUT"/pytest.txt
 python computation/audit_manuscript.py > "$OUT"/manuscript_audit.txt
+python release/audit_tex_logs.py --journal-negative-control \
+  > "$OUT"/journal_log_gate_negative_control.txt
 python independent_verifier/verify_current_numerical_provenance.py > "$OUT"/detached_numerical_provenance.txt
 python independent_verifier/verify_symbolic_certificates.py > "$OUT"/symbolic_certificates.txt
 
@@ -308,12 +326,8 @@ echo '[7/8] manuscript and supplement'
  pdflatex -interaction=nonstopmode -halt-on-error proof_skeleton.tex >/dev/null
  pdflatex -interaction=nonstopmode -halt-on-error proof_skeleton.tex >/dev/null
 )
-for f in manuscript/main.log manuscript/supplement.log external_audit/theorem_summary.log external_audit/proof_skeleton.log; do
-  if grep -Eiq 'undefined references|undefined citations|LaTeX Warning: Reference|Overfull \\hbox' "$f"; then
-    printf 'document log audit failed: %s\n' "$f" >&2
-    exit 1
-  fi
-done
+python release/audit_tex_logs.py manuscript/main.log manuscript/supplement.log \
+  external_audit/theorem_summary.log external_audit/proof_skeleton.log >/dev/null
 
 echo '[8/8] portability, PDF, and manifest'
 for f in manuscript/main.pdf manuscript/supplement.pdf external_audit/theorem_summary.pdf external_audit/proof_skeleton.pdf figures/network_family.pdf figures/stable_tradeoff.pdf figures/stable_profiles.pdf figures/amplitude_scaling.pdf; do test -s "$f"; done
@@ -334,22 +348,23 @@ find . -type d -name '__pycache__' -prune -exec rm -rf {} +
 find . -type f \( -name '*.aux' -o -name '*.log' -o -name '*.bcf' -o -name '*.blg' -o -name '*.fls' -o -name '*.fdb_latexmk' -o -name '*.run.xml' -o -name '*.out' -o -name '*.toc' -o -name '*.xdv' \) -delete
 cat > "$OUT"/PROVENANCE.tsv <<'PROVENANCE'
 artifact	command	evidence_class	scope	release_version	status
-current_profile_generation.txt	python computation/generate_current_profile_data.py	exact-generation	portable-public	1.0.10	current
-generated_tables.txt	python computation/generate_tables.py	exact-generation	portable-public	1.0.10	current
-generated_sign_tables.txt	python computation/generate_sign_certificate_tables.py	exact-generation	portable-public	1.0.10	current
-all_verifier_entrypoints.txt	39 direct verifier commands listed in the file	exact-and-spectral-entrypoint-coverage	full-source	1.0.10	current-release-qualification
-all_verifier_optimized_rejections.txt	39 direct verifier commands under python -O	assertion-mode-negative-control	full-source	1.0.10	current-release-qualification
-manifest_mutation_test.txt	detached baseline and self-manifest mutation controls	manifest-negative-control	portable-public-copy	1.0.10	current-release-qualification
-detached_numerical_provenance.txt	python independent_verifier/verify_current_numerical_provenance.py	exact-finite-provenance	portable-public	1.0.10	current
-integrated_designs.txt	integrated verifier commands in replay.sh	mixed-exact-and-spectral-regression	m=3,4,5,6,8,10,149,200 as applicable	1.0.10	current
-manuscript_audit.txt	python computation/audit_manuscript.py	source-semantic-audit	portable-public	1.0.10	current
-numerical_provenance.txt	python computation/audit_numerical_provenance.py	numerical-tolerance-audit	portable-public	1.0.10	current-full-only
-pdf_semantic_audit.txt	python computation/audit_pdfs.py --profile public	PDF-semantic-font-layout-audit	portable-public	1.0.10	current
-journal_pdf_semantic_audit.txt	python computation/audit_pdfs.py --profile journal	PDF-semantic-font-layout-audit	journal-submission	1.0.10	current-release-qualification
-pytest.txt	python -m pytest -q computation/tests	mutation-and-regression-tests	portable-public	1.0.10	current
-simulations.txt	python computation/simulations.py --outdir data/simulations --jobs 3	numerical-illustration	portable-public	1.0.10	current-full-only
-stale_claim_audit.txt	python computation/audit_stale_claims.py	stale-string-audit	portable-public	1.0.10	current
-symbolic_certificates.txt	python independent_verifier/verify_symbolic_certificates.py	exact-aggregate	portable-public	1.0.10	current
+current_profile_generation.txt	python computation/generate_current_profile_data.py	exact-generation	portable-public	1.0.11	current
+generated_tables.txt	python computation/generate_tables.py	exact-generation	portable-public	1.0.11	current
+generated_sign_tables.txt	python computation/generate_sign_certificate_tables.py	exact-generation	portable-public	1.0.11	current
+all_verifier_entrypoints.txt	39 direct verifier commands listed in the file	exact-and-spectral-entrypoint-coverage	full-source	1.0.11	current-release-qualification
+all_verifier_optimized_rejections.txt	39 direct verifier commands under python -O	assertion-mode-negative-control	full-source	1.0.11	current-release-qualification
+manifest_mutation_test.txt	detached baseline and self-manifest mutation controls	manifest-negative-control	portable-public-copy	1.0.11	current-release-qualification
+detached_numerical_provenance.txt	python independent_verifier/verify_current_numerical_provenance.py	exact-finite-provenance	portable-public	1.0.11	current
+integrated_designs.txt	integrated verifier commands in replay.sh	mixed-exact-and-spectral-regression	m=3,4,5,6,8,10,149,200 as applicable	1.0.11	current
+journal_log_gate_negative_control.txt	python release/audit_tex_logs.py --journal-negative-control	journal-log-CLI-and-copy-boundary-mutation-control	portable-public	1.0.11	current
+manuscript_audit.txt	python computation/audit_manuscript.py	source-semantic-audit	portable-public	1.0.11	current
+numerical_provenance.txt	python computation/audit_numerical_provenance.py	numerical-tolerance-audit	portable-public	1.0.11	current-full-only
+pdf_semantic_audit.txt	python computation/audit_pdfs.py --profile public	PDF-semantic-font-layout-audit	portable-public	1.0.11	current
+journal_pdf_semantic_audit.txt	python computation/audit_pdfs.py --profile journal	PDF-semantic-font-layout-audit	journal-submission	1.0.11	current-release-qualification
+pytest.txt	python -m pytest -q computation/tests	mutation-and-regression-tests	portable-public	1.0.11	current
+simulations.txt	python computation/simulations.py --outdir data/simulations --jobs 3	numerical-illustration	portable-public	1.0.11	current-full-only
+stale_claim_audit.txt	python computation/audit_stale_claims.py	stale-string-audit	portable-public	1.0.11	current
+symbolic_certificates.txt	python independent_verifier/verify_symbolic_certificates.py	exact-aggregate	portable-public	1.0.11	current
 PROVENANCE
 cmp -s "$BASELINE_MANIFEST" "$REPLAY_STATE/downloaded_manifest.txt"
 sha256sum -c "$EXACT_BASELINE" >/dev/null
@@ -373,6 +388,7 @@ VERIFICATION_FILES=(
   generated_sign_tables.txt
   generated_tables.txt
   integrated_designs.txt
+  journal_log_gate_negative_control.txt
   manifest_mutation_test.txt
   manuscript_audit.txt
   numerical_provenance.txt
@@ -444,6 +460,10 @@ cp -a "$ROOT/submission/journal/source/." "$JOURNAL_BUILD/"
   done
   test "$journal_supplement_stable" -eq 1
 )
+python "$ROOT/release/audit_tex_logs.py" \
+  "$JOURNAL_BUILD/main.log" "$JOURNAL_BUILD/supplement.log" >/dev/null
+retain_final_log "$JOURNAL_BUILD/main.log" "$ROOT/release/build_logs/journal_main_final.log"
+retain_final_log "$JOURNAL_BUILD/supplement.log" "$ROOT/release/build_logs/journal_supplement_final.log"
 cp "$JOURNAL_BUILD/main.pdf" "$ROOT/submission/journal/manuscript.pdf"
 cp "$JOURNAL_BUILD/supplement.pdf" "$ROOT/submission/journal/supplement.pdf"
 
@@ -456,6 +476,8 @@ cp "$ROOT/submission/journal/cover_letter_SIADS.tex" "$COVER_BUILD/"
   pdflatex -interaction=nonstopmode -halt-on-error cover_letter_SIADS.tex >/dev/null
   pdflatex -interaction=nonstopmode -halt-on-error cover_letter_SIADS.tex >/dev/null
 )
+python "$ROOT/release/audit_tex_logs.py" "$COVER_BUILD/cover_letter_SIADS.log" >/dev/null
+retain_final_log "$COVER_BUILD/cover_letter_SIADS.log" "$ROOT/release/build_logs/journal_cover_letter_final.log"
 cp "$COVER_BUILD/cover_letter_SIADS.pdf" "$ROOT/submission/journal/cover_letter_SIADS.pdf"
 rm -rf "$COVER_BUILD"
 
@@ -494,7 +516,7 @@ lines = [
 ]
 lines.append(
     "stale_claim_audit.txt\tpython computation/audit_stale_claims.py\t"
-    "stale-string-audit\tportable-public\t1.0.10\tcurrent-packaging"
+    "stale-string-audit\tportable-public\t1.0.11\tcurrent-packaging"
 )
 path.write_text("\n".join(lines) + "\n", encoding="utf-8")
 PY

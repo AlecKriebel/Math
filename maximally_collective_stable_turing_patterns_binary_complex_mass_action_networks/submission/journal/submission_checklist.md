@@ -1,7 +1,7 @@
 # Journal submission checklist
 
 - [x] Record author-confirmed funding, competing-interest, and journal-exclusivity declarations.
-- [ ] Verify ORCID `0009-0001-9320-500X`, the immutable version 1.0.10 release URL, the Zenodo concept DOI, and the release-record version DOI in the portal.
+- [ ] Verify ORCID `0009-0001-9320-500X`, the immutable version 1.0.11 release URL, the Zenodo concept DOI, and the release-record version DOI in the portal.
 - [x] Approve funding, competing-interest, and journal-exclusivity wording.
 - [ ] Approve final AI-assistance wording required by the journal.
 - [ ] Upload the line-numbered main manuscript, supplement, PDF cover letter,

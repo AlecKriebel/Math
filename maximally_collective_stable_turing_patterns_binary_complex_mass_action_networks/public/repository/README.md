@@ -2,10 +2,10 @@
 
 Portable exact source, proof certificates, independent verifiers, current-profile numerical illustrations, and manuscript sources for the corrected final release.
 
-This package targets the immutable version 1.0.10 snapshot at
-<https://github.com/AlecKriebel/Math/releases/tag/maximally-collective-stable-turing-v1.0.10>.
+This package targets the immutable version 1.0.11 snapshot at
+<https://github.com/AlecKriebel/Math/releases/tag/maximally-collective-stable-turing-v1.0.11>.
 Archived versions share <https://doi.org/10.5281/zenodo.21753404>. The exact
-preceding version 1.0.9 snapshot has DOI <https://doi.org/10.5281/zenodo.22478273>.
+preceding version 1.0.10 snapshot has DOI <https://doi.org/10.5281/zenodo.22559244>.
 
 ## Replay
 

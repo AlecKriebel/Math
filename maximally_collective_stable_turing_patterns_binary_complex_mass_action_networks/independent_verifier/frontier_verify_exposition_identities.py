@@ -29,6 +29,28 @@ import pareto_core as pc
 HERE = Path(__file__).resolve().parent
 
 
+def _coefficient_values(term, parameter: str, section: str):
+    """Read the section's declared coefficient parameter unambiguously."""
+
+    required = f"coefficient_in_{parameter}_ascending"
+    recognized = {
+        key
+        for key in ("coefficient_in_U_ascending", "coefficient_in_A_ascending")
+        if key in term
+    }
+    if required not in recognized:
+        raise AssertionError(
+            f"{section}: row {term.get('powers')!r} lacks required field {required!r}"
+        )
+    conflicting = recognized - {required}
+    if conflicting:
+        raise AssertionError(
+            f"{section}: row {term.get('powers')!r} has conflicting recognized "
+            f"coefficient field(s) {sorted(conflicting)!r}"
+        )
+    return [sp.Rational(value) for value in term[required]]
+
+
 def _even_y_to_z(expr: sp.Expr, y: sp.Symbol, z: sp.Symbol) -> sp.Expr:
     """Replace every even power y**(2j) by z**j, rejecting odd powers."""
 
@@ -422,9 +444,9 @@ def verify_modulus_source_polynomials(
     )
     assert len(set(homogeneous_scaled_powers)) == len(homogeneous_scaled_powers)
     homogeneous_scaled_terms = {
-        tuple(term["powers"]): [
-            sp.Rational(value) for value in term["coefficient_in_U_ascending"]
-        ]
+        tuple(term["powers"]): _coefficient_values(
+            term, "U", "homogeneous modulus certificate"
+        )
         for term in homogeneous_scaled_rows
     }
     expected_homogeneous_scaled = {
@@ -445,9 +467,9 @@ def verify_modulus_source_polynomials(
     assert len(spatial_rows) == spatial_section["term_count"] == 84 == len(E84.terms())
     assert len(set(spatial_powers)) == len(spatial_powers)
     spatial_terms = {
-        tuple(term["powers"]): [
-            sp.Rational(value) for value in term["coefficient_in_A_ascending"]
-        ]
+        tuple(term["powers"]): _coefficient_values(
+            term, "A", "spatial modulus certificate"
+        )
         for term in spatial_rows
     }
     expected_spatial = {

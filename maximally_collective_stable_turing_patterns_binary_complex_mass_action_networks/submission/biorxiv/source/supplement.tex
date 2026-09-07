@@ -885,7 +885,15 @@ All 35 coefficients are strictly positive, there is no constant term, and
 equality occurs only at $x=z=0$, equivalently $\lambda=0$.
 
 From the repository root, the command
+\ifsiadsreview
+\begin{center}
+\texttt{python independent\_verifier/}\\[-0.2em]
+\texttt{verify\_symbolic\_certificates.py}
+\end{center}
+\noindent
+\else
 \texttt{python independent\_verifier/verify\_symbolic\_certificates.py}
+\fi
 regenerates and checks the tables from exact symbolic expressions.
 
 \input{data/certificate_tables.tex}
@@ -1000,12 +1008,24 @@ dimension- or $\varepsilon$-uniform bifurcation neighborhood is claimed.
 \section{Semilinear stability and robustness}
 
 At onset for the unit-equilibrium family, write
+\ifsiadsreview
+\[
+ \mathcal L_0=A_m+D_m\partial_{\xi\xi}:X_c\longrightarrow Y_c,
+\]
+\[
+ \begin{aligned}
+ X_c&=\left\{u\in H_N^2:\int_0^\pi c^Tu=0\right\},\\
+ Y_c&=\left\{g\in L^2:\int_0^\pi c^Tg=0\right\}.
+ \end{aligned}
+\]
+\else
 \[
  \mathcal L_0=A_m+D_m\partial_{\xi\xi}:X_c\longrightarrow Y_c,
  \qquad
  X_c=\left\{u\in H_N^2:\int_0^\pi c^Tu=0\right\},\quad
  Y_c=\left\{g\in L^2:\int_0^\pi c^Tg=0\right\}.
 \]
+\fi
 The identity $c^TA_m=0$ and the Neumann boundary conditions make these
 fixed-mass subspaces invariant under the linearized evolution.
 The Neumann cosine transform sends this operator to
