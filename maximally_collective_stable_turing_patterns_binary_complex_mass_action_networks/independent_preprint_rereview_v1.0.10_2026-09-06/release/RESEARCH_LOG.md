@@ -1,0 +1,9 @@
+# Release audit research log
+
+2026-09-07T03:44:27.903102+00:00 — 5% complete. Independent archive, release integrity, pinned replay, detached builds, and fail-closed adversarial controls started. Preserved snapshot is read-only by convention; all executable work uses disjoint scratch copies.
+
+2026-09-07T03:49:23.942432+00:00 — 85% complete. All 39 tests, 39 normal entrypoints, 39 optimized rejections, minimal and full portable replays, all 3 detached source builds/six semantic comparisons, seven byte-identical rebuilt ZIPs and nine downloaded release assets passed. Wrong pinned lock and two manifest attacks fail before tree mutation; missing five historical archives also fail without changing the archived log or any tree file. Poisoning all seven PDFs and their evidence reports is repaired by package refresh to original bundle hashes. Canonical overfull warning rejected. An initial journal-only overfull mutation was caught by the page-count gate; a zero-height margin overflow is being tested separately for warning-scan coverage.
+
+2026-09-07T03:54:33.927581+00:00 — 100% complete. All requested current release checks passed. Final clean-log inspection identified five existing journal overfull-box warnings and confirmed their omission from the new canonical-only fail-closed check. Preserved actual logs, source locations, and measured word extents. Canonical preprint PDFs remain clean. The historical route remains explicitly unexecuted beyond its verified nonmutating missing-input preflight. Findings and bounded journal repair are recorded in RELEASE_REPORT.md.
+
+2026-09-07T04:02:14.452530+00:00 — 100% complete, final-report cross-review. All release counts, integrity/replay qualifications, actual journal warning locations, and canonical-versus-journal verdict distinctions agree with retained evidence. Suggested only the precise term “forged self-consistency manifest”; no substantive release-lane correction is required.
