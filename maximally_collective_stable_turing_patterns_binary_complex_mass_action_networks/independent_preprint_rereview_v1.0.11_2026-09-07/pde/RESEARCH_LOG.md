@@ -1,0 +1,5 @@
+# Nonlinear/PDE proofreading log
+
+- 2026-09-08T04:20:01Z, 25% complete: Read the full main/supplement and sign-table source diff against v1.0.10. The changes affecting this lane are SIADS display splitting, command wrapping, and table spacing; no scientific equation change is visible. Began a focused branch-equivalence check and reread the repaired expressions in their proof context.
+- 2026-09-08T04:23:01Z, 85% complete: The focused standard-library checker passes. Canonical nonlinear/PDE prose and equations remain unchanged apart from whitespace; both repaired journal displays preserve their mathematical tokens; all packaged main/supplement copies agree with canonical source after the explicit local-asset-path rewrite. No need to repeat unchanged broad exact campaigns.
+- 2026-09-08T04:24:35Z, 100% complete: Completed the scoped report with no actionable nonlinear/PDE finding. Preserved the focused checker, exact comparison evidence, and limitations. The parent referee owns global integration and repository checkpoints.
