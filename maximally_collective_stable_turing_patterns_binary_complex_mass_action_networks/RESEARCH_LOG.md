@@ -621,3 +621,23 @@
 - Best-guess completion toward the v1.0.11 referee-response and immutable
   release goal: **100%**. Only tracked-manifest closure, push, and release
   publication remain.
+
+## 2026-09-09 06:50:53 PDT — Zenodo preprint-deposit preparation
+
+- Confirmed from Zenodo's public API that the GitHub-integrated v1.0.11
+  software snapshot is already published at exact DOI
+  `10.5281/zenodo.22625980`, within software concept DOI
+  `10.5281/zenodo.21753404`.  The publication deposit is therefore prepared as
+  a separate `Publication / Preprint` record linked to that exact software DOI,
+  not as another software version.
+- Copied the immutable v1.0.11 main PDF, supplement, bioRxiv-ready source ZIP,
+  and data ZIP.  Generated a 217-file portable reproducibility ZIP from the
+  release's public repository, plus upload README, scoped CC BY 4.0/MIT license
+  statement, and SHA-256 manifest.
+- Verified both PDFs, all three ZIPs, the 216-entry internal reproducibility
+  manifest, and all seven payload hashes.  Prepared copy/paste metadata, a
+  machine-readable companion, an upload checklist, and an eight-file
+  convenience bundle without changing any scientific or release artifact.
+- Best-guess completion toward the Zenodo preprint-upload preparation goal:
+  **100%**.  Human-only steps remaining are draft creation, metadata review,
+  publication, and recording the new preprint DOI.
