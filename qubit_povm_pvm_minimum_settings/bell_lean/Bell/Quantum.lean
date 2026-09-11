@@ -9,7 +9,7 @@ Complex, not merely real, qubits.  There is no ancillary Hilbert space.
 Zero effects and zero projectors are allowed.  The two convex hulls are separate
 from the raw strategy images.  No equality between the raw images is asserted.
 
-STATUS: proof source; this release has NOT been compiled by Lean.
+Verification evidence: see CERTIFICATION.md and reports/kernel_report.json.
 -/
 
 noncomputable section

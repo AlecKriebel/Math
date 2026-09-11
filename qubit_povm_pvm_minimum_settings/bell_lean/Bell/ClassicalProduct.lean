@@ -10,7 +10,7 @@ A common random variable assigns an output to *every* input simultaneously.
 The lemmas quantify over arbitrary finite, dependent output alphabets. Zero
 marginal weights are handled without assuming they are positive.
 
-STATUS: uncompiled proof source.
+Verification evidence: see CERTIFICATION.md and reports/kernel_report.json.
 -/
 noncomputable section
 open scoped BigOperators

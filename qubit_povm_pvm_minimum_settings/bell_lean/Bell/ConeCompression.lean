@@ -19,18 +19,8 @@ def dotLinear (n : V) : V →ₗ[ℝ] ℝ where
   map_smul' := by intros; simp [dotProduct_smul]
 
 theorem dot_self_positive {x : V} (hx : x ≠ 0) : 0 < dotProduct x x := by
-  have hn : 0 ≤ dotProduct x x := by
-    simp only [dotProduct,Fin.sum_univ_succ]
-    nlinarith [sq_nonneg (x 0),sq_nonneg (x 1),sq_nonneg (x 2),sq_nonneg (x 3)]
-  by_contra! hp
-  have he : dotProduct x x=0 := le_antisymm hp hn
-  have h0 : x 0=0 := by simp only [dotProduct,Fin.sum_univ_succ] at he; nlinarith [sq_nonneg (x 1),sq_nonneg (x 2),sq_nonneg (x 3)]
-  have h1 : x 1=0 := by simp only [dotProduct,Fin.sum_univ_succ] at he; nlinarith [sq_nonneg (x 0),sq_nonneg (x 2),sq_nonneg (x 3)]
-  have h2 : x 2=0 := by simp only [dotProduct,Fin.sum_univ_succ] at he; nlinarith [sq_nonneg (x 0),sq_nonneg (x 1),sq_nonneg (x 3)]
-  have h3 : x 3=0 := by simp only [dotProduct,Fin.sum_univ_succ] at he; nlinarith [sq_nonneg (x 0),sq_nonneg (x 1),sq_nonneg (x 2)]
-  apply hx
-  ext i
-  fin_cases i <;> simp [h0,h1,h2,h3]
+  have hn : 0 ≤ dotProduct x x := Finset.sum_nonneg (fun i _ => mul_self_nonneg (x i))
+  exact lt_of_le_of_ne hn (fun h => hx (dotProduct_self_eq_zero.mp h.symm))
 
 def normalizeVector (x : V) : V := (Real.sqrt (dotProduct x x))⁻¹ • x
 
@@ -40,7 +30,6 @@ theorem normalizeVector_unit {x : V} (hx : x ≠ 0) : dotProduct (normalizeVecto
   have hn := (Real.sqrt_pos.2 hp).ne'
   simp only [normalizeVector,smul_dotProduct,dotProduct_smul,smul_eq_mul]
   field_simp [hn]
-  nlinarith
 
 theorem exists_unit_annihilator (H : Submodule ℝ V) (hH : Module.finrank ℝ H ≤ 3)
     (hu : timeUnit ∈ H) : ∃ n : V, n 0=0 ∧ dotProduct n n=1 ∧
@@ -48,13 +37,13 @@ theorem exists_unit_annihilator (H : Submodule ℝ V) (hH : Module.finrank ℝ H
   classical
   have htop : H ≠ ⊤ := by
     intro h
-    have hd := hH
-    simp [h,V] at hd
-  obtain ⟨x,hx⟩ : ∃ x : V, x ∉ H := by
-    by_contra! h
-    apply htop
-    ext x
-    simp [h x]
+    have hd := congrArg (fun S : Submodule ℝ V => Module.finrank ℝ S) h
+    change Module.finrank ℝ H = Module.finrank ℝ (⊤ : Submodule ℝ V) at hd
+    rw [finrank_top] at hd
+    norm_num [V] at hd
+    omega
+  have hlt : H < (⊤ : Submodule ℝ V) := lt_top_iff_ne_top.mpr htop
+  obtain ⟨x, _, hx⟩ := SetLike.exists_of_lt hlt
   obtain ⟨f,hfx,hfH⟩ := Submodule.exists_dual_map_eq_bot_of_nmem hx
     (inferInstance : Module.Free ℝ (V ⧸ H))
   let v : V := fun i => f (Pi.single i 1)
@@ -82,7 +71,11 @@ theorem exists_unit_annihilator (H : Submodule ℝ V) (hH : Module.finrank ℝ H
 def compress (n : V) : V →ₗ[ℝ] V where
   toFun x := x-dotProduct n x • n
   map_add' := by intros; simp [dotProduct_add,add_smul]; module
-  map_smul' := by intros; simp [dotProduct_smul,smul_sub,mul_smul,smul_comm]
+  map_smul' := by
+    intro t x
+    ext i
+    simp [dotProduct_smul, Pi.smul_apply, smul_eq_mul]
+    ring
 
 theorem compress_time (n x : V) (hn0 : n 0=0) : compress n x 0=x 0 := by
   simp [compress,hn0]
@@ -93,11 +86,10 @@ theorem compress_orthogonal (n x : V) (hn : dotProduct n n=1) :
 theorem compress_square (n x : V) (hn0 : n 0=0) (hn : dotProduct n n=1) :
     lorentzSquare (compress n x)=lorentzSquare x+(dotProduct n x)^2 := by
   have hn' := hn
-  simp only [dotProduct,Fin.sum_univ_succ,hn0,zero_mul,zero_add] at hn'
-  unfold compress lorentzSquare
-  simp only [Pi.sub_apply,Pi.smul_apply,smul_eq_mul]
-  simp only [dotProduct,Fin.sum_univ_succ,hn0,zero_mul,zero_add]
-  nlinarith [hn',sq_nonneg (n 1*x 1+n 2*x 2+n 3*x 3)]
+  simp [dotProduct,Fin.sum_univ_succ,hn0] at hn'
+  change lorentzSquare (x - dotProduct n x • n) = _
+  simp [lorentzSquare, dotProduct, Fin.sum_univ_succ, hn0]
+  linear_combination -(n 1*x 1+n 2*x 2+n 3*x 3)^2 * hn'
 
 theorem compress_future (n : V) (hn0 : n 0=0) (hn : dotProduct n n=1)
     {x : V} (hx : Future x) : Future (compress n x) := by
@@ -128,7 +120,7 @@ theorem exists_spatial_unit_perpendicular (n : V) :
       map_add' := by intros; ext i; fin_cases i <;> simp [dotProduct_add]
       map_smul' := by intros; ext i; fin_cases i <;> simp [dotProduct_smul] }
   have hk : LinearMap.ker f ≠ ⊥ := LinearMap.ker_ne_bot_of_finrank_lt (by simp [V])
-  obtain ⟨x,hx,hxn⟩ := Submodule.ne_bot_iff.mp hk
+  obtain ⟨x,hx,hxn⟩ := (Submodule.ne_bot_iff _).mp hk
   have h0 := congrFun hx 0
   have h1 := congrFun hx 1
   change x 0=0 at h0
@@ -165,7 +157,7 @@ theorem splitDirection_unit (d x : V) (hdu : dotProduct d d=1) :
   split_ifs with hr
   · exact hdu
   · have hsq := radius_square x
-    simp only [smul_dotProduct,dotProduct_smul,smul_eq_mul,spatial,dotProduct,Fin.sum_univ_succ]
+    simp [Matrix.cons_val, smul_dotProduct,dotProduct_smul,smul_eq_mul,spatial,dotProduct,Fin.sum_univ_succ]
     field_simp [hr]
     nlinarith
 
@@ -176,39 +168,46 @@ theorem radius_direction (d x : V) : radius x • splitDirection d x=spatial x :
     have h1 : x 1=0 := by nlinarith [sq_nonneg (x 2),sq_nonneg (x 3)]
     have h2 : x 2=0 := by nlinarith [sq_nonneg (x 1),sq_nonneg (x 3)]
     have h3 : x 3=0 := by nlinarith [sq_nonneg (x 1),sq_nonneg (x 2)]
-    simp [hr,spatial,h1,h2,h3]
+    ext i
+    fin_cases i <;> simp [Matrix.cons_val, hr,spatial,h1,h2,h3]
   · simp [splitDirection,hr,smul_smul]
 
 theorem nullPiece_sum (d x : V) : (∑ k : Fin 2, nullPiece d x k)=x := by
   have hd := radius_direction d x
-  simp only [Fin.sum_univ_succ,nullPiece,ConeCircuits.sign]
-  have he : ((x 0+radius x)/2) • (timeUnit+splitDirection d x)+
-      ((x 0-radius x)/2) • (timeUnit-splitDirection d x) =
-        x 0 • timeUnit+radius x • splitDirection d x := by module
-  convert he.trans (by rw [hd]; ext i; fin_cases i <;> simp [timeUnit,spatial]) using 1 <;> simp <;> module
+  calc
+    (∑ k : Fin 2, nullPiece d x k) =
+        ((x 0+radius x)/2) • (timeUnit+splitDirection d x)+
+        ((x 0-radius x)/2) • (timeUnit-splitDirection d x) := by
+      simp [Fin.sum_univ_two, nullPiece, ConeCircuits.sign, sub_eq_add_neg]
+    _ = x 0 • timeUnit+radius x • splitDirection d x := by module
+    _ = x := by
+      rw [hd]
+      ext i
+      fin_cases i <;> simp [Matrix.cons_val, timeUnit,spatial]
 
 theorem nullPiece_null_or_zero (d : V) (hd0 : d 0=0) (hdu : dotProduct d d=1)
     {x : V} (hx : Future x) (k : Fin 2) : nullPiece d x k=0 ∨ FutureNull (nullPiece d x k) := by
   let u := splitDirection d x
-  have hu0 := splitDirection_time d x hd0
-  have huu := splitDirection_unit d x hdu
+  have hu0 : u 0 = 0 := splitDirection_time d x hd0
+  have huu : dotProduct u u = 1 := splitDirection_unit d x hdu
   have hq : ∀ k : Fin 2, lorentzSquare (timeUnit+ConeCircuits.sign k • u)=0 := by
     intro k
     have he := huu
-    simp only [dotProduct,Fin.sum_univ_succ,hu0] at he
+    simp [dotProduct,Fin.sum_univ_succ,hu0] at he
     fin_cases k <;>
-      simp [u,← hu0,lorentzSquare,timeUnit,ConeCircuits.sign] <;> nlinarith [he]
+      simp [Matrix.cons_val, hu0,lorentzSquare,timeUnit,ConeCircuits.sign] <;> nlinarith [he]
   let t := (x 0+ConeCircuits.sign k*radius x)/2
   have ht : 0 ≤ t := by
     have hr := radius_le_time hx
     have hn := radius_nonnegative x
     fin_cases k <;> simp [t,ConeCircuits.sign] <;> linarith [hx.1]
   by_cases ht0 : t=0
-  · exact Or.inl (by simp [nullPiece,← t,ht0])
+  · exact Or.inl (by change t • _ = 0; rw [ht0, zero_smul])
   · right
     refine ⟨?_, ?_⟩
     · have htp : 0<t := lt_of_le_of_ne ht (Ne.symm ht0)
-      simpa [nullPiece,timeUnit,splitDirection_time d x hd0,← t] using htp
+      change 0 < (t • (timeUnit + ConeCircuits.sign k • u)) 0
+      simpa only [Pi.smul_apply, Pi.add_apply, smul_eq_mul, hu0, mul_zero, add_zero, timeUnit, Matrix.cons_val_zero, mul_one] using htp
     · have he := hq k
       change lorentzSquare (t • (timeUnit+ConeCircuits.sign k • u))=0
       have hs : ∀ y : V, lorentzSquare (t • y)=t^2*lorentzSquare y := by
@@ -223,6 +222,7 @@ theorem nullPiece_in_plane (n d x : V) (hn0 : n 0=0)
   have hu : dotProduct n (splitDirection d x)=0 := by
     unfold splitDirection
     split_ifs <;> simp [hnd,dotProduct_smul,hs]
-  simp [nullPiece,dotProduct_smul,dotProduct_add,hu,timeUnit,dotProduct,Fin.sum_univ_succ,hn0]
+  have htime : dotProduct n timeUnit = 0 := by simp [Matrix.cons_val, timeUnit,dotProduct,Fin.sum_univ_succ,hn0]
+  simp only [nullPiece,dotProduct_smul,dotProduct_add,hu,htime,smul_eq_mul,mul_zero,add_zero]
 
 end Bell.QubitGeometry

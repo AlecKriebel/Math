@@ -215,3 +215,25 @@ matrix-vector rewrite direction, product projections, and an ambiguous
 universe on the one-element basis index. The successful output is retained in
 `incidence_rank_build.log`; the global dependency/axiom audit remains the final
 project-wide certification step.
+
+## Compiler checkpoint: cone compression and the binary-party reduction
+
+Timestamp: 2026-09-11T02:16:30Z. Bounded `ConeCompression` and `BinaryParty`
+repair completion: 100%. Both production modules now build successfully with
+all main statements unchanged. The initial isolated compression probe was
+replaced by actual production builds once the circuit dependencies became
+available; its obsolete source was removed.
+
+The compression identity is now discharged by an explicit polynomial
+combination with the normal vector's unit-norm equation. The two null pieces
+are proved to sum to the original vector, including the zero-radius case.
+The physical binary-party proof regroups the common live-ray distribution
+using a subtype/complement sum identity, removes zero contributions, and sums
+the two pieces for each original input/output. This retains one simultaneous
+distribution for both inputs. Its support-dimension bound and fixed output
+labels remain explicit.
+
+The saved successful build logs are `cone_compression_build.log` and
+`binary_party_build.log`. No additional axioms or admitted proofs were added.
+The final source-wide certification is delegated to the parent's full build,
+statement-contract checks and axiom audit.

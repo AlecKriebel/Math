@@ -7,7 +7,7 @@ A relabeling is a bijection of the *declared* output alphabet for each input.
 This includes unused (zero-projector) labels. It acts on a whole strategy at
 once and preserves the same finite convex hull, without changing local dimension.
 
-STATUS: uncompiled proof source.
+Verification evidence: see CERTIFICATION.md and reports/kernel_report.json.
 -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder

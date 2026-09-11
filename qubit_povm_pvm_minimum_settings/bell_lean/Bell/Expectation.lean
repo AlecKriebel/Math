@@ -7,7 +7,7 @@ All operators below act on the actual complex-qubit spaces from `Bell.Quantum`.
 The positivity of a state's functional is proved from its positive-semidefinite
 matrix, rather than being added as a hypothesis to the final Bell theorem.
 
-STATUS: proof source, not yet checked by a Lean compiler in this environment.
+Verification evidence: see CERTIFICATION.md and reports/kernel_report.json.
 -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder

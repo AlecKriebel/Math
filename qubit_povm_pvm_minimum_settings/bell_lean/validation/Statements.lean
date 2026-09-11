@@ -24,7 +24,8 @@ example {n : ℕ} (M : PVM n) :
   ⟨M.positive, M.normalized, M.idempotent, M.orthogonal⟩
 example (ρ : JointOperator) (M N : Operator) :
     born ρ M N =
-      (Matrix.trace (ρ * (fun i j => M i.1 j.1 * N i.2 j.2))).re := rfl
+      (Matrix.trace (ρ * Matrix.of (fun (i j : Fin 2 × Fin 2) =>
+        M i.1 j.1 * N i.2 j.2))).re := rfl
 
 -- Actual set ranges and ordinary convex hulls, with dependent finite outputs.
 example (AO BO : Fin 2 → ℕ) :
@@ -47,7 +48,7 @@ example : convexPOVM ⟨2,2,(fun _ => 0),(fun _ => 3)⟩ =
   two_input_convex_equality _ _
 example (AO : Fin 0 → ℕ) (BO : Fin 5 → ℕ) :
     convexPOVM ⟨0,5,AO,BO⟩ = convexPVM ⟨0,5,AO,BO⟩ :=
-  one_input_equality _ (Or.inl (by decide))
+  one_input_equality _ (Or.inl (by change (0 : ℕ) ≤ 1; decide))
 
 -- Verify the attained-value quantifier and global physical comparison.
 example : ∃ p ∈ rawPOVM separatorArchitecture,

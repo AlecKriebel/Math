@@ -1,0 +1,23 @@
+import Bell.CircuitRealization
+#print axioms Bell.ConeCircuits.weights_convex
+#print axioms Bell.ConeCircuits.weights_isClosed
+#print axioms Bell.ConeCircuits.weights_isCompact
+#print axioms Bell.ConeCircuits.balance_sideSum
+#print axioms Bell.ConeCircuits.mass_sideSum
+#print axioms Bell.ConeCircuits.sideSum_equal
+#print axioms Bell.ConeCircuits.sideSum_time_half
+#print axioms Bell.ConeCircuits.sideSupport_nonempty
+#print axioms Bell.ConeCircuits.extreme_relation_zero
+#print axioms Bell.ConeCircuits.extreme_support_le_four
+#print axioms Bell.ConeCircuits.future_nonnegative_smul
+#print axioms Bell.ConeCircuits.future_sum
+#print axioms Bell.ConeCircuits.sideSum_future
+#print axioms Bell.ConeCircuits.extreme_singleton_other_le_one
+#print axioms Bell.ConeCircuits.side_card_sum
+#print axioms Bell.ConeCircuits.extreme_side_card_le_two
+#print axioms Bell.ConeCircuits.all_weights_map_into
+#print axioms Bell.ConeCircuits.outcomeVector_sum
+#print axioms Bell.ConeCircuits.coarsening_refined_behavior
+#print axioms Bell.ConeCircuits.binaryRefinedProjective
+#print axioms Bell.ConeCircuits.binary_circuit_mem_convexPVM
+#print axioms Bell.ConeCircuits.circuit_section_mem_convexPVM

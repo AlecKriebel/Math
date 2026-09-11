@@ -8,7 +8,7 @@ All density matrices and effects are concrete complex matrices.  Positivity is
 proved through Gram factorizations, not stipulated as a certificate hypothesis.
 The upper bound over arbitrary PVM strategies is deliberately NOT claimed here.
 
-STATUS: uncompiled proof source. See reports/status.json.
+Verification evidence: see CERTIFICATION.md and reports/kernel_report.json.
 -/
 
 noncomputable section

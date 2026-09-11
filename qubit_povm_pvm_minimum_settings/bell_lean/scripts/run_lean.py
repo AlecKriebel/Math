@@ -234,8 +234,12 @@ def run(args: argparse.Namespace, root: Path = ROOT) -> int:
         stage = 'statement_contracts'
         _, text = command(['lake', 'env', 'lean', 'validation/Statements.lean'], 'statement-contracts')
         check_no_errors(text, stage)
+        _, text = command(['lake', 'env', 'lean', 'validation/PhysicalContracts.lean'], 'physical-contracts')
+        check_no_errors(text, stage)
         write_json(run_dir/'statement_audit.json', {'status': 'passed', 'run_id': run_id,
-                       'source': 'validation/Statements.lean', 'formal_statement_contracts_passed': True,
+                       'source': 'validation/Statements.lean',
+                       'supplementary_source': 'validation/PhysicalContracts.lean',
+                       'formal_statement_contracts_passed': True,
                        'independent_mathematical_referee_review': False})
         stage = 'dependency_audit'
         _, log = command(['lake', 'env', 'lean', 'Bell/Audit.lean'], 'axioms')

@@ -12,7 +12,7 @@ possible zero positions is covered by an explicit operator SOS.
 The rational bound 289/10 is strictly stronger than the upper bound U printed
 in the paper. Neither bound is claimed to be the exact global optimum.
 
-STATUS: complete proof-source attempt for this branch, NOT kernel-checked yet.
+Verification evidence: see CERTIFICATION.md and reports/kernel_report.json.
 -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder

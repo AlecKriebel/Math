@@ -8,7 +8,7 @@ is converted to actual permutations of the declared three-label alphabets,
 fixing the unused binary label. Thus the rank-zero table is proved to belong to
 the same fixed labelled physical PVM hull, rather than just an isomorphic hull.
 
-STATUS: uncompiled proof source.
+Verification evidence: see CERTIFICATION.md and reports/kernel_report.json.
 -/
 noncomputable section
 open scoped BigOperators Matrix

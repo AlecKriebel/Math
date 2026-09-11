@@ -1,0 +1,207 @@
+local_verification/ResidualEncodingProbe.lean:23:4: error: linarith failed to find a contradiction
+case h.«0».«2».h1.h
+N : Fin 2 → POVM 3
+hz : (N 0).effect 2 = 0
+hn0 :
+  coordinates
+      ((N 0).effect 0 +
+        ((N 0).effect (Fin.succ 0) + ((N 0).effect (Fin.succ 0).succ + ∑ i, (N 0).effect i.succ.succ.succ))) =
+    coordinates 1
+hn1 :
+  coordinates
+      ((N 1).effect 0 +
+        ((N 1).effect (Fin.succ 0) + ((N 1).effect (Fin.succ 0).succ + ∑ i, (N 1).effect i.succ.succ.succ))) =
+    coordinates 1
+i : Fin 4
+h0 :
+  coordinates
+      ((N 0).effect 0 +
+        ((N 0).effect (Fin.succ 0) + ((N 0).effect (Fin.succ 0).succ + ∑ i, (N 0).effect i.succ.succ.succ)))
+      i =
+    coordinates 1 i
+h1 :
+  coordinates
+      ((N 1).effect 0 +
+        ((N 1).effect (Fin.succ 0) + ((N 1).effect (Fin.succ 0).succ + ∑ i, (N 1).effect i.succ.succ.succ)))
+      i =
+    coordinates 1 i
+a✝ : 0 < coordinates ((N 0).effect ⟨2, ⋯⟩) i
+⊢ False failed
+local_verification/ResidualEncodingProbe.lean:23:4: error: linarith failed to find a contradiction
+case h.«1».«0».h1.h
+N : Fin 2 → POVM 3
+hz : (N 0).effect 2 = 0
+hn0 :
+  coordinates
+      ((N 0).effect 0 +
+        ((N 0).effect (Fin.succ 0) + ((N 0).effect (Fin.succ 0).succ + ∑ i, (N 0).effect i.succ.succ.succ))) =
+    coordinates 1
+hn1 :
+  coordinates
+      ((N 1).effect 0 +
+        ((N 1).effect (Fin.succ 0) + ((N 1).effect (Fin.succ 0).succ + ∑ i, (N 1).effect i.succ.succ.succ))) =
+    coordinates 1
+i : Fin 4
+h0 :
+  coordinates
+      ((N 0).effect 0 +
+        ((N 0).effect (Fin.succ 0) + ((N 0).effect (Fin.succ 0).succ + ∑ i, (N 0).effect i.succ.succ.succ)))
+      i =
+    coordinates 1 i
+h1 :
+  coordinates
+      ((N 1).effect 0 +
+        ((N 1).effect (Fin.succ 0) + ((N 1).effect (Fin.succ 0).succ + ∑ i, (N 1).effect i.succ.succ.succ)))
+      i =
+    coordinates 1 i
+a✝ :
+  coordinates ((N 0).effect 0) i *
+        Matrix.vecCons 1
+          (fun i => Matrix.vecCons 0 (fun i => Matrix.vecCons 0 (fun i => Matrix.vecCons 0 (fun i => 1) i) i) i) 2 +
+      (coordinates ((N 0).effect 1) i *
+          Matrix.vecCons 0
+            (fun i => Matrix.vecCons 1 (fun i => Matrix.vecCons 0 (fun i => Matrix.vecCons 0 (fun i => 1) i) i) i) 2 +
+        (coordinates ((N 1).effect 0) i *
+            Matrix.vecCons 0
+              (fun i => Matrix.vecCons 0 (fun i => Matrix.vecCons 1 (fun i => Matrix.vecCons 0 (fun i => -1) i) i) i)
+              2 +
+          coordinates ((N 1).effect 1) i *
+            Matrix.vecCons 0
+              (fun i => Matrix.vecCons 0 (fun i => Matrix.vecCons 0 (fun i => Matrix.vecCons 1 (fun i => -1) i) i) i)
+              2)) <
+    coordinates ((N 1).effect 0) i
+⊢ False failed
+local_verification/ResidualEncodingProbe.lean:23:4: error: linarith failed to find a contradiction
+case h.«1».«1».h1.h
+N : Fin 2 → POVM 3
+hz : (N 0).effect 2 = 0
+hn0 :
+  coordinates
+      ((N 0).effect 0 +
+        ((N 0).effect (Fin.succ 0) + ((N 0).effect (Fin.succ 0).succ + ∑ i, (N 0).effect i.succ.succ.succ))) =
+    coordinates 1
+hn1 :
+  coordinates
+      ((N 1).effect 0 +
+        ((N 1).effect (Fin.succ 0) + ((N 1).effect (Fin.succ 0).succ + ∑ i, (N 1).effect i.succ.succ.succ))) =
+    coordinates 1
+i : Fin 4
+h0 :
+  coordinates
+      ((N 0).effect 0 +
+        ((N 0).effect (Fin.succ 0) + ((N 0).effect (Fin.succ 0).succ + ∑ i, (N 0).effect i.succ.succ.succ)))
+      i =
+    coordinates 1 i
+h1 :
+  coordinates
+      ((N 1).effect 0 +
+        ((N 1).effect (Fin.succ 0) + ((N 1).effect (Fin.succ 0).succ + ∑ i, (N 1).effect i.succ.succ.succ)))
+      i =
+    coordinates 1 i
+a✝ :
+  coordinates ((N 0).effect 0) i *
+        Matrix.vecCons 1
+          (fun i => Matrix.vecCons 0 (fun i => Matrix.vecCons 0 (fun i => Matrix.vecCons 0 (fun i => 1) i) i) i) 3 +
+      (coordinates ((N 0).effect 1) i *
+          Matrix.vecCons 0
+            (fun i => Matrix.vecCons 1 (fun i => Matrix.vecCons 0 (fun i => Matrix.vecCons 0 (fun i => 1) i) i) i) 3 +
+        (coordinates ((N 1).effect 0) i *
+            Matrix.vecCons 0
+              (fun i => Matrix.vecCons 0 (fun i => Matrix.vecCons 1 (fun i => Matrix.vecCons 0 (fun i => -1) i) i) i)
+              3 +
+          coordinates ((N 1).effect 1) i *
+            Matrix.vecCons 0
+              (fun i => Matrix.vecCons 0 (fun i => Matrix.vecCons 0 (fun i => Matrix.vecCons 1 (fun i => -1) i) i) i)
+              3)) <
+    coordinates ((N 1).effect 1) i
+⊢ False failed
+local_verification/ResidualEncodingProbe.lean:23:4: error: linarith failed to find a contradiction
+case h.«1».«2».h1.h
+N : Fin 2 → POVM 3
+hz : (N 0).effect 2 = 0
+hn0 :
+  coordinates
+      ((N 0).effect 0 +
+        ((N 0).effect (Fin.succ 0) + ((N 0).effect (Fin.succ 0).succ + ∑ i, (N 0).effect i.succ.succ.succ))) =
+    coordinates 1
+hn1 :
+  coordinates
+      ((N 1).effect 0 +
+        ((N 1).effect (Fin.succ 0) + ((N 1).effect (Fin.succ 0).succ + ∑ i, (N 1).effect i.succ.succ.succ))) =
+    coordinates 1
+i : Fin 4
+h0 :
+  coordinates
+      ((N 0).effect 0 +
+        ((N 0).effect (Fin.succ 0) + ((N 0).effect (Fin.succ 0).succ + ∑ i, (N 0).effect i.succ.succ.succ)))
+      i =
+    coordinates 1 i
+h1 :
+  coordinates
+      ((N 1).effect 0 +
+        ((N 1).effect (Fin.succ 0) + ((N 1).effect (Fin.succ 0).succ + ∑ i, (N 1).effect i.succ.succ.succ)))
+      i =
+    coordinates 1 i
+a✝ :
+  coordinates ((N 0).effect 0) i *
+        Matrix.vecCons 1
+          (fun i => Matrix.vecCons 0 (fun i => Matrix.vecCons 0 (fun i => Matrix.vecCons 0 (fun i => 1) i) i) i) 4 +
+      (coordinates ((N 0).effect 1) i *
+          Matrix.vecCons 0
+            (fun i => Matrix.vecCons 1 (fun i => Matrix.vecCons 0 (fun i => Matrix.vecCons 0 (fun i => 1) i) i) i) 4 +
+        (coordinates ((N 1).effect 0) i *
+            Matrix.vecCons 0
+              (fun i => Matrix.vecCons 0 (fun i => Matrix.vecCons 1 (fun i => Matrix.vecCons 0 (fun i => -1) i) i) i)
+              4 +
+          coordinates ((N 1).effect 1) i *
+            Matrix.vecCons 0
+              (fun i => Matrix.vecCons 0 (fun i => Matrix.vecCons 0 (fun i => Matrix.vecCons 1 (fun i => -1) i) i) i)
+              4)) <
+    coordinates ((N 1).effect ⟨2, ⋯⟩) i
+⊢ False failed
+local_verification/ResidualEncodingProbe.lean:49:8: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  (fun x => E *ᵥ x) (z j)
+case a
+E : M
+hsur : Function.Surjective fun x => E *ᵥ x
+z : Fin 4 → Fin 4 → ℝ
+hz : ∀ (j : Fin 4), (fun x => E *ᵥ x) (z j) = Pi.single j 1
+R : M := fun i j => z j i
+i j : Fin 4
+⊢ (E *ᵥ z j) i = 1 i j
+local_verification/ResidualEncodingProbe.lean:66:60: error: unsolved goals
+case h
+N : Fin 2 → POVM 3
+hz : (N 0).effect 2 = 0
+x : V
+i : Fin 4
+⊢ x i = ∑ x_1, x x_1 * Pi.single x_1 1 i
+local_verification/ResidualEncodingProbe.lean:70:4: error: tactic 'apply' failed, failed to unify
+  ∀ (r : ?R), ?x ∈ ?p → r • ?x ∈ ?p
+with
+  (linearOfMatrix (measurementFrame N)) (x j • Pi.single j 1) ∈ effectSpan (N 0) ⊔ effectSpan (N 1)
+case a.intro.a
+N : Fin 2 → POVM 3
+hz : (N 0).effect 2 = 0
+x : V
+he : x = ∑ i, x i • Pi.single i 1
+j : Fin 4
+a✝ : j ∈ Finset.univ
+⊢ (linearOfMatrix (measurementFrame N)) (x j • Pi.single j 1) ∈ effectSpan (N 0) ⊔ effectSpan (N 1)
+local_verification/ResidualEncodingProbe.lean:83:12: error: unknown identifier 'effectSpan_le_of_effects'
+local_verification/ResidualEncodingProbe.lean:84:6: error: no goals to be solved
+local_verification/ResidualEncodingProbe.lean:86:12: error: unknown identifier 'effectSpan_le_of_effects'
+local_verification/ResidualEncodingProbe.lean:87:6: error: no goals to be solved
+local_verification/ResidualEncodingProbe.lean:97:49: error: unsolved goals
+case a.«_@».Mathlib.Data.Matrix.Defs._hyg.155.«1».«0»
+C : Operator
+x : V
+⊢ ↑(x 1) + -(↑(x 2) * Complex.I) = ↑(x 1) - ↑(x 2) * Complex.I
+local_verification/ResidualEncodingProbe.lean:107:6: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  pauli (coordinates (C * (pauli x)ᵀ * Cᴴ))
+C : Operator
+hc : IsUnit (Matrix.det C)
+x y : V
+h : (steeringTransform C) x = (steeringTransform C) y
+hp : pauli ((steeringTransform C) x) = pauli ((steeringTransform C) y)
+⊢ x = y

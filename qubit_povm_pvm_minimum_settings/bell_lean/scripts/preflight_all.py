@@ -74,6 +74,6 @@ def main():
         raise
     finally:
         report['ended_utc']=dt.datetime.now(dt.timezone.utc).isoformat();write_json(path,report)
-    print('COMPILER-FREE PREFLIGHT PASSED. Lean proofs remain uncompiled and unverified.')
+    print('COMPILER-FREE PREFLIGHT PASSED. This compiler-free run does not certify Lean proofs.')
 
 if __name__=='__main__':main()

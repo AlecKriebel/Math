@@ -14,7 +14,7 @@ Zero-input architectures and empty declared output alphabets are not discarded:
 a physical POVM supplies a positive output count, and a zero-input behavior has
 no entries on which it can differ from the displayed deterministic strategy.
 
-STATUS: uncompiled proof source.
+Verification evidence: see CERTIFICATION.md and reports/kernel_report.json.
 -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder

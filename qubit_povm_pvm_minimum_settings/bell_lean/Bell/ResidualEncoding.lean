@@ -14,10 +14,13 @@ open scoped Bell.Entrywise BigOperators Matrix ComplexOrder
 namespace Bell
 open Lorentz QubitGeometry
 
+attribute [local simp] Matrix.cons_val_two Matrix.cons_val_three Matrix.cons_val_four
+
 theorem effectSpan_le_of_effects {n : ℕ} (N : POVM n) (S : Submodule ℝ V)
     (h : ∀ a, coordinates (N.effect a) ∈ S) : effectSpan N ≤ S := by
   rintro v ⟨c,rfl⟩
-  exact S.sum_mem fun a _ => S.smul_mem _ (h a)
+  change (∑ a : EffectSupport N, c a • coordinates (N.effect a)) ∈ S
+  exact S.sum_mem fun a _ => S.smul_mem _ (h a.val)
 
 theorem effectSpan_coarsen_le {n m : ℕ} (N : POVM n) (f : Fin n → Fin m) :
     effectSpan (coarsenPOVM N f) ≤ effectSpan N := by
@@ -54,14 +57,17 @@ def measurementFrame (N : Fin 2 → POVM 3) : M := fun i j =>
 theorem measurementFrame_effectRay (N : Fin 2 → POVM 3) (hz : (N 0).effect 2=0)
     (x : Fin 2) (a : Fin 3) :
     measurementFrame N *ᵥ effectRay x a=coordinates ((N x).effect a) := by
+  have hc2 (h : 2 < 3) : (⟨2,h⟩ : Fin 3) = 2 := rfl
   have hn0 := congrArg coordinates (N 0).normalized
   have hn1 := congrArg coordinates (N 1).normalized
-  simp only [map_sum,Fin.sum_univ_succ,hz,map_zero,add_zero] at hn0 hn1
+  norm_num [map_add,Fin.sum_univ_succ,hz] at hn0 hn1
   ext i
   have h0 := congrFun hn0 i
   have h1 := congrFun hn1 i
+  simp only [Pi.add_apply] at h0 h1
   fin_cases x <;> fin_cases a <;>
     norm_num [measurementFrame,effectRay,ray,Matrix.mulVec,dotProduct,Fin.sum_univ_succ,hz] <;>
+    (try simp only [hc2, hz, map_zero, Pi.zero_apply]) <;>
     linarith
 
 theorem measurementFrame_ray (N : Fin 2 → POVM 3) (hz : (N 0).effect 2=0) (j : Fin 5) :
@@ -84,6 +90,7 @@ theorem matrix_det_unit_of_surjective (E : M) (hsur : Function.Surjective (fun x
     IsUnit E.det := by
   classical
   choose z hz using fun j : Fin 4 => hsur (Pi.single j 1)
+  change ∀ j, E *ᵥ z j = Pi.single j 1 at hz
   let R : M := fun i j => z j i
   have hER : E*R=1 := by
     ext i j
@@ -105,10 +112,13 @@ theorem measurementFrame_range (N : Fin 2 → POVM 3) (hz : (N 0).effect 2=0) :
     LinearMap.range (linearOfMatrix (measurementFrame N))=effectSpan (N 0) ⊔ effectSpan (N 1) := by
   apply le_antisymm
   · rintro v ⟨x,rfl⟩
-    have he : x=(∑ i : Fin 4, x i • (Pi.single i 1 : V)) := by ext i; simp
+    have he : x=(∑ i : Fin 4, x i • (Pi.single i 1 : V)) := by
+      ext i
+      simp [Pi.single_apply, eq_comm]
     rw [he,map_sum]
     apply Submodule.sum_mem
     intro j _
+    rw [map_smul]
     apply Submodule.smul_mem
     have hb (k : Fin 4) :
         linearOfMatrix (measurementFrame N) (Pi.single k 1) =
@@ -119,8 +129,8 @@ theorem measurementFrame_range (N : Fin 2 → POVM 3) (hz : (N 0).effect 2=0) :
     rw [hb]
     split_ifs <;>
       first
-      | exact le_sup_left (effect_coordinates_mem_span (N 0) _)
-      | exact le_sup_right (effect_coordinates_mem_span (N 1) _)
+      | exact Submodule.mem_sup_left (effect_coordinates_mem_span (N 0) _)
+      | exact Submodule.mem_sup_right (effect_coordinates_mem_span (N 1) _)
   · apply sup_le
     · apply effectSpan_le_of_effects
       intro a
@@ -163,7 +173,9 @@ theorem paddingMap_behavior (AO BO : Fin 2 → ℕ) (s : FullPureStrategy ⟨2,2
     ((coarsenPOVM (encodePOVM (s.bob (inputAt dB (inputIndex dB y))) (hB _))
       (encodingLabel (s.bob y) (hB y))).effect b) = _
   simp only [inputAt_index,encoding_coarsens]
-  rfl
+  fin_cases dA <;> fin_cases dB <;> fin_cases x <;> fin_cases y <;>
+    simp [inputAt,inputIndex,otherInput,encoding_coarsens,paddingMap,StrategyMap.strategy,
+      FullPureStrategy.pad,FullPureStrategy.toStrategy,Strategy.behavior]
 
 /-- A two/three pair at an extreme behavior spans all four Hermitian directions. -/
 theorem encoded_frame_invertible (AO BO : Fin 2 → ℕ) (s : FullPureStrategy ⟨2,2,AO,BO⟩)
@@ -178,10 +190,18 @@ theorem encoded_frame_invertible (AO BO : Fin 2 → ℕ) (s : FullPureStrategy �
   have h1 := effectSpan_finrank_of_independent (s.alice 1) (extreme_effect_independent s hex 1 0)
   have hs := (effectSpan (s.alice 0)).finrank_sup_add_finrank_inf_eq (effectSpan (s.alice 1))
   have hi := extreme_span_intersection_le_one AO BO s hex
-  have hdim : Module.finrank ℝ (effectSpan (s.alice 0) ⊔ effectSpan (s.alice 1))=4 := by
+  have hdim : Module.finrank ℝ ↥(effectSpan (s.alice 0) ⊔ effectSpan (s.alice 1))=4 := by
     have hle := (effectSpan (s.alice 0) ⊔ effectSpan (s.alice 1)).finrank_le
     rw [h0,h1] at hs
-    fin_cases d <;> simp [otherInput] at hd ho <;> simp [V] at hle <;> omega
+    have hV : Module.finrank ℝ V = 4 := by simp [V]
+    rw [hV] at hle
+    fin_cases d
+    · change Fintype.card (EffectSupport (s.alice 0)) = 2 at hd
+      change Fintype.card (EffectSupport (s.alice 1)) = 3 at ho
+      omega
+    · change Fintype.card (EffectSupport (s.alice 1)) = 2 at hd
+      change Fintype.card (EffectSupport (s.alice 0)) = 3 at ho
+      omega
   have hN : effectSpan (N 0) ⊔ effectSpan (N 1)=effectSpan (s.alice 0) ⊔ effectSpan (s.alice 1) := by
     simp only [N,effectSpan_encode]
     fin_cases d <;> simp [inputAt,otherInput,sup_comm]
@@ -201,7 +221,7 @@ theorem steered_hermitian (C : Operator) (x : V) :
     (C*(pauli x).transpose*C.conjTranspose).IsHermitian := by
   have ht : ((pauli x).transpose).IsHermitian := by
     ext i j
-    fin_cases i <;> fin_cases j <;> simp [pauli,Matrix.transpose_apply,Matrix.conjTranspose_apply]
+    fin_cases i <;> fin_cases j <;> simp [pauli,Matrix.transpose_apply,Matrix.conjTranspose_apply] <;> ring
   change (C*(pauli x).transpose*C.conjTranspose).conjTranspose=C*(pauli x).transpose*C.conjTranspose
   simp [Matrix.conjTranspose_mul,ht.eq,Matrix.mul_assoc]
 
@@ -209,14 +229,17 @@ theorem steeringTransform_injective (C : Operator) (hc : IsUnit C.det) :
     Function.Injective (steeringTransform C) := by
   intro x y h
   have hp := congrArg pauli h
+  change pauli (coordinates (C*(pauli x).transpose*C.conjTranspose)) =
+    pauli (coordinates (C*(pauli y).transpose*C.conjTranspose)) at hp
   rw [pauli_coordinates (steered_hermitian C x),pauli_coordinates (steered_hermitian C y)] at hp
   have hct : IsUnit C.conjTranspose.det := by
     rw [Matrix.det_conjTranspose]
     exact hc.map (starRingEnd ℂ)
-  have he := congrArg (fun N : Operator => C⁻¹*N*C.conjTranspose⁻¹) hp
+  have he := congrArg (fun N : Operator => C⁻¹*N) hp
+  simp only [← Matrix.mul_assoc, Matrix.nonsing_inv_mul _ hc, one_mul] at he
   have he' : (pauli x).transpose=(pauli y).transpose := by
-    simpa [← Matrix.mul_assoc,Matrix.nonsing_inv_mul _ hc,Matrix.mul_assoc,
-      Matrix.mul_nonsing_inv _ hct] using he
+    have hr := congrArg (fun N : Operator => N*C.conjTranspose⁻¹) he
+    simpa only [Matrix.mul_assoc, Matrix.mul_nonsing_inv _ hct, mul_one] using hr
   apply pauli_injective
   simpa using congrArg Matrix.transpose he'
 

@@ -8,7 +8,7 @@ factorization and positive pivots will be supplied by `SOSCertificate`. This
 module gives the generic algebraic bridge from those entries to actual positive
 Born expectations. It does not assume any Bell upper bound.
 
-STATUS: uncompiled proof source.
+Verification evidence: see CERTIFICATION.md and reports/kernel_report.json.
 -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder

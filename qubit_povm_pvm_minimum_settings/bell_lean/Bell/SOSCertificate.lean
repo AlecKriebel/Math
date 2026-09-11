@@ -10,7 +10,7 @@ The theorem below asks Lean's ordinary arithmetic proof procedures to check all
 The independent standard-library checker `scripts/sos_checks.py` checks the
 JSON against a separately specified Bell operator and rejects corrupted data.
 
-STATUS: uncompiled proof source, not a kernel-verified certificate yet.
+Verification evidence: see CERTIFICATION.md and reports/kernel_report.json.
 -/
 noncomputable section
 open scoped BigOperators Matrix

@@ -9,7 +9,7 @@ This is NEW source, not a recovered copy of a formerly missing module.
 The conclusion is conditional on the explicitly displayed stationarity equation,
 null incidence, positive state pairings, and strict score gaps. These hypotheses
 are NOT asserted for all physical strategies here. No full two-input theorem is
-claimed. This source has not been compiled in the present environment.
+claimed by this intermediate module. See CERTIFICATION.md for verification evidence.
 -/
 noncomputable section
 open scoped BigOperators Matrix

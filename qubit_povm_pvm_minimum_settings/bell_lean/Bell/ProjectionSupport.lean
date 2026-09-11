@@ -7,7 +7,7 @@ Cayley--Hamilton gives a short, purely algebraic proof that three pairwise
 orthogonal, nonzero idempotents cannot normalize to the 2-by-2 identity.
 Zero projectors and deterministic inputs are retained throughout.
 
-STATUS: uncompiled proof source.
+Verification evidence: see CERTIFICATION.md and reports/kernel_report.json.
 -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder

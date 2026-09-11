@@ -14,7 +14,7 @@ import sys
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-OMIT_DIRS = {'.lake', '.git', '__pycache__'}
+OMIT_DIRS = {'.lake', '.git', '.venv', '__pycache__'}
 OMIT_SUFFIXES = {'.pyc', '.olean', '.ilean', '.o', '.a', '.so', '.dylib', '.dll', '.wasm'}
 FONT_SUFFIXES = {'.ttf', '.otf', '.woff', '.woff2', '.eot', '.ttc', '.dfont'}
 CREDENTIAL_SUFFIXES = {'.pem', '.key', '.p12', '.pfx'}

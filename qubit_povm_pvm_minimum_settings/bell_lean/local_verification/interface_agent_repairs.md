@@ -41,3 +41,28 @@ from these layers. The first seven compiled checks depend only on `propext`,
 `Classical.choice`, and `Quot.sound`. All mathematical theorem statements remain
 unchanged. The independently audited physical model and final target meanings
 are retained.
+
+## Residual physical bridge batch
+
+Checkpoint: 2026-09-11T02:16:13Z. Completion estimate: 100% of all twelve modules
+assigned to this agent; final whole-project validation remains with the parent.
+
+The production targets `Bell.ResidualClosure`, `Bell.ResidualCoordinates`,
+`Bell.ResidualEncoding`, and `Bell.ResidualStrategy` all successfully compiled.
+The closure source required no changes. Coordinate repairs use the existing
+checked projective-ray distinctness lemma, normalize finite constructor atoms,
+use the correct matrix-vector and scalar API, and prove the affine metric
+normal form by linear arithmetic. This avoids unnecessary nonlinear proof-term
+growth without changing the claim. Encoding repairs make active-support and
+submodule coercions explicit, preserve the original alphabets through the full
+padding map, and reassociate matrix inverse cancellations in two checked steps.
+The final physical strategy constructor repairs expand the actual steered
+operator before its determinant calculation, check its normalization by linear
+arithmetic, and handle all five active labels with exact support counts.
+
+No physical definition was weakened, no main hypothesis was added, and no
+placeholder or custom axiom was introduced. Source edits were handed off and
+frozen immediately after the final successful production build. The separate
+`Residual*Probe.lean` files and their logs are intermediate diagnostics, not the
+production verification evidence. The final `residual_*_build.log` files are
+the successful actual module build evidence.

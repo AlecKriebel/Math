@@ -1,6 +1,7 @@
 import Bell.BinaryParty
 import Bell.ResidualStrategy
 import Bell.ProjectiveBound
+import Bell.StrengthenedWitness
 
 /-!
 # Main theorem: arbitrary finite two-input architectures
@@ -10,8 +11,8 @@ shared-randomness convex hulls. It does not assume universal equality, a
 residual reduction theorem, multiplier positivity, or a rank-case oracle.
 Each of those dependencies is supplied by an imported proof.
 
-This is an uncompiled source completion attempt. Kernel validation and the
-axiom audit are intentionally deferred to the user's later run.
+Verification evidence, scope, and reproduction instructions are recorded in
+CERTIFICATION.md and reports/kernel_report.json.
 -/
 noncomputable section
 open scoped Bell.Entrywise BigOperators Matrix ComplexOrder
@@ -127,5 +128,10 @@ fixed-qubit models, independently of the sizes of its declared output alphabets.
 theorem no_two_input_strict_separation (A : Architecture)
     (ha : A.aliceInputs ≤ 2) (hb : A.bobInputs ≤ 2) : ¬ StrictSeparation A :=
   no_strict_separation_of_equal_hulls A (at_most_two_input_equality A ha hb)
+
+/-- The main theorem and the separate strengthened physical-attainment claim. -/
+theorem main_claims_with_strengthening : MainClaims ∧ StrengthenedAttainment :=
+  ⟨main_claims,strengthened_attainment⟩
+
 
 end Bell

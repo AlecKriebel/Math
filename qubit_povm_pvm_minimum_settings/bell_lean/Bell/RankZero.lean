@@ -11,7 +11,7 @@ Its hypotheses are explicit null, future-orientation, invertibility, and
 normalization conditions. The differential-geometric construction of these data
 from an arbitrary physical maximizing strategy is a separate obligation.
 
-STATUS: uncompiled proof source.
+Verification evidence: see CERTIFICATION.md and reports/kernel_report.json.
 -/
 noncomputable section
 open scoped BigOperators Matrix

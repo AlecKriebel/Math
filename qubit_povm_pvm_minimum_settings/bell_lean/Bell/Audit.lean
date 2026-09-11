@@ -13,6 +13,7 @@ Generating these commands does not execute Lean or establish any theorem. -/
 #print axioms Bell.minimum_inputs
 #print axioms Bell.minimum_inputs_attained
 #print axioms Bell.no_two_input_strict_separation
+#print axioms Bell.main_claims_with_strengthening
 #print axioms Bell.binary_span_sum_le_three
 #print axioms Bell.binary_bob_simulation
 #print axioms Bell.extreme_binary_bob_simulation
@@ -159,6 +160,7 @@ Generating these commands does not execute Lean or establish any theorem. -/
 #print axioms Bell.UnnormalizedAssemblage.behavior_mem_rawPOVM
 #print axioms Bell.Lorentz.frameGram_symmetric
 #print axioms Bell.Lorentz.frameGram_pair
+#print axioms Bell.Lorentz.steeringFrame_mulVec
 #print axioms Bell.Lorentz.steeringFrame_time
 #print axioms Bell.Lorentz.steeringFrame_square
 #print axioms Bell.Lorentz.frame_probability
@@ -210,6 +212,7 @@ Generating these commands does not execute Lean or establish any theorem. -/
 #print axioms Bell.Lorentz.exact_stationary_score_gap
 #print axioms Bell.Lorentz.contDiff_incidenceConstraints
 #print axioms Bell.Lorentz.polynomial_score_gap
+#print axioms Bell.Lorentz.matrixPair_mul_frames
 #print axioms Bell.Lorentz.constraintDerivativeCLM_apply
 #print axioms Bell.Lorentz.nullDerivative_symmetric
 #print axioms Bell.Lorentz.incidenceNull_hasStrictFDerivAt
@@ -217,7 +220,6 @@ Generating these commands does not execute Lean or establish any theorem. -/
 #print axioms Bell.Lorentz.incidenceMass_hasStrictFDerivAt
 #print axioms Bell.Lorentz.incidenceConstraints_hasStrictFDerivAt
 #print axioms Bell.Lorentz.nullDerivativeSeed_values
-#print axioms Bell.Lorentz.matrixPair_mul_frames
 #print axioms Bell.Lorentz.nullDerivative_seed_preimage
 #print axioms Bell.Lorentz.constraintDerivative_radial
 #print axioms Bell.Lorentz.constraintDerivative_surjective
@@ -618,7 +620,6 @@ Generating these commands does not execute Lean or establish any theorem. -/
 #print axioms Bell.Strengthened.locking_value
 #print axioms Bell.Strengthened.value
 #print axioms Bell.strengthened_attainment
-#print axioms Bell.main_claims_with_strengthening
 #print axioms Bell.bellScore_add
 #print axioms Bell.bellScore_smul
 #print axioms Bell.convex_projective_bound_of_raw
@@ -639,10 +640,12 @@ Generating these commands does not execute Lean or establish any theorem. -/
 #print axioms Bell.Transport.Certificate.total_branch_mass
 #print axioms Bell.Transport.Certificate.ternary_block
 #print axioms Bell.Transport.Certificate.mixed_blocks
+#print axioms Bell.Lorentz.rankOneEndomorphism_apply
 #print axioms Bell.Lorentz.dot_ray_basis
 #print axioms Bell.Lorentz.positive_weighted_ray_squares
 #print axioms Bell.Lorentz.secondForm_rankOne
 #print axioms Bell.Lorentz.nonzero_kernel_of_three_constraints
+#print axioms Bell.Lorentz.compatibilityMap_apply
 #print axioms Bell.Lorentz.compatibility_rankOne
 #print axioms Bell.Lorentz.uphill_of_three_compatibilities
 #print axioms Bell.Lorentz.compatibility_sum

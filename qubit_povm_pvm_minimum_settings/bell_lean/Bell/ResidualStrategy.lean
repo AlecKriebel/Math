@@ -104,14 +104,17 @@ def physicalResidualFrames (s : FullPureStrategy binaryTernaryArchitecture)
     rw [steeredFrame_ray _ _ hzB]
     apply positive_null_coordinates (s.steered_positive _ _)
     · exact steering_nonzero _ s.coefficient_invertible ((s.bob _).positive _).isHermitian (heB j)
-    · simp only [Matrix.det_mul,Matrix.det_transpose,hnB j,mul_zero,zero_mul]
+    · change (s.coefficient * ((s.bob (rayInput j)).effect (rayLabel j)).transpose *
+        s.coefficient.conjTranspose).det = 0
+      simp only [Matrix.det_mul,Matrix.det_transpose,hnB j,mul_zero,zero_mul]
   reduced_timelike := by
     rw [steeredFrame_unit _ _ hzB]
     exact positive_definite_coordinates s.reduced_definite
   normalized := by
     rw [measurementFrame_unit _ hzA,steeredFrame_unit _ _ hzB]
     have ht := congrArg Complex.re s.normalized
-    simpa [timeUnit,coordinates,dotProduct,Matrix.trace,Fin.sum_univ_succ] using ht
+    simp [timeUnit,coordinates,dotProduct,Matrix.trace,Fin.sum_univ_succ] at ht ⊢
+    linarith
 
 theorem physicalResidualFrames_behavior
     (s : FullPureStrategy binaryTernaryArchitecture)
@@ -167,15 +170,26 @@ theorem no_strict_extreme_binary_ternary
     exact encodePOVM_null _ _ (extreme_nondeterministic_effects_null s hex _ 0 (hndA _)) _
   have hnB : ∀ j, ((t.bob (rayInput j)).effect (rayLabel j)).det=0 := by
     intro j
-    exact encodePOVM_null _ _ (extreme_nondeterministic_effects_null s.swap hswap _ 0 (hndB _)) _
+    exact encodePOVM_null _ _ (extreme_nondeterministic_effects_null
+      (A := ⟨2,2,BO,AO⟩) s.swap hswap _ 0 (hndB _)) _
   have heA : ∀ j, (t.alice (rayInput j)).effect (rayLabel j) ≠ 0 := by
     intro j
     apply encodePOVM_below_nonzero
-    fin_cases j <;> simp [t,FullPureStrategy.pad,rayInput,rayLabel,inputAt,hA2,hA3]
+    fin_cases j
+    · change 0 < Fintype.card (EffectSupport (s.alice dA)); omega
+    · change 1 < Fintype.card (EffectSupport (s.alice dA)); omega
+    · change 0 < Fintype.card (EffectSupport (s.alice (otherInput dA))); omega
+    · change 1 < Fintype.card (EffectSupport (s.alice (otherInput dA))); omega
+    · change 2 < Fintype.card (EffectSupport (s.alice (otherInput dA))); omega
   have heB : ∀ j, (t.bob (rayInput j)).effect (rayLabel j) ≠ 0 := by
     intro j
     apply encodePOVM_below_nonzero
-    fin_cases j <;> simp [t,FullPureStrategy.pad,rayInput,rayLabel,inputAt,hB2,hB3]
+    fin_cases j
+    · change 0 < Fintype.card (EffectSupport (s.bob dB)); omega
+    · change 1 < Fintype.card (EffectSupport (s.bob dB)); omega
+    · change 0 < Fintype.card (EffectSupport (s.bob (otherInput dB))); omega
+    · change 1 < Fintype.card (EffectSupport (s.bob (otherInput dB))); omega
+    · change 2 < Fintype.card (EffectSupport (s.bob (otherInput dB))); omega
   let r := physicalResidualFrames t hzA hzB hiA hiB hnA hnB heA heB
   have heq : T.behavior (tableOfBlock r.block)=s.behavior := by
     rw [physicalResidualFrames_behavior]

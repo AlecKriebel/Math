@@ -12,7 +12,7 @@ Numerical optimization was used only to discover a candidate rational Gram
 matrix. `SOSCertificate.coefficient_factorization` and the operator identity
 below are the independent exact proof obligations.
 
-STATUS: uncompiled proof source.
+Verification evidence: see CERTIFICATION.md and reports/kernel_report.json.
 -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
