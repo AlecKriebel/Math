@@ -1,8 +1,8 @@
-# Run the preserved Lean draft
+# Reproduce the Lean verification
 
-**The source has not been compiled here.** The compiler-free preflight is passed,
-but there is no successful Bell proof-checking run. Compilation repairs and
-possibly mathematical repairs can still be required. No time estimate is implied.
+The current verification receipt, scope, and pinned environment are described in
+[CERTIFICATION.md](CERTIFICATION.md). Follow these steps to repeat the complete
+check on another machine.
 
 ## 1. Verify the shipment before it changes
 
@@ -76,12 +76,12 @@ A fresh run gets its own `reports/runs/<run_id>/` directory. The runner requires
    dependency commits and no modified tracked dependency files.
 2. A valid polynomial smoke proof accepted and an invalid `False` proof rejected
    with a type error, rather than a crash or missing-import failure.
-3. A fresh complete `Bell` build, then actual Lean elaboration of the 14 examples
-   in `validation/Statements.lean`.
+3. A fresh complete `Bell` build, then actual Lean elaboration of all 25 examples
+   in `validation/Statements.lean` and `validation/PhysicalContracts.lean`.
 4. One dependency report for every public theorem in the generated inventory,
    including every required main theorem. The allowlist is `propext`,
    `Classical.choice`, and `Quot.sound`; `sorryAx`, unapproved axioms, missing or
-   duplicate reports, and compiler error diagnostics fail the run.
+   duplicate reports, compiler error diagnostics, and recovered `PANIC` messages fail the run.
 5. Identical project source/configuration hashes before and after the checks,
    and a final exact dependency check.
 
@@ -89,8 +89,9 @@ The independent statement examples spell out actual complex 2-by-2 operators,
 valid density matrices/PVMs, ordinary convex hulls of physical strategy ranges,
 one common random variable selecting complete projective strategies, boundary
 alphabets, the attained radical value, and quantitative separation/minimality.
-They are source attempts until Lean accepts them. They do not prove on their
-own that every modelling choice faithfully matches the manuscript.
+They are checked by Lean as part of every successful run. The independent
+[statement review](local_verification/final_statement_review.md) assesses their
+correspondence with the manuscript.
 
 ## 5. Read the current run, not an inherited report
 
@@ -104,8 +105,8 @@ A static check, smoke test, single module, or statement check alone is **not** a
 full success. The full receipt must have `status: "passed"`,
 `last_stage: "complete"`, and true full-build/statement/dependency flags.
 
-No such successful receipt is supplied in this shipment. Its current failure
-receipt demonstrates the missing-compiler path only; no Lean process ran.
+Consult the current receipt and certification, not the preserved cloud reports.
+Historical failures and development logs remain available as provenance.
 
 ## 6. On the first error
 

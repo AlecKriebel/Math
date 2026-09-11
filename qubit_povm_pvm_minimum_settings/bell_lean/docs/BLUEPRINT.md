@@ -1,3 +1,5 @@
+> **Historical cloud-stage document.** Statements below about missing compilation or unfinished targets describe the incoming archive. Current local verification and the precise certified scope are recorded in [CERTIFICATION.md](../CERTIFICATION.md); this document is retained as research provenance.
+
 # Resume blueprint — continuation v0.2.0
 
 ## First unfinished computation: compile the existing source

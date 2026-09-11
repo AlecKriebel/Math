@@ -1,3 +1,5 @@
+> **Historical cloud-stage document.** Statements below about missing compilation or unfinished targets describe the incoming archive. Current local verification and the precise certified scope are recorded in [CERTIFICATION.md](../CERTIFICATION.md); this document is retained as research provenance.
+
 # Exact rank-three coupled-direction stress test
 
 **An independently checked physical example, not a Lean theorem and not a

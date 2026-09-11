@@ -1,11 +1,5 @@
-# Current source status
+# Current formalization status
 
-The project has been extended with an end-to-end, uncompiled source draft.
-Read [SOURCE_STATUS.md](SOURCE_STATUS.md) for the current scope and validation
-boundary, and [docs/SOURCE_COVERAGE.md](docs/SOURCE_COVERAGE.md) for the claim map.
+The authoritative status, precise mathematical scope, and reproduction instructions are in [CERTIFICATION.md](CERTIFICATION.md). The claim-to-theorem map is [docs/CERTIFIED_COVERAGE.md](docs/CERTIFIED_COVERAGE.md).
 
-The previous version of this document is preserved in
-`preservation/before_source_completion/RECOVERY_STATUS.md`. The complete incoming archive
-is retained as `preservation/input_before_source_completion.zip`.
-
-No Lean compiler or kernel was run during the source-writing phase.
+Use the single run identified by [reports/latest_run.json](reports/latest_run.json), including its complete kernel, statement, and dependency receipts. Earlier uncompiled-source documents and failed development logs are preserved historical evidence; they do not describe the current formalization.

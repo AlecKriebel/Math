@@ -1,3 +1,5 @@
+> **Historical cloud-stage document.** Statements below about missing compilation or unfinished targets describe the incoming archive. Current local verification and the precise certified scope are recorded in [CERTIFICATION.md](CERTIFICATION.md); this document is retained as research provenance.
+
 # End-to-end Lean source draft — 10 September 2026
 
 **Status: source written; NOT compiled or kernel-verified.**

@@ -1,3 +1,5 @@
+> **Historical cloud-stage document.** Statements below about missing compilation or unfinished targets describe the incoming archive. Current local verification and the precise certified scope are recorded in [CERTIFICATION.md](../CERTIFICATION.md); this document is retained as research provenance.
+
 # Source coverage — uncompiled end-to-end draft
 
 Every entry below means **proof source present, not accepted by Lean**. This map

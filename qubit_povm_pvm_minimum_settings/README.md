@@ -21,6 +21,10 @@ the same state, or that Naimark dilation preserves the qubit dimension.
 - `paper/`: complete LaTeX manuscript, bibliography, figures, publication PDF,
   and line-numbered review PDF.
 - `artifacts/`: exact symbolic certificates and machine-readable data.
+- `bell_lean/`: complete Lean formalization, pinned verification runner,
+  statement contracts, and kernel/dependency receipts. Start with
+  [the certification](bell_lean/CERTIFICATION.md) and
+  [the theorem map](bell_lean/docs/CERTIFIED_COVERAGE.md).
 - `reports/`: proof audit, dependency graph, literature/priority audit,
   verifier report, known risks, and final readiness assessment.
 - `review_packet/`: theorem summary, proof roadmap, load-bearing lemma index,
@@ -51,6 +55,16 @@ To rebuild the publication and line-numbered review PDFs with Tectonic 0.16.9:
 ```
 
 ## Status
+
+The main mathematical conclusions also have an end-to-end Lean development.
+Its current verification evidence and exact scope are recorded in
+[bell_lean/CERTIFICATION.md](bell_lean/CERTIFICATION.md). To reproduce the full
+check with Lean/Lake installed and network access for pinned dependencies:
+
+```sh
+cd bell_lean
+bash scripts/check.sh --bootstrap --serial
+```
 
 The package is designed to make expert scrutiny easy. Passing the supplied
 checks verifies encoded algebraic identities and explicit constructions; it

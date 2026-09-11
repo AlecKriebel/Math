@@ -1,3 +1,5 @@
+> **Historical cloud-stage document.** Statements below about missing compilation or unfinished targets describe the incoming archive. Current local verification and the precise certified scope are recorded in [CERTIFICATION.md](CERTIFICATION.md); this document is retained as research provenance.
+
 # Offline handoff preflight — 10 September 2026
 
 **Preflight passed. Bell source is still uncompiled and not kernel-verified.**

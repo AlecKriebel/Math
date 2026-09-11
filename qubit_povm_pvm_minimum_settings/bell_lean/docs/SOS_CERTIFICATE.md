@@ -1,3 +1,5 @@
+> **Historical cloud-stage document.** Statements below about missing compilation or unfinished targets describe the incoming archive. Current local verification and the precise certified scope are recorded in [CERTIFICATION.md](../CERTIFICATION.md); this document is retained as research provenance.
+
 # A rational global projective bound for the paper's Bell functional
 
 **Result of this continuation:** the paper's functional has the valid projective upper bound

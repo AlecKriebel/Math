@@ -29,3 +29,11 @@ The strengthened witness numerical proof triggered a recovered Matrix.cons_val s
 ## 2026-09-11T02:21:46.891644+00:00 — complete production build (estimated completion: 95%)
 
 All 58 production modules and the Bell umbrella compiled. Both original and independent supplementary physical statement contracts elaborated successfully. Original contracts needed explicit matrix construction for the tensor formula and an explicit natural-number reduction for the zero-input edge case; their meanings are unchanged. All exact preflight families and 45 runner control tests passed. Updated obsolete source comments to point to verification evidence. Production sources, contracts, and verifier are now frozen for a fresh serial rebuild and complete public-axiom audit. Remaining gap: one final run with unchanged fingerprints, independently checked receipt, publication documentation, and commit/push.
+
+## 2026-09-11T02:34:22.003305+00:00 — complete fresh kernel run (estimated overall completion: 99%; mathematical verification: 100%)
+
+Run `20260911T022153Z-2ea5f99b` passed all 58 fresh module builds plus Bell, both contract files (25 examples), all 675 public theorem dependency reports, compiler controls, and unchanged-source/dependency checks. All 123 command logs have matching hashes; the sole nonzero command was the intentionally rejected invalid proof. Standard axioms only. The paper artifact suite also passed. Exact remaining task: independent successful-receipt audit, final package hashes, final commit/push. No unresolved proof gap remains in the named certified conclusions; modelling and manuscript scope are explicit in CERTIFICATION.md.
+
+## 2026-09-11T02:35:33.819693+00:00 — final publication checkpoint (formalization goal: 100%)
+
+The full Lean run and all 31 independent receipt-consistency checks passed. All 88 protected inputs and 123 command-log hashes match. Certification, current status, 25 statement contracts, manuscript fingerprints, exact-check logs, and independent mathematical/verification reviews are complete. The original helper-premise correction and precise formal scope are documented. No unresolved gap remains in the named formalized conclusions. This checkpoint publishes the final source and evidence on main; no immutable DOI release or external outreach is requested or performed.

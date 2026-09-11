@@ -77,3 +77,9 @@
   middle, and final review pages confirmed clear continuous line numbering.
 - Regenerated and clean-compiled the standalone arXiv source archive to the
   same 34-page manuscript.
+
+## 2026-09-11T02:35:33.819693+00:00 — complete local Lean verification (goal completion: 100%)
+
+Repaired the cloud Lean draft in `bell_lean/` and completed fresh pinned Lean 4.19.0 run `20260911T022153Z-2ea5f99b`: 58 production modules plus the umbrella, 25 expanded statement contracts, and 675 public theorem dependency audits passed. Only standard Lean axioms occur; no admitted proof or custom mathematical axiom was introduced. All main endpoints, finite complete-strategy simulation, 3×2 minimum-setting separation and strengthened Appendix B attainment are checked. The existing exact artifact suite also passed.
+
+Independent adversarial reviews checked the mathematical interfaces, rank cases, manuscript correspondence, proof-dependency architecture and all final receipt/log/source hashes. See `bell_lean/CERTIFICATION.md` and its claim-to-theorem map for precise scope, repairs, trust assumptions and reproducibility. Main theorem hypotheses were retained; one intermediate permutation helper required its intended partition-preservation hypothesis. No outside individual was contacted, and no new GitHub/Zenodo release was created.

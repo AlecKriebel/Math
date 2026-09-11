@@ -1,3 +1,5 @@
+> **Historical cloud-stage document.** Statements below about missing compilation or unfinished targets describe the incoming archive. Current local verification and the precise certified scope are recorded in [CERTIFICATION.md](../CERTIFICATION.md); this document is retained as research provenance.
+
 # Claim-by-claim coverage register — continuation v0.2.0
 
 **Every Lean entry below is uncompiled proof source. None is kernel-verified.**
