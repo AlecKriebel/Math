@@ -1,0 +1,1587 @@
+--- a/Bell/ConeCompression.lean
++++ b/Bell/ConeCompression.lean
+@@ -1,4 +1,5 @@
+ import Bell.CircuitRealization
++import Bell.FiniteLinearAlgebra
+ 
+ /-!
+ # Three-dimensional Lorentz compression and exact null splitting
+--- /dev/null
++++ b/OFFLINE_RUN.md
+@@ -0,0 +1,141 @@
++# Run the preserved Lean draft
++
++**The source has not been compiled here.** The compiler-free preflight is passed,
++but there is no successful Bell proof-checking run. Compilation repairs and
++possibly mathematical repairs can still be required. No time estimate is implied.
++
++## 1. Verify the shipment before it changes
++
++Extract the ZIP and enter its `bell_lean` directory. Before regenerating reports:
++
++```bash
++python3 scripts/verify_files.py
++```
++
++This checks shipment hashes, not Lean proofs. Tests and builds legitimately
++rewrite reports, so the original shipment manifest will no longer describe the
++whole working tree afterward. The incoming complete source archive remains in
++`preservation/input_before_preflight.zip`.
++
++## 2. Prepare dependencies before disconnecting
++
++The source ZIP does **not** contain a compiler or a compiled Mathlib cache.
++Use the project-pinned **Lean 4.19.0** and the exact dependency manifest. Do not
++run `lake update`, change versions, or delete the manifest just to get a build.
++A compiler for the machine's own architecture is required. The supplied
++`environment/` export workflow produces a **Linux x86_64** bundle; it is not a
++native Apple-silicon Mac toolchain. The Lean source itself is not platform-specific.
++
++For a machine already equipped with the pinned toolchain and Internet access,
++this command acquires the dependency cache and then attempts the complete run:
++
++```bash
++bash scripts/check.sh --bootstrap --serial
++```
++
++Prepare optional Python checks while online with:
++
++```bash
++python3 -m pip install -r requirements-preflight.txt
++```
++
++The real Lean runner needs only Python's standard library, Git, Bash, and the
++pinned Lean/Lake installation and dependencies. SymPy and PyYAML are for the
++separate compiler-free checks. Python 3.10 or newer is required by the helpers.
++
++## 3. Run with the environment already present
++
++```bash
++bash scripts/check.sh --serial
++```
++
++Without `--bootstrap`, the runner checks dependency checkout presence, exact
++commits and tracked-file cleanliness before invoking Lake. It does not issue a
++cache-acquisition command. This is not network isolation: Lake or an elan shim
++retains its normal behavior. For an air-gapped run, prepare the full toolchain
++and caches first, disconnect externally, and use the same command.
++
++`--serial` builds project modules in dependency order and keeps one named log
++per module. It does not mean a subset result is sufficient. Omitting the flag
++lets Lake schedule the aggregate build normally. No unsupported Lake `-j` flag
++is used.
++
++Each run preserves the preceding local `.lake/build` directory under
++`.lake/preflight-builds/<run_id>/` and creates fresh project build outputs.
++Dependency caches under `.lake/packages/` are not removed. These local backups
++can occupy disk space; they are omitted from source ZIPs. Never remove them while
++a run is active. The compiled dependency cache and compiler producer remain
++trust assumptions; this workflow does not independently rebuild Mathlib from
++first principles.
++
++## 4. What the runner requires for success
++
++A fresh run gets its own `reports/runs/<run_id>/` directory. The runner requires:
++
++1. Configuration/source checks; exact compiler version and full Git hash; exact
++   dependency commits and no modified tracked dependency files.
++2. A valid polynomial smoke proof accepted and an invalid `False` proof rejected
++   with a type error, rather than a crash or missing-import failure.
++3. A fresh complete `Bell` build, then actual Lean elaboration of the 14 examples
++   in `validation/Statements.lean`.
++4. One dependency report for every public theorem in the generated inventory,
++   including every required main theorem. The allowlist is `propext`,
++   `Classical.choice`, and `Quot.sound`; `sorryAx`, unapproved axioms, missing or
++   duplicate reports, and compiler error diagnostics fail the run.
++5. Identical project source/configuration hashes before and after the checks,
++   and a final exact dependency check.
++
++The independent statement examples spell out actual complex 2-by-2 operators,
++valid density matrices/PVMs, ordinary convex hulls of physical strategy ranges,
++one common random variable selecting complete projective strategies, boundary
++alphabets, the attained radical value, and quantitative separation/minimality.
++They are source attempts until Lean accepts them. They do not prove on their
++own that every modelling choice faithfully matches the manuscript.
++
++## 5. Read the current run, not an inherited report
++
++The authoritative entry point is `reports/latest_run.json`, which identifies
++one run directory. Its `kernel_report.json`, `axiom_audit.json`, and
++`statement_audit.json` must refer to the same run. Top-level copies are provided
++for convenience. Old reports are archived under `previous/` before new checks
++start. Failure or interruption clears success flags in all top-level reports.
++
++A static check, smoke test, single module, or statement check alone is **not** a
++full success. The full receipt must have `status: "passed"`,
++`last_stage: "complete"`, and true full-build/statement/dependency flags.
++
++No such successful receipt is supplied in this shipment. Its current failure
++receipt demonstrates the missing-compiler path only; no Lean process ran.
++
++## 6. On the first error
++
++Read the first relevant module log in the run directory. Repair the source,
++then rerun the full wrapper. For isolated diagnosis, `lake build Bell.ModuleName`
++is useful but is not a full verification run. Do not replace a failing proof by
++an axiom, `sorry`, an assumed conclusion, or a weakened target just to obtain a
++green build. Substantial errors may be elaboration/API issues or genuine proof gaps.
++
++Some inherited algebraic proofs disable heartbeat limits and may run for a long
++time. Ctrl+C leaves the current run unverified and preserves logs. A crash may
++leave `reports/.lean-run.lock`; confirm no previous process is active before
++removing that stale lock. Do not disable locking for simultaneous runs.
++
++To preserve the source and diagnostics after a run:
++
++```bash
++python3 scripts/package.py ../bell_lean_after_run.zip
++```
++
++The package includes the current source, configuration and run logs; excludes
++compiler/dependency caches, Git metadata, build products and font files; and
++refuses symlinks or likely credential files. Review logs before sharing them.
++
++## Compiler-free checks only
++
++```bash
++bash scripts/preflight.sh
++```
++
++These execute Python tests and independent exact algebra, never Lean or Lake.
++Mocked subprocesses in the runner tests exist only in temporary directories and
++are explicitly labelled; they are not proof-verification evidence.
+--- /dev/null
++++ b/PREFLIGHT_STATUS.md
+@@ -0,0 +1,104 @@
++# Offline handoff preflight — 10 September 2026
++
++**Preflight passed. Bell source is still uncompiled and not kernel-verified.**
++No mathematical completion certificate, successful compiler run, or online
++repository modification is claimed. This status supersedes earlier execution
++instructions; the earlier source-writing and provenance documents are retained.
++
++## Concrete source repair
++
++`Bell/ConeCompression.lean` used `finite_functional_coordinates`, defined in
++`Bell/FiniteLinearAlgebra.lean`, without importing its defining module through
++its dependency chain. The missing `import Bell.FiniteLinearAlgebra` is now added.
++A regression test detects the missing-import situation and accepts the repaired
++transitive import graph. This is a textual dependency check, not Lean resolution.
++
++All **58 mathematical modules** are preserved. Of them, **57 are byte-identical**
++to the incoming end-to-end ZIP and one has the import repair. For every module,
++all comment-free non-import source is unchanged. In particular, this phase does
++not weaken a theorem statement or add a main-theorem premise. There remain
++681 theorem/lemma source attempts, of which 672 are public and nine private.
++The mathematical source now has 10,376 lines, one more than the incoming draft.
++Counts describe source text, not declarations accepted by Lean.
++
++The main source interfaces continue to expose actual complex fixed-qubit
++strategies, arbitrary finite dependent output alphabets, ordinary convex hulls,
++and a finite common mixture of complete PVM strategies. No independently
++established counterexample or definite new mathematical gap was found in this
++preflight. This is not an exhaustive mathematical referee review; a successful
++static scan is no guarantee that the large analytic proof bodies work.
++
++## Verification runner repairs
++
++The old shell runner could leave a stale passed `axiom_audit.json` after an early
++failure. The new Python-backed wrapper archives earlier receipts and clears all
++success flags at the start; any failure clears them again. Each run has an
++exclusive lock, unique identifier, separate logs, command exit codes, and source
++hashes. Tests cover early failures, partial serial builds, interruption, bad
++compiler identity, missing reports, forbidden axioms, source changes, statement
++failures and invalid-proof controls.
++
++The runner enforces the compiler version **and full compiler commit**, all pinned
++dependency revisions and tracked-file cleanliness. It preserves old local project
++build outputs and requires a new full project build rather than trusting reused
++local `.olean` files. Dependency caches are retained. The allowlisted standard
++axioms are recorded, and all 672 public theorem dependencies are queried.
++Private helper dependencies are traversed through their public clients.
++
++There are **14 independent Lean statement-contract examples** in
++`validation/Statements.lean`. These are new validation source, not new
++mathematical assumptions. They must actually elaborate after the full build;
++textual presence or `#check` alone does not count. They remain uncompiled here.
++
++The source-token audit now excludes intentionally invalid smoke-test files in
++run-report directories, tracks namespace/section scopes separately, and screens
++additional local metaprogramming/kernel-bypass mechanisms. It is a conservative
++text policy, not a substitute for Lean's parser/kernel or a security boundary.
++
++## Packaging and reproducibility repairs
++
++The packager preserves nested historical checksum manifests instead of dropping
++every file named `SHA256SUMS.txt`. It verifies every ZIP member against the new
++root manifest, checks for extra/duplicate entries, preserves original line endings
++and executable modes, writes atomically, and rejects unsafe paths, symlinks,
++active-run snapshots and probable credential files. Build caches and font files
++are excluded. The shipment verifier and one-command compiler-free preflight are
++included. The complete incoming ZIP remains byte-identical at
++`preservation/input_before_preflight.zip`.
++
++Optional test dependencies are explicit in `requirements-preflight.txt`. The
++handoff guide distinguishes online cache acquisition, already-prepared offline
++execution, native host architectures, and the separate Linux x86_64 export bundle.
++This source archive does not include a compiler or Mathlib build cache.
++
++## Executed evidence
++
++The complete compiler-free suite is replayable with `bash scripts/preflight.sh`.
++The evidence is in `reports/preflight/validation_summary.json` and its named logs.
++
++- **44** static/parser/runner-control tests passed. Runner subprocess outputs are
++  mocked in temporary roots; no mock proof-success receipt is shipped as real.
++- **10** retained dependency-log parser tests passed on explicitly mock text.
++- **17** real temporary-file packaging/integrity/safety tests passed.
++- **21** retained environment-transport and embedding tests passed.
++- The original **122** exact algebra/finite checks and **1,215** rational
++  transportation regressions passed, comparing **43,740** probability entries.
++- The rational SOS identity, all three support cases, five corrupted-certificate
++  controls, and the independent twelve-leading-minor positivity check passed.
++- **230** deterministic-gap polynomial identities passed, including every
++  declared-table identity and the transpose negative control.
++- The expanded-source checker passed **69** symbolic identities, **474** rational
++  regressions, and its incorrect-transpose negative control.
++
++The 92 software/transport tests and the finite algebra have distinct scopes.
++None proves Lean elaboration, the analytic reductions, the full equality theorem,
++or correct manuscript interpretation. Historical reports outside the current
++preflight directory remain historical evidence for their own stages.
++
++## Next step
++
++Read `OFFLINE_RUN.md`, verify the shipment bytes, prepare the pinned toolchain,
++and run `bash scripts/check.sh --serial` (or add `--bootstrap` while online).
++The next substantive proof gate is the actual Lean build, statement-contract
++elaboration and dependency audit, followed by repairs exposed by that run.
++Further blind source expansion is not a replacement for that gate.
+--- a/README.md
++++ b/README.md
+@@ -1,7 +1,8 @@
+ # Qubit Bell-setting formalization — end-to-end source draft
+ 
+-**Uncompiled and not kernel-verified.** Read [SOURCE_STATUS.md](SOURCE_STATUS.md)
+-before interpreting any historical report in this package.
++**Uncompiled and not kernel-verified.** Start with [PREFLIGHT_STATUS.md](PREFLIGHT_STATUS.md)
++and [OFFLINE_RUN.md](OFFLINE_RUN.md). The earlier [SOURCE_STATUS.md](SOURCE_STATUS.md)
++is retained as historical source-writing status, not a successful build receipt.
+ 
+ This project targets Alec Kriebel's *Minimum Bell-Setting Complexity for Qubit
+ POVM–PVM Separation*, DOI `10.5281/zenodo.21699161`. The new source route includes
+--- a/environment/README.md
++++ b/environment/README.md
+@@ -79,13 +79,15 @@
+ successful restore. It returns the actual build exit status and keeps the log
+ at `reports/offline-build.log`. Compilation errors should be expected in a
+ previously uncompiled draft; they must be fixed, not suppressed. Even a clean
+-subset build does not close the outstanding universal two-input proof.
++subset build does not validate the end-to-end source draft. See `../OFFLINE_RUN.md`
++for the fresh-project runner, statement contracts, and per-run reports.
+ 
+ `--extract-only` tests/restores bytes without running a compiler and is explicitly
+ labelled unverified. It cannot be combined with project attachment or building.
+ 
+ ## Tests actually executed in this chat
+ 
++    python3 -m pip install -r requirements-preflight.txt  # preparation while online
+     python3 environment/test_handoff.py
+ 
+ 21 tests passed: raw and artifact-ZIP roundtrips, file modes, internal links,
+--- /dev/null
++++ b/requirements-preflight.txt
+@@ -0,0 +1,2 @@
++-r requirements.txt
++PyYAML==6.0.3
+--- a/scripts/check.sh
++++ b/scripts/check.sh
+@@ -1,56 +1,5 @@
+ #!/usr/bin/env bash
+-# Compile all imported source and audit public dependencies, including main claims.
+-# A compiler success proves the formal statements, not their faithful translation
+-# of every sentence in the manuscript. This script has NOT been run in this release.
++# The Python runner maintains fresh receipts and never installs Lean itself.
+ set -euo pipefail
+ cd "$(dirname "$0")/.."
+-mkdir -p reports
+-stage="static_source_audit"
+-lean_invoked=false
+-finish() {
+-  code=$?
+-  trap - EXIT
+-  STAGE="$stage" CODE="$code" LEAN_INVOKED="$lean_invoked" python3 - <<'PY'
+-import json, os, pathlib
+-passed=int(os.environ['CODE'])==0 and os.environ['STAGE']=='complete'
+-r={'status':'passed' if passed else 'failed_or_not_run',
+-   'exit_code':int(os.environ['CODE']),'last_stage':os.environ['STAGE'],
+-   'lean_build_invoked':os.environ['LEAN_INVOKED']=='true',
+-   'all_imported_source_kernel_checked':passed,
+-   'main_declarations_kernel_checked':passed,
+-   'statement_to_manuscript_review_required':True,
+-   'note':'All imported modules and listed public theorem declarations, including Assembly and StrengthenedWitness, are in scope.'}
+-pathlib.Path('reports/kernel_report.json').write_text(json.dumps(r,indent=2)+'\n')
+-PY
+-  exit "$code"
+-}
+-trap finish EXIT
+-python3 - <<'PY'
+-import json,pathlib
+-pathlib.Path('reports/kernel_report.json').write_text(json.dumps({
+-  'status':'in_progress','lean_build_invoked':False,
+-  'all_imported_source_kernel_checked':False,'main_declarations_kernel_checked':False},indent=2)+'\n')
+-PY
+-python3 scripts/source_audit.py | tee reports/source_audit.log
+-stage="toolchain_discovery"
+-if ! command -v lake >/dev/null 2>&1; then
+-  echo "NOT RUN: lake is not installed or is not on PATH." | tee reports/lean_build.log
+-  exit 127
+-fi
+-lake env lean --version | tee reports/lean_version.log
+-case "${1:-}" in
+-  --bootstrap)
+-    stage="dependency_cache"
+-    lake exe cache get 2>&1 | tee reports/lean_cache.log
+-    ;;
+-  "") ;;
+-  *) echo "Usage: bash scripts/check.sh [--bootstrap]" >&2; exit 2 ;;
+-esac
+-stage="lean_build"
+-lean_invoked=true
+-lake build 2>&1 | tee reports/lean_build.log
+-stage="dependency_audit"
+-lake env lean Bell/Audit.lean 2>&1 | tee reports/lean_axioms.log
+-python3 scripts/check_axioms.py reports/lean_axioms.log
+-stage="complete"
+-echo "All imported source and named main declarations passed the Lean build and dependency audit."
++exec python3 scripts/run_lean.py "$@"
+--- a/scripts/check_axioms.py
++++ b/scripts/check_axioms.py
+@@ -23,13 +23,18 @@
+ 
+ def inspect_reports(log: str, declarations: list[dict]) -> list[dict]:
+     """Parse dependency text only; tests use mocks, production uses Lean output."""
++    log=re.sub(r'\x1b\[[0-?]*[ -/]*[@-~]', '', log)
++    if re.search(r'(?m)\berror:', log):
++        raise AssertionError('Compiler error diagnostic in dependency log')
+     expected=[d for d in declarations if d.get('visibility','public')!='private']
+     if not expected:
+         raise AssertionError('Empty expected public-declaration inventory')
++    if len({d['name'] for d in expected}) != len(expected):
++        raise AssertionError('Duplicate expected declaration')
+     results=[]
+     for decl in expected:
+         name=decl['name']
+-        pat=re.compile(r"(?<![\w.])'?"+re.escape(name)+r"'?\s+(?:depends on axioms:\s*\[([^\]]*)\]|does not depend on any axioms)",re.S)
++        pat=re.compile(r"^\s*'?"+re.escape(name)+r"'?\s+(?:depends on axioms:\s*\[([^\]]*)\]|does not depend on any axioms)",re.S|re.M)
+         matches=list(pat.finditer(log))
+         if len(matches)!=1:
+             raise AssertionError(f'Expected exactly one Lean dependency report: {name}; got {len(matches)}')
+--- a/scripts/package.py
++++ b/scripts/package.py
+@@ -1,51 +1,120 @@
+ #!/usr/bin/env python3
+-"""Package the current source checkpoint, without claiming kernel verification.
++"""Create and byte-verify a portable source ZIP. This never verifies a theorem.
+ 
+-Usage: python3 scripts/package.py [output.zip]
+-This script records bytes, not mathematical correctness. It omits build products,
+-Python caches and Git metadata. It does not change any proof status.
++Build products, dependency caches, Git metadata and font files are excluded.
++Symlinks and probable credential files fail closed. Historical nested checksum
++manifests are preserved; only the root manifest is regenerated.
+ """
+ from __future__ import annotations
+ import hashlib
+ import json
++from pathlib import Path, PurePosixPath
++import stat
+ import sys
+ import zipfile
+-from pathlib import Path
+ 
+ ROOT = Path(__file__).resolve().parents[1]
+ OMIT_DIRS = {'.lake', '.git', '__pycache__'}
+-OMIT_SUFFIXES = {'.pyc', '.olean', '.ilean', '.o'}
++OMIT_SUFFIXES = {'.pyc', '.olean', '.ilean', '.o', '.a', '.so', '.dylib', '.dll', '.wasm'}
++FONT_SUFFIXES = {'.ttf', '.otf', '.woff', '.woff2', '.eot', '.ttc', '.dfont'}
++CREDENTIAL_SUFFIXES = {'.pem', '.key', '.p12', '.pfx'}
++
++
++def valid_name(name: str) -> bool:
++    p = PurePosixPath(name)
++    return bool(name) and not p.is_absolute() and '..' not in p.parts and '\\' not in name and '\n' not in name and '\r' not in name and '\x00' not in name
++
++
++def selected_files(root: Path) -> list[Path]:
++    result = []
++    for p in sorted(root.rglob('*')):
++        rel = p.relative_to(root)
++        if any(part in OMIT_DIRS for part in rel.parts):
++            continue
++        if p.is_symlink():
++            raise ValueError(f'Refusing to package a symlink: {rel}')
++        if not p.is_file():
++            continue
++        if not valid_name(rel.as_posix()):
++            raise ValueError(f'Unsafe manifest filename: {rel}')
++        if p.name == '.lean-run.lock':
++            raise ValueError('A verification run is active; do not package a moving report set.')
++        if p.suffix.lower() in CREDENTIAL_SUFFIXES or p.name in {'.netrc', 'id_rsa', 'id_ed25519', '.env'} or p.name.startswith('.env.'):
++            raise ValueError(f'Probable credential file requires manual review: {rel}')
++        if p.suffix.lower() in OMIT_SUFFIXES | FONT_SUFFIXES or rel.as_posix() == 'SHA256SUMS.txt':
++            continue
++        result.append(p)
++    return result
++
++
++def parse_manifest(content: str) -> dict[str, str]:
++    expected = {}
++    for line in content.splitlines():
++        digest, name = line.split('  ', 1)
++        if not valid_name(name) or name in expected or len(digest) != 64 or any(c not in '0123456789abcdef' for c in digest):
++            raise ValueError(f'Invalid or duplicate manifest entry: {name!r}')
++        expected[name] = digest
++    return expected
++
++
++def verify_zip(path: Path) -> dict:
++    with zipfile.ZipFile(path) as z:
++        names = z.namelist()
++        if len(set(names)) != len(names):
++            raise ValueError('Duplicate ZIP entry.')
++        if z.testzip() is not None:
++            raise ValueError('ZIP CRC failure.')
++        for entry in z.infolist():
++            if not valid_name(entry.filename) or not entry.filename.startswith('bell_lean/'):
++                raise ValueError(f'Unsafe archive entry: {entry.filename}')
++            if stat.S_ISLNK(entry.external_attr >> 16):
++                raise ValueError('ZIP symlink not permitted.')
++        manifest = parse_manifest(z.read('bell_lean/SHA256SUMS.txt').decode())
++        if set(names) != {'bell_lean/'+n for n in manifest} | {'bell_lean/SHA256SUMS.txt'}:
++            raise ValueError('ZIP and root manifest differ in file membership.')
++        for name, digest in manifest.items():
++            if hashlib.sha256(z.read('bell_lean/'+name)).hexdigest() != digest:
++                raise ValueError(f'ZIP checksum mismatch: {name}')
++    return {'file_count': len(names), 'zip_crc_and_embedded_hashes_checked': True}
++
++
++def make_package(root: Path, output: Path) -> dict:
++    root = root.resolve(); output = output.expanduser().resolve()
++    if output == root or root in output.parents:
++        raise ValueError('Write the archive outside the source root.')
++    paths = selected_files(root)
++    payloads = {p.relative_to(root).as_posix(): p.read_bytes() for p in paths}
++    checks = ''.join(hashlib.sha256(b).hexdigest()+'  '+n+'\n' for n,b in sorted(payloads.items()))
++    (root/'SHA256SUMS.txt').write_text(checks)
++    payloads['SHA256SUMS.txt'] = checks.encode()
++    output.parent.mkdir(parents=True, exist_ok=True)
++    temp = output.with_suffix(output.suffix+'.tmp')
++    try:
++        with zipfile.ZipFile(temp, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as z:
++            for name, data in sorted(payloads.items()):
++                entry = zipfile.ZipInfo('bell_lean/'+name, date_time=(2026,9,10,0,0,0))
++                entry.create_system = 3
++                entry.external_attr = (stat.S_IFREG | ((root/name).stat().st_mode & 0o777)) << 16
++                entry.compress_type = zipfile.ZIP_DEFLATED
++                z.writestr(entry, data, compresslevel=9)
++        verified = verify_zip(temp)
++        for name, data in payloads.items():
++            if (root/name).read_bytes() != data:
++                raise ValueError(f'Source changed while packaging: {name}')
++        temp.replace(output)
++    finally:
++        temp.unlink(missing_ok=True)
++    report = {'archive': str(output), 'bytes': output.stat().st_size,
++              'sha256': hashlib.sha256(output.read_bytes()).hexdigest(), **verified,
++              'lean_kernel_checked_by_packaging': False,
++              'note': 'Integrity of preserved bytes only; consult the separately generated verification run receipt.'}
++    output.with_suffix('.receipt.json').write_text(json.dumps(report,indent=2)+'\n')
++    return report
+ 
+ 
+ def main() -> None:
+-    output = Path(sys.argv[1]).expanduser().resolve() if len(sys.argv) > 1 else ROOT.parent/'bell_setting_lean.zip'
+-    if output == ROOT or ROOT in output.parents:
+-        raise ValueError('Write the archive outside the source root to avoid recursive packaging.')
+-    files = sorted(p for p in ROOT.rglob('*') if p.is_file()
+-        and not any(part in OMIT_DIRS for part in p.relative_to(ROOT).parts)
+-        and p.suffix not in OMIT_SUFFIXES and p.name != 'SHA256SUMS.txt')
+-    sums = ''.join(f'{hashlib.sha256(p.read_bytes()).hexdigest()}  {p.relative_to(ROOT).as_posix()}\n' for p in files)
+-    (ROOT/'SHA256SUMS.txt').write_text(sums)
+-    files.append(ROOT/'SHA256SUMS.txt')
+-    output.parent.mkdir(parents=True, exist_ok=True)
+-    with zipfile.ZipFile(output, 'w', zipfile.ZIP_DEFLATED, compresslevel=9) as archive:
+-        for p in files:
+-            archive.write(p, 'bell_lean/'+p.relative_to(ROOT).as_posix())
+-    with zipfile.ZipFile(output) as archive:
+-        bad = archive.testzip()
+-        if bad is not None:
+-            raise AssertionError(f'Archive CRC failure: {bad}')
+-        for line in sums.splitlines():
+-            expected, rel = line.split('  ', 1)
+-            actual = hashlib.sha256(archive.read('bell_lean/'+rel)).hexdigest()
+-            if actual != expected:
+-                raise AssertionError(f'Archive hash mismatch: {rel}')
+-    print(json.dumps({'archive':str(output),'file_count':len(files),
+-        'bytes':output.stat().st_size,
+-        'sha256':hashlib.sha256(output.read_bytes()).hexdigest(),
+-        'archive_integrity_checked':True,
+-        'note':'Archive integrity does not establish Lean compilation or proof correctness.'},indent=2))
+-
++    output=Path(sys.argv[1]) if len(sys.argv)>1 else ROOT.parent/'bell_lean_preflight_20260910.zip'
++    print(json.dumps(make_package(ROOT,output),indent=2))
+ 
+ if __name__ == '__main__':
+     main()
+--- a/scripts/package_continuation.py
++++ b/scripts/package_continuation.py
+@@ -1,43 +1,5 @@
+ #!/usr/bin/env python3
+-"""Package the available source, reports, and handoff; omit toolchain/build caches."""
+-from pathlib import Path
+-import hashlib
+-import json
+-import sys
+-import zipfile
+-
+-ROOT=Path(__file__).resolve().parents[1]
+-EXCLUDED={'.git','.lake','__pycache__'}
+-FONT_SUFFIXES={'.ttf','.otf','.woff','.woff2','.eot'}
+-
+-def digest(path):
+-    h=hashlib.sha256()
+-    with path.open('rb') as stream:
+-        for b in iter(lambda:stream.read(1024*1024),b''):h.update(b)
+-    return h.hexdigest()
+-
+-def main():
+-    target=Path(sys.argv[1] if len(sys.argv)>1 else str(ROOT.parent/'bell_lean_continuation_20260910.zip')).resolve()
+-    if target.is_relative_to(ROOT.resolve()):raise SystemExit('Write the archive outside the source tree.')
+-    paths=sorted(p for p in ROOT.rglob('*') if p.is_file()
+-        and not any(k in EXCLUDED for k in p.relative_to(ROOT).parts)
+-        and p.suffix.lower() not in FONT_SUFFIXES)
+-    checks=''.join(f'{digest(p)}  {p.relative_to(ROOT).as_posix()}\n'
+-                  for p in paths if p.relative_to(ROOT).as_posix()!='SHA256SUMS.txt')
+-    (ROOT/'SHA256SUMS.txt').write_text(checks)
+-    if ROOT/'SHA256SUMS.txt' not in paths:paths.append(ROOT/'SHA256SUMS.txt')
+-    with zipfile.ZipFile(target,'w',zipfile.ZIP_DEFLATED,compresslevel=9) as z:
+-        for p in sorted(paths):z.write(p,'bell_lean/'+p.relative_to(ROOT).as_posix())
+-    with zipfile.ZipFile(target) as z:
+-        if z.testzip() is not None:raise RuntimeError('ZIP CRC failure')
+-        for line in checks.splitlines():
+-            expected,name=line.split('  ',1)
+-            if hashlib.sha256(z.read('bell_lean/'+name)).hexdigest()!=expected:
+-                raise RuntimeError(f'ZIP checksum failure: {name}')
+-    receipt={'archive':str(target),'bytes':target.stat().st_size,'files':len(paths),
+-      'sha256':digest(target),'zip_crc_and_embedded_hashes_checked':True,
+-      'lean_kernel_checked':False,'full_paper_proved':False}
+-    target.with_suffix('.receipt.json').write_text(json.dumps(receipt,indent=2)+'\n')
+-    print(json.dumps(receipt,indent=2))
+-
+-if __name__=='__main__':main()
++"""Compatibility entry point; use the same checked packager for every checkpoint."""
++from package import main
++if __name__ == '__main__':
++    main()
+--- /dev/null
++++ b/scripts/preflight.sh
+@@ -0,0 +1,5 @@
++#!/usr/bin/env bash
++# Compiler-free checks only. The real proof runner is scripts/check.sh.
++set -euo pipefail
++cd "$(dirname "$0")/.."
++exec python3 scripts/preflight_all.py "$@"
+--- /dev/null
++++ b/scripts/preflight_all.py
+@@ -0,0 +1,77 @@
++#!/usr/bin/env python3
++"""Run the compiler-free preflight and exact checks; never invoke Lean or Lake.
++
++The final status is preflight_passed, NOT proof_verified. Tests of the future
++Lean runner use mocked process outputs in temporary folders, explicitly labelled.
++"""
++from __future__ import annotations
++import datetime as dt
++import hashlib
++import json
++from pathlib import Path
++import py_compile
++import subprocess
++import sys
++from run_lean import write_json
++
++ROOT=Path(__file__).resolve().parents[1]
++COMMANDS=[
++ ('source_audit',['scripts/source_audit.py']),
++ ('import_inventory',['scripts/source_completion_inventory.py']),
++ ('static_checks',['scripts/preflight_checks.py']),
++ ('parser_tests',['scripts/test_axiom_audit.py']),
++ ('runner_tests',['scripts/test_preflight.py']),
++ ('package_tests',['scripts/test_packaging.py']),
++ ('environment_tests',['environment/test_handoff.py']),
++ ('exact_checks',['scripts/exact_checks.py']),
++ ('sos_checks',['scripts/sos_checks.py']),
++ ('sos_bareiss',['scripts/sos_bareiss_check.py']),
++ ('deterministic_gap',['scripts/deterministic_gap_checks.py']),
++ ('expanded_source_algebra',['scripts/source_completion_checks.py','--suite','all']),
++]
++
++
++def main():
++    out=ROOT/'reports/preflight';out.mkdir(parents=True,exist_ok=True)
++    report={'status':'in_progress','started_utc':dt.datetime.now(dt.timezone.utc).isoformat(),
++            'lean_invoked':False,'kernel_checked':False,'commands':[],
++            'scope':'Compiler-free byte/structure/harness checks and independent finite exact algebra only.'}
++    path=out/'validation_summary.json';write_json(path,report)
++    try:
++        syntax=[]
++        for folder in ('scripts','environment'):
++            for p in sorted((ROOT/folder).glob('*.py')):
++                py_compile.compile(str(p),doraise=True);syntax.append(p.relative_to(ROOT).as_posix())
++        for p in sorted((ROOT/'scripts').glob('*.sh')):
++            subprocess.run(['bash','-n',str(p)],check=True,cwd=ROOT)
++            syntax.append(p.relative_to(ROOT).as_posix())
++        report['syntax_checked_files']=syntax
++        for name,argv in COMMANDS:
++            log=out/(name+'.log')
++            with log.open('w') as f:
++                result=subprocess.run([sys.executable,*argv],cwd=ROOT,stdout=f,stderr=subprocess.STDOUT)
++            entry={'name':name,'argv':[sys.executable,*argv],'exit_code':result.returncode,
++                   'log':log.relative_to(ROOT).as_posix(),'log_sha256':hashlib.sha256(log.read_bytes()).hexdigest()}
++            report['commands'].append(entry);write_json(path,report)
++            print(f'{name}: '+('passed' if result.returncode==0 else 'FAILED'),flush=True)
++            if result.returncode:
++                raise RuntimeError(f'{name} failed; inspect {log}')
++        reports={
++            'static':'reports/preflight/static_checks.json',
++            'runner_harness':'reports/preflight/harness_tests.json',
++            'packaging':'reports/preflight/package_tests.json',
++            'parser':'reports/source_completion/axiom_parser_tests.json',
++            'expanded_finite_algebra':'reports/source_completion/exact_all.json',
++            'baseline_finite_algebra':'reports/exact_checks.json',
++        }
++        report['evidence']={key:{'path':rel,'sha256':hashlib.sha256((ROOT/rel).read_bytes()).hexdigest()}
++                            for key,rel in reports.items()}
++        report['status']='preflight_passed'
++    except BaseException as exc:
++        report['status']='preflight_failed';report['error']=str(exc)
++        raise
++    finally:
++        report['ended_utc']=dt.datetime.now(dt.timezone.utc).isoformat();write_json(path,report)
++    print('COMPILER-FREE PREFLIGHT PASSED. Lean proofs remain uncompiled and unverified.')
++
++if __name__=='__main__':main()
+--- /dev/null
++++ b/scripts/preflight_checks.py
+@@ -0,0 +1,142 @@
++#!/usr/bin/env python3
++"""Compiler-free structural checks. This is not a Lean parser or proof checker."""
++from __future__ import annotations
++from collections import defaultdict
++import hashlib
++import json
++from pathlib import Path
++import re
++from zipfile import ZipFile
++from source_audit import strip_comments
++from run_lean import validate_pins, write_json
++
++ROOT = Path(__file__).resolve().parents[1]
++INPUT_SHA256 = '0304ec2abf82e6d2747faff20db8cd1eeebeb6e0aed334dd42b4344969e38d92'
++DECLARATION = re.compile(r'^\s*(?:(?:private|protected|noncomputable)\s+)*(?:def|abbrev|theorem|lemma|structure|class)\s+([\w\u0080-\uffff.\'₀-₉]+)', re.M)
++IMPORT = re.compile(r'^\s*import\s+(Bell\.[\w.]+)\s*$', re.M)
++
++
++def module_graph(root: Path) -> tuple[dict, dict]:
++    texts = {'Bell.'+p.stem: strip_comments(p.read_text())
++             for p in sorted((root/'Bell').glob('*.lean')) if p.name != 'Audit.lean'}
++    graph = {name: IMPORT.findall(text) for name, text in texts.items()}
++    for name, deps in graph.items():
++        missing = set(deps)-set(texts)
++        if missing:
++            raise AssertionError(f'{name}: missing imports {sorted(missing)}')
++    return texts, graph
++
++
++def transitive_imports(graph: dict, module: str, visiting=None) -> set:
++    visiting = set() if visiting is None else set(visiting)
++    if module in visiting:
++        raise AssertionError(f'Circular imports through {module}')
++    visiting.add(module)
++    result = set(graph[module])
++    for dep in graph[module]:
++        result.update(transitive_imports(graph, dep, visiting))
++    return result
++
++
++def dependency_candidates(texts: dict, graph: dict) -> list[dict]:
++    """Conservative lint of UNIQUE long project names; overloaded/short names skipped.
++
++    This checks visibility of textual references, not identifier resolution. It
++    supplements the normal import graph and is deliberately labelled a heuristic.
++    """
++    declarations = defaultdict(list)
++    for module, text in texts.items():
++        for match in DECLARATION.finditer(text):
++            name = match.group(1).split('.')[-1]
++            declarations[name].append((module, text.count('\n', 0, match.start(1))+1))
++    unique = {n: v[0] for n, v in declarations.items() if len(v) == 1 and len(n) >= 18}
++    findings = []
++    for module, text in texts.items():
++        visible = transitive_imports(graph, module)
++        for lineno, line in enumerate(text.splitlines(), 1):
++            if line.lstrip().startswith('import '):
++                continue
++            for token in set(re.findall(r'[\w\u0080-\uffff\']+', line)):
++                if token not in unique:
++                    continue
++                owner, declaration_line = unique[token]
++                if owner != module and owner not in visible:
++                    findings.append(dict(module=module, line=lineno, name=token,
++                                         owner=owner, issue='not_in_transitive_imports'))
++                elif owner == module and declaration_line > lineno:
++                    findings.append(dict(module=module, line=lineno, name=token,
++                                         owner=owner, issue='reference_before_declaration'))
++    return findings
++
++
++def proof_text(text: str) -> str:
++    """Normalized comment-free non-import text; preservation evidence only."""
++    text = re.sub(r'^\s*import\s+.*$', '', strip_comments(text), flags=re.M)
++    return ' '.join(text.split())
++
++
++def evaluate(root: Path = ROOT) -> dict:
++    packages = validate_pins(root)
++    texts, graph = module_graph(root)
++    for m in graph:
++        transitive_imports(graph, m)
++    aggregate = set(IMPORT.findall(strip_comments((root/'Bell.lean').read_text())))
++    if aggregate != set(graph):
++        raise AssertionError('Aggregate must include exactly all mathematical modules.')
++    findings = dependency_candidates(texts, graph)
++    if findings:
++        raise AssertionError(f'Project identifier visibility candidates need review: {findings}')
++    # Restrict live proof inputs to regular files; never follow linked source.
++    for d in ('Bell', 'validation', 'scripts'):
++        for p in (root/d).rglob('*'):
++            if p.is_symlink():
++                raise AssertionError(f'Symlink in verification inputs: {p}')
++    contracts = root/'validation/Statements.lean'
++    if not contracts.is_file() or 'example' not in strip_comments(contracts.read_text()):
++        raise AssertionError('Missing independent statement-contract source.')
++    declared = json.loads((root/'reports/declarations.json').read_text())
++    audit = strip_comments((root/'Bell/Audit.lean').read_text())
++    queries = re.findall(r'^#print axioms (\S+)\s*$', audit, flags=re.M)
++    expected = [d['name'] for d in declared if d['visibility'] != 'private']
++    if len(queries) != len(expected) or set(queries) != set(expected):
++        raise AssertionError('Generated audit differs from public-declaration inventory.')
++    # Preserve a receipt of the incoming bytes, not a claim that those bytes were correct.
++    archive = root/'preservation/input_before_preflight.zip'
++    if hashlib.sha256(archive.read_bytes()).hexdigest() != INPUT_SHA256:
++        raise AssertionError('Incoming preflight baseline archive hash changed.')
++    with ZipFile(archive) as z:
++        if z.testzip() is not None:
++            raise AssertionError('Baseline ZIP failed CRC checks.')
++        prior = {n[len('bell_lean/'):]: z.read(n) for n in z.namelist()
++                 if n.startswith('bell_lean/') and not n.endswith('/')}
++    changes = []
++    for module in texts:
++        rel = module.replace('.', '/')+'.lean'
++        p = root/rel
++        old, now = prior[rel], p.read_bytes()
++        changes.append({'file': rel, 'byte_identical': old == now,
++                        'nonimport_noncomment_text_unchanged': proof_text(old.decode()) == proof_text(now.decode()),
++                        'before_sha256': hashlib.sha256(old).hexdigest(),
++                        'after_sha256': hashlib.sha256(now).hexdigest()})
++    return {'status': 'static_passed', 'kernel_checked': False, 'lean_invoked': False,
++            'mathematical_modules': len(texts), 'imports_acyclic': True,
++            'aggregate_complete': True, 'configured_dependency_pins': len(packages),
++            'public_axiom_queries': len(queries), 'dependency_visibility_candidates': findings,
++            'independent_statement_contract_source_present': True,
++            'baseline_sha256': INPUT_SHA256, 'module_preservation': changes,
++            'scope': 'Text/import/configuration checks; identifiers, proofs and contracts are NOT elaborated.'}
++
++
++def main() -> None:
++    dest = ROOT/'reports/preflight/static_checks.json'
++    try:
++        result = evaluate()
++    except Exception as exc:
++        write_json(dest, {'status': 'failed', 'kernel_checked': False, 'error': str(exc)})
++        raise
++    write_json(dest, result)
++    print(f"STATIC PREFLIGHT: {result['mathematical_modules']} modules; {result['public_axiom_queries']} public dependency queries; no visibility candidates.")
++    print('Not Lean elaboration or mathematical verification.')
++
++if __name__ == '__main__':
++    main()
+--- /dev/null
++++ b/scripts/run_lean.py
+@@ -0,0 +1,301 @@
++#!/usr/bin/env python3
++"""Run the pinned Lean build and audits, failing closed with per-run provenance.
++
++Prepare the pinned compiler first. This runner has no compiler installer; a
++Lake/elan shim retains its normal behavior. --bootstrap permits dependency-cache
++acquisition. Without it, missing checkouts fail before Lake is invoked. This
++script is not a network sandbox.
++A completed subprocess is not equated with a completed paper proof: the build,
++statement checks, dependency audit and final source hash must all succeed.
++"""
++from __future__ import annotations
++import argparse
++import datetime as dt
++import hashlib
++import json
++import os
++from pathlib import Path
++import re
++import shutil
++import subprocess
++import sys
++import uuid
++
++ROOT = Path(__file__).resolve().parents[1]
++PINNED_TOOLCHAIN = 'leanprover/lean4:v4.19.0'
++PINNED_LEAN_COMMIT = '6caaee842e9495688c1567e78c0e68dbb96942aa'
++PINNED_MATHLIB_COMMIT = 'c44e0c8ee63ca166450922a373c7409c5d26b00b'
++
++class RunFailure(RuntimeError):
++    def __init__(self, message: str, code: int = 1):
++        super().__init__(message)
++        self.code = code
++
++
++def write_json(path: Path, value: dict) -> None:
++    """Atomic file replacement prevents a truncated status from looking complete."""
++    path.parent.mkdir(parents=True, exist_ok=True)
++    tmp = path.with_name(path.name+'.tmp')
++    tmp.write_text(json.dumps(value, indent=2, ensure_ascii=False)+'\n')
++    tmp.replace(path)
++
++
++def source_snapshot(root: Path) -> dict[str, str]:
++    files = [root/'Bell.lean', root/'lakefile.toml', root/'lake-manifest.json', root/'lean-toolchain']
++    files.append(root/'environment/pins.json')
++    for directory in ('Bell', 'validation', 'scripts'):
++        files.extend(p for p in (root/directory).rglob('*')
++                     if p.is_file() and p.suffix in {'.lean', '.py', '.sh'}
++                     and '__pycache__' not in p.parts)
++    return {p.relative_to(root).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
++            for p in sorted(set(files))}
++
++
++def validate_pins(root: Path) -> list[dict]:
++    tc = (root/'lean-toolchain').read_text().strip()
++    if tc != PINNED_TOOLCHAIN:
++        raise RunFailure(f'Unexpected lean-toolchain: {tc!r}')
++    pin = json.loads((root/'environment/pins.json').read_text())
++    if pin['toolchain'] != PINNED_TOOLCHAIN or pin['lean_git_hash'] != PINNED_LEAN_COMMIT:
++        raise RunFailure('Environment toolchain pins do not match the reviewed release.')
++    for name, content in pin['files'].items():
++        if (root/name).read_text() != content:
++            raise RunFailure(f'{name} differs from the reviewed environment pins. Do not run lake update.')
++    manifest = json.loads((root/'lake-manifest.json').read_text())
++    packages = manifest['packages']
++    if len({p['name'] for p in packages}) != len(packages):
++        raise RunFailure('Duplicate dependency name in manifest.')
++    mathlib = [p for p in packages if p['name'] == 'mathlib']
++    if len(mathlib) != 1 or mathlib[0]['rev'] != PINNED_MATHLIB_COMMIT:
++        raise RunFailure('Wrong Mathlib revision.')
++    for p in packages:
++        if not re.fullmatch(r'[A-Za-z0-9_-]+', p['name']) or not re.fullmatch(r'[0-9a-f]{40}', p['rev']):
++            raise RunFailure('Unsafe or unpinned package descriptor.')
++    return packages
++
++
++def inspect_compiler(version: str, commit: str) -> None:
++    if re.search(r'\bversion 4\.19\.0(?=[,\s)]|$)', version) is None:
++        raise RunFailure(f'Wrong Lean version: {version.strip()}')
++    if commit.strip() != PINNED_LEAN_COMMIT:
++        raise RunFailure(f'Wrong Lean Git revision: {commit.strip()}')
++
++
++def require_negative_control_rejection(code: int, log: str) -> None:
++    if code == 0:
++        raise RunFailure('Compiler accepted the intentionally invalid proof. Stop verification.')
++    if 'error:' not in log or not re.search(r'type mismatch|has type', log, flags=re.I):
++        raise RunFailure('Invalid-proof smoke test failed for an unrelated reason; not counted as rejection.')
++
++
++def check_no_errors(log: str, stage: str) -> None:
++    if re.search(r'(?m)\berror:', log) or 'declaration uses \'sorry\'' in log or 'sorryAx' in log:
++        raise RunFailure(f'{stage}: proof error or incomplete-proof diagnostic in log.')
++
++
++def initial_reports(root: Path, run_dir: Path, run_id: str) -> None:
++    for name in ('kernel_report.json', 'axiom_audit.json', 'statement_audit.json'):
++        old = root/'reports'/name
++        if old.is_file():
++            (run_dir/'previous').mkdir(exist_ok=True)
++            shutil.copyfile(old, run_dir/'previous'/name)
++        write_json(old, {'status': 'not_run', 'run_id': run_id,
++                        'dependency_audit_passed': False,
++                        'main_declarations_kernel_checked': False,
++                        'all_imported_source_kernel_checked': False})
++
++
++def run(args: argparse.Namespace, root: Path = ROOT) -> int:
++    reports = root/'reports'
++    reports.mkdir(exist_ok=True)
++    lock = reports/'.lean-run.lock'
++    try:
++        fd = os.open(lock, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
++    except FileExistsError:
++        print('Another run owns reports/.lean-run.lock. After a crashed run, confirm no process remains before removing it.', file=sys.stderr)
++        return 2
++    run_id = dt.datetime.now(dt.timezone.utc).strftime('%Y%m%dT%H%M%SZ')+'-'+uuid.uuid4().hex[:8]
++    os.write(fd, json.dumps({'pid': os.getpid(), 'run_id': run_id}).encode())
++    os.close(fd)
++    run_dir = reports/'runs'/run_id
++    run_dir.mkdir(parents=True)
++    stage = 'initialization'
++    commands: list[dict] = []
++    lean_invoked = False
++    snapshot: dict = {}
++    error = None
++    status_code = 1
++    audit = None
++    start = dt.datetime.now(dt.timezone.utc).isoformat()
++    (run_dir/'command.json').write_text(json.dumps(vars(args), indent=2)+'\n')
++
++    def command(argv: list[str], name: str, allow_failure: bool = False) -> tuple[int, str]:
++        logfile = run_dir/(f'{len(commands):03d}-'+name+'.log')
++        print('$ '+' '.join(argv), flush=True)
++        # Real executable only; tests mock this subprocess API in temporary roots.
++        with logfile.open('w') as stream:
++            proc = subprocess.Popen(argv, cwd=root, stdout=subprocess.PIPE,
++                                    stderr=subprocess.STDOUT, text=True, encoding='utf-8', errors='replace')
++            try:
++                assert proc.stdout is not None
++                for line in proc.stdout:
++                    stream.write(line)
++                    stream.flush()
++                    print(line, end='', flush=True)
++                code = proc.wait()
++            except BaseException:
++                proc.terminate()
++                try:
++                    proc.wait(timeout=5)
++                except subprocess.TimeoutExpired:
++                    proc.kill(); proc.wait()
++                raise
++        text = logfile.read_text()
++        commands.append({'argv': argv, 'exit_code': code, 'log': str(logfile.relative_to(root)),
++                         'log_sha256': hashlib.sha256(logfile.read_bytes()).hexdigest()})
++        write_json(run_dir/'commands.json', {'commands': commands})
++        if code != 0 and not allow_failure:
++            raise RunFailure(f'{stage} failed with exit code {code}; see {logfile}', code if 0 < code < 126 else 1)
++        return code, text
++
++    def verify_dependencies(packages: list[dict]) -> None:
++        for pkg in packages:
++            path = root/'.lake/packages'/pkg['name']
++            if not (path/'.git').exists():
++                raise RunFailure(f'Missing checkout: {path}. Prepare with --bootstrap while online, or restore the pinned environment.')
++            _, rev = command(['git', '-C', str(path), 'rev-parse', 'HEAD'], 'pin-'+pkg['name'])
++            if rev.strip() != pkg['rev']:
++                raise RunFailure(f"Dependency {pkg['name']} is at {rev.strip()}, expected {pkg['rev']}.")
++            code, _ = command(['git', '-C', str(path), 'diff', '--quiet', 'HEAD', '--'], 'clean-'+pkg['name'], True)
++            if code != 0:
++                raise RunFailure(f"Dependency {pkg['name']} has modified tracked files; review rather than silently trusting them.")
++
++    try:
++        initial_reports(root, run_dir, run_id)
++        stage = 'configuration_pins'
++        packages = validate_pins(root)
++        stage = 'static_source_audit'
++        command([sys.executable, 'scripts/source_audit.py'], 'source-audit')
++        command([sys.executable, 'scripts/source_completion_inventory.py'], 'import-inventory')
++        command([sys.executable, 'scripts/preflight_checks.py'], 'preflight-static')
++        snapshot = source_snapshot(root)
++        write_json(run_dir/'source_snapshot.json', snapshot)
++        stage = 'toolchain_discovery'
++        if shutil.which('lake') is None:
++            raise RunFailure('Lean build NOT RUN: lake is not installed or is not on PATH.', 127)
++        if not args.bootstrap:
++            stage = 'dependency_precheck'
++            verify_dependencies(packages)
++        stage = 'compiler_identity'
++        _, version = command(['lake', 'env', 'lean', '--version'], 'lean-version')
++        _, commit = command(['lake', 'env', 'lean', '--githash'], 'lean-githash')
++        inspect_compiler(version, commit)
++        if args.bootstrap:
++            stage = 'dependency_cache'
++            command(['lake', 'exe', 'cache', 'get'], 'dependency-cache')
++        stage = 'dependency_identity'
++        verify_dependencies(packages)
++        stage = 'compiler_controls'
++        good = run_dir/'SmokeValid.lean'
++        bad = run_dir/'SmokeInvalid.lean'
++        good.write_text('import Mathlib\nexample (x y : ℝ) : (x+y)^2 = x^2+2*x*y+y^2 := by ring\n')
++        bad.write_text('import Mathlib\nexample : False := True.intro\n')
++        _, smoke = command(['lake', 'env', 'lean', str(good.relative_to(root))], 'smoke-valid')
++        check_no_errors(smoke, stage)
++        code, smoke = command(['lake', 'env', 'lean', str(bad.relative_to(root))], 'smoke-invalid', True)
++        require_negative_control_rejection(code, smoke)
++        stage = 'fresh_project_build'
++        # Dependencies retain their pinned cache; local proof outputs never
++        # stand in for checking this source. Preserve old build products locally.
++        local_build = root/'.lake/build'
++        if (root/'.lake').is_symlink() or local_build.is_symlink():
++            raise RunFailure('Refusing to move symlinked local build directories.')
++        if local_build.exists():
++            backup = root/'.lake/preflight-builds'/run_id
++            backup.parent.mkdir(parents=True, exist_ok=True)
++            local_build.rename(backup)
++            write_json(run_dir/'previous_project_build.json', {'moved_to': str(backup.relative_to(root))})
++        stage = 'lean_build'
++        lean_invoked = True
++        if args.serial:
++            order = json.loads((reports/'source_completion/source_inventory.json').read_text())['topological_module_order']
++            for module in order:
++                _, text = command(['lake', 'build', module], 'build-'+module)
++                check_no_errors(text, stage)
++        _, text = command(['lake', 'build', 'Bell'], 'build-Bell')
++        check_no_errors(text, stage)
++        stage = 'statement_contracts'
++        _, text = command(['lake', 'env', 'lean', 'validation/Statements.lean'], 'statement-contracts')
++        check_no_errors(text, stage)
++        write_json(run_dir/'statement_audit.json', {'status': 'passed', 'run_id': run_id,
++                       'source': 'validation/Statements.lean', 'formal_statement_contracts_passed': True,
++                       'independent_mathematical_referee_review': False})
++        stage = 'dependency_audit'
++        _, log = command(['lake', 'env', 'lean', 'Bell/Audit.lean'], 'axioms')
++        check_no_errors(log, stage)
++        sys.path.insert(0, str(root/'scripts'))
++        from check_axioms import inspect_reports, REQUIRED_MAIN
++        declarations = json.loads((reports/'declarations.json').read_text())
++        names = {d['name'] for d in declarations if d.get('visibility') != 'private'}
++        if REQUIRED_MAIN-names:
++            raise RunFailure('Main declarations missing from dependency inventory.')
++        results = inspect_reports(log, declarations)
++        stage = 'source_and_dependencies_unchanged'
++        if source_snapshot(root) != snapshot:
++            raise RunFailure('Source/configuration changed during verification; results discarded.')
++        verify_dependencies(packages)
++        audit = {'status': 'passed', 'run_id': run_id, 'dependency_audit_passed': True,
++                 'main_declarations_dependency_audited': True,
++                 'source_snapshot_sha256': hashlib.sha256((run_dir/'source_snapshot.json').read_bytes()).hexdigest(),
++                 'declarations': results,
++                 'allowed_standard_axioms': ['Classical.choice', 'Quot.sound', 'propext']}
++        stage = 'complete'
++        status_code = 0
++    except KeyboardInterrupt:
++        status_code = 130; error = 'Interrupted; no full verification success claimed.'
++    except (RunFailure, OSError, ValueError, AssertionError, KeyError) as exc:
++        status_code = exc.code if isinstance(exc, RunFailure) else 1
++        error = str(exc)
++        print(error, file=sys.stderr)
++    finally:
++        passed = status_code == 0 and stage == 'complete'
++        receipt = {'status': 'passed' if passed else 'failed_or_not_run', 'run_id': run_id,
++                   'started_utc': start, 'ended_utc': dt.datetime.now(dt.timezone.utc).isoformat(),
++                   'exit_code': status_code, 'last_stage': stage, 'error': error,
++                   'lean_build_invoked': lean_invoked, 'all_imported_source_kernel_checked': passed,
++                   'main_declarations_kernel_checked': passed,
++                   'formal_statement_contracts_passed': passed,
++                   'statement_to_manuscript_review_required': True,
++                   'logs_directory': run_dir.relative_to(root).as_posix(),
++                   'source_snapshot': snapshot, 'commands': commands,
++                   'note': 'Static/smoke/subset success is not full success. Compiler/cache producer remains a trust assumption.'}
++        write_json(run_dir/'kernel_report.json', receipt)
++        write_json(reports/'kernel_report.json', receipt)
++        if passed:
++            write_json(run_dir/'axiom_audit.json', audit)
++            write_json(reports/'axiom_audit.json', audit)
++            shutil.copyfile(run_dir/'statement_audit.json', reports/'statement_audit.json')
++        else:
++            not_run = {'status': 'not_completed', 'run_id': run_id,
++                       'dependency_audit_passed': False,
++                       'main_declarations_dependency_audited': False,
++                       'formal_statement_contracts_passed': False, 'error': error}
++            write_json(reports/'axiom_audit.json', not_run)
++            write_json(reports/'statement_audit.json', not_run)
++        write_json(reports/'latest_run.json', {'run_id': run_id, 'directory': run_dir.relative_to(root).as_posix()})
++        lock.unlink(missing_ok=True)
++    if status_code == 0:
++        print('PASS: full imported build, statement contracts, exact dependency audit, and unchanged-source check.')
++    else:
++        print('NOT VERIFIED: inspect reports/kernel_report.json and its per-run logs.')
++    return status_code
++
++
++def main() -> int:
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument('--bootstrap', action='store_true', help='Permit dependency acquisition while online.')
++    parser.add_argument('--serial', action='store_true', help='Build project modules in dependency order, preserving Lake caches.')
++    return run(parser.parse_args())
++
++if __name__ == '__main__':
++    raise SystemExit(main())
+--- a/scripts/source_audit.py
++++ b/scripts/source_audit.py
+@@ -52,8 +52,9 @@
+         'status':'in_progress','static_audit_passed':False,
+         'static_audit_only':True,'lean_kernel_checked':False},indent=2)+'\n')
+     files=sorted(p for p in ROOT.rglob('*.lean')
+-                 if '.lake' not in p.parts and p.name!='Audit.lean')
+-    forbidden=re.compile(r'\b(sorry|admit|axiom|native_decide|unsafe|implemented_by|extern)\b')
++                 if not any(x in {'.lake', '.git', 'reports', 'preservation', '__pycache__'}
++                            for x in p.relative_to(ROOT).parts) and p.name!='Audit.lean')
++    forbidden=re.compile(r'\b(sorry|sorryAx|admit|axiom|native_decide|unsafe|implemented_by|extern|opaque|run_cmd|elab|macro|trustCompiler|ofReduceBool|ofReduceNat)\b|debug\.skipKernelTC|#(?:eval!?|guard_msgs)\b')
+     declarations=[]
+     inventory=[]
+     for path in files:
+@@ -64,17 +65,27 @@
+             details=[{'token':m.group(),'line':clean[:m.start()].count('\n')+1} for m in matches]
+             raise AssertionError(f'Forbidden source tokens in {path}: {details}')
+         ns=[]
++        scopes=[]
+         for line_number,line in enumerate(clean.splitlines(),1):
+             line=line.strip()
+             m=re.match(r'namespace\s+([^\s]+)',line)
+-            if m: ns.append(m.group(1)); continue
+-            m=re.match(r'end\s+([^\s]+)',line)
+             if m:
+-                if ns: ns.pop()
++                ns.append(m.group(1)); scopes.append(('namespace', m.group(1))); continue
++            m=re.match(r'(?:noncomputable\s+)?section(?:\s+([^\s]+))?$',line)
++            if m:
++                scopes.append(('section', m.group(1))); continue
++            m=re.match(r'end(?:\s+([^\s]+))?$',line)
++            if m:
++                if not scopes: raise AssertionError(f'Unmatched end in {path}:{line_number}')
++                kind, name=scopes.pop()
++                if m.group(1) is not None and m.group(1)!=name:
++                    raise AssertionError(f'Scope mismatch in {path}:{line_number}')
++                if kind=='namespace': ns.pop()
+                 continue
+             m=re.match(r'(?:(protected|private)\s+)?(theorem|lemma)\s+([^\s({:]+)',line)
+             if m:
+-                name='.'.join([*ns,m.group(3)])
++                declared=m.group(3)
++                name=declared[len('_root_.'):] if declared.startswith('_root_.') else '.'.join([*ns,declared])
+                 declarations.append({'name':name,'file':str(path.relative_to(ROOT)),
+                                      'line':line_number,'kind':m.group(2),
+                                      'visibility': 'private' if m.group(1)=='private' else 'public',
+--- /dev/null
++++ b/scripts/test_packaging.py
+@@ -0,0 +1,80 @@
++#!/usr/bin/env python3
++"""Real temporary-file tests of source packaging; no Lean process is run."""
++from pathlib import Path
++import json
++import tempfile
++import unittest
++import zipfile
++import package as pkg
++from run_lean import write_json
++from verify_files import verify
++
++ROOT = Path(__file__).resolve().parents[1]
++
++class PackageTests(unittest.TestCase):
++    def setUp(self):
++        self.t=tempfile.TemporaryDirectory(prefix='bell-package-test-')
++        self.base=Path(self.t.name);self.root=self.base/'root';self.root.mkdir();self.dest=self.base/'source.zip'
++        (self.root/'Bell.lean').write_bytes(b'import Mathlib\r\n')
++    def tearDown(self):self.t.cleanup()
++    def build(self):return pkg.make_package(self.root,self.dest)
++    def test_roundtrip_bytes(self):
++        self.build()
++        with zipfile.ZipFile(self.dest) as z:self.assertEqual(z.read('bell_lean/Bell.lean'),b'import Mathlib\r\n')
++    def test_historical_manifest_preserved(self):
++        p=self.root/'preservation/SHA256SUMS.txt';p.parent.mkdir();p.write_text('historical bytes\n')
++        self.build()
++        with zipfile.ZipFile(self.dest) as z:self.assertEqual(z.read('bell_lean/preservation/SHA256SUMS.txt'),b'historical bytes\n')
++    def test_font_excluded(self):
++        (self.root/'never-share.ttf').write_bytes(b'not an actual font')
++        self.build()
++        with zipfile.ZipFile(self.dest) as z:self.assertFalse(any(n.endswith('.ttf') for n in z.namelist()))
++    def test_cache_excluded(self):
++        p=self.root/'.lake/something.olean';p.parent.mkdir();p.write_bytes(b'cache')
++        (self.root/'something.olean').write_bytes(b'output')
++        self.build()
++        with zipfile.ZipFile(self.dest) as z:self.assertFalse(any('.lake' in n or n.endswith('.olean') for n in z.namelist()))
++    def test_symlink_rejected(self):
++        (self.root/'link').symlink_to(self.root/'Bell.lean')
++        with self.assertRaises(ValueError):self.build()
++    def test_credential_rejected(self):
++        (self.root/'.env').write_text('FAKE_KEY=not-a-secret')
++        with self.assertRaises(ValueError):self.build()
++    def test_active_run_rejected(self):
++        (self.root/'.lean-run.lock').write_text('test lock')
++        with self.assertRaises(ValueError):self.build()
++    def test_inside_output_rejected(self):
++        with self.assertRaises(ValueError):pkg.make_package(self.root,self.root/'x.zip')
++    def test_duplicate_manifest(self):
++        line='0'*64+'  x\n'
++        with self.assertRaises(ValueError):pkg.parse_manifest(line+line)
++    def test_traversal_manifest(self):
++        with self.assertRaises(ValueError):pkg.parse_manifest('0'*64+'  ../x\n')
++    def test_newline_filename(self):
++        (self.root/'bad\nname').write_text('bad name')
++        with self.assertRaises(ValueError):self.build()
++    def test_executable_mode(self):
++        p=self.root/'run.sh';p.write_text('#!/bin/sh\n');p.chmod(0o755);self.build()
++        with zipfile.ZipFile(self.dest) as z:self.assertEqual((z.getinfo('bell_lean/run.sh').external_attr>>16)&0o777,0o755)
++    def test_reproducible(self):
++        self.build();data=self.dest.read_bytes();self.build();self.assertEqual(self.dest.read_bytes(),data)
++    def test_extracted_verifier(self):
++        self.build();self.assertEqual(verify(self.root),1)
++    def test_modified_file_fails(self):
++        self.build();(self.root/'Bell.lean').write_text('changed')
++        with self.assertRaises(ValueError):verify(self.root)
++    def test_corrupted_member_fails(self):
++        self.build();broken=self.base/'broken.zip'
++        with zipfile.ZipFile(self.dest) as a,zipfile.ZipFile(broken,'w') as b:
++            for n in a.namelist():b.writestr(n,b'changed' if n.endswith('Bell.lean') else a.read(n))
++        with self.assertRaises(ValueError):pkg.verify_zip(broken)
++    def test_extra_member_fails(self):
++        self.build()
++        with zipfile.ZipFile(self.dest,'a') as z:z.writestr('bell_lean/extra','x')
++        with self.assertRaises(ValueError):pkg.verify_zip(self.dest)
++
++if __name__=='__main__':
++    result=unittest.TextTestRunner(verbosity=2).run(unittest.defaultTestLoader.loadTestsFromTestCase(PackageTests))
++    write_json(ROOT/'reports/preflight/package_tests.json',{'status':'passed' if result.wasSuccessful() else 'failed',
++               'tests':result.testsRun,'lean_invoked':False,'kernel_checked':False,'scope':'Temporary-file byte integrity, archive safety, and preservation tests.'})
++    raise SystemExit(0 if result.wasSuccessful() else 1)
+--- /dev/null
++++ b/scripts/test_preflight.py
+@@ -0,0 +1,232 @@
++#!/usr/bin/env python3
++"""Preflight tests. Runner tests use FAKE subprocesses in temporary directories.
++
++No successful result generated here is evidence that Lean ran. The temporary
++mock receipts are discarded, and only this explicitly labelled test summary is saved.
++"""
++from __future__ import annotations
++import argparse
++from contextlib import ExitStack, redirect_stdout, redirect_stderr
++import hashlib
++import io
++import json
++from pathlib import Path
++import tempfile
++import unittest
++from unittest.mock import patch
++
++import preflight_checks as pc
++import run_lean as runner
++from check_axioms import inspect_reports
++from source_audit import strip_comments
++
++ROOT = Path(__file__).resolve().parents[1]
++DECLS = [{'name': 'Bell.public', 'visibility': 'public'}]
++STANDARD = "'Bell.public' depends on axioms: [propext, Classical.choice, Quot.sound]\n"
++
++class TextTests(unittest.TestCase):
++    def test_comments_and_strings(self):
++        s = 'theorem x /- sorry /- axiom -/ -- hi\n-/ := "\\\"sorry"\n-- axiom\ntrue'
++        clean = strip_comments(s)
++        self.assertNotIn('sorry', clean); self.assertNotIn('axiom', clean)
++        self.assertEqual(clean.count('\n'), s.count('\n'))
++    def test_unterminated_comment(self):
++        with self.assertRaises(ValueError): strip_comments('/- nested /- hi -/')
++    def test_unterminated_string(self):
++        with self.assertRaises(ValueError): strip_comments('"hello')
++    def test_import_cycle(self):
++        with self.assertRaises(AssertionError): pc.transitive_imports({'A':['B'],'B':['A']}, 'A')
++    def test_import_closure(self):
++        self.assertEqual(pc.transitive_imports({'A':['B'],'B':['C'],'C':[]},'A'), {'B','C'})
++    def test_missing_identifier_import(self):
++        texts={'A':'theorem long_project_reference : True := by trivial',
++               'B':'theorem target : True := long_project_reference'}
++        self.assertEqual(pc.dependency_candidates(texts, {'A':[],'B':[]})[0]['issue'], 'not_in_transitive_imports')
++    def test_identifier_import_repaired(self):
++        texts={'A':'theorem long_project_reference : True := by trivial',
++               'B':'theorem target : True := long_project_reference'}
++        self.assertEqual(pc.dependency_candidates(texts, {'A':[],'B':['A']}), [])
++    def test_forward_reference(self):
++        texts={'A':'def f := long_project_reference\ntheorem long_project_reference : True := by trivial'}
++        self.assertEqual(pc.dependency_candidates(texts, {'A':[]})[0]['issue'], 'reference_before_declaration')
++    def test_compiler_identity(self):
++        runner.inspect_compiler('Lean (version 4.19.0, x86_64-unknown-linux-gnu, Release)',runner.PINNED_LEAN_COMMIT+'\n')
++    def test_compiler_wrong_version(self):
++        with self.assertRaises(runner.RunFailure): runner.inspect_compiler('Lean (version 4.19.01, Release)',runner.PINNED_LEAN_COMMIT)
++    def test_compiler_wrong_commit(self):
++        with self.assertRaises(runner.RunFailure): runner.inspect_compiler('Lean (version 4.19.0, Release)','f'*40)
++    def test_invalid_proof_accepted(self):
++        with self.assertRaises(runner.RunFailure): runner.require_negative_control_rejection(0,'')
++    def test_invalid_proof_rejected(self):
++        runner.require_negative_control_rejection(1,'x.lean:2:20: error: type mismatch\nTrue.intro has type True')
++    def test_invalid_proof_crash_not_rejection(self):
++        with self.assertRaises(runner.RunFailure): runner.require_negative_control_rejection(-11,'segmentation fault')
++    def test_no_errors_rejects_sorry(self):
++        with self.assertRaises(runner.RunFailure): runner.check_no_errors("warning: declaration uses 'sorry'",'test')
++    def test_config_pins_actual(self):
++        self.assertEqual(len(runner.validate_pins(ROOT)),9)
++    def test_baseline_modification_is_import_only(self):
++        result=pc.evaluate(ROOT)
++        modified=[v for v in result['module_preservation'] if not v['byte_identical']]
++        self.assertEqual([v['file'] for v in modified],['Bell/ConeCompression.lean'])
++        self.assertTrue(all(v['nonimport_noncomment_text_unchanged'] for v in result['module_preservation']))
++    def test_statement_contracts_not_executed(self):
++        text=(ROOT/'validation/Statements.lean').read_text()
++        self.assertIn('convexHull ℝ (Set.range',text)
++        self.assertIn('ProjectiveStrategy',text)
++        self.assertIn('example :',text)
++        # These assertions are only source presence checks, never contract validation.
++
++class ParserExtraTests(unittest.TestCase):
++    def test_error_overrides_dependency_text(self):
++        with self.assertRaises(AssertionError): inspect_reports(STANDARD+'Audit.lean:1:1: error: failed',DECLS)
++    def test_prefix_spoof(self):
++        with self.assertRaises(AssertionError): inspect_reports('source says '+STANDARD,DECLS)
++    def test_ansi(self):
++        self.assertEqual(len(inspect_reports('\x1b[32m'+STANDARD+'\x1b[0m',DECLS)),1)
++    def test_duplicate_inventory(self):
++        with self.assertRaises(AssertionError): inspect_reports(STANDARD,DECLS+DECLS)
++    def test_kernel_bypass_dependency(self):
++        with self.assertRaises(AssertionError): inspect_reports("Bell.public depends on axioms: [Lean.trustCompiler]",DECLS)
++    def test_truncated_list(self):
++        with self.assertRaises(AssertionError): inspect_reports("Bell.public depends on axioms: [propext",DECLS)
++    def test_other_name_does_not_suffice(self):
++        with self.assertRaises(AssertionError): inspect_reports("Bell.public_extra depends on axioms: []",DECLS)
++
++class FakeProcess:
++    def __init__(self,code=0,text=''):
++        self.code=code; self.stdout=io.StringIO(text)
++    def wait(self,timeout=None): return self.code
++    def terminate(self): pass
++    def kill(self): pass
++
++class RunnerControlFlowTests(unittest.TestCase):
++    """Only mocks; temporary source/log roots never enter the delivered archive."""
++    def setUp(self):
++        self.temp=tempfile.TemporaryDirectory(prefix='bell-mock-run-')
++        self.root=Path(self.temp.name)
++        (self.root/'reports/source_completion').mkdir(parents=True)
++        (self.root/'Bell').mkdir(); (self.root/'scripts').mkdir()
++        (self.root/'reports/declarations.json').write_text(json.dumps(DECLS))
++        (self.root/'reports/source_completion/source_inventory.json').write_text(json.dumps({'topological_module_order':['Bell.First','Bell.Second']}))
++        for filename in ('kernel_report.json','axiom_audit.json','statement_audit.json'):
++            (self.root/'reports'/filename).write_text(json.dumps({'status':'passed','run_id':'OLD_MOCK','dependency_audit_passed':True}))
++        self.overrides={}; self.calls=[]; self.has_lake=True; self.pin_error=None
++        self.snapshots=[{'Bell/A.lean':'mock-source-sha'}, {'Bell/A.lean':'mock-source-sha'}]
++    def tearDown(self): self.temp.cleanup()
++    def fake_process(self, argv, **kwargs):
++        self.calls.append(argv)
++        key=' '.join(argv)
++        for needle,value in self.overrides.items():
++            if needle in key:
++                if isinstance(value,BaseException): raise value
++                return FakeProcess(*value)
++        if '--version' in argv: return FakeProcess(0,'Lean (version 4.19.0, Release)\n')
++        if '--githash' in argv: return FakeProcess(0,runner.PINNED_LEAN_COMMIT+'\n')
++        if any('SmokeInvalid.lean' in x for x in argv): return FakeProcess(1,'error: type mismatch\nTrue.intro has type True\n')
++        if 'Bell/Audit.lean' in argv: return FakeProcess(0,STANDARD)
++        return FakeProcess()
++    def invoke(self,serial=False):
++        with ExitStack() as stack:
++            stack.enter_context(patch.object(runner,'validate_pins',side_effect=self.pin_error,return_value=[]))
++            stack.enter_context(patch.object(runner,'source_snapshot',side_effect=self.snapshots))
++            stack.enter_context(patch.object(runner.shutil,'which',return_value='/mock/lake' if self.has_lake else None))
++            stack.enter_context(patch.object(runner.subprocess,'Popen',side_effect=self.fake_process))
++            stack.enter_context(patch('check_axioms.REQUIRED_MAIN',{'Bell.public'}))
++            stack.enter_context(redirect_stdout(io.StringIO()));stack.enter_context(redirect_stderr(io.StringIO()))
++            return runner.run(argparse.Namespace(bootstrap=False,serial=serial),self.root)
++    def assert_failed(self):
++        kernel=json.loads((self.root/'reports/kernel_report.json').read_text())
++        self.assertFalse(kernel['main_declarations_kernel_checked'])
++        for n in ('axiom_audit.json','statement_audit.json'):
++            report=json.loads((self.root/'reports'/n).read_text())
++            self.assertNotEqual(report['status'],'passed')
++            self.assertEqual(report['run_id'],kernel['run_id'])
++        self.assertFalse((self.root/'reports/.lean-run.lock').exists())
++        return kernel
++    def test_mock_full_success(self):
++        self.assertEqual(self.invoke(),0)
++        report=json.loads((self.root/'reports/kernel_report.json').read_text())
++        self.assertTrue(report['main_declarations_kernel_checked'])
++        self.assertEqual(report['last_stage'],'complete')
++        self.assertTrue(any('validation/Statements.lean' in c for c in self.calls))
++        # This temporary MOCK report is deleted in tearDown; not verification evidence.
++    def test_stale_success_cleared_before_pin_check(self):
++        self.pin_error=runner.RunFailure('mock wrong pins')
++        self.assertNotEqual(self.invoke(),0)
++        report=self.assert_failed()
++        self.assertEqual(report['commands'],[])
++        self.assertTrue((self.root/report['logs_directory']/'previous/axiom_audit.json').is_file())
++    def test_missing_lake(self):
++        self.has_lake=False
++        self.assertEqual(self.invoke(),127)
++        self.assertFalse(self.assert_failed()['lean_build_invoked'])
++    def test_wrong_lean_version(self):
++        self.overrides['--version']=(0,'Lean (version 4.20.0, Release)')
++        self.assertNotEqual(self.invoke(),0); self.assert_failed()
++    def test_wrong_lean_commit(self):
++        self.overrides['--githash']=(0,'0'*40)
++        self.assertNotEqual(self.invoke(),0); self.assert_failed()
++    def test_build_failure(self):
++        self.overrides['lake build Bell']=(1,'mock build failed')
++        self.assertNotEqual(self.invoke(),0); self.assert_failed()
++    def test_serial_partial_not_full(self):
++        self.overrides['lake build Bell.Second']=(1,'mock second module failed')
++        self.assertNotEqual(self.invoke(serial=True),0)
++        self.assertEqual(self.assert_failed()['last_stage'],'lean_build')
++        self.assertFalse(any('validation/Statements.lean' in c for c in self.calls))
++    def test_contract_failure(self):
++        self.overrides['validation/Statements.lean']=(1,'mock type mismatch')
++        self.assertNotEqual(self.invoke(),0); self.assert_failed()
++    def test_contract_error_with_zero_exit(self):
++        self.overrides['validation/Statements.lean']=(0,'error: unresolved goals')
++        self.assertNotEqual(self.invoke(),0); self.assert_failed()
++    def test_negative_accepted(self):
++        self.overrides['SmokeInvalid.lean']=(0,'')
++        self.assertNotEqual(self.invoke(),0); self.assert_failed()
++    def test_negative_crash(self):
++        self.overrides['SmokeInvalid.lean']=(-11,'crash')
++        self.assertNotEqual(self.invoke(),0); self.assert_failed()
++    def test_missing_axiom_report(self):
++        self.overrides['Bell/Audit.lean']=(0,'')
++        self.assertNotEqual(self.invoke(),0); self.assert_failed()
++    def test_unapproved_axiom(self):
++        self.overrides['Bell/Audit.lean']=(0,"Bell.public depends on axioms: [sorryAx]\n")
++        self.assertNotEqual(self.invoke(),0); self.assert_failed()
++    def test_compiler_error_in_axiom_log(self):
++        self.overrides['Bell/Audit.lean']=(0,STANDARD+'error: unresolved constant')
++        self.assertNotEqual(self.invoke(),0); self.assert_failed()
++    def test_sources_changed(self):
++        self.snapshots[1]={'Bell/A.lean':'different'}
++        self.assertNotEqual(self.invoke(),0); self.assert_failed()
++    def test_interrupted(self):
++        self.overrides['lake build Bell']=KeyboardInterrupt()
++        self.assertEqual(self.invoke(),130); self.assert_failed()
++    def test_previous_local_build_moved(self):
++        old=self.root/'.lake/build/old.txt';old.parent.mkdir(parents=True);old.write_text('old local output')
++        self.assertEqual(self.invoke(),0)
++        self.assertFalse(old.exists())
++        backups=list((self.root/'.lake/preflight-builds').rglob('old.txt'))
++        self.assertEqual(len(backups),1); self.assertEqual(backups[0].read_text(),'old local output')
++    def test_symlinked_build_refused(self):
++        target=self.root/'external';target.mkdir()
++        (self.root/'.lake').mkdir();(self.root/'.lake/build').symlink_to(target,target_is_directory=True)
++        self.assertNotEqual(self.invoke(),0); self.assert_failed()
++        self.assertTrue(target.is_dir())
++    def test_concurrent_lock_refuses_without_overwriting_other_run(self):
++        (self.root/'reports/.lean-run.lock').write_text('{"run_id":"OTHER_ACTIVE_RUN"}')
++        before=(self.root/'reports/kernel_report.json').read_bytes()
++        self.assertEqual(self.invoke(),2)
++        self.assertEqual((self.root/'reports/kernel_report.json').read_bytes(),before)
++
++if __name__ == '__main__':
++    suite=unittest.TestSuite(unittest.defaultTestLoader.loadTestsFromTestCase(c)
++                             for c in (TextTests,ParserExtraTests,RunnerControlFlowTests))
++    result=unittest.TextTestRunner(verbosity=2).run(suite)
++    report={'status':'passed' if result.wasSuccessful() else 'failed','tests':result.testsRun,
++            'scope':'Python static/preflight/runner tests; runner subprocess outputs are explicitly MOCKED in temporary roots.',
++            'lean_invoked':False,'kernel_checked':False,
++            'runner_sha256':hashlib.sha256((ROOT/'scripts/run_lean.py').read_bytes()).hexdigest(),
++            'test_sha256':hashlib.sha256(Path(__file__).read_bytes()).hexdigest()}
++    runner.write_json(ROOT/'reports/preflight/harness_tests.json',report)
++    raise SystemExit(0 if result.wasSuccessful() else 1)
+--- /dev/null
++++ b/scripts/verify_files.py
+@@ -0,0 +1,31 @@
++#!/usr/bin/env python3
++"""Verify a freshly extracted source package's root SHA-256 manifest.
++
++Run before tests/builds regenerate reports. Later legitimate edits invalidate
++these shipment hashes. This check does not validate any mathematical statement.
++"""
++import hashlib
++from pathlib import Path
++from package import parse_manifest
++
++ROOT = Path(__file__).resolve().parents[1]
++
++def verify(root: Path) -> int:
++    manifest = parse_manifest((root/'SHA256SUMS.txt').read_text())
++    for name, expected in manifest.items():
++        p = root/name
++        if p.is_symlink() or not p.is_file():
++            raise ValueError(f'Missing or symlinked manifest file: {name}')
++        # Check every parent too, so directory links cannot leave the package.
++        parent = root
++        for part in Path(name).parts[:-1]:
++            parent = parent/part
++            if parent.is_symlink():
++                raise ValueError(f'Symlinked parent for manifest file: {name}')
++        if hashlib.sha256(p.read_bytes()).hexdigest() != expected:
++            raise ValueError(f'Checksum mismatch: {name}')
++    print(f'BYTE INTEGRITY PASSED: {len(manifest)} files. Not Lean verification.')
++    return len(manifest)
++
++if __name__ == '__main__':
++    verify(ROOT)
+--- /dev/null
++++ b/validation/Statements.lean
+@@ -0,0 +1,63 @@
++import Bell
++
++/-! Handoff statement contracts. These examples must be ELABORATED after the
++full build. Textual existence or `#check` alone does not validate the contracts.
++This file changes no physical definition and adds no theorem assumption.
++It checks the concrete complex-qubit model, hull rather than raw equality,
++complete-strategy mixtures, quantitative separation and boundary alphabets.
++No success is claimed until the offline compiler accepts this file. -/
++noncomputable section
++open scoped BigOperators Matrix ComplexOrder
++open Bell
++
++-- The Hilbert spaces really are complex 2 and 2-by-2 spaces.
++example : Operator = Matrix (Fin 2) (Fin 2) ℂ := rfl
++example : JointOperator = Matrix (Fin 2 × Fin 2) (Fin 2 × Fin 2) ℂ := rfl
++
++-- Check the measurement/state validity fields, not just a proposition's name.
++example (ρ : State) : ρ.density.PosSemidef ∧ Matrix.trace ρ.density = 1 :=
++  ⟨ρ.positive, ρ.normalized⟩
++example {n : ℕ} (M : PVM n) :
++    (∀ a, (M.effect a).PosSemidef) ∧ (∑ a, M.effect a) = 1 ∧
++      (∀ a, M.effect a * M.effect a = M.effect a) ∧
++      (∀ a b, a ≠ b → M.effect a * M.effect b = 0) :=
++  ⟨M.positive, M.normalized, M.idempotent, M.orthogonal⟩
++example (ρ : JointOperator) (M N : Operator) :
++    born ρ M N =
++      (Matrix.trace (ρ * (fun i j => M i.1 j.1 * N i.2 j.2))).re := rfl
++
++-- Actual set ranges and ordinary convex hulls, with dependent finite outputs.
++example (AO BO : Fin 2 → ℕ) :
++    convexHull ℝ (Set.range (Strategy.behavior (A := ⟨2,2,AO,BO⟩))) =
++    convexHull ℝ (Set.range (fun s : ProjectiveStrategy ⟨2,2,AO,BO⟩ =>
++      s.toStrategy.behavior)) :=
++  two_input_convex_equality AO BO
++
++-- One finite random variable chooses every measurement AND the state.
++example (AO BO : Fin 2 → ℕ) (s : Strategy ⟨2,2,AO,BO⟩) :
++    ∃ (ι : Type) (_ : Fintype ι) (w : ι → ℝ)
++      (t : ι → ProjectiveStrategy ⟨2,2,AO,BO⟩),
++      (∀ i, 0 ≤ w i) ∧ (∑ i, w i) = 1 ∧
++        (∑ i, w i • (t i).toStrategy.behavior) = s.behavior :=
++  finite_projective_simulation AO BO s
++
++-- No positive-output-count hypothesis was introduced into equality.
++example : convexPOVM ⟨2,2,(fun _ => 0),(fun _ => 3)⟩ =
++    convexPVM ⟨2,2,(fun _ => 0),(fun _ => 3)⟩ :=
++  two_input_convex_equality _ _
++example (AO : Fin 0 → ℕ) (BO : Fin 5 → ℕ) :
++    convexPOVM ⟨0,5,AO,BO⟩ = convexPVM ⟨0,5,AO,BO⟩ :=
++  one_input_equality _ (Or.inl (by decide))
++
++-- Verify the attained-value quantifier and global physical comparison.
++example : ∃ p ∈ rawPOVM separatorArchitecture,
++    bellScore p = (16 + 8 * Real.sqrt 7813) / 25 := strengthened_attainment
++example (s : ProjectiveStrategy separatorArchitecture) :
++    bellScore s.toStrategy.behavior ≤ (289 / 10 : ℝ) :=
++  projective_strategy_rational_upper s
++example : StrictSeparation separatorArchitecture := three_by_two_separation
++example : separatorArchitecture.aliceInputs = 3 ∧ separatorArchitecture.bobInputs = 2 :=
++  ⟨rfl, rfl⟩
++example (A : Architecture) (h : StrictSeparation A) :
++    (3 ≤ A.aliceInputs ∧ 2 ≤ A.bobInputs) ∨
++      (2 ≤ A.aliceInputs ∧ 3 ≤ A.bobInputs) := minimum_inputs A h

@@ -1,0 +1,35 @@
+name: End-to-end source draft - build and axiom audit
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '**.lean'
+      - 'lakefile.toml'
+      - 'lake-manifest.json'
+      - 'lean-toolchain'
+      - 'scripts/**'
+      - '.github/workflows/lean.yml'
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  source-draft:
+    name: Compile source and inspect main theorem dependencies
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install elan
+        shell: bash
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -o /tmp/elan-init.sh
+          sh /tmp/elan-init.sh -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Build and inspect axiom dependencies
+        run: bash scripts/check.sh --bootstrap
+      - name: Preserve logs even on failure
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lean-source-build-logs
+          path: reports/

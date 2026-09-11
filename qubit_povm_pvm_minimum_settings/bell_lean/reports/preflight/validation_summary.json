@@ -1,0 +1,200 @@
+{
+  "status": "preflight_passed",
+  "started_utc": "2026-09-11T01:01:44.080671+00:00",
+  "lean_invoked": false,
+  "kernel_checked": false,
+  "commands": [
+    {
+      "name": "source_audit",
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "scripts/source_audit.py"
+      ],
+      "exit_code": 0,
+      "log": "reports/preflight/source_audit.log",
+      "log_sha256": "8f67627541c273b5014bdcf47fa9f174b4aef09a28254c7a5ecd68ca70e40dca"
+    },
+    {
+      "name": "import_inventory",
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "scripts/source_completion_inventory.py"
+      ],
+      "exit_code": 0,
+      "log": "reports/preflight/import_inventory.log",
+      "log_sha256": "a78d65d82b6ea2cfe2059e52533d6c02fbeca1f6d3378bf3f60c3bc4c48f5a50"
+    },
+    {
+      "name": "static_checks",
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "scripts/preflight_checks.py"
+      ],
+      "exit_code": 0,
+      "log": "reports/preflight/static_checks.log",
+      "log_sha256": "c7752800108fc1462320728168785f83336611a2984bf01ed6b26f3a028d8194"
+    },
+    {
+      "name": "parser_tests",
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "scripts/test_axiom_audit.py"
+      ],
+      "exit_code": 0,
+      "log": "reports/preflight/parser_tests.log",
+      "log_sha256": "5bc90c5cff8107380a44090c375f827d42467dcec822e611ab9e9033190bb85e"
+    },
+    {
+      "name": "runner_tests",
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "scripts/test_preflight.py"
+      ],
+      "exit_code": 0,
+      "log": "reports/preflight/runner_tests.log",
+      "log_sha256": "1f8723172f577228be341b10f29f56f06d852ee61e1e3dba3e954ba466adc7dd"
+    },
+    {
+      "name": "package_tests",
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "scripts/test_packaging.py"
+      ],
+      "exit_code": 0,
+      "log": "reports/preflight/package_tests.log",
+      "log_sha256": "447dab876ccee9cc444d32fbff324d9a2c8fc171e76df8b5d8d09ef06e6c4ce8"
+    },
+    {
+      "name": "environment_tests",
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "environment/test_handoff.py"
+      ],
+      "exit_code": 0,
+      "log": "reports/preflight/environment_tests.log",
+      "log_sha256": "9be3419e77866a57e70985c1ccf65b55c56db4580d03dffaf9a83d98c9d79d1e"
+    },
+    {
+      "name": "exact_checks",
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "scripts/exact_checks.py"
+      ],
+      "exit_code": 0,
+      "log": "reports/preflight/exact_checks.log",
+      "log_sha256": "91348573c9f4d1e549eaf9774a527b6740abcb3efb4cb8a2ff30233988b850a3"
+    },
+    {
+      "name": "sos_checks",
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "scripts/sos_checks.py"
+      ],
+      "exit_code": 0,
+      "log": "reports/preflight/sos_checks.log",
+      "log_sha256": "6e4bd4adfccbcb0668579afeee0fa32d9087595e47576d60bacc1a2dbf7b5022"
+    },
+    {
+      "name": "sos_bareiss",
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "scripts/sos_bareiss_check.py"
+      ],
+      "exit_code": 0,
+      "log": "reports/preflight/sos_bareiss.log",
+      "log_sha256": "cc3f8d6ea6a6ac3139f911debc24b4d0bed5631463724752c4ae8980394f302d"
+    },
+    {
+      "name": "deterministic_gap",
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "scripts/deterministic_gap_checks.py"
+      ],
+      "exit_code": 0,
+      "log": "reports/preflight/deterministic_gap.log",
+      "log_sha256": "5753b3d720f694387b112b4702e558ea03f9212c1be808c98d7d9f4b262a79d6"
+    },
+    {
+      "name": "expanded_source_algebra",
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "scripts/source_completion_checks.py",
+        "--suite",
+        "all"
+      ],
+      "exit_code": 0,
+      "log": "reports/preflight/expanded_source_algebra.log",
+      "log_sha256": "7b1d3ba287226d261e62aa8684a46263b0385cee68d8352e19ec3fd09b2b820e"
+    },
+    {
+      "name": "physical_interface_audit",
+      "argv": [
+        "/opt/pyvenv/bin/python3",
+        "scripts/semantic_audit.py",
+        "--suite",
+        "all"
+      ],
+      "exit_code": 0,
+      "log": "reports/preflight/physical_interface_audit.log",
+      "log_sha256": "36fa83d1cdc5987169cd17fecfb161ea3c565f9ae85c068cf6cf7e12d68c1c5a"
+    }
+  ],
+  "scope": "Compiler-free byte/structure/harness checks and independent finite exact algebra only.",
+  "syntax_checked_files": [
+    "scripts/check_axioms.py",
+    "scripts/deterministic_gap_checks.py",
+    "scripts/exact_checks.py",
+    "scripts/package.py",
+    "scripts/package_continuation.py",
+    "scripts/preflight_all.py",
+    "scripts/preflight_checks.py",
+    "scripts/run_lean.py",
+    "scripts/semantic_audit.py",
+    "scripts/sos_bareiss_check.py",
+    "scripts/sos_checks.py",
+    "scripts/source_audit.py",
+    "scripts/source_completion_checks.py",
+    "scripts/source_completion_inventory.py",
+    "scripts/test_axiom_audit.py",
+    "scripts/test_packaging.py",
+    "scripts/test_preflight.py",
+    "scripts/verify_files.py",
+    "environment/export_environment.py",
+    "environment/make_workflow.py",
+    "environment/restore_environment.py",
+    "environment/test_handoff.py",
+    "scripts/check.sh",
+    "scripts/preflight.sh"
+  ],
+  "evidence": {
+    "static": {
+      "path": "reports/preflight/static_checks.json",
+      "sha256": "352a8c19d5c78912dddc8858c16bf3b1cd69c4ed74c0860fdfee458900ba3d10"
+    },
+    "runner_harness": {
+      "path": "reports/preflight/harness_tests.json",
+      "sha256": "d1753faaf6eaf8f77a092d08217f8aef75702d2ea32642999d3b6fe92f4dfe0a"
+    },
+    "packaging": {
+      "path": "reports/preflight/package_tests.json",
+      "sha256": "34eec9eebcc0d6107950d93d2778bd166b7d529a91f20a4a91a2f4e7e1a48049"
+    },
+    "parser": {
+      "path": "reports/source_completion/axiom_parser_tests.json",
+      "sha256": "ab73892eb3313fbe47e243beae4710a1792807fcaf7e3591606f6a7208a6989a"
+    },
+    "expanded_finite_algebra": {
+      "path": "reports/source_completion/exact_all.json",
+      "sha256": "bc27705b50a62841342bed9806cbdfa908f201dc02e4aabcdaa50d896da64f64"
+    },
+    "baseline_finite_algebra": {
+      "path": "reports/exact_checks.json",
+      "sha256": "f427c58ae78d0681878a367c54188f6390993808486c3972a763c289ff917b93"
+    },
+    "physical_interface_audit": {
+      "path": "reports/semantic_audit/all.json",
+      "sha256": "fc7a77c474616947996a4f1e76cb86bd3aa23967d418e00674426fde6cc353fb"
+    }
+  },
+  "ended_utc": "2026-09-11T01:02:17.108413+00:00"
+}
