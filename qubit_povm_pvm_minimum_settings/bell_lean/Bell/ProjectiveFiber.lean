@@ -26,12 +26,12 @@ def SameRay (x z : V) : Prop := ∃ s : ℝ, s ≠ 0 ∧ x = s • z
 @[simp]
 theorem phi_zero : phi (0 : V) = 0 := by
   funext i
-  fin_cases i <;> norm_num [phi]
+  fin_cases i <;> simp [Matrix.cons_val, phi]
 
 theorem phi_homogeneous (x : V) (s : ℝ) :
     phi (s • x) = s^2 • phi x := by
   funext i
-  fin_cases i <;> norm_num [phi] <;> ring
+  fin_cases i <;> simp [Matrix.cons_val, phi] <;> ring
 
 theorem null_homogeneous (a b c d s : ℝ) (x : V) :
     nullPolynomial a b c d (s • x) = s^2 * nullPolynomial a b c d x := by
@@ -60,7 +60,7 @@ theorem nonzero_image_implies_nonzero {x : V} (hx : phi x ≠ 0) : x ≠ 0 := by
 sources.  Only the left reconstruction scalar is divided by. -/
 theorem sameRay_of_homogeneous_inverse
     (F : V → V) (n : ℕ) (x z : V) (wx wz t : ℝ)
-    (hhom : ∀ ξ s, F (s • ξ) = s^n • F ξ)
+    (hhom : ∀ (ξ : V) (s : ℝ), F (s • ξ) = s^n • F ξ)
     (hleft : F (phi x) = wx • x)
     (hright : F (phi z) = wz • z)
     (hw : wx ≠ 0) (hx : phi x ≠ 0)
@@ -145,14 +145,14 @@ def zero2Weight (x : V) : ℝ := x 0 * x 1 * x 3
 theorem zero2Inverse_homogeneous (g : StrictParameters) (ξ : V) (s : ℝ) :
     zero2Inverse g (s • ξ) = s^2 • zero2Inverse g ξ := by
   funext i
-  fin_cases i <;> norm_num [zero2Inverse, zero2Coefficient] <;> ring
+  fin_cases i <;> simp [Matrix.cons_val, zero2Inverse, zero2Coefficient] <;> ring
 
 theorem zero2Coefficient_of_null (g : StrictParameters) (x : V)
     (h₂ : x 2 = 0) (hn : nullPolynomial g.a g.b g.c g.d x = 0) :
     zero2Coefficient g (phi x) = x 0*x 1 := by
   unfold nullPolynomial at hn
   rw [h₂] at hn
-  norm_num [zero2Coefficient, phi, h₂]
+  simp [Matrix.cons_val, zero2Coefficient, phi, h₂]
   linear_combination -hn
 
 theorem zero2Inverse_identity (g : StrictParameters) (x : V)
@@ -161,7 +161,7 @@ theorem zero2Inverse_identity (g : StrictParameters) (x : V)
   unfold zero2Inverse
   rw [zero2Coefficient_of_null g x h₂ hn]
   funext i
-  fin_cases i <;> norm_num [phi, zero2Weight, h₂] <;> ring
+  fin_cases i <;> simp [Matrix.cons_val, phi, zero2Weight, h₂] <;> ring
 
 theorem zero2Weight_nonzero (g : StrictParameters) (x : V)
     (h₂ : x 2 = 0) (hn : nullPolynomial g.a g.b g.c g.d x = 0)
@@ -237,14 +237,14 @@ def zero3Weight (x : V) : ℝ := x 0 * x 1 * x 2
 theorem zero3Inverse_homogeneous (g : StrictParameters) (ξ : V) (s : ℝ) :
     zero3Inverse g (s • ξ) = s^2 • zero3Inverse g ξ := by
   funext i
-  fin_cases i <;> norm_num [zero3Inverse, zero3Coefficient] <;> ring
+  fin_cases i <;> simp [Matrix.cons_val, zero3Inverse, zero3Coefficient] <;> ring
 
 theorem zero3Coefficient_of_null (g : StrictParameters) (x : V)
     (h₃ : x 3 = 0) (hn : nullPolynomial g.a g.b g.c g.d x = 0) :
     zero3Coefficient g (phi x) = x 0*x 1 := by
   unfold nullPolynomial at hn
   rw [h₃] at hn
-  norm_num [zero3Coefficient, phi, h₃]
+  simp [Matrix.cons_val, zero3Coefficient, phi, h₃]
   linear_combination -hn
 
 theorem zero3Inverse_identity (g : StrictParameters) (x : V)
@@ -253,7 +253,7 @@ theorem zero3Inverse_identity (g : StrictParameters) (x : V)
   unfold zero3Inverse
   rw [zero3Coefficient_of_null g x h₃ hn]
   funext i
-  fin_cases i <;> norm_num [phi, zero3Weight, h₃] <;> ring
+  fin_cases i <;> simp [Matrix.cons_val, phi, zero3Weight, h₃] <;> ring
 
 theorem zero3Weight_nonzero (g : StrictParameters) (x : V)
     (h₃ : x 3 = 0) (hn : nullPolynomial g.a g.b g.c g.d x = 0)
@@ -330,14 +330,14 @@ def equal01Weight (x : V) : ℝ := x 0*(x 0+x 2)*(x 0+x 3)
 theorem equal01Inverse_homogeneous (g : StrictParameters) (ξ : V) (s : ℝ) :
     equal01Inverse g (s • ξ) = s^2 • equal01Inverse g ξ := by
   funext i
-  fin_cases i <;> norm_num [equal01Inverse, equal01Coefficient] <;> ring
+  fin_cases i <;> simp [Matrix.cons_val, equal01Inverse, equal01Coefficient] <;> ring
 
 theorem equal01Coefficient_of_null (g : StrictParameters) (x : V)
     (h01 : x 0 = x 1) (hn : nullPolynomial g.a g.b g.c g.d x = 0) :
     equal01Coefficient g (phi x) = (x 0+x 2)*(x 0+x 3) := by
   unfold nullPolynomial at hn
   rw [← h01] at hn
-  norm_num [equal01Coefficient, phi]
+  simp [Matrix.cons_val, equal01Coefficient, phi]
   linear_combination -hn
 
 theorem equal01Inverse_identity (g : StrictParameters) (x : V)
@@ -346,7 +346,7 @@ theorem equal01Inverse_identity (g : StrictParameters) (x : V)
   unfold equal01Inverse
   rw [equal01Coefficient_of_null g x h01 hn]
   funext i
-  fin_cases i <;> norm_num [phi, equal01Weight, ← h01] <;> ring
+  fin_cases i <;> simp [Matrix.cons_val, phi, equal01Weight, ← h01] <;> ring
 
 theorem equal01Weight_nonzero (g : StrictParameters) (x : V)
     (h01 : x 0 = x 1) (hn : nullPolynomial g.a g.b g.c g.d x = 0)
@@ -414,14 +414,14 @@ def equal23Weight (x : V) : ℝ := x 2*(x 0+x 2)*(x 1+x 2)
 theorem equal23Inverse_homogeneous (g : StrictParameters) (ξ : V) (s : ℝ) :
     equal23Inverse g (s • ξ) = s^2 • equal23Inverse g ξ := by
   funext i
-  fin_cases i <;> norm_num [equal23Inverse, equal23Coefficient] <;> ring
+  fin_cases i <;> simp [Matrix.cons_val, equal23Inverse, equal23Coefficient] <;> ring
 
 theorem equal23Coefficient_of_null (g : StrictParameters) (x : V)
     (h23 : x 2 = x 3) (hn : nullPolynomial g.a g.b g.c g.d x = 0) :
     equal23Coefficient g (phi x) = (x 0+x 2)*(x 1+x 2) := by
   unfold nullPolynomial at hn
   rw [← h23] at hn
-  norm_num [equal23Coefficient, phi, ← h23]
+  simp [Matrix.cons_val, equal23Coefficient, phi, ← h23]
   linear_combination -hn
 
 theorem equal23Inverse_identity (g : StrictParameters) (x : V)
@@ -430,7 +430,7 @@ theorem equal23Inverse_identity (g : StrictParameters) (x : V)
   unfold equal23Inverse
   rw [equal23Coefficient_of_null g x h23 hn]
   funext i
-  fin_cases i <;> norm_num [phi, equal23Weight, ← h23] <;> ring
+  fin_cases i <;> simp [Matrix.cons_val, phi, equal23Weight, ← h23] <;> ring
 
 theorem equal23Weight_nonzero (g : StrictParameters) (x : V)
     (h23 : x 2 = x 3) (hn : nullPolynomial g.a g.b g.c g.d x = 0)

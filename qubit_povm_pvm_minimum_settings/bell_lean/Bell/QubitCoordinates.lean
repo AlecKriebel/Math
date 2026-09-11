@@ -44,7 +44,7 @@ def coordinates : Operator →ₗ[ℝ] V where
 
 theorem pauli_isHermitian (x : V) : (pauli x).IsHermitian := by
   ext i j
-  fin_cases i <;> fin_cases j <;> simp [pauli, Matrix.conjTranspose_apply]
+  fin_cases i <;> fin_cases j <;> simp [pauli, Matrix.conjTranspose_apply, sub_eq_add_neg]
 
 @[simp]
 theorem coordinates_pauli (x : V) : coordinates (pauli x) = x := by
@@ -86,11 +86,12 @@ theorem minkowski_transpose : minkowski.transpose = minkowski := by
 @[simp]
 theorem pauli_timeUnit : pauli timeUnit = 1 := by
   ext i j
-  fin_cases i <;> fin_cases j <;> norm_num [pauli, timeUnit, Matrix.one_apply]
+  fin_cases i <;> fin_cases j <;> simp [pauli, timeUnit, Matrix.one_apply, Matrix.cons_val]
 
 theorem lorentzPair_eq_matrixPair (x y : V) :
     lorentzPair x y = matrixPair minkowski x y := by
   simp [lorentzPair, matrixPair, minkowski, Matrix.mulVec, dotProduct, Fin.sum_univ_succ]
+  ring
 
 @[simp]
 theorem lorentzPair_self (x : V) : lorentzPair x x = lorentzSquare x := by
@@ -107,12 +108,14 @@ theorem pauli_det (x : V) : (pauli x).det = (lorentzSquare x : ℂ) := by
   simp [pauli, lorentzSquare, Matrix.det_fin_two]
   ring_nf
   simp
+  ring
 
 theorem pauli_trace_product (x y : V) :
     Matrix.trace (pauli x * pauli y) = (2 * dotProduct x y : ℝ) := by
   simp [pauli, Matrix.trace, Matrix.mul_apply, dotProduct, Fin.sum_univ_succ]
   ring_nf
   simp
+  ring
 
 theorem pauli_injective : Function.Injective pauli := by
   intro x y h
@@ -132,8 +135,8 @@ private theorem nonnegative_roots (a b : ℝ) (hs : 0 ≤ a+b) (hp : 0 ≤ a*b) 
 theorem qubit_psd_iff {A : Operator} (hA : A.IsHermitian) :
     A.PosSemidef ↔ 0 ≤ (Matrix.trace A).re ∧ 0 ≤ A.det.re := by
   have ht : Matrix.trace A = (hA.eigenvalues 0 + hA.eigenvalues 1 : ℝ) := by
-    rw [hA.spectral_theorem, Matrix.trace_mul_comm, ← Matrix.mul_assoc]
-    simp [Fin.sum_univ_succ]
+    conv_lhs => rw [hA.spectral_theorem, Matrix.trace_mul_cycle]
+    simp [Matrix.trace, Matrix.diagonal_apply, Fin.sum_univ_succ]
   have hd : A.det = ((hA.eigenvalues 0 * hA.eigenvalues 1 : ℝ) : ℂ) := by
     simpa [Fin.prod_univ_succ] using hA.det_eq_prod_eigenvalues
   constructor
@@ -197,6 +200,7 @@ theorem posDef_of_posSemidef_det_ne_zero {A : Operator}
     intro hz
     have hAx := (hA.dotProduct_mulVec_zero_iff x).mp hz
     have hi := congrArg (fun y => A⁻¹ *ᵥ y) hAx
+    dsimp only at hi
     rw [Matrix.mulVec_mulVec,
       Matrix.nonsing_inv_mul A (isUnit_iff_ne_zero.mpr hdet), Matrix.one_mulVec,
       Matrix.mulVec_zero] at hi
@@ -226,11 +230,13 @@ theorem future_pair_nonnegative {x y : V} (hx : Future x) (hy : Future y) :
   have hxt := future_nonzero_time hx hx0
   have hyt := future_nonzero_time hy hy0
   have hprod : 0 < 2*x 0*y 0 := by positivity
+  have hxq := hx.2
+  have hyq := hy.2
   have heq := lorentz_pair_squares x y
   have hn : 0 ≤ 2*x 0*y 0*lorentzPair x y := by
     rw [heq]
     positivity
-  exact (nonneg_of_mul_nonneg_left hn hprod)
+  exact (nonneg_of_mul_nonneg_right hn hprod)
 
 theorem null_pair_zero_sameRay {x y : V} (hx : FutureNull x) (hy : FutureNull y)
     (hpair : lorentzPair x y = 0) : SameRay x y := by
@@ -241,8 +247,18 @@ theorem null_pair_zero_sameRay {x y : V} (hx : FutureNull x) (hy : FutureNull y)
   have h3 : y 0*x 3-x 0*y 3 = 0 := by nlinarith [sq_nonneg (y 0*x 1-x 0*y 1), sq_nonneg (y 0*x 2-x 0*y 2)]
   refine ⟨x 0 / y 0, div_ne_zero hx.1.ne' hy.1.ne', ?_⟩
   ext i
-  fin_cases i <;> simp only [Pi.smul_apply, smul_eq_mul] <;>
-    field_simp [hy.1.ne'] <;> nlinarith
+  fin_cases i
+  · change x 0 = (x 0 / y 0) * y 0
+    field_simp [hy.1.ne']
+  · change x 1 = (x 0 / y 0) * y 1
+    field_simp [hy.1.ne']
+    nlinarith only [h1]
+  · change x 2 = (x 0 / y 0) * y 2
+    field_simp [hy.1.ne']
+    nlinarith only [h2]
+  · change x 3 = (x 0 / y 0) * y 3
+    field_simp [hy.1.ne']
+    nlinarith only [h3]
 
 theorem null_pair_positive_of_distinct {x y : V} (hx : FutureNull x) (hy : FutureNull y)
     (hne : ¬ SameRay x y) : 0 < lorentzPair x y := by
@@ -255,7 +271,7 @@ theorem timelike_pair_positive {x y : V} (hx : FutureNull x) (hy : FutureTimelik
     0 < lorentzPair x y := by
   have heq := lorentz_pair_squares x y
   have hp : 0 < x 0^2 * lorentzSquare y := mul_pos (sq_pos_of_ne_zero hx.1.ne') hy.2
-  have hscale : 0 < 2*x 0*y 0 := by positivity
+  have hscale : 0 < 2*x 0*y 0 := mul_pos (mul_pos (by norm_num) hx.1) hy.1
   have htotal : 0 < 2*x 0*y 0*lorentzPair x y := by
     rw [heq, hx.2]
     nlinarith [sq_nonneg (y 0*x 1-x 0*y 1), sq_nonneg (y 0*x 2-x 0*y 2),

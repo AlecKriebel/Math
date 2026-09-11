@@ -21,7 +21,8 @@ theorem coefficient_rays_projectively_distinct (i j : Fin 5)
   have h₁ := congrFun heq 1
   have h₂ := congrFun heq 2
   have h₃ := congrFun heq 3
-  fin_cases i <;> fin_cases j <;> norm_num [ray] at h₀ h₁ h₂ h₃ ⊢
+  fin_cases i <;> fin_cases j <;>
+    simp [Matrix.cons_val, ray] at h₀ h₁ h₂ h₃ ⊢ <;> linarith
 
 /-- An invertible real linear map preserves this projective distinctness. -/
 theorem transformed_rays_projectively_distinct (T : V ≃ₗ[ℝ] V) (i j : Fin 5)
@@ -105,7 +106,7 @@ theorem transformed_rank_one_obstruction
     rw [hrows]
     exact smul_ne_zero hj hξ
   · intro i j hi hj
-    rw [hrows i, hrows j] at hi hj ⊢
+    simp only [hrows] at hi hj ⊢
     exact images_on_line_sameRay ξ (coefficient i) (coefficient j) hi hj
   · exact hstationary
 

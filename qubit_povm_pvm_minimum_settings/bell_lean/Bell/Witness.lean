@@ -62,20 +62,20 @@ def auxGram2 : Operator := !![2/5, 2/5; 2/5, 2/5]
 theorem aux0_gram : auxGram0.conjTranspose * auxGram0 = aux0 := by
   funext i j
   fin_cases i <;> fin_cases j <;>
-    norm_num [aux0, auxGram0, Matrix.conjTranspose_apply, Matrix.mul_apply,
-      Fin.sum_univ_two]
+    apply Complex.ext <;> norm_num [aux0, auxGram0, Matrix.conjTranspose_apply, Matrix.mul_apply,
+      Fin.sum_univ_two, map_ofNat]
 
 theorem aux1_gram : auxGram1.conjTranspose * auxGram1 = aux1 := by
   funext i j
   fin_cases i <;> fin_cases j <;>
-    norm_num [aux1, auxGram1, Matrix.conjTranspose_apply, Matrix.mul_apply,
-      Fin.sum_univ_two]
+    apply Complex.ext <;> norm_num [aux1, auxGram1, Matrix.conjTranspose_apply, Matrix.mul_apply,
+      Fin.sum_univ_two, map_ofNat]
 
 theorem aux2_gram : auxGram2.conjTranspose * auxGram2 = aux2 := by
   funext i j
   fin_cases i <;> fin_cases j <;>
-    norm_num [aux2, auxGram2, Matrix.conjTranspose_apply, Matrix.mul_apply,
-      Fin.sum_univ_two]
+    apply Complex.ext <;> norm_num [aux2, auxGram2, Matrix.conjTranspose_apply, Matrix.mul_apply,
+      Fin.sum_univ_two, map_ofNat]
 
 theorem aux0_positive : aux0.PosSemidef := by
   rw [← aux0_gram]
@@ -138,7 +138,7 @@ theorem phi_trace_tensor (A B : Operator) :
 
 /-- Three labels are declared on Alice's first two inputs, but label 2 is zero.
 This is the paper's common-label presentation of (2,2,3)-by-(2,2). -/
-def separatorArchitecture : Architecture where
+abbrev separatorArchitecture : Architecture where
   aliceInputs := 3
   bobInputs := 2
   aliceOutputs := fun _ => 3
@@ -207,8 +207,10 @@ theorem witness_auxiliary_probabilities :
     witnessBehavior 2 0 0 0 = 8/25 ∧
     witnessBehavior 2 0 1 1 = 8/25 ∧
     witnessBehavior 2 1 2 0 = 8/25 := by
-  norm_num [witnessBehavior, witnessStrategy, Strategy.behavior, phiState, born,
-    phi_trace_tensor, aliceEffect, bobEffect, polarEffect, aux0, aux1, aux2]
+  change born phiDensity aux0 (polarEffect 1 0) = 8/25 ∧
+    born phiDensity aux1 (polarEffect (-1) 0) = 8/25 ∧
+    born phiDensity aux2 (polarEffect 0 1) = 8/25
+  norm_num [born, phi_trace_tensor, polarEffect, aux0, aux1, aux2]
 
 theorem witness_correlations :
     correlation witnessBehavior 0 0 = halfRoot ∧
@@ -219,7 +221,7 @@ theorem witness_correlations :
   norm_num [witnessBehavior, witnessStrategy, Strategy.behavior, phiState, born,
     phi_trace_tensor, aliceEffect, bobEffect, polarEffect,
     aliceSign, bobSign, Fin.sum_univ_succ]
-  <;> ring
+  <;> ring_nf <;> simp
 
 theorem witness_value : bellScore witnessBehavior = lower := by
   rcases witness_auxiliary_probabilities with ⟨h₀, h₁, h₂⟩

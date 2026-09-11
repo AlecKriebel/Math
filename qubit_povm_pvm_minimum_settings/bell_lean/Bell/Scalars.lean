@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.Data.Real.Sqrt
+import Mathlib.Tactic
 
 /-!
 # Exact scalar analysis of the separator (paper §3 and Appendices A/B)
@@ -86,7 +87,7 @@ def robustCertificate (η x y r q : ℝ) : ℝ :=
 theorem robust_square_identity (η x y r q : ℝ) :
     (q + η * robustH x y) ^ 2 - discriminant η x y r =
       (q ^ 2 - (25 - 24 * r)) + robustCertificate η x y r q := by
-  unfold robustH discriminant robustCertificate
+  simp only [robustH, discriminant, robustCertificate]
   ring
 
 theorem robust_certificate_nonnegative (η x y r q : ℝ)

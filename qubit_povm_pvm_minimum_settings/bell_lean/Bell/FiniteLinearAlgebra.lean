@@ -43,7 +43,7 @@ theorem finite_functional_coordinates {n : ℕ} (l : (Fin n → ℝ) →ₗ[ℝ]
     l x = ∑ i, l (Pi.single i 1) * x i := by
   have hx : (∑ i : Fin n, x i • (Pi.single i 1 : Fin n → ℝ)) = x := by
     funext j
-    simp
+    simp [Pi.single_apply]
   calc
     l x = l (∑ i : Fin n, x i • (Pi.single i 1 : Fin n → ℝ)) := congrArg l hx.symm
     _ = ∑ i, l (Pi.single i 1) * x i := by simp [mul_comm]
@@ -65,7 +65,7 @@ def metricDifferential (Y : M) : V →ₗ[ℝ] (Fin 5 → ℝ) where
 @[simp]
 theorem nullRowMap_single (Y : M) (j : Fin 5) :
     nullRowMap Y (Pi.single j 1) = phi (Y *ᵥ ray j) := by
-  simp [nullRowMap]
+  simp [nullRowMap, Pi.single_apply]
 
 theorem metricDifferential_apply (Y : M) (h : V) (j : Fin 5) :
     metricDifferential Y h j = matrixPair (metricVariation h) (Y *ᵥ ray j) (Y *ᵥ ray j) :=
@@ -73,7 +73,9 @@ theorem metricDifferential_apply (Y : M) (h : V) (j : Fin 5) :
 
 theorem metricDifferential_pairing (Y : M) (μ : Fin 5 → ℝ) (h : V) :
     (∑ j, μ j * metricDifferential Y h j) = 2 * dotProduct h (nullRowMap Y μ) := by
-  simp only [metricDifferential, nullRowMap, dotProduct, Finset.sum_apply,
+  change (∑ j, μ j * (2 * dotProduct h (phi (Y *ᵥ ray j)))) =
+    2 * dotProduct h (∑ j, μ j • phi (Y *ᵥ ray j))
+  simp only [dotProduct, Finset.sum_apply,
     Pi.smul_apply, smul_eq_mul, Finset.mul_sum]
   rw [Finset.sum_comm]
   apply Finset.sum_congr rfl
@@ -83,19 +85,19 @@ theorem metricDifferential_pairing (Y : M) (μ : Fin 5 → ℝ) (h : V) :
   ring
 
 /-- Pointwise metric stationarity is exactly membership in the row-map kernel. -/
-theorem metric_stationary_iff (Y : M) (λ : Fin 5 → ℝ) :
-    (∀ h, weightedGram λ (metricVariation h) Y = 0) ↔ nullRowMap Y λ = 0 := by
-  have heq (h : V) : weightedGram λ (metricVariation h) Y =
-      2 * dotProduct h (nullRowMap Y λ) := by
+theorem metric_stationary_iff (Y : M) (lam : Fin 5 → ℝ) :
+    (∀ h, weightedGram lam (metricVariation h) Y = 0) ↔ nullRowMap Y lam = 0 := by
+  have heq (h : V) : weightedGram lam (metricVariation h) Y =
+      2 * dotProduct h (nullRowMap Y lam) := by
     simpa only [weightedGram, ← metricDifferential_apply] using
-      metricDifferential_pairing Y λ h
+      metricDifferential_pairing Y lam h
   constructor
   · intro hs
     funext i
     have hi := hs (Pi.single i 1)
     rw [heq] at hi
     simp at hi
-    change nullRowMap Y λ i = 0
+    change nullRowMap Y lam i = 0
     linarith
   · intro hs h
     rw [heq, hs]
@@ -145,7 +147,7 @@ theorem exists_compatible_metric (G Y : M) (W : Endomorphism)
   refine ⟨h, fun j => ?_⟩
   have hj := congrFun hh j
   rw [metricDifferential_apply] at hj
-  dsimp [c] at hj
+  dsimp only [c] at hj
   linarith
 
 end Lorentz

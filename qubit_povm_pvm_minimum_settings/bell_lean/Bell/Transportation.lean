@@ -1,4 +1,6 @@
-import Mathlib
+import Mathlib.Data.Matrix.Notation
+import Mathlib.Data.Real.Basic
+import Mathlib.Tactic
 
 /-!
 # Bounded transportation on three labels (paper Appendix H)
@@ -120,7 +122,9 @@ theorem exists_transport (a b : Vec) (C : Mat)
   have h1 := hbalance 1
   have h2 := hbalance 2
   rw [heq] at h0 h1 h2
-  norm_num [capacity,Fin.sum_univ_succ] at h0 h1 h2
+  norm_num [capacity,Fin.sum_univ_succ, Matrix.vecCons] at h0 h1 h2
+  change C 0 2 + (C 1 2 + 0) = a 2 + b 2 at h2
+  simp only [add_zero] at h2
   rw [heq]
   exact exists_capacity_transport a b (C 0 1) (C 0 2) (C 1 2)
     ha hb (hC 0 1) (hC 0 2) (hC 1 2) h0 h1 h2 hsa hsb

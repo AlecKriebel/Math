@@ -1,4 +1,5 @@
 import Bell.Lorentz
+import Mathlib.LinearAlgebra.Dimension.Constructions
 
 /-!
 # An explicit rank-one uphill direction
@@ -13,7 +14,7 @@ it does not assume the desired uphill conclusion.
 
 This module does NOT identify the forms with the physical incidence Hessian,
 construct multipliers, or integrate a tangent to a physical curve.
-STATUS: uncompiled proof source.
+Validated with the pinned Lean 4.19.0 toolchain; see local_verification/uphill_build.log.
 -/
 noncomputable section
 open scoped BigOperators Matrix
@@ -22,8 +23,8 @@ namespace Bell.Lorentz
 abbrev Endomorphism := V →ₗ[ℝ] V
 abbrev Bilinear := V →ₗ[ℝ] V →ₗ[ℝ] ℝ
 
-def weightedSecondForm (B : Bilinear) (λ : Fin 5 → ℝ) (W : Endomorphism) : ℝ :=
-  ∑ j, λ j * B (W (ray j)) (W (ray j))
+def weightedSecondForm (B : Bilinear) (lam : Fin 5 → ℝ) (W : Endomorphism) : ℝ :=
+  ∑ j, lam j * B (W (ray j)) (W (ray j))
 
 def compatibility (B : Bilinear) (μ : Fin 5 → ℝ) (W : Endomorphism) : ℝ :=
   ∑ j, μ j * B (ray j) (W (ray j))
@@ -42,30 +43,35 @@ def rankOneEndomorphism (v z : V) : Endomorphism where
       intro i _
       ring
     rw [h,smul_smul]
+    rfl
+
+@[simp]
+theorem rankOneEndomorphism_apply (v z y : V) :
+    rankOneEndomorphism v z y = dotProduct z y • v := rfl
 
 theorem dot_ray_basis (z : V) (i : Fin 4) :
     dotProduct z (ray i.castSucc) = z i := by
-  fin_cases i <;> norm_num [dotProduct,ray,Fin.sum_univ_succ]
+  fin_cases i <;> simp [Matrix.cons_val, dotProduct,ray,Fin.sum_univ_succ]
 
-theorem positive_weighted_ray_squares (λ : Fin 5 → ℝ)
-    (hλ : ∀ j, 0 < λ j) (z : V) (hz : z ≠ 0) :
-    0 < ∑ j, λ j * (dotProduct z (ray j))^2 := by
+theorem positive_weighted_ray_squares (lam : Fin 5 → ℝ)
+    (hlam : ∀ j, 0 < lam j) (z : V) (hz : z ≠ 0) :
+    0 < ∑ j, lam j * (dotProduct z (ray j))^2 := by
   have hex : ∃ i : Fin 4, z i ≠ 0 := by
     by_contra hn
     push_neg at hn
     exact hz (funext hn)
   obtain ⟨i,hi⟩ := hex
-  have hpos : 0 < λ i.castSucc * (dotProduct z (ray i.castSucc))^2 := by
+  have hpos : 0 < lam i.castSucc * (dotProduct z (ray i.castSucc))^2 := by
     rw [dot_ray_basis]
-    exact mul_pos (hλ i.castSucc) (sq_pos_of_ne_zero hi)
+    exact mul_pos (hlam i.castSucc) (sq_pos_of_ne_zero hi)
   exact lt_of_lt_of_le hpos
-    (Finset.single_le_sum (fun j _ => mul_nonneg (le_of_lt (hλ j)) (sq_nonneg _))
+    (Finset.single_le_sum (fun j _ => mul_nonneg (le_of_lt (hlam j)) (sq_nonneg (dotProduct z (ray j))))
       (Finset.mem_univ i.castSucc))
 
-theorem secondForm_rankOne (B : Bilinear) (λ : Fin 5 → ℝ) (v z : V) :
-    weightedSecondForm B λ (rankOneEndomorphism v z) =
-      B v v * ∑ j, λ j * (dotProduct z (ray j))^2 := by
-  simp only [weightedSecondForm,rankOneEndomorphism,map_smul,LinearMap.smul_apply,
+theorem secondForm_rankOne (B : Bilinear) (lam : Fin 5 → ℝ) (v z : V) :
+    weightedSecondForm B lam (rankOneEndomorphism v z) =
+      B v v * ∑ j, lam j * (dotProduct z (ray j))^2 := by
+  simp only [weightedSecondForm,rankOneEndomorphism_apply,map_smul,LinearMap.smul_apply,
     smul_eq_mul,Finset.mul_sum]
   apply Finset.sum_congr rfl
   intro j _
@@ -99,14 +105,21 @@ def compatibilityMap {k : ℕ} (B : Bilinear) (μ : Fin k → Fin 5 → ℝ) (v 
   map_smul' := by
     intro r z
     funext i
-    simp only [Pi.smul_apply,smul_eq_mul,dotProduct]
-    simp_rw [mul_assoc,← Finset.mul_sum]
+    simp only [Pi.smul_apply, smul_eq_mul, RingHom.id_apply, smul_dotProduct,
+      Finset.mul_sum]
+    apply Finset.sum_congr rfl
+    intro j _
     ring
+
+@[simp]
+theorem compatibilityMap_apply {k : ℕ} (B : Bilinear) (μ : Fin k → Fin 5 → ℝ)
+    (v z : V) (i : Fin k) :
+    compatibilityMap B μ v z i = ∑ j, μ i j * B (ray j) v * dotProduct z (ray j) := rfl
 
 theorem compatibility_rankOne {k : ℕ} (B : Bilinear) (μ : Fin k → Fin 5 → ℝ)
     (v z : V) (i : Fin k) :
     compatibility B (μ i) (rankOneEndomorphism v z) = compatibilityMap B μ v z i := by
-  simp only [compatibility,rankOneEndomorphism,compatibilityMap,
+  simp only [compatibility,rankOneEndomorphism_apply,compatibilityMap_apply,
     map_smul,smul_eq_mul]
   apply Finset.sum_congr rfl
   intro j _
@@ -115,13 +128,13 @@ theorem compatibility_rankOne {k : ℕ} (B : Bilinear) (μ : Fin k → Fin 5 →
 /-- An uphill direction exists without diagonalizing the 16-dimensional form. -/
 theorem uphill_of_three_compatibilities {k : ℕ} (hk : k ≤ 3)
     (B : Bilinear) (v : V) (hv : 0 < B v v)
-    (λ : Fin 5 → ℝ) (hλ : ∀ j, 0 < λ j) (μ : Fin k → Fin 5 → ℝ) :
-    ∃ W : Endomorphism, 0 < weightedSecondForm B λ W ∧
+    (lam : Fin 5 → ℝ) (hlam : ∀ j, 0 < lam j) (μ : Fin k → Fin 5 → ℝ) :
+    ∃ W : Endomorphism, 0 < weightedSecondForm B lam W ∧
       ∀ i, compatibility B (μ i) W = 0 := by
   obtain ⟨z,hz,hf⟩ := nonzero_kernel_of_three_constraints hk (compatibilityMap B μ v)
   refine ⟨rankOneEndomorphism v z,?_,?_⟩
   · rw [secondForm_rankOne]
-    exact mul_pos hv (positive_weighted_ray_squares λ hλ z hz)
+    exact mul_pos hv (positive_weighted_ray_squares lam hlam z hz)
   · intro i
     rw [compatibility_rankOne]
     exact congrFun hf i
@@ -146,10 +159,10 @@ theorem compatibility_add_identity (B : Bilinear) (μ : Fin 5 → ℝ)
     LinearMap.id_apply,map_add,map_smul,smul_eq_mul,hnull,mul_zero,add_zero]
 
 theorem secondForm_add_identity (B : Bilinear) (hB : ∀ x y, B x y = B y x)
-    (λ : Fin 5 → ℝ) (W : Endomorphism) (t : ℝ)
+    (lam : Fin 5 → ℝ) (W : Endomorphism) (t : ℝ)
     (hnull : ∀ j, B (ray j) (ray j) = 0) :
-    weightedSecondForm B λ (W + t • LinearMap.id) =
-      weightedSecondForm B λ W + 2*t*compatibility B λ W := by
+    weightedSecondForm B lam (W + t • LinearMap.id) =
+      weightedSecondForm B lam W + 2*t*compatibility B lam W := by
   simp only [weightedSecondForm,compatibility,LinearMap.add_apply,LinearMap.smul_apply,
     LinearMap.id_apply,map_add,map_smul,LinearMap.add_apply,LinearMap.smul_apply,
     smul_eq_mul,hnull,mul_zero,add_zero,Finset.mul_sum,← Finset.sum_add_distrib]
@@ -164,18 +177,18 @@ theorem normalized_uphill_of_three_compatibilities {k : ℕ} (hk : k ≤ 3)
     (B : Bilinear) (hB : ∀ x y, B x y = B y x)
     (hnull : ∀ j, B (ray j) (ray j) = 0)
     (v : V) (hv : 0 < B v v)
-    (λ : Fin 5 → ℝ) (hλ : ∀ j, 0 < λ j)
+    (lam : Fin 5 → ℝ) (hlam : ∀ j, 0 < lam j)
     (μ : Fin k → Fin 5 → ℝ) (c : Fin k → ℝ)
-    (hspan : λ = ∑ i, c i • μ i)
+    (hspan : lam = ∑ i, c i • μ i)
     (N : Endomorphism →ₗ[ℝ] ℝ) (hN : N LinearMap.id = 1) :
-    ∃ W : Endomorphism, 0 < weightedSecondForm B λ W ∧
+    ∃ W : Endomorphism, 0 < weightedSecondForm B lam W ∧
       (∀ i, compatibility B (μ i) W = 0) ∧ N W = 0 := by
-  obtain ⟨W,hup,hcomp⟩ := uphill_of_three_compatibilities hk B v hv λ hλ μ
-  have hλcomp : compatibility B λ W = 0 := by
+  obtain ⟨W,hup,hcomp⟩ := uphill_of_three_compatibilities hk B v hv lam hlam μ
+  have hlamcomp : compatibility B lam W = 0 := by
     rw [hspan,compatibility_sum]
     simp [hcomp]
   refine ⟨W + (-N W) • LinearMap.id,?_,?_,?_⟩
-  · rw [secondForm_add_identity B hB λ W (-N W) hnull,hλcomp,mul_zero,add_zero]
+  · rw [secondForm_add_identity B hB lam W (-N W) hnull,hlamcomp,mul_zero,add_zero]
     exact hup
   · intro i
     rw [compatibility_add_identity B (μ i) W (-N W) hnull]

@@ -1,5 +1,6 @@
 import Bell.EntrywiseTopology
 import Bell.UphillDirection
+import Mathlib.Analysis.Calculus.ContDiff.Operations
 
 /-!
 # Polynomial incidence coordinates and an exact finite score identity
@@ -15,7 +16,8 @@ is used in this identity.
 
 All the hypotheses of the algebraic lemmas below are explicit. This file does
 not postulate that arbitrary physical data have already been reduced to this
-chart. Proof source is awaiting the user's compilation run.
+chart. Validated with the pinned Lean 4.19.0 toolchain; see
+local_verification/incidence_algebra_build.log.
 -/
 noncomputable section
 open scoped Bell.Entrywise
@@ -38,7 +40,7 @@ theorem matrixOfLinear_mulVec (L : Endomorphism) (x : V) :
     matrixOfLinear L *ᵥ x = L x := by
   have hx : (∑ j : Fin 4, x j • (Pi.single j 1 : V)) = x := by
     funext i
-    simp
+    simp [Pi.single_apply]
   calc
     matrixOfLinear L *ᵥ x = ∑ j : Fin 4, x j • L (Pi.single j 1) := by
       funext i
@@ -66,8 +68,9 @@ theorem matrixOfLinear_smul (t : ℝ) (L : Endomorphism) :
 @[simp]
 theorem linearOfMatrix_matrixOfLinear (L : Endomorphism) :
     linearOfMatrix (matrixOfLinear L) = L := by
-  ext x i
-  exact congrFun (matrixOfLinear_mulVec L x) i
+  apply LinearMap.ext
+  intro x
+  exact matrixOfLinear_mulVec L x
 
 /-- The real bilinear form associated to a matrix, without a symmetry assumption. -/
 def matrixPair (A : M) : Bilinear where
@@ -116,7 +119,7 @@ theorem matrixPair_sub_matrix (A B : M) (x y : V) :
 @[simp]
 theorem matrixPair_smul_matrix (t : ℝ) (A : M) (x y : V) :
     matrixPair (t • A) x y = t * matrixPair A x y := by
-  simp [Matrix.smul_mulVec, dotProduct_smul]
+  simp [Matrix.smul_mulVec_assoc, dotProduct_smul]
 
 /-- Pull a bilinear form back by a linear frame. -/
 def pullbackForm (A : M) (Y : Endomorphism) : Bilinear where
@@ -141,16 +144,16 @@ def metricVariation : V →ₗ[ℝ] M where
   map_add' := by
     intro h k
     ext i j
-    fin_cases i <;> fin_cases j <;> norm_num [Pi.add_apply] <;> ring
+    fin_cases i <;> fin_cases j <;> simp [Matrix.cons_val, Pi.add_apply] <;> ring
   map_smul' := by
     intro t h
     ext i j
-    fin_cases i <;> fin_cases j <;> norm_num [Pi.smul_apply, smul_eq_mul] <;> ring
+    fin_cases i <;> fin_cases j <;> simp [Matrix.cons_val, Pi.smul_apply, smul_eq_mul] <;> ring
 
 theorem chartMetric_add (p h : V) : chartMetric (p + h) = chartMetric p + metricVariation h := by
   ext i j
   fin_cases i <;> fin_cases j <;>
-    norm_num [chartMetric, metric, metricVariation, Pi.add_apply] <;> ring
+    simp [Matrix.cons_val, chartMetric, metric, metricVariation, Pi.add_apply] <;> ring
 
 theorem chartMetric_sub (p q : V) : chartMetric q - chartMetric p = metricVariation (q - p) := by
   have h := chartMetric_add p (q - p)
@@ -170,7 +173,7 @@ theorem metricVariation_symmetric (h : V) :
 
 theorem metricVariation_quadratic (h x : V) :
     matrixPair (metricVariation h) x x = 2 * dotProduct h (phi x) := by
-  simp [metricVariation, matrixPair, phi, Matrix.mulVec, dotProduct, Fin.sum_univ_succ]
+  simp [Matrix.cons_val, metricVariation, matrixPair, phi, Matrix.mulVec, dotProduct, Fin.sum_univ_succ]
   ring
 
 theorem chartMetric_null (p : V) (j : Fin 5) : matrixPair (chartMetric p) (ray j) (ray j) = 0 := by
@@ -185,48 +188,48 @@ theorem chartMetric_unit (p : V) : matrixPair (chartMetric p) unitVector unitVec
 def blockMass : M →ₗ[ℝ] ℝ where
   toFun := fun P => dotProduct unitVector (P *ᵥ unitVector)
   map_add' := by intro P Q; simp [Matrix.add_mulVec, dotProduct_add]
-  map_smul' := by intro t P; simp [Matrix.smul_mulVec, dotProduct_smul]
+  map_smul' := by intro t P; simp [Matrix.smul_mulVec_assoc, dotProduct_smul]
 
 /-- Weighted null constraints, with no positivity assumption on the weights. -/
-def weightedGram (λ : Fin 5 → ℝ) (G Y : M) : ℝ :=
-  ∑ j, λ j * matrixPair G (Y *ᵥ ray j) (Y *ᵥ ray j)
+def weightedGram (lam : Fin 5 → ℝ) (G Y : M) : ℝ :=
+  ∑ j, lam j * matrixPair G (Y *ᵥ ray j) (Y *ᵥ ray j)
 
-def weightedCross (λ : Fin 5 → ℝ) (G Y Z : M) : ℝ :=
-  ∑ j, λ j * matrixPair G (Y *ᵥ ray j) (Z *ᵥ ray j)
+def weightedCross (lam : Fin 5 → ℝ) (G Y Z : M) : ℝ :=
+  ∑ j, lam j * matrixPair G (Y *ᵥ ray j) (Z *ᵥ ray j)
 
-def weightedPairing (λ : Fin 5 → ℝ) (Y P : M) : ℝ :=
-  ∑ j, λ j * dotProduct (Y *ᵥ ray j) (P *ᵥ ray j)
+def weightedPairing (lam : Fin 5 → ℝ) (Y P : M) : ℝ :=
+  ∑ j, lam j * dotProduct (Y *ᵥ ray j) (P *ᵥ ray j)
 
 @[simp]
-theorem weightedPairing_mul (λ : Fin 5 → ℝ) (Y G Z : M) :
-    weightedPairing λ Y (G * Z) = weightedCross λ G Y Z := by
+theorem weightedPairing_mul (lam : Fin 5 → ℝ) (Y G Z : M) :
+    weightedPairing lam Y (G * Z) = weightedCross lam G Y Z := by
   simp [weightedPairing, weightedCross, matrixPair, Matrix.mulVec_mulVec]
 
 @[simp]
-theorem weightedCross_self (λ : Fin 5 → ℝ) (G Y : M) :
-    weightedCross λ G Y Y = weightedGram λ G Y := rfl
+theorem weightedCross_self (lam : Fin 5 → ℝ) (G Y : M) :
+    weightedCross lam G Y Y = weightedGram lam G Y := rfl
 
-theorem weightedGram_zero_of_null (λ : Fin 5 → ℝ) (G Y : M)
+theorem weightedGram_zero_of_null (lam : Fin 5 → ℝ) (G Y : M)
     (hnull : ∀ j, matrixPair G (Y *ᵥ ray j) (Y *ᵥ ray j) = 0) :
-    weightedGram λ G Y = 0 := by
+    weightedGram lam G Y = 0 := by
   simp [weightedGram, hnull]
 
-theorem weightedGram_add_metric (λ : Fin 5 → ℝ) (G H Y : M) :
-    weightedGram λ (G + H) Y = weightedGram λ G Y + weightedGram λ H Y := by
-  simp [weightedGram, mul_add, Finset.sum_add_distrib]
+theorem weightedGram_add_metric (lam : Fin 5 → ℝ) (G H Y : M) :
+    weightedGram lam (G + H) Y = weightedGram lam G Y + weightedGram lam H Y := by
+  simp only [weightedGram, matrixPair_add_matrix, mul_add, Finset.sum_add_distrib]
 
-theorem weightedGram_sub_metric (λ : Fin 5 → ℝ) (G H Y : M) :
-    weightedGram λ (G - H) Y = weightedGram λ G Y - weightedGram λ H Y := by
-  simp [weightedGram, mul_sub, Finset.sum_sub_distrib]
+theorem weightedGram_sub_metric (lam : Fin 5 → ℝ) (G H Y : M) :
+    weightedGram lam (G - H) Y = weightedGram lam G Y - weightedGram lam H Y := by
+  simp only [weightedGram, matrixPair_sub_matrix, mul_sub, Finset.sum_sub_distrib]
 
-theorem weightedCross_add_right (λ : Fin 5 → ℝ) (G Y Z W : M) :
-    weightedCross λ G Y (Z + W) = weightedCross λ G Y Z + weightedCross λ G Y W := by
+theorem weightedCross_add_right (lam : Fin 5 → ℝ) (G Y Z W : M) :
+    weightedCross lam G Y (Z + W) = weightedCross lam G Y Z + weightedCross lam G Y W := by
   simp [weightedCross, Matrix.add_mulVec, map_add, mul_add, Finset.sum_add_distrib]
 
-theorem weightedGram_add_frame (λ : Fin 5 → ℝ) (G Y Z : M)
+theorem weightedGram_add_frame (lam : Fin 5 → ℝ) (G Y Z : M)
     (hG : G.transpose = G) :
-    weightedGram λ G (Y + Z) = weightedGram λ G Y +
-      2 * weightedCross λ G Y Z + weightedGram λ G Z := by
+    weightedGram lam G (Y + Z) = weightedGram lam G Y +
+      2 * weightedCross lam G Y Z + weightedGram lam G Z := by
   simp only [weightedGram, weightedCross, Matrix.add_mulVec, map_add,
     LinearMap.add_apply]
   simp_rw [matrixPair_symmetric hG (Z *ᵥ _) (Y *ᵥ _)]
@@ -235,9 +238,9 @@ theorem weightedGram_add_frame (λ : Fin 5 → ℝ) (G Y Z : M)
   intro j _
   ring
 
-theorem weightedGram_smul_frame (λ : Fin 5 → ℝ) (G Y : M) (t : ℝ) :
-    weightedGram λ G (t • Y) = t^2 * weightedGram λ G Y := by
-  simp only [weightedGram, Matrix.smul_mulVec, map_smul,
+theorem weightedGram_smul_frame (lam : Fin 5 → ℝ) (G Y : M) (t : ℝ) :
+    weightedGram lam G (t • Y) = t^2 * weightedGram lam G Y := by
+  simp only [weightedGram, Matrix.smul_mulVec_assoc, map_smul,
     LinearMap.smul_apply, smul_eq_mul, Finset.mul_sum]
   apply Finset.sum_congr rfl
   intro j _
@@ -246,20 +249,20 @@ theorem weightedGram_smul_frame (λ : Fin 5 → ℝ) (G Y : M) (t : ℝ) :
 /-- Coordinate-free finite score identity. No curve or derivative is involved. -/
 theorem exact_stationary_score_gap
     (G G' Y Y' : M) (hG' : G'.transpose = G')
-    (λ : Fin 5 → ℝ) (F : M →ₗ[ℝ] ℝ) (α : ℝ)
-    (stationary : ∀ P, F P = α * blockMass P - 2 * weightedPairing λ Y P)
-    (hbase : weightedGram λ G Y = 0)
-    (hnew : weightedGram λ G' Y' = 0)
-    (hmetric : weightedGram λ (G' - G) Y = 0)
+    (lam : Fin 5 → ℝ) (F : M →ₗ[ℝ] ℝ) (α : ℝ)
+    (stationary : ∀ P, F P = α * blockMass P - 2 * weightedPairing lam Y P)
+    (hbase : weightedGram lam G Y = 0)
+    (hnew : weightedGram lam G' Y' = 0)
+    (hmetric : weightedGram lam (G' - G) Y = 0)
     (hnorm : blockMass (G' * Y') = blockMass (G * Y)) :
-    F (G' * Y') - F (G * Y) = weightedGram λ G' (Y' - Y) := by
-  have hbase' : weightedGram λ G' Y = 0 := by
+    F (G' * Y') - F (G * Y) = weightedGram lam G' (Y' - Y) := by
+  have hbase' : weightedGram lam G' Y = 0 := by
     rw [weightedGram_sub_metric, hbase, sub_zero] at hmetric
     exact hmetric
-  have hsplit := weightedGram_add_frame λ G' Y (Y' - Y) hG'
+  have hsplit := weightedGram_add_frame lam G' Y (Y' - Y) hG'
   have hYY : Y + (Y' - Y) = Y' := by abel
   rw [hYY, hnew, hbase'] at hsplit
-  have hcross := weightedCross_add_right λ G' Y Y (Y' - Y)
+  have hcross := weightedCross_add_right lam G' Y Y (Y' - Y)
   rw [hYY, weightedCross_self, hbase'] at hcross
   rw [stationary, stationary, hnorm, weightedPairing_mul, weightedPairing_mul,
     weightedCross_self, hbase, hcross]
@@ -283,21 +286,23 @@ def FeasibleIncidence (z : IncidenceSpace) : Prop :=
 
 /-- No inverse occurs anywhere in the six defining equations. -/
 theorem contDiff_incidenceConstraints : ContDiff ℝ ⊤ incidenceConstraints := by
-  unfold incidenceConstraints incidenceNulls incidenceMass probabilityBlock blockMass
-    chartMetric metric matrixPair
-  simp only [Matrix.mul_apply, Matrix.mulVec, dotProduct, Fin.sum_univ_succ]
+  change ContDiff ℝ ⊤ (fun z : IncidenceSpace =>
+    ((fun j => dotProduct (z.2 *ᵥ ray j) (chartMetric z.1 *ᵥ (z.2 *ᵥ ray j))),
+      dotProduct unitVector ((chartMetric z.1 * z.2) *ᵥ unitVector)))
+  simp [chartMetric, metric, Matrix.mul_apply, Matrix.mulVec, dotProduct,
+    Fin.sum_univ_succ, Matrix.cons_val]
   fun_prop
 
 /-- Exact finite improvement identity in the polynomial coordinates. -/
 theorem polynomial_score_gap
-    (z z' : IncidenceSpace) (λ : Fin 5 → ℝ) (F : M →ₗ[ℝ] ℝ) (α : ℝ)
+    (z z' : IncidenceSpace) (lam : Fin 5 → ℝ) (F : M →ₗ[ℝ] ℝ) (α : ℝ)
     (hz : FeasibleIncidence z) (hz' : FeasibleIncidence z')
-    (stationary : ∀ P, F P = α * blockMass P - 2 * weightedPairing λ z.2 P)
-    (metricStationary : ∀ h, weightedGram λ (metricVariation h) z.2 = 0) :
+    (stationary : ∀ P, F P = α * blockMass P - 2 * weightedPairing lam z.2 P)
+    (metricStationary : ∀ h, weightedGram lam (metricVariation h) z.2 = 0) :
     F (probabilityBlock z') - F (probabilityBlock z) =
-      weightedGram λ (chartMetric z'.1) (z'.2 - z.2) := by
+      weightedGram lam (chartMetric z'.1) (z'.2 - z.2) := by
   apply exact_stationary_score_gap (chartMetric z.1) (chartMetric z'.1) z.2 z'.2
-    (chartMetric_symmetric _) λ F α stationary
+    (chartMetric_symmetric _) lam F α stationary
   · apply weightedGram_zero_of_null
     intro j
     exact congrFun hz.1 j

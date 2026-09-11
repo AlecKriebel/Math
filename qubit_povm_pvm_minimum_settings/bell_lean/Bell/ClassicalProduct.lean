@@ -1,4 +1,7 @@
-import Mathlib
+import Mathlib.Algebra.BigOperators.Ring.Finset
+import Mathlib.Data.Fintype.BigOperators
+import Mathlib.Data.Real.Basic
+import Mathlib.Tactic
 
 /-!
 # Finite product response distributions
@@ -69,7 +72,8 @@ theorem marginal (r : (x : X) → O x → ℝ)
       have htail : ∀ y : {y // y ≠ x}, (∑ b, pin r x a y.1 b) = 1 := by
         intro y
         simpa [pin, y.property] using hn y.1
-      simp [pin, htail]
+      simp only [htail, Finset.prod_const_one, mul_one]
+      simp [pin]
 
 variable {B : Type*} [Fintype B] [DecidableEq B]
 

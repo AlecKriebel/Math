@@ -22,15 +22,16 @@ def localTrace (A : Operator) : Operator →ₗ[ℝ] ℝ where
 theorem localTrace_apply (A B : Operator) : localTrace A B = (Matrix.trace (A * B)).re := rfl
 
 theorem localTrace_comm (A B : Operator) : localTrace A B = localTrace B A := by
-  simp only [localTrace_apply, Matrix.trace_mul_comm]
+  exact congrArg Complex.re (Matrix.trace_mul_comm A B)
 
 theorem posSemidef_real_smul {n : Type*} [Fintype n] [DecidableEq n]
     {A : Matrix n n ℂ} (hA : A.PosSemidef) {t : ℝ} (ht : 0 ≤ t) :
     (t • A).PosSemidef := by
   refine ⟨?_, fun x => ?_⟩
-  · simpa using hA.isHermitian.smul (show IsSelfAdjoint (t : ℂ) by simp)
+  · change (t • A).conjTranspose = t • A
+    simp [hA.isHermitian.eq]
   · have hc : (0 : ℂ) ≤ (t : ℂ) := by exact_mod_cast ht
-    simpa [Matrix.smul_mulVec, dotProduct_smul, smul_eq_mul] using
+    simpa [Matrix.smul_mulVec_assoc, dotProduct_smul, smul_eq_mul] using
       mul_nonneg hc (hA.2 x)
 
 theorem localTrace_nonnegative {A B : Operator} (hA : A.PosSemidef) (hB : B.PosSemidef) :
@@ -62,15 +63,17 @@ def pureState (C : Operator) (hC : Matrix.trace (C * C.conjTranspose) = 1) : Sta
   positive := pureDensity_positive C
   normalized := (pureDensity_trace C).trans hC
 
-/-- Full complex Born identity; transposition on Bob is essential. -/
+/- Full complex Born identity; transposition on Bob is essential. -/
 set_option maxRecDepth 100000 in
 set_option maxHeartbeats 2000000 in
 theorem pureDensity_born (C M N : Operator) :
     born (pureDensity C) M N = localTrace M (C * N.transpose * C.conjTranspose) := by
-  unfold born localTrace pureDensity tensor
-  simp only [Matrix.trace, Matrix.mul_apply, Matrix.conjTranspose_apply,
-    Matrix.transpose_apply, Fintype.sum_prod_type, Fin.sum_univ_succ]
+  change (Matrix.trace (pureDensity C * tensor M N)).re =
+    (Matrix.trace (M * (C * N.transpose * C.conjTranspose))).re
+  unfold pureDensity tensor
   congr 1
+  simp only [Matrix.trace, Matrix.diag, Matrix.mul_apply, Matrix.conjTranspose_apply,
+    Matrix.transpose_apply, Fintype.sum_prod_type, Fin.sum_univ_succ]
   ring
 
 /-- Common positive reduced operator and all input-dependent steered outcomes. -/
@@ -110,10 +113,11 @@ def Assemblage.purifiedBob {A : Architecture} (s : Assemblage A)
   normalized := by
     rw [← Matrix.transpose_sum, ← Matrix.sum_mul, ← Matrix.mul_sum, s.commonSum y]
     have hC := s.root_invertible hρ
-    rw [← s.root_square, ← s.root_hermitian]
-    simp only [Matrix.mul_assoc, Matrix.nonsing_inv_mul_cancel_left _ _ hC,
-      ← Matrix.conjTranspose_mul, Matrix.mul_nonsing_inv _ hC,
-      Matrix.conjTranspose_one, Matrix.transpose_one]
+    have hback : s.root⁻¹ * s.reduced * s.root⁻¹.conjTranspose = 1 := by
+      rw [← s.root_square, Matrix.conjTranspose_nonsing_inv, s.root_hermitian]
+      simp only [← Matrix.mul_assoc, Matrix.nonsing_inv_mul s.root hC, one_mul,
+        Matrix.mul_nonsing_inv s.root hC]
+    rw [hback, Matrix.transpose_one]
 
 def Assemblage.purifiedStrategy {A : Architecture} (s : Assemblage A)
     (hρ : IsUnit s.reduced.det) : Strategy A where
@@ -149,7 +153,7 @@ congruence on the assemblage preserve every trace probability. -/
 theorem inverse_congruence_trace (C A S : Operator) (hC : IsUnit C.det) :
     localTrace (C⁻¹.conjTranspose * A * C⁻¹) (C * S * C.conjTranspose) =
       localTrace A S := by
-  unfold localTrace
+  simp only [localTrace_apply]
   have heq : C⁻¹.conjTranspose * A * C⁻¹ * (C * S * C.conjTranspose) =
       C⁻¹.conjTranspose * (A * S) * C.conjTranspose := by
     calc

@@ -1,4 +1,11 @@
-import Mathlib
+import Mathlib.Data.Matrix.Notation
+import Mathlib.Data.Real.Basic
+import Mathlib.LinearAlgebra.Matrix.ToLin
+import Mathlib.Tactic.FinCases
+import Mathlib.Tactic.NormNum
+import Mathlib.Tactic.Linarith
+import Mathlib.Tactic.Ring
+import Mathlib.Tactic.LinearCombination
 
 /-!
 # Finite Lorentz-incidence algebra (paper §§5–9, Appendices F/G)
@@ -14,6 +21,8 @@ noncomputable section
 open scoped BigOperators Matrix
 namespace Bell.Lorentz
 
+attribute [local simp] Matrix.cons_val
+
 abbrev V := Fin 4 → ℝ
 abbrev M := Matrix (Fin 4) (Fin 4) ℝ
 
@@ -24,11 +33,11 @@ def unitVector : V := ![1,1,0,0]
 
 theorem binary_circuit : ray 0 + ray 1 = unitVector := by
   funext i
-  fin_cases i <;> norm_num [ray, unitVector]
+  fin_cases i <;> simp [Matrix.cons_val, ray, unitVector]
 
 theorem ternary_circuit : ray 2 + ray 3 + ray 4 = unitVector := by
   funext i
-  fin_cases i <;> norm_num [ray, unitVector]
+  fin_cases i <;> simp [Matrix.cons_val, ray, unitVector]
 
 /-- The unique local circuit, including all coefficient vectors in its kernel. -/
 theorem circuit_kernel (μ : Fin 5 → ℝ) :
@@ -39,13 +48,18 @@ theorem circuit_kernel (μ : Fin 5 → ℝ) :
     have h₁ := congrFun h 1
     have h₂ := congrFun h 2
     have h₃ := congrFun h 3
-    norm_num [ray, Fin.sum_univ_succ] at h₀ h₁ h₂ h₃
+    simp [Matrix.cons_val, ray, Fin.sum_univ_succ] at h₀ h₁ h₂ h₃
     refine ⟨μ 0, ?_⟩
     funext j
-    fin_cases j <;> norm_num <;> linarith
+    fin_cases j
+    · rfl
+    · change μ 1 = μ 0; linarith
+    · change μ 2 = -μ 0; linarith
+    · change μ 3 = -μ 0; linarith
+    · change μ 4 = -μ 0; linarith
   · rintro ⟨t, rfl⟩
     funext i
-    fin_cases i <;> norm_num [ray, Fin.sum_univ_succ] <;> ring
+    fin_cases i <;> simp [Matrix.cons_val, ray, Fin.sum_univ_succ] <;> ring
 
 def weightedOuter (μ : Fin 5 → ℝ) : M :=
   fun i k => ∑ j, μ j * ray j i * ray j k
@@ -54,14 +68,19 @@ def weightedOuter (μ : Fin 5 → ℝ) : M :=
 theorem weightedOuter_injective_zero (μ : Fin 5 → ℝ)
     (h : weightedOuter μ = 0) : μ = 0 := by
   have hoff := congrArg (fun A : M => A 0 1) h
-  norm_num [weightedOuter, ray, Fin.sum_univ_succ] at hoff
+  simp [Matrix.cons_val, weightedOuter, ray, Fin.sum_univ_succ] at hoff
   have h₀ := congrArg (fun A : M => A 0 0) h
   have h₁ := congrArg (fun A : M => A 1 1) h
   have h₂ := congrArg (fun A : M => A 2 2) h
   have h₃ := congrArg (fun A : M => A 3 3) h
-  norm_num [weightedOuter, ray, Fin.sum_univ_succ] at h₀ h₁ h₂ h₃
+  simp [Matrix.cons_val, weightedOuter, ray, Fin.sum_univ_succ] at h₀ h₁ h₂ h₃
   funext j
-  fin_cases j <;> norm_num <;> linarith
+  fin_cases j
+  · change μ 0 = 0; linarith
+  · change μ 1 = 0; linarith
+  · change μ 2 = 0; linarith
+  · change μ 3 = 0; linarith
+  · change μ 4 = 0; linarith
 
 def metric (a b c d : ℝ) : M :=
   !![0, 1/2, a, b;
@@ -95,11 +114,11 @@ theorem metric_quadratic (a b c d : ℝ) (x : V) :
 
 theorem coefficient_rays_null (a b c d : ℝ) (j : Fin 5) :
     nullPolynomial a b c d (ray j) = 0 := by
-  fin_cases j <;> norm_num [nullPolynomial, ray] <;> ring
+  fin_cases j <;> simp [Matrix.cons_val, nullPolynomial, ray] <;> ring
 
 theorem metric_normalization (a b c d : ℝ) :
     nullPolynomial a b c d unitVector = 1 := by
-  norm_num [nullPolynomial, unitVector]
+  simp [Matrix.cons_val, nullPolynomial, unitVector]
 
 def phi (x : V) : V :=
   ![x 2*(x 0+x 3), x 3*(x 0+x 2), x 2*(x 1+x 3), x 3*(x 1+x 2)]
@@ -117,23 +136,23 @@ theorem phi_differences (x : V) :
     phi x 2 - phi x 3 = x 1*(x 2-x 3) ∧
     phi x 0 - phi x 2 = x 2*(x 0-x 1) ∧
     phi x 1 - phi x 3 = x 3*(x 0-x 1) := by
-  refine ⟨?_, ?_, ?_, ?_⟩ <;> norm_num [phi] <;> ring
+  refine ⟨?_, ?_, ?_, ?_⟩ <;> simp [Matrix.cons_val, phi] <;> ring
 
 theorem phi_minor (x : V) :
     phi x 0 * phi x 3 - phi x 1 * phi x 2 =
       x 2*x 3*(x 0-x 1)*(x 2-x 3) := by
-  norm_num [phi]
+  simp [Matrix.cons_val, phi]
   <;> ring
 
 /-- The exact generic inverse identity in Appendix G.1. -/
 theorem inverse_identity (x : V) : inversePolynomial (phi x) = omega x • x := by
   funext i
-  fin_cases i <;> norm_num [inversePolynomial, phi, omega] <;> ring
+  fin_cases i <;> simp [Matrix.cons_val, inversePolynomial, phi, omega] <;> ring
 
 theorem inverse_homogeneous (ξ : V) (t : ℝ) :
     inversePolynomial (t • ξ) = t^3 • inversePolynomial ξ := by
   funext i
-  fin_cases i <;> norm_num [inversePolynomial] <;> ring
+  fin_cases i <;> simp [Matrix.cons_val, inversePolynomial] <;> ring
 
 /-- Explicit recovery on the generic chart; no division occurs until nonzero
 `omega` has been supplied. -/
@@ -194,12 +213,12 @@ theorem baseLines_phi_zero (x : V) (hx : BaseLines x) : phi x = 0 := by
 /-- Cross-branch factorizations on both zero-coordinate divisors. -/
 theorem cross_x2_identity (a b c d t : ℝ) :
     nullPolynomial a b c d ![-1,-1,t,1] = (1-2*(b+d))*(1-t) := by
-  norm_num [nullPolynomial]
+  simp [Matrix.cons_val, nullPolynomial]
   <;> ring
 
 theorem cross_x3_identity (a b c d t : ℝ) :
     nullPolynomial a b c d ![-1,-1,1,t] = (1-2*(a+c))*(1-t) := by
-  norm_num [nullPolynomial]
+  simp [Matrix.cons_val, nullPolynomial]
   <;> ring
 
 theorem cross_x2_is_base (a b c d t : ℝ) (hs : b+d < 1/2)
@@ -229,11 +248,11 @@ theorem direct_zero_chart_unique (b d U V t s : ℝ)
     intro hz
     rcases mul_eq_zero.mp hz with hU | hV
     · have hV : V=0 := by
-        have hv : d*V=0 := by nlinarith [hlt]
+        have hv : d*V=0 := by simpa [hU] using hlt
         exact (mul_eq_zero.mp hv).resolve_left (ne_of_gt hd)
       exact hUV.elim (fun h => h hU) (fun h => h hV)
     · have hU : U=0 := by
-        have hu : b*U=0 := by nlinarith [hlt]
+        have hu : b*U=0 := by simpa [hV] using hlt
         exact (mul_eq_zero.mp hu).resolve_left (ne_of_gt hb)
       exact hUV.elim (fun h => h hU) (fun h => h hV)
   have heq : (t-s)*(U*V)=0 := by nlinarith [hlt,hls]
@@ -277,7 +296,7 @@ theorem null01_coefficient_nonzero (A B p q : ℝ) (hA : A<1/2) (hB : B<1/2)
     (hN : (2*A+2*(A+B-1/2)*q)*p+(1+2*B*q)=0) :
     2*A+2*(A+B-1/2)*q ≠ 0 := by
   intro hz
-  have hc : 1+2*B*q=0 := by simpa [hz] using hN
+  have hc : 1+2*B*q=0 := by rw [hz, zero_mul, zero_add] at hN; exact hN
   have hp : 0<(2*A-1)*(2*B-1) := mul_pos_of_neg_of_neg (by linarith) (by linarith)
   have hid := simultaneous_coefficient_obstruction01 A B q
   rw [hz,hc] at hid

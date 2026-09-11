@@ -63,7 +63,7 @@ theorem bell02_certificate (A : AliceObservables) (B : BobObservables) :
     (B 0).sq_one, (B 1).sq_one, bell02, chsh]
   ext i j
   norm_num [Matrix.add_apply, Matrix.sub_apply, Matrix.smul_apply,
-    Pi.smul_apply, Algebra.smul_def]
+    Pi.smul_apply, Complex.real_smul]
   ring
 
 /-- Uniform in the state and all five observables, including scalar degeneracies. -/
@@ -103,7 +103,7 @@ theorem bell01_certificate (A : AliceObservables) (B : BobObservables) :
     tensor_add_left, tensor_add_right, tensor_sub_left, tensor_sub_right, tensor_one_one]
   ext i j
   norm_num [Matrix.add_apply, Matrix.sub_apply, Matrix.smul_apply,
-    Pi.smul_apply, Algebra.smul_def]
+    Pi.smul_apply, Complex.real_smul]
   ring
 
 theorem bell01_upper (s : State) (A : AliceObservables) (B : BobObservables) :

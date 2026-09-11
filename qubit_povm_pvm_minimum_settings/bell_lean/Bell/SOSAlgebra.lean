@@ -35,6 +35,7 @@ theorem rotate_three_sums {ι κ τ E : Type*}
       exact Finset.sum_comm
     _ = ∑ k, ∑ i, ∑ j, f i j k := Finset.sum_comm
 
+set_option maxHeartbeats 2000000 in
 /-- An exact coefficient identity becomes a weighted sum of operator squares. -/
 theorem gram_ldl {n : ℕ} (L : Matrix (Fin n) (Fin n) ℝ) (d : Fin n → ℝ)
     (W : Fin n → JointOperator) :
@@ -43,8 +44,11 @@ theorem gram_ldl {n : ℕ} (L : Matrix (Fin n) (Fin n) ℝ) (d : Fin n → ℝ)
   simp only [gram, ldl, Matrix.conjTranspose_sum, Matrix.conjTranspose_smul,
     star_trivial, Matrix.sum_mul, Matrix.mul_sum, Matrix.smul_mul, Matrix.mul_smul,
     Finset.sum_smul, Finset.smul_sum, smul_smul, mul_assoc]
-  exact rotate_three_sums (fun i j k =>
-    (d k * (L i k * L j k)) • ((W i).conjTranspose * W j))
+  rw [rotate_three_sums]
+  apply Finset.sum_congr rfl
+  intro k _
+  rw [Finset.sum_comm]
+  simp only [mul_comm]
 
 /-- Positivity holds for every positive complex density matrix. -/
 theorem expectation_gram_nonnegative {n : ℕ} (s : State)

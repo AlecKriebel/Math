@@ -27,8 +27,12 @@ theorem probabilitySimplex_isCompact (ι : Type*) [Fintype ι] :
   have hc : IsCompact {w : ι → ℝ | ∀ i, w i ∈ Icc (0 : ℝ) 1} :=
     isCompact_pi_infinite fun _ => isCompact_Icc
   apply hc.of_isClosed_subset
-  · exact (isClosed_setOf_forall fun i => isClosed_le continuous_const (continuous_apply i)).inter
-      (isClosed_eq (by fun_prop) continuous_const)
+  · have hnonneg : IsClosed {w : ι → ℝ | ∀ i, 0 ≤ w i} := by
+      simpa only [setOf_forall] using
+        (isClosed_iInter fun i : ι =>
+          isClosed_le (continuous_const : Continuous fun _ : ι → ℝ => (0 : ℝ))
+            (continuous_apply i))
+    exact hnonneg.inter (isClosed_eq (by fun_prop) continuous_const)
   · intro w hw i
     refine ⟨hw.1 i, ?_⟩
     calc
@@ -75,16 +79,16 @@ theorem convexHull_eq_finite_combinations [FiniteDimensional ℝ E] (S : Set E) 
       have hc' : Module.finrank ℝ (vectorSpan ℝ (Set.range ((↑) : t → E)))+1=t.card := by
         simpa using hc
       omega
-    let e : Fin t.card ≃ t := (Fintype.equivFin t).symm
+    let e : Fin t.card ≃ t := (Finset.equivFinOfCardEq rfl).symm
     let w' : Fin t.card → ℝ := fun i => w (e i)
     let v' : Fin t.card → E := fun i => (e i).val
     have hsum' : ∑ i, w' i = 1 := by
       rw [show (∑ i, w' i) = ∑ j : t, w j from Equiv.sum_comp e (fun j : t => w j)]
-      simpa using hsum
+      simpa only [Finset.sum_coe_sort] using hsum
     have hxsum' : (∑ i, w' i • v' i) = x := by
       rw [show (∑ i, w' i • v' i) = ∑ j : t, w j • (j : E) from
         Equiv.sum_comp e (fun j : t => w j • (j : E))]
-      simpa using hxsum
+      exact (Finset.sum_coe_sort t (fun j : E => w j • j)).trans hxsum
     apply Set.mem_iUnion.mpr
     refine ⟨⟨t.card, by omega⟩, ⟨(w', v'), ⟨⟨?_, hsum'⟩, ?_⟩, hxsum'⟩⟩
     · intro i

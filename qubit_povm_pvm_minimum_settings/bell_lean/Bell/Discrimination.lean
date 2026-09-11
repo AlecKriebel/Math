@@ -13,6 +13,8 @@ noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace Bell
 
+attribute [local simp] Matrix.cons_val_two
+
 def idealScoreOperator : Fin 3 → Operator :=
   ![ !![3/10,0;0,0], !![0,0;0,3/10], !![1/5,1/5;1/5,1/5] ]
 
@@ -31,31 +33,28 @@ theorem ideal_dual_slack0 :
   funext i j
   fin_cases i <;> fin_cases j <;>
     norm_num [slackGram0,idealDual,idealScoreOperator,
-      Matrix.conjTranspose_apply,Matrix.mul_apply,Fin.sum_univ_succ]
+      Matrix.conjTranspose_apply,Matrix.mul_apply,Fin.sum_univ_succ, map_ofNat]
 
 theorem ideal_dual_slack1 :
     slackGram1.conjTranspose * slackGram1 = idealDual-idealScoreOperator 1 := by
   funext i j
   fin_cases i <;> fin_cases j <;>
     norm_num [slackGram1,idealDual,idealScoreOperator,
-      Matrix.conjTranspose_apply,Matrix.mul_apply,Fin.sum_univ_succ]
+      Matrix.conjTranspose_apply,Matrix.mul_apply,Fin.sum_univ_succ, map_ofNat]
 
 theorem ideal_dual_slack2 :
     slackGram2.conjTranspose * slackGram2 = idealDual-idealScoreOperator 2 := by
   funext i j
   fin_cases i <;> fin_cases j <;>
     norm_num [slackGram2,idealDual,idealScoreOperator,
-      Matrix.conjTranspose_apply,Matrix.mul_apply,Fin.sum_univ_succ]
+      Matrix.conjTranspose_apply,Matrix.mul_apply,Fin.sum_univ_succ, map_ofNat]
 
 theorem ideal_dual_feasible (j : Fin 3) :
     (idealDual-idealScoreOperator j).PosSemidef := by
   fin_cases j
-  · rw [← ideal_dual_slack0]
-    exact gram_positive slackGram0
-  · rw [← ideal_dual_slack1]
-    exact gram_positive slackGram1
-  · rw [← ideal_dual_slack2]
-    exact gram_positive slackGram2
+  · simpa only [ideal_dual_slack0] using gram_positive slackGram0
+  · simpa only [ideal_dual_slack1] using gram_positive slackGram1
+  · simpa only [ideal_dual_slack2] using gram_positive slackGram2
 
 theorem ideal_complementarity (j : Fin 3) :
     (idealDual-idealScoreOperator j)*aliceEffect 2 j=0 := by
