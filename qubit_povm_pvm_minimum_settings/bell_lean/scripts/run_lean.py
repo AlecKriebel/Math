@@ -43,6 +43,9 @@ def write_json(path: Path, value: dict) -> None:
 def source_snapshot(root: Path) -> dict[str, str]:
     files = [root/'Bell.lean', root/'lakefile.toml', root/'lake-manifest.json', root/'lean-toolchain']
     files.append(root/'environment/pins.json')
+    # Freeze the generated declaration inventory and serial-build order too.
+    files.extend(root/p for p in ('reports/declarations.json',
+                                  'reports/source_completion/source_inventory.json'))
     for directory in ('Bell', 'validation', 'scripts'):
         files.extend(p for p in (root/directory).rglob('*')
                      if p.is_file() and p.suffix in {'.lean', '.py', '.sh'}
@@ -89,7 +92,7 @@ def require_negative_control_rejection(code: int, log: str) -> None:
 
 
 def check_no_errors(log: str, stage: str) -> None:
-    if re.search(r'(?m)\berror:', log) or 'declaration uses \'sorry\'' in log or 'sorryAx' in log:
+    if re.search(r'(?m)\berror:', log) or 'declaration uses \'sorry\'' in log or 'sorryAx' in log or 'PANIC' in log:
         raise RunFailure(f'{stage}: proof error or incomplete-proof diagnostic in log.')
 
 
@@ -192,7 +195,11 @@ def run(args: argparse.Namespace, root: Path = ROOT) -> int:
         inspect_compiler(version, commit)
         if args.bootstrap:
             stage = 'dependency_cache'
-            command(['lake', 'exe', 'cache', 'get'], 'dependency-cache')
+            # Interpret the pinned cache tool: older Lean native linkers can produce
+            # executables rejected by current macOS dyld. This runs identical
+            # pinned Mathlib source without modifying compiler/dependencies.
+            command(['lake', 'env', 'lean', '--run',
+                     '.lake/packages/mathlib/Cache/Main.lean', 'get'], 'dependency-cache')
         stage = 'dependency_identity'
         verify_dependencies(packages)
         stage = 'compiler_controls'

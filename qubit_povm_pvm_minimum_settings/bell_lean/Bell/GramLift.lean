@@ -49,7 +49,7 @@ theorem symmetricMatrix_coordinates (A : M) (hA : A.transpose = A) :
   ext i j
   have hij := congrFun (congrFun hA i) j
   fin_cases i <;> fin_cases j <;>
-    simp [symmetricMatrix, symmetricCoordinates, Matrix.transpose_apply] at hij ⊢ <;>
+    simp [Matrix.cons_val, symmetricMatrix, symmetricCoordinates, Matrix.transpose_apply] at hij ⊢ <;>
     exact hij
 
 def gramMatrixDerivative (E : M) : M →ₗ[ℝ] M where
@@ -60,7 +60,7 @@ def gramMatrixDerivative (E : M) : M →ₗ[ℝ] M where
     abel
   map_smul' := by
     intro t D
-    simp only [Matrix.transpose_smul, Matrix.smul_mul, Matrix.mul_smul, smul_add]
+    simp only [Matrix.transpose_smul, Matrix.smul_mul, Matrix.mul_smul, smul_add, RingHom.id_apply]
 
 def gramCoordinates (E : M) : SymmetricCoordinates := symmetricCoordinates (frameGram E)
 
@@ -72,7 +72,7 @@ private def gramEntry (i k : Fin 4) : M →L[ℝ] ℝ :=
      map_add' := by intros; rfl
      map_smul' := by intros; rfl } : M →ₗ[ℝ] ℝ).toContinuousLinearMap
 
-/-- Finite-coordinate product rule for the Gram map. -/
+/- Finite-coordinate product rule for the Gram map. -/
 set_option maxRecDepth 100000 in
 set_option maxHeartbeats 2000000 in
 theorem frameGram_hasStrictFDerivAt (E : M) :
@@ -91,7 +91,9 @@ theorem frameGram_hasStrictFDerivAt (E : M) :
     simp [frameGram, gramEntry, Matrix.mul_apply, Matrix.transpose_apply,
       Fin.sum_univ_succ]
     ring
-  · ext D
+  · apply ContinuousLinearMap.ext
+    intro D
+    change (D.transpose * minkowski * E + E.transpose * minkowski * D) i j = _
     simp [gramMatrixDerivative, gramEntry, Matrix.mul_apply,
       Matrix.transpose_apply, Fin.sum_univ_succ]
     ring
@@ -141,7 +143,7 @@ theorem exists_local_gram_lift (E : M) (hE : IsUnit E.det) :
   have hD : LinearMap.range D = ⊤ := LinearMap.range_eq_top.mpr (gramDerivative_surjective E hE)
   let L : M → M := fun G => hf.implicitFunction gramCoordinates D hD (symmetricCoordinates G) 0
   have hct : Tendsto symmetricCoordinates (𝓝 (frameGram E)) (𝓝 (gramCoordinates E)) :=
-    symmetricCoordinates.toContinuousLinearMap.continuousAt.tendsto
+    symmetricCoordinates.toContinuousLinearMap.continuous.continuousAt.tendsto
   refine ⟨L, ?_, ?_, ?_⟩
   · exact hf.implicitFunction_apply_image hD
   · exact hf.tendsto_implicitFunction hD hct tendsto_const_nhds
@@ -163,8 +165,12 @@ theorem eventually_feasible_mem_rawPOVM (E : M) (z : IncidenceSpace)
       tableOfBlock (probabilityBlock w) ∈ rawPOVM binaryTernaryArchitecture := by
   obtain ⟨L, hL0, hLt, hLe⟩ := exists_local_gram_lift E hE
   have hc : Continuous (fun w : IncidenceSpace => chartMetric w.1) := by
-    unfold chartMetric metric
-    fun_prop
+    apply continuous_pi
+    intro i
+    apply continuous_pi
+    intro j
+    fin_cases i <;> fin_cases j <;>
+      simp [chartMetric, metric, Matrix.cons_val] <;> fun_prop
   have hct : Tendsto (fun w : IncidenceSpace => chartMetric w.1) (𝓝 z) (𝓝 (frameGram E)) := by
     rw [hGram]
     exact hc.continuousAt.tendsto

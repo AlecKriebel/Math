@@ -1,6 +1,8 @@
 import Bell.IncidenceAlgebra
 import Mathlib.Analysis.Calculus.Implicit
 import Mathlib.Analysis.Calculus.Deriv.Slope
+import Mathlib.Analysis.Calculus.Deriv.Comp
+import Mathlib.Analysis.Calculus.Deriv.Mul
 
 /-!
 # First-order feasible curves and exact quadratic score improvement
@@ -32,7 +34,7 @@ theorem exists_level_curve
     simpa using (hasDerivAt_id (0 : ℝ)).smul_const w
   have hγ : HasDerivAt γ v 0 := by
     simpa only [γ, zero_smul, Submodule.subtypeL_apply, w] using
-      hφ.comp_hasDerivAt 0 ht
+      hφ.comp_hasDerivAt_of_eq 0 ht (zero_smul ℝ w).symm
   refine ⟨γ, ?_, hγ, ?_⟩
   · simp [γ, Φ, hf.implicitFunction_apply_image hD]
   · have htend : Tendsto (fun t : ℝ => (f a, t • w)) (𝓝 0) (𝓝 (f a, 0)) := by
@@ -42,20 +44,19 @@ theorem exists_level_curve
 namespace Lorentz
 
 /-- Weighted Gram evaluation is a polynomial in both of its matrix arguments. -/
-theorem continuous_weightedGram (λ : Fin 5 → ℝ) :
-    Continuous (fun p : M × M => weightedGram λ p.1 p.2) := by
-  unfold weightedGram matrixPair
-  simp only [Matrix.mulVec, dotProduct]
+theorem continuous_weightedGram (lam : Fin 5 → ℝ) :
+    Continuous (fun p : M × M => weightedGram lam p.1 p.2) := by
+  simp only [weightedGram, matrixPair_apply, Matrix.mulVec, dotProduct]
   fun_prop
 
 /-- The scaled score difference along a C¹ chart curve has the expected
 quadratic limit. No second differentiability premise appears. -/
 theorem quadratic_gap_limit
     (γ : ℝ → IncidenceSpace) (z : IncidenceSpace) (v : IncidenceSpace)
-    (hzero : γ 0 = z) (hγ : HasDerivAt γ v 0) (λ : Fin 5 → ℝ) :
+    (hzero : γ 0 = z) (hγ : HasDerivAt γ v 0) (lam : Fin 5 → ℝ) :
     Tendsto (fun t : ℝ =>
-      weightedGram λ (chartMetric (γ t).1) (t⁻¹ • ((γ t).2 - z.2)))
-      (𝓝[≠] (0 : ℝ)) (𝓝 (weightedGram λ (chartMetric z.1) v.2)) := by
+      weightedGram lam (chartMetric (γ t).1) (t⁻¹ • ((γ t).2 - z.2)))
+      (𝓝[≠] (0 : ℝ)) (𝓝 (weightedGram lam (chartMetric z.1) v.2)) := by
   have hy : HasDerivAt (fun t => (γ t).2) v.2 0 := hγ.snd
   have hs : Tendsto (fun t : ℝ => t⁻¹ • ((γ t).2 - z.2))
       (𝓝[≠] 0) (𝓝 v.2) := by
@@ -63,11 +64,16 @@ theorem quadratic_gap_limit
   have hg : Tendsto (fun t => chartMetric (γ t).1)
       (𝓝[≠] (0 : ℝ)) (𝓝 (chartMetric z.1)) := by
     have hc : Continuous chartMetric := by
-      unfold chartMetric metric
-      fun_prop
-    have ht := hc.continuousAt.tendsto.comp hγ.continuousAt.tendsto.fst
+      have heq : chartMetric = fun p => chartMetric 0 + metricVariation p := by
+        funext p
+        simpa using chartMetric_add 0 p
+      rw [heq]
+      exact continuous_const.add metricVariation.toContinuousLinearMap.continuous
+    have ht := hc.continuousAt.tendsto.comp hγ.continuousAt.fst.tendsto
     simpa only [hzero] using ht.mono_left nhdsWithin_le_nhds
-  exact (continuous_weightedGram λ).continuousAt.tendsto.comp (hg.prodMk_nhds hs)
+  have hpair := hg.prodMk_nhds hs
+  have hcomp := ((continuous_weightedGram lam).tendsto (chartMetric z.1, v.2)).comp hpair
+  exact hcomp
 
 /-- A positive limiting quadratic form gives strict improvement at all
 sufficiently small nonzero parameters of a feasible C¹ curve. -/
@@ -76,20 +82,20 @@ theorem eventually_score_improvement
     (hzero : γ 0 = z) (hγ : HasDerivAt γ v 0)
     (hz : FeasibleIncidence z)
     (hfeasible : ∀ᶠ t in 𝓝 (0 : ℝ), FeasibleIncidence (γ t))
-    (λ : Fin 5 → ℝ) (F : M →ₗ[ℝ] ℝ) (α : ℝ)
-    (stationary : ∀ P, F P = α * blockMass P - 2 * weightedPairing λ z.2 P)
-    (metricStationary : ∀ h, weightedGram λ (metricVariation h) z.2 = 0)
-    (hpositive : 0 < weightedGram λ (chartMetric z.1) v.2) :
+    (lam : Fin 5 → ℝ) (F : M →ₗ[ℝ] ℝ) (α : ℝ)
+    (stationary : ∀ P, F P = α * blockMass P - 2 * weightedPairing lam z.2 P)
+    (metricStationary : ∀ h, weightedGram lam (metricVariation h) z.2 = 0)
+    (hpositive : 0 < weightedGram lam (chartMetric z.1) v.2) :
     ∀ᶠ t in 𝓝[≠] (0 : ℝ), F (probabilityBlock z) < F (probabilityBlock (γ t)) := by
-  have hlim := quadratic_gap_limit γ z v hzero hγ λ
+  have hlim := quadratic_gap_limit γ z v hzero hγ lam
   have hpos : ∀ᶠ t in 𝓝[≠] (0 : ℝ),
-      0 < weightedGram λ (chartMetric (γ t).1) (t⁻¹ • ((γ t).2 - z.2)) :=
+      0 < weightedGram lam (chartMetric (γ t).1) (t⁻¹ • ((γ t).2 - z.2)) :=
     hlim.eventually (Ioi_mem_nhds hpositive)
   filter_upwards [hpos, hfeasible.filter_mono nhdsWithin_le_nhds,
     self_mem_nhdsWithin] with t ht hft hne
-  have heq := polynomial_score_gap z (γ t) λ F α hz hft stationary metricStationary
+  have heq := polynomial_score_gap z (γ t) lam F α hz hft stationary metricStationary
   rw [weightedGram_smul_frame] at ht
-  have hgram : 0 < weightedGram λ (chartMetric (γ t).1) ((γ t).2 - z.2) := by
+  have hgram : 0 < weightedGram lam (chartMetric (γ t).1) ((γ t).2 - z.2) := by
     by_contra! hn
     exact (not_lt_of_ge (mul_nonpos_of_nonneg_of_nonpos (sq_nonneg _) hn)) ht
   linarith
@@ -101,15 +107,15 @@ theorem not_local_max_of_uphill_curve
     (hzero : γ 0 = z) (hγ : HasDerivAt γ v 0)
     (hz : FeasibleIncidence z)
     (hfeasible : ∀ᶠ t in 𝓝 (0 : ℝ), FeasibleIncidence (γ t))
-    (λ : Fin 5 → ℝ) (F : M →ₗ[ℝ] ℝ) (α : ℝ)
-    (stationary : ∀ P, F P = α * blockMass P - 2 * weightedPairing λ z.2 P)
-    (metricStationary : ∀ h, weightedGram λ (metricVariation h) z.2 = 0)
-    (hpositive : 0 < weightedGram λ (chartMetric z.1) v.2) :
+    (lam : Fin 5 → ℝ) (F : M →ₗ[ℝ] ℝ) (α : ℝ)
+    (stationary : ∀ P, F P = α * blockMass P - 2 * weightedPairing lam z.2 P)
+    (metricStationary : ∀ h, weightedGram lam (metricVariation h) z.2 = 0)
+    (hpositive : 0 < weightedGram lam (chartMetric z.1) v.2) :
     ¬ IsLocalMaxOn (fun w => F (probabilityBlock w))
       {w | FeasibleIncidence w} z := by
   intro hmax
   have hup := eventually_score_improvement γ z v hzero hγ hz hfeasible
-    λ F α stationary metricStationary hpositive
+    lam F α stationary metricStationary hpositive
   have htend : Tendsto γ (𝓝 (0 : ℝ)) (𝓝 z) := by
     simpa [hzero] using hγ.continuousAt.tendsto
   have htendOn : Tendsto γ (𝓝 (0 : ℝ)) (𝓝[{w | FeasibleIncidence w}] z) :=

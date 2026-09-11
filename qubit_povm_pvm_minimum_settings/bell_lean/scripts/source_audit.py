@@ -51,9 +51,12 @@ def main() -> None:
     (ROOT/'reports'/'source_audit.json').write_text(json.dumps({
         'status':'in_progress','static_audit_passed':False,
         'static_audit_only':True,'lean_kernel_checked':False},indent=2)+'\n')
-    files=sorted(p for p in ROOT.rglob('*.lean')
-                 if not any(x in {'.lake', '.git', 'reports', 'preservation', '__pycache__'}
-                            for x in p.relative_to(ROOT).parts) and p.name!='Audit.lean')
+    # Inventory the actual production roots checked by the runner. Local
+    # exploratory probes/audit clients may intentionally redeclare the same
+    # definitions and are not imported by Bell or shipped as proof modules.
+    files=sorted([ROOT/'Bell.lean',
+                  *(p for p in (ROOT/'Bell').glob('*.lean') if p.name != 'Audit.lean'),
+                  *(ROOT/'validation').rglob('*.lean')])
     forbidden=re.compile(r'\b(sorry|sorryAx|admit|axiom|native_decide|unsafe|implemented_by|extern|opaque|run_cmd|elab|macro|trustCompiler|ofReduceBool|ofReduceNat)\b|debug\.skipKernelTC|#(?:eval!?|guard_msgs)\b')
     declarations=[]
     inventory=[]

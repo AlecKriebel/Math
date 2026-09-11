@@ -1,6 +1,5 @@
 import Bell.Purification
 import Bell.IncidenceScores
-import Bell.IncidenceDifferential
 
 /-!
 # Pointwise physical realization of the polynomial incidence chart
@@ -19,7 +18,8 @@ namespace Bell
 structure UnnormalizedAssemblage (A : Architecture) where
   left : (x : Fin A.aliceInputs) → Fin (A.aliceOutputs x) → Operator
   right : (y : Fin A.bobInputs) → Fin (A.bobOutputs y) → Operator
-  leftSum rightSum : Operator
+  leftSum : Operator
+  rightSum : Operator
   leftPositive : ∀ x a, (left x a).PosSemidef
   rightPositive : ∀ y b, (right y b).PosSemidef
   leftTotal : ∀ x, ∑ a, left x a = leftSum
@@ -110,30 +110,36 @@ theorem frameGram_pair (E : M) (x y : V) :
 /-- Linear steered-frame map. Its factor 1/2 compensates the Pauli trace factor. -/
 def steeringFrame (E Y : M) : M := (1/2 : ℝ) • (minkowski * E * Y)
 
+@[simp]
+theorem steeringFrame_mulVec (E Y : M) (x : V) :
+    steeringFrame E Y *ᵥ x = (1/2 : ℝ) • (minkowski *ᵥ (E *ᵥ (Y *ᵥ x))) := by
+  simp only [steeringFrame, Matrix.smul_mulVec_assoc, ← Matrix.mulVec_mulVec]
+
 theorem steeringFrame_time (E Y : M) (x : V) :
     (steeringFrame E Y *ᵥ x) 0 = (1/2 : ℝ) * (E *ᵥ (Y *ᵥ x)) 0 := by
-  simp [steeringFrame, minkowski, Matrix.mulVec_mulVec, Matrix.smul_mulVec,
-    Matrix.mulVec, dotProduct, Fin.sum_univ_succ]
+  rw [steeringFrame_mulVec]
+  generalize E *ᵥ (Y *ᵥ x) = v
+  simp [minkowski, Matrix.mulVec, dotProduct, Fin.sum_univ_succ, Matrix.cons_val]
 
 theorem steeringFrame_square (E Y : M) (x : V) :
     lorentzSquare (steeringFrame E Y *ᵥ x) =
       (1/4 : ℝ) * matrixPair (frameGram E) (Y *ᵥ x) (Y *ᵥ x) := by
-  rw [frameGram_pair, lorentzPair_self]
-  simp [steeringFrame, minkowski, lorentzSquare, Matrix.mulVec_mulVec,
-    Matrix.smul_mulVec, Matrix.mulVec, dotProduct, Fin.sum_univ_succ]
+  rw [frameGram_pair, lorentzPair_self, steeringFrame_mulVec]
+  generalize E *ᵥ (Y *ᵥ x) = v
+  simp [minkowski, lorentzSquare, Matrix.mulVec, dotProduct, Fin.sum_univ_succ,
+    Matrix.cons_val]
   ring
 
 theorem frame_probability (E Y : M) (x y : V) :
     localTrace (pauli (E *ᵥ x)) (pauli (steeringFrame E Y *ᵥ y)) =
       matrixPair (frameGram E * Y) x y := by
-  rw [localTrace_apply, pauli_trace_product]
-  simp only [Complex.ofReal_re]
-  have hp := matrixPair_mul_frames minkowski E (E * Y) x y
-  simp only [matrixPair_apply, Matrix.mulVec_mulVec] at hp
-  rw [show frameGram E * Y = E.transpose * minkowski * (E * Y) by
-    simp [frameGram, Matrix.mul_assoc]]
-  rw [← hp]
-  simp [steeringFrame, Matrix.smul_mulVec, Matrix.mulVec_mulVec, dotProduct_smul]
+  rw [localTrace_apply, pauli_trace_product, Complex.ofReal_re, steeringFrame_mulVec]
+  have hp := frameGram_pair E x (Y *ᵥ y)
+  rw [lorentzPair_eq_matrixPair] at hp
+  simp only [matrixPair_apply] at hp
+  simp only [matrixPair_apply, ← Matrix.mulVec_mulVec, dotProduct_smul, smul_eq_mul]
+  rw [hp]
+  ring
 
 def FramePositive (E Y : M) : Prop :=
   (∀ j : Fin 5, 0 < (E *ᵥ ray j) 0) ∧
@@ -142,23 +148,23 @@ def FramePositive (E Y : M) : Prop :=
 
 /-- The extra physical conditions are strict polynomial inequalities, hence open. -/
 theorem isOpen_framePositive : IsOpen {p : M × M | FramePositive p.1 p.2} := by
-  unfold FramePositive
+  simp only [FramePositive, Set.setOf_and, Set.setOf_forall]
   apply IsOpen.inter
-  · apply isOpen_setOf_forall
+  · apply isOpen_iInter_of_finite
     intro j
-    exact isOpen_lt continuous_const (by fun_prop)
+    exact isOpen_lt continuous_const (by unfold Matrix.mulVec dotProduct; fun_prop)
   · apply IsOpen.inter
-    · apply isOpen_setOf_forall
+    · apply isOpen_iInter_of_finite
       intro j
-      exact isOpen_lt continuous_const (by fun_prop)
+      exact isOpen_lt continuous_const (by unfold Matrix.mulVec dotProduct; fun_prop)
     · apply isOpen_lt continuous_const
-      unfold frameGram matrixPair
-      simp only [Matrix.mul_apply, Matrix.mulVec, dotProduct]
+      simp only [matrixPair_apply, frameGram, Matrix.mul_apply, Matrix.mulVec,
+        dotProduct, Matrix.transpose_apply]
       fun_prop
 
 private theorem positive_time_unit (E : M) (hE : ∀ j : Fin 5, 0 < (E *ᵥ ray j) 0) :
     0 < (E *ᵥ unitVector) 0 := by
-  have hu : unitVector = ray 0 + ray 1 := by ext i; fin_cases i <;> norm_num [unitVector, ray]
+  have hu : unitVector = ray 0 + ray 1 := by ext i; fin_cases i <;> simp [Matrix.cons_val, unitVector, ray]
   rw [hu, Matrix.mulVec_add, Pi.add_apply]
   exact add_pos (hE 0) (hE 1)
 
@@ -204,10 +210,14 @@ def frameAssemblage (E : M) (z : IncidenceSpace)
         rw [hn, mul_zero]
   leftTotal := by
     intro x
-    rw [← map_sum, ← Matrix.mulVec_sum, sum_effectRay]
+    change (∑ a, pauli (linearOfMatrix E (effectRay x a))) =
+      pauli (linearOfMatrix E unitVector)
+    rw [← map_sum, ← map_sum, sum_effectRay]
   rightTotal := by
     intro y
-    rw [← map_sum, ← Matrix.mulVec_sum, sum_effectRay]
+    change (∑ b, pauli (linearOfMatrix (steeringFrame E z.2) (effectRay y b))) =
+      pauli (linearOfMatrix (steeringFrame E z.2) unitVector)
+    rw [← map_sum, ← map_sum, sum_effectRay]
   leftDefinite := by
     apply FutureTimelike.posDef
     refine ⟨positive_time_unit E hpos.1, ?_⟩
@@ -242,6 +252,8 @@ theorem frame_table_mem_rawPOVM (E : M) (z : IncidenceSpace)
   have heq : (fun x y a b => localTrace (s.left x a) (s.right y b)) =
       tableOfBlock (probabilityBlock z) := by
     funext x y a b
+    change localTrace (pauli (E *ᵥ effectRay x a))
+      (pauli (steeringFrame E z.2 *ᵥ effectRay y b)) = _
     rw [frame_probability, hGram]
     rfl
   rwa [heq] at hp

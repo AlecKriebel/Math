@@ -25,7 +25,9 @@ theorem weighted_born_sum {m n : ℕ} (ρ : JointOperator)
     (∑ a, ∑ b, α a * β b * born ρ (M a) (N b)) =
       expectation ρ (tensor (∑ a, α a • M a) (∑ b, β b • N b)) := by
   simp only [tensor_sum_left, tensor_sum_right, tensor_smul_left, tensor_smul_right,
-    map_sum, map_smul, smul_eq_mul, born_eq_expectation, mul_assoc]
+    map_sum, map_smul, smul_eq_mul, born_eq_expectation, mul_assoc, Finset.mul_sum]
+  rw [Finset.sum_comm]
+  simp only [mul_left_comm]
 
 theorem alice_signed_sum (M : POVM 3) :
     (∑ a, aliceSign a • M.effect a) = 1 - (2 : ℝ) • M.effect 1 := by
@@ -72,7 +74,7 @@ theorem physical_bell_expectation (s : ProjectiveStrategy separatorArchitecture)
     bellScore s.toStrategy.behavior = expectation s.state.density (physicalBellOperator s) := by
   simp only [bellScore, physicalBellOperator, projective_correlation,
     SOS.chsh, projectiveAlice, projectiveBob, tensor_add_right, tensor_sub_right,
-    map_add, map_sub, map_smul, smul_eq_mul]
+    map_add, map_sub, map_smul, smul_eq_mul, Matrix.cons_val_zero, Matrix.cons_val_one]
   simp only [Strategy.behavior, ProjectiveStrategy.toStrategy, born_eq_expectation]
   ring
 
@@ -84,19 +86,22 @@ theorem auxiliary_complement_of_zero1 (M : POVM 3) (hz : M.effect 1 = 0) :
     M.effect 2 = 1 - M.effect 0 := by
   apply eq_sub_iff_add_eq.mpr
   have h := M.normalized
-  simpa [Fin.sum_univ_succ, hz, add_comm] using h
+  rw [add_comm]
+  simpa [Fin.sum_univ_succ, hz] using h
 
 theorem auxiliary_complement_of_zero0 (M : POVM 3) (hz : M.effect 0 = 0) :
     M.effect 2 = 1 - M.effect 1 := by
   apply eq_sub_iff_add_eq.mpr
   have h := M.normalized
-  simpa [Fin.sum_univ_succ, hz, add_comm] using h
+  rw [add_comm]
+  simpa [Fin.sum_univ_succ, hz] using h
 
 theorem auxiliary_complement_of_zero2 (M : POVM 3) (hz : M.effect 2 = 0) :
     M.effect 1 = 1 - M.effect 0 := by
   apply eq_sub_iff_add_eq.mpr
   have h := M.normalized
-  simpa [Fin.sum_univ_succ, hz, add_comm] using h
+  rw [add_comm]
+  simpa [Fin.sum_univ_succ, hz] using h
 
 set_option maxHeartbeats 0 in
 /-- Every {0,2}-supported auxiliary PVM has the certified operator form. -/
@@ -107,10 +112,10 @@ theorem physical_bell_zero1 (s : ProjectiveStrategy separatorArchitecture)
   have hb0 := binary_effect_complement (s.bob 0).toPOVM
   have hb1 := binary_effect_complement (s.bob 1).toPOVM
   norm_num [physicalBellOperator, SOS.bell02, SOS.chsh, projectiveAlice, projectiveBob,
-    pvmSignObservable_matrix, projectionInvolution, hz, hm, hb0, hb1]
+    pvmSignObservable_matrix, projectionInvolution, Matrix.cons_val_two, hz, hm, hb0, hb1]
   ext i j
   norm_num [Matrix.add_apply, Matrix.sub_apply, Matrix.smul_apply,
-    Pi.smul_apply, Algebra.smul_def]
+    Pi.smul_apply, Complex.real_smul]
   ring
 
 set_option maxHeartbeats 0 in
@@ -121,10 +126,10 @@ theorem physical_bell_zero2 (s : ProjectiveStrategy separatorArchitecture)
   have hm := auxiliary_complement_of_zero2 (s.alice 2).toPOVM hz
   have hb0 := binary_effect_complement (s.bob 0).toPOVM
   norm_num [physicalBellOperator, SOS.bell01, SOS.chsh, projectiveAlice, projectiveBob,
-    pvmSignObservable_matrix, projectionInvolution, hz, hm, hb0]
+    pvmSignObservable_matrix, projectionInvolution, Matrix.cons_val_two, hz, hm, hb0]
   ext i j
   norm_num [Matrix.add_apply, Matrix.sub_apply, Matrix.smul_apply,
-    Pi.smul_apply, Algebra.smul_def]
+    Pi.smul_apply, Complex.real_smul]
   ring
 
 set_option maxHeartbeats 0 in
@@ -138,10 +143,10 @@ theorem physical_bell_zero0 (s : ProjectiveStrategy separatorArchitecture)
   have hb1 := binary_effect_complement (s.bob 1).toPOVM
   norm_num [physicalBellOperator, SOS.bell02, SOS.chsh, SOS.switchedAlice, SOS.switchedBob,
     projectiveAlice, projectiveBob, pvmSignObservable_matrix, projectionInvolution,
-    QubitInvolution.neg, hz, hm, hb0, hb1]
+    QubitInvolution.neg, Matrix.cons_val_two, hz, hm, hb0, hb1]
   ext i j
   norm_num [Matrix.add_apply, Matrix.sub_apply, Matrix.smul_apply,
-    Pi.smul_apply, Algebra.smul_def]
+    Pi.smul_apply, Complex.real_smul]
   ring
 
 /-- The full physical upper bound, with every ternary support and degeneracy covered. -/

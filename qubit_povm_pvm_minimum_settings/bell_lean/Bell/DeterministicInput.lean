@@ -51,7 +51,7 @@ theorem reconstruction_with_deterministic_input (p : Table O B) (q : B → ℝ)
       else p x a b := by
   by_cases hy : y = d
   · by_cases hb : b = label
-    · simpa only [if_pos hy, hb, and_true, if_pos rfl, mul_one] using
+    · simpa only [if_pos hy, hb, and_true, if_pos rfl, ite_true, mul_one] using
         reconstruction_alice_marginal p q hp hrow x a
     · simp [hy, hb]
   · simpa only [if_neg hy] using reconstruction p q hp hrow x a b
@@ -91,7 +91,7 @@ theorem replacement_behavior (s : Strategy binaryTernaryArchitecture)
       else s.behavior x (otherInput d) a b := by
   by_cases hy : y = d
   · subst y
-    simp only [replaceBobInput, Strategy.behavior, if_pos rfl]
+    simp only [replaceBobInput, Strategy.behavior, if_pos rfl, ite_true]
     rw [born_deterministic, born_sum_bob]
     rfl
   · have ho := eq_otherInput_of_ne d y hy
@@ -118,7 +118,8 @@ theorem replaceBobInput_mem_convexPVM (s : Strategy binaryTernaryArchitecture)
     intro x b
     exact born_sum_alice s.state (s.alice x) ((s.bob (otherInput d)).effect b)
   have hqsum : ∑ b, q b = 1 := by
-    dsimp [q]
+    change (∑ b, expectation s.state.density
+      (tensor 1 ((s.bob (otherInput d)).effect b))) = 1
     rw [← map_sum, ← tensor_sum_right, (s.bob (otherInput d)).normalized,
       tensor_one_one, state_expectation_one]
   let w := ClassicalProduct.weight p q

@@ -10,6 +10,9 @@ is no assumption called smoothness, tangent integrability, or Jacobian rank.
 The only regularity input is invertibility of the probability block, together
 with the displayed null equations and normalization.
 -/
+set_option maxRecDepth 100000
+set_option maxHeartbeats 200000
+
 noncomputable section
 open scoped Bell.Entrywise
 open scoped BigOperators Matrix
@@ -26,8 +29,8 @@ def blockDerivative (z : IncidenceSpace) : IncidenceSpace →ₗ[ℝ] M where
     abel
   map_smul' := by
     intro t d
-    simp only [Prod.fst_smul, Prod.snd_smul, map_smul,
-      Matrix.smul_mul, Matrix.mul_smul, smul_add]
+    simp only [Prod.smul_fst, Prod.smul_snd, map_smul,
+      Matrix.smul_mul, Matrix.mul_smul, smul_add, RingHom.id_apply]
 
 /-- The full three-term product-rule derivative of the five null constraints. -/
 def nullDerivative (z : IncidenceSpace) : IncidenceSpace →ₗ[ℝ] (Fin 5 → ℝ) where
@@ -44,8 +47,8 @@ def nullDerivative (z : IncidenceSpace) : IncidenceSpace →ₗ[ℝ] (Fin 5 → 
   map_smul' := by
     intro t d
     funext j
-    simp only [Prod.fst_smul, Prod.snd_smul, map_smul, Matrix.smul_mulVec,
-      LinearMap.smul_apply, matrixPair_smul_matrix, Pi.smul_apply, smul_eq_mul]
+    simp only [Prod.smul_fst, Prod.smul_snd, map_smul, Matrix.smul_mulVec_assoc,
+      LinearMap.smul_apply, matrixPair_smul_matrix, Pi.smul_apply, smul_eq_mul, RingHom.id_apply]
     ring
 
 def massDerivative (z : IncidenceSpace) : IncidenceSpace →ₗ[ℝ] ℝ :=
@@ -65,7 +68,7 @@ theorem nullDerivative_symmetric (z d : IncidenceSpace) (j : Fin 5) :
     nullDerivative z d j =
       2 * matrixPair (chartMetric z.1) (z.2 *ᵥ ray j) (d.2 *ᵥ ray j) +
       matrixPair (metricVariation d.1) (z.2 *ᵥ ray j) (z.2 *ᵥ ray j) := by
-  unfold nullDerivative
+  dsimp only [nullDerivative, LinearMap.coe_mk, AddHom.coe_mk]
   rw [matrixPair_symmetric (chartMetric_symmetric _) (d.2 *ᵥ _) (z.2 *ᵥ _)]
   ring
 
@@ -81,7 +84,7 @@ private def metricCoordinate (i k : Fin 4) : IncidenceSpace →L[ℝ] ℝ :=
 private def frameCoordinate (r : V) (i : Fin 4) : IncidenceSpace →L[ℝ] ℝ :=
   ({ toFun := fun z : IncidenceSpace => (z.2 *ᵥ r) i
      map_add' := by intro z w; simp [Matrix.add_mulVec]
-     map_smul' := by intro t z; simp [Matrix.smul_mulVec] } :
+     map_smul' := by intro t z; simp [Matrix.smul_mulVec_assoc] } :
     IncidenceSpace →ₗ[ℝ] ℝ).toContinuousLinearMap
 
 private theorem metricCoordinate_hasStrictFDerivAt (z : IncidenceSpace) (i k : Fin 4) :
@@ -98,8 +101,6 @@ private theorem metricCoordinate_hasStrictFDerivAt (z : IncidenceSpace) (i k : F
   exact (metricCoordinate i k).hasStrictFDerivAt.const_add _
 
 /-- Direct finite-coordinate product-rule calculation of each null derivative. -/
-set_option maxRecDepth 100000 in
-set_option maxHeartbeats 2000000 in
 theorem incidenceNull_hasStrictFDerivAt (z : IncidenceSpace) (j : Fin 5) :
     HasStrictFDerivAt (fun w => incidenceNulls w j)
       (((LinearMap.proj j).comp (nullDerivative z)).toContinuousLinearMap) z := by
@@ -113,15 +114,14 @@ theorem incidenceNull_hasStrictFDerivAt (z : IncidenceSpace) (j : Fin 5) :
   convert hs using 1
   · funext w
     simp [incidenceNulls, matrixPair, frameCoordinate, r, Matrix.mulVec,
-      dotProduct, Finset.mul_sum]
-  · ext d
+      dotProduct, Finset.mul_sum, mul_assoc]
+  · apply ContinuousLinearMap.ext
+    intro d
     simp [nullDerivative, matrixPair, frameCoordinate, metricCoordinate, matrixCoordinate,
       r, Matrix.mulVec, dotProduct, Fin.sum_univ_succ]
     ring
 
 /-- Direct finite-coordinate derivative of the probability block. -/
-set_option maxRecDepth 100000 in
-set_option maxHeartbeats 2000000 in
 theorem probabilityBlock_hasStrictFDerivAt (z : IncidenceSpace) :
     HasStrictFDerivAt probabilityBlock (blockDerivative z).toContinuousLinearMap z := by
   apply hasStrictFDerivAt_pi'.mpr
@@ -135,15 +135,18 @@ theorem probabilityBlock_hasStrictFDerivAt (z : IncidenceSpace) :
   convert hs using 1
   · funext w
     simp [probabilityBlock, frameCoordinate, e, Matrix.mul_apply]
-  · ext d
+  · apply ContinuousLinearMap.ext
+    intro d
+    change (metricVariation d.1 * z.2 + chartMetric z.1 * d.2) i k = _
     simp [blockDerivative, metricCoordinate, matrixCoordinate, frameCoordinate, e,
       Matrix.mul_apply, Fin.sum_univ_succ]
     ring
 
 theorem incidenceMass_hasStrictFDerivAt (z : IncidenceSpace) :
     HasStrictFDerivAt incidenceMass (massDerivative z).toContinuousLinearMap z := by
-  exact blockMass.toContinuousLinearMap.hasStrictFDerivAt.comp z
+  have h := blockMass.toContinuousLinearMap.hasStrictFDerivAt.comp z
     (probabilityBlock_hasStrictFDerivAt z)
+  exact h
 
 theorem incidenceConstraints_hasStrictFDerivAt (z : IncidenceSpace) :
     HasStrictFDerivAt incidenceConstraints (constraintDerivativeCLM z) z := by
@@ -151,7 +154,8 @@ theorem incidenceConstraints_hasStrictFDerivAt (z : IncidenceSpace) :
     apply hasStrictFDerivAt_pi'.mpr
     intro j
     exact incidenceNull_hasStrictFDerivAt z j
-  exact hn.prodMk (incidenceMass_hasStrictFDerivAt z)
+  have h := hn.prodMk (incidenceMass_hasStrictFDerivAt z)
+  exact h
 
 /-- A symmetric matrix prescribing its quadratic values on the five fixed rays. -/
 def nullDerivativeSeed (c : Fin 5 → ℝ) : M :=
@@ -163,16 +167,8 @@ def nullDerivativeSeed (c : Fin 5 → ℝ) : M :=
 theorem nullDerivativeSeed_values (c : Fin 5 → ℝ) (j : Fin 5) :
     2 * matrixPair (nullDerivativeSeed c) (ray j) (ray j) = c j := by
   fin_cases j <;>
-    norm_num [nullDerivativeSeed, matrixPair, ray, Matrix.mulVec, dotProduct, Fin.sum_univ_succ] <;>
-    ring
-
-/-- Congruence written entirely in fixed finite coordinates. -/
-set_option maxRecDepth 100000 in
-set_option maxHeartbeats 2000000 in
-theorem matrixPair_mul_frames (G Y Z : M) (x y : V) :
-    matrixPair G (Y *ᵥ x) (Z *ᵥ y) = matrixPair (Y.transpose * G * Z) x y := by
-  simp [matrixPair, Matrix.mul_apply, Matrix.mulVec, dotProduct, Fin.sum_univ_succ]
-  ring
+    norm_num [Matrix.cons_val, nullDerivativeSeed, matrixPair, ray, Matrix.mulVec, dotProduct, Fin.sum_univ_succ] <;>
+    simp [Matrix.cons_val] <;> ring
 
 /-- Right inverse for the five null derivatives before normalization. -/
 theorem nullDerivative_seed_preimage (z : IncidenceSpace)
@@ -180,7 +176,7 @@ theorem nullDerivative_seed_preimage (z : IncidenceSpace)
     nullDerivative z (0, (probabilityBlock z).transpose⁻¹ * nullDerivativeSeed c) = c := by
   funext j
   rw [nullDerivative_symmetric]
-  simp only [Prod.fst_zero, Prod.fst_mk, Prod.snd_mk, map_zero,
+  simp only [map_zero,
     matrixPair_apply, Matrix.zero_mulVec, dotProduct_zero, add_zero]
   change 2 * matrixPair (chartMetric z.1) (z.2 *ᵥ ray j)
     (((probabilityBlock z).transpose⁻¹ * nullDerivativeSeed c) *ᵥ ray j) = c j

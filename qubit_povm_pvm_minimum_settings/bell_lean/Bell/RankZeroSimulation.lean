@@ -36,7 +36,7 @@ theorem binaryLabelMap_injective : Function.Injective (binaryLabelMap π hπ) :=
     simp only [binaryLabelMap,dif_pos ha,dif_pos hb] at hval
     have he : (⟨a.val,by omega⟩ : Fin 5) = ⟨b.val,by omega⟩ :=
       π.injective (Fin.ext hval)
-    exact Fin.ext (congrArg Fin.val he)
+    exact Fin.ext (congrArg (fun j : Fin 5 => j.val) he)
   · have hval := congrArg Fin.val hab
     simp only [binaryLabelMap,dif_pos ha,dif_neg hb] at hval
     have hbound := (hπ (⟨a.val,by omega⟩ : Fin 5)).mpr ha
@@ -51,6 +51,7 @@ theorem binaryLabelMap_injective : Function.Injective (binaryLabelMap π hπ) :=
     have hla := a.isLt; have hlb := b.isLt
     omega
 
+include hπ in
 theorem ternaryLabelMap_injective : Function.Injective (ternaryLabelMap π) := by
   intro a b hab
   have hval := congrArg Fin.val hab
@@ -58,14 +59,17 @@ theorem ternaryLabelMap_injective : Function.Injective (ternaryLabelMap π) := b
     (π (⟨b.val+2,by omega⟩ : Fin 5)).val-2 at hval
   have ha : 2 ≤ (π (⟨a.val+2,by omega⟩ : Fin 5)).val := by
     have h := hπ (⟨a.val+2,by omega⟩ : Fin 5)
+    change (π (⟨a.val+2,by omega⟩ : Fin 5)).val < 2 ↔ a.val + 2 < 2 at h
     omega
   have hb : 2 ≤ (π (⟨b.val+2,by omega⟩ : Fin 5)).val := by
     have h := hπ (⟨b.val+2,by omega⟩ : Fin 5)
+    change (π (⟨b.val+2,by omega⟩ : Fin 5)).val < 2 ↔ b.val + 2 < 2 at h
     omega
   have hval' : (π (⟨a.val+2,by omega⟩ : Fin 5)).val =
       (π (⟨b.val+2,by omega⟩ : Fin 5)).val := by omega
   have he := π.injective (Fin.ext hval')
-  have he' := congrArg Fin.val he
+  have he' := congrArg (fun j : Fin 5 => j.val) he
+  change a.val + 2 = b.val + 2 at he'
   apply Fin.ext
   omega
 
@@ -88,12 +92,12 @@ def bobRayRelabeling : OutputRelabeling binaryTernaryArchitecture :=
 /-- A binary ray keeps its coefficient index under the padded label convention. -/
 theorem effectRay_binary_index (j : Fin 5) (hj : j.val < 2) :
     effectRay 0 (⟨j.val,by omega⟩ : Fin 3) = ray j := by
-  fin_cases j <;> norm_num [effectRay] at hj ⊢
+  fin_cases j <;> simp [Matrix.cons_val, effectRay] at hj ⊢
 
 /-- Ternary labels 0,1,2 correspond to coefficient indices 2,3,4. -/
 theorem effectRay_ternary_index (j : Fin 5) (hj : 2 ≤ j.val) :
     effectRay 1 (⟨j.val-2,by have h := j.isLt; omega⟩ : Fin 3) = ray j := by
-  fin_cases j <;> norm_num [effectRay] at hj ⊢
+  fin_cases j <;> simp [Matrix.cons_val, effectRay] at hj ⊢
 
 theorem effectRay_ternary_label (a : Fin 3) :
     effectRay 1 a = ray (⟨a.val+2,by have h := a.isLt; omega⟩ : Fin 5) := by
@@ -104,7 +108,8 @@ theorem effectRay_under_transformation (T : V ≃ₗ[ℝ] V)
     (hT : ∀ j, T (ray j) = ray (π j)) (x : Fin 2) (a : Fin 3) :
     T (effectRay x a) = effectRay x (blockLabelPerm π hπ x a) := by
   fin_cases x
-  · by_cases ha : a.val < 2
+  · change T (effectRay 0 a) = effectRay 0 (blockLabelPerm π hπ 0 a)
+    by_cases ha : a.val < 2
     · let j : Fin 5 := ⟨a.val,by omega⟩
       have hj : j.val < 2 := ha
       have hsource : effectRay 0 a = ray j := by
@@ -116,7 +121,8 @@ theorem effectRay_under_transformation (T : V ≃ₗ[ℝ] V)
     · have ha2 : a = 2 := by apply Fin.ext; have h := a.isLt; omega
       subst a
       simp [effectRay,blockLabelPerm,binaryLabelPerm,binaryLabelMap]
-  · let j : Fin 5 := ⟨a.val+2,by have h := a.isLt; omega⟩
+  · change T (effectRay 1 a) = effectRay 1 (blockLabelPerm π hπ 1 a)
+    let j : Fin 5 := ⟨a.val+2,by have h := a.isLt; omega⟩
     have hj : 2 ≤ j.val := by dsimp [j]; omega
     have hpj : 2 ≤ (π j).val := by have h := hπ j; omega
     rw [effectRay_ternary_label,hT]

@@ -1,0 +1,68 @@
+local_verification/SmallOutputPrefix.lean:24:97: error: unsolved goals
+case pos
+l m n : ℕ
+M : POVM l
+f : Fin l → Fin m
+g : Fin m → Fin n
+a : Fin n
+he :
+  (∑ b, if g b = a then ∑ c, if f c = b then M.effect c else 0 else 0) =
+    ∑ c, ∑ b, if g b = a ∧ f c = b then M.effect c else 0
+c : Fin l
+a✝ : c ∈ Finset.univ
+hc : g (f c) = a
+⊢ (∑ b, if g b = a ∧ f c = b then M.effect c else 0) = M.effect c
+
+case neg
+l m n : ℕ
+M : POVM l
+f : Fin l → Fin m
+g : Fin m → Fin n
+a : Fin n
+he :
+  (∑ b, if g b = a then ∑ c, if f c = b then M.effect c else 0 else 0) =
+    ∑ c, ∑ b, if g b = a ∧ f c = b then M.effect c else 0
+c : Fin l
+a✝ : c ∈ Finset.univ
+hc : ¬g (f c) = a
+⊢ (∑ b, if g b = a ∧ f c = b then M.effect c else 0) = 0
+local_verification/SmallOutputPrefix.lean:65:8: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  ∑ i, ?g ((activeEnumeration M) i)
+n : ℕ
+M : POVM n
+⊢ ∑ a, M.effect ↑((activeEnumeration M) a) = 1
+local_verification/SmallOutputPrefix.lean:72:40: warning: unused variable `hc`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+local_verification/SmallOutputPrefix.lean:81:72: error: unsolved goals
+n : ℕ
+M : POVM n
+hc : Fintype.card (EffectSupport M) ≤ 3
+a : Fin (Fintype.card (EffectSupport M))
+⊢ n ≤ ↑a + Fintype.card { x // M.effect x = 0 } → ↑((activeEnumeration M) ⟨0, ⋯⟩) = ↑((activeEnumeration M) a)
+local_verification/SmallOutputPrefix.lean:89:6: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  ∑ x ∈ ?m.3160, ?m.3161 x
+n : ℕ
+M : POVM n
+hc : Fintype.card (EffectSupport M) ≤ 3
+a : Fin (Fintype.card (EffectSupport M))
+⊢ { effect := fun b => ∑ a, if Fin.castLE hc a = b then (activePOVM M).effect a else 0, positive := ⋯,
+          normalized := ⋯ }.effect
+      (Fin.castLE hc a) =
+    M.effect ↑((activeEnumeration M) a)
+local_verification/SmallOutputPrefix.lean:102:2: error: tactic 'apply' failed, failed to unify
+  ∑ x ∈ ?s, ?f x = 0
+with
+  (encodePOVM M hc).effect a = 0
+n : ℕ
+M : POVM n
+hc : Fintype.card (EffectSupport M) ≤ 3
+a : Fin 3
+ha : Fintype.card (EffectSupport M) ≤ ↑a
+⊢ (encodePOVM M hc).effect a = 0
+local_verification/SmallOutputPrefix.lean:118:6: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  ∑ i, ?g ((activeEnumeration M) i)
+n : ℕ
+M : POVM n
+hc : Fintype.card (EffectSupport M) ≤ 3
+a : Fin n
+⊢ (∑ x, if ↑((activeEnumeration M) x) = a then M.effect ↑((activeEnumeration M) x) else 0) = M.effect a

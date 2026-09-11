@@ -23,8 +23,8 @@ namespace Bell.Lorentz
 /-- Recover all declared probabilities from the four-by-four block. -/
 def tableOfBlock : M →ₗ[ℝ] Behavior binaryTernaryArchitecture where
   toFun := fun P x y a b => matrixPair P (effectRay x a) (effectRay y b)
-  map_add' := by intro P Q; funext x y a b; simp
-  map_smul' := by intro t P; funext x y a b; simp
+  map_add' := by intro P Q; funext x y a b; exact matrixPair_add_matrix P Q _ _
+  map_smul' := by intro t P; funext x y a b; exact matrixPair_smul_matrix t P _ _
 
 @[simp]
 theorem tableOfBlock_apply (P : M) (x y : Fin 2) (a b : Fin 3) :
@@ -39,7 +39,8 @@ def actedBlock (P : M) : Endomorphism →ₗ[ℝ] M where
 @[simp]
 theorem actedBlock_mulVec (P : M) (W : Endomorphism) (x : V) :
     actedBlock P W *ᵥ x = P *ᵥ W x := by
-  simp [actedBlock, Matrix.mulVec_mulVec, matrixOfLinear_mulVec]
+  change (P * matrixOfLinear W) *ᵥ x = P *ᵥ W x
+  rw [← Matrix.mulVec_mulVec, matrixOfLinear_mulVec]
 
 @[simp]
 theorem actedBlock_id (P : M) : actedBlock P LinearMap.id = P := by
@@ -55,7 +56,7 @@ theorem actedTable_apply (P : M) (W : Endomorphism) (x y : Fin 2) (a b : Fin 3) 
 
 theorem sum_effectRay (y : Fin 2) : (∑ b : Fin 3, effectRay y b) = unitVector := by
   fin_cases y <;> funext i <;> fin_cases i <;>
-    norm_num [effectRay, ray, unitVector, Fin.sum_univ_succ]
+    simp [Matrix.cons_val, effectRay, ray, unitVector, Fin.sum_univ_succ]
 
 theorem tableOfBlock_bob_marginal (P : M) (x y : Fin 2) (a : Fin 3) :
     (∑ b : Fin 3, tableOfBlock P x y a b) = matrixPair P (effectRay x a) unitVector := by
@@ -68,7 +69,7 @@ theorem reset_effectRay (j : Fin 5) (y : Fin 2) (b : Fin 3) :
       else effectRay y b := by
   fin_cases j <;> fin_cases y <;> fin_cases b <;>
     funext i <;> fin_cases i <;>
-    norm_num [DeterministicGap.reset, effectRay, ray, unitVector, rayInput, rayLabel]
+    simp [Matrix.cons_val, DeterministicGap.reset, effectRay, ray, unitVector, rayInput, rayLabel]
 
 theorem actedTable_reset (P : M) (j : Fin 5) (x y : Fin 2) (a b : Fin 3) :
     actedTable P (DeterministicGap.reset j) x y a b =
@@ -98,9 +99,9 @@ theorem blockMass_actedBlock (P : M) (W : Endomorphism) :
     blockMass (actedBlock P W) = blockUnitCovector P (W unitVector) := by
   simp [blockMass, blockUnitCovector, matrixPair]
 
-theorem weightedPairing_actedBlock (G Y : M) (λ : Fin 5 → ℝ) (W : Endomorphism) :
-    weightedPairing λ Y (actedBlock (G * Y) W) =
-      compatibility (pullbackForm G (linearOfMatrix Y)) λ W := by
+theorem weightedPairing_actedBlock (G Y : M) (lam : Fin 5 → ℝ) (W : Endomorphism) :
+    weightedPairing lam Y (actedBlock (G * Y) W) =
+      compatibility (pullbackForm G (linearOfMatrix Y)) lam W := by
   simp [weightedPairing, compatibility, pullbackForm, matrixPair,
     Matrix.mulVec_mulVec]
 
@@ -109,17 +110,17 @@ strict-gap premise. No local-POVM duality theorem is used. -/
 theorem multipliers_positive_from_physical_separator
     (s : Strategy binaryTernaryArchitecture) (G Y : M)
     (represented : s.behavior = tableOfBlock (G * Y))
-    (λ : Fin 5 → ℝ) (α : ℝ)
+    (lam : Fin 5 → ℝ) (α : ℝ)
     (hnull : ∀ j, matrixPair G (Y *ᵥ ray j) (Y *ᵥ ray j) = 0)
     (hfuture : ∀ j, 0 < matrixPair G (Y *ᵥ ray j) (Y *ᵥ unitVector))
     (f : Behavior binaryTernaryArchitecture →ₗ[ℝ] ℝ)
     (stationary : ∀ P, f (tableOfBlock P) =
-      α * blockMass P - 2 * weightedPairing λ Y P)
+      α * blockMass P - 2 * weightedPairing lam Y P)
     (strictSeparator : ∀ p ∈ convexPVM binaryTernaryArchitecture, f p < f s.behavior) :
-    ∀ j, 0 < λ j := by
+    ∀ j, 0 < lam j := by
   let B := pullbackForm G (linearOfMatrix Y)
   let F := f.comp (actedTable (G * Y))
-  apply DeterministicGap.multipliers_positive B λ hnull hfuture F
+  apply DeterministicGap.multipliers_positive B lam hnull hfuture F
     (blockUnitCovector (G * Y)) α
   · intro W
     change f (tableOfBlock (actedBlock (G * Y) W)) = _
@@ -137,6 +138,6 @@ theorem tableOfBlock_eq_transformedMetricTable (g : StrictParameters) (T : V ≃
       transformedMetricTable g T := by
   funext x y a b
   simp [tableOfBlock, transformedMetricTable, matrixPair,
-    Matrix.mulVec_mulVec, matrixOfLinear_mulVec]
+    ← Matrix.mulVec_mulVec, matrixOfLinear_mulVec]
 
 end Bell.Lorentz

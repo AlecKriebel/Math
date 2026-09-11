@@ -15,11 +15,12 @@ open QubitGeometry Lorentz
 
 theorem positive_sum {ι n : Type*} [Fintype ι] [Fintype n]
     (A : ι → Matrix n n ℂ) (hA : ∀ i, (A i).PosSemidef) : (∑ i, A i).PosSemidef := by
-  refine ⟨?_, fun x => ?_⟩
-  · simpa [Matrix.IsHermitian, Matrix.conjTranspose_sum] using
-      congrArg (fun B : ι → Matrix n n ℂ => ∑ i, B i) (funext fun i => (hA i).1)
-  · simpa [Matrix.sum_mulVec, dotProduct_sum] using
-      Finset.sum_nonneg (fun i _ => (hA i).2 x)
+  classical
+  have hsum (s : Finset ι) : (∑ i ∈ s, A i).PosSemidef := by
+    induction s using Finset.induction_on with
+    | empty => simpa using (Matrix.PosSemidef.zero : (0 : Matrix n n ℂ).PosSemidef)
+    | @insert i s hi ih => simpa [hi] using (hA i).add ih
+  exact hsum Finset.univ
 
 theorem positive_coordinates {A : Operator} (hA : A.PosSemidef) : Future (coordinates A) := by
   rw [← pauli_posSemidef_iff, pauli_coordinates hA.isHermitian]
@@ -68,15 +69,15 @@ theorem positive_definite_coordinates {A : Operator} (hA : A.PosDef) :
     exact_mod_cast hpos
 
 theorem isOpen_futureTimelike : IsOpen {x : V | FutureTimelike x} := by
-  unfold FutureTimelike lorentzSquare
-  exact (isOpen_lt continuous_const (by fun_prop)).inter
-    (isOpen_lt continuous_const (by fun_prop))
+  exact (isOpen_lt continuous_const (continuous_apply 0)).inter
+    (isOpen_lt continuous_const (show Continuous lorentzSquare by
+      unfold lorentzSquare; fun_prop))
 
 theorem eventually_positive_perturbation {A H : Operator}
     (hA : A.PosDef) (hH : H.IsHermitian) :
     ∀ᶠ t : ℝ in 𝓝 0, (A + t • H).PosDef := by
   have ht : Continuous (fun t : ℝ => coordinates A + t • coordinates H) := by fun_prop
-  have he := ht.continuousAt.preimage_mem_nhds
+  have he := (ht.continuousAt (x := 0)).preimage_mem_nhds
     (isOpen_futureTimelike.mem_nhds (by simpa using positive_definite_coordinates hA))
   filter_upwards [he] with t ht
   have hp := FutureTimelike.posDef ht
@@ -89,13 +90,18 @@ theorem exists_positive_perturbation {ι : Type*} [Fintype ι]
       ∀ i, 0 < 1 + ε*c i ∧ 0 < 1 - ε*c i := by
   have hp := eventually_positive_perturbation hA hH
   have hm : ∀ᶠ t : ℝ in 𝓝 0, (A - t • H).PosDef := by
-    have hc : Tendsto (fun t : ℝ => -t) (𝓝 0) (𝓝 0) := by simpa using continuous_neg.continuousAt
+    have hc : Tendsto (fun t : ℝ => -t) (𝓝 0) (𝓝 0) := by
+      simpa using (continuous_neg.continuousAt (x := (0 : ℝ))).tendsto
     simpa [sub_eq_add_neg, neg_smul] using hc.eventually hp
   have hw : ∀ᶠ t : ℝ in 𝓝 0, ∀ i, 0 < 1+t*c i ∧ 0 < 1-t*c i := by
     apply Filter.eventually_all.mpr
     intro i
-    exact (by simpa using (show ContinuousAt (fun t : ℝ => 1+t*c i) 0 by fun_prop).eventually_pos (by norm_num)).and
-      (by simpa using (show ContinuousAt (fun t : ℝ => 1-t*c i) 0 by fun_prop).eventually_pos (by norm_num))
+    have hp : ∀ᶠ t : ℝ in 𝓝 0, 0 < 1+t*c i :=
+      (show ContinuousAt (fun t : ℝ => 1+t*c i) 0 by fun_prop).eventually (Ioi_mem_nhds (by norm_num))
+    have hm : ∀ᶠ t : ℝ in 𝓝 0, 0 < 1-t*c i :=
+      (show ContinuousAt (fun t : ℝ => 1-t*c i) 0 by fun_prop).eventually (Ioi_mem_nhds (by norm_num))
+    exact hp.and hm
+
   have hpos : ∀ᶠ t : ℝ in 𝓝[>] 0, 0 < t := self_mem_nhdsWithin
   obtain ⟨ε, hε, hpε, hmε, hwε⟩ :=
     (hpos.and ((hp.and (hm.and hw)).filter_mono nhdsWithin_le_nhds)).exists
@@ -121,7 +127,7 @@ theorem rank_one_binary_projector {A B : Operator} (hA : A.PosSemidef)
   have htA : Matrix.trace A = 1 := by
     have he := determinant_complement A
     rw [← hBval, hBd, hAd] at he
-    linear_combination -he
+    linear_combination he
   have htB : Matrix.trace B = 1 := by
     have he := congrArg Matrix.trace hsum
     simp [Matrix.trace_add, Matrix.trace_one, htA] at he
@@ -177,7 +183,7 @@ theorem positive_below_rank_one {A B : Operator} (hA : A.PosSemidef)
   rw [pauli_coordinates hB.isHermitian] at htb
   simp only [Complex.ofReal_re] at hta htb
   rw [hta, htb]
-  field_simp
+  ring
 
 /-- Off-diagonal complement in a complete measurement is positive. -/
 theorem POVM.complement_positive {n : ℕ} (M : POVM n) (a : Fin n) :
@@ -186,7 +192,8 @@ theorem POVM.complement_positive {n : ℕ} (M : POVM n) (a : Fin n) :
   have hsum : (∑ b : {b : Fin n // b ≠ a}, M.effect b) = 1-M.effect a := by
     have he := Fintype.sum_eq_add_sum_subtype_ne M.effect a
     rw [M.normalized] at he
-    linear_combination -he
+    rw [he]
+    abel
   rw [← hsum]
   exact positive_sum _ fun b => M.positive b
 
@@ -196,55 +203,61 @@ def POVM.toPVMOfTwoNull {n : ℕ} (M : POVM n)
     (hnull : ∀ a, (M.effect a).det = 0)
     (hcard : (Finset.univ.filter (fun a => M.effect a ≠ 0)).card ≤ 2) : PVM n := by
   classical
-  let t := Finset.univ.filter (fun a => M.effect a ≠ 0)
-  have hsum : ∑ a ∈ t, M.effect a = 1 := by
-    simpa [t, Finset.sum_filter] using M.normalized
-  have hne : t.Nonempty := by
-    by_contra h
-    have he := Finset.not_nonempty_iff_eq_empty.mp h
-    have hc := congrArg (fun A : Operator => A 0 0) hsum
-    simp [he] at hc
-  obtain ⟨a, ha⟩ := hne
-  have hsecond : (t.erase a).Nonempty := by
-    by_contra h
-    have he := Finset.not_nonempty_iff_eq_empty.mp h
-    have ht : t = {a} := by simpa [he] using (Finset.insert_erase ha).symm
-    have hA : M.effect a = 1 := by simpa [ht] using hsum
-    have hc := hnull a
-    simp [hA] at hc
-  obtain ⟨b, hb⟩ := hsecond
-  have hba : b ≠ a := (Finset.mem_erase.mp hb).1
-  have hbt : b ∈ t := (Finset.mem_erase.mp hb).2
-  have ht : t = {a,b} := by
-    symm
-    apply Finset.eq_of_subset_of_card_le
-    · exact Finset.insert_subset ha (Finset.singleton_subset_iff.mpr hbt)
-    · simpa [hba, Ne.symm hba] using hcard
-  have hAB : M.effect a + M.effect b = 1 := by simpa [ht, hba, Ne.symm hba] using hsum
-  obtain ⟨haa,hbb,hab,hba'⟩ := rank_one_binary_projector (M.positive a) (M.positive b)
-    hAB (hnull a) (hnull b)
-  have hz : ∀ c, c ≠ a → c ≠ b → M.effect c = 0 := by
-    intro c hca hcb
-    by_contra hn
-    have hc : c ∈ t := Finset.mem_filter.mpr ⟨Finset.mem_univ c, hn⟩
-    simp [ht, hca, hcb] at hc
-  refine ⟨M, ?_, ?_⟩
-  · intro c
-    by_cases hca : c=a
-    · simpa [hca] using haa
-    by_cases hcb : c=b
-    · simpa [hcb] using hbb
-    simp [hz c hca hcb]
-  · intro c d hcd
-    by_cases hca : c=a <;> by_cases hcb : c=b <;>
-      by_cases hda : d=a <;> by_cases hdb : d=b <;>
-      simp_all [hz]
+  have hprops : (∀ a, M.effect a * M.effect a = M.effect a) ∧
+      (∀ a b, a ≠ b → M.effect a * M.effect b = 0) := by
+    classical
+    let t := Finset.univ.filter (fun a => M.effect a ≠ 0)
+    have hsum : ∑ a ∈ t, M.effect a = 1 := by
+      have hi (a : Fin n) : (if M.effect a ≠ 0 then M.effect a else 0) = M.effect a := by
+        split_ifs with h <;> simp_all
+      simpa only [t, Finset.sum_filter, hi] using M.normalized
+    have hne : t.Nonempty := by
+      apply Finset.nonempty_iff_ne_empty.mpr
+      intro he
+      have hc := congrArg (fun A : Operator => A 0 0) hsum
+      simp [he] at hc
+    obtain ⟨a, ha⟩ := hne
+    have hsecond : (t.erase a).Nonempty := by
+      apply Finset.nonempty_iff_ne_empty.mpr
+      intro he
+      have ht : t = {a} := by simpa [he] using (Finset.insert_erase ha).symm
+      have hA : M.effect a = 1 := by simpa [ht] using hsum
+      have hc := hnull a
+      simp [hA] at hc
+    obtain ⟨b, hb⟩ := hsecond
+    have hba : b ≠ a := (Finset.mem_erase.mp hb).1
+    have hbt : b ∈ t := (Finset.mem_erase.mp hb).2
+    have ht : t = {a,b} := by
+      symm
+      apply Finset.eq_of_subset_of_card_le
+      · exact Finset.insert_subset ha (Finset.singleton_subset_iff.mpr hbt)
+      · simpa [hba, Ne.symm hba] using hcard
+    have hAB : M.effect a + M.effect b = 1 := by simpa [ht, hba, Ne.symm hba] using hsum
+    obtain ⟨haa,hbb,hab,hba'⟩ := rank_one_binary_projector (M.positive a) (M.positive b)
+      hAB (hnull a) (hnull b)
+    have hz : ∀ c, c ≠ a → c ≠ b → M.effect c = 0 := by
+      intro c hca hcb
+      by_contra hn
+      have hc : c ∈ t := Finset.mem_filter.mpr ⟨Finset.mem_univ c, hn⟩
+      simp [ht, hca, hcb] at hc
+    constructor
+    · intro c
+      by_cases hca : c=a
+      · simpa [hca] using haa
+      by_cases hcb : c=b
+      · simpa [hcb] using hbb
+      simp [hz c hca hcb]
+    · intro c d hcd
+      by_cases hca : c=a <;> by_cases hcb : c=b <;>
+        by_cases hda : d=a <;> by_cases hdb : d=b <;>
+        simp_all [hz]
+  exact ⟨M, hprops.1, hprops.2⟩
 
 /-- Strictly positive real scaling preserves positive definiteness. -/
 theorem posDef_real_smul {A : Operator} (hA : A.PosDef) {t : ℝ} (ht : 0 < t) :
     (t • A).PosDef := by
   apply posDef_of_posSemidef_det_ne_zero (posSemidef_real_smul hA.posSemidef ht.le)
-  rw [Matrix.det_smul]
+  rw [show t • A = (t : ℂ) • A from rfl, Matrix.det_smul]
   exact mul_ne_zero (pow_ne_zero _ (by exact_mod_cast ht.ne')) hA.det_pos.ne'
 
 end Bell

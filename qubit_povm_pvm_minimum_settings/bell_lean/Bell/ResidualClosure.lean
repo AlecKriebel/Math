@@ -81,16 +81,16 @@ theorem no_strict_residual_maximum
   have hlocal : IsLocalMaxOn (fun w => F (probabilityBlock w))
       {w | FeasibleIncidence w} z :=
     physical_maximum_is_incidence_maximum E z hE hGram hpos f hmax
-  obtain ⟨α, λ, hstationary, hmetric⟩ := exists_incidence_stationarity z F hz hinv hlocal
+  obtain ⟨α, lam, hstationary, hmetric⟩ := exists_incidence_stationarity z F hz hinv hlocal
   have hphysical := frame_table_mem_rawPOVM E z hGram hz hpos
   obtain ⟨s, hs⟩ := hphysical
   have hnull : ∀ j, matrixPair (metric g.a g.b g.c g.d)
       (Y *ᵥ ray j) (Y *ᵥ ray j) = 0 := fun j => congrFun hz.1 j
-  have hλ : ∀ j, 0 < λ j :=
+  have hlam : ∀ j, 0 < lam j :=
     multipliers_positive_from_physical_separator s (metric g.a g.b g.c g.d) Y
-      hs λ α hnull (frame_future_pairing E z hGram hz hpos) f hstationary
+      hs lam α hnull (frame_future_pairing E z hGram hz hpos) f hstationary
       (by simpa only [hs] using hstrict)
-  have hker : nullRowMap Y λ = 0 := (metric_stationary_iff Y λ).mp hmetric
+  have hker : nullRowMap Y lam = 0 := (metric_stationary_iff Y lam).mp hmetric
   have hpoly : ∀ j, nullPolynomial g.a g.b g.c g.d (Y *ᵥ ray j) = 0 := by
     intro j
     have hj := hnull j
@@ -100,8 +100,8 @@ theorem no_strict_residual_maximum
       (frame_timeFunctional_positive g E Y hGram hunit hpos.2.1) hz.2 hzero
     exact (lt_irrefl _ (hstrict _ hm))
   by_cases hone : incidenceRank Y = 1
-  · exact rank_one_stationarity_impossible g Y hY λ hλ hpoly hker hone
+  · exact rank_one_stationarity_impossible g Y hY lam hlam hpoly hker hone
   · have hr : 2 ≤ incidenceRank Y := by omega
-    exact high_rank_not_local_max z F hz hinv α λ hλ hstationary hmetric hr hlocal
+    exact high_rank_not_local_max z F hz hinv α lam hlam hstationary hmetric hr hlocal
 
 end Bell.Lorentz

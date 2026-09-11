@@ -17,71 +17,9 @@ warning: ././././Bell/Lorentz.lean:217:2: Used `tac1 <;> tac2` where `(tac1; tac
 note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
 warning: ././././Bell/Lorentz.lean:222:2: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
 note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
-✖ [2831/2831] Building Bell.MeasurementGeometry
-trace: .> LEAN_PATH=././.lake/packages/Cli/.lake/build/lib/lean:././.lake/packages/batteries/.lake/build/lib/lean:././.lake/packages/Qq/.lake/build/lib/lean:././.lake/packages/aesop/.lake/build/lib/lean:././.lake/packages/proofwidgets/.lake/build/lib/lean:././.lake/packages/importGraph/.lake/build/lib/lean:././.lake/packages/LeanSearchClient/.lake/build/lib/lean:././.lake/packages/plausible/.lake/build/lib/lean:././.lake/packages/mathlib/.lake/build/lib/lean:././.lake/build/lib/lean /Users/alec/.elan/toolchains/leanprover--lean4---v4.19.0/bin/lean ././././Bell/MeasurementGeometry.lean -R ./././. -o ././.lake/build/lib/lean/Bell/MeasurementGeometry.olean -i ././.lake/build/lib/lean/Bell/MeasurementGeometry.ilean -c ././.lake/build/ir/Bell/MeasurementGeometry.c --json
-error: ././././Bell/MeasurementGeometry.lean:21:11: unknown constant 'Matrix.sum_mulVec'
-error: ././././Bell/MeasurementGeometry.lean:21:30: unknown identifier 'dotProduct_sum'
-error: ././././Bell/MeasurementGeometry.lean:21:4: type mismatch, term
-  Finset.sum_nonneg fun i x_1 => (hA i).right x
-after simplification has type
-  0 ≤ ∑ i ∈ ?m.6769, star x ⬝ᵥ A i *ᵥ x : Prop
-but is expected to have type
-  0 ≤ star x ⬝ᵥ (∑ i, A i) *ᵥ x : Prop
-error: ././././Bell/MeasurementGeometry.lean:72:40: `fun_prop` was unable to prove `Continuous ?m.2197`
-
-Issues:
-error: ././././Bell/MeasurementGeometry.lean:73:36: `fun_prop` was unable to prove `Continuous ?m.3227`
-
-Issues:
-error: ././././Bell/MeasurementGeometry.lean:80:40: type mismatch, term
-  positive_definite_coordinates hA
-after simplification has type
-  FutureTimelike (coordinates A) : Prop
-but is expected to have type
-  FutureTimelike (coordinates A + ?m.4007 • coordinates H) : Prop
-error: ././././Bell/MeasurementGeometry.lean:92:70: typeclass instance problem is stuck, it is often due to metavariables
-  TopologicalSpace ?m.5099
-error: ././././Bell/MeasurementGeometry.lean:97:11: invalid 'by' tactic, expected type has not been provided
-error: ././././Bell/MeasurementGeometry.lean:124:4: ring failed, ring expressions not equal
-A B : Operator
-hA : Matrix.PosSemidef A
-hB : Matrix.PosSemidef B
-hsum : A + B = 1
-hAd : Matrix.det A = 0
-hBd : Matrix.det B = 0
-hBval : B = 1 - A
-he : 0 = 1 - Matrix.trace A + 0
-⊢ -2 + Matrix.trace A * 2 = 0
-error: ././././Bell/MeasurementGeometry.lean:180:2: simp made no progress
-error: ././././Bell/MeasurementGeometry.lean:189:4: failed to synthesize
-  CommSemiring Operator
-
-Additional diagnostic information may be available using the `set_option diagnostics true` command.
-error: ././././Bell/MeasurementGeometry.lean:201:4: type mismatch, term
-  M.normalized
-after simplification has type
-  ∑ a, M.effect a = 1 : Prop
-but is expected to have type
-  (∑ x, if M.effect x = 0 then 0 else M.effect x) = 1 : Prop
-error: ././././Bell/MeasurementGeometry.lean:204:51: unknown identifier 'h'
-error: ././././Bell/MeasurementGeometry.lean:207:9: tactic 'cases' failed, nested error:
-tactic 'induction' failed, recursor 'Exists.casesOn' can only eliminate into Prop
-n : ℕ
-M : POVM n
-hnull : ∀ (a : Fin n), Matrix.det (M.effect a) = 0
-hcard : {a | M.effect a ≠ 0}.card ≤ 2
-t : Finset (Fin n) := {a | M.effect a ≠ 0}
-hsum : ∑ a ∈ t, M.effect a = 1
-hne : t.Nonempty
-⊢ PVM n
-error: ././././Bell/MeasurementGeometry.lean:247:6: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
-  (?c • ?A).det
-A : Operator
-hA : Matrix.PosDef A
-t : ℝ
-ht : 0 < t
-⊢ (t • A).det ≠ 0
-error: Lean exited with code 1
-Some required builds logged failures:
-- Bell.MeasurementGeometry
-error: build failed
+⚠ [2831/2831] Built Bell.MeasurementGeometry
+warning: ././././Bell/MeasurementGeometry.lean:123:52: unused variable `hA`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+warning: ././././Bell/MeasurementGeometry.lean:124:5: unused variable `hB`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+Build completed successfully.

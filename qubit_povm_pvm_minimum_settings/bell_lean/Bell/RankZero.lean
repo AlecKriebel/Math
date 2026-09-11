@@ -21,14 +21,14 @@ namespace Bell.Lorentz
 def circuitSign (i : Fin 5) : ℝ := if i.val < 2 then 1 else -1
 
 theorem circuitSign_ne_zero (i : Fin 5) : circuitSign i ≠ 0 := by
-  fin_cases i <;> norm_num [circuitSign]
+  fin_cases i <;> simp [Matrix.cons_val, circuitSign]
 
 theorem circuitSign_squared (i : Fin 5) : circuitSign i * circuitSign i = 1 := by
-  fin_cases i <;> norm_num [circuitSign]
+  fin_cases i <;> simp [Matrix.cons_val, circuitSign]
 
 theorem signed_circuit : (∑ j, circuitSign j • ray j) = 0 := by
   funext i
-  fin_cases i <;> norm_num [circuitSign, ray, Fin.sum_univ_succ]
+  fin_cases i <;> simp [Matrix.cons_val, circuitSign, ray, Fin.sum_univ_succ]
 
 theorem circuit_kernel_sign (μ : Fin 5 → ℝ) (h : ∑ j, μ j • ray j = 0) :
     ∃ t : ℝ, ∀ j, μ j = t * circuitSign j := by
@@ -36,7 +36,7 @@ theorem circuit_kernel_sign (μ : Fin 5 → ℝ) (h : ∑ j, μ j • ray j = 0)
   refine ⟨t, ?_⟩
   intro j
   rw [ht]
-  fin_cases j <;> norm_num [circuitSign]
+  fin_cases j <;> simp [Matrix.cons_val, circuitSign]
 
 /-- The scalar coordinate of a base-line vector is retained; the zero vector
 is allowed here and is excluded later by strict future orientation. -/
@@ -68,17 +68,17 @@ theorem baseLines_ray_multiple (x : V) (hx : BaseLines x) :
 def timeFunctional (g : StrictParameters) : V →ₗ[ℝ] ℝ where
   toFun := fun x => (x 0 + x 1)/2 + (g.a+g.c)*x 2 + (g.b+g.d)*x 3
   map_add' := by intros; simp only [Pi.add_apply]; ring
-  map_smul' := by intros; simp only [Pi.smul_apply,smul_eq_mul]; ring
+  map_smul' := by intros; simp only [Pi.smul_apply,smul_eq_mul,RingHom.id_apply]; ring
 
 theorem timeFunctional_unit (g : StrictParameters) : timeFunctional g unitVector = 1 := by
-  norm_num [timeFunctional,unitVector]
+  simp [Matrix.cons_val, timeFunctional,unitVector]
 
 theorem timeFunctional_ray_positive (g : StrictParameters) (j : Fin 5) :
     0 < timeFunctional g (ray j) := by
   have ha := g.a_pos; have hb := g.b_pos
   have hc := g.c_pos; have hd := g.d_pos
   have hac := g.ac_lt; have hbd := g.bd_lt
-  fin_cases j <;> norm_num [timeFunctional,ray] <;> linarith
+  fin_cases j <;> simp [Matrix.cons_val, timeFunctional,ray] <;> linarith
 
 theorem null_base_future_multiple (g : StrictParameters) (x : V)
     (hnull : nullPolynomial g.a g.b g.c g.d x = 0)
@@ -130,15 +130,15 @@ theorem not_three_in_binary_pair (π : Equiv.Perm (Fin 5)) :
   have h23 : (π 2).val ≠ (π 3).val := by
     intro h
     have hi := π.injective (Fin.ext h)
-    norm_num at hi
+    exact (by decide : (2 : Fin 5) ≠ 3) hi
   have h24 : (π 2).val ≠ (π 4).val := by
     intro h
     have hi := π.injective (Fin.ext h)
-    norm_num at hi
+    exact (by decide : (2 : Fin 5) ≠ 4) hi
   have h34 : (π 3).val ≠ (π 4).val := by
     intro h
     have hi := π.injective (Fin.ext h)
-    norm_num at hi
+    exact (by decide : (3 : Fin 5) ≠ 4) hi
   omega
 
 /-- Positive scales and the 2-versus-3 circuit rule out sign reversal. -/
@@ -148,7 +148,7 @@ theorem circuit_scale_positive (π : Equiv.Perm (Fin 5)) (t : Fin 5 → ℝ)
   have hc0 : c ≠ 0 := by
     intro hz
     have h := hc 0
-    norm_num [circuitSign,hz] at h
+    simp [Matrix.cons_val, circuitSign,hz] at h
     exact (ne_of_gt (ht 0)) h
   by_contra hn
   have hneg : c < 0 := lt_of_le_of_ne (le_of_not_gt hn) hc0
@@ -219,7 +219,8 @@ theorem rank_zero_normalized_rigidity (g : StrictParameters) (T : V ≃ₗ[ℝ] 
   have hcpos := circuit_scale_positive π t ht c hc
   obtain ⟨hpartition,hscale⟩ := circuit_partition_and_scale π t ht c hcpos hc
   have hunit : T unitVector = c • unitVector := by
-    rw [← binary_circuit,map_add,hTπ 0,hTπ 1,hscale 0,hscale 1,← smul_add,
+    conv_lhs => rw [← binary_circuit]
+    rw [map_add,hTπ 0,hTπ 1,hscale 0,hscale 1,← smul_add,
       binary_sum_preserved π hpartition]
   have hc1 : c = 1 := by
     rw [hunit,map_smul,smul_eq_mul,timeFunctional_unit,mul_one] at hnormal
@@ -248,7 +249,7 @@ theorem metricTable_eq_rankZeroTable (g : StrictParameters) :
     metricTable g = rankZeroTable (mixedA g) (mixedB g) (capacity g) := by
   funext x y a b
   fin_cases x <;> fin_cases y <;> fin_cases a <;> fin_cases b <;>
-    norm_num [metricTable,rankZeroTable,effectRay,mixedA,mixedB,capacity,
+    simp [Matrix.cons_val, metricTable,rankZeroTable,effectRay,mixedA,mixedB,capacity,
       metric,ray,dotProduct,Matrix.mulVec,Fin.sum_univ_succ] <;> ring
 
 theorem metricTable_mem_convexPVM (g : StrictParameters) :
@@ -257,22 +258,20 @@ theorem metricTable_mem_convexPVM (g : StrictParameters) :
   apply rankZeroTable_mem
   · intro i
     have ha := g.a_pos; have hb := g.b_pos; have hab := g.ab_lt
-    fin_cases i <;> norm_num [mixedA] <;> linarith
+    fin_cases i <;> simp [Matrix.cons_val, mixedA] <;> linarith
   · intro i
     have hc := g.c_pos; have hd := g.d_pos; have hcd := g.cd_lt
-    fin_cases i <;> norm_num [mixedB] <;> linarith
+    fin_cases i <;> simp [Matrix.cons_val, mixedB] <;> linarith
   · intro i j
     have he := g.e_pos; have hac := g.ac_lt; have hbd := g.bd_lt
-    fin_cases i <;> fin_cases j <;> norm_num [capacity] <;> linarith
+    fin_cases i <;> fin_cases j <;> simp [Matrix.cons_val, capacity] <;> linarith
   · intro i j
     fin_cases i <;> fin_cases j <;> rfl
   · intro i
     fin_cases i <;> rfl
   · intro i
-    fin_cases i <;> norm_num [capacity,mixedA,mixedB,Fin.sum_univ_succ] <;> ring
-  · norm_num [mixedA,Fin.sum_univ_succ]
-    ring
-  · norm_num [mixedB,Fin.sum_univ_succ]
-    ring
+    fin_cases i <;> simp [Matrix.cons_val, capacity,mixedA,mixedB,Fin.sum_univ_succ] <;> ring
+  · simp [Matrix.cons_val, mixedA,Fin.sum_univ_succ]
+  · simp [Matrix.cons_val, mixedB,Fin.sum_univ_succ]
 
 end Bell.Lorentz

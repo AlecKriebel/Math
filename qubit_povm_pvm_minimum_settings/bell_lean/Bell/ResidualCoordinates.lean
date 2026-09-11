@@ -13,16 +13,13 @@ open scoped BigOperators Matrix ComplexOrder
 namespace Bell.Lorentz
 open QubitGeometry
 
+attribute [local simp] Matrix.cons_val_two Matrix.cons_val_three Matrix.cons_val_four
+
 /-- The five fixed coefficient rays are pairwise projectively distinct. -/
 theorem coefficient_rays_distinct (i j : Fin 5) (hij : i ≠ j) :
     ¬ SameRay (ray i) (ray j) := by
-  rintro ⟨t, ht, h⟩
-  have h0 := congrFun h 0
-  have h1 := congrFun h 1
-  have h2 := congrFun h 2
-  have h3 := congrFun h 3
-  fin_cases i <;> fin_cases j <;>
-    norm_num [ray, Pi.smul_apply, smul_eq_mul] at hij h0 h1 h2 h3 <;> contradiction
+  intro h
+  exact hij (coefficient_rays_projectively_distinct i j h)
 
 theorem frame_rays_distinct (E : M) (hE : IsUnit E.det)
     (i j : Fin 5) (hij : i ≠ j) : ¬ SameRay (E *ᵥ ray i) (E *ᵥ ray j) := by
@@ -33,14 +30,17 @@ theorem frame_rays_distinct (E : M) (hE : IsUnit E.det)
   simpa only [Matrix.mulVec_smul, Matrix.mulVec_mulVec,
     Matrix.nonsing_inv_mul E hE, Matrix.one_mulVec] using he
 
-/-- All symmetric forms satisfying the coefficient null equations and mass
-normalization have exactly the paper's four-parameter affine normal form. -/
 set_option maxRecDepth 100000 in
 set_option maxHeartbeats 1000000 in
+/-- All symmetric forms satisfying the coefficient null equations and mass
+normalization have exactly the paper's four-parameter affine normal form. -/
 theorem metric_normal_form (G : M) (hsym : G.transpose = G)
     (hn : ∀ j, matrixPair G (ray j) (ray j) = 0)
     (hu : matrixPair G unitVector unitVector = 1) :
     G = metric (G 0 2) (G 0 3) (G 1 2) (G 1 3) := by
+  have hc2 (h : 2 < 4) : (⟨2,h⟩ : Fin 4) = 2 := rfl
+  have hc3 (h : 3 < 4) : (⟨3,h⟩ : Fin 4) = 3 := rfl
+  have hs3 : (2 : Fin 3).succ = (3 : Fin 4) := rfl
   have h00 := hn 0
   have h11 := hn 1
   have h22 := hn 2
@@ -52,11 +52,13 @@ theorem metric_normal_form (G : M) (hsym : G.transpose = G)
   have h12 := congrFun (congrFun hsym 1) 2
   have h13 := congrFun (congrFun hsym 1) 3
   have h23 := congrFun (congrFun hsym 2) 3
-  simp only [matrixPair_apply, Matrix.mulVec, dotProduct, Fin.sum_univ_succ,
+  norm_num [matrixPair_apply, Matrix.mulVec, dotProduct, Fin.sum_univ_succ,
     ray, unitVector, Matrix.transpose_apply] at h00 h11 h22 h33 hv hu h01 h02 h03 h12 h13 h23
+  simp only [hc2, hc3, hs3] at h00 h11 h22 h33 hv hu h01 h02 h03 h12 h13 h23
   ext i j
   fin_cases i <;> fin_cases j <;> norm_num [metric] <;>
-    nlinarith [h00, h11, h22, h33, hv, hu, h01, h02, h03, h12, h13, h23]
+    (try simp only [hc2, hc3, hs3]) <;>
+    linarith only [h00, h11, h22, h33, hv, hu, h01, h02, h03, h12, h13, h23]
 
 /-- Concrete geometric data of two five-effect frames before any optimization.
 `steering` contains the coordinates of Bob's steered, not normalized, effects. -/
@@ -105,7 +107,7 @@ def parameters (r : ResidualFrames) : StrictParameters := by
   simp [matrixPair_apply, metric, ray, Matrix.mulVec, dotProduct,
     Fin.sum_univ_succ] at p02 p03 p12 p13 p23 p04 p14 p24 p34
   exact ⟨r.gram 0 2, r.gram 0 3, r.gram 1 2, r.gram 1 3,
-    p02, p03, p12, p13, p23, by linarith, by linarith, by linarith, by linarith⟩
+    p02, p03, p12, p13, by linarith, by linarith, by linarith, by linarith, by linarith⟩
 
 theorem parameters_gram (r : ResidualFrames) :
     metric r.parameters.a r.parameters.b r.parameters.c r.parameters.d = r.gram := by
@@ -141,7 +143,7 @@ theorem transformed_invertible (r : ResidualFrames) : IsUnit r.transformed.det :
     intro hzero
     simp [hzero] at hd
   have hAi : IsUnit r.alice⁻¹.det := by
-    rw [Matrix.det_nonsing_inv]
+    rw [Matrix.det_nonsing_inv, Ring.inverse_eq_inv]
     exact r.alice_invertible.inv
   rw [transformed, Matrix.det_smul, Matrix.det_mul, Matrix.det_mul]
   exact (isUnit_iff_ne_zero.mpr (by norm_num : (2 : ℝ)^Fintype.card (Fin 4) ≠ 0)).mul
@@ -149,9 +151,11 @@ theorem transformed_invertible (r : ResidualFrames) : IsUnit r.transformed.det :
 
 theorem transformed_null (r : ResidualFrames) (j : Fin 5) :
     matrixPair r.gram (r.transformed *ᵥ ray j) (r.transformed *ᵥ ray j) = 0 := by
-  rw [gram, frameGram_pair, lorentzPair_self, ← Matrix.mulVec_mulVec, r.alice_transformed]
+  rw [gram, frameGram_pair, lorentzPair_self, Matrix.mulVec_mulVec, r.alice_transformed]
   have hs := (r.steering_null j).2
-  simp [Matrix.smul_mulVec, Matrix.mulVec_mulVec, minkowski, lorentzSquare,
+  rw [Matrix.smul_mulVec_assoc, ← Matrix.mulVec_mulVec]
+  generalize r.steering *ᵥ ray j = v at hs ⊢
+  simp [minkowski, lorentzSquare,
     Matrix.mulVec, dotProduct, Fin.sum_univ_succ] at hs ⊢
   nlinarith
 
@@ -181,13 +185,17 @@ theorem feasible (r : ResidualFrames) :
 theorem frame_positive (r : ResidualFrames) : FramePositive r.alice r.transformed := by
   refine ⟨fun j => (r.alice_null j).1, ?_, ?_⟩
   · intro j
-    rw [← Matrix.mulVec_mulVec, r.alice_transformed]
-    simpa [Matrix.smul_mulVec, minkowski, Matrix.mulVec_mulVec, Matrix.mulVec,
-      dotProduct, Fin.sum_univ_succ] using mul_pos (by norm_num : (0 : ℝ) < 2)
-      (r.steering_null j).1
-  · rw [frameGram_pair, lorentzPair_self, ← Matrix.mulVec_mulVec, r.alice_transformed]
+    rw [Matrix.mulVec_mulVec, r.alice_transformed]
+    rw [Matrix.smul_mulVec_assoc, ← Matrix.mulVec_mulVec]
+    have hj := (r.steering_null j).1
+    generalize r.steering *ᵥ ray j = v at hj ⊢
+    simpa [minkowski, Matrix.mulVec, dotProduct, Fin.sum_univ_succ] using
+      mul_pos (by norm_num : (0 : ℝ) < 2) hj
+  · rw [frameGram_pair, lorentzPair_self, Matrix.mulVec_mulVec, r.alice_transformed]
     have hq := r.reduced_timelike.2
-    simp [Matrix.smul_mulVec, Matrix.mulVec_mulVec, minkowski, lorentzSquare,
+    rw [Matrix.smul_mulVec_assoc, ← Matrix.mulVec_mulVec]
+    generalize r.steering *ᵥ unitVector = v at hq ⊢
+    simp [minkowski, lorentzSquare,
       Matrix.mulVec, dotProduct, Fin.sum_univ_succ] at hq ⊢
     nlinarith
 

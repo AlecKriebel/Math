@@ -24,10 +24,10 @@ def steered (y : Fin A.bobInputs) (b : Fin (A.bobOutputs y)) : Operator :=
 
 theorem reduced_definite : s.reduced.PosDef := by
   apply posDef_of_posSemidef_det_ne_zero
-  · exact (Matrix.PosSemidef.one : (1 : Operator).PosSemidef).mul_mul_conjTranspose_same s.coefficient
+  · simpa [reduced] using (Matrix.PosSemidef.one : (1 : Operator).PosSemidef).mul_mul_conjTranspose_same s.coefficient
   · rw [reduced,Matrix.det_mul,Matrix.det_conjTranspose]
     exact mul_ne_zero (isUnit_iff_ne_zero.mp s.coefficient_invertible)
-      (map_ne_zero (starRingEnd ℂ) (isUnit_iff_ne_zero.mp s.coefficient_invertible))
+      ((map_ne_zero (starRingEnd ℂ)).mpr (isUnit_iff_ne_zero.mp s.coefficient_invertible))
 
 theorem steered_positive (y : Fin A.bobInputs) (b : Fin (A.bobOutputs y)) :
     (s.steered y b).PosSemidef :=
@@ -72,16 +72,14 @@ def filteredAssemblage
         ((1+t*localTrace H s.reduced : ℝ) : ℂ) := by
       apply Complex.ext
       · change localTrace (1+t • H) s.reduced=1+t*localTrace H s.reduced
-        rw [localTrace_comm,map_add,map_smul]
-        simp [localTrace_comm s.reduced H,localTrace,s.normalized,reduced]
-      · have hLH : (1+t • H).IsHermitian := by
-          simpa [map_add,map_smul] using pauli_isHermitian
-            (timeUnit+t • coordinates H)
-        simpa using trace_product_im_zero hLH s.reduced_definite.isHermitian
+        rw [localTrace_comm,map_add,map_smul,smul_eq_mul,localTrace_comm s.reduced H]
+        have hone : localTrace s.reduced 1 = 1 := by
+          simp [localTrace, reduced, s.normalized]
+        rw [hone]
+      · simpa using trace_product_im_zero hleft.isHermitian s.reduced_definite.isHermitian
     rw [Matrix.mul_smul,Matrix.trace_smul,ht]
-    simp only [smul_eq_mul]
-    norm_cast
-    exact inv_mul_cancel₀ hscale.ne'
+    rw [Complex.real_smul]
+    exact_mod_cast inv_mul_cancel₀ hscale.ne'
 
 theorem filteredTable_mem_rawPOVM
     (c : (x : Fin A.aliceInputs) → Fin (A.aliceOutputs x) → ℝ)
@@ -96,8 +94,9 @@ theorem filteredTable_mem_rawPOVM
     funext x y a b'
     change localTrace ((1+t*c x a) • (s.alice x).effect a)
       ((1+t*localTrace H s.reduced)⁻¹ • s.steered y b') = _
-    rw [map_smul,localTrace_comm,map_smul]
-    simp [filteredTable,behavior_steered,localTrace_comm,smul_eq_mul,div_eq_mul_inv]
+    rw [map_smul, localTrace_comm ((1+t*c x a) • (s.alice x).effect a) (s.steered y b'), map_smul]
+    rw [localTrace_comm (s.steered y b') ((s.alice x).effect a)]
+    simp only [filteredTable,behavior_steered,smul_eq_mul,div_eq_mul_inv]
     ring
   rw [← he]
   exact b.behavior_mem_rawPOVM
@@ -133,7 +132,7 @@ theorem extreme_common_coefficients {A : Architecture} (s : FullPureStrategy A)
     change ((1+ε*τ)/2) * (((1+ε*c x a)/(1+ε*τ))*s.behavior x y' a b) +
       ((1-ε*τ)/2) * (((1+(-ε)*c x a)/(1+(-ε)*τ))*s.behavior x y' a b) = _
     have hn : 1+(-ε)*τ ≠ 0 := by simpa using hzm.ne'
-    field_simp [hzp.ne',hzm.ne',hn]
+    field_simp only [hzp.ne',hzm.ne',hn, ne_of_gt (show (0 : ℝ) < 2 by norm_num)]
     ring
   have he := (extreme_positive_combination hex
     (subset_convexHull ℝ _ hp) (subset_convexHull ℝ _ hm)
@@ -160,11 +159,15 @@ theorem extreme_common_span_scalar {A : Architecture} (s : FullPureStrategy A)
     (H : Operator) (hH : H.IsHermitian)
     (hcommon : ∀ x, ∑ a, c x a • (s.alice x).effect a=H) :
     H=localTrace H s.reduced • (1 : Operator) := by
-  rw [← hcommon x₀,← (s.alice x₀).normalized,Finset.smul_sum]
-  apply Finset.sum_congr rfl
-  intro a _
-  by_cases ha : (s.alice x₀).effect a=0
-  · simp [ha]
-  · rw [extreme_common_coefficients s hex y c H hH hcommon x₀ a ha]
+  calc
+    H = ∑ a, c x₀ a • (s.alice x₀).effect a := (hcommon x₀).symm
+    _ = localTrace H s.reduced • (∑ a, (s.alice x₀).effect a) := by
+      rw [Finset.smul_sum]
+      apply Finset.sum_congr rfl
+      intro a _
+      by_cases ha : (s.alice x₀).effect a = 0
+      · simp [ha]
+      · rw [extreme_common_coefficients s hex y c H hH hcommon x₀ a ha]
+    _ = _ := by rw [(s.alice x₀).normalized]
 
 end Bell

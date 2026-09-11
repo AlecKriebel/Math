@@ -63,13 +63,22 @@ class TextTests(unittest.TestCase):
         with self.assertRaises(runner.RunFailure): runner.require_negative_control_rejection(-11,'segmentation fault')
     def test_no_errors_rejects_sorry(self):
         with self.assertRaises(runner.RunFailure): runner.check_no_errors("warning: declaration uses 'sorry'",'test')
+    def test_no_errors_rejects_recovered_compiler_panic(self):
+        with self.assertRaises(runner.RunFailure):
+            runner.check_no_errors('info: PANIC at Lean.Expr.appArg!', 'test')
     def test_config_pins_actual(self):
         self.assertEqual(len(runner.validate_pins(ROOT)),9)
-    def test_baseline_modification_is_import_only(self):
+    def test_baseline_receipt_records_proof_repairs(self):
         result=pc.evaluate(ROOT)
         modified=[v for v in result['module_preservation'] if not v['byte_identical']]
-        self.assertEqual([v['file'] for v in modified],['Bell/ConeCompression.lean'])
-        self.assertTrue(all(v['nonimport_noncomment_text_unchanged'] for v in result['module_preservation']))
+        # The historical compiler-free package changed only an import. Local
+        # compiler repair legitimately changes proofs, and must report that.
+        quantum = next(v for v in modified if v['file'] == 'Bell/Quantum.lean')
+        self.assertFalse(quantum['nonimport_noncomment_text_unchanged'])
+        for record in result['module_preservation']:
+            current = hashlib.sha256((ROOT/record['file']).read_bytes()).hexdigest()
+            self.assertEqual(record['after_sha256'], current)
+            self.assertEqual(record['byte_identical'], record['before_sha256'] == current)
     def test_statement_contracts_not_executed(self):
         text=(ROOT/'validation/Statements.lean').read_text()
         self.assertIn('convexHull ℝ (Set.range',text)

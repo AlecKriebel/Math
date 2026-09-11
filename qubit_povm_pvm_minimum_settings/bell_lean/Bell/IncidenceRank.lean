@@ -26,10 +26,12 @@ def frameEquiv (Y : M) (hY : IsUnit Y.det) : V ≃ₗ[ℝ] V where
   invFun := fun x => Y⁻¹ *ᵥ x
   left_inv := by
     intro x
+    change Y⁻¹ *ᵥ (Y *ᵥ x) = x
     simp only [linearOfMatrix_apply, Matrix.mulVec_mulVec,
       Matrix.nonsing_inv_mul Y hY, Matrix.one_mulVec]
   right_inv := by
     intro x
+    change Y *ᵥ (Y⁻¹ *ᵥ x) = x
     simp only [linearOfMatrix_apply, Matrix.mulVec_mulVec,
       Matrix.mul_nonsing_inv Y hY, Matrix.one_mulVec]
 
@@ -53,17 +55,17 @@ compatibility constraints; annihilation on the basis implies annihilation on
 all of the kernel. -/
 theorem uphill_annihilating_kernel (G Y : M)
     (v : V) (hv : 0 < pullbackForm G (linearOfMatrix Y) v v)
-    (λ : Fin 5 → ℝ) (hλ : ∀ j, 0 < λ j)
+    (lam : Fin 5 → ℝ) (hlam : ∀ j, 0 < lam j)
     (hr : 2 ≤ incidenceRank Y) :
     ∃ W : Endomorphism,
-      0 < weightedSecondForm (pullbackForm G (linearOfMatrix Y)) λ W ∧
+      0 < weightedSecondForm (pullbackForm G (linearOfMatrix Y)) lam W ∧
       ∀ μ, nullRowMap Y μ = 0 →
         compatibility (pullbackForm G (linearOfMatrix Y)) μ W = 0 := by
   let K := LinearMap.ker (nullRowMap Y)
-  let b := FiniteDimensional.finBasis ℝ K
+  let b := Module.finBasis ℝ K
   let μ := fun i => (b i).val
   obtain ⟨W, hW, hcomp⟩ := uphill_of_three_compatibilities
-    (kernel_dimension_le_three Y hr) (pullbackForm G (linearOfMatrix Y)) v hv λ hλ μ
+    (kernel_dimension_le_three Y hr) (pullbackForm G (linearOfMatrix Y)) v hv lam hlam μ
   refine ⟨W, hW, ?_⟩
   intro ν hν
   let k : K := ⟨ν, hν⟩
@@ -73,19 +75,19 @@ theorem uphill_annihilating_kernel (G Y : M)
   rw [hrepr, compatibility_sum]
   simp [hcomp]
 
-theorem weightedGram_frame_action (λ : Fin 5 → ℝ) (G Y : M) (W : Endomorphism) :
-    weightedGram λ G (Y * matrixOfLinear W) =
-      weightedSecondForm (pullbackForm G (linearOfMatrix Y)) λ W := by
-  simp [weightedGram, weightedSecondForm, pullbackForm,
-    Matrix.mulVec_mulVec, matrixOfLinear_mulVec]
+theorem weightedGram_frame_action (lam : Fin 5 → ℝ) (G Y : M) (W : Endomorphism) :
+    weightedGram lam G (Y * matrixOfLinear W) =
+      weightedSecondForm (pullbackForm G (linearOfMatrix Y)) lam W := by
+  simp only [weightedGram, weightedSecondForm, pullbackForm_apply,
+    linearOfMatrix_apply, ← Matrix.mulVec_mulVec, matrixOfLinear_mulVec]
 
 /-- The complete normalized tangent, with the metric contribution included. -/
 theorem exists_positive_normalized_tangent (z : IncidenceSpace)
     (hz : FeasibleIncidence z) (hinv : IsUnit (probabilityBlock z).det)
-    (λ : Fin 5 → ℝ) (hλ : ∀ j, 0 < λ j)
-    (hstationary : nullRowMap z.2 λ = 0) (hr : 2 ≤ incidenceRank z.2) :
+    (lam : Fin 5 → ℝ) (hlam : ∀ j, 0 < lam j)
+    (hstationary : nullRowMap z.2 lam = 0) (hr : 2 ≤ incidenceRank z.2) :
     ∃ d : IncidenceSpace, constraintDerivativeCLM z d = 0 ∧
-      0 < weightedGram λ (chartMetric z.1) d.2 := by
+      0 < weightedGram lam (chartMetric z.1) d.2 := by
   let G := chartMetric z.1
   let Y := z.2
   let B := pullbackForm G (linearOfMatrix Y)
@@ -97,14 +99,14 @@ theorem exists_positive_normalized_tangent (z : IncidenceSpace)
     change 0 < matrixPair G (Y *ᵥ v) (Y *ᵥ v)
     rw [hYv, chartMetric_unit]
     norm_num
-  obtain ⟨W, hW, hcomp⟩ := uphill_annihilating_kernel G Y v hv λ hλ hr
+  obtain ⟨W, hW, hcomp⟩ := uphill_annihilating_kernel G Y v hv lam hlam hr
   obtain ⟨h, hh⟩ := exists_compatible_metric G Y W hcomp
   let d₀ : IncidenceSpace := (h, Y * matrixOfLinear W)
   have hn₀ : nullDerivative z d₀ = 0 := by
     funext j
     rw [nullDerivative_symmetric]
-    simpa only [d₀, Prod.fst_mk, Prod.snd_mk, Matrix.mulVec_mulVec,
-      matrixOfLinear_mulVec] using hh j
+    simpa only [d₀, G, Y, ← Matrix.mulVec_mulVec,
+      matrixOfLinear_mulVec, Pi.zero_apply] using hh j
   let t := -massDerivative z d₀
   let d := d₀ + t • (0, Y)
   refine ⟨d, ?_, ?_⟩
@@ -119,33 +121,33 @@ theorem exists_positive_normalized_tangent (z : IncidenceSpace)
     have hB : ∀ x y, B x y = B y x := by
       intro x y
       exact matrixPair_symmetric (chartMetric_symmetric z.1) _ _
-    have hλcomp : compatibility B λ W = 0 := hcomp λ hstationary
+    have hlamcomp : compatibility B lam W = 0 := hcomp lam hstationary
     have hd₂ : d.2 = Y * matrixOfLinear (W + t • LinearMap.id) := by
-      simp only [d, d₀, Prod.snd_add, Prod.snd_smul, Prod.snd_mk,
+      simp only [d, d₀, Prod.snd_add, Prod.smul_snd,
         matrixOfLinear_add, matrixOfLinear_smul, matrixOfLinear_id,
         Matrix.mul_add, Matrix.mul_smul, mul_one]
     rw [hd₂, weightedGram_frame_action,
-      secondForm_add_identity B hB λ W t hnull, hλcomp, mul_zero, add_zero]
+      secondForm_add_identity B hB lam W t hnull, hlamcomp, mul_zero, add_zero]
     exact hW
 
 /-- The high-rank local-maximum exclusion is now a theorem about the actual
 polynomial constraints, not an abstract positive quadratic direction. -/
 theorem high_rank_not_local_max (z : IncidenceSpace) (F : M →ₗ[ℝ] ℝ)
     (hz : FeasibleIncidence z) (hinv : IsUnit (probabilityBlock z).det)
-    (α : ℝ) (λ : Fin 5 → ℝ) (hλ : ∀ j, 0 < λ j)
-    (stationary : ∀ P, F P = α * blockMass P - 2 * weightedPairing λ z.2 P)
-    (metricStationary : ∀ h, weightedGram λ (metricVariation h) z.2 = 0)
+    (α : ℝ) (lam : Fin 5 → ℝ) (hlam : ∀ j, 0 < lam j)
+    (stationary : ∀ P, F P = α * blockMass P - 2 * weightedPairing lam z.2 P)
+    (metricStationary : ∀ h, weightedGram lam (metricVariation h) z.2 = 0)
     (hr : 2 ≤ incidenceRank z.2) :
     ¬ IsLocalMaxOn (fun w => F (probabilityBlock w)) {w | FeasibleIncidence w} z := by
-  have hλker := (metric_stationary_iff z.2 λ).mp metricStationary
-  obtain ⟨d, hd, hpositive⟩ := exists_positive_normalized_tangent z hz hinv λ hλ hλker hr
+  have hlamker := (metric_stationary_iff z.2 lam).mp metricStationary
+  obtain ⟨d, hd, hpositive⟩ := exists_positive_normalized_tangent z hz hinv lam hlam hlamker hr
   obtain ⟨γ, hzero, hγ, hlevel⟩ := exists_level_curve incidenceConstraints
     (constraintDerivativeCLM z) z d (incidenceConstraints_hasStrictFDerivAt z)
     (constraintDerivative_range z hz hinv) hd
   have hfeasible : ∀ᶠ t in 𝓝 (0 : ℝ), FeasibleIncidence (γ t) :=
     hlevel.mono fun t ht => (feasible_iff_constraints_eq z (γ t) hz).mpr ht
   exact not_local_max_of_uphill_curve γ z d hzero hγ hz hfeasible
-    λ F α stationary metricStationary hpositive
+    lam F α stationary metricStationary hpositive
 
 /-- A zero-dimensional row image means that every row vanishes. -/
 theorem rank_zero_rows (Y : M) (hr : incidenceRank Y = 0) :
@@ -163,13 +165,13 @@ theorem rank_one_row_coordinates (Y : M) (hr : incidenceRank Y = 1) :
     ∃ (ξ : V) (c : Fin 5 → ℝ), ξ ≠ 0 ∧ (∃ j, c j ≠ 0) ∧
       ∀ j, phi (Y *ᵥ ray j) = c j • ξ := by
   let R := LinearMap.range (nullRowMap Y)
-  let b : Basis PUnit ℝ R := Module.basisUnique PUnit hr
-  let ξ : V := (b PUnit.unit).val
+  let b : Basis Unit ℝ R := Module.basisUnique Unit hr
+  let ξ : V := (b ()).val
   have hξ : ξ ≠ 0 := by
     intro h
-    exact b.ne_zero PUnit.unit (Subtype.ext h)
+    exact b.ne_zero () (Subtype.ext h)
   let row : Fin 5 → R := fun j => ⟨phi (Y *ᵥ ray j), ⟨Pi.single j 1, nullRowMap_single Y j⟩⟩
-  let c : Fin 5 → ℝ := fun j => b.repr (row j) PUnit.unit
+  let c : Fin 5 → ℝ := fun j => b.repr (row j) ()
   have hrows : ∀ j, phi (Y *ᵥ ray j) = c j • ξ := by
     intro j
     have hj := congrArg (fun v : R => v.val) (b.sum_repr (row j))
@@ -184,12 +186,12 @@ theorem rank_one_row_coordinates (Y : M) (hr : incidenceRank Y = 1) :
 
 /-- Rank one is excluded by the proved projective-fiber theorem. -/
 theorem rank_one_stationarity_impossible (g : StrictParameters) (Y : M)
-    (hY : IsUnit Y.det) (λ : Fin 5 → ℝ) (hλ : ∀ j, 0 < λ j)
+    (hY : IsUnit Y.det) (lam : Fin 5 → ℝ) (hlam : ∀ j, 0 < lam j)
     (hnull : ∀ j, nullPolynomial g.a g.b g.c g.d (Y *ᵥ ray j) = 0)
-    (hstationary : nullRowMap Y λ = 0) (hr : incidenceRank Y = 1) : False := by
+    (hstationary : nullRowMap Y lam = 0) (hr : incidenceRank Y = 1) : False := by
   obtain ⟨ξ, c, hξ, hlive, hrows⟩ := rank_one_row_coordinates Y hr
-  exact transformed_rank_one_obstruction g (frameEquiv Y hY) λ c ξ
-    hnull hλ hξ hlive hrows hstationary
+  exact transformed_rank_one_obstruction g (frameEquiv Y hY) lam c ξ
+    hnull hlam hξ hlive hrows hstationary
 
 /-- The strict metric parameters as a four-vector. -/
 def parameterVector (g : StrictParameters) : V := ![g.a, g.b, g.c, g.d]

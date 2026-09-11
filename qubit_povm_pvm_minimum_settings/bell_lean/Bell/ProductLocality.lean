@@ -29,8 +29,10 @@ theorem product_behavior_mem_convexPVM (A : Architecture)
     exact mul_nonneg (Finset.prod_nonneg fun x _ => hp x (k.1 x))
       (Finset.prod_nonneg fun y _ => hq y (k.2 y))
   have hn : ∑ k, w k = 1 := by
-    simp only [w, Fintype.sum_prod_type, ← Finset.mul_sum, ← Finset.sum_mul,
-      ClassicalProduct.total_mass_one p hnp, ClassicalProduct.total_mass_one q hnq, mul_one]
+    simp only [w, Fintype.sum_prod_type, ← Finset.mul_sum, ← Finset.sum_mul]
+    change (∑ i, ClassicalProduct.mass p i) * (∑ i, ClassicalProduct.mass q i) = 1
+    rw [ClassicalProduct.total_mass_one p hnp, ClassicalProduct.total_mass_one q hnq, mul_one]
+
   have hm := finite_local_mixture_mem_convexPVM A w Prod.fst Prod.snd hw hn
   have heq : (∑ k : IA × IB, w k • deterministicTable A k.1 k.2) =
       (fun x y a b => p x a * q y b) := by

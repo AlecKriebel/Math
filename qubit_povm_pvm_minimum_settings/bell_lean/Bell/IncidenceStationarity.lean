@@ -52,12 +52,15 @@ theorem constraint_functional_coordinates (l : ConstraintSpace →ₗ[ℝ] ℝ)
   have hvec : (∑ j : Fin 5, v j • ((Pi.single j 1, 0) : ConstraintSpace)) +
       n • ((0, 1) : ConstraintSpace) = (v, n) := by
     apply Prod.ext
-    · funext i; simp
-    · simp
+    · funext i
+      fin_cases i <;> simp [Fin.sum_univ_succ, Pi.single_apply]
+    · simp [Fin.sum_univ_succ]
   calc
     l (v, n) = l ((∑ j : Fin 5, v j • ((Pi.single j 1, 0) : ConstraintSpace)) +
         n • ((0, 1) : ConstraintSpace)) := congrArg l hvec.symm
-    _ = _ := by simp [mul_comm]
+    _ = _ := by
+      simp only [map_add, map_sum, map_smul, smul_eq_mul]
+      simp [mul_comm]
 
 theorem feasible_iff_constraints_eq (z w : IncidenceSpace) (hz : FeasibleIncidence z) :
     FeasibleIncidence w ↔ incidenceConstraints w = incidenceConstraints z := by
@@ -65,9 +68,9 @@ theorem feasible_iff_constraints_eq (z w : IncidenceSpace) (hz : FeasibleInciden
 
 /-- All six multipliers of the polynomial constraints, with their paper sign. -/
 def IncidenceLagrangeEquation (z : IncidenceSpace) (F : M →ₗ[ℝ] ℝ)
-    (α : ℝ) (λ : Fin 5 → ℝ) : Prop :=
+    (α : ℝ) (lam : Fin 5 → ℝ) : Prop :=
   ∀ d, F (blockDerivative z d) = α * massDerivative z d -
-    ∑ j, λ j * nullDerivative z d j
+    ∑ j, lam j * nullDerivative z d j
 
 /-- Existence is deduced from the local-maximum hypothesis and the actual
 polynomial derivative. No stationarity oracle is an argument. -/
@@ -75,7 +78,7 @@ theorem exists_incidence_lagrange (z : IncidenceSpace) (F : M →ₗ[ℝ] ℝ)
     (hz : FeasibleIncidence z) (hinv : IsUnit (probabilityBlock z).det)
     (hmax : IsLocalMaxOn (fun w => F (probabilityBlock w))
       {w | FeasibleIncidence w} z) :
-    ∃ α λ, IncidenceLagrangeEquation z F α λ := by
+    ∃ α lam, IncidenceLagrangeEquation z F α lam := by
   let dF : IncidenceSpace →L[ℝ] ℝ :=
     F.toContinuousLinearMap.comp (blockDerivative z).toContinuousLinearMap
   have hF : HasStrictFDerivAt (fun w => F (probabilityBlock w)) dF z :=
@@ -98,19 +101,18 @@ theorem exists_incidence_lagrange (z : IncidenceSpace) (F : M →ₗ[ℝ] ℝ)
   ring
 
 theorem lagrange_frame_variations (z : IncidenceSpace) (F : M →ₗ[ℝ] ℝ)
-    (α : ℝ) (λ : Fin 5 → ℝ) (hL : IncidenceLagrangeEquation z F α λ) (Z : M) :
+    (α : ℝ) (lam : Fin 5 → ℝ) (hL : IncidenceLagrangeEquation z F α lam) (Z : M) :
     F (chartMetric z.1 * Z) = α * blockMass (chartMetric z.1 * Z) -
-      2 * weightedCross λ (chartMetric z.1) z.2 Z := by
+      2 * weightedCross lam (chartMetric z.1) z.2 Z := by
   have h := hL (0, Z)
-  simp only [blockDerivative, massDerivative, LinearMap.comp_apply, Prod.fst_mk,
-    Prod.snd_mk, map_zero, zero_mul, zero_add] at h
+  simp only [blockDerivative, massDerivative, LinearMap.comp_apply, map_zero, zero_mul, zero_add] at h
   simp_rw [nullDerivative_symmetric] at h
   simpa [weightedCross, Finset.mul_sum, mul_assoc, mul_left_comm] using h
 
 theorem lagrange_metric_variations (z : IncidenceSpace) (F : M →ₗ[ℝ] ℝ)
-    (α : ℝ) (λ : Fin 5 → ℝ) (hL : IncidenceLagrangeEquation z F α λ) (h : V) :
+    (α : ℝ) (lam : Fin 5 → ℝ) (hL : IncidenceLagrangeEquation z F α lam) (h : V) :
     F (metricVariation h * z.2) = α * blockMass (metricVariation h * z.2) -
-      weightedGram λ (metricVariation h) z.2 := by
+      weightedGram lam (metricVariation h) z.2 := by
   have hh := hL (h, 0)
   simp_rw [nullDerivative_symmetric] at hh
   simpa [blockDerivative, massDerivative, weightedGram] using hh
@@ -133,11 +135,11 @@ theorem frame_invertible_of_block (z : IncidenceSpace)
 
 /-- Recover the stationarity formula on arbitrary probability-block increments. -/
 theorem lagrange_block_stationarity (z : IncidenceSpace) (F : M →ₗ[ℝ] ℝ)
-    (α : ℝ) (λ : Fin 5 → ℝ) (hL : IncidenceLagrangeEquation z F α λ)
+    (α : ℝ) (lam : Fin 5 → ℝ) (hL : IncidenceLagrangeEquation z F α lam)
     (hg : IsUnit (chartMetric z.1).det) :
-    ∀ P, F P = α * blockMass P - 2 * weightedPairing λ z.2 P := by
+    ∀ P, F P = α * blockMass P - 2 * weightedPairing lam z.2 P := by
   intro P
-  have h := lagrange_frame_variations z F α λ hL ((chartMetric z.1)⁻¹ * P)
+  have h := lagrange_frame_variations z F α lam hL ((chartMetric z.1)⁻¹ * P)
   rw [← weightedPairing_mul,
     Matrix.mul_nonsing_inv_cancel_left (chartMetric z.1) P hg] at h
   exact h
@@ -145,12 +147,12 @@ theorem lagrange_block_stationarity (z : IncidenceSpace) (F : M →ₗ[ℝ] ℝ)
 /-- Metric stationarity follows by comparing metric-only and compensating
 frame-only variations. It is not a separate optimization premise. -/
 theorem lagrange_metric_stationarity (z : IncidenceSpace) (F : M →ₗ[ℝ] ℝ)
-    (α : ℝ) (λ : Fin 5 → ℝ) (hL : IncidenceLagrangeEquation z F α λ)
+    (α : ℝ) (lam : Fin 5 → ℝ) (hL : IncidenceLagrangeEquation z F α lam)
     (hg : IsUnit (chartMetric z.1).det) :
-    ∀ h, weightedGram λ (metricVariation h) z.2 = 0 := by
+    ∀ h, weightedGram lam (metricVariation h) z.2 = 0 := by
   intro h
-  have hm := lagrange_metric_variations z F α λ hL h
-  have hb := lagrange_block_stationarity z F α λ hL hg (metricVariation h * z.2)
+  have hm := lagrange_metric_variations z F α lam hL h
+  have hb := lagrange_block_stationarity z F α lam hL hg (metricVariation h * z.2)
   rw [weightedPairing_mul, weightedCross_self] at hb
   linarith
 
@@ -160,13 +162,13 @@ theorem exists_incidence_stationarity (z : IncidenceSpace) (F : M →ₗ[ℝ] �
     (hz : FeasibleIncidence z) (hinv : IsUnit (probabilityBlock z).det)
     (hmax : IsLocalMaxOn (fun w => F (probabilityBlock w))
       {w | FeasibleIncidence w} z) :
-    ∃ (α : ℝ) (λ : Fin 5 → ℝ),
-      (∀ P, F P = α * blockMass P - 2 * weightedPairing λ z.2 P) ∧
-      (∀ h, weightedGram λ (metricVariation h) z.2 = 0) := by
-  obtain ⟨α, λ, hL⟩ := exists_incidence_lagrange z F hz hinv hmax
+    ∃ (α : ℝ) (lam : Fin 5 → ℝ),
+      (∀ P, F P = α * blockMass P - 2 * weightedPairing lam z.2 P) ∧
+      (∀ h, weightedGram lam (metricVariation h) z.2 = 0) := by
+  obtain ⟨α, lam, hL⟩ := exists_incidence_lagrange z F hz hinv hmax
   have hg := metric_invertible_of_block z hinv
-  exact ⟨α, λ, lagrange_block_stationarity z F α λ hL hg,
-    lagrange_metric_stationarity z F α λ hL hg⟩
+  exact ⟨α, lam, lagrange_block_stationarity z F α lam hL hg,
+    lagrange_metric_stationarity z F α lam hL hg⟩
 
 end Lorentz
 end Bell

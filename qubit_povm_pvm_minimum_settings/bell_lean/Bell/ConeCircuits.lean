@@ -1,4 +1,5 @@
-import Bell.MeasurementSpans
+import Bell.StrategyMaps
+import Bell.DeterministicInput
 
 /-!
 # Finite balanced Lorentz-cone circuits
@@ -24,7 +25,16 @@ def sign (x : Fin 2) : ℝ := if x=0 then 1 else -1
 def balance (v : ι → V) (side : ι → Fin 2) : (ι → ℝ) →ₗ[ℝ] V where
   toFun w := ∑ i, (sign (side i)*w i) • v i
   map_add' := by intros; simp [mul_add,add_smul,Finset.sum_add_distrib]
-  map_smul' := by intros; simp [mul_smul,Finset.smul_sum]; congr 1; ext i; module
+  map_smul' := by
+    intro t w
+    change (∑ i, (sign (side i) * (t * w i)) • v i) =
+      t • ∑ i, (sign (side i) * w i) • v i
+    rw [Finset.smul_sum]
+    apply Finset.sum_congr rfl
+    intro i _
+    rw [smul_smul]
+    congr 1
+    ring
 
 def mass (v : ι → V) : (ι → ℝ) →ₗ[ℝ] ℝ where
   toFun w := ∑ i, w i*(v i) 0
@@ -50,7 +60,12 @@ theorem weights_convex (v : ι → V) (side : ι → Fin 2) : Convex ℝ (Weight
 
 theorem weights_isClosed (v : ι → V) (side : ι → Fin 2) : IsClosed (Weights v side) := by
   unfold Weights
-  exact (isClosed_setOf_forall fun i => isClosed_le continuous_const (continuous_apply i)).inter
+  have hn : IsClosed {w : ι → ℝ | ∀ i, 0 ≤ w i} := by
+    simpa only [Set.setOf_forall] using
+      isClosed_iInter fun i : ι =>
+        isClosed_le (continuous_const : Continuous fun _ : ι → ℝ => (0 : ℝ))
+          (continuous_apply i)
+  exact hn.inter
     ((isClosed_eq (by unfold balance; fun_prop) continuous_const).inter
       (isClosed_eq (by unfold mass; fun_prop) continuous_const))
 
@@ -90,7 +105,7 @@ theorem sideSum_time_half {v : ι → V} {side : ι → Fin 2} {w : ι → ℝ}
   have he := congrFun (sideSum_equal hw) 0
   have hm := mass_sideSum v side w
   rw [hw.2.2] at hm
-  fin_cases x <;> linarith
+  fin_cases x <;> dsimp at * <;> linarith
 
 theorem sideSupport_nonempty {v : ι → V} {side : ι → Fin 2} {w : ι → ℝ}
     (hw : w ∈ Weights v side) (x : Fin 2) : (sideSupport side w x).Nonempty := by
@@ -147,8 +162,8 @@ theorem extreme_support_le_four (v : ι → V) (side : ι → Fin 2)
   let I := {i : ι // 0<w i}
   let extend : (I → ℝ) →ₗ[ℝ] (ι → ℝ) :=
     { toFun := fun c i => if h : 0<w i then c ⟨i,h⟩ else 0
-      map_add' := by intros; funext i; split_ifs <;> rfl
-      map_smul' := by intros; funext i; split_ifs <;> simp }
+      map_add' := by intros; funext i; by_cases hi : 0 < w i <;> simp [hi]
+      map_smul' := by intros; funext i; by_cases hi : 0 < w i <;> simp [hi] }
   let f : (I → ℝ) →ₗ[ℝ] (H × ℝ) :=
     { toFun := fun c => (⟨balance v side (extend c),
         H.sum_mem fun i _ => H.smul_mem _ (hvH i)⟩,mass v (extend c))
@@ -163,6 +178,7 @@ theorem extreme_support_le_four (v : ι → V) (side : ι → Fin 2)
       (by intro i hi; simp [extend,hi]) hb hm
     funext i
     have hci := congrFun he i
+    apply sub_eq_zero.mp
     simpa [extend,i.property] using hci
   have hd := LinearMap.finrank_le_finrank_of_injective hi
   have hd' : Fintype.card I ≤ Module.finrank ℝ H+1 := by
@@ -234,8 +250,11 @@ theorem extreme_singleton_other_le_one (v : ι → V) (side : ι → Fin 2)
     have hls := (Finset.mem_filter.mp hl).2
     have htotal : FutureNull (w i • v i) := by
       refine ⟨mul_pos hwi (hv i).1, ?_⟩
-      simp [lorentzSquare,Pi.smul_apply,smul_eq_mul,mul_pow,(hv i).2]
-      nlinarith [(hv i).2]
+      calc
+        lorentzSquare (w i • v i) = (w i)^2 * lorentzSquare (v i) := by
+          simp only [lorentzSquare,Pi.smul_apply,smul_eq_mul]
+          ring
+        _ = 0 := by rw [(hv i).2,mul_zero]
     have hpart : Future (w l • v l) := future_nonnegative_smul
       ⟨(hv l).1.le,(hv l).2.ge⟩ hwl.le
     have hrest : Future (w i • v i-w l • v l) := by
@@ -257,7 +276,11 @@ theorem extreme_singleton_other_le_one (v : ι → V) (side : ι → Fin 2)
     have hea := congrFun he a
     simp only [Pi.smul_apply,smul_eq_mul] at hea ⊢
     field_simp [hwi.ne',(hv i).1.ne',hwl.ne'] at hea ⊢
-    nlinarith
+    apply mul_left_cancel₀ (mul_ne_zero hwl.ne' hwi.ne')
+    calc
+      (w l * w i) * (v l a * v i 0) = w l * v l a * (w i * v i 0) := by ring
+      _ = w l * v l 0 * (w i * v i a) := hea
+      _ = (w l * w i) * (v l 0 * v i a) := by ring
   have hrel : (v k) 0 • v j=(v j) 0 • v k := by
     rw [hdir j hj,hdir k hk]
     ext a
@@ -271,7 +294,8 @@ theorem extreme_singleton_other_le_one (v : ι → V) (side : ι → Fin 2)
       have haj : a ≠ j := by intro h; subst a; linarith
       have hak : a ≠ k := by intro h; subst a; linarith
       simp [d,haj,hak]
-    · simp [d,balance,sub_smul,mul_sub,Finset.sum_sub_distrib,hjs,hks,← mul_smul,hrel]
+    · simp [d,balance,sub_smul,mul_sub,Finset.sum_sub_distrib,hjs,hks,← mul_smul]
+      rw [mul_smul,mul_smul,hrel,sub_self]
     · simp [d,mass,sub_mul,Finset.sum_sub_distrib,hjk,Ne.symm hjk]
       ring
   have hj0 := congrFun hd j
@@ -304,7 +328,11 @@ theorem extreme_side_card_le_two (v : ι → V) (side : ι → Fin 2)
   intro x
   by_contra! hx
   have hother : (sideSupport side w (otherInput x)).card=1 := by
-    fin_cases x <;> simp only [otherInput] <;> omega
+    rcases fin_two_cases x with rfl | rfl
+    · change (sideSupport side w 1).card = 1
+      omega
+    · change (sideSupport side w 0).card = 1
+      omega
   obtain ⟨i,hi⟩ := Finset.card_eq_one.mp hother
   have he := extreme_singleton_other_le_one v side hv w hext (otherInput x) i hi
   have hoo : otherInput (otherInput x)=x := by fin_cases x <;> rfl

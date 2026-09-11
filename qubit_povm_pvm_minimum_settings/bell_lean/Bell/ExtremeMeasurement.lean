@@ -49,7 +49,7 @@ theorem extreme_perturbation_marginals {A : Architecture} (s : FullPureStrategy 
     by_cases hx : x'=x
     · subst x'
       simp only [p,m,FullPureStrategy.remeasureAlice,FullPureStrategy.behavior,
-        FullPureStrategy.toStrategy,Strategy.behavior,Function.update_same,POVM.perturb,
+        FullPureStrategy.toStrategy,Strategy.behavior,pureState,Function.update_self,POVM.perturb,
         Pi.add_apply,Pi.smul_apply,smul_eq_mul]
       rw [pureDensity_born,pureDensity_born,pureDensity_born]
       simp_rw [localTrace_comm _ (s.coefficient * ((s.bob y').effect b).transpose *
@@ -68,9 +68,12 @@ theorem extreme_perturbation_marginals {A : Architecture} (s : FullPureStrategy 
   have hs' := born_sum_bob s.toStrategy.state ((s.alice x).effect a) (s.bob y)
   change (∑ b, p.behavior x y a b) = _ at hp'
   change (∑ b, s.behavior x y a b) = _ at hs'
+  change (∑ b, p.behavior x y a b) = ∑ b, s.behavior x y a b at he'
   rw [hp',hs'] at he'
-  simp only [p,FullPureStrategy.remeasureAlice,FullPureStrategy.toStrategy,
-    Function.update_same,POVM.perturb,pureDensity_born,Matrix.transpose_one,mul_one] at he'
+  change born (pureDensity p.coefficient) ((p.alice x).effect a) 1 =
+    born (pureDensity s.coefficient) ((s.alice x).effect a) 1 at he'
+  simp only [p,FullPureStrategy.remeasureAlice,FullPureStrategy.toStrategy,pureState,
+    Function.update_self,POVM.perturb,pureDensity_born,Matrix.transpose_one,mul_one] at he'
   simp_rw [localTrace_comm _ (s.coefficient*s.coefficient.conjTranspose),map_add,map_smul,
     smul_eq_mul] at he'
   have hz : ε * localTrace (s.coefficient*s.coefficient.conjTranspose) (D a) = 0 := by
@@ -116,10 +119,16 @@ theorem extreme_effect_independent {A : Architecture} (s : FullPureStrategy A)
     simp only [map_sum,map_smul,pauli_coordinates ((s.alice x).positive _).isHermitian,map_zero] at he
     have he' : (∑ b, d b • (s.alice x).effect b) =
         ∑ b : EffectSupport (s.alice x), c b • (s.alice x).effect b := by
-      rw [Fintype.sum_subtype]
+      have hsum : (∑ b ∈ Finset.univ.filter (fun b => (s.alice x).effect b ≠ 0),
+          d b • (s.alice x).effect b) = ∑ b, d b • (s.alice x).effect b := by
+        apply Finset.sum_subset (Finset.filter_subset _ _)
+        intro b _ hb
+        have hzero : (s.alice x).effect b = 0 := by simpa using hb
+        simp [hzero]
+      rw [← hsum, Finset.sum_subtype (p := fun b => (s.alice x).effect b ≠ 0) _ (by simp)]
       apply Finset.sum_congr rfl
       intro b _
-      by_cases hb : (s.alice x).effect b ≠ 0 <;> simp [d,hb]
+      simp [d, b.property]
     exact he'.trans he
   have hz := extreme_scalar_relation s hex x y d hd a a.property
   simpa [d,a.property] using hz
@@ -168,7 +177,11 @@ theorem extreme_fullrank_effect_deterministic {A : Architecture} (s : FullPureSt
     rw [← M.normalized,Finset.sum_eq_single a]
     · intro b _ hba; exact hz b hba
     · simp
-  exact ⟨a,fun b => by by_cases hba : b=a <;> simp [hba,haI,hz]⟩
+  refine ⟨a, fun b => ?_⟩
+  change M.effect b = if b = a then 1 else 0
+  by_cases hba : b = a
+  · simpa [hba] using haI
+  · simpa [hba] using hz b hba
 
 theorem extreme_nondeterministic_effects_null {A : Architecture} (s : FullPureStrategy A)
     (hex : s.behavior ∈ Set.extremePoints ℝ (convexPOVM A))

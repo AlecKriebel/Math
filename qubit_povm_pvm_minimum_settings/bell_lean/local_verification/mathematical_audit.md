@@ -148,3 +148,70 @@ not compare every theorem of the PDF line by line with a checked declaration.
 The strongest result here is an independent source-level validation of the
 central rank-case mechanisms and concrete falsification controls establishing
 the importance of their boundary hypotheses.
+
+## Compiler checkpoint: rank-one chain
+
+Timestamp: 2026-09-11T01:51:22Z.
+
+Following the source review, the parent installed the pinned Lean 4.19.0 and
+Mathlib toolchain. This reviewer then repaired and successfully compiled
+`Bell.Lorentz`, `Bell.ProjectiveFiber`, and `Bell.RankOne`. Bounded rank-one
+formalization repair completion: 100%; full-paper completion remains a separate
+project-wide estimate. The main changes are narrow imports, reliable
+evaluation of finite vector literals, explicit finite-index goals before
+arithmetic automation, and a real scalar type annotation in the homogeneous
+inverse helper. No mathematical premises were weakened and no axiom or `sorry`
+was added.
+
+`RankOneAxiomCheck.lean` checks the actual dependency sets of
+`projective_fiber_injective`, `rank_one_positive_stationarity_impossible`, and
+`transformed_rank_one_obstruction`. Each reports exactly `propext`,
+`Classical.choice`, and `Quot.sound`; see `rank_one_axioms.log`. Successful
+build output is retained in `lorentz_build.log`, `projective_fiber_build.log`,
+and `rank_one_build.log`. This upgrades the rank-one chain beyond the earlier
+manual-review status but does not certify the unfinished imported physical
+reduction and final assembly.
+
+## Compiler checkpoint: rank zero and a corrected missing helper premise
+
+Timestamp: 2026-09-11T02:03:37Z. Bounded rank-zero repair completion: 100%.
+`Bell.RankZero` and `Bell.RankZeroSimulation` now compile. The actual axiom
+checks for `rank_zero_normalized_rigidity`, `metricTable_mem_convexPVM`, and
+`rank_zero_transformed_table_mem` report exactly `propext`, `Classical.choice`,
+and `Quot.sound`; see `RankZeroAxiomCheck.lean` and `rank_zero_axioms.log`.
+
+Compilation exposed one important defect missed by the earlier informal read:
+the intended block-preservation hypothesis `hπ` was mentioned in the proof of
+`ternaryLabelMap_injective` but absent from its elaborated declaration type.
+Lean section variables are not automatically included merely because a later
+proof tries to reference them. Since `ternaryLabelMap` itself does not need
+`hπ` to be defined, the original helper incorrectly attempted unrestricted
+injectivity.
+
+That unrestricted helper is false: for the permutation swapping coefficient
+indices `0` and `3`, both ternary label `0` (coefficient index `2`) and ternary
+label `1` (coefficient index `3`) map to label `0` after truncated subtraction
+by `2`. The repair uses `include hπ in` to state the necessary partition
+preservation premise explicitly. All existing callers already supply it from
+the proved rigidity theorem. The top-level rank-zero simulation statement is
+unchanged, and its successful axiom check verifies that this premise is
+discharged rather than assumed externally. Thus this is a corrected helper
+statement, not a counterexample to the paper's rank-zero conclusion.
+
+Other repairs concern finite-index type inference and normalization, an
+identity ring-homomorphism in a linearity proof, and restricting a circuit
+rewrite to its intended side. Build logs are `rank_zero_build.log` and
+`rank_zero_simulation_build.log`.
+
+## Compiler checkpoint: combined incidence rank analysis
+
+Timestamp: 2026-09-11T02:06:52Z. Bounded `IncidenceRank` repair completion: 100%.
+The production `Bell.IncidenceRank` build succeeded after its production
+dependencies were repaired by the team. The full normalized positive tangent,
+high-rank local-maximum exclusion, rank-one exclusion and rank-zero block
+simulation now elaborate in one module. Its statements were preserved.
+Repairs concerned current finite-basis APIs, coercions of linear maps,
+matrix-vector rewrite direction, product projections, and an ambiguous
+universe on the one-element basis index. The successful output is retained in
+`incidence_rank_build.log`; the global dependency/axiom audit remains the final
+project-wide certification step.

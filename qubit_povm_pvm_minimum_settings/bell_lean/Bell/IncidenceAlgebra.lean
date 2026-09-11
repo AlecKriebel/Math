@@ -313,4 +313,10 @@ theorem polynomial_score_gap
     exact metricStationary _
   · exact hz'.2.trans hz.2.symm
 
+/- Congruence written entirely in fixed finite coordinates. -/
+theorem matrixPair_mul_frames (G Y Z : M) (x y : V) :
+    matrixPair G (Y *ᵥ x) (Z *ᵥ y) = matrixPair (Y.transpose * G * Z) x y := by
+  simp [matrixPair, Matrix.mul_apply, Matrix.mulVec, dotProduct, Fin.sum_univ_succ]
+  ring
+
 end Bell.Lorentz

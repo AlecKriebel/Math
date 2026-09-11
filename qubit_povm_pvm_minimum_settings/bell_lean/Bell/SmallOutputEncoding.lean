@@ -33,7 +33,11 @@ theorem coarsenPOVM_comp {l m n : ℕ} (M : POVM l) (f : Fin l → Fin m) (g : F
   rw [he]
   apply Finset.sum_congr rfl
   intro c _
-  by_cases hc : g (f c)=a <;> simp [hc,Function.comp_apply]
+  rw [Finset.sum_eq_single (f c)]
+  · simp [Function.comp_apply]
+  · intro b _ hb
+    simp [Ne.symm hb]
+  · simp
 
 theorem coarsenPOVM_id {n : ℕ} (M : POVM n) (a : Fin n) :
     (coarsenPOVM M id).effect a=M.effect a := by simp [coarsenPOVM]
@@ -62,9 +66,10 @@ def activePOVM {n : ℕ} (M : POVM n) : POVM (Fintype.card (EffectSupport M)) wh
   positive i := M.positive _
   normalized := by
     classical
-    rw [Equiv.sum_comp (activeEnumeration M)]
-    rw [Fintype.sum_subtype]
-    simpa using M.normalized
+    rw [Equiv.sum_comp (activeEnumeration M) (fun a : EffectSupport M => M.effect a)]
+    have h := Fintype.sum_subtype_add_sum_subtype (fun a => M.effect a ≠ 0) M.effect
+    have hz (a : {a : Fin n // ¬ M.effect a ≠ 0}) : M.effect a = 0 := not_not.mp a.property
+    simpa only [hz, Finset.sum_const_zero, add_zero] using h.trans M.normalized
 
 def encodePOVM {n : ℕ} (M : POVM n) (hc : Fintype.card (EffectSupport M) ≤ 3) : POVM 3 :=
   coarsenPOVM (activePOVM M) (Fin.castLE hc)
@@ -79,26 +84,29 @@ def encodingLabel {n : ℕ} (M : POVM n) (hc : Fintype.card (EffectSupport M) �
 theorem encodingLabel_cast {n : ℕ} (M : POVM n) (hc : Fintype.card (EffectSupport M) ≤ 3)
     (a : Fin (Fintype.card (EffectSupport M))) :
     encodingLabel M hc (Fin.castLE hc a)=(activeEnumeration M a).val := by
-  simp [encodingLabel,a.isLt]
+  simp only [encodingLabel, Fin.coe_castLE, dif_pos a.isLt]
 
 theorem encodePOVM_cast {n : ℕ} (M : POVM n) (hc : Fintype.card (EffectSupport M) ≤ 3)
     (a : Fin (Fintype.card (EffectSupport M))) :
     (encodePOVM M hc).effect (Fin.castLE hc a)=M.effect (activeEnumeration M a) := by
   classical
-  unfold encodePOVM coarsenPOVM
+  change (∑ b, if Fin.castLE hc b = Fin.castLE hc a then
+    (activePOVM M).effect b else 0) = _
   rw [Finset.sum_eq_single a]
   · simp [activePOVM]
   · intro b _ hba
     have hn : Fin.castLE hc b ≠ Fin.castLE hc a := by
       intro he
       apply hba
-      exact Fin.ext (congrArg Fin.val he)
+      exact Fin.ext (congrArg (fun i : Fin 3 => i.val) he)
     simp [hn]
   · simp
 
 theorem encodePOVM_above {n : ℕ} (M : POVM n) (hc : Fintype.card (EffectSupport M) ≤ 3)
     (a : Fin 3) (ha : Fintype.card (EffectSupport M) ≤ a.val) :
     (encodePOVM M hc).effect a=0 := by
+  classical
+  change (∑ b, if Fin.castLE hc b = a then (activePOVM M).effect b else 0) = 0
   apply Finset.sum_eq_zero
   intro b _
   have hn : Fin.castLE hc b ≠ a := by
@@ -115,9 +123,12 @@ theorem encoding_coarsens {n : ℕ} (M : POVM n) (hc : Fintype.card (EffectSuppo
   rw [encodePOVM,coarsenPOVM_comp]
   change (∑ b, if encodingLabel M hc (Fin.castLE hc b)=a then M.effect (activeEnumeration M b) else 0)=_
   simp_rw [encodingLabel_cast]
-  rw [Equiv.sum_comp (activeEnumeration M)]
-  rw [Fintype.sum_subtype]
-  by_cases ha : M.effect a=0 <;> simp [ha]
+  rw [Equiv.sum_comp (activeEnumeration M)
+    (fun b : EffectSupport M => if b.val = a then M.effect b else 0)]
+  rw [← Finset.sum_subtype (p := fun b => M.effect b ≠ 0)
+    (Finset.univ.filter (fun b => M.effect b ≠ 0)) (by simp)
+    (fun b => if b = a then M.effect b else 0)]
+  by_cases ha : M.effect a = 0 <;> simp [ha]
 
 /-- Every encoded effect is either zero or one of the original active effects. -/
 theorem encodePOVM_effect_cases {n : ℕ} (M : POVM n) (hc : Fintype.card (EffectSupport M) ≤ 3)
@@ -148,36 +159,54 @@ theorem deterministic_alice_local (AO BO : Fin 2 → ℕ) (s : Strategy ⟨2,2,A
     s.behavior ∈ convexPVM ⟨2,2,AO,BO⟩ := by
   obtain ⟨label,hlabel⟩ := hd
   fin_cases d
-  · let B : Architecture := ⟨1,2,fun _ => AO 1,BO⟩
+  · change ∀ b : Fin (AO 0), (s.alice 0).effect b = if b = label then 1 else 0 at hlabel
+    let B : Architecture := ⟨1,2,fun _ => AO 1,BO⟩
     let t : Strategy B := ⟨s.state,fun _ => s.alice 1,s.bob⟩
     let T : StrategyMap B ⟨2,2,AO,BO⟩ :=
       { aliceInput := fun _ => 0
         bobInput := id
-        aliceOutput := by intro x; fin_cases x; exact fun _ => label; exact id
+        aliceOutput := Fin.cases (fun _ => label) (Fin.cases id (fun i => Fin.elim0 i))
         bobOutput := fun _ => id }
-    have hp := T.mem_convexPVM (strategy_one_input t (Or.inl (by decide)))
+    have hp := T.mem_convexPVM (strategy_one_input t (Or.inl (by change 1 ≤ 1; omega)))
     rw [← T.strategy_behavior t] at hp
     have he : (T.strategy t).behavior=s.behavior := by
       funext x y a b
-      fin_cases x <;>
-        simp [T,t,StrategyMap.strategy,Strategy.behavior,coarsenPOVM_id,
-          coarsenPOVM_const,hlabel]
+      fin_cases x
+      · change born s.state.density
+          ((coarsenPOVM (s.alice 1) (fun _ => label)).effect a)
+          ((coarsenPOVM (s.bob y) id).effect b) =
+          born s.state.density ((s.alice 0).effect a) ((s.bob y).effect b)
+        rw [coarsenPOVM_const, coarsenPOVM_id, hlabel]
+      · change born s.state.density
+          ((coarsenPOVM (s.alice 1) id).effect a)
+          ((coarsenPOVM (s.bob y) id).effect b) =
+          born s.state.density ((s.alice 1).effect a) ((s.bob y).effect b)
+        simp only [coarsenPOVM_id]
     rw [he] at hp
     exact hp
-  · let B : Architecture := ⟨1,2,fun _ => AO 0,BO⟩
+  · change ∀ b : Fin (AO 1), (s.alice 1).effect b = if b = label then 1 else 0 at hlabel
+    let B : Architecture := ⟨1,2,fun _ => AO 0,BO⟩
     let t : Strategy B := ⟨s.state,fun _ => s.alice 0,s.bob⟩
     let T : StrategyMap B ⟨2,2,AO,BO⟩ :=
       { aliceInput := fun _ => 0
         bobInput := id
-        aliceOutput := by intro x; fin_cases x; exact id; exact fun _ => label
+        aliceOutput := Fin.cases id (Fin.cases (fun _ => label) (fun i => Fin.elim0 i))
         bobOutput := fun _ => id }
-    have hp := T.mem_convexPVM (strategy_one_input t (Or.inl (by decide)))
+    have hp := T.mem_convexPVM (strategy_one_input t (Or.inl (by change 1 ≤ 1; omega)))
     rw [← T.strategy_behavior t] at hp
     have he : (T.strategy t).behavior=s.behavior := by
       funext x y a b
-      fin_cases x <;>
-        simp [T,t,StrategyMap.strategy,Strategy.behavior,coarsenPOVM_id,
-          coarsenPOVM_const,hlabel]
+      fin_cases x
+      · change born s.state.density
+          ((coarsenPOVM (s.alice 0) id).effect a)
+          ((coarsenPOVM (s.bob y) id).effect b) =
+          born s.state.density ((s.alice 0).effect a) ((s.bob y).effect b)
+        simp only [coarsenPOVM_id]
+      · change born s.state.density
+          ((coarsenPOVM (s.alice 0) (fun _ => label)).effect a)
+          ((coarsenPOVM (s.bob y) id).effect b) =
+          born s.state.density ((s.alice 1).effect a) ((s.bob y).effect b)
+        rw [coarsenPOVM_const, coarsenPOVM_id, hlabel]
     rw [he] at hp
     exact hp
 

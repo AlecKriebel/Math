@@ -27,7 +27,8 @@ def outcomeVector (w : ι → ℝ) (x : Fin 2) (a : Fin (AO x)) : V :=
 
 theorem outcomeVector_sum (w : ι → ℝ) (x : Fin 2) :
     (∑ a, outcomeVector AO v side label fallback w x a)=sideSum v side w x := by
-  rw [outcomeVector,Finset.sum_comm]
+  simp only [outcomeVector]
+  rw [Finset.sum_comm]
   apply Finset.sum_congr rfl
   intro i _
   by_cases hi : side i=x <;> simp [hi]
@@ -60,7 +61,7 @@ def behaviorMap : (ι → ℝ) →ₗ[ℝ] Behavior ⟨2,2,AO,BO⟩ where
       apply Finset.sum_congr rfl
       intro i _
       split_ifs <;> simp [mul_smul]
-    simp only [Pi.smul_apply,smul_eq_mul,he,map_smul]
+    simp only [Pi.smul_apply,smul_eq_mul,he,map_smul,RingHom.id_apply]
 
 /-- The same table viewed as an assemblage on the fixed binary-measurement party. -/
 def circuitAssemblage (hv : ∀ i, FutureNull (v i)) (w : ι → ℝ)
@@ -72,7 +73,7 @@ def circuitAssemblage (hv : ∀ i, FutureNull (v i)) (w : ι → ℝ)
   steered x a := pauli (outcomeVector AO v side label fallback w x a)
   positive := by
     intro x a
-    rw [map_sum]
+    rw [outcomeVector,map_sum]
     apply positive_sum
     intro i
     by_cases hi : side i=x ∧ declaredLabel AO side label fallback x i=a
@@ -101,7 +102,8 @@ def refinedAssemblage (hv : ∀ i, FutureNull (v i)) (w : ι → ℝ)
     · exact Matrix.PosSemidef.zero
   commonSum := by
     intro x
-    rw [Equiv.sum_comp (Fintype.equivFin ι).symm]
+    rw [Equiv.sum_comp (Fintype.equivFin ι).symm
+      (fun i : ι => if side i=x then w i • pauli (v i) else 0)]
     have he : (∑ i, if side i=x then w i • pauli (v i) else 0)=pauli (sideSum v side w x) := by
       simp [sideSum,map_sum,map_smul,apply_ite]
     rw [he]
@@ -131,7 +133,9 @@ theorem coarsening_refined_behavior (hv : ∀ i, FutureNull (v i)) (w : ι → �
       else 0) = _
   rw [Finset.sum_eq_single b]
   · simp only [and_true,true_and]
-    rw [Equiv.sum_comp (Fintype.equivFin ι).symm]
+    rw [Equiv.sum_comp (Fintype.equivFin ι).symm
+      (fun i : ι => if declaredLabel AO side label fallback x i=a then
+        localTrace ((N y).effect b) (if side i=x then w i • pauli (v i) else 0) else 0)]
     change _=localTrace ((N y).effect b) (pauli (outcomeVector AO v side label fallback w x a))
     rw [outcomeVector,map_sum,map_sum]
     apply Finset.sum_congr rfl
@@ -180,8 +184,10 @@ def binaryRefinedProjective (hv : ∀ i, FutureNull (v i)) (w : ι → ℝ)
       intro k l h
       apply Subtype.ext
       exact (Fintype.equivFin ι).symm.injective (congrArg Subtype.val h)
-    have hc := (Fintype.card_le_of_injective f hi).trans (hbinary x)
-    simpa [Fintype.card_subtype] using hc
+    have hc : Fintype.card {k : Fin (Fintype.card ι) // M.effect k ≠ 0} ≤
+        (sideSupport side w x).card := by
+      simpa only [Fintype.card_coe] using Fintype.card_le_of_injective f hi
+    simpa [Fintype.card_subtype] using hc.trans (hbinary x)
   exact M.toPVMOfTwoNull hnull hcard
 
 theorem binary_circuit_mem_convexPVM (hv : ∀ i, FutureNull (v i)) (w : ι → ℝ)

@@ -86,7 +86,7 @@ theorem finite_local_mixture_mem_convexPVM (A : Architecture)
 
 /-- A common-label encoding: input 0 is binary with a zero label 2; input 1
 is ternary. Both parties have the same two declared inputs. -/
-def binaryTernaryArchitecture : Architecture where
+abbrev binaryTernaryArchitecture : Architecture where
   aliceInputs := 2
   bobInputs := 2
   aliceOutputs := fun _ => 3
@@ -134,6 +134,7 @@ theorem transportMixture_mem {a b : Transport.Vec} {C : Transport.Mat}
   · simpa [branchWeight,Fintype.sum_prod_type,Fin.sum_univ_two] using
       q.total_branch_mass hrows hsa hsb
 
+set_option maxHeartbeats 2000000 in
 /-- All 36 declared probabilities, including the zero binary label, are covered
 by the same branch distribution. -/
 theorem transportMixture_eq {a b : Transport.Vec} {C : Transport.Mat}
@@ -142,6 +143,7 @@ theorem transportMixture_eq {a b : Transport.Vec} {C : Transport.Mat}
     (hcols : ∀ j, ∑ i, C i j=a j+b j)
     (hsa : ∑ i, a i=1/2) (hsb : ∑ i, b i=1/2) :
     transportMixture q=rankZeroTable a b C := by
+  have htwo (h : 2 < 3) : (⟨2,h⟩ : Fin 3) = 2 := rfl
   have qr0 := q.row_sum 0
   have qr1 := q.row_sum 1
   have qr2 := q.row_sum 2
@@ -156,13 +158,14 @@ theorem transportMixture_eq {a b : Transport.Vec} {C : Transport.Mat}
   have cc2 := q.complement_column hcols 2
   have mass0 := q.mass_first hsb
   have mass1 := q.mass_second hrows hsa
-  norm_num [Fin.sum_univ_succ] at qr0 qr1 qr2 qc0 qc1 qc2
-    cr0 cr1 cr2 cc0 cc1 cc2 mass0 mass1
+  norm_num [Fin.sum_univ_succ] at qr0 qr1 qr2 qc0 qc1 qc2 cr0 cr1 cr2 cc0 cc1 cc2 mass0 mass1
   funext x y i j
   fin_cases x <;> fin_cases y <;> fin_cases i <;> fin_cases j <;>
     norm_num [transportMixture,rankZeroTable,branchWeight,branchAlice,branchBob,
       deterministicTable,Fintype.sum_prod_type,Fin.sum_univ_succ,
-      Pi.smul_apply,smul_eq_mul] <;> linarith
+      Pi.smul_apply,smul_eq_mul] <;>
+      norm_num only [Fin.ext_iff, Fin.coe_ofNat_eq_mod] <;>
+      (try simp [htwo]) <;> linarith
 
 /-- Physical PVM simulation from an arbitrary bounded-transport certificate. -/
 theorem rankZeroTable_mem_of_transport {a b : Transport.Vec} {C : Transport.Mat}

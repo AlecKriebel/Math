@@ -73,7 +73,7 @@ theorem strategy_single_bob {n : ℕ} (AO : Fin n → ℕ) (BO : Fin 1 → ℕ)
     intro x b
     exact born_sum_alice s.state (s.alice x) ((s.bob 0).effect b)
   have hqsum : ∑ b, q b = 1 := by
-    dsimp [q]
+    change (∑ b, expectation s.state.density (tensor 1 ((s.bob 0).effect b))) = 1
     rw [← map_sum, ← tensor_sum_right, (s.bob 0).normalized,
       tensor_one_one, state_expectation_one]
   let w := ClassicalProduct.weight p q
@@ -110,7 +110,7 @@ theorem strategy_single_alice {n : ℕ} (AO : Fin 1 → ℕ) (BO : Fin n → ℕ
     intro y a
     exact born_sum_bob s.state ((s.alice 0).effect a) (s.bob y)
   have hqsum : ∑ a, q a = 1 := by
-    dsimp [q]
+    change (∑ a, expectation s.state.density (tensor ((s.alice 0).effect a) 1)) = 1
     rw [← map_sum, ← tensor_sum_left, (s.alice 0).normalized,
       tensor_one_one, state_expectation_one]
   let w := ClassicalProduct.weight p q

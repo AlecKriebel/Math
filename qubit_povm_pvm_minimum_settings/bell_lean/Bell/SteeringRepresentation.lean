@@ -19,13 +19,14 @@ def rowAmplitude (B : JointOperator) (k : Joint) : Operator :=
 theorem gram_rows_density (B : JointOperator) :
     B.conjTranspose * B = ∑ k : Joint, pureDensity (rowAmplitude B k) := by
   ext i j
-  simp [Matrix.mul_apply, Matrix.conjTranspose_apply, rowAmplitude, pureDensity]
+  simp [Matrix.mul_apply, Matrix.sum_apply, Matrix.conjTranspose_apply, rowAmplitude, pureDensity]
 
 def State.amplitude (ρ : State) (k : Joint) : Operator :=
   rowAmplitude ρ.positive.sqrt k
 
 theorem State.amplitudes_density (ρ : State) :
     ρ.density = ∑ k : Joint, pureDensity (ρ.amplitude k) := by
+  change ρ.density = ∑ k, pureDensity (rowAmplitude ρ.positive.sqrt k)
   rw [← gram_rows_density]
   change ρ.density = ρ.positive.sqrt.conjTranspose * ρ.positive.sqrt
   rw [ρ.positive.posSemidef_sqrt.isHermitian.eq, ρ.positive.sqrt_mul_self]
@@ -134,10 +135,16 @@ theorem full_pure_marginal_positive {A : Architecture} (s : FullPureStrategy A)
       rw [Matrix.det_conjTranspose]
       exact hc.map (starRingEnd ℂ)
     have he := congrArg (fun Q : Operator => C.conjTranspose⁻¹ * Q * C⁻¹) hz
-    simpa [← Matrix.mul_assoc, Matrix.nonsing_inv_mul _ hct,
-      Matrix.mul_assoc, Matrix.mul_nonsing_inv _ hc] using he
+    have hcancel : C.conjTranspose⁻¹ * (C.conjTranspose * M * C) * C⁻¹ = M := by
+      calc
+        _ = (C.conjTranspose⁻¹ * C.conjTranspose) * M * (C * C⁻¹) := by
+          noncomm_ring
+        _ = M := by
+          rw [Matrix.nonsing_inv_mul _ hct, Matrix.mul_nonsing_inv _ hc, one_mul, mul_one]
+    simpa only [hcancel, mul_zero, zero_mul] using he
   have ht := positive_trace_positive hp hne'
   change 0 < (Matrix.trace (M*(C*C.conjTranspose))).re
-  simpa only [Matrix.mul_assoc, Matrix.trace_mul_cycle] using ht
+  rw [Matrix.mul_assoc, Matrix.trace_mul_comm C.conjTranspose (M * C), Matrix.mul_assoc] at ht
+  exact ht
 
 end Bell

@@ -12,13 +12,13 @@ ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'reports/source_completion'
 TARGETS={
  'Bell/Assembly.lean':{
+  'main_claims_with_strengthening':'theorem main_claims_with_strengthening : MainClaims ∧ StrengthenedAttainment',
   'universal_two_input_equality':'theorem universal_two_input_equality : UniversalTwoInputEquality',
   'main_claims':'theorem main_claims : MainClaims',
   'two_input_convex_equality':'theorem two_input_convex_equality (AO BO : Fin 2 → ℕ) : convexPOVM ⟨2,2,AO,BO⟩ = convexPVM ⟨2,2,AO,BO⟩',
  },
  'Bell/StrengthenedWitness.lean':{
   'strengthened_attainment':'theorem strengthened_attainment : StrengthenedAttainment',
-  'main_claims_with_strengthening':'theorem main_claims_with_strengthening : MainClaims ∧ StrengthenedAttainment',
  },
 }
 

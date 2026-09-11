@@ -23,12 +23,16 @@ theorem bellScore_add (p q : Behavior separatorArchitecture) :
     bellScore (p+q)=bellScore p+bellScore q := by
   unfold bellScore correlation
   norm_num [Fin.sum_univ_succ,aliceSign,bobSign,Pi.add_apply]
+  <;> norm_num only [Fin.ext_iff, Fin.coe_ofNat_eq_mod]
+  <;> simp only [ite_true, ite_false]
   <;> ring
 
 theorem bellScore_smul (r : ℝ) (p : Behavior separatorArchitecture) :
     bellScore (r • p)=r*bellScore p := by
   unfold bellScore correlation
   norm_num [Fin.sum_univ_succ,aliceSign,bobSign,Pi.smul_apply,smul_eq_mul]
+  <;> norm_num only [Fin.ext_iff, Fin.coe_ofNat_eq_mod]
+  <;> simp only [ite_true, ite_false]
   <;> ring
 
 def bellLinear : Behavior separatorArchitecture →ₗ[ℝ] ℝ where

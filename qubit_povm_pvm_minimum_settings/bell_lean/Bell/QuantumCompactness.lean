@@ -104,8 +104,7 @@ theorem trace_gram_norms {n : Type*} [Fintype n] (B : Matrix n n ℂ) :
   have ht (z : ℂ) : (star z * z).re = ‖z‖^2 := by
     rw [pow_two, Complex.norm_mul_self_eq_normSq]
     simp [Complex.normSq_apply, Complex.mul_re]
-    ring
-  simp only [gramMatrix, Matrix.trace, Matrix.mul_apply, Matrix.conjTranspose_apply,
+  simp only [gramMatrix, Matrix.trace, Matrix.diag_apply, Matrix.mul_apply, Matrix.conjTranspose_apply,
     Complex.re_sum, ht]
   exact Finset.sum_comm
 
@@ -150,7 +149,7 @@ theorem gramValid_subset_box (A : Architecture) : {d | GramValid A d} ⊆ gramBo
     have hone := entry_norm_sq_le_trace_gram (L a) i j
     have htwo : (Matrix.trace (gramMatrix (L a))).re ≤ 2 := by
       rw [← htotal]
-      apply Finset.single_le_sum
+      apply Finset.single_le_sum (f := fun b => (Matrix.trace (gramMatrix (L b))).re)
       · intro b _
         rw [trace_gram_norms]
         positivity
@@ -158,22 +157,33 @@ theorem gramValid_subset_box (A : Architecture) : {d | GramValid A d} ⊆ gramBo
     nlinarith [norm_nonneg (L a i j)]
   exact ⟨hstate, (fun x => hmeasurement _ (hd.2.1 x)), fun y => hmeasurement _ (hd.2.2 y)⟩
 
+private theorem isClosed_forall {X : Type*} [TopologicalSpace X] {ι : Sort*}
+    {p : X → ι → Prop} (h : ∀ i, IsClosed {x | p x i}) :
+    IsClosed {x | ∀ i, p x i} := by
+  simpa only [Set.setOf_forall] using isClosed_iInter h
+
 theorem gramValid_isClosed (A : Architecture) : IsClosed {d : GramData A | GramValid A d} := by
   unfold GramValid
   apply IsClosed.inter
   · exact isClosed_eq (by unfold gramMatrix; fun_prop) continuous_const
   · apply IsClosed.inter
-    · exact isClosed_setOf_forall fun x => isClosed_eq (by unfold gramMatrix; fun_prop) continuous_const
-    · exact isClosed_setOf_forall fun y => isClosed_eq (by unfold gramMatrix; fun_prop) continuous_const
+    · exact isClosed_forall fun x => isClosed_eq (by unfold gramMatrix; fun_prop) continuous_const
+    · exact isClosed_forall fun y => isClosed_eq (by unfold gramMatrix; fun_prop) continuous_const
 
 theorem gramProjective_isClosed (A : Architecture) : IsClosed {d : GramData A | GramProjective A d} := by
   unfold GramProjective
   apply (gramValid_isClosed A).inter
-  repeat' apply IsClosed.inter
-  all_goals
-    repeat' apply isClosed_setOf_forall
-    try apply isClosed_setOf_forall
-    exact isClosed_eq (by unfold gramMatrix; fun_prop) (by unfold gramMatrix; fun_prop)
+  refine IsClosed.inter ?_ (IsClosed.inter ?_ (IsClosed.inter ?_ ?_))
+  · exact isClosed_forall fun x => isClosed_forall fun a =>
+      isClosed_eq (by unfold gramMatrix; fun_prop) (by unfold gramMatrix; fun_prop)
+  · exact isClosed_forall fun x => isClosed_forall fun a =>
+      isClosed_forall fun b => isClosed_forall fun _ =>
+        isClosed_eq (by unfold gramMatrix; fun_prop) continuous_const
+  · exact isClosed_forall fun y => isClosed_forall fun b =>
+      isClosed_eq (by unfold gramMatrix; fun_prop) (by unfold gramMatrix; fun_prop)
+  · exact isClosed_forall fun y => isClosed_forall fun a =>
+      isClosed_forall fun b => isClosed_forall fun _ =>
+        isClosed_eq (by unfold gramMatrix; fun_prop) continuous_const
 
 theorem gramBehavior_continuous (A : Architecture) : Continuous (gramBehavior A) := by
   unfold gramBehavior born gramMatrix tensor Matrix.trace

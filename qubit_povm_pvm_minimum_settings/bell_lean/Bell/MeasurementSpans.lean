@@ -24,26 +24,35 @@ def extendActiveCoefficients {n : ℕ} (M : POVM n) (c : EffectSupport M → ℝ
 theorem active_coefficients_operator {n : ℕ} (M : POVM n) (c : EffectSupport M → ℝ) :
     ∑ a, extendActiveCoefficients M c a • M.effect a = pauli (activeEffectMap M c) := by
   classical
-  simp only [activeEffectMap,map_sum,map_smul,pauli_coordinates (M.positive _).isHermitian]
-  rw [Fintype.sum_subtype]
-  apply Finset.sum_congr rfl
-  intro a _
-  by_cases ha : M.effect a ≠ 0 <;> simp [extendActiveCoefficients,ha]
+  change (∑ a, extendActiveCoefficients M c a • M.effect a) =
+    pauli (∑ a : EffectSupport M, c a • coordinates (M.effect a))
+  simp only [map_sum, map_smul, pauli_coordinates (M.positive _).isHermitian]
+  have h := Fintype.sum_subtype_add_sum_subtype (fun a => M.effect a ≠ 0)
+    (fun a => extendActiveCoefficients M c a • M.effect a)
+  have hp (a : EffectSupport M) :
+      extendActiveCoefficients M c a • M.effect a = c a • M.effect a := by
+    simp only [extendActiveCoefficients, dif_pos a.property]
+  have hn (a : {a : Fin n // ¬ M.effect a ≠ 0}) :
+      extendActiveCoefficients M c a • M.effect a = 0 := by
+    simp only [extendActiveCoefficients, dif_neg a.property, zero_smul]
+  simpa only [hp, hn, Finset.sum_const_zero, add_zero] using h.symm
 
 theorem coefficient_sum_mem_span {n : ℕ} (M : POVM n) (c : Fin n → ℝ) :
     ∑ a, c a • coordinates (M.effect a) ∈ effectSpan M := by
   classical
   refine ⟨fun a => c a, ?_⟩
   change (∑ a : EffectSupport M, c a • coordinates (M.effect a)) = _
-  rw [Fintype.sum_subtype]
-  apply Finset.sum_congr rfl
-  intro a _
-  by_cases ha : M.effect a=0 <;> simp [ha]
+  have h := Fintype.sum_subtype_add_sum_subtype (fun a => M.effect a ≠ 0)
+    (fun a => c a • coordinates (M.effect a))
+  have hz : ∀ a : {a : Fin n // ¬ M.effect a ≠ 0}, c a • coordinates (M.effect a) = 0 := by
+    intro a
+    simp [not_not.mp a.property]
+  simpa only [hz, Finset.sum_const_zero, add_zero] using h
 
 theorem effect_coordinates_mem_span {n : ℕ} (M : POVM n) (a : Fin n) :
     coordinates (M.effect a) ∈ effectSpan M := by
   classical
-  simpa using coefficient_sum_mem_span M (Pi.single a 1)
+  simpa [Pi.single_apply, ite_smul] using coefficient_sum_mem_span M (Pi.single a 1)
 
 theorem timeUnit_mem_effectSpan {n : ℕ} (M : POVM n) : timeUnit ∈ effectSpan M := by
   have h := coefficient_sum_mem_span M (fun _ => 1)
@@ -95,18 +104,16 @@ most one. Its scalar generator is the identity, not a numerical tolerance. -/
 theorem extreme_span_intersection_le_one
     (AO BO : Fin 2 → ℕ) (s : FullPureStrategy ⟨2,2,AO,BO⟩)
     (hex : s.behavior ∈ Set.extremePoints ℝ (convexPOVM ⟨2,2,AO,BO⟩)) :
-    Module.finrank ℝ (effectSpan (s.alice 0) ⊓ effectSpan (s.alice 1)) ≤ 1 := by
+    Module.finrank ℝ ↥(effectSpan (s.alice 0) ⊓ effectSpan (s.alice 1)) ≤ 1 := by
   classical
   let S := effectSpan (s.alice 0) ⊓ effectSpan (s.alice 1)
   have hv : ∀ v : S, (v : V)=(v : V) 0 • timeUnit := by
     intro v
     obtain ⟨c0,hc0⟩ := v.property.1
     obtain ⟨c1,hc1⟩ := v.property.2
-    let c : (x : Fin 2) → Fin (AO x) → ℝ := by
-      intro x
-      fin_cases x
-      · exact extendActiveCoefficients (s.alice 0) c0
-      · exact extendActiveCoefficients (s.alice 1) c1
+    let c : (x : Fin 2) → Fin (AO x) → ℝ :=
+      Fin.cases (extendActiveCoefficients (s.alice 0) c0)
+        (Fin.cases (extendActiveCoefficients (s.alice 1) c1) (fun i => Fin.elim0 i))
     have hcommon : ∀ x, ∑ a, c x a • (s.alice x).effect a=pauli v := by
       intro x
       fin_cases x
@@ -118,8 +125,9 @@ theorem extreme_span_intersection_le_one
     have he := congrArg coordinates hs
     rw [coordinates_pauli,map_smul,← pauli_timeUnit,coordinates_pauli] at he
     have ht := congrFun he 0
-    simp only [Pi.smul_apply,smul_eq_mul,timeUnit] at ht
-    simpa [← ht] using he
+    simp only [Pi.smul_apply, smul_eq_mul, timeUnit, Matrix.cons_val_zero, mul_one] at ht
+    rw [← ht] at he
+    exact he
   let f : S →ₗ[ℝ] ℝ := (LinearMap.proj 0).comp S.subtype
   have hinj : Function.Injective f := by
     intro u v h
@@ -152,7 +160,14 @@ theorem extreme_two_or_three_outcomes
   have h0 := nondeterministic_support_at_least_two (s.alice 0) (hnd 0)
   have h1 := nondeterministic_support_at_least_two (s.alice 1) (hnd 1)
   constructor
-  · intro x; fin_cases x <;> omega
+  · intro x
+    fin_cases x
+    · change Fintype.card (EffectSupport (s.alice 0)) = 2 ∨
+        Fintype.card (EffectSupport (s.alice 0)) = 3
+      omega
+    · change Fintype.card (EffectSupport (s.alice 1)) = 2 ∨
+        Fintype.card (EffectSupport (s.alice 1)) = 3
+      omega
   · by_cases h : Fintype.card (EffectSupport (s.alice 0))=2
     · exact ⟨0,h⟩
     · exact ⟨1,by omega⟩

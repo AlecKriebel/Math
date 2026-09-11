@@ -1,4 +1,5 @@
-import Bell.Assembly
+import Bell.Targets
+import Bell.Purification
 
 /-!
 # Appendix B: exact attained strengthened lower bound
@@ -89,18 +90,20 @@ def bobEffect : Fin 2 → Fin 2 → Operator :=
 theorem auxiliary_positive (k : ℝ) (hk : k^2≤1) (j : Fin 3) :
     (auxiliary k j).PosSemidef := by
   fin_cases j
-  · let G : Operator := !![((k/2 : ℝ) : ℂ),1/2;((k/2 : ℝ) : ℂ),1/2]
+  · change (auxiliary k 0).PosSemidef
+    let G : Operator := !![((k/2 : ℝ) : ℂ),1/2;((k/2 : ℝ) : ℂ),1/2]
     have he : G.conjTranspose*G=auxiliary k 0 := by
       ext i j
       fin_cases i <;> fin_cases j <;> apply Complex.ext <;>
-        norm_num [G,auxiliary,Matrix.conjTranspose_apply,Matrix.mul_apply,Fin.sum_univ_succ] <;> ring
+        simp [G,auxiliary,Matrix.conjTranspose_apply,Matrix.mul_apply,Fin.sum_univ_succ, map_ofNat, ← Complex.ofReal_pow, Complex.mul_re, Complex.mul_im] <;> ring
     rw [← he]
     exact gram_positive G
-  · let G : Operator := !![((k/2 : ℝ) : ℂ),-1/2;((k/2 : ℝ) : ℂ),-1/2]
+  · change (auxiliary k 1).PosSemidef
+    let G : Operator := !![((k/2 : ℝ) : ℂ),-1/2;((k/2 : ℝ) : ℂ),-1/2]
     have he : G.conjTranspose*G=auxiliary k 1 := by
       ext i j
       fin_cases i <;> fin_cases j <;> apply Complex.ext <;>
-        norm_num [G,auxiliary,Matrix.conjTranspose_apply,Matrix.mul_apply,Fin.sum_univ_succ] <;> ring
+        simp [G,auxiliary,Matrix.conjTranspose_apply,Matrix.mul_apply,Fin.sum_univ_succ, map_ofNat, ← Complex.ofReal_pow, Complex.mul_re, Complex.mul_im] <;> ring
     rw [← he]
     exact gram_positive G
   · have hp := posSemidef_real_smul (polarEffect_positive 1 0 (by norm_num))
@@ -136,10 +139,12 @@ theorem bob_normalized (i : Fin 2) : ∑ j, bobEffect i j=1 := by
 
 theorem coefficient_normalized :
     Matrix.trace (coefficient a b * (coefficient a b).conjTranspose)=1 := by
-  apply Complex.ext
-  · simpa [coefficient,Matrix.conjTranspose_apply,Matrix.trace,Matrix.mul_apply,
-      Fin.sum_univ_succ,pow_two] using state_norm
-  · norm_num [coefficient,Matrix.conjTranspose_apply,Matrix.trace,Matrix.mul_apply,Fin.sum_univ_succ]
+  have he (u v : ℝ) : Matrix.trace (coefficient u v * (coefficient u v).conjTranspose) =
+      ((u^2+v^2 : ℝ) : ℂ) := by
+    simp [coefficient, Matrix.trace, Matrix.diag, Matrix.mul_apply,
+      Matrix.conjTranspose_apply, Fin.sum_univ_succ, pow_two]
+  rw [he, state_norm]
+  norm_num
 
 def strategy : Strategy separatorArchitecture where
   state := pureState (coefficient a b) coefficient_normalized
@@ -147,7 +152,7 @@ def strategy : Strategy separatorArchitecture where
     alice_normalized z x k i⟩
   bob i := ⟨bobEffect i,bob_positive i,bob_normalized i⟩
 
-/-- Polynomial expansion valid before imposing any parameter relations. -/
+/- Polynomial expansion valid before imposing any parameter relations. -/
 set_option maxRecDepth 100000 in
 set_option maxHeartbeats 2000000 in
 theorem parameter_score (a b z x k : ℝ) :
@@ -155,10 +160,12 @@ theorem parameter_score (a b z x k : ℝ) :
       (aliceEffect z x k i u) (bobEffect j v)) =
       40*x*a*b+20*z*(a^2+b^2)+(3/10)*(k*a+b)^2+(4/5)*(1-k^2)*a^2 := by
   unfold bellScore correlation
-  norm_num [aliceSign,bobSign,aliceEffect,bobEffect,auxiliary,polarEffect,
-    pureDensity_born,localTrace_apply,coefficient,Matrix.trace,Matrix.mul_apply,
-    Matrix.transpose_apply,Matrix.conjTranspose_apply,Fin.sum_univ_succ]
-  <;> ring
+  simp only [pureDensity_born, localTrace_apply]
+  simp only [aliceSign,bobSign,aliceEffect,bobEffect,auxiliary,polarEffect,
+    coefficient,Matrix.trace,Matrix.diag,Matrix.mul_apply,
+    Matrix.transpose_apply,Matrix.conjTranspose_apply,Fin.sum_univ_succ,Fin.sum_univ_zero]
+  simp [Matrix.cons_val_two, Matrix.cons_val_three, map_ofNat, ← Complex.ofReal_pow, Complex.mul_re, Complex.mul_im]
+  ring
 
 theorem auxiliary_value :
     (3/10)*(k*a+b)^2+(4/5)*(1-k^2)*a^2=(16+4/q)/25 := by
@@ -187,8 +194,12 @@ theorem value : bellScore strategy.behavior=strengthenedLower := by
       (40*x*a*b+20*z*(a^2+b^2))+((3/10)*(k*a+b)^2+(4/5)*(1-k^2)*a^2) by ring,
     locking_value,auxiliary_value]
   change 2500/q+(16+4/q)/25=(16+8*q)/25
-  field_simp [q_pos.ne']
-  <;> nlinarith [q_sq]
+  have hdiv : 62504/q = 8*q := by
+    apply (div_eq_iff q_pos.ne').mpr
+    nlinarith only [q_sq]
+  calc
+    _ = (16+62504/q)/25 := by ring
+    _ = _ := by rw [hdiv]
 
 end Bell.Strengthened
 
@@ -197,8 +208,5 @@ namespace Bell
 theorem strengthened_attainment : StrengthenedAttainment :=
   ⟨Strengthened.strategy.behavior,⟨Strengthened.strategy,rfl⟩,Strengthened.value⟩
 
-/-- The main theorem and the separate strengthened physical-attainment claim. -/
-theorem main_claims_with_strengthening : MainClaims ∧ StrengthenedAttainment :=
-  ⟨main_claims,strengthened_attainment⟩
 
 end Bell

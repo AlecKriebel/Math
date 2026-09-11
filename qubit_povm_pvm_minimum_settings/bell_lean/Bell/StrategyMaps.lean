@@ -64,7 +64,7 @@ def behavior : Behavior A →ₗ[ℝ] Behavior B where
   map_add' := by
     intro p q
     funext x y a b
-    simp only [Pi.add_apply, Finset.sum_add_distrib]
+    simp only [Pi.add_apply, ← Finset.sum_add_distrib]
     apply Finset.sum_congr rfl
     intro c _
     apply Finset.sum_congr rfl
@@ -94,6 +94,7 @@ theorem strategy_behavior (s : Strategy A) : (T.strategy s).behavior = T.behavio
   funext x y a b
   simp only [strategy, Strategy.behavior, coarsenPOVM, born,
     tensor_sum_left, tensor_sum_right, Matrix.mul_sum, Matrix.trace_sum, Complex.re_sum]
+  rw [Finset.sum_comm]
   change (∑ c, ∑ d, born s.state.density
     (if T.aliceOutput x c=a then (s.alice (T.aliceInput x)).effect c else 0)
     (if T.bobOutput y d=b then (s.bob (T.bobInput y)).effect d else 0)) = _
@@ -118,7 +119,9 @@ theorem mem_convexPVM {p : Behavior A} (hp : p ∈ convexPVM A) : T.behavior p �
     change T.behavior (a • p+b • q) ∈ convexPVM B
     rw [map_add,map_smul,map_smul]
     exact (convex_convexHull ℝ (rawPVM B)) hp hq ha hb hab
-  exact (convexHull_min (fun p hp => subset_convexHull ℝ (rawPVM B) (T.mem_rawPVM hp)) hc) hp
+  have hs : rawPVM A ⊆ {p | T.behavior p ∈ convexPVM B} :=
+    fun p hp => subset_convexHull ℝ (rawPVM B) (T.mem_rawPVM hp)
+  exact (convexHull_min hs hc) hp
 
 end StrategyMap
 
@@ -135,8 +138,10 @@ def swapState (ρ : State) : State where
   positive := ρ.positive.submatrix Prod.swap
   normalized := by
     change (∑ i : Joint, ρ.density i.swap i.swap) = 1
-    rw [Equiv.sum_comp (Equiv.prodComm Qubit Qubit) (fun i => ρ.density i i)]
-    exact ρ.normalized
+    calc
+      _ = ∑ i : Joint, ρ.density i i :=
+        Equiv.sum_comp (Equiv.prodComm Qubit Qubit) (fun i => ρ.density i i)
+      _ = 1 := ρ.normalized
 
 def swapStrategy {A : Architecture} (s : Strategy A) : Strategy (swappedArchitecture A) where
   state := swapState s.state
@@ -167,7 +172,7 @@ theorem swap_mem_convexPVM {A : Architecture} {p : Behavior A} (hp : p ∈ conve
     exact subset_convexHull ℝ _ ⟨swapProjectiveStrategy s,swapStrategy_behavior s.toStrategy⟩
   apply (convexHull_min hs ?_) hp
   intro p hp q hq a b ha hb hab
-  change swapBehavior A (a • p+b • q) ∈ _
+  change swapBehavior A (a • p+b • q) ∈ convexPVM (swappedArchitecture A)
   rw [map_add,map_smul,map_smul]
   exact (convex_convexHull ℝ _) hp hq ha hb hab
 
@@ -178,7 +183,7 @@ theorem swap_mem_convexPOVM {A : Architecture} {p : Behavior A} (hp : p ∈ conv
     exact subset_convexHull ℝ _ ⟨swapStrategy s,swapStrategy_behavior s⟩
   apply (convexHull_min hs ?_) hp
   intro p hp q hq a b ha hb hab
-  change swapBehavior A (a • p+b • q) ∈ _
+  change swapBehavior A (a • p+b • q) ∈ convexPOVM (swappedArchitecture A)
   rw [map_add,map_smul,map_smul]
   exact (convex_convexHull ℝ _) hp hq ha hb hab
 
