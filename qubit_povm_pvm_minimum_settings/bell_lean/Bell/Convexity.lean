@@ -32,7 +32,7 @@ theorem linear_bound_on_convexHull {E : Type*} [AddCommGroup E] [Module ℝ E]
       a * f x + b * f y ≤ a * U + b * U :=
         add_le_add (mul_le_mul_of_nonneg_left hx ha)
           (mul_le_mul_of_nonneg_left hy hb)
-      _ = U := by nlinarith [hab]
+      _ = U := by rw [← add_mul, hab, one_mul]
   have hsub : S ⊆ {p : E | f p ≤ U} := hS
   exact convexHull_min hsub hc
 
@@ -45,10 +45,10 @@ theorem filtering_average (p pp pm qp qm ε s : ℝ)
   nlinarith [hp, hm]
 
 /-- Scalar part of the binary spectral decomposition in Theorem 4.2. -/
-theorem binary_spectral_weights (μ λ : ℝ)
-    (hμ : 0 ≤ μ) (hμλ : μ ≤ λ) (hλ : λ ≤ 1) :
-    0 ≤ λ - μ ∧ 0 ≤ μ ∧ 0 ≤ 1 - λ ∧
-      (λ - μ) + μ + (1 - λ) = 1 := by
+theorem binary_spectral_weights (μ lam : ℝ)
+    (hμ : 0 ≤ μ) (hμlam : μ ≤ lam) (hlam : lam ≤ 1) :
+    0 ≤ lam - μ ∧ 0 ≤ μ ∧ 0 ≤ 1 - lam ∧
+      (lam - μ) + μ + (1 - lam) = 1 := by
   constructor
   · linarith
   constructor

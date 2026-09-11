@@ -1,4 +1,6 @@
-import Mathlib
+import Mathlib.LinearAlgebra.Matrix.PosDef
+import Mathlib.Analysis.Convex.Hull
+import Mathlib.Tactic
 
 /-!
 # The physical model (paper §2)
@@ -94,15 +96,11 @@ theorem convexPVM_subset_convexPOVM (A : Architecture) :
 /-- A rectangular Gram matrix is positive semidefinite. -/
 theorem gram_positive {n : ℕ} (B : Matrix (Fin n) Qubit ℂ) :
     (B.conjTranspose * B).PosSemidef := by
-  simpa using
-    (Matrix.PosSemidef.one : (1 : Matrix (Fin n) (Fin n) ℂ).PosSemidef)
-      .conjTranspose_mul_mul_same B
+  exact Matrix.posSemidef_conjTranspose_mul_self B
 
 /-- The same fact for the four-dimensional joint state. -/
 theorem joint_gram_positive {n : ℕ} (B : Matrix (Fin n) Joint ℂ) :
     (B.conjTranspose * B).PosSemidef := by
-  simpa using
-    (Matrix.PosSemidef.one : (1 : Matrix (Fin n) (Fin n) ℂ).PosSemidef)
-      .conjTranspose_mul_mul_same B
+  exact Matrix.posSemidef_conjTranspose_mul_self B
 
 end Bell

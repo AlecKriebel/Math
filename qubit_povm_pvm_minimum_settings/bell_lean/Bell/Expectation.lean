@@ -41,13 +41,13 @@ theorem tensor_sub_right (A B D : Operator) :
 theorem tensor_smul_left (r : ℝ) (A B : Operator) :
     tensor (r • A) B = r • tensor A B := by
   ext i j
-  simp [tensor, smul_mul_assoc]
+  simp [tensor, smul_mul_assoc, mul_assoc]
 
 @[simp]
 theorem tensor_smul_right (r : ℝ) (A B : Operator) :
     tensor A (r • B) = r • tensor A B := by
   ext i j
-  simp [tensor, mul_smul_comm]
+  simp [tensor, mul_smul_comm, mul_left_comm]
 
 @[simp]
 theorem tensor_zero_left (B : Operator) : tensor 0 B = 0 := by
@@ -72,10 +72,8 @@ theorem tensor_neg_right (A B : Operator) : tensor A (-B) = -tensor A B := by
 @[simp]
 theorem tensor_one_one : tensor (1 : Operator) 1 = 1 := by
   ext i j
-  rcases i with ⟨i₀,i₁⟩
-  rcases j with ⟨j₀,j₁⟩
-  fin_cases i₀ <;> fin_cases i₁ <;> fin_cases j₀ <;> fin_cases j₁ <;>
-    norm_num [tensor, Matrix.one_apply]
+  simp only [tensor, Matrix.one_apply, Prod.ext_iff]
+  split_ifs <;> simp_all
 
 /-- Multiplication preserves the tensor-factor order on each party. -/
 theorem tensor_mul (A B C D : Operator) :
@@ -115,7 +113,7 @@ def realPart : ℂ →ₗ[ℝ] ℝ where
 theorem positive_trace_nonneg {n : Type*} [Fintype n] [DecidableEq n]
     {A : Matrix n n ℂ} (hA : A.PosSemidef) : 0 ≤ (Matrix.trace A).re := by
   have hdiag (i : n) : 0 ≤ (A i i).re := by
-    simpa using hA.re_dotProduct_nonneg (Pi.single i (1 : ℂ))
+    simpa only [Matrix.mulVec_single_one, ← Pi.single_star, star_one, single_dotProduct, one_mul, Matrix.transpose_apply] using hA.re_dotProduct_nonneg (Pi.single i (1 : ℂ))
   change 0 ≤ realPart (∑ i, A i i)
   rw [map_sum]
   exact Finset.sum_nonneg (fun i _ => hdiag i)
@@ -157,9 +155,7 @@ theorem tensor_positive {A B : Operator} (hA : A.PosSemidef) (hB : B.PosSemidef)
     (tensor A B).PosSemidef := by
   let X := tensor hA.sqrt hB.sqrt
   have hX : (X.conjTranspose * X).PosSemidef := by
-    simpa using
-      (Matrix.PosSemidef.one : (1 : JointOperator).PosSemidef)
-        .conjTranspose_mul_mul_same X
+    exact Matrix.posSemidef_conjTranspose_mul_self X
   have heq : X.conjTranspose * X = tensor A B := by
     dsimp [X]
     rw [tensor_conjTranspose, hA.posSemidef_sqrt.isHermitian.eq,
