@@ -9,7 +9,7 @@ def digest(p): return hashlib.sha256(p.read_bytes()).hexdigest()
 if WORK.exists():
     raise SystemExit('Work copy already exists; preserve it and choose a new audit folder for a new run.')
 WORK.mkdir(parents=True)
-for name in ['Bell', 'validation', 'scripts', 'environment', 'certificates']:
+for name in ['Bell', 'validation', 'scripts', 'environment', 'certificates', 'source']:
     shutil.copytree(SOURCE/name, WORK/name, ignore=shutil.ignore_patterns('__pycache__'))
 for name in ['Bell.lean', 'lakefile.toml', 'lake-manifest.json', 'lean-toolchain']:
     shutil.copy2(SOURCE/name, WORK/name)
