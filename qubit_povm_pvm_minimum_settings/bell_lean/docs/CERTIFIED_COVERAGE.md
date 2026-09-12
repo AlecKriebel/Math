@@ -25,3 +25,16 @@ The complete proof route connects quantum compactness, finite convexity, extreme
 The conclusion concerns ordinary finite shared-randomness convexification. It is not a same-state simulation theorem or an equality of the unconvexified strategy ranges. The strengthened value is attained, with no assertion that it is the global POVM optimum. The formal proof uses an alternative, stronger projective certificate; it does not formalize every unused alternative proof or every prose statement in the manuscript.
 
 The manuscript's dimensions-at-most-two and stochastic-output conventions are represented by the fixed two-dimensional ambient carrier and finite convexification. Explicit generic theorems parameterizing all smaller Hilbert spaces or all stochastic output channels are not separate endpoints of this development. The independent review explains the embedding and finite deterministic-map interpretation.
+
+## Auxiliary mathematics outside the certified scope
+
+The September 11 referee review confirms the principal conclusions and identifies these coverage limits. This development does not claim to formalize every mathematical statement in the manuscript.
+
+- General finite-POVM SDP dual attainment, complementary slackness, and the full determinant-pullback/KKT package are replaced by the physical deterministic-replacement route needed for multiplier positivity.
+- The full smooth 14-dimensional incidence-manifold statement and full inverse-metric Hessian formula with inertia `(4,12)` are not formal endpoints; surjectivity, differentiable feasible curves, and the exact score-gap argument supply the required rank closure.
+- The arbitrary pointed-cone circuit lemma, general mixed-state common-span statement, and arbitrary extremal-POVM rank-square inequality are implemented only through the specializations needed for the qubit reduction.
+- The original physical-to-scalar projective-bound derivation is replaced by the stronger physical SOS bound.
+- The ideal auxiliary PVM discrimination bound `3/5`, Appendix B's particular dual slacks, differentiation and unique-critical-point assertions, and some individual spectral/coordinate identities are not all separately formalized.
+- General stochastic-postprocessing and smaller-dimension embedding bridges remain interpretation arguments rather than standalone Lean endpoints.
+
+These are coverage limits, not findings that those auxiliary statements are false. See the [complete referee coverage matrix](../../referee_2026-09-11/reviews/coverage.md) and [response](../../referee_response_20260911/RESPONSE.md). The corrected paper explicitly retains Lorentz signature in its strict residual domain; scalar pairwise positivity alone is insufficient.

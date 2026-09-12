@@ -19,7 +19,7 @@ The complete project source was rebuilt locally using the pinned compiler and de
 | Exact algebra and verifier preflight | All 13 stages passed |
 | Existing manuscript artifact verifier | Passed, including all artifact hashes |
 
-The authoritative records are [kernel_report.json](reports/kernel_report.json), [axiom_audit.json](reports/axiom_audit.json), and [statement_audit.json](reports/statement_audit.json). Their run identifier agrees with [latest_run.json](reports/latest_run.json). All **123 executed commands**, exit codes, log hashes, and protected source hashes are retained in [the run directory](reports/runs/20260911T022153Z-2ea5f99b/kernel_report.json).
+The authoritative records are [kernel_report.json](reports/runs/20260911T022153Z-2ea5f99b/kernel_report.json), [axiom_audit.json](reports/runs/20260911T022153Z-2ea5f99b/axiom_audit.json), and [statement_audit.json](reports/runs/20260911T022153Z-2ea5f99b/statement_audit.json). These immutable run-specific records identify the certified run above. [latest_run.json](reports/latest_run.json) and the top-level copies may identify a later rerun; they are not substituted for this certificate’s fixed evidence. All **123 executed commands**, exit codes, log hashes, and protected source hashes are retained in [the run directory](reports/runs/20260911T022153Z-2ea5f99b/kernel_report.json).
 
 Source-snapshot manifest SHA-256: `736d3758b247c60f679291606fc112444721aa25241a1eb394d40a9eba43d1c1`.
 
@@ -80,3 +80,11 @@ Input: `bell_lean_mathematical_audit_20260910.zip`, SHA-256 `cbaa94b0f9b6c254dca
 Historical uncompiled-source status documents, earlier reports and nested archives remain labelled as historical. Static reports deliberately keep their own `kernel_checked: false` flags because those scripts do not invoke Lean; the full-run receipts above are the verification authority. `SHA256SUMS.txt` supplies separate byte-integrity checks.
 
 No outside individual was contacted and no new immutable GitHub/Zenodo release was created. Research author: **Alec Kriebel**, [ORCID 0009-0001-9320-500X](https://orcid.org/0009-0001-9320-500X).
+
+## Referee correction and scope clarification — 11 September 2026
+
+The subsequent independent referee confirmed the main equality and the physical endpoints, and found a manuscript ambiguity: positive pairings in the scalar metric normal form do not imply Lorentz signature. The paper now states explicitly that signature `(1,3)` is a separate prerequisite and chooses the future cone to contain `u`. The physical Gram-frame hypothesis already enforced in the Lean closure is unchanged.
+
+The principal behavior-set equality, finite projective simulation, minimum-setting classification, explicit separation and strengthened attained value are formalized; selected auxiliary arguments are specialized or replaced. In particular, this certificate does not claim formalization of every mathematical statement in the paper. The [coverage limits](docs/CERTIFIED_COVERAGE.md#auxiliary-mathematics-outside-the-certified-scope) list the referee's specific examples.
+
+The original manuscript fingerprints in the earlier correspondence receipt identify the version originally reviewed. The corrected manuscript, unchanged production proof inputs, rechecked counterexample and matrix contract, and new PDF builds are recorded in the [referee response](../referee_response_20260911/RESPONSE.md). Historical source PDFs and immutable release packages are preserved.
