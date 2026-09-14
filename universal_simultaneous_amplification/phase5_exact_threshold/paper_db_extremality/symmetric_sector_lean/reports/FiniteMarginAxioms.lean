@@ -1,0 +1,26 @@
+import SymmetricSector.PhaseMargins
+import SymmetricSector.RankBounds
+#check SymmetricSector.GeneratedMargins.cert40
+#print axioms SymmetricSector.GeneratedMargins.cert40
+#check SymmetricSector.GeneratedMargins.cert287
+#print axioms SymmetricSector.GeneratedMargins.cert287
+#check SymmetricSector.gridValue_le_t
+#print axioms SymmetricSector.gridValue_le_t
+#check SymmetricSector.betaTerm_le_grid
+#print axioms SymmetricSector.betaTerm_le_grid
+#check SymmetricSector.beta_add_epsilon_le_of_certificate
+#print axioms SymmetricSector.beta_add_epsilon_le_of_certificate
+#check SymmetricSector.exact_margin_40
+#print axioms SymmetricSector.exact_margin_40
+#check SymmetricSector.finite_phase_positive
+#print axioms SymmetricSector.finite_phase_positive
+#check SymmetricSector.finite_minimum_margin
+#print axioms SymmetricSector.finite_minimum_margin
+#check SymmetricSector.finite_minimum_margin_strict
+#print axioms SymmetricSector.finite_minimum_margin_strict
+#check SymmetricSector.all_phase_margin
+#print axioms SymmetricSector.all_phase_margin
+#check SymmetricSector.beta_den_pos
+#print axioms SymmetricSector.beta_den_pos
+#check SymmetricSector.lowerEll_three_one
+#print axioms SymmetricSector.lowerEll_three_one

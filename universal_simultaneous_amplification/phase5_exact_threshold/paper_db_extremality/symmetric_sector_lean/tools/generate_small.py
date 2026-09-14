@@ -38,12 +38,13 @@ def compute(N):
 def generate(N):
     d,v,value=compute(N)
     lines=['import SymmetricSector.Definitions','import SymmetricSector.Phase','import SymmetricSector.RowBounds','', 'open SymmetricSector.Phase', '', 'set_option maxRecDepth 2048', 'set_option maxHeartbeats 0', '',f'namespace SymmetricSector.Cert{N}','']
+    if N > 3: lines.insert(0, f'import SymmetricSector.Small{N-1:02}')
     for k in range(1,N):
         lines += [f'theorem d_{k} : gradient {N} {k} = {q(d[k])} := by', '  rw [gradient]', '  norm_num only [show '+str(k)+' < '+str(N)+' by decide, if_true]', ('  rw [gradient]' if k==1 else f'  rw [d_{k-1}]'), '  norm_num [c₀]', '']
     lines += [f'theorem terminal_gradient : ({N-1} : ℚ) * gradient {N} {N-1} + 2*{N}*(1/{N} - c₀ {N}) = 0 := by', f'  rw [d_{N-1}]', '  norm_num [c₀]', '']
     lines += [f'def response : Channel {N} → ℚ', '  | .inl i => !['+', '.join(q(x) for x in v[:N-1])+'] i', '  | .inr i => !['+', '.join(q(x) for x in v[N-1:])+'] i','']
-    lines += [f'theorem equations : (1 - coefficientK {N}).mulVec response = source {N} := by', '  rw [Matrix.sub_mulVec, Matrix.one_mulVec]', '  ext i', '  rcases i with i | i', '  · fin_cases i <;> norm_num [Matrix.one_apply, Matrix.mulVec, dotProduct, Fintype.sum_sum_type,','      Fin.sum_univ_succ, coefficientK, response, source, '+', '.join(f'd_{k}' for k in range(1,N))+']', '  · fin_cases i <;> norm_num [Matrix.one_apply, Matrix.mulVec, dotProduct, Fintype.sum_sum_type,','      Fin.sum_univ_succ, coefficientK, response, source, '+', '.join(f'd_{k}' for k in range(1,N))+']','']
-    lines += [f'theorem value : reducedScalar {N} = {q(value)} := by', '  unfold reducedScalar', '  rw [← witness_eq_inverse_mulVec (1 - coefficientK '+str(N)+')', '    (coefficient_system_isUnit '+str(N)+' (by norm_num))', '    (source '+str(N)+') response equations]', '  norm_num [dotProduct, Fintype.sum_sum_type, Fin.sum_univ_succ, response, reward, Nat.choose]', '',f'theorem positive : 0 < reducedScalar {N} := by rw [value]; norm_num','',f'end SymmetricSector.Cert{N}','']
+    lines += [f'theorem equations : (1 - coefficientK {N}).mulVec response = source {N} := by', '  apply funext', '  decide +kernel', '']
+    lines += [f'theorem value : reducedScalar {N} = {q(value)} := by', '  unfold reducedScalar', '  rw [← witness_eq_inverse_mulVec (1 - coefficientK '+str(N)+')', '    (coefficient_system_isUnit '+str(N)+' (by norm_num))', '    (source '+str(N)+') response equations]', '  decide +kernel', '',f'theorem positive : 0 < reducedScalar {N} := by rw [value]; norm_num','',f'end SymmetricSector.Cert{N}','']
     (ROOT/'SymmetricSector'/f'Small{N:02}.lean').write_text('\n'.join(lines))
     return value
 if __name__=='__main__':

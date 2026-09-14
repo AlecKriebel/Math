@@ -1,0 +1,22 @@
+SymmetricSector.Markov.harmonic_energy_zero.{u_1} {ι : Type u_1} [Fintype ι] (K : Matrix ι ι ℝ) (ν f : ι → ℝ)
+  (hrow : ∀ (i : ι), ∑ j, K i j = 1) (hstat : ∀ (j : ι), ∑ i, ν i * K i j = ν j) (hf : K.mulVec f = f) :
+  ∑ i, ∑ j, ν i * K i j * (f i - f j) ^ 2 = 0
+'SymmetricSector.Markov.harmonic_energy_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+SymmetricSector.Markov.harmonic_edge_eq.{u_1} {ι : Type u_1} [Fintype ι] (K : Matrix ι ι ℝ) (ν f : ι → ℝ)
+  (hK : ∀ (i j : ι), 0 ≤ K i j) (hν : ∀ (i : ι), 0 < ν i) (hrow : ∀ (i : ι), ∑ j, K i j = 1)
+  (hstat : ∀ (j : ι), ∑ i, ν i * K i j = ν j) (hf : K.mulVec f = f) {i j : ι} (hij : 0 < K i j) : f i = f j
+'SymmetricSector.Markov.harmonic_edge_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+SymmetricSector.Markov.centered_kernel_eq_zero.{u_1} {ι : Type u_1} [Fintype ι] [DecidableEq ι] (K : Matrix ι ι ℝ)
+  (ν f : ι → ℝ) (hstat : ∀ (j : ι), ∑ i, ν i * K i j = ν j) (hnorm : ∑ i, ν i = 1)
+  (hconstant : ∀ (g : ι → ℝ), K.mulVec g = g → ∀ (i j : ι), g i = g j)
+  (hf : (SymmetricSector.Markov.centered K ν).mulVec f = 0) : f = 0
+'SymmetricSector.Markov.centered_kernel_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+SymmetricSector.Markov.centered_isUnit.{u_1} {ι : Type u_1} [Fintype ι] [DecidableEq ι] (K : Matrix ι ι ℝ) (ν : ι → ℝ)
+  (hstat : ∀ (j : ι), ∑ i, ν i * K i j = ν j) (hnorm : ∑ i, ν i = 1)
+  (hconstant : ∀ (g : ι → ℝ), K.mulVec g = g → ∀ (i j : ι), g i = g j) : IsUnit (SymmetricSector.Markov.centered K ν)
+'SymmetricSector.Markov.centered_isUnit' depends on axioms: [propext, Classical.choice, Quot.sound]
+SymmetricSector.Markov.centered_det_isUnit.{u_1} {ι : Type u_1} [Fintype ι] [DecidableEq ι] (K : Matrix ι ι ℝ)
+  (ν : ι → ℝ) (hstat : ∀ (j : ι), ∑ i, ν i * K i j = ν j) (hnorm : ∑ i, ν i = 1)
+  (hconstant : ∀ (g : ι → ℝ), K.mulVec g = g → ∀ (i j : ι), g i = g j) :
+  IsUnit (SymmetricSector.Markov.centered K ν).det
+'SymmetricSector.Markov.centered_det_isUnit' depends on axioms: [propext, Classical.choice, Quot.sound]

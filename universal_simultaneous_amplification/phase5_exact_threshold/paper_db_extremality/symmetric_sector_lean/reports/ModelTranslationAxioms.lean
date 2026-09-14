@@ -1,0 +1,38 @@
+import SymmetricSector.PhysicalIdentity
+set_option format.width 200
+#check SymmetricSector.Active.kernel_affine
+#print axioms SymmetricSector.Active.kernel_affine
+#check SymmetricSector.Active.nu0_sum
+#print axioms SymmetricSector.Active.nu0_sum
+#check SymmetricSector.Active.nu0_stationary
+#print axioms SymmetricSector.Active.nu0_stationary
+#check SymmetricSector.Active.nu0_perturbation
+#print axioms SymmetricSector.Active.nu0_perturbation
+#check SymmetricSector.Active.centeredMatrix_isUnit
+#print axioms SymmetricSector.Active.centeredMatrix_isUnit
+#check SymmetricSector.Active.center_eq_c₀
+#print axioms SymmetricSector.Active.center_eq_c₀
+#check SymmetricSector.Active.K0_feature
+#print axioms SymmetricSector.Active.K0_feature
+#check SymmetricSector.Active.perturbation_green_q
+#print axioms SymmetricSector.Active.perturbation_green_q
+#check SymmetricSector.Active.K0_coefficientFeature
+#print axioms SymmetricSector.Active.K0_coefficientFeature
+#check SymmetricSector.Active.coefficientFeature_poisson
+#print axioms SymmetricSector.Active.coefficientFeature_poisson
+#check SymmetricSector.Active.nu0_perturbation_feature_orbits
+#print axioms SymmetricSector.Active.nu0_perturbation_feature_orbits
+#check SymmetricSector.Active.nu0_perturbation_coeff_feature
+#print axioms SymmetricSector.Active.nu0_perturbation_coeff_feature
+#check SymmetricSector.Active.nu0_feature_zero
+#print axioms SymmetricSector.Active.nu0_feature_zero
+#check SymmetricSector.Active.green_perturbation_green_q
+#print axioms SymmetricSector.Active.green_perturbation_green_q
+#check SymmetricSector.Active.R2_eq_frobeniusSq_mul_reducedScalar
+#print axioms SymmetricSector.Active.R2_eq_frobeniusSq_mul_reducedScalar
+#check SymmetricSector.Active.frobeniusSq_pos
+#print axioms SymmetricSector.Active.frobeniusSq_pos
+#check SymmetricSector.Active.symmetricBalanced_three_eq_zero
+#print axioms SymmetricSector.Active.symmetricBalanced_three_eq_zero
+#check SymmetricSector.Active.R2_symmetricBalanced_three
+#print axioms SymmetricSector.Active.R2_symmetricBalanced_three

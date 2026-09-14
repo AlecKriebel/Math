@@ -1,0 +1,10 @@
+import SymmetricSector.Contraction
+set_option format.width 200
+#check SymmetricSector.phaseHhat_supersolution
+#print axioms SymmetricSector.phaseHhat_supersolution
+#check SymmetricSector.phaseC_hhat_le
+#print axioms SymmetricSector.phaseC_hhat_le
+#check SymmetricSector.bad_inverse_D_phaseV_le
+#print axioms SymmetricSector.bad_inverse_D_phaseV_le
+#check SymmetricSector.phaseA_phaseV_le
+#print axioms SymmetricSector.phaseA_phaseV_le

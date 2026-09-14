@@ -1,3 +1,4 @@
+import SymmetricSector.Small03
 import SymmetricSector.Definitions
 import SymmetricSector.Phase
 import SymmetricSector.RowBounds
@@ -36,20 +37,15 @@ def response : Channel 4 → ℚ
   | .inr i => ![(2144 / 3999 : ℚ), (2316 / 6665 : ℚ)] i
 
 theorem equations : (1 - coefficientK 4).mulVec response = source 4 := by
-  rw [Matrix.sub_mulVec, Matrix.one_mulVec]
-  ext i
-  rcases i with i | i
-  · fin_cases i <;> norm_num [Matrix.one_apply, Matrix.mulVec, dotProduct, Fintype.sum_sum_type,
-      Fin.sum_univ_succ, coefficientK, response, source, d_1, d_2, d_3]
-  · fin_cases i <;> norm_num [Matrix.one_apply, Matrix.mulVec, dotProduct, Fintype.sum_sum_type,
-      Fin.sum_univ_succ, coefficientK, response, source, d_1, d_2, d_3]
+  apply funext
+  decide +kernel
 
 theorem value : reducedScalar 4 = (359 / 26660 : ℚ) := by
   unfold reducedScalar
   rw [← witness_eq_inverse_mulVec (1 - coefficientK 4)
     (coefficient_system_isUnit 4 (by norm_num))
     (source 4) response equations]
-  norm_num [dotProduct, Fintype.sum_sum_type, Fin.sum_univ_succ, response, reward, Nat.choose]
+  decide +kernel
 
 theorem positive : 0 < reducedScalar 4 := by rw [value]; norm_num
 

@@ -24,12 +24,29 @@ import re
 import shutil
 import subprocess
 import sys
+import unicodedata
 
 
 ROOT = Path(__file__).resolve().parents[1]
 ALLOWED_AXIOMS = {"propext", "Classical.choice", "Quot.sound"}
 EXPECTED_TOOLCHAIN = "leanprover/lean4:v4.19.0"
 EXPECTED_MATHLIB = "c44e0c8ee63ca166450922a373c7409c5d26b00b"
+
+
+def is_safe_lean_name(name: str) -> bool:
+    """Accept plain dotted identifiers, including Lean's subscript numerals.
+
+    This deliberately excludes quoted identifiers, spaces, controls, symbols,
+    and punctuation other than the namespace dots and identifier apostrophes.
+    Python's ``str.isidentifier`` is insufficient because Lean accepts numeric
+    characters such as the subscript zero in ``center_eq_c₀``.
+    """
+    for part in name.split("."):
+        if not part or not (part[0] == "_" or unicodedata.category(part[0]).startswith("L")):
+            return False
+        if any(ch not in "_'" and unicodedata.category(ch)[0] not in "LMN" for ch in part):
+            return False
+    return True
 
 
 def sha256(path: Path) -> str:
@@ -171,9 +188,9 @@ def main() -> int:
                    if line.strip() and not line.lstrip().startswith("#")]
         if not targets or len(set(targets)) != len(targets):
             raise ValueError("Targets must be nonempty and distinct")
-        if any(not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_'.]*", t) for t in targets):
+        if any(not is_safe_lean_name(t) for t in targets):
             raise ValueError("Unsupported theorem name syntax in audit targets")
-        if not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_.]*", args.import_module):
+        if not is_safe_lean_name(args.import_module):
             raise ValueError("Invalid import module")
         sources = sorted([ROOT / "SymmetricSector.lean"] + list((ROOT / "SymmetricSector").rglob("*.lean")))
         sources = [path for path in sources if path.is_file()]
@@ -217,7 +234,7 @@ def main() -> int:
         run(["lake", "build"], "build")
         query = dest / "Audit.lean"
         query.write_text("import " + args.import_module + "\n"
-                         + "set_option pp.width 200\n"
+                         + "set_option format.width 200\n"
                          + "\n".join(f"#check {t}\n#print axioms {t}" for t in targets) + "\n")
         audit_output = run(["lake", "env", "lean", str(query)], "axioms-and-statements")
         report["theorems"] = inspect_axioms(audit_output, targets)

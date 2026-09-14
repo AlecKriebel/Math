@@ -1,0 +1,14 @@
+import SymmetricSector.GeneratedMargins.Order079
+
+set_option maxRecDepth 100000
+set_option maxHeartbeats 0
+namespace SymmetricSector.GeneratedMargins
+
+def w80 : List ℕ := [0, 10062, 10190, 10320, 10454, 10592, 10733, 10878, 11027, 11180, 11337, 11499, 11665, 11836, 12012, 12194, 12381, 12574, 12772, 12977, 13189, 13408, 13634, 13868, 14110, 14360, 14619, 14887, 15166, 15455, 15755, 16067, 16391, 16728, 17079, 17445, 17827, 18225, 18642, 19077, 19533, 20011, 20512, 21038, 21591, 22173, 22787, 23435, 24120, 24844, 25612, 26427, 27294, 28217, 29202, 30256, 31385, 32597, 33902, 35310, 36832, 38484, 40280, 42240, 44386, 46744, 49344, 52222, 55422, 58996, 63008, 67534, 72669, 78530, 85263, 93052, 102129, 112792, 125426, 140533]
+
+theorem cert80 : MarginCertificate 80 w80 (1 / 100) := by decide +kernel
+
+theorem bound80 : beta 80 + epsilon 80 ≤ 1 - (1 / 100 : ℚ) :=
+  beta_add_epsilon_le_of_certificate (by norm_num) cert80
+
+end SymmetricSector.GeneratedMargins

@@ -42,3 +42,19 @@ Resumed after interrupted tool sessions; no uncompleted build is treated as succ
 New adversarial finding: the direct Y pairing gives a shifted binomial-weight sum different from the printed A.31 debt bound. This is a missing implication in that derivation; it does not yet falsify the claimed debt bound or scalar positivity. A tighter supersolution is being investigated. No mathematical gap is being replaced by a hypothesis.
 
 Completion estimate unchanged pending validation: Stage 1 35%, Stage 2 25%, Stage 3 10%, overall 23%.
+
+## 2026-09-14T15:06:28.754235+00:00 — all-order assembly verified
+
+Every small-system certificate N=3…39 and every phase certificate N=40…287 compiled, including the exact unique N40 minimum. `AllOrder.reducedScalar_pos` compiled and reports only the three permitted foundational axioms. All phase hypotheses are discharged for the actual blocks, gradients, occupations, source and reward. The actual general-n physical identity compiled and passed an independent model translation audit. Final positivity assembly, clean rebuild and publication are being completed.
+
+The A.31 shortcut has been repaired: the sharper bad-occupation supersolution Z_k=2/[3(k−1)] proves the printed bound through exact binomial reflection. The discrepancy of the original direct Y pairing is kernel certified at N=4 as 1/360. This is a gap in one printed implication, not a counterexample to the claimed bound or positivity theorem. The repair preserves every beta definition and finite certificate.
+
+Completion estimate: Stage 1 100%, Stage 2 100%, Stage 3 98%; overall mathematical implementation 99%, pending final clean-build and trust acceptance.
+
+## 2026-09-14T15:09:32.294699+00:00 — integrated physical positivity checkpoint
+
+`SymmetricComponent.lean` compiled the genuine all-order physical strict positivity theorem, nonnegativity for n≥3, and exact zero characterization. The n=3 absent-sector and physical n=4/5 normalization checks also compiled. No scalar sign, feature identity, inverse, or current formula is left as a hypothesis. All queried dependencies contain only propext, Classical.choice, Quot.sound. All 321 production modules are in the aggregate import closure.
+
+Independent model and arithmetic reviews pass. A fresh trust reviewer, who authored none of the mathematical modules, is executing a clean project build and auditing 98 principal declarations, with source hashes fixed.
+
+Completion estimate: Stage 1 100%, Stage 2 100%, Stage 3 100% for the requested symmetric component; release validation 90%, pending the independent clean build. This does not extend the scope to the full fixation theorem.

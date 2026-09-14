@@ -1,0 +1,27 @@
+SymmetricSector.phaseS_mulVec (N : ℕ) (v : SymmetricSector.Good N → ℚ) (i : SymmetricSector.Good N) :
+  (SymmetricSector.phaseS N).mulVec v i =
+    (↑↑i + 1) / (2 * ↑N) * v i + (↑N - ↑↑i - 1) / (2 * ↑N) * SymmetricSector.zeroExtend v (↑↑i - 1)
+'SymmetricSector.phaseS_mulVec' depends on axioms: [propext, Classical.choice, Quot.sound]
+SymmetricSector.phaseC_mulVec (N : ℕ) (v : SymmetricSector.Bad N → ℚ) (i : SymmetricSector.Good N) :
+  (SymmetricSector.phaseC N).mulVec v i =
+    (↑↑i + 1) / (2 * (↑↑i + 2) * ↑N) * SymmetricSector.zeroExtend v ↑↑i +
+      (↑N - ↑↑i - 1) / (2 * (↑↑i + 1) * ↑N) * SymmetricSector.zeroExtend v (↑↑i - 1)
+'SymmetricSector.phaseC_mulVec' depends on axioms: [propext, Classical.choice, Quot.sound]
+SymmetricSector.phaseD_mulVec (N : ℕ) (v : SymmetricSector.Good N → ℚ) (i : SymmetricSector.Bad N) :
+  (SymmetricSector.phaseD N).mulVec v i = 1 / ↑N * SymmetricSector.zeroExtend v ↑↑i
+'SymmetricSector.phaseD_mulVec' depends on axioms: [propext, Classical.choice, Quot.sound]
+SymmetricSector.phaseQ_mulVec (N : ℕ) (v : SymmetricSector.Bad N → ℚ) (i : SymmetricSector.Bad N) :
+  (SymmetricSector.phaseQ N).mulVec v i =
+    (↑N * ↑↑i + ↑↑i + 2) / (2 * (↑↑i + 2) * ↑N) * v i +
+        (↑↑i + 2) * (↑↑i + 1) / (2 * (↑↑i + 3) * ↑N) * SymmetricSector.zeroExtend v (↑↑i + 1) +
+      (↑N - ↑↑i - 3) / (2 * ↑N) * SymmetricSector.zeroExtend v (↑↑i - 1)
+'SymmetricSector.phaseQ_mulVec' depends on axioms: [propext, Classical.choice, Quot.sound]
+SymmetricSector.phaseQ_transpose_mulVec (N : ℕ) (v : SymmetricSector.Bad N → ℚ) (i : SymmetricSector.Bad N) :
+  (SymmetricSector.phaseQ N).transpose.mulVec v i =
+    (↑N * ↑↑i + ↑↑i + 2) / (2 * (↑↑i + 2) * ↑N) * v i +
+        (↑↑i + 1) * ↑↑i / (2 * (↑↑i + 2) * ↑N) * SymmetricSector.zeroExtend v (↑↑i - 1) +
+      (↑N - ↑↑i - 4) / (2 * ↑N) * SymmetricSector.zeroExtend v (↑↑i + 1)
+'SymmetricSector.phaseQ_transpose_mulVec' depends on axioms: [propext, Classical.choice, Quot.sound]
+SymmetricSector.phaseD_transpose_mulVec (N : ℕ) (v : SymmetricSector.Bad N → ℚ) (i : SymmetricSector.Good N) :
+  (SymmetricSector.phaseD N).transpose.mulVec v i = 1 / ↑N * SymmetricSector.zeroExtend v ↑↑i
+'SymmetricSector.phaseD_transpose_mulVec' depends on axioms: [propext, Classical.choice, Quot.sound]

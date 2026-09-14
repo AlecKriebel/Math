@@ -30,20 +30,15 @@ def response : Channel 3 → ℚ
   | .inr i => ![(207 / 416 : ℚ)] i
 
 theorem equations : (1 - coefficientK 3).mulVec response = source 3 := by
-  rw [Matrix.sub_mulVec, Matrix.one_mulVec]
-  ext i
-  rcases i with i | i
-  · fin_cases i <;> norm_num [Matrix.one_apply, Matrix.mulVec, dotProduct, Fintype.sum_sum_type,
-      Fin.sum_univ_succ, coefficientK, response, source, d_1, d_2]
-  · fin_cases i <;> norm_num [Matrix.one_apply, Matrix.mulVec, dotProduct, Fintype.sum_sum_type,
-      Fin.sum_univ_succ, coefficientK, response, source, d_1, d_2]
+  apply funext
+  decide +kernel
 
 theorem value : reducedScalar 3 = (3 / 208 : ℚ) := by
   unfold reducedScalar
   rw [← witness_eq_inverse_mulVec (1 - coefficientK 3)
     (coefficient_system_isUnit 3 (by norm_num))
     (source 3) response equations]
-  norm_num [dotProduct, Fintype.sum_sum_type, Fin.sum_univ_succ, response, reward, Nat.choose]
+  decide +kernel
 
 theorem positive : 0 < reducedScalar 3 := by rw [value]; norm_num
 

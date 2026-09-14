@@ -1,0 +1,83 @@
+SymmetricSector.Active.kernel_affine {n : ℕ} (t : ℝ) (δ : Matrix (Fin n) (Fin n) ℝ) :
+  SymmetricSector.Active.kernel (SymmetricSector.Active.complete n + t • δ) =
+    SymmetricSector.Active.K0 n + t • SymmetricSector.Active.perturbation δ
+'SymmetricSector.Active.kernel_affine' depends on axioms: [propext, Classical.choice, Quot.sound]
+SymmetricSector.Active.nu0_sum {n : ℕ} (hn : 2 ≤ n) : ∑ y, SymmetricSector.Active.nu0 y = 1
+'SymmetricSector.Active.nu0_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+SymmetricSector.Active.nu0_stationary {n : ℕ} (hn : 2 ≤ n) :
+  Matrix.vecMul SymmetricSector.Active.nu0 (SymmetricSector.Active.K0 n) = SymmetricSector.Active.nu0
+'SymmetricSector.Active.nu0_stationary' depends on axioms: [propext, Classical.choice, Quot.sound]
+SymmetricSector.Active.nu0_perturbation {n : ℕ} (hn : 2 ≤ n) (δ : Matrix (Fin n) (Fin n) ℝ)
+  (y : SymmetricSector.Active.State n) :
+  Matrix.vecMul SymmetricSector.Active.nu0 (SymmetricSector.Active.perturbation δ) y =
+    SymmetricSector.Active.x δ y / (↑n * 2 ^ (n - 2))
+'SymmetricSector.Active.nu0_perturbation' depends on axioms: [propext, Classical.choice, Quot.sound]
+SymmetricSector.Active.centeredMatrix_isUnit {n : ℕ} (hn : 2 ≤ n) : IsUnit (SymmetricSector.Active.centeredMatrix n)
+'SymmetricSector.Active.centeredMatrix_isUnit' depends on axioms: [propext, Classical.choice, Quot.sound]
+SymmetricSector.Active.center_eq_c₀ {n : ℕ} (hn : 3 ≤ n) :
+  SymmetricSector.Active.center n = ↑(SymmetricSector.c₀ (n - 1))
+'SymmetricSector.Active.center_eq_c₀' depends on axioms: [propext, Classical.choice, Quot.sound]
+SymmetricSector.Active.K0_feature {n : ℕ} (hn : 2 ≤ n) {δ : Matrix (Fin n) (Fin n) ℝ}
+  (hδ : SymmetricSector.Active.SymmetricBalanced δ) (a b : ℕ → ℝ) (y : SymmetricSector.Active.State n) :
+  (SymmetricSector.Active.K0 n).mulVec (SymmetricSector.Active.feature δ a b) y =
+    SymmetricSector.Active.feature δ (SymmetricSector.Active.featureCoeffA (n - 1) a b)
+      (SymmetricSector.Active.featureCoeffB (n - 1) a b) y
+'SymmetricSector.Active.K0_feature' depends on axioms: [propext, Classical.choice, Quot.sound]
+SymmetricSector.Active.perturbation_green_q {n : ℕ} (hn : 3 ≤ n) {δ : Matrix (Fin n) (Fin n) ℝ}
+  (hδ : SymmetricSector.Active.SymmetricBalanced δ) (y : SymmetricSector.Active.State n) :
+  (SymmetricSector.Active.perturbation δ).mulVec ((SymmetricSector.Active.green n).mulVec (SymmetricSector.Active.q n))
+      y =
+    ↑(SymmetricSector.gradient (n - 1) y.rank) / 2 * SymmetricSector.Active.x δ y +
+      ↑(SymmetricSector.gradient (n - 1) (y.rank - 1)) / (2 * ↑y.rank) * SymmetricSector.Active.z δ y
+'SymmetricSector.Active.perturbation_green_q' depends on axioms: [propext, Classical.choice, Quot.sound]
+SymmetricSector.Active.K0_coefficientFeature {n : ℕ} (hn : 4 ≤ n) {δ : Matrix (Fin n) (Fin n) ℝ}
+  (hδ : SymmetricSector.Active.SymmetricBalanced δ) (c : SymmetricSector.Channel (n - 1) → ℚ) :
+  (SymmetricSector.Active.K0 n).mulVec (SymmetricSector.Active.coefficientFeature δ c) =
+    SymmetricSector.Active.coefficientFeature δ ((SymmetricSector.coefficientK (n - 1)).mulVec c)
+'SymmetricSector.Active.K0_coefficientFeature' depends on axioms: [propext, Classical.choice, Quot.sound]
+SymmetricSector.Active.coefficientFeature_poisson {n : ℕ} (hn : 4 ≤ n) {δ : Matrix (Fin n) (Fin n) ℝ}
+  (hδ : SymmetricSector.Active.SymmetricBalanced δ) :
+  SymmetricSector.Active.coefficientFeature δ (SymmetricSector.Active.coefficientSolution (n - 1)) -
+      (SymmetricSector.Active.K0 n).mulVec
+        (SymmetricSector.Active.coefficientFeature δ (SymmetricSector.Active.coefficientSolution (n - 1))) =
+    (SymmetricSector.Active.perturbation δ).mulVec fun y => SymmetricSector.Active.rankPotential (n - 1) y.rank
+'SymmetricSector.Active.coefficientFeature_poisson' depends on axioms: [propext, Classical.choice, Quot.sound]
+SymmetricSector.Active.nu0_perturbation_feature_orbits {n : ℕ} (hn : 2 ≤ n) (δ : Matrix (Fin n) (Fin n) ℝ)
+  (hδ : SymmetricSector.Active.SymmetricBalanced δ) (a b : ℕ → ℝ) :
+  SymmetricSector.Active.nu0 ⬝ᵥ (SymmetricSector.Active.perturbation δ).mulVec (SymmetricSector.Active.feature δ a b) =
+    SymmetricSector.Active.frobeniusSq δ *
+      ∑ k ∈ Finset.range n,
+        (SymmetricSector.Active.orbitA (n - 1) k * a k + SymmetricSector.Active.orbitB (n - 1) k * b k) /
+          (↑n * 2 ^ (n - 2))
+'SymmetricSector.Active.nu0_perturbation_feature_orbits' depends on axioms: [propext, Classical.choice, Quot.sound]
+SymmetricSector.Active.nu0_perturbation_coeff_feature {N : ℕ} (hN : 3 ≤ N) (δ : Matrix (Fin (N + 1)) (Fin (N + 1)) ℝ)
+  (hδ : SymmetricSector.Active.SymmetricBalanced δ) (c : SymmetricSector.Channel N → ℚ) :
+  SymmetricSector.Active.nu0 ⬝ᵥ
+      (SymmetricSector.Active.perturbation δ).mulVec
+        (SymmetricSector.Active.feature δ (SymmetricSector.Active.coeffA N c) (SymmetricSector.Active.coeffB N c)) =
+    SymmetricSector.Active.frobeniusSq δ * ↑(SymmetricSector.reward N ⬝ᵥ c)
+'SymmetricSector.Active.nu0_perturbation_coeff_feature' depends on axioms: [propext, Classical.choice, Quot.sound]
+SymmetricSector.Active.nu0_feature_zero {n : ℕ} (δ : Matrix (Fin n) (Fin n) ℝ)
+  (hδ : SymmetricSector.Active.SymmetricBalanced δ) (a b : ℕ → ℝ) :
+  SymmetricSector.Active.nu0 ⬝ᵥ SymmetricSector.Active.feature δ a b = 0
+'SymmetricSector.Active.nu0_feature_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+SymmetricSector.Active.green_perturbation_green_q {n : ℕ} (hn : 4 ≤ n) {δ : Matrix (Fin n) (Fin n) ℝ}
+  (hδ : SymmetricSector.Active.SymmetricBalanced δ) :
+  (SymmetricSector.Active.green n).mulVec
+      ((SymmetricSector.Active.perturbation δ).mulVec
+        ((SymmetricSector.Active.green n).mulVec (SymmetricSector.Active.q n))) =
+    SymmetricSector.Active.coefficientFeature δ (SymmetricSector.Active.coefficientSolution (n - 1))
+'SymmetricSector.Active.green_perturbation_green_q' depends on axioms: [propext, Classical.choice, Quot.sound]
+SymmetricSector.Active.R2_eq_frobeniusSq_mul_reducedScalar {n : ℕ} (hn : 4 ≤ n) {δ : Matrix (Fin n) (Fin n) ℝ}
+  (hδ : SymmetricSector.Active.SymmetricBalanced δ) :
+  SymmetricSector.Active.R2 δ = SymmetricSector.Active.frobeniusSq δ * ↑(SymmetricSector.reducedScalar (n - 1))
+'SymmetricSector.Active.R2_eq_frobeniusSq_mul_reducedScalar' depends on axioms: [propext, Classical.choice, Quot.sound]
+SymmetricSector.Active.frobeniusSq_pos {n : ℕ} (δ : Matrix (Fin n) (Fin n) ℝ) (hδ : δ ≠ 0) :
+  0 < SymmetricSector.Active.frobeniusSq δ
+'SymmetricSector.Active.frobeniusSq_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+SymmetricSector.Active.symmetricBalanced_three_eq_zero {δ : Matrix (Fin 3) (Fin 3) ℝ}
+  (hδ : SymmetricSector.Active.SymmetricBalanced δ) : δ = 0
+'SymmetricSector.Active.symmetricBalanced_three_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+SymmetricSector.Active.R2_symmetricBalanced_three {δ : Matrix (Fin 3) (Fin 3) ℝ}
+  (hδ : SymmetricSector.Active.SymmetricBalanced δ) : SymmetricSector.Active.R2 δ = 0
+'SymmetricSector.Active.R2_symmetricBalanced_three' depends on axioms: [propext, Classical.choice, Quot.sound]

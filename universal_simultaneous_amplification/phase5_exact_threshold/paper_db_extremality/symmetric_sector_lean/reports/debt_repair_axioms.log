@@ -1,0 +1,27 @@
+SymmetricSector.leftBarrier_supersolution (N : ℕ) (hN : 4 ≤ N) :
+  (fun i => 1 / ((↑↑i + 2) * (↑↑i + 1))) ≤ (1 - (phaseQ N).transpose).mulVec (leftBarrier N)
+SymmetricSector.leftOccupation_le_barrier (N : ℕ) (hN : 4 ≤ N) :
+  Matrix.vecMul (badSource N) (1 - phaseQ N)⁻¹ ≤ leftBarrier N
+SymmetricSector.phaseEll_lower (N : ℕ) (hN : 4 ≤ N) (i : Good N) : lowerEll N (↑i + 1) ≤ phaseEll N i
+SymmetricSector.leftBarrier_reward (N : ℕ) (hN : 4 ≤ N) (i : Bad N) :
+  leftBarrier N i * -badReward N i = 4 / (3 * (↑N - 2)) * goodReward N (goodAbove N i)
+SymmetricSector.goodReward_above_reflect (N : ℕ) (i : Bad N) :
+  goodReward N (goodAbove N i) = goodReward N (goodBelow N (Fin.rev i))
+SymmetricSector.phaseDebt_le_constant_sum (N : ℕ) (hN : 4 ≤ N) :
+  phaseDebt N ≤ ∑ i, 4 / (3 * (↑N - 2)) * goodReward N (goodBelow N i)
+SymmetricSector.phaseDebt_le_printed (N : ℕ) (hN : 4 ≤ N) :
+  phaseDebt N ≤ ∑ i, 4 * (↑↑i + 3) / (3 * (↑↑i + 2) * (↑N - 2)) * goodReward N (goodBelow N i)
+SymmetricSector.phaseWbar_supersolution (N : ℕ) (hN : 25 ≤ N) : -badReward N ≤ (1 - phaseQ N).mulVec (phaseWbar N)
+SymmetricSector.phaseC_Wbar_le (N : ℕ) (hN : 3 ≤ N) : (phaseC N).mulVec (phaseWbar N) ≤ (14 / 25) • goodReward N
+SymmetricSector.phaseW_le_Wbar (N : ℕ) (hN : 25 ≤ N) : phaseW N ≤ phaseWbar N
+SymmetricSector.phaseF0_bounds (N : ℕ) (hN : 25 ≤ N) : (11 / 25) • phaseV N ≤ phaseF0 N ∧ phaseF0 N ≤ phaseV N
+'SymmetricSector.DebtRepairAudit.original_Y_pairing_gap_four' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SymmetricSector.leftBarrier_supersolution' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SymmetricSector.leftOccupation_le_barrier' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SymmetricSector.phaseEll_lower' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SymmetricSector.phaseDebt_le_constant_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SymmetricSector.phaseDebt_le_printed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SymmetricSector.phaseWbar_supersolution' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SymmetricSector.phaseC_Wbar_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SymmetricSector.phaseW_le_Wbar' depends on axioms: [propext, Classical.choice, Quot.sound]
+'SymmetricSector.phaseF0_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
