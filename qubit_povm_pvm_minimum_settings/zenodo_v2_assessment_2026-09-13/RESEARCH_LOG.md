@@ -14,3 +14,13 @@ Completion estimate: **70% of this assessment**, not probability of correctness 
 - The public archive already credits prior three-by-two separation. A revision should sharpen its positioning and compact routine exposition, not claim that attribution was absent.
 - Checked official Zenodo versioning documentation. The proposed release uses the existing paper and software version families. No live draft or release has been created.
 - Private correspondence is not saved in these public research notes.
+
+## 2026-09-14T04:42:52+00:00 — final assessment checkpoint
+
+Completion estimate: **100% of the requested archive-based assessment and release specification**. The proposed manuscript revision and live Zenodo release are not completed tasks and were not executed.
+
+- Independent Section 3 comparison confirms existing attribution; identifies an ambiguous global-optimum comparison-table row and a concise valid Lemma 4.1 rewrite.
+- Archive/package audit confirms original software 42/42 checksums, absent Lean sources, historical PDF correspondence, four stale live report-alias hashes and required preflight baselines.
+- Adversarial plan review confirmed IDs, dates, scope and packaging findings. Tightened the plan to retain verifier-required historical ZIPs; changing those dependencies would require revalidating scripts.
+- Version plan includes explicit signature correction, formal scope, exposition and literature revisions, metadata cleanup, consistent records and clean-extraction verification. No main theorem alteration proposed.
+- No individual was contacted. No private correspondence was committed. No production paper/proof files, Zenodo records or immutable releases were modified.

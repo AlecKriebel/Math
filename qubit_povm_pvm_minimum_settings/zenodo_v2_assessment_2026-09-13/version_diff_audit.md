@@ -1,0 +1,47 @@
+# Actual Zenodo archive versus current manuscript and Lean package
+
+Audit checkpoint: 2026-09-13 PDT (2026-09-14 UTC). Completion estimate: **100% of this bounded source/package comparison**, not of release preparation. No production files were edited and no full Lean rebuild was repeated.
+
+## Baseline and exact differences
+
+The baseline is the newly downloaded Zenodo files recorded in `downloads/download_manifest.json`, specifically the publication PDF in record **21699161**, review PDF in **21699069**, source TAR in **21699181**, and reproducibility ZIP in **21699224**. These are July 30 deposits with filenames labelled v1.1.0; they are separate records, not four successive versions of one object. The actual publication PDF hash equals the historical Lean correspondence fingerprint (`1a408e9d...`). Thus the audit links the formalization's original manuscript comparison to the actual Zenodo PDF rather than a website copy.
+
+The current `paper/main.tex` differs from the downloaded source in exactly one hunk: Definition 5.1 now orients the future cone to contain `u`, conditions equivalence of common-cone and positive-pairing conditions on Lorentz signature, and explicitly states that the scalar inequalities alone do not imply signature `(1,3)`. The downloaded and current `appendices.tex`, bibliography, and figure source files are identical. The current main text still has a July 2026 date and no Lean section. Merely uploading the current PDF is therefore insufficient for a coherent Lean v2.
+
+The old ZIP has **42/42 matching root-manifest entries**. Its README and verifier report accurately describe finite exact algebra checks, explicitly not formal verification. It contains **no Lean development**. Those claims were accurate for that deposit and must remain historical, but cannot describe the newly expanded verification package without revision.
+
+## Required before presenting this as the revised Lean-certified edition
+
+1. **Publish the substantive domain correction.** Include the exact Definition 5.1 change and a transparent change-log item. The rational counterexample from September 11 satisfies the old scalar positivity conditions but has a two-dimensional positive subspace; those conditions alone cannot imply Lorentz signature. The physical Lean closure already requires a Gram representation by an invertible physical frame. The correction does not add a new hypothesis to its endpoint theorem.
+2. **State the formal coverage precisely in the paper and deposit.** Principal conclusions are formalized: arbitrary finite-output two-input convex-hull equality, finite complete-strategy projective simulation, at-most-two-input equality, minimum architecture, actual 3×2 separation, and strengthened attained value. The certificate is not a formalization of every manuscript assertion or the original prose proof route. Preserve the explicit auxiliary exclusions from `bell_lean/docs/CERTIFIED_COVERAGE.md`. State that this is local kernel verification and adversarial agent review, not external expert peer review.
+3. **Include the actual proof package and reproducible dependencies.** At minimum include the production `Bell` sources, `Bell.lean`, pinned toolchain and Lake manifest, contracts, verifier scripts/certificates, fixed successful receipts and their referenced logs, coverage/certification/reproduction documents, and required historical baselines. The existing preflight scripts read `preservation/input_before_preflight.zip` and `preservation/input_before_source_completion.zip`; do not remove them casually in the name of cleanup.
+4. **Fix package-integrity metadata in the staged release.** The local `bell_lean/SHA256SUMS.txt` currently has four mismatches: `reports/axiom_audit.json`, `reports/kernel_report.json`, `reports/latest_run.json`, and `reports/statement_audit.json`. These convenience aliases now identify a later successful run (`20260911T135554Z-dc7ff252`), while the certificate fixes `20260911T022153Z-2ea5f99b`. This is a stale manifest/alias issue, not a proof failure. Regenerate the staged package manifest after freezing contents. Make `reports/status.json` point to the named fixed-run receipts it describes, or explicitly identify its links as later aliases. Preserve historical evidence unchanged.
+5. **Add a new correspondence record for the final v2 paper.** The old `reports/manuscript_correspondence.json` correctly fingerprints the July PDF/main source. Its main source and both PDF hashes differ from the corrected current manuscript. Do not overwrite it to imply that a historical run checked the new text. Keep it historical and add a v2 source/PDF fingerprint plus an explicit review of the changes and a reference to unchanged certified proof input hashes. The September 11 response already records the signature correction and its successful bounded checks.
+6. **Regenerate matching release assets.** Main PDF, review PDF, extracted source archive, bundled paper copy, README, theorem map, version identifiers, citation metadata and deposited descriptions must agree. The old `VERSION.txt`, source tag, README, reviewer maps and reports refer to v1.1.0 and no Lean; carry them only as explicitly historical records. Use a single canonical v2 publication DOI and clearly related proof/source objects, avoiding the existing ambiguity between publication and review DOI.
+7. **Validate the staged extraction.** Rerun exact algebra, both PDF builds and source-archive build, check links and all checksums, and run the Lean reproduction command from an extracted release in a clean environment. A complete fresh build is a release acceptance criterion rather than something this bounded assessment claims to have done. Preserve its receipts alongside, without rewriting the original successful receipt.
+
+## Evidence supporting the existing Lean result
+
+The fixed September 10 local certificate records 58 rebuilt mathematical modules plus the umbrella, 675 public dependency reports, 25 expanded contracts, all 123 executed command logs and no nonstandard mathematical axioms. The previous assessment independently rehashed all 88 protected inputs and 123 logs with zero mismatches, and reexecuted the explicit complex-matrix equality contract and scalar-domain counterexample. This assessment read those receipts rather than claiming a second full run.
+
+The formal projective certificate proves the stronger physical bound **289/10**, which implies the paper's weaker bound. It proves the strengthened POVM value is attained; it does not prove a global POVM optimum. The general SDP/KKT statements, full smooth-manifold/inertia formulation, several general cone/rank claims, original scalar-bound proof route, selected Appendix B optimization statements and general postprocessing/embedding bridges are not all standalone formal endpoints. These limits should be visible in v2's short verification section, with full details in the coverage table.
+
+## Optional refinements and packaging cautions
+
+- Presenting the stronger bound 289/10 in the manuscript is useful but unnecessary for establishing the original strict separation. If promoted, explain the alternative physical SOS derivation and check all displayed bounds/gaps for consistency.
+- Rewrite the key prose proofs for readability and sharpen attribution in Section 3; these are distinct from adding the certificate. A Lean attachment does not answer the exposition concern on its own.
+- Update the manuscript date/version and retain the explicit AI disclosure. Avoid the unqualified phrase “the whole paper is Lean verified.”
+- The local Lean tree is approximately **5.9 GB**, of which **5.8 GB is `.lake`**. Do not upload a raw directory ZIP with dependency caches/build products. `scripts/package.py` already excludes `.lake`, `.git`, virtual environments, compiled objects and fonts, rejects likely credentials, and regenerates a root manifest; run it on a staging copy because it writes that manifest. It includes four historical nested ZIPs on purpose. Label these clearly so they cannot be mistaken for the certified entry point.
+- Keep existing fixed receipts and labelled historical source PDF. A reader-facing README should direct readers first to the current certificate and canonical paper. Relative documentation links reaching sibling referee/response folders must resolve inside the release or be replaced by stable public links; the Lean-only ZIP otherwise leaves such links broken.
+- A PDF certificate alone is insufficient. The value is the source, theorem statements, pinned dependencies and a reproducible command (`bash scripts/check.sh --bootstrap --serial`), with successful receipts as evidence.
+
+## Compact release acceptance checklist
+
+- [ ] Final paper contains signature correction, clear attribution, concise proof exposition and precise Lean scope.
+- [ ] Final PDF/review PDF/source bundle and software-bundled manuscript agree.
+- [ ] Version/date/DOIs/relationships/citation metadata agree across all deposits.
+- [ ] Proof sources, pinned environment, required baselines, contracts and fixed receipts are complete.
+- [ ] Current manifest has no mismatches; fixed-run links resolve; historical receipts remain historical.
+- [ ] New correspondence record fingerprints the actual v2 source and PDFs.
+- [ ] Fresh extracted-package exact checks, builds and Lean verification pass; logs retained.
+- [ ] Rendered PDFs, internal links and public Zenodo download hashes are verified before announcing completion.
