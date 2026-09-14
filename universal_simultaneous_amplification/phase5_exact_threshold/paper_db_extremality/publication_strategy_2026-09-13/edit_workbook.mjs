@@ -1,0 +1,23 @@
+import fs from 'node:fs/promises';
+import {FileBlob, SpreadsheetFile} from '@oai/artifact-tool';
+const dir = new URL('.', import.meta.url).pathname;
+const wb = await SpreadsheetFile.importXlsx(await FileBlob.load('/Users/alec/Downloads/Papers (4).xlsx'));
+console.log((await wb.inspect({kind:'region',sheetId:'Papers',range:'C12:W12',maxChars:2200,tableMaxCellChars:120})).ndjson);
+const before = await wb.render({sheetName:'Papers',range:'E11:N13',scale:1.5,format:'png'});
+await fs.writeFile(dir+'before.png',new Uint8Array(await before.arrayBuffer()));
+if(process.argv.includes('--inspect-only')) process.exit(0);
+const s=wb.worksheets.getItem('Papers');
+const edits=JSON.parse(await fs.readFile(dir+'workbook_updates.json','utf8'));
+for(const [cell,value] of Object.entries(edits)) s.getRange(cell).values=[[value]];
+for(const cell of ['E12','F12','K12']) {s.getRange(cell).format.wrapText=true;s.getRange(cell).format.verticalAlignment='top';}
+s.getRange('A12:AP12').format.rowHeight=200;
+s.getRange('L12').formulas=[['=AVERAGE(M12:N12)']];
+console.log((await wb.inspect({kind:'table',range:'Papers!K12:N12',include:'values,formulas',tableMaxRows:1,tableMaxCols:4})).ndjson);
+console.log((await wb.inspect({kind:'match',range:'Papers!E12:W12',searchTerm:'#REF!|#DIV/0!|#VALUE!|#NAME\\?|#N/A|#NUM!|#NULL!|#SPILL!|#CALC!',options:{useRegex:true,maxResults:20},summary:'Changed-row error scan'})).ndjson);
+const after=await wb.render({sheetName:'Papers',range:'E12:F12',scale:1.5,format:'png'});
+await fs.writeFile(dir+'after.png',new Uint8Array(await after.arrayBuffer()));
+const score=await wb.render({sheetName:'Papers',range:'K12:P12',scale:1.5,format:'png'});
+await fs.writeFile(dir+'score.png',new Uint8Array(await score.arrayBuffer()));
+const out=dir+'outputs/01a09d58-c65d-7731-a4d1-086aef7a9db0/';
+await fs.mkdir(out,{recursive:true});
+await (await SpreadsheetFile.exportXlsx(wb)).save(out+'Papers - SimAmpA assessment.xlsx');
