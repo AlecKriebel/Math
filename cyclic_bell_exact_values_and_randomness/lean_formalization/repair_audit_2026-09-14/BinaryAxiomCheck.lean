@@ -1,0 +1,10 @@
+import CyclicBell.GeneralBinaryWitness
+import CyclicBell.GeneralPartySwap
+#print axioms CyclicBell.General.binary_operator_sos
+#print axioms CyclicBell.General.binary_on_state_structure
+#print axioms CyclicBell.General.binary_saturation_privacy
+#print axioms CyclicBell.General.right_one_input_pure_projective_perfect_guess
+#print axioms CyclicBell.General.right_one_input_measurement_validity
+
+#print axioms CyclicBell.General.binary_physical_attainment
+#print axioms CyclicBell.General.binary_physical_measurement_package

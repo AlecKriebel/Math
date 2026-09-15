@@ -27,14 +27,14 @@ theorem source_clock_unitary : UnitaryRel (sourceClock d) := by
       Matrix.diagonal_apply, Matrix.one_apply]
     by_cases hij : i=j
     · subst j
-      simp [chi_star_mul]
+      simpa only [if_pos rfl,Pi.star_apply] using chi_star_mul i
     · simp [hij]
   · ext i j
     simp only [sourceClock, Matrix.diagonal_conjTranspose, Matrix.diagonal_mul_diagonal,
       Matrix.diagonal_apply, Matrix.one_apply]
     by_cases hij : i=j
     · subst j
-      simp [mul_comm (chi i),chi_star_mul]
+      simpa only [if_pos rfl,Pi.star_apply,mul_comm] using chi_star_mul i
     · simp [hij]
 
 theorem source_shift_unitary : UnitaryRel (cyclicShift d) := by
@@ -61,7 +61,7 @@ theorem source_relative_weights (y : Ix d) :
     Matrix.diagonal_mul, Matrix.smul_apply, smul_eq_mul, cyclicShift, weightedCycle]
   by_cases hij : i=j+1
   · subst i
-    simp only [if_pos rfl,mul_one,chi_star,← chi_add]
+    simp only [if_pos rfl,ite_true,mul_one,Pi.star_apply,chi_star,← chi_add]
     congr 1
     ring
   · simp [hij]
@@ -80,17 +80,36 @@ theorem source_clock_root_product (hd : 2≤d) :
   rw [he,← mul_pow]
   norm_num
 
+theorem source_character_product_reindex (y : Ix d) :
+    (∏ j : Ix d, chi ((y-1)-j)) = ∏ j : Ix d, chi j := by
+  exact Fintype.prod_equiv (Equiv.subLeft (y-1))
+    (fun j : Ix d => chi ((y-1)-j)) (fun j : Ix d => chi j) (by intro j; rfl)
+
+theorem source_relative_weight_product (hd : 2≤d) (y : Ix d) :
+    (∏ j : Ix d,chi (y-j-1)) = (-1 : ℂ)^(d-1) := by
+  have he : (∏ j : Ix d,chi (y-j-1)) = ∏ j : Ix d,chi ((y-1)-j) := by
+    apply Finset.prod_congr rfl
+    intro j _
+    congr 1
+    ring
+  exact he.trans ((source_character_product_reindex y).trans (source_clock_root_product hd))
+
 theorem source_relative_power (hd : 2≤d) (y : Ix d) :
     sourceRelative y ^ d = (-1 : ℂ)^(d-1) • (1 : Mat (Ix d)) := by
-  rw [source_relative_weights, weighted_full_power]
-  congr 1
-  calc
-    (∏ j : Ix d, chi (y-j-1)) = ∏ j : Ix d,chi ((y-1)-j) := by
-      apply Finset.prod_congr rfl
-      intro j _
-      congr 1
-      ring
-    _ = ∏ j : Ix d,chi j := Fintype.prod_equiv (Equiv.subLeft (y-1)) _ _ (fun _ => rfl)
-    _ = _ := source_clock_root_product hd
+  rw [source_relative_weights,weighted_full_power,source_relative_weight_product hd]
+
+theorem source_relative_spectral_power (hd : 2≤d) (y : Ix d)
+    (z : MatrixSpectrum (sourceRelative y)) :
+    (z : ℂ)^d = (-1 : ℂ)^(d-1) := by
+  have hp : (toCMatrix (sourceRelative y))^d =
+      algebraMap ℂ (CMat (Ix d)) ((-1 : ℂ)^(d-1)) := by
+    change toCMatrix ((sourceRelative y)^d) = _
+    rw [source_relative_power hd,Algebra.algebraMap_eq_smul_one]
+    rfl
+  have hz : (z : ℂ)^d ∈ spectrum ℂ ((toCMatrix (sourceRelative y))^d) := by
+    rw [spectrum.map_pow]
+    exact ⟨z,z.property,rfl⟩
+  rw [hp,spectrum.scalar_eq] at hz
+  exact hz
 
 end CyclicBell.General

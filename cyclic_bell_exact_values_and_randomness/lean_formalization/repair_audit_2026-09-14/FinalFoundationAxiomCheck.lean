@@ -1,0 +1,9 @@
+import CyclicBell.ModelValueStatements
+#print axioms CyclicBell.General.first_three_model_counterexample
+#print axioms CyclicBell.General.second_three_model_counterexample
+#print axioms CyclicBell.General.binary_values_q_qa_qc
+#print axioms CyclicBell.General.binary_purified_saturation
+#print axioms CyclicBell.General.binary_two_input_private_achievable
+#print axioms CyclicBell.General.left_one_input_no_binary_privacy
+#print axioms CyclicBell.General.right_one_input_no_binary_privacy
+#print axioms CyclicBell.General.binary_componentwise_minimality

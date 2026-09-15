@@ -1,0 +1,16 @@
+import CyclicBell.GeneralRigidity
+import CyclicBell.GeneralCoveragePermutation
+import CyclicBell.GeneralCoveragePolarCanonical
+#print axioms CyclicBell.General.flat_iff_autocorrelation
+#print axioms CyclicBell.General.operator_uniform_iff
+#print axioms CyclicBell.General.scalar_equality_iff
+#print axioms CyclicBell.General.matrix_functional_factors
+#print axioms CyclicBell.General.first_physical_upper
+#print axioms CyclicBell.General.first_saturation_equations
+#print axioms CyclicBell.General.quantum_supported_routing
+#print axioms CyclicBell.General.supported_multiplicity_rigidity
+#print axioms CyclicBell.General.supported_dimension_divisible
+#print axioms CyclicBell.General.linear_augmented_commuting_hilbert_bound
+#print axioms CyclicBell.General.linear_permutation_local_moments_zero
+#print axioms CyclicBell.General.linear_permutation_all_harmonics_invariant
+#print axioms CyclicBell.General.Coverage.canonical_polar_hilbert_positive_factor_identity

@@ -1,0 +1,8 @@
+import CyclicBell.GeneralExactValues
+#print axioms CyclicBell.General.first_reduced_values_q_qa_qc
+#print axioms CyclicBell.General.first_augmented_values_q_qa_qc
+#print axioms CyclicBell.General.second_reduced_values_q_qa_qc
+#print axioms CyclicBell.General.second_augmented_values_q_qa_qc
+#print axioms CyclicBell.General.first_four_augmented_radical_values
+#print CyclicBell.General.first_reduced_values_q_qa_qc
+#print CyclicBell.General.second_augmented_values_q_qa_qc

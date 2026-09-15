@@ -35,10 +35,10 @@ theorem algebraBinary_scaled_sos (a₀ a₁ b₀ b₁ : A)
     simpa only [pow_two] using sqrt_three_square
   unfold algebraBinaryResidual0 algebraBinaryResidual1 algebraBinaryScore
   simp only [star_add,star_sub,star_smul,h₀.1,h₁.1,k₀.1,k₁.1,
-    Complex.conj_ofReal,star_natCast,add_mul,mul_add,sub_mul,mul_sub,
+    star_real,star_ofNat,star_natCast,add_mul,mul_add,sub_mul,mul_sub,
     smul_mul_assoc,mul_smul_comm,smul_smul,hs,h₀.2,h₁.2,k₀.2,k₁.2,
     ← hc00,← hc01,← hc10,← hc11]
-  module
+  match_scalars <;> ring_nf <;> norm_num [sqrt_three_square]
 
 /-- Manuscript eq:binary-sos in a general complex C*-algebra. -/
 theorem binary_cstar_sos (a₀ a₁ b₀ b₁ : A)

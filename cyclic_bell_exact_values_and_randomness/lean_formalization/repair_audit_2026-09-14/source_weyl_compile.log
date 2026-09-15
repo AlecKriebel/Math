@@ -1,0 +1,35 @@
+CyclicBell/GeneralCoverageSourceWeyl.lean:51:10: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  Coverage.triangular (n + 1 + 1)
+case e_j
+d : ℕ
+inst✝ : NeZero d
+y : Ix d
+Z : Mat (Ix d) := sourceClock d
+X : Matrix (Ix d) (Ix d) ℂ := (cyclicShift d)ᵀ
+hZX : Z * Zᴴ = 1
+hXZ : X * Z = chi 1 • (Z * X)
+n : ℕ
+ih :
+  (sourceRelative y)ᴴ ^ (n + 1) * (sourceClock d)ᴴ =
+    chi (-y * ↑(n + 1) + ↑(Coverage.triangular (n + 1))) • (sourceClock d ^ n * (cyclicShift d)ᵀ ^ (n + 1))
+c : Ix d := -y * ↑(n + 1) + ↑(Coverage.triangular (n + 1))
+hm : X * Z ^ (n + 1) = chi 1 ^ (n + 1) • (Z ^ (n + 1) * X)
+⊢ -y + (-y * ↑(n + 1) + ↑(Coverage.triangular n + n)) + ↑(n + 1) =
+    -y * ↑(n + 1 + 1) + ↑(Coverage.triangular n + n + (n + 1))
+Try this: ring_nf
+Try this: ring_nf
+CyclicBell/GeneralCoverageSourceWeyl.lean:71:80: error: unsolved goals
+case e_a
+d : ℕ
+inst✝ : NeZero d
+y k : Ix d
+⊢ chi ↑((ZMod.val k + ZMod.val k ^ 2) / 2) * (↑d)⁻¹ *
+        (↑(Real.sin (Real.pi * ↑(ZMod.val k) * (↑d)⁻¹ + Real.pi * (↑d)⁻¹ * (1 / 2))))⁻¹ *
+      (-1) ^ ZMod.val k =
+    (↑d)⁻¹ * (↑(Real.sin (Real.pi * ↑(ZMod.val k) * (↑d)⁻¹ + Real.pi * (↑d)⁻¹ * (1 / 2))))⁻¹ * (-1) ^ ZMod.val k
+
+case e_a
+d : ℕ
+inst✝ : NeZero d
+y k : Ix d
+⊢ chi (-y - y * k) = chi (-y - y * k) * chi ↑((ZMod.val k + ZMod.val k ^ 2) / 2)

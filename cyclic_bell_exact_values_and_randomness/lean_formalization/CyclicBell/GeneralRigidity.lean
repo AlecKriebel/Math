@@ -37,19 +37,22 @@ theorem rootProjection_filter_on_support (hd : 2≤d) (U : Mat ι) (hU : Unitary
   have h := equality_supported_action hd U hU T hE
     (fun z => if z=equalityRoot k then 1 else 0)
     (fun z => (d : ℂ)⁻¹*(∑ r : Ix d,chi (-(k*r))*(star (equalityBase d)*z)^r.val))
-    (fun j => by rw [equalityRoot_injective.eq_iff,rootFilter_at_root])
-  simpa [rootProjection,finiteSpectralProjection,rootFilter] using h
+    (fun j => by dsimp only; simp only [equalityRoot_injective.eq_iff]; rw [rootFilter_at_root])
+  have hf : finiteCalc U hU (fun z => star (equalityBase d)*z) = star (equalityBase d) • U := by
+    change finiteCalc U hU (fun z => star (equalityBase d)*id z)=_
+    rw [finiteCalc_smul,finiteCalc_coordinate]
+  simpa only [rootProjection,finiteSpectralProjection,rootFilter,finiteCalc_smul,finiteCalc_sum,finiteCalc_pow,hf] using h
 
 theorem rootFilter_intertwines (U : Mat ι) (T : Matrix ι ν ℂ) (W : Mat ν)
     (h : U*T=T*W) (k : Ix d) : rootFilter (d := d) U k*T=T*rootFilter W k := by
   have hs : (star (equalityBase d) • U)*T=T*(star (equalityBase d) • W) := by
-    simp only [smul_mul_assoc,mul_smul_comm,h]
+    simp only [Matrix.smul_mul,Matrix.mul_smul,h]
   unfold rootFilter
-  simp only [smul_mul_assoc,mul_smul_comm,Finset.sum_mul,Finset.mul_sum]
+  simp only [Matrix.smul_mul,Matrix.mul_smul,Matrix.sum_mul,Matrix.mul_sum]
   congr 1
   apply Finset.sum_congr rfl
   intro r _
-  rw [smul_mul_assoc,mul_smul_comm,matrix_intertwiner_pow _ T _ hs r.val]
+  rw [matrix_intertwiner_pow _ T _ hs r.val]
 
 theorem rootProjection_preserves_support (hd : 2≤d) (U : Mat ι) (hU : UnitaryRel U)
     (T : Matrix ι ν ℂ) (W : Mat ν) (hE : equalitySupport (d := d) U hU*T=T)
@@ -63,11 +66,12 @@ theorem rootProjection_sum_on_support (hd : 2≤d) (U : Mat ι) (hU : UnitaryRel
   have h := equality_supported_action hd U hU T hE
     (fun z => ∑ k : Ix d,if z=equalityRoot k then (1 : ℂ) else 0) (fun _ => 1)
     (fun j => by simp [equalityRoot_injective.eq_iff])
-  simpa [rootProjection,finiteSpectralProjection] using h
+  simpa only [rootProjection,finiteSpectralProjection,finiteCalc_sum,finiteCalc_one,Matrix.one_mul] using h
 
 theorem rootProjection_orthogonal (U : Mat ι) (hU : UnitaryRel U) (j k : Ix d) :
     rootProjection U hU j*rootProjection U hU k=if j=k then rootProjection U hU k else 0 := by
-  rw [rootProjection,rootProjection,finiteSpectralProjection_mul,equalityRoot_injective.eq_iff]
+  rw [rootProjection,rootProjection,finiteSpectralProjection_mul]
+  simp only [equalityRoot_injective.eq_iff]
   split_ifs with h
   · subst k; rfl
   · rfl
@@ -80,14 +84,22 @@ theorem finiteCalc_eigenvector (U : Mat ι) (hU : UnitaryRel U) (f : ℂ → ℂ
     (z : ℂ) (v : ι → ℂ) (hv : U*ᵥv=z • v) : finiteCalc U hU f*ᵥv=f z • v := by
   let T : Matrix ι (Fin 1) ℂ := fun i _ => v i
   have hT : (U-z • 1)*T=0 := by
+    rw [Matrix.sub_mul,Matrix.smul_mul,Matrix.one_mul]
     ext i j
     have h := congrArg (fun w : ι → ℂ => w i) hv
-    simpa [T,Matrix.mul_apply,Matrix.mulVec,sub_mul,smul_mul_assoc] using sub_eq_zero.mpr h
+    simpa [T,Matrix.mul_apply,Matrix.mulVec,dotProduct] using sub_eq_zero.mpr h
   have h := finiteCalc_zero_transfer U hU (fun w => w-z) (fun w => f w-f z) T
-    (fun w hw => by rw [sub_eq_zero.mp hw]; simp) (by simpa using hT)
-  simp only [finiteCalc_sub,finiteCalc_const,sub_mul,smul_mul_assoc,one_mul] at h
-  have hi := congrArg (fun Q : Matrix ι (Fin 1) ℂ => Q · 0) h
-  simpa [T,Matrix.mul_apply,Matrix.mulVec,sub_eq_zero] using hi
+    (fun w hw => by rw [sub_eq_zero.mp hw]; simp) (by
+      rw [finiteCalc_sub,finiteCalc_const]
+      change (finiteCalc U hU id-z • 1)*T=0
+      rw [finiteCalc_coordinate]
+      exact hT)
+  simp only [finiteCalc_sub,finiteCalc_const,Matrix.sub_mul,Matrix.smul_mul,Matrix.one_mul] at h
+  have hi := congrArg (fun Q : Matrix ι (Fin 1) ℂ => fun i => Q i 0) h
+  ext i
+  have hii := congrArg (fun w : ι → ℂ => w i) hi
+  apply sub_eq_zero.mp
+  simpa [T,Matrix.mul_apply,Matrix.mulVec,dotProduct] using hii
 
 theorem rootProjection_range_eigenspace (hd : 2≤d) (U : Mat ι) (hU : UnitaryRel U)
     (T : Matrix ι ν ℂ) (W : Mat ν) (hE : equalitySupport (d := d) U hU*T=T)
@@ -99,24 +111,27 @@ theorem rootProjection_range_eigenspace (hd : 2≤d) (U : Mat ι) (hU : UnitaryR
     change (U-equalityRoot k • 1)*ᵥx=0
     rw [← hv,Matrix.mulVecLin_apply,Matrix.mulVec_mulVec]
     have he : (U-equalityRoot k • 1)*(rootProjection U hU k*T)=0 := by
-      rw [← mul_assoc,sub_mul,finiteSpectralProjection_eigen,smul_mul_assoc,one_mul,sub_self,zero_mul]
+      unfold rootProjection
+      rw [← Matrix.mul_assoc,Matrix.sub_mul,finiteSpectralProjection_eigen,Matrix.smul_mul,Matrix.one_mul,sub_self,Matrix.zero_mul]
     rw [he,Matrix.zero_mulVec]
   · rintro x ⟨hx,hux⟩
     obtain ⟨v,hv⟩ := hx
     have he : U*ᵥx=equalityRoot k • x := by
       change (U-equalityRoot k • 1)*ᵥx=0 at hux
-      simpa [Matrix.sub_mulVec,Matrix.smul_mulVec] using hux
+      simpa [Matrix.sub_mulVec,Matrix.smul_mulVec_assoc,sub_eq_zero] using hux
     have hp : rootProjection U hU k*ᵥx=x := by
       have h := finiteCalc_eigenvector U hU (fun z => if z=equalityRoot k then 1 else 0)
         (equalityRoot k) x he
       simpa [rootProjection,finiteSpectralProjection] using h
     refine ⟨v,?_⟩
+    change T*ᵥv=x at hv
     rw [Matrix.mulVecLin_apply,← Matrix.mulVec_mulVec,hv,hp]
 
 theorem adjoint_intertwiner (U : Mat ι) (T : Matrix ι ν ℂ) (W : Mat ν)
     (hU : UnitaryRel U) (hW : UnitaryRel W) (h : U*T=T*W) : U.conjTranspose*T=T*W.conjTranspose := by
   have he := congrArg (fun Q : Matrix ι ν ℂ => U.conjTranspose*Q*W.conjTranspose) h
-  simpa [mul_assoc,hU.1,hW.2] using he.symm
+  simp only [← Matrix.mul_assoc,hU.1,Matrix.one_mul] at he
+  simpa only [Matrix.mul_assoc,hW.2,Matrix.mul_one] using he.symm
 
 /-- The reflection hypotheses are obtained from Bob's order-d measurements and
 the adjacent scalar phases. No reflection-rank condition is assumed. -/
@@ -146,7 +161,9 @@ theorem quantum_root_rank_lower (hd : 2≤d)
   have hr : (V*(1-2 • E))*T=T*(η⁻¹ • (B (y+1)).conjTranspose) := by
     have hn : η≠0 := cis_ne_zero _
     have hscaled := congrArg (fun Q : Matrix ι (κ × (ι × κ)) ℂ => η⁻¹ • Q) hr0
-    simpa [V,E,η,mul_assoc,mul_smul_comm,smul_smul,hn,hV (y+1)] using hscaled.symm
+    have hvnext : (A*supportedPhase U hU (y+1))*T=T*(B (y+1)).conjTranspose := hV (y+1)
+    simp only [← Matrix.mul_assoc,hvnext] at hscaled
+    simpa [V,E,η,Matrix.mul_assoc,Matrix.mul_smul,smul_smul,hn] using hscaled.symm
   have hb (t : Ix d) : (B t).conjTranspose^d=1 := by
     rw [← Matrix.conjTranspose_pow,bobRight_order (encoded_order (s.bob (some t))),Matrix.conjTranspose_one]
   have hd' : (η⁻¹ • (B (y+1)).conjTranspose)^d=-1 := by
@@ -165,8 +182,8 @@ theorem supported_multiplicity_rigidity (hd : 2≤d)
     preservesRange U (aliceSupport s.state) ∧
     preservesRange U.conjTranspose (aliceSupport s.state) ∧
     ∃ r : ℕ,0<r ∧
-      (∀ k : Ix d,Module.finrank ℂ (aliceSupport s.state ⊓
-        LinearMap.ker (U-equalityRoot k • 1).mulVecLin)=r) ∧
+      (∀ k : Ix d,Module.finrank ℂ ((aliceSupport s.state ⊓
+        LinearMap.ker (U-equalityRoot k • 1).mulVecLin) : Submodule ℂ (ι → ℂ))=r) ∧
       Module.finrank ℂ (aliceSupport s.state)=d*r := by
   dsimp only
   let A := encoded (s.alice 0)
@@ -192,16 +209,20 @@ theorem supported_multiplicity_rigidity (hd : 2≤d)
   obtain ⟨heq,hconst,_⟩ := equal_ranks_from_lower_bounds T.rank r hsum hlo
   have hn : 0<T.rank := by
     have hk : matrixRange T≠⊥ := hK ▸ aliceSupport_nonzero s.state
-    exact Submodule.finrank_pos.mpr hk
+    apply Nat.pos_of_ne_zero
+    intro hz
+    exact hk (Submodule.finrank_eq_zero.mp hz)
   have hr : 0<r 0 := by
     have h := heq 0
     by_contra hnot
-    have hz : r 0=0 := by omega
+    have hz : r 0=0 := Nat.eq_zero_of_not_pos hnot
     rw [hz,mul_zero] at h
     omega
   refine ⟨r 0,hr,?_,?_⟩
   · intro k
-    rw [hK,← rootProjection_range_eigenspace hd U hU T W hE hUT k]
+    rw [hK]
+    change Module.finrank ℂ (supportedEigenspace T U (equalityRoot k))=r 0
+    rw [← rootProjection_range_eigenspace hd U hU T W hE hUT k]
     exact hconst k 0
   · rw [hK]
     exact heq 0

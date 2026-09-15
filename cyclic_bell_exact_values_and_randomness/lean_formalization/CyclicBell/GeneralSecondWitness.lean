@@ -18,12 +18,13 @@ theorem consecutive_integer_phase (n : ℕ) : cis (-Real.pi*(n : ℝ)*((n : ℝ)
   | succ n ih =>
     have ha : -Real.pi*((n+1 : ℕ) : ℝ)*(((n+1 : ℕ) : ℝ)-1)=
         -Real.pi*(n : ℝ)*((n : ℝ)-1)+2*Real.pi*(-(n : ℤ)) := by push_cast; ring
-    rw [ha,cis_add,ih,cis_period_int,one_mul]
+    rw [ha,cis_add,ih,one_mul]
+    simpa only [Int.cast_neg,Int.cast_natCast] using cis_period_int (-(n : ℤ))
 
 theorem secondTwist_power (l : Ix d) : secondTwist l^d=1 := by
   rw [secondTwist,cis_pow]
   have ha : (d : ℝ)*(-Real.pi*l.val*((l.val : ℝ)-1)/d)=
-      -Real.pi*l.val*((l.val : ℝ)-1) := by field_simp [ne_of_gt (dimension_pos (d := d))]
+      -Real.pi*l.val*((l.val : ℝ)-1) := by field_simp [ne_of_gt (dimension_pos (d := d))]; ring
   rw [ha,consecutive_integer_phase]
 
 theorem secondWeight_factor (l j : Ix d) :
@@ -45,20 +46,21 @@ theorem secondWeight_unit (l : Ix d) : UnitPhases (secondWeight l : Ix d → ℂ
   have hc := chi_star_mul (-(l*j))
   rw [star_mul]
   calc
-    (star (secondPrefactor l)*star (chi (-(l*j))))*(secondPrefactor l*chi (-(l*j))) =
+    (star (chi (-(l*j)))*star (secondPrefactor l))*(secondPrefactor l*chi (-(l*j))) =
         (star (secondPrefactor l)*secondPrefactor l)*(star (chi (-(l*j)))*chi (-(l*j))) := by ring
     _=1 := by rw [hr,hc,mul_one]
 
 theorem secondWeight_product (hd : 2≤d) (l : Ix d) : (∏ j : Ix d,secondWeight l j)=1 := by
   simp_rw [secondWeight_factor]
   rw [Finset.prod_mul_distrib,Finset.prod_const,Finset.card_univ,ZMod.card,secondTwist_power,
-    one_mul,← Finset.prod_pow,← map_prod,equalityRoot_product hd]
+    one_mul,Finset.prod_pow,← star_prod,equalityRoot_product hd]
   simp
 
 def secondAlice (hd : 2≤d) (κ : Equiv.Perm (Ix d)) (l : Ix d) : Measurement d (Ix d) :=
   cycleMeasurement (fun j => star (secondWeight l (κ j)))
     (by intro j; simpa [mul_comm] using secondWeight_unit (d := d) l (κ j))
-    (by rw [← map_prod,product_permuted,secondWeight_product hd]; simp)
+    (by rw [product_permuted (fun j => star (secondWeight l j)) κ]
+        simpa only [star_prod,star_one] using congrArg star (secondWeight_product hd l))
 
 def secondPermutationStrategy (hd : 2≤d) (κ : Equiv.Perm (Ix d)) :
     StrategyOn d (Ix d) (AugmentedInputs d) (Ix d) (Ix d) where
@@ -74,7 +76,7 @@ def secondPermutationStrategy (hd : 2≤d) (κ : Equiv.Perm (Ix d)) :
 theorem weighted_sum {ν : Type*} [Fintype ν] (c : ν → ℂ) (w : ν → Ix d → ℂ) :
     (∑ a,c a • weightedCycle (w a))=weightedCycle (fun j => ∑ a,c a*w a j) := by
   ext i j
-  simp only [Matrix.smul_apply,smul_eq_mul,weightedCycle,Finset.sum_apply]
+  simp only [Matrix.smul_apply,smul_eq_mul,weightedCycle,Matrix.sum_apply,Finset.sum_apply]
   by_cases h : i=j+1 <;> simp [h]
 
 theorem polarTransform_shift (l t : Ix d) :
@@ -105,7 +107,7 @@ theorem secondPermutation_compression (hd : 2≤d) (κ : Equiv.Perm (Ix d)) (l :
     ring
   simp only [Function.comp_apply,hs]
   ext i j
-  simp only [weightedCycle,Matrix.smul_apply,smul_eq_mul]
+  simp only [weightedCycle,Matrix.smul_apply,smul_eq_mul,Function.comp_apply]
   split_ifs <;> ring
 
 theorem secondWeight_zero (j : Ix d) : secondWeight (0 : Ix d) j=1 := by
@@ -115,11 +117,8 @@ theorem secondWeight_one_conjugate (hd : 2≤d) (j : Ix d) :
     star (secondWeight (1 : Ix d) j)=equalityRoot j := by
   have hv : (1 : Ix d).val=1 := by
     rw [← Nat.cast_one,ZMod.val_natCast,Nat.mod_eq_of_lt (show 1<d by omega)]
-  simp only [secondWeight,secondPrefactor,hv,Nat.cast_one,one_mul,sub_self,zero_add,
-    star_mul,← cis_neg,chi_star,neg_neg,equalityRoot,equalityBase]
-  congr 1
-  congr 1
-  ring
+  rw [secondWeight_factor]
+  simp [hv,secondTwist]
 
 @[simp] theorem secondAlice_zero (hd : 2≤d) (κ : Equiv.Perm (Ix d)) :
     encoded (secondAlice hd κ 0)=cyclicShift d := by
@@ -142,12 +141,13 @@ theorem secondPermutation_term (hd : 2≤d) (κ : Equiv.Perm (Ix d)) (l : Ix d) 
   rw [secondPermutation_compression hd,secondAlice_encoding,kron_smul_right,
     entangled_stateEval,expectation_smul,expectation_smul,weighted_entry_conjugate,phi_weighted]
   have he : (∑ j,star ((secondWeight l ∘ κ) j)*(secondWeight l ∘ κ) j)=(d : ℂ) := by
-    simp only [Function.comp_apply,secondWeight_unit]
+    simp only [Function.comp_apply]
+    simp_rw [show ∀ j : Ix d, star (secondWeight l j) * secondWeight l j = 1 from secondWeight_unit l]
     simp [ZMod.card]
   rw [he,div_self (show (d : ℂ)≠0 by exact_mod_cast (NeZero.ne d)),mul_one]
   have hnorm := Complex.normSq_eq_conj_mul_self (z := generalLambda l)
   have hm : star (generalLambda l)*((d : ℂ)*generalLambda l)=
-      (d : ℂ)*(Complex.normSq (generalLambda l) : ℂ) := by rw [hnorm]; ring
+      (d : ℂ)*(Complex.normSq (generalLambda l) : ℂ) := by rw [hnorm]; simp only [Complex.star_def]; ring
   rw [hm]
   simp
 
@@ -163,7 +163,7 @@ theorem secondPermutation_attains (hd : 2≤d) (κ : Equiv.Perm (Ix d)) :
   rw [secondAlice_zero,permutationBob_none,entangled_stateEval,
     (added_first_harmonics (equalityRoot : Ix d → ℂ) κ).1,Complex.one_re,← Finset.mul_sum]
   have hn := generalLambda_normalization (d := d) hd
-  simp_rw [← Complex.normSq_eq_conj_mul_self] at hn
+  simp only [Complex.star_def, ← Complex.normSq_eq_conj_mul_self] at hn
   have hr := congrArg Complex.re hn
   simp only [Complex.re_sum,Complex.ofReal_re,Complex.one_re] at hr
   rw [hr,mul_one]
@@ -209,11 +209,12 @@ theorem second_all_dimension_counterexample (hd : 4≤d) :
   · intro nA nB t
     exact secondPermutation_maximal (by omega) _ t
   · intro a b
+    dsimp [s]
     simp_rw [second_first_target_same,firstSwap_target hd]
     exact swappedTarget_marginals a b
-  · simpa only [second_first_target_same,firstSwap_target hd]
+  · simpa only [s,second_first_target_same,firstSwap_target hd]
       using swappedTarget_not_uniform (d := d) hd
-  · simpa only [second_first_target_same,firstSwap_target hd]
+  · simpa only [s,second_first_target_same,firstSwap_target hd]
       using swappedTarget_quantitative (d := d) hd
 
 end CyclicBell.General

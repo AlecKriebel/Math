@@ -35,14 +35,14 @@ dependent outputs simultaneously. -/
 def rightHiddenWeight (p : RightOneInputBehavior X O A) : StoredAssignments O A → ℝ :=
   hiddenWeight (reversedOneInput p)
 
-theorem rightHiddenWeight_nonnegative (p : RightOneInputBehavior X O A) (λ : StoredAssignments O A) :
-    0≤rightHiddenWeight p λ := hiddenWeight_nonnegative (reversedOneInput p) λ
+theorem rightHiddenWeight_nonnegative (p : RightOneInputBehavior X O A) (label : StoredAssignments O A) :
+    0≤rightHiddenWeight p label := hiddenWeight_nonnegative (reversedOneInput p) label
 
 theorem rightHiddenWeight_normalized (p : RightOneInputBehavior X O A) :
-    (∑ λ,rightHiddenWeight p λ)=1 := hiddenWeight_normalized (reversedOneInput p)
+    (∑ label,rightHiddenWeight p label)=1 := hiddenWeight_normalized (reversedOneInput p)
 
 theorem right_one_input_local (p : RightOneInputBehavior X O A) (x : X) (a : A x) (b : O) :
-    (∑ λ : StoredAssignments O A,if λ.2 x=a ∧ λ.1=b then rightHiddenWeight p λ else 0)=
+    (∑ label : StoredAssignments O A,if label.2 x=a ∧ label.1=b then rightHiddenWeight p label else 0)=
       p.joint x a b := by
   simpa only [rightHiddenWeight,reversedOneInput,and_comm]
     using one_input_local (reversedOneInput p) x b a
@@ -54,13 +54,13 @@ theorem right_one_input_pure_projective_perfect_guess (p : RightOneInputBehavior
     frobeniusSq (storedPurification (rightHiddenWeight p))=1 ∧
     (∀ x a b,bornProbability
       (storedPurification (rightHiddenWeight p)*(storedPurification (rightHiddenWeight p)).conjTranspose)
-      (groupingProjector (fun λ : StoredAssignments O A => λ.2 x) a)
-      (groupingProjector (fun λ : StoredAssignments O A => λ.1) b)=p.joint x a b) ∧
+      (groupingProjector (fun label : StoredAssignments O A => label.2 x) a)
+      (groupingProjector (fun label : StoredAssignments O A => label.1) b)=p.joint x a b) ∧
     ∀ x,(∑ a,∑ b,(Matrix.trace
-      (storedEveGuess (fun λ : StoredAssignments O A => λ.2 x) (fun λ => λ.1) a b*
+      (storedEveGuess (fun label : StoredAssignments O A => label.2 x) (fun label => label.1) a b*
         conditionalE (storedPurification (rightHiddenWeight p))
-          (kron (groupingProjector (fun λ : StoredAssignments O A => λ.2 x) a)
-            (groupingProjector (fun λ : StoredAssignments O A => λ.1) b)))).re)=1 := by
+          (kron (groupingProjector (fun label : StoredAssignments O A => label.2 x) a)
+            (groupingProjector (fun label : StoredAssignments O A => label.1) b)))).re)=1 := by
   refine ⟨storedPurification_normalized _ (rightHiddenWeight_nonnegative p)
     (rightHiddenWeight_normalized p),?_,?_⟩
   · intro x a b
@@ -72,16 +72,16 @@ theorem right_one_input_pure_projective_perfect_guess (p : RightOneInputBehavior
 Eve's guessing PVM. These are mathematical properties of the matrices used in
 the preceding theorem, not hypotheses supplied by its caller. -/
 theorem right_one_input_measurement_validity (p : RightOneInputBehavior X O A) (x : X) :
-    (∀ a,(groupingProjector (fun λ : StoredAssignments O A => λ.2 x) a).PosSemidef) ∧
-    (∀ b,(groupingProjector (fun λ : StoredAssignments O A => λ.1) b).PosSemidef) ∧
-    (∑ a,groupingProjector (fun λ : StoredAssignments O A => λ.2 x) a)=1 ∧
-    (∑ b,groupingProjector (fun λ : StoredAssignments O A => λ.1) b)=1 ∧
-    (∀ a a',a≠a' → groupingProjector (fun λ : StoredAssignments O A => λ.2 x) a*
-      groupingProjector (fun λ : StoredAssignments O A => λ.2 x) a'=0) ∧
-    (∀ b b',b≠b' → groupingProjector (fun λ : StoredAssignments O A => λ.1) b*
-      groupingProjector (fun λ : StoredAssignments O A => λ.1) b'=0) ∧
-    (∀ a b,(storedEveGuess (fun λ : StoredAssignments O A => λ.2 x) (fun λ => λ.1) a b).PosSemidef) ∧
-    (∑ a,∑ b,storedEveGuess (fun λ : StoredAssignments O A => λ.2 x) (fun λ => λ.1) a b)=1 := by
+    (∀ a,(groupingProjector (fun label : StoredAssignments O A => label.2 x) a).PosSemidef) ∧
+    (∀ b,(groupingProjector (fun label : StoredAssignments O A => label.1) b).PosSemidef) ∧
+    (∑ a,groupingProjector (fun label : StoredAssignments O A => label.2 x) a)=1 ∧
+    (∑ b,groupingProjector (fun label : StoredAssignments O A => label.1) b)=1 ∧
+    (∀ a a',a≠a' → groupingProjector (fun label : StoredAssignments O A => label.2 x) a*
+      groupingProjector (fun label : StoredAssignments O A => label.2 x) a'=0) ∧
+    (∀ b b',b≠b' → groupingProjector (fun label : StoredAssignments O A => label.1) b*
+      groupingProjector (fun label : StoredAssignments O A => label.1) b'=0) ∧
+    (∀ a b,(storedEveGuess (fun label : StoredAssignments O A => label.2 x) (fun label => label.1) a b).PosSemidef) ∧
+    (∑ a,∑ b,storedEveGuess (fun label : StoredAssignments O A => label.2 x) (fun label => label.1) a b)=1 := by
   exact ⟨fun a => grouping_positive _ a,fun b => grouping_positive _ b,
     grouping_complete _,grouping_complete _,fun a a' h => grouping_orthogonal _ a a' h,
     fun b b' h => grouping_orthogonal _ b b' h,fun a b => grouping_positive _ (a,b),

@@ -49,7 +49,8 @@ example (d : ℕ) [NeZero d] (a b : ZMod d) :
 
 example (d : ℕ) [NeZero d] (hd : 4≤d) :
     autocorrelation (swappedPhase : ZMod d → ℂ) 2 =
-      (equalityRoot (-1)-equalityRoot (-2))*(equalityRoot (-3)-equalityRoot 0) := swapped_R2 hd
+      (equalityRoot (d := d) (-1)-equalityRoot (d := d) (-2))*
+        (equalityRoot (d := d) (-3)-equalityRoot (d := d) 0) := swapped_R2 hd
 
 example (d : ℕ) [NeZero d] (hd : 4≤d) :
     ¬ ∀ a b : ZMod d,bornProbability (entangledState d).density
@@ -93,8 +94,8 @@ example (d nA nB : ℕ) [NeZero d] (hd : 2≤d)
     let U := (encoded (s.alice 0)).conjTranspose*encoded (s.alice 1)
     preservesRange U (aliceSupport s.state) ∧ preservesRange U.conjTranspose (aliceSupport s.state) ∧
     ∃ r : ℕ,0<r ∧
-      (∀ k : ZMod d,Module.finrank ℂ (aliceSupport s.state ⊓
-        LinearMap.ker (U-equalityRoot k • 1).mulVecLin)=r) ∧
+      (∀ k : ZMod d,Module.finrank ℂ ((aliceSupport s.state ⊓
+        LinearMap.ker (U-equalityRoot k • 1).mulVecLin) : Submodule ℂ (Fin nA → ℂ))=r) ∧
       Module.finrank ℂ (aliceSupport s.state)=d*r := supported_multiplicity_rigidity hd s hs
 
 /-! No finite-dimensional hypothesis in these independently expanded bounds. -/
@@ -131,14 +132,14 @@ example (d : ℕ) [NeZero d] (hd : 2≤d) (κ : Equiv.Perm (ZMod d)) :
 example (d : ℕ) [NeZero d] (hd : 4≤d) :
     let s := firstPermutationStrategy (d := d) (by omega : 2≤d) (finalSwap d)
     firstValue s=scalarMaximum d+1 ∧
-      ∃ g : ZMod d×ZMod d,1/(d : ℝ)^2<fixedGuessSuccess s.state.density (s.alice 1) (s.bob none) g :=
+      ∃ g : ZMod d×ZMod d,1/(d : ℝ)^2<General.fixedGuessSuccess s.state.density (s.alice 1) (s.bob none) g :=
   first_all_dimension_physical_Eve_gap hd
 
 example (d : ℕ) [NeZero d] (hd : 4≤d) (f : ℝ → ℝ)
     (hf : Filter.Tendsto f (nhdsWithin 0 (Set.Ioi 0)) (nhds 0)) :
     ¬ (∀ e : ℝ,0<e → ∀ s : StrategyOn d (Fin 2) (Option (ZMod d)) (ZMod d) (ZMod d),
       scalarMaximum d+1-firstValue s≤e → ∀ g : ZMod d×ZMod d,
-        fixedGuessSuccess s.state.density (s.alice 1) (s.bob none) g≤1/(d : ℝ)^2+f e) :=
+        General.fixedGuessSuccess s.state.density (s.alice 1) (s.bob none) g≤1/(d : ℝ)^2+f e) :=
   first_no_value_only_endpoint_robustness hd f hf
 
 example {ι ε : Type*} [Fintype ι] [Fintype ε] [DecidableEq ι] [DecidableEq ε]

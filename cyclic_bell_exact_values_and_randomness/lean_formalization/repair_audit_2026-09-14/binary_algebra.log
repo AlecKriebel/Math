@@ -1,0 +1,232 @@
+repair_audit_2026-09-14/BinaryAlgebra.lean:144:6: error: ring failed, ring expressions not equal
+ι : Type u_1
+ε : Type u_2
+inst✝³ : Fintype ι
+inst✝² : Fintype ε
+inst✝¹ : DecidableEq ι
+inst✝ : DecidableEq ε
+T : Matrix ι ε ℂ
+A₀ A₁ B₀ B₁ : Mat ι
+hA₀ : HermitianInvolution A₀
+hA₁ : HermitianInvolution A₁
+hB₀ : HermitianInvolution B₀
+hB₁ : HermitianInvolution B₁
+hr₀ : binaryResidual₀ A₀ B₀ B₁ * T = 0
+hr₁ : binaryResidual₁ A₁ B₀ B₁ * T = 0
+hs : ↑√3 ≠ 0
+hc00 : A₀ * B₀ = B₀ * A₀
+hc01 : A₀ * B₁ = B₁ * A₀
+hc10 : A₁ * B₀ = B₀ * A₁
+hc11 : A₁ * B₁ = B₁ * A₁
+hratio : ↑√3 / 3 = 1 / ↑√3
+i : ι
+e : ε
+h0 : ((↑√3 • A₀ - B₀ + 2 • B₁) * T) i e = 0
+h1 : ((↑√3 • A₁ - B₀ - B₁) * T) i e = 0
+⊢ (B₀ * T) i e + ↑√3 * ((A₀ + 2 • A₁) * T) i e * (-1 / 3) + ((↑√3 • A₀ - B₀ + 2 • B₁) * T) i e * (1 / 3) +
+      ((↑√3 • A₁ - B₀ - B₁) * T) i e * (2 / 3) =
+    0
+repair_audit_2026-09-14/BinaryAlgebra.lean:145:4: error: type mismatch, term
+  he
+after simplification has type
+  B₀ * T = (1 / ↑√3) • ((A₀ + 2 • A₁) * T) : Prop
+but is expected to have type
+  B₀ * T = (1 / ↑√3) • (A₀ + 2 • A₁) * T : Prop
+repair_audit_2026-09-14/BinaryAlgebra.lean:148:4: error: type mismatch, term
+  hh
+after simplification has type
+  (√3 • A₀ - B₀ + 2 • B₁) * T = 0 : Prop
+but is expected to have type
+  ((↑√3)⁻¹ • B₀ - ((↑√3)⁻¹ * 2) • B₁) * T = A₀ * T : Prop
+repair_audit_2026-09-14/BinaryAlgebra.lean:155:8: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  ?a * ?b * ?c
+ι : Type u_1
+ε : Type u_2
+inst✝³ : Fintype ι
+inst✝² : Fintype ε
+inst✝¹ : DecidableEq ι
+inst✝ : DecidableEq ε
+T : Matrix ι ε ℂ
+A₀ A₁ B₀ B₁ : Mat ι
+hA₀ : HermitianInvolution A₀
+hA₁ : HermitianInvolution A₁
+hB₀ : HermitianInvolution B₀
+hB₁ : HermitianInvolution B₁
+hr₀ : binaryResidual₀ A₀ B₀ B₁ * T = 0
+hr₁ : binaryResidual₁ A₁ B₀ B₁ * T = 0
+hs : ↑√3 ≠ 0
+hc00 : A₀ * B₀ = B₀ * A₀
+hc01 : A₀ * B₁ = B₁ * A₀
+hc10 : A₁ * B₀ = B₀ * A₁
+hc11 : A₁ * B₁ = B₁ * A₁
+hratio : ↑√3 / 3 = 1 / ↑√3
+hb : B₀ * T = binaryXA A₀ A₁ * T
+hz : binaryZB B₀ B₁ * T = A₀ * T
+hXB : binaryXA A₀ A₁ * B₀ = B₀ * binaryXA A₀ A₁
+hZA : binaryZB B₀ B₁ * A₀ = A₀ * binaryZB B₀ B₁
+⊢ binaryXA A₀ A₁ * binaryXA A₀ A₁ * T = T
+repair_audit_2026-09-14/BinaryAlgebra.lean:157:8: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  ?a * ?b * ?c
+ι : Type u_1
+ε : Type u_2
+inst✝³ : Fintype ι
+inst✝² : Fintype ε
+inst✝¹ : DecidableEq ι
+inst✝ : DecidableEq ε
+T : Matrix ι ε ℂ
+A₀ A₁ B₀ B₁ : Mat ι
+hA₀ : HermitianInvolution A₀
+hA₁ : HermitianInvolution A₁
+hB₀ : HermitianInvolution B₀
+hB₁ : HermitianInvolution B₁
+hr₀ : binaryResidual₀ A₀ B₀ B₁ * T = 0
+hr₁ : binaryResidual₁ A₁ B₀ B₁ * T = 0
+hs : ↑√3 ≠ 0
+hc00 : A₀ * B₀ = B₀ * A₀
+hc01 : A₀ * B₁ = B₁ * A₀
+hc10 : A₁ * B₀ = B₀ * A₁
+hc11 : A₁ * B₁ = B₁ * A₁
+hratio : ↑√3 / 3 = 1 / ↑√3
+hb : B₀ * T = binaryXA A₀ A₁ * T
+hz : binaryZB B₀ B₁ * T = A₀ * T
+hXB : binaryXA A₀ A₁ * B₀ = B₀ * binaryXA A₀ A₁
+hZA : binaryZB B₀ B₁ * A₀ = A₀ * binaryZB B₀ B₁
+hXX : binaryXA A₀ A₁ * binaryXA A₀ A₁ * T = T
+⊢ binaryZB B₀ B₁ * binaryZB B₀ B₁ * T = T
+repair_audit_2026-09-14/BinaryAlgebra.lean:166:4: error: ring failed, ring expressions not equal
+ι : Type u_1
+ε : Type u_2
+inst✝³ : Fintype ι
+inst✝² : Fintype ε
+inst✝¹ : DecidableEq ι
+inst✝ : DecidableEq ε
+T : Matrix ι ε ℂ
+A₀ A₁ B₀ B₁ : Mat ι
+hA₀ : HermitianInvolution A₀
+hA₁ : HermitianInvolution A₁
+hB₀ : HermitianInvolution B₀
+hB₁ : HermitianInvolution B₁
+hr₀ : binaryResidual₀ A₀ B₀ B₁ * T = 0
+hr₁ : binaryResidual₁ A₁ B₀ B₁ * T = 0
+hs : ↑√3 ≠ 0
+hc00 : A₀ * B₀ = B₀ * A₀
+hc01 : A₀ * B₁ = B₁ * A₀
+hc10 : A₁ * B₀ = B₀ * A₁
+hc11 : A₁ * B₁ = B₁ * A₁
+hratio : ↑√3 / 3 = 1 / ↑√3
+hb : B₀ * T = binaryXA A₀ A₁ * T
+hz : binaryZB B₀ B₁ * T = A₀ * T
+hXB : binaryXA A₀ A₁ * B₀ = B₀ * binaryXA A₀ A₁
+hZA : binaryZB B₀ B₁ * A₀ = A₀ * binaryZB B₀ B₁
+hXX : binaryXA A₀ A₁ * binaryXA A₀ A₁ * T = T
+hZZ : binaryZB B₀ B₁ * binaryZB B₀ B₁ * T = T
+i j : ι
+⊢ 1 i j * ↑√3 * 3 + (-(1 i j * ↑√3 ^ 3) - 1 i j * ↑√3 ^ 5 * 3) + (1 i j * ↑√3 ^ 7 - ↑√3 ^ 2 * (A₀ * A₁ + A₁ * A₀) i j) +
+      (A₀ * A₁ + A₁ * A₀) i j * 3 =
+    0
+repair_audit_2026-09-14/BinaryAlgebra.lean:175:4: error: ring failed, ring expressions not equal
+ι : Type u_1
+ε : Type u_2
+inst✝³ : Fintype ι
+inst✝² : Fintype ε
+inst✝¹ : DecidableEq ι
+inst✝ : DecidableEq ε
+T : Matrix ι ε ℂ
+A₀ A₁ B₀ B₁ : Mat ι
+hA₀ : HermitianInvolution A₀
+hA₁ : HermitianInvolution A₁
+hB₀ : HermitianInvolution B₀
+hB₁ : HermitianInvolution B₁
+hr₀ : binaryResidual₀ A₀ B₀ B₁ * T = 0
+hr₁ : binaryResidual₁ A₁ B₀ B₁ * T = 0
+hs : ↑√3 ≠ 0
+hc00 : A₀ * B₀ = B₀ * A₀
+hc01 : A₀ * B₁ = B₁ * A₀
+hc10 : A₁ * B₀ = B₀ * A₁
+hc11 : A₁ * B₁ = B₁ * A₁
+hratio : ↑√3 / 3 = 1 / ↑√3
+hb : B₀ * T = binaryXA A₀ A₁ * T
+hz : binaryZB B₀ B₁ * T = A₀ * T
+hXB : binaryXA A₀ A₁ * B₀ = B₀ * binaryXA A₀ A₁
+hZA : binaryZB B₀ B₁ * A₀ = A₀ * binaryZB B₀ B₁
+hXX : binaryXA A₀ A₁ * binaryXA A₀ A₁ * T = T
+hZZ : binaryZB B₀ B₁ * binaryZB B₀ B₁ * T = T
+hxpoly : A₀ * binaryXA A₀ A₁ + binaryXA A₀ A₁ * A₀ = ↑√3 • (binaryXA A₀ A₁ * binaryXA A₀ A₁ - 1)
+i j : ι
+⊢ -(1 i j * ↑√3 * 3) + (1 i j * ↑√3 ^ 3 - 1 i j * ↑√3 ^ 5 * 3) + (1 i j * ↑√3 ^ 7 - ↑√3 ^ 2 * (B₀ * B₁ + B₁ * B₀) i j) +
+      (B₀ * B₁ + B₁ * B₀) i j * 3 =
+    0
+repair_audit_2026-09-14/BinaryAlgebra.lean:177:15: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  ?r • ?x * ?y
+case intro.intro.intro.refine_1
+ι : Type u_1
+ε : Type u_2
+inst✝³ : Fintype ι
+inst✝² : Fintype ε
+inst✝¹ : DecidableEq ι
+inst✝ : DecidableEq ε
+T : Matrix ι ε ℂ
+A₀ A₁ B₀ B₁ : Mat ι
+hA₀ : HermitianInvolution A₀
+hA₁ : HermitianInvolution A₁
+hB₀ : HermitianInvolution B₀
+hB₁ : HermitianInvolution B₁
+hr₀ : binaryResidual₀ A₀ B₀ B₁ * T = 0
+hr₁ : binaryResidual₁ A₁ B₀ B₁ * T = 0
+hs : ↑√3 ≠ 0
+hc00 : A₀ * B₀ = B₀ * A₀
+hc01 : A₀ * B₁ = B₁ * A₀
+hc10 : A₁ * B₀ = B₀ * A₁
+hc11 : A₁ * B₁ = B₁ * A₁
+hratio : ↑√3 / 3 = 1 / ↑√3
+hb : B₀ * T = binaryXA A₀ A₁ * T
+hz : binaryZB B₀ B₁ * T = A₀ * T
+hXB : binaryXA A₀ A₁ * B₀ = B₀ * binaryXA A₀ A₁
+hZA : binaryZB B₀ B₁ * A₀ = A₀ * binaryZB B₀ B₁
+hXX : binaryXA A₀ A₁ * binaryXA A₀ A₁ * T = T
+hZZ : binaryZB B₀ B₁ * binaryZB B₀ B₁ * T = T
+hxpoly : A₀ * binaryXA A₀ A₁ + binaryXA A₀ A₁ * A₀ = ↑√3 • (binaryXA A₀ A₁ * binaryXA A₀ A₁ - 1)
+hzpoly : binaryZB B₀ B₁ * B₀ + B₀ * binaryZB B₀ B₁ = ↑√3 • (binaryZB B₀ B₁ * binaryZB B₀ B₁ - 1)
+⊢ ↑√3 • (binaryXA A₀ A₁ * binaryXA A₀ A₁ - 1) * T = 0
+repair_audit_2026-09-14/BinaryAlgebra.lean:178:15: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  ?r • ?x * ?y
+case intro.intro.intro.refine_2
+ι : Type u_1
+ε : Type u_2
+inst✝³ : Fintype ι
+inst✝² : Fintype ε
+inst✝¹ : DecidableEq ι
+inst✝ : DecidableEq ε
+T : Matrix ι ε ℂ
+A₀ A₁ B₀ B₁ : Mat ι
+hA₀ : HermitianInvolution A₀
+hA₁ : HermitianInvolution A₁
+hB₀ : HermitianInvolution B₀
+hB₁ : HermitianInvolution B₁
+hr₀ : binaryResidual₀ A₀ B₀ B₁ * T = 0
+hr₁ : binaryResidual₁ A₁ B₀ B₁ * T = 0
+hs : ↑√3 ≠ 0
+hc00 : A₀ * B₀ = B₀ * A₀
+hc01 : A₀ * B₁ = B₁ * A₀
+hc10 : A₁ * B₀ = B₀ * A₁
+hc11 : A₁ * B₁ = B₁ * A₁
+hratio : ↑√3 / 3 = 1 / ↑√3
+hb : B₀ * T = binaryXA A₀ A₁ * T
+hz : binaryZB B₀ B₁ * T = A₀ * T
+hXB : binaryXA A₀ A₁ * B₀ = B₀ * binaryXA A₀ A₁
+hZA : binaryZB B₀ B₁ * A₀ = A₀ * binaryZB B₀ B₁
+hXX : binaryXA A₀ A₁ * binaryXA A₀ A₁ * T = T
+hZZ : binaryZB B₀ B₁ * binaryZB B₀ B₁ * T = T
+hxpoly : A₀ * binaryXA A₀ A₁ + binaryXA A₀ A₁ * A₀ = ↑√3 • (binaryXA A₀ A₁ * binaryXA A₀ A₁ - 1)
+hzpoly : binaryZB B₀ B₁ * B₀ + B₀ * binaryZB B₀ B₁ = ↑√3 • (binaryZB B₀ B₁ * binaryZB B₀ B₁ - 1)
+⊢ ↑√3 • (binaryZB B₀ B₁ * binaryZB B₀ B₁ - 1) * T = 0
+repair_audit_2026-09-14/BinaryAlgebra.lean:183:0: warning: automatically included section variable(s) unused in theorem 'CyclicBell.General.binaryEffect_hermitian':
+  [Fintype ι]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype ι] in theorem ...
+note: this linter can be disabled with `set_option linter.unusedSectionVars false`
+repair_audit_2026-09-14/BinaryAlgebra.lean:198:0: warning: automatically included section variable(s) unused in theorem 'CyclicBell.General.binaryEffect_complete':
+  [Fintype ι]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype ι] in theorem ...
+note: this linter can be disabled with `set_option linter.unusedSectionVars false`

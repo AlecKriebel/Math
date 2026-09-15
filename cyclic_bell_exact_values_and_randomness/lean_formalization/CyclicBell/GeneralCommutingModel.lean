@@ -116,6 +116,12 @@ theorem probabilityCorrelator_commuting (s : CommutingOn d α β H) (x : α) (y 
   unfold probabilityCorrelator algebraEncoded
   simp only [Finset.sum_mul,Finset.mul_sum,smul_mul_assoc,mul_smul_comm,smul_smul,
     hilbertMoment_sum,hilbertMoment_smul,commutingBehavior_complex,chi_add]
+  rw [Finset.sum_comm]
+  apply Finset.sum_congr rfl
+  intro a _
+  apply Finset.sum_congr rfl
+  intro b _
+  ring
 
 def pullCommuting {α' β' : Type*} (s : CommutingOn d α β H)
     (f : α' → α) (g : β' → β) : CommutingOn d α' β' H where
@@ -148,6 +154,7 @@ theorem secondReducedBell_commuting (s : CommutingOn d (Ix d) (Ix d) H) :
   simp only [probabilityCorrelator_commuting,vectorEval_sum,vectorEval_hermitianPart,
     algebraFourier,Finset.mul_sum,mul_smul_comm]
   simp only [← hilbertMoment_smul,← hilbertMoment_sum]
+  simp only [Finset.smul_sum]
   rfl
 
 theorem firstAugmentedBell_commuting (s : CommutingOn d (Fin 2) (AugmentedInputs d) H) :

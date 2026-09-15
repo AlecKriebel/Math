@@ -1,0 +1,33 @@
+'CyclicBell.General.first_reduced_values_q_qa_qc' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CyclicBell.General.first_augmented_values_q_qa_qc' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CyclicBell.General.second_reduced_values_q_qa_qc' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CyclicBell.General.second_augmented_values_q_qa_qc' depends on axioms: [propext, Classical.choice, Quot.sound]
+'CyclicBell.General.first_four_augmented_radical_values' depends on axioms: [propext, Classical.choice, Quot.sound]
+theorem CyclicBell.General.first_reduced_values_q_qa_qc : ∀ {d : ℕ} [inst : NeZero d],
+  2 ≤ d →
+    CyclicBell.General.betaQ CyclicBell.General.firstReducedBell = 2 / Real.sin (Real.pi / (2 * ↑d)) ∧
+      CyclicBell.General.betaQa CyclicBell.General.firstReducedBell = 2 / Real.sin (Real.pi / (2 * ↑d)) ∧
+        CyclicBell.General.betaQc CyclicBell.General.firstReducedBell = 2 / Real.sin (Real.pi / (2 * ↑d)) :=
+fun {d} [NeZero d] hd =>
+  let s := CyclicBell.General.firstReducedStrategy hd (Equiv.refl (CyclicBell.General.Ix d));
+  CyclicBell.General.three_model_suprema (CyclicBell.General.Qq d (Fin 2) (CyclicBell.General.Ix d))
+    (CyclicBell.General.Qqc d (Fin 2) (CyclicBell.General.Ix d)) CyclicBell.General.firstReducedBell
+    CyclicBell.General.firstReducedBell_continuous (CyclicBell.General.scalarMaximum d) CyclicBell.General.Qq_subset_Qqc
+    (CyclicBell.General.firstReducedBell_Qqc_upper hd) (CyclicBell.General.behavior s)
+    (CyclicBell.General.behavior_mem_Qq s)
+    (CyclicBell.General.firstReducedStrategy_attains hd (Equiv.refl (CyclicBell.General.Ix d)))
+theorem CyclicBell.General.second_augmented_values_q_qa_qc : ∀ {d : ℕ} [inst : NeZero d],
+  2 ≤ d →
+    CyclicBell.General.betaQ CyclicBell.General.secondAugmentedBell = ↑d + 1 ∧
+      CyclicBell.General.betaQa CyclicBell.General.secondAugmentedBell = ↑d + 1 ∧
+        CyclicBell.General.betaQc CyclicBell.General.secondAugmentedBell = ↑d + 1 :=
+fun {d} [NeZero d] hd =>
+  let s := CyclicBell.General.secondPermutationStrategy hd (Equiv.refl (CyclicBell.General.Ix d));
+  CyclicBell.General.three_model_suprema
+    (CyclicBell.General.Qq d (CyclicBell.General.Ix d) (CyclicBell.General.AugmentedInputs d))
+    (CyclicBell.General.Qqc d (CyclicBell.General.Ix d) (CyclicBell.General.AugmentedInputs d))
+    CyclicBell.General.secondAugmentedBell CyclicBell.General.secondAugmentedBell_continuous (↑d + 1)
+    CyclicBell.General.Qq_subset_Qqc (CyclicBell.General.secondAugmentedBell_Qqc_upper hd)
+    (CyclicBell.General.behavior s) (CyclicBell.General.behavior_mem_Qq s)
+    (Eq.mpr (id (congrArg (fun _a => _a = ↑d + 1) (CyclicBell.General.secondAugmentedBell_behavior s)))
+      (CyclicBell.General.secondPermutation_attains hd (Equiv.refl (CyclicBell.General.Ix d))))

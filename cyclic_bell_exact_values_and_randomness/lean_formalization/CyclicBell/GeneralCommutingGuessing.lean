@@ -41,9 +41,9 @@ theorem commuting_projection_positive (P Q : H →L[ℂ] H)
       _ = P*(Q*P) := by rw [hPQ]
       _ = P*Q*P := (mul_assoc _ _ _).symm
   rw [he]
-  change 0≤(inner ℂ v (P (Q (P v)))).re
+  change 0≤(@inner ℂ _ _ v (P (Q (P v)))).re
   rw [← ContinuousLinearMap.adjoint_inner_left]
-  change 0≤(inner ℂ ((star P) v) (Q (P v))).re
+  change 0≤(@inner ℂ _ _ ((star P) v) (Q (P v))).re
   rw [hP]
   exact hQ (P v)
 
@@ -82,7 +82,7 @@ variable {ι κ ε : Type*} [Fintype ι] [Fintype κ] [Fintype ε]
 theorem matrixCLM_quadratic_positive (M : Mat ι) (hM : M.PosSemidef)
     (v : EuclideanSpace ℂ ι) : 0≤vectorEval v (matrixCLM M) := by
   obtain ⟨x,rfl⟩ := euclidVector_surjective v
-  change 0≤(inner ℂ (euclidVector x) (matrixCLM M (euclidVector x))).re
+  change 0≤(@inner ℂ _ _ (euclidVector x) (matrixCLM M (euclidVector x))).re
   rw [matrixCLM_on_vector,euclidVector_inner]
   simpa only [ip,dotProduct,Pi.star_apply] using hM.re_dotProduct_nonneg x
 
@@ -104,7 +104,7 @@ def tripartiteToCommuting (s : TripartiteOn d α β ι κ ε) :
       intro x y a b
       change matrixCLM (kron (kron (kron ((s.alice x).effect a) 1) 1) 1)*
         matrixCLM (kron (kron (kron 1 ((s.bob y).effect b)) 1) 1)=_
-      simp only [← matrixCLM_mul,kron_mul,mul_one,one_mul] }
+      simp only [coordinateMeasurement,leftMeasurement,rightMeasurement,← matrixCLM_mul,kron_mul,mul_one,one_mul] }
   eve := {
     effect := fun g => matrixCLM (kron (kron (1 : Mat (ι×κ)) (s.eve.effect g)) (1 : Mat ((ι×κ)×ε)))
     selfadjoint := by
@@ -122,12 +122,12 @@ def tripartiteToCommuting (s : TripartiteOn d α β ι κ ε) :
     intro x a g
     change matrixCLM (kron (kron (kron ((s.alice x).effect a) 1) 1) 1)*
       matrixCLM (kron (kron 1 (s.eve.effect g)) 1)=_
-    simp only [← matrixCLM_mul,kron_mul,mul_one,one_mul]
+    simp only [coordinateMeasurement,leftMeasurement,rightMeasurement,← matrixCLM_mul,kron_mul,mul_one,one_mul]
   bobEve := by
     intro y b g
     change matrixCLM (kron (kron (kron 1 ((s.bob y).effect b)) 1) 1)*
       matrixCLM (kron (kron 1 (s.eve.effect g)) 1)=_
-    simp only [← matrixCLM_mul,kron_mul,mul_one,one_mul]
+    simp only [coordinateMeasurement,leftMeasurement,rightMeasurement,← matrixCLM_mul,kron_mul,mul_one,one_mul]
 
 theorem tripartiteToCommuting_behavior (s : TripartiteOn d α β ι κ ε) :
     commutingExtendedBehavior (tripartiteToCommuting s)=tripartiteBehavior s := by
@@ -136,7 +136,7 @@ theorem tripartiteToCommuting_behavior (s : TripartiteOn d α β ι κ ε) :
     (matrixCLM (kron (kron (kron ((s.alice x).effect a) 1) 1) 1)*
      matrixCLM (kron (kron (kron 1 ((s.bob y).effect b)) 1) 1)*
      matrixCLM (kron (kron 1 (s.eve.effect g)) 1))=_
-  simp only [← matrixCLM_mul,kron_mul,mul_one,one_mul]
+  simp only [coordinateMeasurement,leftMeasurement,rightMeasurement,← matrixCLM_mul,kron_mul,mul_one,one_mul]
   exact purification_stateEval s.state _
 
 end CyclicBell.General

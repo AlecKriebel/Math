@@ -330,6 +330,11 @@ class MachineryTests(unittest.TestCase):
         name="CyclicBell.helper'"
         self.assertIn(name, parse_axioms(f"'{name}' depends on axioms: [propext]", [name]))
 
+    def test_declaration_regex_does_not_swallow_neighbor_after_attribute(self):
+        from source_inventory import DECL
+        text='@[simp] theorem first : True := by simp [True]\n\ntheorem second : True := by trivial\n'
+        self.assertEqual([m.group(2) for m in DECL.finditer(text)], ['first', 'second'])
+
     def test_negative_control_rejects_unrelated_or_header_errors(self):
         with tempfile.TemporaryDirectory() as d:
             control=Path(d)/'validation/control.lean'

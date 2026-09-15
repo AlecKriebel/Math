@@ -35,12 +35,13 @@ theorem extendedNormalized_isClosed :
     IsClosed {r : ExtendedBehavior d α β | ExtendedNormalized r} := by
   have hn : IsClosed {r : ExtendedBehavior d α β | ∀ x y a b g,0≤r x y a b g} := by
     simp only [Set.setOf_forall]
-    repeat' apply isClosed_iInter
-    exact isClosed_le continuous_const (by fun_prop)
+    exact isClosed_iInter fun x => isClosed_iInter fun y =>
+      isClosed_iInter fun a => isClosed_iInter fun b => isClosed_iInter fun g =>
+        isClosed_le continuous_const (by fun_prop)
   have ht : IsClosed {r : ExtendedBehavior d α β | ∀ x y,(∑ a,∑ b,∑ g,r x y a b g)=1} := by
     simp only [Set.setOf_forall]
-    repeat' apply isClosed_iInter
-    exact isClosed_eq (by fun_prop) continuous_const
+    exact isClosed_iInter fun x => isClosed_iInter fun y =>
+      isClosed_eq (by fun_prop) continuous_const
   exact hn.inter ht
 
 theorem extendedNormalized_closure (S : Set (ExtendedBehavior d α β))
@@ -81,7 +82,7 @@ theorem guessingSuccess_attachFixedGuess (p : BellBehavior d α β) (g : GuessLa
     (x : α) (y : β) : guessingSuccess (attachFixedGuess p g) x y=p x y g.1 g.2 := by
   classical
   rcases g with ⟨a,b⟩
-  simp [guessingSuccess,attachFixedGuess,Prod.mk.injEq]
+  simp [guessingSuccess,attachFixedGuess,Prod.mk.injEq,ite_and]
 
 def valueSlice (S : Set (ExtendedBehavior d α β)) (f : BellBehavior d α β → ℝ)
     (v : ℝ) : Set (ExtendedBehavior d α β) := {r | r ∈ S ∧ f (forgetE r)=v}

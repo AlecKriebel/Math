@@ -18,18 +18,18 @@ theorem recurrence_nat_product (q w : Ix d → ℂ)
     ring
 
 theorem prefix_reconstruct (q w : Ix d → ℂ) (h0 : q 0=1)
-    (hr : ∀ j,q (j+1)=w j*q j) : prefix w=q := by
+    (hr : ∀ j,q (j+1)=w j*q j) : «prefix» w=q := by
   funext j
   have h := recurrence_nat_product q w hr j.val
-  simpa [ZMod.natCast_zmod_val,prefix,h0] using h.symm
+  simpa [ZMod.natCast_zmod_val,«prefix»,h0] using h.symm
 
-theorem canonical_prefix (hd : 2≤d) : prefix (equalityRoot : Ix d → ℂ)=canonicalPhase :=
+theorem canonical_prefix (hd : 2≤d) : «prefix» (equalityRoot : Ix d → ℂ)=canonicalPhase :=
   prefix_reconstruct canonicalPhase equalityRoot canonicalPhase_zero (canonical_recurrence hd)
 
 theorem first_canonical_target (hd : 2≤d) (a b : Ix d) :
     behavior (firstPermutationStrategy hd (Equiv.refl (Ix d))) 1 none a b=1/(d : ℝ)^2 := by
   rw [firstPermutation_target]
-  change fourierTable (prefix (equalityRoot : Ix d → ℂ)) a b=_
+  change fourierTable («prefix» (equalityRoot : Ix d → ℂ)) a b=_
   rw [canonical_prefix hd]
   exact (table_uniform_iff _).mpr canonical_flat a b
 
@@ -38,7 +38,7 @@ theorem second_canonical_target (hd : 2≤d) (a b : Ix d) :
   rw [second_first_target_same,first_canonical_target]
 
 theorem low_two_permutation_flat (κ : Equiv.Perm (Ix 2)) :
-    FourierFlat (prefix (equalityRoot ∘ κ)) := by
+    FourierFlat («prefix» (equalityRoot ∘ κ)) := by
   apply (flat_iff_autocorrelation _ (prefix_unit _ (phases_permuted _ equalityRoot_unit κ))).mpr
   intro t ht
   fin_cases t
@@ -46,18 +46,19 @@ theorem low_two_permutation_flat (κ : Equiv.Perm (Ix 2)) :
   · exact permutation_lag_one (by norm_num) κ
 
 theorem low_three_permutation_flat (κ : Equiv.Perm (Ix 3)) :
-    FourierFlat (prefix (equalityRoot ∘ κ)) := by
+    FourierFlat («prefix» (equalityRoot ∘ κ)) := by
   apply (flat_iff_autocorrelation _ (prefix_unit _ (phases_permuted _ equalityRoot_unit κ))).mpr
   intro t ht
   fin_cases t
   · exact False.elim (ht rfl)
   · exact permutation_lag_one (by norm_num) κ
-  · have he : (2 : Ix 3)=-(1 : Ix 3) := by decide
+  · change autocorrelation («prefix» (equalityRoot ∘ κ)) (2 : Ix 3) = 0
+    have he : (2 : Ix 3)=-(1 : Ix 3) := by decide
     rw [he,autocorrelation_neg,permutation_lag_one (by norm_num),star_zero]
 
 /-- No claim that arbitrary d=2 or d=3 Bell-value maximizers are rigid. -/
 theorem low_dimension_orbit_uniform (hd : d=2 ∨ d=3) (κ : Equiv.Perm (Ix d)) :
-    ∀ a b,fourierTable (prefix (equalityRoot ∘ κ)) a b=1/(d : ℝ)^2 := by
+    ∀ a b,fourierTable («prefix» (equalityRoot ∘ κ)) a b=1/(d : ℝ)^2 := by
   apply (table_uniform_iff _).mpr
   rcases hd with rfl | rfl
   · exact low_two_permutation_flat κ

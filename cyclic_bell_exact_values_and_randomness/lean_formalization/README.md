@@ -1,35 +1,19 @@
-# Cyclic Bell Lean companion — source candidates only
+# Cyclic Bell Lean companion
 
-**UNCOMPILED: zero kernel-certified endpoints.** This is the accumulated source
-handoff, with a focused settings-appendix extension and a repaired offline
-negative-control runner. It is not a proof certificate or whole-paper completion.
+This companion is undergoing local compiler repair and a manuscript-coverage audit. The downloaded handoff was entirely uncompiled. Actual build and axiom logs, independent reviews, and the input receipt are in `repair_audit_2026-09-14/`; its `RESEARCH_LOG.md` records current progress. A complete frozen-source certificate is not yet claimed.
 
-Start with `REVIEWER_GUIDE.md`, `COVERAGE.md`, `OFFLINE_HANDOFF.md`, and
-`SETTINGS_STATEMENT_CONTRACT.md`. Earlier physical contracts remain in force.
-The canonical manuscript and unrelated qubit project are neither edited nor
-bundled. All dependency locks remain unchanged.
+The canonical manuscript is `../main.tex`, SHA-256 `82a47d69e43a4a3d18aa8c351b81cfae09c9a06910e85d91ae7daf120f201b71`. The original download remains untouched. Earlier handoff/coverage reports and `history/` describe their original snapshots, not current compiler results.
 
-From this directory, with the pinned Lean/Lake installed:
+## Reproduction
+
+With Lean 4.19.0 available, from this directory:
 
 ```sh
 python3 scripts/check.py --bootstrap --manuscript ../main.tex
 ```
 
-Lean 4.19.0 and Mathlib's exact locked revisions remain the targets. The default
-build reaches all 81 Lean files, including the statement and axiom audits.
-1,538 axiom queries and 25 positive/negative control files are prepared, not run.
+Omit `--bootstrap` if all exact pinned dependencies and their cache are already installed. This checks dependency identities, builds the complete imported library, runs positive and negative contracts, obtains actual axiom reports, and verifies protected source fingerprints. Regenerate the declaration inventory with `python3 scripts/source_inventory.py --write` after legitimate source changes, then freeze those inputs throughout the final run.
 
-The new appendix source starts from explicit normalized PVMs and Phi_d, derives
-the four standard tables and the particular perfect-anchor cross tables,
-proves source candidates for their attained peaks and nonuniformity, handles
-the uniform d=2 anchor exception, and supplies the observed entropy asymptotic.
-No general no-go or adversarial privacy conclusion follows from those tables.
+A successful compiler build verifies the encoded statements. The accompanying semantic audits separately check their match to physical states, PVMs, arbitrary Eve POVMs, correlation models, and the manuscript. Failed candidate proofs in negative contracts are interface/regression checks; their failure alone is not a proof of the negation of every displayed target.
 
-The runner no longer accepts a crashed, killed, timed-out, or resource-exhausted
-negative control as a mathematical rejection. Reproductions and reporting tests
-use mocked compiler outputs and are not real Lean results. See
-`SETTINGS_SELF_AUDIT.md` for the defect, scope, tests and remaining risks.
-
-No Lean process, remote push, independent-agent audit, correspondence, manuscript
-change, release or DOI occurred. Earlier reports under `history/` describe their
-own frozen snapshots; they do not certify this one.
+The settings entropy concerns observed tables; adversarial entropy is treated separately. Guessing lower bounds do not assert an exact globally optimized adversary. All literal mathematical coverage gaps must be disclosed even if every imported source file compiles.

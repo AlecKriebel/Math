@@ -1,4 +1,4 @@
-import CyclicBell.GeneralAdversarialValues
+import CyclicBell.GeneralTripartite
 import Mathlib.Topology.Instances.Matrix
 
 /-! Every fixed finite-Eve POVM objective has an attained maximum.
@@ -33,6 +33,7 @@ theorem everyPOVM_has_Gram (Q : GuessPOVM d ε) :
 theorem eveGram_trace (L : Mat ε) :
     (Matrix.trace (eveGram L)).re=∑ i,∑ j,‖L i j‖^2 := by
   have h (z : ℂ) : (star z*z).re=‖z‖^2 := by
+    change ((starRingEnd ℂ) z*z).re=‖z‖^2
     rw [← Complex.normSq_eq_conj_mul_self,Complex.ofReal_re,Complex.normSq_eq_norm_sq]
   simp only [eveGram,Matrix.trace,Matrix.diag_apply,Matrix.mul_apply,
     Matrix.conjTranspose_apply,Complex.re_sum,h]
@@ -63,7 +64,8 @@ theorem eveGramValid_box (L : GuessLabel d → Mat ε) (hL : EveGramValid L) :
   have hone := eveGram_entry_le (L g) i j
   have htwo : (Matrix.trace (eveGram (L g))).re≤(Fintype.card ε : ℝ) := by
     rw [← htotal]
-    exact Finset.single_le_sum (fun a _ => by rw [eveGram_trace]; positivity) (Finset.mem_univ g)
+    exact Finset.single_le_sum (f := fun a => (Matrix.trace (eveGram (L a))).re)
+      (fun a _ => by dsimp; rw [eveGram_trace]; positivity) (Finset.mem_univ g)
   have hc : (0 : ℝ)≤Fintype.card ε := Nat.cast_nonneg _
   nlinarith [norm_nonneg (L g i j),sq_nonneg (Fintype.card ε : ℝ)]
 
@@ -122,8 +124,10 @@ theorem finitePOVMValue_attained (σ : GuessLabel d → Mat ε) :
     rintro t ⟨R,rfl⟩
     exact hQ R
   have he : finitePOVMValue σ=povmObjective σ Q := by
+    unfold finitePOVMValue
     apply le_antisymm
-    · apply csSup_le ⟨povmObjective σ Q,Q,rfl⟩
+    · have hn : (Set.range (povmObjective σ)).Nonempty := ⟨povmObjective σ Q,Q,rfl⟩
+      apply csSup_le hn
       rintro t ⟨R,rfl⟩
       exact hQ R
     · exact le_csSup hb ⟨Q,rfl⟩

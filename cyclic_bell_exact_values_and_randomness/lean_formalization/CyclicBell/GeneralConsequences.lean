@@ -1,3 +1,4 @@
+import CyclicBell.GeneralSecondWitness
 import CyclicBell.GeneralBinary
 import CyclicBell.GeneralExposure
 import CyclicBell.GeneralOneInput
@@ -17,7 +18,7 @@ def jointInstrument (T : Matrix (ι×κ) ε ℂ) (M : Measurement d ι) (N : Mea
 
 theorem effectKernelE_sum {J : Type*} [Fintype J] (T : Matrix ι ε ℂ) (X : J → Mat ι) :
     effectKernelE T (∑ j,X j)=∑ j,effectKernelE T (X j) := by
-  simp [effectKernelE,Matrix.transpose_sum,Finset.mul_sum,Finset.sum_mul]
+  simp [effectKernelE,Matrix.transpose_sum,Matrix.mul_sum,Matrix.sum_mul]
 
 theorem jointInstrument_total (T : Matrix (ι×κ) ε ℂ) (M : Measurement d ι) (N : Measurement d κ) :
     (∑ a,∑ b,jointInstrument T M N a b)=reducedE T := by
@@ -26,7 +27,6 @@ theorem jointInstrument_total (T : Matrix (ι×κ) ε ℂ) (M : Measurement d ι
     · simp [Matrix.IsHermitian,kron_star,(M.positive a).isHermitian.eq,(N.positive b).isHermitian.eq]
     · simp only [kron_mul,M.idempotent,N.idempotent]
   simp_rw [he]
-  rw [← effectKernelE_sum]
   simp_rw [← effectKernelE_sum]
   simp only [← kron_sum_left,← kron_sum_right,M.complete,N.complete,kron_one]
   simp [effectKernelE,reducedE]
@@ -41,11 +41,13 @@ theorem physical_private_iff_fourier (T : Matrix (ι×κ) ε ℂ)
   rw [operator_uniform_iff]
   have hz : operatorFourier (jointInstrument T M N) 0 0=reducedE T := by
     simpa [operatorFourier] using jointInstrument_total T M N
-  simp only [hz,true_and,operatorFourier]
+  rw [hz]
+  simp only [true_and]
+  rfl
 
 theorem reducedE_trace (T : Matrix ι ε ℂ) : Matrix.trace (reducedE T)=(frobeniusSq T : ℂ) := by
   simp only [reducedE,Matrix.trace,Matrix.diag_apply,Matrix.mul_apply,Matrix.transpose_apply,
-    Matrix.map_apply,Complex.mul_conj,frobeniusSq,Complex.ofReal_sum]
+    Matrix.map_apply,Complex.star_def,Complex.mul_conj,frobeniusSq,Complex.ofReal_sum]
   rw [Finset.sum_comm]
 
 /-- For an operator-uniform private table, every complete Eve POVM has the
@@ -57,9 +59,13 @@ theorem operator_uniform_guess_success {A B : Type*} [Fintype A] [Fintype B]
     (∑ a,∑ b,(Matrix.trace (Q a b*((c : ℂ) • ρ))).re)=c := by
   simp only [mul_smul_comm,Matrix.trace_smul,smul_eq_mul,Complex.mul_re,Complex.ofReal_re,
     Complex.ofReal_im,zero_mul,sub_zero,← Finset.mul_sum]
-  rw [← Complex.re_sum,← Complex.re_sum,← Matrix.trace_sum,← Matrix.trace_sum,
-    ← Finset.sum_mul,← Finset.sum_mul,hQ,one_mul,hρ]
-  simp
+  have ht : (∑ a,∑ b,Matrix.trace (Q a b*ρ))=1 := by
+    simp_rw [← Matrix.trace_sum]
+    simp_rw [← Matrix.sum_mul]
+    rw [hQ,Matrix.one_mul,hρ]
+  have hr := congrArg Complex.re ht
+  simp only [Complex.re_sum,Complex.one_re] at hr
+  rw [hr,mul_one]
 
 theorem binary_private_guess_success (T : Matrix ι ε ℂ) (hT : frobeniusSq T=1)
     (A₀ A₁ B₀ B₁ : Mat ι)
@@ -70,7 +76,9 @@ theorem binary_private_guess_success (T : Matrix ι ε ℂ) (hT : frobeniusSq T=
     (Q : Fin 2 → Fin 2 → Mat ε) (hQ : ∑ a,∑ b,Q a b=1) :
     (∑ a,∑ b,(Matrix.trace (Q a b*conditionalE T (binaryEffect A₀ a*binaryEffect B₀ b))).re)=1/4 := by
   simp_rw [binary_saturation_privacy T hT A₀ A₁ B₀ B₁ hA₀ hA₁ hB₀ hB₁ hc hsat]
-  exact operator_uniform_guess_success (reducedE T) (by rw [reducedE_trace,hT]; simp) (1/4) Q hQ
+  have h := operator_uniform_guess_success (reducedE T) (by rw [reducedE_trace,hT]; simp) (1/4) Q hQ
+  norm_num only [Complex.ofReal_div,Complex.ofReal_one,Complex.ofReal_ofNat] at h
+  exact h
 
 theorem second_all_dimension_physical_Eve_gap (hd : 4≤d) :
     let s := secondPermutationStrategy (d := d) (by omega : 2≤d) (finalSwap d)
@@ -120,7 +128,6 @@ theorem binary_entropy_exact : -(Real.log (1/4)/Real.log 2)=2 := by
     rw [show (4 : ℝ)=2^2 by norm_num,Real.log_pow]; norm_num
   rw [Real.log_div (by norm_num) (by norm_num),Real.log_one,h4]
   field_simp
-  ring
 
 theorem d4_entropy_exact : -(Real.log (3/32)/Real.log 2)=5-Real.log 3/Real.log 2 := by
   have h2 : Real.log 2≠0 := ne_of_gt (Real.log_pos (by norm_num))
@@ -128,7 +135,6 @@ theorem d4_entropy_exact : -(Real.log (3/32)/Real.log 2)=5-Real.log 3/Real.log 2
     rw [show (32 : ℝ)=2^5 by norm_num,Real.log_pow]; norm_num
   rw [Real.log_div (by norm_num) (by norm_num),h32]
   field_simp
-  ring
 
 theorem d4_entropy_less_than_four : -(Real.log (3/32)/Real.log 2)<4 := by
   rw [d4_entropy_exact]

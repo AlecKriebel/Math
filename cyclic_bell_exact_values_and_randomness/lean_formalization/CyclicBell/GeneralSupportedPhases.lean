@@ -32,7 +32,7 @@ theorem equalitySupport_from_gap (hd : 2≤d) (U : Mat ι) (hU : UnitaryRel U)
     (fun z => (Real.sqrt (scalarMaximum d-scalarSum (d := d) z) : ℂ))
     (fun z => equalityIndicator d z-1) T
     (fun z hz => by simp [equalityIndicator,scalarGap_zero_root hd U hU z hz]) hG
-  rw [finiteCalc_sub,finiteCalc_one,sub_mul,one_mul,sub_eq_zero] at h
+  rw [finiteCalc_sub,finiteCalc_one,Matrix.sub_mul,Matrix.one_mul,sub_eq_zero] at h
   exact h
 
 /-- Functional identities on equality roots become equations on the actual
@@ -42,7 +42,7 @@ theorem equality_supported_action (hd : 2≤d) (U : Mat ι) (hU : UnitaryRel U)
     (f g : ℂ → ℂ) (hfg : ∀ k : Ix d,f (equalityRoot k)=g (equalityRoot k)) :
     finiteCalc U hU f*T=finiteCalc U hU g*T := by
   have he : finiteCalc U hU f*equalitySupport (d := d) U hU=
-      finiteCalc U hU g*equalitySupport U hU := by
+      finiteCalc U hU g*equalitySupport (d := d) U hU := by
     unfold equalitySupport
     rw [← finiteCalc_mul,← finiteCalc_mul]
     apply finiteCalc_congr U hU
@@ -52,17 +52,20 @@ theorem equality_supported_action (hd : 2≤d) (U : Mat ι) (hU : UnitaryRel U)
       simp [equalityIndicator,hz,hk,hfg k]
     · simp [equalityIndicator,hz]
   calc
-    finiteCalc U hU f*T=finiteCalc U hU f*(equalitySupport U hU*T) := by rw [hE]
-    _=(finiteCalc U hU f*equalitySupport U hU)*T := by rw [mul_assoc]
-    _=(finiteCalc U hU g*equalitySupport U hU)*T := by rw [he]
-    _=finiteCalc U hU g*T := by rw [mul_assoc,hE]
+    finiteCalc U hU f*T=finiteCalc U hU f*(equalitySupport (d := d) U hU*T) := by rw [hE]
+    _=(finiteCalc U hU f*equalitySupport (d := d) U hU)*T := by rw [Matrix.mul_assoc]
+    _=(finiteCalc U hU g*equalitySupport (d := d) U hU)*T := by rw [he]
+    _=finiteCalc U hU g*T := by rw [Matrix.mul_assoc,hE]
 
 theorem equality_power_on_support (hd : 2≤d) (U : Mat ι) (hU : UnitaryRel U)
     (T : Matrix ι ν ℂ) (hE : equalitySupport (d := d) U hU*T=T) :
     U^d*T=((-1 : ℂ)^(d-1)) • T := by
   have h := equality_supported_action hd U hU T hE (fun z => z^d)
     (fun _ => (-1 : ℂ)^(d-1)) (equalityRoot_power hd)
-  simpa [smul_mul_assoc] using h
+  rw [finiteCalc_pow, finiteCalc_const] at h
+  change (finiteCalc U hU id)^d*T = _ at h
+  rw [finiteCalc_coordinate] at h
+  simpa only [Matrix.smul_mul,Matrix.one_mul] using h
 
 theorem halfRoot_times_phase (z : ℂ) :
     squareRootNorm z*(z/(‖z‖ : ℂ))=continuousPolarRoot z := by
@@ -103,16 +106,20 @@ theorem phase_square_on_support (hd : 2≤d) (U : Mat ι) (hU : UnitaryRel U)
     supportedPhase U hU y^2*T=chi y • (U*T) := by
   have h := equality_supported_action hd U hU T hE
     (fun z => scalarPolarPhase y z^2) (fun z => chi y*z)
-    (fun k => by rw [scalarPolarPhase_at_root hd,polarPhase_square])
-  simpa [supportedPhase,smul_mul_assoc] using h
+    (fun k => by dsimp only; rw [scalarPolarPhase_at_root hd,polarPhase_square])
+  have hf : finiteCalc U hU (fun z => chi y*z)=chi y • U := by
+    change finiteCalc U hU (fun z => chi y*id z)=chi y • U
+    rw [finiteCalc_smul,finiteCalc_coordinate]
+  rw [finiteCalc_pow,hf] at h
+  simpa only [supportedPhase, Matrix.smul_mul] using h
 
 theorem phase_isometry_on_support (hd : 2≤d) (U : Mat ι) (hU : UnitaryRel U)
     (T : Matrix ι ν ℂ) (hE : equalitySupport (d := d) U hU*T=T) (y : Ix d) :
     (supportedPhase U hU y).conjTranspose*supportedPhase U hU y*T=T := by
   have h := equality_supported_action hd U hU T hE
     (fun z => star (scalarPolarPhase y z)*scalarPolarPhase y z) (fun _ => 1)
-    (fun k => by rw [scalarPolarPhase_at_root hd]; exact polarPhase_unit y k)
-  simpa [supportedPhase] using h
+    (fun k => by dsimp only; rw [scalarPolarPhase_at_root hd]; exact polarPhase_unit y k)
+  simpa only [supportedPhase,finiteCalc_mul,finiteCalc_star,finiteCalc_one,Matrix.one_mul] using h
 
 /-- This is the missing polar-kernel cancellation step, with its support
 premises derived in the subsequent quantum theorem. -/
@@ -124,14 +131,14 @@ theorem polar_cancel_on_support (hd : 2≤d) (A U : Mat ι) (hU : UnitaryRel U)
   let Q := A.conjTranspose*T-supportedPhase U hU y*T*B
   have hHQ : localH U hU y*Q=0 := by
     unfold Q
-    rw [mul_sub,← mul_assoc,← mul_assoc,localH_phase]
-    rw [hP,sub_self]
+    simp only [Matrix.mul_sub,← Matrix.mul_assoc,localH_phase,hP,sub_self]
   have hEQ : equalitySupport (d := d) U hU*Q=Q := by
     unfold Q
-    rw [mul_sub,hA,mul_assoc,hE]
+    rw [Matrix.mul_sub,hA,← Matrix.mul_assoc _ T D,hE]
     have hc := finiteCalc_commute U hU (equalityIndicator d) (scalarPolarPhase y)
-    change equalitySupport U hU*supportedPhase U hU y=supportedPhase U hU y*equalitySupport U hU at hc
-    rw [← mul_assoc,← mul_assoc,hc,mul_assoc,hE]
+    change equalitySupport (d := d) U hU*supportedPhase U hU y=supportedPhase U hU y*equalitySupport (d := d) U hU at hc
+    simp only [← Matrix.mul_assoc]
+    rw [hc,Matrix.mul_assoc (supportedPhase U hU y) (equalitySupport (d := d) U hU) T,hE]
   exact sub_eq_zero.mp (supported_kernel_cancel _ _ _ Q
     (supportedHalfInverse_cancel hd U hU y) hEQ hHQ)
 
@@ -139,7 +146,7 @@ theorem matrix_intertwiner_pow (A : Mat ι) (T : Matrix ι ν ℂ) (B : Mat ν)
     (h : A*T=T*B) (n : ℕ) : A^n*T=T*B^n := by
   induction n with
   | zero => simp
-  | succ n ih => rw [pow_succ',mul_assoc,ih,← mul_assoc,h,mul_assoc,pow_succ']
+  | succ n ih => rw [pow_succ',Matrix.mul_assoc,ih,← Matrix.mul_assoc,h,Matrix.mul_assoc,pow_succ']
 
 /-- From the actual saturated strategy to supported unitary routing equations.
 The R_y on the right are Bob's genuine transpose-lifted observables. -/
@@ -170,15 +177,17 @@ theorem quantum_supported_routing (hd : 2≤d)
   have hB (y : Ix d) : UnitaryRel (B y) := bobRight_unitary (encoded_unitary _)
   obtain ⟨hG,hAD,hP⟩ := first_saturation_equations hd s hs
   have hE : equalitySupport (d := d) U hU*T=T := equalitySupport_from_gap hd U hU T hG
+  change A*T*D=T at hAD
   have hAT : A.conjTranspose*T=T*D := by
     have h := congrArg (fun Q : Matrix ι (κ × (ι × κ)) ℂ => A.conjTranspose*Q) hAD
-    simpa only [← mul_assoc,hA.1,one_mul] using h.symm
+    have haa : A.conjTranspose*A=1 := hA.1
+    simpa only [← Matrix.mul_assoc,haa,Matrix.one_mul] using h.symm
   have hS (y : Ix d) : supportedPhase U hU y*T=T*(D*(B y).conjTranspose) := by
     have hc := polar_cancel_on_support hd A U hU T D (B y) y hE hAT (hP y)
     have h := congrArg (fun Q : Matrix ι (κ × (ι × κ)) ℂ => Q*(B y).conjTranspose) hc
-    simpa [mul_assoc,(hB y).2,hAT] using h.symm
+    simpa [Matrix.mul_assoc,(hB y).2,hAT] using h.symm
   have hV (y : Ix d) : (A*supportedPhase U hU y)*T=T*(B y).conjTranspose := by
-    rw [mul_assoc,hS,← mul_assoc,← mul_assoc,hAD]
+    rw [Matrix.mul_assoc,hS,← Matrix.mul_assoc,← Matrix.mul_assoc,hAD]
   refine ⟨hE,hAT,hS,hV,?_⟩
   have hp := phase_square_on_support hd U hU T hE 0
   simp only [chi_zero,one_smul] at hp
@@ -194,10 +203,11 @@ theorem supported_adjacent_reflection (hd : 2≤d) (U : Mat ι) (hU : UnitaryRel
     (scalarPolarPhase (y+1))
     (fun z => cis (Real.pi/(d : ℝ))*scalarPolarPhase y z*
       (1-2*(if z=equalityRoot (reflectionLabel d-y) then 1 else 0))) (fun k => ?_)
-  · simpa [supportedPhase,rootProjection,finiteSpectralProjection,smul_mul_assoc,
-      mul_smul_comm] using h
-  · rw [scalarPolarPhase_at_root hd,scalarPolarPhase_at_root hd,
-      polarPhase_adjacent hd,equalityRoot_injective.eq_iff]
+  · simpa only [supportedPhase,rootProjection,finiteSpectralProjection,finiteCalc_mul,finiteCalc_smul,finiteCalc_sub,finiteCalc_one,finiteCalc_const,Matrix.smul_mul,smul_mul_assoc,mul_smul_comm,Matrix.one_mul,two_smul,add_mul,one_mul] using h
+  · dsimp only
+    rw [scalarPolarPhase_at_root hd,scalarPolarPhase_at_root hd,
+      polarPhase_adjacent hd]
+    simp only [equalityRoot_injective.eq_iff]
     split_ifs <;> ring
 
 end CyclicBell.General

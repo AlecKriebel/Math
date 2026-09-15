@@ -1,0 +1,8 @@
+import CyclicBell.PhaseTableStatements
+#print axioms CyclicBell.General.phasePair_sine_formula
+#print axioms CyclicBell.General.standard_behavior_formula
+#print axioms CyclicBell.General.standard_behavior_le_peak
+#print axioms CyclicBell.General.standard_behavior_hits_peak
+#print axioms CyclicBell.General.anchored_cross_nonuniform
+#print axioms CyclicBell.General.anchored_qubit_cross_uniform
+#print axioms CyclicBell.General.standard_entropy_asymptotic

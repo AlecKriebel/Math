@@ -1,4 +1,5 @@
 import CyclicBell.GeneralBinaryModels
+import CyclicBell.GeneralConsequences
 import CyclicBell.GeneralPartySwap
 
 /-! Actual finite purified strategies and the binary setting-minimality
@@ -64,10 +65,13 @@ theorem measurement_two_effect (M : Measurement 2 ι) (a : Ix 2) :
   have hsum : M.effect 0+M.effect 1=(1 : Mat ι) := by
     simpa only [sum_zmod_two] using M.complete
   rw [encoded_two_eq_sub]
-  fin_cases a <;> simp only [binaryEffect,binaryOutcome,
-    show (0 : Ix 2).val=0 from rfl,show (1 : Ix 2).val=1 from rfl,pow_zero,pow_one,
-    one_smul,neg_one_smul]
-  all_goals rw [← hsum]; module
+  have ha : a = 0 ∨ a = 1 := by
+    fin_cases a <;> simp
+  rcases ha with rfl | rfl
+  all_goals
+    norm_num [binaryEffect,binaryOutcome,show (1 : Ix 2).val = 1 from rfl]
+    rw [← hsum]
+    module
 
 theorem binary_involution_leftLift (A : Mat ι) (hA : HermitianInvolution A) :
     HermitianInvolution (aliceLift (κ := κ) A) := by
@@ -85,13 +89,11 @@ theorem binaryEffect_leftLift (A : Mat ι) (a : Fin 2) :
     binaryEffect (aliceLift (κ := κ) A) a=aliceLift (κ := κ) (binaryEffect A a) := by
   unfold binaryEffect aliceLift
   simp only [kron_add_left,kron_smul_left,kron_one]
-  module
 
 theorem binaryEffect_rightLift (B : Mat κ) (b : Fin 2) :
     binaryEffect (bobLift (ι := ι) B) b=bobLift (ι := ι) (binaryEffect B b) := by
   unfold binaryEffect bobLift
   simp only [kron_add_right,kron_smul_right,kron_one]
-  module
 
 /-- Full finite-dimensional privacy endpoint expressed in the actual projective
 strategy model and its actual conditional instrument, for arbitrary Eve dimension. -/
@@ -175,6 +177,7 @@ theorem perfect_guess_not_private (T : Matrix (ι×κ) ε ℂ) (hT : frobeniusSq
   simp_rw [hprivate] at hguess
   have htrace : Matrix.trace (reducedE T)=1 := by rw [reducedE_trace,hT]; norm_num
   have hu := operator_uniform_guess_success (reducedE T) htrace (1/4) Q hQ
+  norm_num only [Complex.ofReal_div,Complex.ofReal_one,Complex.ofReal_ofNat] at hu
   linarith
 
 variable {Y : Type} [Fintype Y] [DecidableEq Y]
@@ -184,8 +187,8 @@ def oneInputPurifiedStrategy (p : OneInputBehavior Y (Ix 2) (fun _ => Ix 2)) :
       (StoredAssignments (Ix 2) (fun _ : Y => Ix 2)) (StoredAssignments (Ix 2) (fun _ : Y => Ix 2)) where
   amplitude := storedPurification (hiddenWeight p)
   normalized := storedPurification_normalized _ (hiddenWeight_nonnegative p) (hiddenWeight_normalized p)
-  alice := fun _ => groupingBinaryMeasurement (fun λ => λ.1)
-  bob := fun y => groupingBinaryMeasurement (fun λ => λ.2 y)
+  alice := fun _ => groupingBinaryMeasurement (fun label => label.1)
+  bob := fun y => groupingBinaryMeasurement (fun label => label.2 y)
 
 theorem oneInputPurifiedStrategy_behavior (p : OneInputBehavior Y (Ix 2) (fun _ => Ix 2)) :
     purifiedBehavior (oneInputPurifiedStrategy p)=(fun _ y a b => p.joint y a b) := by
@@ -197,7 +200,7 @@ theorem oneInputPurifiedStrategy_not_private (p : OneInputBehavior Y (Ix 2) (fun
       (1/4 : ℂ) • reducedE (oneInputPurifiedStrategy p).amplitude := by
   let s := oneInputPurifiedStrategy p
   apply perfect_guess_not_private s.amplitude s.normalized (s.alice ()) (s.bob y)
-    (storedEveGuess (fun λ => λ.1) (fun λ => λ.2 y)) (storedEve_complete _ _)
+    (storedEveGuess (fun label => label.1) (fun label => label.2 y)) (storedEve_complete _ _)
   exact storedEve_success_one _ (hiddenWeight_nonnegative p) (hiddenWeight_normalized p) _ _
 
 theorem left_one_input_no_binary_privacy (p : OneInputBehavior Y (Ix 2) (fun _ => Ix 2)) (y : Y) :
@@ -215,8 +218,8 @@ def rightInputPurifiedStrategy (p : RightOneInputBehavior X (Ix 2) (fun _ => Ix 
       (StoredAssignments (Ix 2) (fun _ : X => Ix 2)) (StoredAssignments (Ix 2) (fun _ : X => Ix 2)) where
   amplitude := storedPurification (rightHiddenWeight p)
   normalized := storedPurification_normalized _ (rightHiddenWeight_nonnegative p) (rightHiddenWeight_normalized p)
-  alice := fun x => groupingBinaryMeasurement (fun λ => λ.2 x)
-  bob := fun _ => groupingBinaryMeasurement (fun λ => λ.1)
+  alice := fun x => groupingBinaryMeasurement (fun label => label.2 x)
+  bob := fun _ => groupingBinaryMeasurement (fun label => label.1)
 
 theorem rightInputPurifiedStrategy_behavior (p : RightOneInputBehavior X (Ix 2) (fun _ => Ix 2)) :
     purifiedBehavior (rightInputPurifiedStrategy p)=(fun x _ a b => p.joint x a b) := by
@@ -228,7 +231,7 @@ theorem rightInputPurifiedStrategy_not_private (p : RightOneInputBehavior X (Ix 
       (1/4 : ℂ) • reducedE (rightInputPurifiedStrategy p).amplitude := by
   let s := rightInputPurifiedStrategy p
   apply perfect_guess_not_private s.amplitude s.normalized (s.alice x) (s.bob ())
-    (storedEveGuess (fun λ => λ.2 x) (fun λ => λ.1)) (storedEve_complete _ _)
+    (storedEveGuess (fun label => label.2 x) (fun label => label.1)) (storedEve_complete _ _)
   exact storedEve_success_one _ (rightHiddenWeight_nonnegative p) (rightHiddenWeight_normalized p) _ _
 
 theorem right_one_input_no_binary_privacy (p : RightOneInputBehavior X (Ix 2) (fun _ => Ix 2)) (x : X) :

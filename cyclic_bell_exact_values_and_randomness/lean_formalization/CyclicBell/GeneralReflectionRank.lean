@@ -16,16 +16,16 @@ theorem matrix_rank_add_le (A B : Matrix ι ν ℂ) : (A+B).rank≤A.rank+B.rank
     exact Submodule.add_mem_sup ⟨v,rfl⟩ ⟨v,rfl⟩
   have hd := Submodule.finrank_sup_add_finrank_inf_eq (matrixRange A) (matrixRange B)
   have hm := Submodule.finrank_mono hi
-  change (A+B).rank≤Module.finrank ℂ (matrixRange A ⊔ matrixRange B) at hm
-  change Module.finrank ℂ (matrixRange A ⊔ matrixRange B)+
-    Module.finrank ℂ (matrixRange A ⊓ matrixRange B)=A.rank+B.rank at hd
+  change (A+B).rank≤Module.finrank ℂ ↥(matrixRange A ⊔ matrixRange B) at hm
+  change Module.finrank ℂ ↥(matrixRange A ⊔ matrixRange B)+
+    Module.finrank ℂ ↥(matrixRange A ⊓ matrixRange B)=A.rank+B.rank at hd
   omega
 
 theorem matrix_rank_smul_le (c : ℂ) (A : Matrix ι ν ℂ) : (c • A).rank≤A.rank := by
   have hi : matrixRange (c • A)≤matrixRange A := by
     rintro x ⟨v,hv⟩
     refine ⟨c • v,?_⟩
-    simpa [Matrix.mulVec_smul,Matrix.smul_mulVec] using hv
+    simpa [Matrix.mulVec_smul,Matrix.smul_mulVec_assoc] using hv
   exact Submodule.finrank_mono hi
 
 theorem matrix_rank_smul (c : ℂ) (hc : c≠0) (A : Matrix ι ν ℂ) : (c • A).rank=A.rank := by
@@ -47,9 +47,14 @@ theorem relative_reflection_rank_step (V E : Mat ι) (T : Matrix ι ν ℂ) (C :
       have hp := matrix_intertwiner_pow V T C hV n
       rw [pow_succ',pow_succ']
       calc
-        (W*W^n-V*V^n)*T=W*((W^n-V^n)*T)+(W-V)*(V^n*T) := by noncomm_ring
+        (W*W^n-V*V^n)*T=W*((W^n-V^n)*T)+(W-V)*(V^n*T) := by simp only [Matrix.sub_mul,Matrix.mul_sub,Matrix.mul_assoc]; abel
         _=W*((W^n-V^n)*T)+(W-V)*(T*C^n) := by rw [hp]
-        _=_ := by unfold W; simp [mul_sub,sub_mul,mul_smul_comm,smul_mul_assoc,mul_assoc]; module
+        _=_ := by
+          unfold W
+          simp only [Matrix.mul_sub,Matrix.mul_one,Matrix.sub_mul,Matrix.mul_smul,Matrix.smul_mul,Matrix.mul_assoc]
+          ext i j
+          simp only [Matrix.sub_apply,Matrix.add_apply,Matrix.smul_apply,Pi.smul_apply,smul_eq_mul,Matrix.neg_apply]
+          ring
     rw [he]
     have ha := matrix_rank_add_le (W*((W^n-V^n)*T)) ((-2 : ℂ) • (V*(E*T)*C^n))
     have hleft := Matrix.rank_mul_le_right W ((W^n-V^n)*T)
@@ -58,7 +63,7 @@ theorem relative_reflection_rank_step (V E : Mat ι) (T : Matrix ι ν ℂ) (C :
     calc
       _≤(((W^n-V^n)*T).rank)+(E*T).rank := by omega
       _≤n*(E*T).rank+(E*T).rank := Nat.add_le_add_right ih _
-      _=(n+1)*(E*T).rank := by omega
+      _=(n+1)*(E*T).rank := by rw [Nat.add_mul,one_mul]
 
 /-- Rectangular/support form of the manuscript's reflection-rank lemma. -/
 theorem relative_reflection_rank (d : ℕ) (V E : Mat ι) (T : Matrix ι ν ℂ) (C D : Mat ν)
@@ -68,7 +73,7 @@ theorem relative_reflection_rank (d : ℕ) (V E : Mat ι) (T : Matrix ι ν ℂ)
   have hc := matrix_intertwiner_pow V T C hV d
   have hd := matrix_intertwiner_pow (V*(1-2 • E)) T D hR d
   have he : ((V*(1-2 • E))^d-V^d)*T=(-2 : ℂ) • T := by
-    rw [sub_mul,hd,hc,hC,hD,mul_one,mul_neg,mul_one]
+    rw [Matrix.sub_mul,hd,hc,hC,hD,Matrix.mul_one,Matrix.mul_neg,Matrix.mul_one]
     module
   rw [he,matrix_rank_smul (-2) (by norm_num)] at h
   exact h
@@ -85,21 +90,30 @@ def projectionRangeEquiv (P : J → Mat ι) (T : Matrix ι ν ℂ)
   toFun x j := ⟨P j*ᵥx,by
     obtain ⟨v,hv⟩ := x.property
     refine ⟨v,?_⟩
+    change T *ᵥ v = (x : ι → ℂ) at hv
     rw [Matrix.mulVecLin_apply,← Matrix.mulVec_mulVec,hv]⟩
   invFun x := ⟨∑ j,(x j : ι → ℂ),Submodule.sum_mem _ (fun j _ => hp j (x j).property)⟩
   left_inv x := by
     apply Subtype.ext
     change (∑ j,P j*ᵥ(x : ι → ℂ))=(x : ι → ℂ)
     obtain ⟨v,hv⟩ := x.property
-    rw [← hv,Matrix.mulVecLin_apply,← Matrix.sum_mulVec,Matrix.mulVec_mulVec,hs]
+    change T *ᵥ v = (x : ι → ℂ) at hv
+    rw [← hv]
+    have hsum : (∑ j,P j) *ᵥ (T *ᵥ v) = ∑ j,P j *ᵥ (T *ᵥ v) := by
+      ext i
+      simp only [Matrix.mulVec,dotProduct,Matrix.sum_apply,Finset.sum_apply,Finset.sum_mul]
+      rw [Finset.sum_comm]
+    rw [← hsum,Matrix.mulVec_mulVec,hs]
   right_inv x := by
     funext i
     apply Subtype.ext
     change P i*ᵥ(∑ j,(x j : ι → ℂ))=(x i : ι → ℂ)
-    rw [Matrix.mulVec_sum]
+    change (P i).mulVecLin (∑ j,(x j : ι → ℂ)) = _
+    rw [map_sum]
+    simp only [Matrix.mulVecLin_apply]
     have he (j : J) : P i*ᵥ(x j : ι → ℂ)=if i=j then (x j : ι → ℂ) else 0 := by
       obtain ⟨v,hv⟩ := (x j).property
-      rw [← hv,Matrix.mulVecLin_apply,Matrix.mulVec_mulVec,← mul_assoc,ho]
+      rw [← hv,Matrix.mulVecLin_apply,Matrix.mulVec_mulVec,← Matrix.mul_assoc,ho]
       split_ifs <;> simp
     simp_rw [he]
     simp
@@ -111,7 +125,7 @@ theorem sum_supported_projection_ranks (P : J → Mat ι) (T : Matrix ι ν ℂ)
     (hp : ∀ j,matrixRange (P j*T)≤matrixRange T) :
     (∑ j,(P j*T).rank)=T.rank := by
   have h := (projectionRangeEquiv P T hs ho hp).finrank_eq
-  rw [Module.finrank_pi] at h
+  rw [Module.finrank_pi_fintype] at h
   exact h.symm
 
 /-- The rank lower bounds plus the full direct-sum dimension count force
@@ -125,6 +139,7 @@ theorem equal_ranks_from_lower_bounds {d : ℕ} [NeZero d] (n : ℕ) (r : Ix d �
     have he := Finset.sum_congr rfl (fun j (_ : j∈Finset.univ) => hf j)
     rw [Finset.sum_add_distrib,Finset.sum_const,Finset.card_univ,ZMod.card,
       nsmul_eq_mul,← Finset.mul_sum,hs] at he
+    norm_cast at he
     omega
   have he (j : Ix d) : n=d*r j := by
     have hj : f j=0 := (Finset.sum_eq_zero_iff).mp hsum j (Finset.mem_univ j)

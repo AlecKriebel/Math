@@ -21,7 +21,7 @@ def uniformOneDimensionalGuess : GuessPOVM 4 (Fin 1) where
       fin_cases j
       norm_num [Matrix.diagonal_apply,Matrix.smul_apply,Matrix.one_apply]
     rw [he]
-    exact Matrix.PosSemidef.diagonal (by intro i; norm_num)
+    exact Matrix.PosSemidef.diagonal (by intro i; norm_num [Complex.nonneg_iff])
   complete := by
     ext i j
     fin_cases i
@@ -43,7 +43,7 @@ theorem closure_before_slice_control :
       (0 : ℝ)∉closure {x : ℝ | 0<x ∧ x=0} := by
   constructor
   · rw [closure_Ioi]
-    exact le_rfl
+    exact (show (0 : ℝ) ≤ 0 from le_rfl)
   · have he : {x : ℝ | 0<x ∧ x=0}=∅ := by
       ext x
       simp only [Set.mem_setOf_eq,Set.mem_empty_iff_false,iff_false,not_and]

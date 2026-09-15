@@ -1,4 +1,4 @@
-import CyclicBell.GeneralSecondWitness
+import CyclicBell.GeneralFirstWitness
 import CyclicBell.Guessing
 
 /-! Operational bridges: actual measurement sandwiches and partial traces,
@@ -21,6 +21,11 @@ def conditionalE (T : Matrix ι ε ℂ) (X : Mat ι) : Mat ε := reducedE (X*T)
 def effectKernelE (T : Matrix ι ε ℂ) (X : Mat ι) : Mat ε :=
   T.transpose*X.transpose*T.map star
 
+theorem matrix_map_star_mul (A : Matrix ι κ ℂ) (B : Matrix κ ε ℂ) :
+    (A*B).map star=A.map star*B.map star := by
+  ext i j
+  simp [Matrix.map_apply,Matrix.mul_apply,star_sum,star_mul,mul_comm]
+
 /-- T contains the actual coefficients Psi(i,e). Its reduction is the partial
 trace of |Psi><Psi|, including conjugation in the second density index. -/
 theorem reducedE_partialTrace (T : Matrix ι ε ℂ) :
@@ -30,6 +35,7 @@ theorem reducedE_partialTrace (T : Matrix ι ε ℂ) :
 
 theorem reducedE_positive (T : Matrix ι ε ℂ) : (reducedE T).PosSemidef := by
   have he : reducedE T=(T.map star).conjTranspose*(T.map star) := by
+    unfold reducedE
     congr 1; ext i e; simp [Matrix.conjTranspose_apply,Matrix.map_apply]
   rw [he]
   exact Matrix.posSemidef_conjTranspose_mul_self _
@@ -39,10 +45,10 @@ theorem conditionalE_actual_sandwich (T : Matrix ι ε ℂ) (X : Mat ι) :
       (kron X (1 : Mat ε)*projector (fun p : ι×ε => T p.1 p.2)*
         (kron X (1 : Mat ε)).conjTranspose) := by
   rw [conditionalE,reducedE_partialTrace]
-  congr 1
+  apply congrArg partialE
   ext ⟨i,e⟩ ⟨j,f⟩
   simp [Matrix.mul_apply,kron,projector,Matrix.conjTranspose_apply,
-    Fintype.sum_prod_type,Finset.sum_mul,Finset.mul_sum,star_sum,star_mul]
+    Fintype.sum_prod_type,Finset.sum_mul,Finset.mul_sum,star_sum,star_mul,Matrix.one_apply]
   ring
 
 theorem conditionalE_effectKernel (T : Matrix ι ε ℂ) (X : Mat ι)
@@ -52,10 +58,10 @@ theorem conditionalE_effectKernel (T : Matrix ι ε ℂ) (X : Mat ι)
     have h := congrFun (congrFun hX.eq j) i
     simpa [Matrix.conjTranspose_apply] using h
   unfold conditionalE reducedE effectKernelE
-  rw [Matrix.transpose_mul,Matrix.map_mul,← mul_assoc,hconj]
+  rw [Matrix.transpose_mul,matrix_map_star_mul,← Matrix.mul_assoc,hconj]
   have hp : X.transpose*X.transpose=X.transpose := by
     simpa only [Matrix.transpose_mul] using congrArg Matrix.transpose hXX
-  simp only [mul_assoc,hp]
+  simp only [Matrix.mul_assoc,hp]
 
 theorem effectKernelE_on_state (T : Matrix ι ε ℂ) (X Y : Mat ι) (h : X*T=Y*T) :
     effectKernelE T X=effectKernelE T Y := by
@@ -75,7 +81,7 @@ theorem privateMUB_sandwich (T : Matrix ι ε ℂ) (P R Q : Mat ι) (c : ℝ)
     (hp : P*P=P) (hr : R*R=R) (hq : Q*Q=Q) (hRQ : R*Q=Q*R)
     (hmatch : Q*T=P*T) (hsandwich : (P*R*P)*T=(c : ℂ) • (P*T)) :
     conditionalE T (R*Q)=(c : ℂ) • conditionalE T P := by
-  have he : (R*Q)*T=R*(P*T) := by rw [mul_assoc,hmatch]
+  have he : (R*Q)*T=R*(P*T) := by rw [Matrix.mul_assoc,hmatch]
   have htranspose : P.map star=P.transpose := by
     ext i j; have hh := congrFun (congrFun hP.eq j) i
     simpa [Matrix.conjTranspose_apply] using hh
@@ -85,10 +91,11 @@ theorem privateMUB_sandwich (T : Matrix ι ε ℂ) (P R Q : Mat ι) (c : ℝ)
   have hred : conditionalE T (R*Q)=effectKernelE T (P*R*P) := by
     unfold conditionalE reducedE effectKernelE
     rw [he]
-    simp only [Matrix.transpose_mul,Matrix.map_mul,htranspose,htransposeR]
+    simp only [Matrix.transpose_mul,matrix_map_star_mul,htranspose,htransposeR]
     have hRR : R.transpose*R.transpose=R.transpose := by
       simpa only [Matrix.transpose_mul] using congrArg Matrix.transpose hr
-    simp only [mul_assoc,hRR]
+    simp only [Matrix.mul_assoc]
+    rw [← Matrix.mul_assoc R.transpose R.transpose,hRR]
   rw [hred,conditionalE_effectKernel T P hP hp]
   have hc : (P*R*P)*T=((c : ℂ) • P)*T := by simpa [smul_mul_assoc] using hsandwich
   rw [effectKernelE_on_state T _ _ hc,effectKernelE_smul]
@@ -109,9 +116,9 @@ theorem privateMUB_composition (T : Matrix (ι×κ) ε ℂ)
   have h := privateMUB_sandwich T
     (aliceLift (κ := κ) (P.effect b)) (aliceLift (κ := κ) (R.effect a))
     (bobLift (ι := ι) (Q.effect (π b))) ((d : ℝ)⁻¹)
-    (by simp [aliceLift,kron_star,(P.positive b).isHermitian.eq])
-    (by simp [aliceLift,kron_star,(R.positive a).isHermitian.eq])
-    (by simp [bobLift,kron_star,(Q.positive (π b)).isHermitian.eq])
+    (by simp [Matrix.IsHermitian,aliceLift,kron_star,(P.positive b).isHermitian.eq])
+    (by simp [Matrix.IsHermitian,aliceLift,kron_star,(R.positive a).isHermitian.eq])
+    (by simp [Matrix.IsHermitian,bobLift,kron_star,(Q.positive (π b)).isHermitian.eq])
     (by simp [aliceLift,P.idempotent]) (by simp [aliceLift,R.idempotent])
     (by simp [bobLift,Q.idempotent]) (lift_commute _ _) (hmatch b)
     (by simpa [aliceLift,kron_mul] using hmub a b)
@@ -129,7 +136,7 @@ theorem fixedGuess_positive (g : Ix d×Ix d) (a b : Ix d) :
 theorem fixedGuess_complete (g : Ix d×Ix d) : (∑ a,∑ b,fixedGuessEffect g a b)=1 := by
   classical
   rcases g with ⟨a,b⟩
-  simp [fixedGuessEffect,Prod.mk.injEq]
+  simp [fixedGuessEffect,Prod.mk.injEq,ite_and]
 
 def fixedGuessSuccess (ρ : Mat (ι×κ)) (M : Measurement d ι) (N : Measurement d κ)
     (g : Ix d×Ix d) : ℝ :=
@@ -151,7 +158,18 @@ theorem fixedGuessSuccess_eq (ρ : StateOn (ι×κ)) (M : Measurement d ι)
   rcases g with ⟨a,b⟩
   unfold fixedGuessSuccess
   simp_rw [general_trivialEve_instrument]
-  simp [fixedGuessEffect,Prod.mk.injEq,Matrix.trace,Fin.sum_univ_succ]
+  simp only [fixedGuessEffect,Prod.mk.injEq,ite_and]
+  rw [Finset.sum_eq_single a]
+  · rw [Finset.sum_eq_single b]
+    · simp [Matrix.trace,Fin.sum_univ_succ,Matrix.smul_apply,Matrix.one_apply]
+    · intro b' _ hb
+      simp [hb]
+    · simp
+  · intro a' _ ha
+    apply Finset.sum_eq_zero
+    intro b' _
+    simp [ha]
+  · simp
 
 theorem first_all_dimension_physical_Eve_gap (hd : 4≤d) :
     let s := firstPermutationStrategy (d := d) (by omega : 2≤d) (finalSwap d)
@@ -172,11 +190,11 @@ theorem no_endpoint_modulus (u g : ℝ) (hgap : u<g) (f : ℝ → ℝ)
     (hf : Filter.Tendsto f (nhdsWithin 0 (Set.Ioi 0)) (nhds 0)) :
     ¬ (∀ ε : ℝ,0<ε → g≤u+f ε) := by
   intro hbound
-  have hh : ∀ᶠ ε in nhdsWithin 0 (Set.Ioi 0),f ε<(g-u)/2 :=
+  have hh : ∀ᶠ (ε : ℝ) in nhdsWithin 0 (Set.Ioi 0),f ε<(g-u)/2 :=
     hf.eventually (gt_mem_nhds (by linarith))
-  have hpos : ∀ᶠ ε in nhdsWithin 0 (Set.Ioi 0),0<ε :=
+  have hpos : ∀ᶠ (ε : ℝ) in nhdsWithin 0 (Set.Ioi 0),0<ε :=
     self_mem_nhdsWithin
-  haveI : NeBot (nhdsWithin (0 : ℝ) (Set.Ioi 0)) := by infer_instance
+  haveI : Filter.NeBot (nhdsWithin (0 : ℝ) (Set.Ioi 0)) := by infer_instance
   obtain ⟨ε,hε,hsmall⟩ := (hpos.and hh).exists
   have hb := hbound ε hε
   linarith

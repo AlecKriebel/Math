@@ -1,0 +1,15 @@
+CyclicBell/GeneralCoverageExposure.lean:158:55: error: unsolved goals
+d : ℕ
+inst✝ : NeZero d
+r : Ix d → ℂ
+hr : UnitPhases r
+x y : Ix d → Ix d → ℝ
+c : Ix d → ℝ
+hcap : ∀ (b : Ix d), ∀ z ∈ spectrum ℝ (MUBSpaceOperator r (x b) (y b)), z ≤ c b
+K : Ix d → Mat (Ix d) := fun b => MUBSpaceOperator r (x b) (y b)
+hpos : ∀ (b : Ix d), Matrix.PosSemidef (↑(c b) • 1 - K b)
+hdiag : ∀ (b j : Ix d), K b j j = K b b b
+hn : ∀ (b : Ix d), 0 ≤ c b - (K b b b).re
+hsat : ∑ i, (MUBSpaceOperator r (x i) (y i) i i / ↑d).re = (∑ b, c b) / ↑d
+z : ℂ
+⊢ z.re * ↑d * ↑d = z.re * (↑d * ↑d)

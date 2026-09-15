@@ -132,7 +132,9 @@ theorem GuessQa_marginal (r : ExtendedBehavior d α β) (hr : r∈GuessQa d α �
     forgetE r∈Qqa d α β := by
   have hc : IsClosed {r : ExtendedBehavior d α β | forgetE r∈Qqa d α β} :=
     isClosed_closure.preimage forgetE_continuous
-  exact closure_minimal (fun q hq => Qq_subset_Qqa (GuessQ_marginal q hq)) hc hr
+  have hsub : GuessQ d α β ⊆ {r : ExtendedBehavior d α β | forgetE r ∈ Qqa d α β} :=
+    fun q hq => Qq_subset_Qqa (GuessQ_marginal q hq)
+  exact closure_minimal hsub hc hr
 
 theorem GuessQc_marginal (r : ExtendedBehavior d α β) (hr : r∈GuessQc d α β) :
     forgetE r∈Qqc d α β := by

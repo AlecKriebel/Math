@@ -1,0 +1,6 @@
+import CyclicBell.GeneralCoverageWitness
+import CyclicBell.GeneralCoverageExposure
+#print axioms CyclicBell.General.conditional_permutation_simple_spectra
+#print axioms CyclicBell.General.conditional_permutation_complete_harmonics
+#print axioms CyclicBell.General.computational_MUB_spectral_obstruction
+#print axioms CyclicBell.General.computational_PVM_coefficientwise_saturation

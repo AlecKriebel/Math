@@ -28,21 +28,21 @@ example {d : ℕ} [NeZero d] {α β : Type}
 
 example {d : ℕ} [NeZero d] {α β : Type} {nA nB : ℕ}
     (s : StrategyOn d α β (Fin nA) (Fin nB)) :
-    commutingBehavior (finiteToCommuting s) = behavior s := finiteToCommuting_behavior s
+    commutingBehavior (finiteToCommuting s) = General.behavior s := finiteToCommuting_behavior s
 
 /-- Mixed states need not be faithful or have dimension d on either party. -/
 example (n : ℕ) (ρ : StateOn (Fin n)) : ‖purificationVector ρ‖=1 := purificationVector_normalized ρ
 
 example (n : ℕ) (ρ : StateOn (Fin n)) (T : Matrix (Fin n) (Fin n) ℂ) :
-    (inner ℂ (purificationVector ρ)
-      (matrixCLM (kron T (1 : Matrix (Fin n) (Fin n) ℂ)) (purificationVector ρ))).re =
+    (⟪purificationVector ρ,
+      matrixCLM (kron T (1 : Matrix (Fin n) (Fin n) ℂ)) (purificationVector ρ)⟫_ℂ).re =
       (Matrix.trace (ρ.density*T)).re := purification_stateEval ρ T
 
 example {d : ℕ} [NeZero d] {α β H : Type} [NormedAddCommGroup H]
     [InnerProductSpace ℂ H] [CompleteSpace H] (s : CommutingOn d α β H)
     (x : α) (y : β) (a b : ZMod d) :
     commutingBehavior s x y a b =
-      (inner ℂ s.vector (((s.alice x).effect a*(s.bob y).effect b) s.vector)).re := rfl
+      (⟪s.vector, ((s.alice x).effect a*(s.bob y).effect b) s.vector⟫_ℂ).re := rfl
 
 example {d : ℕ} [NeZero d] {α β H : Type} [NormedAddCommGroup H]
     [InnerProductSpace ℂ H] [CompleteSpace H] (s : CommutingOn d α β H)
@@ -83,23 +83,23 @@ example (H : Type*) [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSp
     (k₀ : star b₀=b₀ ∧ b₀*b₀=1) (k₁ : star b₁=b₁ ∧ b₁*b₁=1)
     (h00 : a₀*b₀=b₀*a₀) (h01 : a₀*b₁=b₁*a₀)
     (h10 : a₁*b₀=b₀*a₁) (h11 : a₁*b₁=b₁*a₁) :
-    (inner ℂ ψ ((a₀*b₀-(2:ℂ) • (a₀*b₁)+(2:ℂ) • (a₁*b₀)+(2:ℂ) • (a₁*b₁)) ψ)).re ≤
+    (⟪ψ, (a₀*b₀-(2:ℂ) • (a₀*b₁)+(2:ℂ) • (a₁*b₀)+(2:ℂ) • (a₁*b₁)) ψ⟫_ℂ).re ≤
       3*Real.sqrt 3 := binary_commuting_hilbert_upper ψ hψ a₀ a₁ b₀ b₁ h₀ h₁ k₀ k₁ h00 h01 h10 h11
 
 example (d : ℕ) [NeZero d] (hd : 4≤d) :
     let s := firstPermutationStrategy (d := d) (by omega : 2≤d) (finalSwap d)
-    firstAugmentedBell (behavior s)=betaQ (firstAugmentedBell (d := d)) ∧
-    firstAugmentedBell (behavior s)=betaQa (firstAugmentedBell (d := d)) ∧
-    firstAugmentedBell (behavior s)=betaQc (firstAugmentedBell (d := d)) ∧
-    ∃ g : ZMod d×ZMod d,1/(d : ℝ)^2<fixedGuessSuccess s.state.density (s.alice 1) (s.bob none) g :=
+    firstAugmentedBell (General.behavior s)=betaQ (firstAugmentedBell (d := d)) ∧
+    firstAugmentedBell (General.behavior s)=betaQa (firstAugmentedBell (d := d)) ∧
+    firstAugmentedBell (General.behavior s)=betaQc (firstAugmentedBell (d := d)) ∧
+    ∃ g : ZMod d×ZMod d,1/(d : ℝ)^2<General.fixedGuessSuccess s.state.density (s.alice 1) (s.bob none) g :=
   first_three_model_physical_guessing_gap hd
 
 example (d : ℕ) [NeZero d] (hd : 4≤d) :
     let s := secondPermutationStrategy (d := d) (by omega : 2≤d) (finalSwap d)
-    secondAugmentedBell (behavior s)=betaQ (secondAugmentedBell (d := d)) ∧
-    secondAugmentedBell (behavior s)=betaQa (secondAugmentedBell (d := d)) ∧
-    secondAugmentedBell (behavior s)=betaQc (secondAugmentedBell (d := d)) ∧
-    ∃ g : ZMod d×ZMod d,1/(d : ℝ)^2<fixedGuessSuccess s.state.density (s.alice 1) (s.bob none) g :=
+    secondAugmentedBell (General.behavior s)=betaQ (secondAugmentedBell (d := d)) ∧
+    secondAugmentedBell (General.behavior s)=betaQa (secondAugmentedBell (d := d)) ∧
+    secondAugmentedBell (General.behavior s)=betaQc (secondAugmentedBell (d := d)) ∧
+    ∃ g : ZMod d×ZMod d,1/(d : ℝ)^2<General.fixedGuessSuccess s.state.density (s.alice 1) (s.bob none) g :=
   second_three_model_physical_guessing_gap hd
 
 example {X O : Type*} [Fintype X] [Fintype O] [DecidableEq X] [DecidableEq O]
@@ -107,8 +107,8 @@ example {X O : Type*} [Fintype X] [Fintype O] [DecidableEq X] [DecidableEq O]
     (p : RightOneInputBehavior X O A) (x : X) (a : A x) (b : O) :
     bornProbability
       (storedPurification (rightHiddenWeight p)*(storedPurification (rightHiddenWeight p)).conjTranspose)
-      (groupingProjector (fun λ : StoredAssignments O A => λ.2 x) a)
-      (groupingProjector (fun λ : StoredAssignments O A => λ.1) b)=p.joint x a b :=
+      (groupingProjector (fun assignment : StoredAssignments O A => assignment.2 x) a)
+      (groupingProjector (fun assignment : StoredAssignments O A => assignment.1) b)=p.joint x a b :=
   (right_one_input_pure_projective_perfect_guess p).2.1 x a b
 
 example : scalarMaximum 2=2*Real.sqrt 2 ∧ scalarMaximum 3=4 ∧

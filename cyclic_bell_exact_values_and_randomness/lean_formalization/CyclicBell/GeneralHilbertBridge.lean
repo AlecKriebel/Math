@@ -85,7 +85,7 @@ theorem kron_one_vectorize (T : Mat ι) (L : Matrix ι ν ℂ) :
     kron T (1 : Mat ν) *ᵥ vectorize L = vectorize (T*L) := by
   funext v
   rcases v with ⟨i,e⟩
-  simp [kron,vectorize,Matrix.mulVec,dotProduct,Matrix.mul_apply,Fintype.sum_prod_type]
+  simp [kron,vectorize,Matrix.mulVec,dotProduct,Matrix.mul_apply,Fintype.sum_prod_type,Matrix.one_apply]
 
 theorem vectorize_moment (L : Matrix ι ν ℂ) (T : Mat ι) :
     hilbertMoment (euclidVector (vectorize L)) (matrixCLM (kron T (1 : Mat ν))) =
@@ -96,7 +96,7 @@ theorem vectorize_moment (L : Matrix ι ν ℂ) (T : Mat ι) :
     Matrix.trace (L.conjTranspose*(T*L)) = Matrix.trace ((T*L)*L.conjTranspose) :=
       Matrix.trace_mul_comm _ _
     _ = Matrix.trace ((L*L.conjTranspose)*T) := by
-      rw [mul_assoc,Matrix.trace_mul_comm]
+      rw [Matrix.mul_assoc,Matrix.trace_mul_comm]
 
 /-- Arbitrary mixed state: no rank, faithfulness or spectral-shape assumption. -/
 def purificationVector (ρ : StateOn ι) : EuclideanSpace ℂ (ι × ι) :=
@@ -111,7 +111,8 @@ theorem purificationVector_inner (ρ : StateOn ι) :
 theorem purificationVector_normalized (ρ : StateOn ι) : ‖purificationVector ρ‖ = 1 := by
   have h := congrArg Complex.re (purificationVector_inner ρ)
   simp only [inner_self_eq_norm_sq_to_K] at h
-  norm_num at h
+  change (((‖purificationVector ρ‖ : ℝ) : ℂ)^2).re = 1 at h
+  rw [← Complex.ofReal_pow, Complex.ofReal_re] at h
   nlinarith [norm_nonneg (purificationVector ρ)]
 
 theorem purification_moment (ρ : StateOn ι) (T : Mat ι) :
@@ -182,6 +183,10 @@ def finiteToCommuting {α β : Type*} (s : StrategyOn d α β ι κ) :
     intro x y a b
     change matrixCLM (kron (kron ((s.alice x).effect a) 1) 1) *
         matrixCLM (kron (kron 1 ((s.bob y).effect b)) 1) = _
+    change matrixCLM (kron (kron ((s.alice x).effect a) 1) 1) *
+        matrixCLM (kron (kron 1 ((s.bob y).effect b)) 1) =
+      matrixCLM (kron (kron 1 ((s.bob y).effect b)) 1) *
+        matrixCLM (kron (kron ((s.alice x).effect a) 1) 1)
     simp only [← matrixCLM_mul,kron_mul,one_mul,mul_one]
 
 /-- Equality of the entire real behavior, not merely the chosen Bell value. -/

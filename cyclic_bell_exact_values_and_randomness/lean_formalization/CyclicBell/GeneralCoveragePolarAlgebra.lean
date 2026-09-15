@@ -54,6 +54,20 @@ theorem weyl_pow_commute (X Z : A) (q : ℂ)
         rw [smul_mul_assoc, smul_smul, pow_succ, pow_succ']
         simp only [mul_assoc]
 
+theorem weyl_commute_pow (X Z : A) (q : ℂ)
+    (hXZ : X * Z = q • (Z * X)) (n : ℕ) :
+    X * Z ^ n = q ^ n • (Z ^ n * X) := by
+  induction n with
+  | zero => simp
+  | succ n ih =>
+    calc
+      X * Z ^ (n + 1) = (X * Z ^ n) * Z := by rw [pow_succ,mul_assoc]
+      _ = (q ^ n • (Z ^ n * X)) * Z := by rw [ih]
+      _ = q ^ n • (Z ^ n * (X * Z)) := by rw [smul_mul_assoc,mul_assoc]
+      _ = q ^ n • (Z ^ n * (q • (Z * X))) := by rw [hXZ]
+      _ = q ^ (n + 1) • (Z ^ (n + 1) * X) := by
+        rw [mul_smul_comm,smul_smul,pow_succ,pow_succ,mul_assoc]
+
 /-- Exact noncommutative Weyl power formula, including its triangular phase. -/
 theorem weyl_mul_pow (X Z : A) (q : ℂ)
     (hZX : Z * X = q • (X * Z)) (n : ℕ) :

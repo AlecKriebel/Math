@@ -78,7 +78,9 @@ theorem finite_nested_supremum_eq {ι κ ε : Type}
     ⟨tripartiteBehavior_mem_GuessQ s,hs⟩
   apply le_antisymm
   · change sSup ((fun r => guessingSuccess r x y) '' valueSlice (GuessQ d α β) f (betaQ f))≤_
-    apply csSup_le ⟨_,tripartiteBehavior s,hr,rfl⟩
+    have hne : ((fun r => guessingSuccess r x y) '' valueSlice (GuessQ d α β) f (betaQ f)).Nonempty :=
+      ⟨_,tripartiteBehavior s,hr,rfl⟩
+    apply csSup_le hne
     rintro t ⟨r,⟨hmodel,hscore⟩,rfl⟩
     rcases hmodel with ⟨i,j,e,fi,fj,fe,ei,ej,ee,R,hR⟩
     letI := fi

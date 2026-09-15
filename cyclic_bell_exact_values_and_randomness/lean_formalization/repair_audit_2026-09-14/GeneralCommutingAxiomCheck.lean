@@ -1,0 +1,8 @@
+import CyclicBell.GeneralCommutingModel
+#print axioms CyclicBell.General.second_physical_upper
+#print axioms CyclicBell.General.second_cstar_sos
+#print axioms CyclicBell.General.second_commuting_hilbert_bound
+#print axioms CyclicBell.General.commutingBehavior_nonnegative
+#print axioms CyclicBell.General.commutingBehavior_normalized
+#print axioms CyclicBell.General.firstAugmentedBell_commuting_upper
+#print axioms CyclicBell.General.secondAugmentedBell_commuting_upper

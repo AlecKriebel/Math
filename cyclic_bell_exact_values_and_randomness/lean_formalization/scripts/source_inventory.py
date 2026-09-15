@@ -16,10 +16,10 @@ from static_audit import ROOT, strip_comments_strings
 
 # Python Unicode \w includes the subscript digits in firstA₀_unitary.
 IDENT = r"[\w.']+"
-DECL = re.compile(r'^\s*(?:@\[[^\n]*\]\s*)?(?:(?:noncomputable|protected)\s+)*'
-                  r'(theorem|lemma|def|abbrev|structure|instance)\s+(«'+IDENT+r'»|'+IDENT+r')(?![\w.\'])', re.M)
-DECL_START = re.compile(r'^\s*(?:@\[[^\n]*\]\s*)?'
-                       r'(?:(?:noncomputable|protected|private|partial|nonrec)\s+)*'
+DECL = re.compile(r'^[ \t]*(?:@\[[^\]\n]*\][ \t]*)?(?:(?:noncomputable|protected)[ \t]+)*'
+                  r'(theorem|lemma|def|abbrev|structure|instance)[ \t]+(«'+IDENT+r'»|'+IDENT+r')(?![\w.\'])', re.M)
+DECL_START = re.compile(r'^[ \t]*(?:@\[[^\]\n]*\][ \t]*)?'
+                       r'(?:(?:noncomputable|protected|private|partial|nonrec)[ \t]+)*'
                        r'(theorem|lemma|def|abbrev|structure|instance|opaque|inductive|class)\b')
 
 

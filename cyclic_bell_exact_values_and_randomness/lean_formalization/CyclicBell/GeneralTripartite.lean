@@ -38,6 +38,7 @@ theorem advKron_trace (A : Mat ι) (B : Mat κ) :
     Matrix.trace (kron A B)=Matrix.trace A*Matrix.trace B := by
   simp only [Matrix.trace,Matrix.diag_apply,kron,Fintype.sum_prod_type,
     Finset.sum_mul,Finset.mul_sum]
+  rw [Finset.sum_comm]
 
 theorem advStateEval_positive (ρ X : Mat ι) (hρ : ρ.PosSemidef) (hX : X.PosSemidef) :
     0≤stateEval ρ X := by
@@ -84,16 +85,22 @@ theorem partialE_pairing (R : Mat (ι×ε)) (Q : Mat ε) :
     Matrix.trace (Q*partialE R)=Matrix.trace (R*kron (1 : Mat ι) Q) := by
   simp only [Matrix.trace,Matrix.diag_apply,Matrix.mul_apply,partialE,kron,
     Fintype.sum_prod_type,Finset.mul_sum]
-  simp only [Matrix.one_apply,mul_ite,mul_one,mul_zero,Finset.sum_ite_eq',Finset.mem_univ,ite_true]
+  simp only [Matrix.one_apply,ite_mul,mul_ite,mul_one,mul_zero,zero_mul,Finset.sum_ite_eq,Finset.sum_ite_eq',Finset.mem_univ,ite_true]
+  conv_lhs =>
+    arg 2
+    ext x
+    rw [Finset.sum_comm]
   rw [Finset.sum_comm]
   apply Finset.sum_congr rfl
   intro i _
   rw [Finset.sum_comm]
   apply Finset.sum_congr rfl
   intro e _
+  rw [Finset.sum_comm]
+  simp only [Finset.sum_ite_eq,Finset.mem_univ,ite_true,one_mul]
   apply Finset.sum_congr rfl
   intro f _
-  ring
+  simp [mul_comm]
 
 /-- Sandwich/Born equivalence uses projectivity only on the observed AB side.
 Q may be any matrix; in the physical application it is an arbitrary POVM effect. -/
@@ -127,7 +134,9 @@ theorem tripartiteBehavior_instrument (s : TripartiteOn d α β ι κ ε)
 def scalarGuessPOVM (g : GuessLabel d) : GuessPOVM d (Fin 1) where
   effect := fun h => if h=g then 1 else 0
   positive := by intro h; split_ifs <;> first | exact Matrix.PosSemidef.one | exact Matrix.PosSemidef.zero
-  complete := by classical; simp
+  complete := by
+    classical
+    simp
 
 def trivialTripartite (s : StrategyOn d α β ι κ) (g : GuessLabel d) :
     TripartiteOn d α β ι κ (Fin 1) where
