@@ -95,7 +95,7 @@ theorem equalityRoot_halfAngle (j : Ix d) : equalityRoot j=cis (2*halfRootAngle 
 theorem polarBase_unit : UnitPhases (polarBase : Ix d → ℂ) := by
   intro j
   unfold polarBase halfRootSign
-  split_ifs <;> simp [mul_assoc,cis_unit]
+  split_ifs <;> simpa only [one_mul, neg_one_mul, star_neg, neg_mul_neg] using cis_unit (halfRootAngle d j)
 
 theorem polarPhase_unit (y : Ix d) : UnitPhases (polarPhase y : Ix d → ℂ) := by
   intro k
@@ -132,10 +132,12 @@ theorem polarPhase_eq_quotient (hd : 2≤d) (y k : Ix d) :
 /-- Unitarity gives the conjugated factor needed in the Phi trace. -/
 theorem polarPhase_conjugate_factor (hd : 2≤d) (y k : Ix d) :
     (1+chi y*equalityRoot k)*star (polarPhase y k)=(‖1+chi y*equalityRoot k‖ : ℂ) := by
-  rw [← polarPhase_factor hd y k]
   have hs := polarPhase_unit (d := d) y k
   calc
-    (polarPhase y k*(‖1+chi y*equalityRoot k‖ : ℂ))*star (polarPhase y k) =
+    (1+chi y*equalityRoot k)*star (polarPhase y k) =
+        (polarPhase y k*(‖1+chi y*equalityRoot k‖ : ℂ))*star (polarPhase y k) := by
+          rw [polarPhase_factor hd y k]
+    _ =
         (star (polarPhase y k)*polarPhase y k)*(‖1+chi y*equalityRoot k‖ : ℂ) := by ring
     _=_ := by rw [hs,one_mul]
 
@@ -196,7 +198,7 @@ theorem polarBase_product : (∏ j : Ix d,polarBase j)=1 := by
 
 theorem polarPhase_product (y : Ix d) : (∏ k : Ix d,polarPhase y k)=1 := by
   unfold polarPhase
-  have h := Fintype.prod_equiv (Equiv.addLeft y) polarBase polarBase (fun _ => rfl)
+  have h := Fintype.prod_equiv (Equiv.addLeft y) (fun k => polarBase (y+k)) polarBase (fun _ => rfl)
   exact h.trans polarBase_product
 
 /-- The half-angle sign computation also fixes the adjacent reflection label.

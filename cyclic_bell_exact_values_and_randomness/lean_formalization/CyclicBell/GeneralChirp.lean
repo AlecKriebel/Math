@@ -61,7 +61,7 @@ theorem canonical_ratio (j t : Ix d) :
   have hchi : chi (t*j) = cis (2*Real.pi*t.val*j.val/(d : ℝ)) := by
     have hnat : ((t.val*j.val : ℕ) : Ix d)=t*j := by simp
     rw [← hnat]
-    simpa only [Int.cast_natCast,Nat.cast_mul] using chi_cis_int (d := d) ((t.val*j.val : ℕ) : ℤ)
+    simpa [Int.cast_natCast,Nat.cast_mul, mul_assoc] using chi_cis_int (d := d) ((t.val*j.val : ℕ) : ℤ)
   rw [chirpNat,chirpNat,chirpNat,← cis_sub,hchi,← cis_add]
   congr 1
   push_cast
@@ -107,14 +107,14 @@ theorem canonical_uniform (a b : Ix d) :
   exact (table_uniform_iff _).mpr canonical_flat a b
 
 theorem equalityRoot_sum_zero (hd : 2≤d) : (∑ j : Ix d,equalityRoot j)=0 := by
-  have h1 : (1 : Ix d)≠0 := natCast_ne_zero_of_lt (by omega) (by omega)
+  have h1 : (1 : Ix d)≠0 := by simpa using natCast_ne_zero_of_lt (d := d) (k := 1) (by omega) (by omega)
   simp only [equalityRoot,← Finset.mul_sum]
   have hs := character_sum (1 : Ix d)
   simpa [one_mul,h1] using congrArg (fun z : ℂ => equalityBase d*z) hs
 
 theorem equalityRoot_pair_sum_zero (hd : 3≤d) :
     (∑ j : Ix d,equalityRoot j*equalityRoot (j+1))=0 := by
-  have h2 : (2 : Ix d)≠0 := natCast_ne_zero_of_lt (by omega) (by omega)
+  have h2 : (2 : Ix d)≠0 := by simpa using natCast_ne_zero_of_lt (d := d) (k := 2) (by omega) (by omega)
   have he (j : Ix d) : equalityRoot j*equalityRoot (j+1) =
       equalityBase d^2*chi (1 : Ix d)*chi ((2 : Ix d)*j) := by
     simp only [equalityRoot,chi_add]
@@ -125,7 +125,7 @@ theorem equalityRoot_pair_sum_zero (hd : 3≤d) :
 
 /-- Every permutation has vanishing first lag in this family. -/
 theorem permutation_lag_one (hd : 2≤d) (κ : Equiv.Perm (Ix d)) :
-    autocorrelation (prefix (equalityRoot ∘ κ)) 1=0 := by
+    autocorrelation («prefix» (equalityRoot ∘ κ)) 1=0 := by
   have hw := phases_permuted equalityRoot equalityRoot_unit κ
   have hp : ∏ j,equalityRoot (κ j)=1 := by rw [product_permuted,equalityRoot_product hd]
   rw [recurrence_lag_one _ _ (prefix_unit _ hw) (prefix_recurrence _ hp)]

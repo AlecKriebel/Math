@@ -68,12 +68,12 @@ theorem cycle_charpoly_low_coefficient (w : Ix d → ℂ) (hw : ∀ j,w j≠0)
   simp only [Matrix.add_apply,Matrix.sum_apply,Matrix.smul_apply,smul_eq_mul,Matrix.zero_apply] at he
   rw [short_polynomial_column w _ hi,Matrix.one_apply] at he
   have hd0 : 0<d := Nat.pos_of_ne_zero (NeZero.ne d)
-  have hzero : ((i : Ix d)=0) ↔ i=0 := cycle_natCast_eq_iff hi hd0
-  rw [hzero] at he
+  have hzero : ((i : Ix d)=0) ↔ i=0 := by simpa using cycle_natCast_eq_iff hi hd0
+  simp only [hzero] at he
   by_cases hi0 : i=0
   · subst i
     simp only [cyclePrefixProduct,Finset.range_zero,Finset.prod_empty,mul_one,
-      if_pos rfl] at he ⊢
+      if_pos rfl,ite_true] at he ⊢
     linear_combination he
   · rw [if_neg hi0] at he ⊢
     simp only [mul_zero,add_zero] at he
@@ -90,18 +90,18 @@ theorem weighted_cycle_charpoly (w : Ix d → ℂ) (hw : ∀ j,w j≠0) :
   · rw [cycle_charpoly_low_coefficient w hw hk]
     simp only [Polynomial.coeff_sub,Polynomial.coeff_X_pow,Polynomial.coeff_C]
     have hdk : d≠k := Ne.symm (Nat.ne_of_lt hk)
-    simp only [hdk,if_false,zero_sub]
-    split_ifs <;> simp
+    simp only [hdk,Ne.symm hdk,if_false,zero_sub]
+    split_ifs <;> simp_all
   · by_cases hkd : k=d
     · subst k
       rw [cycle_charpoly_top_coefficient]
-      simp [Polynomial.coeff_sub,Polynomial.coeff_X_pow,Polynomial.coeff_C,hd0]
+      simp only [Polynomial.coeff_sub,Polynomial.coeff_X_pow,Polynomial.coeff_C,hd0,if_false,if_true,sub_zero]
     · have hgt : d<k := by omega
       have hp : (weightedCycle w).charpoly.natDegree<k := by
         simpa only [Matrix.charpoly_natDegree_eq_dim,ZMod.card] using hgt
       rw [Polynomial.coeff_eq_zero_of_natDegree_lt hp]
       have hk0 : k≠0 := by omega
-      simp [Polynomial.coeff_sub,Polynomial.coeff_X_pow,Polynomial.coeff_C,hkd,Ne.symm hkd,hk0]
+      simp only [Polynomial.coeff_sub,Polynomial.coeff_X_pow,Polynomial.coeff_C,hkd,Ne.symm hkd,hk0,if_false,sub_zero]
 
 /-- Product-one phase cycles have the full d-th-root characteristic polynomial,
 without identifying a chosen PVM outcome distribution with that spectrum. -/

@@ -131,12 +131,14 @@ theorem polarTransform_signed_geometric (l : Ix d) :
   have hchar : chi (l*(k : Ix d))=cis (2*Real.pi*l.val*k/(d : ℝ)) := by
     have hi : l*(k : Ix d)=((l.val*k : ℕ) : Ix d) := by simp
     rw [hi]
-    simpa only [Int.cast_natCast,Nat.cast_mul] using chi_cis_int (d := d) ((l.val*k : ℕ) : ℤ)
+    have hc := chi_cis_int (d := d) ((l.val*k : ℕ) : ℤ)
+    push_cast at hc
+    convert hc using 1 <;> first | simp only [Nat.cast_mul] | ring
   simp only [polarBase,halfRootSign,halfRootAngle,ZMod.val_natCast,Nat.mod_eq_of_lt hkd,
     geometricRatio,cis_pow,star_mul,hchar,← cis_neg]
-  split_ifs <;> simp only [star_one,star_neg,one_mul,neg_one_mul,mul_neg,neg_mul]
+  split_ifs <;> simp only [star_one,star_neg,one_mul,mul_one,neg_one_mul,mul_neg,neg_mul]
   all_goals
-    rw [← cis_add,← cis_add]
+    simp only [← cis_add]
     congr 1
     unfold coefficientAngle
     push_cast
@@ -145,7 +147,7 @@ theorem polarTransform_signed_geometric (l : Ix d) :
 theorem polarTransform_mul_ratio (l : Ix d) :
     polarTransform l*(geometricRatio l-1)=
       2*cis (-Real.pi*parityDelta d/(2*d))*geometricRatio l^(phaseCut d) := by
-  rw [polarTransform_signed_geometric,mul_assoc,signed_geometric_mul _ _ _ (Nat.sub_le _ _),
+  rw [polarTransform_signed_geometric,mul_assoc,signed_geometric_mul _ (phaseCut d) d (Nat.sub_le _ _),
     geometricRatio_power]
   ring
 
@@ -163,8 +165,9 @@ theorem d_lambda_prefactor (hd : 2≤d) (l : Ix d) :
       Real.pi*((l.val : ℝ)-1)-Real.pi*parityDelta d*l.val/d := by ring
   have he := congrArg cis ha
   rw [cis_add,cis_add] at he
-  field_simp
-  linear_combination (d : ℂ)*he
+  rw [← he]
+  field_simp only [hdC,hsC]
+  ring
 
 /-- The sign and r_l phase are included, not inferred from a common norm. -/
 theorem d_lambda_prefactor_mul_ratio (hd : 2≤d) (l : Ix d) :
@@ -185,9 +188,10 @@ theorem d_lambda_prefactor_mul_ratio (hd : 2≤d) (l : Ix d) :
   rw [cis_add,cis_add,cis_add] at he
   have hi : cis (Real.pi/2)=Complex.I := by simp [cis_exp,Complex.exp_mul_I]
   rw [hi] at he
-  push_cast
-  field_simp
-  linear_combination (2 : ℂ)*(Real.sin (coefficientAngle d l) : ℂ)*he.symm
+  push_cast only [Complex.ofReal_mul,Complex.ofReal_ofNat]
+  conv_rhs => rw [mul_assoc,he]
+  field_simp only [hs]
+  ring
 
 /-- Exact source Fourier coefficient S_l=d lambda_l r_l. -/
 theorem polarTransform_compression (hd : 2≤d) (l : Ix d) :
@@ -216,6 +220,7 @@ theorem generalLambda_normalization (hd : 2≤d) :
   have hsum : (∑ l : Ix d,Complex.normSq (generalLambda l))=1 := by
     apply mul_left_cancel₀ hdR
     simpa using hs
+  change (∑ l : Ix d,(starRingEnd ℂ) (generalLambda l)*generalLambda l)=1
   simp_rw [← Complex.normSq_eq_conj_mul_self]
   rw [← Complex.ofReal_sum,hsum]
   simp

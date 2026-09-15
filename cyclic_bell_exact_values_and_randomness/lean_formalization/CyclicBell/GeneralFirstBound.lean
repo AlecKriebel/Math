@@ -129,7 +129,7 @@ theorem first_physical_upper {κ : Type*} [Fintype κ] [DecidableEq κ]
   unfold firstReducedOperator at h
   simp_rw [hterm] at h
   rw [stateEval_sum] at h
-  simp_rw [stateEval_herm s.state.positive.isHermitian] at h
+  simp_rw [stateEval_herm _ _ s.state.positive.isHermitian] at h
   have ha := aligned_upper s.state.positive s.state.normalized
     (kron_unitary h0 (encoded_unitary (s.bob none)))
   change firstValue s≤scalarMaximum d+1

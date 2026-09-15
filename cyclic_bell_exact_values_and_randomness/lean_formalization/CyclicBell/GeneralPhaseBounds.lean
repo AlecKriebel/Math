@@ -34,7 +34,7 @@ theorem phase_fractional_sine_lower (hd : 2≤d) (q r : ℕ)
   let k : ℤ := ⌊t/(d : ℝ)⌋
   let z : ℤ := n-(d : ℤ)*k
   let u : ℝ := (z : ℝ)+(r : ℝ)/q
-  have hu : u=t-(k : ℝ)*d := by dsimp [u,t,z]; push_cast; ring
+  have hu : u=t-(k : ℝ)*d := by dsimp [u,t,z] <;> push_cast <;> ring
   have hlo : 0≤u := by
     have h := (le_div_iff₀ hD).mp (Int.floor_le (t/(d : ℝ)))
     change (k : ℝ)*d≤t at h
@@ -61,7 +61,7 @@ theorem phase_fractional_sine_lower (hd : 2≤d) (q r : ℕ)
     div_le_div_of_nonneg_right hrR hQ.le
   have hfrachi : (r : ℝ)/q≤1-1/(q : ℝ) := by
     apply (div_le_iff₀ hQ).mpr
-    have h : (1-1/(q : ℝ))*q=(q : ℝ)-1 := by field_simp; ring
+    have h : (1-1/(q : ℝ))*q=(q : ℝ)-1 := by field_simp <;> ring
     rw [h]
     linarith
   have hub : 1/(q : ℝ)≤u ∧ u≤(d : ℝ)-1/(q : ℝ) := by
@@ -98,9 +98,10 @@ theorem phase_fractional_sine_lower (hd : 2≤d) (q r : ℕ)
       (add_nonneg hsinpos.le (hsinpos.le.trans hsin))]
   have hperiod : Real.sin (Real.pi*t/d)^2=Real.sin x^2 := by
     have ht : t/(d : ℝ)=(k : ℝ)+u/(d : ℝ) := by
-      rw [hu]; field_simp; ring
+      rw [hu]; field_simp <;> ring
     rw [show Real.pi*t/d=Real.pi*(t/(d : ℝ)) by ring,ht,phase_sin_sq_integer_shift]
-    rfl
+    dsimp [x]
+    rw [mul_div_assoc]
   exact ⟨by dsimp [a] at hsinpos; positivity,by change _≤Real.sin (Real.pi*t/d)^2; rw [hperiod]; exact hsq⟩
 
 def standardAlpha (x : Fin 2) : ℝ := if x=0 then 0 else -1/2
@@ -129,13 +130,13 @@ theorem standard_displacement_rep (x y : Fin 2) (a b : Ix d) :
       (a.val : ℝ)-(b.val : ℝ)+standardDelta x y=(n : ℝ)+(r : ℝ)/4 := by
   fin_cases x <;> fin_cases y
   · refine ⟨(a.val : ℤ)-b.val,1,by omega,by omega,?_⟩
-    norm_num [standardDelta,standardAlpha,standardBeta]; push_cast; ring
+    norm_num [standardDelta,standardAlpha,standardBeta] <;> push_cast <;> ring
   · refine ⟨(a.val : ℤ)-b.val,3,by omega,by omega,?_⟩
-    norm_num [standardDelta,standardAlpha,standardBeta]; push_cast; ring
+    norm_num [standardDelta,standardAlpha,standardBeta] <;> push_cast <;> ring
   · refine ⟨(a.val : ℤ)-b.val-1,3,by omega,by omega,?_⟩
-    norm_num [standardDelta,standardAlpha,standardBeta]; push_cast; ring
+    norm_num [standardDelta,standardAlpha,standardBeta] <;> push_cast <;> ring
   · refine ⟨(a.val : ℤ)-b.val,1,by omega,by omega,?_⟩
-    norm_num [standardDelta,standardAlpha,standardBeta]; push_cast; ring
+    norm_num [standardDelta,standardAlpha,standardBeta] <;> push_cast <;> ring
 
 theorem standard_denominator_positive (hd : 2≤d) (x y : Fin 2) (a b : Ix d) :
     0<Real.sin (Real.pi*((a.val : ℝ)-(b.val : ℝ)+standardDelta x y)/d)^2 := by
@@ -152,16 +153,15 @@ theorem standard_numerator (x y : Fin 2) (a b : Ix d) :
   have hquarter : Real.sin (Real.pi/4)^2=(1/2 : ℝ) := by
     rw [Real.sin_pi_div_four,div_pow,Real.sq_sqrt (by norm_num : (0 : ℝ)≤2)]
     norm_num
-  fin_cases x <;> fin_cases y
-  · rw [standard_delta_table.1,show Real.pi*(1/4 : ℝ)=Real.pi/4 by ring]
+  fin_cases x <;> fin_cases y <;> norm_num [standardDelta,standardAlpha,standardBeta]
+  · rw [show Real.pi*(1/4 : ℝ)=Real.pi/4 by ring]
     exact hquarter
-  · rw [standard_delta_table.2.1,
+  · rw [
       show Real.pi*(3/4 : ℝ)=Real.pi-Real.pi/4 by ring,Real.sin_pi_sub]
     exact hquarter
-  · rw [standard_delta_table.2.2.1,
-      show Real.pi*(-(1/4) : ℝ)= -(Real.pi/4) by ring,Real.sin_neg,neg_sq]
+  · rw [show Real.pi*(1/4 : ℝ)=Real.pi/4 by ring]
     exact hquarter
-  · rw [standard_delta_table.2.2.2,show Real.pi*(1/4 : ℝ)=Real.pi/4 by ring]
+  · rw [show Real.pi*(1/4 : ℝ)=Real.pi/4 by ring]
     exact hquarter
 
 /-- The manuscript's four displayed tables, not a surrogate table definition. -/
@@ -198,8 +198,7 @@ theorem standard_behavior_le_peak (hd : 2≤d) (x y : Fin 2) (a b : Ix d) :
 theorem standard_behavior_hits_peak (hd : 2≤d) (x y : Fin 2) :
     ∃ a b : Ix d,behavior (standardPhaseStrategy d) x y a b=standardPeak d := by
   have hv : (1 : Ix d).val=1 := by
-    change ((1 : ℕ) : Ix d).val=1
-    rw [ZMod.val_natCast,Nat.mod_eq_of_lt (by omega)]
+    rw [ZMod.val_one_eq_one_mod,Nat.mod_eq_of_lt (by omega)]
   have hquarter (t : ℝ) (ht : t=1/4 ∨ t= -(1/4)) :
       (1/2 : ℝ)/((d : ℝ)^3*Real.sin (Real.pi*t/d)^2)=standardPeak d := by
     rcases ht with rfl | rfl
@@ -237,7 +236,7 @@ theorem standardPeak_gt_uniform (hd : 2≤d) : 1/(d : ℝ)^2<standardPeak d := b
   have ht : 0<t := by dsimp [t]; positivity
   have hs := Real.sin_sq_lt_sq (ne_of_gt ht)
   have hp2 : Real.pi^2≤16 := by nlinarith [Real.pi_pos,Real.pi_le_four]
-  have he : 2*(d : ℝ)*t^2=Real.pi^2/(8*(d : ℝ)) := by dsimp [t]; field_simp; ring
+  have he : 2*(d : ℝ)*t^2=Real.pi^2/(8*(d : ℝ)) := by dsimp [t]; field_simp <;> ring
   have hsmall : 2*(d : ℝ)*Real.sin t^2<1 := by
     have hh := mul_lt_mul_of_pos_left hs (show 0<2*(d : ℝ) by positivity)
     rw [he] at hh

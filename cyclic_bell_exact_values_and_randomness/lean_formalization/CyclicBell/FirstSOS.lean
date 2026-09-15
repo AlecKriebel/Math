@@ -41,8 +41,8 @@ def reducedOperator (A U : Mat ι) (B : Fin 4 → Mat ι) : Mat ι :=
   ∑ y : Fin 4, herm (rawTerm A U B y)
 
 def squareSum (A U : Mat ι) (B : Fin 4 → Mat ι) : Mat ι :=
-  ∑ y : Fin 4, (F A U B y).conjTranspose * F A U B y +
-    (k : ℂ) • ((G A U B y).conjTranspose * G A U B y)
+  ∑ y : Fin 4, ((F A U B y).conjTranspose * F A U B y +
+    (k : ℂ) • ((G A U B y).conjTranspose * G A U B y))
 
 def M : ℝ := 4 * (2 + k) * s
 
@@ -51,12 +51,12 @@ theorem M_eq : M = 2 / Real.sin (Real.pi / 8) := first_constant_bridge
 theorem P_expand (U : Mat ι) (y : Fin 4) :
     P U y = (s : ℂ) • 1 + (2 * (alpha : ℂ)) • rotated U y +
       (s : ℂ) • (rotated U y ^ 2) := by
-  simp [P, cyclePoly_eq, pCoefficients, Fin.sum_univ_succ]
+  simp [P, cyclePoly_eq, pCoefficients, Fin.sum_univ_succ, add_assoc]
 
 theorem Q_expand (U : Mat ι) (y : Fin 4) :
     Q U y = (beta : ℂ) • 1 + (alpha : ℂ) • rotated U y +
       (alpha : ℂ) • rotated U y ^ 2 + (beta : ℂ) • rotated U y ^ 3 := by
-  simp [Q, cyclePoly_eq, qCoefficients, Fin.sum_univ_succ]
+  simp [Q, cyclePoly_eq, qCoefficients, Fin.sum_univ_succ, add_assoc]
 
 theorem coefficient_zero :
     (s : ℂ) * ((s : ℂ) + (k : ℂ) * (beta : ℂ)) = 0 := by
@@ -120,7 +120,8 @@ theorem top_energy {U : Mat ι} (hU : UnitaryRel U) :
       cyclePoly (![1,1,0,0] : Fin 4 → ℂ) U y = 1 + rotated U y := by
     simp [cyclePoly_eq, Fin.sum_univ_succ]
   have he := cyclePoly_energy (![1,1,0,0] : Fin 4 → ℂ) hU
-  simpa [hpoly, Fin.sum_univ_succ] using he
+  norm_num [hpoly, Fin.sum_univ_succ] at he ⊢
+  exact he
 
 theorem rotated_energy {U : Mat ι} (hU : UnitaryRel U) :
     (∑ y : Fin 4, (rotated U y).conjTranspose * rotated U y) =
@@ -128,6 +129,7 @@ theorem rotated_energy {U : Mat ι} (hU : UnitaryRel U) :
   have hh (y : Fin 4) := (rotated_unitary hU y).1
   simp only [hh]
   norm_num [Fin.sum_univ_succ, ← add_smul]
+  simpa using (Nat.cast_smul_eq_nsmul ℂ 4 (1 : Mat ι)).symm
 
 /-- Elementary Gram expansion: coefficients r,t are real, not arbitrary complex. -/
 theorem two_square_expansion (C₀ C₁ D₀ D₁ : Mat ι) (r t : ℝ) :
@@ -153,6 +155,7 @@ theorem row_cross {U : Mat ι} (hU : UnitaryRel U) (A B : Mat ι) (y : Fin 4) :
     _ = A * ((s : ℂ) • (((1 + rotated U y).conjTranspose * P U y) +
       (k : ℂ) • ((rotated U y).conjTranspose * Q U y))) * B := by
       simp only [Matrix.conjTranspose_mul, Matrix.conjTranspose_conjTranspose,
+        Matrix.conjTranspose_add, Matrix.conjTranspose_one, one_mul,
         mul_add, add_mul, mul_smul_comm, smul_mul_assoc, smul_add, smul_smul, mul_assoc]
     _ = _ := by rw [cross_factorization hU]
 

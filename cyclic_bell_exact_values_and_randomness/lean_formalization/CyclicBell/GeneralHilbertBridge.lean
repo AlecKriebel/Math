@@ -26,7 +26,7 @@ theorem euclidVector_surjective : Function.Surjective (euclidVector (ι := ι)) 
   (WithLp.equiv 2 (ι → ℂ)).symm.surjective
 
 theorem euclidVector_inner (u v : ι → ℂ) :
-    inner ℂ (euclidVector u) (euclidVector v) = ip u v := by
+    @inner ℂ _ _ (euclidVector u) (euclidVector v) = ip u v := by
   simp [euclidVector,EuclideanSpace.inner_piLp_equiv_symm,ip,dotProduct,mul_comm]
 
 /-- This is the standard matrix-vector action, including the basis order. -/
@@ -67,8 +67,8 @@ theorem matrixCLM_star (M : Mat ι) : matrixCLM M.conjTranspose = star (matrixCL
   intro x
   apply ext_inner_right ℂ
   intro y
-  change inner ℂ (Matrix.toEuclideanLin M.conjTranspose x) y =
-    inner ℂ ((matrixCLM M).adjoint x) y
+  change @inner ℂ _ _ (Matrix.toEuclideanLin M.conjTranspose x) y =
+    @inner ℂ _ _ ((matrixCLM M).adjoint x) y
   rw [Matrix.toEuclideanLin_conjTranspose_eq_adjoint,
     LinearMap.adjoint_inner_left,ContinuousLinearMap.adjoint_inner_left]
   rfl
@@ -103,7 +103,7 @@ def purificationVector (ρ : StateOn ι) : EuclideanSpace ℂ (ι × ι) :=
   euclidVector (vectorize (stateFactor ρ))
 
 theorem purificationVector_inner (ρ : StateOn ι) :
-    inner ℂ (purificationVector ρ) (purificationVector ρ) = 1 := by
+    @inner ℂ _ _ (purificationVector ρ) (purificationVector ρ) = 1 := by
   unfold purificationVector
   rw [euclidVector_inner,vectorize_ip_trace,Matrix.trace_mul_comm,
     stateFactor_gram,ρ.normalized]

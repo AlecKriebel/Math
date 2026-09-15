@@ -31,9 +31,9 @@ theorem anchor_displacement_rep (c x : Fin 2) (hxc : x≠c) (a b : Ix d) :
   fin_cases c <;> fin_cases x
   · exact (hxc rfl).elim
   · refine ⟨(a.val : ℤ)-b.val-1,?_⟩
-    norm_num [standardAlpha]; push_cast; ring
+    norm_num [standardAlpha] <;> push_cast <;> ring
   · refine ⟨(a.val : ℤ)-b.val,?_⟩
-    norm_num [standardAlpha]; push_cast; ring
+    norm_num [standardAlpha] <;> push_cast <;> ring
   · exact (hxc rfl).elim
 
 theorem anchored_cross_formula (hd : 2≤d) (c x : Fin 2) (hxc : x≠c) (a b : Ix d) :
@@ -60,23 +60,20 @@ theorem anchored_cross_le_peak (hd : 2≤d) (c x : Fin 2) (hxc : x≠c) (a b : I
   have hl := phase_fractional_sine_lower hd 2 1 (by omega) (by omega) (by omega) n
   rw [anchored_cross_formula hd c x hxc,he]
   unfold anchorPeak
-  have h0 : 0<(d : ℝ)^3*Real.sin (Real.pi/(2*(d : ℝ)))^2 := by positivity
+  have h0 : 0<(d : ℝ)^3*Real.sin (Real.pi/(2*(d : ℝ)))^2 :=
+    mul_pos (pow_pos (dimension_pos (d := d)) _) (by simpa using hl.1)
   have h1 : 0<(d : ℝ)^3*Real.sin (Real.pi*((n : ℝ)+1/2)/d)^2 :=
     mul_pos (pow_pos dimension_pos _) (by simpa using hl.1.trans_le hl.2)
   apply (div_le_div_iff₀ h1 h0).mpr
-  simpa only [one_mul] using
-    mul_le_mul_of_nonneg_left hl.2 (pow_nonneg dimension_pos.le 3)
+  simpa using
+    mul_le_mul_of_nonneg_left hl.2 (pow_nonneg (dimension_pos (d := d)).le 3)
 
 theorem anchored_cross_hits_peak (hd : 2≤d) (c x : Fin 2) (hxc : x≠c) :
     behavior (anchoredStandardStrategy d c) x none (0 : Ix d) 0=anchorPeak d := by
   rw [anchored_cross_formula hd c x hxc]
-  fin_cases c <;> fin_cases x
-  · exact (hxc rfl).elim
-  · norm_num [standardAlpha]
-    rw [show Real.pi*(-(1/2) : ℝ)/d= -(Real.pi/(2*(d : ℝ))) by ring,Real.sin_neg,neg_sq]
-    rfl
-  · simp [standardAlpha,anchorPeak,div_eq_mul_inv,mul_assoc]
-  · exact (hxc rfl).elim
+  fin_cases c <;> fin_cases x <;> try exact (hxc rfl).elim
+  all_goals norm_num [standardAlpha,anchorPeak,neg_div,Real.sin_neg,
+    div_eq_mul_inv,mul_comm,mul_left_comm,mul_assoc]
 
 theorem anchorPeak_gt_uniform (hd : 3≤d) : 1/(d : ℝ)^2<anchorPeak d := by
   by_cases h3 : d=3
@@ -88,7 +85,7 @@ theorem anchorPeak_gt_uniform (hd : 3≤d) : 1/(d : ℝ)^2<anchorPeak d := by
   have ht : 0<t := by dsimp [t]; positivity
   have hs := Real.sin_sq_lt_sq (ne_of_gt ht)
   have hp2 : Real.pi^2≤16 := by nlinarith [Real.pi_pos,Real.pi_le_four]
-  have he : (d : ℝ)*t^2=Real.pi^2/(4*(d : ℝ)) := by dsimp [t]; field_simp; ring
+  have he : (d : ℝ)*t^2=Real.pi^2/(4*(d : ℝ)) := by dsimp [t]; field_simp <;> ring
   have hsmall : (d : ℝ)*Real.sin t^2<1 := by
     have hh := mul_lt_mul_of_pos_left hs hD
     rw [he] at hh
@@ -121,11 +118,13 @@ theorem anchored_qubit_cross_uniform (c x : Fin 2) (hxc : x≠c) (a b : Ix 2) :
     behavior (anchoredStandardStrategy 2 c) x none a b=1/4 := by
   rw [anchored_cross_formula (by omega) c x hxc]
   fin_cases c <;> fin_cases x <;> try exact (hxc rfl).elim
-  all_goals fin_cases a <;> fin_cases b <;> norm_num [standardAlpha]
+  all_goals fin_cases a <;> fin_cases b <;> norm_num [standardAlpha, ZMod.val,neg_div,Real.sin_neg]
   all_goals first
     | rw [show Real.pi*(-(1/2) : ℝ)/2= -(Real.pi/4) by ring,Real.sin_neg,neg_sq,Real.sin_pi_div_four]; norm_num
     | rw [show Real.pi*(1/2 : ℝ)/2=Real.pi/4 by ring,Real.sin_pi_div_four]; norm_num
     | rw [show Real.pi*(3/2 : ℝ)/2=Real.pi-Real.pi/4 by ring,Real.sin_pi_sub,Real.sin_pi_div_four]; norm_num
     | rw [show Real.pi*(-(3/2) : ℝ)/2= -(Real.pi-Real.pi/4) by ring,Real.sin_neg,neg_sq,Real.sin_pi_sub,Real.sin_pi_div_four]; norm_num
+
+  all_goals norm_num [div_pow, Real.sq_sqrt]
 
 end CyclicBell.General

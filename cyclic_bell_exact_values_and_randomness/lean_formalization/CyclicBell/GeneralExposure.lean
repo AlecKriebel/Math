@@ -63,7 +63,7 @@ theorem exposure_constant_diagonal (r c c' : Ix d → ℂ) (hr : UnitPhases r) (
 /-- Computational eigenvectors read the common diagonal entry. -/
 theorem exposure_eigenvalue_diagonal (r c c' : Ix d → ℂ) (hr : UnitPhases r)
     (i : Ix d) (κ : ℝ)
-    (heigen : exposureOperator r c c'*ᵥ(Pi.single i 1)=(κ : ℂ) • Pi.single i 1) :
+    (heigen : exposureOperator r c c'*ᵥ((Pi.single i (1 : ℂ) : Ix d → ℂ))=(κ : ℂ) • (Pi.single i (1 : ℂ) : Ix d → ℂ)) :
     c 0+c' 0=(κ : ℂ) := by
   have hi := congrArg (fun x : Ix d → ℂ => x i) heigen
   simpa [Matrix.mulVec_single,exposure_constant_diagonal r c c' hr i] using hi
@@ -73,7 +73,7 @@ spectral extremum. The phase vector may be ANY diagonal unitary; therefore it
 includes exactly r_j=exp(pi*i*j/d), without a special-case assumption. -/
 theorem computational_MUB_exposure_obstruction (r c c' : Ix d → ℂ)
     (hr : UnitPhases r) (i : Ix d) (κ : ℝ)
-    (heigen : exposureOperator r c c'*ᵥ(Pi.single i 1)=(κ : ℂ) • Pi.single i 1) :
+    (heigen : exposureOperator r c c'*ᵥ((Pi.single i (1 : ℂ) : Ix d → ℂ))=(κ : ℂ) • (Pi.single i (1 : ℂ) : Ix d → ℂ)) :
     exposureOperator r c c'=(κ : ℂ) • 1 ∨
       (¬ (((κ : ℂ) • (1 : Mat (Ix d)))-exposureOperator r c c').PosSemidef ∧
        ¬ (exposureOperator r c c'-((κ : ℂ) • (1 : Mat (Ix d)))).PosSemidef) := by
@@ -85,8 +85,8 @@ theorem computational_MUB_exposure_obstruction (r c c' : Ix d → ℂ)
 
 /-- Source phase specialization; no generated numerical phase table is used. -/
 theorem source_computational_MUB_exposure (c c' : Ix d → ℂ) (i : Ix d) (κ : ℝ)
-    (heigen : exposureOperator (fun j : Ix d => cis (Real.pi*j.val/d)) c c'*ᵥ(Pi.single i 1)=
-      (κ : ℂ) • Pi.single i 1) :
+    (heigen : exposureOperator (fun j : Ix d => cis (Real.pi*j.val/d)) c c'*ᵥ((Pi.single i (1 : ℂ) : Ix d → ℂ))=
+      (κ : ℂ) • (Pi.single i (1 : ℂ) : Ix d → ℂ)) :
     exposureOperator (fun j : Ix d => cis (Real.pi*j.val/d)) c c'=(κ : ℂ) • 1 ∨
       (¬ (((κ : ℂ) • (1 : Mat (Ix d)))-
         exposureOperator (fun j : Ix d => cis (Real.pi*j.val/d)) c c').PosSemidef ∧

@@ -1,0 +1,3 @@
+# Settings appendix repair checkpoint
+
+Normal `lake build CyclicBell.PhaseTableStatements` passed. Original statements preserved across GeneralPhaseTables, GeneralPhaseBounds, GeneralAnchoredTables, GeneralPhaseEntropy and PhaseTableStatements. Repaired index sums, explicit real complex-exponential simplification, finite label evaluation, positivity/dimension elaboration and normalization algebra. The actual Born tables, exact maxima, d=2 anchor exception, nonuniformity gaps and literal sequential entropy limit are checked in this chain. No introduced axioms or placeholders; full frozen package audit remains pending.

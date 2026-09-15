@@ -1,0 +1,13 @@
+import CyclicBell.GeneralFiniteSpectrum
+import CyclicBell.GeneralPolarPhases
+#check Equiv.subLeft
+#check Matrix.diagonal_mul
+#check Matrix.mul_diagonal
+#check Matrix.conjTranspose_diagonal
+#check spectrum.pow_mem_pow
+#check spectrum.map_pow
+#check spectrum.pow_subset
+#check spectrum.scalar_eq
+#check cfcHom_injective
+#check cfcHom_isClosedEmbedding
+#check CStarMatrix.ofMatrixStarAlgEquiv

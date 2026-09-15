@@ -33,7 +33,7 @@ theorem weighted_full_power (w : Ix d → ℂ) :
   rw [weighted_power_entry]
   simp only [ZMod.natCast_self,add_zero,Matrix.smul_apply,smul_eq_mul,Matrix.one_apply]
   have hp : (∏ k ∈ Finset.range d,w (j+(k : Ix d))) = ∏ k,w k := by
-    rw [prod_representatives]
+    rw [prod_representatives (fun k => w (j+k))]
     exact Fintype.prod_equiv (Equiv.addLeft j) _ _ (fun _ => rfl)
   rw [hp]
   split_ifs <;> ring
@@ -41,7 +41,8 @@ theorem weighted_full_power (w : Ix d → ℂ) :
 theorem weighted_entry_conjugate (w : Ix d → ℂ) :
     entryConjugate (weightedCycle w) = weightedCycle (fun j => star (w j)) := by
   ext i j
-  simp [entryConjugate,weightedCycle]
+  simp only [entryConjugate,weightedCycle]
+  split_ifs <;> simp
 
 theorem weighted_linear (w v : Ix d → ℂ) (a b : ℂ) :
     a • weightedCycle w + b • weightedCycle v =
@@ -74,7 +75,7 @@ theorem natCast_ne_zero_of_lt {k : ℕ} (hk : 0<k) (hkd : k<d) : (k : Ix d) ≠ 
 
 theorem weighted_trace_zero (hd : 2≤d) (w : Ix d → ℂ) :
     Matrix.trace (weightedCycle w)=0 := by
-  have h1 : (1 : Ix d) ≠ 0 := natCast_ne_zero_of_lt (by omega) (by omega)
+  have h1 : (1 : Ix d) ≠ 0 := by simpa using natCast_ne_zero_of_lt (d := d) (k := 1) (by omega) (by omega)
   unfold Matrix.trace
   apply Finset.sum_eq_zero
   intro j _
@@ -82,7 +83,7 @@ theorem weighted_trace_zero (hd : 2≤d) (w : Ix d → ℂ) :
   have hj : j ≠ j+1 := by
     intro h
     apply h1
-    linear_combination h
+    linear_combination -h
   simp [hj]
 
 theorem product_from_recurrence (q w : Ix d → ℂ) (hq : UnitPhases q)
@@ -120,7 +121,7 @@ theorem first_harmonic_permutation (z s : Ix d → ℂ) (κ : Equiv.Perm (Ix d))
   constructor
   · rw [cyclicShift,phi_weighted]
     simp only [one_mul,Function.comp_apply]
-    rw [sum_permuted]
+    rw [sum_permuted (fun j => star (s j)) κ]
   · rw [phi_weighted]
     simp only [Function.comp_apply]
     rw [sum_permuted (fun j => z j*star (s j)) κ]

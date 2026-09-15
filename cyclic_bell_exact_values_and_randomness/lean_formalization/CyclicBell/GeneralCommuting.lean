@@ -28,8 +28,11 @@ theorem starUnitary_mul {u v : A} (hu : StarUnitary u) (hv : StarUnitary v) : St
          _=1 := by rw [hv.2,mul_one,hu.2]
 
 theorem star_commute_of_unitary {u v : A} (hu : StarUnitary u) (h : u*v=v*u) : star u*v=v*star u := by
-  have h' := congrArg (fun x : A => star u*x*star u) h
-  simpa only [← mul_assoc,hu.1,one_mul,mul_assoc,hu.2,mul_one] using h'.symm
+  calc
+    star u*v = star u*v*(u*star u) := by rw [hu.2,mul_one]
+    _ = star u*(v*u)*star u := by noncomm_ring
+    _ = star u*(u*v)*star u := by rw [h]
+    _ = v*star u := by rw [← mul_assoc, hu.1, one_mul]
 
 def algebraModulusCM (u : A) (y : Ix d) : C(spectrum ℂ u,ℂ) :=
   ⟨fun z => (‖1+chi y*(z : ℂ)‖ : ℂ),by fun_prop⟩
@@ -61,15 +64,16 @@ theorem algebra_functional_factors (hd : 2≤d) (u : A) (b : Ix d → A)
     have he : star (algebraRootCM u y)*algebraPolarRootCM u y=
         1+chi y • ((ContinuousMap.id ℂ).restrict (spectrum ℂ u)) := by
       ext z; exact continuousPolarRoot_cross _
-    simpa only [map_star,map_mul,map_add,map_smul,map_one,cfcHom_id] using congrArg φ he
+    simpa only [map_star,map_mul,map_add,map_smul,map_one,φ,cfcHom_id] using congrArg φ he
   · intro y
     exact cfcHom_commute_unitary hu (hb y) (hc y) _
-  · have he : star (algebraGapCM (d := d) u)*algebraGapCM u=
-        (scalarMaximum d : ℂ) • 1-∑ y,algebraModulusCM u y := by
+  · have he : star (algebraGapCM (d := d) u)*algebraGapCM (d := d) u=
+        (scalarMaximum d : ℂ) • 1-∑ y : Ix d,algebraModulusCM u y := by
       ext z
       have hp := sub_nonneg.mpr (scalar_bound hd z (spectrum_unit_norm hu z))
-      simp only [algebraGapCM,ContinuousMap.coe_mk,Pi.star_apply,Complex.conj_ofReal,
-        ← Complex.ofReal_mul,Real.mul_self_sqrt hp]
+      change star ((Real.sqrt (scalarMaximum d - scalarSum (d := d) z) : ℝ) : ℂ) *
+        ((Real.sqrt (scalarMaximum d - scalarSum (d := d) z) : ℝ) : ℂ) = _
+      rw [star_real, ← Complex.ofReal_mul, Real.mul_self_sqrt hp]
       simp [scalarSum,algebraModulusCM,Complex.ofReal_sub,Complex.ofReal_sum]
     simpa only [map_star,map_mul,map_sub,map_sum,map_smul,map_one] using congrArg φ he
 
@@ -125,15 +129,14 @@ theorem algebra_aligned_gap (a : A) (ha : StarUnitary a) :
   unfold algebraHerm
   simp only [star_sub,star_one]
   have h : (1-star a)*(1-a)=2 • (1 : A)-(a+star a) := by
-    rw [sub_mul,mul_sub,one_mul,mul_one,ha.1]
+    simp only [sub_mul,mul_sub,one_mul,mul_one,ha.1]
     module
-  rw [h,smul_sub,smul_smul]
-  norm_num
+  rw [h,smul_sub]
   module
 
 variable {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteSpace H]
 
-def vectorEval (ψ : H) (a : H →L[ℂ] H) : ℝ := (inner ℂ ψ (a ψ)).re
+def vectorEval (ψ : H) (a : H →L[ℂ] H) : ℝ := (⟪ψ, a ψ⟫_ℂ).re
 
 theorem vectorEval_add (ψ : H) (a b : H →L[ℂ] H) : vectorEval ψ (a+b)=vectorEval ψ a+vectorEval ψ b := by
   simp [vectorEval,inner_add_right]
@@ -146,9 +149,11 @@ theorem vectorEval_sum {J : Type*} [Fintype J] (ψ : H) (a : J → H →L[ℂ] H
 theorem vectorEval_one (ψ : H) (hψ : ‖ψ‖=1) : vectorEval ψ 1=1 := by
   simp [vectorEval,inner_self_eq_norm_sq_to_K,hψ]
 theorem vectorEval_square (ψ : H) (a : H →L[ℂ] H) : vectorEval ψ (star a*a)=‖a ψ‖^2 := by
-  change (inner ℂ ψ (a.adjoint (a ψ))).re=‖a ψ‖^2
+  change (⟪ψ, a.adjoint (a ψ)⟫_ℂ).re=‖a ψ‖^2
   rw [a.adjoint_inner_right]
-  simp [inner_self_eq_norm_sq_to_K]
+  simp only [inner_self_eq_norm_sq_to_K]
+  change (((‖a ψ‖ : ℝ) : ℂ) ^ 2).re = ‖a ψ‖ ^ 2
+  rw [← Complex.ofReal_pow, Complex.ofReal_re]
 
 /-- Actual arbitrary complete complex Hilbert space, with no finite-dimension
 instance and no tensor-product decomposition in its assumptions. -/

@@ -27,11 +27,12 @@ theorem squareRootNorm_continuous : Continuous squareRootNorm := by
   fun_prop
 
 theorem squareRootNorm_square (z : ℂ) : star (squareRootNorm z)*squareRootNorm z=(‖z‖ : ℂ) := by
-  simp only [squareRootNorm,Complex.conj_ofReal,← Complex.ofReal_mul]
+  simp only [squareRootNorm,Complex.star_def,Complex.conj_ofReal,← Complex.ofReal_mul]
   congr 1
   exact Real.mul_self_sqrt (norm_nonneg z)
 
 theorem squareRootNorm_ne_zero {z : ℂ} (hz : z≠0) : squareRootNorm z≠0 := by
+  unfold squareRootNorm
   exact_mod_cast (ne_of_gt (Real.sqrt_pos.2 (norm_pos_iff.mpr hz)))
 
 theorem continuousPolarRoot_norm (z : ℂ) : ‖continuousPolarRoot z‖=Real.sqrt ‖z‖ := by
@@ -70,6 +71,7 @@ theorem continuousPolarRoot_cross (z : ℂ) :
 
 theorem continuousPolarRoot_square (z : ℂ) :
     star (continuousPolarRoot z)*continuousPolarRoot z=(‖z‖ : ℂ) := by
+  change (starRingEnd ℂ) (continuousPolarRoot z)*continuousPolarRoot z=(‖z‖ : ℂ)
   rw [← Complex.normSq_eq_conj_mul_self,Complex.normSq_eq_norm_sq,
     continuousPolarRoot_norm,Real.sq_sqrt (norm_nonneg z)]
 
@@ -137,6 +139,7 @@ theorem spectrum_unit_norm {A : Type*} [CStarAlgebra A] {u : A}
     exact hu.1
   have hz := congrArg (fun f : C(spectrum ℂ u,ℂ) => f z) he
   change star (z : ℂ)*(z : ℂ)=1 at hz
+  change (starRingEnd ℂ) (z : ℂ)*(z : ℂ)=1 at hz
   rw [← Complex.normSq_eq_conj_mul_self] at hz
   have hr := congrArg Complex.re hz
   simp only [Complex.ofReal_re,Complex.one_re,Complex.normSq_eq_norm_sq] at hr
@@ -152,12 +155,13 @@ theorem toCMatrix_unitary {U : Mat ι} (hU : UnitaryRel U) : StarUnitary (toCMat
 
 def matrixCfc (U : Mat ι) (hU : UnitaryRel U) :
     C(spectrum ℂ (toCMatrix U),ℂ) →⋆ₐ[ℂ] Mat ι :=
-  (CStarMatrix.ofMatrixStarAlgEquiv : Mat ι ≃⋆ₐ[ℂ] CMat ι).symm.toStarAlgHom.comp
+  ((CStarMatrix.ofMatrixStarAlgEquiv : Mat ι ≃⋆ₐ[ℂ] CMat ι).symm : CMat ι →⋆ₐ[ℂ] Mat ι).comp
     (cfcHom (R := ℂ) (starUnitary_normal (toCMatrix_unitary hU)))
 
 theorem matrixCfc_coordinate (U : Mat ι) (hU : UnitaryRel U) :
     matrixCfc U hU ((ContinuousMap.id ℂ).restrict (spectrum ℂ (toCMatrix U)))=U := by
   simp [matrixCfc,cfcHom_id,toCMatrix]
+  rfl
 
 theorem matrixCfc_commute (U B : Mat ι) (hU : UnitaryRel U) (hB : UnitaryRel B)
     (hUB : U*B=B*U) (f : C(spectrum ℂ (toCMatrix U),ℂ)) :
@@ -202,7 +206,7 @@ theorem scalarGapCM_square (hd : 2≤d) (U : Mat ι) (hU : UnitaryRel U) :
     sub_nonneg.mpr (scalar_bound hd _ (spectrum_unit_norm (toCMatrix_unitary hU) z))
   change star ((Real.sqrt (scalarMaximum d-scalarSum (d := d) (z : ℂ)) : ℝ) : ℂ) *
       ((Real.sqrt (scalarMaximum d-scalarSum (d := d) (z : ℂ)) : ℝ) : ℂ) = _
-  simp only [Complex.conj_ofReal,← Complex.ofReal_mul,Real.mul_self_sqrt hp]
+  simp only [Complex.star_def,Complex.conj_ofReal,← Complex.ofReal_mul,Real.mul_self_sqrt hp]
   simp [scalarSum,modulusCM,Complex.ofReal_sub,Complex.ofReal_sum]
 
 /-- ALL functional-factor hypotheses are derived from physical unitarity and
@@ -226,7 +230,7 @@ theorem matrix_functional_factors (hd : 2≤d) (U : Mat ι) (B : Ix d → Mat ι
     simpa only [map_mul,map_star,Matrix.star_eq_conjTranspose] using h
   · intro y
     have h := congrArg φ (rootCM_cross U y)
-    simpa only [map_mul,map_star,map_add,map_one,map_smul,matrixCfc_coordinate,
+    simpa only [map_mul,map_star,map_add,map_one,map_smul,φ,matrixCfc_coordinate,
       Matrix.star_eq_conjTranspose] using h
   · intro y
     exact matrixCfc_commute U (B y) hU (hB y) (hUB y) _

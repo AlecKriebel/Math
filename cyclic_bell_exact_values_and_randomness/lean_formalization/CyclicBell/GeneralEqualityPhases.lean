@@ -11,13 +11,14 @@ variable {d : ℕ} [NeZero d]
 
 theorem cis_eq_one_iff (t : ℝ) : cis t=1 ↔ ∃ n : ℤ,t=2*Real.pi*n := by
   have h : cis t=1 ↔ Circle.exp t=1 := by
-    exact Subtype.coe_injective.eq_iff.symm
+    change ((Circle.exp t : Circle) : ℂ) = ((1 : Circle) : ℂ) ↔ Circle.exp t = 1
+    exact Subtype.coe_injective.eq_iff
   rw [h,Circle.exp_eq_one]
   simp [mul_comm]
 
 theorem unit_power_root_character (z : ℂ) (hz : ‖z‖=1) (hp : z^d=1) :
     ∃ k : Ix d,z=chi k := by
-  let w : Circle := ⟨z,by simpa [Metric.mem_sphere,dist_zero_right] using hz⟩
+  let w : Circle := ⟨z,by change dist z 0 = 1; simpa only [dist_zero_right] using hz⟩
   have he : cis (Complex.arg z)=z := congrArg (fun v : Circle => (v : ℂ)) (Circle.exp_arg w)
   have hp' : cis ((d : ℝ)*Complex.arg z)=1 := by rw [← cis_pow,he,hp]
   obtain ⟨n,hn⟩ := (cis_eq_one_iff _).mp hp'
@@ -37,7 +38,7 @@ theorem equalityBase_power : equalityBase d^d=(-1 : ℂ)^(d-1) := by
 theorem equalityRoot_complete (z : ℂ) (hz : ‖z‖=1) (hp : z^d=(-1 : ℂ)^(d-1)) :
     ∃ k : Ix d,z=equalityRoot k := by
   have hb : equalityBase d≠0 := cis_ne_zero _
-  have hr : ‖z/equalityBase d‖=1 := by simp [norm_div,hz,equalityBase]
+  have hr : ‖z/equalityBase d‖=1 := by rw [norm_div,hz,equalityBase,cis_norm,div_one]
   have hp' : (z/equalityBase d)^d=1 := by
     rw [div_pow,hp,equalityBase_power]
     exact div_self (pow_ne_zero _ (by norm_num))
@@ -72,7 +73,7 @@ theorem polarPhase_square (y k : Ix d) : polarPhase y k^2=chi y*equalityRoot k :
   rw [he]
   unfold polarPhase polarBase halfRootSign
   split_ifs <;> rw [mul_pow] <;> simp only [one_pow,one_mul,neg_one_sq]
-  all_goals rw [cis_pow,← equalityRoot_halfAngle]
+  all_goals rw [cis_pow]; norm_num only [Nat.cast_ofNat]; exact (equalityRoot_halfAngle _).symm
 
 /-- Half-angle increment with exactly one negative transition. -/
 theorem polarBase_adjacent (hd : 2≤d) (j : Ix d) :
@@ -103,8 +104,9 @@ theorem polarBase_adjacent (hd : 2≤d) (j : Ix d) :
       field_simp [ne_of_gt (dimension_pos (d := d))]
       ring
     rw [hj1,if_neg hne,polarBase,polarBase,hs0,hsj,one_mul,mul_one]
-    rw [mul_neg,neg_mul,← cis_add,add_comm,ha,cis_add,cis_pi]
-    ring
+    calc
+      _ = -cis (halfRootAngle d j+Real.pi/(d : ℝ)) := by rw [ha,cis_add,cis_pi]; ring
+      _ = _ := by rw [cis_add]; ring
   · have hnext : (j+1).val=j.val+1 := by
       rw [residue_add_val]
       have hv1 : (1 : Ix d).val=1 := by
@@ -117,9 +119,11 @@ theorem polarBase_adjacent (hd : 2≤d) (j : Ix d) :
       ring
     have hsign : halfRootSign d (j+1)=halfRootSign d j*(if j=reflectionLabel d then -1 else 1) := by
       have he : j=reflectionLabel d ↔ j.val=phaseCut d-1 := by
-        rw [← ZMod.val_injective.eq_iff,hlabelval]
+        constructor
+        · intro h; rw [h,hlabelval]
+        · intro h; apply ZMod.val_injective; rw [h,hlabelval]
       unfold halfRootSign
-      rw [hnext,he]
+      simp only [hnext,he]
       split_ifs <;> norm_num <;> omega
     rw [polarBase,ha,cis_add,hsign,polarBase]
     ring

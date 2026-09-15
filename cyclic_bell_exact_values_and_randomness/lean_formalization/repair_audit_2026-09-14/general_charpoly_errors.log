@@ -1,0 +1,22 @@
+CyclicBell/GeneralCycleCharpoly.lean:18:0: warning: automatically included section variable(s) unused in theorem 'CyclicBell.General.cyclePrefixProduct_nonzero':
+  [NeZero d]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [NeZero d] in theorem ...
+note: this linter can be disabled with `set_option linter.unusedSectionVars false`
+CyclicBell/GeneralCycleCharpoly.lean:19:65: warning: unused variable `r`
+note: this linter can be disabled with `set_option linter.unusedVariables false`
+CyclicBell/GeneralCycleCharpoly.lean:21:0: warning: automatically included section variable(s) unused in theorem 'CyclicBell.General.cycle_natCast_eq_iff':
+  [NeZero d]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [NeZero d] in theorem ...
+note: this linter can be disabled with `set_option linter.unusedSectionVars false`
+CyclicBell/GeneralCycleCharpoly.lean:77:4: error: ring failed, ring expressions not equal
+d : ℕ
+inst✝ : NeZero d
+w : Ix d → ℂ
+hw : ∀ (j : Ix d), w j ≠ 0
+h : ∑ x ∈ Finset.range d, (Matrix.charpoly (weightedCycle w)).coeff x • weightedCycle w ^ x + (∏ j, w j) • 1 = 0
+hd0 hi : 0 < d
+hzero : ↑0 = 0 ↔ 0 = 0
+he : ((Matrix.charpoly (weightedCycle w)).coeff 0 + (∏ j, w j) * if True then 1 else 0) = 0
+⊢ ((-if True then -∏ j, w j else 0) - (∏ j, w j) * if True then 1 else 0) = 0

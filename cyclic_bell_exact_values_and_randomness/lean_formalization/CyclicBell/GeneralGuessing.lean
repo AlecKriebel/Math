@@ -12,13 +12,16 @@ variable {d : ℕ} [NeZero d]
 theorem cis_chord_identity (t : ℝ) :
     cis (2*t)-1=(2*Real.sin t : ℂ)*Complex.I*cis t := by
   rw [show 2*t=t+t by ring,cis_add]
-  simp only [cis_exp,Complex.exp_mul_I]
-  apply Complex.ext <;> simp [Complex.mul_re,Complex.mul_im] <;>
+  simp only [cis_exp,Complex.exp_mul_I,← Complex.ofReal_cos,← Complex.ofReal_sin]
+  apply Complex.ext <;> simp only [Complex.mul_re,Complex.mul_im,Complex.add_re,Complex.add_im,
+    Complex.sub_re,Complex.sub_im,Complex.one_re,Complex.one_im,Complex.ofReal_re,Complex.ofReal_im,
+    Complex.I_re,Complex.I_im,Complex.re_ofNat,Complex.im_ofNat] <;>
     nlinarith [Real.sin_sq_add_cos_sq t]
 
 theorem cis_chord_norm (t : ℝ) : ‖cis (2*t)-1‖=2*|Real.sin t| := by
   rw [cis_chord_identity,norm_mul,norm_mul,cis_norm,Complex.norm_I,
-    mul_one,mul_one,Complex.norm_real,Real.norm_eq_abs,abs_mul]
+    mul_one,mul_one]
+  rw [norm_mul,Complex.norm_real,Real.norm_eq_abs]
   norm_num
 
 theorem root_difference_norm (j k : Ix d) :
@@ -27,14 +30,18 @@ theorem root_difference_norm (j k : Ix d) :
       (equalityBase d*chi k)*(chi (j-k)-1) := by
     unfold equalityRoot
     have hc : chi k*chi (j-k)=chi j := by rw [← chi_add]; congr 1; ring
-    linear_combination equalityBase d*hc
+    linear_combination -(equalityBase d)*hc
   rw [he,norm_mul,norm_mul]
-  simp [equalityBase]
+  rw [chi_norm,mul_one]
+  change ‖cis (Real.pi*parityDelta d/d)‖*_=_
+  rw [cis_norm,one_mul]
 
 theorem short_chord (k : ℕ) :
     ‖chi (k : Ix d)-1‖=2*|Real.sin (Real.pi*k/(d : ℝ))| := by
   have hc : chi (k : Ix d)=cis (2*(Real.pi*k/(d : ℝ))) := by
-    rw [chi_cis_int (d := d) (k : ℤ)]
+    have hh := chi_cis_int (d := d) (k : ℤ)
+    simp only [Int.cast_natCast] at hh
+    rw [hh]
     congr 1
     push_cast
     ring
@@ -58,13 +65,18 @@ theorem swapped_R2_norm (hd : 4≤d) :
       4*Real.sin (Real.pi/(d : ℝ))*Real.sin (3*Real.pi/(d : ℝ)) := by
   rw [swapped_R2 hd,norm_mul,root_difference_norm,root_difference_norm]
   rw [show (-1 : Ix d)-(-2)=1 by ring,show (-3 : Ix d)-0=-(3 : Ix d) by ring]
-  rw [negative_chord,short_chord 1,short_chord 3]
+  rw [negative_chord]
+  have hch1 := short_chord (d := d) 1
+  simp only [Nat.cast_one, mul_one] at hch1
+  have hch3 := short_chord (d := d) 3
+  norm_num only [Nat.cast_ofNat] at hch3
+  rw [hch1,hch3]
   have h₁ := sine_step_positive (d := d) (k := 1) (by omega) (by omega)
   have h₃ := sine_step_positive (d := d) (k := 3) (by omega) (by omega)
+  norm_num only [Nat.cast_one,Nat.cast_ofNat,mul_one] at h₁ h₃
   rw [abs_of_pos h₁,abs_of_pos h₃]
-  push_cast
-  simp only [mul_one]
-  congr 1 <;> ring
+  rw [mul_comm Real.pi (3 : ℝ)]
+  ring
 
 /-- For a nonzero lag, subtracting the maximal Fourier power removes the
 constant coefficient. The resulting weights are all nonnegative. -/
@@ -89,7 +101,7 @@ theorem autocorrelation_le_peak_excess (q : Ix d → ℂ) (hq : UnitPhases q)
         powerSpectrum q m-powerSpectrum q k := by
     rw [norm_mul,chi_norm,one_mul,Complex.norm_real,Real.norm_eq_abs,
       abs_of_nonneg (sub_nonneg.mpr (hm k))]
-  have hsum : (∑ k,powerSpectrum q m-powerSpectrum q k) =
+  have hsum : (∑ k,(powerSpectrum q m-powerSpectrum q k)) =
       (d : ℝ)*(powerSpectrum q m-d) := by
     rw [Finset.sum_sub_distrib,parseval q hq]
     simp only [Finset.sum_const,Finset.card_univ,ZMod.card,nsmul_eq_mul]
@@ -128,7 +140,7 @@ theorem swappedTarget_quantitative (hd : 4≤d) :
       2*Real.sin (Real.pi/(d : ℝ))*Real.sin (3*Real.pi/(d : ℝ))/
         ((d : ℝ)^2*((d : ℝ)-1)) ≤ swappedTarget d a b := by
   obtain ⟨a,b,hab⟩ := exists_table_peak (swappedPhase : Ix d → ℂ) swappedPhase_unit 2
-    (natCast_ne_zero_of_lt (by omega) (by omega))
+    (natCast_ne_zero_of_lt (d := d) (k := 2) (by omega) (by omega))
   rw [swapped_R2_norm hd] at hab
   refine ⟨a,b,?_⟩
   rw [swappedTarget_fourier]
@@ -141,7 +153,7 @@ theorem swappedTarget_quantitative (hd : 4≤d) :
   apply add_le_add_left
   apply (div_le_div_iff₀ (mul_pos (pow_pos (by linarith : (0 : ℝ)<d) 2) (by linarith))
     (pow_pos (by linarith : (0 : ℝ)<d) 3)).mpr
-  nlinarith [mul_nonneg hS (show (0 : ℝ)≤(d : ℝ)^2*((d : ℝ)-2) by positivity)]
+  nlinarith [mul_nonneg hS (show (0 : ℝ)≤(d : ℝ)^2*((d : ℝ)-2) from mul_nonneg (sq_nonneg _) (by linarith))]
 
 theorem quantitative_gap_positive (hd : 4≤d) :
     1/(d : ℝ)^2 < 1/(d : ℝ)^2+

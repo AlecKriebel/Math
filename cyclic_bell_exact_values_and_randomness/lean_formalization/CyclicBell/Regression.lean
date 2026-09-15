@@ -8,6 +8,7 @@ No claim of first-family canonical attainment is made in this module.
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.D4
+attribute [local simp] Matrix.cons_val_two Matrix.cons_val_three
 set_option maxRecDepth 20000
 set_option maxHeartbeats 12000000
 
@@ -51,7 +52,8 @@ theorem bob_conjugation_is_essential :
   have hj := congrFun (congrFun he (1 : Fin 4)) (0 : Fin 4)
   have hi := congrArg Complex.im hj
   norm_num [witnessB, weighted_entry, bobWeights, bobExponents, polarExponents,
-    shift, zeta_components, Complex.mul_re, Complex.mul_im] at hi
+    shift, Complex.mul_re, Complex.mul_im] at hi
+  norm_num [zeta_components] at hi
   linarith [s_pos]
 
 /-- Adjoint and entrywise conjugation are not interchangeable here. -/
@@ -61,8 +63,9 @@ theorem bob_adjoint_is_wrong :
   have hj := congrFun (congrFun he (1 : Fin 4)) (0 : Fin 4)
   have hi := congrArg Complex.im hj
   norm_num [witnessB, weighted_entry, Matrix.conjTranspose_apply, bobWeights,
-    bobExponents, polarExponents, shift, zeta_components,
+    bobExponents, polarExponents, shift,
     Complex.mul_re, Complex.mul_im] at hi
+  norm_num [zeta_components] at hi
   linarith [s_pos]
 
 theorem first_target_positive : 0 < firstTargetValue := by

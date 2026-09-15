@@ -29,29 +29,44 @@ theorem fourier_character_orthogonality (y z : Ix d) :
 theorem secondFourier_energy (B : Ix d → Mat ι) :
     (∑ l,(secondFourier B l).conjTranspose*secondFourier B l)=
       (d : ℂ) • ∑ y,(B y).conjTranspose*B y := by
-  unfold secondFourier moduleFourier
-  simp only [Matrix.conjTranspose_sum,Matrix.conjTranspose_smul,Finset.sum_mul,
-    Finset.mul_sum,smul_mul_assoc,mul_smul_comm,smul_smul]
-  rw [Finset.sum_comm]
-  apply Eq.trans (Finset.sum_congr rfl (fun y _ => by rw [Finset.sum_comm]))
-  simp only [← Finset.sum_smul,fourier_character_orthogonality]
-  simp [Finset.smul_sum]
+  have hexpand (l : Ix d) :
+      (secondFourier B l).conjTranspose * secondFourier B l =
+        ∑ y : Ix d, ∑ z : Ix d,
+          (star (chi (l*y))*chi (l*z)) • ((B y).conjTranspose*B z) := by
+    simp only [secondFourier,moduleFourier,Matrix.conjTranspose_sum,
+      Matrix.conjTranspose_smul,Finset.sum_mul,Finset.mul_sum,
+      smul_mul_assoc,mul_smul_comm,Finset.smul_sum,smul_smul]
+    rw [Finset.sum_comm]
+    simp only [mul_comm]
+  simp_rw [hexpand]
+  calc
+    _ = ∑ y : Ix d, ∑ z : Ix d,
+      (∑ l : Ix d, star (chi (l*y))*chi (l*z)) • ((B y).conjTranspose*B z) := by
+      simp only [Finset.sum_smul]
+      rw [Finset.sum_comm]
+      apply Finset.sum_congr rfl
+      intro y _
+      rw [Finset.sum_comm]
+    _ = _ := by
+      simp only [fourier_character_orthogonality]
+      simp [Finset.smul_sum]
 
 theorem secondFourier_unitary_energy (B : Ix d → Mat ι) (hB : ∀ y,UnitaryRel (B y)) :
     (∑ l,(secondFourier B l).conjTranspose*secondFourier B l)=(d : ℂ)^2 • (1 : Mat ι) := by
   rw [secondFourier_energy]
   simp only [(hB _).1]
-  simp [ZMod.card,nsmul_eq_mul,smul_smul,pow_two]
+  rw [Finset.sum_const, Finset.card_univ, ZMod.card]
+  rw [← Nat.cast_smul_eq_nsmul ℂ d (1 : Mat ι), smul_smul, pow_two]
 
-def secondReducedOperator (λ : Ix d → ℂ) (A B : Ix d → Mat ι) : Mat ι :=
-  ∑ l,herm (star (λ l) • (A l*secondFourier B l))
-def secondResidual (λ : Ix d → ℂ) (A B : Ix d → Mat ι) (l : Ix d) : Mat ι :=
-  ((d : ℂ)*λ l) • 1-A l*secondFourier B l
+def secondReducedOperator (lam : Ix d → ℂ) (A B : Ix d → Mat ι) : Mat ι :=
+  ∑ l,herm (star (lam l) • (A l*secondFourier B l))
+def secondResidual (lam : Ix d → ℂ) (A B : Ix d → Mat ι) (l : Ix d) : Mat ι :=
+  ((d : ℂ)*lam l) • 1-A l*secondFourier B l
 
-theorem secondScalarExpansion (λ : ℂ) (C : Mat ι) :
-    (((d : ℂ)*λ) • (1 : Mat ι)-C).conjTranspose*(((d : ℂ)*λ) • 1-C)=
-      ((d : ℂ)^2*(star λ*λ)) • 1+C.conjTranspose*C-
-        (d : ℂ) • (star λ • C+(star λ • C).conjTranspose) := by
+theorem secondScalarExpansion (lam : ℂ) (C : Mat ι) :
+    (((d : ℂ)*lam) • (1 : Mat ι)-C).conjTranspose*(((d : ℂ)*lam) • 1-C)=
+      ((d : ℂ)^2*(star lam*lam)) • 1+C.conjTranspose*C-
+        (d : ℂ) • (star lam • C+(star lam • C).conjTranspose) := by
   simp only [Matrix.conjTranspose_sub,Matrix.conjTranspose_smul,Matrix.conjTranspose_one,
     sub_mul,mul_sub,smul_mul_assoc,mul_smul_comm,smul_smul,one_mul,mul_one,
     star_mul,star_star,star_natCast]
@@ -60,45 +75,47 @@ theorem secondScalarExpansion (λ : ℂ) (C : Mat ι) :
   ring
 
 /-- The source identity eq:second-sos for normalized coefficients. -/
-theorem second_general_sos (λ : Ix d → ℂ) (hλ : ∑ l,star (λ l)*λ l=1)
+theorem second_general_sos (lam : Ix d → ℂ) (hlam : ∑ l,star (lam l)*lam l=1)
     (A B : Ix d → Mat ι) (hA : ∀ l,UnitaryRel (A l)) (hB : ∀ y,UnitaryRel (B y)) :
-    (d : ℂ) • (1 : Mat ι)-secondReducedOperator λ A B =
-      (1/(2*d) : ℂ) • ∑ l,(secondResidual λ A B l).conjTranspose*secondResidual λ A B l := by
+    (d : ℂ) • (1 : Mat ι)-secondReducedOperator lam A B =
+      (1/(2*d) : ℂ) • ∑ l,(secondResidual lam A B l).conjTranspose*secondResidual lam A B l := by
   have hdC : (d : ℂ)≠0 := by exact_mod_cast (NeZero.ne d)
   have henergy (l : Ix d) :
       (A l*secondFourier B l).conjTranspose*(A l*secondFourier B l)=
         (secondFourier B l).conjTranspose*secondFourier B l := by
     rw [Matrix.conjTranspose_mul]
     simp only [mul_assoc,(hA l).cancel_left]
-  have hs : (∑ l,(secondResidual λ A B l).conjTranspose*secondResidual λ A B l)=
-      (2*(d : ℂ)^2) • (1 : Mat ι)-(2*d : ℂ) • secondReducedOperator λ A B := by
+  have hs : (∑ l,(secondResidual lam A B l).conjTranspose*secondResidual lam A B l)=
+      (2*(d : ℂ)^2) • (1 : Mat ι)-(2*d : ℂ) • secondReducedOperator lam A B := by
     unfold secondResidual
     simp_rw [secondScalarExpansion,henergy]
     rw [Finset.sum_sub_distrib,Finset.sum_add_distrib,← Finset.sum_smul,
-      ← Finset.mul_sum,hλ,mul_one,secondFourier_unitary_energy B hB,← Finset.smul_sum]
+      ← Finset.mul_sum,hlam,mul_one,secondFourier_unitary_energy B hB,← Finset.smul_sum]
     unfold secondReducedOperator herm
     simp only [Finset.smul_sum,smul_add,smul_smul]
     ext i j
-    simp only [Matrix.sub_apply,Matrix.add_apply,Matrix.smul_apply,smul_eq_mul,Finset.sum_apply]
+    simp only [Matrix.sub_apply,Matrix.add_apply,Matrix.smul_apply,smul_eq_mul,Matrix.sum_apply,Finset.sum_apply]
     ring
   rw [hs]
   ext i j
   simp only [Matrix.sub_apply,Matrix.add_apply,Matrix.smul_apply,smul_eq_mul]
-  field_simp
+  field_simp [hdC]
   ring
 
-theorem second_general_upper (ρ : StateOn ι) (λ : Ix d → ℂ)
-    (hλ : ∑ l,star (λ l)*λ l=1) (A B : Ix d → Mat ι)
+theorem second_general_upper (ρ : StateOn ι) (lam : Ix d → ℂ)
+    (hlam : ∑ l,star (lam l)*lam l=1) (A B : Ix d → Mat ι)
     (hA : ∀ l,UnitaryRel (A l)) (hB : ∀ y,UnitaryRel (B y)) :
-    stateEval ρ.density (secondReducedOperator λ A B)≤d := by
+    stateEval ρ.density (secondReducedOperator lam A B)≤d := by
   have hn : 0≤stateEval ρ.density
-      (∑ l,(secondResidual λ A B l).conjTranspose*secondResidual λ A B l) := by
+      (∑ l,(secondResidual lam A B l).conjTranspose*secondResidual lam A B l) := by
     rw [stateEval_sum]
     exact Finset.sum_nonneg (fun l _ => stateEval_square_nonnegative ρ.positive _)
-  have h := congrArg (stateEval ρ.density) (second_general_sos λ hλ A B hA hB)
+  have h := congrArg (stateEval ρ.density) (second_general_sos lam hlam A B hA hB)
   have hc : (1/(2*d) : ℂ)=((1/(2*d) : ℝ) : ℂ) := by push_cast; rfl
-  rw [stateEval_sub,show (d : ℂ)=((d : ℝ) : ℂ) by simp,
-    stateEval_real_smul,stateEval_one ρ.normalized,hc,stateEval_real_smul] at h
+  rw [hc] at h
+  simp only [stateEval_sub,show (d : ℂ)=((d : ℝ) : ℂ) by simp,
+    stateEval_real_smul,stateEval_one ρ.normalized] at h
+  have hdR : 0 < (d : ℝ) := dimension_pos
   have hp : 0<(1/(2*d) : ℝ) := by positivity
   nlinarith
 

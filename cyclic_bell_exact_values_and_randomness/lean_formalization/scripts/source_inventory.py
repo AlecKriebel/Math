@@ -17,7 +17,7 @@ from static_audit import ROOT, strip_comments_strings
 # Python Unicode \w includes the subscript digits in firstA₀_unitary.
 IDENT = r"[\w.']+"
 DECL = re.compile(r'^\s*(?:@\[[^\n]*\]\s*)?(?:(?:noncomputable|protected)\s+)*'
-                  r'(theorem|lemma|def|abbrev|structure|instance)\s+('+IDENT+r')(?![\w.\'])', re.M)
+                  r'(theorem|lemma|def|abbrev|structure|instance)\s+(«'+IDENT+r'»|'+IDENT+r')(?![\w.\'])', re.M)
 DECL_START = re.compile(r'^\s*(?:@\[[^\n]*\]\s*)?'
                        r'(?:(?:noncomputable|protected|private|partial|nonrec)\s+)*'
                        r'(theorem|lemma|def|abbrev|structure|instance|opaque|inductive|class)\b')
@@ -66,6 +66,7 @@ def inventory(root: Path = ROOT):
             m=DECL.match(line)
             if m:
                 kind,name=m.groups()
+                name=name.removeprefix('«').removesuffix('»')
                 full='.'.join(namespaces+[name])
                 items.append({'name':full,'kind':kind,'file':str(p.relative_to(root)),
                               'line':line_no,'kernel_checked':False})

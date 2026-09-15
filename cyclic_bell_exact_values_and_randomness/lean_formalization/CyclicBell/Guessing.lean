@@ -36,7 +36,7 @@ theorem trivialEve_positive (g : Fin 4 × Fin 4) (a b : Fin 4) :
 theorem trivialEve_complete (g : Fin 4 × Fin 4) :
     (∑ a : Fin 4, ∑ b : Fin 4, trivialEveEffect g a b) = 1 := by
   rcases g with ⟨a,b⟩
-  simp [trivialEveEffect, Prod.mk.injEq]
+  simp [trivialEveEffect, Prod.mk.injEq, ite_and]
 
 theorem trivialConditional_trace (p : Fin 4 → Fin 4 → ℝ) (a b : Fin 4) :
     Matrix.trace (trivialConditional p a b) = (p a b : ℂ) := by
@@ -56,14 +56,15 @@ theorem trivialConditional_positive (p : Fin 4 → Fin 4 → ℝ)
 theorem trivialEve_success_eq (p : Fin 4 → Fin 4 → ℝ) (g : Fin 4 × Fin 4) :
     trivialEveSuccess p g = p g.1 g.2 := by
   rcases g with ⟨a,b⟩
-  simp [trivialEveSuccess, trivialEveEffect, Prod.mk.injEq, trivialConditional_trace]
+  simp [trivialEveSuccess, trivialEveEffect, Prod.mk.injEq, ite_and,
+    apply_ite, trivialConditional_trace]
 
 /-- An explicit normalization check for the conditional Eve states. -/
 theorem trivialConditional_total (p : Fin 4 → Fin 4 → ℝ)
     (hp : (∑ a : Fin 4, ∑ b : Fin 4, p a b) = 1) :
     (∑ a : Fin 4, ∑ b : Fin 4, trivialConditional p a b) = (1 : Op 1) := by
   unfold trivialConditional
-  rw [← Finset.sum_smul, ← Finset.sum_smul]
+  simp_rw [← Finset.sum_smul]
   have hc : (∑ a : Fin 4, ∑ b : Fin 4, (p a b : ℂ)) = 1 := by exact_mod_cast hp
   rw [hc, one_smul]
 
@@ -130,6 +131,7 @@ theorem actualTrivialConditional_eq {ρ T : Matrix ι ι ℂ}
   unfold actualTrivialConditional
   rw [← adjoinTrivialEve_adjoint, ← adjoinTrivialEve_mul, ← adjoinTrivialEve_mul,
     partialTrace_adjoin, ht, hre]
+  simp
 
 /-- All physical projectors, not only the explicit witness, satisfy the bridge. -/
 theorem pvm_trivialEve_Born_bridge {nA nB : ℕ} (ρ : State nA nB)

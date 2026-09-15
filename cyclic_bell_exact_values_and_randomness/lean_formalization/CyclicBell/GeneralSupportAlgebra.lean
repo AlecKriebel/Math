@@ -35,7 +35,7 @@ theorem frobeniusSq_eq_zero (T : Matrix ι ν ℂ) : frobeniusSq T=0 ↔ T=0 := 
 theorem trace_gram_frobenius (T : Matrix ι ν ℂ) :
     Matrix.trace (T*T.conjTranspose)=(frobeniusSq T : ℂ) := by
   simp only [Matrix.trace,Matrix.diag_apply,Matrix.mul_apply,Matrix.conjTranspose_apply,
-    Complex.mul_conj,frobeniusSq,Complex.ofReal_sum]
+    Complex.star_def,Complex.mul_conj,frobeniusSq,Complex.ofReal_sum]
 
 theorem matrixRange_mul_le (T : Matrix ι κ ℂ) (S : Matrix κ ν ℂ) :
     matrixRange (T*S)≤matrixRange T := by
@@ -71,21 +71,22 @@ theorem range_intertwiner (T : Matrix ι ν ℂ) (A : Mat ι) (B : Mat ν)
     rw [Matrix.mulVecLin_mul,LinearMap.range_comp]
   rw [← he,h]
   apply le_antisymm (matrixRange_mul_le T B)
-  have ht : T=(T*B)*B.conjTranspose := by rw [mul_assoc,hB.2,mul_one]
+  have ht : T=(T*B)*B.conjTranspose := by rw [Matrix.mul_assoc,hB.2,Matrix.mul_one]
   nth_rw 1 [ht]
   exact matrixRange_mul_le _ _
 
 theorem unitary_transpose {A : Mat ι} (hA : UnitaryRel A) : UnitaryRel A.transpose := by
   constructor
   · have h := congrArg Matrix.transpose hA.2
-    simpa only [Matrix.transpose_mul,Matrix.transpose_one,Matrix.transpose_conjTranspose] using h
+    simpa only [Matrix.transpose_mul,Matrix.transpose_one] using h
   · have h := congrArg Matrix.transpose hA.1
-    simpa only [Matrix.transpose_mul,Matrix.transpose_one,Matrix.transpose_conjTranspose] using h
+    simpa only [Matrix.transpose_mul,Matrix.transpose_one] using h
 
 /-- The positive square root is an actual purification factor for every mixed state. -/
 def stateFactor (ρ : StateOn ι) : Mat ι := ρ.positive.sqrt
 
 theorem stateFactor_gram (ρ : StateOn ι) : stateFactor ρ*(stateFactor ρ).conjTranspose=ρ.density := by
+  unfold stateFactor
   rw [(ρ.positive.posSemidef_sqrt).isHermitian.eq]
   exact ρ.positive.sqrt_mul_self
 
@@ -101,9 +102,12 @@ theorem state_square_frobenius (ρ : StateOn ι) (R : Mat ι) :
   have ht : Matrix.trace ((stateFactor ρ*(stateFactor ρ).conjTranspose)*(R.conjTranspose*R))=
       Matrix.trace ((R*stateFactor ρ)*(R*stateFactor ρ).conjTranspose) := by
     rw [Matrix.conjTranspose_mul]
-    simp only [mul_assoc]
-    rw [Matrix.trace_mul_comm]
-    simp only [mul_assoc]
+    calc
+      _ = Matrix.trace (((stateFactor ρ).conjTranspose*R.conjTranspose)*(R*stateFactor ρ)) := by
+        rw [Matrix.trace_mul_cycle]
+        rw [Matrix.trace_mul_comm]
+        simp only [Matrix.mul_assoc]
+      _ = _ := Matrix.trace_mul_comm _ _
   rw [ht,trace_gram_frobenius,Complex.ofReal_re]
 
 theorem state_square_zero_iff (ρ : StateOn ι) (R : Mat ι) :
@@ -132,17 +136,17 @@ theorem amplitude_reduced (L : Matrix (ι × κ) ε ℂ) :
 theorem amplitude_left (A : Mat ι) (L : Matrix (ι × κ) ε ℂ) :
     aliceAmplitude (aliceLift (κ := κ) A*L)=A*aliceAmplitude L := by
   ext i ⟨b,e⟩
-  simp [aliceAmplitude,aliceLift,kron,Matrix.mul_apply,Fintype.sum_prod_type]
+  simp [aliceAmplitude,aliceLift,kron,Matrix.mul_apply,Fintype.sum_prod_type,Matrix.one_apply,mul_ite,ite_mul]
 
 theorem amplitude_right (B : Mat κ) (L : Matrix (ι × κ) ε ℂ) :
     aliceAmplitude (bobLift (ι := ι) B*L)=aliceAmplitude L*bobRight (ε := ε) B := by
   ext i ⟨b,e⟩
-  simp [aliceAmplitude,bobLift,bobRight,kron,Matrix.mul_apply,Fintype.sum_prod_type,mul_comm]
+  simp [aliceAmplitude,bobLift,bobRight,kron,Matrix.mul_apply,Fintype.sum_prod_type,Matrix.one_apply,mul_ite,ite_mul,mul_comm]
 
 theorem amplitude_tensor (A : Mat ι) (B : Mat κ) (L : Matrix (ι × κ) ε ℂ) :
     aliceAmplitude (kron A B*L)=A*aliceAmplitude L*bobRight (ε := ε) B := by
-  rw [← lift_product,mul_assoc,amplitude_left,amplitude_right]
-  simp [mul_assoc]
+  rw [← lift_product,Matrix.mul_assoc,amplitude_left,amplitude_right]
+  simp [Matrix.mul_assoc]
 
 @[simp] theorem amplitude_add (L M : Matrix (ι × κ) ε ℂ) :
     aliceAmplitude (L+M)=aliceAmplitude L+aliceAmplitude M := rfl
@@ -199,12 +203,14 @@ theorem preserves_of_intertwiner (T : Matrix ι ν ℂ) (A : Mat ι) (B : Mat ν
     preservesRange A (matrixRange T) := by
   rintro x ⟨v,hv⟩
   refine ⟨B*ᵥv,?_⟩
-  rw [← hv,Matrix.mulVecLin_apply,Matrix.mulVec_mulVec,h,Matrix.mulVec_mulVec]
+  rw [← hv]
+  change T*ᵥ(B*ᵥv)=A*ᵥ(T*ᵥv)
+  rw [Matrix.mulVec_mulVec,Matrix.mulVec_mulVec,h]
 
 /-- Kernel-safe cancellation on a specified spectral support. The two premises
 are explicit range/kernel evidence, not an inverse assumption. -/
 theorem supported_kernel_cancel (H J E : Mat ι) (Q : Matrix ι ν ℂ)
     (hJ : J*H=E) (hE : E*Q=Q) (hH : H*Q=0) : Q=0 := by
-  rw [← hE,← hJ,mul_assoc,hH,mul_zero]
+  rw [← hE,← hJ,Matrix.mul_assoc,hH,Matrix.mul_zero]
 
 end CyclicBell.General

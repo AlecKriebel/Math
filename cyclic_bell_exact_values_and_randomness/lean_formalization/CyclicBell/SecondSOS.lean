@@ -36,7 +36,7 @@ theorem scalar_gap_expansion (lam : ℂ) (C : Mat ι) :
 
 /-- No commutation of distinct Alice or Bob observables is used. -/
 theorem reduced_gap_identity (lam : Fin 4 → ℂ)
-    (hλ : (∑ l : Fin 4, star (lam l) * lam l) = 1)
+    (hLam : (∑ l : Fin 4, star (lam l) * lam l) = 1)
     (A B : Fin 4 → Mat ι) (hA : ∀ l, UnitaryRel (A l))
     (hB : ∀ y, UnitaryRel (B y)) :
     (4 : ℂ) • (1 : Mat ι) - reducedOperator lam A B =
@@ -51,7 +51,7 @@ theorem reduced_gap_identity (lam : Fin 4 → ℂ)
     unfold squareSum residual
     simp_rw [scalar_gap_expansion, henergy]
     rw [Finset.sum_sub_distrib, Finset.sum_add_distrib,
-      ← Finset.sum_smul, ← Finset.mul_sum, hλ, mul_one,
+      ← Finset.sum_smul, ← Finset.mul_sum, hLam, mul_one,
       fourier4_unitary_energy B hB, ← Finset.smul_sum]
     unfold reducedOperator herm
     simp only [Finset.smul_sum, smul_add, smul_smul]
@@ -68,7 +68,7 @@ theorem reduced_gap_identity (lam : Fin 4 → ℂ)
 
 /-- The whole augmented operator gap is an explicit sum of positive squares. -/
 theorem augmented_gap_identity (lam : Fin 4 → ℂ)
-    (hλ : (∑ l : Fin 4, star (lam l) * lam l) = 1)
+    (hLam : (∑ l : Fin 4, star (lam l) * lam l) = 1)
     (A B : Fin 4 → Mat ι) (Bstar : Mat ι)
     (hA : ∀ l, UnitaryRel (A l)) (hB : ∀ y, UnitaryRel (B y))
     (hstar : UnitaryRel Bstar) :
@@ -76,7 +76,7 @@ theorem augmented_gap_identity (lam : Fin 4 → ℂ)
       (reducedOperator lam A B + herm (A 0 * Bstar)) =
       (1 / 8 : ℂ) • squareSum lam A B +
       (1 / 2 : ℂ) • ((1 - A 0 * Bstar).conjTranspose * (1 - A 0 * Bstar)) := by
-  rw [← reduced_gap_identity lam hλ A B hA hB,
+  rw [← reduced_gap_identity lam hLam A B hA hB,
     ← aligned_gap_identity ((hA 0).mul hstar)]
   apply Matrix.ext
   intro i j
@@ -85,7 +85,7 @@ theorem augmented_gap_identity (lam : Fin 4 → ℂ)
 
 theorem reduced_upper {ρ : Mat ι} (hρ : ρ.PosSemidef)
     (htrace : Matrix.trace ρ = 1) (lam : Fin 4 → ℂ)
-    (hλ : (∑ l : Fin 4, star (lam l) * lam l) = 1)
+    (hLam : (∑ l : Fin 4, star (lam l) * lam l) = 1)
     (A B : Fin 4 → Mat ι) (hA : ∀ l, UnitaryRel (A l))
     (hB : ∀ y, UnitaryRel (B y)) :
     stateEval ρ (reducedOperator lam A B) ≤ 4 := by
@@ -93,7 +93,7 @@ theorem reduced_upper {ρ : Mat ι} (hρ : ρ.PosSemidef)
     unfold squareSum
     rw [stateEval_sum]
     exact Finset.sum_nonneg (fun l _ => stateEval_square_nonnegative hρ _)
-  have he := congrArg (stateEval ρ) (reduced_gap_identity lam hλ A B hA hB)
+  have he := congrArg (stateEval ρ) (reduced_gap_identity lam hLam A B hA hB)
   have hfour : (4 : ℂ) = ((4 : ℝ) : ℂ) := by norm_num
   have heighth : (1 / 8 : ℂ) = ((1 / 8 : ℝ) : ℂ) := by norm_num
   rw [stateEval_sub, hfour, stateEval_real_smul, stateEval_one htrace,
@@ -102,12 +102,12 @@ theorem reduced_upper {ρ : Mat ι} (hρ : ρ.PosSemidef)
 
 theorem augmented_upper {ρ : Mat ι} (hρ : ρ.PosSemidef)
     (htrace : Matrix.trace ρ = 1) (lam : Fin 4 → ℂ)
-    (hλ : (∑ l : Fin 4, star (lam l) * lam l) = 1)
+    (hLam : (∑ l : Fin 4, star (lam l) * lam l) = 1)
     (A B : Fin 4 → Mat ι) (Bstar : Mat ι)
     (hA : ∀ l, UnitaryRel (A l)) (hB : ∀ y, UnitaryRel (B y))
     (hstar : UnitaryRel Bstar) :
     stateEval ρ (reducedOperator lam A B) + stateEval ρ (A 0 * Bstar) ≤ 5 := by
-  have hr := reduced_upper hρ htrace lam hλ A B hA hB
+  have hr := reduced_upper hρ htrace lam hLam A B hA hB
   have ha := aligned_upper hρ htrace ((hA 0).mul hstar)
   linarith
 

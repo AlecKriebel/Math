@@ -12,7 +12,7 @@ variable {d : ℕ} [NeZero d]
 
 def finalSwap (d : ℕ) [NeZero d] : Equiv.Perm (Ix d) := Equiv.swap (-2) (-1)
 def swappedWeight (j : Ix d) : ℂ := equalityRoot (finalSwap d j)
-def swappedPhase : Ix d → ℂ := prefix swappedWeight
+def swappedPhase : Ix d → ℂ := «prefix» swappedWeight
 
 theorem negative_representative {k : ℕ} (hk : 0<k) (hkd : k≤d) :
     (-(k : Ix d)).val=d-k := by
@@ -28,8 +28,8 @@ theorem negative_representative {k : ℕ} (hk : 0<k) (hkd : k≤d) :
 theorem finalSwap_representatives (hd : 4≤d) :
     (-2 : Ix d).val=d-2 ∧ (-1 : Ix d).val=d-1 ∧
     finalSwap d (-2)=(-1) ∧ finalSwap d (-1)=(-2) := by
-  refine ⟨negative_representative (by omega) (by omega),
-    negative_representative (by omega) (by omega),?_,?_⟩ <;>
+  refine ⟨by simpa using (negative_representative (d := d) (k := 2) (by omega) (by omega)),
+    by simpa using (negative_representative (d := d) (k := 1) (by omega) (by omega)),?_,?_⟩ <;>
     simp [finalSwap]
 
 theorem finalSwap_away (j : Ix d) (h₂ : j≠-2) (h₁ : j≠-1) :
@@ -55,9 +55,9 @@ The edge joining the swapped labels reverses order, so its product is unchanged.
 theorem swap_adjacent_sum (hd : 4≤d) (z : Ix d → ℂ) :
     (∑ j,z (finalSwap d j)*z (finalSwap d (j+1))) - (∑ j,z j*z (j+1)) =
       (z (-1)-z (-2))*(z (-3)-z 0) := by
-  have h1 : (1 : Ix d)≠0 := natCast_ne_zero_of_lt (by omega) (by omega)
-  have h2 : (2 : Ix d)≠0 := natCast_ne_zero_of_lt (by omega) (by omega)
-  have h3 : (3 : Ix d)≠0 := natCast_ne_zero_of_lt (by omega) (by omega)
+  have h1 : (1 : Ix d)≠0 := by simpa using (natCast_ne_zero_of_lt (d := d) (k := 1) (by omega) (by omega))
+  have h2 : (2 : Ix d)≠0 := natCast_ne_zero_of_lt (d := d) (k := 2) (by omega) (by omega)
+  have h3 : (3 : Ix d)≠0 := natCast_ne_zero_of_lt (d := d) (k := 3) (by omega) (by omega)
   have h21 : (-2 : Ix d)≠-1 := by intro h; apply h1; linear_combination -h
   have h31 : (-3 : Ix d)≠-1 := by intro h; apply h2; linear_combination -h
   have h32 : (-3 : Ix d)≠-2 := by intro h; apply h1; linear_combination -h
@@ -94,7 +94,7 @@ theorem swap_adjacent_sum (hd : 4≤d) (z : Ix d → ℂ) :
 /-- The exact nonzero autocorrelation identity from eq:R2. -/
 theorem swapped_R2 (hd : 4≤d) :
     autocorrelation (swappedPhase : Ix d → ℂ) 2 =
-      (equalityRoot (-1)-equalityRoot (-2))*(equalityRoot (-3)-equalityRoot 0) := by
+      (equalityRoot (d := d) (-1)-equalityRoot (d := d) (-2))*(equalityRoot (d := d) (-3)-equalityRoot (d := d) 0) := by
   rw [recurrence_lag_two swappedPhase swappedWeight swappedPhase_unit (swappedPhase_recurrence hd)]
   have h := swap_adjacent_sum (d := d) hd (equalityRoot : Ix d → ℂ)
   rw [equalityRoot_pair_sum_zero (by omega),sub_zero] at h
@@ -107,13 +107,13 @@ theorem swapped_R2_ne_zero (hd : 4≤d) :
   · apply sub_ne_zero.mpr
     intro h
     have he := equalityRoot_injective h
-    have h1 : (1 : Ix d)≠0 := natCast_ne_zero_of_lt (by omega) (by omega)
+    have h1 : (1 : Ix d)≠0 := by simpa using (natCast_ne_zero_of_lt (d := d) (k := 1) (by omega) (by omega))
     apply h1
     linear_combination he
   · apply sub_ne_zero.mpr
     intro h
     have he := equalityRoot_injective h
-    have h3 : (3 : Ix d)≠0 := natCast_ne_zero_of_lt (by omega) (by omega)
+    have h3 : (3 : Ix d)≠0 := natCast_ne_zero_of_lt (d := d) (k := 3) (by omega) (by omega)
     apply h3
     linear_combination -he
 
@@ -150,7 +150,7 @@ theorem swappedTarget_not_uniform (hd : 4≤d) :
     ¬ ∀ a b,swappedTarget d a b=1/(d : ℝ)^2 := by
   simp only [swappedTarget_fourier]
   exact nonzero_lag_not_uniform _ swappedPhase_unit 2
-    (natCast_ne_zero_of_lt (by omega) (by omega)) (swapped_R2_ne_zero hd)
+    (natCast_ne_zero_of_lt (d := d) (k := 2) (by omega) (by omega)) (swapped_R2_ne_zero hd)
 
 /-- A normalized finite distribution that is not uniform has an above-uniform
 entry; no particular output is asserted to optimize over realizations. -/

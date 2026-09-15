@@ -1,0 +1,44 @@
+CyclicBell/GeneralCycles.lean:36:8: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  ∏ j ∈ Finset.range ?m.4232, ?f ↑j
+d : ℕ
+inst✝ : NeZero d
+w : Ix d → ℂ
+i j : Ix d
+⊢ ∏ k ∈ Finset.range d, w (j + ↑k) = ∏ k, w k
+CyclicBell/GeneralCycles.lean:42:78: error: unsolved goals
+case a
+d : ℕ
+inst✝ : NeZero d
+w : Ix d → ℂ
+i j : Ix d
+⊢ (starRingEnd ℂ) (if i = j + 1 then w j else 0) = if i = j + 1 then (starRingEnd ℂ) (w j) else 0
+CyclicBell/GeneralCycles.lean:46:0: warning: automatically included section variable(s) unused in theorem 'CyclicBell.General.weighted_linear':
+  [NeZero d]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [NeZero d] in theorem ...
+note: this linter can be disabled with `set_option linter.unusedSectionVars false`
+CyclicBell/GeneralCycles.lean:73:2: warning: try 'simp at he' instead of 'simpa using he'
+note: this linter can be disabled with `set_option linter.unnecessarySimpa false`
+CyclicBell/GeneralCycles.lean:70:0: warning: automatically included section variable(s) unused in theorem 'CyclicBell.General.natCast_ne_zero_of_lt':
+  [NeZero d]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [NeZero d] in theorem ...
+note: this linter can be disabled with `set_option linter.unusedSectionVars false`
+CyclicBell/GeneralCycles.lean:77:56: error: omega could not prove the goal:
+a possible counterexample may satisfy the constraints
+  a ≥ 2
+where
+ a := ↑d
+CyclicBell/GeneralCycles.lean:102:0: warning: automatically included section variable(s) unused in theorem 'CyclicBell.General.phases_permuted':
+  [NeZero d]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [NeZero d] in theorem ...
+note: this linter can be disabled with `set_option linter.unusedSectionVars false`
+CyclicBell/GeneralCycles.lean:123:8: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  ∑ j, ?z (?κ j)
+case left
+d : ℕ
+inst✝ : NeZero d
+z s : Ix d → ℂ
+κ : Equiv.Perm (Ix d)
+⊢ (∑ x, star (s (κ x))) / ↑d = (∑ j, star (s j)) / ↑d

@@ -1,5 +1,6 @@
 import CyclicBell.GeneralCycles
 import CyclicBell.GeneralScalar
+import CyclicBell.GeneralCoveragePolarAlgebra
 
 /-! Source appendix coefficient calculations, with the literal positive clock
 and forward shift. Coefficient DFT identities do not certify source-observable
@@ -96,7 +97,12 @@ theorem source_coefficient_DFT (m k : Ix d) :
         ring
   simp_rw [he]
   rw [← Finset.mul_sum,character_sum]
-  have hk : m-(k+1)=0 ↔ k=m-1 := by constructor <;> intro h <;> linear_combination h
+  have hk : m-(k+1)=0 ↔ k=m-1 := by
+    constructor
+    · intro h
+      exact (eq_sub_iff_add_eq).mpr (sub_eq_zero.mp h).symm
+    · intro h
+      exact sub_eq_zero.mpr ((eq_sub_iff_add_eq).mp h).symm
   simp only [hk]
   split_ifs <;> ring
 
@@ -112,8 +118,9 @@ theorem source_operator_DFT (m : Ix d) :
 theorem sourceCoeffBase_zero :
     sourceCoeffBase (0 : Ix d)=(1 : ℂ)/
       ((d : ℂ)*(Real.sin (Real.pi/(2*(d : ℝ))) : ℂ)) := by
-  simp [sourceCoeffBase,sourceTriangular,show Real.pi*((0 : ℝ)+1/2)/d=
-    Real.pi/(2*(d : ℝ)) by ring]
+  have ha : Real.pi*((0 : ℝ)+1/2)/d=Real.pi/(2*(d : ℝ)) := by ring
+  simp only [sourceCoeffBase, ZMod.val_zero, pow_zero, sourceTriangular,
+    zero_mul, Nat.zero_div, Nat.cast_zero, chi_zero, one_mul, ha]
 
 theorem source_shift_order : cyclicShift d^d=1 := by
   rw [cyclicShift,weighted_full_power]
@@ -124,7 +131,7 @@ theorem source_clock_power (n : ℕ) : sourceClock d^n=Matrix.diagonal (fun j =>
   | zero => ext i j; simp [Matrix.diagonal_apply,Matrix.one_apply]
   | succ n ih =>
     rw [pow_succ,ih,sourceClock,Matrix.diagonal_mul_diagonal]
-    congr 1
+    apply congrArg Matrix.diagonal
     funext j
     rw [← chi_add]
     congr 1
@@ -143,20 +150,29 @@ theorem source_clock_last : sourceClock d^(d-1)=(sourceClock d)ᴴ := by
     have hn : d-1+1=d := Nat.sub_add_cancel (Nat.one_le_iff_ne_zero.mpr (NeZero.ne d))
     have hc := congrArg (fun n : ℕ => (n : Ix d)) hn
     push_cast at hc
+    rw [ZMod.natCast_self] at hc
     linear_combination hc
-  simp [sourceClock,h,Matrix.diagonal_apply,Matrix.conjTranspose_apply,chi_star]
+  by_cases hij : i=j
+  · subst j
+    simp [sourceClock,h,Matrix.diagonal_apply,Matrix.conjTranspose_apply,chi_star]
+  · simp [sourceClock,h,Matrix.diagonal_apply,Matrix.conjTranspose_apply,hij,Ne.symm hij]
 
 theorem sourceMode_zero : sourceMode (0 : Ix d)=cyclicShift d := by simp [sourceMode]
 
+theorem source_neg_one_val : (-1 : Ix d).val=d-1 := by
+  cases d with
+  | zero => exact False.elim (NeZero.ne 0 rfl)
+  | succ n => simpa only [Nat.add_sub_cancel] using ZMod.val_neg_one n
+
 theorem sourceMode_last : sourceMode (-1 : Ix d)=(sourceClock d)ᴴ := by
-  have hv : (-1 : Ix d).val=d-1 := ZMod.val_neg_one
+  have hv : (-1 : Ix d).val=d-1 := source_neg_one_val
   unfold sourceMode
   rw [hv,Nat.sub_add_cancel (Nat.one_le_iff_ne_zero.mpr (NeZero.ne d)),source_shift_order,
     one_mul,source_clock_last]
 
 /-- The last numerator is +1, despite its two parity-dependent factors. -/
-theorem sourceCoeffBase_last : sourceCoeffBase (-1 : Ix d)=sourceCoeffBase 0 := by
-  have hv : (-1 : Ix d).val=d-1 := ZMod.val_neg_one
+theorem sourceCoeffBase_last : sourceCoeffBase (-1 : Ix d)=sourceCoeffBase (0 : Ix d) := by
+  have hv : (-1 : Ix d).val=d-1 := source_neg_one_val
   have hdR : (d : ℝ)≠0 := ne_of_gt (dimension_pos (d := d))
   have hcast : ((d-1 : ℕ) : ℝ)=(d : ℝ)-1 := by
     have hc := congrArg (fun n : ℕ => (n : ℝ))
@@ -187,9 +203,8 @@ theorem source_fourier_zero :
     sourceCoeffBase_zero] at h
   rw [h]
   congr 1
-  by_cases hs : (Real.sin (Real.pi/(2*(d : ℝ))) : ℂ)=0
-  · simp [hs]
-  · field_simp [hdC,hs]
+  simpa only [mul_div_assoc] using (mul_div_mul_left (c := (d : ℂ)) 1
+    (Real.sin (Real.pi/(2*(d : ℝ))) : ℂ) hdC)
 
 /-- Manuscript eq:source-fourier, second displayed sum. -/
 theorem source_fourier_one :
@@ -200,9 +215,8 @@ theorem source_fourier_one :
   simp only [one_mul,sub_self,sourceCoeffBase_zero,sourceMode_zero] at h
   rw [h]
   congr 1
-  by_cases hs : (Real.sin (Real.pi/(2*(d : ℝ))) : ℂ)=0
-  · simp [hs]
-  · field_simp [hdC,hs]
+  simpa only [mul_div_assoc] using (mul_div_mul_left (c := (d : ℂ)) 1
+    (Real.sin (Real.pi/(2*(d : ℝ))) : ℂ) hdC)
 
 /-- Exact qutrit coefficient values, not numerical approximations. -/
 theorem source_qutrit_coefficients (y : Ix 3) :
@@ -219,11 +233,24 @@ theorem source_qutrit_coefficients (y : Ix 3) :
   have h0 : -(y*(0+1))=2*y := by fin_cases y <;> decide
   have h1 : -(y*(1+1))=y := by fin_cases y <;> decide
   have h2 : -(y*(2+1))=0 := by fin_cases y <;> decide
+  norm_num only at hsin hs0 hs2 h0 h1 h2
   refine ⟨?_,?_,?_⟩
-  · norm_num [sourceCoeff,sourceCoeffBase,sourceTriangular,hs0,h0]
-  · norm_num [sourceCoeff,sourceCoeffBase,sourceTriangular,hsin,h1,chi_add]
+  · simp only [sourceCoeff,sourceCoeffBase,ZMod.val_zero,pow_zero,sourceTriangular,
+      zero_mul,Nat.zero_div,Nat.cast_zero,chi_zero,one_mul]
+    norm_num only [Nat.cast_ofNat]
+    rw [hs0, h0]
+    norm_num
+  · simp only [sourceCoeff,sourceCoeffBase,show (1 : Ix 3).val=1 from rfl,
+      sourceTriangular]
+    norm_num only
+    rw [hsin, h1, chi_add]
+    push_cast
     ring
-  · norm_num [sourceCoeff,sourceCoeffBase,sourceTriangular,hs2,h2]
+  · simp only [sourceCoeff,sourceCoeffBase,show (2 : Ix 3).val=2 from rfl,
+      sourceTriangular]
+    norm_num only
+    rw [hs2, h2, show (3 : Ix 3)=0 by decide, chi_zero]
+    norm_num
 
 /-- Displayed qutrit formula with forward X and positive Z, app:attainment. -/
 theorem source_qutrit_operator (y : Ix 3) :
@@ -239,7 +266,7 @@ theorem source_qutrit_operator (y : Ix 3) :
   rw [hsum,h0,h1,h2]
   simp only [sourceMode,show (0 : Ix 3).val=0 from rfl,
     show (1 : Ix 3).val=1 from rfl,show (2 : Ix 3).val=2 from rfl]
-  norm_num only [pow_zero,pow_one,zero_add,one_add,source_shift_order,mul_one,one_mul]
+  norm_num only [pow_zero,pow_one,zero_add,source_shift_order,mul_one,one_mul]
   ext i j
   simp only [Matrix.smul_apply,Matrix.add_apply,Matrix.sub_apply,smul_eq_mul]
   ring

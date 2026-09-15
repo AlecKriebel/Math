@@ -15,6 +15,7 @@ UNCOMPILED SOURCE: acceptance and dependency reports require the offline run.
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.D4
+attribute [local simp] Matrix.cons_val_two Matrix.cons_val_three Matrix.cons_val_four
 set_option maxRecDepth 20000
 set_option maxHeartbeats 16000000
 
@@ -79,9 +80,8 @@ theorem witnessA_zero : witnessA 0 = shift := by
   rw [he, weighted_one]
 
 theorem witnessA_one : witnessA 1 = swappedObservable := by
-  unfold witnessA swappedObservable weighted
-  congr 1
-  congr 1
+  change weighted (aliceWeights 1) = weighted swappedWeights
+  apply congrArg weighted
   funext j
   simpa [aliceWeights, aliceExponents] using (old_weights_phase_bridge j).symm
 
@@ -170,7 +170,8 @@ theorem bobWeights_are_polar_conjugates (y j : Fin 4) :
 theorem bob_manuscript_bridge (y : Fin 4) :
     witnessB y = entryConj (weighted (fun j => zeta ^ polarExponents y j)) := by
   rw [weighted_conjugate]
-  congr 1
+  change weighted (bobWeights y) = weighted _
+  apply congrArg weighted
   funext j
   exact bobWeights_are_polar_conjugates y j
 
@@ -183,7 +184,7 @@ def sourceD (l : Fin 4) : Op 4 :=
 theorem inv_eq_star_of_unit {z : ℂ} (hz : star z * z = 1) : z⁻¹ = star z := by
   have hn : z ≠ 0 := by intro hzero; simp [hzero] at hz
   apply mul_right_cancel₀ hn
-  simp [inv_mul_cancel₀ hn, hz]
+  rw [inv_mul_cancel₀ hn, hz]
 
 theorem eta_unit : star eta * eta = 1 := by
   change star (Complex.exp _) * Complex.exp _ = 1
@@ -192,8 +193,9 @@ theorem eta_unit : star eta * eta = 1 := by
 
 theorem star_neg_power {z : ℂ} (hz : star z * z = 1) (m : ℕ) :
     star (z ^ (-(m : ℤ))) = z ^ m := by
-  rw [zpow_neg, zpow_natCast, inv_eq_star_of_unit (by simpa [star_pow, ← mul_pow, hz])]
-  simp
+  have hp : star (z ^ m) * z ^ m = 1 := by
+    rw [star_pow, ← mul_pow, hz, one_pow]
+  rw [zpow_neg, zpow_natCast, inv_eq_star_of_unit hp, star_star]
 
 /-- The matrix named D_l in eq:second-A is conjugated, not adjointed. -/
 theorem secondAlice_manuscript_bridge (l : Fin 4) : witnessA l = entryConj (sourceD l) := by
@@ -213,10 +215,13 @@ theorem secondAlice_manuscript_bridge (l : Fin 4) : witnessA l = entryConj (sour
     rw [hcast, star_neg_power hI]
   rw [he, hi]
   have hw : aliceWeights l j = eta ^ (l.val * l.val) * Complex.I ^ (l.val * (kappa j).val) := by
-    rw [eta, eta_bridge, kappa_values]
-    fin_cases l <;> fin_cases j <;>
-      norm_num [aliceWeights, aliceExponents, ← pow_mul, zeta_pow_32,
-        show zeta ^ 18 = zeta ^ 2 by rw [show (18 : ℕ) = 16 + 2 by decide, pow_add, zeta_sixteen, one_mul]]
+    rw [eta, eta_bridge, ← zeta_four]
+    unfold aliceWeights
+    simp only [← pow_mul, ← pow_add]
+    conv_lhs => rw [zeta_pow_mod]
+    conv_rhs => rw [zeta_pow_mod]
+    congr 1
+    fin_cases l <;> fin_cases j <;> decide
   rw [hw]
   ring
 

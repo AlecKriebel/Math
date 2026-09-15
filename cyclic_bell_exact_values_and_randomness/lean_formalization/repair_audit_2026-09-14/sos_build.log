@@ -39,116 +39,24 @@ warning: ././././CyclicBell/ScalarData.lean:280:34: Used `tac1 <;> tac2` where `
 note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
 warning: ././././CyclicBell/ScalarData.lean:285:66: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
 note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
-✖ [2827/2829] Building CyclicBell.SecondSOS
-trace: .> LEAN_PATH=././.lake/packages/Cli/.lake/build/lib/lean:././.lake/packages/batteries/.lake/build/lib/lean:././.lake/packages/Qq/.lake/build/lib/lean:././.lake/packages/aesop/.lake/build/lib/lean:././.lake/packages/proofwidgets/.lake/build/lib/lean:././.lake/packages/importGraph/.lake/build/lib/lean:././.lake/packages/LeanSearchClient/.lake/build/lib/lean:././.lake/packages/plausible/.lake/build/lib/lean:././.lake/packages/mathlib/.lake/build/lib/lean:././.lake/build/lib/lean /Users/alec/.elan/toolchains/leanprover--lean4---v4.19.0/bin/lean ././././CyclicBell/SecondSOS.lean -R ./././. -o ././.lake/build/lib/lean/CyclicBell/SecondSOS.olean -i ././.lake/build/lib/lean/CyclicBell/SecondSOS.ilean -c ././.lake/build/ir/CyclicBell/SecondSOS.c --json
-error: ././././CyclicBell/SecondSOS.lean:39:6: unexpected token 'λ'; expected ')'
-error: ././././CyclicBell/SecondSOS.lean:71:6: unexpected token 'λ'; expected ')'
-error: ././././CyclicBell/SecondSOS.lean:88:6: unexpected token 'λ'; expected ')'
-error: ././././CyclicBell/SecondSOS.lean:105:6: unexpected token 'λ'; expected ')'
-error: ././././CyclicBell/SecondSOS.lean:120:8: unknown identifier 'reduced_gap_identity'
-error: ././././CyclicBell/SecondSOS.lean:121:2: no goals to be solved
-error: Lean exited with code 1
-✖ [2828/2829] Building CyclicBell.FirstSOS
-trace: .> LEAN_PATH=././.lake/packages/Cli/.lake/build/lib/lean:././.lake/packages/batteries/.lake/build/lib/lean:././.lake/packages/Qq/.lake/build/lib/lean:././.lake/packages/aesop/.lake/build/lib/lean:././.lake/packages/proofwidgets/.lake/build/lib/lean:././.lake/packages/importGraph/.lake/build/lib/lean:././.lake/packages/LeanSearchClient/.lake/build/lib/lean:././.lake/packages/plausible/.lake/build/lib/lean:././.lake/packages/mathlib/.lake/build/lib/lean:././.lake/build/lib/lean /Users/alec/.elan/toolchains/leanprover--lean4---v4.19.0/bin/lean ././././CyclicBell/FirstSOS.lean -R ./././. -o ././.lake/build/lib/lean/CyclicBell/FirstSOS.olean -i ././.lake/build/lib/lean/CyclicBell/FirstSOS.ilean -c ././.lake/build/ir/CyclicBell/FirstSOS.c --json
-error: ././././CyclicBell/FirstSOS.lean:45:24: unknown identifier 'y'
-error: ././././CyclicBell/FirstSOS.lean:45:51: unknown identifier 'y'
-error: ././././CyclicBell/FirstSOS.lean:53:37: unsolved goals
-ι : Type u_1
-inst✝¹ : Fintype ι
-inst✝ : DecidableEq ι
-U : Mat ι
-y : Fin 4
-⊢ s • 1 + ((2 * ↑alpha) • rotated U y + s • rotated U y ^ 2) = s • 1 + (2 * ↑alpha) • rotated U y + s • rotated U y ^ 2
-error: ././././CyclicBell/FirstSOS.lean:58:70: unsolved goals
-ι : Type u_1
-inst✝¹ : Fintype ι
-inst✝ : DecidableEq ι
-U : Mat ι
-y : Fin 4
-⊢ beta • 1 + (alpha • rotated U y + (alpha • rotated U y ^ 2 + beta • rotated U y ^ 3)) =
-    beta • 1 + alpha • rotated U y + alpha • rotated U y ^ 2 + beta • rotated U y ^ 3
+ℹ [2827/2829] Built CyclicBell.SecondSOS
+info: ././././CyclicBell/SecondSOS.lean:62:4: Try this: ring_nf
+⚠ [2828/2829] Built CyclicBell.FirstSOS
 warning: ././././CyclicBell/FirstSOS.lean:98:66: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
 note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
 warning: ././././CyclicBell/FirstSOS.lean:104:66: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
 note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
-error: ././././CyclicBell/FirstSOS.lean:123:2: type mismatch, term
-  he
-after simplification has type
-  (1 + (rotated U 0)ᴴ) * (1 + rotated U 0) +
-      ((1 + (rotated U 1)ᴴ) * (1 + rotated U 1) +
-        ((1 + (rotated U 2)ᴴ) * (1 + rotated U 2) + (1 + (rotated U 3)ᴴ) * (1 + rotated U 3))) =
-    (4 * (1 + 1)) • 1 : Prop
-but is expected to have type
-  (1 + (rotated U 0)ᴴ) * (1 + rotated U 0) +
-      ((1 + (rotated U 1)ᴴ) * (1 + rotated U 1) +
-        ((1 + (rotated U 2)ᴴ) * (1 + rotated U 2) + (1 + (rotated U 3)ᴴ) * (1 + rotated U 3))) =
-    8 • 1 : Prop
-error: ././././CyclicBell/FirstSOS.lean:127:31: unsolved goals
-ι : Type u_1
-inst✝¹ : Fintype ι
-inst✝ : DecidableEq ι
-U : Mat ι
-hU : UnitaryRel U
-hh : ∀ (y : Fin 4), (rotated U y)ᴴ * rotated U y = 1
-⊢ 4 = 4 • 1
-warning: ././././CyclicBell/FirstSOS.lean:133:0: automatically included section variable(s) unused in theorem 'CyclicBell.FirstSOS.two_square_expansion':
+warning: ././././CyclicBell/FirstSOS.lean:135:0: automatically included section variable(s) unused in theorem 'CyclicBell.FirstSOS.two_square_expansion':
   [DecidableEq ι]
 consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
   omit [DecidableEq ι] in theorem ...
 note: this linter can be disabled with `set_option linter.unusedSectionVars false`
-error: ././././CyclicBell/FirstSOS.lean:154:63: unsolved goals
-ι : Type u_1
-inst✝¹ : Fintype ι
-inst✝ : DecidableEq ι
-U : Mat ι
-hU : UnitaryRel U
-A B : Mat ι
-y : Fin 4
-⊢ ↑s • ((1 * Aᴴ + rotated U y * Aᴴ)ᴴ * (P U y * B)) + (↑s * ↑k) • (A * ((rotated U y)ᴴ * (Q U y * B))) =
-    ↑s • (A * ((1 + rotated U y)ᴴ * (P U y * B))) + (↑s * ↑k) • (A * ((rotated U y)ᴴ * (Q U y * B)))
-warning: ././././CyclicBell/FirstSOS.lean:159:0: automatically included section variable(s) unused in theorem 'CyclicBell.FirstSOS.right_energy_sum':
+warning: ././././CyclicBell/FirstSOS.lean:162:0: automatically included section variable(s) unused in theorem 'CyclicBell.FirstSOS.right_energy_sum':
   [DecidableEq ι]
 consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
   omit [DecidableEq ι] in theorem ...
 note: this linter can be disabled with `set_option linter.unusedSectionVars false`
-warning: ././././CyclicBell/FirstSOS.lean:177:2: 'push_cast' tactic does nothing
+warning: ././././CyclicBell/FirstSOS.lean:180:2: 'push_cast' tactic does nothing
 note: this linter can be disabled with `set_option linter.unusedTactic false`
-error: ././././CyclicBell/FirstSOS.lean:235:66: unsolved goals
-ι : Type u_1
-inst✝¹ : Fintype ι
-inst✝ : DecidableEq ι
-A U : Mat ι
-hA : UnitaryRel A
-hU : UnitaryRel U
-B : Fin 4 → Mat ι
-hB : ∀ (y : Fin 4), UnitaryRel (B y)
-hc : ∀ (y : Fin 4), U * B y = B y * U
-hrow :
-  ∀ (y : Fin 4),
-    ↑s • ((F A U B y)ᴴ * F A U B y + ↑k • ((G A U B y)ᴴ * G A U B y)) =
-      ↑s • (((1 + rotated U y) * Aᴴ)ᴴ * ((1 + rotated U y) * Aᴴ) + ↑k • ((rotated U y * Aᴴ)ᴴ * (rotated U y * Aᴴ))) +
-          ↑s • ((P U y * B y)ᴴ * (P U y * B y) + ↑k • ((Q U y * B y)ᴴ * (Q U y * B y))) -
-        (rawTerm A U B y + (rawTerm A U B y)ᴴ)
-hraw : ∑ y, (rawTerm A U B y + (rawTerm A U B y)ᴴ) = 2 • reducedOperator A U B
-⊢ ↑s • (∑ y, (F A U B y)ᴴ * F A U B y + ↑k • ((G A U B sorry)ᴴ * G A U B sorry)) =
-    ∑ y, ↑s • ((F A U B y)ᴴ * F A U B y + ↑k • ((G A U B y)ᴴ * G A U B y))
-warning: ././././CyclicBell/FirstSOS.lean:236:14: declaration uses 'sorry'
-error: ././././CyclicBell/FirstSOS.lean:281:8: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
-  stateEval ?ρ (∑ k, ?T k)
-ι : Type u_1
-inst✝¹ : Fintype ι
-inst✝ : DecidableEq ι
-ρ A U : Mat ι
-hρ : Matrix.PosSemidef ρ
-htrace : Matrix.trace ρ = 1
-hA : UnitaryRel A
-hU : UnitaryRel U
-B : Fin 4 → Mat ι
-hB : ∀ (y : Fin 4), UnitaryRel (B y)
-hc : ∀ (y : Fin 4), U * B y = B y * U
-⊢ 0 ≤ stateEval ρ (∑ y, (F A U B y)ᴴ * F A U B y + ↑k • ((G A U B sorry)ᴴ * G A U B sorry))
-error: Lean exited with code 1
-Some required builds logged failures:
-- CyclicBell.SecondSOS
-- CyclicBell.FirstSOS
-error: build failed
+✔ [2829/2829] Built CyclicBell.PhysicalBounds
+Build completed successfully.

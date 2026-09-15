@@ -21,7 +21,8 @@ def permutationBob (κ : Equiv.Perm (Ix d)) : AugmentedInputs d → Measurement 
   | none => fourierMeasurement d
   | some y => cycleMeasurement (fun j => star (polarPhase y (κ j)))
       (by intro j; simpa [mul_comm] using polarPhase_unit (d := d) y (κ j))
-      (by rw [← map_prod,product_permuted,polarPhase_product]; simp)
+      (by rw [product_permuted (fun j => star (polarPhase y j)) κ]
+          simpa only [star_prod,star_one] using congrArg star (polarPhase_product y))
 
 def firstPermutationStrategy (hd : 2≤d) (κ : Equiv.Perm (Ix d)) :
     StrategyOn d (Fin 2) (AugmentedInputs d) (Ix d) (Ix d) where
@@ -38,7 +39,7 @@ def firstPermutationStrategy (hd : 2≤d) (κ : Equiv.Perm (Ix d)) :
   simp [permutationAlice,cycleMeasurement_encoding]
 
 @[simp] theorem permutationBob_none (κ : Equiv.Perm (Ix d)) :
-    encoded (permutationBob κ none)=cyclicShift d := fourierMeasurement_encoding d
+    encoded (permutationBob κ none)=cyclicShift d := fourierMeasurement_encoding (d := d)
 
 @[simp] theorem permutationBob_some (κ : Equiv.Perm (Ix d)) (y : Ix d) :
     encoded (permutationBob κ (some y))=
@@ -103,7 +104,7 @@ theorem firstPermutation_harmonics (hd : 2≤d) (κ : Equiv.Perm (Ix d)) (y : Ix
 /-- Target outcome table through the actual PVMs in the full strategy. -/
 theorem firstPermutation_target (hd : 2≤d) (κ : Equiv.Perm (Ix d)) (a b : Ix d) :
     behavior (firstPermutationStrategy hd κ) 1 none a b =
-      fourierTable (prefix (equalityRoot ∘ κ)) a b := by
+      fourierTable («prefix» (equalityRoot ∘ κ)) a b := by
   change bornProbability (entangledState d).density
     ((permutationAlice hd κ 1).effect a) ((permutationBob κ none).effect b)=_
   simp only [permutationAlice,show (1 : Fin 2)≠0 by decide,if_false,
@@ -144,9 +145,10 @@ theorem first_all_dimension_counterexample (hd : 4≤d) :
   · intro nA nB t
     exact firstPermutation_maximal (by omega) _ t
   · intro a b
+    dsimp [s]
     simp_rw [firstSwap_target hd]
     exact swappedTarget_marginals a b
-  · simpa only [firstSwap_target hd] using swappedTarget_not_uniform (d := d) hd
-  · simpa only [firstSwap_target hd] using swappedTarget_quantitative (d := d) hd
+  · simpa only [s,firstSwap_target hd] using swappedTarget_not_uniform (d := d) hd
+  · simpa only [s,firstSwap_target hd] using swappedTarget_quantitative (d := d) hd
 
 end CyclicBell.General

@@ -1,9 +1,0 @@
-import CyclicBell.GeneralPhases
-#check Finset.sum_bij
-#check Finset.sum_bij'
-#check Submonoid.mem_unitSphere
-#check Complex.cos_ofReal_re
-#check Circle.coe_exp
-#check Complex.exp_mul_I_re
-#check Complex.exp_mul_I_im
-#print Circle

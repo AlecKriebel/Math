@@ -1,0 +1,3 @@
+import CyclicBell.GeneralCoveragePolarAlgebra
+#print axioms CyclicBell.General.Coverage.weyl_mul_pow
+#print axioms CyclicBell.General.Coverage.supportedPolarResidual_square

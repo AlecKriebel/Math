@@ -77,6 +77,7 @@ theorem phase_scaled_sine_limit :
       have harg : t n=Real.pi/(4*(n : ℝ)) := by dsimp [t]; ring
       rw [harg]
       field_simp [hnR,ne_of_gt Real.pi_pos]
+      <;> ring
   simpa only [Function.comp_def,mul_one,he] using hscaled
 
 /-- Exactly the asymptotic statement in app:settings, in difference-limit form.

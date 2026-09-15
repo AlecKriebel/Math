@@ -8,6 +8,7 @@ UNCOMPILED SOURCE CANDIDATE. -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.D4
+attribute [local simp] Matrix.cons_val_two Matrix.cons_val_three
 set_option maxRecDepth 20000
 set_option maxHeartbeats 12000000
 
@@ -72,13 +73,14 @@ theorem phased_encoding (r : Fin 4 → ℂ) (hr : ∀ j, star (r j) * r j = 1) :
   have hf : (observable (phasedPVM r hr)) i j =
       r i * star (r j) * (observable bobTargetPVM) i j := by
     simp only [observable, phasedPVM, pvmOfBasis, bobTargetPVM, projector,
-      phasedVector, Finset.sum_apply, Matrix.smul_apply, smul_eq_mul, star_mul,
+      phasedVector, Matrix.sum_apply, Matrix.smul_apply, smul_eq_mul, star_mul,
       Finset.mul_sum]
     apply Finset.sum_congr rfl
     intro a _
     ring
   rw [hf, hu]
-  simp [Matrix.mul_apply, Matrix.diagonal, Matrix.conjTranspose_apply]
+  simp only [Matrix.diagonal_conjTranspose, Matrix.mul_diagonal, Matrix.diagonal_mul]
+  simp only [Pi.star_apply]
   ring
 
 /-- Prefixes of the cycle's edge weights; q_0 is fixed to 1. -/
@@ -110,7 +112,7 @@ theorem cyclePrefix_recurrence (w : Fin 4 → ℂ)
 
 /-- Entry-wise statement fixes the cyclic-shift orientation. -/
 theorem shift_entry (i j : Fin 4) : shift i j = if i = j + 1 then 1 else 0 := by
-  fin_cases i <;> fin_cases j <;> norm_num [shift]
+  fin_cases i <;> fin_cases j <;> norm_num [shift, Fin.add_def, Fin.ext_iff]
 
 theorem cycle_diagonalization (w : Fin 4 → ℂ)
     (hw : ∀ j, star (w j) * w j = 1) (hprod : w 0 * w 1 * w 2 * w 3 = 1) :
@@ -118,13 +120,11 @@ theorem cycle_diagonalization (w : Fin 4 → ℂ)
       weighted w := by
   apply Matrix.ext
   intro i j
-  simp only [weighted, Matrix.mul_apply, Matrix.conjTranspose_apply, Matrix.diagonal_apply]
-  simp only [ite_mul, mul_ite, zero_mul, mul_zero, star_ite, star_zero, Finset.sum_ite_eq',
-    Finset.mem_univ, if_true]
-  simp only [shift_entry]
+  simp only [weighted, Matrix.diagonal_conjTranspose, Matrix.mul_diagonal,
+    Matrix.diagonal_mul, Pi.star_apply, shift_entry]
   by_cases hij : i = j + 1
   · subst i
-    simp only [if_pos rfl, mul_one]
+    simp only [if_pos, mul_one, one_mul]
     rw [cyclePrefix_recurrence w hprod]
     calc
       w j * cyclePrefix w j * star (cyclePrefix w j) =
@@ -163,22 +163,37 @@ theorem weighted_linear (z : ℂ) (w v : Fin 4 → ℂ) :
 theorem weighted_conjugate (w : Fin 4 → ℂ) :
     entryConj (weighted w) = weighted (fun j => star (w j)) := by
   ext i j
-  simp [entryConj, weighted_entry, shift_entry]
+  simp only [entryConj, weighted_entry, shift_entry]
+  split <;> simp_all
 
 theorem phi_trace (A B : Op 4) :
     expectation phi (tensor A B) = Matrix.trace (A * B.transpose) / 4 := by
-  norm_num [expectation, ip, applyOp, tensor, phi, Fintype.sum_prod_type,
-    Fin.sum_univ_succ, Matrix.trace, Matrix.diag_apply, Matrix.mul_apply,
-    Matrix.transpose_apply]
+  simp only [expectation, ip, applyOp, tensor, phi, Fintype.sum_prod_type]
+  simp only [apply_ite, star_zero, star_div₀, star_one, star_ofNat,
+    ite_mul, zero_mul, mul_ite, mul_zero, Finset.sum_ite_eq', Finset.sum_ite_eq,
+    Finset.mem_univ, if_true]
+  simp only [Matrix.trace, Matrix.diag_apply, Matrix.mul_apply, Matrix.transpose_apply,
+    Finset.sum_div]
+  apply Finset.sum_congr rfl
+  intro i _
+  rw [Finset.mul_sum]
+  apply Finset.sum_congr rfl
+  intro j _
   ring
 
 theorem phi_weighted (w v : Fin 4 → ℂ) :
     expectation phi (tensor (weighted w) (weighted v)) =
       (∑ j : Fin 4, w j * v j) / 4 := by
   rw [phi_trace]
-  norm_num [weighted, shift, Matrix.mul_apply, Matrix.diagonal, Matrix.trace,
-    Matrix.diag_apply, Matrix.transpose_apply, Fin.sum_univ_succ]
-  ring
+  congr 1
+  simp only [Matrix.trace, Matrix.diag_apply, Matrix.mul_apply, Matrix.transpose_apply,
+    weighted_entry, shift_entry]
+  simp only [mul_ite, ite_mul, zero_mul, mul_zero, one_mul, mul_one,
+    Finset.sum_ite_eq, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+  rw [Finset.sum_comm]
+  apply Finset.sum_congr rfl
+  intro j _
+  simp
 
 /-- General tensor-unitary invariance for the displayed maximally entangled state.
 This is conjugation, not adjoint, on the second local observable. -/

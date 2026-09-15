@@ -42,8 +42,9 @@ theorem finiteCalc_congr (U : Mat ι) (hU : UnitaryRel U) {f g : ℂ → ℂ}
   exact map_one _
 @[simp] theorem finiteCalc_const (U : Mat ι) (hU : UnitaryRel U) (c : ℂ) :
     finiteCalc U hU (fun _ => c)=c • 1 := by
-  change matrixCfc U hU (c • 1)=c • 1
-  rw [map_smul,map_one]
+  unfold finiteCalc
+  have he : finiteCM U (fun _ => c) = c • 1 := by ext; simp [finiteCM]
+  rw [he,map_smul,map_one]
 @[simp] theorem finiteCalc_coordinate (U : Mat ι) (hU : UnitaryRel U) : finiteCalc U hU id=U :=
   matrixCfc_coordinate U hU
 @[simp] theorem finiteCalc_add (U : Mat ι) (hU : UnitaryRel U) (f g : ℂ → ℂ) :
@@ -66,7 +67,11 @@ theorem finiteCalc_congr (U : Mat ι) (hU : UnitaryRel U) {f g : ℂ → ℂ}
   exact map_pow (matrixCfc U hU) (finiteCM U f) n
 @[simp] theorem finiteCalc_sum {J : Type*} [Fintype J] (U : Mat ι) (hU : UnitaryRel U)
     (f : J → ℂ → ℂ) : finiteCalc U hU (fun z => ∑ j,f j z)=∑ j,finiteCalc U hU (f j) := by
-  exact map_sum (matrixCfc U hU) (fun j => finiteCM U (f j)) Finset.univ
+  unfold finiteCalc
+  have he : finiteCM U (fun z => ∑ j, f j z) = ∑ j, finiteCM U (f j) := by
+    ext z
+    simp [finiteCM]
+  rw [he, map_sum]
 
 theorem finiteCalc_commute (U : Mat ι) (hU : UnitaryRel U) (f g : ℂ → ℂ) :
     finiteCalc U hU f*finiteCalc U hU g=finiteCalc U hU g*finiteCalc U hU f := by
@@ -87,7 +92,7 @@ theorem finiteCalc_zero_transfer (U : Mat ι) (hU : UnitaryRel U)
     by_cases hz : f z=0
     · simp [r,hz,hzero z hz]
     · simp [r,div_mul_cancel₀ _ hz]
-  rw [he,mul_assoc,hf,mul_zero]
+  rw [he,Matrix.mul_assoc,hf,Matrix.mul_zero]
 
 theorem finiteCalc_supported_congr (U : Mat ι) (hU : UnitaryRel U)
     (f g k : ℂ → ℂ) (T : Matrix ι ν ℂ)
@@ -95,7 +100,7 @@ theorem finiteCalc_supported_congr (U : Mat ι) (hU : UnitaryRel U)
     (hf : finiteCalc U hU f*T=0) : finiteCalc U hU g*T=finiteCalc U hU k*T := by
   have h := finiteCalc_zero_transfer U hU f (fun z => g z-k z) T
     (fun z hz => sub_eq_zero.mpr (hzero z hz)) hf
-  rw [finiteCalc_sub,sub_mul,sub_eq_zero] at h
+  rw [finiteCalc_sub,Matrix.sub_mul,sub_eq_zero] at h
   exact h
 
 def finiteSpectralProjection (U : Mat ι) (hU : UnitaryRel U) (z : ℂ) : Mat ι :=
@@ -125,7 +130,8 @@ theorem finiteSpectralProjection_mul (U : Mat ι) (hU : UnitaryRel U) (z w : ℂ
 
 theorem finiteSpectralProjection_eigen (U : Mat ι) (hU : UnitaryRel U) (z : ℂ) :
     U*finiteSpectralProjection U hU z=z • finiteSpectralProjection U hU z := by
-  rw [← finiteCalc_coordinate U hU,finiteSpectralProjection,← finiteCalc_mul,← finiteCalc_smul]
+  conv_lhs => lhs; rw [← finiteCalc_coordinate U hU]
+  rw [finiteSpectralProjection,← finiteCalc_mul,← finiteCalc_smul]
   apply finiteCalc_congr U hU
   intro w
   by_cases hw : (w : ℂ)=z <;> simp [hw]

@@ -10,6 +10,7 @@ UNCOMPILED SOURCE CANDIDATE.
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.D4
+attribute [local simp] Matrix.cons_val_two Matrix.cons_val_three Matrix.cons_val_four
 set_option maxRecDepth 25000
 set_option maxHeartbeats 20000000
 
@@ -20,9 +21,11 @@ theorem witness_fourier_weights (l j : Fin 4) :
       (4 * lambda l) * star (aliceWeights l j) := by
   fin_cases l <;> fin_cases j <;>
     norm_num [bobWeights, aliceWeights, bobExponents, aliceExponents, lambda,
-      Fin.sum_univ_succ, zeta_components, zeta_cube] <;>
+      Fin.sum_univ_succ, zeta_cube] <;>
+    simp only [zeta_components] <;>
     apply Complex.ext <;>
-    norm_num [Complex.mul_re, Complex.mul_im, h_eq_k] <;>
+    norm_num [Complex.mul_re, Complex.mul_im, h_eq_k, Complex.I_pow_eq_pow_mod] <;>
+    norm_num <;>
     nlinarith [k_alpha, k_beta, show 2 * alpha = c + s by unfold alpha; ring,
       show 2 * beta = s - c by unfold beta; ring]
 
@@ -32,7 +35,7 @@ theorem witness_fourier_compression (l : Fin 4) :
   apply Matrix.ext
   intro i j
   simp only [fourier4, witnessB, witnessA, weighted_conjugate, weighted_entry,
-    Finset.sum_apply, Matrix.smul_apply, smul_eq_mul]
+    Matrix.sum_apply, Matrix.smul_apply, smul_eq_mul]
   calc
     (∑ y : Fin 4, Complex.I ^ (l.val * y.val) * (shift i j * bobWeights y j)) =
         shift i j * (∑ y : Fin 4, Complex.I ^ (l.val * y.val) * bobWeights y j) := by
@@ -155,7 +158,7 @@ theorem phi_unitary_invariance (A : Op 4) (hA : UnitaryRel A) :
   simp only [Matrix.mul_apply, Matrix.conjTranspose_apply] at hu
   change (∑ j : Joint 4 4, A i.1 j.1 * star (A i.2 j.2) * phi j) = phi i
   simp only [phi, Fintype.sum_prod_type]
-  simp only [mul_ite, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, if_true]
+  simp only [mul_ite, mul_zero, Finset.sum_ite_eq', Finset.sum_ite_eq, Finset.mem_univ, if_true]
   rw [← Finset.sum_mul, hu]
   by_cases hi : i.1 = i.2 <;> simp [Matrix.one_apply, hi]
 
@@ -171,6 +174,6 @@ theorem second_witness_residual_zero (l : Fin 4) :
   simp only [applyOp, Matrix.sub_apply, Matrix.smul_apply, smul_eq_mul,
     sub_mul, Finset.sum_sub_distrib, mul_assoc, ← Finset.mul_sum]
   simp only [Matrix.one_apply, ite_mul, zero_mul, Finset.sum_ite_eq', Finset.mem_univ,
-    if_true, one_mul, hv, sub_self, Pi.zero_apply]
+    Finset.sum_ite_eq, if_true, one_mul, hv, sub_self, Pi.zero_apply]
 
 end CyclicBell.D4

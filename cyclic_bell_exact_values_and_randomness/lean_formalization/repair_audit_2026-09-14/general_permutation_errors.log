@@ -1,0 +1,28 @@
+CyclicBell/GeneralPermutation.lean:139:4: warning: 'congr 1' tactic does nothing
+note: this linter can be disabled with `set_option linter.unusedTactic false`
+CyclicBell/GeneralPermutation.lean:220:4: error: simp made no progress
+CyclicBell/GeneralPermutation.lean:221:23: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  ∑ r, (∑ j, ↑‖α r + β r * p.z (σ j)‖) / ↑d
+case intro.intro.intro
+d : ℕ
+inst✝¹ : NeZero d
+R : Type u_1
+inst✝ : Fintype R
+α β : R → ℂ
+M : ℝ
+p : PermutationData d R α β M
+σ : Equiv.Perm (Ix d)
+h0 : encoded (linearPermutationAlice p σ 0) = cyclicShift d
+h1 : encoded (linearPermutationAlice p σ 1) = weightedCycle (p.z ∘ ⇑σ)
+hb : encoded (linearPermutationBob p σ none) = cyclicShift d
+hbr : ∀ (r : R), encoded (linearPermutationBob p σ (some r)) = entryConjugate (weightedCycle (p.s r ∘ ⇑σ))
+hv : ∀ (T : Mat (Ix d × Ix d)), stateEval (entangledState d).density T = (expectation (maximallyEntangled d) T).re
+hs : ∑ r, (∑ j, ↑‖α r + β r * p.z (σ j)‖) / ↑d = ↑M
+⊢ (∑ i,
+          expectation (maximallyEntangled d)
+            (kron (α i • cyclicShift d + β i • weightedCycle (p.z ∘ ⇑σ))
+              (weightedCycle fun j => star (p.s i (σ j))))).re +
+      1 =
+    M + 1
+CyclicBell/GeneralPermutation.lean:237:41: warning: unused variable `hd`
+note: this linter can be disabled with `set_option linter.unusedVariables false`

@@ -12,6 +12,8 @@ namespace CyclicBell.D4
 set_option maxRecDepth 10000
 set_option maxHeartbeats 8000000
 
+attribute [local simp] Matrix.cons_val_two Matrix.cons_val_three
+
 abbrev Q := Fin 4
 
 def q : Q → ℂ := ![1, (h : ℂ) + h * Complex.I, -1, -(h : ℂ) + h * Complex.I]
@@ -63,7 +65,7 @@ theorem weights_are_final_swap (j : Q) : swappedWeights j = equalityRoots (kappa
 
 theorem q_recurrence (j : Q) : q (j + 1) = swappedWeights j * q j := by
   fin_cases j <;> apply Complex.ext <;>
-    norm_num [q, swappedWeights, Complex.mul_re, Complex.mul_im] <;> nlinarith [h_sq]
+    norm_num [q, swappedWeights, Fin.add_def, Complex.mul_re, Complex.mul_im] <;> nlinarith [h_sq]
 
 theorem q_unit_modulus (j : Q) : Complex.normSq (q j) = 1 := by
   fin_cases j <;>
@@ -71,7 +73,7 @@ theorem q_unit_modulus (j : Q) : Complex.normSq (q j) = 1 := by
 
 /-- No state-normalization hypothesis is supplied: it is computed. -/
 theorem phi_normalized : ip phi phi = 1 := by
-  norm_num [ip, phi, Fintype.sum_prod_type, Fin.sum_univ_succ]
+  apply Complex.ext <;> norm_num [ip, phi, Fintype.sum_prod_type, Fin.sum_univ_succ]
 
 theorem u_orthonormal (a b : Q) : ip (u a) (u b) = if a = b then 1 else 0 := by
   fin_cases a <;> fin_cases b <;>

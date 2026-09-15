@@ -21,7 +21,7 @@ structure CommutingOn (d : ℕ) [NeZero d] (α β H : Type*)
   cross : ∀ x y a b,
     (alice x).effect a * (bob y).effect b = (bob y).effect b * (alice x).effect a
 
-def hilbertMoment (ψ : H) (T : H →L[ℂ] H) : ℂ := inner ℂ ψ (T ψ)
+def hilbertMoment (ψ : H) (T : H →L[ℂ] H) : ℂ := ⟪ψ, T ψ⟫_ℂ
 
 theorem hilbertMoment_add (ψ : H) (S T : H →L[ℂ] H) :
     hilbertMoment ψ (S+T) = hilbertMoment ψ S + hilbertMoment ψ T := by
@@ -37,7 +37,7 @@ theorem hilbertMoment_sum {J : Type*} [Fintype J] (ψ : H) (T : J → H →L[ℂ
 
 theorem hilbertMoment_star (ψ : H) (T : H →L[ℂ] H) :
     star (hilbertMoment ψ T) = hilbertMoment ψ (star T) := by
-  change star (inner ℂ ψ (T ψ)) = inner ℂ ψ (T.adjoint ψ)
+  change star (⟪ψ, T ψ⟫_ℂ) = ⟪ψ, T.adjoint ψ⟫_ℂ
   rw [T.adjoint_inner_right]
   exact inner_conj_symm (T ψ) ψ
 

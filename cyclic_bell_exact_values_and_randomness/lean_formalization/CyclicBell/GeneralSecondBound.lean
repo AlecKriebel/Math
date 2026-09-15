@@ -31,7 +31,7 @@ theorem second_physical_upper (hd : 2≤d)
   unfold secondReducedOperator at h
   simp_rw [secondFourier_bobLift,lift_product] at h
   rw [stateEval_sum] at h
-  simp_rw [stateEval_herm s.state.positive.isHermitian] at h
+  simp_rw [stateEval_herm _ _ s.state.positive.isHermitian] at h
   have ha := aligned_upper s.state.positive s.state.normalized
     (kron_unitary (encoded_unitary (s.alice 0)) (encoded_unitary (s.bob none)))
   exact add_le_add h ha

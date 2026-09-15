@@ -1,0 +1,32 @@
+CyclicBell/GeneralPolarPhases.lean:19:0: warning: automatically included section variable(s) unused in theorem 'CyclicBell.General.parity_half_dimension':
+  [NeZero d]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [NeZero d] in theorem ...
+note: this linter can be disabled with `set_option linter.unusedSectionVars false`
+CyclicBell/GeneralPolarPhases.lean:95:62: error: unsolved goals
+case pos
+d : ℕ
+inst✝ : NeZero d
+j : Ix d
+h✝ : ZMod.val j < phaseCut d
+⊢ (starRingEnd ℂ) (Complex.exp (↑(halfRootAngle d j) * Complex.I)) * Complex.exp (↑(halfRootAngle d j) * Complex.I) = 1
+
+case neg
+d : ℕ
+inst✝ : NeZero d
+j : Ix d
+h✝ : ¬ZMod.val j < phaseCut d
+⊢ (starRingEnd ℂ) (Complex.exp (↑(halfRootAngle d j) * Complex.I)) * Complex.exp (↑(halfRootAngle d j) * Complex.I) = 1
+CyclicBell/GeneralPolarPhases.lean:140:11: error: unsolved goals
+d : ℕ
+inst✝ : NeZero d
+hd : 2 ≤ d
+y k : Ix d
+hs : star (polarPhase y k) * polarPhase y k = 1
+⊢ ↑‖1 + chi y * equalityRoot k‖ = ↑‖polarPhase y k * ↑‖1 + chi y * equalityRoot k‖‖
+CyclicBell/GeneralPolarPhases.lean:199:79: error: type mismatch
+  rfl
+has type
+  ?m.11605 = ?m.11605 : Prop
+but is expected to have type
+  polarBase x✝ = polarBase ((Equiv.addLeft y) x✝) : Prop

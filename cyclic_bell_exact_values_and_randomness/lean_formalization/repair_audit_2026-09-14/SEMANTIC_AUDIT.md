@@ -169,13 +169,15 @@ also includes the added-setting harmonics. However, the manuscript additionally
 claims all local first moments, every added-setting correlator, and an operator
 upper bound in the commuting framework.
 
-No local weighted-cycle trace/moment theorem was found in the supplied sources.
-The general linear upper-bound proof is matrix-only, unlike the specifically
-cyclic first bound. The orthonormal eigenvector package contains ingredients
+`GeneralCycles.weighted_trace_zero` supplies zero weighted-cycle trace (found
+in the implementation follow-up); the physical local-moment and aggregate
+endpoint wrappers remain to be assembled. The general linear upper-bound proof
+is matrix-only, unlike the specifically cyclic first bound. The orthonormal eigenvector package contains ingredients
 for the full simple spectrum, but its endpoint does not literally state
 one-dimensionality of every eigenspace.
 
-Repair: add zero local traces/moments for `d>=2`; assemble both ordinary and
+Repair: use the existing zero-trace lemma to derive local moments for `d>=2`;
+assemble both ordinary and
 added first-harmonic invariances; expose simple spectrum explicitly from the
 complete orthonormal eigenbasis/characteristic polynomial; generalize the
 linear-factor SOS to arbitrary C*-algebras by the same continuous-factor route.
@@ -226,5 +228,8 @@ achievable privacy nonvacuous.
 5. After repairs, perform a second audit of changed endpoint signatures and the
    exact proof dependencies; this report concerns the incoming source design.
 
-No outside communication, Git modification, or Lean source edit was performed
-by this audit agent. No external scientific novelty assessment was attempted.
+No outside communication or Git modification was performed by this audit agent.
+The initial audit did not edit Lean source. A subsequent parent assignment asks
+for new source/polar bridge implementation; its files and compiler evidence are
+separate from this audit of the incoming candidate. No external scientific
+novelty assessment was attempted.

@@ -57,7 +57,8 @@ def sineKernel (d : ℕ) (t : ℝ) : ℝ :=
 requires no scalar-extremum or Bell-upper-bound module. -/
 theorem phase_sum_representatives {R : Type*} [AddCommMonoid R] (f : Ix d → R) :
     (∑ k ∈ Finset.range d,f (k : Ix d))=∑ k : Ix d,f k := by
-  apply Finset.sum_bij (fun k _ => (k : Ix d))
+  classical
+  refine Finset.sum_bij (fun k _ => (k : Ix d)) ?_ ?_ ?_ ?_
   · intro k hk; simp
   · intro i hi j hj hij
     have h := congrArg ZMod.val hij
@@ -115,7 +116,7 @@ theorem phasePair_amplitude (α β : ℝ) (a b : Ix d) :
           cis (-(2*Real.pi*((b.val : ℝ)+β)*j.val/d))) := by ring
       _=_ := by rw [← cis_add]; congr 2; ring
   simp only [ip,vectorTensor,maximallyEntangled,Fintype.sum_prod_type,
-    mul_ite,mul_zero,Finset.sum_ite_eq',Finset.mem_univ,if_true,ht]
+    mul_ite,mul_zero,Finset.sum_ite_eq,Finset.sum_ite_eq',Finset.mem_univ,if_true,ht]
   rw [← Finset.mul_sum]
   congr 1
   unfold phaseGeometricSum
@@ -144,7 +145,7 @@ theorem phaseGeometric_telescoping (t : ℝ) :
     | zero => simp
     | succ n ih => rw [Finset.sum_range_succ,mul_add,ih,pow_succ]; ring
   have hp (j : ℕ) : r^j=cis (2*Real.pi*t*(j : ℝ)/(d : ℝ)) := by
-    dsimp [r]
+    change cis (2*Real.pi*t/(d : ℝ)) ^ j = _
     rw [cis_pow]
     congr 1
     ring
@@ -160,9 +161,9 @@ theorem normSq_one_sub_cis_double (x : ℝ) :
     Complex.normSq (1-cis (2*x))=4*Real.sin x^2 := by
   rw [Complex.normSq_apply]
   simp only [Complex.sub_re,Complex.sub_im,Complex.one_re,Complex.one_im,
-    cis_exp,Complex.exp_mul_I,Complex.add_re,Complex.add_im,Complex.ofReal_re,
+    cis_exp,Complex.exp_re,Complex.exp_im,Complex.add_re,Complex.add_im,Complex.ofReal_re,
     Complex.ofReal_im,Complex.mul_re,Complex.mul_im,Complex.I_re,Complex.I_im]
-  simp only [mul_zero,mul_one,zero_mul,sub_zero,add_zero,zero_add]
+  simp only [mul_zero,mul_one,zero_mul,sub_zero,add_zero,zero_add,Real.exp_zero,one_mul]
   nlinarith [Real.sin_sq_add_cos_sq (2*x),
     Real.sin_sq_add_cos_sq x,Real.cos_two_mul x]
 
@@ -249,6 +250,7 @@ theorem phasePair_equal_offsets (α : ℝ) (a b : Ix d) :
   by_cases hab : a=b
   · simp [hab,Complex.normSq_ofReal]
     field_simp [ne_of_gt (dimension_pos (d := d))]
+    <;> ring
   · simp [hab,sub_ne_zero.mpr hab]
 
 end CyclicBell.General
