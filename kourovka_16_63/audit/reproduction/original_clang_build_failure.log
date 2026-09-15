@@ -1,0 +1,83 @@
+$ /usr/bin/c++ --version
+Apple clang version 21.0.0 (clang-2100.1.1.101)
+Target: arm64-apple-darwin25.6.0
+Thread model: posix
+InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+$ /opt/homebrew/opt/python@3.14/bin/python3.14 scripts/sanity_groups.py
+{
+  "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+  "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+  "results": [
+    {
+      "prime": 3,
+      "group_order": 27,
+      "full_automorphism_order": 54,
+      "all_generator_image_pairs_examined": 729,
+      "relator_satisfying_pairs": 135
+    },
+    {
+      "prime": 5,
+      "group_order": 125,
+      "full_automorphism_order": 500,
+      "all_generator_image_pairs_examined": 15625,
+      "relator_satisfying_pairs": 1125
+    },
+    {
+      "prime": 7,
+      "group_order": 343,
+      "full_automorphism_order": 2058,
+      "all_generator_image_pairs_examined": 117649,
+      "relator_satisfying_pairs": 4459
+    }
+  ]
+}
+$ /usr/bin/c++ -std=c++17 -O2 -Wall -Wextra -Werror -o /Users/alec/Documents/Math/kourovka_16_63/audit/computation_work/build/independent_verify scripts/independent_verify.cpp
+scripts/independent_verify.cpp:80:6: error: misleading indentation; statement is not part of the previous 'for' [-Werror,-Wmisleading-indentation]
+   80 |     }return R;
+      |      ^
+scripts/independent_verify.cpp:71:5: note: previous statement is here
+   71 |     for(int i=0;i<d;++i)for(int j=0;j<d;++j){
+      |     ^
+scripts/independent_verify.cpp:92:10: error: misleading indentation; statement is not part of the previous 'for' [-Werror,-Wmisleading-indentation]
+   92 |         }++r;
+      |          ^
+scripts/independent_verify.cpp:90:9: note: previous statement is here
+   90 |         for(int i=r+1;i<n;++i)if(a[i][c]){int f=a[i][c];
+      |         ^
+scripts/independent_verify.cpp:106:6: error: misleading indentation; statement is not part of the previous 'for' [-Werror,-Wmisleading-indentation]
+  106 |     }return rankp(M);
+      |      ^
+scripts/independent_verify.cpp:103:5: note: previous statement is here
+  103 |     for(int i=0;i<d;++i)for(int j=i+1;j<d;++j){std::vector<int> z(d);
+      |     ^
+scripts/independent_verify.cpp:117:6: error: misleading indentation; statement is not part of the previous 'if' [-Werror,-Wmisleading-indentation]
+  117 |     }return rankp(M);
+      |      ^
+scripts/independent_verify.cpp:114:5: note: previous statement is here
+  114 |     if(!weaker)for(int k=3;k<d;++k){std::vector<int> z(d);
+      |     ^
+scripts/independent_verify.cpp:135:6: error: misleading indentation; statement is not part of the previous 'for' [-Werror,-Wmisleading-indentation]
+  135 |     }return v.size();
+      |      ^
+scripts/independent_verify.cpp:129:5: note: previous statement is here
+  129 |     for(size_t i=0;i<v.size()&&v.size()<d;++i)for(size_t j=0;j<i&&v.size()<d;++j){
+      |     ^
+scripts/independent_verify.cpp:224:6: error: misleading indentation; statement is not part of the previous 'for' [-Werror,-Wmisleading-indentation]
+  224 |     }require(row==nr,"wrong matrix shape");
+      |      ^
+scripts/independent_verify.cpp:217:25: note: previous statement is here
+  217 |     for(int i=0;i<d;++i)for(int j=i+1;j<d;++j)for(int k=0;k<d;++k,++row){
+      |                         ^
+scripts/independent_verify.cpp:224:6: error: misleading indentation; statement is not part of the previous 'for' [-Werror,-Wmisleading-indentation]
+  224 |     }require(row==nr,"wrong matrix shape");
+      |      ^
+scripts/independent_verify.cpp:217:5: note: previous statement is here
+  217 |     for(int i=0;i<d;++i)for(int j=i+1;j<d;++j)for(int k=0;k<d;++k,++row){
+      |     ^
+scripts/independent_verify.cpp:245:10: error: misleading indentation; statement is not part of the previous 'for' [-Werror,-Wmisleading-indentation]
+  245 |         }require(pivot[c]==powers[v],"pivot normalization failed");
+      |          ^
+scripts/independent_verify.cpp:243:9: note: previous statement is here
+  243 |         for(int b=0;b<nc;++b)if(active_c[b]&&pivot[b]){
+      |         ^
+8 errors generated.

@@ -1,0 +1,11 @@
+# Independent primary-source recheck
+
+Checkpoint: 2026-09-15 UTC (14 September in the author's timezone). Scoped literature check: 100% complete. This is a bounded search, not proof of absolute priority. No individual was contacted.
+
+- [Current Kourovka website](https://kourovkanotebookorg.wordpress.com/) identifies the 1 September 2026 update. The [primary PDF](https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/09/21tkt.pdf) was retrieved independently and its text checked. Printed p. 102 states the exact nontrivial odd-order finite p-group equality question as 16.63, attributed to D. MacHale. Printed p. 255 records the separate divisibility problem 12.77 and its negative answer. Retrieved PDF SHA-256: `2fcce9b98a4df10267fe120229217bfe556c70510704e311540da0cef438f911`. The downloaded source is excluded from the publication package.
+- [Omirov–Ruan, arXiv:2605.04602v1](https://arxiv.org/html/2605.04602v1), Theorem 4.8: the six weights and nonzero bracket pattern agree with the credited template. Their setting is characteristic zero over the complex numbers. The present proof must, and does, separately establish the finite-characteristic claims.
+- [González-Sánchez–Jaikin-Zapirain](https://arxiv.org/html/1406.5772v2), Theorem 1: the asymptotic upper bound has exponent 40/41 and supplies groups with fewer automorphisms than elements. It does not by itself solve exact equality.
+- [Shabani-Attar, accepted manuscript](https://math.usm.my/bulletin/pdf/acceptedpapers/2012-10-027-R1.pdf): Proposition 2.5, Theorem 2.6, and Theorem 2.8 have the restrictions stated in the supplied paper. In particular, Theorem 2.8 assumes both class two and cyclic centre.
+- [Cicalò–de Graaf–Vaughan-Lee](https://iris.unitn.it/retrieve/e3835192-3015-72ef-e053-3705fe0ad821/lazard.pdf), pp. 433–434: finite p-Lie rings of class strictly below p correspond to finite p-groups, with full automorphism preservation. No exponent-p hypothesis is needed. The separate p-adic audit records the detailed scope check.
+
+Focused searches for Kourovka 16.63, MacHale, and equality of group and automorphism orders did not locate an earlier resolution. This search finding and the current notebook's open-problem entry support the paper's bounded literature statement; they do not certify novelty against all unpublished or unindexed work.

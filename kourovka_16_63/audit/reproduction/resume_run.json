@@ -1,0 +1,80 @@
+{
+  "completed_at_utc": "2026-09-15T04:27:49.054607+00:00",
+  "status": "ALL_CHECKS_PASSED",
+  "full_python_regeneration": true,
+  "python": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "compiler": "Apple clang version 21.0.0 (clang-2100.1.1.101)",
+  "compiler_flags": [
+    "-std=c++17",
+    "-O2",
+    "-Wall",
+    "-Wextra",
+    "-Werror"
+  ],
+  "input_sha256": {
+    "scripts/independent_verify.cpp": "85559981b7f5b197c5b07a4118bf3740fb41c5066991f92722ae94f6e4c0f16e",
+    "data/smith_pivot_plan.txt": "e4ba889f433bb0956b2ae5d6f0e94542d84b4de6ace758fe06f8de3776e5ee6c"
+  },
+  "commands": [
+    [
+      "/usr/bin/c++",
+      "--version"
+    ],
+    [
+      "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "-c",
+      "import numpy, sympy; print(\"numpy\", numpy.__version__, \"sympy\", sympy.__version__)"
+    ],
+    [
+      "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "scripts/lie31.py"
+    ],
+    [
+      "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "scripts/exact_linear.py"
+    ],
+    [
+      "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "scripts/smith_local.py",
+      "--precision",
+      "12"
+    ],
+    [
+      "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "scripts/smith_local.py",
+      "--verify-plan",
+      "--precision",
+      "6"
+    ],
+    [
+      "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "scripts/export_presentation.py"
+    ],
+    [
+      "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "scripts/sanity_groups.py"
+    ],
+    [
+      "/usr/bin/c++",
+      "-std=c++17",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-o",
+      "/Users/alec/Documents/Math/kourovka_16_63/audit/computation_work/build/independent_verify",
+      "scripts/independent_verify.cpp"
+    ],
+    [
+      "/Users/alec/Documents/Math/kourovka_16_63/audit/computation_work/build/independent_verify",
+      "data/smith_pivot_plan.txt"
+    ]
+  ],
+  "network_access": false,
+  "randomized_mathematical_steps": false,
+  "external_peer_review_claimed": false,
+  "group_order_exponent": 52359,
+  "full_automorphism_order_exponent": 52359,
+  "proof_dependency": "The report proves the full-stabilizer, lifting, logarithm/exponential, and Lazard steps. This command independently verifies their exact finite linear-algebra inputs."
+}

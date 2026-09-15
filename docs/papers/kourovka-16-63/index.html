@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An explicit affirmative solution to Kourovka Notebook problem 16.63: a finite group of odd prime-power order with exactly as many automorphisms as elements.">
+  <meta name="author" content="Alec Kriebel">
+  <meta name="citation_title" content="An explicit odd-order p-group with as many automorphisms as elements">
+  <meta name="citation_author" content="Alec Kriebel">
+  <meta name="citation_publication_date" content="2026-09-14">
+  <meta name="citation_pdf_url" content="https://aleckriebel.github.io/Math/papers/kourovka-16-63/paper.pdf">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="An affirmative solution to Kourovka Notebook 16.63">
+  <meta property="og:description" content="An explicit group with |G| = |Aut(G)| = 1009^52359, with a full proof and reproducible exact certificates.">
+  <meta property="og:url" content="https://aleckriebel.github.io/Math/papers/kourovka-16-63/">
+  <link rel="canonical" href="https://aleckriebel.github.io/Math/papers/kourovka-16-63/">
+  <title>Kourovka Notebook 16.63 · Alec Kriebel Research</title>
+  <link rel="stylesheet" href="../../assets/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "An explicit odd-order p-group with as many automorphisms as elements",
+    "author": {"@type": "Person", "name": "Alec Kriebel", "identifier": "https://orcid.org/0009-0001-9320-500X"},
+    "contributor": {"@type": "SoftwareApplication", "name": "ChatGPT-6 Astra Pro"},
+    "datePublished": "2026-09-14",
+    "url": "https://aleckriebel.github.io/Math/papers/kourovka-16-63/",
+    "encoding": {"@type": "MediaObject", "contentUrl": "https://aleckriebel.github.io/Math/papers/kourovka-16-63/paper.pdf", "encodingFormat": "application/pdf"}
+  }
+  </script>
+  <script>
+    window.MathJax = {tex: {inlineMath: [["\\(", "\\)"]]}, options: {skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"]}};
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Paper navigation">
+      <a class="brand" href="../../">Alec Kriebel Research</a>
+      <div class="nav-links">
+        <a href="#result">Result</a>
+        <a href="#proof">Proof</a>
+        <a href="#verification">Verification</a>
+        <a href="#attribution">Attribution</a>
+      </div>
+    </nav>
+    <div class="paper-hero"><div class="inner">
+      <p class="paper-status">Group theory · Computer-assisted proof · Unrefereed preprint</p>
+      <h1>An explicit odd-order <i>p</i>-group with as many automorphisms as elements</h1>
+      <p class="byline">Alec Kriebel · <a href="https://orcid.org/0009-0001-9320-500X">ORCID</a></p>
+      <p class="release">Kourovka Notebook problem 16.63 · <time datetime="2026-09-14">14 September 2026</time></p>
+    </div></div>
+  </header>
+  <main class="paper-main">
+    <div class="button-row paper-actions">
+      <a class="button" href="./paper.pdf">Read the paper</a>
+      <a class="button secondary" href="./source-and-certificates.zip">Download source and certificates</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/tree/main/kourovka_16_63">Repository</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/kourovka_16_63/audit/VERIFICATION_REPORT.md">Independent verification report</a>
+    </div>
+    <article class="paper-text">
+      <section id="result">
+        <h2>An affirmative answer</h2>
+        <p class="lede">There is a nontrivial finite group of odd prime-power order whose full automorphism group has the same order.</p>
+        <div class="theorem-block">
+          <p><strong>Theorem.</strong> The explicit construction in the paper gives a finite group \(G\) with</p>
+          <div class="equation">\[|G|=|\operatorname{Aut}(G)|=1009^{52359}.\]</div>
+          <p>This answers D. MacHale’s existence question in <a href="https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/09/21tkt.pdf">Kourovka Notebook 16.63</a>.</p>
+        </div>
+        <p>The group is specified by 31 coordinates modulo \(1009^{1689}\), an explicit integer Lie bracket, and the finite Baker–Campbell–Hausdorff multiplication rule. Its nilpotency class is at most 846, below the prime 1009. No minimality claim is made for its prime or order.</p>
+      </section>
+      <section id="proof">
+        <h2>Why the count includes every automorphism</h2>
+        <p>The construction starts with a 31-dimensional Lie algebra based on an <a href="https://arxiv.org/html/2605.04602v1">Omirov–Ruan template</a>. A choice of lattice forces every automorphism of the finite Lie ring to preserve a rigid flag after reduction modulo 1009. Integral logarithms then turn the full automorphism condition into an exact linear equation.</p>
+        <p>The resulting integer matrix has 14,415 rows, 961 columns, rank 931, and nullity 30. Its nonzero Smith invariants have the following valuations at 1009:</p>
+        <div class="table-wrap">
+          <table class="paper-table">
+            <caption>Exact certificate for the derivation matrix</caption>
+            <thead><tr><th scope="col">Valuation</th><th scope="col">0</th><th scope="col">1</th><th scope="col">2</th><th scope="col">3</th><th scope="col">4</th></tr></thead>
+            <tbody><tr><th scope="row">Multiplicity</th><td>87</td><td>55</td><td>758</td><td>6</td><td>25</td></tr></tbody>
+          </table>
+        </div>
+        <p>The valuation sum is 1689. At depth \(i\geq7\), the full Lie-ring automorphism count is \(1009^{30i+1689}\). Choosing \(i=1689\) makes this equal to the number of elements, \(1009^{31i}\). The <a href="https://doi.org/10.1016/j.jalgebra.2011.11.031">Lazard correspondence</a> preserves the full automorphism group because the class is strictly less than the prime.</p>
+      </section>
+      <section id="verification">
+        <h2>Reproduce the checks</h2>
+        <p>Download and extract the source package, then run this command from its folder:</p>
+        <pre><code>python3 scripts/resume.py</code></pre>
+        <p>This needs Python 3 and a C++17 compiler supporting 128-bit integers. The verifier reconstructs the brackets and matrix from formulas, replays the exact certificate, checks small-group controls, and confirms that a corrupted certificate is rejected. For full Python regeneration with NumPy and SymPy installed, use <code>python3 scripts/resume.py --full</code>.</p>
+        <p>Separate AI audit agents independently reviewed the finite-field automorphisms, the congruence and logarithm arguments, and the computation. The package contains their reports and fresh reproduction records. The mathematical argument also uses proofs that are outside the scope of the executable checks.</p>
+        <p><strong>Review status:</strong> independently checked by AI agents and exact computation; not externally peer reviewed or formalized in a proof assistant.</p>
+      </section>
+      <section id="attribution">
+        <h2>Attribution and scope</h2>
+        <p><strong>Author:</strong> Alec Kriebel. <strong>AI attribution:</strong> ChatGPT-6 Astra Pro solved the problem and developed the construction, proof, and supporting scripts, as attributed by the author. Codex performed the independent review and prepared this publication.</p>
+        <p>The underlying Lie-algebra template is credited to Omirov and Ruan, Theorem 4.8. The paper supplies its integer normalization, the required finite-characteristic arguments, the asymmetric lattice, and the exact full finite-automorphism count. The literature audit distinguishes this equality problem from the earlier divisibility conjecture in Archive 12.77.</p>
+        <p>A focused literature search found no earlier resolution of the exact question. This is a bounded search finding, not a guarantee of bibliographic priority. Full references and the audit trail accompany the paper.</p>
+      </section>
+    </article>
+  </main>
+  <footer class="site-footer"><div class="container"><p><a href="../../">Alec Kriebel Research</a> · <a href="https://github.com/AlecKriebel/Math/tree/main/kourovka_16_63">Source and verification</a></p></div></footer>
+</body>
+</html>
