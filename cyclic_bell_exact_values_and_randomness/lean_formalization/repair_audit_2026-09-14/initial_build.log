@@ -1,0 +1,316 @@
+✔ [2911/2992] Built CyclicBell.Model
+✔ [2912/2992] Built CyclicBell.Functionals
+✖ [2913/2992] Building CyclicBell.MatrixAlgebra
+trace: .> LEAN_PATH=././.lake/packages/Cli/.lake/build/lib/lean:././.lake/packages/batteries/.lake/build/lib/lean:././.lake/packages/Qq/.lake/build/lib/lean:././.lake/packages/aesop/.lake/build/lib/lean:././.lake/packages/proofwidgets/.lake/build/lib/lean:././.lake/packages/importGraph/.lake/build/lib/lean:././.lake/packages/LeanSearchClient/.lake/build/lib/lean:././.lake/packages/plausible/.lake/build/lib/lean:././.lake/packages/mathlib/.lake/build/lib/lean:././.lake/build/lib/lean /Users/alec/.elan/toolchains/leanprover--lean4---v4.19.0/bin/lean ././././CyclicBell/MatrixAlgebra.lean -R ./././. -o ././.lake/build/lib/lean/CyclicBell/MatrixAlgebra.olean -i ././.lake/build/lib/lean/CyclicBell/MatrixAlgebra.ilean -c ././.lake/build/ir/CyclicBell/MatrixAlgebra.c --json
+error: ././././CyclicBell/MatrixAlgebra.lean:53:2: unsolved goals
+case left
+ι : Type u_1
+inst✝¹ : Fintype ι
+inst✝ : DecidableEq ι
+U : Mat ι
+hU : UnitaryRel U
+z : ℂ
+hz : star z * z = 1
+⊢ (z * star z) • 1 = 1
+error: ././././CyclicBell/MatrixAlgebra.lean:55:2: unsolved goals
+case right
+ι : Type u_1
+inst✝¹ : Fintype ι
+inst✝ : DecidableEq ι
+U : Mat ι
+hU : UnitaryRel U
+z : ℂ
+hz : star z * z = 1
+hz' : z * star z = 1
+⊢ (star z * z) • 1 = 1
+warning: ././././CyclicBell/MatrixAlgebra.lean:74:8: automatically included section variable(s) unused in theorem 'CyclicBell.stateEval_add':
+  [DecidableEq ι]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq ι] in theorem ...
+note: this linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: ././././CyclicBell/MatrixAlgebra.lean:77:8: automatically included section variable(s) unused in theorem 'CyclicBell.stateEval_sub':
+  [DecidableEq ι]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq ι] in theorem ...
+note: this linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: ././././CyclicBell/MatrixAlgebra.lean:80:8: automatically included section variable(s) unused in theorem 'CyclicBell.stateEval_zero':
+  [DecidableEq ι]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq ι] in theorem ...
+note: this linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: ././././CyclicBell/MatrixAlgebra.lean:85:0: automatically included section variable(s) unused in theorem 'CyclicBell.stateEval_sum':
+  [DecidableEq ι]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq ι] in theorem ...
+note: this linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: ././././CyclicBell/MatrixAlgebra.lean:89:0: automatically included section variable(s) unused in theorem 'CyclicBell.stateEval_adjoint':
+  [DecidableEq ι]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [DecidableEq ι] in theorem ...
+note: this linter can be disabled with `set_option linter.unusedSectionVars false`
+error: ././././CyclicBell/MatrixAlgebra.lean:108:4: type mismatch, term
+  Matrix.PosSemidef.re_dotProduct_nonneg hT (Pi.single i 1)
+after simplification has type
+  0 ≤ (star (Pi.single i 1) ⬝ᵥ Tᵀ i).re : Prop
+but is expected to have type
+  0 ≤ (T i i).re : Prop
+error: ././././CyclicBell/MatrixAlgebra.lean:166:2: tactic 'apply' failed, failed to unify
+  Finset.sum ?m.16065 ?m.16061 = Finset.sum ?m.16065 ?m.16062
+with
+  ∑ x, ∑ x_1, A i.1 x * B i.2 x_1 * (C x j.1 * D x_1 j.2) = ∑ x, ∑ i_1, A i.1 i_1 * C i_1 j.1 * (B i.2 x * D x j.2)
+case a
+nA nB : ℕ
+A C : Op nA
+B D : Op nB
+i j : Joint nA nB
+⊢ ∑ x, ∑ x_1, A i.1 x * B i.2 x_1 * (C x j.1 * D x_1 j.2) = ∑ x, ∑ i_1, A i.1 i_1 * C i_1 j.1 * (B i.2 x * D x j.2)
+error: ././././CyclicBell/MatrixAlgebra.lean:225:2: unsolved goals
+n : ℕ
+M : PVM n
+f g : Fin 4 → ℂ
+a : Fin 4
+a✝ : a ∈ Finset.univ
+⊢ g a • f a • M.effect a = (f a * g a) • M.effect a
+error: ././././CyclicBell/MatrixAlgebra.lean:226:2: unsolved goals
+case h₀
+n : ℕ
+M : PVM n
+f g : Fin 4 → ℂ
+a : Fin 4
+a✝¹ : a ∈ Finset.univ
+b : Fin 4
+a✝ : b ∈ Finset.univ
+hba : b ≠ a
+⊢ b = a → f b = 0 ∨ M.effect b = 0
+error: ././././CyclicBell/MatrixAlgebra.lean:243:4: tactic 'cases' failed, nested error:
+dependent elimination failed, failed to solve equation
+  Fin.foldr.loop n (fun x1 x2 => (fun i => i) x1 :: x2) n ⋯ [] = a :: as✝
+at case List.Mem.head
+error: ././././CyclicBell/MatrixAlgebra.lean:239:2: unsolved goals
+case h.e'_2.h
+n : ℕ
+M : PVM n
+a : Fin n
+⊢ spectralSum M (fun a => (-Complex.I) ^ ↑a * Complex.I ^ ↑a) a = spectralSum M (fun x => 1) a
+error: ././././CyclicBell/MatrixAlgebra.lean:248:4: tactic 'cases' failed, nested error:
+dependent elimination failed, failed to solve equation
+  Fin.foldr.loop n (fun x1 x2 => (fun i => i) x1 :: x2) n ⋯ [] = a :: as✝
+at case List.Mem.head
+error: ././././CyclicBell/MatrixAlgebra.lean:244:2: unsolved goals
+case h.e'_2.h
+n : ℕ
+M : PVM n
+a : Fin n
+⊢ spectralSum M (fun a => Complex.I ^ ↑a * (-Complex.I) ^ ↑a) a = spectralSum M (fun x => 1) a
+error: ././././CyclicBell/MatrixAlgebra.lean:259:6: no goals to be solved
+error: ././././CyclicBell/MatrixAlgebra.lean:267:2: tactic 'cases' failed, nested error:
+dependent elimination failed, failed to solve equation
+  Fin.foldr.loop n (fun x1 x2 => (fun i => i) x1 :: x2) n ⋯ [] = a :: as✝
+at case List.Mem.head
+error: ././././CyclicBell/MatrixAlgebra.lean:262:78: unsolved goals
+case h.e'_2.h
+n : ℕ
+M : PVM n
+a : Fin n
+⊢ spectralSum M (fun a => (Complex.I ^ ↑a) ^ 4) a = spectralSum M (fun x => 1) a
+error: Lean exited with code 1
+✖ [2916/2992] Building CyclicBell.GeneralFourier
+trace: .> LEAN_PATH=././.lake/packages/Cli/.lake/build/lib/lean:././.lake/packages/batteries/.lake/build/lib/lean:././.lake/packages/Qq/.lake/build/lib/lean:././.lake/packages/aesop/.lake/build/lib/lean:././.lake/packages/proofwidgets/.lake/build/lib/lean:././.lake/packages/importGraph/.lake/build/lib/lean:././.lake/packages/LeanSearchClient/.lake/build/lib/lean:././.lake/packages/plausible/.lake/build/lib/lean:././.lake/packages/mathlib/.lake/build/lib/lean:././.lake/build/lib/lean /Users/alec/.elan/toolchains/leanprover--lean4---v4.19.0/bin/lean ././././CyclicBell/GeneralFourier.lean -R ./././. -o ././.lake/build/lib/lean/CyclicBell/GeneralFourier.olean -i ././.lake/build/lib/lean/CyclicBell/GeneralFourier.ilean -c ././.lake/build/ir/CyclicBell/GeneralFourier.c --json
+error: ././././CyclicBell/GeneralFourier.lean:44:6: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  (starRingEnd ℂ) ?m.3304 * ?m.3304
+d : ℕ
+inst✝ : NeZero d
+j : Ix d
+⊢ star (chi j) * chi j = 1
+error: ././././CyclicBell/GeneralFourier.lean:119:6: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  ZMod.dft.symm ?Ψ ?k
+d : ℕ
+inst✝ : NeZero d
+q : Ix d → ℂ
+j : Ix d
+h : ZMod.dft.invFun ((↑ZMod.dft).toFun q) j = q j
+⊢ q j = (↑d)⁻¹ * ∑ m, chi (-(m * j)) * fourier q m
+error: ././././CyclicBell/GeneralFourier.lean:140:2: tactic 'apply' failed, failed to unify
+  Finset.sum ?m.20632 ?m.20628 = Finset.sum ?m.20632 ?m.20629
+with
+  ∑ y, ∑ x, chi (m * x) * (q (y + x) * star (q y)) = (starRingEnd ℂ) (fourier q m) * fourier q m
+d : ℕ
+inst✝ : NeZero d
+q : Ix d → ℂ
+m : Ix d
+⊢ ∑ y, ∑ x, chi (m * x) * (q (y + x) * star (q y)) = (starRingEnd ℂ) (fourier q m) * fourier q m
+error: ././././CyclicBell/GeneralFourier.lean:199:4: simp made no progress
+error: ././././CyclicBell/GeneralFourier.lean:286:6: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  ZMod.dft.symm ?Ψ ?k
+d : ℕ
+inst✝² : NeZero d
+E : Type u_1
+inst✝¹ : AddCommGroup E
+inst✝ : Module ℂ E
+f : Ix d → E
+j : Ix d
+h : ZMod.dft.invFun ((↑ZMod.dft).toFun f) j = f j
+⊢ f j = (↑d)⁻¹ • ∑ m, chi (-(m * j)) • moduleFourier f m
+error: ././././CyclicBell/GeneralFourier.lean:322:46: type mismatch
+  moduleFourier_inversion ?m.64578 a
+has type
+  ?m.64578 a = (↑d)⁻¹ • ∑ m, chi (-(m * a)) • moduleFourier ?m.64578 m : Prop
+but is expected to have type
+  σ a b = (↑d)⁻¹ • ∑ k, chi (-(k * a)) • moduleFourier (fun a' => σ a' b) k : Prop
+error: ././././CyclicBell/GeneralFourier.lean:356:57: unsolved goals
+d : ℕ
+inst✝² : NeZero d
+E : Type u_1
+inst✝¹ : AddCommGroup E
+inst✝ : Module ℂ E
+σ : Ix d → Ix d → E
+ρ : E
+hd : ↑d ≠ 0
+h : ∀ (a b : Ix d), σ a b = (↑d)⁻¹ ^ 2 • ρ
+he : ∀ (k l : Ix d), operatorFourier σ k l = (↑d)⁻¹ ^ 2 • ((if k = 0 then ↑d else 0) * if l = 0 then ↑d else 0) • ρ
+⊢ ↑d * ↑d = ↑d ^ 2
+error: ././././CyclicBell/GeneralFourier.lean:357:10: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  (↑d)⁻¹ ^ 2 * (↑d * ↑d)
+case mp.left
+d : ℕ
+inst✝² : NeZero d
+E : Type u_1
+inst✝¹ : AddCommGroup E
+inst✝ : Module ℂ E
+σ : Ix d → Ix d → E
+ρ : E
+hd : ↑d ≠ 0
+h : ∀ (a b : Ix d), σ a b = (↑d)⁻¹ ^ 2 • ρ
+he : ∀ (k l : Ix d), operatorFourier σ k l = (↑d)⁻¹ ^ 2 • ((if k = 0 then ↑d else 0) * if l = 0 then ↑d else 0) • ρ
+hc : (↑d)⁻¹ ^ 2 * (↑d * ↑d) = 1
+⊢ ((↑d)⁻¹ ^ 2 * ((if True then ↑d else 0) * if True then ↑d else 0)) • ρ = ρ
+error: Lean exited with code 1
+✖ [2958/2992] Building CyclicBell.ScalarData
+trace: .> LEAN_PATH=././.lake/packages/Cli/.lake/build/lib/lean:././.lake/packages/batteries/.lake/build/lib/lean:././.lake/packages/Qq/.lake/build/lib/lean:././.lake/packages/aesop/.lake/build/lib/lean:././.lake/packages/proofwidgets/.lake/build/lib/lean:././.lake/packages/importGraph/.lake/build/lib/lean:././.lake/packages/LeanSearchClient/.lake/build/lib/lean:././.lake/packages/plausible/.lake/build/lib/lean:././.lake/packages/mathlib/.lake/build/lib/lean:././.lake/build/lib/lean /Users/alec/.elan/toolchains/leanprover--lean4---v4.19.0/bin/lean ././././CyclicBell/ScalarData.lean -R ./././. -o ././.lake/build/lib/lean/CyclicBell/ScalarData.olean -i ././.lake/build/lib/lean/CyclicBell/ScalarData.ilean -c ././.lake/build/ir/CyclicBell/ScalarData.c --json
+error: ././././CyclicBell/ScalarData.lean:45:2: linarith failed to find a contradiction
+case h1.h
+ht : (√(2 - √2) / 2) ^ 2 = 1 / 2 - √2 / 4
+a✝ : Real.sin (Real.pi / 8) ^ 2 < (2 - √2) / 4
+⊢ False failed
+error: ././././CyclicBell/ScalarData.lean:56:2: linarith failed to find a contradiction
+case h1.h
+ht : √2 / 2 = 2 * s * c
+a✝ : s * c < k / 4
+⊢ False failed
+warning: ././././CyclicBell/ScalarData.lean:124:75: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+error: ././././CyclicBell/ScalarData.lean:193:14: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  15
+case «5»
+⊢ zeta ^ 5 = -↑s + ↑c * Complex.I
+error: ././././CyclicBell/ScalarData.lean:193:14: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  15
+case «6»
+⊢ zeta ^ 6 = -↑h + ↑h * Complex.I
+error: ././././CyclicBell/ScalarData.lean:193:14: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  15
+case «7»
+⊢ zeta ^ 7 = -↑c + ↑s * Complex.I
+error: ././././CyclicBell/ScalarData.lean:193:14: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  15
+case «9»
+⊢ zeta ^ 9 = -↑c - ↑s * Complex.I
+error: ././././CyclicBell/ScalarData.lean:193:14: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  15
+case «10»
+⊢ zeta ^ 10 = -↑h - ↑h * Complex.I
+error: ././././CyclicBell/ScalarData.lean:193:14: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  15
+case «11»
+⊢ zeta ^ 11 = -↑s - ↑c * Complex.I
+error: ././././CyclicBell/ScalarData.lean:193:14: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  15
+case «12»
+⊢ zeta ^ 12 = -Complex.I
+error: ././././CyclicBell/ScalarData.lean:193:14: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  15
+case «13»
+⊢ zeta ^ 13 = ↑s - ↑c * Complex.I
+error: ././././CyclicBell/ScalarData.lean:193:14: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  15
+case «14»
+⊢ zeta ^ 14 = ↑h - ↑h * Complex.I
+error: ././././CyclicBell/ScalarData.lean:193:14: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  15
+case «15»
+⊢ zeta ^ 15 = ↑c - ↑s * Complex.I
+error: ././././CyclicBell/ScalarData.lean:170:70: unsolved goals
+unknown goal
+error: ././././CyclicBell/ScalarData.lean:170:70: unknown metavariable '?_uniq.65189'
+error: ././././CyclicBell/ScalarData.lean:241:66: unsolved goals
+l : Fin 4
+⊢ -Real.sin (Real.pi / 8) = -s
+error: ././././CyclicBell/ScalarData.lean:246:65: unsolved goals
+l : Fin 4
+hsneg : Real.sin (Real.pi * (0 - 1 / 2) / 4) = -s
+hsone : Real.sin (Real.pi * (1 - 1 / 2) / 4) = s
+⊢ Real.cos (Real.pi / 8) = c
+error: ././././CyclicBell/ScalarData.lean:249:67: unsolved goals
+l : Fin 4
+hsneg : Real.sin (Real.pi * (0 - 1 / 2) / 4) = -s
+hsone : Real.sin (Real.pi * (1 - 1 / 2) / 4) = s
+hstwo : Real.sin (Real.pi * (2 - 1 / 2) / 4) = c
+⊢ Real.cos (Real.pi / 8) = c
+info: ././././CyclicBell/ScalarData.lean:258:44: Try this: ring_nf
+info: ././././CyclicBell/ScalarData.lean:258:44: Try this: ring_nf
+info: ././././CyclicBell/ScalarData.lean:258:44: Try this: ring_nf
+info: ././././CyclicBell/ScalarData.lean:258:44: Try this: ring_nf
+error: ././././CyclicBell/ScalarData.lean:240:67: unsolved goals
+case «0»
+hsneg : Real.sin (Real.pi * (0 - 1 / 2) / 4) = -s
+hsone : Real.sin (Real.pi * (1 - 1 / 2) / 4) = s
+hstwo : Real.sin (Real.pi * (2 - 1 / 2) / 4) = c
+hsthree : Real.sin (Real.pi * (3 - 1 / 2) / 4) = c
+hs0 : ↑s ≠ 0
+hc0 : ↑c ≠ 0
+⊢ -(↑s * (Complex.sin (↑Real.pi * (-1 / 8)))⁻¹) = 1
+
+case «1»
+hsneg : Real.sin (Real.pi * (0 - 1 / 2) / 4) = -s
+hsone : Real.sin (Real.pi * (1 - 1 / 2) / 4) = s
+hstwo : Real.sin (Real.pi * (2 - 1 / 2) / 4) = c
+hsthree : Real.sin (Real.pi * (3 - 1 / 2) / 4) = c
+hs0 : ↑s ≠ 0
+hc0 : ↑c ≠ 0
+⊢ Complex.sin (↑Real.pi * (1 / 8)) = ↑s
+
+case «2»
+hsneg : Real.sin (Real.pi * (0 - 1 / 2) / 4) = -s
+hsone : Real.sin (Real.pi * (1 - 1 / 2) / 4) = s
+hstwo : Real.sin (Real.pi * (2 - 1 / 2) / 4) = c
+hsthree : Real.sin (Real.pi * (3 - 1 / 2) / 4) = c
+hs0 : ↑s ≠ 0
+hc0 : ↑c ≠ 0
+⊢ -(Complex.exp (↑Real.pi * Complex.I * (1 / 4)) ^ 2 * ↑c * (Complex.sin (↑Real.pi * (3 / 8)))⁻¹) = -Complex.I
+
+case «3»
+hsneg : Real.sin (Real.pi * (0 - 1 / 2) / 4) = -s
+hsone : Real.sin (Real.pi * (1 - 1 / 2) / 4) = s
+hstwo : Real.sin (Real.pi * (2 - 1 / 2) / 4) = c
+hsthree : Real.sin (Real.pi * (3 - 1 / 2) / 4) = c
+hs0 : ↑s ≠ 0
+hc0 : ↑c ≠ 0
+⊢ Complex.exp (↑Real.pi * Complex.I * (1 / 4)) ^ 6 * ↑c * (Complex.sin (↑Real.pi * (5 / 8)))⁻¹ = -Complex.I
+warning: ././././CyclicBell/ScalarData.lean:262:66: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+note: this linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+error: ././././CyclicBell/ScalarData.lean:275:2: linarith failed to find a contradiction
+case h1.h
+hk : (fun x => x * s) (k ^ 2) = (fun x => x * s) 2
+a✝ : k * ((2 + k) * s / 2) < (1 + k) * s
+⊢ False failed
+error: ././././CyclicBell/ScalarData.lean:280:2: linarith failed to find a contradiction
+case h1.h
+hk : (fun x => x * s) (k ^ 2) = (fun x => x * s) 2
+a✝ : k * (-k * s / 2) < -s
+⊢ False failed
+error: Lean exited with code 1
+Some required builds logged failures:
+- CyclicBell.MatrixAlgebra
+- CyclicBell.GeneralFourier
+- CyclicBell.ScalarData
+error: build failed

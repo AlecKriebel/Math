@@ -1,0 +1,45 @@
+CyclicBell/GeneralWitness.lean:221:6: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  ?a * ?a
+d : ℕ
+inst✝ : NeZero d
+A B : Mat (Ix d)
+⊢ ↑(invSqrtDim d) * (↑(invSqrtDim d) * ∑ i, (A * Bᵀ) i i) = (A * Bᵀ).trace / ↑d
+CyclicBell/GeneralWitness.lean:278:0: warning: automatically included section variable(s) unused in theorem 'CyclicBell.General.phase_prod_unit':
+  [NeZero d]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [NeZero d] in theorem ...
+note: this linter can be disabled with `set_option linter.unusedSectionVars false`
+CyclicBell/GeneralWitness.lean:300:8: error: invalid 'calc' step, left-hand side is
+  star (∏ k ∈ Finset.range r, w ↑k) * star (w ↑r) * ((∏ k ∈ Finset.range r, w ↑k) * w ↑r) : ℂ
+but is expected to be
+  star (w ↑r) * star (∏ x ∈ Finset.range r, w ↑x) * ((∏ x ∈ Finset.range r, w ↑x) * w ↑r) : ℂ
+CyclicBell/GeneralWitness.lean:307:8: warning: automatically included section variable(s) unused in theorem 'CyclicBell.General.prefix_zero':
+  [NeZero d]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [NeZero d] in theorem ...
+note: this linter can be disabled with `set_option linter.unusedSectionVars false`
+CyclicBell/GeneralWitness.lean:321:11: error: tactic 'rewrite' failed, motive is not type correct:
+  fun _a => ∏ j ∈ Finset.range _a, w ↑j = 1
+Error: application type mismatch
+  w ↑j
+argument
+  ↑j
+has type
+  Ix _a : Type
+but is expected to have type
+  Ix d : Type
+
+Explanation: The rewrite tactic rewrites an expression 'e' using an equality 'a = b' by the following process. First, it looks for all 'a' in 'e'. Second, it tries to abstract these occurrences of 'a' to create a function 'm := fun _a => ...', called the *motive*, with the property that 'm a' is definitionally equal to 'e'. Third, we observe that 'congrArg' implies that 'm a = m b', which can be used with lemmas such as 'Eq.mpr' to change the goal. However, if 'e' depends on specific properties of 'a', then the motive 'm' might not typecheck.
+
+Possible solutions: use rewrite's 'occs' configuration option to limit which occurrences are rewritten, or use 'simp' or 'conv' mode, which have strategies for certain kinds of dependencies (these tactics can handle proofs and 'Decidable' instances whose types depend on the rewritten term, and 'simp' can apply user-defined '@[congr]' theorems as well).
+case neg
+d : ℕ
+inst✝ : NeZero d
+w : Ix d → ℂ
+hp : ∏ j, w j = 1
+j : Ix d
+hj : ZMod.val j < d
+hlt : ¬ZMod.val j + 1 < d
+he : ZMod.val j + 1 = d
+hfull : ∏ j ∈ Finset.range d, w ↑j = 1
+⊢ «prefix» w (j + 1) = w j * «prefix» w j

@@ -1,0 +1,29 @@
+[
+  {
+    "case": "signal_after_error",
+    "exit_code": -9,
+    "mock_diagnostic": "error: type mismatch\n",
+    "incoming_runner_accepted_as_proof_rejection": true,
+    "actual_lean_invoked": false,
+    "repaired_runner_accepted_as_proof_rejection": false,
+    "rejection_reason": "Process terminated by signal 9; see 001.log"
+  },
+  {
+    "case": "heartbeat_after_error",
+    "exit_code": 1,
+    "mock_diagnostic": "error: unsolved goals\nerror: maximum number of heartbeats has been reached\n",
+    "incoming_runner_accepted_as_proof_rejection": true,
+    "actual_lean_invoked": false,
+    "repaired_runner_accepted_as_proof_rejection": false,
+    "rejection_reason": "Resource failure is not a proof rejection: maximum number of heartbeats (001.log)"
+  },
+  {
+    "case": "timeout_after_error",
+    "exit_code": 1,
+    "mock_diagnostic": "error: tactic failed\nerror: (deterministic) timeout\n",
+    "incoming_runner_accepted_as_proof_rejection": true,
+    "actual_lean_invoked": false,
+    "repaired_runner_accepted_as_proof_rejection": false,
+    "rejection_reason": "Resource failure is not a proof rejection: deterministic) timeout (001.log)"
+  }
+]
