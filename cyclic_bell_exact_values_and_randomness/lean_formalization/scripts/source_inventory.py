@@ -90,10 +90,12 @@ def inventory(root: Path = ROOT):
 def generate(root: Path = ROOT):
     report=inventory(root)
     names=[i['name'] for i in report['declarations']]
+    modules=['.'.join(Path(p).with_suffix('').parts)
+             for p in report['files'] if p != 'CyclicBell.lean']
     (root/'reference/expected_theorems.json').write_text(json.dumps(names,indent=2,ensure_ascii=False)+'\n')
     # Historical filename retained; now queries every named source declaration.
     (root/'CyclicBell/AxiomAudit.lean').write_text(
-        'import CyclicBell.Statements\n\n'
+        ''.join('import '+module+'\n' for module in modules)+'\n'+
         '/-! GENERATED QUERIES, NOT EXECUTED OUTPUT. The offline runner parses all\n'
         'reports and rejects any dependency outside propext/Classical.choice/Quot.sound.\n'
         'Every named source declaration is queried, including proof-bearing constructors. -/\n\n'+

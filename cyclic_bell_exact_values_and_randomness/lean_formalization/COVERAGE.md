@@ -1,20 +1,24 @@
-# Manuscript coverage — settings appendix and audit continuation
+# Manuscript correspondence and formalization scope
 
-**Every result below is an UNCOMPILED proof-script candidate. There are zero
-kernel-verified endpoints in this delivery.** “End-to-end candidate” describes
-its written hypotheses and source dependency chain, not successful elaboration.
-No result here has an executed axiom report. Offline repairs may be substantive.
+Canonical source: `../main.tex`, merged v1.1.0, Git blob
+`bbd0667c934d5a34dd9c8ced50df91515cb1308c`, SHA-256
+`82a47d69e43a4a3d18aa8c351b81cfae09c9a06910e85d91ae7daf120f201b71`.
+The original downloaded handoff was uncompiled and has been preserved. This
+map describes the repaired statements; it is not itself a compiler receipt.
+See `logs/latest_run.json` for the frozen clean build, controls and complete
+axiom audit, and `repair_audit_2026-09-14/` for independent semantic reviews.
 
-Canonical manuscript: `cyclic_bell_exact_values_and_randomness/main.tex`,
-Git blob `bbd0667c934d5a34dd9c8ced50df91515cb1308c`.
-The source correspondence is by TeX labels, not PDF page numbering.
+Every original named theorem is retained. Repairs correct elaboration, imports,
+coercions and proof steps; they do not replace arbitrary physical strategies
+with the explicit witness or introduce assumed Bell maxima. New `GeneralCoverage*`
+modules fill the mathematical correspondence gaps identified during review.
 
 ## Claim-to-source map
 
 Except the retained d=4 namespace, names below have prefix `CyclicBell.General.`.
 Every listed source module is in the standard `lake build` import graph.
 
-| Manuscript label or location | Written source scope | Module and selected theorem candidates |
+| Manuscript label or location | Written source scope | Module and selected theorems |
 |---|---|---|
 | `eq:Id; cor:first-augmented` | First augmented upper bound, any finite local dimensions and any positive trace-one mixed state | [GeneralFirstBound.lean](CyclicBell/GeneralFirstBound.lean) — `first_physical_upper` |
 | `lem:scalar` | Roots-of-unity maximum and exact equality phases in every d>=2 | [GeneralScalar.lean](CyclicBell/GeneralScalar.lean) — `scalar_bound`, `scalar_equality_iff` |
@@ -48,37 +52,7 @@ bound, and `first_all_dimension_physical_Eve_gap` in `GeneralOperational.lean` h
 instrument. `GeneralConsequences.binary_private_guess_success` converts binary
 operator privacy to every complete guessing POVM's success 1/4.
 
-## What the strongest core candidates actually assume
-
-`first_all_dimension_counterexample` and `second_all_dimension_counterexample`
-construct complete state/PVM tuples, evaluate the actual functionals, compare
-against arbitrary finite local dimensions, and prove a biased designated Born
-table. They do not assume maximality or replace arbitrary competitors by the
-explicit witness. There is no claim of a worst possible Eve realization.
-
-`supported_multiplicity_rigidity` assumes an arbitrary positive trace-one mixed
-state and d-outcome projective measurements attaining the actual first augmented
-value. Its conclusion uses the range of the actual reduced state. Its source
-chain includes purification/support cancellation, invariance, finite-spectrum
-zero transfer, polar kernel handling, deriving Bob/reflection power identities,
-and the rank argument. The reflection hypotheses are not caller assumptions.
-The theorem does not assert a phase relation on the unused ambient complement.
-
-`first_commuting_PVM_upper` and `second_commuting_PVM_upper` quantify over an
-arbitrary complete complex Hilbert space. They are separate proof scripts, not
-corollaries inferred from a finite-dimensional theorem. They concern upper
-bounds; the new correlation-model supremum assembly is recorded below.
-
-The polar-linear permutation and private-MUB criteria are intentionally
-conditional in exactly the mathematical sense of their manuscript statements.
-Their phase/product or private-reference hypotheses must not be advertised as
-proved for arbitrary strategies.
-
-## Newly written model, binary and appendix endpoints
-
-All names in this table have prefix `CyclicBell.General.`. All rows are
-**uncompiled proof-script candidates**, with expanded checks in
-`ModelValueStatements.lean` and pending axiom requests in `AxiomAudit.lean`.
+## Correlation models, binary benchmark and algebraic appendices
 
 | Manuscript claim | New source endpoint and actual scope |
 |---|---|
@@ -98,29 +72,7 @@ All names in this table have prefix `CyclicBell.General.`. All rows are
 | `tab:exact-values`, d=2,3,4,5,6 | `GeneralExactValues.lean`: `small_dimension_exact_value_table` proves the five literal radical values from the trigonometric definition; `first_four_augmented_radical_values` instantiates all three model suprema. |
 | Characteristic polynomial following `eq:weighted-cycle` | `GeneralCycleCharpoly.lean`: `weighted_cycle_charpoly` proves `X^d - C(product w)` for every nonzero complex weight tuple. Nonunit weights and non-product-one tuples are included. `phase_cycle_charpoly` specializes to the physical unit-phase case. |
 
-### The closure route and its precise limit
-
-`continuous_bound_on_closure` extends a scalar sublevel bound to Qqa by continuity
-of the actual finite Bell functional. `bellSupremum_of_attained_bound` exhibits
-nonemptiness and boundedness before using real `sSup`. The selected witness and
-arbitrary-model upper bounds are discharged in each named value endpoint.
-
-**No theorem `Qqa subset Qqc` or closedness of Qqc is claimed.** Those are not
-needed for the value equalities just listed. The general inclusion displayed
-in the manuscript remains a separate, unwritten source endpoint. Lean's `Type`
-carrier convention in these sets is a universe-size convention, not a finite
-Hilbert-dimension restriction.
-
-`BinaryPrivacyAt` is an explicitly universally quantified *property to prove or
-refute*, not a validity assumption. The achievable behavior is shown to lie in
-Qq, and `purifyStrategy` constructs a compatible finite purification; the privacy
-statement is not vacuous. Its proof has no claim of arbitrary-Hilbert Eve privacy.
-
-## New adversarial and source-Fourier endpoints
-
-All new rows are **uncompiled proof-script candidates**, not formal certification.
-Names below have prefix `CyclicBell.General.`. `AdversarialStatements.lean`
-checks expanded definitions/quantifiers; the normal build reaches every module.
+## Adversarial quantities and source Fourier conventions
 
 | Manuscript claim | New source endpoint and scope |
 |---|---|
@@ -134,18 +86,7 @@ checks expanded definitions/quantifiers; the normal build reaches every module.
 | `eq:source-fourier` | `GeneralSourceFourier.lean`: `source_coefficient_DFT`, `source_fourier_zero`, `source_fourier_one`. Actual integer triangular exponent, positive clock, forward shift and source normalization. |
 | `app:attainment` qutrit formula | `source_qutrit_operator`. This is the explicit coefficient/matrix identity, not a complete source-polar strategy identification. |
 
-### Retained prior-pass source repair
-
-The incoming `GeneralScalar.lean` referred four times to `dimension_pos`, which
-was declared in `GeneralWitness.lean` outside its import closure. The unchanged
-lemma has moved to the shared ancestor `GeneralFourier.lean`. Its statement and
-proof are unchanged. No witness dependency was added to the universal bound.
-The current conservative project-reference scan passes and its mutation tests
-reproduce the incoming failure. This was found by source inspection, not Lean.
-
-## New settings-appendix candidates
-
-All names below have prefix `CyclicBell.General.` and all remain uncompiled.
+## Settings appendix
 
 | Manuscript claim | New source endpoint and scope |
 |---|---|
@@ -161,50 +102,74 @@ These modules do not depend on the scalar extremum or Bell/rigidity endpoints.
 They realize the displayed source tables, not the external cited self-testing
 theorem itself or a formal isometry transport to every convention in that paper.
 
-## Still not supplied as complete formal source endpoints
+## Additional coverage supplied during local repair
 
-1. General Qqa-subset-Qqc / closedness or universal GNS-style model inclusion.
-   The written specific cyclic/binary value equalities and adversarial lower
-   bounds do not assume this theorem.
-2. The canonical-polar/von-Neumann-algebra argument and computational-MUB
-   Toeplitz/SVD intermediate identities as individually translated theorems.
-   The needed bounds/obstruction conclusions have alternative source routes.
-3. Full canonical source-Z/source-coefficient strategy identification with its
-   polar expression, including complete source PVM validity. The coefficient
-   DFTs, both source Fourier sums and the qutrit formula are now written, but
-   those identities alone do not close this separate endpoint.
-4. The external self-testing theorem and a formal convention/isometry transport
-   to its implementation are not supplied. The displayed probability tables,
-   anchor formulas and observed entropy asymptotic themselves are now candidates.
-5. Attainment of a fixed-realization POVM maximum for arbitrary-Hilbert Eve,
-   or a maximizing realization of the worst-case value-conditioned quantity.
-   The latter is not claimed by the paper's lower bound; finite-Eve fixed
-   realization maxima and their finite-q nesting are now written explicitly.
+Names in this section use `CyclicBell.General.`; generic analytic helpers also
+use its `Coverage` namespace.
 
-The actual *adversarial* extended q/qa/qc domains and the paper's model-indexed
-lower bounds are now source candidates, not just informal witness arguments.
-The unknown optimal worst-case guessing value, open classifications, priority
-claims and bibliography are not converted into theorems.
+| Manuscript claim | Repaired correspondence |
+|---|---|
+| `lem:polar` | `GeneralCoveragePolarCanonical`: `canonical_polar_hilbert_positive_factor_identity` proves the actual nested-positive-square-root identity on arbitrary complete Hilbert spaces, including singular C. Given a polar factor, it uses the defining factorization and initial-isometry equations. |
+| `thm:permutation`, arbitrary-Hilbert bound | `GeneralCoveragePermutation`: `linear_commuting_hilbert_bound`, `linear_augmented_commuting_hilbert_bound`; scalar cap is the explicit conditional hypothesis in the paper. |
+| `thm:permutation`, full spectrum and moments | `GeneralCoverageWitness`: `conditional_permutation_simple_spectra` proves every root eigenspace has dimension one; `conditional_permutation_complete_harmonics` covers all local/first-harmonic moments. |
+| `prop:mub`, literal operator system and eigenvalue obstruction | `GeneralCoverageExposure`: `MUBSpace_representation`, `computational_MUB_spectral_obstruction`, `computational_PVM_coefficientwise_saturation`; the matrices are exactly the Fourier/circulant operator system and the conclusion concerns real eigenvalues and physical Phi expectation. |
+| `app:attainment`, literal source coefficients and polar factor | `GeneralCoverageSourceLiteralInterpolation`, `GeneralCoverageSourceWeyl`, `GeneralCoverageSourceFactors`, `GeneralCoverageSourceCanonical`: actual cosecant coefficient polynomial equals the polar function on the actual relative-unitary spectrum; source Bob is unitary and gives the canonical positive-modulus factorization. The modulus inverse is constructed and verified. |
+| `app:attainment`, source Bob order and measurement validity | `GeneralCoverageSourceOrbit`, `GeneralCoverageTwistedPower`, `GeneralCoverageSourceOrder`, `GeneralCoverageSpectralMeasurement`: noncommutative ordered products prove `sourceBob_order`; finite spectral calculus constructs actual PVMs and proves their exact encoding. |
+| `app:attainment`, full simple source spectra | `GeneralCoverageSourceSpectrum`: `source_relative_eigenspace_finrank`, `source_relative_charpoly`, `sourceBob_eigenspace_finrank`. A concrete unitary eigenbasis puts the literal Bob transpose into a unit-phase product-one weighted-cycle form. |
+| `app:attainment`, actual canonical source attainment | `GeneralCoverageSourceStrategy`: `sourcePhysicalStrategy`, `sourcePhysicalStrategy_encodings`, `sourcePhysicalStrategy_attains`. The normalized positive Phi state, source Z/X Alice, literal source Bob matrices, and extra Z-adjoint Bob attain the actual first value `2/sin(pi/(2*d))+1`. |
+| `sec:framework`, Qqa inclusion in Qqc | `GeneralCoverageClosureContainment`: `Qqc_isSeqClosed`, `Qqc_isClosed`, `Qqa_subset_Qqc`, `quantum_model_inclusions`. Closedness/inclusion is for finite input alphabets, including every scenario in the paper. |
 
-## Current inventory and executed status
+The closure proof constructs an actual complete Hilbert space and commuting
+PVMs. `GeneralCoverageUltralimit` gives bounded scalar limits along one common
+ultrafilter; `GeneralCoverageMomentModel` derives a positive word kernel and all
+PVM/cross-party relations from actual varying-Hilbert realizations.
+`GeneralCoverageGNS` realizes that kernel in the completion of its possibly
+degenerate coefficient space. `GeneralCoverageCompletionOperators` and
+`GeneralCoverageReconstruction` extend contractive word actions and recover
+all limiting behavior coordinates. No closedness, limiting strategy or
+universal embedding is assumed. The original value proofs remain independent
+of this additional background theorem.
 
-The scanner finds **1,132 theorem candidates**, 374 definitions, 14 abbreviations,
-16 structures and two named instances. **1,538 pending axiom queries**, **100
-expanded statement examples**, and **81 Lean files** are in the standard build
-and audit graph. The bounded settings extension adds 42 theorem candidates,
-17 definitions, five Lean files and eight expanded statement examples.
+## Reading the quantified claims correctly
 
-Old mathematical Lean modules and all dependency pins are unchanged. Only the
-existing GeneralStatements and AxiomAudit Lean files were extended for normal
-build/audit integration. The runner and tests were changed to reject false
-positive negative-control receipts after crashes or resource exhaustion.
+- The first/second counterexamples include actual states, complete PVMs and Born
+  probabilities, and compare against arbitrary competitors. Their biased target
+  tables give lower bounds on adversarial guessing, not an exact optimal adversary.
+- Supported rigidity concerns the range of the actual reduced state and derives
+  the invariance and reflection relations. It makes no claim on an unused
+  ambient complement and does not assert self-testing or a complete classification.
+- Qqa is the topological closure of the actual finite behavior set. The
+  adversarial approximate model takes closure of full extended behaviors before
+  imposing the exact Bell-score slice. It is not closure of that slice.
+- Finite-Eve fixed-realization POVM maxima are genuinely attained. The outer
+  value-conditioned quantity is a supremum; a maximizing global realization or
+  arbitrary-infinite-Eve fixed-realization maximum is not asserted.
+- Binary privacy is quantified over compatible finite purifications and complete
+  Eve guessing POVMs. It is not restricted to a selected adversary.
+- The conditional permutation and private-MUB criteria retain their stated
+  hypotheses. Settings-table entropy is observed entropy, separately from
+  adversarial conditional entropy.
 
-Executed this pass: 7,794 new exact assertions and 48 controls for d=2..8,
-55 reporting/scanning tests, retained 392 d4 checks and 12+8 SOS checks, and
-static/import/reference/pin/integrity checks. Other historical suites were not
-rerun in this pass; their old receipts remain explicitly historical.
+## Proof correspondence and external boundaries
 
-No Lean process, actual axiom report, clean Lean build, independent agent or
-remote push occurred. None of these finite or lexical checks proves continuity,
-asymptotics, suprema, or universal statements. Whole-paper source coverage is
-still incomplete and every formal endpoint is uncertified.
+This is a formalization of the paper's mathematical claims, not a literal
+translation of every prose proof step. In particular, the computational-MUB
+obstruction uses a stronger constant-diagonal positivity argument instead of
+reproducing its Toeplitz-block/SVD calculation. The general polar identity uses
+C*-algebraic square-root identities instead of a strong-limit/von Neumann
+algebra construction. It assumes the supplied polar decomposition's defining
+properties; existence/uniqueness of arbitrary polar decompositions and their
+strong-limit representations are not separately formalized here. The source
+attaining pencil's factor and inverse are explicitly constructed.
+
+External cited self-testing results, literature priority, bibliography, open
+classification questions and unknown optimal guessing values are not theorem
+claims of this companion. The standard probability/anchor tables and entropy
+asymptotic are proved directly for the displayed physical implementations;
+there is no formal isometry transport of an external self-testing theorem.
+
+The complete declaration list is generated in `reference/source_inventory.json`
+and every name is queried in `CyclicBell/AxiomAudit.lean`. Inventory counts and
+lexical checks alone are not proof evidence. The final actual axiom receipt
+allows only `propext`, `Classical.choice`, and `Quot.sound` and rejects missing
+queries, admissions, custom axioms and native proof-evaluation trust.

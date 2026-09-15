@@ -16,4 +16,5 @@ example (nA nB : ℕ)
     firstValue s≤scalarMaximum 5+1 := first_physical_upper (by norm_num) s
 example (nA nB : ℕ)
     (s : StrategyOn 5 (ZMod 5) (Option (ZMod 5)) (Fin nA) (Fin nB)) :
-    secondValue s≤6 := by simpa using second_physical_upper (by norm_num) s
+    secondValue s≤6 := by
+  convert second_physical_upper (by norm_num) s using 1 <;> norm_num

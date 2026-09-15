@@ -3,19 +3,27 @@
 Checkpoint: 2026-09-15 03:25 UTC (2026-09-14 Pacific).
 
 Audit scope: manuscript correspondence, quantifiers, dependencies, hidden premises,
-and omitted claims. This audit does not certify compilation. The parent task is
-running the compiler and repairing source independently. Estimated completion of
-this bounded semantic audit: 90%; estimated kernel certification established by
-this audit itself: 0%. A percentage of compiled files is not a percentage of the
-paper's mathematical difficulty.
+and omitted claims. The initial independent audit preceded compilation; its
+findings are preserved below with explicit repair status. Subsequent work added
+and normally compiled the source coefficient/PVM/polar/attainment chain and
+independently reviewed the repaired general polar, permutation, and exposure
+coverage. The source endpoint axiom report contains only propext,
+Classical.choice, and Quot.sound. Full clean package certification remains the
+parent task's responsibility. A percentage of compiled files is not a
+percentage of the paper's mathematical difficulty.
 
-## Conclusion
+## Conclusion and current status
 
-The package is **not a full formalization of the manuscript**, even if every
-currently supplied candidate were to compile. Several mathematical statements
-are absent, and a few advertised aggregate endpoints capture only part of the
-corresponding manuscript theorem. The incoming documentation generally discloses
-the large omissions; it must not be replaced by a blanket whole-paper claim.
+The **incoming offline package was not a full formalization**, even if all its
+supplied candidates had compiled. Several named mathematical statements were
+absent and some aggregate endpoints were incomplete. Follow-up modules now
+repair the canonical polar lemma, the actual source coefficient strategy,
+general commuting permutation bounds and local moments, and the exposure
+correspondence. Exact source simple spectra now have a successful normal build and independent
+semantic review in GeneralCoverageSourceSpectrum. The actual Qqa⊆Qqc
+ultralimit/GNS construction has also been independently reviewed. Final clean
+whole-package compilation and axiom verification remain parent release checks;
+this report records semantic correspondence and bounded compilation evidence.
 
 The inspected principal endpoint signatures do not contain an obvious circular
 maximality assumption or hidden restriction to the displayed witness. The
@@ -114,89 +122,104 @@ closure-marginal, nor as the closure of finite saturators. The q and qc domains
 contain actual Eve POVMs. The claimed guessing results are lower bounds, not an
 assertion that the displayed witness is worst-case optimal.
 
-## Gaps which remain even after successful compilation
+## Semantic coverage gaps and repair status
 
-### 1. Canonical polar positive-factor lemma is not formalized
+### 1. Canonical polar positive-factor lemma — repaired
 
-Manuscript `lem:polar` quantifies over arbitrary bounded `C` in one of two
-commuting unital *-algebras and uses its **canonical** polar partial isometry,
-support projections, and modulus square roots. The code proves an alternate
-half-polar identity adapted to the relative-unitary functional calculus.
-`halfPolar_gap_identity` / `algebra_halfPolar_gap` assume the factor identities;
-the following functional-calculus constructions discharge them for the cyclic
-case, but do not construct the canonical polar decomposition for general `C`.
+Independent follow-up review of `GeneralCoveragePolarCanonical` confirms that
+`canonical_polar_hilbert_positive_factor_identity` uses literal nested CFC square
+roots on an arbitrary complete complex Hilbert space. Its hypotheses give the
+polar factorization and canonical initial-isometry defining property, which the
+manuscript's assumed canonical polar decomposition supplies. It derives support
+propagation to square roots via the C*-zero-norm identity, both transported
+moduli via positive square-root uniqueness, and commutation from the stated
+commutation with C. No cross identity, square-root commutation, inverse, or
+nonzero-spectrum hypothesis is assumed. Thus the named conditional polar lemma
+is covered; an independent existence theorem for canonical polar decomposition
+is not asserted by this endpoint and is not required by the lemma's formulation.
+The owning agent reports a successful normal build; final clean axiom audit is
+still the parent task's responsibility.
 
-Repair: implement the full bounded-operator canonical polar factor and its
-commutant/support properties, then the literal lemma; or explicitly label the
-formalization as covering the major conclusions by alternate proofs while
-excluding this named manuscript lemma. An alternate proof of `thm:exact` alone
-does not certify every intermediate lemma in the manuscript.
+### 2. General framework inclusion Qqa⊆Qqc — construction reviewed
 
-### 2. General framework inclusion `Qqa ⊆ Qqc` is absent
+GeneralCoverageClosureContainment now states the literal inclusion with only
+finite Alice/Bob input assumptions, the scope of every scenario in the paper.
+The independent review followed its actual dependency chain: bounded Gram
+kernels of words in the source PVM projections are passed through an
+ultrafilter extending atTop; finite quadratic forms preserve positivity.
+GeneralCoverageGNS equips the algebraic word span with the resulting
+seminorm/inner product and takes its separated Hilbert completion.
 
-The manuscript explicitly displays this inclusion. Only `Qq ⊆ Qqa` and
-`Qq ⊆ Qqc` are supplied. Their conjunction does not imply the missing inclusion.
+Prepending each PVM generator is proved contractive on the limiting kernel and
+extends to a bounded operator. Dense-span arguments derive selfadjointness,
+idempotence, same-input orthogonality, completeness, and cross-party
+commutation. The empty word is normalized. Length-two moments reproduce the
+ordinary behavior limit, giving an actual CommutingOn model. Finally sequential
+closedness gives closedness for the finite behavior coordinate space, and
+closure_minimal proves the desired inclusion. No limiting realization,
+closedness, embedding, or desired correlation is assumed in a validity field.
+The mathematical gap is repaired by this construction; final compiler/axiom
+status belongs to the parent release audit.
 
-Repair: formalize an appropriate compactness/GNS/closedness argument for the
-actual behavior sets, with explicit finite input/output assumptions as needed.
-Do not add this inclusion as a model-validity field. This is separate work and
-does not block the already designed specific Bell-value equality proofs.
+### 3. Canonical source strategy — repaired
 
-### 3. Canonical source strategy and polar identification are absent
+The repaired GeneralSourceFourier correctly spells out the source coefficient
+sum using forward X, positive clock Z, and the integer triangular exponent.
+Independent normal builds now check all d≥2 signs and the d−1 wraparound in
+GeneralCoverageSourceWeyl, SourceInterpolation, and SourceLiteralInterpolation.
+SourceFactors proves actual sourceBob unitarity from its literal coefficients,
+not from a desired Bell value. SourceOrder proves its dth power equals identity
+using all-n actual CFC covariance, the ordered noncommutative product identity,
+and the scalar full orbit product.
 
-`GeneralSourceFourier.sourceBob` correctly spells out the source coefficient
-sum using forward `X`, positive clock `Z`, and the integer triangular exponent.
-The source coefficient DFT, two source Fourier sums, and qutrit expression are
-written. There is no candidate showing that these source Bob matrices form the
-stated order-d PVM encodings, nor their equality to `Q_y^T = conjugate(V_y)`.
+GeneralCoverageSourceCanonical constructs the actual positive invertible H_y,
+identifies it with both CFC.sqrt(L_y† L_y) and CFC.sqrt((1+W_y)†(1+W_y)), and
+proves the exact source coefficient identity with the conjugate polar factor.
+It also proves the literal Q_y=G(1+W_y†)Z† formula with an explicit two-sided
+inverse G. Thus the missing coefficient/PVM-validity dependency is repaired
+without circular reliance on Fourier-sum attainment.
 
-The appendix's uniqueness-via-polar-deficits argument requires source-observable
-unitarity first; the two Fourier sums alone cannot supply it. The existing
-weighted-cycle permutation witness proves the value independently but does not
-identify the distinct source-Z/source-X strategy.
+GeneralCoverageSpectralMeasurement independently packages every order-d
+unitary into positive complete pairwise orthogonal spectral PVMs with exact
+encoding. GeneralCoverageSourceStrategy now compiles and instantiates these
+with the actual source matrices, proving firstValue=M_d+1 using the actual
+maximally entangled state and the two checked source Fourier sums. Full simple
+spectra for W_y and sourceBob now pass a normal build in SourceSpectrum and an
+independent semantic review: its actual normalized phase basis, clock-shift
+action, unitary similarity, and transpose rank transfer preserve all source
+phase and transpose conventions.
+Final clean rebuild and transitive axiom reporting remain required.
 
-Repair: construct the canonical source `W_y,H_y,V_y,Q_y`, prove order, full
-spectrum and literal coefficient equality, then package the corresponding
-actual state/PVM/Bell attainment theorem. In particular, do not infer source
-unitarity merely from a first-harmonic sum attaining the desired numerical value.
+### 4. Conditional phase-permutation theorem — repaired
 
-### 4. Conditional phase-permutation theorem is only partially assembled
+Reviewed GeneralCoveragePermutation supplies `linear_cstar_sos` in an arbitrary
+C*-algebra and reduced/augmented bounds on an arbitrary complete complex
+Hilbert space. The scalar cap and phase/product assumptions remain explicit,
+as required by the genuinely conditional manuscript theorem. Functional
+factors are constructed by actual continuous functional calculus, including
+zero affine factors; no unsupported factor identities are assumed.
 
-`conditional_permutation_theorem` concludes attainment, comparison with finite
-coordinate competitors, and the `A0/Br` harmonics. Its supporting
-`linear_permutation_harmonics` does include `A1/Br`; the generic cycle module
-also includes the added-setting harmonics. However, the manuscript additionally
-claims all local first moments, every added-setting correlator, and an operator
-upper bound in the commuting framework.
+`linear_permutation_local_moments_zero` states all local complex first moments
+for both parties; `linear_permutation_all_harmonics_invariant` covers both
+Alice inputs and every Bob input, including the added alignment input.
+GeneralCoverageWitness independently exposes one-dimensional weighted-cycle
+eigenspaces. These fill the missing aggregate semantic coverage; original
+matrix witness and upper bounds remain valid supporting theorems.
 
-`GeneralCycles.weighted_trace_zero` supplies zero weighted-cycle trace (found
-in the implementation follow-up); the physical local-moment and aggregate
-endpoint wrappers remain to be assembled. The general linear upper-bound proof
-is matrix-only, unlike the specifically cyclic first bound. The orthonormal eigenvector package contains ingredients
-for the full simple spectrum, but its endpoint does not literally state
-one-dimensionality of every eigenspace.
+### 5. Computational-MUB correspondence — repaired with an alternate proof
 
-Repair: use the existing zero-trace lemma to derive local moments for `d>=2`;
-assemble both ordinary and
-added first-harmonic invariances; expose simple spectrum explicitly from the
-complete orthonormal eigenbasis/characteristic polynomial; generalize the
-linear-factor SOS to arbitrary C*-algebras by the same continuous-factor route.
-The scalar cap and phase/product hypotheses are legitimate because the paper's
-theorem is itself conditional; do not remove or falsely advertise them.
+Reviewed GeneralCoverageExposure supplies the Hermitian spectral-to-Loewner
+bridges, the real Fourier/diagonal operator-space representation, and
+`computational_MUB_spectral_obstruction`: unless the operator is scalar, a
+computational eigenvalue has spectral values strictly on both sides. It also
+proves the actual computational-PVM coefficientwise saturation implication
+using the maximally entangled Born trace, not a formal surrogate table.
 
-### 5. Computational-MUB result needs correspondence wrappers
-
-`GeneralExposure` proves a sound and stronger constant-diagonal obstruction:
-if the eigenvalue's corresponding upper or lower Loewner difference is positive,
-the matrix is scalar. The final source specialization spells out the displayed
-diagonal phases. This is an alternative to the manuscript's Toeplitz/SVD proof.
-
-For a literal manuscript claim, add the bridge from Hermitian spectral extrema
-to the Loewner inequalities, membership/representation of the manuscript's
-operator space, and the stated coefficientwise-exposure consequence. The
-intermediate wraparound/SVD identities have not themselves been translated.
-Do not present a coefficientwise spectral obstruction as a universal no-go
-theorem for extra measurements or a joint Bell SOS.
+The implementation uses the stronger constant-diagonal obstruction rather
+than translating intermediate Toeplitz/SVD calculations line by line. It
+establishes the manuscript's stated scientific conclusion with an alternative
+proof. It does not claim a universal obstruction to extra measurements or a
+joint Bell SOS, which would exceed the manuscript's coefficientwise scope.
 
 ### 6. Declared boundaries which are not missing new scientific claims
 

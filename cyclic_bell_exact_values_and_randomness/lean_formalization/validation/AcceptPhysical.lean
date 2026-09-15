@@ -1,4 +1,4 @@
-import CyclicBell
+import CyclicBell.Regression
 open CyclicBell
 open scoped BigOperators
 example : D4.targetBorn 0 1 = (3 : ℝ) / 32 := D4.target_01

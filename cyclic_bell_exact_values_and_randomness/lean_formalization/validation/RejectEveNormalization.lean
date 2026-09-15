@@ -1,4 +1,4 @@
-import CyclicBell
+import CyclicBell.GeneralAdversarialRegression
 noncomputable section
 open CyclicBell CyclicBell.General
 open scoped BigOperators Matrix

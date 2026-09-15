@@ -1,0 +1,7 @@
+import CyclicBell.GeneralCoverageSourceSpectrum
+#print axioms CyclicBell.General.source_relative_eigenspace_finrank
+#print axioms CyclicBell.General.source_relative_charpoly
+#print axioms CyclicBell.General.sourceBob_transpose_similarity
+#print axioms CyclicBell.General.sourceBob_eigenspace_finrank
+#print axioms CyclicBell.General.source_relative_full_simple_spectrum
+#print axioms CyclicBell.General.sourceBob_full_simple_spectrum

@@ -182,7 +182,7 @@ def audit(root: Path = ROOT):
         for imp in lean_imports(cleaned[m]):
             if imp.startswith('CyclicBell'):
                 visit(imp)
-            elif not imp.startswith('Mathlib.'):
+            elif imp != 'Mathlib' and not imp.startswith('Mathlib.'):
                 raise ValueError(f'Unexpected external import: {imp}')
         active.remove(m); seen.add(m)
     visit('CyclicBell')

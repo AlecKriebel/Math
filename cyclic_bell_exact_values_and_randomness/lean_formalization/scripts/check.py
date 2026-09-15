@@ -154,10 +154,8 @@ def main():
     runner = Runner(directory)
     report = {'status': 'started', 'kernel_checked': False, 'formal_endpoint_certified': False,
               'started_utc': start.isoformat(), 'run_id':run_id, 'commands':runner.commands,
-              'remaining_scope_gaps': ['offline elaboration/proof repair until this command succeeds',
-                  'independent statement and manuscript-correspondence review',
-                  'general Qqa subset Qqc/closedness theorem not supplied and not required for these values',
-                  'full canonical source-Z/polar strategy identification not supplied']}
+              'remaining_scope_gaps': ['clean compilation and axiom audit until this command succeeds',
+                  'manuscript correspondence is assessed separately in repair_audit_2026-09-14']}
     exit_code = 2
     try:
         before = protected_fingerprints()
@@ -260,9 +258,8 @@ def main():
                 raise RuntimeError('Dependency sources changed during audit')
         report['status'] = 'candidate_kernel_checks_passed_statement_review_required'
         report['kernel_checked'] = True
-        report['remaining_scope_gaps'] = ['independent statement and manuscript-correspondence review',
-            'general Qqa subset Qqc/closedness theorem not supplied and not required for these values',
-            'full canonical source-Z/polar strategy identification not supplied']
+        report['remaining_scope_gaps'] = [
+            'This runner checks kernels and controls; see the separate manuscript-correspondence evaluation.']
         # Kernel acceptance alone does not certify source correspondence or the entire paper.
         report['formal_endpoint_certified'] = False
         exit_code = 0
@@ -280,7 +277,7 @@ def main():
         print(report['status'])
         print(report.get('error','Candidate checks passed; scope and correspondence still require review.'))
         print(f'Receipt: {directory / "run.json"}')
-        print('Whole-paper certification: false; independent manuscript statement-review status: pending')
+        print('This automated receipt does not certify manuscript correspondence; see repair_audit_2026-09-14.')
     return exit_code
 
 if __name__ == '__main__':

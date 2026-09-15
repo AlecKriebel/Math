@@ -1,3 +1,5 @@
+> Historical assessment, superseded in part by the subsequent construction effort: `GeneralCoverageGNS` and `GeneralCoverageReconstruction` now compile. They construct actual complete Hilbert spaces and commuting PVM models from limit word kernels. The earlier statement that no implementation was attempted records the initial audit checkpoint only; consult `GNS_RESEARCH_LOG.md` and the final integrated report for the closure-wrapper status.
+
 # Qqa subset Qqc: pinned-library feasibility and dependency audit
 
 Timestamp: 2026-09-15T03:54:38.984686+00:00

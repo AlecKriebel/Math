@@ -1,4 +1,4 @@
-import CyclicBell
+import CyclicBell.GeneralSourceFourier
 noncomputable section
 open CyclicBell CyclicBell.General
 -- MUST FAIL: the k=1 source coefficient is negative, with its phase retained.

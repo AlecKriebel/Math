@@ -1,0 +1,12 @@
+import CyclicBell.GeneralCoverageSourceStrategy
+#print axioms CyclicBell.General.sourceBob_unitary
+#print axioms CyclicBell.General.sourceBob_order
+#print axioms CyclicBell.General.sourceModulus_eq_canonical
+#print axioms CyclicBell.General.sourceModulus_inverse
+#print axioms CyclicBell.General.sourceModulus_eq_relative_modulus
+#print axioms CyclicBell.General.sourceBob_transpose_inverse_formula
+#print axioms CyclicBell.General.sourceBob_canonical_polar
+#print axioms CyclicBell.General.finiteOrderMeasurement
+#print axioms CyclicBell.General.sourcePhysicalStrategy
+#print axioms CyclicBell.General.sourcePhysicalStrategy_attains
+#print axioms CyclicBell.General.Coverage.canonical_polar_hilbert_positive_factor_identity

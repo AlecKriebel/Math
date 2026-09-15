@@ -1,0 +1,25 @@
+import CyclicBell.GeneralCoverageGNS
+#print axioms CyclicBell.General.Coverage.kernelInner
+#print axioms CyclicBell.General.Coverage.kernelInner_add_left
+#print axioms CyclicBell.General.Coverage.kernelInner_smul_left
+#print axioms CyclicBell.General.Coverage.kernelInner_hermitian
+#print axioms CyclicBell.General.Coverage.kernelInner_single
+#print axioms CyclicBell.General.Coverage.PositiveKernel
+#print axioms CyclicBell.General.Coverage.KernelSpan
+#print axioms CyclicBell.General.Coverage.kernelSpanAddCommGroup
+#print axioms CyclicBell.General.Coverage.kernelSpanModule
+#print axioms CyclicBell.General.Coverage.kernelSpanCore
+#print axioms CyclicBell.General.Coverage.kernelSpanSeminorm
+#print axioms CyclicBell.General.Coverage.kernelSpanNormedSpace
+#print axioms CyclicBell.General.Coverage.kernelSpanInnerProduct
+#print axioms CyclicBell.General.Coverage.kernelSpan_norm_sq
+#print axioms CyclicBell.General.Coverage.kernelSpan_contraction
+#print axioms CyclicBell.General.Coverage.KernelHilbert
+#print axioms CyclicBell.General.Coverage.kernelEmbed
+#print axioms CyclicBell.General.Coverage.kernelEmbed_dense
+#print axioms CyclicBell.General.Coverage.kernelEmbed_inner
+#print axioms CyclicBell.General.Coverage.kernelVector
+#print axioms CyclicBell.General.Coverage.kernelVector_inner
+#print axioms CyclicBell.General.Coverage.kernelCombination_eq
+#print axioms CyclicBell.General.Coverage.kernelVector_dense_span
+#print axioms CyclicBell.General.Coverage.positiveKernel_realization

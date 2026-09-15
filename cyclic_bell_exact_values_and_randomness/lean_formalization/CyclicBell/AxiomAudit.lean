@@ -1,4 +1,107 @@
+import CyclicBell.AdversarialStatements
+import CyclicBell.Attainment
+import CyclicBell.Cycle4
+import CyclicBell.D4
+import CyclicBell.Endpoints
+import CyclicBell.FirstSOS
+import CyclicBell.Fourier4
+import CyclicBell.Functionals
+import CyclicBell.GeneralAdversarialEntropy
+import CyclicBell.GeneralAdversarialRegression
+import CyclicBell.GeneralAdversarialValues
+import CyclicBell.GeneralAnchoredTables
+import CyclicBell.GeneralBehavior
+import CyclicBell.GeneralBinary
+import CyclicBell.GeneralBinaryCertification
+import CyclicBell.GeneralBinaryModels
+import CyclicBell.GeneralBinaryWitness
+import CyclicBell.GeneralChirp
+import CyclicBell.GeneralCommuting
+import CyclicBell.GeneralCommutingGuessing
+import CyclicBell.GeneralCommutingModel
+import CyclicBell.GeneralConsequences
+import CyclicBell.GeneralCorrelationValues
+import CyclicBell.GeneralCoverageClosureContainment
+import CyclicBell.GeneralCoverageClosureSequence
+import CyclicBell.GeneralCoverageCompletionOperators
+import CyclicBell.GeneralCoverageCovariance
+import CyclicBell.GeneralCoverageExposure
+import CyclicBell.GeneralCoverageGNS
+import CyclicBell.GeneralCoverageMomentModel
+import CyclicBell.GeneralCoveragePermutation
+import CyclicBell.GeneralCoveragePolarAlgebra
+import CyclicBell.GeneralCoveragePolarCanonical
+import CyclicBell.GeneralCoverageReconstruction
+import CyclicBell.GeneralCoverageSourceCanonical
+import CyclicBell.GeneralCoverageSourceFactors
+import CyclicBell.GeneralCoverageSourceInterpolation
+import CyclicBell.GeneralCoverageSourceLiteralInterpolation
+import CyclicBell.GeneralCoverageSourceOrbit
+import CyclicBell.GeneralCoverageSourceOrder
+import CyclicBell.GeneralCoverageSourcePolar
+import CyclicBell.GeneralCoverageSourceSpectrum
+import CyclicBell.GeneralCoverageSourceStrategy
+import CyclicBell.GeneralCoverageSourceWeyl
+import CyclicBell.GeneralCoverageSpectralMeasurement
+import CyclicBell.GeneralCoverageTwistedPower
+import CyclicBell.GeneralCoverageUltralimit
+import CyclicBell.GeneralCoverageWitness
+import CyclicBell.GeneralCycleCharpoly
+import CyclicBell.GeneralCycles
+import CyclicBell.GeneralEqualityPhases
+import CyclicBell.GeneralExactValues
+import CyclicBell.GeneralExposure
+import CyclicBell.GeneralExtendedBehavior
+import CyclicBell.GeneralFiniteSpectrum
+import CyclicBell.GeneralFirstBound
+import CyclicBell.GeneralFirstWitness
+import CyclicBell.GeneralFourier
+import CyclicBell.GeneralFunctionalCalculus
+import CyclicBell.GeneralGuessing
+import CyclicBell.GeneralHilbertBridge
+import CyclicBell.GeneralModel
+import CyclicBell.GeneralModelCounterexamples
+import CyclicBell.GeneralNestedGuessing
+import CyclicBell.GeneralOneInput
+import CyclicBell.GeneralOperational
+import CyclicBell.GeneralOrbitConsequences
+import CyclicBell.GeneralPOVMMaximum
+import CyclicBell.GeneralPartySwap
+import CyclicBell.GeneralPermutation
+import CyclicBell.GeneralPhaseBounds
+import CyclicBell.GeneralPhaseEntropy
+import CyclicBell.GeneralPhaseTables
+import CyclicBell.GeneralPhases
+import CyclicBell.GeneralPolarPhases
+import CyclicBell.GeneralReflectionRank
+import CyclicBell.GeneralRigidity
+import CyclicBell.GeneralScalar
+import CyclicBell.GeneralSecondBound
+import CyclicBell.GeneralSecondCoefficients
+import CyclicBell.GeneralSecondCommuting
+import CyclicBell.GeneralSecondSOS
+import CyclicBell.GeneralSecondWitness
+import CyclicBell.GeneralSourceFourier
+import CyclicBell.GeneralStatements
+import CyclicBell.GeneralSupportAlgebra
+import CyclicBell.GeneralSupportSaturation
+import CyclicBell.GeneralSupportedPhases
+import CyclicBell.GeneralSwap
+import CyclicBell.GeneralTripartite
+import CyclicBell.GeneralWitness
+import CyclicBell.Guessing
+import CyclicBell.MatrixAlgebra
+import CyclicBell.Model
+import CyclicBell.ModelValueStatements
+import CyclicBell.PhaseTableStatements
+import CyclicBell.Phases
+import CyclicBell.PhysicalBounds
+import CyclicBell.Regression
+import CyclicBell.ScalarData
+import CyclicBell.SecondSOS
 import CyclicBell.Statements
+import CyclicBell.TraceCalculus
+import CyclicBell.Witness
 
 /-! GENERATED QUERIES, NOT EXECUTED OUTPUT. The offline runner parses all
 reports and rejects any dependency outside propext/Classical.choice/Quot.sound.
@@ -453,6 +556,318 @@ Every named source declaration is queried, including proof-bearing constructors.
 #print axioms CyclicBell.General.first_augmented_values_q_qa_qc
 #print axioms CyclicBell.General.second_reduced_values_q_qa_qc
 #print axioms CyclicBell.General.second_augmented_values_q_qa_qc
+#print axioms CyclicBell.General.Qqc_isSeqClosed
+#print axioms CyclicBell.General.Qqc_isClosed
+#print axioms CyclicBell.General.Qqa_subset_Qqc
+#print axioms CyclicBell.General.quantum_model_inclusions
+#print axioms CyclicBell.General.Coverage.Qqa_approximating_commuting_sequence
+#print axioms CyclicBell.General.Coverage.behavior_coordinate_complex_tendsto
+#print axioms CyclicBell.General.Coverage.completionOperator
+#print axioms CyclicBell.General.Coverage.completionOperator_coe
+#print axioms CyclicBell.General.Coverage.completionOperator_ext
+#print axioms CyclicBell.General.Coverage.completionOperator_zero
+#print axioms CyclicBell.General.Coverage.completionOperator_one
+#print axioms CyclicBell.General.Coverage.completionOperator_mul
+#print axioms CyclicBell.General.Coverage.completionOperator_comp
+#print axioms CyclicBell.General.Coverage.completionOperator_add
+#print axioms CyclicBell.General.Coverage.completionOperator_smul
+#print axioms CyclicBell.General.Coverage.completionOperator_sum
+#print axioms CyclicBell.General.Coverage.completionOperator_bound
+#print axioms CyclicBell.General.Coverage.completionOfBounded
+#print axioms CyclicBell.General.Coverage.completionOfBounded_coe
+#print axioms CyclicBell.General.Coverage.completionOperator_idempotent
+#print axioms CyclicBell.General.Coverage.completionOperator_commute
+#print axioms CyclicBell.General.Coverage.completionOperator_orthogonal
+#print axioms CyclicBell.General.Coverage.completionOperator_complete
+#print axioms CyclicBell.General.Coverage.completionOperator_inner_symmetry
+#print axioms CyclicBell.General.Coverage.completionOperator_selfadjoint
+#print axioms CyclicBell.General.finiteCalc_toCMatrix
+#print axioms CyclicBell.General.finiteCalc_unitary_conjugation
+#print axioms CyclicBell.General.finiteCalc_scalar_argument
+#print axioms CyclicBell.General.finiteCalc_operator_congr
+#print axioms CyclicBell.General.finiteCalc_covariance
+#print axioms CyclicBell.General.hermitian_spectral_upper_psd
+#print axioms CyclicBell.General.hermitian_spectral_lower_psd
+#print axioms CyclicBell.General.fourierBasisMatrix
+#print axioms CyclicBell.General.fourierCoefficientOperator
+#print axioms CyclicBell.General.fourierCoefficientKernel
+#print axioms CyclicBell.General.fourierCoefficient_circulant
+#print axioms CyclicBell.General.MUBSpaceOperator
+#print axioms CyclicBell.General.MUBSpace_representation
+#print axioms CyclicBell.General.MUBSpace_hermitian
+#print axioms CyclicBell.General.computational_MUB_spectral_obstruction
+#print axioms CyclicBell.General.phi_computational_projector
+#print axioms CyclicBell.General.computational_PVM_coefficientwise_saturation
+#print axioms CyclicBell.General.Coverage.kernelInner
+#print axioms CyclicBell.General.Coverage.kernelInner_add_left
+#print axioms CyclicBell.General.Coverage.kernelInner_smul_left
+#print axioms CyclicBell.General.Coverage.kernelInner_hermitian
+#print axioms CyclicBell.General.Coverage.kernelInner_single
+#print axioms CyclicBell.General.Coverage.PositiveKernel
+#print axioms CyclicBell.General.Coverage.KernelSpan
+#print axioms CyclicBell.General.Coverage.kernelSpanAddCommGroup
+#print axioms CyclicBell.General.Coverage.kernelSpanModule
+#print axioms CyclicBell.General.Coverage.kernelSpanCore
+#print axioms CyclicBell.General.Coverage.kernelSpanSeminorm
+#print axioms CyclicBell.General.Coverage.kernelSpanNormedSpace
+#print axioms CyclicBell.General.Coverage.kernelSpanInnerProduct
+#print axioms CyclicBell.General.Coverage.kernelSpan_norm_sq
+#print axioms CyclicBell.General.Coverage.kernelSpan_contraction
+#print axioms CyclicBell.General.Coverage.KernelHilbert
+#print axioms CyclicBell.General.Coverage.kernelEmbed
+#print axioms CyclicBell.General.Coverage.kernelEmbed_dense
+#print axioms CyclicBell.General.Coverage.kernelEmbed_inner
+#print axioms CyclicBell.General.Coverage.kernelVector
+#print axioms CyclicBell.General.Coverage.kernelVector_inner
+#print axioms CyclicBell.General.Coverage.kernelCombination_eq
+#print axioms CyclicBell.General.Coverage.kernelVector_dense_span
+#print axioms CyclicBell.General.Coverage.positiveKernel_realization
+#print axioms CyclicBell.General.Coverage.WordGenerator
+#print axioms CyclicBell.General.Coverage.MomentWord
+#print axioms CyclicBell.General.Coverage.sourceGenerator
+#print axioms CyclicBell.General.Coverage.sourceWordAction
+#print axioms CyclicBell.General.Coverage.sourceWordVector
+#print axioms CyclicBell.General.Coverage.sourceKernel
+#print axioms CyclicBell.General.Coverage.sourcePolynomialVector
+#print axioms CyclicBell.General.Coverage.sourceGenerator_selfadjoint
+#print axioms CyclicBell.General.Coverage.sourceGenerator_idempotent
+#print axioms CyclicBell.General.Coverage.sourceGenerator_contract
+#print axioms CyclicBell.General.Coverage.sourceWordVector_nil
+#print axioms CyclicBell.General.Coverage.sourceWordVector_cons
+#print axioms CyclicBell.General.Coverage.sourceWordVector_norm_le_one
+#print axioms CyclicBell.General.Coverage.sourceKernel_bound
+#print axioms CyclicBell.General.Coverage.sourceKernel_hermitian
+#print axioms CyclicBell.General.Coverage.sourceKernel_normalized
+#print axioms CyclicBell.General.Coverage.sourceKernel_move_generator
+#print axioms CyclicBell.General.Coverage.sourceKernel_idempotent
+#print axioms CyclicBell.General.Coverage.sourceKernel_alice_orthogonal
+#print axioms CyclicBell.General.Coverage.sourceKernel_bob_orthogonal
+#print axioms CyclicBell.General.Coverage.sourceKernel_alice_complete
+#print axioms CyclicBell.General.Coverage.sourceKernel_bob_complete
+#print axioms CyclicBell.General.Coverage.sourceKernel_cross
+#print axioms CyclicBell.General.Coverage.sourceKernel_behavior
+#print axioms CyclicBell.General.Coverage.wordPrepend
+#print axioms CyclicBell.General.Coverage.sourceKernel_quadratic
+#print axioms CyclicBell.General.Coverage.sourceKernel_positive
+#print axioms CyclicBell.General.Coverage.sourcePolynomial_prepend
+#print axioms CyclicBell.General.Coverage.sourceKernel_prepend_contract
+#print axioms CyclicBell.General.Coverage.sourceKernel_bounded
+#print axioms CyclicBell.General.Coverage.limitEntry
+#print axioms CyclicBell.General.Coverage.sourceQuadratic_bounded
+#print axioms CyclicBell.General.Coverage.limitEntry_quadratic
+#print axioms CyclicBell.General.Coverage.limitingKernel
+#print axioms CyclicBell.General.Coverage.limitEntry_normalized
+#print axioms CyclicBell.General.Coverage.limitEntry_prepend_contract
+#print axioms CyclicBell.General.Coverage.limitEntry_move_generator
+#print axioms CyclicBell.General.Coverage.limitEntry_idempotent
+#print axioms CyclicBell.General.Coverage.limitEntry_alice_orthogonal
+#print axioms CyclicBell.General.Coverage.limitEntry_bob_orthogonal
+#print axioms CyclicBell.General.Coverage.limitEntry_alice_complete
+#print axioms CyclicBell.General.Coverage.limitEntry_bob_complete
+#print axioms CyclicBell.General.Coverage.limitEntry_cross
+#print axioms CyclicBell.General.Coverage.limitEntry_behavior_of_tendsto
+#print axioms CyclicBell.General.linearAlgebraModulusCM
+#print axioms CyclicBell.General.linearAlgebraRootCM
+#print axioms CyclicBell.General.linearAlgebraPolarRootCM
+#print axioms CyclicBell.General.linearAlgebraGapCM
+#print axioms CyclicBell.General.linear_algebra_functional_factors
+#print axioms CyclicBell.General.linearAlgebraOperator
+#print axioms CyclicBell.General.linear_cstar_sos
+#print axioms CyclicBell.General.linear_commuting_hilbert_bound
+#print axioms CyclicBell.General.linear_augmented_commuting_hilbert_bound
+#print axioms CyclicBell.General.linear_permutation_local_moments_zero
+#print axioms CyclicBell.General.linear_permutation_all_harmonics_invariant
+#print axioms CyclicBell.General.Coverage.triangular
+#print axioms CyclicBell.General.Coverage.triangular_zero
+#print axioms CyclicBell.General.Coverage.triangular_succ
+#print axioms CyclicBell.General.Coverage.triangular_double_succ
+#print axioms CyclicBell.General.Coverage.triangular_succ_eq
+#print axioms CyclicBell.General.Coverage.weyl_pow_commute
+#print axioms CyclicBell.General.Coverage.weyl_commute_pow
+#print axioms CyclicBell.General.Coverage.weyl_mul_pow
+#print axioms CyclicBell.General.Coverage.transportedRoot
+#print axioms CyclicBell.General.Coverage.transportedRoot_star
+#print axioms CyclicBell.General.Coverage.transportedRoot_square
+#print axioms CyclicBell.General.Coverage.supportedPolarFactor_square
+#print axioms CyclicBell.General.Coverage.supportedPolarFactor_cross
+#print axioms CyclicBell.General.Coverage.supportedPolarResidual_square
+#print axioms CyclicBell.General.Coverage.sqrt_unitary_conjugation
+#print axioms CyclicBell.General.Coverage.sqrt_commutes_unitary
+#print axioms CyclicBell.General.Coverage.initial_isometry_sqrt
+#print axioms CyclicBell.General.Coverage.polar_left_modulus
+#print axioms CyclicBell.General.Coverage.polar_left_half_modulus
+#print axioms CyclicBell.General.Coverage.canonical_polar_positive_factor_identity
+#print axioms CyclicBell.General.Coverage.canonical_polar_hilbert_positive_factor_identity
+#print axioms CyclicBell.General.Coverage.LimitHilbert
+#print axioms CyclicBell.General.Coverage.limitVector
+#print axioms CyclicBell.General.Coverage.limitVector_inner
+#print axioms CyclicBell.General.Coverage.limitGenerator
+#print axioms CyclicBell.General.Coverage.limitGenerator_vector
+#print axioms CyclicBell.General.Coverage.limitVector_ext
+#print axioms CyclicBell.General.Coverage.limitOperator_ext
+#print axioms CyclicBell.General.Coverage.limitGenerator_selfadjoint
+#print axioms CyclicBell.General.Coverage.limitGenerator_idempotent
+#print axioms CyclicBell.General.Coverage.limitGenerator_alice_orthogonal
+#print axioms CyclicBell.General.Coverage.limitGenerator_bob_orthogonal
+#print axioms CyclicBell.General.Coverage.limitGenerator_alice_complete
+#print axioms CyclicBell.General.Coverage.limitGenerator_bob_complete
+#print axioms CyclicBell.General.Coverage.limitGenerator_cross
+#print axioms CyclicBell.General.Coverage.reconstructedModel
+#print axioms CyclicBell.General.Coverage.reconstructedModel_behavior
+#print axioms CyclicBell.General.sourcePencil
+#print axioms CyclicBell.General.sourceModulus
+#print axioms CyclicBell.General.sourceCanonicalPolar
+#print axioms CyclicBell.General.sourcePencil_relative
+#print axioms CyclicBell.General.sourceModulus_star
+#print axioms CyclicBell.General.sourceModulus_gram
+#print axioms CyclicBell.General.sourceModulus_positive
+#print axioms CyclicBell.General.sourceCanonicalPolar_unitary
+#print axioms CyclicBell.General.sourceLiteralInversePolar_modulus
+#print axioms CyclicBell.General.sourceCanonicalPolar_factor
+#print axioms CyclicBell.General.sourceModulus_square
+#print axioms CyclicBell.General.sourceModulus_eq_canonical
+#print axioms CyclicBell.General.sourceModulus_inverse
+#print axioms CyclicBell.General.sourceModulus_eq_relative_modulus
+#print axioms CyclicBell.General.sourceBob_transpose_inverse_formula
+#print axioms CyclicBell.General.sourceBob_canonical_polar
+#print axioms CyclicBell.General.source_relative_spectral_root
+#print axioms CyclicBell.General.sourceLiteralInversePolar_unit_on_spectrum
+#print axioms CyclicBell.General.sourceLiteralInversePolar_finiteCalc
+#print axioms CyclicBell.General.sourceBob_transpose_finiteCalc
+#print axioms CyclicBell.General.sourceLiteralInversePolar_finiteCalc_unitary
+#print axioms CyclicBell.General.sourceBob_unitary
+#print axioms CyclicBell.General.sourcePolarCoefficient
+#print axioms CyclicBell.General.sourceInversePolarPolynomial
+#print axioms CyclicBell.General.sourcePolarCoefficient_literal
+#print axioms CyclicBell.General.sourceRoot_inverse_character
+#print axioms CyclicBell.General.sourceInversePolarPolynomial_at_root
+#print axioms CyclicBell.General.sourceInversePolarPolynomial_unit
+#print axioms CyclicBell.General.sourceInversePolarPolynomial_quotient
+#print axioms CyclicBell.General.sourceLiteralInversePolar
+#print axioms CyclicBell.General.sourcePolarCoefficient_zero
+#print axioms CyclicBell.General.sourceCosecantCoefficient_last
+#print axioms CyclicBell.General.sourcePolarCoefficient_successor
+#print axioms CyclicBell.General.sourceLiteralInversePolar_term
+#print axioms CyclicBell.General.sourceLiteralInversePolar_at_root
+#print axioms CyclicBell.General.sourceLiteralInversePolar_quotient
+#print axioms CyclicBell.General.source_relative_clock_conjugation
+#print axioms CyclicBell.General.source_finiteCalc_clock_covariance
+#print axioms CyclicBell.General.source_root_rotated
+#print axioms CyclicBell.General.source_polar_product_reindex
+#print axioms CyclicBell.General.sourceLiteralInversePolar_orbit_product
+#print axioms CyclicBell.General.finiteCalc_orderedProduct
+#print axioms CyclicBell.General.scalar_orderedProduct_range
+#print axioms CyclicBell.General.source_finEquiv_apply
+#print axioms CyclicBell.General.source_product_range
+#print axioms CyclicBell.General.source_inverse_polar_ordered_product
+#print axioms CyclicBell.General.sourceBob_order
+#print axioms CyclicBell.General.sourceRelative
+#print axioms CyclicBell.General.source_clock_unitary
+#print axioms CyclicBell.General.source_shift_unitary
+#print axioms CyclicBell.General.source_relative_unitary
+#print axioms CyclicBell.General.source_clock_shift
+#print axioms CyclicBell.General.source_relative_weights
+#print axioms CyclicBell.General.source_equalityBase_power
+#print axioms CyclicBell.General.source_clock_root_product
+#print axioms CyclicBell.General.source_character_product_reindex
+#print axioms CyclicBell.General.source_relative_weight_product
+#print axioms CyclicBell.General.source_relative_power
+#print axioms CyclicBell.General.source_relative_spectral_power
+#print axioms CyclicBell.General.sourceNormalizedWeights
+#print axioms CyclicBell.General.sourceNormalizedWeights_unit
+#print axioms CyclicBell.General.sourceNormalizedWeights_product
+#print axioms CyclicBell.General.sourceNormalizedWeights_matrix
+#print axioms CyclicBell.General.source_relative_eigenspace_eq_normalized
+#print axioms CyclicBell.General.source_relative_eigenspace_finrank
+#print axioms CyclicBell.General.source_relative_charpoly
+#print axioms CyclicBell.General.sourceRelativeBasisMatrix
+#print axioms CyclicBell.General.sourceRelativeBasisMatrix_unitary
+#print axioms CyclicBell.General.source_relative_basis_eigen
+#print axioms CyclicBell.General.source_clock_adjoint_phasedVector
+#print axioms CyclicBell.General.sourceBobCycleWeights
+#print axioms CyclicBell.General.sourceBobCycleWeights_unit
+#print axioms CyclicBell.General.sourceBobCycleWeights_product
+#print axioms CyclicBell.General.sourceBob_transpose_basis_action
+#print axioms CyclicBell.General.sourceBob_transpose_similarity
+#print axioms CyclicBell.General.matrix_eigenspace_eq_kernel
+#print axioms CyclicBell.General.matrix_eigenspace_finrank_of_rank
+#print axioms CyclicBell.General.matrix_eigenspace_finrank_transpose
+#print axioms CyclicBell.General.matrix_rank_mul_unitary_right
+#print axioms CyclicBell.General.matrix_rank_mul_unitary_left
+#print axioms CyclicBell.General.matrix_eigenspace_finrank_unitary_intertwiner
+#print axioms CyclicBell.General.sourceBob_eigenspace_finrank
+#print axioms CyclicBell.General.matrix_mem_spectrum_of_eigenspace_finrank_one
+#print axioms CyclicBell.General.source_relative_full_simple_spectrum
+#print axioms CyclicBell.General.sourceBob_full_simple_spectrum
+#print axioms CyclicBell.General.sourceBobMeasurement
+#print axioms CyclicBell.General.sourceBobMeasurement_encoding
+#print axioms CyclicBell.General.source_clock_adjoint_order
+#print axioms CyclicBell.General.sourceAliceMeasurement
+#print axioms CyclicBell.General.sourceAugmentedBob
+#print axioms CyclicBell.General.sourcePhysicalStrategy
+#print axioms CyclicBell.General.sourcePhysicalStrategy_encodings
+#print axioms CyclicBell.General.source_bell_operator_sum
+#print axioms CyclicBell.General.source_phi_clock
+#print axioms CyclicBell.General.source_phi_shift
+#print axioms CyclicBell.General.source_reduced_expectation
+#print axioms CyclicBell.General.sourcePhysicalStrategy_attains
+#print axioms CyclicBell.General.source_clock_transpose
+#print axioms CyclicBell.General.source_shift_adjoint
+#print axioms CyclicBell.General.source_inverse_shift_clock
+#print axioms CyclicBell.General.source_relative_adjoint
+#print axioms CyclicBell.General.source_relative_adjoint_power_clock
+#print axioms CyclicBell.General.sourceCosecantCoefficient
+#print axioms CyclicBell.General.sourceCoeff_weyl_phase
+#print axioms CyclicBell.General.sourceMode_transpose
+#print axioms CyclicBell.General.sourceBob_transpose_polynomial
+#print axioms CyclicBell.General.finite_order_spectral_root
+#print axioms CyclicBell.General.finite_order_spectral_complete
+#print axioms CyclicBell.General.finiteOrderMeasurement
+#print axioms CyclicBell.General.finiteOrderMeasurement_encoding
+#print axioms CyclicBell.General.Coverage.orderedProduct
+#print axioms CyclicBell.General.Coverage.orderedProduct_zero
+#print axioms CyclicBell.General.Coverage.orderedProduct_succ
+#print axioms CyclicBell.General.Coverage.shift_power
+#print axioms CyclicBell.General.Coverage.twisted_power_ordered
+#print axioms CyclicBell.General.Coverage.conjugate_twisted_power
+#print axioms CyclicBell.General.Coverage.BoundedFamily
+#print axioms CyclicBell.General.Coverage.BoundedFamily.const
+#print axioms CyclicBell.General.Coverage.BoundedFamily.add
+#print axioms CyclicBell.General.Coverage.BoundedFamily.neg
+#print axioms CyclicBell.General.Coverage.BoundedFamily.sub
+#print axioms CyclicBell.General.Coverage.BoundedFamily.mul
+#print axioms CyclicBell.General.Coverage.BoundedFamily.smul
+#print axioms CyclicBell.General.Coverage.BoundedFamily.star
+#print axioms CyclicBell.General.Coverage.BoundedFamily.sum
+#print axioms CyclicBell.General.Coverage.ultraLimit
+#print axioms CyclicBell.General.Coverage.exists_ultra_tendsto_of_eventually_bounded
+#print axioms CyclicBell.General.Coverage.ultraLimit_tendsto
+#print axioms CyclicBell.General.Coverage.ultraLimit_eq_of_tendsto
+#print axioms CyclicBell.General.Coverage.ultraLimit_const
+#print axioms CyclicBell.General.Coverage.ultraLimit_congr
+#print axioms CyclicBell.General.Coverage.ultraLimit_add
+#print axioms CyclicBell.General.Coverage.ultraLimit_neg
+#print axioms CyclicBell.General.Coverage.ultraLimit_sub
+#print axioms CyclicBell.General.Coverage.ultraLimit_mul
+#print axioms CyclicBell.General.Coverage.ultraLimit_smul
+#print axioms CyclicBell.General.Coverage.ultraLimit_star
+#print axioms CyclicBell.General.Coverage.ultraLimit_sum
+#print axioms CyclicBell.General.Coverage.ultraLimit_norm_le
+#print axioms CyclicBell.General.Coverage.ultraLimit_re_nonneg
+#print axioms CyclicBell.General.Coverage.ultraLimit_nonneg
+#print axioms CyclicBell.General.Coverage.ultraLimit_gram_nonneg
+#print axioms CyclicBell.General.Coverage.ultraLimit_gram_re_nonneg
+#print axioms CyclicBell.General.Coverage.ultraLimit_kernel_star
+#print axioms CyclicBell.General.Coverage.naturalUltrafilter
+#print axioms CyclicBell.General.Coverage.naturalUltrafilter_le_atTop
+#print axioms CyclicBell.General.Coverage.ultraLimit_natural_of_tendsto
+#print axioms CyclicBell.General.measurement_effect_encoded
+#print axioms CyclicBell.General.phase_eigenspace_eq_span
+#print axioms CyclicBell.General.weighted_cycle_eigenspace_finrank
+#print axioms CyclicBell.General.phi_local_left
+#print axioms CyclicBell.General.phi_local_right
+#print axioms CyclicBell.General.conditional_permutation_complete_harmonics
+#print axioms CyclicBell.General.conditional_permutation_simple_spectra
 #print axioms CyclicBell.General.cyclePrefixProduct
 #print axioms CyclicBell.General.cyclePrefixProduct_nonzero
 #print axioms CyclicBell.General.cycle_natCast_eq_iff
@@ -790,6 +1205,7 @@ Every named source declaration is queried, including proof-bearing constructors.
 #print axioms CyclicBell.General.partialE
 #print axioms CyclicBell.General.conditionalE
 #print axioms CyclicBell.General.effectKernelE
+#print axioms CyclicBell.General.matrix_map_star_mul
 #print axioms CyclicBell.General.reducedE_partialTrace
 #print axioms CyclicBell.General.reducedE_positive
 #print axioms CyclicBell.General.conditionalE_actual_sandwich
@@ -1118,6 +1534,7 @@ Every named source declaration is queried, including proof-bearing constructors.
 #print axioms CyclicBell.General.source_clock_order
 #print axioms CyclicBell.General.source_clock_last
 #print axioms CyclicBell.General.sourceMode_zero
+#print axioms CyclicBell.General.source_neg_one_val
 #print axioms CyclicBell.General.sourceMode_last
 #print axioms CyclicBell.General.sourceCoeffBase_last
 #print axioms CyclicBell.General.source_fourier_zero

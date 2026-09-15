@@ -1,0 +1,19 @@
+# Concrete word-moment closure bridge
+
+2026-09-15 UTC, initial interface checkpoint: 10% of this newly assigned closure bridge.
+
+Input is a sequence of actual `CommutingOn d α β (H n)` realizations (finite strategies first embed via the already compiled finite-to-commuting bridge). Generator labels are `Sum (α × Ix d) (β × Ix d)`; words are finite lists; generator action prepends a label, and word evaluation is left-to-right operator multiplication. The cyclic vector is the empty word.
+
+The source kernel is the actual complex Hilbert inner product of evaluated word vectors. Its entries have norm at most one, since each PVM projection is a contraction and the physical vector has norm one. Hermitian symmetry, positive finite quadratic forms, generator self-adjointness, projection/idempotence, within-measurement orthogonality and completeness, and Alice/Bob commutation are direct identities of the source model. No limiting Hilbert realization is among these premises.
+
+The shared ultrafilter sends each bounded entry sequence to a complex limit. Algebraic identities transfer through this same ultrafilter, as do nonnegative real quadratic forms and projection contractivity. The limiting kernel is the input to the independently implemented positive-kernel completion. Prepended generator actions extend as contractions from the finite coefficient space; their identities hold on its dense image and hence throughout the complete Hilbert space. The empty-word vector has norm one. Its length-two Born moments equal the behavior limit whenever the source behaviors converge.
+
+Interfaces coordinated with the GNS and Ultralimit agents under namespace `CyclicBell.General.Coverage`. The new source file is `GeneralCoverageMomentModel.lean`. This note is a proof design and is not yet a claim that the limiting construction compiles.
+
+2026-09-15 UTC second checkpoint: approximately 90% of this module's assigned bridge. Direct Lean compilation succeeded for the actual source word kernel, its boundedness and positivity, `wordPrepend` on finite coefficients, and source projection contractivity; it also succeeded for the ultrafilter `limitingKernel` bundle and every transferred generator identity. An ordinary-convergence/behavior identity has now been appended and is being compiled through the standard Lake target. Reconstruction of bounded operators on the completed Hilbert space is assigned separately to the GNS/reconstruction agent.
+
+The interface is explicit: `limitEntry U Hn s`, `limitingKernel U Hn s`, `limitEntry_normalized`, `limitEntry_prepend_contract`, `limitEntry_move_generator`, `limitEntry_idempotent`, both `limitEntry_alice/bob_orthogonal`, both `limitEntry_alice/bob_complete`, and `limitEntry_cross`. The ordinary sequence theorem `limitEntry_behavior_of_tendsto` identifies the empty-word/length-two matrix element with a prescribed pointwise behavior limit. Finiteness of the input sets belongs in the parent closure-to-sequence wrapper; this module does not silently assume a sequence suffices for arbitrary uncountable input spaces.
+
+2026-09-15 UTC final module checkpoint: 100% of the assigned concrete moment bridge; `lake build CyclicBell.GeneralCoverageMomentModel` completed successfully. The ordinary behavior-convergence identity also compiles. All premises are actual source-model validity, a genuine ultrafilter, and (only for the final probability identity) ordinary convergence of the source behaviors. The normal build log is `general_moment_build.log`. Completion of the global Qqa-to-Qqc theorem still requires the separately owned reconstruction and closure wrappers.
+
+2026-09-15T04:09:18Z axiom checkpoint: the constructed `limitingKernel`, transferred prepend contractivity, and behavior-limit bridge have actual compiler-reported axiom sets exactly `[propext, Classical.choice, Quot.sound]`. See `moment_axioms.log` and the reproducible `MomentAxioms.lean` query.

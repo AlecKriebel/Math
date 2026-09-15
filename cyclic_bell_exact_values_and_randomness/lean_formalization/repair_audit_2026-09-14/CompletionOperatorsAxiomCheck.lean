@@ -1,0 +1,6 @@
+import CyclicBell.GeneralCoverageCompletionOperators
+#print axioms CyclicBell.General.Coverage.completionOperator_coe
+#print axioms CyclicBell.General.Coverage.completionOperator_mul
+#print axioms CyclicBell.General.Coverage.completionOperator_bound
+#print axioms CyclicBell.General.Coverage.completionOperator_selfadjoint
+#print axioms CyclicBell.General.Coverage.completionOfBounded_coe

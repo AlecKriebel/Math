@@ -1,16 +1,12 @@
-# Axiom audit — prepared, never executed
+# Executed axiom audit and reproduction
 
-**Actual Lean axiom reports: zero.** No Lean compiler or kernel was invoked in
-this continuation. `#print axioms` lines and a static declaration inventory are
-not axiom reports and are not evidence of formal correctness.
+The received handoff had no compiler results. The repaired package obtains actual
+Lean `#print axioms` output for every explicitly named declaration, including
+proof-bearing definitions and named instances. The ordered names are generated
+in `reference/expected_theorems.json`; the query module explicitly imports every
+source module, including the added coverage constructions.
 
-The generated `CyclicBell/AxiomAudit.lean` imports the entire statement umbrella
-and contains **1,538 pending queries**, one for every explicitly named source
-declaration found by the scanner, including proof-bearing constructors and named
-instances. Its ordered name list is `reference/expected_theorems.json`.
-All 81 source/audit files are reached by the default `CyclicBell` build target.
-
-The permitted foundational axioms are any subset of:
+The only permitted foundational axioms are:
 
 ```text
 propext
@@ -18,33 +14,36 @@ Classical.choice
 Quot.sound
 ```
 
-A report containing `sorryAx`, a custom axiom, native proof-evaluation trust or
-any other axiom must fail. Missing, duplicate and unexpected named reports also
-fail. The parser and its rejection controls were exercised with mocked output,
-not a real Lean executable.
+The runner rejects `sorryAx`, custom axioms, native proof-evaluation trust,
+unexpected or missing reports, duplicate names and changed source fingerprints.
+Static scans additionally reject admissions, unsafe replacements and unapproved
+compiler options. These scans supplement actual elaboration and transitive axiom
+reports; they cannot replace them.
 
-The static scanner rejects source-level admission, custom mathematical axioms,
-`native_decide`, unsafe/evaluator replacements and unapproved compiler options.
-The control registry also scans all separate validation sources. Static absence
-of forbidden tokens is weaker than checking all elaborated transitive proof
-dependencies; imported library names and tactic success have not been tested.
-
-Run the complete offline command:
+Reproduce from this directory with Lean 4.19.0:
 
 ```sh
 python3 scripts/check.py --bootstrap --manuscript ../main.tex
 ```
 
-It checks compiler and manuscript identities, locked dependencies, a clean
-project rebuild, actual positive/negative Lean controls, every axiom report and
-protected source hashes. Only then can actual reports be inspected. The usual
-trust in the pinned Lean binary/runtime, filesystem, hardware and upstream
-compiled dependency cache remains. This is not a from-source compiler bootstrap.
+Omit `--bootstrap` when the exact locked dependencies and cache are installed.
+The command verifies the compiler hash, manuscript SHA/blob and dependency commits,
+removes the companion's build directory, builds the complete library, runs all
+five acceptance and twenty rejection controls, and collects every axiom report.
+Sources and dependencies must remain unchanged throughout that run.
 
-After a real pass, an independent statement-correspondence review is still
-required. Until then, all endpoints—including the new model-value, adversarial
-guessing/finite-POVM-maximum and appendix candidates—remain uncertified.
+`logs/latest_run.json` is the machine-readable outcome. Detailed retained evidence
+and independent manuscript correspondence reviews are in
+`repair_audit_2026-09-14/`. The automated runner deliberately does not claim
+semantic correspondence from compiler success alone; its
+`formal_endpoint_certified` field concerns what that automated process alone
+can establish. Read the separate evaluation and `COVERAGE.md` for that review.
 
-The current five positive and twenty negative controls remain unexecuted in Lean.
-The runner rejects resource-exhaustion and abnormal-process diagnostics even
-when a recognized proof-error message is also present. Its tests use mocks.
+The negative controls must fail inside their designated proof bodies. Missing
+imports, syntax errors, unknown names, crashes and resource exhaustion do not
+count as successful rejection. Failed proof attempts alone do not prove the
+negation of every test statement; these are strict regression controls.
+
+The trust base includes the pinned Lean compiler/runtime, ordinary hardware and
+filesystem, and exact upstream dependency artifacts. This is not a from-source
+compiler bootstrap or an independent implementation of Lean's kernel.

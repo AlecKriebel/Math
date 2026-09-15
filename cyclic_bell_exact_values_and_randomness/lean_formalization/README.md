@@ -1,8 +1,8 @@
 # Cyclic Bell Lean companion
 
-This companion is undergoing local compiler repair and a manuscript-coverage audit. The downloaded handoff was entirely uncompiled. Actual build and axiom logs, independent reviews, and the input receipt are in `repair_audit_2026-09-14/`; its `RESEARCH_LOG.md` records current progress. A complete frozen-source certificate is not yet claimed.
+This is the locally repaired Lean companion to the merged paper. The downloaded handoff was entirely uncompiled. Repairs retain the original mathematical statements and add missing source-strategy, polar, spectral and closure constructions. Read `COVERAGE.md` for exact claim correspondence and proof boundaries. The reproducible frozen clean-build outcome is `logs/latest_run.json`; independent reviews and retained evidence are in `repair_audit_2026-09-14/`.
 
-The canonical manuscript is `../main.tex`, SHA-256 `82a47d69e43a4a3d18aa8c351b81cfae09c9a06910e85d91ae7daf120f201b71`. The original download remains untouched. Earlier handoff/coverage reports and `history/` describe their original snapshots, not current compiler results.
+The canonical manuscript is `../main.tex`, SHA-256 `82a47d69e43a4a3d18aa8c351b81cfae09c9a06910e85d91ae7daf120f201b71`. The original download remains untouched. The received handoff, `history/`, and retained uncompiled-status comments in original source headers describe the incoming snapshots, not current compiler results. Current status comes from the actual receipt and the local evaluation.
 
 ## Reproduction
 

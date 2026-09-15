@@ -4,7 +4,7 @@ import unittest
 import tempfile
 import shutil
 from pathlib import Path
-from source_inventory import inventory, check_delimiters
+from source_inventory import inventory, check_delimiters, generate
 from static_audit import ROOT
 from check import parse_axioms, Runner, validate_negative_diagnostics
 from unittest.mock import patch
@@ -12,6 +12,22 @@ import subprocess
 from static_audit import strip_comments_strings, BANNED, audit, validation_registry
 
 class MachineryTests(unittest.TestCase):
+    def test_generated_queries_import_every_source_module(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d)
+            (root/'CyclicBell'/'Extra').mkdir(parents=True)
+            (root/'reference').mkdir()
+            (root/'CyclicBell.lean').write_text('import CyclicBell.Statements\n')
+            (root/'CyclicBell'/'Statements.lean').write_text('namespace CyclicBell\ntheorem old : True := by trivial\nend CyclicBell\n')
+            (root/'CyclicBell'/'Extra'/'New.lean').write_text('namespace CyclicBell\ntheorem added : True := by trivial\nend CyclicBell\n')
+            generate(root)
+            queries=(root/'CyclicBell'/'AxiomAudit.lean').read_text()
+            self.assertIn('import CyclicBell.Extra.New\n',queries)
+            self.assertIn('import CyclicBell.Statements\n',queries)
+            self.assertNotIn('import CyclicBell\n',queries)
+            self.assertNotIn('import CyclicBell.AxiomAudit\n',queries)
+            self.assertIn('#print axioms CyclicBell.added\n',queries)
+
     def test_allowed_axioms(self):
         text="'Foo.a' depends on axioms: [propext,\n Classical.choice, Quot.sound]\n'Foo.b' does not depend on any axioms"
         self.assertEqual(parse_axioms(text,['Foo.a','Foo.b'])['Foo.b'], [])
@@ -39,6 +55,15 @@ class MachineryTests(unittest.TestCase):
         result=audit()
         self.assertIn('CyclicBell.AxiomAudit',result['imported_modules'])
         self.assertFalse(result['kernel_checked'])
+
+    def test_external_import_lookalike_rejected(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d)/'project'
+            shutil.copytree(ROOT,root,ignore=shutil.ignore_patterns('.lake','__pycache__','history','runs'))
+            source=root/'CyclicBell/GeneralCoveragePolarAlgebra.lean'
+            source.write_text(source.read_text().replace('import Mathlib\n','import MathlibUntrusted\n',1))
+            with self.assertRaisesRegex(ValueError,'Unexpected external import: MathlibUntrusted'):
+                audit(root)
 
     def test_unicode_axiom_name(self):
         name='CyclicBell.firstA₀_unitary'
@@ -80,7 +105,8 @@ class MachineryTests(unittest.TestCase):
         import json
         inv=inventory()
         instances=[x['name'] for x in inv['declarations'] if x['kind']=='instance']
-        self.assertEqual(len(instances),2)
+        self.assertTrue({'CyclicBell.General.finiteMatrixSpectrum',
+                         'CyclicBell.General.discreteMatrixSpectrum'} <= set(instances))
         names=json.loads((ROOT/'reference/expected_theorems.json').read_text())
         self.assertTrue(set(instances)<=set(names))
     def test_general_endpoints_present(self):
@@ -398,8 +424,11 @@ class MachineryTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d)/'project'
             shutil.copytree(ROOT,root,ignore=shutil.ignore_patterns('.lake','__pycache__','history','runs'))
-            p=root/'CyclicBell/GeneralStatements.lean'
-            p.write_text(p.read_text().replace('import CyclicBell.PhaseTableStatements','-- omitted settings audit'))
+            # The generated axiom module now imports every source explicitly.
+            # Remove every incoming edge to simulate omission from the build,
+            # rather than merely removing one redundant import.
+            for p in [root/'CyclicBell.lean',*(root/'CyclicBell').rglob('*.lean')]:
+                p.write_text(p.read_text().replace('import CyclicBell.PhaseTableStatements','-- omitted settings audit'))
             with self.assertRaises(ValueError): audit(root)
 
     def test_settings_imports_do_not_depend_on_bell_bounds_or_scalar_extremum(self):

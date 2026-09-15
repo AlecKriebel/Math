@@ -1,0 +1,25 @@
+CyclicBell/GeneralCoverageSourceStrategy.lean:43:42: error: type mismatch
+  rfl
+has type
+  ?m.10653 = ?m.10653 : Prop
+but is expected to have type
+  True : Prop
+CyclicBell/GeneralCoverageSourceStrategy.lean:98:2: error: invalid '←' modifier, 'CyclicBell.General.sourcePencil' is a declaration name to be unfolded
+CyclicBell/GeneralCoverageSourceStrategy.lean:99:22: error: tactic 'rewrite' failed, did not find instance of the pattern in the target expression
+  ∑ y, expectation (maximallyEntangled ?m.16306) (kron (sourcePencil y) (sourceBob y))
+case intro.intro.intro
+d : ℕ
+inst✝ : NeZero d
+hd : 2 ≤ d
+h0 : encoded ((sourcePhysicalStrategy hd).alice 0) = sourceClock d
+h1 : encoded ((sourcePhysicalStrategy hd).alice 1) = cyclicShift d
+hb : encoded ((sourcePhysicalStrategy hd).bob none) = (sourceClock d)ᴴ
+hbr : ∀ (y : Ix d), encoded ((sourcePhysicalStrategy hd).bob (some y)) = sourceBob y
+hv : ∀ (T : Mat (Ix d × Ix d)), stateEval (entangledState d).density T = (expectation (maximallyEntangled d) T).re
+⊢ (∑ i,
+          expectation (maximallyEntangled d)
+            (kron (encoded (sourceAliceMeasurement 0) + chi i • encoded (sourceAliceMeasurement 1))
+              (encoded (sourceAugmentedBob hd (some i))))).re +
+      (expectation (maximallyEntangled d)
+          (kron (encoded (sourceAliceMeasurement 0)) (encoded (sourceAugmentedBob hd none)))).re =
+    2 / Real.sin (Real.pi / (2 * ↑d)) + 1

@@ -1,4 +1,4 @@
-import CyclicBell
+import CyclicBell.GeneralAdversarialRegression
 noncomputable section
 open CyclicBell CyclicBell.General
 -- MUST FAIL: arbitrary guessing POVMs must not be restricted to PVMs.

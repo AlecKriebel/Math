@@ -1,18 +1,33 @@
+import CyclicBell.GeneralCoverageClosureContainment
+import CyclicBell.GeneralCoverageClosureSequence
+import CyclicBell.GeneralCoverageCompletionOperators
 import CyclicBell.GeneralCoverageCovariance
 import CyclicBell.GeneralCoverageExposure
+import CyclicBell.GeneralCoverageGNS
+import CyclicBell.GeneralCoverageMomentModel
 import CyclicBell.GeneralCoveragePermutation
 import CyclicBell.GeneralCoveragePolarAlgebra
 import CyclicBell.GeneralCoveragePolarCanonical
+import CyclicBell.GeneralCoverageReconstruction
+import CyclicBell.GeneralCoverageSourceCanonical
+import CyclicBell.GeneralCoverageSourceFactors
 import CyclicBell.GeneralCoverageSourceInterpolation
 import CyclicBell.GeneralCoverageSourceLiteralInterpolation
+import CyclicBell.GeneralCoverageSourceOrbit
+import CyclicBell.GeneralCoverageSourceOrder
 import CyclicBell.GeneralCoverageSourcePolar
+import CyclicBell.GeneralCoverageSourceSpectrum
+import CyclicBell.GeneralCoverageSourceStrategy
 import CyclicBell.GeneralCoverageSourceWeyl
+import CyclicBell.GeneralCoverageSpectralMeasurement
+import CyclicBell.GeneralCoverageTwistedPower
+import CyclicBell.GeneralCoverageUltralimit
 import CyclicBell.GeneralCoverageWitness
 import CyclicBell.Endpoints
 import CyclicBell.Regression
 import CyclicBell.Statements
 import CyclicBell.AxiomAudit
 
-/-! Standard library target: ALL endpoint, regression, expanded statement and
-axiom-query modules are imported. These are uncompiled source candidates;
-this umbrella file is not a verification certificate. -/
+/-! Complete library target: original results, new coverage, expanded contracts,
+regressions, and every generated axiom query. See logs/latest_run.json and
+COVERAGE.md for validation and mathematical scope. -/

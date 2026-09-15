@@ -1,4 +1,4 @@
-import CyclicBell
+import CyclicBell.GeneralCycleCharpoly
 noncomputable section
 open CyclicBell CyclicBell.General
 open scoped BigOperators Polynomial

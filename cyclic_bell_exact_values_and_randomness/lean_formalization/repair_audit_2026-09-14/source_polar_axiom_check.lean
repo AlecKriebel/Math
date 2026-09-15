@@ -1,0 +1,9 @@
+import CyclicBell.GeneralCoverageSourceCanonical
+import CyclicBell.GeneralCoverageSourceOrbit
+
+#print axioms CyclicBell.General.sourceBob_unitary
+#print axioms CyclicBell.General.sourceBob_canonical_polar
+#print axioms CyclicBell.General.sourceModulus_inverse
+#print axioms CyclicBell.General.sourceLiteralInversePolar_at_root
+#print axioms CyclicBell.General.sourceLiteralInversePolar_orbit_product
+#print axioms CyclicBell.General.Coverage.canonical_polar_hilbert_positive_factor_identity
