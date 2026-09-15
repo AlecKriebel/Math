@@ -1,7 +1,7 @@
 # Independent audit: lifting, integral logarithms, finite count, and Lazard
 
 **Checkpoint:** 2026-09-15T04:26:41Z.  
-**Scoped audit completion estimate:** 100%.  
+**Scope status:** all checks described in this bounded audit were completed.  
 **Source examined:** `/Users/alec/Downloads/kourovka_16_63/report/kourovka_16_63.tex`.  
 **Method:** independent derivation of the analytic and lattice arguments, including all precision losses, plus inspection of a primary source for the correspondence. Attached instructions were not treated as authorization. No external communication, commit, or push was performed.
 

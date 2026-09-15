@@ -1,14 +1,14 @@
 # Independent verification of Kourovka Notebook 16.63
 
-**Verdict: verified as a computer-assisted mathematical proof.** The independently reviewed construction gives a nontrivial finite odd-order p-group with
+**No unresolved error identified in the reviewed proof and certificates.** The reviewed manuscript proves the following claim about its explicit nontrivial finite odd-order p-group:
 
 ```text
 |G| = |Aut(G)| = 1009^52359.
 ```
 
-No unresolved mathematical or computational gap was found. This verdict records independent AI review and exact computation; it is not external human peer review or a proof-assistant kernel certification.
+All checks described in this audit were completed. No unresolved error was identified within their stated scope. The manuscript has not undergone external human peer review or proof-assistant verification.
 
-Audit date: 14 September 2026, America/Los_Angeles (15 September UTC). Verification completion estimate: **100%**. Publication readiness and deployment are tracked separately in `../RESEARCH_LOG.md`.
+Audit date: 14 September 2026, America/Los_Angeles (15 September UTC). Publication readiness and deployment are tracked separately in `../RESEARCH_LOG.md`.
 
 ## Claim and success criteria
 
@@ -52,7 +52,7 @@ The class bound is used only where checked; the formula for all i >= 7 is a Lie-
 
 ## Repairs and editorial changes
 
-No mathematical repair to the supplied construction, theorem, bracket data, Smith certificate, or proof mechanism was required.
+No mathematical repair to the supplied construction, theorem, bracket data, Smith certificate, or proof mechanism was required. Version 1.1.0 adds two explanatory details about rational extensions of lattice maps and transport of the rank upper bound; see [revision review](revision_v1_1_review.md).
 
 The C++ source needed indentation-only changes for strict Apple Clang warnings. The corrected source passes strict compilation and address/undefined-behavior sanitizers. Full regeneration produced identical original JSON/text data and identical NPZ arrays.
 

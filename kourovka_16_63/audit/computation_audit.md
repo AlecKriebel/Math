@@ -4,7 +4,7 @@ Date: 2026-09-15 UTC. Scope: exact computational inputs to the proposed solution
 
 **Verdict:** all computational claims reproduced. No remaining computational gap was identified. The resulting group claim still requires the manuscript's full finite-field automorphism classification, flag-stabilizer proof, finite lifting argument, integral logarithm/exponential argument, and finite Lazard correspondence; the numerical checks alone do not prove these statements.
 
-**Checkpoint completion estimate:** 100% of this bounded computation audit. This percentage does not measure confidence that no mathematical error can exist, and does not certify publication or the other proof audits.
+**Scope status:** all checks described in this computation audit were completed. No unresolved computational error was identified. This audit does not certify publication or the proof steps assigned to the other reviews.
 
 ## Executed checks
 

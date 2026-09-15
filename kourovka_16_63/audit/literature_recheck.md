@@ -1,6 +1,6 @@
 # Independent primary-source recheck
 
-Checkpoint: 2026-09-15 UTC (14 September in the author's timezone). Scoped literature check: 100% complete. This is a bounded search, not proof of absolute priority. No individual was contacted.
+Checkpoint: 2026-09-15 UTC (14 September in the author's timezone). The scoped literature check was completed. This is a bounded search, not proof of absolute priority. No individual was contacted.
 
 - [Current Kourovka website](https://kourovkanotebookorg.wordpress.com/) identifies the 1 September 2026 update. The [primary PDF](https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/09/21tkt.pdf) was retrieved independently and its text checked. Printed p. 102 states the exact nontrivial odd-order finite p-group equality question as 16.63, attributed to D. MacHale. Printed p. 255 records the separate divisibility problem 12.77 and its negative answer. Retrieved PDF SHA-256: `2fcce9b98a4df10267fe120229217bfe556c70510704e311540da0cef438f911`. The downloaded source is excluded from the publication package.
 - [Omirov–Ruan, arXiv:2605.04602v1](https://arxiv.org/html/2605.04602v1), Theorem 4.8: the six weights and nonzero bracket pattern agree with the credited template. Their setting is characteristic zero over the complex numbers. The present proof must, and does, separately establish the finite-characteristic claims.

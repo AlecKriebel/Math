@@ -1,6 +1,6 @@
 # Final adversarial promotion audit
 
-Checkpoint: **2026-09-15 04:32 UTC**. Bounded adversarial audit completion: **100%**.
+Checkpoint: **2026-09-15 04:32 UTC**. All checks described in this bounded adversarial audit were completed.
 
 ## Verdict
 

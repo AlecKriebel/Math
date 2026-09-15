@@ -1,6 +1,6 @@
 # Independent audit: finite-field algebra and flag
 
-Checkpoint: 2026-09-15 04:28 UTC. Completion of this bounded audit: **100%**.
+Checkpoint: 2026-09-15 04:28 UTC. All checks described in this bounded audit were completed.
 
 ## Scope and verdict
 

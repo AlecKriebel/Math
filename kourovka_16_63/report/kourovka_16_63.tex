@@ -46,8 +46,9 @@
 \large A computer-assisted solution to Kourovka Notebook problem 16.63}
 \author{Alec Kriebel\\[3pt]
 \small Independent researcher\\
-\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
-\date{14 September 2026}
+\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}\\
+\small\href{mailto:me@aleckriebel.com}{me@aleckriebel.com}}
+\date{Version 1.1.0 --- 15 September 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -71,11 +72,16 @@ with separately implemented verification software.
 Lazard correspondence; Smith normal form.
 
 \medskip
-\noindent\textbf{AI attribution.} ChatGPT-6 Astra Pro solved the problem and
-developed the construction, proof, and supporting scripts, as attributed by
-the author. This edition was independently checked by Codex using separate
-AI review agents and exact computational reproduction. These checks are not
-external human peer review or a proof-assistant formalization.
+\noindent\textbf{AI disclosure.} The construction, proof development, and initial
+verification software were generated using ChatGPT-6 Astra Pro. Separate Codex
+sessions performed additional AI-assisted reviews and exact computational checks.
+These checks do not constitute external human peer review or proof-assistant
+formalization.
+
+\medskip
+\noindent\textbf{Archive DOI for this edition:}
+\href{https://doi.org/10.5281/zenodo.22770864}{10.5281/zenodo.22770864}.
+Source and certificate availability is detailed in Section~\ref{sec:reproducibility}.
 
 \clearpage
 {\small\tableofcontents}
@@ -429,7 +435,14 @@ Let
  \EE=\End_{\Zp}(A),\qquad \EE_0=\End_{\Zp}(B),\qquad
  J=\EE\cap p\EE_0.
 \]
-For a linear map $D$, write
+Every endomorphism of $A$ is henceforth extended uniquely to the common
+rational vector space
+\[
+ A\otimes_{\Zp}\Qp=B\otimes_{\Zp}\Qp.
+\]
+The brackets are extended by $\Qp$-bilinearity as well. Thus expressions
+involving a lattice map on $B$ make sense before preservation of $B$ has
+been established. For a linear map $D$, write
 \[
  \delta_\mu(D)(u,v)=D\mu(u,v)-\mu(Du,v)-\mu(u,Dv),
  \qquad\delta_\nu=p^2\delta_\mu.
@@ -628,8 +641,13 @@ block. It finds the same five multiplicities. The Python implementation
 also replays the plan at precision six.
 
 Every reported valuation is less than six, so it is determined exactly by
-this finite-ring calculation. Integer Jacobi gives $30$ independent inner
-derivations in the rational kernel, hence rank at most $961-30=931$.
+this finite-ring calculation. Integer Jacobi places the inner derivations
+of $B$ in its derivation kernel. Their verified rank $30$ modulo $p$ supplies
+thirty that remain linearly independent over $\Qp$. An invertible change of basis
+transports them by conjugation, and multiplying the bracket by $p^2$ does
+not change its rational derivation kernel, since
+$\delta_{p^2\mu}=p^2\delta_\mu$. They therefore yield $30$ independent
+vectors in the rational kernel for $L$, proving rank at most $961-30=931$.
 The $931$ nonzero pivots give rank at least $931$. There can therefore be
 no additional nonzero invariants hidden at higher precision. All matrix
 operations are exact elementary operations over the indicated local ring.
@@ -709,7 +727,21 @@ The prime is odd and the group is nontrivial. This answers the stated
 existence question affirmatively.
 \end{proof}
 
-\section{Reproducibility and verification boundaries}
+\section{Reproducibility and verification boundaries}\label{sec:reproducibility}
+\noindent\textbf{Source and certificates.}
+Version 1.1.0 has archive DOI
+\href{https://doi.org/10.5281/zenodo.22770864}{\nolinkurl{10.5281/zenodo.22770864}}.
+The matching manuscript, explicit group specification, exact certificates,
+verification software, and audit records are available in the fixed
+publication snapshot:
+\begin{center}
+\href{https://github.com/AlecKriebel/Math/tree/kourovka-16-63-v1.1.0/kourovka_16_63}{\texttt{kourovka-16-63-v1.1.0}}.
+\end{center}
+The \href{https://aleckriebel.github.io/Math/papers/kourovka-16-63/}{project landing page}
+provides the PDF and companion archive. The archive includes a
+\texttt{SHA256SUMS} integrity manifest. The fixed version tag identifies this
+edition independently of future changes to the development branch.
+
 \subsection{Fast independent verification}
 From the root of the bundle, run
 \begin{verbatim}
@@ -760,20 +792,16 @@ The C++ verifier also passes an address- and undefined-behavior-sanitized
 build. The independent audit reports record the scope of each check.
 
 \subsection{What the computations do and do not certify}
-The finite computations verify Jacobi, generation, cohomology dimensions,
-derivation ranks, infinitesimal flag ranks, and all local Smith invariants.
-The full finite-field stabilizer, the lifting lemma, the integral
-logarithm--exponential correspondence, and the application of Lazard are
-proved above. The full automorphism count follows from the combination.
+The computations verify integer Jacobi, generation, cohomology dimensions,
+derivation and flag ranks, and all local Smith invariants. The full
+finite-field stabilizer, lifting, integral logarithm--exponential, and Lazard
+steps are proved above; the numerical output alone does not certify them.
 
-The group has not been materialized as a Cayley table, nor has a general
-purpose package enumerated all its automorphisms. Such enumeration is
-unnecessary for the exact upper and lower bounds. The BCH polynomial of
-length $846$ has not been expanded into a full monomial list; the construction
-is specified by the canonical finite polynomial and the explicit Lie table.
-Independent implementation means separately written code reconstructing the
-input, not independent human peer review. No formal proof assistant or
-external reviewer is claimed.
+Neither the group's Cayley table nor its full automorphism set is enumerated.
+The canonical BCH rule through bracket length $846$ and the explicit Lie table
+specify multiplication without expanding every monomial. Independent
+implementations and scoped AI reviews provide reproducible evidence; they
+are not external human peer review or proof-assistant formalization.
 
 \clearpage
 \appendix

@@ -2,6 +2,8 @@
 
 ## An explicit odd-order p-group with as many automorphisms as elements
 
+**Version:** 1.1.0 · 15 September 2026  
+**Archive DOI:** [10.5281/zenodo.22770864](https://doi.org/10.5281/zenodo.22770864) (assigned for this edition; Zenodo publication pending when prepared)  
 **Author:** Alec Kriebel · [ORCID 0009-0001-9320-500X](https://orcid.org/0009-0001-9320-500X)  
 **Result:** an explicit finite group satisfies
 
@@ -12,6 +14,8 @@
 Here `Aut(G)` is the **full** automorphism group. The group is the BCH group of an explicit rank-31 Lie ring modulo `1009^1689`, with nilpotency class at most `846 < 1009`.
 
 - [Paper (PDF)](report/kourovka_16_63.pdf) · [editable LaTeX](report/kourovka_16_63.tex)
+- [Fixed publication snapshot](https://github.com/AlecKriebel/Math/tree/kourovka-16-63-v1.1.0/kourovka_16_63)
+- [Zenodo copy-and-paste metadata](publication_v1_1/zenodo/COPY_PASTE.md)
 - [Public paper page](https://aleckriebel.github.io/Math/papers/kourovka-16-63/)
 - [Independent verification report](audit/VERIFICATION_REPORT.md)
 - [Explicit group description](data/group_lie_presentation.json)
@@ -69,6 +73,10 @@ The executable checks do not replace the finite-field stabilizer proof, lifting 
 
 `data/group_lie_presentation.json` specifies the ordered basis, 199 nonzero skew-half bracket coefficients, modulus, and canonical finite BCH rule through bracket length 846. Parse its integers exactly: some exceed `2^53`. The paper fixes all seven raw transvectants, the unimodular basis change, and weights `(0,0,1,2,...,2)`.
 
+## Publication revision
+
+Version 1.1.0 adds standalone versioned artifact links, author contact details, two mathematical clarifications, and scope-based audit wording. All mathematical data and verification scripts are unchanged from the independently checked first publication. The external AI feedback supplied for this revision was text only; its linked checker was not available and is not counted as a new local verification.
+
 ## Package map and integrity
 
 - `report/`: publication manuscript and LaTeX source.
@@ -90,7 +98,7 @@ Alternatively, run two or three `pdflatex` passes in `report/`. TeX is not requi
 
 ## Attribution
 
-ChatGPT-6 Astra Pro solved the problem and developed the construction, proof, and supporting scripts, as attributed by the author. Codex independently audited the result using separate AI review agents, reproduced the computations, and prepared this publication.
+The construction, proof development, and initial verification software were generated using ChatGPT-6 Astra Pro. Separate Codex sessions performed additional AI-assisted reviews and exact computational checks. These checks do not constitute external human peer review or proof-assistant formalization.
 
 The underlying Lie-algebra template is credited to Omirov–Ruan, arXiv:2605.04602v1, Theorem 4.8. The manuscript independently supplies the integer normalization and finite-characteristic arguments. It develops the asymmetric lattice and exact full finite-automorphism count. The original finite Lazard correspondence is credited to Lazard, with its applicable hypotheses checked in Cicalò–de Graaf–Vaughan-Lee (2012), pp. 433–434.
 
