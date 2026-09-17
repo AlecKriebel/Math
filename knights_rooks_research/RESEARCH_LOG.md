@@ -62,3 +62,17 @@ the homepage entry, and sitemap addition are being committed. Original package
 files remain unchanged; unrelated working changes are excluded. Publication is
 to main with no tag, GitHub release, DOI, or outreach. Live deployment remains
 to be checked after the push.
+
+## 2026-09-17T03:41:50Z — Completed checkpoint (100% complete)
+
+Published commit `8fd3e4d58ee89c444d7c545e1e53992e894074f7` to origin/main.
+GitHub Pages run 35179006182 completed successfully. The live homepage, paper
+page, PDF, and sitemap all return HTTP 200 and match the local publication
+files byte-for-byte. The live page was also opened and checked in the browser.
+Evidence is preserved in `review/deployment_verification.log`.
+
+Live paper page: https://aleckriebel.github.io/Math/papers/knights-rooks-n4-r2/ .
+Verification and requested publication are complete. No mathematical gap was
+found; external peer review and historical priority are not claimed. This final
+log and deployment evidence are being committed as a follow-up record; the
+published site content is unchanged.
