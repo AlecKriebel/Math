@@ -9,8 +9,6 @@ it is not an abstract root satisfying unproved certificate equations.
 The target PVMs are deliberately the identical objects used by D4.targetBorn.
 Other measurements are supplied by the proved weighted-cycle PVM constructor.
 There are no score or maximality assumptions in any constructor.
-
-UNCOMPILED SOURCE: acceptance and dependency reports require the offline run.
 -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder

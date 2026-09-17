@@ -8,7 +8,6 @@ Explicit physical finite-to-commuting bridge. A positive trace-one density is
 purified by vectorizing its actual positive square root, with a separate identity
 environment. Coordinate matrices act on Euclidean Hilbert space, not on the
 supremum-norm function space. No embedding or Born identity is an axiom/field.
-UNCOMPILED SOURCE CANDIDATES; pinned-library elaboration remains untested.
 -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder InnerProductSpace

@@ -2,7 +2,7 @@ import CyclicBell.MatrixAlgebra
 
 /-! Complex-valued expectation linearity and tensor trace bridges.
 No reality assumption is imposed on a correlator before taking its real part.
-UNCOMPILED SOURCE. -/
+-/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell

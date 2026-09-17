@@ -2,7 +2,7 @@ import CyclicBell.GeneralFourier
 
 /-! Pure complex phase and parity data, independent of every concrete quantum
 witness. This separation keeps the arbitrary-dimensional upper-bound import
-graph free of construction/attainment modules. Uncompiled source. -/
+graph free of construction/attainment modules.  -/
 noncomputable section
 open scoped BigOperators
 namespace CyclicBell.General

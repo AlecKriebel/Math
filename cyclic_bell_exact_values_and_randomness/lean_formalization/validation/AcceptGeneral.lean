@@ -1,7 +1,7 @@
 import CyclicBell.GeneralStatements
 open scoped BigOperators
 open CyclicBell.General
-/- Positive controls, executed only by the offline build. -/
+/- Positive controls for the validation runner. -/
 example : (∑ a : ZMod 5, ∑ b : ZMod 5, swappedTarget 5 a b)=1 :=
   swappedTarget_normalized
 example : ¬ ∀ a b : ZMod 5, swappedTarget 5 a b=1/(5 : ℝ)^2 :=

@@ -4,7 +4,7 @@ import CyclicBell.GeneralOneInput
 input-dependent Alice output alphabets. The proof constructs and evaluates the
 actual Alice/Bob grouping projectors in the reversed order; it does not assume
 a party-swap equivalence or identify the two sides by naming alone.
-UNCOMPILED SOURCE CANDIDATES. -/
+-/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.General

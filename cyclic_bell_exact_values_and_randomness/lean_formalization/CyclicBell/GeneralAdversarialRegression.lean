@@ -4,7 +4,7 @@ import CyclicBell.GeneralSourceFourier
 /-! Focused positive regression source: arbitrary POVMs really include
 nonprojective effects, and closure before slicing is a substantive distinction.
 The real-line closure example is not asserted to be a quantum behavior example.
-UNCOMPILED: these controls have not been run by Lean. -/
+-/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder Topology
 namespace CyclicBell.General

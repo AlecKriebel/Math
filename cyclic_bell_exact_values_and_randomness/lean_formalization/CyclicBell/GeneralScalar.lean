@@ -2,7 +2,7 @@ import CyclicBell.GeneralPhases
 
 /-! All-dimensional scalar extremum. The proof uses a centered cosine grid,
 a telescoping sine identity, and reduction to a fundamental interval. This
-checks the scalar step, not an operator/CFC transport theorem. Uncompiled. -/
+checks the scalar step, not an operator/CFC transport theorem.  -/
 noncomputable section
 open scoped BigOperators
 namespace CyclicBell.General

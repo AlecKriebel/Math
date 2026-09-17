@@ -3,7 +3,7 @@ import CyclicBell.GeneralSupportedPhases
 /-! Reflection-rank inequality on a possibly nonfaithful amplitude, followed by
 an explicit direct-sum dimension count. This file alone is NOT support rigidity;
 GeneralRigidity supplies its hypotheses from quantum saturation.
-UNCOMPILED SOURCE CANDIDATES. -/
+-/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.General

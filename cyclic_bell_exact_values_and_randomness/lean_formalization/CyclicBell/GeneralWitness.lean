@@ -2,7 +2,7 @@ import CyclicBell.GeneralModel
 
 /-! General weighted-cycle measurement construction and exact physical Born
 bridge. The phase inputs are constrained only by unimodularity and the cyclic
-recurrence, not by a Bell value or probability conclusion. SOURCE CANDIDATE. -/
+recurrence, not by a Bell value or probability conclusion.  -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.General

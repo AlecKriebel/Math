@@ -10,7 +10,7 @@ Instead of importing a discontinuous polar phase at zero, use
 Both are continuous, star(h)*h=star(k)*k=norm z, and star(h)*k=z.
 This supplies the exact polar-positive-factor algebra even at a kernel.
 CFC commutation is proved by conjugation and uniqueness, not assumed.
-UNCOMPILED SOURCE; pinned API usage and all proof terms need an offline build. -/
+-/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder Topology
 namespace CyclicBell.General

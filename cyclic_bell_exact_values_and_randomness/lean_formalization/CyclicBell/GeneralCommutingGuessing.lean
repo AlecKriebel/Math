@@ -2,7 +2,7 @@ import CyclicBell.GeneralTripartite
 
 /-! A genuine three-party arbitrary-Hilbert model, and an explicit embedding of
 all finite mixed tensor strategies. Eve's effects are positive, not necessarily
-projective. All statements are UNCOMPILED SOURCE CANDIDATES. -/
+projective.  -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder InnerProductSpace
 namespace CyclicBell.General

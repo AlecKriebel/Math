@@ -1,10 +1,8 @@
 import CyclicBell.ScalarData
 
-/-!
-SOURCE CANDIDATE, NOT YET COMPILED.
-Target-only d=4 realization. No universal Bell bound or Bell maximality is
-assumed or proved in this module. The exponential-phase bridge is written in Phases.lean; all sources remain uncompiled.
--/
+/-! Target-only d=4 realization and its Born distribution. This module assumes
+no universal Bell bound or Bell maximality. Phases.lean identifies its constants
+with the manuscript exponential phases. -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.D4
@@ -36,7 +34,7 @@ def bobEffect (b : Q) : Op 4 := projector (u b)
 
 def targetBorn (a b : Q) : ℝ := pureBorn phi (aliceEffect a) (bobEffect b)
 
-/-- Proposed closed form, kept independent of the Born-rule definition. -/
+/-- Closed form, defined independently of the Born-rule expression. -/
 def table (a b : Q) : ℝ := if (a.val + b.val) % 2 = 0 then 1 / 32 else 3 / 32
 
 /-- X|j>=|j+1 mod 4>, with rows as output coordinates. -/

@@ -2,7 +2,7 @@ import CyclicBell.Attainment
 
 /-! Explicit one-dimensional Eve. These are actual positive scalar-matrix POVM
 effects, not an optimization over compatible realizations. The conditional
-scalar density for output (a,b) has trace p(a,b). All results are uncompiled.
+scalar density for output (a,b) has trace p(a,b).
 -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder

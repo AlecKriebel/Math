@@ -1,7 +1,7 @@
 import Mathlib
 
 /-!
-Kernel-checked algebraic infrastructure for the literal source/polar bridge.
+Algebraic infrastructure for the literal source/polar bridge.
 
 `weyl_mul_pow` keeps the scalar Weyl phase in every power; omitting that phase
 would change the manuscript's triangular source coefficient. The polar lemmas

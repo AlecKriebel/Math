@@ -3,7 +3,7 @@ import Mathlib.Analysis.SpecialFunctions.Trigonometric.Basic
 
 /-! Exact radical entries of manuscript tab:exact-values (d=2,3,4,5,6).
 The trigonometric quantities are evaluated; radical expressions are not aliases
-for the desired answers. These are UNCOMPILED proof-script candidates. -/
+for the desired answers.  -/
 noncomputable section
 open scoped BigOperators
 namespace CyclicBell.General

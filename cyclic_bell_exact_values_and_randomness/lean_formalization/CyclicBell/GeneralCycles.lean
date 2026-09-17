@@ -2,7 +2,7 @@ import CyclicBell.GeneralWitness
 
 /-! Weighted-cycle powers, traces and first-harmonic blindness in arbitrary d.
 No Bell maximality is inferred merely from these constructive identities.
-UNCOMPILED SOURCE CANDIDATE. -/
+-/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.General

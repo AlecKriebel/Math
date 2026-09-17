@@ -2,9 +2,8 @@ import CyclicBell.GeneralTripartite
 import Mathlib.Topology.Instances.Matrix
 
 /-! Every fixed finite-Eve POVM objective has an attained maximum.
-This uses the general Gram-factor compactness pattern inspected in the separate
-qubit Bell project's QuantumCompactness, with a new arbitrary-dimension bound.
-No qubit theorem, source cache or external verdict is imported. Uncompiled. -/
+The proof uses compactness of Gram factors with an arbitrary-dimension bound.
+It asserts no maximum over all physical realizations. -/
 noncomputable section
 open Set
 open scoped BigOperators Matrix ComplexOrder Topology

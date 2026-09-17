@@ -1,12 +1,9 @@
 import CyclicBell.Regression
 import CyclicBell.GeneralStatements
 
-/-!
-Expanded statement correspondence checks, written separately from the proofs.
-SELF-AUDIT SOURCE, NOT an independent-agent review. Every example is checked by
-the standard library build once run; this file is not a list of unchecked names.
-The finite physical model is exposed through its density and projectors.
--/
+/-! Expanded statement correspondence checks, separate from the proofs.
+The examples expose the finite physical model through its density and projectors
+and are included in the standard library build. -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.StatementAudit

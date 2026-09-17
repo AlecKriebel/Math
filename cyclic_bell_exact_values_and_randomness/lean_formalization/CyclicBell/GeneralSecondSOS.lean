@@ -3,7 +3,7 @@ import CyclicBell.GeneralModel
 /-! General d second-family SOS, with its exact 1/(2d) prefactor.
 The coefficient normalization is EXPLICIT in this generic helper. The separate
 GeneralSecondCoefficients module discharges it for the manuscript coefficients.
-No commutation of same-party observables is used. Uncompiled source. -/
+No commutation of same-party observables is used.  -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.General

@@ -2,7 +2,7 @@ import CyclicBell.FirstSOS
 import CyclicBell.SecondSOS
 
 /-!
-Unconditional physical upper-bound candidates. The domains here are the
+Unconditional physical upper bounds. The domains here are the
 original `State`, `PVM`, and `Strategy` structures, not a surrogate strategy
 class assuming a norm bound, a maximum, or an equality-phase spectrum.
 Both nA and nB remain arbitrary. Mixed states are handled directly by traces.

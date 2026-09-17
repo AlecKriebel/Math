@@ -5,7 +5,6 @@ import CyclicBell.TraceCalculus
 Exact attainment of BOTH actual manuscript functionals. Universal optimality
 is not inferred here from the witness alone; Endpoints imports PhysicalBounds
 separately. The coefficient formula is sourceLambda, not a fitted replacement.
-UNCOMPILED SOURCE CANDIDATE.
 -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder

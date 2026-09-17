@@ -5,7 +5,7 @@ import Mathlib.Data.Complex.Basic
 import Mathlib.Tactic
 
 /-!
-Coordinate physical model. SOURCE CANDIDATE: not yet compiled in the cloud.
+Coordinate physical model.
 The model is not qubit-specific and assumes no score, saturation, or table.
 The finite tensor product is given by its computational-basis matrix entries.
 -/

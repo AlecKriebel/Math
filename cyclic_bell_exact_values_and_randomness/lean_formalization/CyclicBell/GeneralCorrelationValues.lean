@@ -6,8 +6,7 @@ Literal three-model suprema for both cyclic families, reduced and augmented.
 Q_q uses arbitrary finite local coordinate spaces and mixed states. Q_qa is the
 actual product-topology closure. Q_qc uses genuine commuting PVM vector states
 on complete complex Hilbert spaces. An explicit purification proves Q_q⊆Q_qc.
-The value proof does not need, and does not claim, Q_qa⊆Q_qc or closedness of Q_qc.
-All declarations are UNCOMPILED SOURCE CANDIDATES, not accepted Lean theorems.
+The value proof is independent of the closure-containment theorem.
 -/
 noncomputable section
 open scoped BigOperators ComplexOrder Topology

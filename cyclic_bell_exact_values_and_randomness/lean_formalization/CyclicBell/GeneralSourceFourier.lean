@@ -2,9 +2,9 @@ import CyclicBell.GeneralCycles
 import CyclicBell.GeneralScalar
 import CyclicBell.GeneralCoveragePolarAlgebra
 
-/-! Source appendix coefficient calculations, with the literal positive clock
-and forward shift. Coefficient DFT identities do not certify source-observable
-unitarity or identify the canonical polar partial isometry. Uncompiled source. -/
+/-! Source appendix coefficient calculations with the positive clock and
+forward shift. These DFT identities are used with the source polar-factor and
+measurement-order proofs in the GeneralCoverageSource modules. -/
 noncomputable section
 open scoped BigOperators Matrix
 namespace CyclicBell.General

@@ -5,7 +5,7 @@ import CyclicBell.GeneralSecondSOS
 /-! Independent arbitrary-Hilbert-space second-family bound. The SOS is
 algebraic even without cross-party commutation; the allowed commuting quantum
 model is a subclass. Actual source coefficients are substituted at the endpoint.
-UNCOMPILED SOURCE CANDIDATES. -/
+-/
 noncomputable section
 open scoped BigOperators ComplexOrder InnerProductSpace
 namespace CyclicBell.General

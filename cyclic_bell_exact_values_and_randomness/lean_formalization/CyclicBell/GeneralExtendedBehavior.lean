@@ -1,7 +1,7 @@
 import CyclicBell.GeneralBehavior
 
 /-! Real extended correlations and the actual guessing supremum. This module
-has no physical strategy or witness assumptions. UNCOMPILED SOURCE CANDIDATES.
+has no physical strategy or witness assumptions.
 The closure is taken on full extended arrays before imposing Bell equality. -/
 noncomputable section
 open scoped BigOperators Topology

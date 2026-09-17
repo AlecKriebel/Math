@@ -28,6 +28,6 @@ import CyclicBell.Regression
 import CyclicBell.Statements
 import CyclicBell.AxiomAudit
 
-/-! Complete library target: original results, new coverage, expanded contracts,
+/-! Complete library target: mathematical results, statement contracts,
 regressions, and every generated axiom query. See logs/latest_run.json and
 COVERAGE.md for validation and mathematical scope. -/

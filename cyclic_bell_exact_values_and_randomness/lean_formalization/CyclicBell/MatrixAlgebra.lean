@@ -4,7 +4,6 @@ import CyclicBell.Model
 Finite-dimensional matrix infrastructure for the two universal bounds.
 All state inequalities below apply directly to arbitrary PSD trace-one matrices;
 there is no pure-state restriction and no assumed spectral decomposition.
-SOURCE CANDIDATE: this file has not been run through Lean.
 -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder

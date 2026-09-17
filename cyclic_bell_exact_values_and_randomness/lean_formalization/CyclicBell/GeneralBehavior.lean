@@ -3,12 +3,9 @@ import CyclicBell.GeneralSecondBound
 import Mathlib.Topology.Order.Basic
 import Mathlib.Order.ConditionallyCompleteLattice.Basic
 
-/-!
-Actual real behavior arrays and the manuscript Bell functionals. This file is
-an UNCOMPILED SOURCE CANDIDATE. Continuity concerns the ordinary product topology,
-not an assumed closedness of any quantum model. The reduced and augmented Bob
-input alphabets remain separate.
--/
+/-! Real behavior arrays and the manuscript Bell functionals. Continuity uses
+the ordinary product topology and does not assume a quantum model is closed.
+The reduced and augmented Bob input alphabets remain separate. -/
 noncomputable section
 open scoped BigOperators ComplexOrder Topology
 namespace CyclicBell.General

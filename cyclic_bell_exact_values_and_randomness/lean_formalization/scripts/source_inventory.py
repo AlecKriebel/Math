@@ -96,7 +96,7 @@ def generate(root: Path = ROOT):
     # Historical filename retained; now queries every named source declaration.
     (root/'CyclicBell/AxiomAudit.lean').write_text(
         ''.join('import '+module+'\n' for module in modules)+'\n'+
-        '/-! GENERATED QUERIES, NOT EXECUTED OUTPUT. The offline runner parses all\n'
+        '/-! Generated declaration queries. The verification runner parses all\n'
         'reports and rejects any dependency outside propext/Classical.choice/Quot.sound.\n'
         'Every named source declaration is queried, including proof-bearing constructors. -/\n\n'+
         ''.join('#print axioms '+n+'\n' for n in names))

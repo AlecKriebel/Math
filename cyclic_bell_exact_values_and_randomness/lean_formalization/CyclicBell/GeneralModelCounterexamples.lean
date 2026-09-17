@@ -1,10 +1,9 @@
 import CyclicBell.GeneralCorrelationValues
 import CyclicBell.GeneralConsequences
 
-/-! The nonuniform physical witnesses are maximizers of the literal model
-suprema, not only of a separately named scalar expression. This assembles
-membership, value and Born distribution with the same witness throughout.
-UNCOMPILED SOURCE CANDIDATES; no optimality claim for Eve is made. -/
+/-! The nonuniform physical witnesses maximize the literal model suprema.
+Membership, value and Born distribution use the same witness throughout.
+No optimality claim for Eve is made. -/
 noncomputable section
 open scoped BigOperators ComplexOrder
 namespace CyclicBell.General

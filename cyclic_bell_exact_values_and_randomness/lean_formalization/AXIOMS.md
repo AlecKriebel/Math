@@ -1,10 +1,6 @@
-# Executed axiom audit and reproduction
+# Kernel checks, axioms, and reproducibility
 
-The received handoff had no compiler results. The repaired package obtains actual
-Lean `#print axioms` output for every explicitly named declaration, including
-proof-bearing definitions and named instances. The ordered names are generated
-in `reference/expected_theorems.json`; the query module explicitly imports every
-source module, including the added coverage constructions.
+The full verification command compiles the encoded statements and obtains Lean `#print axioms` reports for the explicitly named declarations in the inventory, including proof-bearing definitions and named instances. [CyclicBell/AxiomAudit.lean](CyclicBell/AxiomAudit.lean) contains the queries; [reference/expected_theorems.json](reference/expected_theorems.json) gives the expected names.
 
 The only permitted foundational axioms are:
 
@@ -14,36 +10,40 @@ Classical.choice
 Quot.sound
 ```
 
-The runner rejects `sorryAx`, custom axioms, native proof-evaluation trust,
-unexpected or missing reports, duplicate names and changed source fingerprints.
-Static scans additionally reject admissions, unsafe replacements and unapproved
-compiler options. These scans supplement actual elaboration and transitive axiom
-reports; they cannot replace them.
+The current run status, source fingerprints, and evidence are indexed in [verification/README.md](verification/README.md). A failed or incomplete run is not certification. Counts in an inventory are not evidence that the corresponding reports were actually produced.
 
-Reproduce from this directory with Lean 4.19.0:
+## Full verification
+
+For installation, follow the [official elan instructions](https://github.com/leanprover/elan#installation), then run `elan toolchain install leanprover/lean4:v4.19.0`.
+
+With Python 3.10+, Git, and Lean/Lake 4.19.0 available, run from the package directory:
 
 ```sh
-python3 scripts/check.py --bootstrap --manuscript ../main.tex
+python3 scripts/check.py --bootstrap
 ```
 
-Omit `--bootstrap` when the exact locked dependencies and cache are installed.
-The command verifies the compiler hash, manuscript SHA/blob and dependency commits,
-removes the companion's build directory, builds the complete library, runs all
-five acceptance and twenty rejection controls, and collects every axiom report.
-Sources and dependencies must remain unchanged throughout that run.
+This uses the bundled [reference/manuscript/main.tex](reference/manuscript/main.tex). An optional `--manuscript /path/to/main.tex` checks a separate copy against the same pinned hash. `--bootstrap` fetches missing locked dependency revisions and their cache; it does not install Lean. Omit it when the required dependencies and cache are already present.
 
-`logs/latest_run.json` is the machine-readable outcome. Detailed retained evidence
-and independent manuscript correspondence reviews are in
-`repair_audit_2026-09-14/`. The automated runner deliberately does not claim
-semantic correspondence from compiler success alone; its
-`formal_endpoint_certified` field concerns what that automated process alone
-can establish. Read the separate evaluation and `COVERAGE.md` for that review.
+The full run checks compiler and dependency identities, validates the manuscript and source inventory, clears the companion's project build directory, and builds the imported library. The fresh build includes the mandatory axiom-query module; the runner parses its actual reports and requires exactly the expected declaration names and permitted axioms. It then runs the acceptance/rejection controls. Optional `--repeat-axiom-audit` reruns the query module separately and requires identical reports. Protected inputs must remain unchanged throughout the run.
 
-The negative controls must fail inside their designated proof bodies. Missing
-imports, syntax errors, unknown names, crashes and resource exhaustion do not
-count as successful rejection. Failed proof attempts alone do not prove the
-negation of every test statement; these are strict regression controls.
+The audit rejects missing or unexpected reports, duplicate query names, `sorryAx`, custom axioms, and native proof-evaluation trust. Static checks additionally look for admissions, unsafe substitutions, and unapproved compiler options. These checks supplement kernel elaboration and axiom inspection; they do not replace them.
 
-The trust base includes the pinned Lean compiler/runtime, ordinary hardware and
-filesystem, and exact upstream dependency artifacts. This is not a from-source
-compiler bootstrap or an independent implementation of Lean's kernel.
+For a lightweight static scan:
+
+```sh
+python3 scripts/check.py --static-only
+```
+
+That command does not run Lean and cannot establish kernel acceptance. `lake build` runs the ordinary library build but does not replace the full verification command's provenance and regression checks.
+
+## What the controls establish
+
+The [acceptance files](validation/) exercise intended physical and mathematical interfaces. The rejection controls test selected changes to normalization, source coefficients, conjugation, model domains, and table claims. A rejection counts only when Lean fails in the designated proof body. Missing imports, syntax errors, unknown names, process crashes, and resource exhaustion do not count as successful rejection.
+
+These are regression controls. A failed proof attempt does not, by itself, prove the negation of its target proposition. Likewise, runner unit tests check the verification machinery rather than adding mathematical theorems.
+
+## Trust and interpretation
+
+A successful run establishes that the checked Lean statements have accepted proofs with the reported axiom dependencies, using the pinned toolchain and dependency artifacts. The trust base includes that compiler/kernel implementation, runtime, ordinary hardware and filesystem, and the upstream artifacts used by the build. This is not a from-source compiler bootstrap or verification by a second proof-assistant kernel.
+
+The companion is rebuilt; use of the locked Mathlib cache does not mean that every dependency is rebuilt from source. Compiler success also does not decide whether an encoded definition matches a physical convention or a manuscript claim. That assessment requires reading the statements and constructions, guided by [REVIEWER_GUIDE.md](REVIEWER_GUIDE.md) and [COVERAGE.md](COVERAGE.md).

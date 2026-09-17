@@ -3,7 +3,7 @@ import CyclicBell.GeneralGuessing
 
 /-! Actual manuscript coefficients, including l=0 and the Fourier phase.
 Normalization is derived from an explicit signed geometric sum and Parseval,
-not assumed and not delegated to an external certificate. Uncompiled source. -/
+not assumed and not delegated to an external certificate.  -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.General

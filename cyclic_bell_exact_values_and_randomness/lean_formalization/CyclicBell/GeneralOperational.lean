@@ -4,7 +4,7 @@ import CyclicBell.Guessing
 /-! Operational bridges: actual measurement sandwiches and partial traces,
 arbitrary-d trivial Eve, value-only nonrobustness, and private-MUB composition.
 The partial trace is defined entrywise, not by assuming the desired privacy
-condition. Every statement below is an UNCOMPILED SOURCE CANDIDATE. -/
+condition.  -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder Topology
 namespace CyclicBell.General

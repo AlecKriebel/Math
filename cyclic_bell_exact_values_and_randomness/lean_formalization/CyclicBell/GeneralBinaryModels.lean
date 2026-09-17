@@ -1,11 +1,10 @@
 import CyclicBell.GeneralCorrelationValues
 import CyclicBell.GeneralBinaryWitness
 
-/-! Binary benchmark in arbitrary complete Hilbert spaces, and actual q/qa/qc
-value assembly. The arbitrary-Hilbert proof is an algebraic SOS, not an inference
-from finite matrices. The existing finite purifying-Eve privacy theorem remains
-separate and is not promoted to infinite-dimensional privacy.
-UNCOMPILED SOURCE CANDIDATES; this benchmark is prior art, not a novelty claim. -/
+/-! Binary benchmark on arbitrary complete Hilbert spaces and q/qa/qc values.
+The Hilbert-space bound follows from an algebraic SOS. The separate finite-Eve
+privacy theorem is not extended to infinite-dimensional privacy. This benchmark
+is prior art. -/
 noncomputable section
 open scoped BigOperators ComplexOrder InnerProductSpace Topology
 namespace CyclicBell.General

@@ -2,10 +2,10 @@ import CyclicBell.GeneralOperational
 import CyclicBell.GeneralCommuting
 import CyclicBell.GeneralSupportAlgebra
 
-/-! Binary benchmark: the actual two-square SOS and privacy from on-state
-relations. No global anticommutation is inferred from saturation. The private
-conditional states use GeneralOperational's actual sandwich/partial trace.
-UNCOMPILED SOURCE CANDIDATES; prior-art benchmark, not a novelty claim. -/
+/-! Binary benchmark: the two-square SOS and privacy from on-state relations.
+No global anticommutation is inferred from saturation. The private conditional
+states use GeneralOperational's measurement sandwich and partial trace.
+This benchmark is prior art. -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder InnerProductSpace
 namespace CyclicBell.General

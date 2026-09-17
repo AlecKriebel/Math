@@ -4,7 +4,7 @@ import CyclicBell.GeneralModelCounterexamples
 /-! Literal adversarial q/qa/qc extended-correlation models and the paper's
 value-conditioned guessing lower bounds. None of the validity predicates
 contains Bell saturation. The qa closure precedes the equality slice.
-UNCOMPILED SOURCE CANDIDATES: no axiom output or kernel checking exists yet. -/
+-/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder Topology
 namespace CyclicBell.General

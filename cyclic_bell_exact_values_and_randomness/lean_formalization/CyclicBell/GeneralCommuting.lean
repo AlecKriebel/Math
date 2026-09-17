@@ -6,7 +6,7 @@ half-polar factors. No finite-dimensional or tensor-factor assumption appears
 in the final Hilbert theorem. This is an alternate proof of thm:exact rather
 than an assertion that a matrix theorem automatically applies to infinite H.
 The canonical polar-decomposition identity remains a separate manuscript lemma.
-UNCOMPILED SOURCE CANDIDATES. -/
+-/
 noncomputable section
 open scoped BigOperators ComplexOrder InnerProductSpace
 namespace CyclicBell.General

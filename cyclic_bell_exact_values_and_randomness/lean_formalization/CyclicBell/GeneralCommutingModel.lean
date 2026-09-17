@@ -4,7 +4,7 @@ import CyclicBell.GeneralSecondCommuting
 /-! Actual vector-state commuting PVM behaviors, with unrestricted complete
 complex Hilbert spaces. The nonnegative normalized probabilities and their
 observable correlators are derived, not fields asserting a Bell conclusion.
-UNCOMPILED SOURCE CANDIDATES. -/
+-/
 noncomputable section
 open scoped BigOperators ComplexOrder InnerProductSpace Topology
 namespace CyclicBell.General

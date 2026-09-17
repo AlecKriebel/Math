@@ -5,7 +5,7 @@ every diagonal-unitary conjugate of a Hermitian circulant has constant diagonal.
 A nonscalar Hermitian matrix with constant diagonal cannot attain a spectral
 extremum at a computational vector. This argument replaces the manuscript's
 wraparound-block/SVD proof; it does NOT verify each intermediate Toeplitz claim.
-UNCOMPILED SOURCE CANDIDATES. -/
+-/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.General

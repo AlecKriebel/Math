@@ -3,7 +3,7 @@ import CyclicBell.GeneralSwap
 /-! Quantitative all-dimensional bias. A simple peak-minus-spectrum estimate
 is slightly stronger than the manuscript estimate and implies its stated
 bound. These are exact real/complex proofs, not numerical estimates.
-No adversarial optimization over all Bell maximizers is asserted. Uncompiled. -/
+No adversarial optimization over all Bell maximizers is asserted.  -/
 noncomputable section
 open scoped BigOperators
 namespace CyclicBell.General

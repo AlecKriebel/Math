@@ -4,7 +4,7 @@ import CyclicBell.TraceCalculus
 /-! Finite-dimensional tensor strategies with ARBITRARY outcome number d and
 ARBITRARY finite local coordinate types. These structures have only physical
 fields; no Bell bound, equality spectrum, attainment or output table is assumed.
-UNCOMPILED SOURCE CANDIDATE. -/
+-/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.General

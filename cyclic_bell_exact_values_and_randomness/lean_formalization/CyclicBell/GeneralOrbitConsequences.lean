@@ -2,7 +2,7 @@ import CyclicBell.GeneralSecondWitness
 
 /-! Closing the canonical/swapped comparison and the small-d permutation
 boundary. These claims concern this explicit orbit, NOT all maximizers.
-UNCOMPILED SOURCE CANDIDATES. -/
+-/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.General

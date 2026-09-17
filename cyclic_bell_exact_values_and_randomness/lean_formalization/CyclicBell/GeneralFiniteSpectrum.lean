@@ -4,7 +4,7 @@ import Mathlib.LinearAlgebra.Eigenspace.Minpoly
 /-! Finite-spectrum functional calculus and zero transfer. Arbitrary scalar
 functions are continuous on a finite spectrum, but this module is explicitly
 finite-dimensional. In particular, the division used in zero transfer is NOT
-an assertion that a singular matrix is invertible. UNCOMPILED SOURCE. -/
+an assertion that a singular matrix is invertible.  -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder Topology
 namespace CyclicBell.General

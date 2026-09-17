@@ -1,8 +1,7 @@
 import CyclicBell.GeneralAdversarialRegression
 
-/-! Expanded statement contracts. A successful build must check the actual
-quantifiers and definitions, not merely confirm endpoint names exist.
-All examples remain UNCOMPILED SOURCE CANDIDATES. -/
+/-! Expanded statement contracts for the adversarial models and bounds.
+The examples expose the quantified physical definitions and endpoint statements. -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder Topology
 namespace CyclicBell.General

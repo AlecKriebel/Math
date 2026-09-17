@@ -4,7 +4,7 @@ import CyclicBell.GeneralChirp
 /-! Explicit half-angle phases for both families. Product-one admissibility
 is proved, rather than included in a strategy definition. These phases are
 identified with (1+omega^y z_k)/norm(1+omega^y z_k) including their signs.
-UNCOMPILED SOURCE CANDIDATES. -/
+-/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.General

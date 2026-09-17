@@ -5,7 +5,6 @@ import CyclicBell.Model
 All-dimensional Fourier/autocorrelation algebra, with the manuscript's PLUS
 Fourier sign. The character is the actual standard complex additive character,
 not an uninterpreted root or a hypothesis asserting orthogonality.
-SOURCE CANDIDATE. No Lean invocation has been performed on this file.
 -/
 noncomputable section
 open scoped BigOperators ComplexConjugate

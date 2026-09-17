@@ -3,7 +3,7 @@ import CyclicBell.D4
 /-! Source correspondence for the target-coordinate constants.
 The scalar facts used by universal bounds live in ScalarData, which does NOT
 import D4, Cycle4, Witness, Attainment, or any target-distribution construction.
-These are uncompiled proof candidates. -/
+-/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.D4

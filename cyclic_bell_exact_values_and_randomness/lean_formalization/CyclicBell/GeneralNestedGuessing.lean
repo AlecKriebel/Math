@@ -4,7 +4,7 @@ import CyclicBell.GeneralAdversarialEntropy
 /-! The finite-q flattened extended-correlation supremum equals the outer
 supremum of the actual attained fixed-realization POVM maxima. The nonempty
 saturation hypothesis of the generic helper is discharged for both families.
-No maximum over all realizations is asserted. UNCOMPILED SOURCE. -/
+No maximum over all realizations is asserted.  -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.General

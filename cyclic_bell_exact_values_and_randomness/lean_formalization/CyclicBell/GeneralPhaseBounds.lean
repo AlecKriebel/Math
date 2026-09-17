@@ -2,8 +2,8 @@ import CyclicBell.GeneralPhaseTables
 import Mathlib.Analysis.SpecialFunctions.Trigonometric.Bounds
 
 /-! Exact maxima and nonuniformity of the physical settings-appendix tables.
-Uncompiled source. These are properties of an explicit realization, NOT a
-self-testing theorem or a no-go theorem for all two-input experiments. -/
+These are properties of an explicit realization, not a self-testing theorem
+or a no-go theorem for all two-input experiments. -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.General

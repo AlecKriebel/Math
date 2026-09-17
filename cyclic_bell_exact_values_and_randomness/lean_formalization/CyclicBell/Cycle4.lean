@@ -4,7 +4,7 @@ import CyclicBell.Phases
 /-! Rank-one four-outcome PVMs for arbitrary unimodular weighted four-cycles.
 The product-one condition is a physical finite-order condition, not a Bell
 maximality assumption. All witness instances discharge it explicitly.
-UNCOMPILED SOURCE CANDIDATE. -/
+-/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.D4

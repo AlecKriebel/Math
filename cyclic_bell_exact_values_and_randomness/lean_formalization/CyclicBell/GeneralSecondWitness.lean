@@ -1,9 +1,9 @@
 import CyclicBell.GeneralSecondBound
 import CyclicBell.GeneralFirstWitness
 
-/-! Full source candidate for the second augmented family in every d>=4.
-The actual coefficient phase, all PVMs, attained value, and target-measurement
-identification are connected. Uncompiled and not a certification claim. -/
+/-! Second augmented-family attainment and nonuniform witnesses for every d>=4.
+The construction connects the coefficient phases, complete PVMs, attained value
+and target-measurement identification. -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.General

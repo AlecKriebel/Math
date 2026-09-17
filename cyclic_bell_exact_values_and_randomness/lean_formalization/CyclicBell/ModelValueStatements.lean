@@ -5,10 +5,9 @@ import CyclicBell.GeneralModelCounterexamples
 import CyclicBell.GeneralPartySwap
 import CyclicBell.GeneralExactValues
 
-/-! Expanded statement correspondence tests for the model/value continuation.
-These are UNEXECUTED Lean examples, not an independent statement audit. They
-expose physical definitions, arbitrary dimensions, real Born arrays, the actual
-closure, and all three supremum operators. -/
+/-! Expanded model and value statement contracts. The examples expose physical
+definitions, arbitrary dimensions, real Born arrays, topological closure and
+the three supremum operators. -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder InnerProductSpace Topology
 namespace CyclicBell.ModelValueStatementAudit

@@ -3,7 +3,7 @@ import CyclicBell.GeneralFiniteSpectrum
 
 /-! Equality-root completeness and adjacent reflection signs, with the wrap
 between d-1 and 0 included. Pure scalar input to supported rigidity.
-UNCOMPILED SOURCE CANDIDATES. -/
+-/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.General

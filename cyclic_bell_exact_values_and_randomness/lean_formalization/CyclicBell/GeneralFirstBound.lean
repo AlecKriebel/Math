@@ -7,7 +7,7 @@ coordinate dimensions and arbitrary positive trace-one mixed states.
 The continuous half-polar factors are obtained from the pinned Mathlib CFC,
 including the zero case. Every factor premise is discharged before the physical
 endpoint; neither a chosen spectrum nor attainment is a Strategy field.
-UNCOMPILED SOURCE CANDIDATES. -/
+-/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.General

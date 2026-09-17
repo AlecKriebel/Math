@@ -2,7 +2,7 @@ import CyclicBell.GeneralAdversarialValues
 
 /-! Sharper d=4 guessing and conditional min-entropy bounds in all three
 adversarial models. These are upper bounds on value-conditioned entropy, NOT
-claims that the displayed finite witness is the worst adversary. Uncompiled. -/
+claims that the displayed finite witness is the worst adversary.  -/
 noncomputable section
 open scoped BigOperators Topology
 namespace CyclicBell.General

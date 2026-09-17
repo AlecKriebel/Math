@@ -2,10 +2,10 @@ import CyclicBell.GeneralFirstBound
 import CyclicBell.GeneralPolarPhases
 import CyclicBell.GeneralGuessing
 
-/-! End-to-end source candidate for the first augmented family in every d>=4.
+/-! Physical attainment and nonuniformity for the first augmented family in every d>=4.
 All state/PVM fields are constructed before the Bell value is evaluated.
 Universal maximality uses GeneralFirstBound, which has no witness imports.
-UNCOMPILED: this is not a claimed kernel-checked theorem. -/
+-/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.General
@@ -71,7 +71,7 @@ theorem firstPermutation_term (hd : 2≤d) (κ : Equiv.Perm (Ix d)) (y : Ix d) :
     rfl
   rw [hc,Complex.ofReal_re]
 
-/-- The actual first functional is evaluated, not merely its candidate factors. -/
+/-- Evaluation of the actual first functional. -/
 theorem firstPermutation_attains (hd : 2≤d) (κ : Equiv.Perm (Ix d)) :
     firstValue (firstPermutationStrategy hd κ)=scalarMaximum d+1 := by
   unfold firstValue

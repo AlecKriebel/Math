@@ -4,8 +4,8 @@ import CyclicBell.GeneralExposure
 import CyclicBell.GeneralOneInput
 
 /-! Physical Fourier privacy, value-only counterexamples and exact entropy
-arithmetic. These are source candidates, with explicit guesses and no claim of
-optimal adversarial success over the whole maximizing face. -/
+arithmetic. Explicit guesses provide lower bounds; optimal adversarial success
+over the whole maximizing face is not asserted. -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder Topology
 namespace CyclicBell.General

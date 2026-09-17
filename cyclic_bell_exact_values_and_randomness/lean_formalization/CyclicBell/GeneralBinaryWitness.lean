@@ -2,7 +2,7 @@ import CyclicBell.GeneralBinary
 
 /-! The literal binary attaining matrices, with valid spectral projectors.
 This finishes the finite-dimensional value/attainment portion of the binary
-benchmark source route. UNCOMPILED SOURCE CANDIDATES. -/
+benchmark source route.  -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.General

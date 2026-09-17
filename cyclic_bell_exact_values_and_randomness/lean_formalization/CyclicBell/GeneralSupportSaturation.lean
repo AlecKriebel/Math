@@ -4,7 +4,7 @@ import CyclicBell.GeneralSupportAlgebra
 /-! Passage from quantum saturation to actual matrix-on-support equations.
 The amplitude is obtained from a positive square root of the arbitrary mixed
 state. No faithfulness, supported dimension, reflection relation or maximality
-is a field of the model. UNCOMPILED SOURCE. -/
+is a field of the model.  -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.General

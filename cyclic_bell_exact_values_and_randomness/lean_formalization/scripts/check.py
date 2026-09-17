@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Fail-closed clean candidate build and axiom audit; no automatic paper certification.
+"""Reproduce the clean Lean build, axiom audit, and validation controls.
 
 Run from the companion root:
-  python3 scripts/check.py --bootstrap --manuscript ../main.tex
+  python3 scripts/check.py --bootstrap
 
 Requires Python >=3.10, Git, and Lean/Lake (normally through elan). --bootstrap
 fetches exact locked dependency commits and their Mathlib cache. It never updates
@@ -39,13 +39,21 @@ RESOURCE_DIAGNOSTIC = re.compile(
 
 def protected_fingerprints():
     paths = [ROOT/'lean-toolchain', ROOT/'lakefile.toml', ROOT/'lake-manifest.json',
-             ROOT/'STATEMENT_CONTRACT.md', ROOT/'CyclicBell.lean']
+             ROOT/'.gitignore', ROOT/'CyclicBell.lean']
     paths.extend(ROOT.glob('*.md'))
-    paths.extend(ROOT.glob('*REPORT.json'))
-    if (ROOT/'SOURCE_HASHES.sha256').exists(): paths.append(ROOT/'SOURCE_HASHES.sha256')
+    paths.extend(ROOT.glob('*.cff'))
     for sub in ['CyclicBell','validation','scripts','reference']:
         paths.extend(p for p in (ROOT/sub).rglob('*') if p.is_file() and '__pycache__' not in p.parts)
     return {str(p.relative_to(ROOT)): hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(set(paths))}
+
+
+def display_path(path):
+    """Keep receipts portable for files inside the companion."""
+    path = Path(path).resolve()
+    try:
+        return str(path.relative_to(ROOT)) or '.'
+    except ValueError:
+        return str(path)
 
 
 def parse_axioms(text, expected):
@@ -111,10 +119,11 @@ class Runner:
         i = len(self.commands) + 1
         logfile = self.directory / f'{i:03d}.log'
         started = datetime.now(timezone.utc).isoformat()
+        print(f'[{i:02d}] '+ ' '.join(map(str, args)), flush=True)
         p = subprocess.run(args, cwd=cwd, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
         text = p.stdout
         logfile.write_text(text)
-        self.commands.append({'command': list(map(str,args)), 'cwd': str(cwd), 'started_utc': started,
+        self.commands.append({'command': list(map(str,args)), 'cwd': display_path(cwd), 'started_utc': started,
                               'exit_code': p.returncode, 'expected_failure': expect_failure,
                               'log': logfile.name, 'log_sha256': hashlib.sha256(logfile.read_bytes()).hexdigest()})
         if p.returncode < 0:
@@ -145,17 +154,27 @@ class Runner:
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--bootstrap', action='store_true')
-    ap.add_argument('--manuscript', type=Path, default=ROOT.parent/'main.tex')
+    ap.add_argument('--manuscript', type=Path, default=ROOT/'reference/manuscript/main.tex')
+    ap.add_argument('--static-only', action='store_true',
+                    help='Run source/import/inventory checks only; does not invoke Lean or certify proofs')
+    ap.add_argument('--repeat-axiom-audit', action='store_true',
+                    help='Additionally rerun the axiom file after the clean-build audit (slower)')
     args = ap.parse_args()
+    if args.static_only:
+        result = audit()
+        print(json.dumps({'status': result['status'], 'kernel_checked': False,
+                          'source_files': len(result['production_files']),
+                          'validation_controls': len(result['offline_validation_registry'])}, indent=2))
+        return 0
     start = datetime.now(timezone.utc)
     run_id = start.strftime('%Y%m%dT%H%M%S%fZ')
-    directory = ROOT/'logs'/'runs'/run_id
+    directory = ROOT/'verification'/'runs'/run_id
     directory.mkdir(parents=True, exist_ok=False)
     runner = Runner(directory)
-    report = {'status': 'started', 'kernel_checked': False, 'formal_endpoint_certified': False,
+    report = {'status': 'started', 'kernel_checked': False,
               'started_utc': start.isoformat(), 'run_id':run_id, 'commands':runner.commands,
-              'remaining_scope_gaps': ['clean compilation and axiom audit until this command succeeds',
-                  'manuscript correspondence is assessed separately in repair_audit_2026-09-14']}
+              'semantic_review_performed_by_runner': False,
+              'scope': 'Formal Lean statements, axiom dependencies, controls, and input integrity; see COVERAGE.md for manuscript correspondence.'}
     exit_code = 2
     try:
         before = protected_fingerprints()
@@ -167,11 +186,11 @@ def main():
             raise RuntimeError('BLOCKED: Git is unavailable')
         source = args.manuscript.expanduser().resolve()
         if not source.is_file():
-            raise RuntimeError(f'BLOCKED: canonical manuscript not present at {source}; place the companion next to the matching main.tex')
+            raise RuntimeError(f'Canonical manuscript not present at {source}; restore reference/manuscript/main.tex or use --manuscript')
         data = source.read_bytes()
         blob = hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()
         digest = hashlib.sha256(data).hexdigest()
-        report['manuscript'] = {'path': str(source), 'git_blob_sha1':blob, 'sha256':digest, 'bytes':len(data)}
+        report['manuscript'] = {'path': display_path(source), 'git_blob_sha1':blob, 'sha256':digest, 'bytes':len(data)}
         if blob != SOURCE_BLOB or digest != SOURCE_SHA256:
             raise RuntimeError('BLOCKED: manuscript differs from statement-contract baseline; review/reconcile rather than silently certify another source')
         version = runner.run(['lean','--version'])
@@ -198,7 +217,7 @@ def main():
                 if not args.bootstrap:
                     raise RuntimeError(f'Missing dependency {package["name"]}; rerun with --bootstrap')
                 path.mkdir()
-                runner.run(['git','init'],cwd=path)
+                runner.run(['git','init','--quiet'],cwd=path)
                 runner.run(['git','remote','add','origin',package['url']],cwd=path)
                 runner.run(['git','fetch','--depth=1','origin',package['rev']],cwd=path)
                 runner.run(['git','checkout','--detach',package['rev']],cwd=path)
@@ -209,14 +228,24 @@ def main():
         if runner.run(['lake','env','lean','--githash']) != COMPILER:
             raise RuntimeError('Lake selected a different compiler')
         if args.bootstrap:
-            runner.run(['lake','exe','cache','get'])
+            # Use the interpreter to avoid platform-specific linker failures in
+            # the old pinned toolchain's native cache executable.
+            runner.run(['lake','build','Cache.Main'])
+            runner.run(['lake','env','lean','--run','.lake/packages/mathlib/Cache/Main.lean','get'])
         build = lake_dir/'build'
         if build.is_symlink():
             raise RuntimeError('Refusing to remove symlinked build directory')
         if build.exists():
             shutil.rmtree(build)
-        report['clean_project_build_directory'] = str(build)
-        runner.run(['lake','build'])
+        report['clean_project_build_directory'] = display_path(build)
+        print('Clean build, including all declaration axiom queries. This stage can take several minutes.', flush=True)
+        build_output = runner.run(['lake','build'])
+        expected = json.loads((ROOT/'reference/expected_theorems.json').read_text())
+        # AxiomAudit is mandatory in the root import graph, and the project build
+        # directory was just removed. These are fresh actual Lean reports, not
+        # replayed cached output or a lexical assertion that queries exist.
+        report['axioms'] = parse_axioms(build_output, expected)
+        report['axiom_report_source'] = 'fresh clean lake build of CyclicBell.AxiomAudit'
         runner.run(['lake','env','lean','validation/AcceptPhysical.lean'])
         runner.run(['lake','env','lean','validation/AcceptGeneral.lean'])
         runner.run(['lake','env','lean','validation/AcceptModels.lean'])
@@ -242,9 +271,11 @@ def main():
         runner.run(['lake','env','lean','validation/RejectSettingsUniform.lean'],expect_failure=True)
         runner.run(['lake','env','lean','validation/RejectSettingsNormalization.lean'],expect_failure=True)
         runner.run(['lake','env','lean','validation/RejectAnchorQubitGap.lean'],expect_failure=True)
-        axtext = runner.run(['lake','env','lean','CyclicBell/AxiomAudit.lean'])
-        expected = json.loads((ROOT/'reference/expected_theorems.json').read_text())
-        report['axioms'] = parse_axioms(axtext, expected)
+        if args.repeat_axiom_audit:
+            axtext = runner.run(['lake','env','lean','CyclicBell/AxiomAudit.lean'])
+            if parse_axioms(axtext, expected) != report['axioms']:
+                raise RuntimeError('Standalone axiom reports differ from the clean build')
+        report['standalone_axiom_repeat'] = args.repeat_axiom_audit
         runner.run(['lake','env','lean','CyclicBell/Statements.lean'])
         if before != protected_fingerprints():
             raise RuntimeError('Protected sources changed during audit')
@@ -256,15 +287,12 @@ def main():
                 raise RuntimeError('Dependency commit changed during audit')
             if runner.run(['git','status','--porcelain','--untracked-files=no'],cwd=path):
                 raise RuntimeError('Dependency sources changed during audit')
-        report['status'] = 'candidate_kernel_checks_passed_statement_review_required'
+        report['status'] = 'passed'
         report['kernel_checked'] = True
-        report['remaining_scope_gaps'] = [
-            'This runner checks kernels and controls; see the separate manuscript-correspondence evaluation.']
-        # Kernel acceptance alone does not certify source correspondence or the entire paper.
-        report['formal_endpoint_certified'] = False
+        # Manuscript correspondence is documented separately, not inferred from compilation.
         exit_code = 0
     except Exception as exc:
-        report['status'] = 'blocked_or_failed_NOT_CERTIFIED'
+        report['status'] = 'failed'
         report['error'] = str(exc)
         (directory/'failure.txt').write_text(traceback.format_exc())
     finally:
@@ -273,11 +301,11 @@ def main():
         report['elapsed_seconds'] = (finish-start).total_seconds()
         text = json.dumps(report,indent=2)+'\n'
         (directory/'run.json').write_text(text)
-        (ROOT/'logs'/'latest_run.json').write_text(text)
+        (ROOT/'verification'/'latest_run.json').write_text(text)
         print(report['status'])
-        print(report.get('error','Candidate checks passed; scope and correspondence still require review.'))
-        print(f'Receipt: {directory / "run.json"}')
-        print('This automated receipt does not certify manuscript correspondence; see repair_audit_2026-09-14.')
+        print(report.get('error','Clean build, complete axiom audit, controls and integrity checks passed.'))
+        print(f'Receipt: {display_path(directory / "run.json")}')
+        print('Manuscript correspondence and proof boundaries: COVERAGE.md and REVIEWER_GUIDE.md.')
     return exit_code
 
 if __name__ == '__main__':

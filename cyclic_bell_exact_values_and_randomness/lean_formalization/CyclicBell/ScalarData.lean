@@ -3,7 +3,7 @@ import Mathlib.Analysis.SpecialFunctions.Pow.Real
 
 /-! Exact phase and coefficient bridges. No numerical roots or certificates.
 The ζ used below IS exp(π i/8), so subsequent finite cyclotomic calculations
-cannot silently choose a different embedding. Uncompiled source candidate. -/
+cannot silently choose a different embedding.  -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.D4

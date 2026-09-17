@@ -13,7 +13,6 @@ For U=A0†A1, T_y=i^y U, let
 F_y=(I+T_y)A0†-P(T_y)B_y, G_y=T_y A0†-Q(T_y)B_y.
 Then M4 I-I4=(s/2) sum_y(F_y†F_y+k G_y†G_y).
 The source below proves the algebra and direct PSD mixed-state bound separately.
-UNCOMPILED: all declarations are proof candidates until the offline clean run.
 -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder

@@ -1,6 +1,6 @@
 import CyclicBell.GeneralPhaseEntropy
 
-/-! Expanded physical contracts for the added settings appendix. Uncompiled. -/
+/-! Expanded physical contracts for the added settings appendix.  -/
 noncomputable section
 open scoped BigOperators Matrix Topology
 namespace CyclicBell.PhaseTableAudit

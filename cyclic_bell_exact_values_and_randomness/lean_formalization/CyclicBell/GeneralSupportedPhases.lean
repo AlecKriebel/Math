@@ -3,7 +3,7 @@ import CyclicBell.GeneralEqualityPhases
 
 /-! Support restriction, kernel-safe polar cancellation and the passage to
 actual reflection equations. Nothing is asserted on the orthogonal complement
-of the reduced-state support. UNCOMPILED SOURCE CANDIDATES. -/
+of the reduced-state support.  -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.General

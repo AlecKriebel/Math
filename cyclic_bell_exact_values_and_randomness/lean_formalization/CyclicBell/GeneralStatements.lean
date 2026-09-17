@@ -16,8 +16,8 @@ import CyclicBell.GeneralConsequences
 import CyclicBell.GeneralBinaryWitness
 import CyclicBell.GeneralOrbitConsequences
 
-/-! Expanded all-dimensional statements for an offline statement review.
-These are source candidates, not executed tests or an independent-agent audit. -/
+/-! Expanded all-dimensional statement contracts. The examples expose the
+physical hypotheses and conclusions separately from their proofs. -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder Topology
 namespace CyclicBell.GeneralStatementAudit

@@ -103,7 +103,7 @@ import CyclicBell.Statements
 import CyclicBell.TraceCalculus
 import CyclicBell.Witness
 
-/-! GENERATED QUERIES, NOT EXECUTED OUTPUT. The offline runner parses all
+/-! Generated declaration queries. The verification runner parses all
 reports and rejects any dependency outside propext/Classical.choice/Quot.sound.
 Every named source declaration is queried, including proof-bearing constructors. -/
 

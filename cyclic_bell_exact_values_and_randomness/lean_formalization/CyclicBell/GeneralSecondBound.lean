@@ -3,7 +3,7 @@ import CyclicBell.GeneralSecondCoefficients
 
 /-! Unconditional physical second-family upper bound with the actual lambda.
 The normalized-coefficient helper is instantiated and no coefficient premise
-is left on the physical endpoint. Uncompiled source. -/
+is left on the physical endpoint.  -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.General

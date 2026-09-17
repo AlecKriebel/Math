@@ -4,7 +4,7 @@ import CyclicBell.GeneralOperational
 
 /-! Actual finite tripartite tensor model. Eve is an arbitrary POVM, not a PVM.
 The mixed-state Born formula is connected to the sandwich/partial trace.
-All declarations are UNCOMPILED SOURCE CANDIDATES. -/
+-/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.General

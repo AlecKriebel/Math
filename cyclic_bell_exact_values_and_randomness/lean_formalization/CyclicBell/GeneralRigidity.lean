@@ -1,10 +1,9 @@
 import CyclicBell.GeneralReflectionRank
 
-/-! Complete finite-dimensional supported-multiplicity source chain.
-The final theorem starts with an arbitrary mixed-state PVM strategy and its
-actual first-family scalar value. Support cancellation, invariance, polar
-kernels, reflection powers and dimension summation are all dependencies.
-UNCOMPILED: no claim of accepted Lean proof or a commuting-model rigidity result. -/
+/-! Finite-dimensional supported-multiplicity rigidity. The final theorem
+starts with an arbitrary mixed-state PVM strategy and its actual first-family
+value. Support cancellation, invariance, polar kernels, reflection powers and
+dimension summation are derived. No commuting-model rigidity is asserted. -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.General

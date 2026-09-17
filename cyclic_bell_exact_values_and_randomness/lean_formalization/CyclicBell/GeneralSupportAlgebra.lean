@@ -5,7 +5,7 @@ import Mathlib.Data.Matrix.Rank
 /-! Coordinate support and purification lemmas, including nonfaithful states.
 The support is the range of the REDUCED density, not the whole Alice space.
 Rectangular amplitude matrices represent any finite purifying environment.
-UNCOMPILED SOURCE CANDIDATES. -/
+-/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.General

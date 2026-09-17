@@ -6,7 +6,7 @@ import Mathlib.Analysis.SpecificLimits.Basic
 
 /-! Scalar min-entropy of the explicit standard tables, with the o(1) claim
 stated as a literal sequential limit. This is not conditional entropy against
-an adversary and does not use a Bell self-testing theorem. Uncompiled source. -/
+an adversary and does not use a Bell self-testing theorem.  -/
 noncomputable section
 open scoped BigOperators Topology
 open Filter

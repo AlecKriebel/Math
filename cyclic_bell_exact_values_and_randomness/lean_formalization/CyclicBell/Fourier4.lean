@@ -2,7 +2,7 @@ import CyclicBell.MatrixAlgebra
 
 /-! Four-point Fourier orthogonality for matrix-valued sequences.
 Same-party matrices are completely arbitrary and need not commute.
-Uncompiled source candidate. -/
+-/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell

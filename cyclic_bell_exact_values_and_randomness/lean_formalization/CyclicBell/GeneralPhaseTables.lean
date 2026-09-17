@@ -1,14 +1,11 @@
 import CyclicBell.GeneralWitness
 import CyclicBell.GeneralPhases
 
-/-!
-# Fourier-phase measurements in the settings appendix
-
-Uncompiled source candidates. These are actual PVMs and Born probabilities on
-Phi_d. No Bell maximum, uniformity, or formula for the answer is a validity field.
-Alice's vectors have negative Fourier sign; Bob's have positive Fourier sign.
-The scalar displacement is a.val-b.val+alpha-beta, with ordinary integer lifts.
--/
+/-! Fourier-phase measurements in the settings appendix. These are actual PVMs
+and Born probabilities on Phi_d. No Bell maximum, uniformity, or formula for
+the answer is a validity field. Alice's vectors have negative Fourier sign;
+Bob's have positive Fourier sign. The scalar displacement uses the ordinary
+integer lifts a.val-b.val+alpha-beta. -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.General

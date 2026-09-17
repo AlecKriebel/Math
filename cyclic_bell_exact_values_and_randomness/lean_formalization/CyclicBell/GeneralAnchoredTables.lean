@@ -3,7 +3,7 @@ import CyclicBell.GeneralPhaseBounds
 /-! The third Bob measurement is explicitly appended to the preceding four
 physical tables. Its matching and cross-table conclusions are about this
 construction only. They do not exclude another third-setting design.
-Uncompiled proof-source candidates. -/
+-/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.General

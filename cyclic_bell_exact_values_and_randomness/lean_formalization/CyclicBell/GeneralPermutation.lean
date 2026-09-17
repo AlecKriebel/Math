@@ -5,7 +5,7 @@ import CyclicBell.GeneralCycles
 The scalar cap, phase alignment and cyclic products below are exactly the
 conditional hypotheses of thm:permutation. They are not hypotheses in a
 physical Strategy. The upper bound still quantifies over arbitrary local
-finite dimensions. Zero linear factors are permitted. UNCOMPILED SOURCE. -/
+finite dimensions. Zero linear factors are permitted.  -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder Topology
 namespace CyclicBell.General

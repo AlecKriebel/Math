@@ -5,7 +5,7 @@ import CyclicBell.GeneralPartySwap
 /-! Actual finite purified strategies and the binary setting-minimality
 endpoint. `BinaryPrivacyAt` quantifies over ALL finite-dimensional compatible
 purifications, not just the attaining realization. Physical strategy validity
-contains no score, privacy or guessing condition. UNCOMPILED SOURCE CANDIDATES. -/
+contains no score, privacy or guessing condition.  -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.General

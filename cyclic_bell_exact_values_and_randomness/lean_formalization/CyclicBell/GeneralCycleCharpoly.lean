@@ -6,7 +6,7 @@ import Mathlib.Algebra.Polynomial.Degree.Support
 NONZERO complex weights, not only phases or product-one cycles. Cayley-Hamilton
 and a coefficient-by-coefficient column calculation avoid assuming a spectral
 basis or importing an external characteristic-polynomial certificate.
-UNCOMPILED SOURCE CANDIDATES. -/
+-/
 noncomputable section
 open scoped BigOperators Matrix Polynomial
 namespace CyclicBell.General

@@ -3,7 +3,7 @@ import CyclicBell.GeneralPhases
 
 /-! Literal complex phase functions, the parity-correct canonical chirp, and
 canonical Fourier flatness in every d>=2. No Gauss-sum black box is assumed.
-All proofs are uncompiled source candidates. -/
+-/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.General

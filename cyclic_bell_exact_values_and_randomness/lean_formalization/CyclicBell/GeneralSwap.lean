@@ -4,7 +4,7 @@ import CyclicBell.GeneralChirp
 /-! Actual final-two swap in every d>=4. The target distribution below is
 computed from a normalized tensor state and PVMs, not defined by its Fourier
 formula. Bell maximality is a separate obligation; it is not assumed here.
-All proofs are uncompiled candidates. -/
+-/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.General
@@ -145,7 +145,7 @@ theorem swappedTarget_normalized : (∑ a,∑ b,swappedTarget d a b)=1 := by
   simp only [swappedTarget_fourier]
   exact table_normalized _ swappedPhase_unit
 
-/-- Physical nonuniformity for every d>=4; this is NOT yet a Bell optimality claim. -/
+/-- Physical nonuniformity for every d>=4; Bell optimality is proved separately. -/
 theorem swappedTarget_not_uniform (hd : 4≤d) :
     ¬ ∀ a b,swappedTarget d a b=1/(d : ℝ)^2 := by
   simp only [swappedTarget_fourier]

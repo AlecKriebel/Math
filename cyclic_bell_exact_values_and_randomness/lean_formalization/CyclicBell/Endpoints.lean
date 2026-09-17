@@ -2,15 +2,13 @@ import CyclicBell.PhysicalBounds
 import CyclicBell.Guessing
 
 /-!
-# Public d=4 endpoint candidates
+# Public d=4 endpoints
 
 All conclusions start with the original mixed-state/PVM physical model. The
 universal bounds are imported independently from the concrete witness.
 `IsFirstMaximizer` and `IsSecondMaximizer` compare with ALL finite-dimensional
 strategies; their proofs, not their definitions, establish witness maximality.
 
-These source declarations have NOT been compiled or kernel checked. The claims
-become formal results only after the pinned offline build and statement audit.
 Nothing here asserts the whole manuscript, all-dimensional d, qa/qc equality,
 support-rigidity, uniqueness, or optimal guessing over all realizations.
 -/

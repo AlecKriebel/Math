@@ -5,7 +5,7 @@ import Mathlib.Algebra.BigOperators.Ring.Finset
 /-! One-input nonsignalling locality and a pure, perfectly guessable realization.
 Output types may depend on Bob's input. Zero-probability Alice outcomes are
 handled explicitly; no conditional distribution divides by zero.
-UNCOMPILED SOURCE CANDIDATES. -/
+-/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
 namespace CyclicBell.General

@@ -4,7 +4,6 @@ import CyclicBell.ScalarData
 /-!
 The actual d=4 second-family SOS, including the coefficient and normalization
 bridge. This is the source's 1/(2d) identity, not the new first-family SOS.
-All proofs are uncompiled candidates; no verification status is inferred.
 -/
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder

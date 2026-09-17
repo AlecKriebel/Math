@@ -2,12 +2,9 @@ import CyclicBell.GeneralSourceFourier
 import CyclicBell.GeneralPolarPhases
 import CyclicBell.GeneralFiniteSpectrum
 
-/-!
-Additional source-convention identities for manuscript `app:attainment`.
-This module uses the source positive clock and forward shift, not a renamed
-permutation witness. Completion of the literal source-polar coefficient bridge
-is tracked separately from these foundational identities.
--/
+/-! Source-convention identities for manuscript app:attainment, using the
+positive clock and forward shift. The relative weighted cycle is unitary and
+its spectrum satisfies the equality-root power equation. -/
 
 noncomputable section
 open scoped BigOperators Matrix ComplexOrder
