@@ -1,0 +1,46 @@
+
+$ /opt/homebrew/opt/python@3.14/bin/python3.14 /Users/alec/Documents/Math/knights_rooks_research/src/test_check.py
+test_added_knight_attack (__main__.DefinitionTests.test_added_knight_attack) ... ok
+test_added_rook_attack (__main__.DefinitionTests.test_added_rook_attack) ... ok
+test_duplicate_rejected (__main__.DefinitionTests.test_duplicate_rejected) ... ok
+test_empty_rejected (__main__.DefinitionTests.test_empty_rejected) ... ok
+test_first_occupied_stops_ray (__main__.DefinitionTests.test_first_occupied_stops_ray) ... ok
+test_knights_jump (__main__.DefinitionTests.test_knights_jump) ... ok
+test_missing_rook (__main__.DefinitionTests.test_missing_rook) ... ok
+test_noninteger_rejected (__main__.DefinitionTests.test_noninteger_rejected) ... ok
+test_overlap_rejected (__main__.DefinitionTests.test_overlap_rejected) ... ok
+test_source_example (__main__.DefinitionTests.test_source_example) ... ok
+test_source_is_not_target (__main__.DefinitionTests.test_source_is_not_target) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.001s
+
+OK
+
+$ /opt/homebrew/opt/python@3.14/bin/python3.14 /Users/alec/Documents/Math/knights_rooks_research/src/test_verification.py
+test_2000_random_attack_reconstructions (__main__.IndependentVerification.test_2000_random_attack_reconstructions) ... ok
+test_cnf_reproduces_exact_bytes (__main__.IndependentVerification.test_cnf_reproduces_exact_bytes) ... ok
+test_corrupt_certificates_rejected (__main__.IndependentVerification.test_corrupt_certificates_rejected) ... ok
+test_directed_counts_need_not_balance (__main__.IndependentVerification.test_directed_counts_need_not_balance) ... ok
+test_published_examples_both_checkers (__main__.IndependentVerification.test_published_examples_both_checkers) ... ok
+test_sat_controls (__main__.IndependentVerification.test_sat_controls) ... ok
+test_source_gif_bytes (__main__.IndependentVerification.test_source_gif_bytes) ... ok
+test_translations_and_dihedral_symmetries (__main__.IndependentVerification.test_translations_and_dihedral_symmetries) ... ok
+test_unsat_certificate (__main__.IndependentVerification.test_unsat_certificate) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.462s
+
+OK
+
+$ /opt/homebrew/opt/python@3.14/bin/python3.14 /Users/alec/Documents/Math/knights_rooks_research/src/verify_unsat.py /Users/alec/Documents/Math/knights_rooks_research/certificates/local_relaxation.cnf /Users/alec/Documents/Math/knights_rooks_research/certificates/local_unsat_tree.json
+VERIFIED UNSAT {"conflicts": 2, "nodes": 3, "splits": 1, "unit_steps": 151}
+
+$ /opt/homebrew/opt/python@3.14/bin/python3.14 /Users/alec/Documents/Math/knights_rooks_research/src/dpll_prove.py /Users/alec/Documents/Math/knights_rooks_research/certificates/local_relaxation.cnf /var/folders/cp/bbqcpp814bjd_6mfhk6lxf7r0000gn/T/knights_rooks_verify_ow8d3pyo/regenerated.json --prefer 19
+UNSAT nodes,unit_steps,conflicts= (3, 151, 2) seconds 0.0023779869079589844
+
+$ /opt/homebrew/opt/python@3.14/bin/python3.14 /Users/alec/Documents/Math/knights_rooks_research/src/verify_unsat.py /Users/alec/Documents/Math/knights_rooks_research/certificates/local_relaxation.cnf /var/folders/cp/bbqcpp814bjd_6mfhk6lxf7r0000gn/T/knights_rooks_verify_ow8d3pyo/regenerated.json
+VERIFIED UNSAT {"conflicts": 2, "nodes": 3, "splits": 1, "unit_steps": 151}
+
+ALL CHECKS PASSED: 20 test methods; bundled certificate accepted; identical certificate regenerated.
+The universal conclusion additionally uses the explicit reduction in FINITE_REDUCTION.md and the proof in PROOF.md.

@@ -1,0 +1,48 @@
+{
+  "status": "resolved_nonexistence_deliverables_complete",
+  "target": "finite nonempty disjoint integer squares; K outdegree 4 to R only; R outdegree 2 to K only; first blockers stop rook rays",
+  "completed": [
+    "Primary source text and target cell inspected",
+    "Initial later-work web searches, no exact solution found",
+    "N1R1 source GIF fetched through GitHub and its git blob hash verified",
+    "Source N1R1 visually transcribed",
+    "Independent definition checker built and 11 tests executed",
+    "Exact finite-board SMT-LIB encoding and local Z3 bridge implemented before exploratory searches",
+    "Solver reproduced satisfiable N=1,R=1 (4x2); N=4,R=1 (6x6); N=2,R=3 (5x5), and direct checker accepted these",
+    "Unrestricted target 8x8 and 16x16 reported unsat (bounded results, no proof certificates retained)",
+    "Optional d4 symmetry 12x12 and 16x16 reported unsat (restricted results only)",
+    "Boundary proof completed; PROOF.md",
+    "Independent necessary local relaxation on 28 squares generated (174 variables,699 clauses)",
+    "DPLL UNSAT certificate generated: one split,151 unit inferences,two conflicts",
+    "Independent certificate verifier accepted both branches",
+    "Two original source GIFs visually inspected, transcribed, and git blob hashes reproduced",
+    "Independent outgoing-attack implementations agreed on two source examples, directed count calibration,2000 random placements,and eight transformed source examples",
+    "Five deliberately corrupted certificates rejected; three constraint-removal controls verified SAT",
+    "Final literature searches and source-table recheck found no prior exact-target resolution",
+    "Self-contained PDF, LaTeX and Markdown research notes completed",
+    "All six PDF pages rendered with pdftoppm and visually inspected; final LaTeX pass has no warnings",
+    "Final read-only reproduction rerun: all 20 test methods pass; certificate accepted and identically regenerated",
+    "Source references, dependencies, seeds, logs, proof, formula, certificate, and exact reproduction command preserved"
+  ],
+  "unresolved": [],
+  "first_unfinished_task": null,
+  "resume_command": "python3 src/run_all.py",
+  "environment": {
+    "python": "3.13.5",
+    "libz3": "/usr/lib/x86_64-linux-gnu/libz3.so.4",
+    "network": "container DNS unavailable; web and GitHub reads available",
+    "final_verification_dependencies": "Python >=3.9 standard library only",
+    "libz3_version": "4.13.3.0 (optional exploratory searches only)"
+  },
+  "restrictions": "Any finite board bound or symmetry in search is only a search restriction, not a general impossibility claim",
+  "interrupted": [
+    "32x32 unrestricted target command terminated by container total time limit; no solver conclusion"
+  ],
+  "observations": [
+    "Every rook seeing two knights lies in the axis-aligned bounding box of the knights",
+    "A rightmost knight must attack all four possible rooks to its left; rook-rook nonattack forces a knight two squares left in same row"
+  ],
+  "result": "No finite solution. Stronger theorem permits knight-knight attacks and assumes only at least four rook targets per knight.",
+  "updated_utc": "2026-09-14T04:41:04.888134+00:00",
+  "historical_priority": "Not established. Initial and final searches found no prior exact-target resolution; no historical novelty claim is made."
+}
