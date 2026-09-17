@@ -2,6 +2,8 @@
 
 This package accompanies **Exact Quantum Values and Permutation-Blind Maximizers in Cyclic Bell Inequalities**. It contains Lean proofs of the encoded value bounds, physical attaining strategies, permutation counterexamples, support rigidity, and related randomness and settings results.
 
+Revision 2 adds explicit second-family correlator, convention-transport, and residual-annihilation statements. It accompanies the same pinned manuscript.
+
 Start with the [reviewer guide](REVIEWER_GUIDE.md) for a mathematical reading path and [coverage map](COVERAGE.md) for precise claims and boundaries. The current validation status and reproducible evidence are indexed in [verification/README.md](verification/README.md).
 
 ## Manuscript and source conventions

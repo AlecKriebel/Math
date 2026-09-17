@@ -1,0 +1,11 @@
+# Targeted Lean correspondence revision
+
+2026-09-17T13:25:58.327267+00:00 — 10% complete. Review requests three explicit second-family bridges: complete first-moment matrix, adjoint/outcome convention transport with transported functional, and residual annihilation. Verify each against source; reconcile outdated ledger qualifications and retain polar infrastructure boundary. Separate proof tasks assigned; parent owns manuscript checking, documentation, inventory/integration and fresh archive verification. Original reviewed archive preserved; no outreach.
+
+## 2026-09-17T13:32:27.102937+00:00 — endpoint checkpoint (60%)
+
+Full second-family first moments and all literal SOS residual endpoints compile individually with only standard axioms. Both are derived from actual physical constructions without maximality assumptions. Convention-transport source includes explicit adjointed Fourier/extra terms, arbitrary finite-competitor maximality, behavior relabeling and observed/fixed-guess preservation; final compilation pending. Parent added expanded interfaces, corrected the two stale ledger rows and explained first-harmonic versus all Fourier orders. Independent adversarial source review finds no deficiency; numerical small-dimension checks are diagnostics only. General polar-decomposition existence/strong limits remain explicitly outside scope. Original reviewed ZIP and receipt preserved. Full clean revision run and new ZIP pending.
+
+## 2026-09-17T13:36:27.062199+00:00 — source frozen for integrated verification (80%)
+
+All three targeted modules and nine expanded statement examples compile; 42 new named declarations (36 theorems, six definitions) bring the audit inventory to 1,894. Existing mathematical modules are byte-identical to prior release; root imports, generated audit queries and one acceptance interface extend coverage. All 87 tooling tests and static source/import/inventory checks pass. Independent adversarial review has no unresolved deficiency; additionally corrected a ledger entry to distinguish the source Bob matrix from its entrywise-conjugate polar factor. Prepared detached standalone copy with identical protected input fingerprints and APFS-cloned locked dependency caches. Next: clean whole companion build, full axiom audit, all controls, new archive extraction/manifest checks.

@@ -1,3 +1,4 @@
+import CyclicBell.GeneralSecondCompletionStatements
 import CyclicBell.GeneralStatements
 open scoped BigOperators
 open CyclicBell.General
@@ -15,3 +16,8 @@ example (nA nB : ℕ)
     (s : StrategyOn 5 (ZMod 5) (Option (ZMod 5)) (Fin nA) (Fin nB)) :
     secondValue s≤6 := by
   convert second_physical_upper (by norm_num) s using 1 <;> norm_num
+
+example : probabilityCorrelator (behavior (secondPermutationStrategy (d := 2)
+    (by norm_num) (Equiv.refl (Ix 2)))) 1 none=0 := by
+  simpa using secondPermutation_behavior_correlator (d := 2) (by norm_num)
+    (Equiv.refl (Ix 2)) 1 none

@@ -1,3 +1,4 @@
+import CyclicBell.GeneralSecondCompletionStatements
 import CyclicBell.GeneralCoverageClosureContainment
 import CyclicBell.GeneralCoverageClosureSequence
 import CyclicBell.GeneralCoverageCompletionOperators
@@ -29,5 +30,5 @@ import CyclicBell.Statements
 import CyclicBell.AxiomAudit
 
 /-! Complete library target: mathematical results, statement contracts,
-regressions, and every generated axiom query. See logs/latest_run.json and
+regressions, and every generated axiom query. See verification/README.md and
 COVERAGE.md for validation and mathematical scope. -/

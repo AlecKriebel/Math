@@ -17,7 +17,7 @@ import zipfile
 from check import ALLOWED_AXIOMS, COMPILER, SOURCE_BLOB, SOURCE_SHA256, parse_axioms, RESOURCE_DIAGNOSTIC, validate_negative_diagnostics
 from static_audit import ROOT, validation_registry
 
-AXIOM_COUNT = 1852
+AXIOM_COUNT = 1894
 PDF_SHA256 = '9d0d23837aed20346f6e97234095ee146f7e7b852c7a4a4b5d646e5fa595c0f6'
 PRIVATE_PATH = re.compile(rb'/(?:Users|home)/')
 ROOT_FILES = ('README.md', 'REVIEWER_GUIDE.md', 'COVERAGE.md', 'AXIOMS.md', '.gitignore',
@@ -259,7 +259,7 @@ def write_archive(payload: dict[str, bytes], output: Path):
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--output', type=Path, default=ROOT.parent/'cyclic-bell-lean-review.zip')
+    parser.add_argument('--output', type=Path, default=ROOT.parent/'cyclic-bell-lean-review-r2.zip')
     args = parser.parse_args(argv)
     output = args.output.expanduser().absolute()
     require(not output.resolve().is_relative_to(ROOT.resolve()), 'Archive output must be outside the companion')

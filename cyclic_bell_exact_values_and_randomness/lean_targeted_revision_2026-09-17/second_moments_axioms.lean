@@ -1,0 +1,11 @@
+import CyclicBell.GeneralSecondMoments
+
+#print axioms CyclicBell.General.secondPermutation_correlator
+#print axioms CyclicBell.General.secondPermutation_extra_correlator
+#print axioms CyclicBell.General.secondPermutation_local_moments_zero
+#print axioms CyclicBell.General.secondPermutation_first_harmonic_matrix
+#print axioms CyclicBell.General.secondPermutation_first_harmonic_matrix_invariant
+#print axioms CyclicBell.General.secondPermutation_behavior_correlator
+#print axioms CyclicBell.General.secondPermutation_behavior_correlators_invariant
+#print axioms CyclicBell.General.secondPermutation_physical_local_moments_zero
+#print axioms CyclicBell.General.secondPermutation_complete_first_moments

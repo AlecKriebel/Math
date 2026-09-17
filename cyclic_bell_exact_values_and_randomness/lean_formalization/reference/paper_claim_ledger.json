@@ -240,7 +240,7 @@
     },
     {
       "manuscript": "sec:framework",
-      "scope": "Literal real Qq/Qqa/Qqc sets; Qqa is closure Qq. Qq subset Qqc constructed; no Qqa subset Qqc theorem claimed.",
+      "scope": "Literal real Qq/Qqa/Qqc sets; Qqa is closure Qq. This module constructs Qq subset Qqc; the package also proves Qqa subset Qqc in GeneralCoverageClosureContainment.",
       "file": "CyclicBell/GeneralCorrelationValues.lean",
       "theorems": [
         "CyclicBell.General.Qq_subset_Qqc",
@@ -428,7 +428,7 @@
     },
     {
       "manuscript": "eq:source-fourier; app:attainment",
-      "scope": "Literal triangular-exponent source coefficient DFT, both operator Fourier sums, and the displayed qutrit expression; no canonical-polar identification claimed",
+      "scope": "Literal triangular-exponent source coefficient DFT, both operator Fourier sums, and the displayed qutrit expression; the canonical-polar identification is proved separately in GeneralCoverageSourceCanonical",
       "file": "CyclicBell/GeneralSourceFourier.lean",
       "theorems": [
         "CyclicBell.General.source_coefficient_DFT",
@@ -529,7 +529,7 @@
     },
     {
       "manuscript": "app:attainment canonical source polar formula",
-      "scope": "Actual coefficient Bob matrix is the unitary polar factor with the true positive square root and an explicit invertible modulus",
+      "scope": "Actual coefficient Bob matrix is the entrywise conjugate of the unitary polar factor with the true positive square root and an explicit invertible modulus",
       "file": "CyclicBell/GeneralCoverageSourceCanonical.lean",
       "theorems": [
         "CyclicBell.General.sourceBob_canonical_polar",
@@ -578,11 +578,50 @@
         "CyclicBell.General.quantum_model_inclusions"
       ],
       "status": "mapped_statement_see_validation_receipt"
+    },
+    {
+      "manuscript": "thm:second; targeted completion revision",
+      "scope": "Full physical d-by-(d+1) complex first-harmonic matrix, both local first-moment families, and complete Born-correlator array invariance for every d>=2 and permutation; not all Fourier orders.",
+      "file": "CyclicBell/GeneralSecondMoments.lean",
+      "theorems": [
+        "CyclicBell.General.secondPermutation_correlator",
+        "CyclicBell.General.secondPermutation_extra_correlator",
+        "CyclicBell.General.secondPermutation_complete_first_moments",
+        "CyclicBell.General.secondPermutation_behavior_correlators_invariant"
+      ],
+      "status": "mapped_statement_see_validation_receipt"
+    },
+    {
+      "manuscript": "thm:second; targeted completion revision",
+      "scope": "Literal d*lambda_l I minus A_l tensor Bhat_l residual, and aligned extra residual, annihilate actual Phi_d for all d>=2 without assuming maximality.",
+      "file": "CyclicBell/GeneralSecondResiduals.lean",
+      "theorems": [
+        "CyclicBell.General.secondPermutation_residual_zero",
+        "CyclicBell.General.secondPermutation_aligned_residual_zero"
+      ],
+      "status": "mapped_statement_see_validation_receipt"
+    },
+    {
+      "manuscript": "thm:second; targeted completion revision",
+      "scope": "PVM outcome inversion equals encoded adjoint; actual cyclic behavior relabeling; value/maximality for the explicitly transported functional; preserved nonuniform target and observed maximum/fixed-guess success, not exact Eve optimization.",
+      "file": "CyclicBell/GeneralOutcomeRelabeling.lean",
+      "theorems": [
+        "CyclicBell.General.negateMeasurement_encoded",
+        "CyclicBell.General.secondAdjointPermutation_bob_encoded",
+        "CyclicBell.General.secondAdjointPermutation_behavior",
+        "CyclicBell.General.secondAdjointValue_negateBob",
+        "CyclicBell.General.secondAdjointPermutation_maximal",
+        "CyclicBell.General.secondAdjointSwap_nonuniform",
+        "CyclicBell.General.secondAdjointSwap_observedMaxEntry",
+        "CyclicBell.General.secondAdjointSwap_quantitative",
+        "CyclicBell.General.negateBob_bestFixedGuess"
+      ],
+      "status": "mapped_statement_see_validation_receipt"
     }
   ],
   "closure_inclusion_Qqa_Qqc_claimed": true,
   "kernel_status_source": "verification/recorded/run.json; this correspondence map is not itself a compiler receipt",
   "principal_mathematical_claims_mapped": true,
   "line_by_line_proof_translation": false,
-  "proof_correspondence_boundaries": "See COVERAGE.md: alternate MUB and polar proofs; external cited results, novelty and open questions are not formalized."
+  "proof_correspondence_boundaries": "See COVERAGE.md: all first-harmonic entries means first Fourier order only; explicit second-family completion added. Alternate MUB and polar proofs, arbitrary polar decomposition existence/strong limits, external cited results, novelty and open questions remain outside the stated scope."
 }

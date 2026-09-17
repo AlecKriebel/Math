@@ -65,6 +65,7 @@ import CyclicBell.GeneralNestedGuessing
 import CyclicBell.GeneralOneInput
 import CyclicBell.GeneralOperational
 import CyclicBell.GeneralOrbitConsequences
+import CyclicBell.GeneralOutcomeRelabeling
 import CyclicBell.GeneralPOVMMaximum
 import CyclicBell.GeneralPartySwap
 import CyclicBell.GeneralPermutation
@@ -79,6 +80,9 @@ import CyclicBell.GeneralScalar
 import CyclicBell.GeneralSecondBound
 import CyclicBell.GeneralSecondCoefficients
 import CyclicBell.GeneralSecondCommuting
+import CyclicBell.GeneralSecondCompletionStatements
+import CyclicBell.GeneralSecondMoments
+import CyclicBell.GeneralSecondResiduals
 import CyclicBell.GeneralSecondSOS
 import CyclicBell.GeneralSecondWitness
 import CyclicBell.GeneralSourceFourier
@@ -1232,6 +1236,36 @@ Every named source declaration is queried, including proof-bearing constructors.
 #print axioms CyclicBell.General.low_dimension_orbit_uniform
 #print axioms CyclicBell.General.first_behavior_nonuniqueness
 #print axioms CyclicBell.General.second_behavior_nonuniqueness
+#print axioms CyclicBell.General.negateMeasurement_encoded
+#print axioms CyclicBell.General.negateMeasurement_involutive
+#print axioms CyclicBell.General.negateBobOutcomes
+#print axioms CyclicBell.General.negateBobOutcomes_behavior
+#print axioms CyclicBell.General.negateBobOutcomes_involutive
+#print axioms CyclicBell.General.secondAdjointFourier
+#print axioms CyclicBell.General.secondAdjointFourier_opposite_mode
+#print axioms CyclicBell.General.secondAdjointValue
+#print axioms CyclicBell.General.secondAdjointValue_eq_relabel
+#print axioms CyclicBell.General.secondAdjointValue_negateBob
+#print axioms CyclicBell.General.secondAdjointValue_upper
+#print axioms CyclicBell.General.secondAdjointPermutationStrategy
+#print axioms CyclicBell.General.secondAdjointPermutation_bob_encoded
+#print axioms CyclicBell.General.secondAdjointPermutation_behavior
+#print axioms CyclicBell.General.secondAdjointPermutation_attains
+#print axioms CyclicBell.General.secondAdjointPermutation_maximal
+#print axioms CyclicBell.General.relabelOutcomeTable
+#print axioms CyclicBell.General.relabelOutcomeTable_range
+#print axioms CyclicBell.General.observedMaxEntry
+#print axioms CyclicBell.General.observedMaxEntry_attained
+#print axioms CyclicBell.General.le_observedMaxEntry
+#print axioms CyclicBell.General.observedMaxEntry_relabel
+#print axioms CyclicBell.General.relabelOutcomeTable_uniform_iff
+#print axioms CyclicBell.General.negateBob_observedMaxEntry
+#print axioms CyclicBell.General.negateBob_fixedGuessSuccess
+#print axioms CyclicBell.General.observedMaxEntry_eq_bestFixedGuess
+#print axioms CyclicBell.General.negateBob_bestFixedGuess
+#print axioms CyclicBell.General.secondAdjointSwap_nonuniform
+#print axioms CyclicBell.General.secondAdjointSwap_observedMaxEntry
+#print axioms CyclicBell.General.secondAdjointSwap_quantitative
 #print axioms CyclicBell.General.eveGram
 #print axioms CyclicBell.General.EveGramValid
 #print axioms CyclicBell.General.eveGramPOVM
@@ -1483,6 +1517,18 @@ Every named source declaration is queried, including proof-bearing constructors.
 #print axioms CyclicBell.General.algebraPVM_cross_commute
 #print axioms CyclicBell.General.first_commuting_PVM_upper
 #print axioms CyclicBell.General.second_commuting_PVM_upper
+#print axioms CyclicBell.General.secondPermutation_correlator
+#print axioms CyclicBell.General.secondPermutation_extra_correlator
+#print axioms CyclicBell.General.secondPermutation_local_moments_zero
+#print axioms CyclicBell.General.secondPermutation_first_harmonic_matrix
+#print axioms CyclicBell.General.secondPermutation_first_harmonic_matrix_invariant
+#print axioms CyclicBell.General.secondPermutation_behavior_correlator
+#print axioms CyclicBell.General.secondPermutation_behavior_correlators_invariant
+#print axioms CyclicBell.General.secondPermutation_physical_local_moments_zero
+#print axioms CyclicBell.General.secondPermutation_complete_first_moments
+#print axioms CyclicBell.General.phi_unitary_conjugate_invariance
+#print axioms CyclicBell.General.secondPermutation_residual_zero
+#print axioms CyclicBell.General.secondPermutation_aligned_residual_zero
 #print axioms CyclicBell.General.secondFourier
 #print axioms CyclicBell.General.fourier_character_orthogonality
 #print axioms CyclicBell.General.secondFourier_energy

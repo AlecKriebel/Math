@@ -10,7 +10,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 BANNED = re.compile(r"\b(sorry|admit|sorryAx|axiom|native_decide|unsafe|run_tac|run_elab|elab|extern|implemented_by)\b")
-REQUIRED = {"CyclicBell.Model", "CyclicBell.Functionals", "CyclicBell.D4",
+REQUIRED = {"CyclicBell.GeneralSecondMoments", "CyclicBell.GeneralSecondResiduals",
+            "CyclicBell.GeneralOutcomeRelabeling", "CyclicBell.GeneralSecondCompletionStatements",
+            "CyclicBell.Model", "CyclicBell.Functionals", "CyclicBell.D4",
             "CyclicBell.MatrixAlgebra", "CyclicBell.ScalarData", "CyclicBell.Phases", "CyclicBell.Fourier4",
             "CyclicBell.FirstSOS", "CyclicBell.SecondSOS", "CyclicBell.Cycle4",
             "CyclicBell.PhysicalBounds", "CyclicBell.Witness", "CyclicBell.TraceCalculus",
