@@ -1,8 +1,6 @@
 # Verification evidence
 
-Revision in progress: the retained receipt below belongs to the preceding release. New targeted endpoints require a fresh complete run before export.
-
-Recorded result: **passed** on 2026-09-17 (UTC), run `20260917T034140936866Z`. The standalone check completed 68 commands in 18.0 minutes, including all 1,852 expected declaration reports and five acceptance/twenty rejection controls. All reported axioms are among `propext`, `Classical.choice`, and `Quot.sound`.
+Recorded result: **passed** on 2026-09-17 (UTC), run `20260917T133627161011Z`. The standalone check completed 66 commands in 17.3 minutes, including all 1,894 expected declaration reports and five acceptance/twenty rejection controls. All reported axioms are among `propext`, `Classical.choice`, and `Quot.sound`.
 
 The retained [run receipt](recorded/run.json) records a complete clean build, all declaration axiom reports, interface controls, and input fingerprints. Its numbered command logs are in [recorded/](recorded/). A successful receipt has `status: "passed"` and `kernel_checked: true`.
 
