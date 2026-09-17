@@ -1,0 +1,105 @@
+checker_tests: PASS
+exact_audit: PASS
+source_control: PASS
+source_dimension_guard: PASS
+ordinary_three_rows: PASS
+repeated_entries: PASS
+scaled_source: PASS
+{
+  "reproducer_version": "1.0.0",
+  "all_passed": true,
+  "environment": {
+    "python": "3.14.6",
+    "system": "Darwin",
+    "machine": "arm64"
+  },
+  "stages": [
+    {
+      "name": "checker_tests",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "expected_returncode": 0,
+      "returncode": 0,
+      "passed": true,
+      "unittest_cases": 33
+    },
+    {
+      "name": "exact_audit",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "src/audit_inequalities.py"
+      ],
+      "expected_returncode": 0,
+      "returncode": 0,
+      "passed": true
+    },
+    {
+      "name": "source_control",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "src/verify_matrix.py",
+        "certificates/source_two_rows.json",
+        "--min-rows",
+        "2"
+      ],
+      "expected_returncode": 0,
+      "returncode": 0,
+      "passed": true
+    },
+    {
+      "name": "source_dimension_guard",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "src/verify_matrix.py",
+        "certificates/source_two_rows.json"
+      ],
+      "expected_returncode": 1,
+      "returncode": 1,
+      "passed": true
+    },
+    {
+      "name": "ordinary_three_rows",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "src/verify_matrix.py",
+        "certificates/ordinary_three_rows.json"
+      ],
+      "expected_returncode": 1,
+      "returncode": 1,
+      "passed": true
+    },
+    {
+      "name": "repeated_entries",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "src/verify_matrix.py",
+        "certificates/repeated_three_rows.json"
+      ],
+      "expected_returncode": 1,
+      "returncode": 1,
+      "passed": true
+    },
+    {
+      "name": "scaled_source",
+      "command": [
+        "/opt/homebrew/opt/python@3.14/bin/python3.14",
+        "src/verify_matrix.py",
+        "certificates/scaled_source.json",
+        "--min-rows",
+        "2"
+      ],
+      "expected_returncode": 1,
+      "returncode": 1,
+      "passed": true
+    }
+  ],
+  "proof_status": "Universal nonexistence is established by the mathematical note, not by these finite tests.",
+  "matrix_search_performed": false
+}

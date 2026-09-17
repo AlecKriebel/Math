@@ -1,0 +1,227 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=0.9in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,booktabs}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small Equal-sum--product matrices}
+\fancyhead[R]{\small 14 September 2026}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{14pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{4pt}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\NN}{\mathbb Z_{>0}}
+\title{\vspace{-1.5em}\textbf{A reciprocal-square obstruction for\newline equal-sum--product matrices}}
+\author{}
+\date{14 September 2026 \quad $\cdot$ \quad Version 1.0}
+\hypersetup{pdftitle={A reciprocal-square obstruction for equal-sum-product matrices},
+ pdfsubject={General nonexistence for three or more rows},
+ pdfkeywords={sum-product matrices, DeVincentis conjecture, reciprocal squares}}
+\begin{document}
+\begin{center}
+{\Large\bfseries A reciprocal-square obstruction for\\[3pt]
+equal-sum--product matrices}\par
+\vspace{6pt}
+{\small 14 September 2026 \quad $\cdot$ \quad Version 1.0}
+\end{center}
+\vspace{-8pt}
+\begin{abstract}
+There is no matrix of globally distinct positive integers with at least three
+rows whose row sums and column products are all the same number. An elementary
+argument reduces any number of rows to three selected rows and yields
+$3<2$. The proof is uniform in the dimensions and the common value. It uses
+only a sum-of-squares identity and a finite telescoping bound. This establishes
+the conjecture attributed to Joseph DeVincentis on Erich Friedman's
+November 2002 Math Magic page~\cite{friedman}.
+\end{abstract}
+
+\section{The unrestricted nonexistence theorem}
+\begin{theorem}\label{thm:main}
+There do not exist integers $m\ge3$, $n\ge2$, $N\ge1$, and an
+$m\times n$ matrix $A=(a_{ij})$ of pairwise distinct positive integers such that
+\[
+ \sum_{j=1}^{n}a_{ij}=N\quad(1\le i\le m),
+ \qquad
+ \prod_{i=1}^{m}a_{ij}=N\quad(1\le j\le n).
+\]
+\end{theorem}
+\begin{proof}
+Suppose such a matrix exists. For each column put
+$x_j=a_{1j}$, $y_j=a_{2j}$, and $z_j=a_{3j}$. All entries outside these
+three rows are at least $1$, so
+\[
+ N=x_jy_jz_j\prod_{i=4}^{m}a_{ij}\ \ge\ x_jy_jz_j.
+\]
+For $m=3$ the displayed extra product is the empty product, equal to $1$.
+Consequently,
+\begin{align}
+3
+&=\sum_{j=1}^{n}\frac{x_j+y_j+z_j}{N} \notag\\
+&\le\sum_{j=1}^{n}\left(\frac1{x_jy_j}+\frac1{x_jz_j}+\frac1{y_jz_j}\right)
+ \le\sum_{j=1}^{n}\left(\frac1{x_j^2}+\frac1{y_j^2}+\frac1{z_j^2}\right).
+\label{eq:chain}
+\end{align}
+The last inequality follows from the exact identity
+\[
+\frac1{x^2}+\frac1{y^2}+\frac1{z^2}
+-\frac1{xy}-\frac1{xz}-\frac1{yz}
+=\frac12\left[
+\left(\frac1x-\frac1y\right)^2+
+\left(\frac1x-\frac1z\right)^2+
+\left(\frac1y-\frac1z\right)^2\right]\ge0.
+\]
+The $3n$ selected entries are distinct positive integers. If $M$ is their
+maximum, the last expression in~\eqref{eq:chain} is at most
+\[
+\sum_{k=1}^{M}\frac1{k^2}
+\le 1+\sum_{k=2}^{M}\frac1{k(k-1)}
+=1+\sum_{k=2}^{M}\left(\frac1{k-1}-\frac1k\right)
+=2-\frac1M<2.
+\]
+Thus $3<2$, a contradiction.
+\end{proof}
+
+\newpage
+\section{A stronger inequality, and the boundary cases}
+The following result concerns ordinary sum--product matrices, for which the
+common sum $S$ and the common product $P$ need not coincide.
+
+\begin{proposition}\label{prop:strong}
+Let $m\ge3$ and $n\ge1$. Let $A$ have globally distinct positive integer
+entries, common row sum $S$, and common column product $P$. Then
+\[
+\frac{mS}{P}<2,\qquad\text{and hence}\qquad S<\frac{2P}{m}.
+\]
+\end{proposition}
+\begin{proof}
+In a single column write its entries as $b_1,\ldots,b_m$, with indices
+interpreted cyclically modulo $m$. Since every entry is at least $1$ and
+$m\ge3$, the two entries $b_{i+1},b_{i+2}$ are distinct positions and neither
+is $b_i$. Therefore
+\[
+\frac{b_i}{\prod_{k=1}^{m}b_k}
+=\frac1{\prod_{k\ne i}b_k}
+\le\frac1{b_{i+1}b_{i+2}}
+\le\frac12\left(\frac1{b_{i+1}^{2}}+\frac1{b_{i+2}^{2}}\right).
+\]
+Summing over $i$, each reciprocal square occurs twice with coefficient $1/2$.
+Summing next over columns gives
+\[
+\frac{mS}{P}\le\sum_{i=1}^{m}\sum_{j=1}^{n}\frac1{a_{ij}^2}<2,
+\]
+where the final step is the same finite distinct-integer bound as above.
+\end{proof}
+
+\subsection*{The original two-row verification control}
+The source supplies the following matrix~\cite{friedman}:
+\[
+\begin{pmatrix}
+2&4&7&24&40&70&105&140&168&280\\
+420&210&120&35&21&12&8&6&5&3
+\end{pmatrix}.
+\]
+Direct arbitrary-precision computation gives row sums $(840,840)$, ten column
+products all equal to $840$, and $20$ distinct positive entries. The matrix
+is included as \texttt{certificates/source\_two\_rows.json}.
+
+For two rows, the relevant identity is instead
+\[
+2=\sum_j\frac{a_{1j}+a_{2j}}{a_{1j}a_{2j}}
+=\sum_j\left(\frac1{a_{1j}}+\frac1{a_{2j}}\right).
+\]
+This is a sum of reciprocals, not reciprocal squares. It is exactly $2$ for
+the source control, and the obstruction above does not apply.
+
+\subsection*{Why the hypotheses matter}
+Global distinctness is essential: the $3\times4$ matrix whose every entry is
+$2$ has every row sum and column product equal to $8$. It is rejected because
+its entries repeat. Ordinary sum--product equality is weaker: the source's
+matrix $\bigl(\begin{smallmatrix}3&21\\14&10\\20&4\end{smallmatrix}\bigr)$
+has common row sum $24$ and common column product $840$, not the same value.
+Neither example contradicts Theorem~\ref{thm:main}.
+
+There is no hidden scaling step. Scaling all entries by $c$ changes a row sum
+by $c$ and an $m$-entry column product by $c^m$. For example, doubling the
+two-row control gives sum $1680$ and product $3360$.
+
+With $n\ge2$, the one-row case is impossible as well: the column condition
+forces every entry to be $N$, so its row sum would be $nN>N$. Thus among
+positive row counts, the equality case can occur only with two rows.
+
+\newpage
+\begingroup
+\small
+\setlength{\parskip}{3pt}
+\section{Verification, reproducibility, and provenance}
+The bundle uses Python's standard library only. The matrix checker recomputes
+dimensions, integer positivity, global distinctness, every row sum, and every
+column product directly from JSON entries. It does not call a search solver
+or use the impossibility theorem to decide validity.
+
+The executed validation consists of:
+\begin{center}
+\small
+\begin{tabular}{@{}lp{10cm}@{}}
+\toprule
+Check & Executed scope; all passed\\
+\midrule
+Checker regression & 33 tests, including malformed inputs, repeated entries,
+corruptions, wrong $N$, scaling, ordinary-SP controls, and large integers.\\[3pt]
+Symbolic algebra & Exact integer-polynomial coefficient comparison; the
+sum-of-squares identity has zero residual.\\[3pt]
+Ordered triples & All 64,000 triples in $\{1,\ldots,40\}^3$, including repeats.\\[3pt]
+Distinct sets & All 4,095 nonempty subsets of $\{1,\ldots,12\}$.\\[3pt]
+Telescoping & Identity and reciprocal-square bound for $1\le M\le512$.\\[3pt]
+Higher-row arrays & 360 arrays, 2,340 columns: $3\le m\le12$, $1\le n\le12$,
+three trials per shape. Consecutive values and seeded samples from
+$1$ through $10{,}000$; seed \texttt{20260914}.\\
+\bottomrule
+\end{tabular}
+\end{center}
+An additional exact-rational probe uses 101-digit entries. A separate audit
+script, which does not import the matrix checker, rechecks the two-row
+control and the repeated-entry boundary example.
+
+\textbf{The finite tests are not the proof.} Theorem~\ref{thm:main} proves
+nonexistence for all permitted dimensions and values. The tests are regression
+and transcription safeguards. No exhaustive matrix or factorization search
+was needed or performed. No proof-assistant verification or external reviewer
+is claimed.
+
+\subsection*{Reproduction}
+From the extracted bundle directory, run:
+\begin{verbatim}
+python3 src/reproduce.py
+\end{verbatim}
+This runs both the target checker and the explicit two-row control override.
+Standalone checker commands are in \texttt{README.md}. Actual commands,
+return codes, versions, and inspected output are in \texttt{logs/}.
+The note's \LaTeX{} source and a SHA-256 manifest are included.
+
+\subsection*{Source and priority audit}
+The original page and the separate unsolved-problems list were inspected on
+14 September 2026; the latter still displayed this statement as a
+conjecture~\cite{unsolved}. The targeted searches recorded in
+\texttt{references/source\_audit.md} did not locate a later proof or construction.
+This is not an exhaustive certification of historical priority. It is
+separate from the mathematical conclusion proved here. No contact or
+publication was undertaken.
+
+\begin{thebibliography}{9}
+\bibitem{friedman} Erich Friedman, \emph{Problem of the Month (November 2002)},
+Math Magic. Attributes the equality-case conjecture and two-row example to
+Joseph DeVincentis. Accessed 14 September 2026.\\
+\url{https://erich-friedman.github.io/mathmagic/1102.html}
+\bibitem{unsolved} Erich Friedman, \emph{Unsolved Problems from Math Magic},
+item 8. Accessed 14 September 2026.\\
+\url{https://erich-friedman.github.io/mathmagic/unsolved.html}
+\end{thebibliography}
+\endgroup
+\end{document}

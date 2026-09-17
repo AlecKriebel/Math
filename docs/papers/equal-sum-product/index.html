@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An elementary proof of the DeVincentis conjecture: a matrix of globally distinct positive integers whose every row sum and every column product equal the same number cannot have three or more rows.">
+  <meta name="author" content="Alec Kriebel">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="A Reciprocal-Square Obstruction for Equal-Sum–Product Matrices">
+  <meta property="og:description" content="A universal nonexistence proof, a stronger ordinary-SP inequality, and independently reproduced exact checks.">
+  <meta property="og:url" content="https://aleckriebel.github.io/Math/papers/equal-sum-product/">
+  <link rel="canonical" href="https://aleckriebel.github.io/Math/papers/equal-sum-product/">
+  <title>Equal-Sum–Product Matrices · Alec Kriebel Research</title>
+  <link rel="stylesheet" href="../../assets/style.css?v=20260809-portfolio">
+  <script>
+    window.MathJax = {tex: {inlineMath: [["\\(", "\\)"]]}, options: {skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"]}};
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Paper navigation">
+      <a class="brand" href="../../">Alec Kriebel Research</a>
+      <div class="nav-links"><a href="#result">Result</a><a href="#proof">Full proof</a><a href="#verification">Verification</a></div>
+    </nav>
+    <div class="paper-hero"><div class="inner">
+      <p class="paper-status">Recreational mathematics · Research note · Unrefereed</p>
+      <h1>A Reciprocal-Square Obstruction for Equal-Sum–Product Matrices</h1>
+      <p class="byline">Alec Kriebel · AI-assisted research</p>
+      <p class="release">Research note: 14 September 2026 · Independent AI audit and publication: 17 September 2026 UTC</p>
+    </div></div>
+  </header>
+  <main class="paper-main">
+    <div class="button-row paper-actions">
+      <a class="button" href="./paper.pdf">Read the three-page note</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/tree/main/equal_sum_product">Source &amp; Verification</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/equal_sum_product/independent_audit/VERIFICATION_REPORT.md">Independent audit</a>
+      <a class="button secondary" href="https://erich-friedman.github.io/mathmagic/1102.html">Original problem</a>
+    </div>
+    <article class="paper-text">
+      <section id="result">
+        <h2>The result</h2>
+        <p class="lede">A matrix of globally distinct positive integers cannot have three or more rows if every row sum and every column product equal the same number.</p>
+        <p>This proves the conjecture attributed to Joseph DeVincentis on <a href="https://erich-friedman.github.io/mathmagic/1102.html">Erich Friedman’s November 2002 Math Magic page</a>. With at least two columns, the equal-value case can occur only with two rows. The source supplies a two-row example with common value 840.</p>
+        <div class="theorem-block">
+          <p><strong>Theorem.</strong> There are no integers \(m\ge3\), \(n\ge2\), \(N\ge1\), and an \(m\times n\) matrix \(A=(a_{ij})\) of pairwise distinct positive integers satisfying</p>
+          <div class="equation">\[
+            \sum_{j=1}^{n}a_{ij}=N\quad(1\le i\le m),\qquad
+            \prod_{i=1}^{m}a_{ij}=N\quad(1\le j\le n).
+          \]</div>
+        </div>
+      </section>
+      <section id="proof">
+        <h2>The full nonexistence proof</h2>
+        <p>Select any three rows and write their entries in column \(j\) as \(x_j,y_j,z_j\). Every omitted entry is at least 1, so \(N\ge x_jy_jz_j\). The three selected row sums give</p>
+        <div class="equation">\[
+          \begin{aligned}
+          3&=\sum_{j=1}^{n}\frac{x_j+y_j+z_j}{N}\\
+           &\le\sum_{j=1}^{n}\left(\frac1{x_jy_j}+\frac1{x_jz_j}+\frac1{y_jz_j}\right)\\
+           &\le\sum_{j=1}^{n}\left(\frac1{x_j^2}+\frac1{y_j^2}+\frac1{z_j^2}\right).
+          \end{aligned}
+        \]</div>
+        <p>The second inequality is the sum of the three elementary inequalities \(1/(xy)\le(1/x^2+1/y^2)/2\), each equivalent to \((1/x-1/y)^2\ge0\).</p>
+        <p>All \(3n\) selected entries are distinct positive integers. If \(M\) is their maximum, their reciprocal-square sum is at most</p>
+        <div class="equation">\[
+          \sum_{k=1}^{M}\frac1{k^2}
+          \le 1+\sum_{k=2}^{M}\left(\frac1{k-1}-\frac1k\right)
+          =2-\frac1M&lt;2.
+        \]</div>
+        <p>Thus \(3&lt;2\), a contradiction. The argument covers every number of rows \(m\ge3\), every allowed width, and every common value; it uses no finite-search assumption.</p>
+      </section>
+      <section id="stronger-bound">
+        <h2>A stronger inequality</h2>
+        <p>For an ordinary sum–product matrix with globally distinct positive integer entries, \(m\ge3\) rows, common row sum \(S\), and common column product \(P\), the note proves</p>
+        <div class="equation">\[\frac{mS}{P}&lt;2,\qquad S&lt;\frac{2P}{m}.\]</div>
+        <p>In one column, label entries \(b_1,\ldots,b_m\) cyclically. The positions \(i+1,i+2\) are different from each other and from \(i\). Since the other factors are at least 1,</p>
+        <div class="equation">\[
+          \frac{b_i}{P}\le\frac1{b_{i+1}b_{i+2}}
+          \le\frac12\left(\frac1{b_{i+1}^2}+\frac1{b_{i+2}^2}\right).
+        \]</div>
+        <p>Sum over the column and then all columns. Each reciprocal square has total coefficient 1, giving \(mS/P\le\sum_{i,j}1/a_{ij}^2&lt;2\) by the same distinct-integer bound.</p>
+      </section>
+      <section id="boundaries">
+        <h2>Boundary cases</h2>
+        <ul>
+          <li><strong>Two rows:</strong> the source’s \(2\times10\) example has 20 distinct entries, both row sums 840, and all ten column products 840. Its total reciprocal sum is exactly 2; the reciprocal-square obstruction does not apply.</li>
+          <li><strong>One row:</strong> with \(n\ge2\), every entry would have to equal \(N\), making the row sum \(nN&gt;N\). The excluded \(1\times1\) case is a trivial solution for any positive entry.</li>
+          <li><strong>Repeated entries:</strong> a \(3\times4\) array filled with 2 has row sums and column products equal to 8. Global distinctness is an essential hypothesis.</li>
+          <li><strong>Ordinary SP matrices:</strong> equal row sums and equal column products may exist with more rows when the two common values differ. Those matrices are outside the nonexistence claim.</li>
+        </ul>
+      </section>
+      <section id="verification">
+        <h2>Verification and reproduction</h2>
+        <p>Separate AI reviewers checked the direct proof, developed an independent AM–GM argument before reading it, and audited the computations and input checker. No mathematical gap was found in either theorem or the numerical controls.</p>
+        <div class="table-wrap"><table class="paper-table">
+          <thead><tr><th scope="col">Check</th><th scope="col">Reproduced scope</th></tr></thead>
+          <tbody>
+            <tr><td>Checker regression tests</td><td>33 tests</td></tr>
+            <tr><td>Sum-of-squares identity</td><td>Exact polynomial coefficient comparison</td></tr>
+            <tr><td>Ordered triples</td><td>64,000 triples with entries from 1 through 40</td></tr>
+            <tr><td>Distinct sets and telescoping</td><td>4,095 subsets; 512 telescoping bounds</td></tr>
+            <tr><td>Higher-row inequalities</td><td>360 arrays, 2,340 columns, and a separate 101-digit probe</td></tr>
+          </tbody>
+        </table></div>
+        <p>From the <code>equal_sum_product</code> folder, run:</p>
+        <pre><code>python3 src/reproduce.py</code></pre>
+        <p>The checks use Python 3.10 or newer and its standard library. The written proof establishes universal nonexistence; the finite diagnostics check arithmetic, transcription, and software behavior. The <a href="https://github.com/AlecKriebel/Math/blob/main/equal_sum_product/independent_audit/VERIFICATION_REPORT.md">audit report</a> records the independent checks and their limits.</p>
+      </section>
+      <section id="scope">
+        <h2>Scope and provenance</h2>
+        <p>This result settles the equal-sum/equal-product conjecture under the source’s global-distinctness and positive-integer conventions. It does not determine the smallest ordinary SP matrix in every dimension or classify all two-row solutions.</p>
+        <p>The supplied 14 September package, including its PDF and integrity manifest, is preserved unchanged. Its statements about being unpublished and not independently reviewed describe that original session; the later audit records this publication.</p>
+        <p>The <a href="https://erich-friedman.github.io/mathmagic/unsolved.html">Math Magic unsolved list, item 8</a>, still listed the conjecture when checked on 17 September 2026 UTC. Targeted searches found no earlier resolution, but historical priority has not been established.</p>
+        <p>The research and this verification used generative-AI assistance. These independent AI checks are internal research audits, not external peer review or proof-assistant formalization.</p>
+      </section>
+    </article>
+    <section class="pdf-section" aria-label="Typeset research note">
+      <h2>Research note</h2>
+      <object class="pdf-frame" data="./paper.pdf" type="application/pdf"><p><a href="./paper.pdf">Open the research note.</a></p></object>
+    </section>
+  </main>
+  <footer class="site-footer"><a href="../../">Alec Kriebel Research</a> · <a href="https://orcid.org/0009-0001-9320-500X">ORCID</a> · <a href="https://github.com/AlecKriebel/Math/tree/main/equal_sum_product">Research package</a></footer>
+</body>
+</html>

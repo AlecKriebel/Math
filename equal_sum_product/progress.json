@@ -1,0 +1,97 @@
+{
+  "schema_version": "1.0",
+  "updated_date": "2026-09-14",
+  "status": "resolved_by_general_nonexistence_proof",
+  "target": {
+    "m_min": 3,
+    "n_min": 2,
+    "N_min": 1,
+    "globally_distinct_positive_integers": true,
+    "row_sums_and_column_products_all_equal_N": true
+  },
+  "established_facts": [
+    "The source's 2-by-10 example has 20 distinct positive integer entries, both row sums 840, and all 10 column products 840.",
+    "For positive x,y,z, 1/(xy)+1/(xz)+1/(yz) <= 1/x^2+1/y^2+1/z^2, by a sum-of-squares identity.",
+    "The reciprocal-square sum of any finite set of distinct positive integers is strictly less than 2, by a finite telescoping bound.",
+    "For any m>=3, the product of the entries outside the first three rows in a column is at least 1. The first three row sums force 3 <= a reciprocal-square sum < 2."
+  ],
+  "unresolved_obligations": [],
+  "matrix_search_performed": false,
+  "search_reason": "General proof found before construction enumeration. Diagnostic test limits are not nonexistence-search limits.",
+  "first_unfinished_computation": null,
+  "next_command": "python3 src/reproduce.py",
+  "external_review": "not_performed",
+  "formal_proof_assistant_verification": "not_performed",
+  "priority_status": "No later resolution located in the web queries executed; exhaustive novelty is not established.",
+  "mathematical_coverage": {
+    "m": "all integers >= 3",
+    "n": "all integers >= 2 (proof also covers n=1)",
+    "N": "all integers >= 1"
+  },
+  "next_command_purpose": "Reproduce completed certificate checks; no further mathematical search is needed.",
+  "algorithm_versions": {
+    "matrix_checker": "1.0.0",
+    "exact_audit": "1.0.0",
+    "reproducer": "1.0.0"
+  },
+  "validation": {
+    "checker_tests": 33,
+    "all_passed": true,
+    "symbolic_identity": "exact zero polynomial residual; stored certificate matches recomputation",
+    "finite_diagnostics": {
+      "ordered_triples": {
+        "entry_range": [
+          1,
+          40
+        ],
+        "cases": 64000
+      },
+      "distinct_sets": {
+        "universe": [
+          1,
+          12
+        ],
+        "nonempty_subsets": 4095
+      },
+      "telescoping": {
+        "M_range": [
+          1,
+          512
+        ],
+        "cases": 512
+      },
+      "higher_row_array_audit": {
+        "m_range": [
+          3,
+          12
+        ],
+        "n_range": [
+          1,
+          12
+        ],
+        "trials_per_shape": 3,
+        "arrays": 360,
+        "columns": 2340,
+        "seed": 20260914,
+        "random_entry_range": [
+          1,
+          10000
+        ],
+        "consecutive_entry_trials": true,
+        "largest_normalized_sum": "1"
+      },
+      "large_integer_probe_digits": 101,
+      "all_passed": true,
+      "warning": "These finite checks are regression tests, not the proof of universal nonexistence."
+    }
+  },
+  "proof_files": [
+    "notes/equal_sum_product_note.pdf",
+    "notes/equal_sum_product_note.tex",
+    "notes/proof_checkpoint.md"
+  ],
+  "further_optional_reviews": [
+    "External mathematical review",
+    "Additional historical-priority checking"
+  ]
+}
