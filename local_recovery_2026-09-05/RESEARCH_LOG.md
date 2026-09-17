@@ -1,0 +1,5 @@
+# Preservation log
+
+- 2026-09-06T04:57:02.414394+00:00: Inventory checkpoint; 70% complete toward safe remote preservation and local cleanup. Compared file content against objects reachable from GitHub refs, identified oversized/private exceptions, archived unique uploadable files, and verified archive member SHA-256 checksums. Research correctness was not evaluated. Remaining gap: push, independent remote readback, and deletion of verified local copies.
+
+- 2026-09-06T05:03:59.332074+00:00: Cleanup checkpoint; 100% complete within the uploadable scope. PR #8 is open. All uploaded files were streamed back from GitHub and matched SHA-256. Source checksums were rechecked immediately before deletion. Deleted 35136 manifest files plus disposable runtimes; removed the universal-amplification clone and STC-JC linked worktree. Four identical oversized K2P copies were consolidated to one. Retained five distinct oversized files, private YBE material, and Borsuk Git metadata for its unmerged history. Main checkout contents and branch were not changed.
