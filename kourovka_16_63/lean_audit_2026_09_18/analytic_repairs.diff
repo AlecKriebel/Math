@@ -1,0 +1,195 @@
+--- original/Kourovka/Analytic/NilpotentUnit.lean
++++ Kourovka/Analytic/NilpotentUnit.lean
+@@ -1,4 +1,4 @@
+-/- Uncompiled source. Exact algebraic part of the unit-factor argument.
++/- Exact algebraic part of the unit-factor argument.
+ No assertion about convergence or integrality of the infinite U-series is made here. -/
+ import Mathlib.Algebra.Algebra.Basic
+ import Mathlib.Algebra.Module.End
+@@ -60,7 +60,8 @@
+   | nil => exact Commute.zero_right X
+   | cons c cs ih =>
+     change Commute X (algebraMap R A c+X*evalHorner X cs)
+-    exact ((Algebra.commutes c X).symm).add_right ((Commute.refl X).mul_right ih)
++    have hc : Commute X (algebraMap R A c) := (Algebra.commutes c X).symm
++    exact hc.add_right ((Commute.refl X).mul_right ih)
+ 
+ /-- Any polynomial 1+X*V(X) is a unit when X is nilpotent. -/
+ def polynomialUnit (X:A) (cs:List R) (n:Nat) (hX:X^n=0) : Aˣ :=
+@@ -77,7 +78,7 @@
+ /-- Units of the endomorphism ring are actual linear equivalences. -/
+ def unitToEquiv (U : (Module.End R M)ˣ) : M ≃ₗ[R] M where
+   toFun := (U:Module.End R M)
+-  invFun := (U⁻¹:Module.End R M)
++  invFun := (↑(U⁻¹) : Module.End R M)
+   left_inv := by
+     intro x
+     have h := congrArg (fun D:Module.End R M => D x) U.inv_val
+@@ -104,13 +105,16 @@
+ Both preservation assumptions must later be proved for the ACTUAL tensor lattice and U. -/
+ theorem factor_mem_iff (X:Module.End R M) (U:(Module.End R M)ˣ) (S:Submodule R M)
+     (hU:∀ x,x∈S → (U:Module.End R M) x∈S)
+-    (hInv:∀ x,x∈S → (U⁻¹:Module.End R M) x∈S) (v:M) :
++    (hInv:∀ x,x∈S → (↑(U⁻¹) : Module.End R M) x∈S) (v:M) :
+     ((U:Module.End R M)*X) v∈S ↔ X v∈S := by
+   constructor
+   · intro h
+     have hh := hInv _ h
+     have he := congrArg (fun D:Module.End R M => D (X v)) U.inv_val
+-    simpa only [Module.End.mul_apply,Module.End.one_apply] using he ▸ hh
++    change (↑(U⁻¹) : Module.End R M) ((U : Module.End R M) (X v)) = X v at he
++    change (↑(U⁻¹) : Module.End R M) ((U : Module.End R M) (X v)) ∈ S at hh
++    rw [he] at hh
++    exact hh
+   · intro h
+     exact hU _ h
+ 
+--- original/Kourovka/Analytic/TensorAction.lean
++++ Kourovka/Analytic/TensorAction.lean
+@@ -1,4 +1,4 @@
+-/- Uncompiled source. The full tensor action and its three commuting differential operators. -/
++/- The full tensor action and its three commuting differential operators. -/
+ import Kourovka.Linear.BilinearOps
+ import Kourovka.Analytic.NilpotentUnit
+ 
+@@ -68,7 +68,7 @@
+     action Q η=η ↔ ∀ u v,Q (η u v)=η (Q u) (Q v) := by
+   constructor
+   · intro h u v
+-    have he := congrArg (fun b:T => b (Q u) (Q v)) h
++    have he := congrArg (fun b:T (R:=R) (M:=M) => b (Q u) (Q v)) h
+     simpa only [action_apply,Q.symm_apply_apply] using he
+   · intro h
+     ext u v
+@@ -79,16 +79,17 @@
+ theorem fixed_iff_derivation_of_factor
+     (Q:M≃ₗ[R]M) (D:Module.End R M) (U:(Module.End R (T (R:=R) (M:=M)))ˣ)
+     (hfactor:(action Q).toLinearMap-LinearMap.id =
+-      (U:Module.End R T)*differential D) (η:T) :
++      (U:Module.End R (T (R:=R) (M:=M)))*differential D)
++    (η:T (R:=R) (M:=M)) :
+     (∀ u v,Q (η u v)=η (Q u) (Q v)) ↔
+       (∀ u v,D (η u v)=η (D u) v+η u (D v)) := by
+   rw [← action_fixed_iff,← sub_eq_zero]
+-  have he : action Q η-η=((U:Module.End R T)*differential D) η := by
+-    exact congrArg (fun X:Module.End R T => X η) hfactor
++  have he : action Q η-η=((U:Module.End R (T (R:=R) (M:=M)))*differential D) η := by
++    exact congrArg (fun X:Module.End R (T (R:=R) (M:=M)) => X η) hfactor
+   rw [he,factor_zero_iff,differential_apply]
+   constructor
+   · intro h u v
+-    have hh := congrArg (fun b:T => b u v) h
++    have hh := congrArg (fun b:T (R:=R) (M:=M) => b u v) h
+     simp only [delta_apply,LinearMap.zero_apply] at hh
+     calc
+       D (η u v) = (D (η u v)-η (D u) v-η u (D v))+(η (D u) v+η u (D v)) := by abel
+@@ -96,6 +97,7 @@
+   · intro h
+     ext u v
+     rw [delta_apply,h]
++    simp only [LinearMap.zero_apply]
+     abel
+ 
+ end Kourovka.Analytic.Tensor
+--- original/Kourovka/BCH/CoefficientSoundness.lean
++++ Kourovka/BCH/CoefficientSoundness.lean
+@@ -1,8 +1,8 @@
+-/- Uncompiled source. Soundness of exact associative coefficient cancellation for
++/- Soundness of exact associative coefficient cancellation for
+ homogeneous Lie identities. This supplies a reusable BCH proof ingredient, not the
+ BCH associativity theorem or the converse automorphism reconstruction. -/
+ import Kourovka.BCH.Dynkin
+-import Mathlib.Data.List.ToFinset
++import Mathlib.Data.Finset.Defs
+ 
+ namespace Kourovka.BCH
+ open scoped BigOperators
+@@ -149,7 +149,9 @@
+     change dynkin s (Poly.shift c [] (LieWord.expand t))+dynkin s (expand P)=_
+     rw [dynkin_shift s c [] _ (LieWord.expansion_nonempty t),wordAction,
+       Kourovka.BCH.dynkin_expand,ht,ih hp]
+-    simp only [eval,nsmul_add,smul_comm]
++    change c • (n • LieWord.eval s t) + n • eval s P =
++      n • (c • LieWord.eval s t + eval s P)
++    rw [nsmul_add, smul_comm c n]
+ 
+ /-- A proof-producing route from collected associative coefficients to a Lie identity.
+ The explicit injectivity hypothesis is necessary in torsion; it must be discharged
+@@ -159,6 +161,7 @@
+     (hinj:Function.Injective (fun z:L => n • z))
+     (hcoeff:Poly.ZeroCoefficients (expand P)) : eval s P=0 := by
+   apply hinj
++  change n • eval s P = n • (0 : L)
+   rw [← dynkin_expand s n P hdegree,nsmul_zero]
+   exact Poly.zeroCoefficients_sound (dynkinWord s) (expand P) hcoeff
+ 
+--- original/Kourovka/BCH/Dynkin.lean
++++ Kourovka/BCH/Dynkin.lean
+@@ -1,4 +1,4 @@
+-/- Uncompiled source. A Dynkin--Specht--Wever reconstruction ingredient, proved by word induction.
++/- A Dynkin--Specht--Wever reconstruction ingredient, proved by word induction.
+ It is not a proof of BCH associativity or the finite Lazard correspondence. -/
+ import Mathlib.Algebra.Lie.Basic
+ import Mathlib.Tactic
+@@ -69,7 +69,7 @@
+   obtain ⟨a,ha,hz⟩ := List.mem_flatMap.mp hz
+   obtain ⟨b,hb,rfl⟩ := List.mem_map.mp hz
+   intro hn
+-  have hb0 : b.2=[] := (List.append_eq_nil.mp hn).2
++  have hb0 : b.2=[] := (List.append_eq_nil_iff.mp hn).2
+   exact h b hb hb0
+ 
+ theorem nonempty_comm (P Q:Poly α) (hP:NonemptyWords P) (hQ:NonemptyWords Q) :
+@@ -136,11 +136,11 @@
+   induction w with
+   | nil => rfl
+   | cons a w ih =>
+-    have hne : w++v≠[] := by intro h; exact hv (List.append_eq_nil.mp h).2
++    have hne : w++v≠[] := by intro h; exact hv (List.append_eq_nil_iff.mp h).2
+     cases hrest:w++v with
+     | nil => exact (hne hrest).elim
+     | cons b rest =>
+-      change ⁅s a,dynkinWord s (b::rest)⁆ = ⁅s a,wordAction s w (dynkinWord s v)⁆
++      simp only [List.cons_append, hrest, dynkinWord, wordAction]
+       exact congrArg (fun z:L => ⁅s a,z⁆) (hrest ▸ ih)
+ 
+ def polyAction (P:Poly α) (z:L) : L := Poly.sumEval (fun w => wordAction s w z) P
+@@ -149,7 +149,10 @@
+ theorem polyAction_zero (P:Poly α) : polyAction s P 0=0 := by
+   induction P with
+   | nil => rfl
+-  | cons a P ih => rcases a with ⟨c,w⟩; simp [polyAction,Poly.sumEval,wordAction_zero,ih]
++  | cons a P ih =>
++    rcases a with ⟨c,w⟩
++    change c • wordAction s w 0 + polyAction s P 0 = 0
++    rw [wordAction_zero, smul_zero, ih, add_zero]
+ 
+ theorem polyAction_add (P:Poly α) (u v:L) :
+     polyAction s P (u+v)=polyAction s P u+polyAction s P v := by
+@@ -227,7 +230,7 @@
+     change Poly.sumEval (fun w => wordAction s w z)
+       (Poly.mul (LieWord.expand a) (LieWord.expand b) ++
+        Poly.neg (Poly.mul (LieWord.expand b) (LieWord.expand a))) = _
+-    rw [Poly.sumEval_append,Poly.sumEval_neg]
++    rw [Poly.sumEval_append,Poly.sumEval_neg, ← sub_eq_add_neg]
+     change polyAction s (Poly.mul (LieWord.expand a) (LieWord.expand b)) z-
+       polyAction s (Poly.mul (LieWord.expand b) (LieWord.expand a)) z = _
+     rw [action_mul,action_mul,ha,hb,ha,hb]
+@@ -242,7 +245,7 @@
+     change Poly.sumEval (dynkinWord s)
+       (Poly.mul (LieWord.expand a) (LieWord.expand b) ++
+        Poly.neg (Poly.mul (LieWord.expand b) (LieWord.expand a))) = _
+-    rw [Poly.sumEval_append,Poly.sumEval_neg]
++    rw [Poly.sumEval_append,Poly.sumEval_neg, ← sub_eq_add_neg]
+     change dynkin s (Poly.mul (LieWord.expand a) (LieWord.expand b))-
+       dynkin s (Poly.mul (LieWord.expand b) (LieWord.expand a)) = _
+     rw [dynkin_mul s _ _ (LieWord.expansion_nonempty b),
+@@ -250,7 +253,7 @@
+     simp only [lie_nsmul,LieWord.degree,LieWord.eval,add_nsmul]
+     have hsk : ⁅LieWord.eval s b,LieWord.eval s a⁆ = -⁅LieWord.eval s a,LieWord.eval s b⁆ := by
+       exact (lie_skew (LieWord.eval s b) (LieWord.eval s a)).symm
+-    rw [hsk,nsmul_neg,sub_neg_eq_add,add_comm]
++    rw [hsk,smul_neg,sub_neg_eq_add,add_comm]
+ 
+ /-- Once multiplication by the homogeneous degree is injective, reconstruction detects equal evaluations.
+ The downstream BCH proof must still connect normalized associative coefficients and the primitive log. -/

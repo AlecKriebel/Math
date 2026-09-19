@@ -1,0 +1,37 @@
+def Kourovka.Challenge.ExactOrders.{u_1} : (G : Type u_1) → [inst : Group G] → Prop :=
+fun G [Group G] => Finite G ∧ Nat.card G = 1009 ^ 52359 ∧ Nat.card (MulAut G) = 1009 ^ 52359
+def Kourovka.Challenge.NotebookAffirmative : Prop :=
+∃ p n,
+  Nat.Prime p ∧ Odd p ∧ 0 < n ∧ ∃ G g, Finite G ∧ Nontrivial G ∧ Nat.card G = p ^ n ∧ Nat.card (MulAut G) = Nat.card G
+def Kourovka.Finite.lieRingAt : (i : ℕ) → LieRing (Kourovka.Finite.LAt i) :=
+fun i => Kourovka.Lattice.lieRing (Kourovka.Finite.RAt i)
+@[reducible] def Kourovka.Finite.FullAutomorphisms.RingAut : ℕ → Type :=
+fun i => Kourovka.Finite.LAt i ≃ₗ⁅ℤ⁆ Kourovka.Finite.LAt i
+def Kourovka.Finite.FullAutomorphisms.AdmissibleEntries : ℕ → Type :=
+fun i =>
+  { a //
+    Function.Bijective ⇑(Kourovka.Linear.fromEntries a) ∧
+      ∀ (x y : Kourovka.Ambient.V (Kourovka.Finite.RAt i)),
+        (Kourovka.Linear.fromEntries a) ((Kourovka.Lattice.LB x) y) =
+          (Kourovka.Lattice.LB ((Kourovka.Linear.fromEntries a) x)) ((Kourovka.Linear.fromEntries a) y) }
+Kourovka.raw_table_matches_exported : Kourovka.Raw.reconstructedTerms = Kourovka.exportedTerms
+Kourovka.Flag.full_flag_rigidity : ∀ (Q : Kourovka.Flag.E ≃ₗ[Kourovka.Flag.k] Kourovka.Flag.E),
+  Kourovka.Flag.Preserves ↑Q →
+    (∀ a ∈ Kourovka.Flag.F2, Q a ∈ Kourovka.Flag.F2) →
+      (∀ a ∈ Kourovka.Flag.F3, Q a ∈ Kourovka.Flag.F3) → Q = LinearEquiv.refl Kourovka.Flag.k Kourovka.Flag.E
+Kourovka.Flag.infinitesimal_flag_rigidity : ∀ (D : Kourovka.Flag.E →ₗ[Kourovka.Flag.k] Kourovka.Flag.E),
+  Kourovka.Flag.IsDerivation D →
+    (∀ a ∈ Kourovka.Flag.F2, D a ∈ Kourovka.Flag.F2) → (∀ a ∈ Kourovka.Flag.F3, D a ∈ Kourovka.Flag.F3) → D = 0
+Kourovka.Lattice.embed_bracket : ∀ (a b : Kourovka.Ambient.V ℤ),
+  Kourovka.Lattice.embed ((Kourovka.Lattice.LB a) b) =
+    (Kourovka.Ambient.B (Kourovka.Lattice.embed a)) (Kourovka.Lattice.embed b)
+Kourovka.Finite.cardinality_at_depth : Nat.card (Kourovka.Finite.LAt 1689) = 1009 ^ 52359
+Kourovka.Finite.target_lowerCentralSeries : LieModule.lowerCentralSeries (Kourovka.Finite.RAt 1689)
+    (Kourovka.Finite.LAt 1689) (Kourovka.Finite.LAt 1689) 846 =
+  ⊥
+Kourovka.Finite.FullAutomorphisms.full_lie_aut_card_eq_matrix_card : ∀ (i : ℕ),
+  Nat.card (Kourovka.Finite.FullAutomorphisms.RingAut i) =
+    Nat.card (Kourovka.Finite.FullAutomorphisms.AdmissibleEntries i)
+Kourovka.Certificates.InnerRank.characteristic_zero_rank_upper : ∀ (F : Type u_1) [inst : Field F]
+  [inst_1 : CharZero F],
+  Module.finrank F ↥(LinearMap.range (Kourovka.Certificates.matrixLinear Kourovka.Lattice.LB)) ≤ 931

@@ -1,0 +1,802 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools,booktabs,array}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=blue!45!black,
+ pdftitle={An explicit odd-order p-group with as many automorphisms as elements},
+ pdfsubject={Computer-assisted solution to Kourovka Notebook problem 16.63}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}\newtheorem{remark}[theorem]{Remark}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Der}{Der}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\BCH}{BCH}
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\PGL}{PGL}
+\DeclareMathOperator{\rank}{rank}
+\newcommand{\Zp}{\mathbb Z_p}
+\newcommand{\Qp}{\mathbb Q_p}
+\newcommand{\Fp}{\mathbb F_p}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\EE}{\mathcal E}
+\newcommand{\TT}{\mathcal T}
+\newcommand{\FF}{\mathcal F}
+\setlength{\emergencystretch}{2em}
+\title{An explicit odd-order $p$-group with as many\\automorphisms as elements\\[5pt]
+\large A computer-assisted solution to Kourovka Notebook problem 16.63}
+\author{}
+\date{14 September 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+We construct a finite group $G$ for which
+\[
+ p=1009,\qquad |G|=|\Aut(G)|=1009^{52359}.
+\]
+The group is the Baker--Campbell--Hausdorff group of an explicitly specified
+rank-$31$ Lie ring modulo $1009^{1689}$. Its nilpotency class is at most $846<1009$.
+An asymmetric lattice forces every automorphism of the finite Lie ring into an
+integral logarithm--exponential neighborhood. This gives a bijection between the
+\emph{full} automorphism set and the kernel of a linear derivation matrix.
+Exact independently implemented Python and C++ computations establish the
+Smith valuations of that matrix. This is a proof with reproducible computational
+certificates, not a catalogue search or a count of a restricted automorphism
+subgroup. No external peer review or proof-assistant formalization is claimed.
+\end{abstract}
+{\small\tableofcontents}
+
+\section{Statement, sources, and scope}
+The question attributed to D. MacHale in the September 2026 version of the
+\emph{Kourovka Notebook}, problem 16.63, asks for a nontrivial finite $p$-group of
+odd order with $|\Aut(G)|=|G|$ \cite{KN}. It appears on printed page 102 and
+cross-refers to Archive 12.77 on printed page 255. The latter is the separate,
+now-disproved divisibility conjecture. The notebook website identifies its
+1 September 2026 file as the current update. No published resolution of the
+exact equality question was located in the literature searches recorded in the
+accompanying ledger.
+
+Gonz\'alez-S\'anchez and Jaikin-Zapirain construct, for every prime, families with
+$|\Aut(G)|=O(|G|^{40/41})$ \cite{GSJ}. This explains the negative answer to the
+archival divisibility problem; it does not itself give the equality required
+here. Shabani-Attar's paper treats particular classes: its Proposition 2.5,
+Theorem 2.6 and Theorem 2.8 exclude odd-prime examples of maximal class, with
+cyclic Frattini subgroup, and of class two with cyclic centre, respectively
+\cite{SA}. None is a general nonexistence theorem.
+
+The Lie-algebra template used below is the rank-$31$ example in
+Omirov--Ruan, Theorem 4.8, with six radical summands \cite{OR}. Their arXiv
+record has version 1, dated 6 May 2026. We specify an integral normalization
+and establish the required finite-characteristic facts directly; we do not
+assume that an unspecified characteristic-zero automorphism theorem reduces
+unchanged modulo $p$. The asymmetric lattice and finite full-automorphism
+count are developed in this report.
+
+As elementary controls, a nontrivial abelian group of odd order has the
+inversion automorphism of order two, so cannot answer the question. For
+\[
+ H_p=\langle a,b\mid a^{p^2}=b^p=1,\;bab^{-1}=a^{1+p}\rangle,
+\]
+the normal forms $a^u b^v$ give $|H_p|=p^3$. All automorphisms have images
+$a\mapsto a^u b^v$, $b\mapsto a^{pw}b$, where $u$ is a unit modulo $p^2$
+and $v,w\in\Fp$. Thus $|\Aut(H_p)|=(p-1)p^3$, not $p^3$.
+The exhaustive generating-pair controls give $(27,54)$, $(125,500)$ and
+$(343,2058)$ for $(|H_p|,|\Aut(H_p)|)$ at $p=3,5,7$.
+This also checks why counting only a Sylow subgroup would give a false positive.
+
+\begin{theorem}\label{thm:main}
+There exists a finite group $G$ of order $1009^{52359}$ whose full automorphism
+group has order $1009^{52359}$. A portable description is given in
+Definitions~\ref{def:B} and \ref{def:A} and equation~\eqref{eq:G}.
+\end{theorem}
+The prime, order and number of generators are not claimed to be minimal.
+The theorem provides one example, not an assertion for every odd prime.
+
+\section{The integral Lie algebra}
+Fix $p=1009$. This number is prime, as is also checked by trial division in
+the independent verifier. All lattices in the proof are over $\Zp$.
+For $m\ge0$, write $V_m$ for the free module of homogeneous binary forms of
+degree $m$, with basis $v_i=X^{m-i}Y^i$, $0\le i\le m$.
+The standard $\mathfrak{sl}_2$ action is
+\begin{equation}\label{eq:action}
+ [h,v_i]=(m-2i)v_i,\quad [e,v_i]=i v_{i-1},\quad
+ [f,v_i]=(m-i)v_{i+1},
+\end{equation}
+with out-of-range terms zero, and
+$[h,e]=2e$, $[h,f]=-2f$, $[e,f]=h$.
+
+For binary forms $F\in V_m$, $H\in V_n$, define the \emph{raw transvectant}
+\begin{equation}\label{eq:transvectant}
+ P_r(F,H)=\sum_{k=0}^r(-1)^k\binom rk
+ \frac{\partial^r F}{\partial X^{r-k}\partial Y^k}
+ \frac{\partial^r H}{\partial X^k\partial Y^{r-k}}.
+\end{equation}
+No factorial normalization is suppressed. On basis vectors the coefficient
+of the vector indexed by $i+j-r$ in $V_{m+n-2r}$ is
+\begin{equation}\label{eq:falling}
+ \sum_{k=0}^r(-1)^k\binom rk
+ (m-i)_{r-k}(i)_k(n-j)_k(j)_{r-k},
+\end{equation}
+where $(a)_b=a(a-1)\cdots(a-b+1)$, $(a)_0=1$, and $(a)_b=0$ when $b>a\ge0$.
+
+\begin{definition}\label{def:B}
+Let $B$ have ordered basis
+\[
+ h,e,f,\quad U_0,\ldots,U_6,\quad V_0,\ldots,V_4,\quad
+ W_0,\ldots,W_6,\quad T_0,T_1,T_2,\quad R_0,\ldots,R_4,\quad Z_0.
+\]
+Its six radical summands $U,V,W,T,R,Z$ are copies of
+$V_6,V_4,V_6,V_2,V_4,V_0$, respectively. In addition to
+\eqref{eq:action}, the only nonzero radical brackets, up to skew symmetry, are
+\begin{center}
+\begin{tabular}{ccc}
+\toprule Inputs & Output summand & Map \\ \midrule
+$U,U$ & $W$ & $P_3$ \\
+$U,V$ & $T$ & $P_4$ \\
+$U,W$ & $T$ & $P_5$ \\
+$U,R$ & $T$ & $P_4$ \\
+$V,V$ & $T$ & $P_3$ \\
+$V,R$ & $Z$ & $P_4$ \\
+$R,R$ & $T$ & $P_3$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+The target of a transvectant is identified with the indicated copy of its
+binary-form module. All other brackets are zero.
+\end{definition}
+This is a complete specification with integer coefficients. In particular,
+$\rank B=3+7+5+7+3+5+1=31$.
+
+\begin{lemma}\label{lem:basic}
+The displayed bracket is a Lie bracket over $\mathbb Z$. Over $\Zp$, $\Qp$
+and $\Fp$ it is perfect and has centre precisely the $Z$ summand. If
+$N=U\oplus V\oplus W\oplus T\oplus R\oplus Z$, then
+\[
+ [N,N]=W\oplus T\oplus Z,\qquad [N,[N,N]]=T,\qquad [N,T]=0.
+\]
+\end{lemma}
+\begin{proof}
+The action and transvectants are $\mathfrak{sl}_2$-equivariant. Hence the only
+potentially nonzero radical Jacobi expression is the alternating expression
+on three $U$ inputs, taking values in $T$. Over the rationals,
+\[
+ \Lambda^3 V_6\cong V_{12}\oplus V_8\oplus V_6\oplus V_4\oplus V_0,
+\]
+as follows by multiplying the seven weight characters and taking the third
+exterior power. It has no $V_2$ summand. The equivariant Jacobi map to $T=V_2$
+is therefore zero. Its coefficients are integers, so this proves the
+integer identity. Independently, both implementations check all
+$\binom{31}{3}=4495$ basis triples, with integer arithmetic.
+
+The nontrivial simple summands have no $\mathfrak{sl}_2$-fixed vector at
+$p=1009$. Thus the centre is contained in $Z$, which is central. Every
+nontrivial summand is generated by its brackets with $\mathfrak{sl}_2$, and
+$[V,R]=Z$, so $B$ is perfect. The stated lower central terms of $N$ follow
+directly from the table. Surjectivity here can be checked on highest weight
+vectors; coefficients such as $720$, $8640$ and $576$ are units at $1009$.
+\end{proof}
+
+\subsection{Two generators of the ambient lattice}
+Set
+\begin{equation}\label{eq:xy}
+ x=h,\qquad y=e+f+U_1+V_0+R_2,\qquad t=U_0.
+\end{equation}
+\begin{lemma}\label{lem:generators}
+The Lie subalgebra over $\Zp$ generated by $x,y$ is $B$.
+\end{lemma}
+\begin{proof}
+The four $h$-weights in $y$ are $2,-2,4,0$. Interpolation in $\ad h$ isolates
+$e,f,U_1+V_0,R_2$, with unit denominators at $p$. The Casimir operator
+$h^2+2h+4fe$ on modules has eigenvalues $48$ on $U$ and $24$ on $V$;
+it separates $U_1$ and $V_0$. Applying $e,f$ generates all of $U,V,R$,
+using only the nonzero integers at most six as divisors. Their brackets
+then generate $W,T,Z$ by Lemma~\ref{lem:basic}.
+The modular Lie-closure computations independently obtain dimension $31$.
+Equivalently, finitely many Lie words have a coefficient determinant that
+is a unit in $\Zp$, and hence form a lattice basis of $B$.
+\end{proof}
+
+\section{The full finite-field automorphism group}
+In this section put $k=\Fp$, and use the same letters for reductions to $k$.
+The assertions about module intertwiners follow directly from
+\eqref{eq:action}: the distinct weights lie between $-6$ and $6$, and the
+raising/lowering coefficients are units. The indicated modules are simple,
+nonisomorphic for different highest weights, and have scalar endomorphisms.
+
+\begin{lemma}\label{lem:H1}
+For $m=0,2,4,6$, one has $H^1(\mathfrak{sl}_2(k),V_m)=0$.
+\end{lemma}
+\begin{proof}
+For a cocycle write $\alpha=c(h)$, $\beta=c(e)$, $\gamma=c(f)$.
+The cocycle equations are
+\[
+ (h-2)\beta=e\alpha,\qquad (h+2)\gamma=f\alpha,\qquad
+ \alpha=e\gamma-f\beta.
+\]
+Subtract a coboundary to remove the nonzero-weight components of $\alpha$.
+For $m=2r>0$, the remaining component is $a v_r$. The weight-two component
+of the first equation forces $ar=0$, so $a=0$. Then $\beta=bv_{r-1}$ and
+$\gamma=cv_{r+1}$. The last equation gives $(r+1)(c-b)=0$, so $c=b$.
+This is the coboundary of $(b/r)v_r$. All divisions are by units at $1009$.
+For $m=0$, the equations immediately force $\alpha=\beta=\gamma=0$.
+
+The independent checks give cocycle/coboundary dimension pairs
+\[ (0,0),\quad (3,3),\quad (5,5),\quad (7,7) \]
+for these four highest weights.
+\end{proof}
+
+Every automorphism of $\mathfrak{sl}_2(k)$ is induced by conjugation by a
+matrix in $\PGL_2(k)$. For completeness, preservation of the Killing form
+sends a nonzero nilpotent matrix to a nonzero nilpotent matrix. Conjugate to
+fix $e$. The relations then force
+\[
+ h\mapsto h+a e,\qquad f\mapsto f-\frac a2h-\frac{a^2}{4}e,
+\]
+which is another matrix conjugation. On $V_m$, for even $m$, the compatible
+$\PGL_2$ action is $\operatorname{Sym}^m(k^2)\otimes\det^{-m/2}$.
+The determinant weights in \eqref{eq:transvectant} make this an action on $B$.
+Denote it by $\rho$.
+
+Let $\tau$ fix $h,e,f,U,W,T$, swap $V$ and $R$ by corresponding basis
+vectors, and send $Z_0$ to $-Z_0$. The table shows that $\tau$ is an
+automorphism.
+
+\begin{proposition}\label{prop:autB}
+Every automorphism of $B\otimes k$ has the form
+\begin{equation}\label{eq:autB}
+ \exp(\ad n)\,\rho(s)\,\tau^\epsilon,
+ \qquad n\in N,\quad s\in\PGL_2(k),\quad \epsilon\in\{0,1\}.
+\end{equation}
+Here the exponential is a polynomial of degree at most three. In particular,
+this describes the full automorphism group, including its finite components.
+\end{proposition}
+\begin{proof}
+$N$ is the solvable radical: any solvable ideal maps to a solvable ideal in
+the simple quotient $\mathfrak{sl}_2(k)$ and so lies in $N$.
+After removing the quotient automorphism using $\rho$, the image of
+$\mathfrak{sl}_2$ is a complement to $N$ inducing the identity on the quotient.
+Its graph modulo $N'=[N,N]$ is a one-cocycle into
+$N/N'\cong V_6\oplus V_4\oplus V_4$.
+Lemma~\ref{lem:H1} allows conjugation by $\exp(\ad n_1)$ to remove this
+graph. The remaining graph lies in the abelian ideal
+$N'\cong V_6\oplus V_2\oplus V_0$ and is again a one-cocycle, removable by
+$\exp(\ad n_2)$. Since $N$ has class three, the product of these inner
+exponentials is another $\exp(\ad n)$; all denominators are units.
+This is an explicit complement argument, not an appeal to a
+positive-characteristic Levi theorem without hypotheses.
+
+It remains to classify automorphisms $\phi$ fixing $\mathfrak{sl}_2$ pointwise.
+They are equivariant. The characteristic submodule $N'$ implies
+\[
+ U\mapsto aU+bW,\quad W\mapsto a^2W,\quad T\mapsto cT,
+ \quad Z\mapsto dZ,
+\]
+and the pair $(V,R)$ is mixed by an invertible two-by-two matrix $M$.
+The $T$ component in $[\phi U,\phi U]$ is $2abP_5$, so $b=0$.
+The bracket $[U,W]$ gives $c=a^3$. The $T$ components of the brackets on
+$V\oplus R$, and the brackets with $U$, give, for $w=(1,1)$,
+\begin{equation}\label{eq:block}
+ M^T M=a^3 I_2,\qquad wM=a^2w.
+\end{equation}
+As $ww^T=2\ne0$, these imply $2a^4=2a^3$, hence $a=1$.
+An orthogonal matrix fixing $w$ acts by $+1$ or $-1$ on its one-dimensional
+orthogonal complement. Thus $M=I$ or the swap matrix. The $Z$ bracket gives
+$d=\det M$. Consequently $\phi=1$ or $\tau$.
+\end{proof}
+
+\begin{lemma}\label{lem:der}
+Over $k$ and over $\Qp$, all derivations of $B$ are inner, and
+$\dim\Der(B)=30$.
+\end{lemma}
+\begin{proof}
+Let $D$ be a derivation and $\pi:B\to\mathfrak{sl}_2$ the quotient map.
+The restriction $\pi D|_N$ kills $N'$ and is equivariant, since
+$[D(s),n]\in N$. There is no equivariant map from
+$N/N'=V_6\oplus V_4^2$ to $\mathfrak{sl}_2=V_2$; hence $D(N)\subseteq N$.
+Subtract an inner derivation to make the induced derivation on the quotient
+zero. The restriction to $\mathfrak{sl}_2$ is then a cocycle into $N$;
+Lemma~\ref{lem:H1}, also valid over $\Qp$, removes it by another inner derivation.
+
+For the remaining equivariant derivation write
+$D(U)=aU+bW$, $D(W)=2aW$. As before $b=0$, and $D(T)=3aT$.
+Writing $M$ for the action on $V\oplus R$, the linearized bracket equations are
+\[
+ M+M^T=3aI_2,\qquad wM=2aw.
+\]
+Multiplying by $w,w^T$ gives $8a=6a$, hence $a=0$.
+Then $M$ is skew and annihilated by $w$, so $M=0$; also $D(Z)=0$.
+Thus the remaining derivation vanishes. The centre has dimension one,
+so the space of inner derivations has dimension $31-1=30$.
+
+Independently, each implementation finds rank $931$ for the $14415$ by $961$
+derivation matrix of $B$ modulo $1009$, and rank $30$ for its inner
+subspace. This directly verifies the finite-field conclusion.
+\end{proof}
+
+\section{A flag with no nonidentity automorphism}
+Define the flag
+\begin{equation}\label{eq:flag}
+ \FF_2=\langle x,y\rangle_k\subset\FF_3=\langle x,y,t\rangle_k.
+\end{equation}
+\begin{proposition}\label{prop:flag}
+The stabilizer of \eqref{eq:flag} in the full $\Aut(B\otimes k)$ is the
+identity. Its infinitesimal stabilizer in $\Der(B\otimes k)$ is zero.
+\end{proposition}
+\begin{proof}
+Use \eqref{eq:autB}. The plane $\FF_2$ projects isomorphically to
+$P=\langle h,e+f\rangle\subset\mathfrak{sl}_2$, while
+$\FF_3\cap N=\langle U_0\rangle$. On $N/N'$, the inner exponential is the
+identity and $\tau$ fixes $U$. Therefore $s$ preserves the highest-weight
+line in $U$, so belongs to the upper Borel of $\PGL_2(k)$.
+It also preserves $P$.
+
+The Killing-orthogonal complement of $P$ is $\langle e-f\rangle$.
+For a representative $\left(\begin{smallmatrix}a&b\\0&1\end{smallmatrix}\right)$,
+preservation of this line forces $b=0$ and $a^2=1$. Thus $s=1$ or
+$r=\operatorname{diag}(-1,1)$ projectively.
+
+Suppose $s=r$. A flag-preserving automorphism must send $h$ to $h$ and $y$
+to $-y$, since the projection of $\FF_2$ is an isomorphism.
+Modulo $N'$, fixing $h$ forces $\bar n$ to have weight zero. On $U_i$, $r$
+acts as $(-1)^{i+3}$, and in particular fixes $U_1$.
+The $U$ component of the equation for $y$ would require
+\[
+ (e+f)\bar n_U=-2U_1.
+\]
+But $\bar n_U$ is a multiple of $U_3$, and
+$(e+f)U_3=3U_2+3U_4$. This is impossible.
+
+Now suppose $s=1$ and $\epsilon=1$. Fixing $h,y$ similarly requires
+\[
+ (e+f)\bar n=R_0-V_0+V_2-R_2
+\]
+on $V\oplus R$. The left side, applied to a weight-zero vector, has only
+weights $2,-2$; the right side has nonzero weight-four and weight-zero
+components. This too is impossible. The only remaining possibility is an
+inner exponential fixing $x,y$. They generate $B$, so it is the identity.
+
+For the infinitesimal assertion use Lemma~\ref{lem:der}, writing $D=\ad u$.
+Its quotient component $s\in\mathfrak{sl}_2$ preserves $P$ and the highest
+line in $U$, hence $s\in\langle h,e\rangle$.
+The conditions $[s,h]\in P$ and $[s,e+f]\in P$ then force $s=0$.
+Now $D(\FF_2)\subseteq\FF_2$ and its image in the quotient is zero.
+Since $\FF_2\cap N=0$, $D(x)=D(y)=0$, and $D=0$ by generation.
+\end{proof}
+
+\section{The asymmetric lattice and its finite quotients}
+\begin{definition}\label{def:A}
+Use the following ordered $\Zp$-basis $b_0,\ldots,b_{30}$ of $B$:
+\begin{align*}
+&x,y,t,f,U_1,U_2,U_3,U_4,U_5,U_6,\\
+&V_0,V_1,V_2,V_3,V_4,W_0,W_1,W_2,W_3,W_4,W_5,W_6,\\
+&T_0,T_1,T_2,R_0,R_1,R_2,R_3,R_4,Z_0.
+\end{align*}
+It is unimodular relative to the original basis. Put
+\[
+ w_0=w_1=0,\quad w_2=1,\quad w_j=2\ (3\le j\le30),
+ \qquad A=\bigoplus_{j=0}^{30}\Zp\,p^{w_j}b_j,
+ \qquad L=p^2 A.
+\]
+\end{definition}
+In particular $p^2B\subset A\subset B$. Although $A$ need not itself be a
+Lie subring, $L$ is one: $[L,L]\subset p^4B\subset p^2A=L$.
+For $i\ge1$ write $\bar L_i=L/p^iL$.
+The basis $\ell_j=p^{2+w_j}b_j$ identifies its additive group with
+$(\mathbb Z/p^i\mathbb Z)^{31}$.
+
+Let $\mu$ be the bracket of $B$ and let $\nu=p^2\mu$ on the module $A$.
+Under $a\mapsto p^2a$, $(A,\nu)$ is isomorphic to $L$.
+Let
+\[
+ \EE=\End_{\Zp}(A),\qquad \EE_0=\End_{\Zp}(B),\qquad
+ J=\EE\cap p\EE_0.
+\]
+For a linear map $D$, write
+\[
+ \delta_\mu(D)(u,v)=D\mu(u,v)-\mu(Du,v)-\mu(u,Dv),
+ \qquad\delta_\nu=p^2\delta_\mu.
+\]
+
+\begin{lemma}\label{lem:lift}
+Let $i\ge7$.
+Every automorphism of $\bar L_i$ has a lift $Q\in1+J$.
+Every solution of $\delta_\nu(D)\equiv0\pmod{p^i}$ on $A$ has a lift
+$D\in J$. Here a lift means an arbitrary integral matrix representative
+in $\GL(A)$ or $\EE$, respectively.
+\end{lemma}
+\begin{proof}
+For an automorphism lift $Q\in\GL(A)$, its bracket error satisfies
+\[
+ E_Q(A,A)\subseteq p^{i-2}A,\qquad
+ E_Q(u,v)=Q\mu(u,v)-\mu(Qu,Qv).
+\]
+Since $p^2B\subset A$, bilinearity gives
+\begin{equation}\label{eq:error}
+ E_Q(B,B)\subseteq p^{i-6}A\subseteq p^{i-6}B.
+\end{equation}
+This is integral when $i\ge6$. The images $Qx,Qy$ lie in $A\subset B$.
+Induction on Lie words using \eqref{eq:error} now shows that $Q$ maps $B$
+into $B$. By Lemma~\ref{lem:generators}, finitely many such words span $B$.
+The determinant of $Q$ is a unit, independently of basis, so $Q(B)=B$.
+For $i\ge7$, its reduction is an automorphism of $B/pB$.
+
+A map preserving both $A$ and $B$ preserves
+\[
+ (A+pB)/pB=\FF_2,\qquad
+ ((p^{-1}A\cap B)+pB)/pB=\FF_3.
+\]
+Proposition~\ref{prop:flag} therefore gives $Q\equiv I\pmod{p\EE_0}$.
+Together with $Q-I\in\EE$, this is $Q\in1+J$.
+
+For a derivation solution, replace $E_Q$ by $\delta_\mu(D)$.
+The same word induction, now using the Leibniz error, gives $D(B)\subset B$.
+Its reduction modulo $p$ is a derivation preserving the flag. The
+infinitesimal part of Proposition~\ref{prop:flag} gives $D\equiv0\pmod p$
+on $B$, so $D\in J$.
+\end{proof}
+
+\section{Integral logarithms count the full automorphism set}
+The next step is essential: merely counting derivations or known inner
+automorphisms would not determine the full automorphism group.
+
+\begin{lemma}\label{lem:logexp}
+Matrix exponential and logarithm give inverse bijections
+$J\leftrightarrow1+J$. For every $i\ge3$, they respect congruence modulo
+$p^i\EE$ in both directions.
+\end{lemma}
+\begin{proof}
+The inclusions of lattices imply
+\begin{equation}\label{eq:endo-bounds}
+ p^2\EE_0\subseteq\EE\subseteq p^{-2}\EE_0.
+\end{equation}
+For $X\in J$, every $X^r$ preserves $A$, and also
+$X^r\in p^r\EE_0\subseteq p^{r-2}\EE$.
+In the exponential and logarithm series, denominators of terms of degree
+less than $p$ are units. For terms of degree at least $p=1009$, the bounds
+\[
+ v_p(r!)\le r/(p-1),\qquad v_p(r)\le r/(p-1)
+\]
+show that all terms still lie in $\EE$ and tend to zero there.
+They lie in $p\EE_0$ after removing the exponential's constant term.
+Thus both series preserve the indicated sets. The usual formal inverse
+identities hold in the convergent matrix algebra over $\Qp$.
+In particular $1+J$ consists of invertible maps preserving $A$; its inverse
+also follows from the convergent geometric series.
+
+For precision, suppose $X,Y\in J$ and $X-Y\in p^i\EE$.
+Each term in the telescoping expression for $X^r-Y^r$ lies in $p^i\EE$.
+By \eqref{eq:endo-bounds} it also lies in
+$p^{i+r-3}\EE_0\subseteq p^{i+r-5}\EE$.
+For $r<p$, division by the relevant denominator loses no precision.
+For $r\ge p$, $r-5$ exceeds both $v_p(r!)$ and $v_p(r)$.
+The same conclusions therefore hold after division and summation, for
+both series. Finally $p^i\EE\subset J$ when $i\ge3$, so the quotient
+bijections are well defined.
+\end{proof}
+
+Put
+\[
+ \TT=\Hom_{\Zp}(\Lambda^2A,A),\qquad
+ \TT_0=\Hom_{\Zp}(\Lambda^2B,B).
+\]
+The bounds $p^2B\subset A\subset B$ give
+\begin{equation}\label{eq:tensor-bounds}
+ p^2\TT_0\subset\TT\subset p^{-4}\TT_0,
+ \quad
+ p^6\End(\TT_0)\subset\End(\TT)\subset p^{-6}\End(\TT_0).
+\end{equation}
+
+\begin{lemma}\label{lem:tensor}
+For $D\in J$ and $Q=\exp D$, $Q$ preserves the bracket $\nu$ modulo
+$p^i\TT$ if and only if $\delta_\nu(D)\in p^i\TT$.
+\end{lemma}
+\begin{proof}
+Let $Q$ act on bracket tensors by
+$\rho_\TT(Q)\eta=Q\eta(Q^{-1}\cdot,Q^{-1}\cdot)$.
+Its differential $X=\rho_{\TT,*}(D)$ is the operator
+\[
+ X\eta=D\eta-\eta(D\cdot,\cdot)-\eta(\cdot,D\cdot).
+\]
+Here $X\in\End(\TT)\cap p\End(\TT_0)$ and
+$X^r\in p^{r-6}\End(\TT)$ for $r\ge6$.
+Over $\Qp$, the output and two input actions commute, whence
+$\rho_\TT(\exp D)=\exp X$.
+Factor
+\[
+ \exp X-I=XU(X),\qquad
+ U(X)=\sum_{r\ge0}\frac{X^r}{(r+1)!}.
+\]
+For $r<p-1$, the denominator is a unit. For $r\ge p-1$, the valuation
+$r-6-v_p((r+1)!)$ is positive. Thus $U(X)$ preserves $\TT$.
+Moreover $X^7\in p\End(\TT)$, so modulo $p$ the series for $U$ is a
+polynomial in a nilpotent operator, with constant term $I$.
+Consequently $U(X)$ is invertible on $\TT$. It commutes with $X$.
+It follows that
+\[
+ (\exp X-I)\nu\in p^i\TT
+ \quad\Longleftrightarrow\quad
+ X\nu=\delta_\nu(D)\in p^i\TT.
+\]
+There is no loss of congruence precision in this equivalence.
+\end{proof}
+
+\begin{proposition}\label{prop:full-count}
+For $i\ge7$, exponential and logarithm give a bijection of sets
+\begin{equation}\label{eq:bijection}
+ \Aut(\bar L_i)\ \longleftrightarrow\
+ \ker\bigl(\delta_\nu:\EE/p^i\EE\longrightarrow\TT/p^i\TT\bigr).
+\end{equation}
+\end{proposition}
+\begin{proof}
+Every automorphism and every derivation solution lies in the respective
+logarithm--exponential domain by Lemma~\ref{lem:lift}. Lemma~\ref{lem:logexp}
+gives a bijection on representatives modulo $p^i\EE$, and
+Lemma~\ref{lem:tensor} gives precisely the required equivalence of
+nonlinear and linear bracket conditions. These statements apply to
+\emph{all} automorphisms, not just to a subgroup.
+\end{proof}
+No assertion that the bijection is an isomorphism of additive groups is
+needed or made.
+
+\section{The exact Smith computation}
+Let $c^b_{ij,k}$ be the structure constants of $B$ in the adapted basis.
+In the $\ell_j=p^{2+w_j}b_j$ basis of $L$, the constants are
+\begin{equation}\label{eq:scaledconstants}
+ c^L_{ij,k}=p^{2+w_i+w_j-w_k}c^b_{ij,k}.
+\end{equation}
+All exponents are between zero and six. These constants, with $i<j$, are
+also provided as ordinary integers in
+\texttt{data/group\_lie\_presentation.json}.
+
+The matrix $K$ for $\delta_\nu$ has rows $(i,j,k)$ with $i<j$, and columns
+$(a,b)$ for the matrix entry $D_{ab}$. Explicitly,
+\begin{equation}\label{eq:matrix}
+ K_{(i,j,k),(a,b)}
+ =\mathbf1_{k=a}c^L_{ij,b}
+  -\mathbf1_{i=b}c^L_{aj,k}
+  -\mathbf1_{j=b}c^L_{ia,k}.
+\end{equation}
+Thus $K$ is an integer matrix of shape $14415\times961$.
+
+\begin{proposition}[Exact computational certificate]\label{prop:smith}
+The rank of $K$ over $\Qp$ is $931$. Its nonzero $p$-primary Smith
+valuations are
+\begin{center}
+\begin{tabular}{rrrrrr}
+\toprule Valuation & 0 & 1 & 2 & 3 & 4 \\
+Multiplicity & 87 & 55 & 758 & 6 & 25 \\
+\bottomrule
+\end{tabular}
+\end{center}
+Their sum is $1689$; the nullity is $30$.
+\end{proposition}
+\begin{proof}[Certificate and verification]
+The Python implementation constructs the integer brackets from
+\eqref{eq:falling}, changes basis, builds \eqref{eq:matrix}, and performs
+local Smith elimination modulo $p^{12}$. Each pivot has minimum $p$-valuation
+in the remaining block. Only unit inverses are taken; divisions by a
+pivot power of $p$ are checked to be exact. The resulting plan consists
+of $931$ original row indices, column indices and valuations.
+
+A separately written C++ implementation independently reconstructs the
+brackets, the basis transformation and the entire matrix from the formulas.
+It does not read the Python coefficient tables. It verifies the proposed
+plan modulo $p^6$, checking divisibility of the active block at each new
+valuation level, pivot normalization, exact elimination, and a zero residual
+block. It finds the same five multiplicities. The Python implementation
+also replays the plan at precision six.
+
+Every reported valuation is less than six, so it is determined exactly by
+this finite-ring calculation. Integer Jacobi gives $30$ independent inner
+derivations in the rational kernel, hence rank at most $961-30=931$.
+The $931$ nonzero pivots give rank at least $931$. There can therefore be
+no additional nonzero invariants hidden at higher precision. All matrix
+operations are exact elementary operations over the indicated local ring.
+The sum is $55+2(758)+3(6)+4(25)=1689$.
+\end{proof}
+
+\begin{corollary}\label{cor:autLie}
+For every $i\ge7$,
+\begin{equation}\label{eq:autLie}
+ |\Aut(\bar L_i)|=p^{30i+1689}.
+\end{equation}
+\end{corollary}
+\begin{proof}
+In Smith coordinates, each of the $30$ zero diagonal entries contributes
+$p^i$ kernel elements; each nonzero entry $p^v$ contributes $p^v$ because
+$i>4\ge v$. Combine Proposition~\ref{prop:smith} with the full-set
+bijection \eqref{eq:bijection}.
+\end{proof}
+
+\section{The finite group and the equality}
+Now set $i=1689$ and define
+\begin{equation}\label{eq:G}
+ G=\BCH(\bar L_{1689}).
+\end{equation}
+This is an explicit construction, not a library identifier: its elements
+are the $31$-tuples modulo $1009^{1689}$ in the $\ell$ basis, with the Lie
+bracket \eqref{eq:scaledconstants}. Its group product is the BCH Lie
+polynomial truncated after bracket length $846$.
+
+\begin{lemma}\label{lem:class}
+The Lie ring $\bar L_{1689}$ has order $p^{52359}$ and nilpotency class
+at most $846$.
+\end{lemma}
+\begin{proof}
+$L$ is free of rank $31$ over $\Zp$, so its quotient has precisely
+$p^{31\cdot1689}=p^{52359}$ elements, with unique additive coordinates.
+Since $L\subset p^2B$ and $B$ is a Lie lattice,
+$\gamma_m(L)\subset p^{2m}B$ for every $m$.
+On the other hand $p^{1689}L=p^{1691}A$ contains $p^{1693}B$.
+Consequently
+\[
+ \gamma_{847}(L)\subset p^{1694}B\subset p^{1693}B
+ \subset p^{1689}L,
+\]
+which proves the class bound.
+\end{proof}
+
+For clarity, BCH here can be defined without any software convention.
+Take the terms of degree at most $846$ in
+$\log(\exp X\exp Y)$ in the completed free associative algebra over
+$\mathbb Q$ and express each homogeneous term as a Lie polynomial.
+For example, the right-normed Dynkin operator divided by the degree
+provides such an expression. Evaluate these Lie polynomials using the
+displayed bracket. The denominators have only prime factors at most $846$,
+so all coefficients have unique interpretations modulo $1009^{1689}$.
+This is a finite, canonical rule for multiplication; it need not be expanded
+into a very large word list to specify the group.
+
+The Lazard correspondence applies to finite $p$-Lie rings of class strictly
+less than $p$ \cite{Lazard,CDV}. It preserves the underlying set, group order,
+and the full automorphism group; see in particular the discussion on
+pages 433--434 of \cite{CDV}. Thus the BCH product is associative, has
+identity zero and inverse $-u$, and every group automorphism corresponds
+to a Lie-ring automorphism. No exponent-$p$ hypothesis is required.
+The actual class bound is $846<1009$, so these are the applicable
+hypotheses, rather than a general assertion beyond the Lazard range.
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Lemma~\ref{lem:class} proves the exact order and validates the BCH construction.
+Corollary~\ref{cor:autLie} and the full-automorphism preservation give
+\[
+ |\Aut(G)|=|\Aut(\bar L_{1689})|
+ =1009^{30\cdot1689+1689}
+ =1009^{52359}=|G|.
+\]
+The prime is odd and the group is nontrivial. This answers the stated
+existence question affirmatively.
+\end{proof}
+
+\section{Reproducibility and verification boundaries}
+\subsection{Fast independent verification}
+From the root of the bundle, run
+\begin{verbatim}
+python3 scripts/resume.py
+\end{verbatim}
+This compiles and runs the independent C++ verifier and also tests that a
+corrupted pivot certificate is rejected. Alternatively, with a GCC or
+Clang compiler supporting 128-bit integers, run
+\begin{verbatim}
+mkdir -p build
+c++ -std=c++17 -O2 -o build/independent_verify \
+    scripts/independent_verify.cpp
+./build/independent_verify data/smith_pivot_plan.txt
+\end{verbatim}
+The C++ verification uses only the standard library and the supplied
+pivot plan. It reconstructs all mathematical input coefficients itself.
+No GAP, SageMath, Magma, remote computation, or randomized group
+identification is needed for this check.
+
+\subsection{Regeneration}
+The independent Python construction requires NumPy and SymPy. The exact
+commands are
+\begin{verbatim}
+python3 scripts/lie31.py
+python3 scripts/exact_linear.py
+python3 scripts/smith_local.py --precision 12
+python3 scripts/smith_local.py --verify-plan --precision 6
+python3 scripts/export_presentation.py
+python3 scripts/sanity_groups.py
+\end{verbatim}
+The bundle includes executed logs, the coefficient tables, both independent
+implementations, the Smith pivot plan, and the unscaled rank certificate.
+The verified software versions were Python 3.13.5, NumPy 2.3.5, SymPy 1.14.0,
+and g++ 14.2.0 (Debian 14.2.0-19). The strict verification build used
+\texttt{-std=c++17 -O2 -Wall -Wextra -Werror}.
+The C++ local modulus was the exact integer
+$1009^6=1055229678769825441$; products use 128-bit arithmetic.
+The measured times in the logs describe this environment only.
+
+\subsection{What the computations do and do not certify}
+The finite computations verify Jacobi, generation, cohomology dimensions,
+derivation ranks, infinitesimal flag ranks, and all local Smith invariants.
+The full finite-field stabilizer, the lifting lemma, the integral
+logarithm--exponential correspondence, and the application of Lazard are
+proved above. The full automorphism count follows from the combination.
+
+The group has not been materialized as a Cayley table, nor has a general
+purpose package enumerated all its automorphisms. Such enumeration is
+unnecessary for the exact upper and lower bounds. The BCH polynomial of
+length $846$ has not been expanded into a full monomial list; the construction
+is specified by the canonical finite polynomial and the explicit Lie table.
+Independent implementation means separately written code reconstructing the
+input, not independent human peer review. No formal proof assistant or
+external reviewer is claimed.
+
+\appendix
+\section{Selected inspected output}
+The final independent C++ run includes
+\begin{verbatim}
+original_integer_jacobi_checks=4495
+adapted_integer_jacobi_checks=4495
+unscaled_derivation_rank_mod_p=931 derivation_dimension=30
+smith_valuation=0 multiplicity=87
+smith_valuation=1 multiplicity=55
+smith_valuation=2 multiplicity=758
+smith_valuation=3 multiplicity=6
+smith_valuation=4 multiplicity=25
+sum_smith_valuations=1689
+candidate_group_order_exponent=52359
+predicted_aut_order_exponent=52359
+ALL_CHECKS_PASSED
+\end{verbatim}
+Some long log lines are split here for readability. The names
+\texttt{candidate\_group\_order\_exponent} and
+\texttt{predicted\_aut\_order\_exponent} are retained from the computational
+checkpoint; the proof establishes the corresponding group statements.
+A separate negative test changes the first proposed pivot valuation from
+zero to five. The verifier exits nonzero with a pivot-valuation mismatch.
+
+\begin{thebibliography}{9}
+\bibitem{KN}
+E. I. Khukhro and V. D. Mazurov (eds.),
+\emph{The Kourovka Notebook: Unsolved Problems in Group Theory},
+21st edition, update of 1 September 2026. Problem 16.63, p. 102;
+Archive 12.77, p. 255.
+\url{https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/09/21tkt.pdf}.
+
+\bibitem{GSJ}
+J. Gonz\'alez-S\'anchez and A. Jaikin-Zapirain,
+\emph{Finite $p$-groups with small automorphism group},
+Forum of Mathematics, Sigma 3 (2015), e7.
+\url{https://arxiv.org/abs/1406.5772}.
+
+\bibitem{SA}
+M. Shabani-Attar,
+\emph{On equality of order of a finite $p$-group and order of its automorphism group},
+Bull. Malaysian Math. Sci. Soc. 38 (2015), 461--466.
+\url{https://doi.org/10.1007/s40840-014-0030-z}.
+Author-accepted version inspected:
+\url{https://math.usm.my/bulletin/pdf/acceptedpapers/2012-10-027-R1.pdf}.
+
+\bibitem{OR}
+B. Omirov and J. Ruan,
+\emph{On Lie Algebras with Only Inner Derivations},
+arXiv:2605.04602v1 (6 May 2026), Theorem 4.8.
+\url{https://arxiv.org/html/2605.04602v1}.
+
+\bibitem{Lazard}
+M. Lazard,
+\emph{Sur les groupes nilpotents et les anneaux de Lie},
+Ann. Sci. \'Ecole Norm. Sup. (3) 71 (1954), 101--190.
+\url{https://www.numdam.org/item/?id=ASENS_1954_3_71_2_101_0}.
+
+\bibitem{CDV}
+S. Cical\`o, W. A. de Graaf and M. Vaughan-Lee,
+\emph{An effective version of the Lazard correspondence},
+J. Algebra 352 (2012), 430--450, especially pp. 430, 433--434.
+\url{https://doi.org/10.1016/j.jalgebra.2011.11.031}.
+\url{https://iris.unitn.it/retrieve/e3835192-3015-72ef-e053-3705fe0ad821/lazard.pdf}.
+\end{thebibliography}
+\end{document}

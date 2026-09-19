@@ -45,6 +45,7 @@
         <a href="#result">Result</a>
         <a href="#proof">Proof</a>
         <a href="#verification">Verification</a>
+        <a href="#lean">Lean companion</a>
         <a href="#attribution">Attribution</a>
       </div>
     </nav>
@@ -61,6 +62,7 @@
       <a class="button secondary" href="./source-and-certificates.zip">Download source and certificates</a>
       <a class="button secondary" href="https://github.com/AlecKriebel/Math/tree/kourovka-16-63-v1.1.0/kourovka_16_63">Versioned source</a>
       <a class="button secondary" href="./zenodo-upload-kit.zip">Zenodo upload kit</a>
+      <a class="button secondary" href="./lean-source-and-audit.zip">Partial Lean source and audit</a>
       <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/kourovka-16-63-v1.1.0/kourovka_16_63/audit/VERIFICATION_REPORT.md">Independent verification report</a>
     </div>
     <article class="paper-text">
@@ -94,11 +96,18 @@
         <pre><code>python3 scripts/resume.py</code></pre>
         <p>This needs Python 3 and a C++17 compiler supporting 128-bit integers. The verifier reconstructs the brackets and matrix from formulas, replays the exact certificate, checks small-group controls, and confirms that a corrupted certificate is rejected. For full Python regeneration with NumPy and SymPy installed, use <code>python3 scripts/resume.py --full</code>.</p>
         <p>Separate AI audit agents independently reviewed the finite-field automorphisms, the congruence and logarithm arguments, and the computation. The package contains their reports and fresh reproduction records. The mathematical argument also uses proofs that are outside the scope of the executable checks.</p>
-        <p><strong>Review status:</strong> all described checks were completed, with no unresolved error identified within their stated scope. The manuscript has not undergone external human peer review or proof-assistant verification.</p>
+        <p><strong>Paper review status:</strong> the computational checks and AI reviews described above were completed, with no unresolved error identified within their stated scope. The full theorem has not undergone external human peer review or complete proof-assistant verification.</p>
+      </section>
+      <section id="lean">
+        <h2>Lean companion: partial formalization</h2>
+        <p>The accompanying Lean development supplies formal definitions and proofs for ingredients of the construction. <strong>The full finite-group theorem remains unformalized.</strong> The source was audited locally after its original delivery, with compiler repairs and reproducible build evidence included in the download.</p>
+        <p>The 18 September 2026 audit compiled all 142 current modules and inspected the actual types and transitive axiom dependencies of 1,262 named declarations. The only reported axioms are Lean’s standard foundational axioms. The report records the checked scope, source comparison, and trust limits.</p>
+        <p>The remaining developments include the general finite-quotient lifting argument, the complete exponential/logarithm bijection, acceptance of the actual Smith certificate, and the BCH group construction with its full group/Lie automorphism correspondence. The challenge propositions in the source state the intended final result but do not prove it.</p>
+        <p><a href="./lean-source-and-audit.zip">Download the partial Lean source and audit</a> · <a href="https://github.com/AlecKriebel/Math/blob/main/kourovka_16_63/lean_audit_2026_09_18/VERIFICATION_REPORT.md">Read the Lean verification report</a>. See the companion README for the exact checked scope, remaining obligations, and pinned build instructions. This supplement does not change the version 1.1.0 paper or its archived certificates.</p>
       </section>
       <section id="attribution">
         <h2>Attribution and scope</h2>
-        <p><strong>Author:</strong> Alec Kriebel. <strong>AI disclosure:</strong> The construction, proof development, and initial verification software were generated using ChatGPT-6 Astra Pro. Separate Codex sessions performed additional AI-assisted reviews and exact computational checks. These checks do not constitute external human peer review or proof-assistant formalization.</p>
+        <p><strong>Author:</strong> Alec Kriebel. <strong>AI disclosure:</strong> The construction, proof development, and initial verification software were generated using ChatGPT-6 Astra Pro. Separate Codex sessions performed additional AI-assisted reviews and exact computational checks. These checks do not constitute external human peer review or a complete proof-assistant formalization.</p>
         <p>The underlying Lie-algebra template is credited to Omirov and Ruan, Theorem 4.8. The paper supplies its integer normalization, the required finite-characteristic arguments, the asymmetric lattice, and the exact full finite-automorphism count. The literature audit distinguishes this equality problem from the earlier divisibility conjecture in Archive 12.77.</p>
         <p>A focused literature search found no earlier resolution of the exact question. This is a bounded search finding, not a guarantee of bibliographic priority. Full references and the audit trail accompany the paper.</p>
       </section>

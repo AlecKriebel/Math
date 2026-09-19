@@ -1,0 +1,338 @@
+You are continuing the Kourovka Notebook 16.63 research project. Your assignment is to develop, execute, and verify a complete Lean 4 formalization of the result in the DOI paper below.
+
+The objective is a genuinely checked mathematical proof—not a Lean transcription, a collection of theorem statements, an arithmetic verification, or a conditional theorem that assumes the difficult parts.
+
+PRIMARY PAPER
+
+Alec Kriebel, “An explicit odd-order p-group with as many automorphisms as elements.”
+
+DOI:
+https://doi.org/10.5281/zenodo.22770864
+
+Project page:
+https://aleckriebel.github.io/Math/papers/kourovka-16-63/
+
+Public PDF mirror:
+https://aleckriebel.github.io/Math/papers/kourovka-16-63/paper.pdf
+
+Repository:
+https://github.com/AlecKriebel/Math
+
+Existing research directory:
+kourovka_16_63/
+
+Read the DOI paper and its companion artifacts before choosing the formal architecture. Your previous work and the existing AI audits are starting material, not trusted mathematical assumptions.
+
+The purpose is to give group theorists a precisely scoped, machine-checked companion to the paper and reduce the verification burden. Do not claim that formalization automatically establishes novelty, replaces human assessment of the statement, or guarantees acceptance by the notebook editors.
+
+1. FREEZE THE SOURCE AND ESTABLISH THE ENVIRONMENT
+
+Retrieve the exact paper version identified by the DOI, its source if available, and the corresponding group specification and computational certificates.
+
+Record the DOI, manuscript date/version, SHA-256 hashes, repository commit, and any differences between the archived paper and the current website. Do not silently substitute a newer development version.
+
+If the DOI files are temporarily inaccessible, work from the available mirror while explicitly recording that its identity with the DOI version remains to be checked. Do not invent matching hashes or source equivalence.
+
+Inspect the existing repository before creating files. Prefer a standalone Lean package under kourovka_16_63/lean/, unless an existing project convention provides a better location. Preserve the published paper, original certificates, and unrelated work.
+
+Inspect the actual execution environment. Establish a working Lean 4/mathlib installation, select compatible versions, pin them, and run a minimal compiled test.
+
+Read the actual library sources and documentation for your pinned versions. Do not invent theorem names or assume that a remembered API exists.
+
+Investigate the difficult dependencies early, especially finite Lazard/BCH correspondence and integral logarithm arguments. If a needed theorem is unavailable, develop the necessary special case or find a different fully proved route. Missing infrastructure is a research task, not permission to insert an axiom.
+
+Start substantive formalization during the first working session. Do not stop after a dependency survey.
+
+2. EXACT FINAL TARGET
+
+Construct the specific finite group G described in the paper and prove:
+
+    Nat.card G = 1009^52359
+
+and
+
+    Nat.card (MulAut G) = 1009^52359.
+
+Use mathlib's ordinary group and full multiplicative-automorphism definitions, or provide proved equivalences to them. G must have a proved group structure and finiteness; neither may be postulated.
+
+Also provide the direct corollary answering the notebook question: there exists a nontrivial finite group of odd prime-power order whose full automorphism group has the same order.
+
+Prove primality of 1009 and the required nontriviality and odd-order facts.
+
+The final theorem must be closed apart from Lean's ordinary logical foundations. It must not depend on hypotheses asserting the construction's validity, the automorphism classification, the Smith data, the exponential/logarithm bijection, or the Lazard correspondence.
+
+A theorem of the form “assuming the paper's main lemmas, the orders are equal” is an intermediate result, not completion.
+
+Do not replace the paper's G with an unrelated group without clearly separating that development. An alternative representation is welcome, but prove its relationship to the specified construction.
+
+Do not redefine Aut(G) to mean inner automorphisms, central automorphisms, a Sylow subgroup, admissible matrices, or selected exponentials. The end theorem must concern every group automorphism.
+
+3. WRITE A STATEMENT CONTRACT BEFORE THE PROOF
+
+Create a short, independently readable statement contract that fixes:
+
+- The concrete carrier or its proved equivalence with the paper's coordinate carrier.
+- The multiplication and the construction from the Lie ring.
+- The meaning of the full automorphism type.
+- The exact two cardinality assertions.
+- The relationship between the formal construction and the archived group specification.
+
+The intended additive coordinate carrier is equivalent to
+
+    Fin 31 -> ZMod (1009^1689),
+
+with the group multiplication supplied by the validated BCH construction, not coordinatewise addition.
+
+Keep the notebook's abstract existence statement separately readable using standard definitions. Avoid custom notation or typeclass instances that could make it appear to say more than it does.
+
+Inspect elaborated theorem statements, binders, and instance dependencies. A successful build can still prove the wrong statement.
+
+Create a dependency map from the final theorem backward to the required mathematical ingredients. Conditional intermediate lemmas are acceptable, but every hypothesis used by the final theorem must ultimately be discharged.
+
+4. FORMALIZE THE EXPLICIT LIE CONSTRUCTION
+
+Use the paper's precise integral normalization and basis ordering.
+
+The ambient rank-31 module is
+
+    B = sl2 ⊕ U ⊕ V ⊕ W ⊕ T ⊕ R ⊕ Z,
+
+where the summands U,V,W,T,R,Z have highest weights
+
+    6,4,6,2,4,0,
+
+respectively. Use the raw, unnormalized transvectants and the bracket table specified in the paper.
+
+Prove that the formal coefficient construction matches the exported bracket data. Correctly handle signs, zero terms, reversed inputs, basis changes, and the distinction between integers, finite fields, finite quotient rings, and p-adic coefficients.
+
+Establish bilinearity, alternation, and Jacobi. A checked finite basis calculation is acceptable if Lean also proves why it establishes the identity for arbitrary vectors.
+
+Formalize the necessary facts about perfectness, the centre, radical filtration, and generation by
+
+    x = h,
+    y = e + f + U_1 + V_0 + R_2.
+
+The flag also uses t = U_0.
+
+Define the adapted basis and weights exactly:
+
+    w_0 = w_1 = 0,
+    w_2 = 1,
+    w_j = 2 for 3 <= j <= 30.
+
+Define
+
+    A = direct sum of Z_p * p^(w_j) * b_j,
+    L = p^2 A,
+    Lbar_i = L / p^i L.
+
+Prove the required basis, lattice, quotient, and cardinality statements. A need not be a Lie subring under the original bracket; do not accidentally assume that it is.
+
+Symbolic arguments and compact certificates are preferable to enumerating enormous carriers.
+
+5. FORMALIZE THE FULL-AUTOMORPHISM ARGUMENT
+
+The central research contribution must not remain outside Lean while only the easier computations are formalized.
+
+Following the paper, or using a fully proved replacement argument, establish the ingredients needed to show that every automorphism is counted.
+
+A. Finite-field classification and flag rigidity
+
+Formalize the needed module facts and H^1 vanishing at p=1009.
+
+Establish the full finite-field automorphism classification, including the PGL2 action and the involution swapping V and R while negating Z.
+
+Prove triviality of the full stabilizer of
+
+    F2 = span(x,y) ⊂ F3 = span(x,y,t),
+
+and of its infinitesimal stabilizer.
+
+The dimension of the derivation space alone does not exclude disconnected automorphism components.
+
+A direct proof of the required flag rigidity that bypasses the full classification is acceptable if it covers every automorphism and supplies everything needed downstream.
+
+B. Arbitrary finite-quotient automorphisms
+
+Prove that every additive endomorphism of the finite coordinate module is linear over the appropriate quotient ring.
+
+For i >= 7, justify the passage from an arbitrary representative of a finite-quotient automorphism to an integral map preserving B. Do not assume finite automorphisms lift to exact automorphisms of the infinite Lie algebra.
+
+Treat lattice maps as maps on the common rational vector space where needed. Make the bracket-error estimates and generation argument explicit.
+
+With
+
+    E  = End_Zp(A),
+    E0 = End_Zp(B),
+    J  = E ∩ p E0,
+
+prove that every finite automorphism has a representative in 1+J, and that every derivation solution modulo p^i has a representative in J.
+
+C. Exact exponential/logarithm equivalence
+
+Prove the required convergence, integrality, inverse identities, and congruence preservation for exponential and logarithm on these lattices.
+
+J is not automatically p End(A). Account for the difference between the A and B lattices.
+
+Prove the tensor-action argument establishing that the exponential preserves the bracket modulo p^i if and only if its logarithm satisfies the derivation equations modulo the same p^i.
+
+In particular, justify integrality and invertibility of
+
+    U(X) = sum over r >= 0 of X^r/(r+1)!,
+
+in the factorization
+
+    exp(X) - I = X U(X).
+
+Do not replace exact congruence equivalence with an informal first-order approximation.
+
+The resulting equivalence must concern the entire finite automorphism set and the complete derivation kernel. A set equivalence is sufficient for cardinality; an unnecessary additive-group isomorphism is not required.
+
+If specialization to depth 1689 significantly reduces formalization effort, it is acceptable to prove exactly that case. Describe the narrower formal coverage accurately.
+
+6. CERTIFY THE MATRIX CALCULATION INSIDE LEAN
+
+Derive the matrix K from the formally defined Lie bracket and prove that its kernel represents precisely the relevant derivation equations.
+
+The expected matrix dimensions are
+
+    14415 rows and 961 columns.
+
+The paper reports nonzero p-primary Smith valuations:
+
+    valuation 0: multiplicity 87
+    valuation 1: multiplicity 55
+    valuation 2: multiplicity 758
+    valuation 3: multiplicity 6
+    valuation 4: multiplicity 25
+
+with rank 931, nullity 30, and valuation sum 1689.
+
+These are targets to prove, not assumptions to import.
+
+External Python, C++, or computer-algebra programs may generate witnesses and certificates. Their correctness must not become an extra mathematical assumption.
+
+Develop a certificate checker with a proved soundness theorem, then formally establish that the actual certificate is accepted for the actual matrix.
+
+Use sparse representations, smaller certified minors, chunked calculations, or other proof-producing techniques as needed. Do not start by materializing impractically large transformation matrices without benchmarking the approach.
+
+Verify that pivot choices, elementary operations, unit inverses, and divisions by powers of p are legitimate. Do not use field division in ZMod(p^k) as though every nonzero element were invertible.
+
+Address the hidden-high-valuation issue explicitly: a zero residual block at finite precision does not by itself prove the exact rational rank. Formalize the independent rank upper bound and its transport from B to L, or supply another complete argument.
+
+Then prove the kernel-cardinality formula needed for the group theorem. At minimum establish, at i=1689,
+
+    |ker(K mod p^i)| = p^(30i+1689).
+
+If retaining the paper's general formula, prove its precise range i >= 7 and distinguish a Lie-ring statement from a group statement outside the Lazard range.
+
+Test the certificate machinery on small controls and deliberately invalid certificates. Preserve the negative-test results, but remember that testing does not replace the soundness theorem.
+
+7. COMPLETE THE PASSAGE TO THE GROUP
+
+Prove the finite Lie ring's nilpotency-class bound, including the required lower-central-series containment, and establish
+
+    class(Lbar_1689) <= 846 < 1009.
+
+Define and validate the group multiplication through the finite BCH/Lazard construction, or an equivalent fully formalized construction.
+
+Do not assume BCH associativity, an automorphism-preserving correspondence, or a generic “Lazard package” as an unproved interface.
+
+A proved special case sufficient for this construction is acceptable. A general library for all finite Lazard correspondences is not required unless it is the most efficient route.
+
+Avoid expanding the entire bracket-length-846 BCH polynomial if a structural definition and theorem suffice. Establish that the coefficients are meaningful in the relevant quotient and that all needed denominators are units.
+
+Most importantly, prove that every group automorphism corresponds to a Lie-ring automorphism and conversely. Showing that Lie automorphisms induce group automorphisms gives only one direction and does not establish the count.
+
+Finish the exact cardinality calculation:
+
+    |G| = 1009^(31*1689) = 1009^52359,
+    |MulAut G| = 1009^(30*1689+1689) = 1009^52359.
+
+The elementary exponent arithmetic is the final step, not the substance of the formalization.
+
+8. TRUST AND PROOF-VALIDATION REQUIREMENTS
+
+Target a proof checkable by the Lean kernel with no project-specific mathematical axioms.
+
+The final theorem and its transitive dependencies must contain no sorry, admit, sorryAx, unproved propositions declared as axioms, assumed certificate truth, or hidden hypothesis equivalent to the result.
+
+Lean's ordinary foundational axioms—propext, Classical.choice, and Quot.sound—are acceptable. Report the actual dependency list.
+
+Do not use native_decide, decide +native, or equivalent compiler-trusting computation in the final proof dependency chain. Such tools may be used for exploration, but the released theorem must not depend on native-evaluation axioms.
+
+Do not equate compiling Lean code with having a kernel-checked mathematical theorem. Do not modify Lean or bypass its checks.
+
+Consult the official validation guidance for the pinned toolchain:
+https://lean-lang.org/doc/reference/latest/ValidatingProofs/
+
+The final audit must include:
+
+- A fresh build of all theorem dependencies.
+- Inspection of the exact elaborated final statements.
+- #print axioms for the final theorems.
+- An automated failure if unexpected axioms or unfinished proofs appear.
+- Fresh rechecking with lean4checker or the appropriate supported equivalent.
+- A separately readable statement-fidelity review.
+
+Use comparator and an independently specified challenge statement, or an additional external checker, when practicable. Record exactly which validation layers actually ran.
+
+Treat tactics and certificate generators as untrusted producers of proof terms. Native compilation for running tools is not the issue; admitting mathematical assertions solely on the strength of native execution is.
+
+Keep exploratory modules outside the final import closure. Never hide unfinished mathematics behind a successful build of only the completed modules.
+
+9. AUTONOMOUS WORKFLOW AND CHECKPOINTS
+
+Proceed autonomously through implementation, compilation, debugging, and mathematical development. Do not return only a plan or ask me to choose which proof obligation to address next.
+
+Prioritize bottlenecks intelligently. Obtain early compiled results, but do not spend the entire project polishing easy lemmas while leaving the full-automorphism or Lazard steps untouched.
+
+Compile incrementally. Record actual errors and address them. Do not generate a large speculative Lean codebase without checking imports, definitions, and theorem signatures.
+
+If the paper contains a gap, formalization exposes a false lemma, or a coefficient differs from the archive, record the issue precisely and attempt a repair. Do not silently change the construction or weaken the target to preserve a claim of success.
+
+Respect the available resources. Benchmark certificate checking and avoid enumerating G or all its automorphisms. Report actual memory and runtime observations, not estimates presented as measurements.
+
+If Lean genuinely cannot be executed in the current environment after reasonable setup attempts, continue developing useful source and an execution-ready package, but label it uncompiled. State the concrete environment blocker; do not report it as a successful formalization.
+
+Before each session ends, preserve:
+- Current source and pinned dependencies.
+- The last successful compiled milestones.
+- Exact outstanding proof obligations.
+- Current failing commands and relevant error output.
+- The next concrete task and resume command.
+
+Do not report completion percentages based on file counts or lines of Lean. Track named mathematical obligations.
+
+Use repository-local branches and commits where available. Do not alter the published paper, merge into the release branch, publish a new DOI, contact reviewers, or send email without authorization.
+
+10. REQUIRED DELIVERABLES AND COMPLETION STANDARD
+
+Deliver a standalone Lean package containing:
+
+- lean-toolchain, Lake configuration, and pinned dependency manifest.
+- The explicit construction and all proofs needed for the final theorem.
+- Certificate data and generation scripts where applicable.
+- A top-level module importing the complete result.
+- A clean-check script that builds, audits assumptions, and runs the supported fresh kernel recheck.
+- A statement-contract document.
+- A paper-to-Lean declaration map.
+- A trust/axiom report and inspected build logs.
+- A concise reviewer guide.
+- A machine-readable progress file.
+- A downloadable archive or preserved repository branch.
+
+The paper-to-Lean map must distinguish:
+1. Fully proved declarations.
+2. Correct conditional lemmas whose hypotheses remain undischarged.
+3. Executable tests without formal soundness.
+4. Uncompiled source.
+5. Unformalized material.
+
+A source hash documents provenance; it is not a proof that the definitions match the paper. Explain and formally connect the bracket, basis change, quotient, group law, and automorphism type.
+
+Completion means that a clean environment builds the actual unconditional finite-group theorem, the final proof has only the accepted foundational axioms, the group matches the paper's construction, and the recorded validation checks succeed.
+
+A certificate-only companion, a theorem assuming Lazard, or a proof assuming the full-automorphism bijection is valuable partial work but must not be called a complete formalization.
+
+Begin now. Acquire and freeze the DOI paper, establish the compiled environment, write the exact statement contract, identify the critical dependency path, and proceed to checked proofs. Continue across sessions until the full theorem is established or an explicit mathematical or execution obstacle remains, preserving enough detail for the next session to resume immediately.

@@ -1,0 +1,337 @@
+{
+  "schema": "kourovka-lean-research-checkpoint-v1",
+  "recorded_at_utc": "2026-09-17T04:41:45.341327+00:00",
+  "project": "Kourovka Notebook 16.63",
+  "target_doi": "10.5281/zenodo.22770864",
+  "publication_commit": "b575b59086c1f9756c4c65991f6aa8905a73304e",
+  "status": "INCOMPLETE_EXECUTION_BLOCKED_UNCOMPILED_RESEARCH_CHECKPOINT",
+  "complete_formalization": false,
+  "final_group_constructed_in_lean": false,
+  "final_group_theorem_present": false,
+  "successful_lean_compilation": false,
+  "compiled_mathematical_milestones": [],
+  "actual_axiom_dependency_lists": null,
+  "fresh_kernel_recheck_ran": false,
+  "comparator_ran": false,
+  "statement_fidelity_review_of_elaborated_terms_ran": false,
+  "source_identity": {
+    "doi_archive_verified": false,
+    "publication_tag": "kourovka-16-63-v1.1.0",
+    "local_group_json_matches_tag_git_blob": true,
+    "local_raw_brackets_match_tag_git_blob": true,
+    "local_smith_pivot_text_matches_tag_git_blob": true,
+    "tagged_tex_read_through_connector": true,
+    "tagged_tex_raw_bytes_frozen_locally": false,
+    "note": "See reference/provenance.json. Hash identity is not semantic proof of formal definitions."
+  },
+  "environment": {
+    "lean_pin": "leanprover/lean4:v4.19.0",
+    "mathlib_pin": "c44e0c8ee63ca166450922a373c7409c5d26b00b",
+    "checker_pin": "e11f65c651edd58d68ba260015d2bfde5102cd7f",
+    "dependencies_installed": false,
+    "lake_manifest_origin": "Source-derived from the byte-verified upstream mathlib manifest; not produced by a successful Lake command.",
+    "blockers": [
+      "Lean, Lake and elan absent",
+      "Container DNS resolution failed for required hosts",
+      "Branch-only CI write denied by GitHub integration (403); no job created",
+      "Upstream binary artifact exceeded connector maximum size; no binary retrieved"
+    ],
+    "evidence": [
+      "logs/environment_probe.json",
+      "logs/connector_setup_failures.json",
+      "logs/milestone_gate.json"
+    ]
+  },
+  "external_checks": [
+    {
+      "name": "Fresh original C++ verifier and controls",
+      "status": "passed",
+      "lean_proof": false,
+      "command": "python3 scripts/resume.py (inside extracted original bundle)",
+      "full_python_regeneration_ran": false,
+      "log": "logs/fresh_original_verifier.log",
+      "smith_multiplicities": {
+        "0": 87,
+        "1": 55,
+        "2": 758,
+        "3": 6,
+        "4": 25
+      },
+      "rank": 931,
+      "nullity": 30,
+      "valuation_sum": 1689,
+      "corrupted_certificate_rejected": true,
+      "whole_runner_wall_seconds": 4.15,
+      "peak_rss_kib": 116072
+    },
+    {
+      "name": "New direct-flag and generation certificate checks",
+      "status": "passed",
+      "lean_proof": false,
+      "command": "python3 scripts/direct_flag.py --check-only",
+      "log": "logs/direct_flag_final_check.log",
+      "integer_basis_jacobi_triples": 4495,
+      "special_identity_checks": 12,
+      "generation_dag_nodes": 88,
+      "generation_targets": 31,
+      "wrong_normalization_rejected": true,
+      "whole_process_wall_seconds": 0.81,
+      "peak_rss_kib": 94124
+    },
+    {
+      "name": "Deterministic Lean data literal export check",
+      "status": "passed",
+      "lean_proof": false,
+      "command": "python3 scripts/export_lean.py --check-only",
+      "log": "logs/export_literal_check.log"
+    },
+    {
+      "name": "Python harness controls and static source scan",
+      "status": "passed",
+      "lean_proof": false,
+      "logs": [
+        "logs/harness_tests.log",
+        "logs/static_scan.log"
+      ]
+    }
+  ],
+  "new_mathematical_result": {
+    "description": "Classification-free full and infinitesimal flag rigidity, with explicit 88-node two-generator expressions.",
+    "proof_note": "docs/DIRECT_FLAG_RIGIDITY.md",
+    "lean_checked": false,
+    "external_peer_review": false,
+    "novelty_claim": false,
+    "dependency_reduction": "The proposed direct proof bypasses the PGL2/full finite-field automorphism classification and H1 calculation in the lifting path; the remaining rank, exponential/logarithm and BCH/Lazard obligations persist."
+  },
+  "obligations": [
+    {
+      "id": "SOURCE-DOI",
+      "statement": "Acquire the actual DOI archive bytes and verify their relationship to the publication-tag artifacts.",
+      "status": "blocked_acquisition",
+      "paths": [],
+      "kernel_checked": false
+    },
+    {
+      "id": "ENV-COMPILE",
+      "statement": "Install the pinned Lean/Lake/mathlib environment and obtain the first compiled milestone.",
+      "status": "blocked_execution",
+      "paths": [],
+      "kernel_checked": false
+    },
+    {
+      "id": "RAW-COEFFICIENTS",
+      "statement": "Prove equality of the raw unnormalized transvectant definition and the exported original table.",
+      "status": "uncompiled_source",
+      "paths": [
+        "Kourovka/RawCoefficients.lean",
+        "Kourovka/ExportedData.lean",
+        "Kourovka/TableCertificate.lean"
+      ],
+      "kernel_checked": false
+    },
+    {
+      "id": "LIE-IDENTITIES",
+      "statement": "Prove bilinearity, alternation and Jacobi for arbitrary coordinates and install the actual LieRing structure.",
+      "status": "partial_uncompiled_source",
+      "paths": [
+        "Kourovka/Bracket.lean"
+      ],
+      "kernel_checked": false
+    },
+    {
+      "id": "GENERATION",
+      "statement": "Formally validate the 88-node generation DAG, including unit denominators and all 31 basis targets.",
+      "status": "external_exact_checks_only",
+      "paths": [
+        "data/generation_dag.json",
+        "Kourovka/Words.lean"
+      ],
+      "kernel_checked": false
+    },
+    {
+      "id": "FLAG-FULL",
+      "statement": "Prove the classification-free flag-rigidity argument for every bracket-preserving linear equivalence.",
+      "status": "mathematical_proof_unformalized",
+      "paths": [
+        "docs/DIRECT_FLAG_RIGIDITY.md",
+        "Kourovka/FlagScalars.lean"
+      ],
+      "kernel_checked": false
+    },
+    {
+      "id": "FLAG-DERIVATION",
+      "statement": "Prove the classification-free infinitesimal flag-rigidity argument for every derivation.",
+      "status": "mathematical_proof_unformalized",
+      "paths": [
+        "docs/DIRECT_FLAG_RIGIDITY.md",
+        "Kourovka/FlagScalars.lean"
+      ],
+      "kernel_checked": false
+    },
+    {
+      "id": "BASIC-STRUCTURE",
+      "statement": "Formalize perfectness, centre and relevant bracket filtration; establish the needed independent inner derivations.",
+      "status": "unformalized",
+      "paths": [],
+      "kernel_checked": false
+    },
+    {
+      "id": "LATTICES",
+      "statement": "Prove the adapted unimodular basis, weights, A, L, common rational space, and quotient coordinate equivalence.",
+      "status": "unformalized",
+      "paths": [],
+      "kernel_checked": false
+    },
+    {
+      "id": "ADDITIVE-LINEAR",
+      "statement": "Prove every additive finite-quotient endomorphism is linear over the relevant quotient ring.",
+      "status": "unformalized",
+      "paths": [],
+      "kernel_checked": false
+    },
+    {
+      "id": "LIFT-ALL",
+      "statement": "Treat arbitrary finite-quotient automorphism and derivation representatives, prove bracket-error estimates and reduction into 1+J or J.",
+      "status": "unformalized",
+      "paths": [],
+      "kernel_checked": false
+    },
+    {
+      "id": "EXP-LOG",
+      "statement": "Prove integral exponential/logarithm inverse bijections and exact congruence preservation for the two lattices.",
+      "status": "unformalized",
+      "paths": [],
+      "kernel_checked": false
+    },
+    {
+      "id": "TENSOR-EQUIVALENCE",
+      "statement": "Prove the tensor-action factorization and integral invertibility of U(X), with no loss of congruence precision.",
+      "status": "unformalized",
+      "paths": [],
+      "kernel_checked": false
+    },
+    {
+      "id": "MATRIX-DEFINITION",
+      "statement": "Derive K inside Lean from the actual Lie bracket and identify its full derivation kernel.",
+      "status": "unformalized",
+      "paths": [],
+      "kernel_checked": false
+    },
+    {
+      "id": "SMITH-SOUNDNESS",
+      "statement": "Develop and prove sound the local Smith certificate checker, including legitimate unit inverses and exact p-power divisions.",
+      "status": "unformalized",
+      "paths": [],
+      "kernel_checked": false
+    },
+    {
+      "id": "SMITH-ACCEPTANCE",
+      "statement": "Kernel-check acceptance of the actual 931-pivot certificate for the actual 14415 by 961 matrix.",
+      "status": "external_exact_checks_only",
+      "paths": [
+        "data/smith_pivot_plan.txt"
+      ],
+      "kernel_checked": false
+    },
+    {
+      "id": "NO-HIDDEN-VALUATIONS",
+      "statement": "Prove the exact rational rank upper bound using 30 independent inner derivations and transport to L.",
+      "status": "unformalized",
+      "paths": [],
+      "kernel_checked": false
+    },
+    {
+      "id": "KERNEL-CARDINALITY",
+      "statement": "Prove the complete kernel has cardinality 1009^(30*1689+1689).",
+      "status": "unformalized",
+      "paths": [],
+      "kernel_checked": false
+    },
+    {
+      "id": "NILPOTENCY",
+      "statement": "Prove the lower-central containments and nilpotency class at most 846.",
+      "status": "unformalized",
+      "paths": [],
+      "kernel_checked": false
+    },
+    {
+      "id": "BCH-GROUP",
+      "statement": "Define and prove the finite BCH group structure, without assuming associativity or Lazard.",
+      "status": "unformalized",
+      "paths": [],
+      "kernel_checked": false
+    },
+    {
+      "id": "FULL-MULAUT",
+      "statement": "Prove both directions of full group-automorphism versus full Lie-ring-automorphism correspondence.",
+      "status": "unformalized",
+      "paths": [],
+      "kernel_checked": false
+    },
+    {
+      "id": "FINAL-GROUP-THEOREM",
+      "statement": "Prove the two unconditional cardinality theorems for the actual paper group.",
+      "status": "absent",
+      "paths": [],
+      "kernel_checked": false
+    },
+    {
+      "id": "NOTEBOOK-COROLLARY",
+      "statement": "Prove the standard-definition existence statement, prime, odd-order and nontriviality facts.",
+      "status": "target_definition_only",
+      "paths": [
+        "Kourovka/Challenge.lean",
+        "Kourovka/Parameters.lean"
+      ],
+      "kernel_checked": false
+    },
+    {
+      "id": "FINAL-VALIDATION",
+      "statement": "Fresh full dependency build, actual elaborated statements and axiom reports, fresh kernel recheck and statement-fidelity review.",
+      "status": "not_run",
+      "paths": [],
+      "kernel_checked": false
+    }
+  ],
+  "current_failing_commands": [
+    {
+      "command": "python3 scripts/check.py",
+      "exit_code": 2,
+      "status": "INCOMPLETE_FINAL_GROUP_THEOREM_ABSENT",
+      "log": "logs/final_gate.log"
+    },
+    {
+      "command": "python3 scripts/check.py --bootstrap --milestones",
+      "exit_code": 2,
+      "status": "BLOCKED_NO_LEAN_TOOLCHAIN",
+      "error": "lean is not installed; Lean 4.19.0 must be available on PATH.",
+      "log": "logs/milestone_gate.log"
+    }
+  ],
+  "resume": {
+    "working_directory": "kourovka_16_63/lean",
+    "prerequisite": "Install pinned Lean/Lake 4.19.0 and enable access to the locked dependency repositories.",
+    "command": "python3 scripts/check.py --bootstrap --milestones",
+    "known_passing": false,
+    "next_task": "Obtain first actual compilation, repair any elaboration/API errors, then formalize the concrete generation-DAG soundness and direct flag-rigidity proof while developing the explicit LieRing structure.",
+    "strict_partial_validation_command": "python3 scripts/check.py --bootstrap --fresh --recheck --milestones",
+    "strict_partial_validation_ran": false,
+    "note": "Even a successful --milestones run will not certify the absent final group theorem."
+  },
+  "remote_changes": {
+    "repository_written": false,
+    "branch_created": false,
+    "commit_created": false,
+    "workflow_started": false,
+    "publication_changed": false,
+    "authors_contacted": false,
+    "money_spent": false
+  },
+  "local_preservation": {
+    "branch": "research/kourovka-16-63-lean",
+    "branch_created": true,
+    "upstream_clone": false,
+    "remote": null,
+    "note": "Separate local-only checkpoint repository; commit identifier will be recorded in the delivery metadata outside its own commit."
+  }
+}

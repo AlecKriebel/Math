@@ -1,0 +1,803 @@
+--- 
++++ 
+@@ -1,12 +1,13 @@
+ /- Generated uncompiled integral-word certificates.
+ Every equality is proved by reduction after rewriting already established node equalities. -/
+ import Kourovka.Lattice.Expressions
+-import Kourovka.Ambient.Lie
++import Kourovka.Ambient.Bilinear
+ import Kourovka.Parameters
+ import Mathlib.NumberTheory.Padics.PadicIntegers
+ 
+ namespace Kourovka.Lattice.IntegralGeneration
+ open Kourovka.Linear Kourovka.Ambient
++set_option Elab.async false
+ set_option maxRecDepth 200000
+ set_option maxHeartbeats 50000000
+ 
+@@ -18,527 +19,527 @@
+ 
+ def g0 : Expr := .x
+ theorem eval_0 : ev g0 = ![1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  decide
++  decide +kernel
+ 
+ def g1 : Expr := .y
+ theorem eval_1 : ev g1 = ![0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0] := by
+-  decide
++  decide +kernel
+ 
+ def g2 : Expr := .bracket g0 g1
+ theorem eval_2 : ev g2 = ![0, 2, (-2), 0, 4, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change Ambient.B (ev g0) (ev g1) = _
+   rw [eval_0, eval_1]
+-  decide
++  decide +kernel
+ 
+ def g3 : Expr := .bracket g0 g2
+ theorem eval_3 : ev g3 = ![0, 4, 4, 0, 16, 0, 0, 0, 0, 0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change Ambient.B (ev g0) (ev g2) = _
+   rw [eval_0, eval_2]
+-  decide
++  decide +kernel
+ 
+ def g4 : Expr := .bracket g0 g3
+ theorem eval_4 : ev g4 = ![0, 8, (-8), 0, 64, 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change Ambient.B (ev g0) (ev g3) = _
+   rw [eval_0, eval_3]
+-  decide
++  decide +kernel
+ 
+ def g5 : Expr := .scale (0) g0
+ theorem eval_5 : ev g5 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (0 : Int) • ev g0 = _
+   rw [eval_0]
+-  decide
++  decide +kernel
+ 
+ def g6 : Expr := .scale (-1) g4
+ theorem eval_6 : ev g6 = ![0, (-8), 8, 0, (-64), 0, 0, 0, 0, 0, (-64), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (-1 : Int) • ev g4 = _
+   rw [eval_4]
+-  decide
++  decide +kernel
+ 
+ def g7 : Expr := .add (.scale 16 g5) (.scale 1 g6)
+ theorem eval_7 : ev g7 = ![0, (-8), 8, 0, (-64), 0, 0, 0, 0, 0, (-64), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (16 : Int) • ev g5 + (1 : Int) • ev g6 = _
+   rw [eval_5, eval_6]
+-  decide
++  decide +kernel
+ 
+ def g8 : Expr := .scale (1) g3
+ theorem eval_8 : ev g8 = ![0, 4, 4, 0, 16, 0, 0, 0, 0, 0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (1 : Int) • ev g3 = _
+   rw [eval_3]
+-  decide
++  decide +kernel
+ 
+ def g9 : Expr := .add (.scale 1 g7) (.scale 2 g8)
+ theorem eval_9 : ev g9 = ![0, 0, 16, 0, (-32), 0, 0, 0, 0, 0, (-32), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (1 : Int) • ev g7 + (2 : Int) • ev g8 = _
+   rw [eval_7, eval_8]
+-  decide
++  decide +kernel
+ 
+ def g10 : Expr := .scale (1) g2
+ theorem eval_10 : ev g10 = ![0, 2, (-2), 0, 4, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (1 : Int) • ev g2 = _
+   rw [eval_2]
+-  decide
++  decide +kernel
+ 
+ def g11 : Expr := .add (.scale 1 g9) (.scale 8 g10)
+ theorem eval_11 : ev g11 = ![0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (1 : Int) • ev g9 + (8 : Int) • ev g10 = _
+   rw [eval_9, eval_10]
+-  decide
++  decide +kernel
+ 
+ def g12 : Expr := .scale (0) g0
+ theorem eval_12 : ev g12 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (0 : Int) • ev g0 = _
+   rw [eval_0]
+-  decide
++  decide +kernel
+ 
+ def g13 : Expr := .scale (-1) g4
+ theorem eval_13 : ev g13 = ![0, (-8), 8, 0, (-64), 0, 0, 0, 0, 0, (-64), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (-1 : Int) • ev g4 = _
+   rw [eval_4]
+-  decide
++  decide +kernel
+ 
+ def g14 : Expr := .add (.scale 48 g12) (.scale 1 g13)
+ theorem eval_14 : ev g14 = ![0, (-8), 8, 0, (-64), 0, 0, 0, 0, 0, (-64), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (48 : Int) • ev g12 + (1 : Int) • ev g13 = _
+   rw [eval_12, eval_13]
+-  decide
++  decide +kernel
+ 
+ def g15 : Expr := .scale (1) g3
+ theorem eval_15 : ev g15 = ![0, 4, 4, 0, 16, 0, 0, 0, 0, 0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (1 : Int) • ev g3 = _
+   rw [eval_3]
+-  decide
++  decide +kernel
+ 
+ def g16 : Expr := .add (.scale 1 g14) (.scale 6 g15)
+ theorem eval_16 : ev g16 = ![0, 16, 32, 0, 32, 0, 0, 0, 0, 0, 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (1 : Int) • ev g14 + (6 : Int) • ev g15 = _
+   rw [eval_14, eval_15]
+-  decide
++  decide +kernel
+ 
+ def g17 : Expr := .scale (-1) g2
+ theorem eval_17 : ev g17 = ![0, (-2), 2, 0, (-4), 0, 0, 0, 0, 0, (-4), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (-1 : Int) • ev g2 = _
+   rw [eval_2]
+-  decide
++  decide +kernel
+ 
+ def g18 : Expr := .add (.scale 1 g16) (.scale 8 g17)
+ theorem eval_18 : ev g18 = ![0, 0, 48, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (1 : Int) • ev g16 + (8 : Int) • ev g17 = _
+   rw [eval_16, eval_17]
+-  decide
++  decide +kernel
+ 
+ def g19 : Expr := .scale (0) g0
+ theorem eval_19 : ev g19 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (0 : Int) • ev g0 = _
+   rw [eval_0]
+-  decide
++  decide +kernel
+ 
+ def g20 : Expr := .scale (1) g4
+ theorem eval_20 : ev g20 = ![0, 8, (-8), 0, 64, 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (1 : Int) • ev g4 = _
+   rw [eval_4]
+-  decide
++  decide +kernel
+ 
+ def g21 : Expr := .add (.scale 48 g19) (.scale 1 g20)
+ theorem eval_21 : ev g21 = ![0, 8, (-8), 0, 64, 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (48 : Int) • ev g19 + (1 : Int) • ev g20 = _
+   rw [eval_19, eval_20]
+-  decide
++  decide +kernel
+ 
+ def g22 : Expr := .scale (-1) g2
+ theorem eval_22 : ev g22 = ![0, (-2), 2, 0, (-4), 0, 0, 0, 0, 0, (-4), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (-1 : Int) • ev g2 = _
+   rw [eval_2]
+-  decide
++  decide +kernel
+ 
+ def g23 : Expr := .add (.scale 1 g21) (.scale 4 g22)
+ theorem eval_23 : ev g23 = ![0, 0, 0, 0, 48, 0, 0, 0, 0, 0, 48, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (1 : Int) • ev g21 + (4 : Int) • ev g22 = _
+   rw [eval_21, eval_22]
+-  decide
++  decide +kernel
+ 
+ def g24 : Expr := .scale (0) g0
+ theorem eval_24 : ev g24 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (0 : Int) • ev g0 = _
+   rw [eval_0]
+-  decide
++  decide +kernel
+ 
+ def g25 : Expr := .scale (1) g4
+ theorem eval_25 : ev g25 = ![0, 8, (-8), 0, 64, 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (1 : Int) • ev g4 = _
+   rw [eval_4]
+-  decide
++  decide +kernel
+ 
+ def g26 : Expr := .add (.scale 16 g24) (.scale 1 g25)
+ theorem eval_26 : ev g26 = ![0, 8, (-8), 0, 64, 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (16 : Int) • ev g24 + (1 : Int) • ev g25 = _
+   rw [eval_24, eval_25]
+-  decide
++  decide +kernel
+ 
+ def g27 : Expr := .scale (-1) g3
+ theorem eval_27 : ev g27 = ![0, (-4), (-4), 0, (-16), 0, 0, 0, 0, 0, (-16), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (-1 : Int) • ev g3 = _
+   rw [eval_3]
+-  decide
++  decide +kernel
+ 
+ def g28 : Expr := .add (.scale 1 g26) (.scale 4 g27)
+ theorem eval_28 : ev g28 = ![0, (-8), (-24), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (1 : Int) • ev g26 + (4 : Int) • ev g27 = _
+   rw [eval_26, eval_27]
+-  decide
++  decide +kernel
+ 
+ def g29 : Expr := .scale (-1) g2
+ theorem eval_29 : ev g29 = ![0, (-2), 2, 0, (-4), 0, 0, 0, 0, 0, (-4), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (-1 : Int) • ev g2 = _
+   rw [eval_2]
+-  decide
++  decide +kernel
+ 
+ def g30 : Expr := .add (.scale 1 g28) (.scale 4 g29)
+ theorem eval_30 : ev g30 = ![0, (-16), (-16), 0, (-16), 0, 0, 0, 0, 0, (-16), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (1 : Int) • ev g28 + (4 : Int) • ev g29 = _
+   rw [eval_28, eval_29]
+-  decide
++  decide +kernel
+ 
+ def g31 : Expr := .scale (1) g1
+ theorem eval_31 : ev g31 = ![0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0] := by
+   change (1 : Int) • ev g1 = _
+   rw [eval_1]
+-  decide
++  decide +kernel
+ 
+ def g32 : Expr := .add (.scale 1 g30) (.scale 16 g31)
+ theorem eval_32 : ev g32 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 0, 0, 0] := by
+   change (1 : Int) • ev g30 + (16 : Int) • ev g31 = _
+   rw [eval_30, eval_31]
+-  decide
++  decide +kernel
+ 
+ def g33 : Expr := .bracket g11 g23
+ theorem eval_33 : ev g33 = ![0, 0, 0, 768, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change Ambient.B (ev g11) (ev g23) = _
+   rw [eval_11, eval_23]
+-  decide
++  decide +kernel
+ 
+ def g34 : Expr := .bracket g18 g33
+ theorem eval_34 : ev g34 = ![0, 0, 0, 0, 221184, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change Ambient.B (ev g18) (ev g33) = _
+   rw [eval_18, eval_33]
+-  decide
++  decide +kernel
+ 
+ def g35 : Expr := .scale (1) g34
+ theorem eval_35 : ev g35 = ![0, 0, 0, 0, 221184, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (1 : Int) • ev g34 = _
+   rw [eval_34]
+-  decide
++  decide +kernel
+ 
+ def g36 : Expr := .bracket g18 g35
+ theorem eval_36 : ev g36 = ![0, 0, 0, 0, 0, 53084160, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change Ambient.B (ev g18) (ev g35) = _
+   rw [eval_18, eval_35]
+-  decide
++  decide +kernel
+ 
+ def g37 : Expr := .scale (1) g36
+ theorem eval_37 : ev g37 = ![0, 0, 0, 0, 0, 53084160, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (1 : Int) • ev g36 = _
+   rw [eval_36]
+-  decide
++  decide +kernel
+ 
+ def g38 : Expr := .bracket g18 g37
+ theorem eval_38 : ev g38 = ![0, 0, 0, 0, 0, 0, 10192158720, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change Ambient.B (ev g18) (ev g37) = _
+   rw [eval_18, eval_37]
+-  decide
++  decide +kernel
+ 
+ def g39 : Expr := .scale (1) g38
+ theorem eval_39 : ev g39 = ![0, 0, 0, 0, 0, 0, 10192158720, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (1 : Int) • ev g38 = _
+   rw [eval_38]
+-  decide
++  decide +kernel
+ 
+ def g40 : Expr := .bracket g18 g39
+ theorem eval_40 : ev g40 = ![0, 0, 0, 0, 0, 0, 0, 1467670855680, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change Ambient.B (ev g18) (ev g39) = _
+   rw [eval_18, eval_39]
+-  decide
++  decide +kernel
+ 
+ def g41 : Expr := .scale (1) g40
+ theorem eval_41 : ev g41 = ![0, 0, 0, 0, 0, 0, 0, 1467670855680, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (1 : Int) • ev g40 = _
+   rw [eval_40]
+-  decide
++  decide +kernel
+ 
+ def g42 : Expr := .bracket g18 g41
+ theorem eval_42 : ev g42 = ![0, 0, 0, 0, 0, 0, 0, 0, 140896402145280, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change Ambient.B (ev g18) (ev g41) = _
+   rw [eval_18, eval_41]
+-  decide
++  decide +kernel
+ 
+ def g43 : Expr := .scale (1) g42
+ theorem eval_43 : ev g43 = ![0, 0, 0, 0, 0, 0, 0, 0, 140896402145280, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (1 : Int) • ev g42 = _
+   rw [eval_42]
+-  decide
++  decide +kernel
+ 
+ def g44 : Expr := .bracket g18 g43
+ theorem eval_44 : ev g44 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 6763027302973440, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change Ambient.B (ev g18) (ev g43) = _
+   rw [eval_18, eval_43]
+-  decide
++  decide +kernel
+ 
+ def g45 : Expr := .scale (1) g44
+ theorem eval_45 : ev g45 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 6763027302973440, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (1 : Int) • ev g44 = _
+   rw [eval_44]
+-  decide
++  decide +kernel
+ 
+ def g46 : Expr := .scale (-1) g35
+ theorem eval_46 : ev g46 = ![0, 0, 0, 0, (-221184), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (-1 : Int) • ev g35 = _
+   rw [eval_35]
+-  decide
++  decide +kernel
+ 
+ def g47 : Expr := .add (.scale 4608 g23) (.scale 1 g46)
+ theorem eval_47 : ev g47 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 221184, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (4608 : Int) • ev g23 + (1 : Int) • ev g46 = _
+   rw [eval_23, eval_46]
+-  decide
++  decide +kernel
+ 
+ def g48 : Expr := .bracket g18 g47
+ theorem eval_48 : ev g48 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 42467328, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change Ambient.B (ev g18) (ev g47) = _
+   rw [eval_18, eval_47]
+-  decide
++  decide +kernel
+ 
+ def g49 : Expr := .scale (1) g48
+ theorem eval_49 : ev g49 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 42467328, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (1 : Int) • ev g48 = _
+   rw [eval_48]
+-  decide
++  decide +kernel
+ 
+ def g50 : Expr := .bracket g18 g49
+ theorem eval_50 : ev g50 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6115295232, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change Ambient.B (ev g18) (ev g49) = _
+   rw [eval_18, eval_49]
+-  decide
++  decide +kernel
+ 
+ def g51 : Expr := .scale (1) g50
+ theorem eval_51 : ev g51 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6115295232, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (1 : Int) • ev g50 = _
+   rw [eval_50]
+-  decide
++  decide +kernel
+ 
+ def g52 : Expr := .bracket g18 g51
+ theorem eval_52 : ev g52 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 587068342272, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change Ambient.B (ev g18) (ev g51) = _
+   rw [eval_18, eval_51]
+-  decide
++  decide +kernel
+ 
+ def g53 : Expr := .scale (1) g52
+ theorem eval_53 : ev g53 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 587068342272, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (1 : Int) • ev g52 = _
+   rw [eval_52]
+-  decide
++  decide +kernel
+ 
+ def g54 : Expr := .bracket g18 g53
+ theorem eval_54 : ev g54 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 28179280429056, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change Ambient.B (ev g18) (ev g53) = _
+   rw [eval_18, eval_53]
+-  decide
++  decide +kernel
+ 
+ def g55 : Expr := .scale (1) g54
+ theorem eval_55 : ev g55 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 28179280429056, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (1 : Int) • ev g54 = _
+   rw [eval_54]
+-  decide
++  decide +kernel
+ 
+ def g56 : Expr := .bracket g11 g32
+ theorem eval_56 : ev g56 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 512, 0, 0, 0, 0] := by
+   change Ambient.B (ev g11) (ev g32) = _
+   rw [eval_11, eval_32]
+-  decide
++  decide +kernel
+ 
+ def g57 : Expr := .bracket g11 g56
+ theorem eval_57 : ev g57 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8192, 0, 0, 0, 0, 0] := by
+   change Ambient.B (ev g11) (ev g56) = _
+   rw [eval_11, eval_56]
+-  decide
++  decide +kernel
+ 
+ def g58 : Expr := .scale (1) g57
+ theorem eval_58 : ev g58 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8192, 0, 0, 0, 0, 0] := by
+   change (1 : Int) • ev g57 = _
+   rw [eval_57]
+-  decide
++  decide +kernel
+ 
+ def g59 : Expr := .bracket g18 g58
+ theorem eval_59 : ev g59 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1572864, 0, 0, 0, 0] := by
+   change Ambient.B (ev g18) (ev g58) = _
+   rw [eval_18, eval_58]
+-  decide
++  decide +kernel
+ 
+ def g60 : Expr := .scale (1) g59
+ theorem eval_60 : ev g60 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1572864, 0, 0, 0, 0] := by
+   change (1 : Int) • ev g59 = _
+   rw [eval_59]
+-  decide
++  decide +kernel
+ 
+ def g61 : Expr := .bracket g18 g60
+ theorem eval_61 : ev g61 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 226492416, 0, 0, 0] := by
+   change Ambient.B (ev g18) (ev g60) = _
+   rw [eval_18, eval_60]
+-  decide
++  decide +kernel
+ 
+ def g62 : Expr := .scale (1) g61
+ theorem eval_62 : ev g62 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 226492416, 0, 0, 0] := by
+   change (1 : Int) • ev g61 = _
+   rw [eval_61]
+-  decide
++  decide +kernel
+ 
+ def g63 : Expr := .bracket g18 g62
+ theorem eval_63 : ev g63 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 21743271936, 0, 0] := by
+   change Ambient.B (ev g18) (ev g62) = _
+   rw [eval_18, eval_62]
+-  decide
++  decide +kernel
+ 
+ def g64 : Expr := .scale (1) g63
+ theorem eval_64 : ev g64 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 21743271936, 0, 0] := by
+   change (1 : Int) • ev g63 = _
+   rw [eval_63]
+-  decide
++  decide +kernel
+ 
+ def g65 : Expr := .bracket g18 g64
+ theorem eval_65 : ev g65 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1043677052928, 0] := by
+   change Ambient.B (ev g18) (ev g64) = _
+   rw [eval_18, eval_64]
+-  decide
++  decide +kernel
+ 
+ def g66 : Expr := .scale (1) g65
+ theorem eval_66 : ev g66 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1043677052928, 0] := by
+   change (1 : Int) • ev g65 = _
+   rw [eval_65]
+-  decide
++  decide +kernel
+ 
+ def g67 : Expr := .bracket g33 g39
+ theorem eval_67 : ev g67 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5635856085811200, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change Ambient.B (ev g33) (ev g39) = _
+   rw [eval_33, eval_39]
+-  decide
++  decide +kernel
+ 
+ def g68 : Expr := .scale (1) g67
+ theorem eval_68 : ev g68 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5635856085811200, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (1 : Int) • ev g67 = _
+   rw [eval_67]
+-  decide
++  decide +kernel
+ 
+ def g69 : Expr := .bracket g18 g68
+ theorem eval_69 : ev g69 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1623126552713625600, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change Ambient.B (ev g18) (ev g68) = _
+   rw [eval_18, eval_68]
+-  decide
++  decide +kernel
+ 
+ def g70 : Expr := .scale (1) g69
+ theorem eval_70 : ev g70 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1623126552713625600, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (1 : Int) • ev g69 = _
+   rw [eval_69]
+-  decide
++  decide +kernel
+ 
+ def g71 : Expr := .bracket g18 g70
+ theorem eval_71 : ev g71 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 389550372651270144000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change Ambient.B (ev g18) (ev g70) = _
+   rw [eval_18, eval_70]
+-  decide
++  decide +kernel
+ 
+ def g72 : Expr := .scale (1) g71
+ theorem eval_72 : ev g72 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 389550372651270144000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (1 : Int) • ev g71 = _
+   rw [eval_71]
+-  decide
++  decide +kernel
+ 
+ def g73 : Expr := .bracket g18 g72
+ theorem eval_73 : ev g73 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 74793671549043867648000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change Ambient.B (ev g18) (ev g72) = _
+   rw [eval_18, eval_72]
+-  decide
++  decide +kernel
+ 
+ def g74 : Expr := .scale (1) g73
+ theorem eval_74 : ev g74 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 74793671549043867648000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (1 : Int) • ev g73 = _
+   rw [eval_73]
+-  decide
++  decide +kernel
+ 
+ def g75 : Expr := .bracket g18 g74
+ theorem eval_75 : ev g75 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10770288703062316941312000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change Ambient.B (ev g18) (ev g74) = _
+   rw [eval_18, eval_74]
+-  decide
++  decide +kernel
+ 
+ def g76 : Expr := .scale (1) g75
+ theorem eval_76 : ev g76 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10770288703062316941312000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (1 : Int) • ev g75 = _
+   rw [eval_75]
+-  decide
++  decide +kernel
+ 
+ def g77 : Expr := .bracket g18 g76
+ theorem eval_77 : ev g77 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1033947715493982426365952000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change Ambient.B (ev g18) (ev g76) = _
+   rw [eval_18, eval_76]
+-  decide
++  decide +kernel
+ 
+ def g78 : Expr := .scale (1) g77
+ theorem eval_78 : ev g78 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1033947715493982426365952000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (1 : Int) • ev g77 = _
+   rw [eval_77]
+-  decide
++  decide +kernel
+ 
+ def g79 : Expr := .bracket g18 g78
+ theorem eval_79 : ev g79 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 49629490343711156465565696000, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change Ambient.B (ev g18) (ev g78) = _
+   rw [eval_18, eval_78]
+-  decide
++  decide +kernel
+ 
+ def g80 : Expr := .scale (1) g79
+ theorem eval_80 : ev g80 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 49629490343711156465565696000, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (1 : Int) • ev g79 = _
+   rw [eval_79]
+-  decide
++  decide +kernel
+ 
+ def g81 : Expr := .bracket g33 g55
+ theorem eval_81 : ev g81 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 186984178872609669120, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change Ambient.B (ev g33) (ev g55) = _
+   rw [eval_33, eval_55]
+-  decide
++  decide +kernel
+ 
+ def g82 : Expr := .scale (1) g81
+ theorem eval_82 : ev g82 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 186984178872609669120, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   change (1 : Int) • ev g81 = _
+   rw [eval_81]
+-  decide
++  decide +kernel
+ 
+ def g83 : Expr := .bracket g18 g82
+ theorem eval_83 : ev g83 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 17950481171770528235520, 0, 0, 0, 0, 0, 0, 0] := by
+   change Ambient.B (ev g18) (ev g82) = _
+   rw [eval_18, eval_82]
+-  decide
++  decide +kernel
+ 
+ def g84 : Expr := .scale (1) g83
+ theorem eval_84 : ev g84 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 17950481171770528235520, 0, 0, 0, 0, 0, 0, 0] := by
+   change (1 : Int) • ev g83 = _
+   rw [eval_83]
+-  decide
++  decide +kernel
+ 
+ def g85 : Expr := .bracket g18 g84
+ theorem eval_85 : ev g85 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 861623096244985355304960, 0, 0, 0, 0, 0, 0] := by
+   change Ambient.B (ev g18) (ev g84) = _
+   rw [eval_18, eval_84]
+-  decide
++  decide +kernel
+ 
+ def g86 : Expr := .bracket g47 g66
+ theorem eval_86 : ev g86 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 132966527198300209152] := by
+   change Ambient.B (ev g47) (ev g66) = _
+   rw [eval_47, eval_66]
+-  decide
++  decide +kernel
+ 
+ def g87 : Expr := .scale (1) g86
+ theorem eval_87 : ev g87 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 132966527198300209152] := by
+   change (1 : Int) • ev g86 = _
+   rw [eval_86]
+-  decide
++  decide +kernel
+ 
+ def denominator : I → Int := ![1, 16, 48, 768, 221184, 53084160, 10192158720, 1467670855680, 140896402145280, 6763027302973440, 221184, 42467328, 6115295232, 587068342272, 28179280429056, 5635856085811200, 1623126552713625600, 389550372651270144000, 74793671549043867648000, 10770288703062316941312000, 1033947715493982426365952000, 49629490343711156465565696000, 186984178872609669120, 17950481171770528235520, 861623096244985355304960, 8192, 1572864, 226492416, 21743271936, 1043677052928, 132966527198300209152]
+ 
+@@ -548,127 +549,127 @@
+ 
+ theorem generator_value_0 : ev g0 = (1 : Int) • (unitVec 0 : V Int) := by
+   rw [eval_0]
+-  decide
++  decide +kernel
+ 
+ theorem generator_value_1 : ev g11 = (16 : Int) • (unitVec 1 : V Int) := by
+   rw [eval_11]
+-  decide
++  decide +kernel
+ 
+ theorem generator_value_2 : ev g18 = (48 : Int) • (unitVec 2 : V Int) := by
+   rw [eval_18]
+-  decide
++  decide +kernel
+ 
+ theorem generator_value_3 : ev g33 = (768 : Int) • (unitVec 3 : V Int) := by
+   rw [eval_33]
+-  decide
++  decide +kernel
+ 
+ theorem generator_value_4 : ev g35 = (221184 : Int) • (unitVec 4 : V Int) := by
+   rw [eval_35]
+-  decide
++  decide +kernel
+ 
+ theorem generator_value_5 : ev g37 = (53084160 : Int) • (unitVec 5 : V Int) := by
+   rw [eval_37]
+-  decide
++  decide +kernel
+ 
+ theorem generator_value_6 : ev g39 = (10192158720 : Int) • (unitVec 6 : V Int) := by
+   rw [eval_39]
+-  decide
++  decide +kernel
+ 
+ theorem generator_value_7 : ev g41 = (1467670855680 : Int) • (unitVec 7 : V Int) := by
+   rw [eval_41]
+-  decide
++  decide +kernel
+ 
+ theorem generator_value_8 : ev g43 = (140896402145280 : Int) • (unitVec 8 : V Int) := by
+   rw [eval_43]
+-  decide
++  decide +kernel
+ 
+ theorem generator_value_9 : ev g45 = (6763027302973440 : Int) • (unitVec 9 : V Int) := by
+   rw [eval_45]
+-  decide
++  decide +kernel
+ 
+ theorem generator_value_10 : ev g47 = (221184 : Int) • (unitVec 10 : V Int) := by
+   rw [eval_47]
+-  decide
++  decide +kernel
+ 
+ theorem generator_value_11 : ev g49 = (42467328 : Int) • (unitVec 11 : V Int) := by
+   rw [eval_49]
+-  decide
++  decide +kernel
+ 
+ theorem generator_value_12 : ev g51 = (6115295232 : Int) • (unitVec 12 : V Int) := by
+   rw [eval_51]
+-  decide
++  decide +kernel
+ 
+ theorem generator_value_13 : ev g53 = (587068342272 : Int) • (unitVec 13 : V Int) := by
+   rw [eval_53]
+-  decide
++  decide +kernel
+ 
+ theorem generator_value_14 : ev g55 = (28179280429056 : Int) • (unitVec 14 : V Int) := by
+   rw [eval_55]
+-  decide
++  decide +kernel
+ 
+ theorem generator_value_15 : ev g68 = (5635856085811200 : Int) • (unitVec 15 : V Int) := by
+   rw [eval_68]
+-  decide
++  decide +kernel
+ 
+ theorem generator_value_16 : ev g70 = (1623126552713625600 : Int) • (unitVec 16 : V Int) := by
+   rw [eval_70]
+-  decide
++  decide +kernel
+ 
+ theorem generator_value_17 : ev g72 = (389550372651270144000 : Int) • (unitVec 17 : V Int) := by
+   rw [eval_72]
+-  decide
++  decide +kernel
+ 
+ theorem generator_value_18 : ev g74 = (74793671549043867648000 : Int) • (unitVec 18 : V Int) := by
+   rw [eval_74]
+-  decide
++  decide +kernel
+ 
+ theorem generator_value_19 : ev g76 = (10770288703062316941312000 : Int) • (unitVec 19 : V Int) := by
+   rw [eval_76]
+-  decide
++  decide +kernel
+ 
+ theorem generator_value_20 : ev g78 = (1033947715493982426365952000 : Int) • (unitVec 20 : V Int) := by
+   rw [eval_78]
+-  decide
++  decide +kernel
+ 
+ theorem generator_value_21 : ev g80 = (49629490343711156465565696000 : Int) • (unitVec 21 : V Int) := by
+   rw [eval_80]
+-  decide
++  decide +kernel
+ 
+ theorem generator_value_22 : ev g82 = (186984178872609669120 : Int) • (unitVec 22 : V Int) := by
+   rw [eval_82]
+-  decide
++  decide +kernel
+ 
+ theorem generator_value_23 : ev g84 = (17950481171770528235520 : Int) • (unitVec 23 : V Int) := by
+   rw [eval_84]
+-  decide
++  decide +kernel
+ 
+ theorem generator_value_24 : ev g85 = (861623096244985355304960 : Int) • (unitVec 24 : V Int) := by
+   rw [eval_85]
+-  decide
++  decide +kernel
+ 
+ theorem generator_value_25 : ev g58 = (8192 : Int) • (unitVec 25 : V Int) := by
+   rw [eval_58]
+-  decide
++  decide +kernel
+ 
+ theorem generator_value_26 : ev g60 = (1572864 : Int) • (unitVec 26 : V Int) := by
+   rw [eval_60]
+-  decide
++  decide +kernel
+ 
+ theorem generator_value_27 : ev g62 = (226492416 : Int) • (unitVec 27 : V Int) := by
+   rw [eval_62]
+-  decide
++  decide +kernel
+ 
+ theorem generator_value_28 : ev g64 = (21743271936 : Int) • (unitVec 28 : V Int) := by
+   rw [eval_64]
+-  decide
++  decide +kernel
+ 
+ theorem generator_value_29 : ev g66 = (1043677052928 : Int) • (unitVec 29 : V Int) := by
+   rw [eval_66]
+-  decide
++  decide +kernel
+ 
+ theorem generator_value_30 : ev g87 = (132966527198300209152 : Int) • (unitVec 30 : V Int) := by
+   rw [eval_87]
+-  decide
++  decide +kernel
+ 
+ theorem generator_value : ∀ i : I, ev (generator i) = denominator i • (unitVec i : V Int) := by
+   intro i
+@@ -715,7 +716,9 @@
+     Expr.eval (fun a b : V R => Ambient.B a b) X Y (generator i) =
+       (denominator i : R) • unitVec i := by
+   have h := congrArg (castAdd R) (generator_value i)
+-  rw [Expr.map_eval (castAdd R) _ _ (mapVec_B (Int.castRingHom R))] at h
++  unfold ev at h
++  rw [Expr.map_eval (castAdd R) (fun a b : V Int => Ambient.B a b)
++    (fun a b : V R => Ambient.B a b) (mapVec_B (Int.castRingHom R))] at h
+   simpa [castAdd,ev,X,Y,mapVec,mapVec_unit,smul_eq_mul,zsmul_eq_mul] using h
+ 
+ /-- Exact generation over any coefficient ring in which the displayed denominators are units. -/

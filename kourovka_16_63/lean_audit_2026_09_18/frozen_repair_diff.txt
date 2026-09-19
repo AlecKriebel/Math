@@ -1,0 +1,5103 @@
+### frozen_diff_Kourovka.lean
+--- original/Kourovka.lean
++++ Kourovka.lean
+@@ -1,5 +1,6 @@
+-/- All current draft modules, deliberately including the hard uncompiled sources.
+-The final BCH group and unconditional finite-group theorem are NOT present. -/
++/- Aggregate import for every module of the partial development.
++The final BCH group and unconditional finite-group theorem are NOT present.
++See the local verification report for compiler results and remaining gaps. -/
+ import Kourovka.Ambient.Bilinear
+ import Kourovka.Ambient.Checks.Chunk00
+ import Kourovka.Ambient.Checks.Chunk01
+
+### frozen_diff_Kourovka_Ambient_FastBasis.lean
+/- Integer-only evaluation of basis brackets, linked to the original sparse map.
+This is an optimization of proof reduction, not a replacement bracket or oracle. -/
+import Kourovka.Ambient.IntData
+
+namespace Kourovka.Ambient.FastBasis
+open Kourovka.Linear
+
+/-- An integer coordinate of a skew-half term, with no scalar-ring structure reduction. -/
+def entry (t : Sparse.Term) (i j o : I) : Int :=
+  if t.2.2.1 = o.val then
+    (if i.val = t.1 ∧ j.val = t.2.1 then t.2.2.2 else 0) -
+    (if j.val = t.1 ∧ i.val = t.2.1 then t.2.2.2 else 0)
+  else 0
+
+/-- Integer-only evaluator for an arbitrary list, retaining all duplicate terms. -/
+def coeff : List Sparse.Term → I → I → I → Int
+  | [], _, _, _ => 0
+  | t :: ts, i, j, o => entry t i j o + coeff ts i j o
+
+theorem coord_unit (i : I) (a : Nat) :
+    Sparse.coord (unitVec i : V Int) a = if i.val = a then 1 else 0 := by
+  by_cases ha : a < 31
+  · simp only [Sparse.coord, dif_pos ha, unitVec]
+    simp only [Fin.ext_iff]
+  · have hi : i.val ≠ a := by intro h; exact ha (h ▸ i.isLt)
+    simp [Sparse.coord, ha, hi]
+
+theorem entry_sound (t : Sparse.Term) (i j o : I) :
+    Sparse.entry t (unitVec i : V Int) (unitVec j) o = entry t i j o := by
+  rcases t with ⟨a,b,k,c⟩
+  simp only [Sparse.entry, coord_unit, entry, Int.cast_id]
+  split_ifs <;> simp_all
+
+theorem fromTerms_sound (ts : List Sparse.Term) (i j o : I) :
+    Sparse.fromTerms ts (unitVec i : V Int) (unitVec j) o = coeff ts i j o := by
+  induction ts with
+  | nil => rfl
+  | cons t ts ih =>
+    change Sparse.entry t (unitVec i : V Int) (unitVec j) o +
+      Sparse.fromTerms ts (unitVec i : V Int) (unitVec j) o = _
+    rw [entry_sound, ih]
+    rfl
+
+theorem bracket_sound (i j o : I) :
+    (B (unitVec i) (unitVec j) : V Int) o = coeff exportedTerms i j o :=
+  fromTerms_sound exportedTerms i j o
+
+/-- The integer computation remains valid after base change to every commutative ring. -/
+theorem cast_fromTerms_sound {R : Type*} [CommRing R]
+    (ts : List Sparse.Term) (i j o : I) :
+    Sparse.fromTerms ts (unitVec i : V R) (unitVec j) o =
+      (coeff ts i j o : R) := by
+  have h := congrFun (mapVec_terms (Int.castRingHom R) ts
+    (unitVec i : V Int) (unitVec j)) o
+  rw [mapVec_unit, mapVec_unit] at h
+  change (Sparse.fromTerms ts (unitVec i : V Int) (unitVec j) o : R) =
+    Sparse.fromTerms ts (unitVec i : V R) (unitVec j) o at h
+  rw [fromTerms_sound] at h
+  exact h.symm
+
+theorem termVec_coeff (i j o : I) :
+    (IntData.termVec (IntData.term i j) : V Int) o = IntData.coeff i j o := by
+  cases h : IntData.term i j with
+  | none => simp [IntData.termVec, IntData.coeff, h]
+  | some t =>
+    rcases t with ⟨k,c⟩
+    by_cases hk : k = o <;>
+      simp [IntData.termVec, IntData.coeff, h, unitVec, Pi.smul_apply, smul_eq_mul, hk]
+
+/-- Every original TermCheck follows from the equivalent finite integer coordinate check. -/
+theorem termCheck_of_coeff (i : I)
+    (h : ∀ j o : I, coeff exportedTerms i j o = IntData.coeff i j o) :
+    IntData.TermCheck i := by
+  intro j
+  funext o
+  rw [bracket_sound, termVec_coeff]
+  exact h j o
+
+end Kourovka.Ambient.FastBasis
+
+### frozen_diff_Kourovka_Ambient_Lie.lean
+--- original/Kourovka/Ambient/Lie.lean
++++ Kourovka/Ambient/Lie.lean
+@@ -112,7 +112,11 @@
+     mapVec f (termVec t) = termVec t := by
+   cases t with
+   | none => simp [termVec]
+-  | some p => rcases p with ⟨i,c⟩; simp [termVec]
++  | some p =>
++      rcases p with ⟨i,c⟩
++      simp only [termVec, Int.cast_id, mapVec_smul, mapVec_unit]
++      congr 1
++      exact map_intCast f c
+ 
+ /-- Exact basis bracket formula in every commutative coefficient ring. -/
+ theorem basis_bracket (i j : I) :
+@@ -141,7 +145,7 @@
+   | none => simp [termVec]
+   | some p =>
+       rcases p with ⟨l,c⟩
+-      simp only [termVec, map_smul, Pi.smul_apply, smul_eq_mul]
++      simp only [termVec, map_smul, Pi.smul_apply, smul_eq_mul, Int.cast_id]
+       rw [basis_coeff]
+ 
+ theorem nestedRight_sound (i j k o : I) :
+@@ -153,7 +157,7 @@
+   | none => simp [termVec]
+   | some p =>
+       rcases p with ⟨l,c⟩
+-      simp only [termVec, map_smul, LinearMap.smul_apply, Pi.smul_apply, smul_eq_mul]
++      simp only [termVec, map_smul, LinearMap.smul_apply, Pi.smul_apply, smul_eq_mul, Int.cast_id]
+       rw [basis_coeff]
+ 
+ theorem jacobi_basis_integer (i j k : I) :
+
+### frozen_diff_Kourovka_Certificates_Indexing.lean
+--- original/Kourovka/Certificates/Indexing.lean
++++ Kourovka/Certificates/Indexing.lean
+@@ -1,7 +1,10 @@
+ /- Uncompiled exact index bridge. The certificate uses lexicographic i<j, then k. -/
+ import Kourovka.Certificates.DerivationMatrix
+ import Mathlib.Logic.Equiv.Fin.Basic
++set_option Elab.async false
++
+ namespace Kourovka.Certificates
++open Kourovka.Ambient
+ set_option maxRecDepth 100000
+ set_option maxHeartbeats 20000000
+ 
+@@ -472,19 +475,19 @@
+   (28, 30),
+   (29, 30)]
+ 
+-theorem pairData_ordered : ∀ i, (pairData i).1 < (pairData i).2 := by decide
++theorem pairData_ordered : ∀ i, (pairData i).1 < (pairData i).2 := by decide +kernel
+ 
+ def pairAt (i : Fin 465) : Pair := ⟨pairData i,pairData_ordered i⟩
+ 
+ def pairNumberNat (p : Pair) : Nat :=
+   p.val.1.val * (61-p.val.1.val) / 2 + (p.val.2.val-p.val.1.val-1)
+ 
+-theorem pairNumber_bound : ∀ p, pairNumberNat p < 465 := by decide
++theorem pairNumber_bound : ∀ p, pairNumberNat p < 465 := by decide +kernel
+ 
+ def pairNumber (p : Pair) : Fin 465 := ⟨pairNumberNat p,pairNumber_bound p⟩
+ 
+-theorem number_at : ∀ i, pairNumber (pairAt i) = i := by decide
+-theorem at_number : ∀ p, pairAt (pairNumber p) = p := by decide
++theorem number_at : ∀ i, pairNumber (pairAt i) = i := by decide +kernel
++theorem at_number : ∀ p, pairAt (pairNumber p) = p := by decide +kernel
+ 
+ def pairEquiv : Fin 465 ≃ Pair :=
+   ⟨pairAt,pairNumber,number_at,at_number⟩
+
+### frozen_diff_Kourovka_Certificates_InnerChecks_Row00.lean
+/- Exact kernel-checked row of the rational left-inverse witness. -/
+import Kourovka.Certificates.InnerWitnessData
+set_option Elab.async false
+set_option maxRecDepth 200000
+set_option maxHeartbeats 50000000
+namespace Kourovka.Certificates.InnerRank
+theorem leftInverse_00 : LeftInverseCheck 0 := by
+  intro j
+  simp only [inner_entry_fast]
+  fin_cases j <;> decide +kernel
+end Kourovka.Certificates.InnerRank
+
+### frozen_diff_Kourovka_Certificates_InnerChecks_Row01.lean
+/- Exact kernel-checked row of the rational left-inverse witness. -/
+import Kourovka.Certificates.InnerWitnessData
+set_option Elab.async false
+set_option maxRecDepth 200000
+set_option maxHeartbeats 50000000
+namespace Kourovka.Certificates.InnerRank
+theorem leftInverse_01 : LeftInverseCheck 1 := by
+  intro j
+  simp only [inner_entry_fast]
+  fin_cases j <;> decide +kernel
+end Kourovka.Certificates.InnerRank
+
+### frozen_diff_Kourovka_Certificates_InnerChecks_Row02.lean
+/- Exact kernel-checked row of the rational left-inverse witness. -/
+import Kourovka.Certificates.InnerWitnessData
+set_option Elab.async false
+set_option maxRecDepth 200000
+set_option maxHeartbeats 50000000
+namespace Kourovka.Certificates.InnerRank
+theorem leftInverse_02 : LeftInverseCheck 2 := by
+  intro j
+  simp only [inner_entry_fast]
+  fin_cases j <;> decide +kernel
+end Kourovka.Certificates.InnerRank
+
+### frozen_diff_Kourovka_Certificates_InnerChecks_Row03.lean
+/- Exact kernel-checked row of the rational left-inverse witness. -/
+import Kourovka.Certificates.InnerWitnessData
+set_option Elab.async false
+set_option maxRecDepth 200000
+set_option maxHeartbeats 50000000
+namespace Kourovka.Certificates.InnerRank
+theorem leftInverse_03 : LeftInverseCheck 3 := by
+  intro j
+  simp only [inner_entry_fast]
+  fin_cases j <;> decide +kernel
+end Kourovka.Certificates.InnerRank
+
+### frozen_diff_Kourovka_Certificates_InnerChecks_Row04.lean
+/- Exact kernel-checked row of the rational left-inverse witness. -/
+import Kourovka.Certificates.InnerWitnessData
+set_option Elab.async false
+set_option maxRecDepth 200000
+set_option maxHeartbeats 50000000
+namespace Kourovka.Certificates.InnerRank
+theorem leftInverse_04 : LeftInverseCheck 4 := by
+  intro j
+  simp only [inner_entry_fast]
+  fin_cases j <;> decide +kernel
+end Kourovka.Certificates.InnerRank
+
+### frozen_diff_Kourovka_Certificates_InnerChecks_Row05.lean
+/- Exact kernel-checked row of the rational left-inverse witness. -/
+import Kourovka.Certificates.InnerWitnessData
+set_option Elab.async false
+set_option maxRecDepth 200000
+set_option maxHeartbeats 50000000
+namespace Kourovka.Certificates.InnerRank
+theorem leftInverse_05 : LeftInverseCheck 5 := by
+  intro j
+  simp only [inner_entry_fast]
+  fin_cases j <;> decide +kernel
+end Kourovka.Certificates.InnerRank
+
+### frozen_diff_Kourovka_Certificates_InnerChecks_Row06.lean
+/- Exact kernel-checked row of the rational left-inverse witness. -/
+import Kourovka.Certificates.InnerWitnessData
+set_option Elab.async false
+set_option maxRecDepth 200000
+set_option maxHeartbeats 50000000
+namespace Kourovka.Certificates.InnerRank
+theorem leftInverse_06 : LeftInverseCheck 6 := by
+  intro j
+  simp only [inner_entry_fast]
+  fin_cases j <;> decide +kernel
+end Kourovka.Certificates.InnerRank
+
+### frozen_diff_Kourovka_Certificates_InnerChecks_Row07.lean
+/- Exact kernel-checked row of the rational left-inverse witness. -/
+import Kourovka.Certificates.InnerWitnessData
+set_option Elab.async false
+set_option maxRecDepth 200000
+set_option maxHeartbeats 50000000
+namespace Kourovka.Certificates.InnerRank
+theorem leftInverse_07 : LeftInverseCheck 7 := by
+  intro j
+  simp only [inner_entry_fast]
+  fin_cases j <;> decide +kernel
+end Kourovka.Certificates.InnerRank
+
+### frozen_diff_Kourovka_Certificates_InnerChecks_Row08.lean
+/- Exact kernel-checked row of the rational left-inverse witness. -/
+import Kourovka.Certificates.InnerWitnessData
+set_option Elab.async false
+set_option maxRecDepth 200000
+set_option maxHeartbeats 50000000
+namespace Kourovka.Certificates.InnerRank
+theorem leftInverse_08 : LeftInverseCheck 8 := by
+  intro j
+  simp only [inner_entry_fast]
+  fin_cases j <;> decide +kernel
+end Kourovka.Certificates.InnerRank
+
+### frozen_diff_Kourovka_Certificates_InnerChecks_Row09.lean
+/- Exact kernel-checked row of the rational left-inverse witness. -/
+import Kourovka.Certificates.InnerWitnessData
+set_option Elab.async false
+set_option maxRecDepth 200000
+set_option maxHeartbeats 50000000
+namespace Kourovka.Certificates.InnerRank
+theorem leftInverse_09 : LeftInverseCheck 9 := by
+  intro j
+  simp only [inner_entry_fast]
+  fin_cases j <;> decide +kernel
+end Kourovka.Certificates.InnerRank
+
+### frozen_diff_Kourovka_Certificates_InnerChecks_Row10.lean
+/- Exact kernel-checked row of the rational left-inverse witness. -/
+import Kourovka.Certificates.InnerWitnessData
+set_option Elab.async false
+set_option maxRecDepth 200000
+set_option maxHeartbeats 50000000
+namespace Kourovka.Certificates.InnerRank
+theorem leftInverse_10 : LeftInverseCheck 10 := by
+  intro j
+  simp only [inner_entry_fast]
+  fin_cases j <;> decide +kernel
+end Kourovka.Certificates.InnerRank
+
+### frozen_diff_Kourovka_Certificates_InnerChecks_Row11.lean
+/- Exact kernel-checked row of the rational left-inverse witness. -/
+import Kourovka.Certificates.InnerWitnessData
+set_option Elab.async false
+set_option maxRecDepth 200000
+set_option maxHeartbeats 50000000
+namespace Kourovka.Certificates.InnerRank
+theorem leftInverse_11 : LeftInverseCheck 11 := by
+  intro j
+  simp only [inner_entry_fast]
+  fin_cases j <;> decide +kernel
+end Kourovka.Certificates.InnerRank
+
+### frozen_diff_Kourovka_Certificates_InnerChecks_Row12.lean
+/- Exact kernel-checked row of the rational left-inverse witness. -/
+import Kourovka.Certificates.InnerWitnessData
+set_option Elab.async false
+set_option maxRecDepth 200000
+set_option maxHeartbeats 50000000
+namespace Kourovka.Certificates.InnerRank
+theorem leftInverse_12 : LeftInverseCheck 12 := by
+  intro j
+  simp only [inner_entry_fast]
+  fin_cases j <;> decide +kernel
+end Kourovka.Certificates.InnerRank
+
+### frozen_diff_Kourovka_Certificates_InnerChecks_Row13.lean
+/- Exact kernel-checked row of the rational left-inverse witness. -/
+import Kourovka.Certificates.InnerWitnessData
+set_option Elab.async false
+set_option maxRecDepth 200000
+set_option maxHeartbeats 50000000
+namespace Kourovka.Certificates.InnerRank
+theorem leftInverse_13 : LeftInverseCheck 13 := by
+  intro j
+  simp only [inner_entry_fast]
+  fin_cases j <;> decide +kernel
+end Kourovka.Certificates.InnerRank
+
+### frozen_diff_Kourovka_Certificates_InnerChecks_Row14.lean
+/- Exact kernel-checked row of the rational left-inverse witness. -/
+import Kourovka.Certificates.InnerWitnessData
+set_option Elab.async false
+set_option maxRecDepth 200000
+set_option maxHeartbeats 50000000
+namespace Kourovka.Certificates.InnerRank
+theorem leftInverse_14 : LeftInverseCheck 14 := by
+  intro j
+  simp only [inner_entry_fast]
+  fin_cases j <;> decide +kernel
+end Kourovka.Certificates.InnerRank
+
+### frozen_diff_Kourovka_Certificates_InnerChecks_Row15.lean
+/- Exact kernel-checked row of the rational left-inverse witness. -/
+import Kourovka.Certificates.InnerWitnessData
+set_option Elab.async false
+set_option maxRecDepth 200000
+set_option maxHeartbeats 50000000
+namespace Kourovka.Certificates.InnerRank
+theorem leftInverse_15 : LeftInverseCheck 15 := by
+  intro j
+  simp only [inner_entry_fast]
+  fin_cases j <;> decide +kernel
+end Kourovka.Certificates.InnerRank
+
+### frozen_diff_Kourovka_Certificates_InnerChecks_Row16.lean
+/- Exact kernel-checked row of the rational left-inverse witness. -/
+import Kourovka.Certificates.InnerWitnessData
+set_option Elab.async false
+set_option maxRecDepth 200000
+set_option maxHeartbeats 50000000
+namespace Kourovka.Certificates.InnerRank
+theorem leftInverse_16 : LeftInverseCheck 16 := by
+  intro j
+  simp only [inner_entry_fast]
+  fin_cases j <;> decide +kernel
+end Kourovka.Certificates.InnerRank
+
+### frozen_diff_Kourovka_Certificates_InnerChecks_Row17.lean
+/- Exact kernel-checked row of the rational left-inverse witness. -/
+import Kourovka.Certificates.InnerWitnessData
+set_option Elab.async false
+set_option maxRecDepth 200000
+set_option maxHeartbeats 50000000
+namespace Kourovka.Certificates.InnerRank
+theorem leftInverse_17 : LeftInverseCheck 17 := by
+  intro j
+  simp only [inner_entry_fast]
+  fin_cases j <;> decide +kernel
+end Kourovka.Certificates.InnerRank
+
+### frozen_diff_Kourovka_Certificates_InnerChecks_Row18.lean
+/- Exact kernel-checked row of the rational left-inverse witness. -/
+import Kourovka.Certificates.InnerWitnessData
+set_option Elab.async false
+set_option maxRecDepth 200000
+set_option maxHeartbeats 50000000
+namespace Kourovka.Certificates.InnerRank
+theorem leftInverse_18 : LeftInverseCheck 18 := by
+  intro j
+  simp only [inner_entry_fast]
+  fin_cases j <;> decide +kernel
+end Kourovka.Certificates.InnerRank
+
+### frozen_diff_Kourovka_Certificates_InnerChecks_Row19.lean
+/- Exact kernel-checked row of the rational left-inverse witness. -/
+import Kourovka.Certificates.InnerWitnessData
+set_option Elab.async false
+set_option maxRecDepth 200000
+set_option maxHeartbeats 50000000
+namespace Kourovka.Certificates.InnerRank
+theorem leftInverse_19 : LeftInverseCheck 19 := by
+  intro j
+  simp only [inner_entry_fast]
+  fin_cases j <;> decide +kernel
+end Kourovka.Certificates.InnerRank
+
+### frozen_diff_Kourovka_Certificates_InnerChecks_Row20.lean
+/- Exact kernel-checked row of the rational left-inverse witness. -/
+import Kourovka.Certificates.InnerWitnessData
+set_option Elab.async false
+set_option maxRecDepth 200000
+set_option maxHeartbeats 50000000
+namespace Kourovka.Certificates.InnerRank
+theorem leftInverse_20 : LeftInverseCheck 20 := by
+  intro j
+  simp only [inner_entry_fast]
+  fin_cases j <;> decide +kernel
+end Kourovka.Certificates.InnerRank
+
+### frozen_diff_Kourovka_Certificates_InnerChecks_Row21.lean
+/- Exact kernel-checked row of the rational left-inverse witness. -/
+import Kourovka.Certificates.InnerWitnessData
+set_option Elab.async false
+set_option maxRecDepth 200000
+set_option maxHeartbeats 50000000
+namespace Kourovka.Certificates.InnerRank
+theorem leftInverse_21 : LeftInverseCheck 21 := by
+  intro j
+  simp only [inner_entry_fast]
+  fin_cases j <;> decide +kernel
+end Kourovka.Certificates.InnerRank
+
+### frozen_diff_Kourovka_Certificates_InnerChecks_Row22.lean
+/- Exact kernel-checked row of the rational left-inverse witness. -/
+import Kourovka.Certificates.InnerWitnessData
+set_option Elab.async false
+set_option maxRecDepth 200000
+set_option maxHeartbeats 50000000
+namespace Kourovka.Certificates.InnerRank
+theorem leftInverse_22 : LeftInverseCheck 22 := by
+  intro j
+  simp only [inner_entry_fast]
+  fin_cases j <;> decide +kernel
+end Kourovka.Certificates.InnerRank
+
+### frozen_diff_Kourovka_Certificates_InnerChecks_Row23.lean
+/- Exact kernel-checked row of the rational left-inverse witness. -/
+import Kourovka.Certificates.InnerWitnessData
+set_option Elab.async false
+set_option maxRecDepth 200000
+set_option maxHeartbeats 50000000
+namespace Kourovka.Certificates.InnerRank
+theorem leftInverse_23 : LeftInverseCheck 23 := by
+  intro j
+  simp only [inner_entry_fast]
+  fin_cases j <;> decide +kernel
+end Kourovka.Certificates.InnerRank
+
+### frozen_diff_Kourovka_Certificates_InnerChecks_Row24.lean
+/- Exact kernel-checked row of the rational left-inverse witness. -/
+import Kourovka.Certificates.InnerWitnessData
+set_option Elab.async false
+set_option maxRecDepth 200000
+set_option maxHeartbeats 50000000
+namespace Kourovka.Certificates.InnerRank
+theorem leftInverse_24 : LeftInverseCheck 24 := by
+  intro j
+  simp only [inner_entry_fast]
+  fin_cases j <;> decide +kernel
+end Kourovka.Certificates.InnerRank
+
+### frozen_diff_Kourovka_Certificates_InnerChecks_Row25.lean
+/- Exact kernel-checked row of the rational left-inverse witness. -/
+import Kourovka.Certificates.InnerWitnessData
+set_option Elab.async false
+set_option maxRecDepth 200000
+set_option maxHeartbeats 50000000
+namespace Kourovka.Certificates.InnerRank
+theorem leftInverse_25 : LeftInverseCheck 25 := by
+  intro j
+  simp only [inner_entry_fast]
+  fin_cases j <;> decide +kernel
+end Kourovka.Certificates.InnerRank
+
+### frozen_diff_Kourovka_Certificates_InnerChecks_Row26.lean
+/- Exact kernel-checked row of the rational left-inverse witness. -/
+import Kourovka.Certificates.InnerWitnessData
+set_option Elab.async false
+set_option maxRecDepth 200000
+set_option maxHeartbeats 50000000
+namespace Kourovka.Certificates.InnerRank
+theorem leftInverse_26 : LeftInverseCheck 26 := by
+  intro j
+  simp only [inner_entry_fast]
+  fin_cases j <;> decide +kernel
+end Kourovka.Certificates.InnerRank
+
+### frozen_diff_Kourovka_Certificates_InnerChecks_Row27.lean
+/- Exact kernel-checked row of the rational left-inverse witness. -/
+import Kourovka.Certificates.InnerWitnessData
+set_option Elab.async false
+set_option maxRecDepth 200000
+set_option maxHeartbeats 50000000
+namespace Kourovka.Certificates.InnerRank
+theorem leftInverse_27 : LeftInverseCheck 27 := by
+  intro j
+  simp only [inner_entry_fast]
+  fin_cases j <;> decide +kernel
+end Kourovka.Certificates.InnerRank
+
+### frozen_diff_Kourovka_Certificates_InnerChecks_Row28.lean
+/- Exact kernel-checked row of the rational left-inverse witness. -/
+import Kourovka.Certificates.InnerWitnessData
+set_option Elab.async false
+set_option maxRecDepth 200000
+set_option maxHeartbeats 50000000
+namespace Kourovka.Certificates.InnerRank
+theorem leftInverse_28 : LeftInverseCheck 28 := by
+  intro j
+  simp only [inner_entry_fast]
+  fin_cases j <;> decide +kernel
+end Kourovka.Certificates.InnerRank
+
+### frozen_diff_Kourovka_Certificates_InnerChecks_Row29.lean
+/- Exact kernel-checked row of the rational left-inverse witness. -/
+import Kourovka.Certificates.InnerWitnessData
+set_option Elab.async false
+set_option maxRecDepth 200000
+set_option maxHeartbeats 50000000
+namespace Kourovka.Certificates.InnerRank
+theorem leftInverse_29 : LeftInverseCheck 29 := by
+  intro j
+  simp only [inner_entry_fast]
+  fin_cases j <;> decide +kernel
+end Kourovka.Certificates.InnerRank
+
+### frozen_diff_Kourovka_Certificates_InnerScalarExtension.lean
+--- original/Kourovka/Certificates/InnerScalarExtension.lean
++++ Kourovka/Certificates/InnerScalarExtension.lean
+@@ -35,7 +35,7 @@
+     simp [mul_add,Finset.sum_add_distrib]
+   map_smul' := by
+     intro c D; funext i
+-    simp only [map_smul,Pi.smul_apply,smul_eq_mul,Finset.mul_sum]
++    simp only [map_smul,Pi.smul_apply,smul_eq_mul,Finset.mul_sum,RingHom.id_apply]
+     apply Finset.sum_congr rfl
+     intro j hj
+     ring
+@@ -45,10 +45,10 @@
+     apply ext_basis
+     intro j
+     funext i
+-    simpa only [LinearMap.comp_apply,innerMap,unitVec,Finset.sum_ite_eq',
+-      Finset.mem_univ,if_true,one_smul,zero_smul,Finset.sum_const_zero,
+-      extendedExtractor,LinearMap.coe_mk,AddHom.coe_mk,LinearMap.id_apply] using
+-        extended_left_inverse F i j
++    change extendedExtractor F (innerMap (unitVec j)) i = unitVec j i
++    rw [innerMap_unit]
++    simpa only [extendedExtractor, LinearMap.coe_mk, AddHom.coe_mk, unitVec, eq_comm] using
++      extended_left_inverse F i j
+   exact congrArg (fun G:(Param→F)→ₗ[F](Param→F) => G a) hmap
+ 
+ theorem extended_inner_injective : Function.Injective (innerMap (R:=F)) := by
+@@ -76,7 +76,7 @@
+     LinearMap.ker_eq_bot.mpr (extendedInnerKernel_injective F)
+   have hr := (extendedInnerKernel F).finrank_range_add_finrank_ker
+   have hd : Module.finrank F (Param→F)=30 := by simp [Param,Module.finrank_pi]
+-  rw [hk,Submodule.finrank_bot,add_zero,hd] at hr
++  rw [hk,finrank_bot,add_zero,hd] at hr
+   have hle := (LinearMap.range (extendedInnerKernel F)).finrank_le
+   rw [hr] at hle
+   exact hle
+
+### frozen_diff_Kourovka_Certificates_InnerWitness.lean
+/- Checked witness and injectivity of the thirty inner-derivation columns. -/
+import Kourovka.Certificates.InnerChecks.Row00
+import Kourovka.Certificates.InnerChecks.Row01
+import Kourovka.Certificates.InnerChecks.Row02
+import Kourovka.Certificates.InnerChecks.Row03
+import Kourovka.Certificates.InnerChecks.Row04
+import Kourovka.Certificates.InnerChecks.Row05
+import Kourovka.Certificates.InnerChecks.Row06
+import Kourovka.Certificates.InnerChecks.Row07
+import Kourovka.Certificates.InnerChecks.Row08
+import Kourovka.Certificates.InnerChecks.Row09
+import Kourovka.Certificates.InnerChecks.Row10
+import Kourovka.Certificates.InnerChecks.Row11
+import Kourovka.Certificates.InnerChecks.Row12
+import Kourovka.Certificates.InnerChecks.Row13
+import Kourovka.Certificates.InnerChecks.Row14
+import Kourovka.Certificates.InnerChecks.Row15
+import Kourovka.Certificates.InnerChecks.Row16
+import Kourovka.Certificates.InnerChecks.Row17
+import Kourovka.Certificates.InnerChecks.Row18
+import Kourovka.Certificates.InnerChecks.Row19
+import Kourovka.Certificates.InnerChecks.Row20
+import Kourovka.Certificates.InnerChecks.Row21
+import Kourovka.Certificates.InnerChecks.Row22
+import Kourovka.Certificates.InnerChecks.Row23
+import Kourovka.Certificates.InnerChecks.Row24
+import Kourovka.Certificates.InnerChecks.Row25
+import Kourovka.Certificates.InnerChecks.Row26
+import Kourovka.Certificates.InnerChecks.Row27
+import Kourovka.Certificates.InnerChecks.Row28
+import Kourovka.Certificates.InnerChecks.Row29
+
+namespace Kourovka.Certificates.InnerRank
+open Kourovka.Linear Kourovka.Ambient Kourovka.Lattice
+open scoped BigOperators
+
+theorem leftInverse_all (i : Param) : LeftInverseCheck i := by
+  fin_cases i
+  · exact leftInverse_00
+  · exact leftInverse_01
+  · exact leftInverse_02
+  · exact leftInverse_03
+  · exact leftInverse_04
+  · exact leftInverse_05
+  · exact leftInverse_06
+  · exact leftInverse_07
+  · exact leftInverse_08
+  · exact leftInverse_09
+  · exact leftInverse_10
+  · exact leftInverse_11
+  · exact leftInverse_12
+  · exact leftInverse_13
+  · exact leftInverse_14
+  · exact leftInverse_15
+  · exact leftInverse_16
+  · exact leftInverse_17
+  · exact leftInverse_18
+  · exact leftInverse_19
+  · exact leftInverse_20
+  · exact leftInverse_21
+  · exact leftInverse_22
+  · exact leftInverse_23
+  · exact leftInverse_24
+  · exact leftInverse_25
+  · exact leftInverse_26
+  · exact leftInverse_27
+  · exact leftInverse_28
+  · exact leftInverse_29
+
+/-- The checked finite matrix identities imply an identity on ALL parameter vectors. -/
+theorem extractor_innerMap (a : Param → Rat) : extractor (innerMap a) = a := by
+  have hmap : extractor.comp (innerMap (R:=Rat)) = LinearMap.id := by
+    apply ext_basis
+    intro j
+    funext i
+    change extractor (innerMap (unitVec j)) i = unitVec j i
+    rw [innerMap_unit]
+    simpa only [extractor, LinearMap.coe_mk, AddHom.coe_mk, unitVec, eq_comm] using
+      leftInverse_all i j
+  exact congrArg (fun F : (Param → Rat) →ₗ[Rat] (Param → Rat) => F a) hmap
+
+theorem innerMap_injective : Function.Injective (innerMap (R:=Rat)) := by
+  intro a b hab
+  have h := congrArg extractor hab
+  simpa only [extractor_innerMap] using h
+
+end Kourovka.Certificates.InnerRank
+
+### frozen_diff_Kourovka_Certificates_InnerWitnessData.lean
+/- Exact left-inverse witness for thirty independent inner-derivation columns.
+The data below are witnesses; their equation against the actual scaled bracket is proved by reduction. -/
+import Kourovka.Certificates.DerivationMatrix
+import Kourovka.Ambient.FastBasis
+import Mathlib.LinearAlgebra.Dimension.Finrank
+import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
+import Mathlib.LinearAlgebra.Dimension.Constructions
+
+set_option Elab.async false
+set_option maxHeartbeats 50000000
+set_option maxRecDepth 200000
+
+namespace Kourovka.Certificates.InnerRank
+open Kourovka.Linear Kourovka.Ambient Kourovka.Lattice
+open scoped BigOperators
+
+abbrev Param := Fin 30
+
+def selectedRow : Param → Col := ![(0,1), (0,3), (1,1), (2,0), (2,1), (4,1), (5,1), (6,1), (7,1), (8,1), (10,0), (10,1), (11,1), (12,1), (13,1), (15,0), (15,1), (16,1), (17,1), (18,1), (19,1), (20,1), (22,0), (22,1), (22,2), (22,4), (22,5), (22,6), (22,7), (23,1)]
+
+def inverseCoeff (i j : Param) : Rat :=
+  match i.val,j.val with
+  | 0, 2 => (1/2036162)
+  | 1, 1 => (1/1036488922561)
+  | 2, 3 => (-1/6108486)
+  | 3, 0 => (-1/1036488922561)
+  | 4, 4 => (-1/1027243729)
+  | 5, 2 => (1/2072977845122)
+  | 5, 3 => (1/2054487458)
+  | 5, 5 => (-1/2036162)
+  | 6, 0 => (-5/3109466767683)
+  | 6, 4 => (5/3081731187)
+  | 6, 6 => (-1/3054243)
+  | 7, 2 => (-1/2072977845122)
+  | 7, 3 => (-1/2054487458)
+  | 7, 5 => (1/2036162)
+  | 7, 7 => (-1/4072324)
+  | 8, 0 => (1/1036488922561)
+  | 8, 4 => (-1/1027243729)
+  | 8, 6 => (1/5090405)
+  | 8, 8 => (-1/5090405)
+  | 9, 2 => (1/6218933535366)
+  | 9, 3 => (1/6163462374)
+  | 9, 5 => (-1/6108486)
+  | 9, 7 => (1/12216972)
+  | 9, 9 => (-1/6108486)
+  | 10, 1 => (-1/2110459357539650882)
+  | 10, 10 => (-1/4072324)
+  | 11, 2 => (1/1036488922561)
+  | 11, 11 => (-1/1018081)
+  | 12, 0 => (-2/1036488922561)
+  | 12, 1 => (1/1055229678769825441)
+  | 12, 10 => (1/2036162)
+  | 12, 12 => (-1/2036162)
+  | 13, 2 => (-1/1036488922561)
+  | 13, 11 => (1/1018081)
+  | 13, 13 => (-1/3054243)
+  | 14, 0 => (1/1036488922561)
+  | 14, 1 => (-1/2110459357539650882)
+  | 14, 10 => (-1/4072324)
+  | 14, 12 => (1/4072324)
+  | 14, 14 => (-1/4072324)
+  | 15, 15 => (-1/6108486)
+  | 16, 2 => (240/1036488922561)
+  | 16, 3 => (240/1027243729)
+  | 16, 5 => (-240/1018081)
+  | 16, 16 => (-1/1018081)
+  | 17, 0 => (-600/1036488922561)
+  | 17, 4 => (600/1027243729)
+  | 17, 6 => (-120/1018081)
+  | 17, 15 => (1/2036162)
+  | 17, 17 => (-1/2036162)
+  | 18, 2 => (-400/1036488922561)
+  | 18, 3 => (-400/1027243729)
+  | 18, 5 => (400/1018081)
+  | 18, 16 => (5/3054243)
+  | 18, 18 => (-1/3054243)
+  | 19, 8 => (120/1018081)
+  | 19, 15 => (-1/2036162)
+  | 19, 17 => (1/2036162)
+  | 19, 19 => (-1/4072324)
+  | 20, 7 => (-120/1018081)
+  | 20, 9 => (240/1018081)
+  | 20, 16 => (-1/1018081)
+  | 20, 18 => (1/5090405)
+  | 20, 20 => (-1/5090405)
+  | 21, 8 => (-40/1018081)
+  | 21, 15 => (1/6108486)
+  | 21, 17 => (-1/6108486)
+  | 21, 19 => (1/12216972)
+  | 21, 21 => (-1/6108486)
+  | 22, 22 => (-1/2036162)
+  | 23, 0 => (-1728000/1036488922561)
+  | 23, 2 => (216/1036488922561)
+  | 23, 4 => (1728000/1027243729)
+  | 23, 6 => (-345600/1018081)
+  | 23, 7 => (-144/1018081)
+  | 23, 11 => (-216/1018081)
+  | 23, 13 => (48/1018081)
+  | 23, 15 => (1440/1018081)
+  | 23, 17 => (-1440/1018081)
+  | 23, 23 => (-1/1018081)
+  | 23, 25 => (1/1036488922561)
+  | 23, 27 => (-1/6218933535366)
+  | 24, 0 => (432/1036488922561)
+  | 24, 1 => (144/1055229678769825441)
+  | 24, 4 => (-720/1027243729)
+  | 24, 6 => (144/1018081)
+  | 24, 7 => (-5184000/1018081)
+  | 24, 8 => (-288/1018081)
+  | 24, 9 => (10368000/1018081)
+  | 24, 10 => (72/1018081)
+  | 24, 12 => (-72/1018081)
+  | 24, 14 => (72/1018081)
+  | 24, 16 => (-43200/1018081)
+  | 24, 18 => (8640/1018081)
+  | 24, 20 => (-8640/1018081)
+  | 24, 22 => (1/2036162)
+  | 24, 24 => (1/6163462374)
+  | 24, 29 => (-1/2036162)
+  | 25, 1 => (-1/2110459357539650882)
+  | 25, 2 => (-12000/1036488922561)
+  | 25, 3 => (-12000/1027243729)
+  | 25, 5 => (12000/1018081)
+  | 25, 10 => (1/4072324)
+  | 25, 16 => (50/1018081)
+  | 25, 28 => (-1/597017619395136)
+  | 26, 0 => (24000/1036488922561)
+  | 26, 2 => (-1/1036488922561)
+  | 26, 4 => (-24000/1027243729)
+  | 26, 6 => (4800/1018081)
+  | 26, 11 => (1/1018081)
+  | 26, 15 => (-20/1018081)
+  | 26, 17 => (20/1018081)
+  | 26, 27 => (1/447763214546352)
+  | 27, 0 => (2/1036488922561)
+  | 27, 1 => (-2/1055229678769825441)
+  | 27, 2 => (12000/1036488922561)
+  | 27, 3 => (12000/1027243729)
+  | 27, 5 => (-12000/1018081)
+  | 27, 10 => (-1/2036162)
+  | 27, 12 => (1/2036162)
+  | 27, 16 => (-50/1018081)
+  | 27, 18 => (10/1018081)
+  | 27, 26 => (-1/597017619395136)
+  | 28, 2 => (1/1036488922561)
+  | 28, 8 => (-2400/1018081)
+  | 28, 11 => (-1/1018081)
+  | 28, 13 => (1/3054243)
+  | 28, 15 => (10/1018081)
+  | 28, 17 => (-10/1018081)
+  | 28, 19 => (5/1018081)
+  | 28, 25 => (1/1492544048487840)
+  | 29, 0 => (-1/1036488922561)
+  | 29, 1 => (1/2110459357539650882)
+  | 29, 7 => (1200/1018081)
+  | 29, 9 => (-2400/1018081)
+  | 29, 10 => (1/4072324)
+  | 29, 12 => (-1/4072324)
+  | 29, 14 => (1/4072324)
+  | 29, 16 => (10/1018081)
+  | 29, 18 => (-2/1018081)
+  | 29, 20 => (2/1018081)
+  | 29, 24 => (-1/8875385818560)
+  | _,_ => 0
+
+/-- Actual inner derivation column, directly in the ell-basis. -/
+def innerColumn {R : Type*} [CommRing R] (i : Param) : V R →ₗ[R] V R :=
+  LB (unitVec (Fin.castLE (by decide : 30 ≤ 31) i))
+
+/-- Compute the actual rational inner-column entry through the proved integer evaluator. -/
+theorem inner_entry_fast (j : Param) (c : Col) :
+    toEntries (innerColumn (R:=Rat) j) c =
+      (FastBasis.coeff scaledTerms (Fin.castLE (by decide : 30 ≤ 31) j) c.2 c.1 : Int) := by
+  exact FastBasis.cast_fromTerms_sound scaledTerms _ _ _
+
+def innerMap {R : Type*} [CommRing R] : (Param → R) →ₗ[R] (V R →ₗ[R] V R) where
+  toFun a := ∑ i, a i • innerColumn i
+  map_add' := by intro a b; simp [add_smul,Finset.sum_add_distrib]
+  map_smul' := by intro c a; simp [Pi.smul_apply,smul_smul,smul_eq_mul,Finset.smul_sum]
+
+@[simp] theorem innerMap_unit {R : Type*} [CommRing R] (j : Param) :
+    innerMap (unitVec j : Param → R) = innerColumn j := by
+  simp [innerMap, unitVec]
+
+/-- The extractor is only used over Rat, where its explicit nonzero denominators are legitimate. -/
+def extractor : (V Rat →ₗ[Rat] V Rat) →ₗ[Rat] (Param → Rat) where
+  toFun D := fun i => ∑ j, inverseCoeff i j * toEntries D (selectedRow j)
+  map_add' := by
+    intro D E; funext i
+    simp [mul_add,Finset.sum_add_distrib]
+  map_smul' := by
+    intro c D; funext i
+    simp only [map_smul,Pi.smul_apply,smul_eq_mul,Finset.mul_sum,RingHom.id_apply]
+    apply Finset.sum_congr rfl
+    intro j hj
+    ring
+
+def LeftInverseCheck (i : Param) : Prop :=
+  ∀ j : Param, (∑ t : Param, inverseCoeff i t *
+    (toEntries (innerColumn (R:=Rat) j)) (selectedRow t)) = if i=j then 1 else 0
+
+instance (i : Param) : Decidable (LeftInverseCheck i) := by
+  unfold LeftInverseCheck
+  infer_instance
+
+end Kourovka.Certificates.InnerRank
+
+### frozen_diff_Kourovka_Flag_Concrete.lean
+--- original/Kourovka/Flag/Concrete.lean
++++ Kourovka/Flag/Concrete.lean
+@@ -1,6 +1,10 @@
+ /- Uncompiled source. Concrete field, flag, and exact small bracket identities. -/
+ import Kourovka.Ambient.Lie
+ import Kourovka.Parameters
++
++set_option Elab.async false
++set_option maxRecDepth 10000
++set_option maxHeartbeats 2000000
+ 
+ namespace Kourovka.Flag
+ open Kourovka.Linear Kourovka.Ambient
+@@ -97,71 +101,85 @@
+ 
+ /-- This tactic expands exact bilinearity, then checks 31 coordinate identities. -/
+ macro "ambient_calc" : tactic =>
+-  `(tactic| (simp only [ad3, ad2, ad1, uv, y, t, x, e, f, u, v, w, q, r, z,
++  `(tactic| (
++    simp only [ad3, ad2, ad1, uv, y, t, x, e, f, u, v, w, q, r, z,
+       map_add, map_sub, map_smul, map_neg, LinearMap.add_apply,
+-      LinearMap.sub_apply, LinearMap.smul_apply, LinearMap.neg_apply, basis_bracket];
+-    ext i;
++      LinearMap.sub_apply, LinearMap.smul_apply, LinearMap.neg_apply, basis_bracket]
++    ext i
+     fin_cases i <;>
+-      norm_num [IntData.term, IntData.termVec, unitVec, Pi.smul_apply, smul_eq_mul] <;> ring))
++      norm_num [IntData.term, IntData.termVec, unitVec, Fin.ext_iff, Fin.coe_ofNat_eq_mod, Pi.smul_apply, smul_eq_mul] <;> ring))
+ 
+ theorem t_ne_zero : t ≠ 0 := by
+   intro h
+-  have hh := congrFun h 3
+-  norm_num [t,u,unitVec] at hh
+-
+-theorem xt : B x t = (6 : k) • t := by ambient_calc
+-theorem yt : B y t = (6 : k) • u 1 := by ambient_calc
+-theorem ef : B e f = x := by ambient_calc
+-theorem euv : B e uv = t := by ambient_calc
+-theorem rt : B (r 2) t = 0 := by ambient_calc
++  have hh : (1 : k) = 0 := congrFun h ⟨3, by decide⟩
++  exact one_ne_zero hh
++
++theorem xt : B x t = (6 : k) • t := by decide +kernel
++theorem yt : B y t = (6 : k) • u 1 := by decide +kernel
++theorem ef : B e f = x := by decide +kernel
++theorem euv : B e uv = t := by decide +kernel
++theorem rt : B (r 2) t = 0 := by decide +kernel
+ 
+ theorem first_bracket (a b s t' c : k) :
+     B (a • x + b • y) (s • x + t' • y + c • t) =
+       (a*t' - b*s) • ad1 + (6*a*c) • t + (6*b*c) • u 1 := by
+-  ambient_calc
++  have hxy : B x y = ad1 := rfl
++  have hyx : B y x = -ad1 := skew y x
++  simp only [map_add, map_smul, LinearMap.add_apply, LinearMap.smul_apply,
++    alternating, xt, yt, hxy, hyx, smul_zero, add_zero, zero_add]
++  funext i
++  simp only [Pi.add_apply, Pi.smul_apply, Pi.neg_apply, smul_eq_mul]
++  ring
+ 
+ theorem ad1_value : ad1 = (2 : k) • e + (-2 : k) • f +
+-    (4 : k) • u 1 + (4 : k) • v 0 := by ambient_calc
++    (4 : k) • u 1 + (4 : k) • v 0 := by decide +kernel
+ 
+ theorem first_derivation (a b s t' c : k) :
+     B (a • x + b • y) t + B x (s • x + t' • y + c • t) =
+-      (6*a + 6*c) • t + (6*b) • u 1 + t' • ad1 := by ambient_calc
++      (6*a + 6*c) • t + (6*b) • u 1 + t' • ad1 := by
++  have hxy : B x y = ad1 := rfl
++  have hyx : B y x = -ad1 := skew y x
++  simp only [map_add, map_smul, LinearMap.add_apply, LinearMap.smul_apply,
++    alternating, xt, yt, hxy, hyx, smul_zero, add_zero, zero_add]
++  funext i
++  simp only [Pi.add_apply, Pi.smul_apply, Pi.neg_apply, smul_eq_mul]
++  ring
+ 
+ theorem e_projector : (16 : k) • e =
+-    (8 : k) • ad1 + (2 : k) • ad2 + (-1 : k) • ad3 := by ambient_calc
++    (8 : k) • ad1 + (2 : k) • ad2 + (-1 : k) • ad3 := by decide +kernel
+ 
+ theorem f_projector : (48 : k) • f =
+-    (-8 : k) • ad1 + (6 : k) • ad2 + (-1 : k) • ad3 := by ambient_calc
++    (-8 : k) • ad1 + (6 : k) • ad2 + (-1 : k) • ad3 := by decide +kernel
+ 
+ theorem uv_projector : (48 : k) • uv =
+-    (-4 : k) • ad1 + (0 : k) • ad2 + (1 : k) • ad3 := by ambient_calc
++    (-4 : k) • ad1 + (0 : k) • ad2 + (1 : k) • ad3 := by decide +kernel
+ 
+ theorem r_projector : (16 : k) • r 2 =
+-    (16 : k) • y + (-4 : k) • ad1 + (-4 : k) • ad2 + ad3 := by ambient_calc
+-
+-theorem fu0 : B f (u 0) = (6 : k) • u 1 := by ambient_calc
+-
+-theorem fu1 : B f (u 1) = (5 : k) • u 2 := by ambient_calc
+-
+-theorem fu2 : B f (u 2) = (4 : k) • u 3 := by ambient_calc
+-
+-theorem fu3 : B f (u 3) = (3 : k) • u 4 := by ambient_calc
+-
+-theorem fu4 : B f (u 4) = (2 : k) • u 5 := by ambient_calc
+-
+-theorem fu5 : B f (u 5) = (1 : k) • u 6 := by ambient_calc
+-
+-theorem fv0 : B f (v 0) = (4 : k) • v 1 := by ambient_calc
+-
+-theorem fv1 : B f (v 1) = (3 : k) • v 2 := by ambient_calc
+-
+-theorem fv2 : B f (v 2) = (2 : k) • v 3 := by ambient_calc
+-
+-theorem fv3 : B f (v 3) = (1 : k) • v 4 := by ambient_calc
+-
+-theorem u2u6 : B (u 2) (u 6) = (2880 : k) • w 5 := by ambient_calc
+-theorem u0w5 : B (u 0) (w 5) = (86400 : k) • q 0 := by ambient_calc
+-theorem u0v4 : B (u 0) (v 4) = (8640 : k) • q 0 := by ambient_calc
++    (16 : k) • y + (-4 : k) • ad1 + (-4 : k) • ad2 + ad3 := by decide +kernel
++
++theorem fu0 : B f (u 0) = (6 : k) • u 1 := by decide +kernel
++
++theorem fu1 : B f (u 1) = (5 : k) • u 2 := by decide +kernel
++
++theorem fu2 : B f (u 2) = (4 : k) • u 3 := by decide +kernel
++
++theorem fu3 : B f (u 3) = (3 : k) • u 4 := by decide +kernel
++
++theorem fu4 : B f (u 4) = (2 : k) • u 5 := by decide +kernel
++
++theorem fu5 : B f (u 5) = (1 : k) • u 6 := by decide +kernel
++
++theorem fv0 : B f (v 0) = (4 : k) • v 1 := by decide +kernel
++
++theorem fv1 : B f (v 1) = (3 : k) • v 2 := by decide +kernel
++
++theorem fv2 : B f (v 2) = (2 : k) • v 3 := by decide +kernel
++
++theorem fv3 : B f (v 3) = (1 : k) • v 4 := by decide +kernel
++
++theorem u2u6 : B (u 2) (u 6) = (2880 : k) • w 5 := by decide +kernel
++theorem u0w5 : B (u 0) (w 5) = (86400 : k) • q 0 := by decide +kernel
++theorem u0v4 : B (u 0) (v 4) = (8640 : k) • q 0 := by decide +kernel
+ 
+ /-- Scalar cancellation is justified in the field, not in a prime-power ring. -/
+ theorem cancel_smul {c : k} (hc : c ≠ 0) {a b : E} (h : c • a = c • b) : a = b := by
+
+### frozen_diff_Kourovka_Flag_Generation.lean
+--- original/Kourovka/Flag/Generation.lean
++++ Kourovka/Flag/Generation.lean
+@@ -5,1274 +5,1619 @@
+ namespace Kourovka.Flag.Generation
+ open Kourovka.Linear Kourovka.Ambient
+ 
++set_option Elab.async false
+ set_option maxRecDepth 100000
+ set_option maxHeartbeats 20000000
+ 
+ def n0 : E := x
+ theorem value_0 : n0 = ![1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  decide
++  decide +kernel
+ 
+ theorem fixed_0 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n0 = n0 := by
++  unfold Preserves at hQ
+   exact hx
+ 
+ theorem zero_0 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n0 = 0 := by
++  unfold IsDerivation at hD
+   exact hx
+ 
+ def n1 : E := y
+ theorem value_1 : n1 = ![0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0] := by
+-  decide
++  decide +kernel
+ 
+ theorem fixed_1 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n1 = n1 := by
++  unfold Preserves at hQ
+   exact hy
+ 
+ theorem zero_1 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n1 = 0 := by
++  unfold IsDerivation at hD
+   exact hy
+ 
+ def n2 : E := B n0 n1
+ theorem value_2 : n2 = ![0, 2, 1007, 0, 4, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n2, value_0, value_1]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_2 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n2 = n2 := by
++  unfold Preserves at hQ
+   simp only [n2, hQ, fixed_0 Q hQ hx hy, fixed_1 Q hQ hx hy]
+ 
+ theorem zero_2 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n2 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n2, hD, zero_0 D hD hx hy, zero_1 D hD hx hy, map_zero, LinearMap.zero_apply, add_zero]
+ 
+ def n3 : E := B n0 n2
+ theorem value_3 : n3 = ![0, 4, 4, 0, 16, 0, 0, 0, 0, 0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n3, value_0, value_2]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_3 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n3 = n3 := by
++  unfold Preserves at hQ
+   simp only [n3, hQ, fixed_0 Q hQ hx hy, fixed_2 Q hQ hx hy]
+ 
+ theorem zero_3 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n3 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n3, hD, zero_0 D hD hx hy, zero_2 D hD hx hy, map_zero, LinearMap.zero_apply, add_zero]
+ 
+ def n4 : E := B n0 n3
+ theorem value_4 : n4 = ![0, 8, 1001, 0, 64, 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n4, value_0, value_3]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_4 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n4 = n4 := by
++  unfold Preserves at hQ
+   simp only [n4, hQ, fixed_0 Q hQ hx hy, fixed_3 Q hQ hx hy]
+ 
+ theorem zero_4 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n4 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n4, hD, zero_0 D hD hx hy, zero_3 D hD hx hy, map_zero, LinearMap.zero_apply, add_zero]
+ 
+ def n5 : E := ((0 : k) / (1 : k)) • n0
+ theorem value_5 : n5 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n5, value_0]
+-  decide
++  have hs : ((0 : k) / (1 : k)) = (0 : k) := by
++    apply (div_eq_iff (by decide +kernel : (1 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_5 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n5 = n5 := by
++  unfold Preserves at hQ
+   simp only [n5, map_smul, fixed_0 Q hQ hx hy]
+ 
+ theorem zero_5 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n5 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n5, map_smul, zero_0 D hD hx hy, smul_zero]
+ 
+ def n6 : E := ((-1 : k) / (16 : k)) • n4
+ theorem value_6 : n6 = ![0, 504, 505, 0, 1005, 0, 0, 0, 0, 0, 1005, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n6, value_4]
+-  decide
++  have hs : ((-1 : k) / (16 : k)) = (63 : k) := by
++    apply (div_eq_iff (by decide +kernel : (16 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_6 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n6 = n6 := by
++  unfold Preserves at hQ
+   simp only [n6, map_smul, fixed_4 Q hQ hx hy]
+ 
+ theorem zero_6 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n6 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n6, map_smul, zero_4 D hD hx hy, smul_zero]
+ 
+ def n7 : E := n5 + n6
+ theorem value_7 : n7 = ![0, 504, 505, 0, 1005, 0, 0, 0, 0, 0, 1005, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n7, value_5, value_6]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_7 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n7 = n7 := by
++  unfold Preserves at hQ
+   simp only [n7, map_add, fixed_5 Q hQ hx hy, fixed_6 Q hQ hx hy]
+ 
+ theorem zero_7 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n7 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n7, map_add, zero_5 D hD hx hy, zero_6 D hD hx hy, add_zero]
+ 
+ def n8 : E := ((1 : k) / (8 : k)) • n3
+ theorem value_8 : n8 = ![0, 505, 505, 0, 2, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n8, value_3]
+-  decide
++  have hs : ((1 : k) / (8 : k)) = (883 : k) := by
++    apply (div_eq_iff (by decide +kernel : (8 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_8 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n8 = n8 := by
++  unfold Preserves at hQ
+   simp only [n8, map_smul, fixed_3 Q hQ hx hy]
+ 
+ theorem zero_8 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n8 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n8, map_smul, zero_3 D hD hx hy, smul_zero]
+ 
+ def n9 : E := n7 + n8
+ theorem value_9 : n9 = ![0, 0, 1, 0, 1007, 0, 0, 0, 0, 0, 1007, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n9, value_7, value_8]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_9 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n9 = n9 := by
++  unfold Preserves at hQ
+   simp only [n9, map_add, fixed_7 Q hQ hx hy, fixed_8 Q hQ hx hy]
+ 
+ theorem zero_9 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n9 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n9, map_add, zero_7 D hD hx hy, zero_8 D hD hx hy, add_zero]
+ 
+ def n10 : E := ((1 : k) / (2 : k)) • n2
+ theorem value_10 : n10 = ![0, 1, 1008, 0, 2, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n10, value_2]
+-  decide
++  have hs : ((1 : k) / (2 : k)) = (505 : k) := by
++    apply (div_eq_iff (by decide +kernel : (2 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_10 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n10 = n10 := by
++  unfold Preserves at hQ
+   simp only [n10, map_smul, fixed_2 Q hQ hx hy]
+ 
+ theorem zero_10 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n10 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n10, map_smul, zero_2 D hD hx hy, smul_zero]
+ 
+ def n11 : E := n9 + n10
+ theorem value_11 : n11 = ![0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n11, value_9, value_10]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_11 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n11 = n11 := by
++  unfold Preserves at hQ
+   simp only [n11, map_add, fixed_9 Q hQ hx hy, fixed_10 Q hQ hx hy]
+ 
+ theorem zero_11 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n11 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n11, map_add, zero_9 D hD hx hy, zero_10 D hD hx hy, add_zero]
+ 
+ def n12 : E := ((0 : k) / (1 : k)) • n0
+ theorem value_12 : n12 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n12, value_0]
+-  decide
++  have hs : ((0 : k) / (1 : k)) = (0 : k) := by
++    apply (div_eq_iff (by decide +kernel : (1 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_12 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n12 = n12 := by
++  unfold Preserves at hQ
+   simp only [n12, map_smul, fixed_0 Q hQ hx hy]
+ 
+ theorem zero_12 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n12 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n12, map_smul, zero_0 D hD hx hy, smul_zero]
+ 
+ def n13 : E := ((-1 : k) / (48 : k)) • n4
+ theorem value_13 : n13 = ![0, 168, 841, 0, 335, 0, 0, 0, 0, 0, 335, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n13, value_4]
+-  decide
++  have hs : ((-1 : k) / (48 : k)) = (21 : k) := by
++    apply (div_eq_iff (by decide +kernel : (48 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_13 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n13 = n13 := by
++  unfold Preserves at hQ
+   simp only [n13, map_smul, fixed_4 Q hQ hx hy]
+ 
+ theorem zero_13 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n13 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n13, map_smul, zero_4 D hD hx hy, smul_zero]
+ 
+ def n14 : E := n12 + n13
+ theorem value_14 : n14 = ![0, 168, 841, 0, 335, 0, 0, 0, 0, 0, 335, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n14, value_12, value_13]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_14 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n14 = n14 := by
++  unfold Preserves at hQ
+   simp only [n14, map_add, fixed_12 Q hQ hx hy, fixed_13 Q hQ hx hy]
+ 
+ theorem zero_14 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n14 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n14, map_add, zero_12 D hD hx hy, zero_13 D hD hx hy, add_zero]
+ 
+ def n15 : E := ((1 : k) / (8 : k)) • n3
+ theorem value_15 : n15 = ![0, 505, 505, 0, 2, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n15, value_3]
+-  decide
++  have hs : ((1 : k) / (8 : k)) = (883 : k) := by
++    apply (div_eq_iff (by decide +kernel : (8 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_15 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n15 = n15 := by
++  unfold Preserves at hQ
+   simp only [n15, map_smul, fixed_3 Q hQ hx hy]
+ 
+ theorem zero_15 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n15 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n15, map_smul, zero_3 D hD hx hy, smul_zero]
+ 
+ def n16 : E := n14 + n15
+ theorem value_16 : n16 = ![0, 673, 337, 0, 337, 0, 0, 0, 0, 0, 337, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n16, value_14, value_15]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_16 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n16 = n16 := by
++  unfold Preserves at hQ
+   simp only [n16, map_add, fixed_14 Q hQ hx hy, fixed_15 Q hQ hx hy]
+ 
+ theorem zero_16 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n16 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n16, map_add, zero_14 D hD hx hy, zero_15 D hD hx hy, add_zero]
+ 
+ def n17 : E := ((-1 : k) / (6 : k)) • n2
+ theorem value_17 : n17 = ![0, 336, 673, 0, 672, 0, 0, 0, 0, 0, 672, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n17, value_2]
+-  decide
++  have hs : ((-1 : k) / (6 : k)) = (168 : k) := by
++    apply (div_eq_iff (by decide +kernel : (6 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_17 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n17 = n17 := by
++  unfold Preserves at hQ
+   simp only [n17, map_smul, fixed_2 Q hQ hx hy]
+ 
+ theorem zero_17 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n17 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n17, map_smul, zero_2 D hD hx hy, smul_zero]
+ 
+ def n18 : E := n16 + n17
+ theorem value_18 : n18 = ![0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n18, value_16, value_17]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_18 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n18 = n18 := by
++  unfold Preserves at hQ
+   simp only [n18, map_add, fixed_16 Q hQ hx hy, fixed_17 Q hQ hx hy]
+ 
+ theorem zero_18 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n18 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n18, map_add, zero_16 D hD hx hy, zero_17 D hD hx hy, add_zero]
+ 
+ def n19 : E := ((0 : k) / (1 : k)) • n0
+ theorem value_19 : n19 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n19, value_0]
+-  decide
++  have hs : ((0 : k) / (1 : k)) = (0 : k) := by
++    apply (div_eq_iff (by decide +kernel : (1 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_19 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n19 = n19 := by
++  unfold Preserves at hQ
+   simp only [n19, map_smul, fixed_0 Q hQ hx hy]
+ 
+ theorem zero_19 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n19 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n19, map_smul, zero_0 D hD hx hy, smul_zero]
+ 
+ def n20 : E := ((1 : k) / (48 : k)) • n4
+ theorem value_20 : n20 = ![0, 841, 168, 0, 674, 0, 0, 0, 0, 0, 674, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n20, value_4]
+-  decide
++  have hs : ((1 : k) / (48 : k)) = (988 : k) := by
++    apply (div_eq_iff (by decide +kernel : (48 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_20 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n20 = n20 := by
++  unfold Preserves at hQ
+   simp only [n20, map_smul, fixed_4 Q hQ hx hy]
+ 
+ theorem zero_20 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n20 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n20, map_smul, zero_4 D hD hx hy, smul_zero]
+ 
+ def n21 : E := n19 + n20
+ theorem value_21 : n21 = ![0, 841, 168, 0, 674, 0, 0, 0, 0, 0, 674, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n21, value_19, value_20]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_21 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n21 = n21 := by
++  unfold Preserves at hQ
+   simp only [n21, map_add, fixed_19 Q hQ hx hy, fixed_20 Q hQ hx hy]
+ 
+ theorem zero_21 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n21 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n21, map_add, zero_19 D hD hx hy, zero_20 D hD hx hy, add_zero]
+ 
+ def n22 : E := ((-1 : k) / (12 : k)) • n2
+ theorem value_22 : n22 = ![0, 168, 841, 0, 336, 0, 0, 0, 0, 0, 336, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n22, value_2]
+-  decide
++  have hs : ((-1 : k) / (12 : k)) = (84 : k) := by
++    apply (div_eq_iff (by decide +kernel : (12 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_22 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n22 = n22 := by
++  unfold Preserves at hQ
+   simp only [n22, map_smul, fixed_2 Q hQ hx hy]
+ 
+ theorem zero_22 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n22 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n22, map_smul, zero_2 D hD hx hy, smul_zero]
+ 
+ def n23 : E := n21 + n22
+ theorem value_23 : n23 = ![0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n23, value_21, value_22]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_23 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n23 = n23 := by
++  unfold Preserves at hQ
+   simp only [n23, map_add, fixed_21 Q hQ hx hy, fixed_22 Q hQ hx hy]
+ 
+ theorem zero_23 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n23 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n23, map_add, zero_21 D hD hx hy, zero_22 D hD hx hy, add_zero]
+ 
+ def n24 : E := ((0 : k) / (1 : k)) • n0
+ theorem value_24 : n24 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n24, value_0]
+-  decide
++  have hs : ((0 : k) / (1 : k)) = (0 : k) := by
++    apply (div_eq_iff (by decide +kernel : (1 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_24 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n24 = n24 := by
++  unfold Preserves at hQ
+   simp only [n24, map_smul, fixed_0 Q hQ hx hy]
+ 
+ theorem zero_24 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n24 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n24, map_smul, zero_0 D hD hx hy, smul_zero]
+ 
+ def n25 : E := ((1 : k) / (16 : k)) • n4
+ theorem value_25 : n25 = ![0, 505, 504, 0, 4, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n25, value_4]
+-  decide
++  have hs : ((1 : k) / (16 : k)) = (946 : k) := by
++    apply (div_eq_iff (by decide +kernel : (16 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_25 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n25 = n25 := by
++  unfold Preserves at hQ
+   simp only [n25, map_smul, fixed_4 Q hQ hx hy]
+ 
+ theorem zero_25 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n25 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n25, map_smul, zero_4 D hD hx hy, smul_zero]
+ 
+ def n26 : E := n24 + n25
+ theorem value_26 : n26 = ![0, 505, 504, 0, 4, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n26, value_24, value_25]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_26 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n26 = n26 := by
++  unfold Preserves at hQ
+   simp only [n26, map_add, fixed_24 Q hQ hx hy, fixed_25 Q hQ hx hy]
+ 
+ theorem zero_26 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n26 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n26, map_add, zero_24 D hD hx hy, zero_25 D hD hx hy, add_zero]
+ 
+ def n27 : E := ((-1 : k) / (4 : k)) • n3
+ theorem value_27 : n27 = ![0, 1008, 1008, 0, 1005, 0, 0, 0, 0, 0, 1005, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n27, value_3]
+-  decide
++  have hs : ((-1 : k) / (4 : k)) = (252 : k) := by
++    apply (div_eq_iff (by decide +kernel : (4 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_27 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n27 = n27 := by
++  unfold Preserves at hQ
+   simp only [n27, map_smul, fixed_3 Q hQ hx hy]
+ 
+ theorem zero_27 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n27 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n27, map_smul, zero_3 D hD hx hy, smul_zero]
+ 
+ def n28 : E := n26 + n27
+ theorem value_28 : n28 = ![0, 504, 503, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n28, value_26, value_27]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_28 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n28 = n28 := by
++  unfold Preserves at hQ
+   simp only [n28, map_add, fixed_26 Q hQ hx hy, fixed_27 Q hQ hx hy]
+ 
+ theorem zero_28 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n28 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n28, map_add, zero_26 D hD hx hy, zero_27 D hD hx hy, add_zero]
+ 
+ def n29 : E := ((-1 : k) / (4 : k)) • n2
+ theorem value_29 : n29 = ![0, 504, 505, 0, 1008, 0, 0, 0, 0, 0, 1008, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n29, value_2]
+-  decide
++  have hs : ((-1 : k) / (4 : k)) = (252 : k) := by
++    apply (div_eq_iff (by decide +kernel : (4 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_29 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n29 = n29 := by
++  unfold Preserves at hQ
+   simp only [n29, map_smul, fixed_2 Q hQ hx hy]
+ 
+ theorem zero_29 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n29 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n29, map_smul, zero_2 D hD hx hy, smul_zero]
+ 
+ def n30 : E := n28 + n29
+ theorem value_30 : n30 = ![0, 1008, 1008, 0, 1008, 0, 0, 0, 0, 0, 1008, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n30, value_28, value_29]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_30 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n30 = n30 := by
++  unfold Preserves at hQ
+   simp only [n30, map_add, fixed_28 Q hQ hx hy, fixed_29 Q hQ hx hy]
+ 
+ theorem zero_30 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n30 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n30, map_add, zero_28 D hD hx hy, zero_29 D hD hx hy, add_zero]
+ 
+ def n31 : E := ((1 : k) / (1 : k)) • n1
+ theorem value_31 : n31 = ![0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0] := by
+   rw [n31, value_1]
+-  decide
++  have hs : ((1 : k) / (1 : k)) = (1 : k) := by
++    apply (div_eq_iff (by decide +kernel : (1 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_31 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n31 = n31 := by
++  unfold Preserves at hQ
+   simp only [n31, map_smul, fixed_1 Q hQ hx hy]
+ 
+ theorem zero_31 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n31 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n31, map_smul, zero_1 D hD hx hy, smul_zero]
+ 
+ def n32 : E := n30 + n31
+ theorem value_32 : n32 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0] := by
+   rw [n32, value_30, value_31]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_32 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n32 = n32 := by
++  unfold Preserves at hQ
+   simp only [n32, map_add, fixed_30 Q hQ hx hy, fixed_31 Q hQ hx hy]
+ 
+ theorem zero_32 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n32 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n32, map_add, zero_30 D hD hx hy, zero_31 D hD hx hy, add_zero]
+ 
+ def n33 : E := B n11 n23
+ theorem value_33 : n33 = ![0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n33, value_11, value_23]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_33 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n33 = n33 := by
++  unfold Preserves at hQ
+   simp only [n33, hQ, fixed_11 Q hQ hx hy, fixed_23 Q hQ hx hy]
+ 
+ theorem zero_33 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n33 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n33, hD, zero_11 D hD hx hy, zero_23 D hD hx hy, map_zero, LinearMap.zero_apply, add_zero]
+ 
+ def n34 : E := B n18 n33
+ theorem value_34 : n34 = ![0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n34, value_18, value_33]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_34 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n34 = n34 := by
++  unfold Preserves at hQ
+   simp only [n34, hQ, fixed_18 Q hQ hx hy, fixed_33 Q hQ hx hy]
+ 
+ theorem zero_34 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n34 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n34, hD, zero_18 D hD hx hy, zero_33 D hD hx hy, map_zero, LinearMap.zero_apply, add_zero]
+ 
+ def n35 : E := ((1 : k) / (6 : k)) • n34
+ theorem value_35 : n35 = ![0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n35, value_34]
+-  decide
++  have hs : ((1 : k) / (6 : k)) = (841 : k) := by
++    apply (div_eq_iff (by decide +kernel : (6 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_35 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n35 = n35 := by
++  unfold Preserves at hQ
+   simp only [n35, map_smul, fixed_34 Q hQ hx hy]
+ 
+ theorem zero_35 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n35 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n35, map_smul, zero_34 D hD hx hy, smul_zero]
+ 
+ def n36 : E := B n18 n35
+ theorem value_36 : n36 = ![0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n36, value_18, value_35]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_36 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n36 = n36 := by
++  unfold Preserves at hQ
+   simp only [n36, hQ, fixed_18 Q hQ hx hy, fixed_35 Q hQ hx hy]
+ 
+ theorem zero_36 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n36 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n36, hD, zero_18 D hD hx hy, zero_35 D hD hx hy, map_zero, LinearMap.zero_apply, add_zero]
+ 
+ def n37 : E := ((1 : k) / (5 : k)) • n36
+ theorem value_37 : n37 = ![0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n37, value_36]
+-  decide
++  have hs : ((1 : k) / (5 : k)) = (202 : k) := by
++    apply (div_eq_iff (by decide +kernel : (5 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_37 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n37 = n37 := by
++  unfold Preserves at hQ
+   simp only [n37, map_smul, fixed_36 Q hQ hx hy]
+ 
+ theorem zero_37 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n37 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n37, map_smul, zero_36 D hD hx hy, smul_zero]
+ 
+ def n38 : E := B n18 n37
+ theorem value_38 : n38 = ![0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n38, value_18, value_37]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_38 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n38 = n38 := by
++  unfold Preserves at hQ
+   simp only [n38, hQ, fixed_18 Q hQ hx hy, fixed_37 Q hQ hx hy]
+ 
+ theorem zero_38 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n38 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n38, hD, zero_18 D hD hx hy, zero_37 D hD hx hy, map_zero, LinearMap.zero_apply, add_zero]
+ 
+ def n39 : E := ((1 : k) / (4 : k)) • n38
+ theorem value_39 : n39 = ![0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n39, value_38]
+-  decide
++  have hs : ((1 : k) / (4 : k)) = (757 : k) := by
++    apply (div_eq_iff (by decide +kernel : (4 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_39 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n39 = n39 := by
++  unfold Preserves at hQ
+   simp only [n39, map_smul, fixed_38 Q hQ hx hy]
+ 
+ theorem zero_39 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n39 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n39, map_smul, zero_38 D hD hx hy, smul_zero]
+ 
+ def n40 : E := B n18 n39
+ theorem value_40 : n40 = ![0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n40, value_18, value_39]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_40 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n40 = n40 := by
++  unfold Preserves at hQ
+   simp only [n40, hQ, fixed_18 Q hQ hx hy, fixed_39 Q hQ hx hy]
+ 
+ theorem zero_40 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n40 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n40, hD, zero_18 D hD hx hy, zero_39 D hD hx hy, map_zero, LinearMap.zero_apply, add_zero]
+ 
+ def n41 : E := ((1 : k) / (3 : k)) • n40
+ theorem value_41 : n41 = ![0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n41, value_40]
+-  decide
++  have hs : ((1 : k) / (3 : k)) = (673 : k) := by
++    apply (div_eq_iff (by decide +kernel : (3 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_41 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n41 = n41 := by
++  unfold Preserves at hQ
+   simp only [n41, map_smul, fixed_40 Q hQ hx hy]
+ 
+ theorem zero_41 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n41 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n41, map_smul, zero_40 D hD hx hy, smul_zero]
+ 
+ def n42 : E := B n18 n41
+ theorem value_42 : n42 = ![0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n42, value_18, value_41]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_42 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n42 = n42 := by
++  unfold Preserves at hQ
+   simp only [n42, hQ, fixed_18 Q hQ hx hy, fixed_41 Q hQ hx hy]
+ 
+ theorem zero_42 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n42 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n42, hD, zero_18 D hD hx hy, zero_41 D hD hx hy, map_zero, LinearMap.zero_apply, add_zero]
+ 
+ def n43 : E := ((1 : k) / (2 : k)) • n42
+ theorem value_43 : n43 = ![0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n43, value_42]
+-  decide
++  have hs : ((1 : k) / (2 : k)) = (505 : k) := by
++    apply (div_eq_iff (by decide +kernel : (2 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_43 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n43 = n43 := by
++  unfold Preserves at hQ
+   simp only [n43, map_smul, fixed_42 Q hQ hx hy]
+ 
+ theorem zero_43 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n43 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n43, map_smul, zero_42 D hD hx hy, smul_zero]
+ 
+ def n44 : E := B n18 n43
+ theorem value_44 : n44 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n44, value_18, value_43]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_44 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n44 = n44 := by
++  unfold Preserves at hQ
+   simp only [n44, hQ, fixed_18 Q hQ hx hy, fixed_43 Q hQ hx hy]
+ 
+ theorem zero_44 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n44 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n44, hD, zero_18 D hD hx hy, zero_43 D hD hx hy, map_zero, LinearMap.zero_apply, add_zero]
+ 
+ def n45 : E := ((1 : k) / (1 : k)) • n44
+ theorem value_45 : n45 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n45, value_44]
+-  decide
++  have hs : ((1 : k) / (1 : k)) = (1 : k) := by
++    apply (div_eq_iff (by decide +kernel : (1 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_45 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n45 = n45 := by
++  unfold Preserves at hQ
+   simp only [n45, map_smul, fixed_44 Q hQ hx hy]
+ 
+ theorem zero_45 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n45 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n45, map_smul, zero_44 D hD hx hy, smul_zero]
+ 
+ def n46 : E := ((-1 : k) / (1 : k)) • n35
+ theorem value_46 : n46 = ![0, 0, 0, 0, 1008, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n46, value_35]
+-  decide
++  have hs : ((-1 : k) / (1 : k)) = (1008 : k) := by
++    apply (div_eq_iff (by decide +kernel : (1 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_46 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n46 = n46 := by
++  unfold Preserves at hQ
+   simp only [n46, map_smul, fixed_35 Q hQ hx hy]
+ 
+ theorem zero_46 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n46 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n46, map_smul, zero_35 D hD hx hy, smul_zero]
+ 
+ def n47 : E := n23 + n46
+ theorem value_47 : n47 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n47, value_23, value_46]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_47 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n47 = n47 := by
++  unfold Preserves at hQ
+   simp only [n47, map_add, fixed_23 Q hQ hx hy, fixed_46 Q hQ hx hy]
+ 
+ theorem zero_47 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n47 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n47, map_add, zero_23 D hD hx hy, zero_46 D hD hx hy, add_zero]
+ 
+ def n48 : E := B n18 n47
+ theorem value_48 : n48 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n48, value_18, value_47]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_48 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n48 = n48 := by
++  unfold Preserves at hQ
+   simp only [n48, hQ, fixed_18 Q hQ hx hy, fixed_47 Q hQ hx hy]
+ 
+ theorem zero_48 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n48 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n48, hD, zero_18 D hD hx hy, zero_47 D hD hx hy, map_zero, LinearMap.zero_apply, add_zero]
+ 
+ def n49 : E := ((1 : k) / (4 : k)) • n48
+ theorem value_49 : n49 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n49, value_48]
+-  decide
++  have hs : ((1 : k) / (4 : k)) = (757 : k) := by
++    apply (div_eq_iff (by decide +kernel : (4 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_49 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n49 = n49 := by
++  unfold Preserves at hQ
+   simp only [n49, map_smul, fixed_48 Q hQ hx hy]
+ 
+ theorem zero_49 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n49 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n49, map_smul, zero_48 D hD hx hy, smul_zero]
+ 
+ def n50 : E := B n18 n49
+ theorem value_50 : n50 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n50, value_18, value_49]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_50 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n50 = n50 := by
++  unfold Preserves at hQ
+   simp only [n50, hQ, fixed_18 Q hQ hx hy, fixed_49 Q hQ hx hy]
+ 
+ theorem zero_50 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n50 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n50, hD, zero_18 D hD hx hy, zero_49 D hD hx hy, map_zero, LinearMap.zero_apply, add_zero]
+ 
+ def n51 : E := ((1 : k) / (3 : k)) • n50
+ theorem value_51 : n51 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n51, value_50]
+-  decide
++  have hs : ((1 : k) / (3 : k)) = (673 : k) := by
++    apply (div_eq_iff (by decide +kernel : (3 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_51 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n51 = n51 := by
++  unfold Preserves at hQ
+   simp only [n51, map_smul, fixed_50 Q hQ hx hy]
+ 
+ theorem zero_51 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n51 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n51, map_smul, zero_50 D hD hx hy, smul_zero]
+ 
+ def n52 : E := B n18 n51
+ theorem value_52 : n52 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n52, value_18, value_51]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_52 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n52 = n52 := by
++  unfold Preserves at hQ
+   simp only [n52, hQ, fixed_18 Q hQ hx hy, fixed_51 Q hQ hx hy]
+ 
+ theorem zero_52 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n52 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n52, hD, zero_18 D hD hx hy, zero_51 D hD hx hy, map_zero, LinearMap.zero_apply, add_zero]
+ 
+ def n53 : E := ((1 : k) / (2 : k)) • n52
+ theorem value_53 : n53 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n53, value_52]
+-  decide
++  have hs : ((1 : k) / (2 : k)) = (505 : k) := by
++    apply (div_eq_iff (by decide +kernel : (2 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_53 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n53 = n53 := by
++  unfold Preserves at hQ
+   simp only [n53, map_smul, fixed_52 Q hQ hx hy]
+ 
+ theorem zero_53 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n53 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n53, map_smul, zero_52 D hD hx hy, smul_zero]
+ 
+ def n54 : E := B n18 n53
+ theorem value_54 : n54 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n54, value_18, value_53]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_54 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n54 = n54 := by
++  unfold Preserves at hQ
+   simp only [n54, hQ, fixed_18 Q hQ hx hy, fixed_53 Q hQ hx hy]
+ 
+ theorem zero_54 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n54 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n54, hD, zero_18 D hD hx hy, zero_53 D hD hx hy, map_zero, LinearMap.zero_apply, add_zero]
+ 
+ def n55 : E := ((1 : k) / (1 : k)) • n54
+ theorem value_55 : n55 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n55, value_54]
+-  decide
++  have hs : ((1 : k) / (1 : k)) = (1 : k) := by
++    apply (div_eq_iff (by decide +kernel : (1 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_55 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n55 = n55 := by
++  unfold Preserves at hQ
+   simp only [n55, map_smul, fixed_54 Q hQ hx hy]
+ 
+ theorem zero_55 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n55 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n55, map_smul, zero_54 D hD hx hy, smul_zero]
+ 
+ def n56 : E := B n11 n32
+ theorem value_56 : n56 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0] := by
+   rw [n56, value_11, value_32]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_56 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n56 = n56 := by
++  unfold Preserves at hQ
+   simp only [n56, hQ, fixed_11 Q hQ hx hy, fixed_32 Q hQ hx hy]
+ 
+ theorem zero_56 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n56 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n56, hD, zero_11 D hD hx hy, zero_32 D hD hx hy, map_zero, LinearMap.zero_apply, add_zero]
+ 
+ def n57 : E := B n11 n56
+ theorem value_57 : n57 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0] := by
+   rw [n57, value_11, value_56]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_57 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n57 = n57 := by
++  unfold Preserves at hQ
+   simp only [n57, hQ, fixed_11 Q hQ hx hy, fixed_56 Q hQ hx hy]
+ 
+ theorem zero_57 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n57 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n57, hD, zero_11 D hD hx hy, zero_56 D hD hx hy, map_zero, LinearMap.zero_apply, add_zero]
+ 
+ def n58 : E := ((1 : k) / (2 : k)) • n57
+ theorem value_58 : n58 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0] := by
+   rw [n58, value_57]
+-  decide
++  have hs : ((1 : k) / (2 : k)) = (505 : k) := by
++    apply (div_eq_iff (by decide +kernel : (2 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_58 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n58 = n58 := by
++  unfold Preserves at hQ
+   simp only [n58, map_smul, fixed_57 Q hQ hx hy]
+ 
+ theorem zero_58 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n58 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n58, map_smul, zero_57 D hD hx hy, smul_zero]
+ 
+ def n59 : E := B n18 n58
+ theorem value_59 : n59 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0] := by
+   rw [n59, value_18, value_58]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_59 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n59 = n59 := by
++  unfold Preserves at hQ
+   simp only [n59, hQ, fixed_18 Q hQ hx hy, fixed_58 Q hQ hx hy]
+ 
+ theorem zero_59 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n59 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n59, hD, zero_18 D hD hx hy, zero_58 D hD hx hy, map_zero, LinearMap.zero_apply, add_zero]
+ 
+ def n60 : E := ((1 : k) / (4 : k)) • n59
+ theorem value_60 : n60 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0] := by
+   rw [n60, value_59]
+-  decide
++  have hs : ((1 : k) / (4 : k)) = (757 : k) := by
++    apply (div_eq_iff (by decide +kernel : (4 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_60 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n60 = n60 := by
++  unfold Preserves at hQ
+   simp only [n60, map_smul, fixed_59 Q hQ hx hy]
+ 
+ theorem zero_60 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n60 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n60, map_smul, zero_59 D hD hx hy, smul_zero]
+ 
+ def n61 : E := B n18 n60
+ theorem value_61 : n61 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0] := by
+   rw [n61, value_18, value_60]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_61 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n61 = n61 := by
++  unfold Preserves at hQ
+   simp only [n61, hQ, fixed_18 Q hQ hx hy, fixed_60 Q hQ hx hy]
+ 
+ theorem zero_61 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n61 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n61, hD, zero_18 D hD hx hy, zero_60 D hD hx hy, map_zero, LinearMap.zero_apply, add_zero]
+ 
+ def n62 : E := ((1 : k) / (3 : k)) • n61
+ theorem value_62 : n62 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0] := by
+   rw [n62, value_61]
+-  decide
++  have hs : ((1 : k) / (3 : k)) = (673 : k) := by
++    apply (div_eq_iff (by decide +kernel : (3 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_62 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n62 = n62 := by
++  unfold Preserves at hQ
+   simp only [n62, map_smul, fixed_61 Q hQ hx hy]
+ 
+ theorem zero_62 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n62 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n62, map_smul, zero_61 D hD hx hy, smul_zero]
+ 
+ def n63 : E := B n18 n62
+ theorem value_63 : n63 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0] := by
+   rw [n63, value_18, value_62]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_63 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n63 = n63 := by
++  unfold Preserves at hQ
+   simp only [n63, hQ, fixed_18 Q hQ hx hy, fixed_62 Q hQ hx hy]
+ 
+ theorem zero_63 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n63 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n63, hD, zero_18 D hD hx hy, zero_62 D hD hx hy, map_zero, LinearMap.zero_apply, add_zero]
+ 
+ def n64 : E := ((1 : k) / (2 : k)) • n63
+ theorem value_64 : n64 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0] := by
+   rw [n64, value_63]
+-  decide
++  have hs : ((1 : k) / (2 : k)) = (505 : k) := by
++    apply (div_eq_iff (by decide +kernel : (2 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_64 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n64 = n64 := by
++  unfold Preserves at hQ
+   simp only [n64, map_smul, fixed_63 Q hQ hx hy]
+ 
+ theorem zero_64 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n64 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n64, map_smul, zero_63 D hD hx hy, smul_zero]
+ 
+ def n65 : E := B n18 n64
+ theorem value_65 : n65 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0] := by
+   rw [n65, value_18, value_64]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_65 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n65 = n65 := by
++  unfold Preserves at hQ
+   simp only [n65, hQ, fixed_18 Q hQ hx hy, fixed_64 Q hQ hx hy]
+ 
+ theorem zero_65 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n65 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n65, hD, zero_18 D hD hx hy, zero_64 D hD hx hy, map_zero, LinearMap.zero_apply, add_zero]
+ 
+ def n66 : E := ((1 : k) / (1 : k)) • n65
+ theorem value_66 : n66 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0] := by
+   rw [n66, value_65]
+-  decide
++  have hs : ((1 : k) / (1 : k)) = (1 : k) := by
++    apply (div_eq_iff (by decide +kernel : (1 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_66 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n66 = n66 := by
++  unfold Preserves at hQ
+   simp only [n66, map_smul, fixed_65 Q hQ hx hy]
+ 
+ theorem zero_66 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n66 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n66, map_smul, zero_65 D hD hx hy, smul_zero]
+ 
+ def n67 : E := B n33 n39
+ theorem value_67 : n67 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 720, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n67, value_33, value_39]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_67 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n67 = n67 := by
++  unfold Preserves at hQ
+   simp only [n67, hQ, fixed_33 Q hQ hx hy, fixed_39 Q hQ hx hy]
+ 
+ theorem zero_67 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n67 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n67, hD, zero_33 D hD hx hy, zero_39 D hD hx hy, map_zero, LinearMap.zero_apply, add_zero]
+ 
+ def n68 : E := ((1 : k) / (720 : k)) • n67
+ theorem value_68 : n68 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n68, value_67]
+-  decide
++  have hs : ((1 : k) / (720 : k)) = (604 : k) := by
++    apply (div_eq_iff (by decide +kernel : (720 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_68 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n68 = n68 := by
++  unfold Preserves at hQ
+   simp only [n68, map_smul, fixed_67 Q hQ hx hy]
+ 
+ theorem zero_68 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n68 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n68, map_smul, zero_67 D hD hx hy, smul_zero]
+ 
+ def n69 : E := B n18 n68
+ theorem value_69 : n69 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n69, value_18, value_68]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_69 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n69 = n69 := by
++  unfold Preserves at hQ
+   simp only [n69, hQ, fixed_18 Q hQ hx hy, fixed_68 Q hQ hx hy]
+ 
+ theorem zero_69 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n69 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n69, hD, zero_18 D hD hx hy, zero_68 D hD hx hy, map_zero, LinearMap.zero_apply, add_zero]
+ 
+ def n70 : E := ((1 : k) / (6 : k)) • n69
+ theorem value_70 : n70 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n70, value_69]
+-  decide
++  have hs : ((1 : k) / (6 : k)) = (841 : k) := by
++    apply (div_eq_iff (by decide +kernel : (6 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_70 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n70 = n70 := by
++  unfold Preserves at hQ
+   simp only [n70, map_smul, fixed_69 Q hQ hx hy]
+ 
+ theorem zero_70 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n70 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n70, map_smul, zero_69 D hD hx hy, smul_zero]
+ 
+ def n71 : E := B n18 n70
+ theorem value_71 : n71 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n71, value_18, value_70]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_71 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n71 = n71 := by
++  unfold Preserves at hQ
+   simp only [n71, hQ, fixed_18 Q hQ hx hy, fixed_70 Q hQ hx hy]
+ 
+ theorem zero_71 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n71 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n71, hD, zero_18 D hD hx hy, zero_70 D hD hx hy, map_zero, LinearMap.zero_apply, add_zero]
+ 
+ def n72 : E := ((1 : k) / (5 : k)) • n71
+ theorem value_72 : n72 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n72, value_71]
+-  decide
++  have hs : ((1 : k) / (5 : k)) = (202 : k) := by
++    apply (div_eq_iff (by decide +kernel : (5 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_72 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n72 = n72 := by
++  unfold Preserves at hQ
+   simp only [n72, map_smul, fixed_71 Q hQ hx hy]
+ 
+ theorem zero_72 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n72 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n72, map_smul, zero_71 D hD hx hy, smul_zero]
+ 
+ def n73 : E := B n18 n72
+ theorem value_73 : n73 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n73, value_18, value_72]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_73 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n73 = n73 := by
++  unfold Preserves at hQ
+   simp only [n73, hQ, fixed_18 Q hQ hx hy, fixed_72 Q hQ hx hy]
+ 
+ theorem zero_73 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n73 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n73, hD, zero_18 D hD hx hy, zero_72 D hD hx hy, map_zero, LinearMap.zero_apply, add_zero]
+ 
+ def n74 : E := ((1 : k) / (4 : k)) • n73
+ theorem value_74 : n74 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n74, value_73]
+-  decide
++  have hs : ((1 : k) / (4 : k)) = (757 : k) := by
++    apply (div_eq_iff (by decide +kernel : (4 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_74 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n74 = n74 := by
++  unfold Preserves at hQ
+   simp only [n74, map_smul, fixed_73 Q hQ hx hy]
+ 
+ theorem zero_74 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n74 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n74, map_smul, zero_73 D hD hx hy, smul_zero]
+ 
+ def n75 : E := B n18 n74
+ theorem value_75 : n75 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n75, value_18, value_74]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_75 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n75 = n75 := by
++  unfold Preserves at hQ
+   simp only [n75, hQ, fixed_18 Q hQ hx hy, fixed_74 Q hQ hx hy]
+ 
+ theorem zero_75 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n75 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n75, hD, zero_18 D hD hx hy, zero_74 D hD hx hy, map_zero, LinearMap.zero_apply, add_zero]
+ 
+ def n76 : E := ((1 : k) / (3 : k)) • n75
+ theorem value_76 : n76 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n76, value_75]
+-  decide
++  have hs : ((1 : k) / (3 : k)) = (673 : k) := by
++    apply (div_eq_iff (by decide +kernel : (3 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_76 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n76 = n76 := by
++  unfold Preserves at hQ
+   simp only [n76, map_smul, fixed_75 Q hQ hx hy]
+ 
+ theorem zero_76 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n76 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n76, map_smul, zero_75 D hD hx hy, smul_zero]
+ 
+ def n77 : E := B n18 n76
+ theorem value_77 : n77 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n77, value_18, value_76]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_77 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n77 = n77 := by
++  unfold Preserves at hQ
+   simp only [n77, hQ, fixed_18 Q hQ hx hy, fixed_76 Q hQ hx hy]
+ 
+ theorem zero_77 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n77 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n77, hD, zero_18 D hD hx hy, zero_76 D hD hx hy, map_zero, LinearMap.zero_apply, add_zero]
+ 
+ def n78 : E := ((1 : k) / (2 : k)) • n77
+ theorem value_78 : n78 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n78, value_77]
+-  decide
++  have hs : ((1 : k) / (2 : k)) = (505 : k) := by
++    apply (div_eq_iff (by decide +kernel : (2 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_78 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n78 = n78 := by
++  unfold Preserves at hQ
+   simp only [n78, map_smul, fixed_77 Q hQ hx hy]
+ 
+ theorem zero_78 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n78 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n78, map_smul, zero_77 D hD hx hy, smul_zero]
+ 
+ def n79 : E := B n18 n78
+ theorem value_79 : n79 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n79, value_18, value_78]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_79 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n79 = n79 := by
++  unfold Preserves at hQ
+   simp only [n79, hQ, fixed_18 Q hQ hx hy, fixed_78 Q hQ hx hy]
+ 
+ theorem zero_79 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n79 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n79, hD, zero_18 D hD hx hy, zero_78 D hD hx hy, map_zero, LinearMap.zero_apply, add_zero]
+ 
+ def n80 : E := ((1 : k) / (1 : k)) • n79
+ theorem value_80 : n80 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n80, value_79]
+-  decide
++  have hs : ((1 : k) / (1 : k)) = (1 : k) := by
++    apply (div_eq_iff (by decide +kernel : (1 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_80 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n80 = n80 := by
++  unfold Preserves at hQ
+   simp only [n80, map_smul, fixed_79 Q hQ hx hy]
+ 
+ theorem zero_80 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n80 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n80, map_smul, zero_79 D hD hx hy, smul_zero]
+ 
+ def n81 : E := B n33 n55
+ theorem value_81 : n81 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 568, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n81, value_33, value_55]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_81 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n81 = n81 := by
++  unfold Preserves at hQ
+   simp only [n81, hQ, fixed_33 Q hQ hx hy, fixed_55 Q hQ hx hy]
+ 
+ theorem zero_81 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n81 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n81, hD, zero_33 D hD hx hy, zero_55 D hD hx hy, map_zero, LinearMap.zero_apply, add_zero]
+ 
+ def n82 : E := ((1 : k) / (8640 : k)) • n81
+ theorem value_82 : n82 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n82, value_81]
+-  decide
++  have hs : ((1 : k) / (8640 : k)) = (723 : k) := by
++    apply (div_eq_iff (by decide +kernel : (8640 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_82 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n82 = n82 := by
++  unfold Preserves at hQ
+   simp only [n82, map_smul, fixed_81 Q hQ hx hy]
+ 
+ theorem zero_82 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n82 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n82, map_smul, zero_81 D hD hx hy, smul_zero]
+ 
+ def n83 : E := B n18 n82
+ theorem value_83 : n83 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n83, value_18, value_82]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_83 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n83 = n83 := by
++  unfold Preserves at hQ
+   simp only [n83, hQ, fixed_18 Q hQ hx hy, fixed_82 Q hQ hx hy]
+ 
+ theorem zero_83 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n83 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n83, hD, zero_18 D hD hx hy, zero_82 D hD hx hy, map_zero, LinearMap.zero_apply, add_zero]
+ 
+ def n84 : E := ((1 : k) / (2 : k)) • n83
+ theorem value_84 : n84 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0] := by
+   rw [n84, value_83]
+-  decide
++  have hs : ((1 : k) / (2 : k)) = (505 : k) := by
++    apply (div_eq_iff (by decide +kernel : (2 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_84 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n84 = n84 := by
++  unfold Preserves at hQ
+   simp only [n84, map_smul, fixed_83 Q hQ hx hy]
+ 
+ theorem zero_84 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n84 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n84, map_smul, zero_83 D hD hx hy, smul_zero]
+ 
+ def n85 : E := B n18 n84
+ theorem value_85 : n85 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0] := by
+   rw [n85, value_18, value_84]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_85 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n85 = n85 := by
++  unfold Preserves at hQ
+   simp only [n85, hQ, fixed_18 Q hQ hx hy, fixed_84 Q hQ hx hy]
+ 
+ theorem zero_85 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n85 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n85, hD, zero_18 D hD hx hy, zero_84 D hD hx hy, map_zero, LinearMap.zero_apply, add_zero]
+ 
+ def n86 : E := B n47 n66
+ theorem value_86 : n86 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 576] := by
+   rw [n86, value_47, value_66]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_86 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n86 = n86 := by
++  unfold Preserves at hQ
+   simp only [n86, hQ, fixed_47 Q hQ hx hy, fixed_66 Q hQ hx hy]
+ 
+ theorem zero_86 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n86 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n86, hD, zero_47 D hD hx hy, zero_66 D hD hx hy, map_zero, LinearMap.zero_apply, add_zero]
+ 
+ def n87 : E := ((1 : k) / (576 : k)) • n86
+ theorem value_87 : n87 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1] := by
+   rw [n87, value_86]
+-  decide
++  have hs : ((1 : k) / (576 : k)) = (755 : k) := by
++    apply (div_eq_iff (by decide +kernel : (576 : k) ≠ 0)).2
++    decide +kernel
++  rw [hs]
++  decide +kernel
+ 
+ theorem fixed_87 (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) : Q n87 = n87 := by
++  unfold Preserves at hQ
+   simp only [n87, map_smul, fixed_86 Q hQ hx hy]
+ 
+ theorem zero_87 (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (hy : D y = 0) : D n87 = 0 := by
++  unfold IsDerivation at hD
+   simp only [n87, map_smul, zero_86 D hD hx hy, smul_zero]
+ 
+ theorem target_0 : n0 = (unitVec 0 : E) := by
+   rw [value_0]
+-  decide
++  decide +kernel
+ 
+ theorem target_1 : n11 = (unitVec 1 : E) := by
+   rw [value_11]
+-  decide
++  decide +kernel
+ 
+ theorem target_2 : n18 = (unitVec 2 : E) := by
+   rw [value_18]
+-  decide
++  decide +kernel
+ 
+ theorem target_3 : n33 = (unitVec 3 : E) := by
+   rw [value_33]
+-  decide
++  decide +kernel
+ 
+ theorem target_4 : n35 = (unitVec 4 : E) := by
+   rw [value_35]
+-  decide
++  decide +kernel
+ 
+ theorem target_5 : n37 = (unitVec 5 : E) := by
+   rw [value_37]
+-  decide
++  decide +kernel
+ 
+ theorem target_6 : n39 = (unitVec 6 : E) := by
+   rw [value_39]
+-  decide
++  decide +kernel
+ 
+ theorem target_7 : n41 = (unitVec 7 : E) := by
+   rw [value_41]
+-  decide
++  decide +kernel
+ 
+ theorem target_8 : n43 = (unitVec 8 : E) := by
+   rw [value_43]
+-  decide
++  decide +kernel
+ 
+ theorem target_9 : n45 = (unitVec 9 : E) := by
+   rw [value_45]
+-  decide
++  decide +kernel
+ 
+ theorem target_10 : n47 = (unitVec 10 : E) := by
+   rw [value_47]
+-  decide
++  decide +kernel
+ 
+ theorem target_11 : n49 = (unitVec 11 : E) := by
+   rw [value_49]
+-  decide
++  decide +kernel
+ 
+ theorem target_12 : n51 = (unitVec 12 : E) := by
+   rw [value_51]
+-  decide
++  decide +kernel
+ 
+ theorem target_13 : n53 = (unitVec 13 : E) := by
+   rw [value_53]
+-  decide
++  decide +kernel
+ 
+ theorem target_14 : n55 = (unitVec 14 : E) := by
+   rw [value_55]
+-  decide
++  decide +kernel
+ 
+ theorem target_15 : n68 = (unitVec 15 : E) := by
+   rw [value_68]
+-  decide
++  decide +kernel
+ 
+ theorem target_16 : n70 = (unitVec 16 : E) := by
+   rw [value_70]
+-  decide
++  decide +kernel
+ 
+ theorem target_17 : n72 = (unitVec 17 : E) := by
+   rw [value_72]
+-  decide
++  decide +kernel
+ 
+ theorem target_18 : n74 = (unitVec 18 : E) := by
+   rw [value_74]
+-  decide
++  decide +kernel
+ 
+ theorem target_19 : n76 = (unitVec 19 : E) := by
+   rw [value_76]
+-  decide
++  decide +kernel
+ 
+ theorem target_20 : n78 = (unitVec 20 : E) := by
+   rw [value_78]
+-  decide
++  decide +kernel
+ 
+ theorem target_21 : n80 = (unitVec 21 : E) := by
+   rw [value_80]
+-  decide
++  decide +kernel
+ 
+ theorem target_22 : n82 = (unitVec 22 : E) := by
+   rw [value_82]
+-  decide
++  decide +kernel
+ 
+ theorem target_23 : n84 = (unitVec 23 : E) := by
+   rw [value_84]
+-  decide
++  decide +kernel
+ 
+ theorem target_24 : n85 = (unitVec 24 : E) := by
+   rw [value_85]
+-  decide
++  decide +kernel
+ 
+ theorem target_25 : n58 = (unitVec 25 : E) := by
+   rw [value_58]
+-  decide
++  decide +kernel
+ 
+ theorem target_26 : n60 = (unitVec 26 : E) := by
+   rw [value_60]
+-  decide
++  decide +kernel
+ 
+ theorem target_27 : n62 = (unitVec 27 : E) := by
+   rw [value_62]
+-  decide
++  decide +kernel
+ 
+ theorem target_28 : n64 = (unitVec 28 : E) := by
+   rw [value_64]
+-  decide
++  decide +kernel
+ 
+ theorem target_29 : n66 = (unitVec 29 : E) := by
+   rw [value_66]
+-  decide
++  decide +kernel
+ 
+ theorem target_30 : n87 = (unitVec 30 : E) := by
+   rw [value_87]
+-  decide
++  decide +kernel
+ 
+ theorem fixed_basis (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (hy : Q y = y) (i : I) : Q (unitVec i) = unitVec i := by
+
+### frozen_diff_Kourovka_Flag_Rigidity.lean
+--- original/Kourovka/Flag/Rigidity.lean
++++ Kourovka/Flag/Rigidity.lean
+@@ -9,6 +9,7 @@
+ /-- Only injectivity, bracket preservation and the two flag memberships are used here. -/
+ theorem fixes_x (Q : E ≃ₗ[k] E) (hQ : Preserves Q.toLinearMap)
+     (hxmem : Q x ∈ F2) (htmem : Q t ∈ F3) : Q x = x := by
++  unfold Preserves at hQ
+   obtain ⟨a,b,hx⟩ := hxmem
+   obtain ⟨s,t',c,ht⟩ := htmem
+   have H : B (a • x + b • y) (s • x + t' • y + c • t) =
+@@ -40,6 +41,7 @@
+ theorem automorphism_ad_images (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (c d : k) (hy : Q y = c • x + d • y) :
+     Q ad1 = d • ad1 ∧ Q ad2 = d • ad2 ∧ Q ad3 = d • ad3 := by
++  unfold Preserves at hQ
+   have h1 : Q ad1 = d • ad1 := by
+     dsimp only [ad1]
+     rw [hQ,hx,hy]
+@@ -56,6 +58,7 @@
+ theorem residual_sign_is_one (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (d : k) (hd2 : d*d = 1)
+     (hf : Q f = d • f) (ht : Q t = t) (huv : Q uv = d • uv) : d = 1 := by
++  unfold Preserves at hQ
+   have hu0 : Q (u 0) = (1 : k) • u 0 := by simpa [t] using ht
+   have hu1 : Q (u 1) = (d : k) • u 1 := by
+     have hh := image_from_bracket Q hQ f (u 0) (u 1) 6 d 1
+@@ -118,6 +121,8 @@
+ theorem full_flag_rigidity (Q : E ≃ₗ[k] E) (hQ : Preserves Q.toLinearMap)
+     (hF2 : ∀ a, a ∈ F2 → Q a ∈ F2)
+     (hF3 : ∀ a, a ∈ F3 → Q a ∈ F3) : Q = LinearEquiv.refl k E := by
++  unfold Preserves at hQ
++  change ∀ a b, Q (B a b) = B (Q a) (Q b) at hQ
+   have hx : Q x = x := fixes_x Q hQ (hF2 x x_mem_F2) (hF3 t t_mem_F3)
+   obtain ⟨c,d,hy⟩ := hF2 y y_mem_F2
+   obtain ⟨h1,h2,h3⟩ := automorphism_ad_images Q.toLinearMap hQ hx c d hy
+@@ -157,6 +162,7 @@
+ /-- The infinitesimal first step does not assume that the derivation is inner. -/
+ theorem derivation_kills_x (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hxmem : D x ∈ F2) (htmem : D t ∈ F3) : D x = 0 := by
++  unfold IsDerivation at hD
+   obtain ⟨a,b,hx⟩ := hxmem
+   obtain ⟨s,t',c,ht⟩ := htmem
+   have H : (6 : k) • (s • x + t' • y + c • t) =
+@@ -182,6 +188,7 @@
+ theorem derivation_ad_images (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (c d : k) (hy : D y = c • x + d • y) :
+     D ad1 = d • ad1 ∧ D ad2 = d • ad2 ∧ D ad3 = d • ad3 := by
++  unfold IsDerivation at hD
+   have h1 : D ad1 = d • ad1 := by
+     dsimp only [ad1]
+     rw [hD,hx,hy]
+@@ -201,6 +208,7 @@
+ theorem infinitesimal_flag_rigidity (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hF2 : ∀ a, a ∈ F2 → D a ∈ F2)
+     (hF3 : ∀ a, a ∈ F3 → D a ∈ F3) : D = 0 := by
++  unfold IsDerivation at hD
+   have hx : D x = 0 := derivation_kills_x D hD (hF2 x x_mem_F2) (hF3 t t_mem_F3)
+   obtain ⟨c,d,hy⟩ := hF2 y y_mem_F2
+   obtain ⟨h1,h2,h3⟩ := derivation_ad_images D hD hx c d hy
+@@ -239,7 +247,7 @@
+   intro a
+   exact Generation.zero_all D hD hx hy0 a
+ 
+-/-- The preceding result applies to the ordinary mathlib LieEquiv type. -/
++/- The preceding result applies to the ordinary mathlib LieEquiv type. -/
+ section LieEquivalences
+ local instance : LieRing E := Ambient.lieRing k
+ local instance : LieAlgebra k E := Ambient.lieAlgebra k
+
+### frozen_diff_Kourovka_Lattice_Checks_Chunk01.lean
+--- original/Kourovka/Lattice/Checks/Chunk01.lean
++++ Kourovka/Lattice/Checks/Chunk01.lean
+@@ -1,7 +1,17 @@
+-/- Uncompiled exact embedding certificate shard 1. -/
+-import Kourovka.Lattice.ScaledData
++/- Exact embedding certificate shard 1, using proved basis-coordinate reductions. -/
++import Kourovka.Lattice.EmbeddingBasis
++import Kourovka.Ambient.Lie
+ namespace Kourovka.Lattice.Checks
++open Kourovka.Ambient
++set_option Elab.async false
+ set_option maxRecDepth 200000
+ set_option maxHeartbeats 50000000
+-theorem embed_1 : EmbedCheck 1 := by decide
++theorem embed_1 : EmbedCheck 1 := by
++  intro j
++  fin_cases j <;>
++    simp only [embed_unit, LB_basis_coeff] <;>
++    norm_num only [originalBasis] <;>
++    simp only [map_add, map_smul, LinearMap.add_apply, LinearMap.smul_apply,
++      basis_bracket] <;>
++    decide +kernel
+ end Kourovka.Lattice.Checks
+
+### frozen_diff_Kourovka_Lattice_Checks_Chunk02.lean
+--- original/Kourovka/Lattice/Checks/Chunk02.lean
++++ Kourovka/Lattice/Checks/Chunk02.lean
+@@ -1,7 +1,17 @@
+-/- Uncompiled exact embedding certificate shard 2. -/
+-import Kourovka.Lattice.ScaledData
++/- Exact embedding certificate shard 2, using proved basis-coordinate reductions. -/
++import Kourovka.Lattice.EmbeddingBasis
++import Kourovka.Ambient.Lie
+ namespace Kourovka.Lattice.Checks
++open Kourovka.Ambient
++set_option Elab.async false
+ set_option maxRecDepth 200000
+ set_option maxHeartbeats 50000000
+-theorem embed_2 : EmbedCheck 2 := by decide
++theorem embed_2 : EmbedCheck 2 := by
++  intro j
++  fin_cases j <;>
++    simp only [embed_unit, LB_basis_coeff] <;>
++    norm_num only [originalBasis] <;>
++    simp only [map_add, map_smul, LinearMap.add_apply, LinearMap.smul_apply,
++      basis_bracket] <;>
++    decide +kernel
+ end Kourovka.Lattice.Checks
+
+### frozen_diff_Kourovka_Lattice_Checks_Chunk03.lean
+--- original/Kourovka/Lattice/Checks/Chunk03.lean
++++ Kourovka/Lattice/Checks/Chunk03.lean
+@@ -1,7 +1,17 @@
+-/- Uncompiled exact embedding certificate shard 3. -/
+-import Kourovka.Lattice.ScaledData
++/- Exact embedding certificate shard 3, using proved basis-coordinate reductions. -/
++import Kourovka.Lattice.EmbeddingBasis
++import Kourovka.Ambient.Lie
+ namespace Kourovka.Lattice.Checks
++open Kourovka.Ambient
++set_option Elab.async false
+ set_option maxRecDepth 200000
+ set_option maxHeartbeats 50000000
+-theorem embed_3 : EmbedCheck 3 := by decide
++theorem embed_3 : EmbedCheck 3 := by
++  intro j
++  fin_cases j <;>
++    simp only [embed_unit, LB_basis_coeff] <;>
++    norm_num only [originalBasis] <;>
++    simp only [map_add, map_smul, LinearMap.add_apply, LinearMap.smul_apply,
++      basis_bracket] <;>
++    decide +kernel
+ end Kourovka.Lattice.Checks
+
+### frozen_diff_Kourovka_Lattice_Checks_Chunk04.lean
+--- original/Kourovka/Lattice/Checks/Chunk04.lean
++++ Kourovka/Lattice/Checks/Chunk04.lean
+@@ -1,7 +1,17 @@
+-/- Uncompiled exact embedding certificate shard 4. -/
+-import Kourovka.Lattice.ScaledData
++/- Exact embedding certificate shard 4, using proved basis-coordinate reductions. -/
++import Kourovka.Lattice.EmbeddingBasis
++import Kourovka.Ambient.Lie
+ namespace Kourovka.Lattice.Checks
++open Kourovka.Ambient
++set_option Elab.async false
+ set_option maxRecDepth 200000
+ set_option maxHeartbeats 50000000
+-theorem embed_4 : EmbedCheck 4 := by decide
++theorem embed_4 : EmbedCheck 4 := by
++  intro j
++  fin_cases j <;>
++    simp only [embed_unit, LB_basis_coeff] <;>
++    norm_num only [originalBasis] <;>
++    simp only [map_add, map_smul, LinearMap.add_apply, LinearMap.smul_apply,
++      basis_bracket] <;>
++    decide +kernel
+ end Kourovka.Lattice.Checks
+
+### frozen_diff_Kourovka_Lattice_Checks_Chunk05.lean
+--- original/Kourovka/Lattice/Checks/Chunk05.lean
++++ Kourovka/Lattice/Checks/Chunk05.lean
+@@ -1,7 +1,17 @@
+-/- Uncompiled exact embedding certificate shard 5. -/
+-import Kourovka.Lattice.ScaledData
++/- Exact embedding certificate shard 5, using proved basis-coordinate reductions. -/
++import Kourovka.Lattice.EmbeddingBasis
++import Kourovka.Ambient.Lie
+ namespace Kourovka.Lattice.Checks
++open Kourovka.Ambient
++set_option Elab.async false
+ set_option maxRecDepth 200000
+ set_option maxHeartbeats 50000000
+-theorem embed_5 : EmbedCheck 5 := by decide
++theorem embed_5 : EmbedCheck 5 := by
++  intro j
++  fin_cases j <;>
++    simp only [embed_unit, LB_basis_coeff] <;>
++    norm_num only [originalBasis] <;>
++    simp only [map_add, map_smul, LinearMap.add_apply, LinearMap.smul_apply,
++      basis_bracket] <;>
++    decide +kernel
+ end Kourovka.Lattice.Checks
+
+### frozen_diff_Kourovka_Lattice_Checks_Chunk06.lean
+--- original/Kourovka/Lattice/Checks/Chunk06.lean
++++ Kourovka/Lattice/Checks/Chunk06.lean
+@@ -1,7 +1,17 @@
+-/- Uncompiled exact embedding certificate shard 6. -/
+-import Kourovka.Lattice.ScaledData
++/- Exact embedding certificate shard 6, using proved basis-coordinate reductions. -/
++import Kourovka.Lattice.EmbeddingBasis
++import Kourovka.Ambient.Lie
+ namespace Kourovka.Lattice.Checks
++open Kourovka.Ambient
++set_option Elab.async false
+ set_option maxRecDepth 200000
+ set_option maxHeartbeats 50000000
+-theorem embed_6 : EmbedCheck 6 := by decide
++theorem embed_6 : EmbedCheck 6 := by
++  intro j
++  fin_cases j <;>
++    simp only [embed_unit, LB_basis_coeff] <;>
++    norm_num only [originalBasis] <;>
++    simp only [map_add, map_smul, LinearMap.add_apply, LinearMap.smul_apply,
++      basis_bracket] <;>
++    decide +kernel
+ end Kourovka.Lattice.Checks
+
+### frozen_diff_Kourovka_Lattice_Checks_Chunk07.lean
+--- original/Kourovka/Lattice/Checks/Chunk07.lean
++++ Kourovka/Lattice/Checks/Chunk07.lean
+@@ -1,7 +1,17 @@
+-/- Uncompiled exact embedding certificate shard 7. -/
+-import Kourovka.Lattice.ScaledData
++/- Exact embedding certificate shard 7, using proved basis-coordinate reductions. -/
++import Kourovka.Lattice.EmbeddingBasis
++import Kourovka.Ambient.Lie
+ namespace Kourovka.Lattice.Checks
++open Kourovka.Ambient
++set_option Elab.async false
+ set_option maxRecDepth 200000
+ set_option maxHeartbeats 50000000
+-theorem embed_7 : EmbedCheck 7 := by decide
++theorem embed_7 : EmbedCheck 7 := by
++  intro j
++  fin_cases j <;>
++    simp only [embed_unit, LB_basis_coeff] <;>
++    norm_num only [originalBasis] <;>
++    simp only [map_add, map_smul, LinearMap.add_apply, LinearMap.smul_apply,
++      basis_bracket] <;>
++    decide +kernel
+ end Kourovka.Lattice.Checks
+
+### frozen_diff_Kourovka_Lattice_Checks_Chunk08.lean
+--- original/Kourovka/Lattice/Checks/Chunk08.lean
++++ Kourovka/Lattice/Checks/Chunk08.lean
+@@ -1,7 +1,17 @@
+-/- Uncompiled exact embedding certificate shard 8. -/
+-import Kourovka.Lattice.ScaledData
++/- Exact embedding certificate shard 8, using proved basis-coordinate reductions. -/
++import Kourovka.Lattice.EmbeddingBasis
++import Kourovka.Ambient.Lie
+ namespace Kourovka.Lattice.Checks
++open Kourovka.Ambient
++set_option Elab.async false
+ set_option maxRecDepth 200000
+ set_option maxHeartbeats 50000000
+-theorem embed_8 : EmbedCheck 8 := by decide
++theorem embed_8 : EmbedCheck 8 := by
++  intro j
++  fin_cases j <;>
++    simp only [embed_unit, LB_basis_coeff] <;>
++    norm_num only [originalBasis] <;>
++    simp only [map_add, map_smul, LinearMap.add_apply, LinearMap.smul_apply,
++      basis_bracket] <;>
++    decide +kernel
+ end Kourovka.Lattice.Checks
+
+### frozen_diff_Kourovka_Lattice_Checks_Chunk09.lean
+--- original/Kourovka/Lattice/Checks/Chunk09.lean
++++ Kourovka/Lattice/Checks/Chunk09.lean
+@@ -1,7 +1,17 @@
+-/- Uncompiled exact embedding certificate shard 9. -/
+-import Kourovka.Lattice.ScaledData
++/- Exact embedding certificate shard 9, using proved basis-coordinate reductions. -/
++import Kourovka.Lattice.EmbeddingBasis
++import Kourovka.Ambient.Lie
+ namespace Kourovka.Lattice.Checks
++open Kourovka.Ambient
++set_option Elab.async false
+ set_option maxRecDepth 200000
+ set_option maxHeartbeats 50000000
+-theorem embed_9 : EmbedCheck 9 := by decide
++theorem embed_9 : EmbedCheck 9 := by
++  intro j
++  fin_cases j <;>
++    simp only [embed_unit, LB_basis_coeff] <;>
++    norm_num only [originalBasis] <;>
++    simp only [map_add, map_smul, LinearMap.add_apply, LinearMap.smul_apply,
++      basis_bracket] <;>
++    decide +kernel
+ end Kourovka.Lattice.Checks
+
+### frozen_diff_Kourovka_Lattice_Checks_Chunk10.lean
+--- original/Kourovka/Lattice/Checks/Chunk10.lean
++++ Kourovka/Lattice/Checks/Chunk10.lean
+@@ -1,7 +1,17 @@
+-/- Uncompiled exact embedding certificate shard 10. -/
+-import Kourovka.Lattice.ScaledData
++/- Exact embedding certificate shard 10, using proved basis-coordinate reductions. -/
++import Kourovka.Lattice.EmbeddingBasis
++import Kourovka.Ambient.Lie
+ namespace Kourovka.Lattice.Checks
++open Kourovka.Ambient
++set_option Elab.async false
+ set_option maxRecDepth 200000
+ set_option maxHeartbeats 50000000
+-theorem embed_10 : EmbedCheck 10 := by decide
++theorem embed_10 : EmbedCheck 10 := by
++  intro j
++  fin_cases j <;>
++    simp only [embed_unit, LB_basis_coeff] <;>
++    norm_num only [originalBasis] <;>
++    simp only [map_add, map_smul, LinearMap.add_apply, LinearMap.smul_apply,
++      basis_bracket] <;>
++    decide +kernel
+ end Kourovka.Lattice.Checks
+
+### frozen_diff_Kourovka_Lattice_Checks_Chunk11.lean
+--- original/Kourovka/Lattice/Checks/Chunk11.lean
++++ Kourovka/Lattice/Checks/Chunk11.lean
+@@ -1,7 +1,17 @@
+-/- Uncompiled exact embedding certificate shard 11. -/
+-import Kourovka.Lattice.ScaledData
++/- Exact embedding certificate shard 11, using proved basis-coordinate reductions. -/
++import Kourovka.Lattice.EmbeddingBasis
++import Kourovka.Ambient.Lie
+ namespace Kourovka.Lattice.Checks
++open Kourovka.Ambient
++set_option Elab.async false
+ set_option maxRecDepth 200000
+ set_option maxHeartbeats 50000000
+-theorem embed_11 : EmbedCheck 11 := by decide
++theorem embed_11 : EmbedCheck 11 := by
++  intro j
++  fin_cases j <;>
++    simp only [embed_unit, LB_basis_coeff] <;>
++    norm_num only [originalBasis] <;>
++    simp only [map_add, map_smul, LinearMap.add_apply, LinearMap.smul_apply,
++      basis_bracket] <;>
++    decide +kernel
+ end Kourovka.Lattice.Checks
+
+### frozen_diff_Kourovka_Lattice_Checks_Chunk12.lean
+--- original/Kourovka/Lattice/Checks/Chunk12.lean
++++ Kourovka/Lattice/Checks/Chunk12.lean
+@@ -1,7 +1,17 @@
+-/- Uncompiled exact embedding certificate shard 12. -/
+-import Kourovka.Lattice.ScaledData
++/- Exact embedding certificate shard 12, using proved basis-coordinate reductions. -/
++import Kourovka.Lattice.EmbeddingBasis
++import Kourovka.Ambient.Lie
+ namespace Kourovka.Lattice.Checks
++open Kourovka.Ambient
++set_option Elab.async false
+ set_option maxRecDepth 200000
+ set_option maxHeartbeats 50000000
+-theorem embed_12 : EmbedCheck 12 := by decide
++theorem embed_12 : EmbedCheck 12 := by
++  intro j
++  fin_cases j <;>
++    simp only [embed_unit, LB_basis_coeff] <;>
++    norm_num only [originalBasis] <;>
++    simp only [map_add, map_smul, LinearMap.add_apply, LinearMap.smul_apply,
++      basis_bracket] <;>
++    decide +kernel
+ end Kourovka.Lattice.Checks
+
+### frozen_diff_Kourovka_Lattice_Checks_Chunk13.lean
+--- original/Kourovka/Lattice/Checks/Chunk13.lean
++++ Kourovka/Lattice/Checks/Chunk13.lean
+@@ -1,7 +1,17 @@
+-/- Uncompiled exact embedding certificate shard 13. -/
+-import Kourovka.Lattice.ScaledData
++/- Exact embedding certificate shard 13, using proved basis-coordinate reductions. -/
++import Kourovka.Lattice.EmbeddingBasis
++import Kourovka.Ambient.Lie
+ namespace Kourovka.Lattice.Checks
++open Kourovka.Ambient
++set_option Elab.async false
+ set_option maxRecDepth 200000
+ set_option maxHeartbeats 50000000
+-theorem embed_13 : EmbedCheck 13 := by decide
++theorem embed_13 : EmbedCheck 13 := by
++  intro j
++  fin_cases j <;>
++    simp only [embed_unit, LB_basis_coeff] <;>
++    norm_num only [originalBasis] <;>
++    simp only [map_add, map_smul, LinearMap.add_apply, LinearMap.smul_apply,
++      basis_bracket] <;>
++    decide +kernel
+ end Kourovka.Lattice.Checks
+
+### frozen_diff_Kourovka_Lattice_Checks_Chunk14.lean
+--- original/Kourovka/Lattice/Checks/Chunk14.lean
++++ Kourovka/Lattice/Checks/Chunk14.lean
+@@ -1,7 +1,17 @@
+-/- Uncompiled exact embedding certificate shard 14. -/
+-import Kourovka.Lattice.ScaledData
++/- Exact embedding certificate shard 14, using proved basis-coordinate reductions. -/
++import Kourovka.Lattice.EmbeddingBasis
++import Kourovka.Ambient.Lie
+ namespace Kourovka.Lattice.Checks
++open Kourovka.Ambient
++set_option Elab.async false
+ set_option maxRecDepth 200000
+ set_option maxHeartbeats 50000000
+-theorem embed_14 : EmbedCheck 14 := by decide
++theorem embed_14 : EmbedCheck 14 := by
++  intro j
++  fin_cases j <;>
++    simp only [embed_unit, LB_basis_coeff] <;>
++    norm_num only [originalBasis] <;>
++    simp only [map_add, map_smul, LinearMap.add_apply, LinearMap.smul_apply,
++      basis_bracket] <;>
++    decide +kernel
+ end Kourovka.Lattice.Checks
+
+### frozen_diff_Kourovka_Lattice_Checks_Chunk15.lean
+--- original/Kourovka/Lattice/Checks/Chunk15.lean
++++ Kourovka/Lattice/Checks/Chunk15.lean
+@@ -1,7 +1,17 @@
+-/- Uncompiled exact embedding certificate shard 15. -/
+-import Kourovka.Lattice.ScaledData
++/- Exact embedding certificate shard 15, using proved basis-coordinate reductions. -/
++import Kourovka.Lattice.EmbeddingBasis
++import Kourovka.Ambient.Lie
+ namespace Kourovka.Lattice.Checks
++open Kourovka.Ambient
++set_option Elab.async false
+ set_option maxRecDepth 200000
+ set_option maxHeartbeats 50000000
+-theorem embed_15 : EmbedCheck 15 := by decide
++theorem embed_15 : EmbedCheck 15 := by
++  intro j
++  fin_cases j <;>
++    simp only [embed_unit, LB_basis_coeff] <;>
++    norm_num only [originalBasis] <;>
++    simp only [map_add, map_smul, LinearMap.add_apply, LinearMap.smul_apply,
++      basis_bracket] <;>
++    decide +kernel
+ end Kourovka.Lattice.Checks
+
+### frozen_diff_Kourovka_Lattice_Checks_Chunk16.lean
+--- original/Kourovka/Lattice/Checks/Chunk16.lean
++++ Kourovka/Lattice/Checks/Chunk16.lean
+@@ -1,7 +1,17 @@
+-/- Uncompiled exact embedding certificate shard 16. -/
+-import Kourovka.Lattice.ScaledData
++/- Exact embedding certificate shard 16, using proved basis-coordinate reductions. -/
++import Kourovka.Lattice.EmbeddingBasis
++import Kourovka.Ambient.Lie
+ namespace Kourovka.Lattice.Checks
++open Kourovka.Ambient
++set_option Elab.async false
+ set_option maxRecDepth 200000
+ set_option maxHeartbeats 50000000
+-theorem embed_16 : EmbedCheck 16 := by decide
++theorem embed_16 : EmbedCheck 16 := by
++  intro j
++  fin_cases j <;>
++    simp only [embed_unit, LB_basis_coeff] <;>
++    norm_num only [originalBasis] <;>
++    simp only [map_add, map_smul, LinearMap.add_apply, LinearMap.smul_apply,
++      basis_bracket] <;>
++    decide +kernel
+ end Kourovka.Lattice.Checks
+
+### frozen_diff_Kourovka_Lattice_Checks_Chunk17.lean
+--- original/Kourovka/Lattice/Checks/Chunk17.lean
++++ Kourovka/Lattice/Checks/Chunk17.lean
+@@ -1,7 +1,17 @@
+-/- Uncompiled exact embedding certificate shard 17. -/
+-import Kourovka.Lattice.ScaledData
++/- Exact embedding certificate shard 17, using proved basis-coordinate reductions. -/
++import Kourovka.Lattice.EmbeddingBasis
++import Kourovka.Ambient.Lie
+ namespace Kourovka.Lattice.Checks
++open Kourovka.Ambient
++set_option Elab.async false
+ set_option maxRecDepth 200000
+ set_option maxHeartbeats 50000000
+-theorem embed_17 : EmbedCheck 17 := by decide
++theorem embed_17 : EmbedCheck 17 := by
++  intro j
++  fin_cases j <;>
++    simp only [embed_unit, LB_basis_coeff] <;>
++    norm_num only [originalBasis] <;>
++    simp only [map_add, map_smul, LinearMap.add_apply, LinearMap.smul_apply,
++      basis_bracket] <;>
++    decide +kernel
+ end Kourovka.Lattice.Checks
+
+### frozen_diff_Kourovka_Lattice_Checks_Chunk18.lean
+--- original/Kourovka/Lattice/Checks/Chunk18.lean
++++ Kourovka/Lattice/Checks/Chunk18.lean
+@@ -1,7 +1,17 @@
+-/- Uncompiled exact embedding certificate shard 18. -/
+-import Kourovka.Lattice.ScaledData
++/- Exact embedding certificate shard 18, using proved basis-coordinate reductions. -/
++import Kourovka.Lattice.EmbeddingBasis
++import Kourovka.Ambient.Lie
+ namespace Kourovka.Lattice.Checks
++open Kourovka.Ambient
++set_option Elab.async false
+ set_option maxRecDepth 200000
+ set_option maxHeartbeats 50000000
+-theorem embed_18 : EmbedCheck 18 := by decide
++theorem embed_18 : EmbedCheck 18 := by
++  intro j
++  fin_cases j <;>
++    simp only [embed_unit, LB_basis_coeff] <;>
++    norm_num only [originalBasis] <;>
++    simp only [map_add, map_smul, LinearMap.add_apply, LinearMap.smul_apply,
++      basis_bracket] <;>
++    decide +kernel
+ end Kourovka.Lattice.Checks
+
+### frozen_diff_Kourovka_Lattice_Checks_Chunk19.lean
+--- original/Kourovka/Lattice/Checks/Chunk19.lean
++++ Kourovka/Lattice/Checks/Chunk19.lean
+@@ -1,7 +1,17 @@
+-/- Uncompiled exact embedding certificate shard 19. -/
+-import Kourovka.Lattice.ScaledData
++/- Exact embedding certificate shard 19, using proved basis-coordinate reductions. -/
++import Kourovka.Lattice.EmbeddingBasis
++import Kourovka.Ambient.Lie
+ namespace Kourovka.Lattice.Checks
++open Kourovka.Ambient
++set_option Elab.async false
+ set_option maxRecDepth 200000
+ set_option maxHeartbeats 50000000
+-theorem embed_19 : EmbedCheck 19 := by decide
++theorem embed_19 : EmbedCheck 19 := by
++  intro j
++  fin_cases j <;>
++    simp only [embed_unit, LB_basis_coeff] <;>
++    norm_num only [originalBasis] <;>
++    simp only [map_add, map_smul, LinearMap.add_apply, LinearMap.smul_apply,
++      basis_bracket] <;>
++    decide +kernel
+ end Kourovka.Lattice.Checks
+
+### frozen_diff_Kourovka_Lattice_Checks_Chunk20.lean
+--- original/Kourovka/Lattice/Checks/Chunk20.lean
++++ Kourovka/Lattice/Checks/Chunk20.lean
+@@ -1,7 +1,17 @@
+-/- Uncompiled exact embedding certificate shard 20. -/
+-import Kourovka.Lattice.ScaledData
++/- Exact embedding certificate shard 20, using proved basis-coordinate reductions. -/
++import Kourovka.Lattice.EmbeddingBasis
++import Kourovka.Ambient.Lie
+ namespace Kourovka.Lattice.Checks
++open Kourovka.Ambient
++set_option Elab.async false
+ set_option maxRecDepth 200000
+ set_option maxHeartbeats 50000000
+-theorem embed_20 : EmbedCheck 20 := by decide
++theorem embed_20 : EmbedCheck 20 := by
++  intro j
++  fin_cases j <;>
++    simp only [embed_unit, LB_basis_coeff] <;>
++    norm_num only [originalBasis] <;>
++    simp only [map_add, map_smul, LinearMap.add_apply, LinearMap.smul_apply,
++      basis_bracket] <;>
++    decide +kernel
+ end Kourovka.Lattice.Checks
+
+### frozen_diff_Kourovka_Lattice_Checks_Chunk21.lean
+--- original/Kourovka/Lattice/Checks/Chunk21.lean
++++ Kourovka/Lattice/Checks/Chunk21.lean
+@@ -1,7 +1,17 @@
+-/- Uncompiled exact embedding certificate shard 21. -/
+-import Kourovka.Lattice.ScaledData
++/- Exact embedding certificate shard 21, using proved basis-coordinate reductions. -/
++import Kourovka.Lattice.EmbeddingBasis
++import Kourovka.Ambient.Lie
+ namespace Kourovka.Lattice.Checks
++open Kourovka.Ambient
++set_option Elab.async false
+ set_option maxRecDepth 200000
+ set_option maxHeartbeats 50000000
+-theorem embed_21 : EmbedCheck 21 := by decide
++theorem embed_21 : EmbedCheck 21 := by
++  intro j
++  fin_cases j <;>
++    simp only [embed_unit, LB_basis_coeff] <;>
++    norm_num only [originalBasis] <;>
++    simp only [map_add, map_smul, LinearMap.add_apply, LinearMap.smul_apply,
++      basis_bracket] <;>
++    decide +kernel
+ end Kourovka.Lattice.Checks
+
+### frozen_diff_Kourovka_Lattice_Checks_Chunk22.lean
+--- original/Kourovka/Lattice/Checks/Chunk22.lean
++++ Kourovka/Lattice/Checks/Chunk22.lean
+@@ -1,7 +1,17 @@
+-/- Uncompiled exact embedding certificate shard 22. -/
+-import Kourovka.Lattice.ScaledData
++/- Exact embedding certificate shard 22, using proved basis-coordinate reductions. -/
++import Kourovka.Lattice.EmbeddingBasis
++import Kourovka.Ambient.Lie
+ namespace Kourovka.Lattice.Checks
++open Kourovka.Ambient
++set_option Elab.async false
+ set_option maxRecDepth 200000
+ set_option maxHeartbeats 50000000
+-theorem embed_22 : EmbedCheck 22 := by decide
++theorem embed_22 : EmbedCheck 22 := by
++  intro j
++  fin_cases j <;>
++    simp only [embed_unit, LB_basis_coeff] <;>
++    norm_num only [originalBasis] <;>
++    simp only [map_add, map_smul, LinearMap.add_apply, LinearMap.smul_apply,
++      basis_bracket] <;>
++    decide +kernel
+ end Kourovka.Lattice.Checks
+
+### frozen_diff_Kourovka_Lattice_Checks_Chunk23.lean
+--- original/Kourovka/Lattice/Checks/Chunk23.lean
++++ Kourovka/Lattice/Checks/Chunk23.lean
+@@ -1,7 +1,17 @@
+-/- Uncompiled exact embedding certificate shard 23. -/
+-import Kourovka.Lattice.ScaledData
++/- Exact embedding certificate shard 23, using proved basis-coordinate reductions. -/
++import Kourovka.Lattice.EmbeddingBasis
++import Kourovka.Ambient.Lie
+ namespace Kourovka.Lattice.Checks
++open Kourovka.Ambient
++set_option Elab.async false
+ set_option maxRecDepth 200000
+ set_option maxHeartbeats 50000000
+-theorem embed_23 : EmbedCheck 23 := by decide
++theorem embed_23 : EmbedCheck 23 := by
++  intro j
++  fin_cases j <;>
++    simp only [embed_unit, LB_basis_coeff] <;>
++    norm_num only [originalBasis] <;>
++    simp only [map_add, map_smul, LinearMap.add_apply, LinearMap.smul_apply,
++      basis_bracket] <;>
++    decide +kernel
+ end Kourovka.Lattice.Checks
+
+### frozen_diff_Kourovka_Lattice_Checks_Chunk24.lean
+--- original/Kourovka/Lattice/Checks/Chunk24.lean
++++ Kourovka/Lattice/Checks/Chunk24.lean
+@@ -1,7 +1,17 @@
+-/- Uncompiled exact embedding certificate shard 24. -/
+-import Kourovka.Lattice.ScaledData
++/- Exact embedding certificate shard 24, using proved basis-coordinate reductions. -/
++import Kourovka.Lattice.EmbeddingBasis
++import Kourovka.Ambient.Lie
+ namespace Kourovka.Lattice.Checks
++open Kourovka.Ambient
++set_option Elab.async false
+ set_option maxRecDepth 200000
+ set_option maxHeartbeats 50000000
+-theorem embed_24 : EmbedCheck 24 := by decide
++theorem embed_24 : EmbedCheck 24 := by
++  intro j
++  fin_cases j <;>
++    simp only [embed_unit, LB_basis_coeff] <;>
++    norm_num only [originalBasis] <;>
++    simp only [map_add, map_smul, LinearMap.add_apply, LinearMap.smul_apply,
++      basis_bracket] <;>
++    decide +kernel
+ end Kourovka.Lattice.Checks
+
+### frozen_diff_Kourovka_Lattice_Checks_Chunk25.lean
+--- original/Kourovka/Lattice/Checks/Chunk25.lean
++++ Kourovka/Lattice/Checks/Chunk25.lean
+@@ -1,7 +1,17 @@
+-/- Uncompiled exact embedding certificate shard 25. -/
+-import Kourovka.Lattice.ScaledData
++/- Exact embedding certificate shard 25, using proved basis-coordinate reductions. -/
++import Kourovka.Lattice.EmbeddingBasis
++import Kourovka.Ambient.Lie
+ namespace Kourovka.Lattice.Checks
++open Kourovka.Ambient
++set_option Elab.async false
+ set_option maxRecDepth 200000
+ set_option maxHeartbeats 50000000
+-theorem embed_25 : EmbedCheck 25 := by decide
++theorem embed_25 : EmbedCheck 25 := by
++  intro j
++  fin_cases j <;>
++    simp only [embed_unit, LB_basis_coeff] <;>
++    norm_num only [originalBasis] <;>
++    simp only [map_add, map_smul, LinearMap.add_apply, LinearMap.smul_apply,
++      basis_bracket] <;>
++    decide +kernel
+ end Kourovka.Lattice.Checks
+
+### frozen_diff_Kourovka_Lattice_Checks_Chunk26.lean
+--- original/Kourovka/Lattice/Checks/Chunk26.lean
++++ Kourovka/Lattice/Checks/Chunk26.lean
+@@ -1,7 +1,17 @@
+-/- Uncompiled exact embedding certificate shard 26. -/
+-import Kourovka.Lattice.ScaledData
++/- Exact embedding certificate shard 26, using proved basis-coordinate reductions. -/
++import Kourovka.Lattice.EmbeddingBasis
++import Kourovka.Ambient.Lie
+ namespace Kourovka.Lattice.Checks
++open Kourovka.Ambient
++set_option Elab.async false
+ set_option maxRecDepth 200000
+ set_option maxHeartbeats 50000000
+-theorem embed_26 : EmbedCheck 26 := by decide
++theorem embed_26 : EmbedCheck 26 := by
++  intro j
++  fin_cases j <;>
++    simp only [embed_unit, LB_basis_coeff] <;>
++    norm_num only [originalBasis] <;>
++    simp only [map_add, map_smul, LinearMap.add_apply, LinearMap.smul_apply,
++      basis_bracket] <;>
++    decide +kernel
+ end Kourovka.Lattice.Checks
+
+### frozen_diff_Kourovka_Lattice_Checks_Chunk27.lean
+--- original/Kourovka/Lattice/Checks/Chunk27.lean
++++ Kourovka/Lattice/Checks/Chunk27.lean
+@@ -1,7 +1,17 @@
+-/- Uncompiled exact embedding certificate shard 27. -/
+-import Kourovka.Lattice.ScaledData
++/- Exact embedding certificate shard 27, using proved basis-coordinate reductions. -/
++import Kourovka.Lattice.EmbeddingBasis
++import Kourovka.Ambient.Lie
+ namespace Kourovka.Lattice.Checks
++open Kourovka.Ambient
++set_option Elab.async false
+ set_option maxRecDepth 200000
+ set_option maxHeartbeats 50000000
+-theorem embed_27 : EmbedCheck 27 := by decide
++theorem embed_27 : EmbedCheck 27 := by
++  intro j
++  fin_cases j <;>
++    simp only [embed_unit, LB_basis_coeff] <;>
++    norm_num only [originalBasis] <;>
++    simp only [map_add, map_smul, LinearMap.add_apply, LinearMap.smul_apply,
++      basis_bracket] <;>
++    decide +kernel
+ end Kourovka.Lattice.Checks
+
+### frozen_diff_Kourovka_Lattice_Checks_Chunk28.lean
+--- original/Kourovka/Lattice/Checks/Chunk28.lean
++++ Kourovka/Lattice/Checks/Chunk28.lean
+@@ -1,7 +1,17 @@
+-/- Uncompiled exact embedding certificate shard 28. -/
+-import Kourovka.Lattice.ScaledData
++/- Exact embedding certificate shard 28, using proved basis-coordinate reductions. -/
++import Kourovka.Lattice.EmbeddingBasis
++import Kourovka.Ambient.Lie
+ namespace Kourovka.Lattice.Checks
++open Kourovka.Ambient
++set_option Elab.async false
+ set_option maxRecDepth 200000
+ set_option maxHeartbeats 50000000
+-theorem embed_28 : EmbedCheck 28 := by decide
++theorem embed_28 : EmbedCheck 28 := by
++  intro j
++  fin_cases j <;>
++    simp only [embed_unit, LB_basis_coeff] <;>
++    norm_num only [originalBasis] <;>
++    simp only [map_add, map_smul, LinearMap.add_apply, LinearMap.smul_apply,
++      basis_bracket] <;>
++    decide +kernel
+ end Kourovka.Lattice.Checks
+
+### frozen_diff_Kourovka_Lattice_Checks_Chunk29.lean
+--- original/Kourovka/Lattice/Checks/Chunk29.lean
++++ Kourovka/Lattice/Checks/Chunk29.lean
+@@ -1,7 +1,17 @@
+-/- Uncompiled exact embedding certificate shard 29. -/
+-import Kourovka.Lattice.ScaledData
++/- Exact embedding certificate shard 29, using proved basis-coordinate reductions. -/
++import Kourovka.Lattice.EmbeddingBasis
++import Kourovka.Ambient.Lie
+ namespace Kourovka.Lattice.Checks
++open Kourovka.Ambient
++set_option Elab.async false
+ set_option maxRecDepth 200000
+ set_option maxHeartbeats 50000000
+-theorem embed_29 : EmbedCheck 29 := by decide
++theorem embed_29 : EmbedCheck 29 := by
++  intro j
++  fin_cases j <;>
++    simp only [embed_unit, LB_basis_coeff] <;>
++    norm_num only [originalBasis] <;>
++    simp only [map_add, map_smul, LinearMap.add_apply, LinearMap.smul_apply,
++      basis_bracket] <;>
++    decide +kernel
+ end Kourovka.Lattice.Checks
+
+### frozen_diff_Kourovka_Lattice_Checks_Chunk30.lean
+--- original/Kourovka/Lattice/Checks/Chunk30.lean
++++ Kourovka/Lattice/Checks/Chunk30.lean
+@@ -1,7 +1,17 @@
+-/- Uncompiled exact embedding certificate shard 30. -/
+-import Kourovka.Lattice.ScaledData
++/- Exact embedding certificate shard 30, using proved basis-coordinate reductions. -/
++import Kourovka.Lattice.EmbeddingBasis
++import Kourovka.Ambient.Lie
+ namespace Kourovka.Lattice.Checks
++open Kourovka.Ambient
++set_option Elab.async false
+ set_option maxRecDepth 200000
+ set_option maxHeartbeats 50000000
+-theorem embed_30 : EmbedCheck 30 := by decide
++theorem embed_30 : EmbedCheck 30 := by
++  intro j
++  fin_cases j <;>
++    simp only [embed_unit, LB_basis_coeff] <;>
++    norm_num only [originalBasis] <;>
++    simp only [map_add, map_smul, LinearMap.add_apply, LinearMap.smul_apply,
++      basis_bracket] <;>
++    decide +kernel
+ end Kourovka.Lattice.Checks
+
+### frozen_diff_Kourovka_Lattice_EmbeddingBasis.lean
+/- Basis formulas used to check the embedding without reevaluating the ambient sparse bracket. -/
+import Kourovka.Lattice.ScaledData
+import Kourovka.Ambient.FastBasis
+
+set_option maxRecDepth 10000
+set_option maxHeartbeats 2000000
+
+namespace Kourovka.Lattice
+open Kourovka.Linear Kourovka.Ambient
+
+/-- The columns of the explicit unimodular basis change. -/
+def originalBasis {R : Type*} [CommRing R] (i : I) : V R :=
+  if i = 1 then unitVec 1 + unitVec 2 + unitVec 4 + unitVec 10 + unitVec 27
+  else if i = 2 then unitVec 3
+  else if i = 3 then unitVec 2
+  else unitVec i
+
+theorem P_unit (i : I) :
+    P (unitVec i : V Int) = originalBasis i := by
+  fin_cases i <;> decide +kernel
+
+theorem diagonal_unit (i : I) :
+    diagonal (unitVec i) = (1009 : Int)^degree i • unitVec i := by
+  funext j
+  change (1009 : Int)^degree j * (if i = j then 1 else 0) =
+    (1009 : Int)^degree i * (if i = j then 1 else 0)
+  by_cases h : i = j
+  · subst j; simp
+  · simp [h]
+
+theorem embed_unit (i : I) :
+    embed (unitVec i) = (1009 : Int)^degree i • originalBasis i := by
+  rw [embed_apply, diagonal_unit, map_smul, P_unit]
+
+/-- The scaled bracket basis coordinates, computed with plain integer operations. -/
+theorem LB_basis_coeff (i j : I) :
+    (LB (unitVec i) (unitVec j) : V Int) =
+      fun o => Ambient.FastBasis.coeff scaledTerms i j o := by
+  funext o
+  exact Ambient.FastBasis.fromTerms_sound scaledTerms i j o
+
+end Kourovka.Lattice
+
+### frozen_diff_Kourovka_Lattice_Integral.lean
+--- original/Kourovka/Lattice/Integral.lean
++++ Kourovka/Lattice/Integral.lean
+@@ -1,4 +1,5 @@
+ /- Uncompiled source. Actual integral embedding, followed by Jacobi and base change. -/
++import Kourovka.Ambient.Lie
+ import Kourovka.Lattice.Checks.Chunk00
+ import Kourovka.Lattice.Checks.Chunk01
+ import Kourovka.Lattice.Checks.Chunk02
+@@ -111,7 +112,7 @@
+ 
+ /-- Conjugating back records the precise adapted-coordinate relationship. -/
+ theorem diagonal_bracket (a b : V Int) :
+-    diagonal (LB a b) = adaptedB (diagonal a) (diagonal b) := by
++    diagonal (LB a b) = (adaptedB (R := Int)) (diagonal a) (diagonal b) := by
+   have hh := congrArg P.symm (embed_bracket a b)
+   simpa only [embed_apply, LinearEquiv.symm_apply_apply,
+     adaptedB, transport_apply] using hh
+
+### frozen_diff_Kourovka_Lattice_IntegralGeneration.lean
+--- original/Kourovka/Lattice/IntegralGeneration.lean
++++ Kourovka/Lattice/IntegralGeneration.lean
+@@ -1,709 +1,9 @@
+-/- Generated uncompiled integral-word certificates.
+-Every equality is proved by reduction after rewriting already established node equalities. -/
+-import Kourovka.Lattice.Expressions
+-import Kourovka.Ambient.Lie
+-import Kourovka.Parameters
+-import Mathlib.NumberTheory.Padics.PadicIntegers
++/- Integral expression generation over coefficient rings and the p-adic integers. -/
++import Kourovka.Lattice.IntegralWords
+ 
+ namespace Kourovka.Lattice.IntegralGeneration
+ open Kourovka.Linear Kourovka.Ambient
+-set_option maxRecDepth 200000
+-set_option maxHeartbeats 50000000
+-
+ variable {R : Type*} [CommRing R]
+-def X : V R := unitVec 0
+-def Y : V R := unitVec 1 + unitVec 2 + unitVec 4 + unitVec 10 + unitVec 27
+-
+-def ev (e : Expr) : V Int := Expr.eval (fun a b => Ambient.B a b) X Y e
+-
+-def g0 : Expr := .x
+-theorem eval_0 : ev g0 = ![1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  decide
+-
+-def g1 : Expr := .y
+-theorem eval_1 : ev g1 = ![0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0] := by
+-  decide
+-
+-def g2 : Expr := .bracket g0 g1
+-theorem eval_2 : ev g2 = ![0, 2, (-2), 0, 4, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change Ambient.B (ev g0) (ev g1) = _
+-  rw [eval_0, eval_1]
+-  decide
+-
+-def g3 : Expr := .bracket g0 g2
+-theorem eval_3 : ev g3 = ![0, 4, 4, 0, 16, 0, 0, 0, 0, 0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change Ambient.B (ev g0) (ev g2) = _
+-  rw [eval_0, eval_2]
+-  decide
+-
+-def g4 : Expr := .bracket g0 g3
+-theorem eval_4 : ev g4 = ![0, 8, (-8), 0, 64, 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change Ambient.B (ev g0) (ev g3) = _
+-  rw [eval_0, eval_3]
+-  decide
+-
+-def g5 : Expr := .scale (0) g0
+-theorem eval_5 : ev g5 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (0 : Int) • ev g0 = _
+-  rw [eval_0]
+-  decide
+-
+-def g6 : Expr := .scale (-1) g4
+-theorem eval_6 : ev g6 = ![0, (-8), 8, 0, (-64), 0, 0, 0, 0, 0, (-64), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (-1 : Int) • ev g4 = _
+-  rw [eval_4]
+-  decide
+-
+-def g7 : Expr := .add (.scale 16 g5) (.scale 1 g6)
+-theorem eval_7 : ev g7 = ![0, (-8), 8, 0, (-64), 0, 0, 0, 0, 0, (-64), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (16 : Int) • ev g5 + (1 : Int) • ev g6 = _
+-  rw [eval_5, eval_6]
+-  decide
+-
+-def g8 : Expr := .scale (1) g3
+-theorem eval_8 : ev g8 = ![0, 4, 4, 0, 16, 0, 0, 0, 0, 0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (1 : Int) • ev g3 = _
+-  rw [eval_3]
+-  decide
+-
+-def g9 : Expr := .add (.scale 1 g7) (.scale 2 g8)
+-theorem eval_9 : ev g9 = ![0, 0, 16, 0, (-32), 0, 0, 0, 0, 0, (-32), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (1 : Int) • ev g7 + (2 : Int) • ev g8 = _
+-  rw [eval_7, eval_8]
+-  decide
+-
+-def g10 : Expr := .scale (1) g2
+-theorem eval_10 : ev g10 = ![0, 2, (-2), 0, 4, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (1 : Int) • ev g2 = _
+-  rw [eval_2]
+-  decide
+-
+-def g11 : Expr := .add (.scale 1 g9) (.scale 8 g10)
+-theorem eval_11 : ev g11 = ![0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (1 : Int) • ev g9 + (8 : Int) • ev g10 = _
+-  rw [eval_9, eval_10]
+-  decide
+-
+-def g12 : Expr := .scale (0) g0
+-theorem eval_12 : ev g12 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (0 : Int) • ev g0 = _
+-  rw [eval_0]
+-  decide
+-
+-def g13 : Expr := .scale (-1) g4
+-theorem eval_13 : ev g13 = ![0, (-8), 8, 0, (-64), 0, 0, 0, 0, 0, (-64), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (-1 : Int) • ev g4 = _
+-  rw [eval_4]
+-  decide
+-
+-def g14 : Expr := .add (.scale 48 g12) (.scale 1 g13)
+-theorem eval_14 : ev g14 = ![0, (-8), 8, 0, (-64), 0, 0, 0, 0, 0, (-64), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (48 : Int) • ev g12 + (1 : Int) • ev g13 = _
+-  rw [eval_12, eval_13]
+-  decide
+-
+-def g15 : Expr := .scale (1) g3
+-theorem eval_15 : ev g15 = ![0, 4, 4, 0, 16, 0, 0, 0, 0, 0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (1 : Int) • ev g3 = _
+-  rw [eval_3]
+-  decide
+-
+-def g16 : Expr := .add (.scale 1 g14) (.scale 6 g15)
+-theorem eval_16 : ev g16 = ![0, 16, 32, 0, 32, 0, 0, 0, 0, 0, 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (1 : Int) • ev g14 + (6 : Int) • ev g15 = _
+-  rw [eval_14, eval_15]
+-  decide
+-
+-def g17 : Expr := .scale (-1) g2
+-theorem eval_17 : ev g17 = ![0, (-2), 2, 0, (-4), 0, 0, 0, 0, 0, (-4), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (-1 : Int) • ev g2 = _
+-  rw [eval_2]
+-  decide
+-
+-def g18 : Expr := .add (.scale 1 g16) (.scale 8 g17)
+-theorem eval_18 : ev g18 = ![0, 0, 48, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (1 : Int) • ev g16 + (8 : Int) • ev g17 = _
+-  rw [eval_16, eval_17]
+-  decide
+-
+-def g19 : Expr := .scale (0) g0
+-theorem eval_19 : ev g19 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (0 : Int) • ev g0 = _
+-  rw [eval_0]
+-  decide
+-
+-def g20 : Expr := .scale (1) g4
+-theorem eval_20 : ev g20 = ![0, 8, (-8), 0, 64, 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (1 : Int) • ev g4 = _
+-  rw [eval_4]
+-  decide
+-
+-def g21 : Expr := .add (.scale 48 g19) (.scale 1 g20)
+-theorem eval_21 : ev g21 = ![0, 8, (-8), 0, 64, 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (48 : Int) • ev g19 + (1 : Int) • ev g20 = _
+-  rw [eval_19, eval_20]
+-  decide
+-
+-def g22 : Expr := .scale (-1) g2
+-theorem eval_22 : ev g22 = ![0, (-2), 2, 0, (-4), 0, 0, 0, 0, 0, (-4), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (-1 : Int) • ev g2 = _
+-  rw [eval_2]
+-  decide
+-
+-def g23 : Expr := .add (.scale 1 g21) (.scale 4 g22)
+-theorem eval_23 : ev g23 = ![0, 0, 0, 0, 48, 0, 0, 0, 0, 0, 48, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (1 : Int) • ev g21 + (4 : Int) • ev g22 = _
+-  rw [eval_21, eval_22]
+-  decide
+-
+-def g24 : Expr := .scale (0) g0
+-theorem eval_24 : ev g24 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (0 : Int) • ev g0 = _
+-  rw [eval_0]
+-  decide
+-
+-def g25 : Expr := .scale (1) g4
+-theorem eval_25 : ev g25 = ![0, 8, (-8), 0, 64, 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (1 : Int) • ev g4 = _
+-  rw [eval_4]
+-  decide
+-
+-def g26 : Expr := .add (.scale 16 g24) (.scale 1 g25)
+-theorem eval_26 : ev g26 = ![0, 8, (-8), 0, 64, 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (16 : Int) • ev g24 + (1 : Int) • ev g25 = _
+-  rw [eval_24, eval_25]
+-  decide
+-
+-def g27 : Expr := .scale (-1) g3
+-theorem eval_27 : ev g27 = ![0, (-4), (-4), 0, (-16), 0, 0, 0, 0, 0, (-16), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (-1 : Int) • ev g3 = _
+-  rw [eval_3]
+-  decide
+-
+-def g28 : Expr := .add (.scale 1 g26) (.scale 4 g27)
+-theorem eval_28 : ev g28 = ![0, (-8), (-24), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (1 : Int) • ev g26 + (4 : Int) • ev g27 = _
+-  rw [eval_26, eval_27]
+-  decide
+-
+-def g29 : Expr := .scale (-1) g2
+-theorem eval_29 : ev g29 = ![0, (-2), 2, 0, (-4), 0, 0, 0, 0, 0, (-4), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (-1 : Int) • ev g2 = _
+-  rw [eval_2]
+-  decide
+-
+-def g30 : Expr := .add (.scale 1 g28) (.scale 4 g29)
+-theorem eval_30 : ev g30 = ![0, (-16), (-16), 0, (-16), 0, 0, 0, 0, 0, (-16), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (1 : Int) • ev g28 + (4 : Int) • ev g29 = _
+-  rw [eval_28, eval_29]
+-  decide
+-
+-def g31 : Expr := .scale (1) g1
+-theorem eval_31 : ev g31 = ![0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0] := by
+-  change (1 : Int) • ev g1 = _
+-  rw [eval_1]
+-  decide
+-
+-def g32 : Expr := .add (.scale 1 g30) (.scale 16 g31)
+-theorem eval_32 : ev g32 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 0, 0, 0] := by
+-  change (1 : Int) • ev g30 + (16 : Int) • ev g31 = _
+-  rw [eval_30, eval_31]
+-  decide
+-
+-def g33 : Expr := .bracket g11 g23
+-theorem eval_33 : ev g33 = ![0, 0, 0, 768, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change Ambient.B (ev g11) (ev g23) = _
+-  rw [eval_11, eval_23]
+-  decide
+-
+-def g34 : Expr := .bracket g18 g33
+-theorem eval_34 : ev g34 = ![0, 0, 0, 0, 221184, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change Ambient.B (ev g18) (ev g33) = _
+-  rw [eval_18, eval_33]
+-  decide
+-
+-def g35 : Expr := .scale (1) g34
+-theorem eval_35 : ev g35 = ![0, 0, 0, 0, 221184, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (1 : Int) • ev g34 = _
+-  rw [eval_34]
+-  decide
+-
+-def g36 : Expr := .bracket g18 g35
+-theorem eval_36 : ev g36 = ![0, 0, 0, 0, 0, 53084160, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change Ambient.B (ev g18) (ev g35) = _
+-  rw [eval_18, eval_35]
+-  decide
+-
+-def g37 : Expr := .scale (1) g36
+-theorem eval_37 : ev g37 = ![0, 0, 0, 0, 0, 53084160, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (1 : Int) • ev g36 = _
+-  rw [eval_36]
+-  decide
+-
+-def g38 : Expr := .bracket g18 g37
+-theorem eval_38 : ev g38 = ![0, 0, 0, 0, 0, 0, 10192158720, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change Ambient.B (ev g18) (ev g37) = _
+-  rw [eval_18, eval_37]
+-  decide
+-
+-def g39 : Expr := .scale (1) g38
+-theorem eval_39 : ev g39 = ![0, 0, 0, 0, 0, 0, 10192158720, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (1 : Int) • ev g38 = _
+-  rw [eval_38]
+-  decide
+-
+-def g40 : Expr := .bracket g18 g39
+-theorem eval_40 : ev g40 = ![0, 0, 0, 0, 0, 0, 0, 1467670855680, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change Ambient.B (ev g18) (ev g39) = _
+-  rw [eval_18, eval_39]
+-  decide
+-
+-def g41 : Expr := .scale (1) g40
+-theorem eval_41 : ev g41 = ![0, 0, 0, 0, 0, 0, 0, 1467670855680, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (1 : Int) • ev g40 = _
+-  rw [eval_40]
+-  decide
+-
+-def g42 : Expr := .bracket g18 g41
+-theorem eval_42 : ev g42 = ![0, 0, 0, 0, 0, 0, 0, 0, 140896402145280, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change Ambient.B (ev g18) (ev g41) = _
+-  rw [eval_18, eval_41]
+-  decide
+-
+-def g43 : Expr := .scale (1) g42
+-theorem eval_43 : ev g43 = ![0, 0, 0, 0, 0, 0, 0, 0, 140896402145280, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (1 : Int) • ev g42 = _
+-  rw [eval_42]
+-  decide
+-
+-def g44 : Expr := .bracket g18 g43
+-theorem eval_44 : ev g44 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 6763027302973440, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change Ambient.B (ev g18) (ev g43) = _
+-  rw [eval_18, eval_43]
+-  decide
+-
+-def g45 : Expr := .scale (1) g44
+-theorem eval_45 : ev g45 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 6763027302973440, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (1 : Int) • ev g44 = _
+-  rw [eval_44]
+-  decide
+-
+-def g46 : Expr := .scale (-1) g35
+-theorem eval_46 : ev g46 = ![0, 0, 0, 0, (-221184), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (-1 : Int) • ev g35 = _
+-  rw [eval_35]
+-  decide
+-
+-def g47 : Expr := .add (.scale 4608 g23) (.scale 1 g46)
+-theorem eval_47 : ev g47 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 221184, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (4608 : Int) • ev g23 + (1 : Int) • ev g46 = _
+-  rw [eval_23, eval_46]
+-  decide
+-
+-def g48 : Expr := .bracket g18 g47
+-theorem eval_48 : ev g48 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 42467328, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change Ambient.B (ev g18) (ev g47) = _
+-  rw [eval_18, eval_47]
+-  decide
+-
+-def g49 : Expr := .scale (1) g48
+-theorem eval_49 : ev g49 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 42467328, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (1 : Int) • ev g48 = _
+-  rw [eval_48]
+-  decide
+-
+-def g50 : Expr := .bracket g18 g49
+-theorem eval_50 : ev g50 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6115295232, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change Ambient.B (ev g18) (ev g49) = _
+-  rw [eval_18, eval_49]
+-  decide
+-
+-def g51 : Expr := .scale (1) g50
+-theorem eval_51 : ev g51 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6115295232, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (1 : Int) • ev g50 = _
+-  rw [eval_50]
+-  decide
+-
+-def g52 : Expr := .bracket g18 g51
+-theorem eval_52 : ev g52 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 587068342272, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change Ambient.B (ev g18) (ev g51) = _
+-  rw [eval_18, eval_51]
+-  decide
+-
+-def g53 : Expr := .scale (1) g52
+-theorem eval_53 : ev g53 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 587068342272, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (1 : Int) • ev g52 = _
+-  rw [eval_52]
+-  decide
+-
+-def g54 : Expr := .bracket g18 g53
+-theorem eval_54 : ev g54 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 28179280429056, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change Ambient.B (ev g18) (ev g53) = _
+-  rw [eval_18, eval_53]
+-  decide
+-
+-def g55 : Expr := .scale (1) g54
+-theorem eval_55 : ev g55 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 28179280429056, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (1 : Int) • ev g54 = _
+-  rw [eval_54]
+-  decide
+-
+-def g56 : Expr := .bracket g11 g32
+-theorem eval_56 : ev g56 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 512, 0, 0, 0, 0] := by
+-  change Ambient.B (ev g11) (ev g32) = _
+-  rw [eval_11, eval_32]
+-  decide
+-
+-def g57 : Expr := .bracket g11 g56
+-theorem eval_57 : ev g57 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8192, 0, 0, 0, 0, 0] := by
+-  change Ambient.B (ev g11) (ev g56) = _
+-  rw [eval_11, eval_56]
+-  decide
+-
+-def g58 : Expr := .scale (1) g57
+-theorem eval_58 : ev g58 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8192, 0, 0, 0, 0, 0] := by
+-  change (1 : Int) • ev g57 = _
+-  rw [eval_57]
+-  decide
+-
+-def g59 : Expr := .bracket g18 g58
+-theorem eval_59 : ev g59 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1572864, 0, 0, 0, 0] := by
+-  change Ambient.B (ev g18) (ev g58) = _
+-  rw [eval_18, eval_58]
+-  decide
+-
+-def g60 : Expr := .scale (1) g59
+-theorem eval_60 : ev g60 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1572864, 0, 0, 0, 0] := by
+-  change (1 : Int) • ev g59 = _
+-  rw [eval_59]
+-  decide
+-
+-def g61 : Expr := .bracket g18 g60
+-theorem eval_61 : ev g61 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 226492416, 0, 0, 0] := by
+-  change Ambient.B (ev g18) (ev g60) = _
+-  rw [eval_18, eval_60]
+-  decide
+-
+-def g62 : Expr := .scale (1) g61
+-theorem eval_62 : ev g62 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 226492416, 0, 0, 0] := by
+-  change (1 : Int) • ev g61 = _
+-  rw [eval_61]
+-  decide
+-
+-def g63 : Expr := .bracket g18 g62
+-theorem eval_63 : ev g63 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 21743271936, 0, 0] := by
+-  change Ambient.B (ev g18) (ev g62) = _
+-  rw [eval_18, eval_62]
+-  decide
+-
+-def g64 : Expr := .scale (1) g63
+-theorem eval_64 : ev g64 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 21743271936, 0, 0] := by
+-  change (1 : Int) • ev g63 = _
+-  rw [eval_63]
+-  decide
+-
+-def g65 : Expr := .bracket g18 g64
+-theorem eval_65 : ev g65 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1043677052928, 0] := by
+-  change Ambient.B (ev g18) (ev g64) = _
+-  rw [eval_18, eval_64]
+-  decide
+-
+-def g66 : Expr := .scale (1) g65
+-theorem eval_66 : ev g66 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1043677052928, 0] := by
+-  change (1 : Int) • ev g65 = _
+-  rw [eval_65]
+-  decide
+-
+-def g67 : Expr := .bracket g33 g39
+-theorem eval_67 : ev g67 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5635856085811200, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change Ambient.B (ev g33) (ev g39) = _
+-  rw [eval_33, eval_39]
+-  decide
+-
+-def g68 : Expr := .scale (1) g67
+-theorem eval_68 : ev g68 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5635856085811200, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (1 : Int) • ev g67 = _
+-  rw [eval_67]
+-  decide
+-
+-def g69 : Expr := .bracket g18 g68
+-theorem eval_69 : ev g69 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1623126552713625600, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change Ambient.B (ev g18) (ev g68) = _
+-  rw [eval_18, eval_68]
+-  decide
+-
+-def g70 : Expr := .scale (1) g69
+-theorem eval_70 : ev g70 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1623126552713625600, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (1 : Int) • ev g69 = _
+-  rw [eval_69]
+-  decide
+-
+-def g71 : Expr := .bracket g18 g70
+-theorem eval_71 : ev g71 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 389550372651270144000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change Ambient.B (ev g18) (ev g70) = _
+-  rw [eval_18, eval_70]
+-  decide
+-
+-def g72 : Expr := .scale (1) g71
+-theorem eval_72 : ev g72 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 389550372651270144000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (1 : Int) • ev g71 = _
+-  rw [eval_71]
+-  decide
+-
+-def g73 : Expr := .bracket g18 g72
+-theorem eval_73 : ev g73 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 74793671549043867648000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change Ambient.B (ev g18) (ev g72) = _
+-  rw [eval_18, eval_72]
+-  decide
+-
+-def g74 : Expr := .scale (1) g73
+-theorem eval_74 : ev g74 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 74793671549043867648000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (1 : Int) • ev g73 = _
+-  rw [eval_73]
+-  decide
+-
+-def g75 : Expr := .bracket g18 g74
+-theorem eval_75 : ev g75 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10770288703062316941312000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change Ambient.B (ev g18) (ev g74) = _
+-  rw [eval_18, eval_74]
+-  decide
+-
+-def g76 : Expr := .scale (1) g75
+-theorem eval_76 : ev g76 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10770288703062316941312000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (1 : Int) • ev g75 = _
+-  rw [eval_75]
+-  decide
+-
+-def g77 : Expr := .bracket g18 g76
+-theorem eval_77 : ev g77 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1033947715493982426365952000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change Ambient.B (ev g18) (ev g76) = _
+-  rw [eval_18, eval_76]
+-  decide
+-
+-def g78 : Expr := .scale (1) g77
+-theorem eval_78 : ev g78 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1033947715493982426365952000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (1 : Int) • ev g77 = _
+-  rw [eval_77]
+-  decide
+-
+-def g79 : Expr := .bracket g18 g78
+-theorem eval_79 : ev g79 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 49629490343711156465565696000, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change Ambient.B (ev g18) (ev g78) = _
+-  rw [eval_18, eval_78]
+-  decide
+-
+-def g80 : Expr := .scale (1) g79
+-theorem eval_80 : ev g80 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 49629490343711156465565696000, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (1 : Int) • ev g79 = _
+-  rw [eval_79]
+-  decide
+-
+-def g81 : Expr := .bracket g33 g55
+-theorem eval_81 : ev g81 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 186984178872609669120, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change Ambient.B (ev g33) (ev g55) = _
+-  rw [eval_33, eval_55]
+-  decide
+-
+-def g82 : Expr := .scale (1) g81
+-theorem eval_82 : ev g82 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 186984178872609669120, 0, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (1 : Int) • ev g81 = _
+-  rw [eval_81]
+-  decide
+-
+-def g83 : Expr := .bracket g18 g82
+-theorem eval_83 : ev g83 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 17950481171770528235520, 0, 0, 0, 0, 0, 0, 0] := by
+-  change Ambient.B (ev g18) (ev g82) = _
+-  rw [eval_18, eval_82]
+-  decide
+-
+-def g84 : Expr := .scale (1) g83
+-theorem eval_84 : ev g84 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 17950481171770528235520, 0, 0, 0, 0, 0, 0, 0] := by
+-  change (1 : Int) • ev g83 = _
+-  rw [eval_83]
+-  decide
+-
+-def g85 : Expr := .bracket g18 g84
+-theorem eval_85 : ev g85 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 861623096244985355304960, 0, 0, 0, 0, 0, 0] := by
+-  change Ambient.B (ev g18) (ev g84) = _
+-  rw [eval_18, eval_84]
+-  decide
+-
+-def g86 : Expr := .bracket g47 g66
+-theorem eval_86 : ev g86 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 132966527198300209152] := by
+-  change Ambient.B (ev g47) (ev g66) = _
+-  rw [eval_47, eval_66]
+-  decide
+-
+-def g87 : Expr := .scale (1) g86
+-theorem eval_87 : ev g87 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 132966527198300209152] := by
+-  change (1 : Int) • ev g86 = _
+-  rw [eval_86]
+-  decide
+-
+-def denominator : I → Int := ![1, 16, 48, 768, 221184, 53084160, 10192158720, 1467670855680, 140896402145280, 6763027302973440, 221184, 42467328, 6115295232, 587068342272, 28179280429056, 5635856085811200, 1623126552713625600, 389550372651270144000, 74793671549043867648000, 10770288703062316941312000, 1033947715493982426365952000, 49629490343711156465565696000, 186984178872609669120, 17950481171770528235520, 861623096244985355304960, 8192, 1572864, 226492416, 21743271936, 1043677052928, 132966527198300209152]
+-
+-def generator : I → Expr := ![g0, g11, g18, g33, g35, g37, g39, g41, g43, g45, g47, g49, g51, g53, g55, g68, g70, g72, g74, g76, g78, g80, g82, g84, g85, g58, g60, g62, g64, g66, g87]
+-
+-theorem denominator_not_divisible : ∀ j, ¬ (1009 : Int) ∣ denominator j := by decide
+-
+-theorem generator_value_0 : ev g0 = (1 : Int) • (unitVec 0 : V Int) := by
+-  rw [eval_0]
+-  decide
+-
+-theorem generator_value_1 : ev g11 = (16 : Int) • (unitVec 1 : V Int) := by
+-  rw [eval_11]
+-  decide
+-
+-theorem generator_value_2 : ev g18 = (48 : Int) • (unitVec 2 : V Int) := by
+-  rw [eval_18]
+-  decide
+-
+-theorem generator_value_3 : ev g33 = (768 : Int) • (unitVec 3 : V Int) := by
+-  rw [eval_33]
+-  decide
+-
+-theorem generator_value_4 : ev g35 = (221184 : Int) • (unitVec 4 : V Int) := by
+-  rw [eval_35]
+-  decide
+-
+-theorem generator_value_5 : ev g37 = (53084160 : Int) • (unitVec 5 : V Int) := by
+-  rw [eval_37]
+-  decide
+-
+-theorem generator_value_6 : ev g39 = (10192158720 : Int) • (unitVec 6 : V Int) := by
+-  rw [eval_39]
+-  decide
+-
+-theorem generator_value_7 : ev g41 = (1467670855680 : Int) • (unitVec 7 : V Int) := by
+-  rw [eval_41]
+-  decide
+-
+-theorem generator_value_8 : ev g43 = (140896402145280 : Int) • (unitVec 8 : V Int) := by
+-  rw [eval_43]
+-  decide
+-
+-theorem generator_value_9 : ev g45 = (6763027302973440 : Int) • (unitVec 9 : V Int) := by
+-  rw [eval_45]
+-  decide
+-
+-theorem generator_value_10 : ev g47 = (221184 : Int) • (unitVec 10 : V Int) := by
+-  rw [eval_47]
+-  decide
+-
+-theorem generator_value_11 : ev g49 = (42467328 : Int) • (unitVec 11 : V Int) := by
+-  rw [eval_49]
+-  decide
+-
+-theorem generator_value_12 : ev g51 = (6115295232 : Int) • (unitVec 12 : V Int) := by
+-  rw [eval_51]
+-  decide
+-
+-theorem generator_value_13 : ev g53 = (587068342272 : Int) • (unitVec 13 : V Int) := by
+-  rw [eval_53]
+-  decide
+-
+-theorem generator_value_14 : ev g55 = (28179280429056 : Int) • (unitVec 14 : V Int) := by
+-  rw [eval_55]
+-  decide
+-
+-theorem generator_value_15 : ev g68 = (5635856085811200 : Int) • (unitVec 15 : V Int) := by
+-  rw [eval_68]
+-  decide
+-
+-theorem generator_value_16 : ev g70 = (1623126552713625600 : Int) • (unitVec 16 : V Int) := by
+-  rw [eval_70]
+-  decide
+-
+-theorem generator_value_17 : ev g72 = (389550372651270144000 : Int) • (unitVec 17 : V Int) := by
+-  rw [eval_72]
+-  decide
+-
+-theorem generator_value_18 : ev g74 = (74793671549043867648000 : Int) • (unitVec 18 : V Int) := by
+-  rw [eval_74]
+-  decide
+-
+-theorem generator_value_19 : ev g76 = (10770288703062316941312000 : Int) • (unitVec 19 : V Int) := by
+-  rw [eval_76]
+-  decide
+-
+-theorem generator_value_20 : ev g78 = (1033947715493982426365952000 : Int) • (unitVec 20 : V Int) := by
+-  rw [eval_78]
+-  decide
+-
+-theorem generator_value_21 : ev g80 = (49629490343711156465565696000 : Int) • (unitVec 21 : V Int) := by
+-  rw [eval_80]
+-  decide
+-
+-theorem generator_value_22 : ev g82 = (186984178872609669120 : Int) • (unitVec 22 : V Int) := by
+-  rw [eval_82]
+-  decide
+-
+-theorem generator_value_23 : ev g84 = (17950481171770528235520 : Int) • (unitVec 23 : V Int) := by
+-  rw [eval_84]
+-  decide
+-
+-theorem generator_value_24 : ev g85 = (861623096244985355304960 : Int) • (unitVec 24 : V Int) := by
+-  rw [eval_85]
+-  decide
+-
+-theorem generator_value_25 : ev g58 = (8192 : Int) • (unitVec 25 : V Int) := by
+-  rw [eval_58]
+-  decide
+-
+-theorem generator_value_26 : ev g60 = (1572864 : Int) • (unitVec 26 : V Int) := by
+-  rw [eval_60]
+-  decide
+-
+-theorem generator_value_27 : ev g62 = (226492416 : Int) • (unitVec 27 : V Int) := by
+-  rw [eval_62]
+-  decide
+-
+-theorem generator_value_28 : ev g64 = (21743271936 : Int) • (unitVec 28 : V Int) := by
+-  rw [eval_64]
+-  decide
+-
+-theorem generator_value_29 : ev g66 = (1043677052928 : Int) • (unitVec 29 : V Int) := by
+-  rw [eval_66]
+-  decide
+-
+-theorem generator_value_30 : ev g87 = (132966527198300209152 : Int) • (unitVec 30 : V Int) := by
+-  rw [eval_87]
+-  decide
+-
+-theorem generator_value : ∀ i : I, ev (generator i) = denominator i • (unitVec i : V Int) := by
+-  intro i
+-  fin_cases i
+-  · exact generator_value_0
+-  · exact generator_value_1
+-  · exact generator_value_2
+-  · exact generator_value_3
+-  · exact generator_value_4
+-  · exact generator_value_5
+-  · exact generator_value_6
+-  · exact generator_value_7
+-  · exact generator_value_8
+-  · exact generator_value_9
+-  · exact generator_value_10
+-  · exact generator_value_11
+-  · exact generator_value_12
+-  · exact generator_value_13
+-  · exact generator_value_14
+-  · exact generator_value_15
+-  · exact generator_value_16
+-  · exact generator_value_17
+-  · exact generator_value_18
+-  · exact generator_value_19
+-  · exact generator_value_20
+-  · exact generator_value_21
+-  · exact generator_value_22
+-  · exact generator_value_23
+-  · exact generator_value_24
+-  · exact generator_value_25
+-  · exact generator_value_26
+-  · exact generator_value_27
+-  · exact generator_value_28
+-  · exact generator_value_29
+-  · exact generator_value_30
+ 
+ /-- Coordinate ring maps as additive maps, so integral expression naturality is automatic. -/
+ def castAdd (R : Type*) [CommRing R] : V Int →+ V R where
+@@ -715,8 +15,11 @@
+     Expr.eval (fun a b : V R => Ambient.B a b) X Y (generator i) =
+       (denominator i : R) • unitVec i := by
+   have h := congrArg (castAdd R) (generator_value i)
+-  rw [Expr.map_eval (castAdd R) _ _ (mapVec_B (Int.castRingHom R))] at h
+-  simpa [castAdd,ev,X,Y,mapVec,mapVec_unit,smul_eq_mul,zsmul_eq_mul] using h
++  unfold ev at h
++  rw [Expr.map_eval (castAdd R) (fun a b : V Int => Ambient.B a b)
++    (fun a b : V R => Ambient.B a b) (mapVec_B (Int.castRingHom R))] at h
++  rw [map_zsmul] at h
++  simpa [castAdd, X, Y, Int.cast_smul_eq_zsmul] using h
+ 
+ /-- Exact generation over any coefficient ring in which the displayed denominators are units. -/
+ theorem closedSubmodule_eq_top (S : Submodule R (V R))
+
+### frozen_diff_Kourovka_Lattice_IntegralWords.lean
+/- Generated uncompiled integral-word certificates.
+Every equality is proved by reduction after rewriting already established node equalities. -/
+import Kourovka.Lattice.Expressions
+import Kourovka.Ambient.Bilinear
+import Kourovka.Parameters
+import Mathlib.NumberTheory.Padics.PadicIntegers
+
+namespace Kourovka.Lattice.IntegralGeneration
+open Kourovka.Linear Kourovka.Ambient
+set_option Elab.async false
+set_option maxRecDepth 200000
+set_option maxHeartbeats 50000000
+
+variable {R : Type*} [CommRing R]
+def X : V R := unitVec 0
+def Y : V R := unitVec 1 + unitVec 2 + unitVec 4 + unitVec 10 + unitVec 27
+
+def ev (e : Expr) : V Int := Expr.eval (fun a b => Ambient.B a b) X Y e
+
+def g0 : Expr := .x
+theorem eval_0 : ev g0 = ![1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  decide +kernel
+
+def g1 : Expr := .y
+theorem eval_1 : ev g1 = ![0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0] := by
+  decide +kernel
+
+def g2 : Expr := .bracket g0 g1
+theorem eval_2 : ev g2 = ![0, 2, (-2), 0, 4, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change Ambient.B (ev g0) (ev g1) = _
+  rw [eval_0, eval_1]
+  decide +kernel
+
+def g3 : Expr := .bracket g0 g2
+theorem eval_3 : ev g3 = ![0, 4, 4, 0, 16, 0, 0, 0, 0, 0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change Ambient.B (ev g0) (ev g2) = _
+  rw [eval_0, eval_2]
+  decide +kernel
+
+def g4 : Expr := .bracket g0 g3
+theorem eval_4 : ev g4 = ![0, 8, (-8), 0, 64, 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change Ambient.B (ev g0) (ev g3) = _
+  rw [eval_0, eval_3]
+  decide +kernel
+
+def g5 : Expr := .scale (0) g0
+theorem eval_5 : ev g5 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (0 : Int) • ev g0 = _
+  rw [eval_0]
+  decide +kernel
+
+def g6 : Expr := .scale (-1) g4
+theorem eval_6 : ev g6 = ![0, (-8), 8, 0, (-64), 0, 0, 0, 0, 0, (-64), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (-1 : Int) • ev g4 = _
+  rw [eval_4]
+  decide +kernel
+
+def g7 : Expr := .add (.scale 16 g5) (.scale 1 g6)
+theorem eval_7 : ev g7 = ![0, (-8), 8, 0, (-64), 0, 0, 0, 0, 0, (-64), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (16 : Int) • ev g5 + (1 : Int) • ev g6 = _
+  rw [eval_5, eval_6]
+  decide +kernel
+
+def g8 : Expr := .scale (1) g3
+theorem eval_8 : ev g8 = ![0, 4, 4, 0, 16, 0, 0, 0, 0, 0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (1 : Int) • ev g3 = _
+  rw [eval_3]
+  decide +kernel
+
+def g9 : Expr := .add (.scale 1 g7) (.scale 2 g8)
+theorem eval_9 : ev g9 = ![0, 0, 16, 0, (-32), 0, 0, 0, 0, 0, (-32), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (1 : Int) • ev g7 + (2 : Int) • ev g8 = _
+  rw [eval_7, eval_8]
+  decide +kernel
+
+def g10 : Expr := .scale (1) g2
+theorem eval_10 : ev g10 = ![0, 2, (-2), 0, 4, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (1 : Int) • ev g2 = _
+  rw [eval_2]
+  decide +kernel
+
+def g11 : Expr := .add (.scale 1 g9) (.scale 8 g10)
+theorem eval_11 : ev g11 = ![0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (1 : Int) • ev g9 + (8 : Int) • ev g10 = _
+  rw [eval_9, eval_10]
+  decide +kernel
+
+def g12 : Expr := .scale (0) g0
+theorem eval_12 : ev g12 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (0 : Int) • ev g0 = _
+  rw [eval_0]
+  decide +kernel
+
+def g13 : Expr := .scale (-1) g4
+theorem eval_13 : ev g13 = ![0, (-8), 8, 0, (-64), 0, 0, 0, 0, 0, (-64), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (-1 : Int) • ev g4 = _
+  rw [eval_4]
+  decide +kernel
+
+def g14 : Expr := .add (.scale 48 g12) (.scale 1 g13)
+theorem eval_14 : ev g14 = ![0, (-8), 8, 0, (-64), 0, 0, 0, 0, 0, (-64), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (48 : Int) • ev g12 + (1 : Int) • ev g13 = _
+  rw [eval_12, eval_13]
+  decide +kernel
+
+def g15 : Expr := .scale (1) g3
+theorem eval_15 : ev g15 = ![0, 4, 4, 0, 16, 0, 0, 0, 0, 0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (1 : Int) • ev g3 = _
+  rw [eval_3]
+  decide +kernel
+
+def g16 : Expr := .add (.scale 1 g14) (.scale 6 g15)
+theorem eval_16 : ev g16 = ![0, 16, 32, 0, 32, 0, 0, 0, 0, 0, 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (1 : Int) • ev g14 + (6 : Int) • ev g15 = _
+  rw [eval_14, eval_15]
+  decide +kernel
+
+def g17 : Expr := .scale (-1) g2
+theorem eval_17 : ev g17 = ![0, (-2), 2, 0, (-4), 0, 0, 0, 0, 0, (-4), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (-1 : Int) • ev g2 = _
+  rw [eval_2]
+  decide +kernel
+
+def g18 : Expr := .add (.scale 1 g16) (.scale 8 g17)
+theorem eval_18 : ev g18 = ![0, 0, 48, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (1 : Int) • ev g16 + (8 : Int) • ev g17 = _
+  rw [eval_16, eval_17]
+  decide +kernel
+
+def g19 : Expr := .scale (0) g0
+theorem eval_19 : ev g19 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (0 : Int) • ev g0 = _
+  rw [eval_0]
+  decide +kernel
+
+def g20 : Expr := .scale (1) g4
+theorem eval_20 : ev g20 = ![0, 8, (-8), 0, 64, 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (1 : Int) • ev g4 = _
+  rw [eval_4]
+  decide +kernel
+
+def g21 : Expr := .add (.scale 48 g19) (.scale 1 g20)
+theorem eval_21 : ev g21 = ![0, 8, (-8), 0, 64, 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (48 : Int) • ev g19 + (1 : Int) • ev g20 = _
+  rw [eval_19, eval_20]
+  decide +kernel
+
+def g22 : Expr := .scale (-1) g2
+theorem eval_22 : ev g22 = ![0, (-2), 2, 0, (-4), 0, 0, 0, 0, 0, (-4), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (-1 : Int) • ev g2 = _
+  rw [eval_2]
+  decide +kernel
+
+def g23 : Expr := .add (.scale 1 g21) (.scale 4 g22)
+theorem eval_23 : ev g23 = ![0, 0, 0, 0, 48, 0, 0, 0, 0, 0, 48, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (1 : Int) • ev g21 + (4 : Int) • ev g22 = _
+  rw [eval_21, eval_22]
+  decide +kernel
+
+def g24 : Expr := .scale (0) g0
+theorem eval_24 : ev g24 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (0 : Int) • ev g0 = _
+  rw [eval_0]
+  decide +kernel
+
+def g25 : Expr := .scale (1) g4
+theorem eval_25 : ev g25 = ![0, 8, (-8), 0, 64, 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (1 : Int) • ev g4 = _
+  rw [eval_4]
+  decide +kernel
+
+def g26 : Expr := .add (.scale 16 g24) (.scale 1 g25)
+theorem eval_26 : ev g26 = ![0, 8, (-8), 0, 64, 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (16 : Int) • ev g24 + (1 : Int) • ev g25 = _
+  rw [eval_24, eval_25]
+  decide +kernel
+
+def g27 : Expr := .scale (-1) g3
+theorem eval_27 : ev g27 = ![0, (-4), (-4), 0, (-16), 0, 0, 0, 0, 0, (-16), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (-1 : Int) • ev g3 = _
+  rw [eval_3]
+  decide +kernel
+
+def g28 : Expr := .add (.scale 1 g26) (.scale 4 g27)
+theorem eval_28 : ev g28 = ![0, (-8), (-24), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (1 : Int) • ev g26 + (4 : Int) • ev g27 = _
+  rw [eval_26, eval_27]
+  decide +kernel
+
+def g29 : Expr := .scale (-1) g2
+theorem eval_29 : ev g29 = ![0, (-2), 2, 0, (-4), 0, 0, 0, 0, 0, (-4), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (-1 : Int) • ev g2 = _
+  rw [eval_2]
+  decide +kernel
+
+def g30 : Expr := .add (.scale 1 g28) (.scale 4 g29)
+theorem eval_30 : ev g30 = ![0, (-16), (-16), 0, (-16), 0, 0, 0, 0, 0, (-16), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (1 : Int) • ev g28 + (4 : Int) • ev g29 = _
+  rw [eval_28, eval_29]
+  decide +kernel
+
+def g31 : Expr := .scale (1) g1
+theorem eval_31 : ev g31 = ![0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0] := by
+  change (1 : Int) • ev g1 = _
+  rw [eval_1]
+  decide +kernel
+
+def g32 : Expr := .add (.scale 1 g30) (.scale 16 g31)
+theorem eval_32 : ev g32 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 0, 0, 0] := by
+  change (1 : Int) • ev g30 + (16 : Int) • ev g31 = _
+  rw [eval_30, eval_31]
+  decide +kernel
+
+def g33 : Expr := .bracket g11 g23
+theorem eval_33 : ev g33 = ![0, 0, 0, 768, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change Ambient.B (ev g11) (ev g23) = _
+  rw [eval_11, eval_23]
+  decide +kernel
+
+def g34 : Expr := .bracket g18 g33
+theorem eval_34 : ev g34 = ![0, 0, 0, 0, 221184, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change Ambient.B (ev g18) (ev g33) = _
+  rw [eval_18, eval_33]
+  decide +kernel
+
+def g35 : Expr := .scale (1) g34
+theorem eval_35 : ev g35 = ![0, 0, 0, 0, 221184, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (1 : Int) • ev g34 = _
+  rw [eval_34]
+  decide +kernel
+
+def g36 : Expr := .bracket g18 g35
+theorem eval_36 : ev g36 = ![0, 0, 0, 0, 0, 53084160, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change Ambient.B (ev g18) (ev g35) = _
+  rw [eval_18, eval_35]
+  decide +kernel
+
+def g37 : Expr := .scale (1) g36
+theorem eval_37 : ev g37 = ![0, 0, 0, 0, 0, 53084160, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (1 : Int) • ev g36 = _
+  rw [eval_36]
+  decide +kernel
+
+def g38 : Expr := .bracket g18 g37
+theorem eval_38 : ev g38 = ![0, 0, 0, 0, 0, 0, 10192158720, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change Ambient.B (ev g18) (ev g37) = _
+  rw [eval_18, eval_37]
+  decide +kernel
+
+def g39 : Expr := .scale (1) g38
+theorem eval_39 : ev g39 = ![0, 0, 0, 0, 0, 0, 10192158720, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (1 : Int) • ev g38 = _
+  rw [eval_38]
+  decide +kernel
+
+def g40 : Expr := .bracket g18 g39
+theorem eval_40 : ev g40 = ![0, 0, 0, 0, 0, 0, 0, 1467670855680, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change Ambient.B (ev g18) (ev g39) = _
+  rw [eval_18, eval_39]
+  decide +kernel
+
+def g41 : Expr := .scale (1) g40
+theorem eval_41 : ev g41 = ![0, 0, 0, 0, 0, 0, 0, 1467670855680, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (1 : Int) • ev g40 = _
+  rw [eval_40]
+  decide +kernel
+
+def g42 : Expr := .bracket g18 g41
+theorem eval_42 : ev g42 = ![0, 0, 0, 0, 0, 0, 0, 0, 140896402145280, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change Ambient.B (ev g18) (ev g41) = _
+  rw [eval_18, eval_41]
+  decide +kernel
+
+def g43 : Expr := .scale (1) g42
+theorem eval_43 : ev g43 = ![0, 0, 0, 0, 0, 0, 0, 0, 140896402145280, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (1 : Int) • ev g42 = _
+  rw [eval_42]
+  decide +kernel
+
+def g44 : Expr := .bracket g18 g43
+theorem eval_44 : ev g44 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 6763027302973440, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change Ambient.B (ev g18) (ev g43) = _
+  rw [eval_18, eval_43]
+  decide +kernel
+
+def g45 : Expr := .scale (1) g44
+theorem eval_45 : ev g45 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 6763027302973440, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (1 : Int) • ev g44 = _
+  rw [eval_44]
+  decide +kernel
+
+def g46 : Expr := .scale (-1) g35
+theorem eval_46 : ev g46 = ![0, 0, 0, 0, (-221184), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (-1 : Int) • ev g35 = _
+  rw [eval_35]
+  decide +kernel
+
+def g47 : Expr := .add (.scale 4608 g23) (.scale 1 g46)
+theorem eval_47 : ev g47 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 221184, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (4608 : Int) • ev g23 + (1 : Int) • ev g46 = _
+  rw [eval_23, eval_46]
+  decide +kernel
+
+def g48 : Expr := .bracket g18 g47
+theorem eval_48 : ev g48 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 42467328, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change Ambient.B (ev g18) (ev g47) = _
+  rw [eval_18, eval_47]
+  decide +kernel
+
+def g49 : Expr := .scale (1) g48
+theorem eval_49 : ev g49 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 42467328, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (1 : Int) • ev g48 = _
+  rw [eval_48]
+  decide +kernel
+
+def g50 : Expr := .bracket g18 g49
+theorem eval_50 : ev g50 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6115295232, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change Ambient.B (ev g18) (ev g49) = _
+  rw [eval_18, eval_49]
+  decide +kernel
+
+def g51 : Expr := .scale (1) g50
+theorem eval_51 : ev g51 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6115295232, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (1 : Int) • ev g50 = _
+  rw [eval_50]
+  decide +kernel
+
+def g52 : Expr := .bracket g18 g51
+theorem eval_52 : ev g52 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 587068342272, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change Ambient.B (ev g18) (ev g51) = _
+  rw [eval_18, eval_51]
+  decide +kernel
+
+def g53 : Expr := .scale (1) g52
+theorem eval_53 : ev g53 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 587068342272, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (1 : Int) • ev g52 = _
+  rw [eval_52]
+  decide +kernel
+
+def g54 : Expr := .bracket g18 g53
+theorem eval_54 : ev g54 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 28179280429056, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change Ambient.B (ev g18) (ev g53) = _
+  rw [eval_18, eval_53]
+  decide +kernel
+
+def g55 : Expr := .scale (1) g54
+theorem eval_55 : ev g55 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 28179280429056, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (1 : Int) • ev g54 = _
+  rw [eval_54]
+  decide +kernel
+
+def g56 : Expr := .bracket g11 g32
+theorem eval_56 : ev g56 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 512, 0, 0, 0, 0] := by
+  change Ambient.B (ev g11) (ev g32) = _
+  rw [eval_11, eval_32]
+  decide +kernel
+
+def g57 : Expr := .bracket g11 g56
+theorem eval_57 : ev g57 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8192, 0, 0, 0, 0, 0] := by
+  change Ambient.B (ev g11) (ev g56) = _
+  rw [eval_11, eval_56]
+  decide +kernel
+
+def g58 : Expr := .scale (1) g57
+theorem eval_58 : ev g58 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8192, 0, 0, 0, 0, 0] := by
+  change (1 : Int) • ev g57 = _
+  rw [eval_57]
+  decide +kernel
+
+def g59 : Expr := .bracket g18 g58
+theorem eval_59 : ev g59 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1572864, 0, 0, 0, 0] := by
+  change Ambient.B (ev g18) (ev g58) = _
+  rw [eval_18, eval_58]
+  decide +kernel
+
+def g60 : Expr := .scale (1) g59
+theorem eval_60 : ev g60 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1572864, 0, 0, 0, 0] := by
+  change (1 : Int) • ev g59 = _
+  rw [eval_59]
+  decide +kernel
+
+def g61 : Expr := .bracket g18 g60
+theorem eval_61 : ev g61 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 226492416, 0, 0, 0] := by
+  change Ambient.B (ev g18) (ev g60) = _
+  rw [eval_18, eval_60]
+  decide +kernel
+
+def g62 : Expr := .scale (1) g61
+theorem eval_62 : ev g62 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 226492416, 0, 0, 0] := by
+  change (1 : Int) • ev g61 = _
+  rw [eval_61]
+  decide +kernel
+
+def g63 : Expr := .bracket g18 g62
+theorem eval_63 : ev g63 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 21743271936, 0, 0] := by
+  change Ambient.B (ev g18) (ev g62) = _
+  rw [eval_18, eval_62]
+  decide +kernel
+
+def g64 : Expr := .scale (1) g63
+theorem eval_64 : ev g64 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 21743271936, 0, 0] := by
+  change (1 : Int) • ev g63 = _
+  rw [eval_63]
+  decide +kernel
+
+def g65 : Expr := .bracket g18 g64
+theorem eval_65 : ev g65 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1043677052928, 0] := by
+  change Ambient.B (ev g18) (ev g64) = _
+  rw [eval_18, eval_64]
+  decide +kernel
+
+def g66 : Expr := .scale (1) g65
+theorem eval_66 : ev g66 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1043677052928, 0] := by
+  change (1 : Int) • ev g65 = _
+  rw [eval_65]
+  decide +kernel
+
+def g67 : Expr := .bracket g33 g39
+theorem eval_67 : ev g67 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5635856085811200, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change Ambient.B (ev g33) (ev g39) = _
+  rw [eval_33, eval_39]
+  decide +kernel
+
+def g68 : Expr := .scale (1) g67
+theorem eval_68 : ev g68 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5635856085811200, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (1 : Int) • ev g67 = _
+  rw [eval_67]
+  decide +kernel
+
+def g69 : Expr := .bracket g18 g68
+theorem eval_69 : ev g69 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1623126552713625600, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change Ambient.B (ev g18) (ev g68) = _
+  rw [eval_18, eval_68]
+  decide +kernel
+
+def g70 : Expr := .scale (1) g69
+theorem eval_70 : ev g70 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1623126552713625600, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (1 : Int) • ev g69 = _
+  rw [eval_69]
+  decide +kernel
+
+def g71 : Expr := .bracket g18 g70
+theorem eval_71 : ev g71 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 389550372651270144000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change Ambient.B (ev g18) (ev g70) = _
+  rw [eval_18, eval_70]
+  decide +kernel
+
+def g72 : Expr := .scale (1) g71
+theorem eval_72 : ev g72 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 389550372651270144000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (1 : Int) • ev g71 = _
+  rw [eval_71]
+  decide +kernel
+
+def g73 : Expr := .bracket g18 g72
+theorem eval_73 : ev g73 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 74793671549043867648000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change Ambient.B (ev g18) (ev g72) = _
+  rw [eval_18, eval_72]
+  decide +kernel
+
+def g74 : Expr := .scale (1) g73
+theorem eval_74 : ev g74 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 74793671549043867648000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (1 : Int) • ev g73 = _
+  rw [eval_73]
+  decide +kernel
+
+def g75 : Expr := .bracket g18 g74
+theorem eval_75 : ev g75 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10770288703062316941312000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change Ambient.B (ev g18) (ev g74) = _
+  rw [eval_18, eval_74]
+  decide +kernel
+
+def g76 : Expr := .scale (1) g75
+theorem eval_76 : ev g76 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10770288703062316941312000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (1 : Int) • ev g75 = _
+  rw [eval_75]
+  decide +kernel
+
+def g77 : Expr := .bracket g18 g76
+theorem eval_77 : ev g77 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1033947715493982426365952000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change Ambient.B (ev g18) (ev g76) = _
+  rw [eval_18, eval_76]
+  decide +kernel
+
+def g78 : Expr := .scale (1) g77
+theorem eval_78 : ev g78 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1033947715493982426365952000, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (1 : Int) • ev g77 = _
+  rw [eval_77]
+  decide +kernel
+
+def g79 : Expr := .bracket g18 g78
+theorem eval_79 : ev g79 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 49629490343711156465565696000, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change Ambient.B (ev g18) (ev g78) = _
+  rw [eval_18, eval_78]
+  decide +kernel
+
+def g80 : Expr := .scale (1) g79
+theorem eval_80 : ev g80 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 49629490343711156465565696000, 0, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (1 : Int) • ev g79 = _
+  rw [eval_79]
+  decide +kernel
+
+def g81 : Expr := .bracket g33 g55
+theorem eval_81 : ev g81 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 186984178872609669120, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change Ambient.B (ev g33) (ev g55) = _
+  rw [eval_33, eval_55]
+  decide +kernel
+
+def g82 : Expr := .scale (1) g81
+theorem eval_82 : ev g82 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 186984178872609669120, 0, 0, 0, 0, 0, 0, 0, 0] := by
+  change (1 : Int) • ev g81 = _
+  rw [eval_81]
+  decide +kernel
+
+def g83 : Expr := .bracket g18 g82
+theorem eval_83 : ev g83 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 17950481171770528235520, 0, 0, 0, 0, 0, 0, 0] := by
+  change Ambient.B (ev g18) (ev g82) = _
+  rw [eval_18, eval_82]
+  decide +kernel
+
+def g84 : Expr := .scale (1) g83
+theorem eval_84 : ev g84 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 17950481171770528235520, 0, 0, 0, 0, 0, 0, 0] := by
+  change (1 : Int) • ev g83 = _
+  rw [eval_83]
+  decide +kernel
+
+def g85 : Expr := .bracket g18 g84
+theorem eval_85 : ev g85 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 861623096244985355304960, 0, 0, 0, 0, 0, 0] := by
+  change Ambient.B (ev g18) (ev g84) = _
+  rw [eval_18, eval_84]
+  decide +kernel
+
+def g86 : Expr := .bracket g47 g66
+theorem eval_86 : ev g86 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 132966527198300209152] := by
+  change Ambient.B (ev g47) (ev g66) = _
+  rw [eval_47, eval_66]
+  decide +kernel
+
+def g87 : Expr := .scale (1) g86
+theorem eval_87 : ev g87 = ![0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 132966527198300209152] := by
+  change (1 : Int) • ev g86 = _
+  rw [eval_86]
+  decide +kernel
+
+def denominator : I → Int := ![1, 16, 48, 768, 221184, 53084160, 10192158720, 1467670855680, 140896402145280, 6763027302973440, 221184, 42467328, 6115295232, 587068342272, 28179280429056, 5635856085811200, 1623126552713625600, 389550372651270144000, 74793671549043867648000, 10770288703062316941312000, 1033947715493982426365952000, 49629490343711156465565696000, 186984178872609669120, 17950481171770528235520, 861623096244985355304960, 8192, 1572864, 226492416, 21743271936, 1043677052928, 132966527198300209152]
+
+def generator : I → Expr := ![g0, g11, g18, g33, g35, g37, g39, g41, g43, g45, g47, g49, g51, g53, g55, g68, g70, g72, g74, g76, g78, g80, g82, g84, g85, g58, g60, g62, g64, g66, g87]
+
+theorem denominator_not_divisible : ∀ j, ¬ (1009 : Int) ∣ denominator j := by decide
+
+theorem generator_value_0 : ev g0 = (1 : Int) • (unitVec 0 : V Int) := by
+  rw [eval_0]
+  decide +kernel
+
+theorem generator_value_1 : ev g11 = (16 : Int) • (unitVec 1 : V Int) := by
+  rw [eval_11]
+  decide +kernel
+
+theorem generator_value_2 : ev g18 = (48 : Int) • (unitVec 2 : V Int) := by
+  rw [eval_18]
+  decide +kernel
+
+theorem generator_value_3 : ev g33 = (768 : Int) • (unitVec 3 : V Int) := by
+  rw [eval_33]
+  decide +kernel
+
+theorem generator_value_4 : ev g35 = (221184 : Int) • (unitVec 4 : V Int) := by
+  rw [eval_35]
+  decide +kernel
+
+theorem generator_value_5 : ev g37 = (53084160 : Int) • (unitVec 5 : V Int) := by
+  rw [eval_37]
+  decide +kernel
+
+theorem generator_value_6 : ev g39 = (10192158720 : Int) • (unitVec 6 : V Int) := by
+  rw [eval_39]
+  decide +kernel
+
+theorem generator_value_7 : ev g41 = (1467670855680 : Int) • (unitVec 7 : V Int) := by
+  rw [eval_41]
+  decide +kernel
+
+theorem generator_value_8 : ev g43 = (140896402145280 : Int) • (unitVec 8 : V Int) := by
+  rw [eval_43]
+  decide +kernel
+
+theorem generator_value_9 : ev g45 = (6763027302973440 : Int) • (unitVec 9 : V Int) := by
+  rw [eval_45]
+  decide +kernel
+
+theorem generator_value_10 : ev g47 = (221184 : Int) • (unitVec 10 : V Int) := by
+  rw [eval_47]
+  decide +kernel
+
+theorem generator_value_11 : ev g49 = (42467328 : Int) • (unitVec 11 : V Int) := by
+  rw [eval_49]
+  decide +kernel
+
+theorem generator_value_12 : ev g51 = (6115295232 : Int) • (unitVec 12 : V Int) := by
+  rw [eval_51]
+  decide +kernel
+
+theorem generator_value_13 : ev g53 = (587068342272 : Int) • (unitVec 13 : V Int) := by
+  rw [eval_53]
+  decide +kernel
+
+theorem generator_value_14 : ev g55 = (28179280429056 : Int) • (unitVec 14 : V Int) := by
+  rw [eval_55]
+  decide +kernel
+
+theorem generator_value_15 : ev g68 = (5635856085811200 : Int) • (unitVec 15 : V Int) := by
+  rw [eval_68]
+  decide +kernel
+
+theorem generator_value_16 : ev g70 = (1623126552713625600 : Int) • (unitVec 16 : V Int) := by
+  rw [eval_70]
+  decide +kernel
+
+theorem generator_value_17 : ev g72 = (389550372651270144000 : Int) • (unitVec 17 : V Int) := by
+  rw [eval_72]
+  decide +kernel
+
+theorem generator_value_18 : ev g74 = (74793671549043867648000 : Int) • (unitVec 18 : V Int) := by
+  rw [eval_74]
+  decide +kernel
+
+theorem generator_value_19 : ev g76 = (10770288703062316941312000 : Int) • (unitVec 19 : V Int) := by
+  rw [eval_76]
+  decide +kernel
+
+theorem generator_value_20 : ev g78 = (1033947715493982426365952000 : Int) • (unitVec 20 : V Int) := by
+  rw [eval_78]
+  decide +kernel
+
+theorem generator_value_21 : ev g80 = (49629490343711156465565696000 : Int) • (unitVec 21 : V Int) := by
+  rw [eval_80]
+  decide +kernel
+
+theorem generator_value_22 : ev g82 = (186984178872609669120 : Int) • (unitVec 22 : V Int) := by
+  rw [eval_82]
+  decide +kernel
+
+theorem generator_value_23 : ev g84 = (17950481171770528235520 : Int) • (unitVec 23 : V Int) := by
+  rw [eval_84]
+  decide +kernel
+
+theorem generator_value_24 : ev g85 = (861623096244985355304960 : Int) • (unitVec 24 : V Int) := by
+  rw [eval_85]
+  decide +kernel
+
+theorem generator_value_25 : ev g58 = (8192 : Int) • (unitVec 25 : V Int) := by
+  rw [eval_58]
+  decide +kernel
+
+theorem generator_value_26 : ev g60 = (1572864 : Int) • (unitVec 26 : V Int) := by
+  rw [eval_60]
+  decide +kernel
+
+theorem generator_value_27 : ev g62 = (226492416 : Int) • (unitVec 27 : V Int) := by
+  rw [eval_62]
+  decide +kernel
+
+theorem generator_value_28 : ev g64 = (21743271936 : Int) • (unitVec 28 : V Int) := by
+  rw [eval_64]
+  decide +kernel
+
+theorem generator_value_29 : ev g66 = (1043677052928 : Int) • (unitVec 29 : V Int) := by
+  rw [eval_66]
+  decide +kernel
+
+theorem generator_value_30 : ev g87 = (132966527198300209152 : Int) • (unitVec 30 : V Int) := by
+  rw [eval_87]
+  decide +kernel
+
+theorem generator_value : ∀ i : I, ev (generator i) = denominator i • (unitVec i : V Int) := by
+  intro i
+  fin_cases i
+  · exact generator_value_0
+  · exact generator_value_1
+  · exact generator_value_2
+  · exact generator_value_3
+  · exact generator_value_4
+  · exact generator_value_5
+  · exact generator_value_6
+  · exact generator_value_7
+  · exact generator_value_8
+  · exact generator_value_9
+  · exact generator_value_10
+  · exact generator_value_11
+  · exact generator_value_12
+  · exact generator_value_13
+  · exact generator_value_14
+  · exact generator_value_15
+  · exact generator_value_16
+  · exact generator_value_17
+  · exact generator_value_18
+  · exact generator_value_19
+  · exact generator_value_20
+  · exact generator_value_21
+  · exact generator_value_22
+  · exact generator_value_23
+  · exact generator_value_24
+  · exact generator_value_25
+  · exact generator_value_26
+  · exact generator_value_27
+  · exact generator_value_28
+  · exact generator_value_29
+  · exact generator_value_30
+
+end Kourovka.Lattice.IntegralGeneration

@@ -1,0 +1,96 @@
+$ /usr/bin/c++ --version
+c++ (Debian 14.2.0-19) 14.2.0
+Copyright (C) 2024 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+$ /opt/pyvenv/bin/python3 scripts/sanity_groups.py
+{
+  "python": "3.13.5 (main, Jul 15 2026, 20:25:40) [GCC 14.2.0]",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.41",
+  "results": [
+    {
+      "prime": 3,
+      "group_order": 27,
+      "full_automorphism_order": 54,
+      "all_generator_image_pairs_examined": 729,
+      "relator_satisfying_pairs": 135
+    },
+    {
+      "prime": 5,
+      "group_order": 125,
+      "full_automorphism_order": 500,
+      "all_generator_image_pairs_examined": 15625,
+      "relator_satisfying_pairs": 1125
+    },
+    {
+      "prime": 7,
+      "group_order": 343,
+      "full_automorphism_order": 2058,
+      "all_generator_image_pairs_examined": 117649,
+      "relator_satisfying_pairs": 4459
+    }
+  ]
+}
+$ /usr/bin/c++ -std=c++17 -O2 -Wall -Wextra -Werror -o /mnt/data/kourovka_lean_session/previous_bundle/kourovka_16_63/build/independent_verify scripts/independent_verify.cpp
+$ /mnt/data/kourovka_lean_session/previous_bundle/kourovka_16_63/build/independent_verify data/smith_pivot_plan.txt
+original_integer_jacobi_checks=4495
+adapted_integer_jacobi_checks=4495
+inner_rank=30 centre_dimension=1 perfect_rank=31 infinitesimal_flag_stabilizer_dimension=0 first_congruence_stabilizer_dimension=0 generated_dimension=31
+H1 highest_weight=0 cocycle_dimension=0 coboundary_dimension=0 H1_dimension=0
+H1 highest_weight=2 cocycle_dimension=3 coboundary_dimension=3 H1_dimension=0
+H1 highest_weight=4 cocycle_dimension=5 coboundary_dimension=5 H1_dimension=0
+H1 highest_weight=6 cocycle_dimension=7 coboundary_dimension=7 H1_dimension=0
+unscaled_derivation_rank_mod_p=931 derivation_dimension=30
+verified_pivots=100 valuation=1
+verified_pivots=200 valuation=2
+verified_pivots=300 valuation=2
+verified_pivots=400 valuation=2
+verified_pivots=500 valuation=2
+verified_pivots=600 valuation=2
+verified_pivots=700 valuation=2
+verified_pivots=800 valuation=2
+verified_pivots=900 valuation=2
+smith_valuation=0 multiplicity=87
+smith_valuation=1 multiplicity=55
+smith_valuation=2 multiplicity=758
+smith_valuation=3 multiplicity=6
+smith_valuation=4 multiplicity=25
+prime=1009 precision=6 modulus=1055229678769825441 derivation_rank=931 nullity=30 sum_smith_valuations=1689
+candidate_quotient_depth=1689 candidate_group_order_exponent=52359 predicted_aut_order_exponent=52359
+elapsed_seconds=0.397855
+ALL_CHECKS_PASSED
+{
+  "changed_record": 0,
+  "original_valuation": 0,
+  "corrupted_valuation": 5,
+  "exit_code": 1,
+  "stderr": "VERIFICATION_FAILED: pivot valuation mismatch",
+  "corrupted_certificate_rejected": true
+}
+
+REPRODUCTION_PASSED: exact certificate checks and corrupted-certificate rejection.
+The mathematical proof is in report/kourovka_16_63.pdf.
+	Command being timed: "python3 scripts/resume.py"
+	User time (seconds): 4.37
+	System time (seconds): 0.65
+	Percent of CPU this job got: 120%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 0:04.15
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 116072
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 0
+	Minor (reclaiming a frame) page faults: 146772
+	Voluntary context switches: 59
+	Involuntary context switches: 133
+	Swaps: 0
+	File system inputs: 160
+	File system outputs: 632
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 0

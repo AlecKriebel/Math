@@ -1,0 +1,177 @@
+--- original/Kourovka/Finite/AdditiveLinear.lean
++++ Kourovka/Finite/AdditiveLinear.lean
+@@ -1,6 +1,6 @@
+ /- Uncompiled source. Why additive automorphisms over ZMod(n) are not being omitted. -/
+ import Mathlib.Data.ZMod.Basic
+-import Mathlib.LinearAlgebra.Basic
++import Mathlib.Algebra.Module.Equiv.Basic
+ import Mathlib.Tactic
+ 
+ namespace Kourovka.Finite
+@@ -20,6 +20,7 @@
+     have hcast' (v : VecAt n e) : (z : ZMod n) • v = z • v := by
+       funext i
+       simp [smul_eq_mul,zsmul_eq_mul]
++    change F ((z : ZMod n) • x) = (z : ZMod n) • F x
+     rw [hcast,hcast']
+     exact F.map_zsmul x z
+ 
+--- original/Kourovka/Finite/BracketTrees.lean
++++ Kourovka/Finite/BracketTrees.lean
+@@ -32,7 +32,7 @@
+ 
+ theorem length_pos (t : BracketTree V) : 0 < t.length := by
+   induction t with
+-  | leaf a => decide
++  | leaf a => exact Nat.zero_lt_one
+   | node a b ha hb => dsimp [length]; omega
+ 
+ variable {S : Type*} [CommRing S]
+--- original/Kourovka/Finite/Coordinates.lean
++++ Kourovka/Finite/Coordinates.lean
+@@ -36,7 +36,7 @@
+   constructor
+   · intro h j
+     have hh := congrFun h j
+-    exact (ZMod.intCast_zmod_eq_zero_iff_dvd (a j) (1009^i)).mp
++    simpa using (ZMod.intCast_zmod_eq_zero_iff_dvd (a j) (1009^i)).mp
+       (by simpa [reduce,mapVec] using hh)
+   · intro h
+     funext j
+--- original/Kourovka/Finite/LieAutomorphisms.lean
++++ Kourovka/Finite/LieAutomorphisms.lean
+@@ -6,6 +6,10 @@
+ 
+ namespace Kourovka.Finite.FullAutomorphisms
+ open Kourovka.Linear Kourovka.Ambient Kourovka.Lattice
++
++-- Keep the 961-term matrix expansion folded during structure elaboration.
++-- Its coordinate lemmas still supply the exact inverse identities below.
++attribute [local irreducible] fromEntries
+ 
+ variable (i : Nat)
+ local instance : LieRing (LAt i) := lieRingAt i
+@@ -51,9 +55,17 @@
+       simp only [fromEntries_entries]
+       exact Q.map_lie x y⟩
+ 
++private noncomputable def scalarAutOfLinear
++    (f : (LAt i) →ₗ[RAt i] (LAt i))
++    (hb : Function.Bijective f)
++    (hl : ∀ x y, f (LB x y) = LB (f x) (f y)) : ScalarAut i :=
++  LieEquiv.ofBijective
++    { toLinearMap := f
++      map_lie' := by intro x y; exact hl x y }
++    hb
++
+ noncomputable def fromEntriesAut (a : AdmissibleEntries i) : ScalarAut i :=
+-  { LinearEquiv.ofBijective (fromEntries a.val) a.property.1 with
+-    map_lie' := by intro x y; exact a.property.2 x y }
++  scalarAutOfLinear i (fromEntries a.val) a.property.1 a.property.2
+ 
+ noncomputable def scalarAutEquivEntries : ScalarAut i ≃ AdmissibleEntries i where
+   toFun := toEntriesAut i
+--- original/Kourovka/Finite/PadicQuotient.lean
++++ Kourovka/Finite/PadicQuotient.lean
+@@ -10,13 +10,13 @@
+ abbrev Ell := V O
+ 
+ /-- Coefficientwise canonical p-adic reduction, not a chosen integer approximation. -/
+-def reduction (i:Nat) : Ell →+ LAt i where
++noncomputable def reduction (i:Nat) : Ell →+ LAt i where
+   toFun x := fun j => PadicInt.toZModPow i (x j)
+   map_zero' := by funext j; exact map_zero _
+   map_add' := by intro x y; funext j; exact map_add _ _ _
+ 
+ /-- Integer representatives provide a right inverse as a function, not a ring homomorphism. -/
+-def sectionMap (i:Nat) (x:LAt i) : Ell := fun j => (x j).val
++noncomputable def sectionMap (i:Nat) (x:LAt i) : Ell := fun j => (x j).val
+ 
+ theorem reduction_section (i:Nat) (x:LAt i) : reduction i (sectionMap i x)=x := by
+   funext j
+@@ -30,6 +30,7 @@
+     PadicInt.toZModPow i a=0 ↔ (1009:O)^i ∣ a := by
+   change a∈RingHom.ker (PadicInt.toZModPow i) ↔ _
+   rw [PadicInt.ker_toZModPow,Ideal.mem_span_singleton]
++  norm_cast
+ 
+ /-- The kernel is exactly p^i times the ell-coordinate lattice, in both directions. -/
+ theorem reduction_zero_iff (i:Nat) (x:Ell) :
+--- original/Kourovka/Finite/Nilpotency.lean
++++ Kourovka/Finite/Nilpotency.lean
+@@ -1,6 +1,7 @@
+ /- Uncompiled source. The length-847 vanishing theorem is proved from the exact integral embedding. -/
+ import Kourovka.Finite.Coordinates
+ import Kourovka.Finite.BracketTrees
++import Kourovka.Lattice.AdaptedBasis
+ import Mathlib.Algebra.Lie.Nilpotent
+ 
+ namespace Kourovka.Finite
+@@ -63,21 +64,21 @@
+     { toFun := fun b => ⁅a,b⁆
+       map_add' := lie_add a
+       map_smul' := by intro c v; exact lie_smul c a v }
+-  map_add' := by intro a b; ext c; exact add_lie a b c
+-  map_smul' := by intro c a; ext b; exact smul_lie c a b
++  map_add' := by intro a b; apply LinearMap.ext; intro c; exact add_lie a b c
++  map_smul' := by intro c a; apply LinearMap.ext; intro b; exact smul_lie c a b
+ 
+ /-- All shapes of bracket monomials, closed under linear combinations. -/
+ def wordSpan (n : Nat) : Submodule R M :=
+-  Submodule.span R {a | ∃ t : BracketTree M, n ≤ t.length ∧ t.eval standardB = a}
++  Submodule.span R {a | ∃ t : BracketTree M, n ≤ t.length ∧ t.eval (standardB (R := R)) = a}
+ 
+-theorem bracket_mem_wordSpan (n : Nat) (a b : M) (hb : b ∈ wordSpan n) :
+-    ⁅a,b⁆ ∈ wordSpan (n+1) := by
++theorem bracket_mem_wordSpan (n : Nat) (a b : M) (hb : b ∈ wordSpan (R := R) n) :
++    ⁅a,b⁆ ∈ wordSpan (R := R) (n+1) := by
+   induction hb using Submodule.span_induction with
+   | mem b hb =>
+       obtain ⟨t,ht,rfl⟩ := hb
+       apply Submodule.subset_span
+       exact ⟨BracketTree.node (BracketTree.leaf a) t, by simp only [BracketTree.length]; omega, rfl⟩
+-  | zero => simpa only [lie_zero] using (wordSpan (n+1)).zero_mem
++  | zero => simpa only [lie_zero] using (wordSpan (R := R) (n+1)).zero_mem
+   | add b c hb hc ihb ihc =>
+       rw [lie_add]
+       exact Submodule.add_mem _ ihb ihc
+@@ -87,12 +88,12 @@
+ 
+ /-- Lower-central term n is spanned by words with at least n+1 leaves. -/
+ theorem lowerCentral_le_wordSpan (n : Nat) :
+-    (LieModule.lowerCentralSeries R M M n).toSubmodule ≤ wordSpan (n+1) := by
++    (LieModule.lowerCentralSeries R M M n).toSubmodule ≤ wordSpan (R := R) (n+1) := by
+   induction n with
+   | zero =>
+       intro a ha
+       apply Submodule.subset_span
+-      exact ⟨BracketTree.leaf a,by decide,rfl⟩
++      exact ⟨BracketTree.leaf a,by exact Nat.le_refl 1,rfl⟩
+   | succ n ih =>
+       rw [LieModule.lowerCentralSeries_succ,LieSubmodule.lieIdeal_oper_eq_linear_span']
+       apply Submodule.span_le.mpr
+@@ -100,11 +101,11 @@
+       exact bracket_mem_wordSpan (n+1) b c (ih hc)
+ 
+ theorem lowerCentral_eq_bot_of_words (n : Nat)
+-    (h : ∀ t : BracketTree M, n+1 ≤ t.length → t.eval standardB = 0) :
++    (h : ∀ t : BracketTree M, n+1 ≤ t.length → t.eval (standardB (R := R)) = 0) :
+     LieModule.lowerCentralSeries R M M n = ⊥ := by
+-  apply LieSubmodule.eq_bot_iff.mpr
++  apply (LieSubmodule.eq_bot_iff _).mpr
+   intro a ha
+-  have hspan : wordSpan (n+1) ≤ (⊥ : Submodule R M) := by
++  have hspan : wordSpan (R := R) (n+1) ≤ (⊥ : Submodule R M) := by
+     apply Submodule.span_le.mpr
+     rintro a ⟨t,ht,rfl⟩
+     simpa only [Submodule.mem_bot] using h t ht
+--- original/Kourovka/Lattice/NearIdentity.lean
++++ Kourovka/Lattice/NearIdentity.lean
+@@ -2,6 +2,7 @@
+ An endomorphism small in the ambient B basis need not be p times an endomorphism
+ in the ell basis. The loss of two powers is proved from the actual embedding. -/
+ import Kourovka.Finite.Coordinates
++import Kourovka.Lattice.AdaptedBasis
+ import Kourovka.Analytic.NilpotentUnit
+ 
+ namespace Kourovka.Lattice.NearIdentity

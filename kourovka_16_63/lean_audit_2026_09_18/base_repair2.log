@@ -1,0 +1,42 @@
+⚠ [2795/2801] Replayed Kourovka.Linear.Basis
+warning: ././././Kourovka/Linear/Basis.lean:14:8: automatically included section variable(s) unused in theorem 'Kourovka.Linear.unitVec_same':
+  [Fintype I]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype I] in theorem ...
+note: this linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: ././././Kourovka/Linear/Basis.lean:17:8: automatically included section variable(s) unused in theorem 'Kourovka.Linear.unitVec_other':
+  [Fintype I]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype I] in theorem ...
+note: this linter can be disabled with `set_option linter.unusedSectionVars false`
+✔ [2796/2801] Built Kourovka.Parameters
+✔ [2797/2801] Built Kourovka.Challenge
+✖ [2798/2801] Building Kourovka.Ambient.Bilinear
+trace: .> LEAN_PATH=././.lake/packages/Cli/.lake/build/lib/lean:././.lake/packages/batteries/.lake/build/lib/lean:././.lake/packages/Qq/.lake/build/lib/lean:././.lake/packages/aesop/.lake/build/lib/lean:././.lake/packages/proofwidgets/.lake/build/lib/lean:././.lake/packages/importGraph/.lake/build/lib/lean:././.lake/packages/LeanSearchClient/.lake/build/lib/lean:././.lake/packages/plausible/.lake/build/lib/lean:././.lake/packages/mathlib/.lake/build/lib/lean:././.lake/build/lib/lean /Users/alec/.elan/toolchains/leanprover--lean4---v4.19.0/bin/lean ././././Kourovka/Ambient/Bilinear.lean -R ./././. -o ././.lake/build/lib/lean/Kourovka/Ambient/Bilinear.olean -i ././.lake/build/lib/lean/Kourovka/Ambient/Bilinear.ilean -c ././.lake/build/ir/Kourovka/Ambient/Bilinear.c --json
+error: ././././Kourovka/Ambient/Bilinear.lean:42:2: type mismatch, term
+  h
+after simplification has type
+  (B v) u + (B u) v = 0 : Prop
+but is expected to have type
+  (B u) v + (B v) u = 0 : Prop
+error: Lean exited with code 1
+✖ [2800/2801] Building Kourovka.Linear.BilinearOps
+trace: .> LEAN_PATH=././.lake/packages/Cli/.lake/build/lib/lean:././.lake/packages/batteries/.lake/build/lib/lean:././.lake/packages/Qq/.lake/build/lib/lean:././.lake/packages/aesop/.lake/build/lib/lean:././.lake/packages/proofwidgets/.lake/build/lib/lean:././.lake/packages/importGraph/.lake/build/lib/lean:././.lake/packages/LeanSearchClient/.lake/build/lib/lean:././.lake/packages/plausible/.lake/build/lib/lean:././.lake/packages/mathlib/.lake/build/lib/lean:././.lake/build/lib/lean /Users/alec/.elan/toolchains/leanprover--lean4---v4.19.0/bin/lean ././././Kourovka/Linear/BilinearOps.lean -R ./././. -o ././.lake/build/lib/lean/Kourovka/Linear/BilinearOps.olean -i ././.lake/build/lib/lean/Kourovka/Linear/BilinearOps.ilean -c ././.lake/build/ir/Kourovka/Linear/BilinearOps.c --json
+error: ././././Kourovka/Linear/BilinearOps.lean:56:15: unsolved goals
+case h.h
+R : Type u_1
+inst✝² : CommRing R
+V : Type u_2
+inst✝¹ : AddCommGroup V
+inst✝ : Module R V
+b : Bilinear R V
+a : R
+D : V →ₗ[R] V
+u v : V
+⊢ a • D ((b u) v) - a • (b (D u)) v - a • (b u) (D v) =
+    (RingHom.id R) a • D ((b u) v) - (RingHom.id R) a • (b (D u)) v - (RingHom.id R) a • (b u) (D v)
+error: Lean exited with code 1
+Some required builds logged failures:
+- Kourovka.Ambient.Bilinear
+- Kourovka.Linear.BilinearOps
+error: build failed

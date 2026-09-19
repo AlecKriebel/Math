@@ -1,0 +1,94 @@
+/- Uncompiled source. Full Lie-RING automorphisms, scalar-linear automorphisms and
+invertible bracket-preserving matrices. These equivalences do not count the group
+and do not assert the missing BCH/group-automorphism correspondence. -/
+import Kourovka.Finite.Coordinates
+import Kourovka.Linear.EndomorphismCoordinates
+
+namespace Kourovka.Finite.FullAutomorphisms
+open Kourovka.Linear Kourovka.Ambient Kourovka.Lattice
+
+-- Keep the 961-term matrix expansion folded during structure elaboration.
+-- Its coordinate lemmas still supply the exact inverse identities below.
+attribute [local irreducible] fromEntries
+
+variable (i : Nat)
+local instance : LieRing (LAt i) := lieRingAt i
+local instance : LieAlgebra (RAt i) (LAt i) := lieAlgebraAt i
+
+/-- The ordinary mathlib equivalence type over Int: full additive bracket bijections. -/
+abbrev RingAut := (LAt i) ≃ₗ⁅Int⁆ (LAt i)
+abbrev ScalarAut := (LAt i) ≃ₗ⁅RAt i⁆ (LAt i)
+
+def toScalar (Q : RingAut i) : ScalarAut i :=
+  { additiveEquivToLinear Q.toLinearEquiv.toAddEquiv with
+    map_lie' := by intro x y; exact Q.map_lie x y }
+
+def toInteger (Q : ScalarAut i) : RingAut i where
+  toFun := Q
+  invFun := Q.invFun
+  left_inv := Q.left_inv
+  right_inv := Q.right_inv
+  map_add' := Q.toLinearEquiv.map_add
+  map_smul' := by
+    intro z x
+    exact Q.toLinearEquiv.toAddMonoidHom.map_zsmul x z
+  map_lie' := by intro x y; exact Q.map_lie x y
+
+/-- Automatic residue-ring linearity is surjective on the entire automorphism set. -/
+def ringAutEquivScalarAut : RingAut i ≃ ScalarAut i where
+  toFun := toScalar i
+  invFun := toInteger i
+  left_inv := by intro Q; apply LieEquiv.ext; intro x; rfl
+  right_inv := by intro Q; apply LieEquiv.ext; intro x; rfl
+
+/-- Entries of EVERY invertible bracket-preserving map; no chosen subgroup or exponential domain. -/
+def AdmissibleEntries : Type :=
+  {a : (I × I) → RAt i //
+    Function.Bijective (fromEntries a) ∧
+      ∀ x y, fromEntries a (LB x y)=LB (fromEntries a x) (fromEntries a y)}
+
+def toEntriesAut (Q : ScalarAut i) : AdmissibleEntries i :=
+  ⟨toEntries Q.toLinearEquiv.toLinearMap,by
+    constructor
+    · simpa only [fromEntries_entries] using Q.toLinearEquiv.bijective
+    · intro x y
+      simp only [fromEntries_entries]
+      exact Q.map_lie x y⟩
+
+private noncomputable def scalarAutOfLinear
+    (f : (LAt i) →ₗ[RAt i] (LAt i))
+    (hb : Function.Bijective f)
+    (hl : ∀ x y, f (LB x y) = LB (f x) (f y)) : ScalarAut i :=
+  LieEquiv.ofBijective
+    { toLinearMap := f
+      map_lie' := by intro x y; exact hl x y }
+    hb
+
+noncomputable def fromEntriesAut (a : AdmissibleEntries i) : ScalarAut i :=
+  scalarAutOfLinear i (fromEntries a.val) a.property.1 a.property.2
+
+noncomputable def scalarAutEquivEntries : ScalarAut i ≃ AdmissibleEntries i where
+  toFun := toEntriesAut i
+  invFun := fromEntriesAut i
+  left_inv := by
+    intro Q
+    apply LieEquiv.ext
+    intro x
+    change fromEntries (toEntries Q.toLinearEquiv.toLinearMap) x=Q x
+    rw [fromEntries_entries]
+    rfl
+  right_inv := by
+    intro a
+    apply Subtype.ext
+    change toEntries (fromEntries a.val)=a.val
+    exact entries_fromEntries a.val
+
+/-- Complete matrix presentation of the full Lie-ring automorphism SET. -/
+noncomputable def ringAutEquivEntries : RingAut i ≃ AdmissibleEntries i :=
+  (ringAutEquivScalarAut i).trans (scalarAutEquivEntries i)
+
+theorem full_lie_aut_card_eq_matrix_card :
+    Nat.card (RingAut i)=Nat.card (AdmissibleEntries i) :=
+  Nat.card_congr (ringAutEquivEntries i)
+
+end Kourovka.Finite.FullAutomorphisms

@@ -1,0 +1,787 @@
+--- original/Kourovka/Ambient/Bilinear.lean
++++ Kourovka/Ambient/Bilinear.lean
+@@ -19,11 +19,15 @@
+         exact Sparse.fromTerms_smul_right exportedTerms a u v }
+   map_add' := by
+     intro u v
+-    ext w k
++    apply LinearMap.ext
++    intro w
++    funext k
+     exact congrFun (Sparse.fromTerms_add_left exportedTerms u v w) k
+   map_smul' := by
+     intro a u
+-    ext v k
++    apply LinearMap.ext
++    intro v
++    funext k
+     exact congrFun (Sparse.fromTerms_smul_left exportedTerms a u v) k
+ 
+ theorem B_apply (u v : V R) : B u v = Sparse.bracket u v := rfl
+@@ -35,7 +39,7 @@
+   have h := alternating (u + v)
+   simp only [map_add, LinearMap.add_apply, alternating] at h
+   apply eq_neg_iff_add_eq_zero.mpr
+-  simpa only [zero_add, add_zero] using h
++  simpa only [zero_add, add_zero, add_comm] using h
+ 
+ variable {S : Type*} [CommRing S]
+ 
+--- original/Kourovka/Certificates/DerivationMatrix.lean
++++ Kourovka/Certificates/DerivationMatrix.lean
+@@ -1,19 +1,23 @@
+ /- Uncompiled source. Sound derivation-matrix construction from the actual bracket. -/
+ import Kourovka.Linear.EndomorphismCoordinates
+-import Kourovka.Lattice.Integral
++import Kourovka.Lattice.ScaledData
+ import Mathlib.LinearAlgebra.Matrix.ToLin
+ 
+ namespace Kourovka.Certificates
+ open Kourovka.Linear Kourovka.Ambient
+ open scoped BigOperators
++set_option maxRecDepth 20000
++set_option maxHeartbeats 2000000
+ 
+ abbrev Pair := {p : I × I // p.1 < p.2}
+ abbrev Row := Pair × I
+ abbrev Col := I × I
+ 
+-theorem num_pairs : Fintype.card Pair = 465 := by decide
+-theorem num_rows : Fintype.card Row = 14415 := by decide
+-theorem num_cols : Fintype.card Col = 961 := by decide
++theorem num_pairs : Fintype.card Pair = 465 := by decide +kernel
++theorem num_rows : Fintype.card Row = 14415 := by
++  simp [Row, Fintype.card_prod, num_pairs, I]
++theorem num_cols : Fintype.card Col = 961 := by
++  simp [Col, Fintype.card_prod, I]
+ 
+ variable {R : Type*} [CommRing R]
+ 
+@@ -42,7 +46,7 @@
+   map_smul' := by
+     intro c d
+     funext row
+-    simp only [Pi.smul_apply,smul_eq_mul,Finset.mul_sum]
++    simp only [Pi.smul_apply,smul_eq_mul,Finset.mul_sum,RingHom.id_apply]
+     apply Finset.sum_congr rfl
+     intro col hcol
+     ring
+@@ -54,7 +58,8 @@
+   change (∑ col, derivationMatrix b row col * d col) = _
+   have hh : delta b (fromEntries d) =
+       ∑ col : Col, d col • delta b (elementary col.1 col.2) := by
+-    change delta b (∑ col : Col, d col • elementary col.1 col.2) = _
++    have hexpand : fromEntries d = ∑ col : Col, d col • elementary col.1 col.2 := rfl
++    rw [hexpand]
+     simp only [map_sum,map_smul]
+   rw [hh]
+   simp only [LinearMap.sum_apply,LinearMap.smul_apply,Finset.sum_apply,
+@@ -67,7 +72,7 @@
+     b u v = -b v u := by
+   have hh := halt (u+v)
+   simp only [map_add,LinearMap.add_apply,halt,zero_add,add_zero] at hh
+-  exact eq_neg_iff_add_eq_zero.mpr hh
++  exact eq_neg_iff_add_eq_zero.mpr (by simpa only [add_comm] using hh)
+ 
+ theorem delta_alternating (b : Bilinear R (V R)) (halt : ∀ u, b u u = 0)
+     (D : V R →ₗ[R] V R) (u : V R) : delta b D u u = 0 := by
+@@ -97,7 +102,7 @@
+     have hh : delta b D (unitVec j) (unitVec i) = 0 := by
+       funext k
+       exact h (⟨(j,i),hji⟩,k)
+-    simp only [hh,neg_zero]
++    simp only [hh,neg_zero,LinearMap.zero_apply]
+ 
+ def DerivationCondition (b : Bilinear R (V R)) (D : V R →ₗ[R] V R) : Prop :=
+   ∀ u v, D (b u v) = b (D u) v + b u (D v)
+@@ -106,7 +111,11 @@
+     DerivationCondition b D ↔ delta b D = 0 := by
+   constructor
+   · intro h
+-    ext u v
++    apply LinearMap.ext
++    intro u
++    apply LinearMap.ext
++    intro v
++    change delta b D u v = 0
+     rw [delta_apply,h]
+     abel
+   · intro h u v
+--- original/Kourovka/Certificates/DiagonalKernel.lean
++++ Kourovka/Certificates/DiagonalKernel.lean
+@@ -12,7 +12,7 @@
+ def diagonalMap (a : ι → R) : (ι → R) →ₗ[R] (ι → R) where
+   toFun x := fun j => a j*x j
+   map_add' := by intro x y; funext j; simp only [Pi.add_apply,mul_add]
+-  map_smul' := by intro c x; funext j; simp only [Pi.smul_apply,smul_eq_mul]; ring
++  map_smul' := by intro c x; funext j; simp only [Pi.smul_apply,smul_eq_mul,RingHom.id_apply]; ring
+ 
+ /-- The actual complete solution set separates coordinatewise. -/
+ def diagonalKernelEquiv (a : ι → R) :
+--- original/Kourovka/Certificates/Elementary.lean
++++ Kourovka/Certificates/Elementary.lean
+@@ -30,12 +30,12 @@
+   left_inv := by
+     intro x; funext k
+     by_cases hk : k=i
+-    · subst k; simp [shearFun,hij,Ne.symm hij]; ring
++    · subst k; simp [shearFun,hij,Ne.symm hij]
+     · simp [shearFun,hk]
+   right_inv := by
+     intro x; funext k
+     by_cases hk : k=i
+-    · subst k; simp [shearFun,hij,Ne.symm hij]; ring
++    · subst k; simp [shearFun,hij,Ne.symm hij]
+     · simp [shearFun,hk]
+   map_add' := by
+     intro x y; funext k
+@@ -126,10 +126,13 @@
+   exact (Nat.card_congr e).symm
+ 
+ /-- Negative test: 3 is not a unit modulo 9, regardless of the proposed inverse. -/
+-theorem rejects_nonunit : decode (R:=ZMod 9) (.mul (0:Fin 2) 3 3) = none := by decide
++theorem rejects_nonunit : decode (R:=ZMod 9) (.mul (0:Fin 2) 3 3) = none := by
++  have h : (3 : ZMod 9) * 3 ≠ 1 := by decide
++  simp [decode, h]
+ 
+ /-- Negative test: adding a coordinate to itself is not silently treated as an invertible shear. -/
+-theorem rejects_same_coordinate : decode (R:=ZMod 9) (.add (0:Fin 2) 0 1) = none := by decide
++theorem rejects_same_coordinate : decode (R:=ZMod 9) (.add (0:Fin 2) 0 1) = none := by
++  simp [decode]
+ 
+ /-- Positive test over a composite ring, without any Field instance. -/
+ theorem accepts_unit : (decode (R:=ZMod 9) (.mul (0:Fin 2) 2 5)).isSome = true := by decide
+--- original/Kourovka/Certificates/Indexing.lean
++++ Kourovka/Certificates/Indexing.lean
+@@ -2,6 +2,7 @@
+ import Kourovka.Certificates.DerivationMatrix
+ import Mathlib.Logic.Equiv.Fin.Basic
+ namespace Kourovka.Certificates
++open Kourovka.Ambient
+ set_option maxRecDepth 100000
+ set_option maxHeartbeats 20000000
+ 
+@@ -472,19 +473,19 @@
+   (28, 30),
+   (29, 30)]
+ 
+-theorem pairData_ordered : ∀ i, (pairData i).1 < (pairData i).2 := by decide
++theorem pairData_ordered : ∀ i, (pairData i).1 < (pairData i).2 := by decide +kernel
+ 
+ def pairAt (i : Fin 465) : Pair := ⟨pairData i,pairData_ordered i⟩
+ 
+ def pairNumberNat (p : Pair) : Nat :=
+   p.val.1.val * (61-p.val.1.val) / 2 + (p.val.2.val-p.val.1.val-1)
+ 
+-theorem pairNumber_bound : ∀ p, pairNumberNat p < 465 := by decide
++theorem pairNumber_bound : ∀ p, pairNumberNat p < 465 := by decide +kernel
+ 
+ def pairNumber (p : Pair) : Fin 465 := ⟨pairNumberNat p,pairNumber_bound p⟩
+ 
+-theorem number_at : ∀ i, pairNumber (pairAt i) = i := by decide
+-theorem at_number : ∀ p, pairAt (pairNumber p) = p := by decide
++theorem number_at : ∀ i, pairNumber (pairAt i) = i := by decide +kernel
++theorem at_number : ∀ p, pairAt (pairNumber p) = p := by decide +kernel
+ 
+ def pairEquiv : Fin 465 ≃ Pair :=
+   ⟨pairAt,pairNumber,number_at,at_number⟩
+--- original/Kourovka/Certificates/InnerScalarExtension.lean
++++ Kourovka/Certificates/InnerScalarExtension.lean
+@@ -35,7 +35,7 @@
+     simp [mul_add,Finset.sum_add_distrib]
+   map_smul' := by
+     intro c D; funext i
+-    simp only [map_smul,Pi.smul_apply,smul_eq_mul,Finset.mul_sum]
++    simp only [map_smul,Pi.smul_apply,smul_eq_mul,Finset.mul_sum,RingHom.id_apply]
+     apply Finset.sum_congr rfl
+     intro j hj
+     ring
+@@ -76,7 +76,7 @@
+     LinearMap.ker_eq_bot.mpr (extendedInnerKernel_injective F)
+   have hr := (extendedInnerKernel F).finrank_range_add_finrank_ker
+   have hd : Module.finrank F (Param→F)=30 := by simp [Param,Module.finrank_pi]
+-  rw [hk,Submodule.finrank_bot,add_zero,hd] at hr
++  rw [hk,finrank_bot,add_zero,hd] at hr
+   have hle := (LinearMap.range (extendedInnerKernel F)).finrank_le
+   rw [hr] at hle
+   exact hle
+--- original/Kourovka/Certificates/KernelTransport.lean
++++ Kourovka/Certificates/KernelTransport.lean
+@@ -1,5 +1,5 @@
+ /- Uncompiled source. Sound kernel transport under invertible row/column operations. -/
+-import Mathlib.LinearAlgebra.Basic
++import Mathlib.Algebra.Module.Equiv.Basic
+ import Mathlib.SetTheory.Cardinal.Finite
+ 
+ namespace Kourovka.Certificates
+@@ -25,7 +25,9 @@
+ def kernelPreEquiv (K : U →ₗ[R] V) (B : W ≃ₗ[R] U) :
+     KernelSet (K.comp B.toLinearMap) ≃ KernelSet K where
+   toFun x := ⟨B x.val,x.property⟩
+-  invFun x := ⟨B.symm x.val,by simpa only [LinearMap.comp_apply,B.apply_symm_apply] using x.property⟩
++  invFun x := ⟨B.symm x.val,by
++    change K (B (B.symm x.val)) = 0
++    simpa only [B.apply_symm_apply] using x.property⟩
+   left_inv := by intro x; apply Subtype.ext; exact B.symm_apply_apply x.val
+   right_inv := by intro x; apply Subtype.ext; exact B.apply_symm_apply x.val
+ 
+--- original/Kourovka/Certificates/ScalarKernel.lean
++++ Kourovka/Certificates/ScalarKernel.lean
+@@ -20,9 +20,10 @@
+ 
+ section
+ variable (c q : Nat) (hc : 0 < c) (hq : 0 < q)
+-local instance : NeZero (c*q) := ⟨ne_of_gt (Nat.mul_pos hc hq)⟩
++include hc hq
+ 
+ private theorem kernel_divisible (x : Carrier c q) : q ∣ x.val.val := by
++  letI : NeZero (c*q) := ⟨ne_of_gt (Nat.mul_pos hc hq)⟩
+   apply (cancel_nat_dvd c q x.val.val hc).mp
+   apply (CharP.cast_eq_zero_iff (ZMod (c*q)) (c*q) (c*x.val.val)).mp
+   simpa only [Nat.cast_mul,ZMod.natCast_zmod_val] using x.property
+@@ -32,28 +33,30 @@
+   simpa only [Nat.mul_comm q c] using h
+ 
+ /-- Explicit representatives are q*t, with 0 <= t < c. -/
+-def equivFin : Carrier c q ≃ Fin c where
+-  toFun x := ⟨x.val.val/q, by
+-    apply (Nat.div_lt_iff_lt_mul hq).mpr
+-    exact ZMod.val_lt x.val⟩
+-  invFun t := ⟨(q*t.val : Nat), by
+-    have hzero : ((c*q : Nat) : ZMod (c*q)) = 0 := ZMod.natCast_self _
+-    calc
+-      (c : ZMod (c*q)) * (q*t.val : Nat) =
+-        ((c*q : Nat) : ZMod (c*q)) * t.val := by push_cast; ring
+-      _ = 0 := by rw [hzero,zero_mul]⟩
+-  left_inv := by
+-    intro x
+-    apply Subtype.ext
+-    change ((q*(x.val.val/q) : Nat) : ZMod (c*q)) = x.val
+-    rw [Nat.mul_div_cancel' (kernel_divisible c q hc hq x)]
+-    exact ZMod.natCast_zmod_val x.val
+-  right_inv := by
+-    intro t
+-    apply Fin.ext
+-    change (((q*t.val : Nat) : ZMod (c*q)).val/q) = t.val
+-    rw [ZMod.val_natCast_of_lt (multiple_bound c q hc hq t)]
+-    exact Nat.mul_div_right t.val hq
++def equivFin : Carrier c q ≃ Fin c := by
++  letI : NeZero (c*q) := ⟨ne_of_gt (Nat.mul_pos hc hq)⟩
++  exact {
++    toFun x := ⟨x.val.val/q, by
++      apply (Nat.div_lt_iff_lt_mul hq).mpr
++      exact ZMod.val_lt x.val⟩
++    invFun t := ⟨(q*t.val : Nat), by
++      have hzero : ((c*q : Nat) : ZMod (c*q)) = 0 := ZMod.natCast_self _
++      calc
++        (c : ZMod (c*q)) * (q*t.val : Nat) =
++          ((c*q : Nat) : ZMod (c*q)) * t.val := by push_cast; ring
++        _ = 0 := by rw [hzero,zero_mul]⟩
++    left_inv := by
++      intro x
++      apply Subtype.ext
++      change ((q*(x.val.val/q) : Nat) : ZMod (c*q)) = x.val
++      rw [Nat.mul_div_cancel' (kernel_divisible c q hc hq x)]
++      exact ZMod.natCast_zmod_val x.val
++    right_inv := by
++      intro t
++      apply Fin.ext
++      change (((q*t.val : Nat) : ZMod (c*q)).val/q) = t.val
++      rw [ZMod.val_natCast_of_lt (multiple_bound c q hc hq t)]
++      exact Nat.mul_div_right t.val hq }
+ 
+ /-- This cardinality includes the c=1 and q=1 boundary cases. -/
+ theorem card : Nat.card (Carrier c q) = c := by
+@@ -67,7 +70,9 @@
+     Nat.card {x : ZMod (p^i) // (p^v : Nat) * x = 0} = p^v := by
+   have he : p^v * p^(i-v) = p^i := by rw [← pow_add,Nat.add_sub_of_le hv]
+   have h := card (p^v) (p^(i-v)) (pow_pos hp _) (pow_pos hp _)
+-  simpa only [Carrier,he] using h
++  unfold Carrier at h
++  rw [he] at h
++  exact h
+ 
+ /-- A zero diagonal position contributes the entire coefficient ring. -/
+ def zeroKernelEquiv (R : Type*) [Semiring R] : {x : R // (0:R)*x=0} ≃ R where
+--- original/Kourovka/Challenge.lean
++++ Kourovka/Challenge.lean
+@@ -3,7 +3,7 @@
+ No custom automorphism type is used. No BCH group instance is postulated.
+ -/
+ import Kourovka.Parameters
+-import Mathlib.GroupTheory.Automorphism
++import Mathlib.Algebra.Group.End
+ import Mathlib.SetTheory.Cardinal.Finite
+ import Mathlib.Algebra.Ring.Parity
+ 
+--- original/Kourovka/Finite/AdditiveLinear.lean
++++ Kourovka/Finite/AdditiveLinear.lean
+@@ -1,6 +1,6 @@
+ /- Uncompiled source. Why additive automorphisms over ZMod(n) are not being omitted. -/
+ import Mathlib.Data.ZMod.Basic
+-import Mathlib.LinearAlgebra.Basic
++import Mathlib.Algebra.Module.Equiv.Basic
+ import Mathlib.Tactic
+ 
+ namespace Kourovka.Finite
+@@ -20,6 +20,7 @@
+     have hcast' (v : VecAt n e) : (z : ZMod n) • v = z • v := by
+       funext i
+       simp [smul_eq_mul,zsmul_eq_mul]
++    change F ((z : ZMod n) • x) = (z : ZMod n) • F x
+     rw [hcast,hcast']
+     exact F.map_zsmul x z
+ 
+--- original/Kourovka/Finite/BracketTrees.lean
++++ Kourovka/Finite/BracketTrees.lean
+@@ -32,7 +32,7 @@
+ 
+ theorem length_pos (t : BracketTree V) : 0 < t.length := by
+   induction t with
+-  | leaf a => decide
++  | leaf a => exact Nat.zero_lt_one
+   | node a b ha hb => dsimp [length]; omega
+ 
+ variable {S : Type*} [CommRing S]
+--- original/Kourovka/Finite/Coordinates.lean
++++ Kourovka/Finite/Coordinates.lean
+@@ -36,7 +36,7 @@
+   constructor
+   · intro h j
+     have hh := congrFun h j
+-    exact (ZMod.intCast_zmod_eq_zero_iff_dvd (a j) (1009^i)).mp
++    simpa using (ZMod.intCast_zmod_eq_zero_iff_dvd (a j) (1009^i)).mp
+       (by simpa [reduce,mapVec] using hh)
+   · intro h
+     funext j
+--- original/Kourovka/Finite/Nilpotency.lean
++++ Kourovka/Finite/Nilpotency.lean
+@@ -1,6 +1,7 @@
+ /- Uncompiled source. The length-847 vanishing theorem is proved from the exact integral embedding. -/
+ import Kourovka.Finite.Coordinates
+ import Kourovka.Finite.BracketTrees
++import Kourovka.Lattice.AdaptedBasis
+ import Mathlib.Algebra.Lie.Nilpotent
+ 
+ namespace Kourovka.Finite
+@@ -63,21 +64,21 @@
+     { toFun := fun b => ⁅a,b⁆
+       map_add' := lie_add a
+       map_smul' := by intro c v; exact lie_smul c a v }
+-  map_add' := by intro a b; ext c; exact add_lie a b c
+-  map_smul' := by intro c a; ext b; exact smul_lie c a b
++  map_add' := by intro a b; apply LinearMap.ext; intro c; exact add_lie a b c
++  map_smul' := by intro c a; apply LinearMap.ext; intro b; exact smul_lie c a b
+ 
+ /-- All shapes of bracket monomials, closed under linear combinations. -/
+ def wordSpan (n : Nat) : Submodule R M :=
+-  Submodule.span R {a | ∃ t : BracketTree M, n ≤ t.length ∧ t.eval standardB = a}
++  Submodule.span R {a | ∃ t : BracketTree M, n ≤ t.length ∧ t.eval (standardB (R := R)) = a}
+ 
+-theorem bracket_mem_wordSpan (n : Nat) (a b : M) (hb : b ∈ wordSpan n) :
+-    ⁅a,b⁆ ∈ wordSpan (n+1) := by
++theorem bracket_mem_wordSpan (n : Nat) (a b : M) (hb : b ∈ wordSpan (R := R) n) :
++    ⁅a,b⁆ ∈ wordSpan (R := R) (n+1) := by
+   induction hb using Submodule.span_induction with
+   | mem b hb =>
+       obtain ⟨t,ht,rfl⟩ := hb
+       apply Submodule.subset_span
+       exact ⟨BracketTree.node (BracketTree.leaf a) t, by simp only [BracketTree.length]; omega, rfl⟩
+-  | zero => simpa only [lie_zero] using (wordSpan (n+1)).zero_mem
++  | zero => simpa only [lie_zero] using (wordSpan (R := R) (n+1)).zero_mem
+   | add b c hb hc ihb ihc =>
+       rw [lie_add]
+       exact Submodule.add_mem _ ihb ihc
+@@ -87,12 +88,12 @@
+ 
+ /-- Lower-central term n is spanned by words with at least n+1 leaves. -/
+ theorem lowerCentral_le_wordSpan (n : Nat) :
+-    (LieModule.lowerCentralSeries R M M n).toSubmodule ≤ wordSpan (n+1) := by
++    (LieModule.lowerCentralSeries R M M n).toSubmodule ≤ wordSpan (R := R) (n+1) := by
+   induction n with
+   | zero =>
+       intro a ha
+       apply Submodule.subset_span
+-      exact ⟨BracketTree.leaf a,by decide,rfl⟩
++      exact ⟨BracketTree.leaf a,by exact Nat.le_refl 1,rfl⟩
+   | succ n ih =>
+       rw [LieModule.lowerCentralSeries_succ,LieSubmodule.lieIdeal_oper_eq_linear_span']
+       apply Submodule.span_le.mpr
+@@ -100,11 +101,11 @@
+       exact bracket_mem_wordSpan (n+1) b c (ih hc)
+ 
+ theorem lowerCentral_eq_bot_of_words (n : Nat)
+-    (h : ∀ t : BracketTree M, n+1 ≤ t.length → t.eval standardB = 0) :
++    (h : ∀ t : BracketTree M, n+1 ≤ t.length → t.eval (standardB (R := R)) = 0) :
+     LieModule.lowerCentralSeries R M M n = ⊥ := by
+-  apply LieSubmodule.eq_bot_iff.mpr
++  apply (LieSubmodule.eq_bot_iff _).mpr
+   intro a ha
+-  have hspan : wordSpan (n+1) ≤ (⊥ : Submodule R M) := by
++  have hspan : wordSpan (R := R) (n+1) ≤ (⊥ : Submodule R M) := by
+     apply Submodule.span_le.mpr
+     rintro a ⟨t,ht,rfl⟩
+     simpa only [Submodule.mem_bot] using h t ht
+--- original/Kourovka/Finite/PadicQuotient.lean
++++ Kourovka/Finite/PadicQuotient.lean
+@@ -10,13 +10,13 @@
+ abbrev Ell := V O
+ 
+ /-- Coefficientwise canonical p-adic reduction, not a chosen integer approximation. -/
+-def reduction (i:Nat) : Ell →+ LAt i where
++noncomputable def reduction (i:Nat) : Ell →+ LAt i where
+   toFun x := fun j => PadicInt.toZModPow i (x j)
+   map_zero' := by funext j; exact map_zero _
+   map_add' := by intro x y; funext j; exact map_add _ _ _
+ 
+ /-- Integer representatives provide a right inverse as a function, not a ring homomorphism. -/
+-def sectionMap (i:Nat) (x:LAt i) : Ell := fun j => (x j).val
++noncomputable def sectionMap (i:Nat) (x:LAt i) : Ell := fun j => (x j).val
+ 
+ theorem reduction_section (i:Nat) (x:LAt i) : reduction i (sectionMap i x)=x := by
+   funext j
+@@ -30,6 +30,7 @@
+     PadicInt.toZModPow i a=0 ↔ (1009:O)^i ∣ a := by
+   change a∈RingHom.ker (PadicInt.toZModPow i) ↔ _
+   rw [PadicInt.ker_toZModPow,Ideal.mem_span_singleton]
++  norm_cast
+ 
+ /-- The kernel is exactly p^i times the ell-coordinate lattice, in both directions. -/
+ theorem reduction_zero_iff (i:Nat) (x:Ell) :
+--- original/Kourovka/Lattice/AdaptedBasis.lean
++++ Kourovka/Lattice/AdaptedBasis.lean
+@@ -1,5 +1,5 @@
+ /- Uncompiled source. The exact unimodular change of basis and its explicit inverse. -/
+-import Kourovka.Ambient.Lie
++import Kourovka.Ambient.Bilinear
+ import Kourovka.Linear.BilinearOps
+ 
+ namespace Kourovka.Lattice
+@@ -84,7 +84,8 @@
+   rw [← map_smul]
+   apply congrArg P
+   funext i
+-  simp only [diagonal, degree, b, pow_add, Pi.smul_apply, smul_eq_mul]
++  change (1009 : Int)^degree i * a i = (1009 : Int)^2 * ((1009 : Int)^weight i * a i)
++  rw [degree, pow_add]
+   ring
+ 
+ /-- A bounded-index saturation estimate; no invalid cancellation modulo p^i is used. -/
+--- original/Kourovka/Lattice/Integral.lean
++++ Kourovka/Lattice/Integral.lean
+@@ -1,4 +1,5 @@
+ /- Uncompiled source. Actual integral embedding, followed by Jacobi and base change. -/
++import Kourovka.Ambient.Lie
+ import Kourovka.Lattice.Checks.Chunk00
+ import Kourovka.Lattice.Checks.Chunk01
+ import Kourovka.Lattice.Checks.Chunk02
+--- original/Kourovka/Lattice/NearIdentity.lean
++++ Kourovka/Lattice/NearIdentity.lean
+@@ -2,6 +2,7 @@
+ An endomorphism small in the ambient B basis need not be p times an endomorphism
+ in the ell basis. The loss of two powers is proved from the actual embedding. -/
+ import Kourovka.Finite.Coordinates
++import Kourovka.Lattice.AdaptedBasis
+ import Kourovka.Analytic.NilpotentUnit
+ 
+ namespace Kourovka.Lattice.NearIdentity
+--- original/Kourovka/Lattice/Precision.lean
++++ Kourovka/Lattice/Precision.lean
+@@ -122,7 +122,7 @@
+     (hE : ∀ u, u ∈ B → ∀ v, v ∈ B → Q (b u v)-b (Q u) (Q v) ∈ B) :
+     ∀ u, u ∈ B → Q u ∈ B := by
+   have hh : B ≤ B.comap Q := by
+-    rw [← hgen]
++    nth_rw 1 [← hgen]
+     apply Submodule.span_le.mpr
+     rintro a ⟨e,rfl⟩
+     exact Expr.approximate_map_mem B b hB Q x y hx hy hQx hQy hE e
+@@ -137,7 +137,7 @@
+       D (b u v)-b (D u) v-b u (D v) ∈ B) :
+     ∀ u, u ∈ B → D u ∈ B := by
+   have hh : B ≤ B.comap D := by
+-    rw [← hgen]
++    nth_rw 1 [← hgen]
+     apply Submodule.span_le.mpr
+     rintro a ⟨e,rfl⟩
+     exact Expr.approximate_derivation_mem B b hB D x y hx hy hDx hDy hE e
+--- original/Kourovka/Lattice/ScaledData.lean
++++ Kourovka/Lattice/ScaledData.lean
+@@ -208,7 +208,7 @@
+ variable {R : Type*} [CommRing R]
+ 
+ /-- The bracket in the paper's ell basis, including all 199 skew-half entries. -/
+-def LB : Bilinear R (V R) := Sparse.bilinear scaledTerms
++def LB : V R →ₗ[R] V R →ₗ[R] V R := Sparse.bilinear scaledTerms
+ 
+ theorem LB_alternating (a : V R) : LB a a = 0 := Sparse.fromTerms_self scaledTerms a
+ 
+--- original/Kourovka/Lattice/WeightedFlags.lean
++++ Kourovka/Lattice/WeightedFlags.lean
+@@ -31,7 +31,8 @@
+   obtain ⟨z,hz⟩ := h
+   have he : b=a+(b-a-1)+1 := by omega
+   have hpow : p^b=p^a*(p*p^(b-a-1)) := by
+-    rw [he,pow_add,pow_add,pow_one]
++    nth_rw 1 [he]
++    rw [pow_add,pow_add,pow_one]
+     ring
+   refine ⟨p^(b-a-1)*z,?_⟩
+   apply mul_left_cancel₀ (pow_ne_zero _ hp)
+--- original/Kourovka/Linear/Basis.lean
++++ Kourovka/Linear/Basis.lean
+@@ -63,29 +63,37 @@
+         { toFun := fun w => b u (b v w) - b (b u v) w - b v (b u w)
+           map_add' := by
+             intro w z
+-            simp only [map_add, LinearMap.add_apply]
++            simp only [LinearMap.coe_mk, AddHom.coe_mk, map_add, LinearMap.add_apply]
+             abel
+           map_smul' := by
+             intro a w
+-            simp only [map_smul, LinearMap.smul_apply, smul_sub, RingHom.id_apply] }
++            simp only [LinearMap.coe_mk, AddHom.coe_mk, map_smul, LinearMap.smul_apply, smul_sub, RingHom.id_apply] }
+       map_add' := by
+         intro v z
+-        ext w
+-        simp only [map_add, LinearMap.add_apply]
++        apply LinearMap.ext
++        intro w
++        simp only [LinearMap.coe_mk, AddHom.coe_mk, map_add, LinearMap.add_apply]
+         abel
+       map_smul' := by
+         intro a v
+-        ext w
+-        simp only [map_smul, LinearMap.smul_apply, smul_sub, RingHom.id_apply] }
++        apply LinearMap.ext
++        intro w
++        simp only [LinearMap.coe_mk, AddHom.coe_mk, map_smul, LinearMap.smul_apply, smul_sub, RingHom.id_apply] }
+   map_add' := by
+     intro u z
+-    ext v w
+-    simp only [map_add, LinearMap.add_apply]
++    apply LinearMap.ext
++    intro v
++    apply LinearMap.ext
++    intro w
++    simp only [LinearMap.coe_mk, AddHom.coe_mk, map_add, LinearMap.add_apply]
+     abel
+   map_smul' := by
+     intro a u
+-    ext v w
+-    simp only [map_smul, LinearMap.smul_apply, smul_sub, RingHom.id_apply]
++    apply LinearMap.ext
++    intro v
++    apply LinearMap.ext
++    intro w
++    simp only [LinearMap.coe_mk, AddHom.coe_mk, map_smul, LinearMap.smul_apply, smul_sub, RingHom.id_apply]
+ 
+ /-- A finite basis certificate implies the identity for every vector over R. -/
+ theorem jacobi_of_basis (b : (I → R) →ₗ[R] (I → R) →ₗ[R] (I → R))
+--- original/Kourovka/Linear/BilinearOps.lean
++++ Kourovka/Linear/BilinearOps.lean
+@@ -11,13 +11,13 @@
+ 
+ def post (F : V →ₗ[R] V) (b : Bilinear R V) : Bilinear R V where
+   toFun u := F.comp (b u)
+-  map_add' := by intro u v; ext w; simp
+-  map_smul' := by intro c u; ext w; simp
++  map_add' := by intro u v; apply LinearMap.ext; intro w; simp
++  map_smul' := by intro c u; apply LinearMap.ext; intro w; simp
+ 
+ def pre (b : Bilinear R V) (F G : V →ₗ[R] V) : Bilinear R V where
+   toFun u := (b (F u)).comp G
+-  map_add' := by intro u v; ext w; simp
+-  map_smul' := by intro c u; ext w; simp
++  map_add' := by intro u v; apply LinearMap.ext; intro w; simp
++  map_smul' := by intro c u; apply LinearMap.ext; intro w; simp
+ 
+ @[simp] theorem post_apply (F : V →ₗ[R] V) (b : Bilinear R V) (u v : V) :
+     post F b u v = F (b u v) := rfl
+@@ -46,15 +46,21 @@
+   toFun D := post D b - pre b D LinearMap.id - pre b LinearMap.id D
+   map_add' := by
+     intro D E
+-    ext u v
++    apply LinearMap.ext
++    intro u
++    apply LinearMap.ext
++    intro v
+     simp only [post_apply, pre_apply, LinearMap.add_apply, LinearMap.sub_apply,
+       LinearMap.id_apply, map_add]
+     abel
+   map_smul' := by
+     intro a D
+-    ext u v
++    apply LinearMap.ext
++    intro u
++    apply LinearMap.ext
++    intro v
+     simp only [post_apply, pre_apply, LinearMap.smul_apply, LinearMap.sub_apply,
+-      LinearMap.id_apply, map_smul, smul_sub]
++      LinearMap.id_apply, map_smul, smul_sub, RingHom.id_apply]
+ 
+ @[simp] theorem delta_apply (b : Bilinear R V) (D : V →ₗ[R] V) (u v : V) :
+     delta b D u v = D (b u v) - b (D u) v - b u (D v) := rfl
+@@ -71,11 +77,15 @@
+       map_smul' := by intro a v; exact fromTerms_smul_right ts a u v }
+   map_add' := by
+     intro u v
+-    ext w k
++    apply LinearMap.ext
++    intro w
++    funext k
+     exact congrFun (fromTerms_add_left ts u v w) k
+   map_smul' := by
+     intro a u
+-    ext v k
++    apply LinearMap.ext
++    intro v
++    funext k
+     exact congrFun (fromTerms_smul_left ts a u v) k
+ 
+ end Kourovka.Sparse
+--- original/Kourovka/Parameters.lean
++++ Kourovka/Parameters.lean
+@@ -4,6 +4,7 @@
+ -/
+ import Mathlib.Data.ZMod.Basic
+ import Mathlib.Tactic.NormNum
++import Mathlib.Tactic.NormNum.Prime
+ 
+ namespace Kourovka
+ 
+--- original/Kourovka/TableCertificate.lean
++++ Kourovka/TableCertificate.lean
+@@ -1,16 +1,123 @@
+-/-
+-UNCOMPILED computational proof attempt. Ordinary `decide` is intended to
+-produce a kernel-checked proof of exact equality of the two integer lists.
+-No acceptance or runtime is claimed. This module must be benchmarked first.
+--/
++/- Exact comparison of the original transvectant formula with the exported integer
++   table. Finite comparisons are split by their first index to bound kernel
++   reduction memory. Every comparison uses ordinary kernel reduction. -/
+ import Kourovka.RawCoefficients
+ import Kourovka.ExportedData
+ 
+ namespace Kourovka
++namespace TableCertificate
+ 
+-set_option maxRecDepth 20000 in
+-set_option maxHeartbeats 8000000 in
++def row (i : Nat) : List (Nat × Nat × Nat × Int) :=
++  (List.range 31).flatMap fun j =>
++    if i < j then
++      (List.range 31).flatMap fun k =>
++        let c := Raw.coefficient i j k
++        if c = 0 then [] else [(i, j, k, c)]
++    else []
++
++set_option Elab.async false
++set_option maxRecDepth 20000
++set_option maxHeartbeats 8000000
++
++theorem row_0 : row 0 = [(0, 1, 1, 2), (0, 2, 2, -2), (0, 3, 3, 6), (0, 4, 4, 4), (0, 5, 5, 2), (0, 7, 7, -2), (0, 8, 8, -4), (0, 9, 9, -6), (0, 10, 10, 4), (0, 11, 11, 2), (0, 13, 13, -2), (0, 14, 14, -4), (0, 15, 15, 6), (0, 16, 16, 4), (0, 17, 17, 2), (0, 19, 19, -2), (0, 20, 20, -4), (0, 21, 21, -6), (0, 22, 22, 2), (0, 24, 24, -2), (0, 25, 25, 4), (0, 26, 26, 2), (0, 28, 28, -2), (0, 29, 29, -4)] := by
++  decide +kernel
++
++theorem row_1 : row 1 = [(1, 2, 0, 1), (1, 4, 3, 1), (1, 5, 4, 2), (1, 6, 5, 3), (1, 7, 6, 4), (1, 8, 7, 5), (1, 9, 8, 6), (1, 11, 10, 1), (1, 12, 11, 2), (1, 13, 12, 3), (1, 14, 13, 4), (1, 16, 15, 1), (1, 17, 16, 2), (1, 18, 17, 3), (1, 19, 18, 4), (1, 20, 19, 5), (1, 21, 20, 6), (1, 23, 22, 1), (1, 24, 23, 2), (1, 26, 25, 1), (1, 27, 26, 2), (1, 28, 27, 3), (1, 29, 28, 4)] := by
++  decide +kernel
++
++theorem row_2 : row 2 = [(2, 3, 4, 6), (2, 4, 5, 5), (2, 5, 6, 4), (2, 6, 7, 3), (2, 7, 8, 2), (2, 8, 9, 1), (2, 10, 11, 4), (2, 11, 12, 3), (2, 12, 13, 2), (2, 13, 14, 1), (2, 15, 16, 6), (2, 16, 17, 5), (2, 17, 18, 4), (2, 18, 19, 3), (2, 19, 20, 2), (2, 20, 21, 1), (2, 22, 23, 2), (2, 23, 24, 1), (2, 25, 26, 4), (2, 26, 27, 3), (2, 27, 28, 2), (2, 28, 29, 1)] := by
++  decide +kernel
++
++theorem row_3 : row 3 = [(3, 6, 15, 720), (3, 7, 16, 2880), (3, 8, 17, 7200), (3, 9, 18, 14400), (3, 14, 22, 8640), (3, 20, 22, 86400), (3, 21, 23, 518400), (3, 29, 22, 8640)] := by
++  decide +kernel
++
++theorem row_4 : row 4 = [(4, 5, 15, -480), (4, 6, 16, -720), (4, 8, 18, 2400), (4, 9, 19, 7200), (4, 13, 22, -1440), (4, 14, 23, 2880), (4, 19, 22, -28800), (4, 20, 23, -57600), (4, 21, 24, 86400), (4, 28, 22, -1440), (4, 29, 23, 2880)] := by
++  decide +kernel
++
++theorem row_5 : row 5 = [(5, 6, 17, -720), (5, 7, 18, -960), (5, 9, 20, 2880), (5, 12, 22, 576), (5, 13, 23, -1152), (5, 14, 24, 576), (5, 18, 22, 17280), (5, 19, 23, 11520), (5, 20, 24, -28800), (5, 27, 22, 576), (5, 28, 23, -1152), (5, 29, 24, 576)] := by
++  decide +kernel
++
++theorem row_6 : row 6 = [(6, 7, 19, -720), (6, 8, 20, -720), (6, 9, 21, 720), (6, 11, 22, -432), (6, 12, 23, 864), (6, 13, 24, -432), (6, 17, 22, -17280), (6, 19, 24, 17280), (6, 26, 22, -432), (6, 27, 23, 864), (6, 28, 24, -432)] := by
++  decide +kernel
++
++theorem row_7 : row 7 = [(7, 8, 21, -480), (7, 10, 22, 576), (7, 11, 23, -1152), (7, 12, 24, 576), (7, 16, 22, 28800), (7, 17, 23, -11520), (7, 18, 24, -17280), (7, 25, 22, 576), (7, 26, 23, -1152), (7, 27, 24, 576)] := by
++  decide +kernel
++
++theorem row_8 : row 8 = [(8, 10, 23, 2880), (8, 11, 24, -1440), (8, 15, 22, -86400), (8, 16, 23, 57600), (8, 17, 24, 28800), (8, 25, 23, 2880), (8, 26, 24, -1440)] := by
++  decide +kernel
++
++theorem row_9 : row 9 = [(9, 10, 24, 8640), (9, 15, 23, -518400), (9, 16, 24, -86400), (9, 25, 24, 8640)] := by
++  decide +kernel
++
++theorem row_10 : row 10 = [(10, 13, 22, 144), (10, 14, 23, 576), (10, 29, 30, 576)] := by
++  decide +kernel
++
++theorem row_11 : row 11 = [(11, 12, 22, -72), (11, 13, 23, -72), (11, 14, 24, 144), (11, 28, 30, -144)] := by
++  decide +kernel
++
++theorem row_12 : row 12 = [(12, 13, 24, -72), (12, 27, 30, 96)] := by
++  decide +kernel
++
++theorem row_13 : row 13 = [(13, 26, 30, -144)] := by
++  decide +kernel
++
++theorem row_14 : row 14 = [(14, 25, 30, 576)] := by
++  decide +kernel
++
++theorem row_15 : row 15 = [] := by
++  decide +kernel
++
++theorem row_16 : row 16 = [] := by
++  decide +kernel
++
++theorem row_17 : row 17 = [] := by
++  decide +kernel
++
++theorem row_18 : row 18 = [] := by
++  decide +kernel
++
++theorem row_19 : row 19 = [] := by
++  decide +kernel
++
++theorem row_20 : row 20 = [] := by
++  decide +kernel
++
++theorem row_21 : row 21 = [] := by
++  decide +kernel
++
++theorem row_22 : row 22 = [] := by
++  decide +kernel
++
++theorem row_23 : row 23 = [] := by
++  decide +kernel
++
++theorem row_24 : row 24 = [] := by
++  decide +kernel
++
++theorem row_25 : row 25 = [(25, 28, 22, 144), (25, 29, 23, 576)] := by
++  decide +kernel
++
++theorem row_26 : row 26 = [(26, 27, 22, -72), (26, 28, 23, -72), (26, 29, 24, 144)] := by
++  decide +kernel
++
++theorem row_27 : row 27 = [(27, 28, 24, -72)] := by
++  decide +kernel
++
++theorem row_28 : row 28 = [] := by
++  decide +kernel
++
++theorem row_29 : row 29 = [] := by
++  decide +kernel
++
++theorem row_30 : row 30 = [] := by
++  decide +kernel
++
++end TableCertificate
++
+ theorem raw_table_matches_exported : Raw.reconstructedTerms = exportedTerms := by
+-  decide
++  change (List.range 31).flatMap TableCertificate.row = exportedTerms
++  rw [show List.range 31 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30] from by decide]
++  simp only [List.flatMap_cons, List.flatMap_nil, TableCertificate.row_0, TableCertificate.row_1, TableCertificate.row_2, TableCertificate.row_3, TableCertificate.row_4, TableCertificate.row_5, TableCertificate.row_6, TableCertificate.row_7, TableCertificate.row_8, TableCertificate.row_9, TableCertificate.row_10, TableCertificate.row_11, TableCertificate.row_12, TableCertificate.row_13, TableCertificate.row_14, TableCertificate.row_15, TableCertificate.row_16, TableCertificate.row_17, TableCertificate.row_18, TableCertificate.row_19, TableCertificate.row_20, TableCertificate.row_21, TableCertificate.row_22, TableCertificate.row_23, TableCertificate.row_24, TableCertificate.row_25, TableCertificate.row_26, TableCertificate.row_27, TableCertificate.row_28, TableCertificate.row_29, TableCertificate.row_30]
++  rfl
+ 
+ end Kourovka

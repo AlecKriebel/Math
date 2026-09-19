@@ -1,0 +1,68 @@
+--- original/Kourovka/Flag/Rigidity.lean
++++ Kourovka/Flag/Rigidity.lean
+@@ -9,6 +9,7 @@
+ /-- Only injectivity, bracket preservation and the two flag memberships are used here. -/
+ theorem fixes_x (Q : E ≃ₗ[k] E) (hQ : Preserves Q.toLinearMap)
+     (hxmem : Q x ∈ F2) (htmem : Q t ∈ F3) : Q x = x := by
++  unfold Preserves at hQ
+   obtain ⟨a,b,hx⟩ := hxmem
+   obtain ⟨s,t',c,ht⟩ := htmem
+   have H : B (a • x + b • y) (s • x + t' • y + c • t) =
+@@ -40,6 +41,7 @@
+ theorem automorphism_ad_images (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (hx : Q x = x) (c d : k) (hy : Q y = c • x + d • y) :
+     Q ad1 = d • ad1 ∧ Q ad2 = d • ad2 ∧ Q ad3 = d • ad3 := by
++  unfold Preserves at hQ
+   have h1 : Q ad1 = d • ad1 := by
+     dsimp only [ad1]
+     rw [hQ,hx,hy]
+@@ -56,6 +58,7 @@
+ theorem residual_sign_is_one (Q : E →ₗ[k] E) (hQ : Preserves Q)
+     (d : k) (hd2 : d*d = 1)
+     (hf : Q f = d • f) (ht : Q t = t) (huv : Q uv = d • uv) : d = 1 := by
++  unfold Preserves at hQ
+   have hu0 : Q (u 0) = (1 : k) • u 0 := by simpa [t] using ht
+   have hu1 : Q (u 1) = (d : k) • u 1 := by
+     have hh := image_from_bracket Q hQ f (u 0) (u 1) 6 d 1
+@@ -118,6 +121,8 @@
+ theorem full_flag_rigidity (Q : E ≃ₗ[k] E) (hQ : Preserves Q.toLinearMap)
+     (hF2 : ∀ a, a ∈ F2 → Q a ∈ F2)
+     (hF3 : ∀ a, a ∈ F3 → Q a ∈ F3) : Q = LinearEquiv.refl k E := by
++  unfold Preserves at hQ
++  change ∀ a b, Q (B a b) = B (Q a) (Q b) at hQ
+   have hx : Q x = x := fixes_x Q hQ (hF2 x x_mem_F2) (hF3 t t_mem_F3)
+   obtain ⟨c,d,hy⟩ := hF2 y y_mem_F2
+   obtain ⟨h1,h2,h3⟩ := automorphism_ad_images Q.toLinearMap hQ hx c d hy
+@@ -157,6 +162,7 @@
+ /-- The infinitesimal first step does not assume that the derivation is inner. -/
+ theorem derivation_kills_x (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hxmem : D x ∈ F2) (htmem : D t ∈ F3) : D x = 0 := by
++  unfold IsDerivation at hD
+   obtain ⟨a,b,hx⟩ := hxmem
+   obtain ⟨s,t',c,ht⟩ := htmem
+   have H : (6 : k) • (s • x + t' • y + c • t) =
+@@ -182,6 +188,7 @@
+ theorem derivation_ad_images (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hx : D x = 0) (c d : k) (hy : D y = c • x + d • y) :
+     D ad1 = d • ad1 ∧ D ad2 = d • ad2 ∧ D ad3 = d • ad3 := by
++  unfold IsDerivation at hD
+   have h1 : D ad1 = d • ad1 := by
+     dsimp only [ad1]
+     rw [hD,hx,hy]
+@@ -201,6 +208,7 @@
+ theorem infinitesimal_flag_rigidity (D : E →ₗ[k] E) (hD : IsDerivation D)
+     (hF2 : ∀ a, a ∈ F2 → D a ∈ F2)
+     (hF3 : ∀ a, a ∈ F3 → D a ∈ F3) : D = 0 := by
++  unfold IsDerivation at hD
+   have hx : D x = 0 := derivation_kills_x D hD (hF2 x x_mem_F2) (hF3 t t_mem_F3)
+   obtain ⟨c,d,hy⟩ := hF2 y y_mem_F2
+   obtain ⟨h1,h2,h3⟩ := derivation_ad_images D hD hx c d hy
+@@ -239,7 +247,7 @@
+   intro a
+   exact Generation.zero_all D hD hx hy0 a
+ 
+-/-- The preceding result applies to the ordinary mathlib LieEquiv type. -/
++/- The preceding result applies to the ordinary mathlib LieEquiv type. -/
+ section LieEquivalences
+ local instance : LieRing E := Ambient.lieRing k
+ local instance : LieAlgebra k E := Ambient.lieAlgebra k

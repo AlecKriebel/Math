@@ -1,0 +1,593 @@
+--- original/Kourovka/Finite/LieAutomorphisms.lean
++++ Kourovka/Finite/LieAutomorphisms.lean
+@@ -51,9 +51,14 @@
+       simp only [fromEntries_entries]
+       exact Q.map_lie x y⟩
+ 
+-noncomputable def fromEntriesAut (a : AdmissibleEntries i) : ScalarAut i :=
+-  { LinearEquiv.ofBijective (fromEntries a.val) a.property.1 with
+-    map_lie' := by intro x y; exact a.property.2 x y }
++noncomputable def fromEntriesAut (a : AdmissibleEntries i) : ScalarAut i where
++  toFun := fromEntries a.val
++  map_add' := by intro x y; exact map_add (fromEntries a.val) x y
++  map_smul' := by intro c x; exact map_smul (fromEntries a.val) c x
++  invFun := (LinearEquiv.ofBijective (fromEntries a.val) a.property.1).symm
++  left_inv := (LinearEquiv.ofBijective (fromEntries a.val) a.property.1).left_inv
++  right_inv := (LinearEquiv.ofBijective (fromEntries a.val) a.property.1).right_inv
++  map_lie' := by intro x y; exact a.property.2 x y
+ 
+ noncomputable def scalarAutEquivEntries : ScalarAut i ≃ AdmissibleEntries i where
+   toFun := toEntriesAut i
+--- original/Kourovka/Certificates/InnerScalarWitness.lean
++++ Kourovka/Certificates/InnerScalarWitness.lean
+@@ -0,0 +1,61 @@
++/- Uncompiled source. Transfer of the small exact rank witness to every
++characteristic-zero field, including Q_1009. No assumption of unchanged modular
++rank or of a flatness theorem is needed: the LEFT INVERSE itself is transported. -/
++import Kourovka.Certificates.InnerWitness
++
++namespace Kourovka.Certificates.InnerRank
++open Kourovka.Linear Kourovka.Ambient Kourovka.Lattice
++open scoped BigOperators
++set_option maxRecDepth 20000
++set_option maxHeartbeats 2000000
++
++variable (F : Type*) [Field F] [CharZero F]
++
++/-- The matrix coefficient of an inner derivation is an integer polynomial in the
++actual bracket constants, hence is compatible with the rational scalar extension. -/
++theorem inner_entry_cast (j:Param) (c:Col) :
++    algebraMap Rat F (toEntries (innerColumn (R:=Rat) j) c) =
++      toEntries (innerColumn (R:=F) j) c := by
++  have h := congrFun (mapVec_LB (algebraMap Rat F)
++    (unitVec (Fin.castLE (by decide : 30≤31) j)) (unitVec c.2)) c.1
++  simpa only [mapVec_unit,mapVec,innerColumn,toEntries] using h
++
++def extendedInverse (i j:Param) : F := algebraMap Rat F (inverseCoeff i j)
++
++theorem extended_left_inverse (i j:Param) :
++    (∑ t:Param,extendedInverse F i t * toEntries (innerColumn (R:=F) j) (selectedRow t)) =
++      if i=j then 1 else 0 := by
++  have h := congrArg (algebraMap Rat F) (leftInverse_all i j)
++  by_cases hij:i=j
++  · simpa only [map_sum,map_mul,inner_entry_cast,extendedInverse,if_pos hij,map_one] using h
++  · simpa only [map_sum,map_mul,inner_entry_cast,extendedInverse,if_neg hij,map_zero] using h
++
++def extendedExtractor : (V F →ₗ[F] V F) →ₗ[F] (Param → F) where
++  toFun D := fun i => ∑ j,extendedInverse F i j * toEntries D (selectedRow j)
++  map_add' := by
++    intro D E; funext i
++    simp [mul_add,Finset.sum_add_distrib]
++  map_smul' := by
++    intro c D; funext i
++    simp only [map_smul,Pi.smul_apply,smul_eq_mul,Finset.mul_sum,RingHom.id_apply]
++    apply Finset.sum_congr rfl
++    intro j hj
++    ring
++
++theorem extendedExtractor_innerMap (a:Param→F) : extendedExtractor F (innerMap a)=a := by
++  have hmap : (extendedExtractor F).comp (innerMap (R:=F))=LinearMap.id := by
++    apply ext_basis
++    intro j
++    funext i
++    change extendedExtractor F (innerMap (unitVec j)) i = unitVec j i
++    rw [innerMap_unit]
++    simpa only [extendedExtractor, LinearMap.coe_mk, AddHom.coe_mk, unitVec, eq_comm] using
++      extended_left_inverse F i j
++  exact congrArg (fun G:(Param→F)→ₗ[F](Param→F) => G a) hmap
++
++theorem extended_inner_injective : Function.Injective (innerMap (R:=F)) := by
++  intro a b hab
++  have h := congrArg (extendedExtractor F) hab
++  simpa only [extendedExtractor_innerMap] using h
++
++end Kourovka.Certificates.InnerRank
+--- original/Kourovka/Certificates/InnerScalarExtension.lean
++++ Kourovka/Certificates/InnerScalarExtension.lean
+@@ -1,74 +1,35 @@
+-/- Uncompiled source. Transfer of the small exact rank witness to every
+-characteristic-zero field, including Q_1009. No assumption of unchanged modular
+-rank or of a flatness theorem is needed: the LEFT INVERSE itself is transported. -/
++/- Characteristic-zero rank bound from the transported checked inner witness. -/
+ import Kourovka.Certificates.InnerRank
+-
++import Kourovka.Certificates.InnerScalarWitness
+ namespace Kourovka.Certificates.InnerRank
+ open Kourovka.Linear Kourovka.Ambient Kourovka.Lattice
+ open scoped BigOperators
+-
++set_option maxRecDepth 20000
++set_option maxHeartbeats 2000000
+ variable (F : Type*) [Field F] [CharZero F]
+-
+-/-- The matrix coefficient of an inner derivation is an integer polynomial in the
+-actual bracket constants, hence is compatible with the rational scalar extension. -/
+-theorem inner_entry_cast (j:Param) (c:Col) :
+-    algebraMap Rat F (toEntries (innerColumn (R:=Rat) j) c) =
+-      toEntries (innerColumn (R:=F) j) c := by
+-  have h := congrFun (mapVec_LB (algebraMap Rat F)
+-    (unitVec (Fin.castLE (by decide : 30≤31) j)) (unitVec c.2)) c.1
+-  simpa only [mapVec_unit,mapVec,innerColumn,toEntries] using h
+-
+-def extendedInverse (i j:Param) : F := algebraMap Rat F (inverseCoeff i j)
+-
+-theorem extended_left_inverse (i j:Param) :
+-    (∑ t:Param,extendedInverse F i t * toEntries (innerColumn (R:=F) j) (selectedRow t)) =
+-      if i=j then 1 else 0 := by
+-  have h := congrArg (algebraMap Rat F) (leftInverse_all i j)
+-  by_cases hij:i=j
+-  · simpa only [map_sum,map_mul,inner_entry_cast,extendedInverse,if_pos hij,map_one] using h
+-  · simpa only [map_sum,map_mul,inner_entry_cast,extendedInverse,if_neg hij,map_zero] using h
+-
+-def extendedExtractor : (V F →ₗ[F] V F) →ₗ[F] (Param → F) where
+-  toFun D := fun i => ∑ j,extendedInverse F i j * toEntries D (selectedRow j)
+-  map_add' := by
+-    intro D E; funext i
+-    simp [mul_add,Finset.sum_add_distrib]
+-  map_smul' := by
+-    intro c D; funext i
+-    simp only [map_smul,Pi.smul_apply,smul_eq_mul,Finset.mul_sum]
+-    apply Finset.sum_congr rfl
+-    intro j hj
+-    ring
+-
+-theorem extendedExtractor_innerMap (a:Param→F) : extendedExtractor F (innerMap a)=a := by
+-  have hmap : (extendedExtractor F).comp (innerMap (R:=F))=LinearMap.id := by
+-    apply ext_basis
+-    intro j
+-    funext i
+-    simpa only [LinearMap.comp_apply,innerMap,unitVec,Finset.sum_ite_eq',
+-      Finset.mem_univ,if_true,one_smul,zero_smul,Finset.sum_const_zero,
+-      extendedExtractor,LinearMap.coe_mk,AddHom.coe_mk,LinearMap.id_apply] using
+-        extended_left_inverse F i j
+-  exact congrArg (fun G:(Param→F)→ₗ[F](Param→F) => G a) hmap
+-
+-theorem extended_inner_injective : Function.Injective (innerMap (R:=F)) := by
+-  intro a b hab
+-  have h := congrArg (extendedExtractor F) hab
+-  simpa only [extendedExtractor_innerMap] using h
+ 
+ def extendedInnerKernel : (Param→F) →ₗ[F] LinearMap.ker (matrixLinear (LB (R:=F))) where
+   toFun a := ⟨toEntries (innerMap a),by
+     change matrixLinear LB (toEntries (innerMap a))=0
+     apply (kernel_iff_derivation LB LB_alternating _).mpr
+     simpa only [fromEntries_entries] using innerMap_derivation a⟩
+-  map_add' := by intro a b; apply Subtype.ext; simp only [map_add]
+-  map_smul' := by intro c a; apply Subtype.ext; simp only [map_smul]
++  map_add' := by
++    intro a b
++    apply Subtype.ext
++    change toEntries (innerMap (a+b)) = toEntries (innerMap a) + toEntries (innerMap b)
++    simp only [map_add]
++  map_smul' := by
++    intro c a
++    apply Subtype.ext
++    change toEntries (innerMap (c • a)) = c • toEntries (innerMap a)
++    simp only [map_smul]
+ 
+ theorem extendedInnerKernel_injective : Function.Injective (extendedInnerKernel F) := by
+   intro a b hab
+   apply extended_inner_injective F
+   have h := congrArg (fun u:LinearMap.ker (matrixLinear (LB (R:=F))) => fromEntries u.val) hab
+-  simpa only [extendedInnerKernel,fromEntries_entries] using h
++  change fromEntries (toEntries (innerMap a)) = fromEntries (toEntries (innerMap b)) at h
++  simpa only [fromEntries_entries] using h
+ 
+ theorem characteristic_zero_kernel_finrank_lower :
+     30≤Module.finrank F (LinearMap.ker (matrixLinear (LB (R:=F)))) := by
+@@ -76,7 +37,7 @@
+     LinearMap.ker_eq_bot.mpr (extendedInnerKernel_injective F)
+   have hr := (extendedInnerKernel F).finrank_range_add_finrank_ker
+   have hd : Module.finrank F (Param→F)=30 := by simp [Param,Module.finrank_pi]
+-  rw [hk,Submodule.finrank_bot,add_zero,hd] at hr
++  rw [hk,finrank_bot,add_zero,hd] at hr
+   have hle := (LinearMap.range (extendedInnerKernel F)).finrank_le
+   rw [hr] at hle
+   exact hle
+--- original/Kourovka/Certificates/InnerRank.lean
++++ Kourovka/Certificates/InnerRank.lean
+@@ -1,362 +1,12 @@
+-/- Uncompiled source. A small explicit left inverse gives a rational rank upper bound.
+-The data below are witnesses; their equation against the actual scaled bracket is proved by reduction. -/
+-import Kourovka.Certificates.DerivationMatrix
+-import Mathlib.LinearAlgebra.Dimension.Finrank
+-import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
+-import Mathlib.LinearAlgebra.Dimension.Constructions
++/- The checked inner-column witness bounds the complete derivation matrix rank. -/
++import Kourovka.Certificates.InnerWitness
++import Kourovka.Lattice.Integral
+ 
+ namespace Kourovka.Certificates.InnerRank
+ open Kourovka.Linear Kourovka.Ambient Kourovka.Lattice
+ open scoped BigOperators
+-
+-abbrev Param := Fin 30
+-
+-def selectedRow : Param → Col := ![(0,1), (0,3), (1,1), (2,0), (2,1), (4,1), (5,1), (6,1), (7,1), (8,1), (10,0), (10,1), (11,1), (12,1), (13,1), (15,0), (15,1), (16,1), (17,1), (18,1), (19,1), (20,1), (22,0), (22,1), (22,2), (22,4), (22,5), (22,6), (22,7), (23,1)]
+-
+-def inverseCoeff (i j : Param) : Rat :=
+-  match i.val,j.val with
+-  | 0, 2 => (1/2036162)
+-  | 1, 1 => (1/1036488922561)
+-  | 2, 3 => (-1/6108486)
+-  | 3, 0 => (-1/1036488922561)
+-  | 4, 4 => (-1/1027243729)
+-  | 5, 2 => (1/2072977845122)
+-  | 5, 3 => (1/2054487458)
+-  | 5, 5 => (-1/2036162)
+-  | 6, 0 => (-5/3109466767683)
+-  | 6, 4 => (5/3081731187)
+-  | 6, 6 => (-1/3054243)
+-  | 7, 2 => (-1/2072977845122)
+-  | 7, 3 => (-1/2054487458)
+-  | 7, 5 => (1/2036162)
+-  | 7, 7 => (-1/4072324)
+-  | 8, 0 => (1/1036488922561)
+-  | 8, 4 => (-1/1027243729)
+-  | 8, 6 => (1/5090405)
+-  | 8, 8 => (-1/5090405)
+-  | 9, 2 => (1/6218933535366)
+-  | 9, 3 => (1/6163462374)
+-  | 9, 5 => (-1/6108486)
+-  | 9, 7 => (1/12216972)
+-  | 9, 9 => (-1/6108486)
+-  | 10, 1 => (-1/2110459357539650882)
+-  | 10, 10 => (-1/4072324)
+-  | 11, 2 => (1/1036488922561)
+-  | 11, 11 => (-1/1018081)
+-  | 12, 0 => (-2/1036488922561)
+-  | 12, 1 => (1/1055229678769825441)
+-  | 12, 10 => (1/2036162)
+-  | 12, 12 => (-1/2036162)
+-  | 13, 2 => (-1/1036488922561)
+-  | 13, 11 => (1/1018081)
+-  | 13, 13 => (-1/3054243)
+-  | 14, 0 => (1/1036488922561)
+-  | 14, 1 => (-1/2110459357539650882)
+-  | 14, 10 => (-1/4072324)
+-  | 14, 12 => (1/4072324)
+-  | 14, 14 => (-1/4072324)
+-  | 15, 15 => (-1/6108486)
+-  | 16, 2 => (240/1036488922561)
+-  | 16, 3 => (240/1027243729)
+-  | 16, 5 => (-240/1018081)
+-  | 16, 16 => (-1/1018081)
+-  | 17, 0 => (-600/1036488922561)
+-  | 17, 4 => (600/1027243729)
+-  | 17, 6 => (-120/1018081)
+-  | 17, 15 => (1/2036162)
+-  | 17, 17 => (-1/2036162)
+-  | 18, 2 => (-400/1036488922561)
+-  | 18, 3 => (-400/1027243729)
+-  | 18, 5 => (400/1018081)
+-  | 18, 16 => (5/3054243)
+-  | 18, 18 => (-1/3054243)
+-  | 19, 8 => (120/1018081)
+-  | 19, 15 => (-1/2036162)
+-  | 19, 17 => (1/2036162)
+-  | 19, 19 => (-1/4072324)
+-  | 20, 7 => (-120/1018081)
+-  | 20, 9 => (240/1018081)
+-  | 20, 16 => (-1/1018081)
+-  | 20, 18 => (1/5090405)
+-  | 20, 20 => (-1/5090405)
+-  | 21, 8 => (-40/1018081)
+-  | 21, 15 => (1/6108486)
+-  | 21, 17 => (-1/6108486)
+-  | 21, 19 => (1/12216972)
+-  | 21, 21 => (-1/6108486)
+-  | 22, 22 => (-1/2036162)
+-  | 23, 0 => (-1728000/1036488922561)
+-  | 23, 2 => (216/1036488922561)
+-  | 23, 4 => (1728000/1027243729)
+-  | 23, 6 => (-345600/1018081)
+-  | 23, 7 => (-144/1018081)
+-  | 23, 11 => (-216/1018081)
+-  | 23, 13 => (48/1018081)
+-  | 23, 15 => (1440/1018081)
+-  | 23, 17 => (-1440/1018081)
+-  | 23, 23 => (-1/1018081)
+-  | 23, 25 => (1/1036488922561)
+-  | 23, 27 => (-1/6218933535366)
+-  | 24, 0 => (432/1036488922561)
+-  | 24, 1 => (144/1055229678769825441)
+-  | 24, 4 => (-720/1027243729)
+-  | 24, 6 => (144/1018081)
+-  | 24, 7 => (-5184000/1018081)
+-  | 24, 8 => (-288/1018081)
+-  | 24, 9 => (10368000/1018081)
+-  | 24, 10 => (72/1018081)
+-  | 24, 12 => (-72/1018081)
+-  | 24, 14 => (72/1018081)
+-  | 24, 16 => (-43200/1018081)
+-  | 24, 18 => (8640/1018081)
+-  | 24, 20 => (-8640/1018081)
+-  | 24, 22 => (1/2036162)
+-  | 24, 24 => (1/6163462374)
+-  | 24, 29 => (-1/2036162)
+-  | 25, 1 => (-1/2110459357539650882)
+-  | 25, 2 => (-12000/1036488922561)
+-  | 25, 3 => (-12000/1027243729)
+-  | 25, 5 => (12000/1018081)
+-  | 25, 10 => (1/4072324)
+-  | 25, 16 => (50/1018081)
+-  | 25, 28 => (-1/597017619395136)
+-  | 26, 0 => (24000/1036488922561)
+-  | 26, 2 => (-1/1036488922561)
+-  | 26, 4 => (-24000/1027243729)
+-  | 26, 6 => (4800/1018081)
+-  | 26, 11 => (1/1018081)
+-  | 26, 15 => (-20/1018081)
+-  | 26, 17 => (20/1018081)
+-  | 26, 27 => (1/447763214546352)
+-  | 27, 0 => (2/1036488922561)
+-  | 27, 1 => (-2/1055229678769825441)
+-  | 27, 2 => (12000/1036488922561)
+-  | 27, 3 => (12000/1027243729)
+-  | 27, 5 => (-12000/1018081)
+-  | 27, 10 => (-1/2036162)
+-  | 27, 12 => (1/2036162)
+-  | 27, 16 => (-50/1018081)
+-  | 27, 18 => (10/1018081)
+-  | 27, 26 => (-1/597017619395136)
+-  | 28, 2 => (1/1036488922561)
+-  | 28, 8 => (-2400/1018081)
+-  | 28, 11 => (-1/1018081)
+-  | 28, 13 => (1/3054243)
+-  | 28, 15 => (10/1018081)
+-  | 28, 17 => (-10/1018081)
+-  | 28, 19 => (5/1018081)
+-  | 28, 25 => (1/1492544048487840)
+-  | 29, 0 => (-1/1036488922561)
+-  | 29, 1 => (1/2110459357539650882)
+-  | 29, 7 => (1200/1018081)
+-  | 29, 9 => (-2400/1018081)
+-  | 29, 10 => (1/4072324)
+-  | 29, 12 => (-1/4072324)
+-  | 29, 14 => (1/4072324)
+-  | 29, 16 => (10/1018081)
+-  | 29, 18 => (-2/1018081)
+-  | 29, 20 => (2/1018081)
+-  | 29, 24 => (-1/8875385818560)
+-  | _,_ => 0
+-
+-/-- Actual inner derivation column, directly in the ell-basis. -/
+-def innerColumn {R : Type*} [CommRing R] (i : Param) : V R →ₗ[R] V R :=
+-  LB (unitVec (Fin.castLE (by decide : 30 ≤ 31) i))
+-
+-def innerMap {R : Type*} [CommRing R] : (Param → R) →ₗ[R] (V R →ₗ[R] V R) where
+-  toFun a := ∑ i, a i • innerColumn i
+-  map_add' := by intro a b; simp [add_smul,Finset.sum_add_distrib]
+-  map_smul' := by intro c a; simp [Pi.smul_apply,smul_smul,smul_eq_mul,Finset.smul_sum]
+-
+-/-- The extractor is only used over Rat, where its explicit nonzero denominators are legitimate. -/
+-def extractor : (V Rat →ₗ[Rat] V Rat) →ₗ[Rat] (Param → Rat) where
+-  toFun D := fun i => ∑ j, inverseCoeff i j * toEntries D (selectedRow j)
+-  map_add' := by
+-    intro D E; funext i
+-    simp [mul_add,Finset.sum_add_distrib]
+-  map_smul' := by
+-    intro c D; funext i
+-    simp only [map_smul,Pi.smul_apply,smul_eq_mul,Finset.mul_sum]
+-    apply Finset.sum_congr rfl
+-    intro j hj
+-    ring
+-
+-def LeftInverseCheck (i : Param) : Prop :=
+-  ∀ j : Param, (∑ t : Param, inverseCoeff i t *
+-    (toEntries (innerColumn (R:=Rat) j)) (selectedRow t)) = if i=j then 1 else 0
+-
+-instance (i : Param) : Decidable (LeftInverseCheck i) := by
+-  unfold LeftInverseCheck
+-  infer_instance
+-
+-set_option maxRecDepth 200000 in
+-set_option maxHeartbeats 50000000 in
+-theorem leftInverse_00 : LeftInverseCheck 0 := by decide
+-
+-set_option maxRecDepth 200000 in
+-set_option maxHeartbeats 50000000 in
+-theorem leftInverse_01 : LeftInverseCheck 1 := by decide
+-
+-set_option maxRecDepth 200000 in
+-set_option maxHeartbeats 50000000 in
+-theorem leftInverse_02 : LeftInverseCheck 2 := by decide
+-
+-set_option maxRecDepth 200000 in
+-set_option maxHeartbeats 50000000 in
+-theorem leftInverse_03 : LeftInverseCheck 3 := by decide
+-
+-set_option maxRecDepth 200000 in
+-set_option maxHeartbeats 50000000 in
+-theorem leftInverse_04 : LeftInverseCheck 4 := by decide
+-
+-set_option maxRecDepth 200000 in
+-set_option maxHeartbeats 50000000 in
+-theorem leftInverse_05 : LeftInverseCheck 5 := by decide
+-
+-set_option maxRecDepth 200000 in
+-set_option maxHeartbeats 50000000 in
+-theorem leftInverse_06 : LeftInverseCheck 6 := by decide
+-
+-set_option maxRecDepth 200000 in
+-set_option maxHeartbeats 50000000 in
+-theorem leftInverse_07 : LeftInverseCheck 7 := by decide
+-
+-set_option maxRecDepth 200000 in
+-set_option maxHeartbeats 50000000 in
+-theorem leftInverse_08 : LeftInverseCheck 8 := by decide
+-
+-set_option maxRecDepth 200000 in
+-set_option maxHeartbeats 50000000 in
+-theorem leftInverse_09 : LeftInverseCheck 9 := by decide
+-
+-set_option maxRecDepth 200000 in
+-set_option maxHeartbeats 50000000 in
+-theorem leftInverse_10 : LeftInverseCheck 10 := by decide
+-
+-set_option maxRecDepth 200000 in
+-set_option maxHeartbeats 50000000 in
+-theorem leftInverse_11 : LeftInverseCheck 11 := by decide
+-
+-set_option maxRecDepth 200000 in
+-set_option maxHeartbeats 50000000 in
+-theorem leftInverse_12 : LeftInverseCheck 12 := by decide
+-
+-set_option maxRecDepth 200000 in
+-set_option maxHeartbeats 50000000 in
+-theorem leftInverse_13 : LeftInverseCheck 13 := by decide
+-
+-set_option maxRecDepth 200000 in
+-set_option maxHeartbeats 50000000 in
+-theorem leftInverse_14 : LeftInverseCheck 14 := by decide
+-
+-set_option maxRecDepth 200000 in
+-set_option maxHeartbeats 50000000 in
+-theorem leftInverse_15 : LeftInverseCheck 15 := by decide
+-
+-set_option maxRecDepth 200000 in
+-set_option maxHeartbeats 50000000 in
+-theorem leftInverse_16 : LeftInverseCheck 16 := by decide
+-
+-set_option maxRecDepth 200000 in
+-set_option maxHeartbeats 50000000 in
+-theorem leftInverse_17 : LeftInverseCheck 17 := by decide
+-
+-set_option maxRecDepth 200000 in
+-set_option maxHeartbeats 50000000 in
+-theorem leftInverse_18 : LeftInverseCheck 18 := by decide
+-
+-set_option maxRecDepth 200000 in
+-set_option maxHeartbeats 50000000 in
+-theorem leftInverse_19 : LeftInverseCheck 19 := by decide
+-
+-set_option maxRecDepth 200000 in
+-set_option maxHeartbeats 50000000 in
+-theorem leftInverse_20 : LeftInverseCheck 20 := by decide
+-
+-set_option maxRecDepth 200000 in
+-set_option maxHeartbeats 50000000 in
+-theorem leftInverse_21 : LeftInverseCheck 21 := by decide
+-
+-set_option maxRecDepth 200000 in
+-set_option maxHeartbeats 50000000 in
+-theorem leftInverse_22 : LeftInverseCheck 22 := by decide
+-
+-set_option maxRecDepth 200000 in
+-set_option maxHeartbeats 50000000 in
+-theorem leftInverse_23 : LeftInverseCheck 23 := by decide
+-
+-set_option maxRecDepth 200000 in
+-set_option maxHeartbeats 50000000 in
+-theorem leftInverse_24 : LeftInverseCheck 24 := by decide
+-
+-set_option maxRecDepth 200000 in
+-set_option maxHeartbeats 50000000 in
+-theorem leftInverse_25 : LeftInverseCheck 25 := by decide
+-
+-set_option maxRecDepth 200000 in
+-set_option maxHeartbeats 50000000 in
+-theorem leftInverse_26 : LeftInverseCheck 26 := by decide
+-
+-set_option maxRecDepth 200000 in
+-set_option maxHeartbeats 50000000 in
+-theorem leftInverse_27 : LeftInverseCheck 27 := by decide
+-
+-set_option maxRecDepth 200000 in
+-set_option maxHeartbeats 50000000 in
+-theorem leftInverse_28 : LeftInverseCheck 28 := by decide
+-
+-set_option maxRecDepth 200000 in
+-set_option maxHeartbeats 50000000 in
+-theorem leftInverse_29 : LeftInverseCheck 29 := by decide
+-
+-theorem leftInverse_all (i : Param) : LeftInverseCheck i := by
+-  fin_cases i
+-  · exact leftInverse_00
+-  · exact leftInverse_01
+-  · exact leftInverse_02
+-  · exact leftInverse_03
+-  · exact leftInverse_04
+-  · exact leftInverse_05
+-  · exact leftInverse_06
+-  · exact leftInverse_07
+-  · exact leftInverse_08
+-  · exact leftInverse_09
+-  · exact leftInverse_10
+-  · exact leftInverse_11
+-  · exact leftInverse_12
+-  · exact leftInverse_13
+-  · exact leftInverse_14
+-  · exact leftInverse_15
+-  · exact leftInverse_16
+-  · exact leftInverse_17
+-  · exact leftInverse_18
+-  · exact leftInverse_19
+-  · exact leftInverse_20
+-  · exact leftInverse_21
+-  · exact leftInverse_22
+-  · exact leftInverse_23
+-  · exact leftInverse_24
+-  · exact leftInverse_25
+-  · exact leftInverse_26
+-  · exact leftInverse_27
+-  · exact leftInverse_28
+-  · exact leftInverse_29
+-
+-/-- The checked finite matrix identities imply an identity on ALL parameter vectors. -/
+-theorem extractor_innerMap (a : Param → Rat) : extractor (innerMap a) = a := by
+-  have hmap : extractor.comp (innerMap (R:=Rat)) = LinearMap.id := by
+-    apply ext_basis
+-    intro j
+-    funext i
+-    simpa only [LinearMap.comp_apply,innerMap,unitVec,Finset.sum_ite_eq',
+-      Finset.mem_univ,if_true,one_smul,zero_smul,Finset.sum_const_zero,
+-      extractor,LinearMap.coe_mk,AddHom.coe_mk,LinearMap.id_apply] using leftInverse_all i j
+-  exact congrArg (fun F : (Param → Rat) →ₗ[Rat] (Param → Rat) => F a) hmap
+-
+-theorem innerMap_injective : Function.Injective (innerMap (R:=Rat)) := by
+-  intro a b hab
+-  have h := congrArg extractor hab
+-  simpa only [extractor_innerMap] using h
++set_option maxRecDepth 20000
++set_option maxHeartbeats 2000000
+ 
+ /-- Jacobi, not a computed nullspace guess, puts every inner derivation in the kernel. -/
+ theorem innerColumn_derivation {R : Type*} [CommRing R] (i : Param) :
+@@ -367,7 +17,8 @@
+ theorem innerMap_derivation {R : Type*} [CommRing R] (a : Param → R) :
+     DerivationCondition LB (innerMap a) := by
+   rw [derivation_iff_delta_zero]
+-  change delta LB (∑ i, a i • innerColumn i) = 0
++  have hexpand : innerMap a = ∑ i : Param, a i • innerColumn i := rfl
++  rw [hexpand]
+   simp only [map_sum,map_smul]
+   have h : ∀ i, delta (LB (R:=R)) (innerColumn i) = 0 :=
+     fun i => (derivation_iff_delta_zero _ _).mp (innerColumn_derivation i)
+@@ -378,14 +29,23 @@
+     change matrixLinear LB (toEntries (innerMap a)) = 0
+     apply (kernel_iff_derivation LB LB_alternating _).mpr
+     simpa only [fromEntries_entries] using innerMap_derivation a⟩
+-  map_add' := by intro a b; apply Subtype.ext; simp only [map_add]
+-  map_smul' := by intro c a; apply Subtype.ext; simp only [map_smul]
++  map_add' := by
++    intro a b
++    apply Subtype.ext
++    change toEntries (innerMap (a+b)) = toEntries (innerMap a) + toEntries (innerMap b)
++    simp only [map_add]
++  map_smul' := by
++    intro c a
++    apply Subtype.ext
++    change toEntries (innerMap (c • a)) = c • toEntries (innerMap a)
++    simp only [map_smul]
+ 
+ theorem innerKernelMap_injective : Function.Injective innerKernelMap := by
+   intro a b hab
+   apply innerMap_injective
+   have h := congrArg (fun u : LinearMap.ker (matrixLinear (LB (R:=Rat))) => fromEntries u.val) hab
+-  simpa only [innerKernelMap,fromEntries_entries] using h
++  change fromEntries (toEntries (innerMap a)) = fromEntries (toEntries (innerMap b)) at h
++  simpa only [fromEntries_entries] using h
+ 
+ theorem kernel_finrank_lower :
+     30 ≤ Module.finrank Rat (LinearMap.ker (matrixLinear (LB (R:=Rat)))) := by
