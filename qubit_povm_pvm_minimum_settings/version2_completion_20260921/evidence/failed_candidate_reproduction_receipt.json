@@ -1,0 +1,42 @@
+{
+  "status": "failed",
+  "started_utc": "2026-09-21T14:39:11.593012+00:00",
+  "shipment_manifest_sha256": "da84f94b42ca8a95d3102bc2a7191921df6475dde1d4b67286b5a242f0bb7849",
+  "shipment_files_checked": 977,
+  "commands": [
+    {
+      "name": "exact-artifacts",
+      "command": [
+        "bash",
+        "run_all.sh"
+      ],
+      "exit_code": 0,
+      "log": "reproduction_runs/20260921T143911Z/exact-artifacts.log",
+      "log_sha256": "5fa01844a29089147795df6d3e2d8a9436e388b3e679e84679bcfec14f1b1656"
+    },
+    {
+      "name": "preflight",
+      "command": [
+        "/Users/alec/Documents/Math/qubit_povm_pvm_minimum_settings/bell_lean/.venv/bin/python",
+        "scripts/preflight_all.py"
+      ],
+      "exit_code": 0,
+      "log": "reproduction_runs/20260921T143911Z/preflight.log",
+      "log_sha256": "559a383ad630b2ed99ae98e5ecc4822a46a1fdd1b3d9f8e62e9f008860d96550"
+    },
+    {
+      "name": "lean",
+      "command": [
+        "/Users/alec/Documents/Math/qubit_povm_pvm_minimum_settings/bell_lean/.venv/bin/python",
+        "scripts/run_lean.py",
+        "--serial"
+      ],
+      "exit_code": 1,
+      "log": "reproduction_runs/20260921T143911Z/lean.log",
+      "log_sha256": "44ffaf821a244194c22e4d030254e0a3478c52ea10d2cce0629dd8fa71aa24fd"
+    }
+  ],
+  "trust_boundary": "Pinned compiler/runtime and separately provisioned compiled dependency cache are trusted; all project proofs are rebuilt.",
+  "error": "lean failed; inspect /Users/alec/Documents/Math/qubit_povm_pvm_minimum_settings/version2_completion_20260921/extracted/first/qubit-povm-pvm-v2.0.0/reproduction_runs/20260921T143911Z/lean.log",
+  "ended_utc": "2026-09-21T14:52:37.439425+00:00"
+}

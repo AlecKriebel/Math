@@ -1,0 +1,26 @@
+import Bell.FiniteStochastic
+#print axioms Bell.FiniteLabels.POVM.encode
+#print axioms Bell.FiniteLabels.POVM.decode
+#print axioms Bell.FiniteLabels.POVM.encoding
+#print axioms Bell.FiniteLabels.POVM.no_empty_measurement
+#print axioms Bell.FiniteLabels.PVM.encoding
+#print axioms Bell.FiniteLabels.behaviorEquiv
+#print axioms Bell.FiniteLabels.finite_mixture_transport
+#print axioms Bell.FiniteLabels.Strategy.encoding
+#print axioms Bell.FiniteLabels.Strategy.encode_behavior
+#print axioms Bell.FiniteLabels.ProjectiveStrategy.encoding
+#print axioms Bell.FiniteLabels.ProjectiveStrategy.encode_behavior
+#print axioms Bell.FiniteLabels.rawPOVM_transport
+#print axioms Bell.FiniteLabels.rawPVM_transport
+#print axioms Bell.FiniteLabels.convexPOVM_transport
+#print axioms Bell.FiniteLabels.convexPVM_transport
+#print axioms Bell.FiniteLabels.at_most_two_input_equality
+#print axioms Bell.FiniteLabels.two_input_equality
+#print axioms Bell.FiniteLabels.empty_hulls_of_no_strategy
+#print axioms Bell.FiniteLabels.no_input_strategy
+#print axioms Bell.FiniteLabels.encodeChannel
+#print axioms Bell.FiniteLabels.StochasticProcessing.encode_behavior
+#print axioms Bell.FiniteLabels.StochasticProcessing.behavior_decomposition
+#print axioms Bell.FiniteLabels.StochasticProcessing.deterministic_branch_mem_rawPVM
+#print axioms Bell.FiniteLabels.StochasticProcessing.mem_convexPVM
+#print axioms Bell.FiniteLabels.StochasticProcessing.rawPVM_mem_convexPVM

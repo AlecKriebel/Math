@@ -1,0 +1,78 @@
+{
+  "checked_utc": "2026-09-21T14:58:54.728777+00:00",
+  "scope": "Disposable fixtures; PDF rendering mocked only for receipt/control-flow tests. No real Lean or release artifacts modified.",
+  "script_sha256": {
+    "bind_outputs.py": "edd0d137fe8b1657c958f6fd5ea785d0d54b208d4f7dd3132af30b2ec8d86094",
+    "certify_stage.py": "3b54f80d4b756eecfc7033da7ec788913327e4730c6ec6b01c0028c57033b902"
+  },
+  "binding_scenarios": {
+    "valid": {
+      "accepted": true,
+      "binding_generated": true,
+      "error": null
+    },
+    "unrelated_nonzip": {
+      "accepted": false,
+      "binding_generated": false,
+      "error": "File is not a zip file"
+    },
+    "extra_zip_member": {
+      "accepted": false,
+      "binding_generated": false,
+      "error": "ZIP membership differs from the verified stage"
+    },
+    "different_zip_bytes": {
+      "accepted": false,
+      "binding_generated": false,
+      "error": "ZIP content differs from stage: qubit-povm-pvm-v2.0.0/LICENSE"
+    },
+    "manifest_hash_mismatch": {
+      "accepted": false,
+      "binding_generated": false,
+      "error": "Reproduction did not consume this exact final shipment"
+    },
+    "bad_embedded_digest": {
+      "accepted": false,
+      "binding_generated": false,
+      "error": "Embedded manifest hash differs: LICENSE"
+    },
+    "rebuilt_pdf_hash_mismatch": {
+      "accepted": false,
+      "binding_generated": false,
+      "error": "Rebuilt PDF differs from reproduction receipt: main.pdf"
+    },
+    "pdf_rendering_mismatch": {
+      "accepted": false,
+      "binding_generated": false,
+      "error": "Shipped and rebuilt PDF renderings differ: main.pdf"
+    },
+    "snapshot_mismatch": {
+      "accepted": false,
+      "binding_generated": false,
+      "error": "Run-specific proof snapshot differs from the kernel receipt"
+    },
+    "stage_proof_mismatch": {
+      "accepted": false,
+      "binding_generated": false,
+      "error": "Stage differs from verified proof input: Bell/Proof.lean"
+    }
+  },
+  "certification_gates": {
+    "failed_reproduction": {
+      "accepted": false,
+      "error": "Complete reproduction has not passed"
+    },
+    "wrong_manifest": {
+      "accepted": false,
+      "error": "Stage manifest differs from the shipment consumed by reproduction"
+    },
+    "changed_stage_file": {
+      "accepted": false,
+      "error": "Stage differs from its original manifest: paper/main.tex"
+    },
+    "changed_extraction_tex": {
+      "accepted": false,
+      "error": "Manuscript source changed during reproduction: main.tex"
+    }
+  }
+}

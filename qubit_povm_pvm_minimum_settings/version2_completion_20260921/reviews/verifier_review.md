@@ -1,0 +1,26 @@
+# Independent verifier and reproduction review
+
+Checkpoint: 2026-09-21T14:41:06.896930+00:00. Completion estimate: **90%**. Verifier and candidate-archive review complete; final immutable package identity and its second clean reproduction remain pending. No broad Lean build was launched by this reviewer.
+
+## Findings and disposition
+
+1. **Reproduction receipt-reading blocker — fixed and tested.** The original wrapper looked for success in `latest_run.json`, which is only a pointer. It now reads the pointed-to run-specific kernel and axiom reports, checks matching run IDs and all required success flags, and records the kernel report/hash.
+2. **Silent nested-contract omission — fixed and tested.** Discovery recurses through `validation/**/*.lean`. All seven required names are exact relative root paths; nested names cannot substitute for a required root contract. Removing each required contract fails.
+3. **Silent nested-production omission — fixed and tested.** `source_audit.production_modules` rejects nested production Lean files, including nested `Audit.lean`, because production import naming is deliberately flat. Completion inventory uses the same discovery function.
+4. **Silent attributed-theorem omission — fixed and tested.** Parent identified same-line `@[simp] theorem` headers absent from inventory. The scanner now recognizes single, multiple, and multiline attributes with private/protected modifiers. It fails closed on any theorem/lemma token not classified, rather than silently omitting unsupported declaration syntax. Regeneration adds 32 omitted declarations: **837 total, 826 public**, with all public declarations included in generated axiom queries. This remains a conservative textual inventory, not a Lean parser.
+5. **Unlisted symlink directory in shipment — fixed and tested.** Exact membership validation now explicitly rejects symlink entries outside runtime exclusions; the adversarial unlisted-directory fixture is rejected.
+6. **Package-builder observations — reported.** Suggested recursive selection of untracked nested validation contracts, exact top-level whitelist comparisons instead of basename comparisons, and avoiding archive-existing stages with build caches. The inspected actual candidate contains every source/contract, no cache paths, and no private submission correspondence or credential-pattern hits. Existing public provenance includes local absolute environment paths; these are historical receipt data, not required reproduction paths.
+
+## Checks completed
+
+- Full `test_preflight.py`: **49 tests passed** (`evidence/verifier_full_tests.log`). New production-root/declaration inventory suite: **10 tests passed** (`evidence/source_roots_tests.log`). Earlier focused runner/parser suite also passed. Mock subprocess tests are control-flow evidence, not Lean proof evidence.
+- Current temporary-root probes verify recursive discovery, all seven missing-required rejections, nested basename non-substitution, and nested production rejection. All current production/validation Lean sources are in runner source snapshots. All **68 production modules** are directly imported by `Bell.lean`; there are no pending aggregate imports or required contracts.
+- Nine reproduction receipt mock scenarios: complete valid receipt passes; wrong run IDs, missing required flags, failed kernel/axiom status, missing kernel receipt, and failed subprocess reject and save failed status. Six manifest scenarios: complete passes; changed/unlisted regular files, duplicate entries, listed file symlinks, and unlisted directory symlinks reject. Temporary mock receipts were deleted.
+- Candidate-1 ZIP SHA-256: `01e01b106640ecae8855adfbd37f22f83f11a1000fc6bbc3ff57c72bfb8f3478`. It matches the pristine stage exactly: **977 manifest-covered files**, plus the root manifest. CRC, member uniqueness, safe paths, byte equality, and exact membership all pass. No `.git`, `.lake`, virtual-environment, Python-cache, or start-state paths are shipped; targeted credential-pattern scanning found no matches.
+- Candidate contains **68 production modules, seven contracts, 837 declarations, and 826 exactly matching public axiom queries**. All **84 local links** in current reader, certificate, coverage, model, and archive-comparison documents resolve inside the shipment. The wrapper explicitly discloses trusted compiler/runtime and separately provisioned compiled dependency caches.
+
+Evidence: `evidence/verifier_adversarial_probes.json`, `evidence/reproduce_mock_review.json`, `evidence/candidate_package_review.json`, and the test logs above include source/archive hashes or scope statements. Final real reproduction is performed separately by the parent and must pass before certification promotion. These tests cannot replace kernel checking or independent manuscript-to-formal-model correspondence review.
+
+## Remaining release review
+
+Inspect final archive identity and exact membership after authoritative receipt/certificate updates, then inspect the second fresh-extraction reproduction receipt and matching Lean run-specific reports. Do not interpret preexisting historical reports or the successful mocked fixtures as final-package mathematical verification.

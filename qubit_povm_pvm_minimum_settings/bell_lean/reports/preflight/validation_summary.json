@@ -1,6 +1,6 @@
 {
   "status": "preflight_passed",
-  "started_utc": "2026-09-11T02:21:26.301744+00:00",
+  "started_utc": "2026-09-21T14:54:39.836280+00:00",
   "lean_invoked": false,
   "kernel_checked": false,
   "commands": [
@@ -12,7 +12,7 @@
       ],
       "exit_code": 0,
       "log": "reports/preflight/source_audit.log",
-      "log_sha256": "c5a80f6f8009d56e1293bf091ead4ff7e76fb65b4893f96bb8f7ec3d05ec858e"
+      "log_sha256": "62f9b7065d8ed0d3026a91ce26b64929407cfb9dff30947e4eb61b97f6b20108"
     },
     {
       "name": "import_inventory",
@@ -22,7 +22,7 @@
       ],
       "exit_code": 0,
       "log": "reports/preflight/import_inventory.log",
-      "log_sha256": "f13d556e60f1bb8fb23853074ce921c75011cd7cbd4538b01276c87a1d5ffce5"
+      "log_sha256": "23a37c0df69406f849916c0b7b6781e96139b16930253d252ef4700cf382dfdd"
     },
     {
       "name": "static_checks",
@@ -32,7 +32,7 @@
       ],
       "exit_code": 0,
       "log": "reports/preflight/static_checks.log",
-      "log_sha256": "7a6b64a9d1d6edc0c298a4361cb2f11a8f7bf071e0aefb0615cf9cdcc8cbf43e"
+      "log_sha256": "c441a0b4faeca7e777da35e40ece4ebf6ae73c6aafc5bc90bd0980e9912ebed9"
     },
     {
       "name": "parser_tests",
@@ -42,7 +42,17 @@
       ],
       "exit_code": 0,
       "log": "reports/preflight/parser_tests.log",
-      "log_sha256": "05e2e4984fa0de1469466e709e9aa6d05695ea0d6d72cbd7b77cd550f92c4c58"
+      "log_sha256": "5bc90c5cff8107380a44090c375f827d42467dcec822e611ab9e9033190bb85e"
+    },
+    {
+      "name": "source_root_tests",
+      "argv": [
+        "/Users/alec/Documents/Math/qubit_povm_pvm_minimum_settings/bell_lean/.venv/bin/python",
+        "scripts/test_source_roots.py"
+      ],
+      "exit_code": 0,
+      "log": "reports/preflight/source_root_tests.log",
+      "log_sha256": "f5ade7954e8f06a0dec44034703a184363121e5bc10833cd9e4b03663ed01612"
     },
     {
       "name": "runner_tests",
@@ -52,7 +62,7 @@
       ],
       "exit_code": 0,
       "log": "reports/preflight/runner_tests.log",
-      "log_sha256": "49fec6c20712111a5ed7b37e80dac641bdeb82c99d86d9ebff08526d602b8405"
+      "log_sha256": "bf14e355808276f2628240e7a0d56d5e130ddb62b9fa0ad79f7566ebb2c2b108"
     },
     {
       "name": "package_tests",
@@ -62,7 +72,7 @@
       ],
       "exit_code": 0,
       "log": "reports/preflight/package_tests.log",
-      "log_sha256": "3bf9f827e84530d7fa8f801e183c80c0e8ef19694b0922a385380be90f1e10d6"
+      "log_sha256": "cad88b533aceb827cf3ead7062a46a327e207fd2fc94e037bc868fb0f6ae91bb"
     },
     {
       "name": "environment_tests",
@@ -72,7 +82,7 @@
       ],
       "exit_code": 0,
       "log": "reports/preflight/environment_tests.log",
-      "log_sha256": "7be53b861dc09134cd34141ffc9f643ff5612fb9ad3f8a6fba5ad5857ea89084"
+      "log_sha256": "b3849242e62fdc6af7b5d0cd3c1c0e3666397a8d21f776a4368b25ab773159e0"
     },
     {
       "name": "exact_checks",
@@ -82,7 +92,7 @@
       ],
       "exit_code": 0,
       "log": "reports/preflight/exact_checks.log",
-      "log_sha256": "95ed09b6d6a8099a21128c8b9abb28ad86171198abf3f972543e732e92057cf0"
+      "log_sha256": "5ea80650c572af938c737b89d9605d1199b317df44b0dac91aa7ae1da64c7ad1"
     },
     {
       "name": "sos_checks",
@@ -158,6 +168,7 @@
     "scripts/test_axiom_audit.py",
     "scripts/test_packaging.py",
     "scripts/test_preflight.py",
+    "scripts/test_source_roots.py",
     "scripts/verify_files.py",
     "environment/export_environment.py",
     "environment/make_workflow.py",
@@ -169,11 +180,11 @@
   "evidence": {
     "static": {
       "path": "reports/preflight/static_checks.json",
-      "sha256": "74a30183e94ea24a3a7943381654de492132181ed7a8d1515242cb9c9691fce6"
+      "sha256": "31db0d06550f2bf266d5ffaf1e8628d6615e29d8b68b114ccc9daaa6dd33916e"
     },
     "runner_harness": {
       "path": "reports/preflight/harness_tests.json",
-      "sha256": "616822cd1e2da1ce06ce1311ea41692fb507f8d7a5638cc48ed21253b5a7e8e4"
+      "sha256": "1a1b0b4466ed92aa0da57f9a248cc8e45633dae5738803a25ad0807e491bc7ae"
     },
     "packaging": {
       "path": "reports/preflight/package_tests.json",
@@ -181,7 +192,7 @@
     },
     "parser": {
       "path": "reports/source_completion/axiom_parser_tests.json",
-      "sha256": "ab73892eb3313fbe47e243beae4710a1792807fcaf7e3591606f6a7208a6989a"
+      "sha256": "4248a7f9aa09841996079d8efebe0f20cbdcaf976d22c1df878679975706faf1"
     },
     "expanded_finite_algebra": {
       "path": "reports/source_completion/exact_all.json",
@@ -189,12 +200,12 @@
     },
     "baseline_finite_algebra": {
       "path": "reports/exact_checks.json",
-      "sha256": "590e4aee4d6b38f284d97d54d365a2eeafffa157558a99010fe0ac95a5889a66"
+      "sha256": "0f09da11fdb018fcac1ac490e27bc07d375b3b268d943f1fceba3b375e32aa73"
     },
     "physical_interface_audit": {
       "path": "reports/semantic_audit/all.json",
-      "sha256": "04684cb2bf63b8c5f59644058a32c0f9c9193a3489420881b47acb8be315b585"
+      "sha256": "04cc933ce1fce4f08a846754af6c5ff568cf8b02680bfba2fd6ba88781e0ff31"
     }
   },
-  "ended_utc": "2026-09-11T02:21:45.418660+00:00"
+  "ended_utc": "2026-09-21T14:54:57.603414+00:00"
 }

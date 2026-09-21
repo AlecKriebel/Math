@@ -1,0 +1,17 @@
+import Bell.HilbertFiniteLabels
+
+#print axioms Bell.HilbertFiniteLabels.Strategy.toQubit_behavior
+#print axioms Bell.HilbertFiniteLabels.ProjectiveStrategy.toQubit_behavior
+#print axioms Bell.HilbertFiniteLabels.ofQubitStrategy_behavior
+#print axioms Bell.HilbertFiniteLabels.ofQubitProjectiveStrategy_behavior
+#print axioms Bell.HilbertFiniteLabels.rawPOVM_eq_fixed
+#print axioms Bell.HilbertFiniteLabels.rawPVM_eq_fixed
+#print axioms Bell.HilbertFiniteLabels.convexPOVM_eq_fixed
+#print axioms Bell.HilbertFiniteLabels.convexPVM_eq_fixed
+#print axioms Bell.HilbertFiniteLabels.at_most_two_input_equality
+#print axioms Bell.HilbertFiniteLabels.finite_projective_simulation
+#print axioms Bell.HilbertFiniteLabels.finite_source_projective_simulation
+#print axioms Bell.HilbertFiniteLabels.no_strategy_of_empty_alice
+#print axioms Bell.HilbertFiniteLabels.no_strategy_of_empty_bob
+#print axioms Bell.Hilbert.ofQubitStrategy_behavior
+#print axioms Bell.Hilbert.ofQubitProjectiveStrategy_behavior

@@ -30,6 +30,22 @@ def main():
     reproduction = json.loads(runs[0].read_text())
     if reproduction['status'] != 'passed':
         raise ValueError('Complete reproduction has not passed')
+    if sha(stage/'SHA256SUMS.txt') != reproduction['shipment_manifest_sha256']:
+        raise ValueError('Stage manifest differs from the shipment consumed by reproduction')
+    expected_names = set()
+    for line in (stage/'SHA256SUMS.txt').read_text().splitlines():
+        expected, name = line.split('  ', 1)
+        if name in expected_names or Path(name).is_absolute() or '..' in Path(name).parts or sha(stage/name) != expected:
+            raise ValueError(f'Stage differs from its original manifest: {name}')
+        expected_names.add(name)
+    actual_names = {p.relative_to(stage).as_posix() for p in stage.rglob('*') if p.is_file()
+                    and p != stage/'SHA256SUMS.txt'}
+    if actual_names != expected_names or any(p.is_symlink() for p in stage.rglob('*')):
+        raise ValueError('Stage membership differs from the original shipment')
+    for path in (stage/'paper').rglob('*'):
+        if path.is_file() and path.suffix in {'.tex', '.bib', '.sty', '.sh'}:
+            if sha(path) != sha(extraction/path.relative_to(stage)):
+                raise ValueError(f'Manuscript source changed during reproduction: {path.name}')
     kernel = reproduction['lean_receipt']['kernel_report']
     if kernel['status'] != 'passed' or kernel['last_stage'] != 'complete':
         raise ValueError('Incomplete Lean result')

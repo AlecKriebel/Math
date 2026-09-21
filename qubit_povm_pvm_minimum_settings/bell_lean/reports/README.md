@@ -1,0 +1,3 @@
+# Verification evidence
+
+`latest_run.json` points to the current complete Lean run. Run-specific receipts and command logs are authoritative for their recorded source snapshots. `manuscript_correspondence_v2.json` is the current paper/proof binding; `manuscript_correspondence.json` is the historical September 11 comparison. Reports under `history/`, `session_20260910/`, old run IDs, old build logs and `recovery_manifest.json` are historical. Their failures or missing-compiler status are not current claims. Compiler-free reports retain `kernel_checked: false` because those checks do not invoke Lean. Read the current certificate for scope and trust boundaries.
