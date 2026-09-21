@@ -13,15 +13,24 @@ import Bell.EntrywiseTopology
 import Bell.Expectation
 import Bell.ExtremeMeasurement
 import Bell.FiniteConvexCompactness
+import Bell.FiniteLabels
 import Bell.FiniteLinearAlgebra
+import Bell.FiniteStochastic
 import Bell.FrameRealization
 import Bell.GramLift
+import Bell.HilbertCoordinates
+import Bell.HilbertCorrespondence
+import Bell.HilbertFiniteLabels
+import Bell.HilbertIsometry
+import Bell.HilbertReverse
+import Bell.HilbertSimulation
 import Bell.ImplicitCurve
 import Bell.IncidenceAlgebra
 import Bell.IncidenceDifferential
 import Bell.IncidenceRank
 import Bell.IncidenceScores
 import Bell.IncidenceStationarity
+import Bell.IsometricCompression
 import Bell.LocalSimulation
 import Bell.Lorentz
 import Bell.MeasurementGeometry
@@ -50,6 +59,7 @@ import Bell.Scalars
 import Bell.SimulationCorollaries
 import Bell.SmallOutputEncoding
 import Bell.SteeringRepresentation
+import Bell.StochasticProcessing
 import Bell.StrategyMaps
 import Bell.StrengthenedWitness
 import Bell.Targets
@@ -57,4 +67,5 @@ import Bell.Transportation
 import Bell.UphillDirection
 import Bell.Witness
 
-/-! End-to-end source draft; compilation and kernel checking remain deferred. -/
+/-! Principal results and explicit physical model bridges. See CERTIFICATION.md
+for the source-bound verification receipt and precise mathematical scope. -/

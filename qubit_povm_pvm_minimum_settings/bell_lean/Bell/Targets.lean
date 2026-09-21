@@ -10,9 +10,9 @@ import Bell.LocalSimulation
 `UniversalTwoInputEquality`, `OneInputEquality`, `ProjectiveGlobalUpperBound`,
 and `MainClaims` are definitions of propositions, not proofs by themselves.
 The historical conditional helpers are retained with their original names.
-`Assembly.lean` supplies their premises in the new end-to-end source draft;
-`StrengthenedWitness.lean` supplies the separate Appendix B attainment draft.
-Nothing in this interface file asserts that the draft has compiled.
+`Assembly.lean` supplies their premises in the end-to-end formal proof;
+`StrengthenedWitness.lean` supplies the separate Appendix B attainment theorem.
+Current verification evidence is recorded in CERTIFICATION.md.
 -/
 
 noncomputable section
@@ -67,7 +67,7 @@ def StrengthenedAttainment : Prop :=
   ∃ p ∈ rawPOVM separatorArchitecture, bellScore p=strengthenedLower
 
 /-- The paper's principal equality/separation claims. `main_claims` in Assembly
-is the new unconditional source attempt inhabiting this conjunction. Appendix B
+is the unconditional theorem inhabiting this conjunction. Appendix B
 attainment remains a separate proposition, supplied in StrengthenedWitness. -/
 def MainClaims : Prop :=
   UniversalTwoInputEquality ∧ OneInputEquality ∧

@@ -20,6 +20,7 @@ COMMANDS=[
  ('import_inventory',['scripts/source_completion_inventory.py']),
  ('static_checks',['scripts/preflight_checks.py']),
  ('parser_tests',['scripts/test_axiom_audit.py']),
+ ('source_root_tests',['scripts/test_source_roots.py']),
  ('runner_tests',['scripts/test_preflight.py']),
  ('package_tests',['scripts/test_packaging.py']),
  ('environment_tests',['environment/test_handoff.py']),

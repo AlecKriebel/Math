@@ -18,7 +18,7 @@ With the pinned environment already prepared:
 bash scripts/check.sh --serial
 ```
 
-The runner checks compiler identity and positive/negative controls, creates a fresh project build, compiles all 58 mathematical modules and `Bell`, elaborates both statement-contract files, audits all public theorem dependencies, and verifies unchanged source and dependency fingerprints. See [OFFLINE_RUN.md](OFFLINE_RUN.md) for environment preparation and receipt interpretation.
+The runner checks compiler identity and positive/negative controls, creates a fresh project build, compiles every mathematical module and `Bell`, elaborates every file under `validation/`, audits all public theorem dependencies, and verifies unchanged source and dependency fingerprints. See [OFFLINE_RUN.md](OFFLINE_RUN.md) for environment preparation and receipt interpretation.
 
 For the separate exact algebra and verification-harness checks:
 
@@ -37,6 +37,8 @@ python3 scripts/preflight_all.py
 | [StrengthenedWitness](Bell/StrengthenedWitness.lean) | Actual state and measurements attaining `(16+8√7813)/25` |
 | [Quantum](Bell/Quantum.lean) | Complex qubits, density matrices, POVMs/PVMs, Born probabilities, convex hulls |
 | [Original contracts](validation/Statements.lean) and [physical contracts](validation/PhysicalContracts.lean) | Expanded independent checks of definitions, quantifiers, exact values, and boundary cases |
+
+Explicit operator-Hilbert, finite-label, and stochastic-output bridges are detailed in [MODEL_CONVENTIONS.md](docs/MODEL_CONVENTIONS.md).
 
 The model permits mixed states, input-dependent finite output alphabets, unused labels, zero/identity projectors, and finite shared randomness selecting complete state-and-measurement strategies. Equality concerns the convexified behavior sets. The attained values are not claimed to be exact global POVM optima. The precise manuscript correspondence and modelling conventions are recorded in the certification and independent review.
 

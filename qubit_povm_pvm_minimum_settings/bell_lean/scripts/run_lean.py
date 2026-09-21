@@ -25,6 +25,10 @@ ROOT = Path(__file__).resolve().parents[1]
 PINNED_TOOLCHAIN = 'leanprover/lean4:v4.19.0'
 PINNED_LEAN_COMMIT = '6caaee842e9495688c1567e78c0e68dbb96942aa'
 PINNED_MATHLIB_COMMIT = 'c44e0c8ee63ca166450922a373c7409c5d26b00b'
+REQUIRED_CONTRACTS = {'Statements.lean', 'PhysicalContracts.lean',
+                      'StochasticContracts.lean', 'FiniteLabelContracts.lean',
+                      'FiniteStochasticContracts.lean', 'HilbertContracts.lean',
+                      'HilbertFiniteLabelContracts.lean'}
 
 class RunFailure(RuntimeError):
     def __init__(self, message: str, code: int = 1):
@@ -52,6 +56,14 @@ def source_snapshot(root: Path) -> dict[str, str]:
                      and '__pycache__' not in p.parts)
     return {p.relative_to(root).as_posix(): hashlib.sha256(p.read_bytes()).hexdigest()
             for p in sorted(set(files))}
+
+
+def statement_contracts(root: Path) -> list[Path]:
+    files = sorted((root/'validation').rglob('*.lean'))
+    missing = REQUIRED_CONTRACTS - {p.relative_to(root/'validation').as_posix() for p in files}
+    if missing:
+        raise RunFailure(f'Missing required mathematical contracts: {sorted(missing)}')
+    return files
 
 
 def validate_pins(root: Path) -> list[dict]:
@@ -232,13 +244,15 @@ def run(args: argparse.Namespace, root: Path = ROOT) -> int:
         _, text = command(['lake', 'build', 'Bell'], 'build-Bell')
         check_no_errors(text, stage)
         stage = 'statement_contracts'
-        _, text = command(['lake', 'env', 'lean', 'validation/Statements.lean'], 'statement-contracts')
-        check_no_errors(text, stage)
-        _, text = command(['lake', 'env', 'lean', 'validation/PhysicalContracts.lean'], 'physical-contracts')
-        check_no_errors(text, stage)
+        contracts = statement_contracts(root)
+        for contract in contracts:
+            _, text = command(['lake', 'env', 'lean', contract.relative_to(root).as_posix()],
+                              'contract-'+contract.relative_to(root/'validation').with_suffix('').as_posix().replace('/', '__'))
+            check_no_errors(text, stage)
         write_json(run_dir/'statement_audit.json', {'status': 'passed', 'run_id': run_id,
                        'source': 'validation/Statements.lean',
                        'supplementary_source': 'validation/PhysicalContracts.lean',
+                       'all_contract_sources': [p.relative_to(root).as_posix() for p in contracts],
                        'formal_statement_contracts_passed': True,
                        'independent_mathematical_referee_review': False})
         stage = 'dependency_audit'
@@ -274,12 +288,13 @@ def run(args: argparse.Namespace, root: Path = ROOT) -> int:
                    'started_utc': start, 'ended_utc': dt.datetime.now(dt.timezone.utc).isoformat(),
                    'exit_code': status_code, 'last_stage': stage, 'error': error,
                    'lean_build_invoked': lean_invoked, 'all_imported_source_kernel_checked': passed,
+                   'all_project_source_kernel_checked': passed,
                    'main_declarations_kernel_checked': passed,
                    'formal_statement_contracts_passed': passed,
                    'statement_to_manuscript_review_required': True,
                    'logs_directory': run_dir.relative_to(root).as_posix(),
                    'source_snapshot': snapshot, 'commands': commands,
-                   'note': 'Static/smoke/subset success is not full success. Compiler/cache producer remains a trust assumption.'}
+                   'note': 'Fresh-source checking covers this project. Imported Mathlib build artifacts are reused; compiler/runtime and dependency-cache producer remain trust assumptions. The legacy all_imported_source_kernel_checked flag refers to project modules, not a rebuild of Mathlib.'}
         write_json(run_dir/'kernel_report.json', receipt)
         write_json(reports/'kernel_report.json', receipt)
         if passed:

@@ -6,7 +6,7 @@ import Bell.Assembly
 These statements distinguish hull equality from raw equality. The finite
 mixture may change the shared state in every branch. It selects a complete
 projective strategy simultaneously, not an independent mixture for each entry.
-All proofs are source drafts pending the user's compilation run.
+Verification scope and current receipts are documented in CERTIFICATION.md.
 -/
 noncomputable section
 open scoped Bell.Entrywise BigOperators

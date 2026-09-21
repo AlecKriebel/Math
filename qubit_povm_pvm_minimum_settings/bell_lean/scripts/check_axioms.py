@@ -18,6 +18,20 @@ REQUIRED_MAIN={
  'Bell.at_most_two_input_equality','Bell.main_claims','Bell.minimum_inputs',
  'Bell.minimum_inputs_attained','Bell.no_two_input_strict_separation',
  'Bell.strengthened_attainment','Bell.main_claims_with_strengthening',
+ 'Bell.StochasticChannel.decomposition',
+ 'Bell.StochasticProcessing.behavior_decomposition',
+ 'Bell.StochasticProcessing.mem_convexPVM',
+ 'Bell.FiniteLabels.two_input_convex_equality',
+ 'Bell.FiniteLabels.StochasticProcessing.mem_convexPVM',
+ 'Bell.Hilbert.Strategy.toQubit_behavior',
+ 'Bell.Hilbert.ProjectiveStrategy.toQubit_behavior',
+ 'Bell.Hilbert.rawPOVM_eq_matrix', 'Bell.Hilbert.rawPVM_eq_matrix',
+ 'Bell.Hilbert.two_input_convex_equality',
+ 'Bell.Hilbert.Strategy.finite_projective_simulation',
+ 'Bell.HilbertFiniteLabels.rawPOVM_eq_fixed',
+ 'Bell.HilbertFiniteLabels.rawPVM_eq_fixed',
+ 'Bell.HilbertFiniteLabels.at_most_two_input_equality',
+ 'Bell.HilbertFiniteLabels.finite_source_projective_simulation',
 }
 
 

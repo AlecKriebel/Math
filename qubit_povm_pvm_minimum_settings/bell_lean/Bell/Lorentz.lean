@@ -12,8 +12,9 @@ import Mathlib.Tactic.LinearCombination
 
 The identities below are universally quantified, not instance checks.  The
 matrix-to-physical-strategy reconstruction, smoothness, multiplier theorem,
-inertia argument, and global projective-fiber case assembly remain separate
-formalization obligations.  `StrictParameters` records scalar inequalities;
+and global projective-fiber case assembly are provided in other modules.
+The full manuscript Hessian/inertia argument is replaced by feasible curves
+and an exact score-gap identity.  `StrictParameters` records scalar inequalities;
 it does NOT silently assert that they imply Lorentz signature.
 -/
 

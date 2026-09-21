@@ -8,7 +8,7 @@ from pathlib import Path
 import re
 from zipfile import ZipFile
 from source_audit import strip_comments
-from run_lean import validate_pins, write_json
+from run_lean import validate_pins, write_json, statement_contracts
 
 ROOT = Path(__file__).resolve().parents[1]
 INPUT_SHA256 = '0304ec2abf82e6d2747faff20db8cd1eeebeb6e0aed334dd42b4344969e38d92'
@@ -91,9 +91,9 @@ def evaluate(root: Path = ROOT) -> dict:
         for p in (root/d).rglob('*'):
             if p.is_symlink():
                 raise AssertionError(f'Symlink in verification inputs: {p}')
-    contracts = root/'validation/Statements.lean'
-    if not contracts.is_file() or 'example' not in strip_comments(contracts.read_text()):
-        raise AssertionError('Missing independent statement-contract source.')
+    for contracts in statement_contracts(root):
+        if 'example' not in strip_comments(contracts.read_text()):
+            raise AssertionError(f'Missing independent statement examples in {contracts}.')
     declared = json.loads((root/'reports/declarations.json').read_text())
     audit = strip_comments((root/'Bell/Audit.lean').read_text())
     queries = re.findall(r'^#print axioms (\S+)\s*$', audit, flags=re.M)
@@ -113,10 +113,11 @@ def evaluate(root: Path = ROOT) -> dict:
     for module in texts:
         rel = module.replace('.', '/')+'.lean'
         p = root/rel
-        old, now = prior[rel], p.read_bytes()
-        changes.append({'file': rel, 'byte_identical': old == now,
-                        'nonimport_noncomment_text_unchanged': proof_text(old.decode()) == proof_text(now.decode()),
-                        'before_sha256': hashlib.sha256(old).hexdigest(),
+        old, now = prior.get(rel), p.read_bytes()
+        changes.append({'file': rel, 'added_since_baseline': old is None,
+                        'byte_identical': old == now,
+                        'nonimport_noncomment_text_unchanged': old is not None and proof_text(old.decode()) == proof_text(now.decode()),
+                        'before_sha256': hashlib.sha256(old).hexdigest() if old is not None else None,
                         'after_sha256': hashlib.sha256(now).hexdigest()})
     return {'status': 'static_passed', 'kernel_checked': False, 'lean_invoked': False,
             'mathematical_modules': len(texts), 'imports_acyclic': True,

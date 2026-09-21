@@ -6,7 +6,7 @@ import json
 from pathlib import Path
 import re
 from zipfile import ZipFile
-from source_audit import strip_comments
+from source_audit import production_modules, strip_comments
 
 ROOT=Path(__file__).resolve().parents[1]
 OUT=ROOT/'reports/source_completion'
@@ -27,7 +27,7 @@ def sha(b):return hashlib.sha256(b).hexdigest()
 
 
 def main():
-    modules={'Bell.'+p.stem:p for p in (ROOT/'Bell').glob('*.lean') if p.name!='Audit.lean'}
+    modules={'Bell.'+p.stem:p for p in production_modules(ROOT)}
     graph={}
     for name,p in modules.items():
         clean=strip_comments(p.read_text())

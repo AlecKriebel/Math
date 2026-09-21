@@ -10,6 +10,7 @@
 \usepackage{microtype}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning}
+\usepackage{xurl}
 \usepackage[hidelinks]{hyperref}
 \usepackage[nameinlink,noabbrev]{cleveref}
 \usepackage[numbers,sort&compress]{natbib}
@@ -51,7 +52,7 @@ for Qubit POVM--PVM Separation}
 \small Independent Researcher\\
 \small \texttt{me@aleckriebel.com}\\
 \small \url{https://aleckriebel.com/}}
-\date{July 2026}
+\date{Version 2.0.0 working revision --- September 2026}
 
 \begin{document}
 \ifdefined\REVIEWVERSION
@@ -71,9 +72,10 @@ rational \(3\times2\) functional, an exact qubit-POVM strategy, and a global
 analytic qubit-PVM upper bound with a strict exact gap. Hence \(3\times2\) is
 the minimum input architecture, up to exchanging the parties. The equality
 proof combines a one-binary-party Lorentz-cone simulation, an extremal
-binary--ternary reduction, a physically exact Lorentz incidence manifold,
-finite-POVM duality, and a rank trichotomy based on the incidence second
-variation. The result concerns convexified behavior sets; it does not assert
+binary--ternary reduction, physical Lorentz incidence coordinates, and a
+rank trichotomy. A Lean formalization proves the principal results using
+deterministic score gaps, differentiable feasible curves, and an exact
+quadratic score identity. The result concerns convexified behavior sets; it does not assert
 equality of the raw nonconvex strategy images or same-state simulation.
 \end{abstract}
 
@@ -141,6 +143,14 @@ projectivization of the arbitrary-output measurements. The
 one-binary-party theorem below instead supplies a common PVM mixture of the
 complete fixed-qubit behavior.
 
+Zhu \emph{et al.}\ provide a recent rational \(3\times2\) functional with
+a fully analytic bound over arbitrary shared two-qubit projective strategies
+and a Lean separation certificate \cite{zhu2026}. They also give a separate
+exact sum-of-squares certificate for the unrestricted finite-dimensional
+quantum optimum of their functional. These are separation and optimization
+results for a particular functional; they do not establish the universal
+two-input equality studied here.
+
 To our knowledge, equality of the shared-randomness-convexified fixed-qubit
 POVM and PVM behavior sets for all bipartite two-input architectures with
 finite, input-dependent output alphabets, and the resulting \(3\times2\)
@@ -165,9 +175,6 @@ We work throughout with local Hilbert-space dimension at most two and with
 shared-randomness convexification. Our results are:
 
 \begin{enumerate}[leftmargin=*,itemsep=3pt]
-\item An explicit rational \(3\times2\) Bell functional has an exact
-  algebraic qubit-POVM strategy above a global analytic upper bound for all
-  qubit-PVM strategies (\cref{thm:separation}).
 \item If one party has binary outcomes on both of its two inputs, every qubit
   POVM behavior is a common convex mixture of complete qubit-PVM behaviors
   (\cref{thm:binary-party}).
@@ -177,6 +184,9 @@ shared-randomness convexification. Our results are:
 \item The residual architecture cannot strictly exceed the PVM support
   function (\cref{thm:two-input-equality}). The proof treats every smooth and
   singular rank of an exact Lorentz incidence model.
+\item An explicit rational \(3\times2\) Bell functional has an exact
+  algebraic qubit-POVM strategy above a global analytic upper bound for all
+  qubit-PVM strategies (\cref{thm:separation}).
 \item Consequently \(3\times2\) is the minimum input architecture, up to
   exchanging the parties (\cref{cor:minimality}).
 \end{enumerate}
@@ -215,8 +225,6 @@ Bell coefficients & Algebraic \(I_{CH3}\) family & Rational functional\\
 Unrestricted-state PVM comparison & Numerical optimization supported by an
 NPA upper bound for the displayed parameter choice & Analytic upper bound
 covering every two-qubit state and every PVM support\\
-Global optimum claimed & No & No; \(L_0\) is a lower bound and \(U\) an upper
-bound\\
 Setting minimality & Not addressed & \(3\times2\), up to party exchange\\
 \bottomrule
 \end{tabular}
@@ -234,13 +242,23 @@ counterexamples to one binary and one ternary measurement per party.
 In the residual architecture, the five local effects form a unique
 binary-versus-ternary circuit. Lorentz coordinates describe the complete
 strategy by a \(4\times4\) probability block \(P\) and a four-parameter
-metric \(g\), subject to five quadratic null equations. Finite POVM duality
-makes every determinant multiplier strictly positive at a hypothetical strict
-separator. The constrained second variation then has ambient inertia
-\((4,12)\). If the metric differential has rank at least two, dimension alone
-forces an uphill direction. Rank one contradicts positivity through an exact
-projective-fiber theorem, while rank zero has an explicit deterministic
-decomposition.
+metric \(g\), subject to five quadratic null equations. At a hypothetical
+strict separator, replacing one input by a deterministic measurement gives
+an exact score gap that forces each determinant multiplier to be positive.
+If the metric differential has rank at least two, a compatible rank-one
+variation gives an uphill direction. Rank one contradicts positivity through
+an exact projective-fiber theorem, while rank zero has an explicit
+deterministic decomposition.
+
+The machine-checked route realizes the uphill direction by a differentiable
+feasible curve and proves improvement from an exact finite score-gap
+identity. It does not require the full smooth-manifold or Hessian-inertia
+statements retained below as geometric explanations. Likewise, the general
+POVM-duality and determinant-pullback lemmas are retained as supplementary
+manuscript arguments, not prerequisites of the formal multiplier proof.
+\Cref{app:verification} identifies the checked endpoints and the retained
+manuscript-only claims. Formal verification of the endpoints does not
+certify every intermediate statement of an alternative prose proof.
 
 \section{Model and convexified behavior sets}
 \label{sec:model}
@@ -409,6 +427,14 @@ coordinates\\
 {An exact rational \(3\times2\) separation}
 \label{sec:separation}
 
+This section supplies a supporting exact certificate at the already known
+\(3\times2\) architecture of V\'ertesi and Bene \cite{vertesi2010}. Both
+constructions combine a dominant CH/CHSH contribution with a ternary
+measurement advantage. The contribution here is the displayed rational
+functional, explicit witness, and analytic all-state PVM certificate used
+with the two-input equality theorem. We do not claim the first existence of
+a \(3\times2\) separation, a new architecture, or a globally optimal value.
+
 For this section take Alice inputs \(x=0,1,2\), Bob inputs \(y=0,1\), Alice
 labels \(a=0,1,2\), and Bob labels \(b=0,1\). Define signs
 \[
@@ -457,6 +483,20 @@ L_0-U=\frac{3(2-\sqrt2)}{250}>0.
 These are an attained POVM lower bound and a global PVM upper bound; neither
 is asserted to be the corresponding exact optimum.
 \end{theorem}
+
+\begin{remark}[Alternative formal projective certificate]
+The Lean proof establishes the stronger bound
+\[
+\beta_{\PVM}(\Bell)\le\frac{289}{10}<U<L_0.
+\]
+It uses an exact operator sum-of-squares certificate for each possible
+missing label of Alice's ternary qubit PVM, including deterministic
+measurements. Positivity then bounds the expectation for every two-qubit
+state, and linearity extends the bound to shared randomness. Thus the
+formal proof of \cref{thm:separation} does not depend on formalizing the
+physical-to-scalar deficit estimates given later in this section.
+The rational bound is not asserted to be the exact PVM optimum.
+\end{remark}
 
 \subsection{The simple exact strategy}
 
@@ -666,38 +706,30 @@ are given separately in \cref{app:strengthened}.
 
 \begin{lemma}[Circuits of a three-dimensional pointed cone]
 \label{lem:lorentz-circuit}
-Let \(K\) be a pointed convex cone of real dimension at most three. Consider
-a support-minimal equality between positive sums of nonzero extreme-ray
-vectors of \(K\), after canceling any ray that occurs on both sides. Positive
-coefficients may be absorbed into the ray vectors. Then either the equality
-is a one-versus-one cancellation on the same ray, or \(K\) has dimension
-three and the relation has the form
+Let \(K\) be a pointed convex cone of real dimension at most three.
+In a positive relation between nonzero extreme-ray vectors, first combine
+repeated occurrences of each ray, then cancel any common ray between the
+two sides. Every nontrivial support-minimal relation remaining
+after this cancellation has four distinct rays, \(\dim K=3\), and, after
+absorbing the positive coefficients into the vectors, the form
 \[
-r_0+r_1=s_0+s_1
+r_0+r_1=s_0+s_1.
 \]
-with four distinct rays. In particular, every nontrivial circuit is
-two-versus-two.
+The canceled components are one-versus-one relations on the same ray.
 \end{lemma}
 
 \begin{proof}
-Move the two sums to opposite sides and attach the corresponding positive and
-negative coefficients. Support minimality makes this a minimally supported
-linear dependence. Indeed, if a proper subset admitted any nonzero
-dependence, add a sufficiently small signed multiple of it to the original
-coefficient vector and vary the multiple until one coefficient first
-vanishes; all original signs remain weakly unchanged, yielding a smaller
-positive relation after cancellation. A minimally dependent set in
-dimension \(d\) has at most \(d+1\) vectors, so at most four rays occur.
-
-Pointedness excludes a dependence with all signs equal. If one side contained
-a single extreme ray and the other side contained at least two different
-rays, division by its positive coefficient would express that extreme ray as
-a nontrivial positive sum of other cone rays, a contradiction. Thus a
-nontrivial relation contains at least two rays on each side and at most four
-total, forcing \(d=3\) and the displayed two-versus-two form. A pointed cone
-of dimension one or two has at most two extreme rays, so only
-one-versus-one, same-ray cancellations remain there. A zero vector is not an
-extreme ray and is simply omitted.
+Let \(R\) be the matrix of the distinct rays in a reduced support-minimal
+relation, and let \(c\) be its signed coefficient vector, all entries
+nonzero. If a proper subset of these rays were dependent, perturb \(c\)
+along that dependence until a coefficient first vanishes, preserving every
+weak sign. At least one coefficient outside that subset stays nonzero,
+so this gives a smaller positive relation, a contradiction. The rays
+therefore form a linear circuit: if their number is \(N\), then
+\(N-1=\rank R\le\dim K\le3\).
+Pointedness excludes a relation with only one sign. Extremality excludes
+one ray on either side of a reduced relation. Thus \(N\ge4\), forcing
+\(N=4\), two rays on each side, and \(\dim K=3\).
 \end{proof}
 
 \begin{theorem}[One-binary-party simulation]
@@ -1206,6 +1238,13 @@ conditions, giving a two-sided physical curve for sufficiently small
 parameter values even when a joint probability is zero.
 \end{proof}
 
+\paragraph{Formal scope of the local geometry.}
+The formal proof establishes the surjective constraint derivative,
+existence of differentiable feasible curves, and local physical
+reconstruction needed below. The full smooth \(14\)-dimensional manifold
+statement in the next proposition is retained as a manuscript argument;
+it is not a separate formal endpoint.
+
 \begin{proposition}[Smooth incidence manifold]
 \label{prop:smooth}
 Restricted to the open genuine residual stratum---in particular, where
@@ -1260,6 +1299,11 @@ Thus there are unique multipliers
 Stationarity in the four metric variables says
 \(\lambda\in\ker\cD^T\), where \(\cD\) is defined in
 \cref{sec:second-variation}.
+
+The next two lemmas record the original duality interpretation. Their
+general dual-attainment and determinant-pullback statements remain
+manuscript-only. The proof of strict multiplier positivity below instead
+uses the deterministic replacements appearing in the Lean development.
 
 \begin{lemma}[Finite POVM duality]
 \label{lem:povm-duality}
@@ -1348,57 +1392,49 @@ support value,
 \end{proposition}
 
 \begin{proof}
-For each Bob input \(y\), hold the state and all other measurements fixed and
-collect the terms of \(\mathcal L_c\) depending on that input as
-\[
-\sum_{j\in B_y}\Tr(K_{j|y}N_{j|y}).
-\]
-Apply \cref{lem:povm-duality} separately to Bob's binary and ternary inputs,
-with distinct dual operators \(\Gamma_y\). Complementary slackness says
-\((\Gamma_y-K_{j|y})N_{j|y}=0\). Since \(N_{j|y}\) is nonzero rank one, every
-positive semidefinite matrix annihilating its range is a nonnegative multiple
-of its adjugate. Thus
-\[
-\Gamma_y-K_{j|y}
-=\tau_{j|y}\operatorname{adj}(N_{j|y}),\qquad \tau_{j|y}\ge0,
-\]
-\(\operatorname{adj}(N_{j|y})N_{j|y}=0\).
+Put \(S=P^TQP\). For outcome \(j\), let \(R_j\) be the coefficient map
+that sends \(r_j\) to \(u\), the other rays of the same input to zero,
+and the rays of the other input to themselves. This is well defined:
+the sole circuit relation is preserved, and \(R_ju=u\).
+The block \(PR_j\) represents precisely the physical behavior obtained by
+replacing Bob's input containing \(j\) with the deterministic measurement
+that always outputs \(j\).
 
-It remains to identify the normalization multiplier
-\(\widehat\Gamma_y\) from \cref{lem:determinant-pullback} with the finite-POVM
-dual \(\Gamma_y\). Both differences from \(K_{j|y}\) annihilate
-\(\operatorname{ran}N_{j|y}\), so
-\((\widehat\Gamma_y-\Gamma_y)N_{j|y}=0\) for every \(j\). Those ranges span
-\(\C^2\), because \(\sum_jN_{j|y}=\id\); hence
-\(\widehat\Gamma_y=\Gamma_y\). Comparing the two adjugate coefficients gives
-\[
-4|\det\Xi|^2\lambda_{j|y}=\tau_{j|y}\ge0.
-\]
+The null equations give \(r_k^TSr_k=0\). Applying the stationarity
+identity \eqref{eq:lagrange} to \(P\) and \(PR_j\), the normalization
+terms cancel and all unchanged null rays drop out. Hence
+\begin{equation}
+\label{eq:deterministic-score-gap}
+\mathcal L_c(P)-\mathcal L_c(PR_j)
+=2\lambda_j r_j^TSu.
+\end{equation}
+In the physical strict residual domain, \(Pr_j\) is future null and
+\(Pu\) is future timelike for \(Q\), so
+\(r_j^TSu=(Pr_j)^TQ(Pu)>0\).
 
-If \(\lambda_{j|y}=0\), then \(K_{j|y}=\Gamma_y\). Replacing that entire input
-by the deterministic PVM \(N_{j|y}=\id\), \(N_{k|y}=0\) for \(k\ne j\),
-preserves the score because both the old optimum and the replacement score
-equal \(\Tr\Gamma_y\).
-
-For completeness, the resulting behavior has an explicit local model. Let
-\(y_*\) be Bob's remaining nontrivial input, let
-\(q(\ell)=p_B(\ell|y_*)\), and omit zero-weight \(\ell\). Use hidden variable
-\(\ell\), Alice response
-\[
-p_A(a|x,\ell)=\frac{p(a,\ell|x,y_*)}{q(\ell)},
-\]
-and Bob response \(\ell\) on \(y_*\) and the fixed label \(j\) on the replaced
-input. This reproduces the \(y_*\) block by construction and the deterministic
-block because nonsignaling gives
-\(\sum_\ell p(a,\ell|x,y_*)=p_A(a|x)\). Expanding the local response
-probabilities into deterministic choices yields a convex combination of
-identity-and-zero qubit PVM behaviors. A strict value above the PVM support
-therefore forces every \(\tau_{j|y}\), and hence every \(\lambda_j\), to be
-positive. Since \(r_1,\ldots,r_4\) form a basis, \(\Lambda>0\).
+After the replacement, Bob has only one nondeterministic input. Its
+outcome can be used as a hidden variable: if that input is \(y_*\), take
+weight \(p_B(b|y_*)\), omit zero weights, and use Alice's response
+\(p(a,b|x,y_*)/p_B(b|y_*)\). Nonsignaling reproduces the deterministic
+input as well. Expanding the finite response distributions into
+deterministic choices expresses the whole behavior as a convex combination
+of identity-and-zero PVM strategies. Its score is therefore at most the
+PVM support value and strictly below \(\mathcal L_c(P)\).
+Equation \eqref{eq:deterministic-score-gap} now forces \(\lambda_j>0\)
+for every \(j\). Since the first four rays span, \(\Lambda>0\).
 \end{proof}
 
 \section{Exact second variation}
 \label{sec:second-variation}
+
+The inverse-metric Hessian and its ambient inertia below describe the
+original geometric route. These full statements are not formal endpoints.
+The formal route instead constructs a compatible uphill direction,
+integrates it using a first-order implicit-function theorem, and combines
+an exact polynomial score-gap identity with its quadratic limit. This
+proves the required failure of local maximality without assuming a full
+manifold theorem or computing the full Hessian inertia; see
+\cref{app:verification}.
 
 A tangent metric variation has the form
 \[
@@ -1746,12 +1782,20 @@ a discrimination advantage.
 
 \section*{Data, code, and verification}
 
-The accompanying repository contains exact Bell coefficients and strategies,
-the separation verifier, the exceptional-fiber identities, the closure
-verifier, and an independent rank-zero simulator. One offline command runs
-all exact checks. The code verifies finite algebraic identities and explicit
-constructions; the convexity, extremality, physical-reconstruction, and
-dimension arguments remain explicit manuscript proofs.
+The accompanying repository contains the Lean formalization in
+\path{qubit_povm_pvm_minimum_settings/bell_lean}, together with the exact
+algebra scripts and explicit strategies. The principal equality,
+whole-strategy finite simulation, minimum-input classification, separation,
+and strengthened attained value are formalized in the complex-qubit matrix
+model. Explicit bridges cover finite outcome labels, stochastic output
+processing, and arbitrary complex local Hilbert spaces of dimension at most
+two. The formalization includes the reductions and physical
+reconstruction used by its proof; it is not only a check of the final
+scalar constants. Reproduction instructions, pinned dependencies, named
+verification receipts, and the theorem-to-manuscript map accompany the
+sources. \Cref{app:verification} gives the precise scope and trust boundary.
+The separate symbolic and numerical scripts remain supplementary checks;
+they are not substitutes for kernel-checked proofs.
 
 \section*{AI-assisted research and verification}
 

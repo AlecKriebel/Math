@@ -2,8 +2,10 @@
 {Exact algebra for the \(3\times2\) separation}
 \label{app:separation-algebra}
 
-We record the identities that make the projective bound independent of
-numerical optimization. For a pair involving auxiliary label \(2\), let
+We record the scalar identities in the manuscript projective-bound route.
+The formal physical bound instead uses the operator SOS certificate described
+in \cref{sec:separation}; not every physical-to-scalar step below is a
+separate Lean theorem. For a pair involving auxiliary label \(2\), let
 \[
 K_{\bm n}=\frac35D \Pi(\bm n)D,\qquad
 K_{\bm m}=\frac45D \Pi(\bm m)D,
@@ -159,6 +161,9 @@ prove \(L_1>U\).
 \end{proof}
 
 \begin{remark}[Scope of the strengthening]
+The attained value in \cref{prop:strengthened-strategy} is a formal endpoint.
+The particular dual-slack calculation above and the differentiation and
+uniqueness argument below are retained manuscript calculations.
 Within the one-parameter family used above,
 \[
 f(\eta)=20\sqrt{2-\eta^2}+\frac{16+4\eta}{25}
@@ -220,6 +225,10 @@ three-dimensional span, it leaves exactly three rank-one effects.
 \section{Finite-dimensional POVM duality}
 \label{app:duality}
 
+This general dual-attainment and complementary-slackness argument is
+retained as a manuscript proof. It is not used by the formal proof of
+strict multiplier positivity, which uses \eqref{eq:deterministic-score-gap}.
+
 Let
 \[
 V=\max_{\substack{N_j\ge0\\\sum_jN_j=\id}}
@@ -270,6 +279,10 @@ This proves complementary slackness.
 
 \section{Square completion for the incidence Hessian}
 \label{app:square-completion}
+
+This is the manuscript inverse-metric Hessian calculation. The formal
+rank closure uses feasible curves and the exact score-gap identity instead
+of a standalone theorem for this full Hessian or its inertia.
 
 Let \(x_j=Pr_j\), \(Q=g^{-1}\), and vary
 \[
@@ -589,23 +602,229 @@ from that one executable example.
 \section{Verification boundary}
 \label{app:verification}
 
-The exact verifier checks:
-\begin{enumerate}[leftmargin=*]
-\item dense and sparse Bell coefficients and both explicit strategies;
-\item POVM normalization, rank-one factorizations, exact Bell values, and
-  discrimination dual certificates;
-\item the determinant, discriminant, robust-comparison, deficit, and
-  complete-square identities in the projective bound;
-\item the Lorentz metric identities, quadratic map, generic inverse, all
-  exceptional resultants and factorizations;
-\item an exact pure-state conformal-Lorentz instance and the weighted Hessian
-  square completion;
-\item independence witnesses for the five incidence constraints;
-\item bounded-flow identities and an independent rank-zero simulation.
-\end{enumerate}
+\subsection{Formal conclusions and model}
 
-The scripts do not replace the manuscript arguments establishing compactness,
-extremal reduction, cone circuits, physical completeness, multiplier signs,
-dimension bounds, or exhaustion of cases. Some symbolic checks are exact
-regression instances rather than formal proofs of general matrix identities;
-the corresponding general identities are derived above.
+The Lean development proves the principal conclusions in the explicit
+complex-qubit matrix model. Local effects are positive semidefinite
+\(2\times2\) complex matrices summing to the identity; the shared state is
+an arbitrary positive semidefinite trace-one \(4\times4\) complex matrix.
+Probabilities are Born traces. A projective strategy additionally requires
+idempotent effects. Zero and identity effects are allowed, and every
+mixture selects one complete state-and-measurement strategy for all inputs.
+Output cardinalities may depend on the input. Convex hull means the
+ordinary finite convex hull, not its topological closure.
+
+The following are exact declaration names, with namespace prefix
+\texttt{Bell.}; their statements and physical hypotheses are expanded in
+\path{validation/Statements.lean} and
+\path{validation/PhysicalContracts.lean}.
+\begin{center}
+\small
+\begin{tabular}{@{}
+>{\raggedright\arraybackslash}p{0.40\linewidth}
+>{\raggedright\arraybackslash}p{0.55\linewidth}@{}}
+\toprule
+Conclusion & Lean declaration\\
+\midrule
+Arbitrary finite-output two-input hull equality &
+\path{universal_two_input_equality}\\
+One finite mixture of complete PVM strategies &
+\path{finite_projective_simulation}\\
+One input; at most two inputs per party &
+\path{one_input_equality}; \path{at_most_two_input_equality}\\
+Exact simple witness &
+\path{witness_mem_raw}; \path{witness_value}\\
+Universal rational PVM bound \(289/10\) &
+\path{projective_strategy_rational_upper};
+\path{convex_projective_rational_upper}\\
+Paper bound and strict \(3\times2\) separation &
+\path{projective_global_upper_bound}; \path{three_by_two_separation}\\
+Minimum input requirement and attainment &
+\path{minimum_inputs}; \path{minimum_inputs_attained}\\
+Strengthened physical value in Appendix B &
+\path{strengthened_attainment}\\
+Combined principal conclusions &
+\path{main_claims_with_strengthening}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+These statements do not assert same-state simulation, equality of the raw
+nonconvex ranges, a global POVM optimum, or bibliographic priority.
+
+\subsection{Explicit model-convention bridges}
+
+Arbitrary finite local stochastic output channels are formalized in
+\path{Bell/StochasticProcessing.lean}. The theorem
+\path{Bell.StochasticChannel.decomposition} expresses a channel as a finite
+mixture of deterministic maps. Theorems
+\path{Bell.StochasticProcessing.behavior_decomposition} and
+\path{Bell.StochasticProcessing.mem_convexPVM} use one common random
+selector for all inputs and both parties to reconstruct the entire table
+and preserve the PVM convex hull. Zero-probability outcomes remain allowed.
+An empty source alphabet admits the empty channel, whereas a nonempty
+source cannot be normalized into an empty target alphabet; these cases
+are covered without assuming positive channel entries. The expanded
+contracts are in \path{validation/StochasticContracts.lean}.
+This is convex-hull closure under processing, not closure of the raw PVM
+range under arbitrary stochastic processing.
+
+For finite input-dependent outcome types, \path{Bell/FiniteLabels.lean}
+defines matrix-valued POVMs and PVMs directly on those types. Its
+\path{Bell.FiniteLabels.behaviorEquiv} transports the complete Born table
+linearly to the \texttt{Fin}-indexed model; the corresponding
+\path{rawPOVM_transport}, \path{rawPVM_transport},
+\path{convexPOVM_transport}, and \path{convexPVM_transport} theorems
+transport the raw sets and finite convex hulls. In this namespace,
+\path{two_input_equality} and \path{at_most_two_input_equality} therefore
+apply to arbitrary finite outcome labels, including input-dependent ones.
+A declared empty output alphabet at an existing input admits no normalized
+qubit measurement; empty input sets impose no measurement obligations.
+The contracts in \path{validation/FiniteLabelContracts.lean} check both
+boundaries. Inputs remain indexed by \texttt{Fin} of their cardinality.
+\path{Bell/FiniteStochastic.lean} transports the stochastic-processing
+construction through the same equivalence, with full-table decomposition
+and convex-PVM closure checked in
+\path{validation/FiniteStochasticContracts.lean}.
+
+The dimension convention is also an explicit formal bridge.
+\path{Bell/HilbertCorrespondence.lean} defines effects as endomorphisms of
+arbitrary finite-dimensional complex inner-product spaces \(E,F\), and the
+state as a positive trace-one endomorphism of \(E\otimes_{\C}F\).
+The tensor inner product is proved independent of the orthonormal bases
+used to construct it. For \(\dim E,\dim F\le2\), linear isometries into
+\(\C^2\) preserve the state trace and every Born probability. Each
+measurement assigns the unused orthogonal complement to one of its
+outcomes, preserving normalization and, for PVMs, projectivity.
+The behavior-preservation theorems are
+\path{Bell.Hilbert.Strategy.toQubit_behavior} and
+\path{Bell.Hilbert.ProjectiveStrategy.toQubit_behavior}.
+Trace one rules out a zero-dimensional local space; normalization supplies
+a selectable outcome at every existing input, without an extra
+nonempty-output hypothesis.
+
+Conversely, the matrix strategies have realizations as operators on
+\(\C^2\). Consequently \path{Bell.Hilbert.rawPOVM_eq_matrix} and
+\path{Bell.Hilbert.rawPVM_eq_matrix} identify the respective raw ranges
+of the union over local spaces of dimension at most two with the fixed
+matrix model. They do not identify the raw POVM and PVM ranges with each
+other, or assert that a fixed one-dimensional carrier realizes every
+qubit behavior. \path{Bell.Hilbert.two_input_convex_equality} and
+\path{Bell.Hilbert.Strategy.finite_projective_simulation} then transfer the
+principal theorem and complete-strategy mixture to this source model.
+The physical matrix properties, one-dimensional example, degenerate cases,
+and simulation statement are expanded in
+\path{validation/HilbertContracts.lean}.
+
+Finally, \path{Bell/HilbertFiniteLabels.lean} composes both conventions in
+one independently defined source model: arbitrary complex local spaces
+and arbitrary finite input-dependent outcome types. In namespace
+\texttt{Bell.HilbertFiniteLabels}, the theorems
+\path{rawPOVM_eq_fixed}, \path{rawPVM_eq_fixed}, and
+\path{at_most_two_input_equality} establish the corresponding raw-model
+transport and convexified equality. The endpoint
+\path{finite_source_projective_simulation} returns one finite mixture of
+complete projective Hilbert-space strategies on \(\C^2\), retaining the
+original outcome labels and reproducing every entry of the source Born
+table. Its statement and the combined boundary cases are expanded in
+\path{validation/HilbertFiniteLabelContracts.lean}.
+
+\subsection{Why the formal route proves the endpoints}
+
+The formal chain begins with physical matrices and includes compactness,
+finite convexity, the qubit measurement reductions, complex purification
+and steering, and physical incidence reconstruction. The residual
+obstruction is proved by three rank cases, not supplied as an axiom.
+Three differences from the original manuscript route are material.
+
+First, the formal multiplier proof derives stationarity at a physical
+maximum and identifies each coefficient reset with a physical deterministic
+measurement replacement. The replacement is local and lies in the PVM
+hull. Its strict score deficit and the positive future pairing in
+\eqref{eq:deterministic-score-gap} imply \(\lambda_j>0\).
+The source modules are \path{Bell/DeterministicGap.lean},
+\path{Bell/IncidenceScores.lean}, and
+\path{Bell/IncidenceStationarity.lean}. No general SDP dual-attainment or
+complementary-slackness theorem is needed for this implication.
+
+Second, \path{Bell/ImplicitCurve.lean} obtains differentiable feasible
+curves from a surjective strict derivative using the implicit-function
+theorem. An exact polynomial score-gap identity from
+\path{Bell/IncidenceAlgebra.lean} and its quadratic limit prove strict
+improvement along the positive direction constructed in
+\path{Bell/UphillDirection.lean}. Thus the high-rank obstruction does not
+require a standalone smooth \(14\)-manifold theorem or the full
+inverse-metric Hessian inertia \((4,12)\). The lower-rank cases use the
+checked projective-fiber identities and explicit rank-zero simulation.
+\path{Bell/ResidualClosure.lean} joins the three cases to the physical
+maximum, and \path{Bell/Assembly.lean} closes the arbitrary-output theorem.
+
+Third, \path{Bell/ProjectiveSOS.lean} and
+\path{Bell/ProjectiveBound.lean} prove an exact operator SOS bound for all
+physical PVM strategies. The bound \(289/10\) is strictly below both the
+paper's upper bound \(U\) and the attained witness value \(L_0\).
+The original scalar-deficit proof is an alternative manuscript route.
+
+\subsection{Retained manuscript-only arguments}
+
+Formal verification of those endpoints does not certify every statement of
+an unused argument. The following broader statements or particular
+calculations remain manuscript arguments; only the specializations or
+replacements just described are needed by the formal proof:
+\begin{itemize}[leftmargin=*]
+\item the general finite-POVM dual-attainment and complementary-slackness
+  lemma and determinant-pullback interpretation;
+\item the full smooth \(14\)-dimensional incidence-manifold statement and
+  inverse-metric Hessian formula with ambient inertia \((4,12)\);
+\item the arbitrary pointed-cone circuit formulation, general mixed-state
+  common-span formulation, and arbitrary extremal-POVM rank-square bound,
+  beyond the qubit specializations used in the formal reduction;
+\item the original physical-to-scalar derivation of the projective bound,
+  the ideal auxiliary PVM discrimination bound \(3/5\), and selected
+  individual spectral and coordinate identities;
+\item Appendix B's particular dual slacks and its differentiation and
+  unique-critical-point calculation, as distinct from its formally proved
+  attained value.
+\end{itemize}
+The full correspondence table is \path{docs/CERTIFIED_COVERAGE.md} in the
+Lean package. These exclusions identify the scope of formal verification;
+they are not deductions that the retained statements are false. Those
+statements must be assessed on their displayed mathematical arguments.
+
+\subsection{Reproduction and trust}
+
+The pinned environment uses Lean \texttt{4.19.0} and Mathlib commit
+\path{c44e0c8ee63ca166450922a373c7409c5d26b00b}; the remaining dependency
+revisions are fixed in \path{lake-manifest.json}. From the
+\path{bell_lean} directory, the advertised complete check is
+\begin{quote}
+\texttt{bash scripts/check.sh --bootstrap --serial}
+\end{quote}
+The bootstrap option requires network access for pinned dependencies;
+with those dependencies already installed it may be omitted.
+The package's \path{CERTIFICATION.md} identifies the authoritative named
+run, protected source fingerprints, compiler controls, statement contracts,
+and axiom audit. Run-specific receipts are preserved separately from
+convenience copies identifying the latest run. A historical receipt
+certifies its own source snapshot, not later edited files.
+
+The checked principal development uses only the standard logical axioms
+\path{propext}, \path{Classical.choice}, and \path{Quot.sound}; it
+contains no admitted proofs or custom mathematical axioms. The trust
+boundary includes the Lean kernel/compiler and runtime, the machine and
+filesystem, and the pinned dependency build artifacts. This is not a
+bootstrap verification of the entire third-party software stack.
+Independent adversarial agent reviews supplement the kernel checks and
+statement review; they are not external expert peer review.
+
+\subsection{Supplementary exact computations}
+
+The separate algebra scripts check dense and sparse Bell coefficients,
+explicit strategy values, normalization and rank-one factorizations,
+discrimination certificates, scalar identities for the projective bound,
+Lorentz-coordinate identities, generic and exceptional fiber formulas,
+constraint-independence witnesses, and bounded-flow/rank-zero examples.
+Some checks are exact regression instances rather than general theorems.
+They supplement the Lean development and retained prose arguments; they do
+not by themselves prove compactness, global physical reconstruction,
+exhaustion of cases, or the behavior-set equality.

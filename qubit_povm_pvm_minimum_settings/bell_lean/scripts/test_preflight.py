@@ -116,6 +116,9 @@ class RunnerControlFlowTests(unittest.TestCase):
         self.root=Path(self.temp.name)
         (self.root/'reports/source_completion').mkdir(parents=True)
         (self.root/'Bell').mkdir(); (self.root/'scripts').mkdir()
+        (self.root/'validation').mkdir()
+        for filename in runner.REQUIRED_CONTRACTS:
+            (self.root/'validation'/filename).write_text('example : True := True.intro\n')
         (self.root/'reports/declarations.json').write_text(json.dumps(DECLS))
         (self.root/'reports/source_completion/source_inventory.json').write_text(json.dumps({'topological_module_order':['Bell.First','Bell.Second']}))
         for filename in ('kernel_report.json','axiom_audit.json','statement_audit.json'):
@@ -186,6 +189,24 @@ class RunnerControlFlowTests(unittest.TestCase):
         self.assertFalse(any('validation/Statements.lean' in c for c in self.calls))
     def test_contract_failure(self):
         self.overrides['validation/Statements.lean']=(1,'mock type mismatch')
+        self.assertNotEqual(self.invoke(),0); self.assert_failed()
+    def test_expanded_contract_failure(self):
+        self.overrides['validation/HilbertContracts.lean']=(1,'error: missing normalization')
+        self.assertNotEqual(self.invoke(),0); self.assert_failed()
+    def test_missing_bridge_contract(self):
+        (self.root/'validation/StochasticContracts.lean').unlink()
+        self.assertNotEqual(self.invoke(),0); self.assert_failed()
+    def test_all_added_contracts_are_executed(self):
+        (self.root/'validation/Additional.lean').write_text('example : True := True.intro\n')
+        (self.root/'validation/nested').mkdir()
+        (self.root/'validation/nested/Additional.lean').write_text('example : True := True.intro\n')
+        self.assertEqual(self.invoke(),0)
+        for name in runner.REQUIRED_CONTRACTS | {'Additional.lean', 'nested/Additional.lean'}:
+            self.assertTrue(any('validation/'+name in c for c in self.calls))
+    def test_nested_contract_failure(self):
+        (self.root/'validation/nested').mkdir()
+        (self.root/'validation/nested/Extra.lean').write_text('example : True := True.intro\n')
+        self.overrides['validation/nested/Extra.lean']=(1,'error: nested contract failure')
         self.assertNotEqual(self.invoke(),0); self.assert_failed()
     def test_contract_error_with_zero_exit(self):
         self.overrides['validation/Statements.lean']=(0,'error: unresolved goals')

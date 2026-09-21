@@ -76,8 +76,8 @@ A fresh run gets its own `reports/runs/<run_id>/` directory. The runner requires
    dependency commits and no modified tracked dependency files.
 2. A valid polynomial smoke proof accepted and an invalid `False` proof rejected
    with a type error, rather than a crash or missing-import failure.
-3. A fresh complete `Bell` build, then actual Lean elaboration of all 25 examples
-   in `validation/Statements.lean` and `validation/PhysicalContracts.lean`.
+3. A fresh complete `Bell` build, then actual Lean elaboration of every contract under
+   `validation/`, including all required bridge and degenerate-case contracts.
 4. One dependency report for every public theorem in the generated inventory,
    including every required main theorem. The allowlist is `propext`,
    `Classical.choice`, and `Quot.sound`; `sorryAx`, unapproved axioms, missing or
