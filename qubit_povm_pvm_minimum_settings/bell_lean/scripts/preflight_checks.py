@@ -95,6 +95,10 @@ def evaluate(root: Path = ROOT) -> dict:
         if 'example' not in strip_comments(contracts.read_text()):
             raise AssertionError(f'Missing independent statement examples in {contracts}.')
     declared = json.loads((root/'reports/declarations.json').read_text())
+    from check_axioms import REQUIRED_MAIN
+    missing_main = REQUIRED_MAIN - {d['name'] for d in declared if d['visibility'] != 'private'}
+    if missing_main:
+        raise AssertionError(f'Required endpoints absent from declaration inventory: {sorted(missing_main)}')
     audit = strip_comments((root/'Bell/Audit.lean').read_text())
     queries = re.findall(r'^#print axioms (\S+)\s*$', audit, flags=re.M)
     expected = [d['name'] for d in declared if d['visibility'] != 'private']

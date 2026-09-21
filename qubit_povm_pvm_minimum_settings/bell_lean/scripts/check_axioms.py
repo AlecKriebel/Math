@@ -21,7 +21,7 @@ REQUIRED_MAIN={
  'Bell.StochasticChannel.decomposition',
  'Bell.StochasticProcessing.behavior_decomposition',
  'Bell.StochasticProcessing.mem_convexPVM',
- 'Bell.FiniteLabels.two_input_convex_equality',
+ 'Bell.FiniteLabels.two_input_equality',
  'Bell.FiniteLabels.StochasticProcessing.mem_convexPVM',
  'Bell.Hilbert.Strategy.toQubit_behavior',
  'Bell.Hilbert.ProjectiveStrategy.toQubit_behavior',

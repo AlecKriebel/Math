@@ -79,6 +79,14 @@ class TextTests(unittest.TestCase):
             current = hashlib.sha256((ROOT/record['file']).read_bytes()).hexdigest()
             self.assertEqual(record['after_sha256'], current)
             self.assertEqual(record['byte_identical'], record['before_sha256'] == current)
+    def test_missing_required_endpoint_rejected_before_baseline_checks(self):
+        # A misspelled required endpoint must fail preflight, before any Lean run.
+        missing = 'Bell.deliberately_missing_required_endpoint'
+        with patch('check_axioms.REQUIRED_MAIN', {missing}), patch.object(pc, 'ZipFile') as archive:
+            with self.assertRaisesRegex(AssertionError,
+                                        'Required endpoints absent from declaration inventory.*' + missing):
+                pc.evaluate(ROOT)
+            archive.assert_not_called()
     def test_statement_contracts_not_executed(self):
         text=(ROOT/'validation/Statements.lean').read_text()
         self.assertIn('convexHull ℝ (Set.range',text)
