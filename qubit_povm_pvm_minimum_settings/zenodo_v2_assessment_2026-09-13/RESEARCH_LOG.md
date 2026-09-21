@@ -2,6 +2,15 @@
 
 Scope: verify the publicly archived paper and software directly, identify a bounded revision and release plan, and distinguish planned changes from completed changes. No new mathematical theorem is sought.
 
+## 2026-09-21T04:11:16Z — formalization completion assessment
+
+Completion estimate: **100% of the requested coverage/completion assessment**; proposed new proofs and version 2 publication remain unperformed.
+
+- Compared the user's supplied coverage audit with current matrix definitions, unconditional assembly endpoints, finite simulation and statement contracts.
+- Independent follow-up review agreed that replacement proofs suffice for principal-result certification, while explicit stochastic-channel, dimension/basis and finite-label bridges would close the remaining model-interpretation boundaries. Rehashed all 88 original protected inputs: unchanged.
+- Recorded a bounded priority list and release acceptance criteria in `LEAN_COMPLETION_2026-09-20.md`. A stale pending-compilation comment was identified for eventual cleanup; protected production inputs were not changed.
+- No new full compilation, remote Zenodo check, production edit, external communication or immutable release is claimed.
+
 ## 2026-09-13 Pacific — archive checkpoint
 
 Completion estimate: **70% of this assessment**, not probability of correctness or journal acceptance.
