@@ -2,11 +2,13 @@
 
 Baseline: repository commit `5ec53ad70`, the five completion commits after `cc320ba38`, and the exact final local ZIP. This review preserves production files and the supplied archive.
 
-## Provisional verdict pending fresh complete reproduction
+## Final verdict
 
-The independent semantic reviews support completion of the three requested model bridges. No actionable mathematical defect was found in their implementation or composition, and the reported earlier verification evidence matches the actual sources and archive. One publication-readiness correction remains: the standalone manuscript does not identify a retrievable version of its proof package.
+The independent semantic reviews and a fresh complete reproduction support completion of the three requested model bridges. No actionable mathematical or verification defect was found in their implementation or composition, and the reported earlier verification evidence matches the actual sources and archive. One publication-readiness correction remains: the standalone manuscript does not identify a retrievable version of its proof package.
 
-The full fresh extracted reproduction is in progress. The final verdict will record its actual outcome; existing receipts and successful bounded probes are not represented as that new complete run.
+The exact final ZIP passed a new complete extracted reproduction, ending `2026-09-22T01:04:58.827887+00:00` (21 September Pacific), Lean run `20260922T004822Z-d95f7f4c`. All **68 production modules**, **78 examples across seven contracts**, and **826 public transitive axiom reports** passed; **104 protected inputs** remained unchanged. All exact checks, all 14 preflight stages, and both warning-free PDF builds passed. The 138 new command logs were rehashed, and protected inputs were checked against both the extraction and current repository. See [fresh summary](fresh_reproduction_summary.json), [outer receipt](evidence/fresh_reproduction/outer/receipt.json), and [kernel receipt](evidence/fresh_reproduction/lean/kernel_report.json).
+
+The completion statement is supported for the principal results and stated model conventions. No additional Lean completion task is identified within that scope. The missing manuscript retrieval link should be corrected before public release, with refreshed PDF and archive bindings; the reviewed archive has deliberately not been altered.
 
 ## Finding: add a proof-package retrieval link before publication
 
@@ -34,10 +36,10 @@ Both earlier successful runs have 138 authenticated command logs; their only fai
 
 The revised manuscript correctly identifies the original strict-domain correction, supporting role of the known 3×2 architecture, stronger non-optimality-claiming SOS bound, and replacement proof routes. The new multiplier proof's deterministic reset and score-gap factor/sign match the formal declarations. Related-work claims were checked against [Zhu et al. v2](https://arxiv.org/html/2608.01317v2). No newly introduced mathematical error was found in this bounded changed-manuscript review.
 
-Both 37-page PDFs were independently rendered and inspected, including all pages in contact sheets and individual verification/multiplier pages. No clipping, missing glyphs, overlap, or line-number collisions were found. Fingerprints and method are recorded in [pdf_review.json](pdf_review.json).
+Both 37-page PDFs were independently rendered and inspected, including all pages in contact sheets and individual verification/multiplier pages. No clipping, missing glyphs, overlap, or line-number collisions were found. Fingerprints and method are recorded in [pdf_review.json](pdf_review.json). After fresh reproduction, all 74 rebuilt pages were pixel-identical to the shipped PDFs at the review render resolution; see [page comparison](rebuilt_pdf_comparison.json). This is rendered agreement, not an assertion of byte-identical PDFs across environments.
 
 ## Scope of the completion claim
 
 The intended claim is completion of formal proofs of the principal results and stated model conventions. It is not formalization of every mathematical assertion in the paper. General duality/KKT, full manifold/Hessian/inertia statements, and the other disclosed auxiliary arguments remain manuscript-only. Their truth does not follow merely from a formal proof of the final theorem by another route.
 
-The pinned Lean compiler/runtime and the compiled dependency-cache producer remain trusted. All project modules are to be freshly rebuilt in this review; Mathlib is not independently rebuilt, and online dependency bootstrap is not independently exercised. These limits are consistent with the supplied certificate.
+The pinned Lean compiler/runtime and the compiled dependency-cache producer remain trusted. All project modules were freshly rebuilt in this review; Mathlib was not independently rebuilt, and online dependency bootstrap was not independently exercised. These limits are consistent with the supplied certificate.
