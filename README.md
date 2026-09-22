@@ -22,6 +22,14 @@ that the interpretation or literature claims are correct.
 
 ## Current papers
 
+**A counterexample to Kourovka Notebook Problem 16.45** constructs an explicit
+affine group of order 100920 with b_f(G)=b(G)=3 < 4=mu′(G), including all
+nonfaithful permutation representations. The revised unrefereed preprint has
+a structural proof, exact witnesses, separately implemented verification,
+and an independent AI audit trail. See the
+[paper page](https://aleckriebel.github.io/Math/papers/kourovka-16-45/) and
+[source and verification package](kourovka_16_45/).
+
 **The Quantum Chromatic Number of the \(G_{19}\) Join Family** proves the
 finite-dimensional equality
 \[

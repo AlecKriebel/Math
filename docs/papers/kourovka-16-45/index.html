@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An explicit group of order 100920 with maximal minimal-base size 3 and independence number 4, answering Kourovka Notebook Problem 16.45 negatively.">
+  <meta name="author" content="Alec Kriebel">
+  <meta name="citation_title" content="A counterexample to Kourovka Notebook Problem 16.45">
+  <meta name="citation_author" content="Alec Kriebel">
+  <meta name="citation_publication_date" content="2026-09-21">
+  <meta name="citation_pdf_url" content="https://aleckriebel.github.io/Math/papers/kourovka-16-45/paper.pdf">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="A counterexample to Kourovka Notebook Problem 16.45">
+  <meta property="og:description" content="An explicit affine group with b(G)=3 < 4=mu′(G), a structural proof covering all actions, and exact reproducible checks.">
+  <meta property="og:url" content="https://aleckriebel.github.io/Math/papers/kourovka-16-45/">
+  <link rel="canonical" href="https://aleckriebel.github.io/Math/papers/kourovka-16-45/">
+  <title>Kourovka Notebook 16.45 · Alec Kriebel Research</title>
+  <link rel="stylesheet" href="../../assets/style.css">
+  <style>.paper-hero .byline a { color: inherit; }</style>
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"A counterexample to Kourovka Notebook Problem 16.45","author":{"@type":"Person","name":"Alec Kriebel","identifier":"https://orcid.org/0009-0001-9320-500X"},"datePublished":"2026-09-21","version":"1.0.0","url":"https://aleckriebel.github.io/Math/papers/kourovka-16-45/","encoding":{"@type":"MediaObject","contentUrl":"https://aleckriebel.github.io/Math/papers/kourovka-16-45/paper.pdf","encodingFormat":"application/pdf"}}
+  </script>
+  <script>window.MathJax={tex:{inlineMath:[["\\(","\\)"]]},options:{skipHtmlTags:["script","noscript","style","textarea","pre","code"]}};</script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav" aria-label="Paper navigation"><a class="brand" href="../../">Alec Kriebel Research</a><div class="nav-links"><a href="#result">Result</a><a href="#proof">Proof</a><a href="#verification">Verification</a><a href="#attribution">Attribution</a></div></nav>
+    <div class="paper-hero"><div class="inner">
+      <p class="paper-status">Finite group theory · Permutation bases · Unrefereed preprint</p>
+      <h1>A counterexample to Kourovka Notebook Problem 16.45</h1>
+      <p class="byline">Alec Kriebel · <a href="https://orcid.org/0009-0001-9320-500X">ORCID</a></p>
+      <p class="release">Version 1.0.0 · <time datetime="2026-09-21">21 September 2026</time></p>
+    </div></div>
+  </header>
+  <main class="paper-main">
+    <div class="button-row paper-actions">
+      <a class="button" href="./paper.pdf">Read the paper</a>
+      <a class="button secondary" href="./source-and-certificates.zip">Source and certificates</a>
+      <a class="button secondary" href="./zenodo-upload-kit.zip">Zenodo upload kit</a>
+      <a class="button secondary" href="https://github.com/AlecKriebel/Math/blob/main/kourovka_16_45/audit_2026_09_21/VERIFICATION_REPORT.md">Verification report</a>
+    </div>
+    <article class="paper-text">
+      <section id="result">
+        <h2>A negative answer</h2>
+        <p class="lede">The largest inclusion-minimal permutation base can be smaller than the largest independent subset of a finite group.</p>
+        <div class="theorem-block">
+          <p><strong>Theorem.</strong> For the explicitly specified affine group \(G=\mathbf F_{29}^{2}\rtimes H\), with \(H\cong\mathrm{SL}_2(5)\),</p>
+          <div class="equation">\[|G|=100920,\qquad b_{\mathrm f}(G)=b(G)=3&lt;4=\mu'(G).\]</div>
+          <p>This answers P. J. Cameron’s <a href="https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/09/21tkt.pdf">Kourovka Notebook Problem 16.45</a>.</p>
+        </div>
+        <p>Here \(b(G)\) takes the maximum over all permutation representations, including nonfaithful and intransitive ones; bases are defined for the permutation image. Minimal means inclusion-minimal. The invariant \(\mu'(G)\) allows independent sets that need not generate the whole group. No minimum-order assertion is made.</p>
+      </section>
+      <section id="proof">
+        <h2>Why the upper bound covers every action</h2>
+        <p>The complement has \(b_{\mathrm f}(H)=2\) but \(b(H)=3\). Every subgroup of the affine group that does not contain its translation subgroup has faithful base invariant at most two. Restricting an irredundant intersection family to such a subgroup bounds faithful bases by three. Every nontrivial normal subgroup contains the translations, so every remaining action factors through the complement.</p>
+        <p>An explicit independent four-set and a faithful three-base attain the bounds. The omission subgroups of the four-set intersect in a nonnormal subgroup of order two, exposing the obstruction in Cameron’s Boolean meet-semilattice formulation.</p>
+      </section>
+      <section id="verification">
+        <h2>Proof and exact checks</h2>
+        <p>The proof is structural; it does not enumerate all subgroups of the order-100920 group. The companion code reconstructs the 120-element complement and all 76 of its actual subgroups, checks 1,215,450 four-member families and 67,525 three-member families, and verifies the explicit affine witnesses.</p>
+        <pre><code>make verify
+python3 audit_2026_09_21/independent_check.py</code></pre>
+        <p>Run these from the extracted source directory with Python 3 and a C++17 compiler. Python uses its standard library. The additional audit checker should be run without Python’s optimization flag because it uses assertions.</p>
+        <p>Separate AI agents reviewed the structural proof, wrote an additional exact checker from the specification, and checked primary sources. The review corrected one product order from six to three; the generated subgroup still has order twelve, and the theorem is unchanged. No unresolved substantive error was identified within these checks. This is not external human peer review or complete proof-assistant verification.</p>
+      </section>
+      <section id="attribution">
+        <h2>Attribution and publication status</h2>
+        <p>Cameron’s foundational formulations are credited in the manuscript, including his <a href="https://doi.org/10.2140/mt.2024.3.417">2024 published account</a>. A focused primary-source search found no earlier resolution; this does not guarantee priority.</p>
+        <p><strong>Author:</strong> Alec Kriebel. <strong>AI disclosure:</strong> this publication revision and its verification were prepared with OpenAI Codex and separate AI audit agents. The paper is an unrefereed preprint. The Zenodo kit is prepared for manual upload; no Zenodo deposit or DOI is claimed here.</p>
+      </section>
+    </article>
+  </main>
+  <footer class="site-footer"><div class="container"><p><a href="../../">Alec Kriebel Research</a> · <a href="https://github.com/AlecKriebel/Math/tree/main/kourovka_16_45">Source and verification</a></p></div></footer>
+</body>
+</html>

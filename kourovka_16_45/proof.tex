@@ -3,8 +3,9 @@
 \usepackage{amsmath,amssymb,amsthm,mathtools,booktabs,microtype}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
+\usepackage{xurl}
 \usepackage{hyperref}
-\hypersetup{hidelinks,pdftitle={A counterexample to Kourovka Notebook Problem 16.45}}
+\hypersetup{hidelinks,pdftitle={A counterexample to Kourovka Notebook Problem 16.45},pdfauthor={Alec Kriebel}}
 \newtheorem{theorem}{Theorem}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{lemma}[theorem]{Lemma}
@@ -19,8 +20,8 @@
 \newcommand{\Core}{\operatorname{Core}}
 \newcommand{\rankcap}{c_{\cap}}
 \title{A counterexample to Kourovka Notebook Problem 16.45}
-\author{}
-\date{19 September 2026}
+\author{Alec Kriebel\\\small Independent researcher\\\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{21 September 2026\\\small Version 1.0.0; unrefereed preprint}
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -39,7 +40,28 @@ witnesses. The obstruction is a central involution of a complement which is not
 normal in the ambient affine group.
 \end{abstract}
 
-\section{Definitions, source audit, and the finite reformulation}
+\section{Introduction and conventions}
+Cameron's Problem 16.45 in the \emph{Kourovka Notebook} asks whether two
+invariants of every finite group coincide: the largest size of an
+inclusion-minimal permutation base, and the largest size of an independent
+subset. The inequality $b(G)\le\mup(G)$ is known. We give a negative answer
+by constructing an affine group $G=\F_{29}^2\rtimes H$, where
+$H\cong\SL_2(5)$ acts through explicitly given matrices, and proving
+\[
+                 \bfth(G)=b(G)=3<4=\mup(G).
+\]
+Here $\bfth$ restricts the base invariant to faithful actions. No
+minimum-order assertion is made.
+
+The distinction between faithful and arbitrary actions is essential to the
+proof: for the complement, $\bfth(H)=2$ whereas $b(H)=3$. Every subgroup of
+$G$ not containing its translation subgroup has faithful base invariant at
+most two. Restricting an irredundant intersection family to such a subgroup
+bounds faithful bases in $G$; the normal-subgroup structure then covers all
+nonfaithful actions. The upper bound is structural and requires no enumeration
+of the subgroup lattice of the order-$100920$ affine group.
+
+\subsection{Definitions and relation to earlier work}
 A subset $S$ of a finite group $X$ is \emph{independent} if
 $x\notin\langle S\setminus\{x\}\rangle$ for each $x\in S$; the empty subset is
 allowed. Write $\mup(X)$ for its maximum possible size. For an action
@@ -51,14 +73,19 @@ subbase: choose a point moved by each nonidentity element of the finite
 permutation image. Consequently every inclusion-minimal base is finite.
 
 These conventions give $b(1)=\bfth(1)=\mup(1)=0$. Cameron's 2010 exposition
-uses $b_2$ for our $b$ and $\mu^*$ for our $\mup$; his 2014 paper uses $b_2$ and
-$\mu'$ respectively \cite{blog,paper}. In both, nonfaithful actions are allowed.
-The September 2026 notebook states Problem 16.45 and its normal-bottom
-meet-semilattice reformulation without an attached solution \cite{notebook}.
-The separate September update does not mention 16.45. A focused literature
-check located no earlier resolution; this is a statement about the sources
-checked, not an independent guarantee of priority.
+uses $b_2$ for our $b$ and $\mu^*$ for our $\mup$; his 2014 preprint uses $b_2$ and $\mu'$, and his
+2024 published account uses $b_2$ and $\mu^\uparrow$, respectively
+\cite{blog,paper,cameron2024}. These sources allow nonfaithful representations.
+The foundational subgroup and Boolean meet-semilattice formulations below
+are due to Cameron \cite{paper,cameron2024}; we include proofs to fix the
+normality and action-kernel conventions used in our construction.
 
+The September 2026 notebook lists Problem 16.45 without an attached solution
+\cite{notebook}. A focused search of the notebook, its update, and the cited
+primary literature found no earlier resolution. This reports the scope of
+the search, not a guarantee of bibliographic priority.
+
+\subsection{Subgroup formulations}
 \begin{proposition}[Subgroup formulation]
 For a finite group $X$, $b(X)$ is the largest $t$ for which subgroups
 $L_1,\ldots,L_t$ satisfy
@@ -154,7 +181,8 @@ The standard spherical triangle presentation
 \]
 and simplicity of $A_5$ show that $H/Z\cong A_5$: the projective image is a
 nontrivial quotient of this presentation, since $A\notin Z$. Consequently
-$|H|=120$. The group is isomorphic to $\SL_2(5)$.
+$|H|=120$. The explicit finite isomorphism described next also identifies $H$ with
+$\SL_2(5)$; the structural proof below uses only the quotient $H/Z\cong A_5$.
 
 There is also a wholly finite certification of these facts, independent of
 the triangle presentation. The supplied verifiers generate exactly 120
@@ -235,7 +263,7 @@ $R_3=AR_2(AB)^2$. Direct multiplication gives $R_i^2=-I$ and
  |\langle R_1,R_3\rangle|=12,\qquad
  |\langle R_1,R_2\rangle|=20.
 \]
-For example, the corresponding products have orders $4,6,10$, so their
+For example, the corresponding products have orders $4,3,10$, and their
 projective images generate dihedral groups of orders $4,6,10$; adjoining the
 common central involution doubles these orders. The subgroup generated by
 all three has order divisible by $\operatorname{lcm}(8,12,20)=120$, and is
@@ -424,8 +452,7 @@ one has
              |G|=100920,
  \qquad      \bfth(G)=b(G)=3<4=\mup(G).
 \]
-Consequently Kourovka Notebook Problem 16.45 has a negative answer under the
-stated all-representations conventions.
+This gives a negative answer to Kourovka Notebook Problem 16.45.
 \end{theorem}
 
 \section{The normality obstruction is explicit}
@@ -448,8 +475,8 @@ that no rank-four embedding can have normal bottom.
 Taking normal cores does not repair this example. Simplicity of $H/Z\cong A_5$
 implies that the three proper pair subgroups of $H$ have core $Z$. Since
 $M_2,M_3,M_4$ contain $V$, their cores in $G$ are $V\rtimes Z$.
-The complement $M_1=H$ has trivial core; for example, its intersection with
-its conjugate by $(e_1,I)$ is trivial. Hence the four cores are
+The complement $M_1=H$ has trivial core, since every nontrivial normal
+subgroup of $G$ contains $V$, while $H\cap V=1$. Hence the four cores are
 \[
                    1,\quad V\rtimes Z,\quad V\rtimes Z,\quad V\rtimes Z.
 \]
@@ -457,8 +484,9 @@ The first member alone gives their total intersection. All four-way
 essentiality has been lost. No quotient by the nonnormal subgroup $Z_0$ is
 used anywhere in the argument.
 
-\section{Exact certification and adversarial tests}
-The final verifiers are standalone and use exact integers only. Python uses
+\section{Exact certification and a boundary case}
+The supplied Python and C++ verifiers are separate implementations and use
+exact integers only. Python uses
 only its standard library. The second implementation is C++17 and reads no
 Python-produced group table. Both reconstruct the complement and enumerate
 \emph{all 76 actual subgroups}, not just conjugacy representatives. Their
@@ -507,9 +535,30 @@ Earlier exploratory runs used integer-programming models on complete small
 subgroup lattices. Their code and logs are retained for provenance, but no
 floating-point MILP upper bound is a premise of this proof. The exact
 certificate and the structural all-actions argument replace those exploratory
-results. No Lean proof has been compiled, and no external peer review or
-publication is claimed.
+results. The accompanying audit directory records a separate structural review,
+a newly written exact checker, and fresh replays of the supplied verification
+programs. These are AI-assisted checks, not external human peer review or a
+proof-assistant formalization. The structural lemmas and all-actions argument
+remain mathematical proof obligations for a reader; finite computations
+certify the explicit inputs and witnesses.
 
+\section*{Author and reproducibility statement}
+Alec Kriebel is the author. This publication revision and its verification
+were prepared with OpenAI Codex, including separate AI agents for structural,
+computational, and source audits. No external researcher was contacted during
+this review. The manuscript is an unrefereed preprint.
+
+The source, exact certificates, independent checks, and audit reports are
+available with this paper at
+\url{https://aleckriebel.github.io/Math/papers/kourovka-16-45/}.
+From the source directory, \texttt{make verify} runs the two supplied exact
+verifiers and compares their complete subgroup sets;
+\texttt{python3 audit\_2026\_09\_21/independent\_check.py} runs the additional
+checker. Python uses only the standard library, and the second supplied
+implementation requires a C++17 compiler. Neither the mathematical proof nor
+these final checks depend on the exploratory optimization software.
+
+\clearpage
 \begin{thebibliography}{9}
 \bibitem{notebook}
 E.~I. Khukhro and V.~D. Mazurov (eds.),
@@ -527,6 +576,11 @@ P.~J. Cameron, \emph{The symmetric group, 7}, 22 July 2010.
 P.~J. Cameron, \emph{Some measures of finite groups related to permutation
 bases}, arXiv:1408.0968, 2014, especially Propositions 3.1--3.2 and
 Corollary 3.3. \url{https://arxiv.org/abs/1408.0968}.
+
+\bibitem{cameron2024}
+P.~J. Cameron, \emph{Independence and bases: Theme and variations},
+Model Theory \textbf{3} (2024), no.~2, 417--431.
+\url{https://doi.org/10.2140/mt.2024.3.417}.
 
 \bibitem{blog2014}
 P.~J. Cameron, \emph{Groups, lattices and bases}, 6 August 2014.

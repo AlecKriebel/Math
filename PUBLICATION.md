@@ -451,3 +451,26 @@ Alec Kriebel is a complete amateur and cannot independently verify the
 mathematical claims. These papers are experiments in the limits of AI-assisted
 mathematics. They require independent expert checking and should not be treated
 as established results.
+
+## Kourovka Notebook Problem 16.45
+
+The version 1.0.0 publication edition of “A counterexample to Kourovka
+Notebook Problem 16.45” was prepared on **21 September 2026** (local time;
+audit execution occurred on 22 September UTC). For the explicit affine
+group of order 100920 it proves b_f(G)=b(G)=3 < 4=mu′(G), including
+nonfaithful and intransitive actions. The upper bound is structural.
+
+Separate AI agents audited the proof, reconstructed the finite computations
+independently, and checked primary sources. The review corrected a supporting
+matrix-product order from 6 to 3; the relevant subgroup remains order 12,
+and no theorem statement changes. Cameron's published 2024 account is now
+cited and the foundational formulations are attributed. No unresolved
+substantive gap was identified within the audit scope; external human peer
+review, full formalization, minimum order, and exhaustive priority are not
+claimed.
+
+The [paper page](https://aleckriebel.github.io/Math/papers/kourovka-16-45/)
+provides the revised manuscript, source/certificates, verification report,
+and manual Zenodo kit. No GitHub release or Zenodo deposit was created.
+The source folder `kourovka_16_45/audit_2026_09_21/` records exact provenance,
+proof correction, fresh verification, packaging checks, and deployment.
