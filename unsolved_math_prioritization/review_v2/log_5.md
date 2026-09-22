@@ -25,3 +25,7 @@ Read complete statements, upstream summaries and supplied gap excerpts. Notes ar
 2026-09-22T04:50:20.630392+00:00 — 2102/2576 individually reviewed, 81.6% coverage; exact prefix validated; next offset2102. Reached shorter OWR records after reviewing AIM topology tranche.
 
 2026-09-22T04:53:45.843108+00:00 — 2207/2576 individually reviewed, 85.7% coverage; exact prefix validated; next offset2207. Persistence and combinatorial PL candidates identified; several explicit known theorems mislabeled open.
+
+2026-09-22T05:01:51.946844+00:00 — 2417/2576 reviewed, 93.8% coverage; exact prefix validated; next offset 2417. Finite-cover monodromy and borderline uniformization identified as focused candidates; several source scope errors held.
+
+2026-09-22T05:04:59.554810+00:00 — 2522/2576 reviewed, 97.9% coverage; exact prefix validated; next offset 2522. Polygraph homology and Waldhausen 2-Segal examples offer focused counterexample routes; malformed open labels held.

@@ -94,6 +94,15 @@ is offline. Full sync is manual, not a background automation.
 Raw source JSON and SQLite stay in ignored `cache/`. Git stores the compact
 catalog, ranking, policy, provenance checksums, assessments, statuses, and logs.
 The immutable upstream SHA and SHA-256 checksums identify what was analyzed.
+The original short reviews, including every exclusion and deferral, are kept in
+[`review_v2/reviews_0.json`](review_v2/reviews_0.json) through `reviews_5.json`.
+[`adversarial_overrides.json`](review_v2/adversarial_overrides.json) preserves later
+corrections without erasing those first judgments. The review assignments and
+merge manifest bind this ledger to its source revision. Keep the completed ledger
+as a historical snapshot when reviewing another dataset version.
+`assessments.json` holds the current effective reviews; subsequent assessment
+changes also append to `assessment_history.jsonl`. A refresh does not delete these
+files or local attempt statuses. Changed records are held out until re-reviewed.
 `last_update.json` lists added, changed, and removed numeric IDs;
 `update_history.jsonl` preserves sync history. Removed rows stay visible, with
 notes and statuses intact. Their original full text can be restored from the old

@@ -15,3 +15,7 @@ Checkpoint 2026-09-22T04:20:10.241741+00:00: 1070/2576 (41.54%). Exact offsets0�
 - 2026-09-22T04:48:47.768351+00:00: reviewed 1695/2576 (65.80%). Next offset 1695. Parent now owns offsets 2076–2575; this worker will finish prefix through 2075. Potential conformal-primitive obstruction in 20002011 needs source and novelty audit.
 
 - 2026-09-22T04:53:06.470169+00:00: reviewed 1805/2576 (70.07%). Next offset 1805; worker target 2076. Entered OWR concise records; corrected stale E8/Leech and Tits-center open labels provisionally.
+
+2026-09-21T22:02:43.101673 — 2015 individually reviewed (78.22% of full shard); assigned prefix continues through2075, supplemental2286–2575 remains. Parent owns2076–2285. No proof or verified-open claims.
+
+2026-09-21T22:04:57.079688 — Prefix complete:2076/2076 assigned prefix,80.59% full shard. Next assigned supplemental starts2286,290 records, separate supplemental_2_agent.json.

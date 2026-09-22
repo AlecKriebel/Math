@@ -1,18 +1,18 @@
 # Exhaustive review progress
 
-Checkpoint: 2026-09-22T04:55:52+00:00. **12,659 / 15,458 individually reviewed (81.9%).**
+Checkpoint: 2026-09-22T05:06:09+00:00. **14,353 / 15,458 individually reviewed (92.9%).**
 
 The working queue still uses the initial policy until every record is covered and the final checks pass.
 
 | Review batch | Saved notes | Required |
 |---:|---:|---:|
-| 0 | 1,980 | 2,577 |
-| 1 | 2,160 | 2,576 |
-| 2 | 1,845 | 2,576 |
-| 3 | 2,100 | 2,577 |
-| 4 | 2,087 | 2,576 |
-| 5 | 2,277 | 2,576 |
+| 0 | 2,250 | 2,577 |
+| 1 | 2,518 | 2,576 |
+| 2 | 2,076 | 2,576 |
+| 3 | 2,400 | 2,577 |
+| 4 | 2,347 | 2,576 |
+| 5 | 2,552 | 2,576 |
 
-Root has separately saved 210 additional, disjoint batch-2 notes in supplemental_2.json. These are included in the total above and will be assembled after all batch-2 writers finish.
+Additional disjoint batch-2 notes awaiting final assembly: supplemental_2.json: 210. Included in the total above.
 
 All decisions, including exclusions and deferrals, are committed at checkpoints. No mathematical attempt has begun.

@@ -15,3 +15,5 @@
 2026-09-22: Saved through offset1811, 1812/2576 individual reviews (70.3% complete). Next offset1812. Repeated extracted survey fragments and missing field hypotheses require repair; no proof claims made.
 
 2026-09-22: Saved through offset1996, 1997/2576 reviews (77.5% complete). Next1997. Every statement read; truncated batches1852 and1932 recovered with smaller overlapping reads. Several OWR literature snippets mismatch their exact questions.
+
+2026-09-22: Saved through offset2206, 2207/2576 individual reviews (85.7% complete). Next2207. Some sharp PDE endpoints are valid but low five-turn prospects; exact finite-dimensional identities and targeted stability implications are stronger candidates.

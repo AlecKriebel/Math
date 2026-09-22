@@ -39,3 +39,9 @@ Coverage through offset 1724: 1725/2576 (67.0%). Next offset 1725. Short OWR sta
 2026-09-22T04:49:34.834781+00:00 — 2000/2576 individually reviewed (77.6%), ordered coverage validated; next offset 2000. Educational agenda items excluded as empirical or engineering topics.
 
 2026-09-22T04:52:23.259553+00:00 — 2100/2576 individually reviewed (81.5%); next offset 2100. Software and educational records individually assessed; retained a few precise algorithmic algebra targets.
+
+2026-09-22T04:56:00.260747+00:00 — 2220/2576 individually reviewed (86.2%); next offset 2220. Flagged PFR/Marton entry as historically solved; several low-dimensional geometric counterexample routes worth verification.
+
+2026-09-22T04:59:24.662537+00:00 — 2340/2576 individually reviewed (90.8%); next offset 2340. New bounded targets include root-dependent tree hardness and exact sparse exponent comparisons; frequent duplicates retained as exclusions.
+
+2026-09-22T05:02:47.221229+00:00 — 2460/2576 individually reviewed (95.5%); next offset 2460. Last116 remain.

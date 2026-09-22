@@ -33,3 +33,7 @@ Concerns: numerous conference contents fragments, duplicate conjectures, omitted
 2026-09-22T04:48:12.371783+00:00: Saved 1820/2577 individual reviews (70.6%); next offset 1820. Continued precise full-target scoring and held missing hypotheses, duplicates, and apparent stale claims for repair.
 
 2026-09-22T04:53:24.243392+00:00: Saved 1940/2577 (75.3%); next offset 1940. Exact conditional statements distinguished from unproved premises; scope defects and duplicates remain explicitly recorded.
+
+2026-09-22T05:00:28.486545+00:00: Reviewed 2090/2577 (81.1%); exact prefix validated. Next offset 2090. Semantic triage only, no novel solutions claimed.
+
+2026-09-22T05:04:04.479669+00:00: Reviewed 2210/2577 (85.8%); next offset 2210. Hayman tranche contains stale solved claims and omitted transcendence hypotheses; all held rather than promoted.
