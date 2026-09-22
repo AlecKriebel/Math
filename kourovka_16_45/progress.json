@@ -1,0 +1,64 @@
+{
+  "problem": "Kourovka Notebook 16.45",
+  "checkpoint_date": "2026-09-19",
+  "status": "resolved_by_explicit_counterexample",
+  "theorem": "For the specified G=F_29^2 semidirect SL_2(5), |G|=100920 and b_f(G)=b(G)=3<4=mu_prime(G).",
+  "definitions": {
+    "b": "maximum inclusion-minimal base size over all representations; pointwise stabilizer equals action kernel",
+    "mu_prime": "maximum independent subset size, whether or not it generates G",
+    "empty_intersection": "ambient group",
+    "trivial_group_values": 0
+  },
+  "proof_file": "proof.tex",
+  "proof_pdf": "proof.pdf",
+  "group_spec": "data/group_spec.json",
+  "completed": [
+    "Source and convention audit",
+    "Coset-union finite reformulation",
+    "Direct b <= mu_prime proof",
+    "Exact counterexample and independent 4-set",
+    "Structural upper bound over every faithful action",
+    "Normal subgroup argument covering every nonfaithful action",
+    "Exact mu_prime=4 upper bound",
+    "Explicit faithful minimal 3-base",
+    "Explicit nonnormal intersection and failed-core shortcut",
+    "Two exact verifiers run successfully",
+    "All 76 actual complement subgroup sets cross-compared",
+    "Adversarial characteristic-11 test",
+    "PDF compiled and visually inspected",
+    "Reproduction commands passed from an extracted package in the same container"
+  ],
+  "test_results": {
+    "python": "PASS",
+    "cpp17": "PASS",
+    "cross_comparison": "PASS",
+    "cpp_final_compile_warnings": 0,
+    "complement_subgroups": 76,
+    "four_families": 1215450,
+    "three_families": 67525,
+    "large_affine_group_subgroup_lattice_enumerated": false
+  },
+  "remaining_mathematical_obstruction": null,
+  "remaining_validation": [
+    "Independent rerun outside this session",
+    "External mathematical review, not yet performed",
+    "Broader priority audit before any publication claim"
+  ],
+  "formalization": {
+    "Lean_written": false,
+    "Lean_compiled": false,
+    "external_review": false
+  },
+  "exact_next_action": {
+    "description": "From the extracted bundle directory, independently rerun the standard-library verifier into build/certified.",
+    "command": "mkdir -p build/certified && python3 src/verify_counterexample.py --outdir build/certified",
+    "expected": "result PASS; complement order 120; group order 100920; omission orders 120,6728,10092,16820",
+    "then": "Run the C++ and subgroup cross-comparison commands in README.md; audit Lemmas 5-7 and Propositions 8-9 of proof.pdf."
+  },
+  "authorization": {
+    "contact_people": false,
+    "publish": false,
+    "spend_money": false
+  },
+  "priority_status": "No earlier resolution located in focused search; not an exhaustive priority certification"
+}
