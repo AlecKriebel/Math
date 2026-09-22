@@ -271,7 +271,7 @@ Code: `OWR-2090-020`. EV: 0.0300; sensitivity range 0.0020–0.1500. Impact 4/10
 
 ## 30001497 — Hilbert Polynomials of Homogeneous Ideals
 
-Code: `OWR-4340-008`. EV: 0.0200; sensitivity range 0.0020–0.1200. Impact 2/10; assumed full-solution probability 5.00%; validity/open/novelty prior 20%.
+Code: `OWR-4340-008`. EV: 0.0200; sensitivity range 0.0000–0.1200. Impact 2/10; assumed full-solution probability 5.00%; validity/open/novelty prior 20%.
 
 **Why this priority:** The short Hilbert-polynomial existence statement and the attached literature assessment describe different-looking targets. Classical numerical characterization may already settle the literal question.
 
@@ -285,7 +285,7 @@ Code: `OWR-4340-008`. EV: 0.0200; sensitivity range 0.0020–0.1200. Impact 2/10
 
 ## 30001382 — Nonmonotonicity of Expected Random Simplex Volume
 
-Code: `OWR-4136-005`. EV: 0.0120; sensitivity range 0.0012–0.0720. Impact 2/10; assumed full-solution probability 3.00%; validity/open/novelty prior 20%.
+Code: `OWR-4136-005`. EV: 0.0120; sensitivity range 0.0000–0.0720. Impact 2/10; assumed full-solution probability 3.00%; validity/open/novelty prior 20%.
 
 **Why this priority:** Later primary work settles failure of monotonicity in dimension three. The specific half-ball construction may still be a distinct target, but its impact and novelty need reassessment.
 

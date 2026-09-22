@@ -57,6 +57,21 @@ class QueueTests(unittest.TestCase):
     def test_unrecorded_cache_rejected(self):
         (q.ROOT/'manifest.json').unlink()
         with self.assertRaises(ValueError):q.sync(types.SimpleNamespace(use_cache=True,revision='a'*40))
+    def test_zero_validity_has_zero_lower_bound(self):
+        q.write(q.ROOT/'assessments.json',{'1':{'review_hash':self.row()['review_hash'],'p_valid_open':0}})
+        q.rank(None);self.assertEqual(self.row()['ev_low'],0);self.assertEqual(self.row()['ev'],0)
+    def test_stale_assessment_file_rejected(self):
+        path=q.ROOT/'review.json';q.write(path,{'review_hash':'old'})
+        with self.assertRaises(ValueError):q.assess(types.SimpleNamespace(id='1',file=str(path)))
+        self.assertEqual(q.read(q.ROOT/'assessments.json',{}),{})
+    def test_stale_readiness_rejected(self):
+        path=q.ROOT/'ready.json';q.write(path,{'review_hash':'old'})
+        with self.assertRaises(ValueError):q.status(types.SimpleNamespace(id='1',status='ready',evidence=str(path),note='test'))
+        self.assertEqual(q.read(q.ROOT/'state.json',{}),{})
+    def test_retired_status_exported(self):
+        self.install([])
+        q.status(types.SimpleNamespace(id='1',status='deferred',evidence=None,note='Keep for later'))
+        self.assertEqual(self.row()['local_status'],'deferred')
     def test_reproducibility(self):
         before=(q.ROOT/'catalog.json').read_bytes();q.rank(None);self.assertEqual(before,(q.ROOT/'catalog.json').read_bytes())
 if __name__=='__main__':unittest.main()

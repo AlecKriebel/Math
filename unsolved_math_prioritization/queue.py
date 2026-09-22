@@ -149,12 +149,12 @@ def rank(args):
         rows.append(dict(id=key,problem_number=p['problem_number'],title=p.get('title',''),category=(p.get('category') or {}).get('display_name','Unknown'),
             source_url=p.get('source_url') or '',upstream_status=p.get('status'),local_status=local_status,
             present=True,eligible=eligible,assessment='desk_review' if review and not stale else 'automatic',
-            ev=round(value,8),ev_low=round(a['impact']*a['p_solve']*0.2*max(0.1,a['p_valid_open']-0.2),8),ev_high=round(a['impact']*min(1,a['p_solve']*3)*min(1,a['p_valid_open']+0.2),8),policy_version=cfg['version'],policy_hash=digest(json.dumps(cfg,sort_keys=True)),**a))
+            ev=round(value,8),ev_low=round(a['impact']*a['p_solve']*0.2*max(0,a['p_valid_open']-0.2),8),ev_high=round(a['impact']*min(1,a['p_solve']*3)*min(1,a['p_valid_open']+0.2),8),policy_version=cfg['version'],policy_hash=digest(json.dumps(cfg,sort_keys=True)),**a))
     db.close()
     current_ids=seen_ids(rows)
     for key,p in previous.items():
         if key not in current_ids:
-            p.update(present=False,eligible=False);p['holds']=list(set(p['holds']+['removed_upstream']));rows.append(p)
+            p.update(present=False,eligible=False,local_status=state.get(key,{}).get('status',p['local_status']));p['holds']=list(set(p['holds']+['removed_upstream']));rows.append(p)
     rows.sort(key=lambda x:(not x['eligible'],-x['ev'],x['id']))
     for i,x in enumerate([x for x in rows if x['eligible']],1):x['rank']=i
     for x in rows:
@@ -195,7 +195,7 @@ def seen_ids(rows): return {x['id'] for x in rows}
 def show(args):
     db=connect();row=db.execute('SELECT payload,report FROM records WHERE key=?',(args.id,)).fetchone()
     if not row:raise ValueError('Unknown ID (run sync to restore cache)')
-    print(json.dumps({'problem':json.loads(row[0]),'prior_research':json.loads(row[1])},ensure_ascii=False,indent=2))
+    print(json.dumps({'review_hash':digest(json.dumps([json.loads(row[0]),json.loads(row[1])],sort_keys=True)),'problem':json.loads(row[0]),'prior_research':json.loads(row[1])},ensure_ascii=False,indent=2))
 
 def status(args):
     require_cache()
@@ -203,6 +203,8 @@ def status(args):
     if args.id not in catalog:raise ValueError('Unknown problem ID')
     row=catalog[args.id];state=read(ROOT/'state.json',{});prior=state.get(args.id,{})
     evidence=read(pathlib.Path(args.evidence),{}) if args.evidence else {}
+    if args.status in ['ready','in_progress','verified_solved'] and evidence.get('review_hash')!=row['review_hash']:
+        raise ValueError('Evidence must contain current review_hash; inspect show output and re-review changed source')
     if args.status in ['ready','in_progress']:
         required=['exact_claim','primary_sources','literature_checked_at','success_test','budget','prior_attempt_gap','duplicate_check']
         if [h for h in row['holds'] if h!='status_review_stale'] or not row['present']:raise ValueError('Resolve review holds before starting')
@@ -220,6 +222,7 @@ def assess(args):
     catalog={x['id']:x for x in read(ROOT/'catalog.json',[])}
     if args.id not in catalog:raise ValueError('Unknown ID')
     entry=read(pathlib.Path(args.file),{})
+    if entry.get('review_hash')!=catalog[args.id]['review_hash']:raise ValueError('Assessment must supply matching current review_hash; do not reuse stale files')
     if not all(entry.get(k) for k in ['rationale','remaining_gap','first_experiment','sources']):
         raise ValueError('Assessment needs rationale, remaining_gap, first_experiment, sources')
     for field in ['p_solve','p_valid_open','impact']:

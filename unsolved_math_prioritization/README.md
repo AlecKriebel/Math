@@ -119,6 +119,7 @@ solution claims are review holds, not locally verified achievements.
 
 Before `ready`, record an evidence JSON with these nonempty fields:
 
+- `review_hash`: current hash from `show`, binding evidence to the source read.
 - `exact_claim`: full quantifiers, hypotheses, domain, and boundary cases.
 - `primary_sources`: source links and exact locations checked.
 - `literature_checked_at`: dated primary-source literature review.
@@ -142,19 +143,19 @@ reopens only with a new mechanism or evidence. Never contact external researcher
 
 To mark `verified_solved`, the preceding status must be `independent_verification`
 and the source hash must still match. Provide `proof_artifact`, `independent_review`,
-`novelty_check`, and `exact_claim` in evidence JSON. The tool enforces record
+`novelty_check`, `exact_claim`, and the current `review_hash` in evidence JSON. The tool enforces record
 requirements; it **cannot judge whether a proof or a review is correct**.
 
 ## Change an assessment or resolve a hold
 
-Write a JSON containing `impact`, `p_solve`, `p_valid_open`, `rationale`,
+Write a JSON containing the current `review_hash` from `show`, `impact`, `p_solve`, `p_valid_open`, `rationale`,
 `remaining_gap`, `first_experiment`, and `sources`, then run:
 
 ```sh
 python3 unsolved_math_prioritization/queue.py assess 30004033 --file unsolved_math_prioritization/attempts/30004033/assessment.json
 ```
 
-The command binds the review to current source hashes and appends assessment
+The command rejects missing or stale source hashes and binds the review to current source hashes and appends assessment
 history. `holds` can add concerns. To clear a specific hold, include a
 `clear_holds` object mapping the **exact hold string** to a checkable evidence
 reference and rationale. For duplicate suspicion, preserve both records and
