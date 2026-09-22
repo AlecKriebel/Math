@@ -6,6 +6,8 @@ def read(p):return json.loads(p.read_text())
 def validate(require_complete=True):
  manifest=read(HERE/'assignments.json'); source=read(ROOT/'manifest.json')
  if manifest['source_revision']!=source['revision']:raise ValueError('Source changed while reviews were in progress')
+ expected_ids=[key for shard in manifest['shards'] for key in shard]
+ if len(expected_ids)!=len(set(expected_ids)) or len(expected_ids)!=source['records']:raise ValueError('Assignments must cover every source ID exactly once')
  allreviews={};counts=[]
  for shard,expected in enumerate(manifest['shards']):
   path=HERE/f'reviews_{shard}.json';items=read(path) if path.exists() else []
@@ -28,7 +30,15 @@ def merge(exclusion_policy):
  reviews,counts=validate()
  old=read(ROOT/'assessments.json')
  overrides=read(HERE/'adversarial_overrides.json') if (HERE/'adversarial_overrides.json').exists() else {}
- c=sqlite3.connect(ROOT/'cache/catalog.sqlite');assessments={}
+ cache=ROOT/'cache/catalog.sqlite'
+ if not cache.exists():raise ValueError('Pinned source cache missing; restore it before merging')
+ c=sqlite3.connect(f'file:{cache}?mode=ro',uri=True);assessments={}
+ source=read(ROOT/'manifest.json')
+ try:
+  if c.execute('select revision from metadata').fetchone()!=(source['revision'],):raise ValueError('Source cache revision does not match review assignments')
+  if {row[0] for row in c.execute('select key from records')}!=set(reviews):raise ValueError('Source cache IDs do not match reviewed IDs')
+ except Exception:
+  c.close();raise
  for key,payload,report in c.execute('select key,payload,report from records'):
   p,r=json.loads(payload),json.loads(report);rev={**reviews[key],**overrides.get(key,{})};prior=old.get(key,{})
   holds=list(rev.get('holds',[]))
@@ -43,6 +53,7 @@ def merge(exclusion_policy):
    'holds':list(dict.fromkeys(prior.get('holds',[])+holds)),
    'sources':rev.get('sources') or prior.get('sources') or [p.get('source_url') or (re.search(r'Source URL:\s*(https?://[^\s<>]+)',p.get('background') or '').group(1) if re.search(r'Source URL:\s*(https?://[^\s<>]+)',p.get('background') or '') else 'https://huggingface.co/datasets/ulamai/UnsolvedMath')],
    'confidence':'low; not empirically calibrated'}
+ c.close()
  (ROOT/'assessments.json').write_text(json.dumps(assessments,ensure_ascii=False,indent=2)+'\n')
  policy=read(HERE/'policy_v2.json');policy['exclusion_policy']=exclusion_policy
  (ROOT/'policy.json').write_text(json.dumps(policy,indent=2)+'\n')

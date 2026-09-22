@@ -37,3 +37,13 @@
 2026-09-22T04:33:52.061977+00:00 — Checkpoint: 1525/2577 individually reviewed (59.2%); exact prefix verified. Next offset 1525.
 
 2026-09-22T04:36:29.425184+00:00 — Checkpoint: 1605/2577 individually reviewed (62.3%); exact prefix verified. Next offset 1605.
+
+2026-09-22T04:40:50.280807+00:00 — Checkpoint: 1740/2577 individually reviewed (67.5%); exact prefix verified. Next offset 1740.
+
+2026-09-22T04:43:42.174689+00:00 — Checkpoint: 1825/2577 individually reviewed (70.8%); exact prefix verified. Next offset 1825.
+
+2026-09-22T04:46:13.793545+00:00 — Checkpoint: 1900/2577 individually reviewed (73.7%); exact prefix verified. Next offset 1900.
+
+2026-09-22T04:50:01.967412+00:00 — Checkpoint: 2000/2577 individually reviewed (77.6%); exact prefix verified. Next offset 2000.
+
+2026-09-22T04:55:37.773226+00:00 — 2100/2577 individually reviewed (81.5%); exact prefix verified; next offset2100.

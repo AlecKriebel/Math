@@ -29,3 +29,13 @@ Cumulative individually authored review coverage 0–1499: 1500/2576 (58.2%). Ne
 ## 2026-09-22T04:35:09.250342+00:00
 
 Individual coverage 0–1594: 1595/2576 (61.9%). Next offset 1595. All long merged source statements retrieved in separate chunks where output was truncated. Flagged archival Lefschetz, twisted-Bruhat, core-partition, and PFR status issues. Proof-first word-periodicity candidates need definitions and source verification.
+
+## 2026-09-22T04:38:53.100536+00:00
+
+Coverage through offset 1724: 1725/2576 (67.0%). Next offset 1725. Short OWR statements individually reviewed; many omit target definitions and remain repair holds. New proof-first candidates include sign-sequence polytope Ehrhart interpretation, forest-transition determinant divisibility, six-regular balanced hypergraph coloring, and permuton support characterization.
+
+2026-09-22T04:45:28.710163+00:00 — 1865/2576 individually reviewed (72.4%); next offset 1865. Recent computational targets include many merged workshop agendas requiring repair.
+
+2026-09-22T04:49:34.834781+00:00 — 2000/2576 individually reviewed (77.6%), ordered coverage validated; next offset 2000. Educational agenda items excluded as empirical or engineering topics.
+
+2026-09-22T04:52:23.259553+00:00 — 2100/2576 individually reviewed (81.5%); next offset 2100. Software and educational records individually assessed; retained a few precise algorithmic algebra targets.

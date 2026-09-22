@@ -11,3 +11,7 @@
 2026-09-22: checkpoint1422/2576 (55.20%); nextoffset1422. Entire statements read, malformed displayed claims flagged individually, not promoted as novelty. Current continuation420/600; continue full remaining shard.
 
 2026-09-22: checkpoint1602/2576 (62.19%); all600 assigned offsets1002–1601 completed individually. Nextoffset1602, continuing remaining974 as requested. Candidate mechanisms include reduced-length duality30000750, primitive cubic squares30000798, divisor identity30002437, nested-space distances30002508; each requires main literature audit.
+
+2026-09-22: Saved through offset1811, 1812/2576 individual reviews (70.3% complete). Next offset1812. Repeated extracted survey fragments and missing field hypotheses require repair; no proof claims made.
+
+2026-09-22: Saved through offset1996, 1997/2576 reviews (77.5% complete). Next1997. Every statement read; truncated batches1852 and1932 recovered with smaller overlapping reads. Several OWR literature snippets mismatch their exact questions.

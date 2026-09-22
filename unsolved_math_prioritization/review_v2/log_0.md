@@ -25,3 +25,11 @@ Concerns: numerous conference contents fragments, duplicate conjectures, omitted
 2026-09-22T04:31:35.373756+00:00: Saved and verified prefix 1345/2577 (52.2%); next offset 1345. Broad moduli/arithmetic programs score low for five-turn completion; supplied solved claims held outside candidates.
 
 2026-09-22T04:35:58.791162+00:00: Saved 1460/2577 reviews (56.7%); next offset 1460. Flagged several potentially stale OWR claims and missing scope, without upgrading unverified literature recollections to solved results.
+
+2026-09-22T04:40:09.047373+00:00: Saved 1580/2577 (61.3%); next offset 1580. Full statements read individually; several missing-definition and contradictory literature records retained as repair rather than apparent easy wins.
+
+2026-09-22T04:44:12.628082+00:00: Prefix validated at 1700/2577 (66.0%); next offset 1700. Novelty filters remain conservative; possible BMT and other stale claims held for literature verification.
+
+2026-09-22T04:48:12.371783+00:00: Saved 1820/2577 individual reviews (70.6%); next offset 1820. Continued precise full-target scoring and held missing hypotheses, duplicates, and apparent stale claims for repair.
+
+2026-09-22T04:53:24.243392+00:00: Saved 1940/2577 (75.3%); next offset 1940. Exact conditional statements distinguished from unproved premises; scope defects and duplicates remain explicitly recorded.

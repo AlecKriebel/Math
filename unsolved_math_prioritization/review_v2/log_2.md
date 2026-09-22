@@ -9,3 +9,9 @@ Checkpoint 2026-09-22T04:20:10.241741+00:00: 1070/2576 (41.54%). Exact offsets0â
 2026-09-22T04:33:46.698225+00:00: 1390/2576 individually reviewed (53.96%); next offset 1390. Continuing entire shard.
 
 2026-09-22T04:37:48.222466+00:00: 1495/2576 individually reviewed (58.04%); next offset 1495. Continuing entire shard.
+
+- 2026-09-22T04:43:57.869841+00:00: reviewed 1595/2576 (61.92%). Next offset 1595. Geodesic-flow records contain several context-only extraction artifacts and known literal counterexamples; global rigidity problems remain low five-turn probability.
+
+- 2026-09-22T04:48:47.768351+00:00: reviewed 1695/2576 (65.80%). Next offset 1695. Parent now owns offsets 2076â€“2575; this worker will finish prefix through 2075. Potential conformal-primitive obstruction in 20002011 needs source and novelty audit.
+
+- 2026-09-22T04:53:06.470169+00:00: reviewed 1805/2576 (70.07%). Next offset 1805; worker target 2076. Entered OWR concise records; corrected stale E8/Leech and Tits-center open labels provisionally.
