@@ -4,9 +4,13 @@ A reproducible, provisional expected-value ranking of all 15,458 records in
 [ulamai/UnsolvedMath](https://huggingface.co/datasets/ulamai/UnsolvedMath), with
 persistent local assessments and research statuses.
 
-**The exhaustive five-turn review is in progress.** See [review progress](review_v2/PROGRESS.md).
-The active exports still use the initial policy until complete coverage passes validation.
-The following describes the replacement workflow being prepared.
+**All 15,458 records have individual short desk reviews.** The active queue uses
+the five-turn policy: 1,951 candidates, with 13,507 held out. Ninety later
+source or calibration corrections preserve the original judgments. See
+[review coverage](review_v2/PROGRESS.md) and [validation](VALIDATION.md).
+Every review used the full imported statement and available source context;
+selected leaders also received current primary-literature checks. This is not
+a comprehensive literature review of all 15,458 problems.
 
 Start with **[QUEUE.md](QUEUE.md)** (all eligible candidates), **[SHORTLIST.md](SHORTLIST.md)**
 (the leading 100 explained), or **[ranking.csv](ranking.csv)** (every record and short review).
