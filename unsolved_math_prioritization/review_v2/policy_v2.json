@@ -1,0 +1,31 @@
+{
+  "version": "2.0-five-turn-proof",
+  "budget": "Five substantive proof-attempt turns with ChatGPT6 Astra at ultra reasoning; modest exact checks only; no large exhaustive search",
+  "turn_limit": 5,
+  "target": "Complete novel independently checkable proof or counterexample to the exact problem; a partial result does not count as a full solution",
+  "review_requirement": "Every record individually desk-reviewed; only proof/hybrid candidates admitted",
+  "age_modifier": {
+    "maximum_bonus": 0.15,
+    "saturation_years": 100,
+    "basis": "upstream proposed_year only; no inference from import timestamps",
+    "formula": "1 + 0.15 * min(1, log1p(years_open) / log1p(100))",
+    "caveat": "weak impact proxy; proposal dates and continuity of open status are not independently verified"
+  },
+  "exclusion_policy": "exclude_resolved",
+  "base_probability": 0.015,
+  "base_impact": 3,
+  "impact_by_high_difficulty": {
+    "4": 6,
+    "5": 10
+  },
+  "multipliers": {
+    "computable_objects": 1.5,
+    "construction_or_counterexample": 1.5,
+    "algorithmic_target": 1.0,
+    "polynomial_algorithm": 0.2,
+    "broad_program": 0.4,
+    "unbounded_asymptotic": 0.5,
+    "difficulty_4": 0.15,
+    "difficulty_5": 0.005
+  }
+}

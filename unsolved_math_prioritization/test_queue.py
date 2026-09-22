@@ -72,6 +72,36 @@ class QueueTests(unittest.TestCase):
         self.install([])
         q.status(types.SimpleNamespace(id='1',status='deferred',evidence=None,note='Keep for later'))
         self.assertEqual(self.row()['local_status'],'deferred')
+    def setup_five_turn_attempt(self):
+        cfg={**POLICY,'turn_limit':5,'version':'2.0-five-turn-proof','age_modifier':{'maximum_bonus':.15,'saturation_years':100}}
+        q.write(q.ROOT/'policy.json',cfg)
+        rev={'review_hash':self.row()['review_hash'],'review_policy':cfg['version'],'route':'proof','decision':'candidate','impact':3,'p_solve':.03,'p_valid_open':.6}
+        q.write(q.ROOT/'assessments.json',{'1':rev})
+        q.write(q.ROOT/'state.json',{'1':{'status':'in_progress','review_hash':self.row()['review_hash'],'turns_used':0}})
+        q.rank(None)
+    def test_five_turn_stop(self):
+        self.setup_five_turn_attempt()
+        for i in range(5):q.record_turn(types.SimpleNamespace(id='1',note='Substantive proof turn',outcome='continue'))
+        self.assertEqual(q.read(q.ROOT/'state.json',{})['1']['status'],'exhausted')
+        self.assertFalse(self.row()['eligible']);self.assertIn('5/5',(q.ROOT/'QUEUE.md').read_text())
+        with self.assertRaises(ValueError):q.record_turn(types.SimpleNamespace(id='1',note='Sixth turn',outcome='continue'))
+    def test_candidate_on_fifth_turn_preserved(self):
+        self.setup_five_turn_attempt()
+        for i in range(4):q.record_turn(types.SimpleNamespace(id='1',note='Work',outcome='continue'))
+        q.record_turn(types.SimpleNamespace(id='1',note='Proof candidate',outcome='candidate'))
+        self.assertEqual(q.read(q.ROOT/'state.json',{})['1']['status'],'candidate_result')
+    def test_status_change_cannot_reset_budget(self):
+        self.setup_five_turn_attempt()
+        q.record_turn(types.SimpleNamespace(id='1',note='First turn',outcome='continue'))
+        q.status(types.SimpleNamespace(id='1',status='partial',note='Partial result',evidence=None))
+        self.assertEqual(q.read(q.ROOT/'state.json',{})['1']['turns_used'],1)
+    def test_large_search_never_admitted(self):
+        self.setup_five_turn_attempt()
+        a=q.read(q.ROOT/'assessments.json',{});a['1']['route']='large_search';q.write(q.ROOT/'assessments.json',a)
+        q.rank(None);self.assertIn('large_exhaustive_search',self.row()['holds'])
+    def test_age_only_uses_proposal_year(self):
+        self.setup_five_turn_attempt();self.assertEqual(self.row()['age_multiplier'],1)
+        self.install([{**self.p,'proposed_year':1926}]);self.assertEqual(self.row()['age_multiplier'],1.15)
     def test_reproducibility(self):
         before=(q.ROOT/'catalog.json').read_bytes();q.rank(None);self.assertEqual(before,(q.ROOT/'catalog.json').read_bytes())
 if __name__=='__main__':unittest.main()

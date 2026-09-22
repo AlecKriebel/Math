@@ -4,7 +4,7 @@ import argparse, collections, csv, hashlib, json, math, pathlib, re, sqlite3, ur
 from datetime import datetime, timezone
 ROOT = pathlib.Path(__file__).resolve().parent
 REPO = 'ulamai/UnsolvedMath'
-STATES = ['unreviewed','ready','in_progress','partial','blocked','deferred','candidate_result','independent_verification','verified_solved','already_solved','invalid','duplicate']
+STATES = ['queued','exhausted','unreviewed','ready','in_progress','partial','blocked','deferred','candidate_result','independent_verification','verified_solved','already_solved','invalid','duplicate']
 def now(): return datetime.now(timezone.utc).isoformat(timespec='seconds')
 def digest(x): return hashlib.sha256(x.encode()).hexdigest()
 def read(path, default): return json.loads(path.read_text()) if path.exists() else default
@@ -143,12 +143,25 @@ def rank(args):
                 a['holds']=[h for h in a['holds'] if h!=hold]
         local_stale=bool(local and local.get('review_hash')!=a['review_hash'])
         if local_stale:a['holds'].append('status_review_stale')
-        local_status=local.get('status','unreviewed')
-        eligible=not a['holds'] and local_status in ['unreviewed','ready']
+        is_v2=cfg.get('turn_limit')==5
+        if is_v2 and (not review or review.get('review_policy')!=cfg['version']):a['holds'].append('five_turn_desk_review_required')
+        if cfg.get('exclusion_policy')=='exclude_open_and_resolved' and p.get('status')=='open':a['holds'].append('open_excluded_by_user')
+        if review.get('route')=='large_search':a['holds'].append('large_exhaustive_search')
+        if is_v2 and review.get('decision')!='candidate':a['holds'].append('not_selected_for_five_turn_attempt')
+        a['holds']=list(dict.fromkeys(a['holds']))
+        local_status=local.get('status','queued' if is_v2 and review else 'unreviewed')
+        turns=local.get('turns_used',0)
+        eligible=not a['holds'] and local_status in ['queued','unreviewed','ready'] and turns<cfg.get('turn_limit',1000000)
+        proposed=p.get('proposed_year')
+        age=2026-proposed if isinstance(proposed,int) and 1600<=proposed<=2026 else None
+        age_multiplier=1.0
+        if cfg.get('age_modifier') and age is not None:
+            age_multiplier+=cfg['age_modifier']['maximum_bonus']*min(1,math.log1p(age)/math.log1p(cfg['age_modifier']['saturation_years']))
+        base_impact=a['impact'];a['impact']=round(min(10,base_impact*age_multiplier),6)
         value=a['impact']*a['p_solve']*a['p_valid_open']
         rows.append(dict(id=key,problem_number=p['problem_number'],title=p.get('title',''),category=(p.get('category') or {}).get('display_name','Unknown'),
             source_url=p.get('source_url') or '',upstream_status=p.get('status'),local_status=local_status,
-            present=True,eligible=eligible,assessment='desk_review' if review and not stale else 'automatic',
+            present=True,eligible=eligible,difficulty=p.get('difficulty_level_id'),proposed_year=proposed,age_years=age,age_multiplier=round(age_multiplier,6),base_impact=base_impact,route=review.get('route'),desk_decision=review.get('decision'),desk_note=review.get('note',''),turns_used=turns,turn_limit=cfg.get('turn_limit'),assessment='desk_review' if review and not stale else 'automatic',
             ev=round(value,8),ev_low=round(a['impact']*a['p_solve']*0.2*max(0,a['p_valid_open']-0.2),8),ev_high=round(a['impact']*min(1,a['p_solve']*3)*min(1,a['p_valid_open']+0.2),8),policy_version=cfg['version'],policy_hash=digest(json.dumps(cfg,sort_keys=True)),**a))
     db.close()
     current_ids=seen_ids(rows)
@@ -160,18 +173,23 @@ def rank(args):
     for x in rows:
         if not x['eligible']:x['rank']=None
     write(ROOT/'catalog.json',rows)
-    fields=['rank','id','problem_number','title','category','ev','ev_low','ev_high','impact','p_solve','p_valid_open','assessment','local_status','upstream_status','eligible','present','holds','reasons','source_url']
+    fields=['rank','id','problem_number','title','category','ev','ev_low','ev_high','impact','p_solve','p_valid_open','assessment','local_status','upstream_status','eligible','present','holds','reasons','source_url','difficulty','proposed_year','age_years','age_multiplier','base_impact','route','desk_decision','desk_note','turns_used','turn_limit']
     with (ROOT/'ranking.csv').open('w',newline='') as f:
         writer=csv.DictWriter(f,fieldnames=fields,extrasaction='ignore');writer.writeheader()
         for x in rows:writer.writerow({**x,'holds':'; '.join(x['holds']),'reasons':'; '.join(x['reasons'])})
-    top=[x for x in rows if x['eligible']][:100]
+    top=[x for x in rows if x['eligible']]
+    if cfg.get('turn_limit')!=5:top=top[:100]
     lines=['# Prioritized research queue','',f"Source: `{read(ROOT/'manifest.json',{}).get('revision','unknown')}`. Policy: `{cfg['version']}`.",'',
         '**Provisional expected-value ranking. Probabilities are subjective planning assumptions, not measured AI success rates.**',
         f"Budget per problem: {cfg['budget']}. No problem is cleared for research until the readiness checks are recorded.",'',
         f"{len(rows):,} tracked; {sum(x['eligible'] for x in rows):,} eligible for triage; {sum(bool(x['holds']) for x in rows):,} with review holds.",'',
-        '| Rank | ID | Problem | EV | Assessment | Status |','|---:|---|---|---:|---|---|']
-    for x in top:lines.append(f"| {x['rank']} | {x['id']} | {x['title'].replace('|','/')} | {x['ev']:.4f} | {x['assessment']} | {x['local_status']} |")
-    lines+=['','Equal scores are ties; numeric ID order has no mathematical significance. Most entries are automatically screened and may move substantially after review.','Full list: [ranking.csv](ranking.csv). Holds and every score component: [catalog.json](catalog.json).',
+        '| Rank | ID / code | Problem | EV | Difficulty | Proposed | Status | Turns |','|---:|---|---|---:|---:|---:|---|---:|']
+    for x in top:lines.append(f"| {x['rank']} | {x['id']} / {x['problem_number']} | {x['title'].replace('|','/')} | {x['ev']:.4f} | {x['difficulty']} | {x['proposed_year'] or 'unknown'} | {x['local_status']} | {x['turns_used']}/{x['turn_limit'] or '—'} |")
+    attempted=[x for x in rows if x['id'] in state]
+    if attempted:
+        lines+=['','## Attempt history','','| ID | Problem | Status | Turns |','|---|---|---|---:|']
+        for x in attempted:lines.append(f"| {x['id']} | {x['title'].replace('|','/')} | {x['local_status']} | {x.get('turns_used',state[x['id']].get('turns_used',0))}/{cfg.get('turn_limit','—')} |")
+    lines+=['','Equal scores are ties; numeric ID order has no mathematical significance. Scores are subjective priorities, not guarantees of a solution.','Full list: [ranking.csv](ranking.csv). Holds and every score component: [catalog.json](catalog.json).',
         'Individual reasoning and next experiments: [SHORTLIST.md](SHORTLIST.md).']
     (ROOT/'QUEUE.md').write_text('\n'.join(lines)+'\n')
     counts=collections.Counter(h.split(':')[0] for x in rows for h in x['holds'])
@@ -179,7 +197,7 @@ def rank(args):
     detail=['# Individual candidate assessments','',
         'These are desk assessments, not verified readiness decisions. All success estimates are subjective and low-confidence. Most corpus entries have not received this review.',
         'The live order is in [QUEUE.md](QUEUE.md); these notes include demotions and review holds as well as promising candidates.','']
-    for x in sorted([x for x in rows if x['id'] in reviews],key=lambda x:(bool(x['holds']),-x['ev'],x['id'])):
+    for x in sorted([x for x in rows if x['id'] in reviews],key=lambda x:(bool(x['holds']),-x['ev'],x['id']))[:100]:
         a=reviews[x['id']]
         detail += [f"## {x['id']} — {x['title']}",'',
             f"Code: `{x['problem_number']}`. EV: {x['ev']:.4f}; sensitivity range {x['ev_low']:.4f}–{x['ev_high']:.4f}. Impact {x['impact']}/10; assumed full-solution probability {100*x['p_solve']:.2f}%; validity/open/novelty prior {100*x['p_valid_open']:.0f}%.",'',
@@ -203,6 +221,8 @@ def status(args):
     if args.id not in catalog:raise ValueError('Unknown problem ID')
     row=catalog[args.id];state=read(ROOT/'state.json',{});prior=state.get(args.id,{})
     evidence=read(pathlib.Path(args.evidence),{}) if args.evidence else {}
+    if args.status in ['ready','in_progress'] and prior.get('turns_used',0)>=read(ROOT/'policy.json',{}).get('turn_limit',1000000):
+        raise ValueError('Five-turn budget exhausted; move to the next problem')
     if args.status in ['ready','in_progress','verified_solved'] and evidence.get('review_hash')!=row['review_hash']:
         raise ValueError('Evidence must contain current review_hash; inspect show output and re-review changed source')
     if args.status in ['ready','in_progress']:
@@ -212,7 +232,25 @@ def status(args):
     if args.status=='verified_solved':
         if row['holds'] or not row['present'] or prior.get('review_hash')!=row['review_hash'] or prior.get('status')!='independent_verification' or not all(evidence.get(k) for k in ['proof_artifact','independent_review','novelty_check','exact_claim']):
             raise ValueError('Requires independent_verification state plus proof_artifact, independent_review, novelty_check, exact_claim')
-    event=dict(at=now(),id=args.id,status=args.status,note=args.note,evidence=evidence,statement_hash=row['statement_hash'],review_hash=row['review_hash'])
+    event=dict(at=now(),id=args.id,status=args.status,note=args.note,evidence=evidence,statement_hash=row['statement_hash'],review_hash=row['review_hash'],turns_used=prior.get('turns_used',0))
+    state[args.id]=event;write(ROOT/'state.json',state)
+    with (ROOT/'history.jsonl').open('a') as f:f.write(json.dumps(event,ensure_ascii=False)+'\n')
+    rank(None)
+
+def record_turn(args):
+    require_cache()
+    cfg=read(ROOT/'policy.json',{});limit=cfg.get('turn_limit',5)
+    state=read(ROOT/'state.json',{});prior=state.get(args.id,{})
+    catalog={x['id']:x for x in read(ROOT/'catalog.json',[])}
+    if args.id not in catalog:raise ValueError('Unknown ID')
+    row=catalog[args.id]
+    if prior.get('status') not in ['in_progress','partial']:raise ValueError('Start a reviewed attempt before recording a turn')
+    if row['holds'] or prior.get('review_hash')!=row['review_hash']:raise ValueError('Source changed or unresolved review hold')
+    count=prior.get('turns_used',0)
+    if count>=limit:raise ValueError('Turn budget exhausted')
+    count+=1
+    result='candidate_result' if args.outcome=='candidate' else ('exhausted' if count>=limit else 'in_progress')
+    event={**prior,'at':now(),'id':args.id,'status':result,'note':args.note,'turns_used':count,'event':'proof_attempt_turn'}
     state[args.id]=event;write(ROOT/'state.json',state)
     with (ROOT/'history.jsonl').open('a') as f:f.write(json.dumps(event,ensure_ascii=False)+'\n')
     rank(None)
@@ -238,6 +276,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__);sub=parser.add_subparsers(dest='command',required=True)
     s=sub.add_parser('sync');s.add_argument('--revision');s.add_argument('--use-cache',action='store_true');s.set_defaults(func=sync)
     s=sub.add_parser('rank');s.set_defaults(func=rank)
+    s=sub.add_parser('turn');s.add_argument('id');s.add_argument('--note',required=True);s.add_argument('--outcome',choices=['continue','candidate'],default='continue');s.set_defaults(func=record_turn)
     s=sub.add_parser('assess');s.add_argument('id');s.add_argument('--file',required=True);s.set_defaults(func=assess)
     s=sub.add_parser('show');s.add_argument('id');s.set_defaults(func=show)
     s=sub.add_parser('status');s.add_argument('id');s.add_argument('status',choices=STATES);s.add_argument('--note',required=True);s.add_argument('--evidence');s.set_defaults(func=status)
