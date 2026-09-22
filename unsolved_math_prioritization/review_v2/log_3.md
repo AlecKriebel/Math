@@ -31,3 +31,9 @@
 - Freshness overrides are parent-owned; editor-hosted Kourovka resolution claims take precedence over raw initial triage.
 - AMR issue: source-solved status can hide a remaining bundled branch; 1100207 automatic groups and 1100219 no-triplane scope are repair-held. Several finite-quotient and critical-exponent formulations omit indispensable hypotheses.
 - Review estimates are subjective triage, never proof claims. Remaining 1277 records still require individual review.
+
+- Checkpoint 2026-09-22T04:27:47.590395+00:00: 1400/2577 (54.33%) individually reviewed; exact prefix0–1399 verified. Next1400 ID20001632. Broad AIM titles remain full-scope targets; many partial reductions simply restate their hard gap.
+
+2026-09-22T04:33:52.061977+00:00 — Checkpoint: 1525/2577 individually reviewed (59.2%); exact prefix verified. Next offset 1525.
+
+2026-09-22T04:36:29.425184+00:00 — Checkpoint: 1605/2577 individually reviewed (62.3%); exact prefix verified. Next offset 1605.

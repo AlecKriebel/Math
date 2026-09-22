@@ -19,3 +19,9 @@ Completed individual full-statement reviews for offsets 510–1009, adding 500 r
 Concerns: numerous conference contents fragments, duplicate conjectures, omitted hypotheses producing nonnovel literal counterexamples, and corrected statements paired with unrelated or stale status reports. Record 7200016 has a particularly misleading report: Parshin asks for rational higher K theory vanishing, whereas its imported gap incorrectly concerns torsion. Promising candidates remain conditional on source and current literature verification. No mathematical solution or current novelty verification is claimed.
 
 2026-09-22T04:20:51.117930+00:00 Checkpoint:1100/2577 (42.7%), next offset1100; exact prefix validated. Continuing full shard. AIM prompts often exploratory or already partially answered; no easy subcase promoted as full resolution.
+
+2026-09-22T04:27:59.836697+00:00: Saved 1250/2577 individual reviews (48.5%); next offset 1250. Historical status inquiries and solved subclaims separated from novel targets; no proof claims.
+
+2026-09-22T04:31:35.373756+00:00: Saved and verified prefix 1345/2577 (52.2%); next offset 1345. Broad moduli/arithmetic programs score low for five-turn completion; supplied solved claims held outside candidates.
+
+2026-09-22T04:35:58.791162+00:00: Saved 1460/2577 reviews (56.7%); next offset 1460. Flagged several potentially stale OWR claims and missing scope, without upgrading unverified literature recollections to solved results.

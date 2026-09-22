@@ -21,3 +21,11 @@ Cumulative individual desk reviews: 1230/2576 (47.7%), offsets 0–1229. Next of
 ## 2026-09-22T04:27:00.831814+00:00
 
 Reviewed through offset 1349: 1350/2576 (52.4%). Next offset 1350. Individual AIM reviews distinguish already-resolved literal claims, malformed workshop questions, and partial reductions that leave the central conjecture intact. Promising narrow targets include the six-chromatic three-color path question, normalized-energy BSG, and periodic sandpile destabilization.
+
+## 2026-09-22T04:31:41.420841+00:00
+
+Cumulative individually authored review coverage 0–1499: 1500/2576 (58.2%). Next offset 1500, ID 20001134. Validated exact ordered coverage against assignments. Source-fragment duplicates and already-resolved finite-field geometry questions excluded. New narrow candidates include restricted Scherk sumsets, asymmetric BSG, and sharp Freiman model diameter; all remain provisional desk assessments.
+
+## 2026-09-22T04:35:09.250342+00:00
+
+Individual coverage 0–1594: 1595/2576 (61.9%). Next offset 1595. All long merged source statements retrieved in separate chunks where output was truncated. Flagged archival Lefschetz, twisted-Bruhat, core-partition, and PFR status issues. Proof-first word-periodicity candidates need definitions and source verification.

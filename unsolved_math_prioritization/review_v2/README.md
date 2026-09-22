@@ -51,6 +51,14 @@ invalid fields, and incomplete coverage before activating the replacement policy
 `adversarial_overrides.json` records additional primary-source checks of apparent
 leaders, preserving the first review rather than silently rewriting it.
 
+These review files and their checkpoint logs are committed and pushed alongside
+the queue. They include every exclusion, deferral, and repair decision, not just
+the selected candidates. Dataset synchronization does not rewrite these files.
+After activation, unchanged records reuse their content-bound assessments;
+changed records keep their old notes but require a fresh review before admission.
+Keep this revision's review ledger when starting a later review pass, and record
+new reviews separately so the original judgments remain directly auditable.
+
 Every note names a mechanism and an obstacle or a specific exclusion reason.
 Reviewers do not spend five turns solving each problem during this pass. Most
 reviews rely on the supplied statement and available prior research metadata;
