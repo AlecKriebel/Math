@@ -10,3 +10,14 @@
 - Promising .08 leads needing scope and novelty validation: 3242 (valency-variety inequality), 3306 (end-devouring rays), 1200023 (boundary-distance sum). 1200015 (chromatic moments) is repair-held because bounded degree is unstated and a known-theorem route is likely.
 - Critical source errors: RSA inverse exponent record 8400011 cites square-root reduction despite gcd(e,phi(n))=1; 8700012 has opposite exceptional sign; 8700057 has log(D)=0 at D=1 and omitted coefficient bounds; 8700060 admits u=0; 8700067 likely follows from Christol plus digit-complexity transcendence.
 - Remaining: 2077 entries require genuine individual desk review. Do not mark unreviewed rows reviewed.
+
+## Continuation checkpoint
+
+- Timestamp: 2026-09-22T04:07:54.549212+00:00
+- Reviewed: 800 / 2577 (31.04% completion of assigned review goal).
+- Added 300 individual reviews, offsets 500–799 inclusive; exact total contiguous coverage 0–799.
+- Next offset: 800; next upstream ID: 30004034.
+- Validation: JSON schema fields, exact assignment prefix, and uniqueness checked; no proof attempts or fresh novelty verification.
+- New leads needing verification: 30000417 (path list labeling); 30003128 (sparse spectral discrepancy counterexample via hidden dense regular component, low novelty confidence); 30003338 (positive association of bipartite coloring marginals); 30003973 (Ramsey-equivalence color separation); 30004002 (rainbow path rotations); 30004008 (rainbow arborescence exchange); 30004033 (weighted planar independent-set bound).
+- Extraction issues: 30002268–30002270 omit ceilings and fail on C5; 30001665 fails on a directed triangle; 30000603 contradicts the known linear path size-Ramsey bound. 30002474 may admit a matching-plus-independent-hubs obstruction and is repair-held.
+- Remaining: 1777 entries require genuine individual desk review.

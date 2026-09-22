@@ -3,6 +3,8 @@ import contextlib, importlib.util, io, json, pathlib, sqlite3, tempfile, types, 
 spec=importlib.util.spec_from_file_location('research_queue',pathlib.Path(__file__).with_name('queue.py'))
 q=importlib.util.module_from_spec(spec);spec.loader.exec_module(q)
 POLICY=q.read(q.ROOT/'policy.json',{})
+POLICY={k:v for k,v in POLICY.items() if k not in ['turn_limit','age_modifier','age_reference_year','exclusion_policy']}
+POLICY['version']='test-legacy-screen'
 class QueueTests(unittest.TestCase):
     def setUp(self):
         self.tmp=tempfile.TemporaryDirectory();self.old=q.ROOT;q.ROOT=pathlib.Path(self.tmp.name)
@@ -99,6 +101,11 @@ class QueueTests(unittest.TestCase):
         self.setup_five_turn_attempt()
         a=q.read(q.ROOT/'assessments.json',{});a['1']['route']='large_search';q.write(q.ROOT/'assessments.json',a)
         q.rank(None);self.assertIn('large_exhaustive_search',self.row()['holds'])
+    def test_missing_proof_route_never_admitted(self):
+        self.setup_five_turn_attempt()
+        a=q.read(q.ROOT/'assessments.json',{});a['1'].pop('route');q.write(q.ROOT/'assessments.json',a)
+        q.rank(None);self.assertIn('no_concrete_proof_route',self.row()['holds'])
+        with self.assertRaises(ValueError):q.record_turn(types.SimpleNamespace(id='1',note='Missing route',outcome='continue'))
     def test_age_only_uses_proposal_year(self):
         self.setup_five_turn_attempt();self.assertEqual(self.row()['age_multiplier'],1)
         self.install([{**self.p,'proposed_year':1926}]);self.assertEqual(self.row()['age_multiplier'],1.15)

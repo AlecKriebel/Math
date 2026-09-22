@@ -11,9 +11,9 @@ Read the complete statement in each input batch, metadata, upstream research
 summary and any available remaining-gap excerpt. For missing definitions or a
 truncated prior gap, inspect the full cached record when it matters. Source status
 is evidence, not a verified theorem. Already-solved or claimed-solved entries get
-a short exclusion/review disposition, never a new proof claim. The parent is
-clarifying the user's phrase 'exclude all the open ones'; review all statuses now
-and let the parent select the final inclusion filter.
+a short exclusion/review disposition, never a new proof claim. The user clarified
+the inclusion filter: exclude already-solved problems; keep unresolved ones.
+Review all statuses so every record has an individual disposition.
 
 Output a JSON array to `reviews_<shard>.json` (append safely by reading the prior
 array, extending it, then atomically replacing it). Each record has:
