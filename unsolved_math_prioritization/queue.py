@@ -155,6 +155,7 @@ def rank(args):
         if is_v2 and review.get('decision')!='candidate':a['holds'].append('not_selected_for_five_turn_attempt')
         a['holds']=list(dict.fromkeys(a['holds']))
         default_status=('queued' if review.get('decision')=='candidate' else 'deferred' if review.get('decision') in ['defer','exclude'] else 'unreviewed') if is_v2 else 'unreviewed'
+        if is_v2 and default_status=='queued' and a['holds']:default_status='unreviewed'
         if is_v2 and review.get('resolution')=='already_solved' and not stale:default_status='already_solved'
         local_status=local.get('status',default_status)
         turns=local.get('turns_used',0)

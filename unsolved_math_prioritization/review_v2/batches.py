@@ -1,5 +1,5 @@
 """Prepare/read short source packets; this script does NOT author desk reviews."""
-import json,sqlite3,pathlib,sys,hashlib
+import json,sqlite3,pathlib,sys,hashlib,re
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 HERE=ROOT/'review_v2'
 def rows():
@@ -19,9 +19,16 @@ def packet(shard,start,count):
  for k in ids:
   p,r=data[k]
   gap=r.get('what_remains','')
+  background=p.get('background') or ''
+  embedded=background.split('<!-- LITERATURE-TRIAGE:BEGIN -->')[-1] if '<!-- LITERATURE-TRIAGE:BEGIN -->' in background else ''
+  status_match=re.search(r'\*\*Status:\*\*\s*([^\n]+)',embedded)
+  assessment_match=re.search(r'\*\*Current literature assessment\.\*\*\s*([^\n]+)',embedded)
+
   print(json.dumps({'id':k,'code':p['problem_number'],'title':p['title'],'statement':p['statement'],
    'difficulty':p.get('difficulty_level_id'),'year':p.get('proposed_year'),'status':p.get('status'),
    'classification':p.get('research_classification'),'statement_status':p.get('statement_status'),
+   'embedded_literature_status':status_match.group(1).strip() if status_match else None,
+   'embedded_literature_assessment':assessment_match.group(1).strip()[:500] if assessment_match else None,
    'summary_excerpt':(p.get('research_summary') or '')[:350],'summary_truncated':len(p.get('research_summary') or '')>350,'literature':p.get('literature_assessment'),
    'prior_note':r.get('verification_note'),'gap_excerpt':gap[:350], 'gap_truncated':len(gap)>350,
    'source':p.get('source_url')},ensure_ascii=False))

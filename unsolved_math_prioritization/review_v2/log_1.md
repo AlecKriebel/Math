@@ -9,3 +9,15 @@ Key findings: numerous formula corruptions, missing normalization/nontriviality 
 Reviewed offsets 310–609 individually; complete cumulative coverage 0–609 (610/2576, 23.7%). Next offset 610, ID 30002587. All statements read in full; notes are short semantic desk triage, not proofs or literature verification. No completion or AI-solvability guarantee.
 
 OWR extractions frequently omit hypotheses or pair corrected statements with unrelated literature summaries. Flagged such records for repair, removed explicit duplicates, and identified stale Kadison–Singer status. Concrete candidates include a fixed Gaussian lattice frame test, lattice discrepancy moments, weighted Yamabe heat traces, and critical operator-growth examples; source and novelty checks remain necessary.
+
+## 2026-09-22T04:19:25.302365+00:00
+
+Reviewed offsets 610–1109 individually; cumulative coverage 0–1109 (1110/2576, 43.1%). Next offset 1110, ID 3000037. Complete statements read; concise semantic triage remains provisional pending source and novelty checks. Numerous stale solved claims, duplicate questions, missing assumptions, and major conjectures with low difficulty labels were downranked or held. Five-turn proof-friendly leads include multiset multiplicity iteration, uniform convolution factors, and explicit matroid or network optimization questions.
+
+## 2026-09-22T04:23:09.313080+00:00
+
+Cumulative individual desk reviews: 1230/2576 (47.7%), offsets 0–1229. Next offset 1230. Complete statements reviewed; blocked malformed formulations, duplicate major conjectures, and exhaustive counting projects. New concise proof-first candidates include antipodal base-polyhedron vertices, binomial-probability coincidences, and parity-restricted random-walk unimodality.
+
+## 2026-09-22T04:27:00.831814+00:00
+
+Reviewed through offset 1349: 1350/2576 (52.4%). Next offset 1350. Individual AIM reviews distinguish already-resolved literal claims, malformed workshop questions, and partial reductions that leave the central conjecture intact. Promising narrow targets include the six-chromatic three-color path question, normalized-energy BSG, and periodic sandpile destabilization.

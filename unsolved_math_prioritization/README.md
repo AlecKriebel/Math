@@ -4,21 +4,24 @@ A reproducible, provisional expected-value ranking of all 15,458 records in
 [ulamai/UnsolvedMath](https://huggingface.co/datasets/ulamai/UnsolvedMath), with
 persistent local assessments and research statuses.
 
-Start with **[QUEUE.md](QUEUE.md)** (top 100), **[SHORTLIST.md](SHORTLIST.md)**
-(individual reasoning), or **[ranking.csv](ranking.csv)** (every record, sortable).
-The initial pass includes 23 individual desk assessments. None is certified as
-AI-solvable, ready for research, or newly solved. Most rows are cheap automated
-triage; a precise ordering among those rows is not justified by the evidence.
+**The exhaustive five-turn review is in progress.** See [review progress](review_v2/PROGRESS.md).
+The active exports still use the initial policy until complete coverage passes validation.
+The following describes the replacement workflow being prepared.
+
+Start with **[QUEUE.md](QUEUE.md)** (all eligible candidates), **[SHORTLIST.md](SHORTLIST.md)**
+(the leading 100 explained), or **[ranking.csv](ranking.csv)** (every record and short review).
+These are promising candidates, not certified AI-solvable problems. A desk review
+identifies a proof route and obstacle; it does not prove that the route will succeed.
 
 ## Expected value and its limits
 
-For a **fixed budget of 8 agent-hours of exploration plus 2 agent-hours of
-independent verification**, rank by:
+For a **fixed budget of five substantive proof-attempt turns with ChatGPT6 Astra
+at ultra reasoning**, rank by:
 
 `EV = impact × P(valid, still open, novel target) × P(verified full resolution | valid target, budget)`
 
-This is expected value per attempt, not impact divided by difficulty. With equal
-budgets it also orders expected value per hour. Changing budgets requires new
+This is expected value per five-turn attempt. Turn duration varies, so it is not
+a measured expected value per hour. Changing budgets requires new
 probability estimates. Full resolution means a proof or counterexample settling
 the exact target, including every part of a bundled question. A promising
 special case must become a separately identified subproblem; do not quietly
@@ -32,27 +35,31 @@ than allow huge speculative utility for a famous conjecture to dominate.
 
 The probabilities are **uncalibrated planning assumptions**, not measurements,
 confidence levels, or a claim about any particular AI model. Impact and probability
-can both be overridden after reading the actual mathematics. `policy.json` makes
-the automatic assumptions explicit. Its weak initial priors give L4/L5 entries
-more impact but sharply less feasibility; L1/L2 receive **no easy-problem bonus**.
-OWR L3 is a collection default. Exact/corrected wording gets a somewhat higher
-combined validity/open-status prior, but proves neither novelty nor open status.
-Popularity and views do not influence ranking.
+can both be overridden after reading the actual mathematics. Every record receives
+an individual semantic review of its statement, difficulty, and available context.
+Only selected proof or modest-computation candidates enter the working queue.
+Large exhaustive searches, known resolutions, unverified solution claims, unclear
+statements, and routes that merely restate the hard part are held out.
 
-Automatic signals use computable objects, constructions, broad programs,
-asymptotic targets, and general polynomial-time algorithm requests. These are
-retrieval aids, not mathematical arguments. Individual assessments describe a
-mechanism and exact remaining gap. All initial estimates have low confidence.
-`ev_low` / `ev_high` vary success probability by ×0.2 / ×3 and validity by −/+0.2
+Age supplies a small impact bonus, capped at 15% and at total impact 10:
+`1 + 0.15 × min(1, log(1 + age) / log(101))`.
+Only an explicit `proposed_year` is used; missing years remain unknown. Age is a
+weak proxy for impact and also evidence of difficulty, not a reason to expect an
+easy proof. `policy.json` fixes the reference year for reproducibility. Upstream
+difficulty informs the individual judgment; neither a low difficulty label nor
+membership in Kourovka or any other collection earns an automatic bonus.
+
+Legacy automatic scores remain fallback metadata for new or changed records,
+which cannot enter the five-turn queue without a fresh individual assessment.
+All estimates have low confidence. `ev_low` / `ev_high` vary success probability by ×0.2 / ×3 and validity by −/+0.2
 (with clipping); these are sensitivity scenarios, **not statistical intervals**.
 Overlapping values should be treated as priority bands. Equal EV values are ties;
 the numeric-ID tiebreak has no substantive meaning.
 
 After the first 10–20 budgeted attempts, reassess the priors using time spent,
 verification outcomes, failure modes, and contribution size. Include occasional
-lower-ranked and different-domain probes to expose selection bias. This initial
-policy favors symbolically/computationally checkable problems; it is not a claim
-that other mathematical fields are less valuable.
+lower-ranked and different-domain probes to expose selection bias. This policy favors short, checkable proofs and constructions, with modest exact
+checks when useful. It does not measure the value of entire mathematical fields.
 
 ## Update and inspect
 
@@ -110,12 +117,29 @@ No scheduler, GitHub release, or Zenodo DOI is created by the tool.
 
 ## Research lifecycle
 
-`unreviewed → ready → in_progress → candidate_result → independent_verification → verified_solved`
+`queued → ready → in_progress → candidate_result → independent_verification → verified_solved`
 
 Also available: `partial`, `blocked`, `deferred`, `already_solved`, `invalid`,
-`duplicate`. Desk triage leaves the local status `unreviewed`; the separate
-`assessment` column says whether it has an individual assessment. Upstream
-solution claims are review holds, not locally verified achievements.
+`duplicate`, `unreviewed`, and `exhausted`. Eligible desk-reviewed candidates start
+as `queued`; this does not mean source/readiness verification is complete.
+The separate `assessment` column distinguishes individual review from automatic
+fallback scoring. Upstream solution claims are review holds, not local achievements.
+A partial resolution of a bundled question requires a separately defined remaining target.
+
+Count an assistant response that advances the proof attempt as one turn; individual
+tool calls and desk triage do not each count as turns. Record each substantive
+attempt turn. After the fifth unfinished turn, the tool
+marks the problem `exhausted`; move to the next problem. A candidate result found
+by turn five may proceed to independent verification. Verification is not an
+extension for continuing an unfinished search, and `partial` does not reset the counter.
+
+```sh
+python3 unsolved_math_prioritization/queue.py turn 30004033 --note 'Attempt 1: mechanism and exact remaining gap recorded in research log'
+python3 unsolved_math_prioritization/queue.py turn 30004033 --outcome candidate --note 'Complete candidate proof saved for independent verification'
+```
+
+These examples do not start an attempt. `Status` and `Turns` appear in QUEUE.md;
+finished and active attempts remain in its history table.
 
 Before `ready`, record an evidence JSON with these nonempty fields:
 
@@ -149,7 +173,10 @@ requirements; it **cannot judge whether a proof or a review is correct**.
 ## Change an assessment or resolve a hold
 
 Write a JSON containing the current `review_hash` from `show`, `impact`, `p_solve`, `p_valid_open`, `rationale`,
-`remaining_gap`, `first_experiment`, and `sources`, then run:
+`remaining_gap`, `first_experiment`, and `sources`. Under the five-turn policy also
+include `review_policy: "2.0-five-turn-proof"`, `route` (`proof`, `hybrid`,
+`large_search`, or `unclear`), `decision` (`candidate`, `defer`, `exclude`, or
+`repair`), and a concise individual `note`. Then run:
 
 ```sh
 python3 unsolved_math_prioritization/queue.py assess 30004033 --file unsolved_math_prioritization/attempts/30004033/assessment.json

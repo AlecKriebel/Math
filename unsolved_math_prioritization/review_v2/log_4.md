@@ -3,3 +3,7 @@
 
 
 2026-09-22T03:59:09.655354+00:00 — Checkpoint: 502/2576 individual reviews (19.49% shard completion). Current continuation offsets202–501 finished; next offset502. Full statements reviewed individually, short semantic notes saved atomically by batch. Historical/context-only fragments excluded; broad famous number-theory targets deferred; duplicate and malformed formulations flagged. Literature status needs parent audit; no novel proof claimed.
+
+2026-09-22T04:13:21.840332+00:00 — Checkpoint:1002/2576 individual semantic reviews (38.90% shard completion). Finished continuation502–1001,500 new records; next offset1002. Candidate mechanisms include residue-density ratios (2260), bounded exact pseudoprime checks (3361), divisor matching, and reciprocal-series tails. Numerous malformed and duplicate targets flagged; upstream AMR summaries contain demonstrably contradictory status and definition claims. All notes are initial triage, with literature audit required. No proofs attempted or asserted.
+
+2026-09-22: checkpoint 1212/2576 individually reviewed (47.05% of shard); continuation from1002 is210/600. Next offset1212. Corrected2260 to exclude because Cambie already refutes universal target. AIM contains many solved historical requests and ambitious bundles; no new proof claims.

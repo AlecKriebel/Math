@@ -21,3 +21,13 @@
 - New leads needing verification: 30000417 (path list labeling); 30003128 (sparse spectral discrepancy counterexample via hidden dense regular component, low novelty confidence); 30003338 (positive association of bipartite coloring marginals); 30003973 (Ramsey-equivalence color separation); 30004002 (rainbow path rotations); 30004008 (rainbow arborescence exchange); 30004033 (weighted planar independent-set bound).
 - Extraction issues: 30002268–30002270 omit ceilings and fail on C5; 30001665 fails on a directed triangle; 30000603 contradicts the known linear path size-Ramsey bound. 30002474 may admit a matching-plus-independent-hubs obstruction and is repair-held.
 - Remaining: 1777 entries require genuine individual desk review.
+
+## Full-shard continuation checkpoint
+
+- Timestamp: 2026-09-22T04:24:20.384292+00:00
+- Reviewed 1300/2577 (50.45%); exact contiguous offsets 0–1299, no duplicate IDs.
+- Completed requested 500-record batch offsets 800–1299. Parent authorized uninterrupted continuation through offset2576.
+- Next offset1300, ID 20001532.
+- Freshness overrides are parent-owned; editor-hosted Kourovka resolution claims take precedence over raw initial triage.
+- AMR issue: source-solved status can hide a remaining bundled branch; 1100207 automatic groups and 1100219 no-triplane scope are repair-held. Several finite-quotient and critical-exponent formulations omit indispensable hypotheses.
+- Review estimates are subjective triage, never proof claims. Remaining 1277 records still require individual review.
