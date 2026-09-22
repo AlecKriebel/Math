@@ -19,3 +19,9 @@ Checkpoint 2026-09-22T04:20:10.241741+00:00: 1070/2576 (41.54%). Exact offsets0�
 2026-09-21T22:02:43.101673 — 2015 individually reviewed (78.22% of full shard); assigned prefix continues through2075, supplemental2286–2575 remains. Parent owns2076–2285. No proof or verified-open claims.
 
 2026-09-21T22:04:57.079688 — Prefix complete:2076/2076 assigned prefix,80.59% full shard. Next assigned supplemental starts2286,290 records, separate supplemental_2_agent.json.
+
+2026-09-21T22:08:58.038497 — Supplemental110/290 saved,37.93%; combined personal coverage2186/2366=92.39% assigned reviews. Nextoffset2396.
+
+2026-09-21T22:12:30.133585 — Supplemental210/290=72.41%; combined personal assignment2286/2366=96.62%. Nextoffset2496; final80remain.
+
+2026-09-21T22:15:05.796794 — COMPLETE personal assignment2366/2366=100%:prefix2076 plus supplemental290. Both exact order assertions pass. Parent owns210 records2076–2285. Ledger writes stopped; independent final source audit follows.

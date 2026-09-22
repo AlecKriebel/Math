@@ -45,3 +45,5 @@ Coverage through offset 1724: 1725/2576 (67.0%). Next offset 1725. Short OWR sta
 2026-09-22T04:59:24.662537+00:00 — 2340/2576 individually reviewed (90.8%); next offset 2340. New bounded targets include root-dependent tree hardness and exact sparse exponent comparisons; frequent duplicates retained as exclusions.
 
 2026-09-22T05:02:47.221229+00:00 — 2460/2576 individually reviewed (95.5%); next offset 2460. Last116 remain.
+
+2026-09-22T05:06:12.119053+00:00 — COMPLETE:2576/2576 individually reviewed (100%). Ordered IDs match the full shard assignment exactly; unique IDs and field schemas validated. All complete statements read; long merged records read in chunks. Scores remain provisional desk estimates, not proof or current-status guarantees.

@@ -79,7 +79,7 @@ class QueueTests(unittest.TestCase):
         q.write(q.ROOT/'policy.json',cfg)
         rev={'review_hash':self.row()['review_hash'],'review_policy':cfg['version'],'route':'proof','decision':'candidate','impact':3,'p_solve':.03,'p_valid_open':.6}
         q.write(q.ROOT/'assessments.json',{'1':rev})
-        q.write(q.ROOT/'state.json',{'1':{'status':'in_progress','review_hash':self.row()['review_hash'],'turns_used':0}})
+        q.write(q.ROOT/'state.json',{'1':{'status':'in_progress','review_hash':self.row()['review_hash'],'readiness_review_hash':self.row()['review_hash'],'turns_used':0}})
         q.rank(None)
     def test_five_turn_stop(self):
         self.setup_five_turn_attempt()
@@ -97,6 +97,39 @@ class QueueTests(unittest.TestCase):
         q.record_turn(types.SimpleNamespace(id='1',note='First turn',outcome='continue'))
         q.status(types.SimpleNamespace(id='1',status='partial',note='Partial result',evidence=None))
         self.assertEqual(q.read(q.ROOT/'state.json',{})['1']['turns_used'],1)
+    def test_assessment_update_preserves_resolution_and_holds(self):
+        self.setup_five_turn_attempt();q.write(q.ROOT/'state.json',{})
+        reviews=q.read(q.ROOT/'assessments.json',{});reviews['1'].update(holds=['primary_source_resolution_found'],resolution='already_solved')
+        q.write(q.ROOT/'assessments.json',reviews);q.rank(None)
+        path=q.ROOT/'update.json';entry={k:v for k,v in reviews['1'].items() if k not in ['holds','resolution']}
+        entry.update(rationale='Updated estimate',remaining_gap='Exact claim',first_experiment='Check source',sources=['primary source'],note='A fresh individual judgment must retain the previously identified source resolution.')
+        q.write(path,entry);q.assess(types.SimpleNamespace(id='1',file=str(path)))
+        self.assertFalse(self.row()['eligible']);self.assertEqual(self.row()['local_status'],'already_solved')
+        self.assertIn('primary_source_resolution_found',self.row()['holds'])
+        entry['resolution']=None;q.write(path,entry)
+        with self.assertRaises(ValueError):q.assess(types.SimpleNamespace(id='1',file=str(path)))
+    def test_changed_source_requires_new_individual_review(self):
+        self.setup_five_turn_attempt();self.install([{**self.p,'statement':self.p['statement']+' New assumption.'}])
+        entry={'review_hash':self.row()['review_hash'],'rationale':'Reestimate','remaining_gap':'Unknown','first_experiment':'Check','sources':['source'],'impact':3,'p_solve':.1,'p_valid_open':.5}
+        path=q.ROOT/'update.json';q.write(path,entry)
+        with self.assertRaises(ValueError):q.assess(types.SimpleNamespace(id='1',file=str(path)))
+        self.assertIn('assessment_stale',self.row()['holds'])
+    def test_partial_cannot_bypass_readiness(self):
+        self.setup_five_turn_attempt();q.write(q.ROOT/'state.json',{});q.rank(None)
+        with self.assertRaises(ValueError):q.status(types.SimpleNamespace(id='1',status='partial',note='No readiness',evidence=None))
+        q.write(q.ROOT/'state.json',{'1':{'status':'partial','review_hash':self.row()['review_hash']}})
+        with self.assertRaises(ValueError):q.record_turn(types.SimpleNamespace(id='1',note='Bypass',outcome='continue'))
+    def test_exhaustion_cannot_be_promoted_to_candidate(self):
+        self.setup_five_turn_attempt()
+        for _ in range(5):q.record_turn(types.SimpleNamespace(id='1',note='Unfinished',outcome='continue'))
+        for target in ['candidate_result','independent_verification','verified_solved']:
+            with self.assertRaises(ValueError):q.status(types.SimpleNamespace(id='1',status=target,note='Bypass',evidence=None))
+    def test_candidate_within_budget_can_be_verified(self):
+        self.setup_five_turn_attempt();q.record_turn(types.SimpleNamespace(id='1',note='Complete candidate',outcome='candidate'))
+        q.status(types.SimpleNamespace(id='1',status='independent_verification',note='Independent check',evidence=None))
+        path=q.ROOT/'proof.json';q.write(path,{'review_hash':self.row()['review_hash'],**{k:'checked artifact' for k in ['proof_artifact','independent_review','novelty_check','exact_claim']}})
+        q.status(types.SimpleNamespace(id='1',status='verified_solved',note='Checked',evidence=str(path)))
+        self.assertEqual(self.row()['local_status'],'verified_solved')
     def test_large_search_never_admitted(self):
         self.setup_five_turn_attempt()
         a=q.read(q.ROOT/'assessments.json',{});a['1']['route']='large_search';q.write(q.ROOT/'assessments.json',a)

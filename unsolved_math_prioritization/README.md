@@ -60,6 +60,10 @@ After the first 10–20 budgeted attempts, reassess the priors using time spent,
 verification outcomes, failure modes, and contribution size. Include occasional
 lower-ranked and different-domain probes to expose selection bias. This policy favors short, checkable proofs and constructions, with modest exact
 checks when useful. It does not measure the value of entire mathematical fields.
+Related targets are recorded in [related target groups](review_v2/related_target_groups.json).
+After each attempt, update their priorities using the shared result or obstacle;
+do not count the same lemma or duplicate formulation as several discoveries.
+Each distinct attempted target still has its own five-turn maximum.
 
 ## Update and inspect
 
@@ -78,7 +82,7 @@ python3 unsolved_math_prioritization/queue.py rank
 python3 unsolved_math_prioritization/queue.py show 30004033
 
 # Run regression tests, using temporary synthetic data (no network).
-python3 unsolved_math_prioritization/test_queue.py
+python3 -m unittest discover -s unsolved_math_prioritization -p 'test_*.py'
 ```
 
 Use the revision currently in `manifest.json` when restoring a later snapshot.
@@ -99,7 +103,9 @@ The original short reviews, including every exclusion and deferral, are kept in
 [`adversarial_overrides.json`](review_v2/adversarial_overrides.json) preserves later
 corrections without erasing those first judgments. The review assignments and
 merge manifest bind this ledger to its source revision. Keep the completed ledger
-as a historical snapshot when reviewing another dataset version.
+as a historical snapshot when reviewing another dataset version. The merge utility
+refuses to overwrite assessments edited after its last activation; use `assess`
+for subsequent changes rather than replaying the historical merge.
 `assessments.json` holds the current effective reviews; subsequent assessment
 changes also append to `assessment_history.jsonl`. A refresh does not delete these
 files or local attempt statuses. Changed records are held out until re-reviewed.
@@ -147,6 +153,10 @@ python3 unsolved_math_prioritization/queue.py turn 30004033 --note 'Attempt 1: m
 python3 unsolved_math_prioritization/queue.py turn 30004033 --outcome candidate --note 'Complete candidate proof saved for independent verification'
 ```
 
+A candidate must be recorded with `turn --outcome candidate` within the budget;
+a generic status change cannot promote an exhausted attempt. Readiness evidence
+remains required when recording a partial result or resuming an attempt.
+
 These examples do not start an attempt. `Status` and `Turns` appear in QUEUE.md;
 finished and active attempts remain in its history table.
 
@@ -192,7 +202,10 @@ python3 unsolved_math_prioritization/queue.py assess 30004033 --file unsolved_ma
 ```
 
 The command rejects missing or stale source hashes and binds the review to current source hashes and appends assessment
-history. `holds` can add concerns. To clear a specific hold, include a
+history. `holds` can add concerns. Earlier holds and resolution labels persist when scores
+are updated. Changing an existing resolution label additionally requires a
+`clear_holds` evidence entry keyed as `resolution:<previous label>`; for example,
+`resolution:already_solved`. To clear a specific hold, include a
 `clear_holds` object mapping the **exact hold string** to a checkable evidence
 reference and rationale. For duplicate suspicion, preserve both records and
 explain their distinct mathematical scopes, or mark the redundant row `duplicate`.

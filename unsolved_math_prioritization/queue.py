@@ -142,6 +142,7 @@ def rank(args):
                     a[field]=value
             a['reasons'].append('individual_desk_review')
             a['holds']+=review.get('holds',[])
+            if review.get('resolution')=='already_solved':a['holds'].append('known_resolution')
             for hold,evidence in review.get('clear_holds',{}).items():
                 if not evidence:raise ValueError('Hold clearance needs evidence')
                 a['holds']=[h for h in a['holds'] if h!=hold]
@@ -176,7 +177,7 @@ def rank(args):
     current_ids=seen_ids(rows)
     for key,p in previous.items():
         if key not in current_ids:
-            p.update(present=False,eligible=False,local_status=state.get(key,{}).get('status',p['local_status']));p['holds']=list(set(p['holds']+['removed_upstream']));rows.append(p)
+            p.update(present=False,eligible=False,local_status=state.get(key,{}).get('status',p['local_status']));p['holds']=list(dict.fromkeys(p['holds']+['removed_upstream']));rows.append(p)
     rows.sort(key=lambda x:(not x['eligible'],-x['ev'],x['id']))
     for i,x in enumerate([x for x in rows if x['eligible']],1):x['rank']=i
     for x in rows:
@@ -230,6 +231,15 @@ def status(args):
     if args.id not in catalog:raise ValueError('Unknown problem ID')
     row=catalog[args.id];state=read(ROOT/'state.json',{});prior=state.get(args.id,{})
     evidence=read(pathlib.Path(args.evidence),{}) if args.evidence else {}
+    cfg=read(ROOT/'policy.json',{});is_v2=cfg.get('turn_limit')==5
+    if is_v2 and args.status=='partial' and (prior.get('status') not in ['in_progress','partial'] or prior.get('readiness_review_hash')!=row['review_hash']):
+        raise ValueError('Partial status requires a current reviewed attempt')
+    if is_v2 and args.status=='candidate_result':
+        raise ValueError('Record a candidate with turn --outcome candidate within the five-turn budget')
+    if is_v2 and args.status in ['independent_verification','verified_solved']:
+        expected='candidate_result' if args.status=='independent_verification' else 'independent_verification'
+        if prior.get('status')!=expected or not 1<=prior.get('candidate_turn',0)<=cfg['turn_limit'] or prior.get('readiness_review_hash')!=row['review_hash'] or row['holds'] or not row['present']:
+            raise ValueError('Verification requires a candidate recorded within budget on the current reviewed source')
     if args.status in ['ready','in_progress'] and prior.get('turns_used',0)>=read(ROOT/'policy.json',{}).get('turn_limit',1000000):
         raise ValueError('Five-turn budget exhausted; move to the next problem')
     if args.status in ['ready','in_progress','verified_solved'] and evidence.get('review_hash')!=row['review_hash']:
@@ -241,7 +251,9 @@ def status(args):
     if args.status=='verified_solved':
         if row['holds'] or not row['present'] or prior.get('review_hash')!=row['review_hash'] or prior.get('status')!='independent_verification' or not all(evidence.get(k) for k in ['proof_artifact','independent_review','novelty_check','exact_claim']):
             raise ValueError('Requires independent_verification state plus proof_artifact, independent_review, novelty_check, exact_claim')
-    event=dict(at=now(),id=args.id,status=args.status,note=args.note,evidence=evidence,statement_hash=row['statement_hash'],review_hash=row['review_hash'],turns_used=prior.get('turns_used',0))
+    event={**prior,**dict(at=now(),id=args.id,status=args.status,note=args.note,evidence=evidence,statement_hash=row['statement_hash'],review_hash=row['review_hash'],turns_used=prior.get('turns_used',0))}
+    if args.status in ['ready','in_progress']:
+        event['readiness_review_hash']=row['review_hash'];event.pop('candidate_turn',None)
     state[args.id]=event;write(ROOT/'state.json',state)
     with (ROOT/'history.jsonl').open('a') as f:f.write(json.dumps(event,ensure_ascii=False)+'\n')
     rank(None)
@@ -255,11 +267,14 @@ def record_turn(args):
     row=catalog[args.id]
     if prior.get('status') not in ['in_progress','partial']:raise ValueError('Start a reviewed attempt before recording a turn')
     if row['holds'] or prior.get('review_hash')!=row['review_hash']:raise ValueError('Source changed or unresolved review hold')
+    if cfg.get('turn_limit')==5 and prior.get('readiness_review_hash')!=row['review_hash']:raise ValueError('Current readiness evidence is required before a proof turn')
     count=prior.get('turns_used',0)
     if count>=limit:raise ValueError('Turn budget exhausted')
     count+=1
     result='candidate_result' if args.outcome=='candidate' else ('exhausted' if count>=limit else 'in_progress')
     event={**prior,'at':now(),'id':args.id,'status':result,'note':args.note,'turns_used':count,'event':'proof_attempt_turn'}
+    event.pop('candidate_turn',None)
+    if args.outcome=='candidate':event['candidate_turn']=count
     state[args.id]=event;write(ROOT/'state.json',state)
     with (ROOT/'history.jsonl').open('a') as f:f.write(json.dumps(event,ensure_ascii=False)+'\n')
     rank(None)
@@ -275,9 +290,18 @@ def assess(args):
     for field in ['p_solve','p_valid_open','impact']:
         v=entry.get(field)
         if not isinstance(v,(int,float)) or not math.isfinite(v) or not (0<=v<=1 if field.startswith('p_') else 0<v<=10):raise ValueError('Invalid '+field)
+    if read(ROOT/'policy.json',{}).get('turn_limit')==5:
+        if entry.get('review_policy')!='2.0-five-turn-proof' or entry.get('route') not in ['proof','hybrid','large_search','unclear'] or entry.get('decision') not in ['candidate','defer','exclude','repair'] or not isinstance(entry.get('note'),str) or len(entry['note'].split())<6:
+            raise ValueError('A fresh individual five-turn review, route and decision are required')
     if any(not v for v in entry.get('clear_holds',{}).values()):raise ValueError('Clearance requires evidence')
     entry.update(reviewed_at=now(),statement_hash=catalog[args.id]['statement_hash'],review_hash=catalog[args.id]['review_hash'])
-    assessments=read(ROOT/'assessments.json',{});assessments[args.id]=entry;write(ROOT/'assessments.json',assessments)
+    assessments=read(ROOT/'assessments.json',{});prior=assessments.get(args.id,{})
+    if prior.get('resolution') and entry.get('resolution',prior['resolution'])!=prior['resolution'] and not entry.get('clear_holds',{}).get('resolution:'+prior['resolution']):
+        raise ValueError('Changing a recorded resolution requires explicit clearance evidence')
+    holds=list(dict.fromkeys(prior.get('holds',[])+entry.get('holds',[])))
+    clear_holds={**(prior.get('clear_holds',{}) if prior.get('review_hash')==entry['review_hash'] else {}),**entry.get('clear_holds',{})}
+    entry={**prior,**entry,'holds':holds,'clear_holds':clear_holds}
+    assessments[args.id]=entry;write(ROOT/'assessments.json',assessments)
     with (ROOT/'assessment_history.jsonl').open('a') as f:f.write(json.dumps({'id':args.id,**entry})+'\n')
     rank(None)
 
