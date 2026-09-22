@@ -6,6 +6,10 @@ ROOT = pathlib.Path(__file__).resolve().parent
 REPO = 'ulamai/UnsolvedMath'
 STATES = ['queued','exhausted','unreviewed','ready','in_progress','partial','blocked','deferred','candidate_result','independent_verification','verified_solved','already_solved','invalid','duplicate']
 def now(): return datetime.now(timezone.utc).isoformat(timespec='seconds')
+def source_url(p):
+    if p.get('source_url'):return p['source_url']
+    match=re.search(r'Source URL:\s*(https?://[^\s<>]+)',p.get('background') or '')
+    return match.group(1).rstrip('.,') if match else ''
 def digest(x): return hashlib.sha256(x.encode()).hexdigest()
 def read(path, default): return json.loads(path.read_text()) if path.exists() else default
 def write(path, obj):
@@ -147,20 +151,23 @@ def rank(args):
         if is_v2 and (not review or review.get('review_policy')!=cfg['version']):a['holds'].append('five_turn_desk_review_required')
         if cfg.get('exclusion_policy')=='exclude_open_and_resolved' and p.get('status')=='open':a['holds'].append('open_excluded_by_user')
         if review.get('route')=='large_search':a['holds'].append('large_exhaustive_search')
+        if is_v2 and review.get('route') not in ['proof','hybrid']:a['holds'].append('no_concrete_proof_route')
         if is_v2 and review.get('decision')!='candidate':a['holds'].append('not_selected_for_five_turn_attempt')
         a['holds']=list(dict.fromkeys(a['holds']))
-        local_status=local.get('status','queued' if is_v2 and review else 'unreviewed')
+        default_status=('queued' if review.get('decision')=='candidate' else 'deferred' if review.get('decision') in ['defer','exclude'] else 'unreviewed') if is_v2 else 'unreviewed'
+        local_status=local.get('status',default_status)
         turns=local.get('turns_used',0)
         eligible=not a['holds'] and local_status in ['queued','unreviewed','ready'] and turns<cfg.get('turn_limit',1000000)
         proposed=p.get('proposed_year')
-        age=2026-proposed if isinstance(proposed,int) and 1600<=proposed<=2026 else None
+        reference_year=cfg.get('age_reference_year',2026)
+        age=reference_year-proposed if isinstance(proposed,int) and 1600<=proposed<=reference_year else None
         age_multiplier=1.0
         if cfg.get('age_modifier') and age is not None:
             age_multiplier+=cfg['age_modifier']['maximum_bonus']*min(1,math.log1p(age)/math.log1p(cfg['age_modifier']['saturation_years']))
         base_impact=a['impact'];a['impact']=round(min(10,base_impact*age_multiplier),6)
         value=a['impact']*a['p_solve']*a['p_valid_open']
         rows.append(dict(id=key,problem_number=p['problem_number'],title=p.get('title',''),category=(p.get('category') or {}).get('display_name','Unknown'),
-            source_url=p.get('source_url') or '',upstream_status=p.get('status'),local_status=local_status,
+            source_url=source_url(p),upstream_status=p.get('status'),local_status=local_status,
             present=True,eligible=eligible,difficulty=p.get('difficulty_level_id'),proposed_year=proposed,age_years=age,age_multiplier=round(age_multiplier,6),base_impact=base_impact,route=review.get('route'),desk_decision=review.get('decision'),desk_note=review.get('note',''),turns_used=turns,turn_limit=cfg.get('turn_limit'),assessment='desk_review' if review and not stale else 'automatic',
             ev=round(value,8),ev_low=round(a['impact']*a['p_solve']*0.2*max(0,a['p_valid_open']-0.2),8),ev_high=round(a['impact']*min(1,a['p_solve']*3)*min(1,a['p_valid_open']+0.2),8),policy_version=cfg['version'],policy_hash=digest(json.dumps(cfg,sort_keys=True)),**a))
     db.close()
@@ -195,7 +202,7 @@ def rank(args):
     counts=collections.Counter(h.split(':')[0] for x in rows for h in x['holds'])
     write(ROOT/'summary.json',{'records':len(rows),'eligible':sum(x['eligible'] for x in rows),'holds':dict(counts),'assessed':len(reviews)})
     detail=['# Individual candidate assessments','',
-        'These are desk assessments, not verified readiness decisions. All success estimates are subjective and low-confidence. Most corpus entries have not received this review.',
+        f"These are desk assessments, not verified readiness decisions. All success estimates are subjective and low-confidence. {len(reviews):,} records have stored individual assessments; the highest-ranked 100 are expanded here. See ranking.csv for every short review.",
         'The live order is in [QUEUE.md](QUEUE.md); these notes include demotions and review holds as well as promising candidates.','']
     for x in sorted([x for x in rows if x['id'] in reviews],key=lambda x:(bool(x['holds']),-x['ev'],x['id']))[:100]:
         a=reviews[x['id']]

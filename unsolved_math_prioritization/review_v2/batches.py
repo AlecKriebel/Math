@@ -22,8 +22,8 @@ def packet(shard,start,count):
   print(json.dumps({'id':k,'code':p['problem_number'],'title':p['title'],'statement':p['statement'],
    'difficulty':p.get('difficulty_level_id'),'year':p.get('proposed_year'),'status':p.get('status'),
    'classification':p.get('research_classification'),'statement_status':p.get('statement_status'),
-   'summary':p.get('research_summary'),'literature':p.get('literature_assessment'),
-   'prior_note':r.get('verification_note'),'gap_excerpt':gap[:900], 'gap_truncated':len(gap)>900,
+   'summary_excerpt':(p.get('research_summary') or '')[:350],'summary_truncated':len(p.get('research_summary') or '')>350,'literature':p.get('literature_assessment'),
+   'prior_note':r.get('verification_note'),'gap_excerpt':gap[:350], 'gap_truncated':len(gap)>350,
    'source':p.get('source_url')},ensure_ascii=False))
 if __name__=='__main__':
  if sys.argv[1]=='prepare':prepare()

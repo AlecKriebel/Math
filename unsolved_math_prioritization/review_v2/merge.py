@@ -1,5 +1,5 @@
 """Validate exhaustive individual reviews and bind them to the pinned input."""
-import argparse,collections,hashlib,json,pathlib,sqlite3
+import argparse,collections,hashlib,json,pathlib,re,sqlite3
 ROOT=pathlib.Path(__file__).resolve().parents[1]
 HERE=ROOT/'review_v2'
 def read(p):return json.loads(p.read_text())
@@ -27,10 +27,11 @@ def validate(require_complete=True):
 def merge(exclusion_policy):
  reviews,counts=validate()
  old=read(ROOT/'assessments.json')
+ overrides=read(HERE/'adversarial_overrides.json') if (HERE/'adversarial_overrides.json').exists() else {}
  c=sqlite3.connect(ROOT/'cache/catalog.sqlite');assessments={}
  for key,payload,report in c.execute('select key,payload,report from records'):
-  p,r=json.loads(payload),json.loads(report);rev=reviews[key];prior=old.get(key,{})
-  holds=[]
+  p,r=json.loads(payload),json.loads(report);rev={**reviews[key],**overrides.get(key,{})};prior=old.get(key,{})
+  holds=list(rev.get('holds',[]))
   if rev['route']=='large_search':holds.append('large_exhaustive_search')
   if rev['decision']!='candidate':holds.append('desk_review_'+rev['decision'])
   if rev['route']=='unclear':holds.append('no_concrete_proof_route')
@@ -40,11 +41,13 @@ def merge(exclusion_policy):
    'rationale':rev['note'],'remaining_gap':'Full exact source target; see individual note and source statement.',
    'first_experiment':'Check current literature and exact hypotheses; pursue the named proof mechanism within five turns.',
    'holds':list(dict.fromkeys(prior.get('holds',[])+holds)),
-   'sources':prior.get('sources') or [p.get('source_url') or 'Pinned UnsolvedMath record '+key],
+   'sources':rev.get('sources') or prior.get('sources') or [p.get('source_url') or (re.search(r'Source URL:\s*(https?://[^\s<>]+)',p.get('background') or '').group(1) if re.search(r'Source URL:\s*(https?://[^\s<>]+)',p.get('background') or '') else 'https://huggingface.co/datasets/ulamai/UnsolvedMath')],
    'confidence':'low; not empirically calibrated'}
  (ROOT/'assessments.json').write_text(json.dumps(assessments,ensure_ascii=False,indent=2)+'\n')
  policy=read(HERE/'policy_v2.json');policy['exclusion_policy']=exclusion_policy
  (ROOT/'policy.json').write_text(json.dumps(policy,indent=2)+'\n')
+ manifest={'source_revision':read(ROOT/'manifest.json')['revision'],'records_reviewed':len(assessments),'coverage':counts,'exclusion_policy':exclusion_policy,'review_files':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(HERE.glob('reviews_*.json'))},'adversarial_overrides_sha256':hashlib.sha256((HERE/'adversarial_overrides.json').read_bytes()).hexdigest() if (HERE/'adversarial_overrides.json').exists() else None}
+ (HERE/'merge_manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
  print('Merged',len(assessments),'individually reviewed records')
 
 if __name__=='__main__':

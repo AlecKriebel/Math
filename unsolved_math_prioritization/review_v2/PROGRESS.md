@@ -1,7 +1,21 @@
-# Exhaustive desk review progress
+# Exhaustive review progress
 
-This is an in-progress checkpoint, not a claim of completed coverage.
+Checkpoint: 2026-09-22T03:59:29+00:00
 
-2026-09-22T03:47:18+00:00: at least 1,140/15,458 records individually reviewed (7.4%).
+**3,075 / 15,458 individually reviewed (19.9% coverage). Incomplete.**
 
-The active QUEUE.md remains the original preliminary ranking until the full replacement is validated. Six independent subject-area batches are writing short semantic reviews. Every row must pass identity, score, route, and coverage checks before the new policy is activated. Already-solved entries will be excluded; unresolved entries remain eligible. Large exhaustive-search routes will be excluded. No collection bonus is applied to Kourovka or any other source.
+The active queue remains the initial version until all records are reviewed and
+the replacement ranking passes validation. These are short mathematical desk
+reviews, not completed proofs or comprehensive literature searches.
+
+| Shard | Reviewed | Required |
+|---:|---:|---:|
+| 0 | 484 | 2577 |
+| 1 | 450 | 2576 |
+| 2 | 440 | 2576 |
+| 3 | 600 | 2577 |
+| 4 | 502 | 2576 |
+| 5 | 599 | 2576 |
+
+Known later resolutions found during primary-source checks are recorded in
+[adversarial_overrides.json](adversarial_overrides.json). No attempts have started.
