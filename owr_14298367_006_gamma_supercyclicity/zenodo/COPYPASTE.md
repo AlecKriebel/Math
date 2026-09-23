@@ -16,7 +16,7 @@ Affiliation: Independent researcher
 
 Publication date: 2026-09-23
 
-Version: 1.0.0
+Version: 1.0.1
 
 Language: English
 

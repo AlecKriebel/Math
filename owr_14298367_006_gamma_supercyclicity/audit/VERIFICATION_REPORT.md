@@ -1,5 +1,7 @@
 # Verification and priority decision
 
+Current preprint: version 1.0.1. The later [fresh review cycle](preprint-revision-response.md) resolved one attribution-explanation finding and one wording clarification; a new second adversary found no actionable issues. The original mathematical and priority conclusions below are unchanged.
+
 ## Verdict
 
 The submitted argument is mathematically valid under the original report's standing hypotheses. It establishes the full equivalence for every subset Gamma of the complex numbers, including empty and zero-only sets. No measurability, closure, boundedness, or multiplicative property of Gamma is required.

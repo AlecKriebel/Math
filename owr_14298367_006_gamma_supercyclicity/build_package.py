@@ -15,7 +15,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parent
 OUTPUT = ROOT / "output"
-VERSION = "1.0.0"
+VERSION = "1.0.1"
 DATE = "2026-09-23"
 TITLE = "A note on Γ-supercyclicity of dissipative composition operators"
 SITE = "https://aleckriebel.github.io/Math/papers/gamma-supercyclicity/"

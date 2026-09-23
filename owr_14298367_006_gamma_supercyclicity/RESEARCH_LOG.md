@@ -57,3 +57,27 @@ Goal: verify the supplied arbitrary-Gamma supercyclicity equivalence against the
 - Refreshed and verified the effort-wide SHA-256 manifest after final documentation and audit changes. A final evidence-only commit preserves this publication checkpoint; it does not change the website or deposit files.
 - Authorized publication task is 100% complete. The priority assessment remains limited: this is an explicit attributed application of earlier results, not a new scalar criterion or amplification mechanism. Journal suitability and priority for the explicit application remain editorial/bibliographic questions.
 - No person was contacted. No GitHub release, Zenodo deposition, reserved DOI, or registered DOI was created. The human user can upload the provided kit's PDF and source using its metadata and instructions.
+
+## 2026-09-23T14:58:01Z — Fresh adversarial preprint-review cycle (10%)
+
+- The user requested fresh sequential adversarial subagent reviews, with worthwhile findings addressed throughout the paper and distribution materials before each new review. Scope is mathematical soundness and preprint readiness; no journal submission work is requested.
+- A new reviewer begins from the actual manuscript and PDF without relying on earlier audit conclusions. Its remit includes the full proof, boundary cases, original hypotheses, primary-source attribution, and material package consistency.
+- Parent baseline checks verified all 50 manifest entries and both archive CRCs. Reviewed baseline: TeX SHA-256 `5950e74b23cb2be12626cb0c8d266cf3e3d6040c0dcfe8908a1fb49741796c94`; PDF SHA-256 `cbc84a37bc7735675d833236c68c8194c99389b1398b21175f43998b9926e171`.
+- Success criterion: resolve all substantiated mathematical or preprint-material issues; use a new independent reviewer on the resulting artifacts; repeat if further actionable findings remain. At least two fresh review rounds will be recorded. A clean internal review is not a guarantee of journal acceptance or a formal proof certificate.
+- Completion estimate: 10% of this additional review cycle. Existing mathematical and publication conclusions remain hypotheses to challenge, not premises of the new review. Work remains on `main`; unrelated changes will not be included.
+
+## 2026-09-23T15:04:21Z — Round 1 resolved; fresh round 2 started (60%)
+
+- Fresh adversary `preprint_adversary_r1` found no blocking mathematical issue or material distribution inconsistency. Its report, `audit/preprint-adversary-r1.md`, independently checks the original and prior sources and records one worthwhile clarification: the conversion from Abbar's single-offset criterion to finite blocks uses boundedness of the shift.
+- Accepted R1-1: the note now states the choice of offset `q` and the explicit bound `c_(j±n)^(1/p) <= ||S||^(q-j) c_(q±n)^(1/p)`. The parent also replaced the potentially ambiguous word "integrable" by explicit membership in `L^p(X,mu)` in the gluing argument. The theorem and hypotheses are unchanged.
+- Rebuilt version 1.0.1 globally: manuscript/PDF, source README and citation, website version, source ZIP, manual Zenodo instructions and metadata, upload kit, and Pages copies. Historical audit records retain their original version bindings.
+- Final TeX hash for this revision: `3b16fbb6a78491f117dd2d50345c1863dad7b6486863a403ecccf74d6b4a9794`; PDF: `671cf6be89c45cbda49c207c2a656064958494fce60f05619d63a3061ee123c7`. All five newly rendered pages pass parent visual inspection. Compiling the newly extracted source archive reproduces that PDF byte for byte.
+- A genuinely new adversarial subagent, `preprint_adversary_r2`, is reviewing these revised artifacts from a counterexample-driven route without using earlier review conclusions. Its report will determine whether another revision/review round is necessary.
+- Additional review cycle is 60% complete. Remaining work is the fresh second verdict, any required corrections, final consistency checks, and publication of the reviewed revision. No journal submission, DOI creation, external outreach, or GitHub release is part of this task.
+
+## 2026-09-23T15:09:54Z — Fresh round 2 clean; revision approved (95%)
+
+- The new second adversary completed an independent counterexample-driven review without reading earlier review conclusions. Its verdict on version 1.0.1 is "No actionable findings" at blocking, worthwhile, and cosmetic grades. The complete evidence is in `audit/preprint-adversary-r2.md`.
+- Both written proof routes, the exact primary-source hypotheses, the new single-offset explanation, empty/zero/pathological scalar sets, the endpoint p=1, bounded translations with unbounded inverses, infinite-dimensional coefficient spaces, measurable gluing, and the separability counterexample passed. All five pages and 35 artifact-consistency checks also passed.
+- All substantiated first-round and parent findings are addressed. No new mathematical or preprint-material issue remains to fix, so no further review round is triggered. `audit/preprint-revision-response.md` records decisions and the exact four principal artifact hashes.
+- Additional review task is 95% complete: the paper is ready as an attributed, unrefereed preprint; commit/push and live verification of the revised downloads remain. The remaining publication work does not alter the reviewed manuscript. No journal-submission work was done.

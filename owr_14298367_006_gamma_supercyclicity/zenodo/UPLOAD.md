@@ -1,6 +1,6 @@
 # Zenodo upload instructions
 
-This is a manual upload kit for **A note on Γ-supercyclicity of dissipative composition operators**, version 1.0.0. No Zenodo deposition or DOI has been created.
+This is a manual upload kit for **A note on Γ-supercyclicity of dissipative composition operators**, version 1.0.1. No Zenodo deposition or DOI has been created.
 
 1. Extract `zenodo-upload-kit.zip` and open [New upload](https://zenodo.org/uploads/new).
 2. Upload **paper.pdf** and **note-source.zip**. `SHA256SUMS.txt` is an optional third upload. Do not upload the entire outer kit as a substitute for the separately readable paper.

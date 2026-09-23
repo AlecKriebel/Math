@@ -4,7 +4,7 @@ Title: A note on Γ-supercyclicity of dissipative composition operators
 
 Author: Alec Kriebel, ORCID https://orcid.org/0009-0001-9320-500X
 
-Version: 1.0.0, 23 September 2026. Unrefereed, AI-assisted research note.
+Version: 1.0.1, 23 September 2026. Unrefereed, AI-assisted research note.
 
 The note explicitly answers the arbitrary-Gamma question in Oberwolfach Report 19/2024 by applying older results. Its scalar criterion and amplification mechanism are not claimed as new. The bibliography credits Abbar (2019), Abbar–Kuznetsova (2020/2021), D'Aniello–Darji–Maiuriello (2022), D'Aniello–Maiuriello (2024/2025), the Oberwolfach report, and Charpentier–Ernst–Menet (2016).
 

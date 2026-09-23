@@ -1,6 +1,6 @@
 # A note on Γ-supercyclicity of dissipative composition operators
 
-**Alec Kriebel · version 1.0.0 · 23 September 2026 · attributed, unrefereed research note**
+**Alec Kriebel · version 1.0.1 · 23 September 2026 · attributed, unrefereed research note**
 
 - [Read the five-page note](output/pdf/note.pdf) or visit the [paper website](https://aleckriebel.github.io/Math/papers/gamma-supercyclicity/).
 - [LaTeX source archive](output/note-source.zip).
@@ -16,8 +16,9 @@ The scalar criterion was already known. Moreover, the Banach-valued amplificatio
 
 ## Read first
 
+- [Fresh preprint review cycle and revision response](audit/preprint-revision-response.md): two new independent adversaries; the second reports no actionable findings on version 1.0.1.
 - [Manuscript](manuscript/note.tex): a self-contained direct proof and a deduction from the prior translation theorem.
-- [Manuscript proof review](audit/note-proof-review.md) and [attribution review](audit/note-attribution-review.md).
+- [Round 1](audit/preprint-adversary-r1.md) and [round 2](audit/preprint-adversary-r2.md) of the fresh preprint review, plus the earlier [manuscript proof review](audit/note-proof-review.md) and [attribution review](audit/note-attribution-review.md).
 - [Verification report](audit/VERIFICATION_REPORT.md): verdict, scope, corrections, and the historical publication decision.
 - [Independent proof](audit/independent-derivation.md): self-contained finite-tail and Baire argument.
 - [Priority audit](audit/priority-audit.md) and [independently checked prior-theorem deduction](audit/priority-derivation-independent.md).
