@@ -29,3 +29,11 @@ Ten exact checks and 7,679 numerical checks passed and were independently rerun.
 ## 2026-09-23T03:48:28.986171+00:00 — Release validation (95% complete)
 
 All four final PDF pages visually inspected; no clipping, overlap, broken references, or TeX warnings. The site preview and mathematical displays are readable; all local download links resolve. Both ZIP archives open without errors and every embedded SHA-256 manifest entry matches. Exact checks rerun from a clean archive extraction pass; optional numerical checks from the extraction pass as well. Metadata identifies the correct author and ORCID, states the qualified priority result and AI assistance, and includes no fabricated DOI. The release package is ready; remote publication and public-download verification remain.
+
+## 2026-09-23T03:51:11.825181+00:00 — Delivery complete (100% of verification and publication workflow)
+
+Published on main in commit e18195f96e83cf2a30cafe6846a6e2c6dbcf9d50. GitHub Pages reports built for that commit. The live index, paper, reproducibility archive, Zenodo upload kit, metadata JSON, and checksum file all returned HTTP 200 and matched their local files byte for byte. Live site: https://aleckriebel.github.io/Math/papers/gromov-unitary-lipschitz/ . The public site was also opened and inspected in the browser.
+
+Frozen upload kit SHA-256: `259793b9337748fcc67a1326aa8e19961219d200d6df5c3d7486102206abafaf`. The archives preserve the release-preparation snapshot; this post-publication log entry is intentionally a later repository receipt and does not modify those frozen downloads.
+
+Strongest verified conclusion: the stated quantitative strong deformation retraction for HS/operator length metrics, including the closed threshold, is fully proved. Remaining epistemic limit: no earlier explicit resolution was located in a bounded priority audit, but absolute priority is not established. The preprint is AI-assisted and unrefereed. All requested deliverables are ready; no external outreach, GitHub Release, Zenodo deposit, or DOI creation was performed.
