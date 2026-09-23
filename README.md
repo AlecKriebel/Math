@@ -22,6 +22,16 @@ that the interpretation or literature claims are correct.
 
 ## Current papers
 
+**Radial orthogonality does not imply dual 1-conformal flatness** gives a
+negative answer to Kurose's printed Question 3(e) in the 1998 affine-geometry
+problem collection (AMR-059-0011). The round cylinder has integrable radial
+distributions but its self-dual statistical connection cannot be flattened
+by a 1-conformal change. A four-page proof, a non-self-dual extension, exact
+verifiers, and independent AI audits accompany this unrefereed preprint.
+No earlier explicit answer was found in a bounded search; priority is not
+certified. See the [paper page](https://aleckriebel.github.io/Math/papers/radial-statistical-counterexample/)
+and [source and verification package](radial_statistical_counterexample/).
+
 **A four-vertex counterexample to Knudson's persistence-gradient conjecture**
 refutes Conjecture 2 in Oberwolfach Report 29/2008: a nonincident persistence
 pair has zero gradient paths in the fixed matching of incident pairs.

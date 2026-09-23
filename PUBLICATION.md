@@ -497,3 +497,21 @@ source package, audit notes, and manual Zenodo kit. First research checkpoint:
 checks and deployment evidence are recorded under
 `knudson_gradient_path_counterexample/audit/`. No GitHub release, Zenodo
 deposit, DOI, or external communication was created.
+
+## Radial orthogonality and dual 1-conformal flatness
+
+Prepared on **22 September 2026** (America/Los_Angeles), this four-page
+unrefereed note gives an explicit negative answer to Takashi Kurose's
+Question 3(e) in the 1998 affine-geometry problem collection, indexed as
+AMR-059-0011. The round cylinder with its Levi–Civita connection has
+integrable radial distributions but fails a necessary pointwise curvature
+identity for dual statistical 1-conformal flatness. A non-self-dual
+extension and all dimensions at least three are included.
+
+The source package is `radial_statistical_counterexample/`; its paper page is
+<https://aleckriebel.github.io/Math/papers/radial-statistical-counterexample/>.
+Independent AI proof reviews and two exact verifiers found no mathematical
+gap. A bounded priority audit found no earlier explicit answer, but cannot
+certify first discovery or current database status. The classical ingredients
+and known divisible-cubic-form construction are credited. The Zenodo kit is
+prepared for manual upload; no release, deposit, or DOI is claimed.

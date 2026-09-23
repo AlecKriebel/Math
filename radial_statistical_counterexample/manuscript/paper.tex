@@ -1,0 +1,246 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newcommand{\R}{\mathbb R}
+\newcommand{\grad}{\operatorname{grad}}
+\newcommand{\Ric}{\operatorname{Ric}}
+\title{Radial orthogonality does not imply\\dual $1$-conformal flatness}
+\author{Alec Kriebel\\\small Independent researcher\\
+\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{22 September 2026\quad (version 1.0.0)}
+\begin{document}
+\maketitle
+\begin{abstract}
+We give a negative answer to Kurose's Question 3(e) in the 1998 collection
+\emph{Open Problems in Affine Differential Geometry and Related Topics}.
+For the product $S^2(1)\times\R$ with its product metric and Levi--Civita
+connection, every radial orthogonal distribution in that question is
+integrable, but the dual statistical structure is nowhere locally
+$1$-conformally flat. Integrability follows from the first variation of
+energy; nonflatness follows from two curvature evaluations. A conformal
+metric and projective connection change also give an example with nowhere
+zero cubic tensor. The same obstruction works in every dimension at least
+three. The proof is independent of computation.
+\end{abstract}
+
+\section{The question and the counterexample}
+A statistical manifold $(M,\nabla,h)$ consists here of a positive-definite
+metric $h$ and a torsion-free connection $\nabla$ such that $\nabla h$ is
+totally symmetric. The dual connection $\nabla^*$ is determined by
+\[
+Xh(Y,Z)=h(\nabla_XY,Z)+h(Y,\nabla_X^*Z).
+\]
+Fix $p\in M$ and a $\nabla$-convex neighborhood $U$ of $p$. For
+$q\in U\setminus\{p\}$, let $\gamma_q:[0,1]\to U$ be the affinely
+parametrized $\nabla$-geodesic from $p$ to $q$. Set
+\begin{equation}\label{radial}
+D^p_q=\{w\in T_qM:h_q(\dot\gamma_q(1),w)=0\}.
+\end{equation}
+Only the velocity line matters, so a regular reparametrization does not
+change this distribution.
+
+Question 3(e) of \cite[p.~126]{FMU} asks whether integrability of every
+distribution \eqref{radial} implies that $(M,\nabla^*,h)$ is
+$1$-conformally flat. This is the printed question indexed as
+AMR-059-0011 (6000011). It excludes the center $p$ and does not exclude
+Levi--Civita connections; item 3(a) explicitly treats those as statistical
+structures.
+
+Following \cite[p.~428]{Kurose}, a $1$-conformal change is
+\begin{equation}\label{change}
+\widehat h=e^\varphi h,\qquad
+\widehat\nabla_XY=\nabla_XY-h(X,Y)\grad_h\varphi.
+\end{equation}
+The structure is $1$-conformally flat if such a change makes
+$\widehat\nabla$ flat locally at every point. This is a condition on the
+statistical connection, distinct from ordinary conformal flatness of $h$.
+We use $R(X,Y)Z=\nabla_X\nabla_YZ-\nabla_Y\nabla_XZ-\nabla_{[X,Y]}Z$.
+
+\begin{theorem}\label{main}
+Let $M=S^2(1)\times\R$, $h=g_{S^2(1)}+dt^2$, and
+$\nabla=\nabla^h$. Every distribution \eqref{radial} is integrable,
+for every center and every convex neighborhood on which it is defined.
+Nevertheless $(M,\nabla^*,h)$ is not $1$-conformally flat on any nonempty
+open subset. The same conclusions hold for
+$S^2(1)\times\R^{n-2}$ in every dimension $n\geq3$.
+\end{theorem}
+
+\section{An intrinsic proof}
+\begin{lemma}\label{energy}
+For any Riemannian manifold with its Levi--Civita connection, every
+distribution \eqref{radial} is integrable.
+\end{lemma}
+\begin{proof}
+On a convex neighborhood define the smooth endpoint energy
+\[
+E_p(q)=\frac12\int_0^1 h(\dot\gamma_q(u),\dot\gamma_q(u))\,du.
+\]
+For an endpoint variation $q(s)$ with $q'(0)=w$, put
+$F(s,u)=\gamma_{q(s)}(u)$, $T=\partial_uF$, and $V=\partial_sF$.
+Metric compatibility, torsion-freeness, and the geodesic equation yield
+\begin{align*}
+dE_p|_q(w)
+ &=\int_0^1h(\nabla_VT,T)\,du
+ =\int_0^1h(\nabla_TV,T)\,du\\
+ &=\bigl[h(V,T)\bigr]_0^1-\int_0^1h(V,\nabla_TT)\,du
+ =h_q(w,\dot\gamma_q(1)).
+\end{align*}
+The initial endpoint is fixed, so $V(s,0)=0$. For $q\ne p$ the terminal
+velocity is nonzero, and therefore
+$dE_p(\dot\gamma_q(1))=h(\dot\gamma_q(1),\dot\gamma_q(1))>0$.
+Thus $D^p=\ker dE_p$ on $U\setminus\{p\}$, and its integral
+hypersurfaces are the regular level sets of $E_p$. On sufficiently small
+normal neighborhoods these are the geodesic spheres, since
+$E_p(q)=\tfrac12 d_h(p,q)^2$. The variation argument itself applies
+on any convex neighborhood in the question.
+\end{proof}
+
+\begin{lemma}\label{obstruction}
+For a Levi--Civita statistical structure, local $1$-conformal flatness
+requires an endomorphism $A$ at each point satisfying
+\begin{equation}\label{necessary}
+R(X,Y)Z=h(Y,Z)A(X)-h(X,Z)A(Y).
+\end{equation}
+\end{lemma}
+\begin{proof}
+Write $V=\grad_h\varphi$ and $B(X,Y)=-h(X,Y)V$ for the difference
+tensor in \eqref{change}. The curvature transformation law gives
+\begin{align*}
+\widehat R(X,Y)Z
+ &=R(X,Y)Z+(\nabla_XB)(Y,Z)-(\nabla_YB)(X,Z)\\
+ &\hspace{1em}+B(X,B(Y,Z))-B(Y,B(X,Z))\\
+ &=R(X,Y)Z-h(Y,Z)A(X)+h(X,Z)A(Y),
+\end{align*}
+where $A(X)=\nabla_XV-h(X,V)V$. Indeed,
+$(\nabla_XB)(Y,Z)=-h(Y,Z)\nabla_XV$ and
+$B(X,B(Y,Z))=h(Y,Z)h(X,V)V$.
+Setting $\widehat R=0$ proves \eqref{necessary}.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{main}]
+Metric compatibility gives $\nabla h=0$, so the structure is statistical
+and $\nabla^*=\nabla$. Lemma~\ref{energy} gives the required integrability.
+At any point choose orthonormal vectors $e_1,e_2$ tangent to the unit
+sphere and $e_3$ tangent to the line. Product curvature gives
+\[
+R(e_1,e_2)e_2=e_1,\qquad R(e_1,e_3)e_3=0.
+\]
+If \eqref{necessary} held, these two equations would give respectively
+$A(e_1)=e_1$ and $A(e_1)=0$, a contradiction. This excludes even an
+arbitrary endomorphism $A$, before imposing its differential form in
+Lemma~\ref{obstruction}. The contradiction holds at every point.
+Additional Euclidean factors leave these evaluations unchanged.
+\end{proof}
+
+For comparison, Kurose's criterion \cite[Proposition~1]{Kurose} identifies
+$1$-conformal flatness with projective flatness of the dual connection
+with symmetric Ricci tensor. Here $\Ric=\operatorname{diag}(1,1,0)$
+in the chosen frame. The projective Weyl tensor is
+\[
+W(X,Y)Z=R(X,Y)Z-\tfrac12\{\Ric(Y,Z)X-\Ric(X,Z)Y\},
+\qquad W(e_3,e_1)e_1=-\tfrac12e_3\ne0.
+\]
+This is an independent obstruction. Neither this criterion nor a
+classification theorem is needed for the proof above.
+
+\section{A non-self-dual example}
+The failure is not confined to zero cubic tensor. Let
+$h_0=g_{S^2(1)}+dt^2$, $\nabla^0=\nabla^{h_0}$, and define
+\begin{equation}\label{extension}
+h_1=e^t h_0,\qquad
+\nabla^1_XY=\nabla^0_XY+dt(X)Y+dt(Y)X.
+\end{equation}
+This is a standard projective change of connection, combined with a
+conformal change of metric. Such mechanisms belong to the theory of
+divisible cubic forms; see, for example, \cite[\S3.2]{Ueno}. We use
+them only to remove the possible restriction to self-dual examples.
+
+\begin{proposition}
+The structure $(M,\nabla^1,h_1)$ has nowhere zero cubic tensor and
+integrable radial distributions for every center. Its dual is nowhere
+locally $1$-conformally flat.
+\end{proposition}
+\begin{proof}
+The connection is torsion-free, and direct differentiation gives
+\begin{equation}\label{cubic}
+(\nabla^1_Xh_1)(Y,Z)=-dt(X)h_1(Y,Z)-dt(Y)h_1(X,Z)-dt(Z)h_1(X,Y).
+\end{equation}
+This is symmetric and has value $-3e^t$ on
+$(\partial_t,\partial_t,\partial_t)$. The connections $\nabla^1$
+and $\nabla^0$ have the same unparametrized geodesics:
+\[
+\nabla^1_{\dot\gamma}\dot\gamma
+=\nabla^0_{\dot\gamma}\dot\gamma+2dt(\dot\gamma)\dot\gamma.
+\]
+The additional acceleration is tangent to the curve and is removed by
+a regular reparametrization. More explicitly, if $u$ is a
+$\nabla^0$-affine parameter then a $\nabla^1$-affine parameter $s$
+satisfies $ds/du=C e^{2t(\gamma(u))}$ with $C>0$. This works on each
+compact geodesic segment. It identifies the unique connecting paths in
+the corresponding convex neighborhoods. Since $h_1$ and $h_0$ have the
+same orthogonality relation, their radial distributions agree under
+this identification, so Lemma~\ref{energy} applies.
+
+The defining duality identity gives
+\[
+(\nabla^1)^*_XY=\nabla^0_XY-h_0(X,Y)\partial_t.
+\]
+For any local function $\psi$, its $1$-conformal change is
+\begin{align*}
+\widehat\nabla_XY
+ &=(\nabla^1)^*_XY-h_1(X,Y)\grad_{h_1}\psi\\
+ &=\nabla^0_XY-h_0(X,Y)\grad_{h_0}(t+\psi).
+\end{align*}
+If this were flat, it would be a flat $1$-conformal change of
+$(\nabla^0,h_0)$, contrary to Theorem~\ref{main}.
+\end{proof}
+
+\section*{Verification, attribution, and scope}
+The obstruction is elementary and the ingredients are classical.
+The contribution asserted here is the explicit negative answer to the
+printed Question 3(e), together with a short direct verification.
+A focused literature audit found no earlier explicit resolution, but
+does not establish historical priority. In particular, the live problem
+database's annotations could not be checked; its identifier is only a
+cross-reference. We do not claim that the Gauss lemma, the curvature
+criterion, or the construction in \eqref{extension} is new.
+
+The accompanying standard-library Python checker solves the complete
+pointwise linear system \eqref{necessary} in exact rational arithmetic.
+A separately implemented SymPy checker derives the Christoffel symbols,
+curvature, transformation law, and cubic and dual tensors from
+$h_0=d\theta^2+\sin^2\theta\,d\phi^2+dt^2$. These checks supplement
+the proof; they do not replace its quantified first-variation argument
+or constitute a proof-assistant formalization. No dimension-two claim
+or global foliation across cut loci is needed.
+
+\paragraph{AI disclosure.}
+The candidate argument was supplied by the author as AI-generated work.
+This manuscript, supporting computations, source audit, and separate
+adversarial AI reviews were prepared with OpenAI Codex. This is an
+unrefereed preprint; AI reviews are not external human peer review.
+
+\begin{thebibliography}{9}
+\bibitem{FMU}
+H.~Furuhata, H.~Matsuzoe and H.~Urakawa,
+Open Problems in Affine Differential Geometry and Related Topics,
+\emph{Interdisciplinary Information Sciences} \textbf{4} (1998), 125--127.
+\href{https://doi.org/10.4036/iis.1998.125}{doi:10.4036/iis.1998.125}.
+
+\bibitem{Kurose}
+T.~Kurose, On the divergences of 1-conformally flat statistical manifolds,
+\emph{Tohoku Mathematical Journal} \textbf{46} (1994), 427--433.
+\href{https://doi.org/10.2748/tmj/1178225722}{doi:10.2748/tmj/1178225722}.
+
+\bibitem{Ueno}
+R.~Ueno, Geodesic Connectedness on Statistical Manifolds with Divisible
+Cubic Forms, arXiv:2503.10024v2 (2025).
+\url{https://arxiv.org/abs/2503.10024v2}.
+\end{thebibliography}
+\end{document}

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A four-page negative answer to Kurose's radial-integrability question, with a direct proof, exact verification scripts, and a qualified priority audit.">
+  <meta name="author" content="Alec Kriebel">
+  <meta name="citation_title" content="Radial orthogonality does not imply dual 1-conformal flatness">
+  <meta name="citation_author" content="Alec Kriebel">
+  <meta name="citation_publication_date" content="2026-09-22">
+  <meta name="citation_pdf_url" content="https://aleckriebel.github.io/Math/papers/radial-statistical-counterexample/paper.pdf">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Radial orthogonality does not imply dual 1-conformal flatness">
+  <meta property="og:description" content="One round cylinder. Two incompatible curvature equations. A negative answer to Kurose's printed Question 3(e).">
+  <link rel="canonical" href="https://aleckriebel.github.io/Math/papers/radial-statistical-counterexample/">
+  <title>Radial orthogonality · Alec Kriebel</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ScholarlyArticle","headline":"Radial orthogonality does not imply dual 1-conformal flatness","author":{"@type":"Person","name":"Alec Kriebel","identifier":"https://orcid.org/0009-0001-9320-500X"},"datePublished":"2026-09-22","version":"1.0.0","url":"https://aleckriebel.github.io/Math/papers/radial-statistical-counterexample/","encoding":{"@type":"MediaObject","contentUrl":"https://aleckriebel.github.io/Math/papers/radial-statistical-counterexample/paper.pdf","encodingFormat":"application/pdf"}}</script>
+</head>
+<body>
+  <a class="skip" href="#result">Skip to result</a>
+  <header class="top"><a class="brand" href="../../">Alec Kriebel / Research</a><nav aria-label="Article navigation"><a href="#proof">Proof</a><a href="#verify">Verify</a><a href="#sources">Sources &amp; status</a></nav></header>
+  <main>
+    <section class="hero" id="result">
+      <p class="eyebrow">Statistical geometry · Research note 1.0.0</p>
+      <h1>Radial orthogonality does not imply dual <span class="nowrap">1-conformal</span> flatness.</h1>
+      <p class="deck">A negative answer to Kurose’s printed Question 3(e), with a counterexample on the round cylinder.</p>
+      <p class="byline">Alec Kriebel · <a href="https://orcid.org/0009-0001-9320-500X">ORCID</a> · <time datetime="2026-09-22">22 September 2026</time></p>
+      <div class="actions"><a class="button" href="paper.pdf">Read the 4-page paper <span aria-hidden="true">↗</span></a><a class="button secondary" href="source-and-verification.zip">Source &amp; verification ↓</a></div>
+      <div class="result-box"><span class="label">The counterexample</span><p class="formula">S²(1) × ℝ</p><p>Product metric. Levi–Civita connection.</p><div class="outcomes"><p><strong>Every radial distribution</strong><br>is integrable.</p><p><strong>The dual structure</strong><br>is nowhere locally 1-conformally flat.</p></div></div>
+    </section>
+    <section id="proof" class="section">
+      <div class="section-heading"><span class="number">01</span><h2>The proof in three steps</h2></div>
+      <div class="steps">
+        <article><span class="step-label">Metric duality</span><h3>The connection is self-dual.</h3><p>The Levi–Civita connection preserves the product metric. Its statistical cubic tensor vanishes, and its dual is the same connection. The original question permits this case.</p></article>
+        <article><span class="step-label">First variation</span><h3>The radial covector is exact.</h3><p>For any center, differentiating geodesic energy gives the metric pairing with terminal velocity. The orthogonal distribution is the kernel of this derivative, so energy level surfaces integrate it.</p></article>
+        <article><span class="step-label">Curvature obstruction</span><h3>One vector, incompatible values.</h3><p>A 1-conformal flattening would require an endomorphism A. The unit sphere plane forces A(e₁) = e₁. A mixed sphere–line plane forces A(e₁) = 0. This is impossible at every point.</p></article>
+      </div>
+      <aside class="extension"><h3>The failure survives a nonzero cubic tensor.</h3><p>A conformal metric change and a projective connection change preserve the radial distributions and give a nowhere zero cubic tensor. The paper proves that the dual still cannot be flattened. Adding Euclidean factors also gives examples in every dimension at least three.</p></aside>
+    </section>
+    <section id="verify" class="section">
+      <div class="section-heading"><span class="number">02</span><h2>Easy to inspect. Exact to reproduce.</h2></div>
+      <div class="verification"><div><p>The paper contains the complete analytic proof. The package adds two independently implemented algebra checks.</p><ul><li>A Python standard-library verifier solves the curvature equations with exact rational arithmetic.</li><li>A SymPy verifier derives the tensors from the coordinate metric and passes 403 exact checks.</li><li>Compatible controls pass; a deliberately incorrect deformation fails.</li></ul><p class="muted">The scripts check tensor identities. The written proof establishes integrability for every center and admissible neighborhood.</p></div><div class="code-panel"><span class="label">From the extracted source folder</span><pre><code>python3 verification/verify_exact.py</code></pre><p>No dependencies for the quick check. Instructions for the independent symbolic check are in the README.</p><a href="verification-report.md">Read the verification report ↗</a></div></div>
+      <div class="download-row"><a href="source-and-verification.zip">Source &amp; verifiers ↓</a><a href="zenodo-upload-kit.zip">Zenodo upload kit ↓</a><a href="SHA256SUMS.txt">File checksums ↗</a><a href="https://github.com/AlecKriebel/Math/tree/main/radial_statistical_counterexample">Repository ↗</a></div>
+    </section>
+    <section id="sources" class="section last">
+      <div class="section-heading"><span class="number">03</span><h2>Attribution and publication status</h2></div>
+      <p>The result answers Question 3(e) in <a href="https://doi.org/10.4036/iis.1998.125">Furuhata, Matsuzoe &amp; Urakawa (1998)</a>, p.126, attributed there to Takashi Kurose and indexed as AMR-059-0011. The definition is the statistical one in <a href="https://doi.org/10.2748/tmj/1178225722">Kurose (1994)</a>, not ordinary conformal flatness of a Riemannian metric.</p>
+      <p>The ingredients are classical. The deformation is covered by the divisible-cubic-form mechanism in <a href="https://arxiv.org/abs/2503.10024v2">Ueno (2025)</a>. A focused <a href="priority-audit.md">priority audit</a> found no earlier explicit answer, but does not prove historical priority. The live problem database’s annotations could not be checked.</p>
+      <p><strong>Unrefereed, AI-assisted preprint.</strong> The candidate was supplied as AI-generated work. The manuscript, computations, and separate adversarial AI reviews were prepared with OpenAI Codex. These reviews are not external human peer review or a full proof-assistant formalization. The Zenodo kit is ready for manual upload; no DOI or deposit is claimed.</p>
+    </section>
+  </main>
+  <footer><p>Alec Kriebel · <a href="https://orcid.org/0009-0001-9320-500X">0009-0001-9320-500X</a></p><p>Text CC BY 4.0 · Code MIT · <a href="https://github.com/AlecKriebel/Math/tree/main/radial_statistical_counterexample">Open source materials</a></p></footer>
+</body>
+</html>
