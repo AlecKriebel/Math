@@ -1,4 +1,4 @@
-# Manual Zenodo upload — version 1.0.0
+# Manual Zenodo upload — version 1.0.1
 
 This kit is ready for a **new preprint record**. It has not been uploaded,
 published, or assigned a DOI. The PDF deliberately contains no invented DOI.
@@ -34,7 +34,7 @@ A four-vertex counterexample to Knudson's persistence-gradient conjecture
 
 **Publication date:** 2026-09-23
 
-**Version:** 1.0.0
+**Version:** 1.0.1
 
 **Language:** English
 

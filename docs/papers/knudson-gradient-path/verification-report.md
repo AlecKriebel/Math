@@ -1,4 +1,4 @@
-# Verification report — version 1.0.0
+# Verification report — version 1.0.1
 
 **Mathematical verdict: PASS.** The supplied construction completely refutes
 Knudson's Conjecture 2 as printed on p. 1629 of OWR 29/2008.
@@ -53,3 +53,21 @@ with code as reproducible supporting evidence. There is no proof-assistant
 certificate or external human referee report. The catalogue mapping is
 user-supplied; this package does not certify that website's present status.
 See `priority_independent.md` for explicit coverage limits.
+
+## Fresh preprint-readiness review, version 1.0.1
+
+Two new adversarial agents reviewed successive snapshots. Round 1 found no
+mathematical or reproducibility defect and recorded the parent-identified CFF
+schema error. The correction, direct companion-materials link, PDF metadata,
+and explicit path definitions were propagated into version 1.0.1. Round 2
+independently derived the persistence-module interval decomposition and
+reported zero actionable defects across proof, references, PDF, metadata
+and reproducibility package. The mathematical claim and computations are unchanged.
+
+Read the [round 1 report](https://github.com/AlecKriebel/Math/blob/main/knudson_gradient_path_counterexample/audit/preprint_round1.md),
+[round 2 final clean pass](https://github.com/AlecKriebel/Math/blob/main/knudson_gradient_path_counterexample/audit/preprint_round2.md),
+and [correction record](https://github.com/AlecKriebel/Math/blob/main/knudson_gradient_path_counterexample/audit/preprint_changes.md).
+The revised CFF passes official schema validation. All PDF fonts are embedded,
+all three pages were visually inspected, and the exact archive was rebuilt
+from a clean extraction. This is ready as an explicitly unrefereed preprint
+within the documented review scope. No journal submission has been prepared.

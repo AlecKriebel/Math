@@ -3,11 +3,17 @@
 \usepackage{lmodern,amsmath,amssymb,amsthm,booktabs}
 \usepackage[margin=1in]{geometry}
 \usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\hypersetup{
+  pdftitle={A four-vertex counterexample to Knudson's persistence-gradient conjecture},
+  pdfauthor={Alec Kriebel},
+  pdfsubject={A counterexample to Conjecture 2 in Oberwolfach Report 29/2008},
+  pdfkeywords={persistent homology, discrete Morse theory, gradient paths, counterexample}
+}
 \newtheorem{theorem}{Theorem}
 \newcommand{\F}{\mathbb F}
 \title{A four-vertex counterexample to Knudson's\protect\\ persistence-gradient conjecture}
 \author{Alec Kriebel\thanks{Independent researcher. ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}.}}
-\date{23 September 2026 \quad (version 1.0.0)}
+\date{23 September 2026 \quad (version 1.0.1)}
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -30,9 +36,10 @@ For a codimension-one face relation $\sigma<\tau$, put
 Knudson's Conjecture 2 \cite[p.~1629]{Knudson} predicts a unique gradient
 path in this fixed field for every nonincident pair in $P$.
 We use the directed incidence graph: unmatched incidences point from a
-simplex to a facet, and matched incidences point upward. A gradient path
-from a critical edge starts at an endpoint and then follows matched upward
-steps alternating with downward steps to the other endpoint.
+simplex to a facet, and matched incidences point upward. A simplex is critical
+if it belongs to no matching pair. A gradient path from a critical edge begins
+by descending to an endpoint. Each subsequent upward step uses a matched
+incidence and is followed by descent to the other endpoint of that edge.
 
 Take vertices $a,b,c,d$ and edges $cd,bd,ac$, with no higher simplices.
 Here $xy$ denotes $\{x,y\}$. The underlying space is the interval
@@ -42,8 +49,8 @@ Insert the seven nonempty simplices in the order
              a,\ b,\ c,\ d,\ cd,\ bd,\ ac.
 \end{equation}
 Every face appears before its coface, so this is an admissible filtration.
-The indices $1,\ldots,7$ are filtration values, not a discrete Morse function
-whose own gradient is claimed to equal $V_P$.
+The indices $1,\ldots,7$ order the filtration; the field $V_P$ is constructed
+from the persistence pairs.
 
 \begin{theorem}
 For the filtration \eqref{eq:order}, the finite persistence pairs and their
@@ -116,13 +123,15 @@ All three pivot coefficients are $1$. The pairs, matching, and absence of
 a path are unchanged. No minimality claim is needed or made.
 
 \paragraph{Reproducibility and status.}
-The companion package provides two standard-library Python verifiers:
+The \href{https://aleckriebel.github.io/Math/papers/knudson-gradient-path/}{companion package and audit record}
+provide two standard-library Python verifiers:
 one uses boundary reduction and union-find; the other reconstructs the
 $H_0$ rank invariant from component partitions and also checks signed
 reduction and path reversal. The proof above is independent of these
 programs. A documented literature audit completed on 23 September 2026
 located no earlier refutation of the stated conjecture. This is a bounded
-search, not a guarantee of priority; in particular, an author bibliography
+search, not a guarantee of priority; in particular, an
+\href{https://kpknudson.com/math}{author bibliography}
 lists related work in preparation. The audit records inaccessible sources.
 This unrefereed note and its checks were prepared with OpenAI Codex and
 separate AI audit agents, from a candidate construction supplied by the

@@ -75,3 +75,37 @@ The archived research log remains the intentional predeployment snapshot;
 this entry does not change the mathematical or download artifacts.
 All requested tasks are complete, with the documented historical-priority
 limits and manual DOI assignment left explicit.
+
+## 2026-09-23T13:35:06.659952+00:00 — Fresh preprint review started (10%)
+
+User requested a new adversarial review/fix/review loop for preprint readiness.
+Baseline hashes recorded in audit/preprint_baseline.json. A fresh agent is
+reviewing the paper and primary sources independently of prior verdicts.
+Both verifiers pass normally and optimized; the archived kit rebuilds
+byte-identically from its extracted source. No journal-submission work is in scope.
+
+## 2026-09-23T13:38:40.343232+00:00 — Review round 1 and correction checkpoint (60%)
+
+Fresh round 1 independently passed the mathematics, primary-source scope,
+all-field extension, cited comparison and both exact verifiers. Its only
+actionable item was the parent-identified invalid CFF root type. Corrected it
+and validated the resulting CFF against the official 1.2.0 schema. Added PDF
+title/author metadata, links to the companion page and cited author bibliography,
+and explicit critical-simplex/path definitions. Version 1.0.1 propagates the
+changes across current metadata, instructions and public copies; the theorem
+and verification calculations are unchanged. A new independent reviewer will
+now review the revised material.
+
+## 2026-09-23T13:45:00.572430+00:00 — Fresh round 2 clean pass (95%)
+
+A distinct new adversarial agent independently decomposed the persistence
+module, checked all paths and coefficient conventions, primary references,
+PDF pages and annotations, citation schema, metadata and clean extracted
+archive reproducibility. It found zero actionable defects. The requested
+review/fix/fresh-review loop is complete. The revised three-page preprint
+(v1.0.1) has no identified mathematical or artifact blocker. Historical-
+priority and human-review limitations remain calibrated.
+
+All reviewed scientific files are frozen at the round-2 hashes. Added only
+review reports and documentation of the completed cycle; regenerated packages
+will include these records. Publication and live-download checks remain.

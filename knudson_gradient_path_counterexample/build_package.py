@@ -16,7 +16,7 @@ import sys
 from zipfile import ZipFile, ZipInfo, ZIP_DEFLATED
 
 ROOT = Path(__file__).resolve().parent
-PREFIX = 'knudson-gradient-path-v1.0.0'
+PREFIX = 'knudson-gradient-path-v1.0.1'
 STAMP = (2026, 9, 23, 0, 0, 0)
 
 
@@ -51,7 +51,7 @@ def verify_outputs():
         raise RuntimeError('Build the manuscript PDF first')
     meta = json.loads((ROOT/'.zenodo.json').read_text())
     wrapped = json.loads((ROOT/'zenodo/deposition.json').read_text())
-    if wrapped != {'metadata': meta} or meta['version'] != '1.0.0':
+    if wrapped != {'metadata': meta} or meta['version'] != '1.0.1':
         raise RuntimeError('Metadata mismatch')
 
 

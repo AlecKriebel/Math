@@ -1,6 +1,6 @@
 # A four-vertex counterexample to Knudson's persistence-gradient conjecture
 
-**Alec Kriebel** · [ORCID](https://orcid.org/0009-0001-9320-500X) · Version 1.0.0 · 2026-09-23
+**Alec Kriebel** · [ORCID](https://orcid.org/0009-0001-9320-500X) · Version 1.0.1 · 2026-09-23
 
 The candidate is a complete counterexample to **Conjecture 2, p. 1629**, in
 Kevin P. Knudson's *Persistent homology and discrete Morse theory*, Oberwolfach
@@ -20,6 +20,7 @@ No minimality or resolution of other conjectures is claimed.
 - [Paper (3 pages)](paper/paper.pdf) and [LaTeX source](paper/paper.tex)
 - [Public paper page](https://aleckriebel.github.io/Math/papers/knudson-gradient-path/)
 - [Verification report](audit/verification_report.md)
+- [Fresh preprint review: final clean pass](audit/preprint_round2.md) and [corrections](audit/preprint_changes.md)
 - [Independent mathematical audit](audit/adversarial_math.md)
 - [Priority audit and 39-query search record](audit/priority_independent.md)
 - [Zenodo copy-and-paste metadata](zenodo/UPLOAD.md)
