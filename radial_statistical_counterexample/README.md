@@ -9,6 +9,7 @@ This four-page note gives a negative answer to Takashi Kurose's Question 3(e) in
 - [Paper](output/pdf/paper.pdf) and [editable LaTeX source](manuscript/paper.tex).
 - [GitHub Pages article](https://aleckriebel.github.io/Math/papers/radial-statistical-counterexample/).
 - [Verification report](research/VERIFICATION_REPORT.md), [original-source audit](research/SOURCE_AUDIT.md), and [priority audit](reviews/priority_audit.md).
+- [Deeper priority follow-up, 23 September 2026](reviews/priority_followup.md), including the successful [live database recheck](research/DATABASE_RECHECK.md). The paper and version 1.0.0 archives retain the initial audit snapshot; these later notes update the historical assessment.
 - [Independent proof review](reviews/proof_audit.md) and [coordinate-computation review](reviews/computation_review.md).
 - [Zenodo upload instructions and copyable metadata](zenodo/UPLOAD.md).
 
@@ -43,7 +44,7 @@ Alternatively compile the source twice with a conventional LaTeX distribution. `
 
 ## Attribution and status
 
-The argument resolves the printed implication, not a classification problem. Independent AI reviews and exact checks found no substantive mathematical gap. A focused literature search found no earlier explicit answer; it cannot certify priority or the question's current status in every source. The Gauss-lemma mechanism, Kurose's criterion, and the projective/conformal deformation machinery are prior work. The public database's live annotations were inaccessible; its identifier is a cross-reference only.
+The argument resolves the printed implication, not a classification problem. Independent AI reviews and exact checks found no substantive mathematical gap. A focused literature search found no earlier explicit answer; it cannot certify priority or the question's current status in every source. The Gauss-lemma mechanism, Kurose's criterion, and the projective/conformal deformation machinery are prior work. A browser retry on 23 September 2026 successfully read the public database's annotations: its partial-status label refers to machine-generated research progress, and its report identifies no verified proof or counterexample. See the dated follow-up for deeper citation checks and remaining access gaps.
 
 This is an unrefereed, AI-assisted preprint, prepared with OpenAI Codex and separate adversarial AI reviewers from the supplied AI-generated candidate. No external human peer review, Zenodo deposit, or DOI is claimed. The two supplied gradient-path filenames belong to a different problem and are not used here.
 

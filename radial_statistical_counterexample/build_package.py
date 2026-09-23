@@ -63,7 +63,14 @@ def main():
                       "zenodo/metadata.json", "zenodo/metadata-for-api.json", "zenodo/UPLOAD.md"]
     # Include subsequent release audit notes, but never downloaded source PDFs,
     # scratch files, logs, environments, or previous ZIP archives.
-    optional = ["research/DELIVERY_CHECKS.md", "reviews/package_audit.md"]
+    optional = ["research/DELIVERY_CHECKS.md", "reviews/package_audit.md",
+                "research/DATABASE_RECHECK.md", "reviews/priority_followup.md",
+                "reviews/priority_followup_citations.md",
+                "reviews/priority_followup_indexes.md",
+                "reviews/priority_followup_older_sources.md",
+                "reviews/priority_followup_japanese.md",
+                "research/priority_evidence/citation_inventory.csv",
+                "research/priority_evidence/fulltext_manifest.json"]
     required_files.extend(p for p in optional if (ROOT / p).is_file())
     entries = {name: (ROOT / name).read_bytes() for name in required_files}
     checks = manifest(entries)

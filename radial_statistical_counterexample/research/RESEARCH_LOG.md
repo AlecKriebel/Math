@@ -33,3 +33,20 @@ Completion estimates concern verification and delivery of this particular negati
 - Corrected the optional CITATION.cff file after checking the official schema: top-level CFF describes the MIT verification software; preferred-citation identifies the CC BY 4.0 unpublished manuscript. The corrected file passes the official CFF 1.2.0 schema. No mathematical or PDF change.
 - Final metadata and package documentation are being published in a follow-up commit. This checkpoint records the package before the remote-served-byte check; deployment confirmation is a delivery step, not a mathematical assumption.
 - All requested research artifacts and the manual Zenodo kit are prepared. Remaining work at this timestamp: verify the successful Pages deployment and equality of its served download bytes. Historical priority remains unproved, as disclosed throughout.
+
+## 2026-09-23T13:40:44Z — deeper priority audit (60% of follow-up)
+
+- User requested a renewed attempt to inspect the live database and stronger priority evidence. An ordinary browser visit succeeded; the full research report was expanded and read. Its partial-status label refers to machine-generated research progress, with no verified proof/counterexample or named partial theorem and zero discussion comments. See DATABASE_RECHECK.md.
+- The live report's description of 1-conformal flatness is incomplete: it omits the simultaneous connection change. It is not being treated as mathematical validation or authoritative evidence of current open status.
+- Independent follow-up routes: forward citations through OpenAlex/Semantic Scholar/Crossref (proof_audit); older primary papers and subsequent problem lists (priority_audit); specialized-index accessibility and adversarial wording review (coordinate_verifier); Japanese workshop/grant records and database inspection (main).
+- The main route located Kurose's 2016 Gauss-lemma/generalized-Hessian talk and two related grant reports. No explicit negative answer appears in the inspected reports; the program links no notes for that talk. This is a specific remaining historical gap.
+- Publication plan: add a dated priority addendum and correct the live website's access statement. Preserve the original paper and version 1.0.0 download archives as historical snapshots; no mathematical revision, new version claim, release, DOI, or deposit is required by these findings.
+
+## 2026-09-23T13:46:06Z — deeper priority findings complete (100% audit; 95% delivery)
+
+- All four bounded follow-up routes are complete. No explicit earlier answer was found. The synthesis distinguishes 175 raw citation records screened by title from nine complete PDFs screened for relevant passages; Google Scholar independently supplied eight visible FMU citing records and bounded subsets of Kurose citations. No zbMATH record was inspected because access failed.
+- Prior radial-gradient results were located in Henmi–Kobayashi (2000), Ay–Amari (2015), and Felice–Ay. These reinforce attribution of the main lemma as established background, not a new general theorem.
+- Older-source work read four further primary texts, including the 2002 continuation and 1996 precursor problem lists. Kurose 1999, Matsuzoe 1999/2010, Binder–Simon 2000, the actual 2016 talk, and Kurose's 2023/2024 full article remain specific unresolved leads. Their absence from the inspected results is not clearance of their contents.
+- The specialized-index reviewer adversarially checked the synthesis and website wording and found no material overclaim. The supported historical statement remains only that no earlier explicit answer was found in the documented search.
+- Preserved a public 175-record citation inventory and nine-paper screening manifest, without redistributing third-party PDFs. Added a database recheck and four route reports. Updated the webpage and README to link the addendum; the manuscript and original archives are unchanged.
+- Remaining delivery step: verify the additive files and current manifests, commit/push only this effort's changes, and check the live webpage. No external person was contacted and no release or DOI was created.
