@@ -475,6 +475,17 @@ and manual Zenodo kit. No GitHub release or Zenodo deposit was created.
 The source folder `kourovka_16_45/audit_2026_09_21/` records exact provenance,
 proof correction, fresh verification, packaging checks, and deployment.
 
+Version **1.0.1, 23 September 2026**, underwent two further sequential reviews
+by fresh adversarial AI agents. The first found one wording issue in the
+projective-pair argument. That explanation, the intersection-order step, and
+the abstract were clarified; a separate stale-file bug in the upload-kit
+builder was fixed and regression-tested. The second reviewer checked the
+entire revised proof, independently recomputed the finite inputs, replayed
+the extracted package, and found **zero actionable issues**. The theorem and
+construction are unchanged. The reports and dispositions are in
+`kourovka_16_45/preprint_review_2026_09_23/`. This is preprint validation, not
+external human peer review or journal submission.
+
 ## Knudson's persistence-gradient conjecture
 
 The version 1.0.0 preprint, “A four-vertex counterexample to Knudson's

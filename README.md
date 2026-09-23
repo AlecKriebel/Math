@@ -66,7 +66,8 @@ and [source folder](knudson_gradient_path_counterexample/).
 affine group of order 100920 with b_f(G)=b(G)=3 < 4=mu′(G), including all
 nonfaithful permutation representations. The revised unrefereed preprint has
 a structural proof, exact witnesses, separately implemented verification,
-and an independent AI audit trail. See the
+and an independent AI audit trail. Version 1.0.1 adds sequential adversarial
+preprint reviews and proof/publishing clarifications. See the
 [paper page](https://aleckriebel.github.io/Math/papers/kourovka-16-45/) and
 [source and verification package](kourovka_16_45/).
 

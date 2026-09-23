@@ -5,15 +5,17 @@ No network calls, deposits, releases, or DOI creation. PDF compilation is a
 separate step. ZIP entry timestamps and permissions are normalized.
 """
 from pathlib import Path
+from datetime import date
 import hashlib
 import json
-import shutil
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "output"
-VERSION = "1.0.0"
-FIXED_TIME = (2026, 9, 21, 0, 0, 0)
+METADATA = json.loads((ROOT / "submission" / "metadata.json").read_text())
+VERSION = METADATA["version"]
+RELEASE_DATE = date.fromisoformat(METADATA["publication_date"])
+FIXED_TIME = (RELEASE_DATE.year, RELEASE_DATE.month, RELEASE_DATE.day, 0, 0, 0)
 
 
 def digest(data):
@@ -36,12 +38,18 @@ def main():
     names = ["README.md", "Makefile", "proof.tex", "proof.pdf", "progress.json",
              "research_log.md", "CITATION.cff", "LICENSES.md", ".gitignore"]
     names += [str(p.relative_to(ROOT)) for folder in
-              ("data", "src", "logs", "references", "audit_2026_09_21", "submission")
+              ("data", "src", "logs", "references", "audit_2026_09_21",
+               "preprint_review_2026_09_23", "submission")
               for p in (ROOT / folder).rglob("*")
               if p.is_file() and "__pycache__" not in p.parts
               and "primary_sources" not in p.parts and p.suffix != ".pyc"
+              and not p.name.startswith("input_")
               and p.name not in {"delivery_validation.json", "deployment.json",
                                   "package_replay.log", "release_finalization.md"}]
+    # Preserve the original provenance files; only later referee-input snapshots
+    # are omitted to keep superseded manuscripts out of the current source ZIP.
+    names += [str(p.relative_to(ROOT)) for p in
+              (ROOT / "audit_2026_09_21").glob("input_*") if p.is_file()]
     names = sorted(set(names))
     payload = {n: (ROOT / n).read_bytes() for n in names}
     manifest = {"version": VERSION, "scope": "Current source-release payload; excludes manifest and SHA256SUMS themselves",
@@ -54,22 +62,20 @@ def main():
     payload["SHA256SUMS"] = sums.encode()
     source = OUT / f"Kourovka_16_45_Source_and_Verification_v{VERSION}.zip"
     archive(source, {"kourovka_16_45/" + n: d for n, d in payload.items()})
-    kit = OUT / "zenodo"
-    uploads = kit / "upload"
-    uploads.mkdir(parents=True, exist_ok=True)
     pdf_name = f"Kourovka_16_45_Counterexample_v{VERSION}.pdf"
-    shutil.copy2(ROOT / "proof.pdf", uploads / pdf_name)
-    shutil.copy2(source, uploads / source.name)
+    # Build the kit from an explicit in-memory member map. Never enumerate a
+    # persistent output directory: stale files from earlier runs must not enter
+    # a later version, and output/zenodo may contain user-edited working files.
+    kit = {"upload/" + pdf_name: (ROOT / "proof.pdf").read_bytes(),
+           "upload/" + source.name: source.read_bytes()}
     for name in ("UPLOAD_GUIDE.md", "metadata.json", "description.html", "description.txt"):
-        shutil.copy2(ROOT / "submission" / name, kit / name)
+        kit[name] = (ROOT / "submission" / name).read_bytes()
     for name in ("CITATION.cff", "LICENSES.md"):
-        shutil.copy2(ROOT / name, kit / name)
-    kit_sums = "".join(f"{digest(p.read_bytes())}  {p.relative_to(kit)}\n"
-                       for p in sorted(kit.rglob("*")) if p.is_file() and p.name != "SHA256SUMS")
-    (kit / "SHA256SUMS").write_text(kit_sums)
+        kit[name] = (ROOT / name).read_bytes()
+    kit["SHA256SUMS"] = "".join(f"{digest(d)}  {n}\n"
+                                 for n, d in sorted(kit.items())).encode()
     archive(OUT / f"Kourovka_16_45_Zenodo_Upload_Kit_v{VERSION}.zip",
-            {"Kourovka_16_45_Zenodo_Upload_Kit/" + str(p.relative_to(kit)): p.read_bytes()
-             for p in kit.rglob("*") if p.is_file()})
+            {"Kourovka_16_45_Zenodo_Upload_Kit/" + n: d for n, d in kit.items()})
     print(json.dumps({"status": "PASS", "source_files": len(payload),
                       "source_archive": source.name, "source_sha256": digest(source.read_bytes()),
                       "pdf_sha256": digest((ROOT / "proof.pdf").read_bytes())}, indent=2))

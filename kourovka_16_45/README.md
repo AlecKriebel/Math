@@ -2,7 +2,7 @@
 
 Alec Kriebel · ORCID https://orcid.org/0009-0001-9320-500X
 
-Version 1.0.0 · 21 September 2026 · Unrefereed preprint
+Version 1.0.1 · 23 September 2026 · Unrefereed preprint
 
 For the explicit group
 
@@ -22,7 +22,8 @@ is made.
 ## Read first
 
 - `proof.pdf` and `proof.tex`: revised manuscript and editable source.
-- `audit_2026_09_21/VERIFICATION_REPORT.md`: consolidated independent audit.
+- `preprint_review_2026_09_23/REVIEW_SUMMARY.md`: current adversarial review and repair record.
+- `audit_2026_09_21/VERIFICATION_REPORT.md`: historical initial independent audit.
 - `data/group_spec.json`: exact group and witness specification.
 - `submission/UPLOAD_GUIDE.md`: complete manual Zenodo deposit instructions.
 - `submission/metadata.json`: copy-ready descriptive metadata.
@@ -46,6 +47,7 @@ make verify
 python3 audit_2026_09_21/independent_check.py
 python3 audit_2026_09_21/structural_check.py
 python3 audit_2026_09_21/compare_independent.py
+python3 submission/test_package.py
 ```
 
 Do not use `python -O` for the additional audit scripts: their assertions
@@ -72,8 +74,14 @@ checker before reading the supplied implementations, and checked primary
 sources. No unresolved substantive gap was identified. One numerical error
 was corrected: R1 R3 has order **3**, not 6. The generated pair subgroup
 has order 12 as claimed, so all theorem statements remain unchanged.
-The revision also adds author metadata, a proof overview, Cameron's 2024
-published account, explicit attribution, and review disclosures.
+The initial publication added author metadata, a proof overview, Cameron's
+2024 account, attribution, and review disclosures. Version 1.0.1 clarifies
+which projective pairs generate the dihedral subgroups and explains the
+intersection-order argument. It also rebuilds upload kits from explicit file
+lists, so stale files from an earlier build cannot enter a new kit.
+The new review directory records two sequential fresh adversarial reviews and
+the disposition of every actionable finding. The second reviewer found zero
+actionable issues in the revised proof and reproducibility package.
 
 The checks are independent AI work lanes in this task, not external human
 peer review or complete proof-assistant verification. The source audit found
@@ -86,8 +94,9 @@ not inferred merely from passing finite computations.
 `data/certified/` contains the supplied exact certificates. Matrices are
 row-major; indices in `finite_certificate.json` reference its matrix array.
 The new `audit_2026_09_21/` reports and canonical subgroup set independently
-corroborate these certificates. UTC audit timestamps fall on 22 September;
-the publication date is 21 September in the author's local time zone.
+corroborate these certificates. The first audit used UTC timestamps on
+22 September (21 September locally); the additional preprint reviews and
+version 1.0.1 are dated 23 September.
 
 Original research logs and exploratory data are retained for provenance.
 They are historical, not current publication status. Exploratory code uses

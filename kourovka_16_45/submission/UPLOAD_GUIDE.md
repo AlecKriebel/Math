@@ -1,4 +1,4 @@
-# Zenodo upload guide — version 1.0.0
+# Zenodo upload guide — version 1.0.1
 
 Prepared for Alec Kriebel to upload manually. No Zenodo record, reserved DOI,
 or GitHub release has been created. The archive name is a local delivery name,
@@ -9,8 +9,8 @@ not evidence of deposit. This guide follows Zenodo's official
 
 Extract the outer kit. Upload the **two files inside `upload/`** to one record:
 
-1. `Kourovka_16_45_Counterexample_v1.0.0.pdf` — the nine-page revised preprint.
-2. `Kourovka_16_45_Source_and_Verification_v1.0.0.zip` — LaTeX source, identical
+1. `Kourovka_16_45_Counterexample_v1.0.1.pdf` — the revised preprint.
+2. `Kourovka_16_45_Source_and_Verification_v1.0.1.zip` — LaTeX source, identical
    manuscript PDF, exact group specification, certificates, all verification
    software, independent audit reports, and provenance.
 
@@ -26,9 +26,8 @@ SHA256SUMS` from the extracted kit. On Linux use `sha256sum -c SHA256SUMS`.
 - **Creator:** Alec Kriebel; family name Kriebel, given name Alec.
 - **ORCID:** 0009-0001-9320-500X.
 - **Affiliation:** leave blank unless the author wants to supply one.
-- **Version:** 1.0.0.
-- **Publication date:** 2026-09-21 (first website/repository edition; use the
-  deposit date instead if preferred by the author).
+- **Version:** 1.0.1.
+- **Publication date:** 2026-09-23 (this revision; first public edition 2026-09-21).
 - **Language:** English.
 - **Description:** paste `description.html` using HTML/source mode where
   offered, or `description.txt` as plain text. The same text is in metadata.json.
@@ -76,7 +75,11 @@ can create a separate Zenodo record, which would duplicate the manual upload.
 
 The structural proof and independently reconstructed finite calculations
 support b_f(G)=b(G)=3<4=mu′(G) for the displayed group of order 100920. The
-review corrected one product order without changing the theorem. The paper
+initial review corrected one product order without changing the theorem.
+Version 1.0.1 clarifies the projective-pair and intersection arguments and
+prevents stale output files from entering rebuilt upload kits. Two further
+fresh adversarial reviews are recorded; the second found zero actionable
+issues after the repairs. The paper
 has not undergone external human peer review or complete formal verification;
 the priority search was bounded. Those qualifications are already included
 in the copy-ready description.
