@@ -1,0 +1,192 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\hypersetup{pdftitle={A coefficient normalization for positive definite forms},
+pdfauthor={Alec Kriebel},pdfsubject={Brandes's Oberwolfach Problem 11},
+pdfkeywords={positive definite forms, polarization, coefficient normalization}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Corollary}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\GL}{\mathrm{GL}}
+\title{A coefficient normalization for positive definite forms}
+\author{Alec Kriebel\\[3pt]\small Independent researcher\\
+\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{23 September 2026 \quad (version 1.0)}
+\begin{document}
+\maketitle
+\begin{abstract}
+Every positive definite real homogeneous form admits linear coordinates in
+which its symmetric ordered coefficients have diagonal entries equal to one
+and all mixed entries strictly between zero and one. This answers Brandes's
+question in Problem 11 of the 2019 Oberwolfach report on analytic number
+theory, including its absolute-value inequality. The proof chooses a basis
+close to a direction minimizing the form on a Euclidean sphere. The desired
+coefficient inequalities then follow from a positive quadratic term in a
+polynomial difference.
+\end{abstract}
+
+\section{Statement and coefficient convention}
+Let $p\colon\R^m\to\R$ be a homogeneous polynomial of positive degree $d$, with
+$p(x)>0$ for $x\ne0$. Then $d$ is even and $d\ge2$. Let $A$ be the unique
+symmetric $d$-linear form satisfying $p(x)=A(x,\ldots,x)$. Throughout, a
+coefficient means a \emph{symmetric ordered coefficient}:
+\[
+ p(t)=\sum_{j_1,\ldots,j_d=1}^m
+ A(e_{j_1},\ldots,e_{j_d})t_{j_1}\cdots t_{j_d}.
+\]
+Thus the ordinary coefficient of $t^\alpha$ is
+$\binom{d}{\alpha}A(e_1^{\alpha_1},\ldots,e_m^{\alpha_m})$.
+Repeated arguments are denoted by superscripts inside $A$.
+
+Brandes asked whether a real invertible linear change of variables can make
+each coefficient's absolute value at most the geometric mean of its
+corresponding diagonal entries \cite[p.~3182, Problem~11]{owr}.
+The earlier discussion of pseudo-diagonal forms in \cite{brandes} includes
+the quadratic case in Lemma~2.1. We prove the general basis-existence assertion
+with the ordered coefficient convention above.
+
+\begin{theorem}\label{thm:main}
+Let $m\ge1$ and let $p$ be a positive definite real homogeneous form of
+degree $d\ge2$. There is a basis $z_1,\ldots,z_m$ of $\R^m$ such that
+\[
+ p(z_i)=1\quad(1\le i\le m),\qquad
+ 0<A(z_{j_1},\ldots,z_{j_d})<1
+\]
+whenever the indices $j_1,\ldots,j_d$ are not all equal. In particular, in
+these coordinates the requested absolute-value bound holds for every tuple,
+with equality precisely for the pure tuples.
+\end{theorem}
+
+The change of variables is in $\GL_m(\R)$; no orthogonality or quantitative
+conditioning constraint is imposed. For $m=1$ the assertion about mixed
+tuples is vacuous.
+
+\section{Proof}
+Fix an auxiliary Euclidean norm. Choose a unit vector $v$ where $p$ attains
+its sphere minimum $c>0$, and first replace $p,A$ by $p/c,A/c$.
+The coefficient inequalities are invariant under this positive common
+scaling. Hence for the intermediate construction we have
+\begin{equation}\label{eq:comparison}
+ p(v)=1,\qquad p(x)\ge \lVert x\rVert^d\quad(x\in\R^m).
+\end{equation}
+Write $Q(a,b)=A(v^{d-2},a,b)$.
+
+\begin{lemma}\label{lem:tangent}
+For every $u\perp v$,
+\[
+ A(v^{d-1},u)=0,\qquad Q(u,u)\ge\frac{\lVert u\rVert^2}{d-1}.
+\]
+\end{lemma}
+\begin{proof}
+By \eqref{eq:comparison}, the function
+$p(v+tu)-(1+t^2\lVert u\rVert^2)^{d/2}$ has a minimum of zero at $t=0$.
+Its first derivative is $dA(v^{d-1},u)$, and its second derivative is
+$d(d-1)Q(u,u)-d\lVert u\rVert^2$. They are respectively zero and
+nonnegative, as claimed.
+\end{proof}
+
+Choose an orthonormal basis $w_1,\ldots,w_{m-1}$ of $v^\perp$, set $w_m=0$,
+and define
+\begin{equation}\label{eq:basis}
+ x_i(\varepsilon)=v+\varepsilon w_i\qquad(1\le i\le m).
+\end{equation}
+For every $\varepsilon\ne0$ these vectors are independent: the tangential
+component of $\sum_i a_i x_i=0$ forces $a_1=\cdots=a_{m-1}=0$, and then
+the radial component forces $a_m=0$.
+
+For a fixed ordered tuple $J=(j_1,\ldots,j_d)$ put $a_r=w_{j_r}$ and
+\[
+ N_J(\varepsilon)=A(v+\varepsilon a_1,\ldots,v+\varepsilon a_d),\qquad
+ F_J(\varepsilon)=\prod_{r=1}^d p(v+\varepsilon a_r)-N_J(\varepsilon)^d.
+\]
+Both expressions are polynomials in $\varepsilon$. Lemma~\ref{lem:tangent}
+and multilinearity give
+\begin{align*}
+ N_J(\varepsilon)
+ &=1+\varepsilon^2\sum_{r<s}Q(a_r,a_s)+O(\varepsilon^3),\\
+ p(v+\varepsilon a_r)
+ &=1+\binom d2\varepsilon^2 Q(a_r,a_r)+O(\varepsilon^3).
+\end{align*}
+Consequently
+\begin{align}
+ F_J(\varepsilon)
+ &=\varepsilon^2\left(\frac{d(d-1)}2\sum_rQ(a_r,a_r)
+              -d\sum_{r<s}Q(a_r,a_s)\right)+O(\varepsilon^3)\notag\\
+ &=\frac d2\varepsilon^2\sum_{r<s}Q(a_r-a_s,a_r-a_s)
+       +O(\varepsilon^3).\label{eq:gap}
+\end{align}
+The last equality follows by expanding each pair difference; each diagonal
+term occurs in $d-1$ pairs.
+
+If $J$ is mixed, some $a_r-a_s$ is a nonzero vector in $v^\perp$.
+Lemma~\ref{lem:tangent} makes the coefficient of $\varepsilon^2$ in
+\eqref{eq:gap} strictly positive. Thus $F_J(\varepsilon)>0$ for all
+sufficiently small positive $\varepsilon$. There are only finitely many
+tuples, so one positive $\varepsilon$ works for all mixed tuples.
+For a pure tuple, $F_J$ is identically zero. Also $N_J(0)=1$ for every
+tuple; by continuity and finiteness, decreasing $\varepsilon$ if needed
+ensures $N_J(\varepsilon)>0$ for all tuples.
+
+Since $d$ is even, these conclusions imply
+\[
+ 0<A(x_{j_1},\ldots,x_{j_d})
+ \le \prod_{r=1}^d p(x_{j_r})^{1/d},
+\]
+strictly for mixed tuples. Restore the original $p$ and $A$: both sides
+scale by $c$, so the inequality is unchanged. Finally set
+$z_i=x_i/p(x_i)^{1/d}$ using the original $p$. Positive column rescaling
+preserves independence, makes $p(z_i)=1$, and proves
+Theorem~\ref{thm:main}. The matrix $S$ with columns $z_i$ has
+$p'(t)=p(St)$ and polarization
+$A'(e_{j_1},\ldots,e_{j_d})=A(z_{j_1},\ldots,z_{j_d})$, as required.
+\hfill$\square$
+
+\section{Scope and verification}
+The basis in \eqref{eq:basis} may be very close to singular. This is allowed
+by the question. Strict inequalities and nonzero determinant are open
+conditions, so the unnormalized basis $x_i$ can also be chosen rational
+by density of $\Q^{m\times m}$ in $\R^{m\times m}$. The final unit-diagonal
+normalization need not preserve rationality. No claim is made here for
+merely nonnegative forms or for unimodular integral changes of variables.
+
+The conclusion concerns the existence of suitable coordinates. For example,
+$p(x,y)=x^4+12x^2y^2+y^4$ is positive definite but has
+$A(e_1,e_1,e_2,e_2)=2>1$ in the original coordinates. The multinomial
+factor cannot be dropped when translating to ordinary monomial coefficients.
+
+The accompanying open package contains an independent proof using
+positive definite bilinear slices and Cauchy--Schwarz, internal adversarial
+reviews, a dated priority audit, and a Python standard-library verifier.
+The verifier checks 12 rational examples exactly, including a nonconvex
+positive definite quartic, and cross-checks coefficients by polarization.
+These finite checks supplement the analytic proof; they are not a formal
+verification of the universal theorem. No separate computational assumption
+is needed in the proof.
+
+\paragraph{Provenance and status.}
+This is an unrefereed preprint. Generative AI supplied the initial candidate
+argument and assisted the internal independent checks, literature search,
+and writing. A bounded public-literature search completed on 23 September
+2026 found no earlier general resolution; it does not establish first
+priority. The two direct antecedents are cited below.
+Paper, source, and verification materials are available at
+\href{https://aleckriebel.github.io/Math/papers/brandes-coefficient-normalization/}{the project page}.
+
+\begin{thebibliography}{9}
+\bibitem{brandes}
+J.~Brandes, \emph{Forms representing forms: the definite case},
+J. London Math. Soc. (2) \textbf{92} (2015), no.~2, 393--410.
+\href{https://doi.org/10.1112/jlms/jdv028}{doi:10.1112/jlms/jdv028}.
+\bibitem{owr}
+H.~L. Montgomery, \emph{Problem Session}, in \emph{Analytic Number Theory},
+Oberwolfach Reports \textbf{16} (2019), no.~4, Report~50, pp.~3179--3183;
+Problem~11 (Brandes), p.~3182.
+\href{https://doi.org/10.4171/OWR/2019/50}{doi:10.4171/OWR/2019/50}.
+\end{thebibliography}
+\end{document}
