@@ -25,3 +25,11 @@ Completion estimates concern verification and delivery of this particular negati
 - Upload kit includes readable PDF, source/verifier ZIP, checksums, copyable guide and JSON metadata. Metadata base fields pass the official legacy schema; version/language match the current documentation but are absent from that old schema. No server validation or deposit is claimed.
 - Package audit corrected an over-specific provenance statement: only the manuscript and audit work, not the original supplied candidate, is attributed specifically to Codex.
 - Remaining delivery work: publish the approved files on main, confirm GitHub Pages serves the intended bytes, and log the deployment. Mathematical verification complete; publication checks still in progress.
+
+## 2026-09-23T03:51:05Z — final metadata and publication checkpoint (100% mathematical verification; 97% delivery)
+
+- Published the paper and initial package in commit 70fbc44f6cae708bda1840de8269222ee851abdb and pushed main successfully. Later independent repository commits superseded the initial Pages build; the current build includes this work.
+- Final independent package audit passes: clean extraction, normal and optimized runs of both verifiers, all manifest layers, exact archive contents, and deterministic rebuilds for fixed inputs.
+- Corrected the optional CITATION.cff file after checking the official schema: top-level CFF describes the MIT verification software; preferred-citation identifies the CC BY 4.0 unpublished manuscript. The corrected file passes the official CFF 1.2.0 schema. No mathematical or PDF change.
+- Final metadata and package documentation are being published in a follow-up commit. This checkpoint records the package before the remote-served-byte check; deployment confirmation is a delivery step, not a mathematical assumption.
+- All requested research artifacts and the manual Zenodo kit are prepared. Remaining work at this timestamp: verify the successful Pages deployment and equality of its served download bytes. Historical priority remains unproved, as disclosed throughout.
