@@ -1,0 +1,227 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=28mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\R}{\mathbb R}
+\newcommand{\ext}{\operatorname{ext}}
+\newcommand{\conv}{\operatorname{conv}}
+\newcommand{\inter}{\operatorname{int}}
+\newcommand{\norm}[1]{\lVert#1\rVert_2}
+\title{Equality in the Fradelizi--Paouris--Sch\"utt\newline second-moment inequality}
+\author{Alec Kriebel\\\small Independent researcher\\\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{23 September 2026 \quad (version 1.0.0)}
+\begin{document}
+\maketitle
+\begin{abstract}
+Fradelizi, Paouris, and Sch\"utt proved a sharp lower bound for the second
+moment of a convex body whose extreme points lie outside an open Euclidean
+ball. They characterized equality for polytopes and conjectured the same
+characterization for arbitrary convex bodies. We prove this conjecture:
+equality holds precisely for nondegenerate simplices whose vertices lie on
+the bounding sphere. The proof extends their simplex argument by an
+almost-everywhere partition into countably many simplices with extreme-point
+vertices. An exact nonnegative deficit identity retains the equality
+information for this partition.
+\end{abstract}
+
+\section{Statement and relation to the original problem}
+A convex body is a compact convex subset of $\R^n$ with nonempty interior.
+Write $|K|$ for its $n$-dimensional volume and define
+\[
+g_K=\frac1{|K|}\int_K x\,dx,
+\qquad C_2(K)=\frac1{|K|}\int_K\norm{x}^2\,dx.
+\]
+The inequality below and its equality characterization for polytopes are
+\cite[Theorem 1.1]{FPS}. The conjecture immediately following that theorem
+asks for the same equality characterization for all convex bodies. It was
+also recorded in \cite[p.~2908]{OWR}, and is the question catalogued as
+OWR-4136-011 in \cite{UM}. Our contribution is the general-body equality
+case; the inequality and the simplex moment formula are due to \cite{FPS}.
+
+\begin{theorem}\label{thm:main}
+Let $n\ge1$, $r>0$, and let $K\subset\R^n$ be a convex body satisfying
+$\norm{v}\ge r$ for every $v\in\ext K$. Then
+\begin{equation}\label{eq:main}
+ C_2(K)\ge\frac{r^2+(n+1)\norm{g_K}^2}{n+2}.
+\end{equation}
+Equality holds if and only if $K$ is a nondegenerate $n$-simplex and all
+its vertices have norm $r$.
+\end{theorem}
+
+The norm hypothesis is explicitly non-strict: the original sources' prose
+uses ``greater than,'' while their equality statement includes vertices of
+norm $r$. Under the strictly greater hypothesis equality is impossible.
+Neither $g_K=0$ nor $0\in K$ is assumed. The catalogue asks the question
+for $n>2$; the theorem includes these dimensions and also $n=1,2$.
+
+\section{An extreme-point simplex partition}
+\begin{lemma}\label{lem:partition}
+Every convex body $K\subset\R^n$ admits a finite or countable family
+$(S_j)$ of nondegenerate $n$-simplices with pairwise disjoint interiors,
+vertices in $\ext K$, and
+\[
+ \left|K\setminus\bigcup_j S_j\right|=0.
+\]
+The construction may start with any nondegenerate simplex whose vertices
+are extreme points of $K$.
+\end{lemma}
+\begin{proof}
+The finite-dimensional extreme-point theorem gives
+$K=\overline{\conv(\ext K)}$. Thus $\ext K$ affinely spans $\R^n$.
+Choose distinct extreme points $v_1,\ldots,v_{n+1}$ that are affinely
+independent. Because every subspace of Euclidean space is second countable,
+$\ext K$ has a finite or countable dense subset $D$ containing these points.
+Enumerate $D$ without repetition, with these points first, and set
+\[
+ P_m=\conv(v_1,\ldots,v_m),\qquad m\ge n+1.
+\]
+If $D$ is finite, stop at its last point. A subsequently inserted point
+$v=v_{m+1}$ is outside $P_m$, since otherwise it would be a convex
+combination of other points of $K$, contradicting extremality.
+
+We recall explicitly the finite shell construction. Use a facet representation
+\[P_m=\{x:a_F\cdot x\le b_F\text{ for every facet }F\}.\]
+Call $F$ visible from $v$ if $a_F\cdot v>b_F$. Then
+\begin{equation}\label{eq:shell}
+ P_{m+1}=P_m\cup\bigcup_{F\text{ visible}}\conv(v,F).
+\end{equation}
+Indeed, for $x\in P_{m+1}\setminus(P_m\cup\{v\})$, the ray from $v$
+through $x$ first meets $P_m$ at a point $y$ lying on a visible facet.
+Otherwise every facet inequality active at $y$ would hold at $v$; all
+inactive inequalities would still be strict just before $y$, contradicting
+first intersection. Also $x\in[v,y]$. The apex $v$ is covered because
+at least one visible facet exists. Distinct visible pyramids have disjoint
+interiors: an interior point determines a unique first intersection of its
+ray with $P_m$, in the relative interior of its base facet. Their interiors
+lie outside $P_m$.
+
+A finite polytope can be partitioned into simplices using only its vertices.
+To see this, induct on dimension, choosing a vertex and coning it to vertex
+partitions of all facets not containing that vertex. Rays through interior
+points give disjoint interiors and coverage; closure gives the boundary.
+The base case is a point. Apply this construction to every visible facet
+in \eqref{eq:shell}, and cone its $(n-1)$-simplices to $v$. Each resulting
+$n$-simplex is nondegenerate and has vertices in $D$. Starting with
+$P_{n+1}$ and retaining every earlier simplex gives a finite or countable
+family with disjoint interiors and union $C=\bigcup_mP_m=\conv D$.
+Compatibility of subdivisions along lower-dimensional faces is unnecessary.
+
+Density gives $\overline C=K$. The convex set $C$ has nonempty interior,
+so $\inter C=\inter\overline C=\inter K$. One can see the nontrivial
+inclusion by surrounding any interior point of $\overline C$ with a small
+simplex and approximating its vertices by points of $C$; a sufficiently
+small perturbation still surrounds that point. Thus $K\setminus C$ is
+contained in $\partial K$, which has zero $n$-dimensional volume.
+\end{proof}
+
+\newpage
+\section{The deficit identity and equality}
+For a nondegenerate simplex $S=\conv(x_0,\ldots,x_n)$ put
+$c_S=(n+1)^{-1}\sum_i x_i$ and $q_S=(n+1)^{-1}\sum_i\norm{x_i}^2$.
+Uniform barycentric coordinates satisfy
+\[
+ \mathbb E\lambda_i^2=\frac{2}{(n+1)(n+2)},\qquad
+ \mathbb E\lambda_i\lambda_k=\frac{1}{(n+1)(n+2)}\quad(i\ne k).
+\]
+These follow by integrating monomials on the standard simplex; more
+generally $\mathbb E\prod_i\lambda_i^{a_i}
+=n!\prod_i a_i!/(n+\sum_i a_i)!$ for nonnegative integers $a_i$.
+Expanding $\norm{\sum_i\lambda_ix_i}^2$ gives the identity of
+\cite[Lemma 3.2]{FPS}:
+\begin{equation}\label{eq:simplex}
+ C_2(S)=\frac{\sum_i\norm{x_i}^2+\norm{\sum_i x_i}^2}{(n+1)(n+2)}
+       =\frac{q_S+(n+1)\norm{c_S}^2}{n+2}.
+\end{equation}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Use Lemma~\ref{lem:partition}, and let
+$w_j=|S_j|/|K|$, $c_j=c_{S_j}$, and $q_j=q_{S_j}$. All weights are
+positive, and null overlaps and countable additivity give
+\[
+ \sum_jw_j=1,\qquad \sum_jw_jc_j=g_K,\qquad
+ C_2(K)=\sum_jw_jC_2(S_j).
+\]
+All points and centroids lie in the bounded set $K$, so every series used
+here and below is absolutely convergent. Each $q_j\ge r^2$. Applying
+\eqref{eq:simplex} and the weighted variance identity yields
+\begin{equation}\label{eq:deficit}
+\boxed{\begin{aligned}
+ \Delta_r(K)&:=C_2(K)-\frac{r^2+(n+1)\norm{g_K}^2}{n+2}\\
+ &=\frac1{n+2}\sum_jw_j(q_j-r^2)
+   +\frac{n+1}{n+2}\sum_jw_j\norm{c_j-g_K}^2.
+\end{aligned}}
+\end{equation}
+Both sums are nonnegative, proving \eqref{eq:main}. If equality holds,
+every positive-weight summand vanishes. Thus $q_j=r^2$ and $c_j=g_K$
+for every $j$. The first condition forces every vertex of every $S_j$
+to have norm $r$. The second condition forces the family to consist of
+one simplex: the centroid of a nondegenerate simplex is in its interior,
+and two simplices with the same centroid cannot have disjoint interiors.
+The union in the construction is dense in $K$, so the sole closed simplex
+is $K$. Conversely, an inscribed simplex has $q_S=r^2$, and
+\eqref{eq:simplex} gives equality.
+\end{proof}
+
+\newpage
+\section{A finite witness to strictness}
+The preceding proof gives a useful quantitative check on the passage from
+polytopes to arbitrary bodies. Start with an extreme-point simplex
+$S=\conv(v_0,\ldots,v_n)$. If $K\ne S$, there is an extreme point
+$u\notin S$. Insert $u$ next. Choose a strictly visible facet opposite
+$v_i$ and put $T=\conv(u,\{v_j:j\ne i\})$. Both $S$ and $T$ are
+retained in the partition, have positive volumes $a,b$, and satisfy
+$c_T-c_S=(u-v_i)/(n+1)$. Completing the square in their two variance
+terms in \eqref{eq:deficit} gives
+\begin{equation}\label{eq:witness}
+ \Delta_r(K)\ge
+ \frac{ab\,\norm{u-v_i}^2}{(n+1)(n+2)|K|(a+b)}>0.
+\end{equation}
+Equivalently, apply the finite deficit identity on each $P_m$ retaining
+$S,T$, replace $|P_m|$ by the larger $|K|$, and pass to the limit in
+bounded volume integrals. This supplies a second route to equality
+rigidity without assuming a countable partition in advance.
+
+\begin{corollary}
+Under the hypotheses of Theorem~\ref{thm:main}, equality in
+$C_2(K)\ge r^2/(n+2)$ holds exactly for simplices with all vertices of
+norm $r$ and centroid zero.
+\end{corollary}
+For the strengthened inequality \eqref{eq:main}, regularity is never
+required. For example, the nonregular triangle with vertices
+$(1,0),(0,1),(-1,0)$ has $g_K=(0,1/3)$ and $C_2(K)=1/3$, giving equality
+with $r=1$. In dimension one the equality interval is $[-r,r]$.
+
+\paragraph{Verification and provenance.}
+The proof is analytic and does not depend on computation. The accompanying
+standard-library Python script checks simplex moments by exact polynomial
+integration and finite shell identities by independent polygon moment
+formulas. The package also contains a separate finite-approximation proof
+and adversarial audit notes. These checks are not a proof-assistant
+formalization. A bounded literature audit completed on 23 September 2026
+found no earlier general-body equality resolution in the sources examined;
+it does not certify priority. This unrefereed, AI-assisted manuscript was
+prepared with OpenAI Codex from a candidate supplied by the author from
+prior AI-assisted work, with separate AI verification agents.
+
+\begin{thebibliography}{9}
+\bibitem{FPS}
+M.~Fradelizi, G.~Paouris, and C.~Sch\"utt,
+\emph{Simplices in the Euclidean ball},
+Canad. Math. Bull. \textbf{55} (2012), no.~3, 498--508.
+\href{https://doi.org/10.4153/CMB-2011-142-1}{doi:10.4153/CMB-2011-142-1}.
+\bibitem{OWR}
+M.~Fradelizi (joint work with G.~Paouris and C.~Sch\"utt),
+\emph{Simplices in the Euclidean ball}, in
+\emph{Convex Geometry and its Applications},
+Oberwolfach Rep. \textbf{6} (2009), no.~4, 2907--2909.
+\href{https://doi.org/10.4171/OWR/2009/53}{doi:10.4171/OWR/2009/53}.
+\bibitem{UM}
+UnsolvedMath, \href{https://www.unsolvedmath.com/problems/OWR-4136-011}{\emph{OWR-4136-011: Simplex Equality Cases}}\\
+\emph{in Convex Geometric Inequalities}, reviewed statement v1.7,
+accessed 23 September 2026.
+\end{thebibliography}
+\end{document}

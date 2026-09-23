@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Equality in the Fradelizi–Paouris–Schütt second-moment inequality</title>
+<meta name="description" content="A four-page proof of the general convex-body equality case: exactly simplices inscribed in the radius-r sphere. Proof, exact checks, and a bounded priority audit.">
+<meta name="author" content="Alec Kriebel"><meta name="citation_title" content="Equality in the Fradelizi–Paouris–Schütt second-moment inequality"><meta name="citation_author" content="Alec Kriebel"><meta name="citation_publication_date" content="2026-09-23"><meta name="citation_pdf_url" content="https://aleckriebel.github.io/Math/papers/fps-equality/paper.pdf">
+<link rel="canonical" href="https://aleckriebel.github.io/Math/papers/fps-equality/">
+<style>
+:root{color-scheme:light;--ink:#17332f;--accent:#22695d;--muted:#526561;--line:#d6e2dc}*{box-sizing:border-box}body{margin:0;background:#f8faf7;color:var(--ink);font:17px/1.7 system-ui,sans-serif}a{color:var(--accent);text-underline-offset:3px}a:focus-visible{outline:3px solid #ba7e29;outline-offset:4px}header,main,footer{max-width:920px;margin:auto;padding:32px 28px}.nav{display:flex;justify-content:space-between;gap:20px;font-size:14px}header{border-bottom:1px solid var(--line)}.eyebrow{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:42px}h1{font:500 clamp(30px,5vw,46px)/1.2 Georgia,serif;letter-spacing:-.025em;margin:18px 0}h2{font:500 29px/1.25 Georgia,serif;margin:35px 0 15px}.byline,.note{font-size:14px;color:var(--muted)}.lede{font-size:21px;line-height:1.5;max-width:790px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0 8px}.button{padding:9px 15px;border:1px solid var(--accent);border-radius:3px;text-decoration:none;font-size:15px;font-weight:600}.primary{background:var(--accent);color:#fff}.result{padding:20px 24px;border-left:4px solid var(--accent);background:#eaf2ed;margin:25px 0}.formula{font:22px/1.7 Georgia,serif;text-align:center;overflow-x:auto;padding:12px 0}.diagram{margin:24px 0;padding:18px;border:1px solid var(--line);background:#fff}.diagram svg{display:block;width:100%;height:auto}figcaption{font-size:14px;color:var(--muted);margin-top:10px}ol,ul{padding-left:24px}li{margin:10px 0}pre{background:#17332f;color:#f0f6f3;padding:18px;overflow:auto;border-radius:3px;font-size:14px}table{width:100%;border-collapse:collapse;font-size:15px}td,th{padding:12px 10px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}.table-wrap{overflow-x:auto}footer{border-top:1px solid var(--line);font-size:14px;color:var(--muted)}@media(max-width:550px){header,main,footer{padding:24px 20px}.eyebrow{margin-top:30px}.formula{font-size:19px}.result{padding:15px}.nav{font-size:13px}}
+</style>
+</head>
+<body>
+<header>
+<nav class="nav" aria-label="Paper navigation"><a href="../../">Alec Kriebel Research</a><a href="#verify">Verify &amp; download</a></nav>
+<p class="eyebrow">Convex geometry · Unrefereed preprint</p>
+<h1>Equality in the Fradelizi–Paouris–Schütt second-moment inequality</h1>
+<p class="byline">Alec Kriebel · <a href="https://orcid.org/0009-0001-9320-500X">ORCID</a> · Version 1.0.0 · 23 September 2026</p>
+<p class="lede">The equality case for arbitrary convex bodies is exactly the one conjectured: a simplex with every vertex on the sphere.</p>
+<div class="actions"><a class="button primary" href="paper.pdf">Read the 4-page proof</a><a class="button" href="source-and-verification.zip">Proof &amp; verification package</a><a class="button" href="zenodo-upload-kit.zip">Zenodo upload kit</a></div>
+</header>
+<main>
+<section aria-labelledby="result-title">
+<h2 id="result-title">The complete equality class</h2>
+<p>Let <i>K</i> be a compact convex body with nonempty interior in ℝ<sup>n</sup>, with <i>n</i> ≥ 1 and <i>r</i> &gt; 0. Suppose every extreme point has Euclidean norm at least <i>r</i>. Write <i>g</i><sub>K</sub> for its volume centroid and <i>C</i><sub>2</sub>(<i>K</i>) for the average squared Euclidean norm of a point chosen uniformly from <i>K</i>.</p>
+<div class="result"><div class="formula">C<sub>2</sub>(K) ≥ [r² + (n + 1) ‖g<sub>K</sub>‖²] / (n + 2)</div><p><strong>Equality holds if and only if</strong> <i>K</i> is a nondegenerate simplex whose vertices all have norm <i>r</i>.</p></div>
+<p>The inequality and the polytope equality case are due to <a href="https://doi.org/10.4153/CMB-2011-142-1">Fradelizi, Paouris, and Schütt</a>. This note proves the conjecture following their Theorem 1.1 for general convex bodies, also recorded in the <a href="https://doi.org/10.4171/OWR/2009/53">2009 Oberwolfach report, p. 2908</a> and catalogued as <a href="https://www.unsolvedmath.com/problems/OWR-4136-011">OWR-4136-011</a>.</p>
+</section>
+<section aria-labelledby="proof-title">
+<h2 id="proof-title">Why equality forces one simplex</h2>
+<ol><li><strong>Partition the body.</strong> Add a dense finite or countable collection of extreme points one at a time. Triangulate each visible facet of the previous hull, then cone its simplices to the new point. The pieces have disjoint interiors, use only extreme-point vertices, and cover the body up to a set of volume zero.</li><li><strong>Keep the deficit exactly.</strong> It splits into two nonnegative quantities: the excess of the vertices' squared norms over <i>r</i>², and the variance of the simplices' centroids.</li><li><strong>Use disjoint interiors.</strong> Equality makes every simplex centroid equal to <i>g</i><sub>K</sub>. A simplex contains its centroid in its interior, so two distinct pieces cannot share that centroid. Only one simplex remains.</li></ol>
+<figure class="diagram">
+<svg viewBox="0 0 720 260" role="img" aria-labelledby="diagram-title diagram-description"><title id="diagram-title">Two simplex pieces have distinct interior centroids</title><desc id="diagram-description">A square is divided into two triangles by a diagonal. Each triangle's centroid is in its own interior, and the centroids are separated. This creates a positive variance contribution.</desc>
+<path d="M65 30H265V230Z" fill="#d8e9dd" stroke="#22695d" stroke-width="2"/><path d="M65 30V230H265Z" fill="#e4ecf3" stroke="#4d6b85" stroke-width="2"/>
+<path d="M132 163L198 97" stroke="#937341" stroke-width="2" stroke-dasharray="5 5"/>
+<circle cx="198" cy="97" r="6" fill="#22695d"/><circle cx="132" cy="163" r="6" fill="#4d6b85"/>
+<g font-family="Georgia,serif" font-size="22"><text x="216" y="91" fill="#22695d">c₁</text><text x="101" y="181" fill="#4d6b85">c₂</text></g>
+<g font-family="system-ui,sans-serif" fill="#17332f"><text x="324" y="90" font-size="20">Two pieces → distinct centroids</text><text x="324" y="130" font-size="20">Distinct centroids → positive deficit</text><text x="324" y="178" font-size="16" fill="#526561">Equality leaves just one simplex.</text></g>
+</svg>
+<figcaption>The square illustrates strictness. For a convex body satisfying the theorem’s hypotheses, two fixed pieces retained in the partition give a positive lower bound that survives approximation.</figcaption>
+</figure>
+<p>Regularity is unnecessary. Even the nonregular triangle with vertices (1, 0), (0, 1), (−1, 0) attains the bound: its centroid is (0, ⅓) and its second moment is ⅓. For the weaker bound <i>C</i><sub>2</sub>(<i>K</i>) ≥ <i>r</i>²/(<i>n</i> + 2), equality additionally requires centroid zero.</p>
+</section>
+<section id="verify" aria-labelledby="verify-title">
+<h2 id="verify-title">A short proof, with checkable support</h2>
+<p>The universal result follows from the written proof. The accompanying script independently integrates simplex polynomials and polygon boundary moments, then checks the finite deficit and shell identities using exact rational arithmetic.</p>
+<pre><code>python3 verification/verify.py</code></pre>
+<p>Extract the proof package and run this from its project folder. Python 3.9+ is sufficient; no packages or network are needed. <strong>298 checks across 18 cases pass</strong>, including dimensions 1–6 and an auxiliary coplanar-facet test. These finite checks do not prove the infinite geometric argument.</p>
+<div class="table-wrap"><table><thead><tr><th scope="col">Material</th><th scope="col">Purpose</th></tr></thead><tbody>
+<tr><td><a href="paper.pdf">Paper</a> · <a href="paper.tex">LaTeX source</a></td><td>Complete theorem and proof, four pages</td></tr>
+<tr><td><a href="independent-proof.md">Second proof route</a></td><td>A fixed positive deficit through finite approximation</td></tr>
+<tr><td><a href="verification-report.md">Verification report</a> · <a href="verify.py">Exact checker</a></td><td>Proof obligations, finite checks, and their limits</td></tr>
+<tr><td><a href="priority-audit.md">Priority audit</a> · <a href="source-match.md">Source match</a></td><td>Primary-source comparison and dated search record</td></tr>
+<tr><td><a href="source-and-verification.zip">Complete proof package</a></td><td>Manuscript, code, audit notes, licenses, and hashes</td></tr>
+<tr><td><a href="zenodo-upload-kit.zip">Zenodo kit</a> · <a href="zenodo-upload.md">Upload instructions</a></td><td>Paper and supporting archive, ready for manual deposit</td></tr>
+<tr><td><a href="zenodo-metadata.json">Zenodo metadata</a> · <a href="SHA256SUMS">Checksums</a></td><td>Reusable fields and file integrity</td></tr>
+</tbody></table></div>
+</section>
+<section aria-labelledby="status-title"><h2 id="status-title">Status and attribution</h2>
+<p>Independent AI proof audits found no mathematical gap. A bounded literature search completed on 23 September 2026 found no earlier resolution, including in four citing papers identified through citation indexes. It does not certify global priority or exclude unpublished work.</p>
+<p class="note">This is an unrefereed, AI-assisted preprint, prepared with OpenAI Codex from prior AI-assisted work supplied by the author. The audits are not external human peer review or proof-assistant certification. FPS receive credit for the inequality, simplex identity, and polytope classification. The new conclusion is the equality classification for arbitrary convex bodies. The Zenodo kit has not been deposited; no DOI has been assigned.</p></section>
+</main>
+<footer>© 2026 Alec Kriebel · Text: CC BY 4.0 · Code: MIT · <a href="https://github.com/AlecKriebel/Math/tree/main/owr_4136_011_equality">Repository and audit trail</a></footer>
+</body></html>

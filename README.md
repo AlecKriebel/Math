@@ -22,6 +22,16 @@ that the interpretation or literature claims are correct.
 
 ## Current papers
 
+**Equality in the Fradelizi–Paouris–Schütt second-moment inequality** proves
+that the general convex-body equality case is precisely a simplex with every
+vertex on the radius-r sphere, resolving the mathematical question
+OWR-4136-011. The four-page unrefereed proof includes a countable extreme-point
+simplex partition, an exact deficit identity, and a finite strictness witness.
+Independent AI proof audits and 298 exact checks accompany the result; no
+earlier resolution was found in a bounded priority search. See the
+[paper page](https://aleckriebel.github.io/Math/papers/fps-equality/) and
+[source, verification, and manual Zenodo package](owr_4136_011_equality/).
+
 **Radial orthogonality does not imply dual 1-conformal flatness** gives a
 negative answer to Kurose's printed Question 3(e) in the 1998 affine-geometry
 problem collection (AMR-059-0011). The round cylinder has integrable radial

@@ -18,7 +18,7 @@ C_2(K)=|K|^{-1}\int_K\|x\|_2^2\,dx.
 The supplied claim is
 
 \[
-C_2(K)\geq\frac{r^2+\(n+1\)\|g_K\|_2^2}{n+2},
+C_2(K)\geq\frac{r^2+(n+1)\|g_K\|_2^2}{n+2},
 \]
 
 with equality exactly for the nondegenerate simplices whose vertices have
@@ -36,8 +36,8 @@ theorem for arbitrary convex bodies.
 The extreme-point set need not be closed. That is harmless. A subset of a
 Euclidean space is second countable and therefore separable in its relative
 topology. Choose a finite or countably infinite dense subset \(D\) of
-\(\operatorname{ext}K\), add \(n+1\) affinely independent extreme points, and
-enumerate \(D\) without repetition, putting those \(n+1\) points first. Such
+\(\operatorname{ext}K\), add (n+1) affinely independent extreme points, and
+enumerate \(D\) without repetition, putting those (n+1) points first. Such
 independent extreme points exist because finite-dimensional Minkowski's theorem
 implies that \(\operatorname{ext}K\) affinely spans \(K\).
 
@@ -149,7 +149,7 @@ unbounded limit and an integral is present.
 The supplied simplex moment calculation gives the exact identity
 
 \[
-C_2(K)-\frac{r^2+\(n+1\)\|g_K\|_2^2}{n+2}
+C_2(K)-\frac{r^2+(n+1)\|g_K\|_2^2}{n+2}
 =\frac1{n+2}\sum_jw_j(q_j-r^2)
  +\frac{n+1}{n+2}\sum_jw_j\|c_j-g_K\|_2^2.
 \]
