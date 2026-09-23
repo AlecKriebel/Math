@@ -53,3 +53,9 @@ Round 2, conducted by a new agent with a spectral-functional-calculus/tangent ap
 Current paper/source, citation metadata, README, site, copy-and-paste Zenodo fields, versioned upload kit and reproducibility archive are synchronized to v1.1. Final readiness records and round-2 review are included in the refreshed archives without changing the audited paper. Earlier v1.0 audit snapshots remain historical records.
 
 Release refresh is awaiting public byte checks. The intermediate Pages runs were canceled during checkout as newer commits from concurrent repository work arrived; the next successful build of main will contain the revision. No independent website defect was identified. No journal submission, external outreach, release tag, Zenodo deposit or DOI creation was performed.
+
+## 2026-09-23T13:52:18.317055+00:00 — Global version-1.1 refresh verified (100% of requested review and delivery)
+
+Release commit b18c30f960eeb7577f7db686f1c6a925cb81ec9a is pushed to main. A later Pages build at cd8714c8055d7957c650f0c8b764c6b602bc665d succeeded and contains this revision. All six public site/download files returned HTTP 200 and matched their local SHA-256 hashes, including the exact PDF audited in round 2. Detailed receipt: research/preprint_v1.1_publication.json.
+
+Two fresh sequential adversarial reviews are complete. All three round-1 editorial suggestions are addressed; round 2 found no actionable issue at any severity. No unresolved preprint-readiness issue was identified. The mathematical claims and previously recorded limits on priority/formal/external verification are unchanged. The download archives remain frozen at release preparation; this later publication receipt is intentionally stored separately in the repository.
