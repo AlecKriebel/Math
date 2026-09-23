@@ -60,6 +60,8 @@ See `priority-derivation-independent.md` for full assumptions and inequalities. 
 
 ## Publication disposition
 
-The user's requested original-resolution paper, GitHub Pages site, and Zenodo upload were conditional on a clean priority audit. That condition is not met. The audit and its checkable evidence are retained and committed. An attributed explanatory note would be a different publication claim and should explicitly foreground the older theorem; no claim to a new amplification theorem or new scalar criterion is warranted by this audit.
+**Original audit disposition (2026-09-23T04:11:29Z):** The user's requested original-resolution paper, GitHub Pages site, and Zenodo upload were conditional on a clean priority audit. That condition was not met. The audit and its checkable evidence were retained and committed. An attributed explanatory note would be a different publication claim and should explicitly foreground the older theorem; no claim to a new amplification theorem or new scalar criterion is warranted by this audit.
+
+**Subsequent authorized scope (2026-09-23):** After discussing the limited novelty and uncertain journal prospects, the user explicitly requested the attributed note, repository publication, website, and manual Zenodo upload package. Version 1.0.0 therefore publishes the explicit application with full attribution, a direct proof, and a derivation from prior results. This change in publication scope does not reverse the priority finding above. See `note-proof-review.md` and `note-attribution-review.md` for the actual manuscript reviews.
 
 The reviews were independent AI-agent analyses followed by synthesis and direct source checking. They are not external refereeing or formal proof-assistant validation. Finite exact-arithmetic checks support only the identities and examples specified in their README; the analytic proofs carry the universal quantifiers.

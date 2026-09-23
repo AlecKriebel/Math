@@ -1,0 +1,184 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\usepackage{enumitem}
+\setlist{nosep}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newcommand{\C}{\mathbb C}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\N}{\mathbb N}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\gs}{\Gamma\text{-supercyclic}}
+\hypersetup{pdftitle={A note on Gamma-supercyclicity of dissipative composition operators},pdfauthor={Alec Kriebel},pdfsubject={An attributed application of existing supercyclicity criteria}}
+\title{A note on $\Gamma$-supercyclicity of\protect\\ dissipative composition operators}
+\author{Alec Kriebel\thanks{Independent researcher. ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}.}}
+\date{September 23, 2026\quad (version 1.0.0)}
+\begin{document}
+\maketitle
+\begin{abstract}
+We record an affirmative answer to the question on arbitrary-$\Gamma$ supercyclicity posed in Oberwolfach Report 19/2024. In the report's separable $L^p$ setting, a dissipative composition operator of bounded distortion is $\gs$ if and only if its associated bilateral weighted shift is $\gs$, for every subset $\Gamma\subseteq\C$. The observation follows from existing results of Abbar and of Abbar--Kuznetsova, together with a sequence-space representation of the composition operator. We give a short direct proof to make the application explicit. Neither the scalar criterion nor the amplification mechanism is claimed as new.
+\end{abstract}
+
+\section{The question and the statement}
+
+For a bounded operator $T$ on a complex Banach space and a set $\Gamma\subseteq\C$, call $T$ \emph{$\gs$} if some vector $x$ has dense orbit
+\[
+\{\lambda T^n x: n\ge0,\ \lambda\in\Gamma\}.
+\]
+This terminology follows Charpentier, Ernst, and Menet~\cite{CEM}. In her contribution to Oberwolfach Report 19/2024, D'Aniello, reporting joint work with Maiuriello, asks whether the equivalence of this property for a dissipative composition operator of bounded distortion and its associated shift holds for arbitrary $\Gamma$~\cite[p.~1083]{OWR}. The cases of ordinary hypercyclicity and real or complex supercyclicity are part of the preceding work~\cite{DDM,DM}.
+
+We use the standing separability convention in that report. Let $(X,\mathcal B,\mu)$ be a $\sigma$-finite measure space with separable complex $L^p(X,\mu)$, where $1\le p<\infty$. Let $f:X\to X$ be a bijective bimeasurable transformation such that, for finite constants $A,B$,
+\begin{equation}\label{eq:bounded}
+\mu(f^{-1}C)\le A\mu(C),\qquad \mu(fC)\le B\mu(C)
+\quad(C\in\mathcal B).
+\end{equation}
+Thus $T_f\varphi=\varphi\circ f$ is bounded and invertible. Suppose a measurable wandering set $W$ satisfies
+\[
+X=\mathop{\dot\bigcup}_{j\in\Z} f^jW,\qquad 0<\mu(W)<\infty,
+\]
+where a null remainder can be discarded. Write $m_j=\mu(f^jW)$. Bounded distortion means that some $K\ge1$ satisfies
+\begin{equation}\label{eq:bd}
+K^{-1}m_j\mu(C)\le \mu(f^jC)m_0\le Km_j\mu(C)
+\quad(j\in\Z,\ C\subseteq W\text{ measurable}).
+\end{equation}
+These are the dissipative hypotheses recalled in~\cite[pp.~1079--1080]{OWR}.
+
+\begin{theorem}\label{thm:main}
+Under these assumptions, let $B_w$ on $\ell^p(\Z)$ be given by
+\[
+(B_wa)_j=w_{j+1}a_{j+1},\qquad
+w_j=\left(\frac{m_{j-1}}{m_j}\right)^{1/p}.
+\]
+For every $\Gamma\subseteq\C$, $T_f$ is $\gs$ if and only if $B_w$ is $\gs$.
+\end{theorem}
+
+The contribution of this note is the explicit application to the reported question. Abbar's scalar criterion~\cite[Theorem A]{Abbar} and his $\Gamma$-supercyclicity criterion~\cite[Theorem 2]{Abbar} already imply the amplification step below. Theorem B of Abbar--Kuznetsova~\cite{AK} gives a second route, described in Section~\ref{sec:prior}. We reproduce the elementary estimates for ease of verification, not as additional novelty claims.
+
+\section{The scalar criterion and its amplification}
+
+Let $c_j>0$ and suppose the translation $(Sa)_j=a_{j+1}$ is bounded on
+\[
+Y=\ell^p(\Z,c),\qquad \norm{a}_c^p=\sum_{j\in\Z}c_j\abs{a_j}^p.
+\]
+For a nonzero separable complex Banach space $E$, use the same translation $S_E$ on $Y_E=\ell^p(\Z,c;E)$, with norm $\norm{u}_c^p=\sum_j c_j\norm{u_j}_E^p$. Boundedness follows from $\sup_j c_{j-1}/c_j<\infty$. Put $\Gamma^*=\Gamma\setminus\{0\}$.
+
+\begin{lemma}[Finite-block form of Abbar's criterion]\label{lem:tails}
+The following condition is necessary for $S$ to be $\gs$, and sufficient for $S_E$ to be $\gs$: for every finite nonempty $F\subset\Z$, $\eta>0$, and $L\ge0$, there are $n>L$ and $\lambda\in\Gamma^*$ with
+\begin{equation}\label{eq:tails}
+\frac{\bigl(\sum_{j\in F}c_{j+n}\bigr)^{1/p}}{\abs{\lambda}}<\eta,
+\qquad
+\abs{\lambda}\bigl(\sum_{j\in F}c_{j-n}\bigr)^{1/p}<\eta.
+\end{equation}
+\end{lemma}
+
+For scalar coefficients, this is the finite-sum formulation of~\cite[Theorem A]{Abbar}, with weight $\omega_j=c_j^{1/p}$; finite sums and finite maxima give equivalent conditions. The sufficiency argument below is the usual universality-criterion argument underlying~\cite[Theorem 2]{Abbar}.
+
+\begin{proof}
+Suppose $x\in Y$ has a dense $\Gamma$-orbit. Every nonempty open set is reached at arbitrarily large times: for each $N$, the closed set $\bigcup_{n=0}^N\C S^n x$ has empty interior in the infinite-dimensional space $Y$. Also the support of $x$ is unbounded above, since otherwise every forward iterate would vanish above a common index.
+
+Fix $F$ and choose $k\ge\max F$ with $x_k\ne0$. With $e_j$ denoting the coordinate vectors, set $v=\sum_{j\in F}e_j$. There are $n_r\to\infty$ and $\lambda_r\in\Gamma^*$ such that $\delta_r=\norm{\lambda_r S^{n_r}x-v}_c\to0$. For large $r$, each $j\in F$ satisfies $\abs{\lambda_r x_{j+n_r}}>1/2$, whence
+\[
+\frac{\bigl(\sum_{j\in F}c_{j+n_r}\bigr)^{1/p}}{\abs{\lambda_r}}
+\le 2\Bigl(\sum_{j\in F}c_{j+n_r}\abs{x_{j+n_r}}^p\Bigr)^{1/p}\longrightarrow0.
+\]
+The limit follows because $F+n_r$ escapes every finite interval and $x\in Y$. For large $r$, $k-n_r\notin F$, so
+\[
+\abs{\lambda_r}c_{k-n_r}^{1/p}\abs{x_k}\le\delta_r.
+\]
+Writing $M=\norm{S}$, the coordinate estimate $c_{t-d}^{1/p}\le M^d c_t^{1/p}$ for $d\ge0$ yields
+\[
+\abs{\lambda_r}\Bigl(\sum_{j\in F}c_{j-n_r}\Bigr)^{1/p}
+\le \Bigl(\sum_{j\in F}M^{p(k-j)}\Bigr)^{1/p}\frac{\delta_r}{\abs{x_k}}
+\longrightarrow0.
+\]
+This proves necessity, with the same allowed scalar in both estimates.
+
+Conversely, assume~\eqref{eq:tails}. Let $U,V\subset Y_E$ be nonempty open sets. Choose finitely supported $a\in U$ and $b\in V$. Let a finite nonempty $F$ contain both supports, and bound their coordinate norms by $H\ge1$. For $n\ge0$, define the right translation of a finite-support sequence by $(R_n b)_j=b_{j-n}$, so $S_E^nR_n b=b$. The condition supplies $n,\lambda$ for which
+\[
+z=a+\lambda^{-1}R_n b\in U,\qquad
+\lambda S_E^nz=\lambda S_E^na+b\in V:
+\]
+indeed, the two errors are bounded by $H$ times the first and second quantities in~\eqref{eq:tails}, respectively, and can be arbitrarily small.
+
+Take a countable base $(V_q)$ of $Y_E$. For each $q$, the set
+\[
+G_q=\bigcup_{n\ge0,\,\lambda\in\Gamma}\{z:\lambda S_E^nz\in V_q\}
+\]
+is open by continuity and dense by the preceding argument. Baire's theorem makes $\bigcap_qG_q$ dense and nonempty; its elements are $\Gamma$-supercyclic vectors. No countability or regularity assumption on $\Gamma$ is needed.
+\end{proof}
+
+\begin{proposition}[Amplification]\label{prop:amp}
+The operators $S$ and $S_E$ are $\gs$ for exactly the same subsets $\Gamma\subseteq\C$.
+\end{proposition}
+\begin{proof}
+The forward implication is Lemma~\ref{lem:tails}. For the reverse, choose $e\in E$ and $\ell\in E^*$ with $\ell(e)=1$. The bounded surjection $Q:Y_E\to Y$, $(Qu)_j=\ell(u_j)$, satisfies $QS_E=SQ$ and sends a dense $\Gamma$-orbit to a dense $\Gamma$-orbit. If $\Gamma^*=\varnothing$, neither operator has such an orbit, so this case also satisfies the equivalence.
+\end{proof}
+
+\section{The composition model and the answer}
+
+\begin{proof}[Proof of Theorem~\ref{thm:main}]
+Set $c_j=m_j/m_0$ and $E=L^p(W,\mu|_W)$. The measure bounds~\eqref{eq:bounded} ensure $0<m_j<\infty$ and boundedness of both scalar translation directions. The space $E$ is nonzero and separable: extension by zero embeds it as a closed subspace of $L^p(X,\mu)$.
+
+For measurable $C\subseteq W$, define $\nu_j(C)=\mu(f^jC)$. Bimeasurability and injectivity make this a measure, and bounded distortion says
+\[
+K^{-1}c_j\mu|_W\le\nu_j\le Kc_j\mu|_W.
+\]
+Define $J\varphi=(\varphi\circ f^j|_W)_{j\in\Z}$. The measure-class bounds ensure that $J$ is well-defined on equivalence classes. Decomposing the integral over the wandering partition gives
+\begin{equation}\label{eq:J}
+\norm{\varphi}_p^p
+=\sum_j\int_W\abs{\varphi\circ f^j}^p\,d\nu_j,
+\qquad
+K^{-1}\norm{J\varphi}_c^p\le\norm{\varphi}_p^p\le K\norm{J\varphi}_c^p.
+\end{equation}
+For $u\in Y_E$, choose measurable representatives and define $\varphi$ on $f^jW$ by $\varphi=u_j\circ f^{-j}$. This countable gluing is measurable and~\eqref{eq:J} makes it integrable. Thus $J$ is a bounded linear isomorphism onto $Y_E$, and direct substitution gives $JT_f=S_EJ$.
+
+Finally, $D:\ell^p(\Z)\to Y$, $(Da)_j=c_j^{-1/p}a_j$, is an onto isometry, with
+\[
+(DB_wa)_j=c_j^{-1/p}w_{j+1}a_{j+1}
+=c_{j+1}^{-1/p}a_{j+1}=(SDa)_j.
+\]
+Complex-linear conjugacies preserve $\Gamma$-orbits for every fixed $\Gamma$. Proposition~\ref{prop:amp} therefore gives $T_f\ \gs\iff S_E\ \gs\iff S\ \gs\iff B_w\ \gs$.
+\end{proof}
+
+Separability cannot be dropped from this application merely because the measure is $\sigma$-finite. Every projective orbit is contained in the separable closed span of a countable orbit. For example, on $X=\Z\times\Omega$, let $\Omega=\{0,1\}^I$, with $I$ uncountable, carry the product of fair Bernoulli probability measures, give layer $j$ mass $2^{-|j|}$ times that measure, and set $f(j,t)=(j+1,t)$. Bounded distortion holds with $K=1$ and $T_f$ is bounded and invertible. Its $L^p$ space is nonseparable, while the scalar shift is hypercyclic by~\eqref{eq:tails}. This is a scope clarification, not an additional novelty claim.
+
+\section{A direct deduction from the translation theorem}\label{sec:prior}
+
+For completeness, the following deduction identifies the relation to Abbar--Kuznetsova~\cite[Theorem B]{AK} without using the proof of Lemma~\ref{lem:tails}. On the discrete group $\Z$, take the translation parameters $\{-n:n\ge0\}$ and weight $\omega(j)=c_j^{1/p}$. Their translation convention gives $T_{-n}a(j)=a(j+n)$. The weight is admissible because $S$ is bounded. Counting measure and an exceptional-set tolerance smaller than one force the retained set in their criterion to be the whole finite set. Scalar $\Gamma$-supercyclicity therefore supplies the two maximum versions of~\eqref{eq:tails}. The times can exceed any fixed $L$: over finitely many times $n\le L$, the product of the two positive maxima has a positive minimum, independently of $\lambda$.
+
+Now use $\Z^2$, parameters $\{(-n,0):n\ge0\}$, and weight $\omega(j,k)=c_j^{1/p}$. A finite set has a finite first-coordinate projection, so the same estimates verify their criterion. This gives $\Gamma$-supercyclicity on $\ell^p(\Z,c;\ell^p(\Z))$. For arbitrary separable $E$, choose unit vectors $e_k$ with dense linear span. The map
+\[
+R:\ell^p(\Z)\to E,\qquad R(a)=\sum_{k=1}^{\infty}2^{-k}a_k e_k
+\]
+is bounded, since $\norm{R(a)}\le\norm{a}_\infty\le\norm{a}_p$, and has dense range. Its coordinatewise extension has dense range and commutes with translation, hence transfers a dense $\Gamma$-orbit. The functional quotient gives the converse. This proves Proposition~\ref{prop:amp} as a consequence of the earlier theorem. The case $\Gamma^*=\varnothing$ is immediate separately.
+
+\paragraph{Preparation.} This unrefereed note was prepared with generative-AI assistance in proof development, literature checking, and drafting. The accompanying repository records the attribution audit and independent AI proof checks; these are not external peer review or formal proof-assistant certification.
+
+\begin{thebibliography}{9}
+\bibitem{Abbar}
+A.~Abbar, $\Gamma$-supercyclicity for bilateral shift operators and translation semigroups, \emph{Bulletin of L.N. Gumilyov Eurasian National University. Mathematics, Computer Science, Mechanics Series} \textbf{129}(4) (2019), 73--79. \href{https://bulmathmc.enu.kz/index.php/main/article/view/55}{Publisher record}.
+
+\bibitem{AK}
+A.~Abbar and Y.~Kuznetsova, $\Gamma$-supercyclicity of families of translates in weighted $L^p$-spaces on locally compact groups, \emph{J. Math. Anal. Appl.} \textbf{495}(1) (2021), 124709. \href{https://doi.org/10.1016/j.jmaa.2020.124709}{doi:10.1016/j.jmaa.2020.124709}. Preprint: \href{https://arxiv.org/abs/2005.11230v2}{arXiv:2005.11230v2} (2020).
+
+\bibitem{CEM}
+S.~Charpentier, R.~Ernst, and Q.~Menet, $\Gamma$-supercyclicity, \emph{J. Funct. Anal.} \textbf{270}(12) (2016), 4443--4465. \href{https://doi.org/10.1016/j.jfa.2016.03.005}{doi:10.1016/j.jfa.2016.03.005}.
+
+\bibitem{DDM}
+E.~D'Aniello, U.~B.~Darji, and M.~Maiuriello, Shift-like operators on $L^p(X)$, \emph{J. Math. Anal. Appl.} \textbf{515}(1) (2022), 126393. \href{https://doi.org/10.1016/j.jmaa.2022.126393}{doi:10.1016/j.jmaa.2022.126393}.
+
+\bibitem{DM}
+E.~D'Aniello and M.~Maiuriello, $\mathbb R$- and $\mathbb C$-supercyclicity for some classes of operators, \emph{Banach J. Math. Anal.} \textbf{19}(4) (2025), 73. \href{https://doi.org/10.1007/s43037-025-00463-0}{doi:10.1007/s43037-025-00463-0}. Preprint: \href{https://arxiv.org/abs/2404.04028v2}{arXiv:2404.04028v2}.
+
+\bibitem{OWR}
+S.~Grivaux, K.~Grosse-Erdmann, \'E.~Matheron, and A.~Peris (organizers), Mini-Workshop: New Horizons in Linear Dynamics, Universality, and the Invariant Subspace Problem, \emph{Oberwolfach Reports} \textbf{21}(2) (2024), 1069--1096, Report 19/2024. Contributions by M.~Maiuriello, pp.~1078--1081, and E.~D'Aniello, pp.~1081--1084; open problem on p.~1083. \href{https://doi.org/10.4171/OWR/2024/19}{doi:10.4171/OWR/2024/19}.
+\end{thebibliography}
+\end{document}

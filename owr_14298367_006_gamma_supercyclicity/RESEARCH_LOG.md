@@ -31,3 +31,20 @@ Goal: verify the supplied arbitrary-Gamma supercyclicity equivalence against the
 - Final status: proof PASS in the original setting; originality gate NOT CLEAR; conditional original-resolution publication does not proceed. The complete audit, analytic proof, source records, and verifier are the deliverable. An attributed application note would be a separate publication scope.
 - Remaining gap is bibliographic/editorial, not a gap in the verified equivalence: who first explicitly observed the application to this 2024 question is not established. A claim of new criterion/amplification is blocked by the concrete older results; further keyword searching alone cannot remove that overlap.
 - No GitHub release or Zenodo deposition is created, and no person is contacted.
+
+## 2026-09-23T13:58:09Z — Attributed-note publication checkpoint (90%)
+
+- The user explicitly authorized a concise attributed note, commitment to the repository, website publication, and a manual Zenodo upload package after the critical discussion of novelty. This supersedes the earlier audit-only deliverable; it does not establish new priority for the scalar criterion or amplification mechanism.
+- Prepared a five-page note with a direct finite-tail/Baire proof, the composition conjugacy, a separability caveat, and an explicit deduction from Abbar–Kuznetsova. Attribution includes Abbar (2019), Abbar–Kuznetsova (2020/2021), Charpentier–Ernst–Menet, D'Aniello–Darji–Maiuriello, D'Aniello–Maiuriello, and the original Oberwolfach report.
+- Independent adversarial manuscript and attribution reviews passed. Two optional precision edits specify the fair Bernoulli product and justify the large-time requirement in the prior-theorem deduction. Final source review is being bound to the resulting manuscript hash.
+- Compiled all five pages and visually inspected the final PDF. The compact source archive contains no third-party full texts; the standalone note requires no supplemental proof or computational premise.
+- Created the source archive, manual Zenodo kit with complete metadata and copy-and-paste fields, a dedicated website page, and download checksums. No Zenodo deposition, DOI, or GitHub release has been created.
+- Remaining work: independent package QA, archive compilation replay, homepage integration, commit/push, and live deployment verification. Estimate: 90% of the newly authorized publication task; mathematical verification remains complete within the stated scope.
+
+## 2026-09-23T14:01:18Z — Publication readiness checkpoint (95%)
+
+- Final mathematical approval is bound to TeX SHA-256 `5950e74b23cb2be12626cb0c8d266cf3e3d6040c0dcfe8908a1fb49741796c94`. All five final PDF pages pass visual review.
+- Compiling the extracted source archive reproduced the release PDF byte for byte (SHA-256 `cbc84a37bc7735675d833236c68c8194c99389b1398b21175f43998b9926e171`). The note's proof requires no code execution.
+- Independent package QA caught an invalid top-level article type in the optional Citation File Format metadata. Replaced that file with a preprint BibTeX citation, regenerated both archives and all website copies, and rechecked archive integrity and member equality. The source and PDF are unchanged.
+- The dedicated page is linked from the website homepage and sitemap. Only this effort's files and these scoped site additions will be committed. Unrelated working-tree changes remain untouched.
+- Publication task is 95% complete: local materials are ready; final package sign-off and remote deployment verification remain. No Zenodo deposition or GitHub release is authorized by this manual-package step or has been created.
