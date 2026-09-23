@@ -109,3 +109,16 @@ priority and human-review limitations remain calibrated.
 All reviewed scientific files are frozen at the round-2 hashes. Added only
 review reports and documentation of the completed cycle; regenerated packages
 will include these records. Publication and live-download checks remain.
+
+## 2026-09-23T13:51:19.083134+00:00 — Preprint revision published (100%)
+
+Two fresh adversarial rounds are complete; round 2 found no actionable
+mathematical, bibliographic, PDF, metadata or package defects. Version 1.0.1
+fixes the citation metadata and improves standalone discoverability and
+definitions without changing the theorem. Publication commit 27c8b68d1 is
+pushed. A successful descendant Pages deployment serves all 12 project files
+with bytes identical to the final checked local materials. The revised Zenodo
+kit includes both review reports and passes clean extraction/rebuild checks.
+Detailed hashes and deployment evidence are in audit/deployment.md.
+This final log entry is outside the intentional predeployment source snapshot.
+No journal-submission work was undertaken.
