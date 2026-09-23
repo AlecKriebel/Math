@@ -34,3 +34,22 @@ All timestamps use UTC. Completion percentages estimate progress toward verifica
 - Final extracted-package verifier, SHA-256 checks, and deterministic rebuild pass. Recorded deployment.md and public-download-checks.json.
 - Complete scoped result: the printed slow-variation existence question is resolved. No exact prior solution found in the bounded audit, but originality is not certified. The possible intended index-one variant remains outside scope.
 - Three-page paper and necessary support are published. Zenodo kit is prepared for the human to upload; no DOI or immutable GitHub release created.
+
+## 2026-09-23T13:34:00Z — Reopened preprint readiness audit (10%)
+
+- User requested sequential fresh adversarial reviewers, correction of worthwhile findings across all materials, and repetition until no actionable issues remain. Journal submission is outside scope.
+- Fresh round-1 reviewer is independently checking the proof and preprint. Parent is checking artifact consistency, archived execution and reader access. Baseline version 1.0.0 hashes saved in audit/preprint-baseline.json.
+- Existing archive checksums and optimized verifier replay pass. No external person is to be contacted.
+
+## 2026-09-23T13:39:12Z — Preprint revision checkpoint (65%)
+
+- Fresh round-1 review: mathematical PASS; two low-severity access findings confirmed. Added supporting-material URL to PDF and replaced broken local upload-kit README link with public download and explicit rebuild instructions.
+- Version 1.0.1 adds PDF bibliographic metadata. The theorem, proof, examples, priority qualification and verifier are unchanged. Active version identifiers, source archives, upload kit and website mirror regenerated globally; historical audits preserve their hashes.
+- Revised paper remains three pages. Extracted-archive checksums, normal/optimized verifier and deterministic archive reconstruction pass.
+- Fresh round-2 reviewer independently evaluating the revised version. No journal submission work or external contact.
+
+## 2026-09-23T13:43:46Z — Clean second review checkpoint (95%)
+
+- New independent round-2 reviewer: PASS, no actionable findings at any severity. Checked unchanged revised manuscript/PDF/verifier hashes, proof, examples, source and reference claims, computation and delivery.
+- Both low-severity findings from round 1 closed. No mathematical change was required. Stopping the review loop because the final fresh review is clean; this does not certify absence of all possible errors or establish absolute originality.
+- Final scientific files frozen at the round-2 hashes. Adding completed review evidence to the archives and publishing all synchronized version 1.0.1 materials. Remaining work: verify live downloads and record deployment.

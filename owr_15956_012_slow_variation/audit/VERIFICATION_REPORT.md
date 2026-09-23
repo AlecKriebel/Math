@@ -1,6 +1,6 @@
 # Verification and publication verdict
 
-Version 1.0.0, 23 September 2026 UTC. Unrefereed, AI-assisted mathematical audit.
+Version 1.0.1, 23 September 2026 UTC. Unrefereed, AI-assisted mathematical audit.
 
 **PASS for the exact printed limit-existence question.** The proof establishes the claimed limit for every nonzero nonnegative multiplicative function under F(2x)/F(x) -> 1. The all-dilations condition in the source implies this, and monotonicity also proves the converse. There is no remaining mathematical gap in that theorem identified by the audits.
 
@@ -37,6 +37,8 @@ All arithmetic is integer or rational; there is no floating-point tolerance. The
 
 ## Independent audits
 
+The original proof and final-review records below refer to version 1.0.0 and retain their historical hashes. Version 1.0.1 changes access information and PDF metadata only; its theorem, proof and verifier are unchanged. Two fresh sequential preprint reviews were completed, with the two access findings corrected between rounds; the second review found no actionable issues. Full disposition and exact final manuscript/PDF/verifier hashes are recorded in `preprint-readiness.md`.
+
 - `adversarial-proof.md`: detailed line-by-line check, second proof, eight boundary cases.
 - `independent-derivation.md`: weighted-probability derivation, quantitative bound and scope tests.
 - `priority-independent.md`: queries, closest predecessors, precise differences and access limits.
@@ -47,4 +49,4 @@ The final wording makes the nonzero standing assumption explicit and names the p
 
 ## Artifact checks
 
-The paper compiles with Tectonic and is three pages. Every page is visually reviewed at publication time. Source, metadata, scripts, audit reports and paper are included in the deterministic source archive; full third-party source publications are excluded. The package builder verifies local site links, mirror hashes, ZIP contents and SHA-256 manifests. Public deployment evidence is recorded separately in `deployment.md` after publication.
+The paper compiles with Tectonic and is three pages. Every page is visually reviewed at publication time. Source, metadata, scripts, audit reports and paper are included in the deterministic source archive; full third-party source publications are excluded. The package builder verifies local site links, mirror hashes, ZIP contents and SHA-256 manifests. Version-specific public deployment evidence is recorded separately in the repository; it is operational history outside the research archive.

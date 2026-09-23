@@ -46,7 +46,10 @@ def main():
         'zenodo/metadata.json', 'zenodo/UPLOAD.md',
         'audit/adversarial-proof.md', 'audit/independent-derivation.md',
         'audit/final-review.md', 'audit/priority-independent.md',
-        'audit/source-match.md', 'audit/VERIFICATION_REPORT.md']
+        'audit/source-match.md', 'audit/VERIFICATION_REPORT.md',
+        'audit/preprint-readiness.md']
+    required += [str(p.relative_to(ROOT)) for p in sorted(
+        (ROOT/'audit').glob('preprint-round-*.md'))]
     payload = {name: (ROOT/name).read_bytes() for name in required}
     metadata = json.loads(payload['zenodo/metadata.json'])
     for key in ('title', 'upload_type', 'publication_type', 'description', 'creators', 'license'):
@@ -75,6 +78,7 @@ def main():
         'zenodo-metadata.json': ROOT/'zenodo/metadata.json',
         'zenodo-upload.md': ROOT/'zenodo/UPLOAD.md',
         'verification-report.md': ROOT/'audit/VERIFICATION_REPORT.md',
+        'preprint-readiness.md': ROOT/'audit/preprint-readiness.md',
         'priority-audit.md': ROOT/'audit/priority-independent.md',
         'source-match.md': ROOT/'audit/source-match.md', 'LICENSES.md': ROOT/'LICENSES.md'}
     for name, source in files.items():

@@ -25,7 +25,7 @@ The odd-part ratio under slow variation: a note on the printed Hilberdink proble
 
 ## Publication date and version
 
-2026-09-23; version 1.0.0
+2026-09-23; version 1.0.1
 
 ## Description — paste the following
 
