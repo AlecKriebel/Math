@@ -26,3 +26,11 @@ All timestamps use UTC. Completion percentages estimate progress toward verifica
 - Created scoped website, Zenodo metadata and copy-and-paste guide, source archive and manual upload kit. Site visually inspected; local links and mirrored bytes checked.
 - Deterministic archives reconstructed byte-for-byte from extracted source; checksums and extracted verifier passed. No third-party full texts included.
 - Remaining work: commit and push the dedicated top-level folder and Pages mirror; verify public deployment and record it.
+
+## 2026-09-23T04:19:44Z — Final checkpoint (100%)
+
+- Publication commit 4c3429f08 pushed to main. Successful Pages run 35817668867 deployed a descendant containing this work.
+- Public HTML, PDF, source ZIP, upload-kit ZIP, metadata and guide all return HTTP 200 and match local bytes.
+- Final extracted-package verifier, SHA-256 checks, and deterministic rebuild pass. Recorded deployment.md and public-download-checks.json.
+- Complete scoped result: the printed slow-variation existence question is resolved. No exact prior solution found in the bounded audit, but originality is not certified. The possible intended index-one variant remains outside scope.
+- Three-page paper and necessary support are published. Zenodo kit is prepared for the human to upload; no DOI or immutable GitHub release created.
