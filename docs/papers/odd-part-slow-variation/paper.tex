@@ -1,0 +1,95 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\title{The odd-part ratio under slow variation:\\a note on the printed Hilberdink problem}
+\author{Alec Kriebel\\\small Independent researcher\\\small\href{https://orcid.org/0009-0001-9320-500X}{ORCID: 0009-0001-9320-500X}}
+\date{23 September 2026\quad(version 1.0.0)}
+\begin{document}
+\maketitle
+\begin{abstract}
+For a nonzero nonnegative multiplicative function whose summatory function is slowly varying, the ratio of its odd-part sum to its full sum converges to the reciprocal of the unweighted local Euler sum at 2. A short monotonicity argument covers both finite and infinite local sums. This answers the limit-existence question as printed in Hilberdink's Problem 3 in Oberwolfach Report 51/2017. The report's subsequent numerical prediction is incompatible with its printed hypothesis. We exhibit the discrepancy and distinguish the printed question from a possible index-one reformulation, which is not addressed here.
+\end{abstract}
+
+\section{Statement and proof}
+Throughout, let $f:\mathbb N\to[0,\infty)$ be nonzero and multiplicative: $f(mn)=f(m)f(n)$ for coprime $m,n$. This implies $f(1)=1$. Put
+\[
+ F(x)=\sum_{n\le x}f(n),\qquad
+ F_2(x)=\sum_{\substack{n\le x\\n\text{ odd}}}f(n),
+\]
+and set both sums to zero for $0\le x<1$. In particular $F(x)\ge1$ for $x\ge1$.
+
+\begin{theorem}\label{thm:main}
+If $F(2x)/F(x)\to1$ as $x\to\infty$, then
+\[
+ \lim_{x\to\infty}\frac{F_2(x)}{F(x)}
+ =\frac1A,\qquad A=\sum_{k=0}^\infty f(2^k)\in[1,\infty],
+\]
+where $1/\infty=0$. Thus the conclusion holds whenever $F(\lambda x)/F(x)\to1$ for every fixed $\lambda>0$.
+\end{theorem}
+\begin{proof}
+Write $a_k=f(2^k)$ and $A_K=\sum_{k=0}^K a_k$. The unique decomposition $n=2^k m$ with $m$ odd gives the exact identity
+\begin{equation}\label{eq:conv}
+ F(x)=\sum_{k\ge0}a_k F_2(x/2^k).
+\end{equation}
+For each $x$ only finitely many summands are nonzero. Fix $K\ge0$. Positivity and monotonicity imply
+\[
+ F(2^Kx)\ge\sum_{k=0}^K a_k F_2(2^{K-k}x)\ge A_KF_2(x).
+\]
+For this fixed $K$, the hypothesis gives
+\[
+ \frac{F(2^Kx)}{F(x)}
+ =\prod_{j=0}^{K-1}\frac{F(2^{j+1}x)}{F(2^jx)}\longrightarrow1.
+\]
+Consequently
+\begin{equation}\label{eq:upper}
+ \limsup_{x\to\infty}\frac{F_2(x)}{F(x)}\le\frac1{A_K}.
+\end{equation}
+Let $K\to\infty$. If $A=\infty$, nonnegativity proves the result. If $A<\infty$, \eqref{eq:conv} also gives $F(x)\le AF_2(x)$, so $F_2(x)/F(x)\ge1/A$ for every $x\ge1$. Together with \eqref{eq:upper}, this proves the claim.
+\end{proof}
+
+The proof neither assumes $F(x)\to\infty$ nor interchanges an infinite sum and a limit. In fact, monotonicity makes the single-dilation assumption equivalent to slow variation: for any fixed $\lambda>0$, bracket $\lambda$ between two integer powers of 2 and use the corresponding ratios.
+
+\section{The source discrepancy}
+Problem 3 in the open problems session of \cite{owr}, p.~3066, prints the slow-variation hypothesis and asks for the existence of $\lim F_2/F$. The catalogue entry OWR-15956-012 \cite{catalogue} repeats this existence question. Theorem~\ref{thm:main} answers it affirmatively.
+
+The report then predicts the different number
+\begin{equation}\label{eq:printed}
+ \left(\sum_{k\ge0}\frac{f(2^k)}{2^k}\right)^{-1}.
+\end{equation}
+For a direct discrepancy, take $f(n)=1/n$. With $H_N=\sum_{n=1}^N1/n$,
+\[
+ F(x)=H_{\lfloor x\rfloor},\qquad
+ F_2(x)=H_{\lfloor x\rfloor}-\tfrac12 H_{\lfloor x/2\rfloor}.
+\]
+The integral bounds $\log(N+1)\le H_N\le1+\log N$ imply slow variation and $F_2(x)/F(x)\to1/2$. Formula~\eqref{eq:printed}, however, equals $(\sum_{k\ge0}4^{-k})^{-1}=3/4$.
+
+For a completely multiplicative $f$, the exact identity
+\[
+ \frac{F_2(x)}{F(x)}=1-f(2)\frac{F(x/2)}{F(x)}
+\]
+gives $1-f(2)$ under the printed hypothesis. The report instead writes $1-f(2)/2+o(1)$, which follows from the different hypothesis $F(\lambda x)/F(x)\to\lambda$. This suggests a possible missing factor $\lambda$ in the source hypothesis, but does not establish the author's intended formulation. We make no claim to resolve that reformulation.
+
+\section{Scope and verification}
+The same argument works at any prime $p$: if $F(px)/F(x)\to1$, then the proportion of the weight on integers coprime to $p$ tends to $(\sum_{k\ge0}f(p^k))^{-1}$. This is a direct variant, not a separate priority claim.
+
+Both cases of the local sum occur. For $f(n)=1/n$, it equals 2. For the completely multiplicative indicator of the powers of 2, $F(x)=1+\lfloor\log_2x\rfloor$ and $F_2(x)=1$, so the local sum is infinite and the limit is zero. The bounded case is included, for example when $f$ is supported only at 1.
+
+The mathematical certificate is the proof above. The accompanying standard-library Python script checks the finite identities and inequalities using exact rational arithmetic, including non-completely-multiplicative examples and the source-discrepancy example. These finite checks are not a proof of the universal limiting assertion or a proof-assistant formalization. Separate audit notes record an independent argument, an adversarial check, source fidelity, and a bounded literature search.
+
+Related factor-ratio results appear in Yeats~\cite[Proposition~43]{yeats02}, under regular-variation assumptions on both factor sums. The Dirichlet-convolution theorem in \cite[Theorem~2]{yeats03} assumes regular variation of one factor sum and a strict absolute-convergence gap for the other factor. Here regularity is assumed only for the total sum. A bounded search found no exact earlier resolution of the printed question. This does not certify originality: some related full texts were inaccessible, and an earlier elementary observation or folklore result cannot be excluded.
+
+\paragraph{Attribution and status.}
+This unrefereed note was prepared from an AI-generated candidate supplied by the author. OpenAI Codex assisted with drafting, calculations, and separate AI audit agents. No human external referee was consulted. The contribution claimed is the explicit elementary resolution of the printed existence question and the correction of its associated constant; priority qualifications are recorded in the accompanying audit.
+
+\begin{thebibliography}{9}
+\bibitem{owr} F.~Bayart, K.~Matom\"aki, E.~Saksman, and K.~Seip (organizers), \emph{Mini-Workshop: Interplay between Number Theory and Analysis for Dirichlet Series}, Oberwolfach Reports \textbf{14} (2017), no.~4, 3035--3069; Problem~3 (T.~Hilberdink), pp.~3065--3066. Published 19 December 2018. \href{https://doi.org/10.4171/OWR/2017/51}{doi:10.4171/OWR/2017/51}.
+\bibitem{catalogue} UnsolvedMath, \emph{Odd-Density Limits for Multiplicative Functions}, OWR-15956-012. \url{https://www.unsolvedmath.com/problems/OWR-15956-012}. Accessed 23 September 2026.
+\bibitem{yeats02} K.~Yeats, \emph{Asymptotic Density in Combined Number Systems}, New York J. Math. \textbf{8} (2002), 63--83. \url{https://nyjm.albany.edu/j/2002/8-4p.pdf}.
+\bibitem{yeats03} K.~Yeats, \emph{A Multiplicative Analogue of Schur's Tauberian Theorem}, Canad. Math. Bull. \textbf{46} (2003), no.~3, 473--480. \href{https://doi.org/10.4153/CMB-2003-046-5}{doi:10.4153/CMB-2003-046-5}.
+\end{thebibliography}
+\end{document}
