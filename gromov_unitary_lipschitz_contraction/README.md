@@ -9,6 +9,7 @@ This answers the literal assertion in [Gromov's 2017 question [?24](i), p. 36](h
 **Priority:** the documented search located no earlier explicit resolution or exact quantitative map-space retraction. This is a qualified no-conflict result, not proof of first discovery. Cayley/Möbius transforms are classical; ordinary contraction without preserving the Lipschitz sublevel already follows from a standard logarithm chart. The note explicitly acknowledges this.
 
 Version 1.1 incorporates three editorial improvements from a [fresh adversarial preprint review](audit/preprint_round1.md): an explicit derivative variable, a companion-material link, and embedded PDF metadata. See the [revision response](audit/preprint_revision_response.md). The theorem and proof are unchanged.
+A [second fresh adversarial review](audit/preprint_round2.md) found no actionable issues. The [preprint-readiness record](audit/preprint_readiness.md) identifies the exact audited source and PDF.
 
 ## Read and verify
 

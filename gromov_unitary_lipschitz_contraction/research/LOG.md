@@ -45,3 +45,11 @@ The user requested sequential fresh adversarial reviews, correction of worthwhil
 ## 2026-09-23T13:41:16.791651+00:00 — Round 1 complete; revisions adopted (55% of this review cycle)
 
 Fresh reviewer found no required mathematical or framing correction. Accepted all three optional preprint improvements: identify θ as the angle derivative variable, link the standalone paper to companion materials, and populate embedded PDF metadata. Version 1.1 changes presentation and discoverability only; mathematical statements, proof and verification algorithms are unchanged. Updated active version labels and made the upload-kit filename derive from metadata. The next fresh adversarial review will inspect the revised theorem and its globally synchronized artifacts.
+
+## 2026-09-23T13:47:59.509138+00:00 — Review loop closed (100% of the requested preprint-readiness review; 95% of release refresh)
+
+Round 2, conducted by a new agent with a spectral-functional-calculus/tangent approach, found no actionable issues at any severity. Its source and PDF hashes match the final version 1.1 artifacts. All round-1 suggestions are addressed. The paper remains four pages; every page was visually checked. Both review rounds passed the exact and numerical diagnostics, and clean archive rebuilds are byte-identical. No further paper revision is warranted by the reviews.
+
+Current paper/source, citation metadata, README, site, copy-and-paste Zenodo fields, versioned upload kit and reproducibility archive are synchronized to v1.1. Final readiness records and round-2 review are included in the refreshed archives without changing the audited paper. Earlier v1.0 audit snapshots remain historical records.
+
+Release refresh is awaiting public byte checks. The intermediate Pages runs were canceled during checkout as newer commits from concurrent repository work arrived; the next successful build of main will contain the revision. No independent website defect was identified. No journal submission, external outreach, release tag, Zenodo deposit or DOI creation was performed.

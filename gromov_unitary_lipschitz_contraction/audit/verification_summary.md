@@ -4,6 +4,10 @@
 
 The stated theorem has a complete analytic proof for the two explicitly defined unitary-group length metrics. Independent reviewers found no remaining gap. The proof answers the literal printed assertion of Gromov [?24](i) with the stronger requirement of never increasing the Lipschitz constant. Reviews are internal, AI-assisted, and not external peer review.
 
+## Current preprint-readiness review
+
+Version 1.1 completed two additional fresh sequential reviews. Round 1 found no mathematical defect and suggested three optional presentation improvements, all adopted. Round 2 used an independent spectral/tangent route and found no actionable issues. See [the readiness record](preprint_readiness.md) for the reports and exact manuscript hashes.
+
 ## Checkable chain
 
 | Step | Input | Check | Output |

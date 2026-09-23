@@ -14,4 +14,4 @@ Fresh reviewer report: [preprint_round1.md](preprint_round1.md). Verdict: mathem
 
 The manuscript, README, citation file, website, Zenodo metadata and copy-and-paste fields now identify version 1.1. The release builder obtains the upload-kit filename from the metadata version. Public PDF copies, archive contents and checksums are regenerated from these sources. Historical reviews and version-1.0 log entries retain their original scope and hashes. Previous released files remain retrievable from Git history.
 
-A second new reviewer is assigned the revised manuscript independently; its completed report will be retained separately. This is internal AI-assisted scrutiny for preprint readiness, not external peer review or a journal-submission assessment.
+A second new reviewer independently examined the revised manuscript and returned **no actionable findings**. See [preprint_round2.md](preprint_round2.md) and the [readiness record](preprint_readiness.md). This is internal AI-assisted scrutiny for preprint readiness, not external peer review or a journal-submission assessment.
