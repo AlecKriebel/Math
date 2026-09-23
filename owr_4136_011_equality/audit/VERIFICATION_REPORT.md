@@ -57,3 +57,14 @@ are explicitly credited to FPS. No new-triangulation priority claim is made.
 
 See `geometric-audit.md`, `independent-proof.md`, `final-manuscript-audit.md`,
 `source-match.md`, and `priority-independent.md` for detailed evidence.
+
+## Additional preprint review cycle
+
+Two fresh adversarial subagents completed sequential reviews on 23 September
+2026 without reading earlier review conclusions. Round 1 began with the
+countable partition; round 2 began with a retained finite witness and its
+limit. Both found zero actionable mathematical or preprint-presentation issues.
+The manuscript, PDF, verifier, and version are unchanged. Two optional
+explanatory expansions were judged unnecessary for this concise preprint;
+the details and source-access limitation are recorded in the
+[readiness disposition](preprint-readiness.md), with links to both full reports.

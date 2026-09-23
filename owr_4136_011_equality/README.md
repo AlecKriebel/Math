@@ -25,6 +25,9 @@ was found in the bounded priority audit; global novelty is not certified.
 4. Consult [the verification report](audit/VERIFICATION_REPORT.md),
    [exact source match](audit/source-match.md), and
    [bounded priority audit](audit/priority-independent.md).
+5. The [preprint readiness record](audit/preprint-readiness.md) documents two
+   further fresh, sequential adversarial reviews. Both found no actionable
+   issue; the four-page manuscript and verifier remain unchanged.
 
 ## Publication files
 
