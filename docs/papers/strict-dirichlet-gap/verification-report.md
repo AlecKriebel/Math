@@ -6,6 +6,10 @@ The candidate proof is valid for the corrected statement linked by the user: no 
 
 The original report's missing square is real, not an OCR error. The current problem entry and the original Harrell–Stubbe discriminant give the intended squared-means expression. Strictness resolves that corrected saturation question, not the neighboring upper-growth-bound or general-mean questions. The literal misprinted expression can attain equality after dilation; see source-match.md.
 
+## Additional preprint review, version 1.0.1
+
+Two fresh sequential adversarial subagents independently rechecked the manuscript. Round one found no mathematical issue; the parent then added a supporting-package hyperlink and PDF metadata. Round two found no actionable issue and requested no further revision. The mathematical argument is unchanged. See [the consolidated record](https://github.com/AlecKriebel/Math/blob/main/owr_3389_016_strict_gap/audit/PREPRINT_REVIEW.md) and its two full reports. This supplements the original review routes below.
+
 ## Evidence and review routes
 
 | Route | Mechanism and evidence | Status | Remaining gap |

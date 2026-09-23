@@ -1,4 +1,4 @@
-# Zenodo upload fields — version 1.0.0
+# Zenodo upload fields — version 1.0.1
 
 This is a prepared upload kit, not an existing Zenodo record. No DOI is reserved or published.
 
@@ -18,7 +18,7 @@ Unzip `zenodo-upload-kit.zip`. Upload `files/paper.pdf`, `files/source-and-verif
 
 **Affiliation:** Independent researcher
 
-**Version:** 1.0.0
+**Version:** 1.0.1
 
 **Publication date:** 2026-09-23 (UTC; adjust if the first public deposit date differs)
 

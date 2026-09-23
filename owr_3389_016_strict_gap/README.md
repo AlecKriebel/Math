@@ -1,6 +1,6 @@
 # Nonattainment in the Harrell–Stubbe Dirichlet gap inequality
 
-Alec Kriebel · ORCID [0009-0001-9320-500X](https://orcid.org/0009-0001-9320-500X) · Version 1.0.0 · 2026-09-23 (UTC)
+Alec Kriebel · ORCID [0009-0001-9320-500X](https://orcid.org/0009-0001-9320-500X) · Version 1.0.1 · 2026-09-23 (UTC)
 
 For every nonempty bounded open Ω in Rⁿ and every finite J≥1, the Dirichlet eigenvalues satisfy
 
@@ -19,6 +19,10 @@ Thus the **corrected saturation question** [OWR-3389-016](https://www.unsolvedma
 3. Run `python3 verification/verify.py` from this folder. Python 3.10+ and the standard library suffice. The deterministic output must agree with [results.json](verification/results.json). There are 7,016 exact checks across 1,312 certified box/index cases, including 600 zero gaps, 12 repeated-ground cases, and three detected negative controls.
 
 The script audits algebra and explicit model spectra. It does **not** machine-prove the functional analysis or the theorem for arbitrary domains. The proof and audits carry that burden.
+
+## Additional preprint review
+
+Version 1.0.1 adds a direct supporting-package link and PDF metadata; the mathematical text is unchanged from version 1.0.0. The [review record](audit/PREPRINT_REVIEW.md) tracks fresh adversarial reviews and the disposition of every finding. Earlier audits and deployment checkpoints remain historical records of the versions they reviewed.
 
 ## Publication artifacts
 

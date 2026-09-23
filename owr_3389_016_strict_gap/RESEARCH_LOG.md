@@ -33,3 +33,15 @@ All timestamps UTC. Completion percentages estimate progress toward validating a
 ## 2026-09-23T04:04:43Z — Publication preparation checkpoint — 95%
 
 Three-page paper, source ZIP, Zenodo kit, metadata, and dedicated static site are ready. Final local PDF, schema, archive, checksum, script, and browser checks pass. Independent package review is completing. Final remote deployment will be logged in DEPLOYMENT.md after publication, rather than rewriting an already verified archive. No DOI has been minted.
+
+## 2026-09-23T13:34:27Z — Additional adversarial preprint review opened — 25%
+
+The user requested fresh adversarial review cycles, repairs propagated through all publication artifacts, and a new independent reviewer after repairs, continuing until a complete round identifies no actionable issues. This percentage tracks the new preprint-readiness review, not reversal of the prior mathematical conclusion. A fresh reviewer is independently checking the proof before reading previous audit verdicts. The parent reproduced all 7,016 exact checks and is checking publication consistency. No journal submission, outside communication, or DOI deposit is in scope.
+
+## 2026-09-23T13:40:53Z — First new adversarial round complete — 65%
+
+The fresh round-one reviewer found no new actionable issue after independent proof reconstruction, source checks, PDF inspection, and reproducing all 7,016 exact checks. The parent repaired two minor presentation defects: missing package link in the standalone paper and missing PDF metadata. Version 1.0.1 retains the exact mathematical argument and remains three pages. Current citation, upload fields, and site versions are synchronized; old audit records remain explicitly historical. A fresh second reviewer will attack the revised manuscript and package before publication.
+
+## 2026-09-23T13:48:05Z — Fresh second round clean; preprint-ready — 95%
+
+Round two independently reconstructed the complete proof before consulting old verdicts, freshly inspected all PDF pages and selected primary sources, reproduced normal/optimized/extracted verification, and rebuilt both current ZIPs byte-for-byte. It found no actionable issue and requested no revision. The two-round stopping criterion is met. Version 1.0.1 has only presentation changes; current TeX/PDF hashes are frozen in the round-two and consolidated reports. Both reports are being included in the refreshed source/Zenodo/site payloads. Mathematical and preprint review is 100% complete; final publication and live-download checks remain. No journal, outreach, or DOI work is in scope.

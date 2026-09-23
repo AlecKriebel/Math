@@ -19,6 +19,7 @@ FILES = [
     'audit/VERIFICATION_REPORT.md', 'audit/proof-audit.md',
     'audit/independent-derivation.md', 'audit/source-match.md',
     'audit/priority-audit-independent.md', 'audit/final-manuscript-audit.md',
+    'audit/PREPRINT_REVIEW.md', 'audit/preprint-parent-checks.md',
     'verification/verify.py', 'verification/results.json', 'verification/README.md',
     'sources/README.md', 'sources/source-inventory.json',
     'site/index.html', 'site/style.css', 'zenodo/metadata.json',
@@ -56,6 +57,8 @@ def main():
         json.dumps({'metadata': meta}, indent=2, ensure_ascii=False)+'\n')
     files = FILES + [p for p in ['audit/package-audit.md', 'audit/DELIVERY_CHECKS.md']
                      if (ROOT/p).is_file()]
+    files += sorted(str(p.relative_to(ROOT))
+                    for p in (ROOT/'audit').glob('preprint-adversarial-round*.md'))
     entries = {name:(ROOT/name).read_bytes() for name in files}
     source_checks = manifest(entries)
     (ROOT/'SOURCE_SHA256SUMS.txt').write_bytes(source_checks)
@@ -78,6 +81,7 @@ def main():
     web = {**payload, 'zenodo-upload-kit.zip':kit_zip.read_bytes(),
            'index.html':entries['site/index.html'], 'style.css':entries['site/style.css'],
            'verification-report.md':entries['audit/VERIFICATION_REPORT.md'],
+           'preprint-review.md':entries['audit/PREPRINT_REVIEW.md'],
            'priority-audit.md':entries['audit/priority-audit-independent.md'],
            'source-audit.md':entries['audit/source-match.md']}
     web['SHA256SUMS.txt'] = manifest(web)
