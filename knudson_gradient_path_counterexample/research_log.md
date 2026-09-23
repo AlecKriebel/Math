@@ -63,3 +63,15 @@ The final page and kit now await the publication push and live verification.
 The source kit freezes this predeployment research-log snapshot; postdeployment
 checks will be recorded separately in audit/deployment.md and the repository
 log. No mathematical or manuscript changes are planned.
+
+## 2026-09-23T03:46:26Z — Published checkpoint (100%)
+
+GitHub Pages built publication commit 2e5c47d93 successfully at
+2026-09-23T03:44:39Z. All 12 live project files returned HTTP 200 and matched
+local bytes, and the live page was opened and verified in the browser.
+The final exact source archive and its byte-reproducible Zenodo kit passed a
+clean extraction check. See audit/deployment.md for hashes and evidence.
+The archived research log remains the intentional predeployment snapshot;
+this entry does not change the mathematical or download artifacts.
+All requested tasks are complete, with the documented historical-priority
+limits and manual DOI assignment left explicit.
