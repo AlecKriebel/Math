@@ -1,0 +1,441 @@
+        A counterexample to Kourovka Notebook Problem 16.45
+                                               Alec Kriebel
+                                         Independent researcher
+                                       ORCID: 0009-0001-9320-500X
+
+                                           21 September 2026
+                                      Version 1.0.0; unrefereed preprint
+
+
+
+                                                  Abstract
+          Let b(G) be the largest size of an inclusion-minimal base, over all permutation representations
+      of a ﬁnite group G, with bases taken for the permutation image. Let µ0 (G) be the largest size of
+      an independent subset of G, not necessarily generating G. We construct an explicitly speciﬁed
+      aﬃne group of order 100920 for which
+
+                                           b(G) = 3 < 4 = µ0 (G).
+
+      The upper bound covers faithful and nonfaithful actions and does not depend on enumerating
+      the subgroups of the aﬃne group. Exact, independently implemented Python and C++ veriﬁers
+      certify the small matrix-group inputs and the explicit witnesses. The obstruction is a central
+      involution of a complement which is not normal in the ambient aﬃne group.
+
+
+1     Introduction and conventions
+Cameron’s Problem 16.45 in the Kourovka Notebook asks whether two invariants of every ﬁnite
+group coincide: the largest size of an inclusion-minimal permutation base, and the largest size
+of an independent subset. The inequality b(G) ≤ µ0 (G) is known. We give a negative answer by
+constructing an aﬃne group G = F229 ⋊H, where H = ∼ SL2 (5) acts through explicitly given matrices,
+and proving
+                                 bf (G) = b(G) = 3 < 4 = µ0 (G).
+Here bf restricts the base invariant to faithful actions. No minimum-order assertion is made.
+    The distinction between faithful and arbitrary actions is essential to the proof: for the comple-
+ment, bf (H) = 2 whereas b(H) = 3. Every subgroup of G not containing its translation subgroup
+has faithful base invariant at most two. Restricting an irredundant intersection family to such a
+subgroup bounds faithful bases in G; the normal-subgroup structure then covers all nonfaithful
+actions. The upper bound is structural and requires no enumeration of the subgroup lattice of the
+order-100920 aﬃne group.
+
+1.1   Deﬁnitions and relation to earlier work
+A subset S of a ﬁnite group X is independent if x ∈/ hS \ {x}i for each x ∈ S; the empty subset is
+allowed. Write µ0 (X) for its maximum possible size. For an action ρ : X → Sym(Ω), a base has
+pointwise stabilizer ker ρ in X. Minimal means inclusion-minimal. Write b(X) for the maximum
+size of a minimal base over all actions, and bf (X) for the corresponding maximum restricted to
+
+
+                                                      1
+faithful actions. Even if Ω is inﬁnite, a base contains a ﬁnite subbase: choose a point moved by
+each nonidentity element of the ﬁnite permutation image. Consequently every inclusion-minimal
+base is ﬁnite.
+    These conventions give b(1) = bf (1) = µ0 (1) = 0. Cameron’s 2010 exposition uses b2 for our b
+and µ∗ for our µ0 ; his 2014 preprint uses b2 and µ0 , and his 2024 published account uses b2 and µ↑ ,
+respectively [2, 3, 4]. These sources allow nonfaithful representations. The foundational subgroup
+and Boolean meet-semilattice formulations below are due to Cameron [3, 4]; we include proofs to
+ﬁx the normality and action-kernel conventions used in our construction.
+    The September 2026 notebook lists Problem 16.45 without an attached solution [1]. A focused
+search of the notebook, its update, and the cited primary literature found no earlier resolution.
+This reports the scope of the search, not a guarantee of bibliographic priority.
+
+1.2   Subgroup formulations
+Proposition 1 (Subgroup formulation). For a ﬁnite group X, b(X) is the largest t for which
+subgroups L1 , . . . , Lt satisfy
+
+                                    ∩
+                                    t                     ∩
+                               N=         Li ◁ X,                  Lj > N       (1 ≤ i ≤ t).
+                                    i=1                  j6=i
+
+An empty intersection is X. The same description with N = 1 gives bf (X), and
+
+                                             b(X) = max bf (X/N ).                                  (1)
+                                                    N ◁X
+
+Proof. The point stabilizers of a minimal base have precisely these properties, with N the action
+kernel. Conversely, let such subgroups be given and let X act on the disjoint union of the left coset
+spaces X/Li . Its kernel is
+                                                        (               )
+                          ∩                              ∩
+                               CoreX (Li ) = CoreX                 Li       = CoreX (N ) = N.
+                           i                                   i
+
+Choose the identity coset in each component. Their common stabilizer is N , and deleting any one
+enlarges it, so these points are a minimal base. This argument uses cores only to compute the
+kernel; it does not replace the irredundant family by a family of cores. Formula (1) follows by
+factoring an action through its kernel and, conversely, pulling back a faithful quotient action. The
+empty family handles the trivial group and trivial actions consistently.
+
+   Call a subgroup family meet-irredundant if every member is essential to its total intersection,
+without any normality requirement. Let c∩ (X) be its largest size.
+
+Lemma 2. For every ﬁnite group X, c∩ (X) = µ0 (X). In particular, b(X) ≤ µ0 (X).
+
+Proof. For a meet-irredundant family L1 , . . . , Lt , choose
+                                                                  
+                                                        ∩
+                                              xi ∈            Lj  \ Li .
+                                                        j6=i
+
+Every xj with j 6= i lies in Li , whereas xi does not. Therefore the xi are distinct and independent.
+Conversely, from an independent set {x1 , . . . , xt } take Li = hxj : j 6= ii. The element xi witnesses
+the essentiality of Li . Neither direction asserts that the total intersection is normal.
+
+                                                           2
+Lemma 3 (Restriction). If L1 , . . . , Lt is meet-irredundant in X, then, for each i,
+
+                                             t − 1 ≤ µ0 (Li ).
+
+If its total intersection is 1, the stronger bound t − 1 ≤ bf (Li ) holds.
+
+Proof. Inside Li , the family Li ∩ Lj for j 6= i remains meet-irredundant: the original witness for Lj
+lies in Li and witnesses this assertion. Its total intersection equals the original total intersection.
+Apply Lemma 2, or the faithful subgroup formulation when that intersection is 1.
+
+   For completeness, an irredundant family gives a top-preserving Boolean meet-semilattice em-
+bedding                              ∩
+                              A 7−→    Li      (A ⊆ {1, . . . , t}).
+                                           ∈A
+                                          i/
+
+The witness xi distinguishes images of sets diﬀering at i; intersection corresponds to intersection of
+                           ∩
+index sets. The bottom is i Li . There is no assertion that joins are preserved, or that this bottom
+is the identity. Thus the proof retains the precise semilattice convention in the notebook.
+
+
+2    The complement and its two diﬀerent base invariants
+All matrices in the construction below are over F29 . Put
+              (       )            (        )
+                0 28                  2 7
+         A=          ,        B=           ,         H = hA, Bi ≤ SL2 (29),     Z = {I, −I}.
+                1 0                  12 28
+
+Direct multiplication gives
+                                        A2 = B 3 = (AB)5 = −I.                                     (2)
+The standard spherical triangle presentation
+
+                                    A5 = ha, b | a2 = b3 = (ab)5 = 1i
+
+and simplicity of A5 show that H/Z =   ∼ A5 : the projective image is a nontrivial quotient of this
+presentation, since A ∈
+                      / Z. Consequently |H| = 120. The explicit ﬁnite isomorphism described
+next also identiﬁes H with SL2 (5); the structural proof below uses only the quotient H/Z =   ∼ A5 .
+   There is also a wholly ﬁnite certiﬁcation of these facts, independent of the triangle presentation.
+The supplied veriﬁers generate exactly 120 matrices and construct an explicit isomorphism from
+SL2 (5) by mapping              (     )              (      )
+                                  0 4                  0 4
+                                         7−→ A,                7−→ B.
+                                  1 0                  1 1
+The Python veriﬁer additionally constructs the quotient map onto A5 by mapping A to (1 2)(3 4)
+and B to (1 3 5), and checks that its kernel is exactly Z. Thus the small-group identiﬁcations can
+alternatively be read as explicit ﬁnite certiﬁcates, not as catalogue lookups.
+    We record the elementary group facts needed below. Every proper subgroup of A5 lies in a
+subgroup isomorphic to A4 , D10 , or S3 . Here D10 denotes a group of order 10. One way to see this
+is to use the natural action on ﬁve letters. An intransitive subgroup either ﬁxes a letter or has orbit
+sizes 2 + 3. A proper transitive subgroup has order 5, 10, 15, 20, or 30. Orders 15 and 20 would
+give a normal Sylow 5-subgroup, whose normalizer in A5 has order 10. Order 30 is impossible: an
+index-two quotient is trivial on every 3-cycle, and 3-cycles generate A5 . The remaining cases lie in
+
+                                                    3
+a Sylow-5 normalizer. This normalizer has order 10 because the order-20 normalizer in S5 contains
+odd permutations.
+    Each of A4 , D10 , S3 has independence number 2. For A4 , a generating set contains a 3-cycle
+and some element outside its cyclic subgroup; these two generate A4 , since there is no subgroup of
+order 6. Its proper subgroups have independence number at most 2. For a dihedral group of order
+2q, q prime, a generating set contains either a nontrivial rotation and a reﬂection, or two distinct
+reﬂections, and two such elements suﬃce. It follows, by deleting one element from any independent
+set in A5 , that
+                                            µ0 (A5 ) ≤ 3.                                        (3)
+The natural degree-ﬁve action has a minimal base of size 3, so equality holds. Simplicity, used above
+and below, also has an elementary check: the nonidentity conjugacy-class sizes are 15, 20, 12, 12,
+and no proper nontrivial union of classes together with the identity has order dividing 60.
+
+Lemma 4. The complement satisﬁes
+
+                                 µ0 (H) = b(H) = 3,      bf (H) = 2.
+
+Proof. The only involution in SL2 (29) is −I: a matrix squaring to I is diagonalizable with eigenval-
+ues ±1, and determinant one forces both signs to agree. Therefore every even-order subgroup of H
+contains Z. Every odd-order subgroup injects into A5 and, by the preceding subgroup description,
+is trivial or cyclic of order 3 or 5.
+    Let S be independent in H. If its images in H/Z, as an indexed family, are independent, then
+|S| ≤ 3. Otherwise some s ∈ S lies in KZ, where K = hS \ {s}i, but does not lie in K. Thus Z
+is not contained in K, so K has odd order and is trivial or cyclic of prime order. Since S \ {s} is
+independent, |S| ≤ 2. This proves µ0 (H) ≤ 3.
+    For the faithful invariant, a subgroup family with intersection 1 must have an odd-order member,
+since all even-order members contain Z. If this member is trivial, a minimal such family has size
+1. If it has prime order, some other member intersects it trivially, so a minimal family has size at
+most 2. Nontrivial subgroups of orders 3 and 5 give a faithful family of size 2, proving bf (H) = 2.
+    For explicit witnesses to the remaining lower bounds, let
+                           (      )              (       )             (     )
+                            0 28                 12 24                  25 3
+                    R1 =         ,        R2 =         ,        R3 =         .                    (4)
+                            1 0                   0 17                   4 4
+
+They belong to H, since R1 = A, R2 = BAB 2 and R3 = AR2 (AB)2 . Direct multiplication gives
+Ri2 = −I and
+                    |hR2 , R3 i| = 8, |hR1 , R3 i| = 12, |hR1 , R2 i| = 20.
+For example, the corresponding products have orders 4, 3, 10, and their projective images generate
+dihedral groups of orders 4, 6, 10; adjoining the common central involution doubles these orders.
+The subgroup generated by all three has order divisible by lcm(8, 12, 20) = 120, and is therefore H.
+Hence the three matrices are independent and µ0 (H) = 3. Their three omission subgroups intersect
+in Z, and each is essential. Indeed, the ﬁrst two intersect in hR3 i, of order 4, and the third cannot
+contain R3 . Thus they also give b(H) ≥ 3. The upper bound b(H) ≤ µ0 (H) ﬁnishes the proof.
+
+
+3    A small aﬃne lemma
+Lemma 5. Let p be an odd prime and let C be a cyclic 2-subgroup of F×
+                                                                    p . For the faithful scalar
+                                0
+semidirect product L = Fp ⋊ C, µ (L) ≤ 2.
+
+                                                     4
+Proof. Put P = (Fp , +). A subgroup J with J ∩ P = 1 injects into C, so is a cyclic 2-group and
+has independence number at most 1. Otherwise J contains P , and is P ⋊ D for some D ≤ C. The
+case D = 1 is cyclic of prime order. In the other cases, every generating set for J contains an
+element x whose projection generates D, because a cyclic 2-group has a unique maximal subgroup.
+If x = (a, λ) and |D| = m, then                     
+                                                  ∑
+                                                  m−1
+                                       x m = a         λj , 1 = 1,
+                                                  j=0
+
+so hxi is a complement of order m. Some other generator y is outside this complement. The
+subgroup hx, yi projects onto D; if its intersection with P were trivial it would have order m and
+would equal hxi, a contradiction. Thus it contains P and equals J. Every independent generating
+set of every subgroup has size at most 2.
+Lemma 6. Every line stabilizer in H ≤ SL2 (29) is cyclic of order dividing 4. Consequently H acts
+irreducibly on V = F229 .
+Proof. For a line W , the scalar action on W deﬁnes a homomorphism HW → F×               29 . In a basis
+adapted to W , an element in its kernel has the form ( 10 u1 ), because its determinant is one. If u 6= 0,
+this element has order 29, which cannot divide |H| = 120. Thus the homomorphism is injective,
+and
+                                     |HW | | gcd(120, 28) = 4.
+Since |H| > 4, the whole group cannot stabilize a line.
+
+
+4     The aﬃne counterexample and the all-actions upper bound
+Set
+                                      G = V ⋊ H,          V = F229 ,
+with multiplication
+                                      (v, h)(w, k) = (v + hw, hk).
+The group order is 292 · 120 = 100920; write π : G → H for projection.        This description speciﬁes
+the action, not just the abstract factors of a semidirect product.
+Lemma 7. If K ≤ G does not contain V , then bf (K) ≤ 2. More precisely, if K ∩ V = 1, then
+µ0 (K) ≤ 3 and bf (K) ≤ 2; if dimF29 (K ∩ V ) = 1, then µ0 (K) ≤ 2.
+Proof. Every additive subgroup of V is an F29 -subspace, since 29 is prime. If K ∩ V = 1, then π
+embeds K in H. Both µ0 and bf are monotone for subgroups: for the latter, use the same subgroup
+family with trivial intersection in the larger group. Apply Lemma 4.
+    Otherwise W = K ∩ V is a line, normal in K, so π(K) ≤ HW is cyclic of order dividing 4. A
+Sylow 2-subgroup of K maps isomorphically onto π(K) and complements W . Its action on W is
+faithful by Lemma 6. Thus K is isomorphic to a group covered by Lemma 5, which gives µ0 (K) ≤ 2
+and hence bf (K) ≤ 2. These are all possibilities for a subgroup not containing V .
+Proposition 8. bf (G) ≤ 3.
+Proof. Let K1 , . . . , Kt be any meet-irredundant family with total intersection 1. Some Ki does not
+contain V , since otherwise the intersection would contain V . Lemmas 3 and 7 give
+                                          t − 1 ≤ bf (Ki ) ≤ 2.
+No transitivity, maximality, or conjugacy assumption on the subgroups was made.
+
+                                                    5
+Proposition 9. b(G) ≤ 3, including all nonfaithful actions.
+Proof. Every nontrivial normal subgroup N ◁ G contains V . To prove this, irreducibility gives
+N ∩ V = 1 or V . In the ﬁrst case [N, V ] ≤ N ∩ V = 1, so N ≤ CG (V ). The matrix action is faithful,
+hence CG (V ) = V , forcing N = 1. This contradicts the choice of N .
+   It follows that every nonfaithful action of G factors through G/V = H, and its minimal bases
+have size at most b(H) = 3. Faithful actions are covered by Proposition 8. This proves the stated
+bound for every representation.
+
+
+5    Explicit lower bounds and the exact independence number
+Let e1 = (1, 0)T and e2 = (0, 1)T . With the matrices in (4), deﬁne
+
+                              S = {(e1 , I), (0, R1 ), (0, R2 ), (0, R3 )} ⊆ G.
+
+The three linear elements project to the independent triple in H. Thus no one of them is gener-
+ated by the other three elements of S, since its projection would then be generated by the other
+two matrices. The translation (e1 , I) is not in the zero-translation complement. Therefore S is
+independent and µ0 (G) ≥ 4.
+    In fact S generates G: it contains generators for H, and the orbit of a nonzero vector under an
+irreducible group spans V . Its omission subgroups have the following explicitly veriﬁed orders:
+
+                 Omitted element      Order of the subgroup generated by the others
+                 (e1 , I)                                       120
+                 (0, R1 )                                 841 · 8 = 6728
+                 (0, R2 )                                841 · 12 = 10092
+                 (0, R3 )                                841 · 20 = 16820
+
+The latter three formulas also follow structurally: each corresponding pair subgroup of H has order
+greater than 4, so cannot stabilize a line and is irreducible on V .
+Proposition 10. µ0 (G) = 4.
+Proof. It remains to give the upper bound. By Lemma 2, consider any meet-irredundant family
+K1 , . . . , Kt , with no assumption on its total intersection. If all members contain V , quotienting by
+the genuinely normal subgroup V gives an irredundant family in H, so t ≤ 3. Otherwise choose
+Ki 6⊇ V . If Ki ∩ V = 1, then t − 1 ≤ µ0 (Ki ) ≤ 3. If Ki ∩ V is a line, then t − 1 ≤ µ0 (Ki ) ≤ 2. In
+either case t ≤ 4.
+
+    There is also a faithful minimal base of size 3. Deﬁne subgroups
+
+                                     L1 = h(e1 , I), (0, −I)i,
+                                     L2 = h(e2 , I), (0, −I)i,
+                                     L3 = h(e1 + e2 , I), (2e1 , −I)i.
+
+Each has order 58. Their pairwise intersections are
+
+                                      L1 ∩ L2 = {1, (0, −I)},
+                                      L1 ∩ L3 = {1, (2e1 , −I)},
+                                      L2 ∩ L3 = {1, (−2e2 , −I)}.
+
+                                                     6
+Their total intersection is 1. The three identity cosets in the disjoint union G/L1 t G/L2 t G/L3
+therefore form a faithful minimal base of size 3. This particular action has degree 3(100920/58) =
+5220.
+
+Theorem 11 (Counterexample). For the explicitly speciﬁed group
+                                                ⟨(        ) (        )⟩
+                                                   0 28    2 7
+                               G = F229 ⋊               ,                 ,
+                                                   1 0    12 28
+
+one has
+                        |G| = 100920,           bf (G) = b(G) = 3 < 4 = µ0 (G).
+This gives a negative answer to Kourovka Notebook Problem 16.45.
+
+
+6    The normality obstruction is explicit
+Let Mi = hS \ {si }i for the four elements of S in the order displayed above. Then
+
+                              ∩
+                              4
+                                    Mi = Z0 ,        Z0 = {(0, I), (0, −I)}.
+                              i=1
+
+Indeed, M1 = H and the other three are the preimages of the three pair subgroups in Lemma 4,
+whose intersection is Z. The subgroup Z0 is not normal in G, because
+
+                              (e1 , I)(0, −I)(−e1 , I) = (2e1 , −I) ∈
+                                                                    / Z0 .
+
+Thus this independent 4-set gives an irredundant intersection family, and a Boolean meet-semilattice
+of rank 4, with nonnormal bottom. The theorem proves that no rank-four embedding can have
+normal bottom.
+    Taking normal cores does not repair this example. Simplicity of H/Z =     ∼ A5 implies that the
+three proper pair subgroups of H have core Z. Since M2 , M3 , M4 contain V , their cores in G are
+V ⋊ Z. The complement M1 = H has trivial core, since every nontrivial normal subgroup of G
+contains V , while H ∩ V = 1. Hence the four cores are
+
+                                     1,   V ⋊ Z,     V ⋊ Z,     V ⋊ Z.
+
+The ﬁrst member alone gives their total intersection. All four-way essentiality has been lost. No
+quotient by the nonnormal subgroup Z0 is used anywhere in the argument.
+
+
+7    Exact certiﬁcation and a boundary case
+The supplied Python and C++ veriﬁers are separate implementations and use exact integers only.
+Python uses only its standard library. The second implementation is C++17 and reads no Python-
+produced group table. Both reconstruct the complement and enumerate all 76 actual subgroups,
+not just conjugacy representatives. Their subgroup sets were compared as sets of actual matrices
+and agree.
+   Coverage of the subgroup enumeration follows by adjoining every element outside every sub-
+group already found, starting with the identity subgroup. For any( subgroup
+                                                                       )
+                                                                               K, a generating
+sequence for K is a path in this search. The two veriﬁers check all 75
+                                                                     4   = 1215450  four-element
+
+
+                                                      7
+families of proper subgroups of H and ﬁnd none meet-irredundant. Every subfamily of an ir-
+redundant
+(75)
+             family is irredundant, so this excludes all larger ranks as well. They then check all
+  3  =   67525 three-element families and ﬁnd none both faithful and minimal. Together with the
+four-family check, this independently certiﬁes µ0 (H) = 3 and bf (H) = 2 using the explicit lower
+witnesses. The mathematical proofs above do not require trusting an optimizer.
+    They also verify the independent aﬃne 4-set, generate all 100920 elements of G without storing
+its full multiplication table, check the omission orders and the nonnormal intersection, and verify
+the faithful 3-family. The Python veriﬁer explicitly checks all 30 line stabilizers, all of which are in
+fact cyclic of order 4, and includes the following adversarial test.
+    The characteristic restriction cannot be discarded. Over F11 , use
+                                (      )            (       )          (       )
+                                 0 10                   0 2              6 10
+                        A11 =         ,     B11 =           ,     C=          .
+                                 1 0                    5 1              0 2
+
+The ﬁrst two generate a complement of order 120; C has order 10 and stabilizes the distinct lines
+W1 = h(1, 0)i and W2 = h(1, 4)i. In F211 ⋊ hA11 , B11 i, the four subgroups
+
+                          W1 ⋊ hCi,     W2 ⋊ hCi,       V ⋊ hC 5 i,   V ⋊ hC 2 i
+
+have total intersection 1. Their deletion intersections have respective orders 11, 11, 5, 2, so they
+give a faithful minimal base of size 4. This explicitly falsiﬁes the tempting but incorrect claim
+that every such characteristic gives the counterexample. The equality gcd(120, 28) = 4, and the
+resulting line-subgroup bound, are essential.
+    Earlier exploratory runs used integer-programming models on complete small subgroup lattices.
+Their code and logs are retained for provenance, but no ﬂoating-point MILP upper bound is a
+premise of this proof. The exact certiﬁcate and the structural all-actions argument replace those
+exploratory results. The accompanying audit directory records a separate structural review, a newly
+written exact checker, and fresh replays of the supplied veriﬁcation programs. These are AI-assisted
+checks, not external human peer review or a proof-assistant formalization. The structural lemmas
+and all-actions argument remain mathematical proof obligations for a reader; ﬁnite computations
+certify the explicit inputs and witnesses.
+
+
+Author and reproducibility statement
+Alec Kriebel is the author. This publication revision and its veriﬁcation were prepared with OpenAI
+Codex, including separate AI agents for structural, computational, and source audits. No external
+researcher was contacted during this review. The manuscript is an unrefereed preprint.
+    The source, exact certiﬁcates, independent checks, and audit reports are available with this
+paper at https://aleckriebel.github.io/Math/papers/kourovka-16-45/. From the source
+directory, make verify runs the two supplied exact veriﬁers and compares their complete subgroup
+sets; python3 audit_2026_09_21/independent_check.py runs the additional checker. Python
+uses only the standard library, and the second supplied implementation requires a C++17 compiler.
+Neither the mathematical proof nor these ﬁnal checks depend on the exploratory optimization
+software.
+
+
+
+
+                                                    8
+References
+[1] E. I. Khukhro and V. D. Mazurov (eds.), Unsolved Problems in Group Theory: The Kourovka
+    Notebook, 21st edition, September 2026 update, Problem 16.45, printed p. 100. https://kourov
+    kanotebookorg.wordpress.com/wp-content/uploads/2026/09/21tkt.pdf. Separate update:
+    https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/09/21upd.pdf.
+
+[2] P. J. Cameron, The symmetric group, 7, 22 July 2010. https://cameroncounts.wordpress.
+    com/2010/07/22/the-symmetric-group-7/.
+
+[3] P. J. Cameron, Some measures of ﬁnite groups related to permutation bases, arXiv:1408.0968,
+    2014, especially Propositions 3.1–3.2 and Corollary 3.3. https://arxiv.org/abs/1408.0968.
+
+[4] P. J. Cameron, Independence and bases: Theme and variations, Model Theory 3 (2024), no. 2,
+    417–431. https://doi.org/10.2140/mt.2024.3.417.
+
+[5] P. J. Cameron, Groups, lattices and bases, 6 August 2014. https://cameroncounts.wordpres
+    s.com/2014/08/06/groups-lattices-and-bases/.
+
+
+
+
+                                               9
+

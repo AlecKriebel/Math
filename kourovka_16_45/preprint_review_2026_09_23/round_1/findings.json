@@ -1,0 +1,72 @@
+{
+  "review_id": "preprint_adversary_round1",
+  "completed_at_utc": "2026-09-23T15:07:31Z",
+  "completion_estimate_percent": 100,
+  "scope": "Full frozen version 1.0.0 manuscript, independent mathematical review, fresh finite reconstruction, supplied-verifier source inspection and replay, primary definitions, and all nine PDF pages; preprint readiness only",
+  "input": {
+    "tex": "input_proof.tex",
+    "tex_sha256": "4791868796b3236bd6f14386c82185df8b1af5a9aa7e9b957dd427f90d582367",
+    "pdf": "input_proof.pdf",
+    "pdf_sha256": "a6c12a2b8bcba3b1ca9d9a07a89052f2e6cad5e97b580d501882c355b9b6184b"
+  },
+  "verdict": "minor_text_correction_required_no_theorem_defect_found",
+  "actionable_findings_count": 1,
+  "theorem_affecting_findings_count": 0,
+  "optional_style_findings_count": 0,
+  "findings": [
+    {
+      "id": "R1-01",
+      "severity": "minor",
+      "priority": 3,
+      "category": "mathematical_wording",
+      "title": "Name the projective pairs as the dihedral generators",
+      "file": "input_proof.tex",
+      "start_line": 266,
+      "end_line": 268,
+      "pdf_page": 4,
+      "reasoning": "The pronoun 'their' grammatically refers to the products. The individual projective products have orders 2, 3, 5 and generate cyclic groups of those orders. The corresponding pairs of projective involutions generate the claimed dihedral groups of orders 4, 6, 10.",
+      "proposed_repair": "State the product orders separately, then say that the corresponding pairs of involutions in H/Z generate dihedral groups of orders 4, 6, 10.",
+      "theorem_affected": false,
+      "evidence": "Fresh exact check confirms product orders 4, 3, 10, pair-subgroup orders 8, 12, 20, and total generated group order 120.",
+      "status_against_frozen_input": "open",
+      "coordination_note": "Parent reported this correction underway; the revised version was not reviewed here."
+    }
+  ],
+  "coverage": {
+    "all_mathematical_sections": "pass_except_R1-01",
+    "definitions_and_kernel_conventions": "pass",
+    "A5_and_complement_facts": "pass",
+    "line_and_affine_subgroup_lemmas": "pass",
+    "faithful_upper_bound": "pass",
+    "nonfaithful_upper_bound": "pass",
+    "independence_upper_and_lower_bounds": "pass",
+    "explicit_faithful_base": "pass",
+    "normality_and_cores": "pass",
+    "characteristic_11_boundary": "pass",
+    "primary_source_definitions": "pass",
+    "full_pdf_rendering": "pass",
+    "independent_finite_checker": "pass",
+    "supplied_verifier_replays": "pass",
+    "revised_manuscript": "not_reviewed",
+    "upload_package_builder": "outside_this_review"
+  },
+  "independent_checker": {
+    "file": "independent_finite_check.py",
+    "sha256": "37fce76f970e0781d45285983d79769d844724a68e80564c7af81be7227dc789",
+    "output": "independent_finite_results.json",
+    "status": "all checks passed",
+    "complement_order": 120,
+    "complement_subgroups": 76,
+    "four_families_checked": 1215450,
+    "irredundant_four_families": 0,
+    "three_families_checked": 67525,
+    "faithful_minimal_three_families": 0,
+    "affine_order": 100920
+  },
+  "exact_remaining_gaps": [
+    "Correct R1-01 in the frozen manuscript.",
+    "No unresolved mathematical proof gap identified; this is not a proof-assistant formalization or an infallibility guarantee.",
+    "Bibliographic search supports only the manuscript's expressly bounded priority statement.",
+    "A fresh reviewer must evaluate the revised manuscript for the requested clean-round stopping criterion."
+  ]
+}
