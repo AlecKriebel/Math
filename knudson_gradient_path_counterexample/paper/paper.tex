@@ -1,0 +1,151 @@
+\documentclass[11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,booktabs}
+\usepackage[margin=1in]{geometry}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newcommand{\F}{\mathbb F}
+\title{A four-vertex counterexample to Knudson's\protect\\ persistence-gradient conjecture}
+\author{Alec Kriebel\thanks{Independent researcher. ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}.}}
+\date{23 September 2026 \quad (version 1.0.0)}
+\begin{document}
+\maketitle
+\begin{abstract}
+Knudson conjectured that every nonincident persistence pair is joined by
+exactly one gradient path in the discrete vector field obtained by retaining
+the incident persistence pairs. We give a simplex-wise filtration of a
+triangulated interval with four vertices and three edges for which one such
+pair has no gradient path. This disproves Conjecture 2 in his contribution
+to Oberwolfach Report 29/2008. The proof consists of three boundary reductions
+and an inspection of the matching. The same example works over any field.
+\end{abstract}
+
+\section{The statement and the example}
+Let $P$ be the persistence pairing of a finite simplicial complex whose
+filtration adds one simplex at a time, with coefficients in $\F_2$.
+For a codimension-one face relation $\sigma<\tau$, put
+\[
+ V_P=\{(\sigma,\tau)\in P:\sigma<\tau\}.
+\]
+Knudson's Conjecture 2 \cite[p.~1629]{Knudson} predicts a unique gradient
+path in this fixed field for every nonincident pair in $P$.
+We use the directed incidence graph: unmatched incidences point from a
+simplex to a facet, and matched incidences point upward. A gradient path
+from a critical edge starts at an endpoint and then follows matched upward
+steps alternating with downward steps to the other endpoint.
+
+Take vertices $a,b,c,d$ and edges $cd,bd,ac$, with no higher simplices.
+Here $xy$ denotes $\{x,y\}$. The underlying space is the interval
+$a\! -\! c\! -\! d\! -\! b$.
+Insert the seven nonempty simplices in the order
+\begin{equation}\label{eq:order}
+             a,\ b,\ c,\ d,\ cd,\ bd,\ ac.
+\end{equation}
+Every face appears before its coface, so this is an admissible filtration.
+The indices $1,\ldots,7$ are filtration values, not a discrete Morse function
+whose own gradient is claimed to equal $V_P$.
+
+\begin{theorem}
+For the filtration \eqref{eq:order}, the finite persistence pairs and their
+incident submatching are
+\[
+ P=\{(d,cd),(c,bd),(b,ac)\},\qquad V_P=\{(d,cd)\}.
+\]
+The pair $(b,ac)$ is nonincident, and there are zero gradient paths from
+$ac$ to $b$ in $V_P$. Consequently Knudson's Conjecture 2 is false.
+\end{theorem}
+
+\begin{proof}
+Order the vertex rows as $a<b<c<d$ and edge columns as $cd<bd<ac$.
+Over $\F_2$, the usual left-to-right persistence reduction \cite{ELZ}
+eliminates repeated latest nonzero rows using earlier reduced columns:
+\begin{align*}
+R(cd)&=\partial(cd)=c+d,\\
+R(bd)&=\partial(bd)+R(cd)=(b+d)+(c+d)=b+c,\\
+R(ac)&=\partial(ac)+R(bd)=(a+c)+(b+c)=a+b.
+\end{align*}
+The three pivots are respectively $d,c,b$, giving precisely the stated
+pairs. The vertex $a$ is unpaired. Of those pairs, only $d<cd$ is an
+incidence, giving the stated $V_P$.
+
+For an independent check of the pairing, $cd$ kills the component born at
+$d$; $bd$ merges the component born at $c$ into the older one born at $b$;
+and $ac$ merges that surviving component into the oldest one, born at $a$.
+This is the same pairing in ordinary $H_0$.
+
+The complete directed incidence graph has the arrows
+\[
+ ac\to a,\quad ac\to c,\quad bd\to b,\quad bd\to d,
+ \quad d\to cd,\quad cd\to c.
+\]
+It is acyclic. In particular $V_P$ is a discrete gradient, and both $b$
+and $ac$ are critical. Either first step from $ac$ reaches $a$ or $c$;
+both are unmatched vertices, so the path stops. The reachable set is
+exactly $\{ac,a,c\}$, which excludes $b$.
+\end{proof}
+
+\section{Why cancellation does not repair the fixed field}
+The reduction of $ac$ uses $R(bd)$ to remove its pivot at $c$. But the
+persistence pair $(c,bd)$ is nonincident and contributes no upward step
+to $V_P$. Algebraic column elimination therefore need not trace a path
+in that field.
+
+There is a unique path for the earlier pair $(c,bd)$:
+\[
+                  bd\to d\to cd\to c.
+\]
+Reversing it gives the new matching
+$V'=\{(d,bd),(c,cd)\}$, in which the path
+\[
+                  ac\to c\to cd\to d\to bd\to b
+\]
+now exists. This observation concerns $V'$, whereas the conjecture specifies
+$V_P$. It is consistent with the role of ordered cancellations in the
+surface simplification results of Bauer, Lange, and Wardetzky
+\cite[Lemma~9]{BLW}; we claim no counterexample to those results.
+
+\paragraph{Other coefficients.}
+Orient each edge from its alphabetically earlier to its later vertex.
+Over any field the identical elimination, with subtraction, gives
+\[
+ R(cd)=d-c,\qquad
+ R(bd)=(d-b)-(d-c)=c-b,\qquad
+ R(ac)=(c-a)-(c-b)=b-a.
+\]
+All three pivot coefficients are $1$. The pairs, matching, and absence of
+a path are unchanged. No minimality claim is needed or made.
+
+\paragraph{Reproducibility and status.}
+The companion package provides two standard-library Python verifiers:
+one uses boundary reduction and union-find; the other reconstructs the
+$H_0$ rank invariant from component partitions and also checks signed
+reduction and path reversal. The proof above is independent of these
+programs. A documented literature audit completed on 23 September 2026
+located no earlier refutation of the stated conjecture. This is a bounded
+search, not a guarantee of priority; in particular, an author bibliography
+lists related work in preparation. The audit records inaccessible sources.
+This unrefereed note and its checks were prepared with OpenAI Codex and
+separate AI audit agents, from a candidate construction supplied by the
+author from prior AI-assisted work.
+
+\begin{thebibliography}{9}
+\bibitem{Knudson}
+K.~P. Knudson, Persistent homology and discrete Morse theory,
+in \emph{Computational Algebraic Topology}, Oberwolfach Report 29/2008,
+\emph{Oberwolfach Reports} \textbf{5} (2008), 1628--1630.
+Conjecture 2, p.~1629.
+\href{https://doi.org/10.4171/OWR/2008/29}{doi:10.4171/OWR/2008/29}.
+
+\bibitem{ELZ}
+H. Edelsbrunner, D. Letscher, and A. Zomorodian,
+Topological persistence and simplification,
+\emph{Discrete Comput. Geom.} \textbf{28} (2002), 511--533.
+\href{https://doi.org/10.1007/s00454-002-2885-2}{doi:10.1007/s00454-002-2885-2}.
+
+\bibitem{BLW}
+U. Bauer, C. Lange, and M. Wardetzky,
+Optimal topological simplification of discrete functions on surfaces,
+\emph{Discrete Comput. Geom.} \textbf{47} (2012), 347--377.
+\href{https://doi.org/10.1007/s00454-011-9350-z}{doi:10.1007/s00454-011-9350-z}.
+\end{thebibliography}
+\end{document}
