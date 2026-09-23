@@ -1,0 +1,7 @@
+# Version 1.0.1 final delivery
+
+2026-09-23T15:25:56.194444+00:00 — Review-cycle and publication-delivery completion estimates: **100%**. Two fresh sequential adversarial reviews are complete; every accepted finding was repaired, and the final round found zero actionable issues. The reviewed manuscript and package-builder hashes remain unchanged. The final source and manual upload kit include both reports, pass all manifest/checksum and deterministic rebuild checks, and pass the newly included checker plus packaging regression from a fresh extraction.
+
+Publication commit: `621ef9e549bc2cea10ff907ce5bf07c70172c91a`, pushed to main. The Pages build succeeded. All six live publication files (paper page, PDF, source ZIP, manual Zenodo kit, homepage, and sitemap) returned HTTP 200 and matched the local final bytes. See `delivery_validation.json`, `package_replay.log`, and `deployment.json`.
+
+Strongest verified result: the exact displayed group has order 100920 and b_f(G)=b(G)=3<4=mu-prime(G). No actionable proof or reproduction gap remains within the documented AI review scope. This remains an unrefereed preprint; no external human review, complete formalization, exhaustive priority, or minimum-order result is claimed. License selection remains an author decision at manual Zenodo deposit. No release, deposit, DOI, journal work, or external contact was performed. This post-delivery record is excluded from the frozen archives to avoid circular hashes.
