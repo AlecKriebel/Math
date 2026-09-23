@@ -1,8 +1,8 @@
-# Zenodo upload: version 1.0
+# Zenodo upload: version 1.1
 
 The prepared record is a **Publication / Preprint**, containing the paper and its supporting reproducibility archive. No DOI is assigned here and no deposit has been submitted.
 
-1. Extract `gromov-unitary-retraction-v1.0-zenodo-upload.zip`.
+1. Extract `gromov-unitary-retraction-v1.1-zenodo-upload.zip`.
 2. Create a new upload at https://zenodo.org/uploads/new . Upload `paper.pdf` and `reproducibility.zip` from the extracted folder. The ZIP contains editable source, review reports, scripts, recorded results, research notes, licenses, and a SHA-256 manifest. The small metadata and instruction files may also be uploaded if desired.
 3. Copy the fields from `COPY_PASTE.txt`. The JSON contains the same data in the documented deposition metadata format; it is not a promise that the web form has a JSON-import button.
 4. Choose **No** for an existing DOI. If desired, use **Get a DOI now!** to reserve one. A reserved DOI is registered only after you publish. The manuscript deliberately contains no invented DOI.

@@ -51,7 +51,8 @@ def main():
                  'COPY_PASTE.txt': (out / 'COPY_PASTE.txt').read_bytes(),
                  'UPLOAD.md': (out / 'UPLOAD.md').read_bytes()}
     kit_files['SHA256SUMS.txt'] = ''.join(f'{digest(data)}  {name}\n' for name, data in sorted(kit_files.items())).encode()
-    kit = out / 'gromov-unitary-retraction-v1.0-zenodo-upload.zip'
+    version = json.loads((out / 'metadata.json').read_text())['version']
+    kit = out / f'gromov-unitary-retraction-v{version}-zenodo-upload.zip'
     archive(kit, kit_files)
     (out / 'SHA256SUMS.txt').write_text(f'{digest(repro.read_bytes())}  reproducibility.zip\n{digest(kit.read_bytes())}  {kit.name}\n')
     # Only publish to this repository if its Pages root is present. This also

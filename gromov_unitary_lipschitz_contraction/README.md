@@ -1,12 +1,14 @@
 # A Lipschitz-nonincreasing deformation of small unitary-valued maps
 
-Alec Kriebel · [ORCID 0009-0001-9320-500X](https://orcid.org/0009-0001-9320-500X) · Version 1.0 · 2026-09-23 UTC
+Alec Kriebel · [ORCID 0009-0001-9320-500X](https://orcid.org/0009-0001-9320-500X) · Version 1.1 · 2026-09-23 UTC
 
 **Result:** the candidate proof passes independent algebraic and geometric audits. For a unit-round sphere and either the unnormalized Hilbert–Schmidt or operator-norm length metric on U(N), the maps with Lipschitz constant at most 1/2 strongly deformation retract onto the constant maps. The deformation multiplies the Lipschitz constant by at most `(1-t²)/(1+t²)`. It also preserves the strict sublevel.
 
 This answers the literal assertion in [Gromov's 2017 question [?24](i), p. 36](https://www.ihes.fr/~gromov/wp-content/uploads/2018/08/101-problemsOct1-2017.pdf), catalogued as [AMR-066-0025](https://www.unsolvedmath.com/problems/AMR-066-0025). It is an unrefereed, AI-assisted preprint, not an externally peer-reviewed or formally machine-checked result.
 
 **Priority:** the documented search located no earlier explicit resolution or exact quantitative map-space retraction. This is a qualified no-conflict result, not proof of first discovery. Cayley/Möbius transforms are classical; ordinary contraction without preserving the Lipschitz sublevel already follows from a standard logarithm chart. The note explicitly acknowledges this.
+
+Version 1.1 incorporates three editorial improvements from a [fresh adversarial preprint review](audit/preprint_round1.md): an explicit derivative variable, a companion-material link, and embedded PDF metadata. See the [revision response](audit/preprint_revision_response.md). The theorem and proof are unchanged.
 
 ## Read and verify
 
