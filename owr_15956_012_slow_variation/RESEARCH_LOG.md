@@ -53,3 +53,9 @@ All timestamps use UTC. Completion percentages estimate progress toward verifica
 - New independent round-2 reviewer: PASS, no actionable findings at any severity. Checked unchanged revised manuscript/PDF/verifier hashes, proof, examples, source and reference claims, computation and delivery.
 - Both low-severity findings from round 1 closed. No mathematical change was required. Stopping the review loop because the final fresh review is clean; this does not certify absence of all possible errors or establish absolute originality.
 - Final scientific files frozen at the round-2 hashes. Adding completed review evidence to the archives and publishing all synchronized version 1.0.1 materials. Remaining work: verify live downloads and record deployment.
+
+## 2026-09-23T13:51:39.034995+00:00 — Preprint revision delivered (100%)
+
+- Version 1.0.1 published on main and GitHub Pages. Successful deployment run 35869708450 includes commit 6c23a59bb.
+- All nine current public files match the final local files byte-for-byte. Recorded version-specific deployment and checksum evidence.
+- Two fresh adversarial rounds, two delivery findings fixed, final round clean. Mathematical content unchanged; ready for the stated preprint scope. No journal submission undertaken.
