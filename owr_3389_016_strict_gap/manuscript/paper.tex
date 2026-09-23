@@ -1,0 +1,167 @@
+\documentclass[10pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\usepackage{microtype}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newcommand{\Dom}{\operatorname{Dom}}
+\newcommand{\R}{\mathbb R}
+\title{Nonattainment in the Harrell--Stubbe\protect\\ Dirichlet gap inequality}
+\author{Alec Kriebel\thanks{Independent researcher. ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}.}}
+\date{September 23, 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+The universal Harrell--Stubbe bound for a gap between consecutive Dirichlet eigenvalues is never attained on a nonempty bounded open subset of Euclidean space at a finite index. This answers negatively the corrected saturation question recorded in the 2009 Oberwolfach report on low eigenvalues. We prove the stronger statement that Yang's first inequality is strict at every real threshold above the lowest eigenvalue. The proof uses the classical spectral remainder and a short obstruction to finite spectral support of a coordinate times an eigenfunction. No boundary regularity or connectedness assumption is needed.
+\end{abstract}
+
+\section{Statement and relation to the problem}
+Let $n\ge1$ and let $\Omega\subset\R^n$ be nonempty, bounded and open. Write
+$0<E_1\le E_2\le\cdots$ for the eigenvalues of the form-defined Dirichlet Laplacian, with multiplicity, and put
+\[
+ A_J=\frac1J\sum_{j=1}^J E_j,\qquad
+ B_J=\frac1J\sum_{j=1}^J E_j^2,\qquad
+ M_1=\frac{n+2}{n}A_J,\qquad M_2^2=\frac{n+4}{n}B_J.
+\]
+Harrell and Stubbe's gap bound \cite[Proposition 6]{HS} is
+$M_1^2-M_2^2\ge (E_{J+1}-E_J)^2/4$. The saturation question appears in \cite[p.~415]{OWR}, in the final part of the problems on commutator methods, and is listed as OWR-3389-016 in \cite{UM}. Earlier, Ashbaugh \cite[p.~12]{Ash02} had explicitly left strictness of Yang's first inequality undecided while proving strict versions of the other classical bounds.
+
+\begin{theorem}\label{thm:gap}
+For every such $\Omega$ and every integer $J\ge1$,
+\begin{equation}\label{eq:gap}
+ \boxed{\quad M_1(J)^2-M_2(J)^2>
+ \frac14\bigl(E_{J+1}-E_J\bigr)^2.\quad}
+\end{equation}
+Consequently, no domain and finite index attain the gap bound.
+\end{theorem}
+
+\paragraph{Normalization of the source.}
+The report \cite[p.~415]{OWR} defines
+$M_p=((n+2p)n^{-1}J^{-1}\sum_{j\le J}E_j^p)^{1/p}$ but prints
+$M_1^2-M_2$ in its gap displays. We use $M_1^2-M_2^2$, the dimensionally consistent expression in \cite[Proposition 6]{HS} and the current reviewed statement of \cite{UM}. This correction is explicit: the literal unsquared expression is not the scale-homogeneous universal gap bound. The result concerns the saturation question only, not the adjacent question about quantitative growth bounds. Finite nonattainment is compatible with sharp leading Weyl asymptotics and supplies no uniform positive deficit.
+
+\section{The equality obstruction}
+Set $H=-\Delta_\Omega^D$. It is the self-adjoint operator of the form
+$q(u)=\int_\Omega|\nabla u|^2$ with domain $H_0^1(\Omega)$, and
+\begin{equation}\label{eq:dom}
+ \Dom H=\{u\in H_0^1(\Omega):-\Delta u\in L^2(\Omega)
+ \text{ in distributions}\}.
+\end{equation}
+Boundedness gives compact resolvent and $E_1>0$ by comparison with an enclosing box. No assertion that $\Dom H=H^2(\Omega)\cap H_0^1(\Omega)$ is used.
+Choose a real orthonormal eigenbasis $(u_j)$.
+
+If $u$ is real, $Hu=Eu$, and $\|u\|_2=1$, coordinate multiplication preserves $H_0^1(\Omega)$, and the product rule and \eqref{eq:dom} give, for $w=x_\alpha u$,
+\begin{equation}\label{eq:comm}
+ w\in\Dom H,\qquad (H-E)w=-2\partial_\alpha u.
+\end{equation}
+Integration by parts, justified by approximation in $H_0^1$, also gives
+\begin{equation}\label{eq:one}
+ \langle w,(H-E)w\rangle
+ =-2\int_\Omega x_\alpha u\,\partial_\alpha u=1.
+\end{equation}
+Indeed, this last identity holds for compactly supported smooth approximants by integrating $\partial_\alpha(x_\alpha u^2)$, and passes to the limit since $\Omega$ is bounded.
+
+\begin{lemma}\label{lem:support}
+For every real normalized eigenfunction $u$ and every coordinate $\alpha$, $x_\alpha u$ does not belong to a finite spectral subspace of $H$.
+\end{lemma}
+\begin{proof}
+Suppose $w=x_\alpha u$ were a finite sum of eigenfunctions. Then $w\in\Dom H^2$ and $v=(H-E)w=-2\partial_\alpha u\in\Dom H$. Differentiating $(-\Delta-E)u=0$ inside $\Omega$ gives $(-\Delta-E)v=0$ in distributions. By \eqref{eq:dom}, $(H-E)v=0$. Self-adjointness now implies
+\[
+ \|v\|_2^2=\langle (H-E)w,v\rangle
+ =\langle w,(H-E)v\rangle=0.
+\]
+This contradicts $\langle w,v\rangle=1$ in \eqref{eq:one}.
+\end{proof}
+
+\section{Strict Yang inequality and the gap}
+We include the spectral remainder so the argument can be checked without an external inequality. This is the standard commutator sum-rule mechanism underlying \cite{HS,LP,HS10}; the point needed here is that its nonnegative remainder cannot vanish.
+
+\begin{proposition}\label{prop:yang}
+For every real $z>E_1$,
+\begin{equation}\label{eq:strict}
+ \sum_{E_j<z}(z-E_j)^2
+ <\frac4n\sum_{E_j<z}(z-E_j)E_j.
+\end{equation}
+\end{proposition}
+\begin{proof}
+Put $a_{jk}^{(\alpha)}=\langle u_k,x_\alpha u_j\rangle$.
+The spectral theorem, \eqref{eq:comm}, and \eqref{eq:one} yield
+\begin{equation}\label{eq:sumrules}
+ \sum_k(E_k-E_j)|a_{jk}^{(\alpha)}|^2=1,
+ \qquad
+ \sum_k(E_k-E_j)^2|a_{jk}^{(\alpha)}|^2
+ =4\|\partial_\alpha u_j\|_2^2.
+\end{equation}
+Both series converge absolutely. The second is a squared $L^2$ norm; absolute convergence of the first follows from Cauchy--Schwarz and $x_\alpha u_j\in L^2$.
+
+For $t_j=z-E_j$ and $L=\{j:E_j<z\}$, multiplying these identities by $t_j^2$ and $t_j$, summing over coordinates, and subtracting gives
+\[
+ nt_j^2-4t_jE_j
+ =\sum_{\alpha,k}t_j(E_k-E_j)(z-E_k)|a_{jk}^{(\alpha)}|^2.
+\]
+Sum over the finite set $L$. Since $a_{jk}^{(\alpha)}=a_{kj}^{(\alpha)}$, the terms with $j,k\in L$ cancel in pairs. Those with $E_k=z$ vanish. Thus
+\begin{equation}\label{eq:remainder}
+\begin{aligned}
+ &4\sum_{E_j<z}(z-E_j)E_j-n\sum_{E_j<z}(z-E_j)^2\\
+ &\quad=\sum_{\alpha=1}^n\sum_{E_j<z}\sum_{E_k>z}
+ (z-E_j)(E_k-E_j)(E_k-z)|a_{jk}^{(\alpha)}|^2.
+\end{aligned}
+\end{equation}
+All rearrangements are legitimate: for fixed $j$, each summand is a linear combination of the two absolutely summable weights in \eqref{eq:sumrules}, and $L$ is finite.
+The right side is nonnegative. If it were zero, then, since $z>E_1$,
+$a_{1k}^{(\alpha)}=0$ for every $E_k>z$ and every $\alpha$.
+The subspace spanned by $E_k\le z$ is finite dimensional, so $x_\alpha u_1$ would lie in a finite spectral subspace, contrary to Lemma~\ref{lem:support}.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:gap}]
+Fix $J$ and write $D=M_1^2-M_2^2$. The monic quadratic
+\begin{equation}\label{eq:quad}
+ Q(t)=\frac1J\sum_{j=1}^J\left[(t-E_j)^2-\frac4n(t-E_j)E_j\right]
+ =(t-M_1)^2-D
+\end{equation}
+satisfies $Q(E_J)\le0$: if $E_J>E_1$, apply Proposition~\ref{prop:yang}; otherwise every summand is zero. Terms at a repeated threshold vanish, so no simplicity assumption is needed.
+
+If $z=E_{J+1}>E_1$, Proposition~\ref{prop:yang} gives $Q(z)<0$.
+Consequently $D>0$ and
+\[
+ E_J\ge M_1-\sqrt D,\qquad E_{J+1}<M_1+\sqrt D.
+\]
+Subtracting and squaring the nonnegative gap yields \eqref{eq:gap}.
+If instead $E_{J+1}=E_1$, all the first $J+1$ eigenvalues equal $E_1$, the gap is zero, and $D=4E_1^2/n^2>0$.
+\end{proof}
+
+\paragraph{Verification and provenance.}
+The accompanying package records independent AI proof reviews, source checking, and a dated literature audit. Its dependency-free Python script checks algebra and exact box spectra, including multiplicities and scaling; it is not a formal verification of the analytic proof. The candidate proof and this exposition were developed with AI assistance. The trace identities and non-strict inequalities are classical; the contribution presented here is the explicit nonattainment conclusion and its short equality argument. Priority is limited to the literature inspected in the accompanying audit.
+
+\begin{thebibliography}{9}
+\bibitem{HS} E.~M. Harrell II and J. Stubbe,
+On trace identities and universal eigenvalue estimates for some partial differential operators,
+\emph{Trans. Amer. Math. Soc.} \textbf{349} (1997), 1797--1809.
+\href{https://doi.org/10.1090/S0002-9947-97-01846-1}{doi:10.1090/S0002-9947-97-01846-1}.
+Author preprint: \href{https://web.ma.utexas.edu/mp_arc-bin/mpa?yn=95-431}{mp\_arc 95-431} (1995).
+\bibitem{LP} M. Levitin and L. Parnovski,
+Commutators, spectral trace identities, and universal estimates for eigenvalues,
+\emph{J. Funct. Anal.} \textbf{192} (2002), 425--445.
+\href{https://doi.org/10.1006/jfan.2001.3913}{doi:10.1006/jfan.2001.3913}.
+\bibitem{HS10} E.~M. Harrell II and J. Stubbe,
+Universal bounds and semiclassical estimates for eigenvalues of abstract Schr\"odinger operators,
+\emph{SIAM J. Math. Anal.} \textbf{42} (2010), 2261--2274.
+\href{https://doi.org/10.1137/090763743}{doi:10.1137/090763743}.
+Preprint: \href{https://arxiv.org/abs/0808.1133}{arXiv:0808.1133}.
+\bibitem{Ash02} M.~S. Ashbaugh,
+The universal eigenvalue bounds of Payne--P\'olya--Weinberger, Hile--Protter, and H C Yang,
+\emph{Proc. Indian Acad. Sci. (Math. Sci.)} \textbf{112} (2002), 3--30.
+\href{https://doi.org/10.1007/BF02829638}{doi:10.1007/BF02829638}.
+\bibitem{OWR} M.~S. Ashbaugh, R.~D. Benguria, R.~S. Laugesen and T. Weidl (organizers),
+Low Eigenvalues of Laplace and Schr\"odinger Operators,
+\emph{Oberwolfach Reports} \textbf{6} (2009), 355--428;
+Problems contributed by all participants, saturation question of E.~M. Harrell and J. Stubbe, p.~415.
+\href{https://doi.org/10.4171/OWR/2009/06}{doi:10.4171/OWR/2009/06}.
+\bibitem{UM} Unsolved Math, OWR-3389-016, reviewed problem statement,
+\url{https://www.unsolvedmath.com/problems/OWR-3389-016}, accessed September 23, 2026.
+\end{thebibliography}
+\end{document}

@@ -12,7 +12,7 @@ All timestamps UTC. Completion percentages estimate progress toward validating a
 - Mathematical audit provisionally supports the proof after spelling out the form-defined Dirichlet operator domain. No novelty claim is established.
 - No communications with outside individuals; no GitHub release or DOI deposit authorized by this workflow stage.
 
-## 2026-09-23T03:56:00Z — Proof and source checkpoint — 55%
+## 2026-09-23T03:48:42Z — Proof and source checkpoint — 55%
 
 - Functional-analysis referee found no mathematical gap; domain, convergence, and extension details supplied in audit/proof-audit.md.
 - An initially independent derivation rediscovered the candidate mechanism, then supplied a different and shorter self-adjointness obstruction to equality. This simplification is undergoing cross-review.
@@ -20,3 +20,16 @@ All timestamps UTC. Completion percentages estimate progress toward validating a
 - The primary report prints M_1^2-M_2 despite defining M_p as a root mean. Treat the missing square as a disclosed dimensional typo; do not silently claim a literal match.
 - Independent priority audit ongoing. No direct predecessor identified yet; absence of a match is not a proof of originality.
 - Computational checks are being prepared as algebra/example checks, not a proof certificate for arbitrary domains.
+
+## 2026-09-23T03:57:22Z — Audit gates passed — 90%
+
+- Mathematical and final-manuscript audits pass. Real-valued wording repair incorporated; no unclosed proof gap identified.
+- Exact linked-source scope confirmed. Missing square in the original report disclosed.
+- Key Ashbaugh 2002 full text recovered from a lawful archival snapshot and visually checked; p. 12 explicitly leaves Yang1 strictness undecided. Scoped priority audit found no direct prior resolution. This is not an exhaustive novelty certificate.
+- Parent reproduced 7,016 exact checks, 1,312 box/index cases, 600 zero gaps, 12 repeated-ground cases, and three negative controls; deterministic JSON agrees.
+- Preparing concise three-page manuscript, scoped website, and manual Zenodo upload kit. No separate supplemental paper is needed because the main proof is complete.
+- Publication uses only this effort’s folder plus its dedicated Pages deployment directory, preserving concurrent work.
+
+## 2026-09-23T04:04:43Z — Publication preparation checkpoint — 95%
+
+Three-page paper, source ZIP, Zenodo kit, metadata, and dedicated static site are ready. Final local PDF, schema, archive, checksum, script, and browser checks pass. Independent package review is completing. Final remote deployment will be logged in DEPLOYMENT.md after publication, rather than rewriting an already verified archive. No DOI has been minted.
