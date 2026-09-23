@@ -31,6 +31,8 @@ accompany this unrefereed AI-assisted preprint. No earlier full resolution was
 found; first priority is not established. See the
 [paper page](https://aleckriebel.github.io/Math/papers/brandes-coefficient-normalization/)
 and [complete project folder](owr_17293_016_brandes_normalization/).
+Three fresh adversarial review rounds and a documented correction to a new
+supplementary test are included in the updated verification and Zenodo kits.
 
 **Equality in the Fradelizi–Paouris–Schütt second-moment inequality** proves
 that the general convex-body equality case is precisely a simplex with every

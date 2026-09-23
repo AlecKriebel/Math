@@ -13,6 +13,10 @@ Alec Kriebel · version 1.0 · 23 September 2026 (UTC)
 - [Independent Cauchy–Schwarz proof](audit/independent-geometry.md).
 - [Zenodo upload instructions and copyable metadata](zenodo/UPLOAD.md).
 
+## Fresh preprint review
+
+Three fresh adversarial review rounds reassessed the paper and supporting calculations. An auxiliary negative-control coefficient introduced in Round 2 was corrected and checked by direct evaluation and polarization; the paper and original verifier were unaffected. The final fresh review found no actionable remaining findings; the paper remains version 1.0. The [review decision](audit/preprint-readiness.md) records all findings and dispositions. The refreshed verification archive and Zenodo kit include the reports and runnable supplementary checks.
+
 ## Verify in seconds
 
 ```

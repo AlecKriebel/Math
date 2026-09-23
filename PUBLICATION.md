@@ -533,3 +533,20 @@ but first priority and external peer review are not claimed. The
 [project page](https://aleckriebel.github.io/Math/papers/brandes-coefficient-normalization/)
 provides the paper, source package and manual Zenodo kit. No GitHub release or
 Zenodo DOI was created as part of this preparation.
+
+### Additional Brandes preprint-readiness reviews, 23 September 2026
+
+Three newly spawned adversarial reviewers independently reassessed the paper
+for preprint circulation. Their routes included the normalized-ratio estimate,
+source/coefficient correspondence, positive bilinear-slice/Cauchy–Schwarz
+mechanism, and extreme and degenerate cases. During integration, a coefficient
+in a newly added auxiliary negative control was corrected from 8 to 16 and
+checked against direct evaluation and signed polarization. The third reviewer
+independently re-derived that correction and reassessed the manuscript, finding
+no actionable remaining issues. No manuscript correction was warranted. The
+paper remains version 1.0 with unchanged source and PDF bytes. The website, verification archive and manual
+Zenodo kit now include the new reports and the
+[review decision](owr_17293_016_brandes_normalization/audit/preprint-readiness.md).
+The assessment remains internal and AI-assisted; it does not establish external
+peer review, priority, or acceptance by a preprint service. No journal submission
+work or external correspondence was undertaken.

@@ -9,7 +9,7 @@
 
 ## Verdict and independence
 
-**No actionable findings.** I found no mathematical, source-attribution, verifier-scope, or presentation issue requiring a change before releasing this as an unrefereed preprint. There are no P0/P1/P2/P3 correction requests from this review.
+**Initial manuscript verdict: no actionable findings.** I found no issue requiring a change to the paper before releasing it as an unrefereed preprint. During integration, the root reviewer identified an error in an auxiliary calculation added by this review; that error is corrected and disclosed in the integration note below. The manuscript verdict is unchanged, but the original extra-test calculation should not be treated as having been error-free.
 
 I read `manuscript/paper.tex` first. I did not read any existing audit report, including the existing independent geometric proof or earlier review verdicts. I subsequently inspected the verifier and public-facing descriptions to check their consistency with my own mathematical assessment. The independent route used here is positivity of bilinear slices followed by a finite maximum argument, supplemented by exact signed-polarization checks written independently of the packaged verifier.
 

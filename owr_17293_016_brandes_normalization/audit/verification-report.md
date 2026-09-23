@@ -40,3 +40,7 @@ Global convexity and a universal Hölder inequality on all vectors are not assum
 The direct algebra and independent geometry agents began separately. They share the valid idea of a positive slice at a sphere minimum but use distinct mechanisms for the central mixed inequality: Taylor/polynomial coefficients versus conditioned Cauchy–Schwarz and a discrete maximum. A further adversarial check independently reviewed the latter. The local-convexity-only shortcut would leave the mixed inequality unsupported; it was not used. No unresolved route is silently substituted for the desired theorem.
 
 Outside bibliographic expertise might reveal missed prior work. No outreach was prepared or initiated, in accordance with the project's independent-research policy.
+
+## Fresh preprint-readiness cycle, 23 September 2026
+
+Three newly spawned adversarial reviewers independently challenged the existing paper. The second reconstructed the bilinear-slice/Cauchy–Schwarz mechanism independently. During integration, root corrected a coefficient in a new auxiliary negative-control calculation and added direct-evaluation/polarization checks. The third reviewer independently re-derived the corrected formula and reassessed the paper. No theorem, proof, original-verifier or PDF change was required. See [the decision and dispositions](preprint-readiness.md), [Round 1](preprint-round-1.md), [Round 2](preprint-round-2.md), and [Round 3](preprint-round-3.md). Older reports remain historical snapshots; the fresh reviews identify the unchanged manuscript by SHA-256.
