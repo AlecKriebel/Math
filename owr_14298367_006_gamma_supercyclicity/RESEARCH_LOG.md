@@ -48,3 +48,12 @@ Goal: verify the supplied arbitrary-Gamma supercyclicity equivalence against the
 - Independent package QA caught an invalid top-level article type in the optional Citation File Format metadata. Replaced that file with a preprint BibTeX citation, regenerated both archives and all website copies, and rechecked archive integrity and member equality. The source and PDF are unchanged.
 - The dedicated page is linked from the website homepage and sitemap. Only this effort's files and these scoped site additions will be committed. Unrelated working-tree changes remain untouched.
 - Publication task is 95% complete: local materials are ready; final package sign-off and remote deployment verification remain. No Zenodo deposition or GitHub release is authorized by this manual-package step or has been created.
+
+## 2026-09-23T14:08:53Z — Publication completed (100%)
+
+- Committed the attributed note, source, audits, website, and manual Zenodo package as `47ab4e2c05be7e2c56f6083eea07765292f52e2b` and pushed to `main`. Final independent package QA passes; its citation-format finding was corrected before publication.
+- GitHub Pages run `35871476450` completed successfully. The public paper page, CSS, PDF, source ZIP, Zenodo upload kit, and checksum file all return HTTP 200 and match the reviewed local bytes. The homepage link and sitemap entry are present. Evidence is recorded in `audit/live-deployment.json`.
+- Website: https://aleckriebel.github.io/Math/papers/gamma-supercyclicity/ . All original research materials are retained in this dedicated top-level effort folder; the compact upload kit includes the five-page note and source rather than the longer internal audit history.
+- Refreshed and verified the effort-wide SHA-256 manifest after final documentation and audit changes. A final evidence-only commit preserves this publication checkpoint; it does not change the website or deposit files.
+- Authorized publication task is 100% complete. The priority assessment remains limited: this is an explicit attributed application of earlier results, not a new scalar criterion or amplification mechanism. Journal suitability and priority for the explicit application remain editorial/bibliographic questions.
+- No person was contacted. No GitHub release, Zenodo deposition, reserved DOI, or registered DOI was created. The human user can upload the provided kit's PDF and source using its metadata and instructions.
