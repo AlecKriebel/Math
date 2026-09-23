@@ -46,3 +46,20 @@ Prepared and visually checked a three-page manuscript. It claims a factual
 counterexample to the original Conjecture 2, not first discovery or verified
 current catalogue status. A final independent artifact review is underway.
 The manual Zenodo kit and GitHub Pages publication remain to be completed.
+
+## 2026-09-23T03:42:37Z — Release-candidate checkpoint (95%)
+
+The independent prepublication review passed all proof and code checks. Its
+minor documentation correction (H0 inclusion-map ranks, not all such ranks)
+was applied. All three PDF pages were rendered and visually inspected.
+The static site was inspected in the local browser, including the diagram and
+reduction table; every local link and anchor resolves. Source archives and
+metadata were validated after extraction, and rebuilding the kit from its
+extracted sources produced identical bytes.
+
+Checkpoint 7ffac2c0d was committed; remote main had an unrelated queue update,
+so it was merged without rewriting history. Merge 0a52482b8 was pushed.
+The final page and kit now await the publication push and live verification.
+The source kit freezes this predeployment research-log snapshot; postdeployment
+checks will be recorded separately in audit/deployment.md and the repository
+log. No mathematical or manuscript changes are planned.

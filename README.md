@@ -22,6 +22,14 @@ that the interpretation or literature claims are correct.
 
 ## Current papers
 
+**A four-vertex counterexample to Knudson's persistence-gradient conjecture**
+refutes Conjecture 2 in Oberwolfach Report 29/2008: a nonincident persistence
+pair has zero gradient paths in the fixed matching of incident pairs.
+The three-page unrefereed preprint includes two exact Python verifiers,
+independent AI audits, a scoped priority search, and a manual Zenodo kit.
+See the [paper page](https://aleckriebel.github.io/Math/papers/knudson-gradient-path/)
+and [source folder](knudson_gradient_path_counterexample/).
+
 **A counterexample to Kourovka Notebook Problem 16.45** constructs an explicit
 affine group of order 100920 with b_f(G)=b(G)=3 < 4=mu′(G), including all
 nonfaithful permutation representations. The revised unrefereed preprint has

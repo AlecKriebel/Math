@@ -16,7 +16,7 @@ using union-find, constructs the incident matching, checks acyclicity, and
 enumerates paths. Its result matches the original supplied output exactly.
 
 `independent_check.py` reconstructs connected components at every filtration
-stage by graph traversal, calculates ranks of all H0 inclusion maps, and
+stage by graph traversal, calculates H0 inclusion-map ranks, and
 recovers finite barcode intervals by mixed differences. It then independently
 reduces signed boundaries over Q and F2, F3, F5, F7, F101, and checks the original
 and modified matching paths. It also checks label invariance of the zero-path

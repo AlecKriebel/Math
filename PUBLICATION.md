@@ -474,3 +474,26 @@ provides the revised manuscript, source/certificates, verification report,
 and manual Zenodo kit. No GitHub release or Zenodo deposit was created.
 The source folder `kourovka_16_45/audit_2026_09_21/` records exact provenance,
 proof correction, fresh verification, packaging checks, and deployment.
+
+## Knudson's persistence-gradient conjecture
+
+The version 1.0.0 preprint, “A four-vertex counterexample to Knudson's
+persistence-gradient conjecture,” was prepared on **23 September 2026 UTC**.
+It refutes Conjecture 2 on printed p. 1629 of Oberwolfach Report 29/2008:
+the filtered interval `a,b,c,d,cd,bd,ac` has a nonincident persistence pair
+`(b,ac)` with zero paths in the fixed incident-pair matching. The signed
+calculation also works over every field. No minimality claim is made.
+
+The primary source, proof, and exact computations were checked by separate
+AI audit agents. A 39-query public-literature audit found no earlier explicit
+refutation within its scope, with inaccessible full texts and an unpublished
+work listing recorded as priority limitations. The current status of the
+user-supplied catalogue identifier was not independently verified.
+
+The [paper page](https://aleckriebel.github.io/Math/papers/knudson-gradient-path/)
+contains the three-page manuscript, two standard-library Python verifiers,
+source package, audit notes, and manual Zenodo kit. First research checkpoint:
+`7ffac2c0d`, incorporated into remote main by merge `0a52482b8`. Publication
+checks and deployment evidence are recorded under
+`knudson_gradient_path_counterexample/audit/`. No GitHub release, Zenodo
+deposit, DOI, or external communication was created.
