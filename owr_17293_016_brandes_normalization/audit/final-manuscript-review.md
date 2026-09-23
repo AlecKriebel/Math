@@ -49,3 +49,9 @@ The provenance paragraph identifies the preprint as unrefereed, discloses AI ass
 ## Final disposition
 
 The mathematical manuscript is ready for publication after the two minor corrections listed at the start. This review does not certify website deployment, artifact hashes after packaging, or DOI registration; those are separate release checks.
+
+## Correction verification and archived spot checks
+
+Checkpoint: 2026-09-23 04:16 UTC. Completion estimate: **100%**. I independently reread the current source and confirmed both requested corrections: its opening explicitly says “homogeneous polynomial,” and the Problem Session bibliography now gives pages `3179--3183`. The corrected manuscript SHA-256 is `317ab083bdfc4e986921e517b368de8e1501c7f9a24b4faef5b047fe1d504f43`. No requested mathematical or editorial correction remains open.
+
+The previously executed 500 determinant comparisons and 20 polarization comparisons are now preserved as `verification/adversarial_checks.py`, using the same deterministic seed and cases. Run `python3 verification/adversarial_checks.py` to reproduce them. The comparisons remain finite implementation checks; neither their number nor their success constitutes a proof of the universal theorem.

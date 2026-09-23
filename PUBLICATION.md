@@ -515,3 +515,21 @@ gap. A bounded priority audit found no earlier explicit answer, but cannot
 certify first discovery or current database status. The classical ingredients
 and known divisible-cubic-form construction are credited. The Zenodo kit is
 prepared for manual upload; no release, deposit, or DOI is claimed.
+
+## Brandes coefficient normalization (OWR-17293-016)
+
+The proof and independent audits were first committed on **23 September 2026,
+04:16:27 UTC** (**22 September 2026, 21:16:27 PDT**) in
+[`cd2e189c396c8357156c5ef98b53512a26288714`](https://github.com/AlecKriebel/Math/commit/cd2e189c396c8357156c5ef98b53512a26288714).
+The three-page preprint *A coefficient normalization for positive definite forms*
+gives an affirmative answer to Brandes's Problem 11 in Oberwolfach Report
+50/2019, p. 3182, with symmetric ordered coefficients. It proves the stronger
+unit-diagonal normalization with all mixed entries strictly between zero and one.
+
+The project includes two independent internal proof approaches, adversarial
+reviews, exact rational certificates and a bounded priority audit. Brandes's
+2015 work is credited as a precursor; no earlier full resolution was located,
+but first priority and external peer review are not claimed. The
+[project page](https://aleckriebel.github.io/Math/papers/brandes-coefficient-normalization/)
+provides the paper, source package and manual Zenodo kit. No GitHub release or
+Zenodo DOI was created as part of this preparation.

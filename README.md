@@ -22,6 +22,16 @@ that the interpretation or literature claims are correct.
 
 ## Current papers
 
+**A coefficient normalization for positive definite forms** gives an affirmative
+answer to Brandes's Problem 11 in Oberwolfach Report 50/2019 (OWR-17293-016).
+A three-page proof constructs real coordinates with unit diagonal and all mixed
+symmetric ordered coefficients strictly between zero and one. Independent
+internal proofs, exact rational certificates and a bounded priority audit
+accompany this unrefereed AI-assisted preprint. No earlier full resolution was
+found; first priority is not established. See the
+[paper page](https://aleckriebel.github.io/Math/papers/brandes-coefficient-normalization/)
+and [complete project folder](owr_17293_016_brandes_normalization/).
+
 **Equality in the Fradelizi–Paouris–Schütt second-moment inequality** proves
 that the general convex-body equality case is precisely a simplex with every
 vertex on the radius-r sphere, resolving the mathematical question
