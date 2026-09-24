@@ -1,5 +1,9 @@
 # Priority follow-up: older primary sources
 
+**Later full-text update:** Matsuzoe 1999 and Matsuzoe 2010 were supplied and
+read on 24 September 2026 UTC. See the [new comparison](priority_supplied_papers.md).
+This report preserves the access limits encountered on 23 September.
+
 Audit date: 2026-09-23 UTC. This supplements `priority_audit.md` and does not certify novelty.
 
 **Result:** no earlier explicit negative answer to Furuhata–Matsuzoe–Urakawa (1998), item 3(e), was found in the additional primary texts actually read. The three requested older full-text gaps were **not closed**. Kurose (1999), Matsuzoe's ASPM survey (2010), and the Binder–Simon problem list (2000) remain unread. **Matsuzoe's 1999 contrast-function paper is an additional unread lead.** Consequently, publication as a previously unresolved problem, or as its first resolution, is not supported by this audit. A carefully attributed note giving a counterexample to the printed implication remains the appropriate claim.

@@ -1,5 +1,9 @@
 # Follow-up priority audit: forward citations
 
+**Later full-text update:** the user supplied Kurose's 2023/2024 article, and
+it was read on 24 September 2026 UTC. See the [new comparison](priority_supplied_papers.md).
+The earlier access gap below is historical, not the current status of that paper.
+
 **Date:** 2026-09-23. **Final checkpoint:** 13:43:27 UTC. **Completion:** 100% of this bounded citation-following audit, not of an exhaustive historical search.
 
 **Finding:** No explicit earlier negative answer to FMU1998 Question 3(e), and no earlier identification of the proposed sphere–line product as its counterexample, was located. The follow-up substantially expands the citation search but does not establish priority. Several papers explicitly supply the classical radial-gradient ingredient; those are background, not newly discovered machinery.

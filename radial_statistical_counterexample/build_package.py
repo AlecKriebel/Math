@@ -70,7 +70,12 @@ def main():
                 "reviews/priority_followup_older_sources.md",
                 "reviews/priority_followup_japanese.md",
                 "research/priority_evidence/citation_inventory.csv",
-                "research/priority_evidence/fulltext_manifest.json"]
+                "research/priority_evidence/fulltext_manifest.json",
+                "research/priority_evidence/supplied_papers.json",
+                "reviews/priority_supplied_papers.md",
+                "reviews/priority_supplied_matsuzoe1999.md",
+                "reviews/priority_supplied_matsuzoe2010.md",
+                "reviews/priority_supplied_kurose2024.md"]
     required_files.extend(p for p in optional if (ROOT / p).is_file())
     entries = {name: (ROOT / name).read_bytes() for name in required_files}
     checks = manifest(entries)

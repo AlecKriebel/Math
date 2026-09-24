@@ -10,6 +10,7 @@ This four-page note gives a negative answer to Takashi Kurose's Question 3(e) in
 - [GitHub Pages article](https://aleckriebel.github.io/Math/papers/radial-statistical-counterexample/).
 - [Verification report](research/VERIFICATION_REPORT.md), [original-source audit](research/SOURCE_AUDIT.md), and [priority audit](reviews/priority_audit.md).
 - [Deeper priority follow-up, 23 September 2026](reviews/priority_followup.md), including the successful [live database recheck](research/DATABASE_RECHECK.md). The paper and version 1.0.0 archives retain the initial audit snapshot; these later notes update the historical assessment.
+- [Review of three supplied full texts, 24 September UTC](reviews/priority_supplied_papers.md): Matsuzoe 1999, Matsuzoe 2010, and Kurose 2023/2024. These source gaps are closed; no earlier explicit answer was found in them. The exact deformation is already printed in Matsuzoe 1999.
 - [Independent proof review](reviews/proof_audit.md) and [coordinate-computation review](reviews/computation_review.md).
 - [Zenodo upload instructions and copyable metadata](zenodo/UPLOAD.md).
 

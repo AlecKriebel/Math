@@ -1,5 +1,10 @@
 # Deeper priority audit — 23 September 2026
 
+**Subsequent update, 24 September UTC:** the user supplied Matsuzoe 1999,
+Matsuzoe 2010, and Kurose 2023/2024. Those three full-text gaps are now closed;
+see the [complete-paper follow-up](priority_supplied_papers.md). The audit below
+preserves what was known on 23 September.
+
 **Conclusion:** the expanded search has found no earlier explicit answer to
 Question 3(e) or published identification of the round cylinder as its
 counterexample. It does not establish historical priority. The result should
