@@ -33,7 +33,7 @@ The recorded checks pass: 10 exact algebra checks and 7,679 floating-point check
 - See [Zenodo upload instructions](zenodo/UPLOAD.md), [copy-and-paste fields](zenodo/COPY_PASTE.txt), and [metadata JSON](zenodo/metadata.json).
 - [Project website](https://aleckriebel.github.io/Math/papers/gromov-unitary-lipschitz/).
 
-The research source lives in this dedicated top-level repository directory. Only the published site copy is placed under `docs/papers/gromov-unitary-lipschitz/`, as required by this repository's existing GitHub Pages configuration. Other project files are not part of this package. No GitHub release or Zenodo deposit was created, and no DOI has been assigned by this work.
+The research source lives in this dedicated top-level repository directory. Only the published site copy is placed under `docs/papers/gromov-unitary-lipschitz/`, as required by this repository's existing GitHub Pages configuration. Other project files are not part of this package. The author has deposited version 1.1 on [Zenodo](https://zenodo.org/records/22929857), which assigns DOI `10.5281/zenodo.22929857`. The deposited PDF and reproducibility archive match the reviewed release byte for byte. At the deposit audit, the direct record worked but doi.org had not resolved the identifier; see [the audit receipt](research/zenodo_22929857_audit.json). The frozen download archives preserve their pre-deposit preparation snapshot. No GitHub release was created.
 
 ## Scope
 
