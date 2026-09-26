@@ -10,8 +10,11 @@ import json
 import os
 import sys
 import tempfile
+from datetime import datetime, timezone
 from pathlib import Path
+from urllib.error import HTTPError, URLError
 from urllib.parse import quote, urlsplit
+from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -22,10 +25,74 @@ MAX_FILES = 100
 MAX_BYTES = 50 * 1024**3
 CHUNK = 1024 * 1024
 USER_AGENT = "Math-Zenodo-Deposit-Tool/1.0"
+MAX_RESPONSE_BYTES = 1024 * 1024
 
 
 class DepositError(Exception):
     pass
+
+
+def response_error(status: int, result, body: bytes, token: str) -> str:
+    """Describe failures without printing untrusted HTML or authentication secrets."""
+    if isinstance(result, dict):
+        detail = str(result.get("message", "Request failed"))
+        if result.get("errors"):
+            detail += "; " + str(result["errors"])
+        detail = detail.replace(token, "[redacted]")[:2000]
+        if status == 401:
+            detail += "; check the token and selected production/sandbox environment"
+        elif status == 403:
+            detail += "; check record ownership and token scopes (deposit:write; deposit:actions for publishing)"
+    elif status == 403 and b"unusual traffic" in body.lower():
+        detail = ("Zenodo's HTML traffic filter rejected the request; this is not a JSON "
+                  "credential error. The client sends an identifying User-Agent. "
+                  "Do not create another deposit to work around this response")
+    else:
+        detail = "non-JSON response; the API operation could not be confirmed"
+    if status == 429:
+        detail += "; rate limited: wait before another request; no automatic retry was made"
+    return f"Zenodo HTTP {status}: {detail}"
+
+
+class PublicDOIRedirects(HTTPRedirectHandler):
+    max_redirections = 3
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        target = urlsplit(newurl)
+        if target.scheme != "https" or target.username or target.password:
+            raise HTTPError(req.full_url, code, "Unsafe DOI redirect", headers, fp)
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
+
+
+def public_doi_url(doi) -> str | None:
+    if not isinstance(doi, str) or not doi.startswith("10.") or "/" not in doi or any(c.isspace() for c in doi):
+        return None
+    try:
+        return "https://doi.org/" + quote(doi, safe="/")
+    except UnicodeError:
+        return None
+
+
+def doi_status(doi: str | None) -> dict:
+    """Check public resolution separately, without sending the Zenodo API token."""
+    if not doi:
+        return {"status": "not_assigned"}
+    url = public_doi_url(doi)
+    if not url:
+        return {"status": "unavailable", "message": "Invalid DOI in the API response"}
+    request = Request(url, method="HEAD", headers={"User-Agent": USER_AGENT})
+    try:
+        with build_opener(PublicDOIRedirects()).open(request, timeout=10) as response:
+            return {"status": "resolved" if 200 <= response.status < 300 else "unavailable",
+                    "http_status": response.status,
+                    "url": url, "resolved_url": response.url}
+    except HTTPError as exc:
+        exc.close()
+        return {"status": "not_resolved" if exc.code == 404 else "unavailable",
+                "http_status": exc.code, "url": url}
+    except (OSError, URLError, http.client.HTTPException, ValueError, UnicodeError):
+        return {"status": "unavailable", "url": url,
+                "message": "Resolver check failed; publication status is unchanged"}
 
 
 def read_json(path: Path) -> dict:
@@ -165,23 +232,21 @@ class ZenodoClient:
                     for block in iter(lambda: stream.read(CHUNK), b""):
                         conn.send(block)
             response = conn.getresponse()
-            body = response.read(1024 * 1024)
+            body = response.read(MAX_RESPONSE_BYTES + 1)
             status = response.status
         except (OSError, http.client.HTTPException) as exc:
             raise DepositError(f"Zenodo connection failed: {str(exc).replace(self.token, '[redacted]')}") from exc
         finally:
             conn.close()
         try:
-            result = json.loads(body) if body else {}
-        except json.JSONDecodeError:
-            result = {}
+            result = json.loads(body)
+        except (json.JSONDecodeError, UnicodeDecodeError):
+            result = None
         if not 200 <= status < 300:
-            detail = result.get("message", "Request failed") if isinstance(result, dict) else "Request failed"
-            fields = result.get("errors", []) if isinstance(result, dict) else []
-            raise DepositError(f"Zenodo HTTP {status}: {str(detail).replace(self.token, '[redacted]')} "
-                               f"{str(fields).replace(self.token, '[redacted]')}")
-        if not isinstance(result, dict):
-            raise DepositError("Unexpected Zenodo response")
+            raise DepositError(response_error(status, result, body, self.token))
+        if len(body) > MAX_RESPONSE_BYTES or not isinstance(result, dict) or not result:
+            raise DepositError("Unexpected or incomplete Zenodo JSON response; operation outcome "
+                               "is unconfirmed. Inspect the saved draft/account before retrying")
         return result
 
     def create(self, metadata: dict) -> dict:
@@ -202,7 +267,12 @@ class ZenodoClient:
 
 def server_files(deposit: dict) -> dict:
     result = {}
-    for item in deposit.get("files", []):
+    files = deposit.get("files")
+    if not isinstance(files, list):
+        raise DepositError("Zenodo returned an invalid file list")
+    for item in files:
+        if not isinstance(item, dict):
+            raise DepositError("Zenodo returned an invalid file entry")
         name = item.get("filename") or item.get("key") or item.get("name")
         if not name or name in result:
             raise DepositError("Zenodo returned an invalid file list")
@@ -216,8 +286,17 @@ def matching_file(remote: dict, local: dict) -> bool:
     return checksum == local["md5"] and str(size) == str(local["size"])
 
 
+def validate_record(deposit: dict, expected_id: int) -> None:
+    if type(deposit.get("id")) is not int or deposit["id"] != expected_id:
+        raise DepositError("Zenodo returned a different deposition ID")
+    if type(deposit.get("submitted")) is not bool:
+        raise DepositError("Zenodo returned an invalid publication state")
+
+
 def verify(deposit: dict, metadata: dict, files: list[dict]) -> None:
     remote_metadata = deposit.get("metadata", {})
+    if not isinstance(remote_metadata, dict):
+        raise DepositError("Zenodo returned invalid metadata")
     for key, value in metadata.items():
         if remote_metadata.get(key) != value:
             raise DepositError(f"Remote metadata differs at '{key}'; inspect the draft")
@@ -239,6 +318,38 @@ def local_state(path: Path, environment: str) -> tuple[Path, dict | None]:
     return place, state
 
 
+def published_summary(summary: dict, deposit: dict, state: dict, place: Path,
+                      environment: str, check_doi: bool) -> dict:
+    raw_doi = deposit.get("doi") or deposit.get("metadata", {}).get("doi")
+    doi_url = public_doi_url(raw_doi)
+    doi = raw_doi if doi_url else None
+    record_url = BASES[environment] + f"/records/{state['id']}"
+    initial_doi_status = "not_checked" if doi_url else "unavailable" if raw_doi else "not_assigned"
+    summary.update({"id": state["id"], "state": "published", "doi": doi,
+                    "doi_url": doi_url, "record_url": record_url,
+                    "url": doi_url or record_url,
+                    "verified_utc": datetime.now(timezone.utc).isoformat(),
+                    "doi_resolution": {"status": initial_doi_status}})
+    if raw_doi and not doi_url:
+        summary["doi_warning"] = "Invalid DOI in the API response; publication is confirmed"
+    # Preserve confirmed publication before a separate network check can fail.
+    def persist():
+        summary["receipt_saved"] = True
+        summary.pop("receipt_warning", None)
+        try:
+            save_state(place, {**state, "publication": summary})
+        except OSError:
+            summary["receipt_saved"] = False
+            summary["receipt_warning"] = ("Publication is confirmed, but its local receipt could not "
+                                          "be saved. Retain this output; use inspect to recover it")
+
+    persist()
+    if check_doi:
+        summary["doi_resolution"] = doi_status(raw_doi)
+        persist()
+    return summary
+
+
 def run(args: argparse.Namespace, client: ZenodoClient | None = None) -> dict:
     path = args.manifest.resolve()
     metadata, files = load_manifest(path)
@@ -253,15 +364,25 @@ def run(args: argparse.Namespace, client: ZenodoClient | None = None) -> dict:
     if args.command == "stage":
         if state:
             deposit = client.get(state["id"])
+            validate_record(deposit, state["id"])
             if deposit.get("submitted"):
                 raise DepositError("Local draft is already published")
         else:
-            deposit = client.create(metadata)
+            try:
+                deposit = client.create(metadata)
+            except DepositError as exc:
+                raise DepositError(f"{exc}. No draft ID was saved; reconcile your Zenodo account "
+                                   "before restaging if the request may have reached the server") from exc
             deposit_id = deposit.get("id")
-            if not isinstance(deposit_id, int):
+            if type(deposit_id) is not int or deposit_id <= 0:
                 raise DepositError("Zenodo did not return a deposition ID; inspect your account before retrying")
             state = {"manifest": str(path), "environment": environment, "id": deposit_id}
-            save_state(place, state)
+            try:
+                save_state(place, state)
+            except OSError as exc:
+                raise DepositError(f"Draft {deposit_id} was created but its local state could not be saved. "
+                                   "Retain this ID and reconcile it before restaging") from exc
+            validate_record(deposit, deposit_id)
         deposit_id = state["id"]
         remote_files = server_files(deposit)
         expected = {f["name"] for f in files}
@@ -280,26 +401,53 @@ def run(args: argparse.Namespace, client: ZenodoClient | None = None) -> dict:
             client.upload(bucket, entry)
         client.update(deposit_id, metadata)
         deposit = client.get(deposit_id)
+        validate_record(deposit, deposit_id)
         verify(deposit, metadata, files)
         summary.update({"id": deposit_id, "draft_url": deposit.get("links", {}).get("html"), "state": "ready_to_publish"})
         return summary
     if not state:
         raise DepositError("No saved draft for this manifest/environment; run stage first")
     deposit = client.get(state["id"])
+    validate_record(deposit, state["id"])
     if args.command == "inspect":
         verify(deposit, metadata, files)
-        summary.update({"id": state["id"], "state": "published" if deposit.get("submitted") else "ready_to_publish",
-                        "url": deposit.get("doi_url") or deposit.get("links", {}).get("html")})
+        if deposit.get("submitted"):
+            return published_summary(summary, deposit, state, place, environment,
+                                     getattr(args, "check_doi", False))
+        summary.update({"id": state["id"], "state": "ready_to_publish",
+                        "url": deposit.get("links", {}).get("html")})
         return summary
-    if deposit.get("submitted"):
-        raise DepositError("Deposit is already published")
     if args.confirm_id != state["id"]:
         raise DepositError(f"Publishing requires --confirm-id {state['id']}")
     verify(deposit, metadata, files)
-    published = client.publish(state["id"])
-    summary.update({"id": state["id"], "state": "published", "doi": published.get("doi"),
-                    "url": published.get("doi_url") or published.get("links", {}).get("html")})
-    return summary
+    if deposit.get("submitted"):
+        summary["already_published"] = True
+        return published_summary(summary, deposit, state, place, environment, True)
+    publish_error = None
+    try:
+        client.publish(state["id"])
+    except DepositError as exc:
+        publish_error = exc
+    # A POST may succeed remotely even if its response is lost. Never POST twice.
+    try:
+        published = client.get(state["id"])
+    except DepositError as exc:
+        detail = f"{publish_error}; " if publish_error else ""
+        raise DepositError(f"{detail}Publication outcome is unconfirmed: {exc}. "
+                           "Run inspect on this saved draft before any further publication action") from exc
+    validate_record(published, state["id"])
+    if not published["submitted"]:
+        detail = f"{publish_error}; " if publish_error else ""
+        raise DepositError(f"{detail}Zenodo has not confirmed publication. "
+                           "Run inspect on this saved draft; no publication retry was made")
+    try:
+        verify(published, metadata, files)
+    except DepositError as exc:
+        raise DepositError(f"Zenodo reports publication, but verification failed: {exc}. "
+                           "Inspect this record; do not create a replacement deposit") from exc
+    if publish_error:
+        summary["recovered_after_publish_error"] = True
+    return published_summary(summary, published, state, place, environment, True)
 
 
 def main() -> int:
@@ -309,6 +457,8 @@ def main() -> int:
         sub = subcommands.add_parser(command)
         sub.add_argument("manifest", type=Path)
         sub.add_argument("--sandbox", action="store_true", help="Use sandbox.zenodo.org and its separate token")
+        if command == "inspect":
+            sub.add_argument("--check-doi", action="store_true", help="Also check public DOI resolution")
         if command == "publish":
             sub.add_argument("--confirm-id", type=int, required=True)
     args = parser.parse_args()

@@ -11,3 +11,7 @@ The initial request received an HTML HTTP 403 traffic-filter response and create
 ## 2026-09-26T20:50:33.155009+00:00 — 100% of upload/tracker actions complete; resolver activation unconfirmed
 
 Published Zenodo record 22982894, assigned DOI 10.5281/zenodo.22982894, through the repository tool. Post-publication inspect confirms the exact original metadata and file checksums. Both public files were downloaded without authentication and matched the kit bytes; the direct public record returns HTTP 200. Google Workspace CLI appended Math Puzzles row 5 and a separate read-back matched all four cells. The chat URL remains blank because no shared URL was provided. DOI resolver and DataCite initially returned 404; publication is confirmed but activation is not yet verified. A final availability check will be saved separately. Publication receipts and workflow feedback are outside the unchanged upload snapshot. No duplicate deposit or automatic publication retry is warranted.
+
+## 2026-09-26T21:02:34.821500+00:00 — 100% complete; DOI resolution confirmed
+
+The hardened repository tool performed a read-only inspect with --check-doi, reconfirmed the unchanged paper metadata/files, and resolved the assigned DOI to the public Zenodo record with HTTP 200. Saved the receipt as tool-inspect-doi-resolved.json and retained the earlier 404 checks in doi-resolution.json. No upload, publication action, or tracker write was repeated.

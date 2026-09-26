@@ -1,6 +1,6 @@
 # Published record and workflow feedback
 
-Completed upload and tracker entry on 26 September 2026. Requested upload/tracker actions: **100% complete**. DOI resolver activation is separately checked in `doi-resolution.json`.
+Completed upload and tracker entry on 26 September 2026. Requested upload/tracker actions: **100% complete**. DOI resolution was subsequently confirmed at 2026-09-26T21:00:10.873391+00:00 with HTTP 200; see `doi-resolution.json` and `tool-inspect-doi-resolved.json`.
 
 - Paper: **A coefficient normalization for positive definite forms**, Alec Kriebel, version 1.0.
 - Assigned DOI: **10.5281/zenodo.22982894**.
@@ -19,7 +19,7 @@ The Google Workspace CLI appended exactly one row after checking for an existing
 3. **CLI skill setup has a side effect.** The local Sheets skill's shared prerequisite was missing. Calling `gws generate-skills --help` generated files instead of displaying help. Those generated files were moved out of repository publication paths into the effort's ignored temporary directory. For future setup, run skill generation in a temporary directory and consult the installed command help/schema before writes.
 4. **Publication and DOI resolution need separate checks.** Zenodo reported the record as published and exposed its public record, files, and assigned DOI. The first DOI resolver and DataCite lookups nevertheless returned 404. Registration delay is a possible explanation, not a verified diagnosis or promised activation time. The final observed status is in `doi-resolution.json`; use the direct public record link if the DOI has not activated. Do not repeat publication or create another deposit in response to resolver lag.
 
-For future deposits, retain a stable manifest path and the ignored local draft-state file; inspect after staging; publish only once with the returned draft ID; save the publication receipt immediately; confirm the public files and DOI resolution separately; then append to the explicitly selected tracker tab after a duplicate check. An HTML 403 should be distinguished from a JSON authorization error. The current tool's generic error message obscured that distinction; richer safe error diagnostics would be a useful future improvement.
+For future deposits, retain a stable manifest path and the ignored local draft-state file; inspect after staging; publish only once with the returned draft ID; save the publication receipt immediately; confirm the public files and DOI resolution separately; then append to the explicitly selected tracker tab after a duplicate check. An HTML 403 should be distinguished from a JSON authorization error. The initial tool's generic error message obscured that distinction. The subsequent tool update now provides redacted traffic/authentication diagnostics, post-publication confirmation and receipts, and a separate DOI-resolution status.
 
 ## Receipt files
 
