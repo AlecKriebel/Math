@@ -72,3 +72,9 @@ All timestamps use UTC. Completion percentages estimate progress toward verifica
 - Google Workspace CLI appended and independently read back 'Math Puzzles'!A7:D7. Solution chat left blank because no share URL was supplied.
 - Updated current citation and site with DOI while preserving deposited scientific files and original archives. DOI resolver initially returned 404; public record and files are available.
 - Remaining: push publication evidence, verify updated Pages, recheck DOI, and provide the two unsent drafts.
+
+## 2026-09-26T21:19:44.939978+00:00 — Publication workflow complete (100%)
+
+- Publication commit e9b0c6312 pushed to main; Pages run 36272433240 succeeded. Updated public HTML, guide, and checksum list match local files.
+- Zenodo publication and both public research downloads are confirmed; assigned DOI 10.5281/zenodo.22983161 still returned resolver HTTP 404 at 21:19:25 UTC. Report this propagation status separately and use the working public record link in the drafts.
+- Tracker row 7 is verified. Requested UnsolvedMath comment and proposer notification are provided as unsent drafts in the conversation, scoped to the printed slow-variation question. No person was contacted.

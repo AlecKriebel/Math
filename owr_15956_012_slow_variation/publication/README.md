@@ -7,7 +7,7 @@ Published 26 September 2026 using the repository's `zenodo_deposit_tool/zenodo.p
 - Metadata: the exact object from `../zenodo/metadata.json`, copied into `../zenodo-deposit.json` without changes. The first-publication date remains 2026-09-23; the deposit date is 2026-09-26.
 - Uploaded files: `paper.pdf` and `source-and-verification.zip`, extracted byte-for-byte from the reviewed upload kit. The outer ZIP is a convenience envelope and was not uploaded as a third file.
 - Draft inspection and published read-back both verified all supplied metadata fields and both file sizes/checksums. Public anonymous downloads match the local reviewed files in SHA-256 and bytes; see the JSON receipts.
-- The initial DOI resolver response was 404 despite confirmed publication and working public downloads. DOI resolution is checked separately; no duplicate deposition or publication retry was made.
+- The initial DOI resolver response was 404 despite confirmed publication and working public downloads. DOI resolution is checked separately; the final check at 2026-09-26T21:19:25Z still returned 404. This is a resolver-propagation limitation, not an unconfirmed publication. No duplicate deposition or publication retry was made. The public record URL above works immediately.
 
 ## Tracker
 
@@ -22,3 +22,7 @@ The deposited PDF, source archive, upload kit, metadata, manuscript, and verifie
 The result resolves only the printed slow-variation existence question. The possible intended index-one formulation remains outside scope, and the bounded priority audit does not certify originality. No new mathematical claims or scientific-file changes were introduced during deposition. Prior independent adversarial reviews remain applicable.
 
 No individual was contacted, and neither the requested comment nor email draft was sent or posted.
+
+## Repository and website
+
+Publication commit `e9b0c6312ba919731328405a91a1fcebd773e58c` was pushed to `main`. GitHub Pages run 36272433240 succeeded; all three updated site files returned HTTP 200 and matched local bytes. See `pages-deployment.json`.
