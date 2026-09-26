@@ -52,3 +52,13 @@ The following hashes describe the refreshed downloads; the earlier delivery reco
 - `zenodo-upload-kit.zip`: `7fa76359498cf4363ed1390256862ad0e1a4a25941d82a513ee7e7d20381dce1`
 - `zenodo-upload.md`: `1ad844638f9ade7032b742c6973abbfc332a5da8e2fe587d1c5fe57e33691e68`
 - `SHA256SUMS`: `e6ef9c2c05c6bd6110504234a4acb9d1f0062ae0161faedb30129eac56087033`
+
+## Zenodo publication and tracker completion
+
+2026-09-26T21:16:56+00:00 — **100% of the subsequent publication request completed.**
+
+- Published record [22983138](https://zenodo.org/records/22983138), assigned DOI **10.5281/zenodo.22983138**, using the repository Zenodo uploader.
+- Original kit metadata, including preprint date 2026-09-23 and version 1.0.0, retained exactly. All three public files match the kit byte for byte; the original frozen source hashes still validate.
+- Added and independently verified [Math Puzzles row 6](https://docs.google.com/spreadsheets/d/1ZljUv5Q98jNXLoHK8WjwrkzSm3dhHC1-7LElcOU7y20/edit?gid=1254632077#gid=1254632077&range=A6:D6).
+- Final DOI resolver check at 2026-09-26T21:16:13.295539+00:00 returned HTTP 404. Zenodo publication, record access, and downloads are independently confirmed. No duplicate deposit or repeated publication request was made.
+- Receipts, workflow log, and the two user-requested unsent drafts are in [publication/README.md](publication/README.md). These files are outside the immutable deposit snapshot and supersede its historical pre-deposit status. No individual was contacted.
