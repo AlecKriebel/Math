@@ -90,3 +90,18 @@ Goal: verify the supplied arbitrary-Gamma supercyclicity equivalence against the
 - The effort-wide manifest was refreshed after the final evidence/log changes. This final checkpoint changes no reviewed manuscript, PDF, source archive, website asset, or deposit file.
 - Additional adversarial-review task is 100% complete: two genuinely fresh sequential subagents reviewed the paper; the first round's sole worthwhile finding and the parent's wording clarification were fixed globally; the second round found no actionable issues. No identified issue remains unresolved. The note is ready for submission as its stated attributed, unrefereed preprint.
 - No journal submission, external communication with individuals, GitHub release, or Zenodo deposition was performed. The narrower novelty assessment remains unchanged, and these internal reviews do not constitute external peer review or formal proof certification.
+
+## 2026-09-26T21:21:13.795886+00:00 — Zenodo publication and tracker checkpoint (90%)
+
+- The user explicitly authorized production Zenodo publication of the existing kit, a Google Sheets tracker entry, and notification drafts for the user to send. No person was contacted and no comment or email was sent.
+- Published version 1.0.1 as DOI `10.5281/zenodo.22983147`, record `22983147`, retaining the original 23 September 2026 metadata date and all supplied fields. The public PDF and source ZIP match the reviewed kit byte for byte. No new GitHub release was created.
+- Initial staging saved the draft and uploaded both files but stopped when Zenodo HTML-encoded the description’s less-than signs. The tool now accepts only exact entity encoding of plain descriptions, with all substantive metadata and file checks retained. All 24 offline tests pass. Recovered by inspecting the saved draft, then sent one publication request.
+- The Google Workspace CLI appended the problem URL, DOI, and attributed paper details to Math Puzzles row 8 (`A8:D8`) in the requested sheet. A separate read confirms all four cells. The solution-chat field is blank because no share URL was provided.
+- The frozen PDF, source ZIP, metadata, and original upload kit remain unchanged. Added publication receipts, a DOI citation, and the requested unsent drafts; the website now points to the published record.
+- Completion estimate: 90% of this publication-and-tracker task. Remaining: narrow independent artifact review, commit/push, and site/DOI follow-up verification.
+
+## 2026-09-26T21:23:12.861514+00:00 — Publication-integrity review complete (95%)
+
+- Independent public-file/metadata/tracker review passed and found one generic uploader double-encoding edge case. Corrected it and added named/numeric entity regressions; all 25 tests pass. A fresh second adversary reviewed the final diff and found no actionable issues. Evidence and exact tool hashes are in `publication/adversarial-review.md`.
+- The paper and original upload kit are unchanged. DOI links and machine-readable DOI metadata are added to all three website page copies; website checksums were refreshed.
+- Completion estimate: 95%. Zenodo publication, sheet append/read-back, and both requested drafts are complete; only repository publication and site verification remain.

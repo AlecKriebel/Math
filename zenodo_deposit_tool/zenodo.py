@@ -5,9 +5,11 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import html
 import http.client
 import json
 import os
+import re
 import sys
 import tempfile
 from datetime import datetime, timezone
@@ -298,7 +300,16 @@ def verify(deposit: dict, metadata: dict, files: list[dict]) -> None:
     if not isinstance(remote_metadata, dict):
         raise DepositError("Zenodo returned invalid metadata")
     for key, value in metadata.items():
-        if remote_metadata.get(key) != value:
+        remote_value = remote_metadata.get(key)
+        # Zenodo stores plain-text descriptions in an HTML field. Accept only
+        # its exact entity escaping, without hiding edits or lost HTML markup.
+        escaped_plain_text = (
+            key == "description" and isinstance(value, str)
+            and not re.search(r"<(?:/?[A-Za-z]|[!?])[^>]*>", value)
+            and html.unescape(value) == value
+            and remote_value == html.escape(value, quote=False)
+        )
+        if remote_value != value and not escaped_plain_text:
             raise DepositError(f"Remote metadata differs at '{key}'; inspect the draft")
     remote_files = server_files(deposit)
     expected = {f["name"] for f in files}

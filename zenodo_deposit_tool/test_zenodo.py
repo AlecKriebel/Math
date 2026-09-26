@@ -94,6 +94,47 @@ class DepositFlowTests(unittest.TestCase):
         with self.assertRaisesRegex(zenodo.DepositError, "already published"):
             self.call("stage")
 
+    def test_plain_description_entity_encoding_preserves_metadata_and_publication(self):
+        self.metadata["description"] = "For 1 <= p < infinity & p > 0, the author's claim holds."
+        self.write_manifest()
+        original_manifest = self.manifest.read_bytes()
+        self.call("stage")
+        self.client.records[123]["metadata"]["description"] = (
+            "For 1 &lt;= p &lt; infinity &amp; p &gt; 0, the author's claim holds."
+        )
+        self.assertEqual(self.call("inspect")["state"], "ready_to_publish")
+        self.assertEqual(self.call("publish", 123)["state"], "published")
+        self.assertEqual(self.client.publishes, 1)
+        self.assertEqual(self.manifest.read_bytes(), original_manifest)
+
+    def test_encoding_does_not_accept_changed_text_html_or_other_fields(self):
+        cases = [
+            ("description", "For 1 <= p < infinity", "For 2 &lt;= p &lt; infinity"),
+            ("description", "<b>Claim</b>", "&lt;b&gt;Claim&lt;/b&gt;"),
+            ("description", '<a href="https://example.org">Claim</a>', "Claim"),
+            ("description", "1 < p", "<p>1 &lt; p</p>"),
+            ("description", "A &amp; B", "A &amp;amp; B"),
+            ("description", "A &#38; B", "A &amp;#38; B"),
+            ("description", "A &#x26; B", "A &amp;#x26; B"),
+            ("title", "1 < p", "1 &lt; p"),
+        ]
+        self.call("stage")
+        for field, expected, actual in cases:
+            with self.subTest(field=field, expected=expected):
+                self.metadata[field] = expected
+                self.write_manifest()
+                self.client.records[123]["metadata"] = copy.deepcopy(self.metadata)
+                self.client.records[123]["metadata"][field] = actual
+                with self.assertRaisesRegex(zenodo.DepositError, "metadata differs"):
+                    self.call("publish", 123)
+                self.assertEqual(self.client.publishes, 0)
+
+    def test_exact_preencoded_description_remains_valid(self):
+        self.metadata["description"] = "A &amp; B and 1 &lt; p"
+        self.write_manifest()
+        self.assertEqual(self.call("stage")["state"], "ready_to_publish")
+        self.assertEqual(self.call("publish", 123)["state"], "published")
+
     def test_published_retry_is_read_only_but_still_checks_id_and_manifest(self):
         self.call("stage")
         first = self.call("publish", 123)

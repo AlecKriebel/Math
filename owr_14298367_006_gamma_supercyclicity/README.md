@@ -4,7 +4,7 @@
 
 - [Read the five-page note](output/pdf/note.pdf) or visit the [paper website](https://aleckriebel.github.io/Math/papers/gamma-supercyclicity/).
 - [LaTeX source archive](output/note-source.zip).
-- [Zenodo upload kit](output/zenodo-upload-kit.zip), including the PDF, source archive, structured metadata, copy-and-paste fields, and [upload instructions](zenodo/UPLOAD.md). No deposition or DOI has been created.
+- [Zenodo upload kit](output/zenodo-upload-kit.zip), including the PDF, source archive, structured metadata, copy-and-paste fields, and [upload instructions](zenodo/UPLOAD.md). Published on Zenodo on 26 September 2026 as [10.5281/zenodo.22983147](https://doi.org/10.5281/zenodo.22983147); the original kit is retained unchanged. See [publication receipts](publication/README.md).
 
 The note gives an affirmative answer in the original separable setting. Its contribution is to make an application of earlier theorems explicit; neither the scalar criterion nor the amplification mechanism is claimed as new. The user authorized this narrower publication scope after the original priority audit.
 
