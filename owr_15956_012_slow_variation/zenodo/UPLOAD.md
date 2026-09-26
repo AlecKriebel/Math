@@ -1,6 +1,6 @@
 # Zenodo copy-and-paste upload guide
 
-This is a prepared manual upload package. No deposit or DOI has been created. No GitHub release is needed.
+Published on 26 September 2026 as [10.5281/zenodo.22983161](https://doi.org/10.5281/zenodo.22983161), using the version 1.0.1 metadata and two research files from this kit unchanged. Do not create a duplicate deposit. The steps below are retained as the original field guide; the immutable ZIPs preserve the earlier pre-deposit wording. See [publication evidence](https://github.com/AlecKriebel/Math/blob/main/owr_15956_012_slow_variation/publication/README.md). No GitHub release was created.
 
 1. Extract `zenodo-upload-kit.zip`.
 2. Create a new upload at [Zenodo](https://zenodo.org/uploads/new).

@@ -6,6 +6,7 @@ A short note on the printed Hilberdink problem, OWR-15956-012.
 
 **Scope matters.** The original report prints a conflicting weighted constant. The note disproves that prediction under the printed hypothesis, and does not settle the possible intended index-one regular-variation question. No exact earlier resolution was found in a bounded priority audit; originality is not certified.
 
+- [Published Zenodo record](https://doi.org/10.5281/zenodo.22983161) · [Publication receipts](publication/README.md)
 - [Paper PDF](output/paper.pdf) and [LaTeX source](manuscript/paper.tex)
 - [Verification report](audit/VERIFICATION_REPORT.md) and [current preprint review record](audit/preprint-readiness.md)
 - Original proof audits (version 1.0.0): [adversarial check](audit/adversarial-proof.md) and [independent derivation](audit/independent-derivation.md)
@@ -23,4 +24,4 @@ To rebuild the PDF, use `tectonic manuscript/paper.tex --outdir output` (or anot
 
 Alec Kriebel, ORCID [0009-0001-9320-500X](https://orcid.org/0009-0001-9320-500X). Version 1.0.1, 23 September 2026 UTC. Unrefereed preprint. Candidate supplied from prior AI-assisted work; OpenAI Codex assisted with preparation and separate AI audits. No external person was contacted. Text is CC BY 4.0; code is MIT; see [LICENSES.md](LICENSES.md).
 
-The upload kit is prepared for manual deposit. No Zenodo deposit, DOI, or GitHub release is created by the build.
+Version 1.0.1 was deposited on Zenodo on 26 September 2026 with the reviewed metadata and research files unchanged: DOI [10.5281/zenodo.22983161](https://doi.org/10.5281/zenodo.22983161). The original source archive and upload kit are preserved as the deposited snapshot, including their historical pre-deposit wording. Current citation and website files record the DOI. To reproduce the deposited archive, start from its extracted sources; rebuilding from this updated working folder produces a different package. No GitHub release was created. See [publication evidence](publication/README.md).

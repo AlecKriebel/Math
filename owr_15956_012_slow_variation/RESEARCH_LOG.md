@@ -59,3 +59,16 @@ All timestamps use UTC. Completion percentages estimate progress toward verifica
 - Version 1.0.1 published on main and GitHub Pages. Successful deployment run 35869708450 includes commit 6c23a59bb.
 - All nine current public files match the final local files byte-for-byte. Recorded version-specific deployment and checksum evidence.
 - Two fresh adversarial rounds, two delivery findings fixed, final round clean. Mathematical content unchanged; ready for the stated preprint scope. No journal submission undertaken.
+
+## 2026-09-26T21:14:22.580797+00:00 — Zenodo publication preparation (20%)
+
+- User authorized publication through the new repository tool and one tracker row, followed by unsent comment and email drafts.
+- Version 1.0.1 metadata copied without field changes; PDF, source archive, and outer kit match the reviewed hashes. The two research files match the kit byte-for-byte.
+- Tracker tab and headers verified; no row for this problem exists. No person will be contacted.
+
+## 2026-09-26T21:16:50.595988+00:00 — Published and tracker verified (90%)
+
+- Zenodo record 22983161 published; DOI 10.5281/zenodo.22983161 assigned. Exact metadata and two uploaded research files verified on API read-back; anonymous downloads match the reviewed kit byte-for-byte.
+- Google Workspace CLI appended and independently read back 'Math Puzzles'!A7:D7. Solution chat left blank because no share URL was supplied.
+- Updated current citation and site with DOI while preserving deposited scientific files and original archives. DOI resolver initially returned 404; public record and files are available.
+- Remaining: push publication evidence, verify updated Pages, recheck DOI, and provide the two unsent drafts.
