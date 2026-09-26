@@ -511,7 +511,7 @@ deposit, DOI, or external communication was created.
 
 ## Radial orthogonality and dual 1-conformal flatness
 
-Prepared on **22 September 2026** (America/Los_Angeles), this four-page
+Revised as **version 1.0.1 on 26 September 2026** (America/Los_Angeles), this four-page
 unrefereed note gives an explicit negative answer to Takashi Kurose's
 Question 3(e) in the 1998 affine-geometry problem collection, indexed as
 AMR-059-0011. The round cylinder with its Levi–Civita connection has
@@ -522,9 +522,10 @@ extension and all dimensions at least three are included.
 The source package is `radial_statistical_counterexample/`; its paper page is
 <https://aleckriebel.github.io/Math/papers/radial-statistical-counterexample/>.
 Independent AI proof reviews and two exact verifiers found no mathematical
-gap. A bounded priority audit found no earlier explicit answer, but cannot
-certify first discovery or current database status. The classical ingredients
-and known divisible-cubic-form construction are credited. The Zenodo kit is
+gap. Historical priority remains unresolved: Kurose 1999, Binder–Simon 2000,
+and the full content of Kurose’s 2016 talk remain unread, among other leads.
+No first-resolution claim or assertion of continued open status is made. The
+classical ingredients and Matsuzoe’s 1999 deformation formula are credited. The Zenodo kit is
 prepared for manual upload; no release, deposit, or DOI is claimed.
 
 ## Brandes coefficient normalization (OWR-17293-016)

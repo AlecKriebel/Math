@@ -1,12 +1,12 @@
 # Verification report
 
-Target: Kurose's printed Question 3(e), Furuhata–Matsuzoe–Urakawa (1998), p.126. Version 1.0.0, audited 22 September 2026 (local time).
+Target: Kurose's printed Question 3(e), Furuhata–Matsuzoe–Urakawa (1998), p.126. Version 1.0.1, revised 26 September 2026. See PREPRINT_READINESS.md for the current adversarial review record.
 
 ## Verdict
 
 **The candidate is a complete counterexample to the printed implication.** No mathematical gap was found in the source check, intrinsic proof review, or independent coordinate computation. The extension with nonzero cubic tensor is also valid. This is a negative answer to a universally stated yes/no question; it does not require classifying every statistical manifold satisfying the premise.
 
-**Priority:** no earlier explicit answer was located in the bounded audit. This is not a guarantee of first discovery or verified current open status. The exact prior construction behind the extension is credited to the divisible-cubic-form literature. See `reviews/priority_audit.md` for the searches, known ingredients, inaccessible sources, and remaining historical gaps.
+**Priority:** Historical priority remains unresolved. The documented, bounded search found no earlier explicit answer, but relevant sources remain uninspected, including Kurose's 1999 affine-realization paper, Binder-Simon's 2000 problem list, and the full content of Kurose's 2016 talk. An earlier answer or implicit resolution in those sources cannot be excluded. No first-resolution claim or assertion that the question remained open at publication is made. The ingredients are classical; the exact deformation is credited to Matsuzoe (1999), p.178, equation (2.1). See [current priority statement](https://aleckriebel.github.io/Math/papers/radial-statistical-counterexample/priority-audit.md) and the dated audit reports for exact search coverage.
 
 ## Checkable chain of reasoning
 
@@ -32,7 +32,7 @@ The pointwise standard-library checker supplies an exact rational certificate in
 - Statistical 1-conformal flatness is a connection condition. Ordinary Riemannian conformal flatness would be a different question.
 - The higher-dimensional claim is proved symbolically in the paper; checking three dimensions numerically would not establish it.
 - The standard-library solver intentionally accepts the two-dimensional sphere tensor. This does not decide the original implication restricted to dimension two.
-- The live database was inaccessible; a local catalog records `partially_solved` without an inspected supporting result. The original printed formulation controls the claim.
+- A browser recheck read the live database annotations on 23 September. Its `partially_solved` label describes machine-generated research progress, not an identified verified partial theorem. The original printed formulation controls the claim.
 - `gradient_path_counterexample.py` and its output refer to discrete Morse theory, not statistical geometry, and contribute no evidence here.
 - These are AI-assisted mathematical and computational checks, not human peer review or a formal proof-assistant certification.
 

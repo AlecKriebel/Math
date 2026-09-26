@@ -15,7 +15,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parent
 NAME = "radial_statistical_counterexample"
-STAMP = (2026, 9, 22, 0, 0, 0)
+STAMP = (2026, 9, 26, 0, 0, 0)
 
 
 def digest(data):
@@ -55,6 +55,7 @@ def main():
                       "manuscript/paper.tex", "output/pdf/paper.pdf",
                       "research/VERIFICATION_REPORT.md", "research/SOURCE_AUDIT.md",
                       "research/sources.json", "research/RESEARCH_LOG.md",
+                      "research/PRIORITY_STATUS.md", "research/PREPRINT_READINESS.md",
                       "reviews/proof_audit.md", "reviews/priority_audit.md",
                       "reviews/computation_review.md", "reviews/final_manuscript_audit.md",
                       "verification/verify_exact.py", "verification/exact_output.txt",
@@ -75,7 +76,11 @@ def main():
                 "reviews/priority_supplied_papers.md",
                 "reviews/priority_supplied_matsuzoe1999.md",
                 "reviews/priority_supplied_matsuzoe2010.md",
-                "reviews/priority_supplied_kurose2024.md"]
+                "reviews/priority_supplied_kurose2024.md",
+                "reviews/preprint_adversarial_round1.md",
+                "reviews/preprint_adversarial_round2.md",
+                "reviews/preprint_adversarial_round3.md",
+                "reviews/preprint_adversarial_round4.md"]
     required_files.extend(p for p in optional if (ROOT / p).is_file())
     entries = {name: (ROOT / name).read_bytes() for name in required_files}
     checks = manifest(entries)
@@ -102,7 +107,8 @@ def main():
     page.mkdir(exist_ok=True)
     web_entries = {**payload, "zenodo-upload-kit.zip": kit_zip.read_bytes(),
                    "verification-report.md": entries["research/VERIFICATION_REPORT.md"],
-                   "priority-audit.md": entries["reviews/priority_audit.md"],
+                   "priority-audit.md": entries["research/PRIORITY_STATUS.md"],
+                   "preprint-readiness.md": entries["research/PREPRINT_READINESS.md"],
                    "index.html": entries["site/index.html"], "style.css": entries["site/style.css"]}
     web_entries["SHA256SUMS.txt"] = manifest(web_entries)
     for name, data in web_entries.items():

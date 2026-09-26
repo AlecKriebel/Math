@@ -1,5 +1,7 @@
 # Original-source audit
 
+> Historical audit snapshot. Version 1.0.1 (26 September 2026) supersedes earlier manuscript/package and access-status statements. See the [current priority statement](PRIORITY_STATUS.md) and the current manuscript; the dated findings below are retained for provenance.
+
 Audit date: 22 September 2026 (America/Los_Angeles; 23 September UTC).
 
 ## Exact target and conventions

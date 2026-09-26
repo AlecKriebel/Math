@@ -1,5 +1,7 @@
 # Live database recheck
 
+> Historical audit snapshot. Version 1.0.1 (26 September 2026) supersedes earlier manuscript/package and access-status statements. See the [current priority statement](PRIORITY_STATUS.md) and the current manuscript; the dated findings below are retained for provenance.
+
 Observed 23 September 2026 UTC. Scope: the public, expanded problem page at
 <https://www.unsolvedmath.com/problems/AMR-059-0011>.
 

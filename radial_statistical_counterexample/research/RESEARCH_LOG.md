@@ -67,3 +67,29 @@ Completion estimates concern verification and delivery of this particular negati
 - A final adversarial comparison passed the mathematical and historical wording. Two minor clarity/deployment items were identified: acknowledge the companion full-text closure in the 1999 report, and copy the new site paragraph to the Pages directory. Both are routine delivery corrections.
 - Retained concrete gaps: Binder–Simon 2000, Kurose 1999 (now with a recorded 201–219 versus 209–219 pagination discrepancy), the full 2016 talk, and narrower uninspected citation leads. No global priority certificate is claimed.
 - Publication remains a dated audit addendum. The four-page paper and version 1.0.0 ZIP archives are preserved. Remaining step: validate the updated manifests and source links, commit/push only this effort, and confirm the corrected webpage is served. No release, DOI, deposit, or external contact was initiated.
+
+
+## 2026-09-26T21:22:10Z — preprint revision and fresh adversarial review (45% of this revision)
+
+- User requested explicit priority qualifications in all papers and successive fresh adversarial reviews, correcting actionable issues until a round finds none. This effort has one manuscript; all current copies, site, citation records, metadata, and packages are being revised together as version 1.0.1.
+- The abstract now disclaims first-resolution priority; the attribution section names the principal unread sources and disclaims verified continued open status. The prior failed database-access statement is corrected, and the exact deformation is cited directly to Matsuzoe 1999 rather than only the later Ueno preprint. Dated audits retain their historical observations with supersession notices.
+- The revised source compiles successfully with the built-in editor; Tectonic exports four pages. All four rendered pages were visually inspected. No overfull box remains; one harmless bibliography underfull-box warning causes no visible defect. The mathematical proof is unchanged.
+- A fresh reviewer, preprint_adversary_round1, is independently checking original printed sources, every quantifier, curvature signs, duality, and the deformation. A second fresh reviewer will use a distinct adversarial route after the first is complete and any accepted findings are addressed.
+- The current priority statement preserves the unresolved historical gap. No external communication, journal preparation, release, deposit, or DOI action is authorized or performed in this revision.
+
+
+## 2026-09-26T21:24:08Z — first fresh review passed (65% of this revision)
+
+- preprint_adversary_round1 independently reconstructed all proof steps before consulting source-audit records. It visually checked original FMU 3(a)/3(e), Kurose's definition and criterion, Matsuzoe's equation, and all four manuscript pages. No actionable preprint issue was found.
+- The review explicitly tested all convex-neighborhood quantifiers, cut-locus/center boundaries, affine reparametrization domains, curvature signs, duality, cubic nonvanishing, n>=3, and priority wording. The exact and 403-check symbolic verifiers passed. Reviewed source/PDF SHA-256 values are preserved in its report.
+- Citation metadata passes the official CFF 1.2.0 schema. Zenodo base fields pass the saved official legacy schema, while version/language retain the previously verified documented vocabulary. No server validation is claimed.
+- No corrective mathematical edit was needed. A second fresh reviewer is assigned a projective-curvature route and clean-extraction reproduction audit before finalizing the package.
+
+
+## 2026-09-26T21:30:27Z — second fresh review passed (100% preprint review; 95% delivery)
+
+- preprint_adversary_round2 independently derived the projective-curvature obstruction for both the base and the deformed connection and rechecked source definitions, quantifiers, and reparametrization domains. No actionable mathematical or attribution issue was found. Both fresh reviews identify the same unchanged version 1.0.1 manuscript and PDF hashes.
+- The reviewer extracted the source and upload archives into a clean directory. Both checkers passed normally and with Python optimization, producing the included transcripts exactly under the pinned environment. Every manifest and archive member checked, and the extracted package rebuilt both ZIPs and site files byte-for-byte. The extracted standalone source compiled successfully in the native editor. Metadata validation passed within the documented schema scope.
+- The sequential fresh-review stopping condition is satisfied: neither round found an actionable preprint issue. No mathematical correction was needed after the initial attribution/priority revision. The review record preserves method, evidence, exact identities, and limits rather than claiming external peer review or proof-assistant certification.
+- The final source archive now includes both new reviews and the completed readiness record. The site, citation records, and Zenodo kit all describe unresolved priority. The principal unread sources and possible earlier explicit or implicit resolution remain disclosed.
+- Final delivery checks will verify the regenerated manifests, archive/canonical-file identity, current PDF hashes, and served bytes after publication. No journal action, external contact, GitHub release, Zenodo deposit, or DOI creation is part of this revision.

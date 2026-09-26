@@ -52,8 +52,8 @@ problem collection (AMR-059-0011). The round cylinder has integrable radial
 distributions but its self-dual statistical connection cannot be flattened
 by a 1-conformal change. A four-page proof, a non-self-dual extension, exact
 verifiers, and independent AI audits accompany this unrefereed preprint.
-No earlier explicit answer was found in a bounded search; priority is not
-certified. See the [paper page](https://aleckriebel.github.io/Math/papers/radial-statistical-counterexample/)
+Version 1.0.1 explicitly leaves historical priority unresolved because relevant
+sources remain unread; no first-resolution claim is made. See the [paper page](https://aleckriebel.github.io/Math/papers/radial-statistical-counterexample/)
 and [source and verification package](radial_statistical_counterexample/).
 
 **A four-vertex counterexample to Knudson's persistence-gradient conjecture**

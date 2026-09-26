@@ -1,5 +1,7 @@
 # Priority audit: radial orthogonality and dual 1-conformal flatness
 
+> Historical audit snapshot. Version 1.0.1 (26 September 2026) supersedes earlier manuscript/package and access-status statements. See the [current priority statement](../research/PRIORITY_STATUS.md) and the current manuscript; the dated findings below are retained for provenance.
+
 Audit date: 2026-09-23 UTC (2026-09-22 in America/Los_Angeles).
 Reviewer: independent literature-audit agent, working without external contact.
 Scope: the explicit negative answer to item 3(e) in Furuhata–Matsuzoe–Urakawa (1998), including the Levi–Civita product example and the non-self-dual extension.

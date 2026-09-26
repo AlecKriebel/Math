@@ -1,6 +1,6 @@
 # Radial orthogonality does not imply dual 1-conformal flatness
 
-Alec Kriebel · [ORCID](https://orcid.org/0009-0001-9320-500X) · Version 1.0.0 · 22 September 2026
+Alec Kriebel · [ORCID](https://orcid.org/0009-0001-9320-500X) · Version 1.0.1 · 26 September 2026
 
 This four-page note gives a negative answer to Takashi Kurose's Question 3(e) in Furuhata–Matsuzoe–Urakawa (1998), p.126, indexed as AMR-059-0011 / 6000011.
 
@@ -9,9 +9,10 @@ This four-page note gives a negative answer to Takashi Kurose's Question 3(e) in
 - [Paper](output/pdf/paper.pdf) and [editable LaTeX source](manuscript/paper.tex).
 - [GitHub Pages article](https://aleckriebel.github.io/Math/papers/radial-statistical-counterexample/).
 - [Verification report](research/VERIFICATION_REPORT.md), [original-source audit](research/SOURCE_AUDIT.md), and [priority audit](reviews/priority_audit.md).
-- [Deeper priority follow-up, 23 September 2026](reviews/priority_followup.md), including the successful [live database recheck](research/DATABASE_RECHECK.md). The paper and version 1.0.0 archives retain the initial audit snapshot; these later notes update the historical assessment.
+- [Deeper priority follow-up, 23 September 2026](reviews/priority_followup.md), including the successful [live database recheck](research/DATABASE_RECHECK.md). Version 1.0.1 incorporates these follow-ups into the manuscript and download packages; the dated audit reports preserve the search history.
 - [Review of three supplied full texts, 24 September UTC](reviews/priority_supplied_papers.md): Matsuzoe 1999, Matsuzoe 2010, and Kurose 2023/2024. These source gaps are closed; no earlier explicit answer was found in them. The exact deformation is already printed in Matsuzoe 1999.
-- [Independent proof review](reviews/proof_audit.md) and [coordinate-computation review](reviews/computation_review.md).
+- [Current priority statement](research/PRIORITY_STATUS.md) and [preprint review record](research/PREPRINT_READINESS.md).
+- [Initial independent proof review](reviews/proof_audit.md) and [coordinate-computation review](reviews/computation_review.md).
 - [Zenodo upload instructions and copyable metadata](zenodo/UPLOAD.md).
 
 ## Verify in under a minute
@@ -45,7 +46,9 @@ Alternatively compile the source twice with a conventional LaTeX distribution. `
 
 ## Attribution and status
 
-The argument resolves the printed implication, not a classification problem. Independent AI reviews and exact checks found no substantive mathematical gap. A focused literature search found no earlier explicit answer; it cannot certify priority or the question's current status in every source. The Gauss-lemma mechanism, Kurose's criterion, and the projective/conformal deformation machinery are prior work. A browser retry on 23 September 2026 successfully read the public database's annotations: its partial-status label refers to machine-generated research progress, and its report identifies no verified proof or counterexample. See the dated follow-up for deeper citation checks and remaining access gaps.
+The argument proves that the printed implication is false. **Historical priority remains unresolved. No first-resolution claim is made, and the paper does not assert that the question remained open at publication.** No earlier explicit answer was found in the bounded search, but Kurose's 1999 affine-realization paper, Binder–Simon's 2000 problem list, the full content of Kurose's 2016 talk, and narrower citation leads remain uninspected. An earlier answer or implicit resolution in them cannot be excluded. See the [current priority statement](research/PRIORITY_STATUS.md).
+
+The Gauss-lemma mechanism, Kurose's curvature criterion, and the deformation machinery are prior work. The exact deformation is credited directly to Matsuzoe (1999), p.178, equation (2.1). The database annotations were successfully read on 23 September; their machine-generated report identifies no verified answer, which is not evidence establishing priority. Version 1.0.1 corrects the original access statement and incorporates the fuller attribution throughout.
 
 This is an unrefereed, AI-assisted preprint, prepared with OpenAI Codex and separate adversarial AI reviewers from the supplied AI-generated candidate. No external human peer review, Zenodo deposit, or DOI is claimed. The two supplied gradient-path filenames belong to a different problem and are not used here.
 

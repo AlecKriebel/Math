@@ -1,5 +1,7 @@
 # Delivery checks
 
+> Historical audit snapshot. Version 1.0.1 (26 September 2026) supersedes earlier manuscript/package and access-status statements. See the [current priority statement](PRIORITY_STATUS.md) and the current manuscript; the dated findings below are retained for provenance.
+
 Package checkpoint: 2026-09-23T03:51:05Z. Mathematical verification complete; public-serving check pending when this package snapshot was made.
 
 - The four-page paper source and PDF received a final independent adversarial review; their hashes are in `reviews/final_manuscript_audit.md`.

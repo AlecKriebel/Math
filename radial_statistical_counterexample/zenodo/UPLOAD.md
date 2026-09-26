@@ -25,9 +25,9 @@ Radial orthogonality does not imply dual 1-conformal flatness
 
 **ORCID:** 0009-0001-9320-500X
 
-**Publication date:** 2026-09-22 (manuscript date)
+**Publication date:** 2026-09-26 (manuscript date)
 
-**Version:** 1.0.0
+**Version:** 1.0.1
 
 **Language:** English
 
@@ -39,7 +39,7 @@ Radial orthogonality does not imply dual 1-conformal flatness
 
 We give an explicit negative answer to Takashi Kurose's Question 3(e) in Furuhata, Matsuzoe and Urakawa, Open Problems in Affine Differential Geometry and Related Topics (1998), p.126, indexed as AMR-059-0011 / 6000011. On the product S²(1) × R with its product metric and Levi–Civita connection, every radial orthogonal distribution in the question is integrable, but the dual statistical structure is nowhere locally 1-conformally flat. The proof combines the first variation of energy with two incompatible curvature evaluations. A conformal metric and projective connection deformation yields a non-self-dual example with nowhere zero cubic tensor; the product obstruction extends to every dimension at least three.
 
-The deposit contains a four-page manuscript, LaTeX source, a standard-library exact rational verifier, an independently implemented SymPy verifier, source and priority audits, and reproducibility instructions. The computations supplement the analytic proof. A focused search found no earlier explicit resolution, but historical priority and current database status are not certified. Classical ingredients and the known divisible-cubic-form construction are credited.
+The package contains a four-page manuscript, LaTeX source, a standard-library exact rational verifier, an independently implemented SymPy verifier, source and priority audits, and reproducibility instructions. The computations supplement the analytic proof. Historical priority remains unresolved. The documented, bounded search found no earlier explicit answer, but relevant sources remain uninspected, including Kurose's 1999 affine-realization paper, Binder-Simon's 2000 problem list, and the full content of Kurose's 2016 talk. An earlier answer or implicit resolution in those sources cannot be excluded. No first-resolution claim or assertion that the question remained open at publication is made. The ingredients are classical; the exact deformation is credited to Matsuzoe (1999), p.178, equation (2.1).
 
 This is an unrefereed, AI-assisted preprint. The candidate was supplied as AI-generated work. The manuscript, verification materials, and separate adversarial AI audits were prepared with OpenAI Codex. AI reviews are not external human peer review or proof-assistant formalization.
 
@@ -47,7 +47,7 @@ This is an unrefereed, AI-assisted preprint. The candidate was supplied as AI-ge
 
 - Cites: DOI `10.4036/iis.1998.125` (original question).
 - Cites: DOI `10.2748/tmj/1178225722` (definitions and prior criterion).
-- Cites: `https://arxiv.org/abs/2503.10024v2` (known deformation mechanism).
+- Cites: DOI `10.32917/hmj/1206125160` (exact prior deformation, p.178, equation (2.1)).
 - Is documented by: `https://aleckriebel.github.io/Math/papers/radial-statistical-counterexample/`.
 - Is supplemented by: `https://github.com/AlecKriebel/Math/tree/main/radial_statistical_counterexample`.
 

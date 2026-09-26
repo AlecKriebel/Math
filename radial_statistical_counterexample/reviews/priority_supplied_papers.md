@@ -1,5 +1,7 @@
 # Priority update after reading the three supplied papers
 
+> Historical audit snapshot. Version 1.0.1 (26 September 2026) supersedes earlier manuscript/package and access-status statements. See the [current priority statement](../research/PRIORITY_STATUS.md) and the current manuscript; the dated findings below are retained for provenance.
+
 Date: 24 September 2026 UTC (23 September in America/Los_Angeles).
 
 **Result:** three specific full-text gaps are now closed. None of the supplied

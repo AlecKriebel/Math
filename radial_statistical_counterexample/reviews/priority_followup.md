@@ -1,5 +1,7 @@
 # Deeper priority audit — 23 September 2026
 
+> Historical audit snapshot. Version 1.0.1 (26 September 2026) supersedes earlier manuscript/package and access-status statements. See the [current priority statement](../research/PRIORITY_STATUS.md) and the current manuscript; the dated findings below are retained for provenance.
+
 **Subsequent update, 24 September UTC:** the user supplied Matsuzoe 1999,
 Matsuzoe 2010, and Kurose 2023/2024. Those three full-text gaps are now closed;
 see the [complete-paper follow-up](priority_supplied_papers.md). The audit below
