@@ -1,12 +1,25 @@
-\documentclass[11pt]{amsart}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern,microtype,mathtools,amssymb}
-\usepackage{hyperref}
-\hypersetup{hidelinks,pdftitle={A counterexample to Kourovka Notebook Problem 16.45},pdfauthor={Alec Kriebel}}
+% The official journal class is included in the source archive. The amsart
+% fallback supports the standalone editor preview; release builds require baustms.
+\newif\ifbulletinformat
+\IfFileExists{baustms.cls}{\bulletinformattrue\documentclass[plain]{baustms}}{\bulletinformatfalse\documentclass[11pt]{amsart}}
+\ifbulletinformat
+  \usepackage{microtype,mathtools}
+  \theoremstyle{cupthm}
+  % Suppress the template's unassigned publication-DOI placeholder.
+  \makeatletter
+  \def\@mainheadline{\gdef\@mymainhead{}\setcounter{page}{1}}
+  \def\ps@austmstitle{\let\@mkboth\@gobbletwo
+    \def\@oddhead{}\def\@evenhead{}\def\@oddfoot{}\def\@evenfoot{}}
+  \makeatother
+\else
+  \usepackage[T1]{fontenc}
+  \usepackage{lmodern,microtype,mathtools,amssymb,hyperref}
+\fi
+\hypersetup{draft=false,hidelinks,pdftitle={A counterexample to Kourovka Notebook Problem 16.45},pdfauthor={Alec Kriebel}}
 \newtheorem{theorem}{Theorem}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{lemma}[theorem]{Lemma}
-\theoremstyle{remark}
+\ifbulletinformat\theoremstyle{cuprem}\else\theoremstyle{remark}\fi
 \newtheorem{remark}[theorem]{Remark}
 \newcommand{\F}{\mathbf F}
 \newcommand{\mup}{\mu'}
@@ -15,11 +28,20 @@
 \newcommand{\Sym}{\operatorname{Sym}}
 \newcommand{\Core}{\operatorname{Core}}
 \title{A counterexample to Kourovka Notebook Problem 16.45}
-\author{Alec Kriebel}
-\address{Independent researcher, San Francisco, USA}
-\email{me@aleckriebel.com}
-\urladdr{https://orcid.org/0009-0001-9320-500X}
-\subjclass[2020]{Primary 20B05; Secondary 20D30, 20D60}
+\ifbulletinformat
+  \runningtitle{Kourovka Notebook Problem 16.45}
+  \author[1]{Alec Kriebel}
+  \address[1]{Independent researcher, San Francisco, USA\\
+    ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}\email{me@aleckriebel.com}}
+  \authorheadline{A. Kriebel}
+  \classification[2020]{Primary 20B05; Secondary 20D30, 20D60}
+\else
+  \author{Alec Kriebel}
+  \address{Independent researcher, San Francisco, USA}
+  \email{me@aleckriebel.com}
+  \urladdr{https://orcid.org/0009-0001-9320-500X}
+  \subjclass[2020]{Primary 20B05; Secondary 20D30, 20D60}
+\fi
 \keywords{Permutation bases, independent sets, finite groups, subgroup lattices, Kourovka Notebook}
 \date{}
 \begin{document}
@@ -413,15 +435,18 @@ why the line-stabilizer hypothesis matters. The preprint and original
 verification materials are archived at
 \href{https://doi.org/10.5281/zenodo.22929486}{doi:10.5281/zenodo.22929486}.
 
-OpenAI Codex was used in developing and checking the mathematical arguments,
-writing exact verification programs, searching the literature, and preparing
-the manuscript. Separate AI agents performed adversarial structural,
-computational, and source reviews. These checks are not external peer
-review or proof-assistant certification. The author is responsible for
-the mathematical claims and the submitted text.
+OpenAI Codex (\url{https://openai.com/codex/}) was used during
+19--25 September 2026 to develop and check the construction and proofs,
+generate manuscript text and exact verification programs, search and check
+references, and prepare the submission. Separate AI agents performed
+adversarial structural, computational, and source reviews. Historical
+application and model build identifiers were not consistently recorded.
+These checks are not external peer review or proof-assistant certification.
+The author is responsible for the mathematical claims and the submitted text.
 
 \section*{Funding}
 This research received no external funding.
+The author declares no competing interests.
 
 \begin{thebibliography}{9}
 \bibitem{ab2024}
@@ -444,6 +469,6 @@ Model Theory \textbf{3} (2024), no.~2, 417--431.
 E.~I. Khukhro and V.~D. Mazurov (eds.),
 \emph{Unsolved Problems in Group Theory: The Kourovka Notebook},
 21st edition, September 2026 update, Problem 16.45, p.~100.
-\url{https://kourovkanotebookorg.wordpress.com/}.
+\href{https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/09/21tkt.pdf}{Official notebook and updates}.
 \end{thebibliography}
 \end{document}

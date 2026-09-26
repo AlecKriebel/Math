@@ -1,0 +1,158 @@
+\documentclass[11pt]{amsart}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,amsmath,amssymb}
+\usepackage{hyperref}
+\hypersetup{hidelinks,pdftitle={Exact verification supplement: Kourovka Notebook Problem 16.45},pdfauthor={Alec Kriebel}}
+\newcommand{\F}{\mathbf F}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\mup}{\mu'}
+\newcommand{\bfth}{b_{\mathrm f}}
+\title[Exact verification supplement]{Exact verification supplement to\\
+A counterexample to Kourovka Notebook Problem 16.45}
+\author{Alec Kriebel}
+\date{}
+\begin{document}
+\maketitle
+
+\section{Scope and explicit identifications}
+
+The paper proves structurally that the explicitly specified group
+$G=\F_{29}^2\rtimes H$ has
+\[
+ |G|=100920,\qquad \bfth(G)=b(G)=3<4=\mup(G).
+\]
+Here $\mup$ is the maximum size of an independent subset; $b$ is the maximum
+size of an inclusion-minimal base over all permutation representations,
+with bases taken for the permutation image; and $\bfth$ restricts this
+maximum to faithful representations. This supplement describes optional
+exact checks of the finite inputs and witnesses. These computations are not
+premises of the structural upper-bound proof. In particular, no subgroup
+enumeration of the group of order $100920$ is asserted.
+
+Over $\F_{29}$ the complement generators are
+\[
+ A=\begin{pmatrix}0&28\\1&0\end{pmatrix},\qquad
+ B=\begin{pmatrix}2&7\\12&28\end{pmatrix},\qquad H=\langle A,B\rangle.
+\]
+The verifiers obtain exactly $120$ determinant-one matrices and check
+$A^2=B^3=(AB)^5=-I$. An explicit isomorphism $\SL_2(5)\to H$ is specified by
+\[
+ \begin{pmatrix}0&4\\1&0\end{pmatrix}\longmapsto A,
+ \qquad
+ \begin{pmatrix}0&4\\1&1\end{pmatrix}\longmapsto B.
+\]
+These pairs generate a subgroup of $\SL_2(5)\times H$ of order $120$,
+with both coordinate projections bijective, certifying the isomorphism.
+The additional checker verifies all $120^2=14400$ multiplication identities.
+Similarly, $A\mapsto(1\,2)(3\,4)$ and $B\mapsto(1\,3\,5)$ define
+a quotient onto $A_5$ with kernel $Z=\{I,-I\}$; all $14400$
+multiplication identities for this quotient are checked as well.
+
+The independent triple is
+\[
+ R_1=A,\qquad R_2=\begin{pmatrix}12&24\\0&17\end{pmatrix},\qquad
+ R_3=\begin{pmatrix}25&3\\4&4\end{pmatrix}.
+\]
+The words $R_2=BAB^2$ and $R_3=AR_2(AB)^2$, the identities $R_i^2=-I$,
+and the product orders $|R_2R_3|=4$, $|R_1R_3|=3$, $|R_1R_2|=10$
+are checked. Their omission subgroups have orders $8,12,20$, intersect
+in $Z$, and have core $Z$ in $H$.
+
+\section{Coverage of the subgroup and affine checks}
+
+The complement subgroups are enumerated by starting with the identity
+subgroup and, from each discovered subgroup, adjoining every element outside
+it. Every subgroup has a generating sequence, and each successive prefix
+occurs along a path in this procedure. The resulting list therefore contains
+all $76$ actual subgroups, not just conjugacy representatives. As a further
+check, their order distribution is
+\[
+\begin{array}{c|rrrrrrrrrrrr}
+ \text{order}&1&2&3&4&5&6&8&10&12&20&24&120\\\hline
+ \text{number}&1&1&10&15&6&10&5&6&10&6&5&1.
+\end{array}
+\]
+A subgroup family is \emph{meet-irredundant} when removing any member
+strictly enlarges its total intersection. Each of the
+$\binom{75}{4}=1215450$ four-families of proper subgroups is tested;
+none is meet-irredundant. Since every subfamily of a meet-irredundant family
+is meet-irredundant, larger ranks are excluded as well. Of the
+$\binom{75}{3}=67525$ three-families, $900$ are meet-irredundant, but none
+has trivial intersection. Explicit pairs with trivial intersection give
+the lower bound for $\bfth(H)$; the displayed triple gives the other lower
+bound. Thus the finite results corroborate $\mup(H)=3$ and $\bfth(H)=2$.
+
+All $30$ lines of $\F_{29}^2$ are tested, and each stabilizer is cyclic of
+order $4$. The additional checker independently enumerates the $62$ subgroups
+of the scalar group $\F_{29}\rtimes C_4$ and finds no meet-irredundant triple.
+This is a finite check of the line-subgroup bound used in the proof; the
+paper supplies the general elementary argument.
+
+Using $(v,h)(w,k)=(v+hw,hk)$, the affine generators
+\[
+ (e_1,I),\quad (0,R_1),\quad (0,R_2),\quad (0,R_3)
+\]
+generate $100920$ elements. Their omission subgroups have respective orders
+$120,6728,10092,16820$, and every omitted generator is absent from its
+omission subgroup. The total intersection is
+$Z_0=\{(0,I),(0,-I)\}$. Nonnormality is checked directly from
+\[
+ (e_1,I)(0,-I)(-e_1,I)=(2e_1,-I)\notin Z_0.
+\]
+The three subgroups
+\[
+\begin{split}
+ L_1&=\langle(e_1,I),(0,-I)\rangle,\qquad
+ L_2=\langle(e_2,I),(0,-I)\rangle,\\
+ L_3&=\langle(e_1+e_2,I),(2e_1,-I)\rangle
+\end{split}
+\]
+have order $58$. Their pairwise intersections have order $2$ and their total
+intersection is trivial; the additional checker verifies the displayed
+intersection elements in the paper. Their disjoint coset action has degree
+$3(100920/58)=5220$ and a faithful minimal base of size $3$.
+
+\section{Why the characteristic matters}
+
+The conclusion does not extend to every characteristic in which such a
+complement exists. Over $\F_{11}$, put
+\[
+ A_{11}=\begin{pmatrix}0&10\\1&0\end{pmatrix},\quad
+ B_{11}=\begin{pmatrix}0&2\\5&1\end{pmatrix},\quad
+ C=A_{11}B_{11}=\begin{pmatrix}6&10\\0&2\end{pmatrix}.
+\]
+The first two matrices generate a group of order $120$. The element $C$
+has order $10$, with $C^5=-I$, and stabilizes the distinct lines
+$W_1=\langle(1,0)\rangle$ and $W_2=\langle(1,4)\rangle$; its eigenvalues
+on them are $6$ and $2$, respectively. Write $D=\langle C\rangle$,
+$D_2=\langle C^5\rangle$ and $D_5=\langle C^2\rangle$.
+Inside $V\rtimes\langle A_{11},B_{11}\rangle$, where $V=\F_{11}^2$, take
+\[
+ Q_1=W_1\rtimes D,\quad Q_2=W_2\rtimes D,\quad
+ Q_3=V\rtimes D_2,\quad Q_4=V\rtimes D_5.
+\]
+These have orders $110,110,242,605$. Since $W_1\cap W_2=0$ and
+$D_2\cap D_5=1$, their total intersection is $1$. The deletion intersections
+are, in order, $W_2,W_1,D_5,D_2$, of orders $11,11,5,2$.
+Every member is therefore essential, giving a faithful minimal base of
+size $4$. This exact witness tests the limit of the argument: the
+characteristic-$29$ proof uses $\gcd(120,28)=4$ and the resulting cyclic
+2-group line stabilizers, whereas $\gcd(120,10)=10$ permits this obstruction.
+
+\section{Reproduction and limits}
+
+The README gives ordinary Python and C++17 commands and the expected outputs.
+Python uses only its standard library; all mathematical arithmetic is exact.
+The reconstruction programs read no precomputed certificate. The two supplied
+implementations and a newly written checker agree on all $76$ subgroups as
+sets of actual matrices. The two Python implementations additionally agree
+on the digest of the complete sorted affine element set. Saved expected
+outputs are used only for subsequent comparison; elapsed runtime is not a
+mathematical assertion.
+
+These programs check explicit finite claims and provide reproducibility;
+they do not replace the structural proof of the universal bounds, establish
+bibliographic novelty, or imply external human peer review. The paper and
+checks were prepared with AI assistance. No proof-assistant formalization is
+claimed.
+\end{document}
