@@ -46,3 +46,9 @@
 - Final determination: the formal target identity is established by the 2018 prior proof; the submitted candidate alone omits the essential model identification. A new-resolution priority claim fails.
 - Deliverables are a concise audit and verifier, not the conditional new-resolution publication bundle. No paper claiming a new resolution, GitHub Pages site, Zenodo metadata/upload, release, or DOI was created.
 - Final reviewer report and this completion log are ready for the final scoped main-branch commit and push.
+
+## 2026-09-26T21:53:31.663501+00:00 — requested queue status correction
+
+- Changed only the status field for 30003895 / OWR-16407-007 in `unsolved_math_prioritization/QUEUE.md` from `claimed_solved` to `already_solved`, as explicitly requested.
+- Queue-edit completion: 100%. The existing verification and priority findings remain unchanged.
+- Preserved the queue’s custom Chat, Findings, and DOI columns; the general queue generator would replace this manually maintained layout.
