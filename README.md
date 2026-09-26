@@ -7,6 +7,8 @@ This repository is the source for the public research notebook at
 <https://aleckriebel.github.io/Math/>. It is separate from Alec's personal
 website, <https://aleckriebel.com/>.
 
+For future paper deposits, see the [local Zenodo API tool](zenodo_deposit_tool/README.md).
+
 ## Important verification disclaimer
 
 I am a complete amateur and cannot independently verify the mathematical
