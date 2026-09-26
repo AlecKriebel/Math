@@ -1,0 +1,449 @@
+\documentclass[11pt]{amsart}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,microtype,mathtools,amssymb}
+\usepackage{hyperref}
+\hypersetup{hidelinks,pdftitle={A counterexample to Kourovka Notebook Problem 16.45},pdfauthor={Alec Kriebel}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newcommand{\F}{\mathbf F}
+\newcommand{\mup}{\mu'}
+\newcommand{\bfth}{b_{\mathrm f}}
+\newcommand{\SL}{\operatorname{SL}}
+\newcommand{\Sym}{\operatorname{Sym}}
+\newcommand{\Core}{\operatorname{Core}}
+\title{A counterexample to Kourovka Notebook Problem 16.45}
+\author{Alec Kriebel}
+\address{Independent researcher, San Francisco, USA}
+\email{me@aleckriebel.com}
+\urladdr{https://orcid.org/0009-0001-9320-500X}
+\subjclass[2020]{Primary 20B05; Secondary 20D30, 20D60}
+\keywords{Permutation bases, independent sets, finite groups, subgroup lattices, Kourovka Notebook}
+\date{}
+\begin{document}
+\begin{abstract}
+Let $b(G)$ be the largest size of an inclusion-minimal base over all
+permutation representations of a finite group $G$, with bases taken for the
+permutation image, and let $\mup(G)$ be the largest size of an independent
+subset of $G$. We construct an explicit affine group of order $100920$ for
+which $b(G)=3<4=\mup(G)$, giving a negative answer to Kourovka Notebook
+Problem 16.45. The maximum remains three when restricted to faithful
+representations. The proof is structural: every subgroup missing the
+translation subgroup has faithful base invariant at most two, and every
+nontrivial normal subgroup contains the translations. The independent
+four-set gives an irredundant intersection family whose intersection is
+central in the complement but not normal in the affine group.
+\end{abstract}
+\maketitle
+
+\section{Introduction}
+A subset $S$ of a finite group $X$ is \emph{independent} if
+$x\notin\langle S\setminus\{x\}\rangle$ for every $x\in S$.
+Write $\mup(X)$ for the largest size of such a subset; it need not generate
+$X$. For an action $\rho:X\to\Sym(\Omega)$, a \emph{base} is a set of
+points with pointwise stabilizer $\ker\rho$. A base is \emph{minimal} if
+it is inclusion-minimal. Let $b(X)$ be the largest size of a minimal base
+over all permutation representations of $X$, and let $\bfth(X)$ denote
+the same maximum restricted to faithful representations. In particular,
+$b(1)=\bfth(1)=\mup(1)=0$. The definitions allow intransitive and
+nonfaithful actions. Allowing infinite $\Omega$ makes no difference:
+choosing a moved point for each nonidentity element of the finite image
+gives a finite subbase of every base.
+
+Cameron's Problem 16.45 in the \emph{Kourovka Notebook} asks whether
+$b(X)=\mup(X)$ for every finite group $X$ \cite{notebook}.
+The inequality $b(X)\le\mup(X)$ is known. Cameron uses $b_2$ for $b$,
+and uses $\mu'$ in \cite{cameron2014} and $\mu^\uparrow$ in
+\cite{cameron2024} for our independence invariant. In contrast,
+Anagnostopoulou-Merkouri and Burness \cite[Remark 1(c)]{ab2024} restrict
+their $b_2$ to faithful actions, so it corresponds to our $\bfth$.
+The all-actions question is still posed in Cameron's 2024 account
+\cite[Section 6, Proposition 2 and the following discussion]{cameron2024}
+and is listed without a solution comment in the September 2026 notebook.
+We prove the following.
+
+\begin{theorem}\label{thm:main}
+Over $\F_{29}$, put
+\[
+ A=\begin{pmatrix}0&28\\1&0\end{pmatrix},\qquad
+ B=\begin{pmatrix}2&7\\12&28\end{pmatrix},\qquad
+ H=\langle A,B\rangle\le\SL_2(29).
+\]
+For the natural affine semidirect product $G=\F_{29}^2\rtimes H$,
+\[
+ |G|=100920,\qquad \bfth(G)=b(G)=3<4=\mup(G).
+\]
+\end{theorem}
+
+The proof separates two intersection conditions in the subgroup lattice.
+Independence corresponds to irredundant intersection families with arbitrary
+intersection, whereas permutation bases require that intersection to be
+normal. In our example an independent four-set gives a family with
+intersection of order two, central in $H$ but not normal in $G$.
+The faithful upper bound follows by restricting an intersection family to
+a subgroup that does not contain the translations. The normal-subgroup
+structure then handles every nonfaithful action.
+No enumeration of the subgroup lattice of $G$ is required, and no
+minimum-order assertion is made.
+
+\section{Subgroup formulations}
+We recall Cameron's subgroup formulations
+\cite[Propositions 3.1--3.2 and Corollary 3.3]{cameron2014};
+see also \cite{cameron2024}. We include the short arguments to make the
+normality condition explicit.
+
+\begin{proposition}\label{prop:bases}
+The invariant $b(X)$ is the largest $t$ for which subgroups
+$L_1,\ldots,L_t$ of $X$ satisfy
+\[
+ N=\bigcap_{i=1}^t L_i\lhd X,\qquad
+ \bigcap_{j\ne i}L_j>N\quad(1\le i\le t).
+\]
+The same description with $N=1$ gives $\bfth(X)$. Consequently,
+\begin{equation}\label{eq:quotients}
+ b(X)=\max_{N\lhd X}\bfth(X/N).
+\end{equation}
+\end{proposition}
+\begin{proof}
+Point stabilizers of a minimal base have the stated properties.
+Conversely, let $X$ act on the disjoint union of the left coset spaces
+$X/L_i$. The action kernel is
+\[
+ \bigcap_i\Core_X(L_i)
+ =\Core_X\!\left(\bigcap_i L_i\right)=N.
+\]
+The identity cosets form a minimal base. Factoring through the action kernel
+gives \eqref{eq:quotients}. Empty intersections are taken in the ambient
+group, so the empty family also handles the trivial group and trivial actions.
+\end{proof}
+
+Call a subgroup family \emph{meet-irredundant} if every member is essential
+to its total intersection, without a normality condition.
+
+\begin{lemma}\label{lem:breadth}
+The largest size of a meet-irredundant family in $X$ is $\mup(X)$.
+In particular, $b(X)\le\mup(X)$.
+\end{lemma}
+\begin{proof}
+For a meet-irredundant family $L_1,\ldots,L_t$, choose
+$x_i\in(\bigcap_{j\ne i}L_j)\setminus L_i$.
+Every $x_j$ with $j\ne i$ lies in $L_i$, whereas $x_i$ does not, so
+the $x_i$ are distinct and independent. Conversely, for an independent
+set $\{x_1,\ldots,x_t\}$, the subgroups
+$L_i=\langle x_j:j\ne i\rangle$ are meet-irredundant, with witnesses $x_i$.
+\end{proof}
+
+\begin{lemma}[Restriction]\label{lem:restriction}
+If $L_1,\ldots,L_t$ is meet-irredundant in $X$, then
+$t-1\le\mup(L_i)$ for each $i$. If its total intersection is $1$,
+then $t-1\le\bfth(L_i)$.
+\end{lemma}
+\begin{proof}
+Inside $L_i$, the family $L_i\cap L_j$ for $j\ne i$ is meet-irredundant:
+the witness for $L_j$ belongs to $L_i$. Its total intersection is unchanged.
+Apply Lemma~\ref{lem:breadth} or Proposition~\ref{prop:bases}.
+\end{proof}
+
+These descriptions also show that $\mup$ and $\bfth$ are monotone under
+subgroups. For completeness, a meet-irredundant family gives the
+top-preserving Boolean meet-semilattice embedding
+\[
+ J\longmapsto\bigcap_{i\notin J}L_i
+ \qquad(J\subseteq\{1,\ldots,t\}).
+\]
+The witnesses distinguish the images, and the bottom is $\bigcap_iL_i$.
+Thus the normality distinction is exactly the one in the notebook's
+semilattice formulation; no preservation of joins is assumed.
+
+\section{The complement}
+Let $H$ be as in Theorem~\ref{thm:main}, and set $Z=\{I,-I\}$.
+Direct multiplication gives
+\begin{equation}\label{eq:triangle}
+ A^2=B^3=(AB)^5=-I.
+\end{equation}
+The spherical triangle presentation
+$A_5=\langle a,b\mid a^2=b^3=(ab)^5=1\rangle$
+and simplicity of $A_5$ show that $H/Z\cong A_5$: the quotient is
+nontrivial because $A\notin Z$. Hence $|H|=120$.
+
+We recall the elementary subgroup facts that will be used. Every proper
+subgroup of $A_5$ lies in a subgroup isomorphic to $A_4$, $D_{10}$, or
+$S_3$, where $D_{10}$ has order ten. Indeed, in the natural action on five
+letters an intransitive subgroup fixes a letter or has orbits of sizes
+$2+3$. A proper transitive subgroup has order $5,10,15,20$, or $30$.
+Orders $15$ and $20$ would force a normal Sylow $5$-subgroup, whose
+normalizer in $A_5$ has order ten; order $30$ is excluded by simplicity.
+The remaining cases lie in a Sylow $5$-normalizer.
+
+Each of $A_4,D_{10},S_3$ has independence invariant two. For $A_4$, any
+generating set contains a $3$-cycle and an element outside its cyclic
+subgroup; these generate $A_4$, since it has no subgroup of order six.
+The proper subgroups of $A_4$ have independence invariant at most two.
+For a dihedral group of order $2q$ with $q$ prime, a generating set
+contains either a nontrivial rotation and a reflection, or two distinct
+reflections; two such elements suffice. Deleting one element from an
+independent set in $A_5$ therefore gives
+\begin{equation}\label{eq:A5}
+ \mup(A_5)\le3.
+\end{equation}
+The natural degree-five action has a minimal base of size three, so equality
+holds. These facts also follow directly from the usual subgroup structure of
+$A_5$; simplicity follows from its nonidentity conjugacy-class sizes
+$15,20,12,12$.
+
+\begin{lemma}\label{lem:H}
+One has $\mup(H)=b(H)=3$ and $\bfth(H)=2$.
+\end{lemma}
+\begin{proof}
+The only involution in $\SL_2(29)$ is $-I$: a matrix squaring to $I$
+is diagonalizable with eigenvalues $\pm1$, and determinant one forces
+the signs to agree. Every even-order subgroup of $H$ therefore contains
+$Z$. Every odd-order subgroup injects into $A_5$ and is trivial or cyclic
+of order three or five by the preceding subgroup description.
+
+Let $S$ be independent in $H$. If its images in $H/Z$, as an indexed
+family, are independent, then $|S|\le3$. Otherwise some $s\in S$ lies
+in $KZ\setminus K$, where $K=\langle S\setminus\{s\}\rangle$.
+Thus $Z\nsubseteq K$, so $K$ is trivial or cyclic of odd prime order.
+Independence then gives $|S|\le2$. Hence $\mup(H)\le3$.
+The degree-five action of $H/Z$ pulls back to an action of $H$ with a
+minimal base of size three. Lemma~\ref{lem:breadth} proves
+$b(H)=\mup(H)=3$.
+
+A subgroup family with total intersection $1$ must have an odd-order
+member. If that member is trivial, a minimal such family has size one.
+If it has prime order, some other member intersects it trivially, so
+a minimal family has size at most two. Subgroups of orders three and five
+give a faithful family of size two. This proves $\bfth(H)=2$.
+\end{proof}
+
+We will need an explicit independent triple in $H$. Put
+\begin{equation}\label{eq:R}
+ R_1=A,\qquad
+ R_2=\begin{pmatrix}12&24\\0&17\end{pmatrix},\qquad
+ R_3=\begin{pmatrix}25&3\\4&4\end{pmatrix}.
+\end{equation}
+The identities $R_2=BAB^2$ and $R_3=AR_2(AB)^2$ put these matrices in
+$H$. Direct multiplication gives $R_i^2=-I$ and
+\[
+ \operatorname{ord}(R_2R_3)=4,\qquad
+ \operatorname{ord}(R_1R_3)=3,\qquad
+ \operatorname{ord}(R_1R_2)=10.
+\]
+In $H/Z$ the corresponding products have orders $2,3,5$.
+Each pair of projective involutions generates a dihedral group; lifting
+back to $H$, the pair subgroups have orders
+\begin{equation}\label{eq:pairs}
+ |\langle R_2,R_3\rangle|=8,\quad
+ |\langle R_1,R_3\rangle|=12,\quad
+ |\langle R_1,R_2\rangle|=20.
+\end{equation}
+The subgroup generated by all three has order divisible by
+$\operatorname{lcm}(8,12,20)=120$, so it is $H$. Every pair subgroup
+is proper, proving independence. Moreover, the first two pair subgroups
+intersect in $\langle R_3\rangle$: this subgroup has order four, which
+is also $\gcd(8,12)$. The third does not contain $R_3$ and contains $Z$.
+Thus the intersection of the three pair subgroups is exactly $Z$.
+
+\section{Subgroups missing the translations}
+\begin{lemma}\label{lem:line}
+Let $p$ be an odd prime and let $C\le\F_p^\times$ be a cyclic
+$2$-group. For the faithful scalar semidirect product
+$L=\F_p\rtimes C$, one has $\mup(L)\le2$.
+\end{lemma}
+\begin{proof}
+Put $P=(\F_p,+)$ and consider a subgroup $J\le L$.
+If $J\cap P=1$, then $J$ embeds in $C$ and has independence invariant
+at most one: a subgroup of a cyclic prime-power group is generated by
+an element of maximum order in any generating set.
+Otherwise $P\le J$ and $J=P\rtimes D$ for some $D\le C$.
+For $D=1$ the assertion is immediate. If $D\ne1$, every generating
+set of $J$ contains an element $x=(a,\lambda)$ whose image generates
+$D$, because $D$ has a unique maximal subgroup. Writing $m=|D|$, we have
+\[
+ x^m=\left(a\sum_{j=0}^{m-1}\lambda^j,1\right)=1.
+\]
+Thus $\langle x\rangle$ is a complement of order $m$.
+Some other generator $y$ lies outside it. The subgroup $\langle x,y\rangle$
+projects onto $D$; if it intersected $P$ trivially, its order would be
+$m$ and it would equal $\langle x\rangle$, a contradiction.
+Hence $\langle x,y\rangle=J$. Every independent generating set of
+every subgroup of $L$ has size at most two.
+\end{proof}
+
+\begin{lemma}\label{lem:stabilizers}
+Every line stabilizer in $H$ is cyclic of order dividing four.
+In particular, $H$ acts irreducibly on $V=\F_{29}^2$.
+\end{lemma}
+\begin{proof}
+For a line $W$, the scalar action gives a homomorphism
+$H_W\to\F_{29}^\times$. In a basis adapted to $W$, a kernel element
+has the form $\left(\begin{smallmatrix}1&u\\0&1\end{smallmatrix}\right)$.
+If $u\ne0$ it has order $29$, impossible in a group of order $120$.
+The homomorphism is therefore injective, and
+\[
+ |H_W|\mid\gcd(120,28)=4.
+\]
+Since $|H|>4$, the whole group cannot stabilize a line.
+\end{proof}
+
+Now form $G=V\rtimes H$, with multiplication
+$(v,h)(w,k)=(v+hw,hk)$, and write $\pi:G\to H$ for projection.
+
+\begin{lemma}\label{lem:properV}
+If $K\le G$ does not contain $V$, then $\bfth(K)\le2$.
+More precisely, if $K\cap V=1$, then $\mup(K)\le3$;
+if $K\cap V$ is a line, then $\mup(K)\le2$.
+\end{lemma}
+\begin{proof}
+Every additive subgroup of $V$ is an $\F_{29}$-subspace.
+If $K\cap V=1$, projection embeds $K$ into $H$, so
+Lemma~\ref{lem:H} and subgroup monotonicity give both bounds.
+Otherwise $W=K\cap V$ is a line, normal in $K$, and
+$\pi(K)\le H_W$ is cyclic of order dividing four.
+A Sylow $2$-subgroup of $K$ maps isomorphically onto $\pi(K)$
+and complements $W$. Its action on $W$ is faithful by
+Lemma~\ref{lem:stabilizers}. Lemma~\ref{lem:line} gives
+$\mup(K)\le2$, hence also $\bfth(K)\le2$.
+\end{proof}
+
+\section{The invariants of the affine group}
+\begin{proposition}\label{prop:upper}
+One has $\bfth(G)\le b(G)\le3$.
+\end{proposition}
+\begin{proof}
+First let $K_1,\ldots,K_t$ be a meet-irredundant family with total
+intersection $1$. Some $K_i$ does not contain $V$.
+Lemmas~\ref{lem:restriction} and \ref{lem:properV} imply
+\[
+ t-1\le\bfth(K_i)\le2,
+\]
+so $\bfth(G)\le3$.
+
+Every nontrivial normal subgroup $N\lhd G$ contains $V$.
+Indeed, irreducibility gives $N\cap V=1$ or $V$.
+In the first case $[N,V]\le N\cap V=1$, whence
+$N\le C_G(V)=V$, since the matrix action is faithful.
+This forces $N=1$, a contradiction. Every nonfaithful action of $G$
+therefore factors through $G/V\cong H$, and its minimal bases have
+size at most $b(H)=3$.
+\end{proof}
+
+Let $e_1=(1,0)^{\mathsf T}$ and $e_2=(0,1)^{\mathsf T}$.
+The set
+\begin{equation}\label{eq:S}
+ S=\{(e_1,I),(0,R_1),(0,R_2),(0,R_3)\}
+\end{equation}
+is independent: projecting to $H$ prevents any one of the three linear
+elements from being generated by the others, and the translation is
+outside the zero-translation complement. It also generates $G$, since
+the $H$-orbit of $e_1$ spans the irreducible module $V$.
+
+\begin{proposition}\label{prop:mu}
+One has $\mup(G)=4$.
+\end{proposition}
+\begin{proof}
+The set \eqref{eq:S} gives the lower bound. For the upper bound consider
+a meet-irredundant family $K_1,\ldots,K_t$, without any condition on its
+total intersection. If all members contain $V$, quotienting by $V$
+gives a meet-irredundant family in $H$, so $t\le3$.
+Otherwise choose $K_i\not\supseteq V$. Lemmas~\ref{lem:restriction}
+and \ref{lem:properV} give $t-1\le\mup(K_i)\le3$.
+Apply Lemma~\ref{lem:breadth}.
+\end{proof}
+
+There is a faithful minimal base of size three. Define
+\[
+\begin{split}
+ L_1&=\langle(e_1,I),(0,-I)\rangle,\\
+ L_2&=\langle(e_2,I),(0,-I)\rangle,\\
+ L_3&=\langle(e_1+e_2,I),(2e_1,-I)\rangle.
+\end{split}
+\]
+Each subgroup has order $58$, and their pairwise intersections are
+\[
+\begin{split}
+ L_1\cap L_2&=\{1,(0,-I)\},\\
+ L_1\cap L_3&=\{1,(2e_1,-I)\},\\
+ L_2\cap L_3&=\{1,(-2e_2,-I)\}.
+\end{split}
+\]
+These follow by comparing their translation lines and their cosets of
+elements with linear part $-I$. Their total intersection is $1$.
+Proposition~\ref{prop:bases} gives $\bfth(G)\ge3$, realized on
+$G/L_1\sqcup G/L_2\sqcup G/L_3$, of degree $5220$.
+Since $|G|=29^2\cdot120=100920$, this completes the proof of
+Theorem~\ref{thm:main}.
+
+\section{The normality obstruction}
+Let $M_i=\langle S\setminus\{s_i\}\rangle$, with the elements of
+\eqref{eq:S} in the displayed order. Then $M_1=H$ and the other
+three subgroups are the preimages under $\pi$ of the pair subgroups
+in \eqref{eq:pairs}. To see the latter assertion, each pair subgroup
+has order greater than four and hence cannot stabilize a line by
+Lemma~\ref{lem:stabilizers}; its orbit of $e_1$ spans $V$.
+Consequently
+\[
+ \bigcap_{i=1}^4 M_i=Z_0,\qquad
+ Z_0=\{(0,I),(0,-I)\}.
+\]
+This subgroup is not normal in $G$, since
+\[
+ (e_1,I)(0,-I)(-e_1,I)=(2e_1,-I)\notin Z_0.
+\]
+Thus $S$ gives a Boolean meet-semilattice of rank four with nonnormal
+bottom, whereas Theorem~\ref{thm:main} excludes any such rank-four
+embedding with normal bottom.
+
+Taking normal cores destroys irredundancy. The three pair subgroups
+have core $Z$ in $H$, by simplicity of $H/Z$. Their preimages therefore
+have core $V\rtimes Z$ in $G$. The complement has trivial core, since
+every nontrivial normal subgroup of $G$ contains $V$.
+The four cores are $1,V\rtimes Z,V\rtimes Z,V\rtimes Z$,
+whose intersection is already determined by the first member.
+
+\section*{Reproducibility and use of artificial intelligence}
+The proof above is independent of subgroup enumeration. A supplementary
+verification package supplies exact Python and C++ implementations that
+reconstruct the matrix group, compare all its subgroups, and check the
+affine witnesses. It also records a characteristic-eleven example showing
+why the line-stabilizer hypothesis matters. The preprint and original
+verification materials are archived at
+\href{https://doi.org/10.5281/zenodo.22929486}{doi:10.5281/zenodo.22929486}.
+
+OpenAI Codex was used in developing and checking the mathematical arguments,
+writing exact verification programs, searching the literature, and preparing
+the manuscript. Separate AI agents performed adversarial structural,
+computational, and source reviews. These checks are not external peer
+review or proof-assistant certification. The author is responsible for
+the mathematical claims and the submitted text.
+
+\section*{Funding}
+This research received no external funding.
+
+\begin{thebibliography}{9}
+\bibitem{ab2024}
+M.~Anagnostopoulou-Merkouri and T.~C. Burness,
+\emph{On the regularity number of a finite group and other base-related
+invariants}, J. Lond. Math. Soc. \textbf{110} (2024), no.~6, e70035.
+\url{https://doi.org/10.1112/jlms.70035}.
+
+\bibitem{cameron2014}
+P.~J. Cameron, \emph{Some measures of finite groups related to permutation
+bases}, arXiv:1408.0968 (2014).
+\url{https://arxiv.org/abs/1408.0968}.
+
+\bibitem{cameron2024}
+P.~J. Cameron, \emph{Independence and bases: theme and variations},
+Model Theory \textbf{3} (2024), no.~2, 417--431.
+\url{https://doi.org/10.2140/mt.2024.3.417}.
+
+\bibitem{notebook}
+E.~I. Khukhro and V.~D. Mazurov (eds.),
+\emph{Unsolved Problems in Group Theory: The Kourovka Notebook},
+21st edition, September 2026 update, Problem 16.45, p.~100.
+\url{https://kourovkanotebookorg.wordpress.com/}.
+\end{thebibliography}
+\end{document}
