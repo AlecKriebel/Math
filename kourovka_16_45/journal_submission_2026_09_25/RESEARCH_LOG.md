@@ -8,7 +8,7 @@ Audit the claim b_f(G)=b(G)=3<4=mu'(G) for the explicit affine group of order 10
 
 Created a dedicated submission effort within the existing problem folder. Captured the current source/PDF; main branch confirmed. Unrelated working-tree changes will be preserved. Current target is Archiv der Mathematik; independent structural, computational, literature, and editorial reviews will remain separate until their initial findings are recorded. Completion percentages concern the scoped review/package, not probability of correctness or acceptance.
 
-## 2026-09-26 — 45% checkpoint (recorded in commit da6ed33c9)
+## 2026-09-26 04:10 UTC — 45% complete
 
 Independent structural review finds no theorem-level gap; fresh computation reproduces the finite witnesses and subgroup bounds, with supplied-program replay being completed. Fresh primary-source audit confirms the exact all-actions convention and finds no prior resolution in its bounded search. It identifies a useful recent faithful-only convention to distinguish and corrects the earlier audit's Section 7 reference to Cameron 2024 Section 6. The revised journal text preserves every proof step, foregrounds the theorem, and moves operational verification material to a supplement.
 
@@ -17,3 +17,15 @@ The live Archiv EditFlow agreement prohibits articles largely written by AI. Thi
 ## 2026-09-26 04:17 UTC — 75% complete
 
 Bulletin-specific Cambridge policies positively support transparently disclosed AI-generated content; original journal class and template verified. Revised article compiles to seven pages with the official unchanged class and no TeX layout warnings after removing unassigned publisher placeholders. The built-in editor also compiled the standalone preview successfully. Main proof is self-contained and retains the exact theorem. Fresh final referee independently re-derived the compressed proof and recomputed explicit witnesses, identifying no substantive defect. Zenodo API confirms the cited DOI, title, version 1.0.1, and source/PDF filenames. Remaining work: immutable reproducibility link, supplement build and visual inspection, archive clean-room replay, final artifact review, and delivery. Initial audit checkpoint committed and pushed as da6ed33c9.
+
+## 2026-09-26 04:22 UTC — 90% complete
+
+Seven-page Bulletin manuscript and three-page exact verification note compile without warnings; all ten pages have been visually checked. The final referee records no required proof revision. Reproducibility supplement was committed/pushed; a minor stale verifier docstring was corrected without changing code logic, yielding immutable supplement commit be0f06ee0c61739dcda5629e2c4223e7da7951d3. Main paper links that exact snapshot and distinguishes it from the earlier Zenodo preprint.
+
+Assembled the allowlisted upload kit: main PDF, optional referee verification archive, source archive, cover letter, copy-ready metadata (122-word abstract), author instructions, review summary and checksums. No exploration data, binaries, full third-party papers, private correspondence, unrelated workspace files or audit-history dumps enter the upload archives. Fresh extracted-package reproduction and final integrity audit are in progress. No journal account or agreement has been accessed or accepted.
+
+## 2026-09-26 04:27:55 UTC — 100% complete
+
+Completed the scoped review and journal upload package. Independent structural, fresh exact-computation, primary-literature, journal-policy, final-referee and delivery reviews found no unresolved substantive mathematical defect or delivery blocker. The final referee reviewed the exact mathematical body retained in the submission. Three independently executed implementations agree on all 76 matrix subgroups, and the fresh extracted archive reproduces every expected result without modifying its expected data. The extracted source rebuild matches all seven manuscript pages, dimensions and hyperlinks; the verification note has three clean pages. Native-editor compilation also succeeds. All ten final PDF pages, archive contents, metadata, public immutable links and checksums have been checked.
+
+Frozen kit SHA-256: `153f9e27ed03c814d5242418e0db2b4e38ccea31ffa9706423120fd546b3bd02`. Delivery evidence and the complete audit record are preserved with the package. Final target is Bulletin of the Australian Mathematical Society, with substantive AI assistance disclosed. Historical AI build identifiers were not consistently recorded and are not invented. The original preprint remains unchanged. No external person was contacted, journal submission made, agreement accepted or new DOI release created. Human author review, accountability and the final portal submission remain the user's steps; correctness and acceptance are not guaranteed. This 100% estimate concerns completion of the requested review/package, not acceptance probability.
