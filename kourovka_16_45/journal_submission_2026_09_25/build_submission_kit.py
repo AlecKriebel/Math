@@ -104,6 +104,7 @@ def main():
         "Competing interests": "The author declares no competing interests.",
         "AI-use disclosure": ai,
         "Previous preprint": "https://doi.org/10.5281/zenodo.22929486 (unrefereed version 1.0.1)",
+        "Kourovka Notebook repository": "https://kourovkanotebookorg.wordpress.com/repository/ (hosts the same earlier preprint under Solution of Problem 16.45; hosting is not journal peer review)",
         "Current reproducibility snapshot": REPO,
         "Preferred publication route": "Ordinary Green Open Access; no publication charge under current journal policy.",
         "Optional subject editor preference": "John Cossey (Group theory), if the form asks and there is no relevant personal conflict.",
@@ -123,7 +124,7 @@ def main():
     (UPLOAD / "SHA256SUMS").write_text("".join(digest(UPLOAD/f)+"  "+f+"\n" for f in files))
     archive(OUTPUT / "Kourovka16_45_Bulletin_Submission_Kit.zip",
             [("Kourovka16_45_Bulletin_Submission_Kit/"+f, UPLOAD/f) for f in files+["SHA256SUMS"]])
-    manifest = {"package_version":"1.1-submission", "target":fields["Journal"],
+    manifest = {"package_version":"1.1.1-submission", "target":fields["Journal"],
         "reproducibility_commit":SNAPSHOT, "page_counts":counts,
         "abstract_words":len(abstract.split()),
         "files":{f:digest(UPLOAD/f) for f in files+["SHA256SUMS"]},

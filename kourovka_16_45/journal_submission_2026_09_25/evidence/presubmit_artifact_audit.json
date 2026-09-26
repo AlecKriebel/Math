@@ -1,0 +1,901 @@
+{
+  "outer_kit_sha256": "0caefb445fc05456beb9d0b8dcd1351d33d9fd43458f5016b2731ba1319be1d6",
+  "archives": {
+    "Kourovka16_45_Bulletin_Submission_Kit.zip": {
+      "members": [
+        "Kourovka16_45_Bulletin_Submission_Kit/01_Manuscript.pdf",
+        "Kourovka16_45_Bulletin_Submission_Kit/02_Reproducibility.zip",
+        "Kourovka16_45_Bulletin_Submission_Kit/03_LaTeX_Source.zip",
+        "Kourovka16_45_Bulletin_Submission_Kit/04_Cover_Letter.txt",
+        "Kourovka16_45_Bulletin_Submission_Kit/05_Submission_Metadata.txt",
+        "Kourovka16_45_Bulletin_Submission_Kit/Review_Summary.md",
+        "Kourovka16_45_Bulletin_Submission_Kit/SHA256SUMS",
+        "Kourovka16_45_Bulletin_Submission_Kit/START_HERE.md"
+      ],
+      "safe_paths": true,
+      "no_symlinks": true,
+      "crc_valid": true,
+      "sha256": "0caefb445fc05456beb9d0b8dcd1351d33d9fd43458f5016b2731ba1319be1d6"
+    },
+    "02_Reproducibility.zip": {
+      "members": [
+        "Kourovka16_45_Verification/LICENSES.md",
+        "Kourovka16_45_Verification/Makefile",
+        "Kourovka16_45_Verification/README.md",
+        "Kourovka16_45_Verification/expected/finite_certificate.json",
+        "Kourovka16_45_Verification/expected/independent_exact.json",
+        "Kourovka16_45_Verification/expected/independent_subgroups.json",
+        "Kourovka16_45_Verification/expected/subgroups_cpp.txt",
+        "Kourovka16_45_Verification/expected/verification_cpp.txt",
+        "Kourovka16_45_Verification/expected/verification_python.json",
+        "Kourovka16_45_Verification/independent_exact.py",
+        "Kourovka16_45_Verification/src/compare_certificates.py",
+        "Kourovka16_45_Verification/src/compare_results.py",
+        "Kourovka16_45_Verification/src/verify_counterexample.cpp",
+        "Kourovka16_45_Verification/src/verify_counterexample.py",
+        "Kourovka16_45_Verification/verification_note.pdf",
+        "Kourovka16_45_Verification/verification_note.tex"
+      ],
+      "safe_paths": true,
+      "no_symlinks": true,
+      "crc_valid": true,
+      "sha256": "55d1ed8644b59aead0b49b9793c76fdb13c06462368f9ad6b388b7baf9709e8c"
+    },
+    "03_LaTeX_Source.zip": {
+      "members": [
+        "Kourovka16_45_Source/README.md",
+        "Kourovka16_45_Source/baustms.cls",
+        "Kourovka16_45_Source/kourovka_16_45.tex"
+      ],
+      "safe_paths": true,
+      "no_symlinks": true,
+      "crc_valid": true,
+      "sha256": "642c174f478c5970f5bbdb48139bcc13486fd2fee084f5cff01960a382e6fd0d"
+    }
+  },
+  "checks": {
+    "outer_matches_upload": true,
+    "sha256sums_pass": true,
+    "nested_sources_byte_identical": true,
+    "official_class_unchanged": true,
+    "delivered_pdf_copies_identical": true,
+    "rebuilt_pdf_text_dimensions_links_annotations_match": true,
+    "clean_compiler_log": true,
+    "expected_untouched": true,
+    "reproducibility_archive_unchanged_since_fresh_replay": true,
+    "fresh_make_verify_pass": true,
+    "note_unchanged_since_visual_inspection": true,
+    "theorem_and_proof_unchanged": true,
+    "cited_git_snapshot_matches_all_supplement_files": true
+  },
+  "before_expected": {
+    "verification_cpp.txt": "f9bd9699491208e27375d5869d472111407bdd270751447befa7cc321dd4f7e0",
+    "independent_subgroups.json": "3b08e86af832bff935465eb8a6b4af9aac7628f0fc58bf9fc0338c899bf2c48e",
+    "finite_certificate.json": "03c7ad3bfab01c55d16492b5f9f85ad0332b46d54cc0d77d5cee81d4174fb78c",
+    "subgroups_cpp.txt": "850f47ef51e52b4c8e25569ade9960976966fcba8cf4ba100ff2a78abc545396",
+    "verification_python.json": "19ae1bea6ab52c0eaa00f64c8831db6ad6853b5987f27d21846b352f2e42439b",
+    "independent_exact.json": "f78ae6a36bd9a7fe3643df5a994989ea4206c7cbc865561c33781d5f01f1217b"
+  },
+  "pdf_main": {
+    "pages": 7,
+    "text": [
+      "A COUNTEREXAMPLE TO KOUROVKA NOTEBOOK\nPROBLEM 16.45\nALEC KRIEBEL\nAbstract\nLet b(G) be the largest size of an inclusion-minimal base over all permutation representations of a \ufb01nite\ngroup G, with bases taken for the permutation image, and let \u00b50(G) be the largest size of an independent\nsubset of G. We construct an explicit a\ufb03ne group of order 100920 for which b(G) = 3 < 4 = \u00b50(G), giving\na negative answer to Kourovka Notebook Problem 16.45. The maximum remains three when restricted\nto faithful representations. The proof is structural: every subgroup missing the translation subgroup\nhas faithful base invariant at most two, and every nontrivial normal subgroup contains the translations.\nThe independent four-set gives an irredundant intersection family whose intersection is central in the\ncomplement but not normal in the a \ufb03ne group.\n2020 Mathematics subject classi\ufb01cation: Primary 20B05; Secondary 20D30, 20D60.\nKeywords and phrases: Permutation bases, independent sets, \ufb01nite groups, subgroup lattices, Kourovka\nNotebook.\n1. Introduction\nA subset S of a \ufb01nite group X is independent if x < hS n fxgi for every x 2 S . Write\n\u00b50(X) for the largest size of such a subset; it need not generate X. For an action\n\u03c1 : X ! Sym(\u2126), a base is a set of points with pointwise stabilizer ker \u03c1. A base\nis minimal if it is inclusion-minimal. Let b(X) be the largest size of a minimal base\nover all permutation representations of X, and let bf(X) denote the same maximum\nrestricted to faithful representations. In particular, b(1) = bf(1) = \u00b50(1) = 0. The\nde\ufb01nitions allow intransitive and nonfaithful actions. Allowing in\ufb01nite \u2126 makes no\ndi\ufb00erence: choosing a moved point for each nonidentity element of the \ufb01nite image\ngives a \ufb01nite subbase of every base.\nCameron\u2019s Problem 16.45 in the Kourovka Notebook asks whether b(X) = \u00b50(X)\nfor every \ufb01nite group X [4]. The inequality b(X) \u0014 \u00b50(X) is known. Cameron uses\nb2 for b, and uses \u00b50 in [ 2] and \u00b5\" in [ 3] for our independence invariant. In contrast,\nAnagnostopoulou-Merkouri and Burness [ 1, Remark 1(c)] restrict their b2 to faithful\nactions, so it corresponds to our bf. The all-actions question is posed in Cameron\u2019s\n2024 account [ 3, Section 6, Proposition 2 and the following discussion] and in the\nSeptember 2026 notebook. We prove the following.",
+      "2 A. Kriebel\nTheorem 1. Over F29, put\nA =\n( 0 28\n1 0\n)\n, B =\n( 2 7\n12 28\n)\n, H = hA, Bi \u0014 SL2(29).\nF or the natural a\ufb03ne semidirect product G = F2\n29 \u22ca H,\njGj = 100920, bf(G) = b(G) = 3 < 4 = \u00b50(G).\nThe proof separates two intersection conditions in the subgroup lattice. Inde-\npendence corresponds to irredundant intersection families with arbitrary intersection,\nwhereas permutation bases require that intersection to be normal. In our example an\nindependent four-set gives a family with intersection of order two, central in H but not\nnormal in G. The faithful upper bound follows by restricting an intersection family\nto a subgroup that does not contain the translations. The normal-subgroup structure\nthen handles every nonfaithful action. No enumeration of the subgroup lattice of G is\nrequired, and no minimum-order assertion is made.\n2. Subgroup formulations\nWe recall Cameron\u2019s subgroup formulations [ 2, Propositions 3.1\u20133.2 and Corollary\n3.3]; see also [ 3]. We include the short arguments to make the normality condition\nexplicit.\nProposition 2. The invariant b(X) is the largest t for which subgroups L 1, . . . ,Lt of X\nsatisfy\nN =\nt\u2229\ni=1\nLi \u25c1 X,\n\u2229\nj,i\nL j > N (1 \u0014 i \u0014 t).\nThe same description with N = 1 gives bf(X). Consequently,\nb(X) = max\nN\u25c1X\nbf(X/N). (1)\nProof. Point stabilizers of a minimal base have the stated properties. Conversely, let\nX act on the disjoint union of the left coset spaces X/Li. The action kernel is\n\u2229\ni\nCoreX(Li) = CoreX\n\uf8eb\uf8ec\uf8ec\uf8ec\uf8ec\uf8ec\uf8ed\n\u2229\ni\nLi\n\uf8f6\uf8f7\uf8f7\uf8f7\uf8f7\uf8f7\uf8f8 = N.\nThe identity cosets form a minimal base. Factoring through the action kernel gives ( 1).\nEmpty intersections are taken in the ambient group, so the empty family also handles\nthe trivial group and trivial actions. \u25a1\nCall a subgroup family meet-irredundant if every member is essential to its total\nintersection, without a normality condition.\nLemma 3. The largest size of a meet-irredundant family in X is \u00b50(X). In particular ,\nb(X) \u0014 \u00b50(X).",
+      "Kourovka Notebook Problem 16.45 3\nProof. For a meet-irredundant family L1, . . . ,Lt, choose xi 2 (\u2229\nj,i L j) n Li. Every\nx j with j , i lies in Li, whereas xi does not, so the xi are distinct and independent.\nConversely, for an independent set fx1, . . . ,xtg, the subgroups Li = hx j : j , ii are\nmeet-irredundant, with witnesses xi. \u25a1\nLemma 4 (Restriction). If L 1, . . . ,Lt is meet-irredundant in X, then t \u0000 1 \u0014 \u00b50(Li) for\neach i. If its total intersection is 1, then t \u0000 1 \u0014 bf(Li).\nProof. Inside Li, the family Li \\ L j for j , i is meet-irredundant: the witness for L j\nbelongs to Li. Its total intersection is unchanged. Apply Lemma 3 or Proposition 2. \u25a1\nThese descriptions also show that \u00b50 and bf are monotone under subgroups. For\ncompleteness, a meet-irredundant family gives the top-preserving Boolean meet-\nsemilattice embedding\nJ 7\u0000 !\n\u2229\ni<J\nLi (J \u0012 f1, . . . ,tg).\nThe witnesses distinguish the images, and the bottom is \u2229\ni Li. Thus the normality\ndistinction is exactly the one in the notebook\u2019s semilattice formulation; no preservation\nof joins is assumed.\n3. The complement\nLet H be as in Theorem 1, and set Z = fI, \u0000Ig. Direct multiplication gives\nA2 = B3 = (AB)5 = \u0000I. (2)\nThe spherical triangle presentation A5 = ha, b j a2 = b3 = (ab)5 = 1i and simplicity of\nA5 show that H/Z \u001b A5: the quotient is nontrivial because A < Z. Hence jHj = 120.\nWe recall the elementary subgroup facts that will be used. Every proper subgroup\nof A5 lies in a subgroup isomorphic to A4, D10, or S 3, where D10 has order ten. Indeed,\nin the natural action on \ufb01ve letters an intransitive subgroup \ufb01xes a letter or has orbits\nof sizes 2 + 3. A proper transitive subgroup has order 5 , 10, 15, 20, or 30. Orders 15\nand 20 would force a normal Sylow 5-subgroup, whose normalizer in A5 has order ten;\norder 30 is excluded by simplicity. The remaining cases lie in a Sylow 5-normalizer.\nEach of A4, D10, S 3 has independence invariant two. For A4, any generating set\ncontains a 3-cycle and an element outside its cyclic subgroup; these generate A4, since\nit has no subgroup of order six. The proper subgroups of A4 have independence\ninvariant at most two. For a dihedral group of order 2 q with q prime, a generating\nset contains either a nontrivial rotation and a re\ufb02ection, or two distinct re\ufb02ections; two\nsuch elements su \ufb03ce. Deleting one element from an independent set in A5 therefore\ngives\n\u00b50(A5) \u0014 3. (3)\nThe natural degree-\ufb01ve action has a minimal base of size three, so equality holds.\nThese facts also follow directly from the usual subgroup structure of A5; simplicity\nfollows from its nonidentity conjugacy-class sizes 15 , 20, 12, 12.",
+      "4 A. Kriebel\nLemma 5. One has \u00b50(H) = b(H) = 3 and bf(H) = 2.\nProof. The only involution in SL 2(29) is \u0000I: a matrix squaring to I is diagonalizable\nwith eigenvalues \u00061, and determinant one forces the signs to agree. Every even-order\nsubgroup of H therefore contains Z. Every odd-order subgroup injects into A5 and is\ntrivial or cyclic of order three or \ufb01ve by the preceding subgroup description.\nLet S be independent in H. If its images in H/Z, as an indexed family, are\nindependent, then jS j \u0014 3. Otherwise some s 2 S lies in KZ n K, where K = hS n fsgi.\nThus Z \u2288 K, so K is trivial or cyclic of odd prime order. Independence then gives\njS j \u0014 2. Hence \u00b50(H) \u0014 3. The degree-\ufb01ve action of H/Z pulls back to an action of H\nwith a minimal base of size three. Lemma 3 proves b(H) = \u00b50(H) = 3.\nA subgroup family with total intersection 1 must have an odd-order member. If that\nmember is trivial, a minimal such family has size one. If it has prime order, some other\nmember intersects it trivially, so a minimal family has size at most two. Subgroups of\norders three and \ufb01ve give a faithful family of size two. This proves bf(H) = 2. \u25a1\nWe will need an explicit independent triple in H. Put\nR1 = A, R2 =\n( 12 24\n0 17\n)\n, R3 =\n( 25 3\n4 4\n)\n. (4)\nThe identities R2 = BAB2 and R3 = AR2(AB)2 put these matrices in H. Direct\nmultiplication gives R2\ni = \u0000I and\nord(R2R3) = 4, ord(R1R3) = 3, ord(R1R2) = 10.\nIn H/Z the corresponding products have orders 2 , 3, 5. Each pair of projective\ninvolutions generates a dihedral group; lifting back to H, the pair subgroups have\norders\njhR2, R3ij = 8, jhR1, R3ij = 12, jhR1, R2ij = 20. (5)\nThe subgroup generated by all three has order divisible by lcm(8 , 12, 20) = 120, so it\nis H. Every pair subgroup is proper, proving independence. Moreover, the \ufb01rst two\npair subgroups intersect in hR3i: this subgroup has order four, which is also gcd(8 , 12).\nThe third does not contain R3 and contains Z. Thus the intersection of the three pair\nsubgroups is exactly Z.\n4. Subgroups missing the translations\nLemma 6. Let p be an odd prime and let C \u0014 F\u0002\np be a cyclic 2-group. F or the faithful\nscalar semidirect product L = Fp \u22ca C, one has \u00b50(L) \u0014 2.\nProof. Put P = (Fp, +) and consider a subgroup J \u0014 L. If J \\ P = 1, then J embeds\nin C and has independence invariant at most one: a subgroup of a cyclic prime-power\ngroup is generated by an element of maximum order in any generating set. Otherwise\nP \u0014 J and J = P \u22ca D for some D \u0014 C. For D = 1 the assertion is immediate. If",
+      "Kourovka Notebook Problem 16.45 5\nD , 1, every generating set of J contains an element x = (a, \u03bb) whose image generates\nD, because D has a unique maximal subgroup. Writing m = jDj, we have\nxm =\n\uf8eb\uf8ec\uf8ec\uf8ec\uf8ec\uf8ec\uf8ec\uf8eda\nm\u00001\u2211\nj=0\n\u03bb j, 1\n\uf8f6\uf8f7\uf8f7\uf8f7\uf8f7\uf8f7\uf8f7\uf8f8 = 1.\nThus hxi is a complement of order m. Some other generator y lies outside it. The\nsubgroup hx, yi projects onto D; if it intersected P trivially, its order would be m and it\nwould equal hxi, a contradiction. Hence hx, yi = J. Every independent generating set\nof every subgroup of L has size at most two. \u25a1\nLemma 7. Every line stabilizer in H is cyclic of order dividing four . In particular , H\nacts irreducibly on V = F2\n29.\nProof. For a line W, the scalar action gives a homomorphism HW ! F\u0002\n29. In a basis\nadapted to W, a kernel element has the form\n(\n1 u\n0 1\n)\n. If u , 0 it has order 29, impossible\nin a group of order 120. The homomorphism is therefore injective, and\njHWj j gcd(120, 28) = 4.\nSince jHj > 4, the whole group cannot stabilize a line. \u25a1\nNow form G = V \u22ca H, with multiplication ( v, h)(w, k) = (v + hw, hk), and write\n\u03c0 : G ! H for projection.\nLemma 8. If K \u0014 G does not contain V, then b f(K) \u0014 2. More precisely, if K \\ V = 1,\nthen \u00b50(K) \u0014 3; if K \\ V is a line, then \u00b50(K) \u0014 2.\nProof. Every additive subgroup of V is an F29-subspace. If K \\ V = 1, projection\nembeds K into H, so Lemma 5 and subgroup monotonicity give both bounds. Other-\nwise W = K \\ V is a line, normal in K, and \u03c0(K) \u0014 HW is cyclic of order dividing\nfour. A Sylow 2-subgroup of K maps isomorphically onto \u03c0(K) and complements\nW. Its action on W is faithful by Lemma 7. Lemma 6 gives \u00b50(K) \u0014 2, hence also\nbf(K) \u0014 2. \u25a1\n5. The invariants of the a \ufb03ne group\nProposition 9. One has b f(G) \u0014 b(G) \u0014 3.\nProof. First let K1, . . . ,Kt be a meet-irredundant family with total intersection 1.\nSome Ki does not contain V. Lemmas 4 and 8 imply\nt \u0000 1 \u0014 bf(Ki) \u0014 2,\nso bf(G) \u0014 3.\nEvery nontrivial normal subgroup N \u25c1 G contains V. Indeed, irreducibility gives\nN \\ V = 1 or V. In the \ufb01rst case [ N, V] \u0014 N \\ V = 1, whence N \u0014 CG(V) = V, since\nthe matrix action is faithful. This forces N = 1, a contradiction. Every nonfaithful\naction of G therefore factors through G/V \u001b H, and its minimal bases have size at\nmost b(H) = 3. \u25a1",
+      "6 A. Kriebel\nLet e1 = (1, 0)T and e2 = (0, 1)T. The set\nS = f(e1, I), (0, R1), (0, R2), (0, R3)g (6)\nis independent: projecting to H prevents any one of the three linear elements from\nbeing generated by the others, and the translation is outside the zero-translation\ncomplement. It also generates G, since the H-orbit of e1 spans the irreducible module\nV.\nProposition 10. One has \u00b50(G) = 4.\nProof. The set ( 6) gives the lower bound. For the upper bound consider a meet-\nirredundant family K1, . . . ,Kt, without any condition on its total intersection. If all\nmembers contain V, quotienting by V gives a meet-irredundant family in H, so t \u0014 3.\nOtherwise choose Ki \u2289 V. Lemmas 4 and 8 give t \u0000 1 \u0014 \u00b50(Ki) \u0014 3. Apply\nLemma 3. \u25a1\nThere is a faithful minimal base of size three. De\ufb01ne\nL1 = h(e1, I), (0, \u0000I)i,\nL2 = h(e2, I), (0, \u0000I)i,\nL3 = h(e1 + e2, I), (2e1, \u0000I)i.\nEach subgroup has order 58, and their pairwise intersections are\nL1 \\ L2 = f1, (0, \u0000I)g,\nL1 \\ L3 = f1, (2e1, \u0000I)g,\nL2 \\ L3 = f1, (\u00002e2, \u0000I)g.\nThese follow by comparing their translation lines and their cosets of elements with\nlinear part \u0000I. Their total intersection is 1. Proposition 2 gives bf(G) \u0015 3, realized on\nG/L1 t G/L2 t G/L3, of degree 5220. Since jGj = 292 \u0001 120 = 100920, this completes\nthe proof of Theorem 1.\n6. The normality obstruction\nLet Mi = hS n fsigi, with the elements of ( 6) in the displayed order. Then M1 = H\nand the other three subgroups are the preimages under \u03c0 of the pair subgroups in ( 5).\nTo see the latter assertion, each pair subgroup has order greater than four and hence\ncannot stabilize a line by Lemma 7; its orbit of e1 spans V. Consequently\n4\u2229\ni=1\nMi = Z0, Z0 = f(0, I), (0, \u0000I)g.\nThis subgroup is not normal in G, since\n(e1, I)(0, \u0000I)(\u0000e1, I) = (2e1, \u0000I) < Z0.",
+      "Kourovka Notebook Problem 16.45 7\nThus S gives a Boolean meet-semilattice of rank four with nonnormal bottom, whereas\nTheorem 1 excludes any such rank-four embedding with normal bottom.\nTaking normal cores destroys irredundancy. The three pair subgroups have core\nZ in H, by simplicity of H/Z. Their preimages therefore have core V \u22ca Z in G. The\ncomplement has trivial core, since every nontrivial normal subgroup of G contains V.\nThe four cores are 1 , V \u22ca Z, V \u22ca Z, V \u22ca Z, whose intersection is already determined by\nthe \ufb01rst member.\nReproducibility and use of arti\ufb01cial intelligence\nThe proof above is independent of subgroup enumeration. A supplementary ver-\ni\ufb01cation package supplies exact Python and C ++ implementations that reconstruct\nthe matrix group, compare all its subgroups, and check the a \ufb03ne witnesses. It also\nrecords a characteristic-eleven example showing why the line-stabilizer hypothesis\nmatters. The current package is available in the repository snapshot of 25 Septem-\nber 2026 . An earlier version and its original veri\ufb01cation materials are archived at\ndoi:10.5281/zenodo.22929486. That version is also hosted in the Kourovka Note-\nbook\u2019s online repository .\nOpenAI Codex (https://openai.com/codex/) was used during 19\u201325 Septem-\nber 2026 to develop and check the construction and proofs, generate manuscript text\nand exact veri\ufb01cation programs, search and check references, and prepare the sub-\nmission. Separate AI agents performed adversarial structural, computational, and\nsource reviews. Historical application and model build identi\ufb01ers were not consistently\nrecorded. These checks are not external peer review or proof-assistant certi\ufb01cation.\nThe author is responsible for the mathematical claims and the submitted text.\nFunding\nThis research received no external funding. The author declares no competing\ninterests.\nReferences\n[1] M. Anagnostopoulou-Merkouri and T. C. Burness, On the regularity number of a \ufb01nite group and\nother base-related invariants, J. Lond. Math. Soc. 110 (2024), no. 6, e70035. https://doi.org/\n10.1112/jlms.70035.\n[2] P . J. Cameron, Some measures of \ufb01nite groups related to permutation bases , arXiv:1408.0968\n(2014). https://arxiv.org/abs/1408.0968.\n[3] P . J. Cameron, Independence and bases: theme and variations , Model Theory 3 (2024), no. 2,\n417\u2013431. https://doi.org/10.2140/mt.2024.3.417.\n[4] E. I. Khukhro and V . D. Mazurov (eds.), Unsolved Problems in Group Theory: The Kourovka\nNotebook, 21st edition, September 2026 update, Problem 16.45, p. 100. O\ufb03cial notebook and\nupdates.\nAlec Kriebel, Independent researcher, San Francisco, USA\nORCID: 0009-0001-9320-500X\ne-mail: me@aleckriebel.com"
+    ],
+    "dimensions": [
+      [
+        0.0,
+        0.0,
+        493.23,
+        700.16
+      ],
+      [
+        0.0,
+        0.0,
+        493.23,
+        700.16
+      ],
+      [
+        0.0,
+        0.0,
+        493.23,
+        700.16
+      ],
+      [
+        0.0,
+        0.0,
+        493.23,
+        700.16
+      ],
+      [
+        0.0,
+        0.0,
+        493.23,
+        700.16
+      ],
+      [
+        0.0,
+        0.0,
+        493.23,
+        700.16
+      ],
+      [
+        0.0,
+        0.0,
+        493.23,
+        700.16
+      ]
+    ],
+    "links": [
+      [
+        7,
+        "https://github.com/AlecKriebel/Math/tree/be0f06ee0c61739dcda5629e2c4223e7da7951d3/kourovka_16_45/journal_submission_2026_09_25/supplement"
+      ],
+      [
+        7,
+        "https://github.com/AlecKriebel/Math/tree/be0f06ee0c61739dcda5629e2c4223e7da7951d3/kourovka_16_45/journal_submission_2026_09_25/supplement"
+      ],
+      [
+        7,
+        "https://doi.org/10.5281/zenodo.22929486"
+      ],
+      [
+        7,
+        "https://kourovkanotebookorg.wordpress.com/repository/"
+      ],
+      [
+        7,
+        "https://kourovkanotebookorg.wordpress.com/repository/"
+      ],
+      [
+        7,
+        "https://openai.com/codex/"
+      ],
+      [
+        7,
+        "https://doi.org/10.1112/jlms.70035"
+      ],
+      [
+        7,
+        "https://doi.org/10.1112/jlms.70035"
+      ],
+      [
+        7,
+        "https://arxiv.org/abs/1408.0968"
+      ],
+      [
+        7,
+        "https://doi.org/10.2140/mt.2024.3.417"
+      ],
+      [
+        7,
+        "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/09/21tkt.pdf"
+      ],
+      [
+        7,
+        "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/09/21tkt.pdf"
+      ],
+      [
+        7,
+        "https://orcid.org/0009-0001-9320-500X"
+      ]
+    ],
+    "metadata": {
+      "/Creator": "LaTeX with hyperref",
+      "/Title": "A counterexample to Kourovka Notebook Problem 16.45",
+      "/Author": "Alec Kriebel",
+      "/Producer": "xdvipdfmx (0.1)",
+      "/CreationDate": "D:20260926050106-00'00'"
+    }
+  },
+  "pdf_note": {
+    "pages": 3,
+    "text": [
+      "EXACT VERIFICA TION SUPPLEMENT TO\nA COUNTEREXAMPLE TO KOUROVKA NOTEBOOK\nPROBLEM 16.45\nALEC KRIEBEL\n1. Scope and explicit identifications\nThe paper proves structurally that the explicitly speci\ufb01ed group G =\nF2\n29 \u22ca H has\n|G| = 100920, b f (G) = b(G) = 3 < 4 = \u00b5\u2032(G).\nHere \u00b5\u2032 is the maximum size of an independent subset; b is the maximum\nsize of an inclusion-minimal base over all permutation representations, with\nbases taken for the permutation image; and bf restricts this maximum to\nfaithful representations. This supplement describes optional exact checks of\nthe \ufb01nite inputs and witnesses. These computations are not premises of the\nstructural upper-bound proof. In particular, no subgroup enumeration of\nthe group of order 100920 is asserted.\nOver F29 the complement generators are\nA =\n( 0 28\n1 0\n)\n, B =\n( 2 7\n12 28\n)\n, H = \u27e8A, B \u27e9.\nThe veri\ufb01ers obtain exactly 120 determinant-one matrices and check A2 =\nB3 = (AB)5 = \u2212I. An explicit isomorphism SL2(5) \u2192 H is speci\ufb01ed by\n( 0 4\n1 0\n)\n\u21a6\u2212 \u2192A,\n( 0 4\n1 1\n)\n\u21a6\u2212 \u2192B.\nThese pairs generate a subgroup of SL2(5) \u00d7 H of order 120, with both\ncoordinate projections bijective, certifying the isomorphism. The additional\nchecker veri\ufb01es all 1202 = 14400 multiplication identities. Similarly, A \u21a6\u2192\n(1 2)(3 4) and B \u21a6\u2192 (1 3 5) de\ufb01ne a quotient onto A5 with kernel Z = {I, \u2212I};\nall 14400 multiplication identities for this quotient are checked as well.\nThe independent triple is\nR1 = A, R 2 =\n( 12 24\n0 17\n)\n, R 3 =\n( 25 3\n4 4\n)\n.\nThe words R2 = BAB 2 and R3 = AR2(AB)2, the identities R2\ni = \u2212I, and\nthe product orders |R2R3| = 4, |R1R3| = 3, |R1R2| = 10 are checked. Their\nomission subgroups have orders 8, 12, 20, intersect in Z, and have core Z in\nH.\n1",
+      "2 ALEC KRIEBEL\n2. Coverage of the subgroup and affine checks\nThe complement subgroups are enumerated by starting with the iden-\ntity subgroup and, from each discovered subgroup, adjoining every element\noutside it. Every subgroup has a generating sequence, and each successive\npre\ufb01x occurs along a path in this procedure. The resulting list therefore\ncontains all 76 actual subgroups, not just conjugacy representatives. As a\nfurther check, their order distribution is\norder 1 2 3 4 5 6 8 10 12 20 24 120\nnumber 1 1 10 15 6 10 5 6 10 6 5 1 .\nA subgroup family is meet-irredundant when removing any member strictly\nenlarges its total intersection. Each of the\n(75\n4\n)\n= 1215450 four-families of\nproper subgroups is tested; none is meet-irredundant. Since every subfamily\nof a meet-irredundant family is meet-irredundant, larger ranks are excluded\nas well. Of the\n(75\n3\n)\n= 67525 three-families, 900 are meet-irredundant, but\nnone has trivial intersection. Explicit pairs with trivial intersection give\nthe lower bound for bf (H); the displayed triple gives the other lower bound.\nThus the \ufb01nite results corroborate \u00b5\u2032(H) = 3 and bf (H) = 2 .\nAll 30 lines of F2\n29 are tested, and each stabilizer is cyclic of order 4. The\nadditional checker independently enumerates the 62 subgroups of the scalar\ngroup F29 \u22ca C4 and \ufb01nds no meet-irredundant triple. This is a \ufb01nite check\nof the line-subgroup bound used in the proof; the paper supplies the general\nelementary argument.\nUsing (v, h )(w, k ) = ( v + hw, hk ), the a\ufb03ne generators\n(e1, I ), (0, R 1), (0, R 2), (0, R 3)\ngenerate 100920 elements. Their omission subgroups have respective orders\n120, 6728, 10092, 16820, and every omitted generator is absent from its omis-\nsion subgroup. The total intersection is Z0 = {(0, I ), (0, \u2212I)}. Nonnormality\nis checked directly from\n(e1, I )(0, \u2212I)(\u2212e1, I ) = (2 e1, \u2212I) /\u2208 Z0.\nThe three subgroups\nL1 = \u27e8(e1, I ), (0, \u2212I)\u27e9, L 2 = \u27e8(e2, I ), (0, \u2212I)\u27e9,\nL3 = \u27e8(e1 + e2, I ), (2e1, \u2212I)\u27e9\nhave order 58. Their pairwise intersections have order 2 and their to-\ntal intersection is trivial; the additional checker veri\ufb01es the displayed in-\ntersection elements in the paper. Their disjoint coset action has degree\n3(100920/ 58) = 5220 and a faithful minimal base of size 3.",
+      "EXACT VERIFICATION SUPPLEMENT 3\n3. Why the characteristic matters\nThe conclusion does not extend to every characteristic in which such a\ncomplement exists. Over F11, put\nA11 =\n( 0 10\n1 0\n)\n, B 11 =\n( 0 2\n5 1\n)\n, C = A11B11 =\n( 6 10\n0 2\n)\n.\nThe \ufb01rst two matrices generate a group of order 120. The element C has\norder 10, with C5 = \u2212I, and stabilizes the distinct lines W1 = \u27e8(1, 0)\u27e9 and\nW2 = \u27e8(1, 4)\u27e9; its eigenvalues on them are 6 and 2, respectively. Write\nD = \u27e8C\u27e9, D2 = \u27e8C5\u27e9 and D5 = \u27e8C2\u27e9. Inside V \u22ca \u27e8A11, B 11\u27e9, where V = F2\n11,\ntake\nQ1 = W1 \u22ca D, Q 2 = W2 \u22ca D, Q 3 = V \u22ca D2, Q 4 = V \u22ca D5.\nThese have orders 110, 110, 242, 605. Since W1 \u2229 W2 = 0 and D2 \u2229 D5 =\n1, their total intersection is 1. The deletion intersections are, in order,\nW2, W 1, D 5, D 2, of orders 11, 11, 5, 2. Every member is therefore essential,\ngiving a faithful minimal base of size 4. This exact witness tests the limit\nof the argument: the characteristic- 29 proof uses gcd(120, 28) = 4 and the\nresulting cyclic 2-group line stabilizers, whereas gcd(120, 10) = 10 permits\nthis obstruction.\n4. Reproduction and limits\nThe README gives ordinary Python and C++17 commands and the\nexpected outputs. Python uses only its standard library; all mathemati-\ncal arithmetic is exact. The reconstruction programs read no precomputed\ncerti\ufb01cate. The two supplied implementations and a newly written checker\nagree on all 76 subgroups as sets of actual matrices. The two Python im-\nplementations additionally agree on the digest of the complete sorted a\ufb03ne\nelement set. Saved expected outputs are used only for subsequent compari-\nson; elapsed runtime is not a mathematical assertion.\nThese programs check explicit \ufb01nite claims and provide reproducibility;\nthey do not replace the structural proof of the universal bounds, establish\nbibliographic novelty, or imply external human peer review. The paper and\nchecks were prepared with AI assistance. No proof-assistant formalization\nis claimed."
+    ],
+    "dimensions": [
+      [
+        0.0,
+        0.0,
+        612.0,
+        792.0
+      ],
+      [
+        0.0,
+        0.0,
+        612.0,
+        792.0
+      ],
+      [
+        0.0,
+        0.0,
+        612.0,
+        792.0
+      ]
+    ],
+    "links": [],
+    "metadata": {
+      "/Creator": "LaTeX with hyperref",
+      "/Title": "Exact verification supplement: Kourovka Notebook Problem 16.45",
+      "/Author": "Alec Kriebel",
+      "/Producer": "xdvipdfmx (0.1)",
+      "/CreationDate": "D:20260926041738-00'00'"
+    }
+  },
+  "rebuilt_pdf": {
+    "sha256": "284411a900c5d5f48324bfffbe5a648803689728d7313e6d373146f955466342",
+    "metadata": {
+      "/Creator": "LaTeX with hyperref",
+      "/Title": "A counterexample to Kourovka Notebook Problem 16.45",
+      "/Author": "Alec Kriebel",
+      "/Producer": "xdvipdfmx (0.1)",
+      "/CreationDate": "D:20260926050207-00'00'"
+    }
+  },
+  "fresh_replay_from_identical_archive": {
+    "baseline_kit_sha256": "153f9e27ed03c814d5242418e0db2b4e38ccea31ffa9706423120fd546b3bd02",
+    "reproducibility_zip_sha256": "55d1ed8644b59aead0b49b9793c76fdb13c06462368f9ad6b388b7baf9709e8c",
+    "replay_log": "mkdir -p build\npython3 src/verify_counterexample.py --outdir build > build/verification_python.log\nc++ -O2 -std=c++17 -Wall -Wextra -pedantic src/verify_counterexample.cpp -o build/verify_counterexample_cpp\n./build/verify_counterexample_cpp build/subgroups_cpp.txt > build/verification_cpp.log\npython3 src/compare_certificates.py build/finite_certificate.json build/subgroups_cpp.txt\nPASS: all 76 actual matrix subgroups agree between Python and C++,\ndespite different element orderings and independent generation.\npython3 independent_exact.py --subgroups-output build/independent_subgroups.json > build/independent_exact.json\npython3 src/compare_results.py\nPASS: all three fresh implementations and expected files agree on all 76 matrix subgroups.\nPASS: complete sorted affine-element digest agrees across the two Python implementations.\nPASS: all mathematical summaries agree with the expected results.\n",
+    "before_expected": {
+      "verification_cpp.txt": "f9bd9699491208e27375d5869d472111407bdd270751447befa7cc321dd4f7e0",
+      "independent_subgroups.json": "3b08e86af832bff935465eb8a6b4af9aac7628f0fc58bf9fc0338c899bf2c48e",
+      "finite_certificate.json": "03c7ad3bfab01c55d16492b5f9f85ad0332b46d54cc0d77d5cee81d4174fb78c",
+      "subgroups_cpp.txt": "850f47ef51e52b4c8e25569ade9960976966fcba8cf4ba100ff2a78abc545396",
+      "verification_python.json": "19ae1bea6ab52c0eaa00f64c8831db6ad6853b5987f27d21846b352f2e42439b",
+      "independent_exact.json": "f78ae6a36bd9a7fe3643df5a994989ea4206c7cbc865561c33781d5f01f1217b"
+    },
+    "environment": {
+      "make_python": "Python 3.14.6",
+      "cpp_compiler": "Apple clang 21.0.0 (clang-2100.1.1.101), arm64-apple-darwin25.6.0",
+      "tex": "Tectonic 0.16.9",
+      "renderer": "pdftoppm 26.08.0",
+      "audit_pdf_reader": "bundled Python 3.12 with pypdf"
+    }
+  },
+  "baseline_review": {
+    "outer_kit_sha256": "153f9e27ed03c814d5242418e0db2b4e38ccea31ffa9706423120fd546b3bd02",
+    "archives": {
+      "Kourovka16_45_Bulletin_Submission_Kit.zip": {
+        "members": [
+          "Kourovka16_45_Bulletin_Submission_Kit/01_Manuscript.pdf",
+          "Kourovka16_45_Bulletin_Submission_Kit/02_Reproducibility.zip",
+          "Kourovka16_45_Bulletin_Submission_Kit/03_LaTeX_Source.zip",
+          "Kourovka16_45_Bulletin_Submission_Kit/04_Cover_Letter.txt",
+          "Kourovka16_45_Bulletin_Submission_Kit/05_Submission_Metadata.txt",
+          "Kourovka16_45_Bulletin_Submission_Kit/Review_Summary.md",
+          "Kourovka16_45_Bulletin_Submission_Kit/SHA256SUMS",
+          "Kourovka16_45_Bulletin_Submission_Kit/START_HERE.md"
+        ],
+        "safe_paths": true,
+        "no_symlinks": true,
+        "crc_valid": true,
+        "sha256": "153f9e27ed03c814d5242418e0db2b4e38ccea31ffa9706423120fd546b3bd02"
+      },
+      "02_Reproducibility.zip": {
+        "members": [
+          "Kourovka16_45_Verification/LICENSES.md",
+          "Kourovka16_45_Verification/Makefile",
+          "Kourovka16_45_Verification/README.md",
+          "Kourovka16_45_Verification/expected/finite_certificate.json",
+          "Kourovka16_45_Verification/expected/independent_exact.json",
+          "Kourovka16_45_Verification/expected/independent_subgroups.json",
+          "Kourovka16_45_Verification/expected/subgroups_cpp.txt",
+          "Kourovka16_45_Verification/expected/verification_cpp.txt",
+          "Kourovka16_45_Verification/expected/verification_python.json",
+          "Kourovka16_45_Verification/independent_exact.py",
+          "Kourovka16_45_Verification/src/compare_certificates.py",
+          "Kourovka16_45_Verification/src/compare_results.py",
+          "Kourovka16_45_Verification/src/verify_counterexample.cpp",
+          "Kourovka16_45_Verification/src/verify_counterexample.py",
+          "Kourovka16_45_Verification/verification_note.pdf",
+          "Kourovka16_45_Verification/verification_note.tex"
+        ],
+        "safe_paths": true,
+        "no_symlinks": true,
+        "crc_valid": true,
+        "sha256": "55d1ed8644b59aead0b49b9793c76fdb13c06462368f9ad6b388b7baf9709e8c"
+      },
+      "03_LaTeX_Source.zip": {
+        "members": [
+          "Kourovka16_45_Source/README.md",
+          "Kourovka16_45_Source/baustms.cls",
+          "Kourovka16_45_Source/kourovka_16_45.tex"
+        ],
+        "safe_paths": true,
+        "no_symlinks": true,
+        "crc_valid": true,
+        "sha256": "e583f3b24d9a729b99c89e31abf2f5dfb904032b32841d859642b71dad95f79d"
+      }
+    },
+    "checks": {
+      "outer_matches_upload": true,
+      "sha256sums_pass": true,
+      "nested_sources_byte_identical": true,
+      "official_class_unchanged": true,
+      "delivered_pdf_copies_identical": true,
+      "rebuilt_pdf_text_dimensions_links_annotations_match": true,
+      "clean_compiler_log": true,
+      "expected_untouched": true,
+      "fresh_make_verify_pass": true,
+      "cited_git_snapshot_matches_all_supplement_files": true
+    },
+    "before_expected": {
+      "verification_cpp.txt": "f9bd9699491208e27375d5869d472111407bdd270751447befa7cc321dd4f7e0",
+      "independent_subgroups.json": "3b08e86af832bff935465eb8a6b4af9aac7628f0fc58bf9fc0338c899bf2c48e",
+      "finite_certificate.json": "03c7ad3bfab01c55d16492b5f9f85ad0332b46d54cc0d77d5cee81d4174fb78c",
+      "subgroups_cpp.txt": "850f47ef51e52b4c8e25569ade9960976966fcba8cf4ba100ff2a78abc545396",
+      "verification_python.json": "19ae1bea6ab52c0eaa00f64c8831db6ad6853b5987f27d21846b352f2e42439b",
+      "independent_exact.json": "f78ae6a36bd9a7fe3643df5a994989ea4206c7cbc865561c33781d5f01f1217b"
+    },
+    "pdf_main": {
+      "pages": 7,
+      "text": [
+        "A COUNTEREXAMPLE TO KOUROVKA NOTEBOOK\nPROBLEM 16.45\nALEC KRIEBEL\nAbstract\nLet b(G) be the largest size of an inclusion-minimal base over all permutation representations of a \ufb01nite\ngroup G, with bases taken for the permutation image, and let \u00b50(G) be the largest size of an independent\nsubset of G. We construct an explicit a\ufb03ne group of order 100920 for which b(G) = 3 < 4 = \u00b50(G), giving\na negative answer to Kourovka Notebook Problem 16.45. The maximum remains three when restricted\nto faithful representations. The proof is structural: every subgroup missing the translation subgroup\nhas faithful base invariant at most two, and every nontrivial normal subgroup contains the translations.\nThe independent four-set gives an irredundant intersection family whose intersection is central in the\ncomplement but not normal in the a \ufb03ne group.\n2020 Mathematics subject classi\ufb01cation: Primary 20B05; Secondary 20D30, 20D60.\nKeywords and phrases: Permutation bases, independent sets, \ufb01nite groups, subgroup lattices, Kourovka\nNotebook.\n1. Introduction\nA subset S of a \ufb01nite group X is independent if x < hS n fxgi for every x 2 S . Write\n\u00b50(X) for the largest size of such a subset; it need not generate X. For an action\n\u03c1 : X ! Sym(\u2126), a base is a set of points with pointwise stabilizer ker \u03c1. A base\nis minimal if it is inclusion-minimal. Let b(X) be the largest size of a minimal base\nover all permutation representations of X, and let bf(X) denote the same maximum\nrestricted to faithful representations. In particular, b(1) = bf(1) = \u00b50(1) = 0. The\nde\ufb01nitions allow intransitive and nonfaithful actions. Allowing in\ufb01nite \u2126 makes no\ndi\ufb00erence: choosing a moved point for each nonidentity element of the \ufb01nite image\ngives a \ufb01nite subbase of every base.\nCameron\u2019s Problem 16.45 in the Kourovka Notebook asks whether b(X) = \u00b50(X)\nfor every \ufb01nite group X [4]. The inequality b(X) \u0014 \u00b50(X) is known. Cameron uses\nb2 for b, and uses \u00b50 in [ 2] and \u00b5\" in [ 3] for our independence invariant. In contrast,\nAnagnostopoulou-Merkouri and Burness [ 1, Remark 1(c)] restrict their b2 to faithful\nactions, so it corresponds to our bf. The all-actions question is still posed in Cameron\u2019s\n2024 account [ 3, Section 6, Proposition 2 and the following discussion] and is listed\nwithout a solution comment in the September 2026 notebook. We prove the following.",
+        "2 A. Kriebel\nTheorem 1. Over F29, put\nA =\n( 0 28\n1 0\n)\n, B =\n( 2 7\n12 28\n)\n, H = hA, Bi \u0014 SL2(29).\nF or the natural a\ufb03ne semidirect product G = F2\n29 \u22ca H,\njGj = 100920, bf(G) = b(G) = 3 < 4 = \u00b50(G).\nThe proof separates two intersection conditions in the subgroup lattice. Inde-\npendence corresponds to irredundant intersection families with arbitrary intersection,\nwhereas permutation bases require that intersection to be normal. In our example an\nindependent four-set gives a family with intersection of order two, central in H but not\nnormal in G. The faithful upper bound follows by restricting an intersection family\nto a subgroup that does not contain the translations. The normal-subgroup structure\nthen handles every nonfaithful action. No enumeration of the subgroup lattice of G is\nrequired, and no minimum-order assertion is made.\n2. Subgroup formulations\nWe recall Cameron\u2019s subgroup formulations [ 2, Propositions 3.1\u20133.2 and Corollary\n3.3]; see also [ 3]. We include the short arguments to make the normality condition\nexplicit.\nProposition 2. The invariant b(X) is the largest t for which subgroups L 1, . . . ,Lt of X\nsatisfy\nN =\nt\u2229\ni=1\nLi \u25c1 X,\n\u2229\nj,i\nL j > N (1 \u0014 i \u0014 t).\nThe same description with N = 1 gives bf(X). Consequently,\nb(X) = max\nN\u25c1X\nbf(X/N). (1)\nProof. Point stabilizers of a minimal base have the stated properties. Conversely, let\nX act on the disjoint union of the left coset spaces X/Li. The action kernel is\n\u2229\ni\nCoreX(Li) = CoreX\n\uf8eb\uf8ec\uf8ec\uf8ec\uf8ec\uf8ec\uf8ed\n\u2229\ni\nLi\n\uf8f6\uf8f7\uf8f7\uf8f7\uf8f7\uf8f7\uf8f8 = N.\nThe identity cosets form a minimal base. Factoring through the action kernel gives ( 1).\nEmpty intersections are taken in the ambient group, so the empty family also handles\nthe trivial group and trivial actions. \u25a1\nCall a subgroup family meet-irredundant if every member is essential to its total\nintersection, without a normality condition.\nLemma 3. The largest size of a meet-irredundant family in X is \u00b50(X). In particular ,\nb(X) \u0014 \u00b50(X).",
+        "Kourovka Notebook Problem 16.45 3\nProof. For a meet-irredundant family L1, . . . ,Lt, choose xi 2 (\u2229\nj,i L j) n Li. Every\nx j with j , i lies in Li, whereas xi does not, so the xi are distinct and independent.\nConversely, for an independent set fx1, . . . ,xtg, the subgroups Li = hx j : j , ii are\nmeet-irredundant, with witnesses xi. \u25a1\nLemma 4 (Restriction). If L 1, . . . ,Lt is meet-irredundant in X, then t \u0000 1 \u0014 \u00b50(Li) for\neach i. If its total intersection is 1, then t \u0000 1 \u0014 bf(Li).\nProof. Inside Li, the family Li \\ L j for j , i is meet-irredundant: the witness for L j\nbelongs to Li. Its total intersection is unchanged. Apply Lemma 3 or Proposition 2. \u25a1\nThese descriptions also show that \u00b50 and bf are monotone under subgroups. For\ncompleteness, a meet-irredundant family gives the top-preserving Boolean meet-\nsemilattice embedding\nJ 7\u0000 !\n\u2229\ni<J\nLi (J \u0012 f1, . . . ,tg).\nThe witnesses distinguish the images, and the bottom is \u2229\ni Li. Thus the normality\ndistinction is exactly the one in the notebook\u2019s semilattice formulation; no preservation\nof joins is assumed.\n3. The complement\nLet H be as in Theorem 1, and set Z = fI, \u0000Ig. Direct multiplication gives\nA2 = B3 = (AB)5 = \u0000I. (2)\nThe spherical triangle presentation A5 = ha, b j a2 = b3 = (ab)5 = 1i and simplicity of\nA5 show that H/Z \u001b A5: the quotient is nontrivial because A < Z. Hence jHj = 120.\nWe recall the elementary subgroup facts that will be used. Every proper subgroup\nof A5 lies in a subgroup isomorphic to A4, D10, or S 3, where D10 has order ten. Indeed,\nin the natural action on \ufb01ve letters an intransitive subgroup \ufb01xes a letter or has orbits\nof sizes 2 + 3. A proper transitive subgroup has order 5 , 10, 15, 20, or 30. Orders 15\nand 20 would force a normal Sylow 5-subgroup, whose normalizer in A5 has order ten;\norder 30 is excluded by simplicity. The remaining cases lie in a Sylow 5-normalizer.\nEach of A4, D10, S 3 has independence invariant two. For A4, any generating set\ncontains a 3-cycle and an element outside its cyclic subgroup; these generate A4, since\nit has no subgroup of order six. The proper subgroups of A4 have independence\ninvariant at most two. For a dihedral group of order 2 q with q prime, a generating\nset contains either a nontrivial rotation and a re\ufb02ection, or two distinct re\ufb02ections; two\nsuch elements su \ufb03ce. Deleting one element from an independent set in A5 therefore\ngives\n\u00b50(A5) \u0014 3. (3)\nThe natural degree-\ufb01ve action has a minimal base of size three, so equality holds.\nThese facts also follow directly from the usual subgroup structure of A5; simplicity\nfollows from its nonidentity conjugacy-class sizes 15 , 20, 12, 12.",
+        "4 A. Kriebel\nLemma 5. One has \u00b50(H) = b(H) = 3 and bf(H) = 2.\nProof. The only involution in SL 2(29) is \u0000I: a matrix squaring to I is diagonalizable\nwith eigenvalues \u00061, and determinant one forces the signs to agree. Every even-order\nsubgroup of H therefore contains Z. Every odd-order subgroup injects into A5 and is\ntrivial or cyclic of order three or \ufb01ve by the preceding subgroup description.\nLet S be independent in H. If its images in H/Z, as an indexed family, are\nindependent, then jS j \u0014 3. Otherwise some s 2 S lies in KZ n K, where K = hS n fsgi.\nThus Z \u2288 K, so K is trivial or cyclic of odd prime order. Independence then gives\njS j \u0014 2. Hence \u00b50(H) \u0014 3. The degree-\ufb01ve action of H/Z pulls back to an action of H\nwith a minimal base of size three. Lemma 3 proves b(H) = \u00b50(H) = 3.\nA subgroup family with total intersection 1 must have an odd-order member. If that\nmember is trivial, a minimal such family has size one. If it has prime order, some other\nmember intersects it trivially, so a minimal family has size at most two. Subgroups of\norders three and \ufb01ve give a faithful family of size two. This proves bf(H) = 2. \u25a1\nWe will need an explicit independent triple in H. Put\nR1 = A, R2 =\n( 12 24\n0 17\n)\n, R3 =\n( 25 3\n4 4\n)\n. (4)\nThe identities R2 = BAB2 and R3 = AR2(AB)2 put these matrices in H. Direct\nmultiplication gives R2\ni = \u0000I and\nord(R2R3) = 4, ord(R1R3) = 3, ord(R1R2) = 10.\nIn H/Z the corresponding products have orders 2 , 3, 5. Each pair of projective\ninvolutions generates a dihedral group; lifting back to H, the pair subgroups have\norders\njhR2, R3ij = 8, jhR1, R3ij = 12, jhR1, R2ij = 20. (5)\nThe subgroup generated by all three has order divisible by lcm(8 , 12, 20) = 120, so it\nis H. Every pair subgroup is proper, proving independence. Moreover, the \ufb01rst two\npair subgroups intersect in hR3i: this subgroup has order four, which is also gcd(8 , 12).\nThe third does not contain R3 and contains Z. Thus the intersection of the three pair\nsubgroups is exactly Z.\n4. Subgroups missing the translations\nLemma 6. Let p be an odd prime and let C \u0014 F\u0002\np be a cyclic 2-group. F or the faithful\nscalar semidirect product L = Fp \u22ca C, one has \u00b50(L) \u0014 2.\nProof. Put P = (Fp, +) and consider a subgroup J \u0014 L. If J \\ P = 1, then J embeds\nin C and has independence invariant at most one: a subgroup of a cyclic prime-power\ngroup is generated by an element of maximum order in any generating set. Otherwise\nP \u0014 J and J = P \u22ca D for some D \u0014 C. For D = 1 the assertion is immediate. If",
+        "Kourovka Notebook Problem 16.45 5\nD , 1, every generating set of J contains an element x = (a, \u03bb) whose image generates\nD, because D has a unique maximal subgroup. Writing m = jDj, we have\nxm =\n\uf8eb\uf8ec\uf8ec\uf8ec\uf8ec\uf8ec\uf8ec\uf8eda\nm\u00001\u2211\nj=0\n\u03bb j, 1\n\uf8f6\uf8f7\uf8f7\uf8f7\uf8f7\uf8f7\uf8f7\uf8f8 = 1.\nThus hxi is a complement of order m. Some other generator y lies outside it. The\nsubgroup hx, yi projects onto D; if it intersected P trivially, its order would be m and it\nwould equal hxi, a contradiction. Hence hx, yi = J. Every independent generating set\nof every subgroup of L has size at most two. \u25a1\nLemma 7. Every line stabilizer in H is cyclic of order dividing four . In particular , H\nacts irreducibly on V = F2\n29.\nProof. For a line W, the scalar action gives a homomorphism HW ! F\u0002\n29. In a basis\nadapted to W, a kernel element has the form\n(\n1 u\n0 1\n)\n. If u , 0 it has order 29, impossible\nin a group of order 120. The homomorphism is therefore injective, and\njHWj j gcd(120, 28) = 4.\nSince jHj > 4, the whole group cannot stabilize a line. \u25a1\nNow form G = V \u22ca H, with multiplication ( v, h)(w, k) = (v + hw, hk), and write\n\u03c0 : G ! H for projection.\nLemma 8. If K \u0014 G does not contain V, then b f(K) \u0014 2. More precisely, if K \\ V = 1,\nthen \u00b50(K) \u0014 3; if K \\ V is a line, then \u00b50(K) \u0014 2.\nProof. Every additive subgroup of V is an F29-subspace. If K \\ V = 1, projection\nembeds K into H, so Lemma 5 and subgroup monotonicity give both bounds. Other-\nwise W = K \\ V is a line, normal in K, and \u03c0(K) \u0014 HW is cyclic of order dividing\nfour. A Sylow 2-subgroup of K maps isomorphically onto \u03c0(K) and complements\nW. Its action on W is faithful by Lemma 7. Lemma 6 gives \u00b50(K) \u0014 2, hence also\nbf(K) \u0014 2. \u25a1\n5. The invariants of the a \ufb03ne group\nProposition 9. One has b f(G) \u0014 b(G) \u0014 3.\nProof. First let K1, . . . ,Kt be a meet-irredundant family with total intersection 1.\nSome Ki does not contain V. Lemmas 4 and 8 imply\nt \u0000 1 \u0014 bf(Ki) \u0014 2,\nso bf(G) \u0014 3.\nEvery nontrivial normal subgroup N \u25c1 G contains V. Indeed, irreducibility gives\nN \\ V = 1 or V. In the \ufb01rst case [ N, V] \u0014 N \\ V = 1, whence N \u0014 CG(V) = V, since\nthe matrix action is faithful. This forces N = 1, a contradiction. Every nonfaithful\naction of G therefore factors through G/V \u001b H, and its minimal bases have size at\nmost b(H) = 3. \u25a1",
+        "6 A. Kriebel\nLet e1 = (1, 0)T and e2 = (0, 1)T. The set\nS = f(e1, I), (0, R1), (0, R2), (0, R3)g (6)\nis independent: projecting to H prevents any one of the three linear elements from\nbeing generated by the others, and the translation is outside the zero-translation\ncomplement. It also generates G, since the H-orbit of e1 spans the irreducible module\nV.\nProposition 10. One has \u00b50(G) = 4.\nProof. The set ( 6) gives the lower bound. For the upper bound consider a meet-\nirredundant family K1, . . . ,Kt, without any condition on its total intersection. If all\nmembers contain V, quotienting by V gives a meet-irredundant family in H, so t \u0014 3.\nOtherwise choose Ki \u2289 V. Lemmas 4 and 8 give t \u0000 1 \u0014 \u00b50(Ki) \u0014 3. Apply\nLemma 3. \u25a1\nThere is a faithful minimal base of size three. De\ufb01ne\nL1 = h(e1, I), (0, \u0000I)i,\nL2 = h(e2, I), (0, \u0000I)i,\nL3 = h(e1 + e2, I), (2e1, \u0000I)i.\nEach subgroup has order 58, and their pairwise intersections are\nL1 \\ L2 = f1, (0, \u0000I)g,\nL1 \\ L3 = f1, (2e1, \u0000I)g,\nL2 \\ L3 = f1, (\u00002e2, \u0000I)g.\nThese follow by comparing their translation lines and their cosets of elements with\nlinear part \u0000I. Their total intersection is 1. Proposition 2 gives bf(G) \u0015 3, realized on\nG/L1 t G/L2 t G/L3, of degree 5220. Since jGj = 292 \u0001 120 = 100920, this completes\nthe proof of Theorem 1.\n6. The normality obstruction\nLet Mi = hS n fsigi, with the elements of ( 6) in the displayed order. Then M1 = H\nand the other three subgroups are the preimages under \u03c0 of the pair subgroups in ( 5).\nTo see the latter assertion, each pair subgroup has order greater than four and hence\ncannot stabilize a line by Lemma 7; its orbit of e1 spans V. Consequently\n4\u2229\ni=1\nMi = Z0, Z0 = f(0, I), (0, \u0000I)g.\nThis subgroup is not normal in G, since\n(e1, I)(0, \u0000I)(\u0000e1, I) = (2e1, \u0000I) < Z0.",
+        "Kourovka Notebook Problem 16.45 7\nThus S gives a Boolean meet-semilattice of rank four with nonnormal bottom, whereas\nTheorem 1 excludes any such rank-four embedding with normal bottom.\nTaking normal cores destroys irredundancy. The three pair subgroups have core\nZ in H, by simplicity of H/Z. Their preimages therefore have core V \u22ca Z in G. The\ncomplement has trivial core, since every nontrivial normal subgroup of G contains V.\nThe four cores are 1 , V \u22ca Z, V \u22ca Z, V \u22ca Z, whose intersection is already determined by\nthe \ufb01rst member.\nReproducibility and use of arti\ufb01cial intelligence\nThe proof above is independent of subgroup enumeration. A supplementary ver-\ni\ufb01cation package supplies exact Python and C ++ implementations that reconstruct\nthe matrix group, compare all its subgroups, and check the a \ufb03ne witnesses. It\nalso records a characteristic-eleven example showing why the line-stabilizer hypoth-\nesis matters. The current package is available in the repository snapshot of 25\nSeptember 2026 . The preprint and original veri\ufb01cation materials are archived at\ndoi:10.5281/zenodo.22929486.\nOpenAI Codex (https://openai.com/codex/) was used during 19\u201325 Septem-\nber 2026 to develop and check the construction and proofs, generate manuscript text\nand exact veri\ufb01cation programs, search and check references, and prepare the sub-\nmission. Separate AI agents performed adversarial structural, computational, and\nsource reviews. Historical application and model build identi\ufb01ers were not consistently\nrecorded. These checks are not external peer review or proof-assistant certi\ufb01cation.\nThe author is responsible for the mathematical claims and the submitted text.\nFunding\nThis research received no external funding. The author declares no competing\ninterests.\nReferences\n[1] M. Anagnostopoulou-Merkouri and T. C. Burness, On the regularity number of a \ufb01nite group and\nother base-related invariants, J. Lond. Math. Soc. 110 (2024), no. 6, e70035. https://doi.org/\n10.1112/jlms.70035.\n[2] P . J. Cameron, Some measures of \ufb01nite groups related to permutation bases , arXiv:1408.0968\n(2014). https://arxiv.org/abs/1408.0968.\n[3] P . J. Cameron, Independence and bases: theme and variations , Model Theory 3 (2024), no. 2,\n417\u2013431. https://doi.org/10.2140/mt.2024.3.417.\n[4] E. I. Khukhro and V . D. Mazurov (eds.), Unsolved Problems in Group Theory: The Kourovka\nNotebook, 21st edition, September 2026 update, Problem 16.45, p. 100. O\ufb03cial notebook and\nupdates.\nAlec Kriebel, Independent researcher, San Francisco, USA\nORCID: 0009-0001-9320-500X\ne-mail: me@aleckriebel.com"
+      ],
+      "dimensions": [
+        [
+          0.0,
+          0.0,
+          493.23,
+          700.16
+        ],
+        [
+          0.0,
+          0.0,
+          493.23,
+          700.16
+        ],
+        [
+          0.0,
+          0.0,
+          493.23,
+          700.16
+        ],
+        [
+          0.0,
+          0.0,
+          493.23,
+          700.16
+        ],
+        [
+          0.0,
+          0.0,
+          493.23,
+          700.16
+        ],
+        [
+          0.0,
+          0.0,
+          493.23,
+          700.16
+        ],
+        [
+          0.0,
+          0.0,
+          493.23,
+          700.16
+        ]
+      ],
+      "links": [
+        [
+          7,
+          "https://github.com/AlecKriebel/Math/tree/be0f06ee0c61739dcda5629e2c4223e7da7951d3/kourovka_16_45/journal_submission_2026_09_25/supplement"
+        ],
+        [
+          7,
+          "https://github.com/AlecKriebel/Math/tree/be0f06ee0c61739dcda5629e2c4223e7da7951d3/kourovka_16_45/journal_submission_2026_09_25/supplement"
+        ],
+        [
+          7,
+          "https://doi.org/10.5281/zenodo.22929486"
+        ],
+        [
+          7,
+          "https://openai.com/codex/"
+        ],
+        [
+          7,
+          "https://doi.org/10.1112/jlms.70035"
+        ],
+        [
+          7,
+          "https://doi.org/10.1112/jlms.70035"
+        ],
+        [
+          7,
+          "https://arxiv.org/abs/1408.0968"
+        ],
+        [
+          7,
+          "https://doi.org/10.2140/mt.2024.3.417"
+        ],
+        [
+          7,
+          "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/09/21tkt.pdf"
+        ],
+        [
+          7,
+          "https://kourovkanotebookorg.wordpress.com/wp-content/uploads/2026/09/21tkt.pdf"
+        ],
+        [
+          7,
+          "https://orcid.org/0009-0001-9320-500X"
+        ]
+      ],
+      "metadata": {
+        "/Creator": "LaTeX with hyperref",
+        "/Title": "A counterexample to Kourovka Notebook Problem 16.45",
+        "/Author": "Alec Kriebel",
+        "/Producer": "xdvipdfmx (0.1)",
+        "/CreationDate": "D:20260926042200-00'00'"
+      }
+    },
+    "pdf_note": {
+      "pages": 3,
+      "text": [
+        "EXACT VERIFICA TION SUPPLEMENT TO\nA COUNTEREXAMPLE TO KOUROVKA NOTEBOOK\nPROBLEM 16.45\nALEC KRIEBEL\n1. Scope and explicit identifications\nThe paper proves structurally that the explicitly speci\ufb01ed group G =\nF2\n29 \u22ca H has\n|G| = 100920, b f (G) = b(G) = 3 < 4 = \u00b5\u2032(G).\nHere \u00b5\u2032 is the maximum size of an independent subset; b is the maximum\nsize of an inclusion-minimal base over all permutation representations, with\nbases taken for the permutation image; and bf restricts this maximum to\nfaithful representations. This supplement describes optional exact checks of\nthe \ufb01nite inputs and witnesses. These computations are not premises of the\nstructural upper-bound proof. In particular, no subgroup enumeration of\nthe group of order 100920 is asserted.\nOver F29 the complement generators are\nA =\n( 0 28\n1 0\n)\n, B =\n( 2 7\n12 28\n)\n, H = \u27e8A, B \u27e9.\nThe veri\ufb01ers obtain exactly 120 determinant-one matrices and check A2 =\nB3 = (AB)5 = \u2212I. An explicit isomorphism SL2(5) \u2192 H is speci\ufb01ed by\n( 0 4\n1 0\n)\n\u21a6\u2212 \u2192A,\n( 0 4\n1 1\n)\n\u21a6\u2212 \u2192B.\nThese pairs generate a subgroup of SL2(5) \u00d7 H of order 120, with both\ncoordinate projections bijective, certifying the isomorphism. The additional\nchecker veri\ufb01es all 1202 = 14400 multiplication identities. Similarly, A \u21a6\u2192\n(1 2)(3 4) and B \u21a6\u2192 (1 3 5) de\ufb01ne a quotient onto A5 with kernel Z = {I, \u2212I};\nall 14400 multiplication identities for this quotient are checked as well.\nThe independent triple is\nR1 = A, R 2 =\n( 12 24\n0 17\n)\n, R 3 =\n( 25 3\n4 4\n)\n.\nThe words R2 = BAB 2 and R3 = AR2(AB)2, the identities R2\ni = \u2212I, and\nthe product orders |R2R3| = 4, |R1R3| = 3, |R1R2| = 10 are checked. Their\nomission subgroups have orders 8, 12, 20, intersect in Z, and have core Z in\nH.\n1",
+        "2 ALEC KRIEBEL\n2. Coverage of the subgroup and affine checks\nThe complement subgroups are enumerated by starting with the iden-\ntity subgroup and, from each discovered subgroup, adjoining every element\noutside it. Every subgroup has a generating sequence, and each successive\npre\ufb01x occurs along a path in this procedure. The resulting list therefore\ncontains all 76 actual subgroups, not just conjugacy representatives. As a\nfurther check, their order distribution is\norder 1 2 3 4 5 6 8 10 12 20 24 120\nnumber 1 1 10 15 6 10 5 6 10 6 5 1 .\nA subgroup family is meet-irredundant when removing any member strictly\nenlarges its total intersection. Each of the\n(75\n4\n)\n= 1215450 four-families of\nproper subgroups is tested; none is meet-irredundant. Since every subfamily\nof a meet-irredundant family is meet-irredundant, larger ranks are excluded\nas well. Of the\n(75\n3\n)\n= 67525 three-families, 900 are meet-irredundant, but\nnone has trivial intersection. Explicit pairs with trivial intersection give\nthe lower bound for bf (H); the displayed triple gives the other lower bound.\nThus the \ufb01nite results corroborate \u00b5\u2032(H) = 3 and bf (H) = 2 .\nAll 30 lines of F2\n29 are tested, and each stabilizer is cyclic of order 4. The\nadditional checker independently enumerates the 62 subgroups of the scalar\ngroup F29 \u22ca C4 and \ufb01nds no meet-irredundant triple. This is a \ufb01nite check\nof the line-subgroup bound used in the proof; the paper supplies the general\nelementary argument.\nUsing (v, h )(w, k ) = ( v + hw, hk ), the a\ufb03ne generators\n(e1, I ), (0, R 1), (0, R 2), (0, R 3)\ngenerate 100920 elements. Their omission subgroups have respective orders\n120, 6728, 10092, 16820, and every omitted generator is absent from its omis-\nsion subgroup. The total intersection is Z0 = {(0, I ), (0, \u2212I)}. Nonnormality\nis checked directly from\n(e1, I )(0, \u2212I)(\u2212e1, I ) = (2 e1, \u2212I) /\u2208 Z0.\nThe three subgroups\nL1 = \u27e8(e1, I ), (0, \u2212I)\u27e9, L 2 = \u27e8(e2, I ), (0, \u2212I)\u27e9,\nL3 = \u27e8(e1 + e2, I ), (2e1, \u2212I)\u27e9\nhave order 58. Their pairwise intersections have order 2 and their to-\ntal intersection is trivial; the additional checker veri\ufb01es the displayed in-\ntersection elements in the paper. Their disjoint coset action has degree\n3(100920/ 58) = 5220 and a faithful minimal base of size 3.",
+        "EXACT VERIFICATION SUPPLEMENT 3\n3. Why the characteristic matters\nThe conclusion does not extend to every characteristic in which such a\ncomplement exists. Over F11, put\nA11 =\n( 0 10\n1 0\n)\n, B 11 =\n( 0 2\n5 1\n)\n, C = A11B11 =\n( 6 10\n0 2\n)\n.\nThe \ufb01rst two matrices generate a group of order 120. The element C has\norder 10, with C5 = \u2212I, and stabilizes the distinct lines W1 = \u27e8(1, 0)\u27e9 and\nW2 = \u27e8(1, 4)\u27e9; its eigenvalues on them are 6 and 2, respectively. Write\nD = \u27e8C\u27e9, D2 = \u27e8C5\u27e9 and D5 = \u27e8C2\u27e9. Inside V \u22ca \u27e8A11, B 11\u27e9, where V = F2\n11,\ntake\nQ1 = W1 \u22ca D, Q 2 = W2 \u22ca D, Q 3 = V \u22ca D2, Q 4 = V \u22ca D5.\nThese have orders 110, 110, 242, 605. Since W1 \u2229 W2 = 0 and D2 \u2229 D5 =\n1, their total intersection is 1. The deletion intersections are, in order,\nW2, W 1, D 5, D 2, of orders 11, 11, 5, 2. Every member is therefore essential,\ngiving a faithful minimal base of size 4. This exact witness tests the limit\nof the argument: the characteristic- 29 proof uses gcd(120, 28) = 4 and the\nresulting cyclic 2-group line stabilizers, whereas gcd(120, 10) = 10 permits\nthis obstruction.\n4. Reproduction and limits\nThe README gives ordinary Python and C++17 commands and the\nexpected outputs. Python uses only its standard library; all mathemati-\ncal arithmetic is exact. The reconstruction programs read no precomputed\ncerti\ufb01cate. The two supplied implementations and a newly written checker\nagree on all 76 subgroups as sets of actual matrices. The two Python im-\nplementations additionally agree on the digest of the complete sorted a\ufb03ne\nelement set. Saved expected outputs are used only for subsequent compari-\nson; elapsed runtime is not a mathematical assertion.\nThese programs check explicit \ufb01nite claims and provide reproducibility;\nthey do not replace the structural proof of the universal bounds, establish\nbibliographic novelty, or imply external human peer review. The paper and\nchecks were prepared with AI assistance. No proof-assistant formalization\nis claimed."
+      ],
+      "dimensions": [
+        [
+          0.0,
+          0.0,
+          612.0,
+          792.0
+        ],
+        [
+          0.0,
+          0.0,
+          612.0,
+          792.0
+        ],
+        [
+          0.0,
+          0.0,
+          612.0,
+          792.0
+        ]
+      ],
+      "links": [],
+      "metadata": {
+        "/Creator": "LaTeX with hyperref",
+        "/Title": "Exact verification supplement: Kourovka Notebook Problem 16.45",
+        "/Author": "Alec Kriebel",
+        "/Producer": "xdvipdfmx (0.1)",
+        "/CreationDate": "D:20260926041738-00'00'"
+      }
+    },
+    "rebuilt_pdf": {
+      "sha256": "4c81d3460b951ff8f088dd502b16bf7fd0725c53d274c0ebd9ad0f9afa6fb700",
+      "metadata": {
+        "/Creator": "LaTeX with hyperref",
+        "/Title": "A counterexample to Kourovka Notebook Problem 16.45",
+        "/Author": "Alec Kriebel",
+        "/Producer": "xdvipdfmx (0.1)",
+        "/CreationDate": "D:20260926045724-00'00'"
+      }
+    },
+    "replay_log": "mkdir -p build\npython3 src/verify_counterexample.py --outdir build > build/verification_python.log\nc++ -O2 -std=c++17 -Wall -Wextra -pedantic src/verify_counterexample.cpp -o build/verify_counterexample_cpp\n./build/verify_counterexample_cpp build/subgroups_cpp.txt > build/verification_cpp.log\npython3 src/compare_certificates.py build/finite_certificate.json build/subgroups_cpp.txt\nPASS: all 76 actual matrix subgroups agree between Python and C++,\ndespite different element orderings and independent generation.\npython3 independent_exact.py --subgroups-output build/independent_subgroups.json > build/independent_exact.json\npython3 src/compare_results.py\nPASS: all three fresh implementations and expected files agree on all 76 matrix subgroups.\nPASS: complete sorted affine-element digest agrees across the two Python implementations.\nPASS: all mathematical summaries agree with the expected results.\n",
+    "fresh_verification_python.json": {
+      "result": "PASS",
+      "prime": 29,
+      "group_order": 100920,
+      "claimed_invariants_proved_in_manuscript": {
+        "b": 3,
+        "mu_prime": 4,
+        "faithful_maximum_minimal_base": 3
+      },
+      "complement": {
+        "order": 120,
+        "subgroups": 76,
+        "normal_subgroup_orders": [
+          1,
+          2,
+          120
+        ],
+        "odd_subgroup_orders": [
+          1,
+          3,
+          5
+        ],
+        "unique_involution": [
+          28,
+          0,
+          0,
+          28
+        ],
+        "isomorphism_to_SL2_5_verified": true,
+        "quotient_A5_verified": true,
+        "all_proper_subgroup_4_families_checked": 1215450,
+        "irredundant_4_families": 0,
+        "all_proper_subgroup_3_families_checked": 67525,
+        "faithful_minimal_3_families": 0
+      },
+      "line_stabilizers": {
+        "number_of_lines": 30,
+        "all_orders": 4,
+        "all_cyclic": true
+      },
+      "independent_set": [
+        [
+          1,
+          0,
+          1,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          0,
+          28,
+          1,
+          0
+        ],
+        [
+          0,
+          0,
+          12,
+          24,
+          0,
+          17
+        ],
+        [
+          0,
+          0,
+          25,
+          3,
+          4,
+          4
+        ]
+      ],
+      "omission_orders": [
+        120,
+        6728,
+        10092,
+        16820
+      ],
+      "omission_total_intersection_order": 2,
+      "omission_intersection_normal": false,
+      "omission_core_orders": [
+        1,
+        1682,
+        1682,
+        1682
+      ],
+      "faithful_3_family": {
+        "subgroup_orders": [
+          58,
+          58,
+          58
+        ],
+        "pair_intersection_orders": [
+          2,
+          2,
+          2
+        ],
+        "total_intersection_order": 1,
+        "coset_action_degree": 5220
+      },
+      "adversarial_prime_11": {
+        "torus_generator": [
+          6,
+          10,
+          0,
+          2
+        ],
+        "eigenlines": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            4
+          ]
+        ],
+        "subgroup_orders": [
+          110,
+          110,
+          242,
+          605
+        ],
+        "deletion_intersection_orders": [
+          11,
+          11,
+          5,
+          2
+        ]
+      },
+      "affine_elements_sha256": "2f4c3b8353a9a5cd7d2cbbeb8a0d48dd0e203f4371652fd25c5ca2936fff5efc",
+      "seconds": 0.685,
+      "scope": "The program verifies finite certificates. The universal upper bound on all affine subgroup families is structural, not a large-group enumeration."
+    },
+    "fresh_independent_exact.json": {
+      "affine": {
+        "VZ_normal_order": 1682,
+        "complement_intersection_with_translation_conjugate": 1,
+        "coset_degree": 5220,
+        "elements_sha256": "2f4c3b8353a9a5cd7d2cbbeb8a0d48dd0e203f4371652fd25c5ca2936fff5efc",
+        "faithful_base_deletion_orders": [
+          2,
+          2,
+          2
+        ],
+        "faithful_base_subgroup_orders": [
+          58,
+          58,
+          58
+        ],
+        "nonnormality_conjugate": [
+          2,
+          0,
+          [
+            28,
+            0,
+            0,
+            28
+          ]
+        ],
+        "omission_deletion_orders": [
+          1682,
+          4,
+          4,
+          4
+        ],
+        "omission_intersection": [
+          [
+            0,
+            0,
+            [
+              1,
+              0,
+              0,
+              1
+            ]
+          ],
+          [
+            0,
+            0,
+            [
+              28,
+              0,
+              0,
+              28
+            ]
+          ]
+        ],
+        "omission_orders": [
+          120,
+          6728,
+          10092,
+          16820
+        ],
+        "order": 100920
+      },
+      "arithmetic": "exact Python integers; no external inputs",
+      "characteristic_11": {
+        "C_order": 10,
+        "complement_order": 120,
+        "deletion_orders": [
+          11,
+          11,
+          5,
+          2
+        ],
+        "subgroup_orders": [
+          110,
+          110,
+          242,
+          605
+        ],
+        "total_intersection_order": 1
+      },
+      "complement": {
+        "A5_all_products_verified": 14400,
+        "SL2_5_all_products_verified": 14400,
+        "faithful_family_counts": {
+          "1": 1,
+          "2": 996,
+          "3": 0,
+          "4": 0
+        },
+        "irredundant_family_counts": {
+          "1": 75,
+          "2": 2461,
+          "3": 900,
+          "4": 0
+        },
+        "normal_subgroup_orders": [
+          1,
+          2,
+          120
+        ],
+        "order": 120,
+        "pair_core_orders": [
+          2,
+          2,
+          2
+        ],
+        "pair_orders": [
+          8,
+          12,
+          20
+        ],
+        "subgroup_count": 76,
+        "subgroup_order_distribution": {
+          "1": 1,
+          "2": 1,
+          "3": 10,
+          "4": 15,
+          "5": 6,
+          "6": 10,
+          "8": 5,
+          "10": 6,
+          "12": 10,
+          "20": 6,
+          "24": 5,
+          "120": 1
+        }
+      },
+      "line_stabilizers": {
+        "count": 30,
+        "orders": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ]
+      },
+      "scalar_line_case": {
+        "irredundant_family_counts": {
+          "1": 61,
+          "2": 1711,
+          "3": 0
+        },
+        "order": 116,
+        "subgroups": 62
+      },
+      "status": "PASS: every assertion verified"
+    },
+    "abstract_word_count": 122,
+    "mathematical_body_sha256": "f183c53d8126b0ac23af28675ad24bae5619221b000e802479dfadb1520ffaf2",
+    "checked_at_utc": "2026-09-26T04:58:31.061969+00:00",
+    "visual_inspection": {
+      "all_main_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ],
+      "all_note_pages": [
+        1,
+        2,
+        3
+      ],
+      "method": "Fresh Poppler renders at 1400px, individually inspected. No clipping, overlap, missing glyphs, broken equations, or unintended blank pages."
+    },
+    "status": "BASELINE_PASS_UPDATED_PACKAGE_RECHECK_PENDING",
+    "review_completion_percent": 90,
+    "scope_limit": "Artifact, reproduction, source/PDF consistency, layout and declaration consistency audit; no acceptance prediction or new proof certification.",
+    "snapshot_files": [
+      "verification_note.pdf",
+      "Makefile",
+      "independent_exact.py",
+      "LICENSES.md",
+      "verification_note.tex",
+      "README.md",
+      "expected/verification_cpp.txt",
+      "expected/independent_subgroups.json",
+      "expected/finite_certificate.json",
+      "expected/subgroups_cpp.txt",
+      "expected/verification_python.json",
+      "expected/independent_exact.json",
+      "src/compare_results.py",
+      "src/verify_counterexample.py",
+      "src/verify_counterexample.cpp",
+      "src/compare_certificates.py"
+    ],
+    "pending": "Lead reviewer is revising historical wording and official repository citation; preserve baseline checks and recheck updated archive/PDF/source once rebuilt.",
+    "environment": {
+      "make_python": "Python 3.14.6",
+      "cpp_compiler": "Apple clang 21.0.0 (clang-2100.1.1.101), arm64-apple-darwin25.6.0",
+      "tex": "Tectonic 0.16.9",
+      "renderer": "pdftoppm 26.08.0",
+      "audit_pdf_reader": "bundled Python 3.12 with pypdf"
+    }
+  },
+  "abstract_word_count": 122,
+  "mathematical_body_sha256": "edd472fbabb18b1c07e1fba088a39eccf0656dfe2d32baf7835cdc4268514fd4",
+  "checked_at_utc": "2026-09-26T05:03:20.332208+00:00",
+  "visual_inspection": {
+    "all_main_pages": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "all_note_pages": [
+      1,
+      2,
+      3
+    ],
+    "method": "Revised main PDF freshly rendered and all seven pages individually inspected; unchanged note all three pages freshly rendered and inspected in this same review. No clipping, overlap, missing glyphs, broken equations, or unintended blank pages."
+  },
+  "status": "PASS",
+  "review_completion_percent": 100,
+  "scope_limit": "Artifact, reproduction, source/PDF consistency, layout and declaration consistency audit; no acceptance prediction or new proof certification.",
+  "theorem_through_proof_sha256": "a1532b27f1c9f5114735e574d492acc4a8d7e08616ef820dc401357a1ca29f70",
+  "snapshot_files": [
+    "verification_note.pdf",
+    "Makefile",
+    "independent_exact.py",
+    "LICENSES.md",
+    "verification_note.tex",
+    "README.md",
+    "expected/verification_cpp.txt",
+    "expected/independent_subgroups.json",
+    "expected/finite_certificate.json",
+    "expected/subgroups_cpp.txt",
+    "expected/verification_python.json",
+    "expected/independent_exact.json",
+    "src/compare_results.py",
+    "src/verify_counterexample.py",
+    "src/verify_counterexample.cpp",
+    "src/compare_certificates.py"
+  ],
+  "environment": {
+    "make_python": "Python 3.14.6",
+    "cpp_compiler": "Apple clang 21.0.0 (clang-2100.1.1.101), arm64-apple-darwin25.6.0",
+    "tex": "Tectonic 0.16.9",
+    "renderer": "pdftoppm 26.08.0",
+    "audit_pdf_reader": "bundled Python 3.12 with pypdf"
+  }
+}

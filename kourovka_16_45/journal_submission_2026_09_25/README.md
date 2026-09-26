@@ -5,6 +5,7 @@ Australian Mathematical Society**. The original version 1.0.1 preprint remains
 unchanged in the parent problem directory and on Zenodo.
 
 - [Complete submission kit](output/Kourovka16_45_Bulletin_Submission_Kit.zip)
+- [Final pre-submission review and exact revised version](FINAL_REVIEW.md)
 - [Upload instructions](upload/START_HERE.md)
 - [Seven-page journal manuscript](output/pdf/kourovka_16_45.pdf)
 - [Three-page exact verification note](output/pdf/verification_note.pdf)
@@ -29,3 +30,8 @@ manuscript retains the full substantive assistance disclosure.
 
 No journal submission, agreement acceptance or external correspondence was
 performed. Only the author should complete the journal portal steps.
+
+The final pre-submission review produced version 1.1.1 of the kit. It adds
+accurate acknowledgement that the official Notebook repository hosts the
+earlier preprint; all theorem and proof text remains unchanged. Use the
+current download instead of any earlier saved copy.

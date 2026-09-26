@@ -19,6 +19,14 @@ finite inputs and witnesses. Novelty was checked by a bounded primary-source
 search, which found no earlier resolution. That search is not an exhaustive
 certification of historical priority.
 
+The final pre-submission check found the author's own version 1.0.1 in the
+official Kourovka Notebook online repository, labelled as a solution of
+Problem 16.45. Its PDF matches the Zenodo preprint. The manuscript now records
+this hosting and avoids relying on the printed notebook's lack of a solution
+comment as a description of current online status. Repository hosting is not
+external journal peer review or proof certification. No proof change was
+needed for this contextual correction.
+
 ## Independent review paths
 
 | Review | Evidence and result |
