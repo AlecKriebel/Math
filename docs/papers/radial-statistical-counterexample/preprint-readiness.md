@@ -1,5 +1,7 @@
 # Preprint review record — version 1.0.1
 
+Publication update: [Zenodo DOI 10.5281/zenodo.22983519](https://doi.org/10.5281/zenodo.22983519), deposited 26 September 2026 with the reviewed files unchanged.
+
 26 September 2026. **Ready to circulate as an unrefereed preprint:** two fresh,
 sequential adversarial AI reviews found no actionable mathematical, attribution,
 rendering, or reproducibility issue. This is a bounded review verdict, not a
@@ -55,8 +57,8 @@ PDF, verifiers, and metadata remain the reviewed versions.
 
 The CFF citation record passes the official 1.2.0 schema. Zenodo base metadata
 passes the saved official legacy schema; its documented `version` and `language`
-fields are not represented in that older schema. This is prepared metadata,
-not a submitted or server-validated Zenodo record. No DOI is assigned here.
+fields are not represented in that older schema. At the review checkpoint these were prepared metadata, not a submitted record.
+The subsequent publication is documented in the [publication receipt](https://github.com/AlecKriebel/Math/blob/main/radial_statistical_counterexample/publication/README.md).
 
 ## Scope of assurance
 

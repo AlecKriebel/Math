@@ -525,8 +525,8 @@ Independent AI proof reviews and two exact verifiers found no mathematical
 gap. Historical priority remains unresolved: Kurose 1999, Binder–Simon 2000,
 and the full content of Kurose’s 2016 talk remain unread, among other leads.
 No first-resolution claim or assertion of continued open status is made. The
-classical ingredients and Matsuzoe’s 1999 deformation formula are credited. The Zenodo kit is
-prepared for manual upload; no release, deposit, or DOI is claimed.
+classical ingredients and Matsuzoe’s 1999 deformation formula are credited. The exact v1.0.1 kit was published on Zenodo on 26 September 2026 as
+[10.5281/zenodo.22983519](https://doi.org/10.5281/zenodo.22983519); the tracker and queue record the DOI. No GitHub release or journal submission was created.
 
 ## Brandes coefficient normalization (OWR-17293-016)
 

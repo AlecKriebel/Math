@@ -1,5 +1,7 @@
 # Zenodo upload kit
 
+**Publication update:** this exact kit has now been deposited as [10.5281/zenodo.22983519](https://doi.org/10.5281/zenodo.22983519). The instructions and metadata below describe the pre-deposit snapshot; do not create a duplicate deposit. See [publication receipt](../publication/README.md).
+
 Prepared for manual upload. No record has been created and no DOI is assigned. No GitHub release was created; the repository's release-to-Zenodo integration is not used.
 
 ## Upload
