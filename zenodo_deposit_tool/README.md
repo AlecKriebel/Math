@@ -34,3 +34,9 @@ python3 zenodo_deposit_tool/zenodo.py publish path/to/zenodo-deposit.json --conf
 Add `--sandbox` to **every** command in a sandbox run. Sandbox and production draft state and tokens are separate. Use the sandbox to test API behavior, though its deposits and test DOIs can be wiped. The tool currently handles new deposits, not creating a new version of an existing published record. If a draft already has conflicting or extra files, it stops rather than silently replacing them. If the local state file is lost after draft creation, find and reconcile that draft in the Zenodo account before rerunning `stage` to avoid duplicates.
 
 Zenodo API references: [developer guide](https://developers.zenodo.org/) and [sandbox](https://sandbox.zenodo.org/).
+
+## First production workflow
+
+The Brandes preprint was successfully published as [record 22982894](https://zenodo.org/records/22982894) on 26 September 2026, with exact metadata and two verified files. Live testing found that requests without a User-Agent received an HTML 403 traffic-filter response. The client now sends its truthful `Math-Zenodo-Deposit-Tool/1.0` identity.
+
+Verify DOI resolution separately from the published state: the first resolver checks for this record returned 404 even though the public record and downloads were available. Do not create a duplicate deposit or repeat publication to address this. Detailed [workflow feedback and receipts](../owr_17293_016_brandes_normalization/publication/README.md) include the explicit Google Workspace CLI command used to target the tracker tab.
