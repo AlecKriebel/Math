@@ -295,7 +295,8 @@ def validate_record(deposit: dict, expected_id: int) -> None:
         raise DepositError("Zenodo returned an invalid publication state")
 
 
-def verify(deposit: dict, metadata: dict, files: list[dict]) -> None:
+def verify(deposit: dict, metadata: dict, files: list[dict]) -> list[dict]:
+    normalizations = []
     remote_metadata = deposit.get("metadata", {})
     if not isinstance(remote_metadata, dict):
         raise DepositError("Zenodo returned invalid metadata")
@@ -309,8 +310,20 @@ def verify(deposit: dict, metadata: dict, files: list[dict]) -> None:
             and html.unescape(value) == value
             and remote_value == html.escape(value, quote=False)
         )
-        if remote_value != value and not escaped_plain_text:
+        # Observed on simple paragraph descriptions: Zenodo changes U+2019
+        # apostrophes to ASCII. Do not generalize this to tags, attributes,
+        # other punctuation, or any other metadata field.
+        paragraph_apostrophes = (
+            key == "description" and isinstance(value, str) and "\u2019" in value
+            and re.fullmatch(r"(?:<p>[^<>]*</p>)+", value) is not None
+            and remote_value == value.replace("\u2019", "'")
+        )
+        if remote_value != value and not (escaped_plain_text or paragraph_apostrophes):
             raise DepositError(f"Remote metadata differs at '{key}'; inspect the draft")
+        if remote_value != value:
+            normalizations.append({"field": key, "kind": (
+                "plain_text_html_entities" if escaped_plain_text
+                else "paragraph_apostrophes_u2019_to_ascii")})
     remote_files = server_files(deposit)
     expected = {f["name"] for f in files}
     if set(remote_files) != expected:
@@ -318,6 +331,7 @@ def verify(deposit: dict, metadata: dict, files: list[dict]) -> None:
     for entry in files:
         if not matching_file(remote_files[entry["name"]], entry):
             raise DepositError(f"Remote checksum/size differs for {entry['name']}")
+    return normalizations
 
 
 def local_state(path: Path, environment: str) -> tuple[Path, dict | None]:
@@ -413,7 +427,7 @@ def run(args: argparse.Namespace, client: ZenodoClient | None = None) -> dict:
         client.update(deposit_id, metadata)
         deposit = client.get(deposit_id)
         validate_record(deposit, deposit_id)
-        verify(deposit, metadata, files)
+        summary["metadata_normalizations"] = verify(deposit, metadata, files)
         summary.update({"id": deposit_id, "draft_url": deposit.get("links", {}).get("html"), "state": "ready_to_publish"})
         return summary
     if not state:
@@ -421,7 +435,7 @@ def run(args: argparse.Namespace, client: ZenodoClient | None = None) -> dict:
     deposit = client.get(state["id"])
     validate_record(deposit, state["id"])
     if args.command == "inspect":
-        verify(deposit, metadata, files)
+        summary["metadata_normalizations"] = verify(deposit, metadata, files)
         if deposit.get("submitted"):
             return published_summary(summary, deposit, state, place, environment,
                                      getattr(args, "check_doi", False))
@@ -430,7 +444,7 @@ def run(args: argparse.Namespace, client: ZenodoClient | None = None) -> dict:
         return summary
     if args.confirm_id != state["id"]:
         raise DepositError(f"Publishing requires --confirm-id {state['id']}")
-    verify(deposit, metadata, files)
+    summary["metadata_normalizations"] = verify(deposit, metadata, files)
     if deposit.get("submitted"):
         summary["already_published"] = True
         return published_summary(summary, deposit, state, place, environment, True)
@@ -452,7 +466,7 @@ def run(args: argparse.Namespace, client: ZenodoClient | None = None) -> dict:
         raise DepositError(f"{detail}Zenodo has not confirmed publication. "
                            "Run inspect on this saved draft; no publication retry was made")
     try:
-        verify(published, metadata, files)
+        summary["metadata_normalizations"] = verify(published, metadata, files)
     except DepositError as exc:
         raise DepositError(f"Zenodo reports publication, but verification failed: {exc}. "
                            "Inspect this record; do not create a replacement deposit") from exc

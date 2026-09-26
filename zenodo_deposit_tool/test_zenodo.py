@@ -135,6 +135,40 @@ class DepositFlowTests(unittest.TestCase):
         self.assertEqual(self.call("stage")["state"], "ready_to_publish")
         self.assertEqual(self.call("publish", 123)["state"], "published")
 
+    def test_paragraph_apostrophe_normalization_is_reported_without_editing_manifest(self):
+        self.metadata["description"] = "<p>Yang’s inequality.</p><p>The report’s question.</p>"
+        self.write_manifest()
+        original = self.manifest.read_bytes()
+        self.call("stage")
+        self.client.records[123]["metadata"]["description"] = self.metadata["description"].replace("’", "'")
+        inspected = self.call("inspect")
+        expected = [{"field": "description", "kind": "paragraph_apostrophes_u2019_to_ascii"}]
+        self.assertEqual(inspected["metadata_normalizations"], expected)
+        self.assertEqual(self.call("publish", 123)["metadata_normalizations"], expected)
+        self.assertEqual(self.manifest.read_bytes(), original)
+        self.assertEqual(self.client.publishes, 1)
+
+    def test_apostrophe_exception_rejects_other_changes_and_attributes(self):
+        cases = [
+            ("description", "<p>Yang’s bound: 4.</p>", "<p>Yang's bound: 5.</p>"),
+            ("description", "<p>Yang’s bound.</p>", "Yang's bound."),
+            ("description", '<p title="Yang’s">Bound.</p>', '<p title="Yang\'s">Bound.</p>'),
+            ("description", '<p><a href="https://example.org/Yang’s">Claim</a></p>', '<p><a href="https://example.org/Yang\'s">Claim</a></p>'),
+            ("description", "<p>Yang’s bound—strict.</p>", "<p>Yang's bound-strict.</p>"),
+            ("description", "<p>Yang’s and report’s.</p>", "<p>Yang's and report’s.</p>"),
+            ("title", "Yang’s bound", "Yang's bound"),
+        ]
+        self.call("stage")
+        for field, expected, actual in cases:
+            with self.subTest(field=field, expected=expected):
+                self.metadata[field] = expected
+                self.write_manifest()
+                self.client.records[123]["metadata"] = copy.deepcopy(self.metadata)
+                self.client.records[123]["metadata"][field] = actual
+                with self.assertRaisesRegex(zenodo.DepositError, "metadata differs"):
+                    self.call("publish", 123)
+                self.assertEqual(self.client.publishes, 0)
+
     def test_published_retry_is_read_only_but_still_checks_id_and_manifest(self):
         self.call("stage")
         first = self.call("publish", 123)
