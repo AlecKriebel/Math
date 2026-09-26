@@ -1,0 +1,12 @@
+# Curated supplement validation
+
+
+Timestamp: 2026-09-26T05:06:56.951922+00:00. **Completion: 100%** for the assigned baseline reproducibility audit and curated verification supplement.
+
+The follow-up curated package in `supplement/` is complete: all five routes pass in 82.16 s; all 26 retained scientific tests pass in 155.27 s; the stronger mutation harness requires explicit scientific `AssertionError` diagnostics; and all 14 supplemental manifest entries verify. The 15-file distribution boundary (including its manifest) is explicit in `evidence/supplement_allowlist.json`, with all final hashes in `evidence/supplement_final_hashes.json`. Final manifest SHA-256: `1e92f0f734669a0c233f89a7cd32742e4358133dca0e63a7b884a3bccd246b2c`. Fresh curated verification-output SHA-256: `ec55b7bba29e10ef0e2ab94995bf923419b8fddae55f1df45a4a3009434b802a`.
+
+The auxiliary common-prefactor block matrix is now explicitly defined independently, verified against a distinct Pauli encoding, and separated from the accessible preprint's mixed-prefactor display. Both have their respective residuals checked. No intended-correction claim is made. The independent algebra reviewer approved the implementation and documentation, then confirmed that silently equating the two prefactors and reversing the new Pauli encoding's ZZZ sign each fail with the intended exact check. That closure is recorded in `reviews/round2/algebra_and_supplement.md`. The revised manuscript's old-GHR numerical comparison is outside this reviewer’s file ownership and was removed by the parent editor.
+
+README/coverage documentation identifies all shared dependencies and finite-check limits. All actual code carries the requested title, author, affiliation, contact, ORCID and journal metadata. `PROVENANCE.md` records the earlier public-release identifiers and distinguishes this revision from the unchanged archival DOI; the parent independently rechecked the public timestamp, local tag resolution and historical Git PDF hash. This documentation-only provenance update was followed by a refreshed manifest/checksum run; the scientific code was unchanged after its passing run, so no redundant full rerun was needed.
+
+The original release's 49 hash-bound source/manifest/upload files still match the original pre-audit snapshot. No original release file was edited; no commit, push, release, submission or external communication was performed by this reviewer.
