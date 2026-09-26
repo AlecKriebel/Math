@@ -160,6 +160,7 @@ class DepositFlowTests(unittest.TestCase):
                 client.request("PUT", "https://other.example/api/files/steal")
         self.assertEqual(len(connections), 1)
         self.assertEqual(connections[0].headers["Authorization"], "Bearer private-token")
+        self.assertEqual(connections[0].headers["User-Agent"], "Math-Zenodo-Deposit-Tool/1.0")
         self.assertNotIn("private-token", connections[0].target)
         self.assertEqual(json.loads(connections[0].body), {"metadata": self.metadata})
 

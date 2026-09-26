@@ -21,6 +21,7 @@ BASES = {"production": "https://zenodo.org", "sandbox": "https://sandbox.zenodo.
 MAX_FILES = 100
 MAX_BYTES = 50 * 1024**3
 CHUNK = 1024 * 1024
+USER_AGENT = "Math-Zenodo-Deposit-Tool/1.0"
 
 
 class DepositError(Exception):
@@ -141,7 +142,8 @@ class ZenodoClient:
         if parsed.scheme != "https" or parsed.hostname != self.host or parsed.port not in (None, 443) or parsed.username:
             raise DepositError("Refusing an API URL outside the selected Zenodo environment")
         target = parsed.path + (("?" + parsed.query) if parsed.query else "")
-        headers = {"Authorization": f"Bearer {self.token}", "Accept": "application/json"}
+        headers = {"Authorization": f"Bearer {self.token}", "Accept": "application/json",
+                   "User-Agent": USER_AGENT}
         data = None
         if payload is not None:
             data = json.dumps(payload).encode("utf-8")

@@ -7,3 +7,5 @@
 2026-09-26 13:23 PDT — Five offline tests pass, covering draft resume, publication ID gate, changed and extra files, duplicate names, private token file permissions, and API host restriction. Created the ignored 0600 credential file. Completion estimate: 95%; final source review and repository publication remain.
 
 2026-09-26 13:24 PDT — Repeated the offline suite and checked that Git ignores the private key file. The reusable tool is complete; a live API test awaits a token. Completion estimate for tool construction: 100%.
+
+2026-09-26T20:46:05.778314+00:00 — First live workflow found that requests without User-Agent received Zenodo HTML 403 traffic-filter responses. An otherwise identical authenticated GET with the truthful Math-Zenodo-Deposit-Tool/1.0 identity returned 200. Added that header and a regression assertion; all five offline tests pass. Brandes draft 22982894 staged and passed exact metadata/file inspection. Completion estimate for first production workflow: 70%; publish and tracker remain.
