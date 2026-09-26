@@ -78,3 +78,8 @@ All timestamps use UTC. Completion percentages estimate progress toward verifica
 - Publication commit e9b0c6312 pushed to main; Pages run 36272433240 succeeded. Updated public HTML, guide, and checksum list match local files.
 - Zenodo publication and both public research downloads are confirmed; assigned DOI 10.5281/zenodo.22983161 still returned resolver HTTP 404 at 21:19:25 UTC. Report this propagation status separately and use the working public record link in the drafts.
 - Tracker row 7 is verified. Requested UnsolvedMath comment and proposer notification are provided as unsent drafts in the conversation, scoped to the printed slow-variation question. No person was contacted.
+
+## 2026-09-26T21:27:38.933081+00:00 — Publication queue update (100%)
+
+- Updated numeric record 30003646 / OWR-15956-012 in the live QUEUE.md to preprint_published and added DOI 10.5281/zenodo.22983161 in a new DOI column. Preserved every other row and all existing fields; other DOI cells remain blank.
+- Regenerated the Markdown table in place to preserve its manually maintained Chat and Findings columns, which the older queue.py renderer does not support. Added a dated publication note retaining the printed-question scope. No new mathematical claim or proof attempt.
