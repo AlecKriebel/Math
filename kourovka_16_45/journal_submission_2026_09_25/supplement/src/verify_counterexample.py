@@ -2,10 +2,10 @@
 """Independent, standard-library-only verification of the finite certificates.
 
 No GAP, group catalogue, numerical optimizer, network, or saved table is used.
-The proof for *all* subgroups/actions of the affine group is in proof.tex / proof.pdf;
+The proof for *all* subgroups/actions is in the accompanying journal manuscript;
 this program verifies its concrete finite inputs and its explicit witnesses.
 
-Usage: python3 src/verify_counterexample.py [--outdir data/certified]
+Usage: python3 src/verify_counterexample.py --outdir build
 """
 from __future__ import annotations
 import argparse
