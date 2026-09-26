@@ -12,7 +12,7 @@ The supplied metadata exactly matches `../zenodo/metadata.json` and both metadat
 
 ## Verification
 
-[Publication receipt](publish-receipt.json) confirms the submitted record after one publication request. [Read-only inspection](inspect-published-receipt.json) separately records the latest DOI resolver status; the resolver initially returned HTTP 404 even though the public record and downloads were available. Resolver propagation does not require another publication request.
+[Publication receipt](publish-receipt.json) confirms the submitted record after one publication request. [Read-only inspection](inspect-published-receipt.json) separately records the latest DOI resolver status; the resolver initially returned HTTP 404 even though the public record and downloads were available. The subsequent read-only check confirmed HTTP 200 resolution to the public record. Resolver propagation required no additional publication request.
 
 [Anonymous public verification](public-record-verification.json) confirms both files match the reviewed kit byte for byte:
 
@@ -27,7 +27,7 @@ The original upload-kit ZIP remains SHA-256 `838ed43c0f91a402e608a72421b7564288e
 
 The first stage saved draft 22983147 and uploaded its two files, but verification stopped at the HTML-encoded description. [The initial diagnostic](draft-inspection.json) records the only metadata difference. The shared Zenodo tool now accepts only exact entity encoding of plain text without existing HTML tags or character references. It still rejects substantive changes and preserves exact equality for unchanged HTML. No draft was recreated; [inspection](inspect-draft-receipt.json) recovered the existing draft before publication.
 
-An independent adversarial artifact review confirmed metadata/file/tracker consistency and identified a generic double-encoding edge case in the initial tool adjustment. The correction adds a pre-existing-entity guard and named/numeric entity regression cases. All 25 offline tests pass. These checks concern deposit integrity and the uploader; the manuscript remains the previously reviewed version 1.0.1.
+An independent adversarial artifact review confirmed metadata/file/tracker consistency and identified a generic double-encoding edge case in the initial tool adjustment. The correction adds a pre-existing-entity guard and named/numeric entity regression cases. All 25 offline tests pass, and a fresh second adversarial reviewer found no actionable issues in the final change; see [review evidence](adversarial-review.md). These checks concern deposit integrity and the uploader; the manuscript remains the previously reviewed version 1.0.1.
 
 ## Sheet entry and authorization
 

@@ -105,3 +105,10 @@ Goal: verify the supplied arbitrary-Gamma supercyclicity equivalence against the
 - Independent public-file/metadata/tracker review passed and found one generic uploader double-encoding edge case. Corrected it and added named/numeric entity regressions; all 25 tests pass. A fresh second adversary reviewed the final diff and found no actionable issues. Evidence and exact tool hashes are in `publication/adversarial-review.md`.
 - The paper and original upload kit are unchanged. DOI links and machine-readable DOI metadata are added to all three website page copies; website checksums were refreshed.
 - Completion estimate: 95%. Zenodo publication, sheet append/read-back, and both requested drafts are complete; only repository publication and site verification remain.
+
+## 2026-09-26T21:25:36.270196+00:00 — DOI, tracker, and website complete (100%)
+
+- Publication and uploader changes were committed as `de25f435808a020dcc7327399ed83bfc389b726d` and pushed to `main`. GitHub Pages run `36272757827` succeeded; the live DOI-bearing page and checksum file match local bytes (see `publication/website-doi-verification.json`).
+- The final read-only Zenodo inspection confirms publication and HTTP 200 DOI resolution to record `22983147`. The initial resolver delay required no second publication request.
+- Completion estimate: 100% of the requested Zenodo upload, metadata/file verification, tracker append/read-back, and two notification drafts. The requested preprint is published with the exact supplied metadata content and original files; the tracker contains its DOI and attributed scope. No individual was contacted.
+- This final evidence-only checkpoint changes no paper, source archive, original kit, website page, or published Zenodo metadata.
