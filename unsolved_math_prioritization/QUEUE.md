@@ -173,7 +173,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 161 | 30004539 / OWR-2654828-004 | Convergence Radii of Autoregressive and Moving Average Persistence Series | 0.2041 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 162 | 5000006 / AMR-049-0006 | Length ratios of parallel short trajectories | 0.2041 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 163 | 20000236 / AIM-ALGEBRAIC_GEOMETRY-0236 | Low-degree smoothness and a Wronskian kernel criterion for osculating Schubert curves | 0.2040 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 164 | 2597 / KOU-21.88 | Kourovka Notebook Problem 21.88 | 0.2040 | 5.0 | 2 | 2026 | queued | 0/5 |  |  |  |
+| 164 | 2597 / KOU-21.88 | Kourovka Notebook Problem 21.88 | 0.2040 | 5.0 | 2 | 2026 | in_progress | 1/5 | https://chatgpt.com/c/6ab9672c-9550-83e8-a748-fde0d150561b | 2026-09-27 ~12:00 PDT: Alec sent message 1/5 himself (iOS client) in a fresh 6-Pro chat ("Resolve Group Problem"). |  |
 | 165 | 30004669 / OWR-7155442-002 | Depth Relative to K-Trivial Oracles | 0.2032 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 166 | 5100001 / AMR-050-0001 | Elliptic-billiard invariant k_{107} | 0.2032 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 167 | 5100002 / AMR-050-0002 | Elliptic-billiard invariant k_{108} | 0.2032 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
@@ -374,7 +374,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 362 | 30003538 / OWR-15577-010 | Equivalence of Hardy Spaces on Noncompact Manifolds | 0.1548 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 363 | 30003688 / OWR-15986-003 | Finite Families with Two-Element Rogers Semilattices | 0.1543 | 5.0 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 364 | 30003973 / OWR-16627-005 | Higher-Color Equivalence of Two-Equivalent Graphs | 0.1543 | 7.0 | 3 | 2018 | queued | 0/5 |  |  |  |
-| 365 | 2579 / KOU-21.70 | Kourovka Notebook Problem 21.70 | 0.1530 | 7.0 | 2 | 2026 | queued | 0/5 |  |  |  |
+| 365 | 2579 / KOU-21.70 | Kourovka Notebook Problem 21.70 | 0.1530 | 7.0 | 2 | 2026 | in_progress | 1/5 | https://chatgpt.com/c/6ab96759-5404-83e8-94f6-57ed0a76c961 | 2026-09-27 ~12:00 PDT: Alec sent message 1/5 himself (iOS client) in a fresh 6-Pro chat ("Resolve Poincare Duality Problem"). |  |
 | 366 | 2594 / KOU-21.85 | Kourovka Notebook Problem 21.85 | 0.1530 | 7.0 | 2 | 2026 | queued | 0/5 |  |  |  |
 | 367 | 30004678 / OWR-7155442-012 | Positive Degrees Within Truth Table and Many One Degrees | 0.1524 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 368 | 30004679 / OWR-7155442-013 | Weihrauch Reductions for Paths Through Ill-Founded Trees | 0.1524 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
