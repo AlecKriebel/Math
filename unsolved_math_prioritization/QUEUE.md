@@ -1,6 +1,6 @@
-# Prioritized research queue
-
-Source: `37e53eabe540fb458758e198be61634bd02ee008`. Policy: `2.0-five-turn-proof`.
+sha: d047124cb071000dab248a2cefa564d11faf5716
+size: 364539
+e198be61634bd02ee008`. Policy: `2.0-five-turn-proof`.
 
 **Provisional expected-value ranking. Probabilities are subjective planning assumptions, not measured AI success rates.**
 Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at ultra reasoning; modest exact checks only; no large exhaustive search. No problem is cleared for research until the readiness checks are recorded.
@@ -173,7 +173,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 161 | 30004539 / OWR-2654828-004 | Convergence Radii of Autoregressive and Moving Average Persistence Series | 0.2041 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 162 | 5000006 / AMR-049-0006 | Length ratios of parallel short trajectories | 0.2041 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 163 | 20000236 / AIM-ALGEBRAIC_GEOMETRY-0236 | Low-degree smoothness and a Wronskian kernel criterion for osculating Schubert curves | 0.2040 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 164 | 2597 / KOU-21.88 | Kourovka Notebook Problem 21.88 | 0.2040 | 5.0 | 2 | 2026 | claimed_solved | 1/5 | https://chatgpt.com/c/6ab9672c-9550-83e8-a748-fde0d150561b | 2026-09-27 ~12:00 PDT: Alec sent message 1/5 himself (iOS client) in a fresh 6-Pro chat ("Resolve Group Problem"). 2026-09-27 ~13:55 PDT check: reply 1/5 complete (13m of thinking). Chat claims FULL negative resolution: "No such group exists." / "This gives a complete negative resolution of Problem 21.88." Commuting-probability argument (Sylow 17-subgroup normal via Feit-Thompson, then a coset-block count contradiction), independent of the arXiv preprint. Marked claimed_solved per escalation rule; awaiting Alec's own verification. |  |
+| 164 | 2597 / KOU-21.88 | Kourovka Notebook Problem 21.88 | 0.2040 | 5.0 | 2 | 2026 | solved | 1/5 | https://chatgpt.com/c/6ab9672c-9550-83e8-a748-fde0d150561b | 2026-09-27: closed as ALREADY ANSWERED in the literature per Alec — B. Beyer de Ryke, 'The solution to Kourovka problem 21.88', arXiv:2608.03003 (2026-08-04), claims the full negative answer (no finite group of odd order has commuting probability 1/17); the 21st Kourovka Notebook carries that annotation. Chat reply 1/5 (worked 13m) independently re-derived the same negative answer via a commuting-probability argument (normal Sylow 17-subgroup via Feit-Thompson induction, coset-block count contradiction); no further budget spent. Slot refilled with row 16 (30004195 / OWR-17130-011). |  |
 | 165 | 30004669 / OWR-7155442-002 | Depth Relative to K-Trivial Oracles | 0.2032 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 166 | 5100001 / AMR-050-0001 | Elliptic-billiard invariant k_{107} | 0.2032 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 167 | 5100002 / AMR-050-0002 | Elliptic-billiard invariant k_{108} | 0.2032 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
