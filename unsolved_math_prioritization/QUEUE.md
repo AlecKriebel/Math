@@ -1,5 +1,5 @@
-sha: d047124cb071000dab248a2cefa564d11faf5716
-size: 364539
+sha: 6876fe6d22b90d1c97a52a9419d864e49e60edfc
+size: 364585
 e198be61634bd02ee008`. Policy: `2.0-five-turn-proof`.
 
 **Provisional expected-value ranking. Probabilities are subjective planning assumptions, not measured AI success rates.**
@@ -374,7 +374,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 362 | 30003538 / OWR-15577-010 | Equivalence of Hardy Spaces on Noncompact Manifolds | 0.1548 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 363 | 30003688 / OWR-15986-003 | Finite Families with Two-Element Rogers Semilattices | 0.1543 | 5.0 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 364 | 30003973 / OWR-16627-005 | Higher-Color Equivalence of Two-Equivalent Graphs | 0.1543 | 7.0 | 3 | 2018 | queued | 0/5 |  |  |  |
-| 365 | 2579 / KOU-21.70 | Kourovka Notebook Problem 21.70 | 0.1530 | 7.0 | 2 | 2026 | in_progress | 1/5 | https://chatgpt.com/c/6ab96759-5404-83e8-94f6-57ed0a76c961 | 2026-09-27 ~12:00 PDT: Alec sent message 1/5 himself (iOS client) in a fresh 6-Pro chat ("Resolve Poincare Duality Problem"). 2026-09-27 13:54 PDT reply-1 check: first assistant reply complete (Worked for 21m 12s). NOT a full resolution (verbatim: 'I have not obtained a complete proof or a counterexample.'). New: notation correction (notebook uses cohomology H^i(G;RG), not homology); reduction theorem (under PD_n^+(Q) and PD_n^+(F_p) for every prime p, integral orientable PD over Z is equivalent to the single finiteness condition FP_{n+1}(Z); then PD_n^+(Z), FP(Z), FP_infty(Z), FP_{n+1}(Z) all equivalent); hd ZG = n forced; G finitely generated and torsion-free; n <= cd_Z G <= n+1; dimensions 0,1,2 affirmative (dim 2 via Bowditch). Precise remaining obstruction: fieldwise duality implying FP_{n+1}(Z) is unresolved; any counterexample needs n >= 3. Reply 1/5 complete; awaiting Alec's send of msg 2/5 if he wants to continue (read-only monitoring only, per human-send model). |  |
+| 365 | 2579 / KOU-21.70 | Kourovka Notebook Problem 21.70 | 0.1530 | 7.0 | 2 | 2026 | in_progress | 2/5 | https://chatgpt.com/c/6ab96759-5404-83e8-94f6-57ed0a76c961 | 2026-09-27 ~14:19 PDT: Alec sent message 2/5 himself (open-ended continue). Reply 1/5 (worked 21m 12s) gave an exact finite-stage reduction: under PD_n^+(Q) and PD_n^+(F_p) for all p, integral orientable PD over Z is equivalent to the single finiteness condition FP_{n+1}(Z); hd ZG forced = n; G finitely generated and torsion-free; n <= cd_Z G <= n+1; dimensions 0,1,2 affirmative (dim 2 via Bowditch). Precise remaining obstruction: fieldwise duality implies FP_{n+1}(Z) unresolved; any counterexample needs n >= 3. |  |
 | 366 | 2594 / KOU-21.85 | Kourovka Notebook Problem 21.85 | 0.1530 | 7.0 | 2 | 2026 | queued | 0/5 |  |  |  |
 | 367 | 30004678 / OWR-7155442-012 | Positive Degrees Within Truth Table and Many One Degrees | 0.1524 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 368 | 30004679 / OWR-7155442-013 | Weihrauch Reductions for Paths Through Ill-Founded Trees | 0.1524 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
