@@ -11,6 +11,10 @@ Final check: 2026-09-22T05:24:16+00:00. Source revision: `37e53eabe540fb458758e1
 - Three full exports, including different process hash seeds, were byte-identical for catalog, CSV, queue, shortlist and summary. [Machine-readable results and hashes](review_v2/final_validation.json).
 - Raw downloads and SQLite remain ignored. The review ledgers, effective assessments, all-record ranking, status workflow, source provenance and logs are committed. No mathematical attempt, outreach, GitHub release or Zenodo deposit was made.
 
+## Subfield impact update
+
+[The impact scorebook](impact_scorebook.json) contains 1,949 source-bound scores for every queue row except the three already marked `already_solved`. It includes all 12 rows marked published or claimed (including one separately tracked result), because their status awaits human verification and the score assumes the full result is correct, novel, and published. Scores range from 4.0 to 7.0; the rubric and conservative translation are documented in the README. Regenerate the column from the scorebook with `apply_impact_scores.py` after a queue rebuild; it rejects missing rows and stale source hashes.
+
 ## Independent challenges
 
 [Cross-domain ranking](review_v2/FINAL_RANKING_AUDIT.md), [final leaders](review_v2/FINAL_LEADER_AUDIT.md), [analysis/eigenvalues](review_v2/FINAL_SOURCE_AUDIT_2.md), [dynamics/probability](review_v2/FINAL_SOURCE_AUDIT_3.md), [algebra/topology](review_v2/FINAL_SOURCE_AUDIT_4.md), [CPWL algorithm scope](review_v2/FINAL_CPWL_AUDIT.md), and [workflow audit with retests](review_v2/FINAL_WORKFLOW_AUDIT.md). These preserve initial findings and explain their limits; effective changes are in [overrides](review_v2/adversarial_overrides.json).

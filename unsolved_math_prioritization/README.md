@@ -17,6 +17,22 @@ Start with **[QUEUE.md](QUEUE.md)** (all eligible candidates), **[SHORTLIST.md](
 These are promising candidates, not certified AI-solvable problems. A desk review
 identifies a proof route and obstacle; it does not prove that the route will succeed.
 
+## Subfield impact scores
+
+`Impact (/10)` in the queue rates the importance of the exact result inside its
+actual subfield, assuming it is correct, novel, and published. It is separate
+from probability and expected value; it receives no boost for age, difficulty,
+or ease of proof. The ratings use the earlier individual impact judgments as
+anchors, translated conservatively to this rubric: legacy scores 1, 3, 5, 7,
+and 10 map to 4, 5, 6, 8, and 10, with linear interpolation and rounding to
+one decimal. The highest current score is 7.0; no current candidate is rated as a major
+subfield advance or field-changing result. Current scores and source hashes are preserved in [`impact_scorebook.json`](impact_scorebook.json).
+Three rows marked `already_solved` have no score; published or claimed results
+still awaiting verification retain a conditional importance score.
+
+If `QUEUE.md` is regenerated, reapply the source-checked scores with
+`python3 unsolved_math_prioritization/apply_impact_scores.py`.
+
 ## Expected value and its limits
 
 For a **fixed budget of five substantive proof-attempt turns with ChatGPT6 Astra
@@ -31,7 +47,7 @@ the exact target, including every part of a bundled question. A promising
 special case must become a separately identified subproblem; do not quietly
 substitute it for the original target.
 
-Impact is a subjective **cardinal utility on a 1–10 scale**, not prize money:
+The `EV` formula continues to use the original impact input from the expected-value assessment; it is separate from the new `Impact (/10)` subfield score. The original input is a subjective **cardinal utility on a 1–10 scale**, not prize money:
 1 = narrow isolated fact; 3 = substantive specialized result; 5 = useful result
 across a research area; 7 = major bridge or barrier; 10 = foundational breakthrough.
 This bounded scale encodes our preference to pursue achievable research rather
