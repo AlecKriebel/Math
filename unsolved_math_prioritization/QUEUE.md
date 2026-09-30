@@ -118,7 +118,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 107 | 2800904 / AMR-027-0904 | 10 Lectures and 42 Open Problems — Stability conditions for tightness of k-median LP and k-means SDP | 0.2248 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 108 | 30002806 / OWR-13497-003 | Commutation of Variational Discretization and Optimal Control | 0.2248 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 109 | 30003052 / OWR-14215-004 | Spectra of Koopman Operators for Linear Maps | 0.2242 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
-| 110 | 30003150 / OWR-14609-007 | Unique Nonequilibrium Invariant Measures for Resonant NLS | 0.2242 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
+| 110 | 30003150 / OWR-14609-007 | Unique Nonequilibrium Invariant Measures for Resonant NLS | 0.2242 | 5.5 | 3 | 2016 | unsolved | 2/5 |  | 2026-09-30: Separate review passed restricted middle-action drift, finite-time positivity and conditional uniqueness deductions. Original Gibbs-preserving generator is not specified in the report; the2025 theorem changes baths/noise and imposes a large-temperature condition, so it is not transferred to the original request.129author and869independent controls; two approaches and specification hold. Draft PR: https://github.com/AlecKriebel/Math/pull/93. |  |
 | 111 | 10300055 / AMR-102-0055 | Numerical invariants — Question 13.2 | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 112 | 10400015 / AMR-103-0015 | Problem 1.15 — (M. | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 113 | 10400016 / AMR-103-0016 | Problem 1.16 — (E. | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |

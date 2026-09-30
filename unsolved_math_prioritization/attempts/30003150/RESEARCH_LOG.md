@@ -1,0 +1,6 @@
+# Research log — 30003150
+
+- 2026-09-30 08:36 UTC: Exact-source and prior-attempt gates started. Read repository instructions, queue README, pinned record, related groups and current remote queue. No prior campaign attempt located. Completion estimate for the original target: 0%.
+- 08:37 UTC: Recovered full 2016 report and full 2025 preprint. Report announces an n=3 construction but omits the generator. Its equal-temperature Gibbs property differs explicitly from the later modified baths. Source-transfer approach 1/5 stops here; no solution claim. Completion estimate: original 0%, source audit 80%.
+- 08:39 UTC: Approach 2/5 established the scalar middle-action drift obstruction for functions of I2 alone, the finite-time integrating-factor identity, and the conditional bounded-convergence uniqueness implication. These do not establish recurrence or smoothness for the original system. Completion estimate: original 0%, restricted diagnostic 100%.
+- 08:40 UTC: Frozen partial and 129 exact algebraic controls. Original status unsolved with source specification hold, 2/5. Separate review required before publication. No additional proof-search route is being represented by source browsing. Exact model identifier unavailable to this worker; inherited native runtime, no settings change. No novelty claim.
