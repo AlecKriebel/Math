@@ -17,3 +17,7 @@ The proposed formulation has four classical and eight virtual algebraic patterns
 The proof checks closure preservation for every pattern and converts every usual Markov edge under canonical positive padding. No unknown equivalence relation is used as an allowed move. The resulting certificate stays at or below the original maximum strand count rounded up to even. Conjugation blocks may be decomposed into generator conjugations. A stronger uniformly bounded-support locality requirement is not claimed and is not stated by the original item.
 
 The exact checker passes3219 assertions across280 edge cases and224 relation cases. The preprint and published source item agree; Kamada's full theorem and Kauffman–Lambropoulou's exchange formulas have been checked. One substantive approach used. Proof-manuscript completion estimate:100% pending independent review; historical novelty unestablished.
+
+## 06:37: independent complete-scope review passed
+
+A separate adversarial review passed the unchanged proof as a complete answer in the source's literal finite algebraic even-object sense. All3,219 author assertions reproduced exactly;6,641 independent checks covered348 scheme instances, with short unrestricted soundness certificates and repadding to the exact even endpoints. The review verified both original source versions and both virtual exchanges. Proof/review completion:100%; historical novelty, minimality and stronger bounded-support locality remain unclaimed. Ready for one draft PR.
