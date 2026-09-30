@@ -135,7 +135,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 124 | 30003996 / OWR-16633-013 | Hardness of Root-Dependent Spanning-Tree Optimization | 0.2229 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 125 | 30003997 / OWR-16633-014 | Hardness of Path-Cost Arborescence Optimization | 0.2229 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 126 | 5100032 / AMR-050-0032 | Elliptic-billiard invariant k_{603} | 0.2222 | 4.5 | 3 | 2021 | queued | 0/5 |  |  |  |
-| 127 | 30004433 / OWR-17474-007 | Ends of Critical Long-Range Percolation Clusters | 0.2212 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
+| 127 | 30004433 / OWR-17474-007 | Ends of Critical Long-Range Percolation Clusters | 0.2212 | 5.5 | 3 | 2020 | already_solved | 0/5 |  | 2026-09-30: Classical uniqueness and finite-set isolation imply one-endedness for every source-admissible infinite cluster in the ordinary graph-end sense; a nonvacuous critical inverse-square example is verified. Separate source/proof audit passed;1002author and2303independent controls. No alternate geometric-end or incipient-law assertion, prior theorems credited, no campaign discovery. Draft PR: https://github.com/AlecKriebel/Math/pull/112. |  |
 | 128 | 4900006 / AMR-048-0006 | Eden's conjecture on local Lyapunov dimension | 0.2200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 129 | 30005678 / OWR-14297744-011 | Fully Two-Segal Waldhausen S-Constructions | 0.2174 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 130 | 5300050 / AMR-052-0050 | Boundary entropy of an attracting basin | 0.2142 | 5.5 | 3 | 1992 | queued | 0/5 |  |  |  |
