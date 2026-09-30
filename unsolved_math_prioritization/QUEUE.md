@@ -167,7 +167,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 156 | 30005975 / OWR-14298584-008 | Brauer Groups of Tame Stacky Curves | 0.2071 | 6.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 157 | 5100023 / AMR-050-0023 | Elliptic-billiard invariant k_{405} | 0.2064 | 4.5 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 158 | 30003741 / OWR-15993-009 | Higher Multistationarity in T-Cell Activation Models | 0.2057 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
-| 159 | 30003818 / OWR-16164-012 | Brownian First-Visit Cell Lengths on the Circle | 0.2057 | 5.0 | 3 | 2018 | queued | 0/5 |  |  |  |
+| 159 | 30003818 / OWR-16164-012 | Brownian First-Visit Cell Lengths on the Circle | 0.2057 | 5.0 | 3 | 2018 | claimed_solved | 1/5 |  | 2026-09-30: Complete finite-k joint law of simultaneous unstopped Brownian first-visit cell lengths for both source starting models, given by an absolutely convergent explicit kernel-integral Laplace series with factorial truncation bound. Separate stochastic/source-output audit passed;8520author and46056independent controls. Explicit-transform sense only, no named-density, efficiency or priority claim. Draft PR: https://github.com/AlecKriebel/Math/pull/141. |  |
 | 160 | 4700016 / AMR-046-0016 | Reversible equivariant planar differential systems | 0.2041 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 161 | 30004539 / OWR-2654828-004 | Convergence Radii of Autoregressive and Moving Average Persistence Series | 0.2041 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 162 | 5000006 / AMR-049-0006 | Length ratios of parallel short trajectories | 0.2041 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
