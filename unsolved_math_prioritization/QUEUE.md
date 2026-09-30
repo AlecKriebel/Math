@@ -151,7 +151,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 140 | 10400041 / AMR-103-0041 | Problem 2.19 — (Y. | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 141 | 10400117 / AMR-103-0117 | Problem 7.2 — (S.K. | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 142 | 10400229 / AMR-103-0229 | Problem 12.24 — (A. | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 143 | 10400231 / AMR-103-0231 | Conjecture 12.26 — (V. | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 143 | 10400231 / AMR-103-0231 | Conjecture 12.26 — (V. | 0.2080 | 5.5 | 3 | unknown | claimed_solved | 2/5 |  | 2026-09-30: Complete counterexample to prescribed rank-one homology/Alexander-polynomial realization: H=Z plus three Z/2 summands and Delta=t+6+t^-1 satisfy the printed conditions but violate the proved integral specialization/order bound. Separate source/topological MV/determinant audit passed;8967author and13154independent controls. Full finite cut-manifold torsion retained, no localization; unrefereed, priority unconfirmed. Draft PR: https://github.com/AlecKriebel/Math/pull/124. |  |
 | 144 | 10600021 / AMR-105-0021 | Virtual-knot problem 21 — Non-Commutativity and Long Knots | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 145 | 11000132 / AMR-109-0132 | Problem 2 — Given a tuple ×N i=1(mi,ti) ∈ ZN, give a tractable expression in terms of Dehn- Thurston or other coordinates for the… | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 146 | 11000147 / AMR-109-0147 | Question — Does there exist a set of at least three pseudo-Anosov homeomorpisms such that every pair satisfies a braid relation. | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
