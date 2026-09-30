@@ -1,6 +1,6 @@
 # Negative observability curvature does not imply global observability
 
-**Problem 30001203 / OWR-3394-020. Complete counterexample; separate adversarial AI review passed.** This has not undergone human peer review; see [the review](review/REVIEW.md). One substantive construction family. The argument uses classical covering-space theory and Nash's smooth isometric embedding theorem. Historical priority is not established.
+**Problem 30001203 / OWR-3394-020. Complete counterexample candidate; separate adversarial review pending.** One substantive construction family. The argument uses classical covering-space theory and Nash's smooth isometric embedding theorem. Historical priority is not established.
 
 ## 1. Exact source scope
 
