@@ -132,7 +132,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 121 | 600008 / AMR-005-0008 | Baker's Dozen — Chains of null geodesics | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 122 | 9700041 / AMR-096-0041 | Topological realization of compact Markov-chain limits | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 123 | 30003709 / OWR-15987-020 | Recovering Toric Arrangement Posets from Complement Cohomology | 0.2229 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
-| 124 | 30003996 / OWR-16633-013 | Hardness of Root-Dependent Spanning-Tree Optimization | 0.2229 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
+| 124 | 30003996 / OWR-16633-013 | Hardness of Root-Dependent Spanning-Tree Optimization | 0.2229 | 5.5 | 3 | 2018 | claimed_solved | 2/5 |  | 2026-09-30: Complete strong NP-completeness proof for the exact aggregate-rooted spanning-tree objective using a direct3-CNF reduction with polynomially bounded nonnegative costs. Separate fresh reduction/source audit passed, including94959independent tree/formula cases and80285noncanonical cases. RelatedProblem2 gadget credited; unrefereed and historical priority unconfirmed. Draft PR: https://github.com/AlecKriebel/Math/pull/108. |  |
 | 125 | 30003997 / OWR-16633-014 | Hardness of Path-Cost Arborescence Optimization | 0.2229 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 126 | 5100032 / AMR-050-0032 | Elliptic-billiard invariant k_{603} | 0.2222 | 4.5 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 127 | 30004433 / OWR-17474-007 | Ends of Critical Long-Range Percolation Clusters | 0.2212 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
