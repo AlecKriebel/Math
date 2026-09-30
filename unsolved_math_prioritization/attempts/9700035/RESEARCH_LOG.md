@@ -7,3 +7,6 @@
 - 05:52 UTC: All 211 exact algebraic/distributional controls passed with SymPy 1.14.0. Reviewed later model/moment literature and preserved its conjectural versus proved distinctions. No general resolution located in bounded searches. Stop substantive search at the excursion-tail gap rather than claiming the added assumption is automatic.
 
 Remote checkpoints and independent review disposition will be recorded below. Shared queue edits belong to the coordinator.
+
+- 05:54 UTC: remote checkpoint 5aebfef97d63e0f36e6dfeb673c5500ca75783b7 pushed and verified on dot/math-9700035. Full-target completion estimate remains 25%.
+- 06:12 UTC: independent adversarial review PASS_CONDITIONAL_PARTIAL, with 3,809 independent controls and byte-identical replay of 211 author controls on the reviewed snapshot. No mandatory correction. Only the proof status line was updated for final review-hash coverage; the standard-axiom full-span problem remains unresolved.

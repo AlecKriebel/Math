@@ -1,6 +1,6 @@
 # SIRSN spanning length: the interior law and a sufficient excursion-tail condition
 
-**Status: scoped partial result; the asymptotic under the original axioms alone remains unresolved. Independent review pending.**
+**Status: independently reviewed scoped partial result; the asymptotic under the original axioms alone remains unresolved. See review/REVIEW.md.**
 AI-assisted and unrefereed. No historical-priority claim is made.
 
 Target: 9700035 / AMR-096-0035, Aldous's Open Problem 35 in the 2012 version and Open Problem 9 in the published 2014 paper.
