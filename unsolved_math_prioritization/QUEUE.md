@@ -120,7 +120,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 109 | 30003052 / OWR-14215-004 | Spectra of Koopman Operators for Linear Maps | 0.2242 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 110 | 30003150 / OWR-14609-007 | Unique Nonequilibrium Invariant Measures for Resonant NLS | 0.2242 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 111 | 10300055 / AMR-102-0055 | Numerical invariants — Question 13.2 | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 112 | 10400015 / AMR-103-0015 | Problem 1.15 — (M. | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 112 | 10400015 / AMR-103-0015 | Problem 1.15 — (M. | 0.2240 | 5.5 | 3 | unknown | unsolved | 2/5 |  | 2026-09-30: Separate review passed HOMFLYPT normalization conversion, credited alternating-case parity results and exact residual-coefficient diagnostics. Formal polynomial examples are not knot counterexamples; unrestricted upper-bound and even-leading-term realization mechanisms remain missing.5130author and11010independent controls; original Whitehead-double relation unresolved. Draft PR: https://github.com/AlecKriebel/Math/pull/94. |  |
 | 113 | 10400016 / AMR-103-0016 | Problem 1.16 — (E. | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 114 | 10400120 / AMR-103-0120 | Conjecture 7.5 — For non-vanishing $\tau_r^G(M)$, the absolute value $/\tau_r^G(M)/$ depends only on the fundamental group $\pi_1(M)$. | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 115 | 10600020 / AMR-105-0020 | Virtual-knot problem 20 — Embeddings of Surfaces | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
