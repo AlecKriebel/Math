@@ -53,7 +53,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 42 | 2800102 / AMR-027-0102 | 10 Lectures and 42 Open Problems — Gaussian singular-value monotonicity | 0.2594 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 43 | 30003713 / OWR-15987-026 | Homology of Free-Lie Current Algebras over Square-Zero Extensions | 0.2571 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 44 | 30003955 / OWR-16415-018 | Disconnected Preimages of Subsurfaces Under Finite Covers | 0.2571 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
-| 45 | 6800007 / AMR-067-0007 | Manifolds modelled on flag manifolds — Question 2 | 0.2571 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
+| 45 | 6800007 / AMR-067-0007 | Manifolds modelled on flag manifolds — Question 2 | 0.2571 | 5.5 | 3 | 2018 | claimed_solved | 1/5 |  | 2026-09-30: Complete explicit integral cohomological classification of totally real regular-homotopy classes into the ordered complex flag manifold, with nonorientable and noncompact scope. Separate topology audit passed including torsion and1595 independent checks. Known h-principle and S3 case credited; unrefereed, novelty unconfirmed. Draft PR: https://github.com/AlecKriebel/Math/pull/32. |  |
 | 46 | 30004186 / OWR-17128-002 | Stability of Peaked Reduced Ostrovsky Waves | 0.2562 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 47 | 7000004 / AMR-069-0004 | Geometry of Curves and Surfaces — Problem 1.4 | 0.2562 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 48 | 7000019 / AMR-069-0019 | Geometry of Curves and Surfaces — Problem 4.3 | 0.2562 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
