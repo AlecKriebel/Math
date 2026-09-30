@@ -39,7 +39,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 28 | 30002867 / OWR-13678-008 | Matrix Characterization of Complete Intersections | 0.2675 | 5.0 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 29 | 30005897 / OWR-14298367-003 | Shadowing Without Bounded Distortion | 0.2651 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 30 | 30005934 / OWR-14298374-003 | Wishart Processes with Noninjective Semigroups | 0.2651 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
-| 31 | 30000224 / OWR-824-008 | Set-Theoretic Cohen–Macaulay Ideals in Characteristic Zero | 0.2641 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
+| 31 | 30000224 / OWR-824-008 | Set-Theoretic Cohen–Macaulay Ideals in Characteristic Zero | 0.2641 | 5.5 | 3 | 2005 | unsolved | 4/5 |  | 2026-09-30: Independently reviewed restricted obstructions for the Macaulay quartic: excludes binomial and quadric-contained thickenings, and homogeneous generic multiplicity <=2. Four attempts; stopped on precise remaining non-binomial transverse/nonhomogeneous obstruction. Original problem unresolved; no novelty claim. Draft PR: https://github.com/AlecKriebel/Math/pull/17. |  |
 | 32 | 30000439 / OWR-1194-009 | Gaps Between Piecewise-Linear and Linear Embedding Dimensions | 0.2637 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
 | 33 | 30000819 / OWR-1595-012 | Volume Bounds for Holes in Very Ample Semigroups | 0.2634 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 34 | 30001075 / OWR-2090-028 | Common Tangent Loci of Three Convex Bodies | 0.2630 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
