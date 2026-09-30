@@ -1,0 +1,5 @@
+# Research log
+
+- 2026-09-30 06:25 UTC: Assigned rank71 / 30002061. Deadline08:25 UTC, five-attempt maximum. Read pinned full record and null prior report. Prior attempt/branch/all-state PR and related-target checks found no exact or descriptive match; main queue remains queued0/5.
+- 06:29 UTC: Retrieved full OWR2012 and Adiprasito–Benedetti1709.07930v1. This is Hudson's relative-collapse problem. OWR printed1460 explicitly defines subdivision to mean linear triangulation. Arbitrary PL-homeomorphic triangulations, ordinary collapsibility without the prescribed target, and an extra barycentric subdivision do not answer it. The current source gives the credited result sd(D) collapses to sd(D'), leaving removal of that extra subdivision unresolved. No full solution claimed.
+- 06:30 UTC: Pausing at the source checkpoint for the separately assigned reflection-criterion audit. Current branch remains isolated; no queue edits. The next mathematical checkpoint will isolate the elementary relative-simplex condition and its low-dimensional constructive verification, with all known results credited.
