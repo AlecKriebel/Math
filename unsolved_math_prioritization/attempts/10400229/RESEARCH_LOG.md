@@ -23,3 +23,7 @@ Actual model: gpt-6-astra, reasoning effort xhigh. Target: 10400229. All timesta
 ## Freeze and stopping reason
 
 The full target remains unresolved after three approaches. The remaining obstacles are geometric: controlling a specified crossing's presentation, or realizing a prime chiral nonslice mirror pair. The matrix and rational-diagram calculations supply neither step. Further manipulation of the same necessary conditions would repackage that unsupported reduction, so research is frozen for separate adversarial review before any PR. Exact finite controls are supplementary and do not establish arbitrary-knot isotopies, primeness, or the imported ribbon theorem. No fourth or fifth approach has been used.
+
+## Independent verification
+
+11:08 UTC. Separate review returned PASS_SCOPED_ALGEBRAIC_AND_RATIONAL_DIAGRAM_RESULTS with no mandatory corrections. All 21,677 submitted assertions replayed byte-identically and 35,700 independent controls passed. The original target stays unresolved, 3/5; no further proof search was undertaken. Completion estimate remains 25%.
