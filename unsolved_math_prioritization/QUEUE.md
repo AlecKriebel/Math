@@ -124,7 +124,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 113 | 10400016 / AMR-103-0016 | Problem 1.16 — (E. | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 114 | 10400120 / AMR-103-0120 | Conjecture 7.5 — For non-vanishing $\tau_r^G(M)$, the absolute value $/\tau_r^G(M)/$ depends only on the fundamental group $\pi_1(M)$. | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 115 | 10600020 / AMR-105-0020 | Virtual-knot problem 20 — Embeddings of Surfaces | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 116 | 20001380 / AIM-DYNAMICAL_SYSTEMS-0038 | Explicit size and wild ramification bounds for the 0-rooted tree of z^2+1 over Q_2 | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 116 | 20001380 / AIM-DYNAMICAL_SYSTEMS-0038 | Explicit size and wild ramification bounds for the 0-rooted tree of z^2+1 over Q_2 | 0.2240 | 5.5 | 3 | unknown | unsolved | 1/5 |  | 2026-09-30: Separate review passed exact single-root-field different formulas and splitting-field upper-ramification lower bounds, including infinitude of upper groups. The original Galois image/size question remains unresolved; zero-rooted interpretation is explicit because the source omits its basepoint.679author and1598independent controls; prior qualitative overlap credited. Draft PR: https://github.com/AlecKriebel/Math/pull/106. |  |
 | 117 | 2701 / KP-1.42 | Kirby Problem 1.42 | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 118 | 2728 / KP-1.69 | Kirby Problem 1.69 | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 119 | 2859 / KP-3.61 | Kirby Problem 3.61 | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
