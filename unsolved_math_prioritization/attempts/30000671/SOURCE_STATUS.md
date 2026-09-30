@@ -1,6 +1,6 @@
 # Complete local rings from their quotients: the source already gives a negative answer
 
-**The unrestricted question in 30000671 / OWR-1453-004 is already answered negatively by examples credited to Ofer Gabber.** The original 2007 report states this immediately after posing the question. This package corrects the imported open status; it makes no new-discovery claim. Separate adversarial source review is pending.
+**The unrestricted question in 30000671 / OWR-1453-004 is already answered negatively by examples credited to Ofer Gabber.** The original 2007 report states this immediately after posing the question. This package corrects the imported open status; it makes no new-discovery claim. Separate adversarial source review passed; see [the report](review/REVIEW.md).
 
 ## Exact question
 
