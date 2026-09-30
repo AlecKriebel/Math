@@ -22,3 +22,8 @@ at most five substantive approaches.
 - **08:34:** Prepared the scoped proof and exact gap. All 9,539 rational controls
   pass. Two approaches used; stopping at the unresolved general energy question.
   No novelty or PDE-instability claim.
+
+- **08:52:** Separate adversarial AI review passed the frozen scoped obstruction.
+  All 9,539 submitted assertions reproduce byte-identically, and 21 independent
+  symbolic controls pass. The complete original target remains unsolved, 2/5;
+  full-target completion estimate: 0%. No mathematical text was changed.

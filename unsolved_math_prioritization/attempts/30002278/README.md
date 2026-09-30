@@ -17,5 +17,8 @@ are proved explicitly; no novelty is claimed.
 
 Run `python3 verify_obstruction.py`. The 9,539 exact rational controls verify
 energy identities and the positive witness integral, not an instability theorem.
-Separate adversarial review is pending. The physical-region-only initial-data
+The [separate adversarial AI review](review/REVIEW.md) passed this scoped
+obstruction, with 21 independent symbolic controls. This is not human peer review.
+The proof is preserved byte-for-byte as the reviewed snapshot; its pending-review
+sentence records its pre-review freeze. The physical-region-only initial-data
 class and the general coercive monotone-functional request remain unresolved.
