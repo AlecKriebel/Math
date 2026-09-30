@@ -27,3 +27,7 @@ The full target remains unresolved after three approaches. The polished partial 
 ## Frozen verification, 11:28 UTC
 
 All 77,458 exact finite controls pass. The mathematical text and checker are frozen for separate adversarial review. The remaining generic-inertia problem is not resolved, and no fourth or fifth approach will be pursued without a materially new mechanism. Completion estimate remains 20%.
+
+## 2026-09-30 11:41 UTC — Independent review completed
+
+Separate adversarial AI review passed the frozen partial claims without a mandatory correction. All 77,458 author controls reproduce byte-identically and 40,882 independent exact controls pass. The full original computation remains unsolved, 3/5; completion estimate remains 20%. No new proof attempt or novelty claim is added.
