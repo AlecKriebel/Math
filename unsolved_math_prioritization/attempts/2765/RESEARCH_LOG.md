@@ -29,3 +29,5 @@ completeness of this source/partial-result package. No large search,
 external contact, or shared queue editing was performed.
 
 - **05:55 — 15%:** separate adversarial review passed the scoped partial results and source hold, with 72 independent assertions and byte-identical replay of all 30 author controls. No mathematical correction required. Changed only the review-status sentence in RESULTS.md and requested narrow final-hash coverage before draft publication.
+
+- **06:00 — 15%:** final header-only hash confirmed independently; the scoped package and unchanged review checks were pushed. Opened the single draft PR: https://github.com/AlecKriebel/Math/pull/38. Full target remains unsolved.
