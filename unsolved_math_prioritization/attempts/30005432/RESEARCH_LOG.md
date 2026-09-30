@@ -15,3 +15,7 @@ Completion estimate: 90%. A multiplicative character of the standard four-elemen
 ## 2026-09-30 12:16 UTC: frozen proof, controls and independent audit
 
 Completion estimate: 100% of the original target by counterexample, pending independent review. The proof verifies both group laws, the left brace identity, the entire property-(s) set and the failure of two-sidedness. All 33,512 exact assertions pass. The full infinite-index certificate is the written distinct-coset argument. Matrix reviewer has the frozen proof and final checker/receipt hashes. Two approach families are recorded, gpt-6-astra at xhigh. No PR before a full separate verdict.
+
+## 2026-09-30 12:20 UTC: source tension identified by independent review
+
+Completion estimate: 100%, still pending the final verdict. The reviewer identified Lemma 3.12 in the 2025 paper, whose isolated wording would conflict with the example. The preceding global-(S) context and the cited 2021 theorem were checked. The example lacks global (S), and its star-generated subgroup is infinite, so it does not meet the cited converse theorem’s hypotheses. A separate source-reconciliation note records the explicit infinite fiber of the displayed map under an unrestricted reading. The counterexample, verifier and receipt remain byte-identical; no new proof-search family was added.

@@ -10,3 +10,5 @@
 - The standard finite brace and semidirect construction are credited; no priority or human peer-review claim
 - The example is not two-sided and does not contradict the known positive two-sided result
 - The coordinating task owns queue changes
+
+[Source reconciliation](SOURCE_RECONCILIATION.md) records the contextual scope of the 2025 finite-generation lemma and the inapplicable premise of its cited 2021 theorem. It identifies an explicit map fiber rather than silently overlooking the source tension.
