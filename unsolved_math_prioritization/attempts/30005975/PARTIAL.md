@@ -1,7 +1,7 @@
 # Brauer groups of tame curves: a generically schematic formula and the gerbe gap
 
 **Target:** 30005975 / OWR-14298584-008.  
-**Status:** full arbitrary-stack question unresolved; partial deductions under verification. Three approaches used. No novelty or human peer-review claim.
+**Status:** full arbitrary-stack question unresolved; partial deductions awaiting separate adversarial review. Three approaches used. No novelty or human peer-review claim.
 
 ## 1. Exact scope and convention
 
@@ -19,7 +19,7 @@ The original report already proves a restricted locally-Brauerless formula. Ache
 
 ## 2. A formula when there is a dense schematic open
 
-**Theorem 1.** Let k be algebraically closed and let X be a separated, finite-type, tame algebraic stack, pure of dimension one, with coarse space c:X→C. Suppose there is a dense open U⊂C meeting every irreducible component such that X_U→U is an isomorphism. Let z1,…,zs contain the finite complement C\U, and choose geometric points of X over them. Let G_i be their finite stabilizer group schemes and Q_i their maximal étale quotients, regarded as finite abstract groups. Then
+**Theorem 1.** Let k be algebraically closed and let X be a separated, finite-type, tame algebraic stack with finite inertia, pure of dimension one, with coarse space c:X→C. Suppose there is a dense open U⊂C meeting every irreducible component such that X_U→U is an isomorphism. Let z1,…,zs be the points of the finite complement C\U, and choose geometric points of X over them. Let G_i be their finite stabilizer group schemes and Q_i their maximal étale quotients, regarded as finite abstract groups. Then
 
 \[
 H^2(\mathcal X,\mathbb G_m)

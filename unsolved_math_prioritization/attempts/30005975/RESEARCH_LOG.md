@@ -23,3 +23,7 @@ Applied Achenjang's classifying-stack theorem to A¹×Bμp in characteristic p. 
 ## Checkpoint
 
 The full target remains unresolved after three approaches. The polished partial proof is saved; executable finite controls and separate review remain pending. The unresolved part is the actual computation of generic-inertia sheaves, transgressions and extension data, not just naming a spectral sequence. No fourth or fifth approach has been used.
+
+## Frozen verification, 11:28 UTC
+
+All 77,458 exact finite controls pass. The mathematical text and checker are frozen for separate adversarial review. The remaining generic-inertia problem is not resolved, and no fourth or fifth approach will be pursued without a materially new mechanism. Completion estimate remains 20%.
