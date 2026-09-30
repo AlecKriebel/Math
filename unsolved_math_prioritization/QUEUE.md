@@ -61,7 +61,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 50 | 10000046 / AMR-099-0046 | Nonintersecting couplings of random walks in dimensions three and four | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 51 | 20001424 / AIM-DYNAMICAL_SYSTEMS-0082 | PCF descent and an odd postcritical-divisor criterion | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 52 | 2233 / EP-653 | Erdős Problem #653 | 0.2560 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
-| 53 | 2744 / KP-1.85 | Kirby Problem 1.85 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 53 | 2744 / KP-1.85 | Kirby Problem 1.85 | 0.2560 | 5.5 | 3 | unknown | unsolved | 1/5 |  | 2026-09-30: Separate review passed the distinguished-component normalization and source-obstruction audit. Known cone-angle/two-bridge cases are credited; arbitrary SU2 representations or sign-related SL2 components do not settle the general canonical PSL2 arc question. No full-resolution or novelty claim. Draft PR: https://github.com/AlecKriebel/Math/pull/35. |  |
 | 54 | 2765 / KP-2.17 | Kirby Problem 2.17 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 55 | 2814 / KP-3.16 | Kirby Problem 3.16 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 56 | 2849 / KP-3.51 | Kirby Problem 3.51 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
