@@ -28,3 +28,7 @@ All 14,630 standard-library exact diagnostics passed. They compare the full prin
 
 The mathematical snapshot is frozen pending review. Historical priority remains unconfirmed; no publication PR will be opened before the separate verdict.
 
+
+## 2026-09-30 12:10 UTC — separate adversarial review passed
+
+The independent review found no mandatory correction and confirmed the exact labelled ratio, contextual parity selector, even double-polygon markings, hyperelliptic commutation, cusp dependencies and three elementary cases. All 14,630 submitted assertions reproduced byte for byte; 60,055 independent exact controls passed. The mathematical snapshot is unchanged. Recommended queue status is claimed_solved, one of five substantive attempts. Completion estimate for a checkable candidate is 100%; historical priority and human peer review remain unestablished.

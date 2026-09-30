@@ -8,5 +8,5 @@
 
 The standard-library verifier passes 14,630 exact finite diagnostics. It does not replace the geometric proof or the imported classical theorems.
 
-Status: complete candidate pending separate adversarial review, one substantive attempt. Historical priority and human peer review are unestablished. No neighbouring conjecture or first-discovery claim is asserted.
+Status: complete proof candidate with [separate adversarial review PASS](review/REVIEW.md), one substantive attempt. All 14,630 author assertions reproduced, and 60,055 independent exact controls passed. The mathematical snapshot retains its historical pending-review header to preserve the reviewed bytes. This is AI review, not human peer review. Historical priority and human peer review are unestablished. No neighbouring conjecture or first-discovery claim is asserted.
 
