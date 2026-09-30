@@ -14,3 +14,7 @@ All10,388 exact controls pass. One substantive validation/reconstruction family 
 
 ## 2026-09-30 11:11 UTC: review correction to output reporting
 The independent reviewer noted that recursive yield-from propagation could add recursion-depth overhead per reported pair in the reference implementation. Replaced it with a shared output list and one leaf append per pair, matching the written O(P) reporting algorithm. No proof statement or mathematical file changed. All10,388 correctness assertions still pass. This is a verification correction within the same validation family, not a new search approach.
+
+## 2026-09-30 11:21 UTC: independent review and publication checkpoint
+
+Completion estimate: 100% of the source’s faster-than-quadratic alternative, in the explicitly stated real-RAM model. Separate review passed after the output-list repair; 10,388 submitted and 22,962 independent assertions pass. One validation/reconstruction family remains recorded in the historical ledger; this is zero new-discovery attempts and a credited known resolution. The reviewed mathematical artifact and final algorithm are unchanged.
