@@ -161,7 +161,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 150 | 2306064 / AMR-022-6064 | Research Problems in Function Theory — Problem 6.64 | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 151 | 2770 / KP-2.22 | Kirby Problem 2.22 | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 152 | 2830 / KP-3.32 | Kirby Problem 3.32 | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 153 | 2840 / KP-3.42 | Kirby Problem 3.42 | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 153 | 2840 / KP-3.42 | Kirby Problem 3.42 | 0.2080 | 5.5 | 3 | unknown | unsolved | 2/5 |  | 2026-09-30: Separate review passed the contact conformal-volume inequality and precise degeneracy diagnostic for high-torsion embeddings, plus scoped model comparisons. Tightness alone supplies no required uniform conformal lower bound; noncompact or varying closed structures do not settle the fixed closed tight-manifold question.372author and13569independent controls; original unresolved. Draft PR: https://github.com/AlecKriebel/Math/pull/136. |  |
 | 154 | 3800014 / AMR-037-0014 | A dynamic-programming interval problem | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 155 | 30002926 / OWR-13856-002 | Gamma Profiles of Waves Entering a Condensate | 0.2075 | 5.0 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 156 | 30005975 / OWR-14298584-008 | Brauer Groups of Tame Stacky Curves | 0.2071 | 6.0 | 3 | 2024 | queued | 0/5 |  |  |  |
