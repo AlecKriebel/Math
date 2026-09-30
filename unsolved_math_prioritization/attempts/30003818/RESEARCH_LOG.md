@@ -11,3 +11,7 @@ Completion estimate: 70%. Successive visits to auxiliary test marks are governed
 ## 2026-09-30 11:27 UTC: frozen complete analytic candidate
 
 Completion estimate: 100% of the literal finite-k distribution request, conditional on independent review. The joint Laplace transform is an absolutely convergent bounded-moment series with all coefficients reduced to explicit deterministic integrals, and remainder at most theta_max^(M+1)/(M+1)!. Both uniform and equidistant starting laws are included. One substantive approach family is recorded. All 8,520 exact controls pass. No compact density, efficient quadrature, or historical priority is claimed. The separate reviewer has the frozen artifact; no PR will be opened before a full verdict. Model gpt-6-astra, reasoning effort xhigh.
+
+## 2026-09-30 11:34 UTC: complete independent review and publication
+
+Completion estimate: 100% of the literal finite-k distribution request, in explicit-transform form. Separate review passed without correction, covering both starting-position models, the deterministic coefficient reduction, continued physical walkers, every integral/series interchange, and the factorial remainder. All 8,520 submitted controls replayed byte-identically and 46,056 independent exact controls passed. The mathematical artifact remains byte-identical. One substantive family is recorded; no named-density, efficient numerical evaluation, novelty or human peer-review claim is made.
