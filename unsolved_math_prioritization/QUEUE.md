@@ -36,7 +36,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 25 | 30002145 / OWR-12008-005 | Rigidity of Symmetric-Gradient Differential Inclusions | 0.2693 | 5.0 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 26 | 30005795 / OWR-14298162-002 | Valuation Bounds When the Center Meets the Negative Part | 0.2693 | 6.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 27 | 30005473 / OWR-12697711-006 | Irreducibility of Exposed-Point Varieties of Generic Discotopes | 0.2675 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
-| 28 | 30002867 / OWR-13678-008 | Matrix Characterization of Complete Intersections | 0.2675 | 5.0 | 3 | 2015 | queued | 0/5 |  |  |  |
+| 28 | 30002867 / OWR-13678-008 | Matrix Characterization of Complete Intersections | 0.2675 | 5.0 | 3 | 2015 | claimed_solved | 1/5 |  | 2026-09-30: Complete explicit matrix-rank criterion for the source complete-intersection question. Separate adversarial AI review passed; 13 author and 20 independent exact examples pass. Classical ingredients; unrefereed and novelty unconfirmed. Draft PR: https://github.com/AlecKriebel/Math/pull/11. |  |
 | 29 | 30005897 / OWR-14298367-003 | Shadowing Without Bounded Distortion | 0.2651 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 30 | 30005934 / OWR-14298374-003 | Wishart Processes with Noninjective Semigroups | 0.2651 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 31 | 30000224 / OWR-824-008 | Set-Theoretic Cohen–Macaulay Ideals in Characteristic Zero | 0.2641 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
