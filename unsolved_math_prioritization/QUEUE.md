@@ -80,7 +80,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 69 | 30000703 / OWR-1460-009 | Boundary Behavior under Asymptotic Schwarz–Pick Equality | 0.2458 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 70 | 30006309 / OWR-14299288-015 | Combinatorial Proof of Hurwitz and Discriminant Weight-Polytope Equality | 0.2454 | 5.5 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 71 | 30002061 / OWR-11786-016 | Collapse Preservation under Subdivision | 0.2437 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
-| 72 | 30002298 / OWR-12339-004 | Polyhedra with Vertex-Factored Fantappiè Denominators | 0.2432 | 5.5 | 3 | 2013 | queued | 0/5 |  |  |  |
+| 72 | 30002298 / OWR-12339-004 | Polyhedra with Vertex-Factored Fantappiè Denominators | 0.2432 | 5.5 | 3 | 2013 | already_solved | 0/5 |  | 2026-09-30: Exact reduced-Fantappie-denominator characterization follows from credited2017 algebraic-vertex/line-cone results. Separate audit verified the pole implication, finite cone criterion, triangulation-vertex inclusion and necessary origin exception;284author and6463independent checks. Original reviewed snapshot preserved across metadata-only status update; zero new discovery claim. Draft PR: https://github.com/AlecKriebel/Math/pull/58. |  |
 | 73 | 30003354 / OWR-15208-008 | Borderline Continuity of Conformal Metric Parametrizations | 0.2408 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 74 | 10300016 / AMR-102-0016 | Branched surfaces and triangulations — Question 7.1 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 75 | 10300025 / AMR-102-0025 | Leaf spaces and transverse structures — Question 8.2 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
