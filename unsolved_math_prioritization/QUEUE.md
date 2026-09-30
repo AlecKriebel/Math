@@ -94,7 +94,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 83 | 2853 / KP-3.55 | Kirby Problem 3.55 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 84 | 2861 / KP-3.63 | Kirby Problem 3.63 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 85 | 2869 / KP-3.71 | Kirby Problem 3.71 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 86 | 2919 / KP-4.43 | Kirby Problem 4.43 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 86 | 2919 / KP-4.43 | Kirby Problem 4.43 | 0.2400 | 5.5 | 3 | unknown | already_solved | 0/5 |  | 2026-09-30: Known MMSW left-trefoil disk in punctured negativeCP2 contradicts the literal absolute-value Rasmussen bound. Separate source/orientation and relative-Hurewicz audit passed, including the nullhomotopy requirement. The repaired one-sided question is explicitly untouched; prior construction credited, no discovery claim. Draft PR: https://github.com/AlecKriebel/Math/pull/69. |  |
 | 87 | 2935 / KP-4.59 | Kirby Problem 4.59 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 88 | 2985 / KP-4.109 | Kirby Problem 4.109 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 89 | 3012 / KP-5.5 | Kirby Problem 5.5 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
