@@ -48,7 +48,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 37 | 30001947 / OWR-11454-005 | Nontrivial Witt Pairings in $\mathbb Z_2$-Witt Spaces | 0.2616 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 38 | 10000062 / AMR-099-0062 | Local metric homogeneity forcing periodic triangulations | 0.2611 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 39 | 10400115 / AMR-103-0115 | Problem 6.7 — (S.J. | 0.2600 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 40 | 20002011 / AIM-GEOMETRY-0349 | Conformal-primitivity obstruction and curvature-only rigidity on surfaces | 0.2600 | 6.0 | 4 | unknown | queued | 0/5 |  |  |  |
+| 40 | 20002011 / AIM-GEOMETRY-0349 | Conformal-primitivity obstruction and curvature-only rigidity on surfaces | 0.2600 | 6.0 | 4 | unknown | already_solved | 1/5 |  | 2026-09-30: Literal AIM statement is false without formal self-adjointness: the divergence obstruction is explicitly in Branson 2005 p.40. Separate source/proof audit passed and exact jet checks reproduce the obstruction. Repaired FSA conjecture not resolved; no new discovery. Record20002052 is the same question. Draft PR: https://github.com/AlecKriebel/Math/pull/22. |  |
 | 41 | 20002052 / AIM-GEOMETRY-0390 | Local primitives versus divergence terms | 0.2600 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 42 | 2800102 / AMR-027-0102 | 10 Lectures and 42 Open Problems — Gaussian singular-value monotonicity | 0.2594 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 43 | 30003713 / OWR-15987-026 | Homology of Free-Lie Current Algebras over Square-Zero Extensions | 0.2571 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
