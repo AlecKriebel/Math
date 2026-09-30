@@ -8,6 +8,6 @@ The unrestricted Ellers–Murray block conjecture remains **unsolved**, after tw
 - The current ribbon/belt-block theorem is credited without extending its scope
 - An explicit non-p-group control identifies why the argument stops
 - All **147 exact controls** pass with `python verify.py` (standard-library Python)
-- Separate adversarial review is pending
+- [Separate adversarial AI review passed](review/REVIEW.md), with 121 independent controls
 - No full-conjecture, historical-priority or human-peer-review claim
 - [SOURCE_AUDIT.md](SOURCE_AUDIT.md) records primary access and prior-attempt gates

@@ -11,3 +11,7 @@ Current primary literature still presents the full conjecture as unresolved; the
 ## 2026-09-30 12:45 UTC: complete scoped theorem and exact gap frozen
 
 The p-group fixed-algebra proof is complete and works over every characteristic-p field. The all-n S2 centralizer subclass in characteristic two follows immediately. A second approach attempting to extend through coarse block data is blocked by the explicit characteristic-three sign-module control; that model is not a counterexample to the original symmetric-group-algebra problem. All 147 small exact assertions pass, including four nonnormal p-subgroup cases. The complete scoped artifact is frozen for separate review. Original target remains unsolved, 2/5; completion estimate 20%. Scoped deliverable completion estimate 100%. No further repetitive search is justified without a mechanism replacing the failed fixed-vector step. No novelty claim.
+
+## 13:00 UTC: separate review and publication packaging
+
+The independent scoped review passed without a mandatory correction. All 147 submitted controls replayed byte-identically, and 121 independent controls passed. The eight review files were copied unchanged and their checksums verified. The proof remains frozen at its reviewed hash; the unrestricted problem remains unsolved after two approaches.
