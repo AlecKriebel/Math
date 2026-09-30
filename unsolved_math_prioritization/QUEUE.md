@@ -147,7 +147,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 136 | 30000697 / OWR-1458-003 | Injectivity Criteria for Upsilon Transforms | 0.2107 | 5.0 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 137 | 30001234 / OWR-3471-008 | Uniqueness in Linear Programs for Binomial Multiplier Ideals | 0.2100 | 5.0 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 138 | 30001410 / OWR-4199-003 | Crofton Measures in Hilbert Geometry | 0.2097 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
-| 139 | 30001883 / OWR-11136-008 | Circle Free Convex Bodies Under Minkowski Addition | 0.2093 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
+| 139 | 30001883 / OWR-11136-008 | Circle Free Convex Bodies Under Minkowski Addition | 0.2093 | 5.5 | 3 | 2011 | unsolved | 2/5 |  | 2026-09-30: Separate review passed signed-clearance shifts, core-plane/smaller-ring necessities and robustness of a supplied positive-clearance escape path. The ball example only defeats a radius-lift shortcut; no global holding counterexample or Minkowski closure theorem is proved.241author and711independent controls; original remains unresolved. Draft PR: https://github.com/AlecKriebel/Math/pull/127. |  |
 | 140 | 10400041 / AMR-103-0041 | Problem 2.19 — (Y. | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 141 | 10400117 / AMR-103-0117 | Problem 7.2 — (S.K. | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 142 | 10400229 / AMR-103-0229 | Problem 12.24 — (A. | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
