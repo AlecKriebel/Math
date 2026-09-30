@@ -13,3 +13,7 @@ Source-status completion estimate: 95%, pending separate review. Theorem A match
 ## 06:00 UTC: source-status package frozen for independent review
 
 Source-status completion estimate remains 95%, pending separate adversarial review. All 527 exact normalization and coefficient-approximation checks pass. The original target is already solved in prior published literature; no new theorem, first-discovery claim, or extra tail assumption is asserted. No PR has been opened.
+
+## 06:13 UTC: independent source-match review passed
+
+Source-status completion: 100%; the published resolution belongs to Johnston, Kabluchko and Prochno. The separate reviewer confirmed both the full random-measure LDP and the entire Prohorov limit set, reproduced all 527 author diagnostics byte for byte, and passed 664 independent exact controls. No correction was required. Six supplied review and replay files were copied unchanged; only review-status metadata was updated. The substantive attempt count remains zero.

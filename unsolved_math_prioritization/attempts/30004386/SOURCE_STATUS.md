@@ -1,6 +1,6 @@
 # Random projections of the cube: already solved in published work
 
-**Both parts of OWR-17469-011 were resolved by Johnston, Kabluchko and Prochno, published online in 2021 and in Studia Mathematica in 2022. This is a source-status correction, not our discovery.** Separate adversarial review of this identification is pending.
+**Both parts of OWR-17469-011 were resolved by Johnston, Kabluchko and Prochno, published online in 2021 and in Studia Mathematica in 2022. This is a source-status correction, not our discovery.** Separate adversarial AI review of this identification passed; see [the report](review/REVIEW.md).
 
 ## Exact question and normalization
 
