@@ -10,7 +10,7 @@ The complete original TeX was retrieved from the coauthor's university site. Its
 
 The 2018 arXiv paper cited by the original has a single version. The 2020 author manuscript adds a Section8.1 and Proposition8.1 about the three-sphere, absent from that preprint. Those cases must be credited to Falbel–Veloso. Current-source and convention checks continue before a claim is promoted.
 
-## 05:02: first substantive attempt, complete candidate
+## 05:01: first substantive attempt, complete candidate
 
 The simultaneous classifying-space model for a flag and its formal derivative yields an explicit integral cokernel. The loop action is computed by virtual Chern classes, so the nontrivial complexified tangent bundle and integral torsion are retained. This is a candidate classification, not an assertion of verified resolution or novelty. Its exact stated scope includes nonorientable and noncompact smooth 3-manifolds without boundary and homotopies through totally real immersions, with no properness constraint.
 
