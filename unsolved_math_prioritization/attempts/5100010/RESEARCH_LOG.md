@@ -15,3 +15,7 @@ Derived the focal dual circles directly, proved strict nesting and finite inters
 ## Freeze, 11:50 UTC
 
 The source-qualified result is complete and frozen for independent review. All 30,804 exact controls pass on 4,923 local edges and 1,641 local angle configurations. Suggested status already_solved, 1/5 logged approach. Completion estimate for the intended source target: 100%, conditional on separate review; no priority certification. No queue generator, shared queue or catalog was modified.
+
+## Independent review and publication, 12:04 UTC
+
+The separate audit returned PASS_COMPLETE_CREDITED_BICENTRIC_CONSEQUENCE with no required correction. Its report supplies the explicit doubled-traversal clarification for the published Jacobi winding convention. Copied its eight publication files unchanged; all 30,804 author and 43,158 independent controls pass. The source artifact hash is unchanged. Completion estimate for the exact source target remains 100%, subject to ordinary further mathematical scrutiny. Suggested status already_solved, one logged reduction approach; no new-discovery claim.
