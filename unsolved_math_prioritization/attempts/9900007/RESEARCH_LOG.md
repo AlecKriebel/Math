@@ -17,3 +17,7 @@ The independent-flip process has exact finite-window TV error r/(n+r+1), so its 
 The checker passes885 exact assertions covering42 windows,240 transition products and elementary inequalities. It is a finite diagnostic, not a substitute for the arbitrary-coupling proof. The complete six-page Thorisson finite-window coupling preprint was read; it constructs a sequence of copies and does not remove the single-path consistency issue. Source and prior-art access limitations are preserved.
 
 One substantive construction family used. This resolves only the illustrative coupling proposal. No mechanism for an alternative general two-process characterization was obtained, and ruling out this example cannot rule out every such condition. Stopped the broader search rather than relabeling a partial as a full resolution. Partial-proof completion estimate:100% pending independent review; broader-characterization completion estimate:0%; historical novelty unestablished.
+
+## 06:15: separate scoped review passed
+
+The unchanged frozen partial proof passed an independent adversarial audit, including the arbitrary-coupling conditional projection, infinite limiting arguments, metric changes and dependent finite offsets. All885 author assertions reproduced byte for byte;3,044 independent exact checks passed. The full characterization remains unresolved. Partial-proof and review completion:100%; broader-characterization completion:0%; novelty unestablished. Primary-source access limitations remain explicit.

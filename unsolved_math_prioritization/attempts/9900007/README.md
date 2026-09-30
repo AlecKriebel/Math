@@ -12,4 +12,4 @@ A fair sign flips independently from time n to n+1 with probability1/(n+2). Ever
 
 Run `python3 verify_binary_process.py`; only Python's standard library is used. The checker covers42 finite windows and240 transition products, plus supporting identities. It does not replace the written proof for arbitrary couplings or infinite limits.
 
-One substantive construction family was used. The result awaits separate adversarial review before a draft PR. Historical novelty is unestablished. This is not a counterexample to the distinct setwise-convergence problem9900005.
+One substantive construction family was used. The unchanged proof passed a [separate adversarial review](review/REVIEW.md), with3,044 independent exact checks. The review certifies only the stated synchronous obstruction, not the broader characterization, formal verification or historical priority. Historical novelty is unestablished. This is not a counterexample to the distinct setwise-convergence problem9900005.
