@@ -82,7 +82,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 71 | 30002061 / OWR-11786-016 | Collapse Preservation under Subdivision | 0.2437 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 72 | 30002298 / OWR-12339-004 | Polyhedra with Vertex-Factored Fantappiè Denominators | 0.2432 | 5.5 | 3 | 2013 | queued | 0/5 |  |  |  |
 | 73 | 30003354 / OWR-15208-008 | Borderline Continuity of Conformal Metric Parametrizations | 0.2408 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
-| 74 | 10300016 / AMR-102-0016 | Branched surfaces and triangulations — Question 7.1 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 74 | 10300016 / AMR-102-0016 | Branched surfaces and triangulations — Question 7.1 | 0.2400 | 5.5 | 3 | unknown | unsolved | 2/5 |  | 2026-09-30: Separate review passed the source-qualified cone and splitting-radius obstruction record. General classification of self-splitting embedded branched surfaces remains unresolved; known invariant-measure/pseudo-Anosov and restricted veering results are credited.191author and1141independent controls; two bounded approaches and no full-resolution claim. Draft PR: https://github.com/AlecKriebel/Math/pull/56. |  |
 | 75 | 10300025 / AMR-102-0025 | Leaf spaces and transverse structures — Question 8.2 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 76 | 10300054 / AMR-102-0054 | Numerical invariants — Question 13.1 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 77 | 10400033 / AMR-103-0033 | Conjecture 2.11 — (S. | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
