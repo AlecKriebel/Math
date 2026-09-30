@@ -17,3 +17,7 @@ One substantive family was pursued: affine row Poissonization. The Poisson graph
 The written proof now covers both frozen and sequential indegree weights, zero outgoing counts, fixed finite seed changes, and empirical local convergence in probability. A column-pruning/martingale argument supplies concentration rather than assuming it from a one-root limit. The credited Bernoulli neighborhood tree has an explicit affine Gamma–Poisson description; its positive isolated-root probability also detects the dataset's fixed-outdegree substitution.
 
 All 35,349 finite/symbolic controls pass. The complete candidate and final checker hashes were sent for separate review. Source and novelty qualifications remain explicit. There is one substantive approach. Completion estimate: 85% toward the stated affine result, pending independent review; the broader nonlinear interpretation remains unresolved.
+
+## 2026-09-30 10:19 UTC: separate affine review passed
+
+The frozen affine theorem passed separate adversarial AI review without corrections. The 35,349 submitted controls replay identically and 98,943 independent controls pass. The original broad concave-rule source remains unsolved, 1/5. The eight review files are copied unchanged. Completion estimate: 100% of the stated affine result, with the nonlinear gap preserved.
