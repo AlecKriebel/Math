@@ -57,7 +57,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 46 | 30004186 / OWR-17128-002 | Stability of Peaked Reduced Ostrovsky Waves | 0.2562 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 47 | 7000004 / AMR-069-0004 | Geometry of Curves and Surfaces — Problem 1.4 | 0.2562 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 48 | 7000019 / AMR-069-0019 | Geometry of Curves and Surfaces — Problem 4.3 | 0.2562 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
-| 49 | 10000043 / AMR-099-0043 | Infinite-cluster intersections with vertical fibers | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 49 | 10000043 / AMR-099-0043 | Infinite-cluster intersections with vertical fibers | 0.2560 | 5.5 | 3 | unknown | unsolved | 2/5 |  | 2026-09-30: Separate review passed capped-exploration exclusion of uniformly bounded fiber sizes, propagation of infinite fiber intersections and the cutset-hypothesis separation. The original finite-but-unbounded fiber case remains unresolved. Exact coupling checks support only these partial claims; no full-resolution claim. Draft PR: https://github.com/AlecKriebel/Math/pull/31. |  |
 | 50 | 10000046 / AMR-099-0046 | Nonintersecting couplings of random walks in dimensions three and four | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 51 | 20001424 / AIM-DYNAMICAL_SYSTEMS-0082 | PCF descent and an odd postcritical-divisor criterion | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 52 | 2233 / EP-653 | Erdős Problem #653 | 0.2560 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
