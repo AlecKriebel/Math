@@ -1,8 +1,8 @@
 # 2861: computing the spin Dirac eta invariant
 
-Read [SOURCE_STATUS.md](SOURCE_STATUS.md) for the credited Lin–Lipnowski method, exact normalization, all-manifold scope, and distinction between convergence and a uniform certified stopping rule. Separate review is pending.
+Read [SOURCE_STATUS.md](SOURCE_STATUS.md) for the credited Lin–Lipnowski method, exact normalization, all-manifold scope, and distinction between convergence and a uniform certified stopping rule. Separate adversarial AI review passed; see [the review](independent_review/REVIEW.md). The frozen proof keeps its original pending-review header for exact snapshot matching.
 
-- Literal-method status recommendation: `already_solved`, subject to independent source-scope review
+- Literal-method status recommendation: `already_solved`, with separate source-scope review passed
 - New substantive proof attempts: 0/5
 - New discovery claim: none
 - Run `python verify.py` for 99 exact algebraic consistency checks; SymPy is required

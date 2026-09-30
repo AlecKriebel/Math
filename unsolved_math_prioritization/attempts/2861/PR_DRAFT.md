@@ -7,4 +7,4 @@ KP-3.63 asks for a method to compute the spin Dirac eta invariant on a closed hy
 - Corrects the old zero-examples-only remark while retaining the published Weeks precision caveat
 - No novel discovery or human peer-review claim; 0 fresh proof attempts
 
-Separate adversarial review is required before publication. Parent owns the QUEUE status change.
+Separate adversarial AI review passed on the unchanged frozen snapshot, with all 99 author controls reproduced byte-identically and 1,487 independent exact controls passing. The complete report and reproduction files are included. Parent owns the QUEUE status change.
