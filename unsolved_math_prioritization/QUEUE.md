@@ -133,7 +133,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 122 | 9700041 / AMR-096-0041 | Topological realization of compact Markov-chain limits | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 123 | 30003709 / OWR-15987-020 | Recovering Toric Arrangement Posets from Complement Cohomology | 0.2229 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 124 | 30003996 / OWR-16633-013 | Hardness of Root-Dependent Spanning-Tree Optimization | 0.2229 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
-| 125 | 30003997 / OWR-16633-014 | Hardness of Path-Cost Arborescence Optimization | 0.2229 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
+| 125 | 30003997 / OWR-16633-014 | Hardness of Path-Cost Arborescence Optimization | 0.2229 | 5.5 | 3 | 2018 | claimed_solved | 1/5 |  | 2026-09-30: Complete strong NP-hardness proof for the exact path-cost arborescence objective, already with binary costs on a depth-three DAG. Separate fresh reduction/source audit passed;57135author and14397independent assertions. Duplicate30003998 shares this target; relatedProblem1 literal-selection mechanism credited, historical priority unconfirmed. Draft PR: https://github.com/AlecKriebel/Math/pull/107. |  |
 | 126 | 5100032 / AMR-050-0032 | Elliptic-billiard invariant k_{603} | 0.2222 | 4.5 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 127 | 30004433 / OWR-17474-007 | Ends of Critical Long-Range Percolation Clusters | 0.2212 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 128 | 4900006 / AMR-048-0006 | Eden's conjecture on local Lyapunov dimension | 0.2200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
