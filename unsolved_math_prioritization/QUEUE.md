@@ -128,7 +128,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 117 | 2701 / KP-1.42 | Kirby Problem 1.42 | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 118 | 2728 / KP-1.69 | Kirby Problem 1.69 | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 119 | 2859 / KP-3.61 | Kirby Problem 3.61 | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 120 | 3092 / OPG-59984 | Chromatic number of associahedron | 0.2240 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
+| 120 | 3092 / OPG-59984 | Chromatic number of associahedron | 0.2240 | 5.5 | 1 | unknown | unsolved | 2/5 |  | 2026-09-30: Separate review passed sharp group-size and actual-used-color restrictions for fixed additive diagonal-weight colorings of the associahedron. These are not lower bounds for arbitrary colorings, so the original chromatic-number question remains unresolved.186463author and19866independent assertions; two bounded routes, current logarithmic-bound literature credited. Draft PR: https://github.com/AlecKriebel/Math/pull/103. |  |
 | 121 | 600008 / AMR-005-0008 | Baker's Dozen — Chains of null geodesics | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 122 | 9700041 / AMR-096-0041 | Topological realization of compact Markov-chain limits | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 123 | 30003709 / OWR-15987-020 | Recovering Toric Arrangement Posets from Complement Cohomology | 0.2229 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
