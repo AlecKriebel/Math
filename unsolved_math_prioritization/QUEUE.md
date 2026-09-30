@@ -46,7 +46,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 35 | 30006390 / OWR-14299518-003 | Transversals in Random Subsets of Projective Planes | 0.2618 | 5.5 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 36 | 30001696 / OWR-4798-013 | Ball-Product Structure of Cross-Polytope Subcomplexes | 0.2616 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 37 | 30001947 / OWR-11454-005 | Nontrivial Witt Pairings in $\mathbb Z_2$-Witt Spaces | 0.2616 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
-| 38 | 10000062 / AMR-099-0062 | Local metric homogeneity forcing periodic triangulations | 0.2611 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
+| 38 | 10000062 / AMR-099-0062 | Local metric homogeneity forcing periodic triangulations | 0.2611 | 5.5 | 3 | 2012 | unsolved | 1/5 |  | 2026-09-30: Separate review passed an explicitly scoped Euclidean noncocompact construction, including complete metric-ball boundary traces. The example retains a horizontal period; undefined source periodicity and the hyperbolic clause remain unresolved. Prior layered family credited; full source not solved. Draft PR: https://github.com/AlecKriebel/Math/pull/24. |  |
 | 39 | 10400115 / AMR-103-0115 | Problem 6.7 — (S.J. | 0.2600 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 40 | 20002011 / AIM-GEOMETRY-0349 | Conformal-primitivity obstruction and curvature-only rigidity on surfaces | 0.2600 | 6.0 | 4 | unknown | queued | 0/5 |  |  |  |
 | 41 | 20002052 / AIM-GEOMETRY-0390 | Local primitives versus divergence terms | 0.2600 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
