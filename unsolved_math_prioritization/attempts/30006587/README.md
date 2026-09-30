@@ -4,4 +4,4 @@
 
 The independent audit of every all-depth analytic-realization and imported regularization dependency is incomplete. Local status remains unsolved with that explicit source hold. The distinct all-relations conjecture remains open in v2.
 
-Run `python3 verify.py` for 1,111 exact controls. They do not replace the analytic proof. One conservative validation/reconstruction family is logged, with zero new-discovery approaches. Separate review is pending.
+Run `python3 verify.py` for 1,111 exact controls. They do not replace the analytic proof. One conservative validation/reconstruction family is logged, with zero new-discovery approaches. Separate adversarial AI source/algebra review passed with the analytic hold intact; see [the report](review/REVIEW.md). The historical pending-review header in the frozen SOURCE_STATUS artifact is superseded by this status record. This package has not undergone human peer review.
