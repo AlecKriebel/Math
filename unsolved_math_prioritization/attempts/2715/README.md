@@ -1,0 +1,11 @@
+# 2715 — Equal-HFK ribbon concordance
+
+**Unresolved in general.** The [source-and-obstruction artifact](OBSTRUCTION.md) records a credited affirmative class, the exact equivalent rank question, and the obstruction to turning a Floer inverse into a reverse ribbon concordance.
+
+- [Primary-source audit](SOURCE_AUDIT.md)
+- [Original pinned record](source_record.json)
+- [Provenance](provenance.json)
+- [Bounded algebra checks](verify.py), [results](verification.json)
+- [Research log](RESEARCH_LOG.md), [1/5 attempt accounting](turns.json)
+
+Run `python3 verify.py` from this directory. It requires only Python3's standard library. Its564 exact assertions are finite algebra diagnostics, not actual knot Floer computations or a knot search. Separate adversarial review is required before a draft PR.
