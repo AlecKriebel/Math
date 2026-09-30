@@ -113,7 +113,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 102 | 30002203 / OWR-12172-006 | Lifting Pentagon-Arrangement Symmetries to Homotopy Invariants | 0.2263 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 103 | 30002278 / OWR-12331-002 | Lyapunov Functions for Three-Dimensional Acoustic PML Systems | 0.2258 | 5.5 | 3 | 2013 | queued | 0/5 |  |  |  |
 | 104 | 30002300 / OWR-12339-006 | Weakening General Position in Signed Simplex Representations | 0.2258 | 5.5 | 3 | 2013 | queued | 0/5 |  |  |  |
-| 105 | 10400094 / AMR-103-0094 | Problem 4.16 — (J. | 0.2250 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 105 | 10400094 / AMR-103-0094 | Problem 4.16 — (J. | 0.2250 | 5.0 | 3 | unknown | unsolved | 2/5 |  | 2026-09-30: Separate review passed a characteristic-zero raw-count linear-skein obstruction and a local Gaussian operator identity. The source permits auxiliary invariants and nonlinear Fox7 recovery, so neither diagnostic settles its global framing/normalization and all-link recovery requirements.5878author and3264independent controls; two bounded routes, no full-resolution claim. Draft PR: https://github.com/AlecKriebel/Math/pull/86. |  |
 | 106 | 10400099 / AMR-103-0099 | Conjecture 5.3 — Let hX be as above. | 0.2250 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 107 | 2800904 / AMR-027-0904 | 10 Lectures and 42 Open Problems — Stability conditions for tightness of k-median LP and k-means SDP | 0.2248 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 108 | 30002806 / OWR-13497-003 | Commutation of Variational Discretization and Optimal Control | 0.2248 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
