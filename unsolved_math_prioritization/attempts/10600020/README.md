@@ -12,5 +12,7 @@ been produced for every minimal representative.
 - [Research log](RESEARCH_LOG.md), [readiness](readiness.json), [status](status.json)
 
 Run `python3 verify_obstruction.py`. The controls do not certify link splitting,
-minimal genus, or the unresolved geometric existence step. Separate adversarial
-review is pending. No novelty claim is made.
+minimal genus, or the unresolved geometric existence step. The [separate adversarial AI review](review/REVIEW.md) passed the scoped
+partial, with 724 independent exact diagnostics. This is not human peer review.
+The proof is retained byte-for-byte as the reviewed snapshot; its pending-review
+sentence records its pre-review freeze. No novelty claim is made.
