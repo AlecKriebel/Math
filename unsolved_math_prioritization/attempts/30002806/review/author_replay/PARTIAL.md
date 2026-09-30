@@ -57,7 +57,7 @@ Here is a standard sufficient estimate, stated to expose precisely what is neede
 \|D\varphi_h(x)-D\varphi_h(y)\|\le Lh\|x-y\|,\tag{3}
 \]
 
-for \(r\ge1\), and assume \(D\Phi\) is bounded and Lipschitz on the neighborhood of terminal states. Assume also that the discrete and exact initial states agree, or more generally have initial error \(O(h^r)\). Then the states and the discrete adjoints (1) both have global error \(O(h^r)\), uniformly at mesh points.
+for \(r\ge1\), and assume \(D\Phi\) is bounded and Lipschitz on the neighborhood of terminal states. Then the states and the discrete adjoints (1) both have global error \(O(h^r)\), uniformly at mesh points.
 
 **Proof.** The first inequality in (2), together with the derivative bounds, gives the usual recursion
 \(e_{k+1}\le(1+L_1h)e_k+Ch^{r+1}\), hence \(e_k=O(h^r)\). Put
