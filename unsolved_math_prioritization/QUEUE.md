@@ -126,7 +126,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 115 | 10600020 / AMR-105-0020 | Virtual-knot problem 20 — Embeddings of Surfaces | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 116 | 20001380 / AIM-DYNAMICAL_SYSTEMS-0038 | Explicit size and wild ramification bounds for the 0-rooted tree of z^2+1 over Q_2 | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 117 | 2701 / KP-1.42 | Kirby Problem 1.42 | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 118 | 2728 / KP-1.69 | Kirby Problem 1.69 | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 118 | 2728 / KP-1.69 | Kirby Problem 1.69 | 0.2240 | 5.5 | 3 | unknown | unsolved | 2/5 |  | 2026-09-30: Separate review passed band-defect accounting and precise barriers to the unrestricted Bennequin-sharpness converse. Topological braiding can involve negative stabilization and does not preserve transverse type; current September2026 sources still leave the general question open.324author and3848independent controls; two bounded routes and corrected full-source link. Draft PR: https://github.com/AlecKriebel/Math/pull/102. |  |
 | 119 | 2859 / KP-3.61 | Kirby Problem 3.61 | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 120 | 3092 / OPG-59984 | Chromatic number of associahedron | 0.2240 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
 | 121 | 600008 / AMR-005-0008 | Baker's Dozen — Chains of null geodesics | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
