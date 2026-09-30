@@ -1,0 +1,3 @@
+# Resonant NLS source-model separation
+
+Original target unresolved,2/5, with a source-specification hold. The2016 report omits the precise Gibbs-preserving generator, and the2025 theorem changes baths, chooses phase noise and requires sufficiently largeT3. The frozen note and included separate scoped review remain unchanged; the note's pending-review header predates that review. Scalar drift/positivity and conditional uniqueness diagnostics do not establish original recurrence or smoothness. Run `python verify.py` here and `python independent_checks.py` in independent_review. Source PDFs are not redistributed.
