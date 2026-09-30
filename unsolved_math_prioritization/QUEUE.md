@@ -111,7 +111,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 100 | 30001377 / OWR-4135-008 | Sensitivity Growth Under Boolean Conjunctions | 0.2275 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 101 | 30001804 / OWR-5158-001 | Mapping-Class-Group Presentations of Surface Steinberg Modules | 0.2267 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 102 | 30002203 / OWR-12172-006 | Lifting Pentagon-Arrangement Symmetries to Homotopy Invariants | 0.2263 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
-| 103 | 30002278 / OWR-12331-002 | Lyapunov Functions for Three-Dimensional Acoustic PML Systems | 0.2258 | 5.5 | 3 | 2013 | queued | 0/5 |  |  |  |
+| 103 | 30002278 / OWR-12331-002 | Lyapunov Functions for Three-Dimensional Acoustic PML Systems | 0.2258 | 5.5 | 3 | 2013 | unsolved | 2/5 |  | 2026-09-30: Separate review passed an explicit variable-damping obstruction to the source displayed bounded-parameter multiplier-functional family. This proves neither PML instability nor nonexistence of every augmented/different Lyapunov functional.9539author and21independent symbolic controls; known variable-coefficient remainder credited and broader original problem remains unresolved. Draft PR: https://github.com/AlecKriebel/Math/pull/92. |  |
 | 104 | 30002300 / OWR-12339-006 | Weakening General Position in Signed Simplex Representations | 0.2258 | 5.5 | 3 | 2013 | queued | 0/5 |  |  |  |
 | 105 | 10400094 / AMR-103-0094 | Problem 4.16 — (J. | 0.2250 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 106 | 10400099 / AMR-103-0099 | Conjecture 5.3 — Let hX be as above. | 0.2250 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
