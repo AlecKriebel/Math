@@ -109,7 +109,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 98 | 30000991 / OWR-2040-003 | Realization of Persistence Pairings by Filtration Functions | 0.2279 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 99 | 30001203 / OWR-3394-020 | Global Observability from Negative Gramian Curvature | 0.2275 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 100 | 30001377 / OWR-4135-008 | Sensitivity Growth Under Boolean Conjunctions | 0.2275 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
-| 101 | 30001804 / OWR-5158-001 | Mapping-Class-Group Presentations of Surface Steinberg Modules | 0.2267 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
+| 101 | 30001804 / OWR-5158-001 | Mapping-Class-Group Presentations of Surface Steinberg Modules | 0.2267 | 5.5 | 3 | 2011 | unsolved | 2/5 |  | 2026-09-30: Separate review passed the noncommutative certificate/Tietze formula with arbitrary-cyclic-representative consistency, signed stabilizers and computable-ring requirement. Explicit general-genus Steinberg relations remain uncomputed; the theoretical conversion is credited to prior work.72079author and6987independent controls; two bounded routes, no full-presentation claim. Draft PR: https://github.com/AlecKriebel/Math/pull/82. |  |
 | 102 | 30002203 / OWR-12172-006 | Lifting Pentagon-Arrangement Symmetries to Homotopy Invariants | 0.2263 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 103 | 30002278 / OWR-12331-002 | Lyapunov Functions for Three-Dimensional Acoustic PML Systems | 0.2258 | 5.5 | 3 | 2013 | queued | 0/5 |  |  |  |
 | 104 | 30002300 / OWR-12339-006 | Weakening General Position in Signed Simplex Representations | 0.2258 | 5.5 | 3 | 2013 | queued | 0/5 |  |  |  |
