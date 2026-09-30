@@ -9,3 +9,11 @@ The live remote queue is queued0/5 at rank70. All-state ID/title PR checks, remo
 The complete OWR2025 report was retrieved and Sano's pp919–921 talk read. The known equality is not itself the demanded contribution: the source asks for a combinatorial reproof. The full Sano and Ogusu–Sano papers specify smooth polarized toric varieties, the full lattice-point configuration, degree at least two, and massive boundary-face conventions. These are retained rather than silently extending the characteristic-vector formula to arbitrary singular configurations.
 
 The possible route is a direct comparison of the massive-GKZ polytope of Q×Delta_(n-1) with the convex hull of Hurwitz characteristic vectors on Q. A face-product finite-difference identity appears to remove all face terms below codimension one. The discriminant/secondary normal-fan alignment remains a key source verification before any candidate is asserted. Source-gate completion estimate:85%; proof completion estimate:40%. No resolution claimed at this checkpoint.
+
+## 06:35: candidate comparison complete
+
+For every product-refining triangulation, the projected k-dimensional massive vector equals a finite sum of base massive vectors with coefficients binomial(n,l+1)·binomial(k+1,j+1). A finite-difference identity cancels every base dimension below n−1 and gives the exact Hurwitz vector. The general GKZ normal-fan theorem is explicitly present as Chapter11 Theorem3.4(a). Equal-column heights and small generic refinements therefore expose a product-refining discriminant vertex for each generic base functional, closing the reverse inclusion without classifying arbitrary nonvertical triangulations.
+
+The proof uses no K-energy slope formula and does not infer equality merely from the Cayley identity. It credits Ogusu–Sano's dimension-two product identity and uses GKZ as an established framework. Smooth complete-embedding hypotheses are restored from the cited theorem; arbitrary singular cases remain outside the claim. The exact checker passes1,227 assertions on eight product examples and finite-difference coefficients through dimension16.
+
+One substantive approach used. Proof completion estimate:100% pending separate review of both mathematical correctness and source/proof-type scope. Historical novelty is unestablished.
