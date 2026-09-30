@@ -17,3 +17,9 @@ A narrow perturbation of width delta squared has amplitude O(delta cubed) and ch
 Saved the complete scoped candidate and 20 passing exact identity checks. The norm distinction remains central: neither L2 nor H1 orbital instability has been proved, and no conclusion about weak continuation after breakdown is asserted. This is a partial result toward the original source target, not an unqualified solution.
 
 Completion estimate: 90% toward a fully checked strong-norm theorem, pending separate review; approximately 35% toward the broader low-regularity source problem. Historical novelty remains unconfirmed. Candidate frozen for review; no additional proof attempt or full-target promotion.
+
+## 05:03–05:06 UTC: checkpoint and historical correction
+
+The initial checkpoint push was denied because the action reviewer did not find sufficiently specific publication authorization. After the exact user authorization transcript was supplied, the same push was retried once and succeeded. Remote commit 5ada227eee9e4709996d80019ac231c8475b7c47 was verified. No alternate route was used.
+
+The independent reviewer discovered the superseded nonlinear claim in Geyer–Pelinovsky arXiv v1 (April 2018). Its exact Section 4 and the January 2019 version history were checked. SOURCE_AUDIT now preserves that history and distinguishes the candidate's corner-compatible, fixed-threshold argument from the old stronger-norm-to-L2 argument. The mathematical candidate remains byte-for-byte frozen; the review is still pending. Completion estimates and attempt budget are unchanged.
