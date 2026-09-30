@@ -1,6 +1,6 @@
 # Relative collapse under subdivision: exact local reduction and a planar certificate
 
-**Status: the general problem remains unresolved.** This note records an elementary reduction and a constructive low-dimensional case, with no novelty claim. The known theorem after an additional barycentric subdivision is credited separately. Independent review pending.
+**Status: the general problem remains unresolved.** This note records an elementary reduction and a constructive low-dimensional case, with no novelty claim. The known theorem after an additional barycentric subdivision is credited separately. Independent scoped review passed; see review/REVIEW.md.
 
 Target: 30002061 / OWR-11786-016, Hudson's relative subdivision problem.
 
