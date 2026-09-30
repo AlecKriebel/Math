@@ -195,7 +195,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 184 | 30002879 / OWR-13681-013 | Hochschild-Cohomology Lie Structure of a Stratified Algebra | 0.1945 | 5.0 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 185 | 30003069 / OWR-14221-005 | Plabic Newton–Okounkov Bodies and FFLV Polytopes | 0.1940 | 5.0 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 186 | 4800017 / AMR-047-0017 | Multiple ergodic averages — Problem 17 | 0.1940 | 6.0 | 3 | 2016 | queued | 0/5 |  |  |  |
-| 187 | 30003390 / OWR-15214-002 | Exact Strong Approximation Rates for CIR Processes | 0.1935 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
+| 187 | 30003390 / OWR-15214-002 | Exact Strong Approximation Rates for CIR Processes | 0.1935 | 5.0 | 3 | 2017 | unsolved | 2/5 |  | 2026-09-30: Separate review passed observation-preserving scaling, factor-two conditional-bridge characterization and the exact finite-grid L1 optimizer in the known dimension-one CIR case. General same-driver equidistant-observation terminal-error rate remains unresolved. 2786 author and 9193 independent controls; time-change information loss and inaccessible later2025 theorem caveat retained, no current-sharpness assertion. Draft PR: https://github.com/AlecKriebel/Math/pull/174. |  |
 | 188 | 30003480 / OWR-15428-003 | Single Polynomial Description of Binary Tensor Gram Loci | 0.1935 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 189 | 30003677 / OWR-15962-003 | Strategic Starting Vertices in Competing First-Passage Percolation | 0.1935 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 190 | 30000567 / OWR-1323-003 | Disjoint-Hypercyclic Operators on Banach Spaces | 0.1934 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
