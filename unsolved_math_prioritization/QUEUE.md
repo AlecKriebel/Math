@@ -205,7 +205,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 194 | 30001400 / OWR-4139-001 | Comparison of Majorization Relations for Probability Vectors | 0.1925 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 195 | 10300044 / AMR-102-0044 | Hyperbolic geometry — Question 10.6 | 0.1920 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 196 | 10400049 / AMR-103-0049 | Problem 2.27 — (D. | 0.1920 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 197 | 10400080 / AMR-103-0080 | Problem 4.2 — (J. | 0.1920 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 197 | 10400080 / AMR-103-0080 | Problem 4.2 — (J. | 0.1920 | 5.5 | 3 | unknown | already_solved | 0/5 |  | 2026-09-30: Belletti-Detcherry2024/2025 supplies the original existential higher-genus skein torsion answer, using credited geometric existence and GJS finite-rank inputs. Separate source and integral coefficient-descent audit passed the necessary localization annihilator; 1675 author and 9803 independent controls. Final-journal access limits retained, no new geometric construction or discovery claim. Draft PR: https://github.com/AlecKriebel/Math/pull/180. |  |
 | 198 | 10800007 / AMR-107-0007 | Problem 2A — What is the minimal number of open sets $U_{i}$ covering ${\mathbb{R}}^{6}$ such that for any $U_{i}$… | 0.1920 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 199 | 11000213 / AMR-109-0213 | Problem 6 — (Purely cyclic). | 0.1920 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 200 | 20002560 / AIM-PROBABILITY-0002 | Exact parity projection and a certified bracket for RBM(3,1) | 0.1920 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
