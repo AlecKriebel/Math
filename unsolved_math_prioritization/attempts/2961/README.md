@@ -8,4 +8,4 @@ The problem still asks for a closed orientable smooth four-manifold whose **full
 
 Run `python check_algebra.py` to reproduce 6,570 exact finite assertions. These diagnostics support the displayed identities and negative control; they do not solve the original problem.
 
-Separate adversarial review is pending. This is a source-qualified unresolved partial with no novelty claim. The actual model was gpt-6-astra at xhigh reasoning.
+[Separate adversarial AI review](review/REVIEW.md) passed, with 228 independent exact controls and no mandatory correction. This has not undergone human peer review. This is a source-qualified unresolved partial with no novelty claim. The actual model was gpt-6-astra at xhigh reasoning.

@@ -1,6 +1,6 @@
 # Four-manifold diffeomorphism groups: transfer obstructions
 
-**KP-4.85 remains unresolved.** This note gives a source correction and two concrete obstructions to transferring known quasimorphisms to the required group. Its main estimate is a consequence of classical commutator compression, not a claimed new discovery. Separate adversarial review is pending.
+**KP-4.85 remains unresolved.** This note gives a source correction and two concrete obstructions to transferring known quasimorphisms to the required group. Its main estimate is a consequence of classical commutator compression, not a claimed new discovery. Separate adversarial AI review passed; see [the report](review/REVIEW.md). This has not undergone human peer review.
 
 ## 1. The full target
 

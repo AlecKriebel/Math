@@ -17,3 +17,7 @@ Completion estimate remains 5%. The averaging defect acquires an additional inte
 ## 05:52 UTC: package prepared for separate adversarial review
 
 Completion estimate remains 5%; the full problem is unresolved. The complete primary BIP, Tsuboi and surface papers were retrieved, and the exact duplicate's full original report was checked. All 6,570 finite exact assertions pass. The proved partial claims are consequences and scope checks for known techniques, with no historical-priority claim. Both selected approaches now have precise gaps, so the research stops early rather than repeating them without a new mechanism. No PR has been opened.
+
+## 06:23 UTC: separate adversarial review passed
+
+Completion toward the original problem remains 5%; the full target is unresolved. The independent reviewer confirmed the scoped claims and source corrections, reproduced all 6,570 author assertions byte for byte, and passed 228 further exact controls. Six supplied review/replay files are preserved unchanged. Only review-status metadata was updated. The duplicate 30004403 remains linked to this same attempt.
