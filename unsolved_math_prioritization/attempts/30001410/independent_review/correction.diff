@@ -1,0 +1,44 @@
+--- original_PARTIAL_RESULT.md
++++ author_replay/PARTIAL_RESULT.md
+@@ -1,6 +1,6 @@
+ # Crofton length: planar source correction and a simplex obstruction
+ 
+-Status: source-dimension hold; the intended higher-dimensional ellipsoid-only conjecture remains unresolved, 2/5. The literal dimension-unqualified assertion is already false in dimension two. This package supplies an explicit planar certificate and a five-point obstruction for every simplex of dimension at least three. Independent review pending. No novelty claim.
++Status: source-dimension hold; the intended higher-dimensional ellipsoid-only conjecture remains unresolved, 2/5. Under the natural domain-local Crofton-measure convention defined below, the dimension-unqualified assertion is already false in dimension two. A conflicting global-local-finiteness phrase in a cited paper requires the explicit source qualification in Section 1. This package supplies an explicit planar certificate and a five-point obstruction for every simplex of dimension at least three. Independent review pending. No novelty claim.
+ 
+ ## 1. Exact scope of the original source
+ 
+@@ -9,6 +9,8 @@
+ The final unqualified sentence says positivity for vol_1 in a Hilbert geometry forces an ellipsoid. Yet immediately above, a theorem gives a positive measure for vol_(n-1) in every projective Finsler space; at n=2 this is exactly vol_1. The motivating preceding sentence discusses k<n-1, which suggests the intended dimension n>=3, but the concluding sentence and dataset omit that restriction. We preserve both facts rather than silently rewriting the source.
+ 
+ The known planar exception is explicit in Schneider, *Crofton Measures in Polytopal Hilbert Geometries*, Beiträge Algebra Geom.47 (2006),479–488, https://home.mathematik.uni-freiburg.de/rschnei/Polytopal.Hilbert.pdf . It constructs positive line measures for hypersurface area and credits earlier planar work. Its higher-dimensional line measure concerns vol_(n-1), not curve length, so it is not a counterexample in n>=3. The metric convention in its equation (2) is the full logarithm of the cross ratio, without a factor one-half. We use that convention; scaling lengths by one-half just rescales every measure and inequality below.
++
++There is a second source-convention issue. The 2006 polytopal paper, printed manuscript p.3, defines its line measure as locally finite on the entire affine Grassmannian A(n,1). Our planar measure does not meet that global condition. In fact, for positive hyperplane measures representing Hilbert curve length in a bounded domain, global local finiteness would be impossible even for ellipsoids: the set of all hyperplanes meeting the closure of a bounded convex body is compact (unoriented unit normal and bounded offset parameterization). A globally Radon measure has finite mass on this set. Except for hyperplanes containing a fixed segment, whose mass must be zero if its intersection-count integral is finite, each hyperplane meets that segment at most once. All segment lengths would therefore be uniformly bounded by this finite mass. Hilbert distances instead tend to infinity along a chord approaching its boundary endpoint. In dimension two these are exactly the line and curve-length conventions in question. Thus the printed global condition and claimed complete-domain existence cannot both be read literally without qualification. We use the natural domain-local space H(D) of hyperplanes meeting the open domain D. We do not assert a correction of the author’s intent or a counterexample under the incompatible global convention.
+ 
+ We work inside a bounded convex body with nonempty interior, not on its boundary. Holmes–Thompson one-dimensional volume agrees with the Finsler curve length. No smoothness of the boundary is assumed in the report's generalized Finsler setting.
+ 
+@@ -32,13 +34,13 @@
+ 
+ d(p,q) = (1/2) sum_{i<j} |h_ij(p)-h_ij(q)|.
+ 
+-For each real t, the level h_ij=t is the intersection with the affine line p_i=e^t p_j. Let mu be one-half the sum, over these three pairs, of the pushforwards of Lebesgue measure dt to the space of affine lines. It is positive. On lines meeting any fixed compact subset of the open simplex it is finite, since each h_ij has bounded range on that compact set.
++For each real t, the level h_ij=t is the intersection with the affine line p_i=e^t p_j. Let H(D) be the open subset of the affine line space consisting of lines meeting the open triangle D. Let mu be one-half the sum, over these three pairs, of the pushforwards of Lebesgue measure dt to H(D). It is positive and Radon on H(D). Indeed, each parameterized line family is continuous and its t-to-plus/minus-infinity limits are boundary-side lines outside H(D), so the inverse image of a compact subset of H(D) is bounded and closed. Equivalently, it has finite mass on lines meeting each fixed compact subset of D, since each h_ij has bounded range there. It is not locally finite on the entire affine Grassmannian: an infinite Lebesgue tail accumulates at a boundary-side line.
+ 
+-For a segment [p,q], its intersection count with that level line is one exactly for t between its endpoint h_ij values, except endpoint levels and a possible constant level, which form a Lebesgue-null set. Thus integrating the count gives the displayed distance formula. In particular this meets the convex one-dimensional-set Crofton convention of the polytopal paper.
++For a segment [p,q], its intersection count with that level line is one exactly for t between its endpoint h_ij values, except endpoint levels and a possible constant level, which form a Lebesgue-null set. Thus integrating the count gives the displayed distance formula. This is the interior segment-count identity; it does not satisfy the cited paper’s printed global-local-finiteness condition.
+ 
+ The same measure gives the full curve-length formula on one-dimensional rectifiable subsets M of the open simplex. Indeed the tangent identity is F(p,v)=(1/2)sum_{i<j}|d h_ij(p)v|. Applying the one-dimensional coarea formula to each locally Lipschitz h_ij on a countable compact exhaustion yields length_F(M)=(1/2)sum_{i<j} integral card(M intersect {h_ij=t})dt. Noncompact or infinite-length cases follow by monotone convergence. For parametrized curves, both length and intersections must instead be counted with the same traversal multiplicity. We do not mix these conventions.
+ 
+-The triangle is not an ellipsoid, so this is an explicit certificate of the already-known planar exception. It is not a resolution of the inferred n>=3 conjecture. The standard coarea theorem used to extend the segment identity to arbitrary rectifiable sets is imported, not re-proved here.
++The triangle is not an ellipsoid, so under the domain-local measure convention this is an explicit certificate of the already-known planar exception. It is not a resolution of the inferred n>=3 conjecture. The standard coarea theorem used to extend the segment identity to arbitrary rectifiable sets is imported, not re-proved here.
+ 
+ ## 4. Positive hyperplane Crofton length forces integer hypermetric inequalities
+ 
+@@ -75,6 +77,6 @@
+ 
+ ## 6. Remaining question and verification boundary
+ 
+-The literal n=2 omission is resolved by established positive line-measure theory and the explicit construction above. The intended n>=3 ellipsoid-only assertion remains unresolved for general convex bodies. Excluding all simplices does not exclude every nonellipsoid. We make no claim that every nonellipsoid contains an isometric simplex or this five-point metric, and no conclusion about uniqueness of Crofton measures. The source's higher-dimensional positive hypersurface formula remains compatible with our negative curve-length result.
++Under the domain-local measure convention, the n=2 omission has the planar exception above, consistent with the report’s preceding existence theorem. The cited polytopal paper’s global-local-finiteness phrase remains a source inconsistency; no globally Radon planar counterexample is claimed. The intended n>=3 ellipsoid-only assertion remains unresolved for general convex bodies. Excluding all simplices does not exclude every nonellipsoid. We make no claim that every nonellipsoid contains an isometric simplex or this five-point metric, and no conclusion about uniqueness of Crofton measures. The source's higher-dimensional positive hypersurface formula remains compatible with our negative curve-length result.
+ 
+ The exact checker verifies all 32 cuts in the five-point inequality, rational simplex coordinates, cross-ratio ratios, the all-dimensional exponent embedding over a finite range, the three-number variation identity, and exact finite segment-level incidence controls. Infinite coarea and the all-size proofs are logical arguments in this note, not executable geometry. No priority or human peer-review claim.

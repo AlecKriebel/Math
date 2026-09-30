@@ -146,7 +146,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 135 | 30002719 / OWR-13352-003 | Probabilistic Interpretation of Waring-Polynomial Series | 0.2113 | 4.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 136 | 30000697 / OWR-1458-003 | Injectivity Criteria for Upsilon Transforms | 0.2107 | 5.0 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 137 | 30001234 / OWR-3471-008 | Uniqueness in Linear Programs for Binomial Multiplier Ideals | 0.2100 | 5.0 | 3 | 2009 | queued | 0/5 |  |  |  |
-| 138 | 30001410 / OWR-4199-003 | Crofton Measures in Hilbert Geometry | 0.2097 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
+| 138 | 30001410 / OWR-4199-003 | Crofton Measures in Hilbert Geometry | 0.2097 | 5.5 | 3 | 2010 | unsolved | 2/5 |  | 2026-09-30: Separate revised review passed the planar construction only as a measure Radon on domain-intersecting lines H(D), plus the unaffected five-point obstruction excluding higher-dimensional simplices. Global affine-line Radon status is explicitly denied and source/dimension conventions remain held.92660author and1401independent controls; general intended higher-dimensional characterization unresolved. Draft PR: https://github.com/AlecKriebel/Math/pull/120. |  |
 | 139 | 30001883 / OWR-11136-008 | Circle Free Convex Bodies Under Minkowski Addition | 0.2093 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 140 | 10400041 / AMR-103-0041 | Problem 2.19 — (Y. | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 141 | 10400117 / AMR-103-0117 | Problem 7.2 — (S.K. | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
