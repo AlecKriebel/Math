@@ -105,7 +105,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 94 | 30000136 / OWR-761-003 | Nowhere-Zero Perturbations of Nonclosed One-Forms | 0.2292 | 5.5 | 3 | 2004 | queued | 0/5 |  |  |  |
 | 95 | 30006461 / OWR-14299577-011 | Nonconstancy of the Multiplication-Table Limit Profile | 0.2290 | 5.5 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 96 | 30000177 / OWR-785-003 | LOCC Dense-Codeability of the Four-Qubit W State | 0.2289 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
-| 97 | 30000252 / OWR-1050-001 | Critical-Exponent Polyharmonic Dirichlet Problems | 0.2289 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
+| 97 | 30000252 / OWR-1050-001 | Critical-Exponent Polyharmonic Dirichlet Problems | 0.2289 | 5.5 | 3 | 2005 | already_solved | 0/5 |  | 2026-09-30: Credited Clapp-Squassina small-forcing theorem yields two classical solutions at the critical endpoint after the independently audited odd-order scaling, disproving unrestricted uniqueness and the literal extension question.8403author and53independent controls. Positive-only higher-order variants remain unclassified; prior analytic theorem is not independently reconstructed and no discovery is claimed. Draft PR: https://github.com/AlecKriebel/Math/pull/84. |  |
 | 98 | 30000991 / OWR-2040-003 | Realization of Persistence Pairings by Filtration Functions | 0.2279 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 99 | 30001203 / OWR-3394-020 | Global Observability from Negative Gramian Curvature | 0.2275 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 100 | 30001377 / OWR-4135-008 | Sensitivity Growth Under Boolean Conjunctions | 0.2275 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
