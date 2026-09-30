@@ -1,0 +1,7 @@
+# Bounded research log
+
+- 2026-09-30 07:57:38UTC: Began rank98, with two-hour ceiling09:57:38UTC and five-approach maximum. Runtime model gpt-6-astra, xhigh. Read exact source and adjacent prior publication before proving anything. Full-resolution estimate0%.
+- 08:00UTC: Prior-work gate cleared. The previous Conjecture2 audit expressly excludes Conjecture3. Recovered the descending-function, generated-subcomplex, and tie-refinement conventions; source p.1630 visually checked. No prior target attempt found.
+- Approach1,08:02–08:05UTC: Bounded order-constraint search on178 distinct small-complex pairings. No counterexample found; one initial cutoff resolved in a targeted follow-up. Recognized that an apparent-pair order is not automatically a certified function realization, and preserved that qualification. Full-resolution estimate0%.
+- Approach2,08:05–08:11UTC: Proved component postponement for arbitrary finite graphs, preserving labeled pairs and previously consecutive incident pairs. Iteration yields adjacent matched blocks, from which an explicit integer function realizes the source filtration. Higher-dimensional extension blocked by the absence of a component-root replacement argument. Full-resolution estimate0%; graph-case argument complete.
+- 08:11:57UTC: Froze GRAPH_CASE.md and exact implementation.467 graph filtrations with524 postponements pass8,852 assertions, including independent F2 and elder-rule checks and the actual generated-subcomplex entry times. Separate adversarial review requested. Proposed unsolved2/5; no novelty claim.
