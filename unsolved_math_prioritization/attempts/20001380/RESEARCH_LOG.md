@@ -1,0 +1,8 @@
+# Research log: 20001380
+
+- 2026-09-30 08:53 UTC: Began rank116, two-hour ceiling through10:53 UTC and at most five substantive approaches; actual runtime gpt-6-astra, xhigh.
+- Source/prior gate: exact-ID PR search empty; the arboreal keyword finds only unrelated PR1 on geometric monodromy of a three-dimensional Keller map. Exact remote branch absent, selected-path history empty, no related-target entry, no corpus duplicate found. Initial row queued0/5. The imported AIM report is substantive prior source material and is credited, not rediscovered.
+- Read repository instructions, policy, README and queue. Parent owns queue; no generator or shared-state edits. Sparse clone created on dot/math-20001380.
+- 09:00 UTC: Recovered the live primary AIM section12 by its supplied HTTP URL. It specifies no basepoint. The title's zero-rooted interpretation is explicit, rather than a recovered hidden condition. Read AHPW Sections1–3 and7 and the workshop report's wild-ramification account. Their qualitative infinite-index/infinite-wild results are prior work.
+- Approach1: alternately shifted Eisenstein iterates give exact single-root-field differents, leading to explicit upper-break lower bounds for the splitting fields. This is additional to the imported valuation/sign-quotient package, but does not determine the full Galois image. Mathematical checking and source audit are in progress. Completion estimate: 35% of a scoped partial package; 0% of a full image classification.
+- 09:01 UTC: Paused at a source/research checkpoint for the parent's priority independent contact/Godbillon–Vey review. The remaining original research ceiling is unchanged.
