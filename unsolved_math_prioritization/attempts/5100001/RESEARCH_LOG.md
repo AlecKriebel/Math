@@ -15,3 +15,7 @@ Completion estimate: 100% of the literal k107 assertion, by counterexample, pend
 ## 2026-09-30 11:49 UTC: exact controls and remote checkpoint
 
 Completion estimate: 100%, pending review. All 10,073 exact assertions pass over 228 family members, including direct billiard reflection, tangency and positive interior contact parameters. One verifier type-conversion issue when comparing separately constructed quadratic fields was corrected by extracting the already-rational endpoint values; no mathematical correction was needed. The proof and final hashes were sent to the separate reviewer. Two families are retained in the ledger, model gpt-6-astra with xhigh reasoning.
+
+## 2026-09-30 11:59 UTC: independent review and publication
+
+Completion estimate: 100% of the literal printed assertion, by counterexample. Separate review passed without correction, including the exact source-product convention, continuous same-caustic family, primitive periods, normalized reflection and all nonzero denominators. All 10,073 submitted assertions replayed byte-identically and 8,397 independent rational/symbolic controls passed. The reviewed mathematical text is unchanged. No corrected quotient/parity theorem or historical priority is claimed.
