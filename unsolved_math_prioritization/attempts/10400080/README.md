@@ -6,4 +6,4 @@
 
 [Source audit](SOURCE_AUDIT.md): full original and preprint proofs retrieved; final IMRN full text not compared. The substantial generic-finiteness and high-distance theorems remain credited imports. The adjacent universal conjecture is not resolved here.
 
-Run `python verify.py` with SymPy for **1,675 exact algebraic controls**. Separate review is pending; no campaign discovery or human-peer-review claim.
+Run `python verify.py` with SymPy for **1,675 exact algebraic controls**. [Separate adversarial AI review passed](review/REVIEW.md), with 9,803 independent controls; no campaign discovery or human-peer-review claim.
