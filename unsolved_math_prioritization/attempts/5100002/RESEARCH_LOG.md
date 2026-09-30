@@ -11,3 +11,7 @@ The direct chord/angle approach led to comparing two symmetric six-period orbits
 ## 2026-09-30 11:49 UTC: frozen counterexample package
 
 The final written artifact supplies the complete geometry and exact unequal values. Both source tables were visually checked. All291 exact assertions pass, including strict interior contact parameters, distinct vertices, convexity and the source angle normalization. One direct-coordinate approach is recorded; the proof is frozen for independent review. No repaired all-period theorem is inferred. Mathematical package completion100%, subject to separate review; priority remains unconfirmed.
+
+## 2026-09-30 12:00 UTC: independent review and publication checkpoint
+
+The separate adversarial review passed the unchanged frozen proof, including both printed tables and all geometric conventions. All 291 submitted assertions replayed identically; 272 independent rational assertions passed. Eight review files are copied unchanged. Completion estimate: 100% for the printed assertion counterexample. One substantive approach; historical priority remains unconfirmed. Parent authorized one open draft PR; no queue file was edited here.
