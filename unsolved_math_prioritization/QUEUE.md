@@ -127,7 +127,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 116 | 20001380 / AIM-DYNAMICAL_SYSTEMS-0038 | Explicit size and wild ramification bounds for the 0-rooted tree of z^2+1 over Q_2 | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 117 | 2701 / KP-1.42 | Kirby Problem 1.42 | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 118 | 2728 / KP-1.69 | Kirby Problem 1.69 | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 119 | 2859 / KP-3.61 | Kirby Problem 3.61 | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 119 | 2859 / KP-3.61 | Kirby Problem 3.61 | 0.2240 | 5.5 | 3 | unknown | unsolved | 2/5 |  | 2026-09-30: Separate review passed a data-preserving extension criterion and separating integral-homology invariance, with nonseparating mapping-torus caution. The announced closed Floer-rank result remains work-in-progress evidence, not a full proof or sutured-scope resolution.13125author and3185independent matrix controls are not Floer computations; original unresolved. Draft PR: https://github.com/AlecKriebel/Math/pull/100. |  |
 | 120 | 3092 / OPG-59984 | Chromatic number of associahedron | 0.2240 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
 | 121 | 600008 / AMR-005-0008 | Baker's Dozen — Chains of null geodesics | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 122 | 9700041 / AMR-096-0041 | Topological realization of compact Markov-chain limits | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
