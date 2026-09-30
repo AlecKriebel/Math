@@ -152,7 +152,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 141 | 10400117 / AMR-103-0117 | Problem 7.2 — (S.K. | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 142 | 10400229 / AMR-103-0229 | Problem 12.24 — (A. | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 143 | 10400231 / AMR-103-0231 | Conjecture 12.26 — (V. | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 144 | 10600021 / AMR-105-0021 | Virtual-knot problem 21 — Non-Commutativity and Long Knots | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 144 | 10600021 / AMR-105-0021 | Virtual-knot problem 21 — Non-Commutativity and Long Knots | 0.2080 | 5.5 | 3 | unknown | unsolved | 1/5 |  | 2026-09-30: Separate review passed a conditional ordered-normal-form common-power reduction and an abstract monoid obstruction to inferring it from atomicity plus prime-pair rigidity. No knot counterexample or full ordered prime-decomposition theorem is certified;2025announcement remains a source hold.2255author and23894independent algebraic controls. Draft PR: https://github.com/AlecKriebel/Math/pull/130. |  |
 | 145 | 11000132 / AMR-109-0132 | Problem 2 — Given a tuple ×N i=1(mi,ti) ∈ ZN, give a tractable expression in terms of Dehn- Thurston or other coordinates for the… | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 146 | 11000147 / AMR-109-0147 | Question — Does there exist a set of at least three pseudo-Anosov homeomorpisms such that every pair satisfies a braid relation. | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 147 | 2000008 / AMR-019-0008 | Some Open Problems in Elasticity — Uniqueness of equilibrium | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
