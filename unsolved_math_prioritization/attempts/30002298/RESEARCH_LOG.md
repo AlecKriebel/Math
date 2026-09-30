@@ -15,3 +15,7 @@ Source-status completion estimate: 90%. The explanation is a verification of pub
 ## 06:40–06:43 UTC: modest exact checks and freeze
 
 The final 14-example checker passes 284 exact assertions in dimensions 1–3, including the cancellation example and its origin exception. The source package is ready for separate review, with source-status completion estimate 95%. Recommend already_solved, zero new substantive attempts. No claim is made about the separate decomposition questions or a new reconstruction algorithm.
+
+## 07:01 UTC: separate review passed
+
+Source-status completion is 100%. The independent reviewer confirmed the published criterion, all-points pole argument, original vertex convention and origin unit-factor exception. All 284 author assertions reproduced byte for byte; 6,463 independent controls passed. Six supplied review files were copied unchanged. Only review-status metadata changed. The status is already_solved by prior work, with zero new proof attempts and no campaign novelty claim.

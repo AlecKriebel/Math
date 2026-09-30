@@ -1,6 +1,6 @@
 # Fantappiè denominator vertices: a published geometric characterization
 
-**The requested characterization follows from Akopyan–Bárány–Robins, published in 2017.** Their Definition 1 and Remark 10 identify denominator vertices with algebraic vertices, defined by a local condition on tangent cones. This note supplies the explicit pole argument and the origin convention needed to match the exact 2013 question. It claims no new discovery. Separate adversarial source and mathematical review passed; see [the report](review/REVIEW.md).
+**The requested characterization follows from Akopyan–Bárány–Robins, published in 2017.** Their Definition 1 and Remark 10 identify denominator vertices with algebraic vertices, defined by a local condition on tangent cones. This note supplies the explicit pole argument and the origin convention needed to match the exact 2013 question. It claims no new discovery. Separate adversarial review is pending.
 
 ## 1. Exact source and denominator convention
 

@@ -11,4 +11,4 @@ This characterization is credited to Akopyan–Bárány–Robins, *Advances in M
 
 Run python check_denominators.py with SymPy installed. The checker uses exact arithmetic and writes check_results.json beside itself. It verifies finite examples, not the general theorem.
 
-Recommend already_solved with no new substantive attempts. Separate adversarial review is pending. The origin factor, denominator reduction, unit density and original vertex convention are retained explicitly.
+Recommend already_solved with no new substantive attempts. [Separate adversarial review](review/REVIEW.md) passed, with 6,463 independent exact controls and no required correction. The origin factor, denominator reduction, unit density and original vertex convention are retained explicitly.
