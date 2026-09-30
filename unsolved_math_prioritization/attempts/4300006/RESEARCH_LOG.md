@@ -13,3 +13,7 @@ The broad request for a meaningful entropy/period construction is not a precise 
 The explicit shellwise map is a surjective isometry and Haar-measure-preserving conjugacy for any two scalar multipliers with the same nonzero valuation. The unit1+p² has logarithm congruent to p² modulo p³, proving the incompatible normalization uniformly for all primes and for contracting or expanding examples. The additive-conjugacy category and Deninger's compact periodic-entropy theorem are separately reconciled. All122,334 exact bounded controls pass.
 
 The precise two-axiom formulation is settled negatively. The original parenthetical wording leaves the broader program insufficiently axiomatized for a universal no-go claim; recommended original status unsolved1/5. No further proof route is justified without changing that target. The artifact is frozen for separate review. Scoped proof completion100%; broad-source coverage remains50%, no novelty claim.
+
+## 2026-09-30 13:21 UTC — Independent scoped audit passed
+
+The separate reviewer confirmed the all-prime isometric conjugacy, logarithmic contradiction and exact source-scope limitation. All 122,334 submitted and 4,560 independent controls replay identically. Its report additionally checks compact fixed-point counts, reconciling the known nonzero compact periodic entropy with the local zero counts. No correction was required. The frozen proof is unchanged. Recommended original status remains unsolved, 1/5; scoped theorem and audit complete, no novelty claim.
