@@ -4,4 +4,4 @@ The full doubly-small manifold-homeomorphism question remains **unsolved in this
 
 Run `python3 unsolved_math_prioritization/attempts/3009/check_controls.py` from the repository root with Python 3 and SymPy 1.14.0. Its 31 assertions check metric algebra and negative controls, not the imported topological theorems.
 
-One substantive response used of five. Separate source/mathematical review is required before a draft PR.
+One substantive response used of five. [Separate mathematical review](independent_review/REVIEW.md) passed this exact frozen artifact with no mandatory corrections. All 31 submitted and 8,462 independent exact assertions pass. The review is AI-generated and unrefereed; the full problem remains unsolved.
