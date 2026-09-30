@@ -181,7 +181,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 170 | 30005408 / OWR-12697689-004 | Gröbner-Cell Parametrization of Punctual Hilbert Schemes | 0.2007 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 171 | 30005432 / OWR-12697693-003 | The Property-s Elements of a Skew Brace | 0.2007 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 172 | 2306022 / AMR-022-6022 | Research Problems in Function Theory — Problem 6.22 | 0.2000 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 173 | 30000229 / OWR-829-001 | Approximation Classes for Adaptive Finite Elements | 0.1981 | 5.0 | 3 | 2005 | queued | 0/5 |  |  |  |
+| 173 | 30000229 / OWR-829-001 | Approximation Classes for Adaptive Finite Elements | 0.1981 | 5.0 | 3 | 2005 | claimed_solved | 2/5 |  | 2026-09-30: Complete negative endpoint answer in the original conforming newest-vertex-bisection setting: the credited CDN2012 construction lies in A^(1/2), while actual best piecewise-constant H^-1 error has a logarithmic lower bound. Separate source, mesh-cost and edge-bubble audit passed; 3890 author and 4542 independent controls. Endpoint scope and prior construction credit retained; unrefereed. Draft PR: https://github.com/AlecKriebel/Math/pull/154. |  |
 | 174 | 30000264 / OWR-1050-015 | Topology of Yamabe Asymptotic Sets | 0.1981 | 5.0 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 175 | 30000585 / OWR-1327-001 | Force-Induced Phase Transitions in Self-Attracting Polymers | 0.1978 | 5.0 | 3 | 2006 | queued | 0/5 |  |  |  |
 | 176 | 30001413 / OWR-4209-002 | Optimal Domain Conditions for Positivity of Hinged Plates | 0.1966 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
