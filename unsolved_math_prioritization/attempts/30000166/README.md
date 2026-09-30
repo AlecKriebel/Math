@@ -10,4 +10,4 @@ The exact target, including duplicate 30000167, is already a theorem of Berkovic
 
 Reproduce from this directory with `python3 verify.py`. It needs only Python 3's standard library. The finite checks support the source/transcription audit; the general proof uses the explicitly cited classical identities.
 
-The mathematical artifact is frozen pending separate adversarial review. No PR should be opened before that review passes. The parent workflow owns shared queue edits; both duplicate rows should reference one package.
+The frozen mathematical artifact passed [separate adversarial review](independent_review/REVIEW.md): all 2,837 submitted and 35,980 independent exact assertions passed, with no required correction. Its historical pending-review sentence is retained to preserve the reviewed snapshot. The parent workflow owns shared queue edits; both duplicate rows should reference one package.

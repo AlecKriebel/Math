@@ -4,10 +4,10 @@
 - Match the original 2005 report to the full known proof, with explicit Fourier normalization, theta specialization, residue pairing, and all-integer coverage
 - Preserve attribution, source/version limitations, bounded reproducible checks, and 0/5 fresh proof-attempt accounting
 
-This package makes no campaign discovery claim. Independent review must pass before this draft is opened. Shared queue updates belong to the parent workflow and should use one PR for both duplicate records.
+This package makes no campaign discovery claim. The exact frozen artifact passed independent adversarial review. Shared queue updates belong to the parent workflow and should use one PR for both duplicate records.
 
 ## Validation
 
 `python3 unsolved_math_prioritization/attempts/30000166/verify.py`
 
-2,837 exact assertions pass. Independent adversarial review: pending.
+2,837 exact assertions pass. Independent adversarial review: PASS, with 35,980 additional exact assertions and no mandatory correction.
