@@ -5,6 +5,6 @@
 - Original arboreal-image/size question remains unsolved, 1/5
 - The literal AIM question omits a basepoint; zero is an explicit interpretation
 - Prior imported calculations and published qualitative ramification results are credited
-- Separate adversarial review pending; no novelty or human-peer-review claim
+- Separate adversarial AI review passed; see [the report](review/REVIEW.md); no novelty or human-peer-review claim
 - Run `python verify.py` for 679 exact controls; requires SymPy
 - CHECKPOINT.md preserves the earlier unreviewed research checkpoint and is superseded by PARTIAL_RESULT.md

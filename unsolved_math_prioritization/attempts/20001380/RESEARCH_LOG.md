@@ -9,3 +9,7 @@
 
 - 09:22 UTC: Frozen scoped partial at SHA-256 045ed9ab8b9a9105d0471740724fc5bd7d48246647e8cb246269d4493c6f6caa. All679 exact controls pass. Added current2026 branchwise ramification-source overlap without relying on its proof or claiming novelty. Exact full image remains unresolved. Completion estimate:100% of the bounded partial proof/check package; no full-image solution. Separate review requested before any PR.
 - Publication checkpoint recovery: first remote push returned generic '(failed)' with remote absence verified. Parent authorized one identical retry; it succeeded and remote head ebe7d38c224f84ee54d02e7167b5dca8cd77f937 was verified.
+
+## Publication checkpoint
+
+A separate adversarial AI review passed the frozen partial theorem, with 679 submitted controls replaying byte-identically and 1,598 independent controls passing. Its eight publication files are copied unchanged in `review/`. The mathematical artifact remains unchanged; the original image/size question remains unresolved.
