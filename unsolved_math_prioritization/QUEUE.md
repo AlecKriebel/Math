@@ -70,7 +70,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 59 | 3009 / KP-5.2 | Kirby Problem 5.2 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 60 | 9500008 / AMR-094-0008 | Concatenated bounded Brownian pieces | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 61 | 9700035 / AMR-096-0035 | Expected length of a SIRSN spanning subnetwork | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 62 | 9900007 / AMR-098-0007 | Two-process coupling characterization of weak convergence | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 62 | 9900007 / AMR-098-0007 | Two-process coupling characterization of weak convergence | 0.2560 | 5.5 | 3 | unknown | unsolved | 1/5 |  | 2026-09-30: Separate adversarial review passed an explicit slowly-flipping process counterexample to the proposed synchronous-coupling condition, with universal mismatch limit1/2 and finite-offset robustness. The broader characterization requested in the original problem remains unresolved.885author and3044independent controls; source and novelty caveats preserved. Draft PR: https://github.com/AlecKriebel/Math/pull/45. |  |
 | 63 | 30004386 / OWR-17469-011 | Large Deviations for Random High-Dimensional Projections | 0.2552 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 64 | 30004438 / OWR-17475-003 | Real Rational Maps with Exclusively Real Periodic Points | 0.2552 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 65 | 10600042 / AMR-105-0042 | Virtual-knot problem 42 — One can consider braids with even numbers of strands. | 0.2475 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
