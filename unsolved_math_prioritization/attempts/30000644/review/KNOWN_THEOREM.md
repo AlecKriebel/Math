@@ -1,6 +1,6 @@
 # The reduction map was already proved surjective
 
-**Disposition: already solved in the original literature. No new solution or novelty claim. Independent source/proof review passed; see review/REVIEW.md.**
+**Disposition: already solved in the original literature. No new solution or novelty claim. Independent source/proof review pending.**
 
 The exact target 30000644 / OWR-1452-008 has an affirmative answer. The original Oberwolfach report, printed p. 26, places the following immediately after Question 1:
 
