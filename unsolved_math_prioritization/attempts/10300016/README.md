@@ -19,6 +19,6 @@ Reproduce the algebraic checks with Python 3's standard library:
 python3 unsolved_math_prioritization/attempts/10300016/verify_cone_controls.py
 ```
 
-Independent adversarial review is pending. The code does not recognize
+[Independent adversarial review](review/REVIEW.md) passes this explicitly unresolved package, with 191 author and 1,141 independent algebraic controls. Both receipts replay byte-for-byte. This is AI review, not human peer review. The code does not recognize
 self-splitting branched surfaces, and its examples are not claimed to have
 geometric realizations. No public source PDFs are redistributed.
