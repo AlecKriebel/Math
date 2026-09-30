@@ -6,10 +6,10 @@
 - Exclude the standard equal-HFK band-twist family via its independent Khovanov obstruction
 - Record current 2026 special-case results without promoting finiteness to uniqueness
 
-No new knot-theoretic result or counterexample is claimed. One substantive attempt, 1/5. Independent review is pending and must pass before this draft is opened.
+No new knot-theoretic result or counterexample is claimed. One substantive attempt, 1/5. Independent adversarial review passed for the scoped obstruction and credited known cases; the general question remains unresolved.
 
 ## Validation
 
 `python3 unsolved_math_prioritization/attempts/2715/verify.py`
 
-All 564 exact finite algebra controls pass. They are not actual knot Floer computations or a knot search.
+All 564 submitted and 20,223 independent exact finite algebra controls pass. They are not actual knot Floer computations or a knot search.
