@@ -44,7 +44,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 33 | 30000819 / OWR-1595-012 | Volume Bounds for Holes in Very Ample Semigroups | 0.2634 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 34 | 30001075 / OWR-2090-028 | Common Tangent Loci of Three Convex Bodies | 0.2630 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 35 | 30006390 / OWR-14299518-003 | Transversals in Random Subsets of Projective Planes | 0.2618 | 5.5 | 3 | 2025 | queued | 0/5 |  |  |  |
-| 36 | 30001696 / OWR-4798-013 | Ball-Product Structure of Cross-Polytope Subcomplexes | 0.2616 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
+| 36 | 30001696 / OWR-4798-013 | Ball-Product Structure of Cross-Polytope Subcomplexes | 0.2616 | 5.5 | 3 | 2011 | claimed_solved | 1/5 |  | 2026-09-30: Complete PL sphere-ball product proof across the original parameter range, using a variation-diminishing flow and semialgebraic construction. Separate adversarial AI review passed with 20326 independent exact assertions; general theorem rests on the proof, not finite tests. Unrefereed and priority unconfirmed. Draft PR: https://github.com/AlecKriebel/Math/pull/21. |  |
 | 37 | 30001947 / OWR-11454-005 | Nontrivial Witt Pairings in $\mathbb Z_2$-Witt Spaces | 0.2616 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 38 | 10000062 / AMR-099-0062 | Local metric homogeneity forcing periodic triangulations | 0.2611 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 39 | 10400115 / AMR-103-0115 | Problem 6.7 — (S.J. | 0.2600 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
