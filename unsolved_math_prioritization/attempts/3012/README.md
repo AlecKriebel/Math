@@ -16,6 +16,11 @@ submanifold automatically.
 The source's connected/oriented conventions and topological category are
 retained. The codimension-two theorem is prior work. No numerical experiment
 can certify the remaining localization claim, so validation consists of the
-proof and source checks. Independent adversarial review is pending.
+proof and source checks. The [independent adversarial review](review/REVIEW.md)
+passes this explicitly conditional and unresolved package. Its 19,435 exact
+rational controls cover the displayed formulas, not the missing general
+straightening theorem. This is AI review, not human peer review.
+
+Run `python3 review/independent_checks.py` to reproduce the independent receipt.
 
 No counterexample, full well-definedness theorem, or novelty claim is made.
