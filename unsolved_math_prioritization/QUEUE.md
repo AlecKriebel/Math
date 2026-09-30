@@ -143,7 +143,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 132 | 30005451 / OWR-12697708-004 | Local Limits of Preferential Attachment with Deterministic or Random Outdegree | 0.2116 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 133 | 6200049 / AMR-061-0049 | Boundaries of Groups and Kleinian Groups — Problem 49 | 0.2113 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 134 | 30000304 / OWR-1061-006 | Exceptional Regenerative Composition Structures | 0.2113 | 5.0 | 3 | 2005 | queued | 0/5 |  |  |  |
-| 135 | 30002719 / OWR-13352-003 | Probabilistic Interpretation of Waring-Polynomial Series | 0.2113 | 4.5 | 3 | 2014 | queued | 0/5 |  |  |  |
+| 135 | 30002719 / OWR-13352-003 | Probabilistic Interpretation of Waring-Polynomial Series | 0.2113 | 4.5 | 3 | 2014 | unsolved | 2/5 |  | 2026-09-30: Separate review passed exact moment obstructions excluding reversible first-return laws for alln≥4 and finite-state ordinary hitting PGFs forn≥2. Coefficient positivity and unrestricted/nonreversible probabilistic interpretation remain unresolved.2728author and346independent controls; prior birth-death limitation credited, two bounded routes. Draft PR: https://github.com/AlecKriebel/Math/pull/122. |  |
 | 136 | 30000697 / OWR-1458-003 | Injectivity Criteria for Upsilon Transforms | 0.2107 | 5.0 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 137 | 30001234 / OWR-3471-008 | Uniqueness in Linear Programs for Binomial Multiplier Ideals | 0.2100 | 5.0 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 138 | 30001410 / OWR-4199-003 | Crofton Measures in Hilbert Geometry | 0.2097 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
