@@ -8,4 +8,4 @@
 - [Bounded algebra checks](verify.py), [results](verification.json)
 - [Research log](RESEARCH_LOG.md), [1/5 attempt accounting](turns.json)
 
-Run `python3 verify.py` from this directory. It requires only Python3's standard library. Its564 exact assertions are finite algebra diagnostics, not actual knot Floer computations or a knot search. Separate adversarial review is required before a draft PR.
+Run `python3 verify.py` from this directory. It requires only Python 3's standard library. Its 564 exact assertions are finite algebra diagnostics, not actual knot Floer computations or a knot search. Separate adversarial review is required before a draft PR.
