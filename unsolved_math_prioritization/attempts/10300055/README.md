@@ -1,6 +1,6 @@
 # Calegari Question 13.2: tightness of contact connection forms
 
-[The proof candidate](CANDIDATE.md) gives an affirmative answer to the conditional tightness question using the Eliashberg–Thurston theorem and Gray stability. The proof includes a regularization argument for $C^1$ forms and retains the source's $C^2$ foliation hypothesis. Separate adversarial review is pending; neither historical priority nor human peer review is claimed.
+[The proof candidate](CANDIDATE.md) gives an affirmative answer to the conditional tightness question using the Eliashberg–Thurston theorem and Gray stability. The proof includes a regularization argument for $C^1$ forms and retains the source's $C^2$ foliation hypothesis. [Separate adversarial AI review](review/REVIEW.md) passed with no mandatory correction. All 87 author controls and 89 independent controls pass. Neither historical priority nor human peer review is claimed. The frozen proof keeps its original pending-review sentence to preserve the exact reviewed bytes.
 
 This does not answer the preceding existence question, problem 10300054. The argument is conditional on the connection form already being contact.
 
