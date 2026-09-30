@@ -1,0 +1,6 @@
+# Bounded source-validation log
+
+- 2026-09-30 07:21:40UTC: Began rank84 KP-3.63. Exact model gpt-6-astra, xhigh. Two-hour ceiling09:21:40UTC. Prior-attempt/duplicate and original-source gates checked. Completion estimate0%.
+- 07:25UTC: Identified Lin–Lipnowski's 2021preprint/2025JEMS article as the missing primary source. Full published source explicitly discusses any hyperbolic three-manifold and nonzero Weeks eta. Completion estimate65% of source audit, no novelty credit.
+- 07:33UTC: Checked the spin trace formula, Fourier convention, kernel terms, AppendixC's general closed-manifold hypotheses, and Gaussian extension. Distinguished the rational-homology-sphere Floer applications from the unrestricted spin trace theorem. Completion estimate85%.
+- 07:37UTC: Froze SOURCE_STATUS.md with raw eta formula and finite length-sum convergence consequence.99 exact consistency assertions passed. An initial test failure was a symbolic normal-form mismatch between erf and erfc; rewriting in erf corrected the test without changing any mathematics. The package claims a credited method, not a uniform certified stopping algorithm. Completion estimate100% of the bounded source audit, pending separate adversarial review.0/5 fresh proof attempts.
