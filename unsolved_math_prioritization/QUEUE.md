@@ -158,7 +158,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 147 | 2000008 / AMR-019-0008 | Some Open Problems in Elasticity — Uniqueness of equilibrium | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 148 | 20001312 / AIM-CONVEX_GEOMETRY-0044 | Polynomial ridge completeness and switching obstructions for the four AIM directions | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 149 | 20001964 / AIM-GEOMETRY-0302 | Noncompact equivariant integration and the boundary at infinity | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 150 | 2306064 / AMR-022-6064 | Research Problems in Function Theory — Problem 6.64 | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 150 | 2306064 / AMR-022-6064 | Research Problems in Function Theory — Problem 6.64 | 0.2080 | 5.5 | 3 | unknown | claimed_solved | 1/5 |  | 2026-09-30: Complete explicit coefficient-sum sufficient condition for Miller alpha-convexity for every realalpha, recovering the classical endpoint weights. Separate analytic/source audit passed zero avoidance, strict-interior/budget boundary and restricted-family sharpness;50840author and28722independent controls.2017two-denominator estimate credited; no global optimality or priority claim. Draft PR: https://github.com/AlecKriebel/Math/pull/134. |  |
 | 151 | 2770 / KP-2.22 | Kirby Problem 2.22 | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 152 | 2830 / KP-3.32 | Kirby Problem 3.32 | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 153 | 2840 / KP-3.42 | Kirby Problem 3.42 | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
