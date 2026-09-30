@@ -28,3 +28,9 @@ The estimated completion measures preparation and validation of this
 candidate, not a calibrated probability of correctness or novelty. The
 research ceiling is two hours from 07:34 UTC and at most five substantive
 attempts. No shared queue or historical assessment files were changed.
+
+- **2026-09-30 07:53 UTC — Independent review passed, completion estimate 100% for the candidate package.**
+  A separate reviewer found no mathematical correction, reproduced all 13,236
+  author checks and passed 10,403 independent checks. The proof is byte-identical
+  to the reviewed snapshot. The package retains the attribution, unconfirmed
+  priority and absence of human peer review. One scoped draft PR is authorized.

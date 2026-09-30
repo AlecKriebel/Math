@@ -1,7 +1,13 @@
 # Kirby Problem 4.109: a connected counterexample candidate
 
-**Status: complete candidate counterexample, separate review pending.**
+**Status: complete candidate counterexample; separate adversarial AI review passed.**
 One substantive attempt has been used. Historical novelty is unconfirmed.
+
+The [independent review](review/REVIEW.md) reports no mathematical gap. It also
+checks that the integral surface class is primitive. Its 10,403 independent
+assertions reproduce exactly. The frozen proof intentionally retains its
+historical pending-review header; its reviewed bytes have not been changed.
+The result remains unrefereed by a human.
 
 [CANDIDATE.md](CANDIDATE.md) constructs a connected genus-three symplectic
 surface in a free quotient of the four-torus, with integral symplectic class
