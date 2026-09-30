@@ -17,3 +17,7 @@ Completion estimate remains 2%. A line or circle supports at most two other poin
 ## 05:31 UTC: unresolved package prepared for separate review
 
 Completion estimate remains 2%; the target is unresolved. Two routes have precise proved obstructions, and further variations without a new mechanism would repeat those gaps. All 18,306 exact finite assertions pass. The mathematical note also reproduces a classical estimate from the primary source for orientation, without treating that reproduction as a discovery. Work is being frozen for independent adversarial review before any PR.
+
+## 06:12 UTC: separate review passed
+
+The original asymptotic target remains unresolved, with the completion estimate unchanged at 2%. Independent adversarial review passed all stated partial assertions and reproduced all 18,306 author controls byte for byte; 1,263 additional exact controls passed. The six supplied review files are preserved unchanged. Only the mathematical note’s review-status sentence was updated; the source qualifications and mathematical text are unchanged. The package is ready for one scoped unresolved draft PR.

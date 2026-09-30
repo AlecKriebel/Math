@@ -1,6 +1,6 @@
 # Distance-count spectra: two construction obstructions
 
-**Erdős Problem 653 remains unresolved.** This note records why two selected construction routes do not establish the conjecture. The elementary statements below carry no novelty claim. Separate adversarial review is pending.
+**Erdős Problem 653 remains unresolved.** This note records why two selected construction routes do not establish the conjecture. The elementary statements below carry no novelty claim. Separate adversarial AI review passed; see [the report](review/REVIEW.md). This has not undergone human peer review.
 
 ## 1. Exact target and notation
 
