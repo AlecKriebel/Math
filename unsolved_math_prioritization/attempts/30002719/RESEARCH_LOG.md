@@ -11,3 +11,6 @@ The renewal return sequence violates positive-semidefiniteness for a single degr
 
 ## 2026-09-30 10:19 UTC: freeze and review request
 The final standard-library verifier passes 2,728 exact assertions. Two substantive families are recorded; the original target remains unsolved. Freeze early because extending the current route would require the unsupported all-coefficient positivity or a genuinely new stochastic mechanism. No novelty or human peer-review claim. The 2-hour ceiling was not approached.
+
+## 2026-09-30 10:34 UTC: separate review and publication
+Independent review passed the scoped obstructions without mandatory correction. The mathematical file is unchanged; 2,728 author and346 independent assertions pass. Original target remains unsolved,2/5, estimated20% completion toward a general interpretation. No coefficient positivity or unrestricted stochastic construction is claimed.

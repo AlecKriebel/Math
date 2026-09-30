@@ -6,6 +6,6 @@ The original target remains **unsolved, 2/5 approaches**. Coefficient positivity
 
 - 2,728 exact assertions pass, including 1,098 small graphs and a modest coefficient screen
 - Run verify.py with Python3's standard library; the receipt is printed to stdout
-- Separate adversarial review is pending; no human peer review has occurred
+- [Separate adversarial AI review passed](review/REVIEW.md) for the scoped obstructions, with 346 additional independent exact controls. No human peer review has occurred. The submission-time pending sentence in the frozen mathematical artifact is superseded by this review.
 - Sources are linked and hashed in the package; third-party PDFs are not republished
 - The coordinating task maintains the queue
