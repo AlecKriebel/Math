@@ -1,8 +1,13 @@
 # Metropolis chains on Cayley graphs: scoped partial answers
 
-**Status: partial; full source record unresolved; separate review pending.**
+**Status: independently reviewed partial; full source record unresolved.**
 Two of five substantive attempts have been used. Historical novelty is
 unconfirmed.
+
+The [separate adversarial review](review/REVIEW.md) passed without mandatory
+corrections. All 992 independent exact checks reproduce. The frozen partial
+retains its historical pending-review sentence so the reviewed bytes remain
+unchanged. Human peer review has not occurred.
 
 [PARTIAL.md](PARTIAL.md) gives the exact complete-graph spectrum, disproves
 nonincreasing relaxation, rules out a universal comparison with the uniform
