@@ -157,7 +157,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 146 | 11000147 / AMR-109-0147 | Question — Does there exist a set of at least three pseudo-Anosov homeomorpisms such that every pair satisfies a braid relation. | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 147 | 2000008 / AMR-019-0008 | Some Open Problems in Elasticity — Uniqueness of equilibrium | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 148 | 20001312 / AIM-CONVEX_GEOMETRY-0044 | Polynomial ridge completeness and switching obstructions for the four AIM directions | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 149 | 20001964 / AIM-GEOMETRY-0302 | Noncompact equivariant integration and the boundary at infinity | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 149 | 20001964 / AIM-GEOMETRY-0302 | Noncompact equivariant integration and the boundary at infinity | 0.2080 | 5.5 | 3 | unknown | unsolved | 2/5 |  | 2026-09-30: Separate review passed the literal global-smooth/fixed-point-only pole obstruction and exact weightedCn jet-cancellation criterion. The surrounding rational/localized definition and distributional integration remain compatible; no repaired noncompact integration theory is refuted or fully solved.24965author and114137independent algebraic controls; broader program unresolved. Draft PR: https://github.com/AlecKriebel/Math/pull/129. |  |
 | 150 | 2306064 / AMR-022-6064 | Research Problems in Function Theory — Problem 6.64 | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 151 | 2770 / KP-2.22 | Kirby Problem 2.22 | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 152 | 2830 / KP-3.32 | Kirby Problem 3.32 | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
