@@ -30,3 +30,7 @@ Froze PARTIAL.md at 6fdce06f9de27f5fbd5010c866c2b30af5f6b28765646aff4ce16fb48906
 
 All 1,954 exact assertions pass, including noncommuting covariance whitening, the gain resolvent, moment-expansion algebra and the compact-support Gaussian diagnostic. These are finite algebraic controls, not stochastic convergence evidence. The separate reviewer received the frozen proof, final code/receipt hashes and complete source cache. No result PR is opened before that audit. The final published theorem/cutoff page was rendered and inspected; no deterministic-bound interpretation is silently attributed to the source.
 
+
+## 2026-09-30 13:40 UTC — independent review and publication checkpoint
+
+The separate adversarial audit passed with no mathematical correction. All 1,954 author assertions replayed byte-identically, and 3,270 independent exact assertions passed. The stopped-increment argument and exact initial-moment endpoint were audited analytically. All eight specified review files were copied unchanged. The mathematical snapshot remains frozen; administrative files record the current status. The full target remains unsolved, two of five approaches; completion estimate remains 30%.
