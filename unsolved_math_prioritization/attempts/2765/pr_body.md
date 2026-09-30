@@ -10,6 +10,6 @@ The actual original question is in the K3 book, printed pp.98–99. The dataset'
 
 ## Review and checks
 
-Separate adversarial mathematical/source review is included before this draft opens. Run `python3 unsolved_math_prioritization/attempts/2765/verify.py` (SymPy1.14.0). It passes 30 exact matrix/free-word controls, including the explicit hyperbolic Γ(2) element and a generic trace-reversal identity. These are not finite tests of the full all-Teichmüller-space current condition.
+Separate adversarial mathematical/source review passed for this explicitly partial scope, with 72 independent exact assertions. It is included before this draft opens. Run `python3 unsolved_math_prioritization/attempts/2765/verify.py` (SymPy1.14.0). It passes 30 exact matrix/free-word controls, including the explicit hyperbolic Γ(2) element and a generic trace-reversal identity. These are not finite tests of the full all-Teichmüller-space current condition.
 
 Actual model: gpt-6-astra xhigh. Two substantive attempts, then a precise stop at the closed-surface finite-support/convex-decomposition gap. The coordinator owns the QUEUE update to unsolved.

@@ -17,5 +17,5 @@ claimed. The punctured example does not apply to a varying-boundary-length
 pair of pants or to the different compact-core current convention.
 
 See SOURCE_AUDIT.md, source records/provenance, and the separate review
-when complete. Finite matrix tests supplement the source/normalization
+(PASS for the scoped partial results, 72 independent exact checks). Finite matrix tests supplement the source/normalization
 checks; they do not test equality on all of Teichmüller space.

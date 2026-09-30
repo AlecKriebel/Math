@@ -2,7 +2,7 @@
 
 **Status: source-scope hold; the substantive closed-surface problem remains unresolved.**
 The statements below are scoped results and classical reductions, not a new
-solution of the general closed-surface problem. Independent review pending.
+solution of the general closed-surface problem. Independent scoped review passed; see review/REVIEW.md.
 AI-assisted and unrefereed; no historical-priority claim.
 
 Target: **2765 / KP-2.17**, K3, Problem 2.17, printed pp. 98–99 [1].

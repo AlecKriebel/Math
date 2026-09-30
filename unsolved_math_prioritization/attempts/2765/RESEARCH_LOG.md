@@ -27,3 +27,5 @@ Two-hour bound: 05:12–07:12; at most five substantive proof attempts.
 Estimates concern the full substantive closed-surface target, not the
 completeness of this source/partial-result package. No large search,
 external contact, or shared queue editing was performed.
+
+- **05:55 — 15%:** separate adversarial review passed the scoped partial results and source hold, with 72 independent assertions and byte-identical replay of all 30 author controls. No mathematical correction required. Changed only the review-status sentence in RESULTS.md and requested narrow final-hash coverage before draft publication.
