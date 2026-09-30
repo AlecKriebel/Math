@@ -27,3 +27,5 @@ Model: gpt-6-astra, xhigh. Start: 2026-09-30 06:56 UTC. Hard deadline:
 Two substantive approaches used. The known martingale and analytic machinery
 is credited. No new existence, optimal norm, little-Bloch, or priority claim is
 made. The draft will remain unpublished as a PR until separate review passes.
+
+- **07:35 UTC:** Separate adversarial review passed the unchanged frozen proof and the full explicit-construction scope, with no mandatory correction. All 2,884 author and 37,154 independent exact controls reproduce byte-for-byte. Seven review files, including the frozen proof snapshot needed for replay, are preserved unchanged. Completion estimate: 100% for the exact source demand; no priority claim.

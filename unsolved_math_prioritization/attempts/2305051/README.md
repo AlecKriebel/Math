@@ -1,6 +1,6 @@
 # 2305051: an explicit Blaschke product with a Bloch Cayley transform
 
-**Complete candidate awaiting separate adversarial review.** A deterministic
+**Separate adversarial review PASS for the complete explicit construction.** A deterministic
 four-adic integer recursion produces rational finite Blaschke products. Their
 locally uniform limit has B(0)=0 and a Bloch Cayley transform. An explicit error
 bound makes the construction effective on compact subsets of the disk.
@@ -22,3 +22,7 @@ Kahane's and Cantón's martingale methods and the classical analytic inputs are
 credited. Historical priority is unestablished. The explicit answer is a
 fully specified recursion with a compact-uniform convergence bound, rather
 than a short closed-form list of all zeros.
+
+## Independent validation
+
+[The separate report](review/REVIEW.md) passes the full construction, including the singular-factor exclusion, circle normalization, and the source’s explicitness requirement. All 2,884 author and 37,154 independent exact controls reproduce byte-for-byte. The frozen proof and every review file are preserved unchanged. This is AI review, not human peer review; historical priority remains unestablished.
