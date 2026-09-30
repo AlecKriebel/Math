@@ -41,7 +41,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 30 | 30005934 / OWR-14298374-003 | Wishart Processes with Noninjective Semigroups | 0.2651 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 31 | 30000224 / OWR-824-008 | Set-Theoretic Cohen–Macaulay Ideals in Characteristic Zero | 0.2641 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 32 | 30000439 / OWR-1194-009 | Gaps Between Piecewise-Linear and Linear Embedding Dimensions | 0.2637 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
-| 33 | 30000819 / OWR-1595-012 | Volume Bounds for Holes in Very Ample Semigroups | 0.2634 | 5.5 | 3 | 2007 | partial | 1/5 |  | 2026-09-30: Independently AI-reviewed coarse bound for finite-hole height: h <= 2 V^2 (V-1)^2 - 2. Does not settle the original source's possible sharper h<=V interpretation. Source-scope hold retained; no full-resolution claim. Draft PR: https://github.com/AlecKriebel/Math/pull/15. |  |
+| 33 | 30000819 / OWR-1595-012 | Volume Bounds for Holes in Very Ample Semigroups | 0.2634 | 5.5 | 3 | 2007 | unsolved | 1/5 |  | 2026-09-30: Independently AI-reviewed coarse bound for finite-hole height: h <= 2 V^2 (V-1)^2 - 2. Does not settle the original source's possible sharper h<=V interpretation. Source-scope hold retained; no full-resolution claim. Draft PR: https://github.com/AlecKriebel/Math/pull/15. |  |
 | 34 | 30001075 / OWR-2090-028 | Common Tangent Loci of Three Convex Bodies | 0.2630 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 35 | 30006390 / OWR-14299518-003 | Transversals in Random Subsets of Projective Planes | 0.2618 | 5.5 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 36 | 30001696 / OWR-4798-013 | Ball-Product Structure of Cross-Polytope Subcomplexes | 0.2616 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
