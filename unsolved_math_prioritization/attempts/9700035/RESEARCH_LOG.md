@@ -10,3 +10,4 @@ Remote checkpoints and independent review disposition will be recorded below. Sh
 
 - 05:54 UTC: remote checkpoint 5aebfef97d63e0f36e6dfeb673c5500ca75783b7 pushed and verified on dot/math-9700035. Full-target completion estimate remains 25%.
 - 06:12 UTC: independent adversarial review PASS_CONDITIONAL_PARTIAL, with 3,809 independent controls and byte-identical replay of 211 author controls on the reviewed snapshot. No mandatory correction. Only the proof status line was updated for final review-hash coverage; the standard-axiom full-span problem remains unresolved.
+- 06:15 UTC: independent final-header hash check passed; opened the single draft PR https://github.com/AlecKriebel/Math/pull/41 with the extra tail condition explicit in its title and summary. Full target remains unsolved; completion estimate remains 25%.
