@@ -6,6 +6,8 @@
 
 The note credits the known bounded-cutset special case, gives a stretched-tree example showing that hypothesis is strictly stronger, and identifies why unbounded exploration capacities do not yield a homogeneous percolation contradiction. These examples obstruct proof routes; they are not counterexamples to the original question.
 
-[SOURCE_AUDIT.md](SOURCE_AUDIT.md) records the exact graph, product, and bond-percolation conventions, source recovery, and literature boundaries. The actual model was gpt-6-astra at xhigh reasoning. Separate adversarial review is pending.
+[SOURCE_AUDIT.md](SOURCE_AUDIT.md) records the exact graph, product, and bond-percolation conventions, source recovery, and literature boundaries. The actual model was gpt-6-astra at xhigh reasoning. [Separate adversarial review](review/REVIEW.md) passed for these partial conclusions, with no mandatory mathematical correction. This is an AI review, not human peer review; novelty remains unconfirmed.
 
 Run `python check_coupling.py` from this directory. Its 4,996 exact finite assertions compare the capped exploration's reached-set law with the independent-reservoir implementation on K2 x C3 and check the probability calculations. This diagnostic cannot prove an infinite-volume assertion by itself.
+
+The independent checker adds 90,170 exact assertions, including multiple interacting reservoirs at p=1/2, 1/3, and 2/3, full product-law completion, and a sharp 2M control. Run `python review/independent_checks.py` to reproduce it. The general finite-but-unbounded fiber case remains unresolved.

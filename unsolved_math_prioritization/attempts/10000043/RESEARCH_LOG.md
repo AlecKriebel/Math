@@ -17,3 +17,7 @@ Completion estimate remains 15%; the full target is unresolved. The existing uni
 ## 05:04 UTC: frozen partial package
 
 Completion estimate remains 15% for the original target. Both selected routes have a precise unresolved gap. The frozen note and exact checker were sent for separate adversarial review. All 4,996 finite assertions passed, including agreement of the original and deferred-decision reached-set distributions. The original universal claim remains unproved, with no counterexample or novelty claim. No PR has been opened.
+
+## 05:20 UTC: separate review passed
+
+Completion estimate remains 15%; the original target is unresolved. A separate gpt-6-astra reviewer at xhigh audited the frozen proof and sources, reproduced all 4,996 author assertions, and passed 90,170 independent finite assertions. No mandatory correction was found. The mathematical artifact remains byte-identical to the reviewed snapshot. The review and reproducible checks are included for one unresolved-partial draft PR; no novelty or human-peer-review claim is made.
