@@ -11,3 +11,6 @@ Implemented the known block-dominance mechanism with finite sentinels, lexicogra
 
 ## 2026-09-30 11:08 UTC: freeze
 All10,388 exact controls pass. One substantive validation/reconstruction family recorded. The complete proof, implementation, verifier and receipt are frozen for separate review. No original discovery or optimality claim. The parent owns any queue status update after review.
+
+## 2026-09-30 11:11 UTC: review correction to output reporting
+The independent reviewer noted that recursive yield-from propagation could add recursion-depth overhead per reported pair in the reference implementation. Replaced it with a shared output list and one leaf append per pair, matching the written O(P) reporting algorithm. No proof statement or mathematical file changed. All10,388 correctness assertions still pass. This is a verification correction within the same validation family, not a new search approach.

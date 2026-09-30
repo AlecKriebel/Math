@@ -6,30 +6,34 @@ A block_size override is provided for small correctness diagnostics only.
 """
 
 def dominance_pairs(points, dimension):
-    """Yield red<=blue pairs; point=(coordinate tuple, color 0/1, label)."""
-    red = [p for p in points if p[1] == 0]
-    blue = [p for p in points if p[1] == 1]
-    if not red or not blue:
-        return
-    if dimension == 0:
-        for r in red:
-            for b in blue:
-                yield r[2], b[2]
-        return
-    if len(points) <= 16:
-        for r in red:
-            for b in blue:
-                if all(r[0][j] <= b[0][j] for j in range(dimension)):
-                    yield r[2], b[2]
-        return
-    # Red precedes blue at equal coordinate values: <= is inclusive.
-    ordered = sorted(points, key=lambda p: (p[0][dimension-1], p[1], p[2]))
-    half = len(ordered)//2
-    left, right = ordered[:half], ordered[half:]
-    yield from dominance_pairs(left, dimension)
-    yield from dominance_pairs(right, dimension)
-    cross = [p for p in left if p[1] == 0] + [p for p in right if p[1] == 1]
-    yield from dominance_pairs(cross, dimension-1)
+    """Return red<=blue pairs using one shared append per reported pair."""
+    output = []
+    def report(current, remaining):
+        red = [p for p in current if p[1] == 0]
+        blue = [p for p in current if p[1] == 1]
+        if not red or not blue:
+            return
+        if remaining == 0:
+            for r in red:
+                for b in blue:
+                    output.append((r[2], b[2]))
+            return
+        if len(current) <= 16:
+            for r in red:
+                for b in blue:
+                    if all(r[0][j] <= b[0][j] for j in range(remaining)):
+                        output.append((r[2], b[2]))
+            return
+        # Red precedes blue at equal coordinate values: <= is inclusive.
+        ordered = sorted(current, key=lambda p: (p[0][remaining-1], p[1], p[2]))
+        half = len(ordered)//2
+        left, right = ordered[:half], ordered[half:]
+        report(left, remaining)
+        report(right, remaining)
+        cross = [p for p in left if p[1] == 0] + [p for p in right if p[1] == 1]
+        report(cross, remaining-1)
+    report(points, dimension)
+    return output
 
 
 def minplus_prefix(A, B, bound, block_size=None):
