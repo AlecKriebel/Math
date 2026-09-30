@@ -1,6 +1,6 @@
 # KP 1.63: fixed-knot infinitude remains unresolved
 
-**Status:** Unresolved, with credited structural obstructions to two attempted routes. Separate adversarial AI review passed; see [the report](review/REVIEW.md). No novel theorem or counterexample is claimed.
+**Status:** Unresolved, with credited structural obstructions to two attempted routes. Independent review pending. No novel theorem or counterexample is claimed.
 
 ## 1. Exact scope
 

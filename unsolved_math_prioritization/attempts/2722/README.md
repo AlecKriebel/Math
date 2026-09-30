@@ -7,6 +7,6 @@ The fixed-knot infinitude problem remains unsolved. Two attempted routes stop at
 - [Exact finite controls](verify.py), [receipt](verification.json)
 - [Attempt ledger](turns.json), [research log](RESEARCH_LOG.md)
 
-Independent review is pending. There is no novelty claim. The 2,045 exact assertions are algebraic and combinatorial controls, not a Legendrian classification or diagram search.
+[Separate adversarial AI review passed](review/REVIEW.md). This has not undergone human peer review. There is no novelty claim. The 2,045 exact assertions are algebraic and combinatorial controls, not a Legendrian classification or diagram search.
 
 Run the sibling verify.py with Python3; it writes verification.json beside itself and requires the sibling OBSTRUCTION.md.
