@@ -106,7 +106,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 95 | 30006461 / OWR-14299577-011 | Nonconstancy of the Multiplication-Table Limit Profile | 0.2290 | 5.5 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 96 | 30000177 / OWR-785-003 | LOCC Dense-Codeability of the Four-Qubit W State | 0.2289 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 97 | 30000252 / OWR-1050-001 | Critical-Exponent Polyharmonic Dirichlet Problems | 0.2289 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
-| 98 | 30000991 / OWR-2040-003 | Realization of Persistence Pairings by Filtration Functions | 0.2279 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
+| 98 | 30000991 / OWR-2040-003 | Realization of Persistence Pairings by Filtration Functions | 0.2279 | 5.5 | 3 | 2008 | unsolved | 2/5 |  | 2026-09-30: Separate review passed exact persistence-pair realization for finite graphs, including component postponement and the actual descending-function generated-subcomplex filtration. Higher-dimensional Conjecture3 remains unresolved and is distinct from prior30000990 work.8852author and2073304independent assertions over93948small graph filtrations; no full-resolution claim. Draft PR: https://github.com/AlecKriebel/Math/pull/81. |  |
 | 99 | 30001203 / OWR-3394-020 | Global Observability from Negative Gramian Curvature | 0.2275 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 100 | 30001377 / OWR-4135-008 | Sensitivity Growth Under Boolean Conjunctions | 0.2275 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 101 | 30001804 / OWR-5158-001 | Mapping-Class-Group Presentations of Surface Steinberg Modules | 0.2267 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
