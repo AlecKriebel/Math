@@ -7,7 +7,7 @@ This is a **credited known resolution**, with1/5 validation/certificate families
 - 548 exact standard-library assertions pass
 - The proof uses finite identities and rational margins, with no continuity or integrability assumption on the profiles
 - A bounded nonconvex patch-swapped competitor has identical four continuous X-rays
-- Separate adversarial review is pending; no human peer review has occurred
+- [Separate adversarial AI review passed](review/REVIEW.md) for the complete credited counterexample; no human peer review has occurred. The frozen artifact’s submission-time pending sentence is superseded by this final review
 - Run verify.py to print the receipt
 - Third-party PDFs are linked and hashed but not republished
 - The coordinating task owns the queue row

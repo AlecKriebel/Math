@@ -11,3 +11,6 @@ One81-point linear feasibility problem produced a sixteen-point signed certifica
 
 ## 2026-09-30 10:47 UTC: final freeze
 All548 exact controls pass. The mathematical artifact is frozen for separate adversarial review. One substantive validation/certificate family used. The original slab question is excluded as an extraction error, and arbitrary measurable profiles and null-set scope remain explicit. No novelty or human-peer-review claim. The coordinator owns status changes after review.
+
+## 2026-09-30 10:55 UTC: separate review and publication preparation
+Independent review passed without mandatory correction: PASS_COMPLETE_CREDITED_COUNTEREXAMPLE. The mathematical file and verification code remain frozen. 537 independent exact controls pass. Status is already_solved, 1/5. Completion estimate remains 100% of the recovered target as a credited known-result consequence, not a new discovery.
