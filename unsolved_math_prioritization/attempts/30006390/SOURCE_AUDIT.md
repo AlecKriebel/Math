@@ -17,3 +17,7 @@ ID 30006391 / OWR-14299518-004 is an exact duplicate of this target, rather than
 Before proof work, the main-branch queue listed 30006390 as queued with 0/5 turns. The pinned research-results dictionary has no matching report. All-state PR searches, full PR title/body checks, branch-reference checks, and attempt-path commit checks found no prior attempt for 30006390 or its duplicate 30006391. No matching attempt folder appeared in the main-branch tree. The related-target file had no entry identifying this duplicate pair. Shared historical records have not been changed.
 
 The source gate passes for investigating an unresolved target. A bounded literature search does not establish exhaustive current open status or novelty.
+
+## Container references checked
+
+[Balogh–Samotij, An efficient container lemma](https://www.math.tau.ac.il/~samotij/papers/efficient-containers-revised.pdf), Theorems 1.1, 1.6, 2.1 and the epsilon-net application in Section 7, was checked for a direct application. Its numerical hypotheses fail for the full-line hypergraph here; the precise substitution is in `BASELINE.md`. [Balogh–Solymosi, On the number of points in general position in the plane](https://arxiv.org/pdf/1704.05089), the epsilon-net statements and construction context, concern a different constructed geometric system. Neither cited result supplies the missing random-projective-plane lower bound.

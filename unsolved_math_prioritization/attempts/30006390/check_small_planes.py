@@ -48,6 +48,15 @@ for q in [2,3]:
     # Check full-line absence is sufficient to exclude every blocker of size q+1.
     for R in blockers:
         if not any(R&L==L for L in lines):assert tau[R]>=q+2
+    # Exact Bruen inequality and the general alteration expectation at rho=1/2.
+    for R in blockers:
+        if not any(R&L==L for L in lines):
+            a=R.bit_count()-q-1
+            assert a>=0 and a*a>=q
+        # Common denominator 2^(q+1) makes the expected addition count exact.
+        scale=1<<(q+1)
+        expected_scaled=R.bit_count()*(scale//2)+sum(1<<(q+1-(R&L).bit_count()) for L in lines)
+        assert tau[R]*scale<=expected_scaled
     # Exact probability bounds and common-point dependence of empty sections.
     total=1<<n
     bad_empty=sum(hit[R]!=full for R in range(total))

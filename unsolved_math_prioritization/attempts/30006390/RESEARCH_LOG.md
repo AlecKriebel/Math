@@ -14,6 +14,10 @@ Investigate weighted enumeration of inclusion-minimal blocking sets and determin
 
 Completion estimate for a full resolution: 10%. The blocking-set reduction, a self-contained derivation of the classical Bruen bound, and a standard alteration upper bound give q+sqrt(q)+1 <= tau(R) <= (1+o(1)) q log q with high probability. The lower bound has no divergent multiplier. Exact PG(2,2) and PG(2,3) checks pass. The weighted minimal-blocker counting reduction is rigorous, but its required bound is unproved; this route is blocked at that specific structural enumeration problem.
 
-## Attempt 2 in progress
+## Attempt 2 completed without resolution
 
 Check whether a container or entropy bound from the cited primary literature applies in the required dense random-point regime, rather than importing the distinct independent-incidence argument. The existence of a line blocker means general set-family enumeration must distinguish structured families from typical sparse subsets.
+
+## 04:14 UTC final research disposition
+
+Completion estimate for a full resolution: 10%; the target is unresolved. Both selected routes have stalled at a genuine unproved step. No additional proof search will be counted as source triage. Two of five substantive attempts used. Final package includes the elementary baseline proof, exact small-plane diagnostics, duplicate/source audit, and a quantitative demonstration that the cited container statements do not apply directly. Separate adversarial review is pending; no pull request has been opened.
