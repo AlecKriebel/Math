@@ -196,7 +196,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 185 | 30003069 / OWR-14221-005 | Plabic Newton–Okounkov Bodies and FFLV Polytopes | 0.1940 | 5.0 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 186 | 4800017 / AMR-047-0017 | Multiple ergodic averages — Problem 17 | 0.1940 | 6.0 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 187 | 30003390 / OWR-15214-002 | Exact Strong Approximation Rates for CIR Processes | 0.1935 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
-| 188 | 30003480 / OWR-15428-003 | Single Polynomial Description of Binary Tensor Gram Loci | 0.1935 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
+| 188 | 30003480 / OWR-15428-003 | Single Polynomial Description of Binary Tensor Gram Loci | 0.1935 | 5.0 | 3 | 2017 | claimed_solved | 2/5 |  | 2026-09-30: Complete impossibility of a single additional real-polynomial inequality defining the unit-ball binary tensor Gram locus inside its cube or convex hull for every n≥3, plus an exact positive n4 counterexample to the proposed formula. Separate source, normalization, realization and multiplicity audit passed; 8363 author and 1589 independent controls. Polygon-theorem credit and source-display caution retained; priority unconfirmed. Draft PR: https://github.com/AlecKriebel/Math/pull/170. |  |
 | 189 | 30003677 / OWR-15962-003 | Strategic Starting Vertices in Competing First-Passage Percolation | 0.1935 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 190 | 30000567 / OWR-1323-003 | Disjoint-Hypercyclic Operators on Banach Spaces | 0.1934 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
 | 191 | 4300006 / AMR-042-0006 | Entropy and Deligne periods | 0.1934 | 5.5 | 4 | 2006 | queued | 0/5 |  |  |  |
