@@ -136,7 +136,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 125 | 30003997 / OWR-16633-014 | Hardness of Path-Cost Arborescence Optimization | 0.2229 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 126 | 5100032 / AMR-050-0032 | Elliptic-billiard invariant k_{603} | 0.2222 | 4.5 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 127 | 30004433 / OWR-17474-007 | Ends of Critical Long-Range Percolation Clusters | 0.2212 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
-| 128 | 4900006 / AMR-048-0006 | Eden's conjecture on local Lyapunov dimension | 0.2200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 128 | 4900006 / AMR-048-0006 | Eden's conjecture on local Lyapunov dimension | 0.2200 | 6.0 | 3 | unknown | claimed_solved | 2/5 |  | 2026-09-30: Complete analytic counterexample to the literal unrestricted global-attractor maximizer assertion: an aperiodic torus has exact local dimension203/50 exceeding all equilibria and periodic orbits. Separate definition/dynamical audit passed;10024author and4529independent controls. Historical Lorenz-specific, strange-attractor and typical-system refinements remain unaddressed; unrefereed, novelty unconfirmed. Draft PR: https://github.com/AlecKriebel/Math/pull/111. |  |
 | 129 | 30005678 / OWR-14297744-011 | Fully Two-Segal Waldhausen S-Constructions | 0.2174 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 130 | 5300050 / AMR-052-0050 | Boundary entropy of an attracting basin | 0.2142 | 5.5 | 3 | 1992 | queued | 0/5 |  |  |  |
 | 131 | 5900003 / AMR-058-0003 | Stability of Spherical Plateau Clusters | 0.2136 | 5.5 | 3 | 1995 | queued | 0/5 |  |  |  |
