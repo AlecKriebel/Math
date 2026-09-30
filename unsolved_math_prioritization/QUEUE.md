@@ -137,7 +137,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 126 | 5100032 / AMR-050-0032 | Elliptic-billiard invariant k_{603} | 0.2222 | 4.5 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 127 | 30004433 / OWR-17474-007 | Ends of Critical Long-Range Percolation Clusters | 0.2212 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 128 | 4900006 / AMR-048-0006 | Eden's conjecture on local Lyapunov dimension | 0.2200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 129 | 30005678 / OWR-14297744-011 | Fully Two-Segal Waldhausen S-Constructions | 0.2174 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
+| 129 | 30005678 / OWR-14297744-011 | Fully Two-Segal Waldhausen S-Constructions | 0.2174 | 5.5 | 3 | 2023 | unsolved | 3/5 |  | 2026-09-30: Separate review passed a cofiber-factorization criterion for the maximal-groupoid variant and explicit free-group non-lifting counterexample with all-degree polygon-flip argument. Arbitrary weak-equivalence realizations remain uncharacterized.8876author and6882independent controls; categorical, iS and wS variants kept distinct; no full general-equivalence claim. Draft PR: https://github.com/AlecKriebel/Math/pull/113. |  |
 | 130 | 5300050 / AMR-052-0050 | Boundary entropy of an attracting basin | 0.2142 | 5.5 | 3 | 1992 | queued | 0/5 |  |  |  |
 | 131 | 5900003 / AMR-058-0003 | Stability of Spherical Plateau Clusters | 0.2136 | 5.5 | 3 | 1995 | queued | 0/5 |  |  |  |
 | 132 | 30005451 / OWR-12697708-004 | Local Limits of Preferential Attachment with Deterministic or Random Outdegree | 0.2116 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
