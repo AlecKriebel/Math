@@ -65,7 +65,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 54 | 2765 / KP-2.17 | Kirby Problem 2.17 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 55 | 2814 / KP-3.16 | Kirby Problem 3.16 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 56 | 2849 / KP-3.51 | Kirby Problem 3.51 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 57 | 2912 / KP-4.36 | Kirby Problem 4.36 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 57 | 2912 / KP-4.36 | Kirby Problem 4.36 | 0.2560 | 5.5 | 3 | unknown | unsolved | 2/5 |  | 2026-09-30: Separate review passed the group-pair kernel and degree-one-map partial deductions and exact theorem-exclusion audit. The complete2-type question for actual2-knot exteriors remains unresolved; abstract models do not close the realization gap. Two attempts;507author and29933independent checks; no full-resolution claim. Draft PR: https://github.com/AlecKriebel/Math/pull/44. |  |
 | 58 | 2961 / KP-4.85 | Kirby Problem 4.85 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 59 | 3009 / KP-5.2 | Kirby Problem 5.2 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 60 | 9500008 / AMR-094-0008 | Concatenated bounded Brownian pieces | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
