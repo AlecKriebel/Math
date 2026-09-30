@@ -71,7 +71,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 60 | 9500008 / AMR-094-0008 | Concatenated bounded Brownian pieces | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 61 | 9700035 / AMR-096-0035 | Expected length of a SIRSN spanning subnetwork | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 62 | 9900007 / AMR-098-0007 | Two-process coupling characterization of weak convergence | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 63 | 30004386 / OWR-17469-011 | Large Deviations for Random High-Dimensional Projections | 0.2552 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
+| 63 | 30004386 / OWR-17469-011 | Large Deviations for Random High-Dimensional Projections | 0.2552 | 5.5 | 3 | 2020 | already_solved | 0/5 |  | 2026-09-30: Exact original large-deviation principle and full probability-measure limit set are covered by Johnston-Kabluchko-Prochno, Studia Mathematica264(2022). Separate source/proof-scope audit passed, including boundary normalization and both approximation directions. Zero new attempts; published prior work credited, no discovery claim. Draft PR: https://github.com/AlecKriebel/Math/pull/43. |  |
 | 64 | 30004438 / OWR-17475-003 | Real Rational Maps with Exclusively Real Periodic Points | 0.2552 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 65 | 10600042 / AMR-105-0042 | Virtual-knot problem 42 — One can consider braids with even numbers of strands. | 0.2475 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 66 | 30000166 / OWR-782-007 | Positivity of Saito's Eta Products | 0.2465 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
