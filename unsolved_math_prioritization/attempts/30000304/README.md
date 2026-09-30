@@ -1,6 +1,6 @@
 # 30000304: exceptional regenerative composition structures
 
-**Unsolved, 3/5 approaches; partial results awaiting separate review.**
+**Unsolved, 3/5 approaches; partial results passed separate adversarial AI review.**
 
 The [mathematical note](PARTIAL_RESULT.md) contains:
 
@@ -19,3 +19,7 @@ python3 unsolved_math_prioritization/attempts/30000304/verify.py
 See `verification.json` for hashes and exact fractions. The verifier uses labeled paintbox merger events and a freezing recursion, rather than substituting the desired identity as its implementation. Finite diagnostics do not prove the general mathematical claims.
 
 `SOURCES.md`, `sources.json` and `source_record.json` preserve source scope and access qualifications. `readiness.json` and `RESEARCH_LOG.md` record the gates and attempt accounting.
+
+## Separate review
+
+The [independent report](review/REVIEW.md) passes the frozen note without a required mathematical correction. It replayed 1,328 author assertions and passed 583 independently written symbolic and active/frozen-state checks. The original proof retains its historical pre-review header to preserve the reviewed hash. This has not undergone human peer review.
