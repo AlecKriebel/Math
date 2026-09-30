@@ -28,3 +28,7 @@ All 7,589 exact controls pass. These cover the radial test in small rational mat
 
 Full original, 2023/2024 geometry, 2025 imaginary-time and SDP-note PDFs were retrieved locally after earlier transfer timeouts. The original uniqueness page and the arbitrary-observable appendix were rendered and inspected. The final artifact, verifier and receipt hashes were sent to the separate reviewer. No result PR is opened before the review.
 
+
+## 2026-09-30 13:03 UTC — separate review and publication checkpoint
+
+Independent adversarial review passed with no mathematical correction. All 7,589 author assertions reproduced byte-identically, and 1,259 independent exact assertions passed. The reviewer also supplied a bounded-operator diagnostic showing why the finite-dimensional spectral-gap argument cannot be exported unchanged. The eight specified review files were copied unchanged. The mathematical artifact and checker remain frozen, with administrative files recording the current review status. Outcome remains unsolved, two of five approaches; completion estimate remains 55%.
