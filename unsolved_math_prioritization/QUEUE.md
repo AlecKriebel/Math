@@ -139,7 +139,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 128 | 4900006 / AMR-048-0006 | Eden's conjecture on local Lyapunov dimension | 0.2200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 129 | 30005678 / OWR-14297744-011 | Fully Two-Segal Waldhausen S-Constructions | 0.2174 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 130 | 5300050 / AMR-052-0050 | Boundary entropy of an attracting basin | 0.2142 | 5.5 | 3 | 1992 | queued | 0/5 |  |  |  |
-| 131 | 5900003 / AMR-058-0003 | Stability of Spherical Plateau Clusters | 0.2136 | 5.5 | 3 | 1995 | queued | 0/5 |  |  |  |
+| 131 | 5900003 / AMR-058-0003 | Stability of Spherical Plateau Clusters | 0.2136 | 5.5 | 3 | 1995 | unsolved | 1/5 |  | 2026-09-30: Separate review passed exact instability of the connected spherical Plateau network under merged-label volume constraints, including junction terms and negative second variation. Separately fixed physical bubbles and the intended historical formulation are not refuted.270author and363independent controls; original-source interpretation hold retained. Draft PR: https://github.com/AlecKriebel/Math/pull/116. |  |
 | 132 | 30005451 / OWR-12697708-004 | Local Limits of Preferential Attachment with Deterministic or Random Outdegree | 0.2116 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 133 | 6200049 / AMR-061-0049 | Boundaries of Groups and Kleinian Groups — Problem 49 | 0.2113 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 134 | 30000304 / OWR-1061-006 | Exceptional Regenerative Composition Structures | 0.2113 | 5.0 | 3 | 2005 | queued | 0/5 |  |  |  |
