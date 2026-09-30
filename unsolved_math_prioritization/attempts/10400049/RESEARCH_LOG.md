@@ -9,3 +9,7 @@ A characteristic-zero counterexample with a nonempty actual-link zero locus is b
 ## 2026-09-30 13:31 UTC — Full candidate frozen
 
 The all-order singular-braid calculation proves polynomial restriction for every finite-type invariant, and uniqueness makes this a unital algebra homomorphism. Evaluation at one-half separates g from the radical of the stated principal ideal in the full algebra. The squared-linking invariant handles arbitrary component labels and orientations, and its zero set is nonempty. The complete recovered author archive confirms the literal arbitrary-ideal formulation. All8,460 exact controls pass. The proof is frozen for separate review, with characteristic-zero and finite-order conventions explicit. One approach used; completion95% pending independent review. No priority claim.
+
+## 2026-09-30 13:39 UTC — Separate full audit passed
+
+The independent reviewer verified the exact source scope, singular-link finite differences, full-algebra character and radical nonmembership, including a separate direct polynomial identity proof for an arbitrary ideal multiplier. No correction was required. All 8,460 submitted and 20,980 independent controls replay byte-identically. The mathematical note is unchanged. Recommended status claimed_solved, 1/5; complete proof and audit,100% of the literal characteristic-zero arbitrary-ideal target. The separate linking-number-ideal example and historical priority remain unclaimed.
