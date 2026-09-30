@@ -4,7 +4,7 @@
 
 The original intended question remains **unsolved, one substantive attempt**, with a source-interpretation hold. The same mode is inadmissible if the satellite volumes are separately fixed, and the merged pairwise interfaces do not lie on single global spheres. Current positive results are credited with their precise hypotheses and perturbation restrictions. This is not a claimed new resolution or a novelty claim.
 
-- Separate adversarial review pending
+- [Separate adversarial AI review passed](review/REVIEW.md) for the scoped theorem, with the original-question source hold retained. This has not undergone human peer review. The submission-time pending sentence in the frozen mathematical file is superseded by this review.
 - 270 exact symbolic/rational controls pass; run verify.py with Python3 and SymPy to print the receipt
 - The original1996 full PDF was not recovered; its indexed primary statement and introductory context were read
 - Full2025 and2026 primary sources were retrieved for the modern formulation and status
