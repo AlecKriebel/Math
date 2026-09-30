@@ -11,6 +11,9 @@ recomputed its all-index argument and 1,590 exact checks.
 - [Preliminary scalar route and its obstruction](SCALAR_SCOPE_CHECK.md)
 - [Research log](RESEARCH_LOG.md), [turn ledger](turns.jsonl), [readiness](readiness.json)
 - [Disposition](status.json)
+- [Independent adversarial review](REVIEW.md), [verdict](verdict.json),
+  [exact replay receipt](verifier_rerun.json), and
+  [independent symbolic checks](independent_symbolic_check.py)
 
 Run from this folder:
 
@@ -26,3 +29,10 @@ This work uses gpt-6-astra at xhigh reasoning, not the queue's hypothetical
 ultra setting. The public construction is credited to its existing source.
 An independent review of this audit must be distinguished from the initial
 exact recomputation.
+
+Independent adversarial AI review passed on 2026-09-30 for the exact audit
+and verifier hashes recorded in the verdict. It reproduced all 1,590 rational
+assertions and added 23 symbolic checks. The frozen audit's earlier review-pending
+sentence is superseded by that review report; its mathematics is unchanged.
+This is not human peer review or a novelty certificate. The optional independent
+symbolic checker additionally requires SymPy (tested with version 1.14.0).

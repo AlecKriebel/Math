@@ -50,3 +50,16 @@ status file is changed. No release or outside communication is part of this audi
 - Independent adversarial review of this audit remains pending.
 - Completion estimate: 100% of the assigned disposition/audit; 0% new full
   discovery. The source-intent gap is not closed.
+
+## 2026-09-30 03:52–03:58: independent adversarial review
+
+- A separate reviewer verified the exact frozen snapshot and issued PASS with
+  no mandatory mathematical corrections; see REVIEW.md.
+- Primary-source pages and pinned public prior art were independently checked.
+- All 1,590 rational assertions were reproduced. A separate symbolic checker
+  passed 23 checks, including arbitrary-amplitude propagation and scalar scope.
+- The original audit and verifier remain byte-for-byte unchanged. Review status
+  is updated in README.md and status.json; the original pending-review sentence
+  is retained as part of the reviewed snapshot.
+- Completion estimate: 100% of the prior-art and scope audit; 0% novel discovery.
+  The original author's intended source correction remains unresolved.
