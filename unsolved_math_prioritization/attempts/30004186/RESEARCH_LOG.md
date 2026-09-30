@@ -23,3 +23,7 @@ Completion estimate: 90% toward a fully checked strong-norm theorem, pending sep
 The initial checkpoint push was denied because the action reviewer did not find sufficiently specific publication authorization. After the exact user authorization transcript was supplied, the same push was retried once and succeeded. Remote commit 5ada227eee9e4709996d80019ac231c8475b7c47 was verified. No alternate route was used.
 
 The independent reviewer discovered the superseded nonlinear claim in Geyer–Pelinovsky arXiv v1 (April 2018). Its exact Section 4 and the January 2019 version history were checked. SOURCE_AUDIT now preserves that history and distinguishes the candidate's corner-compatible, fixed-threshold argument from the old stronger-norm-to-L2 argument. The mathematical candidate remains byte-for-byte frozen; the review is still pending. Completion estimates and attempt budget are unchanged.
+
+## 05:09 UTC: separate scoped review passed
+
+The independent reviewer found no mathematical gap in the frozen strong-norm theorem, verified the source-history correction, and passed 135 independent exact assertions in addition to the 20 submitted checks. All six review files are copied unchanged into independent_review. Completion estimate: 100% toward the independently AI-reviewed strong-norm candidate, with the original L2/H1 and global weak-solution questions still unresolved. Preparing the one authorized draft PR with partial status; no shared queue files changed.
