@@ -168,7 +168,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 157 | 5100023 / AMR-050-0023 | Elliptic-billiard invariant k_{405} | 0.2064 | 4.5 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 158 | 30003741 / OWR-15993-009 | Higher Multistationarity in T-Cell Activation Models | 0.2057 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 159 | 30003818 / OWR-16164-012 | Brownian First-Visit Cell Lengths on the Circle | 0.2057 | 5.0 | 3 | 2018 | queued | 0/5 |  |  |  |
-| 160 | 4700016 / AMR-046-0016 | Reversible equivariant planar differential systems | 0.2041 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
+| 160 | 4700016 / AMR-046-0016 | Reversible equivariant planar differential systems | 0.2041 | 5.5 | 3 | 2020 | already_solved | 0/5 |  | 2026-09-30: Gasull-Rojas2025TheoremA supplies the complete decreasing-period result for every source positive parameter and the full origin period annulus. Separate exact-source/normalization audit passed;32500author and9270independent controls. Imported symmetry corrected toZ_k; published analytic theorem credited rather than independently reconstructed, no discovery claim. Draft PR: https://github.com/AlecKriebel/Math/pull/139. |  |
 | 161 | 30004539 / OWR-2654828-004 | Convergence Radii of Autoregressive and Moving Average Persistence Series | 0.2041 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 162 | 5000006 / AMR-049-0006 | Length ratios of parallel short trajectories | 0.2041 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 163 | 20000236 / AIM-ALGEBRAIC_GEOMETRY-0236 | Low-degree smoothness and a Wronskian kernel criterion for osculating Schubert curves | 0.2040 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
