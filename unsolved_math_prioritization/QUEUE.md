@@ -125,7 +125,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 114 | 10400120 / AMR-103-0120 | Conjecture 7.5 — For non-vanishing $\tau_r^G(M)$, the absolute value $/\tau_r^G(M)/$ depends only on the fundamental group $\pi_1(M)$. | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 115 | 10600020 / AMR-105-0020 | Virtual-knot problem 20 — Embeddings of Surfaces | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 116 | 20001380 / AIM-DYNAMICAL_SYSTEMS-0038 | Explicit size and wild ramification bounds for the 0-rooted tree of z^2+1 over Q_2 | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 117 | 2701 / KP-1.42 | Kirby Problem 1.42 | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 117 | 2701 / KP-1.42 | Kirby Problem 1.42 | 0.2240 | 5.5 | 3 | unknown | unsolved | 2/5 |  | 2026-09-30: Separate review passed the primitive integral metabolizer saturation correction, sharp denominator-three rational-isometry result and S-equivalence distinction. These algebraic diagnostics do not obstruct concordant knot realizations; the original geometric question remains unresolved in both categories.5180author and2679independent controls; two bounded routes. Draft PR: https://github.com/AlecKriebel/Math/pull/98. |  |
 | 118 | 2728 / KP-1.69 | Kirby Problem 1.69 | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 119 | 2859 / KP-3.61 | Kirby Problem 3.61 | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 120 | 3092 / OPG-59984 | Chromatic number of associahedron | 0.2240 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
