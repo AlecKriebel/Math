@@ -144,7 +144,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 133 | 6200049 / AMR-061-0049 | Boundaries of Groups and Kleinian Groups — Problem 49 | 0.2113 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 134 | 30000304 / OWR-1061-006 | Exceptional Regenerative Composition Structures | 0.2113 | 5.0 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 135 | 30002719 / OWR-13352-003 | Probabilistic Interpretation of Waring-Polynomial Series | 0.2113 | 4.5 | 3 | 2014 | queued | 0/5 |  |  |  |
-| 136 | 30000697 / OWR-1458-003 | Injectivity Criteria for Upsilon Transforms | 0.2107 | 5.0 | 3 | 2007 | queued | 0/5 |  |  |  |
+| 136 | 30000697 / OWR-1458-003 | Injectivity Criteria for Upsilon Transforms | 0.2107 | 5.0 | 3 | 2007 | unsolved | 2/5 |  | 2026-09-30: Separate review passed the full all-dimensional two-positive-atom Upsilon classification, including both injective endpoints, via signed annular recurrence and explicit Levy measures. The arbitrary-dilation-measure criterion remains unresolved; the negative imaginary-Mellin converse is credited to2009 prior work.42782author and2331independent controls; no full general-resolution claim. Draft PR: https://github.com/AlecKriebel/Math/pull/121. |  |
 | 137 | 30001234 / OWR-3471-008 | Uniqueness in Linear Programs for Binomial Multiplier Ideals | 0.2100 | 5.0 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 138 | 30001410 / OWR-4199-003 | Crofton Measures in Hilbert Geometry | 0.2097 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 139 | 30001883 / OWR-11136-008 | Circle Free Convex Bodies Under Minkowski Addition | 0.2093 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
