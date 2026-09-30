@@ -11,3 +11,7 @@ The full published Baroni paper confirms a general-genus disjoint-multitwist ext
 ##2026-09-30 10:58 UTC: scoped artifact frozen
 
 One boundary-trace approach was pursued. The final package preserves the compatibility gap, a based-torus diagnostic and a noncommuting paired-twist diagnostic. All4,238 exact algebra controls pass; they do not implement JSJ or certify geometric isotopies. The original remains unsolved,1/5. No additional route was pursued merely to consume the two-hour ceiling. Separate review is requested for the frozen artifact. Completion estimate remains15%; the bounded package is complete.
+
+## 2026-09-30 11:17 UTC: independent review and draft publication
+
+The separate reviewer passed the credited small-I-bundle subclass and based gluing diagnostics without correction. All 4,238 submitted controls replayed byte-identically and 55,932 independent controls passed. Eight review files are copied unchanged. Original-target completion remains 15%, with unsolved 1/5 and no general gluing algorithm or novelty claim. One open draft PR is authorized; the parent owns the queue update.
