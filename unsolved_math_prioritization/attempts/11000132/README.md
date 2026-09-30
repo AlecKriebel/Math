@@ -10,4 +10,6 @@ The full source asks for a more closed-form component-count expression in Dehnâ€
 - [Research log](RESEARCH_LOG.md)
 - [Exact finite controls](verify.py) and [receipt](verification.json)
 
-Run `python3 verify.py` from this directory. The finite controls test the displayed formulas; they are not a proof of a general compressed algorithm. Separate adversarial review is pending. No novelty or human peer-review claim is made.
+Run `python3 verify.py` from this directory. The finite controls test the displayed formulas; they are not a proof of a general compressed algorithm. Separate adversarial AI review passed; see [the report](review/REVIEW.md). The mathematical snapshot retains its pre-review header for exact hash reproducibility. No novelty or human peer-review claim is made.
+
+All 7,775 author assertions replay byte-identically and 10,900 independent controls pass. The requested general more-closed-form expression remains unresolved.
