@@ -150,7 +150,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 139 | 30001883 / OWR-11136-008 | Circle Free Convex Bodies Under Minkowski Addition | 0.2093 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 140 | 10400041 / AMR-103-0041 | Problem 2.19 — (Y. | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 141 | 10400117 / AMR-103-0117 | Problem 7.2 — (S.K. | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 142 | 10400229 / AMR-103-0229 | Problem 12.24 — (A. | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 142 | 10400229 / AMR-103-0229 | Problem 12.24 — (A. | 0.2080 | 5.5 | 3 | unknown | unsolved | 3/5 |  | 2026-09-30: Separate review passed the general algebraic-order-dividing-two deduction and achiral-or-ribbon result for the specified continued-fraction crossing class, with exact rank-two limits. An arbitrary prime-knot mirror-changing crossing need not have that presentation; algebraic2torsion is not sliceness.21677author and35700independent controls; general target unresolved. Draft PR: https://github.com/AlecKriebel/Math/pull/135. |  |
 | 143 | 10400231 / AMR-103-0231 | Conjecture 12.26 — (V. | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 144 | 10600021 / AMR-105-0021 | Virtual-knot problem 21 — Non-Commutativity and Long Knots | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 145 | 11000132 / AMR-109-0132 | Problem 2 — Given a tuple ×N i=1(mi,ti) ∈ ZN, give a tractable expression in terms of Dehn- Thurston or other coordinates for the… | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
