@@ -95,7 +95,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 84 | 2861 / KP-3.63 | Kirby Problem 3.63 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 85 | 2869 / KP-3.71 | Kirby Problem 3.71 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 86 | 2919 / KP-4.43 | Kirby Problem 4.43 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 87 | 2935 / KP-4.59 | Kirby Problem 4.59 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 87 | 2935 / KP-4.59 | Kirby Problem 4.59 | 0.2400 | 5.5 | 3 | unknown | unsolved | 3/5 |  | 2026-09-30: Separate review passed exact lens-space linking-form/metabolizer diagnostics, cyclic-cover identities and conditional fundamental-group h-cobordism lemma. No topological cobordism is constructed; the source-only extra nonzero-cover-b1 obstruction is explicitly credited and smooth d-invariants are not imported into the topological category.427001author and106814independent assertions; original unresolved. Draft PR: https://github.com/AlecKriebel/Math/pull/68. |  |
 | 88 | 2985 / KP-4.109 | Kirby Problem 4.109 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 89 | 3012 / KP-5.5 | Kirby Problem 5.5 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 90 | 3088 / OPG-56328 | Partitioning the Projective Plane | 0.2400 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
