@@ -63,7 +63,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 52 | 2233 / EP-653 | Erdős Problem #653 | 0.2560 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
 | 53 | 2744 / KP-1.85 | Kirby Problem 1.85 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 54 | 2765 / KP-2.17 | Kirby Problem 2.17 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 55 | 2814 / KP-3.16 | Kirby Problem 3.16 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 55 | 2814 / KP-3.16 | Kirby Problem 3.16 | 0.2560 | 5.5 | 3 | unknown | unsolved | 0/5 |  | 2026-09-30: Separate source audit confirms theorem-statement coverage by existing published cusped results and the August2026 closed-case preprint. Source hold retained because those full proofs are not independently certified here. Zero new proof attempts; no campaign discovery or full-resolution claim. Draft PR: https://github.com/AlecKriebel/Math/pull/40. |  |
 | 56 | 2849 / KP-3.51 | Kirby Problem 3.51 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 57 | 2912 / KP-4.36 | Kirby Problem 4.36 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 58 | 2961 / KP-4.85 | Kirby Problem 4.85 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
