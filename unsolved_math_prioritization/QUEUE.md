@@ -183,7 +183,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 172 | 2306022 / AMR-022-6022 | Research Problems in Function Theory — Problem 6.22 | 0.2000 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 173 | 30000229 / OWR-829-001 | Approximation Classes for Adaptive Finite Elements | 0.1981 | 5.0 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 174 | 30000264 / OWR-1050-015 | Topology of Yamabe Asymptotic Sets | 0.1981 | 5.0 | 3 | 2005 | queued | 0/5 |  |  |  |
-| 175 | 30000585 / OWR-1327-001 | Force-Induced Phase Transitions in Self-Attracting Polymers | 0.1978 | 5.0 | 3 | 2006 | queued | 0/5 |  |  |  |
+| 175 | 30000585 / OWR-1327-001 | Force-Induced Phase Transitions in Self-Attracting Polymers | 0.1978 | 5.0 | 3 | 2006 | already_solved | 0/5 |  | 2026-09-30: Published 2007 and 2009 analyses resolve the exact horizontal fully flexible partially directed polymer force transition, including the critical curve and 3/2 limiting-free-energy singularity. Separate source and normalization audit passed; 13347 author and 7495 independent controls. Endpoint reversal, sign and ensemble conventions retained; transverse-force discussion is distinct, no new discovery claim. Draft PR: https://github.com/AlecKriebel/Math/pull/161. |  |
 | 176 | 30001413 / OWR-4209-002 | Optimal Domain Conditions for Positivity of Hinged Plates | 0.1966 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 177 | 30006161 / OWR-14299082-003 | Generic Maximal Chains on Exceptional Surfaces | 0.1963 | 5.0 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 178 | 30006170 / OWR-14299082-017 | Chaining and Weak Mixing for Measure-Class-Preserving Actions | 0.1963 | 5.0 | 3 | 2025 | queued | 0/5 |  |  |  |
