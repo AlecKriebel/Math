@@ -10,7 +10,7 @@ The package identifies the exact eight-line arrangement, gives its order-four me
 - [111 exact finite-geometry controls](verification.json)
 - [Uncertified exploratory truncation screen](exploratory/README.md)
 
-Separate adversarial review is pending. No novelty is claimed.
+[Separate adversarial AI review passed](review/REVIEW.md). This has not undergone human peer review. No novelty is claimed.
 
 Reproduce the exact geometry controls with Python3 and SymPy:
     python verify.py

@@ -1,6 +1,6 @@
 # The pentagon symmetry: affine obstruction and the unresolved marked lift
 
-**Original target unresolved after two approaches.** The explicit geometry below distinguishes the specified order-four homology action from its realizable square and from unmarked equivalences of arrangement complements. These are scoped controls, not a solution or a historical novelty claim. Separate adversarial AI review passed; see [the report](review/REVIEW.md). This has not undergone human peer review.
+**Original target unresolved after two approaches.** The explicit geometry below distinguishes the specified order-four homology action from its realizable square and from unmarked equivalences of arrangement complements. These are scoped controls, not a solution or a historical novelty claim. Separate adversarial review is pending.
 
 ## 1. The exact arrangement and the two questions
 
