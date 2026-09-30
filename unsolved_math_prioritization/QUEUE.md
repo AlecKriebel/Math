@@ -159,7 +159,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 148 | 20001312 / AIM-CONVEX_GEOMETRY-0044 | Polynomial ridge completeness and switching obstructions for the four AIM directions | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 149 | 20001964 / AIM-GEOMETRY-0302 | Noncompact equivariant integration and the boundary at infinity | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 150 | 2306064 / AMR-022-6064 | Research Problems in Function Theory — Problem 6.64 | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 151 | 2770 / KP-2.22 | Kirby Problem 2.22 | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 151 | 2770 / KP-2.22 | Kirby Problem 2.22 | 0.2080 | 5.5 | 3 | unknown | unsolved | 2/5 |  | 2026-09-30: Separate review passed the exact abelianized disk-extension criterion and fiber-degree/multisection divisibility diagnostics. The abelian condition already holds with zero local multiplicities and loses the smooth-versus-continuous distinction; no nonabelian extension or positive closed sphere realization follows.11186author and18784independent controls; original unresolved. Draft PR: https://github.com/AlecKriebel/Math/pull/133. |  |
 | 152 | 2830 / KP-3.32 | Kirby Problem 3.32 | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 153 | 2840 / KP-3.42 | Kirby Problem 3.42 | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 154 | 3800014 / AMR-037-0014 | A dynamic-programming interval problem | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
