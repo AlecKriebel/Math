@@ -113,7 +113,7 @@ The exact diagnostic script checks the incidence identities and enumerates only 
 
 Consider the hypergraph whose vertices are all points and whose edges are all complete lines. Its independent sets are exactly complements of ordinary blocking sets. This is an \(s=q+1\)-uniform hypergraph on \(n=q^2+q+1\) vertices, with every vertex of degree \(q+1\).
 
-The packaged [Balogh–Samotij container theorem](https://www.math.tau.ac.il/~samotij/papers/efficient-containers-revised.pdf), Theorem 1.6, requires parameters \(\alpha,\beta,\eta\in(0,1)\) satisfying \(\alpha\beta\eta n>10^9s^7\). Here the parameter called \(q\) in that theorem has been renamed \(\eta\). Since the left side is smaller than \(n<(q+1)^2=s^2\), this requirement is impossible. This rules out that direct application, not every possible auxiliary hypergraph or container argument.
+The packaged [Balogh–Samotij container theorem](https://www.math.tau.ac.il/~samotij/papers/efficient-containers-revised.pdf), Theorem 1.6, requires parameters \(\alpha,\beta,\eta\in(0,1)\) satisfying \(\alpha\beta\eta n\ge 10^9s^7\). Here the parameter called \(q\) in that theorem has been renamed \(\eta\). Since the left side is smaller than \(n<(q+1)^2=s^2\), this requirement is impossible. This rules out that direct application, not every possible auxiliary hypergraph or container argument.
 
 Even the stronger technical Theorem 2.1 does not apply directly. For this regular hypergraph its first degree measure is uniform, so \(\|\sigma_H^{(1)}\|^2=1/n\). The first summand in the theorem's hypothesis already requires
 
