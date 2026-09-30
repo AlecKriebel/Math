@@ -145,7 +145,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 134 | 30000304 / OWR-1061-006 | Exceptional Regenerative Composition Structures | 0.2113 | 5.0 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 135 | 30002719 / OWR-13352-003 | Probabilistic Interpretation of Waring-Polynomial Series | 0.2113 | 4.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 136 | 30000697 / OWR-1458-003 | Injectivity Criteria for Upsilon Transforms | 0.2107 | 5.0 | 3 | 2007 | queued | 0/5 |  |  |  |
-| 137 | 30001234 / OWR-3471-008 | Uniqueness in Linear Programs for Binomial Multiplier Ideals | 0.2100 | 5.0 | 3 | 2009 | queued | 0/5 |  |  |  |
+| 137 | 30001234 / OWR-3471-008 | Uniqueness in Linear Programs for Binomial Multiplier Ideals | 0.2100 | 5.0 | 3 | 2009 | claimed_solved | 1/5 |  | 2026-09-30: Complete counterexample to the source singleton-fiber LP condition using the minimal prime ideal of three2x2minors of a generic2x3matrix. The full optimal segment has one augmented image, so every rational optimizer fails the exact required uniqueness condition. Separate source/ideal/LP audit passed;3045author and5368independent controls. No new threshold or priority claim; unrefereed. Draft PR: https://github.com/AlecKriebel/Math/pull/117. |  |
 | 138 | 30001410 / OWR-4199-003 | Crofton Measures in Hilbert Geometry | 0.2097 | 5.5 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 139 | 30001883 / OWR-11136-008 | Circle Free Convex Bodies Under Minkowski Addition | 0.2093 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 140 | 10400041 / AMR-103-0041 | Problem 2.19 — (Y. | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
