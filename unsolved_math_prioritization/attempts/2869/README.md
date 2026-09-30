@@ -17,5 +17,10 @@ Run `python3 verify_torsion.py` from this folder. Standard library only.
 The free chain complexes are bounded diagnostics, not manifold or kernel
 certificates. The actual spun-manifold computation is in the proof artifact.
 
-Independent adversarial review is pending. No novelty, nonzero kernel element,
-or injectivity result is claimed.
+The [independent adversarial review](review/REVIEW.md) passes this explicitly
+unresolved package. All 312 author assertions and 118,054 independent exact
+controls pass. This is AI review, not human peer review. No novelty, nonzero
+kernel element, or injectivity result is claimed.
+
+Reproduce the independent receipt with `python3 review/independent_checks.py`.
+The review includes its exact frozen author snapshot and replay dependencies.
