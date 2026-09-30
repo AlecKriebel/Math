@@ -1,6 +1,6 @@
 # 10000062: local metric-ball homogeneity and periodicity
 
-**Status: scoped Euclidean candidate; full source classification unresolved.**
+**Status: independently reviewed Euclidean partial result; full source unresolved.**
 
 An explicit specialization of the known Frettlöh–Garber layered family has
 congruent full vertex-centered balls of radius√10, all triangle diameters at
@@ -24,5 +24,5 @@ Sixteen rooted cases cover all neighboring-layer assignments after the
 analytic locality reduction. The checker includes edge pieces, face pieces,
 and multiplicities of point-only boundary traces.
 
-Independent adversarial review is pending. Execution model:gpt-6-astra,xhigh.
+[Independent adversarial review](review/REVIEW.md) passed for the exact scoped result, with 212 additional exact assertions over 64 rooted cases. The proof is unchanged. Execution model: gpt-6-astra, xhigh.
 No shared queue, catalog, or state files are changed.
