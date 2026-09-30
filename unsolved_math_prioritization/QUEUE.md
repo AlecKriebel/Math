@@ -142,7 +142,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 131 | 5900003 / AMR-058-0003 | Stability of Spherical Plateau Clusters | 0.2136 | 5.5 | 3 | 1995 | queued | 0/5 |  |  |  |
 | 132 | 30005451 / OWR-12697708-004 | Local Limits of Preferential Attachment with Deterministic or Random Outdegree | 0.2116 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 133 | 6200049 / AMR-061-0049 | Boundaries of Groups and Kleinian Groups — Problem 49 | 0.2113 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
-| 134 | 30000304 / OWR-1061-006 | Exceptional Regenerative Composition Structures | 0.2113 | 5.0 | 3 | 2005 | queued | 0/5 |  |  |  |
+| 134 | 30000304 / OWR-1061-006 | Exceptional Regenerative Composition Structures | 0.2113 | 5.0 | 3 | 2005 | unsolved | 3/5 |  | 2026-09-30: Separate review passed four-sample necessary collision-rate identity, exact five-sample insufficiency witness and all-sample bounded-parent full-replacement exclusion. General simultaneous-collision Xi measures remain unresolved; the published non-simultaneousLambda result is not substituted.1328author and583independent controls; three bounded approaches. Draft PR: https://github.com/AlecKriebel/Math/pull/119. |  |
 | 135 | 30002719 / OWR-13352-003 | Probabilistic Interpretation of Waring-Polynomial Series | 0.2113 | 4.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 136 | 30000697 / OWR-1458-003 | Injectivity Criteria for Upsilon Transforms | 0.2107 | 5.0 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 137 | 30001234 / OWR-3471-008 | Uniqueness in Linear Programs for Binomial Multiplier Ideals | 0.2100 | 5.0 | 3 | 2009 | queued | 0/5 |  |  |  |
