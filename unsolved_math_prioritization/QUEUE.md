@@ -89,7 +89,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 78 | 2305051 / AMR-022-5051 | Research Problems in Function Theory — Problem 5.51 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 79 | 2715 / KP-1.56 | Kirby Problem 1.56 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 80 | 2722 / KP-1.63 | Kirby Problem 1.63 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 81 | 2725 / KP-1.66 | Kirby Problem 1.66 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 81 | 2725 / KP-1.66 | Kirby Problem 1.66 | 0.2400 | 5.5 | 3 | unknown | already_solved | 0/5 |  | 2026-09-30: Known negative answer by Dimitroglou Rizell-Golovko: distinct stabilized Legendrian knot types in standardR3 admit exact Lagrangian concordances both ways. Separate original-source/applicability audit passed exactness, ends, mutuality and smooth-type distinction. Accepted publication with October2026issue metadata; full h-principle proof not independently certified, no campaign discovery. Draft PR: https://github.com/AlecKriebel/Math/pull/61. |  |
 | 82 | 2772 / KP-2.24 | Kirby Problem 2.24 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 83 | 2853 / KP-3.55 | Kirby Problem 3.55 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 84 | 2861 / KP-3.63 | Kirby Problem 3.63 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
