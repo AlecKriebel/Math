@@ -13,3 +13,7 @@ Completion estimate: 15%. The exact orbit reduction proves cyclic-factor and reg
 ## 04:51 UTC: frozen partial artifact and review handoff
 
 Completion estimate for the full target remains 15%; the general case is unresolved. Two substantive attempts were used. The frozen partial note includes an elementary sufficient bound g >= 2|G|, cyclic-factor cases, and a generator-count criterion. The explicit S3 negative control and four cyclic examples pass 31 exact assertions. Funar–Pagotto Theorem 1.2 gives an independently checked obstruction to extending the trivial-monodromy construction to every cover. The artifact was sent for separate adversarial review, and no PR has been opened.
+
+## 05:07 UTC: independent review passed
+
+Completion estimate for the unrestricted target remains 15%. A separate adversarial reviewer verified the exact frozen note, including the band-sum construction and every boundary-essentiality claim, with no mandatory correction. The independent finite checks passed. This checkpoint prepares one draft PR explicitly marked unresolved; the note is not a new-solution or priority claim.
