@@ -8,3 +8,6 @@ The official AustMS2025 booklet announces a long-virtual prime-decomposition the
 
 ## 2026-09-30 10:32 UTC: one scoped route frozen
 A sufficient ordered-factor normal form gives the exact target by the elementary commuting-word lemma. A small abstract monoid satisfies central classical factors, finite atomic factorization and prime-pair rigidity, yet violates the analogous common-power conclusion. It is expressly not a knot realization. The needed geometric uniqueness cannot be inferred from the retrieved prime-pair theorem. All2,255 exact controls pass. Freeze at this precise gap rather than extend an unsupported topological induction. One of five approaches used; original-goal completion estimate20%, scoped algebra complete. No novelty claim.
+
+## 2026-09-30 10:55 UTC: separate review and publication preparation
+Independent review passed without mandatory correction: PASS_CONDITIONAL_REDUCTION_AND_ABSTRACT_OBSTRUCTION. The mathematical file and verification code remain frozen. 23894 independent exact controls pass. Status is unsolved, 1/5. Completion estimate remains 20%; the geometric/source gap is unchanged.

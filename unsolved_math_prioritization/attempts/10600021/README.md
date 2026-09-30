@@ -7,6 +7,6 @@ The original remains **unsolved in this attempt, 1/5 approaches**. No actual kno
 - 2,255 exact algebra assertions pass over961 binary-word pairs and127 small presentation words
 - These controls do not enumerate virtual knots or certify isotopies
 - Classical, long virtual, closed virtual and welded conventions are separated
-- Separate adversarial review is pending; no novelty or human-peer-review claim
+- [Separate adversarial AI review passed](review/REVIEW.md) for the conditional reduction and abstract obstruction; no novelty or human-peer-review claim. The frozen artifact’s submission-time pending sentence is superseded by this final review
 - Run verify.py with Python3's standard library to print the receipt
 - The coordinating task owns the queue row
