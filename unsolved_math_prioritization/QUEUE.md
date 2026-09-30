@@ -123,7 +123,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 112 | 10400015 / AMR-103-0015 | Problem 1.15 — (M. | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 113 | 10400016 / AMR-103-0016 | Problem 1.16 — (E. | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 114 | 10400120 / AMR-103-0120 | Conjecture 7.5 — For non-vanishing $\tau_r^G(M)$, the absolute value $/\tau_r^G(M)/$ depends only on the fundamental group $\pi_1(M)$. | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 115 | 10600020 / AMR-105-0020 | Virtual-knot problem 20 — Embeddings of Surfaces | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 115 | 10600020 / AMR-105-0020 | Virtual-knot problem 20 — Embeddings of Surfaces | 0.2240 | 5.5 | 3 | unknown | unsolved | 2/5 |  | 2026-09-30: Separate review passed the conditional compression-circle surgery criterion while preserving minimal genus and unknotted-surface hypotheses. The universal nonsplit-circle existence and disk-placement step remain missing; known Dye cases and destabilization warnings are credited.2121author and724independent algebraic diagnostics do not supply the topology. Draft PR: https://github.com/AlecKriebel/Math/pull/101. |  |
 | 116 | 20001380 / AIM-DYNAMICAL_SYSTEMS-0038 | Explicit size and wild ramification bounds for the 0-rooted tree of z^2+1 over Q_2 | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 117 | 2701 / KP-1.42 | Kirby Problem 1.42 | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 118 | 2728 / KP-1.69 | Kirby Problem 1.69 | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
