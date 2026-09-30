@@ -15,4 +15,8 @@ Checkpoint completion estimate: 70% toward a documented narrow proof audit; 0% t
 
 ## 03:53 UTC: substantive response 1/5
 
-Saved CANDIDATE.md with a complete narrow negative argument. Finite-rank Riccati tests in D(A²) give the conditional finite-dimensional transform directly, avoiding the global smoothing/order issue. Injective Q gives positive-definite compressed integrated covariance via continuity at time zero. The classical noncentral Wishart parameter theorem then rules out all noninteger alpha. Existing22September candidate explicitly credited. No broader theorem or novelty claim. Completion estimate: 90% for narrow proof audit, pending independent review; novelty remains unestablished.
+Saved CANDIDATE.md with a complete narrow negative argument. Finite-rank Riccati tests in D(A²) give the conditional finite-dimensional transform directly, avoiding the global smoothing/order issue. Injective Q gives positive-definite compressed integrated covariance via continuity at time zero. The classical noncentral Wishart parameter theorem then rules out all noninteger alpha. Existing 22 September candidate explicitly credited. No broader theorem or novelty claim. Completion estimate: 90% for narrow proof audit, pending independent review; novelty remains unestablished.
+
+## 03:55 UTC: frozen proof snapshot
+
+Eight exact finite-matrix consistency checks passed, including corrupted sign/order controls. Source audit identifies the exact earlier public candidate and the published finite-dimensional dependency. CANDIDATE.md is frozen for independent review. Completion estimate: 95% of the narrow proof-audit deliverable; independent review is the remaining gate. No novelty or broad existence-classification claim.
