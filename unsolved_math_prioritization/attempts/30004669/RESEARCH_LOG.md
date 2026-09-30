@@ -10,3 +10,7 @@ Read the exact pinned record and source-code keyed null prior report, original O
 2. **Truth-table transfer and c.e. covering.** Proved the transfer lemma under an unbounded-complexity comparison and applied Nies's published Theorem7.4. Universal equality, or existence of any strictness witness, reduces to c.e. K-trivial oracles. This does not decide either outcome. The weaker Turing-cover theorem was explicitly rejected as insufficient for this argument. Status: valid partial reduction; blocked on the remaining c.e. problem.
 
 The elementary witness restriction X not Turing-reducible to A is a credited consequence of Nies's downward closure and Moser–Stephan shallowness, not a fresh attempt or a classification. Full target remains unsolved, 2/5. Completion estimate: 5%, representing a reduction and precise obstruction rather than a likely solution. No further proof search is continued without a new mechanism. Separate review is required before a draft PR.
+
+## 2026-09-30 12:12 UTC — Separate review passed
+
+The frozen partial deductions passed independent adversarial AI review without mandatory corrections. All 6,534 author controls replay byte-identically and 6,200 independent controls pass. The original classification remains unsolved, 2/5; completion estimate remains 5%. No new proof approach or novelty claim is added.
