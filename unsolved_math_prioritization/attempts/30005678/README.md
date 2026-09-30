@@ -1,6 +1,6 @@
 # 30005678: fully two-Segal Waldhausen constructions
 
-**Partial, pending separate review; broad target remains unresolved.**
+**Partial, separately reviewed; broad target remains unresolved (3/5 approaches).**
 
 The [mathematical note](PARTIAL_RESULT.md) proves a cofiber-factorization criterion for the isomorphism-groupoid S-construction and gives finite-rank free groups a natural Waldhausen structure that is left but not fully 2-Segal. The missing comparison is witnessed by an explicit non-liftable automorphism, rather than a confusion about unmarked flag isomorphism classes.
 
@@ -20,3 +20,7 @@ python3 unsolved_math_prioritization/attempts/30005678/verify.py
 ```
 
 The finite diagnostics support only the displayed algebraic and polygon calculations. The all-category and all-degree arguments require mathematical review.
+
+## Independent review
+
+The [separate adversarial AI review](review/REVIEW.md) passed the exact frozen mathematical note, with no mandatory correction. It replayed all 8,876 author assertions and passed 6,882 independently written controls. The mathematical note retains its historical pre-review header so that its reviewed hash is unchanged. This has not undergone human peer review.
