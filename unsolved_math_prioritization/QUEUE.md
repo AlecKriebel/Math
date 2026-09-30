@@ -166,7 +166,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 155 | 30002926 / OWR-13856-002 | Gamma Profiles of Waves Entering a Condensate | 0.2075 | 5.0 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 156 | 30005975 / OWR-14298584-008 | Brauer Groups of Tame Stacky Curves | 0.2071 | 6.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 157 | 5100023 / AMR-050-0023 | Elliptic-billiard invariant k_{405} | 0.2064 | 4.5 | 3 | 2021 | queued | 0/5 |  |  |  |
-| 158 | 30003741 / OWR-15993-009 | Higher Multistationarity in T-Cell Activation Models | 0.2057 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
+| 158 | 30003741 / OWR-15993-009 | Higher Multistationarity in T-Cell Activation Models | 0.2057 | 5.5 | 3 | 2018 | unsolved | 2/5 |  | 2026-09-30: Separate review passed exact agonist-only scalar reduction, parity-dependent equilibrium bound and rational N4 witness with exactly three positive equilibria in one conservation class. HigherN≥5 multiplicity remains unresolved; a two-ligand candidate is a different target and no stability result is inferred.1543author and10436independent checks including exact Sturm certification. Draft PR: https://github.com/AlecKriebel/Math/pull/145. |  |
 | 159 | 30003818 / OWR-16164-012 | Brownian First-Visit Cell Lengths on the Circle | 0.2057 | 5.0 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 160 | 4700016 / AMR-046-0016 | Reversible equivariant planar differential systems | 0.2041 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 161 | 30004539 / OWR-2654828-004 | Convergence Radii of Autoregressive and Moving Average Persistence Series | 0.2041 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
