@@ -59,7 +59,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 48 | 7000019 / AMR-069-0019 | Geometry of Curves and Surfaces — Problem 4.3 | 0.2562 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 49 | 10000043 / AMR-099-0043 | Infinite-cluster intersections with vertical fibers | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 50 | 10000046 / AMR-099-0046 | Nonintersecting couplings of random walks in dimensions three and four | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 51 | 20001424 / AIM-DYNAMICAL_SYSTEMS-0082 | PCF descent and an odd postcritical-divisor criterion | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 51 | 20001424 / AIM-DYNAMICAL_SYSTEMS-0082 | PCF descent and an odd postcritical-divisor criterion | 0.2560 | 5.5 | 3 | unknown | claimed_solved | 1/5 |  | [Degree-11 graph-defined PCF descent counterexample](attempts/20001424/CANDIDATE.md); [separate review PASS](attempts/20001424/review/REVIEW.md); real field of moduli but no real model; historical priority unconfirmed; [draft PR #36](https://github.com/AlecKriebel/Math/pull/36) |  |
 | 52 | 2233 / EP-653 | Erdős Problem #653 | 0.2560 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
 | 53 | 2744 / KP-1.85 | Kirby Problem 1.85 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 54 | 2765 / KP-2.17 | Kirby Problem 2.17 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
