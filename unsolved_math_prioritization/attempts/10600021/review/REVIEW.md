@@ -1,0 +1,74 @@
+# Independent review: commuting long virtual knots (10600021)
+
+**Verdict: PASS_CONDITIONAL_REDUCTION_AND_ABSTRACT_OBSTRUCTION.** No mandatory mathematical correction was found. The original question remains **unsolved in this attempt, 1/5**, with a current-literature source hold. This is an independent adversarial AI review, not human peer review or a claim of novelty.
+
+Reviewed on 30 September 2026 by a separate gpt-6-astra agent at xhigh reasoning effort. The author’s mathematical artifact was not edited.
+
+## Reviewed snapshot and scope
+
+- `OBSTRUCTION.md`: SHA-256 `c27defaac6777201357c7a46492d7c97c8d5790bed2b49c463b4f2c2d07d8bd7`
+- Submitted `verify.py`: SHA-256 `071f78c8ebd064378821136e111f81ef9bee2ebcc37045c22df70b9a23d96393`
+- The submitted receipt reports 2,255 exact assertions and reproduces byte-for-byte in an isolated copy.
+- The independent checker passes 23,894 exact assertions. These are finite algebra diagnostics, not virtual-knot enumeration or isotopy certification.
+
+The validated conclusions are a conditional implication from an **ordered** geometric normal form to the source’s common-power conclusion, and an abstract monoid demonstrating that finite atomic factorization and two-prime rigidity alone do not establish that implication’s hypotheses. Neither conclusion supplies an actual knot counterexample or proves the required geometric normal form.
+
+## 1. Exact source and imported theorem
+
+I independently read the complete Problem 21 on printed p.29 of [Fenn–Ilyutko–Kauffman–Manturov](https://arxiv.org/abs/1409.2823), including its formula and nonnegative exponents, and checked the rendered page. The question concerns commuting oriented **long virtual knots** under concatenation, up to the usual virtual equivalence. It permits different residual classical factors and zero powers. The statement does not ask only about prime factors, and it does not identify the long virtual category with welded knots, closed virtual knots, or concordance classes.
+
+[Chrisman’s paper](https://arxiv.org/abs/1311.5748) supplies the exact conventions in Definitions 1.1–1.4. Its introduction explains centrality of classical long knots. Theorem 1 requires all four factors to be nonclassical and linearly prime, and explicitly assumes the product of the first two is nonclassical. The artifact preserves that hypothesis when applying the theorem to a commuting prime pair. I also inspected Section 4.3: its decomposition-disk argument actually invokes linear primeness to trivialize cut-off factors. Thus it cannot simply be reapplied to arbitrary composite factors without another argument. The historical attribution to Manturov is retained. This review checks the dependency’s statement and relevant scope, rather than claiming a new line-by-line certification of its entire geometric proof.
+
+The original survey’s Section 8.5.2 separately discusses prime-decomposition existence and uniqueness and distinguishes linear concatenation from other decomposition notions. The artifact correctly treats the retrieved two-prime theorem as partial evidence.
+
+## 2. Conditional normal-form implication
+
+Let the specified nonclassical alphabet be $\mathcal P$ and the central classical submonoid be $\mathcal C$. Under the artifact’s two hypotheses, every knot has a presentation by a finite ordered $\mathcal P$-word followed by a member of $\mathcal C$, and equality of such presentations implies equality of the ordered words.
+
+These hypotheses are sufficient, without any assumption that the residual classical factor is unique. Indeed, centrality lets the product of two presentations be rewritten with all classical factors at the end. Ordered uniqueness then makes the word assignment well-defined and multiplicative. Equality $KK'=K'K$ implies $uv=vu$ in the free monoid.
+
+The commuting-word argument is complete. For nonempty words with $|u|\le |v|$, the first $|u|$ letters of $uv=vu$ imply $v=uz$. Cancelling the common prefix in the free monoid yields $uz=zu$. Induction decreases the total length whenever both initial words are nonempty; the equal-length case leaves an empty remainder. Empty-word cases supply exponent zero. Thus $u=t^m$ and $v=t^n$ for a finite word $t$ and nonnegative exponents.
+
+Concatenating the actual knot classes named by $t$ defines $L$. The original presentations, rather than an unproved cancellation law for knots, give $K=L^mQ$ and $K'=L^nQ'$. If both words are empty, both knots are classical and the long unknot may be used for $L$. If only one word is empty, one exponent is zero. The proof uses free-word cancellation only after explicitly assuming ordered uniqueness.
+
+The qualifier “ordered” is essential: unordered multiset uniqueness would not make a map into a free noncommutative monoid. The candidate does not replace one assertion by the other.
+
+## 3. Abstract obstruction
+
+Write $M=\langle a,b\mid abba=baab\rangle^+$ and $N=\mathbb N\times M$. The defining congruence is generated by contextual replacements of equal-length words, so length is a well-defined additive map $M\to\mathbb N$. The length-zero element is uniquely the identity, and no word of length below four admits a replacement. In particular, all four length-two words are distinct.
+
+The designated classical submonoid $C=\mathbb N\times\{\varepsilon\}$ is central. A useful additional grading is
+
+$$d(c,w)=c+|w|.$$
+
+It is nonnegative and additive, and is zero only at the identity. The degree-one elements are exactly $(1,\varepsilon),(0,a),(0,b)$, so they are atoms. Conversely, every representative of degree at least two splits into one of these generators and a nonidentity remainder. This proves atomicity and the full atom classification for the infinite monoid, rather than inferring it from finite tests. The only nonclassical atoms are $(0,a)$ and $(0,b)$, and their ordered two-factor products are rigid because words of length two are never identified.
+
+The distinct composites $X=(0,ab)$ and $Y=(0,ba)$ commute by the defining relation. In a hypothetical common-power factorization with a root $(c,w)$ and classical factors $(q,\varepsilon),(q',\varepsilon)$, length gives
+
+$$2=m|w|=n|w|.$$
+
+Thus the root has positive length, both exponents are positive, and $m=n$. First-coordinate nonnegativity gives $c=q=q'=0$. The two proposed factorizations are consequently the same element, contradicting $X\ne Y$.
+
+This is an exact countermodel to the stated **algebraic inference**. It is not a counterexample to Problem 21. No embedding or realization of this monoid in the long-virtual-knot monoid is asserted; nor is it claimed to have every additional geometric or cancellation property of that monoid. The candidate consistently maintains this distinction.
+
+## 4. Current-literature qualification
+
+I independently opened the [official AustMS 2025 booklet](https://austms2025.org.au/files/AustMS2025%20conference%20booklet.pdf), read and visually checked printed p.194, and checked the conference dates. The 10 December 2025 talk by Tilda Wilkinson-Finch, joint with Zsuzsanna Dancso and Hans Boden, announces existence and uniqueness of prime decompositions for long virtual knots. It refers to a Diamond-Lemma approach. The abstract alone does not state the complete decomposition equivalence or its order convention, and does not contain the proof.
+
+Bounded exact-title/author searches and the retrieved [institutional publication list](https://math.mcmaster.ca/~boden/preprints/index.html) did not yield a full manuscript during this review. This is a retrieval limitation, not proof of nonexistence. Consequently, neither “the question is certainly still open” nor “the announced theorem has been independently checked to settle the question” is justified. The source-hold wording is appropriate.
+
+I also read Section 5 of [Sekino’s August 2026 preprint](https://arxiv.org/abs/2608.27934), including Theorem 5.1, Remark 5.1 and Corollary 5.1. The identities there are necessary conditions for commutativity. The remark expressly gives a limitation of the invariant on known noncommuting examples. This does not supply the missing sufficient condition or ordered normal form. Current arXiv metadata for Sekino and Chrisman shows v1 only, without a journal reference or withdrawal notice. The full new biquandle construction was not independently recertified here.
+
+## 5. Reproducible checks
+
+From the directory containing this report:
+
+```sh
+(cd author_replay && python verify.py > replayed_verification.json && cmp verification.json replayed_verification.json)
+python independent_checks.py > /tmp/long-virtual-independent-results.json
+cmp independent_results.json /tmp/long-virtual-independent-results.json
+```
+
+The independent checker does not import the submitted code. It uses shortest primitive periods, rather than the submitted prefix recursion, to examine all 14,641 pairs of ternary words of length at most four. It verifies common-root reconstruction, the gcd-length period, empty words and residual central factors. A union-find computation independently constructs the homogeneous rewrite classes for all 511 binary words of length at most eight, checks contextual relations and gradings, and tests the two-composite obstruction. The analytic proofs above, not these bounded computations, justify the unrestricted claims.
+
+**Recommendation:** retain `unsolved`, one substantive approach, and the explicit literature source hold. No mandatory correction is required. A full answer still needs a precise geometric normal-form/centralizer theorem or an actual long-virtual-knot counterexample, with the 2025 announcement checked against a complete source before being used.
