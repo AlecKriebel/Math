@@ -6,3 +6,5 @@
 - **09:08 UTC — Freeze as unresolved.** Stoimenow's published April 2026 paper still states the exact converse as Conjecture 2.5; the relevant page was visually checked. Saved the precise gap, exact finite accounting controls, source provenance, and both unsuccessful routes. Stop early at this concrete stall rather than spend further turns restating the missing theorem. Separate adversarial review remains required. Completion estimate: 10%.
 
 The contact-geometry, Floer-theoretic and classification results cited are credited imports. The finite verifier is not a substitute for a topological construction. No queue files, historical assessments, or related problems were edited.
+
+- **09:26 UTC — Separate review passed.** The scoped accounting and gap audit passed with no mathematical correction; 324 author controls and 3,848 independent checks pass. A new primary preprint dated 29 September 2026 still poses the general question. The frozen note remains unchanged, including its historical pending-review header. The recommended status remains unsolved, 2/5.
