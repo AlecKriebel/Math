@@ -134,7 +134,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 123 | 30003709 / OWR-15987-020 | Recovering Toric Arrangement Posets from Complement Cohomology | 0.2229 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 124 | 30003996 / OWR-16633-013 | Hardness of Root-Dependent Spanning-Tree Optimization | 0.2229 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 125 | 30003997 / OWR-16633-014 | Hardness of Path-Cost Arborescence Optimization | 0.2229 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
-| 126 | 5100032 / AMR-050-0032 | Elliptic-billiard invariant k_{603} | 0.2222 | 4.5 | 3 | 2021 | queued | 0/5 |  |  |  |
+| 126 | 5100032 / AMR-050-0032 | Elliptic-billiard invariant k_{603} | 0.2222 | 4.5 | 3 | 2021 | claimed_solved | 2/5 |  | 2026-09-30: Complete proof of k603 for nondegenerate nested confocal ellipses: the unsigned focal antipedal-distance difference telescopes edge by edge along every closed orbit. Separate source/sign/geometric audit independently derives the coefficient;17364author and1993independent checks. Hyperbolic-caustic/degenerate extensions and novelty are not claimed; unrefereed. Draft PR: https://github.com/AlecKriebel/Math/pull/110. |  |
 | 127 | 30004433 / OWR-17474-007 | Ends of Critical Long-Range Percolation Clusters | 0.2212 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 128 | 4900006 / AMR-048-0006 | Eden's conjecture on local Lyapunov dimension | 0.2200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 129 | 30005678 / OWR-14297744-011 | Fully Two-Segal Waldhausen S-Constructions | 0.2174 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
