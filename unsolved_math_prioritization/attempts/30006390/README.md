@@ -6,4 +6,4 @@
 
 Run `python check_small_planes.py` from this directory to reproduce `check_results.json`. It uses only the Python standard library and checks all 128 subsets of PG(2,2) and all 8192 subsets of PG(2,3). These exact diagnostics do not establish an asymptotic result.
 
-Independent adversarial review is pending. The actual model was gpt-6-astra at xhigh reasoning. The pinned source records are attributed to [ulamai/UnsolvedMath](https://huggingface.co/datasets/ulamai/UnsolvedMath), CC BY 4.0.
+A [separate adversarial AI review](review/REVIEW.md) passed the stated partial results after one corrected theorem-transcription sign. The original conjecture remains unresolved. Run `python review/independent_checks.py` for the independent affine-coordinate diagnostics; these also do not prove an asymptotic result. The actual model was gpt-6-astra at xhigh reasoning. The pinned source records are attributed to [ulamai/UnsolvedMath](https://huggingface.co/datasets/ulamai/UnsolvedMath), CC BY 4.0.
