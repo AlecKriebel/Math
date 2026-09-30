@@ -4,7 +4,7 @@
 
 ## Source and quantifiers
 
-[K3, Problem1.42](https://aimath.org/pastworkshops/kirbylistrep.pdf), printed pp44–45, asks whether some algebraically concordant Seifert forms have no concordant knot realizations at all, in either smooth or locally flat topological concordance. A single nonconcordant pair of knots with those forms would not answer that universal realization question. The source test pair is
+[K3, Problem1.42](https://math.berkeley.edu/sites/default/files/surv-295-ruberman-watermarked-author-pdf.pdf), printed pp44–45, asks whether some algebraically concordant Seifert forms have no concordant knot realizations at all, in either smooth or locally flat topological concordance. A single nonconcordant pair of knots with those forms would not answer that universal realization question. The source test pair is
 
     V1 = [[3,2],[1,3]],    V2 = [[1,2],[1,9]].
 
