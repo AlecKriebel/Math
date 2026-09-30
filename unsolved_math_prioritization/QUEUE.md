@@ -162,7 +162,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 151 | 2770 / KP-2.22 | Kirby Problem 2.22 | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 152 | 2830 / KP-3.32 | Kirby Problem 3.32 | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 153 | 2840 / KP-3.42 | Kirby Problem 3.42 | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 154 | 3800014 / AMR-037-0014 | A dynamic-programming interval problem | 0.2080 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 154 | 3800014 / AMR-037-0014 | A dynamic-programming interval problem | 0.2080 | 5.5 | 3 | unknown | already_solved | 1/5 |  | 2026-09-30: Credited min-plus convolution/dominance method gives the requested o(n²) interval algorithm in O(n²/logn) real-RAM time, including duplicate feasibility and witnesses. Separate source/complexity audit passed the repaired shared-list reporting implementation;10388author and22962independent controls. One validation/reconstruction family, zero discovery credit; no bit-cost or n^(2-epsilon) claim. Draft PR: https://github.com/AlecKriebel/Math/pull/138. |  |
 | 155 | 30002926 / OWR-13856-002 | Gamma Profiles of Waves Entering a Condensate | 0.2075 | 5.0 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 156 | 30005975 / OWR-14298584-008 | Brauer Groups of Tame Stacky Curves | 0.2071 | 6.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 157 | 5100023 / AMR-050-0023 | Elliptic-billiard invariant k_{405} | 0.2064 | 4.5 | 3 | 2021 | queued | 0/5 |  |  |  |
