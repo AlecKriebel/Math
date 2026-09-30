@@ -18,4 +18,7 @@ source's weaker subpolynomial implication.
 Run `python3 verify_controls.py`. Standard library only. The 48,145 exact controls
 check elementary inequalities and the displayed finite models; they do not
 certify the conjecture or a counterexample. Classical constructions are credited.
-Separate independent adversarial review is pending. No novelty claim is made.
+The [separate adversarial review](review/REVIEW.md) passes this explicitly
+unresolved package. All 48,145 author assertions and 966,690 independent exact
+controls reproduce. This is AI review, not human peer review. No novelty claim
+is made. Run `python3 review/independent_checks.py` for the independent receipt.

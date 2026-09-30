@@ -21,3 +21,6 @@ at most five substantive approaches.
 - **08:13:** Prepared the precise unresolved package and 48,145 passing exact
   controls. Two of five approaches used. Stopping at the structural gap;
   neither the polylogarithmic nor subpolynomial source claim is resolved.
+- **08:25:** Packaged the separate adversarial PASS without changing the frozen
+  proof or verifier. All 48,145 author and 966,690 independent controls reproduce.
+  Both original implications remain unresolved; completion estimate: 0%.
