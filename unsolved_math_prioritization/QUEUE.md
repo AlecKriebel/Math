@@ -52,7 +52,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 41 | 20002052 / AIM-GEOMETRY-0390 | Local primitives versus divergence terms | 0.2600 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 42 | 2800102 / AMR-027-0102 | 10 Lectures and 42 Open Problems — Gaussian singular-value monotonicity | 0.2594 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 43 | 30003713 / OWR-15987-026 | Homology of Free-Lie Current Algebras over Square-Zero Extensions | 0.2571 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
-| 44 | 30003955 / OWR-16415-018 | Disconnected Preimages of Subsurfaces Under Finite Covers | 0.2571 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
+| 44 | 30003955 / OWR-16415-018 | Disconnected Preimages of Subsurfaces Under Finite Covers | 0.2571 | 5.5 | 3 | 2018 | unsolved | 2/5 |  | 2026-09-30: Separate review passed the cyclic-factor, generator-count and large-genus partial results, with the irregular-versus-regular distinction checked. The general pants/four-holed-sphere question remains unresolved. Two bounded routes; exact geometric and monodromy gaps preserved, no full-resolution claim. Draft PR: https://github.com/AlecKriebel/Math/pull/30. |  |
 | 45 | 6800007 / AMR-067-0007 | Manifolds modelled on flag manifolds — Question 2 | 0.2571 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 46 | 30004186 / OWR-17128-002 | Stability of Peaked Reduced Ostrovsky Waves | 0.2562 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 47 | 7000004 / AMR-069-0004 | Geometry of Curves and Surfaces — Problem 1.4 | 0.2562 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
