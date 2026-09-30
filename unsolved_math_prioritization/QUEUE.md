@@ -189,7 +189,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 178 | 30006170 / OWR-14299082-017 | Chaining and Weak Mixing for Measure-Class-Preserving Actions | 0.1963 | 5.0 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 179 | 30006231 / OWR-14299094-001 | Unique Ground-State Representability under Linear Constraints | 0.1963 | 5.0 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 180 | 30006354 / OWR-14299511-003 | SU(3) Braided Fusion Spin Systems and Haah Nets | 0.1963 | 5.0 | 3 | 2025 | queued | 0/5 |  |  |  |
-| 181 | 30001767 / OWR-5149-003 | Blocks of Symmetric-Group Centralizer Algebras | 0.1962 | 5.0 | 3 | 2011 | queued | 0/5 |  |  |  |
+| 181 | 30001767 / OWR-5149-003 | Blocks of Symmetric-Group Centralizer Algebras | 0.1962 | 5.0 | 3 | 2011 | unsolved | 2/5 |  | 2026-09-30: Separate review passed central-idempotent preservation for finite p-group actions in characteristic p and the all-n l2,p2 inner-action subclass, with an exact non-p-group diagnostic. General naturally embedded symmetric-subgroup block conjecture remains unresolved. 147 author and 121 independent controls; no normality hypothesis needed in the abstract theorem, no novelty claim. Draft PR: https://github.com/AlecKriebel/Math/pull/167. |  |
 | 182 | 30002603 / OWR-12986-001 | Linear Segments in Optimal-Path Shape Functions | 0.1950 | 5.0 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 183 | 30002720 / OWR-13352-004 | Marginal Limits for Markov-Source Selection Processes | 0.1950 | 5.0 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 184 | 30002879 / OWR-13681-013 | Hochschild-Cohomology Lie Structure of a Stratified Algebra | 0.1945 | 5.0 | 3 | 2015 | queued | 0/5 |  |  |  |
