@@ -121,7 +121,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 110 | 30003150 / OWR-14609-007 | Unique Nonequilibrium Invariant Measures for Resonant NLS | 0.2242 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 111 | 10300055 / AMR-102-0055 | Numerical invariants — Question 13.2 | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 112 | 10400015 / AMR-103-0015 | Problem 1.15 — (M. | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 113 | 10400016 / AMR-103-0016 | Problem 1.16 — (E. | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 113 | 10400016 / AMR-103-0016 | Problem 1.16 — (E. | 0.2240 | 5.5 | 3 | unknown | already_solved | 0/5 |  | 2026-09-30: Published Ito2026 signature theorem and Rutherford2006 comparison settle both original alternating-link inequalities, including split links and unknots. Separate source/convention audit passed;1566author and734independent assertions. Final-journal access and classic dependency limits retained, no campaign discovery. Draft PR: https://github.com/AlecKriebel/Math/pull/99. |  |
 | 114 | 10400120 / AMR-103-0120 | Conjecture 7.5 — For non-vanishing $\tau_r^G(M)$, the absolute value $/\tau_r^G(M)/$ depends only on the fundamental group $\pi_1(M)$. | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 115 | 10600020 / AMR-105-0020 | Virtual-knot problem 20 — Embeddings of Surfaces | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 116 | 20001380 / AIM-DYNAMICAL_SYSTEMS-0038 | Explicit size and wild ramification bounds for the 0-rooted tree of z^2+1 over Q_2 | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
