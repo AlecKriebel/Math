@@ -202,7 +202,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 191 | 4300006 / AMR-042-0006 | Entropy and Deligne periods | 0.1934 | 5.5 | 4 | 2006 | queued | 0/5 |  |  |  |
 | 192 | 30003935 / OWR-16413-006 | Strong Convergence of Ensemble Kalman Inversion | 0.1929 | 5.0 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 193 | 30001251 / OWR-3474-001 | Instability of Multi-Peaked Orientational Steady States | 0.1925 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
-| 194 | 30001400 / OWR-4139-001 | Comparison of Majorization Relations for Probability Vectors | 0.1925 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
+| 194 | 30001400 / OWR-4139-001 | Comparison of Majorization Relations for Probability Vectors | 0.1925 | 5.5 | 3 | 2009 | already_solved | 1/5 |  | 2026-09-30: Published 2021 eventual-majorization theorem plus uniform smoothing gives the requested fixed-dimension closure with unchanged comparison vector. Separate source, endpoint and reduction audit passed; 10598 author and 26754 independent controls. Strict positive/negative Renyi and derivative-at-zero conditions checked, uniform case separated; credited consequence and one validation family, no discovery claim. Draft PR: https://github.com/AlecKriebel/Math/pull/175. |  |
 | 195 | 10300044 / AMR-102-0044 | Hyperbolic geometry — Question 10.6 | 0.1920 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 196 | 10400049 / AMR-103-0049 | Problem 2.27 — (D. | 0.1920 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 197 | 10400080 / AMR-103-0080 | Problem 4.2 — (J. | 0.1920 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
