@@ -23,3 +23,9 @@ Completion estimate: 90%, with independent adversarial review outstanding. The c
 The initial checkpoint command was denied by the action reviewer for lacking visible authorization for research pushes. After exact user transcript evidence was supplied, the same branch push was retried once and succeeded. No workaround was attempted. The initial denied composite command had not committed the artifacts; a subsequent reviewed-scope checkpoint commits the saved files normally.
 
 The Janson inequality was checked directly in the current author-hosted Frieze–Karoński text, Section 34.6, Theorem 34.13. The use of ordered distinct overlap pairs is conservative for the displayed denominator. Candidate snapshot frozen for review; hash is in provenance.json.
+
+## 04:22 UTC: separate review passed
+
+A separate agent independently audited the exact original target, every imported theorem, the uniform quantification over order types and adaptive deletions, the generic-perturbation step, PL inflation, and both exact embedding dimensions. No required mathematical correction was found. All 16 submitted checks and 396 independent exact assertions passed. The full review and its companion files are copied unchanged into `independent_review/`.
+
+Completion estimate: 100% toward a complete independently AI-reviewed candidate for the exact existential target. Historical novelty remains unconfirmed and external peer review has not occurred. The candidate is retained byte-for-byte with its original pre-review header; README and provenance record the current review status. Preparing the one authorized draft PR; no shared queue files changed.
