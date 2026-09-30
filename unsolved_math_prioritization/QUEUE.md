@@ -207,7 +207,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 196 | 10400049 / AMR-103-0049 | Problem 2.27 — (D. | 0.1920 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 197 | 10400080 / AMR-103-0080 | Problem 4.2 — (J. | 0.1920 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 198 | 10800007 / AMR-107-0007 | Problem 2A — What is the minimal number of open sets $U_{i}$ covering ${\mathbb{R}}^{6}$ such that for any $U_{i}$… | 0.1920 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 199 | 11000213 / AMR-109-0213 | Problem 6 — (Purely cyclic). | 0.1920 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 199 | 11000213 / AMR-109-0213 | Problem 6 — (Purely cyclic). | 0.1920 | 5.5 | 3 | unknown | unsolved | 2/5 |  | 2026-09-30: Separate review passed the finite periodic-branch torus-cover obstruction, explicit lifting-power bounds, compactness limits on orbit deletion and conditional marked-orbit criterion. A compact unmarked surface with the exact full purely cyclic Veech group remains unconstructed; noncompact examples do not settle the source. 7854 author and 16415 independent controls; original compact PSL scope retained. Draft PR: https://github.com/AlecKriebel/Math/pull/183. |  |
 | 200 | 20002560 / AIM-PROBABILITY-0002 | Exact parity projection and a certified bracket for RBM(3,1) | 0.1920 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 201 | 30006576 / OWR-14299907-001 | Mesh Structures Behind Even-Odd Superconvergence | 0.1920 | 5.0 | 3 | 2026 | queued | 0/5 |  |  |  |
 | 202 | 30006587 / OWR-14299909-002 | Derivative Formula for Multiple Eisenstein Series | 0.1920 | 5.0 | 3 | 2026 | queued | 0/5 |  |  |  |
