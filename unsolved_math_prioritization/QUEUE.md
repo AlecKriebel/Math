@@ -188,7 +188,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 177 | 30006161 / OWR-14299082-003 | Generic Maximal Chains on Exceptional Surfaces | 0.1963 | 5.0 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 178 | 30006170 / OWR-14299082-017 | Chaining and Weak Mixing for Measure-Class-Preserving Actions | 0.1963 | 5.0 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 179 | 30006231 / OWR-14299094-001 | Unique Ground-State Representability under Linear Constraints | 0.1963 | 5.0 | 3 | 2025 | queued | 0/5 |  |  |  |
-| 180 | 30006354 / OWR-14299511-003 | SU(3) Braided Fusion Spin Systems and Haah Nets | 0.1963 | 5.0 | 3 | 2025 | queued | 0/5 |  |  |  |
+| 180 | 30006354 / OWR-14299511-003 | SU(3) Braided Fusion Spin Systems and Haah Nets | 0.1963 | 5.0 | 3 | 2025 | unsolved | 2/5 |  | 2026-09-30: Separate review passed the credited Laurent complement/projector with explicit support bound and finite-window Heisenberg block criterion. A compatible SU3 level1 net isomorphism with uniform two-sided spread remains missing; sector equivalence and finite blocks do not supply it. 345948 author and 3388 independent exact controls; original Conjecture2 scope retained. Draft PR: https://github.com/AlecKriebel/Math/pull/159. |  |
 | 181 | 30001767 / OWR-5149-003 | Blocks of Symmetric-Group Centralizer Algebras | 0.1962 | 5.0 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 182 | 30002603 / OWR-12986-001 | Linear Segments in Optimal-Path Shape Functions | 0.1950 | 5.0 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 183 | 30002720 / OWR-13352-004 | Marginal Limits for Markov-Source Selection Processes | 0.1950 | 5.0 | 3 | 2014 | queued | 0/5 |  |  |  |
