@@ -15,3 +15,7 @@ Full university-hosted copies of AKN1987, NS1986 and AN1986 were recovered. Thei
 ## 2026-09-30 09:46 UTC: frozen review checkpoint
 
 The complete classical-consequence artifact is frozen with 1,002 exact finite controls. A separate reviewer has its path, hash and primary sources. The original infinite-volume conclusion is a written proof with credited external theorems; no finite computation is represented as an infinite-cluster certificate. Completion estimate: 90% toward the literal-source correction, with separate review and publication pending.
+
+## 2026-09-30 09:56 UTC: independent review passed
+
+The frozen mathematical argument passed separate adversarial AI review without mandatory correction. All 1,002 submitted controls replay byte-identically; 2,303 independent finite diagnostics pass. The eight review publication files are copied unchanged. The ordinary graph-end and explicit nonvacuous critical-model qualifications remain intact. Completion estimate: 100% of the stated literal-source correction, with no novelty or human-peer-review claim.
