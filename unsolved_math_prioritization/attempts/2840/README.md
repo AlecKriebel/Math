@@ -6,9 +6,10 @@ The original question for each fixed closed tight contact 3-manifold remains unr
 - [Source audit](SOURCE_AUDIT.md)
 - [Exact checker](verify.py) and [receipt](verification.json)
 - [Readiness evidence](readiness.json) and [research log](RESEARCH_LOG.md)
+- [Separate adversarial review](review/REVIEW.md) and its self-contained checks
 
 The partial proof gives an L² degeneration bound for embedded torsion layers, a conditional metric bound, and a local contact-dilation obstruction to a uniform pointwise conformal-factor bound over all embeddings. Standard torus examples distinguish changing closed structures, coverings, and noncompact infinite torsion.
 
 Run the verifier with Python and SymPy 1.14.0. It rewrites its sibling verification.json. All 372 exact controls pass; they do not establish tightness or resolve the original question.
 
-Status: unsolved, two substantive approaches used, separate adversarial review pending. The standard tightness and fillability results are credited. Historical priority for the elementary deductions is unconfirmed.
+Status: unsolved, two substantive approaches used, separate adversarial AI review passed with no correction. The frozen partial retains its historical pending-review header; the review and readiness evidence record the completed audit. The standard tightness and fillability results are credited. Historical priority for the elementary deductions is unconfirmed.
