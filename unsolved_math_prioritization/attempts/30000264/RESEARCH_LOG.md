@@ -28,3 +28,7 @@ All 7,526 exact standard-library assertions pass, covering fixed-cone deformatio
 
 The separate reviewer received the frozen proof and final checker hashes. No result PR is opened before that review.
 
+
+## 2026-09-30 12:40 UTC — independent review and publication checkpoint
+
+The separate adversarial audit passed without mathematical corrections. All 7,526 submitted assertions replayed, and 2,528 independent exact assertions passed. The eight specified review files were copied unchanged. The original mathematical snapshot and its historical header remain frozen; administrative metadata records the completed review. The general problem remains unsolved, two of five attempts used; completion estimate remains 20%.
