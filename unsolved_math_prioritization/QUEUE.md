@@ -79,7 +79,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 68 | 30000671 / OWR-1453-004 | Reconstructing Complete Local Rings from Finite Quotients | 0.2458 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 69 | 30000703 / OWR-1460-009 | Boundary Behavior under Asymptotic Schwarz–Pick Equality | 0.2458 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 70 | 30006309 / OWR-14299288-015 | Combinatorial Proof of Hurwitz and Discriminant Weight-Polytope Equality | 0.2454 | 5.5 | 3 | 2025 | queued | 0/5 |  |  |  |
-| 71 | 30002061 / OWR-11786-016 | Collapse Preservation under Subdivision | 0.2437 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
+| 71 | 30002061 / OWR-11786-016 | Collapse Preservation under Subdivision | 0.2437 | 5.5 | 3 | 2012 | unsolved | 1/5 |  | 2026-09-30: Separate adversarial review passed the exact relative-simplex reduction and dimension-at-most-two collapse certificate preserving the prescribed boundary target. The higher-dimensional linear-subdivision problem remains unresolved.4200author and59718independent assertions; one bounded route and no full-resolution or novelty claim. Draft PR: https://github.com/AlecKriebel/Math/pull/54. |  |
 | 72 | 30002298 / OWR-12339-004 | Polyhedra with Vertex-Factored Fantappiè Denominators | 0.2432 | 5.5 | 3 | 2013 | queued | 0/5 |  |  |  |
 | 73 | 30003354 / OWR-15208-008 | Borderline Continuity of Conformal Metric Parametrizations | 0.2408 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 74 | 10300016 / AMR-102-0016 | Branched surfaces and triangulations — Question 7.1 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
