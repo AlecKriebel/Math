@@ -38,7 +38,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 27 | 30005473 / OWR-12697711-006 | Irreducibility of Exposed-Point Varieties of Generic Discotopes | 0.2675 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 28 | 30002867 / OWR-13678-008 | Matrix Characterization of Complete Intersections | 0.2675 | 5.0 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 29 | 30005897 / OWR-14298367-003 | Shadowing Without Bounded Distortion | 0.2651 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
-| 30 | 30005934 / OWR-14298374-003 | Wishart Processes with Noninjective Semigroups | 0.2651 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
+| 30 | 30005934 / OWR-14298374-003 | Wishart Processes with Noninjective Semigroups | 0.2651 | 5.5 | 3 | 2024 | claimed_solved | 1/5 |  | 2026-09-30: Complete narrow negative answer for the stated noninteger Wishart obstruction with injective Q, without semigroup injectivity. Separate adversarial AI review passed including random initial data; 19 exact diagnostics passed. Earlier 22 September public candidate credited; no novelty or human-peer-review claim. Draft PR: https://github.com/AlecKriebel/Math/pull/14. |  |
 | 31 | 30000224 / OWR-824-008 | Set-Theoretic Cohen–Macaulay Ideals in Characteristic Zero | 0.2641 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 32 | 30000439 / OWR-1194-009 | Gaps Between Piecewise-Linear and Linear Embedding Dimensions | 0.2637 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
 | 33 | 30000819 / OWR-1595-012 | Volume Bounds for Holes in Very Ample Semigroups | 0.2634 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
