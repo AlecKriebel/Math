@@ -73,7 +73,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 62 | 9900007 / AMR-098-0007 | Two-process coupling characterization of weak convergence | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 63 | 30004386 / OWR-17469-011 | Large Deviations for Random High-Dimensional Projections | 0.2552 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 64 | 30004438 / OWR-17475-003 | Real Rational Maps with Exclusively Real Periodic Points | 0.2552 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
-| 65 | 10600042 / AMR-105-0042 | Virtual-knot problem 42 — One can consider braids with even numbers of strands. | 0.2475 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 65 | 10600042 / AMR-105-0042 | Virtual-knot problem 42 — One can consider braids with even numbers of strands. | 0.2475 | 5.0 | 3 | unknown | claimed_solved | 1/5 |  | 2026-09-30: Complete explicit finite even-tagged word-pattern Markov reformulation for ordinary classical and virtual braid closures. Separate adversarial audit passed soundness/completeness including both virtual exchanges;3219author and6641independent controls. Elementary reformulation of credited established theorems; novelty, minimality and stronger locality are not claimed. Draft PR: https://github.com/AlecKriebel/Math/pull/50. |  |
 | 66 | 30000166 / OWR-782-007 | Positivity of Saito's Eta Products | 0.2465 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 67 | 30000644 / OWR-1452-008 | Surjectivity of Reduction Maps for Special Polynomial Automorphisms | 0.2458 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 68 | 30000671 / OWR-1453-004 | Reconstructing Complete Local Rings from Finite Quotients | 0.2458 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
