@@ -99,7 +99,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 88 | 2985 / KP-4.109 | Kirby Problem 4.109 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 89 | 3012 / KP-5.5 | Kirby Problem 5.5 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 90 | 3088 / OPG-56328 | Partitioning the Projective Plane | 0.2400 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
-| 91 | 3415 / OPG-37151 | Fundamental group torsion for subsets of Euclidean 3-space | 0.2400 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
+| 91 | 3415 / OPG-37151 | Fundamental group torsion for subsets of Euclidean 3-space | 0.2400 | 5.5 | 1 | unknown | unsolved | 2/5 |  | 2026-09-30: Separate review passed the exact-order compact Peano witness and ambient-neighborhood kernel reductions. Torsion inside the wild subset neighborhood/shape kernel remains unresolved; no retraction/local-regularity assumption or singular-Cech substitution is made. Two bounded routes, no geometric computation or full-resolution claim. Draft PR: https://github.com/AlecKriebel/Math/pull/74. |  |
 | 92 | 9700008 / AMR-096-0008 | Relaxation time of Metropolis chains on Cayley graphs | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 93 | 30004845 / OWR-8415349-001 | Bubble-Free Criterion for Polygraphic and Nerve Homology | 0.2370 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 94 | 30000136 / OWR-761-003 | Nowhere-Zero Perturbations of Nonclosed One-Forms | 0.2292 | 5.5 | 3 | 2004 | queued | 0/5 |  |  |  |
