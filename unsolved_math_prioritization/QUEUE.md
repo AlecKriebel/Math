@@ -182,7 +182,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 171 | 30005432 / OWR-12697693-003 | The Property-s Elements of a Skew Brace | 0.2007 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 172 | 2306022 / AMR-022-6022 | Research Problems in Function Theory — Problem 6.22 | 0.2000 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 173 | 30000229 / OWR-829-001 | Approximation Classes for Adaptive Finite Elements | 0.1981 | 5.0 | 3 | 2005 | queued | 0/5 |  |  |  |
-| 174 | 30000264 / OWR-1050-015 | Topology of Yamabe Asymptotic Sets | 0.1981 | 5.0 | 3 | 2005 | queued | 0/5 |  |  |  |
+| 174 | 30000264 / OWR-1050-015 | Topology of Yamabe Asymptotic Sets | 0.1981 | 5.0 | 3 | 2005 | unsolved | 2/5 |  | 2026-09-30: Separate review passed global product descriptions for at most three points, a genuine four-point inertia change and the credited small-configuration boundary-regularity consequence. General topology of the full configuration-dependent family across zero-eigenvalue loci remains unresolved; original and later source sign conventions are distinguished. 7526 author and 2528 independent controls. Draft PR: https://github.com/AlecKriebel/Math/pull/160. |  |
 | 175 | 30000585 / OWR-1327-001 | Force-Induced Phase Transitions in Self-Attracting Polymers | 0.1978 | 5.0 | 3 | 2006 | queued | 0/5 |  |  |  |
 | 176 | 30001413 / OWR-4209-002 | Optimal Domain Conditions for Positivity of Hinged Plates | 0.1966 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 177 | 30006161 / OWR-14299082-003 | Generic Maximal Chains on Exceptional Surfaces | 0.1963 | 5.0 | 3 | 2025 | queued | 0/5 |  |  |  |
