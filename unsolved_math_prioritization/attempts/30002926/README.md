@@ -1,6 +1,6 @@
 # Condensation profiles: a physical-clock obstruction
 
-**30002926 / OWR-13856-002. Original Gamma-profile existence question unresolved; 1/5 approaches. Separate review pending.**
+**30002926 / OWR-13856-002. Original Gamma-profile existence question unresolved; 1/5 approaches. Separate adversarial AI review passed; this has not undergone human peer review.**
 
 The [proof](CLOCK_OBSTRUCTION.md) establishes a necessary clock constraint using the actual branching model. A nonzero deterministic Gamma profile on t(1−fitness) must have rate 1−beta. An explicit positive-mutation strict-condensation example therefore contradicts the source's displayed rate-one formula in its stated physical clock.
 
@@ -12,3 +12,7 @@ This does not establish the existence or shape parameter of a clock-corrected pr
 - [Exact checker](verify.py) and [receipt](verification.json)
 
 Run `python3 verify.py` in this directory. Finite controls verify algebra; Sections 3–5 of the proof contain the branching, mutation and random-normalization arguments. No simulation or fitted profile is used.
+
+## Independent review
+
+The [separate review](review/REVIEW.md) passes the stated physical-clock obstruction. All 21,490 submitted controls replay byte for byte, and 52,751 independent exact controls pass. The frozen proof is unchanged. The original corrected-profile existence and shape question remains unresolved, with one substantive approach.

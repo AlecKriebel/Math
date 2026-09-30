@@ -13,3 +13,7 @@ Derived a uniform first-moment bound from the defective mutation renewal equatio
 ## Freeze, 11:09 UTC
 
 The source-qualified clock result is ready for independent review. The intended clock-corrected Gamma-profile existence and shape remain unresolved. Recommended conservative status: unsolved, 1/5. Best-guess progress toward the intended existence theorem: 15%; the narrower printed-normalization obstruction is complete subject to separate review. Stop rather than treat this normalization correction as a proof of universality. No shared queue or generated catalog/state was modified.
+
+## Separate review and publication, 11:41 UTC
+
+The independent audit returned PASS_SCOPED_PHYSICAL_CLOCK_OBSTRUCTION with no mathematical correction. Copied its eight listed publication files unchanged. All 21,490 submitted assertions reproduce byte for byte; 52,751 independent exact controls pass. The proof hash remains 69b774f175abbaf05297b7c03956a9c71c7f0e8b41e0b00b34990ab9927322e5. Progress toward corrected-profile existence remains approximately 15%; conservative status unsolved, 1/5. The draft publication concerns the reviewed necessary clock condition and source-normalization obstruction only.
