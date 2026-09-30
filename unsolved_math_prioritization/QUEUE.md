@@ -199,7 +199,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 188 | 30003480 / OWR-15428-003 | Single Polynomial Description of Binary Tensor Gram Loci | 0.1935 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 189 | 30003677 / OWR-15962-003 | Strategic Starting Vertices in Competing First-Passage Percolation | 0.1935 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 190 | 30000567 / OWR-1323-003 | Disjoint-Hypercyclic Operators on Banach Spaces | 0.1934 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
-| 191 | 4300006 / AMR-042-0006 | Entropy and Deligne periods | 0.1934 | 5.5 | 4 | 2006 | queued | 0/5 |  |  |  |
+| 191 | 4300006 / AMR-042-0006 | Entropy and Deligne periods | 0.1934 | 5.5 | 4 | 2006 | unsolved | 1/5 |  | 2026-09-30: Separate review passed the all-prime obstruction to combining topological-conjugacy invariance with scalar p-adic-log normalization, using explicit isometric conjugacies. The source offers invariance as an optional axiom; its broader entropy and period program remains unresolved. 122334 author and 4560 independent controls; known compact periodic entropy is compatible and credited. Draft PR: https://github.com/AlecKriebel/Math/pull/172. |  |
 | 192 | 30003935 / OWR-16413-006 | Strong Convergence of Ensemble Kalman Inversion | 0.1929 | 5.0 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 193 | 30001251 / OWR-3474-001 | Instability of Multi-Peaked Orientational Steady States | 0.1925 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 194 | 30001400 / OWR-4139-001 | Comparison of Majorization Relations for Probability Vectors | 0.1925 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
