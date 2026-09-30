@@ -17,3 +17,7 @@ A symmetric binary Markov source and a nonboundary rank whose binary coding has 
 ## 12:49 UTC — frozen complete candidate
 
 The nonboundary construction and arbitrary-centering theorem are proved in COUNTEREXAMPLE.md. An elementary grid concentration bound and pair-prefix tail estimate control the exact singleton-stopping cost uniformly. The binomial order-statistic CLT gives two bands of asymptotically positive probability. All 16,642 finite controls pass. Mathematical text and verifier are frozen for separate review. Completion estimate: 95%, with independent validation outstanding; historical priority unestablished. One substantive route used.
+
+## 12:58 UTC — independent full pass
+
+The separate reviewer passed the complete nonboundary counterexample without corrections. The frozen mathematical artifact and verifier remain byte-identical. All 16,642 submitted controls reproduce; 44,602 independent controls pass. Completion estimate for the exact universal fixed-rank question: 100%, with historical priority and other-rank classifications unclaimed. One substantive route used; no human peer review.
