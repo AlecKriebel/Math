@@ -90,7 +90,7 @@ d[\operatorname{tr}(vX)]_s
 =4\operatorname{tr}(X_s vQv)\,ds. \tag{3}
 $$
 
-To check the factor, the two noise terms combine to the scalar Hilbert–Schmidt stochastic integral with integrand $2\sqrt Q\,v\sqrt{X_s}$; its squared Hilbert–Schmidt norm is the right-hand side of (3).
+To check the factor, the two noise terms combine to the scalar stochastic integral defined by the functional $E\mapsto2\operatorname{tr}(\sqrt Q\,v\sqrt{X_s}E)$. Under the Hilbert–Schmidt pairing $\langle K,E\rangle=\operatorname{tr}(K^*E)$, its representing integrand is $2\sqrt{X_s}v\sqrt Q$. Its squared Hilbert–Schmidt norm is the right-hand side of (3).
 
 The weak equation also allows the moving finite-rank tests in (2). Here are the analytic details. Each column $f(s)=S(s)Le_i$ is continuously differentiable as a path in $D(A)$ with graph norm, because $Le_i\in D(A^2)$, $f'=Af$, and $(Af)'=A^2f$. On a compact time interval, approximate $f$ and $f'$ uniformly in graph norm by continuously differentiable paths with values in finite-dimensional subspaces of $D(A)$: approximate $f'$ by finite linear combinations with continuous scalar coefficients and integrate, including $f(0)$ in the chosen span. For these approximants the product rule follows from finitely many fixed-test weak equations.
 

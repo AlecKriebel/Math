@@ -20,3 +20,9 @@ Saved CANDIDATE.md with a complete narrow negative argument. Finite-rank Riccati
 ## 03:55 UTC: frozen proof snapshot
 
 Eight exact finite-matrix consistency checks passed, including corrupted sign/order controls. Source audit identifies the exact earlier public candidate and the published finite-dimensional dependency. CANDIDATE.md is frozen for independent review. Completion estimate: 95% of the narrow proof-audit deliverable; independent review is the remaining gate. No novelty or broad existence-classification claim.
+
+03:59 UTC independent-review precision: corrected the Hilbert–Schmidt representative to the adjoint required by the explicitly stated pairing. The scalar noise functional, quadratic variation, and proof are unchanged. Updated frozen candidate hash recorded in provenance.json.
+
+## 04:04 UTC: independent review completed
+
+Independent reviewer passed the exact final proof snapshot and 19 additional finite-matrix diagnostics. Review documents are copied unchanged under independent_review/. The HS representative precision is corrected. Completion estimate: 100% for the narrow proof-audit deliverable; novelty is expressly not claimed because the same conclusion and mechanism were already public on 22 September. No broader external theorem was reviewed.
