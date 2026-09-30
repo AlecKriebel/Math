@@ -88,7 +88,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 77 | 10400033 / AMR-103-0033 | Conjecture 2.11 — (S. | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 78 | 2305051 / AMR-022-5051 | Research Problems in Function Theory — Problem 5.51 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 79 | 2715 / KP-1.56 | Kirby Problem 1.56 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 80 | 2722 / KP-1.63 | Kirby Problem 1.63 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 80 | 2722 / KP-1.63 | Kirby Problem 1.63 | 0.2400 | 5.5 | 3 | unknown | unsolved | 2/5 |  | 2026-09-30: Separate review passed the exact fixed-knot-type/both-stabilization-sign scope, credited prime-factor peak reduction and finite-dimensional F2DGA maximal-tb barrier. The general infinitude question remains unresolved.2045author and512independent controls; two bounded routes, source antecedent correction preserved, no novel resolution. Draft PR: https://github.com/AlecKriebel/Math/pull/64. |  |
 | 81 | 2725 / KP-1.66 | Kirby Problem 1.66 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 82 | 2772 / KP-2.24 | Kirby Problem 2.24 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 83 | 2853 / KP-3.55 | Kirby Problem 3.55 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
