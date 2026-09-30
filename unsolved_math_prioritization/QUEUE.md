@@ -197,7 +197,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 186 | 4800017 / AMR-047-0017 | Multiple ergodic averages — Problem 17 | 0.1940 | 6.0 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 187 | 30003390 / OWR-15214-002 | Exact Strong Approximation Rates for CIR Processes | 0.1935 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 188 | 30003480 / OWR-15428-003 | Single Polynomial Description of Binary Tensor Gram Loci | 0.1935 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
-| 189 | 30003677 / OWR-15962-003 | Strategic Starting Vertices in Competing First-Passage Percolation | 0.1935 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
+| 189 | 30003677 / OWR-15962-003 | Strategic Starting Vertices in Competing First-Passage Percolation | 0.1935 | 5.0 | 3 | 2017 | claimed_solved | 2/5 |  | 2026-09-30: Complete affirmative existence result in the source-allowed growing-seed regime: degree-only vanishing-density high-degree seeds capture asymptotically all vertices against a uniform fixed-low-degree faster seed. Separate probability and source-scope audit passed; 11561 author and 62001 independent controls. No prescribed-budget, single-hub or adversarial-root theorem; unbounded finite-variance degree law and minimum-degree hypotheses explicit, priority unconfirmed. Draft PR: https://github.com/AlecKriebel/Math/pull/173. |  |
 | 190 | 30000567 / OWR-1323-003 | Disjoint-Hypercyclic Operators on Banach Spaces | 0.1934 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
 | 191 | 4300006 / AMR-042-0006 | Entropy and Deligne periods | 0.1934 | 5.5 | 4 | 2006 | queued | 0/5 |  |  |  |
 | 192 | 30003935 / OWR-16413-006 | Strong Convergence of Ensemble Kalman Inversion | 0.1929 | 5.0 | 3 | 2018 | queued | 0/5 |  |  |  |
