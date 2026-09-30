@@ -40,7 +40,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 29 | 30005897 / OWR-14298367-003 | Shadowing Without Bounded Distortion | 0.2651 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 30 | 30005934 / OWR-14298374-003 | Wishart Processes with Noninjective Semigroups | 0.2651 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 31 | 30000224 / OWR-824-008 | Set-Theoretic Cohen–Macaulay Ideals in Characteristic Zero | 0.2641 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
-| 32 | 30000439 / OWR-1194-009 | Gaps Between Piecewise-Linear and Linear Embedding Dimensions | 0.2637 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
+| 32 | 30000439 / OWR-1194-009 | Gaps Between Piecewise-Linear and Linear Embedding Dimensions | 0.2637 | 5.5 | 3 | 2006 | claimed_solved | 1/5 |  | 2026-09-30: Complete probabilistic construction of a finite 2-complex with exact PL embedding dimension 3 and linear embedding dimension 5. Separate adversarial AI review passed; 16 author and 396 independent exact assertions pass. Unrefereed; priority unconfirmed. Draft PR: https://github.com/AlecKriebel/Math/pull/16. |  |
 | 33 | 30000819 / OWR-1595-012 | Volume Bounds for Holes in Very Ample Semigroups | 0.2634 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 34 | 30001075 / OWR-2090-028 | Common Tangent Loci of Three Convex Bodies | 0.2630 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 35 | 30006390 / OWR-14299518-003 | Transversals in Random Subsets of Projective Planes | 0.2618 | 5.5 | 3 | 2025 | queued | 0/5 |  |  |  |
