@@ -4,7 +4,7 @@
 
 ## Exact target and literature qualification
 
-[K3, Problem3.61](https://aimath.org/pastworkshops/kirbylistrep.pdf), pp174–175, asks about total Heegaard Floer dimension. Its broad formulation is balanced sutured Floer homology over F2, including closed hat-HF and knot-hat-HFK specializations. Spin-c-graded or delta-graded noninvariance does not imply unequal total dimension. The text does not impose a separating-surface hypothesis on this broad formulation.
+[K3, Problem3.61](https://math.berkeley.edu/sites/default/files/surv-295-ruberman-watermarked-author-pdf.pdf), pp174–175, asks about total Heegaard Floer dimension. Its broad formulation is balanced sutured Floer homology over F2, including closed hat-HF and knot-hat-HFK specializations. Spin-c-graded or delta-graded noninvariance does not imply unequal total dimension. The text does not impose a separating-surface hypothesis on this broad formulation.
 
 A [December2022 Nantes–Orsay seminar](https://www.imo.universite-paris-saclay.fr/~frederic.bourgeois/seminar/NO12-22.html) announced a closed-manifold rank-invariance argument by Paolo Ghiggini. The [February2023 Uppsala abstract](https://www.uu.se/en/department/mathematics/research/geometry-and-physics/seminar-series-in-geometry-and-topology-/archive/2023-02-16-gt-seminar-with-paolo-ghiggini-institut-fourier-grenoble) explicitly calls the Ghiggini–Petkova project work in progress. No retrievable complete proof was located in this audit, and the announcements do not specify the full sutured/nonseparating scope. They must be credited as prior announcements, without being treated as a reviewed general theorem or silently dismissed as absent.
 
