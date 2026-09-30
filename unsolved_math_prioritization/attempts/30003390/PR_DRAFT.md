@@ -4,4 +4,4 @@ This scoped package preserves the source's terminal L1 norm, equidistant observa
 
 The known rate theorems are credited. The source year and a misattributed arXiv citation are corrected. A relevant 2025 reflected-SDE theorem has an explicit full-text access hold; older endpoint estimates are not advertised as the best current bounds.
 
-Recommended status: unsolved, 2/5. All 2,786 exact controls pass. Separate review is required before publication. No full-rate resolution, historical-priority or human-peer-review claim.
+Recommended status: unsolved, 2/5. All 2,786 exact controls pass. Separate adversarial AI review passed for the unchanged frozen proof, with 9,193 independent controls. The report and both reproducible checkers are included. No full-rate resolution, historical-priority or human-peer-review claim.

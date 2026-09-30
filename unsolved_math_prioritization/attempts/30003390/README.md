@@ -6,4 +6,4 @@ The full parameter-range terminal L1 rate conjecture remains **unsolved after tw
 
 Known asymptotic results are credited. The 2025 reflected-SDE paper's full theorem was not retrieved, so no exhaustive current-rate or novelty claim is made. [SOURCE_AUDIT.md](SOURCE_AUDIT.md) records the exact source and access qualifications.
 
-Run `python verify.py` with SymPy to reproduce **2,786 exact controls**. These supplement the proofs and do not certify a new asymptotic rate. Independent review is pending.
+Run `python verify.py` with SymPy to reproduce **2,786 exact controls**. These supplement the proofs and do not certify a new asymptotic rate. [Separate adversarial AI review passed](review/REVIEW.md), with 9,193 independent controls.

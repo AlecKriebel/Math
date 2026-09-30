@@ -15,3 +15,7 @@ Pausing at the requested source checkpoint for the parent's independent ground-s
 The conditional median and independent-bridge coupling give exact finite-information formulas, including an explicit product-distribution optimizer in the already-known dimension-one zero-mean-reversion case. The standard deterministic time change does not preserve finite Brownian observations: its weighted integrals have strictly positive conditional variance. Both routes leave the full intermediate-parameter upper-bound problem unresolved. These are two substantive approaches; no rate breakthrough is claimed. Completion estimate: 20% toward the full original target, 80% toward the scoped deliverable.
 
 The current source search also found a 2025 reflected-SDE paper with a new CIR upper bound, but its full theorem is not yet accessible. Its publisher abstract is credited and prevents calling the older endpoint logarithmic upper bound the best current result. The 2024 truncated-method CIR corollary requires Feller index greater than five; the July 2026 paper studies weak error.
+
+## 13:24 UTC: separate review and publication packaging
+
+The scoped independent review passed with no mandatory correction. All 2,786 submitted assertions replayed byte-identically, and 9,193 independent controls passed. The eight review files were copied unchanged. The same-driver observation model, general-rate gap, positive-initial-value qualification for the scalar lower-bound corollary, and inaccessible 2025 theorem remain explicit. The frozen mathematical artifact is unchanged.
