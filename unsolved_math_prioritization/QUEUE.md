@@ -176,7 +176,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 165 | 30004669 / OWR-7155442-002 | Depth Relative to K-Trivial Oracles | 0.2032 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 166 | 5100001 / AMR-050-0001 | Elliptic-billiard invariant k_{107} | 0.2032 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 167 | 5100002 / AMR-050-0002 | Elliptic-billiard invariant k_{108} | 0.2032 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
-| 168 | 5100006 / AMR-050-0006 | Elliptic-billiard invariant k_{114} | 0.2032 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
+| 168 | 5100006 / AMR-050-0006 | Elliptic-billiard invariant k_{114} | 0.2032 | 5.0 | 3 | 2021 | claimed_solved | 2/5 |  | 2026-09-30: Complete divisor/cyclic-norm proof of the focal product invariant for every primitive N≡2mod4 confocal elliptical-caustic family, including stars. Separate source/period-lattice/multiplicity audit passed;29397author and5198independent exact controls, numerical diagnostics not used as proof. Prior parametrization and complex methods credited; no hyperbolic/degenerate or priority claim. Draft PR: https://github.com/AlecKriebel/Math/pull/149. |  |
 | 169 | 5100010 / AMR-050-0010 | Elliptic-billiard invariant k_{120} | 0.2032 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 170 | 30005408 / OWR-12697689-004 | Gröbner-Cell Parametrization of Punctual Hilbert Schemes | 0.2007 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 171 | 30005432 / OWR-12697693-003 | The Property-s Elements of a Skew Brace | 0.2007 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
