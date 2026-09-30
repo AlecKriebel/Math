@@ -84,3 +84,7 @@ These computations are finite diagnostics. The algebraic genericity and all-n ge
 **Required mathematical corrections: none.** The scoped obstruction package is fit for a draft PR with an `unsolved` queue status and no new-discovery credit. The missing task is still a family with n−o(n) distinct pinned-count values, or a universal obstruction disproving that possibility. Generic small-seed gluing and near-total exact line/circle support do not deliver either outcome.
 
 If the pending-review status sentence is updated, the final hash should be linked by an exact diff. New substantive mathematical changes would require re-review.
+
+## Final publication snapshot
+
+The final `PARTIAL.md` SHA-256 is `0b116a4593d84d7e9d02f635a080eb0e2242aaba66acfc8efeae74462ad89898`. Exact byte comparison confirms that replacing only the pending-review header sentence with the passed-AI-review sentence and report link produces this final file. All mathematical and source-scope text is unchanged. The verdict above applies to this final snapshot as well.
