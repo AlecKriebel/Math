@@ -1,6 +1,6 @@
 # Source, topology, and bounded novelty audit
 
-Checked September 30, 2026. This package contains an unreviewed candidate counterexample construction; priority has not been established.
+Checked September 30, 2026. The exact frozen candidate counterexample passed separate adversarial review; priority has not been established.
 
 ## Exact target
 

@@ -2,7 +2,7 @@
 
 [The candidate](CANDIDATE.md) constructs complete smooth positive-curvature metrics on the plane and sphere whose normalized conformal coordinates fail to depend continuously in the integer endpoint topology, for every finite integer r>=0.
 
-Status: pending independent adversarial review; priority unconfirmed. No PR before review.
+Status: the exact frozen proof passed [separate adversarial review](independent_review/REVIEW.md), with no mandatory correction. All 90 submitted and 136 independent exact assertions pass. Priority remains unconfirmed; this is AI-reviewed and unrefereed. The frozen candidate retains its historical pending-review header to preserve the reviewed snapshot.
 
 - [Exact source/topology audit](SOURCE_AUDIT.md)
 - [Original pinned record](source_record.json)
