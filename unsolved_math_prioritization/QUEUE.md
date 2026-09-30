@@ -96,7 +96,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 85 | 2869 / KP-3.71 | Kirby Problem 3.71 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 86 | 2919 / KP-4.43 | Kirby Problem 4.43 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 87 | 2935 / KP-4.59 | Kirby Problem 4.59 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 88 | 2985 / KP-4.109 | Kirby Problem 4.109 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 88 | 2985 / KP-4.109 | Kirby Problem 4.109 | 0.2400 | 5.5 | 3 | unknown | claimed_solved | 1/5 |  | 2026-09-30: Complete connected genus-three symplectic-surface counterexample in a free quotient ofT4, primitive integral PD class and square4. Its connected double-cover complement has nonzeroH3, excluding every Weinstein structure. Separate adversarial source/geometric/topological audit passed;13236author and10403independent assertions. General prescribed-surface question only; CP2/existential-degree remarks and novelty not claimed. Draft PR: https://github.com/AlecKriebel/Math/pull/73. |  |
 | 89 | 3012 / KP-5.5 | Kirby Problem 5.5 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 90 | 3088 / OPG-56328 | Partitioning the Projective Plane | 0.2400 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
 | 91 | 3415 / OPG-37151 | Fundamental group torsion for subsets of Euclidean 3-space | 0.2400 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
