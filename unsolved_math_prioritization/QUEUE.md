@@ -54,7 +54,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 43 | 30003713 / OWR-15987-026 | Homology of Free-Lie Current Algebras over Square-Zero Extensions | 0.2571 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 44 | 30003955 / OWR-16415-018 | Disconnected Preimages of Subsurfaces Under Finite Covers | 0.2571 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 45 | 6800007 / AMR-067-0007 | Manifolds modelled on flag manifolds — Question 2 | 0.2571 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
-| 46 | 30004186 / OWR-17128-002 | Stability of Peaked Reduced Ostrovsky Waves | 0.2562 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
+| 46 | 30004186 / OWR-17128-002 | Stability of Peaked Reduced Ostrovsky Waves | 0.2562 | 5.5 | 3 | 2019 | unsolved | 1/5 |  | 2026-09-30: Separate review passed a scoped W1,infinity nonlinear gradient-instability theorem with local Lagrangian evolution and continuation estimates. This does not settle the original L2/H1 or global weak-continuation stability question. Superseded 2018 nonlinear claim and its limitations are explicitly audited; no full-resolution claim. Draft PR: https://github.com/AlecKriebel/Math/pull/29. |  |
 | 47 | 7000004 / AMR-069-0004 | Geometry of Curves and Surfaces — Problem 1.4 | 0.2562 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 48 | 7000019 / AMR-069-0019 | Geometry of Curves and Surfaces — Problem 4.3 | 0.2562 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 49 | 10000043 / AMR-099-0043 | Infinite-cluster intersections with vertical fibers | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
