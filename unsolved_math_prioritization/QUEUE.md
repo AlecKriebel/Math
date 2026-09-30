@@ -42,7 +42,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 31 | 30000224 / OWR-824-008 | Set-Theoretic Cohen–Macaulay Ideals in Characteristic Zero | 0.2641 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 32 | 30000439 / OWR-1194-009 | Gaps Between Piecewise-Linear and Linear Embedding Dimensions | 0.2637 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
 | 33 | 30000819 / OWR-1595-012 | Volume Bounds for Holes in Very Ample Semigroups | 0.2634 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
-| 34 | 30001075 / OWR-2090-028 | Common Tangent Loci of Three Convex Bodies | 0.2630 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
+| 34 | 30001075 / OWR-2090-028 | Common Tangent Loci of Three Convex Bodies | 0.2630 | 5.5 | 3 | 2008 | claimed_solved | 1/5 |  | 2026-09-30: Complete proof that the union of common supporting-plane tangent lines to three pairwise disjoint convex sets has Lebesgue outer measure zero, including nonsmooth and lower-dimensional cases. Separate adversarial AI review passed and 36 independent exact diagnostics passed. Stronger manifold-covering conjecture not claimed; priority unconfirmed. Draft PR: https://github.com/AlecKriebel/Math/pull/18. |  |
 | 35 | 30006390 / OWR-14299518-003 | Transversals in Random Subsets of Projective Planes | 0.2618 | 5.5 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 36 | 30001696 / OWR-4798-013 | Ball-Product Structure of Cross-Polytope Subcomplexes | 0.2616 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 37 | 30001947 / OWR-11454-005 | Nontrivial Witt Pairings in $\mathbb Z_2$-Witt Spaces | 0.2616 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
