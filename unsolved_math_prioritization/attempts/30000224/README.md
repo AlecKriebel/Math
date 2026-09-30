@@ -25,5 +25,7 @@ Run `python3 verify.py` from this directory. It uses the Python standard library
 and passes 135 exact assertions. The universal geometric/algebraic arguments
 are in the note; finite computation does not prove the full original target.
 
-Independent adversarial review is pending. No shared queue, catalog, or state
-file is modified. Execution model: gpt-6-astra, xhigh.
+A separate adversarial AI [review](REVIEW.md) passed the restricted claims, with
+six independent exact check groups. The mathematical note is preserved byte-for-byte
+as the reviewed snapshot; its initial pending-review header records its draft stage.
+The original question remains unresolved; no novelty or human peer review is claimed. Execution model: gpt-6-astra, xhigh.
