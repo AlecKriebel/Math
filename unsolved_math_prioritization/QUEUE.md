@@ -102,7 +102,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 91 | 3415 / OPG-37151 | Fundamental group torsion for subsets of Euclidean 3-space | 0.2400 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
 | 92 | 9700008 / AMR-096-0008 | Relaxation time of Metropolis chains on Cayley graphs | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 93 | 30004845 / OWR-8415349-001 | Bubble-Free Criterion for Polygraphic and Nerve Homology | 0.2370 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
-| 94 | 30000136 / OWR-761-003 | Nowhere-Zero Perturbations of Nonclosed One-Forms | 0.2292 | 5.5 | 3 | 2004 | queued | 0/5 |  |  |  |
+| 94 | 30000136 / OWR-761-003 | Nowhere-Zero Perturbations of Nonclosed One-Forms | 0.2292 | 5.5 | 3 | 2004 | unsolved | 3/5 |  | 2026-09-30: Separate review passed a flow/critical-set sufficient criterion and exact torus-shear corrections for unrestricted exact perturbations. The intended connected-manifold conjecture remains unresolved; the disconnected loophole and small-perturbation obstruction are only scope warnings.6author and57independent symbolic controls; three bounded routes. Draft PR: https://github.com/AlecKriebel/Math/pull/79. |  |
 | 95 | 30006461 / OWR-14299577-011 | Nonconstancy of the Multiplication-Table Limit Profile | 0.2290 | 5.5 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 96 | 30000177 / OWR-785-003 | LOCC Dense-Codeability of the Four-Qubit W State | 0.2289 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 97 | 30000252 / OWR-1050-001 | Critical-Exponent Polyharmonic Dirichlet Problems | 0.2289 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
