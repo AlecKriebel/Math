@@ -19,3 +19,7 @@ Completion estimate: 100% of the original target by counterexample, pending inde
 ## 2026-09-30 12:20 UTC: source tension identified by independent review
 
 Completion estimate: 100%, still pending the final verdict. The reviewer identified Lemma 3.12 in the 2025 paper, whose isolated wording would conflict with the example. The preceding global-(S) context and the cited 2021 theorem were checked. The example lacks global (S), and its star-generated subgroup is infinite, so it does not meet the cited converse theorem’s hypotheses. A separate source-reconciliation note records the explicit infinite fiber of the displayed map under an unrestricted reading. The counterexample, verifier and receipt remain byte-identical; no new proof-search family was added.
+
+## 2026-09-30 12:23 UTC: complete independent review and publication
+
+Completion estimate: 100% of the exact general ideal question by counterexample. The separate review passed the infinite brace operations, defining indices, complete property-(s) set and source-reconciliation note without mandatory correction. All 33,512 submitted assertions replayed byte-identically and 9,562 independent controls passed. The review additionally checks the finite-quotient displayed-map diagnostic while expressly withholding any counterclaim to the full 2021 finiteness theorem. All reviewed mathematics and source-note bytes are unchanged. Nine independent review files are included.

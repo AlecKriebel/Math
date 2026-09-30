@@ -2,8 +2,8 @@
 
 [COUNTEREXAMPLE.md](COUNTEREXAMPLE.md) gives an explicit left brace on Z × Z/4. The element (0,1) has both defining indices equal to two, while its additive double (0,2) has an infinite-index right fixed subgroup. The property-(s) set is therefore not even additively closed.
 
-- Full candidate counterexample to the exact unrestricted source question
-- Two substantive families recorded; separate adversarial review pending
+- Full independently reviewed counterexample to the exact unrestricted source question
+- Two substantive families recorded (2/5); separate adversarial AI review passed: [report](review/REVIEW.md), including 9,562 independent exact controls. The frozen proof’s earlier pending-review header is superseded by this record
 - 33,512 exact controls pass using Python’s standard library
 - Run `python verify.py` to print the verification receipt
 - Infinite index is proved using distinct integer cosets, not inferred from finite quotients
