@@ -107,7 +107,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 96 | 30000177 / OWR-785-003 | LOCC Dense-Codeability of the Four-Qubit W State | 0.2289 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 97 | 30000252 / OWR-1050-001 | Critical-Exponent Polyharmonic Dirichlet Problems | 0.2289 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 98 | 30000991 / OWR-2040-003 | Realization of Persistence Pairings by Filtration Functions | 0.2279 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
-| 99 | 30001203 / OWR-3394-020 | Global Observability from Negative Gramian Curvature | 0.2275 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
+| 99 | 30001203 / OWR-3394-020 | Global Observability from Negative Gramian Curvature | 0.2275 | 5.5 | 3 | 2009 | claimed_solved | 1/5 |  | 2026-09-30: Complete compact-manifold counterexample: a hyperbolic-surface double cover with smooth Nash output embedding and zero dynamics has uniformly positive negative-curvature Gramian but indistinguishable sheets. Separate source-scope/geometric audit passed;873author and108independent assertions. Duplicate30001204 shares this question. No stronger Euclidean/simply-connected or novelty claim. Draft PR: https://github.com/AlecKriebel/Math/pull/85. |  |
 | 100 | 30001377 / OWR-4135-008 | Sensitivity Growth Under Boolean Conjunctions | 0.2275 | 5.5 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 101 | 30001804 / OWR-5158-001 | Mapping-Class-Group Presentations of Surface Steinberg Modules | 0.2267 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 102 | 30002203 / OWR-12172-006 | Lifting Pentagon-Arrangement Symmetries to Homotopy Invariants | 0.2263 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
