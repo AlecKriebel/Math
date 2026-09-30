@@ -62,7 +62,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 51 | 20001424 / AIM-DYNAMICAL_SYSTEMS-0082 | PCF descent and an odd postcritical-divisor criterion | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 52 | 2233 / EP-653 | Erdős Problem #653 | 0.2560 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
 | 53 | 2744 / KP-1.85 | Kirby Problem 1.85 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 54 | 2765 / KP-2.17 | Kirby Problem 2.17 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 54 | 2765 / KP-2.17 | Kirby Problem 2.17 | 0.2560 | 5.5 | 3 | unknown | unsolved | 2/5 |  | 2026-09-30: Separate review passed closed-surface compact-fiber and simple-reference rigidity partial results, with a scoped three-punctured-sphere counterexample under the full finite-area cusp convention. Intended closed genus-at-least-two self-intersecting-reference problem remains unresolved; source-scope qualification retained. Draft PR: https://github.com/AlecKriebel/Math/pull/38. |  |
 | 55 | 2814 / KP-3.16 | Kirby Problem 3.16 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 56 | 2849 / KP-3.51 | Kirby Problem 3.51 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 57 | 2912 / KP-4.36 | Kirby Problem 4.36 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
