@@ -84,3 +84,7 @@ The Polyak–Viro identity, the tournament outdegree count, and the torus-knot
 evaluations are established ingredients. The candidate's proposed contribution
 is their explicit domination argument for the full target. No outside contact
 or source-PDF redistribution is part of this package.
+
+## Independent review's primary convention clarification
+
+Östlund, *A diagrammatic approach to link invariants of finite degree*, Math. Scand. 94 (2004), 295–319, Proposition 4 and the note on p.302, explicitly divides the unbased triangle embedding count by its three rotational symmetries. It therefore confirms coefficient 1 per triangle image and 1/2 per path image. Proposition 4(1) also equates the signed counts of the two reflected path pictures on classical knot diagrams. See the [published article](https://journals.msp.org/mscand/article/view/775), its [primary PDF](https://journals.msp.org/mscand/article/download/775/774), and the [independent report](review/REVIEW.md) for the precise convention audit. These clarifications require no change to the frozen proof.

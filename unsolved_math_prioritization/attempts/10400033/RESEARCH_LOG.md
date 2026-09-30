@@ -19,3 +19,9 @@ The full proof and exact pattern correspondence are being formalized before sepa
 The complete tournament argument is frozen for separate adversarial review. The final publication verifier passes 42,867 exact assertions with no numerical approximation. The central arrow-pattern graph correspondence and the treatment of signs and automorphism multiplicities are explicit in the candidate. The proof yields the requested universal bound and its even-crossing refinement. Estimated mathematical completion: 90% pending independent review; historical novelty remains unestablished.
 
 A visual check of the original p403 confirms the older denominator-15 display, but that expression is incompatible with the same source’s small torus-knot examples. It is therefore recorded only as a source discrepancy and is not used as a theorem or proof input. The conjecture on p405 and the normalized Polyak–Viro formula are unaffected.
+
+## 2026-09-30 07:38 UTC — separate adversarial review passed
+
+The independent reviewer found no remaining mathematical gap and returned PASS_COMPLETE_PROOF at the unchanged candidate hash. The audit reproduced all 42,867 author assertions and passed 115,776 independent exact assertions. It checked the complete original scope, negative crossing signs, all arrow-pattern multiplicities, random-completion domination, and the tournament identity. Östlund's published Proposition 4 and its symmetry note directly confirm the unbased triangle coefficient; the review also explains the harmless reflected-path convention through the vanishing O3 identity. These source clarifications are included with full attribution. The candidate and verifier files remain unchanged.
+
+Estimated completion of the stated proof and independent AI audit: 100%. Historical novelty and human peer review remain unestablished. One substantive attempt was used. The review bundle excludes third-party PDFs and includes all required reproduction dependencies.
