@@ -97,7 +97,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 86 | 2919 / KP-4.43 | Kirby Problem 4.43 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 87 | 2935 / KP-4.59 | Kirby Problem 4.59 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 88 | 2985 / KP-4.109 | Kirby Problem 4.109 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 89 | 3012 / KP-5.5 | Kirby Problem 5.5 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 89 | 3012 / KP-5.5 | Kirby Problem 5.5 | 0.2400 | 5.5 | 3 | unknown | unsolved | 2/5 |  | 2026-09-30: Separate review passed the all-codimension conditional fiber-preserving isotopy, collar extension and quotient descent. Arbitrary higher-codimension locally flat pair-chart alignment remains unproved; the smooth/PL or pairwise-annulus cases are not substituted.19435independent formula controls; original connected-sum problem unresolved after two approaches. Draft PR: https://github.com/AlecKriebel/Math/pull/75. |  |
 | 90 | 3088 / OPG-56328 | Partitioning the Projective Plane | 0.2400 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
 | 91 | 3415 / OPG-37151 | Fundamental group torsion for subsets of Euclidean 3-space | 0.2400 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
 | 92 | 9700008 / AMR-096-0008 | Relaxation time of Metropolis chains on Cayley graphs | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
