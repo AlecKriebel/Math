@@ -10,4 +10,4 @@ The higher-multiplicity question remains unresolved in the source's agonist-only
 
 The exact verifier requires Python and SymPy 1.14.0; all 1,543 assertions pass. The separate exploratory scan uses NumPy, is not proof, and is unnecessary to reproduce the mathematical certificate. Both scripts write their receipts beside themselves.
 
-Status: unsolved, 2/5; separate adversarial review pending. No dynamical stability, physiological relevance or historical novelty is asserted. The externally announced two-ligand five-state candidate is explicitly distinguished from the narrower target.
+Status: unsolved, 2/5. [Separate adversarial review](review/REVIEW.md) passed the scoped partial claims, with 10,436 independent exact controls. The proof keeps its historical pending-review header to preserve the reviewed bytes. This is AI review, not human peer review. No dynamical stability, physiological relevance or historical novelty is asserted. The externally announced two-ligand five-state candidate is explicitly distinguished from the narrower target.

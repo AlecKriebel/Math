@@ -21,3 +21,7 @@ Saved PARTIAL.md at SHA-256 fcfb9ad76db48049753641577b132fd079712084e32fd149b400
 ## 11:21 UTC — exact checks and review handoff
 
 All 1,543 exact assertions pass, including original receptor ODE residuals, the scalar feedback residual, polynomial coefficient identities and the integer four-site sign certificate. The unchanged proof and final checker hashes were sent for separate review. The numerical scan was made separately reproducible and remains exploratory. Completion estimate: 100% of the scoped partial-and-gap artifact, with independent validation pending.
+
+## 2026-09-30 11:43 UTC — independent review
+
+The separate review passed the exact agonist-only scalar reduction, parity bound and four-site witness. All 1,543 submitted assertions reproduced byte for byte; 10,436 independent controls passed, including elimination from the original receptor matrix and exact Sturm isolation. The mathematical snapshot is unchanged. The original higher-N goal remains unsolved, with two of five substantive attempts used. Estimated completion toward the general target remains 30%.
