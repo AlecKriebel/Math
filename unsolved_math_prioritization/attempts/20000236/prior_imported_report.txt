@@ -1,0 +1,529 @@
+classification
+PARTIAL-PROGRESS
+
+wording_corrected
+no
+
+difficulty_suggested
+None
+
+problem
+The source is Problem 10.4 in the AIM workshop list *Degenerations in
+algebraic geometry*.  The preceding record supplies notation that is missing
+from the extracted problem.  Let
+\[
+E=H^0(\mathbb P^1,\mathcal O_{\mathbb P^1}(d)),\qquad
+n=d+1,\qquad k=r+1,
+\]
+so that \(g^r_d\)'s are points of \(G=G(k,E)\), of dimension
+\(N=k(n-k)\).  For \(x\in\mathbb P^1\), the filtration by order of
+vanishing at \(x\) is a complete osculating flag \(F_\bullet(x)\).
+Given pairwise distinct points \(x_1,\ldots,x_s\) and partitions
+\(\lambda_i\subseteq k\times(n-k)\), form the **scheme-theoretic**
+intersection
+\[
+ S=S(\lambda_\bullet;x_\bullet)
+   :=\bigcap_{i=1}^s\Omega_{\lambda_i}(F_\bullet(x_i))
+   \subseteq G.
+\]
+The case in the problem has
+\[
+ \sum_i|\lambda_i|=N-1,                                      \tag{1.1}
+\]
+so the Eisenbud--Harris proper-intersection theorem makes \(S\) a
+projective Cohen--Macaulay curve (when nonempty).  All \(x_i\) are assumed
+real and distinct.
+
+With that notation, the recovered question is:
+
+> **Problem 10.4.** Is the entire complex curve \(S_{\mathbb C}\) smooth?
+> Equivalently, can \(S\) have a conjugate pair of nonreal singular points,
+> even though every real point of \(S\) is smooth?
+
+The OCR phrase at the end of the record, “B. Osserman suggests:”, is not a
+missing hypothesis or proposed continuation of Problem 10.4.  Inspection of
+the next source line shows that it introduces Problem 10.6, concerning a
+degeneration proof of the Mukhin--Tarasov--Varchenko theorem.  Example 10.5
+in the source treats five single-box conditions on \(G(2,5)\) and suggests
+testing longer partitions or \(G(2,6)\).
+
+status_literature
+The general question remains open in the literature located in this run.
+Levinson formulates precisely this assertion as Conjecture 4.4: for a real
+point of \(M_{0,s}\), the corresponding **complex** fiber should be smooth.
+His Corollary 2.9 proves that the curve is reduced and that all its real
+points are smooth, but explicitly leaves open conjugate nonreal
+singularities.  His Example 4.3 analyzes the five-box problem on \(G(2,5)\)
+by iterated discriminants and sum-of-squares identities.  An iterated
+discriminant gives a necessary containing locus for singular fibers, not
+automatically the exact singular locus; this distinction is retained here.
+
+The results used for the baseline are:
+
+- Eisenbud--Harris properness gives the expected dimension for intersections
+  with distinct osculation points.
+- Mukhin--Tarasov--Varchenko prove reduced real transversality in the
+  zero-dimensional case.
+- Speyer constructs a flat Cohen--Macaulay extension over
+  \(\overline M_{0,s}\).
+- Levinson proves reducedness and smoothness of the real locus for the
+  one-dimensional fibers.
+- Gillespie--Levinson study the topology, monodromy, and \(K\)-theory of
+  these curves, while noting that \(K\)-theoretic data alone does not decide
+  complex smoothness.
+
+Targeted searches through 2026-07-23 used the exact problem and conjecture
+phrases, the title and forward literature around Levinson's paper, and
+arXiv/web searches for “one-dimensional osculating Schubert curve
+smoothness” and variants.  They also checked the later type-\(B\) analogue
+of Gillespie--Levinson--Purbhoo.  No general proof or counterexample was
+located.  This is not an exhaustive claim about all unpublished work, so the
+status is recorded as **open** rather than “known unsolved” in an absolute
+sense.
+
+work_done
+### 3. Definitions and assumptions
+
+For \(0\leq j\leq n\), use the vanishing-flag convention
+\[
+ F_j(x)=H^0\!\left(\mathbb P^1,
+    \mathcal O(n-1)(-(n-j)x)\right),\qquad \dim F_j(x)=j.       \tag{3.1}
+\]
+The partition \(\lambda\) lies in the \(k\times(n-k)\) rectangle and
+\(\Omega_\lambda(F_\bullet(x))\) has codimension \(|\lambda|\).
+Empty partitions impose no condition and are ignored when counting the
+number of nonempty conditions.
+
+All assertions below concern the projective scheme \(S\), not merely its
+closed-point set.  Condition (1.1), properness, and Cohen--Macaulayness give
+purity of dimension one.  For real, pairwise distinct \(x_i\), reducedness
+and smoothness at real points are imported from Levinson.  The Plücker
+degree is
+\[
+ D=\deg_{\rm Pl}(S)
+   =\int_{G(k,n)}\sigma_\square\prod_i\sigma_{\lambda_i}.      \tag{3.2}
+\]
+
+For the all-single-box calculation on \(G(2,n)\), with \(n\geq3\), put
+\[
+ E=\mathbb C[z]_{\leq n-1},\qquad
+ s=\dim G(2,n)-1=2n-5.
+\]
+For a finite \(x\), define the alternating form
+\[
+ B_x(f,g)=f(x)g'(x)-f'(x)g(x)\in\Lambda^2E^*.                 \tag{3.3}
+\]
+Its vanishing on \(\Lambda^2U\) is exactly the single-box Schubert
+condition at \(x\).  A homogeneous formulation using the first jet of a
+binary form will be used whenever a marked point is at infinity.
+
+### 4. Approach map
+
+Three routes give rigorous progress.
+
+1. **Opposite flags and Richardson geometry.**  With at most two nonempty
+   conditions, a projective change of coordinate makes the flags standard
+   and opposite.  The intersection is then a one-dimensional Richardson
+   variety, hence normal and therefore smooth.
+
+2. **A low-degree real certificate.**  Since \(S\) is reduced, a projective
+   curve of degree at most two is either a line, a conic, or a union of two
+   lines.  Any singularity in the last case is forced to be real.  Thus the
+   known smoothness of \(S(\mathbb R)\) rules it out.  Schubert calculus then
+   supplies explicit longer-partition cases on \(G(2,6)\).
+
+3. **An exact Jacobian reduction for boxes on \(G(2,n)\).**  The box
+   conditions are Wronskian hyperplanes.  Dependence of their differentials
+   at \(U\) is equivalent to the existence of a nonzero linear combination
+   of the alternating forms \(B_{x_i}\) whose radical contains \(U\).  This
+   packages the singular-fiber locus as a closed projective incidence over
+   the point-configuration space.
+
+Two tempting shortcuts fail.  Smoothness of the real locus alone does not
+exclude a conjugate pair of singularities, and normality of each individual
+Schubert variety does not imply normality of an intersection of three or
+more of them.
+
+### 7. Detailed proof, derivation, or heuristic
+
+#### 7.1 Proof of Theorem 5.1
+
+Let \(x\ne y\).  Formula (3.1) gives
+\[
+ F_j(x)\cap F_{n-j}(y)=0.
+\]
+Indeed, a section in this intersection vanishes to order at least \(n-j\)
+at \(x\) and at least \(j\) at \(y\), hence has at least \(n\) zeros counted
+with multiplicity, while its degree is \(n-1\).  Thus
+\(F_\bullet(x)\) and \(F_\bullet(y)\) are opposite complete flags.  This is
+also visible by using \({\rm PGL}_2\) to send \(x,y\) to \(0,\infty\).
+
+With two nonempty conditions, their scheme-theoretic intersection is a
+Richardson variety for opposite flags.  If it is nonempty, (1.1) gives
+dimension one.  Richardson varieties are irreducible and normal.  A
+one-dimensional normal Noetherian local domain is a discrete valuation ring
+at each closed point, so the curve is regular.  Over the perfect field
+\(\mathbb C\), a regular finite-type scheme is smooth.  With only one
+nonempty condition, the same argument uses normality of the Schubert
+variety itself.  If the intersection is empty, smoothness is vacuous.
+
+#### 7.2 Proof of Theorem 5.2
+
+Speyer's Cohen--Macaulay construction and expected dimension make \(S\)
+purely one-dimensional; Levinson proves that, for distinct real osculation
+points, \(S\) is reduced.  Each irreducible projective curve component has
+positive Plücker degree.
+
+A reduced pure projective curve of total degree one is a line.  For total
+degree two, either it is an irreducible plane conic or it is the union of two
+distinct lines.  One way to see the irreducible assertion is that a
+nondegenerate irreducible curve spanning \(\mathbb P^r\) has degree at least
+\(r\); hence a degree-two curve spans at most a plane.  Over \(\mathbb C\),
+an irreducible plane conic is smooth, since a singular quadratic form
+factors.
+
+It remains to consider two lines.  If they are disjoint, their union is
+smooth.  If they meet, their unique intersection point is the unique
+singular point.  Complex conjugation preserves the real curve and permutes
+its two irreducible components, so it fixes their unique intersection.
+That point is therefore real, contradicting Levinson's theorem that every
+real point of \(S\) is smooth.  Hence no singular case occurs.
+
+For (5.1), let \(m=|\lambda^\vee|=N-|\lambda|=q+1\).  Repeated Pieri gives
+\[
+ \sigma_\square^m=\sum_{|\nu|=m}f^\nu\sigma_\nu.
+\]
+Poincaré duality says
+\(\int_G\sigma_\lambda\sigma_\nu=\delta_{\nu,\lambda^\vee}\), and therefore
+\[
+ D=\int_G\sigma_\lambda\sigma_\square^{q+1}
+   =f^{\lambda^\vee}.
+\]
+The two hook-length calculations in Corollary 5.3 now prove the stated
+\(G(2,6)\) cases.
+
+#### 7.3 Proof of Proposition 5.4
+
+The homogeneous Wronskian is the linear map
+\[
+ \mathcal W:\Lambda^2E\longrightarrow
+ H^0(\mathbb P^1,\mathcal O(2n-4)),\qquad
+ f\wedge g\longmapsto fg'-f'g.                               \tag{7.1}
+\]
+Intrinsically, for binary forms \(F,G\) of degree \(n-1\), this is (up to
+a nonzero scalar and sign) the first transvectant
+\(F_XG_Y-F_YG_X\); thus (7.1) is not tied to the affine coordinate.
+For finite \(x\), composing (7.1) with evaluation at \(x\) gives \(B_x\).
+Thus each box condition is a Plücker hyperplane.  The expected-codimension
+theorem says that their \(s=2n-5\) equations have height \(s\) in the smooth
+Grassmannian of dimension \(2n-4\).  They consequently form a local regular
+sequence, so the Jacobian criterion for this local complete intersection is
+exact.
+
+At \(U=\langle f,g\rangle\), differential rank drops exactly when a
+nonzero vector \(c=(c_i)\) makes the differential of \(B_c=\sum c_iB_{x_i}\)
+vanish on \(T_U G\).  The affine tangent space to the Plücker cone at
+\(f\wedge g\) is
+\[
+ f\wedge E+E\wedge g.                                        \tag{7.2}
+\]
+Because every \(B_{x_i}\) already vanishes at \(f\wedge g\), the radial
+direction causes no projective ambiguity.  The form \(B_c\) annihilates
+(7.2) if and only if
+\[
+ B_c(f,E)=B_c(g,E)=0,
+\]
+which is equivalent to \(U\subseteq\ker B_c\).  This proves (5.2).
+
+There is no hidden global dependence among the defining hyperplanes.
+Indeed,
+\[
+ \mathcal W(z^a\wedge z^b)=(b-a)z^{a+b-1}.
+\]
+Every monomial of degree \(0,\ldots,2n-4\) occurs with a nonzero
+coefficient, so \(\mathcal W\) is surjective.  Evaluation functionals at at
+most \(2n-3\) distinct points on polynomials of degree at most \(2n-4\) are
+independent by interpolation.  Hence the \(B_{x_i}\), with
+\(s=2n-5\), are independent.
+
+Finally, the common vanishing of a degree-\((2n-4)\) Wronskian at
+\(x_1,\ldots,x_s\) says that it lies in the two-dimensional vector space
+\(P\cdot H^0(\mathcal O(1))\).  This proves (5.3).  Surjectivity of the
+differential to the normal space of \(\ell_P\) is exactly independence of
+the \(s\) differentials above, proving the transversality reformulation.
+
+#### 7.4 Global incidence and collision behavior
+
+The scalar \(c_i\)'s in (5.2) depend on trivializing the evaluation fibers,
+so the genuinely global construction is as follows.  On
+\[
+ X=\operatorname{Conf}_s(\mathbb P^1)
+\]
+let \(p_i:X\to\mathbb P^1\) be the marked-point maps and set
+\[
+ \mathcal V=\bigoplus_{i=1}^s p_i^*\mathcal O_{\mathbb P^1}(2n-4).
+\]
+Wronskian evaluation is a bundle map
+\[
+ \Lambda^2E\otimes\mathcal O_X\longrightarrow\mathcal V.
+\]
+On the projective bundle \(\mathbb P_X(\mathcal V^\vee)\), the tautological
+covector produces the global version of \(B_c\).  Define the closed
+incidence
+\[
+ \mathcal I=
+ \{(x_\bullet,U,[c]):\mathcal W(U)(x_i)=0\ \forall i,\
+                         U\subseteq\ker B_c\}.                 \tag{7.3}
+\]
+Since \(G(2,E)\times_X\mathbb P_X(\mathcal V^\vee)\) is projective over
+\(X\), the projection of \(\mathcal I\) to \(X\) is closed.  By Proposition
+5.4, its image is exactly the locus of singular fibers.  The construction
+is \({\rm PGL}_2\)-equivariant and can be descended, with the corresponding
+tautological bundles, to the moduli quotient.
+
+On a naive collision diagonal \(x_i=x_j\), the two evaluation maps agree.
+The coefficient relation supported on \(i,j\) with values \(1,-1\) then
+gives \(B_c=0\), so a raw Jacobian elimination necessarily acquires a
+collision component (and may acquire powers of its equation).  This gives
+a precise explanation for the collision factors observed in Example 10.5.
+It does **not** say that Speyer's stable-boundary fiber is the same as an
+intersection with a duplicated hyperplane: the stable model redistributes
+conditions across components and must be analyzed separately.
+
+### 8. Verification and attempted falsification
+
+- **Scheme versus set.**  The all-box criterion uses the scheme cut out by
+  the Plücker hyperplanes.  Expected codimension in the smooth
+  Grassmannian makes it a local complete intersection, so differential rank
+  loss is equivalent to scheme singularity, not merely a necessary
+  set-theoretic test.
+- **Purity and reducedness.**  The degree argument would fail for a double
+  line or for embedded points.  Cohen--Macaulay purity and Levinson's
+  reducedness exclude both.
+- **Real versus complex.**  The proof never infers complex smoothness merely
+  from the real locus.  It uses degree two to show that any possible
+  singularity is conjugation-fixed.  The bound is sharp for arbitrary real
+  reduced curves: the real cubic
+  \[
+  z(x^2+y^2+z^2)=0
+  \]
+  is a real line union a real conic, has two conjugate nonreal intersection
+  singularities, and has no real singular point.
+- **Reducible degree two.**  Conjugation may fix each line or swap the two
+  lines.  In either case, if they meet, their unique intersection is fixed.
+  Skew lines are disjoint and their union is already smooth.
+- **Opposite flags.**  The zero-intersection calculation following (3.1)
+  checks every \(j\), and the divisor count uses \(n>\deg\mathcal O(n-1)\).
+  The argument therefore covers all partitions and is not restricted to
+  smooth Schubert varieties.
+- **Boundary and infinity.**  A projective change of coordinate can move
+  any finite set of marked points away from infinity.  Alternatively,
+  (7.1)--(7.3) use homogeneous Wronskians and evaluation line bundles, so
+  no affine chart omits a possible singular point of \(S\) or a marked
+  point at infinity.
+- **Independence and expected dimension.**  The monomial computation proves
+  surjectivity of \(\mathcal W\), interpolation proves independence of the
+  evaluations, and Eisenbud--Harris properness supplies the height needed
+  for the Jacobian criterion.
+- **Numerical checks.**  The two \(G(2,6)\) degrees were checked both by the
+  hook-length formula and by the repeated-Pieri identity (5.1).  No
+  computer algebra or exhaustive enumeration was used.
+- **Parity check.**  More generally, because the singular locus has no real
+  points, its local normalization defects occur in conjugate pairs; hence
+  the total normalization defect is even.  This is consistent with, but
+  far weaker than, smoothness.
+
+result
+### 5. Main result
+
+#### Theorem 5.1 (two-condition Richardson case)
+
+Assume (1.1) and that at most two \(\lambda_i\) are nonempty.  Then every
+nonempty one-dimensional osculating Schubert intersection \(S\) is smooth
+over \(\mathbb C\).  The osculation points need only be distinct; they need
+not be real.
+
+#### Theorem 5.2 (Plücker degree at most two)
+
+Let the \(x_i\) be pairwise distinct and real, and let \(S\) be the
+one-dimensional osculating Schubert scheme in (1.1).  If
+\[
+ \deg_{\rm Pl}S\leq 2,
+\]
+then \(S_{\mathbb C}\) is smooth (possibly disconnected).
+
+For one condition \(\lambda\) and \(q\) additional single-box conditions,
+where \(|\lambda|+q=N-1\), write
+\[
+ \lambda^\vee_i=(n-k)-\lambda_{k+1-i}.
+\]
+Repeated Pieri and Poincaré duality give
+\[
+ \deg_{\rm Pl}S=f^{\lambda^\vee},                             \tag{5.1}
+\]
+the number of standard Young tableaux of shape \(\lambda^\vee\).
+Consequently, \(f^{\lambda^\vee}\leq2\) is a combinatorial smoothness
+certificate.
+
+#### Corollary 5.3 (two explicit \(G(2,6)\) cases)
+
+For distinct real osculation points, each of the following curves is smooth
+over \(\mathbb C\):
+
+1. \(\lambda=(2,2)\) together with three single-box conditions;
+2. \(\lambda=(3,2)\) together with two single-box conditions.
+
+Indeed, the complementary shapes in the \(2\times4\) rectangle are,
+respectively, \((2,2)\) and \((2,1)\), and
+\[
+ f^{(2,2)}=\frac{4!}{3\cdot2\cdot2\cdot1}=2,\qquad
+ f^{(2,1)}=\frac{3!}{3\cdot1\cdot1}=2.
+\]
+These are cases of exactly the “longer partitions, or \(G(2,6)\)” direction
+suggested in the AIM source.
+
+#### Proposition 5.4 (exact skew-kernel singularity criterion)
+
+Consider the all-single-box curve in \(G(2,n)\) at \(s=2n-5\) distinct
+points.  In an affine coordinate containing all \(x_i\), a point
+\(U=\langle f,g\rangle\in S\) is singular if and only if there is
+\([c_1:\cdots:c_s]\in\mathbb P^{s-1}\) such that
+\[
+\begin{split}
+  &f(x_i)g'(x_i)-f'(x_i)g(x_i)=0\quad (1\leq i\leq s),\\
+  &U\subseteq\ker B_c,\qquad B_c:=\sum_{i=1}^s c_iB_{x_i}.
+\end{split}                                                   \tag{5.2}
+\]
+Here \(\ker B_c=\{h\in E:B_c(h,E)=0\}\).
+
+Equivalently, if
+\[
+ {\rm Wr}:G(2,E)\longrightarrow
+   \mathbb P H^0(\mathbb P^1,\mathcal O(2n-4))
+\]
+is the Wronski map and \(P=\prod_i(z-x_i)\), then
+\[
+ S={\rm Wr}^{-1}(\ell_P),\qquad
+ \ell_P=\mathbb P\big(P\cdot H^0(\mathbb P^1,\mathcal O(1))\big), \tag{5.3}
+\]
+and \(S\) is smooth precisely when \({\rm Wr}\) is transverse to
+\(\ell_P\) at every point of its inverse image.
+
+### 6. Candidate novel contribution
+
+**Candidate claim.**  Every real osculating Schubert curve of Plücker degree
+at most two is complex-smooth; in particular, the two longer-partition
+\(G(2,6)\) families in Corollary 5.3 are complex-smooth.  In the
+all-single-box \(G(2,n)\) family, Proposition 5.4 gives an exact,
+coordinate-independent-after-bundle-packaging incidence test for every
+possible hidden complex singularity.
+
+The claim is concrete and testable: the degree is a Schubert intersection
+number, and (5.2) is an exact system of equations rather than a heuristic
+discriminant.  The checked papers state the real-smoothness theorem and
+analyze the \(G(2,5)\) example, but no explicit statement of this degree-two
+certificate, the displayed \(G(2,6)\) cases, or this skew-kernel packaging
+was located.
+
+**Novelty confidence: low.**  The proof uses elementary curve
+classification and a standard tangent-space calculation, so it may be
+folklore or implicit in existing work.  The two-condition theorem is
+classical Richardson geometry and is included as a verified special case,
+not claimed as novel.
+
+what_remains
+### 9. Limitations and unresolved gaps
+
+The general AIM problem is not solved.  The degree argument stops at two:
+the displayed real cubic shows that real-smoothness alone cannot extend it
+to degree three.  The Richardson proof stops at two nonempty conditions;
+multi-Schubert intersections need not inherit normality.  Proposition 5.4
+is an exact reduction, but it does not yet prove that the incidence
+\(\mathcal I\) has empty image on the real configuration locus.  In
+particular, sums \(\sum c_iB_{x_i}\) with complex coefficients can have
+large radicals even when all \(x_i\) are real, and no total-positivity
+argument controlling those complex coefficients was found.
+
+The degree-two certificate relies on the known reducedness theorem for
+real, distinct osculation points.  It does not assert the same conclusion
+for arbitrary complex configurations, collision limits, nonreduced
+schemes, or other flag varieties.  The stable boundary of Speyer's family
+requires its own componentwise analysis and is not settled by the naive
+collision calculation.
+
+### 10. Concrete next steps
+
+1. Study the rank stratification of
+   \(\sum_i c_iB_{x_i}\) using Hermite interpolation.  For a singular point
+   one needs a two-plane simultaneously contained in its radical and in all
+   Wronskian hyperplanes; eliminating \(U\) after stratifying by
+   \(\dim\ker B_c\) may be much smaller than a direct discriminant.
+2. Compute the Fitting ideal of the relative cotangent sheaf using the
+   bundle map in Section 7.4.  Its class on \(M_{0,s}\), and its vanishing
+   order along boundary divisors, would turn the source's tautological
+   bundle suggestion into an intersection-theoretic obstruction.
+3. Apply (5.2) symbolically to the first unresolved all-box case on
+   \(G(2,6)\) (\(s=7\)), keeping the computation exact and exploiting
+   \({\rm PGL}_2\) to fix three points.  The purpose should be to identify
+   rank-theoretic factors, not to run an exhaustive numerical sweep.
+4. For general \(G(k,n)\), replace (7.2) by
+   \(\Lambda^{k-1}U\wedge E\).  A linear dependence of box differentials is
+   then equivalent to a Plücker covector annihilating that tangent space.
+   Determining a useful tensor-kernel analogue of \(U\subseteq\ker B_c\)
+   is the next structural lemma.
+
+### References
+
+1. D. Eisenbud and J. Harris, *Divisors on general curves and cuspidal
+   rational curves*, Invent. Math. **74** (1983), 371--418.
+2. E. Mukhin, V. Tarasov, and A. Varchenko, *The B. and M. Shapiro
+   conjecture in real algebraic geometry and the Bethe ansatz*, Ann. of
+   Math. **170** (2009), 863--881,
+   <https://doi.org/10.4007/annals.2009.170.863>.
+3. D. Speyer, *Schubert problems with respect to osculating flags of stable
+   rational curves*, Algebraic Geometry **1** (2014), 14--45,
+   <https://doi.org/10.14231/AG-2014-002>, arXiv:1209.5409.
+4. J. Levinson, *One-dimensional Schubert problems with respect to
+   osculating flags*, Canad. J. Math. **69** (2017), 143--185,
+   <https://doi.org/10.4153/CJM-2015-061-1>, arXiv:1504.06542.
+5. M. Monks Gillespie and J. Levinson, *Monodromy and \(K\)-theory of
+   Schubert curves via generalized jeu de taquin*, J. Algebraic Combin.
+   **45** (2017), 191--243,
+   <https://doi.org/10.1007/s10801-016-0705-7>, arXiv:1512.06259.
+6. M. Gillespie, J. Levinson, and K. Purbhoo, *Schubert curves in the
+   orthogonal Grassmannian*, Discrete Comput. Geom. **69** (2023),
+   981--1039, <https://doi.org/10.1007/s00454-022-00440-6>,
+   arXiv:1903.01673.
+7. A. Knutson, T. Lam, and D. Speyer, *Projections of Richardson
+   varieties*, J. Reine Angew. Math. **687** (2014), 133--157,
+   <https://doi.org/10.1515/crelle-2012-0045>, arXiv:1008.3939.
+8. AIM, *Degenerations in algebraic geometry: open problems*,
+   <https://aimath.org/pastworkshops/degenalggeomproblems.pdf>.
+
+---
+
+problem_original
+Problem 10.4. Is S smooth? (i.e. are there singular points over C?) 
+
+There doesn't seem to be any reason that this should be true, but in the (admittedly few) examples that I've explored, I've found no singular examples. An idea for an approach is to use tautological bundles on M0,s to describe equations characterizing the locus in M0,s where S is singular (and perhaps show that this is away from the points where all the xi are real). 
+
+Example 10.5. I've already checked the simplest case, e.g. G(2, 5) with the partitions s = 5points all being a single box. The next simplest cases would be with longer partitions, or G(2, 6). In this case, you can write the equations for the singular locus as a sum of squares (an obvious way to prove that there are no real solutions). In the example I looked at, the squares had the form ( xi − x j)2, which suggests a boundary geometric interpretation (points colliding). B. Osserman suggests:
+
+problem_clean
+Problem 10.4. Is S smooth? (i.e. are there singular points over C?)
+
+There doesn't seem to be any reason that this should be true, but in the (admittedly few) examples that I've explored, I've found no singular examples. An idea for an approach is to use tautological bundles on M0,s to describe equations characterizing the locus in M0,s where S is singular (and perhaps show that this is away from the points where all the xi are real).
+
+Example 10.5. I've already checked the simplest case, e.g. G(2, 5) with the partitions s = 5points all being a single box. The next simplest cases would be with longer partitions, or G(2, 6). In this case, you can write the equations for the singular locus as a sum of squares (an obvious way to prove that there are no real solutions). In the example I looked at, the squares had the form ( xi − x j)2, which suggests a boundary geometric interpretation (points colliding). B. Osserman suggests:
+
+statement_evidence
+The source is Problem 10.4 in the AIM workshop list *Degenerations in algebraic geometry*. The preceding record supplies notation that is missing from the extracted problem. Let \[ E=H^0(\mathbb P^1,\mathcal O_{\mathbb P^1}(d)),\qquad n=d+1,\qquad k=r+1, \] so that \(g^r_d\)'s are points of \(G=G(k,E)\), of dimension \(N=k(n-k)\). For \(x\in\mathbb P^1\), the filtration by order of vanishing at \(x\) is a complete osculating flag \(F_\bullet(x)\). Given pairwise distinct points \(x_1,\ldots,x_s\) and partitions \(\lambda_i\subseteq k\times(n-k)\), form the **scheme-theoretic** intersection \[ S=S(\lambda_\bullet;x_\bullet) :=\bigcap_{i=1}^s\Omega_{\lambda_i}(F_\bullet(x_i)) \subseteq G. \] The case in the problem has \[ \sum_i|\lambda_i|=N-1, \tag{1.1} \] so the Eisenbud--Harris proper-intersection theorem makes \(S\) a projective Cohen--Macaulay curve (when nonempty). All \(x_i\) are...
+
+statement_recovery_analysis
+canonical_text_retained_no_recovery_claim; clean_statement_source=canonical_problem_field
+
+statement_status
+exact
+
+verification_note
+Imported from effective validated AIM attempt 1; status=partial_result, rigor=proved, novelty_confidence=low. The validated report is included in this record.
