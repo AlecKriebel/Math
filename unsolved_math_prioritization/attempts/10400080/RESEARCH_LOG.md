@@ -11,3 +11,7 @@ Belletti–Detcherry's complete 2024 preprint was recovered. Corollary 3.1 and P
 The relevant published Gunningham–Jordan–Safronov generic-finiteness theorem was retrieved. The known dimension-jump proof can be reconstructed over the exact integral coefficient ring, taking care that a relation in the fraction-field localization must be multiplied by a further nonzero annihilator before it is a relation in the original module. No finite generation of the integral module or injectivity into its localization is assumed. This is validation of credited prior mathematics, not a fresh discovery route.
 
 Model: gpt-6-astra, xhigh. Research ceiling: 15:20:17 UTC; maximum five substantive approaches. Current new-discovery attempts: zero. Completion estimate: 80% toward the source-status deliverable, pending exact checks and separate review.
+
+## 13:37 UTC: source package frozen
+
+All 1,675 exact algebraic controls pass. The known-result artifact is frozen for independent review. The full GJS journal PDF and Hartshorn journal PDF were retrieved; final Belletti–Detcherry journal full text remains an explicit access qualification. This source-status validation covers the existential question and does not assert a new discovery or settle its adjacent universal conjecture. Completion estimate: 100% for the source-status artifact, pending review.
