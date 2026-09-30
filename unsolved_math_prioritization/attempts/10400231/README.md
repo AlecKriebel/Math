@@ -1,0 +1,3 @@
+# Prescribed Alexander realization counterexample
+
+The literal prescribed-pair Conjecture12.26 has a complete counterexample candidate that passed separate adversarial AI review. H=Z direct-sum (Z/2)^3 and Delta=t+6+t^-1 satisfy the stated symmetry and augmentation but violate an integral square-presentation/mod-p rank obstruction. The proof retains all cut-manifold torsion and identifies the specialization with the exact prescribed group. The source ring is Z[H/Tors H], not the refined torsion group ring. Two approaches. Run python verify.py here. Priority unestablished; no human peer-review claim.
