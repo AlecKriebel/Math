@@ -4,4 +4,4 @@ The original comeagre-orbit questions remain unsolved, after two substantive app
 
 A separate standard nerve argument shows that a circular covering forces the fundamental group to surject onto Z. This explains why the existing circular-cover obstruction cannot cover S2 or RP2; it does not imply a positive answer.
 
-All 3,447 exact finite diagnostics pass, with explicit limits: they do not certify Baire category or discharge the local-amalgamation quantifier. No novelty or human-peer-review claim is made. Separate review is required before publication. Recommended queue status: unsolved, 2/5; parent owns the queue row.
+All 3,447 exact finite diagnostics pass, with explicit limits: they do not certify Baire category or discharge the local-amalgamation quantifier. No novelty or human-peer-review claim is made. Separate adversarial AI review passed without mandatory corrections. All 3,447 author assertions replayed identically and 23,775 independent exact controls passed. The complete eight-file review bundle is included. Recommended queue status: unsolved, 2/5; parent owns the queue row.

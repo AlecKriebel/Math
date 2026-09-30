@@ -15,3 +15,7 @@ Testing the simple disk-exhaustion model led to a closed incidence-witness argum
 ## 2026-09-30 12:22 UTC: freeze and independent-review handoff
 
 The scoped theorem and two exact gaps are frozen. All 3,447 modest exact diagnostics pass; none is presented as a computational proof of a category statement. The original questions remain unsolved after 2/5 approaches. The route has stalled at the genuine local-amalgamation quantifier, so no further repetitive proof search is justified. Scoped-artifact completion estimate: 100%; original-target estimate remains 20%. Submitted for separate adversarial review before any PR. Actual model is gpt-6-astra at xhigh reasoning.
+
+## 2026-09-30 12:27 UTC: separate review passed
+
+The unchanged scoped proof passed independent adversarial review, including the exact published ray-density hypotheses and the group-theoretic cycle-cover argument. All 3,447 submitted diagnostics replayed identically; 23,775 independent exact controls passed. Eight review files are copied unchanged. Original status remains unsolved, 2/5, with no claim about comeagre thin-chain orbits. The parent authorized one open draft PR. Scoped-artifact completion: 100%; original-target estimate remains 20%.

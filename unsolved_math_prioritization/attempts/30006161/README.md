@@ -8,6 +8,6 @@ The original questions for the sphere and real projective plane remain **unsolve
 - A dense orbit is not promoted to a comeagre orbit
 - No finite graph test is promoted to a solution of the continuum problem
 - All **3,447 exact finite diagnostics** pass with `python verify.py` (Python and SymPy)
-- Separate adversarial review is pending
+- [Separate adversarial AI review passed](review/REVIEW.md), with 23,775 independent exact controls
 - [SOURCE_AUDIT.md](SOURCE_AUDIT.md) records the complete source and prior-attempt checks
 - No novelty or human-peer-review claim
