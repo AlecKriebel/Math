@@ -21,3 +21,7 @@ Ceiling: two hours, at most five substantive approaches.
   One substantive approach used. No optimality or priority claim.
 - **08:01:** Froze the mathematical artifact for separate adversarial review.
   Packaging source provenance and metadata does not change the frozen proof.
+- **08:16:** Packaged the separate adversarial PASS without changing the frozen
+  proof or verifier. All 903 author and 759 independent exact controls reproduce.
+  Full-target candidate completion estimate: 100% in the specified asymptotic
+  average-error model; optimality and historical novelty remain unclaimed.

@@ -1,6 +1,6 @@
 # 30000177 / OWR-785-003: four-qubit W-state LOCC dense coding
 
-**Full candidate, awaiting independent review.** In the source's asymptotic
+**Full candidate with independent adversarial review PASS.** In the source's asymptotic
 model, an explicit Bell-measurement preprocessing step gives a cq multiple-access
 channel with achievable sum rates approaching 3/2 + h₂(1/4) ≈ 2.311278 bits per
 pair of transmitted qubits. In particular, independent rates 9/8 each exceed
@@ -17,3 +17,9 @@ The 903 exact assertions check the finite channel and entropy calculation;
 they do not simulate an asymptotic coding theorem. Bell-measurement and cq-coding
 foundations are credited. Optimal capacity, one-copy zero-error performance,
 experimental realization and priority are not claimed.
+
+The [separate review](review/REVIEW.md) verifies the exact source model,
+independent-message coding theorem, Fano bridge and local implementation. All
+903 author assertions and 759 independent exact controls reproduce. This is
+AI review, not human peer review. Run `python3 review/independent_checks.py`
+for the independent receipt.
