@@ -85,7 +85,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 74 | 10300016 / AMR-102-0016 | Branched surfaces and triangulations — Question 7.1 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 75 | 10300025 / AMR-102-0025 | Leaf spaces and transverse structures — Question 8.2 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 76 | 10300054 / AMR-102-0054 | Numerical invariants — Question 13.1 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 77 | 10400033 / AMR-103-0033 | Conjecture 2.11 — (S. | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 77 | 10400033 / AMR-103-0033 | Conjecture 2.11 — (S. | 0.2400 | 5.5 | 3 | unknown | claimed_solved | 1/5 |  | 2026-09-30: Complete proof of the classical-knot third Vassiliev invariant crossing bound, with the stronger even-crossing bound, via the corrected Polyak-Viro formula and random tournament completion. Separate adversarial source-normalization and full proof audit passed;42867author and115776independent assertions. Unrefereed; historical novelty unconfirmed. Draft PR: https://github.com/AlecKriebel/Math/pull/66. |  |
 | 78 | 2305051 / AMR-022-5051 | Research Problems in Function Theory — Problem 5.51 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 79 | 2715 / KP-1.56 | Kirby Problem 1.56 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 80 | 2722 / KP-1.63 | Kirby Problem 1.63 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
