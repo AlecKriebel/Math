@@ -116,7 +116,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 105 | 10400094 / AMR-103-0094 | Problem 4.16 — (J. | 0.2250 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 106 | 10400099 / AMR-103-0099 | Conjecture 5.3 — Let hX be as above. | 0.2250 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 107 | 2800904 / AMR-027-0904 | 10 Lectures and 42 Open Problems — Stability conditions for tightness of k-median LP and k-means SDP | 0.2248 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
-| 108 | 30002806 / OWR-13497-003 | Commutation of Variational Discretization and Optimal Control | 0.2248 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
+| 108 | 30002806 / OWR-13497-003 | Commutation of Variational Discretization and Optimal Control | 0.2248 | 5.5 | 3 | 2015 | unsolved | 1/5 |  | 2026-09-30: Separate review passed a regular discrete-Lagrangian family with uniform second-order state accuracy but O(1) adjoint error, plus a correctly qualified C1 sensitivity criterion. The constructed family lacks uniform smooth step-size regularity, so conventional integrator classes remain unresolved.3310author and1118independent controls; initial-data assumption made explicit. Draft PR: https://github.com/AlecKriebel/Math/pull/96. |  |
 | 109 | 30003052 / OWR-14215-004 | Spectra of Koopman Operators for Linear Maps | 0.2242 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 110 | 30003150 / OWR-14609-007 | Unique Nonequilibrium Invariant Measures for Resonant NLS | 0.2242 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 111 | 10300055 / AMR-102-0055 | Numerical invariants — Question 13.2 | 0.2240 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
