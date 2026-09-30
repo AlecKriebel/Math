@@ -50,7 +50,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 39 | 10400115 / AMR-103-0115 | Problem 6.7 — (S.J. | 0.2600 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 40 | 20002011 / AIM-GEOMETRY-0349 | Conformal-primitivity obstruction and curvature-only rigidity on surfaces | 0.2600 | 6.0 | 4 | unknown | queued | 0/5 |  |  |  |
 | 41 | 20002052 / AIM-GEOMETRY-0390 | Local primitives versus divergence terms | 0.2600 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 42 | 2800102 / AMR-027-0102 | 10 Lectures and 42 Open Problems — Gaussian singular-value monotonicity | 0.2594 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
+| 42 | 2800102 / AMR-027-0102 | 10 Lectures and 42 Open Problems — Gaussian singular-value monotonicity | 0.2594 | 5.5 | 3 | 2015 | unsolved | 0/5 |  | 2026-09-30: Literature/source audit only: current 2026 preprints claim both exact square Gaussian directions. Separate audit checked source normalization, withdrawal history and the short complex recurrence proof, but did not fully certify the real analytic proof chain. Explicit real-proof/source hold retained; no campaign solution or novelty credit. Draft PR: https://github.com/AlecKriebel/Math/pull/25. |  |
 | 43 | 30003713 / OWR-15987-026 | Homology of Free-Lie Current Algebras over Square-Zero Extensions | 0.2571 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 44 | 30003955 / OWR-16415-018 | Disconnected Preimages of Subsurfaces Under Finite Covers | 0.2571 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 45 | 6800007 / AMR-067-0007 | Manifolds modelled on flag manifolds — Question 2 | 0.2571 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
