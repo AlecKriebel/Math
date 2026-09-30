@@ -66,7 +66,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 55 | 2814 / KP-3.16 | Kirby Problem 3.16 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 56 | 2849 / KP-3.51 | Kirby Problem 3.51 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 57 | 2912 / KP-4.36 | Kirby Problem 4.36 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 58 | 2961 / KP-4.85 | Kirby Problem 4.85 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 58 | 2961 / KP-4.85 | Kirby Problem 4.85 | 0.2560 | 5.5 | 3 | unknown | unsolved | 2/5 |  | 2026-09-30: Separate review passed the ambient commutator-length bound for product-supported surface diffeomorphisms and the precise obstruction to extending surface quasimorphism arguments. The full closed4-manifold uniform-perfectness target remains unresolved.6570author and228independent checks; duplicate30004403 shares the target and budget. Draft PR: https://github.com/AlecKriebel/Math/pull/48. |  |
 | 59 | 3009 / KP-5.2 | Kirby Problem 5.2 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 60 | 9500008 / AMR-094-0008 | Concatenated bounded Brownian pieces | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 61 | 9700035 / AMR-096-0035 | Expected length of a SIRSN spanning subnetwork | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
