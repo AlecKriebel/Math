@@ -24,3 +24,12 @@ The complete 2023 thesis has now been recovered. Its relevant definitions and op
 - Derived the exact integration-by-parts budget identity and checked 102 exact algebraic instances.
 - The global winding-barrier splice, general optimizer regularity and exact OWR objective remain unresolved. This route does not count source recovery as a proof turn.
 - 2/5 substantive author turns; completion estimate 10%. Paused at this preserved checkpoint for a separately assigned independent review.
+
+## 2026-10-01 07:19 UTC: substantive turn 3
+
+- Proved the source arrival-order condition makes the arrival trace at each point independent of the future suffix, using a first-contact argument without convexity.
+- Extended the shape variation to an explicitly hypothesized nonradial free-ray chart after a fixed past. No positive incoming-wavefront curvature is required.
+- Derived the exact suffix condition: arrival loss must be at most (length saving + old slack)/sigma; this bound is not established for arbitrary winding barriers.
+- Read Bressan–Chiri's relevant arrival-time stability passages. Continuity and nowhere-denseness do not supply the missing signed threshold or general C2 regularity.
+- 8,360 exact controls pass, including the discrete first-contact analogue for 1,024 graphs. Finite controls do not establish planar realizability or the global optimizer claim.
+- 3/5 substantive author turns; completion estimate 14%. Original objective and initial-angle scope issues remain explicit.
