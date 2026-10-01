@@ -61,3 +61,7 @@ PR13 accepted as credited partial audit of two explicit repairs; literal source 
 ## 2026-10-01T14:33:03.391969+00:00 — PR14 fresh acceptance audit started
 
 All three independent families pass the narrow noninteger Wishart obstruction. Exact earlier Anonymous candidate and zero-convention boundary are reconciled globally; current candidate frozen SHA20afe8e57f91c5f6483d54389d70fc7d19fce27114549b83461289f760ac1229. Fresh full theorem/source/priority adversary active. PR14 workflow **78%**; program **5/180=2.78%**. No new paper, DOI or tracker row.
+
+## 2026-10-01T14:41:22.458157+00:00 — PR15 audited input checkpoint
+
+PR15 original17files and exacthead frozen. Root replays both historical receipts and independently reconstructs support and normalization chain. Three independent algebra/combinatorial/source families active; PR14 fresh adversary independently passes stochastic core, reconciliation still pending. Acceptance order maintained. PR15 workflow **20%**; completed program **5/180=2.78%**. No new paper/DOI/tracker.
