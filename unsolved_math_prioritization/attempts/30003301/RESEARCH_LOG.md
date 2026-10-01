@@ -22,3 +22,9 @@
 - Constructed an integral Heisenberg quotient that distinguishes a separating-cycle square from every smooth local twisted-conjugacy class, even though ordinary homology vanishes.
 - Obtained a relative disk boundary condition with continuous but no smooth extension; explicitly not a sphere-base positive relation counterexample.
 - All 3,484 exact quotient controls pass. Partial result is unreviewed; 2/5 author turns and full-target completion estimate 5%.
+
+## 2026-10-01 06:08 UTC: substantive turn 3
+
+- Proved the local Heisenberg quotient cannot remain pointwise invariant through an essential positive genus-two identity factorization, using a Lagrangian/transvection argument and Smith’s no-Torelli theorem.
+- Recovered the actual genus-nine 48-twist relation and its point-pushing insertion; its homological obstruction is already known to vanish. Nonabelian curve words remain to be reconstructed before testing it.
+- 3/5 substantive turns; partial work unreviewed; full-target estimate 5%.
