@@ -303,7 +303,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 292 | 11000296 / AMR-109-0296 | Question 5.4 — Is the image of the second Morita class in H8(GL(6, Z); Q)) non-trivial? | 0.1760 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 293 | 20001414 / AIM-DYNAMICAL_SYSTEMS-0072 | A Wasserstein rate dictionary for local-update generators | 0.1760 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 294 | 20001798 / AIM-GEOMETRY-0136 | Airy topological recursion, exact WKB, and the wild Hodge gap | 0.1760 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 295 | 20003006 / AIM-TOPOLOGY-0094 | Clique and cubical-nerve realizations of digital homotopy groups | 0.1760 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 295 | 20003006 / AIM-TOPOLOGY-0094 | Clique and cubical-nerve realizations of digital homotopy groups | 0.1760 | 5.5 | 3 | unknown | already_solved | 1/5 |  | Credited Grandis consequence: all-degree strong-grid homotopy realization by the clique complex, extending the published digital pi_1 and pi_2 with exact group-law comparisons. Independent full convention-qualified PASS; no universal digital homology/invariant claim. [Proof](../attempts/20003006/TURN_1.md); [review](../attempts/20003006/independent_review/INDEPENDENT_REVIEW.md). |  |
 | 296 | 2884 / KP-4.8 | Kirby Problem 4.8 | 0.1760 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 297 | 30005460 / OWR-12697710-006 | Convexity of Odd-Power Sum-of-Squares Cones | 0.1756 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 298 | 30005468 / OWR-12697710-015 | Rational Certificates for Truncated Moment Nonrepresentability | 0.1756 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
