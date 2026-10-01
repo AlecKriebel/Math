@@ -45,3 +45,15 @@ Both extensive independent priority families establish sufficient earlier method
 ## 2026-10-01T13:33:12.842707+00:00 — resumed PR12; PR13 independent audits staged
 
 The explicit continuation resumes the user process. PR12 theorem/source audits pass; its old equivalent-method priority certificate is still being falsified and remains unpromoted. PR13 exact inputs are frozen and three distinct audits launched, with acceptance order preserved. Three of 180 selected PRs complete (**1.67%**); PR12 workflow **45%**, PR13 audit **8%**. No additional paper, DOI, tracker row or merge.
+
+## 2026-10-01T13:58:32.847308+00:00 — acceptance audits for12/13; PR14 frozen
+
+PR12 full theorem and older-equivalent priority certificate pass independent falsification; fresh fullacceptance audit now includes a challenge to classification versus merely older ingredients. PR13 three audit families pass and literal-source unsolved status remains; fresh acceptance review active. PR14 exact earlier candidate match observed, mathematical/source audit pending. No additional merge or publication. Program **3/180=1.67%**; PR12/13 workflows **78%**, PR14 audit **10%**.
+
+## 2026-10-01T14:11:53.048361+00:00 — PR12 remotely merged; four complete
+
+PR12 accepted as credited already_solved corollary after the complete process and fresh subsumption challenge. Merge 436bf7d031e2ef9bbe1a93ee933e6be0bc2ffd2d remotely verified. No new paper, DOI or tracker row. PR13 fresh review pending; PR14 math/source audits continue with zero-parameter notation qualification. Program **4/180=2.22%**; PR12 **100%**.
+
+## 2026-10-01T14:28:20.591123+00:00 — PR13 partial outcome remotely merged
+
+PR13 accepted as credited partial audit of two explicit repairs; literal source remains unsolved. MERGED 2026-10-01T14:26:35Z, commit69a87372c0b03a7cb2cd689f08955cbed79e97c0, exact head/parents/ancestor independently verified. Fresh adversary found no mandatory issues. No new paper, DOI or tracker row. PR13 workflow **100%**; program **5/180=2.78%**. PR14 all three independent families pass; source-zero convention and prior attribution will be globally clarified before a fresh review.
