@@ -1,5 +1,7 @@
 # 30005449: trace-reinforced ant walks
 
-Paused after the source gate and one substantive partial author turn, while a prior target's source scope is being resolved. TURN_1.md gives an exact killed-edge Laplacian formula for the general drift. It does not prove deterministic convergence or solve the several-food problem.
+Five-turn partial package, pending independent review. The general finite-graph deterministic-limit question and the several-food modeling question remain unresolved.
 
-Current budget: 1/5 substantive author turns consumed. The primary source's exclusion of multiple edges incident to food is retained. The 2026 two-nest loop-erased model is a separate result. No queue promotion or novelty claim.
+Read PARTIAL_SUMMARY.md for the exact scope. Two full special-class theorems are proved: ordinary finite trees, and arbitrary cyclic cores with a fresh food stem of length at least two. The general drift reductions and failed global-potential route are retained.
+
+Recommended queue status after independent partial review: unsolved, 5/5. No novelty claim. Run `python verify_exact.py` for exact finite controls; the separate ODE diagnostics are expressly not proof certificates.
