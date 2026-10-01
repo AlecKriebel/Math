@@ -105,3 +105,7 @@ Full fresh round1 independently passes PR16 mathematics, primary sources and met
 ## 2026-10-01T17:19:50.302266+00:00 — fresh partial gate and current tangent candidate
 
 PR17 fresh full gate passes truthful restricted partial findings; readiness92%, integration after16. PR18 three independent analytic/source families pass universal Conjecture4; notation/background provenance repaired globally and two deeppriority families active, readiness45%. PR16 corrected-package new fullround2active. Completed program **7/180 (3.89%)**; no additional publication or merge.
+
+## 2026-10-01T17:25:42.396444+00:00 — PR19 immutable partial inputs and independent audit families
+
+Exacthead13files/unsolved2/5 frozen. Root reconstructs baselineuniversallybeforehistoricalreview/code, readsoriginalprimary and repros bothreceipts exactly. Three distinctfamiliesactive; acceptanceafter18. Workflow20%, programcompleted **7/180 (3.89%)**. PR16 fullfreshround2and18deepprioritycontinue. No extra proofattempt/publication/merge.
