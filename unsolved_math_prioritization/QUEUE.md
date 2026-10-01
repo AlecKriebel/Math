@@ -226,7 +226,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 215 | 5100004 / AMR-050-0004 | Elliptic-billiard invariant k_{110} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 216 | 5100005 / AMR-050-0005 | Elliptic-billiard invariant k_{111} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 217 | 5100007 / AMR-050-0007 | Elliptic-billiard invariant k_{115} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
-| 218 | 5100008 / AMR-050-0008 | Elliptic-billiard invariant k_{117} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
+| 218 | 5100008 / AMR-050-0008 | Elliptic-billiard invariant k_{117} | 0.1905 | 5.0 | 3 | 2021 | already_solved | 0/5 | [source correction](attempts/5100008/STATUS_CORRECTION.md) | [review](attempts/5100008/review/FINAL_REVIEW.md) | Stachel (2022), Theorem 5.6; both positive-length products equal caustic-parameter^(N/2); primitive even period including stars; independently source-checked, no new proof attempt |
 | 219 | 5100011 / AMR-050-0011 | Elliptic-billiard invariant k_{203,a} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 220 | 5100012 / AMR-050-0012 | Elliptic-billiard invariant k_{203,b} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 221 | 5100014 / AMR-050-0014 | Elliptic-billiard invariant k_{303,a} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
