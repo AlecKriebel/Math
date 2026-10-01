@@ -141,3 +141,7 @@ Ten of the initial180 PRs are remotely complete. PR19 is accepted as unsolved pa
 ## 2026-10-01T19:49:08.839629+00:00 — PR21/22 current candidates sealed; fresh full adversaries active
 
 Overall10/180 complete (5.56%). PR21 positive classical subsumption and PR22 published known-negative scope have all family/root validations, original budgets preserved, current repairs sealed. Fresh complete independent adversaries are running on exact hashes. Both live draft descriptions now report shared queue edits truthfully and corrections were read back exactly. Neither known-prior candidate creates a paper or DOI. PR18/20 remain independently pending.
+
+## 2026-10-01T20:25:24.724418+00:00 — current complete acceptance gates
+
+PR21 and22 new complete independent gates PASS at exact corrected current hashes; no unresolved mathematical or current-package issues. Root full reports read and fresh controls independently reproduced. PR23 three complete families PASS and scope/provenance corrected, current fresh full gate pending. Completion remains10/180 (5.56%) until remote merges are verified; individual21/22 integration95%,23audit75%. PR18/20 unresolved gates remain independent holds.
