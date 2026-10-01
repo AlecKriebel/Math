@@ -252,7 +252,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 241 | 30004786 / OWR-8415342-014 | Automorphic L-Functions from Sigma–Rho Poisson Summation | 0.1862 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 242 | 5100024 / AMR-050-0024 | Elliptic-billiard invariant k_{406,a} | 0.1852 | 4.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 243 | 5100035 / AMR-050-0035 | Elliptic-billiard invariant k_{607} | 0.1852 | 4.0 | 3 | 2021 | queued | 0/5 |  |  |  |
-| 244 | 5100036 / AMR-050-0036 | Elliptic-billiard invariant k_{608} | 0.1852 | 4.0 | 3 | 2021 | queued | 0/5 |  |  |  |
+| 244 | 5100036 / AMR-050-0036 | Elliptic-billiard invariant k_{608} | 0.1852 | 4.0 | 3 | 2021 | already_solved | 1/5 | https://github.com/AlecKriebel/Math/pull/228 | Reviewed classical-symmetry consequence: outer focal-antipedal areas equal for primitive even elliptical billiards; ratio 1 where defined; exact convex six-orbit common zero at a/b=1+sqrt(3) |  |
 | 245 | 5100037 / AMR-050-0037 | Elliptic-billiard invariant k_{609} | 0.1852 | 4.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 246 | 5100038 / AMR-050-0038 | Elliptic-billiard invariant k_{610} | 0.1852 | 4.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 247 | 5100064 / AMR-050-0064 | Elliptic-billiard invariant k_{905} | 0.1852 | 4.0 | 3 | 2021 | queued | 0/5 |  |  |  |
