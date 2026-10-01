@@ -41,3 +41,13 @@ Tried to bridge likelihood moments to testing. Growing critical overlaps still r
 The variance series has a classical rooted-tree generating-function expression. Fixed-degree graph polynomials approximate the high-c risk to any prescribed accuracy. No claim extends this to the source's low-c running-time question. Explained exactly why the argument breaks at c=e: the component series has no exponential vertex tail, and fixed-tree coefficients vanish in the n^(4/9) window while growing supports carry its moment.
 
 All 91,293 exact controls pass, including actual centered-edge polynomial identities, error norms and diagram equality cases. Separate 60-digit variance/TV diagnostics agree with the convergent series. Completion estimate: 50% toward the original transition, still unresolved after four turns. Final fifth turn must attack the remaining mean-degree/critical issue or state the exact obstruction honestly. No final review, PR or queue update.
+
+## 2026-10-01 08:52–09:07 UTC: substantive author turn 5
+
+Pursued richer local statistics and the critical obstruction. Derived exact likelihood/entropy/second-moment recursions for a finite-depth signal-plus-noise branching experiment. Rather than assume that local model describes logarithmically many path roots, derived the exact selected-root Cayley forest law via allowed-attachment weighted extensions and proved its uniform total-variation approximation on a high-probability path-distance range. Deleted the path endpoints to avoid continuation contamination. Added independent background neighborhoods with explicit planted-hit and collision errors.
+
+For the null, an additive local coupling would fail under the path union bound, so derived an exact rooted exploration probability and a uniform multiplicative comparison on the size-capped rare event. This proves the original-model entropy detector when D_d(c)>log c. Exact rational lower bounds for ten depth-two terms give D_2(3/2)−log(3/2)>1/500; depth one fails there. All 8,285 exact checks of the Cayley/null forest formulas and rational certificate pass.
+
+The auxiliary second-moment recursion changes at e, but no converse from it to entropy or graph detection was found. Final rigorous bracket is 3/2≤C_ent≤C_poly≤e. The actual boundary, optimal low-c size and critical TV law remain unproved. Completion estimate: 55% toward original resolution; this is a subjective research-progress estimate, not a solved-status assertion.
+
+Five substantive turns consumed. Original final status: unsolved 5/5, independent analytic review pending. No further author proof search is authorized as packaging; preserve every scoped result and exact gap. No PR or shared queue mutation before the review and parent publication gate.
