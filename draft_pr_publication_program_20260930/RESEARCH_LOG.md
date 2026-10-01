@@ -77,3 +77,7 @@ PR14 narrow noninteger obstruction passes all mathematics, exactreproduction, pr
 ## 2026-10-01T15:29:12.909130+00:00 — PR16 mathematics complete; priority phase starts
 
 Probability, topology and primary-source families independently pass. Direct first-barycentric-subdivision proof is fresh verified and included globally, avoiding the source auxiliary radial marking issue. Two distinct priority families start; no novelty assumed. PR16 workflow **40%**; completed program **6/180=3.33%**. No paper, deposit, tracker row or merge yet.
+
+## 2026-10-01T15:38:11.198911+00:00 — PR15 first-fresh classification finding repaired
+
+Numeric target already_solved by positive CCMPV prior; unknown original strength/sharper variants separately recorded. Globalcurrent classification/proof/source/metadata repaired; historical input/proposal and one-attempt ledger preserved. New fresh complete adversary will verify repaired hashes. PR15workflow **82%**; completed program **6/180=3.33%**; no paper/deposit/tracker.

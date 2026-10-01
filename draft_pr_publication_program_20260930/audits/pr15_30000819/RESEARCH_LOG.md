@@ -19,3 +19,7 @@ Current unqualified attempt metadata identifies the repaired candidate, and expl
 ## 2026-10-01T15:25:28.847225+00:00 — completed-family checkpoint hygiene
 
 Removed one surplus terminal blank line from the new combinatorial report before its first commit; mathematical content unchanged. FAMILY_MANIFEST updated; fresh reviewer notified. Strict staged whitespace verification passes. Workflow **78%**.
+
+## 2026-10-01T15:38:11.198911+00:00 — PR15 first-fresh classification finding repaired
+
+Numeric target already_solved by positive CCMPV prior; unknown original strength/sharper variants separately recorded. Globalcurrent classification/proof/source/metadata repaired; historical input/proposal and one-attempt ledger preserved. New fresh complete adversary will verify repaired hashes. PR15workflow **82%**; completed program **6/180=3.33%**; no paper/deposit/tracker.

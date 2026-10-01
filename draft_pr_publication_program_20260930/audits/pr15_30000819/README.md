@@ -1,3 +1,3 @@
-# PR15: credited coarse bound, positive prior F(V), unresolved sharp source scope
+# PR15: credited coarse bound; formulated volume-only target already solved
 
-Original17files frozen. Three independent families pass; globally repaired candidate adds published CCMPV prior existential bound and exact two-reading status. Proposed unsolved conservative original-source hold, datasetF(V) already_solved. No paper/deposit/tracker. Fresh fullacceptance review pending. Workflow **78%**; acceptance after PR14 remote verification.
+Original17files frozen. Three families and first fresh complete adversary pass full mathematics, positive CCMPV prior and exact reproduction. First fresh classification finding is globally repaired: numericID already_solved; unknown original intent and unproved sharper variants separately qualified. New fresh complete review pending. Workflow **82%**. No paper/deposit/tracker.

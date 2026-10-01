@@ -22,7 +22,7 @@ Eisenbud--Goto and Herzog's multiplicity question.
 The dataset's wording, in terms of normalized volume, permits a much weaker
 arbitrary function. The original wording does not justify treating a
 quartic bound as proof of the sharper linear-volume question. This is the
-material source-scope hold in the package.
+source-interpretation limitation in the package; it does not change the known status of the formulated existential target.
 
 ## Dataset provenance and previous research
 
@@ -89,8 +89,7 @@ examples. No such inference is used.
 The search located classical n-dependent bounds and later specialized
 polytope bounds. It did not establish novelty of the coarse corollary or
 find a resolution of the sharper h<=V interpretation. Accordingly this
-attempt preserves a partial/source-scope-hold disposition and an explicit
-remaining gap. No outside individual was contacted.
+current audit preserves the original interpretation limitation, while positive CCMPV evidence below establishes already_solved for the formulated numeric target. It does not create a stronger residual target. No outside individual was contacted.
 
 ## Independent source cross-check
 
@@ -104,6 +103,6 @@ question with very ample line bundles on arbitrary nonnormal varieties.
 
 CCMPV, *Regularity of prime ideals*, Corollary5.3, published online11June2018 and print2019, gives a regularity constant depending only on multiplicity for nondegenerate homogeneous prime ideals over an algebraically closed field. Theorem5.2 alone also takes height; Corollary5.3 is the correct dimension-independent locator. For distinct selected degree-one lattice generators, I_A is homogeneous prime, has no linear forms, and degree/multiplicity V in the intrinsic generated lattice. Finite nonempty holes give h<=reg(I_A)-2, so the old theorem already implies some F(V). No complete-configuration or projective-normality assumption is inserted. [Published source](https://doi.org/10.1007/s00209-018-2089-y), [primary deposited manuscript](https://par.nsf.gov/servlets/purl/10303748).
 
-The original OWR prints by-normalized-volume wording without the formula h<=V. The sharper reading is contextual inference from Eisenbud-Goto/Herzog, not an exact printed inequality. The dataset's existential F(V) reading is already_solved by the positive prior corollary. We conservatively retain unsolved/source-scope hold for the unresolved stronger original interpretation and unknown intended numeric strength, without calling the weak assertion open. No new resolution, priority for the quartic formula, paper, DOI or tracker row is claimed. The pinned historical source record stays unchanged.
+The original OWR prints by-normalized-volume wording without the formula h<=V. The sharper reading is contextual inference from Eisenbud-Goto/Herzog, not an exact printed inequality. The dataset's existential F(V) reading is already_solved by the positive prior corollary. We assign already_solved to the formulated numeric target because of this published existential corollary. Unknown intended numeric strength and unproved sharper variants remain separate qualifications; neither is substituted for the target or attributed to the author as an established intended inequality. No new resolution, priority for the quartic formula, paper, DOI or tracker row is claimed. The pinned historical source record stays unchanged.
 
 See PRIORITY_SCOPE_UPDATE.md and the independent full primary report for the hypothesis-by-hypothesis subsumption certificate, source hashes, source-year2007 and version/page locators. Current bounded searches located no checkable proof or counterexample for the general sharp selected-configuration assertion; this is not proof of current worldwide open status.

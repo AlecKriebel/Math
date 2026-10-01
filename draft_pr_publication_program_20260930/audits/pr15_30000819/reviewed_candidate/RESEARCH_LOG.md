@@ -69,3 +69,7 @@ All three independent families pass the coarse theorem. Empty-hole convention cl
 ## 2026-10-01T15:23:38.499185+00:00 — current versus historical metadata
 
 Unqualified attempt status, proof hash and PR now identify this current candidate; original values are preserved under original_* fields. The theorem and PROOF.md hash are unchanged. Fresh adversary was notified and will bind the final verdict to this refreshed manifest. Workflow **78%**; no acceptance yet.
+
+## 2026-10-01T15:38:11.198911+00:00 — first fresh classification repair
+
+Fresh mathematics/source/prior/reproduction PASS; sole mandatory finding repaired globally: numericID30000819 is already_solved for formulated existential F(V), and unknown original intended strength/sharper variants are separate qualifications. No inferred stronger target is substituted. Original unsolved status and attempt1/5 remain historical. New fresh complete review is pending on repaired hashes. Workflow **82%**; no paper/deposit/tracker.
