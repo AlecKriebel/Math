@@ -33,3 +33,11 @@ The complete 2023 thesis has now been recovered. Its relevant definitions and op
 - Read Bressan–Chiri's relevant arrival-time stability passages. Continuity and nowhere-denseness do not supply the missing signed threshold or general C2 regularity.
 - 8,360 exact controls pass, including the discrete first-contact analogue for 1,024 graphs. Finite controls do not establish planar realizability or the global optimizer claim.
 - 3/5 substantive author turns; completion estimate 14%. Original objective and initial-angle scope issues remain explicit.
+
+## 2026-10-01 07:32 UTC: substantive turn 4
+
+- Built an explicit planar radial-segment/circular-arc/involute prefix for the unit-disk fire at speed 23/20. Its arrival trace is nondecreasing and its terminal level-set arc saturates the construction budget.
+- A small inward perturbation of the shared negative-curvature geodesic arc saves length Delta, keeps the changed prefix admissible and preserves all geometric/order conditions, but advances the unchanged suffix by exactly Delta.
+- The terminal budget becomes -(sigma-1)Delta. This rigorously blocks the universal unchanged-suffix comparison under the broad prefix hypotheses. It is not an optimal confining-strategy counterexample.
+- 158 exact rational certificates include Taylor/Lipschitz interval bounds, not just sampled inequalities. Both initial-angle conditions hold in the example.
+- 4/5 substantive author turns; completion estimate revised down to 12% because this extension mechanism is obstructed. Any final original-target status requires the fifth substantive turn and separate review.
