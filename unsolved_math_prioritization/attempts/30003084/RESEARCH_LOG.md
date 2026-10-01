@@ -11,3 +11,7 @@ Test classical small complex Hesse/Fermat configurations with exact quadratic in
 ## 2026-10-01T08:26:25.605746+00:00 — author turn1 checkpoint
 
 All four fixed complex configurations have ordinary conics (29835 exact five-subsets checked). Proved a general lower bound3n binomial(n,2) for ordinary reducible conics in the entire three-line Fermat family n>=3. Original question unresolved; completion estimate20%. Next route: small-cardinality interpolation/Veronese geometry.
+
+## 2026-10-01T08:30:13.945251+00:00 — author turn2 checkpoint
+
+Proved ordinary conic existence for every complex projective set of at most9 points not on a conic. The Gale rank1/2/3 analysis retains zero/proportional columns and reduces absent circuits to two original lines, contradicting nonconic containment. Singular conics and five-point uniqueness retained. Original arbitrary-cardinality target unresolved; completion estimate30%. Next: rank4 ten-point obstruction.
