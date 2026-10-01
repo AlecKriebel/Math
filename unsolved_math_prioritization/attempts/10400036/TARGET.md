@@ -2,7 +2,7 @@
 
 Numeric ID **10400036**, code **AMR-103-0036**, queue rank 284.
 
-The original is M. Polyak's **Problem 2.14**, in T. Ohtsuki (ed.), *Problems on invariants of knots and 3-manifolds*, Geometry & Topology Monographs 4 (2002), printed p. 409, PDF page 37. The publisher PDF currently served at [the source URL](https://msp.org/gtm/2002/04/gtm-2002-04-024s.pdf) has a July 2004 PDF production date and contains the same numbered question. The exact source page was rendered and visually inspected.
+The original is M. Polyak's **Problem 2.14**, in T. Ohtsuki (ed.), *Problems on invariants of knots and 3-manifolds*, Geometry & Topology Monographs 4 (2002), printed p. 409, PDF page 37. The publisher PDF currently served at [the source URL](https://msp.org/gtm/2002/04/gtm-2002-04-024s.pdf) has front matter dated 1 June 2004, a July 2004 PDF production date, and contains the same numbered question. The exact source page was rendered and visually inspected.
 
 The question asks for a **topological presentation of string-link Milnor invariants without assuming that lower invariants vanish**. Its two explicit requirements are:
 

@@ -15,3 +15,9 @@ The full original geometric interpretation is not claimed solved. The remaining 
 ## 2026-10-01 12:30 UTC, turn-1 checkpoint
 
 Saved the full scoped arguments in TURN_1.md. The first checker run passed 137,783 exact assertions, including exhaustive words, inverse-pair cancellations, distinct-index coefficients and the explicit conjugate point-pushing examples. A byte-identical replay is required before backup. The geometric realizations and surface arguments remain written mathematics for later independent review. One author turn is used; the full target is still active. A separate reserved source-correction review will be performed before resuming the next author route.
+
+## 2026-10-01 12:37–12:47 UTC, author turn 2
+
+Attempted the arbitrary-string-link C-complex route. An explicit Hopf-plus-split-component example showed that closed-group equality modulo the third lower central term does not select an integer longitude lift. Derived the full central relation lattice and retained the canonical cut-open lift instead. Proved the degree-two formula consisting of an ordered incidence term plus based transport-loop linking corrections, valid for arbitrary string links. This is a classical Magnus/Wirtinger deduction; it does not yet construct the source's all-order iterated derived link.
+
+The first turn-2 checker run passed 143,087 exact assertions. All topological and source-transfer limitations are stated in TURN_2.md. The original problem remains active after two author turns; the next route must address higher geometric transport data rather than assuming it is determined by closed-link representatives.
