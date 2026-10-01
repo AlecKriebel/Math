@@ -122,4 +122,4 @@ The source polynomial is a genuine automorphism with an explicit inverse. Its ra
 
 `turn_1_check.py` passes 32 exact identities/degree controls. It validates the inverse in both orders, Jacobian, localized derivations, actual poles, special fiber and recurrence normal form. The all-iterate argument and subgroup reduction are analytic algebraic proofs, not inferences from finitely many cases.
 
-Substantive author turns: **1/5**. Estimated completion toward the original membership question: **8%**. No full resolution or novelty claim; all partials await separate review before a result PR.
+Substantive author turns: **1/5**. No full resolution or novelty claim; all partials await separate review before a result PR.
