@@ -220,7 +220,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 209 | 5000007 / AMR-049-0007 | Short geodesics on the regular dodecahedron | 0.1914 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 210 | 30002597 / OWR-12984-009 | Bounding Immersed Curves by Stable Singular Disk Maps | 0.1907 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 211 | 30004601 / OWR-4990374-004 | Degree Bounds for Generic Initial Ideals of Arrangements | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
-| 212 | 30004676 / OWR-7155442-010 | Admissible Sets and Their Jump Structures | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
+| 212 | 30004676 / OWR-7155442-010 | Admissible Sets and Their Jump Structures | 0.1905 | 5.0 | 3 | 2021 | unsolved | 5/5 |  | 2026-10-01: Five documented recovered substantive turns completed; earlier interrupted work existed, exact historical count unknown. Original converse remains unresolved. Conditional internal-cover lifting lemma and scoped continuation deductions passed separate adversarial AI reviews; finite diagnostics are not admissibility proofs. See [reviewed attempt](attempts/30004676/PUBLICATION_STATUS.md). No novelty or full-resolution claim. |  |
 | 213 | 30004690 / OWR-7155446-005 | Nonsmooth Homogeneous Complex Monge–Ampère Solutions | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 214 | 30004757 / OWR-8415338-004 | Dirac-Mass Tangent Cones in Monge–Ampère Equations | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 215 | 5100004 / AMR-050-0004 | Elliptic-billiard invariant k_{110} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
