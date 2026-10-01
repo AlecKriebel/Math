@@ -11,3 +11,7 @@ Three independent families pass. Current candidate globally reconciles zero/N co
 ## 2026-10-01T15:02:59.404400+00:00 — acceptance main integration
 
 Fresh full adversary pass; current/live source scope reconciled. Main-only QUEUE conflict resolved preserving prior five accepted rows. Credited already_solved noninteger result, zero/N qualification, no newpaper/deposit/tracker. Mathematical Sections2–4 remain exact reviewed bytes. Workflow **95%**, remote verification pending.
+
+## 2026-10-01T15:10:40.207725+00:00 — PR14 partial acceptance remotely complete
+
+PR14 narrow noninteger obstruction passes all mathematics, exactreproduction, priorAnonymousarchive/source and freshfulladversarial gates. LivePRscope corrected, targetQUEUEconflict resolved preserving priorfiveacceptedrows, original1/5ledger retained. GitHubMERGED 2026-10-01T15:05:19Z, merged51e36e8ef706a2b740228102390bd3ac183165e, exacthead/parents/ancestor verified. Already_solved creditedpartial, alpha0allowed and sourceNconvention unresolved, no broaderclassification claim/newpaper/DOI/tracker. PR14workflow **100%**; program **6/180=3.33%**. PR15freshfullacceptance active afterglobalCCMPV/two-reading repairs. PR16probability gatepassed; topology/source explicitmarked-subdivision repair underindependentcheck.

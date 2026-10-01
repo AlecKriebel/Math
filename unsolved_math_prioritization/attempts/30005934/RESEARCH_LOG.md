@@ -34,3 +34,7 @@ All three families pass the narrow theorem. Source label, Brownian filtration, A
 ## 2026-10-01T15:02:59.404400+00:00 — credited partial accepted and main integration
 
 Fresh complete adversary passes exact current candidate,117fresh and211replayed checks and all integrity/source/prior-version gates. Live PR-body scope corrected; original frozen input unchanged. Accepted already_solved for intended noninteger claim with zero/N qualification, no newpaper/deposit/tracker. Main-only QUEUE conflict resolved by restoring prior main and replacing only target row, preserving five prior accepted rows. Original1/5 ledger untouched. Workflow **95%**, pending remote merge verification.
+
+## 2026-10-01T15:10:40.207725+00:00 — remote merge verified
+
+PR14 exacthead acceptedcreditedpartial/MERGED 2026-10-01T15:05:19Z, commitd51e36e8ef706a2b740228102390bd3ac183165e; originalheadsecondparent/ancestor verified. QUEUEalready_solved intendednoninteger, zero/Nqualifications retained, no newpaper/deposit/tracker. Workflow **100%**.
