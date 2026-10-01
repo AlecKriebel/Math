@@ -235,7 +235,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 224 | 5100033 / AMR-050-0033 | Elliptic-billiard invariant k_{605,a} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 225 | 5100044 / AMR-050-0044 | Elliptic-billiard invariant k_{804,a} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 226 | 5100062 / AMR-050-0062 | Elliptic-billiard invariant k_{903,a} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
-| 227 | 5100063 / AMR-050-0063 | Elliptic-billiard invariant k_{904,a} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
+| 227 | 5100063 / AMR-050-0063 | Elliptic-billiard invariant k_{904,a} | 0.1905 | 5.0 | 3 | 2021 | claimed_solved | 1/5 |  | 2026-10-01: Complete odd-primitive signed outer-polygon inverse-area product proof, using original billiard foci and including stars and the N3 critical case. Exact arXiv k904,a target; separate full adversarial AI review PASS. 102770 author and 8438 independent exact checks; numerical diagnostics separate. Classical methods credited; no novelty or human-peer-review claim. See [reviewed proof](attempts/5100063/PUBLICATION_STATUS.md). |  |
 | 228 | 5100009 / AMR-050-0009 | Elliptic-billiard invariant k_{118} | 0.1905 | 4.5 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 229 | 30003301 / OWR-15177-019 | Lifting Dehn-Twist Relations to Punctured Surfaces | 0.1897 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 230 | 30005244 / OWR-11101924-008 | Spectral Approximation of Discrete-Dipole Operators | 0.1894 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
