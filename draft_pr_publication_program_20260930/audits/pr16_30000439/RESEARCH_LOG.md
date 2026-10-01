@@ -39,3 +39,7 @@ Full new reviewer independently passes all mathematics/source scope/priority lim
 ## 2026-10-01T17:44:27.278113+00:00 — Zenodo publication and tracker verified
 
 Publishedrecord23088066/DOI10.5281/zenodo.23088066, repositoryreadbackexactmetadata/files/submittedstate, DOI200. Both publicdownloadsHTTP200 matchreviewedSHA. OneRAWtrackerappendMathPuzzlesA12:D12 andindependentfourcellreadbackverified. Workflow **95%**, mainmergepending; no duplicatedpublication/release.
+
+## 2026-10-01T17:52:21.990485+00:00 — full disposition remotely complete
+
+Exactheadmerge67219acbed231a088abd37228e904c3b27bc2495/GitHubMERGED 2026-10-01T17:50:36Z; two parents/ancestor verified, allotherqueuebytespreserved. DOI10.5281/zenodo.23088066 andtrackerA12:D12complete. Workflow **100%**, program8/180 (4.44%).

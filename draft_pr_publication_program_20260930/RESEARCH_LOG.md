@@ -117,3 +117,7 @@ Corrected exact preprint/package passes a new complete second adversary with zer
 ## 2026-10-01T17:44:27.278113+00:00 — PR16 exact preprint and tracker published
 
 DOI10.5281/zenodo.23088066 published aftercleanfreshloop, publicPDF/sourcebytesmetadataandDOI200verified. TrackerMathPuzzlesA12:D12RAWappend/readbackcomplete. Workflow95%, orderedmergepending. Completeprogramstill **7/180 (3.89%)** untilremoteacceptance.
+
+## 2026-10-01T17:52:21.990485+00:00 — PR16 full publication disposition complete
+
+PublishedDOI10.5281/zenodo.23088066, exactmetadata/publicfiles/DOI200/trackerA12:D12verified, PR16remotelyMERGED67219acbed231a088abd37228e904c3b27bc2495, exacthead/parents/ancestorverified and7acceptedqueue rowsbytepreserved. Workflow **100%**; completedinitialprogram **8/180 (4.44%)**. AdvancePR17partialintegration;PR8excluded.
