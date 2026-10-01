@@ -311,7 +311,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 300 | 30002709 / OWR-13351-007 | Essential Finite Generation of Valuation Rings | 0.1733 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 301 | 30002960 / OWR-13940-008 | Three-Dimensional Coloring Number of the Sphere | 0.1729 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 302 | 6700069 / AMR-066-0069 | Scalar Curvature Question [?73]: [c] LetS be a Riemannian manifold homeomorphic to the connected sum of twenty copies ofS2× S2 | 0.1720 | 6.0 | 3 | 2017 | queued | 0/5 |  |  |  |
-| 303 | 30000156 / OWR-768-006 | Limiting Cycle Distributions of Birational Maps | 0.1719 | 5.0 | 3 | 2004 | queued | 0/5 |  |  |  |
+| 303 | 30000156 / OWR-768-006 | Limiting Cycle Distributions of Birational Maps | 0.1719 | 5.0 | 3 | 2004 | claimed_solved | 1/5 |  | Reviewed counterexample L(u,v)=(u,(u²+1)v): full affine permutations for p≡3 mod4, no point-weighted limit at any fixed 1/2≤x<1. Unconditional arithmetic inputs; rational inverse scope explicit. |  |
 | 304 | 30001781 / OWR-5152-008 | Maximal Submatrix Bounds Without Unconditionality | 0.1717 | 5.0 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 305 | 30000849 / OWR-1729-002 | Scaling Profiles in Addition–Coagulation Models | 0.1712 | 5.0 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 306 | 30001080 / OWR-2093-003 | Transport Characterizations of Mass-Stationarity | 0.1709 | 5.0 | 3 | 2008 | queued | 0/5 |  |  |  |
