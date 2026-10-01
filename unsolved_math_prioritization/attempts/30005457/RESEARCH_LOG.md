@@ -15,3 +15,7 @@ Tested the deterministic-equilibrium obstruction instead. Constructed explicit a
 ## 2026-10-01 06:41–06:42 UTC: author turn3
 
 Attempted to transfer deterministic face stability to stochastic percolation. Proved the constructed total rate514/225 is finite, hence only finitely many edges are incremented by any finite time. Unit tallies have infinite relative error against the vanishing target weights; even baseline-subtracted counts retain relative error at least1. The stochastic trajectory never enters the proved relative basin. This rules out that proof route while leaving coordinatewise/l1 convergence logically possible. A moving-window or weighted-noise argument needs new uniform estimates. Original target unresolved; completion estimate15%.
+
+## 2026-10-01 06:44–06:47 UTC: author turn4
+
+Repaired the topology bridge for summable-square-root rate fields. An l1 Doob/dyadic argument makes martingale noise sublinear, a finite-rate tail argument gives l1 precompactness, and all limits lie in a convex compact domain with local-star lower bounds. The alpha2 drift is globally l1-Lipschitz there. The all-one baseline has vanishing l1 intensity error, so all logarithmic-time shifted limit paths solve the infinite ODE. This does not supply an l1 percolating basin or its stochastic probability. Completion estimate20%. Pause for the reserved independent Ghomi review; this adds no author turn.
