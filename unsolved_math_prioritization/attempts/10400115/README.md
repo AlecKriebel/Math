@@ -1,0 +1,11 @@
+# 10400115: verified partial analysis of algebraic-coefficient braid representations
+
+**Accepted mathematical scope: unsolved partial; NEW complete gate PASS; remote integration pending.** This investigation does not resolve the target for n>=4. The verified elementary statements are restriction of scalars with degree increase, finite-set specialization and its all-word gap, a universal countermodel to automatic algebraic specialization, and the rational low-strand representation. No novelty or general nonexistence claim is made.
+
+Read [OBSTRUCTION.md](OBSTRUCTION.md), [current source qualification](CURRENT_SOURCE_QUALIFICATION.md) and [current scope](CURRENT_AUDIT_SCOPE.md). The original proofs in sections2–5 are unchanged. ORIGINAL_* files, the source/prior records, ledger, dated log and historical review/checks preserve the original evidence. In particular review/REVIEW.md is a historical review, whose printed-example attribution is now qualified; its PASS is not automatically transferred to changed source prose.
+
+One of five substantive research attempts was used; audit and reproduction add none. Original gpt-6-astra/xhigh labels are documentary self-attribution; current replay does not attest a historical execution model or independent run. This project used AI tools extensively for research and verification. These findings are unrefereed, with no human peer review or proof-assistant verification claimed.
+
+Original author/reviewer receipts reproduce byte for byte under existing SymPy1.14.0; original scripts write adjacent JSON, so replay isolated copies. Three new independent families and root reproduced exact controls; universal proofs are distinguished from finite enumeration. CURRENT_PROOF_DEPENDENCIES.json binds current evidence. A NEW complete independent gate passed the exact23-file candidate; root read its complete proof/source/code and reproduced104867 distinct exact assertions. Remote integration and the accepted-state mirror remain separately checked administrative steps.
+
+No paper, new DOI or tracker entry is created for this unsolved partial. Shared changes include the selected QUEUE row as well as the attempt directory; preserve all unrelated queue fields. Static historical catalog/assessment rows and the legacy queue generator are not current acceptance evidence.
