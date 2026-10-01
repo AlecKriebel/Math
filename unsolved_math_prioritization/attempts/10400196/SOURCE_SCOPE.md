@@ -18,3 +18,7 @@ The primary 2005 paper and the source subsection are the initial mathematical in
 Exact-ID and exact Deloup/Question10.21 all-state PR searches, both established main target-directory histories, the local all-ref target log, both usual remote branch prefixes, and the related-target grouping returned no earlier exact campaign attempt. The broader mod16/spin PR query found unrelated PR16 (embedding dimensions), not coverage of this target. QUEUE rank286 is queued0/5, but that alone was not used as the gate. Source triage consumes no author turn; the first substantive algebraic attempt is recorded separately.
 
 Only the attempt's public mathematical notes and checks may be checkpointed. Full source PDFs/text/images and imported records are reading copies outside the packet. No original-target resolution is claimed at this stage.
+
+## Turn2 convention clarification
+
+Massuyeau’s primary spin paper, Lemma12, states B(phi)=-R modulo8; the published Deloup–Massuyeau boundary convention agrees with it. Ohtsuki’s abbreviated sentence uses the positive relationship. Turn2 carries an explicit sign epsilon and gives the construction in either convention; it does not silently identify the two quadratic functions. The sign exchange leaves the Turn1 isometry and nonexistence argument unchanged. The actual source’s omission of finite-phase domain and additivity hypotheses continues to be disclosed.
