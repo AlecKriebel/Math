@@ -255,7 +255,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 244 | 5100036 / AMR-050-0036 | Elliptic-billiard invariant k_{608} | 0.1852 | 4.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 245 | 5100037 / AMR-050-0037 | Elliptic-billiard invariant k_{609} | 0.1852 | 4.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 246 | 5100038 / AMR-050-0038 | Elliptic-billiard invariant k_{610} | 0.1852 | 4.0 | 3 | 2021 | queued | 0/5 |  |  |  |
-| 247 | 5100064 / AMR-050-0064 | Elliptic-billiard invariant k_{905} | 0.1852 | 4.0 | 3 | 2021 | queued | 0/5 |  |  |  |
+| 247 | 5100064 / AMR-050-0064 | Elliptic-billiard invariant k_{905} | 0.1852 | 4.0 | 3 | 2021 | already_solved | 1/5 | [PR #229](https://github.com/AlecKriebel/Math/pull/229) | [Reviewed classical consequence](attempts/5100064/PROOF.md): equal inner focal-inversion signed areas; ratio 1 where defined, exact finite collinear four-orbit common zero |  |
 | 248 | 5100065 / AMR-050-0065 | Elliptic-billiard invariant k_{906} | 0.1852 | 4.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 249 | 30000661 / OWR-1452-025 | Generalized Tameness of an Explicit Polynomial Automorphism | 0.1844 | 5.0 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 250 | 30000708 / OWR-1461-003 | Cramér–Wold Uniqueness for Infinite Signed Measures | 0.1844 | 5.0 | 3 | 2007 | queued | 0/5 |  |  |  |
