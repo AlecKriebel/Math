@@ -1,0 +1,13 @@
+# Source scope: 30005299
+
+Checked 2026-10-01. OWR 54/2022, Luca Chiantini, *Generalized Weddle loci*, printed pp. 3102–3104, Question 2 on p. 3103. Official PDF: https://ems.press/content/serial-article-files/46990 . The meeting was held in 2022; its publication is dated 2023.
+
+The question asks for a characterization of quartic surfaces that are Weddle loci of projective three-dimensional linear systems of quadrics in projective three-space, including whether a general determinantal quartic occurs. A system is a four-dimensional vector subspace of the ten-dimensional space of quadratic forms. It need not have six base points. No smoothness, reducedness, or irreducibility restriction is stated. The determinant must be nonzero to define a quartic hypersurface; a zero determinant gives all projective space and is excluded from the requested quartic surfaces. The discussion does not explicitly specify a ground field. We use the complex field, consistently with the same author's later treatment; no positive-characteristic extension is silently asserted.
+
+Chiantini–Fagioli, arXiv:2510.16571v2, *Weddle loci of linear systems of quadrics and the rank of partially symmetric tensors*, Section 2.1, equation (4), Definition 2.2 and Remark 2.3, explicitly defines the matrix with columns the gradients of four generating quadrics. Its determinant is the Weddle equation. Their notation section specifies the complex field. Thus the relevant partial symmetry is integrability of each column, not symmetry of the whole 4-by-4 linear matrix. Their work treats tensor rank and singularities, and does not by itself supply the requested full characterization.
+
+The imported background calls this a net and gives an outdated shortened paper title. A net has projective dimension two, so that wording must not replace the exact source's web. The clean question correctly says dimension three. The imported original extraction appends pieces of adjacent Question 1; those pieces are outside this target.
+
+Prior-work gate: the pinned upstream source contains this statement and dated triage, but no research_results entry matching its ID/code or Weddle text. Existing campaign inventory records no prior user/campaign attempt; current all-state repository PR searches for 30005299 and Weddle, and branch search for 30005299, returned none. The inventory's queued label alone was not used to establish this. No matching related-target group was found. Search results do not certify global mathematical novelty.
+
+Source PDFs, extracted text and the full imported record are local reading copies only and are not publication payloads.
