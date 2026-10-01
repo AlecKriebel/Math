@@ -27,3 +27,7 @@ Two independent deep priority families complete with bounded clearance and expli
 ## 2026-10-01T16:34:12.530158+00:00 — publication package frozen for new full adversary
 
 The five-page paper,42-member first-party source archive and exact-metadata upload kit are built and checked. All five offline programs reproduce their pinned receipts; deterministic rebuild is identical. publication_gate_input.json binds exact hashes and local Zenodo validation. New full paper/package round1 is next. Workflow **70%**, no deposit or tracker action.
+
+## 2026-10-01T17:12:10.868913+00:00 — round-one repair and corrected archives
+
+Fresh full round1 passed all mathematical claims and found one minimum-Python documentation defect. Both current READMEs now require Python3.10+; all29 copied proof/check artifacts, TeX, PDF and exact metadata remain unchanged. Current42-member source SHAb1e4a1c22fc3eec24c9d8f479b48110ddf6d72052181995037de64b99d46791f; deterministic two-build equality and local Zenodo check pass. Original gate/archive bindings preserved. Workflow **80%**, new full round2 required; no deposit/tracker/merge.

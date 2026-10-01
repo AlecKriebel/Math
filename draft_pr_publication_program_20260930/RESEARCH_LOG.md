@@ -97,3 +97,7 @@ PR15 now has a new full fresh pass after global classification repair; workflow9
 ## 2026-10-01T16:28:49.439949+00:00 — PR15 merged; PR16 publication phase
 
 PR15 accepted as credited already_solved1/5 partial after three independent families and two fresh rounds; remote exact-head merge35d596146f301713219a54936fe41d2518d7b68f verified. No new paper or DOI. Seven of180 initial drafts complete (**3.89%**). PR16 is next for full publication; its package is being prepared for two new independent full review rounds. PR17 restricted partial audits remain in preparation, with no out-of-order merge.
+
+## 2026-10-01T17:12:10.868913+00:00 — PR16 fresh package repair
+
+Full fresh round1 independently passes PR16 mathematics, primary sources and metadata; one Python-minimum documentation finding repaired throughout current package. Regenerated archives are deterministically checked and bound for a new complete adversary. PR16 workflow **80%**; no new publication/merge. PR17 fresh restricted-partial audit passes with no mandatory corrections, unrestricted problem remains unsolved4/5. Program complete **7/180 (3.89%)**.
