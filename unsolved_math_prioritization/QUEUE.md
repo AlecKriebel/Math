@@ -215,7 +215,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 204 | 30001779 / OWR-5152-002 | Covariance Estimation Without Logarithmic Oversampling | 0.1919 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 205 | 30002105 / OWR-11793-003 | Density and Geometry Recovery from Nearest-Neighbor Graphs | 0.1915 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 206 | 30004526 / OWR-2654827-002 | Strong Lefschetz Property of the Zeroth Jordan Component | 0.1914 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
-| 207 | 30004563 / OWR-2654831-006 | Maximum Central Points in Cube-Move $\alpha$-Immersions | 0.1914 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
+| 207 | 30004563 / OWR-2654831-006 | Maximum Central Points in Cube-Move $\alpha$-Immersions | 0.1914 | 5.0 | 3 | 2020 | claimed_solved | 2/5 | https://github.com/AlecKriebel/Math/pull/193 | Exact alpha=16 counterexample: one admissible crossing-allowed cube-move boundary has at least five distinct new centers and a directly certified incoming center; separate review PASS_COMPLETE_COUNTEREXAMPLE; author 6,987 and independent 13,948 exact checks; 2 recovered substantive turns, prior historical count UNKNOWN; no claim that five is maximal, no proper-embedding or novelty claim |  |
 | 208 | 5000005 / AMR-049-0005 | Types of parallel short trajectories | 0.1914 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 209 | 5000007 / AMR-049-0007 | Short geodesics on the regular dodecahedron | 0.1914 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 210 | 30002597 / OWR-12984-009 | Bounding Immersed Curves by Stable Singular Disk Maps | 0.1907 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
