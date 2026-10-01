@@ -1,15 +1,11 @@
-# 30004313: fourth-turn checkpoint
+# 30004313: final five-turn author checkpoint
 
-**In progress,4/5 substantive author turns. Original classification unresolved.**
+**Unsolved, 5/5 substantive author turns. Independent review pending.**
 
-The source is Question2 on OWR51/2019 p.3234, with arbitrary associative addition and completely regular multiplication. Ordinary, inverse and weak-brace theorems have extra hypotheses and are not silently substituted.
+The original arbitrary-addition/completely-regular classification remains unresolved. RESULT.md states the strongest retained subclass theorems and the exact gap; PROOF_COLLECTION.md indexes all full proofs. The five mathematical turn files are frozen for separate review.
 
-TURN_1.md proves a full characterization for meet multiplication and addition a+b=f(b), plus explicit obstructions to product-preservation and outside-coordinate shortcuts. Its proof applies to arbitrary nonempty meet-semilattices; the finite controls are supplemental. The separate exhaustive order≤3 catalogue is explicitly a labeled finite diagnostic, not an all-size classification.
+The final turn resolves the retracted-addition family across arbitrary Clifford components through a greatest-idempotent existence and uniqueness criterion, and supplies two-argument obstruction families with arbitrary maximal groups. Together with the earlier full Rees retraction parametrization, these remain scoped partial results.
 
-TURN_2.md adds arbitrary-addition classifications for left-zero and right-zero multiplication, an explicit four-element rectangular-band failure, and a full compatibility/solution result for coinciding laws in Rees-matrix presentations.
+The exact controls total 436,129 assertions; two additional finite catalogues are separately labeled. Computation is corroboration, not an unrestricted classification proof. No novelty or current historical-openness claim is made.
 
-TURN_3.md gives an exact structural parametrization of all one-column retractions over arbitrary Rees multiplication by row-preserving idempotent set maps of the group. It includes genuinely nonhomomorphic retractions. A separate all-completely-regular theorem handles endomorphic retractions via the source right-cryptogroup condition on their image.
-
-TURN_4.md resolves all multi-column retractions over the full presented Rees family. The exact condition is row preservation and f(f(b)^-b)=f(b)^0; the equivalent parametrization uses idempotent residual maps and column labels constant on residual fibers. Arbitrary additions and general completely regular component coupling remain outside this classification.
-
-This is an unreviewed public research checkpoint. No result PR or QUEUE status promotion is authorized by the checkpoint itself. Full source copies and raw imported records are excluded. One substantive author turn remains unless a complete original-target result is obtained earlier and independently reviewed.
+The public checkpoint contains only FROZEN_MANIFEST.json and its entries. Source copies, raw imported records and exploratory probes are excluded. No QUEUE promotion or result PR accompanies this unreviewed freeze.

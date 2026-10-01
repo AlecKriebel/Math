@@ -27,3 +27,13 @@ Strongest result: a genuine structural parametrization in the stated arbitrary-R
 Resolved the coupled multi-column retraction problem in every Rees-matrix presentation. Classified the left ideals, derived row preservation from the middle braid coordinate, and proved the remaining exact condition f(f(b)^-b)=f(b)^0. Converted it to an explicit parametrization by idempotent residual transformations of the group and output-column labels constant on their residual fibers. Proved a label-coupling counterexample showing that residual idempotence alone is insufficient. All group inverse formulas retain sandwich factors in their noncommutative order.
 
 Strongest result: complete all-size classification for every retracted addition a+b=f(b) on presented completely simple multiplication, with arbitrary left-ideal image. The original arbitrary-addition and general completely-regular-component questions remain unresolved after4/5 turns. Research pauses at this preserved checkpoint for a separately assigned independent review; the final author turn remains available. No novelty claim.
+
+## 2026-10-01 10:53–11:00 UTC: substantive turn 5
+
+After the separately assigned review interval, investigated coupling across arbitrary Clifford multiplicative components. Proved that a solution retraction onto a nonempty left ideal exists exactly when every idempotent has a greatest ideal-idempotent below it; the retraction is unique and given by that restriction. Necessity uses all three braid coordinates without cancellation, while sufficiency proves the required semilattice homomorphism and group restriction properties. This also characterizes the endomorphic retractions in this subclass. Constructed an ideal-coupling obstruction and propagated the rectangular-band failure to genuinely two-argument additions with any maximal group, on a multiplication that also supports a successful coinciding addition.
+
+The original arbitrary-addition and arbitrary completely-regular classification remains unsolved after 5/5 substantive turns. All-size partial theorems and exact finite diagnostics are retained; no further proof-search turn is counted. No novelty or current historical-openness assertion.
+
+## 2026-10-01 11:06 UTC onward: freeze and independent-review handoff
+
+Consolidation and reproduction are packaging, not a sixth substantive author turn. The five original proof files are preserved. The complete partial packet is submitted for adversarial proof/source review before any result PR. No queue status is changed at this checkpoint.
