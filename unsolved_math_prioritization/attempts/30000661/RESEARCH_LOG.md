@@ -32,3 +32,11 @@
 - Identifying all nonzero-parameter free generators gives an abstract cyclic quotient. Whether its augmentation extends across the full polynomial-LND subgroup remains exactly the unproved global issue.
 - Checked the complete Arzhantsev et al. final preprint: transitivity and finite-jet interpolation do not assert exact membership for arbitrary three-variable polynomial automorphisms.
 - Exact finite controls supplement the all-word proofs. Count 3/5; original target unresolved. No independent review or claimed-result publication at this checkpoint.
+
+## 2026-10-01 08:50 UTC: substantive turn 4
+
+- Tested a moving-coordinate construction: an arbitrary polynomial conjugate of a translation followed by its inverse. These are genuine allowed flow factors even when the conjugator is not known to be generalized tame.
+- Proved exact exponential fiber-degree growth for twisted products of gamma under every affine map preserving the (x,z) coordinate flag. A commutator with any polynomial conjugator would telescope to bounded degree, so the whole construction family fails.
+- Derived the stronger exclusion of one arbitrary polynomial LND exponential padded by flag-affine factors, while explicitly retaining the possibility of longer words or other affine directions.
+- Supplied an allowed two-flow map with the same translation-commutator obstruction, proving that the obstruction cannot be promoted to nonmembership in the full generated subgroup.
+- Count 4/5, original target unresolved. This proof does not assume the conjugator fixes x or stays in the two-flow localized group.
