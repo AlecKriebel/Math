@@ -85,3 +85,11 @@ Numeric target already_solved by positive CCMPV prior; unknown original strength
 ## 2026-10-01T15:47:14.118827+00:00 — PR17 partial inputs and independent audits
 
 Exacthead/14files frozen. Root scopedmath reconstruction and three distinctfamilies start with original4/5 ledger unchanged. No extra unfinished proofattempt. PR17workflow **20%**; acceptance afterPR16, programcomplete **6/180=3.33%**.
+
+## 2026-10-01T16:03:23.722848+00:00 — PR16 bounded priority phase complete
+
+Independent exact-question and mechanism families finish without any examined exact prior subsumption. Known methods/version dates/access limitations reconciled globally; no first-ever claim. Mathematical target verified, preprint preparation begins with fresh paper/package review loop still required. PR16workflow **50%**; programcomplete **6/180=3.33%**.
+
+## 2026-10-01T16:23:53.443127+00:00 — PR15 clean fresh gate; PR16 paper draft; PR17 family completion
+
+PR15 now has a new full fresh pass after global classification repair; workflow92%, credited partial integration pending. PR16 mathematics and two deep primary priority families pass, and all five pages of its compiled paper draft render cleanly; workflow55%, package and fresh publication rounds pending. PR17 algebra, geometry and primary-scope families all pass restricted claims; unrestricted problem remains unsolved4/5, workflow40%. No new publication or merge in this checkpoint. Six of180 initial drafts complete (**3.33%**), refresh required after this initial inventory.

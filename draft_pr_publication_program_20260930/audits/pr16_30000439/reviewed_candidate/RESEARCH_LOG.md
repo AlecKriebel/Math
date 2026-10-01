@@ -33,3 +33,11 @@ Completion estimate: 100% toward a complete independently AI-reviewed candidate 
 ## 2026-10-01T15:29:12.909130+00:00 — full mathematical gates, direct subdivision supplement
 
 Three independent families pass. Direct first-barycentric-subdivision proof and fresh child verification bypass the imported radial marked-vertex detail. Global current proof uses this supplement; original14files and historical reviews are preserved. Full two-family priority audit begins only after mathematical gates. Workflow **40%**; no paper/publication/acceptance.
+
+## 2026-10-01T16:03:23.722848+00:00 — independent priority audits complete
+
+Two families find no examined exact prior subsumption and prominently credit the known methods. Bounded literature clearance is not global priority proof. Current proof/source/provenance globally updated; preprint preparation follows, with fresh full-package reviews required. Workflow **50%**.
+
+## 2026-10-01T16:23:53.443127+00:00 — paper draft and rendering checkpoint
+
+Two independent deep priority families complete with bounded clearance and explicit access limits. The research-note draft at simplicial_embedding_gap_30000439/paper.tex compiles successfully in the native editor. All five exported PDF pages were visually inspected; the overfull local-fan equation was repaired. The proof distinguishes original affine simplices from subdivision and states the exact PL3/affine5 minima. Verification package and fresh complete publication rounds remain pending. Workflow **55%**.

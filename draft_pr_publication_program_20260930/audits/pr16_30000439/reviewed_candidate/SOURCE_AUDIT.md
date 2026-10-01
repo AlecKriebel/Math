@@ -33,3 +33,7 @@ Repository policies, README, source statement, selected shortlist entry, and que
 ## 2026-10-01T15:29:12.909130+00:00 — current mathematical-source update
 
 Complete primary versions have now been independently checked: Newmanv3(2023-10-03), Lee–Nevov3(2026-03-09) and published Lemma3.1, original Goodman–Pollack1986 finite simple numbered order types, and Frieze–Karoński current2026 ordered/diagonal inequality. The candidate uses only the valid even ambient4 mechanism; Newman's withdrawn odd threshold is excluded. A self-contained first-subdivision lemma supplies PL3 directly and bypasses the marked-vertex detail in an auxiliary radial construction. No claim that this auxiliary lemma is novel. Full priority is separately active; this mathematical-source gate is not a priority certificate.
+
+## 2026-10-01T16:03:23.722848+00:00 — two independent full priority audits
+
+Both families fixed independent primary-source conclusions before comparison. No examined theorem subsumes PL3/original-linear5; categorical first-priority is not asserted. Lee–Nevo relevant Lemma3.1 is already in v1 dated26July2023. Original Brehm/Brehm–Sarkaria same-ambient examples and later joins/suspensions/counting/design/coloring results were checked against exact minima. See PRIORITY_ASSESSMENT.md for current known inputs, version dates and explicit inaccessible journal/Wagner full-text limits. Preprint preparation is now eligible; publication still requires fresh paper/package adversaries.

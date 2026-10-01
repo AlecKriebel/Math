@@ -1,3 +1,3 @@
-# PR16: exact PL3/linear5 candidate; mathematics pass, priority pending
+# PR16: verified exact embedding gap; bounded priority audit complete
 
-Original14files/head3aa15b4ab70ddddf556c84cbba7d6528910dfceb and claimed_solved1/5 frozen. Three independent mathematical/source families pass. Current candidate supplies a self-contained first-subdivision verification that has a fresh independent geometric check. Full two-family priority audit is active; no priority/acceptance/paper verdict yet. Workflow **40%**. Acceptance remains after PR15.
+Three independent mathematical/source families pass, including a fresh-verified first-subdivision supplement. Two independent priority families locate no examined subsuming theorem and record positive priors, dates and access limits. Global priority is not proved. Current candidate is eligible for preprint preparation under the human process; full paper/package and fresh review loop remain. Original14files/head/claimed_solved1/5 preserved. Workflow **50%**; acceptance afterPR15.

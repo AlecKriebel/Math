@@ -1,7 +1,7 @@
 # A two-dimensional complex with PL embedding dimension 3 and linear embedding dimension 5
 
 **Problem:** 30000439 / OWR-1194-009.
-**Status:** complete candidate proof; three independent mathematical/source families pass. Full priority and publication review remain pending.
+**Status:** complete candidate proof; three independent mathematical/source families pass. Two independent bounded priority audits are complete; fresh publication-package reviews remain pending.
 **Date:** 30 September 2026. **Model:** gpt-6-astra, xhigh. **Substantive response:** 1/5.
 
 ## 1. Claim and terminology
@@ -176,4 +176,4 @@ The failure probability in (7) is thus below $\exp(-2^{342})<1/8$. The bound in 
 
 This proof concerns finite abstract simplicial complexes and their original triangulations. It does not claim the same separation for a manifold, a fixed small vertex count, or a prescribed embedding. The retained triangles meet at most at vertices, and the complex is typically not a manifold.
 
-The affine van Kampen–Flores obstruction, order-type counting, Janson inequality, random nonembedding method, and PL inflation lemma are imported and credited. The candidate contribution is the robust cleaning argument that combines linear-hypergraph PL embeddability in dimension three with a uniform obstruction to linear embeddability in dimension four. A bounded search found no earlier statement of this exact combination, but priority is not established. Three independent mathematical/source families pass this chain; full priority assessment and fresh publication-package reviews are still required before acceptance/publication. The earlier exact-hash review remains historical and is not transferred to modified files.
+The affine van Kampen–Flores obstruction, order-type counting, Janson inequality, random nonembedding method, and PL inflation lemma are imported and credited. The candidate contribution is the robust cleaning argument that combines linear-hypergraph PL embeddability in dimension three with a uniform obstruction to linear embeddability in dimension four. Two independent full primary-source priority families found no subsuming result in their bounded corpus; global priority is not proved. The relevant Lee–Nevo lemma was already public in July2023. Three independent mathematical/source families pass this chain. The current [priority assessment](PRIORITY_ASSESSMENT.md) records known ingredients and access limits; fresh publication-package reviews remain required before acceptance/publication. The earlier exact-hash review remains historical and is not transferred to modified files.

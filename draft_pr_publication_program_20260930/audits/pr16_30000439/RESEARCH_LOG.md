@@ -15,3 +15,11 @@ Probability, topology and primary-source families independently pass. Direct fir
 ## 2026-10-01T15:31:37.469854+00:00 — root reproduction of completed mathematical families
 
 Probability3852 assertions reproduce byte-identically. Primary841 assertions reproduce with all math fields identical (only UTC timestamp differs). Fresh subdivision stress reproduces all861 triangle-pair and84 isolated-point results. Written universal arguments, not these finite checks alone, support the theorem. Current candidate and completed-family manifests verify; strict staged whitespace check passes. Workflow **40%**.
+
+## 2026-10-01T16:03:23.722848+00:00 — PR16 bounded priority phase complete
+
+Independent exact-question and mechanism families finish without any examined exact prior subsumption. Known methods/version dates/access limitations reconciled globally; no first-ever claim. Mathematical target verified, preprint preparation begins with fresh paper/package review loop still required. PR16workflow **50%**; programcomplete **6/180=3.33%**.
+
+## 2026-10-01T16:23:53.443127+00:00 — paper draft and rendering checkpoint
+
+Two independent deep priority families complete with bounded clearance and explicit access limits. The research-note draft at simplicial_embedding_gap_30000439/paper.tex compiles successfully in the native editor. All five exported PDF pages were visually inspected; the overfull local-fan equation was repaired. The proof distinguishes original affine simplices from subdivision and states the exact PL3/affine5 minima. Verification package and fresh complete publication rounds remain pending. Workflow **55%**.
