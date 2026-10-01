@@ -178,7 +178,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 167 | 5100002 / AMR-050-0002 | Elliptic-billiard invariant k_{108} | 0.2032 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 168 | 5100006 / AMR-050-0006 | Elliptic-billiard invariant k_{114} | 0.2032 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 169 | 5100010 / AMR-050-0010 | Elliptic-billiard invariant k_{120} | 0.2032 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
-| 170 | 30005408 / OWR-12697689-004 | Gröbner-Cell Parametrization of Punctual Hilbert Schemes | 0.2007 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
+| 170 | 30005408 / OWR-12697689-004 | Gröbner-Cell Parametrization of Punctual Hilbert Schemes | 0.2007 | 5.0 | 3 | 2023 | already_solved | 0/5 |  | 2026-09-30: Oszer2025Cor8.12 exactly resolves the characteristic-zero local Homs-Winz parametrization conjecture. Separate source/weight/completion audit passed the matrix bounds and unit-factor removal;160382author and76251independent controls. The local punctual result is not replaced by an ambient polynomial Hilbert cell; published theorem credited, no discovery claim. Draft PR: https://github.com/AlecKriebel/Math/pull/150. |  |
 | 171 | 30005432 / OWR-12697693-003 | The Property-s Elements of a Skew Brace | 0.2007 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 172 | 2306022 / AMR-022-6022 | Research Problems in Function Theory — Problem 6.22 | 0.2000 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 173 | 30000229 / OWR-829-001 | Approximation Classes for Adaptive Finite Elements | 0.1981 | 5.0 | 3 | 2005 | queued | 0/5 |  |  |  |
