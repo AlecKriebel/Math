@@ -41,3 +41,11 @@ The complete 2023 thesis has now been recovered. Its relevant definitions and op
 - The terminal budget becomes -(sigma-1)Delta. This rigorously blocks the universal unchanged-suffix comparison under the broad prefix hypotheses. It is not an optimal confining-strategy counterexample.
 - 158 exact rational certificates include Taylor/Lipschitz interval bounds, not just sampled inequalities. Both initial-angle conditions hold in the example.
 - 4/5 substantive author turns; completion estimate revised down to 12% because this extension mechanism is obstructed. Any final original-target status requires the fifth substantive turn and separate review.
+
+## 2026-10-01 07:38 UTC: fifth substantive turn and freeze
+
+- Constructed a strictly admissible Lipschitz visible prefix with infinitely oscillating initial directions and no initial tangent or secant direction. All early tangents lie in both acute coordinate cones.
+- Proved that the example is nevertheless nonoptimal in the conditional radial length problem; no global optimizer counterexample is claimed.
+- 366 exact identity/inequality controls pass. The original source requires an optimizer-specific regularity argument, not merely feasibility or nowhere-denseness.
+- Final count 5/5; proposed original status unsolved, independent review pending. Estimated completion toward a full original answer 10%. No sixth proof-search turn.
+- Frozen publication list excludes the full imported record, all source PDFs/text/images, external code and private material.
