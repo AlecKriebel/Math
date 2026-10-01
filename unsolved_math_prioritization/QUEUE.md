@@ -213,7 +213,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 202 | 30006587 / OWR-14299909-002 | Derivative Formula for Multiple Eisenstein Series | 0.1920 | 5.0 | 3 | 2026 | queued | 0/5 |  |  |  |
 | 203 | 30001704 / OWR-4798-031 | Finiteness from Face-Number Bounds for Manifolds with Boundary | 0.1919 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 204 | 30001779 / OWR-5152-002 | Covariance Estimation Without Logarithmic Oversampling | 0.1919 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
-| 205 | 30002105 / OWR-11793-003 | Density and Geometry Recovery from Nearest-Neighbor Graphs | 0.1915 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
+| 205 | 30002105 / OWR-11793-003 | Density and Geometry Recovery from Nearest-Neighbor Graphs | 0.1915 | 5.5 | 3 | 2012 | unsolved | 2/5 |  | 2026-09-30: Separate review passed finite direction ambiguity and smooth fixed disconnected-support models with asymptotically indistinguishable undirected kNN graph laws for k/n→0 but differing density and similarity-invariant geometry ratios. Connected-support/general-regime recovery remains unresolved. 11803 author and124836 independent controls; directed later theorems and conjectural roadmap explicitly distinguished. Draft PR: https://github.com/AlecKriebel/Math/pull/186. |  |
 | 206 | 30004526 / OWR-2654827-002 | Strong Lefschetz Property of the Zeroth Jordan Component | 0.1914 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 207 | 30004563 / OWR-2654831-006 | Maximum Central Points in Cube-Move $\alpha$-Immersions | 0.1914 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 208 | 5000005 / AMR-049-0005 | Types of parallel short trajectories | 0.1914 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
