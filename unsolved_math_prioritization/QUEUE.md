@@ -222,7 +222,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 211 | 30004601 / OWR-4990374-004 | Degree Bounds for Generic Initial Ideals of Arrangements | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 212 | 30004676 / OWR-7155442-010 | Admissible Sets and Their Jump Structures | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 213 | 30004690 / OWR-7155446-005 | Nonsmooth Homogeneous Complex Monge–Ampère Solutions | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
-| 214 | 30004757 / OWR-8415338-004 | Dirac-Mass Tangent Cones in Monge–Ampère Equations | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
+| 214 | 30004757 / OWR-8415338-004 | Dirac-Mass Tangent Cones in Monge–Ampère Equations | 0.1905 | 5.0 | 3 | 2021 | unsolved | 5/5 | [PR #202](https://github.com/AlecKriebel/Math/pull/202) | Reviewed partials: normalized two-mass collision gives half-ball individual cones versus a full-ball merged cone; finite-separation cones/Hessian matching and general graph target unresolved. Five author turns; independent partial PASS; classical credit, no novelty claim. |  |
 | 215 | 5100004 / AMR-050-0004 | Elliptic-billiard invariant k_{110} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 216 | 5100005 / AMR-050-0005 | Elliptic-billiard invariant k_{111} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 217 | 5100007 / AMR-050-0007 | Elliptic-billiard invariant k_{115} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
