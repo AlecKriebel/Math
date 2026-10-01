@@ -1,0 +1,5 @@
+# Substantive turn1 log
+
+2026-10-01 12:16–12:23 UTC. Attacked the weak-moment fixed-point part through common coupled-tree terminal marks and a centered truncation estimate. Derived uniqueness/existence of all finite-mean finite-dimensional smoothing fixed points, with coordinatewise X log X necessity on positive-mean coordinates, and Wasserstein1 convergence from every integrable mean-one seed. Derived expected local L1-function convergence of the actual martingales. Preserved the distinct J1 tightness and simple process-description gaps; a deterministic spike is only a topology countercontrol, not a source-model counterexample.
+
+290 exact finite controls pass, including full two-parameter generation-array versus root decomposition laws through depth4, nontrivial common-vector terminal seeds, cross moments and centered-tail algebra. The scalar Kesten–Stigum theorem is credited through the full LPP author manuscript. No source lookup was counted as a proof turn. This is one approach family and one substantive partial turn, pending eventual independent review of the complete attempt.
