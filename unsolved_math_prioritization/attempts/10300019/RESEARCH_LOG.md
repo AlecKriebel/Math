@@ -1,3 +1,4 @@
 # Research log: 10300019
 
 - 2026-10-01 09:23 UTC: exact source and prior-work gate complete, 0/5 author turns. Full Question7.4 and continuation, surrounding definitions, classical finite surface sums, measured chart limitations, and general/no-holonomy normalization distinction read. Five primary PDFs hashed; target pages visually inspected. No verified later complete solution found, without asserting historical novelty. Completion10%; general target unresolved.
+- 2026-10-01 09:29 UTC, substantive author turn1 complete: measured addition cannot descend independently of relative scaling to unmeasured supports in an explicit common-carrier torus model. Outputs (1,1) and (2,1) have different primitive homology classes. This does not exclude other operations, certify compatibility in a preassigned triangulation, or choose the source monotone equivalence. 7,609 exact controls pass; completion15%, original unresolved.
