@@ -227,7 +227,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 216 | 5100005 / AMR-050-0005 | Elliptic-billiard invariant k_{111} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 217 | 5100007 / AMR-050-0007 | Elliptic-billiard invariant k_{115} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 218 | 5100008 / AMR-050-0008 | Elliptic-billiard invariant k_{117} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
-| 219 | 5100011 / AMR-050-0011 | Elliptic-billiard invariant k_{203,a} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
+| 219 | 5100011 / AMR-050-0011 | Elliptic-billiard invariant k_{203,a} | 0.1905 | 5.0 | 3 | 2021 | claimed_solved | 2/5 | [proof](attempts/5100011/PROOF.md) | [independent review](attempts/5100011/independent_review/FINAL_REVIEW.md) | Full arbitrary-fixed-M signed pedal-area product; primitive N divisible by four, including stars; independently reviewed; shared-author and published inputs credited, no novelty claim |
 | 220 | 5100012 / AMR-050-0012 | Elliptic-billiard invariant k_{203,b} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 221 | 5100014 / AMR-050-0014 | Elliptic-billiard invariant k_{303,a} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 222 | 5100015 / AMR-050-0015 | Elliptic-billiard invariant k_{303,b} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
