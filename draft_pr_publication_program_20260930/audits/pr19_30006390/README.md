@@ -1,5 +1,7 @@
-# PR19: three partial-result families pass; fresh review pending
+# PR19: fresh full acceptance gate passes
 
-Original random-point projective-plane conjecture remains unsolved2/5; duplicate30006391 is the same target. Three independent blocker/probability/primary-container families pass universal classical baseline, exact reductions and scoped failed-route certificates. Root verifies all family manifests and reproduces four new scripts with identical mathematical fields. Source annotations S1/S2 are corrected in reviewed_candidate without modifying imported records or original13-file snapshot.
+The current source-annotated candidate passes three independent mathematical families, root reproduction, and a new complete adversarial review. The original conjecture remains **unsolved, 2/5**; duplicate 30006391 is the same target. The universal classical bounds, exact reductions, and specifically scoped failed-route certificates are valid partial analysis. Neither conjectured growing lower bound is established.
 
-Workflow75%: a new complete current acceptance adversary is next. No paper, deposit, DOI or tracker row. Ordered acceptance follows PR18; its current priority-access hold does not prevent independent later audits.
+All 17 fresh-gate manifest entries and exact candidate hashes verify. Root independently reproduced the new GF(4) exhaustive controls: 2,102,288 checks, with only the UTC field differing. The live PR body now truthfully includes its queue-row change and remains draft. The frozen current candidate and historical imported records are unchanged.
+
+Workflow **92%**: mathematically ready for partial integration, currently held by the program's ordered disposition after PR18. No paper, deposit, DOI, or tracker entry is warranted. See fresh_acceptance_gate.json for exact bindings and live_pr_scope_repair.json for the metadata readback.

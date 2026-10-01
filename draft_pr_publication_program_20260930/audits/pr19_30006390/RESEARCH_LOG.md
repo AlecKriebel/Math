@@ -11,3 +11,7 @@ OriginalEMSConj5printed2250 and completeauthorremark191 relevantstatements/proof
 ## 2026-10-01T18:13:52.885204+00:00 — three families reconciled; source annotations repaired
 
 All3 family manifests verified;13 originals Git-exact. Root replays4 new scripts with all mathematical fields equal. Corrected prime-power original domain and finite nonempty-section convention throughout current copy, preserving imported records and2/5 turn ledger. BASELINE SHA04a3a4780e1a6eca5a3e2d721a5eaa86de6cdce414b6fd21efd59a294ab33ee5. Workflow75%, fresh full adversary pending; original target unsolved, no publication.
+
+## 2026-10-01T18:52:03.189472+00:00 — fresh full gate and live scope repair
+
+Fresh REPORT/VERDICT/MANIFEST bind the exact current candidate and pass unresolved partial analysis. Root verified all 17 artifact hashes and reproduced 2,102,288 new controls with all mathematical fields identical, excluding UTC only. The live body now includes its QUEUE.md row; exact head and draft state unchanged. Workflow **92%**, integration held after PR18; original target unsolved **2/5**, no paper/DOI/tracker.
