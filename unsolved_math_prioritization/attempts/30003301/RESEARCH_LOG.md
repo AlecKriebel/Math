@@ -36,3 +36,10 @@
 - Proved the killed-cycle quotient image of a global residual must be central.
 - The initial two-factor checker fixture accidentally provided only one automorphism; its failure exposed zip truncation. The fixture was corrected and a length assertion was added. All final exact checks pass. These fixtures do not encode a surface monodromy.
 - 4/5 substantive turns; unreviewed partials; full-target estimate 6%. The exact nonabelian global data for the genus-nine candidate remain uncertified.
+
+## 2026-10-01 06:25 UTC: substantive turn 5 and freeze
+
+- Verified a short integral cancellation of the actual genus-nine cap homology class using seven source vanishing cycles, ruling out the entire abelian-quotient obstruction route for that candidate.
+- Constructed an algebraic square-minus-two dual to its primitive spin fiber; no embedded sphere or section is asserted.
+- The exact nonabelian based words/actions for all 48 factors remain uncertified. No finite quotient exclusion or universal solution was obtained.
+- Final count 5/5, overall unsolved, partial results pending independent review. Full-target completion estimate 6%.
