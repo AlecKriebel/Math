@@ -308,7 +308,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 297 | 30005460 / OWR-12697710-006 | Convexity of Odd-Power Sum-of-Squares Cones | 0.1756 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 298 | 30005468 / OWR-12697710-015 | Rational Certificates for Truncated Moment Nonrepresentability | 0.1756 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 299 | 30005584 / OWR-14297732-013 | Degrees of Asymptotically Conical Expanders Under Connected Sum | 0.1756 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
-| 300 | 30002709 / OWR-13351-007 | Essential Finite Generation of Valuation Rings | 0.1733 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
+| 300 | 30002709 / OWR-13351-007 | Essential Finite Generation of Valuation Rings | 0.1733 | 5.5 | 3 | 2014 | already_solved | 0/5 |  |  |  |
 | 301 | 30002960 / OWR-13940-008 | Three-Dimensional Coloring Number of the Sphere | 0.1729 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 302 | 6700069 / AMR-066-0069 | Scalar Curvature Question [?73]: [c] LetS be a Riemannian manifold homeomorphic to the connected sum of twenty copies ofS2× S2 | 0.1720 | 6.0 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 303 | 30000156 / OWR-768-006 | Limiting Cycle Distributions of Birational Maps | 0.1719 | 5.0 | 3 | 2004 | queued | 0/5 |  |  |  |
