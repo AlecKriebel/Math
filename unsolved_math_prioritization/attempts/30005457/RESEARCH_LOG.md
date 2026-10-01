@@ -7,3 +7,7 @@ Recovered the complete OWR contribution and exact Open Problem3, the tree prepri
 ## 2026-10-01 06:25–06:28 UTC: author turn1
 
 Tried to transfer the independent crystallization-tree mechanism through a lattice embedding. Proved the explicit exponential depth/radius obstruction and no-percolation under uniform independent or path-conditionally bounded thinning of every deterministic lattice tree. This defeats the direct bounded-subdivision route but does not establish any such independence bound for WARM. The exact gap is a long-corridor reliability theorem or a genuinely cyclic/merging stochastic construction. Original problem unresolved; completion estimate10%.
+
+## 2026-10-01 06:29–06:33 UTC: author turn2
+
+Tested the deterministic-equilibrium obstruction instead. Constructed explicit admissible rates on the full Z² lattice, alpha2, with exactly one infinite line component in the equilibrium support and dimers elsewhere. The equilibrium is uniformly exponentially attracting within its invariant support face in relative l-infinity coordinates; an explicit eta1/100 neighborhood has contraction at least2/3 in logarithmic time. All constants are rational;4,300 exact controls pass. This does not address stochastic attainability from unit tallies, and no counterexample or uniqueness result for the random process is claimed. Completion estimate15%. Pausing for an unrelated independent review; that review adds no author turn.
