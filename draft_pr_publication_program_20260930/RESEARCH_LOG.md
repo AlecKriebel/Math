@@ -113,3 +113,7 @@ Exacthead13files/unsolved2/5 frozen. Root reconstructs baselineuniversallybefore
 ## 2026-10-01T17:39:11.603395+00:00 — PR16 final preprint gate clean
 
 Corrected exact preprint/package passes a new complete second adversary with zero unresolved issues. Immutablebindings verified; staged publication is now permitted by userprocess. Workflow90%, programcompleted **7/180 (3.89%)** untilremoteacceptance. No new DOI/merge yet;17partialgate and18/19auditscontinue.
+
+## 2026-10-01T17:44:27.278113+00:00 — PR16 exact preprint and tracker published
+
+DOI10.5281/zenodo.23088066 published aftercleanfreshloop, publicPDF/sourcebytesmetadataandDOI200verified. TrackerMathPuzzlesA12:D12RAWappend/readbackcomplete. Workflow95%, orderedmergepending. Completeprogramstill **7/180 (3.89%)** untilremoteacceptance.

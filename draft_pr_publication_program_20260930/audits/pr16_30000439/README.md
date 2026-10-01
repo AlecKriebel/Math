@@ -1,5 +1,5 @@
-# PR16: full exact-gap preprint ready for publication
+# PR16: reviewed preprint published; merge pending
 
-Three mathematical/source families and two deep bounded priority families pass. A full fresh preprint/package reviewer found a Python-minimum documentation error; it was corrected globally without changing TeX/PDF/metadata/pinned proofs. A new complete round-two adversary independently passes the corrected exact archives, with zero unresolved findings and15,420 fresh exact controls. FINAL_PUBLICATION_GATE.json binds the final readiness; publication_gate_input.json remains the unchanged dated round-two input.
+Finite2D K has exactPL minimum3, original-affine minimum5 and affinefirstbarycentric subdivision inR3. Three math/source families, two deep boundedpriority families and newcompletefreshroundtwoPASS afterruntime-doc repair verify exactpreprint/package. No unresolvedissues. PublishedDOI10.5281/zenodo.23088066, exactpublicfiles andDOIverified; trackerMathPuzzlesA12:D12readbackverified.
 
-The finite2D theorem has exact PL minimum3, original-affine minimum5 and affine first barycentric subdivision inR3. No small explicit enormous facet list, categorical firstpriority, human refereeing or formal certification is claimed. ExtensiveAI disclosed. Workflow **90%**: user-authorized Zenodo publication, public-byte verification, tracker and ordered merge remain. Original1/5 and historical snapshots/reviews preserved.
+Workflow **95%**, orderedmainmergepending. Original1/5 andhistoricalreviews preserved. No categoricalfirstpriority/humanrefereeing/formalcertificate or smallenumeratedwitness; extensiveAI disclosed. Finalpublicationinput/archive bindings remainimmutable; currentreceiptspublication/.

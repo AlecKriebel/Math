@@ -35,3 +35,7 @@ Fresh full round1 passed all mathematical claims and found one minimum-Python do
 ## 2026-10-01T17:39:11.603395+00:00 — new full round-two clean; final publication gate
 
 Full new reviewer independently passes all mathematics/source scope/priority limits/PDF/metadata/license/provenance/runtime/archive gates, zero unresolvedfindings. All5 extracted programs reproduce;15420newexactcontrols pass; correctedarchives rebuildbyteidentically.17ownauditmanifestentries and14currentinputbindings rootverified; currentgate preserved. Workflow **90%**, authorized stage/publication/tracker/merge next; no deposit yet.
+
+## 2026-10-01T17:44:27.278113+00:00 — Zenodo publication and tracker verified
+
+Publishedrecord23088066/DOI10.5281/zenodo.23088066, repositoryreadbackexactmetadata/files/submittedstate, DOI200. Both publicdownloadsHTTP200 matchreviewedSHA. OneRAWtrackerappendMathPuzzlesA12:D12 andindependentfourcellreadbackverified. Workflow **95%**, mainmergepending; no duplicatedpublication/release.
