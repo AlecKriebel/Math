@@ -288,7 +288,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 277 | 5100046 / AMR-050-0046 | Elliptic-billiard invariant k_{805} | 0.1778 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 278 | 5100047 / AMR-050-0047 | Elliptic-billiard invariant k_{806,a} | 0.1778 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 279 | 5100060 / AMR-050-0060 | Elliptic-billiard invariant k_{817} | 0.1778 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
-| 280 | 30005042 / OWR-9790363-001 | Weak Moment Conditions and Branching-Process Limit Laws | 0.1768 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
+| 280 | 30005042 / OWR-9790363-001 | Weak Moment Conditions and Branching-Process Limit Laws | 0.1768 | 5.0 | 3 | 2022 | unsolved | 5/5 |  | Five reviewed substantive turns: local X log(e+X)^(2+epsilon) gives almost-sure uniform functional convergence; exact X log X yields scalar/integrated limits and common genealogical jump alignment, but cumulative small-jump/J1 tightness and simple full-process laws remain unresolved; geometric bivariate certificates. Independent scoped-partial PASS; no novelty claim. |  |
 | 281 | 30005044 / OWR-9790363-003 | Explosion with Infinite-Mean Offspring | 0.1768 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 282 | 30005223 / OWR-11101920-009 | Limiting Vanishing Probability for Symmetric Group Characters | 0.1768 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 283 | 30000170 / OWR-783-002 | Prox-Regularity of Polynomial Stability Abscissas | 0.1761 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
