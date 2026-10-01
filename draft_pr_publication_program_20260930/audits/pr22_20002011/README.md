@@ -1,5 +1,3 @@
-# PR22: three mathematical/source families pass; fresh current gate pending
+# PR22 accepted known-negative partial
 
-The literal2003 conformal-primitive target is a known negative result of Branson2005. Variational, closed-geometric-jet and exact-primary families pass; all39 family artifacts and15 original Git inputs verify. Root reproduces the original25/21 checks and6585 new family controls byte-identically. Universal written proofs, not finite checks, establish the counterexample. Workflow75%.
-
-reviewed_candidate corrects current shared-queue metadata, preserves original provenance/readiness, and annotates the review header without changing mathematical sections1 onward. The original one-of-five shared attempt budget remains. Historical reviews certify the original hash only. A new complete current adversary is required before partial acceptance. No paper, new DOI, deposit or tracker row; no repaired-conjecture resolution.
+Workflow100%, remotely merged exact reviewed head. Published known-negative literal target accepted already_solved; repaired FSA target outside scope. NEW complete current19-entry gate has no unresolved finding; root40 fresh integrated controls reproduce byte for byte, including1299/8000 global pairing. acceptance.json/remote_merge_receipt.json bind canonical bytes/source/parents/budget1/5 and duplicate20002052 adds0. No paper, new DOI or tracker.

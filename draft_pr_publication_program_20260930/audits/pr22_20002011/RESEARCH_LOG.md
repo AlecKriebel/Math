@@ -19,3 +19,7 @@ Full literal known-negative classification passes; current19-entry package verif
 ## 2026-10-01T20:33:42.867873+00:00 — integration95%
 
 Exact reviewed head is second parent of pending main merge. Original15 canonical files matched before current copy. Scientific body preserved; metadata updates archived. Entire pre-merge queue restored, only20002011/20002052 rows changed. Original shared1/5, duplicate0additional; no paper/DOI/tracker.
+
+## 2026-10-01T20:36:27.722610+00:00 — acceptance100%
+
+Remote state MERGED, exact original head/two-parent merge/push verified. Known-negative literal target accepted already_solved partial; primary1/5 duplicate0additional, no paper/DOI/tracker.
