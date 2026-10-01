@@ -78,3 +78,7 @@ pending. Workflow completion estimate **75%**; scoped mathematical/source audit
 ## 2026-10-01T14:19:14.092003+00:00 — complete fresh acceptance audit passed
 
 Both original receipts, both independent suites and231fresh assertions pass; six deliberate mutations were rejected. Original16Git-bound artifacts and18current manifestentries pass. Mathematical Sections1–3 unchanged after review; acceptance wording and metadata only updated. Literal research remains unsolved/source-repair hold; accepted credited partial. Acceptance completion **100%**; full literal resolution **0% pending definition repair**, remote merge verification pending. No new paper, DOI, tracker row or release.
+
+## 2026-10-01T14:28:20.591123+00:00 — accepted partial audit remotely merged
+
+PR13 exact head independently verified MERGED, commit 69a87372c0b03a7cb2cd689f08955cbed79e97c0. Literal source remains unsolved; no paper, Zenodo deposit or tracker row. All-index witness, prior-source attribution and fresh adversary pass. Original1/5 ledger preserved. Workflow **100%**; novel literal resolution **0%**.
