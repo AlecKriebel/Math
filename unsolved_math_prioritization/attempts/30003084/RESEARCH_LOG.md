@@ -23,3 +23,7 @@ Extended the full affirmative partial theorem to at most10 points. Classified ra
 ## 2026-10-01T09:02:55.509846+00:00 — author turn4 checkpoint
 
 Proved ordinary-conic existence for every finite nonconic point set on any irreducible complex cubic. No-ordinary-conic residual reflections imply every character has at most3 values; two characters separate a finitely generated elliptic subgroup, reducing to the established <=9 theorem. Explicit nodal/cuspidal parametrizations and singular-point multiplicity close the singular cases. Exact finite and symbolic controls pass. Original arbitrary point-set question remains unresolved; completion estimate45%. One substantive author turn remains.
+
+## 2026-10-01T09:13:14.176785+00:00 — author turn5 final checkpoint
+
+Proved the remaining reducible-cubic cases, including secant/tangent conic plus line, triangular/concurrent three-line supports and singular component intersections. A two-deletion reflection lemma and exact carrier residual laws supply the main obstruction; an elementary large-line theorem handles the residual unbounded case.873 exact controls pass. Combined partial theorem: every nonconic complex set on any cubic, or with at most10 points, has an ordinary conic. General higher-degree configurations remain unresolved. Five genuine author turns complete; stop proof search and request separate full source/mathematical review. Final original disposition unsolved5/5; completion estimate45%.
