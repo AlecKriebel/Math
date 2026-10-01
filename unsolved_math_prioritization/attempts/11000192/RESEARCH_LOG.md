@@ -13,3 +13,13 @@ Subjective author completion estimate:40% toward a fully reviewed construction; 
 Exact nonconstant rational character-function witnesses and268 exact algebra/quaternion controls are saved. The displayed pseudo-Anosov generating route reduces to a three-curve chain by braid identities and intersection calculations; its twist subgroup is reducible. This is an unreviewed scoped source-proof gap, not a claim that the entire preprint theorem or the original question is false. A naive conjugation reversal fails the invariant at a rational control. The larger projected lifted intersection remains the next route.
 
 Subjective author completion estimate:35% toward the exact original construction; uncalibrated, not a probability or novelty claim. One substantive author turn used.
+
+## 2026-10-01T13:21:38.119865+00:00 — Begin substantive author turn2
+
+Turn1 is remotely verified at26c1d0c4717e69013e87202eaf533ebaf66baf67, twelve target-only files. The next route is the larger lifted intersection/invariant stabilizer, and corrected-power constructions; the three-chain observation does not decide that larger group. All turn1 mathematical files and its manifest remain unchanged.
+
+## 2026-10-01T13:27:24.137853+00:00 — Substantive author turn2 completed
+
+A sufficient based-word criterion for generalized lifted intersections is proved. Exact236 controls verify the full based-generator chain relation and two natural higher-power angle failures; an alternative compatible h=a family still lies in a reducible subgroup. The full invariant stabilizer remains unclassified and the original pseudo-Anosov existence gap remains. These are scoped partials, not global no-go claims.
+
+Subjective author completion estimate:40% toward the original target; an uncalibrated planning estimate, not a probability or discovery forecast. Two substantive turns used; separate Polyak audit follows before turn3.
