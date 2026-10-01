@@ -8,3 +8,10 @@
 - Exact campaign gate found no earlier target attempt.
 - Substantive proof turns consumed: 0/5. Estimated completion toward the full mathematical goal: 2%, reflecting source identification only. No theorem has been established here.
 - Next research step: analyze the point-pushing obstruction with the allowable independent curve moves; separately examine geometric section obstructions without importing mixed-sign counterexamples.
+
+## 2026-10-01 05:52 UTC: substantive turn 1
+
+- Derived the exact integral-lattice coset of abelianized residuals under point-pushing conjugation of genuine twist lifts.
+- Established full coverage of allowable curve lifts for nonseparating factors; preserved the separating-curve orbit gap.
+- Found the current Hillman–Pedrotti disk-extension preprint and a later narrow seminar announcement; neither has been treated as a universal solution.
+- 1/5 substantive turns; full-target completion estimate 3%; partial result unreviewed.
