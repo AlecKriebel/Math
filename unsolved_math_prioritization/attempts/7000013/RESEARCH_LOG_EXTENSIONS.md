@@ -11,3 +11,7 @@ Three materially different routes were developed in this interval, with their de
 ## 2026-10-01 07:04 UTC: checkpoint before reserved review task
 
 Preserved Refined results and exact witnesses as unreviewed extensions. The first broad-PL candidate and its qualified independent review remain unchanged. The parent assigned a separate power-sum review; author work on this target is paused, with the five-turn budget consumed. No queue regeneration or result PR. All additional claims need separate review.
+
+## 2026-10-01 07:09 UTC: mandatory review clarification
+
+The independent reviewer correctly required the turn-4 theorem to state closed connected triangulated 2-manifolds, two incident triangles per edge, and connected face adjacency explicitly. This excludes the vacuous single-triangle boundary case and states the intended hypothesis inside the theorem. The proof and other results are unchanged. This is a review correction, not an additional author search turn.
