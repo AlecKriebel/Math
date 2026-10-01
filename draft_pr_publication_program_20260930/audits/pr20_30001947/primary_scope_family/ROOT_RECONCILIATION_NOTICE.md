@@ -1,0 +1,3 @@
+# Current proof-certification qualification
+
+The dated REPORT.md and sealed inputs remain unchanged. Its exact primary formulation, positive published prior, proposer acknowledgment, version chronology and normalization adapters remain valid source findings. Its unqualified claims of complete independent reconstruction of the printed odd-square proof are superseded by the root current ROOT_PROOF_QUALIFICATION.md and the independently confirmed bordism/Steenrod reconciliation. The six-dimensional control falsifies the same-middle lift premise, not the target theorem. No universal proof acceptance is certified while that gap remains.
