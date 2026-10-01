@@ -33,3 +33,11 @@ A one-component lower bound proves moment divergence above n^(4/9), so the scale
 The first checker run found a harness error: Python's empty integer sum at coefficient b1 produced float zero, contaminating later Fraction arithmetic. Initialized the empty sum as Fraction(0) and reran. The written recurrence was unchanged. All 19,221 exact assertions across 1,300 finite parameter cases then passed, with separately labeled 60-digit integral/convergence diagnostics. Slow finite-size numerical convergence is displayed rather than hidden and is not used as proof.
 
 Completion estimate: 45% toward the original question. Third substantive turn complete; next work needs higher-moment/truncated-likelihood control or a stronger constructive statistic. No final result, queue update or PR.
+
+## 2026-10-01 08:37–08:50 UTC: substantive author turn 4
+
+Tried to bridge likelihood moments to testing. Growing critical overlaps still require new control, but for fixed c>e a full route works: centered counts of each fixed connected tree have jointly Gaussian limits by explicit overlap-diagram power counting; disjoint forests converge to Wick polynomials. Proved an exponentially small, uniform-in-n L² tail after truncating total forest vertices, allowing the whole likelihood to converge to a lognormal law. Uniform integrability then gives the actual total-variation and optimal-error limit, and positivity of the limit yields reverse contiguity.
+
+The variance series has a classical rooted-tree generating-function expression. Fixed-degree graph polynomials approximate the high-c risk to any prescribed accuracy. No claim extends this to the source's low-c running-time question. Explained exactly why the argument breaks at c=e: the component series has no exponential vertex tail, and fixed-tree coefficients vanish in the n^(4/9) window while growing supports carry its moment.
+
+All 91,293 exact controls pass, including actual centered-edge polynomial identities, error norms and diagram equality cases. Separate 60-digit variance/TV diagnostics agree with the convergent series. Completion estimate: 50% toward the original transition, still unresolved after four turns. Final fifth turn must attack the remaining mean-degree/critical issue or state the exact obstruction honestly. No final review, PR or queue update.
