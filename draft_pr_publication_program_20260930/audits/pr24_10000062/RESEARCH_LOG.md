@@ -19,3 +19,11 @@ Preserved the complete earlier root receipt byte-for-byte. Its57-entry field cou
 ## 2026-10-01T21:46:26.567422+00:00 — fresh complete gate/root replay, integration95%
 
 NEW complete report/early reconstruction and both programs fully read; all16 manifest entries verified; new107 controls reproduced byte-for-byte. No mathematical/current-candidate finding; original source remains unresolved and1/5 unchanged. Post-integration accepted-state mirror pending, not retrospectively invented.
+
+## 2026-10-01T21:51:55.218584+00:00 — PR24 verified remote acceptance, workflow100%
+
+Exact reviewedhead6b702110d1bd4b9220e2033fa5eed030911ce8c6 merged6da9ac520dfc508ad45e0852ac7bd6d79f0b85bb at2026-10-01T21:49:13Z; exact two parents/ancestry verified. Accepted unsolved attributed scoped partial, original1/5, science/history unchanged, no paper/DOI/tracker. Completed14/180 initial drafts (7.78%). Present accepted-state mirror follows separately; PR18/20 holds unchanged.
+
+## 2026-10-01T21:59:28.936118+00:00 — accepted-state reconciliation100%
+
+219 bindings pass actual evidence preflight; only present10000062 acceptance appended, previous14 records unchanged, current15 records (14 primary plus shared duplicate), original total consumed17, no new turns. Remote exact final title/body/head/MERGED readback matches. Historical generator/assessment/source/mathematics untouched; cooperative lock/static-assessment/manual-reopening limits remain explicit.

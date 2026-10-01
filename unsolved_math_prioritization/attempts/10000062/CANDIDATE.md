@@ -2,7 +2,7 @@
 
 **Source record:**10000062 / AMR-099-0062.
 
-**Current scoped result:** verified Euclidean noncocompact member of the prior Frettlöh–Garber family. Three independent complete mathematical/source families and root universal audit PASS; NEW complete current acceptance gate and root107 fresh checks PASS; accepted scoped partial, remote integration verification pending. Full source remains unsolved: horizontal translations remain, source periodicity is undefined, and no hyperbolic full-ball result or novelty is certified. Original1/5 preserved; extensive AI/unrefereed review. Original scientific sections1 onward are unchanged.
+**Current scoped result:** verified Euclidean noncocompact member of the prior Frettlöh–Garber family. Three independent complete mathematical/source families and root universal audit PASS; NEW complete current acceptance gate and root107 fresh checks PASS; accepted scoped partial, remote integration verified. Full source remains unsolved: horizontal translations remain, source periodicity is undefined, and no hyperbolic full-ball result or novelty is certified. Original1/5 preserved; extensive AI/unrefereed review. Original scientific sections1 onward are unchanged.
 
 ## 1. Source, definitions, and attribution
 
