@@ -126,7 +126,7 @@ A possible new deduction through polar bodies would require proving irreducibili
 
 ## Current citing literature and unobservable priority
 
-The completed independent citation subaudit checked primary publications and theses, including Fiber Convex Bodies, Line Multiview Varieties, the Meroni and Mathis theses, and the 2026 Operatopes preprint. Its exact results and retrieval gaps are retained in [citation_subaudit/REPORT.md](citation_subaudit/REPORT.md). Its evidence includes [audit_checks.json](citation_subaudit/evidence/audit_checks.json), [source_manifest.json](citation_subaudit/evidence/source_manifest.json), [search_responses.json](citation_subaudit/evidence/search_responses.json), and the retained OpenAlex index responses. No exact prior resolution or material publication blocker was found in that branch.
+The completed independent citation subaudit checked primary publications and theses, including Fiber Convex Bodies, Line Multiview Varieties, the Meroni and Mathis theses, and the 2026 Operatopes preprint. Its exact results and retrieval gaps are retained in [citation_subaudit/REPORT.md](citation_subaudit/REPORT.md). Its evidence includes [audit_checks.json](citation_subaudit/evidence/audit_checks.json), [source_manifest.json](citation_subaudit/evidence/source_manifest.json), `search_responses.json` (local-only raw capture), and the retained OpenAlex index responses. No exact prior resolution or material publication blocker was found in that branch.
 
 The IMProofBench lead arose from a primary author publication page. The subauditor independently read/searched the public v2 PDF and HTML, dated 9 July 2026: no discotope, Gesmundo, or irreducibility terminology was found, and no public target/result match was located. The primary paper and homepage describe a private benchmark collection whose contents were inaccessible. Absence of a public match cannot rule out a privately held earlier proof. This limitation should not be converted into either an “already solved” verdict or a claim of certified novelty. [Primary version history](https://arxiv.org/abs/2509.26076), [public v2 HTML](https://arxiv.org/html/2509.26076v2), [benchmark homepage](https://improofbench.math.ethz.ch/).
 
@@ -134,16 +134,14 @@ Citation indexes were used as discovery aids only. They returned incomplete or u
 
 ## Reproducibility and remaining gaps
 
-The checkable artifacts are:
+Public checkable artifacts include:
 
 - evidence.json: complete query list, source identifiers, dates, hypothesis matches, inference labels, and verdict.
-- web_results_archive.json and web_results_archive_addendum.json: captured discovery/retrieval output.
 - local_sources_manifest.json: SHA-256 hashes of downloaded primary PDFs, with text extraction metadata.
-- kk2017_ocr-11.png and its OCR derivative: direct evidence for the central prior-art observation on printed p.95.
 - citation_subaudit: separately preserved primary citing-literature check.
 - RESEARCH_LOG.md: timestamped checkpoints and completion estimates.
 
-Downloaded PDFs and full extracted texts are local audit aids; the concise report and structured evidence are the intended publication artifacts. Their hashes and URLs permit re-fetching without republishing the sources themselves.
+Raw web_results_archive.json, web_results_archive_addendum.json, citation-subaudit search_responses.json, downloaded PDFs, full extracted texts, and kk2017_ocr-11.png with its OCR derivative are local-only audit aids, excluded from the public archive. The concise report and structured query/source evidence are the publication artifacts. Their hashes and URLs permit re-fetching without republishing the sources themselves.
 
 Remaining priority gaps are exact and material:
 

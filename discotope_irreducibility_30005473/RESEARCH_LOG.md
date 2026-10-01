@@ -13,3 +13,7 @@ Four-page self-contained note compiled successfully in the native editor and exp
 ## 2026-09-30T20:52:41.480629-07:00 — priority completion and first fresh package review
 
 Independent exact-source and general/equivalent-theorem audits are complete for their stated bounded scopes: 56 and 49 recorded searches, primary-source hypothesis comparisons, and a separate citing-literature subaudit. No exact earlier full resolution or established publication blocker located. Standard analytic lemma and prior partial discotope results are explicitly credited; historical first priority remains unasserted. Attribution precision corrected and all four updated PDF pages inspected. PDF/source/kit and canonical metadata assembled and locally hash-verified; a new independent package adversary has been assigned without relying on prior verdicts. Publication readiness estimated **65%**. No Zenodo draft, publication, or tracker append yet.
+
+## 2026-09-30T21:07:43.381928-07:00 — first fresh review and global repairs
+
+Round1 complete: no mathematical defect; exact source alignment, finite reproduction, immutable provenance, and byte-identical archive rebuild pass. Required raw-response exclusion and fresh-review assembly repaired globally in builder, reports, public tree policy, and rebuilt package. Historical review target preserved. PDF and canonical metadata unchanged. Readiness **75%**, pending a newly commissioned full adversary, final preflight, publication/tracker/merge.

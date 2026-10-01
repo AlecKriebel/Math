@@ -12,6 +12,12 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parent
 STAMP = (2026, 9, 30, 0, 0, 0)
+# Raw tool responses embed publisher PDF/HTML extracts. Preserve those only
+# as ignored local audit aids, never as public source-package members.
+LOCAL_RESPONSE_NAMES = {
+    'web_results_archive.json', 'web_results_archive_addendum.json',
+    'search_responses.json',
+}
 
 
 def sha(data):
@@ -59,6 +65,8 @@ def main():
         for path in sorted((ROOT / folder).rglob('*')):
             if not path.is_file() or path.is_symlink():
                 continue
+            if path.name in LOCAL_RESPONSE_NAMES:
+                continue
             relative = path.relative_to(ROOT)
             if any(part.startswith('.') for part in relative.parts):
                 continue
@@ -79,7 +87,8 @@ def main():
         'files': {name: {'sha256': sha(data), 'size': len(data)}
                   for name, data in sorted(items.items())},
         'exclusions': ['publication receipts', 'credentials', 'environments',
-                       'third-party source PDFs and full-text extracts', 'scratch'],
+                       'third-party source PDFs and full-text extracts',
+                       'raw literature tool-response captures', 'scratch'],
     }
     items['PACKAGE_MANIFEST.json'] = encode(inventory)
     out = ROOT / 'output'

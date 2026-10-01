@@ -2,6 +2,8 @@
 
 Audit completed on 2026-09-30. Infrastructure audit completion: **100%**. This is a narrow readiness result, not an estimate of mathematical validation or overall publication-program completion. No real Zenodo API operation, Google Sheets write, Git edit/commit/push, or external researcher communication occurred.
 
+The reusable `append_publication.py` CLI and its [usage guide](append_publication_usage.md) implement the explicit-tab procedure with default dry run, explicit execution, source-verified aliases, conflict guards, durable attempt evidence, and independent readback. Its twelve mocked safety tests and an independent adversarial review pass. No real execution occurred while building it.
+
 ## Verified readiness and exact limits
 
 - Installed CLI: `gws 0.22.5`; Sheets metadata and explicit-tab reads succeeded with existing authentication.
