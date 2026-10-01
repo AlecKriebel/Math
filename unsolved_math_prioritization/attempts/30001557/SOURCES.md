@@ -1,0 +1,10 @@
+# Sources and dated literature gate
+
+Checked2026-10-01. Full reading inputs remain outside the public attempt directory.
+
+1. **Original question.** Shallit's contribution in *Mini-Workshop: Combinatorics on Words*, Oberwolfach Reports7(2010),2195–2244, DOI[10.4171/OWR/2010/37](https://doi.org/10.4171/OWR/2010/37). [Full EMS PDF](https://ems.press/content/serial-article-files/46296). Definitions and Problem38: printed2230–2231/PDF36–37. The contribution and surrounding problems were read; targetpage37 was visually checked. The post-talk remark attributes partial negative approaches to James Currie and Julien Cassaigne without supplying their proofs or a full-alpha resolution.
+2. **Primary perspective check.** James D. Currie, *Abelian powers and patterns in words: problems and perspectives*, CanaDAM2013 [full slides](https://cs.uwaterloo.ca/~shallit/Talks/currie-canadam-2013.pdf). The ordinary-pattern and fractional-power sections were inspected. They explain the notions and several other avoidance questions; no exact later resolution of Problem38 was identified there. Abelian variants are not inputs to our proof.
+3. **Current primary bibliography.** Shallit's [selected works](https://cs.uwaterloo.ca/~shallit/papers.html), checked through its visible2026 entries. Targeted searches for the exact source question, fractional powers and pattern sets, morphism closure, and Currie/Cassaigne did not locate a later exact resolution. This is a bounded literature check, not certification of historical openness or novelty.
+4. **Mismatched imported citation.** Au, Robertson and Shallit, [arXiv0812.2466v5](https://arxiv.org/abs/0812.2466v5), *Van der Waerden's Theorem and Avoidability in Words*. The primary abstract and the original OWR reference context concern the additive equal-length/equal-sum problem. We do not use that citation to judge Problem38.
+
+The algebraic closure observation is proved self-contained. It was already the mechanism suggested by the campaign desk assessment; this provenance is retained. Source recovery and literature checks were not counted as original proof turns. No external research software was downloaded or executed.
