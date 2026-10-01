@@ -27,3 +27,7 @@ Numeric target already_solved by positive CCMPV prior; unknown original strength
 ## 2026-10-01T16:23:53.443127+00:00 — second fresh review complete; integration pending
 
 New independent full review passes repaired classification, mathematics, primary dependencies, published CCMPV subsumption and exact integrity. No mandatory findings. Current proof b4da1e426b24267a0b6eed6bfb38621f71af8eb89c1d290ae097c022038a174d and candidate manifest c35f26b36bbe48c13593dbbd4d3854b48c215584f310a2f95478563b2c5714f9 remain unchanged. Twenty-five thousand nine hundred eighty-five fresh exact assertions and seven replay receipts pass. The next action changes only the target queue row to already_solved1/5, with blank DOI, preserving the complete current main queue. Workflow **92%**.
+
+## 2026-10-01T16:27:11.017277+00:00 — accepted credited partial record
+
+Three independent mathematical/source families and two sequential fresh reviews pass after the numeric-status repair. Round2 has no mandatory findings,25,985 new exact assertions and seven byte-identical replays. Formulated existential F(V) is already_solved by CCMPV Corollary5.3; intended source strength and sharper variants remain qualified separately. Canonical proof Section1 onward is byte-identical to the current reviewed proof. One of five original attempts is preserved. No new paper, DOI or tracker row. Acceptance workflow **100%**; remote merge verification follows.
