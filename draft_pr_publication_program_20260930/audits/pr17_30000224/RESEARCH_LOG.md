@@ -19,3 +19,7 @@ Five geometry foreign primary texts were relocated unchanged into ignored cache,
 ## 2026-10-01T17:19:50.302266+00:00 — fresh current restricted-partial acceptance gate passed
 
 Full new adversary passes current complete candidate with no mandatory findings, all154 source/history/family/cache bindings unchanged. Author135/historical6groups/newfamily10351/99/35 reproduced;89 new independent controls pass. Exact unrestricted original remains unsolved4/5; no paper or DOI. Workflow **92%**, integration only afterPR16.
+
+## 2026-10-01T18:06:30.378150+00:00 — ordered partial integration
+
+PR16 fully published and merged. PR17 fresh gate passes restricted findings; original problem remains unsolved4/5. Original14 inputs and ledger preserved. Header-only accepted proof update is body-identical to reviewed candidate. Workflow95%, remote confirmation pending.
