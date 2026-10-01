@@ -1,13 +1,11 @@
 # 30003999: original rational-base power sums
 
-Active research after **four of five** substantive author turns. No full solution or final unsolved outcome is claimed.
+**Five-turn partial outcome: unsolved, 5/5. Independent review pending.** No polynomial-time sign algorithm, hardness result or novelty claim is made.
 
-The source asks about sum (2/3)^r_i, not the cube-root expression in the extracted record. TURN_1.md gives exact input normalization, a credited polynomial-time equality test and an elementary fixed-parameter sign algorithm for the positive example. The missing goal is a polynomial bit-time sign algorithm for variable n, or a definitive obstruction.
+The original source uses **(2/3)^r_i**, not the extracted **2^(r_i/3)**. RESULT.md gives the exact scope, retained partial results and remaining gap. TURN_1.md through TURN_5.md preserve the five substantive routes.
 
-Run `python3 verify_turn1.py` to reproduce turn1_verification.json. These finite exact tests do not certify a general complexity claim beyond the proved reductions. Source PDFs stay outside the public package.
+The package contains polynomial equality/carry routines, fixed-parameter exact comparison bounds, a certified precision-dependent alternative, positive-root isolation estimates and a canonical-word order reformulation. None supplies the missing worst-case polynomial bit bound with variable term count for a noninteger rational base.
 
-TURN_2.md gives a unified signed-coefficient gap algorithm: fixed-parameter tractable for each fixed rational base, with a polynomial bound for the classical integer/reciprocal-integer cases. Run `python3 verify_turn2.py` to reproduce its finite exact controls. The remaining issue is polynomial dependence on the variable number of terms for a noninteger rational base.
+Run `python3 verify_turn1.py` through `python3 verify_turn5.py` and compare each output with its corresponding JSON receipt. They use only Python and installed SymPy. Finite checks support the written arguments and are not independent review or complexity lower bounds.
 
-TURN_3.md adds polynomial zero-block deletion and a certified adaptive truncation algorithm. Its remaining precision parameter is not bounded polynomially for the original noninteger rational base. An explicit easy-sign family exposes exponential work in the earlier conservative implementation and is handled immediately by the adaptive alternative.
-
-TURN_4.md treats the original positive subcase directly: its near-threshold root is unique, simple and locally isolated on an inverse-polynomial scale, but its distance from 2/3 is still uncontrolled at the needed bit-complexity scale.
+SOURCES.md and source_manifest.json record primary credit and source-access limits. FROZEN_MANIFEST.json binds the final portable files. Earlier per-turn manifests describe historical checkpoints; README/ledger files changed after them. No source PDF, full extracted paper or rendered source page is published. No QUEUE row or PR is changed until independent review.
