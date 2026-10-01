@@ -40,3 +40,10 @@
 - Derived the stronger exclusion of one arbitrary polynomial LND exponential padded by flag-affine factors, while explicitly retaining the possibility of longer words or other affine directions.
 - Supplied an allowed two-flow map with the same translation-commutator obstruction, proving that the obstruction cannot be promoted to nonmembership in the full generated subgroup.
 - Count 4/5, original target unresolved. This proof does not assume the conjugator fixes x or stays in the two-flow localized group.
+
+## 2026-10-01 09:04 UTC: fifth substantive turn and review freeze
+
+- Tested arbitrary finite words in six genuine polynomial invariant-multiple LND flow directions, including four that move x. Proved a degree cone for every reduced word and the resulting free-product description; their possible degrees exclude gamma even after adjoining coordinate permutations.
+- Closed the previously missing affine-mixing cases: every affine perturbation gamma A has unbounded iterate degree, excluding a single arbitrary LND exponential with arbitrary affine padding and every affine commutator form.
+- Formulated exact finite polynomial systems for unrestricted finite LND words, with coordinate nilpotence certificates. Any complex factorization can be specialized to algebraic-number coefficients, but no target solution or uniform bound is obtained.
+- All 382 new exact controls pass; all five checker outputs replay. Count 5/5 completed. Original finite polynomial-LND membership remains unsolved; a full independent partial-result audit is required before any PR.
