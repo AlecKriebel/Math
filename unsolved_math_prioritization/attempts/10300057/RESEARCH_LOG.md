@@ -15,3 +15,7 @@ Established exact transverse-chain transfer scaling and the resulting obstructio
 ## 2026-10-01T09:33:28.028935+00:00 — author turn2 checkpoint
 
 Proved normal-core regularization by lifting entire identity isotopies. Proved controlled descent by deck-averaging generating fields and C1 flow stability under explicit integrated C2 bounds. Exact local Frobenius calculation shows direct form averaging can fail despite arbitrary proximity to an integrable field. Original endpoint convergence supplies neither path bound nor vanishing deck defect; original unresolved2/5. Completion estimate20%.
+
+## 2026-10-01T09:44:04.075607+00:00 — author turn3 checkpoint
+
+Constructed a genuine hyperbolic plane-field analogue using15-surgery on the figure-eight knot, torsion classes c and4c, matching rational framed-link self-linking and Pontryagin classification. A15-fold cyclic cover kills both primary classes and gives homotopic lifts, while downstairs Euler classes2c and8c are unequal up to sign. No taut-foliation realization or upstairs isotopy-limit statement follows. Original unresolved3/5. Completion estimate25%.
