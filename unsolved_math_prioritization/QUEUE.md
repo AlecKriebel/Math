@@ -267,7 +267,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 256 | 30003084 / OWR-14222-012 | Wiseman–Wilson Theorem for Complex Conics | 0.1811 | 5.0 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 257 | 30003216 / OWR-14750-001 | Convergence of Adaptive Hybrid Finite Element Methods | 0.1811 | 5.0 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 258 | 30003403 / OWR-15216-007 | Strong Surjectivity of Countryman Derived Orders Under PFA | 0.1806 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
-| 259 | 30003427 / OWR-15218-003 | Multiple-Maturity Consistency Under Bid–Ask Spreads | 0.1806 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
+| 259 | 30003427 / OWR-15218-003 | Multiple-Maturity Consistency Under Bid–Ask Spreads | 0.1806 | 5.0 | 3 | 2017 | already_solved | 1/5 |  | [Credited finite-tree/QE criterion](attempts/30003427/PROOF.md): arbitrary finite maturities; exact algebraic-data algorithm, arbitrary-real formal characterization; strict-positive minimum/infimum distinction, no efficiency or novelty claim; [independent PASS](attempts/30003427/independent_review/INDEPENDENT_REVIEW.md) |  |
 | 260 | 10300019 / AMR-102-0019 | Branched surfaces and triangulations — Question 7.4 | 0.1800 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 261 | 10300057 / AMR-102-0057 | Numerical invariants — Question 13.4 | 0.1800 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 262 | 10400105 / AMR-103-0105 | Problem 5.9 — Let the notation be as above. | 0.1800 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
