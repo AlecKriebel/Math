@@ -17,7 +17,7 @@
   symplectic complements, unimodular basis changes and polynomial identities.
   These finite tests do not certify the geometric input or the general target.
 
-One of five substantive author turns consumed. Completion estimate: 25%.
+One of five substantive author turns consumed.
 No novelty claim and no full-target or queue-status promotion. The next turn
 must attack nonsingular composite-leading cores or the actual geometric
 amalgamation problem, not repeat the known stable-equivalence argument.

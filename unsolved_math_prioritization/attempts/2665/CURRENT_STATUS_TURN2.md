@@ -20,5 +20,5 @@ cannot be joined by an unproved quantifier swap or a cancellative connected sum.
 
 10,472 exact finite group and matrix controls pass. They do not independently
 prove the geometric AFMW input or the unresolved intersecting realization.
-Completion estimate 30%; no novelty claim, no PR or queue promotion. Three
+No novelty claim, no PR or queue promotion. Three
 substantive author turns remain if a full solution is not found sooner.
