@@ -16,3 +16,11 @@ The complete 2023 thesis has now been recovered. Its relevant definitions and op
 - Derived the curvature sign change and the horizontal initial-tangent feasibility condition.
 - An own symbolic checker passes 107 exact assertions. No blocking or optimality claim follows.
 - 1/5 substantive author turns; full-target completion estimate 4%. Original question unresolved.
+
+## 2026-10-01 06:50 UTC: substantive turn 2
+
+- Proved a conditional shape theorem for fixed-endpoint length minimization among C2 strictly outward visible prefixes.
+- A nonnegative outward radial bump on a negative-curvature arc strictly decreases length and increases every prefix construction margin, including active ones.
+- Derived the exact integration-by-parts budget identity and checked 102 exact algebraic instances.
+- The global winding-barrier splice, general optimizer regularity and exact OWR objective remain unresolved. This route does not count source recovery as a proof turn.
+- 2/5 substantive author turns; completion estimate 10%. Paused at this preserved checkpoint for a separately assigned independent review.
