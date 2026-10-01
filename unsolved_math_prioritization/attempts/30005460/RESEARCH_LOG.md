@@ -1,0 +1,5 @@
+# Research log
+
+- 2026-10-01 13:56–14:02 UTC: recovered the original report and exact fixed-exponent definition; read the complete imported record and available desk/literature assessments; checked prior campaign and remote attempts. Located the April 2026 published paper and distinguished its convex union theorem from its still-open fixed-exponent question. Source gate only, zero substantive turns consumed at its completion.
+- 2026-10-01 14:02 UTC: substantive turn 1 starts. Initial routes: exact sparse circuit slices and the geometry of fixed-power membership under addition; seek a full proof or a certified counterexample before retaining any partial reduction. No numerical failure will be treated as a non-SOS certificate.
+- 2026-10-01 14:12 UTC: completed substantive turn 1. Retained the full circuit-slice convexity proof with coefficient-boundary treatment and the exact q+t−1 barrier for universal formal preordering identities. The actual fixed-exponent question remains unresolved. All 17,673 exact checks pass; no numerical infeasibility or historical novelty claim. Four substantive turns remain.
