@@ -1,3 +1,3 @@
-# 5100062 / k903,a: research checkpoint
+# 5100062 / k903,a: unreviewed candidate checkpoint
 
-Work in progress. The exact target is the odd primitive-period product of the two signed focal-inverse areas. The source statement and readiness checks are preserved here. No complete or independently reviewed result is claimed by this checkpoint. No QUEUE status is changed. Downloaded papers and full extracted texts are excluded.
+A complete candidate was obtained in substantive author turn 1/5. Separate independent review is pending; no correctness or novelty claim, claimed-result PR, or QUEUE promotion is implied. The exact target is the odd primitive-period product of the two signed focal-inverse areas under unit-radius inversion of the original orbit. See CANDIDATE.md, SOURCE_AUDIT.md and source_manifest.json. Downloaded reading copies are excluded.
