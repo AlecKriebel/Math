@@ -274,7 +274,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 263 | 2665 / KP-1.6 | Kirby Problem 1.6 | 0.1800 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 264 | 2676 / KP-1.17 | Kirby Problem 1.17 | 0.1800 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 265 | 3413 / OPG-37131 | Realisation problem for the space of knots in the 3-sphere | 0.1800 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
-| 266 | 3900010 / AMR-038-0010 | Odd rep-tiling by a 14-omino | 0.1800 | 5.0 | 4 | unknown | queued | 0/5 |  |  |  |
+| 266 | 3900010 / AMR-038-0010 | Odd rep-tiling by a 14-omino | 0.1800 | 5.0 | 4 | unknown | unsolved | 5/5 | [scoped partials](attempts/3900010/RESULT.md) | [independent PASS](attempts/3900010/independent_review/INDEPENDENT_REVIEW.md) | Widths1–30 excluded; odd positive rectangle remains unresolved |
 | 267 | 9700040 / AMR-096-0040 | Stationary law of a drift-jump particle process | 0.1800 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 268 | 30004313 / OWR-17294-014 | Yang–Baxter Solutions from Generalized Left Semi-Braces | 0.1794 | 5.0 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 269 | 30004630 / OWR-4990378-001 | Quadratic Growth without Quadratic Control Regularization | 0.1778 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
