@@ -218,7 +218,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 207 | 30004563 / OWR-2654831-006 | Maximum Central Points in Cube-Move $\alpha$-Immersions | 0.1914 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 208 | 5000005 / AMR-049-0005 | Types of parallel short trajectories | 0.1914 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 209 | 5000007 / AMR-049-0007 | Short geodesics on the regular dodecahedron | 0.1914 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
-| 210 | 30002597 / OWR-12984-009 | Bounding Immersed Curves by Stable Singular Disk Maps | 0.1907 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
+| 210 | 30002597 / OWR-12984-009 | Bounding Immersed Curves by Stable Singular Disk Maps | 0.1907 | 5.5 | 3 | 2014 | already_solved | 1/5 |  | 2026-10-01: complete classical-consequence criterion and terminating decision procedure: disk extension iff corank(pi_1(S_g)/normal_closure(gamma))=g. Full independent PASS; all ambient orientations and exact stable boundary scope checked. No new algorithm, priority claim, or practical implementation. See [criterion](attempts/30002597/CORANK_CANDIDATE.md) and [review](attempts/30002597/corank_independent_review/FINAL_REVIEW.md). |  |
 | 211 | 30004601 / OWR-4990374-004 | Degree Bounds for Generic Initial Ideals of Arrangements | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 212 | 30004676 / OWR-7155442-010 | Admissible Sets and Their Jump Structures | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 213 | 30004690 / OWR-7155446-005 | Nonsmooth Homogeneous Complex Monge–Ampère Solutions | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |

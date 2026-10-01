@@ -1,5 +1,8 @@
 # Immersed disk-extension source checkpoint
 
+Historical checkpoint from the interrupted 2026-09-30 investigation. The resumed
+2026-10-01 audit is in [README.md](README.md), with separate review pending.
+
 The exact OWR26/2014 contribution is Manturov's *New Parities and Cobordisms in Low-Dimensional Topology*, printed1445–1446. Immediately after asking about a prescribed immersed curve and a bounding 3-manifold, the text acknowledges many topological obstructions. Its next theorem concerns a related free-graph invariant, with no surface or manifold, so these two questions must remain separate.
 
 Carter's 1991 paper *Closed curves that never extend to proper maps of disks* gives a three-crossing genus-two counterexample. The full published Turaev2004 paper, *Virtual strings*, supplies an explicit polynomial sliceness obstruction, a complete proof in Lemma5.1.5/Theorem5.1.4, and direct credit to Carter's example in Remark5.5(1). A full source/application audit is in progress. The literal assertion that every curve extends is already false; a general criterion deciding extension for arbitrary curves is not supplied by this observation. No new proof attempt or priority claim has been made.
