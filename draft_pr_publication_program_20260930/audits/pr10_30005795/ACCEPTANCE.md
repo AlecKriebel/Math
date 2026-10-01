@@ -9,3 +9,5 @@ Primary sources verify the original valuation-domain typo, inherited Du Val hypo
 Repairs cover positive log discrepancies, strict transforms and endpoint attainment, integral prime algebraic surface/actual divisor equality, compact parameter range and endpoint Q-linear effectivity, bibliography p.844, and current queue-scope metadata. Original snapshots and historical turn evidence remain immutable. Fresh adversary has no unresolved finding.
 
 No new paper, DOI, Zenodo record or tracker row is appropriate. Main-branch integration and remote merge verification follow this acceptance. Independent Research Policy respected; no outside individual contacted.
+
+Remote integration verified: PR10 **MERGED** at 2026-10-01T05:01:19Z, commit `67dd147004c17af6f7733af2b8685a5c88212ffb`. Partial-outcome workflow **100%**. No paper, deposit or tracker row created.
