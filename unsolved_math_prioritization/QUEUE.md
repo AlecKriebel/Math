@@ -236,7 +236,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 225 | 5100044 / AMR-050-0044 | Elliptic-billiard invariant k_{804,a} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 226 | 5100062 / AMR-050-0062 | Elliptic-billiard invariant k_{903,a} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 227 | 5100063 / AMR-050-0063 | Elliptic-billiard invariant k_{904,a} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
-| 228 | 5100009 / AMR-050-0009 | Elliptic-billiard invariant k_{118} | 0.1905 | 4.5 | 3 | 2021 | queued | 0/5 |  |  |  |
+| 228 | 5100009 / AMR-050-0009 | Elliptic-billiard invariant k_{118} | 0.1905 | 4.5 | 3 | 2021 | already_solved | 0/5 |  |  |  |
 | 229 | 30003301 / OWR-15177-019 | Lifting Dehn-Twist Relations to Punctured Surfaces | 0.1897 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 230 | 30005244 / OWR-11101924-008 | Spectral Approximation of Discrete-Dipole Operators | 0.1894 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 231 | 30005299 / OWR-11695864-004 | Determinantal Quartics as Weddle Surfaces | 0.1894 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
