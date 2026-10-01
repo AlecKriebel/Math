@@ -263,7 +263,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 252 | 30006492 / OWR-14299580-009 | Cocycle-Weighted Representations of Welded Braid Groups | 0.1841 | 5.0 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 253 | 30001321 / OWR-4081-005 | RWRE Concentration at Transverse Dimension One | 0.1838 | 5.0 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 254 | 30001626 / OWR-4533-004 | Centralizer Realization of Cartan Subalgebras in $L^*$-Algebras | 0.1835 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
-| 255 | 30002291 / OWR-12337-002 | Variation Limits for Pure-Jump Semimartingales | 0.1824 | 5.0 | 3 | 2013 | queued | 0/5 |  |  |  |
+| 255 | 30002291 / OWR-12337-002 | Variation Limits for Pure-Jump Semimartingales | 0.1824 | 5.0 | 3 | 2013 | claimed_solved | 1/5 |  | [Bounded-rate sufficient conditions; fixed-time stable limit; independent review](attempts/30002291/PROOF.md) |  |
 | 256 | 30003084 / OWR-14222-012 | Wiseman–Wilson Theorem for Complex Conics | 0.1811 | 5.0 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 257 | 30003216 / OWR-14750-001 | Convergence of Adaptive Hybrid Finite Element Methods | 0.1811 | 5.0 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 258 | 30003403 / OWR-15216-007 | Strong Surjectivity of Countryman Derived Orders Under PFA | 0.1806 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
