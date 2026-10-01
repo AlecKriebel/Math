@@ -11,3 +11,7 @@ Read actual complete square real proof chain and supporting complex decrement pr
 ## 2026-10-01T21:59:28.936118+00:00 — current external-resolution candidate75%
 
 NEW real falsifier full report/script and10-member manifest read/verified, two new universal square mechanisms root challenged,862 controls byte-identical. Corrected current23-file candidate credits external all-N real/complex resolution and explicitly preserves original hold/16files/archive/0/5. Manifestdaeb6f57f65bea40d5392eaec732ba4e024af36653530458b6d1805396f408a1; new complete candidate gate next. No campaign novelty or new paper/DOI/tracker.
+
+## 2026-10-01T22:32:20.801140+00:00 — PR25 clean complete gate, integration95%
+
+NEW complete current23 gate PASS, root full proof/report/code read and112 fresh controls/43 mutants BYTEEXACT; all22 fresh manifest entries and seal verified. Exact square real/complex all-N external chain valid as ordinary analytic proof, original historical hold/0of5 preserved, no campaign discovery/solution credit. Remote integration and present mirror next. Overall14/180 (7.78%) still complete until remote merge verified. PR26 NEW current gate active, PR27 original-stage audits active, PR18/20 holds preserved. No new paper/DOI/tracker.

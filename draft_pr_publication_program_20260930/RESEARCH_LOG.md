@@ -185,3 +185,7 @@ Root reconstructed the finite-generation scalar restriction, finite-set paramete
 ## 2026-10-01T22:29:33.841863+00:00 — PR26 corrected freeze and PR27 independent checkpoint
 
 Overall14/180 (7.78%) remote completions. PR26 all three complete families and root universal math/reproductions pass; original67 first-party audit/runtime plus28 separate source entries checked. Printed non-Salem Example3.11 source attribution qualified, correct source-context hash retained with separate reconciliation, current23-file candidate sealed and exact live PR scope read back; NEW complete independent gate active75%, original1/5. PR27 original13-file freeze and three independent families active15%; EMS2018-volume/2019-publication and current-vs-historical PDF byte provenance under audit. No newattempt/paper/DOI/tracker; PR18/20 holds preserved.
+
+## 2026-10-01T22:32:20.801140+00:00 — PR25 clean complete gate, integration95%
+
+NEW complete current23 gate PASS, root full proof/report/code read and112 fresh controls/43 mutants BYTEEXACT; all22 fresh manifest entries and seal verified. Exact square real/complex all-N external chain valid as ordinary analytic proof, original historical hold/0of5 preserved, no campaign discovery/solution credit. Remote integration and present mirror next. Overall14/180 (7.78%) still complete until remote merge verified. PR26 NEW current gate active, PR27 original-stage audits active, PR18/20 holds preserved. No new paper/DOI/tracker.
