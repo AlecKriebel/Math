@@ -269,7 +269,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 258 | 30003403 / OWR-15216-007 | Strong Surjectivity of Countryman Derived Orders Under PFA | 0.1806 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 259 | 30003427 / OWR-15218-003 | Multiple-Maturity Consistency Under Bid–Ask Spreads | 0.1806 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 260 | 10300019 / AMR-102-0019 | Branched surfaces and triangulations — Question 7.4 | 0.1800 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 261 | 10300057 / AMR-102-0057 | Numerical invariants — Question 13.4 | 0.1800 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 261 | 10300057 / AMR-102-0057 | Numerical invariants — Question 13.4 | 0.1800 | 5.0 | 3 | unknown | unsolved | 5/5 |  | [Five-turn scoped partials; no taut example or general descent](attempts/10300057/RESULT_v2.md); [independent review](attempts/10300057/independent_review/INDEPENDENT_REVIEW.md) |  |
 | 262 | 10400105 / AMR-103-0105 | Problem 5.9 — Let the notation be as above. | 0.1800 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 263 | 2665 / KP-1.6 | Kirby Problem 1.6 | 0.1800 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 264 | 2676 / KP-1.17 | Kirby Problem 1.17 | 0.1800 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
