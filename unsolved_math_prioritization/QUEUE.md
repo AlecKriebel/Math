@@ -241,7 +241,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 230 | 30005244 / OWR-11101924-008 | Spectral Approximation of Discrete-Dipole Operators | 0.1894 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 231 | 30005299 / OWR-11695864-004 | Determinantal Quartics as Weddle Surfaces | 0.1894 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 232 | 30005310 / OWR-11695865-009 | Exhaustiveness of Threshold Scenarios for Colored Gaussian Graphical Models | 0.1894 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
-| 233 | 30003518 / OWR-15436-004 | Multistationarity in Kinetic-Proofreading Networks | 0.1892 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
+| 233 | 30003518 / OWR-15436-004 | Multistationarity in Kinetic-Proofreading Networks | 0.1892 | 5.5 | 3 | 2017 | unsolved | 5/5 |  | 2026-10-01: Five-turn partial package independently reviewed: one-step global convergence, exact two-step Lck-core bistability, and shared-rate all-N equilibrium uniqueness. Original higher-step asymptotic/calibrated/ZAP-70 scope remains unresolved. 1,139 exact author controls; 683 initial and 745 final independent controls. See attempts/30003518/STATUS.md. |  |
 | 234 | 30003999 / OWR-16633-016 | Polynomial-Time Comparison of Sparse Algebraic Power Sums | 0.1886 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 235 | 30005449 / OWR-12697708-002 | Deterministic Limits of Trace-Reinforced Ant Walks | 0.1881 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 236 | 30005454 / OWR-12697708-007 | Critical Reinforcement Convergence on the Infinite Line | 0.1881 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
