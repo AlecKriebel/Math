@@ -1,0 +1,7 @@
+# Review log
+
+- 2026-10-01 07:27 UTC: Began exact-version k406,a audit after completing unrelated publication. Read both repository guidance files, the full frozen proof, source audit, original record, prior report, and author checker. Review completion estimate: 10%.
+- 07:28 UTC: Visually inspected both Table 5 editions and checked the signed centroid and antipedal definitions. Read Stachel's complete theorem and equations. Recovered the smooth envelope area independently with Fourier harmonics. Identified only an edition-specific citation-location note; no theorem change requested. Completion estimate: 55%.
+- 07:29 UTC: Verified all nine author hashes and three full PDF hashes; visually inspected the published centroid quotient and Stachel p.1614. Checked DLMF real periods and derivatives. Began separate direct-geometry and exact algebra controls; isolated author replay. Completion estimate: 70%.
+- 07:32 UTC: Author output replay is byte-identical. Independent script passes 16,506 exact and 16,298 separately labeled diagnostic assertions. Audited uniform smooth divided differences, compact nonvanishing determinant, area-sum convergence, fixed-even-N intermediate value argument, and analytic full-space extension. Completion estimate: 95%.
+- Final seal: Complete domain-qualified mathematical/source PASS. No author modification or contribution; one citation-location clarification recorded in the report. No extra author research turn, novelty certification, PR, merge, or outreach performed by this reviewer. Completion estimate: 100%.
