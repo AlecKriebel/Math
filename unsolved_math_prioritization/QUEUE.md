@@ -209,7 +209,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 198 | 10800007 / AMR-107-0007 | Problem 2A — What is the minimal number of open sets $U_{i}$ covering ${\mathbb{R}}^{6}$ such that for any $U_{i}$… | 0.1920 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 199 | 11000213 / AMR-109-0213 | Problem 6 — (Purely cyclic). | 0.1920 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 200 | 20002560 / AIM-PROBABILITY-0002 | Exact parity projection and a certified bracket for RBM(3,1) | 0.1920 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 201 | 30006576 / OWR-14299907-001 | Mesh Structures Behind Even-Odd Superconvergence | 0.1920 | 5.0 | 3 | 2026 | queued | 0/5 |  |  |  |
+| 201 | 30006576 / OWR-14299907-001 | Mesh Structures Behind Even-Odd Superconvergence | 0.1920 | 5.0 | 3 | 2026 | unsolved | 1/5 |  | 2026-09-30: Separate review passed the exact local Gaussian-curvature moment criterion, odd rotational-fan cancellation without source mirrored pairs and a degree3 failure diagnostic. Global mesh-family characterization remains unresolved; projected-refinement/NVB observations are not covered by the newer preprint hypotheses. 3745 author and4971 independent controls including exact whole-fan Hessian sums. Draft PR: https://github.com/AlecKriebel/Math/pull/188. |  |
 | 202 | 30006587 / OWR-14299909-002 | Derivative Formula for Multiple Eisenstein Series | 0.1920 | 5.0 | 3 | 2026 | queued | 0/5 |  |  |  |
 | 203 | 30001704 / OWR-4798-031 | Finiteness from Face-Number Bounds for Manifolds with Boundary | 0.1919 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 204 | 30001779 / OWR-5152-002 | Covariance Estimation Without Logarithmic Oversampling | 0.1919 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
