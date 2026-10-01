@@ -224,7 +224,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 213 | 30004690 / OWR-7155446-005 | Nonsmooth Homogeneous Complex Monge–Ampère Solutions | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 214 | 30004757 / OWR-8415338-004 | Dirac-Mass Tangent Cones in Monge–Ampère Equations | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 215 | 5100004 / AMR-050-0004 | Elliptic-billiard invariant k_{110} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
-| 216 | 5100005 / AMR-050-0005 | Elliptic-billiard invariant k_{111} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
+| 216 | 5100005 / AMR-050-0005 | Elliptic-billiard invariant k_{111} | 0.1905 | 5.0 | 3 | 2021 | already_solved | 0/5 |  | 2026-10-01: Separate source/arithmetic review passed credited coverage from the primitive four-period witness already reviewed in PR147 (5100001). Old arXiv-v11 k111 is the even A′A″ product; values 331776/625 and 576 refute that imported assertion. Published k111 is a different odd-N ratio; neighboring k112 has a product/ratio discrepancy. Known Stachel ratio and prior witness credited. Zero new proof-search turns and no new discovery claim. Draft PR: https://github.com/AlecKriebel/Math/pull/199. |  |
 | 217 | 5100007 / AMR-050-0007 | Elliptic-billiard invariant k_{115} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 218 | 5100008 / AMR-050-0008 | Elliptic-billiard invariant k_{117} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 219 | 5100011 / AMR-050-0011 | Elliptic-billiard invariant k_{203,a} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
