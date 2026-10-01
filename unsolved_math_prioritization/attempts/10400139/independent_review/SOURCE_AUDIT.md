@@ -1,0 +1,15 @@
+# Primary sources independently inspected
+
+All nine primary PDF hashes were checked against the corrected author source manifest. Full reading copies and page images are excluded from the portable review packet.
+
+1. [Ohtsuki, publisher print PDF](https://msp.org/gtm/2002/04/gtm-2002-04-024p.pdf), printed485–487: full Section7.4 and Problem7.24. Printed487 visually checked. The print locator was freshly downloaded during review and matched SHA256 `cf7c5e29b818e647496e888378db7a8620be5386f357691c4c48b51f1ca1f5fe`. The preceding screen-locator mismatch is recorded in the author's versioned history.
+2. [Baseilhac–Benedetti2001v2](https://arxiv.org/pdf/math/0101234v2), Sections3.1/3.3/4.1, equation(2), Section8 Propositions8.2/8.3/8.5 and equation(7): original normalization, charge reduction, orientation and all local CG/tensor conventions.
+3. [Baseilhac–Benedetti2002v1](https://arxiv.org/pdf/math/0201240v1), Section5 equation(7), Theorem5.2 and Appendix9 equation(20): negative edge exponent and unchanged physical tensor assignment despite index-label change.
+4. [Short2002survey](https://msp.org/gtm/2002/04/gtm-2002-04-002p.pdf), printed20–22, especially equation(4): the conflicting positive edge exponent was visually checked, together with the subsequent projective-invariance assertion. This is a disclosed source discrepancy, not the selected definition.
+5. [Baseilhac–Benedetti2004 manuscript](https://arxiv.org/pdf/math/0306280), Theorem4.14, Remark4.31, Theorem5.1: general sign ambiguity, Borel-specific symmetrization and the older comparison statement. This source is not used to bypass the original normalization.
+6. [Baseilhac–Benedetti2011 published author copy](https://imag.umontpellier.fr/~baseilhac/jggt11-basebene.pdf), [journal metadata](https://gokovagt.org/journal/2011/basebene.html): Theorems1/2, Remarks2/3 and normalization Remark1(2); full Sections4.1–4.3, Corollaries4.2/4.6; Section6.2 and Remark10. Printed35,37 and65 figures/formulas visually inspected. The downloaded PDF is the full published31–85 version, not just the earlier shorter arXiv pagination.
+7. [Kashaev1994v2](https://arxiv.org/pdf/hep-th/9411147v2), equations(1.13),(1.19),(1.24),(1.28),(3.1)–(3.4),(3.13),(4.4): CG basis, inverse, prefactors, orientation and global normalization.
+8. [Kashaev1995](https://arxiv.org/pdf/q-alg/9504020), Theorem1(2), equations(4.6)/(4.7), orientation definitions and paragraph after(4.19): charged phase comparison, three-dimensional bridge and extra N² for a closed manifold.
+9. [Murakami–Murakami2001 manuscript](https://arxiv.org/pdf/math/9905075v2), normalized Jones definition, Lemmas4.5–4.8 and Theorem4.9: enhanced all-link/all-color equality. The paper's own source date and the published Acta citation are distinguished in the author notes.
+
+These sources were read as full text, not inferred solely from abstracts or metadata. The report gives a mathematical convention audit, not a new bibliographic novelty search or a theorem about adjacent source questions.
