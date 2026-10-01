@@ -289,7 +289,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 278 | 5100047 / AMR-050-0047 | Elliptic-billiard invariant k_{806,a} | 0.1778 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 279 | 5100060 / AMR-050-0060 | Elliptic-billiard invariant k_{817} | 0.1778 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 280 | 30005042 / OWR-9790363-001 | Weak Moment Conditions and Branching-Process Limit Laws | 0.1768 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
-| 281 | 30005044 / OWR-9790363-003 | Explosion with Infinite-Mean Offspring | 0.1768 | 5.0 | 3 | 2022 | claimed_solved | 1/5 |  | Reviewed explicit infinite-mean contact-process explosion example: infinitely many simultaneous infections at finite time, positive annealed and a.s.-quenched possibility, fitness at least 1; classical ray-method credit; no universal infinite-mean criterion |  |
+| 281 | 30005044 / OWR-9790363-003 | Explosion with Infinite-Mean Offspring | 0.1768 | 5.0 | 3 | 2022 | claimed_solved | 1/5 | [PR 262](https://github.com/AlecKriebel/Math/pull/262) | Reviewed explicit infinite-mean contact-process explosion example: infinitely many simultaneous infections at finite time, positive annealed and a.s.-quenched possibility, fitness at least 1; classical ray-method credit; no universal infinite-mean criterion |  |
 | 282 | 30005223 / OWR-11101920-009 | Limiting Vanishing Probability for Symmetric Group Characters | 0.1768 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 283 | 30000170 / OWR-783-002 | Prox-Regularity of Polynomial Stability Abscissas | 0.1761 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 284 | 10400036 / AMR-103-0036 | Problem 2.14 — (M. | 0.1760 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
