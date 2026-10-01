@@ -7,3 +7,7 @@ Dedicated audit for problem30005795, reviewed head925f9e9f46f2c7407fd142cedf3699
 ## 2026-09-30T21:43:55.824726-07:00 — PR10 source checkpoint
 
 Independent primary-source audit confirms the finite input-dependent bound is a previously published method, with the literal source valuation-domain typo and inherited Du Val hypothesis corrected. Published Lemma27/preprint26 and the duplicate dataset record are verified. Found minor bibliography locator and log-discrepancy wording repairs; LCT and Mori finiteness families remain independent and in progress. No novel paper or DOI is planned for this already_solved outcome. PR10 workflow **35%**; overall completed dispositions **1/180 (0.56%)**.
+
+## 2026-09-30T21:50:19.443745-07:00 — PR10 corrected candidate checkpoint
+
+Three independent families pass the exact finite input-dependent known bound, with expository and citation repairs applied to a separate reviewed candidate. Root reproduced a nonzero Fano-family example exactly: blowup of P³ along a line, plane fiber S, volume54, τ4, optimal constant3/8. A fresh complete adversary is reviewing proof, sources, classification and metadata. Original PRhead unchanged; GitHub reports a queue merge conflict with main, to be resolved while preserving PR9 DOI acceptance. PR10 workflow **65%**; program completed **1/180 (0.56%)**. No paper or DOI is appropriate for this partial outcome.

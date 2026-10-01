@@ -1,0 +1,3 @@
+# Endpoint subaudit research log
+
+- 2026-10-01 04:38 UTC — Checkpoint; estimated completion toward endpoint/Kopt audit: 100%. Independently reconstructed the finite-log-resolution minimum and endpoint log canonicity, then derived Kopt=1/lct with attainment. Verified B=0, irrational real coefficients, nonproper finite-type algebraic surfaces, strict-transform valuation components, and local centers containing P. Found no mathematical defect in the frozen algebraic source setting. Recorded an explicit noncompact analytic Cartier-divisor example with lct=0 to identify the precise boundary of any broader “complex surface” generalization. No other audit verdict was consulted; no canonical source, snapshot, git state, or publication was modified.
