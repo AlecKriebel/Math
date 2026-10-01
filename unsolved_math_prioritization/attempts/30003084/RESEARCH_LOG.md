@@ -15,3 +15,7 @@ All four fixed complex configurations have ordinary conics (29835 exact five-sub
 ## 2026-10-01T08:30:13.945251+00:00 — author turn2 checkpoint
 
 Proved ordinary conic existence for every complex projective set of at most9 points not on a conic. The Gale rank1/2/3 analysis retains zero/proportional columns and reduces absent circuits to two original lines, contradicting nonconic containment. Singular conics and five-point uniqueness retained. Original arbitrary-cardinality target unresolved; completion estimate30%. Next: rank4 ten-point obstruction.
+
+## 2026-10-01T08:41:04.675480+00:00 — author turn3 checkpoint
+
+Extended the full affirmative partial theorem to at most10 points. Classified rank4 complex Gale configurations without5-circuits into decomposable or three-concurrent-line cases; original quadratic rank constraints rule out both. Zero/proportional columns, real-coordinate-independent complex geometry, branch-support dependencies and characteristic0 signs checked.1018 exact finite algebra/graph/Gale controls pass. Original general question unresolved; completion estimate35%. Pausing for an assigned independent review; this review is not a conic proof turn.
