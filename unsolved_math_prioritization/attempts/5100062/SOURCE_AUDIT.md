@@ -12,7 +12,7 @@ The source setting is a>b>0 with a fixed strict confocal elliptical caustic. Sig
 
 ## Known results and current-source check
 
-The full preprint *The Talented Mr. Inversive Triangle in the Elliptic Billiard*, arXiv:2012.03020v2, has a known N=3 formula in Proposition 7 and explicitly lists the general odd-N product as Conjecture 1 immediately afterward, printed p. 6. The complete published bicentric paper, DOI 10.1007/s40598-021-00188-y, Table 1 p. 629, describes the odd inverse-area product among experimental phenomena not proved there. Its proved perimeter result is not the area-product claim.
+The full preprint *The Talented Mr. Inversive Triangle in the Elliptic Billiard*, arXiv:2012.03020v2, has a known N=3 formula in Proposition 7 and explicitly lists the general odd-N product as Conjecture 1 immediately afterward, printed p. 6. The complete published bicentric paper, DOI 10.1007/s40598-021-00188-6, Table 1 p. 629, describes the odd inverse-area product among experimental phenomena not proved there. Its proved perimeter result is not the area-product claim.
 
 The candidate credits the classical smooth genus-one flag curve and translation action described in Chavez-Caliz, DOI 10.1007/s40598-020-00154-8, p. 98. It gives its own local inversion, parity, and pole/zero analysis; it does not pretend the framework alone states the result.
 
