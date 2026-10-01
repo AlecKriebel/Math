@@ -217,7 +217,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 206 | 30004526 / OWR-2654827-002 | Strong Lefschetz Property of the Zeroth Jordan Component | 0.1914 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 207 | 30004563 / OWR-2654831-006 | Maximum Central Points in Cube-Move $\alpha$-Immersions | 0.1914 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 208 | 5000005 / AMR-049-0005 | Types of parallel short trajectories | 0.1914 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
-| 209 | 5000007 / AMR-049-0007 | Short geodesics on the regular dodecahedron | 0.1914 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
+| 209 | 5000007 / AMR-049-0007 | Short geodesics on the regular dodecahedron | 0.1914 | 5.0 | 3 | 2020 | claimed_solved | unknown/5 (interrupted) | [Draft PR #190](https://github.com/AlecKriebel/Math/pull/190) | 2026-10-01: Independent AI review PASS for the explicitly parity-aware Fuchs A0 theorem; the literal beta-alpha=2pi/5 extraction is false for exactly the two direct face diagonals. Public 16-face witness independently reconstructs but its transported source type is A1 (144 degrees). Classical inputs credited; no novelty certified. Prior nonzero historical turn count is unknown; recovery work recorded separately. |  |
 | 210 | 30002597 / OWR-12984-009 | Bounding Immersed Curves by Stable Singular Disk Maps | 0.1907 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 211 | 30004601 / OWR-4990374-004 | Degree Bounds for Generic Initial Ideals of Arrangements | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 212 | 30004676 / OWR-7155442-010 | Admissible Sets and Their Jump Structures | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |

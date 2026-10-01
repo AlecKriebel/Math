@@ -23,6 +23,6 @@ All certification decisions use exact arithmetic; numerical angles and lengths a
 
 ## Provenance and limits
 
-This is recovery of a previously started interrupted attempt, not a fresh zero-turn attempt. The lost historical count is unknown and nonzero. [The manifest](recovery_manifest.json), [research log](RESEARCH_LOG.md), original frozen candidate, and both review versions preserve that history. No campaign queue status was changed. Publication decisions remain separate.
+This is recovery of a previously started interrupted attempt, not a fresh zero-turn attempt. The lost historical count is unknown and nonzero. [The manifest](recovery_manifest.json), [research log](RESEARCH_LOG.md), original frozen candidate, and both review versions preserve that history. The draft-branch QUEUE display row records claimed_solved with the explicit source-scope correction and unknown/5 (interrupted) historical count. No state.json history was rewritten. [Draft PR #190](https://github.com/AlecKriebel/Math/pull/190) remains open for review; it is not a merge or release.
 
 Source locations and source hash receipts are recorded in the proof and manifest. Downloaded source PDFs/text are retained locally under an ignored sources directory and are not republished in this package. The pinned dataset cache hashes were verified before the exact statement and prior desk report were extracted.
