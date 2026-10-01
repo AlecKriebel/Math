@@ -23,3 +23,7 @@ Independent exact-question and mechanism families finish without any examined ex
 ## 2026-10-01T16:23:53.443127+00:00 — paper draft and rendering checkpoint
 
 Two independent deep priority families complete with bounded clearance and explicit access limits. The research-note draft at simplicial_embedding_gap_30000439/paper.tex compiles successfully in the native editor. All five exported PDF pages were visually inspected; the overfull local-fan equation was repaired. The proof distinguishes original affine simplices from subdivision and states the exact PL3/affine5 minima. Verification package and fresh complete publication rounds remain pending. Workflow **55%**.
+
+## 2026-10-01T16:34:12.530158+00:00 — publication package frozen for new full adversary
+
+The five-page paper,42-member first-party source archive and exact-metadata upload kit are built and checked. All five offline programs reproduce their pinned receipts; deterministic rebuild is identical. publication_gate_input.json binds exact hashes and local Zenodo validation. New full paper/package round1 is next. Workflow **70%**, no deposit or tracker action.

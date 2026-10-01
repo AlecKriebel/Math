@@ -1,3 +1,3 @@
-# PR16: verified exact embedding gap; bounded priority audit complete
+# PR16: mathematics and bounded priority pass; fresh publication gate
 
-Three independent mathematical/source families pass, including a fresh-verified first-subdivision supplement. Two independent priority families locate no examined subsuming theorem and record positive priors, dates and access limits. Global priority is not proved. Current candidate is eligible for preprint preparation under the human process; full paper/package and fresh review loop remain. Original14files/head/claimed_solved1/5 preserved. Workflow **50%**; acceptance afterPR15.
+Three independent mathematical/source families pass the exact PL3/affine5 result, with a directly proved first-subdivision embedding. Two independently fixed deep priority audits locate no checked subsuming result, with bounded corpus and access limits explicit. The paper compiles, all five PDF pages are visually checked, and the42-member first-party source archive and exact-metadata upload kit reproduce all five offline programs. Two new full publication adversaries are required next. Workflow **70%**; no acceptance merge, deposit or tracker yet.

@@ -1,0 +1,72 @@
+{
+  "status": "PASS",
+  "exact_assertions": 3852,
+  "parameters": {
+    "n": "2^256",
+    "p": "2^-384",
+    "m": "2^320"
+  },
+  "finite_combined_failure_below_one": true,
+  "finite_failure_upper_bound_coarse": "1/8 + 2^-66 + 2^-377 < 1",
+  "moment_curve": {
+    "vertices": 8,
+    "balanced_witnesses": 28,
+    "ordered_dependencies": 144
+  },
+  "extra_exact_GP_placements": 12,
+  "exhaustive_cleaning_samples": 1024,
+  "mutations_rejected": [
+    {
+      "mutation": "p=n^-1",
+      "rejected": true,
+      "reason": "conflict budget with vanishing Markov bound"
+    },
+    {
+      "mutation": "p=n^-2",
+      "rejected": true,
+      "reason": "many triangles beyond order-type entropy; deletion entropy below Janson rate; retained triangle mean dominates budget"
+    },
+    {
+      "mutation": "p=n^-5/4",
+      "rejected": true,
+      "reason": "conflict budget with vanishing Markov bound"
+    },
+    {
+      "mutation": "m=n^3/2",
+      "rejected": true,
+      "reason": "deletion entropy below Janson rate; retained triangle mean dominates budget"
+    },
+    {
+      "mutation": "p=n^-7/4 with unchanged budget passes finite retention",
+      "rejected": true,
+      "reason": "Expected triangle count has the same exponent as m and smaller coefficient."
+    },
+    {
+      "mutation": "replace ordered dependence count by unordered without compensation",
+      "rejected": true,
+      "reason": "The exact ordered coefficient is 144; unordered is 72."
+    },
+    {
+      "mutation": "shared triangle indicators use p^4",
+      "rejected": true,
+      "reason": "The union has three atomic triangles, so the joint expectation is p^3."
+    },
+    {
+      "mutation": "omit diagonal contribution in a single-witness Janson denominator",
+      "rejected": true,
+      "reason": "A single witness has Delta_distinct=0. A zero-denominator exponent would claim no-hit probability 0, but it equals 8/9."
+    },
+    {
+      "mutation": "binomial variance equals mean",
+      "rejected": true,
+      "reason": "For nonzero p, Var(T)=Mp(1-p), strictly below Mp."
+    },
+    {
+      "mutation": "drop union over deletion sets",
+      "rejected": true,
+      "reason": "Matching toy model: fixed failure=3/4, adaptive failure=15/16."
+    }
+  ],
+  "scope": "Exact finite arithmetic, circuit consistency, exhaustive small support and cleaning checks. These do not prove the imported geometric or probability theorems, enumerate the enormous construction, certify PL inflation, or establish novelty.",
+  "script_sha256": "7826d0601d067e016b44ef623674be4a760aca454f3ee0a77466475629f02ae6"
+}
