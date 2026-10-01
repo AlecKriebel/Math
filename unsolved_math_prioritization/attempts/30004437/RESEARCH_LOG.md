@@ -1,0 +1,7 @@
+# Source-validation log: 30004437
+
+- 2026-10-01 15:31 UTC: accepted exclusive rank310. Read both AGENTS files, README, selected queue/catalog/assessment, full pinned upstream record and missing separate prior report. Three unrelated blocked uploads remain outside this task.
+- 15:32–15:35: exact-ID and code all-state PR searches and branch search found no prior attempt. Broader hits concern unrelated targets. Recovered original OWR pp.652–654; visually verified p.653 and full tuple definition. Located complete final Kummer–Sawall 2025 paper and complete Sawall–Schweighofer v2 manuscript.
+- 15:35–15:39: read relevant complete proofs and source conventions; recovered both meanings of “weak.” Checked published stability inputs, seven-element basis sets, Rayleigh SOS and nice-transversal presentation. Original theorem is already false in published literature; no new proof-search turn used. Estimated source-assessment completion 90%, independent review still required.
+- 15:40 UTC: explanatory proof/rank certificate and exact checker prepared. Expected disposition already_solved 0/5; independent review and remote verification pending. No novelty claim. Source-assessment mathematical coverage estimated 100% pending audit, discovery progress not applicable.
+- 15:42 UTC: all 4,472 exact controls passed and replayed byte-for-byte in a separate directory, including identical coefficient/rank certificate. Final source packet frozen for separate review; zero substantive author proof-search turns.
