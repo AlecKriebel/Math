@@ -1,0 +1,7 @@
+# Substantive turn2 log
+
+2026-10-01 12:24–12:37 UTC. Attacked actual functional convergence through a maximal inequality for independent monotone curves. Random threshold indices reduce deterministic signed monotone sums to ordinary weighted Rademacher partial sums; symmetrization and Doob give a p-moment bound using only endpoint p-moments, for1<p<=2. Conditional parent activation then yields geometric bounds on generation increments over intervals b<a^p. Finite partitioning proves almost-sure locally uniform and expected-supremum convergence under local p>1 moments, without any offspring-increment assumption.
+
+Constructed a bounded two-jump source process whose paired jump separation has a slowly varying distribution near zero. It satisfies E X(lambda)=lambda but violates every source mixed-increment Holder bound with exponent above1/2. It is covered by the functional partial. The exact X log X endpoint remains outside the proof; the Doob constant and the short-interval condition both degenerate there. An explicit heavy-tail-plus-Poisson model records that genuine remaining class.
+
+3,533 exact finite controls pass. This is the second substantive turn and a second approach family, with no variance hidden in the deterministic Rademacher step. The original bundle remains unresolved and unreviewed at2/5. The reserved independent10400139 audit follows this checkpoint before further author search.
