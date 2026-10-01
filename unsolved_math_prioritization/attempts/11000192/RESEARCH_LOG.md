@@ -23,3 +23,9 @@ Turn1 is remotely verified at26c1d0c4717e69013e87202eaf533ebaf66baf67, twelve ta
 A sufficient based-word criterion for generalized lifted intersections is proved. Exact236 controls verify the full based-generator chain relation and two natural higher-power angle failures; an alternative compatible h=a family still lies in a reducible subgroup. The full invariant stabilizer remains unclassified and the original pseudo-Anosov existence gap remains. These are scoped partials, not global no-go claims.
 
 Subjective author completion estimate:40% toward the original target; an uncalibrated planning estimate, not a probability or discovery forecast. Two substantive turns used; separate Polyak audit follows before turn3.
+
+## 2026-10-01T13:53:59.487463+00:00 — Substantive author turn3 completed
+
+After sealing the separate Polyak audit, the larger stabilizer route was tested by an exact quaternion simplification. The source angle equals one quarter of the squared trace of q=(a1 a4^(-1))^(-1)b1². The actual two-edge square-complex curve and source twist action prove q essential and simple. Charles–Marche multicurve independence then identifies the full invariant stabilizer with the stabilizer of q, so this particular function cannot support a pseudo-Anosov. A credited finite-support argument also excludes all nonconstant finite trace-algebra invariants of pseudo-Anosovs. No conclusion is drawn for arbitrary rational or measurable invariants. Exact14,022 controls pass, including nongauged tuples and the cellular curve certificate. Source-level implications remain unreviewed until the final independent audit.
+
+Subjective author completion estimate:30% toward the original measurable nonergodicity construction, an uncalibrated planning estimate required by the repository, not a probability or novelty claim. Three substantive turns used. The first two frozen proofs and manifests are unchanged.
