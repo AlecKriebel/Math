@@ -284,7 +284,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 273 | 5100020 / AMR-050-0020 | Elliptic-billiard invariant k_{403,a} | 0.1778 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 274 | 5100021 / AMR-050-0021 | Elliptic-billiard invariant k_{403,b} | 0.1778 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 275 | 5100022 / AMR-050-0022 | Elliptic-billiard invariant k_{404} | 0.1778 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
-| 276 | 5100026 / AMR-050-0026 | Elliptic-billiard invariant k_{407} | 0.1778 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
+| 276 | 5100026 / AMR-050-0026 | Elliptic-billiard invariant k_{407} | 0.1778 | 5.0 | 3 | 2021 | claimed_solved | 1/5 |  | Independently reviewed full vertex-centroid invariance for the outer focal antipedal, all primitive even elliptic-caustic periods including stars; original foci, finite real intersections and direct N=4 case. Classical inputs credited; no novelty claim. See attempts/5100026/. |  |
 | 277 | 5100046 / AMR-050-0046 | Elliptic-billiard invariant k_{805} | 0.1778 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 278 | 5100047 / AMR-050-0047 | Elliptic-billiard invariant k_{806,a} | 0.1778 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 279 | 5100060 / AMR-050-0060 | Elliptic-billiard invariant k_{817} | 0.1778 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
