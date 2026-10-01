@@ -77,3 +77,7 @@ Fresh mathematics/source/prior/reproduction PASS; sole mandatory finding repaire
 ## 2026-10-01T16:27:11.017277+00:00 — accepted credited partial record
 
 Three independent mathematical/source families and two sequential fresh reviews pass after the numeric-status repair. Round2 has no mandatory findings,25,985 new exact assertions and seven byte-identical replays. Formulated existential F(V) is already_solved by CCMPV Corollary5.3; intended source strength and sharper variants remain qualified separately. Canonical proof Section1 onward is byte-identical to the current reviewed proof. One of five original attempts is preserved. No new paper, DOI or tracker row. Acceptance workflow **100%**; remote merge verification follows.
+
+## 2026-10-01T16:28:49.439949+00:00 — remote acceptance verified
+
+GitHub PR15 is MERGED at 2026-10-01T16:27:31Z, merge35d596146f301713219a54936fe41d2518d7b68f. Exact original head is second parent and an ancestor of main; canonical proof and full queue integration checks pass. Workflow **100%**. No paper, deposit or tracker row.

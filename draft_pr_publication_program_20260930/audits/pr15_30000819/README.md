@@ -1,3 +1,3 @@
-# PR15: accepted coarse theorem; formulated volume-only target already solved
+# PR15: accepted credited partial; known volume-only target
 
-Original seventeen files remain frozen. Three independent families, the repaired first fresh review and a new complete fresh review pass the precise nonempty intrinsic-volume theorem and positive published prior. Round2 reports no mandatory issues, with25,985 new exact assertions and seven byte-identical historical/family replays. Credited partial main integration is next. Workflow **92%**. No paper, new DOI or tracker row.
+Three independent families and two sequential fresh full reviews pass the exact finite nonempty intrinsic-volume bound after classification repair. Numeric target already_solved1/5 by published CCMPV Corollary5.3; original intended strength remains unknown. Remote PR15 MERGED and exact parents verified. No new discovery, quartic first-priority claim, paper, DOI or tracker row. Workflow **100%**. See ACCEPTANCE.md and acceptance.json.

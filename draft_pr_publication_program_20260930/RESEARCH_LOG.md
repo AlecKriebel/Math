@@ -93,3 +93,7 @@ Independent exact-question and mechanism families finish without any examined ex
 ## 2026-10-01T16:23:53.443127+00:00 — PR15 clean fresh gate; PR16 paper draft; PR17 family completion
 
 PR15 now has a new full fresh pass after global classification repair; workflow92%, credited partial integration pending. PR16 mathematics and two deep primary priority families pass, and all five pages of its compiled paper draft render cleanly; workflow55%, package and fresh publication rounds pending. PR17 algebra, geometry and primary-scope families all pass restricted claims; unrestricted problem remains unsolved4/5, workflow40%. No new publication or merge in this checkpoint. Six of180 initial drafts complete (**3.33%**), refresh required after this initial inventory.
+
+## 2026-10-01T16:28:49.439949+00:00 — PR15 merged; PR16 publication phase
+
+PR15 accepted as credited already_solved1/5 partial after three independent families and two fresh rounds; remote exact-head merge35d596146f301713219a54936fe41d2518d7b68f verified. No new paper or DOI. Seven of180 initial drafts complete (**3.89%**). PR16 is next for full publication; its package is being prepared for two new independent full review rounds. PR17 restricted partial audits remain in preparation, with no out-of-order merge.
