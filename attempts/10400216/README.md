@@ -1,7 +1,5 @@
-# 10400216: shadow conditions and hyperbolic-volume lower bounds
+# 10400216: five-turn shadow-volume partial
 
-Work in progress, original target unresolved, four substantive author turns completed. Latest state: TURN_4_STATUS.json and TURN_4_LEDGER.jsonl. Earlier state and ledger files are historical, preserving all prior manifests.
+Original target unresolved, proposed unsolved 5/5. Read RESULT.md for the exact scope and missing general-shadow construction, PROOF_COLLECTION.md for all five proofs, and SOURCES_FINAL.md for primary inputs. Independent full review is pending.
 
-The four routes give: a canonical long-slope obstruction; a relative filling criterion; a canonical gleam-saturation test and sign-only countercontrol; and an explicit bounded-volume alternating family with unbounded canonical counts/gleams and exterior-preserving one-vertex compression. These are scoped unreviewed partials. The general efficient-shadow condition is still missing, with one author turn remaining.
-
-Separate full review is required before any result PR. Source PDFs/text/images and imported records are excluded. Finite controls test scalar and combinatorial certificates; they do not replace the credited topology/volume theorems.
+FINAL_STATUS.json and FINAL_TURN_LEDGER.jsonl give the current state; earlier status and ledger files are immutable historical checkpoints. FROZEN_MANIFEST.json binds the final author packet. No sixth research turn or full volume theorem is claimed. Source reading copies, raw imported records and exploratory files are excluded.
