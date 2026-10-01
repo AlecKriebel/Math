@@ -15,3 +15,7 @@ All3 family manifests verified;13 originals Git-exact. Root replays4 new scripts
 ## 2026-10-01T18:52:03.189472+00:00 — fresh full gate and live scope repair
 
 Fresh REPORT/VERDICT/MANIFEST bind the exact current candidate and pass unresolved partial analysis. Root verified all 17 artifact hashes and reproduced 2,102,288 new controls with all mathematical fields identical, excluding UTC only. The live body now includes its QUEUE.md row; exact head and draft state unchanged. Workflow **92%**, integration held after PR18; original target unsolved **2/5**, no paper/DOI/tracker.
+
+## 2026-10-01T19:26:39.520175+00:00 — independent unresolved gates deferred; integration concrete
+
+The earlier ordered-disposition hold was an internal scheduling choice, not a mathematical dependency or additional human requirement. Each PR continues through every required user gate. PR18 access and PR20 proof holds remain pending; PR19 complete fresh acceptance is cleared for independent partial integration, workflow **95%**, originalunsolved2/5. Frozen candidate/reports unchanged. Current livebody readback passes; no paper/DOI/tracker.
