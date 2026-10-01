@@ -15,3 +15,7 @@ Restricted mathematics passes; original unrestricted problem remains unsolved4/5
 ## 2026-10-01T16:41:21.274583+00:00 — source-cache/public-integrity checkpoint
 
 Five geometry foreign primary texts were relocated unchanged into ignored cache, retaining the old ledgers and an exact hash/location mapping. No full source text is staged. Current copied historical REVIEW hard breaks are preserved with exact whitespace exception; all other new staged files pass strict whitespace. Validation workflow **75%**.
+
+## 2026-10-01T17:19:50.302266+00:00 — fresh current restricted-partial acceptance gate passed
+
+Full new adversary passes current complete candidate with no mandatory findings, all154 source/history/family/cache bindings unchanged. Author135/historical6groups/newfamily10351/99/35 reproduced;89 new independent controls pass. Exact unrestricted original remains unsolved4/5; no paper or DOI. Workflow **92%**, integration only afterPR16.

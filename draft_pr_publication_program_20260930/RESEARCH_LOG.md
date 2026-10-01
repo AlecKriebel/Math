@@ -101,3 +101,7 @@ PR15 accepted as credited already_solved1/5 partial after three independent fami
 ## 2026-10-01T17:12:10.868913+00:00 — PR16 fresh package repair
 
 Full fresh round1 independently passes PR16 mathematics, primary sources and metadata; one Python-minimum documentation finding repaired throughout current package. Regenerated archives are deterministically checked and bound for a new complete adversary. PR16 workflow **80%**; no new publication/merge. PR17 fresh restricted-partial audit passes with no mandatory corrections, unrestricted problem remains unsolved4/5. Program complete **7/180 (3.89%)**.
+
+## 2026-10-01T17:19:50.302266+00:00 — fresh partial gate and current tangent candidate
+
+PR17 fresh full gate passes truthful restricted partial findings; readiness92%, integration after16. PR18 three independent analytic/source families pass universal Conjecture4; notation/background provenance repaired globally and two deeppriority families active, readiness45%. PR16 corrected-package new fullround2active. Completed program **7/180 (3.89%)**; no additional publication or merge.
