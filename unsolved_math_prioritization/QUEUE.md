@@ -272,7 +272,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 261 | 10300057 / AMR-102-0057 | Numerical invariants — Question 13.4 | 0.1800 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 262 | 10400105 / AMR-103-0105 | Problem 5.9 — Let the notation be as above. | 0.1800 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 263 | 2665 / KP-1.6 | Kirby Problem 1.6 | 0.1800 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 264 | 2676 / KP-1.17 | Kirby Problem 1.17 | 0.1800 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 264 | 2676 / KP-1.17 | Kirby Problem 1.17 | 0.1800 | 5.0 | 3 | unknown | unsolved | 5/5 |  | [Reviewed partials](attempts/2676/RESULT.md): all-links reductions and two-trefoil family rigidity; arbitrary common-cover question unresolved |  |
 | 265 | 3413 / OPG-37131 | Realisation problem for the space of knots in the 3-sphere | 0.1800 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 266 | 3900010 / AMR-038-0010 | Odd rep-tiling by a 14-omino | 0.1800 | 5.0 | 4 | unknown | queued | 0/5 |  |  |  |
 | 267 | 9700040 / AMR-096-0040 | Stationary law of a drift-jump particle process | 0.1800 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
