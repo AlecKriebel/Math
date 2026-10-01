@@ -4,7 +4,7 @@
 
 The failure of uniform relative entry in turn3 need not destroy every stochastic-approximation approach. This turn establishes a weaker-topology bridge for the actual unit-start process. It applies to the constructed rate field and, more generally, to the following class.
 
-Let G be a countable graph of maximal degree D<infinity, with strictly positive rates p(v) and sum_v sqrt(p(v))<infinity. Take alpha=2 and all initial tallies one. Let P=sum_v p(v)<infinity, lambda_e=p(u)+p(v) for e={u,v}, and define A_e(t)=N_e(t)-1 and Z_e(t)=A_e(t)/t for t>0. The rates and degree ensure the standard WARM construction is well-defined. Summability makes the total clock process finite-rate.
+Let G be a countable graph with no isolated vertices and maximal degree D<infinity, with strictly positive rates p(v) and sum_v sqrt(p(v))<infinity. Take alpha=2 and all initial tallies one. Let P=sum_v p(v)<infinity, lambda_e=p(u)+p(v) for e={u,v}, and define A_e(t)=N_e(t)-1 and Z_e(t)=A_e(t)/t for t>0. The rates and degree ensure the standard WARM construction is well-defined. Summability makes the total clock process finite-rate.
 
 ## 1. l1 noise is sublinear
 
