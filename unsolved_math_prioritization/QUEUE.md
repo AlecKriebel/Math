@@ -177,7 +177,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 166 | 5100001 / AMR-050-0001 | Elliptic-billiard invariant k_{107} | 0.2032 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 167 | 5100002 / AMR-050-0002 | Elliptic-billiard invariant k_{108} | 0.2032 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 168 | 5100006 / AMR-050-0006 | Elliptic-billiard invariant k_{114} | 0.2032 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
-| 169 | 5100010 / AMR-050-0010 | Elliptic-billiard invariant k_{120} | 0.2032 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
+| 169 | 5100010 / AMR-050-0010 | Elliptic-billiard invariant k_{120} | 0.2032 | 5.0 | 3 | 2021 | already_solved | 1/5 |  | 2026-09-30: Credited published2021bicentric cosine theorem gives k120 via an exact focus-polar/ordinary-angle bridge. Separate source/geometry audit verifies strict nesting, winding and the doubled-traversal convention;30804author and43158independent controls. One reduction/validation family, no new-discovery claim or unsupported orientation extension. Draft PR: https://github.com/AlecKriebel/Math/pull/151. |  |
 | 170 | 30005408 / OWR-12697689-004 | Gröbner-Cell Parametrization of Punctual Hilbert Schemes | 0.2007 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 171 | 30005432 / OWR-12697693-003 | The Property-s Elements of a Skew Brace | 0.2007 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 172 | 2306022 / AMR-022-6022 | Research Problems in Function Theory — Problem 6.22 | 0.2000 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
