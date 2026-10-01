@@ -233,7 +233,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 222 | 5100015 / AMR-050-0015 | Elliptic-billiard invariant k_{303,b} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 223 | 5100030 / AMR-050-0030 | Elliptic-billiard invariant k_{601} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 224 | 5100033 / AMR-050-0033 | Elliptic-billiard invariant k_{605,a} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
-| 225 | 5100044 / AMR-050-0044 | Elliptic-billiard invariant k_{804,a} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
+| 225 | 5100044 / AMR-050-0044 | Elliptic-billiard invariant k_{804,a} | 0.1905 | 5.0 | 3 | 2021 | claimed_solved | 1/5 |  | 2026-10-01: Complete signed orbit-area times focal-inverse-area proof for primitive N0mod4 in nondegenerate nested confocal ellipses, including stars and separateN4 case. Exact arXiv k804,a target; published k804 is a different angle invariant. Separate full adversarial AI review PASS;25098 author/5900 independent exact controls, numerical diagnostics separate. Prior low-period results and classical methods credited; no novelty/human-peer-review claim. See [reviewed proof](attempts/5100044/PUBLICATION_STATUS.md). |  |
 | 226 | 5100062 / AMR-050-0062 | Elliptic-billiard invariant k_{903,a} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 227 | 5100063 / AMR-050-0063 | Elliptic-billiard invariant k_{904,a} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 228 | 5100009 / AMR-050-0009 | Elliptic-billiard invariant k_{118} | 0.1905 | 4.5 | 3 | 2021 | queued | 0/5 |  |  |  |
