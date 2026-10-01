@@ -1,3 +1,4 @@
 # Research log: 30006492
 
 - 2026-10-01 08:07 UTC: source and prior-attempt gate, 0 completed author turns. Read exact pinned statement, official source contribution and dated imported triage. Corrected conflation of weighted Q1 and independent unweighted Q2. Distinguish violin-derived r^(s) from rack-derived r′. Recovering primary definitions and cocycle/welded-quotient conventions before first substantive turn. Completion estimate 10%, source scope only; original target unresolved.
+- 2026-10-01 08:13 UTC, substantive author turn1 complete: prove exact global action-cocycle transport and isolate local/gauge constraints; prove all-n rack-derived local realization for commuting permutation pairs and weighted twist reduction under simultaneous h-invariance. 96,560 exact finite diagnostic assertions pass. General Q1/Q2 remain unresolved. Completion estimate15%.
