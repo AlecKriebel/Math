@@ -260,7 +260,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 249 | 30000661 / OWR-1452-025 | Generalized Tameness of an Explicit Polynomial Automorphism | 0.1844 | 5.0 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 250 | 30000708 / OWR-1461-003 | Cramér–Wold Uniqueness for Infinite Signed Measures | 0.1844 | 5.0 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 251 | 30006395 / OWR-14299518-013 | Detection-Threshold Transition for Planted Random Trees | 0.1841 | 5.0 | 3 | 2025 | queued | 0/5 |  |  |  |
-| 252 | 30006492 / OWR-14299580-009 | Cocycle-Weighted Representations of Welded Braid Groups | 0.1841 | 5.0 | 3 | 2025 | queued | 0/5 |  |  |  |
+| 252 | 30006492 / OWR-14299580-009 | Cocycle-Weighted Representations of Welded Braid Groups | 0.1841 | 5.0 | 3 | 2025 | unsolved | 5/5 | [scoped partials](attempts/30006492/RESULT.md) | [independent PASS](attempts/30006492/independent_review/INDEPENDENT_REVIEW.md) | Field-qualified obstruction; general weighted and complex-linear questions unresolved |
 | 253 | 30001321 / OWR-4081-005 | RWRE Concentration at Transverse Dimension One | 0.1838 | 5.0 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 254 | 30001626 / OWR-4533-004 | Centralizer Realization of Cartan Subalgebras in $L^*$-Algebras | 0.1835 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 255 | 30002291 / OWR-12337-002 | Variation Limits for Pure-Jump Semimartingales | 0.1824 | 5.0 | 3 | 2013 | queued | 0/5 |  |  |  |
