@@ -1,3 +1,3 @@
-# PR27 deep adversarial audit
+# PR27 complete homology audit
 
-Original13-file scope and corrected22-file current candidate preserved. Three full distinct families and root exact reproductions support the credited homology partial; arbitrary-degree multiplicities remain unresolved. NEW complete independent gate is active. Original1/5, no additional substantive attempt; workflow75%. No paper, newDOI or trackerrow.
+First complete current22gate found an unusedn2 boundary defect in Powellv4Lemma5.2. Root independently reproduced it; current23qualification verifies the n>=3range actually used by r>3induction, retaining separater3base and everyhomologyformula. Oldcurrent/family/root/failedgate bytes preserved. NEWdifferent complete current23gate active75%,original1/5,new0,fulltargetunresolved. No paper/newDOI/tracker.

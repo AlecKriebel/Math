@@ -1,6 +1,6 @@
 # 30003713: known reductions and the remaining functor-decomposition gap
 
-**Disposition:** unresolved in this investigation. The reduction below and the cited low-degree answers are known; they are not a new full solution. Originally prepared2026-09-30; historical model/reasoning labels are documentary self-attribution. Current independent AI verification is unrefereed, with no human peer review or proof-assistant certificate asserted.
+**Disposition:** unresolved in this investigation. The reduction below and the cited low-degree answers are known; they are not a new full solution. Prepared 2026-09-30, gpt-6-astra at xhigh reasoning.
 
 ## 1. Exact target and current literature
 
@@ -20,8 +20,6 @@ Relevant later primary work includes:
 
 The original OWR passage, the 2017 discussion, Gadish–Hainaut's computational-scope statement, and Powell's introduction, exact theorem, conventions, and relevant examples were inspected. No exact all-degree solution was located. No claim of exhaustive literature coverage is made.
 
-The workshop/report volume is2018, while EMS states publication5January2019; the dataset's2019 citation is not inherently a date error. Current EMS PDF bytes differ from the absent historical checksum-bound PDF, although the literal target has been freshly read and visually checked. The exact Powell mathematical body checked is author arXivv4 of16December2025; its final published PDF was not independently compared. These source and historical execution limits are recorded in CURRENT_SOURCE_QUALIFICATION.md.
-
 ## 2. A canonical reduction, with its limitations explicit
 
 Put \(L=L(V)\) and \(M=E\otimes L\). Then
@@ -36,11 +34,11 @@ C_*(L;\Lambda^rM)[r].
 \]
 This is an actual direct-sum decomposition of complexes, not merely a collapsed spectral sequence with an unexamined extension problem.
 
-The enveloping algebra of the free Lie algebra is \(T(V)\). For the trivial **right** module use the right-free resolution
+The enveloping algebra of the free Lie algebra is \(T(V)\). Its trivial module has the length-one free resolution
 \[
-0\longrightarrow V\otimes T(V)\xrightarrow{\ v\otimes a\mapsto va\ }T(V)\longrightarrow\mathbb C\longrightarrow0.
+0\longrightarrow T(V)\otimes V\longrightarrow T(V)\longrightarrow\mathbb C\longrightarrow0.
 \]
-Each nonempty tensor word has a unique first letter and tail, so multiplication bijects the source onto the augmentation ideal and is right linear. Tensoring over \(T(V)\) with a **left** coefficient module \(N\) therefore computes its homology by \(V\otimes N\to N\), \(v\otimes n\mapsto v\cdot n\). The separate left-free resolution \(T(V)\otimes V\) uses the last letter; it cannot simply be tensored with another left module. This establishes the convention for arbitrary coefficient modules, including the graded infinite-dimensional modules below. In our case write
+Thus, for every \(L\)-module \(N\), its homology is computed by the two-term action map \(V\otimes N\to N\). In our case write
 \[
 \delta_r:V\otimes\Lambda^r(E\otimes L)\longrightarrow\Lambda^r(E\otimes L),
 \]
@@ -105,8 +103,6 @@ H_n(\mathfrak h)=\Lambda^n\bigl((\mathbb C\oplus E)\otimes V\bigr).
 
 ## 4. Translating Powell's recent theorem to the exact current algebra
 
-The complete cited proof is used with an explicit auxiliary restriction: v4 Lemma5.2 is false at n=2, but its Theorem1 induction uses only n=r−1>=3 and has a separate r=3 base. The valid used-range proof and exact boundary counterexample are in CURRENT_POWELL_RANGE_QUALIFICATION.md. Every displayed formula below is unchanged.
-
 This section records consequences of the cited theorem, not a new computation.
 
 Let \(H_{r+1}(\mathfrak h)_{E[r],V[d]}\) denote the summand of polynomial degrees \(r\) in \(E\) and \(d\) in \(V\). It is the degree-\(d\) part of \(H_1(L;\Lambda^r(E\otimes L))\). Since taking symmetric-group coinvariants is exact in characteristic zero,
@@ -142,6 +138,6 @@ Equations (4)–(5) do not determine the components with unrestricted \(d-r\). T
 
 ## 5. Stopping point
 
-The attempted route reaches a known equivalent coefficient-homology problem, and the cited papers inspected here evaluate specified diagonals or families; this investigation has not evaluated the unrestricted decomposition. No new mechanism was found to resolve the remaining ranks and multiplicities. This investigation therefore stops after one substantive attempt, with a precise **unresolved** outcome rather than a candidate full solution.
+The attempted route reaches a known equivalent coefficient-homology problem, and the current literature still computes specified diagonals or families rather than the requested unrestricted decomposition. No new mechanism was found to resolve the remaining ranks and multiplicities. This investigation therefore stops after one substantive attempt, with a precise **unresolved** outcome rather than a candidate full solution.
 
 A meaningful reopening would require an all-degree calculation of (2), or a different structural model whose homology is actually evaluated in polynomial-functor terms. Renaming the kernels, assuming that virtual character cancellations cannot occur, or presenting a bounded-degree computation as a general answer would not meet the source target.

@@ -1,0 +1,15 @@
+# Required source-dependency qualification
+
+UTC: 2026-10-01T23:26:29.527270+00:00. This is a falsification control in the acceptance audit, not a new attempt to solve the target.
+
+The exact mathematical source is Powell arXiv2507.03453v4,16December2025,SHA2566db8413a78b4e09359bfec6dcc5d5b77686438e31c49aec41230b3b7753f8e99. Lemma5.2 printed14 states its intersection assertion for n>=2. That smallest boundary is false.
+
+Take V=C^3,n=2. The exterior-product map Lambda^3V tensor V -> Lambda^4V is zero; consequently S_(2,1,1)(V)=Lambda^3V tensor V. The two copies of S_(2,1,1)(V) tensor V described in the lemma are each the entire space Lambda^3V tensor V tensor V, of dimension9. Their intersection therefore has dimension9. The asserted S_(3,1,1)(V)=Lambda^3V tensor Sym^2V has dimension6. A concrete extra vector is (e0 wedge e1 wedge e2) tensor (e0 tensor e1-e1 tensor e0). Both face constraints vanish, but the last two factors are antisymmetric.
+
+The universal proof used by the theorem remains valid at n>=3. Symmetry on singleton positions1,...,n-1 and on1,...,n-2,n generates symmetry on all n positions, since the overlap is nonempty. The face product constraints then give the de Rham kernel in Lambda^3 tensor Gamma^n, namely S_(n+1,1,1). Conversely, full singleton symmetry and the zero exterior product imply both face constraints, so the intersection equals this kernel. At n=2 the two S1 subgroups are trivial and cannot generate S2, exactly explaining the defect.
+
+Powell's induction explicitly takes r>3, applying this lemma at n=r-1>=3. Its r=3 case is proved separately by the20-dimensional matrix/equalizer computation. Thus the defect does not invalidate the cited all-r relative-degree-two formula, nor the packet's exteriorization. It does require qualification of the complete proof-dependency review. The current22 candidate binds root support claiming a complete valid source proof without identifying this boundary defect. Root must add an append-only qualification and issue a separately bound candidate for a NEW complete review, preserving every old current/family/root seal and artifact. This audit does not approve those future bytes.
+
+The fresh independent code directly constructs both face constraint matrices. Its exact intersections are9 versus expected6 for V3,n2 and56 versus36 for V4,n2. Used-range checks give10 for V3,n3,15 for V3,n4 and70 for V4,n3, each agreeing with the required hook functor. These are finite falsifiers and corroborating checks; the subgroup/kernel argument above establishes the range actually used universally.
+
+Initial fresh_controls_failed_v1.py stops at the failed n2 assertion and produces no mathematical receipt. The next version passes its mathematical assertions but fails at JSON serialization; it too produces no receipt. Both first-party scripts remain unchanged. The corrected fresh_controls.py was copied unchanged into ignored scratch and passed; FRESH_CONTROLS_RECEIPT.json records its hash and every model. Root's separate historical Expr.rem failed harness was replayed unchanged and likewise produces no receipt. No sealed historical or candidate byte was edited.

@@ -105,8 +105,6 @@ H_n(\mathfrak h)=\Lambda^n\bigl((\mathbb C\oplus E)\otimes V\bigr).
 
 ## 4. Translating Powell's recent theorem to the exact current algebra
 
-The complete cited proof is used with an explicit auxiliary restriction: v4 Lemma5.2 is false at n=2, but its Theorem1 induction uses only n=r−1>=3 and has a separate r=3 base. The valid used-range proof and exact boundary counterexample are in CURRENT_POWELL_RANGE_QUALIFICATION.md. Every displayed formula below is unchanged.
-
 This section records consequences of the cited theorem, not a new computation.
 
 Let \(H_{r+1}(\mathfrak h)_{E[r],V[d]}\) denote the summand of polynomial degrees \(r\) in \(E\) and \(d\) in \(V\). It is the degree-\(d\) part of \(H_1(L;\Lambda^r(E\otimes L))\). Since taking symmetric-group coinvariants is exact in characteristic zero,
