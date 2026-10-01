@@ -242,7 +242,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 231 | 30005299 / OWR-11695864-004 | Determinantal Quartics as Weddle Surfaces | 0.1894 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 232 | 30005310 / OWR-11695865-009 | Exhaustiveness of Threshold Scenarios for Colored Gaussian Graphical Models | 0.1894 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 233 | 30003518 / OWR-15436-004 | Multistationarity in Kinetic-Proofreading Networks | 0.1892 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
-| 234 | 30003999 / OWR-16633-016 | Polynomial-Time Comparison of Sparse Algebraic Power Sums | 0.1886 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
+| 234 | 30003999 / OWR-16633-016 | Polynomial-Time Comparison of Sparse Algebraic Power Sums | 0.1886 | 5.5 | 3 | 2018 | unsolved | 5/5 | [PR #220](https://github.com/AlecKriebel/Math/pull/220) | [Reviewed five-turn partial](attempts/30003999/RESULT.md): source (2/3)^r restored; polynomial zero test and fixed-parameter sign bounds, general polynomial-bit comparison remains open |  |
 | 235 | 30005449 / OWR-12697708-002 | Deterministic Limits of Trace-Reinforced Ant Walks | 0.1881 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 236 | 30005454 / OWR-12697708-007 | Critical Reinforcement Convergence on the Infinite Line | 0.1881 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 237 | 30005457 / OWR-12697708-010 | Reinforcement Counterexamples on Integer Lattices | 0.1881 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
