@@ -31,7 +31,7 @@ The claims evaluated here are those of the supplied candidate:
 
 An exact prior-art match would need the same or weaker assumptions, the same complex Zariski closure, and a conclusion that covers the remaining discotope cases. A genuinely equivalent general theorem would count as strong priority evidence if its already-published hypotheses can be checked without transferring the main problem to another unsupported irreducibility claim.
 
-Search hits, citation counts, abstracts, and phrases such as “irreducible” were used to discover sources. Every central positive or negative match below was checked against an actual primary document. The search archive records 48 queries across twelve batches. Relative search-engine publication labels were not used as publication dates.
+Search hits, citation counts, abstracts, and phrases such as “irreducible” were used to discover sources. Every central positive or negative match below was checked against an actual primary document. The structured evidence records 49 queries across thirteen batches, including final bibliographic verification. Relative search-engine publication labels were not used as publication dates.
 
 ## Primary-source match table
 
@@ -126,9 +126,9 @@ A possible new deduction through polar bodies would require proving irreducibili
 
 ## Current citing literature and unobservable priority
 
-The independent citation subaudit checked primary publications and theses, including Fiber Convex Bodies, Line Multiview Varieties, the Meroni and Mathis theses, and the 2026 Operatopes preprint. Its exact results and retrieval gaps are retained in citation_subaudit/priority_report.md and citation_subaudit/evidence.json. At the time of writing, no exact resolution had been reported from that branch.
+The completed independent citation subaudit checked primary publications and theses, including Fiber Convex Bodies, Line Multiview Varieties, the Meroni and Mathis theses, and the 2026 Operatopes preprint. Its exact results and retrieval gaps are retained in [citation_subaudit/REPORT.md](citation_subaudit/REPORT.md). Its evidence includes [audit_checks.json](citation_subaudit/evidence/audit_checks.json), [source_manifest.json](citation_subaudit/evidence/source_manifest.json), [search_responses.json](citation_subaudit/evidence/search_responses.json), and the retained OpenAlex index responses. No exact prior resolution or material publication blocker was found in that branch.
 
-The IMProofBench lead arose from a primary author publication page. A private research benchmark cannot be searched completely from its public abstract or paper. Its public document can be checked for explicit target/result statements, but the absence of a public match cannot rule out a privately held earlier proof. This limitation should not be converted into either an “already solved” verdict or a claim of certified novelty.
+The IMProofBench lead arose from a primary author publication page. The subauditor independently read/searched the public v2 PDF and HTML, dated 9 July 2026: no discotope, Gesmundo, or irreducibility terminology was found, and no public target/result match was located. The primary paper and homepage describe a private benchmark collection whose contents were inaccessible. Absence of a public match cannot rule out a privately held earlier proof. This limitation should not be converted into either an “already solved” verdict or a claim of certified novelty. [Primary version history](https://arxiv.org/abs/2509.26076), [public v2 HTML](https://arxiv.org/html/2509.26076v2), [benchmark homepage](https://improofbench.math.ethz.ch/).
 
 Citation indexes were used as discovery aids only. They returned incomplete or unavailable information in the child audit. In particular, a zero citation count attached to an arXiv record cannot override directly verified citing references in primary documents.
 
@@ -155,4 +155,3 @@ Remaining priority gaps are exact and material:
 6. A bounded negative literature finding should be stated as “we have not located a prior resolution,” not “this is the first proof” or “priority verified.”
 
 The audit is complete for its stated bounded scope. It supports correcting attribution and retaining explicit priority uncertainty. It does not provide a historical-priority certificate.
-

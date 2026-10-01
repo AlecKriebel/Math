@@ -1,0 +1,879 @@
+{
+  "schema_version": "1.0",
+  "created_at_utc": "2026-10-01T03:50:36.719340+00:00",
+  "audit_route": "independent exact target genealogy, author trail, and citing primary papers",
+  "scope": {
+    "pr": 9,
+    "problem": "30005473",
+    "source_problem": "OWR-12697711-006",
+    "reviewed_head": "a29887ed0e341851d02fa992c26500d4089267be",
+    "candidate_path": "/Users/alec/Documents/Math/pr9_adversarial_review_20260929/source_snapshot/candidate.md",
+    "candidate_sha256": "df5d9bd86562152cb72fd286055b62ded8ce0b4cdcf7d4a5ca1e001eb49ca47e"
+  },
+  "verdict": {
+    "prior_full_resolution_found": false,
+    "status": "no_checkable_prior_full_resolution_found_in_inspected_route",
+    "priority_certified": false,
+    "publication_blocker_found": false,
+    "confidence_interpretation": "bounded negative evidence, not proof of universal absence or current open status",
+    "route_completion_percent": 100
+  },
+  "targets": [
+    {
+      "id": "T2023",
+      "source_id": "S03",
+      "location": "p. 830, Definition 1 and Conjecture 1",
+      "variety": "E = complex Zariski closure of exposed points",
+      "hypotheses": [
+        "generic discotope",
+        "all summand dimensions at least two"
+      ],
+      "claim": "E irreducible"
+    },
+    {
+      "id": "T2022",
+      "source_id": "S01",
+      "location": "Definition 3.3 and p. 167 Conjecture 8.2",
+      "variety": "S = complex Zariski closure of sums of relative summand boundary points lying on total boundary",
+      "hypotheses": [
+        "generic discotope",
+        "no one-dimensional summands",
+        "full-dimensional convention after reducing to span"
+      ],
+      "claim": "S irreducible"
+    }
+  ],
+  "candidate_claims": [
+    {
+      "id": "C1",
+      "claim": "E irreducible",
+      "hypotheses": [
+        "finite nonempty sum",
+        "all ellipsoidal summand dimensions at least two"
+      ],
+      "genericity_required": false,
+      "full_dimension_required": false,
+      "relationship": "stronger than T2023"
+    },
+    {
+      "id": "C2",
+      "claim": "S=E and hence S irreducible",
+      "hypotheses": [
+        "full-dimensional sum",
+        "all summand dimensions at least two",
+        "for every subset J, dim(sum spans)=min(d,sum summand dimensions)"
+      ],
+      "relationship": "bridges C1 to T2022; maximal-span condition holds on nonempty Zariski-open parameter set"
+    }
+  ],
+  "prior_results": [
+    {
+      "id": "P01",
+      "source_id": "S01",
+      "location": "Remark 3.4, pp. 149–150",
+      "hypotheses": [
+        "all summand discs full-dimensional"
+      ],
+      "conclusion": "S identified with exposed-point closure and irreducibility asserted",
+      "scope": "prior special case"
+    },
+    {
+      "id": "P02",
+      "source_id": "S01",
+      "location": "Theorem 4.3, p. 152",
+      "hypotheses": [
+        "generic discotope",
+        "dim(D_i)>=2",
+        "sum_i(dim(D_i)-1)<=d-1"
+      ],
+      "conclusion": "S irreducible; degree 2^N",
+      "scope": "prior special case"
+    },
+    {
+      "id": "P03",
+      "source_id": "S01",
+      "location": "Theorem 6.1, p. 157",
+      "hypotheses": [
+        "generic discotope",
+        "all dim(D_i)=2",
+        "N>=d-1"
+      ],
+      "conclusion": "S irreducible and equals extreme/exposed-point closure; degree upper bound",
+      "scope": "prior special case; lower N covered by P02"
+    },
+    {
+      "id": "P04",
+      "source_id": "S01",
+      "location": "Section 5, especially Proposition 5.4",
+      "hypotheses": [
+        "generic discotope where stated"
+      ],
+      "conclusion": "Support-gradient parametrization; generic injectivity and analysis of a component",
+      "scope": "prior mechanism, not full resolution"
+    }
+  ],
+  "sources": [
+    {
+      "filename": "geometry_discotopes_publisher_2022.pdf",
+      "url": "https://lematematiche.dmi.unict.it/index.php/lematematiche/article/download/2338/1156/6734",
+      "retrieved_at_utc": "2026-10-01T03:33:35.599450+00:00",
+      "final_url": "https://lematematiche.dmi.unict.it/index.php/lematematiche/article/download/2338/1156/6734",
+      "content_type": "application/pdf",
+      "bytes": 1558110,
+      "sha256": "76d7033365db98c4cc4ce166aaa5bda2b1aaa25d5ba3386d3d66651a849c9adb",
+      "status": "downloaded_and_text_extracted",
+      "source_id": "S01",
+      "title": "The Geometry of Discotopes",
+      "publication_date_or_history": "2022-06-27 publisher article record; 2022 journal issue",
+      "read_scope": "Complete article read; p. 167 visually checked",
+      "locators": [
+        "Definition 3.3",
+        "Remark 3.4",
+        "Theorem 4.3",
+        "Section 5",
+        "Theorem 6.1",
+        "Lemma 6.3 and Remark 6.4",
+        "Conjecture 8.2"
+      ],
+      "finding": "Original generic S conjecture, established partial cases, and support-gradient parametrization; no general E or S theorem.",
+      "prior_full_resolution": false,
+      "text_extraction_file": "documents/geometry_discotopes_publisher_2022.txt",
+      "text_sha256": "4d3711c23bc768a4c40013313778c0415109eb4fda2d646c4224e8db3112c27c",
+      "screening_counts": {
+        "discotope": 89,
+        "irreduc": 69,
+        "exposed": 44,
+        "zariski": 24,
+        "critical": 11,
+        "conjecture": 8
+      }
+    },
+    {
+      "filename": "geometry_discotopes_arxiv_v2.pdf",
+      "url": "https://arxiv.org/pdf/2111.01241v2",
+      "retrieved_at_utc": "2026-10-01T03:33:35.599968+00:00",
+      "final_url": "https://arxiv.org/pdf/2111.01241v2",
+      "content_type": "application/pdf",
+      "bytes": 1918089,
+      "sha256": "9f919f246a30763a7b50fcd83d3a8c27740c685dbccb4311e0c91ccb0d6c4163",
+      "status": "downloaded_and_text_extracted",
+      "source_id": "S02",
+      "title": "The Geometry of Discotopes, arXiv v2",
+      "publication_date_or_history": "v1 2021-11-01; v2 2022-07-28",
+      "read_scope": "Latest complete file retrieved and compared with journal target",
+      "locators": [
+        "Sections 2, 3, 5, 6, 8"
+      ],
+      "finding": "Same target genealogy and partial-result framework; no later full solution in this version.",
+      "prior_full_resolution": false,
+      "text_extraction_file": "documents/geometry_discotopes_arxiv_v2.txt",
+      "text_sha256": "051c4b1592dd0b389b9cfc113222f57520e479adcf7bb250e1de8ee2c4d75c54",
+      "screening_counts": {
+        "discotope": 84,
+        "irreduc": 70,
+        "exposed": 45,
+        "zariski": 24,
+        "critical": 11,
+        "conjecture": 8
+      }
+    },
+    {
+      "filename": "owr_2023_15.pdf",
+      "url": "https://publications.mfo.de/bitstream/handle/mfo/4031/OWR_2023_15.pdf?sequence=4",
+      "retrieved_at_utc": "2026-10-01T03:33:35.600044+00:00",
+      "final_url": "https://publications.mfo.de/bitstream/handle/mfo/4031/OWR_2023_15.pdf?sequence=4",
+      "content_type": "application/pdf;charset=ISO-8859-1",
+      "bytes": 644488,
+      "sha256": "32c4fbd8b25f445613300ed0a00ba2082d653a154a3b2f64734f19c678d351ff",
+      "status": "downloaded_and_text_extracted",
+      "source_id": "S03",
+      "title": "Two convex conjectures for different flavours",
+      "publication_date_or_history": "2023",
+      "read_scope": "Complete Meroni contribution pp. 829–832 read; full workshop screened; p. 830 visually checked",
+      "locators": [
+        "p. 830 Definition 1",
+        "p. 830 Theorem 2",
+        "p. 830 Conjecture 1"
+      ],
+      "finding": "Defines E as exposed-point closure; states generic irreducibility as conjecture; reports prior special cases.",
+      "prior_full_resolution": false,
+      "text_extraction_file": "documents/owr_2023_15.txt",
+      "text_sha256": "0b501d9ca0c75ad658a77522e644717450041ec4ec8c997bab829acf924c4896",
+      "screening_counts": {
+        "discotope": 5,
+        "irreduc": 21,
+        "exposed": 3,
+        "zariski": 3,
+        "critical": 18,
+        "conjecture": 46
+      }
+    },
+    {
+      "filename": "meroni_thesis_2022.pdf",
+      "url": "https://ul.qucosa.de/api/qucosa%3A81971/attachment/ATT-0/",
+      "retrieved_at_utc": "2026-10-01T03:33:35.600113+00:00",
+      "final_url": "https://ul.qucosa.de/api/qucosa%3A81971/attachment/ATT-0/",
+      "content_type": "application/pdf",
+      "bytes": 6549282,
+      "sha256": "eff4885d58e8981ce68f96aadc3bd068e2fef009f8ddf2ca8896f2240cb25432",
+      "status": "downloaded_and_text_extracted",
+      "source_id": "S04",
+      "title": "Semialgebraic Convex Bodies",
+      "publication_date_or_history": "Submitted 2022-10; defense 2022-10-25",
+      "read_scope": "Complete file screened; discotope chapter definitions, proofs, partial cases, and conclusion inspected",
+      "locators": [
+        "Definition 2.2.1",
+        "Remark 2.2.2",
+        "Theorem 2.2.5",
+        "Proposition 2.2.10",
+        "Theorem 2.2.13",
+        "Conjecture 2.2.22 p. 54"
+      ],
+      "finding": "Reproduces generic S conjecture and article partial cases; no general resolution.",
+      "prior_full_resolution": false,
+      "text_extraction_file": "documents/meroni_thesis_2022.txt",
+      "text_sha256": "3c8315160d19662138e6a19698b375ea96e514ada89ca541ec736a81b74e3fb2",
+      "screening_counts": {
+        "discotope": 92,
+        "irreduc": 148,
+        "exposed": 90,
+        "zariski": 35,
+        "critical": 15,
+        "conjecture": 12
+      }
+    },
+    {
+      "filename": "fiber_convex_bodies.pdf",
+      "url": "https://arxiv.org/pdf/2105.12406",
+      "retrieved_at_utc": "2026-10-01T03:33:35.600171+00:00",
+      "final_url": "https://arxiv.org/pdf/2105.12406",
+      "content_type": "application/pdf",
+      "bytes": 1018138,
+      "sha256": "31eabaa435f0fe95a60fafccd39a40340f689e730b24100d9bfcb2cfbd494169",
+      "status": "downloaded_and_text_extracted",
+      "source_id": "S05",
+      "title": "Fiber Convex Bodies",
+      "publication_date_or_history": "arXiv first 2021-05-26; journal online 2022; volume 2023",
+      "read_scope": "Complete file screened; complete Section 5.2 and related discotope context read",
+      "locators": [
+        "Definition 5.13",
+        "Definition 5.16",
+        "Proposition 5.18",
+        "Remark 5.19"
+      ],
+      "finding": "Round 2D discs in R3; connectivity of a smaller open real boundary surface is not target algebraic irreducibility.",
+      "prior_full_resolution": false,
+      "text_extraction_file": "documents/fiber_convex_bodies.txt",
+      "text_sha256": "8923d5071ceaf8c3898a4c8ba71f89e78b26064cf751eaa064c07cbb0ae2efb6",
+      "screening_counts": {
+        "discotope": 22,
+        "irreduc": 2,
+        "exposed": 5,
+        "zariski": 1,
+        "critical": 0,
+        "conjecture": 0
+      }
+    },
+    {
+      "filename": "meroni_semialgebraic_slides_2022.pdf",
+      "url": "https://glivshyts6.math.gatech.edu/Meroni_slides.pdf",
+      "retrieved_at_utc": "2026-10-01T03:33:35.600230+00:00",
+      "final_url": "https://glivshyts6.math.gatech.edu/Meroni_slides.pdf",
+      "content_type": "application/pdf",
+      "bytes": 2424176,
+      "sha256": "2ab190ed32409972e28f19306c95ffed16decc08074cff3530bed72812e0dfe3",
+      "status": "downloaded_and_text_extracted",
+      "source_id": "S06",
+      "title": "Semialgebraic Convex Bodies seminar slides",
+      "publication_date_or_history": "2022-03-01 seminar record",
+      "read_scope": "Complete 27-slide file inspected",
+      "locators": [
+        "Fiber and intersection body material"
+      ],
+      "finding": "No general target irreducibility theorem identified.",
+      "prior_full_resolution": false,
+      "text_extraction_file": "documents/meroni_semialgebraic_slides_2022.txt",
+      "text_sha256": "5d51ebedacb5693dc49afdcf261f2ea152408c318ec5fd81580fd9afaff5509c",
+      "screening_counts": {
+        "discotope": 0,
+        "irreduc": 1,
+        "exposed": 0,
+        "zariski": 1,
+        "critical": 0,
+        "conjecture": 0
+      }
+    },
+    {
+      "filename": "line_multiview_varieties_v2.pdf",
+      "url": "https://arxiv.org/pdf/2203.01694v2",
+      "retrieved_at_utc": "2026-10-01T03:37:25.515267+00:00",
+      "final_url": "https://arxiv.org/pdf/2203.01694v2",
+      "content_type": "application/pdf",
+      "bytes": 810002,
+      "sha256": "153255fa62ec059da2bb8f84a37df637e00e38d5e344d3b25a345755ea88ea0b",
+      "status": "downloaded_and_text_extracted",
+      "source_id": "S07",
+      "title": "Line Multiview Varieties",
+      "publication_date_or_history": "arXiv first 2022-03-03; v2 2022-11-18; journal 2023",
+      "read_scope": "Complete file screened; relevant Section 3 read",
+      "locators": [
+        "Lemma 3.3 and following discussion",
+        "Use of GM Lemma 6.3"
+      ],
+      "finding": "Auxiliary row-constrained rank variety irreducibility; not discotope E, generic S=E, or general sphere-product critical locus.",
+      "prior_full_resolution": false,
+      "text_extraction_file": "documents/line_multiview_varieties_v2.txt",
+      "text_sha256": "5f7663b5de4bbf49961f894887e0e8c49e7bb3e67abc7ff4f7637faf083165ba",
+      "screening_counts": {
+        "discotope": 1,
+        "irreduc": 28,
+        "exposed": 0,
+        "zariski": 33,
+        "critical": 10,
+        "conjecture": 0
+      }
+    },
+    {
+      "filename": "operatopes_2026.pdf",
+      "url": "https://arxiv.org/pdf/2602.08103",
+      "retrieved_at_utc": "2026-10-01T03:37:25.515979+00:00",
+      "final_url": "https://arxiv.org/pdf/2602.08103",
+      "content_type": "application/pdf",
+      "bytes": 781268,
+      "sha256": "60f03221b8714667f12bbef48cbbaceac0bfb6fcf2156089ac274d2ca0fff295",
+      "status": "downloaded_and_text_extracted",
+      "source_id": "S08",
+      "title": "Operatopes, Operanoids, and Noncommutative Zonoids",
+      "publication_date_or_history": "arXiv first 2026-02-08; PDF 2026-02-10",
+      "read_scope": "Complete 23-page paper read",
+      "locators": [
+        "Section 2.1 equations (2)–(3)",
+        "Proposition 5",
+        "Sections 5–6"
+      ],
+      "finding": "Contains discotopes and an exposed-face closure result, but no exposed-point Zariski irreducibility or generic S=E theorem.",
+      "prior_full_resolution": false,
+      "text_extraction_file": "documents/operatopes_2026.txt",
+      "text_sha256": "c33d6e448277c748712c46afb09f64257f56d5af91bd236a5bf389aa7e99ebf7",
+      "screening_counts": {
+        "discotope": 4,
+        "irreduc": 0,
+        "exposed": 14,
+        "zariski": 0,
+        "critical": 0,
+        "conjecture": 2
+      }
+    },
+    {
+      "filename": "mathis_handbook_2022.pdf",
+      "url": "https://iris.sissa.it/retrieve/ef5d249b-5948-4b72-b3fa-eef9f375f9ec/The_Handbook_of_zonoid_calculus%20bw.pdf",
+      "retrieved_at_utc": "2026-10-01T03:37:25.516061+00:00",
+      "final_url": "https://iris.sissa.it/retrieve/ef5d249b-5948-4b72-b3fa-eef9f375f9ec/The_Handbook_of_zonoid_calculus%20bw.pdf",
+      "content_type": "application/pdf;charset=UTF-8",
+      "bytes": 2759161,
+      "sha256": "9b99cb623ea62ed94bfd50fafd34a5826cee71c670b9a41ca030442aa60cce4e",
+      "status": "downloaded_and_text_extracted",
+      "source_id": "S09",
+      "title": "The Handbook of Zonoid Calculus",
+      "publication_date_or_history": "2022 thesis",
+      "read_scope": "Complete file screened; relevant pp. 78–79 read",
+      "locators": [
+        "Definition 2.5.26",
+        "Proposition 2.5.27"
+      ],
+      "finding": "Dice/fiber-body example and citations; no general E or S irreducibility theorem.",
+      "prior_full_resolution": false,
+      "text_extraction_file": "documents/mathis_handbook_2022.txt",
+      "text_sha256": "85f7bce2c83a06b84fd8ccd1986dc506da9e93cdc8a3f796d584cbbde6031a5b",
+      "screening_counts": {
+        "discotope": 3,
+        "irreduc": 12,
+        "exposed": 1,
+        "zariski": 1,
+        "critical": 4,
+        "conjecture": 12
+      }
+    },
+    {
+      "filename": "meroni_defense_2022.pdf",
+      "url": "https://9c122863-03c5-4d20-9f29-cc3a6fed5770.filesusr.com/ugd/1eacd3_8f709f91c1694e97a5a9e9a785ef9416.pdf",
+      "retrieved_at_utc": "2026-10-01T03:37:25.516121+00:00",
+      "final_url": "https://9c122863-03c5-4d20-9f29-cc3a6fed5770.filesusr.com/ugd/1eacd3_8f709f91c1694e97a5a9e9a785ef9416.pdf",
+      "content_type": "application/pdf",
+      "bytes": 2435198,
+      "sha256": "91bfd91bc5a703e24e4a69b8cf2630c7554d919052a9103a1167195550039745",
+      "status": "downloaded_and_text_extracted",
+      "source_id": "S10",
+      "title": "Semialgebraic Convex Bodies defense slides",
+      "publication_date_or_history": "2022-10-25",
+      "read_scope": "Complete 24-slide file retrieved and screened",
+      "locators": [
+        "Slides 16–17"
+      ],
+      "finding": "Exposed-point closure conjecture retained; notation S differs from thesis S.",
+      "prior_full_resolution": false,
+      "text_extraction_file": "documents/meroni_defense_2022.txt",
+      "text_sha256": "c533ec90b5c7b51c30a7993e1f4a66715bab4d88117f2a7ae49deeb3d3698e82",
+      "screening_counts": {
+        "discotope": 8,
+        "irreduc": 4,
+        "exposed": 1,
+        "zariski": 2,
+        "critical": 0,
+        "conjecture": 1
+      }
+    },
+    {
+      "filename": "whitney_numbers_2016.pdf",
+      "url": "https://arxiv.org/pdf/1606.09412",
+      "retrieved_at_utc": "2026-10-01T03:37:25.516174+00:00",
+      "final_url": "https://arxiv.org/pdf/1606.09412",
+      "content_type": "application/pdf",
+      "bytes": 573214,
+      "sha256": "80b0450d645eb0cae9dc7c0cccdd7504243f4636371639f8a7e366f6471fd082",
+      "status": "downloaded_and_text_extracted",
+      "source_id": "S11",
+      "title": "Whitney numbers of arrangements via measure concentration of intrinsic volumes",
+      "publication_date_or_history": "2016-06-30 arXiv submission; PDF 2016-07-01",
+      "read_scope": "Complete file screened; introductory discotope construction read",
+      "locators": [
+        "Introduction",
+        "Section 1.1"
+      ],
+      "finding": "Intrinsic-volume/matroid ancestor; no algebraic exposed-point irreducibility theorem.",
+      "prior_full_resolution": false,
+      "text_extraction_file": "documents/whitney_numbers_2016.txt",
+      "text_sha256": "06b3271ed5448febe1f03dfc60fa74261ea3b935a93b85c19d361b932af7c189",
+      "screening_counts": {
+        "discotope": 6,
+        "irreduc": 0,
+        "exposed": 0,
+        "zariski": 0,
+        "critical": 0,
+        "conjecture": 8
+      }
+    },
+    {
+      "filename": "owr_2021_59.pdf",
+      "url": "https://publications.mfo.de/bitstream/handle/mfo/3911/OWR_2021_59.pdf?isAllowed=y&sequence=4",
+      "retrieved_at_utc": "2026-10-01T03:40:14.060630+00:00",
+      "final_url": "https://publications.mfo.de/bitstream/handle/mfo/3911/OWR_2021_59.pdf?isAllowed=y&sequence=4",
+      "content_type": "application/pdf;charset=ISO-8859-1",
+      "bytes": 698155,
+      "sha256": "cc685c54ed02d137867020cc8d82ac48420e6a745e8d30d1ab45167223ac23f7",
+      "status": "downloaded_and_text_extracted",
+      "source_id": "S12",
+      "title": "Convex Algebraic Geometry (Meroni contribution)",
+      "publication_date_or_history": "2021",
+      "read_scope": "Complete workshop screened; complete pp. 3212–3214 Meroni contribution read",
+      "locators": [
+        "pp. 3212–3214"
+      ],
+      "finding": "Advertises discotope project and cites forthcoming original paper; no general target theorem.",
+      "prior_full_resolution": false,
+      "text_extraction_file": "documents/owr_2021_59.txt",
+      "text_sha256": "ffc8c71e62c3aa76c5cef2c2cf572b8dda8435083e97c83b049e64ed61e21045",
+      "screening_counts": {
+        "discotope": 2,
+        "irreduc": 3,
+        "exposed": 0,
+        "zariski": 1,
+        "critical": 0,
+        "conjecture": 59
+      }
+    },
+    {
+      "filename": "randomstrasse_2024.pdf",
+      "url": "https://arxiv.org/pdf/2504.20539",
+      "retrieved_at_utc": "2026-10-01T03:45:08.379568+00:00",
+      "final_url": "https://arxiv.org/pdf/2504.20539",
+      "content_type": "application/pdf",
+      "bytes": 562281,
+      "sha256": "5299b7aff49b581c963b2221fdc16dacf304740871ed63188ae40e8f0c43aac2",
+      "status": "downloaded_and_text_extracted",
+      "source_id": "S13",
+      "title": "Randomstrasse101: Open Problems of 2024",
+      "publication_date_or_history": "arXiv first 2025-04-29; latest PDF 2025-05-29",
+      "read_scope": "Complete text screened; introduction and contents checked",
+      "locators": [
+        "Introduction"
+      ],
+      "finding": "False-positive author lead: Meroni is a blog maintainer; no discotope occurrence.",
+      "prior_full_resolution": false,
+      "text_extraction_file": "documents/randomstrasse_2024.txt",
+      "text_sha256": "99683038079c57e654586994b68759be23c0fe73eb6ddd9575abb4c811f315ac",
+      "screening_counts": {
+        "discotope": 0,
+        "irreduc": 2,
+        "exposed": 0,
+        "zariski": 0,
+        "critical": 3,
+        "conjecture": 51
+      }
+    }
+  ],
+  "web_sources": [
+    {
+      "id": "W01",
+      "url": "https://merochia.wixsite.com/chiara-meroni/research",
+      "role": "author primary bibliography",
+      "read_scope": "complete retrieved page",
+      "finding": "Current through 2026 material; no later discotope resolution identified"
+    },
+    {
+      "id": "W02",
+      "url": "https://merochia.wixsite.com/chiara-meroni/talks",
+      "role": "author primary talk list",
+      "read_scope": "complete retrieved page",
+      "finding": "Current and future 2026 talks; exact conjecture/defense and old discotope talks found"
+    },
+    {
+      "id": "W03",
+      "url": "https://fulges.github.io/publications.html",
+      "role": "author primary bibliography",
+      "read_scope": "complete retrieved page",
+      "finding": "Current 2026 material; original article is only identified discotope item"
+    },
+    {
+      "id": "W04",
+      "url": "https://www.mis.mpg.de/events/event/discotopes",
+      "role": "official 2021 talk record",
+      "read_scope": "complete relevant event page",
+      "finding": "Original face/algebraic-boundary project"
+    },
+    {
+      "id": "W05",
+      "url": "https://www.math.uni-bielefeld.de/geocomb/program/",
+      "role": "official 2022 workshop program",
+      "read_scope": "Meroni entry and links",
+      "finding": "Discotope project abstract; linked slides unavailable (404)"
+    },
+    {
+      "id": "W06",
+      "url": "https://leomathis.wordpress.com/research/",
+      "role": "author primary research list",
+      "read_scope": "complete retrieved page",
+      "finding": "Handbook and zonoid work discovered; no general resolution identified"
+    },
+    {
+      "id": "W07",
+      "url": "https://arxiv.org/abs/2111.01241",
+      "role": "primary version history",
+      "read_scope": "complete metadata page",
+      "finding": "v1 2021-11-01 and v2 2022-07-28"
+    },
+    {
+      "id": "W08",
+      "url": "https://arxiv.org/abs/2602.08103",
+      "role": "primary version history",
+      "read_scope": "complete metadata page",
+      "finding": "Recent 2026 citing work followed to full primary PDF"
+    }
+  ],
+  "searches": {
+    "schema_version": "1.0",
+    "scope": "exact target genealogy priority audit",
+    "queries": [
+      {
+        "batch": 0,
+        "recorded_at": "2026-09-30 (local date; UTC time not retained)",
+        "queries": [
+          "Gesmundo Meroni Geometry of Discotopes irreducible exposed points 2022",
+          "Meroni discotopes irreducibility 2023 Oberwolfach conjecture"
+        ],
+        "note": "Initial discovery queries, before persistent search-log state was initialized."
+      },
+      {
+        "batch": 1,
+        "recorded_at": "2026-09-30",
+        "queries": [
+          {
+            "q": "\"discotope\" \"irreducible\""
+          },
+          {
+            "q": "\"discotopes\" \"Conjecture 8.2\""
+          },
+          {
+            "q": "\"Chiara Meroni\" \"Semialgebraic Convex Bodies\" thesis"
+          },
+          {
+            "q": "\"Fulvio Gesmundo\" publications discotopes"
+          }
+        ]
+      },
+      {
+        "batch": 2,
+        "recorded_at": "2026-09-30",
+        "queries": [
+          {
+            "q": "\"discotope\" conjecture solved"
+          },
+          {
+            "q": "\"discotopes\" irreducibility Meroni"
+          },
+          {
+            "q": "\"discotope\" \"exposed\" -DiscoTope-3.0"
+          },
+          {
+            "q": "\"Semialgebraic Convex Bodies\" \"81971\""
+          }
+        ]
+      },
+      {
+        "batch": 3,
+        "recorded_at": "2026-09-30",
+        "queries": [
+          {
+            "q": "\"The Geometry of Discotopes\" -site:arxiv.org -site:lematematiche.dmi.unict.it -site:scirate.com -site:researchgate.net"
+          },
+          {
+            "q": "\"discotopes\" 2024 2025 2026 mathematics -DiscoTope-3.0"
+          },
+          {
+            "q": "\"discotope\" \"irreducibility\" -site:arxiv.org -site:lematematiche.dmi.unict.it -site:ems.press"
+          }
+        ]
+      },
+      {
+        "batch": 4,
+        "recorded_at": "2026-09-30",
+        "queries": [
+          {
+            "q": "\"Line Multiview Varieties\" arxiv"
+          },
+          {
+            "q": "\"discotope\" \"analytic\""
+          },
+          {
+            "q": "\"discotopes\" \"solved\""
+          },
+          {
+            "q": "\"discotopes\" \"conjecture\" -site:lematematiche.dmi.unict.it -site:arxiv.org -site:ems.press -site:ul.qucosa.de"
+          }
+        ]
+      },
+      {
+        "batch": 5,
+        "recorded_at": "2026-09-30",
+        "queries": [
+          {
+            "q": "\"discotope\" \"irreducible\" 2026"
+          },
+          {
+            "q": "\"discotope\" \"irreducible\" 2025"
+          },
+          {
+            "q": "\"discotope\" \"irreducible\" 2024"
+          },
+          {
+            "q": "\"discotope\" \"solution\" mathematics"
+          }
+        ]
+      },
+      {
+        "batch": 6,
+        "recorded_at": "2026-09-30",
+        "queries": [
+          {
+            "q": "\"discotope\" irreducible -epitope -protein -vaccine -allergen -DiscoTope-3.0 -IEDB -bioinformatics"
+          },
+          {
+            "q": "\"The Geometry of Discotopes\" \"cited\" -site:portal.mardi4nfdi.de"
+          },
+          {
+            "q": "\"Gesmundo\" \"Meroni\" discotopes \"2025\""
+          },
+          {
+            "q": "\"Gesmundo\" \"Meroni\" discotopes \"2026\""
+          }
+        ]
+      },
+      {
+        "batch": 7,
+        "recorded_at": "2026-09-30",
+        "queries": [
+          {
+            "q": "\"The Geometry of Discotopes\" \"irreducible\" -site:lematematiche.dmi.unict.it -site:arxiv.org -site:scirate.com -site:portal.mardi4nfdi.de"
+          },
+          {
+            "q": "\"discotope\" \"Mathis\" \"Handbook\""
+          },
+          {
+            "q": "\"discotopes\" site:arxiv.org -\"2105.12406\" -\"2111.01241\""
+          },
+          {
+            "q": "\"discotopes\" site:zbmath.org"
+          }
+        ]
+      },
+      {
+        "batch": 8,
+        "recorded_at": "2026-09-30",
+        "queries": [
+          {
+            "q": "\"discotopes\" 2025"
+          },
+          {
+            "q": "\"discotopes\" 2026"
+          },
+          {
+            "q": "\"discotopes\" \"resolution\""
+          },
+          {
+            "q": "\"discotopes\" \"proof\""
+          }
+        ]
+      },
+      {
+        "batch": 9,
+        "recorded_at": "2026-09-30",
+        "queries": [
+          {
+            "q": "\"Operatopes\" irreducible"
+          },
+          {
+            "q": "\"Operanoids\" algebraic boundary"
+          },
+          {
+            "q": "\"The Handbook of Zonoid Calculus\" Mathis thesis"
+          },
+          {
+            "q": "\"discotopes\" site:arxiv.org/html"
+          }
+        ]
+      },
+      {
+        "batch": 10,
+        "recorded_at": "2026-09-30",
+        "queries": [
+          {
+            "q": "\"discotopes\" \"Conjecture 2.2.22\""
+          },
+          {
+            "q": "\"discotopes\" \"connected\" \"analytic\""
+          },
+          {
+            "q": "\"discotopes\" \"830\""
+          },
+          {
+            "q": "\"discotope\" \"exposed-point\""
+          }
+        ]
+      },
+      {
+        "batch": 11,
+        "recorded_at": "2026-09-30",
+        "queries": [
+          {
+            "q": "\"discotope\" \"Conjecture\" \"solved\" -epitope -vaccine -protein"
+          },
+          {
+            "q": "\"discotopes\" \"general\" \"irreducibility\""
+          },
+          {
+            "q": "\"discotopes\" \"Zariski\" \"2026\""
+          },
+          {
+            "q": "\"discotopes\" \"Zariski\" \"2025\""
+          }
+        ]
+      },
+      {
+        "batch": 12,
+        "recorded_at": "2026-09-30",
+        "queries": [
+          {
+            "q": "\"discotopes\" \"proof\" site:arxiv.org"
+          },
+          {
+            "q": "\"discotopes\" \"irreducible\" site:mis.mpg.de"
+          },
+          {
+            "q": "\"Geometry of Discotopes\" solution theorem"
+          },
+          {
+            "q": "\"Meroni\" \"discotope\" \"2024\""
+          }
+        ]
+      },
+      {
+        "batch": 13,
+        "recorded_at": "2026-10-01T03:44:24.802Z",
+        "queries": [
+          "\"Geometry of Discotopes\" \"irreducible\" -site:arxiv.org -site:researchgate.net -site:lematematiche.dmi.unict.it -site:ul.qucosa.de",
+          "\"Conjecture 8.2\" \"discotopes\"",
+          "\"Conjecture 1\" \"Meroni\" \"irreducible\"",
+          "\"discotope\" \"exposed points\""
+        ]
+      },
+      {
+        "batch": 14,
+        "recorded_at": "2026-10-01T03:44:39.592Z",
+        "queries": [
+          "\"Randomstrasse101: Open Problems of 2024\"",
+          "\"Chiara Meroni\" \"discotope\" 2025 2026",
+          "\"discotopes\" \"830\" \"2023\""
+        ]
+      }
+    ],
+    "search_count": 56,
+    "note": "Search queries are discovery evidence only. Results were checked in primary sources where relevant. Empty or irrelevant results do not certify absence."
+  },
+  "citation_discovery": {
+    "apis_manifest": "citation_index_manifest.json",
+    "semantic_scholar_discovered_citing_works": [
+      "S05",
+      "S07",
+      "S08"
+    ],
+    "openalex_citing_works": 0,
+    "crossref_journal_doi_status": "404",
+    "openalex_journal_doi_status": "404",
+    "mardi": "Disagrees and includes irrelevant older disk-related false positives; used only for discovery",
+    "inference": "No citation-index count guarantees coverage"
+  },
+  "failed_retrievals": [
+    {
+      "filename": "geometry_discotopes_arxiv_v1.pdf",
+      "url": "https://arxiv.org/pdf/2111.01241v1",
+      "retrieved_at_utc": "2026-10-01T03:33:35.599866+00:00",
+      "status": "failed",
+      "error": "HTTP Error 406: Not Acceptable"
+    },
+    {
+      "url": "https://www.math.uni-bielefeld.de/geocomb/program/assets/Slides_Meroni.pdf",
+      "status": "404"
+    },
+    {
+      "url": "https://www.mis.mpg.de/nonlinear-algebra/publications/by-type-1",
+      "status": "web internal error"
+    },
+    {
+      "url": "https://nbn-resolving.org/urn:nbn:de:bsz:15-qucosa2-819717",
+      "status": "landing access challenge; public linked institutional PDF used instead"
+    }
+  ],
+  "limits": [
+    "No theorem of absence is implied by search",
+    "Indexes incomplete and inconsistent",
+    "Unpublished, unindexed, inaccessible, or differently phrased work may be missed",
+    "No outside people contacted",
+    "General analytic-lemma genealogy handled by a separate route, not certified here",
+    "Latest/publisher original checked but arXiv v1 download failed"
+  ],
+  "falsifiable_priority_blocker": "A primary result predating this candidate with matching discotope definition and general E irreducibility, or generic S irreducibility/equality covering the missing higher-dimensional regime, would overturn this negative conclusion. Stronger degree/critical-locus results are relevant only if they imply the exact target under checkable hypotheses.",
+  "manuscript_review": {
+    "path": "/Users/alec/Documents/Math/discotope_irreducibility_30005473/paper.tex",
+    "intro_targets_accurate": true,
+    "needed_correction": "Earlier Theorems 4.3 and 6.1 require genericity; Theorem 6.1 requires N>=d-1; smaller all-2D cases covered by Theorem 4.3",
+    "parent_confirmed_correction_applied": true,
+    "manuscript_modified_by_this_route": false
+  },
+  "safe_framing": "Proves Meroni 2023 Conjecture 1 in a stronger nongeneric form and, using generic S=E, proves Gesmundo–Meroni 2022 Conjecture 8.2; credit partial cases and existing support-gradient parametrization. Do not assert first-ever proof or verified present openness.",
+  "distinct_unsettled_questions": [
+    "irreducibility of entire complex critical locus",
+    "birationality of addition map",
+    "general degree formulas"
+  ],
+  "artifact_policy": "Retrieved source cache is local inspection material, ignored by this folder .gitignore; report and evidence point to public primary URLs"
+}

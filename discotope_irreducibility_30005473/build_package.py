@@ -62,7 +62,7 @@ def main():
             relative = path.relative_to(ROOT)
             if any(part.startswith('.') for part in relative.parts):
                 continue
-            if any(part in {'__pycache__', 'tmp', 'documents', 'evidence'}
+            if any(part in {'__pycache__', 'tmp', 'documents'}
                    for part in relative.parts):
                 continue
             allowed = {'.md', '.json', '.py', '.tex', '.jsonl'}
