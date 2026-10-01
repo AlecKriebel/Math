@@ -1,0 +1,13 @@
+# Five-turn partial result map: lattice WARM
+
+**Original target unresolved, five substantive author turns complete. Independent review pending.**
+
+The full primary target is OWR12/2023 Open Problem3: some d≥2, alpha>1, and bounded positive vertex rates with infimum zero on the full nearest-neighbor lattice Z^d, such that standard all-one WARM has an infinite surviving component with positive probability or almost surely; if so, determine uniqueness. The source introduction leaves the initialization generic, but the cited tree construction fixes all initial tallies at one. No alternative initialization is used here.
+
+1. TURN_1.md proves a direct tree-transfer obstruction: no bounded-length embedding of a regular branching tree in a fixed-dimensional lattice, and no independent uniformly imperfect thinning percolation on a deterministic lattice tree. No such conditional survival bound is asserted for WARM itself.
+2. TURN_2.md constructs explicit bounded positive geometrically decaying rates on Z² at alpha2, with a percolating equilibrium of the normalized deterministic flow. It is uniformly exponentially attracting in a small relative neighborhood within its invariant support face. This is not a stochastic counterexample.
+3. TURN_3.md proves that the unit-start stochastic process never enters that relative neighborhood at finite time, even after subtracting the initial baseline. Coordinatewise or l1 convergence is not excluded.
+4. TURN_4.md proves an l1 limiting-trajectory theorem for countable bounded-degree graphs without isolated vertices and summable square roots of positive rates, alpha2, initial tallies one. The actual stochastic process has sublinear l1 martingale noise, asymptotically compact normalized increments, and an infinite ODE with uniformly Lipschitz drift on the compact limiting domain. It does not select a particular equilibrium.
+5. TURN_5.md proves a continuous strict Lyapunov function for that deterministic flow and constructs same-rate finite-component equilibria converging in l1 to the percolating equilibrium. No l1 neighborhood can force percolation or attract every trajectory to the percolating point. No random support-selection or uniqueness conclusion follows.
+
+All results are scoped partial deductions; historical novelty is unconfirmed. The published tree percolation theorem and very-strong-reinforcement nonpercolation background are credited. Exact finite controls support the explicit algebra but do not certify stochastic survival or replace the infinite-volume arguments. The original existence and uniqueness questions remain open in this attempt.
