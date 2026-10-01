@@ -1,0 +1,7 @@
+# Current mathematical acceptance gate
+
+As of 2026-10-01T15:29:12.909130+00:00, three independent families pass the exact target: existence of finite two-dimensional K with original affine minimum5 and PL minimum3. Probability: full continuum order-type and adaptive-deletion proof,3852 exact assertions and10 rejected mutations; original16+396 receipts byte-identical. Topology: universal first-barycentric-subdivision embedding, independently rechecked with861 triangle pairs and84 isolated-point checks. Primary dependencies: exact OWR object/scope, versions, Goodman–Pollack finite bound, ordered Janson and841 independent checks.
+
+The published inflation proof has a marked-vertex detail in its auxiliary outside-simplex radial branch: a vertex can become interior to the auxiliary polytope. This is not a lemma counterexample. The direct first-subdivision supplement bypasses that branch. A distinct independent audit also repairs the needed source application by choosing centers inside original tetrahedra so radial refinements fix the labels. The direct supplement is used in the current argument. No general correction to the published theorem is claimed.
+
+Historical14-file original input and its reviews are preserved in source_snapshot, with exact hash23705f2868d66526eeded2cf644d36138acd8223af13d5202ee22da415753502 for original CANDIDATE. No old review is applied to this changed current file. Full two-family priority audit is active. No acceptance, paper, deposit, tracker row, small witness or novelty determination yet. Workflow **40%**.

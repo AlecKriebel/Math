@@ -73,3 +73,7 @@ PR16 original14files and claimed_solved1/5 frozen. Root16+396checks byte-identic
 ## 2026-10-01T15:10:40.207725+00:00 — PR14 partial acceptance remotely complete
 
 PR14 narrow noninteger obstruction passes all mathematics, exactreproduction, priorAnonymousarchive/source and freshfulladversarial gates. LivePRscope corrected, targetQUEUEconflict resolved preserving priorfiveacceptedrows, original1/5ledger retained. GitHubMERGED 2026-10-01T15:05:19Z, merged51e36e8ef706a2b740228102390bd3ac183165e, exacthead/parents/ancestor verified. Already_solved creditedpartial, alpha0allowed and sourceNconvention unresolved, no broaderclassification claim/newpaper/DOI/tracker. PR14workflow **100%**; program **6/180=3.33%**. PR15freshfullacceptance active afterglobalCCMPV/two-reading repairs. PR16probability gatepassed; topology/source explicitmarked-subdivision repair underindependentcheck.
+
+## 2026-10-01T15:29:12.909130+00:00 — PR16 mathematics complete; priority phase starts
+
+Probability, topology and primary-source families independently pass. Direct first-barycentric-subdivision proof is fresh verified and included globally, avoiding the source auxiliary radial marking issue. Two distinct priority families start; no novelty assumed. PR16 workflow **40%**; completed program **6/180=3.33%**. No paper, deposit, tracker row or merge yet.
