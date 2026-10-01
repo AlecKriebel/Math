@@ -7,3 +7,15 @@ Exact17-file source freeze; original1/5 turn statusunsolved retained. Three inde
 ## 2026-10-01T14:41:22.458157+00:00 — root mechanism reconstruction
 
 Independent support/normalization/regularity chain reconstructed, including ambient mismatch causing infinitely many holes and direct sign-cone Graver degree mechanism. Primary Sturmfels full constants inspected. No central conditional algebra gap found; three independent families continue. Workflow **20%**; sharp discovery **not advanced beyond original20% estimate**.
+
+## 2026-10-01T15:08:46.666226+00:00 — all families complete; repaired candidate frozen
+
+Independent fullalgebra/combinatorial/source checks pass. CCMPVpositiveprior supersedes weakF(V)open triage; source sharpformula remainsinferred/unresolved. Globalcandidate repairedemptycase/source/prior/tworeadingmetadata. Freshadversary next. Workflow **78%**, programcomplete5/180=2.78% untilPR14remotegate. No newpaper/DOI/tracker.
+
+## 2026-10-01T15:23:38.499185+00:00 — metadata ambiguity repaired before acceptance
+
+Current unqualified attempt metadata identifies the repaired candidate, and explicitly historical fields preserve original values. Fresh adversary notified; mathematical proof unchanged. Manifest refreshed for final verification. Workflow **78%**; completed program **6/180=3.33%**.
+
+## 2026-10-01T15:25:28.847225+00:00 — completed-family checkpoint hygiene
+
+Removed one surplus terminal blank line from the new combinatorial report before its first commit; mathematical content unchanged. FAMILY_MANIFEST updated; fresh reviewer notified. Strict staged whitespace verification passes. Workflow **78%**.

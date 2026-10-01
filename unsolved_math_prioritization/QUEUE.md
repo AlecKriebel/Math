@@ -314,7 +314,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 303 | 30000156 / OWR-768-006 | Limiting Cycle Distributions of Birational Maps | 0.1719 | 5.0 | 3 | 2004 | queued | 0/5 |  |  |  |
 | 304 | 30001781 / OWR-5152-008 | Maximal Submatrix Bounds Without Unconditionality | 0.1717 | 5.0 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 305 | 30000849 / OWR-1729-002 | Scaling Profiles in Addition–Coagulation Models | 0.1712 | 5.0 | 3 | 2007 | queued | 0/5 |  |  |  |
-| 306 | 30001080 / OWR-2093-003 | Transport Characterizations of Mass-Stationarity | 0.1709 | 5.0 | 3 | 2008 | queued | 0/5 |  |  |  |
+| 306 | 30001080 / OWR-2093-003 | Transport Characterizations of Mass-Stationarity | 0.1709 | 5.0 | 3 | 2008 | claimed_solved | 2/5 |  | Source-qualified Markov transport characterization for sigma-finite joint laws; Cox matching characterization for the measure law with original intensity retained as background; independent full PASS; 2011 final PDF unread; no erased-background or novelty claim |  |
 | 307 | 30001557 / OWR-4425-012 | Pattern Characterization of Fractional Powers in Words | 0.1704 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 308 | 30001565 / OWR-4426-001 | Irreducible Coherent-Configuration Representations Without Polynomial Splitting | 0.1704 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 309 | 30001608 / OWR-4530-006 | Stability Beyond Unstable Population-Process Fluid Limits | 0.1704 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
