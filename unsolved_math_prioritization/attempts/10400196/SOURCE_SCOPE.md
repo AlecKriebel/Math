@@ -22,3 +22,7 @@ Only the attempt's public mathematical notes and checks may be checkpointed. Ful
 ## Turn2 convention clarification
 
 Massuyeau’s primary spin paper, Lemma12, states B(phi)=-R modulo8; the published Deloup–Massuyeau boundary convention agrees with it. Ohtsuki’s abbreviated sentence uses the positive relationship. Turn2 carries an explicit sign epsilon and gives the construction in either convention; it does not silently identify the two quadratic functions. The sign exchange leaves the Turn1 isometry and nonexistence argument unchanged. The actual source’s omission of finite-phase domain and additivity hypotheses continues to be disclosed.
+
+## Final five-turn assessment
+
+The canonical positive theorem covers rational homology spheres with selected odd-order Chern class. Higher-two-primary Chern classes, positive-Betti torsion-Chern structures and the general non-torsion phase scope remain outside it. Turn5 excludes the direct -4d candidate from degree one and does not promote the normalized Euler/torsion candidate without its missing two-surgery parity. All ten primary inputs and exact claim locations are listed in SOURCE_CLAIM_MAP.md. Original status is unsolved5/5, pending independent scoped-partial review.
