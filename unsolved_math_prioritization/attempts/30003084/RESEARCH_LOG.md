@@ -19,3 +19,7 @@ Proved ordinary conic existence for every complex projective set of at most9 poi
 ## 2026-10-01T08:41:04.675480+00:00 — author turn3 checkpoint
 
 Extended the full affirmative partial theorem to at most10 points. Classified rank4 complex Gale configurations without5-circuits into decomposable or three-concurrent-line cases; original quadratic rank constraints rule out both. Zero/proportional columns, real-coordinate-independent complex geometry, branch-support dependencies and characteristic0 signs checked.1018 exact finite algebra/graph/Gale controls pass. Original general question unresolved; completion estimate35%. Pausing for an assigned independent review; this review is not a conic proof turn.
+
+## 2026-10-01T09:02:55.509846+00:00 — author turn4 checkpoint
+
+Proved ordinary-conic existence for every finite nonconic point set on any irreducible complex cubic. No-ordinary-conic residual reflections imply every character has at most3 values; two characters separate a finitely generated elliptic subgroup, reducing to the established <=9 theorem. Explicit nodal/cuspidal parametrizations and singular-point multiplicity close the singular cases. Exact finite and symbolic controls pass. Original arbitrary point-set question remains unresolved; completion estimate45%. One substantive author turn remains.
