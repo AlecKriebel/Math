@@ -15,3 +15,7 @@ Tested the printed weak invariant-functional premise. A general transport lemma 
 ## October1,2026 07:34 UTC: author turn3
 
 Derived the precise local Fourier-square reflection and used it to prove Fourier/translation stability of the two-place test space. Explicit bilateral theta normalization of the intertwined functionals gives genuine restricted theta inversion, so turn1 yields completed-L continuation and functional equation. No theta normalization was derived from the original weak premise. The published refinement's two sides are made explicit rather than inferred from a one-sided wording. Original gap persists; estimate40%.
+
+## 2026-10-01 07:49 UTC — substantive author turn 4
+
+Derived the exact Fourier-square compatibility obstruction and a nonzero symmetrized weak functional satisfying both dual directions, including the self-dual single-functional case, when the necessary scalar is 1. Specified its domain and continuity seminorms and showed its power-law orbit is not theta-normalized. No counterexample to an actual automorphic L-function is claimed. Original target unresolved; completion estimate 40%.
