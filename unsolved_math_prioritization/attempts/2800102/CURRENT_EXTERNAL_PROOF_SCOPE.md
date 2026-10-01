@@ -1,4 +1,4 @@
-**Current administrative status: complete corrected-package gate PASS; accepted external square finding, remote integration pending. Reviewed source/proof content below is unchanged.**
+**Current administrative status: complete corrected-package gate PASS; accepted external square finding, remote merge verified. Reviewed source/proof content below is unchanged.**
 
 # Current external resolution of2800102 / AMR-027-0102
 

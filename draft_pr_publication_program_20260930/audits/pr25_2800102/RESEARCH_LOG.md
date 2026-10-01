@@ -15,3 +15,11 @@ NEW real falsifier full report/script and10-member manifest read/verified, two n
 ## 2026-10-01T22:32:20.801140+00:00 — PR25 clean complete gate, integration95%
 
 NEW complete current23 gate PASS, root full proof/report/code read and112 fresh controls/43 mutants BYTEEXACT; all22 fresh manifest entries and seal verified. Exact square real/complex all-N external chain valid as ordinary analytic proof, original historical hold/0of5 preserved, no campaign discovery/solution credit. Remote integration and present mirror next. Overall14/180 (7.78%) still complete until remote merge verified. PR26 NEW current gate active, PR27 original-stage audits active, PR18/20 holds preserved. No new paper/DOI/tracker.
+
+## 2026-10-01T22:37:00.105425+00:00 — PR25 verified remote acceptance100%
+
+Exactheadaa99d4a36eff79cbb7aae55ce3ffe4a0eb31af95 mergedc06639f56a6e7416c70b00dddfb2688ad69b0522 at2026-10-01T22:35:16Z; exacttwo-parent/ancestry/remote MERGED verified. Accepted externallyresolved square finding already_solved, original0/5, no campaign credit/paper/DOI/tracker. FinalscientificSOURCE completebytesunchanged; all original/reviewedarchivesand unrelatedQUEUE rows/fields preserved. Completed15/180 (8.33%); present accepted mirror follows separately. PR26 currentfullgate and27original-stage source qualifications continue;18/20holds preserved.
+
+## 2026-10-01T22:48:08.835820+00:00 — PR25 current acceptance mirror complete100%
+
+Verified remote merge and exact final live body. Source-bound mirror adds only2800102already_solved, original0/5; all previous15state records and history prefix preserved, sixteen current targets/fifteen primary plus one duplicate, seventeen original consumed turns. Five negative explicit-budget controls rejected; all protected bindings unchanged, one durable history event, no legacy generator. Reviewed scientific SOURCE bytes, original/reviewed archives and canonical31manifest verified. Preflight inventory hash is a dated precondition and is superseded by this later checkpoint; no blindly reusable plan. No paper/newDOI/tracker. Overall15/180 (8.33%) completed; PR18/20 holds and PR26/27 reviews continue.

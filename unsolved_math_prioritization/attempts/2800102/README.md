@@ -1,7 +1,7 @@
 # 2800102: verified external square Gaussian resolution
 
 **Accepted current outcome: already_solved by external work, original0/5;
-NEW complete exact-package acceptance gate PASS. Remote integration pending.** No campaign solution,
+NEW complete exact-package acceptance gate PASS. Remote merge verified.** No campaign solution,
 novelty credit or new paper/DOI is claimed.
 
 SOURCE_AUDIT.md matches the exact original square statistic and all-N real
