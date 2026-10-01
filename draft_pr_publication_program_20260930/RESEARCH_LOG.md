@@ -137,3 +137,7 @@ Original dispositions remain **9/180 =5%** (PR9–17). PR18 priority fullbody-ac
 ## 2026-10-01T19:41:06.266049+00:00 — PR19 accepted and merged; overall 5.56%
 
 Ten of the initial180 PRs are remotely complete. PR19 is accepted as unsolved partial progress with original2/5 attempts; exact fresh review and root2,102,288 controls pass. Merge c2da63f6510175e2bf2bc0789090788a883e64ad verified. PR18 full-source priority access and PR20 universal proof qualification remain pending independently. PR21 classical subsumption needs a fresh complete adversary; PR22 three families pass and current metadata repairs are being prepared. No publication action for PR19.
+
+## 2026-10-01T19:49:08.839629+00:00 — PR21/22 current candidates sealed; fresh full adversaries active
+
+Overall10/180 complete (5.56%). PR21 positive classical subsumption and PR22 published known-negative scope have all family/root validations, original budgets preserved, current repairs sealed. Fresh complete independent adversaries are running on exact hashes. Both live draft descriptions now report shared queue edits truthfully and corrections were read back exactly. Neither known-prior candidate creates a paper or DOI. PR18/20 remain independently pending.

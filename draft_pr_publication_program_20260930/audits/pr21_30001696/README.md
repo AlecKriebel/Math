@@ -1,7 +1,9 @@
-# PR21: universal mathematics passes; deep priority active
+# Whole bounded-switch product: verified mathematics and classical-priority correction
 
-The exact whole bounded-switch complex passes the independently sealed root reconstruction and three independent analytic, global topology/PL, and primary-scope families, across every stated parameter and zero stratum. The proof digest is 58809f3edaa2930f1111ba823b1ce50c8e328dd8388b2e19323600ede3d04305. All 14 historical inputs remain unchanged.
+The whole B(i,d) is PL S^i times D^(d-i-1) for every stated noncyclic parameter. Three current independent mathematical families and root verify the spectral alternative; two new priority families derive the same product from Klee–Novik's embedded coordinate collapse and classical PL collar/regular-neighborhood theory. The conservative proposed QUEUE classification is already_solved. No earlier explicitly printed universal product statement or historical recognition is claimed. CURRENT_PRIORITY_SCOPE.md and the complete CLASSICAL_PRIOR_ADAPTER files explain this exact boundary.
 
-Root reproduced both original diagnostic receipts and all three new family controls; the latter total 393,658 exact assertions. Universal arguments and precisely applicable primary theorems carry the mathematical verdict. Finite checks are supplementary.
+PROOF.md corrects the prior account and journal citation while retaining mathematical sections2–8 unchanged. Original metadata are retained in ORIGINAL files; source records, old review bytes and original1/5 substantive attempt count remain unchanged. verify.py and review/independent_checks.py reproduce the original receipts; root also replays393658 fresh controls. These finite checks supplement universal proofs. A new complete current acceptance adversary is pending; workflow75%.
 
-Workflow **45%**: two new deep priority families are active. Required documentation repairs include credit for the previously known collapse/disk-bundle result, the correct Klee–Novik journal, and truthful live queue-row scope. The original 1/5 attempt budget is unchanged. No paper/package, fresh submission adversary loop, publication, DOI, or merge is certified yet. See MATHEMATICAL_AUDIT.json and FAMILY_MANIFEST.json.
+This exact PR changes the numeric folder and its QUEUE row. Extensive AI assistance and AI audits; unrefereed without a human peer-review or formal-certification claim. No paper, new deposit, DOI or tracker row for the proposed already_solved acceptance.
+
+All40 new priority-family first-party artifacts verify against their manifests. Root also inspected the actual primary regular-neighborhood theorem and proof pixels. See PRIORITY_ASSESSMENT.json.
