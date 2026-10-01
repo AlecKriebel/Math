@@ -15,3 +15,7 @@ Completion75%. All39 closed family artifact hashes and15 original Git inputs ver
 ## 2026-10-01T20:25:24.724418+00:00 checkpoint
 
 Full literal known-negative classification passes; current19-entry package verified; root reproduced37 Fourier and3 analytic integrated controls. Workflow completion estimate:95%. Original substantive budgets preserved; no paper, DOI or tracker action.
+
+## 2026-10-01T20:33:42.867873+00:00 — integration95%
+
+Exact reviewed head is second parent of pending main merge. Original15 canonical files matched before current copy. Scientific body preserved; metadata updates archived. Entire pre-merge queue restored, only20002011/20002052 rows changed. Original shared1/5, duplicate0additional; no paper/DOI/tracker.
