@@ -43,3 +43,7 @@ Completion estimate: 95% toward an independently checkable research deliverable.
 Prepared a five-page typeset proof and inspected every final rendered page. The independently reviewed mathematical Sections2–6 are byte-identical to the final Markdown proof. Changes after review are confined to status wording and reference hyperlink formatting. Exact checks were rerun. GitHub write access is restored, and the dedicated branch has been confirmed at the inspected base commit. An all-state exact-ID PR search returned no prior PR before this checkpoint. Only this problem folder is included in the proposed commit.
 
 Completion estimate: 95% toward the full research goal; mathematical proof and independent AI audit are complete, while human review and historical priority remain unestablished.
+
+## 2026-09-30T21:31:35.083035-07:00 — accepted, published, and merged
+
+Independent audit/publication program completed for this result: mathematical/source/reproduction audits passed; two bounded priority families credited established ingredients and found no exact prior full resolution; first fresh package review repairs applied; new second review clean. Zenodo DOI10.5281/zenodo.23074543 resolves; both public downloads byte-match frozen artifacts; exact metadata preserved; Math Puzzles row11 appended and independently read back. PR9 merge60a1222c062bfecf6bb33a718a1dc55a98b87df4. Current audit-to-publication workflow **100%**. Unrefereed and AI-assisted; no historical first-priority/human-peer-review/formal-certificate claim.

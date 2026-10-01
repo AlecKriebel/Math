@@ -9,3 +9,7 @@ Inventory: 180 selected open PRs. No PR has yet been merged or published by this
 ## 2026-09-30T20:53:17.861633-07:00 — PR 9 package checkpoint
 
 PR 9 mathematical review/reproduction passed; two independent priority families and citing-literature subaudit complete with bounded negative findings and positive prior-art attribution. Four-page note and aligned upload kit ready for sequential fresh adversaries; round1 started. PR 9 readiness **65%**; overall 180-PR program accepted/processed count **0/180 (0%)**. PR 8 remains excluded. No paper published or PR merged yet.
+
+## 2026-09-30T21:31:35.083035-07:00 — first disposition complete
+
+PR9 accepted as full exact-conjecture resolution, published DOI10.5281/zenodo.23074543 with exact frozen metadata/files, DOI+public bytes verified, trackerA11:D11 exact readback, merged60a1222c062bfecf6bb33a718a1dc55a98b87df4, queue+acceptance reconciled. PR9 workflow **100%**, overall initial selected inventory **1/180 (0.56%)**. Persistent goal remains active and advances to PR10; PR8 skipped. No external researcher communication.
