@@ -125,3 +125,7 @@ PublishedDOI10.5281/zenodo.23088066, exactmetadata/publicfiles/DOI200/trackerA12
 ## 2026-10-01T18:08:01.669533+00:00 — PR17 accepted as unsolved partial progress
 
 PR17 remote merge `a8e92a0ab2a1c4afdab07a6e8f1f22f811f6be96` verified with exact audited head and parents. Three independent families plus new complete adversary pass restricted exclusions; original arbitrary-ideal problem unresolved,4/5 original attempts preserved, no new paper/DOI/tracker. Workflow100%; completed9/180 initial drafts (**5.00%**). PR18 priority body-access hold remains; continue independent later audits without out-of-order acceptance.
+
+## 2026-10-01T18:18:23.998370+00:00 — priority hold and continued independent audits
+
+PR18 mathematics passes; two deeppriority families and newaccess adversary leave material fullcombined-paper accessgap. Workflow50%, no publicationclearance. PR19 all3families/rootnewreplays pass; sourceannotations repaired, freshfullgate active, workflow75%, originalunsolved2/5. PR20 original10files frozen and3independent math/source families active, workflow5%. Completed9/180 initial drafts (**5.00%**),PR8excluded; no out-of-order acceptance or extra attempt.
