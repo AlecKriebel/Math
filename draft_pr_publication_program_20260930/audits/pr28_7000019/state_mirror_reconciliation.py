@@ -1,0 +1,116 @@
+"""Root-owned incremental PR28 acceptance mirror; no legacy generator.
+
+Uses the preserved v2 validator and PR23's exact zero-source ledger schema.
+Original proposals, helpers, historical state events and budgets stay intact.
+"""
+from datetime import datetime, timezone
+import fcntl
+import importlib.util
+import json
+from pathlib import Path
+import subprocess
+
+HERE = Path(__file__).resolve().parent
+REPO = HERE.parents[2]
+BASE = REPO / 'draft_pr_publication_program_20260930/infrastructure/accepted_state_sync'
+
+
+def main():
+    spec = importlib.util.spec_from_file_location('mirror', BASE / 'revision2/accepted_state_sync_v2.py')
+    mirror = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mirror)
+    spec = importlib.util.spec_from_file_location('writer', BASE / 'root_apply/guarded_import_v2.py')
+    writer = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(writer)
+    original_ledger = mirror.ledger_budget
+
+    def ledger(data, kind, used, limit):
+        if kind != 'json_zero_source_triage':
+            return original_ledger(data, kind, used, limit)
+        obj = json.loads(data)
+        mirror.require(str(obj.get('problem_id')) == '30002145', 'Wrong zero-triage ledger ID')
+        mirror.require(used == obj.get('used') == 0 and limit == obj.get('limit') == 5, 'Zero-triage budget mismatch')
+        mirror.require(obj.get('substantive_proof_attempts') == [] and isinstance(obj.get('reason'), str) and obj['reason'], 'Ambiguous zero-triage ledger')
+
+    mirror.ledger_budget = ledger
+    canonical = REPO / 'unsolved_math_prioritization/attempts/7000019'
+
+    def binding(path):
+        return {'path': str(path.relative_to(REPO)), 'sha256': mirror.sha(path.read_bytes())}
+
+    assert not (HERE / 'state_mirror_intent.json').exists(), 'Inspect prior intent before any retry.'
+    assert subprocess.check_output(['git', 'branch', '--show-current'], cwd=REPO, text=True).strip() == 'main'
+    remote = json.loads(subprocess.check_output(['gh', 'pr', 'view', '28', '--json',
+                        'number,url,state,isDraft,headRefOid,mergeCommit,mergedAt'], cwd=REPO, text=True))
+    saved_remote = mirror.load(HERE / 'remote_merge_receipt.json')
+    assert all(remote[k] == saved_remote[k] for k in remote)
+    assert remote['state'] == 'MERGED' and remote['isDraft'] is False
+    assert remote['mergeCommit']['oid'] == '93e71b12926a28f48a5f3c061c941c9972504d78'
+    assert remote['headRefOid'] == '90a81313f3f65a7914fb6d5a9950fa087ea7467e'
+    proposal = mirror.load(HERE.parent / 'pr26_10400115/state_mirror_bindings.json')
+    proposal['created_at_utc'] = writer.stamp()
+    proposal['scope'] = 'Seventeen remotely accepted primary PRs9-17,19,21-26,28, plus accepted duplicate20002052 under shared owner20002011; historical proposals and records unchanged.'
+    for key in ['inventory', 'queue']:
+        proposal[key] = binding(REPO / proposal[key]['path'])
+    proposal['required_completed_prs'] = sorted(proposal['required_completed_prs'] + [28])
+    entry = {'pr': 28, 'id': '7000019', 'status': 'unsolved',
+             'acceptance': binding(canonical / 'acceptance.json'), 'audit_acceptance': binding(HERE / 'acceptance.json'),
+             'remote': binding(HERE / 'remote_merge_receipt.json'), 'accepted_source': binding(canonical / 'source_record.json'),
+             'canonical_acceptance_text': binding(canonical / 'ACCEPTANCE.md'), 'canonical_manifest': binding(canonical / 'MANIFEST.json'),
+             'artifact': {**binding(canonical / 'PROOF.md'), 'acceptance_hash_field': 'canonical_proof_sha256'},
+             'budget': {'used': 2, 'limit': 5, 'kind': 'json_attempt', 'ledger': binding(canonical / 'ORIGINAL_attempt.json')}, 'duplicates': []}
+    proposal['entries'].append(entry)
+    negative = []
+    original_attempt = mirror.load(canonical / 'ORIGINAL_attempt.json')
+    for label, changes in [('wrong used', {'substantive_attempts_used': 1}), ('wrong limit', {'substantive_attempt_limit': 4}), ('missing used', {'substantive_attempts_used': None}), ('negative used', {'substantive_attempts_used': -1})]:
+        obj = {**original_attempt, **changes}
+        try:
+            ledger(json.dumps(obj).encode(), 'json_attempt', 2, 5)
+        except mirror.Rejected:
+            negative.append(label)
+        else:
+            raise AssertionError('Undetected ledger mutation: ' + label)
+    plan = mirror.build_plan(REPO, proposal)
+    preflight = mirror.validate_plan(REPO, plan)
+    assert plan['primary_count'] == 17 and plan['duplicate_count'] == 1
+    assert [x['id'] for x in plan['history_append']] == ['7000019']
+    prior = mirror.load(REPO / 'unsolved_math_prioritization/state.json')
+    assert len(prior) == 17 and '7000019' not in prior
+    assert all(plan['state_after'][k] == v for k, v in prior.items())
+    assert sum(x['turns_used'] for x in plan['state_after'].values()) == 20
+    writer.atomic(HERE / 'state_mirror_bindings.json', mirror.encode(proposal))
+    writer.atomic(HERE / 'state_mirror_plan.json', mirror.encode(plan))
+    protected = {b['path']: b['sha256'] for b in plan['bindings']}
+    state = REPO / 'unsolved_math_prioritization/state.json'
+    history = REPO / 'unsolved_math_prioritization/history.jsonl'
+    with open(BASE / 'tmp/root-accepted-state.lock', 'a+b') as lock:
+        fcntl.flock(lock.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+        mirror.validate_plan(REPO, plan)
+        intent = {'status': 'PREPARED', 'at_utc': writer.stamp(), 'plan_sha256': mirror.sha(mirror.encode(plan)),
+                  'before': plan['preconditions'], 'state_after_sha256': plan['state_after_sha256'],
+                  'history_after_sha256': plan['history_after_sha256'], 'new_event': '7000019', 'new_proof_turns': 0}
+        writer.atomic(HERE / 'state_mirror_intent.json', mirror.encode(intent))
+        old_state, old_history = state.read_bytes(), history.read_bytes()
+        assert mirror.sha(old_state) == plan['preconditions']['state_sha256']
+        assert mirror.sha(old_history) == plan['preconditions']['history_sha256']
+        writer.atomic(history, old_history + plan['history_append_bytes'].encode())
+        assert state.read_bytes() == old_state
+        writer.atomic(state, plan['state_after_bytes'].encode())
+        assert mirror.sha(state.read_bytes()) == plan['state_after_sha256']
+        assert mirror.sha(history.read_bytes()) == plan['history_after_sha256']
+        assert all(mirror.sha((REPO / p).read_bytes()) == h for p, h in protected.items())
+        intent.update(status='COMPLETED', completed_at_utc=writer.stamp())
+        writer.atomic(HERE / 'state_mirror_intent.json', mirror.encode(intent))
+        writer.atomic(HERE / 'state_mirror_receipt.json', mirror.encode({'at_utc': writer.stamp(), 'preflight': preflight,
+                      'negative_ledger_controls': negative, 'history_events_added': 1,
+                      'existing17_states_semantically_unchanged': True, 'current_targets': 18,
+                      'original_consumed_turns': 20, 'new_proof_turns': 0,
+                      'protected_bindings_unchanged': len(protected), 'legacy_generator_run': False,
+                      'state_sha256': mirror.sha(state.read_bytes()), 'history_sha256': mirror.sha(history.read_bytes()),
+                      'scope': 'Only present PR28 unsolved acceptance appended after exact remote verification. Historical proposals/events unchanged; no invented proof/readiness transition. Cooperative lock limitation persists.'}))
+        print(json.dumps({'status': 'COMPLETED', 'new_acceptance': '7000019',
+                          'original_attempts': '2/5', 'new_proof_turns': 0, 'bindings': preflight['bindings_verified']}))
+
+
+if __name__ == '__main__':
+    main()

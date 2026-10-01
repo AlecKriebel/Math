@@ -35,3 +35,5 @@ row edits preserving existing statuses, findings, chat links, and DOI fields.
 Completion estimates describe remaining workflow, not mathematical certainty.
 The overall count is completed dispositions divided by the selected inventory;
 the persistent goal stays active until all required work is actually complete.
+
+PR28 accepted as an unsolved smooth small-width partial after three distinct families, root reproduction and a clean new complete gate; exact originalhead remotely merged93e71b129. Original2/5 and all existing state/history preserved; no paper/DOI/tracker. Program17/180 dispositions completed (9.4444%); PR18/20 remain held. 2026-10-01T23:53:43.132998+00:00

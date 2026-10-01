@@ -1,7 +1,9 @@
-# 7000019: proposed accepted smooth small-width partial
+# 7000019: accepted smooth small-width partial
 
-The current PROOF proves spherical rigidity for a compact convex body with C²,alpha boundary,0<alpha<1, under one globally constant strip area and0<h<2inradius. Its theorem and every mathematical section2onward are original exactbytes. The full intended fixed-width question remains unresolved at h>=2inradius and for nonsmooth boundaries. No novelty or solved credit is claimed.
+**Accepted unsolved partial; NEW complete gate PASS; exact original head remotely merged.** The C^(2,alpha),0<h<2inradius spherical-rigidity theorem in PROOF.md is valid. The broader one-fixed-width convex target remains unresolved for h>=2inradius and nonsmooth boundaries. No novelty or solved credit is claimed.
 
-Three complete distinct original-stage families and root universal/source audit and exact replays support this partial. A NEW complete gate on the exact corrected current package is pending. Original2/5 and all historical source/review/script/receipt/log bytes are preserved or archived; no extra substantive attempt. See CURRENT_SOURCE_QUALIFICATION and CURRENT_AUDIT_SCOPE. Extensive AI assistance; unrefereed, no humanpeer-review/proof-assistant certification. No paper, newDOI, release or trackerrow.
+Three independent original-stage families, root universal/source review and exact replays, and a new complete current28-file adversary passed. Root read its full report/code and reproduced original1056/1056/266 byte-exact outputs, family40/20/35 and fresh30 exact controls/13 rejected substitutes. Finite checks supplement the separately reviewed universal proof and full primary dependency. The original proof math is unchanged; source/prior/code/receipt/log/ledger/history and ORIGINAL/REVIEWED_CANDIDATE copies remain exact. See ACCEPTANCE.md and CURRENT_SOURCE_QUALIFICATION.md.
 
-Run the original verify.py in an isolated copy; the old independent checker requires existing SymPy1.14.0 (available with /usr/bin/python3 here). Original scripts reproduce1056/1056/266 unchanged. Finite controls do not certify Reichel's theorem or full target.
+Original2/5; audit adds no substantive attempt. The scope includes the selected QUEUErow, whose other fields and all unrelated rows are preserved. The present acceptance mirror is recorded separately in the parent state_mirror_receipt.json. Static catalog/desk assessments and historical generator/readiness limits remain explicit.
+
+AI tools were used extensively; this is unrefereed AI verification without humanpeer review or proof-assistant certification. No paper, new DOI, release or tracker entry. Run historical scripts only in isolated copies; /usr/bin/python3 here provides the existing SymPy1.14.0.
