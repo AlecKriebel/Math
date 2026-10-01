@@ -1,7 +1,5 @@
 # 2676 / KP-1.17: mixed alternation and branched double covers
 
-Exact original question: can one alternating link and one non-alternating link in the three-sphere have homeomorphic branched double covers?
+Original unresolved after five substantive author turns. The frozen packet contains finite involution restrictions, an exact equivariant-filling gap, reductions to prime hyperbolic branch exteriors and hyperbolic/toroidal non-Seifert common covers, an explicit toroidal L-space with no alternating branch, and actual mutation rigidity for an infinite two-trefoil-splice family. No unrestricted solution or novelty is claimed.
 
-Turns 1–4 establish scoped involution and filling results, reduce any mixed pair to prime hyperbolic branch exteriors, and exclude Seifert common covers. An explicit toroidal L-space with an actual spherical branch quotient has no alternating branch, illustrating the remaining distinction between Floer properties and alternation. The original problem remains unresolved. One substantive author turn remains; a separate adversarial review is required before a final PR.
-
-This is K3 2026 Problem 1.17, not a claim that the 1997 Kirby list used the same number. See SOURCE_GATE.md for the edition and prior-attempt checks. Full source reading copies stay outside this public packet.
+Read RESULT.md for the complete scope and remaining gap; REVIEW_REQUEST.md lists adversarial checks. Separate independent review is required before a final partial-result PR. TARGET.json remains a historical zero-turn source-gate record; FINAL_STATUS.json and TURN_LEDGER.json record the current unsolved5/5 disposition. Full source reading copies are excluded.

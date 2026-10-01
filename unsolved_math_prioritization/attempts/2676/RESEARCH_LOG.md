@@ -13,3 +13,7 @@
 ## 2026-10-01 10:33 UTC — substantive turn 4
 
 Closed the common-Seifert-cover sector using the exact credited classification. Constructed a toroidal trefoil splice with H1 = Z/5, proved its L-space property by the complete slope interval including the meridian, and realized an actual S3 branch quotient by exact boundary equivariance. The determinant-five Tait-graph classification proves that every branch is nonalternating; the constructed branch is a prime hyperbolic knot. This blocks a weak Floer-property sufficiency route, not the original conjecture. The first exact-checker run passed all 16,437 assertions. One substantive author turn remains.
+
+## 2026-10-01 10:57 UTC — substantive turn 5 and final author freeze
+
+Established actual branch rigidity for the infinite family A_r=[[r+1,-(r(r+1)-1)],[1,-r]], r>=2. Verified the single JSJ torus, marked homology obstruction to piece exchange, peripheral ±I lemma, meridional strong-inversion extension, Sakuma piece conjugacies and the full boundary discrepancy via the pillowcase Klein-four kernel. All branches of each cover are mutants, so this family cannot give a mixed pair. The first checker run passed15,934 exact controls. Original still unresolved after5/5: no global hyperbolic/toroidal alternation compatibility and no mixed pair. Author search stops here for separate independent review. No proof or source PDFs are promoted beyond the explicitly frozen partial scope.
