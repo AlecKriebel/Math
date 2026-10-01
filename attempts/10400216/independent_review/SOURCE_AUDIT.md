@@ -1,0 +1,15 @@
+# Independent primary-source audit
+
+All ten complete PDF reading-copy hashes match the author's SOURCE_INDEX.json. The full frozen packet and all five historical manifests also match. Full PDFs, extracted text, renders and duplicate replay outputs are excluded from this portable review.
+
+- [Ohtsuki, print](https://msp.org/gtm/2002/04/gtm-2002-04-024p.pdf) and [screen](https://msp.org/gtm/2002/04/gtm-2002-04-024s.pdf): Section12.4, printed533–536; Problem12.11 and Figure22 visually checked. General gleamed shadows and the already-known planar motivation were kept distinct.
+- [Dylan Thurston](https://arxiv.org/pdf/math/0311458v2): printed351 half-corner diagram visually checked; definitions of simple/gleamed/relative shadows and reconstruction at354–356. The reversed-direction complexity prose on361 is not used.
+- [Costantino–Thurston](https://arxiv.org/pdf/math/0506577v3): complete Section3.2 boundary colors and mapping-cylinder/false-boundary collapse; Example3.15 and Figure7 visually inspected; Definitions3.18/Remark3.19; Propositions3.33–3.34 block volume and cusp lattice; Theorem3.37 for torus-boundary manifolds. Current arXiv metadata confirms the selected v3 and Journal of Topology citation.
+- [Ishikawa–Koda](https://arxiv.org/pdf/1403.0596v1): full Section5 argument, especially Proposition5.1 and Lemma5.3 through the annulus/Möbius cases and maximal unit-square horocusp construction. The final publisher text was not asserted to have been inspected.
+- [Lackenby](https://arxiv.org/pdf/math/0012185v2): Theorem1, exact introductory Menasco exception, twist definition and twist reduction; Section3 one-sided-frontier explanation and Theorem5; the actual guts argument in Section5. Original lower-bound constants and the later strengthened application are distinguished.
+- [Futer–Kalfagianni–Purcell, filling](https://arxiv.org/pdf/math/0612138v4): Theorem1.1 explicitly allows a subset of cusps and fixes the disjoint horoball scale; geometrization and seven-crossing long-twist qualifications checked.
+- [Moffatt](https://msp.org/agt/2012/12-2/agt-v12-n2-p16-s.pdf): Section3.1 printed1107, signed Tait reconstruction and T1–T3. Tait sign is not oriented writhe; duality reverses it.
+- [Agol–Storm–Thurston](https://arxiv.org/pdf/math/0506338v2): Definition2.1, the Miyamoto inequality explicitly recorded in Section2, and the noncompact finite-volume Theorem9.1. The standalone Miyamoto paper was not independently retrieved; no stronger access claim is made.
+- [Futer–Kalfagianni–Purcell, Farey manifolds](https://arxiv.org/pdf/0808.2716v4): Sections2.2 and4.1, hyperbolic punctured-torus bundles and the figure-eight example. Only existence/topology is needed for the parallel-fiber control, not experimental cusp data or a numerical volume value.
+
+The independent report audits the exact theorem hypotheses and convention use in these passages. It does not claim to reprove the cited deep geometric theorems or certify historical novelty of the elementary deductions.
