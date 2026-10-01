@@ -19,3 +19,7 @@ Proved normal-core regularization by lifting entire identity isotopies. Proved c
 ## 2026-10-01T09:44:04.075607+00:00 — author turn3 checkpoint
 
 Constructed a genuine hyperbolic plane-field analogue using15-surgery on the figure-eight knot, torsion classes c and4c, matching rational framed-link self-linking and Pontryagin classification. A15-fold cyclic cover kills both primary classes and gives homotopic lifts, while downstairs Euler classes2c and8c are unequal up to sign. No taut-foliation realization or upstairs isotopy-limit statement follows. Original unresolved3/5. Completion estimate25%.
+
+## 2026-10-01T09:49:49.124255+00:00 — author turn4 checkpoint
+
+Tested actual taut realization of the hyperbolic torsion pair. Computed all figure-eight large-surgery square quotients; reduced Floer homology for15-surgery is supported only in the spin structure. The Spin-c-refined taut nonvanishing argument forces Euler0, excluding the proposed2c/8c fields. Source square visually checked, regularity/coorientation qualifications retained, and exact F2 controls pass. Original unresolved4/5. Completion estimate20%; one substantive turn remains.
