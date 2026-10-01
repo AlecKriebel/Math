@@ -57,3 +57,7 @@ PR12 accepted as credited already_solved corollary after the complete process an
 ## 2026-10-01T14:28:20.591123+00:00 — PR13 partial outcome remotely merged
 
 PR13 accepted as credited partial audit of two explicit repairs; literal source remains unsolved. MERGED 2026-10-01T14:26:35Z, commit69a87372c0b03a7cb2cd689f08955cbed79e97c0, exact head/parents/ancestor independently verified. Fresh adversary found no mandatory issues. No new paper, DOI or tracker row. PR13 workflow **100%**; program **5/180=2.78%**. PR14 all three independent families pass; source-zero convention and prior attribution will be globally clarified before a fresh review.
+
+## 2026-10-01T14:33:03.391969+00:00 — PR14 fresh acceptance audit started
+
+All three independent families pass the narrow noninteger Wishart obstruction. Exact earlier Anonymous candidate and zero-convention boundary are reconciled globally; current candidate frozen SHA20afe8e57f91c5f6483d54389d70fc7d19fce27114549b83461289f760ac1229. Fresh full theorem/source/priority adversary active. PR14 workflow **78%**; program **5/180=2.78%**. No new paper, DOI or tracker row.
