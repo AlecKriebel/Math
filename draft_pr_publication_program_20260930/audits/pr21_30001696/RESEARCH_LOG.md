@@ -15,3 +15,7 @@ Completion75% toward disposition, fresh complete gate pending. Both independentl
 ## 2026-10-01T20:25:24.724418+00:00 checkpoint
 
 Both universal routes and conservative classical subsumption pass; final current22-entry package verified; root reproduced101284 fresh controls. Workflow completion estimate:95%. Original substantive budgets preserved; no paper, DOI or tracker action.
+
+## 2026-10-01T20:29:23.523123+00:00 — integration95%
+
+Exact reviewed head is second parent of pending main merge. Original14 canonical files matched before copying current reviewed bytes. Canonical scientific body and sealed adapters preserved; administrative acceptance updates archived. Entire pre-merge queue restored, only30001696 status/budget/findings row changed. No paper/DOI/tracker.
