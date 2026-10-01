@@ -109,3 +109,7 @@ PR17 fresh full gate passes truthful restricted partial findings; readiness92%, 
 ## 2026-10-01T17:25:42.396444+00:00 — PR19 immutable partial inputs and independent audit families
 
 Exacthead13files/unsolved2/5 frozen. Root reconstructs baselineuniversallybeforehistoricalreview/code, readsoriginalprimary and repros bothreceipts exactly. Three distinctfamiliesactive; acceptanceafter18. Workflow20%, programcompleted **7/180 (3.89%)**. PR16 fullfreshround2and18deepprioritycontinue. No extra proofattempt/publication/merge.
+
+## 2026-10-01T17:39:11.603395+00:00 — PR16 final preprint gate clean
+
+Corrected exact preprint/package passes a new complete second adversary with zero unresolved issues. Immutablebindings verified; staged publication is now permitted by userprocess. Workflow90%, programcompleted **7/180 (3.89%)** untilremoteacceptance. No new DOI/merge yet;17partialgate and18/19auditscontinue.

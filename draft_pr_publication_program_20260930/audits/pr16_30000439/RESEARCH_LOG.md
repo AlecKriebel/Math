@@ -31,3 +31,7 @@ The five-page paper,42-member first-party source archive and exact-metadata uplo
 ## 2026-10-01T17:12:10.868913+00:00 — round-one repair and corrected archives
 
 Fresh full round1 passed all mathematical claims and found one minimum-Python documentation defect. Both current READMEs now require Python3.10+; all29 copied proof/check artifacts, TeX, PDF and exact metadata remain unchanged. Current42-member source SHAb1e4a1c22fc3eec24c9d8f479b48110ddf6d72052181995037de64b99d46791f; deterministic two-build equality and local Zenodo check pass. Original gate/archive bindings preserved. Workflow **80%**, new full round2 required; no deposit/tracker/merge.
+
+## 2026-10-01T17:39:11.603395+00:00 — new full round-two clean; final publication gate
+
+Full new reviewer independently passes all mathematics/source scope/priority limits/PDF/metadata/license/provenance/runtime/archive gates, zero unresolvedfindings. All5 extracted programs reproduce;15420newexactcontrols pass; correctedarchives rebuildbyteidentically.17ownauditmanifestentries and14currentinputbindings rootverified; currentgate preserved. Workflow **90%**, authorized stage/publication/tracker/merge next; no deposit yet.
