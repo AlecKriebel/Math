@@ -11,3 +11,7 @@ Independent primary-source audit confirms the finite input-dependent bound is a 
 ## 2026-09-30T21:50:19.443745-07:00 — PR10 corrected candidate checkpoint
 
 Three independent families pass the exact finite input-dependent known bound, with expository and citation repairs applied to a separate reviewed candidate. Root reproduced a nonzero Fano-family example exactly: blowup of P³ along a line, plane fiber S, volume54, τ4, optimal constant3/8. A fresh complete adversary is reviewing proof, sources, classification and metadata. Original PRhead unchanged; GitHub reports a queue merge conflict with main, to be resolved while preserving PR9 DOI acceptance. PR10 workflow **65%**; program completed **1/180 (0.56%)**. No paper or DOI is appropriate for this partial outcome.
+
+## 2026-09-30T22:00:51.344611-07:00 — acceptance and main integration checkpoint
+
+Fresh complete adversary and separate fresh primary-source reconstruction passed with no unresolved findings. Corrected bound accepted as already_solved known-method/source-status correction, with no novel paper/DOI. Main-only merge integration resolves QUEUE conflict preserving PR9 published row byte-for-byte. Original turn evidence remains unchanged, repaired canonical proof matches reviewed SHA256, unrelated user files preserved. PR10 workflow **95%** pending remote push/merged-state verification; program completed dispositions **1/180 (0.56%)** until that succeeds.
