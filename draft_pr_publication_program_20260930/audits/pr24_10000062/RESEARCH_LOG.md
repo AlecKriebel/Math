@@ -11,3 +11,11 @@ Full metric-ball cap/incidence and finite-index noncocompact argument independen
 ## 2026-10-01T21:20:31.518678+00:00 — complete families/root and corrected candidate
 
 Workflow75%; all three complete families PASS scoped result. Root read every full report and new script, verified57 family manifest entries, reproduced1398/888/158 controls and the full-cell certificate. Corrected folder/QUEUE provenance and current AI/partial metadata without scientific edits; archived originals and1/5 unchanged. NEW complete current gate pending; no paper/DOI/tracker.
+
+## 2026-10-01T21:39:50.741720+00:00 — manifest-label reconciliation, workflow75%
+
+Preserved the complete earlier root receipt byte-for-byte. Its57-entry field counted all manifest entries:37 first-party and20 ignored foreign/scratch entries. Reverified every byte length and hash; no scientific/candidate edit or publication of foreign material. Added a separate reconciliation receipt after the fresh reviewer detected the label issue.
+
+## 2026-10-01T21:46:26.567422+00:00 — fresh complete gate/root replay, integration95%
+
+NEW complete report/early reconstruction and both programs fully read; all16 manifest entries verified; new107 controls reproduced byte-for-byte. No mathematical/current-candidate finding; original source remains unresolved and1/5 unchanged. Post-integration accepted-state mirror pending, not retrospectively invented.

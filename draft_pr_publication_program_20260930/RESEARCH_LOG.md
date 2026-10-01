@@ -165,3 +165,7 @@ PR23 exact headea6b192f7e3bc094b78bbc416bf61c609ffa5b2d merged76610b0fe442c710f3
 ## 2026-10-01T21:23:02.967194+00:00 — PR23 complete and PR24 fresh gate
 
 Overall13/180 (7.22%) complete. PR23 exact remote merge and accepted zero-attempt mirror verified; previous13 state records unchanged, total original consumed16, no new attempt. PR24 three full families/root pass,57 sealed entries checked and1398/888/158 fresh checks reproduced; corrected current22-file candidate and exact live scope readback, NEW full adversary active, workflow75%. PR25 exact16-file freeze and independent family work preserved; root recent-source proofs under review, workflow20%. PR18/20 independent holds remain. No new paper/deposit/DOI/tracker.
+
+## 2026-10-01T21:46:26.567422+00:00 — PR24 clean current gate; PR25 external-chain audit
+
+Overall13/180 (7.22%) remotely complete. PR24 NEW complete gate and root107 fresh controls PASS, documentary57-entry accounting separately reconciled as37 first-party plus20 ignored entries, original1/5, integration95%. PR25 root read complete required square analytic chain and all3 full family reports/scripts, verified72 listed entries (34 first-party), reproduced165/5840/689 exact checks. Ordinary square external proof identified no central gap; new independent real falsifier and subsequent fresh current-package gate remain, workflow65%, original0/5. No new publication/DOI/tracker; PR18/20 independent holds unchanged.
