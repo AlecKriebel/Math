@@ -1,0 +1,2388 @@
+diff --git a/unsolved_math_prioritization/QUEUE.md b/unsolved_math_prioritization/QUEUE.md
+index 9fdc4510e..0b9e7e190 100644
+--- a/unsolved_math_prioritization/QUEUE.md
++++ b/unsolved_math_prioritization/QUEUE.md
+@@ -37,7 +37,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at
+ | 26 | 30005795 / OWR-14298162-002 | Valuation Bounds When the Center Meets the Negative Part | 0.2693 | 6.0 | 3 | 2024 | queued | 0/5 |  |  |  |
+ | 27 | 30005473 / OWR-12697711-006 | Irreducibility of Exposed-Point Varieties of Generic Discotopes | 0.2675 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
+ | 28 | 30002867 / OWR-13678-008 | Matrix Characterization of Complete Intersections | 0.2675 | 5.0 | 3 | 2015 | queued | 0/5 |  |  |  |
+-| 29 | 30005897 / OWR-14298367-003 | Shadowing Without Bounded Distortion | 0.2651 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
++| 29 | 30005897 / OWR-14298367-003 | Shadowing Without Bounded Distortion | 0.2651 | 5.5 | 3 | 2024 | claimed_solved | 1/5 |  | 2026-09-30: Complete proof of shadowing/generalized-hyperbolicity equivalence for the stated dissipative composition operators without bounded distortion, including p=1. Separate adversarial AI review passed. Prior special cases credited; unrefereed, novelty unconfirmed. Draft PR: https://github.com/AlecKriebel/Math/pull/12. |  |
+ | 30 | 30005934 / OWR-14298374-003 | Wishart Processes with Noninjective Semigroups | 0.2651 | 5.5 | 3 | 2024 | queued | 0/5 |  |  |  |
+ | 31 | 30000224 / OWR-824-008 | Set-Theoretic Cohen–Macaulay Ideals in Characteristic Zero | 0.2641 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
+ | 32 | 30000439 / OWR-1194-009 | Gaps Between Piecewise-Linear and Linear Embedding Dimensions | 0.2637 | 5.5 | 3 | 2006 | queued | 0/5 |  |  |  |
+diff --git a/unsolved_math_prioritization/attempts/30005897/.gitignore b/unsolved_math_prioritization/attempts/30005897/.gitignore
+new file mode 100644
+index 000000000..7a60b85e1
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30005897/.gitignore
+@@ -0,0 +1,2 @@
++__pycache__/
++*.pyc
+diff --git a/unsolved_math_prioritization/attempts/30005897/MANIFEST.json b/unsolved_math_prioritization/attempts/30005897/MANIFEST.json
+new file mode 100644
+index 000000000..caf674a99
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30005897/MANIFEST.json
+@@ -0,0 +1,25 @@
++{
++  "sha256": {
++    ".gitignore": "862263fa1f46c20f0d1e4dac5ffcc75abd55c08211b2c3864c5f8764b9d87793",
++    "PROOF.md": "f38ae2dd97bb2aeb8f1e97da0f4133b84b6d43d803e2b38df2c91acc56817a8e",
++    "README.md": "04360765de98715dcecce80cdfe69405247d1dadc31a1cd4a75bfcdba497d779",
++    "RESEARCH_LOG.md": "b2778831864bef2bfebf3121f3ba5ff1d65ede799ea810f14afbddc5fca446b6",
++    "SOURCE_AUDIT.md": "eafcb30af10335aa8f71542a8da0647bc2b2601ff2705b8297a1dd6cc2e6840e",
++    "attempt.json": "01b4d653738509ca808f531b2cf091e2e606b9b1a16a47b51b240ed51ebbaa61",
++    "attempt_status.json": "2c35d95b3ee12fd6f55a4da892305f85ed56612f1110bef699b392427fc531b7",
++    "pr_draft.md": "075338ae97991b2dc3f9ceecf54868d8af4ab17a4c053c9c5c68d54eee188b2a",
++    "review/REVIEW.md": "4ae3d523e7eaad83e901a6e1dd5d006db8244103f7db30c26e73c432ac5b0e52",
++    "review/candidate_checks_rerun.json": "b1077212b97b3d8ec9e67a5b3f8f5bf924b0640d519089de5f4b5303f29c357e",
++    "review/independent_checks.json": "561c0f2e18ad5d9fdd27b58cbb47a4608b088ad08aef0f42007bfb399861985e",
++    "review/independent_checks.py": "35d91393b85ebd7df0a495e8c5863d4b4c4f49129981ea00024bceb7f875a824",
++    "review/reviewed_proof.md": "7aa1189fc74b7b5fcd38435db8820e551bc0671f1ee580c37d676e04ef40b53b",
++    "review/reviewed_proof_citation_update.md": "12d02dc0bcedf8812d0e57950e5130aad8b6c308c26bc260faa4e3e3605463b3",
++    "review/verdict.json": "41a61e20e59b86d4abf924c16e58a49e0cdd2897ac0dcf40aa2af0062b60548d",
++    "review_request.md": "2216b7eb06b3939406cb6c584c1dcc423a1d4654c2d0e7bf6d402ac011bb50e7",
++    "source_provenance.json": "e30e6cf8bf85648bb9a81d685965b9244209c9b8293daeff5f385745243738c6",
++    "source_record.json": "c2d2554ae676b10c222e24ae80bf93aa0302645fb94af81f75fcdba5f5e81f8e",
++    "verification.json": "b1077212b97b3d8ec9e67a5b3f8f5bf924b0640d519089de5f4b5303f29c357e",
++    "verify.py": "9b3fafd9730e10ed12cb9252d03a57ce62167b4c07c33c95e168aa0629ef4929"
++  },
++  "note": "Hashes cover the deliverable except this manifest itself; no formal proof certification is implied."
++}
+diff --git a/unsolved_math_prioritization/attempts/30005897/PROOF.md b/unsolved_math_prioritization/attempts/30005897/PROOF.md
+new file mode 100644
+index 000000000..cc0f869ee
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30005897/PROOF.md
+@@ -0,0 +1,422 @@
++# Shadowing without bounded distortion for dissipative composition operators
++
++**Status:** complete candidate proof; passed one independent AI mathematical audit.
++This is an AI-assisted research note, not an established or refereed result.
++See [the preserved review](review/REVIEW.md); historical priority is unconfirmed.
++
++**Target:** UnsolvedMath 30005897 / OWR-14298367-003, and the two separate
++questions in Open Problem (1) of Oberwolfach Report 19/2024, p. 1080.
++
++## 1. Statement and scope
++
++Let \((X,\mathcal B,\mu)\) be a sigma-finite measure space. Suppose that
++\(f:X\to X\) is a bijective bimeasurable transformation and that there
++are finite constants \(c_+,c_-\) for which
++\[
++ \mu(fA)\le c_+\mu(A),\qquad
++ \mu(f^{-1}A)\le c_-\mu(A)\qquad(A\in\mathcal B).
++\tag{1.1}
++\]
++Thus \(T\varphi=\varphi\circ f\) is a bounded invertible operator on
++\(L^p(X,\mu)\), for each fixed \(1\le p<\infty\). Assume dissipativity in
++the source's sense: there is a measurable \(W\) with
++\(0<\mu(W)<\infty\) such that
++\[
++ X=\mathop{\dot\bigcup}_{n\in\mathbb Z}f^nW
++\tag{1.2}
++\]
++up to a null set. All operators and spaces may be real or complex.
++
++We use two-sided shadowing. Generalized hyperbolicity means a topological
++direct sum \(L^p=M\oplus N\) of closed subspaces satisfying
++\[
++ TM\subset M,\qquad T^{-1}N\subset N,\qquad
++ r(T|_M)<1,\qquad r(T^{-1}|_N)<1.
++\tag{1.3}
++\]
++Equivalently, the two restrictions have uniform exponential norm decay.
++This is the spectral-radius convention used in the 2024 source; strict
++one-step contractions can be obtained by an equivalent norm.
++
++**Theorem.** Under (1.1)--(1.2), \(T\) has the shadowing property if and
++only if it is generalized hyperbolic. No bounded-distortion assumption is
++needed. In the implication from shadowing, \(M\) and \(N\) can be chosen
++as complementary measurable support bands.
++
++There is also a pointwise density criterion. Put \(\nu=\mu|_W\), and let
++\[
++ \rho_n=\frac{d\nu_n}{d\nu},\qquad
++ \nu_n(A)=\mu(f^nA),\quad A\subset W.
++\tag{1.4}
++\]
++Each \(\rho_n\) is positive and finite almost everywhere; \(\rho_0=1\).
++The theorem's two conditions are equivalent to the following:
++
++**Density condition.** There are \(d\ge1\) and \(0<\eta<1\) such that,
++for almost every \(w\in W\) and every \(n\in\mathbb Z\),
++\[
++ \min\{\rho_{n-d}(w),\rho_{n+d}(w)\}\le\eta\rho_n(w).
++\tag{1.5}
++\]
++The exceptional set is common to all integers \(n\). Its existence causes
++no issue because there are only countably many coordinates.
++
++The proof below is self-contained apart from standard \(L^p\) duality,
++Radon--Nikodym theory, and elementary Banach-space facts. In particular it
++does not assume the recent general spectral characterization of shadowing.
++
++## 2. A necessary dual estimate for shadowing
++
++We first give an elementary Banach-space lemma, including its quantitative
++form to expose the uniformity needed later.
++
++**Lemma 2.1.** Let \(A\) be a bounded invertible operator on a Banach
++space \(E\). If \(A\) has two-sided shadowing, there is \(K>0\) such
++that every bounded sequence \((b_j)_{j\in\mathbb Z}\) admits a bounded
++solution of
++\[
++ y_{j+1}-Ay_j=b_j,\qquad
++ \sup_j\|y_j\|\le K\sup_j\|b_j\|.
++\tag{2.1}
++\]
++For this \(K\), any integer \(d>4K^2+1\) satisfies
++\[
++ \max\{\|(A^*)^du\|,\|(A^*)^{-d}u\|\}>2\|u\|
++ \quad(0\ne u\in E^*).
++\tag{2.2}
++\]
++
++**Proof.** For (2.1), fix a shadowing accuracy, say one, and an associated
++positive error tolerance. Scale any bounded forcing into that tolerance,
++construct a bi-infinite pseudotrajectory recursively using invertibility,
++and subtract a shadowing exact orbit. Scaling back gives (2.1), with a
++constant independent of the forcing. For zero forcing choose the zero
++solution.
++
++Write \(S=A^*\). Every finitely supported sequence \((u_j)\) in \(E^*\)
++satisfies
++\[
++ \sum_j\|u_j\|\le K\sum_j\|u_{j-1}-Su_j\|.
++\tag{2.3}
++\]
++Indeed, choose \(b_j\) in the unit ball so that the real parts of
++\(u_j(b_j)\) approach \(\|u_j\|\), simultaneously on the finite support.
++Use (2.1), sum the identities
++\(u_j(b_j)=u_j(y_{j+1}-Ay_j)\), and shift the index. This gives
++\[
++ \operatorname{Re}\sum_j u_j(b_j)
++ =\operatorname{Re}\sum_j(u_{j-1}-Su_j)(y_j)
++ \le K\sum_j\|u_{j-1}-Su_j\|.
++\]
++Letting the finite approximation errors tend to zero proves (2.3).
++No norm-attainment assumption is used.
++
++Fix nonzero \(u\in E^*\), and write \(a_j=\|S^ju\|\). In (2.3), take
++\(u_j=S^{-j}u\) for \(-b\le j\le-a\) and zero otherwise. Interior
++terms cancel, leaving, for every pair of integers \(a\le b\),
++\[
++ \sum_{j=a}^{b}a_j\le K(a_a+a_{b+1}).
++\tag{2.4}
++\]
++In particular, using the interval \([-j,j-1]\), for each \(j\ge1\),
++\[
++ a_0\le K(a_{-j}+a_j).
++\tag{2.5}
++\]
++If both \(a_{-d}\) and \(a_d\) were at most \(2a_0\), (2.4) on
++\([-d,d-1]\) would give
++\[
++ \sum_{j=-d}^{d-1}a_j\le4Ka_0.
++\]
++Summing (2.5) for \(1\le j\le d-1\) then gives
++\[
++ \frac{d-1}{K}a_0
++ \le\sum_{j=1}^{d-1}(a_{-j}+a_j)
++ \le4Ka_0.
++\]
++This contradicts \(d>4K^2+1\), proving (2.2). \(\square\)
++
++The implication in this lemma is consistent with the more recent full
++duality theorem of Dragičević--Pituk. Only the elementary necessary
++direction proved here is used.
++
++## 3. Orbit coordinates and localization
++
++The realization of dissipative composition operators as shifts on
++density-weighted sequence spaces is prior work: see
++Carvalho--Darji--Varandas [7, Theorem 2.4]. We give the normalization
++explicitly because the adjoint coefficients are essential to the argument.
++
++Let \(\Omega=W\times\mathbb Z\), with measure \(\nu\times\#\), and
++write \(E=L^p(\Omega)\). Define
++\[
++ (U\varphi)_n(w)=\rho_n(w)^{1/p}\varphi(f^nw).
++\tag{3.1}
++\]
++The change-of-variables formula defining \(\nu_n\), together with the
++disjoint decomposition (1.2), shows that \(U\) is an isometric
++isomorphism from \(L^p(X,\mu)\) onto \(E\). Surjectivity follows by
++defining \(\varphi\) separately on each \(f^nW\); both the definition
++and its inverse are measurable.
++
++The conjugate \(B=UTU^{-1}\) is the positive weighted backward shift
++\[
++ (Bg)_n(w)=a_n(w)g_{n+1}(w),\qquad
++ a_n(w)=\left(\frac{\rho_n(w)}{\rho_{n+1}(w)}\right)^{1/p}.
++\tag{3.2}
++\]
++Both \(B\) and \(B^{-1}\) are bounded. They preserve disjoint supports
++and send every measurable support band onto another such band.
++
++Let \(q\) be conjugate to \(p\), including \(q=\infty\) when \(p=1\).
++The Banach dual is the scalar \(L^q(\Omega)\), and \(S=B^*\) satisfies
++\[
++ (Sh)_{n+1}=a_nh_n.
++\tag{3.3}
++\]
++If \(h\) is supported in coordinate \(n\), then \(S^dh\) and
++\(S^{-d}h\) are supported in coordinates \(n+d\) and \(n-d\), with
++respective multiplication factors
++\[
++ \left(\frac{\rho_n}{\rho_{n+d}}\right)^{1/p},\qquad
++ \left(\frac{\rho_n}{\rho_{n-d}}\right)^{1/p}.
++\tag{3.4}
++\]
++
++**Lemma 3.1.** If \(B\) has shadowing, condition (1.5) holds for some
++\(d\), with \(\eta=2^{-p}\).
++
++**Proof.** Apply Lemma 2.1 to \(B\). Fix a coordinate \(n\). If both
++factors in (3.4) were strictly less than two on a set of positive
++\(\nu\)-measure, then on a subset \(F\) of positive measure they would
++both be at most \(2-\epsilon\) for some \(\epsilon>0\). Use
++\(h=\mathbf1_F\) in coordinate \(n\). It belongs to \(L^q(\Omega)\):
++\(\nu(W)<\infty\), and for \(q=\infty\) it has norm one. Both norms
++in (2.2) would be at most \((2-\epsilon)\|h\|\), a contradiction.
++Thus at least one of the factors in (3.4) is at least two almost
++everywhere. Rearrangement gives (1.5). Take the union of the exceptional
++null sets over \(n\in\mathbb Z\). \(\square\)
++
++This is the place where an operator-level uniform estimate becomes a
++pointwise estimate uniform over every fiber. Merely knowing that each
++individual fiber has shadowing would not suffice.
++
++## 4. A support-band splitting for a power
++
++Assume (1.5) for some \(d\) and \(\eta\in(0,1)\). Define
++\[
++ A_0=\{(w,n):\rho_{n-d}(w)\le\eta\rho_n(w)\},\qquad
++ C_0=\Omega\setminus A_0.
++\tag{4.1}
++\]
++These sets are measurable. All statements about them are modulo the
++common null set already removed. Put
++\(M_0=L^p(A_0)\), \(N_0=L^p(C_0)\), as support bands in \(E\).
++
++If \((w,n)\in A_0\), then \((w,n-d)\in A_0\). In fact, applying
++(1.5) at \(n-d\), the alternative
++\(\rho_n\le\eta\rho_{n-d}\) is impossible, because it would imply
++\(\rho_n\le\eta^2\rho_n\). Therefore
++\(\rho_{n-2d}\le\eta\rho_{n-d}\). Iteration yields
++\[
++ \rho_{n-md}(w)\le\eta^m\rho_n(w)
++ \quad((w,n)\in A_0,\ m\ge0).
++\tag{4.2}
++\]
++
++If \((w,n)\in C_0\), condition (1.5) forces
++\(\rho_{n+d}\le\eta\rho_n\). Moreover, \((w,n+d)\in C_0\), because
++membership in \(A_0\) at \(n+d\) would give the contradictory opposite
++inequality \(\rho_n\le\eta\rho_{n+d}\). Hence
++\[
++ \rho_{n+md}(w)\le\eta^m\rho_n(w)
++ \quad((w,n)\in C_0,\ m\ge0).
++\tag{4.3}
++\]
++At a point where both drops hold, (4.1) assigns the point to \(A_0\);
++the two propagation arguments remain valid at this boundary.
++
++Equations (3.2), (4.2), and (4.3) now give
++\[
++ B^dM_0\subset M_0,\quad B^{-d}N_0\subset N_0,
++\quad
++ \|B^{md}|_{M_0}\|\le\eta^{m/p},\quad
++ \|B^{-md}|_{N_0}\|\le\eta^{m/p}.
++\tag{4.4}
++\]
++For example, changing the summation index in the \(L^p\) norm of
++\(B^{md}g\) expresses it as the integral of
++\(\sum_n(\rho_{n-md}/\rho_n)|g_n|^p\), and (4.2) applies on the support
++of \(g\). The inverse estimate is identical with (4.3).
++
++## 5. Passing from a power to the original operator
++
++It is important not to assume that an arbitrary generalized-hyperbolic
++splitting for a power automatically gives the required splitting for the
++operator. Here a finite intersection of support bands supplies it.
++
++Define the closed support band
++\[
++ M=\bigcap_{j=0}^{d-1}B^jM_0,
++\tag{5.1}
++\]
++and let \(N\) be its complementary support band. Then \(E=M\oplus N\),
++with norm-one coordinate projections when the bands are nonzero. Because
++\(B\) is an invertible weighted coordinate permutation,
++\[
++ BM=\bigcap_{j=1}^{d}B^jM_0
++ \subset\bigcap_{j=0}^{d-1}B^jM_0=M;
++\tag{5.2}
++\]
++the inclusion uses \(B^dM_0\subset M_0\).
++
++Support complementation commutes with this weighted permutation. Thus
++\[
++ N=\sum_{j=0}^{d-1}B^jN_0
++\tag{5.3}
++\]
++is the support band on the finite union of the corresponding supports.
++Equation (5.2) also gives \(B^{-1}N\subset N\). More explicitly, if
++\(\tau(w,n)=(w,n-1)\) is the support map of \(B\), and \(A\) is the
++support of \(M\), then \(\tau A\subset A\) implies
++\(\tau^{-1}(A^c)\subset A^c\).
++
++The contraction bound for \(M\) follows immediately from \(M\subset M_0\):
++\[
++ \|B^{md}|_M\|\le\eta^{m/p}.
++\tag{5.4}
++\]
++For the complementary band, set
++\[
++ D=\max_{0\le j<d}\|B^j\|\,\|B^{-j}\|<\infty.
++\]
++If \(g\in B^jN_0\), then \(B^{-j}g\in N_0\), so (4.4) gives
++\[
++ \|B^{-md}g\|
++ \le\|B^j\|\eta^{m/p}\|B^{-j}g\|
++ \le D\eta^{m/p}\|g\|.
++\tag{5.5}
++\]
++For general \(g\in N\), partition the finite union in (5.3) into
++disjoint measurable sets, the \(j\)-th contained in the support of
++\(B^jN_0\). This writes \(g=\sum_{j=0}^{d-1}g_j\) with disjoint
++supports and \(g_j\in B^jN_0\). Their images under \(B^{-md}\) still
++have disjoint supports. Therefore
++\[
++ \|B^{-md}g\|^p
++ =\sum_j\|B^{-md}g_j\|^p
++ \le D^p\eta^m\sum_j\|g_j\|^p
++ =D^p\eta^m\|g\|^p.
++\tag{5.6}
++\]
++This argument includes \(p=1\).
++
++Writing an arbitrary \(k\ge0\) as \(md+r\), \(0\le r<d\), and using
++the finite bounds for \(B^r\) and \(B^{-r}\), proves uniform exponential
++decay on \(M\) forward and on \(N\) backward. In particular,
++\[
++ r(B|_M),\ r(B^{-1}|_N)\le\eta^{1/(pd)}<1.
++\tag{5.7}
++\]
++Transporting the bands by \(U^{-1}\) gives (1.3) for \(T\).
++
++Thus shadowing implies (1.5), and (1.5) implies generalized hyperbolicity.
++
++## 6. Converse and completion
++
++For completeness, suppose (1.3) holds for a bounded invertible operator
++on a Banach space, and let \(P,Q\) be the complementary projections onto
++\(M,N\). There are \(C<\infty\) and \(0<\alpha<1\) such that
++\(\|T^j|_M\|,\|T^{-j}|_N\|\le C\alpha^j\) for all \(j\ge0\).
++For any bounded forcing \((b_n)\), the series
++\[
++ y_n=\sum_{j=0}^{\infty}T^jPb_{n-1-j}
++     -\sum_{j=0}^{\infty}T^{-j-1}Qb_{n+j}
++\tag{6.1}
++\]
++converge absolutely and uniformly in \(n\). Their sums are uniformly
++bounded by a constant times \(\sup_n\|b_n\|\). Directly shifting each
++series gives \(y_{n+1}-Ty_n=b_n\); commutation of \(P,Q\) with \(T\)
++is neither assumed nor needed.
++
++For a pseudotrajectory \((x_n)\), use its errors as \(b_n\), and put
++\(z_n=x_n-y_n\). Then \(z_{n+1}=Tz_n\), so invertibility implies
++\(z_n=T^nz_0\) for all integers \(n\). The uniform bound on \(y_n\)
++gives shadowing after choosing the error tolerance small enough.
++This proves the converse and the full equivalence. \(\square\)
++
++## 7. Distinguishing the two questions in the original source
++
++The original 2024 problem also asks whether the earlier characterization
++using only the scalar sequence \(\mu(f^nW)\) survives removal of bounded
++distortion. That is a different assertion from the theorem proved above.
++
++The answer to that older scalar-characterization question was already
++negative before this attempt: Bernardes--D'Aniello--Maiuriello,
++arXiv:2607.15831v1, Example 6.2, construct a dissipative two-orbit system
++whose level masses are \(2^n\), so the condition labelled HC holds, but
++whose composition operator has no shadowing. Their obstruction is a
++constant-mass positive tail on one orbit, which permits unbounded
++accumulation of pseudotrajectory errors. We claim no novelty for that
++negative answer.
++
++Condition (1.5) retains the pointwise orbit densities and is not the old
++aggregate-mass criterion. In the cited example the constant-mass tail
++violates (1.5) for every \(d\) and \(\eta<1\), as it must.
++
++## 8. Relation to current literature and remaining verification
++
++- D'Aniello--Darji--Maiuriello (2021), Corollary GH, proves the equivalence
++  with bounded distortion. Problem 5.0.1 asks about removing it.
++- Oberwolfach Report 19/2024, pp. 1078--1081, repeats the two questions.
++- Carvalho--Darji--Varandas (2024), Theorem 2.4, gives the general
++  density-weighted shift realization. Their Corollary 2.16 proves the
++  equivalence for shift operators with finite-dimensional fibers and an
++  appropriate bounded-projection basis; that is not the unrestricted
++  measurable-fiber assertion proved here.
++- Bernardes--D'Aniello--Maiuriello (July 2026), Example 6.2, answers the
++  aggregate-characterization question negatively.
++- Pituk (August 2026), Theorem B, proves the generalized-hyperbolicity
++  equivalence for all invertible operators on separable complex Hilbert
++  spaces. Thus the separable complex \(p=2\) case is prior art.
++- Pituk's Theorem A and Messaoudi--Tofanin Neto--Saavedra--Tsokanos
++  (August 2026) give counterexamples on general Banach spaces. Those
++  constructions are not asserted to be dissipative composition operators;
++  they do not refute the theorem here.
++
++The candidate contribution is the full \(1\le p<\infty\) dissipative
++composition-operator theorem, the measurable support-band construction,
++and criterion (1.5). A bounded literature search found no earlier complete
++result of this scope. That is not proof of priority. An independent reader
++must audit the dual telescoping estimate, localization at \(p=1\),
++the band-power passage, and the novelty claim before any promotion.
++
++## References
++
++1. E. D'Aniello, U. B. Darji, M. Maiuriello, *Generalized hyperbolicity
++   and shadowing in Lp spaces*, Journal of Differential Equations 298
++   (2021), 68--94. DOI: https://doi.org/10.1016/j.jde.2021.06.038.
++   Open preprint: https://arxiv.org/abs/2009.11526.
++2. M. Maiuriello, *Preserved dynamics: visualizing the connection between
++   composition operators and weighted shifts*, in Oberwolfach Report
++   19/2024, pp. 1078--1081. DOI: https://doi.org/10.4171/owr/2024/19.
++3. N. C. Bernardes Jr., E. D'Aniello, M. Maiuriello, *The specification
++   property for composition operators*, arXiv:2607.15831v1 (17 July 2026),
++   especially Theorem 6.1 and Example 6.2.
++   https://arxiv.org/abs/2607.15831.
++4. M. Pituk, *Resolving the generalized hyperbolicity conjecture for
++   shadowing*, arXiv:2608.19499v1 (19 August 2026), Theorems A--C.
++   https://arxiv.org/abs/2608.19499.
++5. A. Messaoudi, J. Tofanin Neto, M. Saavedra, I. Tsokanos, *On
++   Generalized Hyperbolicity, Stability, and Shadowing for Linear
++   Operators*, arXiv:2608.17021v1 (17 August 2026).
++   https://arxiv.org/abs/2608.17021.
++6. D. Dragičević, M. Pituk, *Duality between shadowing and uniform
++   expansivity in linear dynamics*, Transactions of the American
++   Mathematical Society (2026), DOI: https://doi.org/10.1090/tran/9879.
++   Bibliographic details checked through [4]; the publisher PDF was
++   inaccessible during this attempt. None of its uninspected proof is
++   used as a premise here.
++7. M. Carvalho, U. B. Darji, P. Varandas, *Shift operators and their
++   classification*, arXiv:2407.20890v1 (30 July 2024), Theorem 2.4 and
++   Corollary 2.16. https://arxiv.org/abs/2407.20890.
+diff --git a/unsolved_math_prioritization/attempts/30005897/README.md b/unsolved_math_prioritization/attempts/30005897/README.md
+new file mode 100644
+index 000000000..a2feeb10b
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30005897/README.md
+@@ -0,0 +1,62 @@
++# 30005897: Shadowing without bounded distortion
++
++**Independently AI-audited candidate theorem.** A complete proof is proposed for the exact
++dissipative composition-operator equivalence, for every real exponent
++`1 <= p < infinity`, over either scalar field. One independent AI audit
++found no mathematical gap. Expert scrutiny and historical-priority checking
++are required before treating it as established.
++
++The source's companion aggregate-mass characterization question was already
++answered negatively in July 2026. That prior result is credited separately.
++
++## Files
++
++- [PROOF.md](PROOF.md): complete statement, proof, new pointwise density
++  criterion, original-source scope, and literature boundary
++- [SOURCE_AUDIT.md](SOURCE_AUDIT.md): exact source locations, duplicate and
++  prior-attempt checks, and limitations
++- [RESEARCH_LOG.md](RESEARCH_LOG.md): timestamped checkpoints and estimates
++- [attempt_status.json](attempt_status.json): attempt count and disposition
++- [source_record.json](source_record.json): pinned upstream record
++- [source_provenance.json](source_provenance.json): dataset identity, join
++  check, and source-file hashes
++- [verify.py](verify.py), [verification.json](verification.json): modest exact
++  rational checks of formulas, support propagation, and negative controls
++- [review/REVIEW.md](review/REVIEW.md): independent mathematical audit and
++  preserved reviewed snapshots, with a separately constructed moving-cut model
++
++## Reproduce the finite checks
++
++From this directory, run:
++
++```sh
++python3 verify.py
++```
++
++The verifier uses only the Python standard library. It is finite algebraic
++and indexing evidence, not a formal proof checker or a proof of the general
++theorem. No exhaustive search, external account, or paid model call is needed.
++
++## Candidate mechanism
++
++Two-sided shadowing implies a uniform adjoint-expansion estimate by a finite
++dual telescoping argument. Localizing that estimate in orbit coordinates
++forces a uniform one-sided drop of each orbit density. These drops give
++contracting complementary support bands for a fixed power. A finite
++intersection makes the stable band invariant under the original operator,
++and a disjoint-support estimate controls the inverse on its complement.
++
++No bounded distortion, pointwise-to-uniform inference, measurable selection
++of fiberwise right inverses, or recent uninspected spectral theorem is used.
++
++## Scope and attribution
++
++The numeric upstream identity is `30005897`; its code is
++`OWR-14298367-003`. The generalized-hyperbolicity equivalence is distinct from
++the scalar aggregate-mass characterization. The separable complex `p=2`
++case and the weighted-shift representation are also existing literature.
++
++This attempt used `gpt-6-astra` at `xhigh` reasoning. The queue's original
++planning budget mentioned `ultra`; this artifact does not misstate the
++execution setting. It is provisional AI-assisted independent research in
++the repository of Alec Kriebel (ORCID https://orcid.org/0009-0001-9320-500X).
+diff --git a/unsolved_math_prioritization/attempts/30005897/RESEARCH_LOG.md b/unsolved_math_prioritization/attempts/30005897/RESEARCH_LOG.md
+new file mode 100644
+index 000000000..c880f1ca4
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30005897/RESEARCH_LOG.md
+@@ -0,0 +1,101 @@
++# Research log: 30005897
++
++All times UTC on 2026-09-30. Scope: a rigorous proof or counterexample for
++the exact no-bounded-distortion dissipative composition-operator question.
++Maximum budget: five substantive proof attempts, within the campaign's
++03:28--05:28 UTC window. Actual execution: gpt-6-astra, xhigh.
++
++## 03:29--03:31: Source and duplicate gate
++
++Attempted the required UnsolvedMath page first; it was inaccessible. Read the
++repository instructions, selected queue entry and review, pinned upstream
++record, and original Oberwolfach contribution. No prior report, matching
++PR, branch, or completed/invalidated attempt was found. No mathematical
++proof attempt was spent on source triage. Estimated completion: 5%.
++
++## 03:31--03:34: Current literature changes the scope
++
++The August 2026 Pituk result covers separable complex Hilbert spaces and
++refutes the unrestricted Banach-space conjecture. This does not by itself
++settle dissipative composition operators for all p. Recorded the p=2 prior
++art rather than presenting it as a new special-case result. Estimated
++completion: 15%.
++
++## 03:34--03:40: Substantive proof attempt 1, complete candidate
++
++Developed a self-contained necessary dual-expansion estimate from the
++bounded-forcing formulation of shadowing. Orbit-coordinate localization
++then produces a uniform density drop, yielding complementary contracting
++support bands for a power. A finite band intersection and disjoint-support
++estimate transfer this splitting to the original operator. The converse is
++given by the standard explicit Green-series argument.
++
++Saved the complete candidate as PROOF.md at 03:40 UTC. The target is the
++full real/complex Lp equivalence for 1 <= p < infinity, not an easier scalar
++or p=2 case. No unsupported measurable-selection or fiberwise-uniformity
++claim remains in the proposed argument. Candidate status is provisional
++pending independent review. Estimated completion: 75%.
++
++## 03:37: Original bundled characterization question is prior art
++
++Inspected arXiv:2607.15831v1 Example 6.2. Its counterexample already answers
++the old aggregate-mass characterization question negatively. The package
++credits that result and separates it from the equivalence theorem. A
++separate new-counterexample claim was not pursued. No second substantive
++proof attempt was consumed. Estimated completion remained 75%.
++
++## 03:43: Exact bounded checks
++
++verify.py passed with exact rational arithmetic: 84 support-band models,
++55,572 model comparisons, 1,211 admissible five-term local patterns,
++30 dual telescoping tests, 31 Green-series recurrence tests with a
++noncommuting projection control, and 30 negative controls. These are
++finite algebraic evidence and do not certify the infinite-dimensional
++theorem. Estimated completion: 80%.
++
++## 03:47: Attribution refinement and packaging
++
++The independent reviewer identified additional relevant prior art.
++Inspected Carvalho--Darji--Varandas Theorem 2.4 and its proof, then explicitly
++credited the density-weighted shift representation. The candidate proof's
++mathematical argument was unchanged. Independent adversarial review is in
++progress. Prepared the source audit and reproducibility package. Estimated
++completion: 85%.
++
++## Limits and stopping rule
++
++One substantive mathematical proof attempt has produced a complete
++candidate within the five-attempt budget. Further work is verification and
++publication of this fixed candidate, not extra proof-search turns. Stop if
++independent review finds an unresolved central gap; preserve that gap rather
++than promoting the result. No merge, release, Zenodo deposit, external
++publication, or contact with another individual is authorized here.
++
++## 03:50: Independent audit passed
++
++An independent gpt-6-astra xhigh audit found no missing hypothesis or
++defective step, including p=1, the uniform dual estimate, density
++localization, and the power-to-operator band construction. The reviewer
++also checked an independently constructed countable moving-cut model with
++unbounded distortion. The candidate's sole requested change was additional
++prior-art attribution, which was incorporated and checked by a
++citation-only diff. The reviewed snapshots and verdict are preserved under
++review/. This is an independent AI audit, not formal verification or peer
++review. Estimated completion: 95%; mathematical candidate complete, priority
++unconfirmed, remote publication checkpoint pending.
++
++## 03:55: Remote checkpoint and sole draft PR verified
++
++The first findings commit, 24ca3e9be2f29342974d35d5edc22f2fa7e2e87c,
++was pushed to dot/math-30005897 and its remote hash matched the local
++commit. After repeated all-state numeric-ID and head-branch duplicate
++checks returned no match, the sole draft PR was opened:
++https://github.com/AlecKriebel/Math/pull/12. GitHub confirmed OPEN, draft,
++base main, the intended head, and only files under this attempt directory.
++No GitHub checks were reported; local rational tests and the independent
++control passed. A metadata-only follow-up commit records this result.
++
++The complete theorem remains an independently AI-audited candidate. No
++mathematical gap was identified; historical priority and expert scrutiny
++remain unresolved. Estimated completion toward the novel verified research
++goal: 95%. One of five permitted substantive proof attempts was used.
+diff --git a/unsolved_math_prioritization/attempts/30005897/SOURCE_AUDIT.md b/unsolved_math_prioritization/attempts/30005897/SOURCE_AUDIT.md
+new file mode 100644
+index 000000000..4cb799be6
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30005897/SOURCE_AUDIT.md
+@@ -0,0 +1,147 @@
++# Source and scope audit
++
++Checked 2026-09-30, starting 03:29 UTC. This is a bounded research audit;
++absence of a search hit is not evidence of first priority.
++
++## Required first source and pinned record
++
++The requested first source was attempted before mathematical research:
++https://www.unsolvedmath.com/problems/30005897. The web reader could not open
++it, and an ordinary HTTP request returned Vercel 403. No challenge or access
++restriction was bypassed. The record was instead read from the authorized
++repository's pinned upstream dataset, revision
++`37e53eabe540fb458758e198be61634bd02ee008`.
++
++The two full dataset files were supplied in a shared source cache and were
++verified by the coordinating task against the repository manifest. This
++attempt extracted the unique numeric record, checked that its problem code
++has exactly one matching numeric ID, and found no research-results entry
++for `OWR-14298367-003`. The complete selected record is preserved with
++provenance metadata.
++
++## Exact primary statement
++
++Oberwolfach Report 19/2024, DOI
++https://doi.org/10.4171/owr/2024/19, Martina Maiuriello's contribution
++*Preserved dynamics: visualizing the connection between composition
++operators and weighted shifts*, pp. 1078--1081, has two questions in Open
++Problem (1), printed on p. 1080:
++
++1. Whether the earlier shadowing characterization survives without bounded
++   distortion
++2. Whether generalized hyperbolicity remains equivalent to shadowing
++
++The clean dataset statement isolates the second question. The proof package
++does not silently conflate the two. The first is already answered negatively
++in the July 2026 paper below; the proposed theorem addresses the second.
++
++The report's full relevant contribution was read, including definitions and
++standing hypotheses on pp. 1078--1080. In particular, the target is a bounded
++invertible composition operator on Lp, `1 <= p < infinity`, over a sigma-finite
++measure space, with a finite-positive-measure wandering generator. Generalized
++hyperbolicity uses spectral radii of the restricted operators. Dissipativity
++is not a claim that all arbitrary Banach-space operators are covered.
++
++Readable original report PDF:
++https://oa.tib.eu/renate/server/api/core/bitstreams/e2c61b25-148e-4b67-94db-93802821f4e1/content.
++
++## Primary literature examined
++
++### D'Aniello--Darji--Maiuriello, 2021
++
++https://doi.org/10.1016/j.jde.2021.06.038;
++https://arxiv.org/abs/2009.11526.
++
++Read Definitions 2.3.1--2.3.2, Lemma 2.3.3, the generalized-hyperbolicity
++definitions, the composition and dissipativity hypotheses in Sections
++2.5--2.6, Definition 3.1.1, Theorems SS/SN, Corollaries SC/GH, the related
++Radon--Nikodym criterion, and Problem 5.0.1. The full preprint PDF was
++retrieved and retained outside the submission folder as a research source.
++This paper proves the target with bounded distortion; it does not establish
++the no-distortion theorem. Its aggregate conditions are not substituted for
++pointwise densities in the candidate.
++
++### Carvalho--Darji--Varandas, 2024
++
++https://arxiv.org/abs/2407.20890;
++https://www.cmup.pt/sites/default/files/2024-09/CDV-arxiv-2024.pdf.
++
++Read Theorem 2.4, its full proof in Section 4.2, Corollary 2.16, and Question
++5.1. The density-weighted representation of arbitrary dissipative composition
++operators as shifts is known. The finite-dimensional-fiber result does not
++visibly cover the arbitrary measure-space fibers used here. The candidate
++credits the representation and claims no novelty for it.
++
++### Bernardes--D'Aniello--Maiuriello, July 2026
++
++https://arxiv.org/abs/2607.15831v1, submitted 17 July 2026.
++
++Read the introduction and Section 6's Theorem 6.1 and Example 6.2 in full.
++Example 6.2 refutes the extension of the old aggregate-mass criterion: HC
++holds but shadowing fails. Its explicit pseudotrajectory argument was
++checked. This is prior art, not this attempt's new counterexample.
++
++### Pituk, August 2026
++
++https://arxiv.org/abs/2608.19499v1, submitted 19 August 2026.
++
++Read the full statements of Theorems A--C, the definitions, the right-resolvent
++construction, and the nature of the Banach-space counterexample. Theorem B
++already gives the equivalence on separable complex Hilbert spaces; that
++covers the corresponding p=2 slice. The general Banach counterexample is
++built using an uncomplemented-subspace/quotient mechanism and is not shown to
++be a dissipative composition operator. It does not settle the remaining
++target negatively.
++
++### Messaoudi--Tofanin Neto--Saavedra--Tsokanos, August 2026
++
++https://arxiv.org/abs/2608.17021v1, submitted 17 August 2026.
++
++Inspected the introduction, definitions, principal statements, and general
++Banach-space counterexample scope. Pseudo-hyperbolicity is explicitly not
++treated as identical to generalized hyperbolicity. No claimed realization
++of the counterexamples as the dissipative Lp composition operators in the
++target was found.
++
++### Additional current work and access limit
++
++The 2026 paper *On the Dynamics of Weighted Composition Operators II*,
++https://link.springer.com/article/10.1007/s00009-026-03136-w, Theorem 21,
++was checked for its bounded-distortion hypothesis; its stated shadowing
++transfer retains that hypothesis.
++
++Dragičević--Pituk, *Duality between shadowing and uniform expansivity in
++linear dynamics*, DOI https://doi.org/10.1090/tran/9879, is cited by Pituk
++(2026). The publisher PDF request returned 403. The candidate independently
++proves the necessary dual-expansion implication it needs, so this inaccessible
++proof is not an unverified mathematical premise.
++
++## Duplicate and previous-attempt gate
++
++- Repository root AGENTS.md, queue AGENTS.md, README, policy.json, QUEUE.md,
++  and the selected shortlist/individual desk review were read
++- At the initial check the queue recorded 0/5 substantive turns and queued
++  status for this numeric ID
++- GitHub searches across all PR states for `30005897` and `Shadowing` found
++  no matching previous research PR
++- A branch search for `30005897` found none; CLI checks before branch
++  creation repeated the PR and branch gate
++- Repository source search found the selected desk note, but no previous
++  mathematical attempt on this target; unrelated uses of the programming
++  word shadowing were excluded
++- The dataset was searched for shadowing/composition and exact-code matches;
++  no duplicate of this numeric target was found
++- `review_v2/related_target_groups.json` does not group this target with
++  another one
++
++These checks include closed/invalidated PR visibility, rather than inspecting
++only currently open work. They cannot exclude unpublished or unindexed work.
++
++## Result of the audit
++
++The old scalar characterization is already refuted; the separable complex
++p=2 equivalence is already in the literature. The broader dissipative
++composition-operator equivalence for all `1 <= p < infinity` was not found
++in the checked sources. The present complete proof candidate is therefore
++eligible for independent verification, with historical priority explicitly
++unresolved. No outside individual was contacted.
+diff --git a/unsolved_math_prioritization/attempts/30005897/attempt.json b/unsolved_math_prioritization/attempts/30005897/attempt.json
+new file mode 100644
+index 000000000..cb7964811
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30005897/attempt.json
+@@ -0,0 +1,51 @@
++{
++  "id": "30005897",
++  "problem_number": "OWR-14298367-003",
++  "title": "Shadowing Without Bounded Distortion",
++  "queue_rank_at_start": 29,
++  "model_selected": "gpt-6-astra",
++  "reasoning_effort_selected": "xhigh",
++  "started_at": "2026-09-30T03:28:00Z",
++  "deadline": "2026-09-30T05:28:00Z",
++  "status": "candidate_independent_ai_audit_passed",
++  "substantive_attempts_used": 1,
++  "substantive_attempt_limit": 5,
++  "candidate_saved_at": "2026-09-30T03:40:49Z",
++  "exact_claim": "For every real or complex Lp space, 1 <= p < infinity, and every bounded invertible composition operator induced by a bijective bimeasurable nonsingular dissipative system with a finite positive-measure wandering generator, two-sided shadowing is equivalent to generalized hyperbolicity, without bounded distortion. The stable and unstable spaces can be measurable support bands.",
++  "companion_source_question": "The aggregate-mass characterization without bounded distortion was already refuted by Bernardes-D\u2019Aniello-Maiuriello, arXiv:2607.15831v1 Example 6.2; no novelty claimed.",
++  "known_resolved_slice": "Separable complex p=2 follows from Pituk, arXiv:2608.19499v1 Theorem B.",
++  "proof_artifact": "PROOF.md",
++  "proof_sha256": "f38ae2dd97bb2aeb8f1e97da0f4133b84b6d43d803e2b38df2c91acc56817a8e",
++  "mathematical_gap_identified": null,
++  "verification_limit": "Written proof and finite exact regression tests require independent expert review; not a formal proof certificate.",
++  "novelty_status": "No earlier full target resolution found in bounded primary-source search; historical priority not established.",
++  "check_command": "python3 unsolved_math_prioritization/attempts/30005897/verify.py",
++  "check_result": "passed",
++  "shared_queue_modified": false,
++  "remote_branch_requested": "dot/math-30005897",
++  "pull_request": "https://github.com/AlecKriebel/Math/pull/12",
++  "remote_state": "First findings commit verified on remote; one draft PR open",
++  "author": {
++    "name": "Alec Kriebel",
++    "orcid": "https://orcid.org/0009-0001-9320-500X",
++    "assistance": "AI-assisted candidate research"
++  },
++  "primary_sources": [
++    "https://doi.org/10.4171/owr/2024/19",
++    "https://arxiv.org/abs/2009.11526",
++    "https://arxiv.org/abs/2407.20890",
++    "https://arxiv.org/abs/2607.15831",
++    "https://arxiv.org/abs/2608.19499",
++    "https://arxiv.org/abs/2608.17021"
++  ],
++  "independent_review": "review/REVIEW.md",
++  "independent_review_verdict": "pass; no mathematical repair; source attribution incorporated",
++  "completion_estimate_percent": 95,
++  "pull_request_state": "OPEN",
++  "pull_request_is_draft": true,
++  "publication_verified_at": "2026-09-30T03:55:07Z",
++  "first_findings_commit": "24ca3e9be2f29342974d35d5edc22f2fa7e2e87c",
++  "remote_branch": "dot/math-30005897",
++  "ci_checks_observed": [],
++  "ci_claim": "No GitHub checks reported; local exact tests passed"
++}
+diff --git a/unsolved_math_prioritization/attempts/30005897/attempt_status.json b/unsolved_math_prioritization/attempts/30005897/attempt_status.json
+new file mode 100644
+index 000000000..75b262b2c
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30005897/attempt_status.json
+@@ -0,0 +1,34 @@
++{
++  "numeric_id": 30005897,
++  "problem_code": "OWR-14298367-003",
++  "title": "Shadowing Without Bounded Distortion",
++  "status": "candidate_result_independent_ai_review_passed",
++  "substantive_attempts_used": 1,
++  "substantive_attempt_limit": 5,
++  "candidate_saved_at": "2026-09-30T03:40:49Z",
++  "model": "gpt-6-astra",
++  "reasoning_effort": "xhigh",
++  "queue_planning_effort": "ultra",
++  "effort_difference_disclosed": true,
++  "exact_claim": "For every real 1 <= p < infinity, every bounded invertible composition operator on a sigma-finite dissipative system with a finite positive wandering generator has two-sided shadowing if and only if it is generalized hyperbolic, over real or complex scalars, without bounded distortion.",
++  "companion_question": "The old aggregate-level-mass criterion does not extend; already refuted by Bernardes--D'Aniello--Maiuriello, arXiv:2607.15831v1, Example 6.2.",
++  "known_slice": "Separable complex p=2 case is prior art through Pituk, arXiv:2608.19499v1, Theorem B.",
++  "proof_artifact": "PROOF.md",
++  "finite_checks": "verification.json",
++  "historical_priority": "Not established; no full prior theorem found in bounded source search.",
++  "shared_queue_files_modified": false,
++  "independent_review": "review/REVIEW.md",
++  "completion_estimate_percent": 95,
++  "independent_review_verdict": "pass_no_mathematical_repair",
++  "independent_review_scope": "AI mathematical audit, not formal verification or expert peer review",
++  "proof_sha256": "f38ae2dd97bb2aeb8f1e97da0f4133b84b6d43d803e2b38df2c91acc56817a8e",
++  "pull_request": "https://github.com/AlecKriebel/Math/pull/12",
++  "pull_request_state": "OPEN",
++  "pull_request_is_draft": true,
++  "publication_verified_at": "2026-09-30T03:55:07Z",
++  "first_findings_commit": "24ca3e9be2f29342974d35d5edc22f2fa7e2e87c",
++  "remote_branch": "dot/math-30005897",
++  "remote_state": "First findings commit verified on remote; one draft PR open",
++  "ci_checks_observed": [],
++  "ci_claim": "No GitHub checks reported; local exact tests passed"
++}
+diff --git a/unsolved_math_prioritization/attempts/30005897/pr_draft.md b/unsolved_math_prioritization/attempts/30005897/pr_draft.md
+new file mode 100644
+index 000000000..c0f4d8639
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30005897/pr_draft.md
+@@ -0,0 +1,23 @@
++# Research 30005897: shadowing without bounded distortion
++
++## Result
++
++A complete candidate proof of shadowing if and only if generalized hyperbolicity for bounded invertible dissipative composition operators on real or complex Lp, for every 1 <= p < infinity, without bounded distortion. The construction produces measurable complementary support bands and an equivalent pointwise orbit-density condition.
++
++One independent AI mathematical audit passed, including the p=1 endpoint, uniform localization, and the passage from a power to the original operator. The result remains an AI-assisted, unrefereed candidate; historical priority is not established.
++
++## Scope and prior art
++
++- Exact target: UnsolvedMath 30005897 / OWR-14298367-003, OWR 19/2024 Open Problem (1)
++- The companion aggregate-mass characterization was already refuted in arXiv:2607.15831v1 Example 6.2; no novelty claimed for it
++- Pituk's arXiv:2608.19499v1 Theorem B already covers the separable complex p=2 slice
++- Carvalho--Darji--Varandas arXiv:2407.20890v1 Theorem 2.4 already supplies the density-weighted shift representation
++- Candidate contribution: the all-p dissipative composition-operator theorem, pointwise density criterion, and support-band construction
++
++## Verification
++
++Run `python3 unsolved_math_prioritization/attempts/30005897/verify.py`.
++
++Exact rational checks passed: 84 band models, 55,572 density comparisons, 1,211 admissible local patterns, 30 telescoping tests, 31 noncommuting Green-identity checks, and 30 negative controls. Independent moving-cut model checks also passed. These finite checks do not prove the infinite-dimensional theorem.
++
++The full proof, preserved independent-review snapshots, provenance, source audit, and timestamped one-attempt research log are included. Model execution is truthfully recorded as gpt-6-astra at xhigh. No shared queue/state/catalog changes, merge, release, or external outreach.
+diff --git a/unsolved_math_prioritization/attempts/30005897/review/REVIEW.md b/unsolved_math_prioritization/attempts/30005897/review/REVIEW.md
+new file mode 100644
+index 000000000..2507cf360
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30005897/review/REVIEW.md
+@@ -0,0 +1,119 @@
++# Independent audit: shadowing without bounded distortion
++
++**Target:** 30005897 / OWR-14298367-003
++**Reviewed:** 2026-09-30 UTC
++**Reviewer:** independent gpt-6-astra execution, xhigh
++**Snapshot:** `reviewed_proof.md`, SHA-256 `7aa1189fc74b7b5fcd38435db8820e551bc0671f1ee580c37d676e04ef40b53b`
++
++## Verdict
++
++**PASS on the mathematical argument and exact target.** The candidate proves that a bounded invertible dissipative composition operator in the source's finite-wandering-set setting has shadowing if and only if it is generalized hyperbolic, for every 1≤p<∞, over either scalar field. I found no missing hypothesis or defective step in the quantitative dual estimate, localization, measurable splitting, passage from a power to the operator, or converse. The p=1 endpoint is valid.
++
++**Novelty is not certified.** The separable complex p=2 case is already covered by Pituk's 2026 theorem. The scalar aggregate-mass characterization is already refuted in the July 2026 Example 6.2 and must receive no new-discovery credit. The shift-coordinate realization also has explicit 2024 prior art, identified below. The full all-p band-splitting statement was not located in the checked literature. Retain qualified historical-priority language.
++
++No mandatory mathematical repair was found. Add the 2024 shift-coordinate attribution before public presentation; the author has agreed to do so. This is an independent AI proof audit, not formal verification or journal refereeing.
++
++## 1. Exact source scope
++
++The requested problem page was attempted first and was inaccessible. The full pinned dataset record and original OWR source were then checked.
++
++The 2024 report assumes a sigma-finite measure space, a bijective bimeasurable f, and measure-growth bounds for f and f^{-1}. It defines dissipativity using a wandering set W of finite positive measure whose integer translates partition X. It uses two-sided pseudotrajectories, and defines generalized hyperbolicity using closed complementary subspaces, one forward invariant and the other backward invariant, with the respective spectra inside the unit disk. These are the hypotheses and conventions in candidate (1.1)–(1.3). Allowing partition identities modulo null sets is harmless because the hypotheses preserve null sets in both directions.
++
++The printed Open Problem (1), p. 1080, asks two distinct questions: survival of the earlier characterization, and equivalence with generalized hyperbolicity. The candidate correctly separates them. It is not proving generalized hyperbolicity versus shadowing for arbitrary Banach operators, nor addressing conservative systems or the structural-stability question numbered (2).
++
++Primary sources: [OWR 19/2024](https://doi.org/10.4171/OWR/2024/19), pp. 1078–1081; [D'Aniello–Darji–Maiuriello](https://arxiv.org/abs/2009.11526), Definitions 2.3.2, 2.5.1, 2.6.3 and Problem 5.0.1.
++
++## 2. Shadowing to quantitative dual expansion
++
++### Bounded forcing
++
++The scaling argument in Lemma 2.1 is valid because two-sided pseudotrajectories are not required to be bounded. Given bounded forcing, a bi-infinite sequence satisfying x_{j+1}=Ax_j+b_j exists by forward and backward recursion. Scaling its errors below a shadowing tolerance and subtracting the shadowing orbit yields a bounded solution with a uniform constant K. Strict versus weak tolerance conventions are handled by choosing a smaller scale. No linear selection of solutions is required.
++
++### Dual inequality
++
++For a finitely supported dual sequence, choose primal unit-ball vectors which approximately norm each individual functional. This is valid even if the dual norm is not attained, and works over C by controlling real parts. Applying the bounded-forcing estimate and shifting a finite sum gives
++
++\[
++ \sum_j\|u_j\|\le K\sum_j\|u_{j-1}-A^*u_j\|.
++\]
++
++I independently checked the endpoints in the candidate's special substitution. With u_j=S^{-j}u supported on -b≤j≤-a, the two nonzero residuals are -S^{b+1}u at index -b and S^a u at index -a+1. Hence
++
++\[
++ \sum_{k=a}^b\|S^ku\|\le K(\|S^au\|+\|S^{b+1}u\|)
++\]
++
++has the correct indexing. Applying it on [-j,j−1] includes the term ||u||. If both endpoint norms at ±d are at most 2||u||, summing those lower bounds for 1≤j≤d−1 contradicts the upper bound on [-d,d−1] when d>4K²+1. Thus the uniform dual expansion constant used later is proved, rather than imported from an uninspected 2026 theorem.
++
++This part does not require reflexivity, separability, a right inverse for the forcing operator, or a complemented dual kernel. Those are common hidden pitfalls which the proof avoids.
++
++## 3. Orbit coordinates and p=1 localization
++
++For every integer n, the measure A↦μ(f^nA) on W is finite and mutually absolutely continuous with ν=μ|_W. This follows from (1.1), iterated in either direction. Hence rho_n is positive and finite almost everywhere. There are countably many n, so versions can be chosen simultaneously outside one ν-null set. The weights and all support-band predicates are measurable functions of these countably many densities.
++
++The map U in (3.1) is an onto isometry: the norm identity is precisely change of variables for ν_n, summed over the disjoint orbit levels. Its inverse is obtained level by level and is measurable because f^n and f^{-n} are measurable. The countable union of images of the removed ν-null set is μ-null. If the partition was given only modulo null sets, removing its countable f-saturation first gives an invariant conull domain. No measurable choice of orbit representatives beyond the already assumed W is being made.
++
++The conjugated shift is backward, with coefficient (rho_n/rho_{n+1})^{1/p} at output n. Its adjoint is the forward shift with the same positive weights. I checked the d-step products telescope to the factors in (3.4), including the inverse direction.
++
++At p=1, the dual is the scalar L∞ space on the sigma-finite product measure. The indicator of any positive-measure subset of W, placed in a single coordinate, is a nonzero dual vector of norm one. For 1<p<∞ the same indicator belongs to Lq because ν(W)<∞. Thus the localization proof covers the endpoint without any L∞-dual or reflexivity assumption.
++
++If both factors are below 2 on a positive-measure set, that set is a countable union of sets where both are at most 2−1/k; one has positive measure. Testing its indicator contradicts uniform dual expansion. Therefore at least one factor is at least 2 almost everywhere. Taking the union of exceptional null sets over all n gives a **single** conull set for the claimed pointwise density condition. The proof does not interchange an uncountable family of null sets or confuse fiberwise and operator-uniform constants.
++
++## 4. Density condition to a d-step splitting
++
++Let A0 contain the coordinates with a left d-step density drop. If such a coordinate were followed d steps to the left by a point without a left drop, the min-condition there would impose the opposite density inequality; multiplying gives 1≤eta², impossible. Thus A0 propagates left. Its complement C0 propagates right by the corresponding argument. Equality cases remain valid since 0<eta<1.
++
++This yields the density ratios eta^m in the correct directions. Changing the coordinate index in the Lp norm of B^{md} gives rho_{n-md}/rho_n, not its reciprocal. The claimed restrictions are consequently contractions at rate eta^{m/p}. This rate is uniform in w, n, and m. Both subspaces are support bands and therefore closed and complementary without any abstract complementability theorem.
++
++I tested the reverse geometry as an adversarial case: a density valley such as 2^{|n|} fails the condition at its minimum. A density peak such as 2^{-|n|} satisfies it and gives the expected generalized splitting. This confirms the directionality.
++
++## 5. Passing from B^d to B
++
++This is the most delicate structural step, and it is correct specifically because B is a weighted coordinate permutation.
++
++The support of B^jM0 is the j-fold left translate of the support of M0. An invertible map takes finite intersections to the intersection of its images. Therefore B maps the intersection M into itself, using B^dM0⊂M0. Complementation commutes with this permutation of supports, so the complementary band N is the band on the finite union of the supports of B^jN0. It is invariant under B^{-1}.
++
++On each B^jN0, commuting powers of B transfer the inverse d-step estimate with the finite condition-number factor ||B^j||||B^{-j}||. A vector in the union band can be partitioned measurably into finitely many pieces with disjoint supports, each lying in one such translated band. The images under B^{-md} remain disjoint. Adding p-th powers of norms thus preserves a single uniform factor D; the proof does not incorrectly assume projections commute with B or incur an uncontrolled factor depending on the fiber.
++
++For p=1, the same computation is simply additivity of the L1 norm on disjoint supports. For arbitrary time k=md+r, boundedness of the finitely many remainder powers gives exponential decay. The displayed spectral-radius upper bound eta^{1/(pd)} follows by taking k-th roots. Empty bands are allowed and cause no issue.
++
++This argument would not justify an assertion about arbitrary generalized-hyperbolic splittings of powers on arbitrary Banach spaces. The candidate explicitly supplies the additional support-band mechanism, so that possible general obstruction is avoided.
++
++## 6. Converse
++
++The two Green series converge absolutely and uniformly under the restriction estimates. I checked the cancellation separately in the stable and unstable sums: the stable difference gives Pb_n, and the unstable difference gives Qb_n. Commutation of P or Q with T is unnecessary. The positive powers are only applied to M and negative powers to N when estimating convergence, exactly the invariant directions available.
++
++Subtracting this bounded correction from any pseudotrajectory leaves an exact two-sided orbit. Scaling the error tolerance gives shadowing. There is no issue at p=1 or over real scalars, and no new spectral theorem is used.
++
++## 7. Computation and a separate non-bounded-distortion control
++
++I read and ran the author's `verify.py`. It passed 84 band models, 55,572 exact density comparisons, 1,211 admissible local sequences, 30 dual telescoping tests, a 31-time-index Green-identity test with noncommuting projections, and 30 negative controls. These are finite sanity checks, not the reason to accept an infinite-dimensional theorem.
++
++I also constructed an independent moving-cut model. Let W=N0 with ν{k}=2^{-k-1} and rho_n(k)=2^{k-|n-k|}. Then rho_0=1, adjacent ratios lie between 1/2 and 2, and the stable band is exactly n≤k. On that band the forward density ratio is 2^{-m}; on its complement the inverse-time ratio is 2^{-m}. This directly checks the p=1 direction with unbounded measurable cut locations. At level n, rho_n(n)/rho_n(0)=4^n, so bounded distortion fails uniformly. The candidate's mechanism therefore handles a genuinely excluded class rather than merely rephrasing a bounded-distortion special case. Exact finite formula checks are saved in `independent_checks.py` and `.json`.
++
++## 8. Attribution and current literature
++
++- The July 2026 [Bernardes–D'Aniello–Maiuriello paper](https://arxiv.org/abs/2607.15831), Example 6.2, was inspected directly. Its aggregate orbit-level masses are 2^n, satisfying HC, while a constant-mass positive tail prevents shadowing. This is prior work answering the other part of the OWR question negatively. In the candidate's pointwise criterion that tail has equal neighboring densities arbitrarily far out, so it fails every eta<1 test, as expected.
++- [Pituk, August 2026](https://arxiv.org/abs/2608.19499), Theorem B and its stated scope were inspected. The separable complex Hilbert case, and hence separable complex p=2, is already established there. The candidate's proof is independent of this result and of the uninspected publisher proof of Dragičević–Pituk.
++- [Carvalho–Darji–Varandas, 2024](https://arxiv.org/abs/2407.20890), Theorem 2.4, already gives a density-weighted sequence-space realization of arbitrary dissipative composition operators. Corollary 2.16 gives the shadowing/generalized-hyperbolicity equivalence under a finite-dimensional fiber and bounded-projection-basis restriction. The candidate's orbit-coordinate reduction must be credited to this existing framework; the reviewed corollary does not cover general measurable W. I sent this attribution correction to the author before finalizing the audit.
++- [Bernardes–Bonilla–Pinto, June 2026](https://link.springer.com/article/10.1007/s00009-026-03136-w), Theorem 21, still assumes bounded distortion for its shadowing transfer. Its weighted/unweighted conjugacy is related prior context, not a located resolution of the full target.
++
++The limited current search did not locate the candidate's full all-p support-band theorem. This negative finding is not proof of novelty. Neither the already known p=2 part, the old coordinate construction, nor the 2026 counterexample should be presented as a new discovery.
++
++## 9. Final disposition
++
++Mathematically the candidate is complete and passes this audit, including its equivalent pointwise density condition. The exact OWR scope is covered. No proof-search extension is needed to repair a gap. Add the explicit 2024 attribution and preserve the existing p=2 and aggregate-counterexample qualifications. A later mathematical edit should be reviewed against the immutable snapshot named above.
++
++The remaining uncertainty is historical priority, not a gap identified in the proof. No external outreach or remote write was performed during this review.
++
++## Citation-only update checked at 03:48 UTC
++
++The author added the recommended CDV attribution at the start of Section 3, in the literature summary, and as reference 7. A full diff against the reviewed snapshot showed **only those citation/provenance additions**, with no mathematical statement or proof-step changes. The mathematical PASS therefore also applies to updated SHA-256 `12d02dc0bcedf8812d0e57950e5130aad8b6c308c26bc260faa4e3e3605463b3`, preserved as `reviewed_proof_citation_update.md`. The CDV-attribution recommendation is satisfied; the two optional measure-theory exposition suggestions remain optional.
++
++### Citation-only addendum, 2026-09-30 03:51 UTC
++
++The updated candidate with SHA-256 `46325dd61804c1d63a1283dec47341ff54efaf03fdbfa21266c0348048cc667e` was diff-checked against the reviewed snapshot. Only the requested 2024 attribution was added; mathematical content is unchanged. Duplicate attribution paragraphs, bibliography entries and bullet points were noticed and sent to the author for deduplication. The mathematical pass verdict is unaffected.
++
++### Final-hash addendum, 2026-09-30 03:52 UTC
++
++The deduplicated candidate SHA-256 `f38ae2dd97bb2aeb8f1e97da0f4133b84b6d43d803e2b38df2c91acc56817a8e` was diff-checked against the original mathematical snapshot. Changes consist only of the 2024 attribution, audit-status wording, and a link to this review. All three duplicate insertions have been removed. Mathematical content is unchanged, and the PASS verdict applies to this final hash.
+diff --git a/unsolved_math_prioritization/attempts/30005897/review/candidate_checks_rerun.json b/unsolved_math_prioritization/attempts/30005897/review/candidate_checks_rerun.json
+new file mode 100644
+index 000000000..b43e732b0
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30005897/review/candidate_checks_rerun.json
+@@ -0,0 +1,24 @@
++{
++  "status": "passed",
++  "arithmetic": "Python standard-library fractions.Fraction",
++  "scope": "Finite algebra/index/support tests; not a proof certificate",
++  "checks": {
++    "band_models": {
++      "models": 84,
++      "exact_comparisons": 55572
++    },
++    "scalar_propagation": {
++      "admissible_five_term_sequences": 1211
++    },
++    "dual_telescoping": {
++      "exact_rational_tests": 30
++    },
++    "green_identity": {
++      "time_indices_checked": 31,
++      "noncommuting_projection_control": "passed"
++    },
++    "negative_controls": {
++      "rejected_cases": 30
++    }
++  }
++}
+diff --git a/unsolved_math_prioritization/attempts/30005897/review/independent_checks.json b/unsolved_math_prioritization/attempts/30005897/review/independent_checks.json
+new file mode 100644
+index 000000000..fe6ac0ab6
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30005897/review/independent_checks.json
+@@ -0,0 +1,8 @@
++{
++  "status": "passed",
++  "model": "countably many fibers with unbounded measurable cut k; nu{k}=2^(-k-1), rho(n,k)=2^(k-|n-k|)",
++  "exact_comparisons": 17100,
++  "p1_band_norm_ratio": "2^-m exactly",
++  "bounded_distortion_ratio": "4^n unbounded",
++  "scope": "finite sanity checks of a closed-form model; not a certificate for the general theorem"
++}
+diff --git a/unsolved_math_prioritization/attempts/30005897/review/independent_checks.py b/unsolved_math_prioritization/attempts/30005897/review/independent_checks.py
+new file mode 100644
+index 000000000..ed120acbd
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30005897/review/independent_checks.py
+@@ -0,0 +1,29 @@
++#!/usr/bin/env python3
++"""Independent exact p=1 band check on infinitely many moving-cut fibers.
++The loops are finite sanity checks; the displayed formulas establish the model.
++"""
++from fractions import Fraction as F
++import json
++from pathlib import Path
++
++def rho(n,k):return F(2)**(k-abs(n-k))
++# W=N_0 with nu{k}=2^(-k-1); rho(0,k)=1. All adjacent density ratios
++# lie between 1/2 and 2. The stable band is n<=k.
++comparisons=0
++for k in range(25):
++ for n in range(-25,51):
++  assert rho(0,k)==1
++  assert F(1,2)<=rho(n+1,k)/rho(n,k)<=2
++  assert min(rho(n-1,k),rho(n+1,k))<=rho(n,k)/2
++  A=(rho(n-1,k)<=rho(n,k)/2)
++  assert A==(n<=k)
++  for m in range(9):
++   ratio=rho(n-m,k)/rho(n,k) if A else rho(n+m,k)/rho(n,k)
++   assert ratio==F(1,2)**m
++   comparisons+=1
++# At level n>=1, rho(n,0)=2^-n and rho(n,n)=2^n.
++# Their ratio is 4^n, so bounded distortion cannot hold uniformly.
++for n in range(1,20):assert rho(n,n)/rho(n,0)==4**n
++out={'status':'passed','model':'countably many fibers with unbounded measurable cut k; nu{k}=2^(-k-1), rho(n,k)=2^(k-|n-k|)', 'exact_comparisons':comparisons,'p1_band_norm_ratio':'2^-m exactly','bounded_distortion_ratio':'4^n unbounded','scope':'finite sanity checks of a closed-form model; not a certificate for the general theorem'}
++Path(__file__).with_suffix('.json').write_text(json.dumps(out,indent=2)+'\n')
++print(json.dumps(out,indent=2))
+diff --git a/unsolved_math_prioritization/attempts/30005897/review/reviewed_proof.md b/unsolved_math_prioritization/attempts/30005897/review/reviewed_proof.md
+new file mode 100644
+index 000000000..0d947f68b
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30005897/review/reviewed_proof.md
+@@ -0,0 +1,408 @@
++# Shadowing without bounded distortion for dissipative composition operators
++
++**Status:** complete candidate proof, awaiting independent mathematical review.
++This is an AI-assisted research note, not an established or refereed result.
++
++**Target:** UnsolvedMath 30005897 / OWR-14298367-003, and the two separate
++questions in Open Problem (1) of Oberwolfach Report 19/2024, p. 1080.
++
++## 1. Statement and scope
++
++Let \((X,\mathcal B,\mu)\) be a sigma-finite measure space. Suppose that
++\(f:X\to X\) is a bijective bimeasurable transformation and that there
++are finite constants \(c_+,c_-\) for which
++\[
++ \mu(fA)\le c_+\mu(A),\qquad
++ \mu(f^{-1}A)\le c_-\mu(A)\qquad(A\in\mathcal B).
++\tag{1.1}
++\]
++Thus \(T\varphi=\varphi\circ f\) is a bounded invertible operator on
++\(L^p(X,\mu)\), for each fixed \(1\le p<\infty\). Assume dissipativity in
++the source's sense: there is a measurable \(W\) with
++\(0<\mu(W)<\infty\) such that
++\[
++ X=\mathop{\dot\bigcup}_{n\in\mathbb Z}f^nW
++\tag{1.2}
++\]
++up to a null set. All operators and spaces may be real or complex.
++
++We use two-sided shadowing. Generalized hyperbolicity means a topological
++direct sum \(L^p=M\oplus N\) of closed subspaces satisfying
++\[
++ TM\subset M,\qquad T^{-1}N\subset N,\qquad
++ r(T|_M)<1,\qquad r(T^{-1}|_N)<1.
++\tag{1.3}
++\]
++Equivalently, the two restrictions have uniform exponential norm decay.
++This is the spectral-radius convention used in the 2024 source; strict
++one-step contractions can be obtained by an equivalent norm.
++
++**Theorem.** Under (1.1)--(1.2), \(T\) has the shadowing property if and
++only if it is generalized hyperbolic. No bounded-distortion assumption is
++needed. In the implication from shadowing, \(M\) and \(N\) can be chosen
++as complementary measurable support bands.
++
++There is also a pointwise density criterion. Put \(\nu=\mu|_W\), and let
++\[
++ \rho_n=\frac{d\nu_n}{d\nu},\qquad
++ \nu_n(A)=\mu(f^nA),\quad A\subset W.
++\tag{1.4}
++\]
++Each \(\rho_n\) is positive and finite almost everywhere; \(\rho_0=1\).
++The theorem's two conditions are equivalent to the following:
++
++**Density condition.** There are \(d\ge1\) and \(0<\eta<1\) such that,
++for almost every \(w\in W\) and every \(n\in\mathbb Z\),
++\[
++ \min\{\rho_{n-d}(w),\rho_{n+d}(w)\}\le\eta\rho_n(w).
++\tag{1.5}
++\]
++The exceptional set is common to all integers \(n\). Its existence causes
++no issue because there are only countably many coordinates.
++
++The proof below is self-contained apart from standard \(L^p\) duality,
++Radon--Nikodym theory, and elementary Banach-space facts. In particular it
++does not assume the recent general spectral characterization of shadowing.
++
++## 2. A necessary dual estimate for shadowing
++
++We first give an elementary Banach-space lemma, including its quantitative
++form to expose the uniformity needed later.
++
++**Lemma 2.1.** Let \(A\) be a bounded invertible operator on a Banach
++space \(E\). If \(A\) has two-sided shadowing, there is \(K>0\) such
++that every bounded sequence \((b_j)_{j\in\mathbb Z}\) admits a bounded
++solution of
++\[
++ y_{j+1}-Ay_j=b_j,\qquad
++ \sup_j\|y_j\|\le K\sup_j\|b_j\|.
++\tag{2.1}
++\]
++For this \(K\), any integer \(d>4K^2+1\) satisfies
++\[
++ \max\{\|(A^*)^du\|,\|(A^*)^{-d}u\|\}>2\|u\|
++ \quad(0\ne u\in E^*).
++\tag{2.2}
++\]
++
++**Proof.** For (2.1), fix a shadowing accuracy, say one, and an associated
++positive error tolerance. Scale any bounded forcing into that tolerance,
++construct a bi-infinite pseudotrajectory recursively using invertibility,
++and subtract a shadowing exact orbit. Scaling back gives (2.1), with a
++constant independent of the forcing. For zero forcing choose the zero
++solution.
++
++Write \(S=A^*\). Every finitely supported sequence \((u_j)\) in \(E^*\)
++satisfies
++\[
++ \sum_j\|u_j\|\le K\sum_j\|u_{j-1}-Su_j\|.
++\tag{2.3}
++\]
++Indeed, choose \(b_j\) in the unit ball so that the real parts of
++\(u_j(b_j)\) approach \(\|u_j\|\), simultaneously on the finite support.
++Use (2.1), sum the identities
++\(u_j(b_j)=u_j(y_{j+1}-Ay_j)\), and shift the index. This gives
++\[
++ \operatorname{Re}\sum_j u_j(b_j)
++ =\operatorname{Re}\sum_j(u_{j-1}-Su_j)(y_j)
++ \le K\sum_j\|u_{j-1}-Su_j\|.
++\]
++Letting the finite approximation errors tend to zero proves (2.3).
++No norm-attainment assumption is used.
++
++Fix nonzero \(u\in E^*\), and write \(a_j=\|S^ju\|\). In (2.3), take
++\(u_j=S^{-j}u\) for \(-b\le j\le-a\) and zero otherwise. Interior
++terms cancel, leaving, for every pair of integers \(a\le b\),
++\[
++ \sum_{j=a}^{b}a_j\le K(a_a+a_{b+1}).
++\tag{2.4}
++\]
++In particular, using the interval \([-j,j-1]\), for each \(j\ge1\),
++\[
++ a_0\le K(a_{-j}+a_j).
++\tag{2.5}
++\]
++If both \(a_{-d}\) and \(a_d\) were at most \(2a_0\), (2.4) on
++\([-d,d-1]\) would give
++\[
++ \sum_{j=-d}^{d-1}a_j\le4Ka_0.
++\]
++Summing (2.5) for \(1\le j\le d-1\) then gives
++\[
++ \frac{d-1}{K}a_0
++ \le\sum_{j=1}^{d-1}(a_{-j}+a_j)
++ \le4Ka_0.
++\]
++This contradicts \(d>4K^2+1\), proving (2.2). \(\square\)
++
++The implication in this lemma is consistent with the more recent full
++duality theorem of Dragičević--Pituk. Only the elementary necessary
++direction proved here is used.
++
++## 3. Orbit coordinates and localization
++
++Let \(\Omega=W\times\mathbb Z\), with measure \(\nu\times\#\), and
++write \(E=L^p(\Omega)\). Define
++\[
++ (U\varphi)_n(w)=\rho_n(w)^{1/p}\varphi(f^nw).
++\tag{3.1}
++\]
++The change-of-variables formula defining \(\nu_n\), together with the
++disjoint decomposition (1.2), shows that \(U\) is an isometric
++isomorphism from \(L^p(X,\mu)\) onto \(E\). Surjectivity follows by
++defining \(\varphi\) separately on each \(f^nW\); both the definition
++and its inverse are measurable.
++
++The conjugate \(B=UTU^{-1}\) is the positive weighted backward shift
++\[
++ (Bg)_n(w)=a_n(w)g_{n+1}(w),\qquad
++ a_n(w)=\left(\frac{\rho_n(w)}{\rho_{n+1}(w)}\right)^{1/p}.
++\tag{3.2}
++\]
++Both \(B\) and \(B^{-1}\) are bounded. They preserve disjoint supports
++and send every measurable support band onto another such band.
++
++Let \(q\) be conjugate to \(p\), including \(q=\infty\) when \(p=1\).
++The Banach dual is the scalar \(L^q(\Omega)\), and \(S=B^*\) satisfies
++\[
++ (Sh)_{n+1}=a_nh_n.
++\tag{3.3}
++\]
++If \(h\) is supported in coordinate \(n\), then \(S^dh\) and
++\(S^{-d}h\) are supported in coordinates \(n+d\) and \(n-d\), with
++respective multiplication factors
++\[
++ \left(\frac{\rho_n}{\rho_{n+d}}\right)^{1/p},\qquad
++ \left(\frac{\rho_n}{\rho_{n-d}}\right)^{1/p}.
++\tag{3.4}
++\]
++
++**Lemma 3.1.** If \(B\) has shadowing, condition (1.5) holds for some
++\(d\), with \(\eta=2^{-p}\).
++
++**Proof.** Apply Lemma 2.1 to \(B\). Fix a coordinate \(n\). If both
++factors in (3.4) were strictly less than two on a set of positive
++\(\nu\)-measure, then on a subset \(F\) of positive measure they would
++both be at most \(2-\epsilon\) for some \(\epsilon>0\). Use
++\(h=\mathbf1_F\) in coordinate \(n\). It belongs to \(L^q(\Omega)\):
++\(\nu(W)<\infty\), and for \(q=\infty\) it has norm one. Both norms
++in (2.2) would be at most \((2-\epsilon)\|h\|\), a contradiction.
++Thus at least one of the factors in (3.4) is at least two almost
++everywhere. Rearrangement gives (1.5). Take the union of the exceptional
++null sets over \(n\in\mathbb Z\). \(\square\)
++
++This is the place where an operator-level uniform estimate becomes a
++pointwise estimate uniform over every fiber. Merely knowing that each
++individual fiber has shadowing would not suffice.
++
++## 4. A support-band splitting for a power
++
++Assume (1.5) for some \(d\) and \(\eta\in(0,1)\). Define
++\[
++ A_0=\{(w,n):\rho_{n-d}(w)\le\eta\rho_n(w)\},\qquad
++ C_0=\Omega\setminus A_0.
++\tag{4.1}
++\]
++These sets are measurable. All statements about them are modulo the
++common null set already removed. Put
++\(M_0=L^p(A_0)\), \(N_0=L^p(C_0)\), as support bands in \(E\).
++
++If \((w,n)\in A_0\), then \((w,n-d)\in A_0\). In fact, applying
++(1.5) at \(n-d\), the alternative
++\(\rho_n\le\eta\rho_{n-d}\) is impossible, because it would imply
++\(\rho_n\le\eta^2\rho_n\). Therefore
++\(\rho_{n-2d}\le\eta\rho_{n-d}\). Iteration yields
++\[
++ \rho_{n-md}(w)\le\eta^m\rho_n(w)
++ \quad((w,n)\in A_0,\ m\ge0).
++\tag{4.2}
++\]
++
++If \((w,n)\in C_0\), condition (1.5) forces
++\(\rho_{n+d}\le\eta\rho_n\). Moreover, \((w,n+d)\in C_0\), because
++membership in \(A_0\) at \(n+d\) would give the contradictory opposite
++inequality \(\rho_n\le\eta\rho_{n+d}\). Hence
++\[
++ \rho_{n+md}(w)\le\eta^m\rho_n(w)
++ \quad((w,n)\in C_0,\ m\ge0).
++\tag{4.3}
++\]
++At a point where both drops hold, (4.1) assigns the point to \(A_0\);
++the two propagation arguments remain valid at this boundary.
++
++Equations (3.2), (4.2), and (4.3) now give
++\[
++ B^dM_0\subset M_0,\quad B^{-d}N_0\subset N_0,
++\quad
++ \|B^{md}|_{M_0}\|\le\eta^{m/p},\quad
++ \|B^{-md}|_{N_0}\|\le\eta^{m/p}.
++\tag{4.4}
++\]
++For example, changing the summation index in the \(L^p\) norm of
++\(B^{md}g\) expresses it as the integral of
++\(\sum_n(\rho_{n-md}/\rho_n)|g_n|^p\), and (4.2) applies on the support
++of \(g\). The inverse estimate is identical with (4.3).
++
++## 5. Passing from a power to the original operator
++
++It is important not to assume that an arbitrary generalized-hyperbolic
++splitting for a power automatically gives the required splitting for the
++operator. Here a finite intersection of support bands supplies it.
++
++Define the closed support band
++\[
++ M=\bigcap_{j=0}^{d-1}B^jM_0,
++\tag{5.1}
++\]
++and let \(N\) be its complementary support band. Then \(E=M\oplus N\),
++with norm-one coordinate projections when the bands are nonzero. Because
++\(B\) is an invertible weighted coordinate permutation,
++\[
++ BM=\bigcap_{j=1}^{d}B^jM_0
++ \subset\bigcap_{j=0}^{d-1}B^jM_0=M;
++\tag{5.2}
++\]
++the inclusion uses \(B^dM_0\subset M_0\).
++
++Support complementation commutes with this weighted permutation. Thus
++\[
++ N=\sum_{j=0}^{d-1}B^jN_0
++\tag{5.3}
++\]
++is the support band on the finite union of the corresponding supports.
++Equation (5.2) also gives \(B^{-1}N\subset N\). More explicitly, if
++\(\tau(w,n)=(w,n-1)\) is the support map of \(B\), and \(A\) is the
++support of \(M\), then \(\tau A\subset A\) implies
++\(\tau^{-1}(A^c)\subset A^c\).
++
++The contraction bound for \(M\) follows immediately from \(M\subset M_0\):
++\[
++ \|B^{md}|_M\|\le\eta^{m/p}.
++\tag{5.4}
++\]
++For the complementary band, set
++\[
++ D=\max_{0\le j<d}\|B^j\|\,\|B^{-j}\|<\infty.
++\]
++If \(g\in B^jN_0\), then \(B^{-j}g\in N_0\), so (4.4) gives
++\[
++ \|B^{-md}g\|
++ \le\|B^j\|\eta^{m/p}\|B^{-j}g\|
++ \le D\eta^{m/p}\|g\|.
++\tag{5.5}
++\]
++For general \(g\in N\), partition the finite union in (5.3) into
++disjoint measurable sets, the \(j\)-th contained in the support of
++\(B^jN_0\). This writes \(g=\sum_{j=0}^{d-1}g_j\) with disjoint
++supports and \(g_j\in B^jN_0\). Their images under \(B^{-md}\) still
++have disjoint supports. Therefore
++\[
++ \|B^{-md}g\|^p
++ =\sum_j\|B^{-md}g_j\|^p
++ \le D^p\eta^m\sum_j\|g_j\|^p
++ =D^p\eta^m\|g\|^p.
++\tag{5.6}
++\]
++This argument includes \(p=1\).
++
++Writing an arbitrary \(k\ge0\) as \(md+r\), \(0\le r<d\), and using
++the finite bounds for \(B^r\) and \(B^{-r}\), proves uniform exponential
++decay on \(M\) forward and on \(N\) backward. In particular,
++\[
++ r(B|_M),\ r(B^{-1}|_N)\le\eta^{1/(pd)}<1.
++\tag{5.7}
++\]
++Transporting the bands by \(U^{-1}\) gives (1.3) for \(T\).
++
++Thus shadowing implies (1.5), and (1.5) implies generalized hyperbolicity.
++
++## 6. Converse and completion
++
++For completeness, suppose (1.3) holds for a bounded invertible operator
++on a Banach space, and let \(P,Q\) be the complementary projections onto
++\(M,N\). There are \(C<\infty\) and \(0<\alpha<1\) such that
++\(\|T^j|_M\|,\|T^{-j}|_N\|\le C\alpha^j\) for all \(j\ge0\).
++For any bounded forcing \((b_n)\), the series
++\[
++ y_n=\sum_{j=0}^{\infty}T^jPb_{n-1-j}
++     -\sum_{j=0}^{\infty}T^{-j-1}Qb_{n+j}
++\tag{6.1}
++\]
++converge absolutely and uniformly in \(n\). Their sums are uniformly
++bounded by a constant times \(\sup_n\|b_n\|\). Directly shifting each
++series gives \(y_{n+1}-Ty_n=b_n\); commutation of \(P,Q\) with \(T\)
++is neither assumed nor needed.
++
++For a pseudotrajectory \((x_n)\), use its errors as \(b_n\), and put
++\(z_n=x_n-y_n\). Then \(z_{n+1}=Tz_n\), so invertibility implies
++\(z_n=T^nz_0\) for all integers \(n\). The uniform bound on \(y_n\)
++gives shadowing after choosing the error tolerance small enough.
++This proves the converse and the full equivalence. \(\square\)
++
++## 7. Distinguishing the two questions in the original source
++
++The original 2024 problem also asks whether the earlier characterization
++using only the scalar sequence \(\mu(f^nW)\) survives removal of bounded
++distortion. That is a different assertion from the theorem proved above.
++
++The answer to that older scalar-characterization question was already
++negative before this attempt: Bernardes--D'Aniello--Maiuriello,
++arXiv:2607.15831v1, Example 6.2, construct a dissipative two-orbit system
++whose level masses are \(2^n\), so the condition labelled HC holds, but
++whose composition operator has no shadowing. Their obstruction is a
++constant-mass positive tail on one orbit, which permits unbounded
++accumulation of pseudotrajectory errors. We claim no novelty for that
++negative answer.
++
++Condition (1.5) retains the pointwise orbit densities and is not the old
++aggregate-mass criterion. In the cited example the constant-mass tail
++violates (1.5) for every \(d\) and \(\eta<1\), as it must.
++
++## 8. Relation to current literature and remaining verification
++
++- D'Aniello--Darji--Maiuriello (2021), Corollary GH, proves the equivalence
++  with bounded distortion. Problem 5.0.1 asks about removing it.
++- Oberwolfach Report 19/2024, pp. 1078--1081, repeats the two questions.
++- Bernardes--D'Aniello--Maiuriello (July 2026), Example 6.2, answers the
++  aggregate-characterization question negatively.
++- Pituk (August 2026), Theorem B, proves the generalized-hyperbolicity
++  equivalence for all invertible operators on separable complex Hilbert
++  spaces. Thus the separable complex \(p=2\) case is prior art.
++- Pituk's Theorem A and Messaoudi--Tofanin Neto--Saavedra--Tsokanos
++  (August 2026) give counterexamples on general Banach spaces. Those
++  constructions are not asserted to be dissipative composition operators;
++  they do not refute the theorem here.
++
++The candidate contribution is the full \(1\le p<\infty\) dissipative
++composition-operator theorem, the measurable support-band construction,
++and criterion (1.5). A bounded literature search found no earlier complete
++result of this scope. That is not proof of priority. An independent reader
++must audit the dual telescoping estimate, localization at \(p=1\),
++the band-power passage, and the novelty claim before any promotion.
++
++## References
++
++1. E. D'Aniello, U. B. Darji, M. Maiuriello, *Generalized hyperbolicity
++   and shadowing in Lp spaces*, Journal of Differential Equations 298
++   (2021), 68--94. DOI: https://doi.org/10.1016/j.jde.2021.06.038.
++   Open preprint: https://arxiv.org/abs/2009.11526.
++2. M. Maiuriello, *Preserved dynamics: visualizing the connection between
++   composition operators and weighted shifts*, in Oberwolfach Report
++   19/2024, pp. 1078--1081. DOI: https://doi.org/10.4171/owr/2024/19.
++3. N. C. Bernardes Jr., E. D'Aniello, M. Maiuriello, *The specification
++   property for composition operators*, arXiv:2607.15831v1 (17 July 2026),
++   especially Theorem 6.1 and Example 6.2.
++   https://arxiv.org/abs/2607.15831.
++4. M. Pituk, *Resolving the generalized hyperbolicity conjecture for
++   shadowing*, arXiv:2608.19499v1 (19 August 2026), Theorems A--C.
++   https://arxiv.org/abs/2608.19499.
++5. A. Messaoudi, J. Tofanin Neto, M. Saavedra, I. Tsokanos, *On
++   Generalized Hyperbolicity, Stability, and Shadowing for Linear
++   Operators*, arXiv:2608.17021v1 (17 August 2026).
++   https://arxiv.org/abs/2608.17021.
++6. D. Dragičević, M. Pituk, *Duality between shadowing and uniform
++   expansivity in linear dynamics*, Transactions of the American
++   Mathematical Society (2026), DOI: https://doi.org/10.1090/tran/9879.
++   Bibliographic details checked through [4]; the publisher PDF was
++   inaccessible during this attempt. None of its uninspected proof is
++   used as a premise here.
+diff --git a/unsolved_math_prioritization/attempts/30005897/review/reviewed_proof_citation_update.md b/unsolved_math_prioritization/attempts/30005897/review/reviewed_proof_citation_update.md
+new file mode 100644
+index 000000000..d5fc1df99
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30005897/review/reviewed_proof_citation_update.md
+@@ -0,0 +1,421 @@
++# Shadowing without bounded distortion for dissipative composition operators
++
++**Status:** complete candidate proof, awaiting independent mathematical review.
++This is an AI-assisted research note, not an established or refereed result.
++
++**Target:** UnsolvedMath 30005897 / OWR-14298367-003, and the two separate
++questions in Open Problem (1) of Oberwolfach Report 19/2024, p. 1080.
++
++## 1. Statement and scope
++
++Let \((X,\mathcal B,\mu)\) be a sigma-finite measure space. Suppose that
++\(f:X\to X\) is a bijective bimeasurable transformation and that there
++are finite constants \(c_+,c_-\) for which
++\[
++ \mu(fA)\le c_+\mu(A),\qquad
++ \mu(f^{-1}A)\le c_-\mu(A)\qquad(A\in\mathcal B).
++\tag{1.1}
++\]
++Thus \(T\varphi=\varphi\circ f\) is a bounded invertible operator on
++\(L^p(X,\mu)\), for each fixed \(1\le p<\infty\). Assume dissipativity in
++the source's sense: there is a measurable \(W\) with
++\(0<\mu(W)<\infty\) such that
++\[
++ X=\mathop{\dot\bigcup}_{n\in\mathbb Z}f^nW
++\tag{1.2}
++\]
++up to a null set. All operators and spaces may be real or complex.
++
++We use two-sided shadowing. Generalized hyperbolicity means a topological
++direct sum \(L^p=M\oplus N\) of closed subspaces satisfying
++\[
++ TM\subset M,\qquad T^{-1}N\subset N,\qquad
++ r(T|_M)<1,\qquad r(T^{-1}|_N)<1.
++\tag{1.3}
++\]
++Equivalently, the two restrictions have uniform exponential norm decay.
++This is the spectral-radius convention used in the 2024 source; strict
++one-step contractions can be obtained by an equivalent norm.
++
++**Theorem.** Under (1.1)--(1.2), \(T\) has the shadowing property if and
++only if it is generalized hyperbolic. No bounded-distortion assumption is
++needed. In the implication from shadowing, \(M\) and \(N\) can be chosen
++as complementary measurable support bands.
++
++There is also a pointwise density criterion. Put \(\nu=\mu|_W\), and let
++\[
++ \rho_n=\frac{d\nu_n}{d\nu},\qquad
++ \nu_n(A)=\mu(f^nA),\quad A\subset W.
++\tag{1.4}
++\]
++Each \(\rho_n\) is positive and finite almost everywhere; \(\rho_0=1\).
++The theorem's two conditions are equivalent to the following:
++
++**Density condition.** There are \(d\ge1\) and \(0<\eta<1\) such that,
++for almost every \(w\in W\) and every \(n\in\mathbb Z\),
++\[
++ \min\{\rho_{n-d}(w),\rho_{n+d}(w)\}\le\eta\rho_n(w).
++\tag{1.5}
++\]
++The exceptional set is common to all integers \(n\). Its existence causes
++no issue because there are only countably many coordinates.
++
++The proof below is self-contained apart from standard \(L^p\) duality,
++Radon--Nikodym theory, and elementary Banach-space facts. In particular it
++does not assume the recent general spectral characterization of shadowing.
++
++## 2. A necessary dual estimate for shadowing
++
++We first give an elementary Banach-space lemma, including its quantitative
++form to expose the uniformity needed later.
++
++**Lemma 2.1.** Let \(A\) be a bounded invertible operator on a Banach
++space \(E\). If \(A\) has two-sided shadowing, there is \(K>0\) such
++that every bounded sequence \((b_j)_{j\in\mathbb Z}\) admits a bounded
++solution of
++\[
++ y_{j+1}-Ay_j=b_j,\qquad
++ \sup_j\|y_j\|\le K\sup_j\|b_j\|.
++\tag{2.1}
++\]
++For this \(K\), any integer \(d>4K^2+1\) satisfies
++\[
++ \max\{\|(A^*)^du\|,\|(A^*)^{-d}u\|\}>2\|u\|
++ \quad(0\ne u\in E^*).
++\tag{2.2}
++\]
++
++**Proof.** For (2.1), fix a shadowing accuracy, say one, and an associated
++positive error tolerance. Scale any bounded forcing into that tolerance,
++construct a bi-infinite pseudotrajectory recursively using invertibility,
++and subtract a shadowing exact orbit. Scaling back gives (2.1), with a
++constant independent of the forcing. For zero forcing choose the zero
++solution.
++
++Write \(S=A^*\). Every finitely supported sequence \((u_j)\) in \(E^*\)
++satisfies
++\[
++ \sum_j\|u_j\|\le K\sum_j\|u_{j-1}-Su_j\|.
++\tag{2.3}
++\]
++Indeed, choose \(b_j\) in the unit ball so that the real parts of
++\(u_j(b_j)\) approach \(\|u_j\|\), simultaneously on the finite support.
++Use (2.1), sum the identities
++\(u_j(b_j)=u_j(y_{j+1}-Ay_j)\), and shift the index. This gives
++\[
++ \operatorname{Re}\sum_j u_j(b_j)
++ =\operatorname{Re}\sum_j(u_{j-1}-Su_j)(y_j)
++ \le K\sum_j\|u_{j-1}-Su_j\|.
++\]
++Letting the finite approximation errors tend to zero proves (2.3).
++No norm-attainment assumption is used.
++
++Fix nonzero \(u\in E^*\), and write \(a_j=\|S^ju\|\). In (2.3), take
++\(u_j=S^{-j}u\) for \(-b\le j\le-a\) and zero otherwise. Interior
++terms cancel, leaving, for every pair of integers \(a\le b\),
++\[
++ \sum_{j=a}^{b}a_j\le K(a_a+a_{b+1}).
++\tag{2.4}
++\]
++In particular, using the interval \([-j,j-1]\), for each \(j\ge1\),
++\[
++ a_0\le K(a_{-j}+a_j).
++\tag{2.5}
++\]
++If both \(a_{-d}\) and \(a_d\) were at most \(2a_0\), (2.4) on
++\([-d,d-1]\) would give
++\[
++ \sum_{j=-d}^{d-1}a_j\le4Ka_0.
++\]
++Summing (2.5) for \(1\le j\le d-1\) then gives
++\[
++ \frac{d-1}{K}a_0
++ \le\sum_{j=1}^{d-1}(a_{-j}+a_j)
++ \le4Ka_0.
++\]
++This contradicts \(d>4K^2+1\), proving (2.2). \(\square\)
++
++The implication in this lemma is consistent with the more recent full
++duality theorem of Dragičević--Pituk. Only the elementary necessary
++direction proved here is used.
++
++## 3. Orbit coordinates and localization
++
++The realization of dissipative composition operators as shifts on
++density-weighted sequence spaces is prior work: see
++Carvalho--Darji--Varandas [7, Theorem 2.4]. We give the normalization
++explicitly because the adjoint coefficients are essential to the argument.
++
++Let \(\Omega=W\times\mathbb Z\), with measure \(\nu\times\#\), and
++write \(E=L^p(\Omega)\). Define
++\[
++ (U\varphi)_n(w)=\rho_n(w)^{1/p}\varphi(f^nw).
++\tag{3.1}
++\]
++The change-of-variables formula defining \(\nu_n\), together with the
++disjoint decomposition (1.2), shows that \(U\) is an isometric
++isomorphism from \(L^p(X,\mu)\) onto \(E\). Surjectivity follows by
++defining \(\varphi\) separately on each \(f^nW\); both the definition
++and its inverse are measurable.
++
++The conjugate \(B=UTU^{-1}\) is the positive weighted backward shift
++\[
++ (Bg)_n(w)=a_n(w)g_{n+1}(w),\qquad
++ a_n(w)=\left(\frac{\rho_n(w)}{\rho_{n+1}(w)}\right)^{1/p}.
++\tag{3.2}
++\]
++Both \(B\) and \(B^{-1}\) are bounded. They preserve disjoint supports
++and send every measurable support band onto another such band.
++
++Let \(q\) be conjugate to \(p\), including \(q=\infty\) when \(p=1\).
++The Banach dual is the scalar \(L^q(\Omega)\), and \(S=B^*\) satisfies
++\[
++ (Sh)_{n+1}=a_nh_n.
++\tag{3.3}
++\]
++If \(h\) is supported in coordinate \(n\), then \(S^dh\) and
++\(S^{-d}h\) are supported in coordinates \(n+d\) and \(n-d\), with
++respective multiplication factors
++\[
++ \left(\frac{\rho_n}{\rho_{n+d}}\right)^{1/p},\qquad
++ \left(\frac{\rho_n}{\rho_{n-d}}\right)^{1/p}.
++\tag{3.4}
++\]
++
++**Lemma 3.1.** If \(B\) has shadowing, condition (1.5) holds for some
++\(d\), with \(\eta=2^{-p}\).
++
++**Proof.** Apply Lemma 2.1 to \(B\). Fix a coordinate \(n\). If both
++factors in (3.4) were strictly less than two on a set of positive
++\(\nu\)-measure, then on a subset \(F\) of positive measure they would
++both be at most \(2-\epsilon\) for some \(\epsilon>0\). Use
++\(h=\mathbf1_F\) in coordinate \(n\). It belongs to \(L^q(\Omega)\):
++\(\nu(W)<\infty\), and for \(q=\infty\) it has norm one. Both norms
++in (2.2) would be at most \((2-\epsilon)\|h\|\), a contradiction.
++Thus at least one of the factors in (3.4) is at least two almost
++everywhere. Rearrangement gives (1.5). Take the union of the exceptional
++null sets over \(n\in\mathbb Z\). \(\square\)
++
++This is the place where an operator-level uniform estimate becomes a
++pointwise estimate uniform over every fiber. Merely knowing that each
++individual fiber has shadowing would not suffice.
++
++## 4. A support-band splitting for a power
++
++Assume (1.5) for some \(d\) and \(\eta\in(0,1)\). Define
++\[
++ A_0=\{(w,n):\rho_{n-d}(w)\le\eta\rho_n(w)\},\qquad
++ C_0=\Omega\setminus A_0.
++\tag{4.1}
++\]
++These sets are measurable. All statements about them are modulo the
++common null set already removed. Put
++\(M_0=L^p(A_0)\), \(N_0=L^p(C_0)\), as support bands in \(E\).
++
++If \((w,n)\in A_0\), then \((w,n-d)\in A_0\). In fact, applying
++(1.5) at \(n-d\), the alternative
++\(\rho_n\le\eta\rho_{n-d}\) is impossible, because it would imply
++\(\rho_n\le\eta^2\rho_n\). Therefore
++\(\rho_{n-2d}\le\eta\rho_{n-d}\). Iteration yields
++\[
++ \rho_{n-md}(w)\le\eta^m\rho_n(w)
++ \quad((w,n)\in A_0,\ m\ge0).
++\tag{4.2}
++\]
++
++If \((w,n)\in C_0\), condition (1.5) forces
++\(\rho_{n+d}\le\eta\rho_n\). Moreover, \((w,n+d)\in C_0\), because
++membership in \(A_0\) at \(n+d\) would give the contradictory opposite
++inequality \(\rho_n\le\eta\rho_{n+d}\). Hence
++\[
++ \rho_{n+md}(w)\le\eta^m\rho_n(w)
++ \quad((w,n)\in C_0,\ m\ge0).
++\tag{4.3}
++\]
++At a point where both drops hold, (4.1) assigns the point to \(A_0\);
++the two propagation arguments remain valid at this boundary.
++
++Equations (3.2), (4.2), and (4.3) now give
++\[
++ B^dM_0\subset M_0,\quad B^{-d}N_0\subset N_0,
++\quad
++ \|B^{md}|_{M_0}\|\le\eta^{m/p},\quad
++ \|B^{-md}|_{N_0}\|\le\eta^{m/p}.
++\tag{4.4}
++\]
++For example, changing the summation index in the \(L^p\) norm of
++\(B^{md}g\) expresses it as the integral of
++\(\sum_n(\rho_{n-md}/\rho_n)|g_n|^p\), and (4.2) applies on the support
++of \(g\). The inverse estimate is identical with (4.3).
++
++## 5. Passing from a power to the original operator
++
++It is important not to assume that an arbitrary generalized-hyperbolic
++splitting for a power automatically gives the required splitting for the
++operator. Here a finite intersection of support bands supplies it.
++
++Define the closed support band
++\[
++ M=\bigcap_{j=0}^{d-1}B^jM_0,
++\tag{5.1}
++\]
++and let \(N\) be its complementary support band. Then \(E=M\oplus N\),
++with norm-one coordinate projections when the bands are nonzero. Because
++\(B\) is an invertible weighted coordinate permutation,
++\[
++ BM=\bigcap_{j=1}^{d}B^jM_0
++ \subset\bigcap_{j=0}^{d-1}B^jM_0=M;
++\tag{5.2}
++\]
++the inclusion uses \(B^dM_0\subset M_0\).
++
++Support complementation commutes with this weighted permutation. Thus
++\[
++ N=\sum_{j=0}^{d-1}B^jN_0
++\tag{5.3}
++\]
++is the support band on the finite union of the corresponding supports.
++Equation (5.2) also gives \(B^{-1}N\subset N\). More explicitly, if
++\(\tau(w,n)=(w,n-1)\) is the support map of \(B\), and \(A\) is the
++support of \(M\), then \(\tau A\subset A\) implies
++\(\tau^{-1}(A^c)\subset A^c\).
++
++The contraction bound for \(M\) follows immediately from \(M\subset M_0\):
++\[
++ \|B^{md}|_M\|\le\eta^{m/p}.
++\tag{5.4}
++\]
++For the complementary band, set
++\[
++ D=\max_{0\le j<d}\|B^j\|\,\|B^{-j}\|<\infty.
++\]
++If \(g\in B^jN_0\), then \(B^{-j}g\in N_0\), so (4.4) gives
++\[
++ \|B^{-md}g\|
++ \le\|B^j\|\eta^{m/p}\|B^{-j}g\|
++ \le D\eta^{m/p}\|g\|.
++\tag{5.5}
++\]
++For general \(g\in N\), partition the finite union in (5.3) into
++disjoint measurable sets, the \(j\)-th contained in the support of
++\(B^jN_0\). This writes \(g=\sum_{j=0}^{d-1}g_j\) with disjoint
++supports and \(g_j\in B^jN_0\). Their images under \(B^{-md}\) still
++have disjoint supports. Therefore
++\[
++ \|B^{-md}g\|^p
++ =\sum_j\|B^{-md}g_j\|^p
++ \le D^p\eta^m\sum_j\|g_j\|^p
++ =D^p\eta^m\|g\|^p.
++\tag{5.6}
++\]
++This argument includes \(p=1\).
++
++Writing an arbitrary \(k\ge0\) as \(md+r\), \(0\le r<d\), and using
++the finite bounds for \(B^r\) and \(B^{-r}\), proves uniform exponential
++decay on \(M\) forward and on \(N\) backward. In particular,
++\[
++ r(B|_M),\ r(B^{-1}|_N)\le\eta^{1/(pd)}<1.
++\tag{5.7}
++\]
++Transporting the bands by \(U^{-1}\) gives (1.3) for \(T\).
++
++Thus shadowing implies (1.5), and (1.5) implies generalized hyperbolicity.
++
++## 6. Converse and completion
++
++For completeness, suppose (1.3) holds for a bounded invertible operator
++on a Banach space, and let \(P,Q\) be the complementary projections onto
++\(M,N\). There are \(C<\infty\) and \(0<\alpha<1\) such that
++\(\|T^j|_M\|,\|T^{-j}|_N\|\le C\alpha^j\) for all \(j\ge0\).
++For any bounded forcing \((b_n)\), the series
++\[
++ y_n=\sum_{j=0}^{\infty}T^jPb_{n-1-j}
++     -\sum_{j=0}^{\infty}T^{-j-1}Qb_{n+j}
++\tag{6.1}
++\]
++converge absolutely and uniformly in \(n\). Their sums are uniformly
++bounded by a constant times \(\sup_n\|b_n\|\). Directly shifting each
++series gives \(y_{n+1}-Ty_n=b_n\); commutation of \(P,Q\) with \(T\)
++is neither assumed nor needed.
++
++For a pseudotrajectory \((x_n)\), use its errors as \(b_n\), and put
++\(z_n=x_n-y_n\). Then \(z_{n+1}=Tz_n\), so invertibility implies
++\(z_n=T^nz_0\) for all integers \(n\). The uniform bound on \(y_n\)
++gives shadowing after choosing the error tolerance small enough.
++This proves the converse and the full equivalence. \(\square\)
++
++## 7. Distinguishing the two questions in the original source
++
++The original 2024 problem also asks whether the earlier characterization
++using only the scalar sequence \(\mu(f^nW)\) survives removal of bounded
++distortion. That is a different assertion from the theorem proved above.
++
++The answer to that older scalar-characterization question was already
++negative before this attempt: Bernardes--D'Aniello--Maiuriello,
++arXiv:2607.15831v1, Example 6.2, construct a dissipative two-orbit system
++whose level masses are \(2^n\), so the condition labelled HC holds, but
++whose composition operator has no shadowing. Their obstruction is a
++constant-mass positive tail on one orbit, which permits unbounded
++accumulation of pseudotrajectory errors. We claim no novelty for that
++negative answer.
++
++Condition (1.5) retains the pointwise orbit densities and is not the old
++aggregate-mass criterion. In the cited example the constant-mass tail
++violates (1.5) for every \(d\) and \(\eta<1\), as it must.
++
++## 8. Relation to current literature and remaining verification
++
++- D'Aniello--Darji--Maiuriello (2021), Corollary GH, proves the equivalence
++  with bounded distortion. Problem 5.0.1 asks about removing it.
++- Oberwolfach Report 19/2024, pp. 1078--1081, repeats the two questions.
++- Carvalho--Darji--Varandas (2024), Theorem 2.4, gives the general
++  density-weighted shift realization. Their Corollary 2.16 proves the
++  equivalence for shift operators with finite-dimensional fibers and an
++  appropriate bounded-projection basis; that is not the unrestricted
++  measurable-fiber assertion proved here.
++- Bernardes--D'Aniello--Maiuriello (July 2026), Example 6.2, answers the
++  aggregate-characterization question negatively.
++- Pituk (August 2026), Theorem B, proves the generalized-hyperbolicity
++  equivalence for all invertible operators on separable complex Hilbert
++  spaces. Thus the separable complex \(p=2\) case is prior art.
++- Pituk's Theorem A and Messaoudi--Tofanin Neto--Saavedra--Tsokanos
++  (August 2026) give counterexamples on general Banach spaces. Those
++  constructions are not asserted to be dissipative composition operators;
++  they do not refute the theorem here.
++
++The candidate contribution is the full \(1\le p<\infty\) dissipative
++composition-operator theorem, the measurable support-band construction,
++and criterion (1.5). A bounded literature search found no earlier complete
++result of this scope. That is not proof of priority. An independent reader
++must audit the dual telescoping estimate, localization at \(p=1\),
++the band-power passage, and the novelty claim before any promotion.
++
++## References
++
++1. E. D'Aniello, U. B. Darji, M. Maiuriello, *Generalized hyperbolicity
++   and shadowing in Lp spaces*, Journal of Differential Equations 298
++   (2021), 68--94. DOI: https://doi.org/10.1016/j.jde.2021.06.038.
++   Open preprint: https://arxiv.org/abs/2009.11526.
++2. M. Maiuriello, *Preserved dynamics: visualizing the connection between
++   composition operators and weighted shifts*, in Oberwolfach Report
++   19/2024, pp. 1078--1081. DOI: https://doi.org/10.4171/owr/2024/19.
++3. N. C. Bernardes Jr., E. D'Aniello, M. Maiuriello, *The specification
++   property for composition operators*, arXiv:2607.15831v1 (17 July 2026),
++   especially Theorem 6.1 and Example 6.2.
++   https://arxiv.org/abs/2607.15831.
++4. M. Pituk, *Resolving the generalized hyperbolicity conjecture for
++   shadowing*, arXiv:2608.19499v1 (19 August 2026), Theorems A--C.
++   https://arxiv.org/abs/2608.19499.
++5. A. Messaoudi, J. Tofanin Neto, M. Saavedra, I. Tsokanos, *On
++   Generalized Hyperbolicity, Stability, and Shadowing for Linear
++   Operators*, arXiv:2608.17021v1 (17 August 2026).
++   https://arxiv.org/abs/2608.17021.
++6. D. Dragičević, M. Pituk, *Duality between shadowing and uniform
++   expansivity in linear dynamics*, Transactions of the American
++   Mathematical Society (2026), DOI: https://doi.org/10.1090/tran/9879.
++   Bibliographic details checked through [4]; the publisher PDF was
++   inaccessible during this attempt. None of its uninspected proof is
++   used as a premise here.
++7. M. Carvalho, U. B. Darji, P. Varandas, *Shift operators and their
++   classification*, arXiv:2407.20890v1 (30 July 2024), Theorem 2.4 and
++   Corollary 2.16. https://arxiv.org/abs/2407.20890.
+diff --git a/unsolved_math_prioritization/attempts/30005897/review/verdict.json b/unsolved_math_prioritization/attempts/30005897/review/verdict.json
+new file mode 100644
+index 000000000..66df9a5ae
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30005897/review/verdict.json
+@@ -0,0 +1,26 @@
++{
++  "target": "30005897",
++  "reviewed_at": "2026-09-30T03:48:00Z",
++  "candidate_sha256": "7aa1189fc74b7b5fcd38435db8820e551bc0671f1ee580c37d676e04ef40b53b",
++  "mathematical_verdict": "pass",
++  "p1_endpoint": "pass",
++  "uniform_fiber_localization": "pass",
++  "power_to_operator_band_transfer": "pass",
++  "source_scope": "complete exact OWR equivalence; other aggregate condition already refuted in prior literature",
++  "mandatory_mathematical_revisions": [],
++  "attribution_action": "Completed: CDV Theorem2.4 attributed",
++  "historical_priority": "unresolved",
++  "report": "REVIEW.md",
++  "model": "gpt-6-astra",
++  "reasoning_effort": "xhigh",
++  "citation_update_sha256": "12d02dc0bcedf8812d0e57950e5130aad8b6c308c26bc260faa4e3e3605463b3",
++  "citation_update_reviewed_at": "2026-09-30T03:48:42Z",
++  "citation_update_verdict": "pass; full diff confirmed citation-only changes",
++  "recommended_exposition": [
++    "Invariant conull reduction (optional)",
++    "Explicit uniform adjacent-density bounds (optional)"
++  ],
++  "CDV_attribution": "satisfied in citation update",
++  "final_hash_checked": "f38ae2dd97bb2aeb8f1e97da0f4133b84b6d43d803e2b38df2c91acc56817a8e",
++  "final_hash_check": "Only deduplicated citation and audit-status metadata changes; mathematical pass unchanged"
++}
+diff --git a/unsolved_math_prioritization/attempts/30005897/review_request.md b/unsolved_math_prioritization/attempts/30005897/review_request.md
+new file mode 100644
+index 000000000..4414dd93a
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30005897/review_request.md
+@@ -0,0 +1,24 @@
++# Independent review request
++
++Please audit `PROOF.md` as a complete candidate resolution of the exact
++equivalence in UnsolvedMath 30005897, with no bounded distortion. The
++manuscript explicitly treats the original source's aggregate-mass
++characterization question as prior art resolved negatively in July 2026.
++
++Concentrate on:
++
++1. The finite dual telescoping identity (2.3)--(2.5), endpoint indexing,
++   and whether its constant gives one uniform exponent for every dual vector
++2. Localization in scalar Lq for both 1<p<infinity and p=1, without
++   assuming norm attainment, separability, or a vector-valued dual theorem
++3. The direction of the density ratios and propagation of the measurable
++   stable/complement bands in Section 4, including points with both drops
++4. The finite-intersection passage from B^d to B in Section 5; in particular
++   the complementary-band inverse contraction estimate (5.6)
++5. The noncommuting-projection Green formula and the original hypotheses
++6. Current literature and whether the claimed contribution was already
++   proved in a different formulation
++
++Record the exact SHA-256 of the version reviewed. A favorable internal
++review is not peer review or a proof of historical priority. Report any
++fatal or material issue immediately to the coordinator and authoring worker.
+diff --git a/unsolved_math_prioritization/attempts/30005897/source_provenance.json b/unsolved_math_prioritization/attempts/30005897/source_provenance.json
+new file mode 100644
+index 000000000..549e7e362
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30005897/source_provenance.json
+@@ -0,0 +1,20 @@
++{
++  "dataset": "ulamai/UnsolvedMath",
++  "revision": "37e53eabe540fb458758e198be61634bd02ee008",
++  "numeric_id": 30005897,
++  "code": "OWR-14298367-003",
++  "code_matches": [
++    30005897
++  ],
++  "report_present": false,
++  "record_sha256_canonical_json": "4c38f4ab152d7996b1e7d0c3f8a00c0fa6013120846d97c2f1f29f57c29fcefb",
++  "source_pdf_sha256": {
++    "2608.19499.pdf": "faa3ce7c732de0f3dd76150ac6d33018e9f27c1869135b313030baad08271475",
++    "owr-2024-19.pdf": "84fdf95979e149efaf04c5af6206427562f43d5168866d12226e8a323a68ed60",
++    "2009.11526.pdf": "589bed5d51cacb5a07c530d0afac0e5c646cd92abd509c468964dac28a93d54b",
++    "2608.17021.pdf": "96a6f324b5be66d4e755ab6690d74b4a32c13c5726b0244b0f13fcd6666725ac",
++    "shift-classification.pdf": "7ac6767ee908dd61edbdf407c34428ba99e20fa276d53a94f160f7381ff0066b",
++    "2607.15831.pdf": "22cc33c267133a4c342a44621bc12cabb6acc600a1bdc258f0ed2a49919c784b",
++    "CDV-arxiv-2024.pdf": "7ac6767ee908dd61edbdf407c34428ba99e20fa276d53a94f160f7381ff0066b"
++  }
++}
+diff --git a/unsolved_math_prioritization/attempts/30005897/source_record.json b/unsolved_math_prioritization/attempts/30005897/source_record.json
+new file mode 100644
+index 000000000..01051c83a
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30005897/source_record.json
+@@ -0,0 +1,68 @@
++{
++  "id": 30005897,
++  "problem_number": "OWR-14298367-003",
++  "title": "Shadowing Without Bounded Distortion",
++  "statement": "For dissipative composition operators without bounded distortion, is generalized hyperbolicity equivalent to the shadowing property?",
++  "background": "Collected from Oberwolfach Reports, which document mathematical workshops and their open-problem discussions.\n\n**Source report:** [Mini-Workshop: New Horizons in Linear Dynamics, Universality, and the Invariant Subspace Problem (2024), Oberwolfach Reports, DOI 10.4171/owr/2024/19, pp. 1069--1096](https://doi.org/10.4171/owr/2024/19)\n\n## Literature review (checked 2026-08-22)\n\n**Status:** open\n\n**Assessment.** The equivalence and full shadowing characterization are proved for dissipative composition systems with bounded distortion, but the no-bounded-distortion case remains unresolved.\n\n**Sources checked.**\n\n- [D'Aniello, Darji and Maiuriello](https://doi.org/10.1016/j.jde.2021.06.038)\n- [Oberwolfach Report 19/2024](https://doi.org/10.4171/owr/2024/19)\n\nThis is a dated literature triage derived from the supplied OWR curation; verify time-sensitive status and cited claims independently.",
++  "difficulty_level_id": 3,
++  "status": "open",
++  "proposed_by": null,
++  "proposed_year": 2024,
++  "category_id": 11,
++  "set_id": 15,
++  "source_url": "https://doi.org/10.4171/owr/2024/19",
++  "source_citation": "Mini-Workshop: New Horizons in Linear Dynamics, Universality, and the Invariant Subspace Problem (2024), Oberwolfach Reports, DOI 10.4171/owr/2024/19, pp. 1069--1096",
++  "literature_assessment": "The equivalence and full shadowing characterization are proved for dissipative composition systems with bounded distortion, but the no-bounded-distortion case remains unresolved.",
++  "literature_sources": [
++    {
++      "url": "https://doi.org/10.1016/j.jde.2021.06.038",
++      "label": "D'Aniello, Darji and Maiuriello"
++    },
++    {
++      "url": "https://doi.org/10.4171/owr/2024/19",
++      "label": "Oberwolfach Report 19/2024"
++    }
++  ],
++  "literature_checked_at": "2026-08-22",
++  "tags": [
++    "owr",
++    "oberwolfach-reports",
++    "OWR-14298367-003",
++    "literature-status:open",
++    "owr-year:2024"
++  ],
++  "view_count": 0,
++  "favorite_count": 0,
++  "created_at": "2026-08-25T00:00:00Z",
++  "updated_at": "2026-09-16T12:06:53Z",
++  "published": true,
++  "category": {
++    "id": 11,
++    "name": "dynamical_systems",
++    "display_name": "Dynamical Systems",
++    "description": "Problems about long-term behavior of deterministic systems, Hamiltonian dynamics, and periodic orbits.",
++    "slug": "dynamical-systems",
++    "order_index": 11,
++    "created_at": "2026-07-31T15:26:25.671Z"
++  },
++  "difficulty": {
++    "id": 3,
++    "level": 3,
++    "name": "L3: Advanced",
++    "description": "Difficult problems requiring specialized knowledge and sophisticated techniques.",
++    "color_class": "text-yellow-600 bg-yellow-50 border-yellow-200"
++  },
++  "set": {
++    "id": 15,
++    "name": "oberwolfach_reports_open_problems",
++    "display_name": "Oberwolfach Reports Open Problems",
++    "description": "Open and partially solved problems extracted from Oberwolfach Reports workshop discussions, with report provenance and dated literature assessments.",
++    "slug": "oberwolfach-reports-open-problems",
++    "order_index": 15,
++    "created_at": "2026-08-25T00:00:00Z"
++  },
++  "original_statement": "Open Problems: (1) In a dissipative setting without bounded distortion, does the characterization provided in [1] for the shadowing property still hold? Is it still true that a com- position operator is generalized hyperbolic if and only if it has the shadowing property? Linear Dynamics, Universality, and the Invariant Subspace Problem 1081",
++  "clean_statement": "For dissipative composition operators without bounded distortion, is generalized hyperbolicity equivalent to the shadowing property?",
++  "statement_status": "corrected_verified",
++  "statement_verification": "The statement was reconstructed and checked against the official Oberwolfach report."
++}
+diff --git a/unsolved_math_prioritization/attempts/30005897/verification.json b/unsolved_math_prioritization/attempts/30005897/verification.json
+new file mode 100644
+index 000000000..b43e732b0
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30005897/verification.json
+@@ -0,0 +1,24 @@
++{
++  "status": "passed",
++  "arithmetic": "Python standard-library fractions.Fraction",
++  "scope": "Finite algebra/index/support tests; not a proof certificate",
++  "checks": {
++    "band_models": {
++      "models": 84,
++      "exact_comparisons": 55572
++    },
++    "scalar_propagation": {
++      "admissible_five_term_sequences": 1211
++    },
++    "dual_telescoping": {
++      "exact_rational_tests": 30
++    },
++    "green_identity": {
++      "time_indices_checked": 31,
++      "noncommuting_projection_control": "passed"
++    },
++    "negative_controls": {
++      "rejected_cases": 30
++    }
++  }
++}
+diff --git a/unsolved_math_prioritization/attempts/30005897/verify.py b/unsolved_math_prioritization/attempts/30005897/verify.py
+new file mode 100644
+index 000000000..18ac0c511
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30005897/verify.py
+@@ -0,0 +1,211 @@
++#!/usr/bin/env python3
++"""Exact, bounded checks for the indexing and finite models in PROOF.md.
++
++These checks do not certify an infinite-dimensional theorem.  All arithmetic
++is rational; the source proof, including measurability and uniformity, still
++requires independent mathematical review.
++"""
++from fractions import Fraction as F
++from itertools import product
++import json
++from pathlib import Path
++
++
++checks = {}
++
++
++def pow2(n):
++    return F(2) ** n
++
++
++def check_band_models():
++    count = 0
++    comparisons = 0
++    for d in range(1, 7):
++        for seed in range(12):
++            cuts = [((seed + 3 * r) % 7) - 3 for r in range(d)]
++            offsets = [((2 * seed + r) % 5) - 2 for r in range(d)]
++
++            def rho(n):
++                q, r = divmod(n, d)
++                return pow2(-abs(q - cuts[r]) + offsets[r])
++
++            # Work far inside a padded interval. The checks below are finite.
++            lo, hi = -25 * d, 25 * d
++
++            def A0(n):
++                return rho(n - d) <= rho(n) / 2
++
++            def A(n):
++                return all(A0(n + j) for j in range(d))
++
++            # p-th powers of the operator-condition-number bounds; the
++            # densities encode all p simultaneously without taking roots.
++            Dp = max(
++                max(rho(n - j) / rho(n) for n in range(lo, hi + 1))
++                * max(rho(n + j) / rho(n) for n in range(lo, hi + 1))
++                for j in range(d)
++            )
++            for n in range(-12 * d, 12 * d + 1):
++                assert min(rho(n - d), rho(n + d)) <= rho(n) / 2
++                if A0(n):
++                    assert A0(n - d)
++                else:
++                    assert not A0(n + d)
++                if A(n):
++                    assert A(n - 1)
++                else:
++                    assert not A(n + 1)
++                assert (not A(n)) == any(not A0(n + j) for j in range(d))
++                for m in range(9):
++                    if A(n):
++                        assert rho(n - m * d) / rho(n) <= F(1, 2) ** m
++                    else:
++                        assert rho(n + m * d) / rho(n) <= Dp * F(1, 2) ** m
++                    comparisons += 1
++            count += 1
++
++    # Empty stable or unstable bands are allowed and occur here.
++    for direction in (-1, 1):
++        for d in range(1, 7):
++            rho = lambda n: pow2(direction * n)
++            stable = lambda n: rho(n - d) <= rho(n) / 2
++            for n in range(-20, 21):
++                assert stable(n) == (direction == 1)
++                assert min(rho(n - d), rho(n + d)) <= rho(n) / 2
++                comparisons += 1
++            count += 1
++    checks['band_models'] = {'models': count, 'exact_comparisons': comparisons}
++
++
++def check_scalar_propagation():
++    # Every five-term positive sequence chosen from these seven exact values.
++    # Check the local implication whenever its full hypotheses are available.
++    count = 0
++    values = [pow2(n) for n in range(-3, 4)]
++    for seq in product(values, repeat=5):
++        condition = all(min(seq[i - 1], seq[i + 1]) <= seq[i] / 2
++                        for i in (1, 2, 3))
++        if not condition:
++            continue
++        stable = lambda i: seq[i - 1] <= seq[i] / 2
++        if stable(2):
++            assert stable(1)
++        else:
++            assert not stable(3)
++        count += 1
++    checks['scalar_propagation'] = {'admissible_five_term_sequences': count}
++
++
++def check_telescoping():
++    # Finite rational test of sum u_j(y_{j+1}-Ay_j)
++    # = sum (u_{j-1}-A* u_j)(y_j), including both boundary terms.
++    A = ((F(2), F(1)), (F(0), F(1, 2)))
++    zero = (F(0), F(0))
++    mv = lambda M, x: tuple(sum(M[i][j] * x[j] for j in range(2)) for i in range(2))
++    sub = lambda x, y: tuple(x[i] - y[i] for i in range(2))
++    dot = lambda x, y: sum(x[i] * y[i] for i in range(2))
++    At = tuple(tuple(A[j][i] for j in range(2)) for i in range(2))
++    tests = 0
++    for seed in range(30):
++        u = {j: (F(seed + j, 3), F(seed - 2 * j, 5)) for j in range(-3, 4)}
++        y = {j: (F(seed + j * j, 7), F(seed - j, 11)) for j in range(-4, 6)}
++        lhs = sum(dot(u[j], sub(y[j + 1], mv(A, y[j]))) for j in u)
++        rhs = sum(dot(sub(u.get(j - 1, zero), mv(At, u.get(j, zero))), y[j])
++                  for j in range(-3, 5))
++        assert lhs == rhs
++        tests += 1
++    checks['dual_telescoping'] = {'exact_rational_tests': tests}
++
++
++def clean(v):
++    return {n: x for n, x in v.items() if x}
++
++
++def add(*vs):
++    ans = {}
++    for v in vs:
++        for n, x in v.items():
++            ans[n] = ans.get(n, F(0)) + x
++    return clean(ans)
++
++
++def scale(v, c):
++    return clean({n: c * x for n, x in v.items()})
++
++
++def B(v):
++    # p=1, rho_n=2^{-|n|}; backward-shift coefficient at output n.
++    return {n - 1: x * pow2(abs(n) - abs(n - 1)) for n, x in v.items()}
++
++
++def Binv(v):
++    return {n + 1: x * pow2(abs(n) - abs(n + 1)) for n, x in v.items()}
++
++
++def iterate(fun, v, k):
++    for _ in range(k):
++        v = fun(v)
++    return v
++
++
++def check_green_identity():
++    P = lambda v: {n: x for n, x in v.items() if n <= 0}
++    Q = lambda v: {n: x for n, x in v.items() if n > 0}
++    # This splitting is generalized: the two projections do NOT both
++    # commute with B. The test must not silently replace it by a diagonal one.
++    probe = {1: F(1)}
++    assert P(B(probe)) != B(P(probe))
++    forcing = {t: {-2: F(t + 4, 3), 1: F(7 - t, 5), 3: F(t * t, 11)}
++               for t in range(-3, 4)}
++
++    def y(n):
++        terms = []
++        for t, b in forcing.items():
++            if t <= n - 1:
++                terms.append(iterate(B, P(b), n - 1 - t))
++            if t >= n:
++                terms.append(scale(iterate(Binv, Q(b), t - n + 1), -1))
++        return add(*terms)
++
++    for n in range(-15, 16):
++        assert y(n + 1) == add(B(y(n)), forcing.get(n, {}))
++    checks['green_identity'] = {'time_indices_checked': 31,
++                                'noncommuting_projection_control': 'passed'}
++
++
++def check_controls():
++    failures = 0
++    # Identity and a valley have the wrong density geometry.
++    for d in range(1, 11):
++        assert not min(F(1), F(1)) <= F(1, 2)
++        assert not min(pow2(abs(-d)), pow2(abs(d))) <= F(1, 2)
++        failures += 2
++    # The positive constant-mass tail in prior Example 6.2 fails the new
++    # criterion while its aggregate level masses have HC ratio exactly 2^-d.
++    for d in range(1, 11):
++        n = d + 2
++        bad_rho = lambda j: F(1) if j >= 1 else pow2(j - 1)
++        assert min(bad_rho(n - d), bad_rho(n + d)) > bad_rho(n) / 2
++        assert pow2(n) / pow2(n + d) == pow2(-d)
++        failures += 1
++    checks['negative_controls'] = {'rejected_cases': failures}
++
++
++def main():
++    if not __debug__:
++        raise RuntimeError('Run without -O: assertions perform the exact checks.')
++    check_band_models()
++    check_scalar_propagation()
++    check_telescoping()
++    check_green_identity()
++    check_controls()
++    result = {'status': 'passed',
++              'arithmetic': 'Python standard-library fractions.Fraction',
++              'scope': 'Finite algebra/index/support tests; not a proof certificate',
++              'checks': checks}
++    print(json.dumps(result, indent=2))
++
++
++if __name__ == '__main__':
++    main()
