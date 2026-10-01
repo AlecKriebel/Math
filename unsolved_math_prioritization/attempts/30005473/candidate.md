@@ -1,0 +1,153 @@
+# Irreducibility of the exposed-point variety of a discotope
+
+**Problem:** 30005473 / OWR-12697711-006  
+**Date:** 30 September 2026  
+**Status:** complete proof with an independent AI audit; unrefereed; historical priority unconfirmed
+
+## 1. Exact target and result
+
+A disc is a linear image of a closed Euclidean unit ball. A discotope is a finite Minkowski sum of such discs. For a compact convex set \(K\subset\mathbb R^d\), write \(\operatorname{Exp}(K)\) for the points which uniquely maximize some nonzero real linear functional, and put
+\[
+E(K)=\overline{\operatorname{Exp}(K)}^{\mathrm{Zar},\mathbb C}\subseteq\mathbb C^d.
+\]
+The exact target in the 2023 Oberwolfach report is irreducibility of \(E(D)\) when the summand discs have dimension at least two and are generic [1, p. 830, Conjecture 1].
+
+**Theorem 1.** Let \(D=D_1+\cdots+D_N\subseteq\mathbb R^d\), where \(N\geq1\) and each \(D_i\) is a disc of dimension at least two. Then \(E(D)\) is irreducible over \(\mathbb C\). No genericity or full-dimensionality assumption is needed.
+
+Thus Theorem 1 gives an affirmative answer to the entire stated target. An independent AI audit found no mathematical gap; human peer review has not been obtained. Section 5 also proves the corresponding generic assertion for the larger variety appearing in the 2022 paper. Neither a degree formula nor irreducibility of a complex critical locus is asserted.
+
+## 2. Two elementary lemmas
+
+**Lemma 2 (connected domain of regular normals).** If \(L_1,\ldots,L_N\) are real linear subspaces of \(\mathbb R^d\), each of codimension at least two, then
+\[
+U=\mathbb R^d\setminus\bigcup_i L_i
+\]
+is a nonempty, open, path-connected set.
+
+**Proof.** A finite union of proper real linear subspaces cannot fill \(\mathbb R^d\): choose a nonzero linear form vanishing on each subspace and take their product, which is a nonzero real polynomial. Openness follows because the union is closed.
+
+Take \(x,y\in U\). Each subspace \(L_i+\mathbb Rx\), and likewise \(L_i+\mathbb Ry\), has dimension at most \(d-1\). Choose \(z\) outside their finite union. The segment from \(x\) to \(z\) avoids every \(L_i\). Indeed, if \((1-t)x+tz\in L_i\) for some \(0<t\leq1\), then \(z\in L_i+\mathbb Rx\), a contradiction; its endpoint \(t=0\) is already outside. The segment from \(y\) to \(z\) is handled in the same way. These two segments give a path in \(U\). \(\square\)
+
+**Lemma 3 (analytic images have irreducible Zariski closure).** Suppose \(U\subseteq\mathbb R^d\) is nonempty, open, and connected, and \(F:U\to\mathbb R^m\) is real analytic. The complex Zariski closure of \(F(U)\) is irreducible.
+
+**Proof.** Let
+\[
+I=\{P\in\mathbb C[X_1,\ldots,X_m]:P(F(u))=0\ \text{for every }u\in U\}.
+\]
+This ideal is proper, since \(1\notin I\). If \(PQ\in I\) and \(P\notin I\), choose \(u_0\in U\) with \(P(F(u_0))\ne0\). By continuity, \(P\circ F\) is nonzero on a neighborhood of \(u_0\), so \(Q\circ F\) vanishes there. It is a complex-valued real-analytic function on connected \(U\), and the real-analytic identity theorem gives \(Q\circ F=0\) throughout \(U\). Hence \(Q\in I\), and \(I\) is prime.
+
+For completeness, the identity theorem used here is elementary. For a real-analytic function vanishing on a nonempty open set, the set of points where it vanishes on a neighborhood is open and is also relatively closed: at a limit point, every derivative vanishes by continuity, and its convergent Taylor series is therefore zero nearby. Connectedness finishes the argument. Apply this to the real and imaginary parts.
+
+By the definition of Zariski closure, \(I\) is exactly the vanishing ideal of the closure of \(F(U)\). A complex affine algebraic set with prime vanishing ideal is irreducible. \(\square\)
+
+The analyticity assumption is essential to this argument. Connectedness of an arbitrary image alone would not imply irreducibility.
+
+## 3. Parametrizing exactly the exposed points
+
+Choose injective linear maps \(A_i:\mathbb R^{m_i}\to\mathbb R^d\), with \(m_i=\dim D_i\geq2\), such that
+\[
+D_i=A_i(B^{m_i}),\qquad Q_i=A_iA_i^{\mathsf T}.
+\]
+Every disc of dimension \(m_i\) admits this form, by restricting a singular-value decomposition to its nonzero singular directions. The symmetric matrix \(Q_i\) is positive semidefinite of rank \(m_i\).
+
+For \(u\in\mathbb R^d\), the support function of \(D_i\) is
+\[
+h_i(u)=\max_{\|v\|\leq1}\langle A_i^{\mathsf T}u,v\rangle
+      =\|A_i^{\mathsf T}u\|
+      =\sqrt{u^{\mathsf T}Q_i u}.
+\]
+If \(A_i^{\mathsf T}u\ne0\), equality in Cauchy--Schwarz gives the unique maximizing point
+\[
+p_i(u)=\frac{A_iA_i^{\mathsf T}u}{\|A_i^{\mathsf T}u\|}
+      =\frac{Q_i u}{\sqrt{u^{\mathsf T}Q_i u}}. \tag{1}
+\]
+If \(A_i^{\mathsf T}u=0\), every point of \(D_i\) maximizes the functional, so the exposed face is the whole positive-dimensional disc.
+
+The face of a Minkowski sum exposed by \(u\) is the Minkowski sum of the faces exposed by \(u\) in the summands. To check this, every summand satisfies \(\langle u,x_i\rangle\leq h_i(u)\); equality in their sum is equivalent to equality term by term. Such a sum of nonempty faces is a singleton if and only if each face is a singleton: a nonsingleton face remains nonsingleton after fixing a point in every other face.
+
+It follows that the normals exposing a point of \(D\) are precisely
+\[
+U=\mathbb R^d\setminus\bigcup_{i=1}^N\ker A_i^{\mathsf T}
+ =\mathbb R^d\setminus\bigcup_{i=1}^N\ker Q_i.
+\]
+In particular, \(0\notin U\). Moreover, there is an exact equality of sets
+\[
+\operatorname{Exp}(D)=F(U),\qquad
+F(u)=\sum_{i=1}^N\frac{Q_i u}{\sqrt{u^{\mathsf T}Q_i u}}, \tag{2}
+\]
+where every square root denotes the positive real square root. This is not merely a parametrization of a dense subset: every exposed point is covered, because its exposing normal must give a singleton face in each summand.
+
+## 4. Proof of Theorem 1
+
+Each \(\ker A_i^{\mathsf T}\) has codimension \(m_i\geq2\). Lemma 2 shows that the domain \(U\) in (2) is nonempty, open, and connected. On \(U\), every quadratic form \(u^{\mathsf T}Q_i u\) is strictly positive. Since \(t\mapsto t^{-1/2}\) is real analytic on \((0,\infty)\), the map \(F\) is real analytic on all of \(U\).
+
+By (2) and Lemma 3, the complex Zariski closure of the exposed points is irreducible. \(\square\)
+
+This proof does not require the quadratic radicals to be independent, the parametrization to be injective, its image to be smooth, or its differential to have any specified rank. Repeated discs, coincident spans, lower-dimensional sums, and normals exposing the same point are all allowed.
+
+## 5. Relation to the purely nonlinear part
+
+There is a substantive distinction between the sources. The 2023 report formulates its conjecture for \(E(D)\) [1]. The 2022 paper defines
+\[
+D^{\partial}=\left\{x_1+\cdots+x_N:x_i\in\partial_{L_i}D_i\right\},
+\quad L_i=\operatorname{span}D_i,
+\quad S(D)=\overline{D^{\partial}\cap\partial D}^{\mathrm{Zar},\mathbb C},
+\]
+where each summand boundary is relative to its span. Its Conjecture 8.2 concerns \(S(D)\), potentially a larger algebraic set [2, Definition 3.3 and Conjecture 8.2]. The following separate argument bridges that distinction in the generic case.
+
+**Theorem 4.** Assume \(D\) is full-dimensional in \(\mathbb R^d\), every summand has dimension at least two, and the spans satisfy
+\[
+\dim\left(\sum_{i\in J}L_i\right)
+ =\min\left(d,\sum_{i\in J}\dim L_i\right)
+\quad\text{for every }J\subseteq\{1,\ldots,N\}. \tag{GP}
+\]
+Then \(S(D)=E(D)\). In particular \(S(D)\) is irreducible.
+
+**Proof.** Every exposed point has the form (2), with each \(p_i(u)\in\partial_{L_i}D_i\), so \(E(D)\subseteq S(D)\).
+
+Conversely, let \(x=\sum_i x_i\in D^{\partial}\cap\partial D\), with \(x_i\in\partial_{L_i}D_i\). A supporting hyperplane at \(x\) supplies a nonzero normal \(u\) with \(\langle u,x\rangle=h_D(u)\). Since support functions add, each \(x_i\) must maximize \(u\) over \(D_i\).
+
+Let \(J=\{i:A_i^{\mathsf T}u=0\}\). For \(i\notin J\), uniqueness gives \(x_i=p_i(u)\). The sum \(\sum_{i\in J}L_i\) lies in the proper hyperplane \(u^\perp\). By (GP),
+\[
+\sum_{i\in J}\dim L_i=\dim\left(\sum_{i\in J}L_i\right)\leq d-1,
+\]
+so those subspaces form a direct sum.
+
+Write \(x_j=A_jv_j\) for \(j\in J\), with \(\|v_j\|=1\). The direct-sum property says that the concatenated column matrix \(A_J=[A_j]_{j\in J}\) is injective. Its transpose is consequently surjective. Choose \(w\in\mathbb R^d\) such that
+\[
+A_j^{\mathsf T}w=v_j\quad\text{for every }j\in J. \tag{3}
+\]
+If \(J\) is empty, the point \(x\) is already exposed; otherwise take \(u_\varepsilon=u+\varepsilon w\) with \(\varepsilon>0\). Equation (3) gives
+\[
+A_j^{\mathsf T}u_\varepsilon=\varepsilon v_j,
+\qquad p_j(u_\varepsilon)=A_jv_j=x_j\quad(j\in J).
+\]
+For \(i\notin J\), \(A_i^{\mathsf T}u_\varepsilon\) stays nonzero when \(\varepsilon\) is sufficiently small, and \(p_i(u_\varepsilon)\to p_i(u)=x_i\). Thus \(u_\varepsilon\in U\) and
+\[
+F(u_\varepsilon)\longrightarrow x.
+\]
+Every point of \(D^{\partial}\cap\partial D\) is therefore a Euclidean limit of exposed points. A complex algebraic set is Euclidean closed, so these points lie in \(E(D)\). Taking Zariski closures gives \(S(D)\subseteq E(D)\), and Theorem 1 finishes the proof. \(\square\)
+
+Condition (GP) holds on a nonempty Zariski-open set of choices of full-rank matrices \(A_i\) of prescribed sizes. For each subset \(J\), maximal possible rank of its concatenated matrix is a nonempty Zariski-open condition. The parameter space of the matrices is irreducible, so the finite intersection of these nonempty open sets is nonempty. This is the genericity convention of [2, Section 2]. For types which span a smaller ambient space generically, one may instead work in their linear span; the published convention assumes a full-dimensional discotope.
+
+## 6. Boundary checks and limits of the claim
+
+1. **Single disc.** For \(N=1\), the conclusion recovers irreducibility of its complexified ellipsoidal boundary for dimension at least two, including discs in a proper subspace.
+2. **Repeated discs.** Taking several copies of the same disc leaves the normal domain connected. No algebraic independence of radicals is needed.
+3. **One-dimensional summands cannot be admitted indiscriminately.** The interval \([-1,1]\subset\mathbb R\) has exposed-point variety \(\{-1,1\}\), which is reducible. More geometrically, the sum in \(\mathbb R^2\) of the unit disc and the segment \([-a,a]e_1\), \(a>0\), has exposed points on two circular caps. Their complex Zariski closure is the union of the distinct circles \((X-a)^2+Y^2=1\) and \((X+a)^2+Y^2=1\). The removed kernel is now a hyperplane and the analytic domain is disconnected.
+4. **The varieties \(S(D)\) and \(E(D)\) really can differ outside generic position.** Embed two identical unit discs in the \(xy\)-plane in \(\mathbb R^3\), and add the unit disc in the \(xz\)-plane. Let \(u=e_3\). The point \(e_3\) is a sum of boundary points \(e_1+(-e_1)+e_3\), and lies in the exposed face \(2B^2_{xy}+e_3\), hence in \(D^{\partial}\cap\partial D\). But \(E(D)\) is contained in the zero set of
+   \[
+   P(X,Y,Z)=(X^2+Y^2+Z^2-5)^2-4(4-Y^2)(1-Z^2).
+   \]
+   For this example, (2) gives \(X=2u_1/r+u_1/s\), \(Y=2u_2/r\), \(Z=u_3/s\), where \(r^2=u_1^2+u_2^2\) and \(s^2=u_1^2+u_3^2\). Direct substitution verifies \(P\circ F=0\), while \(P(0,0,1)=16\). This polynomial identity is checked independently by the accompanying exact-arithmetic script. Consequently \(e_3\notin E(D)\). Theorem 4 uses genericity for a genuine reason.
+5. **Not proved here.** No conclusion is drawn about the full complex critical locus of the addition map, birationality, or the degrees sought in the source papers. These are different questions.
+
+## References
+
+[1] Chiara Meroni, *Two convex conjectures for different flavours*, in *New Directions in Real Algebraic Geometry*, Oberwolfach Reports 15/2023, pp. 829–832; especially p. 830, Definition 1 and Conjecture 1. [DOI 10.4171/OWR/2023/15](https://doi.org/10.4171/OWR/2023/15). [Official report PDF](https://publications.mfo.de/bitstream/handle/mfo/4031/OWR_2023_15.pdf?sequence=4).
+
+[2] Fulvio Gesmundo and Chiara Meroni, *The Geometry of Discotopes*, Le Matematiche 77(1) (2022), 143–171. [DOI 10.4418/2022.77.1.8](https://doi.org/10.4418/2022.77.1.8). Sections 2–3 and Conjecture 8.2. [arXiv:2111.01241](https://arxiv.org/abs/2111.01241); [publisher PDF](https://lematematiche.dmi.unict.it/index.php/lematematiche/article/download/2338/1156/6734).
+
+## Verification status
+
+The proof is self-contained after elementary real-analytic uniqueness and the prime-ideal criterion for irreducibility, both made explicit above. The accompanying computations are sanity checks, not the justification for the general result. An independent AI mathematical audit passed this proof on 30 September 2026; the reviewed snapshot and full report are preserved in the source bundle. This is not a formal proof certificate or human peer review, and historical priority remains unconfirmed. Only status wording and reference formatting were updated after the audit; the mathematical content is unchanged.
