@@ -277,7 +277,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 266 | 3900010 / AMR-038-0010 | Odd rep-tiling by a 14-omino | 0.1800 | 5.0 | 4 | unknown | queued | 0/5 |  |  |  |
 | 267 | 9700040 / AMR-096-0040 | Stationary law of a drift-jump particle process | 0.1800 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 268 | 30004313 / OWR-17294-014 | Yang–Baxter Solutions from Generalized Left Semi-Braces | 0.1794 | 5.0 | 3 | 2019 | queued | 0/5 |  |  |  |
-| 269 | 30004630 / OWR-4990378-001 | Quadratic Growth without Quadratic Control Regularization | 0.1778 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
+| 269 | 30004630 / OWR-4990378-001 | Quadratic Growth without Quadratic Control Regularization | 0.1778 | 5.0 | 3 | 2021 | claimed_solved | 1/5 |  | [Counterexample to unmodified beta2=0 quadratic growth](attempts/30004630/COUNTEREXAMPLE.md); [independent review](attempts/30004630/independent_review/INDEPENDENT_REVIEW.md) |  |
 | 270 | 5100013 / AMR-050-0013 | Elliptic-billiard invariant k_{204} | 0.1778 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 271 | 5100016 / AMR-050-0016 | Elliptic-billiard invariant k_{304} | 0.1778 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 272 | 5100017 / AMR-050-0017 | Elliptic-billiard invariant k_{307} | 0.1778 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
