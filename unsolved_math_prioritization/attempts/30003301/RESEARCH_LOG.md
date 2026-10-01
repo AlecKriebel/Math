@@ -28,3 +28,11 @@
 - Proved the local Heisenberg quotient cannot remain pointwise invariant through an essential positive genus-two identity factorization, using a Lagrangian/transvection argument and Smith’s no-Torelli theorem.
 - Recovered the actual genus-nine 48-twist relation and its point-pushing insertion; its homological obstruction is already known to vanish. Nonabelian curve words remain to be reconstructed before testing it.
 - 3/5 substantive turns; partial work unreviewed; full-target estimate 5%.
+
+## 2026-10-01 06:12 UTC: substantive turn 4
+
+- Derived the ordered finite-quotient obstruction with nontrivial twist actions from Hillman–Pedrotti’s full smooth criterion; all twisted-conjugate choices and both separating local types are included.
+- Showed the earlier boundary obstruction disappears for a two-node disk with the same vanishing cycle twice; no closed identity counterexample follows.
+- Proved the killed-cycle quotient image of a global residual must be central.
+- The initial two-factor checker fixture accidentally provided only one automorphism; its failure exposed zip truncation. The fixture was corrected and a length assertion was added. All final exact checks pass. These fixtures do not encode a surface monodromy.
+- 4/5 substantive turns; unreviewed partials; full-target estimate 6%. The exact nonabelian global data for the genus-nine candidate remain uncertified.
