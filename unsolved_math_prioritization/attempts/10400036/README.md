@@ -1,6 +1,6 @@
 # 10400036: Polyak's iterated-linking presentation problem
 
-**Active research, two of five author turns used. The full original target is unresolved.**
+**Active research, three of five author turns used. The full original target is unresolved.**
 
 The exact problem is to give a based or appropriately corrected iterated-Seifert-surface linking expression for the integer Milnor invariants of arbitrary string links, without requiring lower invariants to vanish. The imported following virtual-knot section is not part of the question.
 
@@ -17,3 +17,5 @@ The exact problem is to give a based or appropriately corrected iterated-Seifert
 The checker uses only the Python standard library. Its finite exact controls do not certify the written geometric arguments. No final PR or status promotion is authorized before independent adversarial review.
 
 Turn-2 controls: [checker](turn_2_check.py), [receipt](turn_2_checks.json), [frozen turn files](TURN_2_MANIFEST.json).
+
+[Turn 3](TURN_3.md) gives an all-order integral relative-cochain construction, proves filling-choice independence by based gauge, and extracts every target Magnus coefficient. Its cellular identities and holonomy have not been identified with the requested embedded derived-link geometry. [Checker](turn_3_check.py), [receipt](turn_3_checks.json), [frozen turn files](TURN_3_MANIFEST.json).

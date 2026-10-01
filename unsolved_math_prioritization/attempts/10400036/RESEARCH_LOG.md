@@ -21,3 +21,9 @@ Saved the full scoped arguments in TURN_1.md. The first checker run passed 137,7
 Attempted the arbitrary-string-link C-complex route. An explicit Hopf-plus-split-component example showed that closed-group equality modulo the third lower central term does not select an integer longitude lift. Derived the full central relation lattice and retained the canonical cut-open lift instead. Proved the degree-two formula consisting of an ordered incidence term plus based transport-loop linking corrections, valid for arbitrary string links. This is a classical Magnus/Wirtinger deduction; it does not yet construct the source's all-order iterated derived link.
 
 The first turn-2 checker run passed 143,087 exact assertions. All topological and source-transfer limitations are stated in TURN_2.md. The original problem remains active after two author turns; the next route must address higher geometric transport data rather than assuming it is determined by closed-link representatives.
+
+## 2026-10-01 12:48–12:56 UTC, author turn 3
+
+Pursued an all-order relative-cochain model. Proved integral acyclicity of the string exterior relative to the bottom punctured disk, then solved the full upper-unitriangular flatness equations by diagonal distance. The vanishing relative H² gives integral existence; relative H¹ gives based-gauge uniqueness. The longitude holonomy extracts every ordered target coefficient with no lower-vanishing assumption.
+
+The surface route was not silently completed by Poincare-dual notation. The exact gap is a geometric realization/comparison of the cellular split-boundary system with Polyak's iterated-derived-link expression. A separate circle-gauge criterion proves when lower transport can be discarded; its sufficiency is only on the pulled-back circle, not a global relative gauge. First-run 82,265 exact matrix/cochain controls pass. This is a classical nilpotent-method reduction with no novelty claim and no full original resolution.
