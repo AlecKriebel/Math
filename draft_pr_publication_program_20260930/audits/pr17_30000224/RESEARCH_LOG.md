@@ -7,3 +7,11 @@ Original14files and exacthead dae2b77074945443e1b91c92f641ff9feff12235 frozen; u
 ## 2026-10-01T15:50:12.486563+00:00 — exact receipt reproduction
 
 The original135 assertions and historical six independent groups reproduce byte-identically in isolated ignored folders. This follows the root written reconstruction; no historical review prose has been used as a correctness premise. Three independent families remain active. Workflow **25%**; original4/5 budget preserved.
+
+## 2026-10-01T16:40:02.253864+00:00 — all independent families integrated into current candidate
+
+Restricted mathematics passes; original unrestricted problem remains unsolved4/5. Current clarified proof SHA5e4e60e433a714f333709af2f1a59c1f33c22b374acad2740e3a57517fc143de. New family checks reproduce with all mathematical fields identical; algebra timestamp only differs. Source qualifications and homogeneous boundaries are globally explicit. No historical snapshot or review changed, no extra attempt consumed. Fresh complete current acceptance pending, workflow **75%**.
+
+## 2026-10-01T16:41:21.274583+00:00 — source-cache/public-integrity checkpoint
+
+Five geometry foreign primary texts were relocated unchanged into ignored cache, retaining the old ledgers and an exact hash/location mapping. No full source text is staged. Current copied historical REVIEW hard breaks are preserved with exact whitespace exception; all other new staged files pass strict whitespace. Validation workflow **75%**.
