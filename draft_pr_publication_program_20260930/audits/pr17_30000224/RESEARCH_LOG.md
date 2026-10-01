@@ -23,3 +23,7 @@ Full new adversary passes current complete candidate with no mandatory findings,
 ## 2026-10-01T18:06:30.378150+00:00 — ordered partial integration
 
 PR16 fully published and merged. PR17 fresh gate passes restricted findings; original problem remains unsolved4/5. Original14 inputs and ledger preserved. Header-only accepted proof update is body-identical to reviewed candidate. Workflow95%, remote confirmation pending.
+
+## 2026-10-01T18:08:01.669533+00:00 — remote partial acceptance verified
+
+PR17 MERGED `a8e92a0ab2a1c4afdab07a6e8f1f22f811f6be96`; exact audited head, two parent identities and ancestry verified. Workflow100%, original problem unsolved4/5. No paper/deposit/tracker.

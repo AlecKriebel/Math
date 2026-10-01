@@ -1,5 +1,5 @@
-# PR17: fresh full restricted-partial audit passed
+# PR17: accepted restricted partial result; original problem unsolved
 
-Exact original question remains unsolved, with4/5 attempts preserved. Algebra, geometry and primary-scope families pass precise exclusions and failed-route findings. A new full adversary verifies the entire current candidate, all154 bound inputs, historical/family replays and89 fresh controls, with no mandatory correction. Reviewed proof SHA5e4e60e433a714f333709af2f1a59c1f33c22b374acad2740e3a57517fc143de; exact final evidence is final_adversary/MANIFEST.json. No construction or unrestricted impossibility proof was found.
+Three independent mathematical/source families and a new complete adversary pass the clarified restricted obstructions, with no mandatory corrections. The arbitrary-ideal characteristic-zero original question remains unresolved; original4/5 attempts are preserved. Remaining class: nonbinomial primary thickenings with q nonzero nilpotent, homogeneous generic length at least3 or arbitrary nonhomogeneous length at least2. Full evidence and exact original/reviewed/canonical hashes are in ACCEPTANCE.md and acceptance.json.
 
-Workflow **92%**: ready for credited partial integration after PR16. Proposed unsolved4/5, no paper/deposit/DOI/tracker. Remaining class: nonbinomial primary thickenings with q nonzero nilpotent; homogeneous generic length>=3 and arbitrary nonhomogeneous length>=2. All original proof attempts and frozen reviews are preserved.
+Workflow **100%**: original audited head merged remotely and verified. QUEUE unsolved4/5. No new paper, Zenodo deposit, DOI or tracker row. Extensive AI use; no human peer-review or formal-certification claim.

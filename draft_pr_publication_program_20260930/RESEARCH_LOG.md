@@ -121,3 +121,7 @@ DOI10.5281/zenodo.23088066 published aftercleanfreshloop, publicPDF/sourcebytesm
 ## 2026-10-01T17:52:21.990485+00:00 — PR16 full publication disposition complete
 
 PublishedDOI10.5281/zenodo.23088066, exactmetadata/publicfiles/DOI200/trackerA12:D12verified, PR16remotelyMERGED67219acbed231a088abd37228e904c3b27bc2495, exacthead/parents/ancestorverified and7acceptedqueue rowsbytepreserved. Workflow **100%**; completedinitialprogram **8/180 (4.44%)**. AdvancePR17partialintegration;PR8excluded.
+
+## 2026-10-01T18:08:01.669533+00:00 — PR17 accepted as unsolved partial progress
+
+PR17 remote merge `a8e92a0ab2a1c4afdab07a6e8f1f22f811f6be96` verified with exact audited head and parents. Three independent families plus new complete adversary pass restricted exclusions; original arbitrary-ideal problem unresolved,4/5 original attempts preserved, no new paper/DOI/tracker. Workflow100%; completed9/180 initial drafts (**5.00%**). PR18 priority body-access hold remains; continue independent later audits without out-of-order acceptance.
