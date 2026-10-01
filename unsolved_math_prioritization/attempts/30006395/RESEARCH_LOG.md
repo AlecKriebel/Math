@@ -23,3 +23,13 @@ Pursued a constructive test instead of treating moment divergence as evidence of
 Also proved the edge-addition channel monotonicity in c, which brackets the supremal polylog-detectable mean degree between the criterion root c_h and e. The true transition remains unknown. The mechanism is the hairy-path idea already announced by the OWR authors; no novelty claim or polynomial-time algorithm is asserted, and the size condition is deliberately weaker than k≥C log²n.
 
 The independent enumeration within the author checker covers 18,248 labelled trees and 42,599 actual path prefixes; all 46,501 exact assertions pass. Completion estimate: 40% toward original transition resolution. Second substantive turn complete; original task continues, no final PR or queue status.
+
+## 2026-10-01 08:27–08:35 UTC: substantive author turn 3
+
+Kept the full finite-population overlap factor and derived an exact coefficient recurrence for the likelihood second moment. Proved a two-parameter critical-window limit under k^(9/4)/n→lambda and sqrt(k)log(c/e)→theta. A multivariate Riemann-sum argument includes uniform control near zero, Gaussian tail domination and an exponential majorant over the number of forest components. Reduced the limiting integrals by the Dirichlet identity; at theta=0 a four-step Gamma-coefficient recurrence gives an entire positive series.
+
+A one-component lower bound proves moment divergence above n^(4/9), so the scale is sharp for L² convergence to one at c=e. No claim of TV nonvanishing or a successful test follows. Bounded moments exclude strong detection in the finite critical window. The original mean-degree gap and actual information transition remain open.
+
+The first checker run found a harness error: Python's empty integer sum at coefficient b1 produced float zero, contaminating later Fraction arithmetic. Initialized the empty sum as Fraction(0) and reran. The written recurrence was unchanged. All 19,221 exact assertions across 1,300 finite parameter cases then passed, with separately labeled 60-digit integral/convergence diagnostics. Slow finite-size numerical convergence is displayed rather than hidden and is not used as proof.
+
+Completion estimate: 45% toward the original question. Third substantive turn complete; next work needs higher-moment/truncated-likelihood control or a stronger constructive statistic. No final result, queue update or PR.
