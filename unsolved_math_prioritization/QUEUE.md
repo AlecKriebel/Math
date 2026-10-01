@@ -268,7 +268,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 257 | 30003216 / OWR-14750-001 | Convergence of Adaptive Hybrid Finite Element Methods | 0.1811 | 5.0 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 258 | 30003403 / OWR-15216-007 | Strong Surjectivity of Countryman Derived Orders Under PFA | 0.1806 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 259 | 30003427 / OWR-15218-003 | Multiple-Maturity Consistency Under Bid–Ask Spreads | 0.1806 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
-| 260 | 10300019 / AMR-102-0019 | Branched surfaces and triangulations — Question 7.4 | 0.1800 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 260 | 10300019 / AMR-102-0019 | Branched surfaces and triangulations — Question 7.4 | 0.1800 | 5.0 | 3 | unknown | unsolved | 5/5 | [scoped partials](attempts/10300019/RESULT.md) | [independent PASS](attempts/10300019/independent_review/INDEPENDENT_REVIEW.md) | Normal product construction; general unmeasured branched sum and topology unresolved |
 | 261 | 10300057 / AMR-102-0057 | Numerical invariants — Question 13.4 | 0.1800 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 262 | 10400105 / AMR-103-0105 | Problem 5.9 — Let the notation be as above. | 0.1800 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 263 | 2665 / KP-1.6 | Kirby Problem 1.6 | 0.1800 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
