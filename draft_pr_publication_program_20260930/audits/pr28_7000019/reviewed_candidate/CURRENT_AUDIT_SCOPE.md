@@ -1,0 +1,9 @@
+# Exact current acceptance scope
+
+Original17numeric files/18changed paths including selectedQUEUE, exacthead90a81313f3f65a7914fb6d5a9950fa087ea7467e. Current correction preserves every mathematical section2onward of PROOF and all raw/source/oldreview/scripts/receipts/log bytes. Five original administration/proof/source-audit copies are archived. Three sealed families total43 first-party members plus3 manifests; root source/reproduction/proof synthesis recorded separately. Geometric/primary new receipts exact; potential all mathematical fields equal excludingutc; original1056/1056/266 outputbytes exact.
+
+Fulltarget unresolved: smoothness and strict h<2inradius are extra assumptions. All hypotheses include one common area globally, compactconvexbody with interior,positivefixedh,tangent-inclusiveplaneintersection. Scope diagnostics are not targetcounterexamples; ordinary cited Reichel theorem supplies rigidity. No literatureabsence/novelty/humanpeerreview/proofassistant/modeltelemetrycertificate. Original2/5; audit/repair is0newproofattempts.
+
+The nested repository generator guidance is superseded by the human's preservation/current acceptance process: the legacy generator erases current columns and must not run on main. Update only the selected row after verified merge, retain unrelated12-column fields. Historical reviews/staticcatalog/manual-ready states are dated and bounded; no invented old readiness transitions. Present canonical/current acceptance mirror follows separately and cannot retroactively certify historicalexecution. Currentunmergedqueued0/5 is explicitly pending reconciliation to originalunsolved2/5. No paper/newDOI/release/tracker.
+
+A NEW complete fresh adversary must review this exact corrected candidate before acceptance. Canonical/postmerge administration is a separate current checkpoint, with reviewed candidate copies preserved before any final metadata edits.
