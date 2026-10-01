@@ -1,7 +1,7 @@
 # 10400216: shadow conditions and hyperbolic-volume lower bounds
 
-Work in progress, original target unresolved, two substantive author turns completed. The current checkpoint is TURN_2_STATUS.json and TURN_2_LEDGER.jsonl. TURN_STATE.json and turn_ledger.jsonl preserve the turn-1 state so its historical manifest remains valid.
+Work in progress, original target unresolved, three substantive author turns completed. The latest state is TURN_3_STATUS.json and TURN_3_LEDGER.jsonl. Earlier state/ledger files are historical and remain unchanged so their manifests stay valid.
 
-TURN_1.md proves an obstruction to unchanged canonical long-slope transfer. TURN_2.md supplies a relative filling criterion and a new conditional incidence constraint, while retaining the missing alternating-coverage step. Both are unreviewed scoped partial results. No full-source resolution or novelty claim is made. The full packet will require separate review before a result PR.
+TURN_1.md gives the canonical long-slope obstruction. TURN_2.md proves a relative filling criterion and conditional incidence constraint. TURN_3.md detects alternation by canonical gleam saturation and disproves a weaker sign-only test with an exact knot-diagram certificate. The canonical volume consequence credits Lackenby and does not solve the intended general-shadow extension. All are unreviewed scoped partials.
 
-Source reading copies and imported raw records are excluded; source_manifest.json and SOURCE_ADDITION_TURN_2.json pin the primary inputs. The finite exact programs check arithmetic only, not three-manifold identifications or asymptotic/geometric conclusions.
+Separate full review is required before a result PR. Source PDFs/text/images and imported records are excluded. source_manifest.json and the source additions pin the primary inputs. Finite checks do not certify hyperbolicity or general shadow coverage.
