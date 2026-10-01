@@ -81,3 +81,7 @@ Probability, topology and primary-source families independently pass. Direct fir
 ## 2026-10-01T15:38:11.198911+00:00 — PR15 first-fresh classification finding repaired
 
 Numeric target already_solved by positive CCMPV prior; unknown original strength/sharper variants separately recorded. Globalcurrent classification/proof/source/metadata repaired; historical input/proposal and one-attempt ledger preserved. New fresh complete adversary will verify repaired hashes. PR15workflow **82%**; completed program **6/180=3.33%**; no paper/deposit/tracker.
+
+## 2026-10-01T15:47:14.118827+00:00 — PR17 partial inputs and independent audits
+
+Exacthead/14files frozen. Root scopedmath reconstruction and three distinctfamilies start with original4/5 ledger unchanged. No extra unfinished proofattempt. PR17workflow **20%**; acceptance afterPR16, programcomplete **6/180=3.33%**.
