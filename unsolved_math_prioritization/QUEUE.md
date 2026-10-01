@@ -238,7 +238,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 227 | 5100063 / AMR-050-0063 | Elliptic-billiard invariant k_{904,a} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 228 | 5100009 / AMR-050-0009 | Elliptic-billiard invariant k_{118} | 0.1905 | 4.5 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 229 | 30003301 / OWR-15177-019 | Lifting Dehn-Twist Relations to Punctured Surfaces | 0.1897 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
-| 230 | 30005244 / OWR-11101924-008 | Spectral Approximation of Discrete-Dipole Operators | 0.1894 | 5.0 | 3 | 2022 | claimed_solved | 2/5 |  |  | Under (G): convergence; unrestricted compact supports: counterexample (empty interior, measure-zero anchor) |
+| 230 | 30005244 / OWR-11101924-008 | Spectral Approximation of Discrete-Dipole Operators | 0.1894 | 5.0 | 3 | 2022 | claimed_solved | 2/5 |  | Under (G): convergence; unrestricted compact supports: counterexample (empty interior, measure-zero anchor) |  |
 | 231 | 30005299 / OWR-11695864-004 | Determinantal Quartics as Weddle Surfaces | 0.1894 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 232 | 30005310 / OWR-11695865-009 | Exhaustiveness of Threshold Scenarios for Colored Gaussian Graphical Models | 0.1894 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 233 | 30003518 / OWR-15436-004 | Multistationarity in Kinetic-Proofreading Networks | 0.1892 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
