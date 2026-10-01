@@ -49,3 +49,7 @@ The explicit continuation resumes the user process. PR12 theorem/source audits p
 ## 2026-10-01T13:58:32.847308+00:00 — acceptance audits for12/13; PR14 frozen
 
 PR12 full theorem and older-equivalent priority certificate pass independent falsification; fresh fullacceptance audit now includes a challenge to classification versus merely older ingredients. PR13 three audit families pass and literal-source unsolved status remains; fresh acceptance review active. PR14 exact earlier candidate match observed, mathematical/source audit pending. No additional merge or publication. Program **3/180=1.67%**; PR12/13 workflows **78%**, PR14 audit **10%**.
+
+## 2026-10-01T14:11:53.048361+00:00 — PR12 remotely merged; four complete
+
+PR12 accepted as credited already_solved corollary after the complete process and fresh subsumption challenge. Merge 436bf7d031e2ef9bbe1a93ee933e6be0bc2ffd2d remotely verified. No new paper, DOI or tracker row. PR13 fresh review pending; PR14 math/source audits continue with zero-parameter notation qualification. Program **4/180=2.22%**; PR12 **100%**.

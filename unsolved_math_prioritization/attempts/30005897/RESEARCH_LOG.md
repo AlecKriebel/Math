@@ -116,3 +116,7 @@ no paper/deposit/tracker. Full acceptance review remains. Workflow estimate:
 ## 2026-10-01T14:06:53.753458+00:00 — fresh acceptance audit passed
 
 The fresh complete review independently reconstructs the theorem and old subsumption, reproduces both finite scripts, and passes273integrity checks. No mandatory issue remains. Current proof differs from reviewed hash only in acceptance wording; mathematical Sections1–7 unchanged. Accepted partial known-method record, QUEUE already_solved. Acceptance completion **100%**; remote merge verification pending. No paper, DOI, tracker row or release.
+
+## 2026-10-01T14:11:53.048361+00:00 — remote acceptance verified
+
+GitHub reports MERGED at 2026-10-01T14:07:48Z, merge 436bf7d031e2ef9bbe1a93ee933e6be0bc2ffd2d; exact original head is its second parent and an ancestor of main. QUEUE already_solved1/5 with prior accepted rows preserved. Original inputs and current reviewed proof are frozen; canonical proof acceptance wording alone differs. Acceptance and integration completion **100%**. No paper, deposit, DOI, tracker row or release.
