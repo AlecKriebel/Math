@@ -312,7 +312,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 301 | 30002960 / OWR-13940-008 | Three-Dimensional Coloring Number of the Sphere | 0.1729 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 302 | 6700069 / AMR-066-0069 | Scalar Curvature Question [?73]: [c] LetS be a Riemannian manifold homeomorphic to the connected sum of twenty copies ofS2× S2 | 0.1720 | 6.0 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 303 | 30000156 / OWR-768-006 | Limiting Cycle Distributions of Birational Maps | 0.1719 | 5.0 | 3 | 2004 | queued | 0/5 |  |  |  |
-| 304 | 30001781 / OWR-5152-008 | Maximal Submatrix Bounds Without Unconditionality | 0.1717 | 5.0 | 3 | 2011 | queued | 0/5 |  |  |  |
+| 304 | 30001781 / OWR-5152-008 | Maximal Submatrix Bounds Without Unconditionality | 0.1717 | 5.0 | 3 | 2011 | unsolved | 5/5 |  | Independently reviewed partials: common coisometric and Dirichlet classes, sharp one-column bounds, and exact one-row tail reduction; arbitrary-row multiscale conjecture unresolved. |  |
 | 305 | 30000849 / OWR-1729-002 | Scaling Profiles in Addition–Coagulation Models | 0.1712 | 5.0 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 306 | 30001080 / OWR-2093-003 | Transport Characterizations of Mass-Stationarity | 0.1709 | 5.0 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 307 | 30001557 / OWR-4425-012 | Pattern Characterization of Fractional Powers in Words | 0.1704 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
