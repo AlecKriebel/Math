@@ -65,3 +65,7 @@ All three independent families pass the narrow noninteger Wishart obstruction. E
 ## 2026-10-01T14:41:22.458157+00:00 — PR15 audited input checkpoint
 
 PR15 original17files and exacthead frozen. Root replays both historical receipts and independently reconstructs support and normalization chain. Three independent algebra/combinatorial/source families active; PR14 fresh adversary independently passes stochastic core, reconciliation still pending. Acceptance order maintained. PR15 workflow **20%**; completed program **5/180=2.78%**. No new paper/DOI/tracker.
+
+## 2026-10-01T14:51:30.751588+00:00 — PR16 exact-gap candidate audit started
+
+PR16 original14files and claimed_solved1/5 frozen. Root16+396checks byte-identical; independent Gale-space witness, generic perturbation, inflation and exact-dimension mechanism recorded. Probability/deletion family challenges the central candidate step. Math gates precede full priority/paper decisions. PR16 workflow **15%**; program **5/180=2.78%**, PR14/15 dispositions still pending.
