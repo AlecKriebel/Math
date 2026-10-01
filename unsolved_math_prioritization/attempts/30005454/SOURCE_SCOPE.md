@@ -1,0 +1,13 @@
+# Exact source scope: critical WARM on the line
+
+Source checked 2026-10-01: Victor Kleptsyn, joint with Christian Hirsch and Mark Holmes, *Graph-based interacting Polya urns*, OWR 12/2023, printed pp. 653–656. Conjecture 2 is on p. 655. https://ems.press/content/serial-article-files/47008 . The longer primary problem collection https://www.matrix-inst.org.au/wp_Matrix2016/wp-content/uploads/2023/Aletti.pdf repeats this formulation.
+
+The model assigns counts N_e to **edges** of a graph. Independent Poisson clocks at vertices have rates p(v). When a clock rings, one incident edge is selected with probability proportional to N_e^alpha, and its count is increased by one. The scaled observable is X_e(t)=N_e(t)/t. The target has G=Z, p(v)=1 and alpha=1; it asks for almost-sure pointwise convergence of all scaled edge weights to one. This is not a single reinforced random walk or the trace-ant process. The source's x_v in the displayed conjecture is an indexing slip after the explicit edge definition; indexing edge (i,i+1) by i resolves it without changing the process.
+
+**Initial-condition limitation:** the OWR introduction says a vector of initial counts is given, but does not state positivity, uniformity or the all-one convention beside this conjecture. Its cited Couzinie–Hirsch paper explicitly initializes all weights at one. The repeated problem collection does not resolve this omission. We therefore study and label the standard unit-initialized model N_i(0)=1; this is not silently claimed to exhaust every possible reading of unspecified initial counts. Allowing initial zero edges gives absorbing zeros and is not an honest solution of the intended positive-weight conjecture.
+
+Known primary result: Couzinie–Hirsch, *Weakly reinforced Polya urns on countable networks*, ECP 26 (2021), paper 35, Theorem 2.2(3), proves homogenization on Z for alpha<1, not alpha=1. Local arXiv reading copy is v2, 25 June 2021. The bibliography's Holmes–Kleptsyn *Infinite WARM graphs II: Critical regime/Linear reinforcement* is marked in preparation/unpublished, and no accessible exact critical-line proof has been verified in the bounded current search. This is not a novelty certificate.
+
+Prior campaign gate: current all-state PR searches for the ID and critical reinforcement terms, plus the target branch search, returned none. The rebuilt campaign index records no prior user/campaign attempt. No related-target group or imported research_results entry matched the ID/code. Rank 235 concerns trace ants; rank 237 concerns a distinct supercritical lattice problem. Neither is used as the same target.
+
+Primary PDFs and full imported records are local reading copies only. Source recovery consumes no proof turn.
