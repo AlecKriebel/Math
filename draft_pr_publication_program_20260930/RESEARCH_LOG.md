@@ -45,3 +45,7 @@ Both extensive independent priority families establish sufficient earlier method
 ## 2026-10-01T13:33:12.842707+00:00 — resumed PR12; PR13 independent audits staged
 
 The explicit continuation resumes the user process. PR12 theorem/source audits pass; its old equivalent-method priority certificate is still being falsified and remains unpromoted. PR13 exact inputs are frozen and three distinct audits launched, with acceptance order preserved. Three of 180 selected PRs complete (**1.67%**); PR12 workflow **45%**, PR13 audit **8%**. No additional paper, DOI, tracker row or merge.
+
+## 2026-10-01T13:58:32.847308+00:00 — acceptance audits for12/13; PR14 frozen
+
+PR12 full theorem and older-equivalent priority certificate pass independent falsification; fresh fullacceptance audit now includes a challenge to classification versus merely older ingredients. PR13 three audit families pass and literal-source unsolved status remains; fresh acceptance review active. PR14 exact earlier candidate match observed, mathematical/source audit pending. No additional merge or publication. Program **3/180=1.67%**; PR12/13 workflows **78%**, PR14 audit **10%**.
