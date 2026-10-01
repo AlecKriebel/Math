@@ -2,7 +2,7 @@
 
 ## Original invariant
 
-Dan Reznik, Ronaldo Garcia, and Jair Koiller, *Eighty New Billiard Invariants*, arXiv:2004.12497v11, 2021. [Original PDF](https://arxiv.org/pdf/2004.12497v11).
+Dan Reznik, Ronaldo Garcia, and Jair Koiller, *Eighty New Billiard Invariants*, arXiv:2004.12497v11, 29 October 2020. [Original PDF](https://arxiv.org/pdf/2004.12497v11).
 
 The target is Table 7, printed p. 9, **k605,a**: the product of the two primed focal pedal areas, for odd N. Section 3.7 defines the prime as the outer polygon, rather than the original billiard orbit. Section 2 specifies signed cross-product areas and defines the outer polygon from successive tangents. The introduction restricts the billiard setting to an elliptical caustic confocal with the outer ellipse. Primitive self-intersecting orbits are included in the present proof. Hyperbolic caustics are not added to the claim.
 
