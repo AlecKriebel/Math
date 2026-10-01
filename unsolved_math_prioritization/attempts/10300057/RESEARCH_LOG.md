@@ -23,3 +23,7 @@ Constructed a genuine hyperbolic plane-field analogue using15-surgery on the fig
 ## 2026-10-01T09:49:49.124255+00:00 — author turn4 checkpoint
 
 Tested actual taut realization of the hyperbolic torsion pair. Computed all figure-eight large-surgery square quotients; reduced Floer homology for15-surgery is supported only in the spin structure. The Spin-c-refined taut nonvanishing argument forces Euler0, excluding the proposed2c/8c fields. Source square visually checked, regularity/coorientation qualifications retained, and exact F2 controls pass. Original unresolved4/5. Completion estimate20%; one substantive turn remains.
+
+## 2026-10-01T09:55:38.222216+00:00 — author turn5 final checkpoint
+
+Derived contact-isotopy orbit-closure necessity and finite-cover naturality from published Vogel uniqueness, retaining closed/cooriented/C2 assumptions and simultaneous coorientation reversal. This is not a sufficient orbit criterion. All five substantive turns complete; original remains unsolved5/5. Stop author proof search, freeze the scoped package and request independent full source/mathematical review. Completion estimate20%.
