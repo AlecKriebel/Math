@@ -19,3 +19,7 @@ Derived the precise local Fourier-square reflection and used it to prove Fourier
 ## 2026-10-01 07:49 UTC — substantive author turn 4
 
 Derived the exact Fourier-square compatibility obstruction and a nonzero symmetrized weak functional satisfying both dual directions, including the self-dual single-functional case, when the necessary scalar is 1. Specified its domain and continuity seminorms and showed its power-law orbit is not theta-normalized. No counterexample to an actual automorphic L-function is claimed. Original target unresolved; completion estimate 40%.
+
+## 2026-10-01T07:54:29.092496+00:00 — substantive author turn 5
+
+Proved that one finite power-log averaged theta defect suffices for meromorphic continuation and the exact global functional equation, with explicit Mellin pole terms and correct reverse-defect signs. Isolated a sufficient finite-dimensional boundary module and showed it is not automatic for the previously constructed weak functionals. This is no arithmetic L-function counterexample; original implication remains unsolved after five substantive turns. Completion estimate45%. Freeze for separate review.
