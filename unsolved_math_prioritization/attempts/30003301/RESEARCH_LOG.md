@@ -15,3 +15,10 @@
 - Established full coverage of allowable curve lifts for nonseparating factors; preserved the separating-curve orbit gap.
 - Found the current Hillman–Pedrotti disk-extension preprint and a later narrow seminar announcement; neither has been treated as a universal solution.
 - 1/5 substantive turns; full-target completion estimate 3%; partial result unreviewed.
+
+## 2026-10-01 06:02 UTC: substantive turn 2
+
+- Applied the complete 2026 Hillman–Pedrotti local section criterion, preserving path-reversal and inverse-monodromy conventions.
+- Constructed an integral Heisenberg quotient that distinguishes a separating-cycle square from every smooth local twisted-conjugacy class, even though ordinary homology vanishes.
+- Obtained a relative disk boundary condition with continuous but no smooth extension; explicitly not a sphere-base positive relation counterexample.
+- All 3,484 exact quotient controls pass. Partial result is unreviewed; 2/5 author turns and full-target completion estimate 5%.
