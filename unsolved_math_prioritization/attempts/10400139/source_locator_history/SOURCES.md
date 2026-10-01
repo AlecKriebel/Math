@@ -2,7 +2,7 @@
 
 All source PDFs are held locally outside the public attempt packet. URLs and SHA256 hashes are in source_manifest.json. Source lookup is not an author proof turn.
 
-1. **Ohtsuki, Problems on invariants of knots and 3-manifolds**, GT Monographs 4 (2002). Publisher file: https://msp.org/gtm/2002/04/gtm-2002-04-024p.pdf. Printed485–487, PDF113–115, Section 7.4. Full definitions on485, phase Problem7.21 on486, exact Problem7.24 and its conjectural equality remark on487. PDF115 was rendered and visually checked. Scope: nonempty links, odd N>1, trivial Borel bundle on S³, Nth-powered invariant. This is not a volume-conjecture target.
+1. **Ohtsuki, Problems on invariants of knots and 3-manifolds**, GT Monographs 4 (2002). Publisher file: https://msp.org/gtm/2002/04/gtm-2002-04-024s.pdf. Printed485–487, PDF113–115, Section 7.4. Full definitions on485, phase Problem7.21 on486, exact Problem7.24 and its conjectural equality remark on487. PDF115 was rendered and visually checked. Scope: nonempty links, odd N>1, trivial Borel bundle on S³, Nth-powered invariant. This is not a volume-conjecture target.
 
 2. **Baseilhac–Benedetti, Quantum hyperbolic state sum invariants of 3-manifolds**, https://arxiv.org/pdf/math/0101234v2, version28February2001. Ohtsuki reference[43]. Section 3.1: positive ordered-simplex orientation is called index−1. Section 3.3: integral charge reduction divided by2. Section 4.1 equation(2): N^(−V), negative off-link edge exponent, then Nth power. Section 8, Propositions 8.2,8.3,8.5 and equation(7): full CG and charged tensor formulas. These define the literal old invariant. Section 6 discusses the desired Jones relationship but does not prove it.
 
