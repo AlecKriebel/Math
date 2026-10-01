@@ -1,6 +1,6 @@
 # 30006395: planted random-tree detection, exact source gate
 
-**Source gate complete; no substantive author turn yet. Original transition unresolved.** Rank 251 / OWR-14299518-013. Checked 2026-10-01. No novelty claim.
+**Historical source gate at 08:06 UTC: no substantive author turn had begun. Original transition unresolved.** Rank 251 / OWR-14299518-013. Checked 2026-10-01. No novelty claim.
 
 ## Original question and information model
 
