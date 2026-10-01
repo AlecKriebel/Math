@@ -1,3 +1,5 @@
 # Research log: 30003403
 
 - 2026-10-01 08:46 UTC: source/prior-work gate complete, 0 completed author turns. Exact OWR Problem6, Moore construction and latest primary v2 open-question statement verified. Known normal-Countryman and fragmented-target theorems retained as credited inputs, not solutions of eta_C strong surjectivity. Completion estimate10%; original target unresolved.
+- 2026-10-01 08:52 UTC, substantive author turn1 complete: finite-support tail perturbations directly prove normality of eta_C for every Countryman input C, so published domain stationary-endpoint differences are empty. Source normality-only counterexample C0+C0* is credited. Original strong-surjectivity target remains unresolved; completion15%.
+- 2026-10-01 08:54 UTC, substantive author turn2 complete: characterize retractions by realized-cut endpoint condition and arbitrary epimorphisms by existence of a suitable section copy. A zero-prefix eta_C cylinder has no retraction but is an isomorphic quotient; this prevents a false negative result from one failed embedding. Finite targets covered directly; full target unresolved. Completion20%.
