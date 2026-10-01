@@ -11,3 +11,7 @@ Carried out the Tate-style Mellin route with exact s-1/2 normalization. Source l
 ## October1,2026 07:30 UTC: author turn2
 
 Tested the printed weak invariant-functional premise. A general transport lemma and exact local Mellin covariance manufacture its two-functional identity from a nonzero right-half-plane global zeta evaluation. Its idele orbit is a single norm power, not the rapidly decaying theta sum. This exposes the normalization gap without claiming an automorphic counterexample or settling self-dual/canonical compatibility conditions. Original expected implication remains unresolved; estimate30%.
+
+## October1,2026 07:34 UTC: author turn3
+
+Derived the precise local Fourier-square reflection and used it to prove Fourier/translation stability of the two-place test space. Explicit bilateral theta normalization of the intertwined functionals gives genuine restricted theta inversion, so turn1 yields completed-L continuation and functional equation. No theta normalization was derived from the original weak premise. The published refinement's two sides are made explicit rather than inferred from a one-sided wording. Original gap persists; estimate40%.
