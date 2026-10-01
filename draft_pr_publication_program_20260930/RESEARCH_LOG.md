@@ -13,3 +13,7 @@ PR 9 mathematical review/reproduction passed; two independent priority families 
 ## 2026-09-30T21:31:35.083035-07:00 — first disposition complete
 
 PR9 accepted as full exact-conjecture resolution, published DOI10.5281/zenodo.23074543 with exact frozen metadata/files, DOI+public bytes verified, trackerA11:D11 exact readback, merged60a1222c062bfecf6bb33a718a1dc55a98b87df4, queue+acceptance reconciled. PR9 workflow **100%**, overall initial selected inventory **1/180 (0.56%)**. Persistent goal remains active and advances to PR10; PR8 skipped. No external researcher communication.
+
+## 2026-09-30T21:43:55.824726-07:00 — PR10 source checkpoint
+
+Independent primary-source audit confirms the finite input-dependent bound is a previously published method, with the literal source valuation-domain typo and inherited Du Val hypothesis corrected. Published Lemma27/preprint26 and the duplicate dataset record are verified. Found minor bibliography locator and log-discrepancy wording repairs; LCT and Mori finiteness families remain independent and in progress. No novel paper or DOI is planned for this already_solved outcome. PR10 workflow **35%**; overall completed dispositions **1/180 (0.56%)**.
