@@ -3,7 +3,7 @@
 Persistent goal authorized September 30, 2026. Start with PR 9, then process the
 remaining draft PRs in ascending number; PR 8 is excluded. `inventory.json`
 records the initial 180 selected drafts, exact heads, current stage, and outcome.
-Refresh the remote inventory before declaring the program complete.
+Refresh the remote inventory before declaring the program complete. Independent later PRs may complete their own acceptance gates and merge while earlier source/proof gates remain explicitly pending; audit order remains ascending.
 
 For each PR, freeze its exact head and diff; define the original problem and
 claimed outcome; reproduce proof/computation/source evidence; use independent

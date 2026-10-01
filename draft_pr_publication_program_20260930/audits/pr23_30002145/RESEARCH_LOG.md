@@ -11,3 +11,7 @@ Completion35% toward disposition. Root derives necessity/sufficiency by distribu
 ## 2026-10-01T20:25:24.724418+00:00 checkpoint
 
 Three independent complete families and root signed/nonorthogonal/domain audit pass; original8+11 byte-identical and48 grouped new controls reproduced; current18-entry metadata correction awaiting fresh full gate. Workflow completion estimate:75%. Original substantive budgets preserved; no paper, DOI or tracker action.
+
+## 2026-10-01T21:10:23.807750+00:00 — new complete gate and root final reproduction pass
+
+Workflow95% toward disposition; final complete adversary PASS_CURRENT_SCOPED_SOURCE_STATUS_PARTIAL with no unresolved actionable findings. Root read its full universal signed/domain proof and new script, verified15 final and18 current manifest entries, and reproduced13 new grouped controls byte identically. Original0/5 preserved; no paper/DOI/tracker. Current whole-space/local-box scope excludes arbitrary nonconvex global profiles. Remote integration next.

@@ -153,3 +153,7 @@ PR21 remote mergeeb1e4bbc83efb4b0dcc33d81395b7816be9c1c42 verified. Completed11/
 ## 2026-10-01T20:36:27.722610+00:00 — PR22 completed and PR24 started
 
 PR22 remote mergef5d341110d3a993575dd42862c1fa6462ecb71eb verified; completed12/180 (6.67%). Literal published known-negative target accepted as already_solved partial, duplicate linked and original budget preserved. No paper/DOI/tracker. PR24 exact16-file head frozen; three independent complete geometric, symmetry and primary-scope audits active. Individual24 audit5%. PR18/20 independent holds remain.
+
+## 2026-10-01T21:10:23.807750+00:00 — durable accepted records and next clean gate
+
+Overall12/180 (6.67%) dispositions complete. Accepted state now mirrors12 primary merges and one shared duplicate with actual source/budget hashes, no extra attempts and no change to canonical mathematical evidence. PR23 fresh full gate and root final controls PASS, workflow95%, integration next. PR24 three complete independent families PASS scoped math, root current metadata/final replay pending45%. PR25 primary/complex families PASS qualified source partial, real universal dependency review and root checks pending20%. PR18/20 remain individual holds. No new publication or tracker action.
