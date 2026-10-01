@@ -15,3 +15,7 @@ Three independent complete families and root signed/nonorthogonal/domain audit p
 ## 2026-10-01T21:10:23.807750+00:00 — new complete gate and root final reproduction pass
 
 Workflow95% toward disposition; final complete adversary PASS_CURRENT_SCOPED_SOURCE_STATUS_PARTIAL with no unresolved actionable findings. Root read its full universal signed/domain proof and new script, verified15 final and18 current manifest entries, and reproduced13 new grouped controls byte identically. Original0/5 preserved; no paper/DOI/tracker. Current whole-space/local-box scope excludes arbitrary nonconvex global profiles. Remote integration next.
+
+## 2026-10-01T21:16:54.904397+00:00 — PR23 verified remote acceptance
+
+PR23 exact headea6b192f7e3bc094b78bbc416bf61c609ffa5b2d merged76610b0fe442c710f3d6d92270d2ed454cf84c92 at2026-10-01T21:13:48Z; two parents/ancestry verified. Accepted already_solved source-status partial with domain limits and original0/5, no paper/DOI/tracker. Individual workflow100%; overall13/180 (7.22%). Canonical scientific/source/history evidence preserved; current metadata supersedes dated pending checkpoints. Present accepted-state mirror reconciled separately. PR18/20 remain independent holds.

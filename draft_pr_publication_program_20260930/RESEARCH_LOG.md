@@ -157,3 +157,11 @@ PR22 remote mergef5d341110d3a993575dd42862c1fa6462ecb71eb verified; completed12/
 ## 2026-10-01T21:10:23.807750+00:00 — durable accepted records and next clean gate
 
 Overall12/180 (6.67%) dispositions complete. Accepted state now mirrors12 primary merges and one shared duplicate with actual source/budget hashes, no extra attempts and no change to canonical mathematical evidence. PR23 fresh full gate and root final controls PASS, workflow95%, integration next. PR24 three complete independent families PASS scoped math, root current metadata/final replay pending45%. PR25 primary/complex families PASS qualified source partial, real universal dependency review and root checks pending20%. PR18/20 remain individual holds. No new publication or tracker action.
+
+## 2026-10-01T21:16:54.904397+00:00 — PR23 verified remote acceptance
+
+PR23 exact headea6b192f7e3bc094b78bbc416bf61c609ffa5b2d merged76610b0fe442c710f3d6d92270d2ed454cf84c92 at2026-10-01T21:13:48Z; two parents/ancestry verified. Accepted already_solved source-status partial with domain limits and original0/5, no paper/DOI/tracker. Individual workflow100%; overall13/180 (7.22%). Canonical scientific/source/history evidence preserved; current metadata supersedes dated pending checkpoints. Present accepted-state mirror reconciled separately. PR18/20 remain independent holds.
+
+## 2026-10-01T21:23:02.967194+00:00 — PR23 complete and PR24 fresh gate
+
+Overall13/180 (7.22%) complete. PR23 exact remote merge and accepted zero-attempt mirror verified; previous13 state records unchanged, total original consumed16, no new attempt. PR24 three full families/root pass,57 sealed entries checked and1398/888/158 fresh checks reproduced; corrected current22-file candidate and exact live scope readback, NEW full adversary active, workflow75%. PR25 exact16-file freeze and independent family work preserved; root recent-source proofs under review, workflow20%. PR18/20 independent holds remain. No new paper/deposit/DOI/tracker.
