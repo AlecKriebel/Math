@@ -216,7 +216,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 205 | 30002105 / OWR-11793-003 | Density and Geometry Recovery from Nearest-Neighbor Graphs | 0.1915 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 206 | 30004526 / OWR-2654827-002 | Strong Lefschetz Property of the Zeroth Jordan Component | 0.1914 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 207 | 30004563 / OWR-2654831-006 | Maximum Central Points in Cube-Move $\alpha$-Immersions | 0.1914 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
-| 208 | 5000005 / AMR-049-0005 | Types of parallel short trajectories | 0.1914 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
+| 208 | 5000005 / AMR-049-0005 | Types of parallel short trajectories | 0.1914 | 5.0 | 3 | 2020 | claimed_solved | 2/5 | https://github.com/AlecKriebel/Math/pull/191 | Full Conjecture 2.6 candidate reconstructed and independently reviewed PASS_COMPLETE_SIGNED_TYPE_RULE; source parity and even-ell convention retained; author 3,276,822 and independent 441,920 exact checks passed; original Veech full text not retrieved, credited statements checked in complete later primary papers; AI-reviewed/unrefereed, priority unconfirmed; 1 prior turn + 1 reconstruction, one approach family |  |
 | 209 | 5000007 / AMR-049-0007 | Short geodesics on the regular dodecahedron | 0.1914 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 210 | 30002597 / OWR-12984-009 | Bounding Immersed Curves by Stable Singular Disk Maps | 0.1907 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 211 | 30004601 / OWR-4990374-004 | Degree Bounds for Generic Initial Ideals of Arrangements | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
