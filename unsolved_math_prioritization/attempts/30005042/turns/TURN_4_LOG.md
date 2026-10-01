@@ -1,0 +1,7 @@
+# Substantive turn4 log
+
+2026-10-01 13:08–13:19 UTC. Attacked the exact endpoint using a scalar-in-parameter martingale maximal estimate uniform in the parameter. The adaptive truncation from Turn3 has summable future scalar variances bounded by E[Y min(Y/a^n,1)], and the discarded terms have a summable X log X tail. Doob and orthogonality give an explicit uniform bound for expected temporal maxima. The parameter supremum stays outside expectation. Derived uniform integrability and first-moment equicontinuity of the actual coupled branching family, without incorrectly promoting them to J1 tightness.
+
+For the source geometric coupling, derived the third mixed moment from common-descendant root decomposition. It rules out an inhomogeneous compound-Poisson/subordinator candidate that otherwise matches every marginal and the covariance kernel. The actual bivariate Laplace transform has a continued-fraction representation with exact rational lower and upper certificates and geometric error decay. Correct first-order terminal normalization is essential. The source's required cadlag version at random inverse-Bernoulli threshold ties is stated explicitly; deterministic-parameter laws are unchanged.
+
+12,064 exact controls pass. These are meaningful additional endpoint and process-law results, but the functional endpoint and simple whole-process descriptions remain unresolved after4/5 substantive turns. The previous logarithmic stronger theorem is unchanged. No complete-result claim or final QUEUE promotion.
