@@ -1,0 +1,25 @@
+# Independent adversarial review: 30004008
+
+2026-10-02. **Scoped PASS; original remains unsolved after5/5 substantive author turns.** No mandatory mathematical correction. This is AI-assisted review, not formal certification or human peer review. Historical priority is unverified.
+
+Frozen author manifest SHA25627314ec9eb3c0d9cf8c12012c96cc61f2b6575dc05a2eca6002f866535e74d40 binds43 files. All five complete proof notes, result, final request and source scope were read. All five checker receipts replay byte-identically, totaling6,147,292 declared assertions. The original EMS report and primary arXiv2412.15457v2 were independently opened. Their arbitrary-root spanning-arborescence convention, parallel colored arcs, Theorem4.5, Corollary4.6 and Theorem4.9 match the uses here.
+
+## Structural audit
+
+Turn1: all input roots mutually reach and reach every vertex, placing them in a unique source SCC with no entering arc. A root-to-source-vertex tree path cannot leave and return. Restriction is consequently spanning, including a singleton source. A rainbow tree must root in that source. Conversely each unused color supplies an exit from the current vertex set since its root remains inside; the exact remaining color count adds all remaining vertices. The two-multi-root capacity formula is a sufficient, not necessary, condition, and uses a credited external theorem correctly.
+
+Turn2: at a cut vertex the unique undirected tree path forces each restriction to be connected. A root outside one exclusive side projects to the cut vertex. The side-count pigeonhole inequality ensures enough common-root colors to solve one side greedily. The complementary color family on the other side has exactly the correct size. Gluing preserves all indegrees, even when the retained root is not the cut vertex. Repeating this with a scaffold retains connected spanning subgraphs of terminal blocks; removing colors is not mistakenly assumed to preserve biconnectivity. Thus cactus existence follows from the credited cycle theorem, and the block-size-six conclusion follows from the credited small-order result. Cycle matching reconstruction gives a polynomial-time construction; no optimized implementation is claimed.
+
+Turn3: the root-color sets for pendant pieces are disjoint. Hall neighborhoods of slots meeting two pieces are all remaining colors, leaving exactly the displayed single-piece lower quotas. The reserved-size and grouped projected-root capacity conditions follow by choosing disjoint required colors then filling group capacities. The iff is correctly limited to that construction. In the weighted block-cut tree, total weight2n−1 yields integral component weights at most n−1. If the centroid is a cut vertex, choosing any incident block leaves every omitted piece inside a centroid complement. No outside-root assumption is silently removed.
+
+Turn4: the disjoint assignment of shared-boundary arcs is essential and explicit. Every restricted tree component meets the two-vertex boundary. Edge counting yields component-count sum3. Conversely those counts and boundary indegree inequalities give connectivity, n−1 edges, and one directed root. Multigraph two-cycles are excluded. The theta instance is an obstruction to naive restriction/contraction, not an original counterexample.
+
+Turn5: row multilinearity of the incoming Laplacian gives weight-one contributions precisely for rooted out-trees. Parent cycles force dependent rows; acyclic parent chains terminate at the deleted root. Homogeneous degree n−1 makes subset inclusion-exclusion extract exactly the rainbow coefficient. The exact upper-half-plane zero and basis-exchange failure correctly refute only two proposed auxiliary premises. Neither implies a failure of rainbow existence.
+
+## External dependency and limits
+
+The all-cactus deduction uses Bérczi–Király–Yamaguchi–Yokoi, arXiv2412.15457v2, Theorem4.9. This review verifies the stated hypotheses and application but does not claim to have independently re-proved or audited every line of its long Section5 cycle proof. That is an explicitly cited mathematical dependency. The paper's n≤8 computation is likewise not independently reproduced. New finite controls are not represented as extending that census. The irreducible strongly connected, biconnected original problem remains unresolved, as does general compatible colorful two-vertex gluing.
+
+## Independent controls
+
+Separately written code exhausts18,861 bounded quota/root-count vectors through eight colors, checking every reserved subset against an independently implemented bipartite matching test, both equivalent feasibility formulations, and the side-count pigeonhole inequality through exclusive side sizes30. It also checks the displayed stability zero with exact Gaussian-integer pairs. Total857,762 independent assertions. These finite controls supplement, rather than replace, the structural proofs. Integrity receipt binds the author files and historical manifests; no source PDF is republished.
