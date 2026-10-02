@@ -402,7 +402,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 391 | 20000728 / AIM-ANALYTIC_NUMBER_THEORY-0092 | Weight-only modularity recognition has a finite-data obstruction | 0.1440 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 392 | 20001666 / AIM-GEOMETRY-0004 | Fixed-volume degeneration of Maxwell cavity eigenvalues | 0.1440 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 393 | 2302055 / AMR-022-2055 | Research Problems in Function Theory — Problem 2.55 | 0.1440 | 7.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 394 | 2303002 / AMR-022-3002 | Research Problems in Function Theory — Problem 3.2 | 0.1440 | 7.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 394 | 2303002 / AMR-022-3002 | Research Problems in Function Theory — Problem 3.2 | 0.1440 | 7.0 | 3 | unknown | already_solved | 0/5 |  |  |  |
 | 395 | 2303016 / AMR-022-3016 | Research Problems in Function Theory — Problem 3.16 | 0.1440 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 396 | 9400114 / AMR-093-0114 | Agrawal's conjecture | 0.1440 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 397 | 9700034 / AMR-096-0034 | Integrability of all routes to random points in a SIRSN | 0.1440 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
