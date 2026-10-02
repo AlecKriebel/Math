@@ -328,7 +328,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 317 | 3100085 / AMR-030-0085 | Let f(p;n,k) = C(n,k) p^(k) (1-p)^(n-k) | 0.1680 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 318 | 3242 / OPG-46575 | Melnikov's valency-variety problem | 0.1680 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 319 | 3356 / OPG-37396 | 3 is a primitive root modulo primes of the form 16 q^4 + 1, where q>3 is prime | 0.1680 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
-| 320 | 9700031 / AMR-096-0031 | Local finiteness of SIRSN traffic intensity | 0.1680 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 320 | 9700031 / AMR-096-0031 | Local finiteness of SIRSN traffic intensity | 0.1680 | 5.0 | 3 | unknown | unsolved | 5/5 |  |  |  |
 | 321 | 30003472 / OWR-15427-014 | Exponential Probability Gaps Between Random Order Types | 0.1677 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 322 | 30003508 / OWR-15432-001 | Convergence of Spectral Estimators for Diffusion Tensors | 0.1677 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 323 | 30004434 / OWR-17474-008 | Uniform Coupling under Gibbs Uniqueness | 0.1675 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
