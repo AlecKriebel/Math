@@ -1,3 +1,3 @@
 # Current checkpoint
 
-The current proof is TURN_1.md and the state is CURRENT_STATE.json. One of five author turns is consumed. The route-moment traffic theorem is a scoped partial under explicit continuum regularity, not an unconditional result for every SIRSN.
+Latest proof: TURN_3.md. State: CURRENT_STATE_TURN_3.json. Three of five substantive turns consumed. Under the explicit measurable continuum realization, ordinary route/road first moments now suffice for 2<beta<=3. The all-moments and non-excursion theorems cover the full interval only under their stated extra assumptions. Ordinary-axiom 3<beta<4 remains unresolved. Earlier frozen files are unchanged.
