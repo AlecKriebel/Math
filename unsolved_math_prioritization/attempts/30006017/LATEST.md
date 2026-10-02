@@ -1,3 +1,3 @@
-# Latest checkpoint
+# Final author checkpoint
 
-Read TURN_4.md and CURRENT_STATE_TURN_4.json. Four of five substantive author turns are complete; original unresolved. The continuum sharp-cutoff limit is proved with credited tree inputs. The finite source-disk area transfer remains the central gap.
+Read RESULT.md and CURRENT_STATE_FINAL.json. All five substantive author turns are complete; original unresolved. FINAL_AUTHOR_MANIFEST.json freezes every public author file. The continuum width limit is proved with credited inputs, but its finite uniform-disk transfer is not. Independent review and corrections may follow; no sixth author search.
