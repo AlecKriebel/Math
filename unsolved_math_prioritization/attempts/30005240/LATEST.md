@@ -1,3 +1,3 @@
-# Latest checkpoint
+# Final author checkpoint
 
-Read CURRENT_STATE_TURN_4.json and TURN_4.md. Four of five genuine author turns are complete; original unresolved. The physical compact-operator reduction is exact at fixed real frequency; its high-frequency spectral and excitation hypotheses remain open. Earlier proofs and source evidence are unchanged.
+Read RESULT.md and CURRENT_STATE_FINAL.json. All five substantive author turns are complete; original unresolved. FINAL_AUTHOR_MANIFEST.json freezes the public author packet. Independent review and corrections may follow; there is no sixth author search. Historical source and turn files remain unchanged.
