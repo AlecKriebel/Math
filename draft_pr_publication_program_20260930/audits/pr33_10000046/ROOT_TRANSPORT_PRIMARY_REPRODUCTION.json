@@ -1,0 +1,80 @@
+{
+  "utc": "2026-10-02T02:41:57.020321+00:00",
+  "status": "PASS ACTUAL UNCHANGED PROGRAM REPLAYS",
+  "actual_replays": [
+    {
+      "family": "transport_family",
+      "program": "reproduce.py",
+      "exit": 0,
+      "stdout_sha256": "f2bfa78616a9664da84d6a143e6ec6821334b8b9e338f13df485345edc8537f5",
+      "stderr_bytes": 0
+    },
+    {
+      "family": "primary_scope_family",
+      "program": "audit_provenance.py",
+      "exit": 0,
+      "stdout_sha256": "749caebc48f0fde24cc53695f986f8117f3624714a74e8c6ccce85d9563dfe34",
+      "stderr_bytes": 0
+    },
+    {
+      "family": "primary_scope_family",
+      "program": "run_controls.py",
+      "exit": 0,
+      "stdout_sha256": "063e895f8ca92efb1ee6902615409befec57416d29e273a9403b33c9ad79b971",
+      "stderr_bytes": 0
+    }
+  ],
+  "comparisons": [
+    {
+      "family": "transport_family",
+      "file": "REPRODUCIBILITY.json",
+      "excluded_clock_or_live_head": [
+        "utc"
+      ],
+      "post_run_final_annotations_qualified_separately": {},
+      "every_actual_program_generated_field_equal": true
+    },
+    {
+      "family": "primary_scope_family",
+      "file": "provenance_results.json",
+      "excluded_clock_or_live_head": [
+        "at_utc",
+        "current_head"
+      ],
+      "post_run_final_annotations_qualified_separately": {
+        "audit_assignment_completion_percent": 100,
+        "frozen_at_stage": "original",
+        "final_disposition": "PASS standard partial/source scope with mandatory current administrative corrections; bundled target verification0"
+      },
+      "every_actual_program_generated_field_equal": true
+    },
+    {
+      "family": "primary_scope_family",
+      "file": "controls_results.json",
+      "excluded_clock_or_live_head": [
+        "at_utc"
+      ],
+      "post_run_final_annotations_qualified_separately": {},
+      "every_actual_program_generated_field_equal": true
+    }
+  ],
+  "closed_manifests": [
+    {
+      "family": "transport_family",
+      "manifest": "FINAL_MANIFEST.json",
+      "sha256": "1b4a4fff24fb4e591b6faedc2bec3528e73565a50272e569449031939364e899",
+      "member_count": 17,
+      "all_unchanged": true
+    },
+    {
+      "family": "primary_scope_family",
+      "manifest": "MANIFEST.json",
+      "sha256": "1e3e19900bc5683c06a5e704efb47c04e826d9815d30fd140acb5c074afd95ef",
+      "member_count": 15,
+      "all_unchanged": true
+    }
+  ],
+  "initial_failed_comparison_preserved": "ROOT_PRIMARY_COMPARISON_FAILURE.json",
+  "qualification": "The sealed provenance receipt includes three manually added final-stage annotations, absent from the actual baseline script output. Their literal values are checked separately and are not described as reproducible program output. Full source/db/original/diagnostic data equals actual replay, except recorded clock and current main head.",
+  "new_proof_turns": 0
+}
