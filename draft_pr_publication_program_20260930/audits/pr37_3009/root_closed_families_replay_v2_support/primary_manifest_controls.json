@@ -1,0 +1,92 @@
+{
+  "at_utc": "2026-10-02T08:56:42.369259+00:00",
+  "tested_manifest_sha256": "d53bc8be2de3767f25c5c1576628027750c787b319ff4935c6d1991164acc590",
+  "all_expected_outcomes": true,
+  "cases": [
+    {
+      "case": "pristine",
+      "at_utc": "2026-10-02T08:56:41.939973+00:00",
+      "argv": [
+        "/usr/bin/python3",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr37_3009/root_replay_execution_revision/tmp/root_replay_20261002T085640496242Z/draft_pr_publication_program_20260930/audits/pr37_3009/primary_scope_family/ignoredtmp/manifest_controls/pristine/replay_audit.py",
+        "--verify-manifest"
+      ],
+      "returncode": 0,
+      "expected_pass": true,
+      "actual_pass": true,
+      "stdout": "{\"verified\": true, \"files\": 17, \"exclusions\": [\"FIRST_PARTY_MANIFEST.json\", \"ignoredtmp/**\", \"__pycache__/**\"]}\n",
+      "stderr_tail": ""
+    },
+    {
+      "case": "tampered_bytes",
+      "at_utc": "2026-10-02T08:56:42.013184+00:00",
+      "argv": [
+        "/usr/bin/python3",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr37_3009/root_replay_execution_revision/tmp/root_replay_20261002T085640496242Z/draft_pr_publication_program_20260930/audits/pr37_3009/primary_scope_family/ignoredtmp/manifest_controls/tampered_bytes/replay_audit.py",
+        "--verify-manifest"
+      ],
+      "returncode": 1,
+      "expected_pass": false,
+      "actual_pass": false,
+      "stdout": "",
+      "stderr_tail": "\", line 255, in <module>\n    if __name__=='__main__':main()\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr37_3009/root_replay_execution_revision/tmp/root_replay_20261002T085640496242Z/draft_pr_publication_program_20260930/audits/pr37_3009/primary_scope_family/ignoredtmp/manifest_controls/tampered_bytes/replay_audit.py\", line 243, in main\n    assert rows==expected['files'], 'Authored file set or hash mismatch'\nAssertionError: Authored file set or hash mismatch\n"
+    },
+    {
+      "case": "missing_file",
+      "at_utc": "2026-10-02T08:56:42.084641+00:00",
+      "argv": [
+        "/usr/bin/python3",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr37_3009/root_replay_execution_revision/tmp/root_replay_20261002T085640496242Z/draft_pr_publication_program_20260930/audits/pr37_3009/primary_scope_family/ignoredtmp/manifest_controls/missing_file/replay_audit.py",
+        "--verify-manifest"
+      ],
+      "returncode": 1,
+      "expected_pass": false,
+      "actual_pass": false,
+      "stdout": "",
+      "stderr_tail": "py\", line 255, in <module>\n    if __name__=='__main__':main()\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr37_3009/root_replay_execution_revision/tmp/root_replay_20261002T085640496242Z/draft_pr_publication_program_20260930/audits/pr37_3009/primary_scope_family/ignoredtmp/manifest_controls/missing_file/replay_audit.py\", line 243, in main\n    assert rows==expected['files'], 'Authored file set or hash mismatch'\nAssertionError: Authored file set or hash mismatch\n"
+    },
+    {
+      "case": "unlisted_file",
+      "at_utc": "2026-10-02T08:56:42.165076+00:00",
+      "argv": [
+        "/usr/bin/python3",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr37_3009/root_replay_execution_revision/tmp/root_replay_20261002T085640496242Z/draft_pr_publication_program_20260930/audits/pr37_3009/primary_scope_family/ignoredtmp/manifest_controls/unlisted_file/replay_audit.py",
+        "--verify-manifest"
+      ],
+      "returncode": 1,
+      "expected_pass": false,
+      "actual_pass": false,
+      "stdout": "",
+      "stderr_tail": "y\", line 255, in <module>\n    if __name__=='__main__':main()\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr37_3009/root_replay_execution_revision/tmp/root_replay_20261002T085640496242Z/draft_pr_publication_program_20260930/audits/pr37_3009/primary_scope_family/ignoredtmp/manifest_controls/unlisted_file/replay_audit.py\", line 243, in main\n    assert rows==expected['files'], 'Authored file set or hash mismatch'\nAssertionError: Authored file set or hash mismatch\n"
+    },
+    {
+      "case": "nested_same_basename",
+      "at_utc": "2026-10-02T08:56:42.235706+00:00",
+      "argv": [
+        "/usr/bin/python3",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr37_3009/root_replay_execution_revision/tmp/root_replay_20261002T085640496242Z/draft_pr_publication_program_20260930/audits/pr37_3009/primary_scope_family/ignoredtmp/manifest_controls/nested_same_basename/replay_audit.py",
+        "--verify-manifest"
+      ],
+      "returncode": 1,
+      "expected_pass": false,
+      "actual_pass": false,
+      "stdout": "",
+      "stderr_tail": "e 255, in <module>\n    if __name__=='__main__':main()\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr37_3009/root_replay_execution_revision/tmp/root_replay_20261002T085640496242Z/draft_pr_publication_program_20260930/audits/pr37_3009/primary_scope_family/ignoredtmp/manifest_controls/nested_same_basename/replay_audit.py\", line 243, in main\n    assert rows==expected['files'], 'Authored file set or hash mismatch'\nAssertionError: Authored file set or hash mismatch\n"
+    },
+    {
+      "case": "ignored_foreign_file",
+      "at_utc": "2026-10-02T08:56:42.305330+00:00",
+      "argv": [
+        "/usr/bin/python3",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr37_3009/root_replay_execution_revision/tmp/root_replay_20261002T085640496242Z/draft_pr_publication_program_20260930/audits/pr37_3009/primary_scope_family/ignoredtmp/manifest_controls/ignored_foreign_file/replay_audit.py",
+        "--verify-manifest"
+      ],
+      "returncode": 0,
+      "expected_pass": true,
+      "actual_pass": true,
+      "stdout": "{\"verified\": true, \"files\": 17, \"exclusions\": [\"FIRST_PARTY_MANIFEST.json\", \"ignoredtmp/**\", \"__pycache__/**\"]}\n",
+      "stderr_tail": ""
+    }
+  ],
+  "note": "Receipt creation changes the live authored set; regenerate its self-excluding manifest afterward."
+}

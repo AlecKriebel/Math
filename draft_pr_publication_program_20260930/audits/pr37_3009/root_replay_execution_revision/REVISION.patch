@@ -1,0 +1,19 @@
+--- root_replay_preparation_family/collect_root_replays.py
++++ root_replay_execution_revision/collect_root_replays.py
+@@ -312,7 +312,15 @@
+             fresh = retain(primary/name, 'primary_'+name[:-5])
+             if name == 'GIT_ACCOUNTING_PROVENANCE.json':
+                 delta = compare('primary_complete_'+name, fresh, AUDIT/FAMILIES[1]/name, required=False)
+-                assert all(d['path'] == '$/current_main_head' and d['actual'] == live_head for d in delta)
++                current_inventory = load(REPO/'draft_pr_publication_program_20260930/inventory.json')
++                selected = [x for x in current_inventory['items'] if x['number'] == 37]
++                actual_git = load(fresh)
++                saved_git = load(AUDIT/FAMILIES[1]/name)
++                assert len(selected) == 1 and actual_git['inventory_item_historical'] == selected
++                assert any(x['root_dated_pin']['path'] == 'draft_pr_publication_program_20260930/inventory.json' for x in rebase)
++                for key in ['number','headRefOid','headRefName','baseRefName','title','url','isDraft','outcome']:
++                    assert selected[0][key] == saved_git['inventory_item_historical'][0][key]
++                assert all((d['path'] == '$/current_main_head' and d['actual'] == live_head) or d['path'].startswith('$/inventory_item_historical/0') for d in delta)
+                 assert load(fresh)['current_main_head'] == live_head
+                 exceptions.append({'label': 'primary_dated_current_main_head', 'precise_differences': delta,
+                                    'actual_preimage': live_head, 'original_base_head_blobs_and_diff_match': True})
