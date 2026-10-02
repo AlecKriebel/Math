@@ -1,0 +1,3 @@
+# Research log
+
+2026-10-01 16:13 UTC — Completed exact original/current-source and prior-attempt gate. The target is a nonnegative virtual character with normalized Haar mean one on a connected simply connected compact Lie group. Serre's final2025 paper retains the broader finite-cover formulation as Problem4.6 and supplies the full known SU(2) proof. Source work only, 0/5 substantive author turns. Repository-required completion estimate10%, subjective/uncalibrated and not a correctness probability. Next route: test whether the rank-one extremal Laurent-polynomial mechanism extends to products while preserving integral coefficients, then isolate the genuinely higher-rank simple-group obstruction.
