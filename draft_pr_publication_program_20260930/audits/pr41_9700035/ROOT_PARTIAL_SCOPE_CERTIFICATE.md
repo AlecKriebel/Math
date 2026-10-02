@@ -168,3 +168,40 @@ two substantive attempts of five remain unchanged; new research/audit turns0.
 Current runtime/model/deadline fields must remain null. Workflow audit is about
 65% complete; full unconditional discovery estimate0%. No paper, new DOI,
 tracker row, release, or human peer-review assertion is warranted.
+
+## 2026-10-02T21:33 UTC — Completed closed-family and actual-evidence reading
+
+Root has now read both complete closed independent reports, their operative
+proof qualifications and control sources, the primary read-coverage and full
+result/priority objects, and every retained actual root execution record.
+The primary source family closes127 authored members plus its literal root
+manifest; its21 foreign cached source members are separately inventoried.
+The network family closes115 authored members plus self and8 exact foreign
+members. Root's independently authored complete inspection checked every
+member byte/hash, all recursive files AND directories, and95 complete
+duplicate-free finite JSON objects across these two families and both actual
+root replay packages. No arbitrary cache/empty-directory exception was used.
+
+Root additionally genuinely reproduced the unchanged independently authored
+1326 finite primary controls,122 network-measure controls and115-member
+manifest guard. Full network saved/actual objects agree. These three real
+children and their complete streams/source/PIDs/clocks close15 members plus
+self under manifest35f6efc31439e33795820b19d6df7a49451f649e6ccd71fac71956b4d0556840.
+Together with the original130-member actual replay this supplies six genuine
+outer execution records. The fresh root inspection itself ran as childPID29333
+with exit0; its own source/capture and complete result are retained separately.
+An earlier root inspector overrequired the author's proof_sha256 field on the
+old independent result, which has no such field; that failed source and full
+tool stderr are preserved. Only the inspection schema assertion was repaired,
+not any original source/result or mathematical claim. No child PID was captured
+for that earlier plain tool invocation, so none is invented.
+
+Root source coverage remains the precise bounded coverage described above;
+hashing whole foreign PDFs does not extend semantic reading to their entire
+proofs. Old family capture limitations remain historical, while all six new
+root outer records carry genuine PIDs and full streams. All mathematical
+deductions and the exact unconditional exterior gap are unchanged. Scientific
+reading/reproduction is complete for this qualified partial; workflow is
+approximately75%. Administrative current freeze, NEW entire-current independent
+review and actual acceptance still remain pending. Full original resolution0%,
+original2/5,new0/audit0; no paper, new DOI, or tracker row.
