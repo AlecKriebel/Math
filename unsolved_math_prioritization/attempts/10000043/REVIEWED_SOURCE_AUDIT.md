@@ -36,5 +36,3 @@ No complete primary-source resolution of the exact target was located in this bo
 ## Current dated audit qualification — 2026-10-02T01:39:14.001591+00:00
 
 This historical September30 audit is preserved in ORIGINAL_SOURCE_AUDIT.md. CURRENT_SOURCE_QUALIFICATION.md supplies the current source assumptions, scope correction, published-dependency boundaries and attestation/diagnostic limits. The current additional package has a separate full gate pending; old PASS and historical searches are not silently transferred.
-
-Current accepted disposition at2026-10-02T02:09:30.037971+00:00: accepted unsolved partial; the dated pending-stage notices above are superseded by ACCEPTANCE.md. Applicable source proofs, variants and limitations remain exactly as audited in CURRENT_SOURCE_QUALIFICATION.md.
