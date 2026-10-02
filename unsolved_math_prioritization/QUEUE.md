@@ -389,7 +389,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 378 | 30003221 / OWR-14751-005 | Ball-Shaped Minimizers of Competing Nonlocal Energies | 0.1455 | 7.0 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 379 | 30000417 / OWR-1189-007 | List-Labeling Numbers of Paths | 0.1451 | 5.0 | 3 | 2006 | queued | 0/5 |  |  |  |
 | 380 | 30000660 / OWR-1452-024 | Étale-Local Equivalence of Fiberwise Isomorphic Families | 0.1449 | 5.0 | 3 | 2007 | queued | 0/5 |  |  |  |
-| 381 | 30001014 / OWR-2048-009 | Realizing Compact Spectra of Pathological Masas | 0.1446 | 5.0 | 3 | 2008 | queued | 0/5 |  |  |  |
+| 381 | 30001014 / OWR-2048-009 | Realizing Compact Spectra of Pathological Masas | 0.1446 | 5.0 | 3 | 2008 | unsolved | 5/5 |  | 2026-10-02: full scoped review PASS. Literal unrestricted wording has an elementary finite-spectrum obstruction; explicitly infinite variant remains unresolved after five turns. Proved convergent-sequence products, infinite Cantor cubes, connected mapping torus, cone/character attachments and Hawaiian-earring realization with explicit tensor norm gap3-2sqrt(2). Interval construction remains a credited source announcement; no universal infinite classification or novelty claim. See attempts/30001014/PUBLICATION_STATUS.md. |  |
 | 382 | 30001202 / OWR-3394-018 | Optimal Feasible Sets from Quantized Trajectory Observations | 0.1444 | 5.0 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 383 | 30001370 / OWR-4132-003 | Common Basin Boundaries in a Transfer-Operator System | 0.1444 | 5.0 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 384 | 30001552 / OWR-4425-007 | Fine–Wilf Bounds for Antimorphic Periods | 0.1442 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
