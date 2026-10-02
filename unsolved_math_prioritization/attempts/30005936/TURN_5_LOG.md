@@ -1,0 +1,7 @@
+# Fifth and final substantive author turn
+
+The final turn proves a negative continuum mean-square subquestion for the original space-time-white-noise LT scheme with the explicit source coefficient v_+^(5/4). The normalized Dirichlet eigenfunction gives a nonnegative drift-removed mass local martingale. Weighted Hölder supplies its precise white-noise bracket lower bound. A directly differentiated concave backward Itô barrier, localized on compact regions and passed through two Fatou steps, proves strict expectation loss at every deterministic positive time without a random-clock or uniform-integrability assumption.
+
+Conditional heat domination and an explicit positive kernel lower bound transport that weighted loss to x=1/2 at T=1. The scheme preserves its discrete heat expectation, so sine initial data yield a positive mesh-independent midpoint first-moment and root-mean-square discrepancy, including the balanced sequence M=N². This is distinct from the time-only prior proof and is not merely an integrated-mass conclusion.
+
+The five-turn packet also proves probability and bounded-Lipschitz logarithmic convergence, so the test-class distinction is essential. No infinite mean-square value, optimal weak rate, novelty certification or full resolution of the unspecified rough-coefficient/weak-test bundle is claimed. The original bundle remains unresolved5/5, with this complete negative subquestion and the positive scoped theorems submitted for independent review. The fifth-turn finite controls pass; they do not replace the analytic proof.
