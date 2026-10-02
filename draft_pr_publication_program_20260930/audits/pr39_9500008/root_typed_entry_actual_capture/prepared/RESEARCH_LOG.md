@@ -1,0 +1,9 @@
+# PR39 typed-entry preparation log
+
+2026-10-02T12:12:13.789453+00:00 — Scoped administrative correction, 100% static preparation; actual typed entry/freeze and NEW whole-current review pending (0% performed by this preparer). Read-only strict duplicate-key parsing sealed 38 approved actual inputs and reused 179 recursive type shapes. Added a concise 90-line proposed guard, proposed wrapper, and 17 isolated control definitions. Full imported source/prior contents/types are preserved. No old malformed fixtures were parsed.
+
+Static checks: both proposed Python sources AST-parse; all 38 approved file sizes/SHA pins still match; control paths exist and each intended false/null type replacement differs from the approved type; duplicate-row controls use the same required row shape; missing-key controls delete originally present null fields. Numeric administrative counts require nonnegative finite values. CLOSED current builder manifest and all seven source members were rehashed unchanged. These are source/metadata checks, not guard/control/runtime execution.
+
+A preparer's one-off read-only schema inspection initially called `.values()` on the schema definitions list and failed with AttributeError. The mistake was confined to inspection output; no proposed program ran and no source/input was mutated by that failed inspection. A corrected list-based read-only inspection and AST checks succeeded. No failure was recast as a runtime result.
+
+The guard and wrapper are not executed or imported by this preparer. Root must independently read/approve and actually reproduce all administrative controls before freeze. The complete target remains UNSOLVED and discovery completion does not change; this is not a new substantive research attempt. Actual execution and review remain pending, not synthetic PASS.
