@@ -322,7 +322,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 311 | 30001994 / OWR-11578-001 | Variational Eddy Currents with Degenerate Conductivity | 0.1697 | 5.0 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 312 | 30002011 / OWR-11581-002 | Corruption-Parameter Choice in Empirical-Bayes Estimation | 0.1697 | 5.0 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 313 | 30002163 / OWR-12012-001 | Minimum Distance in Spherical Fibonacci Lattices | 0.1697 | 5.0 | 3 | 2012 | queued | 0/5 |  |  |  |
-| 314 | 30002792 / OWR-13494-011 | Non-ACM Line Configurations with Minimal Symbolic Initial-Degree Gap | 0.1686 | 5.0 | 3 | 2015 | queued | 0/5 |  |  |  |
+| 314 | 30002792 / OWR-13494-011 | Non-ACM Line Configurations with Minimal Symbolic Initial-Degree Gap | 0.1686 | 5.0 | 3 | 2015 | claimed_solved | 2/5 |  |  |  |
 | 315 | 30000048 / OWR-722-001 | Positive Characters of Simply Connected Groups | 0.1686 | 7.0 | 3 | 2004 | queued | 0/5 |  |  |  |
 | 316 | 2305038 / AMR-022-5038 | Research Problems in Function Theory — Problem 5.38 | 0.1680 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 317 | 3100085 / AMR-030-0085 | Let f(p;n,k) = C(n,k) p^(k) (1-p)^(n-k) | 0.1680 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
