@@ -334,7 +334,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 323 | 30004434 / OWR-17474-008 | Uniform Coupling under Gibbs Uniqueness | 0.1675 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 324 | 30004022 / OWR-16636-004 | Commutator Models for Nonsymmetric Free Random Variables | 0.1671 | 5.0 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 325 | 30004365 / OWR-17466-004 | Derived Invariants from Gentle Quivers with Relations | 0.1659 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
-| 326 | 5100034 / AMR-050-0034 | Elliptic-billiard invariant k_{606} | 0.1651 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
+| 326 | 5100034 / AMR-050-0034 | Elliptic-billiard invariant k_{606} | 0.1651 | 5.0 | 3 | 2021 | claimed_solved | 1/5 |  | 2026-10-02: corrected source equality arXiv v11 k606 / published k607 proved for all periods in the strict confocal-elliptic signed-area domain, including primitive stars and repetitions; all four area denominators nonzero. Full independent PASS. New common-lattice/residue-matching deduction credits PR210/PR261 local lemmas. Imported extra phase-constancy claim separately false by exact convex triangles. No historical novelty claim. Packet: problems/5100034_focal_pedal_equality/. |  |
 | 327 | 5100061 / AMR-050-0061 | Elliptic-billiard invariant k_{818} | 0.1651 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 328 | 30003338 / OWR-15206-017 | Positive Association in Random Proper Colorings | 0.1645 | 7.0 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 329 | 30003659 / OWR-15958-006 | Completeness of Cut-Free Kozen Modal Calculus | 0.1645 | 7.0 | 3 | 2017 | queued | 0/5 |  |  |  |
