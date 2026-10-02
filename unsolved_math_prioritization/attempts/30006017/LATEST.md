@@ -1,3 +1,3 @@
 # Latest checkpoint
 
-Read TURN_3.md and CURRENT_STATE_TURN_3.json. Three of five substantive author turns are complete; original unresolved. The continuum Abel limit is proved with explicit credit to Fill–Janson. Sharp-cutoff and finite flat-disk transfer remain open. Historical files are preserved.
+Read TURN_4.md and CURRENT_STATE_TURN_4.json. Four of five substantive author turns are complete; original unresolved. The continuum sharp-cutoff limit is proved with credited tree inputs. The finite source-disk area transfer remains the central gap.
