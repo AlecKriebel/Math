@@ -1,3 +1,3 @@
 # Latest checkpoint
 
-Read TURN_1.md and CURRENT_STATE_TURN_1.json. One of five substantive author turns is complete; original unresolved. The exact radial reduction does not identify the fixed-energy shape law. Source and prior-attempt evidence remain unchanged.
+Read TURN_2.md and CURRENT_STATE_TURN_2.json. Two of five substantive author turns are complete; original unresolved. Conditional Gaussian width fluctuations are controlled. The deterministic centering and finite source-model transfer remain unproved. Earlier source and turn files are unchanged.
