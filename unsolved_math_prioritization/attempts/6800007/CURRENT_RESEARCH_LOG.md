@@ -1,3 +1,5 @@
 2026-10-02T03:17:58.406479+00:00 —75%partial-acceptance workflow: original universal formula verified; two deep priority families/root actual theorem and integral substitution checks complete. Edited current already_solved qualification and originals frozen; NEW whole gate next. Exact earlier printed flag formula remains unlocated; classification complete, positive novelty0%, no paper/DOI/tracker. Original1/5,audit0.
 
 2026-10-02T04:05:36.895754+00:00 — workflow95%: complete current gate clean and root whole reproduction verified; accepted credited prior-method partial. Original1/5, audit0. Named-field actual-preimage QUEUE rebase preservesPR33; exact-head remote verification and present acceptance mirror pending.
+
+2026-10-02T04:08:20.046459+00:00 — workflow100%: exact original-head remote merge verified, creditedalready_solved partial, original1/5/audit0, no paper/DOI/tracker. Present source-bound mirror next.
