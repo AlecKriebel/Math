@@ -1,0 +1,3 @@
+# Accepted current scope
+
+PR36 20001424 already_solved credited PRIOR_APPLICATION. The NEW entire current-packet source-first gate and actual root reproduction passed, bound by 93399cc5c589fc8421cd622d86062550645ab9955d709bed846cfdb58d2b9712 and b7bc1a99bf56dcef5dd5397e1ce8db8116d674fed8805e40d35bab5fbec05556. All scientific/raw-source/prior-report/dependency/original-ledger bytes are unchanged. Exact root priority decision and earlier pending statements remain dated historical evidence. Original1/5,new0,verification0; no paper/newDOI/tracker/release. Canonical merge, acceptance and current mirror are separately verified.
