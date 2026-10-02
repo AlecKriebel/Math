@@ -351,7 +351,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 340 | 10400078 / AMR-103-0078 | Problem 3.28 — (T. | 0.1600 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 341 | 9900002 / AMR-098-0002 | Scaling total life in a null-recurrent renewal process | 0.1600 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 342 | 30005751 / OWR-14298016-007 | Finite Axiomatizability of TEIP over Open Induction | 0.1599 | 7.0 | 3 | 2023 | queued | 0/5 |  |  |  |
-| 343 | 4600032 / AMR-045-0032 | Embedding under a preimage bound | 0.1578 | 5.5 | 4 | 2008 | queued | 0/5 |  |  |  |
+| 343 | 4600032 / AMR-045-0032 | Embedding under a preimage bound | 0.1578 | 5.5 | 4 | 2008 | unsolved | 1/5 |  |  |  |
 | 344 | 30001199 / OWR-3394-009 | Circular Assume–Guarantee Reasoning for General Systems | 0.1575 | 5.0 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 345 | 30006211 / OWR-14299088-013 | Real Components of Two Multi-Affine Polynomial Zero Sets | 0.1564 | 7.0 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 346 | 30006345 / OWR-14299292-007 | Modular Isomorphism for Class-Two Exponent-p Groups | 0.1564 | 7.0 | 3 | 2025 | queued | 0/5 |  |  |  |
