@@ -1,3 +1,3 @@
 # Latest checkpoint
 
-Read TURN_2.md and CURRENT_STATE_TURN_2.json. Author count2/5. The quantitative dominant-mode result is conditional on strong same-space operator approximation and uniform excitation, not proved for the actual boundary transfer. Earlier frozen source/turn files remain unchanged.
+Read CURRENT_STATE_TURN_3.json and TURN_3.md. Three of five genuine author turns are complete; the original problem remains unresolved. Historical source and earlier-turn files are preserved. The analytic model is scoped explicitly and does not provide the missing physical operator identification.
