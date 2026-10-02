@@ -1,0 +1,15 @@
+# Independent full-source and proof review: 30001552
+
+PASS: complete affirmative proof of the exact alternating antimorphic Fine–Wilf conjecture, one substantive author turn. Recommended claimed_solved 1/5 as a reviewed proof claim, without a historical novelty certificate or human peer-review claim.
+
+The exact OWR printed 2220 was read and visually inspected. It distinguishes arbitrary theta-periods, alternating theta-periods and weak periods; the conjecture following Theorem 23 asks for the stronger alternating gcd conclusion at length p+q-gcd(p,q). The candidate proves precisely this, not a weaker imported variant. Classical Fine–Wilf is explicitly stated as Theorem 20 on that same primary page and is the credited input; failure to retrieve the original 1965 AMS PDF is disclosed.
+
+The proof is valid for every alphabet and every antimorphic involution. Bijective antimorphism preserves indecomposable nonempty monoid elements, so letters map to letters and the operation is reversal followed by an involutive alphabet permutation. The bi-infinite repetition of u theta(u) is invariant under the indicated twisted reflection around its initial boundary. Therefore theta(w)w is a segment of that same 2p-periodic extension, independently of the prefix length or phase at its left edge. Doing this for both p and q produces the identical reflected word, not two different extensions.
+
+Its length is twice the original length and exactly meets the ordinary Fine–Wilf threshold for periods 2p and 2q. Thus it has period 2g. The original threshold ensures both sides of the central block of length 2g exist. Comparing residues to that block, with negative residues read by the twisted reflection, gives a prefix of v theta(v) repeated, where v is the first g letters. This establishes alternating period g. Equal periods, divisibility, fixed letters and incomplete blocks are all covered. There is no finite-search extrapolation or missing boundary alignment.
+
+The reversal example w=abb, p=2, q=3 checks sharpness of the universal formula by one letter. It is not a claim of pointwise optimality for each period pair. The argument does not extend to morphic involutions or arbitrary free mixtures of seed and theta(seed), and the packet correctly excludes those changes.
+
+All seven author artifact bindings and five source bindings pass. The author standard-library checker replays byte-identically with 526,887 controls. A separately written checker tests both binary involutions on every word of lengths 1–12, verifying reflection periods, qualifying gcd conclusions and the sharpness example, with 68,413 assertions including integrity. These supplement the universal proof.
+
+Approve one draft PR with the complete proof, source and classical credit, and explicit novelty uncertainty, preserving the frozen author bytes and adding this review. Only its own queue cells may change to claimed_solved 1/5. No raw sources/imports/private notes and no further author turns are required for this resolved target.
