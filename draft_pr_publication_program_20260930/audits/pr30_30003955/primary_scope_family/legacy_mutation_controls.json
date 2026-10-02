@@ -1,0 +1,43 @@
+{
+  "utc": "2026-10-02T00:26:37.141452+00:00",
+  "purpose": "Falsify interpretation of legacy check counts as proof certification; no new proof-search attempts",
+  "runs": [
+    {
+      "mutation": "deleted_proof",
+      "checker": "check_monodromy.py",
+      "exit_code": 0,
+      "assertions": 31,
+      "passed_boolean": true,
+      "hash_matches_mutated_text": true,
+      "valid_mathematical_proof": false
+    },
+    {
+      "mutation": "deleted_proof",
+      "checker": "review/independent_checks.py",
+      "exit_code": 0,
+      "assertions": 53830,
+      "passed_boolean": true,
+      "hash_matches_mutated_text": true,
+      "valid_mathematical_proof": false
+    },
+    {
+      "mutation": "invented_solution",
+      "checker": "check_monodromy.py",
+      "exit_code": 0,
+      "assertions": 31,
+      "passed_boolean": true,
+      "hash_matches_mutated_text": true,
+      "valid_mathematical_proof": false
+    },
+    {
+      "mutation": "invented_solution",
+      "checker": "review/independent_checks.py",
+      "exit_code": 0,
+      "assertions": 53830,
+      "passed_boolean": true,
+      "hash_matches_mutated_text": true,
+      "valid_mathematical_proof": false
+    }
+  ],
+  "finding": "Both legacy diagnostics accept deleted and circular invented proof text; counts and recomputed hashes alone cannot certify proof. Frozen legacy review itself explicitly supplements with prose geometry."
+}

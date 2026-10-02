@@ -1,0 +1,5 @@
+# Primary-source/scope/provenance audit log
+
+- 2026-10-02T00:24:51.268215+00:00: Early independence seal written after primary fetch and candidate PARTIAL only. Audit 35%; full target discovery remains unproved (0% certified solution progress).
+- 2026-10-02T00:29:24.915151+00:00: Frozen15 Git identities and raw upstream/LFS/readonly SQLite identity verified; both legacy checkers replay exactly. Audit 75%. After post-seal notification of a potential geometric flaw, independently inspected coherent pants-boundary classes and found the original equal-label inverse-word assertion unsupported; added C3/peripheral-class control. Full target remains unproved; original large-genus proof now needs correction.
+- 2026-10-02T00:32:45.659443+00:00: Original-stage audit completed; verdict REQUIRES_REPAIR. Audit100%; full discovery15% partial evidence,0% full solution certification. All frozen/provenance checks pass. R1 geometric proof and R2 folder/queue scope statements require repair; zero new attempts.
