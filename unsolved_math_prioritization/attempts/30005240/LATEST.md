@@ -1,3 +1,3 @@
 # Latest checkpoint
 
-Read TURN_1.md and CURRENT_STATE_TURN_1.json. Author count1/5. The recurrence correction and abstract limit-exchange obstruction are partials, not a solution of the actual-density problem. The frozen source-gate files retain their original zero-turn state.
+Read TURN_2.md and CURRENT_STATE_TURN_2.json. Author count2/5. The quantitative dominant-mode result is conditional on strong same-space operator approximation and uniform excitation, not proved for the actual boundary transfer. Earlier frozen source/turn files remain unchanged.
