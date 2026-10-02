@@ -1,0 +1,15 @@
+# Independent review request: complete five-turn packet3000058
+
+Read SOURCE_GATE.md, FINAL_RESULT.md and TURN_1.md through TURN_5.md. Proposed originalunsolved5/5. Exact source: https://oldlemon.cs.elte.hu/egres/open/Opposite_vertices_of_base_polyhedra ; full local sources/opposite.html/.txt. It requires both opposite points to be vertices and allows0. Related2-polymatroid/g-polymatroid variants are distinct. Workshop primary source sources/kiraly_workshop.pdf printed5 restates Frank's question and even-valued special case; do not infer its date from filename.
+
+Classical foundations: sources/bach_submodular.pdf, Francis Bach's primary author exposition, Propositions3.2–3.3 and4.2, printed25–27,32–34, greedy vertices and faces. Turn5 credits Edmonds' intersection theory; WilliamH.Cunningham, The Coming of the Matroids, DocumentaMathematicaExtraVolumeISMP2012,143–153, Theorem6 printed149–150, https://ems.press/content/book-chapter-files/27359?nt=1 was read through the primary publisher. The two-chain integrality argument is reproduced self-contained, so no unverified general intersection claim is needed.
+
+Critical checks:
+- Canonical rank integrality/tightness and upper bounds from cube vertices; maximal-zero-chain factor product; all factor vertices still original-face vertices. Completeness of n<=5 enumeration, not random instances.
+- Every greedy output is an actual vertex; ternary negation; all elementary squares suffice for submodularity. Witness streams are not retained, only reproducible code/counts/checksum.
+- Zonotope generator aggregation/primitive integer lengths; weighted coordinate degrees; path zero vertex and cycle symmetry. No hidden central-symmetry assumption for translated components.
+- Laminar zero atoms, positive-set restriction to one atom, balanced tree pairing, unique active-constraint vertex argument for both signs. Multiple zero coordinates in different odd atoms must be fixed by separate equalities.
+- Hypergraphic coordinate widths, removal of singleton summands, multigraph pseudoforest count, required/optional stubs, unique exposing weights for tree and unicyclic components including two-edge cycles.
+- Tight-set maximal-chain partition spans all tight rows; intersection face dimension equals bipartite cycle rank; leaf-elimination integrality; support-maximal residual forest. A forest is not sufficient for original endpoint vertexhood. Verify the explicit four-coordinate warning and that it is not an original counterexample.
+
+Compile turn1/enumerate_small.cpp and turn5/check_face_forests.cpp using C++17 with assertions enabled (do not defineNDEBUG); compare stdout to their verification.json files. Run Python check_zonotopes.py,check_laminar.py,check_hypergraphic.py similarly. All sources are authored code; no external downloaded programs are required. Binaries remain local only. FINAL_AUTHOR_MANIFEST.json binds the compact final packet and all historical proof/manifest bytes are retained. Please deliver a neutral full scoped review, independent exact checks, integrity receipt and manifest; parent retains publication gate.
