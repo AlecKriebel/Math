@@ -1,0 +1,7 @@
+# Accepted PR33 random-walk transport partial
+
+PARTIAL.md and CURRENT_COMPLETION_PROOF.md give the standard finite matching/Hall-deficiency equality, attained infinite compactness limit and elementary bounds. The combined target remains unsolved; no uniform three-dimensional estimate or complete corrected four-dimensional prior proof is supplied. CURRENT_SOURCE_QUALIFICATION.md retains the exact literature boundary.
+
+Three original families, root universal reconstruction and byte-bound actual replays, then a NEW complete edited-package adversary, pass without required correction. Root independently reproduced all28,956 new controls and checked133 bindings. Finite diagnostics supplement the universal proof. Original1/5; verification0. Extensive AI use; unrefereed, no human peer review or formal proof-assistant certificate.
+
+Original and reviewed pending administration are archived. The checked mathematical/source/dependency bytes remain unchanged; old review receipts apply to ORIGINAL_PARTIAL.md only. REVIEWED_CANDIDATE_MANIFEST.json binds the frozen prospective packet, while current MANIFEST.json will bind the accepted package. CURRENT_SOURCE_CONTEXT records the named12-column queue mapping. No paper, Zenodo deposition, new DOI or publication-sheet entry follows. Exact-head local integration is complete; remote acceptance verification follows before the source-bound state mirror.

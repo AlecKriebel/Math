@@ -1,0 +1,7 @@
+Accepted as an **unsolved partial result**. The standard finite matching/Hall-deficiency equality, attained infinite compactness limit and elementary full-path bounds are sound. No uniform three-dimensional positivity bound is proved.
+
+The package credits Benjamini–Kozma v1 for its stated intended four-dimensional result while recording the corrected quantitative estimates and arbitrary-fixed-start initialization that remain independently unverified. Literal auxiliary errors do not refute the intended theorem; historical OPEN-TRIAGE and independent-walk numerics do not settle unrestricted coupling.
+
+Three independent original families, root universal reconstruction and actual byte-bound replays, followed by a NEW complete review of the edited current package, found no required correction. Root reproduced28,956 new controls and verified all133 current/dependency/gate bindings. Original1/5, verification0. Extensive AI use; unrefereed, no human peer review or proof-assistant certificate.
+
+The main-branch accepted package preserves original and reviewed archives and the checked mathematical/source bytes. The twelve-column queue updates only named Status, Turns and Findings; target Chat/DOI and unrelated rows remain unchanged. A present source-bound acceptance mirror follows exact remote verification. No paper, new DOI or publication-sheet row. The human's explicit acceptance process supersedes the archived draft's no-merge wording.
