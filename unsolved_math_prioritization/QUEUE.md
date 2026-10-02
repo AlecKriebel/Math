@@ -394,7 +394,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 383 | 30001370 / OWR-4132-003 | Common Basin Boundaries in a Transfer-Operator System | 0.1444 | 5.0 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 384 | 30001552 / OWR-4425-007 | Fine–Wilf Bounds for Antimorphic Periods | 0.1442 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 385 | 30001554 / OWR-4425-009 | Unbordered Factors and Alternating Involution Periods | 0.1442 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
-| 386 | 30001563 / OWR-4425-020 | PVHH-Cube Avoidance in a Morphic Fixed Point | 0.1442 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
+| 386 | 30001563 / OWR-4425-020 | PVHH-Cube Avoidance in a Morphic Fixed Point | 0.1442 | 5.0 | 3 | 2010 | already_solved | 0/5 |  |  |  |
 | 387 | 30004048 / OWR-16763-022 | Symmetry of Bidirectional Two-Step Path Density | 0.1441 | 6.0 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 388 | 30004320 / OWR-17295-004 | Descent of Rational Points from Laurent Series Fields | 0.1441 | 7.0 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 389 | 11000151 / AMR-109-0151 | Question — Consider the Artin group A5 (the braid group on six strings) divided by the relation (a1a2a3a4)5 = a5a4a3a2a2 1a2a3a4a5. | 0.1440 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
