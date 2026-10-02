@@ -1,0 +1,5 @@
+# Second substantive author turn
+
+This turn addresses the explicitly added infinite-spectrum restriction. Central C(Z)-amplification transports the fully proved Wassermann seed to every product of its convergent-sequence spectrum with a nonempty compact Hausdorff Z. The threshold tensor norm and actual restricted norm are defined explicitly, avoiding unjustified maximal-tensor injectivity. A nonzero minimal-kernel commutant witness remains outside the tensor diagonal for every larger norm.
+
+A self-contained classical Cantor-characterization argument gives absorption of the convergent sequence by a Cantor factor. This realizes every infinite Cantor cube, including nonmetrizable cubes, with no unsupported nonmetrizable classification. A central-corner argument gives finite clopen enlargement. The connected/general infinite compact case and continuous-image transfer remain open in this attempt. The source's interval example is only an attributed announcement, not a new verified seed. Exact finite controls pass. Count2/5.
