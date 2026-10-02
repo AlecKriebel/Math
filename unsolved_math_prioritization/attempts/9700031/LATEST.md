@@ -1,3 +1,3 @@
-# Current checkpoint
+# Final author checkpoint
 
-Latest proof: TURN_3.md. State: CURRENT_STATE_TURN_3.json. Three of five substantive turns consumed. Under the explicit measurable continuum realization, ordinary route/road first moments now suffice for 2<beta<=3. The all-moments and non-excursion theorems cover the full interval only under their stated extra assumptions. Ordinary-axiom 3<beta<4 remains unresolved. Earlier frozen files are unchanged.
+Original target unresolved after 5/5 substantive author turns. Read FINAL_RESULT.md and TURN_1.md through TURN_5.md. Earlier frozen files are historical and unchanged. Full beta in (2,4) is proved only under explicit extra conditions. Independent scoped review is required before final unresolved publication.
