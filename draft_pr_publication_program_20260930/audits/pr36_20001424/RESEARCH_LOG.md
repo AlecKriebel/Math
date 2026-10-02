@@ -1,3 +1,7 @@
 # PR36 audit log
 
 2026-10-02T06:09:24.978042+00:00 — workflow10%: original head/base/17 paths and16 numeric artifacts frozen byte-exact. Mathematical and exact-target audit begins; claimed solution remains a hypothesis. No acceptance, paper, DOI, or new substantive research route.
+
+## 2026-10-02T07:34:21.089486+00:00 — five-family actual reproduction and priority checkpoint
+
+Workflow70%; original mathematical verification100%, full-target prior application verified100%, NEW whole-current-packet gate pending. Root independently reconstructed the degree11 graph/descent proof and Silverman1995 cubic PCF/FOMQ/no-real-model certificate, visually checked printed pp271/296, and actually reran five closed families:28 outer executions,13 full structured receipt comparisons, six actual pure queue.score mutants,364 authored members and170 JSON/JSONL parses verified before/after. Exact original16 and17-path diff remain bound; all original science/turns unchanged. Current disposition proposed already_solved, credited PRIOR_APPLICATION, original1/5,new0/audit0; no paper/newDOI/tracker. Root replay setup failures (path-dependent stderr-tail truncation, dated15 vs final18 manifest-control observation, executable stream-name mapping) and source-code revisions preserved; actual full corrected replay passed.72 first-party fresh streams/receipts retained, foreign sources excluded. New source-first adversary literal scope sealed before current interpretations, now awaiting frozen packet. Program25/180=13.8889%; PR18/20 evidence holds retained.
