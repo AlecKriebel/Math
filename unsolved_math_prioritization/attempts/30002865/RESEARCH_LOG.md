@@ -1,0 +1,7 @@
+# Research log: complete-intersection kernels of ideal projectors
+
+2026-10-02, source/prior gate. Read the complete pinned record and original OWR contribution. The live target page was inaccessible to the web tool. The precise convention is finite-dimensional ideal projectors over C, fixed-range Lagrange limits and generation by d polynomials. The report is2015; the imported heading's2016 label does not change its statement. Available prior-work searches found only the separate matrix-characterization work, whose PR11 explicitly excludes the present conjecture. Estimated completion of the source/proof goal:20%.
+
+2026-10-02, substantive turn1. Located the full affine complete-intersection finite-flat smoothability statement in CJN2015 Section2D. Reconstructed the coordinate-lift and frame argument, the finite-type/topology step and an exact non-no-infinity example with a nonmonomial fixed range. The candidate covers the full source claim through credited prior results. No novelty claim. Estimated mathematical scope completion:100% conditional on correct application of the stated dependency; independent validation remains pending.
+
+2026-10-02, turn1 freeze. Exact finite example controls passed; their count and bounds are in TURN_1_CHECKS.json. One genuine proof turn is recorded. No further author search will occur while the complete candidate is independently reviewed. Publication and final queue disposition remain gated on that review.
