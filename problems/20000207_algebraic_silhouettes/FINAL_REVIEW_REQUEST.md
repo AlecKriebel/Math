@@ -1,0 +1,16 @@
+# Independent full-packet review request
+
+Target20000207/AIM-ALGEBRAIC_GEOMETRY-0207. Read SOURCE_GATE.md, FINAL_RESULT.md and all five turns. Proposed originalunsolved5/5; assess source scope independently rather than treating the expanded imported title as the problem.
+
+Exact primary source is http://aimpl.org/algvision/4/ , full local sources/aim_silhouettes.txt and source.html. The original contains two broad questions about recovering F and existence of algebraic constraints, no specified genericity theorem. The complete imported research report is upstream_research.json (private/local); it is credited and must not be counted as new proof. It already supplies necessary Kruppa equations, low-class count, dual-section gluing/conic ambiguity, quartic invariants, while leaving smooth-primal transversality unproved.
+
+Primary contour source: sources/kohn-sturmfels-trager.pdf, arXiv1707.01877v2, Introduction and Proposition4.2 printed17. Primary deformation source: sources/kaminski-jems.pdf, J. Y. Kaminski, M. Fryers and M. Teicher, JEMS7(2005),145–172, Proposition4 printed152–153, especially the derivative proof on153; exact publisher https://ems.press/content/serial-article-files/31537 . It concerns one spatial curve, so only its rederived local deformation argument is credited/applied, not its global curve theorem. The Kahl–Heyden conic result is confirmed by its official Lund abstract; full historical proof was not retrieved. Turn5 is self-contained.
+
+Audit risks:
+- Turn1: graph-line coordinates, seven true PGL2/epipole parameters, quotient by f and nonzero minor; nonempty opens in general dual coefficient space.
+- Turn2: surjectivity of restrictions to skew/intersecting lines; exceptional matching-point/matching-scale stratum rank; correct incidence dimensions; finite generic fibers versus global uniqueness; generic trivial binary-divisor stabilizer. This is smooth **dual** degree, not smooth primal degree.
+- Turn3: actual frontier reduced complete intersection, saturation/radical ideal, cubic polar restriction exception, ordinary contact assumptions, projective tangent calculation, nonzero-quadric kernel. The complete-intersection argument applies only at the true smooth realization, never at an arbitrary spurious solution.
+- Turn4: algebraicity/regular-domain choice of full contour data; generic relative differential kernel; characteristic-zero image rank; finite image fibers despite possible positive-dimensional surface-reconstruction fibers. The theorem quantifies over the stated fixed-degree admissible domain T, not all singular/cross-degree/degree-drop explanations.
+- Turn5: rotation/center/calibration signs, changing projective F ratio, complete visible disk, positive depths and fixed same sphere. Prior conic credit is essential.
+
+Run each turnN/check_*.py; stdout should byte-match turnN/verification.json. All8,846 assertions already replayed. Finite controls do not replace general proofs. FINAL_AUTHOR_MANIFEST.json binds the compact public packet. SOURCES_FINAL.json binds local primary evidence including the later JEMS source, additively; SOURCE_HASHES.json remains unchanged. Please freeze a neutral review/checker/manifest with explicit full versus scoped verdict and any mandatory correction. Publication remains gated separately.

@@ -1,0 +1,29 @@
+# Independent full five-turn review: 20000207
+
+2026-10-02. **Scoped PASS; broad original recovery problem remains unsolved5/5.** No mandatory mathematical correction. AI-assisted audit, not formal certification, human peer review or a novelty assessment.
+
+All five complete proofs, final result/request and source gate were read. The locally recovered full AIM section confirms two broad questions, not the imported expanded theorem title. Independent web access to AIM was unavailable; the primary JEMS paper was independently opened and its Proposition4 derivative argument checked. The surface application rederives that implication instead of substituting a spatial-curve global theorem. Imported partial work and classical Kruppa/conic facts remain credited. Final author manifest4f6deb14d734433b52140205d558ac063c69eb07bf80df9aa7ba518e5e95f499 binds the reviewed packet.
+
+## Dual-family local and global claims
+
+Turn1 uses four graph-line parameters and three projectivity parameters, the correct local rank-two epipolar chart. Scalar binary-form variation is removed by quotienting by f. The monomial certificate has seven distinct exponent classes for every delta≥7. Including f gives rank8, hence rank7 in the quotient. A nonzero minor defines a nonempty open in the irreducible full dual-equation space; intersecting the separate smoothness/transversality opens is legitimate. This proves local isolation in the stated dual family, without asserting smoothness of its primal dual.
+
+Turn2's restriction map is surjective to arbitrary pairs on skew lines and to the matching-value fiber product on intersecting lines. Compatibility has rank delta+1 except when the intersection is fixed with matching scale, where rank falls to delta and the parameter locus loses two dimensions. Thus the incidence dimension bounds are justified by actual linear ranks. Generic fibers are finite at delta7 and off-diagonal triples disappear generically at delta≥8. Equal lines must be the true common line. A general squarefree divisor of at least7 points has trivial projective stabilizer by the stated finite-permutation/proper-locus argument. No positive-dimensional exceptional component is silently inferred away merely from the true solution's tangent rank.
+
+## Smooth-primal local theorem and realizable global finiteness
+
+For a general smooth primal degree-d surface, the two general polars intersect it in a reduced complete intersection. The Gauss map is finite because its line bundle is ample; characteristic zero and general choices justify transverse ordinary contacts avoiding the exceptional dual loci. A general baseline has squarefree restriction, so frontier points do not lie on it. The complete-intersection homogeneous ideal is saturated and radical in this situation. At d≥4 it contains no nonzero quadric. At d=3 its quadratic part is the span of two polars, whose restrictions to a general baseline are independent; hence no nonzero quadric contains both the frontier and baseline.
+
+The differentiated contact incidence has vanishing contact-velocity terms because those velocities lie on the fixed contour tangents. This works over dual numbers, not only along integrable curve deformations. Tangency to detF=0 imposes the baseline condition. The explicit matrix-to-quadric map has kernel exactly the scalar true F; thus the projective tangent space is zero. Nakayama yields an isolated reduced true solution. Crucially this complete-intersection argument is not applied to distant spurious compatible matrices.
+
+Turn4 makes a separate, valid global argument among actual fixed-degree smooth realizations. On a nonempty irreducible regular domain, contour coefficients and F vary algebraically. The local theorem forces ker dD⊂ker dF generically. In characteristic zero the joint-image rank equals the contour-image rank, so projection of their image closures has relative dimension zero and finite fibers over a nonempty open. This controls every F-value from the chosen domain over general data, even when reconstruction fibers themselves are positive dimensional. It does not cover excluded degree drops, other degrees, singular surfaces or formal Kruppa components with no admissible realization.
+
+## Real ambiguity and scope
+
+The two camera rotations are proper orthogonal, their centers are at fixed radius R and their sphere depths are at least R−1>0. With focal length sqrt(R²−1), the ray discriminant gives precisely the same visible closed unit disk for every angle. The stated relative translation/rotation yields the displayed rank-two fundamental matrix. Its projective ratio varies strictly, proving genuine calibrated real ambiguity for the same fixed sphere. This is a concrete credited conic case, not a new universal counterexample beyond known low-degree ambiguity. It is consistent with the generic d≥3 results.
+
+Taken together, the packet supplies qualified algebraic recovery theorems and a real ambiguity example. It does not prove global uniqueness for generic smooth primal data or a reconstruction procedure for clipped/noisy visible silhouettes. The conservative original-unsolved disposition is appropriate for its broad source wording and unresolved recovery scopes.
+
+## Verification
+
+All five author outputs replay byte-identically:8,846 exact assertions. Separately written symbolic code checks the rank8 monomial matrices for28 degrees,96 intersecting-line restriction/scale cases, and the rational sphere camera/essential/fundamental/discriminant identities;130 assertions pass. These finite controls supplement the general geometric arguments, not prove genericity by sampling. All25 final-manifest entries and the manifest digest were checked as raw bytes. Source PDFs/raw imports remain local and should not be republished. Preserve every primal/dual, local/global, finite/unique and formal/realized qualification in the draft.
