@@ -13,3 +13,5 @@ Original16numeric/17changed paths pinned exacthead5ac4a57e08dd72a6f16768f2288b9c
 2026-10-02T00:01:18.990741+00:00 — Checkpoint validation: only ORIGINAL_CANDIDATE lines3–4 retain original Markdown hard-break spaces; preserve immutable historical bytes. Current30/66 closures and live PR body/head verified.
 
 2026-10-02T00:12:22.373739+00:00 — Scratch-preservation correction: parent Git-ignore now excludes family ignoredtmp paths; closed57family hashes independently rechecked unchanged. This adds no scientific/current30/support66 change.
+
+2026-10-02T00:28:45.557901+00:00 — 92%: complete new26-file gate passes; root read allactualprograms/fulluniversalproof/report and reproduced unchanged20/135/20 +55/66/16 +new42/10negative controls. Exact current30/66+26closed; isolated Git-dir setup failure retained/corrected, no closed input change. Integration pending.
