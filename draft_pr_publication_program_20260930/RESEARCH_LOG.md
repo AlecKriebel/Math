@@ -293,3 +293,7 @@ Workflow75%; original16 byte-exact, closedfamilies86+4manifests, full root unive
 ## 2026-10-02T05:25:55.017422+00:00 — PR34 explicit v2 metadata repair frozen
 
 Workflow75%. Actual first NEW whole replays and mutants reproduced; mathematics and earlier-construction equivalence PASS, historical provenance issue fixed globally in explicit v2. Original expired deadline/model/effort/compute/literature timestamp archival only; current campaign and actual source-check checkpoint scoped accurately. All mathematical/raw-source/original16/turn1+turn2 bytes unchanged. Cumulative2/5; audit0. Old v1 packet/builder and failure closure immutable. Different NEW complete review required before acceptance; no paper/newDOI/tracker. Program23/180=12.7778%;18/20holds remain.
+
+## 2026-10-02T05:48:28.151692+00:00 — PR35 unsolved partial packet frozen
+
+Workflow75%. Three independent closed algebraic/cone/primary families83members, root all nine actual outer programs and original21/21/121 byte-exact. Full normalization proof, known cone criterion, pi boundary and operative primary foundations checked; exact universal canonical-arc gap retained. All original15 science/source/turn bytes archived and mathematicalOBSTRUCTION unchanged. Original1/5,new0,audit0. Fresh whole reviewer next; no paper/newDOI/tracker. PR34 separate fresh literal-first reviewer pending. Program23/180=12.7778%,18/20holds remain.
