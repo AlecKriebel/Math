@@ -332,7 +332,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 321 | 30003472 / OWR-15427-014 | Exponential Probability Gaps Between Random Order Types | 0.1677 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 322 | 30003508 / OWR-15432-001 | Convergence of Spectral Estimators for Diffusion Tensors | 0.1677 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 323 | 30004434 / OWR-17474-008 | Uniform Coupling under Gibbs Uniqueness | 0.1675 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
-| 324 | 30004022 / OWR-16636-004 | Commutator Models for Nonsymmetric Free Random Variables | 0.1671 | 5.0 | 3 | 2018 | queued | 0/5 |  |  |  |
+| 324 | 30004022 / OWR-16636-004 | Commutator Models for Nonsymmetric Free Random Variables | 0.1671 | 5.0 | 3 | 2018 | unsolved | 5/5 |  | 2026-10-02: Five-turn packet and full independent scoped PASS. Fixed positive-factor and unchanged scalar-mapping obstructions proved; credited matrix-valued subordination plus explicit regularization/tail bounds covers arbitrary laws in a broader format. Original revised scalar/positive-factor representation goal remains unresolved. See attempts/30004022/RESULT_REVIEWED.md. |  |
 | 325 | 30004365 / OWR-17466-004 | Derived Invariants from Gentle Quivers with Relations | 0.1659 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 326 | 5100034 / AMR-050-0034 | Elliptic-billiard invariant k_{606} | 0.1651 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 327 | 5100061 / AMR-050-0061 | Elliptic-billiard invariant k_{818} | 0.1651 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
