@@ -380,7 +380,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 369 | 30005278 / OWR-11695860-018 | Degree-Five Two-Superirreducible Polynomials | 0.1515 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 370 | 30005706 / OWR-14298004-014 | Embedding $\sigma$-Compact TDLC Groups | 0.1505 | 7.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 371 | 30005649 / OWR-14297740-021 | Self-Duality of Quasi-Supersingular Group Schemes | 0.1505 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
-| 372 | 30005767 / OWR-14298158-012 | Generating-Function Field for Separable Permutation Subclasses | 0.1491 | 5.0 | 3 | 2024 | queued | 0/5 |  |  |  |
+| 372 | 30005767 / OWR-14298158-012 | Generating-Function Field for Separable Permutation Subclasses | 0.1491 | 5.0 | 3 | 2024 | already_solved | 1/5 |  |  |  |
 | 373 | 30005936 / OWR-14298374-005 | Splitting Schemes for Rough Stochastic Heat Equations | 0.1491 | 5.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 374 | 30006025 / OWR-14298589-010 | Geometric Chapuy Bijections for Random Surfaces | 0.1491 | 5.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 375 | 30006078 / OWR-14298795-018 | Characteristic Classes of Hodge–Tate Local Systems | 0.1491 | 7.0 | 3 | 2024 | queued | 0/5 |  |  |  |
