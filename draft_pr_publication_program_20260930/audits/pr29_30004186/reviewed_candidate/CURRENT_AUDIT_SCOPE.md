@@ -1,0 +1,5 @@
+# Exact current gate scope
+
+Original head5ac4a57e08dd72a6f16768f2288b9c0349999431; original16numeric files+QUEUE17paths; original candidate95458afe7f030f3f0aec3b9d5150857e7dedcb8688e6325c4a0407497feb1b6c. Closed original/family seals remain unchanged. Review all current30 files and66support bindings; treat every claim as a hypothesis and do not inherit old PASS. Current candidate substantive sections1onward are exact original bytes. Current source/history/context/scope corrections and pending gate notices supersede original attestations only as stated.
+
+Acceptance requires a NEW full independent review of math/source/assumptions/controls/ledger/provenance and exact current bytes, followed by root reproduction. Future administrative merge/status/canonical/mirror changes are outside that science gate and require separate exact readback. Retain unsolved1/5,0newattempts; no priority/solution credit/paper/newDOI/tracker. Legacy8-column queue generator is forbidden here; current12-column rows and all previous acceptance state/history are protected. Manualready mechanics cannot certify mathematics, historical telemetry or a materially new route.
