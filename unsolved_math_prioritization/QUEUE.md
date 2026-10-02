@@ -388,7 +388,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 377 | 30003210 / OWR-14749-002 | Sublinear Generator Growth of Higher-Rank Lattices | 0.1455 | 7.0 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 378 | 30003221 / OWR-14751-005 | Ball-Shaped Minimizers of Competing Nonlocal Energies | 0.1455 | 7.0 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 379 | 30000417 / OWR-1189-007 | List-Labeling Numbers of Paths | 0.1451 | 5.0 | 3 | 2006 | queued | 0/5 |  |  |  |
-| 380 | 30000660 / OWR-1452-024 | Étale-Local Equivalence of Fiberwise Isomorphic Families | 0.1449 | 5.0 | 3 | 2007 | queued | 0/5 |  |  |  |
+| 380 | 30000660 / OWR-1452-024 | Étale-Local Equivalence of Fiberwise Isomorphic Families | 0.1449 | 5.0 | 3 | 2007 | already_solved | 1/5 |  |  |  |
 | 381 | 30001014 / OWR-2048-009 | Realizing Compact Spectra of Pathological Masas | 0.1446 | 5.0 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 382 | 30001202 / OWR-3394-018 | Optimal Feasible Sets from Quantized Trajectory Observations | 0.1444 | 5.0 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 383 | 30001370 / OWR-4132-003 | Common Basin Boundaries in a Transfer-Operator System | 0.1444 | 5.0 | 3 | 2009 | queued | 0/5 |  |  |  |
