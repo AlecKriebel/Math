@@ -37,3 +37,5 @@ The overall count is completed dispositions divided by the selected inventory;
 the persistent goal stays active until all required work is actually complete.
 
 PR28 accepted as an unsolved smooth small-width partial after three distinct families, root reproduction and a clean new complete gate; exact originalhead remotely merged93e71b129. Original2/5 and all existing state/history preserved; no paper/DOI/tracker. Program17/180 dispositions completed (9.4444%); PR18/20 remain held. 2026-10-01T23:53:43.132998+00:00
+
+2026-10-02T00:10:13.788399+00:00 — PR27 accepted and remotely merged as knownunsolvedpartial after Powelln2 source-lemma correction, NEWdifferentwholegate and rootreproduction. Canonical31, original1/5 and19target/21turn mirror verified. Firstfailedgate/history retained; no paper/newDOI/tracker. Program18/180=10%; unresolved holds18/20 unchanged.
