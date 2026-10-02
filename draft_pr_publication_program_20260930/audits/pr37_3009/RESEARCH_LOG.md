@@ -1,0 +1,7 @@
+# PR37 audit log
+
+2026-10-02T07:35:43.488532+00:00 — workflow10%: original head/base/14 paths and13 numeric artifacts frozen byte-exact. Mathematical and exact-target audit begins; unresolved partial findings remain hypotheses. No acceptance, paper, DOI, or new substantive research route.
+
+## 2026-10-02T07:51:55.544270+00:00 — PR36 current packet frozen; PR37 original reproduced
+
+PR36 workflow75%: current60-member self-excluding package and480 anchored dependencies frozen, full31 structured packet parses/hashes verified; proposed already_solved PRIOR_APPLICATION original1/5,new0. NEW adversary sealed literal scope and independently reconstructed the mathematical/primary source implication before older opinions; complete current review remains active. Root checkpoint scientific evidence5899e619b pushed. PR37 workflow20%: original13/14diff frozen head84bb43d21b36e4d97229806e2518fbc135bee786/basec6975ca; root full149MB/ROSQL/importer and actual31/8462 complete receipt reproduction pass. Independent stdout is metadata-only, separately checked. Three independent families active; original1/5,new0; higher-dimensional gap retained. Primary versionedKPendpoint406 but actual currentendpoint exactv3 hash; printed1998 passage attribution awaits qualification. Immutable unified-diff context blank lines/exact receipts/previously sealed terminal blank line preserved as whitespace exceptions, not normalized. Overall25/180=13.8889%;18/20holds unchanged.
