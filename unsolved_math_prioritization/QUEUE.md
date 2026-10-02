@@ -381,7 +381,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 370 | 30005706 / OWR-14298004-014 | Embedding $\sigma$-Compact TDLC Groups | 0.1505 | 7.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 371 | 30005649 / OWR-14297740-021 | Self-Duality of Quasi-Supersingular Group Schemes | 0.1505 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 372 | 30005767 / OWR-14298158-012 | Generating-Function Field for Separable Permutation Subclasses | 0.1491 | 5.0 | 3 | 2024 | queued | 0/5 |  |  |  |
-| 373 | 30005936 / OWR-14298374-005 | Splitting Schemes for Rough Stochastic Heat Equations | 0.1491 | 5.0 | 3 | 2024 | queued | 0/5 |  |  |  |
+| 373 | 30005936 / OWR-14298374-005 | Splitting Schemes for Rough Stochastic Heat Equations | 0.1491 | 5.0 | 3 | 2024 | unsolved | 5/5 |  | 2026-10-02: five-turn scoped packet with independent full PASS. Complete negative midpoint continuum mean-square subquestion for the original white-noise power5/4 LT scheme, including balanced tau=h^2; positive probability and logarithmic bounded-Lipschitz path-law convergence. Full rough-coefficient/unspecified-weak-test bundle remains unresolved; credited classical/primary inputs, no novelty claim. See attempts/30005936/PUBLICATION_STATUS.md. |  |
 | 374 | 30006025 / OWR-14298589-010 | Geometric Chapuy Bijections for Random Surfaces | 0.1491 | 5.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 375 | 30006078 / OWR-14298795-018 | Characteristic Classes of Hodge–Tate Local Systems | 0.1491 | 7.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 376 | 30003128 / OWR-14604-003 | Discrepancy versus Spectral Expansion in Sparse Regular Graphs | 0.1455 | 5.0 | 3 | 2016 | queued | 0/5 |  |  |  |
