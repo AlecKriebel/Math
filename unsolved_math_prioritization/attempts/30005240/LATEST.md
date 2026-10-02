@@ -1,3 +1,3 @@
 # Latest checkpoint
 
-Read CURRENT_STATE_TURN_3.json and TURN_3.md. Three of five genuine author turns are complete; the original problem remains unresolved. Historical source and earlier-turn files are preserved. The analytic model is scoped explicitly and does not provide the missing physical operator identification.
+Read CURRENT_STATE_TURN_4.json and TURN_4.md. Four of five genuine author turns are complete; original unresolved. The physical compact-operator reduction is exact at fixed real frequency; its high-frequency spectral and excitation hypotheses remain open. Earlier proofs and source evidence are unchanged.
