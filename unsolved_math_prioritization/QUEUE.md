@@ -285,7 +285,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 274 | 5100021 / AMR-050-0021 | Elliptic-billiard invariant k_{403,b} | 0.1778 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 275 | 5100022 / AMR-050-0022 | Elliptic-billiard invariant k_{404} | 0.1778 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 276 | 5100026 / AMR-050-0026 | Elliptic-billiard invariant k_{407} | 0.1778 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
-| 277 | 5100046 / AMR-050-0046 | Elliptic-billiard invariant k_{805} | 0.1778 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
+| 277 | 5100046 / AMR-050-0046 | Elliptic-billiard invariant k_{805} | 0.1778 | 5.0 | 3 | 2021 | already_solved | 1/5 |  |  |  |
 | 278 | 5100047 / AMR-050-0047 | Elliptic-billiard invariant k_{806,a} | 0.1778 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 279 | 5100060 / AMR-050-0060 | Elliptic-billiard invariant k_{817} | 0.1778 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 280 | 30005042 / OWR-9790363-001 | Weak Moment Conditions and Branching-Process Limit Laws | 0.1768 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
