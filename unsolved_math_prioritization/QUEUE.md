@@ -331,7 +331,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 320 | 9700031 / AMR-096-0031 | Local finiteness of SIRSN traffic intensity | 0.1680 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 321 | 30003472 / OWR-15427-014 | Exponential Probability Gaps Between Random Order Types | 0.1677 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 322 | 30003508 / OWR-15432-001 | Convergence of Spectral Estimators for Diffusion Tensors | 0.1677 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
-| 323 | 30004434 / OWR-17474-008 | Uniform Coupling under Gibbs Uniqueness | 0.1675 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
+| 323 | 30004434 / OWR-17474-008 | Uniform Coupling under Gibbs Uniqueness | 0.1675 | 5.0 | 3 | 2020 | unsolved | 1/5 |  | SOURCE-FORMULATION HOLD: literal total-count assertion refuted; no corrected intended target verified. One turn used, budget not exhausted. [Reviewed finding](../problems/30004434_uniform_gibbs_coupling/DISPOSITION.md) |  |
 | 324 | 30004022 / OWR-16636-004 | Commutator Models for Nonsymmetric Free Random Variables | 0.1671 | 5.0 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 325 | 30004365 / OWR-17466-004 | Derived Invariants from Gentle Quivers with Relations | 0.1659 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 326 | 5100034 / AMR-050-0034 | Elliptic-billiard invariant k_{606} | 0.1651 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
