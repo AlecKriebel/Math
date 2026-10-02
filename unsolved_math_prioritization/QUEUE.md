@@ -414,7 +414,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 403 | 30000590 / OWR-1381-005 | Finite Generation of Group-Ring Cohomology | 0.1401 | 6.0 | 3 | 2006 | queued | 0/5 |  |  |  |
 | 404 | 7800012 / AMR-077-0012 | Optimal Flux for the Quarter-Filled Band | 0.1398 | 7.0 | 3 | 1998 | queued | 0/5 |  |  |  |
 | 405 | 30002200 / OWR-12172-003 | Sharp Syzygy Bounds for Torus Actions | 0.1393 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
-| 406 | 30002762 / OWR-13488-005 | Finitely Presented Counterexamples for Conjugation-Invariant Norms | 0.1378 | 6.0 | 3 | 2015 | queued | 0/5 |  |  |  |
+| 406 | 30002762 / OWR-13488-005 | Finitely Presented Counterexamples for Conjugation-Invariant Norms | 0.1378 | 6.0 | 3 | 2015 | unsolved | 5/5 |  |  |  |
 | 407 | 6600013 / AMR-065-0013 | A. Julien: Relationship between Complexity and Cohomology — Problem | 0.1374 | 6.0 | 4 | 2016 | queued | 0/5 |  |  |  |
 | 408 | 30003853 / OWR-16167-025 | Abelianizations of Finitely Presented Thompson $F$ Subgroups | 0.1366 | 6.0 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 409 | 30004047 / OWR-16763-021 | Two-Step Path Density in Tripartite Graphs | 0.1361 | 6.0 | 3 | 2019 | queued | 0/5 |  |  |  |
