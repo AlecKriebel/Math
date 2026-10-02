@@ -5,3 +5,7 @@
 ## 2026-10-02T08:44:09.394642+00:00 — Accepted complete-gate partial integration
 
 Workflow100% for scientific/current-gate validation; actual remote acceptance still pending. Credited PRIOR_APPLICATION already_solved; original1/5,new0,verification0. Science/source/prior/dependencies/entire original ledger unchanged, pending administration archived. No paper/newDOI/tracker/release.
+
+## 2026-10-02T08:47:42.980020+00:00 — Actual remote acceptance verified
+
+Workflow100%. GitHub MERGED/nondraft/date/body and exact two-parent no-ff merge independently verified; original1/5,new0,verification0. Present source-bound state mirror remains a separate administrative step. No paper/newDOI/tracker/release.

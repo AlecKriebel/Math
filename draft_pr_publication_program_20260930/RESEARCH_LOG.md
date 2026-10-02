@@ -323,3 +323,7 @@ PR36 workflow75%: current60-member self-excluding package and480 anchored depend
 ## 2026-10-02T08:27:13.294555+00:00 — PR36 final complete source-first review and actual root replay
 
 Review95%; actual acceptance pending. New1795-member whole audit closure verified before/after, all60 current packet and480 dependencies unchanged; root actually reran27 inner programs plus false-prose control, compared54 complete actual streams and full structured receipts, and checked16 original Git blobs/live entire queue. Two malformedJSON fixtures belong to preserved old adapter setup failures, never operative successful proof inputs. Two root adapter comparison setup failures and exact pre-fix versions are retained. Mathematical/priority disposition already_solved PRIOR_APPLICATION, original1/5,new0; no paper/newDOI/tracker. Program remains25/180=13.8889%; PR37 three independently closed approach families support only planar partial; dimensions>=3 remain open.
+
+## 2026-10-02T08:47:42.980020+00:00 — PR36 accepted and remotely merged
+
+Workflow100%: credited already_solved PRIOR_APPLICATION, original1/5,new0,verification0; no paper/newDOI/tracker/release. Exact original head 35be7fe58a2832c4d7012cf69c973810fb4c42f8, actual merge 109fc207d64399621dab6198e9974f53ca63dec6; NEW complete current-packet source-first gate and actual root final reproduction passed. Original/science/source/dependencies/ledger preserved. Program26/180=14.4444%; other items and holds preserved. Present acceptance mirror follows source/remote/package verification.
