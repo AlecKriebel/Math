@@ -342,7 +342,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 331 | 30005016 / OWR-9790358-014 | Universal Four-Point Polynomial Interpolation Subspaces | 0.1642 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 332 | 30005240 / OWR-11101924-003 | Rigorous Boundary-Layer Density Asymptotics | 0.1642 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 333 | 30005303 / OWR-11695865-001 | Total Positivity and Graphical Model Factorization | 0.1642 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
-| 334 | 30004008 / OWR-16633-026 | Rainbow Arborescences Across Arc Partitions | 0.1639 | 7.0 | 3 | 2018 | queued | 0/5 |  |  |  |
+| 334 | 30004008 / OWR-16633-026 | Rainbow Arborescences Across Arc Partitions | 0.1639 | 7.0 | 3 | 2018 | unsolved | 5/5 |  |  |  |
 | 335 | 30004033 / OWR-16763-006 | Fractional Coloring of Subcubic Triangle-Free Planar Graphs | 0.1633 | 7.0 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 336 | 30005425 / OWR-12697690-007 | Uniqueness of Surface Models for Locally Gentle Algebras | 0.1630 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 337 | 30005718 / OWR-14298007-013 | Ultra-Log-Concavity from a Matrix Recursion | 0.1630 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
