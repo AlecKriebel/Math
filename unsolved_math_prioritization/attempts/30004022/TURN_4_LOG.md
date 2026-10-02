@@ -1,0 +1,5 @@
+# Turn 4 checkpoint, 2026-10-02 05:49 UTC
+
+Changed mechanism to a self-adjoint three-by-three pencil. Derived its exact commutator Schur complement and positive-imaginary regularized resolvent, with error at most [2 epsilon^2 A B + epsilon(A^2+B^2)]/[(1+epsilon^2) Im(z)^2]. Credited Belinschi–Mai–Speicher subordination supplies the existing fixed-point branch and convergence for the amplified bounded inputs. No new general subordination theorem or finite-iteration stopping error is claimed.
+
+All 254 exact controls pass, including formal noncommutative signs, 45 rational matrix regularization cases, exact norm bounds and commuting/deterministic boundaries. The matrices test deterministic identities and are not presumed free. Four genuine author turns complete; estimated full-target completion 20%, low confidence. One turn remains, aimed at controlling truncation for unbounded inputs while retaining the original source gap. Frozen prior files remain unchanged; independent review still pending.
