@@ -1,0 +1,3 @@
+# Final fifth-turn outcome
+
+The exact incremental suffix-period mask recurrence is proved and cross-checked against literal definitions. Full uncapped Python and separately written literal C++ enumerate487,930 canonical t=8 terminal representatives with identical full-stream SHA256 and per-depth counts. A separate combinatorial recurrence counts periodic completions and agrees. Gluing gives the original implication for all alphabets and lengths with tau<=8, unconditional equality for tau<=3, and optimal fixed-tau saturation lengths9,11,15,17,21 for tau4,...,8 with exact lower witnesses. 226,656 supplemental assertions pass. Arbitrary tau remains unresolved. Author research stops at five turns; independent full review is pending.
