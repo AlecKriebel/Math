@@ -9,3 +9,7 @@
 ## 2026-10-02T06:52:29.344997+00:00
 
 Final whole gate and root actual replay clean; workflow95%, unsolved1/5 integration next. No new substantive audit attempt.
+
+## 2026-10-02T07:04:59.704739+00:00 — PR35 accepted and remotely merged
+
+Workflow100%. unsolved partial; exact head ecef51f6dd0b60be6e3c37f7d89b69ef89da276d, merge 9e8b10d796bbff2b4de3a283f7203700768c42f4. Complete NEW source-first gate/root actual replay clean, science/source/ledger unchanged, original/pending records archived. Budget1/5, audit0; no paper/newDOI/tracker. Program25/180=13.8889%; PR18/20 holds retained. Current mirror follows exact source/remote/package verification.
