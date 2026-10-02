@@ -1,0 +1,14 @@
+# Independent full review request:30002928
+
+Read SOURCE_GATE.md with SOURCE_QUALIFICATION.md, FINAL_RESULT.md and all five proofs. Proposed originalunsolved5/5. Source: https://ems.press/content/serial-article-files/46582 , AnnaDeMasi contribution printed2012–2014; local sources/owr2015-35.pdf and printed2014.png. Restore h>0 and m in(−m_beta,−m*) from the original. The source shorthand omits the half-line continuation; the2011 Neumann-reflection definition and2000 even-droplet construction support the working reflected interpretation, but do not erase that caveat.
+
+Primary source artifacts: sources/critical_droplet2000.pdf (author URL https://people.disim.univaq.it/~demasi/dop2.pdf ), equations1.5–1.7/Theorem2.3; sources/stefan2011.pdf (arXiv1009.4652), Section2 reflection definition and distinction of exterior versus endpoint conditions. The older Definition2.1 printed page3 itself says decreasing on R; SOURCE_QUALIFICATION.md corrects the historical gate's unsupported extraction-loss attribution. All working hypotheses are explicit. The related Chmaj–Ren1999 full proof was not retrieved; no novelty claim.
+
+Highest-risk analytic steps:
+- Turn1: half-line convolution symmetrization and boundary terms; strict stress bound; trapezoidal-error sign; positivity propagation and phase signs. It must remain a necessary bound.
+- Turn2: exponential Green-kernel equivalence, endpoint energy signs through the spinodal limit, strict field derivative, homoclinic quadrature, and quadratic endpoint coefficient. This kernel lies outside the source class.
+- Turn3: C0-even/L1 Banach mapping, compact localized convolution, Fredholm index, Wronskian kernel proof, odd translation mode removal, nonzero peak Schur complement, and genuine approximation/rescaling into smooth compact kernels. C0 proximity alone must not imply unimodality.
+- Turn4: secant coefficient tail bound only on a violation, strict reflected kernel propagation, starting plane, finite stopping point, narrow-strip/far-tail decoupling using compact support, and unique symmetry center. The theorem needs strict radial decrease.
+- Turn5: uniform inverse/derivative bounds over compact peak intervals, contraction self-map, C1 branch dependence and preserved derivative sign, explicit normalized-kernel L1 error, one fixed physical kernel for the interval, and the remaining distant-branch/crossing obstruction. No uniform endpoint limit is asserted.
+
+All five Python checkers require SymPy and the standard library. Run each turnN/check_*.py and compare stdout to verification.json. All23,738 assertions replay byte-exact; these are not a formal PDE certificate. FINAL_AUTHOR_MANIFEST.json binds the complete packet, with every earlier proof and historical manifest unchanged. SOURCE_HASHES_FINAL.json additively records local source hashes. Please provide a full scoped verdict or exact mandatory correction, plus neutral review/checks/manifest. Publication remains separately gated.
