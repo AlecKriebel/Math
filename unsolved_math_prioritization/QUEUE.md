@@ -240,7 +240,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 229 | 30003301 / OWR-15177-019 | Lifting Dehn-Twist Relations to Punctured Surfaces | 0.1897 | 5.5 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 230 | 30005244 / OWR-11101924-008 | Spectral Approximation of Discrete-Dipole Operators | 0.1894 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 231 | 30005299 / OWR-11695864-004 | Determinantal Quartics as Weddle Surfaces | 0.1894 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
-| 232 | 30005310 / OWR-11695865-009 | Exhaustiveness of Threshold Scenarios for Colored Gaussian Graphical Models | 0.1894 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
+| 232 | 30005310 / OWR-11695865-009 | Exhaustiveness of Threshold Scenarios for Colored Gaussian Graphical Models | 0.1894 | 5.0 | 3 | 2022 | claimed_solved | 1/5 |  | 2026-10-01: Literal numerical threshold classification refuted by connected colored K4,4: I4=0, nonzero I3, WMLT=2. Pure Boolean SOS/intersection dichotomy and any unstated four-cycle-only restriction remain outside this claim. Separate full adversarial AI review PASS; 188 author and 1808 independent exact checks. Classical MLT result credited; no novelty claim. See [reviewed scope and proof](attempts/30005310/PUBLICATION_STATUS.md). |  |
 | 233 | 30003518 / OWR-15436-004 | Multistationarity in Kinetic-Proofreading Networks | 0.1892 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 234 | 30003999 / OWR-16633-016 | Polynomial-Time Comparison of Sparse Algebraic Power Sums | 0.1886 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 235 | 30005449 / OWR-12697708-002 | Deterministic Limits of Trace-Reinforced Ant Walks | 0.1881 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
