@@ -1,3 +1,3 @@
-# Current versus historical review
+# Current accepted versus historical review
 
-Original REVIEW/verdict/scripts/receipts remain exact archival evidence. Their PASS and pending/pre-review header are not transferred to current changed source/readiness/provenance prose. CURRENT_SOURCE_QUALIFICATION supersedes timeless noqueue and norm/source scope interpretations. NEW complete current packet gate pending; original1/5/no added attempt.
+NEW complete fresh adversary passes current30/66 with no required finding; root reproduces full gate and all actual programs. Original/family/oldreview/model/query/PASS/pending and queued0/5 statements remain dated evidence; all earlier pending notices, including the frozen scientific header, are superseded by ACCEPTANCE.md without modifying any reviewed theorem bytes. Original1/5,new0; unsolved/partial, no novelty or human/formal certificate. Future current mirror recorded separately.
