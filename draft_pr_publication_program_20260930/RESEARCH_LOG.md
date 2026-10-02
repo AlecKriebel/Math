@@ -235,3 +235,5 @@ First23-file full gate closed REPAIR_SOURCE_DEPENDENCY, no other required issue.
 2026-10-02T00:05:08.999245+00:00 — PR27 workflow92%: repaired source dependency survives NEWdifferentwholegate and root exactreplay. Current23/94support; original1/5/no newattempt; knownpartial merge pending. Program17/180=9.4444%; holds18/20 unchanged.
 
 2026-10-02T00:10:13.788399+00:00 — PR27 COMPLETE: accepted knownunsolvedpartial after source-range repair/newdifferentfullgate/rootreproduction. Remotea1b749ffc/canonical31 exact; current19targets(18primary+dupe)/21originalturns. Program18/180=10%; holds18/20 unchanged; PR29newcompletegate underway.
+
+2026-10-02T00:12:22.373739+00:00 — PR30 opened: exact original15numeric/16diff frozen; target/mathematical reconstruction pending,10%auditworkflow. Program18/180=10%; holds18/20 preserved; PR29fullgate ongoing.
