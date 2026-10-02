@@ -1,0 +1,1 @@
+Historical review files bind ORIGINAL_CANDIDATE.md only. Edited current CANDIDATE/source/priority package independently passed a NEW complete whole gate and root reproduction. The accepted administrative overlay archives the prospective records and preserves all reviewed science/source/dependency/ledger bytes. Credited already_solved partial, no novel paper or new DOI.
