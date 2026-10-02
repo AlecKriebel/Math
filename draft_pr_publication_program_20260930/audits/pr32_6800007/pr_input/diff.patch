@@ -1,0 +1,3329 @@
+diff --git a/unsolved_math_prioritization/QUEUE.md b/unsolved_math_prioritization/QUEUE.md
+index 9fdc4510e..00b5708b9 100644
+--- a/unsolved_math_prioritization/QUEUE.md
++++ b/unsolved_math_prioritization/QUEUE.md
+@@ -53,7 +53,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at
+ | 42 | 2800102 / AMR-027-0102 | 10 Lectures and 42 Open Problems — Gaussian singular-value monotonicity | 0.2594 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
+ | 43 | 30003713 / OWR-15987-026 | Homology of Free-Lie Current Algebras over Square-Zero Extensions | 0.2571 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
+ | 44 | 30003955 / OWR-16415-018 | Disconnected Preimages of Subsurfaces Under Finite Covers | 0.2571 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
+-| 45 | 6800007 / AMR-067-0007 | Manifolds modelled on flag manifolds — Question 2 | 0.2571 | 5.5 | 3 | 2018 | queued | 0/5 |  |  |  |
++| 45 | 6800007 / AMR-067-0007 | Manifolds modelled on flag manifolds — Question 2 | 0.2571 | 5.5 | 3 | 2018 | claimed_solved | 1/5 |  | 2026-09-30: Complete explicit integral cohomological classification of totally real regular-homotopy classes into the ordered complex flag manifold, with nonorientable and noncompact scope. Separate topology audit passed including torsion and1595 independent checks. Known h-principle and S3 case credited; unrefereed, novelty unconfirmed. Draft PR: https://github.com/AlecKriebel/Math/pull/32. |  |
+ | 46 | 30004186 / OWR-17128-002 | Stability of Peaked Reduced Ostrovsky Waves | 0.2562 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
+ | 47 | 7000004 / AMR-069-0004 | Geometry of Curves and Surfaces — Problem 1.4 | 0.2562 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
+ | 48 | 7000019 / AMR-069-0019 | Geometry of Curves and Surfaces — Problem 4.3 | 0.2562 | 5.5 | 3 | 2019 | queued | 0/5 |  |  |  |
+diff --git a/unsolved_math_prioritization/attempts/6800007/CANDIDATE.md b/unsolved_math_prioritization/attempts/6800007/CANDIDATE.md
+new file mode 100644
+index 000000000..1cc649226
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/6800007/CANDIDATE.md
+@@ -0,0 +1,278 @@
++# 6800007: a cohomological classification candidate
++
++**Status: complete candidate for independent adversarial review; not yet a verified solution or a novelty claim.**
++
++The proposed result concerns a fixed smooth real 3-manifold and homotopies **through totally real immersions**. This is the convention used in Falbel–Veloso's later Proposition 8.1. It does not classify embeddings, proper immersions, contact structures up to equivalence, or images modulo diffeomorphisms. The flag manifold is the ordered complex flag variety with its integrable complex structure, not its nearly Kähler almost complex structure.
++
++## 1. Statement
++
++Let \(M\) be a connected smooth, second-countable real 3-manifold without boundary. Compactness and orientability are not assumed; maps and homotopies are not required to be proper. All cohomology groups below have ordinary integral coefficients, except where \(\mathbb Z/2\) is indicated. Set
++
++\[
++A=H^1(M;\mathbb Z),\quad B=H^2(M;\mathbb Z),\quad C=H^3(M;\mathbb Z),
++\qquad \delta=\beta(w_1(TM))\in B,
++\]
++
++where \(\beta\) is the Bockstein for \(0\to\mathbb Z\xrightarrow{2}\mathbb Z\to\mathbb Z/2\to0\).
++Define the index set
++
++\[
++\mathcal X_M=\{(x,y)\in B^2:-4x-2y=\delta\}.
++\tag{1}
++\]
++
++For each \((x,y)\in\mathcal X_M\), define the homomorphism
++
++\[
++D_{x,y}:A\oplus A\longrightarrow A\oplus C,
++\qquad
++D_{x,y}(p,q)=\left(-4p-2q,\ (2x+y)\smile p+(x+2y)\smile q\right).
++\tag{2}
++\]
++
++**Candidate theorem.** Totally real regular-homotopy classes of immersions
++\(M\to F=SL(3,\mathbb C)/B_{\mathrm{upper}}\)
++are partitioned by \(\mathcal X_M\). For each index, its fiber is a torsor for
++
++\[
++C\ \oplus\ \operatorname{coker}D_{x,y}.
++\tag{3}
++\]
++
++In particular, choosing one reference class in each nonempty fiber gives a noncanonical bijection with the disjoint union of the groups in (3). There is no preferred zero immersion in a fiber. The indices are the first Chern classes of the first and second ordered tautological quotient lines. No Weyl-group permutation is being divided out.
++
++A consequence is the existence criterion
++
++\[
++\operatorname{Imm}_{\mathrm{TR}}(M,F)\ne\varnothing
++\quad\Longleftrightarrow\quad
++\delta\in2B
++\quad\Longleftrightarrow\quad
++w_1(TM)^2=0\in H^2(M;\mathbb Z/2).
++\tag{4}
++\]
++
++Thus every orientable 3-manifold is covered. The formula also retains the obstruction and torsion information for nonorientable manifolds. A disconnected manifold is treated componentwise.
++
++## 2. Prior results and scope of the proposed contribution
++
++The original [Morgan–Pansu problem list](https://www.imo.universite-paris-saclay.fr/~pansu/problems_MTDG.tex), Question 7, already states that Gromov's h-principle applies. Accordingly the analytic-to-formal reduction below is not new. The [2018 arXiv paper](https://arxiv.org/abs/1804.11096) and the [2020 published paper](https://doi.org/10.1007/s10711-020-00528-4) must be distinguished: the later [author-provided manuscript](https://www.researchgate.net/publication/340658748_Flag_structures_on_real_3-manifolds), Section 8.1, Proposition 8.1, already treats the three-sphere and its extra integer of totally real regular-homotopy classes over a nonzero underlying homotopy class. That special case is credited to Falbel–Veloso, not claimed as new here.
++
++General primary/secondary classifications of maps from three-dimensional complexes into homogeneous spaces are also prior work; see Koshkin, [*Homotopy classification of maps into homogeneous spaces*](https://arxiv.org/abs/0808.0024), Theorem 3. No general obstruction-theory method is claimed as new.
++
++The proposed additional step is the explicit integral cokernel (2), including the action of homotopies of the line-bundle data. Merely listing a formal frame bundle or the classes over a fixed map would not perform this step. The argument uses standard bundle classification and the parametric h-principle. Whether this exact formulation already occurs elsewhere remains a separate literature question.
++
++## 3. The h-principle and the formal problem
++
++A real-linear map \(L:T_mM\to T_zF\) is totally real precisely when its complexification
++
++\[
++L_{\mathbb C}:T_mM\otimes_{\mathbb R}\mathbb C\longrightarrow T_zF
++\]
++
++is a complex-linear isomorphism. Therefore formal totally real immersion data are a map \(f:M\to F\) and a complex bundle isomorphism
++
++\[
++TM\otimes\mathbb C\simeq f^*TF.
++\tag{5}
++\]
++
++The parametric totally real immersion h-principle identifies regular-homotopy classes of actual immersions with homotopy classes of these formal data. Its applicability here can also be seen from the open ample first-order relation: after fixing two independent derivative columns, the allowed third column is the complement of their complex span in \(\mathbb C^3\). This is a connected complement of real codimension two and has the whole principal affine slice as its convex hull. Slices with dependent fixed columns are empty. The same argument applies to any chosen principal direction and is local in target coordinates. The open ample parametric h-principle applies to closed as well as open source manifolds; no embedding or properness condition is included.
++
++For the classical totally real h-principle and its uses, see Forstnerič, [*On totally real embeddings into* \(\mathbb C^n\)](https://users.fmf.uni-lj.si/forstneric/papers/1986Expositiones.pdf), Theorem 1.1 and Section 2, and Borrelli, [*On totally real isotopy classes*](https://doi.org/10.1155/S1073792802105125), Section 2. Forstnerič's Theorem 1.4 explicitly assumes a compact **orientable** 3-manifold. Its orientability assumption must not be silently removed.
++
++## 4. A simultaneous bundle-classifying-space model
++
++Write \(T^2\subset SU(3)\) for the diagonal determinant-one torus. Orthogonal decomposition identifies the complex flag manifold with \(SU(3)/T^2\). Over \(BT^2\) there are three universal ordered complex lines \(L_1,L_2,L_3\), with a specified trivialization of their product. Thus
++
++\[
++c_1(L_1)+c_1(L_2)+c_1(L_3)=0.
++\]
++
++There are two relevant representations of \(T^2\):
++
++\[
++E_0=L_1\oplus L_2\oplus L_3,
++\qquad
++E_\rho=(L_1^*\otimes L_2)\oplus(L_1^*\otimes L_3)\oplus(L_2^*\otimes L_3).
++\tag{6}
++\]
++
++The first has its specified determinant trivialization and defines
++\(b_0:BT^2\to BSU(3)\). Its homotopy fiber is \(SU(3)/T^2\).
++The second defines \(b_\rho:BT^2\to BU(3)\). Restricted to this fiber, it is the holomorphic tangent bundle of the flag variety: at the standard flag, the quotient of \(\mathfrak{sl}_3(\mathbb C)\) by the upper triangular subalgebra consists of the three lower matrix entries, of weights \(t_j/t_i\) for \(i<j\).
++
++Fix a classifying map \(\tau:M\to BU(3)\) for \(TM\otimes\mathbb C\). The space of formal data (5) is consequently modeled by the homotopy fiber over \((*,\tau)\) of
++
++\[
++\operatorname{Map}(M,BT^2)
++\xrightarrow{(b_0,b_\rho)}
++\operatorname{Map}(M,BSU(3))\times\operatorname{Map}(M,BU(3)).
++\tag{7}
++\]
++
++A point of this homotopy fiber consists of line-bundle data, an \(SU(3)\)-trivialization of \(E_0\) up to homotopy, and an isomorphism of \(E_\rho\) with \(TM\otimes\mathbb C\) up to homotopy. The specified determinant in the first factor is important: replacing it by a free \(U(3)\)-trivialization would add a spurious invariant.
++
++## 5. Components of the source and target of (7)
++
++Every smooth 3-manifold has the homotopy type of a CW complex of dimension at most three. The arguments below are dimension bounds on cells and also apply when the CW complex is infinite.
++
++Complex rank-three bundles on such a complex are classified by \(c_1\). This follows from the determinant fibration with fiber \(BSU(3)\), which is 3-connected. Likewise every \(SU(3)\)-bundle on \(M\) is trivial. Components of \(\operatorname{Map}(M,BT^2)\) are pairs \((x,y)\in B^2\), corresponding to
++
++\[
++(x_1,x_2,x_3)=(x,y,-x-y).
++\]
++
++For (6),
++
++\[
++c_1(E_\rho)=\sum_{i<j}(x_j-x_i)=2(x_3-x_1)=-4x-2y.
++\tag{8}
++\]
++
++The determinant of \(TM\otimes\mathbb C\) is the complexification of the orientation line of \(TM\). Its transition signs give
++\(c_1(TM\otimes\mathbb C)=\beta(w_1(TM))=\delta\).
++It follows that the component \((x,y)\) has a nonempty fiber in (7) exactly when (1) holds. This proves existence for every admissible index, before counting its formal homotopy classes.
++
++The coefficient exact sequence gives \(\delta\in2B\) if and only if its mod-two reduction vanishes. The standard Bockstein identity
++\(\rho_2\beta(w_1)=Sq^1w_1=w_1^2\)
++then proves (4).
++
++## 6. The two loop groups, including their integral coordinates
++
++At a component of the source of (7),
++
++\[
++\pi_1\operatorname{Map}(M,BT^2)=A\oplus A.
++\tag{9}
++\]
++
++A loop is represented by three line bundles on \(M\times S^1\) whose Chern classes are
++\(x_i+h_i t\), where \(t\) generates \(H^1(S^1;\mathbb Z)\),
++\(h_1=p,h_2=q,h_3=-p-q\).
++
++For the target, the loop groups are
++
++\[
++\pi_1\operatorname{Map}(M,BSU(3))\simeq C,
++\qquad
++\pi_1(\operatorname{Map}(M,BU(3)),\tau)\simeq A\oplus C.
++\tag{10}
++\]
++
++Here are integral coordinates and their justification, so that torsion is not discarded by a rational Chern-character computation. A loop in the second mapping space clutches a rank-three bundle \(V\) on \(M\times S^1\) with its fixed identification to \(E=TM\otimes\mathbb C\) at \(t=0\). Take the relative stable virtual difference
++
++\[
++\xi=[V]-[\operatorname{pr}_M^*E].
++\]
++
++The two coordinates are the slant products
++
++\[
++(c_1(\xi)/[S^1],\ -c_2(\xi)/[S^1])\in A\oplus C.
++\tag{11}
++\]
++
++Stabilization from \(BU(3)\) is sufficiently connected for these loop classes: the relative domain has dimension four and a homotopy has dimension five. In these dimensions stable complex bundles are classified by \(c_1,c_2\). Indeed the map to \(K(\mathbb Z,2)\times K(\mathbb Z,4)\) defined by these classes induces isomorphisms of homotopy groups through dimension five. The relevant groups are \(\pi_2=\mathbb Z\), \(\pi_4=\mathbb Z\), and zero in dimensions one, three, and five; \(c_2\) detects a generator on \(S^4\). Relative obstruction theory therefore gives the asserted bijection, including integral torsion. These low homotopy groups can equivalently be obtained from unitary stabilization and \(SU(2)\to SU(3)\to S^5\).
++
++Addition of relative classes makes (11) additive: the possible cross term in \(c_2\) is the product of two classes \(h t\), which is zero since \(t^2=0\). For the \(BSU(3)\) factor the first coordinate is absent, and the coordinate is \(-c_2/[S^1]\). Thus both groups in (10) are abelian. Using the virtual difference in (11), rather than the Chern classes of \(V\) alone, is essential when \(E\) is nontrivial.
++
++## 7. The monodromy calculation
++
++The image of (9) in the first group of (10) is
++
++\[
++a=\sum_{i=1}^3 x_i\smile h_i.
++\tag{12}
++\]
++
++To check the sign and normalization directly, the coefficient of \(t\) in
++\(c_2(\bigoplus L_i)\) on the product is
++\(\sum_{i<j}(x_i h_j+x_j h_i)=-\sum_i x_i h_i\), since both sums of classes vanish. The coordinate in (10) uses its negative.
++
++For the second bundle in (6), put \(r_{ij}=x_j-x_i\) and \(k_{ij}=h_j-h_i\). Its loop has first coordinate
++
++\[
++k=\sum_{i<j}k_{ij}=2(h_3-h_1).
++\tag{13}
++\]
++
++Its second coordinate is
++
++\[
++b=\sum_{i<j}r_{ij}\smile k_{ij}.
++\tag{14}
++\]
++
++For completeness, (14) remains true when \(\delta\ne0\). The coefficient of \(t\) in the ordinary \(c_2(V)\) is \(\delta k-\sum r_{ij}k_{ij}\). For the virtual difference \(V-E\), the formula
++
++\[
++c_2(V-E)=c_2(V)-c_1(V)c_1(E)+c_1(E)^2-c_2(E)
++\]
++
++subtracts precisely the term \(\delta k\). Taking the negative slant product gives (14), with no division by two and no loss of torsion.
++
++The elementary identity
++
++\[
++\sum_{i<j}(x_j-x_i)(h_j-h_i)
++=3\sum_i x_i h_i-(\sum_i x_i)(\sum_i h_i)
++=3a
++\tag{15}
++\]
++
++therefore identifies the image of the loop group as
++
++\[
++\{(a,k,3a):p,q\in A\}\subset C\oplus A\oplus C.
++\tag{16}
++\]
++
++The products in (12)–(15) are cup products; degree-two classes commute with degree-one classes, so these polynomial identities hold over integral cohomology, including torsion.
++
++## 8. Why this quotient gives the entire classification
++
++For a map of spaces \(X\to Y\), the components of its homotopy fiber lying over a fixed component of \(X\) mapping to the chosen component of \(Y\) form the orbit set of \(\pi_1(Y)\), with stabilizer the image of \(\pi_1(X)\), after a reference point and path are chosen. This is the exact sequence of a homotopy fiber at \(\pi_1\) and \(\pi_0\). It accounts for homotopies of the base data, not just homotopies over a fixed map. In (7), \(\pi_1(Y)\) is abelian by (10), so the orbit set is a torsor for its quotient group.
++
++Consequently the fiber over \((x,y)\) is a torsor for
++
++\[
++(C\oplus A\oplus C)/\{(a,k,3a)\}.
++\]
++
++The integral automorphism \((u,m,v)\mapsto(v-3u,m,u)\) takes (16) to \((0,k,a)\). Substituting \(x_3=-x-y\) and \(h_3=-p-q\) yields
++
++\[
++k=-4p-2q,
++\qquad
++a=(2x+y)\smile p+(x+2y)\smile q.
++\]
++
++This is exactly (2)–(3). Sections 3–5 show both that every listed fiber is nonempty and that every actual immersion belongs to one of them. The homotopy-fiber argument shows that two entries are identified exactly by the stated action. This proves the candidate theorem, subject to the independent review of the standard homotopy and h-principle inputs and their use above.
++
++## 9. Checks and illustrations
++
++### The three-sphere
++
++Here \(A=B=0\), \(C=\mathbb Z\), and the classification is a torsor for \(\mathbb Z^2\). One integer records the underlying homotopy class in \(\pi_3(F)\); the second records the formal derivative. This recovers the already-known sphere calculation, rather than constituting a new contribution in that case.
++
++### \(S^2\times S^1\)
++
++Choose generators with positive product. Then \(x=n,y=-2n\) for \(n\in\mathbb Z\). The relation matrix for (2), using \(r=2p+q\), is
++
++\[
++\begin{pmatrix}0&-2\\6n&-3n\end{pmatrix}.
++\]
++
++For \(n\ne0\), let \(g=\gcd(2,3n)\). The fiber is a torsor for
++\(\mathbb Z\oplus\mathbb Z/g\oplus\mathbb Z/(12|n|/g)\).
++For \(n=0\), it is a torsor for \(\mathbb Z^2\oplus\mathbb Z/2\).
++The finite components reflect the monodromy quotient and would be missed by counting framings over one fixed underlying map.
++
++### \(\mathbb{RP}^2\times S^1\)
++
++The orientation class restricts to the generator on \(\mathbb{RP}^2\), whose square is nonzero. Thus (4) forbids any totally real immersion into the complex flag manifold. This example explains why a statement about all real 3-manifolds cannot silently use the orientable parallelizability theorem.
++
++## 10. Verification boundary
++
++The attached exact checker verifies the root-weight identities, the virtual-Chern-class cancellation, the relation matrices and Smith invariants in modest test ranges, and a torsion coefficient model. Such computations do not prove the h-principle, bundle classification, or the homotopy-fiber orbit theorem. Those are mathematical inputs explicitly identified in the proof. Independent review must in particular test the nontrivial-target-bundle loop coordinates in Section 6, the integral torsion terms in Section 7, the global monodromy quotient in Section 8, and the stated noncompact scope.
+diff --git a/unsolved_math_prioritization/attempts/6800007/README.md b/unsolved_math_prioritization/attempts/6800007/README.md
+new file mode 100644
+index 000000000..7740e95f3
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/6800007/README.md
+@@ -0,0 +1,18 @@
++# 6800007: totally real immersions into the complex flag manifold
++
++**Complete classification candidate; separate adversarial review PASS.**
++
++The proposed classification uses ordinary integral cohomology and an explicit cokernel of cup-product maps. It includes a precise existence condition and retains nonorientable torsion. The proof covers a fixed smooth 3-manifold without boundary, including the noncompact case, with homotopies through totally real immersions and no properness condition. It does not classify embeddings or quotient by source diffeomorphisms.
++
++- [Complete candidate and scope](CANDIDATE.md)
++- [Independent review](review/REVIEW.md) and [verdict](review/review_summary.json)
++- [Original-source and prior-art audit](SOURCES.md)
++- [Exact algebra checker](verify.py) and [receipt](verification.json)
++- [Pinned original record](source_record.json), [source hashes](source_manifest.json), [readiness](readiness.json)
++- [Research log](RESEARCH_LOG.md), [attempt count](turns.jsonl), [status](status.json)
++
++The h-principle, the three-sphere case, and general homogeneous-space obstruction theory are prior work. No novelty or verified-solution claim is made. The finite checks validate algebra only; independent review must validate the topology and all stated quantifiers.
++
++Run `python3 verify.py`; requires SymPy (tested with 1.14.0). One substantive attempt used out of five.
++
++The frozen candidate retains its pre-review heading for hash traceability. The separate review now passes its complete stated classification, with 1,595 independent exact assertions and no mandatory correction. This is independent AI review, not external peer review or certification of novelty.
+diff --git a/unsolved_math_prioritization/attempts/6800007/RESEARCH_LOG.md b/unsolved_math_prioritization/attempts/6800007/RESEARCH_LOG.md
+new file mode 100644
+index 000000000..375450daf
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/6800007/RESEARCH_LOG.md
+@@ -0,0 +1,23 @@
++# 6800007 research log
++
++Date: 2026-09-30 UTC. Execution: gpt-6-astra, xhigh. New proof budget: at most five substantive attempts. Research deadline: 06:42 UTC.
++
++## 04:42–04:48: source and prior-attempt gate
++
++The pinned input and its complete OPEN-TRIAGE report were read. No earlier proof attempt was found by numeric-ID/title all-state PR searches, matching-branch checks, attempt-folder inspection, exact code/title repository search, or the related-target map. The queue at the base commit records queued, 0/5. Source-gate completion: 60%; full classification completion estimate: 0%.
++
++The complete original TeX was retrieved from the coauthor's university site. Its Question 7 asks the stated homotopy classification and already notes Gromov's h-principle. This reduction is prior knowledge, not a new solution. The original does not state compactness or orientability assumptions.
++
++The 2018 arXiv paper cited by the original has a single version. The 2020 author manuscript adds a Section8.1 and Proposition8.1 about the three-sphere, absent from that preprint. Those cases must be credited to Falbel–Veloso. Current-source and convention checks continue before a claim is promoted.
++
++## 05:01: first substantive attempt, complete candidate
++
++The simultaneous classifying-space model for a flag and its formal derivative yields an explicit integral cokernel. The loop action is computed by virtual Chern classes, so the nontrivial complexified tangent bundle and integral torsion are retained. This is a candidate classification, not an assertion of verified resolution or novelty. Its exact stated scope includes nonorientable and noncompact smooth 3-manifolds without boundary and homotopies through totally real immersions, with no properness constraint.
++
++The proposed existence criterion is the vanishing of the square of the orientation class. The sphere specialization agrees with prior work. The S2×S1 example has a nontrivial monodromy quotient, so counting only frames over a fixed map is insufficient. A naive ordinary-Chern-class calculation was checked as a negative control: the omitted determinant term is nonzero and is removed only by using the virtual difference.
++
++The exact checker passes twelve named symbolic/group checks, including twenty-five Smith-normal-form cases and 1,400 finite torsion coefficient-ring cases. These checks certify algebra only, not the topology inputs. Candidate proof completion estimate:100%, conditional on independent review; verified resolution estimate remains unassigned until that review. Proof budget used:1/5. No extra route is hidden as source triage.
++
++## 05:20: independent adversarial review
++
++A separate topology reviewer returned PASS for the complete stated classification with no mandatory correction. The review validates the coupled virtual-Chern-class quotient, source scope, noncompact cellular argument, and genuine nonorientable torsion examples, including an order-four extension and a nonzero divisible orientation determinant. All 1,595 independent exact assertions passed. The frozen proof and original verifier are unchanged. Proof/review package completion estimate:100%; historical novelty remains unestablished. The package is for a draft PR and further human review, not external peer-review certification.
+diff --git a/unsolved_math_prioritization/attempts/6800007/SOURCES.md b/unsolved_math_prioritization/attempts/6800007/SOURCES.md
+new file mode 100644
+index 000000000..22ffbc9cf
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/6800007/SOURCES.md
+@@ -0,0 +1,31 @@
++# Source and prior-art audit: 6800007
++
++Checked 2026-09-30. This is a bounded literature audit, not proof of historical novelty.
++
++## Original target
++
++The pinned record is 6800007 / AMR-067-0007, rank45 in the working queue. Its complete record and prior OPEN-TRIAGE report are preserved in `source_record.json`. The prior report is a literature triage, with no substantive proof attempt. The imported source attributes the question to Elisha Falbel in the 2018 Morgan–Pansu problem list.
++
++The full [original TeX](https://www.imo.universite-paris-saclay.fr/~pansu/problems_MTDG.tex) was retrieved from the coauthor's university website. Section “Manifolds modelled on flag manifolds,” second question environment (Question7 in the PDF), asks:
++
++> What is the homotopy classification of totally real immersions of real 3-manifolds in the complex full flag manifold F12?
++
++The following sentence already invokes Gromov's h-principle. The preceding question about real-form orbits is a different problem and is not claimed solved here. The original does not explicitly impose orientability or compactness. The current candidate states its manifold, homotopy, complex-structure, and properness conventions explicitly.
++
++## Primary sources read and what they establish
++
++1. **Falbel–Veloso, 2018 preprint**, [arXiv1804.11096](https://arxiv.org/abs/1804.11096). The arXiv history lists only its April2018 version. The full PDF was retrieved. It defines the flag structures, the totally real condition, and the global invariant; its final section treats homogeneous examples. It does not contain the later Section8.1/Proposition8.1.
++2. **Falbel–Veloso, 2020 paper**, [Geometriae Dedicata209,149–176](https://doi.org/10.1007/s10711-020-00528-4). The publisher confirms the publication metadata. The publicly readable [author-provided manuscript](https://www.researchgate.net/publication/340658748_Flag_structures_on_real_3-manifolds), uploaded by the coauthor in April2020, contains Section8.1. Its Proposition8.1 already provides the integer family over each nonzero homotopy class of maps from S3 to F. That is prior work. The downloadable author-PDF route was unavailable, but the complete author-manuscript text, including the proposition and its proof, was readable. It is not silently identified with the older arXiv version.
++3. **Forstnerič, 1986**, [*On totally real embeddings into Cn*](https://users.fmf.uni-lj.si/forstneric/papers/1986Expositiones.pdf), Exposition.Math.4,243–255. The complete author-hosted scan was downloaded; printed pp244–245 were visually checked. Theorem1.1 gives the classical formal classification for Euclidean target. Theorem1.4's 3-manifold existence assertion is explicitly compact and orientable. The broad introductory wording in later sources is not used to remove that hypothesis. Section2 presents the convex-integration input.
++4. **Borrelli, 2002**, [*On totally real isotopy classes*](https://doi.org/10.1155/S1073792802105125), IMRN2002(2),89–109. The [author's PostScript](https://math.univ-lyon1.fr/~borrelli/Articles/IMRN2002.ps) was retrieved and converted locally for reading. The paper distinguishes regular homotopy of immersions from isotopy of embeddings and discusses the h-principle and K-theory description. The candidate concerns immersions, not the stronger embedding problem.
++5. **Koshkin, 2009**, [*Homotopy classification of maps into homogeneous spaces*](https://arxiv.org/abs/0808.0024), [published version](https://tcms.org.ge/Journals/JHRS/xvolumes/2009/n1a16/v4n1a16.pdf), J.Homotopy Relat.Struct.4(1),331–346. The general method of primary invariants and secondary quotient groups for maps from three-dimensional complexes is prior art. The present calculation explicitly includes the tangent-bundle isomorphism and its coupled loop action; no novelty claim is made for obstruction theory itself.
++
++## Current searches and limits
++
++Searches combined the exact original wording, Falbel/Veloso, totally real immersions, complex frame bundle, flag manifolds, cokernels, and homotopy classifications of homogeneous-space-valued maps. The coauthor's publication page and the publisher metadata were checked. Related recent work on homogeneous path structures and global invariants is not automatically a classification of totally real regular-homotopy classes.
++
++No source giving the exact formula in `CANDIDATE.md` was verified in this pass. This negative search result does not establish novelty or the continued openness of every formulation. The candidate must undergo independent mathematical review before a draft PR. The known h-principle, sphere case, and general obstruction-theory method remain explicitly credited.
++
++## Source preservation
++
++Only links, relevant locations, the short target quotation, and local-file hashes are included in this repository package. Source PDFs, page renders, TeX, and PostScript are research reference copies kept outside the repository; no redistribution license is assumed. Their hashes are recorded in `source_manifest.json`.
+diff --git a/unsolved_math_prioritization/attempts/6800007/readiness.json b/unsolved_math_prioritization/attempts/6800007/readiness.json
+new file mode 100644
+index 000000000..cbedca7fb
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/6800007/readiness.json
+@@ -0,0 +1,29 @@
++{
++  "id": 6800007,
++  "code": "AMR-067-0007",
++  "source_gate_started_utc": "2026-09-30T04:42:00Z",
++  "hard_deadline_utc": "2026-09-30T06:42:00Z",
++  "model": "gpt-6-astra",
++  "reasoning": "xhigh",
++  "branch": "dot/math-6800007",
++  "base_commit": "01358d66fc67d1c462bddf31c0d4ee5b120e6737",
++  "prior_attempt_gate": {
++    "all_state_id_prs": [],
++    "all_state_title_prs": [],
++    "remote_matching_branches": [],
++    "local_matching_attempt_directories": [],
++    "repo_exact_code_or_title_matches": [
++      "QUEUE.md",
++      "SHORTLIST.md"
++    ],
++    "queue_at_base": "rank45 queued 0/5",
++    "related_target_groups": "no matching numeric ID",
++    "upstream_report": "OPEN-TRIAGE only; no proof attempt"
++  },
++  "original_source": "https://www.imo.universite-paris-saclay.fr/~pansu/problems_MTDG.tex",
++  "original_source_sha256": "33d853a6de512584aeedfaf5b491bcc7f0cf02d2964e8b1f1be67a5b3b97c48e",
++  "statement_scope": "Homotopy classification of totally real immersions of real 3-manifolds into the complex full flag manifold; orientation, compactness and homotopy convention need explicit treatment.",
++  "prior_art_gate": "Completed bounded audit; known h-principle, S3 case, and general homogeneous-map classification credited. Exact formula novelty unverified.",
++  "turn_limit": 5,
++  "turns_used": 1
++}
+diff --git a/unsolved_math_prioritization/attempts/6800007/review/REVIEW.md b/unsolved_math_prioritization/attempts/6800007/review/REVIEW.md
+new file mode 100644
+index 000000000..e36a3008a
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/6800007/review/REVIEW.md
+@@ -0,0 +1,140 @@
++# Independent review of the flag-manifold classification, 6800007
++
++**Verdict: PASS for the complete cohomological classification stated in the candidate.** No mathematical correction is required. This is an independent adversarial AI review, not a formal proof certificate or a finding of historical novelty.
++
++Reviewed on 2026-09-30 using GPT-6 Astra at xhigh reasoning. The reviewed artifact is CANDIDATE.md, SHA-256:
++
++501c9a536246ad06b29e16720c613bcb292c863857849f837bb0250c45a58050
++
++The reviewed statement concerns a fixed smooth second-countable real three-manifold without boundary, ordinary homotopies through totally real immersions, and the ordered complex flag variety with its integrable complex structure. It includes nonorientable and noncompact sources and does not require properness. This scope is mathematically supported. No assertion about embeddings, equivalence under source diffeomorphisms, or the neighboring real-form uniformization question follows.
++
++## 1. Exact target and prior results
++
++The original Morgan–Pansu list, Section 6, Question 7, printed page 6, asks for the homotopy classification of totally real immersions of real three-manifolds into the complex full flag manifold. It immediately identifies the h-principle as the relevant reduction. The original TeX and the university-hosted PDF agree; the question does not impose compactness or orientability. The candidate's convention of homotopy through totally real immersions agrees with Falbel–Veloso's later explicit convention. [Original list](https://www.imo.universite-paris-saclay.fr/~pierre.pansu/problems_MTDG.pdf)
++
++Falbel–Veloso's 2020 author manuscript, Section 8.1, Proposition 8.1, already gives an integer family of totally real regular-homotopy classes over each nonzero homotopy class of maps from the three-sphere. I read the proposition and proof in the full author-manuscript text. The arXiv record has only its 2018 version; the later proposition is not attributed to that earlier file. The candidate credits this prior result correctly. Its additional zero underlying class is also justified by the argument: the pulled-back tangent bundle is trivial there as well. [2020 author manuscript](https://www.researchgate.net/publication/340658748_Flag_structures_on_real_3-manifolds), [2018 arXiv record](https://arxiv.org/abs/1804.11096)
++
++Koshkin's Theorem 3 already supplies a primary/secondary quotient classification for maps from arbitrary three-dimensional CW complexes into compact simply connected homogeneous spaces. The candidate does not mistake that general framework for a new theorem. Its calculation also includes the tangent-bundle isomorphism and computes the coupled monodromy action explicitly. [Koshkin, Theorem 3](https://arxiv.org/abs/0808.0024)
++
++The result is an explicit cohomological classification rather than a restatement as a mapping or frame-bundle problem. Its final data are the ordinary integral groups in degrees one, two and three, the orientation Bockstein, cup products, an explicitly specified index condition, and an explicitly specified homomorphism whose cokernel is taken. For a finite triangulation these are finite abelian-group calculations, including Smith reduction. For arbitrary noncompact sources the formula is a structural classification; it is not a claim that the input cohomology has a finite presentation or a uniform effective algorithm.
++
++A bounded additional search did not locate the exact formula. That does not establish novelty, priority, or exhaustive current literature coverage.
++
++## 2. Formal immersion and h-principle audit
++
++At every point, a real-linear derivative from a three-dimensional real space to a three-dimensional complex space is totally real if and only if its complexification is an isomorphism. Consequently the formal datum is precisely a map \(f\), together with
++\[
++TM\otimes\mathbb C\cong f^*TF.
++\]
++No orientation, metric, Lagrangian condition or derivative trivialization of \(TM\) may be added to this datum. The candidate adds none.
++
++The relation is open and ample. Fix a principal slice, hence the values of the derivative on a real hyperplane. If those two columns are complex independent, the excluded third columns are their complex span, a real codimension-two linear subspace. Its complement is connected and its convex hull is the entire affine slice. If the fixed columns are complex dependent, the slice contains no allowed derivative. This verifies ampleness in every principal direction.
++
++I checked Forstnerič's scanned printed pages 244–246. Theorem 1.1 gives the Euclidean formal classification. Section 2, page 246, states the weak-homotopy-equivalence theorem for open ample relations in a general smooth bundle, with no open-source or orientability restriction. Applying that theorem to the product bundle \(M\times F\to M\), using the preceding local slice computation, supplies the required target-manifold and parametric version. A weak homotopy equivalence gives exactly the necessary bijection on components. Theorem 1.4 on page 245 does expressly assume a compact orientable three-manifold, and the candidate correctly avoids using it for the broader existence statement. [Forstnerič, 1986](https://users.fmf.uni-lj.si/forstneric/papers/1986Expositiones.pdf)
++
++Borrelli also explicitly separates totally real regular homotopy from isotopy of embeddings. The immersion classification must not inherit the extra embedding conditions in his main results. [Borrelli, Section 2](https://doi.org/10.1155/S1073792802105125)
++
++## 3. Bundle model, determinant and existence
++
++The compact homogeneous-space model \(F=SU(3)/T^2\) is the homotopy fiber of \(BT^2\to BSU(3)\). The three ordered tautological lines have a specified product trivialization. Therefore the first nullhomotopy in the proposed simultaneous fiber is an \(SU(3)\)-trivialization. Replacing it with a free \(U(3)\)-trivialization would change the problem, but the candidate retains the correct determinant constraint.
++
++The holomorphic tangent representation has the three weights
++\[
++x_2-x_1,\quad x_3-x_1,\quad x_3-x_2.
++\]
++These are the lower matrix entries in the quotient of the Lie algebra by the upper triangular subalgebra. Its first Chern class is
++\[
++2(x_3-x_1)=-4x-2y.
++\]
++The representation is a complex vector-bundle representation of the compact torus; a holomorphic direct-sum splitting over the flag variety is not needed.
++
++On a three-dimensional CW complex, \(BSU(3)\) is 3-connected and a rank-three complex vector bundle is classified by its first Chern class. Thus the first bundle always admits the required \(SU(3)\)-trivialization. The second admits an isomorphism with \(TM\otimes\mathbb C\) exactly when its first Chern class is \(\delta=\beta(w_1(TM))\). The determinant of the complexification is the complexified real orientation line, which gives this Bockstein directly from its sign transition functions.
++
++It follows that every admissible index has a formal representative. The range of \((x,y)\mapsto-4x-2y\) is exactly \(2H^2(M;\mathbb Z)\). Coefficient exactness and \(\rho_2\beta(w_1)=Sq^1w_1=w_1^2\) give precisely the asserted existence criterion. No division by two or torsion cancellation is used.
++
++The distinction between \(\delta=0\) and \(\delta\in2H^2\) is real, not redundant. The example in Section 7 below tests a nonzero divisible determinant class.
++
++## 4. Loop coordinates and potential Postnikov obstructions
++
++This is the most delicate part of the proof, and it passes the audit.
++
++A loop at the classifying map of \(E=TM\otimes\mathbb C\) is a rank-three bundle on \(M\times S^1\) with the fixed identification with \(E\) on \(M\times\{1\}\), up to relative homotopy. Stabilization and translation by \(-E\) identify its class with a relative stable rank-zero class. These operations preserve the group law on fundamental groups: the stable mapping space is group-like, and loop concatenation agrees with addition on its fundamental group.
++
++There is no missed ambiguity from the slice identification. Restriction to \(M\times\{1\}\) is split by projection to \(M\), in both ordinary cohomology and stable K-theory. Hence the relative classes inject into the corresponding absolute groups. In particular, slanting with the circle records all of the relative cohomology classes in degrees two and four:
++\[
++H^2(M\times S^1,M\times\{1\};\mathbb Z)=H^1(M;\mathbb Z),
++\]
++\[
++H^4(M\times S^1,M\times\{1\};\mathbb Z)=H^3(M;\mathbb Z).
++\]
++
++Rank three lies safely in the stable range here. The fibration \(U(n)\to U(n+1)\to S^{2n+1}\), together with unitary periodicity, gives
++\(\pi_2BU(3)=\mathbb Z\), \(\pi_4BU(3)=\mathbb Z\), and zero groups in degrees one, three and five. The map \((c_1,c_2)\) to \(K(\mathbb Z,2)\times K(\mathbb Z,4)\) induces isomorphisms in all these degrees. On \(S^4\), the quaternionic Hopf line, regarded as a complex rank-two bundle and stabilized, has second Chern class a generator: its sphere bundle is \(S^7\), so its Euler class is a generator by the Gysin sequence. Thus there is no hidden integer factor in the \(c_2\) coordinate. [Bott, stable unitary homotopy, pp. 314–315](https://doi.org/10.2307/1970106)
++
++Relative bundle classes use a domain of dimension four, and their homotopies use dimension five. The stated homotopy-group range therefore gives both existence and uniqueness for the relative classification. The first higher Postnikov data cannot contribute in this dimension. This is an integral obstruction argument, so it also covers torsion cohomology. It does not infer an integral result from a rational Chern character or merely from an associated graded group.
++
++For relative classes, \(c_1=ht\), where \(t\) comes from the parameter circle. The cross term in the Whitney sum formula vanishes because every product \((ht)(h't)\) is zero. Therefore
++\[
++\bigl(c_1/[S^1],-c_2/[S^1]\bigr)
++\]
++is an additive isomorphism to \(A\oplus C\). The corresponding \(BSU(3)\) group is \(C\). In particular, neither a nonabelian loop-group action nor an unresolved abelian extension remains.
++
++For a nontrivial \(E\), the coordinate must use \(V-E\). The exact formula
++\[
++c_2(V-E)=c_2(V)-c_1(V)c_1(E)+c_1(E)^2-c_2(E)
++\]
++is correct. A concrete negative control is \(M=\mathbb{RP}^2\times S^1_x\). Let \(L\) have its nonzero order-two class \(b\), let \(E=L\oplus1\oplus1\), and let \(P\) on \(S^1_x\times S^1_t\) have \(c_1(P)=xt\). Clutching the trivial summand gives \(V=L\oplus P\oplus1\). Then \(c_2(V)=bxt\ne0\), while \(V-E=P-1\) has \(c_2=0\). This verifies that the virtual correction has actual torsion content.
++
++## 5. Monodromy and completeness of the quotient
++
++The source loop group is \(H^1(M;\mathbb Z)^2\). A loop has line classes \(x_i+h_it\), with \(\sum x_i=\sum h_i=0\). Calculating the coefficient of the parameter circle in the second Chern class yields
++\[
++a=\sum_i x_i h_i,\qquad
++k=2(h_3-h_1),\qquad
++b=\sum_{i<j}(x_j-x_i)(h_j-h_i)=3a.
++\]
++The determinant correction in the virtual class removes the \(\delta k\) term before taking the second coordinate. The calculation uses only integral addition and multiplication.
++
++The complete image is consequently \((a,k,3a)\), not separate images in the three factors. In particular, quotienting each factor independently would discard real extension information. For a fixed component of the source, the components of the homotopy fiber form a transitive orbit of the target fundamental group, whose stabilizer is exactly the image of the source fundamental group. Higher homotopy groups affect higher homotopy of the fiber, not this component orbit. Since the target group is abelian, the orbit is a torsor for the quotient group.
++
++The displayed change of variables
++\[
++(u,m,v)\longmapsto(v-3u,m,u)
++\]
++is integral and unimodular, with an integral inverse. It is valid when \(C\) has torsion. It sends the image to \((0,k,a)\), giving exactly \(C\oplus\operatorname{coker}D_{x,y}\). The proof thus counts homotopies of all line-bundle data; it does not only count framings over one fixed map.
++
++## 6. Noncompact and nonorientable scope
++
++A second-countable smooth manifold admits a countable locally finite triangulation of its actual dimension. The argument can therefore use an actual three-dimensional CW model, and \(M\times S^1\) and the relative homotopy domains have dimensions four and five. Obstruction-theoretic connectivity bounds are cellular dimension bounds, not finite-cell assumptions. Applying them directly to the infinite CW complex avoids any inverse-limit or phantom-map inference.
++
++The relevant bundles are ordinary numerable bundles over a paracompact space. Homotopies are ordinary homotopies, with no control imposed at infinity. Thus ordinary cohomology is the appropriate theory. Compactly supported or end-preserving cohomology would classify a different problem. For example, the candidate correctly gives one class for \(\mathbb R^3\), whereas inserting compactly supported \(H^3\) would create spurious classes.
++
++The coefficients are untwisted integral coefficients even when \(M\) is nonorientable. They arise from the simply connected complex bundle-classifying spaces, not from integration against a chosen orientation of \(M\). For a closed connected nonorientable three-manifold the ordinary top group can be \(\mathbb Z/2\); it must not be deleted by de Rham reasoning.
++
++## 7. Independent examples and exact diagnostics
++
++The independent checker uses explicit cellular cochains, full abelian-group presentations, finite quotient enumeration and an integral graded exterior algebra. It does not import or call the candidate's checker.
++
++- **Three-sphere:** the two loop groups give \(\mathbb Z^2\), with no source-loop action. Projection to the underlying map leaves an integer family, agreeing with the credited Falbel–Veloso result.
++- **\(S^2\times S^1\):** the original coupled three-row presentation, before the candidate's splitting, has columns \((0,-4,0)\) and \((-3n,-2,-9n)\). Smith reduction for all \(-15\le n\le15\) reproduces the stated groups, including the exceptional free rank at \(n=0\).
++- **Lens spaces:** with \(A=0\), \(B=\mathbb Z/p\), \(C=\mathbb Z\), there are \(p\gcd(p,2)\) admissible labels and a \(\mathbb Z^2\)-torsor at each. All labels were enumerated for \(1\le p\le32\); in particular even-order torsion cannot be divided out.
++- **\(\mathbb{RP}^2\times S^1\):** cellular cochains give \(A=\mathbb Z\), \(B=C=\mathbb Z/2\), with \(\delta\) the generator of \(B\). The index set is empty. The same orientation obstruction remains for the noncompact \(\mathbb{RP}^2\times\mathbb R\).
++- **Klein bottle \(K\) times \(S^1\):** let \(a\) generate \(H^1(K;\mathbb Z)\), \(t\) be the circle class, and \(b\) generate \(H^2(K;\mathbb Z)=\mathbb Z/2\). Then \(A=\mathbb Z a\oplus\mathbb Z t\), \(B=\mathbb Z(at)\oplus(\mathbb Z/2)b\), \(C=(\mathbb Z/2)bt\), and \(\delta=0\). Here \(a^2=0\) because \(a\) is pulled back from a circle, and the only relevant nonzero torsion product is \(bt\). Write \(x=n(at)+\epsilon b\), \(y=-2n(at)+\eta b\). The fiber groups are \((\mathbb Z/2)^4\) for \((\epsilon,\eta)=(0,0)\), \((\mathbb Z/2)^2\oplus\mathbb Z/4\) for \((1,0)\), and \((\mathbb Z/2)^3\) when \(\eta=1\). Both Smith reduction and direct finite quotient enumeration verify these groups. The order-four case is a useful test that the coupled action preserves extension information.
++- **Twisted \(S^2\)-bundle over \(S^1\):** its cellular coboundary in degrees two to three is multiplication by two; hence \((A,B,C)=(\mathbb Z,0,\mathbb Z/2)\) and \(\delta=0\). The formula gives eight classes, with group \((\mathbb Z/2)^3\).
++- **Interior of a Möbius band times \(\mathbb R\):** the source retracts to a circle and has trivial complexified tangent bundle. The formula gives two classes. Independently, the unitary frame total space of \(TF\) has fundamental group \(\mathbb Z/2\), from the determinant map \(\mathbb Z^2\to\mathbb Z\), \((p,q)\mapsto-4p-2q\). This gives the same two free homotopy classes of circle maps.
++- **A genuine nonzero determinant:** Reid's closed nonorientable hyperbolic manifold \(m313(1,0)\) has \(H_1=\mathbb Z\oplus\mathbb Z/4\) and \(w_1\) has no integral lift. Thus \(B=\mathbb Z/4\) and \(\delta=2\) in this group. It is nonzero but divisible by two. The presentation in Reid's Section 2 independently reproduces the abelianization; its orientation character lifts to \(\mathbb Z/4\). The admissibility equation has exactly eight solutions, namely arbitrary \(x\) and odd \(y\). This tests the existence statement with a genuinely nontrivial \(TM\otimes\mathbb C\), rather than only algebraic torsion rings. I do not infer the remaining cup-product table of this manifold from its homology. [Reid's appendix](https://math.rice.edu/~ar99/immersionsFKKT_2.pdf)
++- **Three-torus:** 750 clutching cases in the genuine graded integral ring \(H^*(T^3\times S^1;\mathbb Z)\) verify both Chern-slant coordinates, including the signs from anticommuting degree-one generators and the root-weight factor three.
++
++The Euclidean existence/nonexistence checks for the Klein product and projective-plane product also agree with Ho–Jacobowitz–Landweber's Remark 4.4. That paper does not establish the flag classification; it is an independent consistency check on the nonorientable examples. [New York Journal of Mathematics 18 (2012), pp. 470–471](https://nyjm.albany.edu/j/2012/18-26p.pdf)
++
++There are **1,595 passing independent exact assertions**, including 750 graded-ring cases. The author's existing verification receipt was separately reproduced byte for byte. These computations check the stated algebra and examples; the h-principle and obstruction-theoretic conclusions are justified by the written audit above.
++
++## 8. Final scope and verification boundary
++
++The full theorem stated in CANDIDATE.md passes this review, with no unresolved mathematical gap identified. The target's h-principle, known sphere calculation and general obstruction-theory framework remain prior work. Novelty of the precise integral formula remains unestablished.
++
++The four review deliverables are REVIEW.md, review_summary.json, independent_checks.py and independent_results.json. Reproduce the independent receipt from their directory with:
++
++    python independent_checks.py > independent_results.json
++
++Downloaded reference documents and page images are not part of these deliverables.
+diff --git a/unsolved_math_prioritization/attempts/6800007/review/independent_checks.py b/unsolved_math_prioritization/attempts/6800007/review/independent_checks.py
+new file mode 100644
+index 000000000..0b1445f04
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/6800007/review/independent_checks.py
+@@ -0,0 +1,180 @@
++#!/usr/bin/env python3
++"""Independent exact diagnostics for 6800007. No h-principle certification.
++Run: python independent_checks.py > independent_results.json
++Requires SymPy; tested with 1.14.0. Inputs are explicit cellular/cohomology models.
++"""
++import itertools
++import json
++from math import gcd
++import sympy as s
++from sympy.matrices.normalforms import smith_normal_form
++
++checks = []
++def check(condition, label):
++    assert condition, label
++    checks.append(label)
++
++def cokernel(matrix):
++    matrix = s.Matrix(matrix)
++    diag = smith_normal_form(matrix, domain=s.ZZ)
++    entries = [abs(int(diag[i, i])) for i in range(min(diag.shape))]
++    return {'free_rank': matrix.rows - sum(v != 0 for v in entries),
++            'torsion': [v for v in entries if v > 1]}
++
++# Integral cellular cochain complexes. For K use relation a b a^-1 b,
++# so d(a*)=0, d(b*)=2f*. For RP2 use d(e*)=2f*.
++# Tensoring with the circle gives d1 and d2 below in the displayed bases.
++K_d1 = s.Matrix([[0, 2, 0], [0, 0, 0], [0, 0, 0]])
++K_d2 = s.Matrix([[0, 0, 2]])
++RP_d1 = s.Matrix([[2, 0], [0, 0]])
++RP_d2 = s.Matrix([[0, 2]])
++check(K_d2*K_d1 == s.zeros(1, 3), 'K x S1 cochain d squared zero')
++check(RP_d2*RP_d1 == s.zeros(1, 2), 'RP2 x S1 cochain d squared zero')
++# Kernels are coordinate sublattices in these explicit matrices, hence no
++# rational-nullspace-to-integral-lattice substitution is needed.
++K_kernel_H1 = s.Matrix([[1, 0], [0, 0], [0, 1]])
++K_kernel_H2 = s.Matrix([[1, 0], [0, 1], [0, 0]])
++check(K_d1*K_kernel_H1 == s.zeros(3, 2), 'K x S1 H1 basis')
++check(K_d2*K_kernel_H2 == s.zeros(1, 2), 'K x S1 H2 cocycle basis')
++check(cokernel([[0, 2, 0], [0, 0, 0]]) == {'free_rank':1,'torsion':[2]}, 'K x S1 H2 = Z + Z/2')
++check(cokernel(K_d2) == {'free_rank':0,'torsion':[2]}, 'K x S1 H3 = Z/2')
++check(cokernel([[2, 0]]) == {'free_rank':0,'torsion':[2]}, 'RP2 x S1 H2 = Z/2')
++check(cokernel(RP_d2) == {'free_rank':0,'torsion':[2]}, 'RP2 x S1 H3 = Z/2')
++check(K_d1*s.Matrix([1,0,0]) == s.zeros(3,1), 'Klein orientation class has an integral lift')
++check(RP_d1*s.Matrix([1,0]) == s.Matrix([2,0]), 'RP2 orientation Bockstein is generator of Z/2')
++check(not any((-4*x-2*y-1)%2 == 0 for x,y in itertools.product(range(2),repeat=2)), 'RP2 x S1 has empty flag index set')
++
++# Full presentation, rather than a presumed splitting, for the Klein product.
++# A=<a,t>, B=<at> + Z/2<b>, C=Z/2<bt>. Only b cup t is nonzero.
++# Rows: outer C, determinant a, determinant t, inner C.
++klein = []
++for eps, eta in itertools.product(range(2), repeat=2):
++    presentation = s.Matrix([[2,0,0,0,0,0],
++                             [0,0,-4,0,-2,0],
++                             [0,0,0,-4,0,-2],
++                             [0,2,0,eta,0,eps]])
++    got = cokernel(presentation)
++    expected = [2,2,2] if eta else ([2,2,4] if eps else [2,2,2,2])
++    check(got == {'free_rank':0,'torsion':expected}, f'Klein torsion index ({eps},{eta})')
++    klein.append({'epsilon':eps,'eta':eta,**got})
++
++# Independent enumeration in (Z/8)^2 x (Z/2)^2 verifies the Smith results.
++# Eight times each free ambient generator lies in every displayed relation
++# lattice, so this finite ambient group captures the full quotient exactly.
++ambient_moduli = (2,8,8,2)
++def plus(a,b):return tuple((x+y)%m for x,y,m in zip(a,b,ambient_moduli))
++def subgroup(generators):
++    out={(0,0,0,0)}; pending=list(out)
++    while pending:
++        z=pending.pop()
++        for g in generators:
++            w=plus(z,g)
++            if w not in out:out.add(w);pending.append(w)
++    return out
++for item in klein:
++    eps,eta=item['epsilon'],item['eta']
++    rel=[(0,-4,0,0),(0,0,-4,eta),(0,-2,0,0),(0,0,-2,eps)]
++    H=subgroup(rel)
++    order=256//len(H)
++    expected=1
++    for z in item['torsion']:expected*=z
++    check(order==expected, f'Klein quotient enumeration size ({eps},{eta})')
++    # Count cosets annihilated by two; distinguishes Z/4 from elementary 2-groups.
++    killed=sum(plus(z,z) in H for z in itertools.product(*[range(m) for m in ambient_moduli]))//len(H)
++    check(killed==2**len(item['torsion']), f'Klein quotient two-torsion ({eps},{eta})')
++
++# S2 x S1: use the original three-loop presentation, with the two C coordinates
++# still coupled by 3. Compare its actual Smith form to the claimed final group.
++sphere_product=[]
++for n in range(-15,16):
++    full=s.Matrix([[0,-3*n],[-4,-2],[0,-9*n]])
++    got=cokernel(full)
++    expected={'free_rank':2,'torsion':[2]} if n==0 else {'free_rank':1,'torsion':[d for d in (gcd(2,3*n),12*abs(n)//gcd(2,3*n)) if d>1]}
++    check(got==expected, f'S2 x S1 original coupled quotient n={n}')
++    sphere_product.append({'n':n,**got})
++
++# Lens-space primary labels: H1 cohomology is zero; H2=Z/p and H3=Z.
++# Enumerate all labels rather than dividing by 2 in Z/p.
++lens=[]
++for p in range(1,33):
++    indices=[(x,y) for x,y in itertools.product(range(p),repeat=2) if (-4*x-2*y)%p==0]
++    check(len(indices)==p*gcd(p,2), f'lens primary label count p={p}')
++    lens.append({'p':p,'primary_labels':len(indices),'fiber_free_rank':2})
++
++# The orientation-reversing S2 mapping torus has d2=2 in cellular cochains,
++# giving (A,B,C)=(Z,0,Z/2), delta=0. The full quotient has eight elements.
++twisted=s.Matrix([[2,0,0,0],[0,0,-4,-2],[0,2,0,0]])
++check(cokernel(twisted)=={'free_rank':0,'torsion':[2,2,2]}, 'twisted S2 bundle over circle quotient')
++# Domains homotopy equivalent to a point or circle give the corresponding
++# components / fundamental group of the unitary frame total space.
++check(cokernel(s.zeros(0,0))=={'free_rank':0,'torsion':[]}, 'R3 ordinary-cohomology result is one class')
++check(cokernel([[-4,-2]])=={'free_rank':0,'torsion':[2]}, 'open Mobius band x R gives two classes')
++
++# A genuine nontrivial determinant example from Reid's m313(1,0).
++# Its two-generator presentation abelianizes to Z + Z/4; orientation is a->0,
++# b->1 modulo two, which lifts to Z/4 but not to Z.
++relators=('aaaBAAAbbaaababb','aaabAAbbaaaBABAAAB')
++def expsum(word,letter):return word.count(letter)-word.count(letter.upper())
++relations=s.Matrix([[expsum(r,c) for r in relators] for c in 'ab'])
++check(cokernel(relations)=={'free_rank':1,'torsion':[4]}, 'Reid presentation abelianization')
++check(all(expsum(r,'b')%4==0 for r in relators), 'Reid orientation character lifts to Z/4')
++check(relations.T*s.Matrix([0,1]) != s.zeros(2,1), 'the displayed orientation lift is not integral')
++check(relations.T.nullspace()==[s.Matrix([-1,1])], 'all integral characters reduce to equal a,b parity')
++reid_indices=[(x,y) for x,y in itertools.product(range(4),repeat=2) if (-4*x-2*y-2)%4==0]
++check(len(reid_indices)==8 and all(y%2==1 for x,y in reid_indices), 'nonzero determinant delta=2 in Z/4 has eight labels')
++
++# Graded integral exterior algebra on four genuine circle classes. This
++# independently checks clutching signs on T3 x S1; all four generators anticommute.
++def add(a,b):
++    out=a.copy()
++    for m,c in b.items():out[m]=out.get(m,0)+c
++    return {m:c for m,c in out.items() if c}
++def scale(a,n):return {m:c*n for m,c in a.items() if c*n}
++def mul(a,b):
++    out={}
++    for m,c in a.items():
++        for n,d in b.items():
++            if m&n:continue
++            inversions=sum(1 for i in range(4) for j in range(4) if m>>i&1 and n>>j&1 and i>j)
++            k=m|n;out[k]=out.get(k,0)+c*d*(-1)**inversions
++    return {m:c for m,c in out.items() if c}
++def total(seq):
++    out={}
++    for a in seq:out=add(out,a)
++    return out
++def second(seq):return total(mul(a,b) for i,a in enumerate(seq) for b in seq[i+1:])
++def slant(a):return {m^8:c for m,c in a.items() if m&8}
++def degree2(v):return {m:c for m,c in zip((3,5,6),v) if c}
++T={8:1}; basis=[{1<<i:1} for i in range(3)]
++exterior_cases=0
++for v in itertools.product(range(-2,3),repeat=3):
++    x=degree2(v); y=scale(x,-2); z=scale(x,1)
++    roots=[add(y,scale(x,-1)),add(z,scale(x,-1)),add(z,scale(y,-1))]
++    for pp,qq in [(b,{}) for b in basis]+[({},b) for b in basis]:
++        hh=[pp,qq,scale(add(pp,qq),-1)]
++        vv=[add(c,mul(h,T)) for c,h in zip((x,y,z),hh)]
++        a=scale(slant(second(vv)),-1)
++        ks=[add(hh[j],scale(hh[i],-1)) for i,j in ((0,1),(0,2),(1,2))]
++        rr=[add(r,mul(k,T)) for r,k in zip(roots,ks)]
++        delta=total(roots)
++        virtual=add(add(second(rr),scale(mul(total(rr),delta),-1)),add(mul(delta,delta),scale(second(roots),-1)))
++        b=scale(slant(virtual),-1)
++        check(b==scale(a,3), f'graded T3 root clutching {v}, case {exterior_cases%6}')
++        check(a==total(mul(c,h) for c,h in zip((x,y,z),hh)), f'graded T3 SU clutching {v}, case {exterior_cases%6}')
++        exterior_cases+=1
++
++# Concrete negative control on RP2 x S1_x x S1_parameter.
++# Let b be the order-two H2(RP2) generator and P the line with c1=x*t.
++# V=L_b + P + 1, E=L_b + 1 + 1, so V-E=P-1.
++# The nonzero cross term b*x*t is the only degree-four term.
++ordinary_c2=1  # coefficient in Z/2 of b*x*t
++virtual_c2=(ordinary_c2-1)%2
++check(ordinary_c2==1 and virtual_c2==0, 'nontrivial E loop: ordinary c2 fails, virtual c2 is zero')
++
++print(json.dumps({'pass':True,'sympy_version':s.__version__,
++                  'assertions':len(checks),'checks':checks,
++                  'graded_exterior_cases':exterior_cases,
++                  'klein_product_quotients':klein,
++                  'S2xS1_quotients':sphere_product,
++                  'lens_label_counts':lens,'reid_labels':reid_indices,
++                  'scope':'Exact cochain, graded-ring, abelian-presentation and finite-quotient diagnostics. The topology proof and h-principle require the separate written review.'},indent=2))
+diff --git a/unsolved_math_prioritization/attempts/6800007/review/independent_results.json b/unsolved_math_prioritization/attempts/6800007/review/independent_results.json
+new file mode 100644
+index 000000000..106420d65
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/6800007/review/independent_results.json
+@@ -0,0 +1,2076 @@
++{
++  "pass": true,
++  "sympy_version": "1.14.0",
++  "assertions": 1595,
++  "checks": [
++    "K x S1 cochain d squared zero",
++    "RP2 x S1 cochain d squared zero",
++    "K x S1 H1 basis",
++    "K x S1 H2 cocycle basis",
++    "K x S1 H2 = Z + Z/2",
++    "K x S1 H3 = Z/2",
++    "RP2 x S1 H2 = Z/2",
++    "RP2 x S1 H3 = Z/2",
++    "Klein orientation class has an integral lift",
++    "RP2 orientation Bockstein is generator of Z/2",
++    "RP2 x S1 has empty flag index set",
++    "Klein torsion index (0,0)",
++    "Klein torsion index (0,1)",
++    "Klein torsion index (1,0)",
++    "Klein torsion index (1,1)",
++    "Klein quotient enumeration size (0,0)",
++    "Klein quotient two-torsion (0,0)",
++    "Klein quotient enumeration size (0,1)",
++    "Klein quotient two-torsion (0,1)",
++    "Klein quotient enumeration size (1,0)",
++    "Klein quotient two-torsion (1,0)",
++    "Klein quotient enumeration size (1,1)",
++    "Klein quotient two-torsion (1,1)",
++    "S2 x S1 original coupled quotient n=-15",
++    "S2 x S1 original coupled quotient n=-14",
++    "S2 x S1 original coupled quotient n=-13",
++    "S2 x S1 original coupled quotient n=-12",
++    "S2 x S1 original coupled quotient n=-11",
++    "S2 x S1 original coupled quotient n=-10",
++    "S2 x S1 original coupled quotient n=-9",
++    "S2 x S1 original coupled quotient n=-8",
++    "S2 x S1 original coupled quotient n=-7",
++    "S2 x S1 original coupled quotient n=-6",
++    "S2 x S1 original coupled quotient n=-5",
++    "S2 x S1 original coupled quotient n=-4",
++    "S2 x S1 original coupled quotient n=-3",
++    "S2 x S1 original coupled quotient n=-2",
++    "S2 x S1 original coupled quotient n=-1",
++    "S2 x S1 original coupled quotient n=0",
++    "S2 x S1 original coupled quotient n=1",
++    "S2 x S1 original coupled quotient n=2",
++    "S2 x S1 original coupled quotient n=3",
++    "S2 x S1 original coupled quotient n=4",
++    "S2 x S1 original coupled quotient n=5",
++    "S2 x S1 original coupled quotient n=6",
++    "S2 x S1 original coupled quotient n=7",
++    "S2 x S1 original coupled quotient n=8",
++    "S2 x S1 original coupled quotient n=9",
++    "S2 x S1 original coupled quotient n=10",
++    "S2 x S1 original coupled quotient n=11",
++    "S2 x S1 original coupled quotient n=12",
++    "S2 x S1 original coupled quotient n=13",
++    "S2 x S1 original coupled quotient n=14",
++    "S2 x S1 original coupled quotient n=15",
++    "lens primary label count p=1",
++    "lens primary label count p=2",
++    "lens primary label count p=3",
++    "lens primary label count p=4",
++    "lens primary label count p=5",
++    "lens primary label count p=6",
++    "lens primary label count p=7",
++    "lens primary label count p=8",
++    "lens primary label count p=9",
++    "lens primary label count p=10",
++    "lens primary label count p=11",
++    "lens primary label count p=12",
++    "lens primary label count p=13",
++    "lens primary label count p=14",
++    "lens primary label count p=15",
++    "lens primary label count p=16",
++    "lens primary label count p=17",
++    "lens primary label count p=18",
++    "lens primary label count p=19",
++    "lens primary label count p=20",
++    "lens primary label count p=21",
++    "lens primary label count p=22",
++    "lens primary label count p=23",
++    "lens primary label count p=24",
++    "lens primary label count p=25",
++    "lens primary label count p=26",
++    "lens primary label count p=27",
++    "lens primary label count p=28",
++    "lens primary label count p=29",
++    "lens primary label count p=30",
++    "lens primary label count p=31",
++    "lens primary label count p=32",
++    "twisted S2 bundle over circle quotient",
++    "R3 ordinary-cohomology result is one class",
++    "open Mobius band x R gives two classes",
++    "Reid presentation abelianization",
++    "Reid orientation character lifts to Z/4",
++    "the displayed orientation lift is not integral",
++    "all integral characters reduce to equal a,b parity",
++    "nonzero determinant delta=2 in Z/4 has eight labels",
++    "graded T3 root clutching (-2, -2, -2), case 0",
++    "graded T3 SU clutching (-2, -2, -2), case 0",
++    "graded T3 root clutching (-2, -2, -2), case 1",
++    "graded T3 SU clutching (-2, -2, -2), case 1",
++    "graded T3 root clutching (-2, -2, -2), case 2",
++    "graded T3 SU clutching (-2, -2, -2), case 2",
++    "graded T3 root clutching (-2, -2, -2), case 3",
++    "graded T3 SU clutching (-2, -2, -2), case 3",
++    "graded T3 root clutching (-2, -2, -2), case 4",
++    "graded T3 SU clutching (-2, -2, -2), case 4",
++    "graded T3 root clutching (-2, -2, -2), case 5",
++    "graded T3 SU clutching (-2, -2, -2), case 5",
++    "graded T3 root clutching (-2, -2, -1), case 0",
++    "graded T3 SU clutching (-2, -2, -1), case 0",
++    "graded T3 root clutching (-2, -2, -1), case 1",
++    "graded T3 SU clutching (-2, -2, -1), case 1",
++    "graded T3 root clutching (-2, -2, -1), case 2",
++    "graded T3 SU clutching (-2, -2, -1), case 2",
++    "graded T3 root clutching (-2, -2, -1), case 3",
++    "graded T3 SU clutching (-2, -2, -1), case 3",
++    "graded T3 root clutching (-2, -2, -1), case 4",
++    "graded T3 SU clutching (-2, -2, -1), case 4",
++    "graded T3 root clutching (-2, -2, -1), case 5",
++    "graded T3 SU clutching (-2, -2, -1), case 5",
++    "graded T3 root clutching (-2, -2, 0), case 0",
++    "graded T3 SU clutching (-2, -2, 0), case 0",
++    "graded T3 root clutching (-2, -2, 0), case 1",
++    "graded T3 SU clutching (-2, -2, 0), case 1",
++    "graded T3 root clutching (-2, -2, 0), case 2",
++    "graded T3 SU clutching (-2, -2, 0), case 2",
++    "graded T3 root clutching (-2, -2, 0), case 3",
++    "graded T3 SU clutching (-2, -2, 0), case 3",
++    "graded T3 root clutching (-2, -2, 0), case 4",
++    "graded T3 SU clutching (-2, -2, 0), case 4",
++    "graded T3 root clutching (-2, -2, 0), case 5",
++    "graded T3 SU clutching (-2, -2, 0), case 5",
++    "graded T3 root clutching (-2, -2, 1), case 0",
++    "graded T3 SU clutching (-2, -2, 1), case 0",
++    "graded T3 root clutching (-2, -2, 1), case 1",
++    "graded T3 SU clutching (-2, -2, 1), case 1",
++    "graded T3 root clutching (-2, -2, 1), case 2",
++    "graded T3 SU clutching (-2, -2, 1), case 2",
++    "graded T3 root clutching (-2, -2, 1), case 3",
++    "graded T3 SU clutching (-2, -2, 1), case 3",
++    "graded T3 root clutching (-2, -2, 1), case 4",
++    "graded T3 SU clutching (-2, -2, 1), case 4",
++    "graded T3 root clutching (-2, -2, 1), case 5",
++    "graded T3 SU clutching (-2, -2, 1), case 5",
++    "graded T3 root clutching (-2, -2, 2), case 0",
++    "graded T3 SU clutching (-2, -2, 2), case 0",
++    "graded T3 root clutching (-2, -2, 2), case 1",
++    "graded T3 SU clutching (-2, -2, 2), case 1",
++    "graded T3 root clutching (-2, -2, 2), case 2",
++    "graded T3 SU clutching (-2, -2, 2), case 2",
++    "graded T3 root clutching (-2, -2, 2), case 3",
++    "graded T3 SU clutching (-2, -2, 2), case 3",
++    "graded T3 root clutching (-2, -2, 2), case 4",
++    "graded T3 SU clutching (-2, -2, 2), case 4",
++    "graded T3 root clutching (-2, -2, 2), case 5",
++    "graded T3 SU clutching (-2, -2, 2), case 5",
++    "graded T3 root clutching (-2, -1, -2), case 0",
++    "graded T3 SU clutching (-2, -1, -2), case 0",
++    "graded T3 root clutching (-2, -1, -2), case 1",
++    "graded T3 SU clutching (-2, -1, -2), case 1",
++    "graded T3 root clutching (-2, -1, -2), case 2",
++    "graded T3 SU clutching (-2, -1, -2), case 2",
++    "graded T3 root clutching (-2, -1, -2), case 3",
++    "graded T3 SU clutching (-2, -1, -2), case 3",
++    "graded T3 root clutching (-2, -1, -2), case 4",
++    "graded T3 SU clutching (-2, -1, -2), case 4",
++    "graded T3 root clutching (-2, -1, -2), case 5",
++    "graded T3 SU clutching (-2, -1, -2), case 5",
++    "graded T3 root clutching (-2, -1, -1), case 0",
++    "graded T3 SU clutching (-2, -1, -1), case 0",
++    "graded T3 root clutching (-2, -1, -1), case 1",
++    "graded T3 SU clutching (-2, -1, -1), case 1",
++    "graded T3 root clutching (-2, -1, -1), case 2",
++    "graded T3 SU clutching (-2, -1, -1), case 2",
++    "graded T3 root clutching (-2, -1, -1), case 3",
++    "graded T3 SU clutching (-2, -1, -1), case 3",
++    "graded T3 root clutching (-2, -1, -1), case 4",
++    "graded T3 SU clutching (-2, -1, -1), case 4",
++    "graded T3 root clutching (-2, -1, -1), case 5",
++    "graded T3 SU clutching (-2, -1, -1), case 5",
++    "graded T3 root clutching (-2, -1, 0), case 0",
++    "graded T3 SU clutching (-2, -1, 0), case 0",
++    "graded T3 root clutching (-2, -1, 0), case 1",
++    "graded T3 SU clutching (-2, -1, 0), case 1",
++    "graded T3 root clutching (-2, -1, 0), case 2",
++    "graded T3 SU clutching (-2, -1, 0), case 2",
++    "graded T3 root clutching (-2, -1, 0), case 3",
++    "graded T3 SU clutching (-2, -1, 0), case 3",
++    "graded T3 root clutching (-2, -1, 0), case 4",
++    "graded T3 SU clutching (-2, -1, 0), case 4",
++    "graded T3 root clutching (-2, -1, 0), case 5",
++    "graded T3 SU clutching (-2, -1, 0), case 5",
++    "graded T3 root clutching (-2, -1, 1), case 0",
++    "graded T3 SU clutching (-2, -1, 1), case 0",
++    "graded T3 root clutching (-2, -1, 1), case 1",
++    "graded T3 SU clutching (-2, -1, 1), case 1",
++    "graded T3 root clutching (-2, -1, 1), case 2",
++    "graded T3 SU clutching (-2, -1, 1), case 2",
++    "graded T3 root clutching (-2, -1, 1), case 3",
++    "graded T3 SU clutching (-2, -1, 1), case 3",
++    "graded T3 root clutching (-2, -1, 1), case 4",
++    "graded T3 SU clutching (-2, -1, 1), case 4",
++    "graded T3 root clutching (-2, -1, 1), case 5",
++    "graded T3 SU clutching (-2, -1, 1), case 5",
++    "graded T3 root clutching (-2, -1, 2), case 0",
++    "graded T3 SU clutching (-2, -1, 2), case 0",
++    "graded T3 root clutching (-2, -1, 2), case 1",
++    "graded T3 SU clutching (-2, -1, 2), case 1",
++    "graded T3 root clutching (-2, -1, 2), case 2",
++    "graded T3 SU clutching (-2, -1, 2), case 2",
++    "graded T3 root clutching (-2, -1, 2), case 3",
++    "graded T3 SU clutching (-2, -1, 2), case 3",
++    "graded T3 root clutching (-2, -1, 2), case 4",
++    "graded T3 SU clutching (-2, -1, 2), case 4",
++    "graded T3 root clutching (-2, -1, 2), case 5",
++    "graded T3 SU clutching (-2, -1, 2), case 5",
++    "graded T3 root clutching (-2, 0, -2), case 0",
++    "graded T3 SU clutching (-2, 0, -2), case 0",
++    "graded T3 root clutching (-2, 0, -2), case 1",
++    "graded T3 SU clutching (-2, 0, -2), case 1",
++    "graded T3 root clutching (-2, 0, -2), case 2",
++    "graded T3 SU clutching (-2, 0, -2), case 2",
++    "graded T3 root clutching (-2, 0, -2), case 3",
++    "graded T3 SU clutching (-2, 0, -2), case 3",
++    "graded T3 root clutching (-2, 0, -2), case 4",
++    "graded T3 SU clutching (-2, 0, -2), case 4",
++    "graded T3 root clutching (-2, 0, -2), case 5",
++    "graded T3 SU clutching (-2, 0, -2), case 5",
++    "graded T3 root clutching (-2, 0, -1), case 0",
++    "graded T3 SU clutching (-2, 0, -1), case 0",
++    "graded T3 root clutching (-2, 0, -1), case 1",
++    "graded T3 SU clutching (-2, 0, -1), case 1",
++    "graded T3 root clutching (-2, 0, -1), case 2",
++    "graded T3 SU clutching (-2, 0, -1), case 2",
++    "graded T3 root clutching (-2, 0, -1), case 3",
++    "graded T3 SU clutching (-2, 0, -1), case 3",
++    "graded T3 root clutching (-2, 0, -1), case 4",
++    "graded T3 SU clutching (-2, 0, -1), case 4",
++    "graded T3 root clutching (-2, 0, -1), case 5",
++    "graded T3 SU clutching (-2, 0, -1), case 5",
++    "graded T3 root clutching (-2, 0, 0), case 0",
++    "graded T3 SU clutching (-2, 0, 0), case 0",
++    "graded T3 root clutching (-2, 0, 0), case 1",
++    "graded T3 SU clutching (-2, 0, 0), case 1",
++    "graded T3 root clutching (-2, 0, 0), case 2",
++    "graded T3 SU clutching (-2, 0, 0), case 2",
++    "graded T3 root clutching (-2, 0, 0), case 3",
++    "graded T3 SU clutching (-2, 0, 0), case 3",
++    "graded T3 root clutching (-2, 0, 0), case 4",
++    "graded T3 SU clutching (-2, 0, 0), case 4",
++    "graded T3 root clutching (-2, 0, 0), case 5",
++    "graded T3 SU clutching (-2, 0, 0), case 5",
++    "graded T3 root clutching (-2, 0, 1), case 0",
++    "graded T3 SU clutching (-2, 0, 1), case 0",
++    "graded T3 root clutching (-2, 0, 1), case 1",
++    "graded T3 SU clutching (-2, 0, 1), case 1",
++    "graded T3 root clutching (-2, 0, 1), case 2",
++    "graded T3 SU clutching (-2, 0, 1), case 2",
++    "graded T3 root clutching (-2, 0, 1), case 3",
++    "graded T3 SU clutching (-2, 0, 1), case 3",
++    "graded T3 root clutching (-2, 0, 1), case 4",
++    "graded T3 SU clutching (-2, 0, 1), case 4",
++    "graded T3 root clutching (-2, 0, 1), case 5",
++    "graded T3 SU clutching (-2, 0, 1), case 5",
++    "graded T3 root clutching (-2, 0, 2), case 0",
++    "graded T3 SU clutching (-2, 0, 2), case 0",
++    "graded T3 root clutching (-2, 0, 2), case 1",
++    "graded T3 SU clutching (-2, 0, 2), case 1",
++    "graded T3 root clutching (-2, 0, 2), case 2",
++    "graded T3 SU clutching (-2, 0, 2), case 2",
++    "graded T3 root clutching (-2, 0, 2), case 3",
++    "graded T3 SU clutching (-2, 0, 2), case 3",
++    "graded T3 root clutching (-2, 0, 2), case 4",
++    "graded T3 SU clutching (-2, 0, 2), case 4",
++    "graded T3 root clutching (-2, 0, 2), case 5",
++    "graded T3 SU clutching (-2, 0, 2), case 5",
++    "graded T3 root clutching (-2, 1, -2), case 0",
++    "graded T3 SU clutching (-2, 1, -2), case 0",
++    "graded T3 root clutching (-2, 1, -2), case 1",
++    "graded T3 SU clutching (-2, 1, -2), case 1",
++    "graded T3 root clutching (-2, 1, -2), case 2",
++    "graded T3 SU clutching (-2, 1, -2), case 2",
++    "graded T3 root clutching (-2, 1, -2), case 3",
++    "graded T3 SU clutching (-2, 1, -2), case 3",
++    "graded T3 root clutching (-2, 1, -2), case 4",
++    "graded T3 SU clutching (-2, 1, -2), case 4",
++    "graded T3 root clutching (-2, 1, -2), case 5",
++    "graded T3 SU clutching (-2, 1, -2), case 5",
++    "graded T3 root clutching (-2, 1, -1), case 0",
++    "graded T3 SU clutching (-2, 1, -1), case 0",
++    "graded T3 root clutching (-2, 1, -1), case 1",
++    "graded T3 SU clutching (-2, 1, -1), case 1",
++    "graded T3 root clutching (-2, 1, -1), case 2",
++    "graded T3 SU clutching (-2, 1, -1), case 2",
++    "graded T3 root clutching (-2, 1, -1), case 3",
++    "graded T3 SU clutching (-2, 1, -1), case 3",
++    "graded T3 root clutching (-2, 1, -1), case 4",
++    "graded T3 SU clutching (-2, 1, -1), case 4",
++    "graded T3 root clutching (-2, 1, -1), case 5",
++    "graded T3 SU clutching (-2, 1, -1), case 5",
++    "graded T3 root clutching (-2, 1, 0), case 0",
++    "graded T3 SU clutching (-2, 1, 0), case 0",
++    "graded T3 root clutching (-2, 1, 0), case 1",
++    "graded T3 SU clutching (-2, 1, 0), case 1",
++    "graded T3 root clutching (-2, 1, 0), case 2",
++    "graded T3 SU clutching (-2, 1, 0), case 2",
++    "graded T3 root clutching (-2, 1, 0), case 3",
++    "graded T3 SU clutching (-2, 1, 0), case 3",
++    "graded T3 root clutching (-2, 1, 0), case 4",
++    "graded T3 SU clutching (-2, 1, 0), case 4",
++    "graded T3 root clutching (-2, 1, 0), case 5",
++    "graded T3 SU clutching (-2, 1, 0), case 5",
++    "graded T3 root clutching (-2, 1, 1), case 0",
++    "graded T3 SU clutching (-2, 1, 1), case 0",
++    "graded T3 root clutching (-2, 1, 1), case 1",
++    "graded T3 SU clutching (-2, 1, 1), case 1",
++    "graded T3 root clutching (-2, 1, 1), case 2",
++    "graded T3 SU clutching (-2, 1, 1), case 2",
++    "graded T3 root clutching (-2, 1, 1), case 3",
++    "graded T3 SU clutching (-2, 1, 1), case 3",
++    "graded T3 root clutching (-2, 1, 1), case 4",
++    "graded T3 SU clutching (-2, 1, 1), case 4",
++    "graded T3 root clutching (-2, 1, 1), case 5",
++    "graded T3 SU clutching (-2, 1, 1), case 5",
++    "graded T3 root clutching (-2, 1, 2), case 0",
++    "graded T3 SU clutching (-2, 1, 2), case 0",
++    "graded T3 root clutching (-2, 1, 2), case 1",
++    "graded T3 SU clutching (-2, 1, 2), case 1",
++    "graded T3 root clutching (-2, 1, 2), case 2",
++    "graded T3 SU clutching (-2, 1, 2), case 2",
++    "graded T3 root clutching (-2, 1, 2), case 3",
++    "graded T3 SU clutching (-2, 1, 2), case 3",
++    "graded T3 root clutching (-2, 1, 2), case 4",
++    "graded T3 SU clutching (-2, 1, 2), case 4",
++    "graded T3 root clutching (-2, 1, 2), case 5",
++    "graded T3 SU clutching (-2, 1, 2), case 5",
++    "graded T3 root clutching (-2, 2, -2), case 0",
++    "graded T3 SU clutching (-2, 2, -2), case 0",
++    "graded T3 root clutching (-2, 2, -2), case 1",
++    "graded T3 SU clutching (-2, 2, -2), case 1",
++    "graded T3 root clutching (-2, 2, -2), case 2",
++    "graded T3 SU clutching (-2, 2, -2), case 2",
++    "graded T3 root clutching (-2, 2, -2), case 3",
++    "graded T3 SU clutching (-2, 2, -2), case 3",
++    "graded T3 root clutching (-2, 2, -2), case 4",
++    "graded T3 SU clutching (-2, 2, -2), case 4",
++    "graded T3 root clutching (-2, 2, -2), case 5",
++    "graded T3 SU clutching (-2, 2, -2), case 5",
++    "graded T3 root clutching (-2, 2, -1), case 0",
++    "graded T3 SU clutching (-2, 2, -1), case 0",
++    "graded T3 root clutching (-2, 2, -1), case 1",
++    "graded T3 SU clutching (-2, 2, -1), case 1",
++    "graded T3 root clutching (-2, 2, -1), case 2",
++    "graded T3 SU clutching (-2, 2, -1), case 2",
++    "graded T3 root clutching (-2, 2, -1), case 3",
++    "graded T3 SU clutching (-2, 2, -1), case 3",
++    "graded T3 root clutching (-2, 2, -1), case 4",
++    "graded T3 SU clutching (-2, 2, -1), case 4",
++    "graded T3 root clutching (-2, 2, -1), case 5",
++    "graded T3 SU clutching (-2, 2, -1), case 5",
++    "graded T3 root clutching (-2, 2, 0), case 0",
++    "graded T3 SU clutching (-2, 2, 0), case 0",
++    "graded T3 root clutching (-2, 2, 0), case 1",
++    "graded T3 SU clutching (-2, 2, 0), case 1",
++    "graded T3 root clutching (-2, 2, 0), case 2",
++    "graded T3 SU clutching (-2, 2, 0), case 2",
++    "graded T3 root clutching (-2, 2, 0), case 3",
++    "graded T3 SU clutching (-2, 2, 0), case 3",
++    "graded T3 root clutching (-2, 2, 0), case 4",
++    "graded T3 SU clutching (-2, 2, 0), case 4",
++    "graded T3 root clutching (-2, 2, 0), case 5",
++    "graded T3 SU clutching (-2, 2, 0), case 5",
++    "graded T3 root clutching (-2, 2, 1), case 0",
++    "graded T3 SU clutching (-2, 2, 1), case 0",
++    "graded T3 root clutching (-2, 2, 1), case 1",
++    "graded T3 SU clutching (-2, 2, 1), case 1",
++    "graded T3 root clutching (-2, 2, 1), case 2",
++    "graded T3 SU clutching (-2, 2, 1), case 2",
++    "graded T3 root clutching (-2, 2, 1), case 3",
++    "graded T3 SU clutching (-2, 2, 1), case 3",
++    "graded T3 root clutching (-2, 2, 1), case 4",
++    "graded T3 SU clutching (-2, 2, 1), case 4",
++    "graded T3 root clutching (-2, 2, 1), case 5",
++    "graded T3 SU clutching (-2, 2, 1), case 5",
++    "graded T3 root clutching (-2, 2, 2), case 0",
++    "graded T3 SU clutching (-2, 2, 2), case 0",
++    "graded T3 root clutching (-2, 2, 2), case 1",
++    "graded T3 SU clutching (-2, 2, 2), case 1",
++    "graded T3 root clutching (-2, 2, 2), case 2",
++    "graded T3 SU clutching (-2, 2, 2), case 2",
++    "graded T3 root clutching (-2, 2, 2), case 3",
++    "graded T3 SU clutching (-2, 2, 2), case 3",
++    "graded T3 root clutching (-2, 2, 2), case 4",
++    "graded T3 SU clutching (-2, 2, 2), case 4",
++    "graded T3 root clutching (-2, 2, 2), case 5",
++    "graded T3 SU clutching (-2, 2, 2), case 5",
++    "graded T3 root clutching (-1, -2, -2), case 0",
++    "graded T3 SU clutching (-1, -2, -2), case 0",
++    "graded T3 root clutching (-1, -2, -2), case 1",
++    "graded T3 SU clutching (-1, -2, -2), case 1",
++    "graded T3 root clutching (-1, -2, -2), case 2",
++    "graded T3 SU clutching (-1, -2, -2), case 2",
++    "graded T3 root clutching (-1, -2, -2), case 3",
++    "graded T3 SU clutching (-1, -2, -2), case 3",
++    "graded T3 root clutching (-1, -2, -2), case 4",
++    "graded T3 SU clutching (-1, -2, -2), case 4",
++    "graded T3 root clutching (-1, -2, -2), case 5",
++    "graded T3 SU clutching (-1, -2, -2), case 5",
++    "graded T3 root clutching (-1, -2, -1), case 0",
++    "graded T3 SU clutching (-1, -2, -1), case 0",
++    "graded T3 root clutching (-1, -2, -1), case 1",
++    "graded T3 SU clutching (-1, -2, -1), case 1",
++    "graded T3 root clutching (-1, -2, -1), case 2",
++    "graded T3 SU clutching (-1, -2, -1), case 2",
++    "graded T3 root clutching (-1, -2, -1), case 3",
++    "graded T3 SU clutching (-1, -2, -1), case 3",
++    "graded T3 root clutching (-1, -2, -1), case 4",
++    "graded T3 SU clutching (-1, -2, -1), case 4",
++    "graded T3 root clutching (-1, -2, -1), case 5",
++    "graded T3 SU clutching (-1, -2, -1), case 5",
++    "graded T3 root clutching (-1, -2, 0), case 0",
++    "graded T3 SU clutching (-1, -2, 0), case 0",
++    "graded T3 root clutching (-1, -2, 0), case 1",
++    "graded T3 SU clutching (-1, -2, 0), case 1",
++    "graded T3 root clutching (-1, -2, 0), case 2",
++    "graded T3 SU clutching (-1, -2, 0), case 2",
++    "graded T3 root clutching (-1, -2, 0), case 3",
++    "graded T3 SU clutching (-1, -2, 0), case 3",
++    "graded T3 root clutching (-1, -2, 0), case 4",
++    "graded T3 SU clutching (-1, -2, 0), case 4",
++    "graded T3 root clutching (-1, -2, 0), case 5",
++    "graded T3 SU clutching (-1, -2, 0), case 5",
++    "graded T3 root clutching (-1, -2, 1), case 0",
++    "graded T3 SU clutching (-1, -2, 1), case 0",
++    "graded T3 root clutching (-1, -2, 1), case 1",
++    "graded T3 SU clutching (-1, -2, 1), case 1",
++    "graded T3 root clutching (-1, -2, 1), case 2",
++    "graded T3 SU clutching (-1, -2, 1), case 2",
++    "graded T3 root clutching (-1, -2, 1), case 3",
++    "graded T3 SU clutching (-1, -2, 1), case 3",
++    "graded T3 root clutching (-1, -2, 1), case 4",
++    "graded T3 SU clutching (-1, -2, 1), case 4",
++    "graded T3 root clutching (-1, -2, 1), case 5",
++    "graded T3 SU clutching (-1, -2, 1), case 5",
++    "graded T3 root clutching (-1, -2, 2), case 0",
++    "graded T3 SU clutching (-1, -2, 2), case 0",
++    "graded T3 root clutching (-1, -2, 2), case 1",
++    "graded T3 SU clutching (-1, -2, 2), case 1",
++    "graded T3 root clutching (-1, -2, 2), case 2",
++    "graded T3 SU clutching (-1, -2, 2), case 2",
++    "graded T3 root clutching (-1, -2, 2), case 3",
++    "graded T3 SU clutching (-1, -2, 2), case 3",
++    "graded T3 root clutching (-1, -2, 2), case 4",
++    "graded T3 SU clutching (-1, -2, 2), case 4",
++    "graded T3 root clutching (-1, -2, 2), case 5",
++    "graded T3 SU clutching (-1, -2, 2), case 5",
++    "graded T3 root clutching (-1, -1, -2), case 0",
++    "graded T3 SU clutching (-1, -1, -2), case 0",
++    "graded T3 root clutching (-1, -1, -2), case 1",
++    "graded T3 SU clutching (-1, -1, -2), case 1",
++    "graded T3 root clutching (-1, -1, -2), case 2",
++    "graded T3 SU clutching (-1, -1, -2), case 2",
++    "graded T3 root clutching (-1, -1, -2), case 3",
++    "graded T3 SU clutching (-1, -1, -2), case 3",
++    "graded T3 root clutching (-1, -1, -2), case 4",
++    "graded T3 SU clutching (-1, -1, -2), case 4",
++    "graded T3 root clutching (-1, -1, -2), case 5",
++    "graded T3 SU clutching (-1, -1, -2), case 5",
++    "graded T3 root clutching (-1, -1, -1), case 0",
++    "graded T3 SU clutching (-1, -1, -1), case 0",
++    "graded T3 root clutching (-1, -1, -1), case 1",
++    "graded T3 SU clutching (-1, -1, -1), case 1",
++    "graded T3 root clutching (-1, -1, -1), case 2",
++    "graded T3 SU clutching (-1, -1, -1), case 2",
++    "graded T3 root clutching (-1, -1, -1), case 3",
++    "graded T3 SU clutching (-1, -1, -1), case 3",
++    "graded T3 root clutching (-1, -1, -1), case 4",
++    "graded T3 SU clutching (-1, -1, -1), case 4",
++    "graded T3 root clutching (-1, -1, -1), case 5",
++    "graded T3 SU clutching (-1, -1, -1), case 5",
++    "graded T3 root clutching (-1, -1, 0), case 0",
++    "graded T3 SU clutching (-1, -1, 0), case 0",
++    "graded T3 root clutching (-1, -1, 0), case 1",
++    "graded T3 SU clutching (-1, -1, 0), case 1",
++    "graded T3 root clutching (-1, -1, 0), case 2",
++    "graded T3 SU clutching (-1, -1, 0), case 2",
++    "graded T3 root clutching (-1, -1, 0), case 3",
++    "graded T3 SU clutching (-1, -1, 0), case 3",
++    "graded T3 root clutching (-1, -1, 0), case 4",
++    "graded T3 SU clutching (-1, -1, 0), case 4",
++    "graded T3 root clutching (-1, -1, 0), case 5",
++    "graded T3 SU clutching (-1, -1, 0), case 5",
++    "graded T3 root clutching (-1, -1, 1), case 0",
++    "graded T3 SU clutching (-1, -1, 1), case 0",
++    "graded T3 root clutching (-1, -1, 1), case 1",
++    "graded T3 SU clutching (-1, -1, 1), case 1",
++    "graded T3 root clutching (-1, -1, 1), case 2",
++    "graded T3 SU clutching (-1, -1, 1), case 2",
++    "graded T3 root clutching (-1, -1, 1), case 3",
++    "graded T3 SU clutching (-1, -1, 1), case 3",
++    "graded T3 root clutching (-1, -1, 1), case 4",
++    "graded T3 SU clutching (-1, -1, 1), case 4",
++    "graded T3 root clutching (-1, -1, 1), case 5",
++    "graded T3 SU clutching (-1, -1, 1), case 5",
++    "graded T3 root clutching (-1, -1, 2), case 0",
++    "graded T3 SU clutching (-1, -1, 2), case 0",
++    "graded T3 root clutching (-1, -1, 2), case 1",
++    "graded T3 SU clutching (-1, -1, 2), case 1",
++    "graded T3 root clutching (-1, -1, 2), case 2",
++    "graded T3 SU clutching (-1, -1, 2), case 2",
++    "graded T3 root clutching (-1, -1, 2), case 3",
++    "graded T3 SU clutching (-1, -1, 2), case 3",
++    "graded T3 root clutching (-1, -1, 2), case 4",
++    "graded T3 SU clutching (-1, -1, 2), case 4",
++    "graded T3 root clutching (-1, -1, 2), case 5",
++    "graded T3 SU clutching (-1, -1, 2), case 5",
++    "graded T3 root clutching (-1, 0, -2), case 0",
++    "graded T3 SU clutching (-1, 0, -2), case 0",
++    "graded T3 root clutching (-1, 0, -2), case 1",
++    "graded T3 SU clutching (-1, 0, -2), case 1",
++    "graded T3 root clutching (-1, 0, -2), case 2",
++    "graded T3 SU clutching (-1, 0, -2), case 2",
++    "graded T3 root clutching (-1, 0, -2), case 3",
++    "graded T3 SU clutching (-1, 0, -2), case 3",
++    "graded T3 root clutching (-1, 0, -2), case 4",
++    "graded T3 SU clutching (-1, 0, -2), case 4",
++    "graded T3 root clutching (-1, 0, -2), case 5",
++    "graded T3 SU clutching (-1, 0, -2), case 5",
++    "graded T3 root clutching (-1, 0, -1), case 0",
++    "graded T3 SU clutching (-1, 0, -1), case 0",
++    "graded T3 root clutching (-1, 0, -1), case 1",
++    "graded T3 SU clutching (-1, 0, -1), case 1",
++    "graded T3 root clutching (-1, 0, -1), case 2",
++    "graded T3 SU clutching (-1, 0, -1), case 2",
++    "graded T3 root clutching (-1, 0, -1), case 3",
++    "graded T3 SU clutching (-1, 0, -1), case 3",
++    "graded T3 root clutching (-1, 0, -1), case 4",
++    "graded T3 SU clutching (-1, 0, -1), case 4",
++    "graded T3 root clutching (-1, 0, -1), case 5",
++    "graded T3 SU clutching (-1, 0, -1), case 5",
++    "graded T3 root clutching (-1, 0, 0), case 0",
++    "graded T3 SU clutching (-1, 0, 0), case 0",
++    "graded T3 root clutching (-1, 0, 0), case 1",
++    "graded T3 SU clutching (-1, 0, 0), case 1",
++    "graded T3 root clutching (-1, 0, 0), case 2",
++    "graded T3 SU clutching (-1, 0, 0), case 2",
++    "graded T3 root clutching (-1, 0, 0), case 3",
++    "graded T3 SU clutching (-1, 0, 0), case 3",
++    "graded T3 root clutching (-1, 0, 0), case 4",
++    "graded T3 SU clutching (-1, 0, 0), case 4",
++    "graded T3 root clutching (-1, 0, 0), case 5",
++    "graded T3 SU clutching (-1, 0, 0), case 5",
++    "graded T3 root clutching (-1, 0, 1), case 0",
++    "graded T3 SU clutching (-1, 0, 1), case 0",
++    "graded T3 root clutching (-1, 0, 1), case 1",
++    "graded T3 SU clutching (-1, 0, 1), case 1",
++    "graded T3 root clutching (-1, 0, 1), case 2",
++    "graded T3 SU clutching (-1, 0, 1), case 2",
++    "graded T3 root clutching (-1, 0, 1), case 3",
++    "graded T3 SU clutching (-1, 0, 1), case 3",
++    "graded T3 root clutching (-1, 0, 1), case 4",
++    "graded T3 SU clutching (-1, 0, 1), case 4",
++    "graded T3 root clutching (-1, 0, 1), case 5",
++    "graded T3 SU clutching (-1, 0, 1), case 5",
++    "graded T3 root clutching (-1, 0, 2), case 0",
++    "graded T3 SU clutching (-1, 0, 2), case 0",
++    "graded T3 root clutching (-1, 0, 2), case 1",
++    "graded T3 SU clutching (-1, 0, 2), case 1",
++    "graded T3 root clutching (-1, 0, 2), case 2",
++    "graded T3 SU clutching (-1, 0, 2), case 2",
++    "graded T3 root clutching (-1, 0, 2), case 3",
++    "graded T3 SU clutching (-1, 0, 2), case 3",
++    "graded T3 root clutching (-1, 0, 2), case 4",
++    "graded T3 SU clutching (-1, 0, 2), case 4",
++    "graded T3 root clutching (-1, 0, 2), case 5",
++    "graded T3 SU clutching (-1, 0, 2), case 5",
++    "graded T3 root clutching (-1, 1, -2), case 0",
++    "graded T3 SU clutching (-1, 1, -2), case 0",
++    "graded T3 root clutching (-1, 1, -2), case 1",
++    "graded T3 SU clutching (-1, 1, -2), case 1",
++    "graded T3 root clutching (-1, 1, -2), case 2",
++    "graded T3 SU clutching (-1, 1, -2), case 2",
++    "graded T3 root clutching (-1, 1, -2), case 3",
++    "graded T3 SU clutching (-1, 1, -2), case 3",
++    "graded T3 root clutching (-1, 1, -2), case 4",
++    "graded T3 SU clutching (-1, 1, -2), case 4",
++    "graded T3 root clutching (-1, 1, -2), case 5",
++    "graded T3 SU clutching (-1, 1, -2), case 5",
++    "graded T3 root clutching (-1, 1, -1), case 0",
++    "graded T3 SU clutching (-1, 1, -1), case 0",
++    "graded T3 root clutching (-1, 1, -1), case 1",
++    "graded T3 SU clutching (-1, 1, -1), case 1",
++    "graded T3 root clutching (-1, 1, -1), case 2",
++    "graded T3 SU clutching (-1, 1, -1), case 2",
++    "graded T3 root clutching (-1, 1, -1), case 3",
++    "graded T3 SU clutching (-1, 1, -1), case 3",
++    "graded T3 root clutching (-1, 1, -1), case 4",
++    "graded T3 SU clutching (-1, 1, -1), case 4",
++    "graded T3 root clutching (-1, 1, -1), case 5",
++    "graded T3 SU clutching (-1, 1, -1), case 5",
++    "graded T3 root clutching (-1, 1, 0), case 0",
++    "graded T3 SU clutching (-1, 1, 0), case 0",
++    "graded T3 root clutching (-1, 1, 0), case 1",
++    "graded T3 SU clutching (-1, 1, 0), case 1",
++    "graded T3 root clutching (-1, 1, 0), case 2",
++    "graded T3 SU clutching (-1, 1, 0), case 2",
++    "graded T3 root clutching (-1, 1, 0), case 3",
++    "graded T3 SU clutching (-1, 1, 0), case 3",
++    "graded T3 root clutching (-1, 1, 0), case 4",
++    "graded T3 SU clutching (-1, 1, 0), case 4",
++    "graded T3 root clutching (-1, 1, 0), case 5",
++    "graded T3 SU clutching (-1, 1, 0), case 5",
++    "graded T3 root clutching (-1, 1, 1), case 0",
++    "graded T3 SU clutching (-1, 1, 1), case 0",
++    "graded T3 root clutching (-1, 1, 1), case 1",
++    "graded T3 SU clutching (-1, 1, 1), case 1",
++    "graded T3 root clutching (-1, 1, 1), case 2",
++    "graded T3 SU clutching (-1, 1, 1), case 2",
++    "graded T3 root clutching (-1, 1, 1), case 3",
++    "graded T3 SU clutching (-1, 1, 1), case 3",
++    "graded T3 root clutching (-1, 1, 1), case 4",
++    "graded T3 SU clutching (-1, 1, 1), case 4",
++    "graded T3 root clutching (-1, 1, 1), case 5",
++    "graded T3 SU clutching (-1, 1, 1), case 5",
++    "graded T3 root clutching (-1, 1, 2), case 0",
++    "graded T3 SU clutching (-1, 1, 2), case 0",
++    "graded T3 root clutching (-1, 1, 2), case 1",
++    "graded T3 SU clutching (-1, 1, 2), case 1",
++    "graded T3 root clutching (-1, 1, 2), case 2",
++    "graded T3 SU clutching (-1, 1, 2), case 2",
++    "graded T3 root clutching (-1, 1, 2), case 3",
++    "graded T3 SU clutching (-1, 1, 2), case 3",
++    "graded T3 root clutching (-1, 1, 2), case 4",
++    "graded T3 SU clutching (-1, 1, 2), case 4",
++    "graded T3 root clutching (-1, 1, 2), case 5",
++    "graded T3 SU clutching (-1, 1, 2), case 5",
++    "graded T3 root clutching (-1, 2, -2), case 0",
++    "graded T3 SU clutching (-1, 2, -2), case 0",
++    "graded T3 root clutching (-1, 2, -2), case 1",
++    "graded T3 SU clutching (-1, 2, -2), case 1",
++    "graded T3 root clutching (-1, 2, -2), case 2",
++    "graded T3 SU clutching (-1, 2, -2), case 2",
++    "graded T3 root clutching (-1, 2, -2), case 3",
++    "graded T3 SU clutching (-1, 2, -2), case 3",
++    "graded T3 root clutching (-1, 2, -2), case 4",
++    "graded T3 SU clutching (-1, 2, -2), case 4",
++    "graded T3 root clutching (-1, 2, -2), case 5",
++    "graded T3 SU clutching (-1, 2, -2), case 5",
++    "graded T3 root clutching (-1, 2, -1), case 0",
++    "graded T3 SU clutching (-1, 2, -1), case 0",
++    "graded T3 root clutching (-1, 2, -1), case 1",
++    "graded T3 SU clutching (-1, 2, -1), case 1",
++    "graded T3 root clutching (-1, 2, -1), case 2",
++    "graded T3 SU clutching (-1, 2, -1), case 2",
++    "graded T3 root clutching (-1, 2, -1), case 3",
++    "graded T3 SU clutching (-1, 2, -1), case 3",
++    "graded T3 root clutching (-1, 2, -1), case 4",
++    "graded T3 SU clutching (-1, 2, -1), case 4",
++    "graded T3 root clutching (-1, 2, -1), case 5",
++    "graded T3 SU clutching (-1, 2, -1), case 5",
++    "graded T3 root clutching (-1, 2, 0), case 0",
++    "graded T3 SU clutching (-1, 2, 0), case 0",
++    "graded T3 root clutching (-1, 2, 0), case 1",
++    "graded T3 SU clutching (-1, 2, 0), case 1",
++    "graded T3 root clutching (-1, 2, 0), case 2",
++    "graded T3 SU clutching (-1, 2, 0), case 2",
++    "graded T3 root clutching (-1, 2, 0), case 3",
++    "graded T3 SU clutching (-1, 2, 0), case 3",
++    "graded T3 root clutching (-1, 2, 0), case 4",
++    "graded T3 SU clutching (-1, 2, 0), case 4",
++    "graded T3 root clutching (-1, 2, 0), case 5",
++    "graded T3 SU clutching (-1, 2, 0), case 5",
++    "graded T3 root clutching (-1, 2, 1), case 0",
++    "graded T3 SU clutching (-1, 2, 1), case 0",
++    "graded T3 root clutching (-1, 2, 1), case 1",
++    "graded T3 SU clutching (-1, 2, 1), case 1",
++    "graded T3 root clutching (-1, 2, 1), case 2",
++    "graded T3 SU clutching (-1, 2, 1), case 2",
++    "graded T3 root clutching (-1, 2, 1), case 3",
++    "graded T3 SU clutching (-1, 2, 1), case 3",
++    "graded T3 root clutching (-1, 2, 1), case 4",
++    "graded T3 SU clutching (-1, 2, 1), case 4",
++    "graded T3 root clutching (-1, 2, 1), case 5",
++    "graded T3 SU clutching (-1, 2, 1), case 5",
++    "graded T3 root clutching (-1, 2, 2), case 0",
++    "graded T3 SU clutching (-1, 2, 2), case 0",
++    "graded T3 root clutching (-1, 2, 2), case 1",
++    "graded T3 SU clutching (-1, 2, 2), case 1",
++    "graded T3 root clutching (-1, 2, 2), case 2",
++    "graded T3 SU clutching (-1, 2, 2), case 2",
++    "graded T3 root clutching (-1, 2, 2), case 3",
++    "graded T3 SU clutching (-1, 2, 2), case 3",
++    "graded T3 root clutching (-1, 2, 2), case 4",
++    "graded T3 SU clutching (-1, 2, 2), case 4",
++    "graded T3 root clutching (-1, 2, 2), case 5",
++    "graded T3 SU clutching (-1, 2, 2), case 5",
++    "graded T3 root clutching (0, -2, -2), case 0",
++    "graded T3 SU clutching (0, -2, -2), case 0",
++    "graded T3 root clutching (0, -2, -2), case 1",
++    "graded T3 SU clutching (0, -2, -2), case 1",
++    "graded T3 root clutching (0, -2, -2), case 2",
++    "graded T3 SU clutching (0, -2, -2), case 2",
++    "graded T3 root clutching (0, -2, -2), case 3",
++    "graded T3 SU clutching (0, -2, -2), case 3",
++    "graded T3 root clutching (0, -2, -2), case 4",
++    "graded T3 SU clutching (0, -2, -2), case 4",
++    "graded T3 root clutching (0, -2, -2), case 5",
++    "graded T3 SU clutching (0, -2, -2), case 5",
++    "graded T3 root clutching (0, -2, -1), case 0",
++    "graded T3 SU clutching (0, -2, -1), case 0",
++    "graded T3 root clutching (0, -2, -1), case 1",
++    "graded T3 SU clutching (0, -2, -1), case 1",
++    "graded T3 root clutching (0, -2, -1), case 2",
++    "graded T3 SU clutching (0, -2, -1), case 2",
++    "graded T3 root clutching (0, -2, -1), case 3",
++    "graded T3 SU clutching (0, -2, -1), case 3",
++    "graded T3 root clutching (0, -2, -1), case 4",
++    "graded T3 SU clutching (0, -2, -1), case 4",
++    "graded T3 root clutching (0, -2, -1), case 5",
++    "graded T3 SU clutching (0, -2, -1), case 5",
++    "graded T3 root clutching (0, -2, 0), case 0",
++    "graded T3 SU clutching (0, -2, 0), case 0",
++    "graded T3 root clutching (0, -2, 0), case 1",
++    "graded T3 SU clutching (0, -2, 0), case 1",
++    "graded T3 root clutching (0, -2, 0), case 2",
++    "graded T3 SU clutching (0, -2, 0), case 2",
++    "graded T3 root clutching (0, -2, 0), case 3",
++    "graded T3 SU clutching (0, -2, 0), case 3",
++    "graded T3 root clutching (0, -2, 0), case 4",
++    "graded T3 SU clutching (0, -2, 0), case 4",
++    "graded T3 root clutching (0, -2, 0), case 5",
++    "graded T3 SU clutching (0, -2, 0), case 5",
++    "graded T3 root clutching (0, -2, 1), case 0",
++    "graded T3 SU clutching (0, -2, 1), case 0",
++    "graded T3 root clutching (0, -2, 1), case 1",
++    "graded T3 SU clutching (0, -2, 1), case 1",
++    "graded T3 root clutching (0, -2, 1), case 2",
++    "graded T3 SU clutching (0, -2, 1), case 2",
++    "graded T3 root clutching (0, -2, 1), case 3",
++    "graded T3 SU clutching (0, -2, 1), case 3",
++    "graded T3 root clutching (0, -2, 1), case 4",
++    "graded T3 SU clutching (0, -2, 1), case 4",
++    "graded T3 root clutching (0, -2, 1), case 5",
++    "graded T3 SU clutching (0, -2, 1), case 5",
++    "graded T3 root clutching (0, -2, 2), case 0",
++    "graded T3 SU clutching (0, -2, 2), case 0",
++    "graded T3 root clutching (0, -2, 2), case 1",
++    "graded T3 SU clutching (0, -2, 2), case 1",
++    "graded T3 root clutching (0, -2, 2), case 2",
++    "graded T3 SU clutching (0, -2, 2), case 2",
++    "graded T3 root clutching (0, -2, 2), case 3",
++    "graded T3 SU clutching (0, -2, 2), case 3",
++    "graded T3 root clutching (0, -2, 2), case 4",
++    "graded T3 SU clutching (0, -2, 2), case 4",
++    "graded T3 root clutching (0, -2, 2), case 5",
++    "graded T3 SU clutching (0, -2, 2), case 5",
++    "graded T3 root clutching (0, -1, -2), case 0",
++    "graded T3 SU clutching (0, -1, -2), case 0",
++    "graded T3 root clutching (0, -1, -2), case 1",
++    "graded T3 SU clutching (0, -1, -2), case 1",
++    "graded T3 root clutching (0, -1, -2), case 2",
++    "graded T3 SU clutching (0, -1, -2), case 2",
++    "graded T3 root clutching (0, -1, -2), case 3",
++    "graded T3 SU clutching (0, -1, -2), case 3",
++    "graded T3 root clutching (0, -1, -2), case 4",
++    "graded T3 SU clutching (0, -1, -2), case 4",
++    "graded T3 root clutching (0, -1, -2), case 5",
++    "graded T3 SU clutching (0, -1, -2), case 5",
++    "graded T3 root clutching (0, -1, -1), case 0",
++    "graded T3 SU clutching (0, -1, -1), case 0",
++    "graded T3 root clutching (0, -1, -1), case 1",
++    "graded T3 SU clutching (0, -1, -1), case 1",
++    "graded T3 root clutching (0, -1, -1), case 2",
++    "graded T3 SU clutching (0, -1, -1), case 2",
++    "graded T3 root clutching (0, -1, -1), case 3",
++    "graded T3 SU clutching (0, -1, -1), case 3",
++    "graded T3 root clutching (0, -1, -1), case 4",
++    "graded T3 SU clutching (0, -1, -1), case 4",
++    "graded T3 root clutching (0, -1, -1), case 5",
++    "graded T3 SU clutching (0, -1, -1), case 5",
++    "graded T3 root clutching (0, -1, 0), case 0",
++    "graded T3 SU clutching (0, -1, 0), case 0",
++    "graded T3 root clutching (0, -1, 0), case 1",
++    "graded T3 SU clutching (0, -1, 0), case 1",
++    "graded T3 root clutching (0, -1, 0), case 2",
++    "graded T3 SU clutching (0, -1, 0), case 2",
++    "graded T3 root clutching (0, -1, 0), case 3",
++    "graded T3 SU clutching (0, -1, 0), case 3",
++    "graded T3 root clutching (0, -1, 0), case 4",
++    "graded T3 SU clutching (0, -1, 0), case 4",
++    "graded T3 root clutching (0, -1, 0), case 5",
++    "graded T3 SU clutching (0, -1, 0), case 5",
++    "graded T3 root clutching (0, -1, 1), case 0",
++    "graded T3 SU clutching (0, -1, 1), case 0",
++    "graded T3 root clutching (0, -1, 1), case 1",
++    "graded T3 SU clutching (0, -1, 1), case 1",
++    "graded T3 root clutching (0, -1, 1), case 2",
++    "graded T3 SU clutching (0, -1, 1), case 2",
++    "graded T3 root clutching (0, -1, 1), case 3",
++    "graded T3 SU clutching (0, -1, 1), case 3",
++    "graded T3 root clutching (0, -1, 1), case 4",
++    "graded T3 SU clutching (0, -1, 1), case 4",
++    "graded T3 root clutching (0, -1, 1), case 5",
++    "graded T3 SU clutching (0, -1, 1), case 5",
++    "graded T3 root clutching (0, -1, 2), case 0",
++    "graded T3 SU clutching (0, -1, 2), case 0",
++    "graded T3 root clutching (0, -1, 2), case 1",
++    "graded T3 SU clutching (0, -1, 2), case 1",
++    "graded T3 root clutching (0, -1, 2), case 2",
++    "graded T3 SU clutching (0, -1, 2), case 2",
++    "graded T3 root clutching (0, -1, 2), case 3",
++    "graded T3 SU clutching (0, -1, 2), case 3",
++    "graded T3 root clutching (0, -1, 2), case 4",
++    "graded T3 SU clutching (0, -1, 2), case 4",
++    "graded T3 root clutching (0, -1, 2), case 5",
++    "graded T3 SU clutching (0, -1, 2), case 5",
++    "graded T3 root clutching (0, 0, -2), case 0",
++    "graded T3 SU clutching (0, 0, -2), case 0",
++    "graded T3 root clutching (0, 0, -2), case 1",
++    "graded T3 SU clutching (0, 0, -2), case 1",
++    "graded T3 root clutching (0, 0, -2), case 2",
++    "graded T3 SU clutching (0, 0, -2), case 2",
++    "graded T3 root clutching (0, 0, -2), case 3",
++    "graded T3 SU clutching (0, 0, -2), case 3",
++    "graded T3 root clutching (0, 0, -2), case 4",
++    "graded T3 SU clutching (0, 0, -2), case 4",
++    "graded T3 root clutching (0, 0, -2), case 5",
++    "graded T3 SU clutching (0, 0, -2), case 5",
++    "graded T3 root clutching (0, 0, -1), case 0",
++    "graded T3 SU clutching (0, 0, -1), case 0",
++    "graded T3 root clutching (0, 0, -1), case 1",
++    "graded T3 SU clutching (0, 0, -1), case 1",
++    "graded T3 root clutching (0, 0, -1), case 2",
++    "graded T3 SU clutching (0, 0, -1), case 2",
++    "graded T3 root clutching (0, 0, -1), case 3",
++    "graded T3 SU clutching (0, 0, -1), case 3",
++    "graded T3 root clutching (0, 0, -1), case 4",
++    "graded T3 SU clutching (0, 0, -1), case 4",
++    "graded T3 root clutching (0, 0, -1), case 5",
++    "graded T3 SU clutching (0, 0, -1), case 5",
++    "graded T3 root clutching (0, 0, 0), case 0",
++    "graded T3 SU clutching (0, 0, 0), case 0",
++    "graded T3 root clutching (0, 0, 0), case 1",
++    "graded T3 SU clutching (0, 0, 0), case 1",
++    "graded T3 root clutching (0, 0, 0), case 2",
++    "graded T3 SU clutching (0, 0, 0), case 2",
++    "graded T3 root clutching (0, 0, 0), case 3",
++    "graded T3 SU clutching (0, 0, 0), case 3",
++    "graded T3 root clutching (0, 0, 0), case 4",
++    "graded T3 SU clutching (0, 0, 0), case 4",
++    "graded T3 root clutching (0, 0, 0), case 5",
++    "graded T3 SU clutching (0, 0, 0), case 5",
++    "graded T3 root clutching (0, 0, 1), case 0",
++    "graded T3 SU clutching (0, 0, 1), case 0",
++    "graded T3 root clutching (0, 0, 1), case 1",
++    "graded T3 SU clutching (0, 0, 1), case 1",
++    "graded T3 root clutching (0, 0, 1), case 2",
++    "graded T3 SU clutching (0, 0, 1), case 2",
++    "graded T3 root clutching (0, 0, 1), case 3",
++    "graded T3 SU clutching (0, 0, 1), case 3",
++    "graded T3 root clutching (0, 0, 1), case 4",
++    "graded T3 SU clutching (0, 0, 1), case 4",
++    "graded T3 root clutching (0, 0, 1), case 5",
++    "graded T3 SU clutching (0, 0, 1), case 5",
++    "graded T3 root clutching (0, 0, 2), case 0",
++    "graded T3 SU clutching (0, 0, 2), case 0",
++    "graded T3 root clutching (0, 0, 2), case 1",
++    "graded T3 SU clutching (0, 0, 2), case 1",
++    "graded T3 root clutching (0, 0, 2), case 2",
++    "graded T3 SU clutching (0, 0, 2), case 2",
++    "graded T3 root clutching (0, 0, 2), case 3",
++    "graded T3 SU clutching (0, 0, 2), case 3",
++    "graded T3 root clutching (0, 0, 2), case 4",
++    "graded T3 SU clutching (0, 0, 2), case 4",
++    "graded T3 root clutching (0, 0, 2), case 5",
++    "graded T3 SU clutching (0, 0, 2), case 5",
++    "graded T3 root clutching (0, 1, -2), case 0",
++    "graded T3 SU clutching (0, 1, -2), case 0",
++    "graded T3 root clutching (0, 1, -2), case 1",
++    "graded T3 SU clutching (0, 1, -2), case 1",
++    "graded T3 root clutching (0, 1, -2), case 2",
++    "graded T3 SU clutching (0, 1, -2), case 2",
++    "graded T3 root clutching (0, 1, -2), case 3",
++    "graded T3 SU clutching (0, 1, -2), case 3",
++    "graded T3 root clutching (0, 1, -2), case 4",
++    "graded T3 SU clutching (0, 1, -2), case 4",
++    "graded T3 root clutching (0, 1, -2), case 5",
++    "graded T3 SU clutching (0, 1, -2), case 5",
++    "graded T3 root clutching (0, 1, -1), case 0",
++    "graded T3 SU clutching (0, 1, -1), case 0",
++    "graded T3 root clutching (0, 1, -1), case 1",
++    "graded T3 SU clutching (0, 1, -1), case 1",
++    "graded T3 root clutching (0, 1, -1), case 2",
++    "graded T3 SU clutching (0, 1, -1), case 2",
++    "graded T3 root clutching (0, 1, -1), case 3",
++    "graded T3 SU clutching (0, 1, -1), case 3",
++    "graded T3 root clutching (0, 1, -1), case 4",
++    "graded T3 SU clutching (0, 1, -1), case 4",
++    "graded T3 root clutching (0, 1, -1), case 5",
++    "graded T3 SU clutching (0, 1, -1), case 5",
++    "graded T3 root clutching (0, 1, 0), case 0",
++    "graded T3 SU clutching (0, 1, 0), case 0",
++    "graded T3 root clutching (0, 1, 0), case 1",
++    "graded T3 SU clutching (0, 1, 0), case 1",
++    "graded T3 root clutching (0, 1, 0), case 2",
++    "graded T3 SU clutching (0, 1, 0), case 2",
++    "graded T3 root clutching (0, 1, 0), case 3",
++    "graded T3 SU clutching (0, 1, 0), case 3",
++    "graded T3 root clutching (0, 1, 0), case 4",
++    "graded T3 SU clutching (0, 1, 0), case 4",
++    "graded T3 root clutching (0, 1, 0), case 5",
++    "graded T3 SU clutching (0, 1, 0), case 5",
++    "graded T3 root clutching (0, 1, 1), case 0",
++    "graded T3 SU clutching (0, 1, 1), case 0",
++    "graded T3 root clutching (0, 1, 1), case 1",
++    "graded T3 SU clutching (0, 1, 1), case 1",
++    "graded T3 root clutching (0, 1, 1), case 2",
++    "graded T3 SU clutching (0, 1, 1), case 2",
++    "graded T3 root clutching (0, 1, 1), case 3",
++    "graded T3 SU clutching (0, 1, 1), case 3",
++    "graded T3 root clutching (0, 1, 1), case 4",
++    "graded T3 SU clutching (0, 1, 1), case 4",
++    "graded T3 root clutching (0, 1, 1), case 5",
++    "graded T3 SU clutching (0, 1, 1), case 5",
++    "graded T3 root clutching (0, 1, 2), case 0",
++    "graded T3 SU clutching (0, 1, 2), case 0",
++    "graded T3 root clutching (0, 1, 2), case 1",
++    "graded T3 SU clutching (0, 1, 2), case 1",
++    "graded T3 root clutching (0, 1, 2), case 2",
++    "graded T3 SU clutching (0, 1, 2), case 2",
++    "graded T3 root clutching (0, 1, 2), case 3",
++    "graded T3 SU clutching (0, 1, 2), case 3",
++    "graded T3 root clutching (0, 1, 2), case 4",
++    "graded T3 SU clutching (0, 1, 2), case 4",
++    "graded T3 root clutching (0, 1, 2), case 5",
++    "graded T3 SU clutching (0, 1, 2), case 5",
++    "graded T3 root clutching (0, 2, -2), case 0",
++    "graded T3 SU clutching (0, 2, -2), case 0",
++    "graded T3 root clutching (0, 2, -2), case 1",
++    "graded T3 SU clutching (0, 2, -2), case 1",
++    "graded T3 root clutching (0, 2, -2), case 2",
++    "graded T3 SU clutching (0, 2, -2), case 2",
++    "graded T3 root clutching (0, 2, -2), case 3",
++    "graded T3 SU clutching (0, 2, -2), case 3",
++    "graded T3 root clutching (0, 2, -2), case 4",
++    "graded T3 SU clutching (0, 2, -2), case 4",
++    "graded T3 root clutching (0, 2, -2), case 5",
++    "graded T3 SU clutching (0, 2, -2), case 5",
++    "graded T3 root clutching (0, 2, -1), case 0",
++    "graded T3 SU clutching (0, 2, -1), case 0",
++    "graded T3 root clutching (0, 2, -1), case 1",
++    "graded T3 SU clutching (0, 2, -1), case 1",
++    "graded T3 root clutching (0, 2, -1), case 2",
++    "graded T3 SU clutching (0, 2, -1), case 2",
++    "graded T3 root clutching (0, 2, -1), case 3",
++    "graded T3 SU clutching (0, 2, -1), case 3",
++    "graded T3 root clutching (0, 2, -1), case 4",
++    "graded T3 SU clutching (0, 2, -1), case 4",
++    "graded T3 root clutching (0, 2, -1), case 5",
++    "graded T3 SU clutching (0, 2, -1), case 5",
++    "graded T3 root clutching (0, 2, 0), case 0",
++    "graded T3 SU clutching (0, 2, 0), case 0",
++    "graded T3 root clutching (0, 2, 0), case 1",
++    "graded T3 SU clutching (0, 2, 0), case 1",
++    "graded T3 root clutching (0, 2, 0), case 2",
++    "graded T3 SU clutching (0, 2, 0), case 2",
++    "graded T3 root clutching (0, 2, 0), case 3",
++    "graded T3 SU clutching (0, 2, 0), case 3",
++    "graded T3 root clutching (0, 2, 0), case 4",
++    "graded T3 SU clutching (0, 2, 0), case 4",
++    "graded T3 root clutching (0, 2, 0), case 5",
++    "graded T3 SU clutching (0, 2, 0), case 5",
++    "graded T3 root clutching (0, 2, 1), case 0",
++    "graded T3 SU clutching (0, 2, 1), case 0",
++    "graded T3 root clutching (0, 2, 1), case 1",
++    "graded T3 SU clutching (0, 2, 1), case 1",
++    "graded T3 root clutching (0, 2, 1), case 2",
++    "graded T3 SU clutching (0, 2, 1), case 2",
++    "graded T3 root clutching (0, 2, 1), case 3",
++    "graded T3 SU clutching (0, 2, 1), case 3",
++    "graded T3 root clutching (0, 2, 1), case 4",
++    "graded T3 SU clutching (0, 2, 1), case 4",
++    "graded T3 root clutching (0, 2, 1), case 5",
++    "graded T3 SU clutching (0, 2, 1), case 5",
++    "graded T3 root clutching (0, 2, 2), case 0",
++    "graded T3 SU clutching (0, 2, 2), case 0",
++    "graded T3 root clutching (0, 2, 2), case 1",
++    "graded T3 SU clutching (0, 2, 2), case 1",
++    "graded T3 root clutching (0, 2, 2), case 2",
++    "graded T3 SU clutching (0, 2, 2), case 2",
++    "graded T3 root clutching (0, 2, 2), case 3",
++    "graded T3 SU clutching (0, 2, 2), case 3",
++    "graded T3 root clutching (0, 2, 2), case 4",
++    "graded T3 SU clutching (0, 2, 2), case 4",
++    "graded T3 root clutching (0, 2, 2), case 5",
++    "graded T3 SU clutching (0, 2, 2), case 5",
++    "graded T3 root clutching (1, -2, -2), case 0",
++    "graded T3 SU clutching (1, -2, -2), case 0",
++    "graded T3 root clutching (1, -2, -2), case 1",
++    "graded T3 SU clutching (1, -2, -2), case 1",
++    "graded T3 root clutching (1, -2, -2), case 2",
++    "graded T3 SU clutching (1, -2, -2), case 2",
++    "graded T3 root clutching (1, -2, -2), case 3",
++    "graded T3 SU clutching (1, -2, -2), case 3",
++    "graded T3 root clutching (1, -2, -2), case 4",
++    "graded T3 SU clutching (1, -2, -2), case 4",
++    "graded T3 root clutching (1, -2, -2), case 5",
++    "graded T3 SU clutching (1, -2, -2), case 5",
++    "graded T3 root clutching (1, -2, -1), case 0",
++    "graded T3 SU clutching (1, -2, -1), case 0",
++    "graded T3 root clutching (1, -2, -1), case 1",
++    "graded T3 SU clutching (1, -2, -1), case 1",
++    "graded T3 root clutching (1, -2, -1), case 2",
++    "graded T3 SU clutching (1, -2, -1), case 2",
++    "graded T3 root clutching (1, -2, -1), case 3",
++    "graded T3 SU clutching (1, -2, -1), case 3",
++    "graded T3 root clutching (1, -2, -1), case 4",
++    "graded T3 SU clutching (1, -2, -1), case 4",
++    "graded T3 root clutching (1, -2, -1), case 5",
++    "graded T3 SU clutching (1, -2, -1), case 5",
++    "graded T3 root clutching (1, -2, 0), case 0",
++    "graded T3 SU clutching (1, -2, 0), case 0",
++    "graded T3 root clutching (1, -2, 0), case 1",
++    "graded T3 SU clutching (1, -2, 0), case 1",
++    "graded T3 root clutching (1, -2, 0), case 2",
++    "graded T3 SU clutching (1, -2, 0), case 2",
++    "graded T3 root clutching (1, -2, 0), case 3",
++    "graded T3 SU clutching (1, -2, 0), case 3",
++    "graded T3 root clutching (1, -2, 0), case 4",
++    "graded T3 SU clutching (1, -2, 0), case 4",
++    "graded T3 root clutching (1, -2, 0), case 5",
++    "graded T3 SU clutching (1, -2, 0), case 5",
++    "graded T3 root clutching (1, -2, 1), case 0",
++    "graded T3 SU clutching (1, -2, 1), case 0",
++    "graded T3 root clutching (1, -2, 1), case 1",
++    "graded T3 SU clutching (1, -2, 1), case 1",
++    "graded T3 root clutching (1, -2, 1), case 2",
++    "graded T3 SU clutching (1, -2, 1), case 2",
++    "graded T3 root clutching (1, -2, 1), case 3",
++    "graded T3 SU clutching (1, -2, 1), case 3",
++    "graded T3 root clutching (1, -2, 1), case 4",
++    "graded T3 SU clutching (1, -2, 1), case 4",
++    "graded T3 root clutching (1, -2, 1), case 5",
++    "graded T3 SU clutching (1, -2, 1), case 5",
++    "graded T3 root clutching (1, -2, 2), case 0",
++    "graded T3 SU clutching (1, -2, 2), case 0",
++    "graded T3 root clutching (1, -2, 2), case 1",
++    "graded T3 SU clutching (1, -2, 2), case 1",
++    "graded T3 root clutching (1, -2, 2), case 2",
++    "graded T3 SU clutching (1, -2, 2), case 2",
++    "graded T3 root clutching (1, -2, 2), case 3",
++    "graded T3 SU clutching (1, -2, 2), case 3",
++    "graded T3 root clutching (1, -2, 2), case 4",
++    "graded T3 SU clutching (1, -2, 2), case 4",
++    "graded T3 root clutching (1, -2, 2), case 5",
++    "graded T3 SU clutching (1, -2, 2), case 5",
++    "graded T3 root clutching (1, -1, -2), case 0",
++    "graded T3 SU clutching (1, -1, -2), case 0",
++    "graded T3 root clutching (1, -1, -2), case 1",
++    "graded T3 SU clutching (1, -1, -2), case 1",
++    "graded T3 root clutching (1, -1, -2), case 2",
++    "graded T3 SU clutching (1, -1, -2), case 2",
++    "graded T3 root clutching (1, -1, -2), case 3",
++    "graded T3 SU clutching (1, -1, -2), case 3",
++    "graded T3 root clutching (1, -1, -2), case 4",
++    "graded T3 SU clutching (1, -1, -2), case 4",
++    "graded T3 root clutching (1, -1, -2), case 5",
++    "graded T3 SU clutching (1, -1, -2), case 5",
++    "graded T3 root clutching (1, -1, -1), case 0",
++    "graded T3 SU clutching (1, -1, -1), case 0",
++    "graded T3 root clutching (1, -1, -1), case 1",
++    "graded T3 SU clutching (1, -1, -1), case 1",
++    "graded T3 root clutching (1, -1, -1), case 2",
++    "graded T3 SU clutching (1, -1, -1), case 2",
++    "graded T3 root clutching (1, -1, -1), case 3",
++    "graded T3 SU clutching (1, -1, -1), case 3",
++    "graded T3 root clutching (1, -1, -1), case 4",
++    "graded T3 SU clutching (1, -1, -1), case 4",
++    "graded T3 root clutching (1, -1, -1), case 5",
++    "graded T3 SU clutching (1, -1, -1), case 5",
++    "graded T3 root clutching (1, -1, 0), case 0",
++    "graded T3 SU clutching (1, -1, 0), case 0",
++    "graded T3 root clutching (1, -1, 0), case 1",
++    "graded T3 SU clutching (1, -1, 0), case 1",
++    "graded T3 root clutching (1, -1, 0), case 2",
++    "graded T3 SU clutching (1, -1, 0), case 2",
++    "graded T3 root clutching (1, -1, 0), case 3",
++    "graded T3 SU clutching (1, -1, 0), case 3",
++    "graded T3 root clutching (1, -1, 0), case 4",
++    "graded T3 SU clutching (1, -1, 0), case 4",
++    "graded T3 root clutching (1, -1, 0), case 5",
++    "graded T3 SU clutching (1, -1, 0), case 5",
++    "graded T3 root clutching (1, -1, 1), case 0",
++    "graded T3 SU clutching (1, -1, 1), case 0",
++    "graded T3 root clutching (1, -1, 1), case 1",
++    "graded T3 SU clutching (1, -1, 1), case 1",
++    "graded T3 root clutching (1, -1, 1), case 2",
++    "graded T3 SU clutching (1, -1, 1), case 2",
++    "graded T3 root clutching (1, -1, 1), case 3",
++    "graded T3 SU clutching (1, -1, 1), case 3",
++    "graded T3 root clutching (1, -1, 1), case 4",
++    "graded T3 SU clutching (1, -1, 1), case 4",
++    "graded T3 root clutching (1, -1, 1), case 5",
++    "graded T3 SU clutching (1, -1, 1), case 5",
++    "graded T3 root clutching (1, -1, 2), case 0",
++    "graded T3 SU clutching (1, -1, 2), case 0",
++    "graded T3 root clutching (1, -1, 2), case 1",
++    "graded T3 SU clutching (1, -1, 2), case 1",
++    "graded T3 root clutching (1, -1, 2), case 2",
++    "graded T3 SU clutching (1, -1, 2), case 2",
++    "graded T3 root clutching (1, -1, 2), case 3",
++    "graded T3 SU clutching (1, -1, 2), case 3",
++    "graded T3 root clutching (1, -1, 2), case 4",
++    "graded T3 SU clutching (1, -1, 2), case 4",
++    "graded T3 root clutching (1, -1, 2), case 5",
++    "graded T3 SU clutching (1, -1, 2), case 5",
++    "graded T3 root clutching (1, 0, -2), case 0",
++    "graded T3 SU clutching (1, 0, -2), case 0",
++    "graded T3 root clutching (1, 0, -2), case 1",
++    "graded T3 SU clutching (1, 0, -2), case 1",
++    "graded T3 root clutching (1, 0, -2), case 2",
++    "graded T3 SU clutching (1, 0, -2), case 2",
++    "graded T3 root clutching (1, 0, -2), case 3",
++    "graded T3 SU clutching (1, 0, -2), case 3",
++    "graded T3 root clutching (1, 0, -2), case 4",
++    "graded T3 SU clutching (1, 0, -2), case 4",
++    "graded T3 root clutching (1, 0, -2), case 5",
++    "graded T3 SU clutching (1, 0, -2), case 5",
++    "graded T3 root clutching (1, 0, -1), case 0",
++    "graded T3 SU clutching (1, 0, -1), case 0",
++    "graded T3 root clutching (1, 0, -1), case 1",
++    "graded T3 SU clutching (1, 0, -1), case 1",
++    "graded T3 root clutching (1, 0, -1), case 2",
++    "graded T3 SU clutching (1, 0, -1), case 2",
++    "graded T3 root clutching (1, 0, -1), case 3",
++    "graded T3 SU clutching (1, 0, -1), case 3",
++    "graded T3 root clutching (1, 0, -1), case 4",
++    "graded T3 SU clutching (1, 0, -1), case 4",
++    "graded T3 root clutching (1, 0, -1), case 5",
++    "graded T3 SU clutching (1, 0, -1), case 5",
++    "graded T3 root clutching (1, 0, 0), case 0",
++    "graded T3 SU clutching (1, 0, 0), case 0",
++    "graded T3 root clutching (1, 0, 0), case 1",
++    "graded T3 SU clutching (1, 0, 0), case 1",
++    "graded T3 root clutching (1, 0, 0), case 2",
++    "graded T3 SU clutching (1, 0, 0), case 2",
++    "graded T3 root clutching (1, 0, 0), case 3",
++    "graded T3 SU clutching (1, 0, 0), case 3",
++    "graded T3 root clutching (1, 0, 0), case 4",
++    "graded T3 SU clutching (1, 0, 0), case 4",
++    "graded T3 root clutching (1, 0, 0), case 5",
++    "graded T3 SU clutching (1, 0, 0), case 5",
++    "graded T3 root clutching (1, 0, 1), case 0",
++    "graded T3 SU clutching (1, 0, 1), case 0",
++    "graded T3 root clutching (1, 0, 1), case 1",
++    "graded T3 SU clutching (1, 0, 1), case 1",
++    "graded T3 root clutching (1, 0, 1), case 2",
++    "graded T3 SU clutching (1, 0, 1), case 2",
++    "graded T3 root clutching (1, 0, 1), case 3",
++    "graded T3 SU clutching (1, 0, 1), case 3",
++    "graded T3 root clutching (1, 0, 1), case 4",
++    "graded T3 SU clutching (1, 0, 1), case 4",
++    "graded T3 root clutching (1, 0, 1), case 5",
++    "graded T3 SU clutching (1, 0, 1), case 5",
++    "graded T3 root clutching (1, 0, 2), case 0",
++    "graded T3 SU clutching (1, 0, 2), case 0",
++    "graded T3 root clutching (1, 0, 2), case 1",
++    "graded T3 SU clutching (1, 0, 2), case 1",
++    "graded T3 root clutching (1, 0, 2), case 2",
++    "graded T3 SU clutching (1, 0, 2), case 2",
++    "graded T3 root clutching (1, 0, 2), case 3",
++    "graded T3 SU clutching (1, 0, 2), case 3",
++    "graded T3 root clutching (1, 0, 2), case 4",
++    "graded T3 SU clutching (1, 0, 2), case 4",
++    "graded T3 root clutching (1, 0, 2), case 5",
++    "graded T3 SU clutching (1, 0, 2), case 5",
++    "graded T3 root clutching (1, 1, -2), case 0",
++    "graded T3 SU clutching (1, 1, -2), case 0",
++    "graded T3 root clutching (1, 1, -2), case 1",
++    "graded T3 SU clutching (1, 1, -2), case 1",
++    "graded T3 root clutching (1, 1, -2), case 2",
++    "graded T3 SU clutching (1, 1, -2), case 2",
++    "graded T3 root clutching (1, 1, -2), case 3",
++    "graded T3 SU clutching (1, 1, -2), case 3",
++    "graded T3 root clutching (1, 1, -2), case 4",
++    "graded T3 SU clutching (1, 1, -2), case 4",
++    "graded T3 root clutching (1, 1, -2), case 5",
++    "graded T3 SU clutching (1, 1, -2), case 5",
++    "graded T3 root clutching (1, 1, -1), case 0",
++    "graded T3 SU clutching (1, 1, -1), case 0",
++    "graded T3 root clutching (1, 1, -1), case 1",
++    "graded T3 SU clutching (1, 1, -1), case 1",
++    "graded T3 root clutching (1, 1, -1), case 2",
++    "graded T3 SU clutching (1, 1, -1), case 2",
++    "graded T3 root clutching (1, 1, -1), case 3",
++    "graded T3 SU clutching (1, 1, -1), case 3",
++    "graded T3 root clutching (1, 1, -1), case 4",
++    "graded T3 SU clutching (1, 1, -1), case 4",
++    "graded T3 root clutching (1, 1, -1), case 5",
++    "graded T3 SU clutching (1, 1, -1), case 5",
++    "graded T3 root clutching (1, 1, 0), case 0",
++    "graded T3 SU clutching (1, 1, 0), case 0",
++    "graded T3 root clutching (1, 1, 0), case 1",
++    "graded T3 SU clutching (1, 1, 0), case 1",
++    "graded T3 root clutching (1, 1, 0), case 2",
++    "graded T3 SU clutching (1, 1, 0), case 2",
++    "graded T3 root clutching (1, 1, 0), case 3",
++    "graded T3 SU clutching (1, 1, 0), case 3",
++    "graded T3 root clutching (1, 1, 0), case 4",
++    "graded T3 SU clutching (1, 1, 0), case 4",
++    "graded T3 root clutching (1, 1, 0), case 5",
++    "graded T3 SU clutching (1, 1, 0), case 5",
++    "graded T3 root clutching (1, 1, 1), case 0",
++    "graded T3 SU clutching (1, 1, 1), case 0",
++    "graded T3 root clutching (1, 1, 1), case 1",
++    "graded T3 SU clutching (1, 1, 1), case 1",
++    "graded T3 root clutching (1, 1, 1), case 2",
++    "graded T3 SU clutching (1, 1, 1), case 2",
++    "graded T3 root clutching (1, 1, 1), case 3",
++    "graded T3 SU clutching (1, 1, 1), case 3",
++    "graded T3 root clutching (1, 1, 1), case 4",
++    "graded T3 SU clutching (1, 1, 1), case 4",
++    "graded T3 root clutching (1, 1, 1), case 5",
++    "graded T3 SU clutching (1, 1, 1), case 5",
++    "graded T3 root clutching (1, 1, 2), case 0",
++    "graded T3 SU clutching (1, 1, 2), case 0",
++    "graded T3 root clutching (1, 1, 2), case 1",
++    "graded T3 SU clutching (1, 1, 2), case 1",
++    "graded T3 root clutching (1, 1, 2), case 2",
++    "graded T3 SU clutching (1, 1, 2), case 2",
++    "graded T3 root clutching (1, 1, 2), case 3",
++    "graded T3 SU clutching (1, 1, 2), case 3",
++    "graded T3 root clutching (1, 1, 2), case 4",
++    "graded T3 SU clutching (1, 1, 2), case 4",
++    "graded T3 root clutching (1, 1, 2), case 5",
++    "graded T3 SU clutching (1, 1, 2), case 5",
++    "graded T3 root clutching (1, 2, -2), case 0",
++    "graded T3 SU clutching (1, 2, -2), case 0",
++    "graded T3 root clutching (1, 2, -2), case 1",
++    "graded T3 SU clutching (1, 2, -2), case 1",
++    "graded T3 root clutching (1, 2, -2), case 2",
++    "graded T3 SU clutching (1, 2, -2), case 2",
++    "graded T3 root clutching (1, 2, -2), case 3",
++    "graded T3 SU clutching (1, 2, -2), case 3",
++    "graded T3 root clutching (1, 2, -2), case 4",
++    "graded T3 SU clutching (1, 2, -2), case 4",
++    "graded T3 root clutching (1, 2, -2), case 5",
++    "graded T3 SU clutching (1, 2, -2), case 5",
++    "graded T3 root clutching (1, 2, -1), case 0",
++    "graded T3 SU clutching (1, 2, -1), case 0",
++    "graded T3 root clutching (1, 2, -1), case 1",
++    "graded T3 SU clutching (1, 2, -1), case 1",
++    "graded T3 root clutching (1, 2, -1), case 2",
++    "graded T3 SU clutching (1, 2, -1), case 2",
++    "graded T3 root clutching (1, 2, -1), case 3",
++    "graded T3 SU clutching (1, 2, -1), case 3",
++    "graded T3 root clutching (1, 2, -1), case 4",
++    "graded T3 SU clutching (1, 2, -1), case 4",
++    "graded T3 root clutching (1, 2, -1), case 5",
++    "graded T3 SU clutching (1, 2, -1), case 5",
++    "graded T3 root clutching (1, 2, 0), case 0",
++    "graded T3 SU clutching (1, 2, 0), case 0",
++    "graded T3 root clutching (1, 2, 0), case 1",
++    "graded T3 SU clutching (1, 2, 0), case 1",
++    "graded T3 root clutching (1, 2, 0), case 2",
++    "graded T3 SU clutching (1, 2, 0), case 2",
++    "graded T3 root clutching (1, 2, 0), case 3",
++    "graded T3 SU clutching (1, 2, 0), case 3",
++    "graded T3 root clutching (1, 2, 0), case 4",
++    "graded T3 SU clutching (1, 2, 0), case 4",
++    "graded T3 root clutching (1, 2, 0), case 5",
++    "graded T3 SU clutching (1, 2, 0), case 5",
++    "graded T3 root clutching (1, 2, 1), case 0",
++    "graded T3 SU clutching (1, 2, 1), case 0",
++    "graded T3 root clutching (1, 2, 1), case 1",
++    "graded T3 SU clutching (1, 2, 1), case 1",
++    "graded T3 root clutching (1, 2, 1), case 2",
++    "graded T3 SU clutching (1, 2, 1), case 2",
++    "graded T3 root clutching (1, 2, 1), case 3",
++    "graded T3 SU clutching (1, 2, 1), case 3",
++    "graded T3 root clutching (1, 2, 1), case 4",
++    "graded T3 SU clutching (1, 2, 1), case 4",
++    "graded T3 root clutching (1, 2, 1), case 5",
++    "graded T3 SU clutching (1, 2, 1), case 5",
++    "graded T3 root clutching (1, 2, 2), case 0",
++    "graded T3 SU clutching (1, 2, 2), case 0",
++    "graded T3 root clutching (1, 2, 2), case 1",
++    "graded T3 SU clutching (1, 2, 2), case 1",
++    "graded T3 root clutching (1, 2, 2), case 2",
++    "graded T3 SU clutching (1, 2, 2), case 2",
++    "graded T3 root clutching (1, 2, 2), case 3",
++    "graded T3 SU clutching (1, 2, 2), case 3",
++    "graded T3 root clutching (1, 2, 2), case 4",
++    "graded T3 SU clutching (1, 2, 2), case 4",
++    "graded T3 root clutching (1, 2, 2), case 5",
++    "graded T3 SU clutching (1, 2, 2), case 5",
++    "graded T3 root clutching (2, -2, -2), case 0",
++    "graded T3 SU clutching (2, -2, -2), case 0",
++    "graded T3 root clutching (2, -2, -2), case 1",
++    "graded T3 SU clutching (2, -2, -2), case 1",
++    "graded T3 root clutching (2, -2, -2), case 2",
++    "graded T3 SU clutching (2, -2, -2), case 2",
++    "graded T3 root clutching (2, -2, -2), case 3",
++    "graded T3 SU clutching (2, -2, -2), case 3",
++    "graded T3 root clutching (2, -2, -2), case 4",
++    "graded T3 SU clutching (2, -2, -2), case 4",
++    "graded T3 root clutching (2, -2, -2), case 5",
++    "graded T3 SU clutching (2, -2, -2), case 5",
++    "graded T3 root clutching (2, -2, -1), case 0",
++    "graded T3 SU clutching (2, -2, -1), case 0",
++    "graded T3 root clutching (2, -2, -1), case 1",
++    "graded T3 SU clutching (2, -2, -1), case 1",
++    "graded T3 root clutching (2, -2, -1), case 2",
++    "graded T3 SU clutching (2, -2, -1), case 2",
++    "graded T3 root clutching (2, -2, -1), case 3",
++    "graded T3 SU clutching (2, -2, -1), case 3",
++    "graded T3 root clutching (2, -2, -1), case 4",
++    "graded T3 SU clutching (2, -2, -1), case 4",
++    "graded T3 root clutching (2, -2, -1), case 5",
++    "graded T3 SU clutching (2, -2, -1), case 5",
++    "graded T3 root clutching (2, -2, 0), case 0",
++    "graded T3 SU clutching (2, -2, 0), case 0",
++    "graded T3 root clutching (2, -2, 0), case 1",
++    "graded T3 SU clutching (2, -2, 0), case 1",
++    "graded T3 root clutching (2, -2, 0), case 2",
++    "graded T3 SU clutching (2, -2, 0), case 2",
++    "graded T3 root clutching (2, -2, 0), case 3",
++    "graded T3 SU clutching (2, -2, 0), case 3",
++    "graded T3 root clutching (2, -2, 0), case 4",
++    "graded T3 SU clutching (2, -2, 0), case 4",
++    "graded T3 root clutching (2, -2, 0), case 5",
++    "graded T3 SU clutching (2, -2, 0), case 5",
++    "graded T3 root clutching (2, -2, 1), case 0",
++    "graded T3 SU clutching (2, -2, 1), case 0",
++    "graded T3 root clutching (2, -2, 1), case 1",
++    "graded T3 SU clutching (2, -2, 1), case 1",
++    "graded T3 root clutching (2, -2, 1), case 2",
++    "graded T3 SU clutching (2, -2, 1), case 2",
++    "graded T3 root clutching (2, -2, 1), case 3",
++    "graded T3 SU clutching (2, -2, 1), case 3",
++    "graded T3 root clutching (2, -2, 1), case 4",
++    "graded T3 SU clutching (2, -2, 1), case 4",
++    "graded T3 root clutching (2, -2, 1), case 5",
++    "graded T3 SU clutching (2, -2, 1), case 5",
++    "graded T3 root clutching (2, -2, 2), case 0",
++    "graded T3 SU clutching (2, -2, 2), case 0",
++    "graded T3 root clutching (2, -2, 2), case 1",
++    "graded T3 SU clutching (2, -2, 2), case 1",
++    "graded T3 root clutching (2, -2, 2), case 2",
++    "graded T3 SU clutching (2, -2, 2), case 2",
++    "graded T3 root clutching (2, -2, 2), case 3",
++    "graded T3 SU clutching (2, -2, 2), case 3",
++    "graded T3 root clutching (2, -2, 2), case 4",
++    "graded T3 SU clutching (2, -2, 2), case 4",
++    "graded T3 root clutching (2, -2, 2), case 5",
++    "graded T3 SU clutching (2, -2, 2), case 5",
++    "graded T3 root clutching (2, -1, -2), case 0",
++    "graded T3 SU clutching (2, -1, -2), case 0",
++    "graded T3 root clutching (2, -1, -2), case 1",
++    "graded T3 SU clutching (2, -1, -2), case 1",
++    "graded T3 root clutching (2, -1, -2), case 2",
++    "graded T3 SU clutching (2, -1, -2), case 2",
++    "graded T3 root clutching (2, -1, -2), case 3",
++    "graded T3 SU clutching (2, -1, -2), case 3",
++    "graded T3 root clutching (2, -1, -2), case 4",
++    "graded T3 SU clutching (2, -1, -2), case 4",
++    "graded T3 root clutching (2, -1, -2), case 5",
++    "graded T3 SU clutching (2, -1, -2), case 5",
++    "graded T3 root clutching (2, -1, -1), case 0",
++    "graded T3 SU clutching (2, -1, -1), case 0",
++    "graded T3 root clutching (2, -1, -1), case 1",
++    "graded T3 SU clutching (2, -1, -1), case 1",
++    "graded T3 root clutching (2, -1, -1), case 2",
++    "graded T3 SU clutching (2, -1, -1), case 2",
++    "graded T3 root clutching (2, -1, -1), case 3",
++    "graded T3 SU clutching (2, -1, -1), case 3",
++    "graded T3 root clutching (2, -1, -1), case 4",
++    "graded T3 SU clutching (2, -1, -1), case 4",
++    "graded T3 root clutching (2, -1, -1), case 5",
++    "graded T3 SU clutching (2, -1, -1), case 5",
++    "graded T3 root clutching (2, -1, 0), case 0",
++    "graded T3 SU clutching (2, -1, 0), case 0",
++    "graded T3 root clutching (2, -1, 0), case 1",
++    "graded T3 SU clutching (2, -1, 0), case 1",
++    "graded T3 root clutching (2, -1, 0), case 2",
++    "graded T3 SU clutching (2, -1, 0), case 2",
++    "graded T3 root clutching (2, -1, 0), case 3",
++    "graded T3 SU clutching (2, -1, 0), case 3",
++    "graded T3 root clutching (2, -1, 0), case 4",
++    "graded T3 SU clutching (2, -1, 0), case 4",
++    "graded T3 root clutching (2, -1, 0), case 5",
++    "graded T3 SU clutching (2, -1, 0), case 5",
++    "graded T3 root clutching (2, -1, 1), case 0",
++    "graded T3 SU clutching (2, -1, 1), case 0",
++    "graded T3 root clutching (2, -1, 1), case 1",
++    "graded T3 SU clutching (2, -1, 1), case 1",
++    "graded T3 root clutching (2, -1, 1), case 2",
++    "graded T3 SU clutching (2, -1, 1), case 2",
++    "graded T3 root clutching (2, -1, 1), case 3",
++    "graded T3 SU clutching (2, -1, 1), case 3",
++    "graded T3 root clutching (2, -1, 1), case 4",
++    "graded T3 SU clutching (2, -1, 1), case 4",
++    "graded T3 root clutching (2, -1, 1), case 5",
++    "graded T3 SU clutching (2, -1, 1), case 5",
++    "graded T3 root clutching (2, -1, 2), case 0",
++    "graded T3 SU clutching (2, -1, 2), case 0",
++    "graded T3 root clutching (2, -1, 2), case 1",
++    "graded T3 SU clutching (2, -1, 2), case 1",
++    "graded T3 root clutching (2, -1, 2), case 2",
++    "graded T3 SU clutching (2, -1, 2), case 2",
++    "graded T3 root clutching (2, -1, 2), case 3",
++    "graded T3 SU clutching (2, -1, 2), case 3",
++    "graded T3 root clutching (2, -1, 2), case 4",
++    "graded T3 SU clutching (2, -1, 2), case 4",
++    "graded T3 root clutching (2, -1, 2), case 5",
++    "graded T3 SU clutching (2, -1, 2), case 5",
++    "graded T3 root clutching (2, 0, -2), case 0",
++    "graded T3 SU clutching (2, 0, -2), case 0",
++    "graded T3 root clutching (2, 0, -2), case 1",
++    "graded T3 SU clutching (2, 0, -2), case 1",
++    "graded T3 root clutching (2, 0, -2), case 2",
++    "graded T3 SU clutching (2, 0, -2), case 2",
++    "graded T3 root clutching (2, 0, -2), case 3",
++    "graded T3 SU clutching (2, 0, -2), case 3",
++    "graded T3 root clutching (2, 0, -2), case 4",
++    "graded T3 SU clutching (2, 0, -2), case 4",
++    "graded T3 root clutching (2, 0, -2), case 5",
++    "graded T3 SU clutching (2, 0, -2), case 5",
++    "graded T3 root clutching (2, 0, -1), case 0",
++    "graded T3 SU clutching (2, 0, -1), case 0",
++    "graded T3 root clutching (2, 0, -1), case 1",
++    "graded T3 SU clutching (2, 0, -1), case 1",
++    "graded T3 root clutching (2, 0, -1), case 2",
++    "graded T3 SU clutching (2, 0, -1), case 2",
++    "graded T3 root clutching (2, 0, -1), case 3",
++    "graded T3 SU clutching (2, 0, -1), case 3",
++    "graded T3 root clutching (2, 0, -1), case 4",
++    "graded T3 SU clutching (2, 0, -1), case 4",
++    "graded T3 root clutching (2, 0, -1), case 5",
++    "graded T3 SU clutching (2, 0, -1), case 5",
++    "graded T3 root clutching (2, 0, 0), case 0",
++    "graded T3 SU clutching (2, 0, 0), case 0",
++    "graded T3 root clutching (2, 0, 0), case 1",
++    "graded T3 SU clutching (2, 0, 0), case 1",
++    "graded T3 root clutching (2, 0, 0), case 2",
++    "graded T3 SU clutching (2, 0, 0), case 2",
++    "graded T3 root clutching (2, 0, 0), case 3",
++    "graded T3 SU clutching (2, 0, 0), case 3",
++    "graded T3 root clutching (2, 0, 0), case 4",
++    "graded T3 SU clutching (2, 0, 0), case 4",
++    "graded T3 root clutching (2, 0, 0), case 5",
++    "graded T3 SU clutching (2, 0, 0), case 5",
++    "graded T3 root clutching (2, 0, 1), case 0",
++    "graded T3 SU clutching (2, 0, 1), case 0",
++    "graded T3 root clutching (2, 0, 1), case 1",
++    "graded T3 SU clutching (2, 0, 1), case 1",
++    "graded T3 root clutching (2, 0, 1), case 2",
++    "graded T3 SU clutching (2, 0, 1), case 2",
++    "graded T3 root clutching (2, 0, 1), case 3",
++    "graded T3 SU clutching (2, 0, 1), case 3",
++    "graded T3 root clutching (2, 0, 1), case 4",
++    "graded T3 SU clutching (2, 0, 1), case 4",
++    "graded T3 root clutching (2, 0, 1), case 5",
++    "graded T3 SU clutching (2, 0, 1), case 5",
++    "graded T3 root clutching (2, 0, 2), case 0",
++    "graded T3 SU clutching (2, 0, 2), case 0",
++    "graded T3 root clutching (2, 0, 2), case 1",
++    "graded T3 SU clutching (2, 0, 2), case 1",
++    "graded T3 root clutching (2, 0, 2), case 2",
++    "graded T3 SU clutching (2, 0, 2), case 2",
++    "graded T3 root clutching (2, 0, 2), case 3",
++    "graded T3 SU clutching (2, 0, 2), case 3",
++    "graded T3 root clutching (2, 0, 2), case 4",
++    "graded T3 SU clutching (2, 0, 2), case 4",
++    "graded T3 root clutching (2, 0, 2), case 5",
++    "graded T3 SU clutching (2, 0, 2), case 5",
++    "graded T3 root clutching (2, 1, -2), case 0",
++    "graded T3 SU clutching (2, 1, -2), case 0",
++    "graded T3 root clutching (2, 1, -2), case 1",
++    "graded T3 SU clutching (2, 1, -2), case 1",
++    "graded T3 root clutching (2, 1, -2), case 2",
++    "graded T3 SU clutching (2, 1, -2), case 2",
++    "graded T3 root clutching (2, 1, -2), case 3",
++    "graded T3 SU clutching (2, 1, -2), case 3",
++    "graded T3 root clutching (2, 1, -2), case 4",
++    "graded T3 SU clutching (2, 1, -2), case 4",
++    "graded T3 root clutching (2, 1, -2), case 5",
++    "graded T3 SU clutching (2, 1, -2), case 5",
++    "graded T3 root clutching (2, 1, -1), case 0",
++    "graded T3 SU clutching (2, 1, -1), case 0",
++    "graded T3 root clutching (2, 1, -1), case 1",
++    "graded T3 SU clutching (2, 1, -1), case 1",
++    "graded T3 root clutching (2, 1, -1), case 2",
++    "graded T3 SU clutching (2, 1, -1), case 2",
++    "graded T3 root clutching (2, 1, -1), case 3",
++    "graded T3 SU clutching (2, 1, -1), case 3",
++    "graded T3 root clutching (2, 1, -1), case 4",
++    "graded T3 SU clutching (2, 1, -1), case 4",
++    "graded T3 root clutching (2, 1, -1), case 5",
++    "graded T3 SU clutching (2, 1, -1), case 5",
++    "graded T3 root clutching (2, 1, 0), case 0",
++    "graded T3 SU clutching (2, 1, 0), case 0",
++    "graded T3 root clutching (2, 1, 0), case 1",
++    "graded T3 SU clutching (2, 1, 0), case 1",
++    "graded T3 root clutching (2, 1, 0), case 2",
++    "graded T3 SU clutching (2, 1, 0), case 2",
++    "graded T3 root clutching (2, 1, 0), case 3",
++    "graded T3 SU clutching (2, 1, 0), case 3",
++    "graded T3 root clutching (2, 1, 0), case 4",
++    "graded T3 SU clutching (2, 1, 0), case 4",
++    "graded T3 root clutching (2, 1, 0), case 5",
++    "graded T3 SU clutching (2, 1, 0), case 5",
++    "graded T3 root clutching (2, 1, 1), case 0",
++    "graded T3 SU clutching (2, 1, 1), case 0",
++    "graded T3 root clutching (2, 1, 1), case 1",
++    "graded T3 SU clutching (2, 1, 1), case 1",
++    "graded T3 root clutching (2, 1, 1), case 2",
++    "graded T3 SU clutching (2, 1, 1), case 2",
++    "graded T3 root clutching (2, 1, 1), case 3",
++    "graded T3 SU clutching (2, 1, 1), case 3",
++    "graded T3 root clutching (2, 1, 1), case 4",
++    "graded T3 SU clutching (2, 1, 1), case 4",
++    "graded T3 root clutching (2, 1, 1), case 5",
++    "graded T3 SU clutching (2, 1, 1), case 5",
++    "graded T3 root clutching (2, 1, 2), case 0",
++    "graded T3 SU clutching (2, 1, 2), case 0",
++    "graded T3 root clutching (2, 1, 2), case 1",
++    "graded T3 SU clutching (2, 1, 2), case 1",
++    "graded T3 root clutching (2, 1, 2), case 2",
++    "graded T3 SU clutching (2, 1, 2), case 2",
++    "graded T3 root clutching (2, 1, 2), case 3",
++    "graded T3 SU clutching (2, 1, 2), case 3",
++    "graded T3 root clutching (2, 1, 2), case 4",
++    "graded T3 SU clutching (2, 1, 2), case 4",
++    "graded T3 root clutching (2, 1, 2), case 5",
++    "graded T3 SU clutching (2, 1, 2), case 5",
++    "graded T3 root clutching (2, 2, -2), case 0",
++    "graded T3 SU clutching (2, 2, -2), case 0",
++    "graded T3 root clutching (2, 2, -2), case 1",
++    "graded T3 SU clutching (2, 2, -2), case 1",
++    "graded T3 root clutching (2, 2, -2), case 2",
++    "graded T3 SU clutching (2, 2, -2), case 2",
++    "graded T3 root clutching (2, 2, -2), case 3",
++    "graded T3 SU clutching (2, 2, -2), case 3",
++    "graded T3 root clutching (2, 2, -2), case 4",
++    "graded T3 SU clutching (2, 2, -2), case 4",
++    "graded T3 root clutching (2, 2, -2), case 5",
++    "graded T3 SU clutching (2, 2, -2), case 5",
++    "graded T3 root clutching (2, 2, -1), case 0",
++    "graded T3 SU clutching (2, 2, -1), case 0",
++    "graded T3 root clutching (2, 2, -1), case 1",
++    "graded T3 SU clutching (2, 2, -1), case 1",
++    "graded T3 root clutching (2, 2, -1), case 2",
++    "graded T3 SU clutching (2, 2, -1), case 2",
++    "graded T3 root clutching (2, 2, -1), case 3",
++    "graded T3 SU clutching (2, 2, -1), case 3",
++    "graded T3 root clutching (2, 2, -1), case 4",
++    "graded T3 SU clutching (2, 2, -1), case 4",
++    "graded T3 root clutching (2, 2, -1), case 5",
++    "graded T3 SU clutching (2, 2, -1), case 5",
++    "graded T3 root clutching (2, 2, 0), case 0",
++    "graded T3 SU clutching (2, 2, 0), case 0",
++    "graded T3 root clutching (2, 2, 0), case 1",
++    "graded T3 SU clutching (2, 2, 0), case 1",
++    "graded T3 root clutching (2, 2, 0), case 2",
++    "graded T3 SU clutching (2, 2, 0), case 2",
++    "graded T3 root clutching (2, 2, 0), case 3",
++    "graded T3 SU clutching (2, 2, 0), case 3",
++    "graded T3 root clutching (2, 2, 0), case 4",
++    "graded T3 SU clutching (2, 2, 0), case 4",
++    "graded T3 root clutching (2, 2, 0), case 5",
++    "graded T3 SU clutching (2, 2, 0), case 5",
++    "graded T3 root clutching (2, 2, 1), case 0",
++    "graded T3 SU clutching (2, 2, 1), case 0",
++    "graded T3 root clutching (2, 2, 1), case 1",
++    "graded T3 SU clutching (2, 2, 1), case 1",
++    "graded T3 root clutching (2, 2, 1), case 2",
++    "graded T3 SU clutching (2, 2, 1), case 2",
++    "graded T3 root clutching (2, 2, 1), case 3",
++    "graded T3 SU clutching (2, 2, 1), case 3",
++    "graded T3 root clutching (2, 2, 1), case 4",
++    "graded T3 SU clutching (2, 2, 1), case 4",
++    "graded T3 root clutching (2, 2, 1), case 5",
++    "graded T3 SU clutching (2, 2, 1), case 5",
++    "graded T3 root clutching (2, 2, 2), case 0",
++    "graded T3 SU clutching (2, 2, 2), case 0",
++    "graded T3 root clutching (2, 2, 2), case 1",
++    "graded T3 SU clutching (2, 2, 2), case 1",
++    "graded T3 root clutching (2, 2, 2), case 2",
++    "graded T3 SU clutching (2, 2, 2), case 2",
++    "graded T3 root clutching (2, 2, 2), case 3",
++    "graded T3 SU clutching (2, 2, 2), case 3",
++    "graded T3 root clutching (2, 2, 2), case 4",
++    "graded T3 SU clutching (2, 2, 2), case 4",
++    "graded T3 root clutching (2, 2, 2), case 5",
++    "graded T3 SU clutching (2, 2, 2), case 5",
++    "nontrivial E loop: ordinary c2 fails, virtual c2 is zero"
++  ],
++  "graded_exterior_cases": 750,
++  "klein_product_quotients": [
++    {
++      "epsilon": 0,
++      "eta": 0,
++      "free_rank": 0,
++      "torsion": [
++        2,
++        2,
++        2,
++        2
++      ]
++    },
++    {
++      "epsilon": 0,
++      "eta": 1,
++      "free_rank": 0,
++      "torsion": [
++        2,
++        2,
++        2
++      ]
++    },
++    {
++      "epsilon": 1,
++      "eta": 0,
++      "free_rank": 0,
++      "torsion": [
++        2,
++        2,
++        4
++      ]
++    },
++    {
++      "epsilon": 1,
++      "eta": 1,
++      "free_rank": 0,
++      "torsion": [
++        2,
++        2,
++        2
++      ]
++    }
++  ],
++  "S2xS1_quotients": [
++    {
++      "n": -15,
++      "free_rank": 1,
++      "torsion": [
++        180
++      ]
++    },
++    {
++      "n": -14,
++      "free_rank": 1,
++      "torsion": [
++        2,
++        84
++      ]
++    },
++    {
++      "n": -13,
++      "free_rank": 1,
++      "torsion": [
++        156
++      ]
++    },
++    {
++      "n": -12,
++      "free_rank": 1,
++      "torsion": [
++        2,
++        72
++      ]
++    },
++    {
++      "n": -11,
++      "free_rank": 1,
++      "torsion": [
++        132
++      ]
++    },
++    {
++      "n": -10,
++      "free_rank": 1,
++      "torsion": [
++        2,
++        60
++      ]
++    },
++    {
++      "n": -9,
++      "free_rank": 1,
++      "torsion": [
++        108
++      ]
++    },
++    {
++      "n": -8,
++      "free_rank": 1,
++      "torsion": [
++        2,
++        48
++      ]
++    },
++    {
++      "n": -7,
++      "free_rank": 1,
++      "torsion": [
++        84
++      ]
++    },
++    {
++      "n": -6,
++      "free_rank": 1,
++      "torsion": [
++        2,
++        36
++      ]
++    },
++    {
++      "n": -5,
++      "free_rank": 1,
++      "torsion": [
++        60
++      ]
++    },
++    {
++      "n": -4,
++      "free_rank": 1,
++      "torsion": [
++        2,
++        24
++      ]
++    },
++    {
++      "n": -3,
++      "free_rank": 1,
++      "torsion": [
++        36
++      ]
++    },
++    {
++      "n": -2,
++      "free_rank": 1,
++      "torsion": [
++        2,
++        12
++      ]
++    },
++    {
++      "n": -1,
++      "free_rank": 1,
++      "torsion": [
++        12
++      ]
++    },
++    {
++      "n": 0,
++      "free_rank": 2,
++      "torsion": [
++        2
++      ]
++    },
++    {
++      "n": 1,
++      "free_rank": 1,
++      "torsion": [
++        12
++      ]
++    },
++    {
++      "n": 2,
++      "free_rank": 1,
++      "torsion": [
++        2,
++        12
++      ]
++    },
++    {
++      "n": 3,
++      "free_rank": 1,
++      "torsion": [
++        36
++      ]
++    },
++    {
++      "n": 4,
++      "free_rank": 1,
++      "torsion": [
++        2,
++        24
++      ]
++    },
++    {
++      "n": 5,
++      "free_rank": 1,
++      "torsion": [
++        60
++      ]
++    },
++    {
++      "n": 6,
++      "free_rank": 1,
++      "torsion": [
++        2,
++        36
++      ]
++    },
++    {
++      "n": 7,
++      "free_rank": 1,
++      "torsion": [
++        84
++      ]
++    },
++    {
++      "n": 8,
++      "free_rank": 1,
++      "torsion": [
++        2,
++        48
++      ]
++    },
++    {
++      "n": 9,
++      "free_rank": 1,
++      "torsion": [
++        108
++      ]
++    },
++    {
++      "n": 10,
++      "free_rank": 1,
++      "torsion": [
++        2,
++        60
++      ]
++    },
++    {
++      "n": 11,
++      "free_rank": 1,
++      "torsion": [
++        132
++      ]
++    },
++    {
++      "n": 12,
++      "free_rank": 1,
++      "torsion": [
++        2,
++        72
++      ]
++    },
++    {
++      "n": 13,
++      "free_rank": 1,
++      "torsion": [
++        156
++      ]
++    },
++    {
++      "n": 14,
++      "free_rank": 1,
++      "torsion": [
++        2,
++        84
++      ]
++    },
++    {
++      "n": 15,
++      "free_rank": 1,
++      "torsion": [
++        180
++      ]
++    }
++  ],
++  "lens_label_counts": [
++    {
++      "p": 1,
++      "primary_labels": 1,
++      "fiber_free_rank": 2
++    },
++    {
++      "p": 2,
++      "primary_labels": 4,
++      "fiber_free_rank": 2
++    },
++    {
++      "p": 3,
++      "primary_labels": 3,
++      "fiber_free_rank": 2
++    },
++    {
++      "p": 4,
++      "primary_labels": 8,
++      "fiber_free_rank": 2
++    },
++    {
++      "p": 5,
++      "primary_labels": 5,
++      "fiber_free_rank": 2
++    },
++    {
++      "p": 6,
++      "primary_labels": 12,
++      "fiber_free_rank": 2
++    },
++    {
++      "p": 7,
++      "primary_labels": 7,
++      "fiber_free_rank": 2
++    },
++    {
++      "p": 8,
++      "primary_labels": 16,
++      "fiber_free_rank": 2
++    },
++    {
++      "p": 9,
++      "primary_labels": 9,
++      "fiber_free_rank": 2
++    },
++    {
++      "p": 10,
++      "primary_labels": 20,
++      "fiber_free_rank": 2
++    },
++    {
++      "p": 11,
++      "primary_labels": 11,
++      "fiber_free_rank": 2
++    },
++    {
++      "p": 12,
++      "primary_labels": 24,
++      "fiber_free_rank": 2
++    },
++    {
++      "p": 13,
++      "primary_labels": 13,
++      "fiber_free_rank": 2
++    },
++    {
++      "p": 14,
++      "primary_labels": 28,
++      "fiber_free_rank": 2
++    },
++    {
++      "p": 15,
++      "primary_labels": 15,
++      "fiber_free_rank": 2
++    },
++    {
++      "p": 16,
++      "primary_labels": 32,
++      "fiber_free_rank": 2
++    },
++    {
++      "p": 17,
++      "primary_labels": 17,
++      "fiber_free_rank": 2
++    },
++    {
++      "p": 18,
++      "primary_labels": 36,
++      "fiber_free_rank": 2
++    },
++    {
++      "p": 19,
++      "primary_labels": 19,
++      "fiber_free_rank": 2
++    },
++    {
++      "p": 20,
++      "primary_labels": 40,
++      "fiber_free_rank": 2
++    },
++    {
++      "p": 21,
++      "primary_labels": 21,
++      "fiber_free_rank": 2
++    },
++    {
++      "p": 22,
++      "primary_labels": 44,
++      "fiber_free_rank": 2
++    },
++    {
++      "p": 23,
++      "primary_labels": 23,
++      "fiber_free_rank": 2
++    },
++    {
++      "p": 24,
++      "primary_labels": 48,
++      "fiber_free_rank": 2
++    },
++    {
++      "p": 25,
++      "primary_labels": 25,
++      "fiber_free_rank": 2
++    },
++    {
++      "p": 26,
++      "primary_labels": 52,
++      "fiber_free_rank": 2
++    },
++    {
++      "p": 27,
++      "primary_labels": 27,
++      "fiber_free_rank": 2
++    },
++    {
++      "p": 28,
++      "primary_labels": 56,
++      "fiber_free_rank": 2
++    },
++    {
++      "p": 29,
++      "primary_labels": 29,
++      "fiber_free_rank": 2
++    },
++    {
++      "p": 30,
++      "primary_labels": 60,
++      "fiber_free_rank": 2
++    },
++    {
++      "p": 31,
++      "primary_labels": 31,
++      "fiber_free_rank": 2
++    },
++    {
++      "p": 32,
++      "primary_labels": 64,
++      "fiber_free_rank": 2
++    }
++  ],
++  "reid_labels": [
++    [
++      0,
++      1
++    ],
++    [
++      0,
++      3
++    ],
++    [
++      1,
++      1
++    ],
++    [
++      1,
++      3
++    ],
++    [
++      2,
++      1
++    ],
++    [
++      2,
++      3
++    ],
++    [
++      3,
++      1
++    ],
++    [
++      3,
++      3
++    ]
++  ],
++  "scope": "Exact cochain, graded-ring, abelian-presentation and finite-quotient diagnostics. The topology proof and h-principle require the separate written review."
++}
+diff --git a/unsolved_math_prioritization/attempts/6800007/review/review_summary.json b/unsolved_math_prioritization/attempts/6800007/review/review_summary.json
+new file mode 100644
+index 000000000..acb555a28
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/6800007/review/review_summary.json
+@@ -0,0 +1,32 @@
++{
++  "problem_id": "6800007",
++  "verdict": "PASS",
++  "scope": "Complete stated cohomological classification of totally real regular-homotopy classes for smooth second-countable real three-manifolds without boundary, including nonorientable and noncompact sources, with ordinary homotopies and no properness condition.",
++  "reviewed_sha256": "501c9a536246ad06b29e16720c613bcb292c863857849f837bb0250c45a58050",
++  "review_sha256": "f2b044b46d347d0dec23b28bf306245532a0584ed1183fd0b101b97213b695ef",
++  "independent_check_sha256": "0e37c4d6f9f79f677f5580bdffa453b39775390da6587c850e31292587a0fde8",
++  "independent_receipt_sha256": "7302545150d78712b9ac8bc51568f11eed3b5b7704d835b957ee4dc328b6fb9f",
++  "reviewer_model": "gpt-6-astra",
++  "reasoning_effort": "xhigh",
++  "date_utc": "2026-09-30",
++  "required_corrections": [],
++  "novelty": "Unestablished; known h-principle, sphere case and obstruction-theory framework explicitly credited.",
++  "author_receipt_reproduced_byte_for_byte": true,
++  "independent_assertions": 1595,
++  "graded_exterior_cases": 750,
++  "main_audit_points": [
++    "formal immersion and open ample parametric h-principle",
++    "SU determinant model and orientation Bockstein",
++    "integral relative virtual Chern classes",
++    "stable range and absence of further Postnikov obstructions",
++    "complete coupled monodromy quotient",
++    "ordinary cohomology and infinite CW dimension bounds",
++    "torsion and genuine nonorientable examples"
++  ],
++  "limits": [
++    "Independent AI review, not formal verification or peer review",
++    "Exact checks validate algebra and examples, not the h-principle",
++    "No historical novelty claim",
++    "No classification of embeddings, proper homotopies, source-diffeomorphism quotients or real-form uniformization"
++  ]
++}
+diff --git a/unsolved_math_prioritization/attempts/6800007/source_manifest.json b/unsolved_math_prioritization/attempts/6800007/source_manifest.json
+new file mode 100644
+index 000000000..4327009c5
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/6800007/source_manifest.json
+@@ -0,0 +1,35 @@
++{
++  "dataset_revision": "37e53eabe540fb458758e198be61634bd02ee008",
++  "sources": [
++    {
++      "file": "problems_MTDG.tex",
++      "sha256": "33d853a6de512584aeedfaf5b491bcc7f0cf02d2964e8b1f1be67a5b3b97c48e",
++      "bytes": 42288
++    },
++    {
++      "file": "falbel-veloso.pdf",
++      "sha256": "9ee8f50e98667dbe59f593d912ac359be9343796f90b67600a9b62a034e4254c",
++      "bytes": 264932
++    },
++    {
++      "file": "forstneric1986.pdf",
++      "sha256": "233a54e5d06860d06960b701c9cfc4449ed510bd308f449e2f264505e09c2f9e",
++      "bytes": 11883311
++    },
++    {
++      "file": "borrelli2002.ps",
++      "sha256": "ec2a73f294b79a5891d4e5e3362e780caed199d3c52b6d35486d4abc36b400e4",
++      "bytes": 302969
++    },
++    {
++      "file": "borrelli2002.pdf",
++      "sha256": "deaa66c0bc9a1bc9bd22a8deb25ff52cc4e628e5f069372ece93928118a2d4e7",
++      "bytes": 280193
++    },
++    {
++      "file": "koshkin2009.pdf",
++      "sha256": "bd111600195b8884d69095570d6f3b13d26bdccfd637d4d09d70069f2f265a32",
++      "bytes": 225126
++    }
++  ]
++}
+diff --git a/unsolved_math_prioritization/attempts/6800007/source_record.json b/unsolved_math_prioritization/attempts/6800007/source_record.json
+new file mode 100644
+index 000000000..08c15eac5
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/6800007/source_record.json
+@@ -0,0 +1,57 @@
++{
++  "problem": {
++    "id": 6800007,
++    "problem_number": "AMR-067-0007",
++    "title": "Manifolds modelled on flag manifolds \u2014 Question 2",
++    "statement": "What is the homotopy classification of totally real immersions of real $3$-manifolds in the complex full flag manifold $F_{12}$?",
++    "background": "Source list: Morgan and Pansu - A List of Open Problems in Differential Geometry (2018)\nSource item: Question environment 7 (Manifolds modelled on flag manifolds)\nSource URL: https://www.imo.universite-paris-saclay.fr/~pansu/problems_MTDG.tex\nAccessed: 2026-07-29\nExtraction: source-tex\nStatus evidence: https://www.imo.universite-paris-saclay.fr/~pansu/problems_MTDG.tex; source labels the item as a question; current status NEEDS_REVIEW\nRights note: Public source TeX on coauthor's publication page; redistribution terms NEEDS_REVIEW\nDifficulty assignment: default L3",
++    "difficulty_level_id": 3,
++    "status": "open",
++    "proposed_by": "Elisha Falbel, Sorbonne Universit\\'e, Paris",
++    "proposed_year": 2018,
++    "category_id": 6,
++    "set_id": 13,
++    "view_count": 0,
++    "favorite_count": 0,
++    "created_at": "2026-07-29T00:00:00Z",
++    "updated_at": "2026-08-06T00:00:00Z",
++    "published": true,
++    "category": {
++      "id": 6,
++      "name": "geometry",
++      "display_name": "Geometry",
++      "description": "Euclidean and non-Euclidean geometry, geometric structures.",
++      "slug": "geometry",
++      "order_index": 6,
++      "created_at": "2026-07-31T15:26:25.671Z"
++    },
++    "difficulty": {
++      "id": 3,
++      "level": 3,
++      "name": "L3: Advanced",
++      "description": "Difficult problems requiring specialized knowledge and sophisticated techniques.",
++      "color_class": "text-yellow-600 bg-yellow-50 border-yellow-200"
++    },
++    "set": {
++      "id": 13,
++      "name": "amr_open_problem_lists",
++      "display_name": "AMR Open Problem Lists",
++      "description": "Open and partially solved problems collected from public source lists indexed by AMR, with per-record provenance and status notes.",
++      "slug": "amr-open-problem-lists",
++      "order_index": 13,
++      "created_at": "2026-07-31T15:26:25.671Z"
++    },
++    "research_classification": "OPEN-TRIAGE",
++    "research_summary": "Open (no verified literature classification). Literature status: This belongs to Falbel's program on flag geometries / spherical CR structures and totally real (maximally real) submanifolds of flag manifolds. The full homotopy classification of such immersions was not found solved in the literature I could verify."
++  },
++  "prior_upstream_report": {
++    "classification": "OPEN-TRIAGE",
++    "wording_corrected": "no",
++    "difficulty_suggested": null,
++    "problem": "Statement faithful to the source (Elisha Falbel, 2018): What is the homotopy classification of totally real immersions of real $3$-manifolds in the complex full flag manifold $F_{1,2}$ (the full flag variety of $\\mathbb{C}^3$)?",
++    "status_literature": "This belongs to Falbel's program on flag geometries / spherical CR structures and totally real (maximally real) submanifolds of flag manifolds. The full homotopy classification of such immersions was not found solved in the literature I could verify.",
++    "work_done": "Recognized as an open research problem within Falbel's flag-geometry program; no complete classification located.",
++    "result": "Open (no verified literature classification).",
++    "what_remains": "Develop the homotopy classification of totally real immersions of closed $3$-manifolds into $F_{1,2}$; relate to the deformation/holonomy theory of the associated $(G,X)$-structures. Unverified \u2014 OPEN-TRIAGE."
++  }
++}
+diff --git a/unsolved_math_prioritization/attempts/6800007/status.json b/unsolved_math_prioritization/attempts/6800007/status.json
+new file mode 100644
+index 000000000..90ceed752
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/6800007/status.json
+@@ -0,0 +1,27 @@
++{
++  "id": 6800007,
++  "code": "AMR-067-0007",
++  "status": "candidate_passed_independent_review",
++  "at_utc": "2026-09-30T05:20:00Z",
++  "model": "gpt-6-astra",
++  "reasoning": "xhigh",
++  "turns_used": 1,
++  "turn_limit": 5,
++  "hard_deadline_utc": "2026-09-30T06:42:00Z",
++  "proof": "CANDIDATE.md",
++  "proof_sha256": "501c9a536246ad06b29e16720c613bcb292c863857849f837bb0250c45a58050",
++  "verifier_sha256": "9b8795c4b174eb4b3375c4ec4b5ef2e53c7eeb7b7aa675657b5d66a179dd7d76",
++  "scope": "Smooth second-countable real 3-manifolds without boundary; homotopies through totally real immersions into the integrable complex full flag manifold; no properness or source-diffeomorphism quotient.",
++  "claimed_formula": "For -4x-2y=beta(w1), each fiber is a torsor for H3 plus coker[(p,q)->(-4p-2q,(2x+y)cup p+(x+2y)cup q)].",
++  "full_source_solved": false,
++  "new_discovery_claim": false,
++  "review": {
++    "verdict": "PASS",
++    "report": "review/REVIEW.md",
++    "independent_assertions": 1595,
++    "required_corrections": []
++  },
++  "checks": "12 named exact algebra/group checks, including 25 Smith cases and 1400 coefficient-ring cases; these do not certify topology.",
++  "original_target_answered_in_stated_convention": true,
++  "disposition_note": "Complete stated classification passes separate adversarial review; final campaign queue disposition is maintained separately. Novelty remains unestablished."
++}
+diff --git a/unsolved_math_prioritization/attempts/6800007/turns.jsonl b/unsolved_math_prioritization/attempts/6800007/turns.jsonl
+new file mode 100644
+index 000000000..95d20f8f5
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/6800007/turns.jsonl
+@@ -0,0 +1 @@
++{"turn": 1, "at_utc": "2026-09-30T05:01:00Z", "family": "simultaneous classifying-space fiber and integral Chern-class monodromy", "outcome": "candidate", "artifact": "CANDIDATE.md", "claim": "Regular-homotopy classification by an explicit integral cokernel for fixed smooth real 3-manifolds without boundary; orientations and torsion retained.", "independent_review": "pending", "new_discovery_claim": false}
+diff --git a/unsolved_math_prioritization/attempts/6800007/verification.json b/unsolved_math_prioritization/attempts/6800007/verification.json
+new file mode 100644
+index 000000000..c67ee9b56
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/6800007/verification.json
+@@ -0,0 +1,221 @@
++{
++  "pass": true,
++  "sympy_version": "1.14.0",
++  "symbolic_and_group_checks": [
++    "tangent determinant weight",
++    "loop determinant weight",
++    "first monodromy coordinate",
++    "root-weight index three",
++    "SU3 negative c2 slant",
++    "virtual c2 cancellation with nontrivial target determinant",
++    "negative control: ordinary c2 has an extra term",
++    "negative control is nonzero",
++    "S2xS1 unimodular basis change",
++    "25 exact Smith-normal-form determinantal-divisor checks",
++    "1400 finite torsion coefficient-ring cases",
++    "RP2xS1 index-set obstruction model"
++  ],
++  "torsion_cases": 1400,
++  "S2xS1_examples": [
++    {
++      "n": -12,
++      "torsion_invariant_factors": [
++        2,
++        72
++      ],
++      "free_rank": 1
++    },
++    {
++      "n": -11,
++      "torsion_invariant_factors": [
++        1,
++        132
++      ],
++      "free_rank": 1
++    },
++    {
++      "n": -10,
++      "torsion_invariant_factors": [
++        2,
++        60
++      ],
++      "free_rank": 1
++    },
++    {
++      "n": -9,
++      "torsion_invariant_factors": [
++        1,
++        108
++      ],
++      "free_rank": 1
++    },
++    {
++      "n": -8,
++      "torsion_invariant_factors": [
++        2,
++        48
++      ],
++      "free_rank": 1
++    },
++    {
++      "n": -7,
++      "torsion_invariant_factors": [
++        1,
++        84
++      ],
++      "free_rank": 1
++    },
++    {
++      "n": -6,
++      "torsion_invariant_factors": [
++        2,
++        36
++      ],
++      "free_rank": 1
++    },
++    {
++      "n": -5,
++      "torsion_invariant_factors": [
++        1,
++        60
++      ],
++      "free_rank": 1
++    },
++    {
++      "n": -4,
++      "torsion_invariant_factors": [
++        2,
++        24
++      ],
++      "free_rank": 1
++    },
++    {
++      "n": -3,
++      "torsion_invariant_factors": [
++        1,
++        36
++      ],
++      "free_rank": 1
++    },
++    {
++      "n": -2,
++      "torsion_invariant_factors": [
++        2,
++        12
++      ],
++      "free_rank": 1
++    },
++    {
++      "n": -1,
++      "torsion_invariant_factors": [
++        1,
++        12
++      ],
++      "free_rank": 1
++    },
++    {
++      "n": 0,
++      "torsion_invariant_factors": [
++        2
++      ],
++      "free_rank": 2
++    },
++    {
++      "n": 1,
++      "torsion_invariant_factors": [
++        1,
++        12
++      ],
++      "free_rank": 1
++    },
++    {
++      "n": 2,
++      "torsion_invariant_factors": [
++        2,
++        12
++      ],
++      "free_rank": 1
++    },
++    {
++      "n": 3,
++      "torsion_invariant_factors": [
++        1,
++        36
++      ],
++      "free_rank": 1
++    },
++    {
++      "n": 4,
++      "torsion_invariant_factors": [
++        2,
++        24
++      ],
++      "free_rank": 1
++    },
++    {
++      "n": 5,
++      "torsion_invariant_factors": [
++        1,
++        60
++      ],
++      "free_rank": 1
++    },
++    {
++      "n": 6,
++      "torsion_invariant_factors": [
++        2,
++        36
++      ],
++      "free_rank": 1
++    },
++    {
++      "n": 7,
++      "torsion_invariant_factors": [
++        1,
++        84
++      ],
++      "free_rank": 1
++    },
++    {
++      "n": 8,
++      "torsion_invariant_factors": [
++        2,
++        48
++      ],
++      "free_rank": 1
++    },
++    {
++      "n": 9,
++      "torsion_invariant_factors": [
++        1,
++        108
++      ],
++      "free_rank": 1
++    },
++    {
++      "n": 10,
++      "torsion_invariant_factors": [
++        2,
++        60
++      ],
++      "free_rank": 1
++    },
++    {
++      "n": 11,
++      "torsion_invariant_factors": [
++        1,
++        132
++      ],
++      "free_rank": 1
++    },
++    {
++      "n": 12,
++      "torsion_invariant_factors": [
++        2,
++        72
++      ],
++      "free_rank": 1
++    }
++  ],
++  "scope": "Exact algebra and finite coefficient-ring checks only; no computational certification of h-principle, bundle classification, mapping-space exactness, or novelty."
++}
+diff --git a/unsolved_math_prioritization/attempts/6800007/verify.py b/unsolved_math_prioritization/attempts/6800007/verify.py
+new file mode 100644
+index 000000000..c64e7c023
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/6800007/verify.py
+@@ -0,0 +1,78 @@
++#!/usr/bin/env python3
++"""Exact algebra checks for the proposed formula, not a topology proof.
++Requires SymPy (tested with 1.14.0); no network or numerical approximation.
++"""
++import json
++from math import gcd
++import sympy as s
++
++x,y,p,q,t=s.symbols('x y p q t')
++xs=[x,y,-x-y]; hs=[p,q,-p-q]
++rs=[xs[j]-xs[i] for i in range(3) for j in range(i+1,3)]
++ks=[hs[j]-hs[i] for i in range(3) for j in range(i+1,3)]
++checks=[]
++def eq(a,b,label):
++    assert s.expand(a-b)==0,(label,s.expand(a-b))
++    checks.append(label)
++
++alpha=sum(a*b for a,b in zip(xs,hs))
++eq(sum(rs),-4*x-2*y,'tangent determinant weight')
++eq(sum(ks),-4*p-2*q,'loop determinant weight')
++eq(alpha,(2*x+y)*p+(x+2*y)*q,'first monodromy coordinate')
++eq(sum(a*b for a,b in zip(rs,ks)),3*alpha,'root-weight index three')
++
++def c2(vals):
++    return sum(vals[i]*vals[j] for i in range(len(vals)) for j in range(i+1,len(vals)))
++a0=[a+b*t for a,b in zip(xs,hs)]
++eq(-s.expand(c2(a0)).coeff(t,1),alpha,'SU3 negative c2 slant')
++ar=[a+b*t for a,b in zip(rs,ks)]
++delta=sum(rs)
++virtual_c2=c2(ar)-sum(ar)*delta+delta**2-c2(rs)
++eq(-s.expand(virtual_c2).coeff(t,1),3*alpha,'virtual c2 cancellation with nontrivial target determinant')
++eq(-s.expand(c2(ar)).coeff(t,1),3*alpha-delta*sum(ks),'negative control: ordinary c2 has an extra term')
++# This extra term is genuinely a nonzero polynomial, so dropping it is detected.
++assert s.expand(delta*sum(ks))!=0
++checks.append('negative control is nonzero')
++
++D=s.Matrix([[-4,-2],[2*x+y,x+2*y]])
++T=s.Matrix([[1,0],[-2,1]])
++n=s.symbols('n',integer=True)
++assert D.subs({x:n,y:-2*n})*T==s.Matrix([[0,-2],[6*n,-3*n]])
++checks.append('S2xS1 unimodular basis change')
++smith=[]
++for nn in range(-12,13):
++    vals=[0,-2,6*nn,-3*nn]
++    g=0
++    for a in vals:g=gcd(g,abs(a))
++    det=12*nn
++    if nn:
++        assert g==gcd(2,3*nn)
++        d2=abs(det)//g
++        assert d2%g==0 and g*d2==12*abs(nn)
++        smith.append({'n':nn,'torsion_invariant_factors':[g,d2],'free_rank':1})
++    else:
++        assert g==2 and det==0
++        smith.append({'n':0,'torsion_invariant_factors':[2],'free_rank':2})
++checks.append('25 exact Smith-normal-form determinantal-divisor checks')
++
++# Coefficient-ring checks guard against using division or cancelling torsion.
++torsion_count=0
++for m in (2,4,6):
++    for xx in range(m):
++        for yy in range(m):
++            for pp in range(-2,3):
++                for qq in range(-2,3):
++                    xxv=[xx,yy,-xx-yy];hh=[pp,qq,-pp-qq]
++                    aa=sum(a*b for a,b in zip(xxv,hh))
++                    bb=sum((xxv[j]-xxv[i])*(hh[j]-hh[i]) for i in range(3) for j in range(i+1,3))
++                    assert (bb-3*aa)%m==0
++                    assert (aa-((2*xx+yy)*pp+(xx+2*yy)*qq))%m==0
++                    torsion_count+=1
++checks.append(f'{torsion_count} finite torsion coefficient-ring cases')
++# The RP2xS1 obstruction model has B=Z/2 and delta=1.
++assert not [(xx,yy) for xx in range(2) for yy in range(2) if (-4*xx-2*yy-1)%2==0]
++checks.append('RP2xS1 index-set obstruction model')
++
++print(json.dumps({'pass':True,'sympy_version':s.__version__,'symbolic_and_group_checks':checks,
++                  'torsion_cases':torsion_count,'S2xS1_examples':smith,
++                  'scope':'Exact algebra and finite coefficient-ring checks only; no computational certification of h-principle, bundle classification, mapping-space exactness, or novelty.'},indent=2))
