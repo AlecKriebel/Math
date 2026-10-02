@@ -362,7 +362,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 351 | 20000207 / AIM-ALGEBRAIC_GEOMETRY-0207 | Extended-Kruppa constraints, realized conic ambiguity, and invariant eliminants for algebraic silhouettes | 0.1560 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 352 | 20000450 / AIM-ALGEBRAIC_NUMBER_THEORY-0102 | The infinity 5-torsion line and Kummer quotient of the pentagonal quintic | 0.1560 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 353 | 20000700 / AIM-ANALYTIC_NUMBER_THEORY-0064 | A finite local prime model for the Bogomolny--Keating Type-II input | 0.1560 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 354 | 3000058 / AMR-029-0058 | Opposite vertices of base polyhedra | 0.1560 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 354 | 3000058 / AMR-029-0058 | Opposite vertices of base polyhedra | 0.1560 | 5.0 | 3 | unknown | unsolved | 5/5 |  |  |  |
 | 355 | 3048 / OPG-37226 | Sequence defined on multisets | 0.1560 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 356 | 2800404 / AMR-027-0404 | 10 Lectures and 42 Open Problems — OSNAP | 0.1556 | 5.5 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 357 | 30002820 / OWR-13498-010 | Discrete-Conformal Metric Subdivision Schemes | 0.1556 | 5.0 | 3 | 2015 | queued | 0/5 |  |  |  |
