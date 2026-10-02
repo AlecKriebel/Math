@@ -228,7 +228,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 217 | 5100007 / AMR-050-0007 | Elliptic-billiard invariant k_{115} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 218 | 5100008 / AMR-050-0008 | Elliptic-billiard invariant k_{117} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 219 | 5100011 / AMR-050-0011 | Elliptic-billiard invariant k_{203,a} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
-| 220 | 5100012 / AMR-050-0012 | Elliptic-billiard invariant k_{203,b} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
+| 220 | 5100012 / AMR-050-0012 | Elliptic-billiard invariant k_{203,b} | 0.1905 | 5.0 | 3 | 2021 | claimed_solved | 1/5 |  | 2026-10-01: Complete signed orbit-area times origin-pedal-area proof for primitive odd or0mod4 periods in a nondegenerate confocal ellipse pair, including stars. Separate uninvolved adversarial AI review PASS;37393 author/13712 independent exact controls, numerical diagnostics separate. Published canonical inputs and shared-author mechanism credited; no novelty or human-peer-review claim. See [reviewed proof](attempts/5100012/PUBLICATION_STATUS.md). |  |
 | 221 | 5100014 / AMR-050-0014 | Elliptic-billiard invariant k_{303,a} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 222 | 5100015 / AMR-050-0015 | Elliptic-billiard invariant k_{303,b} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 223 | 5100030 / AMR-050-0030 | Elliptic-billiard invariant k_{601} | 0.1905 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
