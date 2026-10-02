@@ -1,0 +1,7 @@
+# Current research log: PR34 / 7000004
+
+The exact original log and original turn1 are archived without edits. The appended turn2 preserves the original JSONL prefix, records the actual present timestamp, and points to the earlier preserved charging checkpoint rather than inventing a discovery time. New substantive counterexample route1; cumulative2/5; verification0.
+
+2026-10-02T04:26:39.004918+00:00 — workflow75%: three distinct closed families and root complete literal counterexample/prior equivalence verified. Actual original/differential/linking/source/hash-role replays pass with failures retained. Proposedalready_solved is credited earlier-construction partial, no paper/DOI/tracker. NEW whole current adversarial gate pending. Later strict-negative-curvature question outside scope. AI tools used extensively; unrefereed documentation.
+
+2026-10-02T05:25:55.017422+00:00 — workflow75%: first NEW whole mathematics/prior PASS, one metadata repair completed globally in explicit v2. Historical original fields archived; current source-check/model/deadline roles honest. Original turn1 and recorded turn2 unchanged, cumulative2/5; audit0. Root reproduced all nine outer runs and independent controls/mutations. Different NEW complete adversary still required.

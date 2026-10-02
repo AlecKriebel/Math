@@ -333,7 +333,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 322 | 30003508 / OWR-15432-001 | Convergence of Spectral Estimators for Diffusion Tensors | 0.1677 | 5.0 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 323 | 30004434 / OWR-17474-008 | Uniform Coupling under Gibbs Uniqueness | 0.1675 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 324 | 30004022 / OWR-16636-004 | Commutator Models for Nonsymmetric Free Random Variables | 0.1671 | 5.0 | 3 | 2018 | queued | 0/5 |  |  |  |
-| 325 | 30004365 / OWR-17466-004 | Derived Invariants from Gentle Quivers with Relations | 0.1659 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
+| 325 | 30004365 / OWR-17466-004 | Derived Invariants from Gentle Quivers with Relations | 0.1659 | 5.0 | 3 | 2020 | claimed_solved | 1/5 |  | 2026-10-02: explicit terminating theoretical algorithm for the literal source request; full independent source/proof PASS. Published PPP surface construction and APS winding/classification inputs credited. No efficiency, full software implementation, historical novelty or external peer-review claim. Author controls 1,328 and independent assertions 32,291. Workshop/report 2020; EMS publication 10 February 2021. Frozen candidate and audit in problems/30004365_gentle_derived_invariant/. |  |
 | 326 | 5100034 / AMR-050-0034 | Elliptic-billiard invariant k_{606} | 0.1651 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 327 | 5100061 / AMR-050-0061 | Elliptic-billiard invariant k_{818} | 0.1651 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 328 | 30003338 / OWR-15206-017 | Positive Association in Random Proper Colorings | 0.1645 | 7.0 | 3 | 2017 | queued | 0/5 |  |  |  |
