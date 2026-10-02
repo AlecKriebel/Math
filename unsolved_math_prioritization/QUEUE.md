@@ -336,7 +336,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 325 | 30004365 / OWR-17466-004 | Derived Invariants from Gentle Quivers with Relations | 0.1659 | 5.0 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 326 | 5100034 / AMR-050-0034 | Elliptic-billiard invariant k_{606} | 0.1651 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 327 | 5100061 / AMR-050-0061 | Elliptic-billiard invariant k_{818} | 0.1651 | 5.0 | 3 | 2021 | queued | 0/5 |  |  |  |
-| 328 | 30003338 / OWR-15206-017 | Positive Association in Random Proper Colorings | 0.1645 | 7.0 | 3 | 2017 | queued | 0/5 |  |  |  |
+| 328 | 30003338 / OWR-15206-017 | Positive Association in Random Proper Colorings | 0.1645 | 7.0 | 3 | 2017 | unsolved | 5/5 |  | Reviewed partials: universal singleton regression and three-coordinate association; terminal coarsening/equality; scoped FKG and subdivision results. Abstract negative law is not a graph counterexample; full association unresolved. |  |
 | 329 | 30003659 / OWR-15958-006 | Completeness of Cut-Free Kozen Modal Calculus | 0.1645 | 7.0 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 330 | 30003661 / OWR-15958-008 | Pathwise Connected Choice in Dimension Two | 0.1645 | 7.0 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 331 | 30005016 / OWR-9790358-014 | Universal Four-Point Polynomial Interpolation Subspaces | 0.1642 | 5.0 | 3 | 2022 | queued | 0/5 |  |  |  |
