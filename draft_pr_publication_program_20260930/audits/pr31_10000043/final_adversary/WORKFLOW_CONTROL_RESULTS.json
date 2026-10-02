@@ -1,0 +1,84 @@
+{
+  "utc": "2026-10-02T01:51:11.940231+00:00",
+  "queue_program_sha256": "f72aee023f837bad092da58531c2cc069ce2cf094e835d090221107d20f07ab2",
+  "tests": [
+    {
+      "name": "partial_without_prior_review",
+      "rejected": true,
+      "error": "ValueError: Partial status requires a current reviewed attempt",
+      "rejected_without_state_write": true
+    },
+    {
+      "name": "stale_pair_hash_readiness",
+      "rejected": true,
+      "error": "ValueError: Evidence must contain current review_hash; inspect show output and re-review changed source",
+      "rejected_without_state_write": true
+    },
+    {
+      "name": "candidate_by_generic_status_forbidden",
+      "rejected": true,
+      "error": "ValueError: Record a candidate with turn --outcome candidate within the five-turn budget",
+      "rejected_without_state_write": true
+    },
+    {
+      "name": "verified_without_candidate_transition",
+      "rejected": true,
+      "error": "ValueError: Verification requires a candidate recorded within budget on the current reviewed source",
+      "rejected_without_state_write": true
+    },
+    {
+      "name": "restart_at_exhausted_fifth_turn",
+      "rejected": true,
+      "error": "ValueError: Five-turn budget exhausted; move to the next problem",
+      "rejected_without_state_write": true
+    },
+    {
+      "name": "actual_fifth_unfinished_turn_exhausts",
+      "rejected": false,
+      "error": null,
+      "rejected_without_state_write": null
+    },
+    {
+      "name": "sixth_turn_refused",
+      "rejected": true,
+      "error": "ValueError: Start a reviewed attempt before recording a turn",
+      "rejected_without_state_write": true
+    },
+    {
+      "name": "metadata_readiness_with_false_prose_passes",
+      "rejected": false,
+      "error": null,
+      "rejected_without_state_write": null
+    },
+    {
+      "name": "metadata_verified_fields_with_false_prose_passes",
+      "rejected": false,
+      "error": null,
+      "rejected_without_state_write": null
+    },
+    {
+      "name": "missing_report",
+      "serialized_pair_identity_rejected": true
+    },
+    {
+      "name": "JSON_null",
+      "serialized_pair_identity_rejected": true
+    },
+    {
+      "name": "string_null",
+      "serialized_pair_identity_rejected": true
+    },
+    {
+      "name": "classification_deleted",
+      "serialized_pair_identity_rejected": true
+    },
+    {
+      "name": "numeric_id_to_string",
+      "serialized_pair_identity_rejected": true
+    }
+  ],
+  "synthetic_legacy_rendered_columns": 8,
+  "pair_hash": "5608715374e916d7a4e6fd5e58ca2d491b6e8846535d25840adf56927a83db1e",
+  "stored_JSON_whitespace_does_not_change_parsed_hash": true,
+  "scope": "Actual unmodified queue functions, private synthetic data only. No real proof turn, tracker/status/queue mutation. False prose passing demonstrates metadata checks cannot certify mathematics. Legacy renderer loses maintained12columns."
+}

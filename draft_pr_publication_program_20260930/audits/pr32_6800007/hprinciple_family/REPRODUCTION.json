@@ -1,0 +1,54 @@
+{
+  "utc": "2026-10-02T01:17:51.319339+00:00",
+  "runs": [
+    {
+      "program": "verify.py",
+      "attempt": "initial system python3",
+      "returncode": 1,
+      "failure": "ModuleNotFoundError: sympy",
+      "stdout": "reproduction/author_stdout.json",
+      "stderr": "reproduction/author_stdout.json.stderr"
+    },
+    {
+      "attempt": "retry orchestration",
+      "failure": "copied second program missing because initial run stopped; first retry preserved"
+    },
+    {
+      "program": "verify.py",
+      "attempt": "existing workspace venv, no code changes",
+      "python": "/Users/alec/Documents/Math/.venv/bin/python",
+      "code_sha256": "9b8795c4b174eb4b3375c4ec4b5ef2e53c7eeb7b7aa675657b5d66a179dd7d76",
+      "returncode": 0,
+      "stdout_sha256": "78a85bfdf25f6e46b4a7f479ca6bcf252bd65ce6ccf5219fb738c39e6c6ec447",
+      "expected_receipt_sha256": "78a85bfdf25f6e46b4a7f479ca6bcf252bd65ce6ccf5219fb738c39e6c6ec447",
+      "byte_for_byte_equal": true,
+      "stderr_bytes": 0
+    },
+    {
+      "program": "review/independent_checks.py",
+      "attempt": "existing workspace venv, no code changes",
+      "python": "/Users/alec/Documents/Math/.venv/bin/python",
+      "code_sha256": "0e37c4d6f9f79f677f5580bdffa453b39775390da6587c850e31292587a0fde8",
+      "returncode": 0,
+      "stdout_sha256": "7302545150d78712b9ac8bc51568f11eed3b5b7704d835b957ee4dc328b6fb9f",
+      "expected_receipt_sha256": "7302545150d78712b9ac8bc51568f11eed3b5b7704d835b957ee4dc328b6fb9f",
+      "byte_for_byte_equal": true,
+      "stderr_bytes": 0
+    }
+  ],
+  "additional_environment_check_failure": {
+    "interpreter": "/Users/alec/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "command": "import sympy; print(sympy.__version__)",
+    "returncode": 1,
+    "stderr": "ModuleNotFoundError: No module named sympy"
+  },
+  "retry_orchestration_detail": {
+    "author_retry_returncode": 0,
+    "author_retry_stdout": "reproduction/author_retry_stdout.json",
+    "author_retry_stderr": "reproduction/author_retry_stderr.txt",
+    "legacy_retry_returncode": 2,
+    "legacy_retry_stdout": "reproduction/legacy_retry_stdout.json",
+    "legacy_retry_stderr": "reproduction/legacy_retry_stderr.txt",
+    "orchestrator_failure": "FileNotFoundError reading the uncopied reproduction/review/independent_checks.py while building its hash report; corrected by copying that original unchanged file."
+  }
+}
