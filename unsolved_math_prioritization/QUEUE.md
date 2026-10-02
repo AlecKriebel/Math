@@ -320,7 +320,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 309 | 30001608 / OWR-4530-006 | Stability Beyond Unstable Population-Process Fluid Limits | 0.1704 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 310 | 30004437 / OWR-17475-002 | The Real-Zero Polynomial Amalgamation Conjecture | 0.1701 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 311 | 30001994 / OWR-11578-001 | Variational Eddy Currents with Degenerate Conductivity | 0.1697 | 5.0 | 3 | 2012 | queued | 0/5 |  |  |  |
-| 312 | 30002011 / OWR-11581-002 | Corruption-Parameter Choice in Empirical-Bayes Estimation | 0.1697 | 5.0 | 3 | 2012 | queued | 0/5 |  |  |  |
+| 312 | 30002011 / OWR-11581-002 | Corruption-Parameter Choice in Empirical-Bayes Estimation | 0.1697 | 5.0 | 3 | 2012 | unsolved | 5/5 |  |  |  |
 | 313 | 30002163 / OWR-12012-001 | Minimum Distance in Spherical Fibonacci Lattices | 0.1697 | 5.0 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 314 | 30002792 / OWR-13494-011 | Non-ACM Line Configurations with Minimal Symbolic Initial-Degree Gap | 0.1686 | 5.0 | 3 | 2015 | queued | 0/5 |  |  |  |
 | 315 | 30000048 / OWR-722-001 | Positive Characters of Simply Connected Groups | 0.1686 | 7.0 | 3 | 2004 | queued | 0/5 |  |  |  |
