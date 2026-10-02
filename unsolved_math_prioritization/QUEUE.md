@@ -392,7 +392,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 381 | 30001014 / OWR-2048-009 | Realizing Compact Spectra of Pathological Masas | 0.1446 | 5.0 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 382 | 30001202 / OWR-3394-018 | Optimal Feasible Sets from Quantized Trajectory Observations | 0.1444 | 5.0 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 383 | 30001370 / OWR-4132-003 | Common Basin Boundaries in a Transfer-Operator System | 0.1444 | 5.0 | 3 | 2009 | queued | 0/5 |  |  |  |
-| 384 | 30001552 / OWR-4425-007 | Fine–Wilf Bounds for Antimorphic Periods | 0.1442 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
+| 384 | 30001552 / OWR-4425-007 | Fine–Wilf Bounds for Antimorphic Periods | 0.1442 | 5.0 | 3 | 2010 | claimed_solved | 1/5 |  |  |  |
 | 385 | 30001554 / OWR-4425-009 | Unbordered Factors and Alternating Involution Periods | 0.1442 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 386 | 30001563 / OWR-4425-020 | PVHH-Cube Avoidance in a Morphic Fixed Point | 0.1442 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 387 | 30004048 / OWR-16763-022 | Symmetry of Bidirectional Two-Step Path Density | 0.1441 | 6.0 | 3 | 2019 | queued | 0/5 |  |  |  |
