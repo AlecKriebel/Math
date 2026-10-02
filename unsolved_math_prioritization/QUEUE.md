@@ -409,7 +409,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 398 | 30004435 / OWR-17474-009 | Probabilistic Equality of Left and Right Tail Fields | 0.1435 | 4.5 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 399 | 30004811 / OWR-8415343-014 | Equality of Capacity–Volume and ADM Mass | 0.1429 | 7.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 400 | 30005116 / OWR-10252930-028 | Induced Four-Cycle Profiles Above Half Density | 0.1421 | 6.0 | 3 | 2022 | queued | 0/5 |  |  |  |
-| 401 | 30004293 / OWR-17293-009 | Maximum Additive Multiplicity in Logarithmic Random Sets | 0.1409 | 5.0 | 3 | 2019 | queued | 0/5 |  |  |  |
+| 401 | 30004293 / OWR-17293-009 | Maximum Additive Multiplicity in Logarithmic Random Sets | 0.1409 | 5.0 | 3 | 2019 | unsolved | 5/5 |  |  |  |
 | 402 | 30004322 / OWR-17296-003 | Seshadri Constants of Line Arrangement Singularities | 0.1409 | 5.0 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 403 | 30000590 / OWR-1381-005 | Finite Generation of Group-Ring Cohomology | 0.1401 | 6.0 | 3 | 2006 | queued | 0/5 |  |  |  |
 | 404 | 7800012 / AMR-077-0012 | Optimal Flux for the Quarter-Filled Band | 0.1398 | 7.0 | 3 | 1998 | queued | 0/5 |  |  |  |
