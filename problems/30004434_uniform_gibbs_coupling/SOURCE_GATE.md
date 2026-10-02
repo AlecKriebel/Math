@@ -1,0 +1,13 @@
+# Source and prior-attempt gate — 30004434 / OWR-17474-008
+
+2026-10-02. Rank323, Uniform Coupling under Gibbs Uniqueness. Complete pinned record is source_record.json; no matching research_results entry or related-target group was found. Source is Jeffrey Steif's Question A, printed p632 (PDF page32), in OWR11/2020, https://ems.press/content/serial-article-files/46847, DOI10.4171/owr/2020/11. Workshop dates are23–29February2020, despite the imported citation's2021 label.
+
+The primary question explicitly uses the expected TOTAL number of differences in the entire n-box, bounded by epsilon for all sufficiently large n and every boundary pair. It also says this holds under the Dobrushin uniqueness condition. The text contains no volume normalization or smaller inner box. Both features were checked in the primary PDF, not inferred solely from the curated record.
+
+This creates a material source-literal scope issue: a nearest-neighbor one-dimensional Ising chain in the Dobrushin regime has persistent boundary-layer discrepancies and cannot make total expected disagreements tend to zero. A volume-normalized Hamming metric or a buffered interior would be different statements. A result here must distinguish a literal counterexample/formulation correction from resolving any unstated intended normalized problem.
+
+Prior checks: no matching target PR, named branch, attempt-folder path, source-code alias or prior-work entry found in checked repository paths/searches. Gibbs PR search found only unrelated NLS PR93; coupling code hits were earlier Potts censoring work, a distinct target. Related-target groups contain no30004434/17474-008 match. Limited primary-literature searches found the original question, coupling/uniqueness background and no correction or explicit resolution of this exact wording; not a comprehensive novelty certificate.
+
+Gate: eligible for substantive turn1 on the exact unnormalized statement, with the formulation limitation explicitly retained. No inferred permission for external contact, release or normalized-target substitution. Separate review and disposition gate required.
+
+Visual source verification: the original PDF's printed page 632 was rendered and inspected directly. It explicitly says “expected number of differences”; no normalization or buffered box is displayed. The Dobrushin assertion is on the same page. The retained PNG is a source-review artifact, not an independently authored mathematical result. The PDF SHA256 is 9dbb5e7b6cd613e3dd111bdb56ce72714d32bb6d1c368d01cdf8c52ec80b07a3; rendered-page SHA256 is 1181a6a7b089003f55db72f5da94cf4bc0bad1bb31a86714cdc5bca88db66c89. This is an inconsistency in the actual published formulation, not merely a dataset extraction issue.
