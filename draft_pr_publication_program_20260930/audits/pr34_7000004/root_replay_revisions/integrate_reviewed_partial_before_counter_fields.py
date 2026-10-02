@@ -111,9 +111,8 @@ def main():
     dump(A/'acceptance.json',{**acceptance,'canonical_manifest_sha256':sha((K/'MANIFEST.json').read_bytes()),'canonical_manifest_entries':len(manifest)})
     inv=load(B/'inventory.json');item=next(x for x in inv['items'] if x['number']==a.pr)
     item.update(stage='complete',outcome=status+'_accepted_partial',queue_status=status,audited_head=head,merge_commit=merge,merged_at=remote['mergedAt'],workflow_completion_estimate_percent=100,original_attempts=str(used-new)+'/5',new_substantive_attempts=new,cumulative_attempts=str(used)+'/5',paper_or_new_doi_or_tracker=False)
-    done=sum(x.get('stage')=='complete' for x in inv['items'])
-    inv.update(updated_at_utc=now,last_checkpoint_utc=now,completed_count=done,program_completion_estimate_percent=done/180*100,completion_estimate_percent=done/180*100,current_pr=a.pr+1);dump(B/'inventory.json',inv)
-    note='\n## '+now+' — PR'+str(a.pr)+' accepted and remotely merged\n\nWorkflow100%. '+status+' partial; exact head '+head+', merge '+merge+'. Complete NEW source-first gate/root actual replay clean, science/source/ledger unchanged, original/pending records archived. Budget'+str(used)+'/5, audit0; no paper/newDOI/tracker. Program'+str(done)+'/180='+str(round(done/180*100,4))+'%; PR18/20 holds retained. Current mirror follows exact source/remote/package verification.\n'
+    inv['updated_at_utc']=now;dump(B/'inventory.json',inv)
+    done=sum(x.get('stage')=='complete' for x in inv['items']);note='\n## '+now+' — PR'+str(a.pr)+' accepted and remotely merged\n\nWorkflow100%. '+status+' partial; exact head '+head+', merge '+merge+'. Complete NEW source-first gate/root actual replay clean, science/source/ledger unchanged, original/pending records archived. Budget'+str(used)+'/5, audit0; no paper/newDOI/tracker. Program'+str(done)+'/180='+str(round(done/180*100,4))+'%; PR18/20 holds retained. Current mirror follows exact source/remote/package verification.\n'
     for p in [A/'RESEARCH_LOG.md',B/'RESEARCH_LOG.md']:
         with p.open('a') as f:f.write(note)
     print('FINALIZE PASS',a.pr,'completed',done,'canonical_members',len(manifest))
