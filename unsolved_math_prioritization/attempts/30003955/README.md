@@ -1,0 +1,7 @@
+# 30003955: repaired partial surface-cover criteria, complete gate pending
+
+The general four-holed/pants questions remain unsolved, original2/5,new0. PARTIAL proves sufficient criteria: a cyclic intermediate cover, subgroup-generator intransitivity, or g>=2|G|. The third proof now uses an explicit planar ordered-prefix construction; the invalid same-tree quotient step and old approvals are preserved and visibly superseded in CURRENT_REPAIR. A NEW complete fresh adversary on the corrected packet remains pending.
+
+Original15files/16diff and original source/oldreview/scripts/receipts/ledger/log are retained. The original scientific snapshot is ORIGINAL_PARTIAL.md; legacy review/reviewed_partial and verdicts describe that original, whose large-genus approval is withdrawn. Original31/53830 and new geometric/action/mutation controls are supplementary diagnostics, not universal proof certificates. Execute receipt writers in isolated copies. CURRENT_SOURCE_QUALIFICATION records exact literal target and actual sharedQUEUE scope/source/prior/context/history limits.
+
+Original2/5 is conserved; after a clean gate, any merge must preserve all unrelated12-column queue fields and current state/history, and append only a verified current acceptance event. No full solution or novelty claim, paper,newDOI,release,tracker or external individual contact. Extensive AI use; unrefereed, no human peer review or proof-assistant certification.
