@@ -504,7 +504,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 493 | 6000016 / AMR-059-0016 | Stability of Hessian Metrics | 0.1248 | 6.0 | 3 | 1998 | queued | 0/5 |  |  |  |
 | 494 | 30005772 / OWR-14298158-017 | Combinatorial Interpretations of Negative k-Arrangements | 0.1243 | 5.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 495 | 30005832 / OWR-14298166-010 | Fractional Coefficient Savings in Algebraic Proof Systems | 0.1243 | 5.0 | 3 | 2024 | queued | 0/5 |  |  |  |
-| 496 | 30004807 / OWR-8415343-010 | Weak Bianchi Identities Across Timelike Singularities | 0.1238 | 7.0 | 3 | 2021 | queued | 0/5 |  |  |  |
+| 496 | 30004807 / OWR-8415343-010 | Weak Bianchi Identities Across Timelike Singularities | 0.1238 | 7.0 | 3 | 2021 | claimed_solved | 1/5 |  | 2026-10-03: Claimed full negative resolution of the OWR pp.2232-2233 geometric universal conjecture using BKTZ boundary-reaching tests: explicit regular negative-mass ZAS spacetime has absolutely convergent Bianchi defect -8pi. NEC violated; stronger BKTZ hypotheses and collapsed-point test versions excluded. Frozen author 17 checks plus fresh independent AI audit 35 controls pass. No novelty/priority claim or human peer review. |  |
 | 497 | 30000330 / OWR-1106-004 | Quasiconformal Homogeneity Gaps for Hyperbolic Surfaces | 0.1238 | 6.0 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 498 | 30000689 / OWR-1455-008 | Embedding Obstructions from Missing Simplicial Faces | 0.1235 | 6.0 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 499 | 30000999 / OWR-2042-008 | Inverse Wasserstein Stability of the Geodesic Radon Transform | 0.1233 | 5.0 | 3 | 2008 | queued | 0/5 |  |  |  |
