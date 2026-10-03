@@ -37,3 +37,7 @@ Both fresh whole-package reviews pass on the same fixed PDF/source/archive/metad
 ## 2026-10-03T22:35:43.198277+00:00 — PR18 preprint publicly verified
 
 Zenodo record23127955 is published with DOI10.5281/zenodo.23127955, which resolves HTTP200. Both public PDF/ZIP downloads match the reviewed local bytes and SHA256 hashes. The sole metadata representation normalization is the API-added null creator affiliation; name, ORCID, supplied fields and order remain exact. All29 offline upload-tool regressions pass after the narrow adapter. Original failed-stage evidence and saved draft identity were preserved; no duplicate deposit was created. Tracker credentials remain expired/revoked, with reconnect pending; no row or merge is claimed yet. Publication/integration workflow estimate95%; original1/5 accounting and new-attempt credit0 unchanged.
+
+## 2026-10-03T22:52:00.071244+00:00 — PR18 accepted and published, tracker pending
+
+Exact original head merged at `3a844edfe0a203b16f6b90a2ae01cecf5801c7f2` and GitHub confirmed MERGED. The accepted manuscript and published files are linked by present-day acceptance records; 15 historical source blobs and original 1/5 budget remain unchanged. Two fresh whole-package reviews are complete. DOI 10.5281/zenodo.23127955. Workflow estimate: 98%; discovery resolution: 100% within literal Conjecture4 scope. Google tracker remains unwritten pending expired/revoked credential reconnection. No new central discovery attempts.

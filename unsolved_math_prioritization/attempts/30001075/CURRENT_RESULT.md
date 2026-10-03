@@ -10,4 +10,4 @@ The 15 original research files in this directory are preserved byte-for-byte fro
 
 AI tools were used extensively in solving, drafting and verification. The preprint is unrefereed and has not undergone conventional external human peer review or formal proof certification. Exact finite controls support reproducibility and do not replace the analytic proof.
 
-Publication and public file readbacks are complete. The Google tracker row remains pending credential reconnection. A present-day acceptance mirror will bind the actual merge commit after it is known; no historical lifecycle transitions are reconstructed.
+Publication and public file readbacks are complete. The Google tracker row remains pending credential reconnection. Present-day acceptance.json binds the independently confirmed merge commit `3a844edfe0a203b16f6b90a2ae01cecf5801c7f2`. The state and history record one current acceptance mirror; no historical lifecycle transitions are reconstructed.
