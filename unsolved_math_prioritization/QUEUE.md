@@ -462,7 +462,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 451 | 7200087 / AMR-071-0087 | Is there a non-convex polyhedron without self-intersections with more than seven faces, all of which share an edge with each other | 0.1280 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 452 | 30004557 / OWR-2654830-012 | Constructive Definitional Extensions and Morita Equivalence | 0.1276 | 6.0 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 453 | 20001284 / AIM-CONVEX_GEOMETRY-0016 | Finite-dimensional local rigidity from central-section perimeters | 0.1275 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 454 | 20001506 / AIM-GEOMETRIC_GROUP_THEORY-0015 | An explicit lamination-depth gap for the AIM free-by-cyclic pair | 0.1275 | 6.0 | 4 | unknown | queued | 0/5 |  |  |  |
+| 454 | 20001506 / AIM-GEOMETRIC_GROUP_THEORY-0015 | An explicit lamination-depth gap for the AIM free-by-cyclic pair | 0.1275 | 6.0 | 4 | unknown | unsolved | 5/5 |  |  |  |
 | 455 | 20001515 / AIM-GEOMETRIC_GROUP_THEORY-0024 | Fast monodromy and the cocompact cubulation bottleneck | 0.1275 | 6.0 | 4 | unknown | queued | 0/5 |  |  |  |
 | 456 | 20001546 / AIM-GEOMETRIC_GROUP_THEORY-0055 | A character-twist obstruction on the extended Deligne Helly graph | 0.1275 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 457 | 20001670 / AIM-GEOMETRY-0008 | Attainment and a quantitative segment bound for planar p-capacity | 0.1275 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
