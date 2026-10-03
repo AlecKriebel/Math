@@ -4,7 +4,7 @@ UnsolvedMath ID30001070, OWR-2090-023, queue rank429. These are incomplete resea
 
 The exact target concerns the maximum Euclidean norm in a bounded n-dimensional convex polytope with exactly2n facets containing the origin-centered unit ball: the conjectured lower bound is sqrt(n), with equality precisely for circumscribed cubes. No symmetry assumption is allowed. This is a radius/containment problem, not a volume or surface-area minimization problem.
 
-Current checkpoint: four of five substantive author turns. The scope-preserving polar reduction, local cube calculation, and a global centered tight-frame lemma are recorded. They leave the unrestricted nonsymmetric problem unresolved. Exact special-case checks are distinguished from floating-point diagnostics. Existing antipodal and low-dimensional results receive prior credit.
+Final WIP checkpoint: five of five substantive author turns; the author budget is exhausted. The scope-preserving polar reduction, local cube calculation, and a global centered tight-frame lemma are recorded. They leave the unrestricted nonsymmetric problem unresolved. See FINAL_STATUS.md and CORRECTIONS.md. Exact special-case checks are distinguished from floating-point diagnostics. Existing antipodal and low-dimensional results receive prior credit.
 
 ## Sources
 
@@ -13,4 +13,4 @@ Current checkpoint: four of five substantive author turns. The scope-preserving 
 - Alexander E.Litvak, Mathias Sonnleitner, Tomasz Szczepanski, Minimal Dispersion on the Sphere, Discrete & Computational Geometry76(2026),1293–1321, published20August2026, Introduction p1295: https://doi.org/10.1007/s00454-025-00812-8 . The cross-polytope covering optimum is still described as conjectural.
 - Imported problem metadata: UnsolvedMath Contributors, ulamai/UnsolvedMath, snapshot37e53eabe540fb458758e198be61634bd02ee008, https://huggingface.co/datasets/ulamai/UnsolvedMath . Metadata license CC-BY-4.0; underlying sources retain their own terms. Both corpus-file hashes were checked against the repository's provenance manifest before research.
 
-Run check_turn_1.py, check_turn_2.py, check_turn_3.py, and check_turn_4.py with Python and SymPy for exact checks. diagnose_weighted_mass.py and diagnose_two_simplexes.py also require NumPy and SciPy and is expressly non-certifying. The notes give the mathematical arguments; finite checks do not establish universal conclusions.
+Run check_turn_1.py, check_turn_2.py, check_turn_3.py, check_turn_4.py, and check_turn_5.py with Python and SymPy for exact checks. diagnose_weighted_mass.py and diagnose_two_simplexes.py also require NumPy and SciPy and is expressly non-certifying. The notes give the mathematical arguments; finite checks do not establish universal conclusions.
