@@ -487,3 +487,7 @@ Zenodo record23127955 is published with DOI10.5281/zenodo.23127955, which resolv
 ## 2026-10-03T22:52:00.071244+00:00 — PR18 accepted and published, tracker pending
 
 Exact original head merged at `3a844edfe0a203b16f6b90a2ae01cecf5801c7f2` and GitHub confirmed MERGED. The accepted manuscript and published files are linked by present-day acceptance records; 15 historical source blobs and original 1/5 budget remain unchanged. Two fresh whole-package reviews are complete. DOI 10.5281/zenodo.23127955. Workflow estimate: 98%; discovery resolution: 100% within literal Conjecture4 scope. Google tracker remains unwritten pending expired/revoked credential reconnection. No new central discovery attempts.
+
+## 2026-10-03T22:55:47.588324+00:00 — PR18 final native readback
+
+Independent GitHub/main/evidence readback passed. Exactly the target four queue cells changed; all other state entries and the complete history prefix are preserved, with one present-day mirror and original 1/5. Current workflow estimate: 98%; two fully completed eligible PRs plus PR18 pending only the tracker, approximately3.01% weighted workflow across the dated99-PR eligible census. Scope remains claimed_solved only. No advancement beyond PR18 before the live tracker append/readback.
