@@ -513,7 +513,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 502 | 30002086 / OWR-11789-007 | Gradient Lower Bounds for Shrinking Ricci Solitons | 0.1224 | 6.0 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 503 | 30002320 / OWR-12481-005 | Existence of Random-Graph Coloring Growth Rates | 0.1221 | 5.0 | 3 | 2013 | queued | 0/5 |  |  |  |
 | 504 | 30005961 / OWR-14298581-008 | Positive-Entropy Automorphisms of Strict Calabi-Yau Threefolds | 0.1212 | 7.0 | 3 | 2024 | queued | 0/5 |  |  |  |
-| 505 | 30003616 / OWR-15951-003 | Half-Line Spectra for Fibonacci Schrödinger Operators | 0.1209 | 6.0 | 3 | 2017 | queued | 0/5 |  |  |  |
+| 505 | 30003616 / OWR-15951-003 | Half-Line Spectra for Fibonacci Schrödinger Operators | 0.1209 | 6.0 | 3 | 2017 | unsolved | 5/5 |  | 2026-10-03: Full-plane continuum spectral-ray question for arbitrary real L2 tiles and every positive coupling pair. Audited O(E^-1) invariant and 1-O(E^-1/2) local-dimension bounds; conditional mixed-thickness criterion. No ray proof, spectral counterexample, or novelty claim. [Five approaches](attempts/30003616/public/RESULT.md); [PASS_PARTIAL audit](attempts/30003616/audit/AUDIT_REPORT.md). |  |
 | 506 | 30003656 / OWR-15958-003 | Wraith Redundancy for Algebraic Theories | 0.1209 | 6.0 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 507 | 10400136 / AMR-103-0136 | Problem 7.21 — (S. | 0.1200 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 508 | 10900004 / AMR-108-0004 | 1.4 (Danciger) — Convex projective structures on glued figure-eight complements | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
