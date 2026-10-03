@@ -1,0 +1,92 @@
+--- ROOT-read1915/common.py
++++ 2030/common.py
+@@ -11,7 +11,7 @@
+ 
+ N = Path(__file__).absolute().parent
+ R = N.parents[2]
+-need_source_location = N == Path('/Users/alec/Documents/Math/draft_pr_publication_program_20260930/checkpoints/checkpoint_20261003_1915_preparation')
++need_source_location = N == Path('/Users/alec/Documents/Math/draft_pr_publication_program_20260930/checkpoints/checkpoint_20261003_2030_preparation')
+ assert need_source_location
+ 
+ 
+--- ROOT-read1915/stage_checkpoint.py
++++ 2030/stage_checkpoint.py
+@@ -29,7 +29,7 @@
+     need(stamp.tzinfo is not None and datetime.timedelta(0) <= datetime.datetime.now(datetime.timezone.utc) - stamp <= datetime.timedelta(hours=1), 'Current ROOT-supplied UTC stamp')
+     suffix = scope['ROOT_log_marker_suffix']
+     need(isinstance(suffix, str) and suffix and '\n' not in suffix and '\r' not in suffix, 'Exact reviewed one-line dated checkpoint context')
+-    marker = 'Checkpoint 20261003_1915 SOURCE reviewed by ROOT at ' + args.log_stamp + '; ' + suffix
++    marker = 'Checkpoint 20261003_2030 SOURCE reviewed by ROOT at ' + args.log_stamp + '; ' + suffix
+     logs = []
+     absent_logs = []
+     for name in scope['runtime_stamped_log_paths']:
+--- ROOT-read1915/commit_checkpoint.py
++++ 2030/commit_checkpoint.py
+@@ -73,7 +73,7 @@
+         verify_owned(plan['owned_complete_body_modes'])
+         same_protection(before, protection(c, names, real_index))
+         need(c.git(['rev-parse', 'HEAD']).decode().strip() == head and not (gitdir / 'MERGE_HEAD').exists(), 'Stale HEAD/merge before commit object creation')
+-        message = b'Checkpoint completed PR48 V6 and PR60-61 research evidence\n\nAdministrative research custody only. Prepared formal accepted snapshot37/180 (20.5556%). Partial inventory38 is not completed acceptance; failed PR48 finalization is retained. No native mathematical acceptance, DOI or tracker transition by this checkpoint.\n'
++        message = b'Checkpoint completed PR48 rollback and PR61-62 research evidence\n\nAdministrative research custody only. Prepared formal accepted snapshot37/180 (20.5556%). Selected PR48 rollback is complete; failed finalization remains retained. Native acceptance is still pending. Checkpoint1915 compression metadata is preserved. No native mathematical acceptance, DOI or tracker transition by this checkpoint.\n'
+         commit = c.git(['commit-tree', plan['proposed_tree'], '-p', head], stdin=message).decode().strip()
+         need(len(commit) == 40, 'Exact new unreferenced commit object')
+         changed = {os.fsdecode(v) for v in c.git(['diff-tree', '--no-commit-id', '--name-only', '-z', '-r', head, commit]).split(b'\0') if v}
+--- ROOT-read1915/verify_source.py
++++ 2030/verify_source.py
+@@ -20,7 +20,7 @@
+         except RuntimeError:pass
+         else:raise RuntimeError('Malformed flags accepted')
+     repository_gate(c,head);after=protection(c,own,index);same_protection(before,after);verify_fixed_scope(scope)
+-    record=dict(schema='checkpoint1915-preparer-readonly-verification/v1',status='PASS_READONLY_SOURCE_CHECKS',
++    record=dict(schema='checkpoint2030-preparer-readonly-verification/v1',status='PASS_READONLY_SOURCE_CHECKS',
+       actual_pid=os.getpid(),utc=now(),exact_preverification_scope=plain_ref(N/'SCOPE_PREVERIFICATION.json'),fixed_files=len(fixed),
+       directories=len(scope['fixed_directories']),main_head=head,foreign_before=before,foreign_after=after,complete_readonly_commands=c.records,
+       foreign_staged_count=len(before['foreign_staged']),foreign_dirty_body_count=len(before['foreign_dirty_worktree']),syntax_only_production_helpers=True,
+--- ROOT-read1915/freeze_source.py
++++ 2030/freeze_source.py
+@@ -11,10 +11,7 @@
+     for q in N.glob('*.py'):ast.parse(q.read_bytes(),filename=q.name)
+     for q in N.glob('source_*_actual_capture'):
+         j=load(q/'CAPTURE.json');need(j['actual_execution'] and j['completed'] and j['ROOT_execution_or_approval'] is False,'Actual complete preparer capture')
+-        if j['exit_code']!=0:
+-            need(q.name=='source_initial_collection_actual_capture' and j['pid']==14273 and j['exit_code']==1
+-                 and digest((q/'CAPTURE.json').read_bytes())=='e345a8eb14d1caddc77bfbd70a24c15705bbc40a0305d184ed740180705806a3',
+-                 'Only the explicitly retained failed initial collector is qualified; no later failure is promoted')
++        need(j['exit_code']==0,'Current completed SOURCE captures must succeed; retained historical failure is selected separately')
+         if q.name=='source_derivation_actual_capture':
+             for k in ['prelaunch_operator','prelaunch_controller','stdout','stderr']:
+                 z=j[k];a=plain_ref(N/z['path']);need({k:a[k] for k in ['bytes','sha256','full_mode']}=={k:z[k] for k in ['bytes','sha256','full_mode']},'Actual derivation capture body/mode')
+@@ -34,16 +31,15 @@
+       runtime_log_prefix=plain_ref(N/'RESEARCH_LOG.md'),log_prefix_before_actual_preparer_completion=oldlog,
+       dedicated_runtime_log_only=True,fixed_selected_files=len(fixed),
+       fixed_selected_directories=len(scope['fixed_directories']),selected_fixed_bytes=sum(v['bytes'] for v in scope['fixed_files']),
+-      whole_fixed_families_selected=6,actual_ROOT_CAP4_sets=16,actual_failed_inner_capture_files=11,storage_readback_packet_files=12,
+-      formal_accepted_inventory='37/180',formal_accepted_percent=20.5556,partial_inventory38_is_not_completed_acceptance=True,
++      whole_fixed_families_selected=6,actual_ROOT_CAP4_sets=16,completed_rollback_quarantine_files=13,storage_readback_packet_files=13,
++      formal_accepted_inventory='37/180',formal_accepted_percent=20.5556,selected_rollback_does_not_complete_native_acceptance=True,
+       source_preparation_completion_percent=100,mathematical_discovery_changed=False,source_readonly_verifier_pid=check['actual_pid'],
+       verification_dated_not_future_protection_guarantee=True,production_helpers_are_unexecuted=['stage_checkpoint.py','commit_checkpoint.py'],
+       stage_commit_push_executed=False,remote_push_helper_supplied=False,ROOT_review_of_this_SOURCE_claimed=False,
+       separate_source_readback_not_yet_claimed=True,excluded_own_future_readback_output=str((N/EXCLUDED_READBACK_ROOT).relative_to(R)),
+       excluded_own_finalization_capture_output=str((N/EXCLUDED_FINALIZATION_ROOT).relative_to(R)),
+       source_file_modes_bound_not_chmod_frozen=True,native_acceptance_changed=False,mathematical_acceptance_or_paper_publication_DOI=False,
+-      old1745_source_and_actual_receipts_unchanged=True,historical_FAILED80414_and80480_preserved=True,
+-      own_initial_collector14273_failed_and_qualified_not_PASS=True,
++      old1915_source_and_actual_receipts_unchanged=True,historical_FAILED80414_and80480_unchanged_already_checkpointed=True,
+       remaining_gap='ROOT personal full source/scope review and fresh actual stage/commit/push gates after recovery; this SOURCE preparation adds no acceptance or discovery.')
+     exclusive(N/'SOURCE_READY.json',encoded(ready))
+     print(encoded(dict(status='SOURCE_READY_UNEXECUTED_ROOT_HANDOFF',actual_writer_pid=os.getpid(),ready=plain_ref(N/'SOURCE_READY.json'),
+--- ROOT-read1915/read_source.py
++++ 2030/read_source.py
+@@ -13,10 +13,7 @@
+     for q in N.glob('*.py'):ast.parse(q.read_bytes(),filename=q.name)
+     for q in N.glob('source_*_actual_capture'):
+         j=load(q/'CAPTURE.json');need(j['actual_execution'] and j['completed'] and j['ROOT_execution_or_approval'] is False,'Actual preparer capture')
+-        if j['exit_code']!=0:
+-            need(q.name=='source_initial_collection_actual_capture' and j['pid']==14273 and j['exit_code']==1
+-                 and digest((q/'CAPTURE.json').read_bytes())=='e345a8eb14d1caddc77bfbd70a24c15705bbc40a0305d184ed740180705806a3',
+-                 'Retained qualified failure; no PASS promotion')
++        need(j['exit_code']==0,'Current completed SOURCE captures must succeed; retained historical failure is selected separately')
+         if q.name!='source_derivation_actual_capture':
+             verify_plain_refs([j[k] for k in ['prelaunch_operator','prelaunch_common','prelaunch_inputs','stdout','stderr']])
+             need(j['input_bodies_and_full_modes_unchanged'],'Actual prelaunch inputs unchanged')
