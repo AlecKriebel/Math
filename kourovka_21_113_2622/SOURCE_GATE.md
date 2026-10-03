@@ -23,3 +23,7 @@ The v4 full text was read locally. The final-version download returned HTTP 403,
 C. A. Schroeder, *Refining invariants of finite groups with class functions*, https://arxiv.org/abs/2609.26464v1 (22 September 2026), is a relevant recent primary source. Its function Pi_{p',G} has value |C_G(g)| on p-regular g; that differs from Psi_{p,G}, which counts only p-elements in the centralizer. Positivity of Pi does not itself establish positivity of Psi. The paper explicitly distinguishes the two constructions.
 
 No full prior solution or refutation was verified in this bounded search. No historical-priority claim is made.
+
+## Classical character data used in checks
+
+R. Goodman and N. R. Wallach, *Symmetry, Representations, and Invariants*, online Appendix G (2009), Table G.3, derives the ordinary A5 character table geometrically: https://sites.math.rutgers.edu/~goodman/pub/symmetry/appg.pdf . The modular degree-2 characters are derived in Attempt 4 from the natural SL(2,4) module and its Frobenius twist. The supplied checker verifies arithmetic identities; it does not replace the representation-theoretic justification of the input characters.

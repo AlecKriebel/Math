@@ -83,6 +83,14 @@ def main():
   result['by_prime'][str(p)]={str(k):sorted(v) for k,v in sorted(grouped.items())}
  assert result['by_prime']['2']=={'1':[16],'2':[0],'3':[1],'5':[1]}
  out['A5']=result
+ # Exact mixed-order correction in C6 for the faithful character and p=2.
+ re=[Fraction(1),Fraction(1,2),Fraction(-1,2),Fraction(-1),Fraction(-1,2),Fraction(1,2)]
+ pure=re[0]-re[3]
+ mixed=[re[4]-re[1],re[2]-re[5]]
+ assert pure==2 and mixed==[-1,-1] and pure+sum(mixed)==0
+ out['mixed_order_obstruction']={'group':'C6','p':2,'pure_contribution':2,'mixed_contributions':[-1,-1],'indicator':0}
+ out['permutation_obstructions']=[{'group':'S3','p':2,'group_order':6,'degree':4,'degree_divides_order':False},{'group':'A5','p':2,'group_order':60,'degree':16,'degree_divides_order':False}]
+ assert 6%4 and 60%16
  return out
 
 if __name__=='__main__':
