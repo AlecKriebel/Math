@@ -114,3 +114,57 @@ def verify_t2():
   w='abc'[i]+'abc'[j]+'ABC'[i]+'ABC'[j]
   assert magword(w)=={():1,(i,j):1,(j,i):-1}
  return {'linear_system_matrix':E,'constant':c0,'determinant':det(E),'unique_rational_u':list(map(str,u)),'unique_rational_v':list(map(str,v)),'integral_solution':False}
+
+def verify_t3():
+ theta={x:sub(sub(sub(x))) for x in PHI}
+ assert theta=={'a':'ab','b':'bc','c':'cab','d':'edeac','e':'edeaedb'}
+ assert min(map(len,theta.values()))==2 and max(map(len,theta.values()))==7
+ P,S='ed','aedb';w='e';center=0;rows=[]
+ for n in range(1,5):
+  center=len(sub(w[:center],theta))+len(P);w=sub(w,theta)
+  assert w[center]=='e';rows.append({'n':n,'length':len(w),'left':center,'right':len(w)-center-1})
+ pp,ss=P,S
+ for _ in range(3):pp=sub(pp,theta);ss=sub(ss,theta)
+ assert rows[2]=={'n':3,'length':162,'left':73,'right':88}
+ assert len(pp)==267 and len(ss)==288
+ assert min(rows[2]['left'],rows[2]['right'],len(pp),len(ss))>35
+ low='a';top='e'
+ for _ in range(6):low=sub(low,theta)
+ for _ in range(7):top=sub(top,theta)
+ assert low in top
+ lang={low[i:i+k] for k in range(1,13) for i in range(len(low)-k+1)}
+ assert all(z in top for z in lang)
+ a='a'
+ for _ in range(5):a=sub(a)
+ assert a=='cab'
+ return {'theta':theta,'top_centered_cores':rows,'BCC_bound':35,'theta3_P_length':len(pp),'theta3_S_length':len(ss),'lower_seed_phi5_a':a,'finite_language_words_checked':len(lang),'all_finite_control_words_in_top':True}
+
+def rank(a):
+ from fractions import Fraction as Q
+ a=[list(map(Q,row)) for row in a];r=0
+ for j in range(len(a[0])):
+  z=next((i for i in range(r,len(a)) if a[i][j]),None)
+  if z is None:continue
+  a[r],a[z]=a[z],a[r];q=a[r][j];a[r]=[v/q for v in a[r]]
+  for i in range(len(a)):
+   if i!=r:
+    q=a[i][j];a[i]=[v-q*w for v,w in zip(a[i],a[r])]
+  r+=1
+ return r
+
+def verify_t4():
+ from itertools import combinations
+ from search_periodic import class2,PAIR,V
+ m=mat(PHI,'abcde')
+ w=[[m[i][k]*m[j][l]-m[i][l]*m[j][k] for k,l in PAIR] for i,j in PAIR]
+ assert [sum(a*b for a,b in zip(row,V)) for row in w]==[-a for a in V]
+ assert rank([[w[i][j]+int(i==j) for j in range(10)] for i in range(10)])==9
+ assert rank([[w[i][j]-int(i==j) for j in range(10)] for i in range(10)])==10
+ for k,(i,j) in enumerate(PAIR):
+  comm='abcde'[i]+'abcde'[j]+'ABCDE'[i]+'ABCDE'[j]
+  assert class2(sub(comm))==tuple(row[k] for row in w)
+ q={'d':'e','e':'ed'}
+ comm='deDE'
+ assert conjugacy_key(sub(comm,q))==conjugacy_key(inv(comm))
+ assert conjugacy_key(sub(comm)) not in {conjugacy_key(comm),conjugacy_key(inv(comm))}
+ return {'exterior_square_matrix':w,'minus_one_eigenvector':list(V),'rank_W_plus_I':9,'rank_W_minus_I':10,'quotient_commutator_is_inverted_up_to_conjugacy':True,'full_first_image_not_periodic_or_inverse':True}
