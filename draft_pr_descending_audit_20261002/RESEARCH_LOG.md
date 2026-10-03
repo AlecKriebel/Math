@@ -176,3 +176,5 @@ Workflow98%, original mathematical resolution0%, program6/349=1.7192%. All46 fre
 2026-10-03T07:37:17.850542+00:00: PR375 actual acceptance `f552824f121bb2820f57868c5f12ede3287f70fc` at 2026-10-03T07:37:14Z; all54 paths and53 target hashes exact. Only own queue line412 cells[8, 9]; every other queue byte preserved. Statusunsolved,5/5;workflow100%, original resolution0% (credited prior literature when already_solved); program14/349=4.0115%. No paper/DOI.
 
 2026-10-03T07:38:55.666517+00:00: PR374 original46objects/45target artifacts frozen onmain; source-first audit5%,original resolution0%. Program14/349=4.0115%; PR375 actualf552824f121bb2820f57868c5f12ede3287f70fc verified. No paper/DOI for completedpartial.
+
+2026-10-03T07:57:44.481494+00:00: PR374 queue-only repair `26df33899c95d860403ab311c568e0328bc87eeb` against actual main `ceada39994b1cd2c4935709143b53e2f7a581a45`; all45 target bytes unchanged, only own queue line411 cells8/9. Workflow90%, original resolution0%; fresh exact-head final audit pending.
