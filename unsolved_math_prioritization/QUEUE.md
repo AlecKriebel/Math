@@ -508,7 +508,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 497 | 30000330 / OWR-1106-004 | Quasiconformal Homogeneity Gaps for Hyperbolic Surfaces | 0.1238 | 6.0 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 498 | 30000689 / OWR-1455-008 | Embedding Obstructions from Missing Simplicial Faces | 0.1235 | 6.0 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 499 | 30000999 / OWR-2042-008 | Inverse Wasserstein Stability of the Geodesic Radon Transform | 0.1233 | 5.0 | 3 | 2008 | queued | 0/5 |  |  |  |
-| 500 | 30001148 / OWR-3388-006 | Local–Global Principles for Homogeneous Spaces over Semi-Global Fields | 0.1231 | 6.0 | 3 | 2009 | queued | 0/5 |  |  |  |
+| 500 | 30001148 / OWR-3388-006 | Local–Global Principles for Homogeneous Spaces over Semi-Global Fields | 0.1231 | 6.0 | 3 | 2009 | already_solved | 1/5 |  | CTPS2016 negative answer for all rank-one valuations, including nontrivial on K; [audited prior result](attempts/30001148/README.md). Displayed examples nonprojective and non-p-adic; no novelty. |  |
 | 501 | 30006510 / OWR-14299586-001 | Typical Cells in Hyperbolic Tessellations with Unbounded Cells | 0.1227 | 5.0 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 502 | 30002086 / OWR-11789-007 | Gradient Lower Bounds for Shrinking Ricci Solitons | 0.1224 | 6.0 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 503 | 30002320 / OWR-12481-005 | Existence of Random-Graph Coloring Growth Rates | 0.1221 | 5.0 | 3 | 2013 | queued | 0/5 |  |  |  |
