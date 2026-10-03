@@ -1,0 +1,5 @@
+# First substantive author turn
+
+The first turn tested whether the failure of fixed realignment/SIC criteria on Werner states can be upgraded to failure of the entire tester family. A finite pure-projector second-moment ensemble supplies a universal Hilbert energy budget for every local tester. Applying it to the trace/traceless expansion of a Werner state yields an all-tester bound on a nonempty entangled interval in every dimension d>=3. The rational state (19I-9F)/144 in dimension3 is an explicit full-rank example. Product extensions give non-fully-separable multipartite examples without a genuine-multipartite-entanglement claim.
+
+This is a complete negative candidate for the central no-reshuffling completeness question. It is not a conclusion obtained merely from optimizing symmetric testers, and the proof does not invoke the preprint's real-to-complex extension claim. The broad secondary fixed-test comparison and classification questions remain separately unresolved. Independent review is required before accepting or publishing the central result.

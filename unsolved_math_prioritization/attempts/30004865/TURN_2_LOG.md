@@ -1,0 +1,5 @@
+# Second substantive author turn
+
+This turn addressed the remaining fixed-test multipartite comparison rather than extending the already reviewed central counterexample. Orthogonal-block dual certificates and paired bilinear forms give exact complex projective norms for even-party noisy GHZ states. The same decomposition gives one-sided certificates sufficient for a three-qubit realignment-only example. A rational asymmetric two-qubit SIC-only example, using the credited bipartite advantage phenomenon, extends by pure local factors. Together the examples prove incomparability for every number of parties at least three.
+
+The proof makes the actual qubit SIC realization explicit and labels the canonical Gram-map interpretation in dimensions where SIC existence is not assumed. It does not substitute flattening nuclear norms for the full multipartite projective norm. General detection regions beyond these families remain unclassified. Turn1 and its full independent review are preserved unchanged.
