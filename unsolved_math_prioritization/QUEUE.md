@@ -528,7 +528,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 517 | 20003004 / AIM-TOPOLOGY-0092 | Digital pi_2, clique realization, and the octahedral sphere | 0.1200 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 518 | 2302005 / AMR-022-2005 | Research Problems in Function Theory — Problem 2.5 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 519 | 2302054 / AMR-022-2054 | Research Problems in Function Theory — Problem 2.54 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 520 | 2302058 / AMR-022-2058 | Research Problems in Function Theory — Problem 2.58 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 520 | 2302058 / AMR-022-2058 | Research Problems in Function Theory — Problem 2.58 | 0.1200 | 6.0 | 3 | unknown | already_solved | 1/5 |  | Credited affirmative answer: Eremenko (1985); exact nonzero-value circle normalization bridge verified. [Proof and independent audit](attempts/2302058/README.md) |  |
 | 521 | 2304006 / AMR-022-4006 | Research Problems in Function Theory — Problem 4.6 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 522 | 2304025 / AMR-022-4025 | Research Problems in Function Theory — Problem 4.25 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 523 | 2305028 / AMR-022-5028 | Research Problems in Function Theory — Problem 5.28 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
