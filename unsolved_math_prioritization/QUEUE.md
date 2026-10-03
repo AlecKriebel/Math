@@ -422,7 +422,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 411 | 30004656 / OWR-4990384-001 | Robustness-Driven Overparameterization in Two-Layer Neural Networks | 0.1355 | 5.5 | 3 | 2021 | unsolved | 5/5 |  |  |  |
 | 412 | 2511 / KOU-21.2 | Kourovka Notebook Problem 21.2 | 0.1350 | 6.0 | 2 | 2026 | queued | 0/5 |  |  |  |
 | 413 | 2518 / KOU-21.9 | Kourovka Notebook Problem 21.9 | 0.1350 | 6.0 | 2 | 2026 | queued | 0/5 |  |  |  |
-| 414 | 2525 / KOU-21.16 | Kourovka Notebook Problem 21.16 | 0.1350 | 6.0 | 2 | 2026 | queued | 0/5 |  |  |  |
+| 414 | 2525 / KOU-21.16 | Kourovka Notebook Problem 21.16 | 0.1350 | 6.0 | 2 | 2026 | unsolved | 5/5 |  |  |  |
 | 415 | 2531 / KOU-21.22 | Kourovka Notebook Problem 21.22 | 0.1350 | 6.0 | 2 | 2026 | queued | 0/5 |  |  |  |
 | 416 | 30004865 / OWR-8415352-007 | Completeness of Realignment and SIC-POVM Entanglement Tests | 0.1333 | 7.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 417 | 6200004 / AMR-061-0004 | Boundaries of Groups and Kleinian Groups — Problem 4 | 0.1321 | 6.0 | 3 | 2005 | queued | 0/5 |  |  |  |
