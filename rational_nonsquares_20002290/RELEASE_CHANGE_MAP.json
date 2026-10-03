@@ -1,0 +1,116 @@
+{
+  "problem_id": 20002290,
+  "rank": 463,
+  "outcome": "unsolved_with_partial_progress",
+  "turns": 5,
+  "revision_kind": "Adversarial-review precision repairs only; no new proof attempt",
+  "review_status": "Full audit passed substantive mathematics and held text for the listed repairs. Repairs applied; narrow re-review pending.",
+  "original_manifest_sha256": "339027665101eb955f59e55fe58724166d32b7e16dd74734177ab57cb23b9019",
+  "full_audit_sha256": "43f64f1f42fb6d01571fdf96e493548a2b45fad43138ac58a521f2f5484bdd19",
+  "changes": [
+    {
+      "file": "README.md",
+      "old": "A disjunct with at most one square atom contributes only O(√H) positive integers up to H, so finitely many such disjuncts cannot define the nonsquares.",
+      "new": "A disjunct with at most one square atom whose solution set contains no rational square contributes only O(√H) positive integers up to H, so finitely many such disjuncts cannot define the nonsquares.",
+      "reason": "Add the square-avoiding hypothesis already present in the body proof; all-Q branches otherwise invalidate the unqualified summary."
+    },
+    {
+      "file": "README.md",
+      "old": "This excludes single-equation diagonal normal forms, with any number of square variables.",
+      "new": "This excludes diagonal normal forms with at most one equation total and no additional witness-only constraints, with any number of square variables.",
+      "reason": "Make the one-equation restriction explicit in the summary and prevent a parameter-equation-only reading."
+    },
+    {
+      "file": "turn_03.md",
+      "old": "The diagonal-fiber normal form from Attempt 2 suggests trying an arbitrary number of square variables but only one independent equation involving the free parameter. Such a branch is the value set",
+      "new": "The diagonal-fiber normal form from Attempt 2 suggests trying an arbitrary number of square variables but at most one independent linear equation in all the remaining variables after additive elimination. No additional witness-only constraints are allowed in this restricted fragment. A branch with a nonzero coefficient of the free parameter is the value set",
+      "reason": "An equation containing x plus witness-only constraints is a simultaneous system, not an unrestricted quadratic image; also specify the nonzero x-coefficient case."
+    },
+    {
+      "file": "turn_03.md",
+      "old": "Thus the theorem handles every finite disjunction of the diagonal normal-form branches having at most one independent equation, without bounding the number of square atoms.",
+      "new": "Thus the theorem handles every finite disjunction of the diagonal normal-form branches having at most one independent equation total, with no additional witness-only constraints and without bounding the number of square atoms.",
+      "reason": "Propagate the exact fragment restriction to the theorem application."
+    },
+    {
+      "file": "turn_05.md",
+      "old": "The argument above establishes compatibility only for a restricted family of quadratic-image tests.",
+      "new": "The argument above only excludes each individual square-disjoint quadratic-image test. It does not prove finite satisfiability of even the restricted positive type at a square: a finite conjunction of these tests can reintroduce simultaneous diagonal systems.",
+      "reason": "Individual avoidance does not establish finite positive-type satisfiability or yield the required homomorphism."
+    },
+    {
+      "file": "SOURCE_GATE.md",
+      "old": "The source gives two equivalent target sets: nonzero rationals and rational nonsquares.",
+      "new": "The source gives two target sets whose positive-existential definability together is equivalent to the original assertion: nonzero rationals and rational nonsquares.",
+      "reason": "The conjunction of the two definability demands is equivalent, not either demand separately."
+    },
+    {
+      "file": "turn_01.md",
+      "old": "At p=2, m is divisible by 4 and x≡1 mod16, hence x is a 2-adic square. One may verify the latter directly by lifting odd roots: an odd root modulo 2^k, k≥3, can be changed by 2^{k-1} to select the required next bit of its square; the compatible lifts yield a 2-adic root. In particular the standard square criterion 1 mod8 applies.",
+      "new": "At p=2, m is divisible by 4 and x≡1 mod16. The standard criterion that a 2-adic unit congruent to 1 modulo 8 is a square applies.",
+      "reason": "Remove a root-adjustment aside that did not preserve the chosen residue modulo 2^k; use the standard correct 2-adic unit criterion."
+    }
+  ],
+  "file_changes": [
+    {
+      "file": "README.md",
+      "changed": true,
+      "original_sha256": "3125450623cf0010b733a2271b1601d17c8d6988309e6b3abfb674105e50e134",
+      "revised_sha256": "a0156a998ba6a68271c9ea67510c66849e27ea241eed52421f77b665cbe5fda5"
+    },
+    {
+      "file": "RESEARCH_LOG.md",
+      "changed": false,
+      "original_sha256": "c1b52e4e660c2b9c7cece475505635d130ebe797e1c3552a26daa3a915cff75b",
+      "revised_sha256": "c1b52e4e660c2b9c7cece475505635d130ebe797e1c3552a26daa3a915cff75b"
+    },
+    {
+      "file": "SOURCE_GATE.md",
+      "changed": true,
+      "original_sha256": "3d2e163a6b4ac7093c989af4af8c78235777b55eab3d145dc9ec86b9161e4a9f",
+      "revised_sha256": "ae7f9af723cca469ff5bfe0fddb3583b13b2bd1f3b05c3fa4fca7fba77252f95"
+    },
+    {
+      "file": "turn_01.md",
+      "changed": true,
+      "original_sha256": "4dc2b430c99a45814fb3ebd4c8a009dc0c43bd487a33a76440d8dcda3f2d163e",
+      "revised_sha256": "5b884dbffc01ce13ad9171a3ad765ac960c457e57f65f33235fd706f78e10892"
+    },
+    {
+      "file": "turn_02.md",
+      "changed": false,
+      "original_sha256": "1f7aae928906bc566b07f35d80f924ed822a47a739975306b4f8c7effe464f35",
+      "revised_sha256": "1f7aae928906bc566b07f35d80f924ed822a47a739975306b4f8c7effe464f35"
+    },
+    {
+      "file": "turn_03.md",
+      "changed": true,
+      "original_sha256": "5463f4889133fd08526b8cda5dc6ed6fd6949cea9858c03dd0ec3071d29fd494",
+      "revised_sha256": "a6f5d627501e1eff4cbc264897f992972caa78d33d96a23d75268b22bdcf4d95"
+    },
+    {
+      "file": "turn_04.md",
+      "changed": false,
+      "original_sha256": "f551cf5e039d335bb9461d6ddbd56e985cab83ee1fa1b915592bd6931eb55f77",
+      "revised_sha256": "f551cf5e039d335bb9461d6ddbd56e985cab83ee1fa1b915592bd6931eb55f77"
+    },
+    {
+      "file": "turn_05.md",
+      "changed": true,
+      "original_sha256": "b628e3098d85826ce4b1c349a6ed5763583ec66080c3b8723c80dc7d8e546ddb",
+      "revised_sha256": "e299eba0f3c57e3eeaf0570c9384f6dc96c740a5d321817bd8c964daaad877f1"
+    },
+    {
+      "file": "verification.json",
+      "changed": false,
+      "original_sha256": "a7b68976326cfb14ff3c6300158d664d256ff955e683aae929a65cb4d2efaa9c",
+      "revised_sha256": "a7b68976326cfb14ff3c6300158d664d256ff955e683aae929a65cb4d2efaa9c"
+    },
+    {
+      "file": "verify_identities.py",
+      "changed": false,
+      "original_sha256": "2ebbaf52e5ea386b64022b4404421c63fc22af5ff183876b4e78ce3394005097",
+      "revised_sha256": "2ebbaf52e5ea386b64022b4404421c63fc22af5ff183876b4e78ce3394005097"
+    }
+  ]
+}
