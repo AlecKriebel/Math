@@ -507,7 +507,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 496 | 30004807 / OWR-8415343-010 | Weak Bianchi Identities Across Timelike Singularities | 0.1238 | 7.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 497 | 30000330 / OWR-1106-004 | Quasiconformal Homogeneity Gaps for Hyperbolic Surfaces | 0.1238 | 6.0 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 498 | 30000689 / OWR-1455-008 | Embedding Obstructions from Missing Simplicial Faces | 0.1235 | 6.0 | 3 | 2007 | queued | 0/5 |  |  |  |
-| 499 | 30000999 / OWR-2042-008 | Inverse Wasserstein Stability of the Geodesic Radon Transform | 0.1233 | 5.0 | 3 | 2008 | queued | 0/5 |  |  |  |
+| 499 | 30000999 / OWR-2042-008 | Inverse Wasserstein Stability of the Geodesic Radon Transform | 0.1233 | 5.0 | 3 | 2008 | claimed_solved | 2/5 |  | 2026-10-03: Audited negative: classical antipodal obstruction; stronger failure for smooth positive even densities, n>=3 and every finite p>=1. Even circle case isometric. No novelty claim. [Proof and independent audit](attempts/30000999/PUBLICATION_STATUS.md). |  |
 | 500 | 30001148 / OWR-3388-006 | Local–Global Principles for Homogeneous Spaces over Semi-Global Fields | 0.1231 | 6.0 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 501 | 30006510 / OWR-14299586-001 | Typical Cells in Hyperbolic Tessellations with Unbounded Cells | 0.1227 | 5.0 | 3 | 2025 | queued | 0/5 |  |  |  |
 | 502 | 30002086 / OWR-11789-007 | Gradient Lower Bounds for Shrinking Ricci Solitons | 0.1224 | 6.0 | 3 | 2012 | queued | 0/5 |  |  |  |
