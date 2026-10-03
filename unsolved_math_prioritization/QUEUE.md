@@ -514,7 +514,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 503 | 30002320 / OWR-12481-005 | Existence of Random-Graph Coloring Growth Rates | 0.1221 | 5.0 | 3 | 2013 | queued | 0/5 |  |  |  |
 | 504 | 30005961 / OWR-14298581-008 | Positive-Entropy Automorphisms of Strict Calabi-Yau Threefolds | 0.1212 | 7.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 505 | 30003616 / OWR-15951-003 | Half-Line Spectra for Fibonacci Schrödinger Operators | 0.1209 | 6.0 | 3 | 2017 | queued | 0/5 |  |  |  |
-| 506 | 30003656 / OWR-15958-003 | Wraith Redundancy for Algebraic Theories | 0.1209 | 6.0 | 3 | 2017 | queued | 0/5 |  |  |  |
+| 506 | 30003656 / OWR-15958-003 | Wraith Redundancy for Algebraic Theories | 0.1209 | 6.0 | 3 | 2017 | claimed_solved | 2/5 |  | 2026-10-03: full scoped-counterexample audit PASS for the literal consequence-based algebraic statement: pointed-object T and alpha = not forall x not not (x=c) add no geometric consequences, while the generic model refutes alpha. [Proof](attempts/30003656/PROOF.md); [full audit](attempts/30003656/audit/AUDIT_REPORT.md). Prior 2019 negative answer announced; full-text comparison unverified. No novelty or historical-priority claim; additional unstated refinements are excluded from this result. |  |
 | 507 | 10400136 / AMR-103-0136 | Problem 7.21 — (S. | 0.1200 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 508 | 10900004 / AMR-108-0004 | 1.4 (Danciger) — Convex projective structures on glued figure-eight complements | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 509 | 20001282 / AIM-CONVEX_GEOMETRY-0014 | A sharp product-prism family for Kuperberg's fixed-combinatorial-type question | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
