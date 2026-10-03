@@ -130,3 +130,5 @@ Workflow98%, original mathematical resolution0%, program6/349=1.7192%. All46 fre
 2026-10-03T05:41:15.596705+00:00: PR376 original freeze `9a92b6a0bd7cff3a8c11bf66ff9338264ab012d1` with51 paths; independent audit beginning;workflow5%,original resolution0%;accepted program8/349=2.2923%. Descending acceptance order remains380,379,378,377,376.
 
 2026-10-03T05:43:29.385525+00:00: fresh final gate PASS,23 bounded outputs hash-checked, ten complete streams independently root-reproduced and all44/66/64 object/nested/historical bindings exact. All five written universal proofs independently audited. No mandatory repairs;accept scoped unsolved5/5 only;workflow98%,original resolution0%;actual merge pending.
+
+2026-10-03T05:44:29.820660+00:00: PR380 actual acceptance `9139294727b826926797b26efdd6edc2ca0d1f21` at 2026-10-03T05:44:27Z; all44 paths and43 target hashes exact. Only own queue line417 cells[8, 9]; every other queue byte preserved. Statusunsolved,5/5;workflow100%, original resolution0% (credited prior literature when already_solved); program9/349=2.5788%. No paper/DOI.
