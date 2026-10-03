@@ -405,7 +405,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 394 | 2303002 / AMR-022-3002 | Research Problems in Function Theory — Problem 3.2 | 0.1440 | 7.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 395 | 2303016 / AMR-022-3016 | Research Problems in Function Theory — Problem 3.16 | 0.1440 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 396 | 9400114 / AMR-093-0114 | Agrawal's conjecture | 0.1440 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 397 | 9700034 / AMR-096-0034 | Integrability of all routes to random points in a SIRSN | 0.1440 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 397 | 9700034 / AMR-096-0034 | Integrability of all routes to random points in a SIRSN | 0.1440 | 5.0 | 3 | unknown | unsolved | 5/5 |  |  |  |
 | 398 | 30004435 / OWR-17474-009 | Probabilistic Equality of Left and Right Tail Fields | 0.1435 | 4.5 | 3 | 2020 | unsolved | 5/5 |  |  |  |
 | 399 | 30004811 / OWR-8415343-014 | Equality of Capacity–Volume and ADM Mass | 0.1429 | 7.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 400 | 30005116 / OWR-10252930-028 | Induced Four-Cycle Profiles Above Half Density | 0.1421 | 6.0 | 3 | 2022 | unsolved | 5/5 |  |  |  |
