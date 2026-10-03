@@ -1,0 +1,43 @@
+# PR46 original claim inventory — source preparation only
+
+This inventory records literal original assertions and proposed audit routes. It gives no mathematical acceptance verdict, source certification, or future approval. The old review's PASS strings are preserved as original data, not adopted as new review findings.
+
+Identity: numeric problem **30004438**, code **OWR-17475-003**, imported title **Real Rational Maps with Exclusively Real Periodic Points**. Fresh read-only GitHub metadata identifies PR46 as **Correct known real-periodic rational-map interior status (30004438)**, an open draft, exact head `a39d178b10f75fb127058b08e0d0002b3ae97f8a`, GitHub base `c6975ca76f9f667f1250ba403d0e6da2aafe14d0`. The actual Git merge base separately captured for that pair is also `c6975ca76f9f667f1250ba403d0e6da2aafe14d0`; this equality was computed, not assumed.
+
+## Full original target
+
+For every integer degree d≥2, the set of real morphisms of the complex projective line to itself whose projective periodic points are all real should have nonempty interior in the entire space of real degree-d morphisms. The original bundled statement also asks existence; the cleaned statement says Chebyshev maps already supply existence and retains ambient nonempty interior as the target. A sufficient success artifact must prove a nonempty Euclidean-open subset of the full 2d+1 dimensional real projective coefficient space, with every point of every positive period real. Quotienting by conjugacy, polynomial-only perturbations, a root-parametrized lower-dimensional family, finite-period checks, or ignoring infinity do not establish this target.
+
+The current draft recommends **already_solved** with credit to **Khazhgali Kozhasov and Mario Kummer**, describes their April/October 2020 preprint, and makes no campaign discovery or verified journal-publication claim. This recommendation remains a hypothesis to verify. The imported August 2026 background says interior is open; that historical triage is preserved and is not present-priority evidence.
+
+## Literal original topology and ledger
+
+The complete repository diff has 14 files: one modified `unsolved_math_prioritization/QUEUE.md`, and 13 added files under the selected attempt. The original queue row declares `already_solved` and `0/5`. The original ledger is **turns.json**, with `substantive_turns_used: 0`, `source_verification_responses: 1`, `turn_limit: 5`, `outcome: known_result_source_correction`, and `recommended_status: already_solved`. There is no original turns.jsonl or status.json. The scientific objects are source_record.json, provenance.json, turns.json, verification.json, independent_review/independent_results.json, and independent_review/review_summary.json. All are archived literally and preserved in the complete read receipt.
+
+The original author receipt declares 51 exact controls and the original independent receipt declares 848, both with all saved values `PASS`. Their complete labels and typed values were read structurally; neither submitted helper was executed. The author script writes verification.json next to itself and the reviewer script writes independent_results.json next to itself, so any future reproduction must use a separate copy and a fresh actual capture. SOURCE_STATUS.md and REVIEW.md match their original hash references. Historical statements such as README's “No PR has been opened yet” and SOURCE_STATUS's “Separate review is pending” are retained, although PR46 and the old review now exist.
+
+Head-native state.json is the literal empty object; there is no selected native status entry. The original head's catalog, assessment, state, histories, manifest, and related-target groups are individually Git-bound, and all selected objects are separately exported. Current working native inputs are individually byte/hash/mode bound without edits. The native read-only SQLite selected payload matches the original source_record.json as a complete parsed object; its prior report is separately retained. These identities establish reproducible input bindings, not source truth or current priority.
+
+## Original asserted proof mechanism
+
+SOURCE_STATUS displays p_d(z)=∏(z+2j−1), q_d(z)=∏(z+2j). It asserts that negativity, simple strict interlacing, positive coefficients, nonzero leading coefficients, and coprimality persist in an open neighborhood of the full chart q_d=1. It then uses same-sign nonzero partial-fraction residues to deduce real fibers and no real ramification, including poles and infinity. Homogeneous iteration allegedly preserves positive coefficients and coprimality, giving degree e=d^n. The claimed e simple finite negative poles provide e−1 real fixed roots between poles and one positive fixed root. An e+1 degree real fixed polynomial cannot then have a nonreal conjugate pair. Infinity is excluded as a fixed point because both affine degrees remain e. These are the exact universal steps requiring fresh independent validation.
+
+The original finite controls are d=2,…,6 at period one and d=2,…,4 at period two, plus an imaginary-part identity. The old independent helper tests degree-two/three base and perturbed coefficient maps, 60 iterated-map cases, a degree-two third iterate, and a negative control `(z²−1)/(2z)` with nonreal fixed points. These are useful falsifiable controls and never replace the all-degree/all-period proof.
+
+## Source access leads, not newly certified sources
+
+The original contribution is attributed to Kozhasov, *On morphisms of the projective line with only real periodic points*, in OWR 12/2020, printed pp.668–669. It identifies Question 1 as existence and Question 2 as interior. Original access lead: https://ems.press/content/serial-article-files/46848 and DOI https://doi.org/10.4171/owr/2020/12.
+
+The original draft identifies arXiv:2004.10003v1, submitted 21 April 2020, Theorem 2 p.2 and Section 2.2 p.6, and arXiv:2004.10003v2, revised 27 October 2020, Example 1 p.3, Theorem 2, Lemma 9, and proof of Theorem 3 p.6. Access leads: https://arxiv.org/abs/2004.10003, https://arxiv.org/pdf/2004.10003v1, https://arxiv.org/pdf/2004.10003v2. The v2 Example 1 wording about fixed versus periodic points needs a direct source check. The prior source-size/hash claims are individually preserved in ORIGINAL_FOREIGN_SOURCE_BINDINGS.json and are not freshly authenticated. No foreign PDF, OCR, or pixel body was copied into this preparation; foreign cached raw JSON and the 157,691,904-byte SQLite are separately bound and excluded.
+
+## Proposed distinct approach families and exact gaps
+
+1. **Real algebra and projective iteration:** independently derive coefficient-chart openness, residues, projective nonramification, iterated poles, degree/coprimality, and the fixed-root count. The gap is the entire universal argument; small exact checks cannot close it. Boundary checks should include d=2, arbitrary positive n, infinity, simple pole charts, repeated fixed roots, leading-coefficient changes, and perturbing every numerator/denominator chart direction.
+2. **Complex dynamics of half-plane maps:** seek an independent proof through the Pick/half-plane mapping property and a real attracting fixed point, using Schwarz–Pick or Denjoy–Wolff arguments to exclude nonreal periodic orbits. A route must independently justify the boundary attracting point and all hypotheses; merely invoking an unproved equivalent theorem is blocked. This preparation did not prove this mechanism.
+3. **Exact source and scope matching:** independently read original Questions 1–2 and both arXiv versions, verify their version dates and exact full ambient/all-period assertions, preserve credit, and freshly qualify publication status. Prior-report and historical desk-review claims must not be treated as priority truth.
+
+A subsequent whole-package adversary should challenge hidden ambient-dimension restrictions, real-fibered-only inference (the original negative control explicitly warns against it), affine-only derivative arguments, spurious pole roots, finite-period extrapolation, receipt/proof mismatches, and stale pending-review language. No such fresh mathematical review has been commissioned or certified by this preparer.
+
+## Exact remaining work
+
+Original-source preparation is complete after its separate recorded closure. Fresh primary-source access and independent mathematical validation are **0%** complete for this preparer. No source acceptance, paper, DOI, tracker entry, canonical/native update, ready/merge/close/comment action, branch/index operation, commit, push, or external communication occurred. Final PR46 disposition remains with the root reviewer and must await PR44 then PR45 under the parent's task sequencing.

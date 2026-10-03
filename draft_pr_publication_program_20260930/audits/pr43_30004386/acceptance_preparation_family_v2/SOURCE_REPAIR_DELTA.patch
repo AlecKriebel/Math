@@ -1,0 +1,22 @@
+--- preserved_V1/integrate_reviewed_partial.py
++++ adjacent_V2/integrate_reviewed_partial.py
+@@ -59,7 +59,7 @@
+         if conflicts: g.require(g.git_bytes('show',':2:'+qpath)==before and g.git_bytes('show',':3:'+qpath)==g.git_bytes('show',g.HEAD+':'+qpath),'Exact actual conflict stages differ')
+         else: g.require(g.git_bytes('show',':'+qpath)==g.Q.read_bytes(),'Automatic queue index/worktree differ')
+         automatic=g.Q.read_bytes(); g.require(a.merge_queue_preimage_sha256 is not None and g.sha(automatic)==g.digest(a.merge_queue_preimage_sha256),'Root must pin/read entire actual automatic-merge queue')
+-        g.fresh_check(pre,{qpath}); orig=g.rows(g.load(g.A/'snapshot_manifest_v2.json')['files']); g.exact(g.K,{z['path'] for z in orig}); g.original_native(g.K)
++        g.fresh_check(pre,{qpath}); orig=g.rows(g.load(g.A/'snapshot_manifest.json')['files']); g.exact(g.K,{z['path'] for z in orig}); g.original_native(g.K)
+         for z in frozen:
+             dst=g.K/z['path']; dst.parent.mkdir(parents=True,exist_ok=True); g.write(dst,(g.C/z['path']).read_bytes())
+         archive=g.K/'reviewed_pending_administration'; archive.mkdir()
+--- preserved_V1/state_mirror_reconciliation.py
++++ adjacent_V2/state_mirror_reconciliation.py
+@@ -37,7 +37,7 @@
+     g.require(g.sha(old_state)==pre['state_before_sha256'] and g.sha(old_history)==pre['history_before_sha256'],'Exact full preflight state/history differs')
+     g.require(len(prior)==33 and g.ID not in prior and sum(z['turns_used'] for z in prior.values())==41,'Require33targets/41turns and selected identity absent')
+     proposal=copy.deepcopy(g.load(g.R/a.previous_mirror)); old_entries=copy.deepcopy(proposal['entries']); old_duplicates=copy.deepcopy(proposal.get('duplicate_mirrors'))
+-    proposal.update(created_at_utc=g.stamp(),scope='Incremental present accepted primary PR43; source-status correction; original0/5, no new proof turn or historical reconstruction.')
++    proposal.update(created_at_utc=g.stamp(),scope='Incremental present accepted primary PR43 source-status correction; original0/5, no new proof turn or historical reconstruction.')
+     for k in ['inventory','queue']: proposal[k]=g.binding(g.R/proposal[k]['path'])
+     proposal['required_completed_prs']=sorted(proposal['required_completed_prs']+[43])
+     proposal['entries'].append({'pr':43,'id':g.ID,'status':'already_solved','acceptance':g.binding(g.K/'acceptance.json'),'audit_acceptance':g.binding(g.A/'acceptance.json'),'remote':g.binding(g.A/'remote_merge_receipt.json'),'accepted_source':g.binding(g.K/'source_record.json'),'canonical_acceptance_text':g.binding(g.K/'ACCEPTANCE.md'),'canonical_manifest':g.binding(g.K/'MANIFEST.json'),'artifact':{**g.binding(g.K/'SOURCE_STATUS.md'),'acceptance_hash_field':'canonical_scientific_artifact_sha256'},'budget':{'used':0,'limit':5,'kind':'pr43_exact_original_empty_ledger','ledger':g.binding(g.K/'turns.jsonl')},'duplicates':[]})

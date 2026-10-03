@@ -1,0 +1,2396 @@
+diff --git a/unsolved_math_prioritization/QUEUE.md b/unsolved_math_prioritization/QUEUE.md
+index 9fdc4510e..6c81d6b0f 100644
+--- a/unsolved_math_prioritization/QUEUE.md
++++ b/unsolved_math_prioritization/QUEUE.md
+@@ -60,7 +60,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at
+ | 49 | 10000043 / AMR-099-0043 | Infinite-cluster intersections with vertical fibers | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 50 | 10000046 / AMR-099-0046 | Nonintersecting couplings of random walks in dimensions three and four | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 51 | 20001424 / AIM-DYNAMICAL_SYSTEMS-0082 | PCF descent and an odd postcritical-divisor criterion | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+-| 52 | 2233 / EP-653 | Erdős Problem #653 | 0.2560 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
++| 52 | 2233 / EP-653 | Erdős Problem #653 | 0.2560 | 5.5 | 1 | unknown | unsolved | 2/5 |  | 2026-09-30: Separate review passed generic deficit-preserving constructions, sharp near-line/circle barriers and outlier bounds. The original n-minus-o(n) pinned-distance-count target remains unresolved. Two bounded attempts; 18306 author and1263 independent controls; external2026 claims remain unverified and are not proof dependencies. Draft PR: https://github.com/AlecKriebel/Math/pull/42. |  |
+ | 53 | 2744 / KP-1.85 | Kirby Problem 1.85 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 54 | 2765 / KP-2.17 | Kirby Problem 2.17 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 55 | 2814 / KP-3.16 | Kirby Problem 3.16 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+diff --git a/unsolved_math_prioritization/attempts/2233/PARTIAL.md b/unsolved_math_prioritization/attempts/2233/PARTIAL.md
+new file mode 100644
+index 000000000..15af009f0
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2233/PARTIAL.md
+@@ -0,0 +1,124 @@
++# Distance-count spectra: two construction obstructions
++
++**Erdős Problem 653 remains unresolved.** This note records why two selected construction routes do not establish the conjecture. The elementary statements below carry no novelty claim. Separate adversarial AI review passed; see [the report](review/REVIEW.md). This has not undergone human peer review.
++
++## 1. Exact target and notation
++
++For a set \(P\) of \(n\ge2\) **distinct** points in the Euclidean plane, put
++\[
++r_P(p)=\#\{\lVert p-q\rVert:q\in P\setminus\{p\}\},\qquad
++\sigma(P)=\#\{r_P(p):p\in P\}.
++\]
++The target is
++\[
++g(n):=\max_{|P|=n}\sigma(P)=(1-o(1))n.
++\tag{1}
++\]
++Thus we count the different integer values of the pinned-distance counts, not the distances themselves. The maximum possible pinned count is \(n-1\).
++
++The exact asymptotic question occurs in Erdős's 1995 article, section III.1, on manuscript pp.14–15 [E95]. The tracker cites the later 1997 article [E97]. The 1995 full manuscript was available and its question was visually checked; the cited 1997 full text was not recovered. These source versions are distinguished in the accompanying source audit.
++
++Define the **deficit** at a point by
++\[
++d_P(p)=n-1-r_P(p),\qquad D(P)=\{d_P(p):p\in P\}.
++\]
++For a singleton, use \(r_P(p)=d_P(p)=0\). For any fixed set, \(|D(P)|=\sigma(P)\). When \(n\ge2\), its deficits are integers in \([0,n-2]\).
++
++## 2. Generic gluing preserves the deficit spectrum
++
++Let \(P_1,\ldots,P_k\) be nonempty finite planar sets, of sizes \(m_1,\ldots,m_k\). Translate them independently, writing \(Q_i=P_i+t_i\) and \(Q=\bigcup_iQ_i\), of size \(n=\sum_i m_i\).
++
++Call these translations admissible if the translated sets are disjoint and, for every pin \(p\in Q_i\), the distances from \(p\) to the points outside \(Q_i\) are mutually distinct and different from all its distances to points of \(Q_i\setminus\{p\}\).
++
++**Lemma 1.** Admissible translation tuples form an open dense subset of \((\mathbb R^2)^k\). For every admissible tuple,
++\[
++r_Q(p+t_i)=n-m_i+r_{P_i}(p),\qquad
++d_Q(p+t_i)=d_{P_i}(p),
++\tag{2}
++\]
++and consequently
++\[
++D(Q)=\bigcup_{i=1}^kD(P_i).
++\tag{3}
++\]
++
++**Proof.** The forbidden point coincidences and distance equalities are a finite collection of polynomial equations in the translations. None is an identity. For example, if two comparison points are in the same block outside the pin's block, their squared-distance difference is a nonconstant affine function of the relative translation, with nonzero linear coefficient equal, up to a factor, to their difference vector. If they are in distinct blocks and at least one block differs from the pin's block, varying that latter block's translation alone gives a nonconstant quadratic polynomial. This also treats one comparison point inside the pin's block. Point coincidence is plainly a proper condition. No equality between two points within the pin's own block is forbidden.
++
++A nonzero real polynomial has a zero set with empty interior. The complement of the finite union of these zero sets is therefore open and dense. At an admissible tuple, each of the \(n-m_i\) external points supplies one new distance at a pin of block \(i\); the internal distance count is unchanged by translation. This proves (2), and then (3). \(\square\)
++
++Several exact consequences rule out a generic amplification of small examples.
++
++1. If all blocks are translated copies of the same seed \(P\), then \(D(Q)=D(P)\) and \(\sigma(Q)=\sigma(P)\), regardless of the number of copies.
++2. If the largest block has size \(M\ge2\), then \(D(Q)\subseteq\{0,\ldots,M-2\}\), so \(\sigma(Q)\le M-1\). If all blocks are singletons, the spectrum has size one.
++3. Adding any positive number of generic singleton points to a fixed set changes its deficit spectrum to \(D(P)\cup\{0\}\); it adds at most one distinct count value, however many points are added.
++4. The same statements apply inductively to a finite hierarchy in which every gluing step is admissible. The final deficit spectrum is the union of the leaf spectra. In particular, a family built from leaves of maximum size \(M(n)=o(n)\) has \(\sigma(Q)=o(n)\), not the required asymptotic size in (1).
++
++These conclusions concern the stated admissibility condition. They do not apply to constructions that deliberately create equal distances across blocks. For instance, two horizontal unit segments translated into opposite sides of a unit square have internal deficits zero but union deficits one, so (2) fails when cross-block coincidences are allowed. The obstruction identifies exactly where a useful gluing construction must depart from the generic route.
++
++## 3. Concentration on one line or circle has a one-half barrier
++
++**Lemma 2.** If all \(n\ge2\) points lie on a line or on a circle of positive radius, then
++\[
++\sigma(P)\le\left\lceil\frac n2\right\rceil.
++\tag{4}
++\]
++This bound is attained in both restricted classes for every \(n\ge2\).
++
++**Proof.** For a pin on a line, a positive distance sphere meets the line in at most two points. For a pin on the supporting circle, its positive distance sphere is a different circle and also meets the supporting circle in at most two points: the pin cannot be the supporting circle's center because it lies on that circle of positive radius. Hence
++\[
++\left\lceil\frac{n-1}{2}\right\rceil\le r_P(p)\le n-1.
++\]
++The number of integers in this interval is \(\lceil n/2\rceil\).
++
++For equality on a line use \(P=\{(j,0):0\le j<n\}\). The count at index \(i\) is \(\max(i,n-1-i)\), giving exactly \(\lceil n/2\rceil\) values. For equality on a circle choose points at angles \(j\theta\), \(0\le j<n\), with \(0<(n-1)\theta<\pi\). Their chord length for index difference \(a\) is \(2R\sin(a\theta/2)\), strictly increasing for \(1\le a\le n-1\). The same pinned counts result. \(\square\)
++
++The obstruction survives a sublinear number of exceptional points.
++
++**Lemma 3.** Suppose \(m=n-t\ge2\) of the points lie on one line or one positive-radius circle. The other \(t\) points are unrestricted. Then
++\[
++\sigma(P)\le
++\min\left\{n-1,\ n+t-\left\lceil\frac{n-t-1}{2}\right\rceil\right\}.
++\tag{5}
++\]
++In particular, if \(t=o(n)\), then \(\sigma(P)\le(1/2+o(1))n\).
++
++**Proof.** At each of the \(m\) supported pins, its distances to the other supported points already take at least \(a=\lceil(m-1)/2\rceil\) different values. Adding the exceptional points cannot reduce that count. These pins therefore contribute at most \(n-a\) count values from the integer interval \([a,n-1]\). The exceptional pins add at most \(t\) values. Finally all counts lie in \(\{1,\ldots,n-1\}\), giving the additional trivial bound in (5). \(\square\)
++
++Thus a construction concentrated on a single simple support, even with sublinear repairs, does not yield (1). The lemma does not bound arbitrary planar configurations or configurations supported on a growing family of curves.
++
++## 4. A classical upper-bound check
++
++The following elementary estimate is included for orientation and is already implicit in the Erdős–Saldanha observation recorded in [E95]; it is not a new result.
++
++For two distinct pins \(p,q\), each other point lies on the intersection of a distance circle centered at \(p\) and one centered at \(q\). The centers differ, so each pair of circles intersects in at most two points. Therefore
++\[
++n-2\le 2r_P(p)r_P(q).
++\tag{6}
++\]
++If \(s=\sigma(P)\ge2\), set \(h=n-s\) and write the different counts increasingly as \(a_1<\cdots<a_s\). Since these are integers at most \(n-1\),
++\[
++a_j\le n-s+j-1=h+j-1.
++\]
++Choosing pins realizing \(a_1,a_2\) in (6) gives
++\[
++n-2\le2h(h+1),\qquad
++h\ge\frac{\sqrt{2n-3}-1}{2}.
++\tag{7}
++\]
++If \(s=1\), the same final inequality holds directly because \(h=n-1\). Hence (7) applies to every configuration. Later reported upper bounds are stronger, as described with source qualifications in the audit. Any bound of the form \(g(n)\le n-c n^\alpha\) with fixed \(\alpha<1\) is compatible with (1).
++
++## 5. Exact gap and scope of this attempt
++
++The two substantive approaches were generic hierarchical gluing and configurations concentrated on a line or circle. The first cannot enlarge the range of seed deficits; the second has a one-half asymptotic barrier. Neither provides a lower bound with coefficient approaching one, nor a universal upper bound separated from one by a fixed positive proportion.
++
++The remaining problem is still (1) in full. A successful construction would have to control many nongeneric equalities across its components, or use a different mechanism. No scalable realization of such equalities has been proved here. Finite examples, including previously posted exact small configurations, do not settle this missing asymptotic step. Work stops at this precise gap after two attempts, rather than relabeling a restricted-family obstruction as an answer to the original problem.
++
++The accompanying exact checker validates small examples, both generic and deliberately nongeneric unions, restricted-support bounds, and the elementary inequality (7). Its finite scope does not certify either an asymptotic solution or historical priority.
++
++## References
++
++- **[E95]** P. Erdős, *Some of my favourite problems in number theory, combinatorics, and geometry*, Resenhas **2**(2) (1995), 165–186. [Publisher record](https://revistas.usp.br/resenhasimeusp/en/article/view/74798), [full author manuscript](https://www.ime.usp.br/~yoshi/resenhas/abstracts/Erdos.pdf), section III.1, manuscript pp.14–15.
++- **[E97]** P. Erdős, *Some of my favourite unsolved problems*, Math. Japonica **46**(3) (1997), 527–537. [Publisher contents](https://www.jams.jp/notice/mj/46-3.html). Full text not recovered in this attempt.
++- **[Tracker]** T. F. Bloom, [Erdős Problem 653](https://www.erdosproblems.com/653). The current direct page was blocked; search-index evidence and the pinned dataset were distinguished from a live read.
++
++Further bibliography, current preprint claims, and access limitations are recorded in [SOURCE_AUDIT.md](SOURCE_AUDIT.md).
+diff --git a/unsolved_math_prioritization/attempts/2233/README.md b/unsolved_math_prioritization/attempts/2233/README.md
+new file mode 100644
+index 000000000..37fed6c15
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2233/README.md
+@@ -0,0 +1,11 @@
++# Erdős Problem 653: unresolved after two attempts
++
++The original question asks whether n planar points can have n−o(n) different pinned-distance counts. This package does not prove or refute that claim.
++
++[PARTIAL.md](PARTIAL.md) proves that generic gluing preserves the seed deficit spectrum, so a hierarchy of small seeds cannot amplify the spectrum to the required size. It also proves a one-half barrier for points on a line or circle, including a sublinear number of exceptional points, and recalls the classical Erdős–Saldanha two-pin estimate. These are elementary route obstructions with no novelty claim.
++
++[SOURCE_AUDIT.md](SOURCE_AUDIT.md) recovers the exact question from a full 1995 primary source and records access limitations and newer external preprint claims. Those claims are not used in the proof and have not been independently certified here.
++
++Run `python check_spectra.py`. It uses exact integer and rational squared distances and passes 18,306 finite assertions, including generic gluing, a nongeneric negative control, restricted-support examples and small-grid subsets. It cannot establish an asymptotic result.
++
++[Separate adversarial AI review](review/REVIEW.md) passed, with 1,263 independent exact assertions and no mandatory correction. This has not undergone human peer review. The model used was gpt-6-astra at xhigh reasoning.
+diff --git a/unsolved_math_prioritization/attempts/2233/RESEARCH_LOG.md b/unsolved_math_prioritization/attempts/2233/RESEARCH_LOG.md
+new file mode 100644
+index 000000000..de4c30238
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2233/RESEARCH_LOG.md
+@@ -0,0 +1,23 @@
++# Research log: Erdős Problem 653
++
++Actual model: gpt-6-astra, xhigh reasoning. Research window: 30 September 2026, 05:05–07:05 UTC. Maximum five substantive attempts.
++
++## 05:05–05:20 UTC: target, prior work and source recovery
++
++Completion estimate: 2% toward the original asymptotic problem. No earlier project attempt or duplicate was found. The official tracker was blocked, but its indexed statement and a complete 1995 primary manuscript establish the exact distinct-point and pinned-count interpretation. The cited 1997 scan and full 0.7 construction were not recovered. Current search also found newer external upper-bound preprints and an earlier separate AI-assisted small-example report. They do not claim a full asymptotic resolution; no unreviewed claim was adopted as a theorem in our note.
++
++## Attempt 1: generic hierarchical amplification
++
++Completion estimate remains 2%. The deficit at a pin is exactly preserved under independent translations that introduce no cross-block distance coincidences. This gives a complete obstruction to amplifying fixed-size or sublinear-size seeds by generic hierarchical gluing: the final spectrum is only the union of the leaf spectra and has size at most the largest leaf size minus one, apart from the all-singleton case. The route stalls because a successful construction needs a controlled family of nongeneric cross-block coincidences; no such scalable family was established.
++
++## Attempt 2: one-dimensional and circular supports with repairs
++
++Completion estimate remains 2%. A line or circle supports at most two other points at any fixed positive distance from a supported pin. The resulting count interval gives a sharp ceiling of ceil(n/2) distinct counts. Allowing o(n) arbitrary exceptions still gives only (1/2+o(1))n values. This closes the proposed concentration-and-small-repair route, but says nothing comparable about unrestricted configurations on many supports.
++
++## 05:31 UTC: unresolved package prepared for separate review
++
++Completion estimate remains 2%; the target is unresolved. Two routes have precise proved obstructions, and further variations without a new mechanism would repeat those gaps. All 18,306 exact finite assertions pass. The mathematical note also reproduces a classical estimate from the primary source for orientation, without treating that reproduction as a discovery. Work is being frozen for independent adversarial review before any PR.
++
++## 06:12 UTC: separate review passed
++
++The original asymptotic target remains unresolved, with the completion estimate unchanged at 2%. Independent adversarial review passed all stated partial assertions and reproduced all 18,306 author controls byte for byte; 1,263 additional exact controls passed. The six supplied review files are preserved unchanged. Only the mathematical note’s review-status sentence was updated; the source qualifications and mathematical text are unchanged. The package is ready for one scoped unresolved draft PR.
+diff --git a/unsolved_math_prioritization/attempts/2233/SOURCE_AUDIT.md b/unsolved_math_prioritization/attempts/2233/SOURCE_AUDIT.md
+new file mode 100644
+index 000000000..1740ffcf9
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2233/SOURCE_AUDIT.md
+@@ -0,0 +1,46 @@
++# Source and status audit: Erdős Problem 653
++
++Checked 30 September 2026. Numeric upstream ID: **2233**. Problem code: **EP-653**. This is an unresolved attempt with elementary route obstructions; no full solution or new-discovery claim is made.
++
++## Exact statement and primary-source recovery
++
++The pinned record asks whether the maximum number of different pinned-distance counts among n distinct planar points is asymptotic to n. Its raw statement and background are preserved in `source_record.json`, including a malformed imported fragment in the background. That fragment is not part of the mathematical question. The upstream source is the ulamai/UnsolvedMath dataset, pinned at revision `37e53eabe540fb458758e198be61634bd02ee008`, reused from the shared verified cache; attribution is retained under its CC BY 4.0 terms. The corresponding research-results entry is null, with only a dated OPEN-TRIAGE note embedded in the problem background.
++
++Direct requests to [the official problem page](https://www.erdosproblems.com/653) and its LaTeX endpoint returned access failures. The cloud-browser route was also blocked. The indexed official page reports OPEN, gives the asymptotic question, and cites Erdős's 1997 *Some of my favourite unsolved problems*, Math. Japonica 46(3), 527–537. [The publisher contents](https://www.jams.jp/notice/mj/46-3.html) verifies that bibliographic item. A complete copy of that exact 1997 article was not recovered. Indexed status must not be described as a successful live page inspection.
++
++A complete earlier primary source was recovered: Erdős, [*Some of my favourite problems in number theory, combinatorics, and geometry*](https://www.ime.usp.br/~yoshi/resenhas/abstracts/Erdos.pdf), section III.1, manuscript pp.14–15. Page 14 defines the counts for distinct points and credits the two-pin product observation to Erdős and Saldanha. Page 15 asks how many different count values can occur and proposes n−o(n). The page was rendered and visually checked, including the asymptotic expression and surrounding discussion. The [publisher record](https://revistas.usp.br/resenhasimeusp/en/article/view/74798) identifies the article as Resenhas 2(2) (1995), 165–186, DOI 10.11606/resimeusp.v2i2.74798. The downloaded author manuscript has its own page numbering; its p.15 is not being presented as journal p.15.
++
++This direct primary evidence certifies the exact target despite the missing 1997 scan. It does not certify any later bound. A [current formal statement](https://github.com/google-deepmind/formal-conjectures/blob/main/FormalConjectures/ErdosProblems/653.lean) uses a finite set of points and labels the research question open; its theorem is unfinished. It is evidence for the formalized scope, not a proof.
++
++## Historical constructions and limitations of access
++
++The pinned record and indexed tracker report lower bounds with coefficients 3/8 (Erdős–Fishburn) and 7/10 (Csizmadia), and an upper bound n−c n^(2/3). The following primary bibliographic records were located:
++
++- P. Erdős and P. Fishburn, [*Distinct distances in finite planar sets*](https://www.sciencedirect.com/science/article/pii/S0012365X96001458), Discrete Mathematics 175 (1997), 97–132, DOI 10.1016/S0012-365X(96)00145-8. The publisher abstract was available and confirms the pinned-distance-vector setting; the complete paper was not recovered.
++- Gy. Csizmadia and D. Ismailescu, *Maximum number of different distance counts*, in *Intuitive Geometry*, Bolyai Society Mathematical Studies 6 (1997), 301–309. The [MTMT record](https://m2.mtmt.hu/api/publication/167371) and a primary [Gyárfás article's bibliography](https://users.renyi.hu/~gyarfas/Cikkek/101_Gyarfas_ErdosProblemsOnIrregularitiesOfLineSizesAndPointDegrees.pdf) verify the joint authorship and 1997 publication. The [author-linked abstract](https://www.researchgate.net/publication/2390358_Maximum_Number_of_Different_Distance_Counts) describes the planar 0.7 construction, with damaged formula extraction. Its platform date says 2001, unlike the verified 1997 book publication. Full text was unavailable without requesting it, and no request was sent.
++
++Accordingly the old 0.7 construction and n^(2/3) upper obstruction are recorded as reported literature, not re-proved or fully audited here. In particular the malformed background's phrase suggesting that configurations *give an upper bound on g* is not adopted: a universal upper bound requires a proof for every configuration. Our construction obstructions do not improve the reported 0.7 lower bound.
++
++## Newer public partial claims
++
++A current search found material absent from the pinned August 2026 triage:
++
++1. Idriss Olivier Bado, [*An incidence bound for distinct pinned-distance counts*](https://www.researchgate.net/publication/414001878_An_incidence_bound_for_distinct_pinned-distance_counts), a 2026 public preprint, DOI 10.13140/RG.2.2.12140.94087, claims g(n) ≤ n−c n^(5/7). The full text was readable in the hosting page. It invokes the circle-incidence bound of Janzer, Janzer, Methuku and Tardos. Their [complete arXiv manuscript](https://arxiv.org/abs/2411.07188) was recovered; Corollary 1.12 contains the cited exponents. That input has since appeared in the [Journal of the London Mathematical Society](https://doi.org/10.1112/jlms.70324), 112 (2025), e70324. The locally recovered arXiv file is v1 of 11 November 2024, not a mislabeled copy of the journal version.
++2. Bado, [*A Katz–Tardos upgrade for planar distance-count spectra*](https://www.researchgate.net/publication/414000090_A_Katz-Tardos_upgrade_for_planar_distance-count_spectra), another 2026 public preprint, DOI 10.13140/RG.2.2.24723.85285, claims an exponent arbitrarily below (134−39e)/(162−47e), approximately 0.81736. Its full text was readable in the hosting page. It builds on R. Zeraoulia, *Centered-circle incidence bounds for planar distance-count spectra*, [DOI 10.5281/zenodo.21858673](https://doi.org/10.5281/zenodo.21858673), whose complete file was not recovered in this search.
++3. An earlier third-party [working report on Problem 653](https://erdosproblemaday.com/report/653) gives exact small examples and an elementary n−2 upper bound for n≥7. The site is a separate author's AI-assisted project, not a prior attempt in this repository. Its finite examples are not an asymptotic solution and no such prior claim is repackaged here as a discovery.
++
++Items 1–2 are **external preprint claims**, not independently reviewed theorems in this package. Reading a preprint and locating its cited input is not a full adversarial validation. No mathematical step of `PARTIAL.md` depends on their claims. Even if valid, all the displayed exponents are below 1 and are compatible with g(n)/n tending to 1. None of these sources claims to resolve the asymptotic question.
++
++The bounded search located no full solution or refutation. This is a dated search conclusion, not a guarantee that no later or unindexed result exists. No assertion of best-known current bounds or historical priority is made.
++
++## Prior-attempt and duplicate checks
++
++Before proof work, the selected main-queue row was queued with 0/5 attempts. Numeric ID, problem code and descriptive searches found no earlier attempt folder, reset/history record, related-target duplicate, or matching all-state PR in this repository. The full pinned dataset had no duplicate of this exact question. Broader distance and Erdős paths found unrelated work. The all-ref attempt-path history and exact remote branch/PR checks also returned no earlier problem-2233 result. The external reports above are recorded as prior literature and claims, not mistaken for the user's own attempted entries.
++
++The isolated branch is `dot/math-2233`. Shared queue/state/history files are managed separately and were not regenerated or edited here. Two substantive attempts are recorded locally, including their failures; source triage is not used to hide additional proof attempts.
++
++## Result status
++
++The original conjecture remains **unsolved in this attempt**. The proved statements are a generic-gluing identity, two restricted-support upper bounds, and a reproduction of a classical two-pin inequality. Their purpose is to make the failed routes and remaining gap checkable. The two routes stop because neither supplies a scalable nongeneric construction or a universal linear-proportion upper obstruction.
++
++The actual research model was gpt-6-astra with xhigh reasoning. Separate adversarial review is pending. Finite checks alone do not supply that review, and no claim of novelty or external peer review is made.
+diff --git a/unsolved_math_prioritization/attempts/2233/check_results.json b/unsolved_math_prioritization/attempts/2233/check_results.json
+new file mode 100644
+index 000000000..ea9c275ed
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2233/check_results.json
+@@ -0,0 +1,19 @@
++{
++  "all_passed": true,
++  "assertions": 18306,
++  "generic_random_seed_tuples": 120,
++  "repeated_and_padded_seed_types": 7,
++  "hierarchical_gluing_checked": true,
++  "nongeneric_square_control_checked": true,
++  "line_subsets_checked": 247,
++  "arithmetic_progression_sizes": [
++    2,
++    64
++  ],
++  "rational_circle_subsets_checked": 120,
++  "support_with_exception_examples": 120,
++  "grid_subsets_checked": 502,
++  "arithmetic": "exact integers and fractions; squared distances preserve equality",
++  "partial_sha256": "b51799d262ea7f633771128422708232c0522e7fddbaa5062a955911ed2e79f5",
++  "scope": "Finite diagnostics only; the original asymptotic conjecture remains unresolved."
++}
+diff --git a/unsolved_math_prioritization/attempts/2233/check_spectra.py b/unsolved_math_prioritization/attempts/2233/check_spectra.py
+new file mode 100644
+index 000000000..2ebbd6699
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2233/check_spectra.py
+@@ -0,0 +1,170 @@
++"""Exact, finite diagnostics for PARTIAL.md; no asymptotic or novelty claim."""
++from fractions import Fraction
++from itertools import combinations
++from pathlib import Path
++import hashlib
++import json
++import random
++
++checks = 0
++
++
++def require(condition):
++    global checks
++    checks += 1
++    assert condition
++
++
++def squared_distance(p, q):
++    return (p[0] - q[0]) ** 2 + (p[1] - q[1]) ** 2
++
++
++def counts(points):
++    assert len(set(points)) == len(points)
++    return [len({squared_distance(p, q) for q in points if q != p})
++            for p in points]
++
++
++def deficits(points):
++    return {len(points) - 1 - r for r in counts(points)}
++
++
++def admissible(blocks):
++    flat = [p for block in blocks for p in block]
++    if len(set(flat)) != len(flat):
++        return False
++    for i, block in enumerate(blocks):
++        outside = [p for j, other in enumerate(blocks) if j != i for p in other]
++        for p in block:
++            internal = {squared_distance(p, q) for q in block if p != q}
++            external = [squared_distance(p, q) for q in outside]
++            if len(set(external)) != len(external) or internal.intersection(external):
++                return False
++    return True
++
++
++rng = random.Random(653)
++
++
++def place(seeds):
++    for _ in range(1000):
++        blocks = []
++        for seed in seeds:
++            a, b = rng.randrange(-100000, 100001), rng.randrange(-100000, 100001)
++            blocks.append([(x + a, y + b) for x, y in seed])
++        if admissible(blocks):
++            return blocks
++    raise AssertionError("No admissible finite witness found within diagnostic limit")
++
++
++def check_union(seeds):
++    blocks = place(seeds)
++    flat = [p for block in blocks for p in block]
++    expected_counts = [len(flat) - len(seed) + r for seed in seeds for r in counts(seed)]
++    require(counts(flat) == expected_counts)
++    require(deficits(flat) == set().union(*(deficits(seed) for seed in seeds)))
++    largest = max(map(len, seeds))
++    require(len(deficits(flat)) <= max(1, largest - 1))
++    return flat
++
++
++def classical_bound(points):
++    rs = counts(points)
++    n = len(points)
++    for a, b in combinations(rs, 2):
++        require(n - 2 <= 2 * a * b)
++    h = n - len(set(rs))
++    require(n - 2 <= 2 * h * (h + 1))
++
++
++seeds = [
++    [(0, 0)],
++    [(0, 0), (1, 0)],
++    [(0, 0), (1, 0), (0, 1)],
++    [(0, 0), (1, 0), (0, 1), (1, 1)],
++    [(j, 0) for j in range(7)],
++    [(i, j) for i in range(3) for j in range(2)],
++    [(0, 0), (1, 0), (3, 2), (-2, 5)],
++]
++for _ in range(120):
++    selected = [rng.choice(seeds) for _ in range(rng.randrange(2, 5))]
++    classical_bound(check_union(selected))
++for seed in seeds:
++    repeated = check_union([seed] * 6)
++    require(deficits(repeated) == deficits(seed))
++    padded = check_union([seed] + [[(0, 0)]] * 9)
++    require(deficits(padded) == deficits(seed) | {0})
++
++# Hierarchical gluing: translate completed lower-level blocks without changing them.
++lower = [check_union([seeds[2], seeds[3]]), check_union([seeds[4], seeds[0]])]
++upper = check_union(lower)
++require(deficits(upper) == set().union(*(deficits(seeds[j]) for j in [2, 3, 4, 0])))
++
++# A nongeneric control must fail admissibility and the claimed generic identity.
++square_blocks = [[(0, 0), (1, 0)], [(0, 1), (1, 1)]]
++require(not admissible(square_blocks))
++require(deficits(sum(square_blocks, [])) == {1})
++require(set().union(*(deficits(b) for b in square_blocks)) == {0})
++
++line_examples = 0
++for size in range(2, 9):
++    for subset in combinations(range(8), size):
++        points = [(i, 0) for i in subset]
++        require(len(set(counts(points))) <= (size + 1) // 2)
++        classical_bound(points)
++        line_examples += 1
++for n in range(2, 65):
++    points = [(i, 0) for i in range(n)]
++    require(counts(points) == [max(i, n - 1 - i) for i in range(n)])
++    require(len(set(counts(points))) == (n + 1) // 2)
++
++# Exact rational parametrization of a positive-radius circle.
++circle = [(Fraction(1 - t*t, 1 + t*t), Fraction(2*t, 1 + t*t))
++          for t in range(-3, 4)]
++require(all(x*x + y*y == 1 for x, y in circle))
++circle_examples = 0
++for size in range(2, 8):
++    for subset in combinations(circle, size):
++        require(len(set(counts(subset))) <= (size + 1) // 2)
++        classical_bound(subset)
++        circle_examples += 1
++
++# Restricted supports with arbitrary off-support additions.
++exception_examples = 0
++for supported in [circle, [(i, 0) for i in range(7)]]:
++    for t in range(5):
++        for trial in range(12):
++            extra = [(Fraction(31 + j), Fraction(13 + trial + j*j)) for j in range(t)]
++            points = supported + extra
++            n, m = len(points), len(supported)
++            bound = min(n - 1, n + t - ((m - 1 + 1) // 2))
++            require(len(set(counts(points))) <= bound)
++            exception_examples += 1
++
++# All nontrivial subsets of a small planar grid: no floating comparisons.
++grid = [(i, j) for i in range(3) for j in range(3)]
++grid_examples = 0
++for size in range(2, 10):
++    for points in combinations(grid, size):
++        classical_bound(points)
++        grid_examples += 1
++
++root = Path(__file__).resolve().parent
++result = {
++    "all_passed": True,
++    "assertions": checks,
++    "generic_random_seed_tuples": 120,
++    "repeated_and_padded_seed_types": len(seeds),
++    "hierarchical_gluing_checked": True,
++    "nongeneric_square_control_checked": True,
++    "line_subsets_checked": line_examples,
++    "arithmetic_progression_sizes": [2, 64],
++    "rational_circle_subsets_checked": circle_examples,
++    "support_with_exception_examples": exception_examples,
++    "grid_subsets_checked": grid_examples,
++    "arithmetic": "exact integers and fractions; squared distances preserve equality",
++    "partial_sha256": hashlib.sha256((root / "PARTIAL.md").read_bytes()).hexdigest(),
++    "scope": "Finite diagnostics only; the original asymptotic conjecture remains unresolved.",
++}
++(root / "check_results.json").write_text(json.dumps(result, indent=2) + "\n")
++print(json.dumps(result, indent=2))
+diff --git a/unsolved_math_prioritization/attempts/2233/readiness.json b/unsolved_math_prioritization/attempts/2233/readiness.json
+new file mode 100644
+index 000000000..4f746c586
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2233/readiness.json
+@@ -0,0 +1,32 @@
++{
++  "id": 2233,
++  "problem_number": "EP-653",
++  "model": "gpt-6-astra",
++  "reasoning_effort": "xhigh",
++  "time_window_utc": [
++    "2026-09-30T05:05:00Z",
++    "2026-09-30T07:05:00Z"
++  ],
++  "maximum_substantive_attempts": 5,
++  "used_substantive_attempts": 2,
++  "status": "unresolved_stalled",
++  "full_target_resolved": false,
++  "completion_estimate_percent": 2,
++  "artifact": "PARTIAL.md",
++  "artifact_sha256": "0b116a4593d84d7e9d02f635a080eb0e2242aaba66acfc8efeae74462ad89898",
++  "independent_review": {
++    "verdict": "PASS_SCOPED_PARTIAL_OBSTRUCTIONS",
++    "report": "review/REVIEW.md",
++    "report_sha256": "a018dfa1445e99cc3154391b02f78a79e0977118f2179c7e2349268d153f6cc7",
++    "mandatory_corrections": [],
++    "independent_exact_assertions": 1263,
++    "final_artifact_change": "Review-status sentence only"
++  },
++  "prior_attempt_gate": "No prior project attempt, reset/history entry, exact duplicate, matching branch or all-state PR found before this attempt.",
++  "source_scope": "Distinct planar points; number of different integer pinned-distance counts; g(n)/n -> 1.",
++  "primary_source_read": "Erdos 1995 full author manuscript, section III.1, pp.14-15; target visually checked. Cited 1997 text not recovered.",
++  "newer_claims": "External 2026 partial upper-bound preprints found; not used or independently certified here.",
++  "exact_finite_assertions": 18306,
++  "novelty": "not claimed",
++  "reviewed_mathematical_snapshot_sha256": "b51799d262ea7f633771128422708232c0522e7fddbaa5062a955911ed2e79f5"
++}
+diff --git a/unsolved_math_prioritization/attempts/2233/review/PARTIAL.md b/unsolved_math_prioritization/attempts/2233/review/PARTIAL.md
+new file mode 100644
+index 000000000..ce08e974c
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2233/review/PARTIAL.md
+@@ -0,0 +1,124 @@
++# Distance-count spectra: two construction obstructions
++
++**Erdős Problem 653 remains unresolved.** This note records why two selected construction routes do not establish the conjecture. The elementary statements below carry no novelty claim. Separate adversarial review is pending.
++
++## 1. Exact target and notation
++
++For a set \(P\) of \(n\ge2\) **distinct** points in the Euclidean plane, put
++\[
++r_P(p)=\#\{\lVert p-q\rVert:q\in P\setminus\{p\}\},\qquad
++\sigma(P)=\#\{r_P(p):p\in P\}.
++\]
++The target is
++\[
++g(n):=\max_{|P|=n}\sigma(P)=(1-o(1))n.
++\tag{1}
++\]
++Thus we count the different integer values of the pinned-distance counts, not the distances themselves. The maximum possible pinned count is \(n-1\).
++
++The exact asymptotic question occurs in Erdős's 1995 article, section III.1, on manuscript pp.14–15 [E95]. The tracker cites the later 1997 article [E97]. The 1995 full manuscript was available and its question was visually checked; the cited 1997 full text was not recovered. These source versions are distinguished in the accompanying source audit.
++
++Define the **deficit** at a point by
++\[
++d_P(p)=n-1-r_P(p),\qquad D(P)=\{d_P(p):p\in P\}.
++\]
++For a singleton, use \(r_P(p)=d_P(p)=0\). For any fixed set, \(|D(P)|=\sigma(P)\). When \(n\ge2\), its deficits are integers in \([0,n-2]\).
++
++## 2. Generic gluing preserves the deficit spectrum
++
++Let \(P_1,\ldots,P_k\) be nonempty finite planar sets, of sizes \(m_1,\ldots,m_k\). Translate them independently, writing \(Q_i=P_i+t_i\) and \(Q=\bigcup_iQ_i\), of size \(n=\sum_i m_i\).
++
++Call these translations admissible if the translated sets are disjoint and, for every pin \(p\in Q_i\), the distances from \(p\) to the points outside \(Q_i\) are mutually distinct and different from all its distances to points of \(Q_i\setminus\{p\}\).
++
++**Lemma 1.** Admissible translation tuples form an open dense subset of \((\mathbb R^2)^k\). For every admissible tuple,
++\[
++r_Q(p+t_i)=n-m_i+r_{P_i}(p),\qquad
++d_Q(p+t_i)=d_{P_i}(p),
++\tag{2}
++\]
++and consequently
++\[
++D(Q)=\bigcup_{i=1}^kD(P_i).
++\tag{3}
++\]
++
++**Proof.** The forbidden point coincidences and distance equalities are a finite collection of polynomial equations in the translations. None is an identity. For example, if two comparison points are in the same block outside the pin's block, their squared-distance difference is a nonconstant affine function of the relative translation, with nonzero linear coefficient equal, up to a factor, to their difference vector. If they are in distinct blocks and at least one block differs from the pin's block, varying that latter block's translation alone gives a nonconstant quadratic polynomial. This also treats one comparison point inside the pin's block. Point coincidence is plainly a proper condition. No equality between two points within the pin's own block is forbidden.
++
++A nonzero real polynomial has a zero set with empty interior. The complement of the finite union of these zero sets is therefore open and dense. At an admissible tuple, each of the \(n-m_i\) external points supplies one new distance at a pin of block \(i\); the internal distance count is unchanged by translation. This proves (2), and then (3). \(\square\)
++
++Several exact consequences rule out a generic amplification of small examples.
++
++1. If all blocks are translated copies of the same seed \(P\), then \(D(Q)=D(P)\) and \(\sigma(Q)=\sigma(P)\), regardless of the number of copies.
++2. If the largest block has size \(M\ge2\), then \(D(Q)\subseteq\{0,\ldots,M-2\}\), so \(\sigma(Q)\le M-1\). If all blocks are singletons, the spectrum has size one.
++3. Adding any positive number of generic singleton points to a fixed set changes its deficit spectrum to \(D(P)\cup\{0\}\); it adds at most one distinct count value, however many points are added.
++4. The same statements apply inductively to a finite hierarchy in which every gluing step is admissible. The final deficit spectrum is the union of the leaf spectra. In particular, a family built from leaves of maximum size \(M(n)=o(n)\) has \(\sigma(Q)=o(n)\), not the required asymptotic size in (1).
++
++These conclusions concern the stated admissibility condition. They do not apply to constructions that deliberately create equal distances across blocks. For instance, two horizontal unit segments translated into opposite sides of a unit square have internal deficits zero but union deficits one, so (2) fails when cross-block coincidences are allowed. The obstruction identifies exactly where a useful gluing construction must depart from the generic route.
++
++## 3. Concentration on one line or circle has a one-half barrier
++
++**Lemma 2.** If all \(n\ge2\) points lie on a line or on a circle of positive radius, then
++\[
++\sigma(P)\le\left\lceil\frac n2\right\rceil.
++\tag{4}
++\]
++This bound is attained in both restricted classes for every \(n\ge2\).
++
++**Proof.** For a pin on a line, a positive distance sphere meets the line in at most two points. For a pin on the supporting circle, its positive distance sphere is a different circle and also meets the supporting circle in at most two points: the pin cannot be the supporting circle's center because it lies on that circle of positive radius. Hence
++\[
++\left\lceil\frac{n-1}{2}\right\rceil\le r_P(p)\le n-1.
++\]
++The number of integers in this interval is \(\lceil n/2\rceil\).
++
++For equality on a line use \(P=\{(j,0):0\le j<n\}\). The count at index \(i\) is \(\max(i,n-1-i)\), giving exactly \(\lceil n/2\rceil\) values. For equality on a circle choose points at angles \(j\theta\), \(0\le j<n\), with \(0<(n-1)\theta<\pi\). Their chord length for index difference \(a\) is \(2R\sin(a\theta/2)\), strictly increasing for \(1\le a\le n-1\). The same pinned counts result. \(\square\)
++
++The obstruction survives a sublinear number of exceptional points.
++
++**Lemma 3.** Suppose \(m=n-t\ge2\) of the points lie on one line or one positive-radius circle. The other \(t\) points are unrestricted. Then
++\[
++\sigma(P)\le
++\min\left\{n-1,\ n+t-\left\lceil\frac{n-t-1}{2}\right\rceil\right\}.
++\tag{5}
++\]
++In particular, if \(t=o(n)\), then \(\sigma(P)\le(1/2+o(1))n\).
++
++**Proof.** At each of the \(m\) supported pins, its distances to the other supported points already take at least \(a=\lceil(m-1)/2\rceil\) different values. Adding the exceptional points cannot reduce that count. These pins therefore contribute at most \(n-a\) count values from the integer interval \([a,n-1]\). The exceptional pins add at most \(t\) values. Finally all counts lie in \(\{1,\ldots,n-1\}\), giving the additional trivial bound in (5). \(\square\)
++
++Thus a construction concentrated on a single simple support, even with sublinear repairs, does not yield (1). The lemma does not bound arbitrary planar configurations or configurations supported on a growing family of curves.
++
++## 4. A classical upper-bound check
++
++The following elementary estimate is included for orientation and is already implicit in the Erdős–Saldanha observation recorded in [E95]; it is not a new result.
++
++For two distinct pins \(p,q\), each other point lies on the intersection of a distance circle centered at \(p\) and one centered at \(q\). The centers differ, so each pair of circles intersects in at most two points. Therefore
++\[
++n-2\le 2r_P(p)r_P(q).
++\tag{6}
++\]
++If \(s=\sigma(P)\ge2\), set \(h=n-s\) and write the different counts increasingly as \(a_1<\cdots<a_s\). Since these are integers at most \(n-1\),
++\[
++a_j\le n-s+j-1=h+j-1.
++\]
++Choosing pins realizing \(a_1,a_2\) in (6) gives
++\[
++n-2\le2h(h+1),\qquad
++h\ge\frac{\sqrt{2n-3}-1}{2}.
++\tag{7}
++\]
++If \(s=1\), the same final inequality holds directly because \(h=n-1\). Hence (7) applies to every configuration. Later reported upper bounds are stronger, as described with source qualifications in the audit. Any bound of the form \(g(n)\le n-c n^\alpha\) with fixed \(\alpha<1\) is compatible with (1).
++
++## 5. Exact gap and scope of this attempt
++
++The two substantive approaches were generic hierarchical gluing and configurations concentrated on a line or circle. The first cannot enlarge the range of seed deficits; the second has a one-half asymptotic barrier. Neither provides a lower bound with coefficient approaching one, nor a universal upper bound separated from one by a fixed positive proportion.
++
++The remaining problem is still (1) in full. A successful construction would have to control many nongeneric equalities across its components, or use a different mechanism. No scalable realization of such equalities has been proved here. Finite examples, including previously posted exact small configurations, do not settle this missing asymptotic step. Work stops at this precise gap after two attempts, rather than relabeling a restricted-family obstruction as an answer to the original problem.
++
++The accompanying exact checker validates small examples, both generic and deliberately nongeneric unions, restricted-support bounds, and the elementary inequality (7). Its finite scope does not certify either an asymptotic solution or historical priority.
++
++## References
++
++- **[E95]** P. Erdős, *Some of my favourite problems in number theory, combinatorics, and geometry*, Resenhas **2**(2) (1995), 165–186. [Publisher record](https://revistas.usp.br/resenhasimeusp/en/article/view/74798), [full author manuscript](https://www.ime.usp.br/~yoshi/resenhas/abstracts/Erdos.pdf), section III.1, manuscript pp.14–15.
++- **[E97]** P. Erdős, *Some of my favourite unsolved problems*, Math. Japonica **46**(3) (1997), 527–537. [Publisher contents](https://www.jams.jp/notice/mj/46-3.html). Full text not recovered in this attempt.
++- **[Tracker]** T. F. Bloom, [Erdős Problem 653](https://www.erdosproblems.com/653). The current direct page was blocked; search-index evidence and the pinned dataset were distinguished from a live read.
++
++Further bibliography, current preprint claims, and access limitations are recorded in [SOURCE_AUDIT.md](SOURCE_AUDIT.md).
+diff --git a/unsolved_math_prioritization/attempts/2233/review/REVIEW.md b/unsolved_math_prioritization/attempts/2233/review/REVIEW.md
+new file mode 100644
+index 000000000..f6c9b16ca
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2233/review/REVIEW.md
+@@ -0,0 +1,90 @@
++# Independent adversarial review: EP-653 / 2233
++
++**Verdict: PASS for the scoped partial obstruction package. The original asymptotic problem remains unresolved. No mandatory mathematical correction was found.**
++
++- Reviewed: 30 September 2026
++- Independent reviewer: gpt-6-astra, xhigh
++- Artifact: `PARTIAL.md`
++- Frozen SHA-256: `b51799d262ea7f633771128422708232c0522e7fddbaa5062a955911ed2e79f5`
++- No edits were made to the author's mathematics or source files
++- This is an adversarial AI review, not external peer review or a historical-priority certificate
++
++## 1. Exact original target
++
++The target counts the distinct **integer pinned-distance counts** attained by the points. It does not count the total set of distances and does not ask for many distances from one chosen pin. For n distinct planar points, the relevant values lie between 1 and n−1. The desired number of different values is n−o(n).
++
++I checked the complete 1995 Erdős manuscript at Section III.1, manuscript pp. 14–15, and inspected the supplied rendering of p. 15. It expressly asks about the number of distinct values among the pinned counts and proposes n−o(n). Page 14 credits the two-pin product observation to Erdős and Saldanha. The publisher verifies the 1995 article's identity and journal pagination. The package correctly distinguishes this recovered source from the tracker's cited 1997 article, whose bibliographic entry is confirmed but whose full text was not recovered.
++
++A fresh direct request to the official tracker again returned 403. The package's source audit accurately labels indexed evidence and does not claim a successful live tracker read.
++
++Sources: [1995 full manuscript](https://www.ime.usp.br/~yoshi/resenhas/abstracts/Erdos.pdf), [1995 publisher record](https://revistas.usp.br/resenhasimeusp/en/article/view/74798), [1997 publisher contents](https://www.jams.jp/notice/mj/46-3.html).
++
++## 2. Generic translation gluing
++
++Lemma 1 and its four consequences are correct.
++
++The density claim is a finite-dimensional algebraic genericity statement. I checked all cases of a forbidden distance equality:
++
++- If the two comparison points lie in one external block, their difference is a fixed nonzero vector. Subtracting the squared distances cancels the quadratic terms and leaves a nonconstant affine polynomial in the relative translation.
++- If they lie in different blocks, choose a block containing one comparison point but not the pin. Varying just that block leaves a nonzero quadratic term.
++- This includes the case where the other comparison point belongs to the pin's own block. Equalities wholly internal to that block are intentionally allowed.
++- A point coincidence between two distinct blocks is also a proper algebraic condition. Coincidences inside one seed cannot occur because each seed is a set of distinct points.
++
++Each forbidden locus is closed with empty interior, and there are finitely many. Its complement is therefore open and dense. The case of one block has no forbidden cross-block constraints and causes no exception.
++
++At an admissible pin, every external point contributes a new distance distinct from all the internal distances. Subtracting the resulting count from n−1 cancels the number of external points exactly. Thus each pin retains its seed deficit, and the deficit spectrum of the union is exactly the union of the seed spectra.
++
++Singleton seeds have deficit zero. For maximum seed size M≥2, every seed deficit lies in 0 through M−2, so the total spectrum has at most M−1 elements. When M=1 it has one element. Applying the same identity at each finite level proves the hierarchical assertion; it requires every joining step to satisfy the stated admissibility, not merely a generic first level. The union of two unit segments into a unit square is a valid negative control: the internal deficit is zero, while the square's deficit is one. Nongeneric cross-block equalities are exactly where the identity need not hold.
++
++No claim is made that arbitrary nongeneric gluings obey this obstruction, or that translations can encode a successful construction for the full problem.
++
++## 3. Line and circle restrictions
++
++The upper bound in Lemma 2, including its exact integer rounding, is correct. A positive distance circle centered at a pin meets a supporting line in at most two points. When the pin lies on a positive-radius supporting circle, the two circles have different centers and are distinct, so the same bound holds. This forces every pinned count to lie between ceil((n−1)/2) and n−1; that integer interval contains exactly ceil(n/2) values.
++
++Both sharp constructions work for all n≥2. Consecutive equally spaced line points have pinned counts max(i,n−1−i). For the circular arc, the imposed total angular span below pi makes each chord length strictly increasing in the absolute index difference, yielding the identical count list. The circular argument would not be valid for unrestricted equally spaced points winding around the whole circle; the stated arc restriction prevents this issue.
++
++Lemma 3 also survives the strongest simple exceptional case, an extra point at the center of the supporting circle. Such a pin can see very few distances, but it is one of the at most t exceptional pins. Every supported pin still sees at least ceil((m−1)/2) distances among the supported points. Their possible full counts occupy at most n−ceil((m−1)/2) integer values, and exceptions add at most t. The additional n−1 bound and the (1/2+o(1))n conclusion follow as written.
++
++Here concentration means that n−t points lie **exactly** on the same line or circle. The package does not assert a theorem for arbitrary points merely close in Euclidean distance to such a support.
++
++## 4. Classical two-pin estimate
++
++For distinct pins p and q, every other point lies at an intersection of one circle centered at p and one centered at q. A pair of these circles has at most two intersections, giving n−2≤2r(p)r(q). Distinct centers prevent coincident circles, including when the two radii happen to be equal.
++
++If the different pinned counts are a1<…<as, the bound aj≤n−s+j−1 follows from the number of remaining larger integers at most n−1. For s≥2, choose pins realizing a1 and a2. With h=n−s, the product estimate yields n−2≤2h(h+1). Solving the quadratic gives exactly the displayed expression with sqrt(2n−3). For s=1, h=n−1 makes the same inequality immediate. The n=2 boundary case is harmless.
++
++This is correctly credited as a classical elementary bound, not a new improvement. Its sublinear deficit, and the stronger sublinear deficits reported in the source audit, are compatible with the desired asymptotic ratio one.
++
++## 5. Literature and external-claim caveats
++
++The source audit does not depend on the unavailable complete Erdős–Fishburn or Csizmadia–Ismailescu papers to prove its elementary lemmas. It treats their numerical historical bounds as reported literature, not fully re-audited results. The joint authorship and distinction between the 1997 volume and a later platform date are preserved.
++
++I directly opened the two author-uploaded 2026 Bado preprints listed in the audit. The first states a 5/7 deficit exponent; the second states an exponent arbitrarily below approximately 0.8173595896. Both explicitly retain the original asymptotic question as open. Their hosting pages distinguish preprints from peer-reviewed publication. The Janzer–Janzer–Methuku–Tardos arXiv record and the named incidence input were checked for bibliographic scope. This review does **not** independently certify those newer arguments or all their cited inputs. None is a premise of `PARTIAL.md`, and the package appropriately avoids a best-known-bound or full-resolution claim.
++
++Sources: [Bado incidence preprint](https://www.researchgate.net/publication/414001878_An_incidence_bound_for_distinct_pinned-distance_counts), [Bado Katz–Tardos preprint](https://www.researchgate.net/publication/414000090_A_Katz-Tardos_upgrade_for_planar_distance-count_spectra), [Janzer et al.](https://arxiv.org/abs/2411.07188).
++
++## 6. Independent exact checks
++
++The author's checker and frozen mathematical artifact were copied to the review directory before replaying the script, so its output-writing behavior did not modify the author directory. All **18,306** assertions passed; the replay receipt is byte-identical to the submitted one.
++
++The independent script passes **1,263** exact assertions using SymPy 1.14.0 and rational arithmetic. It includes:
++
++1. 162 symbolic checks that all forbidden-equality polynomials in a three-block control are nonzero and have the predicted degree
++2. A deterministic grid of 121 two-block translations, with 37 admissible and 84 inadmissible cases, checking the exact count and deficit identities in every admissible case
++3. The nongeneric square negative control
++4. Exact rational-rotation circular arc constructions attaining the sharp bound for every n from 2 through 30, together with line attainment
++5. Supported configurations with exceptional center pins and other off-support points, checking the exception bound and two-pin inequality
++6. Independent integer-rounding and quadratic-root identities
++
++These computations are finite diagnostics. The algebraic genericity and all-n geometric proofs were separately checked above; no experiment is being used as a substitute for the original asymptotic theorem.
++
++## 7. Disposition
++
++**Required mathematical corrections: none.** The scoped obstruction package is fit for a draft PR with an `unsolved` queue status and no new-discovery credit. The missing task is still a family with n−o(n) distinct pinned-count values, or a universal obstruction disproving that possibility. Generic small-seed gluing and near-total exact line/circle support do not deliver either outcome.
++
++If the pending-review status sentence is updated, the final hash should be linked by an exact diff. New substantive mathematical changes would require re-review.
++
++## Final publication snapshot
++
++The final `PARTIAL.md` SHA-256 is `0b116a4593d84d7e9d02f635a080eb0e2242aaba66acfc8efeae74462ad89898`. Exact byte comparison confirms that replacing only the pending-review header sentence with the passed-AI-review sentence and report link produces this final file. All mathematical and source-scope text is unchanged. The verdict above applies to this final snapshot as well.
+diff --git a/unsolved_math_prioritization/attempts/2233/review/independent_checks.py b/unsolved_math_prioritization/attempts/2233/review/independent_checks.py
+new file mode 100644
+index 000000000..f9085ba78
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2233/review/independent_checks.py
+@@ -0,0 +1,85 @@
++#!/usr/bin/env python3
++"""Independent exact controls for the scoped EP653 construction obstructions."""
++from pathlib import Path
++from fractions import Fraction as F
++from itertools import product
++import json,hashlib
++import sympy as s
++checks={}
++def ck(name,b):
++    assert bool(b),name
++    checks[name]='PASS'
++def d2(p,q): return sum((a-b)**2 for a,b in zip(p,q))
++def spectrum(P):
++    if len(P)!=len(set(P)): raise AssertionError('duplicate point')
++    values=[len({d2(p,q) for q in P if p!=q}) for p in P]
++    return values, {len(P)-1-v for v in values}
++def isgeneric(blocks):
++    P=sum(blocks,[])
++    if len(P)!=len(set(P)):return False
++    for i,B in enumerate(blocks):
++        ext=sum([C for j,C in enumerate(blocks) if j!=i],[])
++        for p in B:
++            v=[d2(p,q) for q in ext]
++            if len(set(v))!=len(v):return False
++            if set(v)&{d2(p,q) for q in B if p!=q}:return False
++    return True
++# Symbolic nonzero-polynomial checks cover all types of forbidden equality
++# for a pin in one of three independently translated blocks.
++T=s.symbols('x0 y0 x1 y1 x2 y2');xy=[s.Matrix(T[2*i:2*i+2]) for i in range(3)]
++seeds=[[(0,0),(1,0),(0,2)],[(0,0),(1,1),(3,0)],[(0,0),(2,-1)]]
++pts=[(i,tuple(xy[i]+s.Matrix(p))) for i,B in enumerate(seeds) for p in B]
++poly_count=0
++for a,(i,p) in enumerate(pts):
++    for b,(j,q) in enumerate(pts):
++        if b==a:continue
++        for c,(l,r) in enumerate(pts):
++            if c<=b or c==a or (j==i and l==i):continue
++            poly=s.Poly(s.expand(d2(p,q)-d2(p,r)),*T)
++            ck(f'proper_forbidden_equality_{a}_{b}_{c}',not poly.is_zero and poly.total_degree() in (1,2));poly_count+=1
++# Deterministic admissible and inadmissible translations: no floating arithmetic.
++A=[(0,0),(1,0),(0,2)]
++B=[(j,0) for j in range(5)]
++good=bad=0
++for a,b in product(range(-5,6),repeat=2):
++    C=[(x+a,y+b) for x,y in B]
++    if not isgeneric([A,C]):bad+=1;continue
++    values,D=spectrum(A+C);va,Da=spectrum(A);vb,Db=spectrum(B)
++    ck(f'glue_counts_{a}_{b}',values==[len(B)+v for v in va]+[len(A)+v for v in vb])
++    ck(f'glue_deficits_{a}_{b}',D==Da|Db);good+=1
++ck('generic_grid_both_types',good>0 and bad>0)
++square=[(0,0),(1,0),(0,1),(1,1)]
++ck('nongeneric_square_changes_deficits',spectrum(square)[1]=={1} and spectrum(square[:2])[1]=={0} and not isgeneric([square[:2],square[2:]]))
++# Sharp circular constructions use exact rational rotations. With t=1/(4n),
++# theta=2 arctan(t) satisfies (n-1)theta<1/2<pi, so no chord folding occurs.
++for n in range(2,31):
++    t=F(1,4*n);c=(1-t*t)/(1+t*t);ss=2*t/(1+t*t)
++    P=[];x,y=F(1),F(0)
++    for _ in range(n):P.append((x,y));x,y=c*x-ss*y,ss*x+c*y
++    values,D=spectrum(P)
++    ck(f'circle_distinct_{n}',len(set(P))==n)
++    ck(f'circle_unit_radius_{n}',all(x*x+y*y==1 for x,y in P))
++    ck(f'circle_exact_counts_{n}',values==[max(i,n-1-i) for i in range(n)])
++    ck(f'circle_attainment_{n}',len(D)==(n+1)//2)
++    values_line,Dline=spectrum([(j,0) for j in range(n)])
++    ck(f'line_attainment_{n}',values_line==values and len(Dline)==(n+1)//2)
++    # Include a center pin as an exceptional point, a potentially extreme case.
++    for t_exc in range(1,4):
++        X=P+[(F(0),F(0))]+[(F(3+j),F(5+j*j)) for j in range(t_exc-1)]
++        vals,dd=spectrum(X);N=len(X);m=n
++        a=(m-1+1)//2;bound=min(N-1,N+t_exc-a)
++        ck(f'exception_bound_{n}_{t_exc}',len(dd)<=bound)
++        ck(f'center_pinned_count_{n}_{t_exc}',vals[n]<=t_exc)
++        for j in range(min(N,4)):
++            for k in range(j+1,min(N,4)):
++                ck(f'two_pin_{n}_{t_exc}_{j}_{k}',N-2<=2*vals[j]*vals[k])
++        h=N-len(dd)
++        ck(f'defect_bound_{n}_{t_exc}',N-2<=2*h*(h+1))
++# Algebraic off-by-one and exceptional-support checks.
++n=s.symbols('n',integer=True,positive=True);h=s.symbols('h',real=True)
++ck('quadratic_root',s.simplify(2*h*(h+1)-(n-2)).subs(h,(s.sqrt(2*n-3)-1)/2).simplify()==0)
++for N in range(2,101):
++    ck(f'line_interval_cardinality_{N}',N-((N-1+1)//2)==(N+1)//2)
++result={'passed':len(checks),'failed':0,'sympy_version':s.__version__,'proper_polynomial_checks':poly_count,'generic_grid_translations':good,'nongeneric_grid_translations':bad,'scope':'Exact finite controls only; no asymptotic resolution or historical-priority certification.','checks':checks,'reviewed_sha256':hashlib.sha256(Path(__file__).with_name('PARTIAL.md').read_bytes()).hexdigest()}
++Path(__file__).with_name('independent_results.json').write_text(json.dumps(result,indent=2)+'\n')
++print(json.dumps({k:v for k,v in result.items() if k!='checks'}))
+diff --git a/unsolved_math_prioritization/attempts/2233/review/independent_results.json b/unsolved_math_prioritization/attempts/2233/review/independent_results.json
+new file mode 100644
+index 000000000..6accbed34
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2233/review/independent_results.json
+@@ -0,0 +1,1275 @@
++{
++  "passed": 1263,
++  "failed": 0,
++  "sympy_version": "1.14.0",
++  "proper_polynomial_checks": 162,
++  "generic_grid_translations": 37,
++  "nongeneric_grid_translations": 84,
++  "scope": "Exact finite controls only; no asymptotic resolution or historical-priority certification.",
++  "checks": {
++    "proper_forbidden_equality_0_1_3": "PASS",
++    "proper_forbidden_equality_0_1_4": "PASS",
++    "proper_forbidden_equality_0_1_5": "PASS",
++    "proper_forbidden_equality_0_1_6": "PASS",
++    "proper_forbidden_equality_0_1_7": "PASS",
++    "proper_forbidden_equality_0_2_3": "PASS",
++    "proper_forbidden_equality_0_2_4": "PASS",
++    "proper_forbidden_equality_0_2_5": "PASS",
++    "proper_forbidden_equality_0_2_6": "PASS",
++    "proper_forbidden_equality_0_2_7": "PASS",
++    "proper_forbidden_equality_0_3_4": "PASS",
++    "proper_forbidden_equality_0_3_5": "PASS",
++    "proper_forbidden_equality_0_3_6": "PASS",
++    "proper_forbidden_equality_0_3_7": "PASS",
++    "proper_forbidden_equality_0_4_5": "PASS",
++    "proper_forbidden_equality_0_4_6": "PASS",
++    "proper_forbidden_equality_0_4_7": "PASS",
++    "proper_forbidden_equality_0_5_6": "PASS",
++    "proper_forbidden_equality_0_5_7": "PASS",
++    "proper_forbidden_equality_0_6_7": "PASS",
++    "proper_forbidden_equality_1_0_3": "PASS",
++    "proper_forbidden_equality_1_0_4": "PASS",
++    "proper_forbidden_equality_1_0_5": "PASS",
++    "proper_forbidden_equality_1_0_6": "PASS",
++    "proper_forbidden_equality_1_0_7": "PASS",
++    "proper_forbidden_equality_1_2_3": "PASS",
++    "proper_forbidden_equality_1_2_4": "PASS",
++    "proper_forbidden_equality_1_2_5": "PASS",
++    "proper_forbidden_equality_1_2_6": "PASS",
++    "proper_forbidden_equality_1_2_7": "PASS",
++    "proper_forbidden_equality_1_3_4": "PASS",
++    "proper_forbidden_equality_1_3_5": "PASS",
++    "proper_forbidden_equality_1_3_6": "PASS",
++    "proper_forbidden_equality_1_3_7": "PASS",
++    "proper_forbidden_equality_1_4_5": "PASS",
++    "proper_forbidden_equality_1_4_6": "PASS",
++    "proper_forbidden_equality_1_4_7": "PASS",
++    "proper_forbidden_equality_1_5_6": "PASS",
++    "proper_forbidden_equality_1_5_7": "PASS",
++    "proper_forbidden_equality_1_6_7": "PASS",
++    "proper_forbidden_equality_2_0_3": "PASS",
++    "proper_forbidden_equality_2_0_4": "PASS",
++    "proper_forbidden_equality_2_0_5": "PASS",
++    "proper_forbidden_equality_2_0_6": "PASS",
++    "proper_forbidden_equality_2_0_7": "PASS",
++    "proper_forbidden_equality_2_1_3": "PASS",
++    "proper_forbidden_equality_2_1_4": "PASS",
++    "proper_forbidden_equality_2_1_5": "PASS",
++    "proper_forbidden_equality_2_1_6": "PASS",
++    "proper_forbidden_equality_2_1_7": "PASS",
++    "proper_forbidden_equality_2_3_4": "PASS",
++    "proper_forbidden_equality_2_3_5": "PASS",
++    "proper_forbidden_equality_2_3_6": "PASS",
++    "proper_forbidden_equality_2_3_7": "PASS",
++    "proper_forbidden_equality_2_4_5": "PASS",
++    "proper_forbidden_equality_2_4_6": "PASS",
++    "proper_forbidden_equality_2_4_7": "PASS",
++    "proper_forbidden_equality_2_5_6": "PASS",
++    "proper_forbidden_equality_2_5_7": "PASS",
++    "proper_forbidden_equality_2_6_7": "PASS",
++    "proper_forbidden_equality_3_0_1": "PASS",
++    "proper_forbidden_equality_3_0_2": "PASS",
++    "proper_forbidden_equality_3_0_4": "PASS",
++    "proper_forbidden_equality_3_0_5": "PASS",
++    "proper_forbidden_equality_3_0_6": "PASS",
++    "proper_forbidden_equality_3_0_7": "PASS",
++    "proper_forbidden_equality_3_1_2": "PASS",
++    "proper_forbidden_equality_3_1_4": "PASS",
++    "proper_forbidden_equality_3_1_5": "PASS",
++    "proper_forbidden_equality_3_1_6": "PASS",
++    "proper_forbidden_equality_3_1_7": "PASS",
++    "proper_forbidden_equality_3_2_4": "PASS",
++    "proper_forbidden_equality_3_2_5": "PASS",
++    "proper_forbidden_equality_3_2_6": "PASS",
++    "proper_forbidden_equality_3_2_7": "PASS",
++    "proper_forbidden_equality_3_4_6": "PASS",
++    "proper_forbidden_equality_3_4_7": "PASS",
++    "proper_forbidden_equality_3_5_6": "PASS",
++    "proper_forbidden_equality_3_5_7": "PASS",
++    "proper_forbidden_equality_3_6_7": "PASS",
++    "proper_forbidden_equality_4_0_1": "PASS",
++    "proper_forbidden_equality_4_0_2": "PASS",
++    "proper_forbidden_equality_4_0_3": "PASS",
++    "proper_forbidden_equality_4_0_5": "PASS",
++    "proper_forbidden_equality_4_0_6": "PASS",
++    "proper_forbidden_equality_4_0_7": "PASS",
++    "proper_forbidden_equality_4_1_2": "PASS",
++    "proper_forbidden_equality_4_1_3": "PASS",
++    "proper_forbidden_equality_4_1_5": "PASS",
++    "proper_forbidden_equality_4_1_6": "PASS",
++    "proper_forbidden_equality_4_1_7": "PASS",
++    "proper_forbidden_equality_4_2_3": "PASS",
++    "proper_forbidden_equality_4_2_5": "PASS",
++    "proper_forbidden_equality_4_2_6": "PASS",
++    "proper_forbidden_equality_4_2_7": "PASS",
++    "proper_forbidden_equality_4_3_6": "PASS",
++    "proper_forbidden_equality_4_3_7": "PASS",
++    "proper_forbidden_equality_4_5_6": "PASS",
++    "proper_forbidden_equality_4_5_7": "PASS",
++    "proper_forbidden_equality_4_6_7": "PASS",
++    "proper_forbidden_equality_5_0_1": "PASS",
++    "proper_forbidden_equality_5_0_2": "PASS",
++    "proper_forbidden_equality_5_0_3": "PASS",
++    "proper_forbidden_equality_5_0_4": "PASS",
++    "proper_forbidden_equality_5_0_6": "PASS",
++    "proper_forbidden_equality_5_0_7": "PASS",
++    "proper_forbidden_equality_5_1_2": "PASS",
++    "proper_forbidden_equality_5_1_3": "PASS",
++    "proper_forbidden_equality_5_1_4": "PASS",
++    "proper_forbidden_equality_5_1_6": "PASS",
++    "proper_forbidden_equality_5_1_7": "PASS",
++    "proper_forbidden_equality_5_2_3": "PASS",
++    "proper_forbidden_equality_5_2_4": "PASS",
++    "proper_forbidden_equality_5_2_6": "PASS",
++    "proper_forbidden_equality_5_2_7": "PASS",
++    "proper_forbidden_equality_5_3_6": "PASS",
++    "proper_forbidden_equality_5_3_7": "PASS",
++    "proper_forbidden_equality_5_4_6": "PASS",
++    "proper_forbidden_equality_5_4_7": "PASS",
++    "proper_forbidden_equality_5_6_7": "PASS",
++    "proper_forbidden_equality_6_0_1": "PASS",
++    "proper_forbidden_equality_6_0_2": "PASS",
++    "proper_forbidden_equality_6_0_3": "PASS",
++    "proper_forbidden_equality_6_0_4": "PASS",
++    "proper_forbidden_equality_6_0_5": "PASS",
++    "proper_forbidden_equality_6_0_7": "PASS",
++    "proper_forbidden_equality_6_1_2": "PASS",
++    "proper_forbidden_equality_6_1_3": "PASS",
++    "proper_forbidden_equality_6_1_4": "PASS",
++    "proper_forbidden_equality_6_1_5": "PASS",
++    "proper_forbidden_equality_6_1_7": "PASS",
++    "proper_forbidden_equality_6_2_3": "PASS",
++    "proper_forbidden_equality_6_2_4": "PASS",
++    "proper_forbidden_equality_6_2_5": "PASS",
++    "proper_forbidden_equality_6_2_7": "PASS",
++    "proper_forbidden_equality_6_3_4": "PASS",
++    "proper_forbidden_equality_6_3_5": "PASS",
++    "proper_forbidden_equality_6_3_7": "PASS",
++    "proper_forbidden_equality_6_4_5": "PASS",
++    "proper_forbidden_equality_6_4_7": "PASS",
++    "proper_forbidden_equality_6_5_7": "PASS",
++    "proper_forbidden_equality_7_0_1": "PASS",
++    "proper_forbidden_equality_7_0_2": "PASS",
++    "proper_forbidden_equality_7_0_3": "PASS",
++    "proper_forbidden_equality_7_0_4": "PASS",
++    "proper_forbidden_equality_7_0_5": "PASS",
++    "proper_forbidden_equality_7_0_6": "PASS",
++    "proper_forbidden_equality_7_1_2": "PASS",
++    "proper_forbidden_equality_7_1_3": "PASS",
++    "proper_forbidden_equality_7_1_4": "PASS",
++    "proper_forbidden_equality_7_1_5": "PASS",
++    "proper_forbidden_equality_7_1_6": "PASS",
++    "proper_forbidden_equality_7_2_3": "PASS",
++    "proper_forbidden_equality_7_2_4": "PASS",
++    "proper_forbidden_equality_7_2_5": "PASS",
++    "proper_forbidden_equality_7_2_6": "PASS",
++    "proper_forbidden_equality_7_3_4": "PASS",
++    "proper_forbidden_equality_7_3_5": "PASS",
++    "proper_forbidden_equality_7_3_6": "PASS",
++    "proper_forbidden_equality_7_4_5": "PASS",
++    "proper_forbidden_equality_7_4_6": "PASS",
++    "proper_forbidden_equality_7_5_6": "PASS",
++    "glue_counts_-5_-5": "PASS",
++    "glue_deficits_-5_-5": "PASS",
++    "glue_counts_-5_-4": "PASS",
++    "glue_deficits_-5_-4": "PASS",
++    "glue_counts_-5_-3": "PASS",
++    "glue_deficits_-5_-3": "PASS",
++    "glue_counts_-5_-2": "PASS",
++    "glue_deficits_-5_-2": "PASS",
++    "glue_counts_-5_5": "PASS",
++    "glue_deficits_-5_5": "PASS",
++    "glue_counts_-4_-5": "PASS",
++    "glue_deficits_-4_-5": "PASS",
++    "glue_counts_1_-5": "PASS",
++    "glue_deficits_1_-5": "PASS",
++    "glue_counts_1_5": "PASS",
++    "glue_deficits_1_5": "PASS",
++    "glue_counts_2_-5": "PASS",
++    "glue_deficits_2_-5": "PASS",
++    "glue_counts_2_-4": "PASS",
++    "glue_deficits_2_-4": "PASS",
++    "glue_counts_2_-3": "PASS",
++    "glue_deficits_2_-3": "PASS",
++    "glue_counts_2_4": "PASS",
++    "glue_deficits_2_4": "PASS",
++    "glue_counts_2_5": "PASS",
++    "glue_deficits_2_5": "PASS",
++    "glue_counts_3_-5": "PASS",
++    "glue_deficits_3_-5": "PASS",
++    "glue_counts_3_-4": "PASS",
++    "glue_deficits_3_-4": "PASS",
++    "glue_counts_3_-3": "PASS",
++    "glue_deficits_3_-3": "PASS",
++    "glue_counts_3_-2": "PASS",
++    "glue_deficits_3_-2": "PASS",
++    "glue_counts_3_3": "PASS",
++    "glue_deficits_3_3": "PASS",
++    "glue_counts_3_4": "PASS",
++    "glue_deficits_3_4": "PASS",
++    "glue_counts_3_5": "PASS",
++    "glue_deficits_3_5": "PASS",
++    "glue_counts_4_-5": "PASS",
++    "glue_deficits_4_-5": "PASS",
++    "glue_counts_4_-4": "PASS",
++    "glue_deficits_4_-4": "PASS",
++    "glue_counts_4_-3": "PASS",
++    "glue_deficits_4_-3": "PASS",
++    "glue_counts_4_-2": "PASS",
++    "glue_deficits_4_-2": "PASS",
++    "glue_counts_4_-1": "PASS",
++    "glue_deficits_4_-1": "PASS",
++    "glue_counts_4_3": "PASS",
++    "glue_deficits_4_3": "PASS",
++    "glue_counts_4_4": "PASS",
++    "glue_deficits_4_4": "PASS",
++    "glue_counts_4_5": "PASS",
++    "glue_deficits_4_5": "PASS",
++    "glue_counts_5_-5": "PASS",
++    "glue_deficits_5_-5": "PASS",
++    "glue_counts_5_-4": "PASS",
++    "glue_deficits_5_-4": "PASS",
++    "glue_counts_5_-3": "PASS",
++    "glue_deficits_5_-3": "PASS",
++    "glue_counts_5_-2": "PASS",
++    "glue_deficits_5_-2": "PASS",
++    "glue_counts_5_-1": "PASS",
++    "glue_deficits_5_-1": "PASS",
++    "glue_counts_5_2": "PASS",
++    "glue_deficits_5_2": "PASS",
++    "glue_counts_5_3": "PASS",
++    "glue_deficits_5_3": "PASS",
++    "glue_counts_5_4": "PASS",
++    "glue_deficits_5_4": "PASS",
++    "glue_counts_5_5": "PASS",
++    "glue_deficits_5_5": "PASS",
++    "generic_grid_both_types": "PASS",
++    "nongeneric_square_changes_deficits": "PASS",
++    "circle_distinct_2": "PASS",
++    "circle_unit_radius_2": "PASS",
++    "circle_exact_counts_2": "PASS",
++    "circle_attainment_2": "PASS",
++    "line_attainment_2": "PASS",
++    "exception_bound_2_1": "PASS",
++    "center_pinned_count_2_1": "PASS",
++    "two_pin_2_1_0_1": "PASS",
++    "two_pin_2_1_0_2": "PASS",
++    "two_pin_2_1_1_2": "PASS",
++    "defect_bound_2_1": "PASS",
++    "exception_bound_2_2": "PASS",
++    "center_pinned_count_2_2": "PASS",
++    "two_pin_2_2_0_1": "PASS",
++    "two_pin_2_2_0_2": "PASS",
++    "two_pin_2_2_0_3": "PASS",
++    "two_pin_2_2_1_2": "PASS",
++    "two_pin_2_2_1_3": "PASS",
++    "two_pin_2_2_2_3": "PASS",
++    "defect_bound_2_2": "PASS",
++    "exception_bound_2_3": "PASS",
++    "center_pinned_count_2_3": "PASS",
++    "two_pin_2_3_0_1": "PASS",
++    "two_pin_2_3_0_2": "PASS",
++    "two_pin_2_3_0_3": "PASS",
++    "two_pin_2_3_1_2": "PASS",
++    "two_pin_2_3_1_3": "PASS",
++    "two_pin_2_3_2_3": "PASS",
++    "defect_bound_2_3": "PASS",
++    "circle_distinct_3": "PASS",
++    "circle_unit_radius_3": "PASS",
++    "circle_exact_counts_3": "PASS",
++    "circle_attainment_3": "PASS",
++    "line_attainment_3": "PASS",
++    "exception_bound_3_1": "PASS",
++    "center_pinned_count_3_1": "PASS",
++    "two_pin_3_1_0_1": "PASS",
++    "two_pin_3_1_0_2": "PASS",
++    "two_pin_3_1_0_3": "PASS",
++    "two_pin_3_1_1_2": "PASS",
++    "two_pin_3_1_1_3": "PASS",
++    "two_pin_3_1_2_3": "PASS",
++    "defect_bound_3_1": "PASS",
++    "exception_bound_3_2": "PASS",
++    "center_pinned_count_3_2": "PASS",
++    "two_pin_3_2_0_1": "PASS",
++    "two_pin_3_2_0_2": "PASS",
++    "two_pin_3_2_0_3": "PASS",
++    "two_pin_3_2_1_2": "PASS",
++    "two_pin_3_2_1_3": "PASS",
++    "two_pin_3_2_2_3": "PASS",
++    "defect_bound_3_2": "PASS",
++    "exception_bound_3_3": "PASS",
++    "center_pinned_count_3_3": "PASS",
++    "two_pin_3_3_0_1": "PASS",
++    "two_pin_3_3_0_2": "PASS",
++    "two_pin_3_3_0_3": "PASS",
++    "two_pin_3_3_1_2": "PASS",
++    "two_pin_3_3_1_3": "PASS",
++    "two_pin_3_3_2_3": "PASS",
++    "defect_bound_3_3": "PASS",
++    "circle_distinct_4": "PASS",
++    "circle_unit_radius_4": "PASS",
++    "circle_exact_counts_4": "PASS",
++    "circle_attainment_4": "PASS",
++    "line_attainment_4": "PASS",
++    "exception_bound_4_1": "PASS",
++    "center_pinned_count_4_1": "PASS",
++    "two_pin_4_1_0_1": "PASS",
++    "two_pin_4_1_0_2": "PASS",
++    "two_pin_4_1_0_3": "PASS",
++    "two_pin_4_1_1_2": "PASS",
++    "two_pin_4_1_1_3": "PASS",
++    "two_pin_4_1_2_3": "PASS",
++    "defect_bound_4_1": "PASS",
++    "exception_bound_4_2": "PASS",
++    "center_pinned_count_4_2": "PASS",
++    "two_pin_4_2_0_1": "PASS",
++    "two_pin_4_2_0_2": "PASS",
++    "two_pin_4_2_0_3": "PASS",
++    "two_pin_4_2_1_2": "PASS",
++    "two_pin_4_2_1_3": "PASS",
++    "two_pin_4_2_2_3": "PASS",
++    "defect_bound_4_2": "PASS",
++    "exception_bound_4_3": "PASS",
++    "center_pinned_count_4_3": "PASS",
++    "two_pin_4_3_0_1": "PASS",
++    "two_pin_4_3_0_2": "PASS",
++    "two_pin_4_3_0_3": "PASS",
++    "two_pin_4_3_1_2": "PASS",
++    "two_pin_4_3_1_3": "PASS",
++    "two_pin_4_3_2_3": "PASS",
++    "defect_bound_4_3": "PASS",
++    "circle_distinct_5": "PASS",
++    "circle_unit_radius_5": "PASS",
++    "circle_exact_counts_5": "PASS",
++    "circle_attainment_5": "PASS",
++    "line_attainment_5": "PASS",
++    "exception_bound_5_1": "PASS",
++    "center_pinned_count_5_1": "PASS",
++    "two_pin_5_1_0_1": "PASS",
++    "two_pin_5_1_0_2": "PASS",
++    "two_pin_5_1_0_3": "PASS",
++    "two_pin_5_1_1_2": "PASS",
++    "two_pin_5_1_1_3": "PASS",
++    "two_pin_5_1_2_3": "PASS",
++    "defect_bound_5_1": "PASS",
++    "exception_bound_5_2": "PASS",
++    "center_pinned_count_5_2": "PASS",
++    "two_pin_5_2_0_1": "PASS",
++    "two_pin_5_2_0_2": "PASS",
++    "two_pin_5_2_0_3": "PASS",
++    "two_pin_5_2_1_2": "PASS",
++    "two_pin_5_2_1_3": "PASS",
++    "two_pin_5_2_2_3": "PASS",
++    "defect_bound_5_2": "PASS",
++    "exception_bound_5_3": "PASS",
++    "center_pinned_count_5_3": "PASS",
++    "two_pin_5_3_0_1": "PASS",
++    "two_pin_5_3_0_2": "PASS",
++    "two_pin_5_3_0_3": "PASS",
++    "two_pin_5_3_1_2": "PASS",
++    "two_pin_5_3_1_3": "PASS",
++    "two_pin_5_3_2_3": "PASS",
++    "defect_bound_5_3": "PASS",
++    "circle_distinct_6": "PASS",
++    "circle_unit_radius_6": "PASS",
++    "circle_exact_counts_6": "PASS",
++    "circle_attainment_6": "PASS",
++    "line_attainment_6": "PASS",
++    "exception_bound_6_1": "PASS",
++    "center_pinned_count_6_1": "PASS",
++    "two_pin_6_1_0_1": "PASS",
++    "two_pin_6_1_0_2": "PASS",
++    "two_pin_6_1_0_3": "PASS",
++    "two_pin_6_1_1_2": "PASS",
++    "two_pin_6_1_1_3": "PASS",
++    "two_pin_6_1_2_3": "PASS",
++    "defect_bound_6_1": "PASS",
++    "exception_bound_6_2": "PASS",
++    "center_pinned_count_6_2": "PASS",
++    "two_pin_6_2_0_1": "PASS",
++    "two_pin_6_2_0_2": "PASS",
++    "two_pin_6_2_0_3": "PASS",
++    "two_pin_6_2_1_2": "PASS",
++    "two_pin_6_2_1_3": "PASS",
++    "two_pin_6_2_2_3": "PASS",
++    "defect_bound_6_2": "PASS",
++    "exception_bound_6_3": "PASS",
++    "center_pinned_count_6_3": "PASS",
++    "two_pin_6_3_0_1": "PASS",
++    "two_pin_6_3_0_2": "PASS",
++    "two_pin_6_3_0_3": "PASS",
++    "two_pin_6_3_1_2": "PASS",
++    "two_pin_6_3_1_3": "PASS",
++    "two_pin_6_3_2_3": "PASS",
++    "defect_bound_6_3": "PASS",
++    "circle_distinct_7": "PASS",
++    "circle_unit_radius_7": "PASS",
++    "circle_exact_counts_7": "PASS",
++    "circle_attainment_7": "PASS",
++    "line_attainment_7": "PASS",
++    "exception_bound_7_1": "PASS",
++    "center_pinned_count_7_1": "PASS",
++    "two_pin_7_1_0_1": "PASS",
++    "two_pin_7_1_0_2": "PASS",
++    "two_pin_7_1_0_3": "PASS",
++    "two_pin_7_1_1_2": "PASS",
++    "two_pin_7_1_1_3": "PASS",
++    "two_pin_7_1_2_3": "PASS",
++    "defect_bound_7_1": "PASS",
++    "exception_bound_7_2": "PASS",
++    "center_pinned_count_7_2": "PASS",
++    "two_pin_7_2_0_1": "PASS",
++    "two_pin_7_2_0_2": "PASS",
++    "two_pin_7_2_0_3": "PASS",
++    "two_pin_7_2_1_2": "PASS",
++    "two_pin_7_2_1_3": "PASS",
++    "two_pin_7_2_2_3": "PASS",
++    "defect_bound_7_2": "PASS",
++    "exception_bound_7_3": "PASS",
++    "center_pinned_count_7_3": "PASS",
++    "two_pin_7_3_0_1": "PASS",
++    "two_pin_7_3_0_2": "PASS",
++    "two_pin_7_3_0_3": "PASS",
++    "two_pin_7_3_1_2": "PASS",
++    "two_pin_7_3_1_3": "PASS",
++    "two_pin_7_3_2_3": "PASS",
++    "defect_bound_7_3": "PASS",
++    "circle_distinct_8": "PASS",
++    "circle_unit_radius_8": "PASS",
++    "circle_exact_counts_8": "PASS",
++    "circle_attainment_8": "PASS",
++    "line_attainment_8": "PASS",
++    "exception_bound_8_1": "PASS",
++    "center_pinned_count_8_1": "PASS",
++    "two_pin_8_1_0_1": "PASS",
++    "two_pin_8_1_0_2": "PASS",
++    "two_pin_8_1_0_3": "PASS",
++    "two_pin_8_1_1_2": "PASS",
++    "two_pin_8_1_1_3": "PASS",
++    "two_pin_8_1_2_3": "PASS",
++    "defect_bound_8_1": "PASS",
++    "exception_bound_8_2": "PASS",
++    "center_pinned_count_8_2": "PASS",
++    "two_pin_8_2_0_1": "PASS",
++    "two_pin_8_2_0_2": "PASS",
++    "two_pin_8_2_0_3": "PASS",
++    "two_pin_8_2_1_2": "PASS",
++    "two_pin_8_2_1_3": "PASS",
++    "two_pin_8_2_2_3": "PASS",
++    "defect_bound_8_2": "PASS",
++    "exception_bound_8_3": "PASS",
++    "center_pinned_count_8_3": "PASS",
++    "two_pin_8_3_0_1": "PASS",
++    "two_pin_8_3_0_2": "PASS",
++    "two_pin_8_3_0_3": "PASS",
++    "two_pin_8_3_1_2": "PASS",
++    "two_pin_8_3_1_3": "PASS",
++    "two_pin_8_3_2_3": "PASS",
++    "defect_bound_8_3": "PASS",
++    "circle_distinct_9": "PASS",
++    "circle_unit_radius_9": "PASS",
++    "circle_exact_counts_9": "PASS",
++    "circle_attainment_9": "PASS",
++    "line_attainment_9": "PASS",
++    "exception_bound_9_1": "PASS",
++    "center_pinned_count_9_1": "PASS",
++    "two_pin_9_1_0_1": "PASS",
++    "two_pin_9_1_0_2": "PASS",
++    "two_pin_9_1_0_3": "PASS",
++    "two_pin_9_1_1_2": "PASS",
++    "two_pin_9_1_1_3": "PASS",
++    "two_pin_9_1_2_3": "PASS",
++    "defect_bound_9_1": "PASS",
++    "exception_bound_9_2": "PASS",
++    "center_pinned_count_9_2": "PASS",
++    "two_pin_9_2_0_1": "PASS",
++    "two_pin_9_2_0_2": "PASS",
++    "two_pin_9_2_0_3": "PASS",
++    "two_pin_9_2_1_2": "PASS",
++    "two_pin_9_2_1_3": "PASS",
++    "two_pin_9_2_2_3": "PASS",
++    "defect_bound_9_2": "PASS",
++    "exception_bound_9_3": "PASS",
++    "center_pinned_count_9_3": "PASS",
++    "two_pin_9_3_0_1": "PASS",
++    "two_pin_9_3_0_2": "PASS",
++    "two_pin_9_3_0_3": "PASS",
++    "two_pin_9_3_1_2": "PASS",
++    "two_pin_9_3_1_3": "PASS",
++    "two_pin_9_3_2_3": "PASS",
++    "defect_bound_9_3": "PASS",
++    "circle_distinct_10": "PASS",
++    "circle_unit_radius_10": "PASS",
++    "circle_exact_counts_10": "PASS",
++    "circle_attainment_10": "PASS",
++    "line_attainment_10": "PASS",
++    "exception_bound_10_1": "PASS",
++    "center_pinned_count_10_1": "PASS",
++    "two_pin_10_1_0_1": "PASS",
++    "two_pin_10_1_0_2": "PASS",
++    "two_pin_10_1_0_3": "PASS",
++    "two_pin_10_1_1_2": "PASS",
++    "two_pin_10_1_1_3": "PASS",
++    "two_pin_10_1_2_3": "PASS",
++    "defect_bound_10_1": "PASS",
++    "exception_bound_10_2": "PASS",
++    "center_pinned_count_10_2": "PASS",
++    "two_pin_10_2_0_1": "PASS",
++    "two_pin_10_2_0_2": "PASS",
++    "two_pin_10_2_0_3": "PASS",
++    "two_pin_10_2_1_2": "PASS",
++    "two_pin_10_2_1_3": "PASS",
++    "two_pin_10_2_2_3": "PASS",
++    "defect_bound_10_2": "PASS",
++    "exception_bound_10_3": "PASS",
++    "center_pinned_count_10_3": "PASS",
++    "two_pin_10_3_0_1": "PASS",
++    "two_pin_10_3_0_2": "PASS",
++    "two_pin_10_3_0_3": "PASS",
++    "two_pin_10_3_1_2": "PASS",
++    "two_pin_10_3_1_3": "PASS",
++    "two_pin_10_3_2_3": "PASS",
++    "defect_bound_10_3": "PASS",
++    "circle_distinct_11": "PASS",
++    "circle_unit_radius_11": "PASS",
++    "circle_exact_counts_11": "PASS",
++    "circle_attainment_11": "PASS",
++    "line_attainment_11": "PASS",
++    "exception_bound_11_1": "PASS",
++    "center_pinned_count_11_1": "PASS",
++    "two_pin_11_1_0_1": "PASS",
++    "two_pin_11_1_0_2": "PASS",
++    "two_pin_11_1_0_3": "PASS",
++    "two_pin_11_1_1_2": "PASS",
++    "two_pin_11_1_1_3": "PASS",
++    "two_pin_11_1_2_3": "PASS",
++    "defect_bound_11_1": "PASS",
++    "exception_bound_11_2": "PASS",
++    "center_pinned_count_11_2": "PASS",
++    "two_pin_11_2_0_1": "PASS",
++    "two_pin_11_2_0_2": "PASS",
++    "two_pin_11_2_0_3": "PASS",
++    "two_pin_11_2_1_2": "PASS",
++    "two_pin_11_2_1_3": "PASS",
++    "two_pin_11_2_2_3": "PASS",
++    "defect_bound_11_2": "PASS",
++    "exception_bound_11_3": "PASS",
++    "center_pinned_count_11_3": "PASS",
++    "two_pin_11_3_0_1": "PASS",
++    "two_pin_11_3_0_2": "PASS",
++    "two_pin_11_3_0_3": "PASS",
++    "two_pin_11_3_1_2": "PASS",
++    "two_pin_11_3_1_3": "PASS",
++    "two_pin_11_3_2_3": "PASS",
++    "defect_bound_11_3": "PASS",
++    "circle_distinct_12": "PASS",
++    "circle_unit_radius_12": "PASS",
++    "circle_exact_counts_12": "PASS",
++    "circle_attainment_12": "PASS",
++    "line_attainment_12": "PASS",
++    "exception_bound_12_1": "PASS",
++    "center_pinned_count_12_1": "PASS",
++    "two_pin_12_1_0_1": "PASS",
++    "two_pin_12_1_0_2": "PASS",
++    "two_pin_12_1_0_3": "PASS",
++    "two_pin_12_1_1_2": "PASS",
++    "two_pin_12_1_1_3": "PASS",
++    "two_pin_12_1_2_3": "PASS",
++    "defect_bound_12_1": "PASS",
++    "exception_bound_12_2": "PASS",
++    "center_pinned_count_12_2": "PASS",
++    "two_pin_12_2_0_1": "PASS",
++    "two_pin_12_2_0_2": "PASS",
++    "two_pin_12_2_0_3": "PASS",
++    "two_pin_12_2_1_2": "PASS",
++    "two_pin_12_2_1_3": "PASS",
++    "two_pin_12_2_2_3": "PASS",
++    "defect_bound_12_2": "PASS",
++    "exception_bound_12_3": "PASS",
++    "center_pinned_count_12_3": "PASS",
++    "two_pin_12_3_0_1": "PASS",
++    "two_pin_12_3_0_2": "PASS",
++    "two_pin_12_3_0_3": "PASS",
++    "two_pin_12_3_1_2": "PASS",
++    "two_pin_12_3_1_3": "PASS",
++    "two_pin_12_3_2_3": "PASS",
++    "defect_bound_12_3": "PASS",
++    "circle_distinct_13": "PASS",
++    "circle_unit_radius_13": "PASS",
++    "circle_exact_counts_13": "PASS",
++    "circle_attainment_13": "PASS",
++    "line_attainment_13": "PASS",
++    "exception_bound_13_1": "PASS",
++    "center_pinned_count_13_1": "PASS",
++    "two_pin_13_1_0_1": "PASS",
++    "two_pin_13_1_0_2": "PASS",
++    "two_pin_13_1_0_3": "PASS",
++    "two_pin_13_1_1_2": "PASS",
++    "two_pin_13_1_1_3": "PASS",
++    "two_pin_13_1_2_3": "PASS",
++    "defect_bound_13_1": "PASS",
++    "exception_bound_13_2": "PASS",
++    "center_pinned_count_13_2": "PASS",
++    "two_pin_13_2_0_1": "PASS",
++    "two_pin_13_2_0_2": "PASS",
++    "two_pin_13_2_0_3": "PASS",
++    "two_pin_13_2_1_2": "PASS",
++    "two_pin_13_2_1_3": "PASS",
++    "two_pin_13_2_2_3": "PASS",
++    "defect_bound_13_2": "PASS",
++    "exception_bound_13_3": "PASS",
++    "center_pinned_count_13_3": "PASS",
++    "two_pin_13_3_0_1": "PASS",
++    "two_pin_13_3_0_2": "PASS",
++    "two_pin_13_3_0_3": "PASS",
++    "two_pin_13_3_1_2": "PASS",
++    "two_pin_13_3_1_3": "PASS",
++    "two_pin_13_3_2_3": "PASS",
++    "defect_bound_13_3": "PASS",
++    "circle_distinct_14": "PASS",
++    "circle_unit_radius_14": "PASS",
++    "circle_exact_counts_14": "PASS",
++    "circle_attainment_14": "PASS",
++    "line_attainment_14": "PASS",
++    "exception_bound_14_1": "PASS",
++    "center_pinned_count_14_1": "PASS",
++    "two_pin_14_1_0_1": "PASS",
++    "two_pin_14_1_0_2": "PASS",
++    "two_pin_14_1_0_3": "PASS",
++    "two_pin_14_1_1_2": "PASS",
++    "two_pin_14_1_1_3": "PASS",
++    "two_pin_14_1_2_3": "PASS",
++    "defect_bound_14_1": "PASS",
++    "exception_bound_14_2": "PASS",
++    "center_pinned_count_14_2": "PASS",
++    "two_pin_14_2_0_1": "PASS",
++    "two_pin_14_2_0_2": "PASS",
++    "two_pin_14_2_0_3": "PASS",
++    "two_pin_14_2_1_2": "PASS",
++    "two_pin_14_2_1_3": "PASS",
++    "two_pin_14_2_2_3": "PASS",
++    "defect_bound_14_2": "PASS",
++    "exception_bound_14_3": "PASS",
++    "center_pinned_count_14_3": "PASS",
++    "two_pin_14_3_0_1": "PASS",
++    "two_pin_14_3_0_2": "PASS",
++    "two_pin_14_3_0_3": "PASS",
++    "two_pin_14_3_1_2": "PASS",
++    "two_pin_14_3_1_3": "PASS",
++    "two_pin_14_3_2_3": "PASS",
++    "defect_bound_14_3": "PASS",
++    "circle_distinct_15": "PASS",
++    "circle_unit_radius_15": "PASS",
++    "circle_exact_counts_15": "PASS",
++    "circle_attainment_15": "PASS",
++    "line_attainment_15": "PASS",
++    "exception_bound_15_1": "PASS",
++    "center_pinned_count_15_1": "PASS",
++    "two_pin_15_1_0_1": "PASS",
++    "two_pin_15_1_0_2": "PASS",
++    "two_pin_15_1_0_3": "PASS",
++    "two_pin_15_1_1_2": "PASS",
++    "two_pin_15_1_1_3": "PASS",
++    "two_pin_15_1_2_3": "PASS",
++    "defect_bound_15_1": "PASS",
++    "exception_bound_15_2": "PASS",
++    "center_pinned_count_15_2": "PASS",
++    "two_pin_15_2_0_1": "PASS",
++    "two_pin_15_2_0_2": "PASS",
++    "two_pin_15_2_0_3": "PASS",
++    "two_pin_15_2_1_2": "PASS",
++    "two_pin_15_2_1_3": "PASS",
++    "two_pin_15_2_2_3": "PASS",
++    "defect_bound_15_2": "PASS",
++    "exception_bound_15_3": "PASS",
++    "center_pinned_count_15_3": "PASS",
++    "two_pin_15_3_0_1": "PASS",
++    "two_pin_15_3_0_2": "PASS",
++    "two_pin_15_3_0_3": "PASS",
++    "two_pin_15_3_1_2": "PASS",
++    "two_pin_15_3_1_3": "PASS",
++    "two_pin_15_3_2_3": "PASS",
++    "defect_bound_15_3": "PASS",
++    "circle_distinct_16": "PASS",
++    "circle_unit_radius_16": "PASS",
++    "circle_exact_counts_16": "PASS",
++    "circle_attainment_16": "PASS",
++    "line_attainment_16": "PASS",
++    "exception_bound_16_1": "PASS",
++    "center_pinned_count_16_1": "PASS",
++    "two_pin_16_1_0_1": "PASS",
++    "two_pin_16_1_0_2": "PASS",
++    "two_pin_16_1_0_3": "PASS",
++    "two_pin_16_1_1_2": "PASS",
++    "two_pin_16_1_1_3": "PASS",
++    "two_pin_16_1_2_3": "PASS",
++    "defect_bound_16_1": "PASS",
++    "exception_bound_16_2": "PASS",
++    "center_pinned_count_16_2": "PASS",
++    "two_pin_16_2_0_1": "PASS",
++    "two_pin_16_2_0_2": "PASS",
++    "two_pin_16_2_0_3": "PASS",
++    "two_pin_16_2_1_2": "PASS",
++    "two_pin_16_2_1_3": "PASS",
++    "two_pin_16_2_2_3": "PASS",
++    "defect_bound_16_2": "PASS",
++    "exception_bound_16_3": "PASS",
++    "center_pinned_count_16_3": "PASS",
++    "two_pin_16_3_0_1": "PASS",
++    "two_pin_16_3_0_2": "PASS",
++    "two_pin_16_3_0_3": "PASS",
++    "two_pin_16_3_1_2": "PASS",
++    "two_pin_16_3_1_3": "PASS",
++    "two_pin_16_3_2_3": "PASS",
++    "defect_bound_16_3": "PASS",
++    "circle_distinct_17": "PASS",
++    "circle_unit_radius_17": "PASS",
++    "circle_exact_counts_17": "PASS",
++    "circle_attainment_17": "PASS",
++    "line_attainment_17": "PASS",
++    "exception_bound_17_1": "PASS",
++    "center_pinned_count_17_1": "PASS",
++    "two_pin_17_1_0_1": "PASS",
++    "two_pin_17_1_0_2": "PASS",
++    "two_pin_17_1_0_3": "PASS",
++    "two_pin_17_1_1_2": "PASS",
++    "two_pin_17_1_1_3": "PASS",
++    "two_pin_17_1_2_3": "PASS",
++    "defect_bound_17_1": "PASS",
++    "exception_bound_17_2": "PASS",
++    "center_pinned_count_17_2": "PASS",
++    "two_pin_17_2_0_1": "PASS",
++    "two_pin_17_2_0_2": "PASS",
++    "two_pin_17_2_0_3": "PASS",
++    "two_pin_17_2_1_2": "PASS",
++    "two_pin_17_2_1_3": "PASS",
++    "two_pin_17_2_2_3": "PASS",
++    "defect_bound_17_2": "PASS",
++    "exception_bound_17_3": "PASS",
++    "center_pinned_count_17_3": "PASS",
++    "two_pin_17_3_0_1": "PASS",
++    "two_pin_17_3_0_2": "PASS",
++    "two_pin_17_3_0_3": "PASS",
++    "two_pin_17_3_1_2": "PASS",
++    "two_pin_17_3_1_3": "PASS",
++    "two_pin_17_3_2_3": "PASS",
++    "defect_bound_17_3": "PASS",
++    "circle_distinct_18": "PASS",
++    "circle_unit_radius_18": "PASS",
++    "circle_exact_counts_18": "PASS",
++    "circle_attainment_18": "PASS",
++    "line_attainment_18": "PASS",
++    "exception_bound_18_1": "PASS",
++    "center_pinned_count_18_1": "PASS",
++    "two_pin_18_1_0_1": "PASS",
++    "two_pin_18_1_0_2": "PASS",
++    "two_pin_18_1_0_3": "PASS",
++    "two_pin_18_1_1_2": "PASS",
++    "two_pin_18_1_1_3": "PASS",
++    "two_pin_18_1_2_3": "PASS",
++    "defect_bound_18_1": "PASS",
++    "exception_bound_18_2": "PASS",
++    "center_pinned_count_18_2": "PASS",
++    "two_pin_18_2_0_1": "PASS",
++    "two_pin_18_2_0_2": "PASS",
++    "two_pin_18_2_0_3": "PASS",
++    "two_pin_18_2_1_2": "PASS",
++    "two_pin_18_2_1_3": "PASS",
++    "two_pin_18_2_2_3": "PASS",
++    "defect_bound_18_2": "PASS",
++    "exception_bound_18_3": "PASS",
++    "center_pinned_count_18_3": "PASS",
++    "two_pin_18_3_0_1": "PASS",
++    "two_pin_18_3_0_2": "PASS",
++    "two_pin_18_3_0_3": "PASS",
++    "two_pin_18_3_1_2": "PASS",
++    "two_pin_18_3_1_3": "PASS",
++    "two_pin_18_3_2_3": "PASS",
++    "defect_bound_18_3": "PASS",
++    "circle_distinct_19": "PASS",
++    "circle_unit_radius_19": "PASS",
++    "circle_exact_counts_19": "PASS",
++    "circle_attainment_19": "PASS",
++    "line_attainment_19": "PASS",
++    "exception_bound_19_1": "PASS",
++    "center_pinned_count_19_1": "PASS",
++    "two_pin_19_1_0_1": "PASS",
++    "two_pin_19_1_0_2": "PASS",
++    "two_pin_19_1_0_3": "PASS",
++    "two_pin_19_1_1_2": "PASS",
++    "two_pin_19_1_1_3": "PASS",
++    "two_pin_19_1_2_3": "PASS",
++    "defect_bound_19_1": "PASS",
++    "exception_bound_19_2": "PASS",
++    "center_pinned_count_19_2": "PASS",
++    "two_pin_19_2_0_1": "PASS",
++    "two_pin_19_2_0_2": "PASS",
++    "two_pin_19_2_0_3": "PASS",
++    "two_pin_19_2_1_2": "PASS",
++    "two_pin_19_2_1_3": "PASS",
++    "two_pin_19_2_2_3": "PASS",
++    "defect_bound_19_2": "PASS",
++    "exception_bound_19_3": "PASS",
++    "center_pinned_count_19_3": "PASS",
++    "two_pin_19_3_0_1": "PASS",
++    "two_pin_19_3_0_2": "PASS",
++    "two_pin_19_3_0_3": "PASS",
++    "two_pin_19_3_1_2": "PASS",
++    "two_pin_19_3_1_3": "PASS",
++    "two_pin_19_3_2_3": "PASS",
++    "defect_bound_19_3": "PASS",
++    "circle_distinct_20": "PASS",
++    "circle_unit_radius_20": "PASS",
++    "circle_exact_counts_20": "PASS",
++    "circle_attainment_20": "PASS",
++    "line_attainment_20": "PASS",
++    "exception_bound_20_1": "PASS",
++    "center_pinned_count_20_1": "PASS",
++    "two_pin_20_1_0_1": "PASS",
++    "two_pin_20_1_0_2": "PASS",
++    "two_pin_20_1_0_3": "PASS",
++    "two_pin_20_1_1_2": "PASS",
++    "two_pin_20_1_1_3": "PASS",
++    "two_pin_20_1_2_3": "PASS",
++    "defect_bound_20_1": "PASS",
++    "exception_bound_20_2": "PASS",
++    "center_pinned_count_20_2": "PASS",
++    "two_pin_20_2_0_1": "PASS",
++    "two_pin_20_2_0_2": "PASS",
++    "two_pin_20_2_0_3": "PASS",
++    "two_pin_20_2_1_2": "PASS",
++    "two_pin_20_2_1_3": "PASS",
++    "two_pin_20_2_2_3": "PASS",
++    "defect_bound_20_2": "PASS",
++    "exception_bound_20_3": "PASS",
++    "center_pinned_count_20_3": "PASS",
++    "two_pin_20_3_0_1": "PASS",
++    "two_pin_20_3_0_2": "PASS",
++    "two_pin_20_3_0_3": "PASS",
++    "two_pin_20_3_1_2": "PASS",
++    "two_pin_20_3_1_3": "PASS",
++    "two_pin_20_3_2_3": "PASS",
++    "defect_bound_20_3": "PASS",
++    "circle_distinct_21": "PASS",
++    "circle_unit_radius_21": "PASS",
++    "circle_exact_counts_21": "PASS",
++    "circle_attainment_21": "PASS",
++    "line_attainment_21": "PASS",
++    "exception_bound_21_1": "PASS",
++    "center_pinned_count_21_1": "PASS",
++    "two_pin_21_1_0_1": "PASS",
++    "two_pin_21_1_0_2": "PASS",
++    "two_pin_21_1_0_3": "PASS",
++    "two_pin_21_1_1_2": "PASS",
++    "two_pin_21_1_1_3": "PASS",
++    "two_pin_21_1_2_3": "PASS",
++    "defect_bound_21_1": "PASS",
++    "exception_bound_21_2": "PASS",
++    "center_pinned_count_21_2": "PASS",
++    "two_pin_21_2_0_1": "PASS",
++    "two_pin_21_2_0_2": "PASS",
++    "two_pin_21_2_0_3": "PASS",
++    "two_pin_21_2_1_2": "PASS",
++    "two_pin_21_2_1_3": "PASS",
++    "two_pin_21_2_2_3": "PASS",
++    "defect_bound_21_2": "PASS",
++    "exception_bound_21_3": "PASS",
++    "center_pinned_count_21_3": "PASS",
++    "two_pin_21_3_0_1": "PASS",
++    "two_pin_21_3_0_2": "PASS",
++    "two_pin_21_3_0_3": "PASS",
++    "two_pin_21_3_1_2": "PASS",
++    "two_pin_21_3_1_3": "PASS",
++    "two_pin_21_3_2_3": "PASS",
++    "defect_bound_21_3": "PASS",
++    "circle_distinct_22": "PASS",
++    "circle_unit_radius_22": "PASS",
++    "circle_exact_counts_22": "PASS",
++    "circle_attainment_22": "PASS",
++    "line_attainment_22": "PASS",
++    "exception_bound_22_1": "PASS",
++    "center_pinned_count_22_1": "PASS",
++    "two_pin_22_1_0_1": "PASS",
++    "two_pin_22_1_0_2": "PASS",
++    "two_pin_22_1_0_3": "PASS",
++    "two_pin_22_1_1_2": "PASS",
++    "two_pin_22_1_1_3": "PASS",
++    "two_pin_22_1_2_3": "PASS",
++    "defect_bound_22_1": "PASS",
++    "exception_bound_22_2": "PASS",
++    "center_pinned_count_22_2": "PASS",
++    "two_pin_22_2_0_1": "PASS",
++    "two_pin_22_2_0_2": "PASS",
++    "two_pin_22_2_0_3": "PASS",
++    "two_pin_22_2_1_2": "PASS",
++    "two_pin_22_2_1_3": "PASS",
++    "two_pin_22_2_2_3": "PASS",
++    "defect_bound_22_2": "PASS",
++    "exception_bound_22_3": "PASS",
++    "center_pinned_count_22_3": "PASS",
++    "two_pin_22_3_0_1": "PASS",
++    "two_pin_22_3_0_2": "PASS",
++    "two_pin_22_3_0_3": "PASS",
++    "two_pin_22_3_1_2": "PASS",
++    "two_pin_22_3_1_3": "PASS",
++    "two_pin_22_3_2_3": "PASS",
++    "defect_bound_22_3": "PASS",
++    "circle_distinct_23": "PASS",
++    "circle_unit_radius_23": "PASS",
++    "circle_exact_counts_23": "PASS",
++    "circle_attainment_23": "PASS",
++    "line_attainment_23": "PASS",
++    "exception_bound_23_1": "PASS",
++    "center_pinned_count_23_1": "PASS",
++    "two_pin_23_1_0_1": "PASS",
++    "two_pin_23_1_0_2": "PASS",
++    "two_pin_23_1_0_3": "PASS",
++    "two_pin_23_1_1_2": "PASS",
++    "two_pin_23_1_1_3": "PASS",
++    "two_pin_23_1_2_3": "PASS",
++    "defect_bound_23_1": "PASS",
++    "exception_bound_23_2": "PASS",
++    "center_pinned_count_23_2": "PASS",
++    "two_pin_23_2_0_1": "PASS",
++    "two_pin_23_2_0_2": "PASS",
++    "two_pin_23_2_0_3": "PASS",
++    "two_pin_23_2_1_2": "PASS",
++    "two_pin_23_2_1_3": "PASS",
++    "two_pin_23_2_2_3": "PASS",
++    "defect_bound_23_2": "PASS",
++    "exception_bound_23_3": "PASS",
++    "center_pinned_count_23_3": "PASS",
++    "two_pin_23_3_0_1": "PASS",
++    "two_pin_23_3_0_2": "PASS",
++    "two_pin_23_3_0_3": "PASS",
++    "two_pin_23_3_1_2": "PASS",
++    "two_pin_23_3_1_3": "PASS",
++    "two_pin_23_3_2_3": "PASS",
++    "defect_bound_23_3": "PASS",
++    "circle_distinct_24": "PASS",
++    "circle_unit_radius_24": "PASS",
++    "circle_exact_counts_24": "PASS",
++    "circle_attainment_24": "PASS",
++    "line_attainment_24": "PASS",
++    "exception_bound_24_1": "PASS",
++    "center_pinned_count_24_1": "PASS",
++    "two_pin_24_1_0_1": "PASS",
++    "two_pin_24_1_0_2": "PASS",
++    "two_pin_24_1_0_3": "PASS",
++    "two_pin_24_1_1_2": "PASS",
++    "two_pin_24_1_1_3": "PASS",
++    "two_pin_24_1_2_3": "PASS",
++    "defect_bound_24_1": "PASS",
++    "exception_bound_24_2": "PASS",
++    "center_pinned_count_24_2": "PASS",
++    "two_pin_24_2_0_1": "PASS",
++    "two_pin_24_2_0_2": "PASS",
++    "two_pin_24_2_0_3": "PASS",
++    "two_pin_24_2_1_2": "PASS",
++    "two_pin_24_2_1_3": "PASS",
++    "two_pin_24_2_2_3": "PASS",
++    "defect_bound_24_2": "PASS",
++    "exception_bound_24_3": "PASS",
++    "center_pinned_count_24_3": "PASS",
++    "two_pin_24_3_0_1": "PASS",
++    "two_pin_24_3_0_2": "PASS",
++    "two_pin_24_3_0_3": "PASS",
++    "two_pin_24_3_1_2": "PASS",
++    "two_pin_24_3_1_3": "PASS",
++    "two_pin_24_3_2_3": "PASS",
++    "defect_bound_24_3": "PASS",
++    "circle_distinct_25": "PASS",
++    "circle_unit_radius_25": "PASS",
++    "circle_exact_counts_25": "PASS",
++    "circle_attainment_25": "PASS",
++    "line_attainment_25": "PASS",
++    "exception_bound_25_1": "PASS",
++    "center_pinned_count_25_1": "PASS",
++    "two_pin_25_1_0_1": "PASS",
++    "two_pin_25_1_0_2": "PASS",
++    "two_pin_25_1_0_3": "PASS",
++    "two_pin_25_1_1_2": "PASS",
++    "two_pin_25_1_1_3": "PASS",
++    "two_pin_25_1_2_3": "PASS",
++    "defect_bound_25_1": "PASS",
++    "exception_bound_25_2": "PASS",
++    "center_pinned_count_25_2": "PASS",
++    "two_pin_25_2_0_1": "PASS",
++    "two_pin_25_2_0_2": "PASS",
++    "two_pin_25_2_0_3": "PASS",
++    "two_pin_25_2_1_2": "PASS",
++    "two_pin_25_2_1_3": "PASS",
++    "two_pin_25_2_2_3": "PASS",
++    "defect_bound_25_2": "PASS",
++    "exception_bound_25_3": "PASS",
++    "center_pinned_count_25_3": "PASS",
++    "two_pin_25_3_0_1": "PASS",
++    "two_pin_25_3_0_2": "PASS",
++    "two_pin_25_3_0_3": "PASS",
++    "two_pin_25_3_1_2": "PASS",
++    "two_pin_25_3_1_3": "PASS",
++    "two_pin_25_3_2_3": "PASS",
++    "defect_bound_25_3": "PASS",
++    "circle_distinct_26": "PASS",
++    "circle_unit_radius_26": "PASS",
++    "circle_exact_counts_26": "PASS",
++    "circle_attainment_26": "PASS",
++    "line_attainment_26": "PASS",
++    "exception_bound_26_1": "PASS",
++    "center_pinned_count_26_1": "PASS",
++    "two_pin_26_1_0_1": "PASS",
++    "two_pin_26_1_0_2": "PASS",
++    "two_pin_26_1_0_3": "PASS",
++    "two_pin_26_1_1_2": "PASS",
++    "two_pin_26_1_1_3": "PASS",
++    "two_pin_26_1_2_3": "PASS",
++    "defect_bound_26_1": "PASS",
++    "exception_bound_26_2": "PASS",
++    "center_pinned_count_26_2": "PASS",
++    "two_pin_26_2_0_1": "PASS",
++    "two_pin_26_2_0_2": "PASS",
++    "two_pin_26_2_0_3": "PASS",
++    "two_pin_26_2_1_2": "PASS",
++    "two_pin_26_2_1_3": "PASS",
++    "two_pin_26_2_2_3": "PASS",
++    "defect_bound_26_2": "PASS",
++    "exception_bound_26_3": "PASS",
++    "center_pinned_count_26_3": "PASS",
++    "two_pin_26_3_0_1": "PASS",
++    "two_pin_26_3_0_2": "PASS",
++    "two_pin_26_3_0_3": "PASS",
++    "two_pin_26_3_1_2": "PASS",
++    "two_pin_26_3_1_3": "PASS",
++    "two_pin_26_3_2_3": "PASS",
++    "defect_bound_26_3": "PASS",
++    "circle_distinct_27": "PASS",
++    "circle_unit_radius_27": "PASS",
++    "circle_exact_counts_27": "PASS",
++    "circle_attainment_27": "PASS",
++    "line_attainment_27": "PASS",
++    "exception_bound_27_1": "PASS",
++    "center_pinned_count_27_1": "PASS",
++    "two_pin_27_1_0_1": "PASS",
++    "two_pin_27_1_0_2": "PASS",
++    "two_pin_27_1_0_3": "PASS",
++    "two_pin_27_1_1_2": "PASS",
++    "two_pin_27_1_1_3": "PASS",
++    "two_pin_27_1_2_3": "PASS",
++    "defect_bound_27_1": "PASS",
++    "exception_bound_27_2": "PASS",
++    "center_pinned_count_27_2": "PASS",
++    "two_pin_27_2_0_1": "PASS",
++    "two_pin_27_2_0_2": "PASS",
++    "two_pin_27_2_0_3": "PASS",
++    "two_pin_27_2_1_2": "PASS",
++    "two_pin_27_2_1_3": "PASS",
++    "two_pin_27_2_2_3": "PASS",
++    "defect_bound_27_2": "PASS",
++    "exception_bound_27_3": "PASS",
++    "center_pinned_count_27_3": "PASS",
++    "two_pin_27_3_0_1": "PASS",
++    "two_pin_27_3_0_2": "PASS",
++    "two_pin_27_3_0_3": "PASS",
++    "two_pin_27_3_1_2": "PASS",
++    "two_pin_27_3_1_3": "PASS",
++    "two_pin_27_3_2_3": "PASS",
++    "defect_bound_27_3": "PASS",
++    "circle_distinct_28": "PASS",
++    "circle_unit_radius_28": "PASS",
++    "circle_exact_counts_28": "PASS",
++    "circle_attainment_28": "PASS",
++    "line_attainment_28": "PASS",
++    "exception_bound_28_1": "PASS",
++    "center_pinned_count_28_1": "PASS",
++    "two_pin_28_1_0_1": "PASS",
++    "two_pin_28_1_0_2": "PASS",
++    "two_pin_28_1_0_3": "PASS",
++    "two_pin_28_1_1_2": "PASS",
++    "two_pin_28_1_1_3": "PASS",
++    "two_pin_28_1_2_3": "PASS",
++    "defect_bound_28_1": "PASS",
++    "exception_bound_28_2": "PASS",
++    "center_pinned_count_28_2": "PASS",
++    "two_pin_28_2_0_1": "PASS",
++    "two_pin_28_2_0_2": "PASS",
++    "two_pin_28_2_0_3": "PASS",
++    "two_pin_28_2_1_2": "PASS",
++    "two_pin_28_2_1_3": "PASS",
++    "two_pin_28_2_2_3": "PASS",
++    "defect_bound_28_2": "PASS",
++    "exception_bound_28_3": "PASS",
++    "center_pinned_count_28_3": "PASS",
++    "two_pin_28_3_0_1": "PASS",
++    "two_pin_28_3_0_2": "PASS",
++    "two_pin_28_3_0_3": "PASS",
++    "two_pin_28_3_1_2": "PASS",
++    "two_pin_28_3_1_3": "PASS",
++    "two_pin_28_3_2_3": "PASS",
++    "defect_bound_28_3": "PASS",
++    "circle_distinct_29": "PASS",
++    "circle_unit_radius_29": "PASS",
++    "circle_exact_counts_29": "PASS",
++    "circle_attainment_29": "PASS",
++    "line_attainment_29": "PASS",
++    "exception_bound_29_1": "PASS",
++    "center_pinned_count_29_1": "PASS",
++    "two_pin_29_1_0_1": "PASS",
++    "two_pin_29_1_0_2": "PASS",
++    "two_pin_29_1_0_3": "PASS",
++    "two_pin_29_1_1_2": "PASS",
++    "two_pin_29_1_1_3": "PASS",
++    "two_pin_29_1_2_3": "PASS",
++    "defect_bound_29_1": "PASS",
++    "exception_bound_29_2": "PASS",
++    "center_pinned_count_29_2": "PASS",
++    "two_pin_29_2_0_1": "PASS",
++    "two_pin_29_2_0_2": "PASS",
++    "two_pin_29_2_0_3": "PASS",
++    "two_pin_29_2_1_2": "PASS",
++    "two_pin_29_2_1_3": "PASS",
++    "two_pin_29_2_2_3": "PASS",
++    "defect_bound_29_2": "PASS",
++    "exception_bound_29_3": "PASS",
++    "center_pinned_count_29_3": "PASS",
++    "two_pin_29_3_0_1": "PASS",
++    "two_pin_29_3_0_2": "PASS",
++    "two_pin_29_3_0_3": "PASS",
++    "two_pin_29_3_1_2": "PASS",
++    "two_pin_29_3_1_3": "PASS",
++    "two_pin_29_3_2_3": "PASS",
++    "defect_bound_29_3": "PASS",
++    "circle_distinct_30": "PASS",
++    "circle_unit_radius_30": "PASS",
++    "circle_exact_counts_30": "PASS",
++    "circle_attainment_30": "PASS",
++    "line_attainment_30": "PASS",
++    "exception_bound_30_1": "PASS",
++    "center_pinned_count_30_1": "PASS",
++    "two_pin_30_1_0_1": "PASS",
++    "two_pin_30_1_0_2": "PASS",
++    "two_pin_30_1_0_3": "PASS",
++    "two_pin_30_1_1_2": "PASS",
++    "two_pin_30_1_1_3": "PASS",
++    "two_pin_30_1_2_3": "PASS",
++    "defect_bound_30_1": "PASS",
++    "exception_bound_30_2": "PASS",
++    "center_pinned_count_30_2": "PASS",
++    "two_pin_30_2_0_1": "PASS",
++    "two_pin_30_2_0_2": "PASS",
++    "two_pin_30_2_0_3": "PASS",
++    "two_pin_30_2_1_2": "PASS",
++    "two_pin_30_2_1_3": "PASS",
++    "two_pin_30_2_2_3": "PASS",
++    "defect_bound_30_2": "PASS",
++    "exception_bound_30_3": "PASS",
++    "center_pinned_count_30_3": "PASS",
++    "two_pin_30_3_0_1": "PASS",
++    "two_pin_30_3_0_2": "PASS",
++    "two_pin_30_3_0_3": "PASS",
++    "two_pin_30_3_1_2": "PASS",
++    "two_pin_30_3_1_3": "PASS",
++    "two_pin_30_3_2_3": "PASS",
++    "defect_bound_30_3": "PASS",
++    "quadratic_root": "PASS",
++    "line_interval_cardinality_2": "PASS",
++    "line_interval_cardinality_3": "PASS",
++    "line_interval_cardinality_4": "PASS",
++    "line_interval_cardinality_5": "PASS",
++    "line_interval_cardinality_6": "PASS",
++    "line_interval_cardinality_7": "PASS",
++    "line_interval_cardinality_8": "PASS",
++    "line_interval_cardinality_9": "PASS",
++    "line_interval_cardinality_10": "PASS",
++    "line_interval_cardinality_11": "PASS",
++    "line_interval_cardinality_12": "PASS",
++    "line_interval_cardinality_13": "PASS",
++    "line_interval_cardinality_14": "PASS",
++    "line_interval_cardinality_15": "PASS",
++    "line_interval_cardinality_16": "PASS",
++    "line_interval_cardinality_17": "PASS",
++    "line_interval_cardinality_18": "PASS",
++    "line_interval_cardinality_19": "PASS",
++    "line_interval_cardinality_20": "PASS",
++    "line_interval_cardinality_21": "PASS",
++    "line_interval_cardinality_22": "PASS",
++    "line_interval_cardinality_23": "PASS",
++    "line_interval_cardinality_24": "PASS",
++    "line_interval_cardinality_25": "PASS",
++    "line_interval_cardinality_26": "PASS",
++    "line_interval_cardinality_27": "PASS",
++    "line_interval_cardinality_28": "PASS",
++    "line_interval_cardinality_29": "PASS",
++    "line_interval_cardinality_30": "PASS",
++    "line_interval_cardinality_31": "PASS",
++    "line_interval_cardinality_32": "PASS",
++    "line_interval_cardinality_33": "PASS",
++    "line_interval_cardinality_34": "PASS",
++    "line_interval_cardinality_35": "PASS",
++    "line_interval_cardinality_36": "PASS",
++    "line_interval_cardinality_37": "PASS",
++    "line_interval_cardinality_38": "PASS",
++    "line_interval_cardinality_39": "PASS",
++    "line_interval_cardinality_40": "PASS",
++    "line_interval_cardinality_41": "PASS",
++    "line_interval_cardinality_42": "PASS",
++    "line_interval_cardinality_43": "PASS",
++    "line_interval_cardinality_44": "PASS",
++    "line_interval_cardinality_45": "PASS",
++    "line_interval_cardinality_46": "PASS",
++    "line_interval_cardinality_47": "PASS",
++    "line_interval_cardinality_48": "PASS",
++    "line_interval_cardinality_49": "PASS",
++    "line_interval_cardinality_50": "PASS",
++    "line_interval_cardinality_51": "PASS",
++    "line_interval_cardinality_52": "PASS",
++    "line_interval_cardinality_53": "PASS",
++    "line_interval_cardinality_54": "PASS",
++    "line_interval_cardinality_55": "PASS",
++    "line_interval_cardinality_56": "PASS",
++    "line_interval_cardinality_57": "PASS",
++    "line_interval_cardinality_58": "PASS",
++    "line_interval_cardinality_59": "PASS",
++    "line_interval_cardinality_60": "PASS",
++    "line_interval_cardinality_61": "PASS",
++    "line_interval_cardinality_62": "PASS",
++    "line_interval_cardinality_63": "PASS",
++    "line_interval_cardinality_64": "PASS",
++    "line_interval_cardinality_65": "PASS",
++    "line_interval_cardinality_66": "PASS",
++    "line_interval_cardinality_67": "PASS",
++    "line_interval_cardinality_68": "PASS",
++    "line_interval_cardinality_69": "PASS",
++    "line_interval_cardinality_70": "PASS",
++    "line_interval_cardinality_71": "PASS",
++    "line_interval_cardinality_72": "PASS",
++    "line_interval_cardinality_73": "PASS",
++    "line_interval_cardinality_74": "PASS",
++    "line_interval_cardinality_75": "PASS",
++    "line_interval_cardinality_76": "PASS",
++    "line_interval_cardinality_77": "PASS",
++    "line_interval_cardinality_78": "PASS",
++    "line_interval_cardinality_79": "PASS",
++    "line_interval_cardinality_80": "PASS",
++    "line_interval_cardinality_81": "PASS",
++    "line_interval_cardinality_82": "PASS",
++    "line_interval_cardinality_83": "PASS",
++    "line_interval_cardinality_84": "PASS",
++    "line_interval_cardinality_85": "PASS",
++    "line_interval_cardinality_86": "PASS",
++    "line_interval_cardinality_87": "PASS",
++    "line_interval_cardinality_88": "PASS",
++    "line_interval_cardinality_89": "PASS",
++    "line_interval_cardinality_90": "PASS",
++    "line_interval_cardinality_91": "PASS",
++    "line_interval_cardinality_92": "PASS",
++    "line_interval_cardinality_93": "PASS",
++    "line_interval_cardinality_94": "PASS",
++    "line_interval_cardinality_95": "PASS",
++    "line_interval_cardinality_96": "PASS",
++    "line_interval_cardinality_97": "PASS",
++    "line_interval_cardinality_98": "PASS",
++    "line_interval_cardinality_99": "PASS",
++    "line_interval_cardinality_100": "PASS"
++  },
++  "reviewed_sha256": "b51799d262ea7f633771128422708232c0522e7fddbaa5062a955911ed2e79f5"
++}
+diff --git a/unsolved_math_prioritization/attempts/2233/review/submitted_check_spectra.py b/unsolved_math_prioritization/attempts/2233/review/submitted_check_spectra.py
+new file mode 100644
+index 000000000..2ebbd6699
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2233/review/submitted_check_spectra.py
+@@ -0,0 +1,170 @@
++"""Exact, finite diagnostics for PARTIAL.md; no asymptotic or novelty claim."""
++from fractions import Fraction
++from itertools import combinations
++from pathlib import Path
++import hashlib
++import json
++import random
++
++checks = 0
++
++
++def require(condition):
++    global checks
++    checks += 1
++    assert condition
++
++
++def squared_distance(p, q):
++    return (p[0] - q[0]) ** 2 + (p[1] - q[1]) ** 2
++
++
++def counts(points):
++    assert len(set(points)) == len(points)
++    return [len({squared_distance(p, q) for q in points if q != p})
++            for p in points]
++
++
++def deficits(points):
++    return {len(points) - 1 - r for r in counts(points)}
++
++
++def admissible(blocks):
++    flat = [p for block in blocks for p in block]
++    if len(set(flat)) != len(flat):
++        return False
++    for i, block in enumerate(blocks):
++        outside = [p for j, other in enumerate(blocks) if j != i for p in other]
++        for p in block:
++            internal = {squared_distance(p, q) for q in block if p != q}
++            external = [squared_distance(p, q) for q in outside]
++            if len(set(external)) != len(external) or internal.intersection(external):
++                return False
++    return True
++
++
++rng = random.Random(653)
++
++
++def place(seeds):
++    for _ in range(1000):
++        blocks = []
++        for seed in seeds:
++            a, b = rng.randrange(-100000, 100001), rng.randrange(-100000, 100001)
++            blocks.append([(x + a, y + b) for x, y in seed])
++        if admissible(blocks):
++            return blocks
++    raise AssertionError("No admissible finite witness found within diagnostic limit")
++
++
++def check_union(seeds):
++    blocks = place(seeds)
++    flat = [p for block in blocks for p in block]
++    expected_counts = [len(flat) - len(seed) + r for seed in seeds for r in counts(seed)]
++    require(counts(flat) == expected_counts)
++    require(deficits(flat) == set().union(*(deficits(seed) for seed in seeds)))
++    largest = max(map(len, seeds))
++    require(len(deficits(flat)) <= max(1, largest - 1))
++    return flat
++
++
++def classical_bound(points):
++    rs = counts(points)
++    n = len(points)
++    for a, b in combinations(rs, 2):
++        require(n - 2 <= 2 * a * b)
++    h = n - len(set(rs))
++    require(n - 2 <= 2 * h * (h + 1))
++
++
++seeds = [
++    [(0, 0)],
++    [(0, 0), (1, 0)],
++    [(0, 0), (1, 0), (0, 1)],
++    [(0, 0), (1, 0), (0, 1), (1, 1)],
++    [(j, 0) for j in range(7)],
++    [(i, j) for i in range(3) for j in range(2)],
++    [(0, 0), (1, 0), (3, 2), (-2, 5)],
++]
++for _ in range(120):
++    selected = [rng.choice(seeds) for _ in range(rng.randrange(2, 5))]
++    classical_bound(check_union(selected))
++for seed in seeds:
++    repeated = check_union([seed] * 6)
++    require(deficits(repeated) == deficits(seed))
++    padded = check_union([seed] + [[(0, 0)]] * 9)
++    require(deficits(padded) == deficits(seed) | {0})
++
++# Hierarchical gluing: translate completed lower-level blocks without changing them.
++lower = [check_union([seeds[2], seeds[3]]), check_union([seeds[4], seeds[0]])]
++upper = check_union(lower)
++require(deficits(upper) == set().union(*(deficits(seeds[j]) for j in [2, 3, 4, 0])))
++
++# A nongeneric control must fail admissibility and the claimed generic identity.
++square_blocks = [[(0, 0), (1, 0)], [(0, 1), (1, 1)]]
++require(not admissible(square_blocks))
++require(deficits(sum(square_blocks, [])) == {1})
++require(set().union(*(deficits(b) for b in square_blocks)) == {0})
++
++line_examples = 0
++for size in range(2, 9):
++    for subset in combinations(range(8), size):
++        points = [(i, 0) for i in subset]
++        require(len(set(counts(points))) <= (size + 1) // 2)
++        classical_bound(points)
++        line_examples += 1
++for n in range(2, 65):
++    points = [(i, 0) for i in range(n)]
++    require(counts(points) == [max(i, n - 1 - i) for i in range(n)])
++    require(len(set(counts(points))) == (n + 1) // 2)
++
++# Exact rational parametrization of a positive-radius circle.
++circle = [(Fraction(1 - t*t, 1 + t*t), Fraction(2*t, 1 + t*t))
++          for t in range(-3, 4)]
++require(all(x*x + y*y == 1 for x, y in circle))
++circle_examples = 0
++for size in range(2, 8):
++    for subset in combinations(circle, size):
++        require(len(set(counts(subset))) <= (size + 1) // 2)
++        classical_bound(subset)
++        circle_examples += 1
++
++# Restricted supports with arbitrary off-support additions.
++exception_examples = 0
++for supported in [circle, [(i, 0) for i in range(7)]]:
++    for t in range(5):
++        for trial in range(12):
++            extra = [(Fraction(31 + j), Fraction(13 + trial + j*j)) for j in range(t)]
++            points = supported + extra
++            n, m = len(points), len(supported)
++            bound = min(n - 1, n + t - ((m - 1 + 1) // 2))
++            require(len(set(counts(points))) <= bound)
++            exception_examples += 1
++
++# All nontrivial subsets of a small planar grid: no floating comparisons.
++grid = [(i, j) for i in range(3) for j in range(3)]
++grid_examples = 0
++for size in range(2, 10):
++    for points in combinations(grid, size):
++        classical_bound(points)
++        grid_examples += 1
++
++root = Path(__file__).resolve().parent
++result = {
++    "all_passed": True,
++    "assertions": checks,
++    "generic_random_seed_tuples": 120,
++    "repeated_and_padded_seed_types": len(seeds),
++    "hierarchical_gluing_checked": True,
++    "nongeneric_square_control_checked": True,
++    "line_subsets_checked": line_examples,
++    "arithmetic_progression_sizes": [2, 64],
++    "rational_circle_subsets_checked": circle_examples,
++    "support_with_exception_examples": exception_examples,
++    "grid_subsets_checked": grid_examples,
++    "arithmetic": "exact integers and fractions; squared distances preserve equality",
++    "partial_sha256": hashlib.sha256((root / "PARTIAL.md").read_bytes()).hexdigest(),
++    "scope": "Finite diagnostics only; the original asymptotic conjecture remains unresolved.",
++}
++(root / "check_results.json").write_text(json.dumps(result, indent=2) + "\n")
++print(json.dumps(result, indent=2))
+diff --git a/unsolved_math_prioritization/attempts/2233/review/submitted_results.json b/unsolved_math_prioritization/attempts/2233/review/submitted_results.json
+new file mode 100644
+index 000000000..ea9c275ed
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2233/review/submitted_results.json
+@@ -0,0 +1,19 @@
++{
++  "all_passed": true,
++  "assertions": 18306,
++  "generic_random_seed_tuples": 120,
++  "repeated_and_padded_seed_types": 7,
++  "hierarchical_gluing_checked": true,
++  "nongeneric_square_control_checked": true,
++  "line_subsets_checked": 247,
++  "arithmetic_progression_sizes": [
++    2,
++    64
++  ],
++  "rational_circle_subsets_checked": 120,
++  "support_with_exception_examples": 120,
++  "grid_subsets_checked": 502,
++  "arithmetic": "exact integers and fractions; squared distances preserve equality",
++  "partial_sha256": "b51799d262ea7f633771128422708232c0522e7fddbaa5062a955911ed2e79f5",
++  "scope": "Finite diagnostics only; the original asymptotic conjecture remains unresolved."
++}
+diff --git a/unsolved_math_prioritization/attempts/2233/review/verdict.json b/unsolved_math_prioritization/attempts/2233/review/verdict.json
+new file mode 100644
+index 000000000..5ac9aa90d
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2233/review/verdict.json
+@@ -0,0 +1,27 @@
++{
++  "problem_id": 2233,
++  "problem_code": "EP-653",
++  "review_date": "2026-09-30",
++  "reviewer_model": "gpt-6-astra",
++  "reasoning_effort": "xhigh",
++  "verdict": "PASS_SCOPED_PARTIAL_OBSTRUCTIONS",
++  "artifact": "PARTIAL.md",
++  "artifact_sha256": "b51799d262ea7f633771128422708232c0522e7fddbaa5062a955911ed2e79f5",
++  "full_target_resolved": false,
++  "novelty_claimed": false,
++  "mandatory_corrections": [],
++  "author_assertions_passed": 18306,
++  "author_receipt_byte_identical": true,
++  "independent_assertions_passed": 1263,
++  "source_files_edited": false,
++  "scope_holds": [
++    "The n-o(n) target remains unresolved",
++    "Generic gluing only; nongeneric cross-block equalities excluded",
++    "Line/circle support is exact rather than approximate geometric closeness",
++    "1997 full source and some historical full papers not recovered",
++    "2026 external preprint claims not independently certified"
++  ],
++  "review_sha256": "a018dfa1445e99cc3154391b02f78a79e0977118f2179c7e2349268d153f6cc7",
++  "final_artifact_sha256": "0b116a4593d84d7e9d02f635a080eb0e2242aaba66acfc8efeae74462ad89898",
++  "final_diff": "Only the pending-review header sentence changed; exact byte replacement verified."
++}
+diff --git a/unsolved_math_prioritization/attempts/2233/source_checksums.json b/unsolved_math_prioritization/attempts/2233/source_checksums.json
+new file mode 100644
+index 000000000..44d840224
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2233/source_checksums.json
+@@ -0,0 +1,23 @@
++[
++  {
++    "cache_filename": "erdos-resenhas-1995.pdf",
++    "url": "https://www.ime.usp.br/~yoshi/resenhas/abstracts/Erdos.pdf",
++    "description": "Complete author manuscript of 1995 Resenhas article; own pagination",
++    "sha256": "a4c59e58e15fc7fa6d84a52da523e639b81697e61fc1095294690268b15708ce",
++    "bytes": 190123
++  },
++  {
++    "cache_filename": "janzer-et-al-2025.pdf",
++    "url": "https://arxiv.org/pdf/2411.07188",
++    "description": "Actually arXiv v1, 11 November 2024; filename records later publication year only",
++    "sha256": "53426e6bd5df5b4eba401c3dc342bd62776932601fd37e3c524918269a8b6da2",
++    "bytes": 269349
++  },
++  {
++    "cache_filename": "csizmadia-record.json",
++    "url": "https://m2.mtmt.hu/api/publication/167371",
++    "description": "Bibliographical record, not full paper",
++    "sha256": "9ebcf5e84ad46f6eae351635d99849b1d38100301652e4949adefbc7c894eba3",
++    "bytes": 19093
++  }
++]
+diff --git a/unsolved_math_prioritization/attempts/2233/source_record.json b/unsolved_math_prioritization/attempts/2233/source_record.json
+new file mode 100644
+index 000000000..d18665afd
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2233/source_record.json
+@@ -0,0 +1,41 @@
++{
++  "id": 2233,
++  "problem_number": "EP-653",
++  "title": "Erd\u0151s Problem #653",
++  "statement": "Let $x_1,\\ldots,x_n\\in \\mathbb{R}^2$ and let $R(x_i)=\\#\\{ \\lvert x_j-x_i\\rvert : j\neq i\\}$, where the points are ordered such that $ R(x_1)\\leq \\cdots \\leq R(x_n). $ Let $g(n)$ be the maximum number of distinct values the $R(x_i)$ can take. Is it true that $g(n) \\geq (1-o(1))n$?",
++  "background": "Erd\\H{o}s and Fishburn proved $g(n)>\\frac{3}{8}n$ and Csizmadia proved $g(n)>\\frac{7}{10}n$. Both groups proved $g(n) < n-cn^{2/3}$ for some constant $c>0$.\",\n    \"difficulty\": \"L1\"\n},{\n\n<!-- LITERATURE-TRIAGE:BEGIN -->\n## Literature review (checked 2026-08-17)\n\n**Status:** open  \n**Classification:** OPEN-TRIAGE\n\n**Current literature assessment.** The number of distinct pinned-distance counts is not known to be (1-o(1))n.\n\n**Verified partial progress.**\n\n- Erd\u0151s--Fishburn prove g(n)>3n/8.\n- Csizmadia improves the lower bound to g(n)>7n/10.\n- Known configurations give g(n)<n-cn^(2/3) for some constant c>0.\n\n**Full solution or refutation.**\n\nNo later improvement or resolution was located; formalization of the statement does not alter its status.\n\n**What remains.**\n\nRaise the lower constant toward 1 or improve the upper obstruction sufficiently to refute the conjectured ratio.\n\n**Sources checked.**\n\n- Thomas F. Bloom, Erd\u0151s Problem #653, checked 2026-08-17. (maintained_tracker): https://www.erdosproblems.com/653\n  Evidence used: Maintains open status and records the 7/10 lower bound and n-cn^(2/3) upper obstruction.\n\n**Review notes.** The imported statement has a literal newline splitting the intended neq command; it is preserved in the report.\n\nThis is a dated literature triage; an open classification is not proof that no later or unindexed result exists.\n<!-- LITERATURE-TRIAGE:END -->",
++  "difficulty_level_id": 1,
++  "status": "open",
++  "category_id": 6,
++  "set_id": 8,
++  "view_count": 0,
++  "favorite_count": 0,
++  "created_at": "2024-01-01T00:00:00Z",
++  "updated_at": "2024-01-01T00:00:00Z",
++  "published": true,
++  "category": {
++    "id": 6,
++    "name": "geometry",
++    "display_name": "Geometry",
++    "description": "Euclidean and non-Euclidean geometry, geometric structures.",
++    "slug": "geometry",
++    "order_index": 6,
++    "created_at": "2026-07-31T15:26:25.671Z"
++  },
++  "difficulty": {
++    "id": 1,
++    "level": 1,
++    "name": "L1: Tractable",
++    "description": "Problems that may be within reach with current techniques. Reserved for future additions.",
++    "color_class": "text-green-600 bg-green-50 border-green-200"
++  },
++  "set": {
++    "id": 8,
++    "name": "erdos_problems",
++    "display_name": "Erd\u0151s Problems",
++    "description": "A collection of open problems posed by Paul Erd\u0151s, one of the most prolific mathematicians of the 20th century. These problems span combinatorics, number theory, graph theory, and analysis.",
++    "slug": "erdos-problems",
++    "order_index": 8,
++    "created_at": "2026-07-31T15:26:25.671Z"
++  }
++}
+diff --git a/unsolved_math_prioritization/attempts/2233/turns.jsonl b/unsolved_math_prioritization/attempts/2233/turns.jsonl
+new file mode 100644
+index 000000000..6644ada05
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2233/turns.jsonl
+@@ -0,0 +1,2 @@
++{"turn": 1, "outcome": "partial_stalled", "mechanism": "Generic hierarchical gluing", "result": "Deficit spectrum equals union of seed spectra; sublinear largest seed gives sublinear spectrum", "gap": "No scalable controlled nongeneric cross-block equalities", "completion_estimate_percent": 2}
++{"turn": 2, "outcome": "partial_stalled", "mechanism": "Line or circle concentration with sublinear repairs", "result": "At most (1/2+o(1))n distinct counts", "gap": "Does not address unrestricted configurations with growing supports", "completion_estimate_percent": 2}
