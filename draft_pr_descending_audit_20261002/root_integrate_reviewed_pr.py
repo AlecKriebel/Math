@@ -16,9 +16,12 @@ frozen_queue=subprocess.check_output(['git','show',f'{head}:{queue}']).splitline
 own=[l for l in frozen_queue if len(l.split(b'|'))>9 and l.split(b'|')[2].strip().split(b' / ')[0].decode()==problem]
 assert len(own)==1
 proposal=[own[0].split(b'|')[j].strip() for j in (8,9)]
-assert proposal in ([b'unsolved',b'5/5'],[b'already_solved',b'0/5'])
+assert proposal in ([b'unsolved',b'5/5'],[b'already_solved',b'0/5'],[b'already_solved',b'1/5'])
 status,turns=[x.decode() for x in proposal]
-expected_queue_cells=[8,9] if status=='unsolved' else [8]
+criteria=json.loads((A/'acceptance_criteria.json').read_text())
+assert [criteria['accepted_status'],criteria['author_turns']]==[status,turns]
+assert not criteria['exact_live_root_and_whole_gates_pending'] and not criteria.get('fresh_whole_exact_live_pending',False)
+expected_queue_cells=[8,9] if turns!='0/5' else [8]
 resolution=0 if status=='unsolved' else 100
 def sha(b):return hashlib.sha256(b).hexdigest()
 def git(*args):return subprocess.check_output(['git',*args])
