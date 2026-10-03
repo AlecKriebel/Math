@@ -1,0 +1,11 @@
+# Fresh primary reading and access limits
+
+Read after the independent mechanism was recorded; no historical review supplies the prior-result conclusion.
+
+* [Official OWR 11/2013](https://ems.press/content/serial-article-files/46446), printed p.638, PDF page59: the unit-density transform, compact finite-union convention, literal intersection of triangulation vertex sets, Question1, and the opposite-tetrahedra cancellation example. The reduced interpretation follows from the exhibited cancellation. Question2/3 and polynomial-density transforms are outside this audit's target.
+* [Akopyan–Bárány–Robins author manuscript v2](https://arxiv.org/pdf/1508.07594v2), Definition1/§2; full relevant Lemmas5/6 and cone-flip proof, printed pp.8–10; Lemma7/Remark8; Remark10, p.12. Also read its [HTML text](https://arxiv.org/html/1508.07594v2). The kernel proof, null-set convention and explicit Fantappiè connection support the candidate's credited characterization. Our proof instead independently derives the residues and uses weighted Fourier uniqueness for the pointed-cone kernel step.
+* [Publisher metadata](https://www.sciencedirect.com/science/article/pii/S0001870815302425): authors, title, Advances in Mathematics308 (2017), pp.627–644, DOI10.1016/j.aim.2016.12.026. Search returned the publisher record; direct DOI/publisher page and Crossref opens returned reader errors. No claim that the journal PDF body was read.
+
+Access was through the web reader on 2026-10-03, which exposes no process PID or local byte checksum. Those values are unknown; no filesystem writer PID is assigned to remote reading. PDF text was available; all four requested screenshot calls failed because screenshot support was disabled. No visual-rendering success is claimed, and no full public PDF/layout copy is in this family or a public artifact. No private cache was needed.
+
+The e^{<u,x>} cone sign in our proof is fixed by convergent product integration: (-1)^d times the determinant/product expression. The manuscript's displayed equation5 omits this global factor in its extracted text. Its vanishing/kernel criterion is unchanged by this dimension-wise sign, and the candidate explicitly uses the correct integration convention. No candidate defect follows from that source convention issue.
