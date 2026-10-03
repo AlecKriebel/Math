@@ -1,6 +1,6 @@
 # PR385 scoped acceptance decision
 
-UTC 2026-10-03T02:38:28.669550+00:00. Acceptance workflow **95%**; original resolution **0%**. Exact reviewed head `2ef690a538338bc477a14c0d4aa1ee1f21e83833`.
+UTC 2026-10-03T02:38:28.669550+00:00. Acceptance workflow **100%**; original resolution **0%**. Exact reviewed head `2ef690a538338bc477a14c0d4aa1ee1f21e83833`.
 
 Accept the five verified partial results as **unsolved, 5/5**. Root read all proofs and code, reconstructed the deductions, independently inspected primary sources, and privately reproduced the author/historical review and both initial-family controls. The fresh whole-package adversary independently reconstructed sources before candidate inspection, found no required mathematical repair, and produced 836,992 materially distinct controls; root read its full report and code, independently executed those controls, and matched the complete stdout exactly. All 45 frozen inputs 25 original final-review output bindings, and 90 repaired-head final-review output bindings pass.
 
@@ -10,4 +10,4 @@ The actual invariant-subgroup obstruction, cyclic maximal-core limit and exact c
 
 Two distinct initial approach families, an original whole-package adversary, and a new adversary of the repaired head pass. The adjacent queue conflict was repaired without changing any of the 44 mathematical artifacts. Root read the new report/code and privately reproduced its 801,533 independent controls byte for byte, including a separately constructed 128-element free Frattini quotient; all 90 sealed outputs and 45 repaired-head Git inputs verify. Final integration must preserve all current-main queue rows, including already accepted PRs386–388 and unrelated ascending work. Check virtual and actual merge bytes and permit only problem2518 status/turn cells. AI was used extensively; these audits are unrefereed and do not represent external human review.
 
-No sixth author turn, paper, Zenodo deposit, DOI, tracker row, or release. Merge remains pending until the exact fresh-head and integration gates pass.
+No sixth author turn, paper, Zenodo deposit, DOI, tracker row, or release. All fresh-head and integration gates passed. Actual merge `806de71764d5cb4724aa7b0797bc0456778cf155` at 2026-10-03T02:40:41Z, parents recorded in ACTUAL_MERGE_VERIFICATION.json: all45 paths exact,44 target bytes match, only target status/turn queue cells changed; every other line preserved. Local main fast-forwarded safely.
