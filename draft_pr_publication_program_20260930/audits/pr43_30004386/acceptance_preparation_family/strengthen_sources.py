@@ -1,0 +1,42 @@
+"""Own source strengthening; does not run proposed helper sources."""
+from pathlib import Path
+import re,json,hashlib,datetime,os,difflib
+H=Path(__file__).resolve().parent;p=H/'pr43_guards.py';before=p.read_bytes();text=before.decode()
+sha=lambda b:hashlib.sha256(b).hexdigest()
+needle='''        check(R,[o[key]])
+    return o,p'''
+if text.count(needle)!=1:raise ValueError('Exact future-predecessor gate token required')
+new='''        check(R,[o[key]])
+    previous=load(R/o['previous_mirror']['path']);post=load(R/o['previous_post']['path']);rootpost=load(R/o['previous_root_post']['path'])
+    require(type(previous['entries']) is list and len(previous['entries'])==32 and all(type(z['pr']) is int for z in previous['entries']),'Exact32 typed original prior primary entries')
+    numbers=[z['pr'] for z in previous['entries']];require(len(set(numbers))==32 and 42 in numbers and 43 not in numbers and equal(sorted(numbers),previous['required_completed_prs']),'Exact completed32-primary predecessor identities')
+    required(post,{'status':'PASS','pr':42,'targets':33,'consumed_substantive_turns':41,'primary_acceptances':32,'program_completed_count':32,'fresh_native_mirror_noop':True,'one_present_primary_event':True,'new_duplicate_native_acceptance_added':False,'new_proof_turns':0,'full_problem_solved':False,'paper_or_new_doi_or_tracker':False},'Genuine completed actual PR42 predecessor, mandatory even for final seal')
+    required(rootpost,{'schema':'pr42-root-complete-actual-post-inspection/v1','status':'PASS','completed_primary_prs':32,'all32_prior_states_and_full_history_prefix_preserved':True,'current13_match_exact_allowed_acceptance_changes':True,'new_substantive_attempts':0,'audit_turns':0,'full_problem_solved':False},'Completed ROOT actual PR42 post reading')
+    require(equal(rootpost['entire_post'],post),'Entire actual predecessor post object equals ROOT completed read')
+    require(utc_clock(rootpost['created_utc'],'ROOT predecessor postUTC')<=utc_clock(o['created_utc'],'ROOT source/predecessor acceptanceUTC'),'ROOT source binding cannot precede actual predecessor reading')
+    return o,p'''
+text=text.replace(needle,new)
+match=re.search(r'^def prepush_record\([^\n]*\):.*?(?=^def |\Z)',text,re.M|re.S)
+if match is None:raise ValueError('Unique prepared prepush function required')
+prepush='''def prepush_record(pins):
+    o=load(A/'integration_prepush.json')
+    keyset(o,set(pins)|{'schema','utc','merge_commit','merge_tree','merge_parents','canonical_overlay_files','whole_queue_after_sha256','remote_before_push','actual_push_performed_by_helper'},'Complete prepush schema')
+    required(o,{'schema':'pr43-original-head-prepush/v1',**pins,'actual_push_performed_by_helper':False},'Whole original-head prepush pins')
+    utc_clock(o['utc'],'PrepushUTC');pre=preflight_record(pins)
+    require(equal(o['merge_parents'],[pre['main_before'],HEAD]) and git('show','-s','--format=%P',o['merge_commit']).split()==o['merge_parents'],'Complete archived prepush parents must equal actual original-head merge')
+    require(o['merge_tree']==git('show','-s','--format=%T',o['merge_commit']),'Complete actual archived prepush tree')
+    overlay=overlay_record(pins,rows(load(C/'MANIFEST.json')['files']))
+    require(equal(o['canonical_overlay_files'],overlay['canonical_overlay_files']) and o['whole_queue_after_sha256']==overlay['whole_queue_after_sha256'],'Entire prepush overlay and queue derivation')
+    observed=o['remote_before_push'];keyset(observed,{'number','url','state','isDraft','headRefOid','headRefName','baseRefName','mergeCommit','mergedAt','body'},'Entire actual archived prepush remote')
+    expected={'number':43,'url':'https://github.com/AlecKriebel/Math/pull/43','state':'OPEN','isDraft':False,'headRefOid':HEAD,'headRefName':'dot/math-'+ID,'baseRefName':'main','mergeCommit':None,'mergedAt':None,'body':regular(A,'accepted_pr_body.md').read_text()}
+    require(equal(observed,expected),'Complete typed actual original-head prepush remote/body')
+    return o
+
+
+'''
+text=text[:match.start()]+prepush+text[match.end():]
+d=H/'preserved_before_strengthening';d.mkdir(exist_ok=False);(d/'pr43_guards.py').write_bytes(before)
+p.write_text(text)
+(H/'OWN_SOURCE_STRENGTHENING.patch').write_text(''.join(difflib.unified_diff(before.decode().splitlines(True),text.splitlines(True),fromfile='before/pr43_guards.py',tofile='prepared/pr43_guards.py')))
+record={'schema':'pr43-own-predecessor-and-prepush-source-strengthening/v1','created_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'actual_child_pid':os.getpid(),'before':{'bytes':len(before),'sha256':sha(before)},'after':{'bytes':len(text.encode()),'sha256':sha(text.encode())},'meaning':'Even seal requires genuine completed PR42 post and ROOT reading; complete prepush parents/tree/overlay/queue/remote are derived, not merely nested hash-bound. No source execution or native change.','proposed_sources_imported_compiled_executed':False}
+(H/'OWN_SOURCE_STRENGTHENING.json').write_text(json.dumps(record,indent=2)+'\n');print(json.dumps(record))

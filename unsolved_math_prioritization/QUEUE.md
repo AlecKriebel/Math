@@ -60,19 +60,19 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 49 | 10000043 / AMR-099-0043 | Infinite-cluster intersections with vertical fibers | 0.2560 | 5.5 | 3 | unknown | unsolved | 2/5 |  | Accepted audited partial: infinite-fiber propagation, no uniformly bounded-fiber infinite cluster via complete iid field coupling, conditional uniqueness consequence. Finite-everywhere fibers with unbounded sizes remain unresolved. Three original families plus NEW complete gate and root pass; original 2/5, verification 0; no paper or new DOI. |  |
 | 50 | 10000046 / AMR-099-0046 | Nonintersecting couplings of random walks in dimensions three and four | 0.2560 | 5.5 | 3 | unknown | unsolved | 1/5 |  | 2026-10-02: Audited standard finite/infinite full-path transport equality and elementary bounds; no uniform 3D Hall bound. Benjamini–Kozma v1 states the intended 4D result, but corrected quantitative estimates and arbitrary-fixed-start initialization are not independently certified here. Combined target unsolved; original1/5, verification0. Accepted unsolved partial after clean NEW complete current gate and root reproduction; no paper or new DOI. PR: https://github.com/AlecKriebel/Math/pull/33. |  |
 | 51 | 20001424 / AIM-DYNAMICAL_SYSTEMS-0082 | PCF descent and an odd postcritical-divisor criterion | 0.2560 | 5.5 | 3 | unknown | already_solved | 1/5 |  | 2026-10-02: Accepted credited PRIOR_APPLICATION: Silverman1995 printed cubic i((z-1)/(z+1))^3 is exactly PCF with absolute field of moduli Q and no real/Q model; full universal negative answer is a verified source consequence. Original degree11 graph valid/preserved, narrower priority unestablished. NEW entire current source-first gate and actual root reproduction passed. Original1/5,new0/verification0; no paper/newDOI/tracker. PR: https://github.com/AlecKriebel/Math/pull/36. |  |
-| 52 | 2233 / EP-653 | Erdős Problem #653 | 0.2560 | 5.5 | 1 | unknown | queued | 0/5 |  |  |  |
+| 52 | 2233 / EP-653 | Erdős Problem #653 | 0.2560 | 5.5 | 1 | unknown | unsolved | 2/5 |  | [Accepted qualified scoped partial](attempts/2233/ACCEPTANCE.md) |  |
 | 53 | 2744 / KP-1.85 | Kirby Problem 1.85 | 0.2560 | 5.5 | 3 | unknown | unsolved | 1/5 |  | 2026-10-02: Accepted unsolved partial after complete new source-first gate and root actual reproduction. Finite-quotient/compact-lifting normalization and conditional conjugation obstruction valid; credited Dix cone criterion and hyperbolic two-bridge cases. No general SO3 arc on specified oriented complete PSL2 component, universal cone existence or qualifying knot counterexample. Original1/5,new0,audit0; no paper/newDOI/tracker. PR: https://github.com/AlecKriebel/Math/pull/35. |  |
 | 54 | 2765 / KP-2.17 | Kirby Problem 2.17 | 0.2560 | 5.5 | 3 | unknown | unsolved | 2/5 |  | 2026-10-02: Accepted credited closed genus>=2 necessary ML/compact-fiber/simple-reference partial; arbitrary self-intersecting reference unresolved. Separate finite-area cusped Radon S_0,3 example does not settle complete-only metrics. NEW whole current source-first/v2 alias inspection and original actual12/108 replay bound; continuity/uniformization unrecertified standard inputs, not a defect. Original2/5,new0/audit0; no paper/newDOI/tracker. https://github.com/AlecKriebel/Math/pull/38. |  |
-| 55 | 2814 / KP-3.16 | Kirby Problem 3.16 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 56 | 2849 / KP-3.51 | Kirby Problem 3.51 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 57 | 2912 / KP-4.36 | Kirby Problem 4.36 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 58 | 2961 / KP-4.85 | Kirby Problem 4.85 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 55 | 2814 / KP-3.16 | Kirby Problem 3.16 | 0.2560 | 5.5 | 3 | unknown | unsolved | 0/5 |  | [Accepted source-hold partial](attempts/2814/ACCEPTANCE.md) |  |
+| 56 | 2849 / KP-3.51 | Kirby Problem 3.51 | 0.2560 | 5.5 | 3 | unknown | unsolved | 1/5 |  | Corrected conditional reducible Floer route; known realized SU(2)-abelian degeneracy credited to Sivek-Zentner; no instanton rank or full-target counterexample claimed. Actual degenerate Floer contribution/differential control remains unresolved. [Accepted corrected UNSOLVED partial](attempts/2849/ACCEPTANCE.md). Original1/5,new0,audit0; extensive AI use, unrefereed; no novelty/priority/paper/new DOI/tracker. |  |
+| 57 | 2912 / KP-4.36 | Kirby Problem 4.36 | 0.2560 | 5.5 | 3 | unknown | unsolved | 2/5 |  | Standard meridional duality kernel, sufficient degree-one pair-map criterion and conditional integral kernel for the specified abstract group-pair; unmarked full2type pair-map and actual equal-full-triple exterior realization gaps remain. [Accepted scoped UNSOLVED partial](attempts/2912/ACCEPTANCE.md). Original2/5,new0,audit0; no novelty/paper/new DOI/tracker. |  |
+| 58 | 2961 / KP-4.85 | Kirby Problem 4.85 | 0.2560 | 5.5 | 3 | unknown | unsolved | 2/5 |  | Included f×id subgroup bound4 for all powers; signed averaging extra-defect route obstruction; full smooth ambient four-manifold target unresolved. [Accepted qualified UNSOLVED partial](attempts/2961/ACCEPTANCE.md). Shared original2/5 with30004403,new0,audit0; alias QUEUE absent and no new duplicate-native entry. Extensive AI, unrefereed; no novelty/priority/paper/new DOI/tracker. |  |
 | 59 | 3009 / KP-5.2 | Kirby Problem 5.2 | 0.2560 | 5.5 | 3 | unknown | unsolved | 1/5 |  | 2026-10-02: Accepted credited known dimension1/2 and boundary-fixed interval/disk consequence; complete KP-5.2 remains unsolved, including n>=3/local/manifold/stronger smooth variants. Disk corollary read in 2009 arXiv v3 of 1998-published paper; printed1998 disk passage unverified. NEW entire current source-first gate and actual final root reproduction passed. Original1/5,new0/audit0; no paper/newDOI/tracker. https://github.com/AlecKriebel/Math/pull/37. |  |
-| 60 | 9500008 / AMR-094-0008 | Concatenated bounded Brownian pieces | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 61 | 9700035 / AMR-096-0035 | Expected length of a SIRSN spanning subnetwork | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 62 | 9900007 / AMR-098-0007 | Two-process coupling characterization of weak convergence | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 63 | 30004386 / OWR-17469-011 | Large Deviations for Random High-Dimensional Projections | 0.2552 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
-| 64 | 30004438 / OWR-17475-003 | Real Rational Maps with Exclusively Real Periodic Points | 0.2552 | 5.5 | 3 | 2020 | queued | 0/5 |  |  |  |
+| 60 | 9500008 / AMR-094-0008 | Concatenated bounded Brownian pieces | 0.2560 | 5.5 | 3 | unknown | unsolved | 2/5 |  | 2026-10-02: Accepted credited stopped-pair sign-reflection correction, same-space dyadic logarithmic discrepancy and compact weak Brownian comparison. Finite exact random-origin target remains UNSOLVED. Full current source-first review and actual14/88 original replay bound; genuine prior preserved. Original2/5,new0/audit0; no paper/newDOI/tracker. https://github.com/AlecKriebel/Math/pull/39. |  |
+| 61 | 9700035 / AMR-096-0035 | Expected length of a SIRSN spanning subnetwork | 0.2560 | 5.5 | 3 | unknown | unsolved | 2/5 |  | [Accepted qualified conditional partial](attempts/9700035/ACCEPTANCE.md) |  |
+| 62 | 9900007 / AMR-098-0007 | Two-process coupling characterization of weak convergence | 0.2560 | 5.5 | 3 | unknown | unsolved | 1/5 |  | Original all-fixed-couplings illustrative synchronous obstruction is valid; broad general two-process characterization and exhaustive priority/full published-original comparison remain unresolved. Metric law, nonnegative dependent finite/tight offsets and setwise boundary retained. [Accepted scoped UNSOLVED partial](attempts/9900007/ACCEPTANCE.md). Original1/5,new0,audit0; no novelty/priority/paper/new DOI/tracker. |  |
+| 63 | 30004386 / OWR-17469-011 | Large Deviations for Random High-Dimensional Projections | 0.2552 | 5.5 | 3 | 2020 | already_solved | 0/5 |  | [Accepted qualified scoped partial](attempts/30004386/ACCEPTANCE.md) |  |
+| 64 | 30004438 / OWR-17475-003 | Real Rational Maps with Exclusively Real Periodic Points | 0.2552 | 5.5 | 3 | 2020 | already_solved | 0/5 |  | Exact full ambient-interior and all-period RP1 theorem verified and credited to Kozhasov–Kummer2020preprint; no campaign novelty or journal certification. [Accepted known-result source correction](attempts/30004438/ACCEPTANCE.md). Original0/5, source-verification responses1, new0, audit0; no paper/new DOI/tracker. |  |
 | 65 | 10600042 / AMR-105-0042 | Virtual-knot problem 42 — One can consider braids with even numbers of strands. | 0.2475 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 66 | 30000166 / OWR-782-007 | Positivity of Saito's Eta Products | 0.2465 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 67 | 30000644 / OWR-1452-008 | Surjectivity of Reduction Maps for Special Polynomial Automorphisms | 0.2458 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
@@ -382,7 +382,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 371 | 30005649 / OWR-14297740-021 | Self-Duality of Quasi-Supersingular Group Schemes | 0.1505 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 372 | 30005767 / OWR-14298158-012 | Generating-Function Field for Separable Permutation Subclasses | 0.1491 | 5.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 373 | 30005936 / OWR-14298374-005 | Splitting Schemes for Rough Stochastic Heat Equations | 0.1491 | 5.0 | 3 | 2024 | queued | 0/5 |  |  |  |
-| 374 | 30006025 / OWR-14298589-010 | Geometric Chapuy Bijections for Random Surfaces | 0.1491 | 5.0 | 3 | 2024 | queued | 0/5 |  |  |  |
+| 374 | 30006025 / OWR-14298589-010 | Geometric Chapuy Bijections for Random Surfaces | 0.1491 | 5.0 | 3 | 2024 | unsolved | 5/5 |  |  |  |
 | 375 | 30006078 / OWR-14298795-018 | Characteristic Classes of Hodge–Tate Local Systems | 0.1491 | 7.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 376 | 30003128 / OWR-14604-003 | Discrepancy versus Spectral Expansion in Sparse Regular Graphs | 0.1455 | 5.0 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 377 | 30003210 / OWR-14749-002 | Sublinear Generator Growth of Higher-Rank Lattices | 0.1455 | 7.0 | 3 | 2016 | queued | 0/5 |  |  |  |
@@ -396,38 +396,38 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 385 | 30001554 / OWR-4425-009 | Unbordered Factors and Alternating Involution Periods | 0.1442 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 386 | 30001563 / OWR-4425-020 | PVHH-Cube Avoidance in a Morphic Fixed Point | 0.1442 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 387 | 30004048 / OWR-16763-022 | Symmetry of Bidirectional Two-Step Path Density | 0.1441 | 6.0 | 3 | 2019 | queued | 0/5 |  |  |  |
-| 388 | 30004320 / OWR-17295-004 | Descent of Rational Points from Laurent Series Fields | 0.1441 | 7.0 | 3 | 2019 | queued | 0/5 |  |  |  |
+| 388 | 30004320 / OWR-17295-004 | Descent of Rational Points from Laurent Series Fields | 0.1441 | 7.0 | 3 | 2019 | unsolved | 5/5 |  |  |  |
 | 389 | 11000151 / AMR-109-0151 | Question — Consider the Artin group A5 (the braid group on six strings) divided by the relation (a1a2a3a4)5 = a5a4a3a2a2 1a2a3a4a5. | 0.1440 | 5.0 | 3 | unknown | claimed_solved | 4/5 |  |  |  |
 | 390 | 11000228 / AMR-109-0228 | Problem 21 — (Exceptional Strata). | 0.1440 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 391 | 20000728 / AIM-ANALYTIC_NUMBER_THEORY-0092 | Weight-only modularity recognition has a finite-data obstruction | 0.1440 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 392 | 20001666 / AIM-GEOMETRY-0004 | Fixed-volume degeneration of Maxwell cavity eigenvalues | 0.1440 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 393 | 2302055 / AMR-022-2055 | Research Problems in Function Theory — Problem 2.55 | 0.1440 | 7.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 393 | 2302055 / AMR-022-2055 | Research Problems in Function Theory — Problem 2.55 | 0.1440 | 7.0 | 3 | unknown | unsolved | 5/5 |  |  |  |
 | 394 | 2303002 / AMR-022-3002 | Research Problems in Function Theory — Problem 3.2 | 0.1440 | 7.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 395 | 2303016 / AMR-022-3016 | Research Problems in Function Theory — Problem 3.16 | 0.1440 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 396 | 9400114 / AMR-093-0114 | Agrawal's conjecture | 0.1440 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 397 | 9700034 / AMR-096-0034 | Integrability of all routes to random points in a SIRSN | 0.1440 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 398 | 30004435 / OWR-17474-009 | Probabilistic Equality of Left and Right Tail Fields | 0.1435 | 4.5 | 3 | 2020 | queued | 0/5 |  |  |  |
-| 399 | 30004811 / OWR-8415343-014 | Equality of Capacity–Volume and ADM Mass | 0.1429 | 7.0 | 3 | 2021 | queued | 0/5 |  |  |  |
-| 400 | 30005116 / OWR-10252930-028 | Induced Four-Cycle Profiles Above Half Density | 0.1421 | 6.0 | 3 | 2022 | queued | 0/5 |  |  |  |
-| 401 | 30004293 / OWR-17293-009 | Maximum Additive Multiplicity in Logarithmic Random Sets | 0.1409 | 5.0 | 3 | 2019 | queued | 0/5 |  |  |  |
-| 402 | 30004322 / OWR-17296-003 | Seshadri Constants of Line Arrangement Singularities | 0.1409 | 5.0 | 3 | 2019 | queued | 0/5 |  |  |  |
-| 403 | 30000590 / OWR-1381-005 | Finite Generation of Group-Ring Cohomology | 0.1401 | 6.0 | 3 | 2006 | queued | 0/5 |  |  |  |
-| 404 | 7800012 / AMR-077-0012 | Optimal Flux for the Quarter-Filled Band | 0.1398 | 7.0 | 3 | 1998 | queued | 0/5 |  |  |  |
-| 405 | 30002200 / OWR-12172-003 | Sharp Syzygy Bounds for Torus Actions | 0.1393 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
-| 406 | 30002762 / OWR-13488-005 | Finitely Presented Counterexamples for Conjugation-Invariant Norms | 0.1378 | 6.0 | 3 | 2015 | queued | 0/5 |  |  |  |
-| 407 | 6600013 / AMR-065-0013 | A. Julien: Relationship between Complexity and Cohomology — Problem | 0.1374 | 6.0 | 4 | 2016 | queued | 0/5 |  |  |  |
-| 408 | 30003853 / OWR-16167-025 | Abelianizations of Finitely Presented Thompson $F$ Subgroups | 0.1366 | 6.0 | 3 | 2018 | queued | 0/5 |  |  |  |
-| 409 | 30004047 / OWR-16763-021 | Two-Step Path Density in Tripartite Graphs | 0.1361 | 6.0 | 3 | 2019 | queued | 0/5 |  |  |  |
-| 410 | 30004106 / OWR-16776-002 | Symmetry of Completed Finite-Group Representation Rings | 0.1361 | 6.0 | 3 | 2019 | queued | 0/5 |  |  |  |
-| 411 | 30004656 / OWR-4990384-001 | Robustness-Driven Overparameterization in Two-Layer Neural Networks | 0.1355 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
+| 397 | 9700034 / AMR-096-0034 | Integrability of all routes to random points in a SIRSN | 0.1440 | 5.0 | 3 | unknown | unsolved | 5/5 |  |  |  |
+| 398 | 30004435 / OWR-17474-009 | Probabilistic Equality of Left and Right Tail Fields | 0.1435 | 4.5 | 3 | 2020 | unsolved | 5/5 |  |  |  |
+| 399 | 30004811 / OWR-8415343-014 | Equality of Capacity–Volume and ADM Mass | 0.1429 | 7.0 | 3 | 2021 | already_solved | 1/5 |  |  |  |
+| 400 | 30005116 / OWR-10252930-028 | Induced Four-Cycle Profiles Above Half Density | 0.1421 | 6.0 | 3 | 2022 | unsolved | 5/5 |  |  |  |
+| 401 | 30004293 / OWR-17293-009 | Maximum Additive Multiplicity in Logarithmic Random Sets | 0.1409 | 5.0 | 3 | 2019 | unsolved | 5/5 |  |  |  |
+| 402 | 30004322 / OWR-17296-003 | Seshadri Constants of Line Arrangement Singularities | 0.1409 | 5.0 | 3 | 2019 | unsolved | 5/5 |  |  |  |
+| 403 | 30000590 / OWR-1381-005 | Finite Generation of Group-Ring Cohomology | 0.1401 | 6.0 | 3 | 2006 | unsolved | 5/5 |  |  |  |
+| 404 | 7800012 / AMR-077-0012 | Optimal Flux for the Quarter-Filled Band | 0.1398 | 7.0 | 3 | 1998 | unsolved | 5/5 |  |  |  |
+| 405 | 30002200 / OWR-12172-003 | Sharp Syzygy Bounds for Torus Actions | 0.1393 | 5.5 | 3 | 2012 | already_solved | 0/5 |  |  |  |
+| 406 | 30002762 / OWR-13488-005 | Finitely Presented Counterexamples for Conjugation-Invariant Norms | 0.1378 | 6.0 | 3 | 2015 | unsolved | 5/5 |  |  |  |
+| 407 | 6600013 / AMR-065-0013 | A. Julien: Relationship between Complexity and Cohomology — Problem | 0.1374 | 6.0 | 4 | 2016 | unsolved | 5/5 |  |  |  |
+| 408 | 30003853 / OWR-16167-025 | Abelianizations of Finitely Presented Thompson $F$ Subgroups | 0.1366 | 6.0 | 3 | 2018 | unsolved | 5/5 |  |  |  |
+| 409 | 30004047 / OWR-16763-021 | Two-Step Path Density in Tripartite Graphs | 0.1361 | 6.0 | 3 | 2019 | unsolved | 5/5 |  |  |  |
+| 410 | 30004106 / OWR-16776-002 | Symmetry of Completed Finite-Group Representation Rings | 0.1361 | 6.0 | 3 | 2019 | unsolved | 5/5 |  |  |  |
+| 411 | 30004656 / OWR-4990384-001 | Robustness-Driven Overparameterization in Two-Layer Neural Networks | 0.1355 | 5.5 | 3 | 2021 | unsolved | 5/5 |  |  |  |
 | 412 | 2511 / KOU-21.2 | Kourovka Notebook Problem 21.2 | 0.1350 | 6.0 | 2 | 2026 | queued | 0/5 |  |  |  |
-| 413 | 2518 / KOU-21.9 | Kourovka Notebook Problem 21.9 | 0.1350 | 6.0 | 2 | 2026 | queued | 0/5 |  |  |  |
-| 414 | 2525 / KOU-21.16 | Kourovka Notebook Problem 21.16 | 0.1350 | 6.0 | 2 | 2026 | queued | 0/5 |  |  |  |
+| 413 | 2518 / KOU-21.9 | Kourovka Notebook Problem 21.9 | 0.1350 | 6.0 | 2 | 2026 | unsolved | 5/5 |  |  |  |
+| 414 | 2525 / KOU-21.16 | Kourovka Notebook Problem 21.16 | 0.1350 | 6.0 | 2 | 2026 | unsolved | 5/5 |  |  |  |
 | 415 | 2531 / KOU-21.22 | Kourovka Notebook Problem 21.22 | 0.1350 | 6.0 | 2 | 2026 | queued | 0/5 |  |  |  |
 | 416 | 30004865 / OWR-8415352-007 | Completeness of Realignment and SIC-POVM Entanglement Tests | 0.1333 | 7.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 417 | 6200004 / AMR-061-0004 | Boundaries of Groups and Kleinian Groups — Problem 4 | 0.1321 | 6.0 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 418 | 6200043 / AMR-061-0043 | Boundaries of Groups and Kleinian Groups — Problem 43 | 0.1321 | 6.0 | 3 | 2005 | queued | 0/5 |  |  |  |
-| 419 | 6200082 / AMR-061-0082 | Boundaries of Groups and Kleinian Groups — Problem 82 | 0.1321 | 6.0 | 3 | 2005 | queued | 0/5 |  |  |  |
+| 419 | 6200082 / AMR-061-0082 | Boundaries of Groups and Kleinian Groups — Problem 82 | 0.1321 | 6.0 | 3 | 2005 | already_solved | 0/5 |  |  |  |
 | 420 | 30005804 / OWR-14298163-008 | Dolnikov’s Colorful Transversal Conjecture | 0.1321 | 6.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 421 | 11000020 / AMR-109-0020 | Problem 2.19 — (Canonical basepoints for Mg). | 0.1320 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 422 | 11000158 / AMR-109-0158 | Problem 2.1 — Assume, for this problem, that M is a 3-manifold with non-empty boundary. | 0.1320 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |

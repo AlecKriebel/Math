@@ -1,0 +1,59 @@
+{
+  "actual_pid": 53146,
+  "own_executed_controls_preserved": true,
+  "candidate_production_changed": false,
+  "changes": [
+    {
+      "before": "independent_controls.py",
+      "after": "independent_controls_v2.py",
+      "old_sha256": "e9a4189bf527c4e00fdddcd8fdea48f37aa77909274b3abd17eff125b0a4d39e",
+      "new_sha256": "1744faaa297f0fb2469c2ab27c7cea40bcddc07ab3937d71b8d0cb6ed6969975",
+      "exact_replacements": [
+        [
+          "('reversed_clock','finished_utc',before[:-6])",
+          "('reversed_clock','finished_utc',(now-dt.timedelta(seconds=3)).isoformat())"
+        ],
+        [
+          "PRIVATE_PATH_FIXTURES'",
+          "PRIVATE_PATH_FIXTURES_V2'"
+        ],
+        [
+          "PRIVATE_MODE_FIXTURES'",
+          "PRIVATE_MODE_FIXTURES_V2'"
+        ],
+        [
+          "INDEPENDENT_CONTROL_RESULT.json'",
+          "INDEPENDENT_CONTROL_RESULT_V2.json'"
+        ]
+      ]
+    },
+    {
+      "before": "supplemental_controls.py",
+      "after": "supplemental_controls_v2.py",
+      "old_sha256": "3082f92b942660ee80f824d81216855fc32a448954ec109f6f29f456482347ea",
+      "new_sha256": "133c0267d30f87f4b8927558fdb69734c93e198d242daef0bd03abfd1cba045c",
+      "exact_replacements": [
+        [
+          "used={}",
+          "attrs_by_source={}"
+        ],
+        [
+          "used[name]=sorted(attrs)",
+          "attrs_by_source[name]=sorted(attrs)"
+        ],
+        [
+          "'AST_all_guard_exports_checked':used",
+          "'AST_all_guard_exports_checked':attrs_by_source"
+        ],
+        [
+          "PRIVATE_PUBLICATION_FIXTURES'",
+          "PRIVATE_PUBLICATION_FIXTURES_V2'"
+        ],
+        [
+          "SUPPLEMENTAL_CONTROL_RESULT.json'",
+          "SUPPLEMENTAL_CONTROL_RESULT_V2.json'"
+        ]
+      ]
+    }
+  ]
+}

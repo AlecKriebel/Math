@@ -1,0 +1,35 @@
+{
+  "utc": "2026-10-03T15:05:13.331081+00:00",
+  "attempts": [
+    {
+      "stage": "v1 comparator",
+      "status": "failed without pass credit",
+      "cause": "Comparator label TypeError (string plus tuple). Prior attempted source refinement was rejected by transient ENOSPC, so v1 still contained that typo; actual failure output is preserved in session record. Path-map scan was also inefficient.",
+      "preserved_program_sha256": "7700431df3c6442835bd7a37ecee91e510861e3a6079cbef9e06db48bdaf9ca2",
+      "repair": "Only strings actually containing raw stream paths scan that map. Full raw streams, every parsed scalar and entire receipt sections remain compared. Corrected a pre-execution label type typo and explicit negative stderr metadata normalization."
+    },
+    {
+      "stage": "v2 comparator",
+      "status": "failed without pass credit",
+      "cause": "Full drift-negative stdout comparison differed in stderr byte/hash metadata because the rejected checker traceback includes the exact owned run directory. Raw negative stderr was preserved and previously receipt-normalized, but its metadata within the actual full stdout JSON also required the same validated normalization.",
+      "preserved_program_sha256": "3b1f584b44355b18d7e4d2720cfb55168166f73efdbbd76f718778b0fd085cbc",
+      "failed_canonical_stream": "f21162b658d863709b2785237579bd64aa4290e9f8783c2cdf63cf48c541ab12_0/stdout",
+      "repair": "Validate each complete negative stderr byte count and digest against an actual inventoried raw stream before replacing only the exact run directory and recomputing that full-stream metadata. Every other JSON field is retained and compared."
+    },
+    {
+      "stage": "v3 comparator",
+      "status": "failed without pass credit",
+      "cause": "Normalizer also encountered historical embedded stderr metadata outside the current run inventory and rejected its lookup.",
+      "preserved_program_sha256": "af45c9cb7dab84e5630d540ee28f666e2af101deda4d7a4c3726b67c709efc34",
+      "repair": "Only current-run stderr hashes actually bound to an inventoried complete raw stream are normalized. Historical metadata remains literal and must agree in full."
+    },
+    {
+      "stage": "v4 comparator",
+      "status": "failed without pass credit",
+      "cause": "After all1484 stream pairs and entire9546-check receipts compared successfully, the companion path was incorrectly assumed under its run directory. The sealed companion lives at the post packet root.",
+      "preserved_program_sha256": "f1f94bd38672c9a61aea320227bab3a8f1350ceffbee470e1f0dfb3b5b99e034",
+      "repair": "Use the literal sealed companion path and retain complete9337-check field comparison and closed60-file binding checks."
+    }
+  ],
+  "updated_utc": "2026-10-03T15:17:53.261563+00:00"
+}
