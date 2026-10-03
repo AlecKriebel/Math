@@ -1,0 +1,10 @@
+# Research log
+
+- 2026-09-30 06:25 UTC: Assigned rank 71 / 30002061. Deadline08:25 UTC, five-attempt maximum. Read pinned full record and null prior report. Prior attempt/branch/all-state PR and related-target checks found no exact or descriptive match; main queue remains queued 0/5.
+- 06:29 UTC: Retrieved full OWR 2012 and Adiprasito–Benedetti 1709.07930v1. This is Hudson's relative-collapse problem. OWR printed 1460 explicitly defines subdivision to mean linear triangulation. Arbitrary PL-homeomorphic triangulations, ordinary collapsibility without the prescribed target, and an extra barycentric subdivision do not answer it. The current source gives the credited result sd(D) collapses to sd(D'), leaving removal of that extra subdivision unresolved. No full solution claimed.
+- 06:30 UTC: Pausing at the source checkpoint for the separately assigned reflection-criterion audit. Current branch remains isolated; no queue edits. The next mathematical checkpoint will isolate the elementary relative-simplex condition and its low-dimensional constructive verification, with all known results credited.
+
+- 06:37 UTC, substantive family 1/5: froze PARTIAL.md SHA 1adb24c7b7d48655368bd89405bcd6c4fd6ac4a95fac574922b5e91ebeff27a9. Exact relative-simplex reduction and constructive planar case are proved; the higher-dimensional residual is the precise stall. No novelty claim. Full-target completion estimate: 5%.
+- 06:41 UTC: 4,200 exact assertions pass across 27 planar cases and 6 glued-target controls; sample certificate saved. Separate reviewer is auditing the frozen proof. Full-target estimate remains 5%.
+- 06:46 UTC: separate review PASS_PARTIAL with no mandatory correction. Author receipts reproduced exactly; 59,718 independent invariant checks passed. Only the proof review-status sentence changed for final-hash coverage. Full-target estimate remains 5%, with no full resolution or novelty claim.
+- 06:52 UTC: Published the independently reviewed scoped partial record as draft PR54: https://github.com/AlecKriebel/Math/pull/54. The original problem remains unsolved; the parent owns its queue-row update.
