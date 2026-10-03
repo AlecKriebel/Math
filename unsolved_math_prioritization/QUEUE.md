@@ -407,7 +407,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 396 | 9400114 / AMR-093-0114 | Agrawal's conjecture | 0.1440 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 397 | 9700034 / AMR-096-0034 | Integrability of all routes to random points in a SIRSN | 0.1440 | 5.0 | 3 | unknown | unsolved | 5/5 |  |  |  |
 | 398 | 30004435 / OWR-17474-009 | Probabilistic Equality of Left and Right Tail Fields | 0.1435 | 4.5 | 3 | 2020 | unsolved | 5/5 |  |  |  |
-| 399 | 30004811 / OWR-8415343-014 | Equality of Capacity–Volume and ADM Mass | 0.1429 | 7.0 | 3 | 2021 | queued | 0/5 |  |  |  |
+| 399 | 30004811 / OWR-8415343-014 | Equality of Capacity–Volume and ADM Mass | 0.1429 | 7.0 | 3 | 2021 | already_solved | 1/5 |  |  |  |
 | 400 | 30005116 / OWR-10252930-028 | Induced Four-Cycle Profiles Above Half Density | 0.1421 | 6.0 | 3 | 2022 | unsolved | 5/5 |  |  |  |
 | 401 | 30004293 / OWR-17293-009 | Maximum Additive Multiplicity in Logarithmic Random Sets | 0.1409 | 5.0 | 3 | 2019 | unsolved | 5/5 |  |  |  |
 | 402 | 30004322 / OWR-17296-003 | Seshadri Constants of Line Arrangement Singularities | 0.1409 | 5.0 | 3 | 2019 | unsolved | 5/5 |  |  |  |
