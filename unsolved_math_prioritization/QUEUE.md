@@ -441,7 +441,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 430 | 30001084 / OWR-2093-008 | Randomized-Transport Characterizations of Palm Measures | 0.1315 | 5.0 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 431 | 30001179 / OWR-3392-005 | Generation of Free Product Systems by Tensor Subsystems | 0.1313 | 6.0 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 432 | 30001568 / OWR-4426-005 | Symmetry-Preserving Evaluation of Orbitwise Generating Functions | 0.1311 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
-| 433 | 30001895 / OWR-11136-027 | Exact Transversals for Families with the (p,q)-Property | 0.1308 | 6.0 | 3 | 2011 | queued | 0/5 |  |  |  |
+| 433 | 30001895 / OWR-11136-027 | Exact Transversals for Families with the (p,q)-Property | 0.1308 | 6.0 | 3 | 2011 | unsolved | 5/5 |  |  |  |
 | 434 | 30001957 / OWR-11570-002 | Entropy Production on Folded Hyperbolic Fractals | 0.1306 | 5.0 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 435 | 30002136 / OWR-12007-016 | Nonconjugate $\operatorname{SL}_3$-Character-Equivalent Free-Group Words | 0.1306 | 6.0 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 436 | 30006342 / OWR-14299292-003 | Common-Neighbor Conjecture for Generalized Saxl Graphs | 0.1304 | 6.0 | 3 | 2025 | queued | 0/5 |  |  |  |
