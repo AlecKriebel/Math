@@ -48,3 +48,7 @@
 ## 2026-10-03T03:10:29.812808+00:00 — PR384 repaired-head acceptance checkpoint
 
 Root fully read fresh final report/code, privately reproduced23,293 assertions with complete stdout equality, verified52 repaired Git inputs/50 sealed outputs/63 audit inputs. No mandatory mathematical defect remains. All51 target artifacts unchanged. Accepted scope unsolved5/5; historical source-render and publisher-access qualifications explicit. Workflow98%, original resolution0%; actual integration pending. Program4/349 dispositions verified (1.1461%). No paper/DOI/service publication.
+
+## 2026-10-03T03:12:52.137067+00:00 — PR384 actual merge verified
+
+Merge3f18fa7b30851b165b604645d05f332263e9a301, exact accepted head1747a651d5865cfbbe3c4eef7ab3c8142fc117f4;52 actual paths/51 target bytes exact, only target queue cells8/9 change. Every other queue row preserved; main safely fast-forwarded. Workflow100%, original resolution0%, statusunsolved5/5. Program5/349 verified dispositions (1.4327%). No paper/DOI/tracker/release.
