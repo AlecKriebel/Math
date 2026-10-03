@@ -1,0 +1,3 @@
+# PR385 descending partial-result audit
+
+**Accepted and merged: unsolved,5/5.** Workflow100%; original resolution0%. Merge `806de71764d5cb4724aa7b0797bc0456778cf155` accepts repaired head `2ef690a538338bc477a14c0d4aa1ee1f21e83833` after two independent initial families and two whole-package adversaries. Root reproduced all control outputs, including801533 repaired-head controls, and verified45 input/90 final output bindings. The actual merge preserves44 target artifacts and every unrelated queue line; only problem2518 status/turn cells change. Four primary PDFs checked; optional12 raw source replay remains explicitly incomplete. No paper, Zenodo, DOI, tracker row or release.

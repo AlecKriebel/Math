@@ -1,0 +1,43 @@
+# PR367 independent group-presentation and homomorphism review
+
+**Verdict: qualified PASS for the complete fixed-generator classification.** No mandatory mathematical correction was found. Frozen head d977c9564f079cde975a7b4261776eb9061c5f5f and base efd29c05204703acca9a0860812f54b94fae54b1 were audited without Git, candidate, or service mutations. Review completion estimate100%; this refers to the assigned audit, not novelty or external peer review.
+
+The exact quotient is type-A5 Artin group B6 with c=(a1a2a3a4)^5 identified with h=a5a4a3a2a1²a2a3a4a5. The quantified objects are literal positive words in the five fixed standard generators representing c². The possible lengths are20,30,40. Strict Hurwitz equivalence gives four classes, distributed1,1,2 over these lengths. Simultaneous conjugation identifies the two forty-letter classes, leaving three. The source’s brief wording is appropriately handled by reporting both conventions; a single forty-letter strict class would be false.
+
+The original question/hypotheses were acquired directly from the original PDFs and sealed before candidate reading. Independent mathematical derivations were sealed before programs, stored computations, states, finals, earlier mathematical review and sibling conclusions. One SOURCE_GATE history-paragraph access exception and a screenshot-display clarification are explicitly disclosed in FAILURE_LEDGER.md. The source-first seal is not rewritten to conceal either. Root substantive communication was held until root confirmed its own seal on 2026-10-03 at13:52:12.981874Z.
+
+## Independent mathematical assessment
+
+The Artin relations identify generator classes in abelianization, and the additional relation imposes exactly ten times the common class; the explicit Z/10 quotient prevents an accidental stronger relation. The adjacent-transposition map to S6 satisfies the added pure relation. Thus a target word is pure as a B6 word. Signed arbitrary conjugates of the relator produce the six exceptional-vertex linking patterns. Positivity, integrality and summed inequalities exclude lengths0/10 and determine all allowed linking vectors at20/30/40 without bounding normal-closure multiplicities.
+
+The braid identity z=ch, two source chain identities and cancellation ensure the genus2 one-boundary geometric homomorphism factors through G. Its generator images are nonseparating positive twists. The credited published maximum40 therefore applies; neither quotient injectivity nor quotient-action faithfulness is assumed. At forty letters, a strand with zero positive crossings must be an endpoint. The four-chain neighborhood after capping differs only by an annulus, so the source’s Perron–Vannier injection applies to its B5 action. Positive-monoid embedding and explicit Hurwitz implementations of the braid relations give the two strict classes. Their generated S5 subgroups fixing opposite endpoint labels distinguish them, and the displayed braid rotation conjugates one to the other.
+
+At twenty letters, the double-star linking graph forces a single moving strand and exhaustively reduces to810 nearest-neighbor walks. The explicit F4 tables have both inverse compositions, all ten generator-pair Artin relations, and c=h. This action safely rejects800 candidates. Every surviving case is separately certified as a central cyclic rotation of h², so no representation-faithfulness assumption enters acceptance.
+
+At thirty letters, every pair crosses twice. Crossing parity fixes the strand order, while actual action equality is an additional obligation. Explicit backward transitions from the full state independently establish coaccessibility; this avoids assuming the candidate’s complement criterion in the reconstruction. Exact action comparisons on every coaccessible edge imply action equality along every complete path by induction. The candidate’s right-action convention sends the original faithful Artin representation to its inverse, preserving faithful equality detection. The full action agrees with z, so every candidate is z already in B6. No finite-prefix extrapolation or hash-only equality test is involved.
+
+## Fresh computations and adversarial controls
+
+All four author Python stdout files and the C++ wrapper stdout match the frozen receipts byte-for-byte. The publication verifier also passes. Candidate programs and prior reviewer programs were read in full after the mathematics seal. Fresh receipts are in receipts/AUTHOR_REPLAY_NEW.json and the corresponding complete stdout/stderr files.
+
+The new independent program carries F4 images through a reversed-direction iterative twenty-letter frontier. It retains every one of the810 complete candidates’ full images and obtains exactly ten survivors. Its deliberate A5-table mutation fails three defining checks.
+
+For the thirty-letter certificate, the new program chooses descending generator order for forward traversal and independently generates every backward predecessor transition. It obtains234,368 reachable states,711,342 forward edges,90,921 coaccessible states and261,810 coaccessible edges. Every full reduced action is compared exactly. All90,921 independently generated full records match complete streamed C++ records byte-for-byte; the common SHA-256 is af2b8ec569d613e4f3d8ba3b72d18e85e8c612f4265057b7f4c485d544d159bf. The complete private record stream is retained as a losslessly verified gzip; the candidate C++ JSON line adds124 bytes to the15,258,431-byte record stream.
+
+Complete analogous strand-count controls1 through6 give coaccessible-state counts1,3,19,211,3651,90921 and edge counts0,2,24,384,8600,261810. Exact dynamic path counting additionally finds14,029,911,625,260 complete six-strand positive words. These are supplementary controls; no arbitrary-rank theorem is inferred.
+
+A separate adversarial B3 example verifies that crossing-vector equality alone can merge distinct braids: a1²a2² and a2²a1² have identical labelled counts but different faithful actions. Explicit backward reachability rejects their shared state from the full-state slice. This explains why the candidate’s coaccessible restriction and every-edge action checks matter.
+
+## Scope, bytes, manifests and actual history
+
+The GitHub PR API still identifies exactly the frozen head/base and44 changed files. All43 target files plus QUEUE match local snapshot bytes, actual Git blob bytes and newly retrieved API blob bytes. All44 file modes and object identifiers agree with untruncated API subtree records. All modes are100644. The only queue change is row389, status queued -> claimed_solved and turns0/5 ->4/5.
+
+Every public manifest record is verified recursively: turn manifests contain6,6,6,8 records; FINAL_AUTHOR_MANIFEST binds33 files, with the manifest itself making34 author files; review manifest binds5 files, with itself making6 review files; PUBLICATION_MANIFEST binds42 files, with itself making43 target files. The source manifest’s four raw-source identities, including the T2 addition, match independently acquired primary bytes.
+
+Actual Git and API checkpoint commits agree for turns1–3, checking7,14,21 frozen entries. All34 turn4 author files match actual author checkpoint a440a519393bf4c68433c6a8cdd49b384d3bfca6 and the frozen integration head. The actual merge parents are the frozen base and that author checkpoint. No history assertion is accepted solely because a saved receipt claims it.
+
+## Sources and limits
+
+Original scope, chain identities and chain injection: [Wajnryb chapter in Farb’s volume](https://www.math.uchicago.edu/~farb/papers/mcgbook.pdf), printed pp.123–126; Hurwitz convention is in Auroux’s chapter, printed p.131. Upper bound: [Baykur–Monden–Van Horn-Morris, published version](https://msp.org/agt/2017/17-3/agt-v17-n3-p06-s.pdf), Theorem A and Theorem6, with the genus2/one-boundary proof case inspected; [arXiv v2](https://arxiv.org/pdf/1412.0352) was independently identified. Artin faithfulness and positive-monoid embedding: [González-Meneses](https://www.numdam.org/article/AMBP_2011__18_1_15_0.pdf), §§1.6 and4. These are credited theorem inputs, not new independent discoveries.
+
+The strongest verified result is the convention-qualified fixed-generator classification. There is no identified remaining gap in that scope. Historical novelty and universal current-open status remain unverified. The result says nothing about arbitrary conjugate-generator factors or unrestricted geometric factorizations. Human expert review of the geometric inputs and finite proof remains a publication-quality limit; this is an independent AI-assisted audit, not external peer review. No external individual was contacted.

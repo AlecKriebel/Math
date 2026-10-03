@@ -1,0 +1,15 @@
+# Additive Bishop/Picard source-access clarification
+
+The full Bishop primary PDF was first explicitly opened after the mathematical seal; it was then downloaded at 2026-10-03T12:11:50.857775Z. I did not open or read the full primary PDF before the 2026-10-03T12:08:18.364325Z mathematical seal.
+
+Before that seal, I invoked classical Little Picard to derive the entire-curve obstruction and ran a source search. Between the existing 12:04:47.701984Z checkpoint and the mathematical seal, that search returned Christopher Bishop's Stony Brook Chapter 10 PDF as a primary university result, with a search excerpt giving the Little Picard statement. This was excerpt-level corroboration and source identification. It was not a full-PDF read, and there is no pre-seal local download receipt for that supplementary source.
+
+The first explicit web open of the complete PDF and a subsequent within-source search for the Little Picard discussion occurred after the mathematical seal and before the 12:11:50.857775Z download receipt. Their order is checkable in the preserved tool conversation. Exact UTC values were not recorded for those two web calls, so this appendix reports a bounded interval rather than inventing timestamps. The complete local PDF receipt, digest and byte count remain in the unchanged SOURCE_RETRIEVAL_RECEIPT.json.
+
+The original MATHEMATICAL_VERDICT.md description of the supplementary primary teaching source as informing the pre-artifact verdict was too broad if read as a complete source inspection. The conservative provenance is: the pre-seal proof uses the classical Little Picard theorem, with a search-result excerpt from an identified primary teaching source; full primary-text confirmation follows after sealing. FUNCTION_THEORY_PROOFS.md's statement that the classical dependency was verified in Bishop's notes should carry the same chronology qualification.
+
+This clarification changes the source-access description only. The entire-curve deduction was already written and sealed before the full-PDF read, and it remains the same checkable two-Picard proof. None of the five candidate theorem verdicts depends on the supplementary entire-curve observation. No original seal, proof, verdict, report, receipt, manifest, candidate artifact, Git state or service state has been changed.
+
+SOURCE_ACCESS_CHRONOLOGY.json records this reconstruction, the exact available times and the limits of their precision. ORIGINAL_BINDINGS_RECEIPT.json verifies every original public file and mathematical-seal binding. This appendix has its own explicit-root, exactly inventoried, self-excluded PUBLIC_MANIFEST.json and verification code.
+
+The original PUBLIC_MANIFEST.json still binds its original 15 files and is unchanged. Its original verification utility treats every future descendant file as part of its expected inventory, so the new separately bound appendix is an intentional scope addition. The appendix verifier checks the original bindings and checks the exact original inventory after excluding this separately inventoried provenance_appendix subtree; no original verifier is modified.

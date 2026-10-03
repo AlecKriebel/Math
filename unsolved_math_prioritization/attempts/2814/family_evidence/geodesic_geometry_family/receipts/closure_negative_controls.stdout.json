@@ -1,0 +1,117 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "case": "valid",
+      "expected_exit": 0,
+      "actual_exit": 0,
+      "result": {
+        "live_git_state_checked": false,
+        "scope": "Exact authored/foreign closure only",
+        "status": "PASS",
+        "submitted_code_executed": false
+      }
+    },
+    {
+      "case": "extra_authored",
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": {
+        "error": "Authored bytes/file inventory mismatch",
+        "status": "FAIL"
+      }
+    },
+    {
+      "case": "tampered_authored",
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": {
+        "error": "Authored bytes/file inventory mismatch",
+        "status": "FAIL"
+      }
+    },
+    {
+      "case": "missing_authored",
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": {
+        "error": "Authored bytes/file inventory mismatch",
+        "status": "FAIL"
+      }
+    },
+    {
+      "case": "duplicate_manifest_row",
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": {
+        "error": "Rows must be sorted and unique",
+        "status": "FAIL"
+      }
+    },
+    {
+      "case": "extra_empty_directory",
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": {
+        "error": "Authored directory inventory mismatch",
+        "status": "FAIL"
+      }
+    },
+    {
+      "case": "foreign_tamper",
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": {
+        "error": "Foreign bytes/file inventory mismatch",
+        "status": "FAIL"
+      }
+    },
+    {
+      "case": "foreign_extra",
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": {
+        "error": "Foreign bytes/file inventory mismatch",
+        "status": "FAIL"
+      }
+    },
+    {
+      "case": "foreign_symlink",
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": {
+        "error": "Symlink anywhere in closure: primary/link",
+        "status": "FAIL"
+      }
+    },
+    {
+      "case": "nested_primary_hole",
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": {
+        "error": "Authored bytes/file inventory mismatch",
+        "status": "FAIL"
+      }
+    },
+    {
+      "case": "duplicate_json_key",
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": {
+        "error": "Duplicate JSON key: valid",
+        "status": "FAIL"
+      }
+    },
+    {
+      "case": "arbitrary_foreign_prefix",
+      "expected_exit": 1,
+      "actual_exit": 1,
+      "result": {
+        "error": "Only exact rooted primary foreign prefix allowed",
+        "status": "FAIL"
+      }
+    }
+  ],
+  "private_fixture_roots_removed": true,
+  "all_fixture_writes_within_owned_family": true
+}
