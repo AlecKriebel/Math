@@ -63,6 +63,31 @@ def inverse(a):
     return ((a[1][1], -a[0][1]), (-a[1][0], a[0][0]))
 
 
+def permutation(n, word):
+    positions = list(range(n))
+    for letter in word:
+        i = abs(letter) - 1
+        positions[i], positions[i + 1] = positions[i + 1], positions[i]
+    return tuple(positions)
+
+
+def compose(a, b):
+    return tuple(a[b[i]] for i in range(len(a)))
+
+
+def generated_subgroup(generators, n):
+    identity = tuple(range(n))
+    found, frontier = {identity}, [identity]
+    while frontier:
+        a = frontier.pop()
+        for b in generators:
+            c = compose(a, b)
+            if c not in found:
+                found.add(c)
+                frontier.append(c)
+    return found
+
+
 def run():
     p3 = linking(3, [1, 1])
     q3 = linking(3, [2, 1, 1, -2])
@@ -97,11 +122,40 @@ def run():
     repeated = ((0, 1, 0), (1, 0, 1), (0, 1, 0))
     assert len(reduce_linear(repeated)) == 3
     assert len(reduce_cyclic(repeated)) == 2
+    # Attempt 5: exact braid relation makes each cube Delta * Delta.
+    x, y = (1, 2), (2, 1)
+    x3, y3 = x * 3, y * 3
+    delta, other_delta = (1, 2, 1), (2, 1, 2)
+    assert x3[:3] == delta and x3[3:] == other_delta
+    assert y3[:3] == other_delta and y3[3:] == delta
+    px, py = permutation(3, x), permutation(3, y)
+    assert px != py
+    cyclic = generated_subgroup([px], 3)
+    assert len(cyclic) == 3 and py in cyclic
+    assert permutation(3, x3) == permutation(3, y3) == (0, 1, 2)
+    assert permutation(3, (1,) + y + (-1,)) == px
+    # No allowed cyclic permutation conjugates opposite 3-cycles.
+    for r in cyclic:
+        ri = tuple(r.index(i) for i in range(3))
+        assert compose(compose(r, px), ri) != py
+    # A small independent finite-group check of the right-coset convention.
+    all_perms = list(itertools.permutations(range(4)))
+    base = (1, 0, 3, 2)
+    inv = lambda p: tuple(p.index(i) for i in range(len(p)))
+    conj = lambda h, a: compose(compose(h, a), inv(h))
+    centralizer = {r for r in all_perms if conj(r, base) == base}
+    for h in all_perms:
+        target = conj(h, base)
+        direct = {r for r in all_perms if conj(r, base) == target}
+        coset = {compose(h, c) for c in centralizer}
+        assert direct == coset
     return {"status": "PASS", "scope": "Exact elementary witnesses and finite linking-pattern checks only",
             "F_ambient_witness": {"p": p3, "q": q3},
             "T_ambient_witness": {"p": p4, "q": q4},
             "zero_linking_commutator_SL2Z_image": image,
             "cloning_and_rotation_test_cases": tested,
+            "equal_cube_witness_quotient_permutations": [px, py],
+            "S4_transporter_coset_checks": len(all_perms),
             "solves_target_conjugacy_problem": False}
 
 
