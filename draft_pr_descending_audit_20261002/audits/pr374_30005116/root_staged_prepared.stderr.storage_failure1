@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr374_30005116/tmp/root_staged_gate/final_gate_staged.py", line 274, in <module>
+    if __name__=='__main__':main()
+                            ~~~~^^
+  File "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr374_30005116/tmp/root_staged_gate/final_gate_staged.py", line 137, in main
+    st=treemap(s['head'],'stage_head_tree_'+s['name']);parent=treemap(s['parent'],'stage_parent_tree_'+s['name'])
+                                                              ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr374_30005116/tmp/root_staged_gate/final_gate_staged.py", line 63, in treemap
+    raw=git(label,'ls-tree','-r','-z',commit);out={}
+  File "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr374_30005116/tmp/root_staged_gate/final_gate_staged.py", line 59, in git
+    def git(label,*argv):return command(label,['git',*argv])
+                                ~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr374_30005116/tmp/root_staged_gate/final_gate_staged.py", line 54, in command
+    (private/(label+'.stdout')).write_bytes(result.stdout);(private/(label+'.stderr')).write_bytes(result.stderr)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Cellar/python@3.14/3.14.6/Frameworks/Python.framework/Versions/3.14/lib/python3.14/pathlib/__init__.py", line 797, in write_bytes
+    return f.write(view)
+           ~~~~~~~^^^^^^
+OSError: [Errno 28] No space left on device

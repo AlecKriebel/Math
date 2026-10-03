@@ -1,0 +1,7 @@
+# Independent post-merge research log
+
+- 2026-10-03T13:31:34.976671+00:00 — 40% additive audit; original discovery 0%. Confirmed closed merged PR and literal merge commit/tree/parents/body. Read and adapted the entire prior standalone gate into this separate folder; earlier seals/manifests/runs remain immutable. Added independent descendant and full result-preservation checks for local, tracking, and remote main at both boundaries. Full replay and fresh source checks remain pending.
+
+- 2026-10-03T13:35:06.219611+00:00 — 95% additive audit, original discovery 0%. First standalone run passed 1,439 checks. Independent receipt inspection found preserved intermediate API streams lacked explicit nested references; retained the passing first run and its executed program, added a complete private-stream hash/JSON-field inventory, and will rerun under a new label. This is a receipt completeness repair; no mathematical result or earlier artifact changed.
+
+- 2026-10-03T13:40:23.694372+00:00 — 100% additive post-merge audit; original discovery 0%. Fresh second unique run passed all 1,439 checks. Independently inspected complete JSON and every private gzip stream/primary PDF, checked full outputs against earlier sealed results, and revalidated the original19/final_live18 and completed labelled run manifests. Root independently began its rerun; its active/new run remains a separate own-root inventory. Final post-merge report/seal/manifest now frozen.

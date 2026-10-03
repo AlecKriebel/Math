@@ -1,0 +1,12 @@
+# Post-merge independent adversary
+
+- 2026-10-03: Actual merge904d63bba0651c8f7364144c617e2b66f5d14256 assigned for independent integration audit. Expected base728b48109a11e83769b24ec5b30978c1c5ed7ec9, head47dbe2c144a77f590faf144b950f1e759db92e75, treec95a909fed27e9af7954f82ce216d34f305d91a2. All four original family/whole namespaces remain immutable. No reproof or renewed independence claim for the unchanged18 mathematical files. Mathematics credited100%, new theorems0; postmerge workflow10%, overall acceptance process95% pending actual-state validation.
+2026-10-03 19:45:43 UTC — First exact-main acquisition stopped because the unrelated ascending checkpoint had advanced `main` to 08adf9cb444d365fd148a2bb3e2951a7f49c6808. Preserved original source and whole failure; no branch/index/ref mutation. Postmerge workflow 40%, mathematical resolution 100%, new theorems 0.
+
+2026-10-03 19:48:09 UTC — Independently decoded all ROOT 96 prepared-command streams, checked every original/failed/fresh truncated API entry against fresh complete local tree, and verified all four immutable inventories including listed geometry cache. Explicitly recorded ROOT auxiliary capture limitation. Postmerge workflow 55%, mathematical resolution 100%, new theorems 0.
+
+2026-10-03 19:51:50 UTC — Separate v2 current-descendant gate passed full Git/API/head/merge/current19 modes/body/queue/29 nested bindings and whole3675/1667/1665 receipts. Parent independently confirmed current checkpoint and agreed to keep main stable. Twelve independently authored integration-negative controls reject scope/status/turn/mode overclaims. Postmerge workflow 80%, acceptance 95%, mathematical resolution 100%, new theorems 0.
+
+2026-10-03 20:00 UTC — Completed planned verifier, inventory builder, outside test/fixture recipes, and final report for full ROOT review. No prior immutable namespace changed; raw primary/source/API evidence remains private. Closure and independent ROOT postmerge gate remain pending. Postmerge workflow 90%, acceptance 95%, mathematical resolution 100%, new theorems 0.
+
+2026-10-03 20:09:24 UTC — Retained two first preseal failures and exact reviewed source/premf/fixture. Corrected historical read-only field and missing original queue snapshot; complete child output capture now explicit. These packaging failures lower post workflow estimate to 85%; acceptance remains 95%, mathematical resolution 100%, new theorems 0. Renewed ROOT review and complete v2 tests required before any seal.
