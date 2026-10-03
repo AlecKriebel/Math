@@ -1,0 +1,84 @@
+--- draft_pr_publication_program_20260930/audits/pr39_9500008/acceptance_preparation_family/pr39_guards.py
++++ draft_pr_publication_program_20260930/audits/pr39_9500008/acceptance_execution_preparation_family/integration_source_revision/pr39_guards.py
+@@ -16,7 +16,7 @@
+ from pathlib import Path, PurePosixPath
+ 
+ HERE = Path(__file__).resolve().parent
+-A = HERE.parent
++A = HERE.parents[1]
+ R = A.parents[2]
+ B = R / 'draft_pr_publication_program_20260930'
+ C = A / 'reviewed_candidate'
+@@ -92,7 +92,13 @@
+         stream.write(data)
+         stream.flush()
+         os.fsync(stream.fileno())
+-    os.replace(temporary, path)
++    if exclusive:
++        # Atomic absent-only publication. A collision retains the complete,
++        # fsynced temporary for inspection; do not unlink it on link failure.
++        os.link(temporary, path, follow_symlinks=False)
++        temporary.unlink()
++    else:
++        os.replace(temporary, path)
+     descriptor = os.open(path.parent, os.O_RDONLY)
+     try:
+         os.fsync(descriptor)
+@@ -350,8 +356,22 @@
+                 parse(line)
+ 
+ 
++def revision_basis():
++    basis = load(HERE / 'REVISION_BASIS.json')
++    for value in [basis['original_preparation_manifest'], basis['fresh_static_audit_manifest']]:
++        path = regular(R, value['path'])
++        require(path.resolve().is_relative_to(A.resolve()), 'Exact PR39 origin/audit root required')
++        require(len(path.read_bytes()) == value['bytes'], 'Origin/audit manifest byte count differs')
++        manifest(path.parent, path, value['sha256'], value['authored_count'])
++    verdict = load(A / 'acceptance_static_adversary_family/FAMILY_VERDICT.json')
++    require(sha((A / 'acceptance_static_adversary_family/FAMILY_VERDICT.json').read_bytes()) == basis['fresh_static_verdict_sha256'] and
++            verdict['verdict'] == 'REPAIR_REQUIRED_BEFORE_ACTUAL_EXECUTION' and len(verdict['mandatory_corrections']) == 3,
++            'Full exact original static repair report required')
++
++
+ def immutable_basis():
+     """Complete byte/typed-object checks through compact immutable references."""
++    revision_basis()
+     inputs = load(HERE / 'INPUT_BINDINGS.json')
+     references = []
+     for value in inputs['pins'].values():
+@@ -512,7 +532,12 @@
+     capture = load(paths['reconciliation_capture'])
+     required_values(capture, {'actual_execution': True, 'completed': True, 'exit_code': 0, 'status': 'PASS', 'source_sha256': sha((HERE / 'seal_final_evidence.py').read_bytes()), 'stdin_supplied': False}, 'Actual root final reconciliation child capture')
+     require(type(capture['pid']) is int and capture['pid'] > 0 and type(capture['argv']) is list and str(HERE / 'seal_final_evidence.py') in capture['argv'], 'Actual final child source/argv/pid required')
+-    require(type(capture['started_utc']) is str and capture['started_utc'] and type(capture['finished_utc']) is str and capture['finished_utc'], 'Actual final start/end clocks required')
++    require(type(capture['started_utc']) is str and type(capture['finished_utc']) is str, 'Actual final ISO UTC clock strings required')
++    started = dt.datetime.fromisoformat(capture['started_utc'])
++    finished = dt.datetime.fromisoformat(capture['finished_utc'])
++    require(started.tzinfo is not None and finished.tzinfo is not None and
++            started.utcoffset() == dt.timedelta(0) and finished.utcoffset() == dt.timedelta(0) and
++            started <= finished, 'Actual final clocks must be aware UTC and ordered')
+     require(capture['cwd'] == str(A), 'Actual final reconciliation audit cwd required')
+     argv = capture['argv']
+     for flag, expected in [('--preparation-manifest-sha256', args.preparation_manifest_sha256), ('--plan', root['root_reviewed_plan']['path']), ('--plan-sha256', root['root_reviewed_plan']['sha256'])]:
+@@ -521,13 +546,19 @@
+     bound_repository(root['root_reviewed_plan'])
+     require(strict_equal(root['reconciliation_source'], repo_pin(HERE / 'seal_final_evidence.py')), 'Exact final reconciliation source binding differs')
+     cap_base = paths['reconciliation_capture'].parent
++    require(paths['reconciliation_capture'].name == 'CAPTURE.json', 'Actual capture must have the literal root CAPTURE.json name')
++    capture_names = ['CAPTURE.json', 'prelaunch_source.py', capture['stdout']['path'], capture['stderr']['path']]
++    for name in capture_names:
++        relative(name)
++        require(PurePosixPath(name).name == name, 'Each capture member must be a canonical root basename')
++    require(len(set(capture_names)) == 4, 'Exactly four distinct capture members; no channel/reserved-name aliases')
+     require(sha(regular(cap_base, 'prelaunch_source.py').read_bytes()) == capture['source_sha256'], 'Actual final prelaunch source differs')
+     for key in ['stdout', 'stderr']:
+         row = normalize_rows([capture[key]])[0]
+         check_rows(cap_base, [row])
+     parsed_stdout = parse(regular(cap_base, capture['stdout']['path']).read_bytes())
+     required_values(parsed_stdout, {'status': 'PASS', 'root_final_receipt_sha256': args.root_final_receipt_sha256, 'whole_scope_contract_sha256': args.whole_scope_contract_sha256, 'final_manifest_sha256': args.root_final_manifest_sha256}, 'Full actual final child stdout')
+-    exact_closure(cap_base, {paths['reconciliation_capture'].name, 'prelaunch_source.py', capture['stdout']['path'], capture['stderr']['path']})
++    exact_closure(cap_base, capture_names)
+     frozen = manifest(C, C / 'MANIFEST.json', CURRENT_SHA, 2901)
+     snapshot = load(A / 'snapshot_manifest.json')
+     require(sha((A / 'snapshot_manifest.json').read_bytes()) == SNAPSHOT_SHA and snapshot['head'] == HEAD and snapshot['base'] == ORIGINAL_BASE and len(snapshot['files']) == 16 and len(snapshot['changed_paths']) == 17, 'Exact original16/17diff snapshot differs')

@@ -1,0 +1,3 @@
+# PR382 descending audit
+
+Five scoped results pass three initial families and a fresh source-first whole-package adversary. Root fully read final report/reconstruction/code and privately reproduced both complete new-control outputs byte for byte; all60 final outputs and58Git inputs verify.5367author/22728historical assertions and all initial-family outputs pass. Three fresh exact primaryPDFmatches; Cambridge mathematical content independently checked but bytes differ; publicPDFreplay0. Existing PF/unitroof clarification retained. Originalunsolved5/5. Workflow95%, original resolution0%; prior383 actualmerge and current-main queue-only repair/newheadfreshreview remain necessary. No paper/DOI.

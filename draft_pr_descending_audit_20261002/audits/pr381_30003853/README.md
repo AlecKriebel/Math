@@ -1,0 +1,3 @@
+# PR381 descending audit
+
+Five scoped partial results pass three distinct initial families. Root fully read proofs/code/reports, reconstructed deductions, independently fetched seven exact primary PDFs, reproduced562,635 author/110,736 historical controls and all four new family programs (including801,018 actualPL/matrix assertions).71 sealed family outputs verify. Public source replay0/20 is separate from sevenPDF hashes; source-index exposure caveat retained. Original remainsunsolved5/5. Workflow85%, original resolution0%; prior383/382 dispositions and repaired-head fresh whole-package gate remain pending. No paper/DOI.

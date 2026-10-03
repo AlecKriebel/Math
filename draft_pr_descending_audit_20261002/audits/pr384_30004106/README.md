@@ -1,0 +1,3 @@
+# PR384 descending audit
+
+**Merged as verified unsolved5/5 partial results**, commit `3f18fa7b30851b165b604645d05f332263e9a301` at 2026-10-03T03:12:15Z. All52 actual paths exact;51 original mathematical artifacts preserved; only target status/turn queue cells changed. Three initial families, nested adversary and two whole-package adversaries pass; root reproduced complete59,132 and23,293 final controls. Source access/version qualifications retained. Workflow100%, original resolution0%. No paper, Zenodo, DOI, tracker row or release. See ACCEPTANCE_DECISION.md and ACTUAL_MERGE_VERIFICATION.json.
