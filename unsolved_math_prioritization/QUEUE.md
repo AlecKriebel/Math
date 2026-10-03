@@ -535,7 +535,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 524 | 2305039 / AMR-022-5039 | Research Problems in Function Theory — Problem 5.39 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 525 | 2305050 / AMR-022-5050 | Research Problems in Function Theory — Problem 5.50 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 526 | 2306017 / AMR-022-6017 | Research Problems in Function Theory — Problem 6.17 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 527 | 2306038 / AMR-022-6038 | Research Problems in Function Theory — Problem 6.38 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 527 | 2306038 / AMR-022-6038 | Research Problems in Function Theory — Problem 6.38 | 0.1200 | 6.0 | 3 | unknown | already_solved | 1/5 |  | 2026-10-03: V. I. Milin (1981), Theorem 2 and Corollary 1, prove convergence for every positive exponent. The 2018 citation to I. M. Milin (1968) is mismatched; that paper's odd-function result assumes nonzero growth. [Reviewed proof and source audit](../problems/2306038/README.md). No new-resolution or priority claim. |  |
 | 528 | 2306052 / AMR-022-6052 | Research Problems in Function Theory — Problem 6.52 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 529 | 2306083 / AMR-022-6083 | Research Problems in Function Theory — Problem 6.83 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 530 | 2307054 / AMR-022-7054 | Research Problems in Function Theory — Problem 7.54 | 0.1200 | 4.5 | 3 | unknown | queued | 0/5 |  |  |  |
