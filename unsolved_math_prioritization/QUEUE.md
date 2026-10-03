@@ -433,7 +433,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 422 | 11000158 / AMR-109-0158 | Problem 2.1 — Assume, for this problem, that M is a 3-manifold with non-empty boundary. | 0.1320 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 423 | 20000693 / AIM-ANALYTIC_NUMBER_THEORY-0057 | Multiplicity-sensitive moments of products of Dirichlet L-functions | 0.1320 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 424 | 20002717 / AIM-PROBABILITY-0159 | A product criterion and a bowtie obstruction for Cayley interval lattices | 0.1320 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 425 | 3031 / OPG-57824 | Graphs of exact colorings | 0.1320 | 5.0 | 1 | unknown | exhausted | 5/5 |  |  |  |
+| 425 | 3031 / OPG-57824 | Graphs of exact colorings | 0.1320 | 5.0 | 1 | unknown | unsolved | 5/5 |  |  |  |
 | 426 | 9700002 / AMR-096-0002 | Analytic toy model for a percolation-fragmentation congestion transition | 0.1320 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 427 | 8000011 / AMR-079-0011 | The Toda lattice with random initial data | 0.1317 | 6.0 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 428 | 30000997 / OWR-2042-006 | Degenerate Versus Full Ma–Trudinger–Wang Conditions | 0.1315 | 6.0 | 3 | 2008 | queued | 0/5 |  |  |  |
