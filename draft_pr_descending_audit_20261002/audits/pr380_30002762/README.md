@@ -1,3 +1,3 @@
 # PR380 descending audit
 
-Exact original44-path snapshot frozen; target provisionallyunsolved5/5. Initial independent families/root review pending. Workflow5%, original resolution0%; prior381/382/383 dispositions remain ahead. No paper/DOI.
+All five source-controlled partials pass root complete proof/source/code/replay reconstruction and three independent initial families. Root privately reproduced345888author/47964historical and all six new family program complete outputs,134sealedbindings verified. Six raw primary PDFs exact; twohistoricalPNGsnotfreshlyreproduced. Originalunsolved5/5; no noveltyclaim. Workflow85%, originalresolution0%; queue/freshwholefinalgate pending afterPR381/382acceptance. No paper/DOI.
