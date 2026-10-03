@@ -9,3 +9,5 @@ Root reconstructed and read all proofs/code and controlling primary text, reprod
 Three newly downloaded primary PDFs match historical bytes. The Cambridge mathematical passages were independently read; that fresh PDF differs in bytes, and no claim that all differences are only footers is made. Executable source-free replay checks0 PDFs; the recorded four-source author check is historical evidence.
 
 The queue-only repair retains all57 original target files, incorporates actual accepted PR383 ancestry, and changes only physical queue line418 cells8/9 against its current-main parent. Every other queue byte is preserved. AI tools were used extensively; this is unrefereed and is not external human peer review. No paper, Zenodo, DOI, tracker row, release or sixth author discovery. Actual merge pending.
+
+2026-10-03T04:12:20.607450+00:00: PR382 actual acceptance `568e2f38888221aa2ff9c5e86b940a309db2ddde` at 2026-10-03T04:12:17Z; all58 paths and57 target hashes exact. Only own queue line418 cells8/9; every other queue byte preserved. Workflow100%, original resolution0%; program6/349=1.7192%. No paper/DOI.

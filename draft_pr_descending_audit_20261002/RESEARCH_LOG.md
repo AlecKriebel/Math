@@ -92,3 +92,5 @@ Allfiveprooffiles/8candidateexes read andreconstructed;6exactfreshprimaryPDFs/7r
 ## 2026-10-03T04:10:52.027325+00:00 — PR382 repaired package passes root final gate
 
 Workflow98%, original mathematical resolution0%, program6/349=1.7192%. All46 fresh review bindings checked, full report/reconstruction/four programs read, private4122+521 new complete controls and binding/replay results equal. All57 target bytes retained and own queue418cells8/9 only. Accepted partial decision recorded; actual merge pending. Three newly downloaded primary PDFs match historical bytes. The Cambridge mathematical passages were independently read; that fresh PDF differs in bytes, and no claim that all differences are only footers is made. Executable source-free replay checks0 PDFs; the recorded four-source author check is historical evidence.
+
+2026-10-03T04:12:20.607450+00:00: PR382 actual acceptance `568e2f38888221aa2ff9c5e86b940a309db2ddde` at 2026-10-03T04:12:17Z; all58 paths and57 target hashes exact. Only own queue line418 cells8/9; every other queue byte preserved. Workflow100%, original resolution0%; program6/349=1.7192%. No paper/DOI.
