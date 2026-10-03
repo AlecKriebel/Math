@@ -6,8 +6,12 @@ assert hashlib.sha256((r/'REVIEW_MANIFEST.json').read_bytes()).hexdigest()=='ec4
 assert hashlib.sha256((d/'FINAL_FROZEN_MANIFEST.json').read_bytes()).hexdigest()=='1e13e0fd20d6a43f6f3a77ba9e7182cd3777b61786f615000e2ec3fd12627490'
 for f in json.loads((r/'REVIEW_MANIFEST.json').read_text())['files']:
  b=(r/f['path']).read_bytes();assert len(b)==f['bytes'];assert hashlib.sha256(b).hexdigest()==f['sha256']
+current_bindings=0
+for f in json.loads((d/'PUBLICATION_MANIFEST.json').read_text())['files']:
+ b=(d/f['path']).read_bytes();assert len(b)==f['bytes'];assert hashlib.sha256(b).hexdigest()==f['sha256'];current_bindings+=1
+assert any(f['path']=='TURN_2_EXTENSION_CLARIFICATION.md' for f in json.loads((d/'PUBLICATION_MANIFEST.json').read_text())['files'])
 cmd=[sys.executable,str(d/'REPLAY_ALL.py')]
 if a.sources:cmd+=['--sources',str(a.sources.resolve())]
 v=json.loads(subprocess.check_output(cmd));assert v['author_assertions']==311547 and v['manifest_entries_verified']==156
 b=subprocess.check_output([sys.executable,str(r/'independent_check.py')]);assert b==(r/'INDEPENDENT_CHECKS.json').read_bytes();assert json.loads(b)['assertions']==6833
-print(json.dumps(dict(review='PASS_SCOPED',author_assertions=311547,independent_assertions=6833,primary_source_pdfs_verified=v['primary_source_pdfs_verified']),sort_keys=True))
+print(json.dumps(dict(review='PASS_SCOPED',current_publication_bindings=current_bindings,mandatory_extension_clarification_bound=True,analytic_review_required=True,author_assertions=311547,independent_assertions=6833,primary_source_pdfs_verified=v['primary_source_pdfs_verified']),sort_keys=True))
