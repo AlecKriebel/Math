@@ -59,8 +59,6 @@ def verify_t1():
   assert char(a)==x**3-x-1
   assert char(m)==(x**3-x-1)*(x**2-x-1)
  return {'matrices':{'lower':a,'full':m,'quotient':b},'cyclic_cover_torsion':rows}
-if __name__=='__main__':
- print(json.dumps({'turn1':verify_t1()},indent=2,sort_keys=True))
 
 # Degree-two noncommutative Magnus expansions use tuples of generator indices.
 def magmul(p,q):
@@ -168,3 +166,51 @@ def verify_t4():
  assert conjugacy_key(sub(comm,q))==conjugacy_key(inv(comm))
  assert conjugacy_key(sub(comm)) not in {conjugacy_key(comm),conjugacy_key(inv(comm))}
  return {'exterior_square_matrix':w,'minus_one_eigenvector':list(V),'rank_W_plus_I':9,'rank_W_minus_I':10,'quotient_commutator_is_inverted_up_to_conjugacy':True,'full_first_image_not_periodic_or_inverse':True}
+
+def run_summary(w):
+ p=0
+ for a in w:
+  if a not in 'abc':break
+  p+=1
+ s=0
+ for a in w[::-1]:
+  if a not in 'abc':break
+  s+=1
+ z=m=0
+ for a in w:
+  z=z+1 if a in 'abc' else 0;m=max(m,z)
+ return len(w),p,s,m
+
+def summary_concat(a,b):
+ n,p,s,m=a;nn,pp,ss,mm=b
+ return n+nn,p+pp if p==n else p,ss+s if ss==nn else ss,max(m,mm,s+pp)
+
+def verify_t5():
+ import math
+ summaries={x:run_summary(x) for x in PHI};counts={x:[int(x==y) for y in PHI] for x in PHI};words={x:x for x in PHI};rows=[]
+ for n in range(1,101):
+  new={};newcounts={}
+  for x,path in PHI.items():
+   s=(0,0,0,0);c=[0]*5
+   for y in path:s=summary_concat(s,summaries[y]);c=[a+b for a,b in zip(c,counts[y])]
+   new[x]=s;newcounts[x]=c
+  summaries,counts=new,newcounts
+  if n<=15:
+   words={x:sub(w) for x,w in words.items()}
+   assert all(summaries[x]==run_summary(words[x]) for x in PHI)
+   assert all(counts[x]==[words[x].count(y) for y in PHI] for x in PHI)
+  if n in [5,10,15,20,30,50,100]:
+   w=summaries['e'];c=counts['e'];rows.append({'n':n,'total_length':w[0],'longest_lower_run':w[3],'letter_counts':c})
+ tau=(1+math.sqrt(5))/2;lo,hi=1.,1.4
+ for _ in range(60):
+  mid=(lo+hi)/2
+  if mid**3-mid-1>0:hi=mid
+  else:lo=mid
+ rho=(lo+hi)/2;v=[1,1,tau-1,1,tau];m=mat(PHI,'abcde')
+ assert max(abs(sum(a*b for a,b in zip(r,v))-tau*x) for r,x in zip(m,v))<1e-12
+ last=rows[-1];frequency=(last['letter_counts'][3]+last['letter_counts'][4])/last['total_length']
+ assert abs(frequency-.5)<1e-8
+ return {'rows':rows,'tau':tau,'rho':rho,'gap_exponent':math.log(rho)/math.log(tau),'top_letter_frequency_n100':frequency,'limit_top_frequency':.5,'explicit_word_crosscheck_through_n':15}
+
+if __name__=='__main__':
+ print(json.dumps({'turn1':verify_t1(),'turn2':verify_t2(),'turn3':verify_t3(),'turn4':verify_t4(),'turn5':verify_t5()},indent=2,sort_keys=True))
