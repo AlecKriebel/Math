@@ -1,8 +1,8 @@
-# Maximum twin-width of n-vertex graphs: partial research checkpoint
+# Maximum twin-width of n-vertex graphs: partial five-turn research record
 
 Alec Kriebel · [ORCID](https://orcid.org/0009-0001-9320-500X)
 
-Problem 30004980 / OWR-9790352-030. This checkpoint does not solve the exact maximum problem. It records attempted proof mechanisms, a six-vertex obstruction to a stronger fixed-matching lemma, and independently implemented finite certificate checks. Four of five substantive attempts are complete. The results have not yet received independent mathematical review.
+Problem 30004980 / OWR-9790352-030. This checkpoint does not solve the exact maximum problem. It records attempted proof mechanisms, a six-vertex obstruction to a stronger fixed-matching lemma, and independently implemented finite certificate checks. Five of five substantive attempts are complete. The results have not yet received independent mathematical review.
 
 ## Exact target and convention
 
@@ -24,9 +24,10 @@ The 2026 [bounded-VC-dimension paper](https://arxiv.org/html/2606.21640v1) gives
 - attempts/turn_02.md: exact pair-update formula and involution sufficient criterion.
 - attempts/turn_03.md: cyclic obstruction to every ordering of one near-twin matching.
 - attempts/turn_04.md: finite exhaustive and seeded-sample search.
+- attempts/turn_05.md: exact two-step conference-graph contraction analysis.
 - checks/twinwidth.py: exact quotient-state search.
 - checks/verify_small.py: independent incremental red/black-state verification.
 
-Run from checks: python twinwidth.py; python verify_small.py. No nonstandard packages are required. Output files are regenerated in checks. Finite search does not prove an unbounded statement. No novelty is claimed for recovered small maxima, first-contraction bounds, or symmetry families. The explicit method obstruction is not a counterexample to the original problem.
+Run from checks: python twinwidth.py; python verify_small.py; python conference_controls.py; python verify_obstruction.py. No nonstandard packages are required. Output files are regenerated in checks. Finite search does not prove an unbounded statement. No novelty is claimed for recovered small maxima, first-contraction bounds, or symmetry families. The explicit method obstruction is not a counterexample to the original problem.
 
 OpenAI tools assisted research, drafting, and code. This is an unrefereed partial research record. No source PDFs, screenshots, corpus files, or private context are included.

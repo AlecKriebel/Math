@@ -73,8 +73,8 @@ def pair_profile(adj,pairs,fixed=()):
     return base,d,mix
 
 if __name__=='__main__':
-    import json,random,time,pathlib
-    out={};start=time.monotonic()
+    import json,random,pathlib
+    out={}
     for n in range(1,7):
         D=(n-1)//2;failed=[];counts=0
         for code in range(1<<(n*(n-1)//2)):
@@ -93,5 +93,4 @@ if __name__=='__main__':
                 failed.append({'code':code,'adjacency':a,'sample_index':z});break
         out['random_'+str(n)]={'samples':z+1,'pair_only_failures':failed}
         print('random',n,z+1,failed,flush=True)
-    out['elapsed_seconds']=time.monotonic()-start
     pathlib.Path(__file__).with_name('pair_search_results.json').write_text(json.dumps(out,indent=2)+'\n')
