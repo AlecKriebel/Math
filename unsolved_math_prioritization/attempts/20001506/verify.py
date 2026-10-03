@@ -61,3 +61,56 @@ def verify_t1():
  return {'matrices':{'lower':a,'full':m,'quotient':b},'cyclic_cover_torsion':rows}
 if __name__=='__main__':
  print(json.dumps({'turn1':verify_t1()},indent=2,sort_keys=True))
+
+# Degree-two noncommutative Magnus expansions use tuples of generator indices.
+def magmul(p,q):
+ r={}
+ for a,x in p.items():
+  for b,y in q.items():
+   if len(a+b)<=2:r[a+b]=r.get(a+b,0)+x*y
+ return {a:x for a,x in r.items() if x}
+def maginv(p):
+ h={a:x for a,x in p.items() if a};r={():1}
+ for a,x in h.items():r[a]=r.get(a,0)-x
+ for a,x in magmul(h,h).items():r[a]=r.get(a,0)+x
+ return {a:x for a,x in r.items() if x}
+def magword(w):
+ p={():1}
+ for a in w:
+  g={():1,('abc'.index(a.lower()),):1};p=magmul(p,g if a.islower() else maginv(g))
+ return p
+ALPHA_MAG=[magword('b'),magword('c'),magword('ab')]
+def magsub(p):
+ r={}
+ for a,x in p.items():
+  v={():1}
+  for i in a:v=magmul(v,{j:y for j,y in ALPHA_MAG[i].items() if j})
+  for j,y in v.items():r[j]=r.get(j,0)+x*y
+ return {a:x for a,x in r.items() if x}
+def magcorrect(w,c):
+ p=magword(w)
+ for (i,j),x in zip([(0,1),(0,2),(1,2)],c):p[(i,j)]=p.get((i,j),0)+x;p[(j,i)]=p.get((j,i),0)-x
+ return {a:x for a,x in p.items() if x}
+def verify_t2():
+ from fractions import Fraction as Q
+ u=[Q(-2,5),Q(6,5),Q(2,5)];v=[Q(-1,5),Q(-2,5),Q(1,5)]
+ x=magcorrect('ABc',u);y=magcorrect('C',v)
+ assert magsub(x)==magmul(y,magword('a'))
+ assert magsub(y)==magmul(y,x)
+ # Derive six independent affine equations by evaluating their Magnus coefficients.
+ def residual(c):
+  x=magcorrect('ABc',c[:3]);y=magcorrect('C',c[3:]);out=[]
+  for l,r in [(magsub(x),magmul(y,magword('a'))),(magsub(y),magmul(y,x))]:
+   out.extend(l.get(k,0)-r.get(k,0) for k in [(0,1),(0,2),(1,2)])
+  return out
+ c0=residual([0]*6);matrix=[]
+ for j in range(6):
+  c=[0]*6;c[j]=1;matrix.append([a-b for a,b in zip(residual(c),c0)])
+ E=[list(row) for row in zip(*matrix)]
+ assert all(sum(a*b for a,b in zip(row,u+v))==-z for row,z in zip(E,c0))
+ assert abs(det(E))==5
+ # Commutators give the stated integral basis, with our convention xyX Y.
+ for (i,j) in [(0,1),(0,2),(1,2)]:
+  w='abc'[i]+'abc'[j]+'ABC'[i]+'ABC'[j]
+  assert magword(w)=={():1,(i,j):1,(j,i):-1}
+ return {'linear_system_matrix':E,'constant':c0,'determinant':det(E),'unique_rational_u':list(map(str,u)),'unique_rational_v':list(map(str,v)),'integral_solution':False}
