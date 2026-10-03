@@ -1,0 +1,5 @@
+# PR370 research log
+
+2026-10-03T11:20:40.697212+00:00: workflow5%, original resolution0%. Freeze19 actual Git/API paths/18 target files before mathematical reading. Main remains unchanged, no external individual communication. Only live PR body/metadata and filenames read for routing.
+2026-10-03T11:42:39.725746+00:00: Root primary baseline sealed20%; seven historical PDF identities reproduced. Brief sibling findings were exposed before the root seal and are explicitly disclosed; no candidate proof/code/results/status or full sibling artifacts read. Credited physical chain requires boundary/sign/decay hypotheses, unrestricted counterexample must be independently derived.
+2026-10-03T11:45:39.547322+00:00: Root universal reconstruction sealed45%, before candidate computation/status/finals/old review/full sibling packets. Correct topology-free credited physical chain and smooth complete negative-mass exhaustion verified analytically; exact capacity R-1, volume radius R-11/4+O(1/R), global lower bound -7/4 > ADM -2. Earlier sibling brief exposure is disclosed. No mathematical repair required; remaining scope/reproduction/live integration pending.

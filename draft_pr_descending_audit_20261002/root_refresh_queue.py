@@ -2,7 +2,7 @@
 import datetime, hashlib, json, os, subprocess, sys, uuid
 from pathlib import Path
 P=Path(__file__).resolve().parent;A=P/'audits'/sys.argv[1];n=int(sys.argv[2]);problem=sys.argv[3]
-original=json.loads((A/'snapshot_manifest.json').read_text());old=original['head']
+original=json.loads((A/'snapshot_manifest.json').read_text());frozen_original=original['head'];old=frozen_original
 inv_initial=json.loads((P/'inventory.json').read_text())
 branch=next(x['headRefName'] for x in inv_initial['items'] if x['number']==n)
 queue='unsolved_math_prioritization/QUEUE.md'
@@ -10,7 +10,19 @@ def git(*args,input=None,env=None):return subprocess.check_output(['git',*args],
 def run(args,tag,ok=(0,)):
  r=subprocess.run(args,capture_output=True);(A/(tag+'.stdout')).write_bytes(r.stdout);(A/(tag+'.stderr')).write_bytes(r.stderr);assert r.returncode in ok,(tag,r.returncode,r.stderr.decode());return r
 r=json.loads(run(['gh','pr','view',str(n),'--json','state,headRefOid,isDraft'],'repair_remote').stdout)
-assert r['state']=='OPEN' and r['headRefOid']==old and r['isDraft']
+assert r['state']=='OPEN'
+if r['headRefOid']!=frozen_original:
+ prior=json.loads((A/'repaired_snapshot_manifest.json').read_text())
+ assert r['headRefOid']==prior['head'] and prior['original_frozen_head']==frozen_original
+ old=prior['head']
+ assert set(git('diff','--name-only',prior['base'],old).decode().splitlines())=={e['path'] for e in original['files']}
+ for e in original['files']:
+  if e['path']!=queue:assert git('show',f"{old}:{e['path']}")==git('show',f"{frozen_original}:{e['path']}"),e['path']
+ archive=A/'queue_refresh_history'/old;archive.mkdir(parents=True,exist_ok=False)
+ for name in ['repaired_snapshot_manifest.json','queue_repair_receipt.json','root_exact_live_receipt.json']:
+  if (A/name).exists():(archive/name).write_bytes((A/name).read_bytes())
+ (A/'repaired_snapshot').rename(archive/'repaired_snapshot')
+else:assert r['isDraft']
 run(['git','fetch','origin','main'],'repair_main_fetch');main=git('rev-parse','origin/main').decode().strip()
 v=run(['git','merge-tree','--write-tree',old,main],'repair_merge_tree',ok=(0,1));tree=v.stdout.decode().splitlines()[0]
 if v.returncode:
@@ -30,10 +42,10 @@ run(['git','push','origin',f'{commit}:refs/heads/{branch}'],'repair_push')
 files=[];S=A/'repaired_snapshot'
 for path in sorted(paths):
  b=git('show',f'{commit}:{path}');f=S/path;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes(b);files.append({'path':path,'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest()})
-t=datetime.datetime.now(datetime.timezone.utc).isoformat();manifest={'pr':n,'head':commit,'base':main,'original_frozen_head':old,'frozen_utc':t,'files':files};(A/'repaired_snapshot_manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
-receipt={'utc':t,'pr':n,'original_head':old,'repaired_head':commit,'current_main_parent':main,'parents':[old,main],'tree':tree,'all_original_target_files_unchanged':len(paths)-1,'changed_queue_line':idx+1,'changed_queue_pipe_cells':[8,9],'old_row':before.decode(),'new_row':lines[idx].decode(),'all_other_queue_bytes_preserved':True,'nonforce_branch_push_succeeded':True,'raw_source_count':0}
+t=datetime.datetime.now(datetime.timezone.utc).isoformat();manifest={'pr':n,'head':commit,'base':main,'original_frozen_head':frozen_original,'previous_review_head':old,'frozen_utc':t,'files':files};(A/'repaired_snapshot_manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
+receipt={'utc':t,'pr':n,'original_head':frozen_original,'previous_review_head':old,'repaired_head':commit,'current_main_parent':main,'parents':[old,main],'tree':tree,'all_original_target_files_unchanged':len(paths)-1,'changed_queue_line':idx+1,'changed_queue_pipe_cells':[8,9],'old_row':before.decode(),'new_row':lines[idx].decode(),'all_other_queue_bytes_preserved':True,'nonforce_branch_push_succeeded':True,'raw_source_count':0}
 (A/'queue_repair_receipt.json').write_text(json.dumps(receipt,indent=2)+'\n')
-inv=json.loads((P/'inventory.json').read_text());x=next(x for x in inv['items'] if x['number']==n);x.update(original_frozen_head=old,current_review_head=commit,disposition='queue_repaired_fresh_whole_package_review_pending',audit_workflow_percent=90);(P/'inventory.json').write_text(json.dumps(inv,indent=2)+'\n')
+inv=json.loads((P/'inventory.json').read_text());x=next(x for x in inv['items'] if x['number']==n);x.update(original_frozen_head=frozen_original,current_review_head=commit,disposition='queue_repaired_fresh_whole_package_review_pending',audit_workflow_percent=90);(P/'inventory.json').write_text(json.dumps(inv,indent=2)+'\n')
 for f in [P/'RESEARCH_LOG.md',A/'README.md']:
  with f.open('a') as h:h.write(f'\n{t}: PR{n} queue-only repair `{commit}` against actual main `{main}`; all{len(paths)-1} target bytes unchanged, only own queue line{idx+1} cells8/9. Workflow90%, original resolution0%; fresh exact-head final audit pending.\n')
 print(json.dumps(receipt,indent=2))
