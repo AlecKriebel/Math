@@ -84,7 +84,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 73 | 30003354 / OWR-15208-008 | Borderline Continuity of Conformal Metric Parametrizations | 0.2408 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
 | 74 | 10300016 / AMR-102-0016 | Branched surfaces and triangulations — Question 7.1 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 75 | 10300025 / AMR-102-0025 | Leaf spaces and transverse structures — Question 8.2 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 76 | 10300054 / AMR-102-0054 | Numerical invariants — Question 13.1 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 76 | 10300054 / AMR-102-0054 | Numerical invariants — Question 13.1 | 0.2400 | 5.5 | 3 | unknown | unsolved | 1/5 |  | 2026-09-30: Separate adversarial review passed the smooth gauge equation, fixed-gauge invariant-measure criterion and abstract small-divisor non-attainment diagnostic. The original minimal taut atoroidal C2 foliation problem remains unresolved; the diagnostic is not a source-manifold counterexample.61author and209independent controls; one bounded attempt. Draft PR: https://github.com/AlecKriebel/Math/pull/60. |  |
 | 77 | 10400033 / AMR-103-0033 | Conjecture 2.11 — (S. | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 78 | 2305051 / AMR-022-5051 | Research Problems in Function Theory — Problem 5.51 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 79 | 2715 / KP-1.56 | Kirby Problem 1.56 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
