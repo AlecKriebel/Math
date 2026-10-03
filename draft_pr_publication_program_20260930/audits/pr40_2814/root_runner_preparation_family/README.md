@@ -1,0 +1,3 @@
+# PR40 ROOT runner source-only preparation
+
+Read CONTRACT.md, complete SOURCE_BINDINGS.json, false/null DRAFT files and ROOT_REVIEW_CHECKLIST.md together with the entire adjacent execute_root_acceptance_revised.py and all five v2 helpers. WRAPPER_SOURCE.py.txt is an exact archival source copy. This package has no actual ROOT runtime result or fresh native metadata. ROOT reading and a NEW independent adversary are pending. Closed original/v1/review/current packets remain byte unchanged. Original0/5,new0,audit0, UNSOLVED source hold partial; no paper/DOI/tracker. Preparation100%, execution0%, scientific discovery0%.

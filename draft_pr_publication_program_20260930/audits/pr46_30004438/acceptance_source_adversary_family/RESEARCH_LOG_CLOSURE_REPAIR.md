@@ -1,0 +1,9 @@
+# Additive PR46 SOURCE closure-method repair log
+
+2026-10-03 07:03 UTC — ROOT's actual child84831 failed before chmod/self creation after the mutable QUEUE body drifted. Read the full failed four-file capture and ROOT diagnosis V2 before repair. V2 supersedes ROOT's normalization mistake in unused diagnosis V1. Original own bodies and adverse SOURCE verdict preserved. Closure-method repair 10%; acceptance 0%; new mathematical discovery credit 0%.
+
+2026-10-03 07:05 UTC — Actual read-only Git children86681/86920/86922 recovered the full historical QUEUE at observed main e491808c3544ff44e8526d9b24857b5c9ca64208. Exact original length/SHA256, canonical Git blob digest, regular entry and commit digest match. Only this dated native observation is qualified; 2610 other live body/full-mode bindings remain mandatory. Closure-method repair 55%; acceptance 0%; new mathematical discovery credit 0%.
+
+2026-10-03 07:15 UTC — Handwritten own child94572 passed45236 assertions and32 countercontrols; read all2610 live bindings, six new fixed receipts and all51 original bodies. Complete actual prelaunch/source/PID/clocks/cwd/argv/split streams retained. No production/helper/native/index/remote changes or closure execution. Closure-method repair 90%; acceptance 0%; new mathematical discovery credit 0%.
+
+2026-10-03 07:18 UTC — Distinct V2 own closer/read-only verifier and dated supplement prepared for ROOT's personally read actual external captures. Mandatory S1 and REJECT_MANDATORY_SOURCE_CORRECTION are unchanged. Original report/verdict/bindings/controls/captures/research log/V1 sources remain byte-identical; final freezing will intentionally set own file modes only. Expected80 payload+self81/13 directories, eleven own captures,2610 exact live original bindings+one dated native+six new fixed external receipts. Closure-method repair95% pending actual ROOT closure/readback; acceptance0%; new mathematical discovery credit0%.

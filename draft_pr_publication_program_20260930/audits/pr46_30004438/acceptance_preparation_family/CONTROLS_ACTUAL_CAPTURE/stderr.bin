@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr46_30004438/acceptance_preparation_family/independent_controls.py", line 139, in <module>
+    if __name__=='__main__':main()
+  File "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr46_30004438/acceptance_preparation_family/independent_controls.py", line 88, in main
+    candidate=inspect_manifest(C/'MANIFEST.json',946);check('exact reviewed candidate manifest SHA',sha((C/'MANIFEST.json').read_bytes())=='66239699390b279235c4064208e63134049a5804884818de9176d377476a189d')
+  File "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr46_30004438/acceptance_preparation_family/independent_controls.py", line 66, in inspect_manifest
+    for line in raw.splitlines():parse(line)
+  File "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr46_30004438/acceptance_preparation_family/independent_controls.py", line 23, in parse
+    return json.loads(raw,object_pairs_hook=pairs,parse_float=floating,parse_constant=lambda v:(_ for _ in ()).throw(ValueError('Nonfinite')))
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/__init__.py", line 359, in loads
+    return cls(**kw).decode(s)
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/json/decoder.py", line 353, in raw_decode
+    obj, end = self.scan_once(s, idx)
+json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 1 column 2 (char 1)
