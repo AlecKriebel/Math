@@ -1,0 +1,3 @@
+# Additive clarification of the turn3 control description
+
+The last paragraph of TURN_3.md overdescribes one part of verify_turn3.py: its additional three-letter example controls use exact **integer dihedral normal forms**, not an extra finite cyclic diameter scan. The finite cyclic subset scan verifies equations(2),(3) and the general normal-form bound. The infinite diameter-three proof in Section3 is unchanged and does not rely on cyclic wrap-around. Turn4 adds finite dihedral checks of the local equality l(r^{-3})=3 for a specified finite set; these are local controls, not a finite proof of the infinite global diameter. Frozen turn3 bytes are retained.
