@@ -87,7 +87,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 76 | 10300054 / AMR-102-0054 | Numerical invariants — Question 13.1 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 77 | 10400033 / AMR-103-0033 | Conjecture 2.11 — (S. | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 78 | 2305051 / AMR-022-5051 | Research Problems in Function Theory — Problem 5.51 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
-| 79 | 2715 / KP-1.56 | Kirby Problem 1.56 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+| 79 | 2715 / KP-1.56 | Kirby Problem 1.56 | 0.2400 | 5.5 | 3 | unknown | unsolved | 1/5 |  | 2026-09-30: Separate review passed the credited residual-nilpotence/fibered affirmative cases, total-rank reformulation and band-twist exclusions. The general equal-HFK ribbon-concordance question remains unresolved; an invertible Floer map does not construct a reverse concordance.564author and20223independent controls; no full-resolution claim. Draft PR: https://github.com/AlecKriebel/Math/pull/62. |  |
 | 80 | 2722 / KP-1.63 | Kirby Problem 1.63 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 81 | 2725 / KP-1.66 | Kirby Problem 1.66 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 82 | 2772 / KP-2.24 | Kirby Problem 2.24 | 0.2400 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
