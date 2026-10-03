@@ -486,7 +486,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 475 | 2645 / KOU-21.136 | Kourovka Notebook Problem 21.136 | 0.1275 | 6.0 | 2 | 2026 | queued | 0/5 |  |  |  |
 | 476 | 2650 / KOU-21.141 | Kourovka Notebook Problem 21.141 | 0.1275 | 6.0 | 2 | 2026 | queued | 0/5 |  |  |  |
 | 477 | 2801 / KP-3.3 | Kirby Problem 3.3 | 0.1275 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 478 | 30006560 / OWR-14299905-035 | Vertex Sets Meeting Every Edge Color | 0.1275 | 6.0 | 3 | 2026 | queued | 0/5 |  |  |  |
+| 478 | 30006560 / OWR-14299905-035 | Vertex Sets Meeting Every Edge Color | 0.1275 | 6.0 | 3 | 2026 | unsolved | 5/5 |  |  |  |
 | 479 | 30006563 / OWR-14299905-038 | Colorings Without Disjoint Color-Isomorphic Triangles | 0.1275 | 6.0 | 3 | 2026 | queued | 0/5 |  |  |  |
 | 480 | 30002737 / OWR-13355-001 | Absolutely Continuous Diffraction and Dynamical Spectra | 0.1268 | 7.0 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 481 | 30004980 / OWR-9790352-030 | Maximum Twin-Width of $n$-Vertex Graphs | 0.1263 | 6.0 | 3 | 2022 | queued | 0/5 |  |  |  |
