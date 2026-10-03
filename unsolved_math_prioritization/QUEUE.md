@@ -382,7 +382,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 371 | 30005649 / OWR-14297740-021 | Self-Duality of Quasi-Supersingular Group Schemes | 0.1505 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 372 | 30005767 / OWR-14298158-012 | Generating-Function Field for Separable Permutation Subclasses | 0.1491 | 5.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 373 | 30005936 / OWR-14298374-005 | Splitting Schemes for Rough Stochastic Heat Equations | 0.1491 | 5.0 | 3 | 2024 | queued | 0/5 |  |  |  |
-| 374 | 30006025 / OWR-14298589-010 | Geometric Chapuy Bijections for Random Surfaces | 0.1491 | 5.0 | 3 | 2024 | queued | 0/5 |  |  |  |
+| 374 | 30006025 / OWR-14298589-010 | Geometric Chapuy Bijections for Random Surfaces | 0.1491 | 5.0 | 3 | 2024 | unsolved | 5/5 |  |  |  |
 | 375 | 30006078 / OWR-14298795-018 | Characteristic Classes of Hodge–Tate Local Systems | 0.1491 | 7.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 376 | 30003128 / OWR-14604-003 | Discrepancy versus Spectral Expansion in Sparse Regular Graphs | 0.1455 | 5.0 | 3 | 2016 | queued | 0/5 |  |  |  |
 | 377 | 30003210 / OWR-14749-002 | Sublinear Generator Growth of Higher-Rank Lattices | 0.1455 | 7.0 | 3 | 2016 | queued | 0/5 |  |  |  |
