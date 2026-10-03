@@ -1,0 +1,13 @@
+# Independent candidate reconstruction checkpoint
+
+Read every TURN_1 through TURN_5 proof and RESULT, all six library modules and the five author checker programs. No old/sibling/root technical report has been opened.
+
+The candidate sheared construction is more specific than the initial illustrative shear: z(i,j)=(t_(i+j),t_(i+j+1),y_j). It is the invertibly two-block-recoded product under the unimodular action (a,b)->(a+b,b). Its exact rectangle complexity is P(n,m)=p_t(n+m)(m+1), not the illustrative p_u(m)(m+n) from the initial note. Both words are recovered from the rectangle, and independent product coordinates realize every pair. Minimality, full aperiodicity and finite alphabet hold. The unit-square suspension is homeomorphic by the real extension of this unimodular map to the Cartesian product, so no raw approximant rank can imply an infinite limiting rank here.
+
+The candidate Euler difference is (m+2)(s(n+m+1)-s(n+m))+s(n+m), consistent with direct substitution of four rectangle counts. It is 2n+6 when n=2^(a-1) and -2n when n=3*2^(a-2), a>=2. Connected finite two-dimensional CW approximants then force beta2>=2n+5 or beta1>=2n+1 respectively, without a claim of every-cofinal-subsequence growth.
+
+TURN3 exact direct-limit criterion matches the independent proof. Formula rank([B_target,F Z_source])-rank(B_target) has correct pullback direction and requires a cochain map; cropping is fine->coarse on chains and coarse->fine on cochains. The code only compares scales of equal parity so symmetric cropping really extends a centered window. These odd/even towers are cofinal; the construction needs positive-degree open cells to retain their horizontal/vertical type. Arrays have different rectangle shapes, preventing accidental collision.
+
+Thue-Morse stationary model: the graph has 4 pair vertices and 6 triple edges. Substitution maps ab to (1-a)b and abc to the two triples (1-a)b(1-b), b(1-b)c. If the stated collar reconstruction is correct, its homology matrix has eigenvalues 0,2,-1 with stable rank2. Rational dual maps transpose and preserve stable rank. The product with Sturmian gives (1,4,4). Need independently verify graph legality, full language completeness, and actual crop-map ranks via a separate homological calculation rather than copying the cochain quotient formula.
+
+Audit completion estimate 50%. Strongest presently reconstructed result: correct all-scale algebra, admissible sheared finite-rank obstruction and Euler argument. Exact remaining gaps: independent code replay/control receipts and residual hidden inverse-limit/collar issue examination. Original arbitrary source implication remains unresolved.

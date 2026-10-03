@@ -1,0 +1,227 @@
+--- preserved_v1/pr40_guards.py
++++ v2/pr40_guards.py
+@@ -30,6 +30,7 @@
+ ADMIN = {'acceptance.json', 'status.json', 'attempt.json', 'current_readiness.json'}
+ HEADER = ['Rank', 'ID / code', 'Problem', 'EV', 'Impact (/10)', 'Difficulty', 'Proposed', 'Status', 'Turns', 'Chat', 'Findings', 'DOI']
+ NATIVE = {'draft_pr_publication_program_20260930/inventory.json'} | {'unsolved_math_prioritization/' + n for n in ['QUEUE.md','state.json','history.jsonl','catalog.json','assessments.json','queue.py','policy.json','manifest.json','cache/problems.json','cache/research_results.json','cache/catalog.sqlite','review_v2/related_target_groups.json']}
++IGNORED_CACHE3 = {'unsolved_math_prioritization/cache/problems.json', 'unsolved_math_prioritization/cache/research_results.json', 'unsolved_math_prioritization/cache/catalog.sqlite'}
+ FOREIGN_LOGS = {'paper_ii_simultaneous_amplification_referee_audit_2026-08-22/logs/commands.tsv', 'paper_ii_simultaneous_amplification_referee_audit_2026-08-22/logs/full_transcript.log'}
+ SCIENCE = {'full_problem_solved': False, 'partial_valid': True, 'novelty_claimed': False, 'source_hold': True, 'original_substantive_attempts': 0, 'turn_limit': 5, 'new_substantive_attempts': 0, 'audit_turns': 0, 'verification_attempts_added': 0, 'current_model': None, 'current_reasoning_effort': None, 'current_deadline_utc': None, 'paper_or_new_doi_or_tracker': False}
+ 
+@@ -208,6 +209,12 @@
+     check(R,revision['immutable_revision_inputs'])
+     manifest(A/'acceptance_preparation_family','PREPARATION_MANIFEST.json',revision['original_preparation_manifest_sha256'],12)
+     manifest(A/'acceptance_static_adversary_family','FIRST_PARTY_MANIFEST.json',revision['closed_static_audit_manifest_sha256'],22)
++    predecessor=load(HERE/'PREDECESSOR_REVISION_BINDINGS.json')
++    required(predecessor,{'schema':'pr40-cache-only-source-revision-bindings/v1','predecessor_revision_manifest_sha256':'65e71adae289b4243036f50be90b28bdeadca3dbd3fd99c5dfc605a72e053c0e','fresh_static_manifest_sha256':'0480281a6dd9629183d1d7e2ad98b098a3b5eae8b8b423dbc4bc72eda85403cf','metadata_qualification_manifest_sha256':'bc05c4971ee61d50080005ce2084597098c97acc8a11f66d95d08514524cb8bb','prepared_helper_import_compile_execution':False,'new_independent_review':'PENDING','actual_execution':'PENDING'},'Cache-only source revision basis')
++    check(R,predecessor['immutable_refs'])
++    manifest(A/'acceptance_execution_preparation_family/integration_source_revision','PREPARATION_MANIFEST.json',predecessor['predecessor_revision_manifest_sha256'],15)
++    manifest(A/'acceptance_revised_static_adversary_family','FIRST_PARTY_MANIFEST.json',predecessor['fresh_static_manifest_sha256'],31)
++    manifest(A/'acceptance_revised_static_adversary_metadata_qualification_family','FIRST_PARTY_MANIFEST.json',predecessor['metadata_qualification_manifest_sha256'],6)
+ 
+ 
+ def basis():
+@@ -376,6 +383,27 @@
+     f=load(R/pre['fresh_preimage']); check(R,[z for z in rows(f['files']) if z['path'] not in allowed]); foreign_check(pre)
+ 
+ 
++def native_git_snapshot(revision,values,skip=()):
++    rr=rows(values)
++    require({z['path'] for z in rr}==NATIVE and len(rr)==13,'Exact thirteen native rows required for Git/worktree split')
++    require(set(skip)<={'unsolved_math_prioritization/QUEUE.md'},'Only the named accepted queue may be skipped')
++    for z in rr:
++        n=z['path']
++        if n in skip: continue
++        entries=git_bytes('ls-tree','-z',revision,'--',n)
++        if n in IGNORED_CACHE3:
++            require(entries==b'','Exact ignored cache must remain absent from selected Git tree: '+n)
++            raw=regular(R,n).read_bytes()
++            require(len(raw)==z['bytes'] and sha(raw)==z['sha256'],'Entire ignored cache worktree bytes changed: '+n)
++        else:
++            decoded=entries.decode().split('\0')
++            require(len(decoded)==2 and decoded[-1]=='','Exactly one tracked native Git entry required: '+n)
++            fields,literal=decoded[0].split('\t'); mode,kind,blob=fields.split()
++            require(literal==n and kind=='blob' and mode in {'100644','100755'},'Exact regular tracked native Git entry required: '+n)
++            raw=git_bytes('show',revision+':'+n)
++            require(len(raw)==z['bytes'] and sha(raw)==z['sha256'],'Entire tracked native Git bytes changed: '+n)
++
++
+ def tree(merge,pre,overlay,queue):
+     require(git('show','-s','--format=%P',merge).split()==[pre['main_before'],HEAD],'Exact original-head no-ff parents required'); git_bytes('merge-base','--is-ancestor',merge,'HEAD')
+     prefix='unsolved_math_prioritization/attempts/'+ID+'/'
+@@ -386,9 +414,7 @@
+     for z in rr:
+         raw=git_bytes('show',merge+':'+prefix+z['path']); require(len(raw)==z['bytes'] and sha(raw)==z['sha256'],'Real tree canonical bytes differ')
+     require(git_bytes('show',merge+':unsolved_math_prioritization/QUEUE.md')==queue,'Real whole queue differs')
+-    for z in rows(load(R/pre['fresh_preimage'])['files']):
+-        if z['path']=='unsolved_math_prioritization/QUEUE.md': continue
+-        require(sha(git_bytes('show',merge+':'+z['path']))==z['sha256'],'Real merge changed native/inventory path')
++    native_git_snapshot(merge,load(R/pre['fresh_preimage'])['files'],{'unsolved_math_prioritization/QUEUE.md'})
+     changed=set(git_bytes('diff-tree','-r','--no-commit-id','--name-only','-z',pre['main_before'],merge).decode().split('\0'))-{''}
+     require(changed<={prefix+z['path'] for z in rr}|{'unsolved_math_prioritization/QUEUE.md'},'Unrelated real merge paths')
+     foreign_check(pre)
+--- preserved_v1/integrate_reviewed_partial.py
++++ v2/integrate_reviewed_partial.py
+@@ -44,7 +44,7 @@
+         g.require(not mh.exists(),'No active merge at preflight')
+         foreign=g.foreign_capture(); fresh=g.load(g.R/a.fresh_preimage); g.check(g.R,fresh['files']); head=g.git('rev-parse','HEAD')
+         g.require(head==fresh['current_head'],'Root fresh actual HEAD differs')
+-        for z in g.rows(fresh['files']): g.require(g.sha(g.git_bytes('show','HEAD:'+z['path']))==z['sha256'],'Fresh native/inventory worktree not HEAD-exact')
++        g.native_git_snapshot(head,fresh['files'])
+         queue=g.Q.read_bytes(); g.selected(queue); queue_after(queue)
+         state=g.load(g.R/'unsolved_math_prioritization/state.json'); inv=g.load(g.B/'inventory.json')
+         g.require(all(type(z['turns_used']) is int for z in state.values()) and len(state)==30 and g.ID not in state and '20001896' not in state and sum(z['turns_used'] for z in state.values())==37,'Require postPR39 native30targets/37turns, both selected identities absent')
+--- preserved_v1/CONTRACT.md
++++ v2/CONTRACT.md
+@@ -1,6 +1,6 @@
+ # PR40 source-only acceptance contract
+ 
+-This NEW adjacent source revision supersedes the original source-only preparation for future execution. It contains proposed sources, not an actual acceptance or an execution result. Original closed preparation12+self and closed static audit22+self remain exact and are checked on every immutable-basis reconciliation through REVISION_BINDINGS.json. The revision path is acceptance_execution_preparation_family/integration_source_revision; HERE.parents[1] is the PR40 audit anchor. Every prepared helper remains unimported and unexecuted by its author. Original13/SOURCE_STATUS, primary97, geometry38, qualification5, current-preparation7, current239/dependencies216, whole25 and all existing captures remain closed and byte unchanged. Scientific discovery completion0%; administrative preparation completion100%; actual integration remains pending. Original0/5,new0,audit0. No external communication, shared/Git/native/remote mutation, paper, new DOI, tracker or release was performed here.
++This NEW adjacent source revision supersedes the original source-only preparation for future execution. It contains proposed sources, not an actual acceptance or an execution result. Original closed preparation12+self and closed static audit22+self remain exact and are checked on every immutable-basis reconciliation through REVISION_BINDINGS.json. The revision path is acceptance_execution_preparation_family/integration_source_revision_v2; HERE.parents[1] is the PR40 audit anchor. Every prepared helper remains unimported and unexecuted by its author. Original13/SOURCE_STATUS, primary97, geometry38, qualification5, current-preparation7, current239/dependencies216, whole25 and all existing captures remain closed and byte unchanged. Scientific discovery completion0%; administrative preparation completion100%; actual integration remains pending. Original0/5,new0,audit0. No external communication, shared/Git/native/remote mutation, paper, new DOI, tracker or release was performed here.
+ 
+ `pr40_guards.py` is shared by all four entry points. JSON parsing rejects duplicate keys and nonfinite values. Required fields require presence and exact recursive type/value equality, including present-null runtime metadata and integer0 rather than boolFalse. Complete row inventories reject duplicate/noncanonical paths, bool sizes, conflicting sizes and symlinks. Recursive closure retains historical nested root-manifest names and negative fixtures. Only the originally declared root foreign/private trees are qualified; whole review foreign21 and the original foreign inventories are separately exactly checked. Current/canonical membership has zero exclusions.
+ 
+@@ -20,7 +20,7 @@
+ 
+ Every integration/mirror/post invocation requires `--execute`, `--preparation-manifest-sha256` and six pairs of explicit repository-relative path/SHA arguments: --final-plan, --final-receipt, --final-manifest, --reconciliation-capture, --previous-mirror, --fresh-preimage. The previous proposal must be the actually completed PR39 `state_mirror_bindings.json`; its unknown future SHA is never guessed. The fresh root-authored preimage must be new adjacent PR40 evidence: approved_by_root true, actual created_utc as an aware UTC ISO clock no later than the invocation clock, reason_date_utc equal to created_utc's YYYY-MM-DD UTC date, and a substantive stripped reason of at least40 characters and six whitespace-separated words. This lexical guard rejects a token such as yes; root's explicit approved review and pin provide the substantive justification, rather than claiming an automated semantic proof. Include actual current_head40hex and13 unique full typed path/size/SHA rows covering all native files and inventory listed by NATIVE. The fresh HEAD is checked against actual current main at preflight, separately from the older dated replay/freeze HEAD; routine checkpoint publication does not rewrite or require equality to that older head. Root independently supplies actual HEAD and the full fresh queue/native/inventory bytes. Frozen c7da preimages are not rewritten and are not claimed live.
+ 
+-Run preflight on main before PR40 merge, after PR39 acceptance/checkpoint, with primary and duplicate native paths/state absent. Expect native30targets/37turns and29 completed primaries. Fresh13 must exactly match the live files and HEAD blobs; index must be clean; only the two exact already tracked foreign logs may be dirty. Their working bytes and exact HEAD/index modes/blob IDs are captured and preserved. Root then makes PR40 ready with exact accepted_pr_body.md, merges exact original head with no-ff/no-commit, and independently inspects/pins the entire automatic/conflicted queue bytes. Overlay additionally requires `--merge-queue-preimage-sha256`; only the queue can conflict, with exact original/main conflict stages. It preserves all13 original canonical files, overlays reviewed239, archives the four pending administrative files and old current MANIFEST, writes separate acceptance scope, and replaces only named Status/Turns/Findings in the unique12-column primary row. Chat/DOI, all unselected queue bytes and all duplicate rows stay unchanged. Turns remains0/5.
++Run preflight on main before PR40 merge, after PR39 acceptance/checkpoint, with primary and duplicate native paths/state absent. Expect native30targets/37turns and29 completed primaries. Fresh13 must exactly match all thirteen complete live files. For exactly cache/problems.json, cache/research_results.json and cache/catalog.sqlite under unsolved_math_prioritization, the actual fresh HEAD must have no Git entry; their complete regular worktree bytes stay bound. The other ten tracked HEAD blobs must exactly match their full size/SHA pins; index must be clean; only the two exact already tracked foreign logs may be dirty. Their working bytes and exact HEAD/index modes/blob IDs are captured and preserved. Root then makes PR40 ready with exact accepted_pr_body.md, merges exact original head with no-ff/no-commit, and independently inspects/pins the entire automatic/conflicted queue bytes. Overlay additionally requires `--merge-queue-preimage-sha256`; only the queue can conflict, with exact original/main conflict stages. It preserves all13 original canonical files, overlays reviewed239, archives the four pending administrative files and old current MANIFEST, writes separate acceptance scope, and replaces only named Status/Turns/Findings in the unique12-column primary row. Chat/DOI, all unselected queue bytes and all duplicate rows stay unchanged. Turns remains0/5.
+ 
+ Root stages only exact canonical/queue paths and commits. Prepush verifies actual two-parent [freshmain, originalhead] merge, all nonexecutable regular canonical tree bytes, entire queue, unchanged native/inventory preimages, foreign log modes/blobs, and a whole-tree changed-path whitelist. Root performs the actual main push. Finalize requires fresh actual GitHub MERGED/nondraft/original-head/date/exact body and actual prepush merge commit/tree. It archives the old pending receipt before replacing the literal lowercase acceptance.json, updates only current administration, creates full canonical self-excluding manifest and audit receipt, and marks only PR40 complete in inventory, with completed_count30 and current_pr41 for the next target. Mirror/post additionally require those exact typed values. Original13/SOURCE_STATUS/code/source/prior/duplicate/zero ledger and current239 remain byte exact. All canonical files become0444. The committed merge tree is the reviewed overlay; later final receipts are explicitly post-merge administrative artifacts for root's subsequent checkpoint.
+ 
+@@ -35,3 +35,9 @@
+ ## Exclusive evidence publication
+ 
+ For exclusive=True, every complete temp is opened exclusively, fully written, flushed and fsynced before atomic os.link(tmp,target,follow_symlinks=False) publication in the same directory. An intervening target causes atomic failure; the existing target and completed temp remain for inspection. The temp is unlinked only after successful publication, then the directory is fsynced. The preliminary absence check is an early diagnostic, not the atomic guarantee. Nonexclusive administration keeps explicit os.replace semantics. Partial final directories and failed temps are retained; no automatic cleanup or retry is claimed. None of the prepared sources was imported or executed in producing this source revision.
++
++## S7 cache-only Git/worktree distinction
++
++This v2 source-only preparation preserves predecessor15+self, fresh static review31+self and metadata qualification6+self byte exactly. Their complete closures and the separately dated ROOT observation/source are checked through PREDECESSOR_REVISION_BINDINGS.json. The earlier qualified static PASS missed S7 and is archival, not a fresh v2 runtime certificate. CACHE_GIT_SCOPE.json records the exact new repair and dated evidence. The target mathematics, all original13/SOURCE_STATUS/current239, revised scientific scope and complete false/null draft remain unchanged.
++
++The shared native_git_snapshot checks exactly the named three ignored caches for Git absence and full live byte equality. Every other native path requires exactly one regular tracked blob with full size/SHA equality. At preflight, all tracked ten including queue are HEAD exact. At prepush/finalize/mirror/post, the actual merge tree binds tracked nine; only the named queue is skipped there because the full accepted queue is separately checked against actual reviewed after bytes. This is not a blanket optional-file exception. All thirteen remain protected by full runtime worktree preimages through fresh_check and the ROOT wrapper. New independent static review and actual execution remain pending.
+--- preserved_v1/CHANGE_RECORD.json
++++ v2/CHANGE_RECORD.json
+@@ -31,6 +31,10 @@
+     {
+       "change": "Advance inventory current_pr to41 after PR40 and require typed41 during mirror/post",
+       "id": "S6"
++    },
++    {
++      "change": "Replace two unconditional fresh13 Git-show loops with exact three ignored-cache absence/full-worktree guards and ten tracked HEAD/nine tracked merge full-blob guards",
++      "id": "S7"
+     }
+   ],
+   "closed_static_audit_manifest": {
+@@ -38,10 +42,21 @@
+     "path": "draft_pr_publication_program_20260930/audits/pr40_2814/acceptance_static_adversary_family/FIRST_PARTY_MANIFEST.json",
+     "sha256": "84b0e1c5364fac20617c1242e36c0d5b9130ea2784de81d3557ae8cbe94ab526"
+   },
+-  "created_utc": "2026-10-02T21:30:56.669783+00:00",
++  "created_utc": "2026-10-02T22:06:28.939527+00:00",
+   "current239_and_original13_preserved": true,
+   "fresh_independent_static_review": "PENDING",
++  "fresh_static_manifest": {
++    "bytes": 6684,
++    "path": "draft_pr_publication_program_20260930/audits/pr40_2814/acceptance_revised_static_adversary_family/FIRST_PARTY_MANIFEST.json",
++    "sha256": "0480281a6dd9629183d1d7e2ad98b098a3b5eae8b8b423dbc4bc72eda85403cf"
++  },
+   "full_problem_solved": false,
++  "metadata_qualification_manifest": {
++    "bytes": 1635,
++    "path": "draft_pr_publication_program_20260930/audits/pr40_2814/acceptance_revised_static_adversary_metadata_qualification_family/FIRST_PARTY_MANIFEST.json",
++    "sha256": "bc05c4971ee61d50080005ce2084597098c97acc8a11f66d95d08514524cb8bb"
++  },
++  "new_independent_static_review": "PENDING",
+   "new_substantive_attempts": 0,
+   "novelty_claimed": false,
+   "old_preparation_manifest": {
+@@ -52,10 +67,15 @@
+   "old_preparation_preserved": true,
+   "original_substantive_attempts": 0,
+   "partial_valid": true,
++  "predecessor_revision_manifest": {
++    "bytes": 3195,
++    "path": "draft_pr_publication_program_20260930/audits/pr40_2814/acceptance_execution_preparation_family/integration_source_revision/PREPARATION_MANIFEST.json",
++    "sha256": "65e71adae289b4243036f50be90b28bdeadca3dbd3fd99c5dfc605a72e053c0e"
++  },
+   "report": {
+     "bytes": 9367,
+     "path": "draft_pr_publication_program_20260930/audits/pr40_2814/acceptance_static_adversary_family/REPORT.md",
+     "sha256": "bb127b07cc885d98eb6f0fa1996674d081cb78971a368ce598765cb6446cd343"
+   },
+-  "schema": "pr40-acceptance-source-revision-change-record/v1"
++  "schema": "pr40-acceptance-cache-only-source-revision-change-record/v2"
+ }
+--- preserved_v1/STATIC_SOURCE_REVIEW.json
++++ v2/STATIC_SOURCE_REVIEW.json
+@@ -1,50 +1,48 @@
+ {
+-  "actual_execution_pending": true,
++  "actual_execution": "PENDING",
+   "audit_turns": 0,
+-  "closed_static_audit_members": 22,
+-  "current_members": 239,
+-  "full_problem_solved": false,
+-  "independent_review_pending": true,
++  "fresh_static_members": 31,
++  "metadata_qualification_members": 6,
++  "new_independent_review": "PENDING",
+   "new_substantive_attempts": 0,
+-  "old_preparation_members": 12,
+-  "original_scientific_files": 13,
+   "original_substantive_attempts": 0,
++  "predecessor_revision_members": 15,
+   "prepared_helpers_imported_compiled_or_executed": false,
+-  "schema": "pr40-acceptance-source-revision-static-data-review/v1",
++  "schema": "pr40-cache-only-source-revision-static-data-review/v2",
+   "scientific_discovery_completion_percent": 0,
+-  "source_revision_completion_percent": 100,
++  "source_preparation_completion_percent": 100,
+   "sources": [
+     {
+-      "bytes": 31032,
+-      "lines": 410,
+-      "path": "draft_pr_publication_program_20260930/audits/pr40_2814/acceptance_execution_preparation_family/integration_source_revision/pr40_guards.py",
+-      "sha256": "7328553d09957c982999ac4b8d8d8be76c23a1f54983289746ccb8220e25cb33"
++      "bytes": 33481,
++      "lines": 436,
++      "path": "draft_pr_publication_program_20260930/audits/pr40_2814/acceptance_execution_preparation_family/integration_source_revision_v2/pr40_guards.py",
++      "sha256": "1382ae7f88bd6ace26eb8be09386c7c5d1076e20cfe470824a54945377e936d6"
+     },
+     {
+       "bytes": 2764,
+       "lines": 30,
+-      "path": "draft_pr_publication_program_20260930/audits/pr40_2814/acceptance_execution_preparation_family/integration_source_revision/seal_final_evidence.py",
++      "path": "draft_pr_publication_program_20260930/audits/pr40_2814/acceptance_execution_preparation_family/integration_source_revision_v2/seal_final_evidence.py",
+       "sha256": "acca1d4777cce70f3bf209bfd2b5a722c7ecbb4bfc6873a6736b187f8404772c"
+     },
+     {
+-      "bytes": 16011,
++      "bytes": 15903,
+       "lines": 119,
+-      "path": "draft_pr_publication_program_20260930/audits/pr40_2814/acceptance_execution_preparation_family/integration_source_revision/integrate_reviewed_partial.py",
+-      "sha256": "3b2d3df43b86845d458799d3d406757290b35e57aff0683c530c09c853ea895a"
++      "path": "draft_pr_publication_program_20260930/audits/pr40_2814/acceptance_execution_preparation_family/integration_source_revision_v2/integrate_reviewed_partial.py",
++      "sha256": "e181ed1725b096608481325b2b60f07654b699b1ce802929251d189d936cac5d"
+     },
+     {
+       "bytes": 10105,
+       "lines": 79,
+-      "path": "draft_pr_publication_program_20260930/audits/pr40_2814/acceptance_execution_preparation_family/integration_source_revision/state_mirror_reconciliation.py",
++      "path": "draft_pr_publication_program_20260930/audits/pr40_2814/acceptance_execution_preparation_family/integration_source_revision_v2/state_mirror_reconciliation.py",
+       "sha256": "f6dc5e80df90391c8b2e869219ebda5eb3a231a0018efa54efa2c6554e926f1e"
+     },
+     {
+       "bytes": 4470,
+       "lines": 32,
+-      "path": "draft_pr_publication_program_20260930/audits/pr40_2814/acceptance_execution_preparation_family/integration_source_revision/verify_post_acceptance.py",
++      "path": "draft_pr_publication_program_20260930/audits/pr40_2814/acceptance_execution_preparation_family/integration_source_revision_v2/verify_post_acceptance.py",
+       "sha256": "d31b99ec427f5e07d40e58ccd5c913e1dd8281e959ce214f3d184a2917fcae38"
+     }
+   ],
+-  "status": "AST_AND_BYTE_IDENTITY_CHECKED_ONLY",
+-  "utc": "2026-10-02T21:30:56.748465+00:00"
++  "status": "AST_AND_CLOSED_PREIMAGE_BYTES_ONLY",
++  "utc": "2026-10-02T22:06:28.939527+00:00"
+ }
