@@ -68,3 +68,7 @@ Root reproduced all four PR381 new family controls, complete outputs match (sour
 ## 2026-10-03T03:26:45.475477+00:00 — PR382 original-head whole-package root verification
 
 Root fully read finalreport/independentreconstruction/bothnewcontrolprograms, reproduced entire stdout byte for byte, verified60sealedoutputs/58originalGitinputs. Source3/4freshPDFexact, publicPDFcount0 qualification retained. All5scopedresults pass; no mandatorymathrepair. CurrentstaleQUEUE wouldrollback10otherrows, so must integratecurrentmain surgical owncells afterPR383actualmerge, thennewheadfreshadversary. Workflow95%, originalresolution0%; program5/349(1.4327%).
+
+## 2026-10-03T03:39:06.064128+00:00 — PR383 final repaired-head root verification and acceptance checkpoint
+
+Root fully read final report/all5 new programs, reproduced complete new result objects excluding UTC only, verified42 sealed outputs and reran49-Git/48-original/candidate-family certificate comparisons. No mandatory repair. Workflow98%, original unsolved5/5 resolution0%, actual merge pending. Disk-exhaustion shell failure occurred before controls; removed only ignored untracked completed-audit tmp copies PR383–387, retried successfully with preserved evidence. Program5/349 (1.4327%).
