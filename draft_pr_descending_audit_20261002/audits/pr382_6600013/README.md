@@ -1,0 +1,3 @@
+# PR382 descending partial-result audit
+
+All five scoped proofs pass three distinct source-first families; root fully read reports/code, verified58 Git inputs and39+30+22 sealed family outputs, and privately reproduced5367 author,22728 historical and all complete independent control results (only declared elapsed metadata excluded). Three of four fresh primary PDFs match historical hashes; the publisher fourth PDF has different bytes/current download footer, and controlling content is separately verified. Existing PF/unit-roof clarification is essential and retained. Original remainsunsolved5/5; workflow90%, originalresolution0%. New whole-package adversary active; prior384/383dispositions required. No paper/DOI.
