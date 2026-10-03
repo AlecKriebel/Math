@@ -1,14 +1,19 @@
 """Publish a prepared additive scope correction through a private Git index."""
-import datetime,hashlib,json,os,subprocess,sys,uuid
+import datetime,hashlib,json,os,posixpath,subprocess,sys,uuid
 from pathlib import Path
 P=Path(__file__).resolve().parent; A=P/'audits'/sys.argv[1]
 n=int(sys.argv[2]); problem=sys.argv[3]; input_manifest=sys.argv[4]
 resume=sys.argv[5] if len(sys.argv)>5 else None
 m=json.loads((A/input_manifest).read_text());old=m['head']
 prep=json.loads((A/'scope_repair_preparation_receipt.json').read_text())
+original_frozen_head=prep.get('original_frozen_head',prep.get('original_head'))
+assert original_frozen_head and len(original_frozen_head)==40
 D=Path(prep['private_packet']);queue='unsolved_math_prioritization/QUEUE.md'
-changed=prep['original_files_preserved_except_current_wrappers'];added=prep['new_files']
-target=next(e['path'].rsplit('/',1)[0] for e in m['files'] if e['path'].startswith('problems/') and '/' not in e['path'][len('problems/'):].rsplit('/',1)[0])
+changed=prep.get('original_files_preserved_except_current_wrappers',prep.get('only_changed_prior_paths'))
+added=prep.get('new_files',prep.get('six_new_correction_files'))
+assert changed and added and len(set(changed+added))==len(changed+added)
+target=posixpath.commonpath([e['path'] for e in m['files'] if e['path']!=queue])
+assert target.startswith(('problems/','unsolved_math_prioritization/attempts/')) and target.endswith(problem) or target.startswith('problems/'+problem+'_'),target
 expected={e['path'] for e in m['files']}|{target+'/'+x for x in added}
 def git(*args,input=None,env=None):return subprocess.check_output(['git',*args],input=input,env=env)
 def run(args,tag,ok=(0,)):
@@ -30,7 +35,14 @@ raw=git('show',f'{main}:{queue}');lines=raw.splitlines(keepends=True)
 match=[i for i,l in enumerate(lines) if len(l.split(b'|'))>9 and l.split(b'|')[2].strip().split(b' / ')[0].decode()==problem]
 assert len(match)==1;idx=match[0];before=lines[idx];cells=before.split(b'|')
 assert [cells[i].strip() for i in (8,9)]==[b'queued',b'0/5']
-cells[8]=b' unsolved ';cells[9]=b' 5/5 ';lines[idx]=b'|'.join(cells);new=b''.join(lines)
+original_rows=git('show',f'{old}:{queue}').splitlines()
+original_match=[l for l in original_rows if len(l.split(b'|'))>9 and l.split(b'|')[2].strip().split(b' / ')[0].decode()==problem]
+assert len(original_match)==1
+proposal=[original_match[0].split(b'|')[j].strip() for j in (8,9)]
+assert proposal in ([b'unsolved',b'5/5'],[b'already_solved',b'0/5']),proposal
+cells[8]=b' '+proposal[0]+b' ';cells[9]=b' '+proposal[1]+b' ';lines[idx]=b'|'.join(cells);new=b''.join(lines)
+queue_cells=[j for j,(x,y) in enumerate(zip(before.split(b'|'),cells)) if x!=y]
+assert queue_cells==([8,9] if proposal[0]==b'unsolved' else [8])
 tmp=A/'tmp';tmp.mkdir(exist_ok=True);index=(tmp/('scope-index-'+uuid.uuid4().hex)).absolute();env=dict(os.environ,GIT_INDEX_FILE=str(index))
 git('read-tree',tree,env=env)
 def insert(path,b):
@@ -57,11 +69,11 @@ for path in sorted(paths):
  b=git('show',f'{commit}:{path}');f=S/path;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes(b)
  files.append({'path':path,'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest(),'git_blob_sha':hashlib.sha1(b'blob '+str(len(b)).encode()+b'\0'+b).hexdigest()})
 t=datetime.datetime.now(datetime.timezone.utc).isoformat()
-out={'pr':n,'head':commit,'base':main,'previous_review_head':old,'original_frozen_head':prep['original_frozen_head'],'frozen_utc':t,'files':files}
+out={'pr':n,'head':commit,'base':main,'previous_review_head':old,'original_frozen_head':original_frozen_head,'frozen_utc':t,'files':files}
 (A/'scope_repaired_snapshot_manifest.json').write_text(json.dumps(out,indent=2)+'\n')
-receipt={'utc':t,'pr':n,'repaired_head':commit,'parents':[old,main],'original_head':prep['original_frozen_head'],'changed_current_wrappers':changed,'new_current_files':added,'preserved_prior_target_files':len(preserved),'all_historical_author_and_review_bytes_unchanged':True,'all_current_paths':len(files),'queue_line':idx+1,'queue_cells':[8,9],'old_row':before.decode(),'new_row':lines[idx].decode(),'all_other_queue_bytes_preserved':True,'scope_snapshot_manifest':'scope_repaired_snapshot_manifest.json','nonforce_branch_push_confirmed':True,'recovered_after_transient_stale_PR_API_without_repeating_push':bool(resume),'workflow_percent':90,'fresh_corrected_head_gate_pending':True}
+receipt={'utc':t,'pr':n,'repaired_head':commit,'parents':[old,main],'original_head':original_frozen_head,'changed_current_wrappers':changed,'new_current_files':added,'preserved_prior_target_files':len(preserved),'all_historical_author_and_review_bytes_unchanged':True,'all_current_paths':len(files),'queue_line':idx+1,'queue_cells':queue_cells,'old_row':before.decode(),'new_row':lines[idx].decode(),'status':proposal[0].decode(),'turns':proposal[1].decode(),'all_other_queue_bytes_preserved':True,'scope_snapshot_manifest':'scope_repaired_snapshot_manifest.json','nonforce_branch_push_confirmed':True,'recovered_after_transient_stale_PR_API_without_repeating_push':bool(resume),'workflow_percent':90,'fresh_corrected_head_gate_pending':True}
 (A/'scope_branch_repair_receipt.json').write_text(json.dumps(receipt,indent=2)+'\n')
 inv=json.loads((P/'inventory.json').read_text());x=next(x for x in inv['items'] if x['number']==n);x.update(current_review_head=commit,disposition='scope_repaired_fresh_final_review_pending',audit_workflow_percent=90);(P/'inventory.json').write_text(json.dumps(inv,indent=2)+'\n')
 for f in [P/'RESEARCH_LOG.md',A/'README.md']:
- with f.open('a') as h:h.write(f'\n{t}: PR{n} scope correction `{commit}` globally bound in current wrappers; {len(preserved)} prior target files unchanged, two additive correction files, queue own line{idx+1} cells8/9 only against main{main}. Workflow90%, original resolution0%; new corrected-head adversary pending.\n')
+ with f.open('a') as h:h.write(f'\n{t}: PR{n} scope correction `{commit}` globally bound in current wrappers; {len(preserved)} prior target files unchanged,{len(added)} additive correction files, queue own line{idx+1} cells{queue_cells} only against main{main}. Status{proposal[0].decode()},{proposal[1].decode()};workflow90%;new corrected-head adversary pending.\n')
 print(json.dumps(receipt,indent=2))
