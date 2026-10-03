@@ -463,7 +463,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 452 | 30004557 / OWR-2654830-012 | Constructive Definitional Extensions and Morita Equivalence | 0.1276 | 6.0 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 453 | 20001284 / AIM-CONVEX_GEOMETRY-0016 | Finite-dimensional local rigidity from central-section perimeters | 0.1275 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 454 | 20001506 / AIM-GEOMETRIC_GROUP_THEORY-0015 | An explicit lamination-depth gap for the AIM free-by-cyclic pair | 0.1275 | 6.0 | 4 | unknown | queued | 0/5 |  |  |  |
-| 455 | 20001515 / AIM-GEOMETRIC_GROUP_THEORY-0024 | Fast monodromy and the cocompact cubulation bottleneck | 0.1275 | 6.0 | 4 | unknown | queued | 0/5 |  |  |  |
+| 455 | 20001515 / AIM-GEOMETRIC_GROUP_THEORY-0024 | Fast monodromy and the cocompact cubulation bottleneck | 0.1275 | 6.0 | 4 | unknown | claimed_solved | 1/5 |  |  |  |
 | 456 | 20001546 / AIM-GEOMETRIC_GROUP_THEORY-0055 | A character-twist obstruction on the extended Deligne Helly graph | 0.1275 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 457 | 20001670 / AIM-GEOMETRY-0008 | Attainment and a quantitative segment bound for planar p-capacity | 0.1275 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 458 | 20001782 / AIM-GEOMETRY-0120 | Element-order reduction and short-span bounds for Delone cluster groups | 0.1275 | 6.0 | 4 | unknown | queued | 0/5 |  |  |  |
