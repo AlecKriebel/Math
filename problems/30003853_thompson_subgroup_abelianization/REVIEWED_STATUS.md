@@ -1,6 +1,6 @@
 # Reviewed status: 30003853 / OWR-16167-025
 
-**Unsolved, five of five substantive turns.** Independent full-source/proof review passes the scoped results; no universal solution or historical novelty is claimed. This additive wrapper supersedes the historical review-pending status without changing frozen author or reviewer files.
+**Unsolved, five of five substantive turns.** Independent full-source/proof review passes the scoped results; no universal solution or historical novelty is claimed. This current wrapper retains the historical author/reviewer evidence. Read CURRENT_SCOPE_CORRECTION.md first: the diagram-group portion of the historical exact-gap sentence is unsupported and is superseded by an explicit statement that this packet proves no universal membership reduction and supplies no finitely presented non-diagram subgroup example. Corrected-head acceptance review remains pending.
 
 Röver–Sapir Question111 asks about every finitely presented subgroup of Thompson's F. The source is OWR26/2018, printed1625; report2018, publication12April2019. https://ems.press/journals/owr/articles/16167
 
@@ -10,4 +10,4 @@ The publication preserves36 author files at final author WIP c1c399675089a7b7f9d
 
 All562,635 author and110,736 independent bounded exact controls pass. They supplement the universal proofs and credited source statements; they do not recognize FP_2 or enumerate all F subgroups. All scripts use the Python standard library. Run `python verify_publication.py` for immutable hashes and both replays. The public replay intentionally verifies zero raw source bindings because those PDFs/images are not redistributed. The historical local receipt of20 source bindings is retained and clearly identified. Optional source verification is documented in FINAL_RESULT.md.
 
-This draft changes only this target's artifacts and its own QUEUE status/turn cells. No source PDFs/images, raw imports or unrelated artifacts are included. No merge or release is part of this publication.
+This draft changes only this target's artifacts and its own QUEUE status/turn cells. No source PDFs/images, raw imports or unrelated artifacts are included. No release or solved-paper publication is part of this unresolved package. Acceptance requires the corrected-head final gate.
