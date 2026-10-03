@@ -29,3 +29,7 @@ README. Current-main queue refresh must retain every unrelated accepted row.
 Fresh exact-live whole/root approval and actual post-merge readback remain
 pending. Workflow estimate 80%; credited original-class resolution 100%, novel
 original-problem resolution claimed 0%. No paper/Zenodo/DOI/tracker/release.
+
+## Actual acceptance and publication
+
+2026-10-03T12:57:47.574228+00:00: PR370 final acceptance100% at actual a765b9d3; separate root615 and whole134/root134 exact-live checks, complete receipts with individually validated runtime leaves and repository metadata; independent/root postmerge 157 checks. All18 mathematical targets and29 bindings preserved; full queue only owncells8/9, already_solved1/5, credited original resolution100%, no novel solution claim. PR369 math/reproduction80%, original resolution0%: source-first root seals and three independently sealed families53 files, root672 frozen checks/211bindings/five author checkpoints/38066 author+1420 historical controls, root206 family binding checks+1262 new controls, five fresh primary identities. Supplemental Picard full-source-after-seal chronology clarified additively and verified. Source/novelty and general-resolution gaps explicit. Program19/349=5.4441%; no paper/Zenodo/DOI/tracker/release for either partial.
