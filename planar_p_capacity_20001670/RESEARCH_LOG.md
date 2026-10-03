@@ -15,3 +15,6 @@ subjective research assessments, not probabilities or proof certificates.
 Current route: sharpen the segment trial upper bound, then test whether the
 combined comparison can exclude any triangle shapes. No final resolution or
 priority claim is asserted.
+
+- 2026-10-03 10:35 UTC: turn 2/5 derives an explicit elliptic trial upper bound for segment capacity and the sharper p-dependent comparison; at p=4/3 the geometric coefficient is exactly 4. Estimated completion: 25%.
+- 2026-10-03 10:38 UTC: turn 3/5 derives an energy enlargement defect and proves strict comparison in a uniform thin-triangle neighborhood when the third-vertex projection stays away from the base endpoints. Endpoint-colliding and nonthin triangles remain. Estimated completion: 30%.
