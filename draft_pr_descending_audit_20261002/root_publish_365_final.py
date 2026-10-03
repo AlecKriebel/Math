@@ -3,10 +3,11 @@ from pathlib import Path,PurePosixPath
 import datetime,hashlib,json,subprocess
 P=Path(__file__).resolve().parent;R=P.parent;A=P/'audits/pr365_2303002';paths=set();sha=lambda b:hashlib.sha256(b).hexdigest()
 def git(*args):return subprocess.check_output(['git',*args],cwd=R)
-def add(p):
+def add(p,declared=False):
  assert p.is_file() and not p.is_symlink() and p.resolve().is_relative_to(P)
  rel=p.relative_to(P)
- if any('private' in x or x in {'tmp','__pycache__','raw_sources'} for x in rel.parts):return
+ if not declared and any('private' in x or x in {'tmp','__pycache__','raw_sources'} for x in rel.parts):return
+ if declared:assert not any(x=='private' or x.startswith('private_') or x in {'tmp','raw_sources'} for x in rel.parts[:-1])
  if p.parent.name=='root_family_streams' and p.name.startswith('poisson_api_'):return
  assert p.suffix not in {'.pdf','.png','.html','.log'}
  paths.add(str(p.relative_to(R)))
@@ -17,7 +18,7 @@ def manifest(d,name):
  m=json.loads((d/name).read_bytes());fs=m.get('files',m.get('public_files'));fs={e['path']:e for e in fs} if isinstance(fs,list) else fs
  for path,e in fs.items():
   q=PurePosixPath(path);assert not q.is_absolute() and '..' not in q.parts and q.as_posix()==path
-  b=(d/path).read_bytes();assert len(b)==e.get('bytes',e.get('stored_bytes')) and sha(b)==e.get('sha256',e.get('stored_sha256'));add(d/path)
+  b=(d/path).read_bytes();assert len(b)==e.get('bytes',e.get('stored_bytes')) and sha(b)==e.get('sha256',e.get('stored_sha256'));add(d/path,declared=True)
  add(d/name);add(d/'FINAL_SEAL.json');return {'family':d.name,'manifest':name,'manifest_sha256':sha((d/name).read_bytes()),'seal_sha256':sha((d/'FINAL_SEAL.json').read_bytes()),'public_files':len(fs)}
 assert git('branch','--show-current')==b'main\n'
 assert subprocess.run(['git','rev-parse','-q','--verify','MERGE_HEAD'],cwd=R,capture_output=True).returncode!=0
