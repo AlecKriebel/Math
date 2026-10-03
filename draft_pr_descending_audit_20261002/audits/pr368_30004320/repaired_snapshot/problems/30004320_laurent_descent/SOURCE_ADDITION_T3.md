@@ -1,0 +1,3 @@
+# Additional primary source inspection for turn 3
+
+The Stacks Project canonical abelian gerbe band, tag06NY, especially Lemma8.11.8, was read at https://stacks.math.columbia.edu/tag/06NY . Its second-cohomology discussion was read at https://stacks.math.columbia.edu/tag/0CJZ . These HTML sources are not redistributed. The latter section is a short discussion, not a complete replacement for the standard gerbe classification theorem. The twisting/difference interpretation and Giraud references were also checked in §4 of the already hash-bound Brosnan–Reichstein–Vistoli author PDF. Turn3 states the standard inputs explicitly and proves its torus cohomology and specialization steps.
