@@ -182,3 +182,7 @@ Workflow98%, original mathematical resolution0%, program6/349=1.7192%. All46 fre
 2026-10-03T08:33:46.340795+00:00: PR374 audit97%, original discovery0%; all scoped proofs, full original/three-family/fresh-whole replays and prepared merge preservation pass. Acceptance metadata and actual merge pending. Descending14/349 complete. PR373 frozen/source-fetch prep only.
 
 2026-10-03T09:30:09.758545+00:00: PR374 actual acceptance `ced99fb2fa921e1f66a701efec35f5c2d61fddfe` at 2026-10-03T09:30:06Z; all46 paths and45 target hashes exact. Only own queue line411 cells[8, 9]; every other queue byte preserved. Statusunsolved,5/5;workflow100%, original resolution0% (credited prior literature when already_solved); program15/349=4.2980%. No paper/DOI.
+
+2026-10-03T09:32:40.014903+00:00: PR373 queue-only repair `07f83847edc7b91201c3a71fa8ca694b5172bd6d` against actual main `ef789480d00794adeb841310218b2979bac57caa`; all52 target bytes unchanged, only own queue line409 cells8/9. Workflow90%, original resolution0%; fresh exact-head final audit pending.
+
+2026-10-03T09:39:23.266318+00:00: PR373 actual acceptance `c9aac76208a57069d2c66f6a05583195a34eba86` at 2026-10-03T09:39:20Z; all53 paths and52 target hashes exact. Only own queue line409 cells[8, 9]; every other queue byte preserved. Statusunsolved,5/5;workflow100%, original resolution0% (credited prior literature when already_solved); program16/349=4.5845%. No paper/DOI.
