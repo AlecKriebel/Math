@@ -1,3 +1,3 @@
-# PR384 preliminary descending audit
+# PR384 descending partial-result audit
 
-Exacthead682f6fd29dce0c9ca5625d14461d0e6e1eb2e6d6 frozen52files:51target+QUEUE. Original completed finite-group Green-ring symmetry question remainsunsolved5/5. Preparatory reconstruction whilePR385freshfinal runs; acceptanceworkflow5%, originalresolution0%. No readymerge/paper/DOI.
+Exacthead682f6fd29dce0c9ca5625d14461d0e6e1eb2e6d6;52frozenfiles51target+QUEUE. Allfive proofs pass three independent families plus separate induced-family adversary. Root full proof/code/source reads,184604author+14871historical replay and96manifestentries pass; new85360Banach+176934induced+54nestedcontrols fully match, quaternion/abstract completeJSONmatches except explicitUTC. All initialsealedoutputbindingschecked. Fresh whole-package adversary is nowrunning. Originalunsolved5/5, workflow90%, originalresolution0%. See ROOT_MATHEMATICAL_RECONSTRUCTION.md for exactgap and sourcequalifications. PR385mustmergefirst; no paper/DOI.
