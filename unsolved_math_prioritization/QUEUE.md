@@ -490,7 +490,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 479 | 30006563 / OWR-14299905-038 | Colorings Without Disjoint Color-Isomorphic Triangles | 0.1275 | 6.0 | 3 | 2026 | queued | 0/5 |  |  |  |
 | 480 | 30002737 / OWR-13355-001 | Absolutely Continuous Diffraction and Dynamical Spectra | 0.1268 | 7.0 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 481 | 30004980 / OWR-9790352-030 | Maximum Twin-Width of $n$-Vertex Graphs | 0.1263 | 6.0 | 3 | 2022 | queued | 0/5 |  |  |  |
-| 482 | 30005041 / OWR-9790362-012 | Interval Structure of Cohomology-Vanishing Exponents | 0.1263 | 6.0 | 3 | 2022 | queued | 0/5 |  |  |  |
+| 482 | 30005041 / OWR-9790362-012 | Interval Structure of Cohomology-Vanishing Exponents | 0.1263 | 6.0 | 3 | 2022 | unsolved | 5/5 |  |  |  |
 | 483 | 30005075 / OWR-9790367-005 | Affine–Virasoro Derivation of Nekrasov Blow-Up Identities | 0.1263 | 6.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 484 | 30005144 / OWR-10252937-007 | CMC Min–Max Width Under Nonnegative Scalar Curvature | 0.1263 | 6.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 485 | 30005220 / OWR-11101920-004 | Sylow Restrictions and Character Fields of Values | 0.1263 | 6.0 | 3 | 2022 | queued | 0/5 |  |  |  |
