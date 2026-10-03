@@ -72,3 +72,11 @@ Root fully read finalreport/independentreconstruction/bothnewcontrolprograms, re
 ## 2026-10-03T03:39:06.064128+00:00 — PR383 final repaired-head root verification and acceptance checkpoint
 
 Root fully read final report/all5 new programs, reproduced complete new result objects excluding UTC only, verified42 sealed outputs and reran49-Git/48-original/candidate-family certificate comparisons. No mandatory repair. Workflow98%, original unsolved5/5 resolution0%, actual merge pending. Disk-exhaustion shell failure occurred before controls; removed only ignored untracked completed-audit tmp copies PR383–387, retried successfully with preserved evidence. Program5/349 (1.4327%).
+
+## 2026-10-03T03:44:57.484944+00:00 — PR383 actual merge verified and concurrent checkpoint reconciled
+
+Merge429e3f91097238669be7fc2173b9ce4d9956a3af, exacthead5f576c1b527f88730c7ee15fd204536069753f9a;49 actual paths/48 target bytes exact, only own queue cells8/9 change; all other rows preserved. Initial ff-only refused concurrent ascending audit commit; subsequent checkpoint push non-fast-forward refused; one ordinary merge on main preserves local6f707/ascending5db508 and remote429e3 histories and successfully pushed. No reset/stash/force. Workflow100%, original unsolved5/5 resolution0%; program6/349=1.7192%. No paper/DOI/tracker/release.
+
+## 2026-10-03T03:45:50.376637+00:00 — PR382 current-main queue-only repair
+
+After actualPR383 merge429e3f, newhead391a2e306581b57e5a5ffbd177e8b9add894ad56 preserves57 target artifacts/58 totalGitinputs and every other current-main queue byte; own problem6600013 line418 cells8/9only to unsolved5/5. Privateindex/objectconstruction, one nonforcebranchpush, sharedcheckout/index untouched. Newfreshwholepackageadversaryrequired; workflow90%, originalresolution0%; program6/349=1.7192%.

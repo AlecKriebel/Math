@@ -1,3 +1,3 @@
 # PR383 descending audit
 
-All five partial results pass root complete proof/source/code/control reproduction, three initial families and a new source-first whole-package adversary. Exact repaired head `5f576c1b527f88730c7ee15fd204536069753f9a`; original remains unsolved5/5. Root verified49 Git inputs/48 original artifacts/42 new outputs and complete new control results. Workflow98%, original resolution0%; actual merge pending. No paper/DOI.
+Merged verified unsolved5/5 partial result at `429e3f91097238669be7fc2173b9ce4d9956a3af`, accepted repaired head `5f576c1b527f88730c7ee15fd204536069753f9a`. All49 actual paths/48 target bytes exact; only own queue status/turn cells changed, every other row preserved. Main reconciled with concurrent ascending checkpoint, preserving both histories. Root complete proof/source/replay and three initial families/new whole-package adversary complete. Workflow100%, original resolution0%; no paper/DOI/tracker/release.
