@@ -52,3 +52,7 @@ Root fully read fresh final report/code, privately reproduced23,293 assertions w
 ## 2026-10-03T03:12:52.137067+00:00 — PR384 actual merge verified
 
 Merge3f18fa7b30851b165b604645d05f332263e9a301, exact accepted head1747a651d5865cfbbe3c4eef7ab3c8142fc117f4;52 actual paths/51 target bytes exact, only target queue cells8/9 change. Every other queue row preserved; main safely fast-forwarded. Workflow100%, original resolution0%, statusunsolved5/5. Program5/349 verified dispositions (1.4327%). No paper/DOI/tracker/release.
+
+## 2026-10-03T03:14:06.521687+00:00 — PR383 current-main queue repair
+
+After PR384 actual merge, adjacent queue conflict repaired with private index/object construction. New head5f576c1b527f88730c7ee15fd204536069753f9a preserves48 target files and every other queue byte, only problem30004047 cells8/9 to unsolved5/5.49 repaired inputs frozen. Fresh whole-package adversary now required; workflow90%, original resolution0%. Program5/349 dispositions (1.4327%).
