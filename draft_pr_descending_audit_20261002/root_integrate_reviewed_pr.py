@@ -28,9 +28,19 @@ def run(args,tag,ok=(0,)):
     assert r.returncode in ok,(tag,r.returncode,r.stderr.decode())
     return r
 def remote(tag):return json.loads(run(['gh','pr','view',str(n),'--json','state,headRefOid,isDraft,mergeable,mergeStateStatus,body,mergedAt,mergeCommit,url'],tag).stdout)
+def entries(rev):
+    out={}
+    for item in git('ls-tree','-rz','--full-tree',rev).split(b'\0'):
+        if item:
+            meta,path=item.split(b'\t',1);out[path.decode()]=meta
+    return out
 def check_tree(base,tree):
     paths=set(git('diff','--name-only',base,tree).decode().splitlines())
     assert paths==expected,(paths-expected,expected-paths)
+    old_entries=entries(base);new_entries=entries(tree);reviewed_entries=entries(head)
+    assert {p for p in old_entries.keys()|new_entries.keys() if old_entries.get(p)!=new_entries.get(p)}==expected
+    for p in expected-{queue}:assert new_entries[p]==reviewed_entries[p],('reviewed mode/type/blob',p)
+    assert old_entries[queue].split()[:2]==new_entries[queue].split()[:2], 'queue mode/type changed'
     for e in m['files']:
         b=git('show',f"{tree}:{e['path']}")
         if e['path']!=queue:assert len(b)==e['bytes'] and sha(b)==e['sha256'],e['path']
@@ -55,14 +65,23 @@ assert r['state']=='OPEN' and r['headRefOid']==head and not r['isDraft'] and r['
 assert r['mergeable']=='MERGEABLE' and r['mergeStateStatus']=='CLEAN',r
 run(['git','fetch','origin','main'],'pre_merge_main_fetch')
 base=git('rev-parse','origin/main').decode().strip()
+assert base==m['base'],('reviewed current main changed; require fresh exact-live review',m['base'],base)
 v=run(['git','merge-tree','--write-tree',base,head],'virtual_merge')
 tree=v.stdout.decode().splitlines()[0];vi=check_tree(base,tree)
+assert tree==git('show','-s','--format=%T',head).decode().strip(),'virtual integration tree differs from reviewed head tree'
 (A/'virtual_integration_receipt.json').write_text(json.dumps({'utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'base':base,'reviewed_head':head,'virtual_tree':tree,**vi},indent=2)+'\n')
+last=json.loads(run(['gh','api',f'repos/AlecKriebel/Math/pulls/{n}'],'actual_last_premerge_api').stdout)
+assert last['state']=='open' and not last['draft'] and last['head']['sha']==head and last['base']['sha']==base and last['body']==body
+assert last['mergeable'] is True and last['mergeable_state']=='clean'
+test=json.loads(run(['gh','api',f'repos/AlecKriebel/Math/git/commits/{last["merge_commit_sha"]}'],'actual_last_testmerge_commit').stdout)
+assert [x['sha'] for x in test['parents']]==[base,head] and test['tree']['sha']==tree
+current=json.loads(run(['gh','api','repos/AlecKriebel/Math/git/ref/heads/main'],'actual_last_main_ref').stdout)
+assert current['object']['sha']==base,'current main advanced; require fresh exact-live review'
 run(['gh','pr','merge',str(n),'--merge','--match-head-commit',head,'--subject',f'Accept PR #{n}: verified {status} partial findings ({turns})','--body-file',str(A/merge_body_name)],'actual_merge_execution')
 r=remote('post_merge_remote');assert r['state']=='MERGED' and r['headRefOid']==head and r['mergedAt']
 merge=r['mergeCommit']['oid']
 run(['git','fetch','origin','main'],'post_merge_fetch')
-parents=git('show','-s','--format=%P',merge).decode().strip().split();assert len(parents)==2 and parents[1]==head
+parents=git('show','-s','--format=%P',merge).decode().strip().split();assert parents==[base,head],('actual merge parents differ from reviewed pair',parents,base,head)
 actual=check_tree(parents[0],merge)
 assert subprocess.run(['git','merge-base','--is-ancestor',merge,'origin/main']).returncode==0
 sync=run(['git','merge','--ff-only','origin/main'],'post_merge_main_sync',ok=(0,128))
