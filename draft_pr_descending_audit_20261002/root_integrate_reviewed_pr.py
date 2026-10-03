@@ -6,6 +6,9 @@ P=Path(__file__).resolve().parent
 A=P/'audits'/sys.argv[1]
 n=int(sys.argv[2]);problem=sys.argv[3]
 manifest_name=sys.argv[4] if len(sys.argv)>4 else 'repaired_snapshot_manifest.json'
+body_name=sys.argv[5] if len(sys.argv)>5 else 'accepted_pr_body.txt'
+merge_body_name=sys.argv[6] if len(sys.argv)>6 else 'merge_body.txt'
+assert all(Path(name).name==name for name in [manifest_name,body_name,merge_body_name])
 m=json.loads((A/manifest_name).read_text());head=m['head']
 queue='unsolved_math_prioritization/QUEUE.md'
 expected={e['path'] for e in m['files']}
@@ -44,8 +47,8 @@ assert git('branch','--show-current').strip()==b'main'
 assert not git('diff','--name-only','--',*sorted(expected))
 assert not git('diff','--cached','--name-only','--',*sorted(expected))
 r=remote('actual_acceptance_remote_before');assert r['state']=='OPEN' and r['headRefOid']==head
-body=(A/'accepted_pr_body.txt').read_text()
-run(['gh','pr','edit',str(n),'--body-file',str(A/'accepted_pr_body.txt')],'accepted_body_edit')
+body=(A/body_name).read_text()
+run(['gh','pr','edit',str(n),'--body-file',str(A/body_name)],'accepted_body_edit')
 if r['isDraft']:run(['gh','pr','ready',str(n)],'accepted_ready')
 r=remote('actual_pre_merge_remote')
 assert r['state']=='OPEN' and r['headRefOid']==head and not r['isDraft'] and r['body']==body
@@ -55,7 +58,7 @@ base=git('rev-parse','origin/main').decode().strip()
 v=run(['git','merge-tree','--write-tree',base,head],'virtual_merge')
 tree=v.stdout.decode().splitlines()[0];vi=check_tree(base,tree)
 (A/'virtual_integration_receipt.json').write_text(json.dumps({'utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'base':base,'reviewed_head':head,'virtual_tree':tree,**vi},indent=2)+'\n')
-run(['gh','pr','merge',str(n),'--merge','--match-head-commit',head,'--subject',f'Accept PR #{n}: verified {status} partial findings ({turns})','--body-file',str(A/'merge_body.txt')],'actual_merge_execution')
+run(['gh','pr','merge',str(n),'--merge','--match-head-commit',head,'--subject',f'Accept PR #{n}: verified {status} partial findings ({turns})','--body-file',str(A/merge_body_name)],'actual_merge_execution')
 r=remote('post_merge_remote');assert r['state']=='MERGED' and r['headRefOid']==head and r['mergedAt']
 merge=r['mergeCommit']['oid']
 run(['git','fetch','origin','main'],'post_merge_fetch')
