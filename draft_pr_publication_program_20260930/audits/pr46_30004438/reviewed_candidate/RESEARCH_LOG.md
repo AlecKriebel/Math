@@ -1,0 +1,1 @@
+2026-10-03T05:16:01.950818+00:00 — Actual administrative freeze; publication workflow75%; known-target source audit accepted by genuine ROOT reading; new-discovery credit0%. Status already_solved; original0/5, source responses1, new0, audit0. NEW whole-current review PENDING. No paper/new DOI/tracker.

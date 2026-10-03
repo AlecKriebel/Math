@@ -1,0 +1,5 @@
+# Quaternion/abstract independent audit log
+
+2026-10-03T02:03:23.569212+00:00 — Checkpoint 1, 65% of scoped review. Read exact primary sources before coding. Hamilton-unit F2/GF4 controls and generic proofs validate Q8 stable order four, full-spectrum persistence, restrictions, all five abstract axioms, radical-zero nonsymmetry, positive gamma identities, and nonrealizability over all fields. Old review/code not yet read. Original source question still unresolved at 5/5 author turns. No frozen-input writes.
+
+2026-10-03T02:07:48.782001+00:00 — Checkpoint 2, 100% of scoped review. Exact historical Turn3/Turn4/reviewer stdout replays match; primary page visuals confirm OWR conjugation, five axioms plus (ii'), and quaternion map order. Added exact complex-species radius mismatch and q=1/exponent-two/odd-characteristic controls. Reverified all 52 frozen inputs unchanged. No mandatory mathematical repair found for this family. Original problem remains unresolved 5/5; PR384 merge gate remains closed pending PR385 acceptance and full audit.

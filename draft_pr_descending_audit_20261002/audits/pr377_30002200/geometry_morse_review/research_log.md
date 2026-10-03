@@ -1,0 +1,5 @@
+# Geometry and Morse independent audit log
+
+2026-10-03T05:00:24.664528+00:00 — 8% of assigned independent geometry audit. First acquired EMS OWR49/2012 and read/extracted/rendered printed pages 2954–2956. Exact target is nonfree rational equivariant cohomology of order floor((r−1)/2), r≥5, in rational Poincare duality context. Literal printed source uses undefined n in the bound, while torus rank is r throughout; record rather than silently normalize. No candidate, history, sibling, or root work read.
+
+2026-10-03T05:06:38.008804+00:00 — 48% of assigned audit. Independent universal local Hessian congruence, negative-bundle restriction, reflection perfection, regular-value geometry and orbit hypotheses proved. 2,114 exact signed Hessian controls and 9,217 orientation controls pass; full stdout read. New falsifier: l=(1,2), u=(1,-1), z=0 invalidates literal unweighted exhaustion. Negative bundle Euler is zero for nonempty J, so perfection requires reflection/cycle mechanism. Independent proof, code, full stdout, and source receipts sealed before opening frozen candidate.

@@ -1,0 +1,7 @@
+# PR41 acceptance preparation V2 — source only
+
+Mandatory administrative S1/S2/S3 repairs from the independent closed adversary are implemented in a new adjacent source family. Original preparation35 and adversary35+self remain exact; SOURCE_DELTAS and REVISION_SOURCE_BINDINGS identify every changed source byte. No mathematical or frozen current547/dependency469 change. Full indexed target UNSOLVED; unconditional interior/lower result and full law under extra fourth-tail hypothesis remain qualified by exact69196e84…; original2/5,new0/audit0,no novelty/paper/DOI/tracker.
+
+V2 derives and compares the complete typed inventory; derives and compares complete canonical/audit acceptance objects and ROOT binding schemas/reference rows; and checks literal0444 permissions with stat.S_IMODE across all frozen gates/self manifests. CONTRACT's V2 amendments are authoritative. Original phase flags and external genuine ROOT/predecessor/fresh13 inputs remain required. Actual PR40 records exist; approved runtime bindings and all PR41 final/integration/native/post gates remain pending. Drafts retain false/null values.
+
+Private captured inspection/finite specification controls read/hash/parse source and fixtures only. They do not import, compile or execute proposed helpers. This is an exposed source author/self-review, not a fresh independent mathematical adversary. ROOT must assign a different new source adversary and fully read the result before proposed execution.
