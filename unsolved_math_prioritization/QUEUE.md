@@ -405,7 +405,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 394 | 2303002 / AMR-022-3002 | Research Problems in Function Theory — Problem 3.2 | 0.1440 | 7.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 395 | 2303016 / AMR-022-3016 | Research Problems in Function Theory — Problem 3.16 | 0.1440 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 396 | 9400114 / AMR-093-0114 | Agrawal's conjecture | 0.1440 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 397 | 9700034 / AMR-096-0034 | Integrability of all routes to random points in a SIRSN | 0.1440 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 397 | 9700034 / AMR-096-0034 | Integrability of all routes to random points in a SIRSN | 0.1440 | 5.0 | 3 | unknown | unsolved | 5/5 |  |  |  |
 | 398 | 30004435 / OWR-17474-009 | Probabilistic Equality of Left and Right Tail Fields | 0.1435 | 4.5 | 3 | 2020 | unsolved | 5/5 |  |  |  |
 | 399 | 30004811 / OWR-8415343-014 | Equality of Capacity–Volume and ADM Mass | 0.1429 | 7.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 400 | 30005116 / OWR-10252930-028 | Induced Four-Cycle Profiles Above Half Density | 0.1421 | 6.0 | 3 | 2022 | unsolved | 5/5 |  |  |  |
@@ -462,7 +462,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 451 | 7200087 / AMR-071-0087 | Is there a non-convex polyhedron without self-intersections with more than seven faces, all of which share an edge with each other | 0.1280 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 452 | 30004557 / OWR-2654830-012 | Constructive Definitional Extensions and Morita Equivalence | 0.1276 | 6.0 | 3 | 2020 | queued | 0/5 |  |  |  |
 | 453 | 20001284 / AIM-CONVEX_GEOMETRY-0016 | Finite-dimensional local rigidity from central-section perimeters | 0.1275 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 454 | 20001506 / AIM-GEOMETRIC_GROUP_THEORY-0015 | An explicit lamination-depth gap for the AIM free-by-cyclic pair | 0.1275 | 6.0 | 4 | unknown | queued | 0/5 |  |  |  |
+| 454 | 20001506 / AIM-GEOMETRIC_GROUP_THEORY-0015 | An explicit lamination-depth gap for the AIM free-by-cyclic pair | 0.1275 | 6.0 | 4 | unknown | unsolved | 5/5 |  |  |  |
 | 455 | 20001515 / AIM-GEOMETRIC_GROUP_THEORY-0024 | Fast monodromy and the cocompact cubulation bottleneck | 0.1275 | 6.0 | 4 | unknown | queued | 0/5 |  |  |  |
 | 456 | 20001546 / AIM-GEOMETRIC_GROUP_THEORY-0055 | A character-twist obstruction on the extended Deligne Helly graph | 0.1275 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 457 | 20001670 / AIM-GEOMETRY-0008 | Attainment and a quantitative segment bound for planar p-capacity | 0.1275 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
