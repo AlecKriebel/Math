@@ -419,7 +419,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 408 | 30003853 / OWR-16167-025 | Abelianizations of Finitely Presented Thompson $F$ Subgroups | 0.1366 | 6.0 | 3 | 2018 | queued | 0/5 |  |  |  |
 | 409 | 30004047 / OWR-16763-021 | Two-Step Path Density in Tripartite Graphs | 0.1361 | 6.0 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 410 | 30004106 / OWR-16776-002 | Symmetry of Completed Finite-Group Representation Rings | 0.1361 | 6.0 | 3 | 2019 | queued | 0/5 |  |  |  |
-| 411 | 30004656 / OWR-4990384-001 | Robustness-Driven Overparameterization in Two-Layer Neural Networks | 0.1355 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
+| 411 | 30004656 / OWR-4990384-001 | Robustness-Driven Overparameterization in Two-Layer Neural Networks | 0.1355 | 5.5 | 3 | 2021 | unsolved | 5/5 |  |  |  |
 | 412 | 2511 / KOU-21.2 | Kourovka Notebook Problem 21.2 | 0.1350 | 6.0 | 2 | 2026 | queued | 0/5 |  |  |  |
 | 413 | 2518 / KOU-21.9 | Kourovka Notebook Problem 21.9 | 0.1350 | 6.0 | 2 | 2026 | queued | 0/5 |  |  |  |
 | 414 | 2525 / KOU-21.16 | Kourovka Notebook Problem 21.16 | 0.1350 | 6.0 | 2 | 2026 | queued | 0/5 |  |  |  |
