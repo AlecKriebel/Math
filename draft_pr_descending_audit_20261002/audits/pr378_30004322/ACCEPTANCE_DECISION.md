@@ -11,3 +11,5 @@ The auxiliary-cover audit strengthens only the specific subfamily: optimum4q for
 [Acceptance decision](https://github.com/AlecKriebel/Math/blob/main/draft_pr_descending_audit_20261002/audits/pr378_30004322/ACCEPTANCE_DECISION.md) · [fresh adversarial review](https://github.com/AlecKriebel/Math/blob/main/draft_pr_descending_audit_20261002/audits/pr378_30004322/clean_final_adversary/audit_report.md).
 
 AI tools were used extensively in research, drafting, verification and adversarial review. The work is unrefereed and has not received external human peer review. Accept the scoped partial outcome; no paper, Zenodo deposit, DOI, tracker row or release.
+
+2026-10-03T06:36:08.082593+00:00: PR378 actual acceptance `4600b719b1a8c58498acb35d82a52267e52285d8` at 2026-10-03T06:36:05Z; all47 paths and46 target hashes exact. Only own queue line413 cells[8, 9]; every other queue byte preserved. Statusunsolved,5/5;workflow100%, original resolution0% (credited prior literature when already_solved); program11/349=3.1519%. No paper/DOI.
