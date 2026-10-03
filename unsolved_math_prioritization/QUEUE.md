@@ -529,7 +529,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 518 | 2302005 / AMR-022-2005 | Research Problems in Function Theory — Problem 2.5 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 519 | 2302054 / AMR-022-2054 | Research Problems in Function Theory — Problem 2.54 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 520 | 2302058 / AMR-022-2058 | Research Problems in Function Theory — Problem 2.58 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 521 | 2304006 / AMR-022-4006 | Research Problems in Function Theory — Problem 4.6 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 521 | 2304006 / AMR-022-4006 | Research Problems in Function Theory — Problem 4.6 | 0.1200 | 6.0 | 3 | unknown | unsolved | 5/5 |  | 2026-10-03: All real-coefficient cases have a real zero; sharp complex cubic (n=2,m=3) half-width C3=0.903669747226... proved. The arbitrary-degree complex bound remains unresolved. [Proof and audit](attempts/2304006/artifacts/README.md). No novelty claim. |  |
 | 522 | 2304025 / AMR-022-4025 | Research Problems in Function Theory — Problem 4.25 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 523 | 2305028 / AMR-022-5028 | Research Problems in Function Theory — Problem 5.28 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 524 | 2305039 / AMR-022-5039 | Research Problems in Function Theory — Problem 5.39 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
