@@ -506,7 +506,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 495 | 30005832 / OWR-14298166-010 | Fractional Coefficient Savings in Algebraic Proof Systems | 0.1243 | 5.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 496 | 30004807 / OWR-8415343-010 | Weak Bianchi Identities Across Timelike Singularities | 0.1238 | 7.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 497 | 30000330 / OWR-1106-004 | Quasiconformal Homogeneity Gaps for Hyperbolic Surfaces | 0.1238 | 6.0 | 3 | 2005 | queued | 0/5 |  |  |  |
-| 498 | 30000689 / OWR-1455-008 | Embedding Obstructions from Missing Simplicial Faces | 0.1235 | 6.0 | 3 | 2007 | queued | 0/5 |  |  |  |
+| 498 | 30000689 / OWR-1455-008 | Embedding Obstructions from Missing Simplicial Faces | 0.1235 | 6.0 | 3 | 2007 | claimed_solved | 3/5 |  | 2026-10-03: Complete affirmative candidate for arbitrary topological sphere triangulations and arbitrary topological embeddings. Koszul/Lefschetz and metastable arguments plus a dimension-four bistellar extension; published inputs credited. Fresh independent full AI audit PASS; no novelty or human peer-review claim. [Proof, audit, and clarifications](attempts/30000689/PUBLICATION_NOTES.md). |  |
 | 499 | 30000999 / OWR-2042-008 | Inverse Wasserstein Stability of the Geodesic Radon Transform | 0.1233 | 5.0 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 500 | 30001148 / OWR-3388-006 | Local–Global Principles for Homogeneous Spaces over Semi-Global Fields | 0.1231 | 6.0 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 501 | 30006510 / OWR-14299586-001 | Typical Cells in Hyperbolic Tessellations with Unbounded Cells | 0.1227 | 5.0 | 3 | 2025 | queued | 0/5 |  |  |  |
