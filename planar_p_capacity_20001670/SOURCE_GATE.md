@@ -68,3 +68,12 @@ budget. Retrieval, review and packaging are not counted as proof attempts.
 
 No claim of a resolved problem, verified novelty, or exact segment-capacity
 formula is made.
+
+## Additional primary input found during proof work
+
+Lundstrom--Singh, *Estimates of p-harmonic functions in planar sectors*, Ark.
+Mat. 61 (2023), 141--175, <https://doi.org/10.4310/ARKIV.2023.v61.n1.a8>,
+author text <https://arxiv.org/html/2111.02721>, was read for Attempt 4.
+Lemma 3.1 and equation (1.6) supply the slit-plane homogeneous solution of
+degree (p-1)/p; Lemma 2.5 supplies the ordinary flat-boundary comparison.
+This input is used to prove a local comparison only.

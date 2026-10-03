@@ -12,9 +12,13 @@ subjective research assessments, not probabilities or proof certificates.
   longest-side and area bounds. Original conjecture unresolved. Estimated
   completion toward the original goal: 20%; most of the central gap remains.
 
-Current route: sharpen the segment trial upper bound, then test whether the
-combined comparison can exclude any triangle shapes. No final resolution or
-priority claim is asserted.
+Final route status: the five attempts are complete. The global affine-squeezing
+inequality remains unproved. Partial theorems await independent adversarial
+review; no final resolution or priority claim is asserted.
 
 - 2026-10-03 10:35 UTC: turn 2/5 derives an explicit elliptic trial upper bound for segment capacity and the sharper p-dependent comparison; at p=4/3 the geometric coefficient is exactly 4. Estimated completion: 25%.
 - 2026-10-03 10:38 UTC: turn 3/5 derives an energy enlargement defect and proves strict comparison in a uniform thin-triangle neighborhood when the third-vertex projection stays away from the base endpoints. Endpoint-colliding and nonthin triangles remain. Estimated completion: 30%.
+
+- 2026-10-03 10:41 UTC: turn 4/5 uses the published slit exponent (p-1)/p and a Sobolev slice estimate to obtain an h log(1/max(alpha,h)) energy gain. Together with turn 3 this proves strict comparison for all sufficiently thin triangles at fixed p, including endpoint collisions. The remaining nonthin family is compact but uncontrolled. Estimated completion: 40%.
+
+- 2026-10-03 10:44 UTC: turn 5/5 derives the exact affine-squeezing bulk-energy criterion, proves the anisotropic energy split for a segment, and shows the simple transported-potential second-variation route cannot exclude the equilateral triangle. Original conjecture UNRESOLVED. Final research completion estimate: 40%; a compact nonthin family remains uncontrolled.
