@@ -114,3 +114,7 @@ Workflow98%, original mathematical resolution0%, program6/349=1.7192%. All46 fre
 2026-10-03T04:51:37.191299+00:00: PR378 root allfiveproofs/8executables read; complete214070+93918stdout reproduced with47Gitpaths exact. Five primaryPDFhistorical hashes freshmatched; one processedPNGnotreproduced, publicsource0/6. Rootuniversal reconstruction written, aftercandidate exposure disclosed; workflow65%, originalresolution0%; threefamily/fullclean gatepending.
 
 2026-10-03T04:54:02.309824+00:00: Corrected root checkpoint selection error: 14 third-party downloads/extracts/pageimages from special-arrangement family untracked and ignored in current publishedtree; local files and source bindings preserved. Original0123 history is not rewritten; no claim it never contained these downloads. WorkflowPR37865%, originalresolution0%.
+
+2026-10-03T04:58:10.151964+00:00: PR377 exact20paths frozen, proposedalready_solved0/5, workflow5%; descending actualacceptance behind381–378. No paper/DOI.
+
+2026-10-03T05:10:56.688615+00:00: PR381 corrected-head clean final PASS; all47 Git objects/111 nested bindings/37 output files/two seals and ten complete streams reproduced.81628 new post-candidate controls. Diagram scope repair global. Workflow98%, original0%; actual merge pending. Inventory counter corrected from6 to7 from existing merge ancestors; program7/349=2.0057%.
