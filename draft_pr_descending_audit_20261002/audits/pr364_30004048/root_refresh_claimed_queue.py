@@ -12,6 +12,7 @@ BRANCH='math/30004048-reviewed-psi-asymmetry'
 utc=lambda:datetime.datetime.now(datetime.timezone.utc).isoformat()
 sha=lambda b:hashlib.sha256(b).hexdigest()
 load=lambda p:json.loads(p.read_bytes())
+assert not load(P/'SHARED_GIT_WINDOW_STATUS.json')['shared_git_writes_paused'],"Respect the ascending reviewer's shared Git window."
 original=load(A/'snapshot_manifest.json');assert original['head']==H
 expected={e['path'] for e in original['files']};assert len(expected)==42
 clear=load(A/'PUBLISHING_CLEARANCE.json')

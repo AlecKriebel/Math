@@ -6,6 +6,7 @@ from pathlib import Path
 
 A=Path(__file__).resolve().parent
 P=A.parents[1]
+assert not json.loads((P/'SHARED_GIT_WINDOW_STATUS.json').read_bytes())['shared_git_writes_paused'],"Respect the ascending reviewer's shared Git window."
 n=364;problem='30004048'
 manifest_name='repaired_snapshot_manifest.json'
 body_name='accepted_pr_body.txt'
