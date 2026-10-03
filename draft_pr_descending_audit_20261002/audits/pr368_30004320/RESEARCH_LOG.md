@@ -1,0 +1,13 @@
+# PR368 research log
+
+2026-10-03T12:47:24.217600+00:00: workflow5%, original resolution0%. Freeze54 actual Git/API paths/53 target files before mathematical reading. Main remains unchanged, no external individual communication. Only live PR body/metadata and filenames read for routing.
+
+2026-10-03T12:47:48.076093+00:00: Initial routing call incorrectly supplied problem2200077 rather than inventory30004320; freeze scope assertion rejected before fetch/snapshot or candidate mathematical reads. Retained exact four initial metadata/file streams under freeze_routing_failure, then used verified inventory identifier. Completion5%, original resolution0%.
+
+2026-10-03T12:52:52.827586+00:00: Root primary baseline sealed20%; five actual PDF identities, original exact homogeneous-space question versus ring/torsor neighbor, perfect versus imperfect field boundaries. No candidate mathematical prose/code/output/status/history or sibling findings read. General resolution0%.
+
+2026-10-03T13:05:06.863524+00:00: Root independently sealed complete five-turn analytic/group/cohomology reconstruction45%; general original resolution0%. All eleven fresh PDFs match; source-specific full hypotheses and corrections read. No candidate code/results/status/finals/oldreviews/history or substantive siblings yet read. Release sibling hold for artifact phase.
+
+2026-10-03T13:29:46.805742+00:00: Root frozen mathematical/provenance review complete80%, original unrestricted resolution0%; all54 files/53 targets/130bindings/five actual author checkpoints/42 historical raw author bindings/11 fresh primary identities pass501 root checks. All11 root full command streams exact128694 author+8664 historic controls. Three independently sealed families119 files verified with3310 complete root binding/source/stream/control checks;13339 new controls and14 drift negatives independently replayed. Own private negative-program fixture failure preserved and repaired, not candidate mathematics. Source-read chronology and classic inputs qualified; unsolved5/5 with general gaps. Fresh published-current-main exact-live acceptance and actual merge pending.
+
+2026-10-03T15:22:42.166714+00:00 — final actual post-merge workflow100%; original general-resolution credit0%. Root reran all9546 checks, independently validated all9337 evidence checks and compared every1484 complete gzip pair and entire receipts (22930 checks). Exact accepted merge/head/body/53 target files/whole queue remain preserved. Closed60-file post packet and earlier47/1635 seals pass; all202 retained ENOSPC-case streams verified with no acceptance credit. Comparator preparation failures retained. Accepted unsolved5/5 partial; no paper, DOI, Zenodo, tracker row or release.

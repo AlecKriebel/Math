@@ -1,0 +1,5 @@
+# Source-preparation research log
+
+2026-10-02T22:52:35.681914+00:00 — genuine authoring-only input inspection PID98633, exit0. Original17 verified; retained ROOT104 files pinned; literal54 copied +26 individually foreign/derivative, exact41 copied +5 foreign, plus each self manifest. SOURCE_AUDIT absent raw key/SQL fallback precision correction established. Source preparation70%; publication workflow60%; full discovery0%. Original2/5,new0/audit0. No candidate/helper execution.
+
+2026-10-02T22:55:09.752905+00:00 — complete proposed source and contracts statically reviewed; strict typed true-flag comparison and complete failed-attempt tree retention added. Source preparation100%; publication workflow65%; full discovery0%. Four external genuine ROOT reading/fresh13 prerequisites remain required; NEW whole-current gate PENDING. No future freeze/PASS/runtime or ROOT fullread attestation manufactured. Current target UNSOLVED. All authoring source and actual capture retained; tool-only size failure separately disclosed.

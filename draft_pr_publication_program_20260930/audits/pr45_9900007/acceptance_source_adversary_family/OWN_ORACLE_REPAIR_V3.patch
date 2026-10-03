@@ -1,0 +1,11 @@
+--- independent_static_controls_v2
++++ independent_static_controls_v3
+@@ -116,7 +116,7 @@
+         cp=R/z['capture']['path'];actual=parse(verify(z['capture']));need(typed(actual,z['entire_capture']),'full stored capture type equality');start=actual.get('started_utc',actual.get('start_utc'));end=actual.get('finished_utc',actual.get('end_utc'));need(clock(start)<=clock(end)<=clock(root['created_utc']),'stored genuine completed capture clocks')
+         for ch in ['stdout','stderr']:stream(actual[ch],cp.parent)
+         for key,filenames in [('source_sha256',['prelaunch_source.py','PRELAUNCH_SOURCE.py']),('operator_sha256',['prelaunch_operator.py','PRELAUNCH_OPERATOR.py'])]:
+-            candidates=[cp.parent/n for n in filenames if (cp.parent/n).exists()];need(len(candidates)==1 and sha(read(candidates[0]))==actual[key],'full stored prelaunch chain')
++            candidates=[q for q in cp.parent.iterdir() if q.name in filenames];need(len(candidates)==1 and sha(read(candidates[0]))==actual[key],'full stored prelaunch chain')
+     expected=[]
+     for n in sorted(four):expected.extend([['git','show','264c26d539d616b0da6f8df76478a213d20939e4:'+n],['git','ls-tree','264c26d539d616b0da6f8df76478a213d20939e4','--',n]])
+     need(typed([x['argv'] for x in root['complete_dated_git_captures']],expected),'all8 actual body-then-tree query order')

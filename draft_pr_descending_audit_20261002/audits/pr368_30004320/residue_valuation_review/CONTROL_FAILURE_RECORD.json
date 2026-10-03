@@ -1,0 +1,22 @@
+{
+  "failures": [
+    {
+      "utc": "2026-10-03T13:04:35.993164+00:00",
+      "failed_program_sha256": "3064e68d091f9b3cddd9ef3b6a3ac1d9660bab99d00765d6680e33faac4cd768",
+      "stage": "own artifact auditor generic files-array parser",
+      "exception": "FileNotFoundError for review/FINAL_AUTHOR_MANIFEST.json",
+      "cause": "historical REMOTE_BINDING.json uses author-root paths and size/git_blob_sha schema, unlike review-local SHA256 manifests",
+      "candidate_mathematical_issue": false,
+      "repair": "Exclude REMOTE_BINDING from generic SHA256 manifest parser; validate its complete rows separately using author root and Git blob hashes."
+    },
+    {
+      "utc": "2026-10-03T13:05:17.669898+00:00",
+      "failed_program_sha256": "5e7f378dd24b843ec1956d476cea8f662749156206aa1a56d15db298742e9c9b",
+      "stage": "own frozen queue-row selector",
+      "exception": "AssertionError one_queue_row",
+      "cause": "Problem ID cell includes suffix / OWR-17295-004; selector expected ID alone",
+      "candidate_mathematical_issue": false,
+      "repair": "Select cell2 first token exactly30004320, then retain byte comparison of every other line/cell."
+    }
+  ]
+}

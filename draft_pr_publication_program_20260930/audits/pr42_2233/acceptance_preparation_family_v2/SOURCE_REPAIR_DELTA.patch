@@ -1,0 +1,74 @@
+--- preserved_V1/pr42_guards.py
++++ adjacent_V2/pr42_guards.py
+@@ -261,6 +261,29 @@
+     return o,p
+ 
+ 
++def resolve_foreign_literal(literal):
++    """Preserve a literal archived row; resolve traversal with no symlink hops."""
++    require(type(literal) is str and literal.startswith(str(R)+'/') and '\\' not in literal and '\0' not in literal,'Exact absolute foreign reference inside repository required')
++    require(R.is_dir() and not R.is_symlink() and R.resolve(strict=True)==R,'Regular canonical repository root required')
++    for ancestor in R.parents:require(ancestor.is_dir() and not ancestor.is_symlink(),'Symlink repository ancestor prohibited')
++    parts=literal[len(str(R))+1:].split('/')
++    require(parts and all(part and part not in {'.git','__pycache__'} for part in parts),'Empty or private foreign reference component prohibited')
++    current=R
++    for i,part in enumerate(parts):
++        require(current.is_dir() and not current.is_symlink(),'Every traversed foreign ancestor must be a real directory')
++        if part=='.':continue
++        if part=='..':
++            require(current!=R,'Foreign traversal outside repository prohibited')
++            current=current.parent
++        else:current=current/part
++        require(current.exists() and not current.is_symlink(),'Missing/symlink foreign traversal component prohibited')
++        require(current==R or current.is_relative_to(R),'Every foreign traversal prefix must stay inside repository')
++        if i<len(parts)-1:require(current.is_dir(),'Non-directory foreign traversal component')
++    canonical=current.resolve(strict=True)
++    require(canonical!=R and canonical.is_relative_to(R) and canonical==current,'Foreign canonical path must stay strictly inside repository')
++    return regular(R,canonical.relative_to(R).as_posix())
++
++
+ def basis(root_bindings,root_bindings_sha256):
+     approved,rp=root_binding_input(root_bindings,root_bindings_sha256)
+     inputs=load(HERE/'INPUT_BINDINGS.json')
+@@ -285,17 +308,33 @@
+     authored=rows(whole['files']);require(len(authored)==25,'Exact25 owned whole members')
+     for z in whole['files']:keyset(z,{'path','bytes','sha256','permission_mode','classification'},'Whole owned reference');require(z['permission_mode']=='0o444','Whole declared permission differs')
+     check(w,authored);exact(w,{z['path'] for z in authored}|{'OWN_CLOSED_MANIFEST.json'});frozen_files(w,authored,'OWN_CLOSED_MANIFEST.json')
+-    # Four historical native preimages are read in full, never broadly excluded.
+-    historical={'draft_pr_publication_program_20260930/inventory.json':'integration_inventory_before.json','unsolved_math_prioritization/QUEUE.md':'integration_queue_before.md','unsolved_math_prioritization/state.json':'integration_state_before.json','unsolved_math_prioritization/history.jsonl':'integration_history_before.jsonl'}
++    # Exactly four archived native rows use the immutable actual freeze Git
++    # bodies, independently of fresh current authority or preflight bytes.
++    historical={'draft_pr_publication_program_20260930/inventory.json','unsolved_math_prioritization/QUEUE.md','unsolved_math_prioritization/state.json','unsolved_math_prioritization/history.jsonl'}
++    dated_capture=load(A/'root_current_freeze_actual_capture/CAPTURE.json')
++    require(dated_capture['main_head_before']==dated_capture['main_head_after']=='c61dc0cb572de281b871264819c8b80d647d0373','Actual immutable historical freeze Git anchor required')
++    dated_head=dated_capture['main_head_before']
++    dated_native={z['path']:z for z in rows(dated_capture['native13_before'])}
++    require(set(dated_native)==NATIVE and len(dated_native)==13 and equal(dated_capture['native13_before'],dated_capture['native13_after']),'Exact historical freeze13 reference rows required')
+     foreign=whole['foreign_files_individually_pinned_and_excluded'];require(type(foreign) is list and len(foreign)==925,'Exact925 individually pinned foreign inputs')
+-    names=set()
++    literal_names=set();canonical_names=set();historical_checked=set()
+     for z in foreign:
+         keyset(z,{'path','bytes','sha256','classification'},'Whole individual foreign reference')
+-        require(type(z['path']) is str and z['path'].startswith(str(R)+'/'),'Whole foreign path must be exact absolute repository path')
+-        n=Path(z['path']).relative_to(R).as_posix();relative(n);require(n not in names,'Duplicate foreign row');names.add(n)
+-        p=regular(A,historical[n]) if n in historical and (A/'integration_preflight.json').exists() else regular(R,n)
+-        raw=p.read_bytes();require(type(z['bytes']) is int and len(raw)==z['bytes'] and sha(raw)==digest(z['sha256']),'Entire individually bound historical/current foreign input differs: '+n)
+-    require(NATIVE<=names,'Whole foreign native13 explicit rows required')
++        require(type(z['path']) is str and z['path'] not in literal_names,'Duplicate literal foreign row identity')
++        literal_names.add(z['path'])
++        canonical=resolve_foreign_literal(z['path'])
++        n=canonical.relative_to(R).as_posix();canonical_names.add(n)
++        if n in historical:
++            captured=dated_native[n]
++            require(type(z['bytes']) is int and z['bytes']==captured['bytes'] and z['sha256']==captured['sha256'],'Each historical row must equal its actual freeze13 reference')
++            entries=git_bytes('ls-tree','-z',dated_head,'--',n).decode().split('\0')
++            require(len(entries)==2 and entries[-1]=='','Exactly one immutable historical Git blob required')
++            fields,literal=entries[0].split('\t');mode,kind,blob=fields.split()
++            require(mode=='100644' and kind=='blob' and literal==n,'Historical Git native body must be the exact regular tracked path')
++            raw=git_bytes('show',dated_head+':'+n);historical_checked.add(n)
++        else:raw=canonical.read_bytes()
++        require(type(z['bytes']) is int and len(raw)==z['bytes'] and sha(raw)==digest(z['sha256']),'Entire individually bound historical/current foreign input differs: '+z['path'])
++    require(len(literal_names)==925 and NATIVE<=canonical_names and historical_checked==historical,'Exact925 literal identities, native13 and historical4 required; no omitted row')
+     verdict=parse(bound(inputs['closed_whole_result']))
+     keyset(verdict,load(HERE/'CLOSED_WHOLE_RESULT_KEYS.json'),'Known complete actual whole RESULT schema')
+     required(verdict,{'schema':'PR42_NEW_WHOLE_CURRENT_SOURCE_FIRST_ADVERSARY_v1','status':WHOLE_VERDICT,'candidate_manifest_sha256':CURRENT_SHA,'whole_current_review_complete':True,'scoped_mathematics_verified':True,'mandatory_defects':[],'mandatory_corrections':[],'original_problem_status':'UNSOLVED','full_problem_solved':False,'novelty_certified':False,'best_known_certified':False,'historic_runtime_certified':False,'human_peer_review_claimed':False,'candidate_builder_or_original_helpers_imported_compiled_executed':False,'root_approval_authored':False,'current_native_or_Git_or_remote_mutation':False,'external_human_communication':False,'original_substantive_attempts':2,'substantive_attempt_limit':5,'new_substantive_attempts':0,'audit_turns':0,'candidate_members_excluding_manifest':385,'dependencies_checked':517,'native_inputs_checked':13,'original_files_checked':17,'whole_diff_sections_checked':18},'Actual new whole scoped verdict')

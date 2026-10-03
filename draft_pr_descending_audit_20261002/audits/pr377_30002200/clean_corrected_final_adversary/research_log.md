@@ -1,0 +1,9 @@
+# Research log
+
+- 2026-10-03 05:26 UTC: Started independent pre-candidate gate; no candidate/root/sibling opened. Completion estimate 5%.
+- 2026-10-03 05:26–05:30 UTC (interval, recorded by subsequent clock): Fetched/rendered literal Franz OWR pages; isolated undefined printed n and independently identified rank-r AFP theorem, odd/even big polygon construction and later exact mu theorem. Completion estimate 15%.
+- 2026-10-03 05:26–05:30 UTC (interval): Derived universal regularity, orientation, effectiveness, product and local syzygy argument. Exact matrix/Jacobian/subset mechanism checks ran. Initial nonuniform control expectation mu(1,1,1,2,2)=2 was falsified: the long set of weights (1,1,1,2) has one short deleted facet, so mu=1. Corrected independent test expectation; initial failing complete streams preserved privately. Completion estimate 20%. This is a useful control against substituting minimal long-set cardinality for the true crossing-facet minimum.
+- 2026-10-03 05:30:52 UTC: Independent pre-candidate seal generated, 27 files. Only then opened candidate materials. Completion estimate 25%.
+- 2026-10-03 05:33:12 UTC: Reproduced all five programs and four exact receipts; all four actual primary PDF hashes match. All25 repaired and original20 snapshot file hashes pass; 16 historical files unchanged. Completion estimate 65%.
+- 2026-10-03 05:33–05:37 UTC (interval): Independently recomputed graded Ext from the dual top Koszul presentation, derived angular Hessian from the analytic function, and rejected four private binding mutations. Confirmed corrected rank-five target direction; identified source b>1 blanket splitting overreach as outside the exported b=1 claim. Completion estimate 80%; final Git/queue gate pending.
+- Timestamp correction: initial manually estimated 05:36/05:42 entries were ahead of the actual tool clock. They have been replaced above with bounded intervals, and the seal retains its original exact machine timestamp.
