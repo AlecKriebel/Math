@@ -1,0 +1,83 @@
+# Independent adversarial review of the PR50 preprint and support package
+
+**Verdict: no mandatory mathematical or editorial repair found in the bound v1 package.** The main theorem answers the explicit ordinary-closure interpretation of the dated even-strand question. This review is not a priority-firstness certificate, human peer review, formal proof certification, a publication event, or ROOT acceptance. Final rendering and publication preparation remain ROOT responsibilities.
+
+The reviewed manuscript is `even_strand_markov.tex`, 14,010 bytes, SHA-256 `a957868b276738f5e692c3199a37867608e4821cca6aa7664c07a3039e4a463a`. The 19-file author handoff is identified by `PACKAGE_MANIFEST.json`, SHA-256 `2be2e6795505f3acf54bc02203a5df0d5b51885515c72ddd7c0bf85056ced2b3`. `REVIEWED_PACKAGE_BINDINGS.json` records all complete input bodies and actual full permission modes. The independent check read every body, rejected a differing scope, and matched all 18 listed payload records to the manifest. This is a dated review of that mutable author preparation, not a claim that future metadata or PDF additions have already been inspected.
+
+## Independence and exact claim
+
+I read the complete newly authored manuscript first, reconstructed its arguments, then read its checker, documentation, metadata and capture records. I did not inherit a verdict from a previous manuscript reviewer. I did not consult the previous classical/virtual reports to establish the proof. Only after the new proof and invariant checks did I read the previous priority family's bounded primary-comparison inventory. The new invariant implementation imports neither the author's code nor earlier reviewer implementations.
+
+The target is Problem 42 on preprint page 34 / published page 37 of the 2014 survey. The literal item requests an even-strand Markov formulation; it does not specify minimal moves, fixed geometric support, algorithmic search, framed/transverse structure, or a plat closure. The paper expressly fixes ordinary oriented unframed closure, supplies both classical and virtual versions, permits arbitrary finite blocks, and distinguishes its interpretation from those stronger or different requests. This is an appropriate exact formulation of the source item. I freshly checked the primary target passage in the [author v1 PDF](https://arxiv.org/pdf/1409.2823v1), rather than relying on a catalog label.
+
+The success criterion is a finite list of reversible algebraic scheme families on tagged even states with (i) closure preservation, (ii) connectivity for any pair with the same closure, and (iii) representation of every nonempty link in the claimed category. All three are established, conditional on the explicitly imported unrestricted theorems. A tag is essential: the two- and four-strand identity words close to different unlinks. The word support bounds are syntactic, so applicability does not covertly assume solving a group word problem.
+
+## Imported hypotheses and source precision
+
+The classical input is ordinary Alexander representation and the classical Markov theorem using braid equivalence, conjugation, and signed right stabilization. I freshly checked Theorems 2.1–2.2 in the [Gorsky–Kivinen–Simental author v1 PDF](https://arxiv.org/pdf/2108.10356v1). This is an established theorem imported by the note, not a theorem proved by either finite checker. A cyclic-product formulation of conjugation in the source is equivalent to the displayed `a b a^{-1}` formulation. Both stabilization signs are needed because the category is ordinary unframed oriented links.
+
+I freshly checked Definition 2.2, Proposition 3.1, Theorem 3.2 and the exchange definitions in the [Kamada primary v1 PDF](https://arxiv.org/pdf/math/0008092v1). They use ordinary oriented virtual closure, conjugation, positive/negative/virtual right stabilization and both virtual exchanges. Re-indexing the source's prefix degree to the total degree gives exchange index `m-1` and unshifted block support `m-2`. This matches the paper exactly. I separately checked the explicit signs and left inclusion in [Kauffman–Lambropoulou v3, section 5, page 30](https://arxiv.org/pdf/math/0507035v3).
+
+The paper lists the virtual involution, permutation, distant mixed and detour relations of Kamada's presentation. Its mixed relation has the correct index order. Opposite-sign and reversed group consequences follow using inverses and arbitrary contexts; another welded forbidden relation is neither needed nor allowed. No silent use of the simpler welded Markov theorem occurs. I have not independently reproduced the entire published proof of unrestricted virtual Markov equivalence; the note clearly imports it with exact locators.
+
+The official [Banach Center volume contents](https://www.impan.pl/shop/media/volume_intro/bc103-0-001.pdf) confirms the 9–61 article range. The new bibliography and metadata both use it, rather than the old 9–62 error. The GKS bibliography uses its full published title and distinguishes the author-preprint locator. Fresh direct Wiley and Crossref openings failed in this review; I do not relabel them as successful fresh authentication. The author source notes disclose the previous qualified access and ROOT's publisher-title check. None of those access limitations weakens a mathematical step that claims an uninspected new theorem.
+
+## Universal soundness, independently reconstructed
+
+* **C:** ordinary braid conjugation. The conjugator can use the whole even-level braid group; an inverse word is legitimate for both classical and virtual types.
+* **BC:** `a` and `b` use only indices up to `N-2`, so they are actual words on `N-1` strands. Conjugate there, then positively right-stabilize each endpoint. The common last crossing has index `N-1`. A general conjugator on all `N` strands cannot be silently substituted into this proof.
+* **T:** its prefix is a braid on `N-1` strands. Each endpoint is an allowed stabilization of that same prefix. Thus changing the positive last crossing to a negative or virtual one preserves ordinary closure. This would fail for the overwide prefix used in the paper's countercontrol.
+* **D:** include the old `N`-strand word on the first strands, stabilize with the permitted `g` at index `N`, then positively stabilize at index `N+1`. Its endpoints both have even degree. The idle strands are part of intermediate inclusion, not asserted to preserve closure by themselves.
+* **R/L:** exactly the unrestricted virtual exchanges at total degree `N`. For L, the shift creates room on the left; it must apply to both old blocks and not to the displayed exchange index.
+* **BR/BL:** apply the corresponding exchange at total degree `N-1`, then positively stabilize both sides at index `N-1`. The blocks before shifting have bound `N-3`; in BL they acquire bound `N-2`. The independent retained tail is not shifted. This is the point where an off-by-one or moved tail would invalidate the argument.
+
+These arguments use odd-degree objects only as auxiliary proof objects. They do not place odd-degree states in the displayed calculus or its final certificate. Relations are allowed in arbitrary contexts at fixed even degree. Reversing any scheme preserves closure for the same reason as its forward direction. This establishes soundness before invoking completeness, avoiding circularity.
+
+## Universal completeness and boundaries
+
+Define positive padding on a tagged unrestricted word `(m,w)` by fixing it if `m` is even and using `(m+1,w sigma_m)` if `m` is odd. This is a legal stabilization and preserves the original oriented closure. More strongly, it fixes every allowed even endpoint literally, not just up to a later equivalence. This latter property prevents a hidden endpoint-reconciliation gap.
+
+For an unrestricted chain between even endpoints, pad each vertex and handle every generating edge:
+
+| Unrestricted edge | Even source/total degree | Odd source/total degree |
+|---|---|---|
+| Defining relation | Same relation in the same whole context | Same relation in the old context, positive padding tail retained |
+| Conjugation | C | BC |
+| Right stabilization, either sign or virtual | D | T |
+| Right virtual exchange | R | BR |
+| Left virtual exchange | L | BL |
+
+At an odd conjugation level, the old bound is `m-1=N-2`. At an odd exchange level, the old unshifted block bound is `m-2=N-3` and its exchange index is `m-1=N-2`; padding appends the distinct crossing `sigma_{N-1}`. Thus every required padded edge is precisely listed. No new unrestricted equivalence theorem is being assumed to finish the conversion. Right inclusion preserves the defining presentation, including all mixed virtual relations; the retained tail remains outside the replaced old relation context. Reverse stabilizations and exchanges are covered by the same reversible arrows. Group-element chains can be represented by word chains because equality is generated by the defining relations with contexts and inverses.
+
+The classical argument never introduces virtual letters or exchanges. Alexander representation followed by positive padding gives surjectivity in each category. Soundness and the edge conversion give both directions of classification. The method does not supply a braid-equivalence oracle or certificate-search algorithm, and the paper does not claim either.
+
+At degree one the only word is empty, and its image is `(2,sigma_1)`, the unknot. At `N=2`, the BC blocks and exchange blocks are empty; R/L are identities. Buffered exchanges cannot first occur at odd degree one and begin at `N=4`. Empty blocks are allowed at bound zero. Tags prevent an empty-word collision. If included, the empty link is an isolated degree-zero state; none of the positive-degree closures is empty.
+
+The certificate height claim is the exact monotone round-up `m -> m+(m mod 2)`. Therefore a supplied unrestricted chain of maximum degree M has converted maximum degree at most `2 ceil(M/2)`. No auxiliary proof object has to be inserted into the converted chain. The result concerns a supplied certificate and makes no complexity claim about obtaining it.
+
+## Independent falsification and reproduction
+
+Two genuinely completed private captures are retained with actual commands, process IDs, enclosing UTC intervals, complete separate streams, prelaunch sources and unchanged-source checks:
+
+1. `independent_invariant_run`: actual child **13305**, exit 0, 09:28:40.162851–09:28:40.274463 UTC. Its independent standard-library implementation passed **2,248 checks**, including **237 literal parity lifts** and **208 legal scheme cases** across all four classical and all eight virtual families. The Fox-color calculation composes linear maps and computes kernel dimensions over F3, rather than enumerating the author's color vectors. The closure component membership uses union-find of actual closure connections, rather than the author's cycle routine. Every sampled classical scheme preserves the Fox count; every sampled classical/virtual scheme preserves its signed ordered intercomponent matrix up to simultaneous relabeling. Both double-sign choices after D were tested. Complete stdout is 1,329 bytes, SHA-256 `5b5c6991550e8e8dddb3840be8efde2665f59b2d629f41b2c1461ea04e4fd8b3`; stderr is empty.
+2. `author_checker_reproduction`: actual child **13423**, exit 0, 09:28:50.138011–09:28:50.226846 UTC. The unchanged author checker reproduced all **7,106 checks**, **316 edge cases**, **1,716 relation-context cases**, and the twelve reported family counters. Full stdout exactly matches the author's retained 1,056 bytes and SHA-256 `729d2e4d5532db6420fb9248d4b4a3aad909e0c8603e548848eccf35351d8fff`; stderr is empty.
+
+The independent Fox calculation reproduces counts 9 for `sigma_1^3` and 3 for `sigma_1` and `sigma_1^{-1}`. The manuscript's local rule and its inverse are correct for the explicitly stated positive-crossing convention. Fox-color invariance follows from idempotence, involutivity and self-distributivity of the dihedral quandle operation; the note supplies the corresponding Reidemeister reasoning. It rules out the false enlarged T even though both knots have one component.
+
+The independent ordered-crossing calculation reproduces the exact R matrices `[[0,1],[1,0]]` and `[[0,2],[0,0]]`, and verifies their inequivalence under simultaneous component relabeling. The analogous false buffered BR has one isolated component plus the same unequal two-component pattern. The matrix is an oriented virtual-link invariant: real RII cancels equal ordered-pair contributions of opposite sign; real RIII preserves ordered component pairs; RI is a self-crossing; virtual detours add no real crossings. This independently tests a failure mode that component counts miss. The code's four rejected support/minimum mutants and false idle-padding control have their advertised meanings.
+
+These finite computations are attempts to falsify the formulas and invariants, not an infinite proof of connectivity or a proof of the imported Markov theorems. The universal argument above supplies the quantification over arbitrary finite words. No convergence, floating point, statistical estimate or numerical tolerance enters the checks.
+
+## Priority, bibliography and global package consistency
+
+The Fiedler comparison is mathematically correct. At degree `N+2`, after D the prefix `b sigma_N^epsilon` has support at most N, which is exactly T's allowed prefix bound. Hence D followed by T realizes each pair of classical stabilization signs. The calculus also allows BC and T; it does not assert that they follow from conjugation plus double moves. Accordingly, the reported negative result for that smaller system is not being contradicted or omitted. The note expressly limits its source claim to publisher metadata/abstract and the identified first-page preview, without certifying Fiedler's full counterexample proof. The prior comparison inventory distinguishes ordinary closure from plat, short-circuit, doubled/capped and equivariant constructions and preserves unresolved source-access leads. The present note does not infer first discovery, exhaustive absence of an antecedent, or current openness from that bounded audit.
+
+All operative package text agrees on the ordinary oriented unframed categories, four/eight scheme counts apart from defining relations, arbitrary finite word blocks, support bounds, certificate-height interpretation, original target, author ORCID and lack of stronger locality/algorithm/novelty claims. The abstract and metadata abstract agree. The manuscript, README and metadata explicitly disclose extensive AI use and unrefereed status, without claiming human peer review or formal certification. The text license is CC BY 4.0; code and prelaunch code copies carry MIT terms. No foreign article body is redistributed or relicensed. The package remains self-contained for the manuscript and standard-library checker; principal audit inputs are historical references, not runtime dependencies.
+
+The author capture preserves its actual interpreter, child/operator IDs and enclosing clock interval. Source copies match the live source bytes. Its runner refuses to overwrite an existing run, retains both streams, and reports genuine execution status. It creates only the advertised adjacent capture directory. The direct checker writes no files and uses a local seeded random instance; its output describes bounded checks honestly. The README's expected stdout and counts were freshly reproduced.
+
+Preparation, research log and workflow flags correctly identify a dated author handoff with compilation, visual review and new-package independent review pending at that handoff. They are not false live publication receipts. ROOT must finalize or clearly label these historical flags when constructing an actual submission/upload package. That is an operational completion requirement, not a defect in the reviewed proof or a mandatory manuscript repair.
+
+## Remaining scope and disposition
+
+No mandatory issue was found. The strongest verified result is the stated full ordinary-closure even-endpoint formulation for classical and virtual oriented unframed nonempty links, together with the supplied-certificate height bound, using the correctly identified established unrestricted theorems. Priority-firstness, contemporary openness, uniformly bounded locality, minimal scheme count, decision/search complexity and full certification of the imported papers remain unclaimed. Final rendered-page quality and upload/tracker metadata have not been independently certified by this reviewer. This verdict must not be relabeled as ROOT's approval or as a published DOI.
