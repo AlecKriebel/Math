@@ -397,7 +397,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 386 | 30001563 / OWR-4425-020 | PVHH-Cube Avoidance in a Morphic Fixed Point | 0.1442 | 5.0 | 3 | 2010 | queued | 0/5 |  |  |  |
 | 387 | 30004048 / OWR-16763-022 | Symmetry of Bidirectional Two-Step Path Density | 0.1441 | 6.0 | 3 | 2019 | queued | 0/5 |  |  |  |
 | 388 | 30004320 / OWR-17295-004 | Descent of Rational Points from Laurent Series Fields | 0.1441 | 7.0 | 3 | 2019 | unsolved | 5/5 |  |  |  |
-| 389 | 11000151 / AMR-109-0151 | Question — Consider the Artin group A5 (the braid group on six strings) divided by the relation (a1a2a3a4)5 = a5a4a3a2a2 1a2a3a4a5. | 0.1440 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 389 | 11000151 / AMR-109-0151 | Question — Consider the Artin group A5 (the braid group on six strings) divided by the relation (a1a2a3a4)5 = a5a4a3a2a2 1a2a3a4a5. | 0.1440 | 5.0 | 3 | unknown | claimed_solved | 4/5 |  |  |  |
 | 390 | 11000228 / AMR-109-0228 | Problem 21 — (Exceptional Strata). | 0.1440 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 391 | 20000728 / AIM-ANALYTIC_NUMBER_THEORY-0092 | Weight-only modularity recognition has a finite-data obstruction | 0.1440 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 392 | 20001666 / AIM-GEOMETRY-0004 | Fixed-volume degeneration of Maxwell cavity eigenvalues | 0.1440 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
