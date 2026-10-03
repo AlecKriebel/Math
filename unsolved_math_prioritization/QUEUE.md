@@ -501,7 +501,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 490 | 30005717 / OWR-14298007-012 | Even-Dimensional Stress-Space Reconstruction | 0.1254 | 6.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 491 | 30005723 / OWR-14298009-001 | Modular Generators for Massive Double Cones | 0.1254 | 6.0 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 492 | 30005528 / OWR-13750333-009 | Periodic Minimizers in Compact Linear Domino Games | 0.1254 | 5.0 | 3 | 2023 | queued | 0/5 |  |  |  |
-| 493 | 6000016 / AMR-059-0016 | Stability of Hessian Metrics | 0.1248 | 6.0 | 3 | 1998 | queued | 0/5 |  |  |  |
+| 493 | 6000016 / AMR-059-0016 | Stability of Hessian Metrics | 0.1248 | 6.0 | 3 | 1998 | claimed_solved | 1/5 |  | 2026-10-03: independent full audit PASS; complete negative answer to unrestricted positive-definite Hessian-metric stability via the credited Baues-Goldman affine-torus family and a Codazzi/Stokes obstruction. Complete early, 1/5; no novelty or human peer-review claim. |  |
 | 494 | 30005772 / OWR-14298158-017 | Combinatorial Interpretations of Negative k-Arrangements | 0.1243 | 5.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 495 | 30005832 / OWR-14298166-010 | Fractional Coefficient Savings in Algebraic Proof Systems | 0.1243 | 5.0 | 3 | 2024 | queued | 0/5 |  |  |  |
 | 496 | 30004807 / OWR-8415343-010 | Weak Bianchi Identities Across Timelike Singularities | 0.1238 | 7.0 | 3 | 2021 | queued | 0/5 |  |  |  |
