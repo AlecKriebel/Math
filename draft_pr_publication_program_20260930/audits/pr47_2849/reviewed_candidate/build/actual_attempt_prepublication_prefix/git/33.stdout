@@ -1,0 +1,900 @@
+diff --git a/unsolved_math_prioritization/QUEUE.md b/unsolved_math_prioritization/QUEUE.md
+index 9fdc4510e..1a53acf82 100644
+--- a/unsolved_math_prioritization/QUEUE.md
++++ b/unsolved_math_prioritization/QUEUE.md
+@@ -64,7 +64,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at
+ | 53 | 2744 / KP-1.85 | Kirby Problem 1.85 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 54 | 2765 / KP-2.17 | Kirby Problem 2.17 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 55 | 2814 / KP-3.16 | Kirby Problem 3.16 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+-| 56 | 2849 / KP-3.51 | Kirby Problem 3.51 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
++| 56 | 2849 / KP-3.51 | Kirby Problem 3.51 | 0.2560 | 5.5 | 3 | unknown | unsolved | 1/5 |  | 2026-09-30: Separate review passed the representation-scheme/local-homology obstruction and a narrow version-specific auxiliary source check. The SU2-abelian-to-instanton-L-space question remains unresolved; the trefoil filling discussed is an instanton L-space, not a counterexample.114author and100independent checks; no full-resolution claim. Draft PR: https://github.com/AlecKriebel/Math/pull/47. |  |
+ | 57 | 2912 / KP-4.36 | Kirby Problem 4.36 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 58 | 2961 / KP-4.85 | Kirby Problem 4.85 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+ | 59 | 3009 / KP-5.2 | Kirby Problem 5.2 | 0.2560 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
+diff --git a/unsolved_math_prioritization/attempts/2849/OBSTRUCTION.md b/unsolved_math_prioritization/attempts/2849/OBSTRUCTION.md
+new file mode 100644
+index 000000000..ca802196c
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2849/OBSTRUCTION.md
+@@ -0,0 +1,108 @@
++# The degeneracy gap in Kirby Problem 3.51
++
++**Outcome: unresolved.** One proof route was examined. The known Morse–Bott argument does not extend merely from the set-theoretic absence of irreducible representations. This note gives an explicit circle-invariant local diagnostic, and checks a recent stronger Alexander-polynomial assertion against trefoil surgery. Neither diagnostic is a counterexample to the original instanton L-space question. Separate review is pending; no discovery or priority claim is made.
++
++## 1 Exact target and known theorem
++
++For a closed oriented rational homology 3-sphere $Y$, suppose every homomorphism $\pi_1(Y)\to SU(2)$ has abelian image. The question is whether
++\[
++\dim_{\mathbb C} I^\#(Y;\mathbb C)=|H_1(Y;\mathbb Z)|.
++\]
++No irreducibility, surgery presentation, cyclic-homology condition, or nondegeneracy assumption is part of the target. The source is K3 Problem 3.51, printed pages 167–168, proposed and scribed by J. Baldwin; both rendered pages were inspected. [Original source](https://math.berkeley.edu/sites/default/files/surv-295-ruberman-watermarked-author-pdf.pdf)
++
++Baldwin–Sivek, *Stein fillings and SU(2) representations*, Geometry & Topology 22 (2018), §4.1, Propositions 4.4–4.5 and Theorem 4.6, proves the conclusion under cyclic finiteness. Under the reducible-only hypothesis this is equivalent to the Morse–Bott condition, and to vanishing of $H^1(Y;\operatorname{ad}\rho)$ for every representation. Central representations are automatically nondegenerate. Cyclically finite here refers to the covers determined by $\ker(\operatorname{ad}\rho)$, not an unrestricted claim about all finite covers. The published proof, pages 4350–4357, was read. [Published paper](https://msp.org/gt/2018/22-7/gt-v22-n7-p13-p.pdf)
++
++## 2 What the representation set establishes
++
++Put $A=H_1(Y;\mathbb Z)$, a finite abelian group, and let $\widehat A=\operatorname{Hom}(A,U(1))$. Every representation under consideration can be conjugated to
++\[
++\rho_\chi(g)=\operatorname{diag}(\chi(g),\chi(g)^{-1}).
++\]
++Two such representations are conjugate exactly when the characters agree or are inverses. If $\chi^2=1$, the orbit is one point. Otherwise its centralizer is $U(1)$, and its orbit is $SU(2)/U(1)\cong S^2$. There are finitely many orbits. Each is closed, and these are the connected components of the representation set.
++
++Writing $c=|\{\chi:\chi^2=1\}|$, its ordinary homology therefore has total complex dimension
++\[
++c+2\frac{|A|-c}{2}=|A|.
++\]
++This is the elementary orbit count in Baldwin–Sivek's proof. It describes the critical set's topology, not the kernel of the Hessian transverse to it.
++
++Indeed, the infinitesimal deformation quotient is $H^1(Y;\operatorname{ad}\rho_\chi)$. The adjoint local system splits as a trivial real line and the realification of the complex rank-one local system $\mathbb C_{\chi^2}$. Consequently
++\[
++\dim_{\mathbb R}H^1(Y;\operatorname{ad}\rho_\chi)
++=2\dim_{\mathbb C}H^1(Y;\mathbb C_{\chi^2}),
++\]
++since $H^1(Y;\mathbb R)=0$. The square is essential. Absence of a curve of actual nonabelian representations does not, without another theorem, say that all first-order normal solutions vanish: those solutions may be obstructed at higher order.
++
++If every character squares to one, all representations are central and the known theorem applies. More generally, when the displayed cohomology vanishes for all characters, the known Morse–Bott spectral sequence gives the rank upper bound, and the Euler characteristic gives the matching lower bound. These are credited special cases, not a removal of the hypothesis.
++
++## 3 An explicit diagnostic for the proposed extension
++
++Consider the real analytic function on $\mathbb C^2$
++\[
++f(z_1,z_2)=(|z_1|^2-|z_2|^2)(|z_1|^2-2|z_2|^2).
++\]
++It is invariant under scalar circle multiplication, including the weight-two action $z\mapsto e^{2i\theta}z$ occurring in a noncentral reducible normal representation.
++
++**Claim.** The origin is its only critical point, the Hessian there is zero, and its local critical groups over $\mathbb C$ have total dimension three despite Euler characteristic one.
++
++**Proof.** Set $x=|z_1|^2$, $y=|z_2|^2$. The two complex-coordinate gradient equations, up to a nonzero common real factor, are
++\[
++z_1(2x-3y)=0,\qquad z_2(-3x+4y)=0.
++\]
++If both coordinates are nonzero, the coefficient matrix has determinant $-1$, forcing $x=y=0$, a contradiction. If one is zero, the other equation forces the remaining coordinate to vanish. The Hessian at zero vanishes because $f$ is homogeneous of degree four.
++
++On the unit 3-sphere, $x+y=1$, so the nonpositive lower link is
++\[
++L=\{f\le0\}\cap S^3
++=\{1/2\le |z_1|^2\le2/3\}\cong T^2\times[1/2,2/3].
++\]
++Both coordinates stay nonzero; their two arguments and the first squared modulus give the indicated product homeomorphism. For a small closed ball $B$, the set $X=\{f\le0\}\cap B$ is a cone on $L$. Hence $X$ is contractible and $X\setminus\{0\}$ deformation retracts onto $L$. The relative homology groups defining the local critical groups satisfy
++\[
++H_k(X,X\setminus\{0\};\mathbb C)\cong\widetilde H_{k-1}(T^2;\mathbb C).
++\]
++They are $\mathbb C^2$ in degree 2 and $\mathbb C$ in degree 3, and vanish in other degrees. Their total dimension is three and their Euler characteristic is $2-1=1$. ∎
++
++Thus even analyticity, circle symmetry, an isolated actual critical set, and the expected Euler characteristic do not justify replacing a degenerate local contribution by the homology of one point. This example is **not asserted to be a Chern–Simons local model of a 3-manifold**. Its role is to falsify that abstract inference, not KP-3.51. A proof for the actual gauge-theoretic functional must use additional structure.
++
++## 4 A precise current-source check
++
++Bascapè's *Some knots with no SU(2)-abelian surgeries*, arXiv:2608.20551v1, August 20, 2026, Definition 5.3, page 9, defines SU(2)-clean using every integer surgery coefficient $r$ with SU(2)-abelian filling and **unsquared** $r$-th Alexander roots. There is no exclusion of reducible fillings in that definition. Section 2, page 3, uses the usual meridian–null-longitude slope $r\mu+\lambda$. Corollary 5.4, on the same rendered page 9, says “The following knots are SU(2)-clean” and includes “torus knots $T(p,q)$.” [Versioned preprint](https://arxiv.org/abs/2608.20551v1)
++
++The right-handed trefoil with $r=6$ checks this assertion directly.
++
++**Surgery calculation.** The standard annular van Kampen decomposition of the trefoil exterior gives
++\[
++\pi_1(E(T_{2,3}))=\langle a,b\mid a^2=b^3\rangle.
++\]
++The common element $h=a^2=b^3$ is the regular fiber. In the peripheral torus it is $\mu^6\lambda$: a parallel of a $(2,3)$-torus knot in its containing torus has linking number $2\cdot3=6$, while $\lambda$ is the zero-linking longitude. Equivalently one may choose $\mu=a^{-1}b^2$ and $\lambda=h\mu^{-6}$. Filling at slope6 kills $h$, so van Kampen gives
++\[
++\pi_1(S^3_6(T_{2,3}))
++=\langle a,b\mid a^2=b^3=1\rangle=C_2*C_3.
++\]
++Its abelianization is $C_2\oplus C_3\cong C_6$. The filling is a closed oriented rational homology sphere. This calculation is also explicitly recorded by Sivek–Zentner, *Surgery obstructions and character varieties*, Proposition4.3, page 14: it is $L(2,3)\#L(3,2)$, equivalently $\mathbb{RP}^3\#L(3,2)$. [Primary paper](https://spiral.imperial.ac.uk/server/api/core/bitstreams/31fba2ba-24ed-45cb-9374-dad47877adcc/content)
++
++**Representation calculation.** If $A\in SU(2)$ satisfies $A^2=I$, its eigenvalues are reciprocal unit complex numbers whose squares equal one. Hence $A=I$ or $-I$. Every representation of $C_2*C_3$ therefore sends the first generator to a central matrix; its image is generated by that matrix and the image of the second generator, so it is abelian. This proves the required property for every representation, not just a selected family.
++
++**Alexander calculation.** The usual torus-knot formula gives
++\[
++\Delta_{T_{2,3}}(t)
++=\frac{(t^6-1)(t-1)}{(t^2-1)(t^3-1)}=t^2-t+1=\Phi_6(t).
++\]
++It vanishes at $e^{\pi i/3}$, which is a sixth root of unity. Thus the trefoil does not satisfy Definition 5.3 as printed. The preprint's own Theorem 3.5 on page 5 includes the slope $2p$ for $T_{p,2}$; the Corollary 5.4 proof on page 9 omits this family when reducing integral slopes to $pq\pm1$. This is a specific inconsistency in that auxiliary claim, not a statement about the paper's other results.
++
++There is no counterexample here to Baldwin–Sivek's test or to KP-3.51. If $\zeta^6=1$, then $\zeta^2$ has order dividing 3, and $\Phi_6(\zeta^2)\ne0$. Equivalently,
++\[
++\gcd(\Delta(t),t^6-1)=\Phi_6(t),\qquad
++\gcd(\Delta(t^2),t^6-1)=1.
++\]
++The squared test succeeds, so the known cyclic-finiteness theorem says this very filling is an instanton L-space. The example only prevents silently strengthening that test by deleting the square.
++
++## 5 Other current sources and the remaining gap
++
++Li–Ye, arXiv:2511.17877v1, Lemma 7.1 on page 32, treats SU(2)-abelian knot surgeries whose numerator is a prime power or twice a prime power; its proof explicitly uses squared roots. It does not remove the general degeneracy hypothesis for arbitrary rational homology spheres. [Primary preprint](https://arxiv.org/abs/2511.17877v1)
++
++Bascapè, arXiv:2408.16635v2, Theorem 1.5, proves a **Heegaard Floer** L-space conclusion for a specified two-piece graph-manifold family. That cannot be substituted for the instanton statement without an additional theorem. Its introductory attribution of an “if and only if” instanton criterion is not established by the cited Baldwin–Sivek Theorem 4.6, which supplies the sufficient direction. No necessity claim is used here. [Primary preprint](https://arxiv.org/abs/2408.16635v2)
++
++The first route stops at this precise gap: either prove that every reducible representation under the target hypotheses has vanishing normal deformation cohomology, or control the actual degenerate Chern–Simons local Floer contributions and differentials without assuming that vanishing. The representation set alone and its ordinary homology do not supply this control. No applicable general theorem or counterexample was found in the checked sources as of September 30, 2026.
++
++The exact checks in `verify.py` certify polynomial identities, circle symmetry, elementary lower-link homology arithmetic, and finite-character counts. All 114 assertions pass. They do not compute instanton homology or realize the local model by a manifold. The original target remains unresolved; no full-solution PR should be created from this package.
+diff --git a/unsolved_math_prioritization/attempts/2849/README.md b/unsolved_math_prioritization/attempts/2849/README.md
+new file mode 100644
+index 000000000..b5b4d689c
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2849/README.md
+@@ -0,0 +1,7 @@
++# SU2 abelian manifolds and instanton L spaces
++
++The original KP-3.51 question remains **unsolved**. [OBSTRUCTION.md](OBSTRUCTION.md) identifies the gap between an abelian representation set and control of degenerate instanton critical points. An abstract local-homology diagnostic is not asserted to arise from a three-manifold.
++
++A separate part checks the exact printed Definition 5.3 and torus-knot clause of Corollary 5.4 in arXiv:2608.20551v1 using trefoil surgery at slope 6. This is a narrow, version-specific mathematical check. The resulting manifold is a known instanton L-space and does not refute the original question. No broader conclusion about the source or its authors is asserted.
++
++The frozen package passed [separate review](review/REVIEW.md); all 114 submitted and 100 independent checks passed. One substantive attempt was used. Run python3 verify.py for the submitted exact diagnostics. No novelty or priority is claimed.
+diff --git a/unsolved_math_prioritization/attempts/2849/RESEARCH_LOG.md b/unsolved_math_prioritization/attempts/2849/RESEARCH_LOG.md
+new file mode 100644
+index 000000000..15067e93c
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2849/RESEARCH_LOG.md
+@@ -0,0 +1,13 @@
++# Research log for2849
++
++- 2026-09-30 05:22 UTC: Began exact source and prior-attempt gate. Read pinned record and K3 pp167–168. No matching previous campaign attempt found. Initial full-target completion estimate0%.
++- 05:24 UTC: Read Baldwin–Sivek §4.1 in author and published versions. Reported explicit normal-cohomology gap to parent. Current surgery and graph-manifold literature retains restrictions or a different Floer theory.
++- 05:26 UTC: One substantive route: test whether the reducible-only critical set suffices without nondegeneracy. Explicit circle-invariant quartic has one critical point, zero Hessian, and local rank3 with Euler characteristic1. This blocks the abstract shortcut, not the manifold conjecture. Full-target completion estimate10% (source and obstruction identified, central missing lemma unproved).
++- 05:27 UTC: Detected a precise unsquared-root issue in August2026 SU(2)-clean definition/torus-knot corollary. Checked the complete definition, standard surgery convention, inclusion of reducible fillings, and the same paper’s contrary surgery list. Trefoil6-surgery has groupC2*C3 and only abelian SU(2) images, while Phi6 vanishes at a sixth root. Correct squared test still succeeds, so it is not a KP counterexample.
++- 05:31 UTC: Package prepared for separate review. All114 exact diagnostics pass. Stop this route at the actual degenerate-local-Floer gap. Target unresolved; no remote writes or source-author outreach.
++
++- 05:35 UTC: Corrected inline Markdown math escaping before independent review. Mathematical claims unchanged; current artifact SHA256 8822d3fb47154229752a40e3f3fcc22b09a823b653521da2344b26bc1a2d31d4.
++
++## 2026-09-30 06:21 UTC separate review
++
++The frozen obstruction and narrow, version-specific mathematical source check passed independent review without mandatory corrections. All 114 submitted and 100 independent controls passed, including all six squared rank-one coefficient systems for the trefoil filling. The filling remains a known instanton L-space, not a counterexample to KP-3.51. One substantive attempt used; full-resolution completion estimate remains 10%. The six review files are preserved unchanged.
+diff --git a/unsolved_math_prioritization/attempts/2849/prior_report.json b/unsolved_math_prioritization/attempts/2849/prior_report.json
+new file mode 100644
+index 000000000..19765bd50
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2849/prior_report.json
+@@ -0,0 +1 @@
++null
+diff --git a/unsolved_math_prioritization/attempts/2849/readiness.json b/unsolved_math_prioritization/attempts/2849/readiness.json
+new file mode 100644
+index 000000000..1fa41ec47
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2849/readiness.json
+@@ -0,0 +1,31 @@
++{
++  "id": 2849,
++  "review_hash": "75fc89712b85944d60898e4411f4c6017ed9d911f6c21b9d1ffeda1fc8dd5b36",
++  "statement_hash": "188f17358a3473bb923cea166ac35ba16f5fa503641f207cdaf5852ba8f1621b",
++  "exact_claim": "Every closed oriented rational homology 3-sphere with only abelian SU(2) representations has complex framed instanton rank equal to the order of first integral homology. No cyclic-finiteness or manifold-irreducibility hypothesis.",
++  "primary_sources": [
++    "https://msp.org/gt/2018/22-7/gt-v22-n7-p13-p.pdf",
++    "https://www.ma.imperial.ac.uk/~ssivek/papers/stein_fillings.pdf",
++    "https://arxiv.org/pdf/2608.20551v1",
++    "https://arxiv.org/pdf/2408.16635v2",
++    "https://arxiv.org/pdf/2511.17877v1",
++    "https://spiral.imperial.ac.uk/server/api/core/bitstreams/31fba2ba-24ed-45cb-9374-dad47877adcc/content"
++  ],
++  "literature_checked_at": "2026-09-30T05:31:32.141501+00:00",
++  "success_test": "Proof of full rank equality or actual rational homology 3-sphere violating it; neither an abstract critical-point model nor an error in another auxiliary claim suffices.",
++  "budget": {
++    "start_utc": "2026-09-30T05:22:52Z",
++    "deadline_utc": "2026-09-30T07:22:52Z",
++    "maximum_substantive_attempts": 5,
++    "used": 1,
++    "model": "gpt-6-astra",
++    "reasoning_effort": "xhigh"
++  },
++  "prior_attempt_gap": "No dedicated upstream KP report; full source background and repository desk note read. No earlier campaign artifact or PR found.",
++  "duplicate_check": "Pinned full statements normalized and searched for instanton L-space plus abelian/representation: only2849 exact target. Adjacent2850 classification question is related but distinct. Current main tree c6975ca76f9f667f1250ba403d0e6da2aafe14d0 untruncated has no relevant attempt paths; available all-state PR list and local folders have no earlier2849.",
++  "outcome": "unresolved",
++  "review_status": "PASS_UNRESOLVED_OBSTRUCTION_AND_NARROW_SOURCE_CHECK",
++  "novelty": "No original-problem resolution or priority claim; source diagnostic and elementary obstruction only.",
++  "completion_estimate_percent": 10,
++  "review": "review/REVIEW.md"
++}
+diff --git a/unsolved_math_prioritization/attempts/2849/review/REVIEW.md b/unsolved_math_prioritization/attempts/2849/review/REVIEW.md
+new file mode 100644
+index 000000000..41d00734c
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2849/review/REVIEW.md
+@@ -0,0 +1,65 @@
++# Independent review of the instanton degeneracy obstruction
++
++**Verdict: PASS for the explicitly unresolved obstruction and the narrowly stated source check.** No mandatory mathematical correction was found. The local quartic is not a manifold counterexample, and trefoil 6-surgery satisfies the known instanton L-space criterion. Neither settles KP-3.51 negatively.
++
++Problem 2849 / KP-3.51. Reviewed 30 September 2026 by a separate gpt-6-astra agent at xhigh effort. Frozen `OBSTRUCTION.md` SHA-256: `8822d3fb47154229752a40e3f3fcc22b09a823b653521da2344b26bc1a2d31d4`. The author's artifact was not edited.
++
++## Original target and the known sufficient theorem
++
++The complete [K3 Problem 3.51](https://math.berkeley.edu/sites/default/files/surv-295-ruberman-watermarked-author-pdf.pdf), printed pp. 167–168, was checked. It concerns every rational homology 3-sphere with only abelian SU(2) representations and asks for equality between the complex dimension of framed instanton homology and the order of first homology. It does not assume irreducibility of the manifold, a knot-surgery presentation, cyclic first homology, or Morse–Bott nondegeneracy.
++
++The published [Baldwin–Sivek paper](https://msp.org/gt/2018/22-7/gt-v22-n7-p13-p.pdf), Propositions 4.4–4.5, Theorem 4.6, and Proposition 4.7, printed pp. 4353–4356, were read. They support exactly the conditional conclusion used in the artifact. Under the reducible-only hypothesis, Morse–Bott nondegeneracy is equivalent to vanishing of adjoint $H^1$ for **all** representations and to the relevant adjoint-kernel cyclic covers being rational homology spheres. This does not mean that every finite cover must be a rational homology sphere. The spectral-sequence upper bound and Euler-characteristic lower bound give equality under that hypothesis.
++
++## Representation topology versus deformation data
++
++Every abelian SU(2) representation can be diagonalized. Characters of the finite group $H_1(Y)$ give conjugacy classes, with precisely the inversion identification. Central characters give single-point orbits, and noncentral characters give $SU(2)/U(1)\cong S^2$. Finitely many disjoint compact orbits are the components of the representation set. The total ordinary homology rank is therefore the order of $H_1(Y)$, as in the published proof.
++
++This does not identify the transverse Hessian kernel. The off-diagonal adjoint action of $\operatorname{diag}(a,a^{-1})$ multiplies the complex coordinate by $a^2$. Thus the rank-one coefficient system is $\chi^2$, not $\chi$. The adjoint system splits into a trivial real line and the realification of that complex system. Since the rational homology sphere has trivial real first cohomology, the stated dimension formula follows. Actual isolated representation orbits can still have obstructed first-order normal deformations; no contradiction is present.
++
++The known theorem applies when all characters are central, or more generally when every displayed twisted cohomology group vanishes. The artifact correctly credits these cases and does not infer the missing vanishing solely from the set of representations.
++
++## Quartic local diagnostic
++
++For $x=|z_1|^2$ and $y=|z_2|^2$, the function is $x^2-3xy+2y^2$. The two coefficient equations in its gradient are $2x-3y=0$ and $-3x+4y=0$ when both coordinates are nonzero. Their determinant is $-1$. On either coordinate axis the remaining equation also forces the origin. The Hessian vanishes there by degree four homogeneity. Scalar circle multiplication, including weight two, preserves both squared norms.
++
++On $S^3$, put $s=|z_1|^2$, so the lower-link condition becomes $(2s-1)(3s-2)\le0$. The interval is exactly $[1/2,2/3]$. Both complex coordinates are nonzero throughout this interval, and the explicit parametrization
++
++$$(s,e^{i\theta_1},e^{i\theta_2})\longmapsto
++(\sqrt{s}\,e^{i\theta_1},\sqrt{1-s}\,e^{i\theta_2})$$
++
++is a product homeomorphism from the interval times $T^2$ onto the lower link. Homogeneity makes the local nonpositive sublevel set a cone on this link. The punctured cone retracts onto $T^2$, so the long exact sequence of the pair gives $H_2\cong\mathbb C^2$, $H_3\cong\mathbb C$, and zero in other degrees. Total rank three and Euler characteristic one are correct.
++
++This falsifies the proposed abstract shortcut that an isolated analytic circle-invariant critical set with the expected Euler characteristic must have the local homology of a point. It proves nothing about realizing this particular germ as a Chern–Simons slice. Equivariant Floer data, gauge-theoretic restrictions, and differentials are not replaced by ordinary local homology. The artifact expressly retains this limitation, which is essential to its correctness.
++
++## Versioned SU(2)-clean claim and trefoil surgery
++
++The current arXiv record for [Bascapè, 2608.20551](https://arxiv.org/abs/2608.20551) lists only v1, submitted 20 August 2026. I read its global conventions, Section 2, Theorem 3.5 on p. 5, Definition 5.3 and Corollary 5.4 on p. 9, and the associated proof. Pages 5 and 9 were visually checked.
++
++Definition 5.3 uses every applicable integer surgery coefficient and **unsquared** roots of unity. No irreducibility requirement on the filling, exclusion of the reducible torus-knot slope, or coprimality condition excluding slope 6 appears there. The meridian/null-longitude convention is the usual one. The phrase nontrivial surgery excludes the meridional filling; the positive integer slope 6 is not excluded. Corollary 5.4 lists torus knots, while the preceding Theorem 3.5 explicitly includes the additional slope $2p$ for $T_{p,2}$.
++
++The surgery computation is independently supported by [Sivek–Zentner, Proposition 4.3, p. 14](https://spiral.imperial.ac.uk/server/api/core/bitstreams/31fba2ba-24ed-45cb-9374-dad47877adcc/content), including its proof, which was read and rendered. For the trefoil, the $pq=6$ filling has group $C_2*C_3$. The source writes the connected sum as $L(2,3)\#L(3,2)$; lens-space orientation conventions do not affect the group and cohomology checks here. The artifact's peripheral calculation, killing the regular fiber $\mu^6\lambda$, gives the same group and $H_1\cong C_6$.
++
++In SU(2), an element with square equal to the identity is $I$ or $-I$: diagonalize the unitary matrix and use its determinant-one condition. Hence every representation of $C_2*C_3$ sends the order-two generator to a central matrix. Its image is abelian (indeed finite cyclic), regardless of the choice of the order-three image.
++
++The trefoil Alexander polynomial is $\Phi_6(t)=t^2-t+1$. Thus
++
++$$\gcd(\Phi_6(t),t^6-1)=\Phi_6(t),\qquad
++\gcd(\Phi_6(t^2),t^6-1)=1.$$
++
++The positive slope-6 filling therefore fails the unsquared condition as printed, while meeting the squared condition in Baldwin–Sivek Proposition 4.7. This establishes the specific inconsistency in the torus-knot clause of Corollary 5.4 under its printed Definition 5.3. It does not evaluate the other results of the 2026 paper or ascribe a reason for the omission. It is not an accusation, an official erratum, or a claimed new resolution of KP-3.51.
++
++There is an additional direct check of the square distinction. A scalar coefficient system on $C_2*C_3=\langle a,b\mid a^2=b^3=1\rangle$ has character values $\alpha,\beta$. Its 1-cocycles $(u,v)$ satisfy
++
++$$(1+\alpha)u=0,\qquad (1+\beta+\beta^2)v=0,$$
++
++and coboundaries span $(\alpha-1,\beta-1)$. For the six characters of $C_6$, the unsquared complex $H^1$ dimensions are $0,1,0,0,0,1$. For their squares, $\alpha^2=1$ and the corresponding dimensions are all zero. Thus the relevant adjoint cohomology vanishes for every representation of this filling. The established theorem gives instanton rank $6$, not a counterexample to its conclusion.
++
++## Other source boundaries and reproducibility
++
++[Li–Ye, 2511.17877v1](https://arxiv.org/abs/2511.17877), Lemma 7.1 on p. 32, explicitly uses squared roots and the prime-power or twice-prime-power numerator condition. It does not settle arbitrary rational homology spheres. The current arXiv record still lists v1. In [Bascapè 2408.16635v2](https://arxiv.org/abs/2408.16635), Theorem 1.5 is about Heegaard Floer L-spaces in a specified graph-manifold family. Its p. 1 introductory biconditional is indeed stronger than the sufficient instanton implication proved in the cited Baldwin–Sivek theorem; no necessity assertion is used here. The p. 3 statement gives that sufficient implication correctly. These are source-scope distinctions, not a conclusion about the validity of the graph-manifold classification.
++
++The submitted verifier was copied before execution. All **114 submitted assertions** pass. The independent verifier passes **100 exact assertions**, including the six-character cocycle calculation, the adjoint square weight, local critical-group arithmetic, and three-factor finite character groups. The tests do not compute instanton homology or provide a manifold realization of the quartic.
++
++Run `python3 submitted_verify.py` and `python3 independent_checks.py` from this review directory with Python 3 and SymPy 1.14.0. The scripts write only their deterministic review result files.
++
++**Required corrections: none.** The full target remains **unsolved** after the author's one attempted route. Preserve the narrow limits of the local diagnostic and versioned source check, all prior-result credit, and the absence of novelty and full-resolution claims. This AI review is unrefereed and covers the frozen snapshot only.
+diff --git a/unsolved_math_prioritization/attempts/2849/review/independent_checks.py b/unsolved_math_prioritization/attempts/2849/review/independent_checks.py
+new file mode 100644
+index 000000000..d968912ba
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2849/review/independent_checks.py
+@@ -0,0 +1,72 @@
++#!/usr/bin/env python3
++"""Independent exact algebra and group-cohomology controls; no Floer computation."""
++from pathlib import Path
++from itertools import product
++import json,math
++import sympy as s
++checks={}
++def ck(name,value):
++ assert bool(value),name
++ checks[name]='PASS'
++t=s.symbols('t');delta=t*t-t+1
++ck('alexander_from_torus_formula',s.cancel((t**6-1)*(t-1)/((t**2-1)*(t**3-1))-delta)==0)
++ck('unsquared_sixth_roots',s.gcd(delta,t**6-1)==delta)
++ck('squared_sixth_roots',s.gcd(delta.subs(t,t*t),t**6-1)==1)
++ck('cube_roots_do_not_vanish',s.gcd(delta,t**3-1)==1)
++ck('phi6_identity',s.cyclotomic_poly(6,t)==delta)
++# Verify all six rank-one local-system H^1 dimensions directly for C2*C3.
++# Cocycle constraints: (1+alpha)u=0, (1+beta+beta^2)v=0.
++# Coboundaries form the span of (alpha-1,beta-1).
++w=(-1+s.I*s.sqrt(3))/2
++def h1dim(alpha,beta):
++ R=s.diag(s.simplify(1+alpha),s.simplify(1+beta+beta*beta))
++ B=s.Matrix([s.simplify(alpha-1),s.simplify(beta-1)])
++ assert (R*B).applyfunc(s.simplify)==s.zeros(2,1)
++ return 2-R.rank()-B.rank()
++raw=[];square=[]
++for k in range(6):
++ alpha=s.Integer(-1)**k; beta=s.simplify(w**k)
++ raw.append(h1dim(alpha,beta));square.append(h1dim(alpha**2,s.simplify(beta**2)))
++ ck(f'character_{k}_order_relations',s.simplify(alpha**2-1)==0 and s.simplify(beta**3-1)==0)
++ ck(f'squared_character_{k}_normal_cohomology_zero',square[-1]==0)
++ck('unsquared_character_dimensions',raw==[0,1,0,0,0,1])
++ck('full_cyclic_cover_rank_control',sum(raw)==2)
++ck('abelianization_order',2*3==6 and math.gcd(2,3)==1)
++# Adjoint action on off-diagonal matrices carries the square of the character.
++a,z,zz=s.symbols('a z zz',nonzero=True)
++U=s.diag(a,1/a);V=s.Matrix([[0,z],[-zz,0]])
++ck('adjoint_square_weight',U*V*U.inv()==s.Matrix([[0,a*a*z],[-zz/(a*a),0]]))
++B=s.Matrix(s.symbols('b0:4')).reshape(2,2)
++for sign in [-1,1]:ck(f'central_order_two_commutes_{sign}',sign*s.eye(2)*B==B*sign*s.eye(2))
++# Local quartic diagnostic and torus lower link.
++u,v,p,q=s.symbols('u v p q',real=True)
++x=u*u+v*v;y=p*p+q*q;F=x*x-3*x*y+2*y*y
++ck('quartic_factorization',s.expand(F-(x-y)*(x-2*y))==0)
++ck('euler_homogeneity',s.expand(sum(a*s.diff(F,a) for a in [u,v,p,q])-4*F)==0)
++ck('quartic_hessian_zero',s.hessian(F,[u,v,p,q]).subs({u:0,v:0,p:0,q:0})==s.zeros(4))
++ck('critical_coefficient_matrix',s.Matrix([[2,-3],[-3,4]]).det()==-1)
++X=s.symbols('X',real=True);link=s.expand(X*X-3*X*(1-X)+2*(1-X)**2)
++ck('sphere_link_polynomial',s.factor(link)==(2*X-1)*(3*X-2))
++ck('sphere_link_endpoints',s.solve(link,X)==[s.Rational(1,2),s.Rational(2,3)])
++ck('link_interior_negative',link.subs(X,s.Rational(3,5))<0)
++ck('link_left_exterior_positive',link.subs(X,s.Rational(1,3))>0)
++ck('link_right_exterior_positive',link.subs(X,s.Rational(3,4))>0)
++ck('link_coordinates_nonzero',s.Rational(1,2)>0 and s.Rational(2,3)<1)
++# Cellular chain ranks for T^2 and reduced homology shifted by the cone pair.
++chain=[1,2,1]; boundary_ranks=[0,0,0,0]
++betti=[chain[i]-boundary_ranks[i]-boundary_ranks[i+1] for i in range(3)]
++relative={0:0,1:betti[0]-1,2:betti[1],3:betti[2],4:0}
++ck('local_relative_ranks',relative=={0:0,1:0,2:2,3:1,4:0})
++ck('local_total_rank',sum(relative.values())==3)
++ck('local_euler_characteristic',sum((-1)**k*n for k,n in relative.items())==1)
++# Three-factor finite character groups, independent from the author's two-factor enumeration.
++for ns in product(range(1,5),repeat=3):
++ chars=list(product(*(range(n) for n in ns)));seen=set();points=spheres=0
++ for c in chars:
++  if c in seen:continue
++  inv=tuple((-a)%n for a,n in zip(c,ns));seen.add(c);seen.add(inv)
++  if inv==c:points+=1
++  else:spheres+=1
++ ck('orbit_homology_'+str(ns),points+2*spheres==math.prod(ns) and points==math.prod(math.gcd(n,2) for n in ns))
++out={'passed':len(checks),'failed':0,'sympy_version':s.__version__,'checks':checks,'trefoil_rank_one_H1':raw,'trefoil_squared_rank_one_H1':square,'local_critical_groups':relative,'scope':'Exact polynomial, scalar local-system cocycle, character orbit, and lower-link arithmetic controls. No instanton homology computation, realization of the quartic by a manifold, or full solution of KP-3.51.'}
++Path(__file__).with_name('independent_results.json').write_text(json.dumps(out,indent=2)+'\n');print(json.dumps({k:v for k,v in out.items() if k!='checks'},indent=2))
+diff --git a/unsolved_math_prioritization/attempts/2849/review/independent_results.json b/unsolved_math_prioritization/attempts/2849/review/independent_results.json
+new file mode 100644
+index 000000000..c5041480e
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2849/review/independent_results.json
+@@ -0,0 +1,131 @@
++{
++  "passed": 100,
++  "failed": 0,
++  "sympy_version": "1.14.0",
++  "checks": {
++    "alexander_from_torus_formula": "PASS",
++    "unsquared_sixth_roots": "PASS",
++    "squared_sixth_roots": "PASS",
++    "cube_roots_do_not_vanish": "PASS",
++    "phi6_identity": "PASS",
++    "character_0_order_relations": "PASS",
++    "squared_character_0_normal_cohomology_zero": "PASS",
++    "character_1_order_relations": "PASS",
++    "squared_character_1_normal_cohomology_zero": "PASS",
++    "character_2_order_relations": "PASS",
++    "squared_character_2_normal_cohomology_zero": "PASS",
++    "character_3_order_relations": "PASS",
++    "squared_character_3_normal_cohomology_zero": "PASS",
++    "character_4_order_relations": "PASS",
++    "squared_character_4_normal_cohomology_zero": "PASS",
++    "character_5_order_relations": "PASS",
++    "squared_character_5_normal_cohomology_zero": "PASS",
++    "unsquared_character_dimensions": "PASS",
++    "full_cyclic_cover_rank_control": "PASS",
++    "abelianization_order": "PASS",
++    "adjoint_square_weight": "PASS",
++    "central_order_two_commutes_-1": "PASS",
++    "central_order_two_commutes_1": "PASS",
++    "quartic_factorization": "PASS",
++    "euler_homogeneity": "PASS",
++    "quartic_hessian_zero": "PASS",
++    "critical_coefficient_matrix": "PASS",
++    "sphere_link_polynomial": "PASS",
++    "sphere_link_endpoints": "PASS",
++    "link_interior_negative": "PASS",
++    "link_left_exterior_positive": "PASS",
++    "link_right_exterior_positive": "PASS",
++    "link_coordinates_nonzero": "PASS",
++    "local_relative_ranks": "PASS",
++    "local_total_rank": "PASS",
++    "local_euler_characteristic": "PASS",
++    "orbit_homology_(1, 1, 1)": "PASS",
++    "orbit_homology_(1, 1, 2)": "PASS",
++    "orbit_homology_(1, 1, 3)": "PASS",
++    "orbit_homology_(1, 1, 4)": "PASS",
++    "orbit_homology_(1, 2, 1)": "PASS",
++    "orbit_homology_(1, 2, 2)": "PASS",
++    "orbit_homology_(1, 2, 3)": "PASS",
++    "orbit_homology_(1, 2, 4)": "PASS",
++    "orbit_homology_(1, 3, 1)": "PASS",
++    "orbit_homology_(1, 3, 2)": "PASS",
++    "orbit_homology_(1, 3, 3)": "PASS",
++    "orbit_homology_(1, 3, 4)": "PASS",
++    "orbit_homology_(1, 4, 1)": "PASS",
++    "orbit_homology_(1, 4, 2)": "PASS",
++    "orbit_homology_(1, 4, 3)": "PASS",
++    "orbit_homology_(1, 4, 4)": "PASS",
++    "orbit_homology_(2, 1, 1)": "PASS",
++    "orbit_homology_(2, 1, 2)": "PASS",
++    "orbit_homology_(2, 1, 3)": "PASS",
++    "orbit_homology_(2, 1, 4)": "PASS",
++    "orbit_homology_(2, 2, 1)": "PASS",
++    "orbit_homology_(2, 2, 2)": "PASS",
++    "orbit_homology_(2, 2, 3)": "PASS",
++    "orbit_homology_(2, 2, 4)": "PASS",
++    "orbit_homology_(2, 3, 1)": "PASS",
++    "orbit_homology_(2, 3, 2)": "PASS",
++    "orbit_homology_(2, 3, 3)": "PASS",
++    "orbit_homology_(2, 3, 4)": "PASS",
++    "orbit_homology_(2, 4, 1)": "PASS",
++    "orbit_homology_(2, 4, 2)": "PASS",
++    "orbit_homology_(2, 4, 3)": "PASS",
++    "orbit_homology_(2, 4, 4)": "PASS",
++    "orbit_homology_(3, 1, 1)": "PASS",
++    "orbit_homology_(3, 1, 2)": "PASS",
++    "orbit_homology_(3, 1, 3)": "PASS",
++    "orbit_homology_(3, 1, 4)": "PASS",
++    "orbit_homology_(3, 2, 1)": "PASS",
++    "orbit_homology_(3, 2, 2)": "PASS",
++    "orbit_homology_(3, 2, 3)": "PASS",
++    "orbit_homology_(3, 2, 4)": "PASS",
++    "orbit_homology_(3, 3, 1)": "PASS",
++    "orbit_homology_(3, 3, 2)": "PASS",
++    "orbit_homology_(3, 3, 3)": "PASS",
++    "orbit_homology_(3, 3, 4)": "PASS",
++    "orbit_homology_(3, 4, 1)": "PASS",
++    "orbit_homology_(3, 4, 2)": "PASS",
++    "orbit_homology_(3, 4, 3)": "PASS",
++    "orbit_homology_(3, 4, 4)": "PASS",
++    "orbit_homology_(4, 1, 1)": "PASS",
++    "orbit_homology_(4, 1, 2)": "PASS",
++    "orbit_homology_(4, 1, 3)": "PASS",
++    "orbit_homology_(4, 1, 4)": "PASS",
++    "orbit_homology_(4, 2, 1)": "PASS",
++    "orbit_homology_(4, 2, 2)": "PASS",
++    "orbit_homology_(4, 2, 3)": "PASS",
++    "orbit_homology_(4, 2, 4)": "PASS",
++    "orbit_homology_(4, 3, 1)": "PASS",
++    "orbit_homology_(4, 3, 2)": "PASS",
++    "orbit_homology_(4, 3, 3)": "PASS",
++    "orbit_homology_(4, 3, 4)": "PASS",
++    "orbit_homology_(4, 4, 1)": "PASS",
++    "orbit_homology_(4, 4, 2)": "PASS",
++    "orbit_homology_(4, 4, 3)": "PASS",
++    "orbit_homology_(4, 4, 4)": "PASS"
++  },
++  "trefoil_rank_one_H1": [
++    0,
++    1,
++    0,
++    0,
++    0,
++    1
++  ],
++  "trefoil_squared_rank_one_H1": [
++    0,
++    0,
++    0,
++    0,
++    0,
++    0
++  ],
++  "local_critical_groups": {
++    "0": 0,
++    "1": 0,
++    "2": 2,
++    "3": 1,
++    "4": 0
++  },
++  "scope": "Exact polynomial, scalar local-system cocycle, character orbit, and lower-link arithmetic controls. No instanton homology computation, realization of the quartic by a manifold, or full solution of KP-3.51."
++}
+diff --git a/unsolved_math_prioritization/attempts/2849/review/submitted_results.json b/unsolved_math_prioritization/attempts/2849/review/submitted_results.json
+new file mode 100644
+index 000000000..50d5d2e1f
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2849/review/submitted_results.json
+@@ -0,0 +1,14 @@
++{
++  "passed": true,
++  "assertions": 114,
++  "scope": "Exact polynomial, circle-symmetry, lower-link cellular-homology arithmetic, and finite-character-orbit diagnostics. No 3-manifold Floer computation or proof of KP-3.51.",
++  "local_critical_groups": {
++    "0": 0,
++    "1": 0,
++    "2": 2,
++    "3": 1,
++    "4": 0
++  },
++  "trefoil_gcd_unsquared": "t**2 - t + 1",
++  "trefoil_gcd_squared": "1"
++}
+diff --git a/unsolved_math_prioritization/attempts/2849/review/submitted_verify.py b/unsolved_math_prioritization/attempts/2849/review/submitted_verify.py
+new file mode 100644
+index 000000000..05c8deaea
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2849/review/submitted_verify.py
+@@ -0,0 +1,44 @@
++"""Exact diagnostics only; this does not compute instanton Floer homology."""
++import itertools,json,math
++from pathlib import Path
++import sympy as s
++checks=[]
++def check(label,v):
++    assert bool(v),label
++    checks.append(label)
++t=s.symbols('t');D=t*t-t+1
++check('trefoil Alexander polynomial is Phi_6',s.expand(D-s.cyclotomic_poly(6,t))==0)
++check('unmodified sixth-root test fails',s.degree(s.gcd(D,t**6-1),t)==2)
++check('squared sixth-root test succeeds',s.gcd(D.subs(t,t*t),t**6-1)==1)
++check('third-root test succeeds',s.gcd(D,t**3-1)==1)
++check('torus Alexander formula reduces correctly',s.cancel(((t**6-1)*(t-1))/((t**2-1)*(t**3-1)))==D)
++# The cellular chain complex for the lower link T^2 has ranks (1,2,1)
++# and zero cellular boundaries. The cone relative punctured cone is shifted
++# reduced homology. Geometry identifying the lower link is proved in the text.
++local={0:0,1:0,2:2,3:1,4:0}
++check('local critical rank three',sum(local.values())==3)
++check('local Euler characteristic one',sum((-1)**k*v for k,v in local.items())==1)
++u,v,w,z=s.symbols('u v w z',real=True);x=u*u+v*v;y=w*w+z*z;f=(x-y)*(x-2*y)
++g=[s.diff(f,a) for a in (u,v,w,z)]
++expected=[2*u*(2*x-3*y),2*v*(2*x-3*y),2*w*(-3*x+4*y),2*z*(-3*x+4*y)]
++for i in range(4):check('exact gradient coordinate '+str(i),s.expand(g[i]-expected[i])==0)
++check('zero Hessian at origin',s.hessian(f,(u,v,w,z)).subs({u:0,v:0,w:0,z:0})==s.zeros(4))
++check('mixed critical equations invertible',s.Matrix([[2,-3],[-3,4]]).det()==-1)
++# Rational rotations independently in both complex coordinates give exact symmetry checks.
++for a,b in [(s.Rational(3,5),s.Rational(4,5)),(s.Rational(5,13),s.Rational(12,13)),(0,1)]:
++    rotated=f.subs({u:a*u-b*v,v:b*u+a*v,w:a*w-b*z,z:b*w+a*z}, simultaneous=True)
++    check('circle invariance at '+str((a,b)),s.expand(rotated-f)==0)
++q=s.symbols('q',real=True)
++check('lower link polynomial',s.expand(f.subs({u:s.sqrt(q),v:0,w:s.sqrt(1-q),z:0})-(2*q-1)*(3*q-2))==0)
++check('lower link roots',s.solve((2*q-1)*(3*q-2),q)==[s.Rational(1,2),s.Rational(2,3)])
++for a in range(1,13):
++ for b in range(1,9):
++    chars=list(itertools.product(range(a),range(b)));seen=set();central=0;spheres=0
++    for c in chars:
++      if c in seen:continue
++      inv=((-c[0])%a,(-c[1])%b);seen.update((c,inv))
++      if c==inv:central+=1
++      else:spheres+=1
++    check('abelian orbit count '+str((a,b)),central+2*spheres==a*b and central==math.gcd(a,2)*math.gcd(b,2))
++out={'passed':True,'assertions':len(checks),'scope':'Exact polynomial, circle-symmetry, lower-link cellular-homology arithmetic, and finite-character-orbit diagnostics. No 3-manifold Floer computation or proof of KP-3.51.','local_critical_groups':local,'trefoil_gcd_unsquared':str(s.gcd(D,t**6-1)),'trefoil_gcd_squared':str(s.gcd(D.subs(t,t*t),t**6-1)),'checks':checks}
++p=Path(__file__).with_name('verification.json');p.write_text(json.dumps(out,indent=2)+'\n');print(json.dumps({k:v for k,v in out.items() if k!='checks'},indent=2))
+diff --git a/unsolved_math_prioritization/attempts/2849/review/verdict.json b/unsolved_math_prioritization/attempts/2849/review/verdict.json
+new file mode 100644
+index 000000000..2eb2df2c2
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2849/review/verdict.json
+@@ -0,0 +1,27 @@
++{
++  "problem_id": 2849,
++  "problem_code": "KP-3.51",
++  "date": "2026-09-30",
++  "reviewer_model": "gpt-6-astra",
++  "reasoning_effort": "xhigh",
++  "verdict": "PASS_UNRESOLVED_OBSTRUCTION_AND_NARROW_SOURCE_CHECK",
++  "reviewed_artifact_sha256": "8822d3fb47154229752a40e3f3fcc22b09a823b653521da2344b26bc1a2d31d4",
++  "mandatory_corrections": [],
++  "full_problem_solved": false,
++  "novelty_certified": false,
++  "author_files_modified": false,
++  "submitted_checks_passed": 114,
++  "independent_checks_passed": 100,
++  "source_check_scope": "Trefoil slope 6 tests the torus-knot clause in 2608.20551v1 Corollary 5.4 under its printed unsquared-root Definition 5.3; it does not test the paper as a whole or refute KP-3.51.",
++  "local_model_scope": "Circle-invariant quartic is an abstract critical-homology diagnostic; no Chern-Simons or manifold realization claimed.",
++  "trefoil_squared_cohomology": "All six squared rank-one coefficient systems have H^1 dimension zero; known instanton L-space theorem applies.",
++  "review_sha256": "ae5a34685a49604c49ceb8f8c8500b10a78676fa9237a8975f5c029a23c73001",
++  "publication_files": [
++    "REVIEW.md",
++    "verdict.json",
++    "submitted_verify.py",
++    "submitted_results.json",
++    "independent_checks.py",
++    "independent_results.json"
++  ]
++}
+diff --git a/unsolved_math_prioritization/attempts/2849/source_checksums.json b/unsolved_math_prioritization/attempts/2849/source_checksums.json
+new file mode 100644
+index 000000000..db896cb70
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2849/source_checksums.json
+@@ -0,0 +1,49 @@
++{
++  "checked_at": "2026-09-30T05:31:32.141501+00:00",
++  "sources": [
++    {
++      "file": "bs-published.pdf",
++      "url": "https://msp.org/gt/2018/22-7/gt-v22-n7-p13-p.pdf",
++      "sha256": "8878155672962cf4fd6489b3f6f4e7d1dcf889108f3caf692319de3c42f85c15",
++      "bytes": 811743
++    },
++    {
++      "file": "stein-fillings.pdf",
++      "url": "https://www.ma.imperial.ac.uk/~ssivek/papers/stein_fillings.pdf",
++      "sha256": "a239ca5e167b91c51c0c8fb9f44c200039b5d47b9a243007d2a94482431d7f93",
++      "bytes": 663483
++    },
++    {
++      "file": "bascape2026.pdf",
++      "url": "https://arxiv.org/pdf/2608.20551v1",
++      "sha256": "e1c97c5fdd295379f2c92271aee50af6f195d7b1fe9c00661d3d91040537a484",
++      "bytes": 438635
++    },
++    {
++      "file": "bascape2024.pdf",
++      "url": "https://arxiv.org/pdf/2408.16635v2",
++      "sha256": "e7fea7edce809d7003b81bc5d8d2ea5436bf04bc8cf38c1026c80c309e65c752",
++      "bytes": 487930
++    },
++    {
++      "file": "li-ye2025.pdf",
++      "url": "https://arxiv.org/pdf/2511.17877v1",
++      "sha256": "3b88dc67d7c71df68b2ac67e3a827615332fd2285cdc13fa4669e83a7b75b9b9",
++      "bytes": 617919
++    },
++    {
++      "file": "sivek-zentner-surgery.pdf",
++      "url": "https://spiral.imperial.ac.uk/server/api/core/bitstreams/31fba2ba-24ed-45cb-9374-dad47877adcc/content",
++      "sha256": "ca374df2576d443ec8e6e057ee218ca250ae0e4156be2e9dcb990eabe5f052df",
++      "bytes": 452593
++    }
++  ],
++  "original_k3": {
++    "url": "https://math.berkeley.edu/sites/default/files/surv-295-ruberman-watermarked-author-pdf.pdf",
++    "sha256": "ae56518166fe38aaaf555c58614329228afe734e743b111badec4060877fa12f",
++    "pages": [
++      167,
++      168
++    ]
++  }
++}
+diff --git a/unsolved_math_prioritization/attempts/2849/source_record.json b/unsolved_math_prioritization/attempts/2849/source_record.json
+new file mode 100644
+index 000000000..649e12616
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2849/source_record.json
+@@ -0,0 +1,41 @@
++{
++  "id": 2849,
++  "problem_number": "KP-3.51",
++  "title": "Kirby Problem 3.51",
++  "statement": "Suppose Y is a rational homology 3-sphere such that every homomorphism $\\pi_1(Y)$ $\\to$ $\\operatorname{SU}(2)$ has abelian image. Does it follow that\n\n$$\n\\dim_{\\mathbb{C}} I^{\\#}(Y;\\mathbb{C})=|H_1(Y;\\mathbb{Z})|,\n$$\n i.e., that Y is an instanton L-space?",
++  "background": "Source: Kirby's Problems in Low-Dimensional Topology notes. Original problem number: KP-3.51.\n\nLiterature notes:\n(1) The conclusion follows if the corresponding set of reducible flat connections is Morse--Bott nondegenerate for the Chern--Simons functional, which is equivalent to Y being cyclically finite [BN90, BS18b]. This holds automatically, for instance, if Y is a homology 3-sphere. The problem is whether the conclusion follows without assuming that Y is cyclically finite.\n\n(2) If the L-space conjecture and the conjectured isomorphism between instanton homology and Heegaard Floer homology both hold (see Problems 3.59 and 3.48), then an affirmative answer to the question in the problem would imply the following: for Y an irreducible rational homology 3-sphere, if $\\pi_1(Y)$ is left-orderable, then $\\pi_1(Y)$ admits an irreducible $\\operatorname{SU}(2)$-representation. Proving the latter would be interesting in its own right.\n\n(3) One can ask a similar question regarding instanton Floer homology and representations from $\\pi_1(Y)$ to $\\operatorname{SU}(N)$ for $N>2$; see [DIS24] for recent work in the $N=3$ case.\n\nReferences cited:\n- [BN90] S. Boyer and A. Nicas. Varieties of group representations and Casson\u2019s invariant for rational homology 3-spheres. Trans. Amer. Math. Soc., 322(2):507\u2013522, 1990. doi:10.2307/2001712.\n- [BS18b] John A. Baldwin and Steven Sivek. Stein fillings and $\\mathrm{SU}(2)$ representations. Geom. Topol., 22(7):4307\u20134380, 2018. doi:10.2140/gt.2018.22.4307.\n- [DIS24] Aliakbar Daemi, Nobuo Iida, and Christopher Scaduto. Rank three instantons, representations and sutures, 2024. arXiv:2402.10448.\n\n<!-- LITERATURE-TRIAGE:BEGIN -->\n## Literature review (checked 2026-08-17)\n\n**Status:** partially_solved  \n**Classification:** PARTIAL-PROGRESS\n\n**Current literature assessment.** The instanton L-space conclusion holds under cyclic finiteness/Morse--Bott nondegeneracy, including homology spheres, but is open without this hypothesis.\n\n**Verified partial progress.**\n\n- Cyclically finite manifolds satisfy the desired conclusion.\n\n**Full solution or refutation.**\n\nNo proof from abelian SU2 representations alone was verified.\n\n**What remains.**\n\nRemove cyclic-finiteness assumption or find a counterexample.\n\n**Sources checked.**\n\n- K3: A New Problem List in Low-Dimensional Topology, Problem 3.51 (2026). (authoritative_secondary): https://aimath.org/pastworkshops/kirbylistrep.pdf\n  Evidence used: States the cyclic-finite theorem and open generalization.\n\n**Review notes.** No source alteration.\n\nThis is a dated literature triage; an open classification is not proof that no later or unindexed result exists.\n<!-- LITERATURE-TRIAGE:END -->",
++  "difficulty_level_id": 3,
++  "status": "open",
++  "category_id": 7,
++  "set_id": 11,
++  "view_count": 0,
++  "favorite_count": 0,
++  "created_at": "2026-05-13T00:00:00Z",
++  "updated_at": "2026-05-13T00:00:00Z",
++  "published": true,
++  "category": {
++    "id": 7,
++    "name": "topology",
++    "display_name": "Topology",
++    "description": "Properties preserved under continuous deformations.",
++    "slug": "topology",
++    "order_index": 7,
++    "created_at": "2026-07-31T15:26:25.671Z"
++  },
++  "difficulty": {
++    "id": 3,
++    "level": 3,
++    "name": "L3: Advanced",
++    "description": "Difficult problems requiring specialized knowledge and sophisticated techniques.",
++    "color_class": "text-yellow-600 bg-yellow-50 border-yellow-200"
++  },
++  "set": {
++    "id": 11,
++    "name": "kirby_low_dimensional_topology",
++    "display_name": "Kirby's Problems in Low-Dimensional Topology",
++    "description": "Problems from Kirby-style notes on low-dimensional topology, including knot theory, 3-manifolds, 4-manifolds, and related invariants.",
++    "slug": "kirby-low-dimensional-topology",
++    "order_index": 11,
++    "created_at": "2026-07-31T15:26:25.671Z"
++  }
++}
+diff --git a/unsolved_math_prioritization/attempts/2849/turns.json b/unsolved_math_prioritization/attempts/2849/turns.json
+new file mode 100644
+index 000000000..bacd16ccf
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2849/turns.json
+@@ -0,0 +1,14 @@
++{
++  "id": 2849,
++  "count": 1,
++  "attempts": [
++    {
++      "number": 1,
++      "route": "Extend reducible critical-set count beyond Morse-Bott nondegeneracy; test deformation and local homology inference.",
++      "outcome": "unresolved",
++      "gap": "No vanishing theorem for normal cohomology and no control of actual degenerate Chern-Simons local Floer contributions.",
++      "artifact": "OBSTRUCTION.md",
++      "sha256": "8822d3fb47154229752a40e3f3fcc22b09a823b653521da2344b26bc1a2d31d4"
++    }
++  ]
++}
+diff --git a/unsolved_math_prioritization/attempts/2849/verification.json b/unsolved_math_prioritization/attempts/2849/verification.json
+new file mode 100644
+index 000000000..7aeb4965d
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2849/verification.json
+@@ -0,0 +1,130 @@
++{
++  "passed": true,
++  "assertions": 114,
++  "scope": "Exact polynomial, circle-symmetry, lower-link cellular-homology arithmetic, and finite-character-orbit diagnostics. No 3-manifold Floer computation or proof of KP-3.51.",
++  "local_critical_groups": {
++    "0": 0,
++    "1": 0,
++    "2": 2,
++    "3": 1,
++    "4": 0
++  },
++  "trefoil_gcd_unsquared": "t**2 - t + 1",
++  "trefoil_gcd_squared": "1",
++  "checks": [
++    "trefoil Alexander polynomial is Phi_6",
++    "unmodified sixth-root test fails",
++    "squared sixth-root test succeeds",
++    "third-root test succeeds",
++    "torus Alexander formula reduces correctly",
++    "local critical rank three",
++    "local Euler characteristic one",
++    "exact gradient coordinate 0",
++    "exact gradient coordinate 1",
++    "exact gradient coordinate 2",
++    "exact gradient coordinate 3",
++    "zero Hessian at origin",
++    "mixed critical equations invertible",
++    "circle invariance at (3/5, 4/5)",
++    "circle invariance at (5/13, 12/13)",
++    "circle invariance at (0, 1)",
++    "lower link polynomial",
++    "lower link roots",
++    "abelian orbit count (1, 1)",
++    "abelian orbit count (1, 2)",
++    "abelian orbit count (1, 3)",
++    "abelian orbit count (1, 4)",
++    "abelian orbit count (1, 5)",
++    "abelian orbit count (1, 6)",
++    "abelian orbit count (1, 7)",
++    "abelian orbit count (1, 8)",
++    "abelian orbit count (2, 1)",
++    "abelian orbit count (2, 2)",
++    "abelian orbit count (2, 3)",
++    "abelian orbit count (2, 4)",
++    "abelian orbit count (2, 5)",
++    "abelian orbit count (2, 6)",
++    "abelian orbit count (2, 7)",
++    "abelian orbit count (2, 8)",
++    "abelian orbit count (3, 1)",
++    "abelian orbit count (3, 2)",
++    "abelian orbit count (3, 3)",
++    "abelian orbit count (3, 4)",
++    "abelian orbit count (3, 5)",
++    "abelian orbit count (3, 6)",
++    "abelian orbit count (3, 7)",
++    "abelian orbit count (3, 8)",
++    "abelian orbit count (4, 1)",
++    "abelian orbit count (4, 2)",
++    "abelian orbit count (4, 3)",
++    "abelian orbit count (4, 4)",
++    "abelian orbit count (4, 5)",
++    "abelian orbit count (4, 6)",
++    "abelian orbit count (4, 7)",
++    "abelian orbit count (4, 8)",
++    "abelian orbit count (5, 1)",
++    "abelian orbit count (5, 2)",
++    "abelian orbit count (5, 3)",
++    "abelian orbit count (5, 4)",
++    "abelian orbit count (5, 5)",
++    "abelian orbit count (5, 6)",
++    "abelian orbit count (5, 7)",
++    "abelian orbit count (5, 8)",
++    "abelian orbit count (6, 1)",
++    "abelian orbit count (6, 2)",
++    "abelian orbit count (6, 3)",
++    "abelian orbit count (6, 4)",
++    "abelian orbit count (6, 5)",
++    "abelian orbit count (6, 6)",
++    "abelian orbit count (6, 7)",
++    "abelian orbit count (6, 8)",
++    "abelian orbit count (7, 1)",
++    "abelian orbit count (7, 2)",
++    "abelian orbit count (7, 3)",
++    "abelian orbit count (7, 4)",
++    "abelian orbit count (7, 5)",
++    "abelian orbit count (7, 6)",
++    "abelian orbit count (7, 7)",
++    "abelian orbit count (7, 8)",
++    "abelian orbit count (8, 1)",
++    "abelian orbit count (8, 2)",
++    "abelian orbit count (8, 3)",
++    "abelian orbit count (8, 4)",
++    "abelian orbit count (8, 5)",
++    "abelian orbit count (8, 6)",
++    "abelian orbit count (8, 7)",
++    "abelian orbit count (8, 8)",
++    "abelian orbit count (9, 1)",
++    "abelian orbit count (9, 2)",
++    "abelian orbit count (9, 3)",
++    "abelian orbit count (9, 4)",
++    "abelian orbit count (9, 5)",
++    "abelian orbit count (9, 6)",
++    "abelian orbit count (9, 7)",
++    "abelian orbit count (9, 8)",
++    "abelian orbit count (10, 1)",
++    "abelian orbit count (10, 2)",
++    "abelian orbit count (10, 3)",
++    "abelian orbit count (10, 4)",
++    "abelian orbit count (10, 5)",
++    "abelian orbit count (10, 6)",
++    "abelian orbit count (10, 7)",
++    "abelian orbit count (10, 8)",
++    "abelian orbit count (11, 1)",
++    "abelian orbit count (11, 2)",
++    "abelian orbit count (11, 3)",
++    "abelian orbit count (11, 4)",
++    "abelian orbit count (11, 5)",
++    "abelian orbit count (11, 6)",
++    "abelian orbit count (11, 7)",
++    "abelian orbit count (11, 8)",
++    "abelian orbit count (12, 1)",
++    "abelian orbit count (12, 2)",
++    "abelian orbit count (12, 3)",
++    "abelian orbit count (12, 4)",
++    "abelian orbit count (12, 5)",
++    "abelian orbit count (12, 6)",
++    "abelian orbit count (12, 7)",
++    "abelian orbit count (12, 8)"
++  ]
++}
+diff --git a/unsolved_math_prioritization/attempts/2849/verify.py b/unsolved_math_prioritization/attempts/2849/verify.py
+new file mode 100644
+index 000000000..05c8deaea
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/2849/verify.py
+@@ -0,0 +1,44 @@
++"""Exact diagnostics only; this does not compute instanton Floer homology."""
++import itertools,json,math
++from pathlib import Path
++import sympy as s
++checks=[]
++def check(label,v):
++    assert bool(v),label
++    checks.append(label)
++t=s.symbols('t');D=t*t-t+1
++check('trefoil Alexander polynomial is Phi_6',s.expand(D-s.cyclotomic_poly(6,t))==0)
++check('unmodified sixth-root test fails',s.degree(s.gcd(D,t**6-1),t)==2)
++check('squared sixth-root test succeeds',s.gcd(D.subs(t,t*t),t**6-1)==1)
++check('third-root test succeeds',s.gcd(D,t**3-1)==1)
++check('torus Alexander formula reduces correctly',s.cancel(((t**6-1)*(t-1))/((t**2-1)*(t**3-1)))==D)
++# The cellular chain complex for the lower link T^2 has ranks (1,2,1)
++# and zero cellular boundaries. The cone relative punctured cone is shifted
++# reduced homology. Geometry identifying the lower link is proved in the text.
++local={0:0,1:0,2:2,3:1,4:0}
++check('local critical rank three',sum(local.values())==3)
++check('local Euler characteristic one',sum((-1)**k*v for k,v in local.items())==1)
++u,v,w,z=s.symbols('u v w z',real=True);x=u*u+v*v;y=w*w+z*z;f=(x-y)*(x-2*y)
++g=[s.diff(f,a) for a in (u,v,w,z)]
++expected=[2*u*(2*x-3*y),2*v*(2*x-3*y),2*w*(-3*x+4*y),2*z*(-3*x+4*y)]
++for i in range(4):check('exact gradient coordinate '+str(i),s.expand(g[i]-expected[i])==0)
++check('zero Hessian at origin',s.hessian(f,(u,v,w,z)).subs({u:0,v:0,w:0,z:0})==s.zeros(4))
++check('mixed critical equations invertible',s.Matrix([[2,-3],[-3,4]]).det()==-1)
++# Rational rotations independently in both complex coordinates give exact symmetry checks.
++for a,b in [(s.Rational(3,5),s.Rational(4,5)),(s.Rational(5,13),s.Rational(12,13)),(0,1)]:
++    rotated=f.subs({u:a*u-b*v,v:b*u+a*v,w:a*w-b*z,z:b*w+a*z}, simultaneous=True)
++    check('circle invariance at '+str((a,b)),s.expand(rotated-f)==0)
++q=s.symbols('q',real=True)
++check('lower link polynomial',s.expand(f.subs({u:s.sqrt(q),v:0,w:s.sqrt(1-q),z:0})-(2*q-1)*(3*q-2))==0)
++check('lower link roots',s.solve((2*q-1)*(3*q-2),q)==[s.Rational(1,2),s.Rational(2,3)])
++for a in range(1,13):
++ for b in range(1,9):
++    chars=list(itertools.product(range(a),range(b)));seen=set();central=0;spheres=0
++    for c in chars:
++      if c in seen:continue
++      inv=((-c[0])%a,(-c[1])%b);seen.update((c,inv))
++      if c==inv:central+=1
++      else:spheres+=1
++    check('abelian orbit count '+str((a,b)),central+2*spheres==a*b and central==math.gcd(a,2)*math.gcd(b,2))
++out={'passed':True,'assertions':len(checks),'scope':'Exact polynomial, circle-symmetry, lower-link cellular-homology arithmetic, and finite-character-orbit diagnostics. No 3-manifold Floer computation or proof of KP-3.51.','local_critical_groups':local,'trefoil_gcd_unsquared':str(s.gcd(D,t**6-1)),'trefoil_gcd_squared':str(s.gcd(D.subs(t,t*t),t**6-1)),'checks':checks}
++p=Path(__file__).with_name('verification.json');p.write_text(json.dumps(out,indent=2)+'\n');print(json.dumps({k:v for k,v in out.items() if k!='checks'},indent=2))

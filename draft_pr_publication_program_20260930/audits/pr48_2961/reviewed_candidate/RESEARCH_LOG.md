@@ -1,0 +1,1 @@
+2026-10-03T07:12:04.596979+00:00 — Actual administrative freeze; source audit75%; full-target discovery0%. UNSOLVED, one shared original2/5; new0; audit0. NEW whole-current review PENDING. No paper/DOI/tracker.
