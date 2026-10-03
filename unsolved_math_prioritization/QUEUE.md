@@ -428,7 +428,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 417 | 6200004 / AMR-061-0004 | Boundaries of Groups and Kleinian Groups — Problem 4 | 0.1321 | 6.0 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 418 | 6200043 / AMR-061-0043 | Boundaries of Groups and Kleinian Groups — Problem 43 | 0.1321 | 6.0 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 419 | 6200082 / AMR-061-0082 | Boundaries of Groups and Kleinian Groups — Problem 82 | 0.1321 | 6.0 | 3 | 2005 | already_solved | 0/5 |  |  |  |
-| 420 | 30005804 / OWR-14298163-008 | Dolnikov’s Colorful Transversal Conjecture | 0.1321 | 6.0 | 3 | 2024 | queued | 0/5 |  |  |  |
+| 420 | 30005804 / OWR-14298163-008 | Dolnikov’s Colorful Transversal Conjecture | 0.1321 | 6.0 | 3 | 2024 | unsolved | 5/5 |  |  |  |
 | 421 | 11000020 / AMR-109-0020 | Problem 2.19 — (Canonical basepoints for Mg). | 0.1320 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 422 | 11000158 / AMR-109-0158 | Problem 2.1 — Assume, for this problem, that M is a 3-manifold with non-empty boundary. | 0.1320 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 423 | 20000693 / AIM-ANALYTIC_NUMBER_THEORY-0057 | Multiplicity-sensitive moments of products of Dirichlet L-functions | 0.1320 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
