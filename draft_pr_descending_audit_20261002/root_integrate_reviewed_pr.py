@@ -5,7 +5,8 @@ from pathlib import Path
 P=Path(__file__).resolve().parent
 A=P/'audits'/sys.argv[1]
 n=int(sys.argv[2]);problem=sys.argv[3]
-m=json.loads((A/'repaired_snapshot_manifest.json').read_text());head=m['head']
+manifest_name=sys.argv[4] if len(sys.argv)>4 else 'repaired_snapshot_manifest.json'
+m=json.loads((A/manifest_name).read_text());head=m['head']
 queue='unsolved_math_prioritization/QUEUE.md'
 expected={e['path'] for e in m['files']}
 def sha(b):return hashlib.sha256(b).hexdigest()
