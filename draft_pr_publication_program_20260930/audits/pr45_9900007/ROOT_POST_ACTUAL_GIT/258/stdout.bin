@@ -1,0 +1,102 @@
+# PR45 current science, source and provenance qualifications
+
+PR45 /9900007 /AMR-098-0007 remains UNSOLVED. The original9439-byte partial proof rejects only the illustrative synchronous metric condition for a single fixed joint construction. The broader general two-process characterization is neither supplied nor ruled out. Novelty remains unestablished. The original fair binary process has independent flip probabilities1/(k+2); its shifted laws converge weakly to the stationary nonergodic constant-path mixture. The all-fixed-couplings mismatch tends to1/2 by full-path conditional projection and finite-history L1 approximation, not a finite diagnostic count. The stated metric law is tied to the stated product metric. Other compatible metrics retain the failure of convergence to zero, without a claimed identical numerical limit. Offsets are nonnegative and finite or uniformly tight, possibly dependent; arbitrary escaping offsets are excluded and can repair this example. Each-n different couplings are not one fixed coupling. Setwise convergence fails, so distinct9900005 is not revised.
+
+Both newly closed independent families validate this original scoped claim and retain its exact gap. The probability family's separate iid duplicate-block mechanism and growing first-hit-offset construction are audit-only boundary evidence; they are not an expanded original submission, new accepted theorem or new author attempt. Its early approximation imprecision and later correction stay preserved. Neither family re-executed the original helper. Future ROOT must independently reproduce unchanged helpers in private copies and inspect all actual outputs. The historical independent helper writes its receipt beside itself; a private copied review/PARTIAL is required. Saved885/3044 labels are historical observations and finite checks never establish the arbitrary-infinite-coupling quantifier, source scope or full problem.
+
+Historical SOURCES, source_manifest and all18 originals stay byte exact. Their September30 Asmussen access failure is a dated fact. NEW access on October3 obtained Asmussen1992's complete scanned primary PDF1177292B/SHAf97b11902da4a2a980dbf114d8dca546448ab0155c479a839e4adb398c938191; the literal family rendered all13 article pages and read OCR, visually checking pp739–741. OCR contains errors and this is a bounded scoped comparison, not an independent proof audit of the whole article. Lemma2.1 gives a sufficient continuous-time one-time-marginal condition with potentially different construction for each epsilon, small finite offset, finite eventual time and strictly stationary right-continuous comparison process; Remark2.1 allows an epsilon discrepancy. It is not necessity for arbitrary weak path-shift convergence or a single synchronous joining, and no novelty follows. NEW current presentations must not repeat the old failure as present access state.
+
+The original Thorisson author preprint's relevant Section3 pp3–4 is available only as independently recovered indexed text here, without full original PDF or pixels. The published2011 source remains metadata/subscription preview, so no full published/preprint comparison is certified. The six-page density/Skorohod preprint was freshly retrieved and read by the literal family; it builds a sequence of copies and does not enforce their being shifts of one path. Bounded search and comparisons do not prove exhaustive literature absence or universal present openness.
+
+Original head d9b4acf5d070d1f04ffac86a4f08916a5629ff16, dated GitHub base c6975ca76f9f667f1250ba403d0e6da2aafe14d0 and actual merge base01358d66fc67d1c462bddf31c0d4ee5b120e6737 are distinct and separately checked. Original turns remain1/5,new0,audit0. Original export's queue-prefix error and separate successful repair remain preserved as genuine administrative histories; no retrospective successful execution is fabricated. Historical model, reasoning, deadline, PASS and access claims remain dated attributions. Current model/reasoning/deadline/verdict are explicitly null. NEW whole-current review remainsPENDING after future freeze.
+
+AI tools were used extensively. This is unrefereed work with no claimed human peer review or formal certification. Future scoped repository acceptance would publish a partial report, with no paper, new DOI or tracker row. All64 literal foreign primary/access/OCR artifacts are individually hash-bound and excluded from authored packet bodies, including PDF bytes, indexed source text, OCR, pixels and their access captures. Full raw caches/SQL are likewise dependencies only, never copied as publication bodies. Dated native bindings are historical records, not current authority; separate fresh13/current-main approval is required before and after staging. These qualifications apply globally to every current presentation and metadata wrapper while original bodies remain literal archives.
+
+Historical literal body follows. Runtime/model/reasoning/deadline, search/access and PASS labels are dated claims. They do not approve this current packet. Read the global SOURCE_PRECISION_QUALIFICATIONS.md first; NEW whole-current review PENDING.
+
+# Independent adversarial review: 9900007, weak shift coupling
+
+**Verdict: PASS for the finite-state obstruction to the illustrative synchronous coupling condition. The broader two-process characterization remains unresolved.** No mandatory mathematical correction was found.
+
+- Date: 30 September 2026
+- Reviewer: separate gpt-6-astra worker, xhigh
+- Frozen artifact: `PARTIAL.md`
+- SHA-256: `7123c345d3ecdf4fecb8941596687da54c44e169831eb23177ea485fa8386722`
+- Author mathematics and source files were not edited
+- This is an independent AI audit, not external peer review or a novelty certificate
+
+## 1. Original scope and source limitation
+
+I independently recovered the indexed primary text of Section 3, preprint pp. 3–4. It defines one-sided paths and deterministic shifts, distinguishes distributional exact coupling from distributional shift coupling at finite random times, and states Problem 3.3 as a broad request for a characterization involving two processes rather than an entire family. Its final proposed example is synchronous product-metric convergence. No ergodicity, time-homogeneity, causal coupling, or adaptedness condition is added there. The artifact accurately disproves that example while leaving the broader request open.
+
+The original PDF endpoint again failed, so I did not recover or visually inspect a complete original PDF. The indexed relevant pages support the scope finding. The publisher confirms the 2011 Queueing Systems article's title, author, and pagination, but exposes subscription-preview material rather than the full published argument. These access qualifications should remain.
+
+Sources: [Thorisson preprint](https://cms.dm.uba.ar/depto/public/Some%20Open%20Problems-preprint.pdf), [published record](https://link.springer.com/article/10.1007/s11134-011-9241-2).
+
+I also checked the statements in the accessible [coupling-and-density preprint](https://interacting.math.cnrs.fr/HT_Skorohod-Dudley%204.pdf), especially its initial Skorohod–Dudley theorem, Theorem 1 and Corollary 1. They construct a sequence of coupled copies with specified individual laws. They do not require those copies to be the successive shifts of one path. Thus the artifact identifies a genuine additional consistency constraint and does not contradict those established theorems. The unavailable full Asmussen paper remains a prior-art lead; no theorem from it is a dependency of this proof.
+
+## 2. Construction, indexing and weak convergence
+
+The independent sign construction defines a measurable random element of the compact product space {−1,+1} to the nonnegative-integer power. Each coordinate is a finite product of measurable signs. The metric is a uniformly convergent sum of bounded coordinate metrics and generates the product topology. Deterministic shifts are continuous and measurable.
+
+Every coordinate is fair because the initial sign is fair and independent of all flips. For a window from n through n+r, being a constant word is exactly the absence of a flip in the r intervening steps. Multiple flips cannot create another constant full word: any flip changes an adjacent pair. The product of no-flip probabilities telescopes to (n+1)/(n+r+1), including r=0. Future flips are independent of X_n, so its two constant words have equal masses. The total variation distance in the supremum-over-events convention is precisely the nonconstant mass r/(n+r+1).
+
+The move from finite-window convergence to weak convergence is valid. On this compact product space every continuous function is uniformly approximated by a function depending on a finite prefix: replace the tail by a fixed tail, whose metric effect is uniformly at most the corresponding geometric-series remainder. The limit is the fair mixture of the two constant paths. It is stationary and nonergodic, which is allowed in the recovered formulation.
+
+For n>m, the transition correlation product is
+
+    product, k=m,...,n−1, of k/(k+2) = m(m+1)/(n(n+1)).
+
+The m=0 case has a zero factor and is correctly included. No division by m or missing first flip occurs. The mismatch identity in equation (11) follows by reversing the labels of the two times. At times n and 2n its value is (3n+1)/(4(2n+1)), tending to 3/8 from below. The artifact uses the limit, not an incorrect lower bound by 3/8 for each finite n.
+
+## 3. The arbitrary-coupling quantifier
+
+The strongest claim, asymptotic mismatch one half under every coupling, passes the key adversarial check.
+
+Let F_m be the sigma-field generated by the first m+1 coordinates. Under the marginal law of X, the conditional expectation of X_n given F_m is the correlation factor above times X_m. This statement depends only on the law of X and remains valid on any probability space carrying a copy of that entire process, even if another variable on the space is anticipative.
+
+For a bounded full-path-measurable g, the upward conditional-expectation theorem gives E[g|F_m]→g in L1, since the countable coordinate sigma-fields generate the full path sigma-field. The estimate in equation (9) therefore sends first n and then m to infinity and proves E[X_n g]→0. It does not assert uniformity over g depending on n. Such uniformity would be false and is not needed.
+
+Now take any coupling with the limiting process. Since its law is supported on constant paths, a countable intersection of probability-one coordinate equalities makes it equal to (B,B,...) almost surely. Project B onto the sigma-field of the entire X path. The resulting g=E[B|sigma(X)] is bounded by one; it may encode dependence on both the entire future and extra randomness. The tower identity E[X_nB]=E[X_ng] and the preceding limit give E[X_nB]→0. No independence of B and the flips, nor preservation of independence after conditioning on B, is assumed.
+
+This also settles measurability concerns without needing a regular conditional probability kernel or a causal construction: ordinary conditional expectations on the joint probability space suffice. Completion of sigma-fields does not affect the L1 identities. For signs, the exact algebraic mismatch identity yields the asserted limit one half.
+
+The simpler two-time argument is a useful independent check. If any coupling made X_n approach one fixed sign B in probability, then the union bound would force P(X_n≠X_2n)→0, contradicting its explicit limit 3/8. This already disproves convergence to zero in probability, independently of the stronger full-path conditional-expectation argument.
+
+## 4. Metric law and alternative compatible metrics
+
+The estimate comparing the entire metric error D_n with the zeroth-coordinate mismatch I_n is correct. For each coordinate j,
+
+    |1{X_{n+j}≠B} − 1{X_n≠B}| ≤ 1{X_{n+j}≠X_n}.
+
+It holds pathwise for every B. The marginal flip bound and Tonelli's theorem then give E|D_n−I_n|≤1/(n+1), using the exact weighted sum sum j·2^(−j−1)=1. Since I_n has Bernoulli laws tending to fair Bernoulli, this proves the claimed nonzero limiting distribution. The expectation conclusion follows directly from the same L1 estimate.
+
+All couplings share this limit. It does not follow from an unjustified almost-sure convergence claim. For another metric generating the product topology, compactness gives uniform equivalence of metrics, so convergence to zero in probability cannot be restored. The artifact does not incorrectly assert that the numerical two-point limit {0,1} must be identical under every such metric.
+
+## 5. Random offsets and the separate setwise question
+
+The finite-offset extension is valid even for offsets chosen from the full paths. On {T≤M}, the shifted metric difference is bounded by the sum of the differences for deterministic offsets 0 through M. Markov's inequality then gives (14), without conditioning on T or assuming independence. Each deterministic s-offset expectation is at most s/(n+1); summing gives M(M+1)/(2(n+1)). First n tends to infinity, then M does. Uniform tightness supplies the identical argument for a family T_n. The second process is constant, so its offset has no effect.
+
+The triangle inequality and convergence of this offset discrepancy in probability preserve the original nonzero limiting metric law. Nothing here controls arbitrary offsets escaping to infinity, and the package explicitly refrains from that claim. The preceding source theorem concerns distributional equality at random shifts, which is distinct from the pathwise asymptotic comparison audited here.
+
+The eventual-constancy event is a Borel, shift-invariant set: it is a countable union over starting times of countable intersections of coordinate-equality events. Under X it has probability zero, either by independent Borel–Cantelli or by the explicit no-flip product tending to zero at every fixed starting time. Under the limiting law it has probability one. Thus this example has no setwise convergence and cannot refute or revise the separate Problem 3.1 result.
+
+## 6. Exact diagnostics
+
+The submitted checker was copied before replay. All **885** exact assertions pass, and its JSON receipt is byte-identical to the submitted one.
+
+The separate independent checker passes **3,044** exact assertions, using only rational arithmetic. It constructs the joint law from independent flips and verifies conditional expectations for every finite history at small horizons, not only matrix products. It also checks:
+
+- The optimal correlation with any bounded finite-history function, via the L1 norm of the conditional moment
+- Anticipative fair signs built from arbitrary Walsh monomials of early flips and the tower-factorization identity beyond that horizon
+- Shifted-window laws obtained by marginalizing a common full path
+- The metric comparison for every binary window and either limiting sign
+- Offset bounds, summation constants and the exact two-time obstruction
+
+These controls do not enumerate arbitrary infinite-path couplings. That universal quantifier is established by the conditional-expectation proof audited in Section 3.
+
+## 7. Final disposition
+
+**No mandatory correction.** The counterexample is rigorous for the source's illustrative synchronous condition, even in probability; the metric-law and finite-offset strengthenings also hold. The broad characterization remains unresolved, and the original full-source retrieval and prior-art qualifications remain in force. Retain `unsolved` for the bundled target, one substantive attempt, and no historical-novelty claim.
+
+A final review-status-only sentence change may be covered by exact diff verification. Substantive changes require a new review.
