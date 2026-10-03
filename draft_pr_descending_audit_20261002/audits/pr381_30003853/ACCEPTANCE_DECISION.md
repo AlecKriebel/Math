@@ -11,3 +11,5 @@ Root read/reconstructed all proofs and programs, examined controlling primary st
 Seven fresh complete primary PDFs match historical bindings. Thirteen historical processed text/PNG bindings remain unreproduced; source-free public verification checks0/20 optional raw bindings. The accessible credited splitting dependency is BGK, not a newly retrieved Bieri–Strebel proof. No present worldwide open-status or priority certification is claimed.
 
 The queue changes only its own line419 cells8/9 against its main parent, preserving other dispositions. Extensive AI assistance was used; this is unrefereed and is not external human peer review. No paper, Zenodo deposit, DOI, tracker row, release or sixth author discovery.
+
+2026-10-03T05:12:45.492430+00:00: PR381 actual acceptance `29fbd6ae09f288ec15fe8cae68c4174b9d9740bb` at 2026-10-03T05:12:41Z; all47 paths and46 target hashes exact. Only own queue line419 cells8/9; every other queue byte preserved. Workflow100%, original resolution0%; program8/349=2.2923%. No paper/DOI.
