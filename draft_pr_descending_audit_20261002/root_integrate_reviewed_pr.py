@@ -57,6 +57,7 @@ def check_tree(base,tree):
     assert [y[j].strip() for j in (8,9)]==proposal
     return {'all_expected_paths_exact':len(paths),'all_target_file_hashes_exact':len(paths)-1,'queue_physical_line':i+1,'only_queue_pipe_cells':expected_queue_cells,'all_other_queue_bytes_equal':True,'base_row':a[i].decode(),'accepted_row':b[i].decode(),'base_queue_sha256':sha(old),'accepted_queue_sha256':sha(new)}
 assert git('branch','--show-current').strip()==b'main'
+assert subprocess.run(['git','rev-parse','-q','--verify','MERGE_HEAD'],capture_output=True).returncode!=0,'foreign merge is active; leave untouched'
 assert not git('diff','--name-only','--',*sorted(expected))
 assert not git('diff','--cached','--name-only','--',*sorted(expected))
 r=remote('actual_acceptance_remote_before');assert r['state']=='OPEN' and r['headRefOid']==head
@@ -69,6 +70,8 @@ assert r['mergeable']=='MERGEABLE' and r['mergeStateStatus']=='CLEAN',r
 run(['git','fetch','origin','main'],'pre_merge_main_fetch')
 base=git('rev-parse','origin/main').decode().strip()
 assert base==m['base'],('reviewed current main changed; require fresh exact-live review',m['base'],base)
+assert git('rev-parse','HEAD').decode().strip()==base,'local main differs from literal reviewed base; require refresh'
+assert subprocess.run(['git','rev-parse','-q','--verify','MERGE_HEAD'],capture_output=True).returncode!=0,'foreign merge became active; leave untouched'
 v=run(['git','merge-tree','--write-tree',base,head],'virtual_merge')
 tree=v.stdout.decode().splitlines()[0];vi=check_tree(base,tree)
 assert tree==git('show','-s','--format=%T',head).decode().strip(),'virtual integration tree differs from reviewed head tree'
@@ -80,6 +83,8 @@ test=json.loads(run(['gh','api',f'repos/AlecKriebel/Math/git/commits/{last["merg
 assert [x['sha'] for x in test['parents']]==[base,head] and test['tree']['sha']==tree
 current=json.loads(run(['gh','api','repos/AlecKriebel/Math/git/ref/heads/main'],'actual_last_main_ref').stdout)
 assert current['object']['sha']==base,'current main advanced; require fresh exact-live review'
+assert git('rev-parse','HEAD').decode().strip()==base,'local main advanced; require refresh'
+assert subprocess.run(['git','rev-parse','-q','--verify','MERGE_HEAD'],capture_output=True).returncode!=0,'foreign merge became active; leave untouched'
 run(['gh','pr','merge',str(n),'--merge','--match-head-commit',head,'--subject',f'Accept PR #{n}: verified {status} partial findings ({turns})','--body-file',str(A/merge_body_name)],'actual_merge_execution')
 r=remote('post_merge_remote');assert r['state']=='MERGED' and r['headRefOid']==head and r['mergedAt']
 merge=r['mergeCommit']['oid']
