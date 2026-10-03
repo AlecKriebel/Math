@@ -1,0 +1,18 @@
+# Sources and prior-art boundary
+
+Checked2026-09-30. This is an explicit algebraic reformulation deduced from existing Markov theorems. Historical novelty has not been established.
+
+1. **Fenn, Ilyutko, Kauffman and Manturov**, *Unsolved Problems in Virtual Knot Theory and Combinatorial Knot Theory*, arXiv1409.2823v1(2014), p.34,item42. [Full preprint](https://arxiv.org/pdf/1409.2823v1). The published version is Banach Center Publications103(2014),9–62, DOI10.4064/bc103-0-1; item42 is on p.37. [Full publisher PDF](https://www.impan.pl/shop/publication/transaction/download/product/86155). Both complete PDFs were retrieved, and the item and surrounding context were checked. The question is retained with ordinary closure; no minimality or stronger locality condition is stated. Its unqualified braid terminology motivates giving both classical and virtual formulations.
+2. **Seiichi Kamada**, *Braid presentation of virtual knots and welded knots*, arXiv math/0008092v1. [Full primary preprint](https://arxiv.org/pdf/math/0008092v1). Sections2–3 define the groups, ordinary oriented closure, right stabilizations and both virtual exchanges. Proposition3.1 is the Alexander statement, and Theorem3.2 is the complete virtual Markov theorem used here. The cited preprint's cover has a2021 generated date while its arXiv version is dated2000; these are not treated as different mathematical versions. Proposition3.3 warns that virtual exchange cannot simply be dropped.
+3. **Louis H. Kauffman and Sofia Lambropoulou**, *Virtual Braids and the L–Move*, arXiv math/0507035v3(19June2006), published in Journal of Knot Theory and Its Ramifications15(2006),773–811. [Full current preprint](https://arxiv.org/pdf/math/0507035v3). Section5,p.30, gives Kamada's algebraic right/left exchange forms, including the left index-shift convention. These formulas were checked against the page image. Section4 gives a different local algebraic Markov list using threading; it is not silently substituted for ordinary conjugation/stabilization.
+4. For the classical foundational statement, **E. Gorsky, O. Kivinen and J. Simental, Algebra and geometry of link homology**, Bulletin of the London Mathematical Society55(2023),Theorems2.1–2.2, restate Alexander and Markov with ordinary closures, conjugation and positive/negative stabilization. [Primary author lecture article](https://londmathsoc.onlinelibrary.wiley.com/doi/10.1112/blms.12761). The even-strand corollary uses those standard results, not a new proof of unrestricted Markov equivalence.
+
+## Search and exclusions
+
+Targeted current searches for the exact problem phrase, even-strand Markov formulations and parity-preserving stabilization found the source problem and related braid/plat literature, but no verified prior occurrence of this exact eight-pattern presentation. This bounded absence does not establish priority. Classical plat Markov theorems already use even strand numbers but change the closure construction; the present proof does not use that substitution.
+
+The imported upstream triage uses incomplete arXiv placeholders. It is preserved verbatim as prior context in source_record.json, but the actual proof relies only on the independently identified full primary sources above. No assertion that the target is still open follows from that imported label.
+
+## Claimed scope
+
+The finite algebraic block templates have even-strand endpoints and syntactic support tests. They are not a claim about a minimal move set or modifications supported on a uniformly bounded number of strands. A stronger locality problem would require a separate statement. The move list and completeness proof are frozen for independent review; no historical-discovery claim is made.
