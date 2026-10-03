@@ -12,9 +12,12 @@ def load(p):return json.loads(p.read_bytes())
 def sha(b):return hashlib.sha256(b).hexdigest()
 def execute(args,label,private=False):
     directory=D/'private_tracker' if private else D
+    started=datetime.now(timezone.utc).isoformat()
     r=subprocess.run(args,capture_output=True)
     (directory/(label+'.stdout')).write_bytes(r.stdout)
     (directory/(label+'.stderr')).write_bytes(r.stderr)
+    receipt={'argv':args,'started_utc':started,'finished_utc':datetime.now(timezone.utc).isoformat(),'exit_code':r.returncode,'stdout_bytes':len(r.stdout),'stdout_sha256':sha(r.stdout),'stderr_bytes':len(r.stderr),'stderr_sha256':sha(r.stderr),'automatic_retry':False}
+    (directory/(label+'_execution.json')).write_text(json.dumps(receipt,indent=2)+'\n')
     assert r.returncode==0,(label,r.returncode,r.stderr.decode(errors='replace'))
     return json.loads(r.stdout)
 def gws(method,params,label,body=None,private=False,dry=False):
@@ -52,13 +55,13 @@ assert before['values'][0]==['Original Problem','Solution Chat URL','DOI','Notes
 matches=[r for r in before['values'][1:] if published['doi'] in str(r) or '30004048' in str(r) or 'OWR-16763-022' in str(r) or metadata['title'] in str(r)]
 assert not matches,'Existing problem/DOI row: stop without a duplicate append'
 problem='OWR-16763-022 (30004048): Biconstrained two-step reachability symmetry'
-notes=(metadata['title']+' — Alec Kriebel (ORCID0009-0001-9320-500X), v'+metadata['version']
-       +'. Preprint date: '+metadata['publication_date']+'. Negative universal symmetry answer: absolute gap at(13/27,14/27) and its swap is at least1/108. Exact rational-boundary formula via minimum incidence degree. '
+notes=(metadata['title']+' — Alec Kriebel (ORCID 0009-0001-9320-500X), v'+metadata['version']
+       +'. Preprint date: '+metadata['publication_date']+'. Negative universal symmetry answer: absolute gap at (13/27,14/27) and its swap is at least 1/108. Exact rational-boundary formula via minimum incidence degree. '
        +'The existing seven-type matrix and weighted framework of Chudnovsky, Hompe, Scott, Seymour and Spirkl are credited; true degree minima, exact psi values and ordering are unevaluated. '
-       +'Dated bounded priority audit found no earlier equivalent theorem; inaccessible2019 Princeton thesis and incomplete indexing remain coverage gaps, no global novelty certification. '
+       +'Dated bounded priority audit found no earlier equivalent theorem; inaccessible 2019 Princeton thesis and incomplete indexing remain coverage gaps, no global novelty certification. '
        +'Four-page unrefereed preprint; extensive AI use and no external human peer review. Two sequential fresh adversarial review rounds completed with all mandatory findings resolved. '
-       +'PDF plus portable source/verification ZIP includes all41 original files, exact matrix/ordinary-graph/gap checks and independent support/LP controls. '
-       +'Primary question: https://ems.press/content/serial-article-files/46780, Seymour printed46–47/PDF42–43. '
+       +'PDF plus portable source/verification ZIP includes all 41 original files, exact matrix/ordinary-graph/gap checks and independent support/LP controls. '
+       +'Primary question: https://ems.press/content/serial-article-files/46780, Seymour printed 46–47/PDF 42–43. '
        +'Record: '+published['record_url']+'. Reviewed PR: https://github.com/AlecKriebel/Math/pull/364.')
 row=[problem,'',published['doi_url'],notes]
 params={'spreadsheetId':ID,'range':'Math Puzzles!A:D','valueInputOption':'RAW','insertDataOption':'INSERT_ROWS','includeValuesInResponse':True}

@@ -4,7 +4,7 @@ Requires two completed fresh preprint reviews. Preserve all 41 mathematical
 files exactly and transplant only the three original disposition cells.
 """
 from pathlib import Path
-import datetime,hashlib,json,os,subprocess
+import datetime,hashlib,json,os,subprocess,time
 A=Path(__file__).resolve().parent;P=A.parents[1];R=P.parent
 Q='unsolved_math_prioritization/QUEUE.md';N=364;PROBLEM=b'30004048'
 H='0d07b06537aded3e76f5a71908f3546df574a691'
@@ -93,6 +93,13 @@ commit=git('commit-tree',tree,'-p',old,'-p',main,input=b'Refresh PR364 against c
 run('branch_push',['git','push','origin',f'{commit}:refs/heads/{BRANCH}'])
 assert git('rev-parse','HEAD').decode().strip()==local and ix.read_bytes()==index
 after=json.loads(run('remote_after',['gh','pr','view',str(N),'--json','state,headRefOid,headRefName']).stdout)
+if after['headRefOid']!=commit:
+ ref=json.loads(run('branch_ref_after_push',['gh','api',f'repos/AlecKriebel/Math/git/ref/heads/{BRANCH}']).stdout)
+ assert ref['object']['sha']==commit,'Do not repeat an uncertain branch mutation.'
+ for attempt in range(6):
+  time.sleep(0.5)
+  after=json.loads(run('remote_after_readonly_retry_'+str(attempt),['gh','pr','view',str(N),'--json','state,headRefOid,headRefName']).stdout)
+  if after['headRefOid']==commit:break
 assert after['state']=='OPEN' and after['headRefOid']==commit and after['headRefName']==BRANCH
 S=A/'repaired_snapshot';files=[]
 for path in sorted(expected):
