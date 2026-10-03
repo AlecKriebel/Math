@@ -1,0 +1,2 @@
+
+2026-10-03T00:39:30.934284+00:00 — PR44 original18/19diff verified at actualbase01358d66. Own export71950 failed before scientific execution because of guessed PROOF filename; oldsource/18exportedfiles/error preserved. Corrected actualexport73037 passed with OBSTRUCTION filename and distinct V2 artifacts. Two independent approach families have early seals and are auditing. Original2/5,new0/audit0, fullproblem discovery0%, audit20%.
