@@ -56,3 +56,15 @@ Merge3f18fa7b30851b165b604645d05f332263e9a301, exact accepted head1747a651d5865c
 ## 2026-10-03T03:14:06.521687+00:00 — PR383 current-main queue repair
 
 After PR384 actual merge, adjacent queue conflict repaired with private index/object construction. New head5f576c1b527f88730c7ee15fd204536069753f9a preserves48 target files and every other queue byte, only problem30004047 cells8/9 to unsolved5/5.49 repaired inputs frozen. Fresh whole-package adversary now required; workflow90%, original resolution0%. Program5/349 dispositions (1.4327%).
+
+## 2026-10-03T03:20:55.440987+00:00 — PR381 root source/proof/replay checkpoint
+
+Root fully read five proof texts and eight executable sources, reconstructed every deduction before full family/historical verdict comparison (messages already exposed mechanisms), fetched seven exact matching primary PDFs and visually inspected relevant pages. Private562,635 author/110,736 historical complete outputs reproduced;45Git bindings pass. Public source replay0/20, fresh sevenPDF matches separately. Corrected docket Turn3 is solvable, Turn2 subdirect; no candidate defect. Workflow65%, original resolution0%; family-control and final-adversary gates pending. Program5/349 (1.4327%).
+
+## 2026-10-03T03:23:56.674499+00:00 — PR381 family controls and PR380 initial freeze
+
+Root reproduced all four PR381 new family controls, complete outputs match (source created_utc only excluded),71 sealed output bindings pass;801,018 actualPL/matrix controls exact. Initial theorem scopes pass; workflow85%, original resolution0%, new finalgate pending after earlierqueue dispositions. PR380 frozen44paths at9946a67cf8a1f7e3130d2a12de902db05875283a; initialfamilies to audit norm dichotomies, hypothesis-supplied LP, finite/infinitebraid mechanisms. Initial count assumption45 was rejected; actual complete Git/API set is44, no binding claimed until corrected. PR380workflow5%, original resolution0%. Program5/349(1.4327%).
+
+## 2026-10-03T03:26:45.475477+00:00 — PR382 original-head whole-package root verification
+
+Root fully read finalreport/independentreconstruction/bothnewcontrolprograms, reproduced entire stdout byte for byte, verified60sealedoutputs/58originalGitinputs. Source3/4freshPDFexact, publicPDFcount0 qualification retained. All5scopedresults pass; no mandatorymathrepair. CurrentstaleQUEUE wouldrollback10otherrows, so must integratecurrentmain surgical owncells afterPR383actualmerge, thennewheadfreshadversary. Workflow95%, originalresolution0%; program5/349(1.4327%).
