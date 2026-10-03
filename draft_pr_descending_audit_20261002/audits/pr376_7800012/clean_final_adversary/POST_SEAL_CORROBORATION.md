@@ -1,0 +1,29 @@
+# Post-seal provenance and publication corroboration
+
+Checkpoint: 2026-10-03T06:26:57Z. Current audit completion estimate: **90%**, pending later exact repaired-head/base/manifest and queue certificate after PR377. The mathematical PASS is sealed separately and unchanged; original result remains UNSOLVED 5/5.
+
+After the mathematical seal, the historical final_review report/checker/wrapper and every remaining frozen metadata/history file were consulted. They corroborate the independently established mathematical boundary; they were not used to infer the verdict. The earlier review's 984 controls reproduce exactly under the supplied existing SymPy runtime. Its full-Hessian audit is supported here by the independent entire matrix/complete Fourier-block reconstruction, rather than adopted from its prose.
+
+PROVENANCE_CERTIFICATE.json verifies all51 paths against the original head 9a92b6a0bd7cff3a8c11bf66ff9338264ab012d1, using byte lengths, SHA256, independently calculated Git blob SHA1, actual tree object identity and actual blob bytes. The base-to-head diff has exactly those51 paths:50 files under attempts/7800012 and QUEUE.md. Every frozen byte, including all public wrappers, is bound.
+
+The original head has exactly parents efd29c05204703acca9a0860812f54b94fae54b1 and d48fdb986d86b639219c0e50d426971fa1d8b8a6. Base and author freeze are ancestors. All41 frozen author files, including the final author manifest, are unchanged from the author WIP. Each of the five turn manifests and its bound files match the corresponding checkpoint commit, and ledger snapshots extend their predecessors exactly, ending in their matching state snapshot. The five timestamps and statuses agree with genuine distinct proof advances. Turn5 ends exhausted; earlier in_progress and pending-review wording remains historical, and current README/PR_BODY accurately record scoped PASS/unsolved5/5.
+
+All nested manifest entries (210 repeated bindings across the five historical author manifests, final author, review and public wrapper manifests) verify. The public author/review-manifest pointers and review author-WIP pointer also agree. The author replay independently verifies157 author bindings. The review wrapper separately pins author/review SHA256 values and reproduces984 controls. The source-free replay reports zero verified sources, while the fresh-source replay reports three; the historical sourceful receipt is now corroborated, not mistaken for portable source-free evidence.
+
+Fresh original HTML and both requested primary PDFs match all three SOURCE_MANIFEST byte lengths and SHA256 values exactly. The legacy linked PDF response is404, retained privately, and its complete technical question is in the HTML. Full stdout/stderr is retained for separate individual turns, overall replay, sourceful replay, prior independent checker/wrapper, and newly designed controls. No raw primary download, text extraction, rendering, or private candidate input is included in PUBLIC_MANIFEST.
+
+The original queue diff changes only the target7800012 row's status and turn cells, queued0/5 to unsolved5/5; every other byte remains equal to the ORIGINAL base. This is not a certificate against later main. The intended publication repair is queue-only reconciliation after PR377, and must preserve all50 original target files plus every other row/cell of the then-current queue. No repaired-head or final queue certificate is issued until the parent supplies the later exact head/base/manifest.
+
+The historical eligibility gate's416 live branches/411 recovered references and lack-of-prior-attempt statement remain historical assertions. This audit certifies their file provenance, timestamps and restrained limitations, but does not recreate those old inventories or certify exhaustive contemporary worldwide novelty/open status. The package itself disclaims such a claim. There is no outside outreach, source redistribution, manuscript, Zenodo release or DOI request.
+
+## Preserved audit workflow failures and corrections
+
+The initial runtime check found no NumPy, and no package was installed; SymPy1.14.0 sufficed. The initial private-file copy recorded that final_review is a directory; it was deliberately copied only after the mathematical seal. A standalone turn4 invocation from the wrong working directory failed to find its certificate, as documented in author_turn4.stderr. REPLAY_ALL already ran it correctly; the standalone check was then rerun from the candidate copy's directory and passed with45409 checks. These are environment/workflow failures, not mathematical failures.
+
+The first private copies/downloads were kept inside the owned audit folder but were not yet covered by an ignore rule. A subsequent read-only ignore check discovered this; they were moved into owned tmp/, whose existing ignore rule was explicitly verified. Final author replay/source checks/review wrapper and independent full-Hessian cross-binding were rerun with those ignored copies. Candidate files, Git/index/remotes/services were never changed, and no private input is allowlisted. This correction is recorded instead of retroactively claiming all initial copies were ignored.
+
+A malformed tool-orchestration call failed before executing; no partially written independent_controls.py existed. The later independent_hessian.py and independent_universal.py were successfully written and run. The mathematical seal records the substantive boundary and has not been rewritten to hide these workflow events.
+
+## Gate
+
+Mathematics: PASS for the precisely scoped five-turn partial package. Original target: UNSOLVED5/5. Original frozen bytes/provenance/current wrappers: PASS. Historical eligibility: bounded corroboration only. Publication/queue integration: **PENDING**,90% audit completion. No mandatory mathematical correction found; no claim of unrestricted finite/global/bulk optimality is authorized.

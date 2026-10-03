@@ -1,0 +1,26 @@
+--- BASIS_BEFORE_GENUINE_ROOT_QUERY_SCHEMA.py
++++ pr45_guards.py
+@@ -324,13 +324,19 @@
+     rootref=exact_reference(approved['root_whole_inspection']);require(equal(rootref,inputs['closed_root_whole_inspection']),'Genuine ROOT read pin');root=parse(bound(rootref));require(equal(root,load(HERE/'EXPECTED_ROOT_WHOLE_REVIEW.json')) and equal(root['complete_VERDICT_object'],verdict),'Entire genuine known typed ROOT whole inspection')
+     required(root,{'schema':'pr45-root-complete-closed-whole-inspection/v1','status':'PASS_ROOT_COMPLETE_CLOSED_WHOLE_INSPECTION','candidate_manifest_sha256':CURRENT_SHA,'closed_whole_manifest_sha256':wm['sha256'],'first_party_members':1068,'individually_bound_foreign_inputs':1109,'personal_report_and_verdict_fully_read':True,'all_first_party_whole_bytes_and_modes_checked':True,'all_foreign_individual_whole_bytes_checked':True,'exact_self_only_recursive_closure_checked':True,'future_execution_approved':False,'mandatory_defects':[],'mandatory_corrections':[],'original_substantive_attempts':1,'new_substantive_attempts':0,'audit_turns':0,'full_problem_solved_by_project':False,'full_target_resolved_in_prior_published_literature':False,'dated_four_native_source_head':dated_head,'direct_four_independent_ROOT_Git_checks_completed':True},'Full ROOT PR45 reading flags')
+     require(type(root['actual_direct_four_operator_pid']) is int and root['actual_direct_four_operator_pid']>0,'Genuine direct ROOT operator PID');commands=root['complete_dated_git_captures'];require(type(commands) is list and len(commands)==8,'Eight genuine ROOT native4 queries');expected=[]
+-    for n in sorted(historical):expected.extend([['git','ls-tree',dated_head,'--',n],['git','show',dated_head+':'+n]])
+-    require(equal([z['argv'] for z in commands],expected),'Exact ROOT full argv sequence')
++    for n in sorted(historical):expected.extend([['git','show',dated_head+':'+n],['git','ls-tree',dated_head,'--',n]])
++    require(equal([z['argv'] for z in commands],expected),'Exact ROOT full actual argv sequence')
++    actual_source=inputs['pins']['inspect_closed_whole_ROOT_v2.py'];actual_operator=inputs['pins']['root_closed_whole_inspection_v2_actual_capture/prelaunch_operator.py']
++    parent_capture=load(R/inputs['pins']['root_closed_whole_inspection_v2_actual_capture/CAPTURE.json']['path'])
++    required(parent_capture,{'schema':'root-explicit-command-capture/v1','actual_execution':True,'completed':True,'exit_code':0,'stdin_supplied':False,'operator_unchanged':True,'status':'PASS','pid':root['actual_direct_four_operator_pid']},'Genuine ROOT whole checker parent capture')
++    require(regular(R,actual_source['path']).read_bytes()==regular(R,inputs['pins']['ROOT_CLOSED_WHOLE_INSPECTION_PRELAUNCH_SOURCE_V2.py']['path']).read_bytes(),'Genuine ROOT prelaunch source exact')
+     for i,z in enumerate(commands):
+-        required(z,{'cwd':str(R),'operator_pid':root['actual_direct_four_operator_pid'],'stdin_supplied':False,'exit_code':0,'actual_execution':True,'completed':True},'Actual complete ROOT direct Git query');require(type(z['pid']) is int and z['pid']>0 and utc_clock(z['started_utc'],'Git start')<=utc_clock(z['finished_utc'],'Git finish')<=utc_clock(root['created_utc'],'Root complete'),'Actual query PID/clocks')
++        keyset(z,{'schema','argv','cwd','operator_pid','started_utc','source_sha256','operator_sha256','pid','exit_code','finished_utc','stdout','stderr','source_unchanged','operator_unchanged'},'Exact actual known ROOT native4 query schema')
++        required(z,{'schema':'pr45-root-independent-frozen-native-git/v1','cwd':str(R),'operator_pid':root['actual_direct_four_operator_pid'],'exit_code':0,'source_unchanged':True,'operator_unchanged':True,'source_sha256':actual_source['sha256'],'operator_sha256':actual_operator['sha256']},'Whole actual ROOT native4 query')
++        require(type(z['pid']) is int and z['pid']>0 and utc_clock(parent_capture['started_utc'],'ROOT parent start')<=utc_clock(z['started_utc'],'Git start')<=utc_clock(z['finished_utc'],'Git finish')<=utc_clock(parent_capture['finished_utc'],'ROOT parent finish'),'Actual query PID/capture clocks')
+         for channel in ['stdout','stderr']:exact_reference(z[channel]);check(R,[z[channel]])
+         require(regular(R,z['stderr']['path']).read_bytes()==b'','Complete direct stderr');raw=regular(R,z['stdout']['path']).read_bytes();n=sorted(historical)[i//2]
+-        if i%2:require(len(raw)==native[n]['bytes'] and sha(raw)==native[n]['sha256'],'Whole direct frozen show stdout')
++        if not i%2:require(len(raw)==native[n]['bytes'] and sha(raw)==native[n]['sha256'],'Whole direct frozen show stdout')
+         else:
+             require(raw.endswith(b'\n') and raw.count(b'\n')==1,'One whole direct ls-tree line');fields,literal=raw.decode().rstrip('\n').split('\t');mode,kind,blob=fields.split();require(mode=='100644' and kind=='blob' and literal==n,'Direct ls-tree exact100644/path')
+     require(type(root['complete_actual_captures_checked']) is list and bool(root['complete_actual_captures_checked']),'Genuine nonempty complete capture read list')

@@ -1,0 +1,909 @@
+diff --git a/unsolved_math_prioritization/QUEUE.md b/unsolved_math_prioritization/QUEUE.md
+index 9fdc4510e..a89c1dc1e 100644
+--- a/unsolved_math_prioritization/QUEUE.md
++++ b/unsolved_math_prioritization/QUEUE.md
+@@ -77,7 +77,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at
+ | 66 | 30000166 / OWR-782-007 | Positivity of Saito's Eta Products | 0.2465 | 5.5 | 3 | 2005 | queued | 0/5 |  |  |  |
+ | 67 | 30000644 / OWR-1452-008 | Surjectivity of Reduction Maps for Special Polynomial Automorphisms | 0.2458 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
+ | 68 | 30000671 / OWR-1453-004 | Reconstructing Complete Local Rings from Finite Quotients | 0.2458 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
+-| 69 | 30000703 / OWR-1460-009 | Boundary Behavior under Asymptotic Schwarz–Pick Equality | 0.2458 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
++| 69 | 30000703 / OWR-1460-009 | Boundary Behavior under Asymptotic Schwarz–Pick Equality | 0.2458 | 5.5 | 3 | 2007 | already_solved | 0/5 |  | 2026-09-30: The exact unrestricted Schwarz-Pick limit is covered by the credited Kraus-Roth-Ruscheweyh reflection criterion, stated in the original report and explicitly corroborated by the2024 primary paper. Separate source and quantifier audit passed,69author and187independent controls. Radial/nontangential variants and full2007journal-proof verification are not claimed. Draft PR: https://github.com/AlecKriebel/Math/pull/49. |  |
+ | 70 | 30006309 / OWR-14299288-015 | Combinatorial Proof of Hurwitz and Discriminant Weight-Polytope Equality | 0.2454 | 5.5 | 3 | 2025 | queued | 0/5 |  |  |  |
+ | 71 | 30002061 / OWR-11786-016 | Collapse Preservation under Subdivision | 0.2437 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
+ | 72 | 30002298 / OWR-12339-004 | Polyhedra with Vertex-Factored Fantappiè Denominators | 0.2432 | 5.5 | 3 | 2013 | queued | 0/5 |  |  |  |
+diff --git a/unsolved_math_prioritization/attempts/30000703/README.md b/unsolved_math_prioritization/attempts/30000703/README.md
+new file mode 100644
+index 000000000..5245684cf
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30000703/README.md
+@@ -0,0 +1,7 @@
++# Boundary Schwarz Pick source correction
++
++The exact unrestricted limit is a known criterion for Schwarz reflection across an open unit-circle arc. [SOURCE_STATUS.md](SOURCE_STATUS.md) gives the original and later sources, the explicit point-to-arc application, and the distinction from radial or angular hypotheses.
++
++Recommended status is already_solved with Kraus, Roth and Ruscheweyh credited. No new discovery is claimed. The separate adversarial review passed; see [review/REVIEW.md](review/REVIEW.md). All 69 submitted and 187 independent exact controls pass. Zero fresh substantive proof attempts were used.
++
++Run python3 verify.py for exact diagnostic identities. The full journal proof of the imported theorem was not independently audited; this access limitation is stated in the source correction.
+diff --git a/unsolved_math_prioritization/attempts/30000703/RESEARCH_LOG.md b/unsolved_math_prioritization/attempts/30000703/RESEARCH_LOG.md
+new file mode 100644
+index 000000000..871b24c2c
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30000703/RESEARCH_LOG.md
+@@ -0,0 +1,17 @@
++# Research log for 30000703
++
++## 2026-09-30 06:17 UTC source gate
++
++Read repository instructions, the full pinned record and its imported literature assessment, and the individual desk assessment. No separate pinned report exists. Current queue rank 69 was queued at 0/5. Main tree, all-state PRs, branch names, related groups and historical state gave no prior campaign attempt or exact duplicate. The original problem page was unavailable through the reader, so the authorized pinned record and complete primary source were used. Actual model: gpt-6-astra, xhigh. New-discovery completion estimate: 0%.
++
++## 2026-09-30 06:20 UTC exact known answer located
++
++The 2024 primary paper explicitly records the unrestricted-limit/Schwarz-reflection equivalence, crediting Kraus-Roth-Ruscheweyh 2007. The original OWR question is preceded by an arc theorem that also supplies this conclusion via a positive uniform lower bound near 1. The all-approaches quantifier is decisive; radial and non-tangential versions have different conclusions. No fresh proof search was started. Source-verification completion estimate: 85%.
++
++## 2026-09-30 06:25 UTC frozen source correction
++
++Saved SOURCE_STATUS.md with the exact point-to-arc argument, derivative consequence, and controls against automorphism or global finite-Blaschke overclaims. Read and rendered OWR pp.528-529 and the 2024 p31. The 2007 publication metadata are verified, but its full journal PDF was inaccessible; this limitation is explicit. The exact tests initially used structural equality on two algebraically equal SymPy expressions; cancellation and exponential rewriting corrected the harness. All final controls pass. These are formula checks, not proof certificates for the imported reflection theorem. Separate adversarial review is pending. Substantive proof-search count remains 0/5. New-discovery completion estimate: 0%; source-verification completion estimate: 95%.
++
++## 2026-09-30 06:37 UTC independent review and publication gate
++
++A separate gpt-6-astra xhigh reviewer passed the frozen mathematical source correction without mandatory changes. All 69 submitted and 187 independent exact diagnostics pass. The full journal-proof access caveat and the unrestricted-limit scope remain unchanged. Copied the six review files byte for byte. The mathematical artifact remains frozen at its reviewed hash; only administrative package metadata have been updated. Preparing one authorized open draft PR after a fresh duplicate and branch check. Source-verification completion estimate remains 95%; new-discovery estimate remains 0%; proof-search count remains 0/5.
+diff --git a/unsolved_math_prioritization/attempts/30000703/SOURCE_STATUS.md b/unsolved_math_prioritization/attempts/30000703/SOURCE_STATUS.md
+new file mode 100644
+index 000000000..bd28320ad
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30000703/SOURCE_STATUS.md
+@@ -0,0 +1,100 @@
++# The unrestricted Schwarz Pick boundary limit is a known reflection criterion
++
++**Status recommendation: already solved for the exact unrestricted limit printed in the source. No new discovery is claimed.** The function extends holomorphically across an open unit-circle arc containing 1 and maps that arc into the unit circle. This follows from the Kraus–Roth–Ruscheweyh reflection theorem already stated immediately before the question, and the exact single-point equivalence is explicitly recorded in later primary literature.
++
++Problem 30000703 / OWR-1460-009. Checked 30 September 2026. Model: gpt-6-astra, xhigh. Separate adversarial review is required before publication of this source correction.
++
++## Exact source and the relevant known theorem
++
++The original is Oliver Roth, *Local boundary behaviour of analytic maps and the hyperbolic metric*, in [Oberwolfach Report 9/2007](https://ems.press/content/serial-article-files/46093), printed pp. 528–530. Problem 1 on p. 529 asks about the boundary behavior at 1 of a holomorphic disk self-map satisfying
++
++\[
++ \lim_{\substack{z\to1\\z\in\mathbb D}}
++ \Phi_f(z)=1,\qquad
++ \Phi_f(z):=\frac{(1-|z|^2)|f'(z)|}{1-|f(z)|^2}.
++ \tag{1}
++\]
++
++There is no radial or non-tangential restriction in the printed limit. The pinned record agrees with this formulation. The subsequent Problem 2 asks a different question about regularity of boundary sets for conformal metrics; it is not part of this target.
++
++Theorem 1 on pp. 528–529 of the same contribution gives the following equivalence for an open arc \(\Gamma\subset\partial\mathbb D\) and a holomorphic map \(f:\mathbb D\to\mathbb D\):
++
++- for every \(\xi\in\Gamma\), \(\liminf_{z\to\xi}\Phi_f(z)>0\);
++- \(f\) has a holomorphic extension across \(\Gamma\) with \(f(\Gamma)\subset\partial\mathbb D\).
++
++The theorem also states that either condition is equivalent to \(\Phi_f(z)\to1\) at every point of the arc. It is credited there to Daniela Kraus, Oliver Roth and Stephan Ruscheweyh, *A boundary version of Ahlfors' lemma, locally complete conformal metrics and conformally invariant reflection principles for analytic maps*, [Journal d'Analyse Mathématique 101 (2007), 219–256](https://doi.org/10.1007/s11854-007-0009-x).
++
++The later paper by Gumenyuk, Kourou, Moucha and Roth, [*Hyperbolic distortion and conformality at the boundary*, arXiv:2410.13965v1](https://arxiv.org/abs/2410.13965v1), explicitly records the single-point equivalence in Section 8.2, p. 31, equation (8.3): the unrestricted limit in (1) is equivalent to analytic continuation by Schwarz reflection across an open arc containing the boundary point. It credits the same 2007 paper. Thus this conclusion is not a conjectural inference based only on the abstract of a recent preprint.
++
++The full OWR contribution and the relevant 2024 definitions, theorem statements and Section 8.2 were read; the key source pages were rendered. The 2007 journal publication and authorship were verified from the publisher and author pages. Its full 38-page journal PDF was not available through the checked open sources, so no claim is made to have independently audited that entire paper. The precise imported theorem is available in the original OWR source itself.
++
++## Why a single unrestricted limit supplies an arc
++
++Here is the short quantifier argument, included to make the application checkable.
++
++By (1), choose \(\delta>0\) so that
++
++\[
++ \Phi_f(z)>\frac12
++ \quad\text{whenever }z\in\mathbb D,\ |z-1|<\delta.
++ \tag{2}
++\]
++
++Shrink \(\delta\), if necessary, and take the open arc
++\(\Gamma=\{\xi\in\partial\mathbb D:|\xi-1|<\delta/2\}\).
++For every fixed \(\xi\in\Gamma\), all points of \(\mathbb D\) sufficiently close to \(\xi\) lie in \(B(1,\delta)\). Consequently
++
++\[
++ \liminf_{\substack{z\to\xi\\z\in\mathbb D}}\Phi_f(z)\ge\frac12>0.
++\]
++
++The cited arc theorem applies and gives the stated holomorphic continuation across \(\Gamma\). This argument actually needs only a positive unrestricted liminf at 1. Conversely, the extension and circle-mapping property imply (1) by the same arc theorem.
++
++The observation uses the ordinary, unrestricted limit exactly as written. It cannot be repeated from a bound restricted to a Stolz angle or to a radius: such a bound does not control approach regions near the neighboring boundary points.
++
++## Concrete boundary consequences and limitations
++
++There is a point \(\eta=f(1)\in\partial\mathbb D\), and the unrestricted limit \(f(z)\to\eta\) exists. The extension is conformal at 1. In particular,
++
++\[
++ \overline\eta f'(1)=\alpha>0,\qquad
++ f(z)=\eta+\alpha\eta(z-1)+O(|z-1|^2).
++ \tag{3}
++\]
++
++To justify nonvanishing without assuming it, take a small neighborhood where the extension is nonzero. The function \(-\log|f|\) is harmonic, positive on the disk side, and zero on the boundary arc. The boundary point lemma gives a strictly positive inward normal derivative, or equivalently a strictly positive outward radial derivative of \(\log|f|\). Differentiating the identity \(|f(e^{it})|=1\) shows that \(\overline\eta f'(1)\) is real; the preceding normal derivative makes it positive. Thus the complex inverse function theorem applies locally. This is local conformality, not global injectivity.
++
++After shrinking the neighborhood, the exterior part of the continuation is the usual reflection
++
++\[
++ f_{\rm ext}(z)=\frac{1}{\overline{f(1/\overline z)}}.
++\]
++
++Neither a disk automorphism nor a finite Blaschke product is forced. Two elementary controls show the limits of the conclusion.
++
++1. \(f(z)=z^2\) satisfies
++   \[
++    \Phi_f(z)=\frac{2|z|}{1+|z|^2}\longrightarrow1
++   \]
++   as \(z\to1\), but it is not a disk automorphism.
++2. The singular inner function
++   \[
++    f(z)=\exp\!\left(-\frac{1-z}{1+z}\right)
++   \]
++   maps the disk into itself and is holomorphic across the unit circle near 1. Put \(u=\operatorname{Re}((1-z)/(1+z))=(1-|z|^2)/|1+z|^2>0\). Direct differentiation gives
++   \[
++    \Phi_f(z)=\frac{u}{\sinh u}\longrightarrow1
++   \]
++   unrestrictedly at 1. It has an essential singularity at \(-1\), so it is not a finite Blaschke product and need not extend across the whole circle.
++
++These controls are not counterexamples to the known local reflection conclusion.
++
++## Why the imported assessment is too weak
++
++The imported August 2026 assessment says that no complete unrestricted description is supplied and discusses angular conclusions. For the literal unrestricted condition, the cited 2024 paper itself states the stronger analytic-reflection equivalence.
++
++The distinction is substantive. Theorem 1 of the 2024 preprint relates the radial or non-tangential hyperbolic-distortion limit to weak conformality, or angle preservation, together with an angular boundary value. Its Theorem 2 imposes an additional integral condition to obtain a finite angular derivative. Section 8.4 explains that the angular distortion limit alone need not give a finite angular derivative. These results address weaker hypotheses than (1). They must not replace the exact unrestricted target.
++
++The mathematical content of (1) is therefore already characterized by a credited, published reflection theorem. This package does not infer a different intended quantifier for the historical question, does not solve the neighboring boundary-regularity question, and does not claim priority for the elementary point-to-arc application.
++
++**Disposition:** recommend already_solved for the exact selected record after separate source/proof review. Zero fresh substantive proof-search attempts were used; this work is source verification and exposition of the existing theorem.
+diff --git a/unsolved_math_prioritization/attempts/30000703/prior_report.json b/unsolved_math_prioritization/attempts/30000703/prior_report.json
+new file mode 100644
+index 000000000..19765bd50
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30000703/prior_report.json
+@@ -0,0 +1 @@
++null
+diff --git a/unsolved_math_prioritization/attempts/30000703/readiness.json b/unsolved_math_prioritization/attempts/30000703/readiness.json
+new file mode 100644
+index 000000000..10d766041
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30000703/readiness.json
+@@ -0,0 +1,36 @@
++{
++  "id": 30000703,
++  "review_hash": "1a176a2cfb6d870619163076dc7907c8e0aefb335ff0451e2bc4e3f9f3fafc01",
++  "statement_hash": "545f8640e08d60ce2b5a3f9b6c3dd3ec5ff2c31440fd13e1d786a99a193c25d2",
++  "exact_claim": "Under the ordinary unrestricted limit of hyperbolic distortion to 1 at the boundary point 1, determine the local boundary behavior of a holomorphic disk self-map.",
++  "known_answer": "Equivalent to holomorphic Schwarz reflection across an open unit-circle arc containing 1 with unimodular boundary values; gives a finite nonzero derivative and local conformality.",
++  "primary_sources": [
++    "https://ems.press/content/serial-article-files/46093",
++    "https://doi.org/10.1007/s11854-007-0009-x",
++    "https://arxiv.org/abs/2410.13965v1"
++  ],
++  "literature_checked_at": "2026-09-30T06:25:46.749462+00:00",
++  "prior_attempt_gap": "No earlier campaign attempt; no separate pinned report. Imported source assessment confuses the unrestricted condition with weaker angular conclusions.",
++  "prior_attempt_check": "Current main tree c6975ca76f9f667f1250ba403d0e6da2aafe14d0 is untruncated and has no matching attempt or Schwarz/boundary-behavior path. All-state PRs 1-44 contained no matching target. Branch dot/math-30000703 absent. Current main QUEUE row is queued 0/5. Related groups and historical state checked without a match.",
++  "duplicate_check": "Full pinned statement scan for Schwarz/related boundary behavior found only this exact target; other matches concern different problems.",
++  "classification": "source_status_known_published_reflection_criterion",
++  "recommended_status": "already_solved",
++  "new_result": false,
++  "actual_model": "gpt-6-astra",
++  "actual_reasoning_effort": "xhigh",
++  "budget": {
++    "start_utc": "2026-09-30T06:17:41Z",
++    "deadline_utc": "2026-09-30T08:17:41Z",
++    "maximum_substantive_attempts": 5,
++    "used_substantive_attempts": 0
++  },
++  "artifact_sha256": "7690840787fd9be528beb649dc6db4b77bc637867720765812ec4cb31d5a73ba",
++  "review_status": "PASS_CREDITED_KNOWN_UNRESTRICTED_REFLECTION_CRITERION",
++  "new_discovery_completion_estimate_percent": 0,
++  "source_verification_completion_estimate_percent": 95,
++  "limitations": "Full 2007 journal PDF inaccessible in checked open sources. Its precise theorem is read in the original primary OWR contribution; the exact single-point equivalence is also explicit in the later primary preprint. No independent audit of the full journal proof is claimed.",
++  "review_report": "review/REVIEW.md",
++  "review_sha256": "b46416df003894db42db970462fa79b2f11de9d8f8a2c63a46a4483432c35983",
++  "author_assertions_passed": 69,
++  "independent_assertions_passed": 187
++}
+diff --git a/unsolved_math_prioritization/attempts/30000703/review/REVIEW.md b/unsolved_math_prioritization/attempts/30000703/review/REVIEW.md
+new file mode 100644
+index 000000000..6d31a9eae
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30000703/review/REVIEW.md
+@@ -0,0 +1,58 @@
++# Independent source and mathematical audit: 30000703
++
++**Verdict: PASS for `already_solved` on the exact unrestricted-limit formulation.** The conclusion is a credited application of the Kraus–Roth–Ruscheweyh reflection theorem, not a new result. No mandatory mathematical correction was found.
++
++- Date: 30 September 2026
++- Reviewer: separate gpt-6-astra worker, xhigh
++- Artifact: `SOURCE_STATUS.md`
++- Frozen SHA-256: `7690840787fd9be528beb649dc6db4b77bc637867720765812ec4cb31d5a73ba`
++- No author mathematics or source files were edited
++- The full 2007 journal proof was not available and is not independently certified by this review
++
++## 1. Exact primary statements and quantifiers
++
++I read the original OWR contribution and visually inspected printed pp. 528–529. Problem 1 prints an ordinary limit as z approaches 1, with no radial or non-tangential restriction. The preceding Theorem 1 explicitly equates a positive unrestricted liminf of the displayed hyperbolic distortion at every point of an open boundary arc with holomorphic extension across that arc mapping it into the unit circle. It also equates these conditions with the distortion tending to one at every arc point. The neighboring Problem 2 concerns a different conformal-metric boundary-regularity question and is not part of the selected target.
++
++Source: [original OWR contribution](https://ems.press/content/serial-article-files/46093), pp. 528–530.
++
++The exact one-point conclusion is independently explicit in [Gumenyuk–Kourou–Moucha–Roth, arXiv:2410.13965v1](https://arxiv.org/abs/2410.13965v1), Section 8.2, p. 31, equation (8.3). I visually checked that page. The current unversioned arXiv record lists only v1, 17 October 2024. The subsequent angular-distortion discussion is explicitly different: equation (8.4) concerns non-tangential convergence and weak conformality, while the finite-angular-derivative conclusion needs an additional condition. Definitions and Theorems 1–2 are consistent with this separation. The source correction does not confuse either of those weaker hypotheses with the unrestricted one.
++
++The [2007 publisher record](https://link.springer.com/article/10.1007/s11854-007-0009-x) confirms Daniela Kraus, Oliver Roth and Stephan Ruscheweyh, Journal d'Analyse Mathématique 101, 219–256, DOI 10.1007/s11854-007-0009-x. It displays subscription-preview material rather than the complete article. The review imports the established theorem as precisely stated in the primary OWR source and credited in the later paper. It does not infer the theorem merely from a publisher abstract, nor claim to have reconstructed its 38-page proof.
++
++## 2. The point-to-arc step is valid
++
++The central quantifier argument is correct. An unrestricted limit of the distortion to one gives a uniform lower bound, say one half, throughout the intersection of the disk with some Euclidean ball centered at 1. A smaller unit-circle arc lies strictly inside that ball. For each fixed point of that arc, every sufficiently close point in the disk lies in the original ball. Its unrestricted liminf is therefore at least one half, so the cited arc theorem applies.
++
++There is no interchange of a pointwise limit with a uniform limit over an arc. The uniform lower bound is furnished directly by the single unrestricted limit, and only this lower bound is transferred to neighboring points. The resulting reflection theorem supplies the stronger limits afterward. The same argument works from a strictly positive unrestricted liminf at 1.
++
++Conversely, holomorphic continuation across an open arc mapping it into the unit circle is exactly one of the equivalent hypotheses in the imported theorem, so it implies the original distortion limit. Thus the package records an equivalence for the literal target.
++
++A radial segment or a fixed Stolz region does not contain full interior neighborhoods near neighboring boundary points. Such restricted convergence cannot supply this argument's hypothesis. The artifact accurately identifies this distinction rather than silently strengthening an angular assumption.
++
++## 3. Boundary derivative and reflection formula
++
++The extension gives f(1)=eta on the unit circle and the unrestricted boundary value. Nonvanishing of the boundary derivative is not assumed.
++
++Choose a small neighborhood where the continued function is nonzero. The function u=−log|f| is harmonic, strictly positive on the disk side, and zero on the boundary arc. The strict positivity uses f(D) contained in D, and the initial distortion condition excludes a constant function. The unit-circle boundary is smooth and satisfies the interior-ball condition. Hopf's boundary point lemma consequently gives a positive inward derivative of u, equivalently a positive outward derivative of log|f|.
++
++Differentiating the boundary identity |f(e^(it))|=1 at t=0 makes conjugate(eta)·f'(1) real. The preceding normal derivative equals its real part and makes it strictly positive. This proves the stated alpha>0, Taylor expansion and local conformality. It does not assert alpha=1 or global injectivity.
++
++After shrinking the neighborhood to avoid zeros, circle reflection yields the displayed reciprocal-conjugate formula. Both sides agree on the arc and give the same holomorphic continuation. The possibility of zeros or singularities elsewhere on the circle does not interfere with this local statement.
++
++## 4. Sharpness controls
++
++For f(z)=z², the distortion is 2|z|/(1+|z|²), tending to one at 1. This is a proper disk self-map but not an automorphism, so the local theorem cannot be promoted to a disk-automorphism conclusion.
++
++For f(z)=exp(−(1−z)/(1+z)), the Cayley transform has positive real part u=(1−|z|²)/|1+z|² in the disk. Thus f maps the disk strictly into itself. Its derivative gives distortion u/sinh(u), and u tends to zero under unrestricted approach to 1. The function extends holomorphically near 1 and has derivative 1/2 there. At −1, the exponent has a genuine pole, so the exponential has an essential singularity. It is not a finite Blaschke product and does not extend over the whole unit circle.
++
++The examples satisfy the original hypothesis and the claimed local conclusion. They are controls on overstrong conclusions, not counterexamples to the reflection theorem.
++
++## 5. Reproduction and disposition
++
++The submitted verifier was copied before execution. All **69** exact assertions pass with SymPy 1.14.0, and the regenerated receipt is byte-identical to the original.
++
++The independent checker passes **187** exact assertions. It checks powers z^k, rational circle-neighborhood geometry, the reflection identity for the Cayley transform, the parameter family exp(−a(1−z)/(1+z)) for several positive rational a, its derivative a/2, and the associated distortion formulas and limits. These are finite symbolic controls. They do not prove the imported reflection theorem or replace the analytic Hopf argument.
++
++**Required corrections: none.** `already_solved` is appropriate for the exact selected unrestricted condition, with credit to the known theorem and with no campaign discovery or priority credit. Retain the full-journal-PDF access qualification. No conclusion is certified here for a radial-only hypothesis, an unspecified alternative intended question, or the adjacent boundary-set regularity problem.
++
++The six publication files are `REVIEW.md`, `verdict.json`, `submitted_verify.py`, `verification.json`, `independent_checks.py`, and `independent_results.json`. The independent checker is self-contained and does not require a source snapshot. If the frozen artifact's administrative review sentence changes, link the final hash with an exact diff.
+diff --git a/unsolved_math_prioritization/attempts/30000703/review/independent_checks.py b/unsolved_math_prioritization/attempts/30000703/review/independent_checks.py
+new file mode 100644
+index 000000000..d9a6e37c1
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30000703/review/independent_checks.py
+@@ -0,0 +1,46 @@
++#!/usr/bin/env python3
++"""Independent formula controls for the credited local reflection criterion."""
++from pathlib import Path
++import json
++import sympy as s
++checks={}
++def ck(name,v):
++    assert bool(v),name
++    checks[name]='PASS'
++r,u,z=s.symbols('r u z',positive=True)
++# Distinct non-automorphic powers all exhibit the same limiting distortion.
++for k in range(2,17):
++    phi=k*r**(k-1)/sum(r**(2*j) for j in range(k))
++    ck(f'power_formula_{k}',s.cancel(phi-k*r**(k-1)*(1-r*r)/(1-r**(2*k)))==0)
++    ck(f'power_limit_{k}',s.limit(phi,r,1)==1)
++    ck(f'power_boundary_derivative_{k}',s.diff(z**k,z).subs(z,1)==k)
++    ck(f'power_reflection_{k}',s.cancel(1/(1/z)**k-z**k)==0)
++# Positive derivative values are not forced to be 1. An entire parameter
++# family of singular inner examples has alpha=a/2.
++w=(1-z)/(1+z)
++ck('cayley_reflection',s.cancel(w.subs(z,1/z)+w)==0)
++for a in [s.Rational(1,5),s.Rational(1,2),s.Integer(1),s.Rational(3,2),s.Integer(2),s.Integer(5)]:
++    f=s.exp(-a*w)
++    ck(f'singular_inner_value_{a}',f.subs(z,1)==1)
++    ck(f'singular_inner_derivative_{a}',s.diff(f,z).subs(z,1)==a/2)
++    phi=2*a*u*s.exp(-a*u)/(1-s.exp(-2*a*u))
++    ck(f'singular_inner_distortion_{a}',s.cancel((phi-a*u/s.sinh(a*u)).rewrite(s.exp))==0)
++    ck(f'singular_inner_limit_{a}',s.limit(phi,u,0)==1)
++# Rational boundary points and disk points, with exact Euclidean radii.
++for j in range(1,26):
++    delta=s.Rational(1,j);v=delta/8
++    X=(1-v*v)/(1+v*v);Y=2*v/(1+v*v)
++    ck(f'boundary_point_{j}',X*X+Y*Y==1)
++    ck(f'arc_margin_{j}',s.expand((X-1)**2+Y**2)<delta**2/4)
++    rho=1-delta/8;Zx,Zy=rho*X,rho*Y
++    ck(f'interior_point_{j}',Zx*Zx+Zy*Zy<1)
++    ck(f'neighborhood_margin_{j}',s.expand((Zx-1)**2+Zy**2)<delta**2)
++# The sign in the logarithmic radial derivative used after Hopf's lemma.
++a=s.symbols('a',positive=True)
++ck('log_modulus_radial_derivative',s.diff(-a*(1-r)/(1+r),r).subs(r,1)==a/2)
++x,y=s.symbols('x y',real=True)
++wc=(1-(x+s.I*y))/(1+(x+s.I*y))
++ck('positive_cayley_realpart_identity',s.factor(s.re(wc)-(1-x*x-y*y)/((1+x)**2+y*y))==0)
++result={'passed':len(checks),'failed':0,'sympy_version':s.__version__,'checks':checks,'scope':'Exact example and quantifier-margin controls only. The imported published reflection theorem and analytic Hopf argument are audited in REVIEW.md, not established by these finite checks.'}
++Path(__file__).with_name('independent_results.json').write_text(json.dumps(result,indent=2)+'\n')
++print(json.dumps({k:v for k,v in result.items() if k!='checks'}))
+diff --git a/unsolved_math_prioritization/attempts/30000703/review/independent_results.json b/unsolved_math_prioritization/attempts/30000703/review/independent_results.json
+new file mode 100644
+index 000000000..44da40642
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30000703/review/independent_results.json
+@@ -0,0 +1,195 @@
++{
++  "passed": 187,
++  "failed": 0,
++  "sympy_version": "1.14.0",
++  "checks": {
++    "power_formula_2": "PASS",
++    "power_limit_2": "PASS",
++    "power_boundary_derivative_2": "PASS",
++    "power_reflection_2": "PASS",
++    "power_formula_3": "PASS",
++    "power_limit_3": "PASS",
++    "power_boundary_derivative_3": "PASS",
++    "power_reflection_3": "PASS",
++    "power_formula_4": "PASS",
++    "power_limit_4": "PASS",
++    "power_boundary_derivative_4": "PASS",
++    "power_reflection_4": "PASS",
++    "power_formula_5": "PASS",
++    "power_limit_5": "PASS",
++    "power_boundary_derivative_5": "PASS",
++    "power_reflection_5": "PASS",
++    "power_formula_6": "PASS",
++    "power_limit_6": "PASS",
++    "power_boundary_derivative_6": "PASS",
++    "power_reflection_6": "PASS",
++    "power_formula_7": "PASS",
++    "power_limit_7": "PASS",
++    "power_boundary_derivative_7": "PASS",
++    "power_reflection_7": "PASS",
++    "power_formula_8": "PASS",
++    "power_limit_8": "PASS",
++    "power_boundary_derivative_8": "PASS",
++    "power_reflection_8": "PASS",
++    "power_formula_9": "PASS",
++    "power_limit_9": "PASS",
++    "power_boundary_derivative_9": "PASS",
++    "power_reflection_9": "PASS",
++    "power_formula_10": "PASS",
++    "power_limit_10": "PASS",
++    "power_boundary_derivative_10": "PASS",
++    "power_reflection_10": "PASS",
++    "power_formula_11": "PASS",
++    "power_limit_11": "PASS",
++    "power_boundary_derivative_11": "PASS",
++    "power_reflection_11": "PASS",
++    "power_formula_12": "PASS",
++    "power_limit_12": "PASS",
++    "power_boundary_derivative_12": "PASS",
++    "power_reflection_12": "PASS",
++    "power_formula_13": "PASS",
++    "power_limit_13": "PASS",
++    "power_boundary_derivative_13": "PASS",
++    "power_reflection_13": "PASS",
++    "power_formula_14": "PASS",
++    "power_limit_14": "PASS",
++    "power_boundary_derivative_14": "PASS",
++    "power_reflection_14": "PASS",
++    "power_formula_15": "PASS",
++    "power_limit_15": "PASS",
++    "power_boundary_derivative_15": "PASS",
++    "power_reflection_15": "PASS",
++    "power_formula_16": "PASS",
++    "power_limit_16": "PASS",
++    "power_boundary_derivative_16": "PASS",
++    "power_reflection_16": "PASS",
++    "cayley_reflection": "PASS",
++    "singular_inner_value_1/5": "PASS",
++    "singular_inner_derivative_1/5": "PASS",
++    "singular_inner_distortion_1/5": "PASS",
++    "singular_inner_limit_1/5": "PASS",
++    "singular_inner_value_1/2": "PASS",
++    "singular_inner_derivative_1/2": "PASS",
++    "singular_inner_distortion_1/2": "PASS",
++    "singular_inner_limit_1/2": "PASS",
++    "singular_inner_value_1": "PASS",
++    "singular_inner_derivative_1": "PASS",
++    "singular_inner_distortion_1": "PASS",
++    "singular_inner_limit_1": "PASS",
++    "singular_inner_value_3/2": "PASS",
++    "singular_inner_derivative_3/2": "PASS",
++    "singular_inner_distortion_3/2": "PASS",
++    "singular_inner_limit_3/2": "PASS",
++    "singular_inner_value_2": "PASS",
++    "singular_inner_derivative_2": "PASS",
++    "singular_inner_distortion_2": "PASS",
++    "singular_inner_limit_2": "PASS",
++    "singular_inner_value_5": "PASS",
++    "singular_inner_derivative_5": "PASS",
++    "singular_inner_distortion_5": "PASS",
++    "singular_inner_limit_5": "PASS",
++    "boundary_point_1": "PASS",
++    "arc_margin_1": "PASS",
++    "interior_point_1": "PASS",
++    "neighborhood_margin_1": "PASS",
++    "boundary_point_2": "PASS",
++    "arc_margin_2": "PASS",
++    "interior_point_2": "PASS",
++    "neighborhood_margin_2": "PASS",
++    "boundary_point_3": "PASS",
++    "arc_margin_3": "PASS",
++    "interior_point_3": "PASS",
++    "neighborhood_margin_3": "PASS",
++    "boundary_point_4": "PASS",
++    "arc_margin_4": "PASS",
++    "interior_point_4": "PASS",
++    "neighborhood_margin_4": "PASS",
++    "boundary_point_5": "PASS",
++    "arc_margin_5": "PASS",
++    "interior_point_5": "PASS",
++    "neighborhood_margin_5": "PASS",
++    "boundary_point_6": "PASS",
++    "arc_margin_6": "PASS",
++    "interior_point_6": "PASS",
++    "neighborhood_margin_6": "PASS",
++    "boundary_point_7": "PASS",
++    "arc_margin_7": "PASS",
++    "interior_point_7": "PASS",
++    "neighborhood_margin_7": "PASS",
++    "boundary_point_8": "PASS",
++    "arc_margin_8": "PASS",
++    "interior_point_8": "PASS",
++    "neighborhood_margin_8": "PASS",
++    "boundary_point_9": "PASS",
++    "arc_margin_9": "PASS",
++    "interior_point_9": "PASS",
++    "neighborhood_margin_9": "PASS",
++    "boundary_point_10": "PASS",
++    "arc_margin_10": "PASS",
++    "interior_point_10": "PASS",
++    "neighborhood_margin_10": "PASS",
++    "boundary_point_11": "PASS",
++    "arc_margin_11": "PASS",
++    "interior_point_11": "PASS",
++    "neighborhood_margin_11": "PASS",
++    "boundary_point_12": "PASS",
++    "arc_margin_12": "PASS",
++    "interior_point_12": "PASS",
++    "neighborhood_margin_12": "PASS",
++    "boundary_point_13": "PASS",
++    "arc_margin_13": "PASS",
++    "interior_point_13": "PASS",
++    "neighborhood_margin_13": "PASS",
++    "boundary_point_14": "PASS",
++    "arc_margin_14": "PASS",
++    "interior_point_14": "PASS",
++    "neighborhood_margin_14": "PASS",
++    "boundary_point_15": "PASS",
++    "arc_margin_15": "PASS",
++    "interior_point_15": "PASS",
++    "neighborhood_margin_15": "PASS",
++    "boundary_point_16": "PASS",
++    "arc_margin_16": "PASS",
++    "interior_point_16": "PASS",
++    "neighborhood_margin_16": "PASS",
++    "boundary_point_17": "PASS",
++    "arc_margin_17": "PASS",
++    "interior_point_17": "PASS",
++    "neighborhood_margin_17": "PASS",
++    "boundary_point_18": "PASS",
++    "arc_margin_18": "PASS",
++    "interior_point_18": "PASS",
++    "neighborhood_margin_18": "PASS",
++    "boundary_point_19": "PASS",
++    "arc_margin_19": "PASS",
++    "interior_point_19": "PASS",
++    "neighborhood_margin_19": "PASS",
++    "boundary_point_20": "PASS",
++    "arc_margin_20": "PASS",
++    "interior_point_20": "PASS",
++    "neighborhood_margin_20": "PASS",
++    "boundary_point_21": "PASS",
++    "arc_margin_21": "PASS",
++    "interior_point_21": "PASS",
++    "neighborhood_margin_21": "PASS",
++    "boundary_point_22": "PASS",
++    "arc_margin_22": "PASS",
++    "interior_point_22": "PASS",
++    "neighborhood_margin_22": "PASS",
++    "boundary_point_23": "PASS",
++    "arc_margin_23": "PASS",
++    "interior_point_23": "PASS",
++    "neighborhood_margin_23": "PASS",
++    "boundary_point_24": "PASS",
++    "arc_margin_24": "PASS",
++    "interior_point_24": "PASS",
++    "neighborhood_margin_24": "PASS",
++    "boundary_point_25": "PASS",
++    "arc_margin_25": "PASS",
++    "interior_point_25": "PASS",
++    "neighborhood_margin_25": "PASS",
++    "log_modulus_radial_derivative": "PASS",
++    "positive_cayley_realpart_identity": "PASS"
++  },
++  "scope": "Exact example and quantifier-margin controls only. The imported published reflection theorem and analytic Hopf argument are audited in REVIEW.md, not established by these finite checks."
++}
+diff --git a/unsolved_math_prioritization/attempts/30000703/review/submitted_verify.py b/unsolved_math_prioritization/attempts/30000703/review/submitted_verify.py
+new file mode 100644
+index 000000000..4d3042e2c
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30000703/review/submitted_verify.py
+@@ -0,0 +1,32 @@
++#!/usr/bin/env python3
++"""Exact diagnostic identities; no numerical certificate for reflection theorems."""
++from pathlib import Path
++import json
++import sympy as s
++x,y,r,u=s.symbols('x y r u',real=True)
++z=x+s.I*y
++checks={}
++def ck(n,v):
++ assert bool(v),n
++ checks[n]='PASS'
++w=(1-z)/(1+z)
++ck('cayley_real_part',s.factor(s.re(w)-(1-x*x-y*y)/((1+x)**2+y*y))==0)
++ck('cayley_derivative',s.cancel(s.diff((1-s.Symbol('z'))/(1+s.Symbol('z')),s.Symbol('z'))+2/(1+s.Symbol('z'))**2)==0)
++ck('exponential_distortion',s.cancel((2*u*s.exp(-u)/(1-s.exp(-2*u))-u/s.sinh(u)).rewrite(s.exp))==0)
++ck('exponential_limit',s.limit(u/s.sinh(u),u,0)==1)
++ck('square_distortion',s.cancel((1-r*r)*2*r/(1-r**4)-2*r/(1+r*r))==0)
++ck('square_limit',s.limit(2*r/(1+r*r),r,1)==1)
++ck('square_deficit',s.factor(1-2*r/(1+r*r)-(1-r)**2/(1+r*r))==0)
++# Triangle estimate behind the point-to-arc argument, checked with exact radii.
++for j in range(1,21):
++ delta=s.Rational(1,j)
++ for a in (s.Rational(1,4),s.Rational(1,3),s.Rational(2,5)):
++  # |xi-1| <= a*delta, |z-xi| < delta/2 imply |z-1| < delta.
++  ck(f'arc_margin_{j}_{a}',a*delta+delta/2<delta)
++q=s.symbols('q')
++f=s.exp(-(1-q)/(1+q))
++ck('example_boundary_value',f.subs(q,1)==1)
++ck('example_derivative',s.diff(f,q).subs(q,1)==s.Rational(1,2))
++out={'passed':len(checks),'failed':0,'sympy_version':s.__version__,'checks':checks,'scope':'Exact formula and quantifier-margin controls; the published reflection theorem is an imported analytic result, not a computed claim.'}
++Path(__file__).with_name('verification.json').write_text(json.dumps(out,indent=2)+'\n')
++print(json.dumps({k:v for k,v in out.items() if k!='checks'},indent=2))
+diff --git a/unsolved_math_prioritization/attempts/30000703/review/verdict.json b/unsolved_math_prioritization/attempts/30000703/review/verdict.json
+new file mode 100644
+index 000000000..a5de72606
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30000703/review/verdict.json
+@@ -0,0 +1,21 @@
++{
++  "problem_id": 30000703,
++  "problem_code": "OWR-1460-009",
++  "review_date": "2026-09-30",
++  "reviewer_model": "gpt-6-astra",
++  "reasoning_effort": "xhigh",
++  "verdict": "PASS_CREDITED_KNOWN_UNRESTRICTED_REFLECTION_CRITERION",
++  "recommended_queue_status": "already_solved",
++  "artifact_sha256": "7690840787fd9be528beb649dc6db4b77bc637867720765812ec4cb31d5a73ba",
++  "mandatory_corrections": [],
++  "author_assertions_passed": 69,
++  "author_receipt_byte_identical": true,
++  "independent_assertions_passed": 187,
++  "full_2007_journal_proof_independently_audited": false,
++  "imported_theorem": "Kraus-Roth-Ruscheweyh, J. Analyse Math.101(2007)219-256; exact arc theorem in original OWR528-529",
++  "single_point_primary_confirmation": "Gumenyuk-Kourou-Moucha-Roth 2410.13965v1, Section8.2 p31 eq8.3",
++  "new_result_claimed": false,
++  "source_files_edited": false,
++  "scope": "Only the literal unrestricted limit; not radial/nontangential-only or the neighboring boundary-set question",
++  "review_sha256": "b46416df003894db42db970462fa79b2f11de9d8f8a2c63a46a4483432c35983"
++}
+diff --git a/unsolved_math_prioritization/attempts/30000703/review/verification.json b/unsolved_math_prioritization/attempts/30000703/review/verification.json
+new file mode 100644
+index 000000000..52a2ed53c
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30000703/review/verification.json
+@@ -0,0 +1,77 @@
++{
++  "passed": 69,
++  "failed": 0,
++  "sympy_version": "1.14.0",
++  "checks": {
++    "cayley_real_part": "PASS",
++    "cayley_derivative": "PASS",
++    "exponential_distortion": "PASS",
++    "exponential_limit": "PASS",
++    "square_distortion": "PASS",
++    "square_limit": "PASS",
++    "square_deficit": "PASS",
++    "arc_margin_1_1/4": "PASS",
++    "arc_margin_1_1/3": "PASS",
++    "arc_margin_1_2/5": "PASS",
++    "arc_margin_2_1/4": "PASS",
++    "arc_margin_2_1/3": "PASS",
++    "arc_margin_2_2/5": "PASS",
++    "arc_margin_3_1/4": "PASS",
++    "arc_margin_3_1/3": "PASS",
++    "arc_margin_3_2/5": "PASS",
++    "arc_margin_4_1/4": "PASS",
++    "arc_margin_4_1/3": "PASS",
++    "arc_margin_4_2/5": "PASS",
++    "arc_margin_5_1/4": "PASS",
++    "arc_margin_5_1/3": "PASS",
++    "arc_margin_5_2/5": "PASS",
++    "arc_margin_6_1/4": "PASS",
++    "arc_margin_6_1/3": "PASS",
++    "arc_margin_6_2/5": "PASS",
++    "arc_margin_7_1/4": "PASS",
++    "arc_margin_7_1/3": "PASS",
++    "arc_margin_7_2/5": "PASS",
++    "arc_margin_8_1/4": "PASS",
++    "arc_margin_8_1/3": "PASS",
++    "arc_margin_8_2/5": "PASS",
++    "arc_margin_9_1/4": "PASS",
++    "arc_margin_9_1/3": "PASS",
++    "arc_margin_9_2/5": "PASS",
++    "arc_margin_10_1/4": "PASS",
++    "arc_margin_10_1/3": "PASS",
++    "arc_margin_10_2/5": "PASS",
++    "arc_margin_11_1/4": "PASS",
++    "arc_margin_11_1/3": "PASS",
++    "arc_margin_11_2/5": "PASS",
++    "arc_margin_12_1/4": "PASS",
++    "arc_margin_12_1/3": "PASS",
++    "arc_margin_12_2/5": "PASS",
++    "arc_margin_13_1/4": "PASS",
++    "arc_margin_13_1/3": "PASS",
++    "arc_margin_13_2/5": "PASS",
++    "arc_margin_14_1/4": "PASS",
++    "arc_margin_14_1/3": "PASS",
++    "arc_margin_14_2/5": "PASS",
++    "arc_margin_15_1/4": "PASS",
++    "arc_margin_15_1/3": "PASS",
++    "arc_margin_15_2/5": "PASS",
++    "arc_margin_16_1/4": "PASS",
++    "arc_margin_16_1/3": "PASS",
++    "arc_margin_16_2/5": "PASS",
++    "arc_margin_17_1/4": "PASS",
++    "arc_margin_17_1/3": "PASS",
++    "arc_margin_17_2/5": "PASS",
++    "arc_margin_18_1/4": "PASS",
++    "arc_margin_18_1/3": "PASS",
++    "arc_margin_18_2/5": "PASS",
++    "arc_margin_19_1/4": "PASS",
++    "arc_margin_19_1/3": "PASS",
++    "arc_margin_19_2/5": "PASS",
++    "arc_margin_20_1/4": "PASS",
++    "arc_margin_20_1/3": "PASS",
++    "arc_margin_20_2/5": "PASS",
++    "example_boundary_value": "PASS",
++    "example_derivative": "PASS"
++  },
++  "scope": "Exact formula and quantifier-margin controls; the published reflection theorem is an imported analytic result, not a computed claim."
++}
+diff --git a/unsolved_math_prioritization/attempts/30000703/source_checksums.json b/unsolved_math_prioritization/attempts/30000703/source_checksums.json
+new file mode 100644
+index 000000000..9bba0e0c8
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30000703/source_checksums.json
+@@ -0,0 +1,23 @@
++[
++  {
++    "name": "owr2007.pdf",
++    "url": "https://ems.press/content/serial-article-files/46093",
++    "scope": "Original contribution pp.528-530; Theorem1 and Problem1, fully read and key pages rendered",
++    "sha256": "d38624e71305f8fbd26b92a7903e8d7fb57c22c24763409b1a7126887ba10496",
++    "bytes": 2885678
++  },
++  {
++    "name": "hyperbolic2024.pdf",
++    "url": "https://arxiv.org/pdf/2410.13965v1",
++    "scope": "Definitions and Theorems1-2; Section8.2 p31 eq8.3; Section8.4; relevant pages read and p31 rendered",
++    "sha256": "7fa62d5ecbb692a1bcbfc486816c6beccee5fbe66353f2f64355f0e43b2f5178",
++    "bytes": 546706
++  },
++  {
++    "name": "schwarz2010.pdf",
++    "url": "https://arxiv.org/pdf/1001.1805",
++    "scope": "Supplementary boundary-Schwarz context only, not the source of the resolution",
++    "sha256": "6b03858a6a4c5bce688048e3dec5567006ad6802d9be8e1371a25320ea67f4d0",
++    "bytes": 180394
++  }
++]
+diff --git a/unsolved_math_prioritization/attempts/30000703/source_record.json b/unsolved_math_prioritization/attempts/30000703/source_record.json
+new file mode 100644
+index 000000000..cca196805
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30000703/source_record.json
+@@ -0,0 +1,72 @@
++{
++  "id": 30000703,
++  "problem_number": "OWR-1460-009",
++  "title": "Boundary Behavior under Asymptotic Schwarz\u2013Pick Equality",
++  "statement": "Let $f:\\mathbb{D}\\to\\mathbb{D}$ be holomorphic and suppose $\\lim_{z\\to1}(1-|z|^2)|f'(z)|/(1-|f(z)|^2)=1$. What can be said about the boundary behavior of $f$ at $z=1$?",
++  "background": "Collected from Oberwolfach Reports, which document mathematical workshops and their open-problem discussions.\n\n**Source report:** [Normal Families and Complex Dynamics (2007), Oberwolfach Reports, DOI 10.4171/owr/2007/09, pp. 487--548](https://doi.org/10.4171/owr/2007/09)\n\n## Literature review (checked 2026-08-21)\n\n**Status:** partially solved\n\n**Assessment.** The condition is governed by boundary Schwarz--Pick and Julia--Caratheodory theory, which gives strong angular boundary conclusions and rigidity in extremal cases. A complete unrestricted description for every approach to the boundary point is not supplied by the standard theorem.\n\n**Sources checked.**\n\n- [original problem report](https://doi.org/10.4171/owr/2007/09)\n- [Schwarz lemma at the boundary](https://arxiv.org/abs/1001.1805)\n- [hyperbolic distortion at the boundary](https://arxiv.org/abs/2410.13965)\n\nThis is a dated literature triage derived from the supplied OWR curation; verify time-sensitive status and cited claims independently.",
++  "difficulty_level_id": 3,
++  "status": "partially_solved",
++  "proposed_by": null,
++  "proposed_year": 2007,
++  "category_id": 11,
++  "set_id": 15,
++  "source_url": "https://doi.org/10.4171/owr/2007/09",
++  "source_citation": "Normal Families and Complex Dynamics (2007), Oberwolfach Reports, DOI 10.4171/owr/2007/09, pp. 487--548",
++  "literature_assessment": "The condition is governed by boundary Schwarz--Pick and Julia--Caratheodory theory, which gives strong angular boundary conclusions and rigidity in extremal cases. A complete unrestricted description for every approach to the boundary point is not supplied by the standard theorem.",
++  "literature_sources": [
++    {
++      "url": "https://doi.org/10.4171/owr/2007/09",
++      "label": "original problem report"
++    },
++    {
++      "url": "https://arxiv.org/abs/1001.1805",
++      "label": "Schwarz lemma at the boundary"
++    },
++    {
++      "url": "https://arxiv.org/abs/2410.13965",
++      "label": "hyperbolic distortion at the boundary"
++    }
++  ],
++  "literature_checked_at": "2026-08-21",
++  "tags": [
++    "owr",
++    "oberwolfach-reports",
++    "OWR-1460-009",
++    "literature-status:partially-solved",
++    "owr-year:2007"
++  ],
++  "view_count": 0,
++  "favorite_count": 0,
++  "created_at": "2026-08-25T00:00:00Z",
++  "updated_at": "2026-09-16T12:06:53Z",
++  "published": true,
++  "category": {
++    "id": 11,
++    "name": "dynamical_systems",
++    "display_name": "Dynamical Systems",
++    "description": "Problems about long-term behavior of deterministic systems, Hamiltonian dynamics, and periodic orbits.",
++    "slug": "dynamical-systems",
++    "order_index": 11,
++    "created_at": "2026-07-31T15:26:25.671Z"
++  },
++  "difficulty": {
++    "id": 3,
++    "level": 3,
++    "name": "L3: Advanced",
++    "description": "Difficult problems requiring specialized knowledge and sophisticated techniques.",
++    "color_class": "text-yellow-600 bg-yellow-50 border-yellow-200"
++  },
++  "set": {
++    "id": 15,
++    "name": "oberwolfach_reports_open_problems",
++    "display_name": "Oberwolfach Reports Open Problems",
++    "description": "Open and partially solved problems extracted from Oberwolfach Reports workshop discussions, with report provenance and dated literature assessments.",
++    "slug": "oberwolfach-reports-open-problems",
++    "order_index": 15,
++    "created_at": "2026-08-25T00:00:00Z"
++  },
++  "original_statement": "Let f: \ud835\udd3b\u2192\ud835\udd3b be holomorphic and suppose lim_{z\u21921} (1\u2212|z|\u00b2)|f\u2032(z)|/(1\u2212|f(z)|\u00b2)=1. What can be said about the boundary behavior of f at z=1?",
++  "clean_statement": "Let $f:\\mathbb{D}\\to\\mathbb{D}$ be holomorphic and suppose $\\lim_{z\\to1}(1-|z|^2)|f'(z)|/(1-|f(z)|^2)=1$. What can be said about the boundary behavior of $f$ at $z=1$?",
++  "statement_status": "corrected_verified",
++  "statement_verification": "The boundary-behavior question is complete; the disk, map, derivative, and limit notation are restored."
++}
+diff --git a/unsolved_math_prioritization/attempts/30000703/turns.json b/unsolved_math_prioritization/attempts/30000703/turns.json
+new file mode 100644
+index 000000000..189a3cb25
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30000703/turns.json
+@@ -0,0 +1,6 @@
++{
++  "id": 30000703,
++  "count": 0,
++  "substantive_attempts": [],
++  "reason": "Stopped at known-result source gate; the short point-to-arc application and examples verify the existing criterion rather than constitute a fresh proof-search route."
++}
+diff --git a/unsolved_math_prioritization/attempts/30000703/verification.json b/unsolved_math_prioritization/attempts/30000703/verification.json
+new file mode 100644
+index 000000000..52a2ed53c
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30000703/verification.json
+@@ -0,0 +1,77 @@
++{
++  "passed": 69,
++  "failed": 0,
++  "sympy_version": "1.14.0",
++  "checks": {
++    "cayley_real_part": "PASS",
++    "cayley_derivative": "PASS",
++    "exponential_distortion": "PASS",
++    "exponential_limit": "PASS",
++    "square_distortion": "PASS",
++    "square_limit": "PASS",
++    "square_deficit": "PASS",
++    "arc_margin_1_1/4": "PASS",
++    "arc_margin_1_1/3": "PASS",
++    "arc_margin_1_2/5": "PASS",
++    "arc_margin_2_1/4": "PASS",
++    "arc_margin_2_1/3": "PASS",
++    "arc_margin_2_2/5": "PASS",
++    "arc_margin_3_1/4": "PASS",
++    "arc_margin_3_1/3": "PASS",
++    "arc_margin_3_2/5": "PASS",
++    "arc_margin_4_1/4": "PASS",
++    "arc_margin_4_1/3": "PASS",
++    "arc_margin_4_2/5": "PASS",
++    "arc_margin_5_1/4": "PASS",
++    "arc_margin_5_1/3": "PASS",
++    "arc_margin_5_2/5": "PASS",
++    "arc_margin_6_1/4": "PASS",
++    "arc_margin_6_1/3": "PASS",
++    "arc_margin_6_2/5": "PASS",
++    "arc_margin_7_1/4": "PASS",
++    "arc_margin_7_1/3": "PASS",
++    "arc_margin_7_2/5": "PASS",
++    "arc_margin_8_1/4": "PASS",
++    "arc_margin_8_1/3": "PASS",
++    "arc_margin_8_2/5": "PASS",
++    "arc_margin_9_1/4": "PASS",
++    "arc_margin_9_1/3": "PASS",
++    "arc_margin_9_2/5": "PASS",
++    "arc_margin_10_1/4": "PASS",
++    "arc_margin_10_1/3": "PASS",
++    "arc_margin_10_2/5": "PASS",
++    "arc_margin_11_1/4": "PASS",
++    "arc_margin_11_1/3": "PASS",
++    "arc_margin_11_2/5": "PASS",
++    "arc_margin_12_1/4": "PASS",
++    "arc_margin_12_1/3": "PASS",
++    "arc_margin_12_2/5": "PASS",
++    "arc_margin_13_1/4": "PASS",
++    "arc_margin_13_1/3": "PASS",
++    "arc_margin_13_2/5": "PASS",
++    "arc_margin_14_1/4": "PASS",
++    "arc_margin_14_1/3": "PASS",
++    "arc_margin_14_2/5": "PASS",
++    "arc_margin_15_1/4": "PASS",
++    "arc_margin_15_1/3": "PASS",
++    "arc_margin_15_2/5": "PASS",
++    "arc_margin_16_1/4": "PASS",
++    "arc_margin_16_1/3": "PASS",
++    "arc_margin_16_2/5": "PASS",
++    "arc_margin_17_1/4": "PASS",
++    "arc_margin_17_1/3": "PASS",
++    "arc_margin_17_2/5": "PASS",
++    "arc_margin_18_1/4": "PASS",
++    "arc_margin_18_1/3": "PASS",
++    "arc_margin_18_2/5": "PASS",
++    "arc_margin_19_1/4": "PASS",
++    "arc_margin_19_1/3": "PASS",
++    "arc_margin_19_2/5": "PASS",
++    "arc_margin_20_1/4": "PASS",
++    "arc_margin_20_1/3": "PASS",
++    "arc_margin_20_2/5": "PASS",
++    "example_boundary_value": "PASS",
++    "example_derivative": "PASS"
++  },
++  "scope": "Exact formula and quantifier-margin controls; the published reflection theorem is an imported analytic result, not a computed claim."
++}
+diff --git a/unsolved_math_prioritization/attempts/30000703/verify.py b/unsolved_math_prioritization/attempts/30000703/verify.py
+new file mode 100644
+index 000000000..4d3042e2c
+--- /dev/null
++++ b/unsolved_math_prioritization/attempts/30000703/verify.py
+@@ -0,0 +1,32 @@
++#!/usr/bin/env python3
++"""Exact diagnostic identities; no numerical certificate for reflection theorems."""
++from pathlib import Path
++import json
++import sympy as s
++x,y,r,u=s.symbols('x y r u',real=True)
++z=x+s.I*y
++checks={}
++def ck(n,v):
++ assert bool(v),n
++ checks[n]='PASS'
++w=(1-z)/(1+z)
++ck('cayley_real_part',s.factor(s.re(w)-(1-x*x-y*y)/((1+x)**2+y*y))==0)
++ck('cayley_derivative',s.cancel(s.diff((1-s.Symbol('z'))/(1+s.Symbol('z')),s.Symbol('z'))+2/(1+s.Symbol('z'))**2)==0)
++ck('exponential_distortion',s.cancel((2*u*s.exp(-u)/(1-s.exp(-2*u))-u/s.sinh(u)).rewrite(s.exp))==0)
++ck('exponential_limit',s.limit(u/s.sinh(u),u,0)==1)
++ck('square_distortion',s.cancel((1-r*r)*2*r/(1-r**4)-2*r/(1+r*r))==0)
++ck('square_limit',s.limit(2*r/(1+r*r),r,1)==1)
++ck('square_deficit',s.factor(1-2*r/(1+r*r)-(1-r)**2/(1+r*r))==0)
++# Triangle estimate behind the point-to-arc argument, checked with exact radii.
++for j in range(1,21):
++ delta=s.Rational(1,j)
++ for a in (s.Rational(1,4),s.Rational(1,3),s.Rational(2,5)):
++  # |xi-1| <= a*delta, |z-xi| < delta/2 imply |z-1| < delta.
++  ck(f'arc_margin_{j}_{a}',a*delta+delta/2<delta)
++q=s.symbols('q')
++f=s.exp(-(1-q)/(1+q))
++ck('example_boundary_value',f.subs(q,1)==1)
++ck('example_derivative',s.diff(f,q).subs(q,1)==s.Rational(1,2))
++out={'passed':len(checks),'failed':0,'sympy_version':s.__version__,'checks':checks,'scope':'Exact formula and quantifier-margin controls; the published reflection theorem is an imported analytic result, not a computed claim.'}
++Path(__file__).with_name('verification.json').write_text(json.dumps(out,indent=2)+'\n')
++print(json.dumps({k:v for k,v in out.items() if k!='checks'},indent=2))

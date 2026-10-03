@@ -1,0 +1,18 @@
+# PR369 research log
+
+2026-10-03T11:57:49.712924+00:00: workflow5%, original resolution0%. Freeze50 actual Git/API paths/49 target files before mathematical reading. Main remains unchanged, no external individual communication. Only live PR body/metadata and filenames read for routing.
+2026-10-03T12:01:06.781604+00:00: Primary fetch phase10%. Initial inherited .gitignore lookup found no file; created explicit raw_sources/tmp/cache exclusion without touching candidate files. Original source/math not yet read, no candidate code/results/status/reviews/sibling findings opened.
+
+2026-10-03T12:13:28.064493+00:00: Root source-first baseline sealed before all candidate mathematical/code/result/status/review and substantive sibling access. Five fresh primary PDFs match; scanned Demailly sources read visually. Workflow20%, original resolution0%.
+
+2026-10-03T12:17:36.691822+00:00: Root mathematical reconstruction sealed after all five full TURN proofs and sources, before code/results/status/final/history/reviews/sibling findings. Scoped deductions pass provisional review. Workflow45%, original resolution0%; reproduction pending.
+
+2026-10-03T12:29:55.156773+00:00: Root family-control replay failed while creating geometric private directory (Errno28 disk full). First function-family control run completed; no original family artifacts changed. Removed only15 own regenerable ignored preview PNGs (6697404 bytes), after recording each size/hash. Raw PDFs retained. Workflow70%, original resolution0%; rerun pending. Also retained earlier read-only JSON-schema helper AttributeError (REPLAY_RECEIPT is list, not object), corrected with complete typed read.
+
+2026-10-03T12:31:06.911394+00:00: Root206 family-binding checks and1262 new controls pass; all53 original family bindings unchanged. Added independent source chronology clarification: Bishop full PDF read was after function-family math seal; pre-seal deduction used classical Picard and a search excerpt. Separately bound five-file appendix verified; no candidate theorem depends on this extra entire-curve observation. Workflow80%, original resolution0%.
+
+2026-10-03T12:33:02.881487+00:00: Root frozen decision/body/criteria prepared after full proof/code/history/receipt and three-family review. Original unsolved5/5, target49 bytes unchanged,672 frozen checks and206 family bindings/1262 new controls pass. Supplemental source chronology clarification verified separately. Workflow80%, original resolution0%; publication and fresh live gate pending.
+
+2026-10-03T12:58Z: Root scoped publication preflight rejected wrong check schema key passed; actual original/family receipts use pass. Fixed both typed validations before any checkpoint/log/inventory/Git mutation. Frozen675? correction exact672 and206 checks unchanged; completion80%, original resolution0%.
+
+2026-10-03T13:29:46.805742+00:00: Additive editorial clarification of the published 12:58 log: the exact completed root frozen check count is672, and the original separate family-binding/control check count is206. The malformed “675? correction” phrase carries no alternate check count; complete immutable receipts already have672 and206. Current exact-live independent/root checks929 each and separate root1715 have passed with all154 decompressed stream pairs and all complete receipt leaves checked. Actual merged partial feec7623 at13:22:24Z preserves all50 paths/49targets/fullqueue; workflow acceptance95% pending fresh post-merge independent review, discovery0%. Original published log and seals remain unchanged.

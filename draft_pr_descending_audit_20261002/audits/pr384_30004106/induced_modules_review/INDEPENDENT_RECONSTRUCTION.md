@@ -1,0 +1,27 @@
+# Independent reconstruction before consulting the old audit verdict
+
+Recorded UTC: 2026-10-03T02:01:16.396887+00:00
+Frozen head: `682f6fd29dce0c9ca5625d14461d0e6e1eb2e6d6`.
+Audit checkpoint: 40% complete. Original universal problem completion: 0% certified; no universal proof or actual-group counterexample supplied.
+
+This checkpoint follows reading the frozen Turn 5 theorem, its verifier, Turn 2 prerequisites, and primary Benson text. It precedes reading the historical `review/REVIEW.md`. An incidental repository-search result displayed the PR metadata's summary of its previous disposition; that metadata is not evidence and was not used in these deductions.
+
+## Reconstructed claim
+
+For each nontrivial elementary abelian p-group E and every field k of characteristic p, the closed coordinate span in the stable dimension-weighted complex Green completion of all Ind_H^E(M_t), H nontrivial and t a stable endotrivial class, is a symmetric unital Banach *-algebra. Adding the regular projective gives a symmetric closed subalgebra of the full completion. This does not settle symmetry of the ambient completion. The explicit two-dimensional F8 module for C2^3 is absent from that coordinate span.
+
+## Mechanism and decisive points
+
+1. A stable invertible endotrivial module has one nonprojective indecomposable core: tensoring with its stable inverse is an equivalence and the stable unit k is indecomposable. Krull-Schmidt gives uniqueness. The restricted core remains endotrivial.
+2. Writing E=H x K, induction is M_t tensor kK. Its endomorphism algebra is End_H(M_t) tensor (kK)^op. The sum of rad(End_H(M_t)) tensor kK and End_H(M_t) tensor aug(kK) is nilpotent and the quotient is a division algebra. No absolute indecomposability or separability hypothesis is required. Therefore induction is indecomposable over arbitrary k.
+3. Restricting to a group C of order p gives a nonprojective restriction exactly when C lies in H. Inside H, endotriviality implies dimension squared is 1 modulo p, so the dimension is not divisible by p. Outside H, Mackey gives free kC modules. These ordinary cyclic restrictions recover H. For equal H, restriction to H gives [E:H] copies of the original core, recovering t by Krull-Schmidt. Thus every normalized symbol is a distinct actual indecomposable coordinate BEFORE any abstract intersection construction.
+4. Tensor induction/Mackey gives [E:HK] copies induced from H intersect K. After division by [E:H][E:K], the index identity makes the stable product coefficient exactly 1. Intersection 1 gives projectives and hence zero. Induction commutes with duality; duality inverts t.
+5. The nontrivial subgroup-lattice zeta transform is injective because the trivial-class induced modules are distinct coordinates. Incidence inversion produces orthogonal self-adjoint p_H summing to 1. This argument is finite and does not infer module injectivity from a formal model.
+6. The block map delta_t -> p_H b_(H,t) has an exact leading H-coordinate delta_t. Its weighted norm is bounded below by ||f|| and above by C_H||f||, C_H=sum_(1!=L<=H)|mu(L,H)|. Restriction does not increase core dimension. Lower-level collisions cannot cancel the leading H-coordinate. The lower bound gives closed range; projection of the dense generators lies in that range, proving surjectivity on the completed block. The finite-product inverse is bounded by sum_H C_H. This proves a Banach *-isomorphism, not merely an algebraic bijection.
+7. The required primary input is gamma_H(M_t)=1, hence w_H(t^n)^(1/n)->1 for positive and negative powers. Every character of the weighted group algebra therefore takes delta_t to a unit complex number; every unitary group homomorphism extends by absolute convergence. Character values of x*x are |s(x)|^2. Thus each completed factor and their finite product are symmetric.
+8. For a p-group, e=[kE]/|E| is a norm-one central self-adjoint idempotent, ea=D(a)e. The projective ideal is Ce. For the canonical nonprojective representative x, Jx=x-D(x)e satisfies ||Jx||=||x||+|D(x)|, between ||x|| and 2||x||. Multiplicativity comes from (1-e), never from treating stable D as multiplicative. Adding Ce proves the full-span result.
+9. For the F8 example, images of the generators are 1+J, 1+zJ, 1+z^2J. All seven ordinary nonidentity group elements have nonzero coefficient of J, hence their C2 restrictions are free. The common centralizer is F8[J], a local algebra, so the module is indecomposable. Dimension 2 excludes free kE projectivity. Every induced-endotrivial module has some nonprojective ordinary C2 restriction; this module has none. A missing indecomposable coordinate stays outside the closed l1 span; its distance from that span is exactly 2. Dade's projectivity criterion includes shifted cyclic directions: (g2-1)+z(g1-1) acts as zero here, so no contradiction occurs.
+
+## Preliminary mathematical conclusion and remaining work
+
+No defect has been found in the module injectivity, normalized intersection multiplication, completion bounds, character argument, or proper-family example. The remaining audit work is to verify all inherited source hypotheses, inspect and privately replay the author code, add genuinely different exact controls, and complete provenance and a manifest. The original universal gap is untouched: Hermitian restrictions to a proper subalgebra do not control bounded species on other indecomposable coordinates. No novelty is certified.

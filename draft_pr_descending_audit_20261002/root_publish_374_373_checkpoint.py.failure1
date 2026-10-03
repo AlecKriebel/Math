@@ -1,0 +1,51 @@
+"""Explicit owned-artifact publication; preserve every foreign index/worktree path."""
+from pathlib import Path
+import hashlib,json,datetime,subprocess
+P=Path(__file__).resolve().parent;R=P.parent;A=P/'audits/pr374_30005116';B=P/'audits/pr373_30004435';sha=lambda b:hashlib.sha256(b).hexdigest();paths=set()
+def add(p):
+ p=p.resolve();assert p.is_relative_to(P) and p.is_file() and not any(x in p.parts for x in ['tmp','private','raw_sources','private_sources','private_primaries','__pycache__']);assert p.suffix not in ['.pdf','.png','.jpg'];paths.add(str(p.relative_to(R)))
+def manifest(root,name,key='files'):
+ p=root/name;add(p);m=json.loads(p.read_bytes())
+ for f in m[key]:
+  rel=Path(f['path']);assert not rel.is_absolute() and '..' not in rel.parts;x=root/rel;b=x.read_bytes();assert len(b)==f['bytes'] and sha(b)==f['sha256'];add(x)
+ return m
+# Only files already explicitly inspected at the two owned audit roots.
+for audit in [A,B]:
+ for p in audit.iterdir():
+  if p.is_file():add(p)
+# Complete declared repaired-input packages, never recursive directories.
+for root in [A/'live_acceptance_inputs',A/'live_acceptance_inputs_round2']:
+ for name in ['snapshot_manifest.json','repaired_snapshot_manifest.json','queue_repair_receipt.json','accepted_pr_body.txt','merge_body.txt']:add(root/name)
+ for name,sub in [('snapshot_manifest.json','snapshot'),('repaired_snapshot_manifest.json','repaired_snapshot')]:
+  for f in json.loads((root/name).read_bytes())['files']:
+   p=root/sub/f['path'];b=p.read_bytes();assert len(b)==f['bytes'] and sha(b)==f['sha256'];add(p)
+C=A/'clean_final_adversary';manifest(C,'public/PUBLIC_MANIFEST.json');manifest(C,'public/live_acceptance/PREPARED_PUBLIC_MANIFEST.json')
+# Three complete independent PR373 family public packages.
+F=B/'finite_hidden_review';manifest(F,'PUBLIC_ALLOWLIST.json');add(F/'.gitignore')
+F=B/'coding_mixtures_review';m=json.loads((F/'PUBLIC_ALLOWLIST.json').read_bytes());s=json.loads((F/'FINAL_AUDIT_SEAL.json').read_bytes())
+for rel in m['allowlist']:
+ p=F/rel
+ if rel!='FINAL_AUDIT_SEAL.json':assert sha(p.read_bytes())==s['public_artifact_hashes'][rel]
+ add(p)
+F=B/'memory_coupling_review';m=manifest(F,'PUBLIC_MANIFEST.json','public_files');s=json.loads((F/'FINAL_SEAL.json').read_bytes());add(F/'FINAL_SEAL.json')
+for rel,digest in s['critical_sha256'].items():assert sha((F/rel).read_bytes())==digest
+for rel in m['additional_final_attestation_streams']:assert sha((F/rel).read_bytes())==s['critical_sha256'][rel];add(F/rel)
+F=B/'clean_final_adversary/public';manifest(F,'PUBLIC_ALLOWLIST_MANIFEST.json');manifest(F,'ADDITIVE_GATE_V2_ALLOWLIST_MANIFEST.json');add(B/'clean_final_adversary/.gitignore')
+# Full generated own mathematical outputs, explicit names from reproduction runs.
+for folder in [B/'root_original_streams',B/'root_family_streams',B/'root_clean_math_streams']:
+ for p in folder.iterdir():assert p.is_file() and p.suffix in ['.stdout','.stderr'];add(p)
+for name in ['inventory.json','RESEARCH_LOG.md','root_integrate_reviewed_pr.py',Path(__file__).name]:add(P/name)
+now=datetime.datetime.now(datetime.timezone.utc).isoformat()
+with (A/'RESEARCH_LOG.md').open('a') as h:h.write('\n'+now+': Authorized actual acceptance merge ced99fb2fa921e1f66a701efec35f5c2d61fddfe at09:30:06Z. Final source-first whole-adversary and private-root exact-live staged gates pass; repository-wide ancillary API size/counter differences are fully enumerated, with every material result/input/Git/queue check unchanged. Actual merged46paths/45targethashes exact and everyotherqueuebyte preserved, parents[eb3c6dbe…,2bb07868…]. Workflow100%, unrestricted discovery0%; descending15/349=4.2980%. No paper/Zenodo/DOI/tracker/release.\n')
+report=P/'checkpoint_374_accept_373_math_public_allowlist.json';add_placeholder=str(report.relative_to(R));paths.add(add_placeholder)
+report.write_text(json.dumps({'utc':now,'checkpoint':'PR374 verified partial accepted;PR373 universal scoped mathematics and replays90%','owned_explicit_paths':sorted(paths),'excluded':'Every raw primary asset/source extraction/render, private/raw API tree copy, temporary clone, all unlisted and foreign paths','PR374_workflow_percent':100,'PR373_workflow_percent':90,'program_completed':15,'program_total':349,'program_percent':100*15/349},indent=2)+'\n')
+# Snapshot foreign index bytes per path; commit --only cannot include them.
+def git(*argv):return subprocess.check_output(['git',*argv],cwd=R)
+def indexmap():return {x.split(b'\t',1)[1]:x.split(b'\t',1)[0] for x in git('ls-files','--stage','-z').split(b'\0') if x}
+initial=indexmap();foreign={k:v for k,v in initial.items() if k.decode() not in paths};before=git('rev-parse','HEAD').decode().strip()
+args=['git','add','--',*sorted(paths)];r=subprocess.run(args,cwd=R,capture_output=True);assert r.returncode==0,r.stderr
+r=subprocess.run(['git','commit','--only','-m','Accept PR374 verified partial; publish PR373 source-first mathematical audit','--',*sorted(paths)],cwd=R,capture_output=True);(P/'checkpoint_374_commit.stdout').write_bytes(r.stdout);(P/'checkpoint_374_commit.stderr').write_bytes(r.stderr);assert r.returncode==0,r.stderr
+commit=git('rev-parse','HEAD').decode().strip();changed=set(git('diff-tree','--no-commit-id','--name-only','-r',commit).decode().splitlines());assert changed<=paths
+current=indexmap();assert {k:v for k,v in current.items() if k.decode() not in paths}==foreign,'foreign index changed'
+r=subprocess.run(['git','push','origin','main'],cwd=R,capture_output=True);(P/'checkpoint_374_push.stdout').write_bytes(r.stdout);(P/'checkpoint_374_push.stderr').write_bytes(r.stderr);assert r.returncode==0,r.stderr
+print(json.dumps({'status':'PUBLISHED_EXPLICIT_OWN_CHECKPOINT','commit':commit,'parent_before_commit':before,'changed_owned_paths':len(changed),'foreign_index_unchanged':True,'PR374_workflow_percent':100,'PR373_workflow_percent':90},sort_keys=True))
