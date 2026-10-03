@@ -1,0 +1,9 @@
+# PR374 proposed acceptance decision
+
+2026-10-03T08:33:46.340795+00:00: audit workflow97%; unrestricted discovery0%. Accept as unsolved5/5 partial findings only, subject to the final exact live-body/ready/current-main gate and actual merge verification. Root reconstructed all five universal scoped proofs directly and reproduced the original package, three independent mechanism families, and a fresh source-first whole-package adversary. No mandatory mathematical correction remains. No unrestricted profile, novelty, human peer review, or formal proof-assistant certification is claimed.
+
+The all-part multipartite optimum, qualified join replacement and credited triangle-minimizer consequence, qualified L-infinity stability with explicit L1 ties, all weighted-cograph and cograph-sequence limits, and complete measurable rank-one profile are supported. Arbitrary positive-triangle-excess hosts outside these families remain uncontrolled. No paper, Zenodo upload, DOI, tracker row or release is appropriate.
+
+Fresh whole-review manifest SHA256 `6cd9683ff75d92e821b8d704bf72e908c1bcd4b087fe367fdb2045997cb11ee8` binds 68 members. Root independently reran four new mathematical controls and the entire eight-program publication packet; every full stdout/stderr and mathematical JSON agrees. Root also reran the unchanged prepared gate; its entire receipt matches except its declared observation UTC. All immutable original/refreshed Git/API blobs, historical scopes, five fresh primary PDF inputs, literal queue delta and all-other-main-path preservation pass. Prepared and observed PR bodies remain distinct historical observations; live acceptance and merge are not yet certified.
+
+Refreshed head26df33899c95d860403ab311c568e0328bc87eeb preserves all45 target bytes. Only queue line411/rank400 cells8 and9 change queued0/5 to unsolved5/5. Final metadata mutation must use the exact prepared body and unchanged gate code, with all other shared-main work preserved.
