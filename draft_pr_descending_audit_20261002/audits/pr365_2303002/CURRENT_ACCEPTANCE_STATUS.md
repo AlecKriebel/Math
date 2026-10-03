@@ -5,3 +5,5 @@
 Historical earlier estimates/pending records remain phase evidence; actual acceptance and publication require separately observed receipts.
 
 2026-10-03T20:26:23.978695+00:00: Final PR365 acceptance verified, already_solved0/5. All113 literal read-only post commands and exact closed private/public-only replays pass; four early inventory/source observations compare their retained historical version and explicitly declared later changes. Both ROOT inventory failures preserved, including corrected diagnosis of five packet-builder additions and unstable rg ordering. Actual merge904d63bb, observed main08adf9cb and all19 target bindings stable, index unchanged. Credited resolution100%, new theorems0%, workflow100%; artifact publication pending. No paper/Zenodo/DOI/tracker/release.
+
+2026-10-03T20:33:00.983601+00:00: PR365 final audit publication OBSERVED 0bf23eb6754032c86352b6671fc61299b8a0250d; all five complete public manifests/seals and every committed bound byte verified. Credited resolution100%, new theorem0, workflow100%; program24/349=6.876790830945558%. No paper/DOI/tracker/release. This observed receipt will enter the next owned checkpoint.
