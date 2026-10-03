@@ -545,7 +545,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 534 | 2914 / KP-4.38 | Kirby Problem 4.38 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 535 | 2924 / KP-4.48 | Kirby Problem 4.48 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 536 | 2940 / KP-4.64 | Kirby Problem 4.64 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 537 | 2972 / KP-4.96 | Kirby Problem 4.96 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 537 | 2972 / KP-4.96 | Kirby Problem 4.96 | 0.1200 | 6.0 | 3 | unknown | unsolved | 5/5 |  |  |  |
 | 538 | 3024 / KP-5.17 | Kirby Problem 5.17 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 539 | 3419 / OPG-37237 | Unsolvability of word problem for 2-knot complements | 0.1200 | 6.0 | 2 | unknown | queued | 0/5 |  |  |  |
 | 540 | 9700001 / AMR-096-0001 | Martingale for practical purposes | 0.1200 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
