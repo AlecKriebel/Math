@@ -1,0 +1,6 @@
+# Post-seal research log
+
+- 2026-10-03 05:38–05:42 UTC: Read root and three family reports separately after the mathematical verdict seal. Recorded priority-family repetition of the erroneous candidate targets and algebra-family independent falsification. Completion estimate85%.
+- 2026-10-03 05:42 UTC: Tool clock confirmed time. Found my own sealed grading-version sentence wrong: difference is2b-2 and zero at b1. Preserved seals and wrote an explicit erratum; this corrects the audit without changing candidate conclusions.
+- 2026-10-03 05:43:08 UTC: All58 family final and16 initial seal bindings verified; all four family programs reproduced, three complete streams byte-exact and priority stream identical except two explicit timestamps. Historical publication147-byte stream and all20 actual old Git blobs verified. Completion estimate90%.
+- 2026-10-03 05:43–05:46 UTC: All11 author-backup bytes verified, historical unavailable pinned object recorded. Independently fetched/read/rendered actual published PAL source and checked author correction page. Falsified unqualified b>1 splitting, ineffective dimension bound and v1 mu inequality independently. No further mandatory candidate repair; final actual Git/head/queue pending.
