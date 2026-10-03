@@ -8,6 +8,6 @@ Primary source: Klaus Kröncke, *Stability and Instability of Ricci Solitons*, O
 
 Prior spectral framework: [Cao–Zhu, Linear stability of compact shrinking Ricci solitons](https://arxiv.org/abs/2304.01453). Their quotient criterion and the established Kähler special cases are credited prior work, not results of this attempt.
 
-The turn ledger and individual notes distinguish unsuccessful attempted proof mechanisms from established background. Completion estimate after turn 1: 5% (heuristic; the universal positivity gap is entirely open).
+The turn ledger and individual notes distinguish unsuccessful attempted proof mechanisms from established background. Completion estimate after turn 4: 8% (heuristic; the universal positivity gap is entirely open).
 
 No source PDFs are distributed in this folder.
