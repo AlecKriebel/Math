@@ -410,10 +410,10 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 399 | 30004811 / OWR-8415343-014 | Equality of Capacity–Volume and ADM Mass | 0.1429 | 7.0 | 3 | 2021 | queued | 0/5 |  |  |  |
 | 400 | 30005116 / OWR-10252930-028 | Induced Four-Cycle Profiles Above Half Density | 0.1421 | 6.0 | 3 | 2022 | queued | 0/5 |  |  |  |
 | 401 | 30004293 / OWR-17293-009 | Maximum Additive Multiplicity in Logarithmic Random Sets | 0.1409 | 5.0 | 3 | 2019 | queued | 0/5 |  |  |  |
-| 402 | 30004322 / OWR-17296-003 | Seshadri Constants of Line Arrangement Singularities | 0.1409 | 5.0 | 3 | 2019 | queued | 0/5 |  |  |  |
-| 403 | 30000590 / OWR-1381-005 | Finite Generation of Group-Ring Cohomology | 0.1401 | 6.0 | 3 | 2006 | queued | 0/5 |  |  |  |
-| 404 | 7800012 / AMR-077-0012 | Optimal Flux for the Quarter-Filled Band | 0.1398 | 7.0 | 3 | 1998 | queued | 0/5 |  |  |  |
-| 405 | 30002200 / OWR-12172-003 | Sharp Syzygy Bounds for Torus Actions | 0.1393 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
+| 402 | 30004322 / OWR-17296-003 | Seshadri Constants of Line Arrangement Singularities | 0.1409 | 5.0 | 3 | 2019 | unsolved | 5/5 |  |  |  |
+| 403 | 30000590 / OWR-1381-005 | Finite Generation of Group-Ring Cohomology | 0.1401 | 6.0 | 3 | 2006 | unsolved | 5/5 |  |  |  |
+| 404 | 7800012 / AMR-077-0012 | Optimal Flux for the Quarter-Filled Band | 0.1398 | 7.0 | 3 | 1998 | unsolved | 5/5 |  |  |  |
+| 405 | 30002200 / OWR-12172-003 | Sharp Syzygy Bounds for Torus Actions | 0.1393 | 5.5 | 3 | 2012 | already_solved | 0/5 |  |  |  |
 | 406 | 30002762 / OWR-13488-005 | Finitely Presented Counterexamples for Conjugation-Invariant Norms | 0.1378 | 6.0 | 3 | 2015 | unsolved | 5/5 |  |  |  |
 | 407 | 6600013 / AMR-065-0013 | A. Julien: Relationship between Complexity and Cohomology — Problem | 0.1374 | 6.0 | 4 | 2016 | unsolved | 5/5 |  |  |  |
 | 408 | 30003853 / OWR-16167-025 | Abelianizations of Finitely Presented Thompson $F$ Subgroups | 0.1366 | 6.0 | 3 | 2018 | unsolved | 5/5 |  |  |  |
@@ -436,7 +436,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 425 | 3031 / OPG-57824 | Graphs of exact colorings | 0.1320 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 426 | 9700002 / AMR-096-0002 | Analytic toy model for a percolation-fragmentation congestion transition | 0.1320 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 427 | 8000011 / AMR-079-0011 | The Toda lattice with random initial data | 0.1317 | 6.0 | 3 | 2007 | queued | 0/5 |  |  |  |
-| 428 | 30000997 / OWR-2042-006 | Degenerate Versus Full Ma–Trudinger–Wang Conditions | 0.1315 | 6.0 | 3 | 2008 | queued | 0/5 |  |  |  |
+| 428 | 30000997 / OWR-2042-006 | Degenerate Versus Full Ma–Trudinger–Wang Conditions | 0.1315 | 6.0 | 3 | 2008 | unsolved | 5/5 |  |  |  |
 | 429 | 30001070 / OWR-2090-023 | Circumscribed $2n$-Facet Polytopes around the Unit Ball | 0.1315 | 6.0 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 430 | 30001084 / OWR-2093-008 | Randomized-Transport Characterizations of Palm Measures | 0.1315 | 5.0 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 431 | 30001179 / OWR-3392-005 | Generation of Free Product Systems by Tensor Subsystems | 0.1313 | 6.0 | 3 | 2009 | queued | 0/5 |  |  |  |
