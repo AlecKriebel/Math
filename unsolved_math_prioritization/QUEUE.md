@@ -534,7 +534,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 523 | 2305028 / AMR-022-5028 | Research Problems in Function Theory — Problem 5.28 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 524 | 2305039 / AMR-022-5039 | Research Problems in Function Theory — Problem 5.39 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 525 | 2305050 / AMR-022-5050 | Research Problems in Function Theory — Problem 5.50 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 526 | 2306017 / AMR-022-6017 | Research Problems in Function Theory — Problem 6.17 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 526 | 2306017 / AMR-022-6017 | Research Problems in Function Theory — Problem 6.17 | 0.1200 | 6.0 | 3 | unknown | already_solved | 1/5 |  | Aharonov-Shapiro-Solynin (1999): prior minimum and attaining maps verified via an ordinary conformal-radius replacement; full-S uniqueness attributed only. The old biangle-source sign discrepancy remains unresolved and unused. No novelty claimed. [Proof, sources and complete audit history](attempts/2306017/PUBLICATION_SCOPE.md). |  |
 | 527 | 2306038 / AMR-022-6038 | Research Problems in Function Theory — Problem 6.38 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 528 | 2306052 / AMR-022-6052 | Research Problems in Function Theory — Problem 6.52 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 529 | 2306083 / AMR-022-6083 | Research Problems in Function Theory — Problem 6.83 | 0.1200 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
