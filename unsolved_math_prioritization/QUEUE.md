@@ -576,7 +576,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 565 | 2302004 / AMR-022-2004 | Research Problems in Function Theory — Problem 2.4 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 566 | 2302069 / AMR-022-2069 | Research Problems in Function Theory — Problem 2.69 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 567 | 2302073 / AMR-022-2073 | Research Problems in Function Theory — Problem 2.73 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 568 | 2303003 / AMR-022-3003 | Research Problems in Function Theory — Problem 3.3 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 568 | 2303003 / AMR-022-3003 | Research Problems in Function Theory — Problem 3.3 | 0.1125 | 6.0 | 3 | unknown | already_solved | 1/5 |  | Hayman (1974) counterexample; corrected proof and independent audit: [packet](attempts/2303003/PUBLICATION.md). No optimal-constant or novelty claim. |  |
 | 569 | 2303012 / AMR-022-3012 | Research Problems in Function Theory — Problem 3.12 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 570 | 2303015 / AMR-022-3015 | Research Problems in Function Theory — Problem 3.15 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 571 | 2303019 / AMR-022-3019 | Research Problems in Function Theory — Problem 3.19 | 0.1125 | 6.0 | 3 | unknown | queued | 0/5 |  |  |  |
