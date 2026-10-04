@@ -658,7 +658,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 647 | 6200083 / AMR-061-0083 | Boundaries of Groups and Kleinian Groups — Problem 83 | 0.1073 | 6.0 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 648 | 6200096 / AMR-061-0096 | Boundaries of Groups and Kleinian Groups — Problem 96 | 0.1073 | 6.0 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 649 | 5300076 / AMR-052-0076 | Thurston algorithm for power-law lift families | 0.1073 | 5.5 | 3 | 1990 | queued | 0/5 |  |  |  |
-| 650 | 5300071 / AMR-052-0071 | Uniform access to roots for relaxed Newton maps | 0.1071 | 5.5 | 3 | 1992 | queued | 0/5 |  |  |  |
+| 650 | 5300071 / AMR-052-0071 | Uniform access to roots for relaxed Newton maps | 0.1071 | 5.5 | 3 | 1992 | unsolved | 5/5 |  |  |  |
 | 651 | 30001184 / OWR-3392-012 | Extending Dilated E0-Semigroups Beyond GNS Representations | 0.1067 | 6.0 | 3 | 2009 | queued | 0/5 |  |  |  |
 | 652 | 30005479 / OWR-12697711-015 | Equality of Tropical and Matroidal Amoeba-Dimension Formulas | 0.1066 | 5.5 | 3 | 2023 | queued | 0/5 |  |  |  |
 | 653 | 4400005 / AMR-043-0005 | Pingree open problems — Ledrappier problem 1 | 0.1065 | 6.0 | 4 | 2010 | queued | 0/5 |  |  |  |
