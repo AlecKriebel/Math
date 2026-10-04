@@ -43,8 +43,8 @@ def run(name,extra=(),expected_exit=0,expected_name=None):
     if name.startswith('geometry'):
         lines=[]
         for line in r.stdout.decode().splitlines():
-            if re.fullmatch(r'native_utc(?:_start|_end)? \d{4}-\d\d-\d\dT\d\d:\d\d:\d\d\.\d+\+00:00',line):continue
-            line=re.sub(r' native_utc \d{4}-\d\d-\d\dT\d\d:\d\d:\d\d\.\d+\+00:00$','',line)
+            if re.fullmatch(r'native_utc(?:_start|_end)? \d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(?:\.\d+)?\+00:00',line):continue
+            line=re.sub(r' native_utc \d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(?:\.\d+)?\+00:00$','',line)
             lines.append(line)
         value=('\n'.join(lines)+'\n').encode()
         require(value==(ROOT/'expected'/(target+'.txt')).read_bytes(),name+': complete mathematical text mismatch')
