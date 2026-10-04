@@ -1,0 +1,64 @@
+--- original-author/SHA256SUMS
++++ author/SHA256SUMS
+@@ -3,5 +3,5 @@
+ e2691b56973c9587a26e14f4c6358d4a15b6e90cff8a38e4e38aa91d065171b7  RESEARCH_LOG.md
+ 80444197f287e9753476a2475a0fa3bb21c272eb6c9e85ffbe7112154e05a881  RESULT.json
+ 12798b6e93745c6e29ebdc4352445bfd4e69c510d545ef8ff864f673e6150f5e  SOURCES.md
+-54a0810dbf2d448a201b255cb357f9e3bf37ffbcf66b66b50a998d705d9c2c22  control_results.json
+-8fce29f3f53cd246c517cf8e924465df9ab954316bb22c0b1772402c181389a8  verify_tree_controls.py
++eb830de323047d20cd949af1b2d4b548a31303f01674c39f834edfe34134b0e4  control_results.json
++e0470d1bb02b80a563f2d08bc3782508b8b872cabcf6fb86778311229d89df5c  verify_tree_controls.py
+--- original-author/control_results.json
++++ author/control_results.json
+@@ -69,7 +69,8 @@
+         ]
+       ],
+       "labelled_tree_supports": 32,
+-      "tested_basis_permutation_orbits": 32,
++      "algebra_cases_evaluated": 32,
++      "basis_permutation_quotient_used": false,
+       "endomorphism_dimension_trace_rank_histogram": {
+         "2,1": 8,
+         "2,2": 16,
+@@ -118,7 +119,8 @@
+         ]
+       ],
+       "labelled_tree_supports": 12,
+-      "tested_basis_permutation_orbits": 12,
++      "algebra_cases_evaluated": 12,
++      "basis_permutation_quotient_used": false,
+       "endomorphism_dimension_trace_rank_histogram": {
+         "1,1": 6,
+         "2,2": 6
+@@ -156,7 +158,8 @@
+         ]
+       ],
+       "labelled_tree_supports": 1,
+-      "tested_basis_permutation_orbits": 1,
++      "algebra_cases_evaluated": 1,
++      "basis_permutation_quotient_used": false,
+       "endomorphism_dimension_trace_rank_histogram": {
+         "3,2": 1
+       },
+@@ -192,7 +195,8 @@
+         ]
+       ],
+       "labelled_tree_supports": 8748,
+-      "tested_basis_permutation_orbits": 485,
++      "algebra_cases_evaluated": 485,
++      "basis_permutation_quotient_used": true,
+       "endomorphism_dimension_trace_rank_histogram": {
+         "2,1": 96,
+         "2,2": 1728,
+--- original-author/verify_tree_controls.py
++++ author/verify_tree_controls.py
+@@ -118,7 +118,8 @@
+         if result['indecomposable_over_C']:
+             witnesses.setdefault(label,[list(m) for m in matrices_for(dims,arrows,key)])
+     return {'dimensions':dims, 'arrows':arrows, 'labelled_tree_supports':total,
+-            'tested_basis_permutation_orbits':len(cache),
++            'algebra_cases_evaluated':len(cache),
++            'basis_permutation_quotient_used':quotient,
+             'endomorphism_dimension_trace_rank_histogram':dict(sorted(types.items())),
+             'indecomposable_counts':dict(counts), 'witnesses':witnesses}
+ 
