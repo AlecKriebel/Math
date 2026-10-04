@@ -1,0 +1,13 @@
+# Five substantive approaches
+
+Date: 2026-10-04 UTC. The intervals record work in this investigation, not five tool calls. Source lookup continued across these intervals. All approach evidence is consolidated in PARTIAL_RESULTS.md. No sixth proof-search turn is reserved or implied.
+
+1. 10:31–10:33, finite homotopy models. Proved the compact-subset finiteness lemma and tested promotion of a finite homotopy equivalence using an explicit whiskered S^4. A finite model can have the wrong local homology. Outcome: unsuccessful for the full target; exact missing step is a cellular structure on the actual space. Estimated missing-target proof completion: 0%.
+2. 10:32–10:34, regular CW construction. Established the regular-cell triangulation reduction and its nonsmoothable E8 obstruction. This blocks regularity-based constructions, while leaving arbitrary CW structures untouched. Outcome: unsuccessful for the full target. Estimated completion: 0%.
+3. 10:33–10:35, smoothing away from one point. Proved why retaining the punctured triangulation and adding the missing point violates compact-CW finiteness; independently located the obstruction to a smooth product end. Outcome: unsuccessful; replacing infinitely many cells by finite nonregular data is unsupported. Estimated completion: 0%.
+4. 10:34–10:36, finite Kirby encoding and cap gluing. Checked the 2025 primary theorem, proved a compatible-CW-pair gluing condition, and proved that a cone on a nonsimply-connected homology 3-sphere has a singular vertex. Encoding a contractible cap is not constructing its CW structure. Outcome: unsuccessful; the cap/pair compatibility gap remains, and even repairing it only treats the simply connected class. Estimated completion: 0%.
+5. 10:35–10:38, stable smoothing and cancellation. Used the exact E8 direct-sum E8 form to exhibit the failure of smooth/PL destabilization despite vanishing Kirby–Siebenmann invariant and eventual stable smoothing. Verified the finite algebra with two determinant algorithms and fault controls. Outcome: unsuccessful; arbitrary CW destabilization is unproved. Estimated completion: 0%.
+
+10:38–10:40: consolidated proofs, source provenance, deterministic controls and the frozen manifest. This is packaging and verification of the five attempts, not additional proof search. Investigation deliverable completion: 100%; completion of the general missing homeomorphism proof: 0%.
+
+No outcome is marked candidate-solution. Proposed display status is unsolved, Turns 5/5. Existing automated exhaustion semantics must not be reset if the queue tooling applies them. Remote application is deferred to the coordinating publication gate and may change only this target's authorized fields.
