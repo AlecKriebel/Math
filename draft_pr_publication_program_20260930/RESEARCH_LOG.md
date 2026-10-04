@@ -495,3 +495,7 @@ Independent GitHub/main/evidence readback passed. Exactly the target four queue 
 ## 2026-10-03T23:11:13.363656+00:00 — Google authorization impasse, blocked audit satisfied
 
 PR18 remains merged and published at DOI10.5281/zenodo.23127955, workflow98%. Three consecutive goal turns have encountered the same missing Google CLI authorization for its required tracker entry. The existing auth session27653/child71139 is live and its Google unverified-app warning still requires human handling; no tracker write and no PR50 advancement occurred. Previous turn classified verified wait. The full publication/native acceptance is preserved, and the persistent-goal blocked-status update is the next administrative action.
+
+## 2026-10-04T00:32:40.612804+00:00 — PR18 tracker verified; workflow100%
+
+Human completed the Google CLI reauthentication. One guarded append placed the exact DOI and paper details at 'Math Puzzles'!A14:D14; independent four-cell readback and a fresh full-table uniqueness check passed. The previous malformed read request was repaired before any write. Current native acceptance, queue, state/history and PR body are reconciled; historical pending-auth observations remain dated evidence. Original 1/5 and all scientific/publication bytes remain unchanged. PR18 workflow estimate100%; three eligible workflows completed in the dated99-PR census (3.0303%). Next eligible PR50 after final metadata/checkpoint readback. Whole goal remains unfinished.

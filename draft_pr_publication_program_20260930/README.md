@@ -41,12 +41,12 @@ The overall count is completed eligible workflows divided by the current
 claimed-solved inventory; historical partial dispositions are excluded. The
 persistent goal stays unfinished until all required work is actually complete.
 
-Current checkpoint: PR9 and PR16 completed publication, tracker and merge. PR18
-has completed rigorous review, the full named 2024 source check, two fresh
-whole-package reviews, publication at DOI `10.5281/zenodo.23127955`, exact public
-file readbacks, merge and native acceptance. Its tracker entry remains pending
-Google CLI credential reconnection. PR18 workflow estimate: 98%. Do not advance
-to PR50 until that entry is independently verified. See `CURRENT_PROGRESS.json`.
+Current checkpoint: PR9, PR16 and PR18 have completed publication, tracker and
+merge. PR18 completed rigorous review, the full named 2024 source check, two
+fresh whole-package reviews, publication at DOI `10.5281/zenodo.23127955`, exact
+public file readbacks, merge and native acceptance. Its Google Workspace CLI
+tracker entry is independently verified at `Math Puzzles!A14:D14`. PR18 workflow
+estimate: 100%. The next eligible PR is PR50. See `CURRENT_PROGRESS.json`.
 
 ## Historical checkpoints under the superseded broader scope
 
