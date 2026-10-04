@@ -5,13 +5,14 @@ A failed or ambiguous append stops without an automatic second write.
 """
 from pathlib import Path
 from datetime import datetime,timezone
-import hashlib,json,subprocess
+import hashlib,json,subprocess,sys
 D=Path(__file__).resolve().parent;A=D.parent
 ID='1ZljUv5Q98jNXLoHK8WjwrkzSm3dhHC1-7LElcOU7y20'
 def load(p):return json.loads(p.read_bytes())
 def sha(b):return hashlib.sha256(b).hexdigest()
 def execute(args,label,private=False):
     directory=D/'private_tracker' if private else D
+    assert all(not (directory/(label+suffix)).exists() for suffix in ['.stdout','.stderr','_execution.json']), 'Preserve prior native captures; use a new label for a read-only authentication resume'
     started=datetime.now(timezone.utc).isoformat()
     r=subprocess.run(args,capture_output=True)
     (directory/(label+'.stdout')).write_bytes(r.stdout)
@@ -46,7 +47,9 @@ assert published['title']==metadata['title']
 assert len(published['files'])==2
 for r in published['files']:
     b=(A/'preprint'/r['name']).read_bytes();assert len(b)==r['size'] and sha(b)==r['sha256']
-sheet_meta=execute(['gws','sheets','spreadsheets','get','--params',json.dumps({'spreadsheetId':ID,'fields':'sheets(properties(sheetId,title,gridProperties(rowCount,columnCount)))'})],'before_append_sheet_metadata',private=True)
+assert sys.argv[1:] in [[],['--resume-auth']]
+metadata_label='before_append_sheet_metadata_auth_resume_001' if sys.argv[1:] else 'before_append_sheet_metadata'
+sheet_meta=execute(['gws','sheets','spreadsheets','get','--params',json.dumps({'spreadsheetId':ID,'fields':'sheets(properties(sheetId,title,gridProperties(rowCount,columnCount)))'})],metadata_label,private=True)
 target=[s['properties'] for s in sheet_meta['sheets'] if s['properties']['sheetId']==1254632077]
 assert len(target)==1 and target[0]['title']=='Math Puzzles' and target[0]['gridProperties']['columnCount']==43
 read_params={'spreadsheetId':ID,'range':'Math Puzzles!A1:AQ'+str(target[0]['gridProperties']['rowCount']),'valueRenderOption':'FORMULA'}

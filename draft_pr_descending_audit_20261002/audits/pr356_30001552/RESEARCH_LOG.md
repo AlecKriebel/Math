@@ -1,0 +1,7 @@
+# PR356 research log
+
+2026-10-04T00:30:48.329897+00:00: Eligible claimed_solved1/5 draft. Begin original-source reconstruction and independent materially distinct mathematical challenges. Root has seen the PR title and catalogue desk note, but no candidate proof contents. Mathematical validity is a hypothesis. Audit/discovery progress0%, acceptance/publication0%. Shared Git writes are paused for the ascending reviewer; no fetch, checkout, commit or push here until release.
+
+2026-10-04T00:36:05.287198+00:00: Original exact target reconstructed before candidate proof/program reading. Mechanical first recursive API tree was truncated; failed native capture/program preserved. Second shallow path traversal binds all17 candidate/API/disk files; local literal Git check pending shared-window release. Source audit10%; acceptance/publication0%.
+
+2026-10-04T00:51:38.879309+00:00: Root full written proof and all16 problem files reviewed. Exact author526887/public68408 whole stdout reproductions pass,25 nested public hash bindings. All17 literal Git/API/blob/disk/mode bindings and only ownQUEUEcells8/9 verified; main/index unchanged. Three independent families provisionally PASS. Optional raw-source68413 historical mode not certified, no substitution of different extraction/image bytes. Priority audit examines later primary equivalences before any paper or acceptance. Mathematical audit75%; workflow20%.
