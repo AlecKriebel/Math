@@ -653,7 +653,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 642 | 2639 / KOU-21.130 | Kourovka Notebook Problem 21.130 | 0.1080 | 5.5 | 3 | 2026 | queued | 0/5 |  |  |  |
 | 643 | 4200010 / AMR-041-0010 | The good, the bad, and the ugly | 0.1079 | 6.0 | 3 | 2000 | queued | 0/5 |  |  |  |
 | 644 | 30004609 / OWR-4990374-015 | Supersolvability of Low-Exponent Free Hyperplane Arrangements | 0.1079 | 5.5 | 3 | 2021 | queued | 0/5 |  |  |  |
-| 645 | 30004996 / OWR-9790354-007 | Hyper-Aperiodic Colorings from Aperiodic SFT Colorings | 0.1073 | 5.5 | 3 | 2022 | queued | 0/5 |  |  |  |
+| 645 | 30004996 / OWR-9790354-007 | Hyper-Aperiodic Colorings from Aperiodic SFT Colorings | 0.1073 | 5.5 | 3 | 2022 | unsolved | 5/5 |  |  |  |
 | 646 | 6200025 / AMR-061-0025 | Boundaries of Groups and Kleinian Groups — Problem 25 | 0.1073 | 6.0 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 647 | 6200083 / AMR-061-0083 | Boundaries of Groups and Kleinian Groups — Problem 83 | 0.1073 | 6.0 | 3 | 2005 | queued | 0/5 |  |  |  |
 | 648 | 6200096 / AMR-061-0096 | Boundaries of Groups and Kleinian Groups — Problem 96 | 0.1073 | 6.0 | 3 | 2005 | queued | 0/5 |  |  |  |
