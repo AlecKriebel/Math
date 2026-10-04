@@ -1,0 +1,17 @@
+# Fresh 1996 prior-work finding
+
+Actual printed source: Hanna Nencka, *Generalization of the Markov theorem and Cantorian-like braid groups*, in *Topology and Applications: International Topological Conference dedicated to P. S. Alexandroff’s 100th Birthday, Moscow, May 27–31, 1996*, Moscow: PHASIS, 1996, pp. 147–148; ISBN 5-7036-0017-0.
+
+Primary-content pixels were read from a third-party scan. The volume title/copyright leaf and both contribution pages are separately captured only under ignored `private/`. The printed identities agree with the indexed volume/contents. This authenticates the existence and content of the older announcement; it is not a publisher-hosted copy or a proof certification.
+
+Printed Theorem 5 uses braid counts 2^n and 2^(n+1), with a tail sigma_(2^n)^± sigma_(2^n+1)^± ... sigma_(2^(n+1)-1)^±. The signs are visibly present in every printed factor. The prior OCR text lost those superscripts. A positive-only exponent-minus-strand-count objection therefore does not apply and is expressly withdrawn. The printed theorem does not specify whether the signs are independently chosen or a common choice.
+
+Page 147 defines ordinary Markov equivalence by same-link closure, then introduces a new representation described as interwoved strings. Page 148 calls its relation Markov generalized equivalence. Neither page defines that generalized relation or representation in enough detail to identify it with the ordinary oriented unframed closure equivalence; neither supplies a proof of Theorems 3–5. Theorem 3 also mentions a zeroth induction map, so the convention for natural numbers and possible one-strand participation must not be silently chosen.
+
+For n>=1, 2^n and 2^(n+1) are both even. A chain made only from these long signed stabilizations and conjugations is a subcalculus of classical conjugation plus signed double stabilization: the consecutive new-generator tail can be grouped into pairs, giving 2^(n-1) ordinary double stabilizations. This deduction holds even if the printed signs are interpreted independently. It does not, by itself, prove incompleteness or identify Nencka's undefined generalized equivalence. Applying Fiedler's reported negative result would require checking the exact counterexample and whether it lies among these power-of-two counts and has the same conventions; the present review has not accessed his full proof.
+
+The powers-of-two counts are materially relevant: an ordinary-closure theorem using only those counts would still use only even braids (for n>=1) and could answer the literal classical question. Thus this source cannot be dismissed merely as using a subset of even counts. It discusses classical braid groups and supplies no virtual exchange calculus.
+
+Disposition: authenticated earlier related announcement, exact valid earlier answer and historical priority UNRESOLVED. Before publication, name and cite it in the manuscript/source qualifications and relevant metadata, state what was and was not checked, and retain the no-first-priority/no-present-openness qualification. Do not claim it disproves the current positive-padding theorem or proves earlier priority. No outside person was contacted; further source access could help but no outreach is prepared.
+
+Scan links: [volume and indexed text](https://ru.djvu.online/file/OzKCMNnU4ojPn), [printed p147](https://djvu.online/jpg/O/z/K/OzKCMNnU4ojPn/153.webp), [printed p148](https://djvu.online/jpg/O/z/K/OzKCMNnU4ojPn/154.webp), [copyright/ISBN leaf](https://djvu.online/jpg/O/z/K/OzKCMNnU4ojPn/004.webp).
