@@ -1,0 +1,5 @@
+# Descending adversarial audit: PR316 / 9900002
+
+Original submitted head c96a3b2019ed3d6aabe0612b31491161dcb275e8, claimed_solved, author1/5. All19 changed objects (18 target files) match live API, Git and frozen disk bytes/modes. Imported full target and prior report match both complete pinned raw source files. Root read the complete submitted proof/verification/historical record after source-first criteria, reproduced7852/646 checks and independently derived a geometric-count concentration bound with6124 checks/three genuine false variants rejected.
+
+Root initial mathematical verification45%, PR316 workflow15%; both fresh source-first independent families are active. Mathematical acceptance, current priority audit, paper, exact merge and publication remain pending. Full original primary PDF binary/visual access remains unavailable; current indexed institutional source hypotheses and Problem1.2 match the imported target. A historical Angus–Ding article-number typo requires correction in current publication prose, not alteration of the original18 files. No external individual contacted; goal active.

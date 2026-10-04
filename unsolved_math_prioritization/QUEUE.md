@@ -360,7 +360,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 349 | 10400230 / AMR-103-0230 | Problem 12.25 — (A. | 0.1560 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 350 | 159 / GREEN-071 | Uniform Random Variables with Uniform Sum | 0.1560 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
 | 351 | 20000207 / AIM-ALGEBRAIC_GEOMETRY-0207 | Extended-Kruppa constraints, realized conic ambiguity, and invariant eliminants for algebraic silhouettes | 0.1560 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
-| 352 | 20000450 / AIM-ALGEBRAIC_NUMBER_THEORY-0102 | The infinity 5-torsion line and Kummer quotient of the pentagonal quintic | 0.1560 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
+| 352 | 20000450 / AIM-ALGEBRAIC_NUMBER_THEORY-0102 | The infinity 5-torsion line and Kummer quotient of the pentagonal quintic | 0.1560 | 5.0 | 3 | unknown | claimed_solved | 1/5 |  |  Accepted exact full 25-point fifth-torsion and division-field computation for the specified regular-pentagon pencil over Q(sqrt(5)); research note and verification package ready after successive new full AI reviews and global source-attribution repair. Classical Fisher/Verdure/Morton inputs credited; bounded priority, unrefereed. | https://doi.org/10.5281/zenodo.23137834 |
 | 353 | 20000700 / AIM-ANALYTIC_NUMBER_THEORY-0064 | A finite local prime model for the Bogomolny--Keating Type-II input | 0.1560 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 354 | 3000058 / AMR-029-0058 | Opposite vertices of base polyhedra | 0.1560 | 5.0 | 3 | unknown | queued | 0/5 |  |  |  |
 | 355 | 3048 / OPG-37226 | Sequence defined on multisets | 0.1560 | 5.0 | 1 | unknown | queued | 0/5 |  |  |  |
@@ -615,7 +615,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 604 | 4300001 / AMR-042-0001 | Order of mixing | 0.1121 | 5.5 | 4 | 2006 | queued | 0/5 |  |  |  |
 | 605 | 10400107 / AMR-103-0107 | Problem 5.11 — (C. | 0.1120 | 5.5 | 3 | unknown | queued | 0/5 |  |  |  |
 | 606 | 30000706 / OWR-1460-013 | Four-Value-Sharing Meromorphic Functions with $\psi=1$ | 0.1119 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
-| 607 | 30000707 / OWR-1460-014 | Exponential Auxiliary Systems for Four-Value-Sharing Meromorphic Functions | 0.1119 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
+| 607 | 30000707 / OWR-1460-014 | Exponential Auxiliary Systems for Four-Value-Sharing Meromorphic Functions | 0.1119 | 5.5 | 3 | 2007 | unsolved | 5/5 |  |  |  |
 | 608 | 30000750 / OWR-1537-002 | Reduced Length and Mahler-Measure Inequality | 0.1119 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 609 | 30000971 / OWR-1971-004 | Eisenbud's Fiber-Regularity Conjecture | 0.1118 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
 | 610 | 30001033 / OWR-2053-013 | Finite Width of the 14-Triangle Complex Group | 0.1118 | 5.5 | 3 | 2008 | queued | 0/5 |  |  |  |
