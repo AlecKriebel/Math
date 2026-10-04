@@ -631,7 +631,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 620 | 30001687 / OWR-4793-001 | Spectral Thickness of Fibonacci Hamiltonians | 0.1112 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 621 | 30001721 / OWR-4800-012 | Tree Modules for Roots of Acyclic Quivers | 0.1112 | 5.5 | 3 | 2011 | queued | 0/5 |  |  |  |
 | 622 | 30002048 / OWR-11784-007 | Exceptional-Unit Bounds by Algebraic Degree | 0.1110 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
-| 623 | 30002497 / OWR-12866-004 | Irrational Local Maxima of the Fractional-Part Autocorrelation | 0.1105 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
+| 623 | 30002497 / OWR-12866-004 | Irrational Local Maxima of the Fractional-Part Autocorrelation | 0.1105 | 5.5 | 3 | 2014 | unsolved | 5/5 |  | Every irrational local maximum must be a stationary Wilton point; the specified quadratic family and reciprocals are excluded. Full target unresolved after five approaches; no novelty claim. |  |
 | 624 | 30002508 / OWR-12866-018 | Continuity and Strict Monotonicity of Nyman–Beurling Distances | 0.1105 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 625 | 30002526 / OWR-12869-003 | Eliminating Whitney Umbrellas in Projective Group Realization | 0.1105 | 5.5 | 3 | 2014 | queued | 0/5 |  |  |  |
 | 626 | 30004994 / OWR-9790354-005 | Entropy and Nondiagonal Asymptotic Pairs | 0.1105 | 6.0 | 3 | 2022 | queued | 0/5 |  |  |  |
