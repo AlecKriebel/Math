@@ -31,3 +31,7 @@ Concise exact counterexample note written using fully verified module flag, delt
 ### 2026-10-04T06:15:30.267963+00:00 — Priority closed; corrected complete preprint packet ready for fresh review
 
 Final priority accepted100% at06:12:39.095261Z with established-theory attribution and13 historical/source limits; no first certificate. Root native public+whole replay passes all667 scientific/archive payloads+17externalpins; allpriornamespace bodies/modes preserved with sole authorized runtime seal. Corrected local upload files strings to structured path entries after actualcheckexit1; rebuilt ZIPv02 and extracted integrity/full replay exit0/emptyerrors/fullstreams unchanged. Localproduction kitcheck exit0; metadata fields/paper unchanged. Math100%, priority100%, workflow50%; publication not yet authorized by reviews. Sequential NEW preprint reviews next.
+
+### 2026-10-04T06:34:54.159317+00:00 — First package adversary exposed portability blocker
+
+The independent core proof assessment passes, but the frozen public ZIP is not ready: complete intrinsic stdout includes runtime-specific interpreter provenance. Root independently reproduced the system success/bundled failure and identical normalized mathematical JSON; native receipts and original inputs retained. Scoped public derivative repair is planned only after full frozen review completion. Mathematics100%, bounded priority100%, publication workflow50%; no merge, deposit or tracker action.

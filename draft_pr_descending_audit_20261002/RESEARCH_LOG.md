@@ -439,3 +439,19 @@ Concise exact counterexample note written using fully verified module flag, delt
 ### 2026-10-04T06:15:30.267963+00:00 — Priority closed; corrected complete preprint packet ready for fresh review
 
 Final priority accepted100% at06:12:39.095261Z with established-theory attribution and13 historical/source limits; no first certificate. Root native public+whole replay passes all667 scientific/archive payloads+17externalpins; allpriornamespace bodies/modes preserved with sole authorized runtime seal. Corrected local upload files strings to structured path entries after actualcheckexit1; rebuilt ZIPv02 and extracted integrity/full replay exit0/emptyerrors/fullstreams unchanged. Localproduction kitcheck exit0; metadata fields/paper unchanged. Math100%, priority100%, workflow50%; publication not yet authorized by reviews. Sequential NEW preprint reviews next.
+
+### 2026-10-04T06:17:42.066120+00:00 — PR344 first preprint packet checkpoint pushed
+
+Owned commit fa829e3839714b2487de8dadf9b34bdd2fb16e47 pushed after exact scoped Git/disk body/mode and remote verification. All foreign index and dirty tracked bodies/modes preserved. Mathematics100%, bounded priority review100%, workflow50%; first NEW full-package reviewer active, at least one successive NEW review still required; historical first priority uncertified. No PR344 merge or publication.
+
+### 2026-10-04T06:29:18.220092+00:00 — PR65 priority checkpoint window acknowledged
+
+Main and remote are fa829e3839714b2487de8dadf9b34bdd2fb16e47; entire index empty. Shared Git/index writers paused and dirty tracked bodies/modes frozen after acknowledgement. PR344 mathematics100%, bounded priority100%, publication workflow50%. First fresh full-package review continues; an interpreter-specific expected stdout portability blocker has been found, with repair pending completion of that frozen review. No PR344 merge or Zenodo publication. No outbound chat message sent.
+
+### 2026-10-04T06:32:43.931030+00:00 — PR65 priority checkpoint release verified
+
+Main and remote 1420ead077d1fd3055e97a03f25486b8f4d606ba; thirty owned ascending paths, unchanged native queue, empty entire index and all ten acknowledged tracked bodies/modes preserved. Shared owned writes resumed. PR344 mathematics100%, bounded priority100%, workflow50%; first fresh package reviewer remains active. Root independently reproduced the interpreter-output portability defect: system full check succeeds, bundled full check rejects, underlying intrinsic mathematical JSON agrees after interpreter provenance is removed. No merge/upload/tracker mutation.
+
+### 2026-10-04T06:34:54.159317+00:00 — First package adversary exposed portability blocker
+
+The independent core proof assessment passes, but the frozen public ZIP is not ready: complete intrinsic stdout includes runtime-specific interpreter provenance. Root independently reproduced the system success/bundled failure and identical normalized mathematical JSON; native receipts and original inputs retained. Scoped public derivative repair is planned only after full frozen review completion. Mathematics100%, bounded priority100%, publication workflow50%; no merge, deposit or tracker action.
