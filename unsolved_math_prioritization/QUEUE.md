@@ -78,7 +78,7 @@ Budget per problem: Five substantive proof-attempt turns with ChatGPT6 Astra at 
 | 67 | 30000644 / OWR-1452-008 | Surjectivity of Reduction Maps for Special Polynomial Automorphisms | 0.2458 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 68 | 30000671 / OWR-1453-004 | Reconstructing Complete Local Rings from Finite Quotients | 0.2458 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
 | 69 | 30000703 / OWR-1460-009 | Boundary Behavior under Asymptotic Schwarz–Pick Equality | 0.2458 | 5.5 | 3 | 2007 | queued | 0/5 |  |  |  |
-| 70 | 30006309 / OWR-14299288-015 | Combinatorial Proof of Hurwitz and Discriminant Weight-Polytope Equality | 0.2454 | 5.5 | 3 | 2025 | queued | 0/5 |  |  |  |
+| 70 | 30006309 / OWR-14299288-015 | Combinatorial Proof of Hurwitz and Discriminant Weight-Polytope Equality | 0.2454 | 5.5 | 3 | 2025 | already_solved | 1/5 |  | Verified scoped comparison in smooth complete very ample Delzant all-lattice-point n>=1 degree>=2 regime; credited prior-theorem corollary of Esterov2010; exact prior Hurwitz derivation and candidate algorithm priority unestablished; arbitrary singular/sparse/incomplete and foundation-free cases not certified; accepted partial attributed progress; full-source/bijection unresolved; AI-assisted, unrefereed; original1/5; no new paper/DOI/tracker |  |
 | 71 | 30002061 / OWR-11786-016 | Collapse Preservation under Subdivision | 0.2437 | 5.5 | 3 | 2012 | queued | 0/5 |  |  |  |
 | 72 | 30002298 / OWR-12339-004 | Polyhedra with Vertex-Factored Fantappiè Denominators | 0.2432 | 5.5 | 3 | 2013 | queued | 0/5 |  |  |  |
 | 73 | 30003354 / OWR-15208-008 | Borderline Continuity of Conformal Metric Parametrizations | 0.2408 | 5.5 | 3 | 2017 | queued | 0/5 |  |  |  |
