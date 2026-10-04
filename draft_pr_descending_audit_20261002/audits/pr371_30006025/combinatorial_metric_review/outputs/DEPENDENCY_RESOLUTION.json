@@ -1,0 +1,26 @@
+{
+  "started_utc": "2026-10-03T11:01:16.150429+00:00",
+  "finished_utc": "2026-10-03T11:01:16.598778+00:00",
+  "argv": [
+    "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr378_30004322/sources_effective_review/private_runtime/bin/python",
+    "-c",
+    "import sys,sympy,json; print(json.dumps({\"executable\":sys.executable,\"python\":sys.version,\"sympy\":sympy.__version__},indent=2))"
+  ],
+  "exit_code": 0,
+  "stdout_sha256": "0f0b8e8815faa9d7e6888c34c9045552b45754501b0022f6c1cf60d12247b5da",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "versions": {
+    "executable": "/Users/alec/Documents/Math/draft_pr_descending_audit_20261002/audits/pr378_30004322/sources_effective_review/private_runtime/bin/python",
+    "python": "3.14.6 (main, Jun 10 2026, 10:03:53) [Clang 21.0.0 (clang-2100.0.123.102)]",
+    "sympy": "1.14.0"
+  },
+  "initial_probes": "Both available default Python runtimes lacked SymPy; full outputs retained in dependency_probes.json and stream files.",
+  "install_attempt": {
+    "requested": "sympy==1.14.0",
+    "exit_code": 1,
+    "status": "Failed, no disk space writing bin/isympy; complete stderr/stdout retained.",
+    "retry": "Output redirection also failed for disk space before any retry process executed. No retry output files could be created.",
+    "cleanup": "First heredoc cleanup could not allocate its temporary file; then standard-library Python -c removed only this audit own ignored private/replay_venv, after read-only validation of the existing runtime. No other directory was deleted."
+  },
+  "resolved": "Used existing runtime supplied by parent, read-only with PYTHONDONTWRITEBYTECODE=1; no further installation."
+}

@@ -1,0 +1,35 @@
+# PR47 independent reconstruction before prior verdict reading
+
+Independence qualification: this is a reused PR46 investigator, with inherited PR47 summaries. It is a new independent reconstruction and computation, not a claim of an unprimed historical discovery. Neither prior PR47 audit verdicts nor detailed new-family proofs were read before this file was authored. The exact plain target, corrected operative scientific note/helper and direct primary hypotheses were read first.
+
+The exact target is every closed oriented rational homology three-sphere Y whose every pi1-to-SU2 homomorphism has abelian image. It asks whether dim_C I# equals |H1(Y;Z)|. No irreducibility, cyclic H1, surgery presentation, or nondegeneracy is assumed. No calculation here answers that universal question.
+
+## Orbit count and the missing Hessian hypothesis
+
+Finite H1=A implies every abelian SU2 image is a finite cyclic subgroup of a maximal circle. Write rho_chi=diag(chi,chi^-1). Conjugation identifies chi with chi^-1 and nothing else. If chi^2=1, the image is central and the orbit is a point; otherwise its stabilizer is the diagonal circle and the orbit is S2. Finitely many compact disjoint orbits are the connected components. Let c=|A[2]|; ordinary total homology rank is c+2(|A|-c)/2=|A|.
+
+Conjugation on off-diagonal su2 multiplies its complex coordinate by chi^2. The diagonal real line is trivial. Because b1(Y)=0, real adjoint H1 has dimension twice complex H1 of the squared character. This is the normal infinitesimal quotient; it is not a theorem that each infinitesimal vector integrates to an actual irreducible representation. All characters central gives zero cohomology, and the known Baldwin–Sivek Morse–Bott theorem applies. In the general case its essential hypothesis is exactly vanishing of these normal groups, equivalently rational-homology-sphere covers for ker(ad rho). The known spectral sequence and Euler lower bound then give equality. No necessity of being cyclically finite for instanton rank equality follows from that theorem.
+
+## Quartic diagnostic
+
+Set x=|z1|^2, y=|z2|^2 and f=x^2-3xy+2y^2. Coordinate gradients factor as z1(2x-3y), z2(-3x+4y). Nonzero both coordinates would solve an invertible 2-by-2 system of determinant -1, forcing x=y=0. If either coordinate is zero, the other equation forces the remaining coordinate to zero. Thus the only critical point is the origin. Degree four forces its Hessian there to vanish. The function is invariant under both independent circles, hence in particular scalar weight-two multiplication.
+
+On S3, x+y=1 and f=(2x-1)(3x-2). Its nonpositive lower link is 1/2<=x<=2/3; neither coordinate vanishes, so this link is T2 times a closed interval. The nonpositive sublevel in a ball is its cone, and the punctured cone retracts onto T2. Relative critical homology is shifted reduced homology: rank2 in degree2 and rank1 in degree3, zero otherwise. Total rank3, Euler1. This falsifies replacing an abstract isolated analytic symmetric critical contribution by rank1 merely from its critical-set topology/Euler characteristic. It does not realize a Chern–Simons germ, compute equivariant instanton data or construct a target counterexample.
+
+## Trefoil slope six and the square
+
+The trefoil exterior group is <a,b | a^2=b^3=h>. The regular fibre has peripheral class mu^6 lambda with zero-linking longitude. Six-filling kills h, leaving C2*C3, whose abelianization is C6. An SU2 element squaring to the identity has eigenvalues equal to +/-1 with determinant1, so is +/-I. Thus the a image is central; the entire representation image generated with b is abelian. This covers all representations, including arbitrary b axes.
+
+The torus-knot Alexander quotient simplifies to Phi6=t^2-t+1. It shares Phi6 with t^6-1 but Phi6(t^2) is coprime to t^6-1: squares of sixth roots have order dividing3. Therefore the printed unsquared torus-knot clause of arXiv:2608.20551v1 Definition5.3/Corollary5.4 fails at this filling, while the genuine squared cyclic-finiteness test passes. The known conditional theorem gives instanton rank6 here. This source check has no implication about other results, later versions or authors' intentions.
+
+## Realized degeneracy independently reconstructed
+
+Take Y=S2((3,1),(3,1),(3,2)), with central fibre h and relations c1^3 h=c2^3 h=c3^3 h^2=c1 c2 c3=1. The abelian relation matrix in (c1,c2,c3,h) is [[3,0,0,1],[0,3,0,1],[0,0,3,2],[1,1,1,0]]. Its determinant is -36 and invariant factors are 1,1,3,12, so H1=C3 direct-sum C12 and Y is a rational sphere.
+
+For any SU2 representation, if the fibre image is noncentral, every ci lies in its same circle centralizer, so the image is abelian. If h=I, each noncentral ci has angle2pi/3. If h=-I, noncentral c1,c2 have anglepi/3 while c3 has angle2pi/3. If any ci is central, the product relation forces the other two to commute. Otherwise write ci=cos(theta_i)+v_i sin(theta_i) as unit quaternions. The real part of c1c2 must be cos(theta3)=-1/2. In both possible noncentral cases it equals 1/4-(3/4)(v1 dot v2), forcing v1 dot v2=1. The first two axes coincide, and c3=(c1c2)^-1 lies in the same circle. This proves every SU2 image abelian without relying on a selected family of representations.
+
+Let omega be a primitive cube root and choose chi(ci)=omega, chi(h)=1. This respects every relation. Its squared-character module has a=omega^2 (or the conjugate a=omega), with a^2+a+1=0 and a!=1. A crossed homomorphism satisfies u(gh)=u(g)+alpha(g)u(h). The fibre commutators imply u_h=0; the cube relations give no further ci constraint because 1+a+a^2=0. The product relation gives u1+a u2+a^2 u3=0. Thus Z1 has complex dimension2, while the nonzero coboundary vector (a-1,a-1,a-1,0) spans dimension1. Complex normal H1 is1 and real adjoint H1 is2. Degree-one manifold/group local cohomology agree because the universal cover is simply connected; no asphericity assumption is needed.
+
+The kernel of this order-three squared character is the regular three-cover coming from the torus cover of the S2(3,3,3) base. Its Euler characteristic is3*(2-3*(1-1/3))=0, hence the covering surface is a torus. The rational Seifert Euler number is -(1+1+2)/3=-4/3; pulling back multiplies it by3, yielding a circle bundle over T2 with Euler -4. The Gysin sequence gives first Betti number2. Thus a genuine target-premise manifold is not cyclically finite and has a degenerate reducible. This is known Sivek–Zentner Proposition6.1/Remark6.2, not novelty. No I# rank is computed; this is not a counterexample to KP3.51.
+
+Strongest verified partial finding: the elementary diagnostics and realized failure of universal normal-vanishing are valid. That route is blocked under the original hypotheses. Exact remaining mathematical gap: control actual degenerate gauge-theoretic local Floer contributions and differentials, or provide another mechanism establishing the required global rank. Original turns are1/5; new0 and audit0. No paper, DOI, tracker or future acceptance approval is supplied.

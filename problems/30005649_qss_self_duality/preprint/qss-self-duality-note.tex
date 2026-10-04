@@ -1,0 +1,267 @@
+\documentclass[10pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern,amsmath,amssymb,amsthm,microtype}
+\usepackage[colorlinks=true,allcolors=blue]{hyperref}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{remark}{Remark}
+\newcommand{\im}{\operatorname{im}}
+\newcommand{\Span}{\operatorname{span}}
+\newcommand{\dual}{\mathrm D}
+\title{A counterexample to Takao's self-duality question}
+\author{Alec Kriebel\\Independent researcher\\
+\small ORCID: \href{https://orcid.org/0009-0001-9320-500X}{0009-0001-9320-500X}}
+\date{4 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+Takao asked whether a finite flat commutative group scheme over a Witt
+ring, killed by $p$ and having quasi-supersingular special fiber, must be
+Cartier self-dual in ranks $p^{2n}$ with $n\geq3$. For every $p>3$ and
+$n\geq3$, we give a counterexample over $W(\overline{\mathbb F}_p)$.
+A six-dimensional Dieudonn\'e module has an explicit filtration by
+supersingular elliptic $p$-torsion modules, an explicit finite Honda
+complement, and an image-intersection invariant distinguishing it from
+its dual. Both the special fiber and its finite flat Witt-ring lift
+are non-self-dual. The construction is an application of classical
+Dieudonn\'e and finite Honda theory.
+\end{abstract}
+
+\section{The question and result}
+Let $p>3$ be prime. A finite commutative group scheme $H$ over a perfect
+field of characteristic $p$, killed by $p$, is \emph{quasi-supersingular}
+if it has a subgroup filtration whose successive quotients are
+$E_i[p]$ for supersingular elliptic curves $E_i$ over that field.
+This is Takao's Definition~1(3)~\cite{Takao}. His Proposition~2 states
+that, for a finite flat commutative $W(k)$-group scheme $\mathcal G$
+killed by $p$, of rank $p^{2n}$, a quasi-supersingular special fiber
+forces both the special fiber and $\mathcal G$ to be self-dual when
+$n\leq2$. The unnumbered question immediately following that proposition
+asks whether the assertion remains true for $n\geq3$
+\cite[p.~2479]{Takao}.
+
+\begin{theorem}\label{thm:main}
+For every prime $p>3$ and integer $n\geq3$, put
+$k=\overline{\mathbb F}_p$ and $W=W(k)$.
+There is a finite flat commutative group scheme $\mathcal G_n/W$,
+killed by $p$ and of rank $p^{2n}$, whose special fiber $H_n$ is
+quasi-supersingular, such that
+\[
+ H_n\not\simeq H_n^{\dual},\qquad
+ \mathcal G_n\not\simeq\mathcal G_n^{\dual}.
+\]
+Here ${}^{\dual}$ denotes Cartier duality.
+\end{theorem}
+
+Thus the answer to the stated higher-rank question is negative, with
+the first possible counterexample at $n=3$, using Takao's affirmative
+result for $n\leq2$. The hypothesis concerns the special fiber: we do
+not require its filtration to lift to $W$.
+
+The module used below belongs to the classical cyclic-word framework.
+In the convention of Pries--Ulmer it is $M(vvfvff)$
+\cite[\S\S3.2.1,4.1]{PriesUlmer}; in the forward-arrow order of our
+contravariant presentation its string is $ffvfvv$.
+The module construction and its duality classification are prior
+mathematics. Oort's cyclic integral construction also supplies a
+balanced supersingular completion~\cite[\S\S2.5--2.6]{Oort}.
+We give direct calculations of the filtration, duality obstruction,
+and finite Honda complement to answer the specific question without
+relying on the cyclic-word classification. No first-discovery or
+first-priority claim is made. The supporting package records the
+bounded literature audit and its source-access and version limits.
+
+\section{The six-dimensional construction}
+We use contravariant Dieudonn\'e theory over $k$ as in
+\cite[\S2]{Hoshi}. Write $\sigma$ for Frobenius on $k$ and also for
+its lift to $W$. On a module killed by $p$, $F$ is
+$\sigma$-semilinear, $V$ is $\sigma^{-1}$-semilinear, and $FV=VF=0$.
+Let $M$ have basis $e_0,\ldots,e_5$, with operators specified by
+\[
+\begin{array}{c|rrrrrr}
+ &e_0&e_1&e_2&e_3&e_4&e_5\\\hline
+F&e_1&e_2&0&e_4&0&0\\
+V&e_5&0&0&e_2&0&e_4
+\end{array}
+\]
+and extended with the indicated semilinearity. All displayed scalars
+are in $\mathbb F_p$. Direct computation gives
+\begin{align*}
+ FV=VF&=0,& F^3=V^3&=0,\\
+ \im F=\ker V&=\Span_k(e_1,e_2,e_4),&
+ \im V=\ker F&=\Span_k(e_2,e_4,e_5).
+\end{align*}
+The finite Dieudonn\'e anti-equivalence produces a commutative
+$k$-group scheme $H$ killed by $p$, of rank $p^6$
+\cite[Proposition~2.5]{Hoshi}.
+
+\subsection{Quasi-supersingularity}
+Let $I$ denote the two-dimensional module on $x,y$ with
+\[
+ Fx=Vx=y,\qquad Fy=Vy=0.
+\]
+Over algebraically closed $k$, $I$ is the module of the $p$-torsion
+of a supersingular elliptic curve. This is the rank-two case of
+\cite[Lemma~4.9]{Hoshi}: the module is deformable and
+$\im F=\im V$.
+
+Set
+\[
+ u=e_1+e_3+e_5,\quad v=e_2+e_4,\quad
+ w=2e_1+e_3,\quad z=e_2,\quad a=e_0,\quad b=e_1.
+\]
+These form a basis. Indeed,
+\[
+ e_0=a,\ e_1=b,\ e_2=z,\ e_3=w-2b,\
+ e_4=v-z,\ e_5=u-w+b.
+\]
+In this basis the nonzero images are exactly
+\begin{align*}
+ Fu&=v,& Fw&=v+z,& Fa&=b,& Fb&=z,\\
+ Vu&=v,& Vw&=z,& Va&=u-w+b.
+\end{align*}
+Consequently
+\[
+ 0=M_0\subset M_1=\Span_k(u,v)
+ \subset M_2=\Span_k(u,v,w,z)\subset M_3=M
+\]
+is an $F,V$-stable flag. The three quotient modules are $I$, using,
+respectively, the pairs $(u,v)$, $(w,z)$, and $(a,b)$.
+Exact contravariance gives subgroups $H_i\subset H$ with modules
+$M/M_{3-i}$, for $0\leq i\leq3$.
+Their successive quotients correspond in reverse order to the three
+module factors. Each is supersingular elliptic $p$-torsion; hence
+$H$ is quasi-supersingular.
+
+\subsection{Failure of Cartier self-duality}
+For a finite Dieudonn\'e module $T$ over perfect $k$, define
+\[
+ \delta(T)=\dim_k(\im F_T^2\cap\im V_T^2).
+\]
+The images are $k$-subspaces because the field is perfect.
+An isomorphism commuting with $F,V$ carries both images to the
+corresponding images, so $\delta$ is an isomorphism invariant.
+For $M$,
+\[
+ \im F^2=k e_2,\qquad \im V^2=k e_4,\qquad \delta(M)=0.
+\]
+On $M^{\dual}=\operatorname{Hom}_k(M,k)$ the dual operators are
+\[
+ (F^{\dual}\phi)(t)=\sigma\bigl(\phi(Vt)\bigr),\qquad
+ (V^{\dual}\phi)(t)=\sigma^{-1}\bigl(\phi(Ft)\bigr)
+ \quad\text{\cite[Definition~2.3]{Hoshi}}.
+\]
+Since our basis matrices have coefficients in $\mathbb F_p$, their
+dual matrices are $V^{\mathsf t}$ and $F^{\mathsf t}$ with the
+appropriate semilinearity. Thus $(F^{\dual})^2(e_4^*)=e_0^*$ and
+$(V^{\dual})^2(e_2^*)=e_0^*$, and all other basis images of these
+second iterates vanish. It follows that
+\[
+ \im(F^{\dual})^2=\im(V^{\dual})^2=k e_0^*,\qquad
+ \delta(M^{\dual})=1.
+\]
+Hence $M\not\simeq M^{\dual}$, and compatibility of Dieudonn\'e
+theory with Cartier duality gives $H\not\simeq H^{\dual}$.
+The transpose description here uses the prime-field coefficients;
+the displayed semilinear dual formulas are the general convention.
+
+\section{An actual finite flat lift and all higher ranks}
+View $M$ as a $W$-module through $W\to k$ and put
+\[
+ L=\Span_k(e_0,e_3,e_5)\subset M.
+\]
+We verify the finite Honda hypotheses explicitly. The $W$-length of
+$M$ is six and $pM=0$. The semilinear operators satisfy $FV=VF=p$
+on $M$. The restriction of $V$ to $L$ sends its displayed basis
+to $e_5,e_2,e_4$ and is injective, since $k$ is perfect. Finally,
+$L$ complements $\im F=\Span_k(e_1,e_2,e_4)$, so the natural map
+\[
+ L/pL\longrightarrow M/\im F
+\]
+is an isomorphism. These are exactly the finite Honda conditions
+of Fontaine--Laffaille~\cite[\S9.4]{FontaineLaffaille}, in the
+$p$-torsion formulation of Hoshi~\cite[Remark~3.5.1]{Hoshi}.
+The exactness identities above also verify Hoshi's deformability
+condition.
+
+Since $p\ne2$, Hoshi's anti-equivalence
+\cite[Proposition~3.11(2)]{Hoshi} produces a finite flat commutative
+$W$-group scheme $\mathcal G$, killed by $p$, from this finite Honda
+system. Its special fiber has module $M$, by
+\cite[Proposition~3.11(5)]{Hoshi}, and is therefore $H$.
+Its rank is $p^6$: finite flat rank is constant over the local base
+and equals the special-fiber rank. Cartier duality commutes with
+base change, so an isomorphism $\mathcal G\simeq\mathcal G^{\dual}$
+would imply $H\simeq H^{\dual}$. Thus $\mathcal G$ also fails
+self-duality. This is a finite Honda realization over $W$; an
+integral Dieudonn\'e lattice for a group over $k$ would not, on
+its own, establish this mixed-characteristic assertion.
+
+For $n\geq3$, equip $I$ with the finite Honda subspace $kx$ and set
+\[
+ M_n=M\oplus I^{\oplus(n-3)},\qquad
+ L_n=L\oplus(kx)^{\oplus(n-3)}.
+\]
+The same Honda conditions hold on each block. They give
+$\mathcal G_n/W$ of rank $p^{2n}$. Its special fiber is
+$H\times E[p]^{n-3}$ and has a quasi-supersingular filtration by
+extending the filtration already constructed with the product
+elliptic factors. Since $F^2=V^2=0$ on $I$ and on its dual,
+\[
+ \delta(M_n)=0,\qquad\delta(M_n^{\dual})=1.
+\]
+Therefore $H_n$ and, by base change, $\mathcal G_n$ are not
+Cartier self-dual. This proves Theorem~\ref{thm:main}.
+
+\paragraph{Scope and verification.}
+These examples over $\overline{\mathbb F}_p$ disprove the universal
+assertion for perfect residue fields; no descent to every perfect
+field is asserted. The result concerns general finite group schemes
+and does not produce a principally polarized Jacobian or decide
+the surrounding Coleman conjecture. The proof is symbolic for
+every allowed $p,n$; the companion standard-library verification
+programs check the basis, operators, invariant, Honda conditions,
+direct sums, and nontrivial Frobenius twists over finite fields.
+Those computations corroborate the proof and do not replace the
+cited classification theorems or certify historical priority.
+
+\paragraph{AI use and review status.}
+AI tools were used extensively in solving, verification, literature
+research, writing, computation, and adversarial review. This note
+is an unrefereed preprint. The automated reviews are not independent
+external human peer review; no such human review is claimed.
+
+\begin{thebibliography}{9}
+\bibitem{FontaineLaffaille}
+J.-M. Fontaine and G. Laffaille,
+\emph{Construction de repr\'esentations $p$-adiques},
+Ann. Sci. \'Ecole Norm. Sup. (4) \textbf{15} (1982), no.~4,
+547--608,
+\href{https://www.numdam.org/item/ASENS_1982_4_15_4_547_0/}{Numdam original}.
+\bibitem{Hoshi}
+Y. Hoshi, \emph{Pseudo-rigid $p$-Torsion Finite Flat Commutative
+Group Schemes}, March 2021 revised author manuscript,
+\url{https://www.kurims.kyoto-u.ac.jp/~yuichiro/rims1911revised.pdf}.
+The numbered statements cited are those of this manuscript.
+Published in J. Number Theory \textbf{229} (2021), 261--276,
+\href{https://doi.org/10.1016/j.jnt.2021.04.026}{doi:10.1016/j.jnt.2021.04.026}.
+\bibitem{Oort}
+F. Oort, \emph{Simple $p$-kernels of $p$-divisible groups},
+June 2004/revised January 2005 author manuscript,
+\url{https://webspace.science.uu.nl/~oort0109/A-SimpleFinGrSch2.ps}.
+Published in Adv. Math. \textbf{198} (2005), 275--310,
+\href{https://doi.org/10.1016/j.aim.2005.03.015}{doi:10.1016/j.aim.2005.03.015}.
+\bibitem{PriesUlmer}
+R. Pries and D. Ulmer, \emph{On $\mathrm{BT}_1$ group schemes and
+Fermat curves}, New York J. Math. \textbf{27} (2021), 705--739,
+\url{https://nyjm.albany.edu/j/2021/27-27v.pdf}.
+\bibitem{Takao}
+N. Takao, \emph{Quasi-supersingular finite flat commutative group
+schemes and the Coleman conjecture on torsion points on curves},
+in \emph{Arithmetic Homotopy and Galois Theory},
+Oberwolfach Reports \textbf{20} (2023), no.~3,
+Report~42/2023, 2476--2480,
+\href{https://doi.org/10.4171/OWR/2023/42}{doi:10.4171/OWR/2023/42}.
+\end{thebibliography}
+\end{document}

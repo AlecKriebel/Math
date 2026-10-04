@@ -1,0 +1,197 @@
+{
+  "status": "PASS_OWN_REAL_STRICT_GUARD_CONTROLS",
+  "cases": [
+    {
+      "case": "baseline",
+      "argv": [
+        "/usr/bin/python3",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/check_manifest.py",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/controls/strict_views/baseline"
+      ],
+      "started_utc": "2026-10-02T13:05:25.878849+00:00",
+      "ended_utc": "2026-10-02T13:05:25.919422+00:00",
+      "actual_execution": true,
+      "exit_code": 0,
+      "expected_exit": 0,
+      "source_sha256": "0ef72f5246447e804ef99610ccaf386f55bcd4b6cb31b0788600405ee36c9313",
+      "full_stdout": "{\n  \"status\": \"PASS_EXACT_ROOT_CLOSURE\",\n  \"first_party\": 1,\n  \"foreign_separately_bound\": 1,\n  \"self_only\": true\n}\n",
+      "full_stderr": "",
+      "synthetic_authored_fixture_only": true
+    },
+    {
+      "case": "missing",
+      "argv": [
+        "/usr/bin/python3",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/check_manifest.py",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/controls/strict_views/missing"
+      ],
+      "started_utc": "2026-10-02T13:05:25.920163+00:00",
+      "ended_utc": "2026-10-02T13:05:25.959481+00:00",
+      "actual_execution": true,
+      "exit_code": 1,
+      "expected_exit": 1,
+      "source_sha256": "0ef72f5246447e804ef99610ccaf386f55bcd4b6cb31b0788600405ee36c9313",
+      "full_stdout": "",
+      "full_stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/check_manifest.py\", line 48, in <module>\n    print(json.dumps(strict(args.root),indent=2))\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/check_manifest.py\", line 34, in strict\n    assert file.is_file() and not file.is_symlink()\nAssertionError\n",
+      "synthetic_authored_fixture_only": true
+    },
+    {
+      "case": "extra",
+      "argv": [
+        "/usr/bin/python3",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/check_manifest.py",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/controls/strict_views/extra"
+      ],
+      "started_utc": "2026-10-02T13:05:25.960313+00:00",
+      "ended_utc": "2026-10-02T13:05:25.999625+00:00",
+      "actual_execution": true,
+      "exit_code": 1,
+      "expected_exit": 1,
+      "source_sha256": "0ef72f5246447e804ef99610ccaf386f55bcd4b6cb31b0788600405ee36c9313",
+      "full_stdout": "",
+      "full_stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/check_manifest.py\", line 48, in <module>\n    print(json.dumps(strict(args.root),indent=2))\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/check_manifest.py\", line 42, in strict\n    assert actual==names|{'FIRST_PARTY_MANIFEST.json'},'Exact recursive closure differs'\nAssertionError: Exact recursive closure differs\n",
+      "synthetic_authored_fixture_only": true
+    },
+    {
+      "case": "same_size_hash",
+      "argv": [
+        "/usr/bin/python3",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/check_manifest.py",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/controls/strict_views/same_size_hash"
+      ],
+      "started_utc": "2026-10-02T13:05:26.000715+00:00",
+      "ended_utc": "2026-10-02T13:05:26.040001+00:00",
+      "actual_execution": true,
+      "exit_code": 1,
+      "expected_exit": 1,
+      "source_sha256": "0ef72f5246447e804ef99610ccaf386f55bcd4b6cb31b0788600405ee36c9313",
+      "full_stdout": "",
+      "full_stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/check_manifest.py\", line 48, in <module>\n    print(json.dumps(strict(args.root),indent=2))\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/check_manifest.py\", line 36, in strict\n    assert len(data)==row['size'] and hashlib.sha256(data).hexdigest()==row['sha256']\nAssertionError\n",
+      "synthetic_authored_fixture_only": true
+    },
+    {
+      "case": "nested_self_basename",
+      "argv": [
+        "/usr/bin/python3",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/check_manifest.py",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/controls/strict_views/nested_self_basename"
+      ],
+      "started_utc": "2026-10-02T13:05:26.040768+00:00",
+      "ended_utc": "2026-10-02T13:05:26.080001+00:00",
+      "actual_execution": true,
+      "exit_code": 1,
+      "expected_exit": 1,
+      "source_sha256": "0ef72f5246447e804ef99610ccaf386f55bcd4b6cb31b0788600405ee36c9313",
+      "full_stdout": "",
+      "full_stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/check_manifest.py\", line 48, in <module>\n    print(json.dumps(strict(args.root),indent=2))\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/check_manifest.py\", line 42, in strict\n    assert actual==names|{'FIRST_PARTY_MANIFEST.json'},'Exact recursive closure differs'\nAssertionError: Exact recursive closure differs\n",
+      "synthetic_authored_fixture_only": true
+    },
+    {
+      "case": "nested_foreign_basename",
+      "argv": [
+        "/usr/bin/python3",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/check_manifest.py",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/controls/strict_views/nested_foreign_basename"
+      ],
+      "started_utc": "2026-10-02T13:05:26.080819+00:00",
+      "ended_utc": "2026-10-02T13:05:26.120061+00:00",
+      "actual_execution": true,
+      "exit_code": 1,
+      "expected_exit": 1,
+      "source_sha256": "0ef72f5246447e804ef99610ccaf386f55bcd4b6cb31b0788600405ee36c9313",
+      "full_stdout": "",
+      "full_stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/check_manifest.py\", line 48, in <module>\n    print(json.dumps(strict(args.root),indent=2))\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/check_manifest.py\", line 42, in strict\n    assert actual==names|{'FIRST_PARTY_MANIFEST.json'},'Exact recursive closure differs'\nAssertionError: Exact recursive closure differs\n",
+      "synthetic_authored_fixture_only": true
+    },
+    {
+      "case": "foreign_hash",
+      "argv": [
+        "/usr/bin/python3",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/check_manifest.py",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/controls/strict_views/foreign_hash"
+      ],
+      "started_utc": "2026-10-02T13:05:26.120781+00:00",
+      "ended_utc": "2026-10-02T13:05:26.159466+00:00",
+      "actual_execution": true,
+      "exit_code": 1,
+      "expected_exit": 1,
+      "source_sha256": "0ef72f5246447e804ef99610ccaf386f55bcd4b6cb31b0788600405ee36c9313",
+      "full_stdout": "",
+      "full_stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/check_manifest.py\", line 48, in <module>\n    print(json.dumps(strict(args.root),indent=2))\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/check_manifest.py\", line 36, in strict\n    assert len(data)==row['size'] and hashlib.sha256(data).hexdigest()==row['sha256']\nAssertionError\n",
+      "synthetic_authored_fixture_only": true
+    },
+    {
+      "case": "symlink",
+      "argv": [
+        "/usr/bin/python3",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/check_manifest.py",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/controls/strict_views/symlink"
+      ],
+      "started_utc": "2026-10-02T13:05:26.160145+00:00",
+      "ended_utc": "2026-10-02T13:05:26.199282+00:00",
+      "actual_execution": true,
+      "exit_code": 1,
+      "expected_exit": 1,
+      "source_sha256": "0ef72f5246447e804ef99610ccaf386f55bcd4b6cb31b0788600405ee36c9313",
+      "full_stdout": "",
+      "full_stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/check_manifest.py\", line 48, in <module>\n    print(json.dumps(strict(args.root),indent=2))\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/check_manifest.py\", line 39, in strict\n    assert not path.is_symlink(),'Symlink rejected'\nAssertionError: Symlink rejected\n",
+      "synthetic_authored_fixture_only": true
+    },
+    {
+      "case": "duplicate_path",
+      "argv": [
+        "/usr/bin/python3",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/check_manifest.py",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/controls/strict_views/duplicate_path"
+      ],
+      "started_utc": "2026-10-02T13:05:26.200268+00:00",
+      "ended_utc": "2026-10-02T13:05:26.239033+00:00",
+      "actual_execution": true,
+      "exit_code": 1,
+      "expected_exit": 1,
+      "source_sha256": "0ef72f5246447e804ef99610ccaf386f55bcd4b6cb31b0788600405ee36c9313",
+      "full_stdout": "",
+      "full_stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/check_manifest.py\", line 48, in <module>\n    print(json.dumps(strict(args.root),indent=2))\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/check_manifest.py\", line 28, in strict\n    assert name not in names and name!='FIRST_PARTY_MANIFEST.json'\nAssertionError\n",
+      "synthetic_authored_fixture_only": true
+    },
+    {
+      "case": "false_size",
+      "argv": [
+        "/usr/bin/python3",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/check_manifest.py",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/controls/strict_views/false_size"
+      ],
+      "started_utc": "2026-10-02T13:05:26.239661+00:00",
+      "ended_utc": "2026-10-02T13:05:26.279060+00:00",
+      "actual_execution": true,
+      "exit_code": 1,
+      "expected_exit": 1,
+      "source_sha256": "0ef72f5246447e804ef99610ccaf386f55bcd4b6cb31b0788600405ee36c9313",
+      "full_stdout": "",
+      "full_stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/check_manifest.py\", line 48, in <module>\n    print(json.dumps(strict(args.root),indent=2))\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/check_manifest.py\", line 30, in strict\n    assert type(row['size']) is int and row['size']>=0\nAssertionError\n",
+      "synthetic_authored_fixture_only": true
+    },
+    {
+      "case": "unsafe_path",
+      "argv": [
+        "/usr/bin/python3",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/check_manifest.py",
+        "/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/controls/strict_views/unsafe_path"
+      ],
+      "started_utc": "2026-10-02T13:05:26.280279+00:00",
+      "ended_utc": "2026-10-02T13:05:26.320497+00:00",
+      "actual_execution": true,
+      "exit_code": 1,
+      "expected_exit": 1,
+      "source_sha256": "0ef72f5246447e804ef99610ccaf386f55bcd4b6cb31b0788600405ee36c9313",
+      "full_stdout": "",
+      "full_stderr": "Traceback (most recent call last):\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/check_manifest.py\", line 48, in <module>\n    print(json.dumps(strict(args.root),indent=2))\n  File \"/Users/alec/Documents/Math/draft_pr_publication_program_20260930/audits/pr41_9700035/network_tail_measure_family/check_manifest.py\", line 27, in strict\n    assert path.as_posix()==name and not {'.','..'}.intersection(path.parts) and '\\\\' not in name\nAssertionError\n",
+      "synthetic_authored_fixture_only": true
+    }
+  ],
+  "baseline": 1,
+  "rejections": 10,
+  "fixtures_are_administrative_not_SIRSNs": true,
+  "new_substantive_attempts": 0,
+  "audit_turns": 0
+}
